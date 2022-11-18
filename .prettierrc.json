@@ -4,10 +4,10 @@
 		{
 			"files": ["*.js", "*.jsx", "*.ts", "*.tsx"],
 			"options": {
-				"bracketSpacing": true,
 				"bracketSameLine": true
 			}
 		}
 	],
-	"editorconfig": true
+	"editorconfig": true,
+	"bracketSpacing": true
 }
