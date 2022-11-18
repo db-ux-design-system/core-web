@@ -26,7 +26,6 @@
     "@commitlint/config-conventional": "17.2.0",
     "cpr": "3.0.1",
     "dotenv": "^16.0.3",
-    "eslint-config-prettier": "^8.5.0",
     "fs-extra": "^10.1.0",
     "husky": "8.0.2",
     "markdownlint-cli": "^0.32.2",
