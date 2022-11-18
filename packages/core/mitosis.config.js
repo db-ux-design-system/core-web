@@ -3,7 +3,7 @@ const Debug = require('./plugins/debug');
 
 module.exports = {
 	files: 'src/**',
-	targets: ['angular', 'vue3', 'webcomponent', 'svelte', 'react', 'preact'],
+	targets: ['angular', 'vue3', 'webcomponent', 'svelte', 'react'],
 	options: {
 		react: {
 			typescript: true,

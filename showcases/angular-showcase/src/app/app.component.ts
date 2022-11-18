@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-root',
-  templateUrl: './app.component.html',
+  templateUrl: './app.component.html'
 })
 export class AppComponent {
   title = 'angular-showcase';
@@ -12,8 +12,8 @@ export class AppComponent {
       name: 'tab-bar-2',
       label: '2-Tab1',
       active: true,
-      children: 'Content 2-1',
+      children: 'Content 2-1'
     },
-    { name: 'tab-bar-2', label: '2-Tab2', content: 'Content 2-2' },
+    { name: 'tab-bar-2', label: '2-Tab2', content: 'Content 2-2' }
   ];
 }

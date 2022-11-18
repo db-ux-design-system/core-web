@@ -2,7 +2,7 @@
 	"trailingComma": "none",
 	"overrides": [
 		{
-			"files": "**/*.js",
+			"files": ["**/*.js", "**/*.jsx", "**/*.ts", "**/*.tsx"],
 			"options": {
 				"singleQuote": true,
 				"bracketSpacing": true,

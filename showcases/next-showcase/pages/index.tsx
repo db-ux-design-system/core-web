@@ -1,7 +1,7 @@
-import type { NextPage } from "next";
-import Head from "next/head";
-import { DBButton } from "../components/button";
-import { DBIcon } from "../components/icon";
+import type { NextPage } from 'next';
+import Head from 'next/head';
+import { DBButton } from '../components/button';
+import { DBIcon } from '../components/icon';
 
 const Home: NextPage = () => {
 	return (
@@ -19,11 +19,10 @@ const Home: NextPage = () => {
 				<h1>Next</h1>
 				<div
 					style={{
-						display: "flex",
-						gap: "4px",
-						alignItems: "center"
-					}}
-				>
+						display: 'flex',
+						gap: '4px',
+						alignItems: 'center'
+					}}>
 					<DBButton variant="secondary">Test</DBButton>
 					<DBButton text="Test" icon="account" />
 					<DBIcon icon="account" />

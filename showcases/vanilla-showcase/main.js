@@ -1,19 +1,19 @@
-import "./../../packages/core/output/webcomponent/src/components/button/button";
-import "./../../packages/core/output/webcomponent/src/components/icon/icon";
-import "./../../packages/core/output/webcomponent/src/components/tab/tab";
-import "./../../packages/core/output/webcomponent/src/components/tab-bar/tab-bar";
+import '../../packages/core/output/webcomponent/src/components/button/button';
+import '../../packages/core/output/webcomponent/src/components/icon/icon';
+import '../../packages/core/output/webcomponent/src/components/tab/tab';
+import '../../packages/core/output/webcomponent/src/components/tab-bar/tab-bar';
 
 const tabBar = [
-  {
-    name: "tab-bar-2",
-    label: "2-Tab1",
-    active: true,
-    children: "Content 2-1",
-  },
-  { name: "tab-bar-2", label: "2-Tab2", content: "Content 2-2" },
+	{
+		name: 'tab-bar-2',
+		label: '2-Tab1',
+		active: true,
+		children: 'Content 2-1'
+	},
+	{ name: 'tab-bar-2', label: '2-Tab2', content: 'Content 2-2' }
 ];
 
-document.querySelector("#app").innerHTML = `
+document.querySelector('#app').innerHTML = `
   <main>
       <h1>Vanilla</h1>
       <div style="display: flex; gap: 4px; align-items: center">
@@ -34,7 +34,7 @@ document.querySelector("#app").innerHTML = `
         </db-tab-bar>
 
         <db-tab-bar
-          tabs="${JSON.stringify(tabBar).replace(/"/g, "&quot;")}"
+          tabs="${JSON.stringify(tabBar).replace(/"/g, '&quot;')}"
         />
       </div>
   </main>
