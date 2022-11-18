@@ -1,9 +1,9 @@
 @charset "utf-8";
 
-@use "~@db-ui/base/build/scss/variables" as *;
-@use "~@db-ui/base/build/scss/variables.global" as *;
-@use "~@db-ui/base/build/scss/color-placeholder" as *;
-@use "~@db-ui/base/build/scss/icon/icons.helpers" as *;
+@use "@db-ui/base/build/scss/variables" as *;
+@use "@db-ui/base/build/scss/variables.global" as *;
+@use "@db-ui/base/build/scss/color-placeholder" as *;
+@use "@db-ui/base/build/scss/icon/icons.helpers" as *;
 
 .db-button {
 	// Including a loading indicator
