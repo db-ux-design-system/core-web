@@ -24,3 +24,6 @@ tags
 ctags.tmp
 [._]*.un~
 
+packages/core/src/**/*.css
+packages/core/src/**/*.css.map
+
