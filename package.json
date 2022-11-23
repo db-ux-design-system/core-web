@@ -11,6 +11,7 @@
     "lint:markdownlint": "markdownlint -c .markdown-lint.yml **/*.md",
     "lint:stylelint": "stylelint **/*.scss",
     "lint:xo": "xo",
+    "lint:prettier": "prettier . --check",
     "update:base:assets": "cpr ../base/assets packages/base/assets -o",
     "update:base:scripts": "cpr ../base/scripts packages/base/scripts -o",
     "update:base:scss": "cpr ../base/scss packages/base/scss -o",
