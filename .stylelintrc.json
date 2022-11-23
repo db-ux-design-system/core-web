@@ -4,7 +4,19 @@
 		"stylelint-config-prettier"
 	],
 	"rules": {
+		"order/properties-alphabetical-order": null,
+		"scss/operator-no-newline-after": null,
+		"declaration-empty-line-before": null,
+		"selector-no-qualifying-type": null,
+		"selector-class-pattern": null,
+		"scss/dollar-variable-pattern": null,
+		"scss/selector-no-redundant-nesting-selector": null,
 		"max-nesting-depth": null,
-		"order/order": null
+		"selector-max-compound-selectors": null,
+		"scss/at-extend-no-missing-placeholder": null,
+		"declaration-property-value-disallowed-list": null,
+		"scss/percent-placeholder-pattern": null,
+		"scss/at-mixin-pattern": null,
+		"scss/at-import-partial-extension": null
 	}
 }
