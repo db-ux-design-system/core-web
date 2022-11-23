@@ -1,6 +1,6 @@
 # Findings angular
 
-````json
+```json
 /tsconfig.json
 
 
@@ -11,3 +11,4 @@
     }
 }
 ``
+```

@@ -1,1 +1,1 @@
-export { default as DBIcon } from "./icon";
+export { default as DBIcon } from './icon';

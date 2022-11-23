@@ -18,7 +18,7 @@
 
 Kriterium XX
 
-- ...
+-   ...
 
 ## Alternativen
 
