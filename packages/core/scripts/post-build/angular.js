@@ -9,7 +9,11 @@ const changeFile = (component, input) => {
 				!line.includes('@db-ui') && !line.includes(`Props } from "../`)
 		)
 		.map((line) => {
-			if (line.includes(`import { DB`) && line.includes(`../`)) {
+			if (
+				line.includes(`import { DB`) &&
+				line.includes(`../`) &&
+				!line.includes(`Module`)
+			) {
 				return line.replace(` } from "../`, `Module } from "../`);
 			}
 			if (line.includes('selector:') && !input.includes('styleUrls:')) {

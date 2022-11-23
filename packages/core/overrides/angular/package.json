@@ -1,0 +1,51 @@
+{
+  "name": "@db-ui/ngx-components",
+  "version": "0.0.0",
+  "description": "Angular components @db-ui/components",
+  "license": "Apache-2.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/db-ui/mono.git"
+  },
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/",
+    "access": "public"
+  },
+  "scripts": {
+    "ng": "ng",
+    "start": "ng serve",
+    "build": "ng build",
+    "postbuild": "cpr ./src/components/button/button.scss ./dist/lib/components/button/button.scss -o",
+    "update:core": "npm-run-all -p update:core:*"
+  },
+  "module": "dist/fesm5.js",
+  "main": "dist/fesm5.js",
+  "types": "dist/core.d.ts",
+  "files": [
+    "dist/"
+  ],
+  "peerDependencies": {
+    "@angular/animations": "~13.1.0",
+    "@angular/common": "~13.1.0",
+    "@angular/compiler": "~13.1.0",
+    "@angular/core": "~13.1.0",
+    "@angular/forms": "~13.1.0",
+    "@angular/platform-browser": "~13.1.0",
+    "@angular/platform-browser-dynamic": "~13.1.0"
+  },
+  "dependencies": {
+    "@db-ui/core": "file:./../../packages/core",
+    "rxjs": "~7.4.0",
+    "tslib": "^2.4.1",
+    "zone.js": "~0.11.4"
+  },
+  "devDependencies": {
+    "@angular-devkit/build-angular": "~13.1.2",
+    "@angular/cli": "~13.1.2",
+    "@angular/compiler-cli": "~13.1.0",
+    "@types/node": "^12.11.1",
+    "ng-packagr": "13.3.1",
+    "schematics-scss-migrate": "^1.3.15",
+    "typescript": "~4.5.2"
+  }
+}

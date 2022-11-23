@@ -5,7 +5,7 @@ const Next = require('./next');
 const PowerApps = require('./power-apps');
 const Svelte = require('./svelte');
 
-const CopyCss = require('./copy-css');
+const CopyFiles = require('./copy-files');
 
 Vue();
 Svelte();
@@ -14,4 +14,4 @@ Next();
 WebComponents();
 PowerApps();
 
-CopyCss();
+CopyFiles();

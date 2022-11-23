@@ -1,0 +1,13 @@
+{
+	"$schema": "node_modules/ng-packagr/ng-package.schema.json",
+	"dest": "dist/lib",
+	"lib": {
+		"entryFile": "src/index.ts"
+	},
+	"assets": [
+		"./src/button/button.scss",
+		"./src/icon/icon.scss",
+		"./src/tab/tab.scss",
+		"./src/tab-bar/tab-bar.scss"
+	]
+}
