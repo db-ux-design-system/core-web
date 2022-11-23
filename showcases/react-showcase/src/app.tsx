@@ -2,18 +2,26 @@ import {
 	DBButton,
 	DBIcon,
 	DBTabBar,
-	DBTab
+	DBTab,
+	DBCard
 } from '../../../packages/core/output/react/src';
 
 function App() {
 	return (
 		<main>
 			<h1>React</h1>
-			<div style={{ display: 'flex', gap: '4px', alignItems: 'center' }}>
-				<DBButton variant="secondary">Test</DBButton>
-				<DBButton text="Test" icon="account" />
-				<DBIcon icon="account" />
-			</div>
+			<DBCard>
+				<div
+					style={{
+						display: 'flex',
+						gap: '4px',
+						alignItems: 'center'
+					}}>
+					<DBButton variant="secondary">Test</DBButton>
+					<DBButton text="Test" icon="account" />
+					<DBIcon icon="account" />
+				</div>
+			</DBCard>
 
 			<div
 				style={{

@@ -1,4 +1,4 @@
 ---
-to: src/components/<%= name %>/<%= name %>.css
+to: src/components/<%= name %>/<%= name %>.scss
 ---
-/* Just for angular */
+/* Add styles for component here */

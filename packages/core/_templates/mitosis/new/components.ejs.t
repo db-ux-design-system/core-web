@@ -6,5 +6,5 @@ skip_if: <%= name %>
 ---
   {
     name: "<%= name %>",
-    defaultStylePath: "",
+    defaultStylePath: "components/<%= name %>/<%= name %>.css",
   },

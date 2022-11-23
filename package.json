@@ -11,7 +11,6 @@
     "lint:markdownlint": "markdownlint -c .markdown-lint.yml **/*.md",
     "lint:stylelint": "stylelint **/*.scss",
     "lint:xo": "xo",
-    "lint:prettier": "prettier . --check",
     "update:base:assets": "cpr ../base/assets packages/base/assets -o",
     "update:base:scripts": "cpr ../base/scripts packages/base/scripts -o",
     "update:base:scss": "cpr ../base/scss packages/base/scss -o",
@@ -19,6 +18,8 @@
     "update:base:sd-config": "cpr ../base/style-dictionary.config.json packages/base/style-dictionary.config.json -o",
     "update:base:sd": "cpr ../base/style-dictionary.js packages/base/style-dictionary.js -o",
     "update:core:button": "cpr ../core/source/_patterns/01-elements/buttons/button.scss packages/core/src/components/button/button.scss -o",
+    "update:core:card": "cpr ../core/source/_patterns/02-components/cards/card.scss packages/core/src/components/card/card.scss -o",
+    "update:core:cards": "cpr ../core/source/_patterns/02-components/cards/cards.scss packages/core/src/components/cards/cards.scss -o",
     "update:base": "npm-run-all -p update:base:*",
     "update:core": "npm-run-all -p update:core:*"
   },
