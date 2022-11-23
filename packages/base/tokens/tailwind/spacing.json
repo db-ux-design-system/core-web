@@ -1,16 +1,22 @@
 {
-	"gap": {
-		"xs": "8px",
-		"sm": "12px",
-		"md": "12px",
-		"lg": "20px",
-		"xl": "20px"
-	},
-	"space": {
-		"xs": "8px",
-		"sm": "12px",
-		"md": "12px",
-		"lg": "20px",
-		"xl": "20px"
+	"spacing": {
+		"fix-3xs": "var(--db-spacing-fixed-3xs)",
+		"fix-2xs": "var(--db-spacing-fixed-2xs)",
+		"fix-xs": "var(--db-spacing-fixed-xs)",
+		"fix-sm": "var(--db-spacing-fixed-sm)",
+		"fix-md": "var(--db-spacing-fixed-md)",
+		"fix-lg": "var(--db-spacing-fixed-lg)",
+		"fix-xl": "var(--db-spacing-fixed-xl)",
+
+		"res-xs": "var(--db-spacing-responsive-xs)",
+		"res-sm": "var(--db-spacing-responsive-sm)",
+		"res-md": "var(--db-spacing-responsive-md)",
+		"res-lg": "var(--db-spacing-responsive-lg)",
+		"res-xl": "var(--db-spacing-responsive-xl)",
+
+		"siz-xs": "var(--db-sizing-xs)",
+		"siz-sm": "var(--db-sizing-sm)",
+		"siz-md": "var(--db-sizing-md)",
+		"siz-lg": "var(---db-sizing-lg)"
 	}
 }

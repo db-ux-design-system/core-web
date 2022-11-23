@@ -4,6 +4,10 @@
 			"fast": {
 				"value": "0.3s",
 				"comment": "Consider this as beta for the moment"
+			},
+			"ultra-fast": {
+				"value": "0.06s",
+				"comment": "Consider this as beta for the moment"
 			}
 		},
 		"emotional": {

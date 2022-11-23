@@ -2,8 +2,8 @@
  * This script generates a tailwind.config.js file
  */
 
-import * as process from 'node:process';
-import * as fs from 'node:fs';
+import * as process from "node:process";
+import * as fs from "node:fs";
 
 const run = async () => {
 	const defaultConfig = process.argv[2];
@@ -12,7 +12,7 @@ const run = async () => {
 
 	let configFile = `
 	const tokens = require('${
-		internal ? './' : '@db-ui/base/build/tailwind/'
+		internal ? "./" : "@db-ui/base/build/tailwind/"
 	}tailwind-tokens.json')
 	module.exports = {
   content: ['./src/**/*.{js,jsx,ts,tsx}'],
@@ -20,27 +20,23 @@ const run = async () => {
   theme: {
 			screens: tokens.screens,
 			spacing: tokens.spacing,
-			fontFamily: tokens.font.family,
 			fontSize: tokens.fontSize,
-			colors: tokens.colors,
 			gap: ({ theme }) => ({
-				...theme('spacing'),
-				...tokens.gap
+				...theme('spacing')
 			}),
 			space: ({ theme }) => ({
-				...theme('spacing'),
-				...tokens.space
+				...theme('spacing')
 			})
   	}
   };
   `;
 
-	if (defaultConfig === 'default') {
+	if (defaultConfig === "default") {
 		configFile = `module.exports = require('@db-ui/base/build/tailwind/tailwind.config')`;
 	}
 
 	fs.writeFileSync(
-		`${internal ? './build/tailwind' : '.'}/tailwind.config.js`,
+		`${internal ? "./build/tailwind" : "."}/tailwind.config.js`,
 		configFile
 	);
 };

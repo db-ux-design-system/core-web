@@ -11,12 +11,24 @@ const generateClasses = require('./scripts/scss-typography-generator');
 const generateScaling = require('./scripts/scss-scaling-generator');
 
 const modifyTailwind = (dictionary) => {
-	const colors = JSON.stringify(dictionary.colors).replace(
-		/enabled/g,
-		'DEFAULT'
-	);
-	dictionary.colors = JSON.parse(colors);
-	delete dictionary.typography;
+	for (const token of [
+		'colors',
+		'elevation',
+		'font',
+		'transition',
+		'sizing',
+		'typography'
+	]) {
+		if (dictionary[token]) {
+			delete dictionary[token];
+		}
+	}
+
+	for (const spacing of ['responsive', 'fixed']) {
+		if (dictionary.spacing?.[spacing]) {
+			delete dictionary.spacing[spacing];
+		}
+	}
 };
 
 StyleDictionary.registerFormat({

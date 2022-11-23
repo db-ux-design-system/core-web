@@ -1,5 +1,5 @@
 require('dotenv').config();
-const FS = require('fs');
+const FS = require('node:fs');
 const { ZeplinApi, Configuration } = require('@zeplin/sdk');
 
 const zeplin = new ZeplinApi(
