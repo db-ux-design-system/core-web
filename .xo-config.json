@@ -10,6 +10,7 @@
 		"new-cap": 0,
 		"import/no-unassigned-import": 0,
 		"no-undef": 0,
-		"@typescript-eslint/no-unsafe-call": 0
+		"@typescript-eslint/no-unsafe-call": 0,
+		"n/file-extension-in-import": 0
 	}
 }
