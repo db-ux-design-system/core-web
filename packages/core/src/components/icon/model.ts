@@ -1,14 +1,13 @@
 export interface DBIconDefaultProps {
-  icon?: string;
+	icon?: string;
 }
 
 export interface DBIconWcProps {
-  stylePath?: string;
+	stylePath?: string;
 }
-
 
 export type DBIconProps = DBIconDefaultProps & DBIconWcProps;
 
 export interface DBIconState {
-  stylePath?: string;
+	stylePath?: string;
 }

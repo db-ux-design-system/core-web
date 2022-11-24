@@ -1,5 +1,10 @@
 module.exports = [
 	{
+		name: 'card',
+		defaultStylePath: 'components/card/card.css'
+	},
+
+	{
 		name: 'tab-bar',
 		defaultStylePath: 'components/tab-bar/tab-bar.css',
 		overwrites: {
@@ -15,7 +20,7 @@ module.exports = [
 
 	{
 		name: 'tab',
-		defaultStylePath: 'components/tab-bar/tab-bar.css'
+		defaultStylePath: 'components/tab/tab.css'
 	},
 
 	{

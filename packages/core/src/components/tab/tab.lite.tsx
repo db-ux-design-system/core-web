@@ -4,24 +4,24 @@ import {
 	useMetadata,
 	useStore,
 	useRef
-} from "@builder.io/mitosis";
-import { DBTabState, DBTabProps } from "./model";
-import { uuid } from "../../utils";
-import "./tab.scss";
+} from '@builder.io/mitosis';
+import { DBTabState, DBTabProps } from './model';
+import { uuid } from '../../utils';
+import './tab.scss';
 
 useMetadata({
 	isAttachedToShadowDom: true,
 	component: {
 		includeIcon: false,
 		properties: [
-			{ name: "name", type: "SingleLine.Text" },
-			{ name: "label", type: "SingleLine.Text" },
+			{ name: 'name', type: 'SingleLine.Text' },
+			{ name: 'label', type: 'SingleLine.Text' },
 			{
-				name: "active",
-				type: "Enum",
+				name: 'active',
+				type: 'Enum',
 				values: [
-					{ key: "False", name: "False", value: "false" },
-					{ key: "True", name: "True", value: "true" }
+					{ key: 'False', name: 'False', value: 'false' },
+					{ key: 'True', name: 'True', value: 'true' }
 				]
 			}
 		]
@@ -31,7 +31,7 @@ useMetadata({
 export default function DBTab(props: DBTabProps) {
 	const inputRef = useRef<HTMLInputElement>(null);
 	const state = useStore<DBTabState>({
-		id: "ID_WILL_BE_OVERWRITE_ON_MOUNT_AND_THIS_CONSTANT_WONT_SHOW_UP_ONLY_IF_YOU_ARE_A_JAVA_DEVELOPER"
+		id: 'ID_WILL_BE_OVERWRITE_ON_MOUNT_AND_THIS_CONSTANT_WONT_SHOW_UP_ONLY_IF_YOU_ARE_A_JAVA_DEVELOPER'
 	});
 
 	onMount(() => {
@@ -58,7 +58,7 @@ export default function DBTab(props: DBTabProps) {
 			<label htmlFor={state.id} role="tab">
 				{props.label}
 			</label>
-			<section id={"content-" + state.id} role="tabpanel">
+			<section id={'content-' + state.id} role="tabpanel">
 				<Show when={props.content}> {props.content}</Show>
 				{props.children}
 			</section>

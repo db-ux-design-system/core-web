@@ -1,5 +1,1 @@
-export { DBTab, DBTabModule } from "./tab";
-
-
-
-
+export { DBTab, DBTabModule } from './tab';
