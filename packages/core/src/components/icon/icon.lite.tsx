@@ -1,6 +1,6 @@
-import { onMount, Show, useMetadata, useStore } from "@builder.io/mitosis";
-import { DBIconState, DBIconProps } from "./model";
-import "./icon.scss";
+import { onMount, Show, useMetadata, useStore } from '@builder.io/mitosis';
+import { DBIconState, DBIconProps } from './model';
+import './icon.scss';
 
 useMetadata({
 	isAttachedToShadowDom: true,
@@ -8,11 +8,11 @@ useMetadata({
 		includeIcon: true,
 		properties: [
 			{
-				name: "icon",
-				type: "Enum",
+				name: 'icon',
+				type: 'Enum',
 				values: [
-					{ key: "None", name: "None", value: "_" },
-					{ key: "Account", name: "Account", value: "account" }
+					{ key: 'None', name: 'None', value: '_' },
+					{ key: 'Account', name: 'Account', value: 'account' }
 				]
 			}
 		]

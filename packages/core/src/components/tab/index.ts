@@ -1,5 +1,1 @@
-export { default as DBTab } from "./tab";
-
-
-
-
+export { default as DBTab } from './tab';

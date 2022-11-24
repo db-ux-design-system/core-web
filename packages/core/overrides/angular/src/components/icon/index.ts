@@ -1,1 +1,1 @@
-export { DBIcon, DBIconModule } from "./icon";
+export { DBIcon, DBIconModule } from './icon';
