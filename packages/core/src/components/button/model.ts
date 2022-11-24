@@ -1,7 +1,11 @@
 export interface DBButtonDefaultProps {
 	text?: string;
 	icon?: string;
-	variant?: string;
+	onlyIcon?: boolean;
+	state?: 'loading';
+	size?: 'small';
+	width?: 'full';
+	variant?: 'primary' | 'secondary' | 'tertiary' | 'ghost';
 	children?: any;
 }
 
@@ -13,5 +17,4 @@ export type DBButtonProps = DBButtonDefaultProps & DBButtonWcProps;
 
 export interface DBButtonState {
 	stylePath?: string;
-	makeAlert: () => void;
 }

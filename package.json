@@ -21,7 +21,8 @@
     "update:core:card": "cpr ../core/source/_patterns/02-components/cards/card.scss packages/core/src/components/card/card.scss -o",
     "update:core:cards": "cpr ../core/source/_patterns/02-components/cards/cards.scss packages/core/src/components/cards/cards.scss -o",
     "update:base": "npm-run-all -p update:base:*",
-    "update:core": "npm-run-all -p update:core:*"
+    "update:core": "npm-run-all -p update:core:*",
+    "build": "npm run build -w ./packages/base && npm run build -w ./packages/core"
   },
   "devDependencies": {
     "@commitlint/cli": "17.2.0",

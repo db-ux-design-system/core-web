@@ -6,7 +6,7 @@ module.exports = {
 	theme: {
 		screens: tokens.screens,
 		spacing: tokens.spacing,
-		fontSize: tokens.fontSize,
+		boxShadow: tokens.elevation,
 		gap: ({ theme }) => ({
 			...theme("spacing")
 		}),

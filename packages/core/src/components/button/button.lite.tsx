@@ -30,12 +30,7 @@ useMetadata({
 });
 
 export default function DBButton(props: DBButtonProps) {
-	const state = useStore<DBButtonState>({
-		makeAlert() {
-			// TODO: remove this, it was just for testing
-			alert(`Button: ${props.text} works.`);
-		}
-	});
+	const state = useStore<DBButtonState>({});
 
 	onMount(() => {
 		if (props.stylePath) {
@@ -45,18 +40,20 @@ export default function DBButton(props: DBButtonProps) {
 
 	return (
 		<button
-			class="db-button"
-			data-variant={props.variant}
-			onClick={() => state.makeAlert()}>
+			class={`db-button ${props.onlyIcon ? 'is-icon-text-replace' : ''}`}
+			data-size={props.size}
+			data-state={props.state}
+			data-width={props.width}
+			data-variant={props.variant}>
 			<Show when={state.stylePath}>
 				<link rel="stylesheet" href={state.stylePath} />
 			</Show>
-			<Show when={props.icon}>
-				<DBIcon icon={props.icon} />
-			</Show>
-			{/* we need spacings around props.text for compilation */}
-			<Show when={props.text}> {props.text} </Show>
-			{props.children}
+
+			<DBIcon icon={props.icon} withText={!props.onlyIcon}>
+				{/* we need spacings around props.text for compilation */}
+				<Show when={props.text}> {props.text} </Show>
+				{props.children}
+			</DBIcon>
 		</button>
 	);
 }

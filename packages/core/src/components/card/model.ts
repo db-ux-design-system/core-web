@@ -1,6 +1,6 @@
 export interface DBCardDefaultProps {
 	colorVariant?: string;
-	variant?: string;
+	variant?: 'w-full' | 'ia';
 	children?: any;
 }
 

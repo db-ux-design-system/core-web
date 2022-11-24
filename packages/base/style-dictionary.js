@@ -13,7 +13,6 @@ const generateScaling = require('./scripts/scss-scaling-generator');
 const modifyTailwind = (dictionary) => {
 	for (const token of [
 		'colors',
-		'elevation',
 		'font',
 		'transition',
 		'sizing',

@@ -7,12 +7,15 @@
 	$size: $icon-size,
 	$style: $icon-style,
 	$position: "before",
-	$partial: false
+	$partial: false,
+	$defaultFontProperties: true
 ) {
 	&::#{$position} {
-		--icon-font-family: "#{"icons-" + $size + "-" + $style}",
-			"missing-icons";
-		--icon-font-size: #{to-rem($pxValue: $size)};
+		@if $defaultFontProperties {
+			--icon-font-family: "#{"icons-" + $size + "-" + $style}",
+				"missing-icons";
+			--icon-font-size: #{to-rem($pxValue: $size)};
+		}
 
 		@if $position == "before" {
 			margin-inline-end: var(--icon-margin-after, #{$icon-content-space});
