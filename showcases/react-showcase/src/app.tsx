@@ -4,7 +4,7 @@ import {
 	DBTabBar,
 	DBTab,
 	DBCard
-} from '../../../packages/core/output/react/src';
+} from '../../../packages/components/output/react/src';
 
 function App() {
 	return (

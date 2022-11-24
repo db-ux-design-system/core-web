@@ -4,9 +4,9 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "copy:assets": "cpr ./../../packages/base/build/assets ./public/base/assets  -o",
-    "copy:css": "cpr ./../../packages/base/build/css ./public/base/css  -o",
-    "copy:components": "cpr ./../../packages/core/output/webcomponent/src/components ./public/components  -o",
+    "copy:assets": "cpr ../../packages/foundations/build/assets ./public/foundations/assets  -o",
+    "copy:css": "cpr ../../packages/foundations/build/css ./public/foundations/css  -o",
+    "copy:components": "cpr ../../packages/components/output/webcomponent/src/components ./public/components  -o",
     "predev": "npm-run-all -p copy:*",
     "prebuild": "npm-run-all -p copy:*",
     "dev": "vite",
@@ -14,7 +14,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@db-ui/base": "file:./../../packages/base"
+    "@db-ui/foundations": "file:./../../packages/foundations"
   },
   "devDependencies": {
     "cpr": "3.0.1",

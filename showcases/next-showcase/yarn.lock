@@ -17,9 +17,11 @@
   dependencies:
     "regenerator-runtime" "^0.13.4"
 
-"@db-ui/base@file:./../../packages/base":
-  "resolved" "file:../../packages/base"
+"@db-ui/foundations@file:./../../packages/foundations":
+  "resolved" "file:../../packages/foundations"
   "version" "0.0.0"
+  dependencies:
+    "@csstools/normalize.css" "^12.0.0"
 
 "@eslint/eslintrc@^1.3.3":
   "integrity" "sha512-uj3pT6Mg+3t39fvLrj8iuCIJ38zKO9FpGtJ4BBJebJhEwjoT+KLVNCcHT5QC9NGRIEi7fZ0ZR8YRb884auB4Lg=="

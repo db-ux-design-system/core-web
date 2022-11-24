@@ -5,7 +5,7 @@ import {
 	DBButtonModule,
 	DBIconModule,
 	DBTabBarModule
-} from '../../../../packages/core/output/angular/src';
+} from '../../../../packages/components/output/angular/src';
 import { AppComponent } from './app.component';
 
 @NgModule({
