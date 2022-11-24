@@ -1,0 +1,11 @@
+@use "@csstools/normalize.css/normalize" as *;
+
+@use "variables" as *;
+@use "variables.global" as *;
+@use "color-placeholder" as *;
+@use "tonality" as *;
+@use "init" as *;
+
+:root {
+	@extend %db-ui-normal;
+}
