@@ -1,5 +1,4 @@
 const PowerAppsPlugin = require('./plugins/power-apps');
-const Debug = require('./plugins/debug');
 
 module.exports = {
 	files: 'src/**',
@@ -11,9 +10,6 @@ module.exports = {
 		},
 		angular: {
 			typescript: true
-		},
-		vue3: {
-			//plugins: [Debug],
 		},
 		webcomponent: {
 			experimental: {
@@ -31,7 +27,6 @@ module.exports = {
 					);
 				}
 			}
-			// plugins: [Debug],
 		}
 	}
 };
