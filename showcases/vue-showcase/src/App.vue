@@ -4,7 +4,7 @@ import {
 	DBIcon,
 	DBTabBar,
 	DBTab
-} from "../../../packages/core/output/vue/vue3/src";
+} from "../../../packages/components/output/vue/vue3/src";
 </script>
 
 <template>

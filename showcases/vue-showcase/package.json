@@ -9,7 +9,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@db-ui/base": "file:./../../packages/base",
+    "@db-ui/foundations": "file:./../../packages/foundations",
     "vue": "^3.2.37"
   },
   "devDependencies": {

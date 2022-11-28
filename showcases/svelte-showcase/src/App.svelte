@@ -1,6 +1,6 @@
 <script>
-	import DBButton from "../../../packages/core/output/svelte/src/components/button/button.svelte";
-	import DBIcon from "../../../packages/core/output/svelte/src/components/icon/icon.svelte";
+	import DBButton from "../../../packages/components/output/svelte/src/components/button/button.svelte";
+	import DBIcon from "../../../packages/components/output/svelte/src/components/icon/icon.svelte";
 </script>
 
 <main>

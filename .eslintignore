@@ -2,4 +2,5 @@
 **/public
 **/out
 **/helpers
-/packages/core
+/packages/components/**
+!/packages/components/scripts
