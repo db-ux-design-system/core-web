@@ -1,5 +1,10 @@
 module.exports = [
 	{
+		name: 'divider',
+		defaultStylePath: 'components/divider/divider.css'
+	},
+
+	{
 		name: 'card',
 		defaultStylePath: 'components/card/card.css'
 	},

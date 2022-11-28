@@ -29,7 +29,10 @@ export default function DBIcon(props: DBIconProps) {
 	});
 
 	return (
-		<span data-icon={props.icon} aria-hidden="true">
+		<span
+			class={`${props.className ? ` ${props.className}` : ''}`}
+			data-icon={props.icon}
+			aria-hidden="true">
 			<Show when={state.stylePath}>
 				<link rel="stylesheet" href={state.stylePath} />
 			</Show>

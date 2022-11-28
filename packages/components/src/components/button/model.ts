@@ -2,6 +2,7 @@ export type DBButtonDefaultProps = {
 	text?: string;
 	icon?: string;
 	variant?: string;
+	className?: string;
 	children?: any;
 };
 

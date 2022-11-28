@@ -1,5 +1,6 @@
 export type DBIconDefaultProps = {
 	icon?: string;
+	className?: string;
 };
 
 export type DBIconWcProps = {

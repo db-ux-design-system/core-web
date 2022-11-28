@@ -6,6 +6,7 @@ export type DBTabBarDefaultProps = {
 	 */
 	name?: string;
 	tabs?: DBTabProps[] | string;
+	className?: string;
 	children?: any;
 };
 

@@ -24,6 +24,8 @@ export type DBTabDefaultProps = {
 	 */
 	key?: string;
 
+	className?: string;
+
 	/**
 	 *  Default children property.
 	 */

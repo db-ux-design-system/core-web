@@ -1,6 +1,6 @@
 import { onMount, Show, useMetadata, useStore } from '@builder.io/mitosis';
-import type { DBCardState, DBCardProps } from './model';
-import './card.scss';
+import { DBDividerState, DBDividerProps } from './model';
+import './divider.scss';
 
 useMetadata({
 	isAttachedToShadowDom: true,
@@ -10,8 +10,8 @@ useMetadata({
 	}
 });
 
-export default function DBCard(props: DBCardProps) {
-	const state = useStore<DBCardState>({});
+export default function DBDivider(props: DBDividerProps) {
+	const state = useStore<DBDividerState>({});
 
 	onMount(() => {
 		if (props.stylePath) {
@@ -21,13 +21,12 @@ export default function DBCard(props: DBCardProps) {
 
 	return (
 		<div
-			class={`db-card${props.className ? ` ${props.className}` : ''}`}
+			data-margin={props.margin}
 			data-variant={props.variant}
-			data-color-variant={props.colorVariant}>
+			class={`db-divider${props.className ? ` ${props.className}` : ''}`}>
 			<Show when={state.stylePath}>
 				<link rel="stylesheet" href={state.stylePath} />
 			</Show>
-			{props.children}
 		</div>
 	);
 }

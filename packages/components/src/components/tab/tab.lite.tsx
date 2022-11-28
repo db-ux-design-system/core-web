@@ -46,7 +46,7 @@ export default function DBTab(props: DBTabProps) {
 	});
 
 	return (
-		<>
+		<div class={`${props.className ? ` ${props.className}` : ''}`}>
 			<Show when={state.stylePath}>
 				<link rel="stylesheet" href={state.stylePath} />
 			</Show>
@@ -63,6 +63,6 @@ export default function DBTab(props: DBTabProps) {
 				<Show when={props.content}> {props.content}</Show>
 				{props.children}
 			</section>
-		</>
+		</div>
 	);
 }

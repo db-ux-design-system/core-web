@@ -3,7 +3,8 @@ import {
 	DBIcon,
 	DBTabBar,
 	DBTab,
-	DBCard
+	DBCard,
+	DBDivider
 } from '../../../packages/components/output/react/src';
 
 function App() {
@@ -15,13 +16,17 @@ function App() {
 					style={{
 						display: 'flex',
 						gap: '4px',
-						alignItems: 'center'
+						alignItems: 'stretch'
 					}}>
+					<DBDivider variant="vertical" />
 					<DBButton variant="secondary">Test</DBButton>
+					<DBDivider variant="vertical" />
 					<DBButton text="Test" icon="account" />
-					<DBIcon icon="account" />
+					<DBIcon className="icon" icon="account" />
 				</div>
 			</DBCard>
+
+			<DBDivider />
 
 			<div
 				style={{
