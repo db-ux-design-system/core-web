@@ -6,6 +6,7 @@ export type DBButtonDefaultProps = {
 	size?: 'small';
 	width?: 'full';
 	variant?: 'primary' | 'secondary' | 'tertiary' | 'ghost';
+	className?: string;
 	children?: any;
 };
 

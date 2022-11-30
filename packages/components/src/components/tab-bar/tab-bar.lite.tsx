@@ -43,7 +43,9 @@ export default function DBTabBar(props: DBTabBarProps) {
 	});
 
 	return (
-		<div className="cmp-tab-bar" role="tablist">
+		<div
+			class={`cmp-tab-bar${props.className ? ` ${props.className}` : ''}`}
+			role="tablist">
 			<Show when={state.stylePath}>
 				<link rel="stylesheet" href={state.stylePath} />
 			</Show>

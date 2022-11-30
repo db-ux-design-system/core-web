@@ -1,6 +1,7 @@
 export type DBIconDefaultProps = {
 	icon?: string;
 	withText?: boolean;
+	className?: string;
 	children?: any;
 };
 

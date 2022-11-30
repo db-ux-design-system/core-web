@@ -142,7 +142,7 @@ const generateClasses = (typography, utility) => {
 		allClasses += `@use "variables" as *;\n@use "typography-placeholder" as *;\n`;
 	}
 
-	// ScaleTypeKey = [normal, functional, expressive]
+	// ScaleTypeKey = [regular, functional, expressive]
 	for (const scaleTypeKey of Object.keys(typography)) {
 		const scaleObject = typography[scaleTypeKey];
 		const mediaQueryKeys = Object.keys(scaleObject);

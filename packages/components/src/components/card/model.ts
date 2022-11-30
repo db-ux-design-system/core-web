@@ -1,6 +1,7 @@
 export type DBCardDefaultProps = {
 	colorVariant?: string;
 	variant?: 'w-full' | 'ia';
+	className?: string;
 	children?: any;
 };
 

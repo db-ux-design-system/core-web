@@ -2,7 +2,7 @@
 	"trailingComma": "none",
 	"overrides": [
 		{
-			"files": ["*.js", "*.jsx", "*.ts", "*.tsx"],
+			"files": ["*.js", "*.jsx", "*.cjs", "*.ts", "*.tsx"],
 			"options": {
 				"bracketSameLine": true
 			}

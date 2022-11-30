@@ -10,11 +10,11 @@
   ],
   "scripts": {
     "generate:component": "hygen mitosis new",
-    "prebuild": "sass src --load-path=node_modules/ --load-path=../../node_modules/",
-    "build": "mitosis build",
-    "postbuild": "node scripts/post-build/index.js && cpr output/next/src/components ../../showcases/next-showcase/components -o",
-    "prestart": "npm run build",
-    "start": "watch \"npm run build\" ./src ./overrides ./scripts/post-build"
+    "build:sass": "sass src --load-path=node_modules/ --load-path=../../node_modules/",
+    "build:mitosis": "mitosis build",
+    "build:post": "node scripts/post-build/index.js && cpr output/next/src/components ../../showcases/next-showcase/components -o",
+    "build": "npm-run-all build:*",
+    "start": "nodemon --ignore output/ -e js,tsx,ts,scss -x \"npm run build\""
   },
   "author": "",
   "license": "ISC",
@@ -31,6 +31,6 @@
     "hygen": "^6.2.11",
     "lit": "^2.3.1",
     "sass": "^1.55.0",
-    "watch": "^1.0.2"
+    "nodemon": "2.0.20"
   }
 }
