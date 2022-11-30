@@ -61,6 +61,8 @@ ${utility ? '.' : '%'}${prefix}-${scale}-${textType}-${getShortSize(size)}{
 
 	if (isHeadline) {
 		result += `
+	font-weight: 700;
+
     &-light,
     &[data-variant="light"] {
         font-weight: 300;
@@ -71,6 +73,8 @@ ${utility ? '.' : '%'}${prefix}-${scale}-${textType}-${getShortSize(size)}{
 	--db-base-icon-font-size: #{$${prefix}-typography-${scale}-mobile-${textType}-${size}-font-size};
 	--db-base-icon-font-family: #{get-icon-family($${prefix}-typography-${scale}-mobile-${textType}-${size}-font-size,
 	$${prefix}-typography-${scale}-mobile-${textType}-${size}-line-height)};
+	--db-base-icon-font-family-filled: #{get-icon-family($${prefix}-typography-${scale}-mobile-${textType}-${size}-font-size,
+	$${prefix}-typography-${scale}-mobile-${textType}-${size}-line-height,"filled")};
 	--db-type-body-font-size-${getShortSize(
 		size
 	)}: #{$${prefix}-typography-${scale}-mobile-${textType}-${size}-font-size};
@@ -89,6 +93,8 @@ ${utility ? '.' : '%'}${prefix}-${scale}-${textType}-${getShortSize(size)}{
 		--db-base-icon-font-size: #{$${prefix}-typography-${scale}-tablet-${textType}-${size}-font-size};
 		--db-base-icon-font-family: #{get-icon-family($${prefix}-typography-${scale}-tablet-${textType}-${size}-font-size,
 		$${prefix}-typography-${scale}-tablet-${textType}-${size}-line-height)};
+		--db-base-icon-font-family-filled: #{get-icon-family($${prefix}-typography-${scale}-tablet-${textType}-${size}-font-size,
+		$${prefix}-typography-${scale}-tablet-${textType}-${size}-line-height,"filled")};
 		--db-type-body-font-size-${getShortSize(
 			size
 		)}: #{$${prefix}-typography-${scale}-tablet-${textType}-${size}-font-size};
@@ -109,6 +115,8 @@ ${utility ? '.' : '%'}${prefix}-${scale}-${textType}-${getShortSize(size)}{
 		--db-base-icon-font-size: #{$${prefix}-typography-${scale}-desktop-${textType}-${size}-font-size};
 		--db-base-icon-font-family: #{get-icon-family($${prefix}-typography-${scale}-desktop-${textType}-${size}-font-size,
 		$${prefix}-typography-${scale}-desktop-${textType}-${size}-line-height)};
+		--db-base-icon-font-family-filled: #{get-icon-family($${prefix}-typography-${scale}-desktop-${textType}-${size}-font-size,
+		$${prefix}-typography-${scale}-desktop-${textType}-${size}-line-height,"filled")};
 		--db-type-body-font-size-${getShortSize(
 			size
 		)}: #{$${prefix}-typography-${scale}-desktop-${textType}-${size}-font-size};
@@ -134,7 +142,7 @@ const generateClasses = (typography, utility) => {
 		allClasses += `@use "variables" as *;\n@use "typography-placeholder" as *;\n`;
 	}
 
-	// ScaleTypeKey = [normal, functional, expressive]
+	// ScaleTypeKey = [regular, functional, expressive]
 	for (const scaleTypeKey of Object.keys(typography)) {
 		const scaleObject = typography[scaleTypeKey];
 		const mediaQueryKeys = Object.keys(scaleObject);

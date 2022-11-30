@@ -17,7 +17,7 @@
     "update:foundations:tokens": "cpr ../base/tokens packages/foundations/tokens -o",
     "update:foundations:sd-config": "cpr ../base/style-dictionary.config.json packages/foundations/style-dictionary.config.json -o",
     "update:foundations:sd": "cpr ../base/style-dictionary.js packages/foundations/style-dictionary.js -o",
-    "update:foundations": "npm-run-all -p update:base:*",
+    "update:foundations": "npm-run-all -p update:foundations:*",
     "postupdate:foundations": "replace-in-file packages/foundations/**  --configFile=scripts/base-foundation.js && node scripts/rename-db-ui-base.js",
     "update:components:button": "cpr ../core/source/_patterns/01-elements/buttons/button.scss packages/components/src/components/button/button.scss -o",
     "update:components:card": "cpr ../core/source/_patterns/02-components/cards/card.scss packages/components/src/components/card/card.scss -o",

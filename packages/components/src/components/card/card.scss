@@ -41,8 +41,8 @@
 	// Cards contents are probably deprecated
 	// TODO: probably remove after discussions and/or move to demonstration styles for the homepage
 	figure {
-		margin: $db-spacing-fixed-normal-m $db-spacing-fixed-normal-m
-			$db-spacing-fixed-normal-m $db-spacing-fixed-normal-xs;
+		margin: $db-spacing-fixed-md $db-spacing-fixed-md $db-spacing-fixed-md
+			$db-spacing-fixed-xs;
 	}
 	// Banner variant
 	&[data-variant="banner"] {

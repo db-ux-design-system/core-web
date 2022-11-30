@@ -20,6 +20,7 @@ const run = async () => {
   theme: {
 			screens: tokens.screens,
 			spacing: tokens.spacing,
+			boxShadow: tokens.elevation,
 			gap: ({ theme }) => ({
 				...theme('spacing')
 			}),

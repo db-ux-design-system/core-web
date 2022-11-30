@@ -3,34 +3,52 @@
 @use "sass:list";
 
 $all-icon-sizes: (
-	16: "icons-16-outline",
-	20: "icons-20-outline",
-	24: "icons-24-outline",
-	32: "icons-32-outline",
-	48: "icons-48-outline",
-	64: "icons-64-outline"
+	16: "icons-16-",
+	20: "icons-20-",
+	24: "icons-24-",
+	32: "icons-32-",
+	48: "icons-48-",
+	64: "icons-64-"
 );
 
-@function get-icon-family($font-size, $line-height) {
+@function get-icon-family($font-size, $line-height, $font-style: "outline") {
 	$icon-size: (math.div($font-size, 1rem) * 16 * $line-height);
 	$valid-sizes: "";
 
 	@if ($icon-size<20) {
-		$valid-sizes: append($valid-sizes, map.get($all-icon-sizes, 16));
+		$valid-sizes: append(
+			$valid-sizes,
+			#{map.get($all-icon-sizes, 16) + $font-style}
+		);
 	}
 	@if ($icon-size<24) {
-		$valid-sizes: append($valid-sizes, map.get($all-icon-sizes, 20));
+		$valid-sizes: append(
+			$valid-sizes,
+			#{map.get($all-icon-sizes, 20) + $font-style}
+		);
 	}
 	@if ($icon-size<32) {
-		$valid-sizes: append($valid-sizes, map.get($all-icon-sizes, 24));
+		$valid-sizes: append(
+			$valid-sizes,
+			#{map.get($all-icon-sizes, 24) + $font-style}
+		);
 	}
 	@if ($icon-size<48) {
-		$valid-sizes: append($valid-sizes, map.get($all-icon-sizes, 32));
+		$valid-sizes: append(
+			$valid-sizes,
+			#{map.get($all-icon-sizes, 32) + $font-style}
+		);
 	}
 	@if ($icon-size<64) {
-		$valid-sizes: append($valid-sizes, map.get($all-icon-sizes, 48));
+		$valid-sizes: append(
+			$valid-sizes,
+			#{map.get($all-icon-sizes, 48) + $font-style}
+		);
 	}
-	$valid-sizes: append($valid-sizes, map.get($all-icon-sizes, 64));
+	$valid-sizes: append(
+		$valid-sizes,
+		#{map.get($all-icon-sizes, 16) + $font-style}
+	);
 
 	$result-string: "";
 	@each $size in $valid-sizes {

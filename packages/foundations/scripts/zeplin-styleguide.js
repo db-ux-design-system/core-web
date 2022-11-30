@@ -151,8 +151,10 @@ const convertTextStyles = (data) => {
 			.replace('foundation-', '')
 			.replace('typography-', '')
 			.replace('token-', '')
-			.replace('regular-', '')
-			.replace('black-', '');
+			.replace('black-', '')
+			.replace('regular-center', 'center')
+			.replace('regular-left', 'left')
+			.replace('regular-right', 'right');
 		newTextStyles[cKey] = { value: textStyle.value };
 	}
 
@@ -165,8 +167,9 @@ const convertSpacings = (data) => {
 	);
 	const spacings = {};
 	const sizes = {};
-	for (const key of keys) {
+	for (let key of keys) {
 		const spacing = data.spacing[key];
+		key = key.replace('normal', 'regular');
 		if (key?.includes('sizing')) {
 			sizes[key.replace('sizing-', '')] = {
 				value: `${spacing.value}`,

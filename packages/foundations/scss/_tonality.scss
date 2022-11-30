@@ -23,17 +23,35 @@
 			@extend %db-scaling-#{nth($styles, $i + 1)};
 
 			*, // TODO: let's check whether we could even also enable this without the asterisk just by inheriting line-height and font-size on non-inheriting elements like buttons
-			[data-size="medium"] {
+			[data-size="medium"],
+			%db-body-md {
 				@extend %db-#{nth($styles, $i + 1)}-body-md;
 			}
 
-			[data-size="large"] {
+			small,
+			[data-size="small"],
+			%db-body-sm {
+				@extend %db-#{nth($styles, $i + 1)}-body-sm;
+			}
+
+			%db-body-2xl {
+				@extend %db-#{nth($styles, $i + 1)}-body-2xl;
+			}
+
+			%db-body-xl {
+				@extend %db-#{nth($styles, $i + 1)}-body-xl;
+			}
+
+			%db-body-lg {
 				@extend %db-#{nth($styles, $i + 1)}-body-lg;
 			}
 
-			small,
-			[data-size="small"] {
-				@extend %db-#{nth($styles, $i + 1)}-body-sm;
+			%db-body-xs {
+				@extend %db-#{nth($styles, $i + 1)}-body-xs;
+			}
+
+			%db-body-2xs {
+				@extend %db-#{nth($styles, $i + 1)}-body-2xs;
 			}
 
 			h1 {
@@ -63,4 +81,4 @@
 	}
 }
 
-@include styles("expressive", "normal", "functional");
+@include styles("expressive", "regular", "functional");

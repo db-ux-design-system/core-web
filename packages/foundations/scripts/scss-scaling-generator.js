@@ -12,7 +12,7 @@ const generateSpacings = (utility) => {
 		allClasses += `@use "scaling-placeholder" as *;\n`;
 	}
 
-	const scaleTypeKey = ['normal', 'functional', 'expressive'];
+	const scaleTypeKey = ['regular', 'functional', 'expressive'];
 
 	for (const scale of scaleTypeKey) {
 		allClasses += `

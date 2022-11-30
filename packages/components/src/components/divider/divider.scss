@@ -7,7 +7,7 @@
 	width: 100%;
 
 	opacity: 0.1;
-	background: $db-colors-secondary-enabled;
+	background: var(--db-current-color, $db-colors-secondary-enabled);
 
 	&:not([data-margin="none"]) {
 		margin: $db-spacing-fixed-sm 0;
