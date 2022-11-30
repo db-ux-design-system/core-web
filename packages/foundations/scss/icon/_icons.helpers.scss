@@ -7,8 +7,7 @@
 	$size: $icon-size,
 	$style: $icon-style,
 	$position: "before",
-	$partial: false,
-	$defaultFontProperties: true
+	$partial: false
 ) {
 	&::#{$position} {
 		@if $position == "before" {

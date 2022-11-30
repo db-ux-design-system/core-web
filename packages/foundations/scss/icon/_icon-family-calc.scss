@@ -47,7 +47,7 @@ $all-icon-sizes: (
 	}
 	$valid-sizes: append(
 		$valid-sizes,
-		#{map.get($all-icon-sizes, 16) + $font-style}
+		#{map.get($all-icon-sizes, 64) + $font-style}
 	);
 
 	$result-string: "";

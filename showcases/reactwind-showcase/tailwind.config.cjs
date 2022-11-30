@@ -1,4 +1,4 @@
-const tokens = require('@db-ui/base/build/tailwind/tailwind-tokens.json');
+const tokens = require('@db-ui/foundations/build/tailwind/tailwind-tokens.json');
 
 module.exports = {
 	content: ['./index.html', './src/**/*.{js,jsx,ts,tsx}'],

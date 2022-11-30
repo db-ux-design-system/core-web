@@ -1,0 +1,26 @@
+@use "../color-placeholder" as *;
+
+$color-variants: "neutral-0", "neutral-1", "neutral-3", "neutral-4", "neutral-5",
+	"neutral-6", "primary", "primary-light", "secondary", "secondary-light",
+	"critical", "critical-light", "success", "success-light", "warning",
+	"warning-light", "information", "information-light";
+
+@mixin color-variants($ia) {
+	@each $variant in $color-variants {
+		&[data-color-variant="#{$variant}"] {
+			@extend %db-bg-#{$variant};
+		}
+		@if ($ia == true) {
+			&[data-color-variant="#{$variant}-ia"] {
+				@extend %db-bg-#{$variant}-ia;
+			}
+		}
+	}
+}
+
+%color-variants {
+	@include color-variants(false);
+}
+%color-variants-ia {
+	@include color-variants(true);
+}

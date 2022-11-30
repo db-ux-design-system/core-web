@@ -41,7 +41,7 @@ export default function DBButton(props: DBButtonProps) {
 	return (
 		<button
 			class={`db-button${props.className ? ` ${props.className}` : ''}${
-				props.onlyIcon ? 'is-icon-text-replace' : ''
+				props.onlyIcon ? ' is-icon-text-replace' : ''
 			}`}
 			data-size={props.size}
 			data-state={props.state}

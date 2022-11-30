@@ -31,7 +31,7 @@ export default function DBIcon(props: DBIconProps) {
 	return (
 		<span
 			class={`${props.className ? ` ${props.className}` : ''}${
-				props.withText ? '' : 'is-icon-text-replace'
+				props.withText ? '' : ' is-icon-text-replace'
 			}`}
 			data-icon={props.icon}
 			aria-hidden="true">

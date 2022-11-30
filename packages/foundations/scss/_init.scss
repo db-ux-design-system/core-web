@@ -1,0 +1,33 @@
+@use "variables" as *;
+
+:root {
+	--db-focus-outline-offset: 1px;
+	--db-focus-outline-color: #{$db-colors-information-enabled};
+	--db-focus-outline-transition-duration: #{$db-transition-duration-ultra-fast};
+	--db-focus-outline-size: max(2px, 0.08em);
+}
+
+// Focus styles
+%focus-placeholder,
+:is(a, button, input, textarea, summary) {
+	transition: outline var(--db-focus-outline-transition-duration);
+
+	&:focus-visible {
+		outline: var(--db-focus-outline-size)
+			var(--db-focus-outline-style, solid)
+			var(--db-focus-outline-color, currentColor);
+		outline-offset: var(
+			--db-focus-outline-offset,
+			var(--db-focus-outline-size)
+		);
+	}
+}
+
+// Make sure every elements has the current color from container above
+body {
+	color: var(--db-current-color, $db-colors-neutral-on-bg-enabled);
+}
+
+a {
+	color: inherit;
+}

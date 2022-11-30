@@ -1,8 +1,9 @@
 import {
 	DBIcon,
 	DBCard,
-	DBButton
-} from '../../../packages/core/output/react/src';
+	DBButton,
+	DBDivider
+} from '../../../packages/components/output/react/src';
 
 const links = ['Startseite', 'Hilfe & Kontakt', 'Verkehrsmeldungen'];
 const menu = ['Tickets & Angebote', 'Info & Services', 'Meine Reisen'];
@@ -59,7 +60,7 @@ function App() {
 					</div>
 					<div className="ml-auto flex gap-fix-md">
 						<DBIcon icon="search" />
-						<i>Divider</i>
+						<DBDivider variant="vertical" />
 						<DBIcon icon="account" />
 						<strong>Login</strong>
 					</div>
@@ -161,7 +162,7 @@ function App() {
 			{/* Footer */}
 
 			<div className="db-ui-functional db-bg-neutral-6 flex flex-col p-res-md gap-fix-md">
-				<i>Horizontal divider</i>
+				<DBDivider />
 				<div className="flex flex-wrap gap-res-sm justify-center">
 					{footer.map((fItem, index) => (
 						<a key={`footer-item-${index}`} href="#">

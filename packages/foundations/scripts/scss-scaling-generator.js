@@ -5,18 +5,14 @@ const fileHeader =
 	new Date().toString() +
 	'\n';
 
-const generateSpacings = (utility) => {
+const generateScaling = () => {
 	let allClasses = fileHeader;
-
-	if (utility) {
-		allClasses += `@use "scaling-placeholder" as *;\n`;
-	}
 
 	const scaleTypeKey = ['regular', 'functional', 'expressive'];
 
 	for (const scale of scaleTypeKey) {
 		allClasses += `
-${utility ? '.' : '%'}db-scaling-${scale}{
+%db-scaling-${scale}{
 \t--db-sizing-xs: #{$db-sizing-${scale}-xs};
 \t--db-sizing-sm: #{$db-sizing-${scale}-s};
 \t--db-sizing-md: #{$db-sizing-${scale}-m};
@@ -58,4 +54,4 @@ ${utility ? '.' : '%'}db-scaling-${scale}{
 	return allClasses;
 };
 
-module.exports = generateSpacings;
+module.exports = generateScaling;
