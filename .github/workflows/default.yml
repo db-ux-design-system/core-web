@@ -22,17 +22,13 @@ jobs:
   #  install-cypress:
   #    uses: ./.github/workflows/00-install-cypress.yml
 
-  test:
-    uses: ./.github/workflows/01-test.yml
-    needs: [init]
-
   lint:
     uses: ./.github/workflows/01-lint.yml
     needs: [init]
 
   build-foundations:
     uses: ./.github/workflows/01-build-foundations.yml
-    needs: [init, test, lint]
+    needs: [init, lint]
 
   build-components:
     uses: ./.github/workflows/01-build-components.yml

@@ -12,6 +12,13 @@ permissions:
   security-events: write
 
 jobs:
+  init:
+    name: Init
+    runs-on: ubuntu-latest
+    steps:
+      - name: 🛑 Cancel Previous Runs
+        uses: styfle/cancel-workflow-action@0.11.0
+
   dependabot:
     uses: ./.github/workflows/99-auto-merge.yml
 
