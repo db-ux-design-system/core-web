@@ -19,7 +19,7 @@ jobs:
           runTests: false
 
       - name: 💀 Killing me softly
-        uses: db-ui/mono/.github/actions/cancel-workflow
+        uses: ./.github/actions/cancel-workflow
         if: failure()
         with:
           token: ${{ secrets.GITHUB_TOKEN }}

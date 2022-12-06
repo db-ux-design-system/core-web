@@ -31,7 +31,7 @@ jobs:
         uses: actions/checkout@v3
 
       - name: ⬇ Download build
-        uses: db-ui/mono/.github/actions/download-tar-artifact
+        uses: ./.github/actions/download-tar-artifact
         with:
           name: build
           path: out
@@ -70,7 +70,7 @@ jobs:
           path: e2e/cypress/videos
 
       - name: 💀 Killing me softly
-        uses: db-ui/mono/.github/actions/cancel-workflow
+        uses: ./.github/actions/cancel-workflow
         if: failure()
         with:
           token: ${{ secrets.GITHUB_TOKEN }}

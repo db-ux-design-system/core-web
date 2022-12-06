@@ -17,13 +17,13 @@ jobs:
         uses: actions/checkout@v3
 
       - name: ⬇ Download Components
-        uses: db-ui/mono/.github/actions/download-tar-artifact
+        uses: ./.github/actions/download-tar-artifact
         with:
           name: db-ui-components
           path: packages/components
 
       - name: 🔄 Init Cache
-        uses: db-ui/mono/.github/actions/npm-cache
+        uses: ./.github/actions/npm-cache
         id: "npm-cache"
 
       - name: 📥 Download deps showcase-npm-cache
@@ -36,13 +36,13 @@ jobs:
           npm run build
 
       - name: ⬆ Upload output ${{ matrix.outputs }}
-        uses: db-ui/mono/.github/actions/upload-tar-artifact
+        uses: ./.github/actions/upload-tar-artifact
         with:
           name: output-${{ matrix.outputs }}
           path: packages/components/output/${{ matrix.outputs }}
 
       - name: 💀 Killing me softly
-        uses: db-ui/mono/.github/actions/cancel-workflow
+        uses: ./.github/actions/cancel-workflow
         if: failure()
         with:
           token: ${{ secrets.GITHUB_TOKEN }}

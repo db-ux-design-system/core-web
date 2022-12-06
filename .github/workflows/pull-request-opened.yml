@@ -12,4 +12,4 @@ permissions:
 jobs:
   add-url-comment:
     if: github.event.pull_request.head.repo.owner.login == 'db-ui'
-    uses: db-ui/mono/.github/workflows/99-add-url-comment.yml
+    uses: ./.github/workflows/99-add-url-comment.yml

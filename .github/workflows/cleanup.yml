@@ -28,7 +28,7 @@ jobs:
         with:
           result-encoding: json
           script: |
-            const script = require('db-ui/mono/.github/scripts/cleanup-gh-pages.js')
+            const script = require('./.github/scripts/cleanup-gh-pages.js')
             return await script({github, context})
 
       - name: 🥅 Deploy to GH-Pages
