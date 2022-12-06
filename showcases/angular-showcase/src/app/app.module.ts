@@ -4,13 +4,20 @@ import { BrowserModule } from '@angular/platform-browser';
 import {
 	DBButtonModule,
 	DBIconModule,
-	DBTabBarModule
+	DBCardModule,
+	DBDividerModule
 } from '../../../../packages/components/output/angular/src';
 import { AppComponent } from './app.component';
 
 @NgModule({
 	declarations: [AppComponent],
-	imports: [BrowserModule, DBButtonModule, DBIconModule, DBTabBarModule],
+	imports: [
+		BrowserModule,
+		DBButtonModule,
+		DBIconModule,
+		DBDividerModule,
+		DBCardModule
+	],
 	providers: [],
 	schemas: [NO_ERRORS_SCHEMA],
 	bootstrap: [AppComponent]

@@ -6,10 +6,16 @@ const changeFile = (component, input) => {
 		.split('\n')
 		.filter(
 			(line) =>
-				!line.includes('@db-ui') && !line.includes(`Props } from "../`)
+				!line.includes('@db-ui') &&
+				!line.includes(`Props } from "../`) &&
+				!line.includes(`./${component.name}.scss`)
 		)
 		.map((line) => {
-			if (line.includes(`import { DB`) && line.includes(`../`)) {
+			if (
+				line.includes(`import { DB`) &&
+				line.includes(`../`) &&
+				!line.includes(`Module`)
+			) {
 				return line.replace(` } from "../`, `Module } from "../`);
 			}
 

@@ -66,10 +66,16 @@ module.exports = () => {
 		try {
 			Replace.sync(fixImports);
 			Replace.sync(defaultStyleUrl);
-			Fse.moveSync(
-				`./output/webcomponent/src/components/${component.name}/${component.name}.ts`,
-				`./output/webcomponent/src/components/${component.name}/${component.name}.js`
-			);
+			if (
+				Fse.pathExistsSync(
+					`./output/webcomponent/src/components/${component.name}/${component.name}.ts`
+				)
+			) {
+				Fse.moveSync(
+					`./output/webcomponent/src/components/${component.name}/${component.name}.ts`,
+					`./output/webcomponent/src/components/${component.name}/${component.name}.js`
+				);
+			}
 		} catch (error) {
 			console.error('Error occurred:', error);
 		}

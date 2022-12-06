@@ -30,7 +30,7 @@ export default function DBIcon(props: DBIconProps) {
 
 	return (
 		<span
-			class={`${props.className ? ` ${props.className}` : ''}`}
+			class={'db-icon' + (props.className || '')}
 			data-icon={props.icon}
 			aria-hidden="true">
 			<Show when={state.stylePath}>
