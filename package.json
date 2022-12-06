@@ -11,7 +11,7 @@
     "lint": "npm-run-all -p lint:*",
     "lint:markdownlint": "markdownlint -c .markdown-lint.yml **/*.md",
     "lint:stylelint": "stylelint **/*.scss",
-    "lint:xo": "xo",
+    "lint:xo": "xo --fix",
     "update:foundations:assets": "cpr ../base/assets packages/foundations/assets -o",
     "update:foundations:scripts": "cpr ../base/scripts packages/foundations/scripts -o",
     "update:foundations:scss": "cpr ../base/scss packages/foundations/scss -o",

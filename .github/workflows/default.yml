@@ -19,8 +19,8 @@ jobs:
     if: github.event.pull_request == null || github.event.pull_request.head.repo.owner.login == 'db-ui'
     uses: ./.github/workflows/00-scan-secrets.yml
 
-  install-cypress:
-    uses: ./.github/workflows/00-install-cypress.yml
+  #  install-cypress:
+  #    uses: ./.github/workflows/00-install-cypress.yml
 
   test:
     uses: ./.github/workflows/01-test.yml
