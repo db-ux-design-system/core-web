@@ -17,4 +17,20 @@ module.exports = () => {
 			}
 		}
 	}
+
+	[
+		'package.json',
+		'angular.json',
+		'tsconfig.json',
+		'ng-package.json'
+	].forEach((file) => {
+		Frameworks.forEach((framework) => {
+			if (Fse.pathExistsSync(`./overrides/${framework}/${file}`)) {
+				Fse.copySync(
+					`./overrides/${framework}/${file}`,
+					`./output/${framework}/${file}`
+				);
+			}
+		});
+	});
 };

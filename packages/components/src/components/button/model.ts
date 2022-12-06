@@ -1,17 +1,13 @@
+import { GlobalProps, GlobalState } from '../../shared/model';
+
 export type DBButtonDefaultProps = {
 	text?: string;
 	icon?: string;
 	variant?: string;
-	className?: string;
-	children?: any;
 };
 
-export type DBButtonWcProps = {
-	stylePath?: string;
-};
+export type DBButtonProps = DBButtonDefaultProps & GlobalProps;
 
-export type DBButtonProps = DBButtonDefaultProps & DBButtonWcProps;
+export type DBButtonDefaultState = {};
 
-export type DBButtonState = {
-	stylePath?: string;
-};
+export type DBButtonState = DBButtonDefaultState & GlobalState;

@@ -23,7 +23,7 @@ export default function DBDivider(props: DBDividerProps) {
 		<div
 			data-margin={props.margin}
 			data-variant={props.variant}
-			class={`db-divider${props.className ? ` ${props.className}` : ''}`}>
+			class={'db-divider' + (props.className || '')}>
 			<Show when={state.stylePath}>
 				<link rel="stylesheet" href={state.stylePath} />
 			</Show>

@@ -1,4 +1,5 @@
 import type { DBTabProps } from '../tab/model';
+import { GlobalProps, GlobalState } from '../../shared/model';
 
 export type DBTabBarDefaultProps = {
 	/**
@@ -6,17 +7,12 @@ export type DBTabBarDefaultProps = {
 	 */
 	name?: string;
 	tabs?: DBTabProps[] | string;
-	className?: string;
-	children?: any;
 };
 
-export type DBTabBarWcProps = {
-	stylePath?: string;
-};
+export type DBTabBarProps = DBTabBarDefaultProps & GlobalProps;
 
-export type DBTabBarProps = DBTabBarDefaultProps & DBTabBarWcProps;
-
-export type DBTabBarState = {
-	stylePath?: string;
+export type DBTabBarDefaultState = {
 	convertTabs: (tabs?: DBTabProps[] | string) => DBTabProps[];
 };
+
+export type DBTabBarState = DBTabBarDefaultState & GlobalState;

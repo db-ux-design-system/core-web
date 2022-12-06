@@ -1,3 +1,5 @@
+import { GlobalProps, GlobalState } from '../../shared/model';
+
 export type DBTabDefaultProps = {
 	/**
 	 * If the tab is checked/active.
@@ -23,22 +25,12 @@ export type DBTabDefaultProps = {
 	 *  Default key property.
 	 */
 	key?: string;
-
-	className?: string;
-
-	/**
-	 *  Default children property.
-	 */
-	children?: any;
 };
 
-export type DBTabWcProps = {
-	stylePath?: string;
-};
+export type DBTabProps = DBTabDefaultProps & GlobalProps;
 
-export type DBTabProps = DBTabDefaultProps & DBTabWcProps;
-
-export type DBTabState = {
+export type DBTabDefaultState = {
 	id?: string;
-	stylePath?: string;
 };
+
+export type DBTabState = DBTabDefaultState & GlobalState;

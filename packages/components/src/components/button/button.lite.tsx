@@ -40,7 +40,7 @@ export default function DBButton(props: DBButtonProps) {
 
 	return (
 		<button
-			class={`db-button${props.className ? ` ${props.className}` : ''}`}
+			class={'db-button' + (props.className || '')}
 			data-variant={props.variant}>
 			<Show when={state.stylePath}>
 				<link rel="stylesheet" href={state.stylePath} />
