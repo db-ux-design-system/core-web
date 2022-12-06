@@ -4,6 +4,7 @@ npm-debug.log
 .history
 .idea
 **/build/
+**/dist/
 build-old/
 public/
 out/

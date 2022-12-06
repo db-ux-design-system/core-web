@@ -25,5 +25,12 @@
     "nodemon": "2.0.20",
     "sass": "^1.56.0",
     "style-dictionary": "3.7.1"
+  },
+  "files": [
+    "build"
+  ],
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/",
+    "access": "public"
   }
 }

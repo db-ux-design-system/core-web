@@ -1,0 +1,22 @@
+---
+name: "Upload Tar Artifact"
+description: "Upload an artifact and zips it as {name}.tar.gz"
+inputs:
+  name:
+    description: "Name for artifact"
+    required: true
+  path:
+    description: "Path to zip"
+    required: true
+runs:
+  using: "composite"
+  steps:
+    - name: 📦 Pack build as tar
+      run: tar -czf ${{ inputs.name }} ${{ inputs.path }}
+      shell: bash
+
+    - name: ⬆ Upload build
+      uses: actions/upload-artifact@v3
+      with:
+        name: ${{ inputs.name }}
+        path: ${{ inputs.name }}

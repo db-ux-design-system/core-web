@@ -1,0 +1,37 @@
+---
+name: "Download Tar Artifact"
+description: "Downloads an artifact and unzips it"
+inputs:
+  name:
+    description: "Name for artifact"
+    required: true
+  path:
+    description: "Path for unzip"
+    required: true
+runs:
+  using: "composite"
+  steps:
+    - name: ⬇ Download build
+      uses: actions/download-artifact@v3
+      with:
+        name: ${{ inputs.name }}
+
+    - name: 📁 Manage path folder
+      run: |
+        if [ ! -d ${{ inputs.path }}  ]; then
+           mkdir ${{ inputs.path }}
+        fi
+        export amount=1
+        export path="${{ inputs.path }}"
+        if [[ "$path" == *\/* ]] || [[ "$path" == *\\* ]]
+        then
+          export slashes=$(grep -o "/" <<<"$path" | wc -l)
+          export amount=$((amount + slashes))
+        fi
+        echo "##[set-output name=amount;]$(echo ${amount})"
+      shell: bash
+      id: manage-path-folder
+
+    - name: 📦 Unpack Tar
+      run: tar -zxf ${{ inputs.name }} -C ${{ inputs.path }} --strip-components ${{ steps.manage-path-folder.outputs.amount }}
+      shell: bash

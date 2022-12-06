@@ -1,0 +1,60 @@
+---
+name: Default Pipeline
+
+on:
+  pull_request:
+  push:
+    branches:
+      - "main"
+
+jobs:
+  init:
+    uses: ./.github/workflows/00-init.yml
+
+  get-publish-version:
+    uses: ./.github/workflows/01-get-publish-version.yml
+    needs: [init]
+
+  scan-secrets:
+    if: github.event.pull_request == null || github.event.pull_request.head.repo.owner.login == 'db-ui'
+    uses: ./.github/workflows/00-scan-secrets.yml
+
+  install-cypress:
+    uses: ./.github/workflows/00-install-cypress.yml
+
+  test:
+    uses: ./.github/workflows/01-test.yml
+    needs: [init]
+
+  lint:
+    uses: ./.github/workflows/01-lint.yml
+    needs: [init]
+
+  build-foundations:
+    uses: ./.github/workflows/01-build-foundations.yml
+    needs: [init, test, lint]
+
+  build-components:
+    uses: ./.github/workflows/01-build-components.yml
+    needs: [build-foundations]
+
+  build-showcases:
+    uses: ./.github/workflows/01-build-showcases.yml
+    needs: [build-components]
+#  cypress:
+#    uses: ./.github/workflows/02-cypress.yml
+#    needs: [install-cypress]
+
+#  checks-done:
+#    runs-on: ubuntu-latest
+#    steps:
+#      - name: 🎉 Checks done
+#        run: echo "🎉 All Cypress tests were successful."
+#    needs: [cypress]
+
+#  deploy:
+#    uses: ./.github/workflows/03-deploy-gh-pages.yml
+#    needs: [cypress, get-publish-version]
+#    with:
+#      release: ${{ needs.get-publish-version.outputs.release }}
+#      preRelease: ${{ needs.get-publish-version.outputs.preRelease }}

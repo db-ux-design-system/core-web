@@ -1,0 +1,76 @@
+---
+name: Get and save publish version
+
+on:
+  workflow_call:
+    # Map the workflow outputs to job outputs
+    outputs:
+      release:
+        description: "If the current tag is a release"
+        value: ${{ jobs.publish.outputs.release }}
+      preRelease:
+        description: "If the current tag is a pre-release"
+        value: ${{ jobs.publish.outputs.preRelease }}
+      version:
+        description: "Which version has the tag"
+        value: ${{ jobs.publish.outputs.version }}
+
+jobs:
+  publish:
+    name: Get and save publish version
+    runs-on: ubuntu-latest
+    outputs:
+      release: ${{ steps.releaseCheck.outputs.release }}
+      preRelease: ${{ steps.releaseCheck.outputs.preRelease }}
+      version: ${{ steps.getVersion.outputs.version }}
+    steps:
+      - name: ⬇ Checkout repo
+        uses: actions/checkout@v3
+
+      - name: 🔄 Init Cache
+        uses: ./.github/actions/npm-cache
+
+      - name: 💃🕺 Check if release or prerelease
+        id: releaseCheck
+        run: |
+          chmod +rx ./.github/scripts/get-release.sh
+          OUTPUT=$(./.github/scripts/get-release.sh)
+          if [[ $OUTPUT == "RELEASE" ]];
+          then
+            echo "::set-output name=release::true"
+          elif [[ $OUTPUT == "PRE_RELEASE" ]];
+          then
+            echo "::set-output name=preRelease::true"
+          fi
+        env:
+          GITHUB_REF: ${{ github.ref }}
+          GITHUB_ACTOR: ${{ github.actor }}
+          GITHUB_COMMITISH: ${{ github.event.release.target_commitish }}
+          GITHUB_PRE_RELEASE: ${{ github.event.release.prerelease }}
+
+      - name: ↔ Extract tag name
+        shell: bash
+        run: echo "##[set-output name=tag;]$(echo ${GITHUB_REF#refs/tags/})"
+        id: extractTag
+
+      - name: 🏷 Get and Set Package Version on Env
+        id: getVersion
+        env:
+          RELEASE: ${{ steps.releaseCheck.outputs.release }}
+          PRE_RELEASE: ${{ steps.releaseCheck.outputs.preRelease }}
+          TAG: ${{ steps.extractTag.outputs.tag }}
+        run: |
+          chmod +rx ./.github/scripts/package-version.sh
+          OUTPUT=$(./.github/scripts/package-version.sh)
+          echo "::set-output name=version::$OUTPUT"
+
+      - name: 🌳 Log Valid Version
+        env:
+          VALID_SEMVER_VERSION: ${{ steps.getVersion.outputs.version }}
+        run: echo "$VALID_SEMVER_VERSION"
+
+      - name: 💀 Killing me softly
+        uses: ./.github/actions/cancel-workflow
+        if: failure()
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}

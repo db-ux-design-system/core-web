@@ -1,0 +1,31 @@
+---
+name: 💬 Add url for gh-page as issue comment to PR
+
+on:
+  workflow_call:
+jobs:
+  url:
+    name: 💬 Add url for gh-page as issue comment to PR
+    runs-on: ubuntu-latest
+    steps:
+      - name: ⬇ Checkout repo
+        uses: actions/checkout@v3
+
+      - name: 📡 Add comment
+        uses: actions/github-script@v6
+        with:
+          script: |
+            const body = `🔭🐙🐈 Test this branch here: https://${context.repo.owner}.github.io/${context.repo.repo}/review/${context.payload.pull_request.head.ref}`;
+
+            github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number,
+              body
+            });
+
+      - name: 💀 Killing me softly
+        uses: ./.github/actions/cancel-workflow
+        if: failure()
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}

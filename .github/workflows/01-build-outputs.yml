@@ -1,0 +1,48 @@
+---
+name: Build outputs
+
+on:
+  workflow_call:
+
+jobs:
+  build-showcases:
+    name: Build outputs
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        outputs: [angular, react, vue]
+    steps:
+      - name: ⬇ Checkout repo
+        uses: actions/checkout@v3
+
+      - name: ⬇ Download Components
+        uses: ./.github/actions/download-tar-artifact
+        with:
+          name: db-ui-components
+          path: packages/components
+
+      - name: 🔄 Init Cache
+        uses: ./.github/actions/npm-cache
+        id: "npm-cache"
+
+      - name: 📥 Download deps showcase-npm-cache
+        if: steps.npm-cache.outputs.cache-hit != 'true'
+        uses: bahmutov/npm-install@v1
+
+      - name: 🔨 Build outputs ${{ matrix.outputs }}
+        run: |
+          cd packages/components/output/${{ matrix.outputs }}
+          npm run build
+
+      - name: ⬆ Upload output ${{ matrix.outputs }}
+        uses: ./.github/actions/upload-tar-artifact
+        with:
+          name: output-${{ matrix.outputs }}
+          path: packages/components/output/${{ matrix.outputs }}
+
+      - name: 💀 Killing me softly
+        uses: ./.github/actions/cancel-workflow
+        if: failure()
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}

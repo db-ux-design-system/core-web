@@ -1,0 +1,53 @@
+---
+name: Build Showcases
+
+on:
+  workflow_call:
+
+jobs:
+  build-showcases:
+    name: Build Showcases
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        showcases: [angular, react, vue]
+    steps:
+      - name: ⬇ Checkout repo
+        uses: actions/checkout@v3
+
+      - name: ⬇ Download Components
+        uses: ./.github/actions/download-tar-artifact
+        with:
+          name: db-ui-components
+          path: packages/components
+
+      - name: 🔄 Init Cache
+        uses: ./.github/actions/npm-cache
+        id: "npm-cache"
+        with:
+          nodeModulesPath: "showcases/${{ matrix.showcases }}-showcase/node_modules"
+          packageLockPath: "showcases/${{ matrix.showcases }}-showcase/package-lock.json"
+
+      - name: 📥 Download deps showcase-npm-cache
+        if: steps.npm-cache.outputs.cache-hit != 'true'
+        uses: bahmutov/npm-install@v1
+
+      - name: 🔨 Build Showcase ${{ matrix.showcases }}
+        run: |
+          cd showcase/${{ matrix.showcases }}-showcase
+          npm i
+          npm run build
+          cp dist/${{ matrix.showcases }}-showcase/index.html dist/${{ matrix.showcases }}-showcase/404.html
+
+      - name: ⬆ Upload Showcase ${{ matrix.showcases }} dist folder
+        uses: ./.github/actions/upload-tar-artifact
+        with:
+          name: showcase-${{ matrix.showcases }}
+          path: showcase/${{ matrix.showcases }}-showcase/dist
+
+      - name: 💀 Killing me softly
+        uses: ./.github/actions/cancel-workflow
+        if: failure()
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}

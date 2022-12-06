@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "description": "",
   "workspaces": [
-    "packages/*"
+    "packages/*",
+    "packages/components/output/*"
   ],
   "scripts": {
     "prepare": "node -e \"try { require('husky').install() } catch (e) {}\"",
