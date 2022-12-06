@@ -13,14 +13,14 @@ permissions:
 
 jobs:
   dependabot:
-    uses: ./.github/workflows/99-auto-merge.yml
+    uses: db-ui/mono/.github/workflows/99-auto-merge.yml
 
   codeql:
-    uses: ./.github/workflows/99-codeql-analysis.yml
+    uses: db-ui/mono/.github/workflows/99-codeql-analysis.yml
 
   dependency-review:
-    uses: ./.github/workflows/99-dependency-review.yml
+    uses: db-ui/mono/.github/workflows/99-dependency-review.yml
 
   labeler:
     if: github.event.pull_request.head.repo.owner.login == 'db-ui'
-    uses: ./.github/workflows/99-labeler.yml
+    uses: db-ui/mono/.github/workflows/99-labeler.yml

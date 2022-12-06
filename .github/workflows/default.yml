@@ -9,32 +9,32 @@ on:
 
 jobs:
   init:
-    uses: ./.github/workflows/00-init.yml
+    uses: db-ui/mono/.github/workflows/00-init.yml
 
   scan-secrets:
     if: github.event.pull_request == null || github.event.pull_request.head.repo.owner.login == 'db-ui'
-    uses: ./.github/workflows/00-scan-secrets.yml
+    uses: db-ui/mono/.github/workflows/00-scan-secrets.yml
 
   #  install-cypress:
-  #    uses: ./.github/workflows/00-install-cypress.yml
+  #    uses: db-ui/mono/.github/workflows/00-install-cypress.yml
 
   lint:
-    uses: ./.github/workflows/01-lint.yml
+    uses: db-ui/mono/.github/workflows/01-lint.yml
     needs: [init]
 
   build-foundations:
-    uses: ./.github/workflows/01-build-foundations.yml
+    uses: db-ui/mono/.github/workflows/01-build-foundations.yml
     needs: [init, lint]
 
   build-components:
-    uses: ./.github/workflows/01-build-components.yml
+    uses: db-ui/mono/.github/workflows/01-build-components.yml
     needs: [build-foundations]
 
   build-showcases:
-    uses: ./.github/workflows/01-build-showcases.yml
+    uses: db-ui/mono/.github/workflows/01-build-showcases.yml
     needs: [build-components]
 #  cypress:
-#    uses: ./.github/workflows/02-cypress.yml
+#    uses: db-ui/mono/.github/workflows/02-cypress.yml
 #    needs: [install-cypress]
 
 #  checks-done:
@@ -45,7 +45,7 @@ jobs:
 #    needs: [cypress]
 
 #  deploy:
-#    uses: ./.github/workflows/03-deploy-gh-pages.yml
+#    uses: db-ui/mono/.github/workflows/03-deploy-gh-pages.yml
 #    needs: [cypress, get-publish-version]
 #    with:
 #      release: ${{ needs.get-publish-version.outputs.release }}

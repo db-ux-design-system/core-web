@@ -22,16 +22,16 @@ jobs:
         uses: actions/checkout@v3
 
       - name: 🔄 Init Cache
-        uses: ./.github/actions/npm-cache
+        uses: db-ui/mono/.github/actions/npm-cache
 
       - name: ⬇ Download build
-        uses: ./.github/actions/download-tar-artifact
+        uses: db-ui/mono/.github/actions/download-tar-artifact
         with:
           name: build
           path: out
 
       - name: ↔ Extract branch name
-        uses: ./.github/actions/extract-branch
+        uses: db-ui/mono/.github/actions/extract-branch
         id: extract_branch
 
       - name: ↔ Extract branch/tag name
@@ -71,8 +71,8 @@ jobs:
           REPO_NAME: ${{ steps.repo-name.outputs.result }}
           OWNER_NAME: ${{ steps.owner-name.outputs.result }}
         run: |
-          chmod +rx ./.github/scripts/build-gh-page.sh
-          ./.github/scripts/build-gh-page.sh
+          chmod +rx db-ui/mono/.github/scripts/build-gh-page.sh
+          db-ui/mono/.github/scripts/build-gh-page.sh
 
       - name: 🥅 Deploy to GH-Pages
         uses: peaceiris/actions-gh-pages@v3
@@ -101,7 +101,7 @@ jobs:
           echo "### GH-Pages URL :rocket: <br> <br> $URL" >> $GITHUB_STEP_SUMMARY
 
       - name: 💀 Killing me softly
-        uses: ./.github/actions/cancel-workflow
+        uses: db-ui/mono/.github/actions/cancel-workflow
         if: failure()
         with:
           token: ${{ secrets.GITHUB_TOKEN }}

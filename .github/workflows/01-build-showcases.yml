@@ -17,13 +17,13 @@ jobs:
         uses: actions/checkout@v3
 
       - name: ⬇ Download Components
-        uses: ./.github/actions/download-tar-artifact
+        uses: db-ui/mono/.github/actions/download-tar-artifact
         with:
           name: db-ui-components
           path: packages/components
 
       - name: 🔄 Init Cache
-        uses: ./.github/actions/npm-cache
+        uses: db-ui/mono/.github/actions/npm-cache
         id: "npm-cache"
         with:
           nodeModulesPath: "showcases/${{ matrix.showcases }}-showcase/node_modules"
@@ -41,13 +41,13 @@ jobs:
           cp dist/${{ matrix.showcases }}-showcase/index.html dist/${{ matrix.showcases }}-showcase/404.html
 
       - name: ⬆ Upload Showcase ${{ matrix.showcases }} dist folder
-        uses: ./.github/actions/upload-tar-artifact
+        uses: db-ui/mono/.github/actions/upload-tar-artifact
         with:
           name: showcase-${{ matrix.showcases }}
           path: showcase/${{ matrix.showcases }}-showcase/dist
 
       - name: 💀 Killing me softly
-        uses: ./.github/actions/cancel-workflow
+        uses: db-ui/mono/.github/actions/cancel-workflow
         if: failure()
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
