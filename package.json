@@ -23,7 +23,8 @@
     "update:components:button": "cpr ../core/source/_patterns/01-elements/buttons/button.scss packages/components/src/components/button/button.scss -o",
     "update:components:card": "cpr ../core/source/_patterns/02-components/cards/card.scss packages/components/src/components/card/card.scss -o",
     "update:components:cards": "cpr ../core/source/_patterns/02-components/cards/cards.scss packages/components/src/components/cards/cards.scss -o",
-    "update:components": "npm-run-all -p update:core:*"
+    "update:components": "npm-run-all -p update:core:*",
+    "build": "npm run build --workspace=@db-ui/foundations && npm run build --workspace=@db-ui/components"
   },
   "devDependencies": {
     "@commitlint/cli": "17.2.0",
