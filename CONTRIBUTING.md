@@ -9,3 +9,7 @@ We are committed to fostering a welcoming, respectful, and harassment-free envir
 Please make sure that husky is installed correctly to validate your changes.
 
 Moreover, you need to duplicate `.env.template` as `.env` and type your own email address. This ensures that you have the correct email set for this project.
+
+### Conventions
+
+Please be aware that we have some [code and git commit (message and branch naming) conventions](https://github.com/db-ui/core/blob/main/docs/conventions.adoc), that we ensure with some linting tools.
