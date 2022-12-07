@@ -13,7 +13,7 @@ inputs:
 outputs:
   cache-hit:
     description: "A boolean value to indicate an exact match was found for the primary key"
-    value: ${{ steps.cache.outputs.cache-hit }}
+    value: ${{ steps.set-cache.outputs.cache-hit }}
 runs:
   using: "composite"
   steps:
@@ -27,6 +27,7 @@ runs:
           ${{ runner.os }}-node-
 
     - name: 🥊 Set cache-hit
+      id: "set-cache"
       run: echo "cache-hit=$CACHE_HIT" >> $GITHUB_OUTPUT
       shell: bash
       env:

@@ -24,7 +24,7 @@ jobs:
 
   build-packages:
     uses: ./.github/workflows/01-build-packages.yml
-    needs: [init, lint]
+    needs: [init]
 
   build-showcases:
     uses: ./.github/workflows/01-build-showcases.yml
