@@ -28,9 +28,9 @@ jobs:
     uses: ./.github/workflows/01-build-outputs.yml
     needs: [build-packages]
 
-  build-showcases:
-    uses: ./.github/workflows/01-build-showcases.yml
-    needs: [build-packages]
+  #  build-showcases:
+  #    uses: ./.github/workflows/01-build-showcases.yml
+  #    needs: [build-packages]
 
   #  cypress:
   #    uses: ./.github/workflows/02-cypress.yml
@@ -42,19 +42,19 @@ jobs:
   #      - name: 🎉 Checks done
   #        run: echo "🎉 All Cypress tests were successful."
   #    needs: [cypress]
-#  deploy:
-#    uses: ./.github/workflows/03-deploy-gh-pages.yml
-#    needs: [checks-done, get-publish-version]
-#    with:
-#      release: ${{ needs.get-publish-version.outputs.release }}
-#      preRelease: ${{ needs.get-publish-version.outputs.preRelease }}
+  #  deploy:
+  #    uses: ./.github/workflows/03-deploy-gh-pages.yml
+  #    needs: [checks-done, get-publish-version]
+  #    with:
+  #      release: ${{ needs.get-publish-version.outputs.release }}
+  #      preRelease: ${{ needs.get-publish-version.outputs.preRelease }}
 
-#  publishpackages:
-#    uses: ./.github/workflows/03-publish-packages.yml
-#    needs: [checks-done, get-publish-version, build-outputs]
-#    secrets: inherit
-#    with:
-#      release: ${{ needs.get-publish-version.outputs.release }}
-#      preRelease: ${{ needs.get-publish-version.outputs.preRelease }}
-#      version: ${{ needs.get-publish-version.outputs.version }}
-
+  #    needs: [checks-done, get-publish-version, build-outputs]
+  publishpackages:
+    uses: ./.github/workflows/03-publish-packages.yml
+    needs: [get-publish-version, build-outputs]
+    secrets: inherit
+    with:
+      release: ${{ needs.get-publish-version.outputs.release }}
+      preRelease: ${{ needs.get-publish-version.outputs.preRelease }}
+      version: ${{ needs.get-publish-version.outputs.version }}

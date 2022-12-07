@@ -4,7 +4,7 @@
   "description": "",
   "workspaces": [
     "packages/*",
-    "packages/components/output/*",
+    "build-outputs/*",
     "showcases/*"
   ],
   "scripts": {

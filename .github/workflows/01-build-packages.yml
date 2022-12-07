@@ -21,7 +21,6 @@ jobs:
       - name: 🧹 Clean node_modules and assets
         run: |
           npm run trash --workspace=@db-ui/components
-          npm run trash --workspace=@db-ui/foundations
 
       - name: ⬆ Upload Packages
         uses: ./.github/actions/upload-tar-artifact
