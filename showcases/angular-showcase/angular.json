@@ -24,7 +24,8 @@
 						"tsConfig": "tsconfig.app.json",
 						"assets": [],
 						"styles": ["src/styles.scss"],
-						"scripts": []
+						"scripts": [],
+						"preserveSymlinks": true
 					},
 					"configurations": {
 						"production": {

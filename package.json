@@ -4,7 +4,8 @@
   "description": "",
   "workspaces": [
     "packages/*",
-    "packages/components/output/*"
+    "packages/components/output/*",
+    "showcases/*"
   ],
   "scripts": {
     "prepare": "node -e \"try { require('husky').install() } catch (e) {}\"",
@@ -24,7 +25,13 @@
     "update:components:card": "cpr ../core/source/_patterns/02-components/cards/card.scss packages/components/src/components/card/card.scss -o",
     "update:components:cards": "cpr ../core/source/_patterns/02-components/cards/cards.scss packages/components/src/components/cards/cards.scss -o",
     "update:components": "npm-run-all -p update:core:*",
-    "build": "npm run build --workspace=@db-ui/foundations && npm run build --workspace=@db-ui/components",
+    "build:foundations": "npm run build --workspace=@db-ui/foundations",
+    "build:components": "npm run build --workspace=@db-ui/components",
+    "build": "npm-run-all build:*",
+    "build-outputs:ngx-components": "npm run build --workspace=@db-ui/ngx-components",
+    "build-outputs": "npm-run-all -p build-outputs:*",
+    "build-showcases:angular-showcase": "npm run build --workspace=angular-showcase",
+    "build-showcases": "npm-run-all -p build-showcases:*",
     "start:foundations": "npm run start --workspace=@db-ui/foundations",
     "start:components": "npm run start --workspace=@db-ui/components",
     "start": "npm-run-all -p start:*"

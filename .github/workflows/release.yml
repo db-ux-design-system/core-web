@@ -20,21 +20,17 @@ jobs:
     uses: ./.github/workflows/01-lint.yml
     needs: [init]
 
-  build-foundations:
-    uses: ./.github/workflows/01-build-foundations.yml
+  build-packages:
+    uses: ./.github/workflows/01-build-packages.yml
     needs: [init, lint]
-
-  build-components:
-    uses: ./.github/workflows/01-build-components.yml
-    needs: [build-foundations]
 
   build-outputs:
     uses: ./.github/workflows/01-build-outputs.yml
-    needs: [build-components]
+    needs: [build-packages]
 
   build-showcases:
     uses: ./.github/workflows/01-build-showcases.yml
-    needs: [build-components]
+    needs: [build-packages]
 
   #  cypress:
   #    uses: ./.github/workflows/02-cypress.yml

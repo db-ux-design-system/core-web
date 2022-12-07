@@ -1,12 +1,12 @@
 ---
-name: Build Foundations
+name: Build Components
 
 on:
   workflow_call:
 
 jobs:
   build-stencil-targets:
-    name: Build Foundations
+    name: Build Components
     runs-on: ubuntu-latest
     steps:
       - name: ⬇ Checkout repo
@@ -15,14 +15,14 @@ jobs:
       - name: 🔄 Init Cache
         uses: ./.github/actions/npm-cache
 
-      - name: 🔨 Build foundations
-        run: npm run build --workspace=@db-ui/foundations
+      - name: 🔨 Build Packages
+        run: npm run build
 
-      - name: ⬆ Upload foundations
+      - name: ⬆ Upload Packages
         uses: ./.github/actions/upload-tar-artifact
         with:
-          name: db-ui-foundations
-          path: packages/foundations
+          name: db-ui-packages
+          path: packages
 
       - name: 💀 Killing me softly
         uses: ./.github/actions/cancel-workflow
