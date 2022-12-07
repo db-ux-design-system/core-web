@@ -1,10 +1,10 @@
 {
-  "name": "db-one",
-  "version": "1.0.0",
+  "name": "@db-ui/mono",
+  "version": "0.0.0",
   "description": "",
   "workspaces": [
     "packages/*",
-    "build-outputs/*",
+    "packages/components/output/*",
     "showcases/*"
   ],
   "scripts": {

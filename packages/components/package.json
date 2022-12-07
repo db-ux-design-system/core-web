@@ -1,6 +1,6 @@
 {
-  "name": "@db-ui/x-components",
-  "version": "1.0.0",
+  "name": "@db-ui/components",
+  "version": "0.0.0",
   "description": "",
   "main": "./dist/index.js",
   "module": "./dist/index.js",
@@ -12,7 +12,7 @@
     "build:mitosis": "mitosis build",
     "build:post": "node scripts/post-build/index.js && cpr output/next/src/components ../../showcases/next-showcase/components -o",
     "copy:outputs": "cpr src ../../build-outputs/components/dist -o -f \"(.ts|.tsx)$\"",
-    "copy:package.json": "cpr package.json ../../build-outputs/components/package.json -o && node scripts/rename-output.js",
+    "copy:package.json": "cpr package.json ../../build-outputs/components/package.json -o",
     "copy-output": "npm-run-all copy:*",
     "build": "npm-run-all build:*",
     "start": "nodemon --watch src --watch scripts --watch overrides -e js,tsx,ts,scss,json -x \"npm run build\""

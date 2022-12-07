@@ -31,7 +31,7 @@ jobs:
         uses: ./.github/actions/download-tar-artifact
         with:
           name: db-ui-outputs
-          path: packages
+          path: build-outputs
 
       - name: 📰 Publish to NPM Registries
         run: |

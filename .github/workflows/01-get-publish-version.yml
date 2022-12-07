@@ -50,7 +50,7 @@ jobs:
 
       - name: ↔ Extract tag name
         shell: bash
-        run: echo "##[set-output name=tag;]$(echo ${GITHUB_REF#refs/tags/})"
+        run: echo "tag=${GITHUB_REF#refs/tags/}" >> $GITHUB_OUTPUT
         id: extractTag
 
       - name: 🏷 Get and Set Package Version on Env

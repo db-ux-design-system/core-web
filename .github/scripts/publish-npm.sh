@@ -13,22 +13,28 @@ fi
 echo "🛠 Forge all packages version numbers"
 echo "which package version ?: $VALID_SEMVER_VERSION"
 
-npm version --no-git-tag-version "$VALID_SEMVER_VERSION" --workspace=@db-ui/components
-npm version --no-git-tag-version "$VALID_SEMVER_VERSION" --workspace=@db-ui/ngx-components
-npm version --no-git-tag-version "$VALID_SEMVER_VERSION" --workspace=@db-ui/react-components
-npm version --no-git-tag-version "$VALID_SEMVER_VERSION" --workspace=@db-ui/v-components
+echo "goto build-outputs"
+cd build-outputs || exit 1
 
-npm pkg set dependencies.@db-ui/foundations="$VALID_SEMVER_VERSION" --workspace=@db-ui/components
-npm pkg set dependencies.@db-ui/foundations="$VALID_SEMVER_VERSION" --workspace=@db-ui/ngx-components
-npm pkg set dependencies.@db-ui/foundations="$VALID_SEMVER_VERSION" --workspace=@db-ui/react-components
-npm pkg set dependencies.@db-ui/foundations="$VALID_SEMVER_VERSION" --workspace=@db-ui/v-components
+# TODO: Add other build as well
+for PACKAGE in 'components' 'ngx-components'
+do
+	echo "Start $PACKAGE bundle:"
 
+	echo "🆚 Update Version"
+	npm version --no-git-tag-version "$VALID_SEMVER_VERSION" --workspace=@db-ui/"$PACKAGE"
 
-echo "📦 Create packages"
-npm pack --quiet --workspace=@db-ui/components
-npm pack --quiet --workspace=@db-ui/ngx-components
-npm pack --quiet --workspace=@db-ui/react-components
-npm pack --quiet --workspace=@db-ui/v-components
+	echo "🕵️‍ Set foundations dependency"
+	if [[ $REGISTRY == 'ngx-components' ]]; then
+		npm pkg set peerDependencies.@db-ui/foundations="$VALID_SEMVER_VERSION" --workspace=@db-ui/"$PACKAGE"
+	else
+		npm pkg set dependencies.@db-ui/foundations="$VALID_SEMVER_VERSION" --workspace=@db-ui/"$PACKAGE"
+	fi
+
+	echo "📦 Create npm package"
+	npm pack --quiet --workspace=@db-ui/"$PACKAGE"
+done
+
 
 TAG="latest"
 if [[ $PRE_RELEASE == 'true' ]]; then
@@ -39,6 +45,7 @@ echo "📰 Publish Package to Registry with tag: $TAG)"
 for REGISTRY in 'GITHUB' 'NPM'
 do
   echo "🔒 Authenticate $REGISTRY NPM Registry"
+
   if [[ $REGISTRY == 'GITHUB' ]]; then
     npm config set @db-ui:registry https://npm.pkg.github.com
     npm set //npm.pkg.github.com/:_authToken "$GPR_TOKEN"
@@ -51,8 +58,11 @@ do
     echo "Could not authenticate with $REGISTRY"
     exit 1
   fi
-  npm publish --tag "$TAG" db-ui-components-"$VALID_SEMVER_VERSION".tgz
-  npm publish --tag "$TAG" db-ui-ngx-components-"$VALID_SEMVER_VERSION".tgz
-  npm publish --tag "$TAG" db-ui-react-components-"$VALID_SEMVER_VERSION".tgz
-  npm publish --tag "$TAG" db-ui-v-components-"$VALID_SEMVER_VERSION".tgz
+
+# TODO: Add other build as well
+	for PACKAGE in 'components' 'ngx-components'
+	do
+		echo "⤴ Publish $PACKAGE with tag $TAG to $REGISTRY"
+  		npm publish --tag "$TAG" db-ui-"$PACKAGE"-"$VALID_SEMVER_VERSION".tgz
+	done
 done

@@ -30,3 +30,4 @@ packages/components/src/**/*.css.map
 
 /build-showcases/
 /build-outputs/
+!/build-outputs/package.json
