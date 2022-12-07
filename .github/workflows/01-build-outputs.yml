@@ -28,7 +28,7 @@ jobs:
         uses: ./.github/actions/upload-tar-artifact
         with:
           name: db-ui-outputs
-          path: packages
+          path: build-outputs
 
       - name: 💀 Killing me softly
         uses: ./.github/actions/cancel-workflow

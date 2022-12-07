@@ -18,9 +18,10 @@ npm version --no-git-tag-version "$VALID_SEMVER_VERSION" --workspace=@db-ui/ngx-
 npm version --no-git-tag-version "$VALID_SEMVER_VERSION" --workspace=@db-ui/react-components
 npm version --no-git-tag-version "$VALID_SEMVER_VERSION" --workspace=@db-ui/v-components
 
-npm pkg set dependencies.@db-ui/components="$VALID_SEMVER_VERSION" --workspace=@db-ui/ngx-components
-npm pkg set dependencies.@db-ui/components="$VALID_SEMVER_VERSION" --workspace=@db-ui/react-components
-npm pkg set dependencies.@db-ui/components="$VALID_SEMVER_VERSION" --workspace=@db-ui/v-components
+npm pkg set dependencies.@db-ui/foundations="$VALID_SEMVER_VERSION" --workspace=@db-ui/components
+npm pkg set dependencies.@db-ui/foundations="$VALID_SEMVER_VERSION" --workspace=@db-ui/ngx-components
+npm pkg set dependencies.@db-ui/foundations="$VALID_SEMVER_VERSION" --workspace=@db-ui/react-components
+npm pkg set dependencies.@db-ui/foundations="$VALID_SEMVER_VERSION" --workspace=@db-ui/v-components
 
 
 echo "📦 Create packages"

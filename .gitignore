@@ -28,3 +28,5 @@ ctags.tmp
 packages/components/src/**/*.css
 packages/components/src/**/*.css.map
 
+/build-showcases/
+/build-outputs/

@@ -28,6 +28,7 @@
     "build:foundations": "npm run build --workspace=@db-ui/foundations",
     "build:components": "npm run build --workspace=@db-ui/components",
     "build": "npm-run-all build:*",
+    "build-outputs:components": "npm run copy-output --workspace=@db-ui/components",
     "build-outputs:ngx-components": "npm run build --workspace=@db-ui/ngx-components",
     "build-outputs": "npm-run-all -p build-outputs:*",
     "build-showcases:angular-showcase": "npm run build --workspace=angular-showcase",
