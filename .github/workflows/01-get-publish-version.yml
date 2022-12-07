@@ -37,10 +37,10 @@ jobs:
           OUTPUT=$(./.github/scripts/get-release.sh)
           if [[ $OUTPUT == "RELEASE" ]];
           then
-            echo "::set-output name=release::true"
+            echo "release=true" >> $GITHUB_OUTPUT
           elif [[ $OUTPUT == "PRE_RELEASE" ]];
           then
-            echo "::set-output name=preRelease::true"
+            echo "preRelease=true" >> $GITHUB_OUTPUT
           fi
         env:
           GITHUB_REF: ${{ github.ref }}
@@ -62,7 +62,7 @@ jobs:
         run: |
           chmod +rx ./.github/scripts/package-version.sh
           OUTPUT=$(./.github/scripts/package-version.sh)
-          echo "::set-output name=version::$OUTPUT"
+          echo "version=$OUTPUT" >> $GITHUB_OUTPUT
 
       - name: 🌳 Log Valid Version
         env:

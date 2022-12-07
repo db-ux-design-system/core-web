@@ -28,7 +28,7 @@ runs:
           export slashes=$(grep -o "/" <<<"$path" | wc -l)
           export amount=$((amount + slashes))
         fi
-        echo "##[set-output name=amount;]$(echo ${amount})"
+        echo "amount=${amount}" >> $GITHUB_OUTPUT
       shell: bash
       id: manage-path-folder
 
