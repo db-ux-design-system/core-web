@@ -63,6 +63,6 @@ do
 	for PACKAGE in 'components' 'ngx-components'
 	do
 		echo "⤴ Publish $PACKAGE with tag $TAG to $REGISTRY"
-  		npm publish --tag "$TAG" db-ui-"$PACKAGE"-"$VALID_SEMVER_VERSION".tgz
+  		npm publish --dry-run --tag "$TAG" db-ui-"$PACKAGE"-"$VALID_SEMVER_VERSION".tgz
 	done
 done
