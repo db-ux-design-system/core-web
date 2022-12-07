@@ -51,7 +51,7 @@ do
   if [[ $REGISTRY == 'GITHUB' ]]; then
     npm config set @db-ui:registry https://npm.pkg.github.com
     npm set //npm.pkg.github.com/:_authToken "$GPR_TOKEN"
-    echo "🔑 Authenticated with GITHUB"
+    echo "🔑 Authenticated with GitHub"
   elif [[ $REGISTRY == 'NPM' ]]; then
     npm config set @db-ui:registry https://registry.npmjs.org/
     npm set //registry.npmjs.org/:_authToken "$NPM_TOKEN"
