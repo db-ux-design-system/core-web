@@ -30,6 +30,11 @@ const modifyTailwind = (dictionary) => {
 	}
 };
 
+StyleDictionary.registerFilter({
+	name: 'targetNonWeb',
+	matcher: (token) => token.attributes.target !== 'web'
+});
+
 StyleDictionary.registerFormat({
 	name: 'tailwind',
 	formatter({ dictionary }) {
@@ -114,20 +119,29 @@ StyleDictionary.registerTransform({
 StyleDictionary.registerTransform({
 	type: `value`,
 	name: `size/real/rem`,
-	matcher: (token) => token.attributes.category === 'dynamic-size',
+	matcher: (token) => token.attributes.category === 'size',
 	transformer(token) {
 		return `${Number(token.value) / 16}rem`;
 	}
 });
 
-StyleDictionary.registerTransformGroup({
-	name: 'JSDotty',
-	transforms: ['attribute/cti', 'name/dotty/pascal', 'size/px', 'color/hex']
+StyleDictionary.registerTransform({
+	type: `value`,
+	name: `size/divide/rem`,
+	matcher: (token) => token.attributes.category === 'size',
+	transformer(token) {
+		return `${Number(token.value) / 16}`;
+	}
 });
 
 StyleDictionary.registerTransformGroup({
 	name: 'JS',
-	transforms: ['attribute/cti', 'name/dotty/pascal', 'size/px', 'color/hex']
+	transforms: [
+		'attribute/cti',
+		'name/dotty/pascal',
+		'size/real/rem',
+		'color/hex'
+	]
 });
 
 StyleDictionary.registerTransformGroup({
@@ -137,7 +151,6 @@ StyleDictionary.registerTransformGroup({
 		'name/cti/kebab',
 		'time/seconds',
 		'content/icon',
-		'size/px',
 		'size/real/rem',
 		'color/css'
 	]
@@ -150,7 +163,6 @@ StyleDictionary.registerTransformGroup({
 		'name/cti/kebab',
 		'time/seconds',
 		'content/icon',
-		'size/px',
 		'size/real/rem',
 		'color/css'
 	]
@@ -164,21 +176,21 @@ StyleDictionary.registerTransformGroup({
 		'color/UIColorSwift',
 		'content/swift/literal',
 		'asset/swift/literal',
+		'size/divide/rem',
 		'size/swift/remToCGFloat',
 		'font/swift/literal'
 	]
 });
 
 StyleDictionary.registerTransformGroup({
-	name: 'Flutter',
+	name: 'Compose',
 	transforms: [
 		'attribute/cti',
 		'name/dotty/camel',
-		'color/hex8flutter',
-		'size/flutter/remToDouble',
-		'content/flutter/literal',
-		'asset/flutter/literal',
-		'font/flutter/literal'
+		'color/composeColor',
+		'size/divide/rem',
+		'size/compose/remToSp',
+		'size/compose/remToDp'
 	]
 });
 

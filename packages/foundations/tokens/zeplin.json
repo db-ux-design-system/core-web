@@ -5,67 +5,79 @@
 				"desktop": {
 					"xl": {
 						"value": "240",
-						"attributes": { "category": "dynamic-size" }
+						"attributes": { "category": "size" }
 					},
 					"l": {
 						"value": "120",
-						"attributes": { "category": "dynamic-size" }
+						"attributes": { "category": "size" }
 					},
 					"m": {
-						"value": "64",
-						"attributes": { "category": "dynamic-size" }
+						"value": "80",
+						"attributes": { "category": "size" }
 					},
 					"s": {
-						"value": "40",
-						"attributes": { "category": "dynamic-size" }
+						"value": "48",
+						"attributes": { "category": "size" }
+					},
+					"2xs": {
+						"value": "24",
+						"attributes": { "category": "size" }
 					},
 					"xs": {
-						"value": "28",
-						"attributes": { "category": "dynamic-size" }
+						"value": "32",
+						"attributes": { "category": "size" }
 					}
 				},
 				"tablet": {
 					"xs": {
 						"value": "28",
-						"attributes": { "category": "dynamic-size" }
+						"attributes": { "category": "size" }
 					},
 					"s": {
 						"value": "40",
-						"attributes": { "category": "dynamic-size" }
+						"attributes": { "category": "size" }
 					},
 					"m": {
 						"value": "64",
-						"attributes": { "category": "dynamic-size" }
+						"attributes": { "category": "size" }
 					},
 					"l": {
 						"value": "96",
-						"attributes": { "category": "dynamic-size" }
+						"attributes": { "category": "size" }
 					},
 					"xl": {
 						"value": "160",
-						"attributes": { "category": "dynamic-size" }
+						"attributes": { "category": "size" }
+					},
+					"2xs": {
+						"value": "20",
+						"attributes": { "category": "size" }
 					}
 				},
 				"mobile": {
 					"xs": {
 						"value": "24",
-						"attributes": { "category": "dynamic-size" }
+						"attributes": { "category": "size" }
 					},
 					"s": {
 						"value": "32",
-						"attributes": { "category": "dynamic-size" }
+						"attributes": { "category": "size" }
 					},
 					"m": {
 						"value": "48",
-						"attributes": { "category": "dynamic-size" }
+						"attributes": { "category": "size" }
 					},
 					"l": {
 						"value": "80",
-						"attributes": { "category": "dynamic-size" }
+						"attributes": { "category": "size" }
 					},
 					"xl": {
 						"value": "120",
-						"attributes": { "category": "dynamic-size" }
+						"attributes": { "category": "size" }
+					},
+					"2xs": {
+						"value": "20",
+						"attributes": { "category": "size" }
 					}
 				}
 			},
@@ -73,67 +85,75 @@
 				"desktop": {
 					"xs": {
 						"value": "28",
-						"attributes": { "category": "dynamic-size" }
+						"attributes": { "category": "size" }
 					},
 					"s": {
 						"value": "40",
-						"attributes": { "category": "dynamic-size" }
+						"attributes": { "category": "size" }
 					},
 					"m": {
 						"value": "64",
-						"attributes": { "category": "dynamic-size" }
+						"attributes": { "category": "size" }
 					},
 					"l": {
 						"value": "96",
-						"attributes": { "category": "dynamic-size" }
+						"attributes": { "category": "size" }
 					},
 					"xl": {
 						"value": "160",
-						"attributes": { "category": "dynamic-size" }
+						"attributes": { "category": "size" }
+					},
+					"2xs": {
+						"value": "20",
+						"attributes": { "category": "size" }
 					}
 				},
 				"tablet": {
 					"xs": {
 						"value": "24",
-						"attributes": { "category": "dynamic-size" }
+						"attributes": { "category": "size" }
 					},
 					"s": {
 						"value": "32",
-						"attributes": { "category": "dynamic-size" }
+						"attributes": { "category": "size" }
 					},
 					"m": {
 						"value": "48",
-						"attributes": { "category": "dynamic-size" }
+						"attributes": { "category": "size" }
 					},
 					"l": {
 						"value": "80",
-						"attributes": { "category": "dynamic-size" }
+						"attributes": { "category": "size" }
 					},
 					"xl": {
 						"value": "120",
-						"attributes": { "category": "dynamic-size" }
+						"attributes": { "category": "size" }
+					},
+					"2xs": {
+						"value": "20",
+						"attributes": { "category": "size" }
 					}
 				},
 				"mobile": {
 					"xs": {
 						"value": "20",
-						"attributes": { "category": "dynamic-size" }
+						"attributes": { "category": "size" }
 					},
 					"s": {
 						"value": "28",
-						"attributes": { "category": "dynamic-size" }
+						"attributes": { "category": "size" }
 					},
 					"m": {
 						"value": "40",
-						"attributes": { "category": "dynamic-size" }
+						"attributes": { "category": "size" }
 					},
 					"l": {
 						"value": "64",
-						"attributes": { "category": "dynamic-size" }
+						"attributes": { "category": "size" }
 					},
 					"xl": {
 						"value": "96",
-						"attributes": { "category": "dynamic-size" }
+						"attributes": { "category": "size" }
 					}
 				}
 			},
@@ -141,212 +161,131 @@
 				"desktop": {
 					"xs": {
 						"value": "48",
-						"attributes": { "category": "dynamic-size" }
+						"attributes": { "category": "size" }
 					},
 					"s": {
 						"value": "80",
-						"attributes": { "category": "dynamic-size" }
+						"attributes": { "category": "size" }
 					},
 					"m": {
 						"value": "120",
-						"attributes": { "category": "dynamic-size" }
+						"attributes": { "category": "size" }
 					},
 					"l": {
 						"value": "240",
-						"attributes": { "category": "dynamic-size" }
+						"attributes": { "category": "size" }
 					},
 					"xl": {
 						"value": "480",
-						"attributes": { "category": "dynamic-size" }
+						"attributes": { "category": "size" }
+					},
+					"2xs": {
+						"value": "32",
+						"attributes": { "category": "size" }
 					}
 				},
 				"tablet": {
 					"xs": {
 						"value": "40",
-						"attributes": { "category": "dynamic-size" }
+						"attributes": { "category": "size" }
 					},
 					"s": {
 						"value": "64",
-						"attributes": { "category": "dynamic-size" }
+						"attributes": { "category": "size" }
 					},
 					"m": {
 						"value": "96",
-						"attributes": { "category": "dynamic-size" }
+						"attributes": { "category": "size" }
 					},
 					"l": {
 						"value": "160",
-						"attributes": { "category": "dynamic-size" }
+						"attributes": { "category": "size" }
 					},
 					"xl": {
 						"value": "240",
-						"attributes": { "category": "dynamic-size" }
+						"attributes": { "category": "size" }
+					},
+					"2xs": {
+						"value": "28",
+						"attributes": { "category": "size" }
 					}
 				},
 				"mobile": {
 					"xs": {
 						"value": "32",
-						"attributes": { "category": "dynamic-size" }
+						"attributes": { "category": "size" }
 					},
 					"s": {
 						"value": "48",
-						"attributes": { "category": "dynamic-size" }
+						"attributes": { "category": "size" }
 					},
 					"m": {
 						"value": "80",
-						"attributes": { "category": "dynamic-size" }
+						"attributes": { "category": "size" }
 					},
 					"l": {
 						"value": "120",
-						"attributes": { "category": "dynamic-size" }
+						"attributes": { "category": "size" }
 					},
 					"xl": {
 						"value": "160",
-						"attributes": { "category": "dynamic-size" }
+						"attributes": { "category": "size" }
+					},
+					"2xs": {
+						"value": "24",
+						"attributes": { "category": "size" }
 					}
 				}
 			}
 		},
 		"fixed": {
 			"regular": {
-				"xs": {
-					"value": "8",
-					"attributes": { "category": "dynamic-size" }
-				},
-				"3xs": {
-					"value": "2",
-					"attributes": { "category": "dynamic-size" }
-				},
-				"2xs": {
-					"value": "4",
-					"attributes": { "category": "dynamic-size" }
-				},
-				"s": {
-					"value": "12",
-					"attributes": { "category": "dynamic-size" }
-				},
-				"m": {
-					"value": "16",
-					"attributes": { "category": "dynamic-size" }
-				},
-				"l": {
-					"value": "24",
-					"attributes": { "category": "dynamic-size" }
-				},
-				"xl": {
-					"value": "32",
-					"attributes": { "category": "dynamic-size" }
-				}
+				"xs": { "value": "8", "attributes": { "category": "size" } },
+				"3xs": { "value": "2", "attributes": { "category": "size" } },
+				"2xs": { "value": "4", "attributes": { "category": "size" } },
+				"s": { "value": "12", "attributes": { "category": "size" } },
+				"m": { "value": "16", "attributes": { "category": "size" } },
+				"l": { "value": "24", "attributes": { "category": "size" } },
+				"xl": { "value": "32", "attributes": { "category": "size" } }
 			},
 			"functional": {
-				"3xs": {
-					"value": "2",
-					"attributes": { "category": "dynamic-size" }
-				},
-				"2xs": {
-					"value": "4",
-					"attributes": { "category": "dynamic-size" }
-				},
-				"xs": {
-					"value": "6",
-					"attributes": { "category": "dynamic-size" }
-				},
-				"s": {
-					"value": "8",
-					"attributes": { "category": "dynamic-size" }
-				},
-				"m": {
-					"value": "12",
-					"attributes": { "category": "dynamic-size" }
-				},
-				"l": {
-					"value": "16",
-					"attributes": { "category": "dynamic-size" }
-				},
-				"xl": {
-					"value": "24",
-					"attributes": { "category": "dynamic-size" }
-				}
+				"3xs": { "value": "2", "attributes": { "category": "size" } },
+				"2xs": { "value": "4", "attributes": { "category": "size" } },
+				"xs": { "value": "6", "attributes": { "category": "size" } },
+				"s": { "value": "8", "attributes": { "category": "size" } },
+				"m": { "value": "12", "attributes": { "category": "size" } },
+				"l": { "value": "16", "attributes": { "category": "size" } },
+				"xl": { "value": "24", "attributes": { "category": "size" } }
 			},
 			"expressive": {
-				"3xs": {
-					"value": "4",
-					"attributes": { "category": "dynamic-size" }
-				},
-				"2xs": {
-					"value": "8",
-					"attributes": { "category": "dynamic-size" }
-				},
-				"xs": {
-					"value": "12",
-					"attributes": { "category": "dynamic-size" }
-				},
-				"s": {
-					"value": "16",
-					"attributes": { "category": "dynamic-size" }
-				},
-				"m": {
-					"value": "24",
-					"attributes": { "category": "dynamic-size" }
-				},
-				"l": {
-					"value": "32",
-					"attributes": { "category": "dynamic-size" }
-				},
-				"xl": {
-					"value": "48",
-					"attributes": { "category": "dynamic-size" }
-				}
+				"3xs": { "value": "4", "attributes": { "category": "size" } },
+				"2xs": { "value": "8", "attributes": { "category": "size" } },
+				"xs": { "value": "12", "attributes": { "category": "size" } },
+				"s": { "value": "16", "attributes": { "category": "size" } },
+				"m": { "value": "24", "attributes": { "category": "size" } },
+				"l": { "value": "32", "attributes": { "category": "size" } },
+				"xl": { "value": "48", "attributes": { "category": "size" } }
 			}
 		}
 	},
 	"sizing": {
 		"regular": {
-			"l": {
-				"value": "64",
-				"attributes": { "category": "dynamic-size" }
-			},
-			"m": {
-				"value": "40",
-				"attributes": { "category": "dynamic-size" }
-			},
-			"s": {
-				"value": "24",
-				"attributes": { "category": "dynamic-size" }
-			},
-			"xs": {
-				"value": "16",
-				"attributes": { "category": "dynamic-size" }
-			}
+			"l": { "value": "64", "attributes": { "category": "size" } },
+			"m": { "value": "40", "attributes": { "category": "size" } },
+			"s": { "value": "24", "attributes": { "category": "size" } },
+			"xs": { "value": "16", "attributes": { "category": "size" } }
 		},
 		"functional": {
-			"xs": {
-				"value": "14",
-				"attributes": { "category": "dynamic-size" }
-			},
-			"s": {
-				"value": "20",
-				"attributes": { "category": "dynamic-size" }
-			},
-			"m": {
-				"value": "32",
-				"attributes": { "category": "dynamic-size" }
-			},
-			"l": { "value": "48", "attributes": { "category": "dynamic-size" } }
+			"xs": { "value": "14", "attributes": { "category": "size" } },
+			"s": { "value": "20", "attributes": { "category": "size" } },
+			"m": { "value": "32", "attributes": { "category": "size" } },
+			"l": { "value": "48", "attributes": { "category": "size" } }
 		},
 		"expressive": {
-			"xs": {
-				"value": "20",
-				"attributes": { "category": "dynamic-size" }
-			},
-			"s": {
-				"value": "28",
-				"attributes": { "category": "dynamic-size" }
-			},
-			"m": {
-				"value": "48",
-				"attributes": { "category": "dynamic-size" }
-			},
-			"l": { "value": "80", "attributes": { "category": "dynamic-size" } }
+			"xs": { "value": "20", "attributes": { "category": "size" } },
+			"s": { "value": "28", "attributes": { "category": "size" } },
+			"m": { "value": "48", "attributes": { "category": "size" } },
+			"l": { "value": "80", "attributes": { "category": "size" } }
 		}
 	},
 	"typography": {
@@ -357,63 +296,63 @@
 						"lineHeight": { "value": 1.2 },
 						"fontSize": {
 							"value": "80",
-							"attributes": { "category": "dynamic-size" }
+							"attributes": { "category": "size", "type": "font" }
 						}
 					},
 					"2xlarge": {
 						"lineHeight": { "value": 1.25 },
 						"fontSize": {
 							"value": "64",
-							"attributes": { "category": "dynamic-size" }
+							"attributes": { "category": "size", "type": "font" }
 						}
 					},
 					"xlarge": {
 						"lineHeight": { "value": 1.3333333333333333 },
 						"fontSize": {
 							"value": "48",
-							"attributes": { "category": "dynamic-size" }
+							"attributes": { "category": "size", "type": "font" }
 						}
 					},
 					"large": {
 						"lineHeight": { "value": 1.2 },
 						"fontSize": {
 							"value": "40",
-							"attributes": { "category": "dynamic-size" }
+							"attributes": { "category": "size", "type": "font" }
 						}
 					},
 					"medium": {
 						"lineHeight": { "value": 1.25 },
 						"fontSize": {
 							"value": "32",
-							"attributes": { "category": "dynamic-size" }
+							"attributes": { "category": "size", "type": "font" }
 						}
 					},
 					"small": {
 						"lineHeight": { "value": 1.1428571428571428 },
 						"fontSize": {
 							"value": "28",
-							"attributes": { "category": "dynamic-size" }
+							"attributes": { "category": "size", "type": "font" }
 						}
 					},
 					"2xsmall": {
 						"lineHeight": { "value": 1.2 },
 						"fontSize": {
 							"value": "20",
-							"attributes": { "category": "dynamic-size" }
+							"attributes": { "category": "size", "type": "font" }
 						}
 					},
 					"3xsmall": {
 						"lineHeight": { "value": 1.25 },
 						"fontSize": {
 							"value": "16",
-							"attributes": { "category": "dynamic-size" }
+							"attributes": { "category": "size", "type": "font" }
 						}
 					},
 					"xsmall": {
 						"lineHeight": { "value": 1.1666666666666667 },
 						"fontSize": {
 							"value": "24",
-							"attributes": { "category": "dynamic-size" }
+							"attributes": { "category": "size", "type": "font" }
 						}
 					}
 				},
@@ -422,49 +361,49 @@
 						"lineHeight": { "value": 1.4 },
 						"fontSize": {
 							"value": "20",
-							"attributes": { "category": "dynamic-size" }
+							"attributes": { "category": "size", "type": "font" }
 						}
 					},
 					"xlarge": {
 						"lineHeight": { "value": 1.3333333333333333 },
 						"fontSize": {
 							"value": "24",
-							"attributes": { "category": "dynamic-size" }
+							"attributes": { "category": "size", "type": "font" }
 						}
 					},
 					"2xlarge": {
 						"lineHeight": { "value": 1.4285714285714286 },
 						"fontSize": {
 							"value": "28",
-							"attributes": { "category": "dynamic-size" }
+							"attributes": { "category": "size", "type": "font" }
 						}
 					},
 					"medium": {
 						"lineHeight": { "value": 1.5 },
 						"fontSize": {
 							"value": "16",
-							"attributes": { "category": "dynamic-size" }
+							"attributes": { "category": "size", "type": "font" }
 						}
 					},
 					"small": {
 						"lineHeight": { "value": 1.4285714285714286 },
 						"fontSize": {
 							"value": "14",
-							"attributes": { "category": "dynamic-size" }
+							"attributes": { "category": "size", "type": "font" }
 						}
 					},
 					"2xsmall": {
 						"lineHeight": { "value": 1.4 },
 						"fontSize": {
 							"value": "10",
-							"attributes": { "category": "dynamic-size" }
+							"attributes": { "category": "size", "type": "font" }
 						}
 					},
 					"xsmall": {
 						"lineHeight": { "value": 1.3333333333333333 },
 						"fontSize": {
 							"value": "12",
-							"attributes": { "category": "dynamic-size" }
+							"attributes": { "category": "size", "type": "font" }
 						}
 					}
 				}
@@ -475,49 +414,49 @@
 						"lineHeight": { "value": 1.4 },
 						"fontSize": {
 							"value": "20",
-							"attributes": { "category": "dynamic-size" }
+							"attributes": { "category": "size", "type": "font" }
 						}
 					},
 					"medium": {
 						"lineHeight": { "value": 1.5 },
 						"fontSize": {
 							"value": "16",
-							"attributes": { "category": "dynamic-size" }
+							"attributes": { "category": "size", "type": "font" }
 						}
 					},
 					"small": {
 						"lineHeight": { "value": 1.4285714285714286 },
 						"fontSize": {
 							"value": "14",
-							"attributes": { "category": "dynamic-size" }
+							"attributes": { "category": "size", "type": "font" }
 						}
 					},
 					"xlarge": {
 						"lineHeight": { "value": 1.4 },
 						"fontSize": {
 							"value": "20",
-							"attributes": { "category": "dynamic-size" }
+							"attributes": { "category": "size", "type": "font" }
 						}
 					},
 					"xsmall": {
 						"lineHeight": { "value": 1.3333333333333333 },
 						"fontSize": {
 							"value": "12",
-							"attributes": { "category": "dynamic-size" }
+							"attributes": { "category": "size", "type": "font" }
 						}
 					},
 					"2xlarge": {
 						"lineHeight": { "value": 1.4 },
 						"fontSize": {
 							"value": "20",
-							"attributes": { "category": "dynamic-size" }
+							"attributes": { "category": "size", "type": "font" }
 						}
 					},
 					"2xsmall": {
 						"lineHeight": { "value": 1.4 },
 						"fontSize": {
 							"value": "10",
-							"attributes": { "category": "dynamic-size" }
+							"attributes": { "category": "size", "type": "font" }
 						}
 					}
 				},
@@ -526,63 +465,63 @@
 						"lineHeight": { "value": 1.1428571428571428 },
 						"fontSize": {
 							"value": "28",
-							"attributes": { "category": "dynamic-size" }
+							"attributes": { "category": "size", "type": "font" }
 						}
 					},
 					"medium": {
 						"lineHeight": { "value": 1.1666666666666667 },
 						"fontSize": {
 							"value": "24",
-							"attributes": { "category": "dynamic-size" }
+							"attributes": { "category": "size", "type": "font" }
 						}
 					},
 					"small": {
 						"lineHeight": { "value": 1.2 },
 						"fontSize": {
 							"value": "20",
-							"attributes": { "category": "dynamic-size" }
+							"attributes": { "category": "size", "type": "font" }
 						}
 					},
 					"xlarge": {
 						"lineHeight": { "value": 1.25 },
 						"fontSize": {
 							"value": "32",
-							"attributes": { "category": "dynamic-size" }
+							"attributes": { "category": "size", "type": "font" }
 						}
 					},
 					"xsmall": {
 						"lineHeight": { "value": 1.25 },
 						"fontSize": {
 							"value": "16",
-							"attributes": { "category": "dynamic-size" }
+							"attributes": { "category": "size", "type": "font" }
 						}
 					},
 					"2xlarge": {
 						"lineHeight": { "value": 1.25 },
 						"fontSize": {
 							"value": "32",
-							"attributes": { "category": "dynamic-size" }
+							"attributes": { "category": "size", "type": "font" }
 						}
 					},
 					"2xsmall": {
 						"lineHeight": { "value": 1.1428571428571428 },
 						"fontSize": {
 							"value": "14",
-							"attributes": { "category": "dynamic-size" }
+							"attributes": { "category": "size", "type": "font" }
 						}
 					},
 					"3xlarge": {
 						"lineHeight": { "value": 1.25 },
 						"fontSize": {
 							"value": "32",
-							"attributes": { "category": "dynamic-size" }
+							"attributes": { "category": "size", "type": "font" }
 						}
 					},
 					"3xsmall": {
 						"lineHeight": { "value": 1.1428571428571428 },
 						"fontSize": {
 							"value": "14",
-							"attributes": { "category": "dynamic-size" }
+							"attributes": { "category": "size", "type": "font" }
 						}
 					}
 				}
@@ -593,49 +532,49 @@
 						"lineHeight": { "value": 1.4 },
 						"fontSize": {
 							"value": "20",
-							"attributes": { "category": "dynamic-size" }
+							"attributes": { "category": "size", "type": "font" }
 						}
 					},
 					"medium": {
 						"lineHeight": { "value": 1.5 },
 						"fontSize": {
 							"value": "16",
-							"attributes": { "category": "dynamic-size" }
+							"attributes": { "category": "size", "type": "font" }
 						}
 					},
 					"small": {
 						"lineHeight": { "value": 1.4285714285714286 },
 						"fontSize": {
 							"value": "14",
-							"attributes": { "category": "dynamic-size" }
+							"attributes": { "category": "size", "type": "font" }
 						}
 					},
 					"xlarge": {
 						"lineHeight": { "value": 1.3333333333333333 },
 						"fontSize": {
 							"value": "24",
-							"attributes": { "category": "dynamic-size" }
+							"attributes": { "category": "size", "type": "font" }
 						}
 					},
 					"xsmall": {
 						"lineHeight": { "value": 1.3333333333333333 },
 						"fontSize": {
 							"value": "12",
-							"attributes": { "category": "dynamic-size" }
+							"attributes": { "category": "size", "type": "font" }
 						}
 					},
 					"2xlarge": {
 						"lineHeight": { "value": 1.4285714285714286 },
 						"fontSize": {
 							"value": "28",
-							"attributes": { "category": "dynamic-size" }
+							"attributes": { "category": "size", "type": "font" }
 						}
 					},
 					"2xsmall": {
 						"lineHeight": { "value": 1.4 },
 						"fontSize": {
 							"value": "10",
-							"attributes": { "category": "dynamic-size" }
+							"attributes": { "category": "size", "type": "font" }
 						}
 					}
 				},
@@ -644,63 +583,63 @@
 						"lineHeight": { "value": 1.25 },
 						"fontSize": {
 							"value": "32",
-							"attributes": { "category": "dynamic-size" }
+							"attributes": { "category": "size", "type": "font" }
 						}
 					},
 					"medium": {
 						"lineHeight": { "value": 1.1428571428571428 },
 						"fontSize": {
 							"value": "28",
-							"attributes": { "category": "dynamic-size" }
+							"attributes": { "category": "size", "type": "font" }
 						}
 					},
 					"small": {
 						"lineHeight": { "value": 1.1666666666666667 },
 						"fontSize": {
 							"value": "24",
-							"attributes": { "category": "dynamic-size" }
+							"attributes": { "category": "size", "type": "font" }
 						}
 					},
 					"xlarge": {
 						"lineHeight": { "value": 1.2 },
 						"fontSize": {
 							"value": "40",
-							"attributes": { "category": "dynamic-size" }
+							"attributes": { "category": "size", "type": "font" }
 						}
 					},
 					"xsmall": {
 						"lineHeight": { "value": 1.2 },
 						"fontSize": {
 							"value": "20",
-							"attributes": { "category": "dynamic-size" }
+							"attributes": { "category": "size", "type": "font" }
 						}
 					},
 					"2xlarge": {
 						"lineHeight": { "value": 1.3333333333333333 },
 						"fontSize": {
 							"value": "48",
-							"attributes": { "category": "dynamic-size" }
+							"attributes": { "category": "size", "type": "font" }
 						}
 					},
 					"2xsmall": {
 						"lineHeight": { "value": 1.25 },
 						"fontSize": {
 							"value": "16",
-							"attributes": { "category": "dynamic-size" }
+							"attributes": { "category": "size", "type": "font" }
 						}
 					},
 					"3xlarge": {
 						"lineHeight": { "value": 1.3333333333333333 },
 						"fontSize": {
 							"value": "48",
-							"attributes": { "category": "dynamic-size" }
+							"attributes": { "category": "size", "type": "font" }
 						}
 					},
 					"3xsmall": {
 						"lineHeight": { "value": 1.25 },
 						"fontSize": {
 							"value": "16",
-							"attributes": { "category": "dynamic-size" }
+							"attributes": { "category": "size", "type": "font" }
 						}
 					}
 				}
@@ -713,49 +652,49 @@
 						"lineHeight": { "value": 1.5 },
 						"fontSize": {
 							"value": "16",
-							"attributes": { "category": "dynamic-size" }
+							"attributes": { "category": "size", "type": "font" }
 						}
 					},
 					"medium": {
 						"lineHeight": { "value": 1.4285714285714286 },
 						"fontSize": {
 							"value": "14",
-							"attributes": { "category": "dynamic-size" }
+							"attributes": { "category": "size", "type": "font" }
 						}
 					},
 					"small": {
 						"lineHeight": { "value": 1.3333333333333333 },
 						"fontSize": {
 							"value": "12",
-							"attributes": { "category": "dynamic-size" }
+							"attributes": { "category": "size", "type": "font" }
 						}
 					},
 					"xlarge": {
 						"lineHeight": { "value": 1.4 },
 						"fontSize": {
 							"value": "20",
-							"attributes": { "category": "dynamic-size" }
+							"attributes": { "category": "size", "type": "font" }
 						}
 					},
 					"xsmall": {
 						"lineHeight": { "value": 1.4 },
 						"fontSize": {
 							"value": "10",
-							"attributes": { "category": "dynamic-size" }
+							"attributes": { "category": "size", "type": "font" }
 						}
 					},
 					"2xlarge": {
 						"lineHeight": { "value": 1.3333333333333333 },
 						"fontSize": {
 							"value": "24",
-							"attributes": { "category": "dynamic-size" }
+							"attributes": { "category": "size", "type": "font" }
 						}
 					},
 					"2xsmall": {
 						"lineHeight": { "value": 1.5 },
 						"fontSize": {
 							"value": "8",
-							"attributes": { "category": "dynamic-size" }
+							"attributes": { "category": "size", "type": "font" }
 						}
 					}
 				},
@@ -764,63 +703,63 @@
 						"lineHeight": { "value": 1.1428571428571428 },
 						"fontSize": {
 							"value": "28",
-							"attributes": { "category": "dynamic-size" }
+							"attributes": { "category": "size", "type": "font" }
 						}
 					},
 					"medium": {
 						"lineHeight": { "value": 1.1666666666666667 },
 						"fontSize": {
 							"value": "24",
-							"attributes": { "category": "dynamic-size" }
+							"attributes": { "category": "size", "type": "font" }
 						}
 					},
 					"small": {
 						"lineHeight": { "value": 1.2 },
 						"fontSize": {
 							"value": "20",
-							"attributes": { "category": "dynamic-size" }
+							"attributes": { "category": "size", "type": "font" }
 						}
 					},
 					"xlarge": {
 						"lineHeight": { "value": 1.25 },
 						"fontSize": {
 							"value": "32",
-							"attributes": { "category": "dynamic-size" }
+							"attributes": { "category": "size", "type": "font" }
 						}
 					},
 					"xsmall": {
 						"lineHeight": { "value": 1.25 },
 						"fontSize": {
 							"value": "16",
-							"attributes": { "category": "dynamic-size" }
+							"attributes": { "category": "size", "type": "font" }
 						}
 					},
 					"2xlarge": {
 						"lineHeight": { "value": 1.2 },
 						"fontSize": {
 							"value": "40",
-							"attributes": { "category": "dynamic-size" }
+							"attributes": { "category": "size", "type": "font" }
 						}
 					},
 					"2xsmall": {
 						"lineHeight": { "value": 1.1428571428571428 },
 						"fontSize": {
 							"value": "14",
-							"attributes": { "category": "dynamic-size" }
+							"attributes": { "category": "size", "type": "font" }
 						}
 					},
 					"3xlarge": {
 						"lineHeight": { "value": 1.2 },
 						"fontSize": {
 							"value": "40",
-							"attributes": { "category": "dynamic-size" }
+							"attributes": { "category": "size", "type": "font" }
 						}
 					},
 					"3xsmall": {
 						"lineHeight": { "value": 1.1428571428571428 },
 						"fontSize": {
 							"value": "14",
-							"attributes": { "category": "dynamic-size" }
+							"attributes": { "category": "size", "type": "font" }
 						}
 					}
 				}
@@ -831,49 +770,49 @@
 						"lineHeight": { "value": 1.5 },
 						"fontSize": {
 							"value": "16",
-							"attributes": { "category": "dynamic-size" }
+							"attributes": { "category": "size", "type": "font" }
 						}
 					},
 					"medium": {
 						"lineHeight": { "value": 1.4285714285714286 },
 						"fontSize": {
 							"value": "14",
-							"attributes": { "category": "dynamic-size" }
+							"attributes": { "category": "size", "type": "font" }
 						}
 					},
 					"small": {
 						"lineHeight": { "value": 1.3333333333333333 },
 						"fontSize": {
 							"value": "12",
-							"attributes": { "category": "dynamic-size" }
+							"attributes": { "category": "size", "type": "font" }
 						}
 					},
 					"xlarge": {
 						"lineHeight": { "value": 1.4 },
 						"fontSize": {
 							"value": "20",
-							"attributes": { "category": "dynamic-size" }
+							"attributes": { "category": "size", "type": "font" }
 						}
 					},
 					"xsmall": {
 						"lineHeight": { "value": 1.4 },
 						"fontSize": {
 							"value": "10",
-							"attributes": { "category": "dynamic-size" }
+							"attributes": { "category": "size", "type": "font" }
 						}
 					},
 					"2xlarge": {
 						"lineHeight": { "value": 1.3333333333333333 },
 						"fontSize": {
 							"value": "24",
-							"attributes": { "category": "dynamic-size" }
+							"attributes": { "category": "size", "type": "font" }
 						}
 					},
 					"2xsmall": {
 						"lineHeight": { "value": 1.5 },
 						"fontSize": {
 							"value": "8",
-							"attributes": { "category": "dynamic-size" }
+							"attributes": { "category": "size", "type": "font" }
 						}
 					}
 				},
@@ -882,63 +821,63 @@
 						"lineHeight": { "value": 1.1428571428571428 },
 						"fontSize": {
 							"value": "28",
-							"attributes": { "category": "dynamic-size" }
+							"attributes": { "category": "size", "type": "font" }
 						}
 					},
 					"medium": {
 						"lineHeight": { "value": 1.1666666666666667 },
 						"fontSize": {
 							"value": "24",
-							"attributes": { "category": "dynamic-size" }
+							"attributes": { "category": "size", "type": "font" }
 						}
 					},
 					"small": {
 						"lineHeight": { "value": 1.2 },
 						"fontSize": {
 							"value": "20",
-							"attributes": { "category": "dynamic-size" }
+							"attributes": { "category": "size", "type": "font" }
 						}
 					},
 					"xlarge": {
 						"lineHeight": { "value": 1.25 },
 						"fontSize": {
 							"value": "32",
-							"attributes": { "category": "dynamic-size" }
+							"attributes": { "category": "size", "type": "font" }
 						}
 					},
 					"xsmall": {
 						"lineHeight": { "value": 1.25 },
 						"fontSize": {
 							"value": "16",
-							"attributes": { "category": "dynamic-size" }
+							"attributes": { "category": "size", "type": "font" }
 						}
 					},
 					"2xlarge": {
 						"lineHeight": { "value": 1.25 },
 						"fontSize": {
 							"value": "32",
-							"attributes": { "category": "dynamic-size" }
+							"attributes": { "category": "size", "type": "font" }
 						}
 					},
 					"2xsmall": {
 						"lineHeight": { "value": 1.1428571428571428 },
 						"fontSize": {
 							"value": "14",
-							"attributes": { "category": "dynamic-size" }
+							"attributes": { "category": "size", "type": "font" }
 						}
 					},
 					"3xlarge": {
 						"lineHeight": { "value": 1.25 },
 						"fontSize": {
 							"value": "32",
-							"attributes": { "category": "dynamic-size" }
+							"attributes": { "category": "size", "type": "font" }
 						}
 					},
 					"3xsmall": {
 						"lineHeight": { "value": 1.1428571428571428 },
 						"fontSize": {
 							"value": "14",
-							"attributes": { "category": "dynamic-size" }
+							"attributes": { "category": "size", "type": "font" }
 						}
 					}
 				}
@@ -949,49 +888,49 @@
 						"lineHeight": { "value": 1.5 },
 						"fontSize": {
 							"value": "16",
-							"attributes": { "category": "dynamic-size" }
+							"attributes": { "category": "size", "type": "font" }
 						}
 					},
 					"medium": {
 						"lineHeight": { "value": 1.4285714285714286 },
 						"fontSize": {
 							"value": "14",
-							"attributes": { "category": "dynamic-size" }
+							"attributes": { "category": "size", "type": "font" }
 						}
 					},
 					"small": {
 						"lineHeight": { "value": 1.3333333333333333 },
 						"fontSize": {
 							"value": "12",
-							"attributes": { "category": "dynamic-size" }
+							"attributes": { "category": "size", "type": "font" }
 						}
 					},
 					"xlarge": {
 						"lineHeight": { "value": 1.5 },
 						"fontSize": {
 							"value": "16",
-							"attributes": { "category": "dynamic-size" }
+							"attributes": { "category": "size", "type": "font" }
 						}
 					},
 					"xsmall": {
 						"lineHeight": { "value": 1.4 },
 						"fontSize": {
 							"value": "10",
-							"attributes": { "category": "dynamic-size" }
+							"attributes": { "category": "size", "type": "font" }
 						}
 					},
 					"2xlarge": {
 						"lineHeight": { "value": 1.5 },
 						"fontSize": {
 							"value": "16",
-							"attributes": { "category": "dynamic-size" }
+							"attributes": { "category": "size", "type": "font" }
 						}
 					},
 					"2xsmall": {
 						"lineHeight": { "value": 1.5 },
 						"fontSize": {
 							"value": "8",
-							"attributes": { "category": "dynamic-size" }
+							"attributes": { "category": "size", "type": "font" }
 						}
 					}
 				},
@@ -1000,63 +939,63 @@
 						"lineHeight": { "value": 1.1666666666666667 },
 						"fontSize": {
 							"value": "24",
-							"attributes": { "category": "dynamic-size" }
+							"attributes": { "category": "size", "type": "font" }
 						}
 					},
 					"medium": {
 						"lineHeight": { "value": 1.2 },
 						"fontSize": {
 							"value": "20",
-							"attributes": { "category": "dynamic-size" }
+							"attributes": { "category": "size", "type": "font" }
 						}
 					},
 					"small": {
 						"lineHeight": { "value": 1.25 },
 						"fontSize": {
 							"value": "16",
-							"attributes": { "category": "dynamic-size" }
+							"attributes": { "category": "size", "type": "font" }
 						}
 					},
 					"xlarge": {
 						"lineHeight": { "value": 1.1428571428571428 },
 						"fontSize": {
 							"value": "28",
-							"attributes": { "category": "dynamic-size" }
+							"attributes": { "category": "size", "type": "font" }
 						}
 					},
 					"xsmall": {
 						"lineHeight": { "value": 1.1428571428571428 },
 						"fontSize": {
 							"value": "14",
-							"attributes": { "category": "dynamic-size" }
+							"attributes": { "category": "size", "type": "font" }
 						}
 					},
 					"2xlarge": {
 						"lineHeight": { "value": 1.1428571428571428 },
 						"fontSize": {
 							"value": "28",
-							"attributes": { "category": "dynamic-size" }
+							"attributes": { "category": "size", "type": "font" }
 						}
 					},
 					"2xsmall": {
 						"lineHeight": { "value": 1.1428571428571428 },
 						"fontSize": {
 							"value": "14",
-							"attributes": { "category": "dynamic-size" }
+							"attributes": { "category": "size", "type": "font" }
 						}
 					},
 					"3xlarge": {
 						"lineHeight": { "value": 1.1428571428571428 },
 						"fontSize": {
 							"value": "28",
-							"attributes": { "category": "dynamic-size" }
+							"attributes": { "category": "size", "type": "font" }
 						}
 					},
 					"3xsmall": {
 						"lineHeight": { "value": 1.1428571428571428 },
 						"fontSize": {
 							"value": "14",
-							"attributes": { "category": "dynamic-size" }
+							"attributes": { "category": "size", "type": "font" }
 						}
 					}
 				}
@@ -1069,49 +1008,49 @@
 						"lineHeight": { "value": 1.3333333333333333 },
 						"fontSize": {
 							"value": "24",
-							"attributes": { "category": "dynamic-size" }
+							"attributes": { "category": "size", "type": "font" }
 						}
 					},
 					"medium": {
 						"lineHeight": { "value": 1.4 },
 						"fontSize": {
 							"value": "20",
-							"attributes": { "category": "dynamic-size" }
+							"attributes": { "category": "size", "type": "font" }
 						}
 					},
 					"small": {
 						"lineHeight": { "value": 1.5 },
 						"fontSize": {
 							"value": "16",
-							"attributes": { "category": "dynamic-size" }
+							"attributes": { "category": "size", "type": "font" }
 						}
 					},
 					"xlarge": {
 						"lineHeight": { "value": 1.4285714285714286 },
 						"fontSize": {
 							"value": "28",
-							"attributes": { "category": "dynamic-size" }
+							"attributes": { "category": "size", "type": "font" }
 						}
 					},
 					"xsmall": {
 						"lineHeight": { "value": 1.4285714285714286 },
 						"fontSize": {
 							"value": "14",
-							"attributes": { "category": "dynamic-size" }
+							"attributes": { "category": "size", "type": "font" }
 						}
 					},
 					"2xlarge": {
 						"lineHeight": { "value": 1.5 },
 						"fontSize": {
 							"value": "32",
-							"attributes": { "category": "dynamic-size" }
+							"attributes": { "category": "size", "type": "font" }
 						}
 					},
 					"2xsmall": {
 						"lineHeight": { "value": 1.3333333333333333 },
 						"fontSize": {
 							"value": "12",
-							"attributes": { "category": "dynamic-size" }
+							"attributes": { "category": "size", "type": "font" }
 						}
 					}
 				},
@@ -1120,63 +1059,63 @@
 						"lineHeight": { "value": 1.3333333333333333 },
 						"fontSize": {
 							"value": "48",
-							"attributes": { "category": "dynamic-size" }
+							"attributes": { "category": "size", "type": "font" }
 						}
 					},
 					"medium": {
 						"lineHeight": { "value": 1.2 },
 						"fontSize": {
 							"value": "40",
-							"attributes": { "category": "dynamic-size" }
+							"attributes": { "category": "size", "type": "font" }
 						}
 					},
 					"small": {
 						"lineHeight": { "value": 1.25 },
 						"fontSize": {
 							"value": "32",
-							"attributes": { "category": "dynamic-size" }
+							"attributes": { "category": "size", "type": "font" }
 						}
 					},
 					"xlarge": {
 						"lineHeight": { "value": 1.25 },
 						"fontSize": {
 							"value": "64",
-							"attributes": { "category": "dynamic-size" }
+							"attributes": { "category": "size", "type": "font" }
 						}
 					},
 					"xsmall": {
 						"lineHeight": { "value": 1.1428571428571428 },
 						"fontSize": {
 							"value": "28",
-							"attributes": { "category": "dynamic-size" }
+							"attributes": { "category": "size", "type": "font" }
 						}
 					},
 					"2xlarge": {
 						"lineHeight": { "value": 1.2 },
 						"fontSize": {
 							"value": "80",
-							"attributes": { "category": "dynamic-size" }
+							"attributes": { "category": "size", "type": "font" }
 						}
 					},
 					"2xsmall": {
 						"lineHeight": { "value": 1.1666666666666667 },
 						"fontSize": {
 							"value": "24",
-							"attributes": { "category": "dynamic-size" }
+							"attributes": { "category": "size", "type": "font" }
 						}
 					},
 					"3xlarge": {
 						"lineHeight": { "value": 1.25 },
 						"fontSize": {
 							"value": "96",
-							"attributes": { "category": "dynamic-size" }
+							"attributes": { "category": "size", "type": "font" }
 						}
 					},
 					"3xsmall": {
 						"lineHeight": { "value": 1.2 },
 						"fontSize": {
 							"value": "20",
-							"attributes": { "category": "dynamic-size" }
+							"attributes": { "category": "size", "type": "font" }
 						}
 					}
 				}
@@ -1187,49 +1126,49 @@
 						"lineHeight": { "value": 1.3333333333333333 },
 						"fontSize": {
 							"value": "24",
-							"attributes": { "category": "dynamic-size" }
+							"attributes": { "category": "size", "type": "font" }
 						}
 					},
 					"medium": {
 						"lineHeight": { "value": 1.4 },
 						"fontSize": {
 							"value": "20",
-							"attributes": { "category": "dynamic-size" }
+							"attributes": { "category": "size", "type": "font" }
 						}
 					},
 					"small": {
 						"lineHeight": { "value": 1.5 },
 						"fontSize": {
 							"value": "16",
-							"attributes": { "category": "dynamic-size" }
+							"attributes": { "category": "size", "type": "font" }
 						}
 					},
 					"xlarge": {
 						"lineHeight": { "value": 1.4285714285714286 },
 						"fontSize": {
 							"value": "28",
-							"attributes": { "category": "dynamic-size" }
+							"attributes": { "category": "size", "type": "font" }
 						}
 					},
 					"xsmall": {
 						"lineHeight": { "value": 1.4285714285714286 },
 						"fontSize": {
 							"value": "14",
-							"attributes": { "category": "dynamic-size" }
+							"attributes": { "category": "size", "type": "font" }
 						}
 					},
 					"2xlarge": {
 						"lineHeight": { "value": 1.5 },
 						"fontSize": {
 							"value": "32",
-							"attributes": { "category": "dynamic-size" }
+							"attributes": { "category": "size", "type": "font" }
 						}
 					},
 					"2xsmall": {
 						"lineHeight": { "value": 1.3333333333333333 },
 						"fontSize": {
 							"value": "12",
-							"attributes": { "category": "dynamic-size" }
+							"attributes": { "category": "size", "type": "font" }
 						}
 					}
 				},
@@ -1238,63 +1177,63 @@
 						"lineHeight": { "value": 1.2 },
 						"fontSize": {
 							"value": "40",
-							"attributes": { "category": "dynamic-size" }
+							"attributes": { "category": "size", "type": "font" }
 						}
 					},
 					"medium": {
 						"lineHeight": { "value": 1.25 },
 						"fontSize": {
 							"value": "32",
-							"attributes": { "category": "dynamic-size" }
+							"attributes": { "category": "size", "type": "font" }
 						}
 					},
 					"small": {
 						"lineHeight": { "value": 1.1428571428571428 },
 						"fontSize": {
 							"value": "28",
-							"attributes": { "category": "dynamic-size" }
+							"attributes": { "category": "size", "type": "font" }
 						}
 					},
 					"xlarge": {
 						"lineHeight": { "value": 1.3333333333333333 },
 						"fontSize": {
 							"value": "48",
-							"attributes": { "category": "dynamic-size" }
+							"attributes": { "category": "size", "type": "font" }
 						}
 					},
 					"xsmall": {
 						"lineHeight": { "value": 1.1666666666666667 },
 						"fontSize": {
 							"value": "24",
-							"attributes": { "category": "dynamic-size" }
+							"attributes": { "category": "size", "type": "font" }
 						}
 					},
 					"2xlarge": {
 						"lineHeight": { "value": 1.25 },
 						"fontSize": {
 							"value": "64",
-							"attributes": { "category": "dynamic-size" }
+							"attributes": { "category": "size", "type": "font" }
 						}
 					},
 					"2xsmall": {
 						"lineHeight": { "value": 1.2 },
 						"fontSize": {
 							"value": "20",
-							"attributes": { "category": "dynamic-size" }
+							"attributes": { "category": "size", "type": "font" }
 						}
 					},
 					"3xlarge": {
 						"lineHeight": { "value": 1.2 },
 						"fontSize": {
 							"value": "80",
-							"attributes": { "category": "dynamic-size" }
+							"attributes": { "category": "size", "type": "font" }
 						}
 					},
 					"3xsmall": {
 						"lineHeight": { "value": 1.2 },
 						"fontSize": {
 							"value": "20",
-							"attributes": { "category": "dynamic-size" }
+							"attributes": { "category": "size", "type": "font" }
 						}
 					}
 				}
@@ -1305,49 +1244,49 @@
 						"lineHeight": { "value": 1.3333333333333333 },
 						"fontSize": {
 							"value": "24",
-							"attributes": { "category": "dynamic-size" }
+							"attributes": { "category": "size", "type": "font" }
 						}
 					},
 					"medium": {
 						"lineHeight": { "value": 1.4 },
 						"fontSize": {
 							"value": "20",
-							"attributes": { "category": "dynamic-size" }
+							"attributes": { "category": "size", "type": "font" }
 						}
 					},
 					"small": {
 						"lineHeight": { "value": 1.5 },
 						"fontSize": {
 							"value": "16",
-							"attributes": { "category": "dynamic-size" }
+							"attributes": { "category": "size", "type": "font" }
 						}
 					},
 					"xlarge": {
 						"lineHeight": { "value": 1.3333333333333333 },
 						"fontSize": {
 							"value": "24",
-							"attributes": { "category": "dynamic-size" }
+							"attributes": { "category": "size", "type": "font" }
 						}
 					},
 					"xsmall": {
 						"lineHeight": { "value": 1.4285714285714286 },
 						"fontSize": {
 							"value": "14",
-							"attributes": { "category": "dynamic-size" }
+							"attributes": { "category": "size", "type": "font" }
 						}
 					},
 					"2xlarge": {
 						"lineHeight": { "value": 1.3333333333333333 },
 						"fontSize": {
 							"value": "24",
-							"attributes": { "category": "dynamic-size" }
+							"attributes": { "category": "size", "type": "font" }
 						}
 					},
 					"2xsmall": {
 						"lineHeight": { "value": 1.3333333333333333 },
 						"fontSize": {
 							"value": "12",
-							"attributes": { "category": "dynamic-size" }
+							"attributes": { "category": "size", "type": "font" }
 						}
 					}
 				},
@@ -1356,63 +1295,63 @@
 						"lineHeight": { "value": 1.25 },
 						"fontSize": {
 							"value": "32",
-							"attributes": { "category": "dynamic-size" }
+							"attributes": { "category": "size", "type": "font" }
 						}
 					},
 					"medium": {
 						"lineHeight": { "value": 1.1428571428571428 },
 						"fontSize": {
 							"value": "28",
-							"attributes": { "category": "dynamic-size" }
+							"attributes": { "category": "size", "type": "font" }
 						}
 					},
 					"small": {
 						"lineHeight": { "value": 1.1666666666666667 },
 						"fontSize": {
 							"value": "24",
-							"attributes": { "category": "dynamic-size" }
+							"attributes": { "category": "size", "type": "font" }
 						}
 					},
 					"xlarge": {
 						"lineHeight": { "value": 1.2 },
 						"fontSize": {
 							"value": "40",
-							"attributes": { "category": "dynamic-size" }
+							"attributes": { "category": "size", "type": "font" }
 						}
 					},
 					"xsmall": {
 						"lineHeight": { "value": 1.2 },
 						"fontSize": {
 							"value": "20",
-							"attributes": { "category": "dynamic-size" }
+							"attributes": { "category": "size", "type": "font" }
 						}
 					},
 					"2xlarge": {
 						"lineHeight": { "value": 1.2 },
 						"fontSize": {
 							"value": "40",
-							"attributes": { "category": "dynamic-size" }
+							"attributes": { "category": "size", "type": "font" }
 						}
 					},
 					"2xsmall": {
 						"lineHeight": { "value": 1.25 },
 						"fontSize": {
 							"value": "16",
-							"attributes": { "category": "dynamic-size" }
+							"attributes": { "category": "size", "type": "font" }
 						}
 					},
 					"3xlarge": {
 						"lineHeight": { "value": 1.2 },
 						"fontSize": {
 							"value": "40",
-							"attributes": { "category": "dynamic-size" }
+							"attributes": { "category": "size", "type": "font" }
 						}
 					},
 					"3xsmall": {
 						"lineHeight": { "value": 1.25 },
 						"fontSize": {
 							"value": "16",
-							"attributes": { "category": "dynamic-size" }
+							"attributes": { "category": "size", "type": "font" }
 						}
 					}
 				}

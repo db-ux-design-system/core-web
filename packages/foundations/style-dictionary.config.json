@@ -23,67 +23,6 @@
 				}
 			]
 		},
-		"js": {
-			"transformGroup": "JSDotty",
-			"buildPath": "build/js/",
-			"prefix": "db",
-			"files": [
-				{
-					"destination": "tokens.js",
-					"format": "javascript/es6"
-				}
-			]
-		},
-		"flutter": {
-			"transformGroup": "Flutter",
-			"buildPath": "build/flutter/unique_file/",
-			"files": [
-				{
-					"destination": "style_dictionary.dart",
-					"format": "flutter/class.dart",
-					"className": "StyleDictionary"
-				}
-			]
-		},
-		"flutter-separate": {
-			"transformGroup": "flutter-separate",
-			"buildPath": "build/flutter/",
-			"files": [
-				{
-					"destination": "style_dictionary_color.dart",
-					"format": "flutter/class.dart",
-					"className": "StyleDictionaryColor",
-					"type": "color",
-					"filter": {
-						"attributes": {
-							"category": "colors"
-						}
-					}
-				},
-				{
-					"destination": "style_dictionary_font.dart",
-					"format": "flutter/class.dart",
-					"className": "StyleDictionaryFont",
-					"type": "text",
-					"filter": {
-						"attributes": {
-							"category": "font"
-						}
-					}
-				},
-				{
-					"destination": "style_dictionary_typography.dart",
-					"format": "flutter/class.dart",
-					"className": "StyleDictionaryTypography",
-					"type": "text",
-					"filter": {
-						"attributes": {
-							"category": "typography"
-						}
-					}
-				}
-			]
-		},
 		"tailwind": {
 			"transformGroup": "JS",
 			"buildPath": "build/tailwind/",
@@ -154,58 +93,32 @@
 				}
 			]
 		},
-		"android": {
-			"transformGroup": "android",
-			"buildPath": "build/android/src/main/res/values/",
+		"compose": {
+			"transformGroup": "Compose",
+			"buildPath": "build/compose/",
 			"files": [
 				{
-					"destination": "style_dictionary_colors.xml",
-					"format": "android/colors"
-				}
-			]
-		},
-		"android-asset": {
-			"transformGroup": "android",
-			"buildPath": "build/android/src/main/",
-			"files": [
-				{
-					"destination": "assets/data/properties.json",
-					"format": "json"
-				}
-			],
-			"actions": ["copy_assets"]
-		},
-		"ios": {
-			"transformGroup": "ios",
-			"buildPath": "build/ios/Classes/Generated/",
-			"prefix": "db",
-			"files": [
-				{
-					"destination": "StyleDictionaryColor.h",
-					"format": "ios/colors.h",
+					"destination": "StyleDictionaryColor.kt",
+					"format": "compose/object",
 					"className": "StyleDictionaryColor",
-					"type": "StyleDictionaryColorName",
+					"packageName": "StyleDictionaryColor",
 					"filter": {
 						"attributes": {
-							"category": "colors"
+							"category": "color"
 						}
 					}
 				},
 				{
-					"destination": "StyleDictionaryColor.m",
-					"format": "ios/colors.m",
-					"className": "StyleDictionaryColor",
-					"type": "StyleDictionaryColorName",
+					"destination": "StyleDictionarySize.kt",
+					"format": "compose/object",
+					"className": "StyleDictionarySize",
+					"packageName": "StyleDictionarySize",
+					"type": "float",
 					"filter": {
 						"attributes": {
-							"category": "colors"
+							"category": "size"
 						}
 					}
-				},
-				{
-					"destination": "StyleDictionaryProperties.h",
-					"format": "ios/singleton.h",
-					"className": "StyleDictionaryProperties"
 				}
 			]
 		},
@@ -217,19 +130,19 @@
 					"destination": "StyleDictionary+Class.swift",
 					"format": "ios-swift/class.swift",
 					"className": "StyleDictionaryClass",
-					"filter": {}
+					"filter": "targetNonWeb"
 				},
 				{
 					"destination": "StyleDictionary+Enum.swift",
 					"format": "ios-swift/enum.swift",
 					"className": "StyleDictionaryEnum",
-					"filter": {}
+					"filter": "targetNonWeb"
 				},
 				{
 					"destination": "StyleDictionary+Struct.swift",
 					"format": "ios-swift/any.swift",
 					"className": "StyleDictionaryStruct",
-					"filter": {},
+					"filter": "targetNonWeb",
 					"options": {
 						"imports": "SwiftUI",
 						"objectType": "struct",
