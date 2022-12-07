@@ -9,9 +9,6 @@ jobs:
   init:
     uses: ./.github/workflows/00-init.yml
 
-  scan-secrets:
-    uses: ./.github/workflows/00-scan-secrets.yml
-
   get-publish-version:
     uses: ./.github/workflows/01-get-publish-version.yml
     needs: [init]
