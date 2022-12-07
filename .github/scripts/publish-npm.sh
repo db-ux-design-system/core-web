@@ -17,18 +17,20 @@ echo "goto build-outputs"
 cd build-outputs || exit 1
 
 # TODO: Add other build as well
-for PACKAGE in 'components' 'ngx-components'
+for PACKAGE in 'foundations' 'components' 'ngx-components'
 do
 	echo "Start $PACKAGE bundle:"
 
 	echo "🆚 Update Version"
 	npm version --no-git-tag-version "$VALID_SEMVER_VERSION" --workspace=@db-ui/"$PACKAGE"
 
-	echo "🕵️‍ Set foundations dependency"
-	if [[ $REGISTRY == 'ngx-components' ]]; then
-		npm pkg set peerDependencies.@db-ui/foundations="$VALID_SEMVER_VERSION" --workspace=@db-ui/"$PACKAGE"
-	else
-		npm pkg set dependencies.@db-ui/foundations="$VALID_SEMVER_VERSION" --workspace=@db-ui/"$PACKAGE"
+	if [[ $PACKAGE != 'foundations' ]]; then
+		echo "🕵️‍ Set foundations dependency"
+		if [[ $PACKAGE == 'ngx-components' ]]; then
+			npm pkg set peerDependencies.@db-ui/foundations="$VALID_SEMVER_VERSION" --workspace=@db-ui/"$PACKAGE"
+		else
+			npm pkg set dependencies.@db-ui/foundations="$VALID_SEMVER_VERSION" --workspace=@db-ui/"$PACKAGE"
+		fi
 	fi
 
 	echo "📦 Create npm package"
@@ -60,7 +62,7 @@ do
   fi
 
 # TODO: Add other build as well
-	for PACKAGE in 'components' 'ngx-components'
+	for PACKAGE in 'foundations' 'components' 'ngx-components'
 	do
 		echo "⤴ Publish $PACKAGE with tag $TAG to $REGISTRY"
   		npm publish --dry-run --tag "$TAG" db-ui-"$PACKAGE"-"$VALID_SEMVER_VERSION".tgz
