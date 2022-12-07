@@ -1,12 +1,12 @@
 ---
-name: Build Components
+name: Build Packages
 
 on:
   workflow_call:
 
 jobs:
   build-stencil-targets:
-    name: Build Components
+    name: Build Packages
     runs-on: ubuntu-latest
     steps:
       - name: ⬇ Checkout repo
@@ -18,8 +18,10 @@ jobs:
       - name: 🔨 Build Packages
         run: npm run build
 
-      - name: 🧹 Clean component node_modules
-        run: npm run trash:node-modules --workspace=@db-ui/components
+      - name: 🧹 Clean node_modules and assets
+        run: |
+          npm run trash --workspace=@db-ui/components
+          npm run trash --workspace=@db-ui/foundations
 
       - name: ⬆ Upload Packages
         uses: ./.github/actions/upload-tar-artifact

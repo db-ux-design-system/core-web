@@ -11,7 +11,7 @@ jobs:
       - name: 🛑 Cancel Previous Runs
         uses: styfle/cancel-workflow-action@0.11.0
 
-      - name: ⬇️ Checkout repo
+      - name: ⬇ Checkout repo
         uses: actions/checkout@v3
 
       - name: 🔄 Init Cache Default

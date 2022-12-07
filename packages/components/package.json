@@ -6,7 +6,7 @@
   "module": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "scripts": {
-    "trash:node-modules": "trash node_modules",
+    "trash": "trash node_modules",
     "generate:component": "hygen mitosis new",
     "build:sass": "sass src --load-path=node_modules/ --load-path=../../node_modules/",
     "build:mitosis": "mitosis build",
@@ -30,7 +30,6 @@
     "hygen": "^6.2.11",
     "lit": "^2.3.1",
     "sass": "^1.55.0",
-    "trash-cli": "5.0.0",
     "nodemon": "2.0.20"
   },
   "files": [

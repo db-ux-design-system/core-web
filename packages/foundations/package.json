@@ -4,6 +4,7 @@
   "description": "Provides basic tokens and assets based on the DB Design System.",
   "main": "build.js",
   "scripts": {
+    "trash": "trash **/assets",
     "copy:assets": "cpr assets build/assets -d",
     "copy:scss": "cpr scss build/scss -o",
     "build:style-dictionary": "node style-dictionary.js && npm run copy:scss",
