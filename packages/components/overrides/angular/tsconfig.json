@@ -12,7 +12,7 @@
 		"noFallthroughCasesInSwitch": true,
 		"sourceMap": true,
 		"paths": {
-			".": ["dist"]
+			"lib": ["dist/src"]
 		},
 		"declaration": false,
 		"downlevelIteration": true,

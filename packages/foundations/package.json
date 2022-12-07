@@ -11,7 +11,7 @@
     "build:css": "sass --no-source-map --load-path=node_modules/ --load-path=../../node_modules/ build/scss/:build/css/",
     "build": "npm-run-all copy:assets build:*",
     "clean": "rm -rf build",
-    "watch:tokens": "nodemon --watch tokens/ -e json -x \"npm run build:style-dictionary\"",
+    "start": "nodemon --watch tokens/ --watch scss --watch scripts -e json,scss,js -x \"npm run build:style-dictionary\"",
     "zeplin:tokens": "node scripts/zeplin-styleguide.js"
   },
   "license": "Apache-2.0",

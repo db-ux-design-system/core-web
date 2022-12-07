@@ -12,7 +12,7 @@
     "build:post": "node scripts/post-build/index.js && cpr output/next/src/components ../../showcases/next-showcase/components -o",
     "build:copy": "cpr src dist -o -f \"(.ts|.tsx)$\"",
     "build": "npm-run-all build:*",
-    "start": "nodemon --ignore output/ -e js,tsx,ts,scss -x \"npm run build\""
+    "start": "nodemon --watch src --watch scripts --watch overrides -e js,tsx,ts,scss,json -x \"npm run build\""
   },
   "author": "",
   "license": "ISC",

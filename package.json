@@ -24,7 +24,10 @@
     "update:components:card": "cpr ../core/source/_patterns/02-components/cards/card.scss packages/components/src/components/card/card.scss -o",
     "update:components:cards": "cpr ../core/source/_patterns/02-components/cards/cards.scss packages/components/src/components/cards/cards.scss -o",
     "update:components": "npm-run-all -p update:core:*",
-    "build": "npm run build --workspace=@db-ui/foundations && npm run build --workspace=@db-ui/components"
+    "build": "npm run build --workspace=@db-ui/foundations && npm run build --workspace=@db-ui/components",
+    "start:foundations": "npm run start --workspace=@db-ui/foundations",
+    "start:components": "npm run start --workspace=@db-ui/components",
+    "start": "npm-run-all -p start:*"
   },
   "devDependencies": {
     "@commitlint/cli": "17.2.0",

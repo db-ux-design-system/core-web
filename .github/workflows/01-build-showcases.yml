@@ -11,10 +11,16 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        showcases: [angular, react, vue]
+        showcases: [angular]
     steps:
       - name: ⬇ Checkout repo
         uses: actions/checkout@v3
+
+      - name: ⬇ Download foundations
+        uses: ./.github/actions/download-tar-artifact
+        with:
+          name: db-ui-foundations
+          path: packages/foundations
 
       - name: ⬇ Download Components
         uses: ./.github/actions/download-tar-artifact
@@ -32,11 +38,12 @@ jobs:
       - name: 📥 Download deps showcase-npm-cache
         if: steps.npm-cache.outputs.cache-hit != 'true'
         uses: bahmutov/npm-install@v1
+        with:
+          install-command: cd showcase/${{ matrix.showcases }}-showcase && npm i
 
       - name: 🔨 Build Showcase ${{ matrix.showcases }}
         run: |
           cd showcase/${{ matrix.showcases }}-showcase
-          npm i
           npm run build
           cp dist/${{ matrix.showcases }}-showcase/index.html dist/${{ matrix.showcases }}-showcase/404.html
 
