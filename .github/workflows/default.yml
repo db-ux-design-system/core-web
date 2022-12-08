@@ -29,17 +29,17 @@ jobs:
   build-showcases:
     uses: ./.github/workflows/01-build-showcases.yml
     needs: [build-packages]
-#  cypress:
-#    uses: ./.github/workflows/02-cypress.yml
-#    needs: [install-cypress]
+  #  cypress:
+  #    uses: ./.github/workflows/02-cypress.yml
+  #    needs: [install-cypress]
 
-#  checks-done:
-#    runs-on: ubuntu-latest
-#    steps:
-#      - name: 🎉 Checks done
-#        run: echo "🎉 All Cypress tests were successful."
-#    needs: [cypress]
-
+  checks-done:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 🎉 Checks done
+        run: echo "🎉 All tests were successful."
+    #    needs: [cypress]
+    needs: [build-showcases]
 #  deploy:
 #    uses: ./.github/workflows/03-deploy-gh-pages.yml
 #    needs: [cypress, get-publish-version]
