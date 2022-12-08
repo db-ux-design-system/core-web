@@ -5,7 +5,7 @@ force: true
 {
   "name": "@db-ui/db-pcf-<%= name %>",
   "version": "1.0.0",
-  "description": "Project containing the PowerApps Component for db-<%= name %>.",
+  "description": "Project containing the Power Apps Component for db-<%= name %>.",
   "scripts": {
     "build": "pcf-scripts build",
     "clean": "pcf-scripts clean",
