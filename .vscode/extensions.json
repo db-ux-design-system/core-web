@@ -2,6 +2,8 @@
 	"recommendations": [
 		"editorconfig.editorconfig",
 		"henrynguyen5-vsc.vsc-nvm",
-		"streetsidesoftware.code-spell-checker"
+		"streetsidesoftware.code-spell-checker",
+		"html-validate.vscode-html-validate",
+		"deque-systems.vscode-axe-linter"
 	]
 }
