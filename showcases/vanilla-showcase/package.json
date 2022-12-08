@@ -4,12 +4,12 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "copy:assets": "cpr ../../packages/foundations/build/assets ./public/foundations/assets  -o",
+    "copy:assets": "cpr ../../packages/foundations/assets ./public/foundations/assets  -o",
     "copy:css": "cpr ../../packages/foundations/build/css ./public/foundations/css  -o",
     "copy:components": "cpr ../../packages/components/output/webcomponent/src/components ./public/components  -o",
     "predev": "npm-run-all -p copy:*",
     "prebuild": "npm-run-all -p copy:*",
-    "dev": "vite",
+    "dev": "vite --open",
     "build": "vite build",
     "preview": "vite preview"
   },

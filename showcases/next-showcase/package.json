@@ -7,7 +7,7 @@
     "prebuild": "npm run copy:components",
     "predev": "npm run copy:components",
     "prestart": "npm run copy:components",
-    "dev": "next dev",
+    "dev": "open-cli http://localhost:3000 && next dev",
     "build": "next build",
     "start": "next start",
     "lint": "next lint"
