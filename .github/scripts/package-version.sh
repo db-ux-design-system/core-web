@@ -5,7 +5,7 @@ if [[ $RELEASE == "true" ]]
 then
   if [[ $SEMVER_VERSION == *-* ]]
   then
-    echo "Version $SEMVER_VERSION contains hyphen, maybe you forgot to check the prerelease checkbox in github. A release should not have a hyphen!"
+    echo "Version $SEMVER_VERSION contains hyphen, maybe you forgot to check the prerelease checkbox in GitHub release draft. A release should not have a hyphen!"
     exit 1
   fi
   echo "$SEMVER_VERSION"
