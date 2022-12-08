@@ -38,7 +38,10 @@ const updateNestedComponents = (input, rootComponentName) => {
 		}
 	}
 
-	return fileContent;
+	return fileContent
+		.split('\n')
+		.filter((line) => !line.includes('import type'))
+		.join('\n');
 };
 
 module.exports = () => {

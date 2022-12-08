@@ -7,7 +7,7 @@
     "prebuild": "npm run copy:components",
     "predev": "npm run copy:components",
     "prestart": "npm run copy:components",
-    "dev": "next dev",
+    "dev": "open-cli http://localhost:3000 && next dev",
     "build": "next build",
     "start": "next start",
     "lint": "next lint"
@@ -25,6 +25,7 @@
     "@types/react-dom": "18.0.6",
     "eslint": "8.25.0",
     "eslint-config-next": "12.3.1",
+    "open-cli": "^7.1.0",
     "sass": "^1.55.0",
     "typescript": "4.8.4"
   }
