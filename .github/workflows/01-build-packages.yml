@@ -18,10 +18,6 @@ jobs:
       - name: 🔨 Build Packages
         run: npm run build
 
-      - name: 🧹 Clean node_modules and assets
-        run: |
-          npm run trash --workspace=@db-ui/components
-
       - name: ⬆ Upload Packages
         uses: ./.github/actions/upload-tar-artifact
         with:

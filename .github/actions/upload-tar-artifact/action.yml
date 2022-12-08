@@ -12,7 +12,7 @@ runs:
   using: "composite"
   steps:
     - name: 📦 Pack build as tar
-      run: tar -czf ${{ inputs.name }} ${{ inputs.path }}
+      run: tar --exclude **/node_modules -czf ${{ inputs.name }} ${{ inputs.path }}
       shell: bash
 
     - name: ⬆ Upload build

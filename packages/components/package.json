@@ -6,7 +6,6 @@
   "module": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "scripts": {
-    "trash": "trash node_modules",
     "generate:component": "hygen mitosis new",
     "build:sass": "sass src --load-path=node_modules/ --load-path=../../node_modules/",
     "build:mitosis": "mitosis build",
