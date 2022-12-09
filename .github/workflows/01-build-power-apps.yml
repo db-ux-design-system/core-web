@@ -3,6 +3,10 @@ name: Build Power Apps
 
 on:
   workflow_call:
+    inputs:
+      version:
+        required: true
+        type: string
 
 jobs:
   build-showcases:
@@ -25,10 +29,13 @@ jobs:
         run: npm run copy:power-apps
 
       - name: 🔨 Build Power Apps
+        env:
+          VALID_SEMVER_VERSION: ${{ inputs.version }}
         run: |
           cd build-power-apps
           npm i
           cd DBUI
+          npx replace-in-file 0.0.0 ${VALID_SEMVER_VERSION} src/Other/Solution.xml
           msbuild -property:configuration=Release
 
       - name: ⬆ Upload Power Apps zip

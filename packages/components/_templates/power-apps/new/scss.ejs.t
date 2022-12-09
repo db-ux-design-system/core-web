@@ -6,8 +6,9 @@ force: true
 <% if(typeof includeIcon !== 'undefined' && includeIcon){   -%>
 @use "@db-ui/foundations/build/scss/icon/icons" as *;
 <% } -%>
-/* TODO: how do we handle tonality */
-@use "@db-ui/foundations/build/scss/tonality" as *;
+
+@use "@db-ui/foundations/build/scss/db-ui-foundations" as *;
+@use "@db-ui/foundations/build/scss/variables.global" as *;
 
 :root {
 	@extend %db-ui-regular;

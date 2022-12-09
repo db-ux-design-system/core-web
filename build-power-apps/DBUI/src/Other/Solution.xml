@@ -8,24 +8,24 @@
       <LocalizedName description="DBUI" languagecode="1033" />
     </LocalizedNames>
     <Descriptions />
-    <Version>1.0</Version>
+    <Version>0.0.0</Version>
     <!-- Solution Package Type: Unmanaged(0)/Managed(1)/Both(2)-->
     <Managed>2</Managed>
     <Publisher>
       <!-- Unique Publisher Name of Cds Solution -->
-      <UniqueName>db</UniqueName>
+      <UniqueName>DB-UI</UniqueName>
       <LocalizedNames>
         <!-- Localized Cds Publisher Name in language code-->
-        <LocalizedName description="db" languagecode="1033" />
+        <LocalizedName description="DB-UI" languagecode="1033" />
       </LocalizedNames>
       <Descriptions>
         <!-- Description of Cds Publisher in language code -->
-        <Description description="db" languagecode="1033" />
+        <Description description="DB-UI" languagecode="1033" />
       </Descriptions>
       <EMailAddress xsi:nil="true"></EMailAddress>
-      <SupportingWebsiteUrl xsi:nil="true"></SupportingWebsiteUrl>
+      <SupportingWebsiteUrl xsi:nil="true">https://github.com/db-ui/mono</SupportingWebsiteUrl>
       <!-- Customization Prefix for the Cds Publisher-->
-      <CustomizationPrefix>db</CustomizationPrefix>
+      <CustomizationPrefix>DB-UI</CustomizationPrefix>
       <!-- Derived Option Value Prefix for the Customization Prefix of Cds Publisher -->
       <CustomizationOptionValuePrefix>50532</CustomizationOptionValuePrefix>
       <Addresses>
