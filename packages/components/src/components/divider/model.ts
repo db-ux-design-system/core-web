@@ -1,7 +1,7 @@
 import { GlobalProps, GlobalState } from '../../shared/model';
 
 export interface DBDividerDefaultProps {
-	margin?: 'none';
+	margin?: 'none' | '_';
 	variant?: 'horizontal' | 'vertical';
 }
 

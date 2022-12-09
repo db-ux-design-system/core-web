@@ -14,6 +14,7 @@
     "lint:markdownlint": "markdownlint -c .markdown-lint.yml **/*.md",
     "lint:stylelint": "stylelint **/*.scss",
     "lint:xo": "xo --fix",
+    "copy:power-apps": "cpr packages/components/output/power-apps build-power-apps -o",
     "update:foundations:assets": "cpr ../base/assets packages/foundations/assets -o",
     "update:foundations:scripts": "cpr ../base/scripts packages/foundations/scripts -o",
     "update:foundations:scss": "cpr ../base/scss packages/foundations/scss -o",

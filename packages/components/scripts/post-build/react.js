@@ -16,6 +16,13 @@ module.exports = () => {
 			};
 			Replace.replaceInFileSync(stateOptions);
 
+			const stateOptions2 = {
+				files: `./output/react/src/components/${component.name}/${component.name}.tsx`,
+				from: `${stateName}, `,
+				to: ``
+			};
+			Replace.replaceInFileSync(stateOptions2);
+
 			const options = {
 				files: `./output/react/src/components/${component.name}/${component.name}.tsx`,
 				from: `useState(`,
