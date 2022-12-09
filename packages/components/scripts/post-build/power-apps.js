@@ -15,6 +15,12 @@ const updateNestedComponents = (input, rootComponentName) => {
 				`./output/power-apps/${rootComponentName}/${nestedComponent.name}`,
 				{ overwrite: true }
 			);
+
+			Replace.sync({
+				files: `./output/power-apps/${rootComponentName}/${nestedComponent.name}/model.ts`,
+				from: `../../shared/model`,
+				to: `../shared/model`
+			});
 		}
 	}
 
@@ -28,7 +34,11 @@ module.exports = () => {
 				1
 			)}`;
 			const cleanName = component.name.replace('-', '');
-			const files = [`${component.name}.tsx`, 'model.ts'];
+			const files = [
+				`${component.name}.tsx`,
+				`${component.name}.scss`,
+				'model.ts'
+			];
 
 			Replace.sync({
 				files: `./output/react/src/components/${component.name}/${component.name}.tsx`,
@@ -45,6 +55,17 @@ module.exports = () => {
 					`./output/power-apps/${cleanName}/${powerAppsFolder}/${file}`
 				);
 			}
+
+			Fse.copySync(
+				`./output/react/src/shared/model.ts`,
+				`./output/power-apps/${cleanName}/shared/model.ts`
+			);
+
+			Replace.sync({
+				files: `./output/power-apps/${cleanName}/${powerAppsFolder}/model.ts`,
+				from: `../../shared/model`,
+				to: `../shared/model`
+			});
 		} catch (error) {
 			console.error('Error occurred:', error);
 		}

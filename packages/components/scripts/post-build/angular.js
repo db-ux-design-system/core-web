@@ -40,7 +40,7 @@ const changeFile = (component, input) => {
 
 	if (component?.overwrites?.angular) {
 		for (const over of component.overwrites.angular) {
-			result = result.replace(over.pre, over.post);
+			result = result.replace(over.from, over.to);
 		}
 	}
 

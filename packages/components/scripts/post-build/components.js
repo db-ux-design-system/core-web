@@ -15,10 +15,24 @@ module.exports = [
 		overwrites: {
 			angular: [
 				{
-					pre: 'convertTabs(tabs) {',
-					post: 'convertTabs( tabs:any ) {'
+					from: 'convertTabs(tabs) {',
+					to: 'convertTabs( tabs:any ) {'
 				},
-				{ pre: '[key]="tab.name"', post: '' }
+				{ from: '[key]="tab.name"', to: '' }
+			],
+			react: [
+				{
+					from: 'convertTabs(tabs) {',
+					to: 'convertTabs( tabs:any ) {'
+				},
+				{
+					from: 'convertTabs(props.tabs)?.map((tab)',
+					to: 'convertTabs(props.tabs)?.map((tab:any)'
+				},
+				{
+					from: 'import type { DBTabProps } from "../tab/model";',
+					to: ''
+				}
 			]
 		}
 	},

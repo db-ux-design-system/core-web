@@ -16,8 +16,6 @@ tailwind.config.js
 .env
 **/*/.env
 
-**/output/
-
 # vim files
 *.swp
 *.swo
@@ -27,6 +25,8 @@ ctags.tmp
 
 packages/components/src/**/*.css
 packages/components/src/**/*.css.map
+
+packages/components/output
 
 /build-showcases/
 /build-outputs/
