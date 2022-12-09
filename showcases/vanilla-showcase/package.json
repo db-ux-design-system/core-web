@@ -10,6 +10,7 @@
     "predev": "npm-run-all -p copy:*",
     "prebuild": "npm-run-all -p copy:*",
     "dev": "vite --open",
+    "start": "vite",
     "build": "vite build",
     "preview": "vite preview"
   },
