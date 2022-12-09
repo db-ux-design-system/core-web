@@ -15,9 +15,6 @@ jobs:
       - name: 🔄 Init Cache
         uses: ./.github/actions/npm-cache
 
-      - name: Add msbuild to PATH
-        uses: microsoft/setup-msbuild@v1.1
-
       - name: ⬇ Download Packages
         uses: ./.github/actions/download-tar-artifact
         with:
