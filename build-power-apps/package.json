@@ -6,7 +6,7 @@
     "*"
   ],
   "scripts": {
-    "build:dotnet": " cd DBUI && dotnet build",
-    "build:msbuild": " cd DBUI && msbuild /t:build /restore"
+    "build:dotnet": " cd DBUI && dotnet build --configuration Release",
+    "build:msbuild": " cd DBUI && msbuild -property:configuration=Release"
   }
 }

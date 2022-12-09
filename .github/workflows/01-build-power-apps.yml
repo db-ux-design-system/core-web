@@ -29,7 +29,7 @@ jobs:
           cd build-power-apps
           npm i
           cd DBUI
-          msbuild /p:configuration=Release /t:build /restore
+          msbuild -property:configuration=Release
 
       - name: ⬆ Upload Power Apps zip
         uses: ./.github/actions/upload-tar-artifact
