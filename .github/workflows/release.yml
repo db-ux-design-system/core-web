@@ -47,7 +47,8 @@ jobs:
   #      preRelease: ${{ needs.get-publish-version.outputs.preRelease }}
 
   #    needs: [checks-done, get-publish-version, build-outputs]
-  publishpackages:
+
+  publish-packages:
     uses: ./.github/workflows/03-publish-packages.yml
     needs: [get-publish-version, build-outputs]
     secrets: inherit

@@ -43,9 +43,9 @@ jobs:
         run: |
           if [[ $RELEASE == "true" || $PRE_RELEASE == "true" ]]
           then
-            echo "##[set-output name=name;]$(echo ${GITHUB_REF#refs/tags/})"
+            echo "name=${GITHUB_REF#refs/tags/}" >> $GITHUB_OUTPUT
           else
-            echo "##[set-output name=name;]$(echo $BRANCH_NAME)"
+            echo "name=${$BRANCH_NAME}" >> $GITHUB_OUTPUT
           fi
         id: extract
 
