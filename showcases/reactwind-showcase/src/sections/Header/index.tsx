@@ -19,7 +19,7 @@ const Header = () => (
 		</div>
 
 		<div className="navigation flex flex-wrap db-bg-neutral-0 py-fix-md px-fix-xl gap-fix-xl">
-			<img src="db_logo.svg" width="66" />
+			<img src="db_logo.svg" width="66" height="46" alt="" />
 			<div className="flex gap-fix-xl items-center">
 				{menu.map((mItem, index) => (
 					<strong key={`nav-item-${index}`}>{mItem}</strong>
