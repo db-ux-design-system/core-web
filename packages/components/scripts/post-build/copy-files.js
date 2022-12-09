@@ -15,6 +15,12 @@ module.exports = () => {
 					}.${fileEnding}`
 				);
 			}
+			Fse.copySync(
+				`./src/db-ui-components.${fileEnding}`,
+				`./output/${
+					framework === 'vue' ? `vue/vue3` : framework
+				}/src/db-ui-components.${fileEnding}`
+			);
 		}
 	}
 
