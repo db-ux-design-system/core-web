@@ -6,8 +6,10 @@
   "scripts": {
     "dev": "vite --open",
     "start": "vite",
-    "build": "tsc && vite build",
-    "prebuild": "cpr dist ../../build-showcases/react-showcase",
+    "build:tcc": "tsc",
+    "build:vite": "vite build",
+    "build:copy": "cpr dist ../../build-showcases/react-showcase",
+    "build": "npm-run-all build:*",
     "preview": "vite preview"
   },
   "dependencies": {
