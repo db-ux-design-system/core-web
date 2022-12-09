@@ -16,11 +16,11 @@
       <UniqueName>DB-UI</UniqueName>
       <LocalizedNames>
         <!-- Localized Cds Publisher Name in language code-->
-        <LocalizedName description="DB-UI" languagecode="1033" />
+        <LocalizedName description="DBUI" languagecode="1033" />
       </LocalizedNames>
       <Descriptions>
         <!-- Description of Cds Publisher in language code -->
-        <Description description="DB-UI" languagecode="1033" />
+        <Description description="DBUI" languagecode="1033" />
       </Descriptions>
       <EMailAddress xsi:nil="true"></EMailAddress>
       <SupportingWebsiteUrl xsi:nil="true">https://github.com/db-ui/mono</SupportingWebsiteUrl>
