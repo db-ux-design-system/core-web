@@ -48,7 +48,7 @@
     "start": "node scripts/start.js"
   },
   "devDependencies": {
-    "@commitlint/cli": "17.2.0",
+    "@commitlint/cli": "17.3.0",
     "@commitlint/config-conventional": "17.2.0",
     "cpr": "3.0.1",
     "dotenv": "^16.0.3",
