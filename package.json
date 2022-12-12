@@ -5,6 +5,7 @@
   "workspaces": [
     "packages/*",
     "packages/components/output/*",
+    "packages/components/output/vue/vue3",
     "showcases/*"
   ],
   "type": "module",
@@ -32,10 +33,12 @@
     "build-outputs:components": "npm run copy-output --workspace=@db-ui/components",
     "build-outputs:ngx-components": "npm run build --workspace=@db-ui/ngx-components",
     "build-outputs:react-components": "npm run build --workspace=@db-ui/react-components",
+    "build-outputs:v-components": "npm run build --workspace=@db-ui/v-components",
     "build-outputs:foundations": "npm run copy-build --workspace=@db-ui/foundations",
     "build-outputs": "npm-run-all -p build-outputs:*",
     "build-showcases:angular-showcase": "npm run build --workspace=angular-showcase",
     "build-showcases:react-showcase": "npm run build --workspace=react-showcase",
+    "build-showcases:vue-showcase": "npm run build --workspace=vue-showcase",
     "build-showcases": "npm-run-all -p build-showcases:*",
     "start:foundations": "npm run start --workspace=@db-ui/foundations",
     "start:components": "npm run start --workspace=@db-ui/components",
@@ -50,6 +53,7 @@
   "devDependencies": {
     "@commitlint/cli": "17.3.0",
     "@commitlint/config-conventional": "17.2.0",
+    "@vitejs/plugin-vue": "^4.0.0",
     "cpr": "3.0.1",
     "dotenv": "^16.0.3",
     "fs-extra": "^11.1.0",
@@ -63,8 +67,10 @@
     "stylelint": "14.14.1",
     "stylelint-config-prettier": "9.0.4",
     "stylelint-config-sass-guidelines": "9.0.1",
+    "tslib": "^2.4.1",
     "typescript": "^4.7.3",
     "validate-branch-name": "^1.3.0",
+    "vue": "^3.2.45",
     "xo": "^0.52.4"
   },
   "validate-branch-name": {

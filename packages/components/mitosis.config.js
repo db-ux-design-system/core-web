@@ -11,6 +11,9 @@ module.exports = {
 		angular: {
 			typescript: true
 		},
+		vue3: {
+			typescript: true
+		},
 		webcomponent: {
 			experimental: {
 				attributeChangedCallback(test, json) {

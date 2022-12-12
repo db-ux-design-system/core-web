@@ -17,7 +17,7 @@ echo "goto build-outputs"
 cd build-outputs || exit 1
 
 # TODO: Add other build as well
-for PACKAGE in 'foundations' 'components' 'ngx-components' 'react-components'
+for PACKAGE in 'foundations' 'components' 'ngx-components' 'react-components' 'v-components'
 do
 	echo "Start $PACKAGE bundle:"
 
@@ -62,7 +62,7 @@ do
   fi
 
 # TODO: Add other build as well
-	for PACKAGE in 'foundations' 'components' 'ngx-components' 'react-components'
+	for PACKAGE in 'foundations' 'components' 'ngx-components' 'react-components' 'v-components'
 	do
 		echo "⤴ Publish $PACKAGE with tag $TAG to $REGISTRY"
   		npm publish --tag "$TAG" db-ui-"$PACKAGE"-"$VALID_SEMVER_VERSION".tgz

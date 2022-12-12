@@ -28,13 +28,18 @@ module.exports = () => {
 		'package.json',
 		'angular.json',
 		'tsconfig.json',
-		'ng-package.json'
+		'ng-package.json',
+		'vite.config.ts'
 	].forEach((file) => {
 		Frameworks.forEach((framework) => {
-			if (Fse.pathExistsSync(`./overrides/${framework}/${file}`)) {
+			const resolvedFramework =
+				framework === 'vue' ? `vue/vue3` : framework;
+			if (
+				Fse.pathExistsSync(`./overrides/${resolvedFramework}/${file}`)
+			) {
 				Fse.copySync(
-					`./overrides/${framework}/${file}`,
-					`./output/${framework}/${file}`
+					`./overrides/${resolvedFramework}/${file}`,
+					`./output/${resolvedFramework}/${file}`
 				);
 			}
 		});
