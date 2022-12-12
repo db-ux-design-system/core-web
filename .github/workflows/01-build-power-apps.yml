@@ -36,7 +36,7 @@ jobs:
           npm i
           cd DBUI
           npx replace-in-file 0.0.0 ${VALID_SEMVER_VERSION} src/Other/Solution.xml
-          msbuild -property:configuration=Release
+          dotnet build --configuration Release
 
       - name: ⬆ Upload Power Apps zip
         uses: ./.github/actions/upload-tar-artifact
