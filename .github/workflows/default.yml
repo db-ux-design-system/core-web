@@ -30,13 +30,6 @@ jobs:
     uses: ./.github/workflows/01-build-showcases.yml
     needs: [build-packages]
 
-  # TODO: delete this after testing
-  build-power-apps:
-    uses: ./.github/workflows/01-build-power-apps.yml
-    needs: [build-packages]
-    with:
-      version: 1.0.0
-
   #  cypress:
   #    uses: ./.github/workflows/02-cypress.yml
   #    needs: [install-cypress]
