@@ -3,19 +3,18 @@ to: output/power-apps/<%= name %>/package.json
 force: true
 ---
 {
-  "name": "db-<%= name %>",
+  "name": "@db-ui/db-pcf-<%= name %>",
   "version": "1.0.0",
-  "description": "Project containing the PowerApps Component for db-<%= name %>.",
+  "description": "Project containing the Power Apps Component for db-<%= name %>.",
   "scripts": {
     "build": "pcf-scripts build",
     "clean": "pcf-scripts clean",
     "rebuild": "pcf-scripts rebuild",
     "start": "pcf-scripts start",
-    "refreshTypes": "pcf-scripts refreshTypes",
-    "lint": "eslint . --ext .ts,.tsx"
+    "refreshTypes": "pcf-scripts refreshTypes"
   },
   "dependencies": {
-    "@db-ui/base": "file:./../../packages/base",
+    "@db-ui/foundations": "*",
     "react": "17.0.2",
     "react-dom": "17.0.2"
   },

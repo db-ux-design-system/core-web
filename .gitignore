@@ -25,9 +25,12 @@ ctags.tmp
 
 packages/components/src/**/*.css
 packages/components/src/**/*.css.map
-
 packages/components/output
-
 /build-showcases/
 /build-outputs/
 !/build-outputs/package.json
+
+/build-power-apps/
+!/build-power-apps/package.json
+!/build-power-apps/package-lock.json
+!/build-power-apps/DBUI/**
