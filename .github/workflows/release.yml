@@ -33,12 +33,14 @@ jobs:
   #    uses: ./.github/workflows/02-cypress.yml
   #    needs: [install-cypress,build-showcases]
 
-  #  checks-done:
-  #    runs-on: ubuntu-latest
-  #    steps:
-  #      - name: 🎉 Checks done
-  #        run: echo "🎉 All Cypress tests were successful."
-  #    needs: [cypress]
+  checks-done:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 🎉 Checks done
+        run: echo "🎉 All tests were successful."
+    #    needs: [cypress]
+    needs: [build-outputs]
+
   #  deploy:
   #    uses: ./.github/workflows/03-deploy-gh-pages.yml
   #    needs: [checks-done, get-publish-version]
@@ -48,9 +50,15 @@ jobs:
 
   #    needs: [checks-done, get-publish-version, build-outputs]
 
-  publish-packages:
+  build-power-apps:
+    uses: ./.github/workflows/01-build-power-apps.yml
+    needs: [get-publish-version, checks-done, build-packages]
+    with:
+      version: ${{ needs.get-publish-version.outputs.version }}
+
+  publishpackages:
     uses: ./.github/workflows/03-publish-packages.yml
-    needs: [get-publish-version, build-outputs]
+    needs: [get-publish-version, checks-done, build-outputs]
     secrets: inherit
     with:
       release: ${{ needs.get-publish-version.outputs.release }}

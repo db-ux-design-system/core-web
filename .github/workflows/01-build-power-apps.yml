@@ -1,0 +1,51 @@
+---
+name: Build Power Apps
+
+on:
+  workflow_call:
+    inputs:
+      version:
+        required: true
+        type: string
+
+jobs:
+  build-showcases:
+    name: Build Power Apps
+    runs-on: ubuntu-latest
+    steps:
+      - name: ⬇ Checkout repo
+        uses: actions/checkout@v3
+
+      - name: 🔄 Init Cache
+        uses: ./.github/actions/npm-cache
+
+      - name: ⬇ Download Packages
+        uses: ./.github/actions/download-tar-artifact
+        with:
+          name: db-ui-packages
+          path: packages
+
+      - name: 🖨 Copy Power Apps
+        run: npm run copy:power-apps
+
+      - name: 🔨 Build Power Apps
+        env:
+          VALID_SEMVER_VERSION: ${{ inputs.version }}
+        run: |
+          cd build-power-apps
+          npm i
+          cd DBUI
+          npx replace-in-file 0.0.0 ${VALID_SEMVER_VERSION} src/Other/Solution.xml
+          dotnet build --configuration Release
+
+      - name: ⬆ Upload Power Apps zip
+        uses: ./.github/actions/upload-tar-artifact
+        with:
+          name: db-ui-powerapps
+          path: build-power-apps/DBUI
+
+      - name: 💀 Killing me softly
+        uses: ./.github/actions/cancel-workflow
+        if: failure()
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}

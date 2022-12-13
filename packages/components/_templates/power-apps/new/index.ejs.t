@@ -7,7 +7,6 @@ force: true
 import { IInputs, IOutputs } from "./generated/ManifestTypes";
 import * as React from "react";
 import * as ReactDOM from "react-dom";
-import "./index.scss";
 import DB<%= h.capitalize(name) %>React from "./<%= name %>";
 import { DB<%= h.capitalize(name) %>Props } from "./model";
 
