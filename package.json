@@ -54,7 +54,6 @@
   "devDependencies": {
     "@commitlint/cli": "17.3.0",
     "@commitlint/config-conventional": "17.3.0",
-    "@vitejs/plugin-vue": "^4.0.0",
     "cpr": "3.0.1",
     "dotenv": "^16.0.3",
     "fs-extra": "^11.1.0",
