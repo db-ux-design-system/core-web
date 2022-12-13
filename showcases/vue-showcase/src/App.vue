@@ -1,9 +1,5 @@
 <script setup lang="ts">
-import {
-	DBButton,
-	DBIcon,
-	DBCard
-} from "../../../packages/components/output/vue/vue3/src";
+import { DBButton, DBIcon, DBCard } from "../../../output/vue/vue3/src";
 </script>
 
 <template>

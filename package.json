@@ -4,8 +4,8 @@
   "description": "",
   "workspaces": [
     "packages/*",
-    "packages/components/output/*",
-    "packages/components/output/vue/vue3",
+    "output/*",
+    "output/vue/vue3",
     "showcases/*"
   ],
   "type": "module",

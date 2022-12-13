@@ -8,7 +8,7 @@ module.exports = () => {
 			for (const component of Components) {
 				Fse.copySync(
 					`./src/components/${component.name}/${component.name}.${fileEnding}`,
-					`./output/${
+					`../../output/${
 						framework === 'vue' ? `vue/vue3` : framework
 					}/src/components/${component.name}/${
 						component.name
@@ -17,7 +17,7 @@ module.exports = () => {
 			}
 			Fse.copySync(
 				`./src/db-ui-components.${fileEnding}`,
-				`./output/${
+				`../../output/${
 					framework === 'vue' ? `vue/vue3` : framework
 				}/src/db-ui-components.${fileEnding}`
 			);
@@ -39,7 +39,7 @@ module.exports = () => {
 			) {
 				Fse.copySync(
 					`./overrides/${resolvedFramework}/${file}`,
-					`./output/${resolvedFramework}/${file}`
+					`../../output/${resolvedFramework}/${file}`
 				);
 			}
 		});

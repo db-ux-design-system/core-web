@@ -6,7 +6,7 @@ import {
 	DBIconModule,
 	DBCardModule,
 	DBDividerModule
-} from '../../../../packages/components/output/angular/src';
+} from '../../../../output/angular/src';
 import { AppComponent } from './app.component';
 
 @NgModule({

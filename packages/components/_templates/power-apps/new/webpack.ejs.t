@@ -1,5 +1,5 @@
 ---
-to: output/power-apps/<%= name %>/webpack.config.js
+to: ../../output/power-apps/<%= name %>/webpack.config.js
 force: true
 ---
 module.exports = {

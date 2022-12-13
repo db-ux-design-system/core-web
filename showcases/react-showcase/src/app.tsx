@@ -1,9 +1,4 @@
-import {
-	DBButton,
-	DBIcon,
-	DBCard,
-	DBDivider
-} from '../../../packages/components/output/react/src';
+import { DBButton, DBIcon, DBCard, DBDivider } from '../../../output/react/src';
 
 function App() {
 	return (

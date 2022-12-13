@@ -26,9 +26,11 @@ ctags.tmp
 packages/components/src/**/*.css
 packages/components/src/**/*.css.map
 
-packages/components/output/power-apps
-packages/components/output/**/src
-packages/components/output/**/dist
+output/power-apps
+/output/**/src
+/output/**/dist
+/output/**/.angular
+
 /build-showcases/
 /build-outputs/
 !/build-outputs/package.json
