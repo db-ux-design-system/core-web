@@ -24,7 +24,7 @@
     "@builder.io/mitosis-cli": "^0.0.40"
   },
   "devDependencies": {
-    "@angular/core": "~13.1.0",
+    "@angular/core": "~15.0.3",
     "@builder.io/eslint-plugin-mitosis": "^0.0.12",
     "cpr": "3.0.1",
     "eslint": "^8.29.0",
