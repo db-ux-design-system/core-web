@@ -18,11 +18,17 @@ jobs:
       - name: 🔨 Build Packages
         run: npm run build
 
-      - name: ⬆ Upload Packages
+      - name: ⬆ Upload foundations build
         uses: ./.github/actions/upload-tar-artifact
         with:
-          name: db-ui-packages
-          path: packages
+          name: db-ui-foundations-build
+          path: packages/foundations/build
+
+      - name: ⬆ Upload output
+        uses: ./.github/actions/upload-tar-artifact
+        with:
+          name: db-ui-output
+          path: output
 
       - name: 💀 Killing me softly
         uses: ./.github/actions/cancel-workflow

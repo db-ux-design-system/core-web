@@ -15,11 +15,17 @@ jobs:
       - name: 🔄 Init Cache
         uses: ./.github/actions/npm-cache
 
-      - name: ⬇ Download Packages
+      - name: ⬇ Download foundations build
         uses: ./.github/actions/download-tar-artifact
         with:
-          name: db-ui-packages
-          path: packages
+          name: db-ui-foundations-build
+          path: packages/foundations/build
+
+      - name: ⬇ Download output
+        uses: ./.github/actions/download-tar-artifact
+        with:
+          name: db-ui-output
+          path: output
 
       - name: 🔨 Build Showcases
         run: npm run build-showcases
