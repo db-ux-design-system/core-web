@@ -38,6 +38,7 @@ inquirer
 			}
 		}
 	])
+	// eslint-disable-next-line unicorn/prefer-top-level-await
 	.then((answers) => {
 		let startCommand = 'npm-run-all -p start:*';
 		if (answers?.frameworks)

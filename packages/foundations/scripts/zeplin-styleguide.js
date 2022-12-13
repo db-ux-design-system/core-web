@@ -192,6 +192,7 @@ const convertSpacings = (data) => {
 	data.spacing = mergeData(spacings);
 };
 
+// eslint-disable-next-line unicorn/prefer-top-level-await
 (async () => {
 	try {
 		const { data } = await zeplin.designTokens.getStyleguideDesignTokens(
