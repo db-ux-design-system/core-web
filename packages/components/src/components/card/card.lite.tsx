@@ -6,7 +6,20 @@ useMetadata({
 	isAttachedToShadowDom: true,
 	component: {
 		includeIcon: false,
-		properties: []
+		properties: [
+			{
+				name: 'variant',
+				type: 'Enum',
+				values: [
+					{
+						key: 'Interactive',
+						name: 'Interactive',
+						value: 'ia'
+					},
+					{ key: 'Full Width', name: 'Full Width', value: 'w-full' }
+				]
+			}
+		]
 	}
 });
 

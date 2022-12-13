@@ -66,6 +66,12 @@ module.exports = () => {
 				from: `../../shared/model`,
 				to: `../shared/model`
 			});
+
+			Replace.sync({
+				files: `./output/power-apps/${cleanName}/${powerAppsFolder}/${component.name}.tsx`,
+				from: `import * as React from "react";`,
+				to: `import * as React from "react";\nimport "./index.scss";`
+			});
 		} catch (error) {
 			console.error('Error occurred:', error);
 		}

@@ -29,7 +29,11 @@ packages/components/src/**/*.css.map
 packages/components/output/power-apps
 packages/components/output/**/src
 packages/components/output/**/dist
-
 /build-showcases/
 /build-outputs/
 !/build-outputs/package.json
+
+/build-power-apps/
+!/build-power-apps/package.json
+!/build-power-apps/package-lock.json
+!/build-power-apps/DBUI/**

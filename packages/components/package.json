@@ -21,7 +21,7 @@
   "dependencies": {
     "@db-ui/foundations": "*",
     "@builder.io/mitosis": "^0.0.82",
-    "@builder.io/mitosis-cli": "^0.0.38"
+    "@builder.io/mitosis-cli": "^0.0.40"
   },
   "devDependencies": {
     "@angular/core": "~13.3.12",
@@ -29,7 +29,7 @@
     "cpr": "3.0.1",
     "eslint": "^8.29.0",
     "hygen": "^6.2.11",
-    "lit": "^2.3.1",
+    "lit": "^2.5.0",
     "sass": "^1.56.2",
     "nodemon": "2.0.20"
   },
