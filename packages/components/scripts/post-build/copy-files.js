@@ -8,7 +8,7 @@ module.exports = () => {
 			for (const component of Components) {
 				Fse.copySync(
 					`./src/components/${component.name}/${component.name}.${fileEnding}`,
-					`./output/${
+					`../../output/${
 						framework === 'vue' ? `vue/vue3` : framework
 					}/src/components/${component.name}/${
 						component.name
@@ -17,7 +17,7 @@ module.exports = () => {
 			}
 			Fse.copySync(
 				`./src/db-ui-components.${fileEnding}`,
-				`./output/${
+				`../../output/${
 					framework === 'vue' ? `vue/vue3` : framework
 				}/src/db-ui-components.${fileEnding}`
 			);
@@ -28,13 +28,18 @@ module.exports = () => {
 		'package.json',
 		'angular.json',
 		'tsconfig.json',
-		'ng-package.json'
+		'ng-package.json',
+		'vite.config.ts'
 	].forEach((file) => {
 		Frameworks.forEach((framework) => {
-			if (Fse.pathExistsSync(`./overrides/${framework}/${file}`)) {
+			const resolvedFramework =
+				framework === 'vue' ? `vue/vue3` : framework;
+			if (
+				Fse.pathExistsSync(`./overrides/${resolvedFramework}/${file}`)
+			) {
 				Fse.copySync(
-					`./overrides/${framework}/${file}`,
-					`./output/${framework}/${file}`
+					`./overrides/${resolvedFramework}/${file}`,
+					`../../output/${resolvedFramework}/${file}`
 				);
 			}
 		});

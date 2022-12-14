@@ -50,7 +50,7 @@ const changeFile = (component, input) => {
 module.exports = () => {
 	for (const component of Components) {
 		const options = {
-			files: `./output/angular/src/components/${component.name}/${component.name}.ts`,
+			files: `../../output/angular/src/components/${component.name}/${component.name}.ts`,
 			processor: (input) => changeFile(component, input)
 		};
 

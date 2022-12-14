@@ -10,7 +10,7 @@ module.exports = () => {
 				.join('');
 			const stateName = `DB${cleanName}State`;
 
-			const tsxFile = `./output/react/src/components/${component.name}/${component.name}.tsx`;
+			const tsxFile = `../../output/react/src/components/${component.name}/${component.name}.tsx`;
 
 			let replacements = [
 				{ from: `${stateName}, `, to: '' },

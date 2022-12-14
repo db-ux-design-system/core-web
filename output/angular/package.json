@@ -35,7 +35,7 @@
   "module": "dist/fesm5.js",
   "main": "dist/fesm5.js",
   "types": "dist/core.d.ts",
-  "dependencies": {
+  "peerDependencies": {
     "@angular/animations": "~13.3.12",
     "@angular/common": "~13.3.12",
     "@angular/compiler": "~13.3.12",

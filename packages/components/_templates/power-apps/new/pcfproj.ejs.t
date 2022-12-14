@@ -1,5 +1,5 @@
 ---
-to: output/power-apps/<%= name %>/DB<%= h.capitalize(name) %>.pcfproj
+to: ../../output/power-apps/<%= name %>/DB<%= h.capitalize(name) %>.pcfproj
 force: true
 ---
 <?xml version="1.0" encoding="utf-8"?>

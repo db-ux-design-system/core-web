@@ -4,13 +4,3 @@
 @use "@db-ui/foundations/build/scss/variables.global" as *;
 
 @import "@db-ui/foundations/build/scss/color-classes";
-
-.icon {
-	margin: auto 0;
-}
-
-.test-div {
-	display: flex;
-	height: $db-sizing-md;
-	width: $db-sizing-lg;
-}

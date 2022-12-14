@@ -18,19 +18,22 @@ const updateNestedComponents = (input, rootComponentName) => {
 		}
 	}
 
-	return fileContent;
+	return fileContent
+		.split('\n')
+		.filter((line) => !line.includes('import type'))
+		.join('\n');
 };
 
 module.exports = () => {
 	for (const component of Components) {
 		const options = {
-			files: `./output/vue/vue3/src/components/${component.name}/index.js`,
+			files: `../../output/vue/vue3/src/components/${component.name}/index.ts`,
 			from: `./${component.name}`,
 			to: `./${component.name}.vue`
 		};
 
 		const nestedOptions = {
-			files: `./output/vue/vue3/src/components/${component.name}/${component.name}.vue`,
+			files: `../../output/vue/vue3/src/components/${component.name}/${component.name}.vue`,
 			processor(input) {
 				return updateNestedComponents(input, component.name);
 			}

@@ -1,5 +1,5 @@
 ---
-to: output/power-apps/<%= name %>/.eslintrc.json
+to: ../../output/power-apps/<%= name %>/.eslintrc.json
 force: true
 ---
 {

@@ -1,5 +1,5 @@
 ---
-to: output/power-apps/<%= name %>/DB<%= h.capitalize(name) %>/index.scss
+to: ../../output/power-apps/<%= name %>/DB<%= h.capitalize(name) %>/index.scss
 force: true
 ---
 @use "@db-ui/foundations/build/scss/webpack.assets-paths" as *;

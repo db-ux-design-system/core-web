@@ -1,5 +1,5 @@
 ---
-to: output/power-apps/<%= name %>/package.json
+to: ../../output/power-apps/<%= name %>/package.json
 force: true
 ---
 {

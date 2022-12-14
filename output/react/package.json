@@ -12,8 +12,8 @@
     "tsc": "tsc -p . --sourceMap false",
     "copy:sass": "cpr src dist -o -f \"(.ts|.tsx)$\"",
     "build": "npm-run-all tsc copy:sass",
-    "mv:dist": "cpr dist ../../../../build-outputs/react/dist -o",
-    "mv:package.json": "cpr package.json ../../../../build-outputs/react/package.json -o",
+    "mv:dist": "cpr dist ../../build-outputs/react/dist -o",
+    "mv:package.json": "cpr package.json ../../build-outputs/react/package.json -o",
     "postbuild": "npm-run-all -p mv:*"
   },
   "main": "./dist/index.js",

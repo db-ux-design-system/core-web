@@ -1,5 +1,5 @@
 ---
-to: output/power-apps/<%= name %>/tsconfig.json
+to: ../../output/power-apps/<%= name %>/tsconfig.json
 force: true
 ---
 {

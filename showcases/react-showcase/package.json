@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "vite --open",
     "start": "vite",
-    "build:tcc": "tsc",
+    "build:tsc": "tsc",
     "build:vite": "vite build",
     "build:copy": "cpr dist ../../build-showcases/react-showcase",
     "build": "npm-run-all build:*",

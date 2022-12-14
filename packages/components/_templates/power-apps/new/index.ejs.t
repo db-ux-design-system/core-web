@@ -1,5 +1,5 @@
 ---
-to: output/power-apps/<%= name %>/DB<%= h.capitalize(name) %>/index.ts
+to: ../../output/power-apps/<%= name %>/DB<%= h.capitalize(name) %>/index.ts
 force: true
 ---
 <% if(typeof props !== 'undefined'){ locals.props = JSON.parse(Buffer.from(props, 'base64').toString('ascii')) }  -%>
