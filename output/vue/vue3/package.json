@@ -11,15 +11,26 @@
   "type": "module",
   "scripts": {
     "build:vite": "vite build",
-    "build": "npm-run-all build:vite",
+    "build:types": "vue-tsc --declaration --emitDeclarationOnly",
+    "build": "npm-run-all build:*",
     "mv:dist": "cpr dist ../../../build-outputs/vue/dist -o",
     "mv:package.json": "cpr package.json ../../../build-outputs/vue/package.json -o",
     "postbuild": "npm-run-all -p mv:*"
   },
   "source": "src/index.ts",
-  "main": "./dist/index.js",
-  "module": "./dist/index.js",
+  "main": "./dist/db-ui.umd.js",
+  "module": "./dist/db-ui.es.js",
   "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/db-ui.es.js",
+      "require": "./dist/db-ui.umd.js"
+    },
+    "./dist/style.css": {
+      "import": "./dist/style.css",
+      "require": "./dist/style.css"
+    }
+  },
   "dependencies": {
     "@db-ui/foundations": "*",
     "vue": "^3.2.45"
@@ -29,7 +40,7 @@
     "sass": "^1.56.2",
     "typescript": "^4.9.3",
     "vite": "^4.0.1",
-    "vue-tsc": "^1.0.11"
+    "vue-tsc": "^1.0.13"
   },
   "files": [
     "dist/"

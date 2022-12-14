@@ -26,22 +26,44 @@ const updateNestedComponents = (input, rootComponentName) => {
 
 module.exports = () => {
 	for (const component of Components) {
-		const options = {
-			files: `../../output/vue/vue3/src/components/${component.name}/index.ts`,
-			from: `./${component.name}`,
-			to: `./${component.name}.vue`
-		};
-
-		const nestedOptions = {
-			files: `../../output/vue/vue3/src/components/${component.name}/${component.name}.vue`,
-			processor(input) {
-				return updateNestedComponents(input, component.name);
-			}
-		};
+		const vueFile = `../../output/vue/vue3/src/components/${component.name}/${component.name}.vue`;
 
 		try {
-			Replace.sync(options);
-			Replace.sync(nestedOptions);
+			Replace.sync({
+				files: `../../output/vue/vue3/src/components/${component.name}/index.ts`,
+				from: `./${component.name}`,
+				to: `./${component.name}.vue`
+			});
+			Replace.sync({
+				files: vueFile,
+				processor(input) {
+					return updateNestedComponents(input, component.name);
+				}
+			});
+
+			let replacements = [
+				{
+					from: `_classStringToObject(str)`,
+					to: '_classStringToObject(str:any)'
+				},
+				{
+					from: `const obj = {};`,
+					to: 'const obj:any = {};'
+				}
+			];
+
+			if (component?.overwrites?.vue) {
+				replacements = [...replacements, ...component.overwrites.vue];
+			}
+
+			replacements.forEach((replacement) => {
+				const option = {
+					files: vueFile,
+					from: replacement.from,
+					to: replacement.to
+				};
+				Replace.replaceInFileSync(option);
+			});
 		} catch (error) {
 			console.error('Error occurred:', error);
 		}
