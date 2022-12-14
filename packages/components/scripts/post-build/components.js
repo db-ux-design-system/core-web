@@ -1,7 +1,15 @@
 module.exports = [
 	{
 		name: 'divider',
-		defaultStylePath: 'components/divider/divider.css'
+		defaultStylePath: 'components/divider/divider.css',
+		overwrites: {
+			vue: [
+				{
+					from: 'import { DBDividerState, DBDividerProps } from "./model";',
+					to: ''
+				}
+			]
+		}
 	},
 
 	{
@@ -32,6 +40,16 @@ module.exports = [
 				{
 					from: 'import type { DBTabProps } from "../tab/model";',
 					to: ''
+				}
+			],
+			vue: [
+				{
+					from: 'convertTabs(tabs) {',
+					to: 'convertTabs( tabs:any ) {'
+				},
+				{
+					from: 'v-for="(tab, index)',
+					to: 'v-for="(tab)'
 				}
 			]
 		}
