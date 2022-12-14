@@ -55,6 +55,7 @@ jobs:
   build-power-apps:
     uses: ./.github/workflows/01-build-power-apps.yml
     needs: [get-publish-version, checks-done, build-packages]
+    secrets: inherit
     with:
       version: ${{ needs.get-publish-version.outputs.version }}
 
