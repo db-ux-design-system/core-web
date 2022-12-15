@@ -3,25 +3,29 @@
 		"sm": {
 			"value": "40",
 			"attributes": {
-				"category": "size"
+				"category": "size",
+				"screen": true
 			}
 		},
 		"md": {
 			"value": "48",
 			"attributes": {
-				"category": "size"
+				"category": "size",
+				"screen": true
 			}
 		},
 		"lg": {
 			"value": "64",
 			"attributes": {
-				"category": "size"
+				"category": "size",
+				"screen": true
 			}
 		},
 		"xl": {
 			"value": "80",
 			"attributes": {
-				"category": "size"
+				"category": "size",
+				"screen": true
 			}
 		}
 	}

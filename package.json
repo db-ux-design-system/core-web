@@ -46,6 +46,7 @@
     "start-showcase:angular": "npm run dev --workspace=angular-showcase",
     "start-showcase:next": "npm run dev --workspace=next-showcase",
     "start-showcase:react": "npm run dev --workspace=react-showcase",
+    "start-showcase:reactwind": "npm run dev --workspace=reactwind-showcase",
     "start-showcase:svelte": "npm run dev --workspace=svelte-showcase",
     "start-showcase:vanilla": "npm run dev --workspace=vanilla-showcase",
     "start-showcase:vue": "npm run dev --workspace=vue-showcase",

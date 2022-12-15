@@ -112,6 +112,15 @@ StyleDictionary.registerTransform({
 
 StyleDictionary.registerTransform({
 	type: `value`,
+	name: `size/upscale/screen`,
+	matcher: (token) => token.attributes.screen === true,
+	transformer(token) {
+		return `${Number(token.value) * 16}`;
+	}
+});
+
+StyleDictionary.registerTransform({
+	type: `value`,
 	name: `size/divide/rem`,
 	matcher: (token) => token.attributes.category === 'size',
 	transformer(token) {
@@ -124,6 +133,7 @@ StyleDictionary.registerTransformGroup({
 	transforms: [
 		'attribute/cti',
 		'name/dotty/pascal',
+		'size/upscale/screen',
 		'size/real/rem',
 		'color/hex'
 	]
@@ -136,6 +146,7 @@ StyleDictionary.registerTransformGroup({
 		'name/cti/kebab',
 		'time/seconds',
 		'content/icon',
+		'size/upscale/screen',
 		'size/real/rem',
 		'color/css'
 	]
@@ -148,6 +159,7 @@ StyleDictionary.registerTransformGroup({
 		'name/cti/kebab',
 		'time/seconds',
 		'content/icon',
+		'size/upscale/screen',
 		'size/real/rem',
 		'color/css'
 	]

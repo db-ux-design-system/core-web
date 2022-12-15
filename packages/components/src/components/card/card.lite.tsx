@@ -34,11 +34,21 @@ export default function DBCard(props: DBCardProps) {
 
 	return (
 		<div
-			class={'db-card' + (props.className || '')}
+			class={'db-card' + (props.className ? ' ' + props.className : '')}
 			data-variant={props.variant}
-			data-color-variant={props.colorVariant}>
+			data-color-variant={props.colorVariant}
+			data-direction={props.direction}
+			data-padding={props.padding}>
 			<Show when={state.stylePath}>
 				<link rel="stylesheet" href={state.stylePath} />
+			</Show>
+			<Show when={props.imgSrc}>
+				<img
+					class="db-card-image"
+					src={props.imgSrc}
+					alt={props.imgAlt}
+					data-position={props.imgPos}
+				/>
 			</Show>
 			{props.children}
 		</div>
