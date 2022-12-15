@@ -11,12 +11,12 @@
 6. Rename `src/index.css` to `src/index.scss` & replace content with:
 
 ```scss
-@use "@db-ui/foundations/dist/scss/rollup.assets-paths" as *;
-@use "@db-ui/foundations/dist/scss/icon/icons" as *;
-@use "@db-ui/foundations/dist/scss/db-ui-foundations" as *;
-@use "@db-ui/foundations/dist/scss/variables.global" as *;
+@use "@db-ui/foundations/build/scss/rollup.assets-paths" as *;
+@use "@db-ui/foundations/build/scss/icon/icons" as *;
+@use "@db-ui/foundations/build/scss/db-ui-foundations" as *;
+@use "@db-ui/foundations/build/scss/variables.global" as *;
 
-@import "@db-ui/foundations/dist/scss/color-classes";
+@import "@db-ui/foundations/build/scss/color-classes";
 ```
 
 7. Goto `src/main.tsx` and rename `import './index.css'` to `import './index.scss'`
