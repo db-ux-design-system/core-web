@@ -1,7 +1,7 @@
-import '../../packages/components/output/webcomponent/src/components/button/button.js';
-import '../../packages/components/output/webcomponent/src/components/icon/icon.js';
-import '../../packages/components/output/webcomponent/src/components/tab/tab.js';
-import '../../packages/components/output/webcomponent/src/components/tab-bar/tab-bar.js';
+import '../../output/webcomponent/src/components/button/button.js';
+import '../../output/webcomponent/src/components/icon/icon.js';
+import '../../output/webcomponent/src/components/tab/tab.js';
+import '../../output/webcomponent/src/components/tab-bar/tab-bar.js';
 
 const tabBar = [
 	{

@@ -1,0 +1,37 @@
+---
+name: Build Packages
+
+on:
+  workflow_call:
+
+jobs:
+  build-stencil-targets:
+    name: Build Packages
+    runs-on: ubuntu-latest
+    steps:
+      - name: ⬇ Checkout repo
+        uses: actions/checkout@v3
+
+      - name: 🔄 Init Cache
+        uses: ./.github/actions/npm-cache
+
+      - name: 🔨 Build Packages
+        run: npm run build
+
+      - name: ⬆ Upload foundations build
+        uses: ./.github/actions/upload-tar-artifact
+        with:
+          name: db-ui-foundations-build
+          path: packages/foundations/build
+
+      - name: ⬆ Upload output
+        uses: ./.github/actions/upload-tar-artifact
+        with:
+          name: db-ui-output
+          path: output
+
+      - name: 💀 Killing me softly
+        uses: ./.github/actions/cancel-workflow
+        if: failure()
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}

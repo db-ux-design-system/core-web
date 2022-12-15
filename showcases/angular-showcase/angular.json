@@ -17,14 +17,15 @@
 				"build": {
 					"builder": "@angular-devkit/build-angular:browser",
 					"options": {
-						"outputPath": "dist/angular-showcase",
+						"outputPath": "../../build-showcases/angular-showcase",
 						"index": "src/index.html",
 						"main": "src/main.ts",
 						"polyfills": "src/polyfills.ts",
 						"tsConfig": "tsconfig.app.json",
 						"assets": [],
 						"styles": ["src/styles.scss"],
-						"scripts": []
+						"scripts": [],
+						"preserveSymlinks": true
 					},
 					"configurations": {
 						"production": {
@@ -36,8 +37,8 @@
 								},
 								{
 									"type": "anyComponentStyle",
-									"maximumWarning": "2kb",
-									"maximumError": "4kb"
+									"maximumWarning": "10kb",
+									"maximumError": "20kb"
 								}
 							],
 							"fileReplacements": [
@@ -75,18 +76,6 @@
 					"builder": "@angular-devkit/build-angular:extract-i18n",
 					"options": {
 						"browserTarget": "angular-showcase:build"
-					}
-				},
-				"test": {
-					"builder": "@angular-devkit/build-angular:karma",
-					"options": {
-						"main": "src/test.ts",
-						"polyfills": "src/polyfills.ts",
-						"tsConfig": "tsconfig.spec.json",
-						"karmaConfig": "karma.conf.js",
-						"assets": ["src/favicon.ico", "src/assets"],
-						"styles": ["src/styles.scss"],
-						"scripts": []
 					}
 				}
 			}

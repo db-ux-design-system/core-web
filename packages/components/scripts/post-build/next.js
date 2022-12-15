@@ -9,13 +9,13 @@ module.exports = () => {
 
 			for (const file of files) {
 				Fse.copySync(
-					`./output/react/src/components/${component.name}/${file}`,
-					`./output/next/src/components/${component.name}/${file}`
+					`../../output/react/src/components/${component.name}/${file}`,
+					`../../output/next/src/components/${component.name}/${file}`
 				);
 			}
 
 			const options = {
-				files: `./output/next/src/components/${component.name}/${component.name}.tsx`,
+				files: `../../output/next/src/components/${component.name}/${component.name}.tsx`,
 				from: `import "./${component.name}.scss";`,
 				to: ``
 			};

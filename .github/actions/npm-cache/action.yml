@@ -1,0 +1,34 @@
+---
+name: "NPM Cache Action"
+description: "Initialize NPM Cache"
+inputs:
+  nodeModulesPath:
+    description: "Path for node_modules"
+    required: false
+    default: "**/node_modules"
+  packageLockPath:
+    description: "Path for package-lock.json"
+    required: false
+    default: "**/package-lock.json"
+outputs:
+  cache-hit:
+    description: "A boolean value to indicate an exact match was found for the primary key"
+    value: ${{ steps.set-cache.outputs.cache-hit }}
+runs:
+  using: "composite"
+  steps:
+    - name: ⏬ Init Cache
+      uses: actions/cache@v3
+      id: "npm-cache"
+      with:
+        path: ${{ inputs.nodeModulesPath }}
+        key: ${{ runner.os }}-node-${{ hashFiles(inputs.packageLockPath) }}
+        restore-keys: |
+          ${{ runner.os }}-node-
+
+    - name: 🥊 Set cache-hit
+      id: "set-cache"
+      run: echo "cache-hit=$CACHE_HIT" >> $GITHUB_OUTPUT
+      shell: bash
+      env:
+        CACHE_HIT: ${{steps.npm-cache.outputs.cache-hit}}

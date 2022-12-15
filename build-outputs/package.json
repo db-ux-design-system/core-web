@@ -1,0 +1,12 @@
+{
+  "name": "@db-ui/mono-deployment",
+  "version": "0.0.0",
+  "description": "",
+  "workspaces": [
+    "*"
+  ],
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/",
+    "access": "public"
+  }
+}

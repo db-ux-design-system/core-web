@@ -1,0 +1,69 @@
+---
+name: Test and publish to package registries after new GitHub release
+
+on:
+  release:
+    types: [published]
+
+jobs:
+  init:
+    uses: ./.github/workflows/00-init.yml
+
+  get-publish-version:
+    uses: ./.github/workflows/01-get-publish-version.yml
+    needs: [init]
+
+  lint:
+    uses: ./.github/workflows/01-lint.yml
+    needs: [init]
+
+  build-packages:
+    uses: ./.github/workflows/01-build-packages.yml
+    needs: [init]
+
+  build-outputs:
+    uses: ./.github/workflows/01-build-outputs.yml
+    needs: [build-packages]
+
+  #  build-showcases:
+  #    uses: ./.github/workflows/01-build-showcases.yml
+  #    needs: [build-packages]
+
+  #  cypress:
+  #    uses: ./.github/workflows/02-cypress.yml
+  #    needs: [install-cypress,build-showcases]
+
+  checks-done:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 🎉 Checks done
+        run: echo "🎉 All builds were successful."
+        # TODO: integrate the cypress builds and use the following two lines afterwards
+        # run: echo "🎉 All tests were successful."
+    #    needs: [cypress]
+    needs: [build-outputs]
+
+  #  deploy:
+  #    uses: ./.github/workflows/03-deploy-gh-pages.yml
+  #    needs: [checks-done, get-publish-version]
+  #    with:
+  #      release: ${{ needs.get-publish-version.outputs.release }}
+  #      preRelease: ${{ needs.get-publish-version.outputs.preRelease }}
+
+  #    needs: [checks-done, get-publish-version, build-outputs]
+
+  build-power-apps:
+    uses: ./.github/workflows/01-build-power-apps.yml
+    needs: [get-publish-version, checks-done, build-packages]
+    secrets: inherit
+    with:
+      version: ${{ needs.get-publish-version.outputs.version }}
+
+  publishpackages:
+    uses: ./.github/workflows/03-publish-packages.yml
+    needs: [get-publish-version, checks-done, build-outputs]
+    secrets: inherit
+    with:
+      release: ${{ needs.get-publish-version.outputs.release }}
+      preRelease: ${{ needs.get-publish-version.outputs.preRelease }}
+      version: ${{ needs.get-publish-version.outputs.version }}

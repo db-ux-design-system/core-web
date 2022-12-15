@@ -1,4 +1,4 @@
-const FS = require('fs-extra');
+import FS from 'fs-extra';
 
 if (FS.pathExistsSync('./packages/foundations/scss/db-ui-base.scss')) {
 	if (

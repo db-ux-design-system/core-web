@@ -1,13 +1,21 @@
 ---
-to: output/power-apps/<%= name %>/tsconfig.json
+to: ../../output/power-apps/<%= name %>/tsconfig.json
 force: true
 ---
 {
-    "extends": "./node_modules/pcf-scripts/tsconfig_base.json",
     "compilerOptions": {
-        "typeRoots": ["node_modules/@types"],
-        "jsx": "react-jsx"
-    }
+        "jsx": "react-jsx",
+        "target": "es5",
+        "module": "commonjs",
+        "lib": ["ES6", "DOM"],
+        "strict": true,
+        "strictPropertyInitialization": false,
+        "typeRoots": ["../node_modules/@types","node_modules/@types"]
+    },
+    "exclude": [
+        "./node_modules",
+        "../node_modules"
+    ]
 }
 
 

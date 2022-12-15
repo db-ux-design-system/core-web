@@ -13,8 +13,10 @@ useMetadata({
 				name: 'variant',
 				type: 'Enum',
 				values: [
-					{ key: 'Default', name: 'Default', value: '_' },
-					{ key: 'Primary', name: 'Primary', value: 'primary' }
+					{ key: 'Primary', name: 'Primary', value: 'primary' },
+					{ key: 'Secondary', name: 'Secondary', value: 'secondary' },
+					{ key: 'Tertiary', name: 'Tertiary', value: 'tertiary' },
+					{ key: 'Ghost', name: 'Ghost', value: 'ghost' }
 				]
 			},
 			{
@@ -40,9 +42,11 @@ export default function DBButton(props: DBButtonProps) {
 
 	return (
 		<button
-			class={`db-button${props.className ? ` ${props.className}` : ''}${
-				props.onlyIcon ? ' is-icon-text-replace' : ''
-			}`}
+			class={
+				'db-button' +
+				(props.className || '') +
+				(props.onlyIcon ? ' is-icon-text-replace' : '')
+			}
 			data-size={props.size}
 			data-state={props.state}
 			data-width={props.width}

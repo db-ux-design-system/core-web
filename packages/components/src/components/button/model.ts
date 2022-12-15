@@ -1,3 +1,5 @@
+import { GlobalProps, GlobalState } from '../../shared/model';
+
 export type DBButtonDefaultProps = {
 	text?: string;
 	icon?: string;
@@ -6,16 +8,10 @@ export type DBButtonDefaultProps = {
 	size?: 'small';
 	width?: 'full';
 	variant?: 'primary' | 'secondary' | 'tertiary' | 'ghost';
-	className?: string;
-	children?: any;
 };
 
-export type DBButtonWcProps = {
-	stylePath?: string;
-};
+export type DBButtonProps = DBButtonDefaultProps & GlobalProps;
 
-export type DBButtonProps = DBButtonDefaultProps & DBButtonWcProps;
+export type DBButtonDefaultState = {};
 
-export type DBButtonState = {
-	stylePath?: string;
-};
+export type DBButtonState = DBButtonDefaultState & GlobalState;

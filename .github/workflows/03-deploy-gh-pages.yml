@@ -1,0 +1,107 @@
+---
+name: Deploy to gh-pages
+
+on:
+  workflow_call:
+    inputs:
+      release:
+        required: false
+        default: "false"
+        type: string
+      preRelease:
+        required: false
+        default: "false"
+        type: string
+
+jobs:
+  deploy:
+    name: Deploy
+    runs-on: ubuntu-latest
+    steps:
+      - name: ⬇ Checkout repo
+        uses: actions/checkout@v3
+
+      - name: 🔄 Init Cache
+        uses: ./.github/actions/npm-cache
+
+      - name: ⬇ Download build
+        uses: ./.github/actions/download-tar-artifact
+        with:
+          name: build
+          path: out
+
+      - name: ↔ Extract branch name
+        uses: ./.github/actions/extract-branch
+        id: extract_branch
+
+      - name: ↔ Extract branch/tag name
+        shell: bash
+        env:
+          RELEASE: ${{ inputs.release }}
+          PRE_RELEASE: ${{ inputs.preRelease }}
+          BRANCH_NAME: ${{ steps.extract_branch.outputs.branch-name }}
+        run: |
+          if [[ $RELEASE == "true" || $PRE_RELEASE == "true" ]]
+          then
+            echo "name=${GITHUB_REF#refs/tags/}" >> $GITHUB_OUTPUT
+          else
+            echo "name=${$BRANCH_NAME}" >> $GITHUB_OUTPUT
+          fi
+        id: extract
+
+      - name: 📛 Get repo name
+        uses: actions/github-script@v6
+        id: repo-name
+        with:
+          result-encoding: string
+          script: return context?.payload?.repository?.name
+
+      - name: 🎩 Get owner name
+        uses: actions/github-script@v6
+        id: owner-name
+        with:
+          result-encoding: string
+          script: return context?.payload?.repository?.owner?.login
+
+      - name: 🔨 Build page
+        env:
+          RELEASE: ${{ inputs.release }}
+          PRE_RELEASE: ${{ inputs.preRelease }}
+          NAME: ${{ steps.extract.outputs.name }}
+          REPO_NAME: ${{ steps.repo-name.outputs.result }}
+          OWNER_NAME: ${{ steps.owner-name.outputs.result }}
+        run: |
+          chmod +rx ./.github/scripts/build-gh-page.sh
+          ./.github/scripts/build-gh-page.sh
+
+      - name: 🥅 Deploy to GH-Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./public
+
+      - name: 🖨️ Print gh-pages url
+        env:
+          RELEASE: ${{ inputs.release }}
+          PRE_RELEASE: ${{ inputs.preRelease }}
+          NAME: ${{ steps.extract.outputs.name }}
+          REPO_NAME: ${{ steps.repo-name.outputs.result }}
+          OWNER_NAME: ${{ steps.owner-name.outputs.result }}
+        run: |
+          if [[ $RELEASE == "true" ]];
+          then
+            export URL=https://$OWNER_NAME.github.io/$REPO_NAME
+          elif [[ $PRE_RELEASE == "true" ]];
+          then
+            export URL=https://$OWNER_NAME.github.io/$REPO_NAME/version/${NAME}
+          else
+            export URL=https://$OWNER_NAME.github.io/$REPO_NAME/review/${NAME}
+          fi
+          echo "URL: $URL"
+          echo "### GH-Pages URL :rocket: <br> <br> $URL" >> $GITHUB_STEP_SUMMARY
+
+      - name: 💀 Killing me softly
+        uses: ./.github/actions/cancel-workflow
+        if: failure()
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}

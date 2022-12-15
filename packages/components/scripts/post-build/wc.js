@@ -38,13 +38,16 @@ const updateNestedComponents = (input, rootComponentName) => {
 		}
 	}
 
-	return fileContent;
+	return fileContent
+		.split('\n')
+		.filter((line) => !line.includes('import type'))
+		.join('\n');
 };
 
 module.exports = () => {
 	for (const component of Components) {
 		const fixImports = {
-			files: `./output/webcomponent/src/components/${component.name}/${component.name}.ts`,
+			files: `../../output/webcomponent/src/components/${component.name}/${component.name}.ts`,
 			processor(input) {
 				const filteredInput = input
 					.split('\n')
@@ -58,7 +61,7 @@ module.exports = () => {
 		};
 
 		const defaultStyleUrl = {
-			files: `./output/webcomponent/src/components/${component.name}/${component.name}.ts`,
+			files: `../../output/webcomponent/src/components/${component.name}/${component.name}.ts`,
 			from: 'this.state = {',
 			to: `this.state = {stylePath: "${component.defaultStylePath}",`
 		};
@@ -66,10 +69,16 @@ module.exports = () => {
 		try {
 			Replace.sync(fixImports);
 			Replace.sync(defaultStyleUrl);
-			Fse.moveSync(
-				`./output/webcomponent/src/components/${component.name}/${component.name}.ts`,
-				`./output/webcomponent/src/components/${component.name}/${component.name}.js`
-			);
+			if (
+				Fse.pathExistsSync(
+					`../../output/webcomponent/src/components/${component.name}/${component.name}.ts`
+				)
+			) {
+				Fse.moveSync(
+					`../../output/webcomponent/src/components/${component.name}/${component.name}.ts`,
+					`../../output/webcomponent/src/components/${component.name}/${component.name}.js`
+				);
+			}
 		} catch (error) {
 			console.error('Error occurred:', error);
 		}

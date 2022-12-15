@@ -1,15 +1,12 @@
+import { GlobalProps, GlobalState } from '../../shared/model';
+
 export interface DBDividerDefaultProps {
-	margin?: 'none';
+	margin?: 'none' | '_';
 	variant?: 'horizontal' | 'vertical';
-	className?: string;
 }
 
-export interface DBDividerWcProps {
-	stylePath?: string;
-}
+export type DBDividerProps = DBDividerDefaultProps & GlobalProps;
 
-export type DBDividerProps = DBDividerDefaultProps & DBDividerWcProps;
+export type DBDividerDefaultState = {};
 
-export interface DBDividerState {
-	stylePath?: string;
-}
+export type DBDividerState = DBDividerDefaultState & GlobalState;

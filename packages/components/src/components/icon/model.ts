@@ -1,16 +1,12 @@
+import { GlobalProps, GlobalState } from '../../shared/model';
+
 export type DBIconDefaultProps = {
 	icon?: string;
 	withText?: boolean;
-	className?: string;
-	children?: any;
 };
 
-export type DBIconWcProps = {
-	stylePath?: string;
-};
+export type DBIconProps = DBIconDefaultProps & GlobalProps;
 
-export type DBIconProps = DBIconDefaultProps & DBIconWcProps;
+export type DBIconDefaultState = {};
 
-export type DBIconState = {
-	stylePath?: string;
-};
+export type DBIconState = DBIconDefaultState & GlobalState;

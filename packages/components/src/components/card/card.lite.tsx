@@ -6,7 +6,20 @@ useMetadata({
 	isAttachedToShadowDom: true,
 	component: {
 		includeIcon: false,
-		properties: []
+		properties: [
+			{
+				name: 'variant',
+				type: 'Enum',
+				values: [
+					{
+						key: 'Interactive',
+						name: 'Interactive',
+						value: 'ia'
+					},
+					{ key: 'Full Width', name: 'Full Width', value: 'w-full' }
+				]
+			}
+		]
 	}
 });
 
@@ -21,7 +34,7 @@ export default function DBCard(props: DBCardProps) {
 
 	return (
 		<div
-			class={`db-card${props.className ? ` ${props.className}` : ''}`}
+			class={'db-card' + (props.className || '')}
 			data-variant={props.variant}
 			data-color-variant={props.colorVariant}>
 			<Show when={state.stylePath}>

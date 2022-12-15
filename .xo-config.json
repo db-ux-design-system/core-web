@@ -11,6 +11,9 @@
 		"import/no-unassigned-import": 0,
 		"no-undef": 0,
 		"@typescript-eslint/no-unsafe-call": 0,
-		"n/file-extension-in-import": 0
+		"n/file-extension-in-import": 0,
+		"@typescript-eslint/no-unsafe-return": 0,
+		"@typescript-eslint/no-unsafe-assignment": 0,
+		"unicorn/prefer-top-level-await": 0
 	}
 }

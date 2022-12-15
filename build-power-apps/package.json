@@ -1,0 +1,12 @@
+{
+  "name": "@db-ui/power-apps-deployment",
+  "version": "0.0.0",
+  "description": "",
+  "workspaces": [
+    "*"
+  ],
+  "scripts": {
+    "build:dotnet": " cd DBUI && dotnet build --configuration Release",
+    "build:msbuild": " cd DBUI && msbuild -property:configuration=Release"
+  }
+}

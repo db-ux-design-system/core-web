@@ -1,42 +1,151 @@
 {
 	"font": {
 		"db-screensans-regular": {
-			"name": { "value": "'DB Screen Sans Regular'" },
-			"font-family": { "value": "'DB Screen Sans'" },
-			"font-weight": { "value": "400" },
-			"woff": { "value": "'dbscreensans-regular.woff'" },
-			"woff2": { "value": "'dbscreensans-regular.woff2'" }
+			"name": {
+				"value": "'DB Screen Sans Regular'",
+				"attributes": {
+					"target": "web"
+				}
+			},
+			"font-family": {
+				"value": "'DB Screen Sans'",
+				"attributes": {
+					"target": "web"
+				}
+			},
+			"font-weight": {
+				"value": "400",
+				"attributes": {
+					"target": "web"
+				}
+			},
+			"woff": {
+				"value": "'dbscreensans-regular.woff'",
+				"attributes": {
+					"target": "web"
+				}
+			},
+			"woff2": {
+				"value": "'dbscreensans-regular.woff2'",
+				"attributes": {
+					"target": "web"
+				}
+			}
 		},
 		"db-screensans-bold": {
-			"name": { "value": "'DB Screen Sans Bold'" },
-			"font-family": { "value": "'DB Screen Sans'" },
-			"font-weight": { "value": "700" },
-			"woff": { "value": "'dbscreensans-bold.woff'" },
-			"woff2": { "value": "'dbscreensans-bold.woff2'" }
+			"name": {
+				"value": "'DB Screen Sans Bold'",
+				"attributes": {
+					"target": "web"
+				}
+			},
+			"font-family": {
+				"value": "'DB Screen Sans'",
+				"attributes": {
+					"target": "web"
+				}
+			},
+			"font-weight": {
+				"value": "700",
+				"attributes": {
+					"target": "web"
+				}
+			},
+			"woff": {
+				"value": "'dbscreensans-bold.woff'",
+				"attributes": {
+					"target": "web"
+				}
+			},
+			"woff2": {
+				"value": "'dbscreensans-bold.woff2'",
+				"attributes": {
+					"target": "web"
+				}
+			}
 		},
 		"db-screenhead-light": {
-			"name": { "value": "'DB Screen Head Light'" },
-			"font-family": { "value": "'DB Screen Head'" },
-			"font-weight": { "value": "300" },
-			"woff": { "value": "'dbscreenhead-light.woff'" },
-			"woff2": { "value": "'dbscreenhead-light.woff2'" }
+			"name": {
+				"value": "'DB Screen Head Light'",
+				"attributes": {
+					"target": "web"
+				}
+			},
+			"font-family": {
+				"value": "'DB Screen Head'",
+				"attributes": {
+					"target": "web"
+				}
+			},
+			"font-weight": {
+				"value": "300",
+				"attributes": {
+					"target": "web"
+				}
+			},
+			"woff": {
+				"value": "'dbscreenhead-light.woff'",
+				"attributes": {
+					"target": "web"
+				}
+			},
+			"woff2": {
+				"value": "'dbscreenhead-light.woff2'",
+				"attributes": {
+					"target": "web"
+				}
+			}
 		},
 		"db-screenhead-black": {
-			"name": { "value": "'DB Screen Head Black'" },
-			"font-family": { "value": "'DB Screen Head'" },
-			"font-weight": { "value": "900" },
-			"woff": { "value": "'dbscreenhead-black.woff'" },
-			"woff2": { "value": "'dbscreenhead-black.woff2'" }
+			"name": {
+				"value": "'DB Screen Head Black'",
+				"attributes": {
+					"target": "web"
+				}
+			},
+			"font-family": {
+				"value": "'DB Screen Head'",
+				"attributes": {
+					"target": "web"
+				}
+			},
+			"font-weight": {
+				"value": "900",
+				"attributes": {
+					"target": "web"
+				}
+			},
+			"woff": {
+				"value": "'dbscreenhead-black.woff'",
+				"attributes": {
+					"target": "web"
+				}
+			},
+			"woff2": {
+				"value": "'dbscreenhead-black.woff2'",
+				"attributes": {
+					"target": "web"
+				}
+			}
 		},
 		"family": {
 			"sans": {
-				"value": "{font.db-screensans-regular.font-family.value}, Helvetica, Arial, sans-serif"
+				"value": "{font.db-screensans-regular.font-family.value}, Helvetica, Arial, sans-serif",
+				"attributes": {
+					"target": "web"
+				}
 			},
 			"head": {
-				"value": "{font.db-screenhead-black.font-family.value}, Helvetica, Arial, sans-serif"
+				"value": "{font.db-screenhead-black.font-family.value}, Helvetica, Arial, sans-serif",
+				"attributes": {
+					"target": "web"
+				}
 			},
 			"bold": {
-				"value": "{font.db-screensans-bold.font-family.value}, Helvetica, Arial, sans-serif"
+				"value": "{font.db-screensans-bold.font-family.value}, Helvetica, Arial, sans-serif",
+				"attributes": {
+					"target": "web"
+				}
 			}
 		}
 	}

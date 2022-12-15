@@ -1,0 +1,48 @@
+---
+name: Build outputs
+
+on:
+  workflow_call:
+
+jobs:
+  build-showcases:
+    name: Build outputs
+    runs-on: ubuntu-latest
+    steps:
+      - name: ⬇ Checkout repo
+        uses: actions/checkout@v3
+
+      - name: 🔄 Init Cache
+        uses: ./.github/actions/npm-cache
+
+      - name: ⬇ Download foundations build
+        uses: ./.github/actions/download-tar-artifact
+        with:
+          name: db-ui-foundations-build
+          path: packages/foundations/build
+
+      - name: ⬇ Download output
+        uses: ./.github/actions/download-tar-artifact
+        with:
+          name: db-ui-output
+          path: output
+
+      - name: 📥 Install output dependencies
+        uses: bahmutov/npm-install@v1
+        with:
+          install-command: npm i
+
+      - name: 🔨 Build outputs
+        run: npm run build-outputs
+
+      - name: ⬆ Upload outputs
+        uses: ./.github/actions/upload-tar-artifact
+        with:
+          name: db-ui-outputs
+          path: build-outputs
+
+      - name: 💀 Killing me softly
+        uses: ./.github/actions/cancel-workflow
+        if: failure()
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}

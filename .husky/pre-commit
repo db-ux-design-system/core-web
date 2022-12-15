@@ -6,4 +6,4 @@
 npx validate-branch-name
 npx --yes pretty-quick --staged
 npm run lint
-node ./scripts/check-commit-mail.mjs
+node ./scripts/check-commit-mail.js

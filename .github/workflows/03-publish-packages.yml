@@ -1,0 +1,51 @@
+---
+name: Publish all Packages to Registries
+
+on:
+  workflow_call:
+    inputs:
+      release:
+        required: false
+        default: "false"
+        type: string
+      preRelease:
+        required: false
+        default: "false"
+        type: string
+      version:
+        required: true
+        type: string
+
+jobs:
+  publish:
+    name: Publish latest package versions to GitHub Packages
+    runs-on: ubuntu-latest
+    steps:
+      - name: ⬇ Checkout repo
+        uses: actions/checkout@v3
+
+      - name: 🔄 Init Cache
+        uses: ./.github/actions/npm-cache
+
+      - name: ⬇ Download outputs
+        uses: ./.github/actions/download-tar-artifact
+        with:
+          name: db-ui-outputs
+          path: build-outputs
+
+      - name: 📰 Publish to NPM Registries
+        run: |
+          chmod +rx ./.github/scripts/publish-npm.sh
+          ./.github/scripts/publish-npm.sh
+        env:
+          RELEASE: ${{ inputs.release }}
+          PRE_RELEASE: ${{ inputs.preRelease }}
+          VALID_SEMVER_VERSION: ${{ inputs.version }}
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+          GPR_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: 💀 Killing me softly
+        uses: ./.github/actions/cancel-workflow
+        if: failure()
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}

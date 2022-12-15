@@ -1,25 +1,25 @@
 {
 	"screens": {
 		"sm": {
-			"value": "640",
+			"value": "40",
 			"attributes": {
 				"category": "size"
 			}
 		},
 		"md": {
-			"value": "768",
+			"value": "48",
 			"attributes": {
 				"category": "size"
 			}
 		},
 		"lg": {
-			"value": "1024",
+			"value": "64",
 			"attributes": {
 				"category": "size"
 			}
 		},
 		"xl": {
-			"value": "1280",
+			"value": "80",
 			"attributes": {
 				"category": "size"
 			}

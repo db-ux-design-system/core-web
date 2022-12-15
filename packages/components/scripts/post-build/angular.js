@@ -6,10 +6,16 @@ const changeFile = (component, input) => {
 		.split('\n')
 		.filter(
 			(line) =>
-				!line.includes('@db-ui') && !line.includes(`Props } from "../`)
+				!line.includes('@db-ui') &&
+				!line.includes(`Props } from "../`) &&
+				!line.includes(`./${component.name}.scss`)
 		)
 		.map((line) => {
-			if (line.includes(`import { DB`) && line.includes(`../`)) {
+			if (
+				line.includes(`import { DB`) &&
+				line.includes(`../`) &&
+				!line.includes(`Module`)
+			) {
 				return line.replace(` } from "../`, `Module } from "../`);
 			}
 
@@ -34,7 +40,7 @@ const changeFile = (component, input) => {
 
 	if (component?.overwrites?.angular) {
 		for (const over of component.overwrites.angular) {
-			result = result.replace(over.pre, over.post);
+			result = result.replace(over.from, over.to);
 		}
 	}
 
@@ -44,7 +50,7 @@ const changeFile = (component, input) => {
 module.exports = () => {
 	for (const component of Components) {
 		const options = {
-			files: `./output/angular/src/components/${component.name}/${component.name}.ts`,
+			files: `../../output/angular/src/components/${component.name}/${component.name}.ts`,
 			processor: (input) => changeFile(component, input)
 		};
 

@@ -115,7 +115,8 @@ const shortenTypographyRecursive = (data) => {
 						fontSize: {
 							value: `${foundValue.font.size}`,
 							attributes: {
-								category: 'dynamic-size'
+								category: 'size',
+								type: 'font'
 							}
 						}
 					};
@@ -174,14 +175,14 @@ const convertSpacings = (data) => {
 			sizes[key.replace('sizing-', '')] = {
 				value: `${spacing.value}`,
 				attributes: {
-					category: 'dynamic-size'
+					category: 'size'
 				}
 			};
 		} else {
 			spacings[key.replace('spacing-', '')] = {
 				value: `${spacing.value}`,
 				attributes: {
-					category: 'dynamic-size'
+					category: 'size'
 				}
 			};
 		}
