@@ -12,7 +12,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@db-ui/foundations": "*",
+    "@db-ui/foundations": "file:../../packagesi/foundations",
     "vue": "^3.2.45"
   },
   "devDependencies": {

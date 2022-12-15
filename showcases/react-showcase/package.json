@@ -13,7 +13,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@db-ui/foundations": "*",
+    "@db-ui/foundations": "file:../../packagesi/foundations",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },

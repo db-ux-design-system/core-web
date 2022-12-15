@@ -15,7 +15,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@db-ui/foundations": "file:./../../packages/foundations"
+    "@db-ui/foundations": "file:../../packagesi/foundations"
   },
   "devDependencies": {
     "cpr": "3.0.1",

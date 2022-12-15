@@ -10,7 +10,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@db-ui/foundations": "file:./../../packages/foundations"
+    "@db-ui/foundations": "file:../../packagesi/foundations"
   },
   "devDependencies": {
     "@sveltejs/vite-plugin-svelte": "^2.0.2",
