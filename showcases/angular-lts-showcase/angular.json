@@ -3,7 +3,7 @@
 	"version": 1,
 	"newProjectRoot": "projects",
 	"projects": {
-		"angular-showcase": {
+		"angular-lts-showcase": {
 			"projectType": "application",
 			"schematics": {
 				"@schematics/angular:application": {
@@ -17,7 +17,7 @@
 				"build": {
 					"builder": "@angular-devkit/build-angular:browser",
 					"options": {
-						"outputPath": "../../build-showcases/angular-showcase",
+						"outputPath": "../../build-showcases/angular-lts-showcase",
 						"index": "src/index.html",
 						"main": "src/main.ts",
 						"polyfills": "src/polyfills.ts",
@@ -64,10 +64,10 @@
 					"builder": "@angular-devkit/build-angular:dev-server",
 					"configurations": {
 						"production": {
-							"browserTarget": "angular-showcase:build:production"
+							"browserTarget": "angular-lts-showcase:build:production"
 						},
 						"development": {
-							"browserTarget": "angular-showcase:build:development"
+							"browserTarget": "angular-lts-showcase:build:development"
 						}
 					},
 					"defaultConfiguration": "development"
@@ -75,11 +75,13 @@
 				"extract-i18n": {
 					"builder": "@angular-devkit/build-angular:extract-i18n",
 					"options": {
-						"browserTarget": "angular-showcase:build"
+						"browserTarget": "angular-lts-showcase:build"
 					}
 				}
 			}
 		}
 	},
-	"defaultProject": "angular-showcase"
+	"cli": {
+		"analytics": false
+	}
 }
