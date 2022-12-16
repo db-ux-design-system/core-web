@@ -42,7 +42,7 @@ jobs:
           then
             echo "name=${GITHUB_REF#refs/tags/}" >> $GITHUB_OUTPUT
           else
-            echo "name=${$BRANCH_NAME}" >> $GITHUB_OUTPUT
+            echo "name=${BRANCH_NAME}" >> $GITHUB_OUTPUT
           fi
         id: extract
 
