@@ -32,7 +32,6 @@
     }
   },
   "dependencies": {
-    "@db-ui/foundations": "*",
     "vue": "^3.2.45"
   },
   "devDependencies": {
