@@ -19,7 +19,7 @@ const offers: MultiCard[] = [
 const Offers = () => {
 	return (
 		<div className="offers-container flex flex-col">
-			<h4 className="mb-res-xs">Akutelle Angebote</h4>
+			<h4 className="mb-res-xs">Aktuelle Angebote</h4>
 
 			<MultiCards cards={offers} />
 		</div>
