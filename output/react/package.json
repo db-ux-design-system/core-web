@@ -19,9 +19,7 @@
   "main": "./dist/index.js",
   "module": "./dist/index.js",
   "types": "./dist/index.d.ts",
-  "dependencies": {
-    "@db-ui/foundations": "*"
-  },
+  "dependencies": {},
   "devDependencies": {
     "@types/react": "^18.0.21",
     "react": "^18.2.0",
