@@ -23,6 +23,27 @@
 	}
 }
 
+body,
+button,
+input,
+optgroup,
+select,
+textarea {
+	font-family: $db-font-family-sans;
+}
+
+// Box sizing
+html {
+	box-sizing: border-box;
+}
+
+*,
+::before,
+::after {
+	box-sizing: inherit;
+}
+
+
 // Make sure every elements has the current color from container above
 body {
 	color: var(--db-current-color, $db-colors-neutral-on-bg-enabled);

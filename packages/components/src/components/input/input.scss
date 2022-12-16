@@ -1,0 +1,347 @@
+@charset "utf-8";
+
+@use "@db-ui/foundations/build/scss/variables" as *;
+@use "@db-ui/foundations/build/scss/variables.global" as *;
+@use "@db-ui/foundations/build/scss/helpers/functions" as *;
+@use "@db-ui/foundations/build/scss/icon/icons.helpers" as *;
+@use "@db-ui/foundations/build/scss/tonality" as *;
+@use "@db-ui/foundations/build/scss/color-placeholder" as *;
+
+$icons-path: "../../../icons/" !default;
+
+@mixin label-focus-animation(
+	$translationX: var(--db-input-padding-inline-start)
+) {
+	$transformScale: -1.25;
+
+	transition: opacity 0.08s, transform 0.15s;
+	opacity: var(--db-input-focus-opacity);
+
+	transform: translate($translationX, calc($db-sizing-md * $transformScale))
+		scale(var(--db-input-label-scale));
+}
+
+.db-input {
+	--db-input-padding-inline-start: #{$db-spacing-fixed-sm};
+	--db-input-padding-inline-end: #{$db-spacing-fixed-sm};
+
+	position: relative;
+
+	// padding-inline-end according to current amount of icons
+	&.icon-before {
+		--db-input-padding-inline-start: #{calc(
+				2 * $db-spacing-fixed-sm + 0.425rem
+			)};
+
+		input {
+			padding-inline-start: var(--db-input-padding-inline-start);
+		}
+	}
+
+	&.icon-after,
+	&[data-variant] {
+		--db-input-padding-inline-end: #{calc(
+				2 * #{$db-spacing-fixed-sm} + 0.425rem
+			)};
+
+		input {
+			padding-inline-end: var(--db-input-padding-inline-end);
+		}
+	}
+
+	&[data-variant].icon-after {
+		--db-input-padding-inline-end: #{calc(
+				2 * #{$db-spacing-fixed-sm} + 0.425rem + 0.75rem + #{$db-spacing-fixed-xs}
+			)};
+
+		input {
+			padding-inline-end: var(--db-input-padding-inline-end);
+		}
+
+		.elm-state-icon::after {
+			margin-inline-end: calc(0.75rem + $db-spacing-fixed-xs);
+		}
+	}
+
+	.db-icon::before {
+		--icon-font-family: var(--db-base-icon-font-family);
+		--icon-font-size: var(--db-base-icon-font-size);
+
+		@extend %db-body-sm;
+
+		height: var(--db-sizing-md);
+		display: flex;
+		align-items: center;
+		position: absolute;
+		top: 0;
+		padding: 0 $db-spacing-fixed-xs;
+	}
+
+	.icon-after .db-icon.icon-after::before {
+		right: 0;
+	}
+
+	// currently not supported by firefox
+	&:has(> input:disabled) {
+		.db-icon,
+		.elm-state-icon::after {
+			opacity: 0.5;
+		}
+	}
+
+	label {
+		position: absolute;
+		display: flex;
+		align-items: center;
+		font-size: var(--db-type-body-font-size-md);
+		color: $db-colors-secondary-enabled;
+
+		transform-origin: left;
+		transform: translate(
+			var(--db-input-padding-inline-start),
+			calc(-1 * var(--db-sizing-md))
+		);
+		transition: transform 0.2s $db-transition-functional-timing;
+		height: $db-sizing-md;
+		// TODO lets discuss this her: https://github.com/db-ui/core/issues/223
+		pointer-events: none;
+	}
+
+	.description {
+		@extend %db-body-xs;
+		margin: $db-spacing-fixed-2xs $db-spacing-fixed-sm 0;
+
+		display: flex;
+		align-items: flex-start;
+		justify-content: space-between;
+	}
+
+	input {
+		@extend %db-bg-neutral-transparent-semi;
+		border: 1px solid transparent;
+		border-radius: 4px;
+		height: $db-sizing-md;
+		max-width: 100%;
+		width: 100%;
+		padding: $db-spacing-fixed-xs var(--db-input-padding-inline-end)
+			$db-spacing-fixed-xs var(--db-input-padding-inline-start);
+
+		// TODO: Evaluate whether those could get moved to ../_form-elements.scss
+		&:focus,
+		&:not(:placeholder-shown) {
+			&:not(:disabled) {
+				padding-bottom: calc(
+					$db-spacing-fixed-xs - var(--db-input-focus-opacity) *
+						$db-spacing-fixed-xs
+				);
+				padding-top: $db-spacing-fixed-xs;
+
+				+ label {
+					@include label-focus-animation();
+				}
+			}
+		}
+
+		// TODO: Evaluate whether those could get moved to ../_form-elements.scss
+		&:disabled,
+		fieldset:disabled & {
+			&,
+			& + label {
+				// Decided against cursor: not-allowed, compare to e.g. https://phabricator.wikimedia.org/T121960
+				opacity: 0.25;
+			}
+		}
+
+		&[type="color"],
+		&[type="date"],
+		&[type="datetime-local"],
+		&[type="email"],
+		&[type="month"],
+		&[type="number"],
+		&[type="password"],
+		&[type="search"],
+		&[type="tel"],
+		&[type="text"],
+		&[type="time"],
+		&[type="url"],
+		&[type="week"] {
+			@extend %db-body-sm;
+
+			&:not([type="date"]):not([type="datetime-local"]):not(
+					[type="month"]
+				):not([type="time"]):not([type="week"])
+				+ label {
+				// Adopted by https://www.heise.de/developer/artikel/a11y-Reduced-Motion-4356171.html
+				@media (prefers-reduced-motion: reduce) {
+					transition-duration: 0.01s !important;
+				}
+			}
+
+			// Hiding inputs placeholder for floating label
+			&::placeholder {
+				opacity: 0;
+			}
+
+			&:focus {
+				&::placeholder {
+					opacity: 0.5;
+				}
+			}
+		}
+
+		&[type="search"] {
+			$paddingLeft: calc($db-spacing-fixed-sm * 2 + 0.625rem);
+			$icons-path: "../../../icons/" !default;
+
+			padding-inline-start: var(--db-input-padding-inline-start);
+
+			&,
+			& + label {
+				--db-input-padding-inline-start: #{calc(
+						$db-spacing-fixed-sm * 2 + 0.625rem
+					)};
+			}
+
+			& ~ .elm-state-icon {
+				@include icon(glyph(search), 20, "filled", "before", false);
+			}
+
+			+ label {
+				transform: translate(
+					$paddingLeft,
+					calc(-1 * var(--db-sizing-md))
+				);
+			}
+
+			~ .description {
+				padding-inline-start: $paddingLeft;
+			}
+
+			&:focus,
+			&:not(:placeholder-shown) {
+				&:not(:disabled) {
+					+ label {
+						padding-inline-start: 0;
+					}
+				}
+			}
+
+			// https://stackoverflow.com/questions/20804016/editing-input-type-search-pseudo-element-button-x
+			&::-webkit-search-cancel-button {
+				appearance: none;
+				position: absolute;
+				right: $db-spacing-fixed-sm;
+				top: 0;
+				height: $db-sizing-md;
+				width: 1em;
+				background: url(#{$icons-path}functional/images/navigation/db_ic_cancel_24.svg)
+					no-repeat 50% 50%;
+				background-size: contain;
+				cursor: pointer;
+				transition: opacity 0.12s;
+			}
+		}
+	}
+
+	// #variations
+	.elm-state-icon {
+		display: flex;
+		align-items: center;
+		flex-direction: row;
+		position: absolute;
+		top: 0;
+		padding: 0 $db-spacing-fixed-xs;
+		height: $db-sizing-md;
+		width: 100%;
+		pointer-events: none;
+
+		&::after,
+		&::before {
+			--icon-font-family: var(--db-base-icon-font-family);
+			--icon-font-size: var(--db-base-icon-font-size);
+		}
+
+		&::before {
+			--icon-margin-after: auto;
+		}
+
+		&::after {
+			--icon-margin-before: auto;
+		}
+	}
+
+	&[data-variant="error"] {
+		color: $db-colors-critical-on-bg-enabled;
+	}
+
+	// Variant error or invalid state
+	&[data-variant="error"] input,
+	input:required:invalid:not(:placeholder-shown),
+	input[aria-invalid="true"] {
+		@extend %db-bg-critical-transparent-semi;
+
+		& + label {
+			color: $db-colors-critical-on-bg-enabled;
+		}
+
+		& ~ .description,
+		& ~ .elm-state-icon {
+			color: $db-colors-critical-enabled;
+		}
+
+		& ~ .elm-state-icon {
+			@include icon(glyph(error), 20, "filled", "after", false);
+		}
+	}
+
+	&[data-variant="warning"] input {
+		@extend %db-bg-warning-transparent-semi;
+
+		& + label {
+			color: $db-colors-warning-on-bg-enabled;
+		}
+
+		& ~ .description,
+		& ~ .elm-state-icon {
+			color: $db-colors-warning-enabled;
+		}
+
+		& ~ .elm-state-icon {
+			@include icon(glyph(error-triangle), 20, "filled", "after", false);
+		}
+	}
+
+	&[data-variant="success"] input {
+		@extend %db-bg-success-transparent-semi;
+
+		& + label {
+			color: $db-colors-success-on-bg-enabled;
+		}
+
+		& ~ .description,
+		& ~ .elm-state-icon {
+			color: $db-colors-success-enabled;
+		}
+
+		& ~ .elm-state-icon {
+			@include icon(glyph(check-circle), 20, "filled", "after", false);
+		}
+	}
+
+	&[data-variant="information"] input {
+		@extend %db-bg-information-transparent-semi;
+
+		& + label {
+			color: $db-colors-information-on-bg-enabled;
+		}
+
+		& ~ .description,
+		& ~ .elm-state-icon {
+			color: $db-colors-information-enabled;
+		}
+
+		& ~ .elm-state-icon {
+			@include icon(glyph(info), 20, "filled", "after", false);
+		}
+	}
+}
