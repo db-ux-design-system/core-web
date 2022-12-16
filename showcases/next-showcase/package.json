@@ -13,7 +13,6 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@db-ui/foundations": "file:./../../packages/foundations",
     "next": "13.0.7",
     "next-transpile-modules": "^10.0.0",
     "react": "18.2.0",

@@ -9,9 +9,6 @@
     "build": "vite build",
     "preview": "vite preview"
   },
-  "dependencies": {
-    "@db-ui/foundations": "file:./../../packages/foundations"
-  },
   "devDependencies": {
     "@sveltejs/vite-plugin-svelte": "^2.0.2",
     "sass": "^1.56.2",
