@@ -18,10 +18,6 @@ jobs:
   #  install-cypress:
   #    uses: ./.github/workflows/00-install-cypress.yml
 
-  get-publish-version:
-    uses: ./.github/workflows/01-get-publish-version.yml
-    needs: [init]
-
   lint:
     uses: ./.github/workflows/01-lint.yml
     needs: [init]
@@ -50,5 +46,5 @@ jobs:
     uses: ./.github/workflows/03-deploy-gh-pages.yml
     needs: [checks-done, get-publish-version]
     with:
-      release: ${{ needs.get-publish-version.outputs.release }}
-      preRelease: ${{ needs.get-publish-version.outputs.preRelease }}
+      release: false
+      preRelease: false
