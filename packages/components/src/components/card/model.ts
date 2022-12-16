@@ -5,7 +5,6 @@ export type DBCardDefaultProps = {
 	direction?: 'row' | 'column';
 	imgAlt?: string;
 	imgSrc?: string;
-	padding?: 'default' | 'none';
 	variant?: 'w-full' | 'ia';
 };
 
