@@ -16,10 +16,10 @@ module.exports = () => {
 				);
 			}
 			Fse.copySync(
-				`./src/db-ui-components.${fileEnding}`,
+				`./src/styles/db-ui-components.${fileEnding}`,
 				`../../output/${
 					framework === 'vue' ? `vue/vue3` : framework
-				}/src/db-ui-components.${fileEnding}`
+				}/src/styles/db-ui-components.${fileEnding}`
 			);
 		}
 	}
