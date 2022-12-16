@@ -3,13 +3,14 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "copy:components": "cpr ../../output/next/src/components ./components -o",
-    "copy:scss": "cpr ../../output/next/src/styles/db-ui-components.scss ./styles/db-ui-components.scss -o",
+    "copy:components": "cpr ../../output/next/src ./components/src -o",
     "prebuild": "npm-run-all copy:*",
     "predev": "npm-run-all copy:*",
     "prestart": "npm-run-all copy:*",
     "dev": "next dev",
-    "build": "next build && next export",
+    "build:app": "next build && next export",
+    "build:copy": "cpr out ../../build-showcases/patternhub -o",
+    "build": "npm-run-all build:*",
     "start": "next start",
     "lint": "next lint"
   },

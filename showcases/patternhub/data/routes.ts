@@ -25,6 +25,24 @@ export const ROUTES: DbMainnavigationDataType[] = [
 	},
 	{
 		label: 'Showcases',
-		link: '/showcases'
+		link: '/showcases',
+		children: [
+			{
+				label: 'Angular',
+				link: '/showcases/angular-current'
+			},
+			{
+				label: 'Angular LTS',
+				link: '/showcases/angular-lts'
+			},
+			{
+				label: 'React',
+				link: '/showcases/react'
+			},
+			{
+				label: 'Vue',
+				link: '/showcases/vue'
+			}
+		]
 	}
 ];

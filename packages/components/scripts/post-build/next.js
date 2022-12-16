@@ -5,21 +5,19 @@ const Components = require('./components');
 module.exports = () => {
 	for (const component of Components) {
 		try {
-			const files = [`${component.name}.tsx`, 'model.ts', 'index.ts'];
+			Fse.copySync(`../../output/react/src`, `../../output/next/src`);
 
-			for (const file of files) {
-				Fse.copySync(
-					`../../output/react/src/components/${component.name}/${file}`,
-					`../../output/next/src/components/${component.name}/${file}`
-				);
-			}
-
-			const options = {
-				files: `../../output/next/src/components/${component.name}/${component.name}.tsx`,
-				from: `import "./${component.name}.scss";`,
-				to: ``
-			};
-			Replace.replaceInFileSync(options);
+			setTimeout(() => {
+				Replace.sync({
+					files: `../../output/next/src/components/${component.name}/${component.name}.tsx`,
+					processor: (input) => {
+						return input
+							.split('\n')
+							.filter((line) => !line.includes('.scss'))
+							.join('\n');
+					}
+				});
+			}, 1000);
 		} catch (error) {
 			console.error('Error occurred:', error);
 		}

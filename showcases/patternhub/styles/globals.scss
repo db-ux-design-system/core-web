@@ -1,6 +1,6 @@
 @use "@db-ui/foundations/build/scss/webpack.assets-paths" as *;
 @use "@db-ui/foundations/build/scss/icon/icons" as *;
-@use "db-ui-components" as *;
+@use "components/src/styles/db-ui-components" as *;
 
 #__next {
 	height: inherit;
@@ -15,4 +15,9 @@ db-mainnavigation {
 
 github-version-switcher {
 	margin: auto 16px;
+}
+
+iframe {
+	width: 100%;
+	height: calc(100% - 8px) !important;
 }

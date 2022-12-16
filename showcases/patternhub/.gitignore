@@ -33,7 +33,10 @@ yarn-error.log*
 next-env.d.ts
 /.idea/
 
+public/*-showcase
+
 styles/db-ui-components.scss
 components
 !components/default-page.tsx
+!components/iframe.tsx
 !components/static-content.tsx

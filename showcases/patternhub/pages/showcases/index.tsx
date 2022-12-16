@@ -1,22 +1,23 @@
-import { useRouter } from 'next/router';
 import DefaultPage from '../../components/default-page';
-import { DBCard } from '../../components/card';
+import { DBCard } from '../../components/src/components/card';
+import { ROUTES } from '../../data/routes';
 
 const ShowcasesPage = () => {
-	const router = useRouter();
-
-	const consoleLog = () => {
-		console.log('Angular');
+	const getLink = (link: string) => {
+		return process.env.NODE_ENV === 'development' ? link : `${link}.html`;
 	};
 
 	return (
 		<DefaultPage>
 			<h1>Showcases</h1>
 			<div>
-				<DBCard variant="ia" onClick={consoleLog}>
-					Angular
-				</DBCard>
-				<button onClick={consoleLog}>test</button>
+				{ROUTES[3].children?.map((showcase) => (
+					<a
+						key={`showcase-card-${showcase.label}`}
+						href={getLink(showcase.link)}>
+						<DBCard variant="ia">{showcase.label}</DBCard>
+					</a>
+				))}
 			</div>
 		</DefaultPage>
 	);

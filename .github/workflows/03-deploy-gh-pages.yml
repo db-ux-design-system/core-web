@@ -24,11 +24,8 @@ jobs:
       - name: 🔄 Init Cache
         uses: ./.github/actions/npm-cache
 
-      - name: ⬇ Download build
-        uses: ./.github/actions/download-tar-artifact
-        with:
-          name: build
-          path: out
+      - name: 📄 Bundle gh-page
+        uses: ./.github/actions/bundle-gh-page
 
       - name: ↔ Extract branch name
         uses: ./.github/actions/extract-branch

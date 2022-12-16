@@ -11,8 +11,8 @@ const CopyFiles = require('./copy-files');
 Vue();
 Svelte();
 Angular();
-Next();
 React();
+Next();
 WebComponents();
 
 CopyFiles();

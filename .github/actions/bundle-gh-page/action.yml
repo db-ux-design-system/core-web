@@ -1,0 +1,26 @@
+---
+name: "Bunde Github Page"
+description: "Bunde Github Page"
+runs:
+  using: "composite"
+  steps:
+    - name: ⬇ Checkout repo
+      uses: actions/checkout@v3
+
+    - name: 🔄 Init Cache
+      uses: ./.github/actions/npm-cache
+
+    - name: ⬇ Download showcases
+      uses: ./.github/actions/download-tar-artifact
+      with:
+        name: db-ui-showcases
+        path: build-showcases
+
+    - name: 🦵🦿 I like to move it move it
+      shell: bash
+      run: |
+        mv build-showcases/angular-current-showcase build-showcases/patternhub/angular-current-showcase
+        mv build-showcases/angular-lts-showcase build-showcases/patternhub/angular-lts-showcase
+        mv build-showcases/react-showcase build-showcases/patternhub/react-showcase
+        mv build-showcases/vue-showcase build-showcases/patternhub/vue-showcase
+        mv build-showcases/patternhub out

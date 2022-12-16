@@ -39,6 +39,7 @@
     "build-outputs": "npm-run-all -p build-outputs:*",
     "build-showcases:angular-lts-showcase": "npm run build --workspace=angular-lts-showcase",
     "build-showcases:angular-current-showcase": "npm run build --workspace=angular-current-showcase",
+    "build-showcases:patternhub": "npm run build --workspace=db-patternhub",
     "build-showcases:react-showcase": "npm run build --workspace=react-showcase",
     "build-showcases:vue-showcase": "npm run build --workspace=vue-showcase",
     "build-showcases": "npm-run-all -p build-showcases:*",
