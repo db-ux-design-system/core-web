@@ -32,15 +32,14 @@
     }
   },
   "dependencies": {
-    "@db-ui/foundations": "*",
     "vue": "^3.2.45"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^4.0.0",
-    "sass": "^1.56.2",
+    "sass": "^1.57.1",
     "typescript": "^4.9.3",
-    "vite": "^4.0.1",
-    "vue-tsc": "^1.0.13"
+    "vite": "^4.0.4",
+    "vue-tsc": "^1.0.22"
   },
   "files": [
     "dist/"
