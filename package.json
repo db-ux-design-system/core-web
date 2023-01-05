@@ -51,10 +51,11 @@
     "start-showcase:svelte": "npm run dev --workspace=svelte-showcase",
     "start-showcase:vanilla": "npm run dev --workspace=vanilla-showcase",
     "start-showcase:vue": "npm run dev --workspace=vue-showcase",
-    "start": "node scripts/start.js"
+    "start": "node scripts/start.js",
+    "clean": "git clean -dfx --exclude=.env"
   },
   "devDependencies": {
-    "@commitlint/cli": "17.3.0",
+    "@commitlint/cli": "17.4.0",
     "@commitlint/config-conventional": "17.3.0",
     "cpr": "3.0.1",
     "dotenv": "^16.0.3",
