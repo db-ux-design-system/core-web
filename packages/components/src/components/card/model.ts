@@ -2,7 +2,7 @@ import { GlobalProps, GlobalState } from '../../shared/model';
 
 export type DBCardDefaultProps = {
 	colorVariant?: string;
-	variant?: 'w-full' | 'ia';
+	variant?: 'full-width' | 'ia';
 };
 
 export type DBCardProps = DBCardDefaultProps & GlobalProps;
