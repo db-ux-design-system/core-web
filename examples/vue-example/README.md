@@ -11,11 +11,15 @@
 6. Rename `src/style.css` to `src/style.scss` & replace content with:
 
 ```scss
+// We use vite so we need to use those asset-paths to resolve icons and fonts properly
 @use "@db-ui/foundations/build/scss/rollup.assets-paths" as *;
+// Icons are optional, but if you want to use them import the icons after the assets-paths
 @use "@db-ui/foundations/build/scss/icon/icons" as *;
+// Combined dependencies like variables, colors and tonality
 @use "@db-ui/foundations/build/scss/db-ui-foundations" as *;
+// We use $db-spacing-fixed-md variable so we need to import the file where the variable is defined
 @use "@db-ui/foundations/build/scss/variables.global" as *;
-
+// Color-classes are optional, we use them in the example to have easy access to colors
 @import "@db-ui/foundations/build/scss/color-classes";
 ```
 
