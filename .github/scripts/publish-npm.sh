@@ -43,7 +43,7 @@ if [[ $PRE_RELEASE == 'true' ]]; then
   TAG="next"
 fi
 
-echo "📰 Publish Package to Registry with tag: $TAG)"
+echo "📰 Publish Package to Registry with tag: $TAG"
 for REGISTRY in 'GITHUB' 'NPM'
 do
   echo "🔒 Authenticate $REGISTRY NPM Registry"
