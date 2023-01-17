@@ -9,8 +9,7 @@
     "build:tsc": "tsc",
     "build:vite": "vite build",
     "build:copy": "cpr dist ../../build-showcases/react-showcase",
-    "build": "npm-run-all build:*",
-    "preview": "vite preview"
+    "build": "npm-run-all build:*"
   },
   "dependencies": {
     "react": "^18.2.0",

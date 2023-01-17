@@ -8,8 +8,7 @@
     "start": "vite",
     "build:vite": "vite build",
     "build:copy": "cpr dist ../../build-showcases/vue-showcase",
-    "build": "npm-run-all build:*",
-    "preview": "vite preview"
+    "build": "npm-run-all build:*"
   },
   "dependencies": {
     "vue": "^3.2.45"
