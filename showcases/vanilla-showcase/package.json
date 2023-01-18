@@ -11,8 +11,7 @@
     "prebuild": "npm-run-all -p copy:*",
     "dev": "vite --open",
     "start": "vite",
-    "build": "vite build",
-    "preview": "vite preview"
+    "build": "vite build"
   },
   "devDependencies": {
     "cpr": "3.0.1",

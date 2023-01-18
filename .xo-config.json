@@ -16,6 +16,15 @@
 		"@typescript-eslint/no-unsafe-assignment": 0,
 		"unicorn/prefer-top-level-await": 0,
 		"@typescript-eslint/naming-convention": 0,
-		"@typescript-eslint/restrict-template-expressions": 0
+		"@typescript-eslint/restrict-template-expressions": 0,
+		"unicorn/filename-case": [
+			"error",
+			{
+				"cases": {
+					"kebabCase": true,
+					"pascalCase": true
+				}
+			}
+		]
 	}
 }
