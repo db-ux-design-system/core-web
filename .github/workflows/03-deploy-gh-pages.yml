@@ -35,6 +35,7 @@ jobs:
         run: |
           mv build-showcases/angular-current-showcase build-showcases/patternhub/angular-current-showcase
           mv build-showcases/angular-lts-showcase build-showcases/patternhub/angular-lts-showcase
+          mv build-showcases/reactwind-showcase build-showcases/patternhub/reactwind-showcase
           mv build-showcases/react-showcase build-showcases/patternhub/react-showcase
           mv build-showcases/vue-showcase build-showcases/patternhub/vue-showcase
           mv build-showcases/patternhub out
