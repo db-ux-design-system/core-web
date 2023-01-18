@@ -39,7 +39,7 @@ jobs:
       - name: 🛤 Get base path
         uses: actions/github-script@v6
         env:
-          NAME: $GITHUB_REF_NAME
+          NAME: ${{ env.GITHUB_REF_NAME }}
           RELEASE: ${{ inputs.release }}
           PRE_RELEASE: ${{ inputs.preRelease }}
         id: base-path

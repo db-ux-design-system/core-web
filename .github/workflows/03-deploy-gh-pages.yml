@@ -50,9 +50,9 @@ jobs:
         env:
           RELEASE: ${{ inputs.release }}
           PRE_RELEASE: ${{ inputs.preRelease }}
-          NAME: $GITHUB_REF_NAME
+          NAME: ${{ env.GITHUB_REF_NAME }}
           REPO_NAME: ${{ steps.repo-name.outputs.result }}
-          OWNER_NAME: $GITHUB_REPOSITORY_OWNER
+          OWNER_NAME: ${{ env.GITHUB_REPOSITORY_OWNER }}
         run: |
           chmod +rx ./.github/scripts/build-gh-page.sh
           ./.github/scripts/build-gh-page.sh
@@ -67,9 +67,9 @@ jobs:
         env:
           RELEASE: ${{ inputs.release }}
           PRE_RELEASE: ${{ inputs.preRelease }}
-          NAME: $GITHUB_REF_NAME
+          NAME: ${{ env.GITHUB_REF_NAME }}
           REPO_NAME: ${{ steps.repo-name.outputs.result }}
-          OWNER_NAME: $GITHUB_REPOSITORY_OWNER
+          OWNER_NAME: ${{ env.GITHUB_REPOSITORY_OWNER }}
         run: |
           if [[ $RELEASE == "true" ]];
           then
