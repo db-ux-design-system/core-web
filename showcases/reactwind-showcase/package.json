@@ -1,0 +1,30 @@
+{
+  "name": "reactwind-showcase",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite --open",
+    "start": "vite",
+    "build:tsc": "tsc",
+    "build:vite": "vite build",
+    "build:copy": "cpr dist ../../build-showcases/reactwind-showcase",
+    "build": "npm-run-all build:*",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "devDependencies": {
+    "@types/react": "^18.0.24",
+    "@types/react-dom": "^18.0.8",
+    "@vitejs/plugin-react": "^3.0.0",
+    "autoprefixer": "^10.4.13",
+    "postcss": "^8.4.19",
+    "sass": "^1.55.0",
+    "tailwindcss": "^3.2.4",
+    "typescript": "^4.6.4",
+    "vite": "^4.0.1"
+  }
+}

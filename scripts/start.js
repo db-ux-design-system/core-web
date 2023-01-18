@@ -23,6 +23,9 @@ inquirer
 					checked: true
 				},
 				{
+					name: 'reactwind'
+				},
+				{
 					name: 'svelte'
 				},
 				{
