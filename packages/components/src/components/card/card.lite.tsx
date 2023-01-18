@@ -46,10 +46,10 @@ export default function DBCard(props: DBCardProps) {
 			data-direction={props.direction}
 			onClick={(event) => {
 				if (props.onClick) {
-					props.onClick?.(event);
+					props.onClick(event);
 				}
 				if (props.click) {
-					props.click?.(event);
+					props.click(event);
 				}
 			}}>
 			<Show when={state.stylePath}>

@@ -53,10 +53,10 @@ export default function DBButton(props: DBButtonProps) {
 			data-variant={props.variant}
 			onClick={(event) => {
 				if (props.onClick) {
-					props.onClick?.(event);
+					props.onClick(event);
 				}
 				if (props.click) {
-					props.click?.(event);
+					props.click(event);
 				}
 			}}>
 			<Show when={state.stylePath}>
