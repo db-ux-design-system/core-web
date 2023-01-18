@@ -15,7 +15,24 @@
 
 	border-radius: 8px;
 	box-shadow: $db-elevation-4;
-	padding: $db-spacing-fixed-md;
+	display: flex;
+	flex-direction: column;
+
+	& > .db-card-image {
+		width: 100%;
+	}
+
+	&[data-direction="row"] {
+		@media only screen and (min-width: #{$db-screens-md}) {
+			display: grid;
+			grid-template-columns: repeat(2, minmax(0, 1fr));
+			gap: $db-spacing-fixed-md;
+
+			& > .db-card-image {
+				height: 100%;
+			}
+		}
+	}
 
 	& > a {
 		text-decoration: none;
@@ -35,52 +52,5 @@
 		&:active {
 			box-shadow: $db-elevation-2;
 		}
-	}
-
-	// Cards contents are probably deprecated
-	// TODO: probably remove after discussions and/or move to demonstration styles for the homepage
-	figure {
-		margin: $db-spacing-fixed-md $db-spacing-fixed-md $db-spacing-fixed-md
-			$db-spacing-fixed-xs;
-	}
-	// Banner variant
-	&[data-variant="banner"] {
-		figure {
-			display: flex;
-		}
-
-		figcaption {
-			margin-left: 1rem;
-
-			h1,
-			h2,
-			h3,
-			h4,
-			h5,
-			h6 {
-				font-size: to-rem($pxValue: 18);
-
-				&,
-				& ~ p {
-					margin: 0.125rem 0;
-				}
-			}
-
-			p {
-				font-size: to-rem($pxValue: 14);
-
-				max-width: to-rem(
-					$pxValue: 290
-				); // TODO: This would need some rework
-			}
-		}
-	}
-	// Tile variant
-	&[data-variant="tile"] {
-		text-align: center;
-	}
-
-	figcaption {
-		max-width: 60ch;
 	}
 }

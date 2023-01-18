@@ -42,17 +42,24 @@ export default function DBButton(props: DBButtonProps) {
 
 	return (
 		<button
-			class={'db-button' + (props.className || '')}
+			class={
+				'db-button' +
+				(props.className ? ' ' + props.className : '') +
+				(props.onlyIcon ? ' is-icon-text-replace' : '')
+			}
+			data-size={props.size}
+			data-state={props.state}
+			data-width={props.width}
 			data-variant={props.variant}>
 			<Show when={state.stylePath}>
 				<link rel="stylesheet" href={state.stylePath} />
 			</Show>
-			<Show when={props.icon}>
-				<DBIcon icon={props.icon} />
-			</Show>
-			{/* we need spacings around props.text for compilation */}
-			<Show when={props.text}> {props.text} </Show>
-			{props.children}
+
+			<DBIcon icon={props.icon} withText={!props.onlyIcon}>
+				{/* we need spacings around props.text for compilation */}
+				<Show when={props.text}> {props.text} </Show>
+				{props.children}
+			</DBIcon>
 		</button>
 	);
 }

@@ -30,12 +30,17 @@ export default function DBIcon(props: DBIconProps) {
 
 	return (
 		<span
-			class={'db-icon' + (props.className || '')}
+			class={
+				'db-icon' +
+				(props.className ? ' ' + props.className : '') +
+				(props.withText ? '' : ' is-icon-text-replace')
+			}
 			data-icon={props.icon}
 			aria-hidden="true">
 			<Show when={state.stylePath}>
 				<link rel="stylesheet" href={state.stylePath} />
 			</Show>
+			{props.children}
 		</span>
 	);
 }
