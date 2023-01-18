@@ -50,7 +50,15 @@ export default function DBButton(props: DBButtonProps) {
 			data-size={props.size}
 			data-state={props.state}
 			data-width={props.width}
-			data-variant={props.variant}>
+			data-variant={props.variant}
+			onClick={(event) => {
+				if (props.onClick) {
+					props.onClick?.(event);
+				}
+				if (props.click) {
+					props.click?.(event);
+				}
+			}}>
 			<Show when={state.stylePath}>
 				<link rel="stylesheet" href={state.stylePath} />
 			</Show>

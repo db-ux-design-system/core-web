@@ -1,4 +1,4 @@
-import { GlobalProps, GlobalState } from '../../shared/model';
+import { ClickEventProps, GlobalProps, GlobalState } from '../../shared/model';
 
 export type DBButtonDefaultProps = {
 	text?: string;
@@ -10,7 +10,9 @@ export type DBButtonDefaultProps = {
 	variant?: 'primary' | 'secondary' | 'tertiary' | 'ghost';
 };
 
-export type DBButtonProps = DBButtonDefaultProps & GlobalProps;
+export type DBButtonProps = DBButtonDefaultProps &
+	GlobalProps &
+	ClickEventProps;
 
 export type DBButtonDefaultState = {};
 

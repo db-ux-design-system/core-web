@@ -1,4 +1,4 @@
-import { GlobalProps, GlobalState } from '../../shared/model';
+import { ClickEventProps, GlobalProps, GlobalState } from '../../shared/model';
 
 export type DBCardDefaultProps = {
 	colorVariant?: string;
@@ -10,7 +10,7 @@ export type DBCardDefaultProps = {
 	variant?: 'full-width' | 'ia';
 };
 
-export type DBCardProps = DBCardDefaultProps & GlobalProps;
+export type DBCardProps = DBCardDefaultProps & GlobalProps & ClickEventProps;
 
 export type DBCardDefaultState = {};
 

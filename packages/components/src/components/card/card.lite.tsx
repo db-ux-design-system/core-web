@@ -39,9 +39,19 @@ export default function DBCard(props: DBCardProps) {
 	return (
 		<div
 			class={'db-card' + (props.className ? ' ' + props.className : '')}
-			data-variant={props.variant}
+			data-variant={
+				props.variant || ((props.click || props.onClick) && 'ia')
+			}
 			data-color-variant={props.colorVariant}
-			data-direction={props.direction}>
+			data-direction={props.direction}
+			onClick={(event) => {
+				if (props.onClick) {
+					props.onClick?.(event);
+				}
+				if (props.click) {
+					props.click?.(event);
+				}
+			}}>
 			<Show when={state.stylePath}>
 				<link rel="stylesheet" href={state.stylePath} />
 			</Show>
