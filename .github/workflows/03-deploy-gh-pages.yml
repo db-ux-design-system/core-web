@@ -39,6 +39,10 @@ jobs:
           mv build-showcases/vue-showcase build-showcases/patternhub/vue-showcase
           mv build-showcases/patternhub out
 
+      - name: ↔ Extract branch name
+        uses: ./.github/actions/extract-branch
+        id: extract_branch
+
       - name: 📛 Get repo name
         uses: actions/github-script@v6
         id: repo-name
@@ -50,7 +54,7 @@ jobs:
         env:
           RELEASE: ${{ inputs.release }}
           PRE_RELEASE: ${{ inputs.preRelease }}
-          NAME: ${{ github.ref_name }}
+          NAME: ${{ steps.extract_branch.outputs.branch-name }}
           REPO_NAME: ${{ steps.repo-name.outputs.result }}
           OWNER_NAME: ${{ github.repository_owner }}
         run: |
@@ -67,7 +71,7 @@ jobs:
         env:
           RELEASE: ${{ inputs.release }}
           PRE_RELEASE: ${{ inputs.preRelease }}
-          NAME: ${{ github.ref_name }}
+          NAME: ${{ steps.extract_branch.outputs.branch-name }}
           REPO_NAME: ${{ steps.repo-name.outputs.result }}
           OWNER_NAME: ${{ github.repository_owner }}
         run: |

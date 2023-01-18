@@ -36,10 +36,14 @@ jobs:
           name: db-ui-output
           path: output
 
+      - name: ↔ Extract branch name
+        uses: ./.github/actions/extract-branch
+        id: extract_branch
+
       - name: 🛤 Get base path
         uses: actions/github-script@v6
         env:
-          NAME: ${{ github.ref_name }}
+          NAME: ${{ steps.extract_branch.outputs.branch-name }}
           RELEASE: ${{ inputs.release }}
           PRE_RELEASE: ${{ inputs.preRelease }}
         id: base-path
