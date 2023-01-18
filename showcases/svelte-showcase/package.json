@@ -6,8 +6,7 @@
   "scripts": {
     "dev": "vite --open",
     "start": "vite",
-    "build": "vite build",
-    "preview": "vite preview"
+    "build": "vite build"
   },
   "devDependencies": {
     "@sveltejs/vite-plugin-svelte": "^2.0.2",
