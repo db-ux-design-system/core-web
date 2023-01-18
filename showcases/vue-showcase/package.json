@@ -6,7 +6,6 @@
   "scripts": {
     "dev": "vite --open",
     "start": "vite",
-    "build:vite": "vite build --base=/vue-showcase",
     "build:copy": "cpr dist ../../build-showcases/vue-showcase -o",
     "build": "npm-run-all build:*"
   },
