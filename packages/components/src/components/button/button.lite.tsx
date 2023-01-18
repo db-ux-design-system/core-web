@@ -32,7 +32,16 @@ useMetadata({
 });
 
 export default function DBButton(props: DBButtonProps) {
-	const state = useStore<DBButtonState>({});
+	const state = useStore<DBButtonState>({
+		handleClick: (event) => {
+			if (props.onClick) {
+				props.onClick(event);
+			}
+			if (props.click) {
+				props.click(event);
+			}
+		}
+	});
 
 	onMount(() => {
 		if (props.stylePath) {
@@ -50,7 +59,8 @@ export default function DBButton(props: DBButtonProps) {
 			data-size={props.size}
 			data-state={props.state}
 			data-width={props.width}
-			data-variant={props.variant}>
+			data-variant={props.variant}
+			onClick={(event) => state.handleClick(event)}>
 			<Show when={state.stylePath}>
 				<link rel="stylesheet" href={state.stylePath} />
 			</Show>

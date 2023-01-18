@@ -44,6 +44,12 @@ const changeFile = (component, input) => {
 		}
 	}
 
+	if (component?.overwrites?.global) {
+		for (const over of component.overwrites.global) {
+			result = result.replace(over.from, over.to);
+		}
+	}
+
 	return result;
 };
 
