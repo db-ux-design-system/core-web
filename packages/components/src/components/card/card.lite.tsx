@@ -50,6 +50,8 @@ export default function DBCard(props: DBCardProps) {
 					class="db-card-image"
 					src={props.imgSrc}
 					alt={props.imgAlt}
+					height={props.imgHeight}
+					width={props.imgWidth}
 				/>
 			</Show>
 			{props.children}
