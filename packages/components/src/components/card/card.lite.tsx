@@ -28,7 +28,16 @@ useMetadata({
 });
 
 export default function DBCard(props: DBCardProps) {
-	const state = useStore<DBCardState>({});
+	const state = useStore<DBCardState>({
+		handleClick: (event: any) => {
+			if (props.onClick) {
+				props.onClick(event);
+			}
+			if (props.click) {
+				props.click(event);
+			}
+		}
+	});
 
 	onMount(() => {
 		if (props.stylePath) {
@@ -44,14 +53,7 @@ export default function DBCard(props: DBCardProps) {
 			}
 			data-color-variant={props.colorVariant}
 			data-direction={props.direction}
-			onClick={(event) => {
-				if (props.onClick) {
-					props.onClick(event);
-				}
-				if (props.click) {
-					props.click(event);
-				}
-			}}>
+			onClick={(event) => state.handleClick(event)}>
 			<Show when={state.stylePath}>
 				<link rel="stylesheet" href={state.stylePath} />
 			</Show>

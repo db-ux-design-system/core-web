@@ -25,6 +25,13 @@ module.exports = () => {
 				replacements = [...replacements, ...component.overwrites.react];
 			}
 
+			if (component?.overwrites?.global) {
+				replacements = [
+					...replacements,
+					...component.overwrites.global
+				];
+			}
+
 			replacements.forEach((replacement) => {
 				const option = {
 					files: tsxFile,
