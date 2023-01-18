@@ -41,7 +41,7 @@
     "build-showcases:angular-current": "npm run build --workspace=angular-current-showcase",
     "build-showcases:patternhub": "npm run build --workspace=db-patternhub",
     "build-showcases:react": "npm run build --workspace=react-showcase",
-    "build-showcasesfix:reactwind": "npm run build --workspace=reactwind-showcase",
+    "build-showcases:reactwind": "npm run build --workspace=reactwind-showcase",
     "build-showcases:vue": "npm run build --workspace=vue-showcase",
     "build-showcases": "npm-run-all -p build-showcases:*",
     "start:foundations": "npm run start --workspace=@db-ui/foundations",
