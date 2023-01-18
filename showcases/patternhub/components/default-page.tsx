@@ -20,19 +20,22 @@ const getRoutesWithCurrent = (
 		return [];
 	}
 
-	return routes.map((route) => ({
-		...route,
-		link:
-			process.env.NODE_ENV === 'development' || route.link === '/'
-				? route.link
-				: `${route.link}.html`,
-		current:
-			(route.link === '/' && pathname === '/') ||
-			(route.link !== '/' && pathname.includes(route.link)),
-		children: route.children
-			? getRoutesWithCurrent(route.children, pathname)
-			: []
-	}));
+	return routes
+		.map((route) => ({
+			...route,
+			current:
+				(route.link === '/' && pathname === '/') ||
+				(route.link !== '/' && pathname.includes(route.link)),
+			children: route.children
+				? getRoutesWithCurrent(route.children, pathname)
+				: []
+		}))
+		.map((route) => ({
+			...route,
+			link: process.env.NEXT_PUBLIC_BASE_PATH
+				? `${process.env.NEXT_PUBLIC_BASE_PATH}${route.link}`
+				: route.link
+		}));
 };
 
 const DefaultPage = ({ children }: any) => {

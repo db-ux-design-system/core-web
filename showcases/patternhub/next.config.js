@@ -22,7 +22,7 @@ const transpiledPackages = Object.keys(packageJSON.dependencies).filter((it) =>
 const withTM = require('next-transpile-modules')(transpiledPackages);
 
 module.exports = {
-	basePath: process.env.BASE_PATH || '',
+	basePath: process.env.NEXT_PUBLIC_BASE_PATH || '',
 	...withTM(
 		withMDX({
 			pageExtensions: ['ts', 'tsx', 'js', 'jsx', 'md', 'mdx']

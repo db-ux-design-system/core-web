@@ -58,7 +58,7 @@ jobs:
 
       - name: 🔨 Build Showcases
         env:
-          BASE_PATH: ${{ steps.base-path.outputs.result }}
+          NEXT_PUBLIC_BASE_PATH: ${{ steps.base-path.outputs.result }}
         run: npm run build-showcases
 
       - name: ⬆ Upload Showcases
