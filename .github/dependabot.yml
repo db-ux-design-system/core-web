@@ -35,3 +35,25 @@ updates:
       separator: "-"
     # https://github.com/dependabot/dependabot-core/issues/5226#issuecomment-1179434437
     versioning-strategy: increase
+
+  - package-ecosystem: "npm"
+    directory: "/examples/react-example"
+    open-pull-requests-limit: 10
+    schedule:
+      interval: "daily"
+      time: "04:00"
+      timezone: "Europe/Berlin"
+    pull-request-branch-name:
+      separator: "-"
+    versioning-strategy: increase
+
+  - package-ecosystem: "npm"
+    directory: "/examples/vue-example"
+    open-pull-requests-limit: 10
+    schedule:
+      interval: "daily"
+      time: "04:00"
+      timezone: "Europe/Berlin"
+    pull-request-branch-name:
+      separator: "-"
+    versioning-strategy: increase
