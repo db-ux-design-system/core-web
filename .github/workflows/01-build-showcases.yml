@@ -61,8 +61,8 @@ jobs:
           NEXT_PUBLIC_BASE_PATH: ${{ steps.base-path.outputs.result }}
           BASE_URL: ${{ steps.base-path.outputs.result }}
         run: |
-          replace-in-file /angular-current-showcase/ ${BASE_URL}/angular-current-showcase/ showcases/angular-current-showcase/src/index.html
-          replace-in-file /angular-lts-showcase/ ${BASE_URL}/angular-lts-showcase/ showcases/angular-lts-showcase/src/index.html
+          npx replace-in-file /angular-current-showcase/ ${BASE_URL}/angular-current-showcase/ showcases/angular-current-showcase/src/index.html
+          npx replace-in-file /angular-lts-showcase/ ${BASE_URL}/angular-lts-showcase/ showcases/angular-lts-showcase/src/index.html
           npm run build-showcases
 
       - name: ⬆ Upload Showcases
