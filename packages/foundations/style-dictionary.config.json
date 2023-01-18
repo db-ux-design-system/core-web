@@ -33,16 +33,6 @@
 				}
 			]
 		},
-		"db-core-typography-classes": {
-			"transformGroup": "scss",
-			"buildPath": "build/scss/",
-			"files": [
-				{
-					"destination": "typography-classes.scss",
-					"format": "db-core-typography-classes"
-				}
-			]
-		},
 		"db-core-typography-placeholder": {
 			"transformGroup": "scss",
 			"buildPath": "build/scss/",
@@ -50,16 +40,6 @@
 				{
 					"destination": "_typography-placeholder.scss",
 					"format": "db-core-typography-placeholder"
-				}
-			]
-		},
-		"db-core-scaling-classes": {
-			"transformGroup": "scss",
-			"buildPath": "build/scss/",
-			"files": [
-				{
-					"destination": "scaling-classes.scss",
-					"format": "db-core-scaling-classes"
 				}
 			]
 		},

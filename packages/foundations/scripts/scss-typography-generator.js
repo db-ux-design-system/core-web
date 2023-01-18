@@ -1,12 +1,12 @@
 const prefix = 'db';
 
 const fileHeader = `
-	@use "variables" as *;
-	@use "icon/icon-family-calc" as *;
-	// Do not edit directly
-	// Generated on
-	// ${new Date().toString()}
-	`;
+@use "variables" as *;
+@use "icon/icon-family-calc" as *;
+// Do not edit directly
+// Generated on
+// ${new Date().toString()}
+`;
 
 const getShortSize = (size) => {
 	if (size === '3xlarge') {
@@ -48,99 +48,44 @@ const getShortSize = (size) => {
 	return size;
 };
 
-const getUtilityClass = (utility, scale, textType, size) => {
-	const isHeadline = textType === 'headline';
-
-	let result = `
-${utility ? '.' : '%'}${prefix}-${scale}-${textType}-${getShortSize(size)}{
-`;
-	result += `
-	line-height: $${prefix}-typography-${scale}-mobile-${textType}-${size}-line-height;
-	font-size: $${prefix}-typography-${scale}-mobile-${textType}-${size}-font-size;
-`;
-
-	if (isHeadline) {
-		result += `
-	font-weight: 700;
-
-    &-light,
-    &[data-variant="light"] {
-        font-weight: 300;
-    }
+/**
+ *
+ * @param properties {{scale: string, textType:string, size:string, sSize:string, isHeadline:boolean, mQuery: string}}
+ */
+const getMediaQueryProperties = (properties) => {
+	const { textType, sSize, scale, size, isHeadline, mQuery } = properties;
+	let result = `--db-type-${textType}-font-size-${sSize}: #{$${prefix}-typography-${scale}-${mQuery}-${textType}-${size}-font-size};
+	--db-type-${textType}-line-height-${sSize}: #{$${prefix}-typography-${scale}-${mQuery}-${textType}-${size}-line-height};
 	`;
-	} else {
-		result += `
-	--db-base-icon-font-size: #{$${prefix}-typography-${scale}-mobile-${textType}-${size}-font-size};
-	--db-base-icon-font-family: #{get-icon-family($${prefix}-typography-${scale}-mobile-${textType}-${size}-font-size,
-	$${prefix}-typography-${scale}-mobile-${textType}-${size}-line-height)};
-	--db-base-icon-font-family-filled: #{get-icon-family($${prefix}-typography-${scale}-mobile-${textType}-${size}-font-size,
-	$${prefix}-typography-${scale}-mobile-${textType}-${size}-line-height,"filled")};
-	--db-type-body-font-size-${getShortSize(
-		size
-	)}: #{$${prefix}-typography-${scale}-mobile-${textType}-${size}-font-size};
-	--db-type-body-line-height-${getShortSize(
-		size
-	)}: #{$${prefix}-typography-${scale}-mobile-${textType}-${size}-line-height};
-		`;
-	}
 
-	result += `
-	@media only screen and (min-width: $db-screens-md) {
-		line-height: $${prefix}-typography-${scale}-tablet-${textType}-${size}-line-height;
-		font-size: $${prefix}-typography-${scale}-tablet-${textType}-${size}-font-size;`;
 	if (!isHeadline) {
 		result += `
-		--db-base-icon-font-size: #{$${prefix}-typography-${scale}-tablet-${textType}-${size}-font-size};
-		--db-base-icon-font-family: #{get-icon-family($${prefix}-typography-${scale}-tablet-${textType}-${size}-font-size,
-		$${prefix}-typography-${scale}-tablet-${textType}-${size}-line-height)};
-		--db-base-icon-font-family-filled: #{get-icon-family($${prefix}-typography-${scale}-tablet-${textType}-${size}-font-size,
-		$${prefix}-typography-${scale}-tablet-${textType}-${size}-line-height,"filled")};
-		--db-type-body-font-size-${getShortSize(
-			size
-		)}: #{$${prefix}-typography-${scale}-tablet-${textType}-${size}-font-size};
-		--db-type-body-line-height-${getShortSize(
-			size
-		)}: #{$${prefix}-typography-${scale}-tablet-${textType}-${size}-line-height};
+	--db-base-icon-font-size-${sSize}: #{$${prefix}-typography-${scale}-${mQuery}-${textType}-${size}-font-size};
+	--db-base-icon-font-family-${sSize}: #{get-icon-family($${prefix}-typography-${scale}-${mQuery}-${textType}-${size}-font-size,
+	$${prefix}-typography-${scale}-${mQuery}-${textType}-${size}-line-height)};
+	--db-base-icon-font-family-filled-${sSize}: #{get-icon-family($${prefix}-typography-${scale}-${mQuery}-${textType}-${size}-font-size,
+	$${prefix}-typography-${scale}-${mQuery}-${textType}-${size}-line-height,"filled")};
 		`;
 	}
-
-	result += `}\n`;
-
-	result += `
-	@media only screen and (min-width: $db-screens-lg) {
-		line-height: $${prefix}-typography-${scale}-desktop-${textType}-${size}-line-height;
-		font-size: $${prefix}-typography-${scale}-desktop-${textType}-${size}-font-size;`;
-	if (!isHeadline) {
-		result += `
-		--db-base-icon-font-size: #{$${prefix}-typography-${scale}-desktop-${textType}-${size}-font-size};
-		--db-base-icon-font-family: #{get-icon-family($${prefix}-typography-${scale}-desktop-${textType}-${size}-font-size,
-		$${prefix}-typography-${scale}-desktop-${textType}-${size}-line-height)};
-		--db-base-icon-font-family-filled: #{get-icon-family($${prefix}-typography-${scale}-desktop-${textType}-${size}-font-size,
-		$${prefix}-typography-${scale}-desktop-${textType}-${size}-line-height,"filled")};
-		--db-type-body-font-size-${getShortSize(
-			size
-		)}: #{$${prefix}-typography-${scale}-desktop-${textType}-${size}-font-size};
-		--db-type-body-line-height-${getShortSize(
-			size
-		)}: #{$${prefix}-typography-${scale}-desktop-${textType}-${size}-line-height};
-		`;
-	}
-
-	result += `}`;
-
-	result += `
-}
-	`;
 
 	return result;
 };
 
-const generateClasses = (typography, utility) => {
-	let allClasses = fileHeader;
+const getSizeProperties = (scale, textType, size, mQuery) => {
+	const isHeadline = textType === 'headline';
+	const sSize = getShortSize(size);
+	return getMediaQueryProperties({
+		scale,
+		size,
+		textType,
+		sSize,
+		isHeadline,
+		mQuery
+	});
+};
 
-	if (utility) {
-		allClasses += `@use "variables" as *;\n@use "typography-placeholder" as *;\n`;
-	}
+const generateTypography = (typography) => {
+	let allClasses = fileHeader;
 
 	// ScaleTypeKey = [regular, functional, expressive]
 	for (const scaleTypeKey of Object.keys(typography)) {
@@ -154,14 +99,38 @@ const generateClasses = (typography, utility) => {
 			for (const textTypeKey of Object.keys(firstMediaQueryObject)) {
 				const textTypeObject = firstMediaQueryObject[textTypeKey];
 				// SizeKey = [3xlarge - 3xsmall]
-				for (const sizeKey of Object.keys(textTypeObject)) {
-					allClasses += getUtilityClass(
-						utility,
-						scaleTypeKey,
-						textTypeKey,
-						sizeKey
-					);
+				allClasses += `
+%${prefix}-typography-${textTypeKey}-${scaleTypeKey}{
+	`;
+				for (const mQuery of ['mobile', 'tablet', 'desktop']) {
+					if (mQuery !== 'mobile') {
+						allClasses += `@media only screen and (min-width: ${
+							mQuery === 'tablet'
+								? '#{$db-screens-md}'
+								: '#{$db-screens-lg}'
+						}) {
+	`;
+					}
+
+					for (const sizeKey of Object.keys(textTypeObject)) {
+						allClasses += getSizeProperties(
+							scaleTypeKey,
+							textTypeKey,
+							sizeKey,
+							mQuery
+						);
+					}
+
+					if (mQuery !== 'mobile') {
+						allClasses += `}
+
+	`;
+					}
 				}
+
+				allClasses += `
+}
+`;
 			}
 		}
 	}
@@ -169,4 +138,4 @@ const generateClasses = (typography, utility) => {
 	return allClasses;
 };
 
-module.exports = generateClasses;
+module.exports = generateTypography;

@@ -16,7 +16,11 @@ useMetadata({
 						name: 'Interactive',
 						value: 'ia'
 					},
-					{ key: 'Full Width', name: 'Full Width', value: 'full-width' }
+					{
+						key: 'Full Width',
+						name: 'Full Width',
+						value: 'full-width'
+					}
 				]
 			}
 		]
@@ -34,11 +38,21 @@ export default function DBCard(props: DBCardProps) {
 
 	return (
 		<div
-			class={'db-card' + (props.className || '')}
+			class={'db-card' + (props.className ? ' ' + props.className : '')}
 			data-variant={props.variant}
-			data-color-variant={props.colorVariant}>
+			data-color-variant={props.colorVariant}
+			data-direction={props.direction}>
 			<Show when={state.stylePath}>
 				<link rel="stylesheet" href={state.stylePath} />
+			</Show>
+			<Show when={props.imgSrc}>
+				<img
+					class="db-card-image"
+					src={props.imgSrc}
+					alt={props.imgAlt}
+					height={props.imgHeight}
+					width={props.imgWidth}
+				/>
 			</Show>
 			{props.children}
 		</div>
