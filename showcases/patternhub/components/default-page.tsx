@@ -41,7 +41,7 @@ const DefaultPage = ({ children }: any) => {
 		<StaticContent>
 			<DbPage>
 				<DbHeader slot="header">
-					<DbBrand src="/images/db_logo.svg">
+					<DbBrand src="https://raw.githubusercontent.com/db-ui/mono/main/packages/foundations/assets/images/db_logo.svg">
 						{process.env.NEXT_PUBLIC_APP_NAME}
 					</DbBrand>
 					<DbMainnavigation

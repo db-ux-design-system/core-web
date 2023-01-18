@@ -40,3 +40,4 @@ components
 !components/default-page.tsx
 !components/iframe.tsx
 !components/static-content.tsx
+!.env

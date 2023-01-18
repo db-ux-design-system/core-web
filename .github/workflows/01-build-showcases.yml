@@ -3,6 +3,15 @@ name: Build Showcases
 
 on:
   workflow_call:
+    inputs:
+      release:
+        required: false
+        default: "false"
+        type: string
+      preRelease:
+        required: false
+        default: "false"
+        type: string
 
 jobs:
   build-showcases:
@@ -27,7 +36,25 @@ jobs:
           name: db-ui-output
           path: output
 
+      - name: 🛤 Get base path
+        uses: actions/github-script@v6
+        env:
+          NAME: $GITHUB_REF_NAME
+          RELEASE: ${{ inputs.release }}
+          PRE_RELEASE: ${{ inputs.preRelease }}
+        id: base-path
+        with:
+          result-encoding: string
+          script: |
+            var path = 'review';
+            if(process.env.RELEASE === "true" || process.env.PRE_RELEASE === "true") {
+              path = 'version'
+            }
+            return `/${context?.payload?.repository?.name}/${path}/${process.env.NAME}`
+
       - name: 🔨 Build Showcases
+        env:
+          BASE_PATH: ${{ steps.base-path.outputs.result }}
         run: npm run build-showcases
 
       - name: ⬆ Upload Showcases

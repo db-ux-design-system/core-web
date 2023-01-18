@@ -1,4 +1,4 @@
-/** @type {import('next').NextConfig} */
+/** @type {import("next").NextConfig} */
 
 const withMDX = require('@next/mdx')({
 	extension: /\.mdx?$/,
@@ -21,8 +21,11 @@ const transpiledPackages = Object.keys(packageJSON.dependencies).filter((it) =>
 
 const withTM = require('next-transpile-modules')(transpiledPackages);
 
-module.exports = withTM(
-	withMDX({
-		pageExtensions: ['ts', 'tsx', 'js', 'jsx', 'md', 'mdx']
-	})
-);
+module.exports = {
+	basePath: process.env.BASE_PATH || '',
+	...withTM(
+		withMDX({
+			pageExtensions: ['ts', 'tsx', 'js', 'jsx', 'md', 'mdx']
+		})
+	)
+};
