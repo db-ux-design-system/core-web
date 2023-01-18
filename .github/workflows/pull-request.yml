@@ -23,4 +23,5 @@ jobs:
 
   labeler:
     if: github.event.pull_request.head.repo.owner.login == 'db-ui'
+    continue-on-error: true
     uses: ./.github/workflows/99-labeler.yml
