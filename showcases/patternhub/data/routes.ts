@@ -46,3 +46,12 @@ export const ROUTES: DbMainnavigationDataType[] = [
 		]
 	}
 ];
+
+export const getRouteWithBasePath = (route: DbMainnavigationDataType) => {
+	return {
+		...route,
+		link: process.env.NEXT_PUBLIC_BASE_PATH
+			? `${process.env.NEXT_PUBLIC_BASE_PATH}${route.link}`
+			: route.link
+	};
+};

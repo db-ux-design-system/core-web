@@ -48,6 +48,7 @@
     "start-showcase:angular-lts": "npm run dev --workspace=angular-lts-showcase",
     "start-showcase:angular-current": "npm run dev --workspace=angular-current-showcase",
     "start-showcase:next": "npm run dev --workspace=next-showcase",
+    "start-showcase:patternhub": "npm run dev --workspace=db-patternhub",
     "start-showcase:react": "npm run dev --workspace=react-showcase",
     "start-showcase:svelte": "npm run dev --workspace=svelte-showcase",
     "start-showcase:vanilla": "npm run dev --workspace=vanilla-showcase",

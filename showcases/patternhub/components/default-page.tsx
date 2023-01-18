@@ -7,7 +7,7 @@ import {
 	GithubVersionSwitcher
 } from '@db-ui/react-elements';
 import StaticContent from './static-content';
-import { ROUTES } from '../data/routes';
+import { getRouteWithBasePath, ROUTES } from '../data/routes';
 import '@db-ui/core/dist/css/db-ui-core.vars.css';
 import { useRouter } from 'next/router';
 import { DbMainnavigationDataType } from '@db-ui/elements/dist/types/components/db-mainnavigation/db-mainnavigation-type';
@@ -30,12 +30,7 @@ const getRoutesWithCurrent = (
 				? getRoutesWithCurrent(route.children, pathname)
 				: []
 		}))
-		.map((route) => ({
-			...route,
-			link: process.env.NEXT_PUBLIC_BASE_PATH
-				? `${process.env.NEXT_PUBLIC_BASE_PATH}${route.link}`
-				: route.link
-		}));
+		.map((route) => getRouteWithBasePath(route));
 };
 
 const DefaultPage = ({ children }: any) => {

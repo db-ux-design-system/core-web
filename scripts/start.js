@@ -16,6 +16,9 @@ inquirer
 					name: 'next'
 				},
 				{
+					name: 'patternhub'
+				},
+				{
 					name: 'react',
 					checked: true
 				},
