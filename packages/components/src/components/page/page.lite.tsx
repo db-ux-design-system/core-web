@@ -6,7 +6,6 @@ import {
 	useStore
 } from '@builder.io/mitosis';
 import { DBPageProps, DBPageState } from './model';
-import './page.scss';
 
 useMetadata({
 	isAttachedToShadowDom: true,

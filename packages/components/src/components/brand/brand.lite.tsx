@@ -1,6 +1,5 @@
 import { onMount, Show, useMetadata, useStore } from '@builder.io/mitosis';
 import { DBBrandState, DBBrandProps } from './model';
-import './brand.scss';
 
 useMetadata({
 	isAttachedToShadowDom: true,

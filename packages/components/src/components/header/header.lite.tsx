@@ -6,7 +6,6 @@ import {
 	useStore
 } from '@builder.io/mitosis';
 import { DBHeaderState, DBHeaderProps } from './model';
-import './header.scss';
 
 useMetadata({
 	isAttachedToShadowDom: true,
