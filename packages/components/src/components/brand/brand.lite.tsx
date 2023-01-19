@@ -11,7 +11,6 @@ useMetadata({
 });
 
 const DEFAULT_VALUES = {
-	alt: '',
 	anchorRef: '#',
 	src: './images/db_logo.svg'
 };
@@ -40,16 +39,16 @@ export default function DBBrand(props: DBBrandProps) {
 				rel={props.anchorRelation}>
 				<img
 					src={props.imgSrc ?? DEFAULT_VALUES.src}
-					alt={props.imgAlt ?? DEFAULT_VALUES.alt}
+					alt={props.imgAlt}
 					height={props.imgHeight}
 					width={props.imgWidth}
 					className="db-logo"
 				/>
-				<Show when={props.anchorChildren && props.children}>
+				<Show when={props.anchorChildren}>
 					<span className="site-name">{props.children}</span>
 				</Show>
 			</a>
-			<Show when={!props.anchorChildren && props.children}>
+			<Show when={!props.anchorChildren}>
 				<span className="site-name">{props.children}</span>
 			</Show>
 		</div>
