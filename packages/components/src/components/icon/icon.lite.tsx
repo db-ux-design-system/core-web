@@ -1,6 +1,5 @@
 import { onMount, Show, useMetadata, useStore } from '@builder.io/mitosis';
 import type { DBIconState, DBIconProps } from './model';
-import './icon.scss';
 
 useMetadata({
 	isAttachedToShadowDom: true,

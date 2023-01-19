@@ -2,4 +2,5 @@ assets/fonts/**/sources
 build/
 build-outputs/
 out/
+output/
 source/_patterns/**

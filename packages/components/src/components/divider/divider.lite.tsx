@@ -1,6 +1,5 @@
 import { onMount, Show, useMetadata, useStore } from '@builder.io/mitosis';
 import { DBDividerState, DBDividerProps } from './model';
-import './divider.scss';
 
 useMetadata({
 	isAttachedToShadowDom: true,

@@ -6,9 +6,7 @@ const changeFile = (component, input) => {
 		.split('\n')
 		.filter(
 			(line) =>
-				!line.includes('@db-ui') &&
-				!line.includes(`Props } from "../`) &&
-				!line.includes(`./${component.name}.scss`)
+				!line.includes('@db-ui') && !line.includes(`Props } from "../`)
 		)
 		.map((line) => {
 			if (
@@ -17,10 +15,6 @@ const changeFile = (component, input) => {
 				!line.includes(`Module`)
 			) {
 				return line.replace(` } from "../`, `Module } from "../`);
-			}
-
-			if (line.includes('selector:') && !input.includes('styleUrls:')) {
-				return `${line}\n  styleUrls:['./${component.name}.scss'],`;
 			}
 
 			if (line.includes(': ElementRef')) {
