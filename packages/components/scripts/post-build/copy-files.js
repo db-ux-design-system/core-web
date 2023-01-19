@@ -2,6 +2,13 @@ const Fse = require('fs-extra');
 const Components = require('./components');
 const Frameworks = require('./framworks');
 
+const styles = [
+	'db-ui-components',
+	'db-ui-42',
+	'db-ui-42-rollup',
+	'db-ui-42-webpack'
+];
+
 module.exports = () => {
 	for (const fileEnding of ['scss', 'css']) {
 		for (const framework of Frameworks) {
@@ -15,12 +22,15 @@ module.exports = () => {
 					}.${fileEnding}`
 				);
 			}
-			Fse.copySync(
-				`./src/db-ui-components.${fileEnding}`,
-				`../../output/${
-					framework === 'vue' ? `vue/vue3` : framework
-				}/src/db-ui-components.${fileEnding}`
-			);
+
+			for (const style of styles) {
+				Fse.copySync(
+					`./src/styles/${style}.${fileEnding}`,
+					`../../output/${
+						framework === 'vue' ? `vue/vue3` : framework
+					}/src/styles/${style}.${fileEnding}`
+				);
+			}
 		}
 	}
 

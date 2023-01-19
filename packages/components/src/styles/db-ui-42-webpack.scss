@@ -1,0 +1,8 @@
+/* This is a predefined beginner friendly bundle for webpack apps */
+
+@use "@db-ui/foundations/build/scss/webpack.assets-paths" as *;
+@use "@db-ui/foundations/build/scss/icon/icons" as *;
+@use "@db-ui/components/src/styles/db-ui-components" as *;
+
+@import "@db-ui/foundations/build/scss/variables.global";
+@import "@db-ui/foundations/build/scss/color-classes";
