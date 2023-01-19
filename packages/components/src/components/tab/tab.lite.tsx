@@ -7,7 +7,6 @@ import {
 } from '@builder.io/mitosis';
 import { uuid } from '../../utils';
 import type { DBTabState, DBTabProps } from './model';
-import './tab.scss';
 
 useMetadata({
 	isAttachedToShadowDom: true,

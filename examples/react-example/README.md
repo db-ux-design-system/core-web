@@ -15,8 +15,8 @@
 @use "@db-ui/foundations/build/scss/rollup.assets-paths" as *;
 // Icons are optional, but if you want to use them import the icons after the assets-paths
 @use "@db-ui/foundations/build/scss/icon/icons" as *;
-// Combined dependencies like variables, colors and tonality
-@use "@db-ui/foundations/build/scss/db-ui-foundations" as *;
+// Combined dependencies like variables, colors and tonality and all components
+@use "@db-ui/react-components/dist/db-ui-components" as *;
 // We use $db-spacing-fixed-md variable so we need to import the file where the variable is defined
 @use "@db-ui/foundations/build/scss/variables.global" as *;
 // Color-classes are optional, we use them in the example to have easy access to colors
