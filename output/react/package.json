@@ -21,7 +21,7 @@
   "types": "./dist/index.d.ts",
   "dependencies": {},
   "devDependencies": {
-    "@types/react": "^18.0.21",
+    "@types/react": "^18.0.27",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "rimraf": "4.1.1",
