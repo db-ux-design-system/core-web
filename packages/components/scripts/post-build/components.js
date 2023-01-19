@@ -1,5 +1,20 @@
 module.exports = [
 	{
+		name: 'page',
+		defaultStylePath: 'components/page/page.css'
+	},
+
+	{
+		name: 'header',
+		defaultStylePath: 'components/header/header.css'
+	},
+
+	{
+		name: 'brand',
+		defaultStylePath: 'components/brand/brand.css'
+	},
+
+	{
 		name: 'divider',
 		defaultStylePath: 'components/divider/divider.css',
 		overwrites: {

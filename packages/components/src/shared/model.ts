@@ -8,6 +8,13 @@ export type GlobalState = {
 	stylePath?: string;
 };
 
+export type ImageProps = {
+	imgAlt?: string;
+	imgSrc?: string;
+	imgHeight?: number | string;
+	imgWidth?: number | string;
+};
+
 export type ClickEventProps = {
 	click?: (event: any) => void;
 	onClick?: (event: any) => void;

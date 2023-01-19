@@ -6,7 +6,6 @@ npm-debug.log
 **/build/
 **/dist/
 build-old/
-public/
 out/
 dependencyGraph.json
 source/_meta/_head.mustache

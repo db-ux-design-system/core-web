@@ -30,7 +30,7 @@ export default function DBIcon(props: DBIconProps) {
 
 	return (
 		<span
-			class={
+			className={
 				'db-icon' +
 				(props.className ? ' ' + props.className : '') +
 				(props.withText ? '' : ' is-icon-text-replace')
