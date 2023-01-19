@@ -11,7 +11,7 @@ useMetadata({
 });
 
 const DEFAULT_VALUES = {
-	alt: 'Deutsche Bahn Logo',
+	alt: '',
 	anchorRef: '#',
 	src: './images/db_logo.svg'
 };
