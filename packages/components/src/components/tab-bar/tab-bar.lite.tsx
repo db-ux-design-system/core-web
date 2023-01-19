@@ -1,6 +1,5 @@
 import { For, onMount, Show, useMetadata, useStore } from '@builder.io/mitosis';
 import type { DBTabBarState, DBTabBarProps } from './model';
-import './tab-bar.scss';
 import { DBTab } from '../tab';
 import type { DBTabProps } from '../tab/model';
 

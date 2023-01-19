@@ -1,6 +1,5 @@
 import { onMount, Show, useMetadata, useStore } from '@builder.io/mitosis';
 import type { DBCardState, DBCardProps } from './model';
-import './card.scss';
 
 useMetadata({
 	isAttachedToShadowDom: true,
@@ -50,9 +49,7 @@ export default function DBCard(props: DBCardProps) {
 			className={
 				'db-card' + (props.className ? ' ' + props.className : '')
 			}
-			data-variant={
-				props.variant || ((props.click || props.onClick) && 'ia')
-			}
+			data-variant={props.variant}
 			data-color-variant={props.colorVariant}
 			data-direction={props.direction}
 			onClick={(event) => state.handleClick(event)}>

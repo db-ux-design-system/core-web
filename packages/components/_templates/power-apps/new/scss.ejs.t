@@ -10,6 +10,8 @@ force: true
 @use "@db-ui/foundations/build/scss/db-ui-foundations" as *;
 @use "@db-ui/foundations/build/scss/variables.global" as *;
 
+@use "./<%= name %>.scss" as *;
+
 :root {
 	@extend %db-ui-regular;
 }

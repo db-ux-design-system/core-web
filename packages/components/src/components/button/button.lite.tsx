@@ -1,6 +1,5 @@
 import { onMount, Show, useMetadata, useStore } from '@builder.io/mitosis';
 import type { DBButtonProps, DBButtonState } from './model';
-import './button.scss';
 import { DBIcon } from '../icon';
 
 useMetadata({
