@@ -1,7 +1,7 @@
 ---
 inject: true
-to: src/db-ui-components.scss
+to: src/styles/db-ui-components.scss
 append: true
 skip_if: components/<%= name %>
 ---
-@use "components/<%= name %>/<%= name %>" as *;
+@use "../components/<%= name %>/<%= name %>" as *;
