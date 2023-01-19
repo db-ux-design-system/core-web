@@ -1,10 +1,7 @@
 import { GlobalProps, GlobalState } from '../../shared/model';
 
-export enum DBPageType {
-	'FIXED_HEADER_FOOTER' = 'FIXED_HEADER_FOOTER'
-}
 export interface DBPageDefaultProps {
-	type?: DBPageType;
+	type?: 'fixedHeaderFooter';
 	slotHeader?: any;
 	slotFooter?: any;
 }

@@ -5,7 +5,7 @@ import {
 	useMetadata,
 	useStore
 } from '@builder.io/mitosis';
-import { DBPageState, DBPageProps, DBPageType } from './model';
+import { DBPageProps, DBPageState } from './model';
 import './page.scss';
 
 useMetadata({
@@ -30,7 +30,7 @@ export default function DBPage(props: DBPageProps) {
 			className={
 				'db-page' +
 				(props.className ? ' ' + props.className : '') +
-				(props.type === DBPageType.FIXED_HEADER_FOOTER
+				(props.type === 'fixedHeaderFooter'
 					? ' fixed-header-footer'
 					: '')
 			}>

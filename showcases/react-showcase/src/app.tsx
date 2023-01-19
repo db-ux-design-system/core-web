@@ -1,4 +1,3 @@
-import { DBPageType } from '../../../output/react/src/components/page/model';
 import {
 	DBBrand,
 	DBButton,
@@ -11,7 +10,7 @@ import {
 
 const App = () => (
 	<DBPage
-		type={DBPageType.FIXED_HEADER_FOOTER}
+		type="fixedHeaderFooter"
 		slotHeader={
 			<DBHeader
 				slotBrand={<DBBrand anchorChildren>Test</DBBrand>}
