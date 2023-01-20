@@ -25,3 +25,7 @@ export type ChangeEventProps = {
 export type ChangeEventState = {
 	handleChange: (event: any) => void;
 };
+
+export type OldStyleState = {
+	warnOldStyle: () => void;
+};

@@ -1,4 +1,4 @@
-import { GlobalProps, GlobalState } from '../../shared/model';
+import { GlobalProps, GlobalState, OldStyleState } from '../../shared/model';
 
 export type DBTabDefaultProps = {
 	/**
@@ -33,4 +33,4 @@ export type DBTabDefaultState = {
 	id?: string;
 };
 
-export type DBTabState = DBTabDefaultState & GlobalState;
+export type DBTabState = DBTabDefaultState & GlobalState & OldStyleState;

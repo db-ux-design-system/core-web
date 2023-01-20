@@ -126,7 +126,6 @@ const shortenTypographyRecursive = (data) => {
 			}
 		} catch (error) {
 			console.error(error);
-			console.log(data);
 		}
 
 		return result;

@@ -1,5 +1,5 @@
 import type { DBTabProps } from '../tab/model';
-import { GlobalProps, GlobalState } from '../../shared/model';
+import { GlobalProps, GlobalState, OldStyleState } from '../../shared/model';
 
 export type DBTabBarDefaultProps = {
 	/**
@@ -15,4 +15,4 @@ export type DBTabBarDefaultState = {
 	convertTabs: (tabs?: DBTabProps[] | string) => DBTabProps[];
 };
 
-export type DBTabBarState = DBTabBarDefaultState & GlobalState;
+export type DBTabBarState = DBTabBarDefaultState & GlobalState & OldStyleState;

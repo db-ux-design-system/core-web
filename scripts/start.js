@@ -49,6 +49,6 @@ inquirer
 				startCommand += ` start-showcase:${answer}`;
 			}
 
-		console.log(`Start with command: '${startCommand}'`);
+		console.warn(`Start with command: '${startCommand}'`);
 		childProcess.execSync(startCommand, { stdio: 'inherit' });
 	});
