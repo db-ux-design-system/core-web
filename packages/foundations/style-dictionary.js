@@ -7,7 +7,7 @@ const transforms = require('style-dictionary/lib/common/transforms');
 const SCSSPlaceholders = require('./scripts/color-placeholders-generator');
 const SCSSClasses = require('./scripts/color-classes-generator');
 
-const generateClasses = require('./scripts/scss-typography-generator');
+const generateTypography = require('./scripts/scss-typography-generator');
 const generateScaling = require('./scripts/scss-scaling-generator');
 
 const modifyTailwind = (dictionary) => {
@@ -45,32 +45,17 @@ StyleDictionary.registerFormat({
 });
 
 StyleDictionary.registerFormat({
-	name: 'db-core-typography-classes',
-	formatter({ dictionary }) {
-		const typography = dictionary.tokens.typography;
-		return generateClasses(typography, true);
-	}
-});
-
-StyleDictionary.registerFormat({
 	name: 'db-core-typography-placeholder',
 	formatter({ dictionary }) {
 		const typography = dictionary.tokens.typography;
-		return generateClasses(typography, false);
-	}
-});
-
-StyleDictionary.registerFormat({
-	name: 'db-core-scaling-classes',
-	formatter() {
-		return generateScaling(true);
+		return generateTypography(typography);
 	}
 });
 
 StyleDictionary.registerFormat({
 	name: 'db-core-scaling-placeholder',
 	formatter() {
-		return generateScaling(false);
+		return generateScaling();
 	}
 });
 
@@ -127,6 +112,15 @@ StyleDictionary.registerTransform({
 
 StyleDictionary.registerTransform({
 	type: `value`,
+	name: `size/upscale/screen`,
+	matcher: (token) => token.attributes.screen === true,
+	transformer(token) {
+		return `${Number(token.value) * 16}`;
+	}
+});
+
+StyleDictionary.registerTransform({
+	type: `value`,
 	name: `size/divide/rem`,
 	matcher: (token) => token.attributes.category === 'size',
 	transformer(token) {
@@ -139,6 +133,7 @@ StyleDictionary.registerTransformGroup({
 	transforms: [
 		'attribute/cti',
 		'name/dotty/pascal',
+		'size/upscale/screen',
 		'size/real/rem',
 		'color/hex'
 	]
@@ -151,6 +146,7 @@ StyleDictionary.registerTransformGroup({
 		'name/cti/kebab',
 		'time/seconds',
 		'content/icon',
+		'size/upscale/screen',
 		'size/real/rem',
 		'color/css'
 	]
@@ -163,6 +159,7 @@ StyleDictionary.registerTransformGroup({
 		'name/cti/kebab',
 		'time/seconds',
 		'content/icon',
+		'size/upscale/screen',
 		'size/real/rem',
 		'color/css'
 	]

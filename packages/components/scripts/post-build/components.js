@@ -1,4 +1,9 @@
 module.exports = [
+  {
+    name: "input",
+    defaultStylePath: "components/input/input.css",
+  },
+
 	{
 		name: 'divider',
 		defaultStylePath: 'components/divider/divider.css',
@@ -14,7 +19,12 @@ module.exports = [
 
 	{
 		name: 'card',
-		defaultStylePath: 'components/card/card.css'
+		defaultStylePath: 'components/card/card.css',
+		overwrites: {
+			global: [
+				{ from: 'handleClick(event)', to: 'handleClick(event:any)' }
+			]
+		}
 	},
 
 	{
@@ -62,7 +72,12 @@ module.exports = [
 
 	{
 		name: 'button',
-		defaultStylePath: 'components/button/button.css'
+		defaultStylePath: 'components/button/button.css',
+		overwrites: {
+			global: [
+				{ from: 'handleClick(event)', to: 'handleClick(event:any)' }
+			]
+		}
 	},
 	{
 		name: 'icon',

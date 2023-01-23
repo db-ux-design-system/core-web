@@ -5,18 +5,29 @@ const fileHeader =
 	new Date().toString() +
 	'\n';
 
-const generateSpacings = (utility) => {
+const generateScaling = () => {
 	let allClasses = fileHeader;
-
-	if (utility) {
-		allClasses += `@use "scaling-placeholder" as *;\n`;
-	}
 
 	const scaleTypeKey = ['regular', 'functional', 'expressive'];
 
+	const inputCustomVars = {
+		regular: {
+			labelScale: 0.65,
+			focusOpacity: 1
+		},
+		functional: {
+			labelScale: 1,
+			focusOpacity: 0
+		},
+		expressive: {
+			labelScale: 0.55,
+			focusOpacity: 1
+		}
+	};
+
 	for (const scale of scaleTypeKey) {
 		allClasses += `
-${utility ? '.' : '%'}db-scaling-${scale}{
+%db-scaling-${scale}{
 \t--db-sizing-xs: #{$db-sizing-${scale}-xs};
 \t--db-sizing-sm: #{$db-sizing-${scale}-s};
 \t--db-sizing-md: #{$db-sizing-${scale}-m};
@@ -35,6 +46,9 @@ ${utility ? '.' : '%'}db-scaling-${scale}{
 \t--db-spacing-responsive-md: #{$db-spacing-responsive-${scale}-mobile-m};
 \t--db-spacing-responsive-lg: #{$db-spacing-responsive-${scale}-mobile-l};
 \t--db-spacing-responsive-xl: #{$db-spacing-responsive-${scale}-mobile-xl};
+
+\t--db-input-label-scale: ${inputCustomVars[scale].labelScale};
+\t--db-input-focus-opacity: ${inputCustomVars[scale].focusOpacity};
 
 \t@media only screen and (min-width: $db-screens-md) {
 \t\t--db-spacing-responsive-xs: #{$db-spacing-responsive-${scale}-tablet-xs};
@@ -58,4 +72,4 @@ ${utility ? '.' : '%'}db-scaling-${scale}{
 	return allClasses;
 };
 
-module.exports = generateSpacings;
+module.exports = generateScaling;

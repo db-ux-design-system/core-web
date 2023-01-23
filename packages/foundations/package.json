@@ -26,8 +26,8 @@
     "cpr": "3.0.1",
     "dotenv": "^16.0.3",
     "nodemon": "2.0.20",
-    "sass": "^1.56.2",
-    "style-dictionary": "3.7.1"
+    "sass": "^1.57.1",
+    "style-dictionary": "3.7.2"
   },
   "files": [
     "build",

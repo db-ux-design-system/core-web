@@ -7,7 +7,6 @@ import {
 } from '@builder.io/mitosis';
 import { uuid } from '../../utils';
 import type { DBTabState, DBTabProps } from './model';
-import './tab.scss';
 
 useMetadata({
 	isAttachedToShadowDom: true,
@@ -46,7 +45,7 @@ export default function DBTab(props: DBTabProps) {
 	});
 
 	return (
-		<div class={'db-tab' + (props.className || '')}>
+		<div class={'db-tab' + (props.className ? ' ' + props.className : '')}>
 			<Show when={state.stylePath}>
 				<link rel="stylesheet" href={state.stylePath} />
 			</Show>

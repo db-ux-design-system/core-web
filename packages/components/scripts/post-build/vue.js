@@ -56,6 +56,13 @@ module.exports = () => {
 				replacements = [...replacements, ...component.overwrites.vue];
 			}
 
+			if (component?.overwrites?.global) {
+				replacements = [
+					...replacements,
+					...component.overwrites.global
+				];
+			}
+
 			replacements.forEach((replacement) => {
 				const option = {
 					files: vueFile,

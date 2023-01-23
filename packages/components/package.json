@@ -20,16 +20,16 @@
   "license": "ISC",
   "dependencies": {
     "@db-ui/foundations": "*",
-    "@builder.io/mitosis": "^0.0.82",
-    "@builder.io/mitosis-cli": "^0.0.40"
+    "@builder.io/mitosis": "^0.0.86",
+    "@builder.io/mitosis-cli": "^0.0.44"
   },
   "devDependencies": {
-    "@builder.io/eslint-plugin-mitosis": "^0.0.12",
+    "@builder.io/eslint-plugin-mitosis": "^0.0.14",
     "cpr": "3.0.1",
-    "eslint": "^8.29.0",
+    "eslint": "^8.32.0",
     "hygen": "^6.2.11",
-    "lit": "^2.5.0",
-    "sass": "^1.56.2",
+    "lit": "^2.6.1",
+    "sass": "^1.57.1",
     "nodemon": "2.0.20"
   },
   "files": [

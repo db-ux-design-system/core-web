@@ -1,0 +1,11 @@
+{
+	"fontSize": {
+		"2xl": "var(--db-type-body-font-size-2xl)",
+		"xl": "var(--db-type-body-font-size-xl)",
+		"lg": "var(--db-type-body-font-size-lg)",
+		"md": "var(--db-type-body-font-size-md)",
+		"sm": "var(--db-type-body-font-size-sm)",
+		"xs": "var(--db-type-body-font-size-xs)",
+		"2xs": "var(--db-type-body-font-size-2xs)"
+	}
+}
