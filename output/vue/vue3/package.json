@@ -15,6 +15,7 @@
     "build": "npm-run-all build:*",
     "mv:dist": "cpr dist ../../../build-outputs/vue/dist -o",
     "mv:package.json": "cpr package.json ../../../build-outputs/vue/package.json -o",
+    "mv:readme": "cpr README.md ../../../build-outputs/vue/README.md -o",
     "postbuild": "npm-run-all -p mv:*"
   },
   "source": "src/index.ts",
