@@ -1,1 +1,1 @@
-export { default as DBInput } from "./input";
+export { default as DBInput } from './input';

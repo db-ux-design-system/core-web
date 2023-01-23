@@ -1,9 +1,15 @@
-import { DBButton, DBIcon, DBCard, DBDivider, DBInput } from '../../../output/react/src';
+import {
+	DBButton,
+	DBIcon,
+	DBCard,
+	DBDivider,
+	DBInput
+} from '../../../output/react/src';
 
 const App = () => {
-	const onChangeEvent = (event: any) => {}
+	const onChangeEvent = (event: any) => {};
 
-	const onUpdateValidity = (isValid: boolean) => {}
+	const onUpdateValidity = (isValid: boolean) => {};
 
 	return (
 		<main>
@@ -100,6 +106,7 @@ const App = () => {
 				</section>
 			</div>
 		</main>
-	);};
+	);
+};
 
 export default App;

@@ -13,7 +13,7 @@ export type GlobalTextProps = {
 	maxLength?: number;
 	minLength?: number;
 	pattern?: string;
-}
+};
 
 export type ClickEventProps = {
 	click?: (event: any) => void;
@@ -38,13 +38,13 @@ export type FocusEventProps = {
 	onBlur?: (event: any) => void;
 	focus?: (event: any) => void;
 	onFocus?: (event: any) => void;
-}
+};
 
 export type FocusEventState = {
 	handleBlur: (event: any) => void;
 	handleFocus: (event: any) => void;
-}
+};
 
 export type ValidEventProps = {
 	validityChange?: (valid: boolean) => void;
-}
+};

@@ -1,8 +1,8 @@
 module.exports = [
-  {
-    name: "input",
-    defaultStylePath: "components/input/input.css",
-  },
+	{
+		name: 'input',
+		defaultStylePath: 'components/input/input.css'
+	},
 
 	{
 		name: 'divider',

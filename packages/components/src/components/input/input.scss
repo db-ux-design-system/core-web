@@ -18,7 +18,10 @@ $icons-path: "../../../icons/" !default;
 	opacity: var(--db-input-focus-opacity);
 
 	// add 0.1em to adjust label with input padding-inline-start
-	transform: translate(calc($translationX + 0.1em), calc($db-sizing-md * $transformScale))
+	transform: translate(
+			calc($translationX + 0.1em),
+			calc($db-sizing-md * $transformScale)
+		)
 		scale(var(--db-input-label-scale));
 }
 
@@ -115,8 +118,8 @@ $icons-path: "../../../icons/" !default;
 
 		span:first-child {
 			text-overflow: ellipsis;
-  			white-space: nowrap;
-  			overflow: hidden;
+			white-space: nowrap;
+			overflow: hidden;
 		}
 	}
 
@@ -148,7 +151,10 @@ $icons-path: "../../../icons/" !default;
 						$db-spacing-fixed-xs
 				);
 				// move filled text for expressive and regular to center with focused label
-				padding-top: calc(var(--db-spacing-fixed-xs) + 0.25em * var(--db-input-focus-opacity));
+				padding-top: calc(
+					var(--db-spacing-fixed-xs) + 0.25em *
+						var(--db-input-focus-opacity)
+				);
 
 				+ label {
 					@include label-focus-animation();
@@ -168,7 +174,7 @@ $icons-path: "../../../icons/" !default;
 
 		&:required {
 			+ label::after {
-				content: ' *';
+				content: " *";
 				padding-left: 0.2rem;
 			}
 		}
@@ -385,9 +391,10 @@ $icons-path: "../../../icons/" !default;
 .db-ui-expressive {
 	.db-input > input[type="date"]::-webkit-calendar-picker-indicator,
 	.db-input > input[type="week"]::-webkit-calendar-picker-indicator,
-	.db-input > input[type="datetime-local"]::-webkit-calendar-picker-indicator  {
+	.db-input
+		> input[type="datetime-local"]::-webkit-calendar-picker-indicator {
 		// TODO change icon and use db-icons to adopt color for data-variants
 		margin-top: -0.75em;
-		padding: 0
+		padding: 0;
 	}
 }
