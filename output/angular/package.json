@@ -12,35 +12,10 @@
     "start": "ng serve",
     "build": "ng build"
   },
-  "exports": {
-    "./button.scss": {
-      "sass": "./src/components/button/button.scss"
-    },
-    "./card.scss": {
-      "sass": "./src/components/card/card.scss"
-    },
-    "./divider.scss": {
-      "sass": "./src/components/divider/divider.scss"
-    },
-    "./icon.scss": {
-      "sass": "./src/components/icon/icon.scss"
-    },
-    "./input.scss": {
-      "sass": "./src/components/input/input.scss"
-    },
-    "./tab.scss": {
-      "sass": "./src/components/tab/tab.scss"
-    },
-    "./tab-bar.scss": {
-      "sass": "./src/components/tab-bar/tab-bar.scss"
-    }
-  },
   "module": "dist/fesm5.js",
   "main": "dist/fesm5.js",
   "types": "dist/core.d.ts",
-  "dependencies": {
-    "@db-ui/foundations": "*"
-  },
+  "dependencies": {},
   "devDependencies": {
     "@angular-devkit/build-angular": "~14.2.10",
     "ng-packagr": "14.2.2"

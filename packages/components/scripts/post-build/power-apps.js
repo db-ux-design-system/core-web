@@ -34,11 +34,7 @@ module.exports = () => {
 				1
 			)}`;
 			const cleanName = component.name.replace('-', '');
-			const files = [
-				`${component.name}.tsx`,
-				`${component.name}.scss`,
-				'model.ts'
-			];
+			const files = [`${component.name}.tsx`, 'model.ts'];
 
 			Replace.sync({
 				files: `../../output/react/src/components/${component.name}/${component.name}.tsx`,
@@ -55,6 +51,11 @@ module.exports = () => {
 					`../../output/power-apps/${cleanName}/${powerAppsFolder}/${file}`
 				);
 			}
+
+			Fse.copySync(
+				`./src/components/${component.name}/${component.name}.scss`,
+				`../../output/power-apps/${cleanName}/${powerAppsFolder}/${component.name}.scss`
+			);
 
 			Fse.copySync(
 				`../../output/react/src/shared/model.ts`,

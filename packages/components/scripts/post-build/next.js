@@ -1,5 +1,4 @@
 const Fse = require('fs-extra');
-const Replace = require('replace-in-file');
 const Components = require('./components');
 
 module.exports = () => {
@@ -13,13 +12,6 @@ module.exports = () => {
 					`../../output/next/src/components/${component.name}/${file}`
 				);
 			}
-
-			const options = {
-				files: `../../output/next/src/components/${component.name}/${component.name}.tsx`,
-				from: `import "./${component.name}.scss";`,
-				to: ``
-			};
-			Replace.replaceInFileSync(options);
 		} catch (error) {
 			console.error('Error occurred:', error);
 		}
