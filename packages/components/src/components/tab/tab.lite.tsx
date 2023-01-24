@@ -30,14 +30,10 @@ useMetadata({
 export default function DBTab(props: DBTabProps) {
 	const inputRef = useRef<HTMLInputElement>(null);
 	const state = useStore<DBTabState>({
-		mId: DEFAULT_ID,
-		warnOldStyle: () => {
-			console.warn('DBTabBar is still using v2 styles!');
-		}
+		mId: DEFAULT_ID
 	});
 
 	onMount(() => {
-		state.warnOldStyle();
 		state.mId = uuid();
 		if (props.stylePath) {
 			state.stylePath = props.stylePath;

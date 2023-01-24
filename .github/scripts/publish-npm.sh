@@ -17,14 +17,14 @@ echo "goto build-outputs"
 cd build-outputs || exit 1
 
 # TODO: Add other build as well
-for PACKAGE in 'foundations' 'components' 'ngx-components' 'react-components' 'v-components'
+for PACKAGE in 'eslint-plugin' 'foundations' 'components' 'ngx-components' 'react-components' 'v-components'
 do
 	echo "Start $PACKAGE bundle:"
 
 	echo "🆚 Update Version"
 	npm version --no-git-tag-version "$VALID_SEMVER_VERSION" --workspace=@db-ui/"$PACKAGE"
 
-	if [[ $PACKAGE != 'foundations' ]]; then
+	if [[ $PACKAGE != 'foundations' && $PACKAGE != 'eslint-plugin' ]]; then
 		echo "🕵️‍ Set foundations dependency"
 		if [[ $PACKAGE == 'ngx-components' ]]; then
 			npm pkg set peerDependencies.@db-ui/foundations="$VALID_SEMVER_VERSION" --workspace=@db-ui/"$PACKAGE"
@@ -62,7 +62,7 @@ do
   fi
 
 # TODO: Add other build as well
-	for PACKAGE in 'foundations' 'components' 'ngx-components' 'react-components' 'v-components'
+	for PACKAGE in 'eslint-plugin' 'foundations' 'components' 'ngx-components' 'react-components' 'v-components'
 	do
 		echo "⤴ Publish $PACKAGE with tag $TAG to $REGISTRY"
   		npm publish --tag "$TAG" db-ui-"$PACKAGE"-"$VALID_SEMVER_VERSION".tgz

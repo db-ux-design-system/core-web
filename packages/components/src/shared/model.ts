@@ -48,7 +48,3 @@ export type FocusEventState = {
 export type ValidEventProps = {
 	validityChange?: (valid: boolean) => void;
 };
-
-export type OldStyleState = {
-	warnOldStyle: () => void;
-};

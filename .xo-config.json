@@ -1,8 +1,8 @@
 {
 	"prettier": true,
-	"plugins": ["db-ui"],
+	"plugins": ["@db-ui"],
 	"rules": {
-		"db-ui/v2-component-used": "warn",
+		"@db-ui/v2-component-used": "warn",
 		"no-console": ["error", { "allow": ["warn", "error"] }],
 		"unicorn/no-array-callback-reference": 0,
 		"unicorn/prefer-module": 0,

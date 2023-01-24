@@ -32,14 +32,10 @@ export default function DBTabBar(props: DBTabBarProps) {
 			}
 
 			return undefined;
-		},
-		warnOldStyle: () => {
-			console.warn('DBTabBar is still using v2 styles!');
 		}
 	});
 
 	onMount(() => {
-		state.warnOldStyle();
 		if (props.stylePath) {
 			state.stylePath = props.stylePath;
 		}
