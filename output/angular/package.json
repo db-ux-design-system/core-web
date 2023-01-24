@@ -25,6 +25,9 @@
     "./icon.scss": {
       "sass": "./src/components/icon/icon.scss"
     },
+    "./input.scss": {
+      "sass": "./src/components/input/input.scss"
+    },
     "./tab.scss": {
       "sass": "./src/components/tab/tab.scss"
     },
@@ -42,9 +45,6 @@
     "@angular-devkit/build-angular": "~14.2.10",
     "ng-packagr": "14.2.2"
   },
-  "files": [
-    "dist/"
-  ],
   "publishConfig": {
     "registry": "https://registry.npmjs.org/",
     "access": "public"
