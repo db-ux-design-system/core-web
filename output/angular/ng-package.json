@@ -4,5 +4,6 @@
 	"lib": {
 		"entryFile": "src/index.ts"
 	},
-	"assets": ["src/components/**/*.scss"]
+	"assets": ["src/components/**/*.scss"],
+	"allowedNonPeerDependencies": ["@db-ui/foundations"]
 }
