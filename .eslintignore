@@ -4,4 +4,3 @@
 **/helpers
 /packages/components/**
 !/packages/components/scripts
-showcases/patternhub/next.config.js

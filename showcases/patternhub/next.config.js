@@ -13,17 +13,16 @@ const withMDX = require('@next/mdx')({
 	}
 });
 
+const withTM = require('next-transpile-modules');
 const packageJSON = require('./package.json');
 
 const transpiledPackages = Object.keys(packageJSON.dependencies).filter((it) =>
 	it.includes('@db-ui')
 );
 
-const withTM = require('next-transpile-modules')(transpiledPackages);
-
 module.exports = {
 	basePath: process.env.NEXT_PUBLIC_BASE_PATH || '',
-	...withTM(
+	...withTM(transpiledPackages)(
 		withMDX({
 			pageExtensions: ['ts', 'tsx', 'js', 'jsx', 'md', 'mdx']
 		})
