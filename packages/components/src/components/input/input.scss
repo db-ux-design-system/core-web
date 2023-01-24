@@ -1,13 +1,12 @@
 @charset "utf-8";
 
+@use "@db-ui/foundations/build/scss/default.assets-paths" as *;
 @use "@db-ui/foundations/build/scss/variables" as *;
 @use "@db-ui/foundations/build/scss/variables.global" as *;
 @use "@db-ui/foundations/build/scss/helpers/functions" as *;
 @use "@db-ui/foundations/build/scss/icon/icons.helpers" as *;
 @use "@db-ui/foundations/build/scss/tonality" as *;
 @use "@db-ui/foundations/build/scss/color-placeholder" as *;
-
-$icons-path: "../../../icons/" !default;
 
 @mixin label-focus-animation(
 	$translationX: var(--db-input-padding-inline-start)
@@ -218,7 +217,6 @@ $icons-path: "../../../icons/" !default;
 
 		&[type="search"] {
 			$paddingLeft: calc($db-spacing-fixed-sm * 2 + 0.625rem);
-			$icons-path: "../../../icons/" !default;
 
 			padding-inline-start: var(--db-input-padding-inline-start);
 

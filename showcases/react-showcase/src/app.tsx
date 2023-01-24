@@ -37,7 +37,6 @@ const App = () => (
 					placeholder="irgendein Text"
 					iconBefore="edit"
 					variant="error"
-					id="input-expr-error"
 					value="hello"
 				/>
 
