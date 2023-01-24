@@ -16,4 +16,4 @@ After you add a new subfolder or page you need to update the routes for the main
 
 ### Github-Version-Switcher
 
-If you like a version-switcher for github you can change the `.env` file and acivate it.
+If you like a version-switcher for GitHub you can change the `.env` file and activate it.
