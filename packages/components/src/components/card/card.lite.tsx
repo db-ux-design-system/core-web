@@ -32,9 +32,6 @@ export default function DBCard(props: DBCardProps) {
 			if (props.onClick) {
 				props.onClick(event);
 			}
-			if (props.click) {
-				props.click(event);
-			}
 		}
 	});
 

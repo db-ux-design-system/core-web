@@ -5,6 +5,12 @@ import {
 	DBCard,
 	DBInput
 } from "../../../output/vue/vue3/src";
+
+function onClick() {
+ console.log("Button clicked");
+}
+
+
 </script>
 
 <template>
@@ -13,7 +19,7 @@ import {
 		<DBCard>
 			<div style="display: flex; gap: 4px; align-items: center">
 				<DBButton variant="secondary">Test</DBButton>
-				<DBButton text="Test" icon="account" />
+				<DBButton text="Test" icon="account" @click="onClick"/>
 				<DBIcon icon="account" />
 			</div>
 		</DBCard>
