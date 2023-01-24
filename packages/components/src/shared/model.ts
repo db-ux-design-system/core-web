@@ -8,6 +8,13 @@ export type GlobalState = {
 	stylePath?: string;
 };
 
+export type GlobalTextProps = {
+	placeholder?: string;
+	maxLength?: number;
+	minLength?: number;
+	pattern?: string;
+};
+
 export type ClickEventProps = {
 	click?: (event: any) => void;
 	onClick?: (event: any) => void;
@@ -24,4 +31,20 @@ export type ChangeEventProps = {
 
 export type ChangeEventState = {
 	handleChange: (event: any) => void;
+};
+
+export type FocusEventProps = {
+	blur?: (event: any) => void;
+	onBlur?: (event: any) => void;
+	focus?: (event: any) => void;
+	onFocus?: (event: any) => void;
+};
+
+export type FocusEventState = {
+	handleBlur: (event: any) => void;
+	handleFocus: (event: any) => void;
+};
+
+export type ValidEventProps = {
+	validityChange?: (valid: boolean) => void;
 };
