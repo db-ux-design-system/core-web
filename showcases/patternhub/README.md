@@ -8,7 +8,7 @@ Add your documentation under `/pages` folder.
 
 You can use simple folder structure to structure your pages and subpages.
 
-You can use `.tsx` or `.mdx files to write your documents (see the examples).
+You can use `.tsx` or `.mdx` files to write your documents (see the examples).
 
 As root file for a subfolder you should name it `index.[mdx|tsx]`.
 
