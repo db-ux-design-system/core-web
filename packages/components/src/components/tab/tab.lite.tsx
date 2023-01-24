@@ -5,7 +5,7 @@ import {
 	useStore,
 	useRef
 } from '@builder.io/mitosis';
-import { uuid } from '../../utils';
+import { DEFAULT_ID, uuid } from '../../utils';
 import type { DBTabState, DBTabProps } from './model';
 
 useMetadata({
@@ -30,11 +30,11 @@ useMetadata({
 export default function DBTab(props: DBTabProps) {
 	const inputRef = useRef<HTMLInputElement>(null);
 	const state = useStore<DBTabState>({
-		id: 'ID_WILL_BE_OVERWRITE_ON_MOUNT_AND_THIS_CONSTANT_WONT_SHOW_UP_ONLY_IF_YOU_ARE_A_JAVA_DEVELOPER'
+		mId: DEFAULT_ID
 	});
 
 	onMount(() => {
-		state.id = uuid();
+		state.mId = uuid();
 		if (props.stylePath) {
 			state.stylePath = props.stylePath;
 		}
@@ -53,12 +53,12 @@ export default function DBTab(props: DBTabProps) {
 				ref={inputRef}
 				type="radio"
 				name={props.name}
-				id={state.id}
+				id={state.mId}
 			/>
-			<label htmlFor={state.id} role="tab">
+			<label htmlFor={state.mId} role="tab">
 				{props.label}
 			</label>
-			<section id={'content-' + state.id} role="tabpanel">
+			<section id={'content-' + state.mId} role="tabpanel">
 				<Show when={props.content}> {props.content}</Show>
 				{props.children}
 			</section>

@@ -30,7 +30,7 @@ export type DBTabDefaultProps = {
 export type DBTabProps = DBTabDefaultProps & GlobalProps;
 
 export type DBTabDefaultState = {
-	id?: string;
+	mId?: string;
 };
 
 export type DBTabState = DBTabDefaultState & GlobalState;
