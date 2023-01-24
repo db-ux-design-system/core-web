@@ -26,11 +26,7 @@ do
 
 	if [[ $PACKAGE != 'foundations' ]]; then
 		echo "🕵️‍ Set foundations dependency"
-		if [[ $PACKAGE == 'ngx-components' ]]; then
-			npm pkg set peerDependencies.@db-ui/foundations="$VALID_SEMVER_VERSION" --workspace=@db-ui/"$PACKAGE"
-		else
-			npm pkg set dependencies.@db-ui/foundations="$VALID_SEMVER_VERSION" --workspace=@db-ui/"$PACKAGE"
-		fi
+		npm pkg set dependencies.@db-ui/foundations="$VALID_SEMVER_VERSION" --workspace=@db-ui/"$PACKAGE"
 	fi
 
 	echo "📦 Create npm package"
