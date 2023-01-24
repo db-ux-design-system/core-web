@@ -12,6 +12,7 @@
     "build:post": "node scripts/post-build/index.js",
     "copy:outputs": "cpr src ../../build-outputs/components/dist -o -f \"(.ts|.tsx)$\"",
     "copy:package.json": "cpr package.json ../../build-outputs/components/package.json -o",
+    "copy:readme": "cpr README.md ../../build-outputs/components/README.md -o",
     "copy-output": "npm-run-all copy:*",
     "build": "npm-run-all build:*",
     "start": "nodemon --watch src --watch scripts --watch overrides -e js,tsx,ts,scss,json -x \"npm run build\""

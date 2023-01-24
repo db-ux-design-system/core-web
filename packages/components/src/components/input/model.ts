@@ -3,7 +3,7 @@ import {
 	FocusEventState,
 	GlobalTextProps,
 	ValidEventProps
-} from './../../shared/model';
+} from '../../shared/model';
 import {
 	ChangeEventState,
 	ChangeEventProps,
@@ -12,8 +12,8 @@ import {
 } from '../../shared/model';
 
 export type DBInputDefaultProps = {
-	id: string;
-	label: string;
+	id?: string;
+	label?: string;
 	type?:
 		| 'text'
 		| 'search'
@@ -52,6 +52,7 @@ export type DBInputProps = DBInputDefaultProps &
 	ValidEventProps;
 
 export type DBInputDefaultState = {
+	mId?: string;
 	_isValid: boolean | undefined;
 };
 

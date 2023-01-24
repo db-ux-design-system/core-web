@@ -8,7 +8,7 @@ const reportIssue = (context, node, name) => {
 	});
 };
 
-const onOldComponentUsed = (context) => {
+const onV2ComponentUsed = (context) => {
 	return {
 		ImportDeclaration(node) {
 			if (node.specifiers?.length > 0) {
@@ -30,4 +30,4 @@ const onOldComponentUsed = (context) => {
 	};
 };
 
-module.exports = { onOldComponentUsed };
+module.exports = { onV2ComponentUsed };

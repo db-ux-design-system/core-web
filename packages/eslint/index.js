@@ -1,9 +1,9 @@
-const { onOldComponentUsed } = require('./old-components');
+const { onV2ComponentUsed } = require('./v2-components');
 
 module.exports = {
 	rules: {
-		'old-component-used': {
-			create: onOldComponentUsed
+		'v2-component-used': {
+			create: onV2ComponentUsed
 		}
 	}
 };
