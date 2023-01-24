@@ -16,7 +16,6 @@ export type GlobalTextProps = {
 };
 
 export type ClickEventProps = {
-	click?: (event: any) => void;
 	onClick?: (event: any) => void;
 };
 
