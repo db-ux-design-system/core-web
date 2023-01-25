@@ -37,6 +37,12 @@ jobs:
           name: db-ui-output
           path: output
 
+      - name: ⬇ Download components styles build
+        uses: ./.github/actions/download-tar-artifact
+        with:
+          name: db-ui-components-styles-build
+          path: packages/components/src/styles
+
       - name: ⎔ Setup node
         uses: actions/setup-node@v3
         with:

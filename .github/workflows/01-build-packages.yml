@@ -24,6 +24,12 @@ jobs:
           name: db-ui-foundations-build
           path: packages/foundations/build
 
+      - name: ⬆ Upload components styles build
+        uses: ./.github/actions/upload-tar-artifact
+        with:
+          name: db-ui-components-styles-build
+          path: packages/components/src/styles
+
       - name: ⬆ Upload output
         uses: ./.github/actions/upload-tar-artifact
         with:
