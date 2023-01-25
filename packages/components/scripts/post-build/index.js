@@ -11,7 +11,6 @@ Vue();
 Svelte();
 Angular();
 React();
-Next();
 WebComponents();
 
 CopyFiles();
