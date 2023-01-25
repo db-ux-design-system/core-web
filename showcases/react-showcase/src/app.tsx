@@ -8,7 +8,7 @@ import {
 
 const App = () => {
 	const onClick = (event: any) => {
-		console.log('test');
+		console.log('click event test');
 	};
 
 	return (
