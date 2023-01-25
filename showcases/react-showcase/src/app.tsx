@@ -7,7 +7,8 @@ import {
 } from '../../../output/react/src';
 
 const App = () => {
-	const onClick = (event: any) => {
+	const onClick = () => {
+		// eslint-disable-next-line no-console
 		console.log('test');
 	};
 
