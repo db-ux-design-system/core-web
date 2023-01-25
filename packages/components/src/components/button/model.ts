@@ -1,8 +1,8 @@
 import {
-	type ClickEventProps,
-	type ClickEventState,
-	type GlobalProps,
-	type GlobalState
+	ClickEventProps,
+	ClickEventState,
+	GlobalProps,
+	GlobalState
 } from '../../shared/model';
 
 export type DBButtonDefaultProps = {

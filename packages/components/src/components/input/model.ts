@@ -1,12 +1,12 @@
 import {
-	type FocusEventProps,
-	type FocusEventState,
-	type GlobalTextProps,
-	type ValidEventProps,
-	type ChangeEventState,
-	type ChangeEventProps,
-	type GlobalProps,
-	type GlobalState
+	FocusEventProps,
+	FocusEventState,
+	GlobalTextProps,
+	ValidEventProps,
+	ChangeEventState,
+	ChangeEventProps,
+	GlobalProps,
+	GlobalState
 } from '../../shared/model';
 
 export type DBInputDefaultProps = {

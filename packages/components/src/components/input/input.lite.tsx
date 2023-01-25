@@ -7,7 +7,7 @@ import {
 } from '@builder.io/mitosis';
 import { DBIcon } from '../icon';
 import { DEFAULT_ID, uuid } from '../../utils';
-import { type DBInputState, type DBInputProps, iconVariants } from './model';
+import { DBInputState, DBInputProps, iconVariants } from './model';
 
 useMetadata({
 	isAttachedToShadowDom: false,

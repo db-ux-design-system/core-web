@@ -1,5 +1,5 @@
 import type { DBTabProps } from '../tab/model';
-import { type GlobalProps, type GlobalState } from '../../shared/model';
+import { GlobalProps, GlobalState } from '../../shared/model';
 
 export type DBTabBarDefaultProps = {
 	/**
