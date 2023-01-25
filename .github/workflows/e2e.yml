@@ -40,7 +40,7 @@ jobs:
           # install-command: npm i --ignore-scripts
 
       - name: YADA YADA
-      - run: chown -R 1001:1001 /github/home/.cache && echo "pwn dat cache"
+        run: chown -R 1001:1001 /github/home/.cache && echo "pwn dat cache"
 
       - name: 🏗️ Build components
         run: npm run build
