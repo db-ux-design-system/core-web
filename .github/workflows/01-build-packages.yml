@@ -30,6 +30,12 @@ jobs:
           name: db-ui-output
           path: output
 
+      - name: ⬆ Upload components build
+        uses: ./.github/actions/upload-tar-artifact
+        with:
+          name: db-ui-components-build
+          path: packages/components/build
+
       - name: 💀 Killing me softly
         uses: ./.github/actions/cancel-workflow
         if: failure()

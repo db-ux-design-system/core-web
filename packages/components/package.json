@@ -7,10 +7,11 @@
   "types": "./dist/index.d.ts",
   "scripts": {
     "generate:component": "hygen mitosis new",
-    "build:sass": "sass src --load-path=node_modules/ --load-path=../../node_modules/",
+    "build:mv": "cpr src build -o -f \"(.ts|.tsx)$\"",
+    "build:sass": "sass --no-source-map --load-path=node_modules/ --load-path=../../node_modules/ build ",
     "build:mitosis": "mitosis build",
     "build:post": "node scripts/post-build/index.js",
-    "copy:outputs": "cpr src ../../build-outputs/components/dist -o -f \"(.ts|.tsx)$\"",
+    "copy:outputs": "cpr build ../../build-outputs/components/build -o",
     "copy:package.json": "cpr package.json ../../build-outputs/components/package.json -o",
     "copy:readme": "cpr README.md ../../build-outputs/components/README.md -o",
     "copy-output": "npm-run-all copy:*",
@@ -34,7 +35,7 @@
     "nodemon": "2.0.20"
   },
   "files": [
-    "dist"
+    "build"
   ],
   "publishConfig": {
     "registry": "https://registry.npmjs.org/",
