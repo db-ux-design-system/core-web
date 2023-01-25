@@ -47,6 +47,11 @@ jobs:
         working-directory: ./output/react
         run: npm i -D esbuild-linux-64
 
+      - name: 📥 Install output dependencies
+        uses: bahmutov/npm-install@v1
+        with:
+          install-command: npm i
+
       - name: 👩‍🔬 Test with Playwright 🎭
         working-directory: ./output/react
         run: HOME=/root npx playwright test --project=${{ matrix.project }}
