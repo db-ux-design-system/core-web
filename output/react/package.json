@@ -10,8 +10,7 @@
   "sideEffects": false,
   "scripts": {
     "tsc": "tsc -p . --sourceMap false",
-    "copy:sass": "cpr src dist -o -f \"(.ts|.tsx)$\"",
-    "build": "npm-run-all tsc copy:sass",
+    "build": "npm-run-all tsc",
     "mv:dist": "cpr dist ../../build-outputs/react/dist -o",
     "mv:package.json": "cpr package.json ../../build-outputs/react/package.json -o",
     "mv:readme": "cpr README.md ../../build-outputs/react/README.md -o",
