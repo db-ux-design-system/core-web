@@ -30,7 +30,7 @@ const App = () => {
 				/>
 			}
 			slotFooter={<div>FOOTER</div>}>
-			<main>
+			<div>
 				<h1>React</h1>
 				<DBCard>
 					<div
@@ -123,7 +123,7 @@ const App = () => {
 						/>
 					</section>
 				</div>
-			</main>
+			</div>
 		</DBPage>
 	);
 };
