@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "copy:components": "cpr ../../packages/components/output/next/src/components ./components -o",
+    "copy:components": "cpr ../../packages/components/output/react/src/components ./components -o",
     "prebuild": "npm run copy:components",
     "predev": "npm run copy:components",
     "prestart": "npm run copy:components",
