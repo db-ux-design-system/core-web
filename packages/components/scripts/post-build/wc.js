@@ -51,10 +51,7 @@ module.exports = () => {
 			processor(input) {
 				const filteredInput = input
 					.split('\n')
-					.filter(
-						(line) =>
-							!line.includes('@db-ui') && !line.includes('.scss')
-					)
+					.filter((line) => !line.includes('@db-ui'))
 					.join('\n');
 				return updateNestedComponents(filteredInput, component.name);
 			}

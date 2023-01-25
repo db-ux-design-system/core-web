@@ -23,7 +23,6 @@ export type ImageProps = {
 };
 
 export type ClickEventProps = {
-	click?: (event: any) => void;
 	onClick?: (event: any) => void;
 };
 

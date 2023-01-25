@@ -16,4 +16,8 @@ export class AppComponent {
 		},
 		{ name: 'tab-bar-2', label: '2-Tab2', content: 'Content 2-2' }
 	];
+
+	onClick() {
+		console.log('click button');
+	}
 }

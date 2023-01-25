@@ -36,9 +36,6 @@ export default function DBButton(props: DBButtonProps) {
 			if (props.onClick) {
 				props.onClick(event);
 			}
-			if (props.click) {
-				props.click(event);
-			}
 		}
 	});
 
