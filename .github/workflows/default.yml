@@ -26,6 +26,10 @@ jobs:
     uses: ./.github/workflows/01-build-packages.yml
     needs: [init]
 
+  test-packages:
+    uses: ./.github/workflows/e2e.yml
+    needs: [build-packages]
+
   build-showcases:
     uses: ./.github/workflows/01-build-showcases.yml
     needs: [build-packages]

@@ -1,10 +1,7 @@
 name: 🎭 Playwright E2E
+
 on:
-  pull_request:
-  push:
-    branches:
-      - "main"
-      - "feat-playwright-component-tests"
+  workflow_call:
 
 permissions:
   actions: write
@@ -22,31 +19,34 @@ jobs:
         project: [chromium, firefox, webkit]
 
     steps:
-      - name: 🛑 Cancel Previous Runs
-        uses: styfle/cancel-workflow-action@0.11.0
-
-      - name: ⬇️ Checkout repo
+      - name: ⬇ Checkout repo
         uses: actions/checkout@v3
+
+      - name: 🔄 Init Cache
+        uses: ./.github/actions/npm-cache
+
+      - name: ⬇ Download foundations build
+        uses: ./.github/actions/download-tar-artifact
+        with:
+          name: db-ui-foundations-build
+          path: packages/foundations/build
+
+      - name: ⬇ Download output
+        uses: ./.github/actions/download-tar-artifact
+        with:
+          name: db-ui-output
+          path: output
 
       - name: ⎔ Setup node
         uses: actions/setup-node@v3
         with:
           node-version: 16
 
-      - name: 📥 Download deps
-        uses: bahmutov/npm-install@v1
-        with:
-          useLockFile: true
-          # install-command: npm i --ignore-scripts
+      # - name: YADA YADA
+      #   run: chown -R 1001:1001 /github/home/.cache && echo "pwn dat cache"
 
-      - name: YADA YADA
-        run: chown -R 1001:1001 /github/home/.cache && echo "pwn dat cache"
-
-      - name: YADA YADA2
-        run: chown -R 1001:1001 packages && echo "pwn dat cache2"
-
-      - name: 🏗️ Build components
-        run: npm run build
+      # - name: YADA YADA2
+      #   run: chown -R 1001:1001 packages && echo "pwn dat cache2"
 
       - name: 📲 Install esbuild (binary workaround)
         working-directory: ./output/react
