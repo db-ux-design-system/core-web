@@ -1,6 +1,6 @@
 import { onMount, Show, useMetadata, useStore } from '@builder.io/mitosis';
-import type { DBButtonProps, DBButtonState } from './model';
 import { DBIcon } from '../icon';
+import type { DBButtonProps, DBButtonState } from './model';
 
 useMetadata({
 	isAttachedToShadowDom: true,
@@ -47,7 +47,7 @@ export default function DBButton(props: DBButtonProps) {
 
 	return (
 		<button
-			class={
+			className={
 				'db-button' +
 				(props.className ? ' ' + props.className : '') +
 				(props.onlyIcon ? ' is-icon-text-replace' : '')

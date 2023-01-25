@@ -5,9 +5,9 @@ import {
 	useRef,
 	useStore
 } from '@builder.io/mitosis';
-import { DBInputState, DBInputProps, iconVariants } from './model';
 import { DBIcon } from '../icon';
 import { DEFAULT_ID, uuid } from '../../utils';
+import { type DBInputState, type DBInputProps, iconVariants } from './model';
 
 useMetadata({
 	isAttachedToShadowDom: false,
@@ -22,13 +22,20 @@ export default function DBInput(props: DBInputProps) {
 	const state = useStore<DBInputState>({
 		mId: DEFAULT_ID,
 		_isValid: undefined,
+		_value: '',
+		_placeholder: ' ', // placeholder can't be empty
+		_label: 'LABEL SHOULD BE SET',
 		handleChange: (event) => {
 			if (props.onChange) {
 				props.onChange(event);
 			}
+
 			if (props.change) {
 				props.change(event);
 			}
+
+			// using controlled components for react forces us to using state for value
+			state._value = event.target.value;
 
 			if (textInputRef?.validity?.valid != state._isValid) {
 				state._isValid = textInputRef?.validity?.valid;
@@ -41,6 +48,7 @@ export default function DBInput(props: DBInputProps) {
 			if (props.onBlur) {
 				props.onBlur(event);
 			}
+
 			if (props.blur) {
 				props.blur(event);
 			}
@@ -49,6 +57,7 @@ export default function DBInput(props: DBInputProps) {
 			if (props.onFocus) {
 				props.onFocus(event);
 			}
+
 			if (props.focus) {
 				props.focus(event);
 			}
@@ -56,13 +65,22 @@ export default function DBInput(props: DBInputProps) {
 	});
 
 	onMount(() => {
-		if (props.id) {
-			state.mId = props.id;
-		} else {
-			state.mId = 'input-' + uuid();
+		state.mId = props.id ? props.id : 'input-' + uuid();
+
+		if (props.value) {
+			state._value = props.value;
 		}
+
 		if (props.stylePath) {
 			state.stylePath = props.stylePath;
+		}
+
+		if (props.placeholder) {
+			state._placeholder = props.placeholder;
+		}
+
+		if (props.label) {
+			state._label = props.label;
 		}
 	});
 
@@ -81,11 +99,11 @@ export default function DBInput(props: DBInputProps) {
 				id={state.mId}
 				name={props.name}
 				type={props.type || 'text'}
-				placeholder={props.placeholder}
+				placeholder={state._placeholder}
 				aria-labelledby={state.mId + '-label'}
 				disabled={props.disabled}
 				required={props.required}
-				value={props.value}
+				value={state._value}
 				maxLength={props.maxLength}
 				minLength={props.minLength}
 				pattern={props.pattern}
@@ -97,7 +115,7 @@ export default function DBInput(props: DBInputProps) {
 				htmlFor={state.mId}
 				aria-hidden="true"
 				id={state.mId + '-label'}>
-				<span>{props.label}</span>
+				<span>{state._label}</span>
 			</label>
 			<Show when={props.description}>
 				<p className="description">{props.description}</p>

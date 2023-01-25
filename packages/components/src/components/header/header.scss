@@ -1,0 +1,48 @@
+@use "@db-ui/foundations/build/scss/variables" as *;
+@use "@db-ui/foundations/build/scss/variables.global" as *;
+@use "@db-ui/foundations/build/scss/helpers/functions" as *;
+
+.db-header {
+	background-color: $db-colors-neutral-bg-0-enabled;
+	box-shadow: $db-elevation-4;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin-bottom: $db-spacing-fixed-md;
+	position: relative;
+
+	/* Mobile header should always be 56px */
+	min-height: to-rem(56);
+
+	padding-left: $db-spacing-fixed-md;
+	padding-right: $db-spacing-fixed-md;
+
+	.db-link {
+		display: inline-block;
+	}
+
+	.desktop-navigation,
+	.meta-navigation {
+		display: none;
+	}
+
+	@media screen and (min-width: $db-screens-lg) {
+		/* Desktop header should always be 80px */
+		min-height: to-rem(80);
+
+		.mobile-navigation {
+			display: none;
+		}
+
+		.meta-navigation {
+			display: inherit;
+		}
+
+		.desktop-navigation {
+			display: inherit;
+			position: absolute;
+			left: 50%;
+			transform: translate(-50%);
+		}
+	}
+}

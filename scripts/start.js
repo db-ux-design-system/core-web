@@ -8,12 +8,16 @@ inquirer
 			message: 'Select frameworks to start;',
 			name: 'frameworks',
 			choices: [
+				// eslint-disable-next-line no-warning-comments
 				/*	TODO: Fix the issue that components are deleted at mitosis build
 				{
 					name: 'angular'
 				}, */
 				{
 					name: 'next'
+				},
+				{
+					name: 'patternhub'
 				},
 				{
 					name: 'react',
@@ -49,6 +53,7 @@ inquirer
 				startCommand += ` start-showcase:${answer}`;
 			}
 
+		// eslint-disable-next-line no-console
 		console.log(`Start with command: '${startCommand}'`);
 		childProcess.execSync(startCommand, { stdio: 'inherit' });
 	});

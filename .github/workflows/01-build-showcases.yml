@@ -3,6 +3,15 @@ name: Build Showcases
 
 on:
   workflow_call:
+    inputs:
+      release:
+        required: false
+        default: "false"
+        type: string
+      preRelease:
+        required: false
+        default: "false"
+        type: string
 
 jobs:
   build-showcases:
@@ -27,8 +36,34 @@ jobs:
           name: db-ui-output
           path: output
 
+      - name: ↔ Extract branch name
+        uses: ./.github/actions/extract-branch
+        id: extract_branch
+
+      - name: 🛤 Get base path
+        uses: actions/github-script@v6
+        env:
+          NAME: ${{ steps.extract_branch.outputs.branch-name }}
+          RELEASE: ${{ inputs.release }}
+          PRE_RELEASE: ${{ inputs.preRelease }}
+        id: base-path
+        with:
+          result-encoding: string
+          script: |
+            var path = 'review';
+            if(process.env.RELEASE === "true" || process.env.PRE_RELEASE === "true") {
+              path = 'version'
+            }
+            return `/${context?.payload?.repository?.name}/${path}/${process.env.NAME}`
+
       - name: 🔨 Build Showcases
-        run: npm run build-showcases
+        env:
+          NEXT_PUBLIC_BASE_PATH: ${{ steps.base-path.outputs.result }}
+          BASE_URL: ${{ steps.base-path.outputs.result }}
+        run: |
+          npx replace-in-file /angular-current-showcase/ ${BASE_URL}/angular-current-showcase/ showcases/angular-current-showcase/src/index.html
+          npx replace-in-file /angular-lts-showcase/ ${BASE_URL}/angular-lts-showcase/ showcases/angular-lts-showcase/src/index.html
+          npm run build-showcases
 
       - name: ⬆ Upload Showcases
         uses: ./.github/actions/upload-tar-artifact

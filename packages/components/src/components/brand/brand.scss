@@ -1,0 +1,32 @@
+@use "@db-ui/foundations/build/scss/variables" as *;
+@use "@db-ui/foundations/build/scss/variables.global" as *;
+
+%brand-display {
+	display: flex;
+	gap: $db-spacing-fixed-md;
+	align-items: center;
+}
+
+.db-brand {
+	@extend %brand-display;
+
+	.db-logo {
+		height: auto;
+		width: auto;
+	}
+
+	a {
+		@extend %brand-display;
+		color: inherit;
+		// Deactivate underline on site name being made clickable by added to the link as well
+		text-decoration: none;
+	}
+
+	.db-header & {
+		@media screen and (min-width: $db-screens-lg) {
+			.db-logo {
+				height: $db-sizing-md;
+			}
+		}
+	}
+}

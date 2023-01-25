@@ -228,6 +228,7 @@
 			}
 
 			& ~ .icon-input-state {
+				// TODO replace with svg icon
 				@include icon(glyph(search), 20, "filled", "before", false);
 			}
 

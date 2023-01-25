@@ -1,0 +1,23 @@
+@use "@db-ui/foundations/build/scss/webpack.assets-paths" as *;
+@use "@db-ui/foundations/build/scss/icon/icons" as *;
+@use "@db-ui/components/src/styles/db-ui-components" as *;
+
+#__next {
+	height: inherit;
+}
+#__next > div {
+	height: inherit;
+}
+
+db-mainnavigation {
+	margin: auto;
+}
+
+github-version-switcher {
+	margin: auto 16px;
+}
+
+iframe {
+	width: 100%;
+	height: calc(100% - 8px) !important;
+}

@@ -1,6 +1,9 @@
 {
 	"prettier": true,
+	"plugins": ["@db-ui"],
 	"rules": {
+		"@db-ui/v2-component-used": "warn",
+		"no-console": ["error", { "allow": ["warn", "error"] }],
 		"unicorn/no-array-callback-reference": 0,
 		"unicorn/prefer-module": 0,
 		"import/extensions": 0,
@@ -15,6 +18,8 @@
 		"@typescript-eslint/no-unsafe-return": 0,
 		"@typescript-eslint/no-unsafe-assignment": 0,
 		"unicorn/prefer-top-level-await": 0,
+		"@typescript-eslint/naming-convention": 0,
+		"@typescript-eslint/restrict-template-expressions": 0,
 		"unicorn/filename-case": [
 			"error",
 			{

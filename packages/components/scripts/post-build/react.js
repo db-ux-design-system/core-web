@@ -6,7 +6,7 @@ module.exports = () => {
 		try {
 			const cleanName = component.name
 				.split('-')
-				.map((part) => `${part[0].toUpperCase()}${part.substring(1)}`)
+				.map((part) => `${part[0].toUpperCase()}${part.slice(1)}`)
 				.join('');
 			const stateName = `DB${cleanName}State`;
 
@@ -32,14 +32,14 @@ module.exports = () => {
 				];
 			}
 
-			replacements.forEach((replacement) => {
+			for (const replacement of replacements) {
 				const option = {
 					files: tsxFile,
 					from: replacement.from,
 					to: replacement.to
 				};
 				Replace.replaceInFileSync(option);
-			});
+			}
 		} catch (error) {
 			console.error('Error occurred:', error);
 		}

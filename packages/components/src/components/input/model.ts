@@ -1,14 +1,12 @@
 import {
-	FocusEventProps,
-	FocusEventState,
-	GlobalTextProps,
-	ValidEventProps
-} from '../../shared/model';
-import {
-	ChangeEventState,
-	ChangeEventProps,
-	GlobalProps,
-	GlobalState
+	type FocusEventProps,
+	type FocusEventState,
+	type GlobalTextProps,
+	type ValidEventProps,
+	type ChangeEventState,
+	type ChangeEventProps,
+	type GlobalProps,
+	type GlobalState
 } from '../../shared/model';
 
 export type DBInputDefaultProps = {
@@ -54,6 +52,9 @@ export type DBInputProps = DBInputDefaultProps &
 export type DBInputDefaultState = {
 	mId?: string;
 	_isValid: boolean | undefined;
+	_value: any;
+	_placeholder: string;
+	_label: string;
 };
 
 export type DBInputState = DBInputDefaultState &

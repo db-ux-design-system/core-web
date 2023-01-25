@@ -8,7 +8,7 @@
     "start": "vite",
     "build:tsc": "tsc",
     "build:vite": "vite build",
-    "build:copy": "cpr dist ../../build-showcases/react-showcase",
+    "build:copy": "cpr dist ../../build-showcases/react-showcase -o",
     "build": "npm-run-all build:*"
   },
   "dependencies": {

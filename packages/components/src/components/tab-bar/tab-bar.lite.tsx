@@ -1,7 +1,7 @@
 import { For, onMount, Show, useMetadata, useStore } from '@builder.io/mitosis';
-import type { DBTabBarState, DBTabBarProps } from './model';
 import { DBTab } from '../tab';
 import type { DBTabProps } from '../tab/model';
+import type { DBTabBarState, DBTabBarProps } from './model';
 
 useMetadata({
 	isAttachedToShadowDom: true,
@@ -43,7 +43,7 @@ export default function DBTabBar(props: DBTabBarProps) {
 
 	return (
 		<div
-			class={
+			className={
 				'cmp-tab-bar' + (props.className ? ' ' + props.className : '')
 			}
 			role="tablist">

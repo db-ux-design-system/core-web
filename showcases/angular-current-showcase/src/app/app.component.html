@@ -6,12 +6,27 @@
 			<DBButton text="Test" icon="account" (click)="onClick()"></DBButton>
 			<DBIcon icon="account"></DBIcon>
 
-			<section class="db-ui-expressive">
-				<DBInput></DBInput>
-			</section>
+			<form class="db-ui-expressive" (ngSubmit)="onSubmitForm($event)">
+				<DBInput
+					[(ngModel)]="formData.username"
+					name="username"
+					label="Textinput"
+					placeholder="Platzhalter"
+					description="Beschreibung"
+					value="{{ formData.username }}"
+					iconBefore="edit"
+					ngDefaultControl
+				></DBInput>
+				<input
+					[(ngModel)]="formData.password"
+					name="password"
+					value="test"
+				/>
+				<DBButton variant="secondary">Senden</DBButton>
+			</form>
 
 			<section class="db-ui-regular">
-				<DBInput></DBInput>
+				<DBInput label="Label"></DBInput>
 			</section>
 
 			<section class="db-ui-functional">

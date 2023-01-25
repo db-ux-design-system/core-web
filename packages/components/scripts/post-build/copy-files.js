@@ -2,14 +2,14 @@ const Fse = require('fs-extra');
 const Frameworks = require('./framworks');
 
 module.exports = () => {
-	[
+	for (const file of [
 		'package.json',
 		'angular.json',
 		'tsconfig.json',
 		'ng-package.json',
 		'vite.config.ts'
-	].forEach((file) => {
-		Frameworks.forEach((framework) => {
+	]) {
+		for (const framework of Frameworks) {
 			const resolvedFramework =
 				framework === 'vue' ? `vue/vue3` : framework;
 			if (
@@ -20,6 +20,6 @@ module.exports = () => {
 					`../../output/${resolvedFramework}/${file}`
 				);
 			}
-		});
-	});
+		}
+	}
 };

@@ -45,7 +45,10 @@ export default function DBTab(props: DBTabProps) {
 	});
 
 	return (
-		<div class={'db-tab' + (props.className ? ' ' + props.className : '')}>
+		<div
+			className={
+				'db-tab' + (props.className ? ' ' + props.className : '')
+			}>
 			<Show when={state.stylePath}>
 				<link rel="stylesheet" href={state.stylePath} />
 			</Show>

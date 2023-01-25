@@ -6,7 +6,7 @@ import * as dotenv from 'dotenv';
 dotenv.config();
 
 const checkCommitMail = () => {
-	console.log(`Check COMMIT_MAIL`);
+	console.warn(`Check COMMIT_MAIL`);
 	if (!process.env.COMMIT_MAIL) {
 		console.error(
 			`No COMMIT_MAIL set in .env, please look at the file '.env.template'`

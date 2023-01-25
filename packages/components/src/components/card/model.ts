@@ -1,21 +1,22 @@
 import {
-	ClickEventProps,
-	ClickEventState,
-	GlobalProps,
-	GlobalState
+	type ClickEventProps,
+	type ClickEventState,
+	type GlobalProps,
+	type GlobalState,
+	type ImageProps
 } from '../../shared/model';
 
 export type DBCardDefaultProps = {
 	colorVariant?: string;
 	direction?: 'row' | 'column';
-	imgAlt?: string;
-	imgSrc?: string;
-	imgHeight?: number | string;
-	imgWidth?: number | string;
+
 	variant?: 'full-width' | 'ia';
 };
 
-export type DBCardProps = DBCardDefaultProps & GlobalProps & ClickEventProps;
+export type DBCardProps = DBCardDefaultProps &
+	GlobalProps &
+	ClickEventProps &
+	ImageProps;
 
 export type DBCardDefaultState = {};
 

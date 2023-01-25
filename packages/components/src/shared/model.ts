@@ -15,6 +15,13 @@ export type GlobalTextProps = {
 	pattern?: string;
 };
 
+export type ImageProps = {
+	imgAlt?: string;
+	imgSrc?: string;
+	imgHeight?: number;
+	imgWidth?: number;
+};
+
 export type ClickEventProps = {
 	onClick?: (event: any) => void;
 };

@@ -1,5 +1,5 @@
-const ChildProcess = require('child_process');
-const Buff = require('buffer');
+const ChildProcess = require('node:child_process');
+const Buff = require('node:buffer');
 
 module.exports = () => ({
 	json: {

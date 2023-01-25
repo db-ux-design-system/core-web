@@ -45,9 +45,10 @@ jobs:
         run: echo "🎉 All tests were successful."
     #    needs: [cypress]
     needs: [build-showcases]
-#  deploy:
-#    uses: ./.github/workflows/03-deploy-gh-pages.yml
-#    needs: [cypress, get-publish-version]
-#    with:
-#      release: ${{ needs.get-publish-version.outputs.release }}
-#      preRelease: ${{ needs.get-publish-version.outputs.preRelease }}
+
+  deploy:
+    uses: ./.github/workflows/03-deploy-gh-pages.yml
+    needs: [checks-done]
+    with:
+      release: false
+      preRelease: false

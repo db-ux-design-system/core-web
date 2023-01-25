@@ -63,14 +63,14 @@ module.exports = () => {
 				];
 			}
 
-			replacements.forEach((replacement) => {
+			for (const replacement of replacements) {
 				const option = {
 					files: vueFile,
 					from: replacement.from,
 					to: replacement.to
 				};
 				Replace.replaceInFileSync(option);
-			});
+			}
 		} catch (error) {
 			console.error('Error occurred:', error);
 		}

@@ -4,3 +4,4 @@ build-outputs/
 out/
 output/
 source/_patterns/**
+showcases/patternhub/**

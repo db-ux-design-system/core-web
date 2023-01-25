@@ -25,9 +25,9 @@ jobs:
     uses: ./.github/workflows/01-build-outputs.yml
     needs: [build-packages]
 
-  #  build-showcases:
-  #    uses: ./.github/workflows/01-build-showcases.yml
-  #    needs: [build-packages]
+  build-showcases:
+    uses: ./.github/workflows/01-build-showcases.yml
+    needs: [build-packages]
 
   #  cypress:
   #    uses: ./.github/workflows/02-cypress.yml
@@ -41,16 +41,14 @@ jobs:
         # TODO: integrate the cypress builds and use the following two lines afterwards
         # run: echo "🎉 All tests were successful."
     #    needs: [cypress]
-    needs: [build-outputs]
+    needs: [build-outputs, build-showcases]
 
-  #  deploy:
-  #    uses: ./.github/workflows/03-deploy-gh-pages.yml
-  #    needs: [checks-done, get-publish-version]
-  #    with:
-  #      release: ${{ needs.get-publish-version.outputs.release }}
-  #      preRelease: ${{ needs.get-publish-version.outputs.preRelease }}
-
-  #    needs: [checks-done, get-publish-version, build-outputs]
+  deploy:
+    uses: ./.github/workflows/03-deploy-gh-pages.yml
+    needs: [checks-done, get-publish-version]
+    with:
+      release: ${{ needs.get-publish-version.outputs.release }}
+      preRelease: ${{ needs.get-publish-version.outputs.preRelease }}
 
   build-power-apps:
     uses: ./.github/workflows/01-build-power-apps.yml
