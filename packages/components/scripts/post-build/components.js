@@ -1,5 +1,20 @@
 module.exports = [
 	{
+		name: 'page',
+		defaultStylePath: 'components/page/page.css'
+	},
+
+	{
+		name: 'header',
+		defaultStylePath: 'components/header/header.css'
+	},
+
+	{
+		name: 'brand',
+		defaultStylePath: 'components/brand/brand.css'
+	},
+
+	{
 		name: 'input',
 		defaultStylePath: 'components/input/input.css',
 		overwrites: {

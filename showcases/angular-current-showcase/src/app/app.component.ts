@@ -18,6 +18,7 @@ export class AppComponent {
 	];
 
 	onClick() {
+		// eslint-disable-next-line no-console
 		console.log('click button');
 	}
 }

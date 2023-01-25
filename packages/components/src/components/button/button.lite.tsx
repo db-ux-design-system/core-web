@@ -47,7 +47,7 @@ export default function DBButton(props: DBButtonProps) {
 
 	return (
 		<button
-			class={
+			className={
 				'db-button' +
 				(props.className ? ' ' + props.className : '') +
 				(props.onlyIcon ? ' is-icon-text-replace' : '')

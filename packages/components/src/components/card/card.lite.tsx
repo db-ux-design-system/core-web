@@ -43,7 +43,9 @@ export default function DBCard(props: DBCardProps) {
 
 	return (
 		<div
-			class={'db-card' + (props.className ? ' ' + props.className : '')}
+			className={
+				'db-card' + (props.className ? ' ' + props.className : '')
+			}
 			data-variant={props.variant}
 			data-color-variant={props.colorVariant}
 			data-direction={props.direction}
@@ -53,7 +55,7 @@ export default function DBCard(props: DBCardProps) {
 			</Show>
 			<Show when={props.imgSrc}>
 				<img
-					class="db-card-image"
+					className="db-card-image"
 					src={props.imgSrc}
 					alt={props.imgAlt}
 					height={props.imgHeight}
