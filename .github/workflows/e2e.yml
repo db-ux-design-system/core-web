@@ -43,32 +43,9 @@ jobs:
           name: db-ui-components-styles-build
           path: packages/components/src/styles
 
-      - name: ⎔ Setup node
-        uses: actions/setup-node@v3
-        with:
-          node-version: 16
-
-      # - name: YADA YADA
-      #   run: chown -R 1001:1001 /github/home/.cache && echo "pwn dat cache"
-
-      # - name: YADA YADA2
-      #   run: chown -R 1001:1001 packages && echo "pwn dat cache2"
-
-      - name: 📥 Install output dependencies
-        uses: bahmutov/npm-install@v1
-        with:
-          install-command: npm i
-
       - name: 📲 Install esbuild (binary workaround)
         working-directory: ./output/react
         run: npm i -D esbuild-linux-64
-
-      # - name: 🎭 Install Playwright
-      #   working-directory: ./output/react
-      #   run: npx playwright install --with-deps
-
-      - name: list folder
-        run: ls ./packages/components/src/styles
 
       - name: 👩‍🔬 Test with Playwright 🎭
         working-directory: ./output/react
