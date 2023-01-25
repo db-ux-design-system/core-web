@@ -54,6 +54,11 @@ jobs:
       # - name: YADA YADA2
       #   run: chown -R 1001:1001 packages && echo "pwn dat cache2"
 
+      - name: 📥 Install output dependencies
+        uses: bahmutov/npm-install@v1
+        with:
+          install-command: npm i
+
       - name: 📲 Install esbuild (binary workaround)
         working-directory: ./output/react
         run: npm i -D esbuild-linux-64
