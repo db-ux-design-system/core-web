@@ -12,6 +12,7 @@ const ShowcasesPage = () => (
 					getRouteWithBasePath(route)
 				)
 				.map((showcase: DbMainnavigationDataType) => (
+					// TODO: We should update our Card component to provide the possibility for button or hyperlink elements within
 					<a
 						key={`showcase-card-${showcase.label}`}
 						href={showcase.link}>

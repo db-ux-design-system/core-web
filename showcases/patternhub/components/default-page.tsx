@@ -1,3 +1,4 @@
+// TODO: Import @db-ui/react-components after those have been migrated
 import {
 	DbBrand,
 	DbFooter,
@@ -39,6 +40,7 @@ const DefaultPage = ({ children }: any) => {
 		<StaticContent>
 			<DbPage>
 				<DbHeader slot="header">
+					{/* TODO: provide correct https://db-ui.github.io/mono/* path later on in here */}
 					<DbBrand src="https://db-ui.github.io/images/db_logo.svg">
 						{process.env.NEXT_PUBLIC_APP_NAME}
 					</DbBrand>
