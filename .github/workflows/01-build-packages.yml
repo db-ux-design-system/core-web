@@ -18,6 +18,9 @@ jobs:
       - name: 🔨 Build Packages
         run: npm run build
 
+      - name: list folder
+        run: ls ./packages/components/src/styles
+
       - name: ⬆ Upload foundations build
         uses: ./.github/actions/upload-tar-artifact
         with:
