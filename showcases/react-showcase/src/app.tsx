@@ -123,7 +123,7 @@ const App = () => {
 						/>
 					</section>
 				</div>
-			</div>
+			</main>
 		</DBPage>
 	);
 };
