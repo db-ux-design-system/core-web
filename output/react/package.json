@@ -35,8 +35,5 @@
   "publishConfig": {
     "registry": "https://registry.npmjs.org/",
     "access": "public"
-  },
-  "dependencies": {
-    "@esbuild/linux-x64": "^0.17.4"
   }
 }
