@@ -57,9 +57,7 @@ const DefaultPage = ({ children }: any) => {
 						/>
 					)}
 				</DbHeader>
-				<main>
-					<div>{children}</div>
-				</main>
+				<div>{children}</div>
 
 				<DbFooter slot="footer" copyright />
 			</DbPage>
