@@ -2,3 +2,4 @@ node_modules
 CHANGELOG.md
 build/**
 **/output/**
+build-outputs/**

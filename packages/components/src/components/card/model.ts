@@ -1,9 +1,9 @@
 import {
-	type ClickEventProps,
-	type ClickEventState,
-	type GlobalProps,
-	type GlobalState,
-  type ImageProps
+	ClickEventProps,
+	ClickEventState,
+	GlobalProps,
+	GlobalState,
+	ImageProps
 } from '../../shared/model';
 
 export type DBCardDefaultProps = {
