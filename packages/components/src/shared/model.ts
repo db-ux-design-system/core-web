@@ -18,8 +18,8 @@ export type GlobalTextProps = {
 export type ImageProps = {
 	imgAlt?: string;
 	imgSrc?: string;
-	imgHeight?: number | string;
-	imgWidth?: number | string;
+	imgHeight?: number;
+	imgWidth?: number;
 };
 
 export type ClickEventProps = {
