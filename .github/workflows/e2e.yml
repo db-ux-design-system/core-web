@@ -34,6 +34,9 @@ jobs:
           useLockFile: true
           # install-command: npm i --ignore-scripts
 
+      - name: 🏗️ Build components
+        run: npm run build
+
       - name: 📲 Install esbuild (binary workaround)
         working-directory: ./output/react
         run: npm i -D esbuild-linux-64
