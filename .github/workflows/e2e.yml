@@ -6,9 +6,9 @@ on:
       - "main"
       - "feat-playwright-component-tests"
 
-# permissions:
-#   actions: write
-#   contents: write
+permissions:
+  actions: write
+  contents: write
 
 jobs:
   playwright-ct-react:
@@ -38,6 +38,9 @@ jobs:
         with:
           useLockFile: true
           # install-command: npm i --ignore-scripts
+
+      - name: YADA YADA
+      - run: chown -R 1001:1001 /github/home/.cache && echo "pwn dat cache"
 
       - name: 🏗️ Build components
         run: npm run build
