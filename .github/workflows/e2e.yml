@@ -1,0 +1,55 @@
+name: 🎭 Playwright E2E
+on:
+  pull_request:
+  push:
+    branches:
+      - "main"
+
+jobs:
+  playwright-ct-react:
+    name: 🧪 Test ⚛️ with 🎭
+    runs-on: ubuntu-20.04
+    container:
+      image: mcr.microsoft.com/playwright:v1.30.0-focal
+    strategy:
+      fail-fast: false
+      matrix:
+        project: [chromium, firefox, webkit]
+
+    steps:
+      - name: 🛑 Cancel Previous Runs
+        uses: styfle/cancel-workflow-action@0.11.0
+
+      - name: ⬇️ Checkout repo
+        uses: actions/checkout@v3
+
+      - name: ⎔ Setup node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16
+
+      - name: 📥 Download deps
+        uses: bahmutov/npm-install@v1
+        with:
+          useLockFile: true
+          # install-command: npm i --ignore-scripts
+
+      - name: 📲 Install esbuild (binary workaround)
+        working-directory: ./output/react
+        run: npm i -D esbuild-linux-64
+
+      # - name: 🎭 Install Playwright
+      #   working-directory: ./output/react
+      #   run: npx playwright install --with-deps
+
+      - name: 👩‍🔬 Test with Playwright 🎭
+        working-directory: ./output/react
+        run: HOME=/root npx playwright test --project=${{ matrix.project }}
+
+      - name: 🆙 Upload test results
+        if: always()
+        uses: actions/upload-artifact@v3
+        with:
+          name: playwright-report
+          path: ./output/react/playwright-report
+          retention-days: 30
