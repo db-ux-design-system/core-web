@@ -16,7 +16,7 @@ export interface DBBrandDefaultProps {
 	anchorTitle?: string;
 
 	/**
-	 * The rel attribute can be set to make a relationship to the current URL(https://developer.mozilla.org/en-US/docs/web/api/htmlanchorelement/rel).
+	 * The rel attribute can be set to make a relationship to the current URL (https://developer.mozilla.org/en-US/docs/web/api/htmlanchorelement/rel).
 	 */
 	anchorRelation?: string;
 }
