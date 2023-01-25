@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "copy:components": "cpr ../../output/next/src ./components/src -o",
+    "copy:components": "cpr ../../output/react/src ./components/src -o",
     "copy": "npm-run-all copy:*",
     "next:dev": "next dev",
     "next:start": "next start",
