@@ -1,5 +1,5 @@
 import { onMount, Show, useMetadata, useStore } from '@builder.io/mitosis';
-import { type DBDividerState, type DBDividerProps } from './model';
+import { DBDividerState, DBDividerProps } from './model';
 
 useMetadata({
 	isAttachedToShadowDom: true,

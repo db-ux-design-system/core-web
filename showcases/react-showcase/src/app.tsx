@@ -65,9 +65,9 @@ const App = () => {
 					}}>
 					<form className="db-ui-expressive" onSubmit={onSubmit}>
 						<DBInput
-							description="Das ist die Beschreibung"
-							label="Startbahnhof eingeben"
-							placeholder="irgendein Text"
+							description="This is a description"
+							label="Start train station"
+							placeholder="some text"
 							iconBefore="edit"
 							variant="error"
 							value="hello"
@@ -76,8 +76,8 @@ const App = () => {
 
 						<DBInput
 							description="Valid test"
-							label="Mit Event"
-							placeholder="irgendein Text"
+							label="With event"
+							placeholder="some text"
 							iconBefore="edit"
 							iconAfter="heart"
 							variant="warning"
@@ -85,8 +85,8 @@ const App = () => {
 							required={true}
 						/>
 						<DBInput
-							label="Startdatum"
-							placeholder="irgendein Text"
+							label="start date"
+							placeholder="some text"
 							type="datetime-local"
 							id="input-expr-date"
 						/>
@@ -95,16 +95,16 @@ const App = () => {
 
 					<section className="db-ui-regular">
 						<DBInput
-							label="Startbahnhof eingeben"
-							placeholder="irgendein Text"
+							label="Start train station"
+							placeholder="some text"
 							iconAfter="heart"
 							id="input-reg"
 							required={true}
 							minLength={5}
 						/>
 						<DBInput
-							label="Startdatum"
-							placeholder="irgendein Text"
+							label="Start date"
+							placeholder="some text"
 							type="week"
 							id="input-reg-date"
 						/>
@@ -113,20 +113,20 @@ const App = () => {
 					<section className="db-ui-functional">
 						<DBInput
 							id="db-input-functional-1"
-							label="Startbahnhof eingeben"
-							placeholder="irgendein Text"
+							label="Start train station"
+							placeholder="some text"
 						/>
 						<DBInput
 							id="db-input-functional-2"
-							label="Textinput eingeben disabled"
-							placeholder="irgendein Text"
+							label="Textinput disabled"
+							placeholder="some text"
 							variant="information"
 							disabled={true}
 						/>
 
 						<DBInput
-							label="Startdatum"
-							placeholder="irgendein Text"
+							label="start date"
+							placeholder="some text"
 							type="datetime-local"
 							id="input-func-date"
 						/>
