@@ -43,7 +43,7 @@ jobs:
         run: chown -R 1001:1001 /github/home/.cache && echo "pwn dat cache"
 
       - name: YADA YADA2
-        run: chown -R 1001:1001 /__w/mono/mono/packages/foundations && echo "pwn dat cache2"
+        run: chown -R 1001:1001 packages && echo "pwn dat cache2"
 
       - name: 🏗️ Build components
         run: npm run build
