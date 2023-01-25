@@ -62,6 +62,9 @@ jobs:
       #   working-directory: ./output/react
       #   run: npx playwright install --with-deps
 
+      - name: list folder
+        run: ls ./packages/components/src/styles
+
       - name: 👩‍🔬 Test with Playwright 🎭
         working-directory: ./output/react
         run: HOME=/root npx playwright test --project=${{ matrix.project }}
