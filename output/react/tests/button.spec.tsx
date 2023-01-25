@@ -26,7 +26,7 @@ test.describe('Button block desktop', () => {
 });
 
 test.describe('Button block mobile', () => {
-	// IPhone 13 screen size
+	// iPhone 13 screen size
 	test.use({ viewport: { width: 390, height: 884 } });
 
 	test('Button should contain text', async ({ mount }) => {
