@@ -1,5 +1,4 @@
 import { GlobalProps, GlobalState } from '../../shared/model';
-import * as React from 'react';
 
 export interface DBHeaderDefaultProps {
 	slotBrand?: any;

@@ -26,10 +26,6 @@
     ".": {
       "import": "./dist/db-ui.es.js",
       "require": "./dist/db-ui.umd.js"
-    },
-    "./dist/style.css": {
-      "import": "./dist/style.css",
-      "require": "./dist/style.css"
     }
   },
   "dependencies": {
