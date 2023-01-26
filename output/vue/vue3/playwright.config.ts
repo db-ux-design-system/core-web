@@ -1,5 +1,5 @@
-import type { PlaywrightTestConfig } from '@playwright/experimental-ct-react';
-import { devices } from '@playwright/experimental-ct-react';
+import type { PlaywrightTestConfig } from '@playwright/experimental-ct-vue';
+import { devices } from '@playwright/experimental-ct-vue';
 
 /**
  * See https://playwright.dev/docs/test-configuration.

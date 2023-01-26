@@ -29,6 +29,13 @@ module.exports = () => {
 		const vueFile = `../../output/vue/vue3/src/components/${component.name}/${component.name}.vue`;
 
 		try {
+			// Rewire imports in Playwright component tests
+			Replace.sync({
+				files: `../../output/vue/vue3/src/components/${component.name}/${component.name}.spec.tsx`,
+				from: `react`,
+				to: `vue`
+			});
+
 			Replace.sync({
 				files: `../../output/vue/vue3/src/components/${component.name}/index.ts`,
 				from: `./${component.name}`,
