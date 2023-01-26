@@ -21,8 +21,8 @@
   "license": "ISC",
   "dependencies": {
     "@db-ui/foundations": "*",
-    "@builder.io/mitosis": "^0.0.86",
-    "@builder.io/mitosis-cli": "^0.0.44"
+    "@builder.io/mitosis": "^0.0.87",
+    "@builder.io/mitosis-cli": "^0.0.45"
   },
   "devDependencies": {
     "@builder.io/eslint-plugin-mitosis": "^0.0.14",
