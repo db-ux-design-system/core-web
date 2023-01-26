@@ -64,8 +64,8 @@ export default function DBButton(props: DBButtonProps) {
 			<DBIcon icon={props.icon} withText={!props.onlyIcon}>
 				{/* we need spacings around props.text for compilation */}
 				{props.children}
-				<Show when={props.text}> {props.text} </Show>
 			</DBIcon>
+			<Show when={props.text}> {props.text} </Show>
 		</button>
 	);
 }
