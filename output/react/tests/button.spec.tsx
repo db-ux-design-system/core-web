@@ -40,7 +40,7 @@ test.describe('Button block mobile', () => {
 	});
 });
 
-// test.describe('A11y button component', () => {
+// Test.describe('A11y button component', () => {
 // 	// 2
 // 	test('button should not have any automatically detectable accessibility issues', async ({
 // 		page,

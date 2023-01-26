@@ -48,6 +48,10 @@ jobs:
         with:
           install-command: npm i
 
+      - name: WIP
+        working-directory: ./output/react
+        run: npx playwright install-deps
+
       - name: 📲 Install esbuild (binary workaround)
         working-directory: ./output/react
         run: npm i -D esbuild-linux-64
