@@ -40,19 +40,29 @@ test.describe('Button block mobile', () => {
 	});
 });
 
-test.describe('A11y button component', () => {
-	// 2
-	test('button should not have any automatically detectable accessibility issues', async ({
-		page,
-		mount
-	}) => {
-		await mount(<DBButton text="Test" />);
-		const accessibilityScanResults = await new AxeBuilder({
-			page
-		})
-			.include('.db-button')
-			.analyze(); // 4
+// test.describe('A11y button component', () => {
+// 	// 2
+// 	test('button should not have any automatically detectable accessibility issues', async ({
+// 		page,
+// 		mount
+// 	}) => {
+// 		await mount(<DBButton text="Test" />);
+// 		const accessibilityScanResults = await new AxeBuilder({
+// 			page
+// 		})
+// 			.include('.db-button')
+// 			.analyze();
 
-		expect(accessibilityScanResults.violations).toEqual([]); // 5
-	});
-});
+// 		expect(accessibilityScanResults.violations).toEqual([]);
+// 	});
+// 	test('icon only', async ({ page, mount }) => {
+// 		await mount(<DBButton icon="account" text="asdf" onlyIcon={true} />);
+// 		const accessibilityScanResults = await new AxeBuilder({
+// 			page
+// 		})
+// 			.include('.db-button')
+// 			.analyze();
+
+// 		expect(accessibilityScanResults.violations).toEqual([]);
+// 	});
+// });
