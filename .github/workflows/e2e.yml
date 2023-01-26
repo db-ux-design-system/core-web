@@ -3,9 +3,9 @@ name: 🎭 Playwright E2E
 on:
   workflow_call:
 
-# permissions:
-#   actions: write
-#   contents: write
+permissions:
+  actions: write
+  contents: read
 
 jobs:
   playwright-ct-react:
