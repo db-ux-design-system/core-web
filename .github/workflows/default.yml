@@ -44,7 +44,7 @@ jobs:
 
   deploy:
     uses: ./.github/workflows/03-deploy-gh-pages.yml
-    if: ${{ github.actor != 'dependabot[bot]' }}
+    if: ${{ github.actor != 'dependabot[bot]' && (github.event.pull_request == null || github.event.pull_request.head.repo.owner.login == 'db-ui') }}
     needs: [checks-done]
     with:
       release: false
