@@ -50,7 +50,7 @@ jobs:
 
       - name: WIP
         working-directory: ./output/react
-        run: npx playwright install-deps
+        run: npx playwright install --with-deps
 
       - name: 📲 Install esbuild (binary workaround)
         working-directory: ./output/react
