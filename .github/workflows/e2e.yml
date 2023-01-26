@@ -41,7 +41,7 @@ jobs:
         uses: ./.github/actions/download-tar-artifact
         with:
           name: db-ui-components-styles-build
-          path: packages/components/src/styles
+          path: packages/components/build
 
       - name: 📥 Download deps
         uses: bahmutov/npm-install@v1
