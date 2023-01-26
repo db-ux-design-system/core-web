@@ -58,7 +58,7 @@ jobs:
         run: npx playwright test --project=${{ matrix.project }}
 
       - name: 🆙 Upload test results
-        if: always()
+        if: failure()
         uses: actions/upload-artifact@v3
         with:
           name: playwright-report
