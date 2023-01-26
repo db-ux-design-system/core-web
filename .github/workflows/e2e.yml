@@ -15,7 +15,7 @@ jobs:
       # image: mcr.microsoft.com/playwright:v1.29.1-focal
       image: mcr.microsoft.com/playwright:v1.30.0-focal
     strategy:
-      fail-fast: true
+      fail-fast: false
       matrix:
         project: [chromium, firefox, webkit]
 
