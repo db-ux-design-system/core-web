@@ -1,5 +1,5 @@
 import { test, expect } from '@playwright/experimental-ct-react';
-import AxeBuilder from '@axe-core/playwright'; // 1
+// import AxeBuilder from '@axe-core/playwright';
 
 import DBButton from '../src/components/button/button';
 
@@ -41,7 +41,6 @@ test.describe('Button block mobile', () => {
 });
 
 // Test.describe('A11y button component', () => {
-// 	// 2
 // 	test('button should not have any automatically detectable accessibility issues', async ({
 // 		page,
 // 		mount

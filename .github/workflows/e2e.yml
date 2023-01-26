@@ -43,14 +43,15 @@ jobs:
           name: db-ui-components-styles-build
           path: packages/components/src/styles
 
-      - name: 📥 Install output dependencies
+      - name: 📥 Download deps
         uses: bahmutov/npm-install@v1
         with:
+          useLockFile: true
           install-command: npm i
 
-      - name: WIP
-        working-directory: ./output/react
-        run: npx playwright install --with-deps
+      # - name: WIP
+      #   working-directory: ./output/react
+      #   run: npx playwright install --with-deps
 
       - name: 📲 Install esbuild (binary workaround)
         working-directory: ./output/react
