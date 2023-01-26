@@ -2,10 +2,10 @@
 
 1. init new angular project `ng new angular-example`
 2. Select:
-3. Would you like to add Angular routing? No
-4. Which stylesheet format would you like to use? SCSS
-5. `cd angular-example`
-6. `npm i @db-ui/ngx-components`
+3. Would you like to add Angular routing? `No`
+4. Which stylesheet format would you like to use? `SCSS
+5. `$ cd angular-example`
+6. `$ npm i @db-ui/ngx-components`
 7. Add this to `src/styles.scss`:
 
 ```scss
