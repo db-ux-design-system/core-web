@@ -17,11 +17,14 @@
 					iconBefore="edit"
 					ngDefaultControl
 				></DBInput>
-				<input
-					[(ngModel)]="formData.password"
-					name="password"
-					value="test"
-				/>
+				<fieldset>
+					<legend>Native HTML <code>input</code> element</legend>
+					<input
+						[(ngModel)]="formData.password"
+						name="password"
+						value="test"
+					/>
+				</fieldset>
 				<DBButton variant="secondary">Send</DBButton>
 			</form>
 
