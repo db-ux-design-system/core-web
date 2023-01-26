@@ -1,19 +1,40 @@
 module.exports = [
 	{
 		name: 'page',
-		defaultStylePath: 'components/page/page.css'
+		defaultStylePath: 'components/page/page.css',
+		overwrites: {
+			vue: [
+				{
+					from: 'import { DBPageProps, DBPageState } from "./model";',
+					to: ''
+				}
+			]
+		}
 	},
-
 	{
 		name: 'header',
-		defaultStylePath: 'components/header/header.css'
+		defaultStylePath: 'components/header/header.css',
+		overwrites: {
+			vue: [
+				{
+					from: 'import { DBHeaderState, DBHeaderProps } from "./model";',
+					to: ''
+				}
+			]
+		}
 	},
-
 	{
 		name: 'brand',
-		defaultStylePath: 'components/brand/brand.css'
+		defaultStylePath: 'components/brand/brand.css',
+		overwrites: {
+			vue: [
+				{
+					from: 'import { DBBrandState, DBBrandProps } from "./model";',
+					to: ''
+				}
+			]
+		}
 	},
-
 	{
 		name: 'input',
 		defaultStylePath: 'components/input/input.css',
@@ -41,7 +62,6 @@ module.exports = [
 			]
 		}
 	},
-
 	{
 		name: 'divider',
 		defaultStylePath: 'components/divider/divider.css',
@@ -54,7 +74,6 @@ module.exports = [
 			]
 		}
 	},
-
 	{
 		name: 'card',
 		defaultStylePath: 'components/card/card.css',
@@ -64,7 +83,6 @@ module.exports = [
 			]
 		}
 	},
-
 	{
 		name: 'tab-bar',
 		defaultStylePath: 'components/tab-bar/tab-bar.css',
@@ -102,12 +120,10 @@ module.exports = [
 			]
 		}
 	},
-
 	{
 		name: 'tab',
 		defaultStylePath: 'components/tab/tab.css'
 	},
-
 	{
 		name: 'button',
 		defaultStylePath: 'components/button/button.css',

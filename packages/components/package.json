@@ -7,10 +7,11 @@
   "types": "./dist/index.d.ts",
   "scripts": {
     "generate:component": "hygen mitosis new",
-    "build:sass": "sass src --load-path=node_modules/ --load-path=../../node_modules/",
+    "build:mv": "cpr src build -o -f \"(.ts|.tsx)$\"",
+    "build:sass": "sass build --no-source-map --load-path=node_modules/ --load-path=../../node_modules/",
     "build:mitosis": "mitosis build",
     "build:post": "node scripts/post-build/index.js",
-    "copy:outputs": "cpr src ../../build-outputs/components/dist -o -f \"(.ts|.tsx)$\"",
+    "copy:outputs": "cpr build ../../build-outputs/components/build -o",
     "copy:package.json": "cpr package.json ../../build-outputs/components/package.json -o",
     "copy:readme": "cpr README.md ../../build-outputs/components/README.md -o",
     "copy-output": "npm-run-all copy:*",
@@ -20,12 +21,12 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@db-ui/foundations": "*",
-    "@builder.io/mitosis": "^0.0.87",
-    "@builder.io/mitosis-cli": "^0.0.45"
+    "@db-ui/foundations": "*"
   },
   "devDependencies": {
     "@builder.io/eslint-plugin-mitosis": "^0.0.14",
+    "@builder.io/mitosis": "^0.0.87",
+    "@builder.io/mitosis-cli": "^0.0.45",
     "cpr": "3.0.1",
     "eslint": "^8.32.0",
     "hygen": "^6.2.11",
@@ -34,7 +35,7 @@
     "nodemon": "2.0.20"
   },
   "files": [
-    "dist"
+    "build"
   ],
   "publishConfig": {
     "registry": "https://registry.npmjs.org/",

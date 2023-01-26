@@ -12,14 +12,14 @@
 
 ```scss
 // Combined dependencies like variables, colors and tonality and all components
-@use "@db-ui/components/src/styles/db-ui-42-rollup" as *;
+@use "@db-ui/components/build/styles/db-ui-42-rollup" as *;
 // We use $db-spacing-fixed-md variable so we need to import the file where the variable is defined
 @use "@db-ui/foundations/build/scss/variables.global" as *;
 // Color-classes are optional, we use them in the example to have easy access to colors
 @import "@db-ui/foundations/build/scss/color-classes";
 ```
 
-7. Goto `src/main.ts` and rename `import './style.css'` to `import './style.scss'` and add this as well: `import '@db-ui/v-components/dist/style.css';`
+7. Goto `src/main.ts` and rename `import './style.css'` to `import './style.scss'`.
 8. Goto `src/App.vue` and replace content with:
 
 ```vue
