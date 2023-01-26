@@ -8,7 +8,7 @@
   "scripts": {
     "generate:component": "hygen mitosis new",
     "build:mv": "cpr src build -o -f \"(.ts|.tsx)$\"",
-    "build:sass": "sass --no-source-map --load-path=node_modules/ --load-path=../../node_modules/ build ",
+    "build:sass": "sass build --no-source-map --load-path=node_modules/ --load-path=../../node_modules/",
     "build:mitosis": "mitosis build",
     "build:post": "node scripts/post-build/index.js",
     "copy:outputs": "cpr build ../../build-outputs/components/build -o",
