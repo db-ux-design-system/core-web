@@ -4,6 +4,12 @@
  */
 
 const prefix = 'db';
+const fileHeader = `
+@use "variables" as *;
+// Do not edit directly
+// Generated on
+// ${new Date().toString()}
+`;
 
 const generateInteractiveVariants = (currentColorObject, cssProp) => {
 	return `
@@ -39,6 +45,7 @@ const generateBGVariants = (
 %${placeholderName}-ia-states {
 	${generateInteractiveVariants(currentColorObject, 'background-color')}
 }
+
 %${placeholderName} {
     background-color: $${prefix}-${currentColorObject.enabled.name};
     color: $${prefix}-${baseColorObject.enabled.name};
@@ -60,7 +67,6 @@ const generateBGVariants = (
     a {
        ${generateInteractiveVariants(baseColorObject, 'color')}
     }
-
 `;
 	if (baseColorObject.weak) {
 		result += `
@@ -74,7 +80,8 @@ const generateBGVariants = (
 `;
 	}
 
-	result += `}`;
+	result += `}
+	`;
 	return result;
 };
 
@@ -86,15 +93,25 @@ const generateBGVariants = (
  * @returns scss string
  */
 exports.generateColorUtilitityPlaceholder = (colorToken) => {
-	let output = '@use "variables" as *;\n';
+	let output = fileHeader;
 
 	for (const [, value] of Object.keys(colorToken).entries()) {
-		output += `/**
+		output += `
+/**
 * ${value.toUpperCase()} - Placeholder Utilities
 **/
 `;
 		// Text colors with interactive variant, e.g. primary
 		if (colorToken[value].enabled) {
+			// Only text
+			output += `
+%${prefix}-${value}-text-ia {
+	color: $${prefix}-${colorToken[value].enabled.name};
+${generateInteractiveVariants(colorToken[value], 'color')}
+}
+
+`;
+
 			// Text and background colors
 			output += generateBGVariants(
 				value,
