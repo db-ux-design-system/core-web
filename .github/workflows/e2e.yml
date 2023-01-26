@@ -12,7 +12,7 @@ jobs:
     name: 🧪 Test ⚛️ with 🎭
     runs-on: ubuntu-latest
     container:
-      image: mcr.microsoft.com/playwright:v1.29.2-focal
+      image: mcr.microsoft.com/playwright:v1.30.0-focal
     strategy:
       fail-fast: false
       matrix:
