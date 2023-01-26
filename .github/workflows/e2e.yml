@@ -10,7 +10,6 @@ permissions:
 jobs:
   playwright-ct-react:
     name: 🧪 Test ⚛️ with 🎭
-    # runs-on: ubuntu-20.04
     runs-on: ubuntu-latest
     container:
       image: mcr.microsoft.com/playwright:v1.29.2-focal
@@ -50,17 +49,12 @@ jobs:
           useLockFile: true
           install-command: npm i
 
-      # - name: WIP
-      #   working-directory: ./output/react
-      #   run: npx playwright install --with-deps
-
       - name: 📲 Install esbuild (binary workaround)
         working-directory: ./output/react
         run: npm i -D esbuild-linux-64
 
       - name: 👩‍🔬 Test with Playwright 🎭
         working-directory: ./output/react
-        # run: HOME=/root npx playwright test --project=${{ matrix.project }}
         run: npx playwright test --project=${{ matrix.project }}
 
       - name: 🆙 Upload test results
