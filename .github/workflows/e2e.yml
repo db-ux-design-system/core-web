@@ -10,7 +10,7 @@ permissions:
 jobs:
   playwright-ct-react:
     name: 🧪 Test ⚛️ with 🎭
-    runs-on: ubuntu-20.04
+    # runs-on: ubuntu-20.04
     container:
       image: mcr.microsoft.com/playwright:v1.29.2-focal
     strategy:
