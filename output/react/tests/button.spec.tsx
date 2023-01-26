@@ -1,5 +1,5 @@
 import { test, expect } from '@playwright/experimental-ct-react';
-// import AxeBuilder from '@axe-core/playwright';
+import AxeBuilder from '@axe-core/playwright';
 
 import DBButton from '../src/components/button/button';
 
@@ -40,28 +40,29 @@ test.describe('Button block mobile', () => {
 	});
 });
 
-// Test.describe('A11y button component', () => {
-// 	test('button should not have any automatically detectable accessibility issues', async ({
-// 		page,
-// 		mount
-// 	}) => {
-// 		await mount(<DBButton text="Test" />);
-// 		const accessibilityScanResults = await new AxeBuilder({
-// 			page
-// 		})
-// 			.include('.db-button')
-// 			.analyze();
+test.describe('A11y button component', () => {
+	test('button should not have any automatically detectable accessibility issues', async ({
+		page,
+		mount
+	}) => {
+		await mount(<DBButton text="Test" />);
+		const accessibilityScanResults = await new AxeBuilder({
+			page
+		})
+			.include('.db-button')
+			.analyze();
 
-// 		expect(accessibilityScanResults.violations).toEqual([]);
-// 	});
-// 	test('icon only', async ({ page, mount }) => {
-// 		await mount(<DBButton icon="account" text="asdf" onlyIcon={true} />);
-// 		const accessibilityScanResults = await new AxeBuilder({
-// 			page
-// 		})
-// 			.include('.db-button')
-// 			.analyze();
+		expect(accessibilityScanResults.violations).toEqual([]);
+	});
 
-// 		expect(accessibilityScanResults.violations).toEqual([]);
-// 	});
-// });
+	test('icon only', async ({ page, mount }) => {
+		await mount(<DBButton icon="account" text="asdf" onlyIcon={true} />);
+		const accessibilityScanResults = await new AxeBuilder({
+			page
+		})
+			.include('.db-button')
+			.analyze();
+
+		expect(accessibilityScanResults.violations).toEqual([]);
+	});
+});
