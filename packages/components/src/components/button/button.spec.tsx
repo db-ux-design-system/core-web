@@ -46,7 +46,7 @@ test.describe('A11y button component', () => {
 		mount
 	}) => {
 		await mount(<DBButton text="Test" />);
-		const accessibilityScanResults = await new AxeBuilder.default({ page })
+		const accessibilityScanResults = await new AxeBuilder({ page })
 			.include('.db-button')
 			.analyze();
 
@@ -55,7 +55,7 @@ test.describe('A11y button component', () => {
 
 	test('icon only', async ({ page, mount }) => {
 		await mount(<DBButton icon="account" text="asdf" onlyIcon={true} />);
-		const accessibilityScanResults = await new AxeBuilder.default({ page })
+		const accessibilityScanResults = await new AxeBuilder({ page })
 			.include('.db-button')
 			.analyze();
 

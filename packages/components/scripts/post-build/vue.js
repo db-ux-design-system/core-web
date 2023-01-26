@@ -35,6 +35,11 @@ module.exports = () => {
 				from: `react`,
 				to: `vue`
 			});
+			Replace.sync({
+				files: `../../output/vue/vue3/src/components/${component.name}/${component.name}.spec.tsx`,
+				from: /new AxeBuilder/g,
+				to: `new AxeBuilder.default`
+			});
 
 			Replace.sync({
 				files: `../../output/vue/vue3/src/components/${component.name}/index.ts`,
