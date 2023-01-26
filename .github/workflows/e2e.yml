@@ -40,7 +40,7 @@ jobs:
       - name: ⬇ Download components styles build
         uses: ./.github/actions/download-tar-artifact
         with:
-          name: db-ui-components-styles-build
+          name: db-ui-components-build
           path: packages/components/build
 
       - name: 📥 Download deps
