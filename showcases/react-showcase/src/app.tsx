@@ -6,7 +6,8 @@ import {
 	DBHeader,
 	DBIcon,
 	DBPage,
-	DBInput
+	DBInput,
+	DBSection
 } from '../../../output/react/src';
 
 const App = () => {
@@ -39,24 +40,26 @@ const App = () => {
 			slotFooter={<div>FOOTER</div>}>
 			<div>
 				<h1>React</h1>
-				<DBCard>
-					<div
-						style={{
-							display: 'flex',
-							gap: '4px',
-							alignItems: 'stretch'
-						}}>
-						<DBDivider variant="vertical" />
-						<DBButton variant="secondary">Test</DBButton>
-						<DBDivider variant="vertical" />
-						<DBButton
-							text="Test"
-							icon="account"
-							onClick={onClick}
-						/>
-						<DBIcon className="icon" icon="account" />
-					</div>
-				</DBCard>
+				<DBSection>
+					<DBCard>
+						<div
+							style={{
+								display: 'flex',
+								gap: '4px',
+								alignItems: 'stretch'
+							}}>
+							<DBDivider variant="vertical" />
+							<DBButton variant="secondary">Test</DBButton>
+							<DBDivider variant="vertical" />
+							<DBButton
+								text="Test"
+								icon="account"
+								onClick={onClick}
+							/>
+							<DBIcon className="icon" icon="account" />
+						</div>
+					</DBCard>
+				</DBSection>
 				<div
 					style={{
 						display: 'flex',

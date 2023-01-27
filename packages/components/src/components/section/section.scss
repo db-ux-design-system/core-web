@@ -1,0 +1,24 @@
+@use "@db-ui/foundations/build/scss/variables.global" as *;
+@use "@db-ui/foundations/build/scss/helpers/functions" as *;
+
+.db-section {
+	margin: 0 auto;
+	max-width: to-rem(1440);
+
+	&[data-size="small"] {
+		padding: $db-spacing-fixed-sm 0;
+	}
+
+	&[data-size="medium"] {
+		padding: $db-spacing-fixed-md 0;
+	}
+
+	&[data-size="large"] {
+		padding: $db-spacing-fixed-lg 0;
+	}
+
+	&[data-width="full"] {
+		width: 100vw;
+		max-width: none;
+	}
+}
