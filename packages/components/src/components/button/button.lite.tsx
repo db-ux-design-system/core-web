@@ -47,6 +47,7 @@ export default function DBButton(props: DBButtonProps) {
 
 	return (
 		<button
+			aria-label={props.text}
 			className={
 				'db-button' +
 				(props.className ? ' ' + props.className : '') +
@@ -65,7 +66,7 @@ export default function DBButton(props: DBButtonProps) {
 				{/* we need spacings around props.text for compilation */}
 				{props.children}
 			</DBIcon>
-			<Show when={props.text}> {props.text} </Show>
+			<Show when={props.text && !props.onlyIcon}> {props.text} </Show>
 		</button>
 	);
 }
