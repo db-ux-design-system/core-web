@@ -20,8 +20,13 @@ module.exports = () => {
 					);
 				}
 				Fse.copySync(
-					`./test/playwright`,
+					`./test/playwright/boilerplate`,
 					`../../output/${resolvedFramework}/playwright`,
+					{ overwrite: true }
+				);
+				Fse.copySync(
+					`./test/playwright/config.ts`,
+					`../../output/${resolvedFramework}/playwright.config.ts`,
 					{ overwrite: true }
 				);
 			}
