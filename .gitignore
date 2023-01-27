@@ -29,7 +29,7 @@ output/power-apps
 /output/**/src
 /output/**/dist
 /output/**/.angular
-/output/**/playwright
+/output/**/playwright*
 
 /build-showcases/
 /build-outputs/
