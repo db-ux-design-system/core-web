@@ -1,24 +1,37 @@
+@use "@db-ui/foundations/build/scss/variables" as *;
 @use "@db-ui/foundations/build/scss/variables.global" as *;
 @use "@db-ui/foundations/build/scss/helpers/functions" as *;
 
 .db-section {
 	margin: 0 auto;
+	width: 100%;
+	// TODO: This width should be provided by zeplin tokens
 	max-width: to-rem(1440);
 
+	padding-left: $db-spacing-fixed-md;
+	padding-right: $db-spacing-fixed-md;
+
+	@media screen and (min-width: $db-screens-lg) {
+		padding-left: $db-spacing-fixed-lg;
+		padding-right: $db-spacing-fixed-lg;
+	}
+
 	&[data-size="small"] {
-		padding: $db-spacing-fixed-sm 0;
+		padding-top: $db-spacing-responsive-sm;
+		padding-bottom: $db-spacing-responsive-sm;
 	}
 
 	&[data-size="medium"] {
-		padding: $db-spacing-fixed-md 0;
+		padding-top: $db-spacing-responsive-md;
+		padding-bottom: $db-spacing-responsive-md;
 	}
 
 	&[data-size="large"] {
-		padding: $db-spacing-fixed-lg 0;
+		padding-top: $db-spacing-responsive-lg;
+		padding-bottom: $db-spacing-responsive-lg;
 	}
 
 	&[data-width="full"] {
-		width: 100vw;
 		max-width: none;
 	}
 }

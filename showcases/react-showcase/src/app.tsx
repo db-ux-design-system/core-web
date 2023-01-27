@@ -39,9 +39,11 @@ const App = () => {
 			}
 			slotFooter={<div>FOOTER</div>}>
 			<div>
-				<h1>React</h1>
-				<DBSection>
-					<DBCard>
+				<DBSection width="full" size="small" className="db-bg-success">
+					<h1>React</h1>
+				</DBSection>
+				<DBSection className="db-bg-information">
+					<DBCard className="db-bg-neutral-0">
 						<div
 							style={{
 								display: 'flex',
@@ -60,81 +62,87 @@ const App = () => {
 						</div>
 					</DBCard>
 				</DBSection>
-				<div
-					style={{
-						display: 'flex',
-						gap: '1rem',
-						margin: '1rem 0'
-					}}>
-					<form className="db-ui-expressive" onSubmit={onSubmit}>
-						<DBInput
-							description="This is a description"
-							label="Start train station"
-							placeholder="some text"
-							iconBefore="edit"
-							variant="error"
-							value="hello"
-							name="testInput"
-						/>
 
-						<DBInput
-							description="Valid test"
-							label="With event"
-							placeholder="some text"
-							iconBefore="edit"
-							iconAfter="heart"
-							variant="warning"
-							id="input-expr-warning"
-							required={true}
-						/>
-						<DBInput
-							label="start date"
-							placeholder="some text"
-							type="datetime-local"
-							id="input-expr-date"
-						/>
-						<DBButton variant="secondary">Test</DBButton>
-					</form>
+				<DBSection
+					width="full"
+					size="large"
+					className="db-bg-neutral-4">
+					<div
+						style={{
+							display: 'flex',
+							gap: '1rem',
+							margin: '1rem 0'
+						}}>
+						<form className="db-ui-expressive" onSubmit={onSubmit}>
+							<DBInput
+								description="This is a description"
+								label="Start train station"
+								placeholder="some text"
+								iconBefore="edit"
+								variant="error"
+								value="hello"
+								name="testInput"
+							/>
 
-					<section className="db-ui-regular">
-						<DBInput
-							label="Start train station"
-							placeholder="some text"
-							iconAfter="heart"
-							id="input-reg"
-							required={true}
-							minLength={5}
-						/>
-						<DBInput
-							label="Start date"
-							placeholder="some text"
-							type="week"
-							id="input-reg-date"
-						/>
-					</section>
+							<DBInput
+								description="Valid test"
+								label="With event"
+								placeholder="some text"
+								iconBefore="edit"
+								iconAfter="heart"
+								variant="warning"
+								id="input-expr-warning"
+								required={true}
+							/>
+							<DBInput
+								label="start date"
+								placeholder="some text"
+								type="datetime-local"
+								id="input-expr-date"
+							/>
+							<DBButton variant="secondary">Test</DBButton>
+						</form>
 
-					<section className="db-ui-functional">
-						<DBInput
-							id="db-input-functional-1"
-							label="Start train station"
-							placeholder="some text"
-						/>
-						<DBInput
-							id="db-input-functional-2"
-							label="Textinput disabled"
-							placeholder="some text"
-							variant="information"
-							disabled={true}
-						/>
+						<section className="db-ui-regular">
+							<DBInput
+								label="Start train station"
+								placeholder="some text"
+								iconAfter="heart"
+								id="input-reg"
+								required={true}
+								minLength={5}
+							/>
+							<DBInput
+								label="Start date"
+								placeholder="some text"
+								type="week"
+								id="input-reg-date"
+							/>
+						</section>
 
-						<DBInput
-							label="start date"
-							placeholder="some text"
-							type="datetime-local"
-							id="input-func-date"
-						/>
-					</section>
-				</div>
+						<section className="db-ui-functional">
+							<DBInput
+								id="db-input-functional-1"
+								label="Start train station"
+								placeholder="some text"
+							/>
+							<DBInput
+								id="db-input-functional-2"
+								label="Textinput disabled"
+								placeholder="some text"
+								variant="information"
+								disabled={true}
+							/>
+
+							<DBInput
+								label="start date"
+								placeholder="some text"
+								type="datetime-local"
+								id="input-func-date"
+							/>
+						</section>
+					</div>
+				</DBSection>
 			</div>
 		</DBPage>
 	);
