@@ -219,6 +219,31 @@ that would make it much easier for you to use our product without the trademarks
 This especially relates to the files in the directories `/source/fonts/`, `source/images` and `source/samples`
 and `source/favicon.ico` as well.
 
+## Development
+
+### Tests
+
+TODO: Elaborate on testing setup
+
+#### Component Tests
+
+**Visual regression tests**
+
+Playwright is used to create and compare screenshots of each individual component.
+
+To update screenshots, the following steps are needed for running tests on Linux in CI (Github Actions):
+
+```
+docker run --rm --network host -v $(pwd):/work/ -w /work/ -it mcr.microsoft.com/playwright:v1.30.0-focal /bin/bash
+
+npm install
+
+cd output/${frameworkFolder}
+
+npx playwright test --update-snapshots
+
+```
+
 ## Contributions
 
 Contributions are very welcome, please refer to the [contribution guide](CONTRIBUTING.md).
