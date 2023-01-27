@@ -5,6 +5,7 @@ const components = require('./components');
 module.exports = () => {
 	for (const { name } of components) {
 		for (const framework of Frameworks) {
+			// TODO: Add other frameworks after Playwright supports them in component tests
 			if (framework === 'react' || framework === 'vue') {
 				const resolvedFramework =
 					framework === 'vue' ? `vue/vue3` : framework;
@@ -18,6 +19,11 @@ module.exports = () => {
 						`../../output/${resolvedFramework}/src/components/${name}/${name}.spec.tsx`
 					);
 				}
+				Fse.copySync(
+					`./test/playwright`,
+					`../../output/${resolvedFramework}/playwright`,
+					{ overwrite: true }
+				);
 			}
 		}
 	}
