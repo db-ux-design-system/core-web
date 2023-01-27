@@ -23,7 +23,7 @@ test.describe('DB<%= h.changeCase.pascal(name) %> component on desktop', () => {
 });
 
 test.describe('DB<%= h.changeCase.pascal(name) %> component on mobile', () => {
-	// IPhone 13 / portrait screen size
+	// iPhone 13 / portrait screen size
 	test.use({ viewport: { width: 390, height: 884 } });
 
 	test('DB<%= h.changeCase.pascal(name) %> should contain text', async ({ mount }) => {
