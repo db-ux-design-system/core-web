@@ -15,7 +15,7 @@
     "mv:package.json": "cpr package.json ../../build-outputs/react/package.json -o",
     "mv:readme": "cpr README.md ../../build-outputs/react/README.md -o",
     "postbuild": "npm-run-all -p mv:*",
-    "test-ct": "playwright test -c playwright.config.ts"
+    "test:components": "playwright test -c playwright.config.ts"
   },
   "main": "./dist/index.js",
   "module": "./dist/index.js",
