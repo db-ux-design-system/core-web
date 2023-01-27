@@ -26,7 +26,7 @@ test.describe('DBButton component on desktop', () => {
 });
 
 test.describe('DBButton component on mobile', () => {
-	// IPhone 13 / portrait screen size
+	// iPhone 13 / portrait screen size
 	test.use({ viewport: { width: 390, height: 884 } });
 
 	test('DBButton should contain text', async ({ mount }) => {
