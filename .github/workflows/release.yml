@@ -28,6 +28,9 @@ jobs:
   build-showcases:
     uses: ./.github/workflows/01-build-showcases.yml
     needs: [build-packages]
+    with:
+      release: ${{ needs.get-publish-version.outputs.release }}
+      preRelease: ${{ needs.get-publish-version.outputs.preRelease }}
 
   #  cypress:
   #    uses: ./.github/workflows/02-cypress.yml

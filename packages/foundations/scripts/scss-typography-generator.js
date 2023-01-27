@@ -2,7 +2,8 @@ const prefix = 'db';
 
 const fileHeader = `
 @use "variables" as *;
-@use "icon/icon-family-calc" as *;
+@use "icon/icon-calc" as *;
+@use "helpers/functions" as *;
 // Do not edit directly
 // Generated on
 // ${new Date().toString()}
@@ -60,7 +61,8 @@ const getMediaQueryProperties = (properties) => {
 
 	if (!isHeadline) {
 		result += `
-	--db-base-icon-font-size-${sSize}: #{$${prefix}-typography-${scale}-${mQuery}-${textType}-${size}-font-size};
+	--db-base-icon-font-size-${sSize}: #{to-rem(get-icon-size($${prefix}-typography-${scale}-${mQuery}-${textType}-${size}-font-size,
+	$${prefix}-typography-${scale}-${mQuery}-${textType}-${size}-line-height))};
 	--db-base-icon-font-family-${sSize}: #{get-icon-family($${prefix}-typography-${scale}-${mQuery}-${textType}-${size}-font-size,
 	$${prefix}-typography-${scale}-${mQuery}-${textType}-${size}-line-height)};
 	--db-base-icon-font-family-filled-${sSize}: #{get-icon-family($${prefix}-typography-${scale}-${mQuery}-${textType}-${size}-font-size,

@@ -42,6 +42,9 @@
 
 // TODO: The following construct was especially meant to enable a branch (EDS & FV) specific result - probably we could refactor this the sooner the later
 %default-icon-custom-properties {
-	--icon-font-family: #{$icons-font-family};
-	--icon-font-size: #{to-rem($pxValue: $icon-size)};
+	--icon-font-family: var(--db-base-icon-font-family, #{$icons-font-family});
+	--icon-font-size: var(
+		--db-base-icon-font-size,
+		#{to-rem($pxValue: $icon-size)}
+	);
 }
