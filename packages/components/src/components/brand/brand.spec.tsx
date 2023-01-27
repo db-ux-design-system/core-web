@@ -19,7 +19,7 @@ test.describe('DBBrand component on desktop', () => {
 });
 
 test.describe('DBBrand component on mobile', () => {
-	// IPhone 13 / portrait screen size
+	// iPhone 13 / portrait screen size
 	test.use({ viewport: { width: 390, height: 884 } });
 
 	test.fixme('DBBrand should contain text', async ({ mount }) => {
