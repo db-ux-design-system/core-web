@@ -30,6 +30,7 @@ output/power-apps
 /output/**/dist
 /output/**/.angular
 /output/**/playwright*
+/output/**/test-results
 
 /build-showcases/
 /build-outputs/

@@ -65,3 +65,11 @@ jobs:
           name: playwright-report
           path: ./output/react/playwright-report
           retention-days: 30
+
+      - name: 🆙 Upload test videos
+        if: failure()
+        uses: actions/upload-artifact@v3
+        with:
+          name: playwright-videos
+          path: ./output/react/test-results
+          retention-days: 30
