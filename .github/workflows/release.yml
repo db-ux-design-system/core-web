@@ -32,18 +32,11 @@ jobs:
       release: ${{ needs.get-publish-version.outputs.release }}
       preRelease: ${{ needs.get-publish-version.outputs.preRelease }}
 
-  #  cypress:
-  #    uses: ./.github/workflows/02-cypress.yml
-  #    needs: [install-cypress,build-showcases]
-
   checks-done:
     runs-on: ubuntu-latest
     steps:
       - name: 🎉 Checks done
         run: echo "🎉 All builds were successful."
-        # TODO: integrate the cypress builds and use the following two lines afterwards
-        # run: echo "🎉 All tests were successful."
-    #    needs: [cypress]
     needs: [build-outputs, build-showcases]
 
   deploy:
