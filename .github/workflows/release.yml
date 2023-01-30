@@ -27,7 +27,7 @@ jobs:
 
   build-showcases:
     uses: ./.github/workflows/01-build-showcases.yml
-    needs: [build-packages]
+    needs: [build-packages, get-publish-version]
     with:
       release: ${{ needs.get-publish-version.outputs.release }}
       preRelease: ${{ needs.get-publish-version.outputs.preRelease }}

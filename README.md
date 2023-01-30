@@ -233,7 +233,7 @@ Playwright is used to create and compare screenshots of each individual componen
 
 To update screenshots, the following steps are needed for running tests on Linux in CI (Github Actions):
 
-```
+```shell
 docker run --rm --network host -v $(pwd):/work/ -w /work/ -it mcr.microsoft.com/playwright:v1.30.0-focal /bin/bash
 
 npm install
@@ -241,7 +241,6 @@ npm install
 cd output/${frameworkFolder}
 
 npx playwright test --update-snapshots
-
 ```
 
 ## Contributions
