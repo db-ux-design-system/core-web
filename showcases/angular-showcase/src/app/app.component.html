@@ -1,0 +1,19 @@
+<DBPage type="fixedHeaderFooter" [class]="getTonality()">
+	<DBHeader header>
+		<DBBrand brand src="./assets/db_logo.svg" href="/angular-showcase">
+			DB UI Elements in Angular Showcase
+		</DBBrand>
+
+		<div meta-navigation>
+			<select [(ngModel)]="tonality">
+				<option>functional</option>
+				<option checked>regular</option>
+				<option>expressive</option>
+			</select>
+		</div>
+	</DBHeader>
+	<div>
+		<router-outlet></router-outlet>
+	</div>
+	<div footer>Footer</div>
+</DBPage>

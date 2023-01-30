@@ -7,19 +7,28 @@ import {
 	DBIconModule,
 	DBCardModule,
 	DBDividerModule,
-	DBInputModule
+	DBInputModule,
+	DBPageModule,
+	DBHeaderModule,
+	DBBrandModule
 } from '../../../../output/angular/src';
 import { AppComponent } from './app.component';
+import { AppRoutingModule } from './app.routing.module';
+import { FormComponent } from './components/form/form.component';
 
 @NgModule({
-	declarations: [AppComponent],
+	declarations: [AppComponent, FormComponent],
 	imports: [
+		AppRoutingModule,
 		BrowserModule,
 		DBButtonModule,
 		DBIconModule,
 		DBDividerModule,
 		DBCardModule,
 		DBInputModule,
+		DBPageModule,
+		DBHeaderModule,
+		DBBrandModule,
 		FormsModule
 	],
 	providers: [],
