@@ -8,7 +8,7 @@
     "build": "tsc && vite build"
   },
   "dependencies": {
-    "@db-ui/react-components": "^0.0.1",
+    "@db-ui/react-components": "^0.0.3",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "sass": "^1.57.1"
@@ -17,7 +17,7 @@
     "@types/react": "^18.0.27",
     "@types/react-dom": "^18.0.10",
     "@vitejs/plugin-react": "^3.0.1",
-    "typescript": "^4.9.3",
+    "typescript": "^4.9.5",
     "vite": "^4.0.4"
   }
 }
