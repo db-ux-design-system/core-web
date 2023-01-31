@@ -40,10 +40,11 @@
 			overflow: hidden;
 			flex: 1 1 auto;
 			width: 100%;
+		}
 
-			& :first-child {
-				overflow: auto;
-			}
+		main > :first-child {
+			overflow: auto;
+			height: 100%;
 		}
 	}
 }

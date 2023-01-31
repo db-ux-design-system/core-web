@@ -3,10 +3,7 @@
 @use "@db-ui/foundations/build/scss/helpers/functions" as *;
 
 .db-section {
-	margin: 0 auto;
 	width: 100%;
-	// TODO: This width should be provided by zeplin tokens
-	max-width: to-rem(1440);
 
 	padding-left: $db-spacing-fixed-md;
 	padding-right: $db-spacing-fixed-md;
@@ -14,6 +11,11 @@
 	@media screen and (min-width: $db-screens-lg) {
 		padding-left: $db-spacing-fixed-lg;
 		padding-right: $db-spacing-fixed-lg;
+	}
+
+	&[data-size="none"] {
+		padding-top: 0;
+		padding-bottom: 0;
 	}
 
 	&[data-size="small"] {
@@ -31,7 +33,24 @@
 		padding-bottom: $db-spacing-responsive-lg;
 	}
 
-	&[data-width="full"] {
-		max-width: none;
+	& > div {
+		margin: 0 auto;
+		width: 100%;
+
+		&[data-max-width="none"] {
+			max-width: none;
+		}
+
+		&[data-max-width="small"] {
+			max-width: $db-screens-lg;
+		}
+
+		&[data-max-width="medium"] {
+			max-width: $db-screens-xl;
+		}
+
+		&[data-max-width="large"] {
+			max-width: $db-screens-2xl;
+		}
 	}
 }

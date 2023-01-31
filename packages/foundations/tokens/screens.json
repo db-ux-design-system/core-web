@@ -27,6 +27,13 @@
 				"category": "size",
 				"screen": true
 			}
+		},
+		"2xl": {
+			"value": "90",
+			"attributes": {
+				"category": "size",
+				"screen": true
+			}
 		}
 	}
 }

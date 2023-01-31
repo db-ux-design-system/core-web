@@ -19,16 +19,17 @@ export default function DBSection(props: DBSectionProps) {
 	});
 
 	return (
-		<div
+		<section
 			className={
 				'db-section' + (props.className ? ' ' + props.className : '')
 			}
-			data-size={props.size || 'medium'}
-			data-width={props.width}>
+			data-size={props.size || 'small'}>
 			<Show when={state.stylePath}>
 				<link rel="stylesheet" href={state.stylePath} />
 			</Show>
-			{props.children}
-		</div>
+			<div data-max-width={props.maxWidth || 'large'}>
+				{props.children}
+			</div>
+		</section>
 	);
 }
