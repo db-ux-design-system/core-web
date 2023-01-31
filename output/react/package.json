@@ -14,13 +14,15 @@
     "mv:dist": "cpr dist ../../build-outputs/react/dist -o",
     "mv:package.json": "cpr package.json ../../build-outputs/react/package.json -o",
     "mv:readme": "cpr README.md ../../build-outputs/react/README.md -o",
-    "postbuild": "npm-run-all -p mv:*"
+    "postbuild": "npm-run-all -p mv:*",
+    "test:components": "playwright test -c playwright.config.ts"
   },
   "main": "./dist/index.js",
   "module": "./dist/index.js",
   "types": "./dist/index.d.ts",
-  "dependencies": {},
   "devDependencies": {
+    "@axe-core/playwright": "^4.6.0",
+    "@playwright/experimental-ct-react": "1.30.0",
     "@types/react": "^18.0.27",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",

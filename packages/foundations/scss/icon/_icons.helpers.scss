@@ -90,15 +90,9 @@
 }
 
 // Icon meta data mixin
-@mixin icon-meta(
-	$size: $icon-size,
-	$style: $icon-style,
-	$position: "before",
-	$font-size: $icon-size
-) {
+@mixin icon-meta($size: $icon-size, $style: $icon-style, $position: "before") {
 	&::#{$position} {
-		--icon-font-family: "#{"icons-" + $size + "-" + $style}",
-			"missing-icons";
-		--icon-font-size: #{to-rem($pxValue: $font-size)};
+		--icon-font-family: var(--db-base-icon-font-family);
+		--icon-font-size: var(--db-base-icon-font-size);
 	}
 }

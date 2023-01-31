@@ -11,8 +11,12 @@ $all-icon-sizes: (
 	64: "icons-64-"
 );
 
+@function get-icon-size($font-size, $line-height) {
+	@return (math.div($font-size, 1rem) * 16 * $line-height);
+}
+
 @function get-icon-family($font-size, $line-height, $font-style: "outline") {
-	$icon-size: (math.div($font-size, 1rem) * 16 * $line-height);
+	$icon-size: get-icon-size($font-size, $line-height);
 	$valid-sizes: "";
 
 	@if ($icon-size<20) {

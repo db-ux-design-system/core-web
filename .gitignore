@@ -29,6 +29,8 @@ output/power-apps
 /output/**/src
 /output/**/dist
 /output/**/.angular
+/output/**/playwright*
+/output/**/test-results
 
 /build-showcases/
 /build-outputs/
@@ -38,3 +40,5 @@ output/power-apps
 !/build-power-apps/package.json
 !/build-power-apps/package-lock.json
 !/build-power-apps/DBUI/**
+.cache
+**/playwright-report

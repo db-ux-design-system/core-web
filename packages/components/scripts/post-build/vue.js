@@ -25,10 +25,28 @@ const updateNestedComponents = (input, rootComponentName) => {
 };
 
 module.exports = () => {
+	// Rewire imports in Playwright config
+	Replace.sync({
+		files: `../../output/vue/vue3/playwright.config.ts`,
+		from: /react/g,
+		to: `vue`
+	});
 	for (const component of Components) {
 		const vueFile = `../../output/vue/vue3/src/components/${component.name}/${component.name}.vue`;
 
 		try {
+			// Rewire imports in Playwright component tests
+			Replace.sync({
+				files: `../../output/vue/vue3/src/components/${component.name}/${component.name}.spec.tsx`,
+				from: `react`,
+				to: `vue`
+			});
+			Replace.sync({
+				files: `../../output/vue/vue3/src/components/${component.name}/${component.name}.spec.tsx`,
+				from: /new AxeBuilder/g,
+				to: `new AxeBuilder.default`
+			});
+
 			Replace.sync({
 				files: `../../output/vue/vue3/src/components/${component.name}/index.ts`,
 				from: `./${component.name}`,

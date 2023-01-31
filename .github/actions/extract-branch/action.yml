@@ -15,9 +15,10 @@ runs:
         result-encoding: string
         script: |
           return (
-          context?.payload?.pull_request?.head?.ref ||
-          context?.payload?.ref || ""
-          ).replace("refs/heads/","");
+            context?.payload?.pull_request?.head?.ref ||
+            context?.payload?.ref || ""
+          )
+          .replace("refs/heads/","");
 
     - name: 🪑 Set output
       id: branch-name
