@@ -1,11 +1,8 @@
 import { NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
-import { type Routes, RouterModule } from '@angular/router';
-import { FormComponent } from './components/form/form.component';
+import { RouterModule } from '@angular/router';
+import { NAVIGATION_ITEMS } from './utils/navigation-item';
 
-const routes: Routes = [
-	{ path: 'form', component: FormComponent },
-	{ path: '', component: FormComponent, pathMatch: 'full' }
-];
+const routes: any = NAVIGATION_ITEMS;
 
 @NgModule({
 	imports: [RouterModule.forRoot(routes, { useHash: true })],

@@ -1,12 +1,9 @@
-export const NAVIGATION_ITEMS = [
-	{ link: '/', label: 'Home', icon: 'home' },
-	{ link: '/form', label: 'Form', icon: 'chat' },
-	{ link: '/elements', label: 'OtherElements', icon: 'grid-view' },
-	{ link: '/components', label: 'OtherComponents', icon: 'menu' },
-	{ link: '/tables', label: 'Tables', icon: 'list' },
-	{ link: '/navigation', label: 'Navigation', icon: 'gps' }
-];
+import { InputComponent } from '../components/input/input.component';
+import { ButtonComponent } from '../components/button/button.component';
+import { FormComponent } from '../components/form/form.component';
 
-export const isAreaCurrent = (index: number): 'page' | 'false' => {
-	return index === 0 ? 'page' : 'false';
-};
+export const NAVIGATION_ITEMS = [
+	{ path: 'button', label: 'Button', component: ButtonComponent },
+	{ path: 'input', label: 'Input', component: InputComponent },
+	{ path: '', label: 'Home', component: FormComponent, pathMatch: 'full' }
+];

@@ -5,7 +5,8 @@
 		{
 			"files": ["./showcases/angular-showcase/**"],
 			"rules": {
-				"import/no-extraneous-dependencies": 0
+				"import/no-extraneous-dependencies": 0,
+				"@typescript-eslint/consistent-type-imports": 0
 			}
 		}
 	],

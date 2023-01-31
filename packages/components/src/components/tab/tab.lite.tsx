@@ -5,8 +5,9 @@ import {
 	useStore,
 	useRef
 } from '@builder.io/mitosis';
-import { DEFAULT_ID, uuid } from '../../utils';
+import { DEFAULT_ID } from '../../shared/constants';
 import type { DBTabState, DBTabProps } from './model';
+import { uuid } from '../../utils';
 
 useMetadata({
 	isAttachedToShadowDom: true,

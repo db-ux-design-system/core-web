@@ -15,9 +15,16 @@ import {
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app.routing.module';
 import { FormComponent } from './components/form/form.component';
+import { ButtonComponent } from './components/button/button.component';
+import { InputComponent } from './components/input/input.component';
 
 @NgModule({
-	declarations: [AppComponent, FormComponent],
+	declarations: [
+		AppComponent,
+		FormComponent,
+		ButtonComponent,
+		InputComponent
+	],
 	imports: [
 		AppRoutingModule,
 		BrowserModule,

@@ -6,11 +6,14 @@ import {
 } from '../../shared/model';
 
 export type DBButtonDefaultProps = {
-	text?: string;
+	disabled?: boolean;
 	icon?: string;
 	onlyIcon?: boolean;
 	state?: 'loading';
 	size?: 'small';
+	text?: string;
+
+	type?: 'button' | 'reset' | 'submit';
 	width?: 'full';
 	variant?: 'primary' | 'secondary' | 'tertiary' | 'ghost';
 };

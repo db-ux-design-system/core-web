@@ -1,18 +1,32 @@
-<DBPage type="fixedHeaderFooter" [class]="getTonality()">
+<DBPage type="fixedHeaderFooter">
 	<DBHeader header>
 		<DBBrand brand src="./assets/db_logo.svg" href="/angular-showcase">
-			DB UI Elements in Angular Showcase
+			Angular Showcase
 		</DBBrand>
-
+		<nav class="desktop-navigation" desktop-navigation>
+			<ul>
+				<li *ngFor="let item of navigationItems; index as i">
+					<a [routerLink]="item.path" queryParamsHandling="merge">{{
+						item.label
+					}}</a>
+				</li>
+			</ul>
+		</nav>
 		<div meta-navigation>
-			<select [(ngModel)]="tonality">
-				<option>functional</option>
-				<option checked>regular</option>
-				<option>expressive</option>
+			<!-- TODO: Use db-select here	-->
+			<select [(ngModel)]="tonality" (change)="onChange($event)">
+				<option *ngFor="let t of tonalities">
+					{{ t }}
+				</option>
+			</select>
+			<select [(ngModel)]="color" (change)="onChange($event)">
+				<option *ngFor="let c of colors">
+					{{ c }}
+				</option>
 			</select>
 		</div>
 	</DBHeader>
-	<div>
+	<div [class]="getChangeableClasses()">
 		<router-outlet></router-outlet>
 	</div>
 	<div footer>Footer</div>

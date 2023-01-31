@@ -47,6 +47,8 @@ export default function DBButton(props: DBButtonProps) {
 
 	return (
 		<button
+			type={props.type}
+			disabled={props.disabled}
 			aria-label={props.text}
 			className={
 				'db-button' +
