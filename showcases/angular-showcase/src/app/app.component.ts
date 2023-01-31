@@ -4,7 +4,9 @@ import {
 	COLOR,
 	COLORS,
 	TONALITIES,
-	TONALITY
+	TONALITY,
+	COLOR_CONST,
+	TONALITY_CONST
 } from '../../../../packages/components/src/shared/constants';
 import { NAVIGATION_ITEMS } from './utils/navigation-item';
 
@@ -31,12 +33,12 @@ export class AppComponent implements OnInit {
 
 	ngOnInit(): void {
 		this.route.queryParams.subscribe((parameters) => {
-			if (parameters['tonality']) {
-				this.tonality = parameters['tonality'];
+			if (parameters[TONALITY_CONST]) {
+				this.tonality = parameters[TONALITY_CONST];
 			}
 
-			if (parameters['color']) {
-				this.color = parameters['color'];
+			if (parameters[COLOR_CONST]) {
+				this.color = parameters[COLOR_CONST];
 			}
 		});
 	}

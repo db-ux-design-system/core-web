@@ -1,0 +1,14 @@
+.form-container {
+	display: flex;
+}
+
+.form-container fieldset {
+	display: flex;
+	flex-direction: column;
+	margin: 0 8px;
+	width: 50%;
+
+	/* Disabling fieldset styles in this specific case */
+	padding: 0;
+	border-color: transparent;
+}

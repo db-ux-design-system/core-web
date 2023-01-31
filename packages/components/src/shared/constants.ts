@@ -1,6 +1,9 @@
 export const DEFAULT_ID =
 	'ID_WILL_BE_OVERWRITTEN_ON_MOUNT_AND_THIS_CONSTANT_WONT_SHOW_UP_ONLY_IF_YOU_ARE_ARENT_INITIALIZING_IT_IN_THE_FRONTEND';
 
+export const TONALITY_CONST = 'tonality';
+export const COLOR_CONST = 'color';
+
 export enum TONALITY {
 	'FUNCTIONAL' = 'functional',
 	'REGULAR' = 'regular',
@@ -41,3 +44,12 @@ export enum COLOR {
 }
 
 export const COLORS: COLOR[] = Object.entries(COLOR).map(([, value]) => value);
+
+export const INVALID_INPUT_BACKGROUNDS = [
+	COLOR.PRIMARY,
+	COLOR.SECONDARY,
+	COLOR.SUCCESS,
+	COLOR.WARNING,
+	COLOR.CRITICAL,
+	COLOR.INFORMATION
+];
