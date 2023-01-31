@@ -65,7 +65,8 @@
 			padding-inline-end: var(--db-input-padding-inline-end);
 		}
 
-		.icon-input-state::before {
+		.icon-input-state::before,
+		.icon-input-state .db-icon::before {
 			margin-inline-end: calc(0.75rem + $db-spacing-fixed-sm);
 		}
 	}
@@ -91,7 +92,8 @@
 	// currently not supported by firefox
 	&:has(> input:disabled) {
 		.db-icon,
-		.icon-input-state::before {
+		.icon-input-state::before,
+		.icon-input-state .db-icon::before {
 			opacity: 0.5;
 		}
 	}
@@ -270,7 +272,8 @@
 	}
 
 	// #variations
-	.icon-input-state {
+	.icon-input-state.db-icon,
+	.icon-input-state .db-icon {
 		display: flex;
 		align-items: center;
 		flex-direction: row;
@@ -312,11 +315,13 @@
 		}
 
 		& ~ .description,
-		& ~ .icon-input-state {
+		& ~ .icon-input-state,
+		& ~ .icon-input-state .db-icon {
 			color: $db-colors-critical-enabled;
 		}
 
-		& ~ .icon-input-state {
+		& ~ .icon-input-state,
+		& ~ .icon-input-state .db-icon {
 			@include icon(glyph(error), 20, "filled", "after", false);
 		}
 	}
@@ -329,11 +334,13 @@
 		}
 
 		& ~ .description,
-		& ~ .icon-input-state {
+		& ~ .icon-input-state,
+		& ~ .icon-input-state .db-icon {
 			color: $db-colors-warning-enabled;
 		}
 
-		& ~ .icon-input-state {
+		& ~ .icon-input-state,
+		& ~ .icon-input-state .db-icon {
 			@include icon(glyph(error-triangle), 20, "filled", "after", false);
 		}
 	}
@@ -346,11 +353,13 @@
 		}
 
 		& ~ .description,
-		& ~ .icon-input-state {
+		& ~ .icon-input-state,
+		& ~ .icon-input-state .db-icon {
 			color: $db-colors-success-enabled;
 		}
 
-		& ~ .icon-input-state {
+		& ~ .icon-input-state,
+		& ~ .icon-input-state .db-icon {
 			@include icon(glyph(check-circle), 20, "filled", "after", false);
 		}
 	}
@@ -363,11 +372,13 @@
 		}
 
 		& ~ .description,
-		& ~ .icon-input-state {
+		& ~ .icon-input-state,
+		& ~ .icon-input-state .db-icon {
 			color: $db-colors-information-enabled;
 		}
 
-		& ~ .icon-input-state {
+		& ~ .icon-input-state,
+		& ~ .icon-input-state .db-icon {
 			@include icon(glyph(info), 20, "filled", "after", false);
 		}
 	}
