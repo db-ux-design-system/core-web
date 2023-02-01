@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "copy:assets": "cpr ../../packages/foundations/assets ./public/assets  -o",
-    "copy:styles": "cpr ../../output/webcomponent/src/styles/db-ui-42.css ./public/styles/db-ui-42.css  -o",
+    "copy:styles": "cpr ../../packages/components/src/styles/db-ui-42.css ./public/styles/db-ui-42.css  -o",
     "copy:components": "cpr ../../output/webcomponent/src/components ./public/components  -o",
     "predev": "npm-run-all -p copy:*",
     "prebuild": "npm-run-all -p copy:*",
