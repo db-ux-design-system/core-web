@@ -10,7 +10,7 @@
 .db-brand {
 	@extend %brand-display;
 
-	.db-logo {
+	.db-logo:not(.inside-header) {
 		height: auto;
 		width: auto;
 	}
@@ -28,5 +28,11 @@
 				height: $db-sizing-md;
 			}
 		}
+	}
+}
+
+.inside-header {
+	@media screen and (min-width: $db-screens-lg) {
+		height: $db-sizing-md;
 	}
 }

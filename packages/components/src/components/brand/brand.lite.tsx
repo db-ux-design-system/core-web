@@ -41,7 +41,9 @@ export default function DBBrand(props: DBBrandProps) {
 					alt={props.imgAlt}
 					height={props.imgHeight}
 					width={props.imgWidth}
-					className="db-logo"
+					className={
+						'db-logo' + (props.insideHeader ? ' inside-header' : '')
+					}
 				/>
 				<Show when={props.anchorChildren}>
 					<span className="site-name">{props.children}</span>

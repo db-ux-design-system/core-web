@@ -4,9 +4,10 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "copy:assets": "cpr ../../packages/foundations/assets ./public/assets  -o",
+    "copy:assets": "cpr ../../packages/foundations/assets ./public  -o",
+    "copy:colors": "cpr ../../packages/foundations/build/css/color-classes.css ./public/styles/color-classes.css  -o",
     "copy:styles": "cpr ../../packages/components/src/styles/db-ui-42.css ./public/styles/db-ui-42.css  -o",
-    "copy:components": "cpr ../../output/webcomponent/src/components ./public/components  -o",
+    "copy:components": "cpr ../../packages/components/build/components ./public/components  -o",
     "predev": "npm-run-all -p copy:*",
     "prebuild": "npm-run-all -p copy:*",
     "dev": "vite --open",
