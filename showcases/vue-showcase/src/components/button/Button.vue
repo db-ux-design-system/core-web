@@ -27,14 +27,14 @@ const variant = ref("primary");
 			<DBButton :variant="variant" icon="account" disabled="true">
 				{{ variant }}
 			</DBButton>
-			<DBButton :variant="variant" icon="account" onlyIcon="true">
+			<DBButton :variant="variant" icon="account" icntxt="true">
 				{{ variant }}
 			</DBButton>
 			<DBButton
 				:variant="variant"
 				icon="account"
 				disabled="true"
-				onlyIcon="true"
+				icntxt="true"
 			>
 				{{ variant }}
 			</DBButton>

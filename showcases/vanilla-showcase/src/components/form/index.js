@@ -1,5 +1,59 @@
 import './index.css';
+import '../../../../../output/webcomponent/src/components/input/input.js';
+import '../../../../../output/webcomponent/src/components/button/button.js';
 
-const content = `<div>Form</div>`;
+const getContent = () => {
+	window.addEventListener('load', () => {
+		const input = document.querySelector('#db-input');
+		const button = document.querySelector('#db-button');
+		const inputContainer = document.querySelector('#db-input-container');
 
-export default content;
+		if (input) {
+			input.props.onChange = (event) => {
+				inputContainer.innerHTML = event.target.value;
+			};
+		}
+
+		if (button) {
+			button.props.onClick = () => {
+				// eslint-disable-next-line no-alert
+				alert(
+					JSON.stringify({
+						input: input.state._value
+					})
+				);
+			};
+		}
+	});
+
+	return `
+	<div class="form-container">
+		<fieldset>
+			<form>
+				<p>DbInput:</p>
+				<db-input
+					id="db-input"
+					name="username"
+					label="Textinput"
+					placeholder="Placeholder"
+					description="Description"
+					iconBefore="edit"
+				></db-input>
+			</form>
+		</fieldset>
+		<fieldset>
+			<p>DbButton:</p>
+			<db-button id="db-button" variant="primary">
+				Hi from Showcase!
+			</db-button>
+			<h2>Output</h2>
+			<dl>
+				<dt>inputs value</dt>
+				<dd id="db-input-container">"No Input set"</dd>
+			</dl>
+		</fieldset>
+	</div>
+	`;
+};
+
+export default getContent;

@@ -3,53 +3,52 @@ import '../../../output/webcomponent/src/components/header/header.js';
 import '../../../output/webcomponent/src/components/brand/brand.js';
 import './index.css';
 import { navigationItems } from './utils/navigation-items.js';
+import getQueryParams from './utils/get-query-params.js';
 
-let tonality =
-	document.location.search.slice(1).split('&').tonality ?? 'regular';
-const color = 'neutral-0';
-
-const getClassName = () => {
+const getClassName = (tonality, color) => {
 	return `db-ui-${tonality} db-bg-${color}`;
 };
 
-const insertParameter = (key, value) => {
+const insertParameter = (queryParameters, key, value) => {
 	key = encodeURIComponent(key);
 	value = encodeURIComponent(value);
 
-	const kvp = document.location.search.slice(1).split('&');
-	let i = 0;
+	queryParameters[key] = value;
 
-	for (; i < kvp.length; i++) {
-		if (kvp[i].startsWith(key + '=')) {
-			const pair = kvp[i].split('=');
-			pair[1] = value;
-			kvp[i] = pair.join('=');
-			break;
-		}
-	}
+	const keys = Object.keys(queryParameters).map((pKey) => {
+		return `${pKey}=${queryParameters[pKey]}`;
+	});
 
-	if (i >= kvp.length) {
-		kvp[kvp.length] = [key, value].join('=');
-	}
-
-	document.location.search = kvp.join('&');
+	document.location.search = keys.join('&');
 };
 
 onload = () => {
 	const selectTonality = document.querySelector('#select-tonality');
+	const selectColor = document.querySelector('#select-color');
 	const content = document.querySelector('#content');
-	content.className = getClassName();
+	const queryParameters = getQueryParams();
+
+	const tonality = queryParameters.tonality ?? 'regular';
+	const color = queryParameters.color ?? 'neutral-0';
+	content.className = getClassName(tonality, color);
 
 	if (selectTonality) {
+		selectTonality.value = tonality;
 		selectTonality.addEventListener('change', (event) => {
-			tonality = event.target.value;
-			insertParameter('tonality', tonality);
+			insertParameter(queryParameters, 'tonality', event.target.value);
+		});
+	}
+
+	if (selectColor) {
+		selectColor.value = color;
+		selectColor.addEventListener('change', (event) => {
+			insertParameter(queryParameters, 'color', event.target.value);
 		});
 	}
 };
 
-const getAppShell = (content) => {
-	return `
+const getAppShell = (content) =>
+	`
 	<db-page type="fixedHeaderFooter">
 		<db-header slot="header">
 			<db-brand slot="brand" anchorChildren="true" insideHeader="true">Vanilla Showcase</db-brand>
@@ -64,15 +63,39 @@ const getAppShell = (content) => {
 				</ul>
 			</nav>
 			<div slot="meta-navigation">
-			<select id="select-tonality" value="${tonality}">
+			<select id="select-tonality">
 				<option>functional</option>
 				<option>regular</option>
 				<option>expressive</option>
 			</select>
-			<select v-model="color" @change="onChange($event)">
-				<option v-for="col of COLORS" :value="col">
-				{{ col }}
-				</option>
+			<select id="select-color">
+				<option>neutral-0</option>
+				<option>neutral-1</option>
+				<option>neutral-2</option>
+				<option>neutral-3</option>
+				<option>neutral-4</option>
+				<option>neutral-5</option>
+				<option>neutral-6</option>
+				<option>neutral-transparent-full</option>
+				<option>neutral-transparent-semi</option>
+				<option>primary</option>
+				<option>primary-light</option>
+				<option>primary-transparent-semi</option>
+				<option>secondary</option>
+				<option>secondary-light</option>
+				<option>secondary-transparent-semi</option>
+				<option>success</option>
+				<option>success-light</option>
+				<option>success-transparent-semi</option>
+				<option>critical</option>
+				<option>critical-light</option>
+				<option>critical-transparent-semi</option>
+				<option>warning</option>
+				<option>warning-light</option>
+				<option>warning-transparent-semi</option>
+				<option>information</option>
+				<option>information-light</option>
+				<option>information-transparent-semi</option>
 			</select>
 			</div>
 		</db-header>
@@ -82,6 +105,5 @@ const getAppShell = (content) => {
 		<div slot="footer">Footer</div>
 	</db-page>
 `;
-};
 
 export default getAppShell;

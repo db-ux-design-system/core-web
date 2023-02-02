@@ -13,7 +13,8 @@ useMetadata({
 					{ key: 'None', name: 'None', value: '_' },
 					{ key: 'Account', name: 'Account', value: 'account' }
 				]
-			}
+			},
+			{ name: 'icntxt', type: 'TwoOptions' }
 		]
 	}
 });
@@ -29,10 +30,10 @@ export default function DBIcon(props: DBIconProps) {
 
 	return (
 		<span
-			className={
+			class={
 				'db-icon' +
 				(props.className ? ' ' + props.className : '') +
-				(props.withText ? '' : ' is-icon-text-replace')
+				(props.icntxt ? '' : ' is-icon-text-replace')
 			}
 			data-icon={props.icon}
 			aria-hidden="true">

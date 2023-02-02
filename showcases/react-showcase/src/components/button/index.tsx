@@ -31,10 +31,10 @@ const ButtonComponent = () => {
 				<DBButton variant={variant} icon="account" disabled>
 					{variant}
 				</DBButton>
-				<DBButton variant={variant} icon="account" onlyIcon>
+				<DBButton variant={variant} icon="account" icntxt>
 					{variant}
 				</DBButton>
-				<DBButton variant={variant} icon="account" disabled onlyIcon>
+				<DBButton variant={variant} icon="account" disabled icntxt>
 					{variant}
 				</DBButton>
 				<DBButton variant={variant} state="loading">

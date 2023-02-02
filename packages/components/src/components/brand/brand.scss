@@ -11,8 +11,7 @@
 	@extend %brand-display;
 
 	.db-logo:not(.inside-header) {
-		height: auto;
-		width: auto;
+		height: $db-sizing-sm;
 	}
 
 	a {
@@ -32,6 +31,7 @@
 }
 
 .inside-header {
+	height: $db-sizing-sm;
 	@media screen and (min-width: $db-screens-lg) {
 		height: $db-sizing-md;
 	}

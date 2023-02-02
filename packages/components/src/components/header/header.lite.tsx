@@ -26,22 +26,20 @@ export default function DBHeader(props: DBHeaderProps) {
 
 	return (
 		<header
-			className={
-				'db-header' + (props.className ? ' ' + props.className : '')
-			}
+			class={'db-header' + (props.className ? ' ' + props.className : '')}
 			role="banner">
 			<Show when={state.stylePath}>
 				<link rel="stylesheet" href={state.stylePath} />
 			</Show>
 
 			<Slot name="brand" />
-			<div className="desktop-navigation">
+			<div class="desktop-navigation">
 				<Slot name="desktop-navigation" />
 			</div>
-			<div className="mobile-navigation">
+			<div class="mobile-navigation">
 				<Slot name="mobile-navigation" />
 			</div>
-			<div className="meta-navigation">
+			<div class="meta-navigation">
 				<Slot name="meta-navigation" />
 			</div>
 			{props.children}

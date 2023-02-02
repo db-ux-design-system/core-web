@@ -25,9 +25,7 @@ export default function DBBrand(props: DBBrandProps) {
 
 	return (
 		<div
-			className={
-				'db-brand' + (props.className ? ' ' + props.className : '')
-			}>
+			class={'db-brand' + (props.className ? ' ' + props.className : '')}>
 			<Show when={state.stylePath}>
 				<link rel="stylesheet" href={state.stylePath} />
 			</Show>
@@ -41,16 +39,16 @@ export default function DBBrand(props: DBBrandProps) {
 					alt={props.imgAlt}
 					height={props.imgHeight}
 					width={props.imgWidth}
-					className={
+					class={
 						'db-logo' + (props.insideHeader ? ' inside-header' : '')
 					}
 				/>
 				<Show when={props.anchorChildren}>
-					<span className="site-name">{props.children}</span>
+					<span class="site-name">{props.children}</span>
 				</Show>
 			</a>
 			<Show when={!props.anchorChildren}>
-				<span className="site-name">{props.children}</span>
+				<span class="site-name">{props.children}</span>
 			</Show>
 		</div>
 	);

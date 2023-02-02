@@ -11,7 +11,7 @@ import { DBInputState, DBInputProps, iconVariants } from './model';
 import { DEFAULT_ID } from '../../shared/constants';
 
 useMetadata({
-	isAttachedToShadowDom: false,
+	isAttachedToShadowDom: true,
 	component: {
 		includeIcon: false,
 		properties: []
@@ -93,7 +93,7 @@ export default function DBInput(props: DBInputProps) {
 				<link rel="stylesheet" href={state.stylePath} />
 			</Show>
 			<Show when={props.iconBefore}>
-				<DBIcon icon={props.iconBefore} className="icon-before" />
+				<DBIcon icon={props.iconBefore} class="icon-before" />
 			</Show>
 			<input
 				ref={textInputRef}
@@ -119,16 +119,16 @@ export default function DBInput(props: DBInputProps) {
 				<span>{state._label}</span>
 			</label>
 			<Show when={props.description}>
-				<p className="description">{props.description}</p>
+				<p class="description">{props.description}</p>
 			</Show>
 			<Show when={props.variant || props.required || props.pattern}>
 				<DBIcon
 					icon={props.variant && iconVariants[props.variant]}
-					className="icon-input-state"
+					class="icon-input-state"
 				/>
 			</Show>
 			<Show when={props.iconAfter}>
-				<DBIcon icon={props.iconAfter} className="icon-after" />
+				<DBIcon icon={props.iconAfter} class="icon-after" />
 			</Show>
 		</div>
 	);
