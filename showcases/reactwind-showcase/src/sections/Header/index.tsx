@@ -23,16 +23,16 @@ const Header = () => (
 				))}
 			</div>
 			<div className="ml-auto flex">
-				<DBButton icon="search" onlyIcon variant="ghost" />
+				<DBButton icon="search" variant="ghost" />
 				<DBDivider variant="vertical" />
 				<DBButton
+					icntxt
 					className="hidden md:flex"
 					icon="account"
 					variant="ghost">
 					Login
 				</DBButton>
 				<DBButton
-					onlyIcon
 					className="flex md:hidden"
 					icon="menu"
 					variant="ghost"

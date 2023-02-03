@@ -10,7 +10,7 @@ const MultiCards = ({ cards }: MultiCardsType) => (
 					<h5>{card.title}</h5>
 					<p>{card.text}</p>
 					<div className="mt-auto">
-						<DBIcon withText icon="chevron-right">
+						<DBIcon icntxt icon="chevron-right">
 							{card.link}
 						</DBIcon>
 					</div>

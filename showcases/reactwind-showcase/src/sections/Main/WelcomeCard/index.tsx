@@ -32,7 +32,7 @@ const WelcomeCard = () => {
 						Viel Spaß beim Testen! Wir freuen uns auf Ihr Feedback.
 					</p>
 				</div>
-				<DBIcon withText icon="chevron-right">
+				<DBIcon icntxt icon="chevron-right">
 					Mehr erfahren
 				</DBIcon>
 			</div>

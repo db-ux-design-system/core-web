@@ -8,7 +8,7 @@
     "start": "vite",
     "build:tsc": "tsc",
     "build:vite": "vite build",
-    "build:copy": "cpr dist ../../build-showcases/reactwind-showcase",
+    "build:copy": "cpr dist ../../build-showcases/reactwind-showcase -o",
     "build": "npm-run-all build:*",
     "preview": "vite preview"
   },
