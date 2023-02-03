@@ -12,7 +12,6 @@ useMetadata({
 
 export default function DBLink(props: DBLinkProps) {
 	const state = useStore<DBLinkState>({
-		_content: '',
 		handleClick: (event) => {
 			if (props.onClick) {
 				props.onClick(event);
@@ -30,7 +29,6 @@ export default function DBLink(props: DBLinkProps) {
 		<a
 			class={'db-link' + (props.className ? ' ' + props.className : '')}
 			href={props.href}
-			anchorlink={props.anchorLink}
 			title={props.title}
 			target={props.target}
 			rel={props.rel}

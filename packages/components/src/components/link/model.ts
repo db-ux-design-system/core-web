@@ -6,9 +6,17 @@ import {
 } from '../../shared/model';
 
 export interface DBLinkDefaultProps {
-	anchorLink?: string;
 	content?: 'external' | 'internal';
-	current?: string;
+	current?:
+		| boolean
+		| 'time'
+		| 'true'
+		| 'false'
+		| 'date'
+		| 'page'
+		| 'step'
+		| 'location'
+		| undefined;
 	disabled?: boolean;
 	href?: string;
 	hreflang?: string;
@@ -34,8 +42,6 @@ export interface DBLinkDefaultProps {
 
 export type DBLinkProps = DBLinkDefaultProps & GlobalProps & ClickEventProps;
 
-export interface DBLinkDefaultState {
-	_content: string;
-}
+export interface DBLinkDefaultState {}
 
 export type DBLinkState = DBLinkDefaultState & GlobalState & ClickEventState;

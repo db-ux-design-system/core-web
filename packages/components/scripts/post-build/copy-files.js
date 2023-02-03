@@ -1,6 +1,7 @@
 const Fse = require('fs-extra');
 const Frameworks = require('./framworks');
 const components = require('./components');
+const Replace = require('replace-in-file');
 
 module.exports = () => {
 	for (const { name } of components) {
@@ -29,6 +30,14 @@ module.exports = () => {
 					`../../output/${resolvedFramework}/playwright.config.ts`,
 					{ overwrite: true }
 				);
+
+				if (framework === 'vue') {
+					Replace({
+						files: `../../output/${resolvedFramework}/playwright.config.ts`,
+						from: './../../__snapshots__',
+						to: './../../../__snapshots__'
+					});
+				}
 			}
 		}
 	}
