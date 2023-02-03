@@ -231,7 +231,13 @@ TODO: Elaborate on testing setup
 
 Playwright is used to create and compare screenshots of each individual component.
 
-To update screenshots, the following steps are needed for running tests on Linux in CI (Github Actions):
+To update screenshots just run the following (you need Docker installed and available on your shell):
+
+```
+npm run regenerate:screenshots
+```
+
+If you want to generate the screenshots manually, do the following:
 
 ```shell
 npm run build
