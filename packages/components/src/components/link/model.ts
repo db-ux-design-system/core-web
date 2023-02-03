@@ -6,7 +6,6 @@ import {
 } from '../../shared/model';
 
 export interface DBLinkDefaultProps {
-	anchorLink?: string;
 	content?: 'external' | 'internal';
 	current?: string;
 	disabled?: boolean;
