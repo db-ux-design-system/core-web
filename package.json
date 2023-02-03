@@ -59,7 +59,8 @@
     "start-showcase:vue": "npm run dev --workspace=vue-showcase",
     "start": "node scripts/start.js",
     "clean": "git clean -dfx --exclude=.env",
-    "generate:component": "npm run generate:component --workspace=@db-ui/components"
+    "generate:component": "npm run generate:component --workspace=@db-ui/components",
+    "regenerate:screenshots": "docker run --rm --network host -v $(pwd):/work/ -w /work/ -it mcr.microsoft.com/playwright:v1.30.0-focal /bin/bash -c 'npm i && cd output/react/ && npx playwright test --update-snapshots'"
   },
   "devDependencies": {
     "@commitlint/cli": "17.4.2",
