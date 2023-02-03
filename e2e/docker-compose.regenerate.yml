@@ -1,0 +1,8 @@
+services:
+  playwright:
+    stdin_open: true
+    tty: true
+    command: "npm run regenerate"
+    extends:
+      file: docker-compose.yml
+      service: playwright
