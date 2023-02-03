@@ -106,6 +106,10 @@ StyleDictionary.registerTransform({
 	name: `size/real/rem`,
 	matcher: (token) => token.attributes.category === 'size',
 	transformer(token) {
+		if (token.attributes.screen) {
+			return token.value;
+		}
+
 		return `${Number(token.value) / 16}rem`;
 	}
 });
@@ -115,7 +119,7 @@ StyleDictionary.registerTransform({
 	name: `size/upscale/screen`,
 	matcher: (token) => token.attributes.screen === true,
 	transformer(token) {
-		return `${Number(token.value) * 16}`;
+		return `${Number(token.value) * 16}px`;
 	}
 });
 
