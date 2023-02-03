@@ -35,7 +35,7 @@ designers, and content authors build, maintain, and scale best of class digital 
 
 Install your preferred package via npm or yarn e.g. `npm i @db-ui/react-components`.
 
-Afterwards you need to add the specific css or scss files to provide the styles of DB UX System.
+Afterwards you need to add the specific css or scss files to provide the styles of DB UX Design System.
 For a detailed overview look at our [examples](examples).
 
 ## Components
@@ -231,10 +231,22 @@ TODO: Elaborate on testing setup
 
 Playwright is used to create and compare screenshots of each individual component.
 
-To update screenshots, the following steps are needed for running tests on Linux in CI (Github Actions):
+To update screenshots just run the following (you need Docker installed and available on your shell):
 
 ```shell
+npm run regenerate:screenshots
+```
+
+If you want to generate the screenshots manually, do the following:
+
+```shell
+npm run build
+
+# unix
 docker run --rm --network host -v $(pwd):/work/ -w /work/ -it mcr.microsoft.com/playwright:v1.30.0-focal /bin/bash
+
+#windows - allow file sharing (windows pop up)
+docker run --rm --network host -v ${PWD}:/work/ -w /work/ -it mcr.microsoft.com/playwright:v1.30.0-focal /bin/bash
 
 npm install
 

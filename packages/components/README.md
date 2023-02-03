@@ -1,6 +1,6 @@
 # @db-ui/components
 
-A library containing all styles for components of [DB UX System](https://github.com/db-ui/mono).
+A library containing all styles for components of [DB UX Design System (technical components)](https://github.com/db-ui/mono).
 
 We currently support:
 

@@ -23,7 +23,7 @@
 		"skipLibCheck": true
 	},
 	"include": ["src/**/*.ts", "src/**/*.vue"],
-	"exclude": ["node_modules", "src/**/*.scss"],
+	"exclude": ["node_modules", "src/**/*.scss", "src/**/*.spec.tsx"],
 	"compileOnSave": false,
 	"buildOnSave": false
 }

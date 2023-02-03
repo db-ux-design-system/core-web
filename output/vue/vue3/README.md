@@ -1,6 +1,6 @@
 # @db-ui/v-components
 
-A Vue library containing all styles & components of [DB UX System](https://github.com/db-ui/mono).
+A Vue library containing all styles & components of [DB UX Design System (technical components)](https://github.com/db-ui/mono).
 
 ## Install
 
@@ -13,7 +13,7 @@ A Vue library containing all styles & components of [DB UX System](https://githu
 
 ```scss
 // style.scss
-@use "@db-ui/components/src/styles/db-ui-42-rollup" as *;
+@use "@db-ui/components/build/styles/db-ui-42-rollup" as *;
 ```
 
 ```ts
@@ -28,7 +28,7 @@ import "@db-ui/v-components/dist/style.css";
 
 ```ts
 // main.ts
-import "@db-ui/components/src/styles/db-ui-42-rollup.css";
+import "@db-ui/components/build/styles/db-ui-42-rollup.css";
 import "@db-ui/v-components/dist/style.css";
 ```
 
@@ -42,7 +42,7 @@ import "@db-ui/v-components/dist/style.css";
 ```scss
 @use "@db-ui/foundations/build/scss/rollup.assets-paths" as *;
 @use "@db-ui/foundations/build/scss/icon/icons" as *;
-@use "@db-ui/v-components/dist/db-ui-components" as *;
+@use "@db-ui/foundations/build/scss/db-ui-foundations" as *;
 ```
 
 </details>
@@ -51,8 +51,8 @@ import "@db-ui/v-components/dist/style.css";
 
 ```tsx
 // main.tsx
-import "@db-ui/foundations/build/scss/icon/icons.css";
-import "@db-ui/v-components/dist/db-ui-components.css";
+import "@db-ui/foundations/build/css/icon/icons.css";
+import "@db-ui/foundations/build/css/db-ui-foundations.css";
 ```
 
 </details>

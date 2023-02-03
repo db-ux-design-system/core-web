@@ -32,12 +32,16 @@ jobs:
       release: ${{ needs.get-publish-version.outputs.release }}
       preRelease: ${{ needs.get-publish-version.outputs.preRelease }}
 
+  test-packages:
+    uses: ./.github/workflows/02-e2e.yml
+    needs: [build-packages]
+
   checks-done:
     runs-on: ubuntu-latest
     steps:
       - name: 🎉 Checks done
         run: echo "🎉 All builds were successful."
-    needs: [build-outputs, build-showcases]
+    needs: [test-packages, build-outputs, build-showcases]
 
   deploy:
     uses: ./.github/workflows/03-deploy-gh-pages.yml

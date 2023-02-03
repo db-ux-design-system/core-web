@@ -1,6 +1,6 @@
 # @db-ui/react-components
 
-A React library containing all styles & components of [DB UX System](https://github.com/db-ui/mono).
+A React library containing all styles & components of [DB UX Design System (technical components)](https://github.com/db-ui/mono).
 
 ## Install
 
@@ -19,7 +19,7 @@ Import the styles in scss or css. Based on your technology the file names could 
 
 ```scss
 // index.scss
-@use "@db-ui/components/src/styles/db-ui-42-rollup" as *;
+@use "@db-ui/components/build/styles/db-ui-42-rollup" as *;
 ```
 
 </details>
@@ -28,7 +28,7 @@ Import the styles in scss or css. Based on your technology the file names could 
 
 ```tsx
 // main.tsx
-import "@db-ui/components/src/styles/db-ui-42-rollup.css";
+import "@db-ui/components/build/styles/db-ui-42-rollup.css";
 ```
 
 </details>
@@ -41,7 +41,7 @@ import "@db-ui/components/src/styles/db-ui-42-rollup.css";
 ```scss
 @use "@db-ui/foundations/build/scss/rollup.assets-paths" as *;
 @use "@db-ui/foundations/build/scss/icon/icons" as *;
-@use "@db-ui/react-components/dist/db-ui-components" as *;
+@use "@db-ui/foundations/build/scss/db-ui-foundations" as *;
 ```
 
 </details>
@@ -50,8 +50,8 @@ import "@db-ui/components/src/styles/db-ui-42-rollup.css";
 
 ```tsx
 // main.tsx
-import "@db-ui/foundations/build/scss/icon/icons.css";
-import "@db-ui/react-components/dist/db-ui-components.css";
+import "@db-ui/foundations/build/css/icon/icons.css";
+import "@db-ui/foundations/build/css/db-ui-foundations.css";
 ```
 
 </details>
