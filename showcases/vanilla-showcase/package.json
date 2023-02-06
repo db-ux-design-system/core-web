@@ -5,13 +5,15 @@
   "type": "module",
   "scripts": {
     "copy:assets": "cpr ../../packages/foundations/assets ./public/assets  -o",
-    "copy:styles": "cpr ../../output/webcomponent/src/styles/db-ui-42.css ./public/styles/db-ui-42.css  -o",
-    "copy:components": "cpr ../../output/webcomponent/src/components ./public/components  -o",
+    "copy:styles": "cpr ../../packages/components/build/styles/db-ui-42.css ./public/styles/db-ui-42.css  -o",
+    "copy:components": "cpr ../../packages/components/build/components ./public/components  -o",
     "predev": "npm-run-all -p copy:*",
     "prebuild": "npm-run-all -p copy:*",
     "dev": "vite --open",
     "start": "vite",
-    "build": "vite build"
+    "build:vite": "vite build",
+    "build:copy": "cpr dist ../../build-showcases/vanilla-showcase -o",
+    "build": "npm-run-all build:*"
   },
   "devDependencies": {
     "cpr": "3.0.1",

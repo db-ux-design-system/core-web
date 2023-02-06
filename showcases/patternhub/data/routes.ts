@@ -44,6 +44,10 @@ export const ROUTES: DbMainnavigationDataType[] = [
 				link: '/showcases/reactwind'
 			},
 			{
+				label: 'Vanilla',
+				link: '/showcases/vanilla'
+			},
+			{
 				label: 'Vue',
 				link: '/showcases/vue'
 			}
