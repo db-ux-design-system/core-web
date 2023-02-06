@@ -5,9 +5,9 @@
   "private": true,
   "scripts": {
     "build": "npm-run-all build:*",
-    "build:copy": "cpr dist ../../build-showcases/react-showcase -o",
-    "build:tsc": "tsc",
-    "build:vite": "vite build",
+    "build:01_tsc": "tsc",
+    "build:02_vite": "vite build",
+    "build:03_copy": "cpr dist ../../build-showcases/react-showcase -o",
     "dev": "vite --open",
     "start": "vite"
   },

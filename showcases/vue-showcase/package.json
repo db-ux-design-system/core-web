@@ -5,8 +5,8 @@
   "private": true,
   "scripts": {
     "build": "npm-run-all build:*",
-    "build:copy": "cpr dist ../../build-showcases/vue-showcase -o",
-    "build:vite": "vite build",
+    "build:01_vite": "vite build",
+    "build:02_copy": "cpr dist ../../build-showcases/vue-showcase -o",
     "dev": "vite --open",
     "start": "vite"
   },
