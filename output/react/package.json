@@ -16,7 +16,7 @@
     "mv:readme": "cpr README.md ../../build-outputs/react/README.md -o",
     "postbuild": "npm-run-all -p mv:*",
     "test:components": "playwright test -c playwright.config.ts",
-    "regenerate:components": "playwright test -c playwright.config.ts --update-snapshots"
+    "regenerate:screenshots": "playwright test -c playwright.config.ts --update-snapshots"
   },
   "main": "./dist/index.js",
   "module": "./dist/index.js",

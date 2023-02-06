@@ -15,7 +15,7 @@
     "test:react": "npm run test:components --workspace=@db-ui/react-components",
     "test:vue": "npm run test:components --workspace=@db-ui/v-components",
     "test": "npm-run-all -p test:*",
-    "regenerate": "npm run regenerate:components --workspace=@db-ui/react-components "
+    "regenerate": "npm run regenerate:screenshots --workspace=@db-ui/react-components "
   },
   "devDependencies": {
     "cpr": "3.0.1",
