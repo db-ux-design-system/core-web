@@ -1,6 +1,6 @@
 /* Fetch all open PRs and updates them with main branch.*/
 
-module.exports = async ({ github, context }) => {
+const updatePrs = async ({ github, context }) => {
 	const { repo, owner } = context.repo;
 	const pulls = await github.rest.pulls.list({
 		owner,
@@ -30,3 +30,5 @@ module.exports = async ({ github, context }) => {
 
 	return `Updated branches: ${updatedBranches}/${nonDraftPulls.length}`;
 };
+
+export default updatePrs;

@@ -36,7 +36,7 @@ const removeOldFromPath = (isTag, data) => {
 	return false;
 };
 
-module.exports = async ({ github, context }) => {
+const cleanUpPages = async ({ github, context }) => {
 	const { repo, owner } = context.repo;
 	const branches = await github.rest.repos.listBranches({
 		owner,
@@ -53,3 +53,5 @@ module.exports = async ({ github, context }) => {
 			removeOldFromPath(true, tags.data)
 	};
 };
+
+export default cleanUpPages;
