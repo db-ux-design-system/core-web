@@ -42,3 +42,4 @@ output/power-apps
 !/build-power-apps/DBUI/**
 .cache
 **/playwright-report
+/.parcel-cache/
