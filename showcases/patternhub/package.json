@@ -3,16 +3,16 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "copy:components": "cpr ../../output/react/src ./components/src -o",
-    "copy": "npm-run-all copy:*",
-    "next:dev": "next dev",
-    "next:start": "next start",
-    "dev": "npm-run-all copy next:dev",
+    "build": "npm-run-all copy build:*",
     "build:app": "next build && next export",
     "build:copy": "cpr out ../../build-showcases/patternhub -o",
-    "build": "npm-run-all copy build:*",
-    "start": "npm-run-all copy next:start",
-    "lint": "next lint"
+    "copy": "npm-run-all copy:*",
+    "copy:components": "cpr ../../output/react/src ./components/src -o",
+    "dev": "npm-run-all copy next:dev",
+    "lint": "next lint",
+    "next:dev": "next dev",
+    "next:start": "next start",
+    "start": "npm-run-all copy next:start"
   },
   "dependencies": {
     "@db-ui/react-elements": "^0.16.3",

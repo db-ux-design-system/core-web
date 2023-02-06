@@ -1,16 +1,16 @@
 {
   "name": "reactwind-showcase",
-  "private": true,
   "version": "0.0.0",
   "type": "module",
+  "private": true,
   "scripts": {
-    "dev": "vite --open",
-    "start": "vite",
-    "build:tsc": "tsc",
-    "build:vite": "vite build",
-    "build:copy": "cpr dist ../../build-showcases/reactwind-showcase",
     "build": "npm-run-all build:*",
-    "preview": "vite preview"
+    "build:01_tsc": "tsc",
+    "build:02_vite": "vite build",
+    "build:03_copy": "cpr dist ../../build-showcases/reactwind-showcase -o",
+    "dev": "vite --open",
+    "preview": "vite preview",
+    "start": "vite"
   },
   "dependencies": {
     "react": "^18.2.0",
