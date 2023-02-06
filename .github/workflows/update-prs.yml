@@ -1,0 +1,21 @@
+---
+name: Update all PR branches if main gets update
+
+on:
+  push:
+    branches:
+      - "main"
+
+jobs:
+  update-prs:
+    name: Update PRs
+    runs-on: ubuntu-latest
+    steps:
+      - name: ⌚ Update PRs
+        id: cleanup
+        uses: actions/github-script@v6
+        with:
+          script: |
+            const script = require('./.github/scripts/update-prs.js')
+            // print how many PRs are updated
+            console.log(await script({github, context}))

@@ -1,0 +1,29 @@
+{
+  "name": "@db-ui/mono-e2e",
+  "version": "0.0.0",
+  "description": "",
+  "workspaces": [
+    "packages/*",
+    "output/*",
+    "output/vue/vue3"
+  ],
+  "type": "module",
+  "scripts": {
+    "build:foundations": "npm run build --workspace=@db-ui/foundations",
+    "build:components": "npm run build --workspace=@db-ui/components",
+    "build": "npm-run-all build:*",
+    "test:react": "npm run test:components --workspace=@db-ui/react-components",
+    "test:vue": "npm run test:components --workspace=@db-ui/v-components",
+    "test": "npm-run-all -p test:*",
+    "regenerate": "npm run regenerate:screenshots --workspace=@db-ui/react-components "
+  },
+  "devDependencies": {
+    "cpr": "3.0.1",
+    "dotenv": "^16.0.3",
+    "fs-extra": "^11.1.0",
+    "npm-run-all": "4.1.5",
+    "replace-in-file": "^6.3.5",
+    "tslib": "^2.5.0",
+    "typescript": "^4.9.5"
+  }
+}

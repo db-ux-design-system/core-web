@@ -19,6 +19,7 @@
     "mv:package.json": "cpr package.json ../../build-outputs/react/package.json -o",
     "mv:readme": "cpr README.md ../../build-outputs/react/README.md -o",
     "postbuild": "npm-run-all -p mv:*",
+    "regenerate:screenshots": "playwright test -c playwright.config.ts --update-snapshots",
     "test:components": "playwright test -c playwright.config.ts",
     "tsc": "tsc -p . --sourceMap false"
   },
