@@ -10,10 +10,10 @@ const updatePrs = async ({ github, context }) => {
 		per_page: 100
 	});
 
-	const nonDraftPulls = pulls.filter((pr) => !pr.draft);
+	const nonDraftPulls = pulls?.data?.filter((pr) => !pr.draft);
 	let updatedBranches = 0;
 
-	if (nonDraftPulls.length > 0) {
+	if (nonDraftPulls?.length > 0) {
 		for (const pr of nonDraftPulls) {
 			try {
 				await github.rest.pulls.updateBranch({

@@ -19,6 +19,6 @@ jobs:
         uses: actions/github-script@v6
         with:
           script: |
-            const script = require('./.github/scripts/update-prs.js')
+            const { default: updatePrs } = await import('${{ github.workspace }}/.github/scripts/update-prs.js');
             // print how many PRs are updated
-            console.log(await script({github, context}))
+            console.log(await updatePrs({github, context}));
