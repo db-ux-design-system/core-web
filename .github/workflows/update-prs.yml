@@ -17,4 +17,5 @@ jobs:
         with:
           script: |
             const script = require('./.github/scripts/update-prs.js')
+            // print how many PRs are updated
             console.log(await script({github, context}))

@@ -1,3 +1,5 @@
+/* Fetch all open PRs and updates them with main branch.*/
+
 module.exports = async ({ github, context }) => {
 	const { repo, owner } = context.repo;
 	const pulls = await github.rest.pulls.list({
