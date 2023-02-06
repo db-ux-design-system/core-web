@@ -8,19 +8,17 @@ test.describe('DBButton component on desktop', () => {
 	test.use({ viewport: { width: 1024, height: 768 } });
 
 	test('DBButton should contain text', async ({ mount }) => {
-		const component = await mount(<DBButton text="Test" />);
+		const component = await mount(<DBButton>Test</DBButton>);
 		await expect(component).toContainText('Test');
 	});
 
 	test('DBButton should match screenshot', async ({ mount }) => {
-		const component = await mount(<DBButton text="Test" />);
+		const component = await mount(<DBButton>Test</DBButton>);
 		await expect(component).toHaveScreenshot();
 	});
 
 	test('DBButton should only have icon', async ({ mount }) => {
-		const component = await mount(
-			<DBButton icon="account" onlyIcon={true} />
-		);
+		const component = await mount(<DBButton icon="account" />);
 		await expect(component).toHaveScreenshot();
 	});
 });
@@ -30,12 +28,12 @@ test.describe('DBButton component on mobile', () => {
 	test.use({ viewport: { width: 390, height: 884 } });
 
 	test('DBButton should contain text', async ({ mount }) => {
-		const component = await mount(<DBButton text="Test" />);
+		const component = await mount(<DBButton>Test</DBButton>);
 		await expect(component).toContainText('Test');
 	});
 
 	test('DBButton should match screenshot', async ({ mount }) => {
-		const component = await mount(<DBButton text="Test" />);
+		const component = await mount(<DBButton>Test</DBButton>);
 		await expect(component).toHaveScreenshot();
 	});
 });
@@ -45,7 +43,7 @@ test.describe('DBButton component A11y', () => {
 		page,
 		mount
 	}) => {
-		await mount(<DBButton text="Test" />);
+		await mount(<DBButton>Test</DBButton>);
 		const accessibilityScanResults = await new AxeBuilder({ page })
 			.include('.db-button')
 			.analyze();
@@ -57,7 +55,11 @@ test.describe('DBButton component A11y', () => {
 		page,
 		mount
 	}) => {
-		await mount(<DBButton icon="account" text="asdf" onlyIcon={true} />);
+		await mount(
+			<DBButton icon="account" onlyIcon={true}>
+				asdf
+			</DBButton>
+		);
 		const accessibilityScanResults = await new AxeBuilder({ page })
 			.include('.db-button')
 			.analyze();
