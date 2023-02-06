@@ -1,7 +1,7 @@
 {
 	"threshold": 0,
 	"reporters": ["console"],
-	"minTokens": 75,
+	"minTokens": 65,
 	"ignore": [
 		"**/.idea/**",
 		"**/.vscode/**",
@@ -18,10 +18,11 @@
 		"**/.github/**",
 		"**/next-showcase/components/**",
 		"**/patternhub/components/**",
-		"**/index.html",
+		"**/*-example/index.html",
+		"**/*-showcase/index.html",
 		"**/angular.json",
 		"**/tsconfig.json",
-		"**/main.ts",
+		"**/angular-*/**/main.ts",
 		"**/README.md"
 	],
 	"absolute": true
