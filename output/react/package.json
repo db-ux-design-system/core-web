@@ -2,24 +2,26 @@
   "name": "@db-ui/react-components",
   "version": "0.0.0",
   "description": "React components for @db-ui/components",
-  "license": "Apache-2.0",
   "repository": {
     "type": "git",
     "url": "https://github.com/db-ui/mono.git"
   },
-  "sideEffects": false,
+  "license": "Apache-2.0",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist/"
+  ],
   "scripts": {
-    "tsc": "tsc -p . --sourceMap false",
     "build": "npm-run-all tsc",
     "mv:dist": "cpr dist ../../build-outputs/react/dist -o",
     "mv:package.json": "cpr package.json ../../build-outputs/react/package.json -o",
     "mv:readme": "cpr README.md ../../build-outputs/react/README.md -o",
     "postbuild": "npm-run-all -p mv:*",
-    "test:components": "playwright test -c playwright.config.ts"
+    "test:components": "playwright test -c playwright.config.ts",
+    "tsc": "tsc -p . --sourceMap false"
   },
-  "main": "./dist/index.js",
-  "module": "./dist/index.js",
-  "types": "./dist/index.d.ts",
   "devDependencies": {
     "@axe-core/playwright": "^4.6.0",
     "@playwright/experimental-ct-react": "1.30.0",
@@ -29,11 +31,9 @@
     "rimraf": "4.1.2",
     "sass": "^1.58.0"
   },
-  "files": [
-    "dist/"
-  ],
   "publishConfig": {
     "registry": "https://registry.npmjs.org/",
     "access": "public"
-  }
+  },
+  "sideEffects": false
 }

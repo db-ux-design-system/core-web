@@ -2,24 +2,27 @@
   "name": "@db-ui/components",
   "version": "0.0.0",
   "description": "",
+  "author": "",
+  "license": "ISC",
   "main": "./dist/index.js",
   "module": "./dist/index.js",
   "types": "./dist/index.d.ts",
+  "files": [
+    "build"
+  ],
   "scripts": {
-    "generate:component": "hygen mitosis new",
-    "build:mv": "cpr src build -o -f \"(.ts|.tsx)$\"",
-    "build:sass": "sass build --no-source-map --load-path=node_modules/ --load-path=../../node_modules/",
+    "build": "npm-run-all build:*",
     "build:mitosis": "mitosis build",
-    "build:post": "node scripts/post-build/index.js",
+    "build:mv-styles": "cpr src build -o -f \"(.ts|.tsx)$\"",
+    "build:sass": "sass build --no-source-map --load-path=node_modules/ --load-path=../../node_modules/",
+    "build:z-post": "node scripts/post-build/index.js",
+    "copy-output": "npm-run-all copy:*",
     "copy:outputs": "cpr build ../../build-outputs/components/build -o",
     "copy:package.json": "cpr package.json ../../build-outputs/components/package.json -o",
     "copy:readme": "cpr README.md ../../build-outputs/components/README.md -o",
-    "copy-output": "npm-run-all copy:*",
-    "build": "npm-run-all build:*",
+    "generate:component": "hygen mitosis new",
     "start": "nodemon --watch src --watch scripts --watch overrides -e js,tsx,ts,scss,json -x \"npm run build\""
   },
-  "author": "",
-  "license": "ISC",
   "dependencies": {
     "@db-ui/foundations": "*"
   },
@@ -31,12 +34,9 @@
     "eslint": "^8.33.0",
     "hygen": "^6.2.11",
     "lit": "^2.6.1",
-    "sass": "^1.58.0",
-    "nodemon": "2.0.20"
+    "nodemon": "2.0.20",
+    "sass": "^1.58.0"
   },
-  "files": [
-    "build"
-  ],
   "publishConfig": {
     "registry": "https://registry.npmjs.org/",
     "access": "public"
