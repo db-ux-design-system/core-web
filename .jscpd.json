@@ -21,7 +21,8 @@
 		"**/index.html",
 		"**/angular.json",
 		"**/tsconfig.json",
-		"**/main.ts"
+		"**/main.ts",
+		"**/README.md"
 	],
 	"absolute": true
 }
