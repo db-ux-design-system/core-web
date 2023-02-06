@@ -16,7 +16,7 @@ tar -zxf gh-pages -C public --strip-components 1
 
 if [[ $RELEASE == "true" ]]; then
 	echo "🔃 Change redirect"
-	echo "<meta http-equiv=\"refresh\" content=\"0; URL=https://"$OWNER_NAME".github.io/"$REPO_NAME"/version/"$NAME"\" />" >public/index.html
+	echo "<meta http-equiv=\"refresh\" content=\"0; URL=https://"$OWNER_NAME".github.io/"$REPO_NAME"/version/"$NAME"\" />" > public/index.html
 fi
 
 echo "👣 Move out dir"
