@@ -1,0 +1,27 @@
+{
+	"threshold": 0,
+	"reporters": ["console"],
+	"minTokens": 75,
+	"ignore": [
+		"**/.idea/**",
+		"**/.vscode/**",
+		"**/build/**",
+		"**/public/**",
+		"**/dist/**",
+		"**/build-outputs/**",
+		"**/build-power-apps/**",
+		"**/build-showcases/**",
+		"**/output/**",
+		"**/node_modules/**",
+		"**/__snapshots__/**",
+		"**/.next/**",
+		"**/.github/**",
+		"**/next-showcase/components/**",
+		"**/patternhub/components/**",
+		"**/index.html",
+		"**/angular.json",
+		"**/tsconfig.json",
+		"**/main.ts"
+	],
+	"absolute": true
+}
