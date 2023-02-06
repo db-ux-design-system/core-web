@@ -233,7 +233,7 @@ Playwright is used to create and compare screenshots of each individual componen
 
 To update screenshots just run the following (you need Docker installed and available on your shell):
 
-```
+```shell
 npm run regenerate:screenshots
 ```
 
