@@ -3,14 +3,14 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
+    "build": "next build",
     "copy:components": "cpr ../../output/react/src ./components -o",
+    "dev": "open-cli http://localhost:3000 && next dev",
+    "lint": "next lint",
     "prebuild": "npm run copy:components",
     "predev": "npm run copy:components",
     "prestart": "npm run copy:components",
-    "dev": "open-cli http://localhost:3000 && next dev",
-    "build": "next build",
-    "start": "next start",
-    "lint": "next lint"
+    "start": "next start"
   },
   "dependencies": {
     "next": "13.1.6",

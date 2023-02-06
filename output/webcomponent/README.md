@@ -1,15 +1,45 @@
-# @db-ui/ngx-components
+# @db-ui/web-components
 
 ![Apache 2.0 license badge](https://img.shields.io/badge/License-Apache_2.0-blue.svg)
 [![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
 [![Conventional Commits](https://img.shields.io/badge/Conventional%20Commits-1.0.0-yellow.svg)](https://conventionalcommits.org)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](https://makeapullrequest.com)
 
-An Angular library containing all styles & components of [DB UX Design System (technical components)](https://github.com/db-ui/mono).
+A web-component library containing all components of [DB UX Design System (technical components)](https://github.com/db-ui/mono).
 
 ## Install
 
-`npm i @db-ui/ngx-components`
+`npm i @db-ui/web-components`
+
+## Dependencies
+
+```json
+# package.json
+"copy:assets": "cpr node_modules/@db-ui/foundations/assets ./public/assets  -o",
+"copy:styles": "cpr node_modules/@db-ui/components/build/styles/db-ui-42.css ./public/styles/db-ui-42.css  -o",
+"copy:components": "cpr node_modules/@db-ui/components/build/components ./public/components  -o",
+```
+
+```html
+# index.html
+
+<head>
+	...
+	<link rel="stylesheet" href="styles/db-ui-42.css" />
+	...
+</head>
+```
+
+## Usage
+
+```javascript
+import "node_modules/@db-ui/web-components/components/button/button.js";
+
+...
+<db-button variant="primary" icon="account">Test</db-button>
+...
+
+```
 
 ## Deutsche Bahn brand
 

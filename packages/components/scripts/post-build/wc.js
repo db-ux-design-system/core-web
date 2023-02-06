@@ -1,16 +1,19 @@
 const Replace = require('replace-in-file');
 const Fse = require('fs-extra');
 const Components = require('./components');
-
+const toUpperCase = (component) => {
+	return component
+		.split('-')
+		.map((part) => part.charAt(0).toUpperCase() + part.slice(1))
+		.join('');
+};
 const updateNestedComponents = (input, rootComponentName) => {
 	let fileContent = input;
 
 	for (const nestedComponent of Components.filter(
 		(nComp) => nComp.name !== rootComponentName
 	)) {
-		const nCompUpperCase =
-			nestedComponent.name.charAt(0).toUpperCase() +
-			nestedComponent.name.slice(1);
+		const nCompUpperCase = toUpperCase(nestedComponent.name);
 
 		if (
 			fileContent.includes(
@@ -73,7 +76,14 @@ module.exports = () => {
 					);
 				lines = workaroundAttributes(lines);
 				const filteredInput = lines.join('\n');
-				return updateNestedComponents(filteredInput, component.name);
+				const nestedComponent = updateNestedComponents(
+					filteredInput,
+					component.name
+				);
+				const exportComponent = `export default DB${toUpperCase(
+					component.name
+				)};`;
+				return `${nestedComponent}\n${exportComponent}`;
 			}
 		};
 

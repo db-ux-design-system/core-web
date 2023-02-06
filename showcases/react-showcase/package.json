@@ -1,15 +1,15 @@
 {
   "name": "react-showcase",
-  "private": true,
   "version": "0.0.0",
   "type": "module",
+  "private": true,
   "scripts": {
+    "build": "npm-run-all build:*",
+    "build:01_tsc": "tsc",
+    "build:02_vite": "vite build",
+    "build:03_copy": "cpr dist ../../build-showcases/react-showcase -o",
     "dev": "vite --open",
-    "start": "vite",
-    "build:tsc": "tsc",
-    "build:vite": "vite build",
-    "build:copy": "cpr dist ../../build-showcases/react-showcase -o",
-    "build": "npm-run-all build:*"
+    "start": "vite"
   },
   "dependencies": {
     "react": "^18.2.0",
