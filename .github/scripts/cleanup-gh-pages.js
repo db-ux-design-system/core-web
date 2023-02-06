@@ -1,7 +1,7 @@
 /*
  * Fetches all branches and deletes all review-branches in github pages
  */
-import FS from 'fs';
+import FS from 'node:fs';
 
 const TAG = 'cleanup-gh-pages:';
 
