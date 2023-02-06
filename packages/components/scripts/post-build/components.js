@@ -145,6 +145,6 @@ module.exports = [
 	},
 	{
 		name: 'icon',
-		defaultStylePath: 'components/icon/icon.css'
+		defaultStylePath: 'components/icon/icon-wc.css'
 	}
 ];
