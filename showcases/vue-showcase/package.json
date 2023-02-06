@@ -1,14 +1,14 @@
 {
   "name": "vue-showcase",
-  "private": true,
   "version": "0.0.0",
   "type": "module",
+  "private": true,
   "scripts": {
+    "build": "npm-run-all build:*",
+    "build:01_vite": "vite build",
+    "build:02_copy": "cpr dist ../../build-showcases/vue-showcase -o",
     "dev": "vite --open",
-    "start": "vite",
-    "build:vite": "vite build",
-    "build:copy": "cpr dist ../../build-showcases/vue-showcase -o",
-    "build": "npm-run-all build:*"
+    "start": "vite"
   },
   "dependencies": {
     "vue": "^3.2.47"

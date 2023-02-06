@@ -1,12 +1,12 @@
 {
   "name": "svelte-showcase",
-  "private": true,
   "version": "0.0.0",
   "type": "module",
+  "private": true,
   "scripts": {
+    "build": "vite build",
     "dev": "vite --open",
-    "start": "vite",
-    "build": "vite build"
+    "start": "vite"
   },
   "devDependencies": {
     "@sveltejs/vite-plugin-svelte": "^2.0.2",

@@ -1,11 +1,11 @@
 {
   "name": "react-example",
-  "private": true,
   "version": "0.0.0",
   "type": "module",
+  "private": true,
   "scripts": {
-    "dev": "vite",
-    "build": "tsc && vite build"
+    "build": "tsc && vite build",
+    "dev": "vite"
   },
   "dependencies": {
     "@db-ui/react-components": "^0.0.3",

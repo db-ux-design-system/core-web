@@ -17,7 +17,7 @@ echo "goto build-outputs"
 cd build-outputs || exit 1
 
 # TODO: Add other build as well
-for PACKAGE in 'eslint-plugin' 'foundations' 'components' 'ngx-components' 'react-components' 'v-components'; do
+for PACKAGE in 'eslint-plugin' 'foundations' 'components' 'ngx-components' 'react-components' 'v-components' 'web-components'; do
 	echo "Start $PACKAGE bundle:"
 
 	echo "🆚 Update Version"
@@ -58,7 +58,7 @@ for REGISTRY in 'GITHUB' 'NPM'; do
 	fi
 
 	# TODO: Add other build as well
-	for PACKAGE in 'eslint-plugin' 'foundations' 'components' 'ngx-components' 'react-components' 'v-components'; do
+	for PACKAGE in 'eslint-plugin' 'foundations' 'components' 'ngx-components' 'react-components' 'v-components' 'web-components'; do
 		echo "⤴ Publish $PACKAGE with tag $TAG to $REGISTRY"
 		npm publish --tag "$TAG" db-ui-"$PACKAGE"-"$VALID_SEMVER_VERSION".tgz
 	done
