@@ -19,6 +19,11 @@ export interface DBBrandDefaultProps {
 	 * The rel attribute can be set to make a relationship to the current URL (https://developer.mozilla.org/en-US/docs/web/api/htmlanchorelement/rel).
 	 */
 	anchorRelation?: string;
+
+	/**
+	 * This is a workaround for shadow dom and header
+	 */
+	insideHeader?: boolean;
 }
 
 export type DBBrandProps = DBBrandDefaultProps & GlobalProps & ImageProps;
