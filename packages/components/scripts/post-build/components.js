@@ -1,4 +1,21 @@
-module.exports = [
+/**
+ * @returns {[{
+ * name:string,
+ * defaultStylePath:string,
+ * overwrites?:{
+ * 	global?:{from:string,to:string}[],
+ * 	angular?:{from:string,to:string}[],
+ * 	react?:{from:string,to:string}[],
+ * 	vue?:{from:string,to:string}[]
+ * },
+ * config?:{
+ *     vue?:{
+ *         vModel?: {modelValue:string, binding:string}[]
+ *     }
+ * }
+ * }]}
+ */
+const getComponents = () => [
 	{
 		name: 'link',
 		defaultStylePath: 'components/link/link.css',
@@ -70,6 +87,11 @@ module.exports = [
 					to: ''
 				}
 			]
+		},
+		config: {
+			vue: {
+				vModel: [{ modelValue: 'value', binding: ':value' }]
+			}
 		}
 	},
 	{
@@ -148,3 +170,5 @@ module.exports = [
 		defaultStylePath: 'components/icon/icon.css'
 	}
 ];
+
+module.exports = getComponents();

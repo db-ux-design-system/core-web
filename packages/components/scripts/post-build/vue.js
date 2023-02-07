@@ -24,6 +24,52 @@ const updateNestedComponents = (input, rootComponentName) => {
 		.join('\n');
 };
 
+/**
+ *
+ * @param input {string}
+ * @param bindings {{modelValue:string, binding:string}[]}
+ * @returns {*}
+ */
+const updateVModelBindings = (input, bindings) => {
+	let fileContent = input;
+
+	// Replace internal underscore value
+	bindings.forEach((bin) => {
+		fileContent = fileContent.replace(
+			`${bin.binding}="_${bin.modelValue}"`,
+			`${bin.binding}="${bin.modelValue}"`
+		);
+	});
+
+	// Add emits to component config
+
+	fileContent = fileContent.replace(
+		'props: [',
+		`emits: ${JSON.stringify(
+			bindings.map((bin) => `update:${bin.modelValue}`)
+		)},\nprops: [`
+	);
+
+	return fileContent
+		.split('\n')
+		.map((line) => {
+			const foundBinding = bindings.find(
+				(bin) =>
+					line.includes(`this._${bin.modelValue} =`) &&
+					!line.includes(
+						`this._${bin.modelValue} = this.${bin.modelValue}`
+					)
+			);
+			if (foundBinding) {
+				const emitFunction = `this.$emit("update:${foundBinding.modelValue}", this._${foundBinding.modelValue});`;
+				return `${line}\n${emitFunction}`;
+			}
+
+			return line;
+		})
+		.join('\n');
+};
+
 module.exports = () => {
 	// Rewire imports in Playwright config
 	Replace.sync({
@@ -58,6 +104,18 @@ module.exports = () => {
 					return updateNestedComponents(input, component.name);
 				}
 			});
+
+			if (component?.config?.vue?.vModel) {
+				Replace.sync({
+					files: vueFile,
+					processor(input) {
+						return updateVModelBindings(
+							input,
+							component.config.vue.vModel
+						);
+					}
+				});
+			}
 
 			let replacements = [
 				{

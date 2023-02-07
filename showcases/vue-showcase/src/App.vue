@@ -6,9 +6,14 @@ import {
 	DBInput
 } from "../../../output/vue/vue3/src";
 
-function onClick() {
+import { ref } from "vue";
+
+const vModelTest = ref("vModelTest");
+const modelAndChange = ref("modelAndChange");
+
+const onClick = () => {
 	console.log("Button clicked");
-}
+};
 </script>
 
 <template>
@@ -29,7 +34,9 @@ function onClick() {
 					placeholder="irgendein Text"
 					iconBefore="edit"
 					id="input-expr"
+					v-model:value="vModelTest"
 				/>
+				{{ vModelTest }}
 			</section>
 
 			<section className="db-ui-expressive">
@@ -59,7 +66,14 @@ function onClick() {
 					placeholder="irgendein Text"
 					iconAfter="heart"
 					id="input-reg"
+					:value="modelAndChange"
+					:on-change="
+						($event) => {
+							modelAndChange = $event.target.value;
+						}
+					"
 				/>
+				{{ modelAndChange }}
 			</section>
 
 			<section className="db-ui-functional">
