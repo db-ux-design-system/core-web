@@ -57,7 +57,7 @@ const getAppShell = (content) =>
 					${navigationItems
 						.map(
 							(item) =>
-								`<li><a href="${item.path}">${item.label}</a></li>`
+								`<li><a href="/vanilla-showcase/${item.path}">${item.label}</a></li>`
 						)
 						.join('')}
 				</ul>

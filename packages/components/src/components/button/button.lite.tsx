@@ -65,10 +65,8 @@ export default function DBButton(props: DBButtonProps) {
 				<link rel="stylesheet" href={state.stylePath} />
 			</Show>
 
-			<DBIcon icon={props.icon} icntxt={props.icntxt}>
-				{/* we need spacings around props.text for compilation */}
-				{props.children}
-			</DBIcon>
+			<DBIcon icon={props.icon} icntxt={props.icntxt}></DBIcon>
+			{props.children}
 		</button>
 	);
 }
