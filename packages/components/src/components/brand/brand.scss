@@ -7,13 +7,15 @@
 	align-items: center;
 }
 
+%logo-height {
+	height: $db-sizing-sm;
+	@media screen and (min-width: $db-screens-lg) {
+		height: $db-sizing-md;
+	}
+}
+
 .db-brand {
 	@extend %brand-display;
-
-	.db-logo {
-		height: auto;
-		width: auto;
-	}
 
 	a {
 		@extend %brand-display;
@@ -22,11 +24,11 @@
 		text-decoration: none;
 	}
 
-	.db-header & {
-		@media screen and (min-width: $db-screens-lg) {
-			.db-logo {
-				height: $db-sizing-md;
-			}
-		}
+	svg {
+		@extend %logo-height;
 	}
+}
+
+.db-logo {
+	@extend %logo-height;
 }
