@@ -43,9 +43,13 @@ export default function DBBrand(props: DBBrandProps) {
 						className="db-logo"
 					/>
 				</Show>
-				<Show when={props.anchorChildren}>{props.children}</Show>
+				<Show when={props.anchorChildren}>
+					<>{props.children}</>
+				</Show>
 			</a>
-			<Show when={!props.anchorChildren}>{props.children}</Show>
+			<Show when={!props.anchorChildren}>
+				<>{props.children}</>
+			</Show>
 		</div>
 	);
 }
