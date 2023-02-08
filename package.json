@@ -49,7 +49,7 @@
     "lint:xo": "xo --fix",
     "postupdate:foundations": "replace-in-file packages/foundations/**  --configFile=scripts/base-foundation.js && node scripts/rename-db-ui-base.js",
     "prepare": "node -e \"try { require('husky').install() } catch (e) {}\"",
-    "regenerate:screenshots": "docker run --rm --network host -v $(pwd):/work/ -w /work/ -it mcr.microsoft.com/playwright:v1.30.0-focal /bin/bash -c 'npm i && cd output/react/ && npx playwright test --update-snapshots'",
+    "regenerate:screenshots": "docker run --rm --network host -v $(pwd):/work/ -w /work/ -it mcr.microsoft.com/playwright:v1.30.0-focal /bin/bash -c 'npm ci && cd output/react/ && npx playwright test --update-snapshots'",
     "start": "node scripts/start.js",
     "start-showcase:angular-current": "npm run dev --workspace=angular-current-showcase",
     "start-showcase:angular-lts": "npm run dev --workspace=angular-lts-showcase",
