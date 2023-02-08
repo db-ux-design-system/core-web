@@ -1,21 +1,23 @@
 {
   "name": "vanilla-showcase",
-  "private": true,
   "version": "0.0.0",
   "type": "module",
+  "private": true,
   "scripts": {
+    "build": "npm-run-all build:*",
+    "build:01_vite": "vite build",
+    "build:02_copy": "cpr dist ../../build-showcases/vanilla-showcase -o",
     "copy:assets": "cpr ../../packages/foundations/assets ./public/assets  -o",
-    "copy:styles": "cpr ../../output/webcomponent/src/styles/db-ui-42.css ./public/styles/db-ui-42.css  -o",
-    "copy:components": "cpr ../../output/webcomponent/src/components ./public/components  -o",
-    "predev": "npm-run-all -p copy:*",
-    "prebuild": "npm-run-all -p copy:*",
+    "copy:components": "cpr ../../packages/components/build/components ./public/components  -o",
+    "copy:styles": "cpr ../../packages/components/build/styles/db-ui-42.css ./public/styles/db-ui-42.css  -o",
     "dev": "vite --open",
-    "start": "vite",
-    "build": "vite build"
+    "prebuild": "npm-run-all -p copy:*",
+    "predev": "npm-run-all -p copy:*",
+    "start": "vite"
   },
   "devDependencies": {
     "cpr": "3.0.1",
     "npm-run-all": "4.1.5",
-    "vite": "^4.0.4"
+    "vite": "^4.1.1"
   }
 }

@@ -28,8 +28,8 @@ jobs:
         with:
           result-encoding: json
           script: |
-            const script = require('./.github/scripts/cleanup-gh-pages.js')
-            return await script({github, context})
+            const { default: cleanUpPages } = await import('${{ github.workspace }}/.github/scripts/cleanup-gh-pages.js');
+            return await cleanUpPages({github, context});
 
       - name: 🥅 Deploy to GH-Pages
         uses: peaceiris/actions-gh-pages@v3

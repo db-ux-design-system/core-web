@@ -1,6 +1,6 @@
 @use "@db-ui/foundations/build/scss/webpack.assets-paths" as *;
 @use "@db-ui/foundations/build/scss/icon/icons" as *;
-@use "@db-ui/components/src/styles/db-ui-components" as *;
+@use "@db-ui/components/build/styles/db-ui-components" as *;
 
 #__next {
 	height: inherit;

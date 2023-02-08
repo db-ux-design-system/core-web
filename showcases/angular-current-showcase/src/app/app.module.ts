@@ -7,7 +7,8 @@ import {
 	DBIconModule,
 	DBCardModule,
 	DBDividerModule,
-	DBInputModule
+	DBInputModule,
+	DBLinkModule
 } from '../../../../output/angular/src';
 import { AppComponent } from './app.component';
 
@@ -20,6 +21,7 @@ import { AppComponent } from './app.component';
 		DBDividerModule,
 		DBCardModule,
 		DBInputModule,
+		DBLinkModule,
 		FormsModule
 	],
 	providers: [],

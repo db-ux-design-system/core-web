@@ -85,7 +85,8 @@
 		padding: 0 $db-spacing-fixed-sm;
 	}
 
-	&:has(> .icon-after) .db-icon.icon-after::before {
+	&:has(> .icon-after) .db-icon.icon-after::before,
+	&:has(> .icon-after) .icon-after .db-icon::before {
 		right: 0;
 	}
 

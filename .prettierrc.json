@@ -6,6 +6,12 @@
 			"options": {
 				"bracketSameLine": true
 			}
+		},
+		{
+			"files": ["*.sh", ".env"],
+			"options": {
+				"parser": "sh"
+			}
 		}
 	],
 	"bracketSpacing": true

@@ -1,0 +1,87 @@
+@charset "utf-8";
+
+@use "@db-ui/foundations/build/scss/variables" as *;
+@use "@db-ui/foundations/build/scss/scaling-placeholder" as *;
+@use "@db-ui/foundations/build/scss/color-placeholder" as *;
+@use "@db-ui/foundations/build/scss/helpers/functions" as *;
+@use "@db-ui/foundations/build/scss/icon/icons.helpers" as *;
+
+.db-link {
+	color: var(--db-current-color, $db-colors-neutral-on-bg-enabled);
+	display: flex;
+	border-radius: to-rem($pxValue: 6);
+
+	// Link underline
+	// TODO: We should evaluate whether we could move this declaration to the @font-face declarations even already
+	text-underline-position: from-font;
+	text-decoration-thickness: to-rem($pxValue: 1);
+
+	// Changing color on hover should be animated by a transition
+	transition: outline 0.06s, color $db-transition-color;
+
+	&:hover {
+		color: inherit;
+	}
+
+	// "disabled" links
+	&[aria-disabled="true"] {
+		// TODO: probably move these to the tokens as well
+		opacity: var(--db-disabled-text-opacity, 0.5);
+		pointer-events: none;
+	}
+
+	&[data-content] {
+		--icon-font-family: var(--db-base-icon-font-family);
+		--icon-font-size: var(--db-base-icon-font-size);
+	}
+
+	&[data-content="internal"] {
+		@include icon(glyph(link), 24, "outline", "after");
+
+		&::after,
+		.db-icon::before {
+			margin-top: -0.3em;
+		}
+	}
+
+	&[data-content="external"] {
+		@include icon(glyph(link-external), 24, "outline", "after");
+
+		&::after,
+		.db-icon::before {
+			margin-top: -0.1em;
+		}
+	}
+
+	&[data-content="internal"],
+	&[data-content="external"] {
+		&:focus-visible {
+			outline-offset: var(--db-focus-outline-offset, 1px);
+		}
+
+		&::after,
+		.db-icon::before {
+			--icon-margin-before: var(--db-spacing-fixed-2xs);
+			margin-inline-start: var(--icon-margin-before);
+		}
+	}
+
+	&[data-variant="primary"] {
+		@extend %db-primary-text-ia;
+	}
+
+	// data-size=small is defined by tonality in "@db-ui/base/build/scss/tonality"
+	&[data-size="small"] {
+		&[data-content="internal"],
+		&[data-content="external"] {
+			&::after,
+			.db-icon::before {
+				--icon-margin-before: var(--db-spacing-fixed-3xs);
+			}
+		}
+	}
+
+	.db-icon {
+		display: inline;
+	}
+}

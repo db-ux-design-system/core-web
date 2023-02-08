@@ -3,10 +3,7 @@ import AxeBuilder from '@axe-core/playwright';
 
 import { DBButton } from './index';
 
-test.describe('DBButton component on desktop', () => {
-	// Old-school CRT monitor screensize
-	test.use({ viewport: { width: 1024, height: 768 } });
-
+const testButton = () => {
 	test('DBButton should contain text', async ({ mount }) => {
 		const component = await mount(<DBButton text="Test" />);
 		await expect(component).toContainText('Test');
@@ -23,21 +20,20 @@ test.describe('DBButton component on desktop', () => {
 		);
 		await expect(component).toHaveScreenshot();
 	});
+};
+
+test.describe('DBButton component on desktop', () => {
+	// Old-school CRT monitor screensize
+	test.use({ viewport: { width: 1024, height: 768 } });
+
+	testButton();
 });
 
 test.describe('DBButton component on mobile', () => {
 	// iPhone 13 / portrait screen size
 	test.use({ viewport: { width: 390, height: 884 } });
 
-	test('DBButton should contain text', async ({ mount }) => {
-		const component = await mount(<DBButton text="Test" />);
-		await expect(component).toContainText('Test');
-	});
-
-	test('DBButton should match screenshot', async ({ mount }) => {
-		const component = await mount(<DBButton text="Test" />);
-		await expect(component).toHaveScreenshot();
-	});
+	testButton();
 });
 
 test.describe('DBButton component A11y', () => {

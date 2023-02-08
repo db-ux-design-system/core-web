@@ -36,6 +36,12 @@ jobs:
           name: db-ui-output
           path: output
 
+      - name: ⬇ Download components build
+        uses: ./.github/actions/download-tar-artifact
+        with:
+          name: db-ui-components-build
+          path: packages/components/build
+
       - name: ↔ Extract branch name
         uses: ./.github/actions/extract-branch
         id: extract_branch

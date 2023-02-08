@@ -1,17 +1,17 @@
 {
   "name": "svelte-showcase",
-  "private": true,
   "version": "0.0.0",
   "type": "module",
+  "private": true,
   "scripts": {
+    "build": "vite build",
     "dev": "vite --open",
-    "start": "vite",
-    "build": "vite build"
+    "start": "vite"
   },
   "devDependencies": {
     "@sveltejs/vite-plugin-svelte": "^2.0.2",
-    "sass": "^1.57.1",
+    "sass": "^1.58.0",
     "svelte": "^3.55.1",
-    "vite": "^4.0.4"
+    "vite": "^4.1.1"
   }
 }

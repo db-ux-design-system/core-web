@@ -12,6 +12,7 @@ source/_meta/_head.mustache
 source/_meta/_foot.mustache
 
 tailwind.config.js
+!e2e/.env
 .env
 **/*/.env
 
@@ -42,3 +43,4 @@ output/power-apps
 !/build-power-apps/DBUI/**
 .cache
 **/playwright-report
+/.parcel-cache/
