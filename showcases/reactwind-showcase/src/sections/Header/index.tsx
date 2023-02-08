@@ -16,7 +16,7 @@ const Header = () => (
 		</div>
 
 		<div className="navigation flex flex-wrap db-bg-neutral-0 p-fix-md gap-fix-xl md:rounded-b-lg">
-			<DBBrand imgSrc="db_logo.svg" insideHeader></DBBrand>
+			<DBBrand imgSrc="db_logo.svg"></DBBrand>
 			<div className="hidden md:flex gap-fix-xl items-center">
 				{menu.map((mItem, index) => (
 					<strong key={`nav-item-${index}`}>{mItem}</strong>

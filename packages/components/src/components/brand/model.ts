@@ -21,9 +21,9 @@ export interface DBBrandDefaultProps {
 	anchorRelation?: string;
 
 	/**
-	 * This is a workaround for shadow dom and header
+	 * This is for testing the component with a svg instead of an asset.
 	 */
-	insideHeader?: boolean;
+	svgPath?: any;
 }
 
 export type DBBrandProps = DBBrandDefaultProps & GlobalProps & ImageProps;
