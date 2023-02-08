@@ -1,8 +1,8 @@
+import { DBSection } from '../../../output/react/src';
 import Header from './sections/Header';
 import Main from './sections/Main';
 import Search from './sections/Search';
 import Footer from './sections/Footer';
-import { DBSection } from '../../../output/react/src';
 
 function App() {
 	return (
