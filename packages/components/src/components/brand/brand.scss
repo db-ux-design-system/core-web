@@ -23,6 +23,10 @@
 		// Deactivate underline on site name being made clickable by added to the link as well
 		text-decoration: none;
 	}
+
+	svg {
+		@extend %logo-height;
+	}
 }
 
 .db-logo {

@@ -23,7 +23,7 @@ export interface DBBrandDefaultProps {
 	/**
 	 * This is for testing the component with a svg instead of an asset.
 	 */
-	svgPath?: any;
+	hideDefaultAsset?: any;
 }
 
 export type DBBrandProps = DBBrandDefaultProps & GlobalProps & ImageProps;
