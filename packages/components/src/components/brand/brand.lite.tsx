@@ -10,8 +10,8 @@ useMetadata({
 });
 
 const DEFAULT_VALUES = {
-	anchorRef: '#',
-	src: './images/db_logo.svg'
+	anchorRef: '/',
+	src: './assets/images/db_logo.svg'
 };
 
 export default function DBBrand(props: DBBrandProps) {
@@ -39,9 +39,7 @@ export default function DBBrand(props: DBBrandProps) {
 					alt={props.imgAlt}
 					height={props.imgHeight}
 					width={props.imgWidth}
-					class={
-						'db-logo' + (props.insideHeader ? ' inside-header' : '')
-					}
+					class="db-logo"
 				/>
 				<Show when={props.anchorChildren}>
 					<span class="site-name">{props.children}</span>

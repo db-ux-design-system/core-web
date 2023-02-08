@@ -1,9 +1,10 @@
 import Form from '../components/form/index';
 import Button from '../components/button/index';
 import Input from '../components/input/index';
+import { navigationPaths } from './navigation-paths.js';
 
 export const navigationItems = [
 	{ path: '/', label: 'Home', component: Form },
-	{ path: '/button', label: 'Button', component: Button },
-	{ path: '/input', label: 'Input', component: Input }
+	{ path: navigationPaths.button, label: 'Button', component: Button },
+	{ path: navigationPaths.input, label: 'Input', component: Input }
 ];
