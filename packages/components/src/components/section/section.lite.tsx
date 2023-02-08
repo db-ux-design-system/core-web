@@ -27,6 +27,7 @@ export default function DBSection(props: DBSectionProps) {
 			<Show when={state.stylePath}>
 				<link rel="stylesheet" href={state.stylePath} />
 			</Show>
+			{/* TODO: We need to reevaluate whether we could get rid of this tag */}
 			<div data-variant={props.variant}>{props.children}</div>
 		</section>
 	);
