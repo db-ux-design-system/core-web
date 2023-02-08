@@ -3,8 +3,6 @@
 @use "@db-ui/foundations/build/scss/helpers/functions" as *;
 
 .db-section {
-	width: 100%;
-
 	padding-inline: $db-spacing-fixed-md;
 
 	@media screen and (min-width: $db-screens-m) {
