@@ -3,13 +3,7 @@ import AxeBuilder from '@axe-core/playwright';
 
 import { DBCard } from './index';
 
-// 🚧 Vite will hash the filename of db_logo.svg
-const logo = 'assets/db_logo-7ad07993.svg';
-const defaultComp = (
-	<DBCard imgSrc={logo} imgAlt="The Deutsche Bahn logo">
-		Test
-	</DBCard>
-);
+const defaultComp = <DBCard>Test</DBCard>;
 
 // TODO: Get variants from https://github.com/db-ui/mono/blob/feat-unify-showcases/packages/components/src/shared/constants.ts when feat-unify branch is merged
 const colorVariants = [

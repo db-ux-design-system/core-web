@@ -7,13 +7,6 @@
 	align-items: center;
 }
 
-%logo-height {
-	height: $db-sizing-sm;
-	@media screen and (min-width: $db-screens-lg) {
-		height: $db-sizing-md;
-	}
-}
-
 .db-brand {
 	@extend %brand-display;
 
@@ -23,12 +16,11 @@
 		// Deactivate underline on site name being made clickable by added to the link as well
 		text-decoration: none;
 	}
-
-	svg {
-		@extend %logo-height;
-	}
 }
 
 .db-logo {
-	@extend %logo-height;
+	height: $db-sizing-sm;
+	@media screen and (min-width: $db-screens-lg) {
+		height: $db-sizing-md;
+	}
 }
