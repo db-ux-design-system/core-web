@@ -29,7 +29,7 @@
 	}
 }
 
-// TODO: reevaluate whether we could restructure / move this declaration
+// TODO: reevaluate whether we could restructure / move this declaration, as it's escaping this "CSS Module"
 .db-logo {
 	@extend %logo-height;
 }
