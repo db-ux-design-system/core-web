@@ -7,7 +7,8 @@ import {
 	DBIcon,
 	DBPage,
 	DBInput,
-	DBLink
+	DBLink,
+	DBInfotext
 } from '../../../output/react/src';
 
 const App = () => {
@@ -40,6 +41,14 @@ const App = () => {
 			slotFooter={<div>FOOTER</div>}>
 			<div>
 				<h1>React</h1>
+				<section className="db-bg-secondary">
+					<DBInfotext icon="account">Infotext</DBInfotext>
+					<DBInfotext variant="warning">Infotext</DBInfotext>
+					<DBInfotext variant="success">Infotext</DBInfotext>
+					<DBInfotext variant="information">Infotext</DBInfotext>
+					<DBInfotext size="small">Infotext</DBInfotext>
+				</section>
+
 				<DBCard>
 					<div
 						style={{

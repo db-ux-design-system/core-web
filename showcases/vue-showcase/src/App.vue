@@ -3,7 +3,8 @@ import {
 	DBButton,
 	DBIcon,
 	DBCard,
-	DBInput
+	DBInput,
+	DBInfotext
 } from "../../../output/vue/vue3/src";
 
 function onClick() {
@@ -14,6 +15,13 @@ function onClick() {
 <template>
 	<main>
 		<h1>Vue</h1>
+		<section class="db-bg-secondary">
+			<DBInfotext icon="account">Infotext</DBInfotext>
+			<DBInfotext variant="warning">Infotext</DBInfotext>
+			<DBInfotext variant="success">Infotext</DBInfotext>
+			<DBInfotext variant="information">Infotext</DBInfotext>
+			<DBInfotext size="small">Infotext</DBInfotext>
+		</section>
 		<DBCard>
 			<div style="display: flex; gap: 4px; align-items: center">
 				<DBButton variant="secondary">Test</DBButton>

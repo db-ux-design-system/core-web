@@ -1,0 +1,43 @@
+@use "@db-ui/foundations/build/scss/tonality" as *;
+@use "@db-ui/foundations/build/scss/variables" as *;
+@use "@db-ui/foundations/build/scss/variables.global" as *;
+
+$variants: "critical", "information", "warning", "success";
+
+.db-infotext {
+	@extend %db-body-sm;
+
+	display: flex;
+
+	.db-icon {
+		@extend %db-body-sm;
+		margin-inline-end: $db-spacing-fixed-2xs;
+
+		&::before {
+			--icon-font-family: var(--db-base-icon-font-family-filled);
+			--icon-font-size: var(--db-base-icon-font-size);
+		}
+	}
+
+	&[data-size="small"] {
+		@extend %db-body-xs;
+
+		.db-icon {
+			@extend %db-body-xs;
+		}
+	}
+
+	@each $variant in $variants {
+		&[data-variant="#{$variant}"] {
+			@if ($variant == "critical") {
+				color: $db-colors-critical-enabled;
+			} @else if($variant == "information") {
+				color: $db-colors-information-enabled;
+			} @else if($variant == "warning") {
+				color: $db-colors-warning-enabled;
+			} @else if($variant == "success") {
+				color: $db-colors-success-enabled;
+			}
+		}
+	}
+}

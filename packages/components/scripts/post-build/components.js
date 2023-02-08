@@ -1,5 +1,24 @@
 module.exports = [
 	{
+		name: 'infotext',
+		defaultStylePath: 'components/infotext/infotext.css',
+		overwrites: {
+			global: [
+				{
+					from: 'getIcon(icon, variant) {',
+					to: 'getIcon(icon:any, variant:any) {'
+				}
+			],
+			vue: [
+				{
+					from: 'import { DBInfotextState, DBInfotextProps } from "./model";',
+					to: ''
+				}
+			]
+		}
+	},
+
+	{
 		name: 'link',
 		defaultStylePath: 'components/link/link.css',
 		overwrites: {

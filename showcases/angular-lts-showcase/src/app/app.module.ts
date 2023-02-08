@@ -6,7 +6,8 @@ import {
 	DBIconModule,
 	DBCardModule,
 	DBDividerModule,
-	DBInputModule
+	DBInputModule,
+	DBInfotextModule
 } from '../../../../output/angular/src';
 import { AppComponent } from './app.component';
 
@@ -18,7 +19,8 @@ import { AppComponent } from './app.component';
 		DBIconModule,
 		DBDividerModule,
 		DBCardModule,
-		DBInputModule
+		DBInputModule,
+		DBInfotextModule
 	],
 	providers: [],
 	schemas: [NO_ERRORS_SCHEMA],

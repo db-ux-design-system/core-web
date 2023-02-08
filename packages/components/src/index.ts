@@ -11,3 +11,4 @@ export * from './components/header';
 
 export * from './components/page';
 export * from './components/link';
+export * from './components/infotext';
