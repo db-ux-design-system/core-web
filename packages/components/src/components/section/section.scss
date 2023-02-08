@@ -5,42 +5,34 @@
 .db-section {
 	width: 100%;
 
-	padding-left: $db-spacing-fixed-md;
-	padding-right: $db-spacing-fixed-md;
+	padding-inline: $db-spacing-fixed-md;
 
 	@media screen and (min-width: $db-screens-m) {
-		padding-left: $db-spacing-fixed-lg;
-		padding-right: $db-spacing-fixed-lg;
+		padding-inline: $db-spacing-fixed-md;
 	}
 
 	&[data-variant="full"] {
-		padding-left: 0;
-		padding-right: 0;
+		padding-inline: 0;
 	}
 
 	&[data-size="none"] {
-		padding-top: 0;
-		padding-bottom: 0;
+		padding-block: 0;
 	}
 
 	&[data-size="small"] {
-		padding-top: $db-spacing-responsive-sm;
-		padding-bottom: $db-spacing-responsive-sm;
+		padding-block: $db-spacing-responsive-sm;
 	}
 
 	&[data-size="medium"] {
-		padding-top: $db-spacing-responsive-md;
-		padding-bottom: $db-spacing-responsive-md;
+		padding-block: $db-spacing-responsive-md;
 	}
 
 	&[data-size="large"] {
-		padding-top: $db-spacing-responsive-lg;
-		padding-bottom: $db-spacing-responsive-lg;
+		padding-block: $db-spacing-responsive-lg;
 	}
 
 	& > div {
 		margin: 0 auto;
-		width: 100%;
 
 		&[data-variant="full"] {
 			max-width: none;
