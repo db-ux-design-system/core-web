@@ -50,7 +50,7 @@ const generateScaling = () => {
 \t--db-input-label-scale: ${inputCustomVars[scale].labelScale};
 \t--db-input-focus-opacity: ${inputCustomVars[scale].focusOpacity};
 
-\t@media only screen and (min-width: $db-screens-md) {
+\t@media only screen and (min-width: $db-screens-s) {
 \t\t--db-spacing-responsive-xs: #{$db-spacing-responsive-${scale}-tablet-xs};
 \t\t--db-spacing-responsive-sm: #{$db-spacing-responsive-${scale}-tablet-s};
 \t\t--db-spacing-responsive-md: #{$db-spacing-responsive-${scale}-tablet-m};
@@ -58,7 +58,7 @@ const generateScaling = () => {
 \t\t--db-spacing-responsive-xl: #{$db-spacing-responsive-${scale}-tablet-xl};
 \t}
 
-\t@media only screen and (min-width: $db-screens-lg) {
+\t@media only screen and (min-width: $db-screens-m) {
 \t\t--db-spacing-responsive-xs: #{$db-spacing-responsive-${scale}-desktop-xs};
 \t\t--db-spacing-responsive-sm: #{$db-spacing-responsive-${scale}-desktop-s};
 \t\t--db-spacing-responsive-md: #{$db-spacing-responsive-${scale}-desktop-m};

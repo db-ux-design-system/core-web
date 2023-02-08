@@ -41,7 +41,7 @@ const App = () => {
 			slotFooter={<div>FOOTER</div>}>
 			<div>
 				<DBSection
-					maxWidth="small"
+					variant="large"
 					size="small"
 					className="db-bg-success">
 					<h1>React</h1>
@@ -68,7 +68,7 @@ const App = () => {
 				</DBSection>
 
 				<DBSection
-					maxWidth="medium"
+					variant="medium"
 					size="medium"
 					className="db-bg-neutral-4">
 					<div

@@ -8,9 +8,14 @@
 	padding-left: $db-spacing-fixed-md;
 	padding-right: $db-spacing-fixed-md;
 
-	@media screen and (min-width: $db-screens-lg) {
+	@media screen and (min-width: $db-screens-m) {
 		padding-left: $db-spacing-fixed-lg;
 		padding-right: $db-spacing-fixed-lg;
+	}
+
+	&[data-variant="full"] {
+		padding-left: 0;
+		padding-right: 0;
 	}
 
 	&[data-size="none"] {
@@ -37,20 +42,16 @@
 		margin: 0 auto;
 		width: 100%;
 
-		&[data-max-width="none"] {
+		&[data-variant="full"] {
 			max-width: none;
 		}
 
-		&[data-max-width="small"] {
-			max-width: $db-screens-lg;
+		&[data-variant="medium"] {
+			max-width: $db-screens-m;
 		}
 
-		&[data-max-width="medium"] {
-			max-width: $db-screens-xl;
-		}
-
-		&[data-max-width="large"] {
-			max-width: $db-screens-2xl;
+		&[data-variant="large"] {
+			max-width: $db-screens-l;
 		}
 	}
 }

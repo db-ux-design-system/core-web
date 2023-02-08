@@ -23,7 +23,7 @@
 	}
 
 	.db-header & {
-		@media screen and (min-width: $db-screens-lg) {
+		@media screen and (min-width: $db-screens-m) {
 			.db-logo {
 				height: $db-sizing-md;
 			}

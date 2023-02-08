@@ -27,9 +27,7 @@ export default function DBSection(props: DBSectionProps) {
 			<Show when={state.stylePath}>
 				<link rel="stylesheet" href={state.stylePath} />
 			</Show>
-			<div data-max-width={props.maxWidth || 'large'}>
-				{props.children}
-			</div>
+			<div data-variant={props.variant}>{props.children}</div>
 		</section>
 	);
 }

@@ -2,7 +2,7 @@ import { GlobalProps, GlobalState } from '../../shared/model';
 
 export interface DBSectionDefaultProps {
 	size?: 'small' | 'medium' | 'large' | 'none';
-	maxWidth?: 'small' | 'medium' | 'large' | 'none';
+	variant?: 'medium' | 'large' | 'full';
 }
 
 export type DBSectionProps = DBSectionDefaultProps & GlobalProps;
