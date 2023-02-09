@@ -35,7 +35,6 @@ test.describe('DBInfotext component A11y', () => {
 	}) => {
 		await mount(comp);
 		const accessibilityScanResults = await new AxeBuilder({ page })
-			.disableRules('color-contrast')
 			.include('.db-infotext')
 			.analyze();
 
