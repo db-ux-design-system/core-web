@@ -2,7 +2,7 @@ import { GlobalProps, GlobalState, ImageProps } from '../../shared/model';
 
 export interface DBBrandDefaultProps {
 	/**
-	 * The anchorChildren attribute can be set to warp children inside the <a> tag.
+	 * The anchorChildren attribute can be set to warp children inside the 'a' tag.
 	 */
 	anchorChildren?: boolean;
 	/**

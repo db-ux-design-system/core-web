@@ -44,3 +44,4 @@ output/power-apps
 .cache
 **/playwright-report
 /.parcel-cache/
+/output/docs.json

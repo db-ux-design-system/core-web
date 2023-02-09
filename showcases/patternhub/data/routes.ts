@@ -21,7 +21,50 @@ export const ROUTES: DbMainnavigationDataType[] = [
 	},
 	{
 		label: 'Components',
-		link: '/components'
+		link: '/components',
+		children: [
+			{
+				label: 'DBBrand',
+				link: '/components/brand',
+				children: [
+					{
+						label: 'Examples',
+						link: '/components/brand/examples'
+					}
+				]
+			},
+			{
+				label: 'DBButton',
+				link: '/components/button',
+				children: [
+					{
+						label: 'Examples',
+						link: '/components/button/examples'
+					}
+				]
+			},
+			{
+				label: 'DBCard',
+				link: '/components/card',
+				children: [
+					{
+						label: 'Examples',
+						link: '/components/card/examples'
+					}
+				]
+			},
+			{
+				label: 'DBDivider',
+				link: '/components/divider',
+				children: [
+					{
+						label: 'Examples',
+						link: '/components/divider/examples'
+					}
+				]
+			}
+			// TODO: Add other components
+		]
 	},
 	{
 		label: 'Showcases',
