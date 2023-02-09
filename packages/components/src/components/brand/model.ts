@@ -19,6 +19,12 @@ export interface DBBrandDefaultProps {
 	 * The rel attribute can be set to make a relationship to the current URL (https://developer.mozilla.org/en-US/docs/web/api/htmlanchorelement/rel).
 	 */
 	anchorRelation?: string;
+
+	/**
+	 * Hides the default <img> with an asset path to be able to add a custom image inside the children.
+	 * Use this if you know what you do.
+	 */
+	hideDefaultAsset?: any;
 }
 
 export type DBBrandProps = DBBrandDefaultProps & GlobalProps & ImageProps;

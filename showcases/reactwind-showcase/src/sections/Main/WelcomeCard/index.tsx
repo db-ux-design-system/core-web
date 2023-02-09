@@ -1,4 +1,4 @@
-import { DBCard, DBIcon } from '../../../../../../output/react/src';
+import { DBCard, DBIcon, DBLink } from '../../../../../../output/react/src';
 
 const WelcomeCard = () => {
 	return (
@@ -32,9 +32,10 @@ const WelcomeCard = () => {
 						Viel Spaß beim Testen! Wir freuen uns auf Ihr Feedback.
 					</p>
 				</div>
-				<DBIcon withText icon="chevron-right">
+
+				<DBLink href="#" content="internal">
 					Mehr erfahren
-				</DBIcon>
+				</DBLink>
 			</div>
 		</DBCard>
 	);

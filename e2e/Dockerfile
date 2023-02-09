@@ -3,8 +3,8 @@ FROM mcr.microsoft.com/playwright:v1.30.0-focal as playwright
 COPY e2e /e2e
 WORKDIR /e2e
 
-COPY output/  output/
-COPY packages/  packages/
+COPY output/ output/
+COPY packages/ packages/
 
 # Install dependencies
 RUN npm install

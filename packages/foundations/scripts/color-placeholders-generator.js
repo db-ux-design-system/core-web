@@ -110,6 +110,11 @@ exports.generateColorUtilitityPlaceholder = (colorToken) => {
 ${generateInteractiveVariants(colorToken[value], 'color')}
 }
 
+%${prefix}-${value}-element-ia {
+	color: $${prefix}-${colorToken[value].element.enabled.name};
+${generateInteractiveVariants(colorToken[value].element, 'color')}
+}
+
 `;
 
 			// Text and background colors

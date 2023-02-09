@@ -167,16 +167,27 @@ const convertSpacings = (data) => {
 	);
 	const spacings = {};
 	const sizes = {};
+	const screens = {};
 	for (let key of keys) {
 		const spacing = data.spacing[key];
 		key = key.replace('normal', 'regular');
 		if (key?.includes('sizing')) {
-			sizes[key.replace('sizing-', '')] = {
-				value: `${spacing.value}`,
-				attributes: {
-					category: 'size'
-				}
-			};
+			if (key?.includes('screen')) {
+				screens[key.replace('sizing-', '').replace('screen-', '')] = {
+					value: `${Number(spacing.value) / 16}`,
+					attributes: {
+						category: 'size',
+						screen: true
+					}
+				};
+			} else {
+				sizes[key.replace('sizing-', '')] = {
+					value: `${spacing.value}`,
+					attributes: {
+						category: 'size'
+					}
+				};
+			}
 		} else {
 			spacings[key.replace('spacing-', '')] = {
 				value: `${spacing.value}`,
@@ -189,6 +200,7 @@ const convertSpacings = (data) => {
 
 	data.sizing = mergeData(sizes);
 	data.spacing = mergeData(spacings);
+	data.screens = screens;
 };
 
 (async () => {
@@ -206,6 +218,7 @@ const convertSpacings = (data) => {
 			JSON.stringify({
 				spacing: data.spacing,
 				sizing: data.sizing,
+				screens: data.screens,
 				typography: data.textStyles,
 				colors: data.colors
 			})

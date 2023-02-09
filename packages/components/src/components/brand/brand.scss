@@ -10,23 +10,17 @@
 .db-brand {
 	@extend %brand-display;
 
-	.db-logo {
-		height: auto;
-		width: auto;
-	}
-
 	a {
 		@extend %brand-display;
 		color: inherit;
 		// Deactivate underline on site name being made clickable by added to the link as well
 		text-decoration: none;
 	}
+}
 
-	.db-header & {
-		@media screen and (min-width: $db-screens-lg) {
-			.db-logo {
-				height: $db-sizing-md;
-			}
-		}
+.db-logo {
+	height: $db-sizing-sm;
+	@media screen and (min-width: $db-screens-m) {
+		height: $db-sizing-md;
 	}
 }

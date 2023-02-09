@@ -108,8 +108,8 @@ const generateTypography = (typography) => {
 					if (mQuery !== 'mobile') {
 						allClasses += `@media only screen and (min-width: ${
 							mQuery === 'tablet'
-								? '#{$db-screens-md}'
-								: '#{$db-screens-lg}'
+								? '#{$db-screens-s}'
+								: '#{$db-screens-m}'
 						}) {
 	`;
 					}
