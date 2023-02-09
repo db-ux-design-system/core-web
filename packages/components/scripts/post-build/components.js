@@ -10,6 +10,11 @@ module.exports = [
 	},
 
 	{
+		name: 'section',
+		defaultStylePath: 'components/section/section.css'
+	},
+
+	{
 		name: 'page',
 		defaultStylePath: 'components/page/page.css',
 		overwrites: {

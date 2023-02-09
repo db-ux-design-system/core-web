@@ -34,19 +34,21 @@ export default function DBBrand(props: DBBrandProps) {
 				href={props.anchorRef ?? DEFAULT_VALUES.anchorRef}
 				title={props.anchorTitle}
 				rel={props.anchorRelation}>
-				<img
-					src={props.imgSrc ?? DEFAULT_VALUES.src}
-					alt={props.imgAlt}
-					height={props.imgHeight}
-					width={props.imgWidth}
-					class="db-logo"
-				/>
+				<Show when={!props.hideDefaultAsset}>
+					<img
+						src={props.imgSrc ?? DEFAULT_VALUES.src}
+						alt={props.imgAlt}
+						height={props.imgHeight}
+						width={props.imgWidth}
+						className="db-logo"
+					/>
+				</Show>
 				<Show when={props.anchorChildren}>
-					<span class="site-name">{props.children}</span>
+					<>{props.children}</>
 				</Show>
 			</a>
 			<Show when={!props.anchorChildren}>
-				<span class="site-name">{props.children}</span>
+				<>{props.children}</>
 			</Show>
 		</div>
 	);

@@ -21,9 +21,10 @@ export interface DBBrandDefaultProps {
 	anchorRelation?: string;
 
 	/**
-	 * This is a workaround for shadow dom and header
+	 * Hides the default <img> with an asset path to be able to add a custom image inside the children.
+	 * Use this if you know what you do.
 	 */
-	insideHeader?: boolean;
+	hideDefaultAsset?: any;
 }
 
 export type DBBrandProps = DBBrandDefaultProps & GlobalProps & ImageProps;
