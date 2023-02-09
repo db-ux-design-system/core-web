@@ -8,7 +8,6 @@
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
-	margin-bottom: $db-spacing-fixed-md;
 	position: relative;
 
 	/* Mobile header should always be 56px */
@@ -26,7 +25,7 @@
 		display: none;
 	}
 
-	@media screen and (min-width: $db-screens-lg) {
+	@media screen and (min-width: $db-screens-m) {
 		/* Desktop header should always be 80px */
 		min-height: to-rem(80);
 

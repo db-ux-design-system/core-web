@@ -23,7 +23,7 @@
 	}
 
 	&[data-direction="row"] {
-		@media only screen and (min-width: #{$db-screens-md}) {
+		@media only screen and (min-width: #{$db-screens-s}) {
 			display: grid;
 			grid-template-columns: repeat(2, minmax(0, 1fr));
 			gap: $db-spacing-fixed-md;
