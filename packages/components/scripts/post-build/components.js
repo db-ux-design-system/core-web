@@ -5,13 +5,27 @@ module.exports = [
 		overwrites: {
 			global: [
 				{ from: 'handleClick(event)', to: 'handleClick(event:any)' }
+			],
+			vue: [
+				{
+					from: 'import { DBLinkState, DBLinkProps } from "./model";',
+					to: ''
+				}
 			]
 		}
 	},
 
 	{
 		name: 'section',
-		defaultStylePath: 'components/section/section.css'
+		defaultStylePath: 'components/section/section.css',
+		overwrites: {
+			vue: [
+				{
+					from: 'import { DBSectionState, DBSectionProps } from "./model";',
+					to: ''
+				}
+			]
+		}
 	},
 
 	{
