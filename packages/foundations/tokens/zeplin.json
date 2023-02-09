@@ -288,6 +288,28 @@
 			"l": { "value": "80", "attributes": { "category": "size" } }
 		}
 	},
+	"screens": {
+		"xs": {
+			"value": "22.5",
+			"attributes": { "category": "size", "screen": true }
+		},
+		"s": {
+			"value": "48",
+			"attributes": { "category": "size", "screen": true }
+		},
+		"m": {
+			"value": "64",
+			"attributes": { "category": "size", "screen": true }
+		},
+		"l": {
+			"value": "90",
+			"attributes": { "category": "size", "screen": true }
+		},
+		"xl": {
+			"value": "120",
+			"attributes": { "category": "size", "screen": true }
+		}
+	},
 	"typography": {
 		"regular": {
 			"desktop": {

@@ -21,7 +21,8 @@ export interface DBBrandDefaultProps {
 	anchorRelation?: string;
 
 	/**
-	 * This is for testing the component with a svg instead of an asset.
+	 * Hides the default <img> with an asset path to be able to add a custom image inside the children.
+	 * Use this if you know what you do.
 	 */
 	hideDefaultAsset?: any;
 }

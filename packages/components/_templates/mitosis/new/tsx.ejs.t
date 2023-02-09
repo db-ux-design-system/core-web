@@ -22,7 +22,7 @@ export default function DB<%= h.changeCase.pascal(name) %>(props: DB<%= h.change
   });
 
   return (
-    <div class={'db-<%= name %>' + (props.className ? ' ' + props.className : '')}>
+    <div className={'db-<%= name %>' + (props.className ? ' ' + props.className : '')}>
       <Show when={state.stylePath}>
         <link rel="stylesheet" href={state.stylePath} />
       </Show>
