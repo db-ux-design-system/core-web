@@ -16,13 +16,16 @@ const logAll = () => {
 </script>
 
 <template>
-	<div>
-		<div class="form-container">
-			<fieldset>
-				<form>
+	<div class="form-container">
+		<div>
+			<form>
+				<fieldset>
 					<p>DbInput:</p>
 					<DBInput
-						label="Infield"
+						label="Textinput"
+						placeholder="Placeholder"
+						description="Description"
+						iconBefore="edit"
 						name="input-name"
 						class="fullWidth"
 						:value="input"
@@ -32,19 +35,19 @@ const logAll = () => {
 							}
 						"
 					/>
-				</form>
-			</fieldset>
-			<fieldset>
-				<p>DbButton:</p>
-				<DBButton variant="primary" @click="logAll()">
-					Hi from Showcase!
-				</DBButton>
-				<h2>Output</h2>
-				<dl>
-					<dt>inputs value</dt>
-					<dd>{{ input ? input : "No Input set" }}</dd>
-				</dl>
-			</fieldset>
+					<p>DbButton:</p>
+					<DBButton type="button" variant="primary" @click="logAll()">
+						Hi from Showcase!
+					</DBButton>
+				</fieldset>
+			</form>
+		</div>
+		<div>
+			<h2>Output</h2>
+			<dl>
+				<dt>inputs value</dt>
+				<dd>{{ input ? input : "No Input set" }}</dd>
+			</dl>
 		</div>
 	</div>
 </template>

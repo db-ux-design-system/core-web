@@ -1,27 +1,33 @@
 <div class="form-container">
-	<fieldset>
+	<div>
 		<form>
-			<p>DbInput:</p>
-			<DBInput
-				[(ngModel)]="input"
-				name="username"
-				label="Textinput"
-				placeholder="Placeholder"
-				description="Description"
-				iconBefore="edit"
-				ngDefaultControl
-			></DBInput>
+			<fieldset>
+				<p>DbInput:</p>
+				<DBInput
+					[(ngModel)]="input"
+					name="username"
+					label="Textinput"
+					placeholder="Placeholder"
+					description="Description"
+					iconBefore="edit"
+					ngDefaultControl
+				></DBInput>
+				<p>DbButton:</p>
+				<DBButton
+					type="button"
+					variant="primary"
+					(click)="showValues()"
+				>
+					Hi from Showcase!
+				</DBButton>
+			</fieldset>
 		</form>
-	</fieldset>
-	<fieldset>
-		<p>DbButton:</p>
-		<DBButton variant="primary" (click)="showValues()">
-			Hi from Showcase!
-		</DBButton>
+	</div>
+	<div>
 		<h2>Output</h2>
 		<dl>
 			<dt>inputs value</dt>
 			<dd>{{ input ? input : "No Input set" }}</dd>
 		</dl>
-	</fieldset>
+	</div>
 </div>

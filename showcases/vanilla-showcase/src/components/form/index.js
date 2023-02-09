@@ -27,32 +27,35 @@ const getContent = () => {
 	});
 
 	return `
-	<div class="form-container">
-		<fieldset>
-			<form>
-				<p>DbInput:</p>
-				<db-input
-					id="db-input"
-					name="username"
-					label="Textinput"
-					placeholder="Placeholder"
-					description="Description"
-					iconBefore="edit"
-				></db-input>
-			</form>
-		</fieldset>
-		<fieldset>
-			<p>DbButton:</p>
-			<db-button id="db-button" variant="primary">
-				Hi from Showcase!
-			</db-button>
+		<div class="form-container">
+			<div>
+				<form>
+					<fieldset>
+							<p>DbInput:</p>
+							<db-input
+								id="db-input"
+								name="username"
+								label="Textinput"
+								placeholder="Placeholder"
+								description="Description"
+								iconBefore="edit"
+							></db-input>
+						<p>DbButton:</p>
+						<db-button type="button" id="db-button" variant="primary">
+							Hi from Showcase!
+						</db-button>
+
+					</fieldset>
+				</form>
+			</div>
+			<div>
 			<h2>Output</h2>
-			<dl>
-				<dt>inputs value</dt>
-				<dd id="db-input-container">"No Input set"</dd>
-			</dl>
-		</fieldset>
-	</div>
+					<dl>
+						<dt>inputs value</dt>
+						<dd id="db-input-container">"No Input set"</dd>
+					</dl>
+			</div>
+		</div>
 	`;
 };
 
