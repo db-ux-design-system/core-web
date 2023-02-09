@@ -57,8 +57,6 @@ test.describe('DBBrand component A11y', () => {
 	}) => {
 		await mount(comp);
 		const accessibilityScanResults = await new AxeBuilder({ page })
-			// TODO: Check whether a default background color in DBBrand makes sense
-			.disableRules('color-contrast')
 			.include('.db-brand')
 			.analyze();
 
