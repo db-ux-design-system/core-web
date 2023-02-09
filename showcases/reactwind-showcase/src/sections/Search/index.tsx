@@ -3,10 +3,10 @@ import { DBButton, DBCard } from '../../../../../output/react/src';
 const Search = () => (
 	<div className="search px-fix-md">
 		<DBCard>
-			<div className="db-ui-expressive flex flex-col md:flex-row">
+			<div className="db-ui-expressive flex flex-col s:flex-row">
 				<div
-					className="flex flex-col md:flex-row items-center justify-between w-full
-					pt-fix-lg pl-fix-lg pr-fix-lg md:pr-0 md:pb-fix-lg md:gap-fix-md">
+					className="flex flex-col s:flex-row items-center justify-between w-full
+					pt-fix-lg pl-fix-lg pr-fix-lg s:pr-0 s:pb-fix-lg s:gap-fix-md">
 					<i>Input From</i>
 					<DBButton icon="swap-horizontal" onlyIcon variant="ghost">
 						Von Nach tauschen

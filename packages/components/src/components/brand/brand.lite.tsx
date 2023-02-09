@@ -10,8 +10,8 @@ useMetadata({
 });
 
 const DEFAULT_VALUES = {
-	anchorRef: '#',
-	src: './images/db_logo.svg'
+	anchorRef: '/',
+	src: './assets/images/db_logo.svg'
 };
 
 export default function DBBrand(props: DBBrandProps) {
@@ -25,9 +25,7 @@ export default function DBBrand(props: DBBrandProps) {
 
 	return (
 		<div
-			className={
-				'db-brand' + (props.className ? ' ' + props.className : '')
-			}>
+			class={'db-brand' + (props.className ? ' ' + props.className : '')}>
 			<Show when={state.stylePath}>
 				<link rel="stylesheet" href={state.stylePath} />
 			</Show>
@@ -36,19 +34,21 @@ export default function DBBrand(props: DBBrandProps) {
 				href={props.anchorRef ?? DEFAULT_VALUES.anchorRef}
 				title={props.anchorTitle}
 				rel={props.anchorRelation}>
-				<img
-					src={props.imgSrc ?? DEFAULT_VALUES.src}
-					alt={props.imgAlt}
-					height={props.imgHeight}
-					width={props.imgWidth}
-					className="db-logo"
-				/>
+				<Show when={!props.hideDefaultAsset}>
+					<img
+						src={props.imgSrc ?? DEFAULT_VALUES.src}
+						alt={props.imgAlt}
+						height={props.imgHeight}
+						width={props.imgWidth}
+						className="db-logo"
+					/>
+				</Show>
 				<Show when={props.anchorChildren}>
-					<span className="site-name">{props.children}</span>
+					<>{props.children}</>
 				</Show>
 			</a>
 			<Show when={!props.anchorChildren}>
-				<span className="site-name">{props.children}</span>
+				<>{props.children}</>
 			</Show>
 		</div>
 	);
