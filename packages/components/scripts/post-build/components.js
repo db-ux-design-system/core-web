@@ -1,4 +1,21 @@
-module.exports = [
+/**
+ * @returns {[{
+ * name:string,
+ * defaultStylePath:string,
+ * overwrites?:{
+ * 	global?:{from:string,to:string}[],
+ * 	angular?:{from:string,to:string}[],
+ * 	react?:{from:string,to:string}[],
+ * 	vue?:{from:string,to:string}[]
+ * },
+ * config?:{
+ *     vue?:{
+ *         vModel?: {modelValue:string, binding:string}[]
+ *     }
+ * }
+ * }]}
+ */
+const getComponents = () => [
 	{
 		name: 'infotext',
 		defaultStylePath: 'components/infotext/infotext.css',
@@ -112,6 +129,11 @@ module.exports = [
 					to: ''
 				}
 			]
+		},
+		config: {
+			vue: {
+				vModel: [{ modelValue: 'value', binding: ':value' }]
+			}
 		}
 	},
 	{
@@ -190,3 +212,5 @@ module.exports = [
 		defaultStylePath: 'components/icon/icon-web-component.css'
 	}
 ];
+
+module.exports = getComponents();

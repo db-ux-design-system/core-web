@@ -28,12 +28,7 @@ const logAll = () => {
 						iconBefore="edit"
 						name="input-name"
 						class="fullWidth"
-						:value="input"
-						:on-change="
-							($event) => {
-								input = $event.target.value;
-							}
-						"
+						v-model:value="input"
 					/>
 					<p>DbButton:</p>
 					<DBButton type="button" variant="primary" @click="logAll()">
