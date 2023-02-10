@@ -14,11 +14,6 @@ export interface DBInfotextDefaultProps {
 
 export type DBInfotextProps = DBInfotextDefaultProps & GlobalProps;
 
-export interface DBInfotextDefaultState {
-	getIcon: (
-		icon?: string,
-		variant?: 'adaptive' | DefaultVariantProps
-	) => string;
-}
+export interface DBInfotextDefaultState {}
 
 export type DBInfotextState = DBInfotextDefaultState & GlobalState;

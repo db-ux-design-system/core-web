@@ -12,29 +12,7 @@ useMetadata({
 });
 
 export default function DBInfotext(props: DBInfotextProps) {
-	const state = useStore<DBInfotextState>({
-		getIcon: (
-			icon?: string,
-			variant?:
-				| 'adaptive'
-				| 'critical'
-				| 'information'
-				| 'warning'
-				| 'success'
-		) => {
-			if (icon) return icon;
-			switch (variant) {
-				case 'critical':
-					return 'error';
-				case 'warning':
-					return 'error-triangle';
-				case 'success':
-					return 'check-circle';
-				default:
-					return 'info';
-			}
-		}
-	});
+	const state = useStore<DBInfotextState>({});
 
 	onMount(() => {
 		if (props.stylePath) {

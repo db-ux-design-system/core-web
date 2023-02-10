@@ -50,6 +50,7 @@ const App = () => {
 				<DBSection className="db-bg-information">
 					<section className="db-bg-secondary">
 						<DBInfotext icon="account">Infotext</DBInfotext>
+						<DBInfotext variant="critical">Infotext</DBInfotext>
 						<DBInfotext variant="warning">Infotext</DBInfotext>
 						<DBInfotext variant="success">Infotext</DBInfotext>
 						<DBInfotext variant="information">Infotext</DBInfotext>
