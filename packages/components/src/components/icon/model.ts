@@ -2,7 +2,7 @@ import { GlobalProps, GlobalState } from '../../shared/model';
 
 export type DBIconDefaultProps = {
 	icon?: string;
-	withText?: boolean;
+	icntxt?: boolean;
 };
 
 export type DBIconProps = DBIconDefaultProps & GlobalProps;

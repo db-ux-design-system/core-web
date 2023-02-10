@@ -12,7 +12,7 @@ const Search = () => (
 						iconBefore="start"
 						label="Von"
 						placeholder="Frankfurt HBF"></DBInput>
-					<DBButton icon="swap-horizontal" onlyIcon variant="ghost">
+					<DBButton icon="swap-horizontal" variant="ghost">
 						Von Nach tauschen
 					</DBButton>
 					<DBInput
