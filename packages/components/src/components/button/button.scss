@@ -4,12 +4,16 @@
 @use "@db-ui/foundations/build/scss/variables.global" as *;
 @use "@db-ui/foundations/build/scss/color-placeholder" as *;
 @use "@db-ui/foundations/build/scss/icon/icons.helpers" as *;
+@use "@db-ui/foundations/build/scss/helpers/shadow-dom" as *;
 
 .db-button {
 	// Including a loading indicator
 	--loadingIndicator---color: currentColor;
 
 	$icon-size: var(--db-icon-size, 20);
+
+	@extend %shadow-dom-extend;
+
 	align-items: center; // Centering the content vertically and horizontally
 
 	border: 1px solid transparent;
@@ -18,7 +22,7 @@
 
 	font-weight: 700;
 	justify-content: center;
-	min-height: $db-sizing-md;
+	height: $db-sizing-md;
 	padding: $db-spacing-fixed-xs $db-spacing-fixed-md;
 
 	text-align: center;
@@ -47,6 +51,7 @@
 	}
 	// Square icon only buttons
 	&.is-icon-text-replace {
+		font-size: 0;
 		padding: 0;
 		width: $db-sizing-md;
 	}

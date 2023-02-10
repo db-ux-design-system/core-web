@@ -26,7 +26,7 @@ export default function DBPage(props: DBPageProps) {
 
 	return (
 		<div
-			className={
+			class={
 				'db-page' +
 				(props.className ? ' ' + props.className : '') +
 				(props.type === 'fixedHeaderFooter'
@@ -37,7 +37,7 @@ export default function DBPage(props: DBPageProps) {
 				<link rel="stylesheet" href={state.stylePath} />
 			</Show>
 			<Slot name="header" />
-			<main className="db-main">{props.children}</main>
+			<main class="db-main">{props.children}</main>
 			<Slot name="footer" />
 		</div>
 	);

@@ -1,0 +1,33 @@
+<DBPage type="fixedHeaderFooter">
+	<DBHeader header>
+		<DBBrand brand src="./assets/db_logo.svg" href="/angular-showcase">
+			Angular Showcase
+		</DBBrand>
+		<nav class="desktop-navigation" desktop-navigation>
+			<ul>
+				<li *ngFor="let item of navigationItems; index as i">
+					<a [routerLink]="item.path" queryParamsHandling="merge">{{
+						item.label
+					}}</a>
+				</li>
+			</ul>
+		</nav>
+		<div meta-navigation>
+			<!-- TODO: Use db-select here	-->
+			<select [(ngModel)]="tonality" (change)="onChange($event)">
+				<option *ngFor="let t of tonalities">
+					{{ t }}
+				</option>
+			</select>
+			<select [(ngModel)]="color" (change)="onChange($event)">
+				<option *ngFor="let c of colors">
+					{{ c }}
+				</option>
+			</select>
+		</div>
+	</DBHeader>
+	<div [class]="getChangeableClasses()">
+		<router-outlet></router-outlet>
+	</div>
+	<div footer>Footer</div>
+</DBPage>

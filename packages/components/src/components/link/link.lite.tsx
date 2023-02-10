@@ -49,7 +49,7 @@ export default function DBLink(props: DBLinkProps) {
 			{props.children}
 			<DBIcon
 				icon={props.content == 'external' ? 'link-external' : 'link'}
-				withText={true}></DBIcon>
+				icntxt={true}></DBIcon>
 		</a>
 	);
 }
