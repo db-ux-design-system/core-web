@@ -4,66 +4,57 @@
 @use "scaling-placeholder" as *;
 @use "body-styles" as *;
 
-:root {
+body {
+	@extend %db-body-md;
 	font-family: $db-font-family-sans;
+}
 
-	* {
-		font-family: inherit;
-		font-size: inherit;
-		line-height: inherit;
+small {
+	@extend %db-body-sm;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	font-family: $db-font-family-head;
+	font-weight: 700;
+
+	&[data-variant="light"] {
+		font-weight: 300;
 	}
+}
 
-	body {
-		@include body-style("md");
-	}
+h1 {
+	line-height: var(--db-type-headline-line-height-xl);
+	font-size: var(--db-type-headline-font-size-xl);
+}
 
-	small {
-		@include body-style("sm");
-	}
+h2 {
+	line-height: var(--db-type-headline-line-height-lg);
+	font-size: var(--db-type-headline-font-size-lg);
+}
 
-	h1,
-	h2,
-	h3,
-	h4,
-	h5,
-	h6 {
-		font-family: $db-font-family-head;
-		font-weight: 700;
+h3 {
+	line-height: var(--db-type-headline-line-height-md);
+	font-size: var(--db-type-headline-font-size-md);
+}
 
-		&[data-variant="light"] {
-			font-weight: 300;
-		}
-	}
+h4 {
+	line-height: var(--db-type-headline-line-height-sm);
+	font-size: var(--db-type-headline-font-size-sm);
+}
 
-	h1 {
-		line-height: var(--db-type-headline-line-height-xl);
-		font-size: var(--db-type-headline-font-size-xl);
-	}
+h5 {
+	line-height: var(--db-type-headline-line-height-xs);
+	font-size: var(--db-type-headline-font-size-xs);
+}
 
-	h2 {
-		line-height: var(--db-type-headline-line-height-lg);
-		font-size: var(--db-type-headline-font-size-lg);
-	}
-
-	h3 {
-		line-height: var(--db-type-headline-line-height-md);
-		font-size: var(--db-type-headline-font-size-md);
-	}
-
-	h4 {
-		line-height: var(--db-type-headline-line-height-sm);
-		font-size: var(--db-type-headline-font-size-sm);
-	}
-
-	h5 {
-		line-height: var(--db-type-headline-line-height-xs);
-		font-size: var(--db-type-headline-font-size-xs);
-	}
-
-	h6 {
-		line-height: var(--db-type-headline-line-height-2xs);
-		font-size: var(--db-type-headline-font-size-2xs);
-	}
+h6 {
+	line-height: var(--db-type-headline-line-height-2xs);
+	font-size: var(--db-type-headline-font-size-2xs);
 }
 
 @mixin styles($styles...) {

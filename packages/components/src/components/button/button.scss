@@ -117,8 +117,7 @@
 
 	&[data-size="small"] {
 		@extend %size-Small;
-
-		@include body-style("sm");
+		@extend %db-body-sm;
 	}
 
 	// Width

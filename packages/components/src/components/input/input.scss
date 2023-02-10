@@ -75,7 +75,7 @@
 		--icon-font-family: var(--db-base-icon-font-family);
 		--icon-font-size: var(--db-base-icon-font-size);
 
-		@include body-style("sm");
+		@extend %db-body-sm;
 
 		height: var(--db-sizing-md);
 		display: flex;
@@ -126,7 +126,7 @@
 	}
 
 	.description {
-		@include body-style("xs");
+		@extend %db-body-xs;
 		margin: $db-spacing-fixed-2xs $db-spacing-fixed-sm 0;
 
 		display: flex;
@@ -194,7 +194,7 @@
 		&[type="time"],
 		&[type="url"],
 		&[type="week"] {
-			@include body-style("sm");
+			@extend %db-body-sm;
 
 			&:not([type="date"]):not([type="datetime-local"]):not(
 					[type="month"]

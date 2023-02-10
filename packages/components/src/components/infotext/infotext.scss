@@ -22,12 +22,12 @@ $variants: (
 );
 
 .db-infotext {
-	@include body-style("sm");
+	@extend %db-body-sm;
 
 	display: flex;
 
 	.db-icon {
-		@include body-style("sm");
+		@extend %db-body-sm;
 		margin-inline-end: $db-spacing-fixed-2xs;
 
 		&::before {
@@ -37,10 +37,10 @@ $variants: (
 	}
 
 	&[data-size="small"] {
-		@include body-style("xs");
+		@extend %db-body-xs;
 
 		.db-icon {
-			@include body-style("xs");
+			@extend %db-body-xs;
 		}
 	}
 

@@ -65,7 +65,9 @@ const App = () => {
 								alignItems: 'stretch'
 							}}>
 							<DBDivider variant="vertical" />
-							<DBButton variant="secondary">Test</DBButton>
+							<DBButton variant="secondary" size="small">
+								Test
+							</DBButton>
 							<DBDivider variant="vertical" />
 							<DBButton
 								text="Test"

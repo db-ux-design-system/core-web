@@ -24,6 +24,7 @@ export default function DBInfotext(props: DBInfotextProps) {
 		}
 	});
 
+	// TODO: Check if this should be a div or a span
 	return (
 		<span
 			class={

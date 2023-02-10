@@ -72,7 +72,7 @@
 	}
 
 	&[data-size="small"] {
-		@include body-style("sm");
+		@extend %db-body-sm;
 
 		&[data-content="internal"],
 		&[data-content="external"] {
