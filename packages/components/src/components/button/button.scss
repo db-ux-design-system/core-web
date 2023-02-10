@@ -106,6 +106,7 @@
 	// Sizes
 
 	&%size-Small {
+		@extend %db-body-sm;
 		min-height: $db-sizing-sm;
 		padding: $db-spacing-fixed-3xs $db-spacing-fixed-sm;
 
@@ -117,7 +118,6 @@
 
 	&[data-size="small"] {
 		@extend %size-Small;
-		@extend %db-body-sm;
 	}
 
 	// Width
