@@ -48,6 +48,7 @@ export type DBInputDefaultState = {
 	_value: any;
 	_placeholder: string;
 	_label: string;
+	getIcon: (variant: DefaultVariantProps) => string;
 };
 
 export type DBInputState = DBInputDefaultState &

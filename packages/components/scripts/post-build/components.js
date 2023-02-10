@@ -13,6 +13,10 @@ module.exports = [
 				{
 					from: 'import { DBInfotextState, DBInfotextProps } from "./model";',
 					to: ''
+				},
+				{
+					from: 'DefaultVariantProps, ',
+					to: ''
 				}
 			]
 		}
@@ -90,7 +94,11 @@ module.exports = [
 			global: [
 				{ from: 'handleChange(event)', to: 'handleChange(event:any)' },
 				{ from: 'handleBlur(event)', to: 'handleBlur(event:any)' },
-				{ from: 'handleFocus(event)', to: 'handleFocus(event:any)' }
+				{ from: 'handleFocus(event)', to: 'handleFocus(event:any)' },
+				{
+					from: 'getIcon(variant) {',
+					to: 'getIcon(variant:any) {'
+				}
 			],
 			angular: [
 				{
@@ -100,11 +108,15 @@ module.exports = [
 			],
 			vue: [
 				{
-					from: 'import { DBInputState, DBInputProps, iconVariants } from "./model";',
-					to: 'import { iconVariants } from "./model";'
+					from: 'import { DBInputState, DBInputProps } from "./model";',
+					to: ''
 				},
 				{
 					from: '_isValid: undefined,',
+					to: ''
+				},
+				{
+					from: 'DefaultVariantProps, ',
 					to: ''
 				}
 			]
