@@ -13,10 +13,6 @@ module.exports = [
 				{
 					from: 'import { DBInfotextState, DBInfotextProps } from "./model";',
 					to: ''
-				},
-				{
-					from: 'DefaultVariantProps, ',
-					to: ''
 				}
 			]
 		}
@@ -113,10 +109,6 @@ module.exports = [
 				},
 				{
 					from: '_isValid: undefined,',
-					to: ''
-				},
-				{
-					from: 'DefaultVariantProps, ',
 					to: ''
 				}
 			]
