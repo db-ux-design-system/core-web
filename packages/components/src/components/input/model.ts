@@ -24,7 +24,7 @@ export type DBInputDefaultProps = {
 		| 'date'
 		| 'datetime-local'
 		| 'week';
-	variant?: 'error' | 'success' | 'warning' | 'information';
+	variant?: 'critical' | 'success' | 'warning' | 'information';
 	iconBefore?: string;
 	iconAfter?: string;
 	disabled?: boolean;
@@ -35,7 +35,7 @@ export type DBInputDefaultProps = {
 };
 
 export const iconVariants: any = {
-	error: 'error',
+	critical: 'error',
 	// TODO: 'error-triangle' will change to 'warning' soon
 	warning: 'error-triangle',
 	success: 'check-circle',

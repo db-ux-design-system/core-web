@@ -1,4 +1,4 @@
-## `<DBInput></DBInput>`
+# `<DBInput></DBInput>`
 
 How to get framework specific features (e.g. ng-model and v-model) to work with DBInput element.
 

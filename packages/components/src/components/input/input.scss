@@ -303,12 +303,12 @@
 		}
 	}
 
-	&[data-variant="error"] {
+	&[data-variant="critical"] {
 		color: $db-colors-critical-on-bg-enabled;
 	}
 
 	// Variant error or invalid state
-	&[data-variant="error"] input,
+	&[data-variant="critical"] input,
 	input:required:invalid:not(:placeholder-shown),
 	input[aria-invalid="true"] {
 		@extend %db-bg-critical-transparent-semi;
