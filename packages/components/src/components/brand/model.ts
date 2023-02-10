@@ -21,7 +21,7 @@ export interface DBBrandDefaultProps {
 	anchorRelation?: string;
 
 	/**
-	 * Hides the default <img> with an asset path to be able to add a custom image inside the children.
+	 * Hides the default image with an asset path to be able to add a custom image inside the children.
 	 * Use this if you know what you do.
 	 */
 	hideDefaultAsset?: any;
