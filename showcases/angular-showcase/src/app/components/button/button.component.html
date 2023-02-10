@@ -1,0 +1,28 @@
+<h1>Button</h1>
+<div class="button-container">
+	<!-- TODO: Use db-select here	-->
+	<select [(ngModel)]="variant">
+		<option checked>primary</option>
+		<option>secondary</option>
+		<option>ghost</option>
+		<option>tertiary</option>
+	</select>
+
+	<DBButton [variant]="variant">{{ variant }}</DBButton>
+	<DBButton [variant]="variant" [disabled]="true">{{ variant }}</DBButton>
+	<DBButton [variant]="variant" icon="account">{{ variant }}</DBButton>
+	<DBButton [variant]="variant" icon="account" [disabled]="true">{{
+		variant
+	}}</DBButton>
+	<DBButton [variant]="variant" icon="account" [icntxt]="true">{{
+		variant
+	}}</DBButton>
+	<DBButton
+		[variant]="variant"
+		icon="account"
+		[disabled]="true"
+		[icntxt]="true"
+		>{{ variant }}</DBButton
+	>
+	<DBButton [variant]="variant" state="loading">{{ variant }}</DBButton>
+</div>

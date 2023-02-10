@@ -41,10 +41,25 @@ const updateNestedComponents = (input, rootComponentName) => {
 		}
 	}
 
-	return fileContent
-		.split('\n')
-		.filter((line) => !line.includes('import type'))
-		.join('\n');
+	return fileContent;
+};
+
+const workaroundAttributes = (lines) => {
+	return lines.map((line) => {
+		if (line.includes('el.setAttribute') && line.includes(', this.props')) {
+			const property = line.substring(
+				line.indexOf('this.props.') + 11,
+				line.indexOf(')')
+			);
+			return `if(this.props.${property}) ${line}`;
+		}
+
+		if (line.includes('if (self.props.validityChange) {')) {
+			return `if (self.props.validityChange && typeof self.props.validityChange === 'function') {`;
+		}
+
+		return line;
+	});
 };
 
 module.exports = () => {
@@ -52,10 +67,15 @@ module.exports = () => {
 		const fixImports = {
 			files: `../../output/webcomponent/src/components/${component.name}/${component.name}.ts`,
 			processor(input) {
-				const filteredInput = input
+				let lines = input
 					.split('\n')
-					.filter((line) => !line.includes('@db-ui'))
-					.join('\n');
+					.filter(
+						(line) =>
+							!line.includes('@db-ui') &&
+							!line.includes('import type')
+					);
+				lines = workaroundAttributes(lines);
+				const filteredInput = lines.join('\n');
 				const nestedComponent = updateNestedComponents(
 					filteredInput,
 					component.name

@@ -186,7 +186,7 @@ const getComponents = () => [
 	},
 	{
 		name: 'icon',
-		defaultStylePath: 'components/icon/icon.css'
+		defaultStylePath: 'components/icon/icon-web-component.css'
 	}
 ];
 

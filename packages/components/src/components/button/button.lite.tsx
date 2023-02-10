@@ -25,7 +25,8 @@ useMetadata({
 					{ key: 'None', name: 'None', value: '_' },
 					{ key: 'Account', name: 'Account', value: 'account' }
 				]
-			}
+			},
+			{ name: 'icntxt', type: 'TwoOptions' }
 		]
 	}
 });
@@ -47,11 +48,13 @@ export default function DBButton(props: DBButtonProps) {
 
 	return (
 		<button
+			type={props.type}
+			disabled={props.disabled}
 			aria-label={props.text}
-			className={
+			class={
 				'db-button' +
 				(props.className ? ' ' + props.className : '') +
-				(props.onlyIcon ? ' is-icon-text-replace' : '')
+				(props.icon && !props.icntxt ? ' is-icon-text-replace' : '')
 			}
 			data-size={props.size}
 			data-state={props.state}
@@ -62,11 +65,8 @@ export default function DBButton(props: DBButtonProps) {
 				<link rel="stylesheet" href={state.stylePath} />
 			</Show>
 
-			<DBIcon icon={props.icon} withText={!props.onlyIcon}>
-				{/* we need spacings around props.text for compilation */}
-				{props.children}
-			</DBIcon>
-			<Show when={props.text && !props.onlyIcon}> {props.text} </Show>
+			<DBIcon icon={props.icon} icntxt={props.icntxt}></DBIcon>
+			{props.children}
 		</button>
 	);
 }
