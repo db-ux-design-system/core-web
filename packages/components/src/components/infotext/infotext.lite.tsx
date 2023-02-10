@@ -1,6 +1,7 @@
 import { onMount, Show, useMetadata, useStore } from '@builder.io/mitosis';
 import { DBIcon } from '../icon';
 import { DBInfotextState, DBInfotextProps } from './model';
+import { DefaultVariantsIcon } from '../../shared/model';
 
 useMetadata({
 	isAttachedToShadowDom: true,
@@ -42,7 +43,7 @@ export default function DBInfotext(props: DBInfotextProps) {
 	});
 
 	return (
-		<div
+		<span
 			class={
 				'db-infotext' + (props.className ? ' ' + props.className : '')
 			}
@@ -54,9 +55,13 @@ export default function DBInfotext(props: DBInfotextProps) {
 			</Show>
 			<Show when={props.size !== 'small'}>
 				<DBIcon
-					icon={state.getIcon(props.icon, props.variant)}></DBIcon>
+					icon={
+						props.icon ||
+						DefaultVariantsIcon[props.variant] ||
+						'info'
+					}></DBIcon>
 			</Show>
 			{props.children}
-		</div>
+		</span>
 	);
 }

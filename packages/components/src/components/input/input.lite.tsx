@@ -8,6 +8,7 @@ import {
 import { DBIcon } from '../icon';
 import { DEFAULT_ID, uuid } from '../../utils';
 import { DBInputState, DBInputProps, iconVariants } from './model';
+import { DefaultVariantsIcon } from '../../shared/model';
 
 useMetadata({
 	isAttachedToShadowDom: false,
@@ -122,7 +123,7 @@ export default function DBInput(props: DBInputProps) {
 			</Show>
 			<Show when={props.variant || props.required || props.pattern}>
 				<DBIcon
-					icon={props.variant && iconVariants[props.variant]}
+					icon={props.variant && DefaultVariantsIcon[props.variant]}
 					className="icon-input-state"
 				/>
 			</Show>

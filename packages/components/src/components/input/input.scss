@@ -5,7 +5,7 @@
 @use "@db-ui/foundations/build/scss/variables.global" as *;
 @use "@db-ui/foundations/build/scss/helpers/functions" as *;
 @use "@db-ui/foundations/build/scss/icon/icons.helpers" as *;
-@use "@db-ui/foundations/build/scss/tonality" as *;
+@use "@db-ui/foundations/build/scss/body-styles" as *;
 @use "@db-ui/foundations/build/scss/color-placeholder" as *;
 
 @mixin label-focus-animation(
@@ -75,7 +75,7 @@
 		--icon-font-family: var(--db-base-icon-font-family);
 		--icon-font-size: var(--db-base-icon-font-size);
 
-		@extend %db-body-sm;
+		@include body-style("sm");
 
 		height: var(--db-sizing-md);
 		display: flex;
@@ -126,7 +126,7 @@
 	}
 
 	.description {
-		@extend %db-body-xs;
+		@include body-style("xs");
 		margin: $db-spacing-fixed-2xs $db-spacing-fixed-sm 0;
 
 		display: flex;
@@ -194,7 +194,7 @@
 		&[type="time"],
 		&[type="url"],
 		&[type="week"] {
-			@extend %db-body-sm;
+			@include body-style("sm");
 
 			&:not([type="date"]):not([type="datetime-local"]):not(
 					[type="month"]

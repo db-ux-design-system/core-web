@@ -2,37 +2,23 @@
 @use "font-faces" as *;
 @use "typography-placeholder" as *;
 @use "scaling-placeholder" as *;
-
-@mixin body-style($size) {
-	--db-base-icon-font-size: var(--db-base-icon-font-size-#{$size});
-	--db-base-icon-font-family: var(--db-base-icon-font-family-#{$size});
-	/* prettier-ignore */
-	--db-base-icon-font-family-filled: var(--db-base-icon-font-family-filled-#{$size});
-	line-height: var(--db-type-body-line-height-#{$size});
-	font-size: var(--db-type-body-font-size-#{$size});
-}
-
-$sizes: "2xl", "xl", "lg", "md", "sm", "xs", "2xs";
+@use "body-styles" as *;
 
 :root {
 	font-family: $db-font-family-sans;
 
-	@each $size in $sizes {
-		@if ($size == "md") {
-			*, // TODO: let's check whether we could even also enable this without the asterisk just by inheriting line-height and font-size on non-inheriting elements like buttons
-			%db-body-#{$size} {
-				@include body-style($size);
-			}
-		} @else if($size == "sm") {
-			small,
-			%db-body-#{$size} {
-				@include body-style($size);
-			}
-		} @else {
-			%db-body-#{$size} {
-				@include body-style($size);
-			}
-		}
+	* {
+		font-family: inherit;
+		font-size: inherit;
+		line-height: inherit;
+	}
+
+	body {
+		@include body-style("md");
+	}
+
+	small {
+		@include body-style("sm");
 	}
 
 	h1,

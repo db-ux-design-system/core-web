@@ -6,7 +6,8 @@ import {
 	ChangeEventState,
 	ChangeEventProps,
 	GlobalProps,
-	GlobalState
+	GlobalState,
+	DefaultVariantProps
 } from '../../shared/model';
 
 export type DBInputDefaultProps = {
@@ -24,7 +25,7 @@ export type DBInputDefaultProps = {
 		| 'date'
 		| 'datetime-local'
 		| 'week';
-	variant?: 'error' | 'success' | 'warning' | 'information';
+	variant?: DefaultVariantProps;
 	iconBefore?: string;
 	iconAfter?: string;
 	disabled?: boolean;
@@ -32,14 +33,6 @@ export type DBInputDefaultProps = {
 	value?: any;
 	description?: string;
 	name?: string;
-};
-
-export const iconVariants: any = {
-	error: 'error',
-	// TODO: 'error-triangle' will change to 'warning' soon
-	warning: 'error-triangle',
-	success: 'check-circle',
-	information: 'info'
 };
 
 export type DBInputProps = DBInputDefaultProps &
