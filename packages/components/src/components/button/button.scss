@@ -1,5 +1,5 @@
 @charset "utf-8";
-
+@use "@db-ui/foundations/build/scss/body-styles" as *;
 @use "@db-ui/foundations/build/scss/variables" as *;
 @use "@db-ui/foundations/build/scss/variables.global" as *;
 @use "@db-ui/foundations/build/scss/color-placeholder" as *;
@@ -117,6 +117,7 @@
 
 	&[data-size="small"] {
 		@extend %size-Small;
+		@extend %db-body-sm;
 	}
 
 	// Width
