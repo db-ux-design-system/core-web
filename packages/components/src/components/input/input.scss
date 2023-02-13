@@ -5,8 +5,9 @@
 @use "@db-ui/foundations/build/scss/variables.global" as *;
 @use "@db-ui/foundations/build/scss/helpers/functions" as *;
 @use "@db-ui/foundations/build/scss/icon/icons.helpers" as *;
-@use "@db-ui/foundations/build/scss/tonality" as *;
+@use "@db-ui/foundations/build/scss/body-styles" as *;
 @use "@db-ui/foundations/build/scss/color-placeholder" as *;
+@use "@db-ui/foundations/build/scss/helpers/shadow-dom" as *;
 
 @mixin label-focus-animation(
 	$translationX: var(--db-input-padding-inline-start)
@@ -30,6 +31,7 @@
 	--icon-margin-after: 0;
 	--db-input-label-max-width: 80%;
 
+	@extend %shadow-dom-extend;
 	position: relative;
 
 	// padding-inline-end according to current amount of icons

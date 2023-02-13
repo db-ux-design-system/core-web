@@ -43,7 +43,7 @@ export default function DBTabBar(props: DBTabBarProps) {
 
 	return (
 		<div
-			className={
+			class={
 				'cmp-tab-bar' + (props.className ? ' ' + props.className : '')
 			}
 			role="tablist">

@@ -2,85 +2,59 @@
 @use "font-faces" as *;
 @use "typography-placeholder" as *;
 @use "scaling-placeholder" as *;
+@use "body-styles" as *;
 
-@mixin body-style($size) {
-	--db-base-icon-font-size: var(--db-base-icon-font-size-#{$size});
-	--db-base-icon-font-family: var(--db-base-icon-font-family-#{$size});
-	--db-base-icon-font-family-filled: var(
-		--db-base-icon-font-family-filled-#{$size}
-	);
-	line-height: var(--db-type-body-line-height-#{$size});
-	font-size: var(--db-type-body-font-size-#{$size});
+body {
+	@extend %db-body-md;
+	font-family: $db-font-family-sans;
 }
 
-$sizes: "2xl", "xl", "lg", "md", "sm", "xs", "2xs";
+small {
+	@extend %db-body-sm;
+}
 
-:root {
-	font-family: $db-font-family-sans;
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	font-family: $db-font-family-head;
+	font-weight: 700;
 
-	@each $size in $sizes {
-		@if ($size == "md") {
-			*, // TODO: let's check whether we could even also enable this without the asterisk just by inheriting line-height and font-size on non-inheriting elements like buttons
-			[data-size="medium"],
-			%db-body-#{$size} {
-				@include body-style($size);
-			}
-		} @else if($size == "sm") {
-			small,
-			[data-size="small"],
-			%db-body-#{$size} {
-				@include body-style($size);
-			}
-		} @else {
-			%db-body-#{$size} {
-				@include body-style($size);
-			}
-		}
+	&[data-variant="light"] {
+		font-weight: 300;
 	}
+}
 
-	h1,
-	h2,
-	h3,
-	h4,
-	h5,
-	h6 {
-		font-family: $db-font-family-head;
-		font-weight: 700;
+h1 {
+	line-height: var(--db-type-headline-line-height-xl);
+	font-size: var(--db-type-headline-font-size-xl);
+}
 
-		&[data-variant="light"] {
-			font-weight: 300;
-		}
-	}
+h2 {
+	line-height: var(--db-type-headline-line-height-lg);
+	font-size: var(--db-type-headline-font-size-lg);
+}
 
-	h1 {
-		line-height: var(--db-type-headline-line-height-xl);
-		font-size: var(--db-type-headline-font-size-xl);
-	}
+h3 {
+	line-height: var(--db-type-headline-line-height-md);
+	font-size: var(--db-type-headline-font-size-md);
+}
 
-	h2 {
-		line-height: var(--db-type-headline-line-height-lg);
-		font-size: var(--db-type-headline-font-size-lg);
-	}
+h4 {
+	line-height: var(--db-type-headline-line-height-sm);
+	font-size: var(--db-type-headline-font-size-sm);
+}
 
-	h3 {
-		line-height: var(--db-type-headline-line-height-md);
-		font-size: var(--db-type-headline-font-size-md);
-	}
+h5 {
+	line-height: var(--db-type-headline-line-height-xs);
+	font-size: var(--db-type-headline-font-size-xs);
+}
 
-	h4 {
-		line-height: var(--db-type-headline-line-height-sm);
-		font-size: var(--db-type-headline-font-size-sm);
-	}
-
-	h5 {
-		line-height: var(--db-type-headline-line-height-xs);
-		font-size: var(--db-type-headline-font-size-xs);
-	}
-
-	h6 {
-		line-height: var(--db-type-headline-line-height-2xs);
-		font-size: var(--db-type-headline-font-size-2xs);
-	}
+h6 {
+	line-height: var(--db-type-headline-line-height-2xs);
+	font-size: var(--db-type-headline-font-size-2xs);
 }
 
 @mixin styles($styles...) {

@@ -22,7 +22,7 @@
 						"main": "src/main.ts",
 						"polyfills": "src/polyfills.ts",
 						"tsConfig": "tsconfig.app.json",
-						"assets": [],
+						"assets": ["src/assets"],
 						"styles": ["src/styles.scss"],
 						"scripts": [],
 						"preserveSymlinks": true
@@ -33,7 +33,7 @@
 								{
 									"type": "initial",
 									"maximumWarning": "500kb",
-									"maximumError": "1mb"
+									"maximumError": "5mb"
 								},
 								{
 									"type": "anyComponentStyle",

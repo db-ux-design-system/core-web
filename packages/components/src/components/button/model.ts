@@ -6,11 +6,13 @@ import {
 } from '../../shared/model';
 
 export type DBButtonDefaultProps = {
-	text?: string;
+	disabled?: boolean;
 	icon?: string;
-	onlyIcon?: boolean;
+	icntxt?: boolean; // We had to rename this to onlyIc because wc uses a regex and always finds "icon" instead of "onlyIcon"
 	state?: 'loading';
 	size?: 'small';
+	text?: string;
+	type?: 'button' | 'reset' | 'submit';
 	width?: 'full';
 	variant?: 'primary' | 'secondary' | 'tertiary' | 'ghost';
 };

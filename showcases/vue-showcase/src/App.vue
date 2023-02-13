@@ -1,80 +1,94 @@
 <script setup lang="ts">
+import { DBPage, DBHeader, DBBrand } from "../../../output/vue/vue3/src";
 import {
-	DBButton,
-	DBIcon,
-	DBCard,
-	DBInput
-} from "../../../output/vue/vue3/src";
+	COLOR,
+	COLORS,
+	TONALITIES,
+	TONALITY,
+	COLOR_CONST,
+	TONALITY_CONST
+} from "../../../packages/components/src/shared/constants";
+import { navigationItems } from "./utils/navigation-items";
 
-function onClick() {
-	console.log("Button clicked");
-}
+import { ref, watch } from "vue";
+import { useRouter, useRoute } from "vue-router";
+
+const router = useRouter();
+const route = useRoute();
+
+const tonality = ref(TONALITY.REGULAR);
+const color = ref(COLOR.NEUTRAL_0);
+
+const getClassNames = () => {
+	return `db-ui-${tonality.value} db-bg-${color.value}`;
+};
+
+const onChange = (event: any) => {
+	router.push({
+		path: route.path,
+		query: {
+			...route.query,
+			[TONALITY_CONST]: tonality.value,
+			[COLOR_CONST]: color.value
+		}
+	});
+};
+
+watch(
+	() => route.query,
+	async (query: any) => {
+		if (query[COLOR_CONST] && query[COLOR_CONST] !== color.value) {
+			color.value = query[COLOR_CONST];
+		}
+		if (query[TONALITY_CONST] && query[TONALITY_CONST] !== tonality.value) {
+			tonality.value = query[TONALITY_CONST];
+		}
+	}
+);
 </script>
 
 <template>
-	<main>
-		<h1>Vue</h1>
-		<DBCard>
-			<div style="display: flex; gap: 4px; align-items: center">
-				<DBButton variant="secondary">Test</DBButton>
-				<DBButton text="Test" icon="account" @click="onClick" />
-				<DBIcon icon="account" />
-			</div>
-		</DBCard>
-		<div style="display: flex; gap: 1rem; margin: 1rem 0">
-			<section className="db-ui-regular">
-				<DBInput
-					description="Das ist die Beschreibung"
-					label="Input Regular"
-					placeholder="irgendein Text"
-					iconBefore="edit"
-					id="input-expr"
-				/>
-			</section>
+	<DBPage type="fixedHeaderFooter">
+		<template v-slot:header>
+			<DBHeader>
+				<template v-slot:brand>
+					<DBBrand src="db_logo.svg" href="/vue-showcase/">
+						Vue Showcase
+					</DBBrand>
+				</template>
+				<template v-slot:desktop-navigation>
+					<nav class="desktop-navigation">
+						<ul>
+							<li v-for="item of navigationItems">
+								<router-link :to="item.path">{{
+									item.label
+								}}</router-link>
+							</li>
+						</ul>
+					</nav>
+				</template>
 
-			<section className="db-ui-expressive">
-				<DBInput
-					description="Das ist die Beschreibung"
-					label="Startbahnhof eingeben"
-					placeholder="irgendein Text"
-					iconBefore="edit"
-					variant="error"
-					id="input-expr-error"
-				/>
-
-				<DBInput
-					description="Das ist die Beschreibung"
-					label="Startbahnhof eingeben"
-					placeholder="irgendein Text"
-					iconAfter="heart"
-					variant="warning"
-					id="input-expr-warning"
-					required="true"
-				/>
-			</section>
-
-			<section className="db-ui-regular">
-				<DBInput
-					label="Startbahnhof eingeben"
-					placeholder="irgendein Text"
-					iconAfter="heart"
-					id="input-reg"
-				/>
-			</section>
-
-			<section className="db-ui-functional">
-				<DBInput
-					label="Startbahnhof eingeben"
-					placeholder="irgendein Text"
-				/>
-				<DBInput
-					label="Textinput eingeben disabled"
-					placeholder="irgendein Text"
-					variant="information"
-					id="input-func"
-					disabled="true"
-				/>
-			</section>
+				<template v-slot:meta-navigation>
+					<div>
+						<select v-model="tonality" @change="onChange($event)">
+							<option v-for="ton of TONALITIES" :value="ton">
+								{{ ton }}
+							</option>
+						</select>
+						<select v-model="color" @change="onChange($event)">
+							<option v-for="col of COLORS" :value="col">
+								{{ col }}
+							</option>
+						</select>
+					</div>
+				</template>
+			</DBHeader>
+		</template>
+		<div :class="getClassNames()">
+			<router-view></router-view>
 		</div>
-	</main>
+		<template v-slot:footer>
+			<div slot="footer">FOOTER</div>
+		</template>
+	</DBPage>
 </template>

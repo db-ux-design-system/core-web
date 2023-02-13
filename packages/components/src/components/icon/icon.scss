@@ -1,3 +1,6 @@
+@use "@db-ui/foundations/build/scss/helpers/shadow-dom" as *;
+
 .db-icon {
+	@extend %shadow-dom-extend;
 	display: flex;
 }

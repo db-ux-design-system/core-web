@@ -1,0 +1,7 @@
+@use "@db-ui/foundations/build/scss/variables.global" as *;
+
+.button-container {
+	display: flex;
+	gap: $db-spacing-fixed-md;
+	padding: $db-spacing-fixed-md;
+}
