@@ -42,7 +42,7 @@ watch(
 					label="Start train station"
 					placeholder="some text"
 					iconBefore="edit"
-					variant="error"
+					variant="critical"
 					value="hello"
 					name="testInput"
 				></DBInput>
