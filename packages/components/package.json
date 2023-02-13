@@ -31,7 +31,7 @@
     "@builder.io/mitosis": "^0.0.90",
     "@builder.io/mitosis-cli": "^0.0.49",
     "cpr": "3.0.1",
-    "eslint": "^8.33.0",
+    "eslint": "^8.34.0",
     "hygen": "^6.2.11",
     "lit": "^2.6.1",
     "nodemon": "2.0.20",
