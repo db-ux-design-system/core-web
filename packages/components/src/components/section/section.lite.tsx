@@ -23,7 +23,7 @@ export default function DBSection(props: DBSectionProps) {
 			className={
 				'db-section' + (props.className ? ' ' + props.className : '')
 			}
-			data-size={props.size || 'small'}>
+			data-size={props.size || 'medium'}>
 			<Show when={state.stylePath}>
 				<link rel="stylesheet" href={state.stylePath} />
 			</Show>
