@@ -3,6 +3,10 @@ const getOption = (optionName, prop) => {
 		return `${optionName}`;
 	}
 
+	if (prop.tsType.name === 'number') {
+		return `${optionName}={100}`;
+	}
+
 	if (prop.tsType.name === 'literal') {
 		return `${optionName}="${prop.tsType.value?.replace(/'/g, '')}"`;
 	}
