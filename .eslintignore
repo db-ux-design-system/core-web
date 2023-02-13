@@ -4,3 +4,4 @@
 **/helpers
 /packages/components/**
 !/packages/components/scripts
+/showcases/patternhub/pages/components/**

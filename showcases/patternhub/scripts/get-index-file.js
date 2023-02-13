@@ -28,7 +28,9 @@ const getIndexFile = ({ displayName, description, props }) => {
 	for (const propKey of propKeys) {
 		const prop = props[propKey];
 		propTable += `| ${propKey} `;
-		propTable += `| ${prop.description || 'No description'} `;
+		propTable += `| ${
+			prop.description.replace(/\r\n|\r|\n/g, '<br/>') || 'No description'
+		} `;
 		propTable += `| ${prop.required ? '✅' : '❌'} `;
 		propTable += `| ${prop.tsType.type ?? prop.tsType.name} `;
 		propTable += `| ${getOptions(prop.tsType)} |\n`;

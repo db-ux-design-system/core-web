@@ -21,9 +21,12 @@ iframe {
 }
 
 .example-list {
+	display: flex;
+	flex-direction: column;
+	width: fit-content;
+	padding: 16px;
+
 	p {
-		display: flex;
-		flex-direction: column;
-		width: fit-content;
+		max-width: 500px;
 	}
 }

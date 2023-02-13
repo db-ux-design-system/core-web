@@ -25,7 +25,7 @@ const generateDocsMdx = () => {
 				getIndexFile(componentValue)
 			);
 			FS.writeFileSync(
-				`${componentPath}/examples.mdx`,
+				`${componentPath}/examples.tsx`,
 				getExampleFile(componentName, componentValue)
 			);
 			FS.writeFileSync(

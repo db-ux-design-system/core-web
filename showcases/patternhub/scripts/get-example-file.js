@@ -1,8 +1,27 @@
 const getOption = (optionName, prop) => {
-	// TODO: Add other types as well
-	// TODO: Add faker.js
 	if (prop.tsType.name === 'boolean') {
-		return `${optionName}="true"`;
+		return `${optionName}`;
+	}
+
+	if (prop.tsType.name === 'literal') {
+		return `${optionName}="${prop.tsType.value?.replace(/'/g, '')}"`;
+	}
+
+	if (prop.tsType.name === 'union') {
+		return `${optionName}="${prop.tsType.elements
+			?.filter((elm) => elm.value)?.[1]
+			?.value?.replace(/'/g, '')}"`;
+	}
+
+	if (
+		prop.tsType.name === 'signature' &&
+		prop.tsType.raw === '(event: any) => void'
+	) {
+		return `${optionName}={(event) => console.log(event)}`;
+	}
+
+	if (optionName.toLowerCase().endsWith('src')) {
+		return `${optionName}="https://db-ui.github.io/images/db_logo.svg"`;
 	}
 
 	return `${optionName}="account"`;
@@ -35,9 +54,23 @@ const getExampleFile = (componentName, { displayName, props }) => {
 		}
 	}
 
-	// TODO: Filter unique
-	for (const optionArray of optionArrays) {
-		variants += `${optionArray.join(', ')}: <${displayName} ${optionArray
+	const uniqueOptionArrays = [];
+	for (const optionArray of optionArrays.map((optionArray) =>
+		optionArray.sort()
+	)) {
+		const foundArray = uniqueOptionArrays.find(
+			(uniqueOptionArray) =>
+				optionArray?.toString() === uniqueOptionArray?.toString()
+		);
+		if (!foundArray) {
+			uniqueOptionArrays.push(optionArray);
+		}
+	}
+
+	for (const optionArray of uniqueOptionArrays) {
+		variants += `<p>${optionArray.join(
+			', '
+		)}:</p> <${displayName} ${optionArray
 			.map((opt) => getOption(opt, props[opt]))
 			.join(' ')}>Test</${displayName}>\n`;
 	}
@@ -46,14 +79,14 @@ const getExampleFile = (componentName, { displayName, props }) => {
 import DefaultPage from "../../../components/default-page";
 import ${displayName} from "../../../components/src/components/${componentName}/${componentName}";
 
-# ${displayName} Examples
+export default () => <DefaultPage>
+<h1> ${displayName} Examples </h1>
 
-<div class="example-list">
+<div className="example-list">
 Default: <${displayName}>Test</${displayName}>
 ${variants}
 </div>
-
-export default ({ children }) => <DefaultPage>{children}</DefaultPage>;
+</DefaultPage>;
 	`;
 };
 

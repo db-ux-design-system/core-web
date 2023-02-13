@@ -11,6 +11,10 @@ Third party controls require a ControlValueAccessor to function with angular for
 <DBInput ngDefaultControl [(ngModel)]="value"></DBInput>
 ```
 
+## React
+
+TODO
+
 ## Vue
 
 To get DBInput work with `v-model` you have to use v-model argument syntax:

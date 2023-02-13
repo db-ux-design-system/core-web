@@ -10,7 +10,7 @@ const getHowToFile = (componentName) => {
 	let howToReadme = '';
 	const fileName = `${componentPath}/${componentName}/README.md`;
 	if (FS.existsSync(fileName)) {
-		howToReadme = FS.readFileSync(fileName, 'utf-8').toString();
+		howToReadme = FS.readFileSync(fileName, 'utf8').toString();
 	}
 
 	return `
