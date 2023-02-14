@@ -4,13 +4,13 @@
  */
 const getUnionElements = (options, elements) => {
 	if (elements) {
-		elements.forEach((elem) => {
+		for (const element of elements) {
 			options.push(
-				elem.name === 'literal'
-					? elem.value
-					: getUnionElements(options, elem.elements)
+				element.name === 'literal'
+					? element.value
+					: getUnionElements(options, element.elements)
 			);
-		});
+		}
 	}
 };
 
