@@ -1,4 +1,3 @@
-import './index.scss';
 import { useState } from 'react';
 import { DBButton, DBInput } from '../../../../../output/react/src';
 

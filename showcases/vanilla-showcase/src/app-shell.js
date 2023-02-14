@@ -1,7 +1,7 @@
 import '../../../output/webcomponent/src/components/page/page.js';
 import '../../../output/webcomponent/src/components/header/header.js';
 import '../../../output/webcomponent/src/components/brand/brand.js';
-import './index.css';
+import '../../showcase-styles.css';
 import { navigationItems } from './utils/navigation-items.js';
 import getQueryParams from './utils/get-query-params.js';
 
