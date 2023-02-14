@@ -112,7 +112,13 @@ fieldset {
 
 // Code
 
-pre {
+pre:has(code) {
 	@extend %db-bg-secondary;
-	padding: $db-spacing-fixed-md;
+	padding: $db-spacing-fixed-xs;
+}
+
+code {
+	@extend %db-bg-secondary;
+	padding-block: $db-spacing-fixed-2xs;
+	padding-inline: $db-spacing-fixed-xs;
 }
