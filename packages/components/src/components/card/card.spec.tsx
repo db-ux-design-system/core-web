@@ -29,7 +29,7 @@ const colorVariants = [
 
 const directions = ['row', 'column'];
 
-const variants = ['full-width', 'ia'];
+const variants = ['full-width', 'interactive'];
 
 const testDefaultCard = () => {
 	test('DBCard should contain text', async ({ mount }) => {
