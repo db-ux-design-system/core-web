@@ -1,12 +1,19 @@
+import getUnionElements from './get-union-elements.js';
+
 const getOptions = (tsType) => {
 	switch (tsType.name) {
 		case 'literal': {
 			return tsType.value;
 		}
 
-		case 'union':
 		case 'signature': {
-			return tsType.raw.replace(/\|/g, ',');
+			return tsType.raw;
+		}
+
+		case 'union': {
+			const options = [];
+			getUnionElements(options, tsType.elements);
+			return options.join(',');
 		}
 
 		default: {

@@ -177,11 +177,25 @@ export const ROUTES: DbMainnavigationDataType[] = [
 						children: [
 							{
 								label: 'Examples',
-								link: '/componentsicon/examples'
+								link: '/components/icon/examples'
 							},
 							{
 								label: 'How to use',
 								link: '/components/icon/how-to-use'
+							}
+						]
+					},
+					{
+						label: 'DBInfotext',
+						link: '/components/infotext',
+						children: [
+							{
+								label: 'Examples',
+								link: '/components/infotext/examples'
+							},
+							{
+								label: 'How to use',
+								link: '/components/infotext/how-to-use'
 							}
 						]
 					}

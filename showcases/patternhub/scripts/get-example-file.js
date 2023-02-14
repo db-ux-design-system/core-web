@@ -1,3 +1,5 @@
+import getUnionElements from './get-union-elements.js';
+
 const getOption = (optionName, prop) => {
 	if (prop.tsType.name === 'boolean') {
 		return `${optionName}`;
@@ -12,9 +14,12 @@ const getOption = (optionName, prop) => {
 	}
 
 	if (prop.tsType.name === 'union') {
-		return `${optionName}="${prop.tsType.elements
-			?.filter((elm) => elm.value)?.[1]
-			?.value?.replace(/'/g, '')}"`;
+		const options = [];
+		getUnionElements(options, prop.tsType.elements);
+		return `${optionName}="${(options[1] || options[0])?.replace(
+			/'/g,
+			''
+		)}"`;
 	}
 
 	if (
