@@ -1,4 +1,6 @@
 @use "variables" as *;
+@use "variables.global" as *;
+@use "color-placeholder" as *;
 
 :root {
 	// TODO: probably move these to the tokens as well
@@ -106,4 +108,17 @@ nav,
 // Block
 fieldset {
 	border: none;
+}
+
+// Code
+
+pre:has(code) {
+	@extend %db-bg-secondary;
+	padding: $db-spacing-fixed-xs;
+}
+
+code {
+	@extend %db-bg-secondary;
+	padding-block: $db-spacing-fixed-2xs;
+	padding-inline: $db-spacing-fixed-xs;
 }

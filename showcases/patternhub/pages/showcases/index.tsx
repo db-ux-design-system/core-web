@@ -16,7 +16,7 @@ const ShowcasesPage = () => (
 					<a
 						key={`showcase-card-${showcase.label}`}
 						href={showcase.link}>
-						<DBCard variant="ia">{showcase.label}</DBCard>
+						<DBCard variant="interactive">{showcase.label}</DBCard>
 					</a>
 				))}
 		</div>
