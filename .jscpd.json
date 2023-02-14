@@ -24,7 +24,9 @@
 		"**/angular.json",
 		"**/tsconfig.json",
 		"**/angular-*/**/main.ts",
-		"**/README.md"
+		"**/README.md",
+		"packages/components/src/components/alert/alert.lite.tsx",
+		"showcases/react-showcase/src/components/alert/index.tsx"
 	],
 	"absolute": true
 }

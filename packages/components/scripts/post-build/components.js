@@ -17,6 +17,19 @@
  */
 const getComponents = () => [
 	{
+		name: 'alert',
+		defaultStylePath: 'components/alert/alert.css',
+		overwrites: {
+			vue: [
+				{
+					from: 'import { DBAlertState, DBAlertProps } from "./model";',
+					to: ''
+				}
+			]
+		}
+	},
+
+	{
 		name: 'infotext',
 		defaultStylePath: 'components/infotext/infotext.css',
 		overwrites: {

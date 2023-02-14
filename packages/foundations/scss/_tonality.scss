@@ -4,7 +4,8 @@
 @use "scaling-placeholder" as *;
 @use "body-styles" as *;
 
-body {
+body,
+* {
 	@extend %db-body-md;
 	font-family: $db-font-family-sans;
 }
