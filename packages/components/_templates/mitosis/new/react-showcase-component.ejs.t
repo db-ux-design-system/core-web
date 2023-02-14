@@ -1,5 +1,5 @@
 ---
-to: ../../showcases/react/showcase/src/components/<%= name %>
+to: ../../showcases/react-showcase/src/components/<%= name %>/index.tsx
 ---
 import { DB<%= h.changeCase.pascal(name) %> } from '../../../../../output/react/src';
 import DefaultComponent, { DefaultComponentVariants } from '../index';
