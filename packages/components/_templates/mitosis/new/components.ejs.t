@@ -1,7 +1,7 @@
 ---
 inject: true
 to: scripts/post-build/components.js
-after: module.exports = \[
+after: getComponents
 skip_if: <%= name %>
 ---
   {
