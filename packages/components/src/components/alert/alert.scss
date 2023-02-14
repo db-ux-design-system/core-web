@@ -1,4 +1,3 @@
-@use "sass:string";
 @use "@db-ui/foundations/build/scss/variables" as *;
 @use "@db-ui/foundations/build/scss/variables.global" as *;
 @use "@db-ui/foundations/build/scss/helpers/shadow-dom" as *;
@@ -11,9 +10,34 @@ $variants: (
 	"success": $db-colors-success-element-enabled
 );
 
+@mixin handle-links($show-headline) {
+	.db-alert-headline-link {
+		@if ($show-headline) {
+			display: inherit;
+		} @else {
+			display: none;
+		}
+	}
+
+	.db-alert-content-link {
+		@if ($show-headline) {
+			display: none;
+		} @else {
+			display: inherit;
+		}
+	}
+}
+
 .db-alert {
 	@extend %shadow-dom-extend;
 	@extend %db-bg-neutral-0;
+
+	@include handle-links(true);
+
+	@media screen and (max-width: $db-screens-s) {
+		@include handle-links(false);
+	}
+
 	padding: $db-spacing-fixed-md;
 	display: flex;
 	gap: $db-spacing-fixed-md;
@@ -28,8 +52,10 @@ $variants: (
 	}
 
 	&[data-type="inline"] {
+		@include handle-links(false);
+
 		width: fit-content;
-		min-width: $db-screens-xs;
+		min-width: calc($db-screens-xs - $db-spacing-fixed-md);
 	}
 
 	@each $name, $icon-color in $variants {

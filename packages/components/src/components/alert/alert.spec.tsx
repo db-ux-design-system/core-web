@@ -2,35 +2,49 @@ import { test, expect } from '@playwright/experimental-ct-react';
 import AxeBuilder from '@axe-core/playwright';
 
 import { DBAlert } from './index';
+import { TESTING_VIEWPORTS, VARIANTS } from '../../shared/constants';
 
 const comp = <DBAlert>Test</DBAlert>;
 
-const testComponent = () => {
-	test('DBAlert should contain text', async ({ mount }) => {
+const testComponent = (viewport) => {
+	test(`should contain text for device ${viewport.name}`, async ({
+		mount
+	}) => {
 		const component = await mount(comp);
 		await expect(component).toContainText('Test');
 	});
 
-	test('DBAlert should match screenshot', async ({ mount }) => {
+	test(`should match screenshot for device ${viewport.name}`, async ({
+		mount
+	}) => {
 		const component = await mount(comp);
 		await expect(component).toHaveScreenshot();
 	});
 };
 
-test.describe('DBAlert component on desktop', () => {
-	// Old-school CRT monitor screensize
-	test.use({ viewport: { width: 1024, height: 768 } });
-	testComponent();
-});
+const testVariants = (viewport) => {
+	for (const variant of VARIANTS) {
+		test(`should match screenshot for variant ${variant} and device ${viewport.name}`, async ({
+			mount
+		}) => {
+			const component = await mount(
+				<DBAlert variant={variant}>Test</DBAlert>
+			);
+			await expect(component).toHaveScreenshot();
+		});
+	}
+};
 
-test.describe('DBAlert component on mobile', () => {
-	// iPhone 13 / portrait screen size
-	test.use({ viewport: { width: 390, height: 884 } });
-	testComponent();
+test.describe('DBAlert component', () => {
+	TESTING_VIEWPORTS.forEach((viewport) => {
+		test.use({ viewport });
+		testComponent(viewport);
+		testVariants(viewport);
+	});
 });
 
 test.describe('DBAlert component A11y', () => {
-	test('DBAlert should not have any automatically detectable accessibility issues', async ({
+	test('should not have any accessibility issues', async ({
 		page,
 		mount
 	}) => {

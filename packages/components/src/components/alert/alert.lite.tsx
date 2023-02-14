@@ -19,6 +19,10 @@ useMetadata({
 	}
 });
 
+const DEFAULT_VALUES = {
+	closeButton: 'Close Button'
+};
+
 export default function DBAlert(props: DBAlertProps) {
 	const state = useStore<DBAlertState>({
 		handleClick: (event) => {
@@ -58,6 +62,7 @@ export default function DBAlert(props: DBAlertProps) {
 					<div class="db-alert-close-container">
 						<Show when={props.type !== 'inline'}>
 							<DBLink
+								className="db-alert-headline-link"
 								variant="inline"
 								href={props.link?.href}
 								target={props.link?.target}
@@ -66,7 +71,7 @@ export default function DBAlert(props: DBAlertProps) {
 								disabled={props.link?.disabled}
 								selected={props.link?.selected}
 								label={props.link?.label}
-								hrefLang={props.link?.hreflang}
+								hreflang={props.link?.hreflang}
 								current={props.link?.current}>
 								<Slot name="link" />
 							</DBLink>
@@ -75,8 +80,10 @@ export default function DBAlert(props: DBAlertProps) {
 							icon="close"
 							variant="ghost"
 							size="small"
-							onClick={(event) => state.handleClick(event)}
-						/>
+							onClick={(event) => state.handleClick(event)}>
+							{props.closeButtonText ??
+								DEFAULT_VALUES.closeButton}
+						</DBButton>
 					</div>
 				</div>
 
@@ -84,21 +91,20 @@ export default function DBAlert(props: DBAlertProps) {
 					<span>{props.children}</span>
 				</Show>
 
-				<Show when={props.type === 'inline'}>
-					<DBLink
-						variant="inline"
-						href={props.link?.href}
-						target={props.link?.target}
-						rel={props.link?.rel}
-						role={props.link?.role}
-						disabled={props.link?.disabled}
-						selected={props.link?.selected}
-						label={props.link?.label}
-						hrefLang={props.link?.hreflang}
-						current={props.link?.current}>
-						<Slot name="link" />
-					</DBLink>
-				</Show>
+				<DBLink
+					className="db-alert-content-link"
+					variant="inline"
+					href={props.link?.href}
+					target={props.link?.target}
+					rel={props.link?.rel}
+					role={props.link?.role}
+					disabled={props.link?.disabled}
+					selected={props.link?.selected}
+					label={props.link?.label}
+					hreflang={props.link?.hreflang}
+					current={props.link?.current}>
+					<Slot name="link" />
+				</DBLink>
 			</div>
 		</div>
 	);

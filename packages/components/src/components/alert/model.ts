@@ -8,6 +8,7 @@ import {
 } from '../../shared/model';
 
 export interface DBAlertDefaultProps {
+	closeButtonText?: string;
 	headline?: string;
 	icon?: string;
 	link?: LinkProps;

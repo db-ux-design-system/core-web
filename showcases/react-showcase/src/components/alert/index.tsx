@@ -1,6 +1,6 @@
 import { DBAlert } from '../../../../../output/react/src';
-import { LinkProps } from '../../../../../output/react/src/shared/model';
-import DefaultComponent, { DefaultComponentVariants } from '../index';
+import { type LinkProps } from '../../../../../output/react/src/shared/model';
+import DefaultComponent, { type DefaultComponentVariants } from '../index';
 
 const defaultHeadline = 'Headline';
 const defaultText = 'Type Something';
@@ -104,6 +104,71 @@ const variants: DefaultComponentVariants[] = [
 						headline={defaultHeadline}
 						link={defaultLinkProps}
 						slotLink={defaultLink}>
+						{defaultText}
+					</DBAlert>
+				)
+			}
+		]
+	},
+	{
+		name: 'Content',
+		examples: [
+			{
+				name: 'Headline & Text & Link & Icon',
+				style: { width: '100%' },
+				example: (
+					<DBAlert
+						headline={defaultHeadline}
+						link={defaultLinkProps}
+						slotLink={defaultLink}
+						icon="account">
+						{defaultText}
+					</DBAlert>
+				)
+			},
+			{
+				name: 'Headline & Text & Link',
+				style: { width: '100%' },
+				example: (
+					<DBAlert
+						headline={defaultHeadline}
+						link={defaultLinkProps}
+						slotLink={defaultLink}>
+						{defaultText}
+					</DBAlert>
+				)
+			},
+			{
+				name: 'Text & Link',
+				style: { width: '100%' },
+				example: (
+					<DBAlert link={defaultLinkProps} slotLink={defaultLink}>
+						{defaultText}
+					</DBAlert>
+				)
+			},
+			{
+				name: 'Text',
+				style: { width: '100%' },
+				example: <DBAlert>{defaultText}</DBAlert>
+			}
+		]
+	},
+	{
+		name: 'Behaviour',
+		examples: [
+			{
+				name: 'Closable',
+				style: { width: '100%' },
+				example: (
+					<DBAlert
+						headline={defaultHeadline}
+						link={defaultLinkProps}
+						slotLink={defaultLink}
+						onClick={() => {
+							/* eslint-disable-next-line no-alert */
+							alert('click close button');
+						}}>
 						{defaultText}
 					</DBAlert>
 				)
