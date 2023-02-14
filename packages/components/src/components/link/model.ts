@@ -34,10 +34,10 @@ export interface DBLinkDefaultProps {
 		| 'strict-origin-when-cross-origin'
 		| 'unsafe-url';
 	selected?: boolean;
-	size?: string;
+	size?: 'medium' | 'small';
 	target?: '_self' | '_blank' | '_parent' | '_top';
 	title?: string;
-	variant?: string;
+	variant?: 'adaptive' | 'primary';
 }
 
 export type DBLinkProps = DBLinkDefaultProps & GlobalProps & ClickEventProps;

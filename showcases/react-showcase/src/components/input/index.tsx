@@ -1,11 +1,150 @@
 import { useEffect, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
-import { DBButton, DBInput } from '../../../../../output/react/src';
-import './index.scss';
+import { DBInput } from '../../../../../output/react/src';
 import {
 	COLOR_CONST,
 	INVALID_INPUT_BACKGROUNDS
 } from '../../../../../packages/components/src/shared/constants';
+import DefaultComponent, { type DefaultComponentVariants } from '../index';
+
+const defaultLabelText = 'Label';
+
+const variants: DefaultComponentVariants[] = [
+	{
+		name: 'Variant',
+		examples: [
+			{
+				name: '(Default) Basic',
+				example: (
+					<DBInput
+						label={defaultLabelText}
+						description="Description"
+					/>
+				)
+			},
+			{
+				name: 'Information',
+				example: (
+					<DBInput
+						label={defaultLabelText}
+						description="Description"
+						variant="information"
+					/>
+				)
+			},
+			{
+				name: 'Warning',
+				example: (
+					<DBInput
+						label={defaultLabelText}
+						description="Description"
+						variant="warning"
+					/>
+				)
+			},
+			{
+				name: 'Critical',
+				example: (
+					<DBInput
+						label={defaultLabelText}
+						description="Description"
+						variant="critical"
+					/>
+				)
+			},
+			{
+				name: 'Success',
+				example: (
+					<DBInput
+						label={defaultLabelText}
+						description="Description"
+						variant="success"
+					/>
+				)
+			}
+		]
+	},
+	{
+		name: 'States',
+		examples: [
+			{ name: 'Default', example: <DBInput label={defaultLabelText} /> },
+			{
+				name: 'Filled',
+				example: <DBInput label={defaultLabelText} value="Input Text" />
+			},
+			{
+				name: 'Filled Number',
+				example: (
+					<DBInput
+						label={defaultLabelText}
+						value="123456"
+						type="number"
+					/>
+				)
+			},
+			{
+				name: 'Disabled',
+				example: (
+					<DBInput
+						label={defaultLabelText}
+						value="Input Text"
+						disabled
+					/>
+				)
+			},
+			{
+				name: 'Required',
+				example: (
+					<DBInput
+						label={defaultLabelText}
+						value="Input Text"
+						disabled
+						required
+					/>
+				)
+			}
+		]
+	},
+	{
+		name: 'Content',
+		examples: [
+			{
+				name: '(Default) Text',
+				example: <DBInput label={defaultLabelText} />
+			},
+			{
+				name: 'Leading Icon + Text',
+				example: (
+					<DBInput iconBefore="account" label={defaultLabelText} />
+				)
+			},
+			{
+				name: 'Leading Icon + Text + Trailing Icon',
+				example: (
+					<DBInput
+						iconBefore="account"
+						label={defaultLabelText}
+						iconAfter="edit"
+					/>
+				)
+			},
+			{
+				name: 'Text + Trailing Icon',
+				example: <DBInput label={defaultLabelText} iconAfter="edit" />
+			},
+			{
+				name: 'Text + Trailing Icon + Variant:Success',
+				example: (
+					<DBInput
+						label={defaultLabelText}
+						iconAfter="edit"
+						variant="success"
+					/>
+				)
+			}
+		]
+	}
+];
 
 const InputComponent = () => {
 	const [searchParameters] = useSearchParams();
@@ -24,73 +163,19 @@ const InputComponent = () => {
 	}, [searchParameters]);
 
 	return (
-		<div>
-			<h1>Input</h1>
-			{backgroundWarning && (
-				<strong>
-					This background is not working with inputs! Please use light
-					colors as background.
-				</strong>
-			)}
-			<div className="input-container">
-				<form>
-					<DBInput
-						description="This is a description"
-						label="Start train station"
-						placeholder="some text"
-						iconBefore="edit"
-						variant="critical"
-						value="hello"
-						name="testInput"></DBInput>
-
-					<DBInput
-						description="Valid test"
-						label="With event"
-						placeholder="some text"
-						iconBefore="edit"
-						iconAfter="heart"
-						variant="warning"
-						id="input-expr-warning"
-						required></DBInput>
-					<DBInput
-						label="start date"
-						placeholder="some text"
-						type="datetime-local"
-						id="input-expr-date"></DBInput>
-
-					<DBInput
-						label="Start train station"
-						placeholder="some text"
-						iconAfter="heart"
-						id="input-reg"
-						required
-						minLength={5}></DBInput>
-					<DBInput
-						label="Start date"
-						placeholder="some text"
-						type="week"
-						id="input-reg-date"></DBInput>
-
-					<DBInput
-						id="db-input-functional-1"
-						label="Start train station"
-						placeholder="some text"></DBInput>
-					<DBInput
-						id="db-input-functional-2"
-						label="Textinput disabled"
-						placeholder="some text"
-						variant="information"
-						disabled></DBInput>
-
-					<DBInput
-						label="start date"
-						placeholder="some text"
-						type="datetime-local"
-						id="input-func-date"></DBInput>
-					<DBButton type="submit">Submit</DBButton>
-				</form>
-			</div>
-		</div>
+		<DefaultComponent
+			title={'DBInput'}
+			description={
+				<>
+					{backgroundWarning && (
+						<strong>
+							This background is not working with inputs! Please
+							use light colors as background.
+						</strong>
+					)}
+				</>
+			}
+			variants={variants}></DefaultComponent>
 	);
 };
 

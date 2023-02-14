@@ -9,7 +9,8 @@ body {
 	font-family: $db-font-family-sans;
 }
 
-small {
+small,
+code {
 	@extend %db-body-sm;
 }
 
