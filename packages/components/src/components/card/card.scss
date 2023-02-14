@@ -18,10 +18,6 @@
 	display: flex;
 	flex-direction: column;
 
-	& > .db-card-image {
-		width: 100%;
-	}
-
 	&[data-direction="row"] {
 		@media only screen and (min-width: #{$db-screens-s}) {
 			display: grid;

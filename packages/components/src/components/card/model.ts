@@ -8,8 +8,8 @@ import {
 
 export type DBCardDefaultProps = {
 	colorVariant?: string;
-	direction?: 'row' | 'column';
-	variant?: 'full-width' | 'ia';
+	direction?: 'column' | 'row';
+	variant?: 'full-width' | 'interactive';
 };
 
 export type DBCardProps = DBCardDefaultProps &
