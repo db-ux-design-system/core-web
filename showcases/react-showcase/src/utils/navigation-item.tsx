@@ -3,6 +3,7 @@ import InputComponent from '../components/input';
 import FormComponent from '../components/form';
 import LinkComponent from '../components/link';
 import SectionComponent from '../components/section';
+import InfotextComponent from '../components/infotext';
 
 export type NavigationItem = {
 	path: string;
@@ -11,6 +12,7 @@ export type NavigationItem = {
 	home?: boolean;
 };
 export const NAVIGATION_ITEMS: NavigationItem[] = [
+	{ path: 'infotext', label: 'Infotext', component: <InfotextComponent /> },
 	{ path: 'section', label: 'Section', component: <SectionComponent /> },
 	{ path: 'link', label: 'Link', component: <LinkComponent /> },
 	{ path: 'button', label: 'Button', component: <ButtonComponent /> },
