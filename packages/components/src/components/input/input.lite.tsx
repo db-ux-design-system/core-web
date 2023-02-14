@@ -7,8 +7,9 @@ import {
 } from '@builder.io/mitosis';
 import { DBIcon } from '../icon';
 import { uuid } from '../../utils';
-import { DBInputState, DBInputProps, iconVariants } from './model';
+import { DBInputState, DBInputProps } from './model';
 import { DEFAULT_ID } from '../../shared/constants';
+import { DefaultVariantsIcon } from '../../shared/model';
 
 useMetadata({
 	isAttachedToShadowDom: true,
@@ -26,6 +27,13 @@ export default function DBInput(props: DBInputProps) {
 		_value: '',
 		_placeholder: ' ', // placeholder can't be empty
 		_label: 'LABEL SHOULD BE SET',
+		getIcon: (variant) => {
+			if (variant) {
+				return DefaultVariantsIcon[variant];
+			}
+
+			return '';
+		},
 		handleChange: (event) => {
 			if (props.onChange) {
 				props.onChange(event);
@@ -123,7 +131,7 @@ export default function DBInput(props: DBInputProps) {
 			</Show>
 			<Show when={props.variant || props.required || props.pattern}>
 				<DBIcon
-					icon={props.variant && iconVariants[props.variant]}
+					icon={state.getIcon(props.variant)}
 					class="icon-input-state"
 				/>
 			</Show>

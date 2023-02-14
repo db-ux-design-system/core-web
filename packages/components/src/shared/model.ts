@@ -8,6 +8,20 @@ export type GlobalState = {
 	stylePath?: string;
 };
 
+export type DefaultVariantProps =
+	| 'critical'
+	| 'information'
+	| 'warning'
+	| 'success';
+
+export const DefaultVariantsIcon: any = {
+	critical: 'error',
+	// TODO: 'error-triangle' will change to 'warning' soon
+	warning: 'error-triangle',
+	success: 'check-circle',
+	information: 'info'
+};
+
 export type GlobalTextProps = {
 	placeholder?: string;
 	maxLength?: number;

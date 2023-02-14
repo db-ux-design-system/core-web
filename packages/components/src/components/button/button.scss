@@ -123,6 +123,7 @@
 
 	&[data-size="small"] {
 		@extend %size-Small;
+		@extend %db-body-sm;
 	}
 
 	// Width
