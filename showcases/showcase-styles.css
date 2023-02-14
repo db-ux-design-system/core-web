@@ -1,0 +1,61 @@
+/* Styles for the showcases */
+.desktop-navigation ul {
+	list-style-type: none;
+	display: flex;
+	gap: var(--db-spacing-fixed-md);
+}
+
+.default-container {
+	display: flex;
+	flex-direction: column;
+	gap: var(--db-spacing-fixed-md);
+	padding: var(--db-spacing-fixed-md);
+}
+
+.variants-list {
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+	display: flex;
+	flex-wrap: wrap;
+	gap: var(--db-spacing-fixed-md);
+}
+
+/**
+ component container styles
+**/
+
+.form-container {
+	display: flex;
+	margin: var(--db-spacing-fixed-md);
+}
+
+.form-container fieldset {
+	/* Disabling fieldset styles in this specific case */
+	padding: 0;
+	border-color: transparent;
+}
+
+.form-container div {
+	flex-direction: column;
+	width: 50%;
+}
+
+.button-container {
+	display: flex;
+	gap: var(--db-spacing-fixed-md);
+	padding: var(--db-spacing-fixed-md);
+}
+
+.input-container {
+	display: flex;
+	flex-wrap: wrap;
+	gap: var(--db-spacing-fixed-md);
+	padding: var(--db-spacing-fixed-md);
+}
+
+.input-container > form {
+	display: flex;
+	flex-wrap: wrap;
+	gap: var(--db-spacing-fixed-md);
+}

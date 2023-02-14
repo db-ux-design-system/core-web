@@ -1,4 +1,4 @@
-# `<DBInput></DBInput>`
+# How to use DBInput
 
 How to get framework specific features (e.g. ng-model and v-model) to work with DBInput element.
 
@@ -10,6 +10,10 @@ Third party controls require a ControlValueAccessor to function with angular for
 ```ts
 <DBInput ngDefaultControl [(ngModel)]="value"></DBInput>
 ```
+
+## React
+
+TODO
 
 ## Vue
 

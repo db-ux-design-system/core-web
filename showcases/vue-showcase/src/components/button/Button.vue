@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { DBButton } from "../../../../../output/vue/vue3/src";
-import "./index.scss";
 
 import { ref } from "vue";
 const variant = ref("primary");

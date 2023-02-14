@@ -1,5 +1,3 @@
-import './index.css';
-
 import '../../../../../output/webcomponent/src/components/button/button.js';
 import '../../../../../output/webcomponent/src/components/icon/icon.js';
 

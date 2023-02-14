@@ -2,7 +2,7 @@ import { GlobalProps, GlobalState, ImageProps } from '../../shared/model';
 
 export interface DBBrandDefaultProps {
 	/**
-	 * The anchorChildren attribute can be set to warp children inside the <a> tag.
+	 * The anchorChildren attribute can be set to warp children inside the 'a' tag.
 	 */
 	anchorChildren?: boolean;
 	/**
@@ -21,7 +21,7 @@ export interface DBBrandDefaultProps {
 	anchorRelation?: string;
 
 	/**
-	 * Hides the default <img> with an asset path to be able to add a custom image inside the children.
+	 * Hides the default image with an asset path to be able to add a custom image inside the children.
 	 * Use this if you know what you do.
 	 */
 	hideDefaultAsset?: any;

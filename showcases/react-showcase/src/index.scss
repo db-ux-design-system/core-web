@@ -1,12 +1,5 @@
 @use "@db-ui/foundations/build/scss/variables.global" as *;
 @use "@db-ui/components/build/styles/db-ui-42-rollup" as *;
+@use "@db-ui/foundations/build/scss/color-classes" as *;
 
-@import "@db-ui/foundations/build/scss/color-classes";
-
-.desktop-navigation {
-	ul {
-		list-style-type: none;
-		display: flex;
-		gap: $db-spacing-fixed-md;
-	}
-}
+@use "../../showcase-styles.css";

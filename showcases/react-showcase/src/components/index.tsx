@@ -1,4 +1,3 @@
-import './index.scss';
 import { type CSSProperties, type ReactElement } from 'react';
 import { DBDivider } from '../../../../output/react/src';
 

@@ -18,7 +18,7 @@
 		"**/.next/**",
 		"**/.github/**",
 		"**/next-showcase/components/**",
-		"**/patternhub/components/**",
+		"**/patternhub/**/components/**",
 		"**/*-example/index.html",
 		"**/*-showcase/index.html",
 		"**/angular.json",

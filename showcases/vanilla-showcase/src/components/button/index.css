@@ -1,5 +1,0 @@
-.button-container {
-	display: flex;
-	gap: var(--db-spacing-fixed-md);
-	padding: var(--db-spacing-fixed-md);
-}
