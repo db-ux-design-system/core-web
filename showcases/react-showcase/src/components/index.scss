@@ -1,0 +1,17 @@
+@use "@db-ui/foundations/build/scss/variables.global" as *;
+
+.default-container {
+	display: flex;
+	flex-direction: column;
+	gap: $db-spacing-fixed-md;
+	padding: $db-spacing-fixed-md;
+}
+
+.variants-list {
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+	display: flex;
+	flex-wrap: wrap;
+	gap: $db-spacing-fixed-md;
+}
