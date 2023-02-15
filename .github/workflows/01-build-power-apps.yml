@@ -1,5 +1,5 @@
 ---
-name: Deploy Power Apps
+name: Build Power Apps
 
 on:
   workflow_call:
@@ -9,8 +9,8 @@ on:
         type: string
 
 jobs:
-  build-showcases:
-    name: Deploy Power Apps
+  build-power-apps:
+    name: Build Power Apps
     runs-on: ubuntu-latest
     steps:
       - name: ⬇ Checkout repo
