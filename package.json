@@ -44,7 +44,7 @@
     "generate:component": "npm run generate:component --workspace=@db-ui/components",
     "lint": "npm-run-all -p lint:*",
     "lint:jscpd": "jscpd --exitCode 1 .",
-    "lint:markdownlint": "markdownlint -c .markdown-lint.yml **/*.md",
+    "lint:markdownlint": "markdownlint -c .markdown-lint.yml '**/*.md'",
     "lint:stylelint": "stylelint **/*.scss",
     "lint:xo": "xo --fix",
     "postupdate:foundations": "replace-in-file packages/foundations/**  --configFile=scripts/base-foundation.js && node scripts/rename-db-ui-base.js",
