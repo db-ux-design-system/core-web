@@ -44,11 +44,11 @@ export default function DBBrand(props: DBBrandProps) {
 					/>
 				</Show>
 				<Show when={props.anchorChildren}>
-					<>{props.children}</>
+					<strong>{props.children}</strong>
 				</Show>
 			</a>
 			<Show when={!props.anchorChildren}>
-				<>{props.children}</>
+				<strong>{props.children}</strong>
 			</Show>
 		</div>
 	);

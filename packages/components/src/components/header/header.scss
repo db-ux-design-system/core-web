@@ -1,48 +1,150 @@
 @use "@db-ui/foundations/build/scss/variables" as *;
 @use "@db-ui/foundations/build/scss/variables.global" as *;
 @use "@db-ui/foundations/build/scss/helpers/functions" as *;
+@use "@db-ui/foundations/build/scss/tonality" as *;
 
 .db-header {
 	background-color: $db-colors-neutral-bg-0-enabled;
 	box-shadow: $db-elevation-4;
 	display: flex;
-	justify-content: space-between;
-	align-items: center;
+	flex-direction: column;
+	margin-bottom: $db-spacing-fixed-2xs;
 	position: relative;
-
-	/* Mobile header should always be 56px */
-	min-height: to-rem(56);
-
-	padding-left: $db-spacing-fixed-md;
-	padding-right: $db-spacing-fixed-md;
 
 	.db-link {
 		display: inline-block;
 	}
+}
 
-	.desktop-navigation,
-	.meta-navigation {
-		display: none;
+.db-header-drawer {
+	.db-header-drawer-backdrop {
+		background-color: $db-colors-neutral-on-bg-enabled;
+		opacity: 0.5;
+		width: 100%;
+		height: 100%;
+		position: fixed;
+		z-index: 9995;
 	}
 
-	@media screen and (min-width: $db-screens-m) {
-		/* Desktop header should always be 80px */
-		min-height: to-rem(80);
+	.db-header-drawer-container {
+		position: fixed;
+		background-color: $db-colors-neutral-bg-0-enabled;
+		z-index: 9996;
+		width: 85%;
+		height: 100%;
+		right: 0;
+		max-width: calc($db-screens-xs - $db-sizing-md);
+		display: flex;
+		border-top-left-radius: 8px;
+		border-bottom-left-radius: 8px;
+		flex-direction: column;
+		box-shadow: $db-elevation-4;
 
-		.mobile-navigation {
-			display: none;
+		.db-header-drawer-content-menu {
+			box-shadow: $db-elevation-4;
+			margin-bottom: $db-spacing-fixed-2xs;
+			min-height: to-rem(72);
 		}
 
-		.meta-navigation {
-			display: inherit;
+		.db-header-drawer-content {
+			display: flex;
+			flex-direction: column;
+			height: 100%;
 		}
+	}
+}
 
-		.desktop-navigation {
-			display: inherit;
-			position: absolute;
-			top: 50%;
-			left: 50%;
-			transform: translate(-50%, -50%);
-		}
+.db-header-hide-on-mobile {
+	display: none;
+	@media screen and (min-width: $db-screens-s) {
+		display: inherit;
+	}
+}
+
+.db-header-hide-on-desktop {
+	display: inherit;
+	@media screen and (min-width: $db-screens-s) {
+		display: none;
+	}
+}
+
+.db-header-navigation-bar {
+	display: flex;
+	position: relative;
+	padding: $db-spacing-fixed-md;
+	gap: $db-spacing-fixed-xs;
+	width: 100%;
+	align-items: center;
+
+	// TODO: why 72px?
+	height: to-rem(72);
+}
+
+.db-header-meta-navigation {
+	@extend %db-ui-functional;
+	gap: inherit;
+	justify-content: end;
+	background-color: $db-colors-neutral-bg-1-enabled;
+
+	padding: $db-spacing-fixed-md;
+
+	@media screen and (min-width: $db-screens-s) {
+		padding: $db-spacing-fixed-xs $db-spacing-fixed-md;
+	}
+}
+
+.db-header-navigation-container {
+	display: inherit;
+	flex: 1 1 auto;
+	width: 100%;
+	gap: inherit;
+	align-items: center;
+}
+
+.db-header-call-to-action {
+	margin-inline-start: auto;
+}
+
+.db-header-brand-container,
+.db-header-action-container {
+	height: 100%;
+	display: inherit;
+	gap: inherit;
+	flex: 0 1 auto;
+	flex-grow: 0;
+	flex-shrink: 0;
+}
+
+.db-header-action-bar,
+.db-header-meta-navigation {
+	@media screen and (max-width: $db-screens-s) {
+		flex: 0 1 auto;
+		flex-grow: 0;
+		flex-shrink: 0;
+	}
+}
+
+.db-header-navigation {
+	@media screen and (max-width: $db-screens-s) {
+		flex-direction: column;
+		flex: 1 1 auto;
+		height: 100%;
+	}
+}
+
+.db-header-navigation,
+.db-header-action-bar {
+	gap: $db-spacing-fixed-sm;
+	padding: $db-spacing-fixed-md;
+
+	@media screen and (min-width: $db-screens-s) {
+		gap: $db-spacing-fixed-xs;
+		padding: 0;
+	}
+}
+
+.db-header-burger-menu {
+	&[data-drawer="open"] {
+		z-index: 9997;
 	}
 }

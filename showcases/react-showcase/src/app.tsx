@@ -1,6 +1,6 @@
 import { Link, Outlet, useSearchParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import { DBBrand, DBHeader, DBPage } from '../../../output/react/src';
+import { DBBrand, DBHeader, DBPage, DBButton } from '../../../output/react/src';
 
 import {
 	COLOR,
@@ -45,21 +45,6 @@ const App = () => {
 			slotHeader={
 				<DBHeader
 					slotBrand={<DBBrand anchorChildren>React Showcase</DBBrand>}
-					slotDesktopNavigation={
-						<nav className="desktop-navigation">
-							<ul>
-								{NAVIGATION_ITEMS.sort((a, b) => {
-									return a.home ? -1 : 0;
-								}).map((navItem) => (
-									<li key={`router-path-${navItem.path}`}>
-										<Link to={navItem.path}>
-											{navItem.label}
-										</Link>
-									</li>
-								))}
-							</ul>
-						</nav>
-					}
 					slotMetaNavigation={
 						<div>
 							<select
@@ -90,7 +75,38 @@ const App = () => {
 							</select>
 						</div>
 					}
-				/>
+					slotCallToAction={
+						<DBButton icon="search" variant="ghost">
+							Suche
+						</DBButton>
+					}
+					slotActionBar={
+						<>
+							<DBButton icon="account" variant="ghost">
+								Profile
+							</DBButton>
+							<DBButton icon="alert" variant="ghost">
+								Notification
+							</DBButton>
+							<DBButton icon="help" variant="ghost">
+								Help
+							</DBButton>
+						</>
+					}>
+					<nav className="desktop-navigation">
+						<ul>
+							{NAVIGATION_ITEMS.sort((a, b) => {
+								return a.home ? -1 : 0;
+							}).map((navItem) => (
+								<li key={`router-path-${navItem.path}`}>
+									<Link to={navItem.path}>
+										{navItem.label}
+									</Link>
+								</li>
+							))}
+						</ul>
+					</nav>
+				</DBHeader>
 			}
 			slotFooter={<div>FOOTER</div>}>
 			<div className={`db-ui-${tonality} db-bg-${color}`}>
