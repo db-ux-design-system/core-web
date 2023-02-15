@@ -2,7 +2,8 @@ import { test, expect } from '@playwright/experimental-ct-react';
 import AxeBuilder from '@axe-core/playwright';
 
 import { DBAlert } from './index';
-import { TESTING_VIEWPORTS, VARIANTS } from '../../shared/constants';
+// @ts-ignore - vue can only find it with .ts as file ending
+import { TESTING_VIEWPORTS, VARIANTS } from '../../shared/constants.ts';
 
 const comp = <DBAlert>Test</DBAlert>;
 
