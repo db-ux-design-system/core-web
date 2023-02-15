@@ -8,8 +8,8 @@ const getOptions = (tsType) => {
 
 		case 'signature': {
 			return `${tsType.raw
-				.replace('{', '&#123;')
-				.replace('}', '&#125;')
+				.replace(/{/g, '&#123;')
+				.replace(/}/g, '&#125;')
 				.replace(/\r\n\t\t/g, ' ')
 				.replace(/\t/g, '&ensp;')
 				.replace(/\r\n|\r|\n/g, '<br/>')
