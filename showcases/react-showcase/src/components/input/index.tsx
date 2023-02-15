@@ -83,6 +83,17 @@ const variants: DefaultComponentVariants[] = [
 				)
 			},
 			{
+				name: 'Invalid',
+				example: (
+					<DBInput
+						label={defaultLabelText}
+						minLength={5}
+						required={true}
+						description="minLength=5"
+					/>
+				)
+			},
+			{
 				name: 'Disabled',
 				example: (
 					<DBInput
