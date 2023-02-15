@@ -289,7 +289,7 @@
 
 		&::after,
 		&::before {
-			--icon-font-family: var(--db-base-icon-font-family);
+			--icon-font-family: var(--db-base-icon-font-family-filled);
 			--icon-font-size: var(--db-base-icon-font-size);
 			right: 0;
 		}
@@ -325,7 +325,9 @@
 
 		& ~ .icon-input-state,
 		& ~ .icon-input-state .db-icon {
-			@include icon(glyph(error), 20, "filled", "after", false);
+			// TODO fix this workaround after new icon implementation
+			--icon-glyph: "\e1123";
+			@include icon(glyph(error), 24, "outline", "after", true);
 		}
 	}
 
