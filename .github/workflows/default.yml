@@ -35,12 +35,19 @@ jobs:
     uses: ./.github/workflows/01-build-showcases.yml
     needs: [build-packages]
 
+  build-power-apps:
+    uses: ./.github/workflows/01-build-power-apps.yml
+    needs: [build-packages]
+    secrets: inherit
+    with:
+      version: 0.0.0-test
+
   checks-done:
     runs-on: ubuntu-latest
     steps:
       - name: 🎉 Checks done
         run: echo "🎉 All tests were successful."
-    needs: [build-showcases, build-outputs, test-packages]
+    needs: [build-showcases, build-outputs, test-packages, build-power-apps]
 
   deploy:
     uses: ./.github/workflows/03-deploy-gh-pages.yml

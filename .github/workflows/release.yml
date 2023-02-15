@@ -36,12 +36,19 @@ jobs:
     uses: ./.github/workflows/02-e2e.yml
     needs: [build-packages]
 
+  build-power-apps:
+    uses: ./.github/workflows/01-build-power-apps.yml
+    needs: [get-publish-version, build-packages]
+    secrets: inherit
+    with:
+      version: ${{ needs.get-publish-version.outputs.version }}
+
   checks-done:
     runs-on: ubuntu-latest
     steps:
       - name: 🎉 Checks done
         run: echo "🎉 All builds were successful."
-    needs: [test-packages, build-outputs, build-showcases]
+    needs: [test-packages, build-outputs, build-showcases, build-power-apps]
 
   deploy:
     uses: ./.github/workflows/03-deploy-gh-pages.yml
@@ -49,13 +56,6 @@ jobs:
     with:
       release: ${{ needs.get-publish-version.outputs.release }}
       preRelease: ${{ needs.get-publish-version.outputs.preRelease }}
-
-  build-power-apps:
-    uses: ./.github/workflows/01-build-power-apps.yml
-    needs: [get-publish-version, checks-done, build-packages]
-    secrets: inherit
-    with:
-      version: ${{ needs.get-publish-version.outputs.version }}
 
   publishpackages:
     uses: ./.github/workflows/03-publish-packages.yml
