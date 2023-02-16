@@ -2,6 +2,21 @@ import type { DbMainnavigationDataType } from '@db-ui/elements/dist/types/compon
 
 const componentChildren = [
 	{
+		label: 'TODO: Add to specific category; DBDrawer',
+		link: '/components/drawer',
+		children: [
+			{
+				label: 'Examples',
+				link: '/components/drawer/examples'
+			},
+			{
+				label: 'How to use',
+				link: '/components/drawer/how-to-use'
+			}
+		]
+	},
+
+	{
 		label: '01 Layout',
 		link: '/components/01-layout',
 		children: [

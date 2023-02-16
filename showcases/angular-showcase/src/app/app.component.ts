@@ -15,6 +15,7 @@ import { NAVIGATION_ITEMS } from './utils/navigation-item';
 	templateUrl: './app.component.html'
 })
 export class AppComponent implements OnInit {
+	drawerOpen = false;
 	navigationItems = NAVIGATION_ITEMS.sort((a, b) => {
 		if (a.pathMatch) return -1;
 		return 0;
@@ -53,5 +54,9 @@ export class AppComponent implements OnInit {
 			queryParams: { tonality: this.tonality, color: this.color },
 			queryParamsHandling: 'merge'
 		});
+	};
+
+	toggleDrawer = (open: boolean) => {
+		this.drawerOpen = open;
 	};
 }

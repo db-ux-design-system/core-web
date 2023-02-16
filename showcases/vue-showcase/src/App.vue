@@ -1,5 +1,10 @@
 <script setup lang="ts">
-import { DBPage, DBHeader, DBBrand } from "../../../output/vue/vue3/src";
+import {
+	DBPage,
+	DBHeader,
+	DBBrand,
+	DBButton
+} from "../../../output/vue/vue3/src";
 import {
 	COLOR,
 	COLORS,
@@ -18,6 +23,12 @@ const route = useRoute();
 
 const tonality = ref(TONALITY.REGULAR);
 const color = ref(COLOR.NEUTRAL_0);
+
+const drawerOpen = ref(false);
+
+const toggleDrawer = (open: boolean) => {
+	drawerOpen.value = open;
+};
 
 const getClassNames = () => {
 	return `db-ui-${tonality.value} db-bg-${color.value}`;
@@ -50,24 +61,33 @@ watch(
 <template>
 	<DBPage type="fixedHeaderFooter">
 		<template v-slot:header>
-			<DBHeader>
+			<DBHeader :drawerOpen="drawerOpen" :onToggleDrawer="toggleDrawer">
 				<template v-slot:brand>
 					<DBBrand src="db_logo.svg" href="/vue-showcase/">
 						Vue Showcase
 					</DBBrand>
 				</template>
-				<template v-slot:desktop-navigation>
-					<nav class="desktop-navigation">
-						<ul>
-							<li v-for="item of navigationItems">
-								<router-link :to="item.path">{{
-									item.label
-								}}</router-link>
-							</li>
-						</ul>
-					</nav>
+				<nav class="desktop-navigation">
+					<ul>
+						<li v-for="item of navigationItems">
+							<router-link :to="item.path">{{
+								item.label
+							}}</router-link>
+						</li>
+					</ul>
+				</nav>
+				<template v-slot:call-to-action>
+					<DBButton icon="search" variant="ghost"> Search </DBButton>
 				</template>
-
+				<template v-slot:action-bar>
+					<DBButton icon="account" variant="ghost">
+						Profile
+					</DBButton>
+					<DBButton icon="alert" variant="ghost">
+						Notification
+					</DBButton>
+					<DBButton icon="help" variant="ghost"> Help </DBButton>
+				</template>
 				<template v-slot:meta-navigation>
 					<div>
 						<select v-model="tonality" @change="onChange($event)">

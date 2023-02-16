@@ -5,12 +5,14 @@ export interface DBHeaderDefaultProps {
 	slotMetaNavigation?: any;
 	slotCallToAction?: any;
 	slotActionBar?: any;
+	drawerOpen?: boolean;
+	onToggleDrawer?: (open: boolean) => void;
 }
 
 export type DBHeaderProps = DBHeaderDefaultProps & GlobalProps;
 
 export interface DBHeaderDefaultState {
-	drawerOpen?: boolean;
+	toggleDrawer?: () => void;
 }
 
 export type DBHeaderState = DBHeaderDefaultState & GlobalState;

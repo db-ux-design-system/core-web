@@ -8,6 +8,7 @@ import {
 import { DBHeaderState, DBHeaderProps } from './model';
 import { DBDivider } from '../divider';
 import { DBButton } from '../button';
+import { DBDrawer } from '../drawer';
 
 useMetadata({
 	isAttachedToShadowDom: true,
@@ -19,7 +20,11 @@ useMetadata({
 
 export default function DBHeader(props: DBHeaderProps) {
 	const state = useStore<DBHeaderState>({
-		drawerOpen: false
+		toggleDrawer: () => {
+			if (props.onToggleDrawer) {
+				props.onToggleDrawer(!props.drawerOpen);
+			}
+		}
 	});
 
 	onMount(() => {
@@ -35,27 +40,21 @@ export default function DBHeader(props: DBHeaderProps) {
 			<Show when={state.stylePath}>
 				<link rel="stylesheet" href={state.stylePath} />
 			</Show>
-			<Show when={state.drawerOpen}>
-				<div
-					class="db-header-drawer db-header-hide-on-desktop"
-					data-drawer={state.drawerOpen ? 'open' : 'closed'}>
-					<div class="db-header-drawer-backdrop"></div>
-					<div class="db-header-drawer-container">
-						<div class="db-header-drawer-content-menu"></div>
-						<div class="db-header-drawer-content">
-							<div class="db-header-navigation db-header-hide-on-desktop">
-								{props.children}
-							</div>
-							<div class="db-header-meta-navigation db-header-hide-on-desktop">
-								<Slot name="meta-navigation" />
-							</div>
-							<div class="db-header-action-bar db-header-hide-on-desktop">
-								<Slot name="action-bar" />
-							</div>
-						</div>
+
+			<DBDrawer
+				className="db-header-hide-on-desktop"
+				open={props.drawerOpen}
+				onClose={() => state.toggleDrawer()}>
+				<div class="db-header-drawer-navigation">
+					<div class="db-header-navigation">{props.children}</div>
+					<div class="db-header-meta-navigation">
+						<Slot name="meta-navigation" />
 					</div>
 				</div>
-			</Show>
+				<div class="db-header-action-bar">
+					<Slot name="action-bar" />
+				</div>
+			</DBDrawer>
 
 			<div class="db-header-meta-navigation db-header-hide-on-mobile">
 				<Slot name="meta-navigation" />
@@ -77,18 +76,13 @@ export default function DBHeader(props: DBHeaderProps) {
 				</div>
 				<div class="db-header-action-container">
 					<DBDivider variant="vertical" margin="none"></DBDivider>
-					<div
-						class="db-header-burger-menu db-header-hide-on-desktop"
-						data-drawer={state.drawerOpen ? 'open' : 'closed'}>
-						<DBButton
-							icon={state.drawerOpen ? 'close' : 'menu'}
-							variant="ghost"
-							onClick={() => {
-								state.drawerOpen = !state.drawerOpen;
-							}}>
-							Burger Menu
-						</DBButton>
-					</div>
+					<DBButton
+						className="db-header-hide-on-desktop"
+						icon={props.drawerOpen ? 'close' : 'menu'}
+						variant="ghost"
+						onClick={() => state.toggleDrawer()}>
+						Burger Menu
+					</DBButton>
 					<div class="db-header-action-bar db-header-hide-on-mobile">
 						<Slot name="action-bar" />
 					</div>

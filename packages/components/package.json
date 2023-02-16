@@ -15,6 +15,7 @@
     "build:mitosis": "mitosis build",
     "build:mv-styles": "cpr src build -o -f \"(.ts|.tsx|.md)$\"",
     "build:sass": "sass build --no-source-map --load-path=node_modules/ --load-path=../../node_modules/",
+    "build:z-directives": "cpr overrides/angular ../../output/angular -o",
     "build:z-post": "node scripts/post-build/index.js",
     "build:z2-docs": "react-docgen ../../output/react/src/components/**/*.tsx -o ../../output/docs.json -i *.spec.tsx",
     "copy-output": "npm-run-all copy:*",

@@ -19,12 +19,19 @@ import { FormComponent } from './components/form/form.component';
 import { ButtonComponent } from './components/button/button.component';
 import { InputComponent } from './components/input/input.component';
 
+import { ActionBarDirective } from '../../../../output/angular/src/components/header/action-bar.directive';
+import { NavigationDirective } from '../../../../output/angular/src/components/header/navigation.directive';
+import { MetaNavigationDirective } from '../../../../output/angular/src/components/header/meta-navigation.directive';
+
 @NgModule({
 	declarations: [
 		AppComponent,
 		FormComponent,
 		ButtonComponent,
-		InputComponent
+		InputComponent,
+		ActionBarDirective,
+		NavigationDirective,
+		MetaNavigationDirective
 	],
 	imports: [
 		AppRoutingModule,

@@ -1,9 +1,13 @@
 <DBPage type="fixedHeaderFooter">
-	<DBHeader header>
+	<DBHeader
+		header
+		[drawerOpen]="drawerOpen"
+		(onToggleDrawer)="toggleDrawer($event)"
+	>
 		<DBBrand brand src="./assets/db_logo.svg" href="/angular-showcase">
 			Angular Showcase
 		</DBBrand>
-		<nav class="desktop-navigation" desktop-navigation>
+		<nav class="desktop-navigation" *dbNavigation>
 			<ul>
 				<li *ngFor="let item of navigationItems; index as i">
 					<a [routerLink]="item.path" queryParamsHandling="merge">{{
@@ -12,7 +16,7 @@
 				</li>
 			</ul>
 		</nav>
-		<div meta-navigation>
+		<div *dbMetaNavigation>
 			<!-- TODO: Use db-select here	-->
 			<select [(ngModel)]="tonality" (change)="onChange($event)">
 				<option *ngFor="let t of tonalities">
@@ -24,6 +28,14 @@
 					{{ c }}
 				</option>
 			</select>
+		</div>
+		<div call-to-action>
+			<DBButton icon="search" variant="ghost">Search</DBButton>
+		</div>
+		<div *dbActionBar>
+			<DBButton icon="account" variant="ghost"> Profile </DBButton>
+			<DBButton icon="alert" variant="ghost"> Notification </DBButton>
+			<DBButton icon="help" variant="ghost"> Help </DBButton>
 		</div>
 	</DBHeader>
 	<div [class]="getChangeableClasses()">

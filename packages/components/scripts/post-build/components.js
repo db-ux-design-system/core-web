@@ -17,6 +17,29 @@
  */
 const getComponents = () => [
 	{
+		name: 'drawer',
+		defaultStylePath: 'components/drawer/drawer.css',
+		overwrites: {
+			global: [
+				{ from: '(event) => handleClose', to: '() => handleClose' },
+				{ from: 'handleClose(event)', to: 'handleClose(event: any)' }
+			],
+			angular: [
+				{
+					from: 'this.dialogRef.nativeElement',
+					to: 'this.dialogRef?.nativeElement'
+				}
+			],
+			vue: [
+				{
+					from: 'import { DBDrawerState, DBDrawerProps } from "./model";',
+					to: ''
+				}
+			]
+		}
+	},
+
+	{
 		name: 'infotext',
 		defaultStylePath: 'components/infotext/infotext.css',
 		overwrites: {
@@ -80,6 +103,59 @@ const getComponents = () => [
 		name: 'header',
 		defaultStylePath: 'components/header/header.css',
 		overwrites: {
+			global: [
+				{
+					from: '(event) => toggleDrawer()',
+					to: '() => toggleDrawer()'
+				},
+				{
+					from: '(event) => toggleDrawer()',
+					to: '() => toggleDrawer()'
+				}
+			],
+			angular: [
+				{ from: '(close)', to: '(onClose)' },
+				{
+					from: '<ng-content select="[action-bar]">',
+					to: '<ng-content *ngTemplateOutlet="dbActionBar">'
+				},
+				{
+					from: '<ng-content select="[meta-navigation]">',
+					to: '<ng-content *ngTemplateOutlet="dbMetaNavigation">'
+				},
+				{
+					from: '<ng-content>',
+					to: '<ng-content *ngTemplateOutlet="dbNavigation">'
+				},
+				{
+					from: '<ng-content select="[action-bar]">',
+					to: '<ng-content *ngTemplateOutlet="dbActionBar">'
+				},
+				{
+					from: '<ng-content select="[meta-navigation]">',
+					to: '<ng-content *ngTemplateOutlet="dbMetaNavigation">'
+				},
+				{
+					from: '<ng-content>',
+					to: '<ng-content *ngTemplateOutlet="dbNavigation">'
+				},
+				{
+					from: 'export class DBHeader {\n',
+					to:
+						'export class DBHeader {\n' +
+						'\t@ContentChild(ActionBarDirective, { read: TemplateRef }) dbActionBar: any;\n' +
+						'\t@ContentChild(NavigationDirective, { read: TemplateRef }) dbNavigation: any;\n' +
+						'\t@ContentChild(MetaNavigationDirective, { read: TemplateRef }) dbMetaNavigation: any;\n'
+				},
+				{
+					from: 'import { NgModule } from "@angular/core";',
+					to:
+						"import { NgModule, ContentChild, TemplateRef } from '@angular/core';\t\n" +
+						"import { ActionBarDirective } from './action-bar.directive';\n" +
+						"import { NavigationDirective } from './navigation.directive';\n" +
+						"import { MetaNavigationDirective } from './meta-navigation.directive';"
+				}
+			],
 			vue: [
 				{
 					from: 'import { DBHeaderState, DBHeaderProps } from "./model";',
