@@ -50,7 +50,10 @@ export default function DBAlert(props: DBAlertProps) {
 				<link rel="stylesheet" href={state.stylePath} />
 			</Show>
 
-			<DBIcon icon={state.getIcon(props.icon, props.variant)} />
+			<DBIcon
+				className="db-alert-icon"
+				icon={state.getIcon(props.icon, props.variant)}
+			/>
 			<div class="db-alert-content-container">
 				<div class="db-alert-headline-container">
 					<Show
