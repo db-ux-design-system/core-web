@@ -13,7 +13,7 @@ useMetadata({
 					{
 						key: 'Interactive',
 						name: 'Interactive',
-						value: 'ia'
+						value: 'interactive'
 					},
 					{
 						key: 'Full Width',
