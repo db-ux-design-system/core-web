@@ -45,10 +45,7 @@ jobs:
           path: packages/components/build
 
       - name: 📲 Install dependencies
-        working-directory: ./output/${{ matrix.framework}}
-        run: |
-          npm ci
-          npx cpr packages/components/build ./node_modules/@db-ui/components/build -o
+        run: npm ci --ignore-scripts
 
       - name: 👩‍🔬 Test with Playwright 🎭
         working-directory: ./output/${{ matrix.framework}}
