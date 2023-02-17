@@ -1,0 +1,11 @@
+@use "@db-ui/foundations/build/scss/helpers/functions" as *;
+@import "../../styles/dialog-init";
+@import "drawer";
+
+.db-drawer {
+	.db-drawer-container {
+		.db-drawer-header {
+			height: to-rem(32);
+		}
+	}
+}

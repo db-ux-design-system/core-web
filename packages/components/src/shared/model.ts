@@ -2,6 +2,8 @@ export type GlobalProps = {
 	stylePath?: string;
 	className?: string;
 	children?: any;
+
+	id?: string;
 };
 
 export type GlobalState = {

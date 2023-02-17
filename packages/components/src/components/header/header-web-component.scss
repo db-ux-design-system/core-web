@@ -1,0 +1,11 @@
+@use "@db-ui/foundations/build/scss/helpers/functions" as *;
+@import "header";
+
+.db-header-navigation-bar {
+	height: to-rem(32);
+	width: auto;
+}
+
+.db-header-divider {
+	height: to-rem(32);
+}

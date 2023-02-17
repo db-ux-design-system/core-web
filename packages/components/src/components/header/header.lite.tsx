@@ -14,7 +14,7 @@ useMetadata({
 	isAttachedToShadowDom: true,
 	component: {
 		includeIcon: false,
-		properties: []
+		properties: [{ name: 'drawerOpen', type: 'TwoOptions' }]
 	}
 });
 
@@ -63,7 +63,7 @@ export default function DBHeader(props: DBHeaderProps) {
 				<div class="db-header-brand-container">
 					<Slot name="brand" />
 					<DBDivider
-						className="db-header-hide-on-mobile"
+						className="db-header-divider db-header-hide-on-mobile"
 						variant="vertical"></DBDivider>
 				</div>
 				<div class="db-header-navigation-container">
@@ -75,10 +75,14 @@ export default function DBHeader(props: DBHeaderProps) {
 					</div>
 				</div>
 				<div class="db-header-action-container">
-					<DBDivider variant="vertical" margin="none"></DBDivider>
+					<DBDivider
+						className="db-header-divider"
+						variant="vertical"
+						margin="none"></DBDivider>
 					<DBButton
+						id="button-burger-menu"
 						className="db-header-hide-on-desktop"
-						icon={props.drawerOpen ? 'close' : 'menu'}
+						icon="menu"
 						variant="ghost"
 						onClick={() => state.toggleDrawer()}>
 						Burger Menu

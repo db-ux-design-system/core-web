@@ -1,4 +1,3 @@
-@use "@db-ui/foundations/build/scss/variables" as *;
 @use "@db-ui/foundations/build/scss/db-ui-foundations" as *;
 
 @use "../components/button/button" as *;
@@ -16,24 +15,7 @@
 @use "../components/infotext/infotext" as *;
 @use "../components/drawer/drawer" as *;
 
-dialog {
-	padding: 0;
-	margin: 0;
-	border: 0;
-	z-index: 9996;
-	color: inherit;
-}
-
-dialog::backdrop {
-	background-color: $db-colors-neutral-on-bg-enabled;
-	opacity: 0.5;
-	position: fixed;
-	top: 0;
-	right: 0;
-	bottom: 0;
-	left: 0;
-	z-index: 9995;
-}
+@import "dialog-init";
 
 // angular-workaround
 dbbrand,

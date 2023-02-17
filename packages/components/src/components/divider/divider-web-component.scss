@@ -1,0 +1,7 @@
+@import "divider";
+
+.db-divider {
+	&[data-variant="vertical"] {
+		height: 100%;
+	}
+}

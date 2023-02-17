@@ -14,7 +14,7 @@ useMetadata({
 	isAttachedToShadowDom: true,
 	component: {
 		includeIcon: false,
-		properties: []
+		properties: [{ name: 'open', type: 'TwoOptions' }]
 	}
 });
 
@@ -64,6 +64,7 @@ export default function DBDrawer(props: DBDrawerProps) {
 				}>
 				<div class="db-drawer-header">
 					<DBButton
+						id="button-close-drawer"
 						icon="close"
 						variant="ghost"
 						onClick={() => state.handleClose('close')}>

@@ -6,7 +6,8 @@
  * 	global?:{from:string,to:string}[],
  * 	angular?:{from:string,to:string}[],
  * 	react?:{from:string,to:string}[],
- * 	vue?:{from:string,to:string}[]
+ * 	vue?:{from:string,to:string}[],
+ * 	webComponents?:{from:string,to:string}[]
  * },
  * config?:{
  *     vue?:{
@@ -18,7 +19,7 @@
 const getComponents = () => [
 	{
 		name: 'drawer',
-		defaultStylePath: 'components/drawer/drawer.css',
+		defaultStylePath: 'components/drawer/drawer-web-component.css',
 		overwrites: {
 			global: [
 				{ from: '(event) => handleClose', to: '() => handleClose' },
@@ -35,7 +36,8 @@ const getComponents = () => [
 					from: 'import { DBDrawerState, DBDrawerProps } from "./model";',
 					to: ''
 				}
-			]
+			],
+			webComponents: [{ from: '__prev.find', to: '!!__prev.find' }]
 		}
 	},
 
@@ -101,7 +103,7 @@ const getComponents = () => [
 	},
 	{
 		name: 'header',
-		defaultStylePath: 'components/header/header.css',
+		defaultStylePath: 'components/header/header-web-component.css',
 		overwrites: {
 			global: [
 				{
@@ -161,6 +163,30 @@ const getComponents = () => [
 					from: 'import { DBHeaderState, DBHeaderProps } from "./model";',
 					to: ''
 				}
+			],
+			webComponents: [
+				{
+					from: '<slot></slot>',
+					to: '<slot name="navigation-mobile"></slot>'
+				},
+				{
+					from: 'name="meta-navigation"',
+					to: 'name="meta-navigation-mobile"'
+				},
+				{
+					from: 'name="action-bar"',
+					to: 'name="action-bar-mobile"'
+				},
+				{
+					from:
+						'        el.removeEventListener("close", this.onDbDrawerDbHeaderClose);\n' +
+						'        el.addEventListener("close", this.onDbDrawerDbHeaderClose);',
+					to: 'el.props.onClose = this.onDbDrawerDbHeaderClose;'
+				},
+				{
+					from: 'if(this.props.drawerOpen)         el.setAttribute("open", this.props.drawerOpen);',
+					to: '        el.setAttribute("open", Boolean(this.props.drawerOpen));'
+				}
 			]
 		}
 	},
@@ -214,7 +240,7 @@ const getComponents = () => [
 	},
 	{
 		name: 'divider',
-		defaultStylePath: 'components/divider/divider.css',
+		defaultStylePath: 'components/divider/divider-web-component.css',
 		overwrites: {
 			vue: [
 				{
