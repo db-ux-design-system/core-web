@@ -60,6 +60,8 @@ const getExampleFile = (componentName, { displayName, props }) => {
 	let variants = '';
 	const optionArrays = [];
 
+	const isDialog = ['drawer'].includes(componentName);
+
 	const propKeys = Object.keys(props).filter(
 		(key) =>
 			key !== 'className' && key !== 'children' && key !== 'stylePath'
@@ -91,26 +93,46 @@ const getExampleFile = (componentName, { displayName, props }) => {
 		}
 	}
 
-	for (const optionArray of uniqueOptionArrays) {
-		variants += `<p>${optionArray.join(
-			', '
-		)}:</p> <${displayName} ${optionArray
-			.map((opt) => getOption(opt, props[opt]))
-			.join(' ')}>Test</${displayName}>\n`;
-	}
+	uniqueOptionArrays
+		.filter(
+			(optionArray) =>
+				!optionArray.includes('open') &&
+				!optionArray.includes('onClose')
+		)
+		.forEach((optionArray, index) => {
+			variants += `<p>${optionArray.join(', ')}:</p> ${
+				isDialog
+					? `<DBButton onClick={()=>{setDialog(${index})}}>Open Dialog</DBButton>`
+					: ''
+			} <${displayName} ${
+				isDialog
+					? `open={dialog===${index}} onClose={()=>setDialog(-1)}`
+					: ''
+			} ${optionArray
+				.map((opt) => getOption(opt, props[opt]))
+				.join(' ')}>Test</${displayName}>\n`;
+		});
 
 	return `
+${
+	isDialog
+		? 'import { useState } from "react";\nimport DBButton from "../../../components/src/components/button/button";'
+		: ''
+}
 import DefaultPage from "../../../components/default-page";
 import ${displayName} from "../../../components/src/components/${componentName}/${componentName}";
 
-export default () => <DefaultPage>
+
+export default () => {
+${isDialog ? 'const [dialog, setDialog] = useState<number>(-1);' : ''}
+return (<DefaultPage>
 <h1> ${displayName} Examples </h1>
 
 <div className="example-list">
-Default: <${displayName}>Test</${displayName}>
 ${variants}
 </div>
-</DefaultPage>;
+</DefaultPage>);
+}
 	`;
 };
 

@@ -7,7 +7,7 @@ import {
 	DbPage,
 	GithubVersionSwitcher
 } from '@db-ui/react-elements';
-import StaticContent from './static-content';
+import dynamic from 'next/dynamic';
 import { getRouteWithBasePath, ROUTES } from '../data/routes';
 import '@db-ui/core/dist/css/db-ui-core.vars.css';
 import { useRouter } from 'next/router';
@@ -37,32 +37,31 @@ const getRoutesWithCurrent = (
 const DefaultPage = ({ children }: any) => {
 	const router = useRouter();
 	return (
-		<StaticContent>
-			<DbPage>
-				<DbHeader slot="header">
-					{/* TODO: provide correct https://db-ui.github.io/mono/* path later on in here */}
-					<DbBrand src="https://db-ui.github.io/images/db_logo.svg">
-						{process.env.NEXT_PUBLIC_APP_NAME}
-					</DbBrand>
-					<DbMainnavigation
-						data={JSON.stringify(
-							getRoutesWithCurrent(ROUTES, router.pathname)
-						)}
-					/>
-					{process.env.NEXT_PUBLIC_GITHUB_VERSION_SWITCHER ===
-						'true' && (
-						<GithubVersionSwitcher
-							owner={process.env.NEXT_PUBLIC_GITHUB_OWNER}
-							repo={process.env.NEXT_PUBLIC_GITHUB_REPO}
-						/>
+		<DbPage>
+			<DbHeader slot="header">
+				{/* TODO: provide correct https://db-ui.github.io/mono/* path later on in here */}
+				<DbBrand src="https://db-ui.github.io/images/db_logo.svg">
+					{process.env.NEXT_PUBLIC_APP_NAME}
+				</DbBrand>
+				<DbMainnavigation
+					data={JSON.stringify(
+						getRoutesWithCurrent(ROUTES, router.pathname)
 					)}
-				</DbHeader>
-				<div>{children}</div>
+				/>
+				{process.env.NEXT_PUBLIC_GITHUB_VERSION_SWITCHER === 'true' && (
+					<GithubVersionSwitcher
+						owner={process.env.NEXT_PUBLIC_GITHUB_OWNER}
+						repo={process.env.NEXT_PUBLIC_GITHUB_REPO}
+					/>
+				)}
+			</DbHeader>
+			<div>{children}</div>
 
-				<DbFooter slot="footer" copyright />
-			</DbPage>
-		</StaticContent>
+			<DbFooter slot="footer" copyright />
+		</DbPage>
 	);
 };
 
-export default DefaultPage;
+export default dynamic(() => Promise.resolve(DefaultPage), {
+	ssr: false
+});

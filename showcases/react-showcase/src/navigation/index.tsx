@@ -1,5 +1,5 @@
-import { NAVIGATION_ITEMS } from '../utils/navigation-item';
 import { Link } from 'react-router-dom';
+import { NAVIGATION_ITEMS } from '../utils/navigation-item';
 
 const Navigation = () => (
 	/* TODO: use DBNavigation component in future */

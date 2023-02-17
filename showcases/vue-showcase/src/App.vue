@@ -61,7 +61,7 @@ watch(
 <template>
 	<DBPage type="fixedHeaderFooter">
 		<template v-slot:header>
-			<DBHeader :drawerOpen="drawerOpen" :onToggleDrawer="toggleDrawer">
+			<DBHeader :drawerOpen="drawerOpen" :onToggle="toggleDrawer">
 				<template v-slot:brand>
 					<DBBrand src="db_logo.svg" href="/vue-showcase/">
 						Vue Showcase

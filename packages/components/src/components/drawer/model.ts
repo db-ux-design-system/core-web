@@ -1,15 +1,21 @@
-import { GlobalProps, GlobalState } from '../../shared/model';
+import {
+	CloseEventProps,
+	CloseEventState,
+	GlobalProps,
+	GlobalState
+} from '../../shared/model';
 
 export interface DBDrawerDefaultProps {
 	open?: boolean;
 	slotDrawerHeader?: any;
-	onClose?: () => void;
 }
 
-export type DBDrawerProps = DBDrawerDefaultProps & GlobalProps;
+export type DBDrawerProps = DBDrawerDefaultProps &
+	GlobalProps &
+	CloseEventProps;
 
-export interface DBDrawerDefaultState {
-	handleClose?: (event: any) => void;
-}
+export interface DBDrawerDefaultState {}
 
-export type DBDrawerState = DBDrawerDefaultState & GlobalState;
+export type DBDrawerState = DBDrawerDefaultState &
+	GlobalState &
+	CloseEventState;

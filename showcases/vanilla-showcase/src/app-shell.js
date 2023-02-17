@@ -37,7 +37,7 @@ onload = () => {
 	content.className = getClassName(tonality, color);
 
 	if (selectTonalities.length > 0) {
-		selectTonalities.forEach((selectTonality) => {
+		for (const selectTonality of selectTonalities) {
 			selectTonality.value = tonality;
 			selectTonality.addEventListener('change', (event) => {
 				insertParameter(
@@ -46,20 +46,20 @@ onload = () => {
 					event.target.value
 				);
 			});
-		});
+		}
 	}
 
 	if (selectColors.length > 0) {
-		selectColors.forEach((selectColor) => {
+		for (const selectColor of selectColors) {
 			selectColor.value = color;
 			selectColor.addEventListener('change', (event) => {
 				insertParameter(queryParameters, 'color', event.target.value);
 			});
-		});
+		}
 	}
 
 	if (header) {
-		header.props.onToggleDrawer = (open) => {
+		header.props.onToggle = (open) => {
 			header.setAttribute('drawerOpen', open);
 		};
 	}

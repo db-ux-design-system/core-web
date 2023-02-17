@@ -20,9 +20,9 @@ useMetadata({
 
 export default function DBHeader(props: DBHeaderProps) {
 	const state = useStore<DBHeaderState>({
-		toggleDrawer: () => {
-			if (props.onToggleDrawer) {
-				props.onToggleDrawer(!props.drawerOpen);
+		toggle: () => {
+			if (props.onToggle) {
+				props.onToggle(!props.drawerOpen);
 			}
 		}
 	});
@@ -44,7 +44,7 @@ export default function DBHeader(props: DBHeaderProps) {
 			<DBDrawer
 				className="db-header-hide-on-desktop"
 				open={props.drawerOpen}
-				onClose={() => state.toggleDrawer()}>
+				onClose={() => state.toggle()}>
 				<div class="db-header-drawer-navigation">
 					<div class="db-header-navigation">{props.children}</div>
 					<div class="db-header-meta-navigation">
@@ -84,7 +84,7 @@ export default function DBHeader(props: DBHeaderProps) {
 						className="db-header-hide-on-desktop"
 						icon="menu"
 						variant="ghost"
-						onClick={() => state.toggleDrawer()}>
+						onClick={() => state.toggle()}>
 						Burger Menu
 					</DBButton>
 					<div class="db-header-action-bar db-header-hide-on-mobile">

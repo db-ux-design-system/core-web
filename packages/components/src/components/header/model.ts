@@ -1,4 +1,9 @@
-import { GlobalProps, GlobalState } from '../../shared/model';
+import {
+	GlobalProps,
+	GlobalState,
+	ToggleEventProps,
+	ToggleEventState
+} from '../../shared/model';
 
 export interface DBHeaderDefaultProps {
 	slotBrand?: any;
@@ -6,13 +11,14 @@ export interface DBHeaderDefaultProps {
 	slotCallToAction?: any;
 	slotActionBar?: any;
 	drawerOpen?: boolean;
-	onToggleDrawer?: (open: boolean) => void;
 }
 
-export type DBHeaderProps = DBHeaderDefaultProps & GlobalProps;
+export type DBHeaderProps = DBHeaderDefaultProps &
+	GlobalProps &
+	ToggleEventProps;
 
-export interface DBHeaderDefaultState {
-	toggleDrawer?: () => void;
-}
+export interface DBHeaderDefaultState {}
 
-export type DBHeaderState = DBHeaderDefaultState & GlobalState;
+export type DBHeaderState = DBHeaderDefaultState &
+	GlobalState &
+	ToggleEventState;
