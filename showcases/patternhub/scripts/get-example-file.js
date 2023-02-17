@@ -35,13 +35,17 @@ const getOption = (optionName, prop) => {
 
 	if (
 		prop.tsType.name === 'signature' &&
-		prop.tsType.raw === '(valid: boolean) => void'
+		prop.tsType.raw.includes('boolean) => void')
 	) {
-		return `${optionName}={(valid) => console.log(valid)}`;
+		return `${optionName}={(event) => console.log(event)}`;
 	}
 
 	if (optionName.toLowerCase().endsWith('src')) {
 		return `${optionName}="https://db-ui.github.io/images/db_logo.svg"`;
+	}
+
+	if (optionName.toLowerCase().startsWith('slot')) {
+		return `${optionName}={<div>${optionName}</div>}`;
 	}
 
 	return `${optionName}="account"`;

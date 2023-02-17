@@ -14,7 +14,7 @@
 	}
 
 	&[data-variant="vertical"] {
-		height: auto;
+		height: 100%;
 		width: to-rem(1);
 
 		&:not([data-margin="none"]) {

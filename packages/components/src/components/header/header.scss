@@ -44,6 +44,10 @@
 		padding: $db-spacing-fixed-xs $db-spacing-fixed-md;
 		margin: 0;
 	}
+
+	&:empty {
+		display: none;
+	}
 }
 
 .db-header-navigation-container {
@@ -56,6 +60,16 @@
 
 .db-header-call-to-action {
 	margin-inline-start: auto;
+}
+
+.db-header-brand-container:not(:has(> :nth-child(2))) {
+	display: none;
+}
+
+.db-header-action-container:has(> .db-header-action-bar:empty) {
+	@media screen and (min-width: $db-screens-s) {
+		display: none;
+	}
 }
 
 .db-header-brand-container,
