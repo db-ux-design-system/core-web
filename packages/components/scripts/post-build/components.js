@@ -107,12 +107,12 @@ const getComponents = () => [
 		overwrites: {
 			global: [
 				{
-					from: '(event) => toggleDrawer()',
-					to: '() => toggleDrawer()'
+					from: '(event) => toggle()',
+					to: '() => toggle()'
 				},
 				{
-					from: '(event) => toggleDrawer()',
-					to: '() => toggleDrawer()'
+					from: '(event) => toggle()',
+					to: '() => toggle()'
 				}
 			],
 			angular: [
