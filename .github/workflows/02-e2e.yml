@@ -49,9 +49,7 @@ jobs:
         run: |
           npm i -D esbuild-linux-64
           npm i
-          ls ./node_modules/@db-ui/components/build/styles
-          npx cpr ./packages/components/build ./node_modules/@db-ui/components/build -o
-          ls ./node_modules/@db-ui/components/build/styles
+          ls
 
       - name: 👩‍🔬 Test with Playwright 🎭
         working-directory: ./output/${{ matrix.framework}}
