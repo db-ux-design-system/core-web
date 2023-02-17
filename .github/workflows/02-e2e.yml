@@ -48,7 +48,7 @@ jobs:
         working-directory: ./output/react
         run: |
           npm i -D esbuild-linux-64
-          npm ci
+          npm i
 
       - name: 👩‍🔬 Test with Playwright 🎭
         working-directory: ./output/${{ matrix.framework}}
