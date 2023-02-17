@@ -46,7 +46,9 @@ jobs:
 
       - name: 📲 Install esbuild (binary workaround)
         working-directory: ./output/react
-        run: npm i -D esbuild-linux-64
+        run: |
+          npm i -D esbuild-linux-64
+          npm ci
 
       - name: 👩‍🔬 Test with Playwright 🎭
         working-directory: ./output/${{ matrix.framework}}

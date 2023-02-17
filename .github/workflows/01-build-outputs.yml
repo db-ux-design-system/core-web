@@ -34,9 +34,7 @@ jobs:
           path: output
 
       - name: 🔨 Build outputs
-        run: |
-          npm i
-          npm run build-outputs
+        run: npm run build-outputs
 
       - name: ⬆ Upload outputs
         uses: ./.github/actions/upload-tar-artifact
