@@ -33,13 +33,10 @@ jobs:
           name: db-ui-output
           path: output
 
-      - name: 📥 Install output dependencies
-        uses: bahmutov/npm-install@v1
-        with:
-          install-command: npm i
-
       - name: 🔨 Build outputs
-        run: npm run build-outputs
+        run: |
+          npm i
+          npm run build-outputs
 
       - name: ⬆ Upload outputs
         uses: ./.github/actions/upload-tar-artifact
