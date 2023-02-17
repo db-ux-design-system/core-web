@@ -93,25 +93,25 @@ const getExampleFile = (componentName, { displayName, props }) => {
 		}
 	}
 
-	uniqueOptionArrays
+	for (const [index, optionArray] of uniqueOptionArrays
 		.filter(
 			(optionArray) =>
 				!optionArray.includes('open') &&
 				!optionArray.includes('onClose')
 		)
-		.forEach((optionArray, index) => {
-			variants += `<p>${optionArray.join(', ')}:</p> ${
-				isDialog
-					? `<DBButton onClick={()=>{setDialog(${index})}}>Open Dialog</DBButton>`
-					: ''
-			} <${displayName} ${
-				isDialog
-					? `open={dialog===${index}} onClose={()=>setDialog(-1)}`
-					: ''
-			} ${optionArray
-				.map((opt) => getOption(opt, props[opt]))
-				.join(' ')}>Test</${displayName}>\n`;
-		});
+		.entries()) {
+		variants += `<p>${optionArray.join(', ')}:</p> ${
+			isDialog
+				? `<DBButton onClick={()=>{setDialog(${index})}}>Open Dialog</DBButton>`
+				: ''
+		} <${displayName} ${
+			isDialog
+				? `open={dialog===${index}} onClose={()=>setDialog(-1)}`
+				: ''
+		} ${optionArray
+			.map((opt) => getOption(opt, props[opt]))
+			.join(' ')}>Test</${displayName}>\n`;
+	}
 
 	return `
 ${
