@@ -45,9 +45,7 @@ jobs:
           path: packages/components/build
 
       - name: 📲 Install dependencies
-        working-directory: ./output/react
         run: |
-          npm i -D esbuild-linux-64
           npm i
           ls node_modules
 
