@@ -29,6 +29,10 @@ const getOption = (optionName, prop) => {
 		return `${optionName}={(event) => console.log(event)}`;
 	}
 
+	if (prop.tsType.name === 'signature' && prop.tsType.raw === '() => void') {
+		return `${optionName}={() => console.log("${optionName} triggered")}`;
+	}
+
 	if (
 		prop.tsType.name === 'signature' &&
 		prop.tsType.raw === '(valid: boolean) => void'
