@@ -49,7 +49,7 @@ jobs:
         run: |
           npm i -D esbuild-linux-64
           npm i
-          ls
+          ls node_modules
 
       - name: 👩‍🔬 Test with Playwright 🎭
         working-directory: ./output/${{ matrix.framework}}
