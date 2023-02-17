@@ -1,5 +1,5 @@
 ---
-name: Deploy Power Apps
+name: Build Power Apps
 
 on:
   workflow_call:
@@ -9,8 +9,8 @@ on:
         type: string
 
 jobs:
-  build-showcases:
-    name: Deploy Power Apps
+  build-power-apps:
+    name: Build Power Apps
     runs-on: ubuntu-latest
     steps:
       - name: ⬇ Checkout repo
@@ -50,18 +50,6 @@ jobs:
         with:
           name: db-ui-powerapps
           path: build-power-apps/DBUI
-
-      - name: ⬆ Upload Release Asset
-        id: upload-release-asset
-        uses: actions/github-script@v6
-        with:
-          result-encoding: json
-          script: |
-            const { default: uploadAsset } = await import('${{ github.workspace }}/.github/scripts/upload-asset.js');
-            const release_id = context.payload.release.id;
-            const assetName = 'DBUI.zip';
-            const assetPath = '${{ github.workspace }}/build-power-apps/DBUI/bin/Release/DBUI.zip';
-            return await uploadAsset({github, context, release_id, assetName, assetPath});
 
       - name: 💀 Killing me softly
         uses: ./.github/actions/cancel-workflow
