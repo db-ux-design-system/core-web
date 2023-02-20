@@ -6,6 +6,15 @@
 @use "@db-ui/foundations/build/scss/icon/icons.helpers" as *;
 @use "@db-ui/foundations/build/scss/helpers/shadow-dom" as *;
 
+@mixin get-variant-bg-color($alpha) {
+	background-color: rgba(
+		var(--db-current-background-color-red),
+		var(--db-current-background-color-green),
+		var(--db-current-background-color-blue),
+		var(--db-current-background-color-alpha, $alpha)
+	);
+}
+
 .db-button {
 	// Including a loading indicator
 	--loadingIndicator---color: currentColor;
@@ -61,49 +70,17 @@
 		@extend %db-bg-primary-ia;
 	}
 
-	&%variant-secondary {
-		background-color: $db-colors-neutral-bg-transparent-full-enabled;
-		border: solid 1px
-			var(--db-current-color, $db-colors-neutral-on-bg-enabled);
+	&%default-variant {
+		@include get-variant-bg-color(0);
 		color: var(--db-current-color, $db-colors-neutral-on-bg-enabled);
 
 		&:not(:disabled) {
 			&:hover {
-				background-color: $db-colors-neutral-bg-transparent-full-hover;
+				@include get-variant-bg-color(0.16);
 			}
 
 			&:active {
-				background-color: $db-colors-neutral-bg-transparent-full-pressed;
-			}
-		}
-	}
-
-	&%variant-tertiary {
-		background-color: $db-colors-neutral-bg-transparent-semi-enabled;
-		color: var(--db-current-color, $db-colors-neutral-on-bg-enabled);
-
-		&:not(:disabled) {
-			&:hover {
-				background-color: $db-colors-neutral-bg-transparent-semi-hover;
-			}
-
-			&:active {
-				background-color: $db-colors-neutral-bg-transparent-semi-pressed;
-			}
-		}
-	}
-
-	&%variant-ghost {
-		background-color: $db-colors-neutral-bg-transparent-full-enabled;
-		color: var(--db-current-color, $db-colors-neutral-on-bg-enabled);
-
-		&:not(:disabled) {
-			&:hover {
-				background-color: $db-colors-neutral-bg-transparent-full-hover;
-			}
-
-			&:active {
-				background-color: $db-colors-neutral-bg-transparent-full-pressed;
+				@include get-variant-bg-color(0.24);
 			}
 		}
 	}
@@ -138,15 +115,18 @@
 	// Providing the variants as HTML attributes as well
 
 	&[data-variant="secondary"] {
-		@extend %variant-secondary;
+		@extend %default-variant;
+		border: solid 1px
+			var(--db-current-color, $db-colors-neutral-on-bg-enabled);
 	}
 
 	&[data-variant="tertiary"] {
-		@extend %variant-tertiary;
+		@extend %default-variant;
+		@include get-variant-bg-color(0.08);
 	}
 
 	&[data-variant="ghost"] {
-		@extend %variant-ghost;
+		@extend %default-variant;
 	}
 
 	&:disabled {

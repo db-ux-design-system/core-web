@@ -5,23 +5,38 @@
 
 const prefix = 'db';
 const fileHeader = `
+@use "sass:color";
 @use "variables" as *;
 // Do not edit directly
 // Generated on
 // ${new Date().toString()}
 `;
 
-const generateInteractiveVariants = (currentColorObject, cssProp) => {
+const getRBGA = (
+	primaryColor,
+	type
+) => `	--db-current-background-color-red: #{color.red($${prefix}-${primaryColor[type]?.name})};
+			--db-current-background-color-green: #{color.green($${prefix}-${primaryColor[type]?.name})};
+			--db-current-background-color-blue: #{color.blue($${prefix}-${primaryColor[type]?.name})};
+			`;
+
+const generateInteractiveVariants = (
+	currentColorObject,
+	cssProp,
+	primaryColor
+) => {
 	return `
 		&:not(:disabled) {
 			&:hover {
 				${cssProp}: $${prefix}-${currentColorObject.hover.name};
     			--db-current-${cssProp}: #{$${prefix}-${currentColorObject.hover.name}};
+    			${primaryColor ? getRBGA(primaryColor, 'hover') : ''}
 			}
 
 			&:active {
 				${cssProp}: $${prefix}-${currentColorObject.pressed.name};
 				--db-current-${cssProp}: #{$${prefix}-${currentColorObject.pressed.name}};
+    			${primaryColor ? getRBGA(primaryColor, 'pressed') : ''}
 			}
         }
         `;
@@ -36,23 +51,34 @@ const generateBGVariants = (
 	value,
 	variant,
 	currentColorObject,
-	baseColorObject
+	baseColorObject,
+	primaryColor
 ) => {
 	const placeholderName = `${prefix}-bg-${value}${
 		variant ? `-${variant}` : ''
 	}`;
 	let result = `
 %${placeholderName}-ia-states {
-	${generateInteractiveVariants(currentColorObject, 'background-color')}
+	${generateInteractiveVariants(
+		currentColorObject,
+		'background-color',
+		primaryColor
+	)}
 }
 
 %${placeholderName} {
+	//TODO: Use css-variable for overwrite
     background-color: $${prefix}-${currentColorObject.enabled.name};
     color: $${prefix}-${baseColorObject.enabled.name};
 
-    --db-current-background-color: #{$${prefix}-${
-		currentColorObject.enabled.name
-	}};
+
+
+    ${baseColorObject ? getRBGA(primaryColor, 'enabled') : ''}
+    ${
+		currentColorObject === primaryColor
+			? `--db-current-background-color-alpha: 1;`
+			: ''
+	}
     --db-current-color: #{$${prefix}-${baseColorObject.enabled.name}};
 
     &-ia, &[data-variant="ia"] {
@@ -122,7 +148,8 @@ ${generateInteractiveVariants(colorToken[value].element, 'color')}
 				value,
 				undefined,
 				colorToken[value],
-				colorToken[value].on
+				colorToken[value].on,
+				colorToken[value]
 			);
 		}
 
@@ -132,7 +159,8 @@ ${generateInteractiveVariants(colorToken[value].element, 'color')}
 					value,
 					variant,
 					colorToken[value].bg[variant],
-					colorToken[value].on.bg
+					colorToken[value].on.bg,
+					colorToken[value]
 				);
 			} else {
 				for (const childVariant of Object.keys(
@@ -142,7 +170,8 @@ ${generateInteractiveVariants(colorToken[value].element, 'color')}
 						value,
 						variant + '-' + childVariant,
 						colorToken[value].bg[variant][childVariant],
-						colorToken[value].on.bg
+						colorToken[value].on.bg,
+						colorToken[value]
 					);
 				}
 			}
