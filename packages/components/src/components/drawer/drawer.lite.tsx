@@ -2,7 +2,6 @@ import {
 	onMount,
 	onUpdate,
 	Show,
-	Slot,
 	useMetadata,
 	useRef,
 	useStore
@@ -27,6 +26,16 @@ export default function DBDrawer(props: DBDrawerProps) {
 					props.onClose();
 				}
 			}
+		},
+		handleDialogOpen: () => {
+			if (dialogRef) {
+				if (props.open && !dialogRef.open) {
+					dialogRef.showModal();
+				}
+				if (!props.open && dialogRef.open) {
+					dialogRef.close();
+				}
+			}
 		}
 	});
 
@@ -34,17 +43,11 @@ export default function DBDrawer(props: DBDrawerProps) {
 		if (props.stylePath) {
 			state.stylePath = props.stylePath;
 		}
+		state.handleDialogOpen();
 	});
 
 	onUpdate(() => {
-		if (dialogRef) {
-			if (props.open && !dialogRef.open) {
-				dialogRef.showModal();
-			}
-			if (!props.open && dialogRef.open) {
-				dialogRef.close();
-			}
-		}
+		state.handleDialogOpen();
 	}, [props.open]);
 
 	return (

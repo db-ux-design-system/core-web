@@ -14,7 +14,9 @@ export type DBDrawerProps = DBDrawerDefaultProps &
 	GlobalProps &
 	CloseEventProps;
 
-export interface DBDrawerDefaultState {}
+export interface DBDrawerDefaultState {
+	handleDialogOpen: () => void;
+}
 
 export type DBDrawerState = DBDrawerDefaultState &
 	GlobalState &

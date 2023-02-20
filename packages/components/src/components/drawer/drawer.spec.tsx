@@ -3,7 +3,7 @@ import AxeBuilder from '@axe-core/playwright';
 
 import { DBDrawer } from './index';
 
-const comp = <DBDrawer>Test</DBDrawer>;
+const comp = <DBDrawer open={true}>Test</DBDrawer>;
 
 const testComponent = () => {
 	test('DBDrawer should contain text', async ({ mount }) => {
@@ -11,8 +11,9 @@ const testComponent = () => {
 		await expect(component).toContainText('Test');
 	});
 
-	test('DBDrawer should match screenshot', async ({ mount }) => {
+	test.fixme('DBDrawer should match screenshot', async ({ mount }) => {
 		const component = await mount(comp);
+		// TODO: Screenshots are not captured for top-layer
 		await expect(component).toHaveScreenshot();
 	});
 };
