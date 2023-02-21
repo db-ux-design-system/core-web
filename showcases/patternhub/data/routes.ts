@@ -178,6 +178,26 @@ const componentChildren = [
 				]
 			}
 		]
+	},
+	{
+		label: '06 Feedback',
+		link: '/components/06-feedback',
+		children: [
+			{
+				label: 'DBAlert',
+				link: '/components/alert',
+				children: [
+					{
+						label: 'Examples',
+						link: '/components/alert/examples'
+					},
+					{
+						label: 'How to use',
+						link: '/components/alert/how-to-use'
+					}
+				]
+			}
+		]
 	}
 ];
 export const ROUTES: DbMainnavigationDataType[] = [

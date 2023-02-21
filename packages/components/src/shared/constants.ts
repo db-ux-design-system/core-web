@@ -51,9 +51,16 @@ export enum COLOR {
 
 export const COLORS: COLOR[] = Object.entries(COLOR).map(([, value]) => value);
 
-// @ts-ignore
-const colors = COLORS as const;
-export type ColorType = (typeof colors)[number];
+export enum VARIANT {
+	'CRITICAL' = 'critical',
+	'INFORMATION' = 'information',
+	'WARNING' = 'warning',
+	'SUCCESS' = 'success'
+}
+
+export const VARIANTS: VARIANT[] = Object.entries(VARIANT).map(
+	([, value]) => value
+);
 
 export const INVALID_INPUT_BACKGROUNDS = [
 	COLOR.PRIMARY,
@@ -62,4 +69,10 @@ export const INVALID_INPUT_BACKGROUNDS = [
 	COLOR.WARNING,
 	COLOR.CRITICAL,
 	COLOR.INFORMATION
+];
+
+export const TESTING_VIEWPORTS = [
+	{ name: 'desktop', width: 1920, height: 1280 },
+	{ name: 'tablet', width: 768, height: 1024 },
+	{ name: 'mobile', width: 390, height: 884 }
 ];
