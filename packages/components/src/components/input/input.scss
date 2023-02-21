@@ -316,6 +316,11 @@
 	input[aria-invalid="true"] {
 		@extend %db-bg-critical-transparent-semi;
 		@extend %db-bg-critical-transparent-semi-hover-state;
+		border: solid 1px
+			var(
+				--db-colors-critical-element-enabled,
+				$db-colors-critical-element-enabled
+			);
 
 		& + label {
 			color: $db-colors-critical-on-bg-enabled;
@@ -338,6 +343,11 @@
 	&[data-variant="warning"] input {
 		@extend %db-bg-warning-transparent-semi;
 		@extend %db-bg-warning-transparent-semi-hover-state;
+		border: solid 1px
+			var(
+				--db-colors-warning-element-enabled,
+				$db-colors-warning-element-enabled
+			);
 
 		& + label {
 			color: $db-colors-warning-on-bg-enabled;
@@ -358,6 +368,11 @@
 	&[data-variant="success"] input {
 		@extend %db-bg-success-transparent-semi;
 		@extend %db-bg-success-transparent-semi-hover-state;
+		border: solid 1px
+			var(
+				--db-colors-success-element-enabled,
+				$db-colors-success-element-enabled
+			);
 
 		& + label {
 			color: $db-colors-success-on-bg-enabled;
@@ -378,6 +393,11 @@
 	&[data-variant="information"] input {
 		@extend %db-bg-information-transparent-semi;
 		@extend %db-bg-information-transparent-semi-hover-state;
+		border: solid 1px
+			var(
+				--db-colors-information-element-enabled,
+				$db-colors-information-element-enabled
+			);
 
 		& + label {
 			color: $db-colors-information-on-bg-enabled;
