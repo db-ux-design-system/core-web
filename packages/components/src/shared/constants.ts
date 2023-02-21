@@ -19,8 +19,6 @@ export enum COLOR {
 	'NEUTRAL_2' = 'neutral-2',
 	'NEUTRAL_3' = 'neutral-3',
 	'NEUTRAL_4' = 'neutral-4',
-	'NEUTRAL_5' = 'neutral-5',
-	'NEUTRAL_6' = 'neutral-6',
 	'NEUTRAL_TRANSPARENT_FULL' = 'neutral-transparent-full',
 	'NEUTRAL_TRANSPARENT_SEMI' = 'neutral-transparent-semi',
 	'PRIMARY' = 'primary',
