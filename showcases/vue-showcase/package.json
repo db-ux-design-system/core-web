@@ -7,11 +7,10 @@
     "build": "npm-run-all build:*",
     "build:01_vite": "vite build",
     "build:02_copy": "cpr dist ../../build-showcases/vue-showcase -o",
-    "build:03_copy": "cpr dist dist/vue-showcase -o",
     "dev": "vite --open",
     "prestart:e2e": "npm run build",
     "start": "vite",
-    "start:e2e": "npx http-server dist",
+    "start:e2e": "npx http-server ../../build-showcases",
     "test:e2e": "cross-env showcase=vue-showcase npx playwright test --config=../playwright.config.ts"
   },
   "dependencies": {

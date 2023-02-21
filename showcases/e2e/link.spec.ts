@@ -6,7 +6,7 @@ for (const tonality of TONALITIES) {
 		test(`Link should match screenshot for tonality "${tonality}" and color "${color}"`, async ({
 			page
 		}) => {
-			await page.goto(`/#/link?tonality=${tonality}&color=${color}`);
+			await page.goto(`./#/link?tonality=${tonality}&color=${color}`);
 			await expect(page).toHaveScreenshot({ fullPage: true });
 		});
 	}

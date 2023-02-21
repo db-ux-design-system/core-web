@@ -6,7 +6,7 @@ for (const tonality of TONALITIES) {
 		test(`Section should match screenshot for tonality "${tonality}" and color "${color}"`, async ({
 			page
 		}) => {
-			await page.goto(`/#/section?tonality=${tonality}&color=${color}`);
+			await page.goto(`./#/section?tonality=${tonality}&color=${color}`);
 			await expect(page).toHaveScreenshot({ fullPage: true });
 		});
 	}

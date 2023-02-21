@@ -8,11 +8,10 @@
     "build:01_tsc": "tsc",
     "build:02_vite": "vite build",
     "build:03_copy": "cpr dist ../../build-showcases/react-showcase -o",
-    "build:04_copy": "cpr dist dist/react-showcase -o",
     "dev": "vite --open",
-    "prestart:e2e": "npm run build:02_vite && npm run build:04_copy",
+    "prestart:e2e": "npm run build",
     "start": "vite",
-    "start:e2e": "npx http-server dist",
+    "start:e2e": "npx http-server ../../build-showcases",
     "test:e2e": "cross-env showcase=react-showcase npx playwright test --config=../playwright.config.ts"
   },
   "dependencies": {

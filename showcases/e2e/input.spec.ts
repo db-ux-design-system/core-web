@@ -6,7 +6,7 @@ for (const tonality of TONALITIES) {
 		test(`Input should match screenshot for tonality "${tonality}" and color "${color}"`, async ({
 			page
 		}) => {
-			await page.goto(`/#/input?tonality=${tonality}&color=${color}`);
+			await page.goto(`./#/input?tonality=${tonality}&color=${color}`);
 			await expect(page).toHaveScreenshot({ fullPage: true });
 		});
 	}
