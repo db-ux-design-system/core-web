@@ -77,8 +77,8 @@
     "update:foundations:tokens": "cpr ../base/tokens packages/foundations/tokens -o"
   },
   "devDependencies": {
-    "@commitlint/cli": "17.4.3",
-    "@commitlint/config-conventional": "17.4.3",
+    "@commitlint/cli": "17.4.4",
+    "@commitlint/config-conventional": "17.4.4",
     "cpr": "3.0.1",
     "dotenv": "^16.0.3",
     "fs-extra": "^11.1.0",

@@ -43,10 +43,22 @@ jobs:
       version: 0.0.0-test
 
   checks-done:
+    if: ${{ always() }}
     runs-on: ubuntu-latest
     steps:
       - name: 🎉 Checks done
-        run: echo "🎉 All tests were successful."
+        run: |
+          resultBuildShowcases="${{ needs.build-showcases.result }}"
+          resultBuildOutputs="${{ needs.build-outputs.result }}"
+          resultTestPackages="${{ needs.test-packages.result }}"
+          resultBuildPowerApps="${{ needs.build-power-apps.result }}"
+          if [[ $resultBuildShowcases == "success" && $resultBuildOutputs == "success" && $resultTestPackages == "success" && $resultBuildPowerApps == "success" ]]; then
+             echo "🎉 All tests were successful."
+            exit 0
+          else
+             echo "Some tests were failing."
+            exit 1
+          fi
     needs: [build-showcases, build-outputs, test-packages, build-power-apps]
 
   deploy:
