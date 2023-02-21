@@ -1,0 +1,13 @@
+import { test, expect } from '@playwright/test';
+import { COLORS, TONALITIES } from './fixtures/variants.ts';
+
+for (const tonality of TONALITIES) {
+	for (const color of COLORS) {
+		test(`Link should match screenshot for tonality "${tonality}" and color "${color}"`, async ({
+			page
+		}) => {
+			await page.goto(`/#/link?tonality=${tonality}&color=${color}`);
+			await expect(page).toHaveScreenshot({ fullPage: true });
+		});
+	}
+}

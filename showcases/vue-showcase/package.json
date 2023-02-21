@@ -7,15 +7,21 @@
     "build": "npm-run-all build:*",
     "build:01_vite": "vite build",
     "build:02_copy": "cpr dist ../../build-showcases/vue-showcase -o",
+    "build:03_copy": "cpr dist dist/vue-showcase -o",
     "dev": "vite --open",
-    "start": "vite"
+    "prestart:e2e": "npm run build",
+    "start": "vite",
+    "start:e2e": "npx http-server dist",
+    "test:e2e": "cross-env showcase=vue-showcase npx playwright test --config=../playwright.config.ts"
   },
   "dependencies": {
     "vue": "^3.2.47",
     "vue-router": "4.1.6"
   },
   "devDependencies": {
+    "@playwright/test": "1.30.0",
     "@vitejs/plugin-vue": "^4.0.0",
+    "cross-env": "^7.0.3",
     "sass": "^1.58.3",
     "typescript": "^4.9.5",
     "vite": "^4.1.4",

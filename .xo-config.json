@@ -38,5 +38,6 @@
 				}
 			}
 		]
-	}
+	},
+	"ignores": ["showcases/playwright.config.ts", "showcases/e2e/**/*"]
 }
