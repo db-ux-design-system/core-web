@@ -1,9 +1,16 @@
 import { DBInfotext } from '../../../../../output/react/src';
-import DefaultComponent, { type DefaultComponentVariants } from '../index';
+import DefaultComponent from '../index';
+import type { DefaultComponentVariants } from '../data';
 
 const variants: DefaultComponentVariants[] = [
 	{
 		name: 'Variant',
+		code:
+			'<DBInfotext icon="account">Infotext</DBInfotext>\n' +
+			'<DBInfotext variant="critical">Infotext</DBInfotext>\n' +
+			'<DBInfotext variant="information">Infotext</DBInfotext>\n' +
+			'<DBInfotext variant="success">Infotext</DBInfotext>\n' +
+			'<DBInfotext variant="warning">Infotext</DBInfotext>\n',
 		examples: [
 			{
 				name: '(Default) Adaptive',
@@ -29,6 +36,9 @@ const variants: DefaultComponentVariants[] = [
 	},
 	{
 		name: 'Size',
+		code:
+			'<DBInfotext>Infotext</DBInfotext>\n' +
+			'<DBInfotext size="small">Infotext</DBInfotext>\n',
 		examples: [
 			{
 				name: '(Default) Medium',

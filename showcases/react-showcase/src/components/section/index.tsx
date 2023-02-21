@@ -1,5 +1,6 @@
 import { DBSection } from '../../../../../output/react/src';
-import DefaultComponent, { type DefaultComponentVariants } from '../index';
+import DefaultComponent from '../index';
+import type { DefaultComponentVariants } from '../data';
 
 const variants: DefaultComponentVariants[] = [
 	{

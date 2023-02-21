@@ -1,23 +1,51 @@
-import { type CSSProperties, type ReactElement } from 'react';
-import { DBDivider } from '../../../../output/react/src';
+import { useState } from 'react';
+import {
+	DBCard,
+	DBDivider,
+	DBLink,
+	DBButton
+} from '../../../../output/react/src';
+import useQuery from '../hooks/use-query';
+import {
+	type DefaultComponentProps,
+	type DefaultComponentVariants
+} from './data';
 
-export type DefaultComponentExample = {
-	name: string;
-	example: ReactElement;
-	style?: CSSProperties;
-
-	className?: string;
-};
-
-export type DefaultComponentVariants = {
-	name: string;
-	examples: DefaultComponentExample[];
-};
-
-export type DefaultComponentProps = {
-	title: string;
-	description?: ReactElement;
-	variants: DefaultComponentVariants[];
+const VariantList = ({ examples, code }: DefaultComponentVariants) => {
+	const [codeOpen, setCodeOpen] = useState<boolean>();
+	return (
+		<DBCard className="variants-card">
+			<ul className="variants-list">
+				{examples.map((example, exampleIndex) => (
+					<li
+						key={`${example.name}-${exampleIndex}`}
+						style={example.style}
+						className={example.className}>
+						<p className="example-name">
+							<small>{example.name}</small>
+						</p>
+						{example.example}
+					</li>
+				))}
+			</ul>
+			{codeOpen && (
+				<div className="variant-code">
+					<pre>
+						<code>{code ?? 'No Code available'}</code>
+					</pre>
+				</div>
+			)}
+			<DBButton
+				className="code-button"
+				size="small"
+				variant="primary"
+				onClick={() => {
+					setCodeOpen(!codeOpen);
+				}}>
+				{codeOpen ? 'Hide Code' : 'Show Code'}
+			</DBButton>
+		</DBCard>
+	);
 };
 
 const DefaultComponent = ({
@@ -25,6 +53,18 @@ const DefaultComponent = ({
 	description,
 	variants
 }: DefaultComponentProps) => {
+	const pageName = useQuery()[4];
+	const setPageName = useQuery()[5];
+
+	if (pageName) {
+		const foundVariant = variants.find(
+			(variant) => variant.name.toLowerCase() === pageName
+		);
+		if (foundVariant) {
+			return <VariantList {...foundVariant} />;
+		}
+	}
+
 	return (
 		<div className="default-container">
 			<h1>{title}</h1>
@@ -32,20 +72,12 @@ const DefaultComponent = ({
 			{variants?.map((variant, index) => (
 				<div key={`${variant.name}-${index}`}>
 					<DBDivider></DBDivider>
-					<strong>{variant.name}</strong>
-					<ul className="variants-list">
-						{variant.examples.map((example, exampleIndex) => (
-							<li
-								key={`${example.name}-${exampleIndex}`}
-								style={example.style}
-								className={example.className}>
-								<p>
-									<small>{example.name}</small>
-								</p>
-								{example.example}
-							</li>
-						))}
-					</ul>
+					<DBLink
+						content="external"
+						onClick={() => setPageName(variant.name.toLowerCase())}>
+						<strong>{variant.name}</strong>
+					</DBLink>
+					<VariantList {...variant} />
 				</div>
 			))}
 		</div>

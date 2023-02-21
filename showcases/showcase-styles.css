@@ -12,6 +12,41 @@
 	padding: var(--db-spacing-fixed-md);
 }
 
+.code-button {
+	position: absolute;
+	bottom: 0;
+	right: 0;
+}
+
+.variant-code {
+	position: absolute;
+	bottom: 0;
+	right: 0;
+	left: 0;
+	top: 0;
+}
+
+@media screen and (min-width: 768px) {
+	.variant-code {
+		left: 50%;
+	}
+}
+
+.variant-code pre {
+	border-radius: 8px;
+	margin: 0;
+	display: flex;
+	height: 100%;
+	overflow: auto;
+}
+
+.variants-card {
+	margin: var(--db-spacing-fixed-md);
+	padding: var(--db-spacing-fixed-md);
+	padding-block-end: calc(var(--db-spacing-fixed-md) + var(--db-sizing-sm));
+	position: relative;
+}
+
 .variants-list {
 	list-style-type: none;
 	margin: 0;
@@ -19,6 +54,11 @@
 	display: flex;
 	flex-wrap: wrap;
 	gap: var(--db-spacing-fixed-md);
+}
+
+.example-name {
+	margin-block-start: 0;
+	margin-block-end: var(--db-spacing-fixed-md);
 }
 
 /**

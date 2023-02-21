@@ -1,16 +1,26 @@
 import { DBAlert } from '../../../../../output/react/src';
-import { type LinkProps } from '../../../../../output/react/src/shared/model';
-import DefaultComponent, { type DefaultComponentVariants } from '../index';
-
-const defaultHeadline = 'Headline';
-const defaultText = 'Type Something';
-
-const defaultLink = 'Link';
-const defaultLinkProps: LinkProps = { href: '#' };
+import DefaultComponent from '../index';
+import type { DefaultComponentVariants } from '../data';
 
 const variants: DefaultComponentVariants[] = [
 	{
 		name: 'Type',
+		code: `
+<DBAlert
+	type="alert"
+	headline="Headline"
+	link={{ href: '#' }}
+	slotLink="Link">
+	Type Something
+</DBAlert>
+
+<DBAlert
+	type="inline"
+	headline="Headline"
+	link={{ href: '#' }}
+	slotLink="Link">
+	Type Something
+</DBAlert>`,
 		examples: [
 			{
 				name: '(Default) Alert',
@@ -18,10 +28,10 @@ const variants: DefaultComponentVariants[] = [
 				example: (
 					<DBAlert
 						type="alert"
-						headline={defaultHeadline}
-						link={defaultLinkProps}
-						slotLink={defaultLink}>
-						{defaultText}
+						headline="Headline"
+						link={{ href: '#' }}
+						slotLink="Link">
+						Type Something
 					</DBAlert>
 				)
 			},
@@ -31,10 +41,10 @@ const variants: DefaultComponentVariants[] = [
 				example: (
 					<DBAlert
 						type="inline"
-						headline={defaultHeadline}
-						link={defaultLinkProps}
-						slotLink={defaultLink}>
-						{defaultText}
+						headline="Headline"
+						link={{ href: '#' }}
+						slotLink="Link">
+						Type Something
 					</DBAlert>
 				)
 			}
@@ -42,6 +52,46 @@ const variants: DefaultComponentVariants[] = [
 	},
 	{
 		name: 'Variant',
+		code: `
+<DBAlert
+	icon="account"
+	headline="Headline"
+	link={{ href: '#' }}
+	slotLink="Link">
+	Type Something
+</DBAlert>
+
+<DBAlert
+	variant="critical"
+	headline="Headline"
+	link={{ href: '#' }}
+	slotLink="Link">
+	Type Something
+</DBAlert>
+
+<DBAlert
+	variant="information"
+	headline="Headline"
+	link={{ href: '#' }}
+	slotLink="Link">
+	Type Something
+</DBAlert>
+
+<DBAlert
+	variant="success"
+	headline="Headline"
+	link={{ href: '#' }}
+	slotLink="Link">
+	Type Something
+</DBAlert>
+
+<DBAlert
+	variant="warning"
+	headline="Headline"
+	link={{ href: '#' }}
+	slotLink="Link">
+	Type Something
+</DBAlert>`,
 		examples: [
 			{
 				name: '(Default) Adaptive',
@@ -49,10 +99,10 @@ const variants: DefaultComponentVariants[] = [
 				example: (
 					<DBAlert
 						icon="account"
-						headline={defaultHeadline}
-						link={defaultLinkProps}
-						slotLink={defaultLink}>
-						{defaultText}
+						headline="Headline"
+						link={{ href: '#' }}
+						slotLink="Link">
+						Type Something
 					</DBAlert>
 				)
 			},
@@ -62,10 +112,10 @@ const variants: DefaultComponentVariants[] = [
 				example: (
 					<DBAlert
 						variant="critical"
-						headline={defaultHeadline}
-						link={defaultLinkProps}
-						slotLink={defaultLink}>
-						{defaultText}
+						headline="Headline"
+						link={{ href: '#' }}
+						slotLink="Link">
+						Type Something
 					</DBAlert>
 				)
 			},
@@ -75,10 +125,10 @@ const variants: DefaultComponentVariants[] = [
 				example: (
 					<DBAlert
 						variant="information"
-						headline={defaultHeadline}
-						link={defaultLinkProps}
-						slotLink={defaultLink}>
-						{defaultText}
+						headline="Headline"
+						link={{ href: '#' }}
+						slotLink="Link">
+						Type Something
 					</DBAlert>
 				)
 			},
@@ -88,10 +138,10 @@ const variants: DefaultComponentVariants[] = [
 				example: (
 					<DBAlert
 						variant="success"
-						headline={defaultHeadline}
-						link={defaultLinkProps}
-						slotLink={defaultLink}>
-						{defaultText}
+						headline="Headline"
+						link={{ href: '#' }}
+						slotLink="Link">
+						Type Something
 					</DBAlert>
 				)
 			},
@@ -101,10 +151,10 @@ const variants: DefaultComponentVariants[] = [
 				example: (
 					<DBAlert
 						variant="warning"
-						headline={defaultHeadline}
-						link={defaultLinkProps}
-						slotLink={defaultLink}>
-						{defaultText}
+						headline="Headline"
+						link={{ href: '#' }}
+						slotLink="Link">
+						Type Something
 					</DBAlert>
 				)
 			}
@@ -112,17 +162,38 @@ const variants: DefaultComponentVariants[] = [
 	},
 	{
 		name: 'Content',
+		code: `
+<DBAlert
+	icon="account"
+	headline="Headline"
+	link={{ href: '#' }}
+	slotLink="Link">
+	Type Something
+</DBAlert>
+
+<DBAlert
+	headline="Headline"
+	link={{ href: '#' }}
+	slotLink="Link">
+	Type Something
+</DBAlert>
+
+<DBAlert
+	link={{ href: '#' }}
+	slotLink="Link">
+	Type Something
+</DBAlert>`,
 		examples: [
 			{
 				name: 'Headline & Text & Link & Icon',
 				style: { width: '100%' },
 				example: (
 					<DBAlert
-						headline={defaultHeadline}
-						link={defaultLinkProps}
-						slotLink={defaultLink}
+						headline="Headline"
+						link={{ href: '#' }}
+						slotLink="Link"
 						icon="account">
-						{defaultText}
+						Type Something
 					</DBAlert>
 				)
 			},
@@ -131,10 +202,10 @@ const variants: DefaultComponentVariants[] = [
 				style: { width: '100%' },
 				example: (
 					<DBAlert
-						headline={defaultHeadline}
-						link={defaultLinkProps}
-						slotLink={defaultLink}>
-						{defaultText}
+						headline="Headline"
+						link={{ href: '#' }}
+						slotLink="Link">
+						Type Something
 					</DBAlert>
 				)
 			},
@@ -142,34 +213,45 @@ const variants: DefaultComponentVariants[] = [
 				name: 'Text & Link',
 				style: { width: '100%' },
 				example: (
-					<DBAlert link={defaultLinkProps} slotLink={defaultLink}>
-						{defaultText}
+					<DBAlert link={{ href: '#' }} slotLink="Link">
+						Type Something
 					</DBAlert>
 				)
 			},
 			{
 				name: 'Text',
 				style: { width: '100%' },
-				example: <DBAlert>{defaultText}</DBAlert>
+				example: <DBAlert>Type Something</DBAlert>
 			}
 		]
 	},
 	{
 		name: 'Behaviour',
+		code: `
+<DBAlert
+	icon="account"
+	headline="Headline"
+	link={{ href: '#' }}
+	slotLink="Link"
+	onClick={() => {
+		alert('click close button');
+	}}>
+	Type Something
+</DBAlert>`,
 		examples: [
 			{
 				name: 'Closable',
 				style: { width: '100%' },
 				example: (
 					<DBAlert
-						headline={defaultHeadline}
-						link={defaultLinkProps}
-						slotLink={defaultLink}
+						headline="Headline"
+						link={{ href: '#' }}
+						slotLink="Link"
 						onClick={() => {
 							/* eslint-disable-next-line no-alert */
 							alert('click close button');
 						}}>
-						{defaultText}
+						Type Something
 					</DBAlert>
 				)
 			}

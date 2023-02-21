@@ -1,95 +1,100 @@
 import { DBButton } from '../../../../../output/react/src';
-import DefaultComponent, { type DefaultComponentVariants } from '../index';
-
-const defaultButtonText = 'Button';
+import DefaultComponent from '../index';
+import type { DefaultComponentVariants } from '../data';
 
 const variants: DefaultComponentVariants[] = [
 	{
 		name: 'Variant',
+		code: '<DBButton variant="primary | secondary | ghost | tertiary">Button</DBButton>',
 		examples: [
 			{
 				name: '(Default) Primary',
-				example: <DBButton>{defaultButtonText}</DBButton>
+				example: <DBButton>Button</DBButton>
 			},
 			{
 				name: 'Secondary',
-				example: (
-					<DBButton variant="secondary">{defaultButtonText}</DBButton>
-				)
+				example: <DBButton variant="secondary">Button</DBButton>
 			},
 			{
 				name: 'Ghost',
-				example: (
-					<DBButton variant="ghost">{defaultButtonText}</DBButton>
-				)
+				example: <DBButton variant="ghost">Button</DBButton>
 			},
 			{
 				name: 'Tertiary',
-				example: (
-					<DBButton variant="tertiary">{defaultButtonText}</DBButton>
-				)
+				example: <DBButton variant="tertiary">Button</DBButton>
 			}
 		]
 	},
 	{
 		name: 'State',
+		code:
+			'<DBButton>Button</DBButton>\n' +
+			'<DBButton state="loading">Button</DBButton>\n',
 		examples: [
 			{
 				name: 'Default: (Enabled, Hover, Pressed)',
-				example: <DBButton>{defaultButtonText}</DBButton>
+				example: <DBButton>Button</DBButton>
 			},
 			{
 				name: 'Loading',
-				example: (
-					<DBButton state="loading">{defaultButtonText}</DBButton>
-				)
+				example: <DBButton state="loading">Button</DBButton>
 			}
 		]
 	},
 	{
 		name: 'Size',
+		code:
+			'<DBButton>Button</DBButton>\n' +
+			'<DBButton size="small">Button</DBButton>\n',
 		examples: [
 			{
 				name: 'Default: Medium',
-				example: <DBButton>{defaultButtonText}</DBButton>
+				example: <DBButton>Button</DBButton>
 			},
 			{
 				name: 'Small',
-				example: <DBButton size="small">{defaultButtonText}</DBButton>
+				example: <DBButton size="small">Button</DBButton>
 			}
 		]
 	},
 	{
 		name: 'Content',
+		code:
+			'<DBButton>Button</DBButton>\n' +
+			'<DBButton icon="account" icntxt>Button</DBButton>\n' +
+			'<DBButton icon="account">Button</DBButton>\n',
 		examples: [
 			{
 				name: 'Default: Text',
-				example: <DBButton>{defaultButtonText}</DBButton>
+				example: <DBButton>Button</DBButton>
 			},
 			{
 				name: 'Icon & Text',
 				example: (
 					<DBButton icon="account" icntxt>
-						{defaultButtonText}
+						Button
 					</DBButton>
 				)
 			},
 			{
 				name: 'Icon',
-				example: <DBButton icon="account">{defaultButtonText}</DBButton>
+				example: <DBButton icon="account">Button</DBButton>
 			}
 		]
 	},
 	{
 		name: 'Behaviour',
+		code:
+			'<DBButton>Button</DBButton>\n' +
+			'<DBButton width="full">Button</DBButton>\n',
 		examples: [
 			{
 				name: 'Default: Auto Width',
-				example: <DBButton>{defaultButtonText}</DBButton>
+				example: <DBButton>Button</DBButton>
 			},
 			{
 				name: 'Width full',
-				example: <DBButton width="full">{defaultButtonText}</DBButton>,
+				example: <DBButton width="full">Button</DBButton>,
 				style: { width: '500px' }
 			}
 		]

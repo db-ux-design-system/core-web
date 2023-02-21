@@ -9,6 +9,8 @@
 
 .db-link {
 	color: var(--db-current-color, $db-colors-neutral-on-bg-enabled);
+	cursor: pointer;
+	width: fit-content;
 	display: flex;
 	border-radius: to-rem($pxValue: 6);
 
