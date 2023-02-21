@@ -51,6 +51,10 @@ export enum COLOR {
 
 export const COLORS: COLOR[] = Object.entries(COLOR).map(([, value]) => value);
 
+// @ts-ignore
+const colors = COLORS as const;
+export type ColorType = (typeof colors)[number];
+
 export const INVALID_INPUT_BACKGROUNDS = [
 	COLOR.PRIMARY,
 	COLOR.SECONDARY,

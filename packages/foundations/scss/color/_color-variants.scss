@@ -24,3 +24,32 @@ $color-variants: "neutral-0", "neutral-1", "neutral-3", "neutral-4", "primary",
 %color-variants-ia {
 	@include color-variants(true);
 }
+
+@mixin get-variant-bg-color($alpha) {
+	background-color: rgba(
+		var(--db-current-background-color-red),
+		var(--db-current-background-color-green),
+		var(--db-current-background-color-blue),
+		var(--db-current-background-color-alpha, $alpha)
+	);
+}
+
+%bg-transparent-hover {
+	@include get-variant-bg-color(0);
+
+	&:not(:disabled) {
+		&:hover {
+			@include get-variant-bg-color(0.16);
+		}
+	}
+}
+
+%bg-transparent-interactive {
+	@extend %bg-transparent-hover;
+
+	&:not(:disabled) {
+		&:active {
+			@include get-variant-bg-color(0.24);
+		}
+	}
+}

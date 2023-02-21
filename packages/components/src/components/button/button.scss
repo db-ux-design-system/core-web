@@ -5,15 +5,7 @@
 @use "@db-ui/foundations/build/scss/color-placeholder" as *;
 @use "@db-ui/foundations/build/scss/icon/icons.helpers" as *;
 @use "@db-ui/foundations/build/scss/helpers/shadow-dom" as *;
-
-@mixin get-variant-bg-color($alpha) {
-	background-color: rgba(
-		var(--db-current-background-color-red),
-		var(--db-current-background-color-green),
-		var(--db-current-background-color-blue),
-		var(--db-current-background-color-alpha, $alpha)
-	);
-}
+@use "@db-ui/foundations/build/scss/color/color-variants" as *;
 
 .db-button {
 	// Including a loading indicator
@@ -27,6 +19,8 @@
 
 	border: 1px solid transparent;
 	border-radius: 4px;
+	color: var(--db-current-color, $db-colors-neutral-on-bg-enabled);
+	cursor: pointer;
 	display: inline-flex;
 
 	font-weight: 700;
@@ -65,29 +59,7 @@
 		width: $db-sizing-md;
 	}
 
-	&:not([data-variant]),
-	&[data-variant="primary"] {
-		@extend %db-bg-primary-ia;
-	}
-
-	&%default-variant {
-		@include get-variant-bg-color(0);
-		color: var(--db-current-color, $db-colors-neutral-on-bg-enabled);
-
-		&:not(:disabled) {
-			&:hover {
-				@include get-variant-bg-color(0.16);
-			}
-
-			&:active {
-				@include get-variant-bg-color(0.24);
-			}
-		}
-	}
-
-	// Sizes
-
-	&%size-Small {
+	&[data-size="small"] {
 		@extend %db-body-sm;
 		height: $db-sizing-sm;
 		padding: $db-spacing-fixed-3xs $db-spacing-fixed-sm;
@@ -98,35 +70,28 @@
 		}
 	}
 
-	&[data-size="small"] {
-		@extend %size-Small;
-		@extend %db-body-sm;
-	}
-
-	// Width
-	&%width-full {
+	&[data-width="full"] {
 		width: 100%;
 	}
 
-	&[data-width="full"] {
-		@extend %width-full;
-	}
-
-	// Providing the variants as HTML attributes as well
-
-	&[data-variant="secondary"] {
-		@extend %default-variant;
+	&:not([data-variant]),
+	&[data-variant="outline"] {
+		@extend %bg-transparent-interactive;
 		border: solid 1px
 			var(--db-current-color, $db-colors-neutral-on-bg-enabled);
 	}
 
-	&[data-variant="tertiary"] {
-		@extend %default-variant;
+	&[data-variant="primary"] {
+		@extend %db-bg-primary-ia;
+	}
+
+	&[data-variant="semi-transparent"] {
+		@extend %bg-transparent-interactive;
 		@include get-variant-bg-color(0.08);
 	}
 
-	&[data-variant="ghost"] {
-		@extend %default-variant;
+	&[data-variant="transparent"] {
+		@extend %bg-transparent-interactive;
 	}
 
 	&:disabled {
