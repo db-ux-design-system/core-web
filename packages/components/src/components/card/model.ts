@@ -5,10 +5,9 @@ import {
 	GlobalState,
 	ImageProps
 } from '../../shared/model';
-import { ColorType } from '../../shared/constants';
 
 export type DBCardDefaultProps = {
-	colorVariant?: ColorType;
+	colorVariant?: string;
 	direction?: 'column' | 'row';
 	variant?: 'full-width' | 'interactive';
 };
