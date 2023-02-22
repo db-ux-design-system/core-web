@@ -61,6 +61,5 @@ $all-icon-sizes: (
 		}
 	}
 
-	$result-string: $result-string + '"missing-icons"';
 	@return $result-string;
 }
