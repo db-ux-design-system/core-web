@@ -1821,7 +1821,7 @@
 				"name": "db_ic_transportation_inverted_airplane_inverted_20",
 				"prevSize": 32,
 				"code": 59723,
-				"ligatures": "^inverted_airplane_inverted_20"
+				"ligatures": "^airplane$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -1845,7 +1845,7 @@
 				"name": "db_ic_transportation_inverted_bicycle_inverted_20",
 				"prevSize": 32,
 				"code": 59724,
-				"ligatures": "^inverted_bicycle_inverted_20"
+				"ligatures": "^bicycle$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -1871,7 +1871,7 @@
 				"name": "db_ic_transportation_inverted_bicycle_trailer_inverted_20",
 				"prevSize": 32,
 				"code": 59725,
-				"ligatures": "^inverted_bicycle_trailer_inverted_20"
+				"ligatures": "^bicycle_trailer$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -1897,7 +1897,7 @@
 				"name": "db_ic_transportation_inverted_call_a_bike_inverted_20",
 				"prevSize": 32,
 				"code": 59726,
-				"ligatures": "^inverted_call_a_bike_inverted_20"
+				"ligatures": "^call_a_bike$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -1921,7 +1921,7 @@
 				"name": "db_ic_transportation_inverted_car_inverted_20",
 				"prevSize": 32,
 				"code": 59727,
-				"ligatures": "^inverted_car_inverted_20"
+				"ligatures": "^car$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -1947,7 +1947,7 @@
 				"name": "db_ic_transportation_inverted_carsharing_inverted_20",
 				"prevSize": 32,
 				"code": 59728,
-				"ligatures": "^inverted_carsharing_inverted_20"
+				"ligatures": "^carsharing$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -1973,7 +1973,7 @@
 				"name": "db_ic_transportation_inverted_electric_locomotive_inverted_20",
 				"prevSize": 32,
 				"code": 59729,
-				"ligatures": "^inverted_electric_locomotive_inverted_20"
+				"ligatures": "^electric_locomotive$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -1999,7 +1999,7 @@
 				"name": "db_ic_transportation_inverted_electric_scooter_inverted_20",
 				"prevSize": 32,
 				"code": 59730,
-				"ligatures": "^inverted_electric_scooter_inverted_20"
+				"ligatures": "^electric_scooter$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -2023,7 +2023,7 @@
 				"name": "db_ic_transportation_inverted_ev_car_inverted_20",
 				"prevSize": 32,
 				"code": 59731,
-				"ligatures": "^inverted_ev_car_inverted_20"
+				"ligatures": "^ev_car$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -2047,7 +2047,7 @@
 				"name": "db_ic_transportation_inverted_ferry_inverted_20",
 				"prevSize": 32,
 				"code": 59732,
-				"ligatures": "^inverted_ferry_inverted_20"
+				"ligatures": "^ferry$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -2071,7 +2071,7 @@
 				"name": "db_ic_transportation_inverted_handcart_inverted_20",
 				"prevSize": 32,
 				"code": 59733,
-				"ligatures": "^inverted_handcart_inverted_20"
+				"ligatures": "^handcart$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -2095,7 +2095,7 @@
 				"name": "db_ic_transportation_inverted_ice_inverted_20",
 				"prevSize": 32,
 				"code": 59734,
-				"ligatures": "^inverted_ice_inverted_20"
+				"ligatures": "^ice$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -2121,7 +2121,7 @@
 				"name": "db_ic_transportation_inverted_intercity_train_inverted_20",
 				"prevSize": 32,
 				"code": 59735,
-				"ligatures": "^inverted_intercity_train_inverted_20"
+				"ligatures": "^intercity_train$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -2145,7 +2145,7 @@
 				"name": "db_ic_transportation_inverted_local_bus_inverted_20",
 				"prevSize": 32,
 				"code": 59736,
-				"ligatures": "^inverted_local_bus_inverted_20"
+				"ligatures": "^local_bus$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -2171,7 +2171,7 @@
 				"name": "db_ic_transportation_inverted_local_train_inverted_20",
 				"prevSize": 32,
 				"code": 59737,
-				"ligatures": "^inverted_local_train_inverted_20"
+				"ligatures": "^local_train$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -2197,7 +2197,7 @@
 				"name": "db_ic_transportation_inverted_long_distance_bus_inverted_20",
 				"prevSize": 32,
 				"code": 59738,
-				"ligatures": "^inverted_long_distance_bus_inverted_20"
+				"ligatures": "^long_distance_bus$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -2221,7 +2221,7 @@
 				"name": "db_ic_transportation_inverted_s_bahn_inverted_20",
 				"prevSize": 32,
 				"code": 59739,
-				"ligatures": "^inverted_s_bahn_inverted_20"
+				"ligatures": "^s_bahn$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -2245,7 +2245,7 @@
 				"name": "db_ic_transportation_inverted_scooter_inverted_20",
 				"prevSize": 32,
 				"code": 59740,
-				"ligatures": "^inverted_scooter_inverted_20"
+				"ligatures": "^scooter$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -2269,7 +2269,7 @@
 				"name": "db_ic_transportation_inverted_speedboat_inverted_20",
 				"prevSize": 32,
 				"code": 59741,
-				"ligatures": "^inverted_speedboat_inverted_20"
+				"ligatures": "^speedboat$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -2293,7 +2293,7 @@
 				"name": "db_ic_transportation_inverted_subway_inverted_20",
 				"prevSize": 32,
 				"code": 59742,
-				"ligatures": "^inverted_subway_inverted_20"
+				"ligatures": "^subway$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -2317,7 +2317,7 @@
 				"name": "db_ic_transportation_inverted_taxi_inverted_20",
 				"prevSize": 32,
 				"code": 59743,
-				"ligatures": "^inverted_taxi_inverted_20"
+				"ligatures": "^taxi$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -2343,7 +2343,7 @@
 				"name": "db_ic_transportation_inverted_train_and_car_inverted_20",
 				"prevSize": 32,
 				"code": 59744,
-				"ligatures": "^inverted_train_and_car_inverted_20"
+				"ligatures": "^train_and_car$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -2367,7 +2367,7 @@
 				"name": "db_ic_transportation_inverted_tram_inverted_20",
 				"prevSize": 32,
 				"code": 59745,
-				"ligatures": "^inverted_tram_inverted_20"
+				"ligatures": "^tram$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -2391,7 +2391,7 @@
 				"name": "db_ic_transportation_inverted_walking_inverted_20",
 				"prevSize": 32,
 				"code": 59746,
-				"ligatures": "^inverted_walking_inverted_20"
+				"ligatures": "^walking$"
 			},
 			"setIdx": 0,
 			"setId": 0,
