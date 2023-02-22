@@ -17,6 +17,26 @@
  */
 const getComponents = () => [
 	{
+		name: 'alert',
+		defaultStylePath: 'components/alert/alert.css',
+		overwrites: {
+			global: [
+				{ from: 'handleClick(event)', to: 'handleClick(event:any)' },
+				{
+					from: 'getIcon(icon, variant) {',
+					to: 'getIcon(icon:any, variant:any) {'
+				}
+			],
+			vue: [
+				{
+					from: 'import { DBAlertState, DBAlertProps } from "./model";',
+					to: ''
+				}
+			]
+		}
+	},
+
+	{
 		name: 'infotext',
 		defaultStylePath: 'components/infotext/infotext.css',
 		overwrites: {
