@@ -56,7 +56,8 @@
 			-webkit-alt: "";
 			/* stylelint-enable */
 			alt: "";
-			speak: none;
+			speak: none; // Hiding icon from screenreaders, fallback by older notation
+			speak: never; // Hiding icon from screenreaders
 			@media aural {
 				content: none;
 			}

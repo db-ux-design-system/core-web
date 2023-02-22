@@ -23,7 +23,8 @@
 	font-variant: normal;
 	font-weight: var(--icon-font-weight, normal);
 	line-height: 1;
-	speak: none; // Hiding icon from screenreaders
+	speak: none; // Hiding icon from screenreaders, fallback by older notation
+	speak: never; // Hiding icon from screenreaders
 	text-transform: none;
 
 	vertical-align: middle;
