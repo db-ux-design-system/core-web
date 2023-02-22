@@ -5,22 +5,6 @@ import type { DefaultComponentVariants } from '../data';
 const variants: DefaultComponentVariants[] = [
 	{
 		name: 'Type',
-		code: `
-<DBAlert
-	type="alert"
-	headline="Headline"
-	link={{ href: '#' }}
-	slotLink="Link">
-	Type Something
-</DBAlert>
-
-<DBAlert
-	type="inline"
-	headline="Headline"
-	link={{ href: '#' }}
-	slotLink="Link">
-	Type Something
-</DBAlert>`,
 		examples: [
 			{
 				name: '(Default) Alert',
@@ -52,46 +36,6 @@ const variants: DefaultComponentVariants[] = [
 	},
 	{
 		name: 'Variant',
-		code: `
-<DBAlert
-	icon="account"
-	headline="Headline"
-	link={{ href: '#' }}
-	slotLink="Link">
-	Type Something
-</DBAlert>
-
-<DBAlert
-	variant="critical"
-	headline="Headline"
-	link={{ href: '#' }}
-	slotLink="Link">
-	Type Something
-</DBAlert>
-
-<DBAlert
-	variant="information"
-	headline="Headline"
-	link={{ href: '#' }}
-	slotLink="Link">
-	Type Something
-</DBAlert>
-
-<DBAlert
-	variant="success"
-	headline="Headline"
-	link={{ href: '#' }}
-	slotLink="Link">
-	Type Something
-</DBAlert>
-
-<DBAlert
-	variant="warning"
-	headline="Headline"
-	link={{ href: '#' }}
-	slotLink="Link">
-	Type Something
-</DBAlert>`,
 		examples: [
 			{
 				name: '(Default) Adaptive',
@@ -162,27 +106,6 @@ const variants: DefaultComponentVariants[] = [
 	},
 	{
 		name: 'Content',
-		code: `
-<DBAlert
-	icon="account"
-	headline="Headline"
-	link={{ href: '#' }}
-	slotLink="Link">
-	Type Something
-</DBAlert>
-
-<DBAlert
-	headline="Headline"
-	link={{ href: '#' }}
-	slotLink="Link">
-	Type Something
-</DBAlert>
-
-<DBAlert
-	link={{ href: '#' }}
-	slotLink="Link">
-	Type Something
-</DBAlert>`,
 		examples: [
 			{
 				name: 'Headline & Text & Link & Icon',
@@ -227,17 +150,6 @@ const variants: DefaultComponentVariants[] = [
 	},
 	{
 		name: 'Behaviour',
-		code: `
-<DBAlert
-	icon="account"
-	headline="Headline"
-	link={{ href: '#' }}
-	slotLink="Link"
-	onClick={() => {
-		alert('click close button');
-	}}>
-	Type Something
-</DBAlert>`,
 		examples: [
 			{
 				name: 'Closable',

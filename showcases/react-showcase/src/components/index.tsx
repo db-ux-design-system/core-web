@@ -1,52 +1,31 @@
-import { useState } from 'react';
-import {
-	DBCard,
-	DBDivider,
-	DBLink,
-	DBButton
-} from '../../../../output/react/src';
+import { DBCodeDocs, DBDivider, DBLink } from '../../../../output/react/src';
 import useQuery from '../hooks/use-query';
 import {
 	type DefaultComponentProps,
 	type DefaultComponentVariants
 } from './data';
 
-const VariantList = ({ examples, code }: DefaultComponentVariants) => {
-	const [codeOpen, setCodeOpen] = useState<boolean>();
-	return (
-		<DBCard className="variants-card">
-			<ul className="variants-list">
-				{examples.map((example, exampleIndex) => (
-					<li
-						key={`${example.name}-${exampleIndex}`}
-						style={example.style}
-						className={example.className}>
-						<p className="example-name">
-							<small>{example.name}</small>
-						</p>
-						{example.example}
-					</li>
-				))}
-			</ul>
-			{codeOpen && (
-				<div className="variant-code">
-					<pre>
-						<code>{code ?? 'No Code available'}</code>
-					</pre>
-				</div>
-			)}
-			<DBButton
-				className="code-button"
-				size="small"
-				variant="primary"
-				onClick={() => {
-					setCodeOpen(!codeOpen);
-				}}>
-				{codeOpen ? 'Hide Code' : 'Show Code'}
-			</DBButton>
-		</DBCard>
-	);
-};
+const VariantList = ({ examples }: DefaultComponentVariants) => (
+	<DBCodeDocs
+		className="variants-card"
+		codeSnippets={examples
+			.filter((example) => example.code)
+			.map((example) => `/* ${example.name} */\n${example.code}`)}>
+		<ul className="variants-list">
+			{examples.map((example, exampleIndex) => (
+				<li
+					key={`${example.name}-${exampleIndex}`}
+					style={example.style}
+					className={example.className}>
+					<p className="example-name">
+						<small>{example.name}</small>
+					</p>
+					{example.example}
+				</li>
+			))}
+		</ul>
+	</DBCodeDocs>
+);
 
 const DefaultComponent = ({
 	title,

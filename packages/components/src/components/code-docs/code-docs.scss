@@ -1,0 +1,57 @@
+/* Add styles for component here */
+
+@use "@db-ui/foundations/build/scss/helpers/shadow-dom" as *;
+@use "@db-ui/foundations/build/scss/variables" as *;
+@use "@db-ui/foundations/build/scss/variables.global" as *;
+@use "@db-ui/foundations/build/scss/color-placeholder" as *;
+@use "@db-ui/foundations/build/scss/tonality" as *;
+
+.db-code-docs {
+	@extend %shadow-dom-extend;
+
+	padding: $db-spacing-fixed-md;
+	padding-block-end: calc($db-spacing-fixed-md + $db-sizing-sm);
+	position: relative;
+
+	.code-button {
+		position: absolute;
+		bottom: 0;
+		right: 0;
+	}
+
+	.no-code {
+		margin: auto;
+	}
+
+	.code {
+		@extend %db-bg-secondary;
+		position: absolute;
+		bottom: 0;
+		right: 0;
+		left: 0;
+		top: 0;
+		border-radius: 8px;
+		display: flex;
+		flex-direction: column;
+		height: 100%;
+		overflow: auto;
+		padding-block-end: $db-sizing-sm;
+
+		@media screen and (min-width: $db-screens-s) {
+			left: 50%;
+		}
+
+		pre {
+			margin: 0;
+			display: flex;
+			gap: $db-spacing-fixed-sm;
+			align-items: center;
+
+			code {
+				@extend %db-body-xs;
+				white-space: pre-wrap;
+				width: 100%;
+			}
+		}
+	}
+}

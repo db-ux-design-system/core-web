@@ -1,0 +1,87 @@
+import { For, onMount, Show, useMetadata, useStore } from '@builder.io/mitosis';
+import { DBCodeDocsProps, DBCodeDocsState } from './model';
+import { DBCard } from '../card';
+import { DBButton } from '../button';
+import { DBInfotext } from '../infotext';
+import { uuid } from '../../utils';
+
+useMetadata({
+	isAttachedToShadowDom: true,
+	component: {
+		includeIcon: false,
+		properties: []
+	}
+});
+
+export default function DBCodeDocs(props: DBCodeDocsProps) {
+	const state = useStore<DBCodeDocsState>({
+		open: false,
+		toggleCode: () => {
+			state.open = !state.open;
+		},
+		copyCode: (code: string) => {
+			navigator.clipboard.writeText(code);
+			// TODO: Trigger Snackbar
+		},
+		getShowButtonLabel: () => {
+			return state.open
+				? props.hideCodeLabel ?? 'Hide Code'
+				: props.showCodeLabel ?? 'Show Code';
+		}
+	});
+
+	onMount(() => {
+		if (props.stylePath) {
+			state.stylePath = props.stylePath;
+		}
+	});
+
+	return (
+		<DBCard
+			class={
+				'db-code-docs' + (props.className ? ' ' + props.className : '')
+			}>
+			<Show when={state.stylePath}>
+				<link rel="stylesheet" href={state.stylePath} />
+			</Show>
+			{props.children}
+			<Show when={state.open}>
+				<div class="code">
+					<Show
+						when={
+							props.codeSnippets && props.codeSnippets.length > 0
+						}
+						else={
+							<DBInfotext class="no-code" variant="information">
+								{props.noCodeLabel ?? 'No Code available'}
+							</DBInfotext>
+						}>
+						<For each={props.codeSnippets}>
+							{(snippet: string) => (
+								<pre key={`snippet-${uuid()}`}>
+									<code class="language-typescript">
+										{snippet}
+									</code>
+									<DBButton
+										class="copy-button"
+										size="small"
+										variant="secondary"
+										onClick={() => state.copyCode(snippet)}>
+										{props.copyLabel ?? 'Copy Code'}
+									</DBButton>
+								</pre>
+							)}
+						</For>
+					</Show>
+				</div>
+			</Show>
+			<DBButton
+				class="code-button"
+				size="small"
+				variant="primary"
+				onClick={() => state.toggleCode()}>
+				{state.getShowButtonLabel()}
+			</DBButton>
+		</DBCard>
+	);
+}

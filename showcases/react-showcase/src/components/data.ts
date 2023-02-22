@@ -5,11 +5,11 @@ export type DefaultComponentExample = {
 	example: ReactElement;
 	style?: CSSProperties;
 	className?: string;
+	code?: any;
 };
 
 export type DefaultComponentVariants = {
 	name: string;
-	code?: string;
 	examples: DefaultComponentExample[];
 };
 
