@@ -3,7 +3,7 @@
 // Default parameters
 $icon-size: 24 !default;
 $icon-style: "outline" !default;
-$icons-font-family: '#{"icons-" + $icon-size + "-" + $icon-style}' !default;
+$icons-font-family: '#{"icons-" + $icon-style}' !default;
 $icon-content-space: to-rem(
 	$pxValue: 6
 ) !default;

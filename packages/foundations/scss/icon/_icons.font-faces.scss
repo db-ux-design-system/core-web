@@ -13,24 +13,18 @@
 }
 
 // DB UX Icons
-@each $icon-style, $icon-sizes in $icon-font-families-personenverkehr {
-	@each $icon-size, $icon-categories in $icon-sizes {
-		@each $icon-category, $icon-font-unicodes in $icon-categories {
-			@font-face {
-				$icon-font-family: "icons-" + $icon-size + "-" + $icon-style;
+@each $icon-style in $icon-styles {
+	@font-face {
+		$icon-font-family: "icons-" + $icon-style;
 
-				font-display: block;
+		font-display: block;
 
-				font-family: $icon-font-family;
-				font-style: normal;
-				font-weight: normal;
-				src: url("#{$icons-path}functional/fonts/#{$icon-font-family+ "-" + $icon-category}.woff2?4r2095")
-						format("woff2"),
-					url("#{$icons-path}functional/fonts/#{$icon-font-family+ "-" + $icon-category}.woff?4r2095")
-						format("woff");
-
-				unicode-range: unquote($icon-font-unicodes);
-			}
-		}
+		font-family: $icon-font-family;
+		font-style: normal;
+		font-weight: normal;
+		src: url("#{$icons-path}functional/fonts/#{$icon-font-family}.woff2?4r2095")
+				format("woff2"),
+			url("#{$icons-path}functional/fonts/#{$icon-font-family}.woff?4r2095")
+				format("woff");
 	}
 }

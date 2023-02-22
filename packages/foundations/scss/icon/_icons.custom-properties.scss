@@ -16,20 +16,14 @@
 	}
 }
 
-// DB UX Icons
-@each $icon-style, $icon-sizes in $icon-font-families-personenverkehr {
-	@each $icon-size, $icon-categories in $icon-sizes {
-		[data-icon-variant="#{$icon-size}-#{$icon-style}"],
-		[data-icon-variant-before="#{$icon-size}-#{$icon-style}"] {
-			&[data-icon],
-			&[data-icon-before] {
-				@include icon-meta($icon-size, $icon-style);
-			}
-		}
-		[data-icon-variant-after="#{$icon-size}-#{$icon-style}"] {
-			&[data-icon-after] {
-				@include icon-meta($icon-size, $icon-style, "after");
-			}
+@each $icon-style in $icon-styles {
+	[data-icon][data-icon-style="#{$icon-style}"],
+	[data-icon-before][data-icon-style-before="#{$icon-style}"] {
+		@include icon-meta($icon-size, $icon-style);
+	}
+	[data-icon-style-after="#{$icon-style}"] {
+		&[data-icon-after] {
+			@include icon-meta($icon-size, $icon-style, "after");
 		}
 	}
 }

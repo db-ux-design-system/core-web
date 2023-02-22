@@ -31,7 +31,6 @@ $variants: (
 		margin-inline-end: $db-spacing-fixed-2xs;
 
 		&::before {
-			--icon-font-family: var(--db-base-icon-font-family-filled);
 			--icon-font-size: var(--db-base-icon-font-size);
 		}
 	}
