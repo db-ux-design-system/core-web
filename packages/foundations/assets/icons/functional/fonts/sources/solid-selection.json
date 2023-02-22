@@ -9,16 +9,17 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_action_account_solid_20"]
+				"tags": ["db_ic_action_account_solid_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 270,
-				"id": 98,
+				"id": 0,
 				"name": "db_ic_action_account_solid_20",
 				"prevSize": 32,
-				"code": 59648
+				"code": 59648,
+				"ligatures": "^account$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -32,16 +33,17 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_action_add_circle_solid_20"]
+				"tags": ["db_ic_action_add_circle_solid_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 271,
-				"id": 97,
+				"id": 1,
 				"name": "db_ic_action_add_circle_solid_20",
 				"prevSize": 32,
-				"code": 59649
+				"code": 59649,
+				"ligatures": "^add_circle$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -55,16 +57,17 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_action_alert_solid_20"]
+				"tags": ["db_ic_action_alert_solid_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 272,
-				"id": 96,
+				"id": 2,
 				"name": "db_ic_action_alert_solid_20",
 				"prevSize": 32,
-				"code": 59650
+				"code": 59650,
+				"ligatures": "^alert$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -78,16 +81,17 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_action_block_solid_20"]
+				"tags": ["db_ic_action_block_solid_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 273,
-				"id": 95,
+				"id": 3,
 				"name": "db_ic_action_block_solid_20",
 				"prevSize": 32,
-				"code": 59651
+				"code": 59651,
+				"ligatures": "^block$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -101,16 +105,17 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_action_bookmark_solid_20"]
+				"tags": ["db_ic_action_bookmark_solid_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 274,
-				"id": 94,
+				"id": 4,
 				"name": "db_ic_action_bookmark_solid_20",
 				"prevSize": 32,
-				"code": 59652
+				"code": 59652,
+				"ligatures": "^bookmark$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -124,16 +129,17 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_action_build_solid_20"]
+				"tags": ["db_ic_action_build_solid_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 275,
-				"id": 93,
+				"id": 5,
 				"name": "db_ic_action_build_solid_20",
 				"prevSize": 32,
-				"code": 59653
+				"code": 59653,
+				"ligatures": "^build$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -147,16 +153,17 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_action_camera_solid_20"]
+				"tags": ["db_ic_action_camera_solid_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 276,
-				"id": 92,
+				"id": 6,
 				"name": "db_ic_action_camera_solid_20",
 				"prevSize": 32,
-				"code": 59654
+				"code": 59654,
+				"ligatures": "^camera$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -170,16 +177,17 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_action_check_circle_solid_20"]
+				"tags": ["db_ic_action_check_circle_solid_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 277,
-				"id": 91,
+				"id": 7,
 				"name": "db_ic_action_check_circle_solid_20",
 				"prevSize": 32,
-				"code": 59655
+				"code": 59655,
+				"ligatures": "^check_circle$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -193,16 +201,17 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_action_cloud_solid_20"]
+				"tags": ["db_ic_action_cloud_solid_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 278,
-				"id": 90,
+				"id": 8,
 				"name": "db_ic_action_cloud_solid_20",
 				"prevSize": 32,
-				"code": 59656
+				"code": 59656,
+				"ligatures": "^cloud$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -216,16 +225,17 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_action_copy_solid_20"]
+				"tags": ["db_ic_action_copy_solid_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 279,
-				"id": 89,
+				"id": 9,
 				"name": "db_ic_action_copy_solid_20",
 				"prevSize": 32,
-				"code": 59657
+				"code": 59657,
+				"ligatures": "^copy$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -239,16 +249,17 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_action_credit_card_solid_20"]
+				"tags": ["db_ic_action_credit_card_solid_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 280,
-				"id": 88,
+				"id": 10,
 				"name": "db_ic_action_credit_card_solid_20",
 				"prevSize": 32,
-				"code": 59658
+				"code": 59658,
+				"ligatures": "^credit_card$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -262,16 +273,17 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_action_dashboard_solid_20"]
+				"tags": ["db_ic_action_dashboard_solid_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 281,
-				"id": 87,
+				"id": 11,
 				"name": "db_ic_action_dashboard_solid_20",
 				"prevSize": 32,
-				"code": 59659
+				"code": 59659,
+				"ligatures": "^dashboard$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -285,16 +297,17 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_action_discount_solid_20"]
+				"tags": ["db_ic_action_discount_solid_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 282,
-				"id": 86,
+				"id": 12,
 				"name": "db_ic_action_discount_solid_20",
 				"prevSize": 32,
-				"code": 59660
+				"code": 59660,
+				"ligatures": "^discount$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -308,16 +321,17 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_action_edit_solid_20"]
+				"tags": ["db_ic_action_edit_solid_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 283,
-				"id": 85,
+				"id": 13,
 				"name": "db_ic_action_edit_solid_20",
 				"prevSize": 32,
-				"code": 59661
+				"code": 59661,
+				"ligatures": "^edit$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -331,16 +345,17 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_action_folder_open_solid_20"]
+				"tags": ["db_ic_action_folder_open_solid_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 284,
-				"id": 84,
+				"id": 14,
 				"name": "db_ic_action_folder_open_solid_20",
 				"prevSize": 32,
-				"code": 59662
+				"code": 59662,
+				"ligatures": "^folder_open$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -354,16 +369,17 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_action_folder_solid_20"]
+				"tags": ["db_ic_action_folder_solid_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 285,
-				"id": 83,
+				"id": 15,
 				"name": "db_ic_action_folder_solid_20",
 				"prevSize": 32,
-				"code": 59663
+				"code": 59663,
+				"ligatures": "^folder$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -377,16 +393,17 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_action_generic_card_solid_20"]
+				"tags": ["db_ic_action_generic_card_solid_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 286,
-				"id": 82,
+				"id": 16,
 				"name": "db_ic_action_generic_card_solid_20",
 				"prevSize": 32,
-				"code": 59664
+				"code": 59664,
+				"ligatures": "^generic_card$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -400,16 +417,17 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_action_heart_solid_20"]
+				"tags": ["db_ic_action_heart_solid_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 287,
-				"id": 81,
+				"id": 17,
 				"name": "db_ic_action_heart_solid_20",
 				"prevSize": 32,
-				"code": 59665
+				"code": 59665,
+				"ligatures": "^heart$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -423,16 +441,17 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_action_help_solid_20"]
+				"tags": ["db_ic_action_help_solid_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 288,
-				"id": 80,
+				"id": 18,
 				"name": "db_ic_action_help_solid_20",
 				"prevSize": 32,
-				"code": 59666
+				"code": 59666,
+				"ligatures": "^help$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -446,16 +465,17 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_action_image_solid_20"]
+				"tags": ["db_ic_action_image_solid_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 289,
-				"id": 79,
+				"id": 19,
 				"name": "db_ic_action_image_solid_20",
 				"prevSize": 32,
-				"code": 59667
+				"code": 59667,
+				"ligatures": "^image$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -469,16 +489,17 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_action_info_solid_20"]
+				"tags": ["db_ic_action_info_solid_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 290,
-				"id": 78,
+				"id": 20,
 				"name": "db_ic_action_info_solid_20",
 				"prevSize": 32,
-				"code": 59668
+				"code": 59668,
+				"ligatures": "^info$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -492,16 +513,17 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_action_lock_close_solid_20"]
+				"tags": ["db_ic_action_lock_close_solid_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 291,
-				"id": 77,
+				"id": 21,
 				"name": "db_ic_action_lock_close_solid_20",
 				"prevSize": 32,
-				"code": 59669
+				"code": 59669,
+				"ligatures": "^lock_close$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -515,16 +537,17 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_action_lock_open_solid_20"]
+				"tags": ["db_ic_action_lock_open_solid_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 292,
-				"id": 76,
+				"id": 22,
 				"name": "db_ic_action_lock_open_solid_20",
 				"prevSize": 32,
-				"code": 59670
+				"code": 59670,
+				"ligatures": "^lock_open$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -538,16 +561,17 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_action_pin_solid_20"]
+				"tags": ["db_ic_action_pin_solid_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 293,
-				"id": 75,
+				"id": 23,
 				"name": "db_ic_action_pin_solid_20",
 				"prevSize": 32,
-				"code": 59671
+				"code": 59671,
+				"ligatures": "^pin$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -561,16 +585,17 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_action_print_solid_20"]
+				"tags": ["db_ic_action_print_solid_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 294,
-				"id": 74,
+				"id": 24,
 				"name": "db_ic_action_print_solid_20",
 				"prevSize": 32,
-				"code": 59672
+				"code": 59672,
+				"ligatures": "^print$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -584,16 +609,17 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_action_remove_solid_20"]
+				"tags": ["db_ic_action_remove_solid_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 295,
-				"id": 73,
+				"id": 25,
 				"name": "db_ic_action_remove_solid_20",
 				"prevSize": 32,
-				"code": 59673
+				"code": 59673,
+				"ligatures": "^remove$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -607,16 +633,17 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_action_resize_solid_20"]
+				"tags": ["db_ic_action_resize_solid_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 296,
-				"id": 72,
+				"id": 26,
 				"name": "db_ic_action_resize_solid_20",
 				"prevSize": 32,
-				"code": 59674
+				"code": 59674,
+				"ligatures": "^resize$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -630,16 +657,17 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_action_save_solid_20"]
+				"tags": ["db_ic_action_save_solid_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 297,
-				"id": 71,
+				"id": 27,
 				"name": "db_ic_action_save_solid_20",
 				"prevSize": 32,
-				"code": 59675
+				"code": 59675,
+				"ligatures": "^save$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -653,16 +681,17 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_action_schedule_solid_20"]
+				"tags": ["db_ic_action_schedule_solid_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 298,
-				"id": 70,
+				"id": 28,
 				"name": "db_ic_action_schedule_solid_20",
 				"prevSize": 32,
-				"code": 59676
+				"code": 59676,
+				"ligatures": "^schedule$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -676,16 +705,17 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_action_sepa_solid_20"]
+				"tags": ["db_ic_action_sepa_solid_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 299,
-				"id": 69,
+				"id": 29,
 				"name": "db_ic_action_sepa_solid_20",
 				"prevSize": 32,
-				"code": 59677
+				"code": 59677,
+				"ligatures": "^sepa$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -699,16 +729,17 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_action_shopping_bag_solid_20"]
+				"tags": ["db_ic_action_shopping_bag_solid_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 300,
-				"id": 68,
+				"id": 30,
 				"name": "db_ic_action_shopping_bag_solid_20",
 				"prevSize": 32,
-				"code": 59678
+				"code": 59678,
+				"ligatures": "^shopping_bag$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -722,16 +753,17 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_action_shopping_basket_disabled_solid_20"]
+				"tags": ["db_ic_action_shopping_basket_disabled_solid_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 301,
-				"id": 67,
+				"id": 31,
 				"name": "db_ic_action_shopping_basket_disabled_solid_20",
 				"prevSize": 32,
-				"code": 59679
+				"code": 59679,
+				"ligatures": "^shopping_basket_disabled$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -745,16 +777,17 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_action_shopping_basket_solid_20"]
+				"tags": ["db_ic_action_shopping_basket_solid_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 302,
-				"id": 66,
+				"id": 32,
 				"name": "db_ic_action_shopping_basket_solid_20",
 				"prevSize": 32,
-				"code": 59680
+				"code": 59680,
+				"ligatures": "^shopping_basket$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -768,16 +801,17 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_action_star_solid_20"]
+				"tags": ["db_ic_action_star_solid_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 303,
-				"id": 65,
+				"id": 33,
 				"name": "db_ic_action_star_solid_20",
 				"prevSize": 32,
-				"code": 59681
+				"code": 59681,
+				"ligatures": "^star$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -791,16 +825,17 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_action_voucher_solid_20"]
+				"tags": ["db_ic_action_voucher_solid_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 304,
-				"id": 64,
+				"id": 34,
 				"name": "db_ic_action_voucher_solid_20",
 				"prevSize": 32,
-				"code": 59682
+				"code": 59682,
+				"ligatures": "^voucher$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -814,16 +849,17 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_av_microphone_solid_20"]
+				"tags": ["db_ic_av_microphone_solid_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 305,
-				"id": 63,
+				"id": 35,
 				"name": "db_ic_av_microphone_solid_20",
 				"prevSize": 32,
-				"code": 59683
+				"code": 59683,
+				"ligatures": "^microphone$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -837,16 +873,17 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_av_play_solid_20"]
+				"tags": ["db_ic_av_play_solid_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 306,
-				"id": 62,
+				"id": 36,
 				"name": "db_ic_av_play_solid_20",
 				"prevSize": 32,
-				"code": 59684
+				"code": 59684,
+				"ligatures": "^play$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -860,16 +897,17 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_av_skip_backward_solid_20"]
+				"tags": ["db_ic_av_skip_backward_solid_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 307,
-				"id": 61,
+				"id": 37,
 				"name": "db_ic_av_skip_backward_solid_20",
 				"prevSize": 32,
-				"code": 59685
+				"code": 59685,
+				"ligatures": "^skip_backward$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -883,16 +921,17 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_av_skip_forward_solid_20"]
+				"tags": ["db_ic_av_skip_forward_solid_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 308,
-				"id": 60,
+				"id": 38,
 				"name": "db_ic_av_skip_forward_solid_20",
 				"prevSize": 32,
-				"code": 59686
+				"code": 59686,
+				"ligatures": "^skip_forward$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -906,16 +945,17 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_av_stop_solid_20"]
+				"tags": ["db_ic_av_stop_solid_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 309,
-				"id": 59,
+				"id": 39,
 				"name": "db_ic_av_stop_solid_20",
 				"prevSize": 32,
-				"code": 59687
+				"code": 59687,
+				"ligatures": "^stop$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -929,16 +969,17 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_av_subtitles_solid_20"]
+				"tags": ["db_ic_av_subtitles_solid_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 310,
-				"id": 58,
+				"id": 40,
 				"name": "db_ic_av_subtitles_solid_20",
 				"prevSize": 32,
-				"code": 59688
+				"code": 59688,
+				"ligatures": "^subtitles$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -952,16 +993,17 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_communication_call_solid_20"]
+				"tags": ["db_ic_communication_call_solid_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 311,
-				"id": 57,
+				"id": 41,
 				"name": "db_ic_communication_call_solid_20",
 				"prevSize": 32,
-				"code": 59689
+				"code": 59689,
+				"ligatures": "^call$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -975,16 +1017,17 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_communication_chat_solid_20"]
+				"tags": ["db_ic_communication_chat_solid_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 312,
-				"id": 56,
+				"id": 42,
 				"name": "db_ic_communication_chat_solid_20",
 				"prevSize": 32,
-				"code": 59690
+				"code": 59690,
+				"ligatures": "^chat$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -998,16 +1041,17 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_communication_conversation_solid_20"]
+				"tags": ["db_ic_communication_conversation_solid_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 313,
-				"id": 55,
+				"id": 43,
 				"name": "db_ic_communication_conversation_solid_20",
 				"prevSize": 32,
-				"code": 59691
+				"code": 59691,
+				"ligatures": "^conversation$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -1021,16 +1065,17 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_communication_feedback_solid_20"]
+				"tags": ["db_ic_communication_feedback_solid_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 314,
-				"id": 54,
+				"id": 44,
 				"name": "db_ic_communication_feedback_solid_20",
 				"prevSize": 32,
-				"code": 59692
+				"code": 59692,
+				"ligatures": "^feedback$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -1044,16 +1089,17 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_communication_question_solid_20"]
+				"tags": ["db_ic_communication_question_solid_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 315,
-				"id": 53,
+				"id": 45,
 				"name": "db_ic_communication_question_solid_20",
 				"prevSize": 32,
-				"code": 59693
+				"code": 59693,
+				"ligatures": "^question$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -1067,16 +1113,17 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_communication_receive_item_solid_20"]
+				"tags": ["db_ic_communication_receive_item_solid_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 316,
-				"id": 52,
+				"id": 46,
 				"name": "db_ic_communication_receive_item_solid_20",
 				"prevSize": 32,
-				"code": 59694
+				"code": 59694,
+				"ligatures": "^receive_item$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -1090,16 +1137,17 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_communication_share_item_solid_20"]
+				"tags": ["db_ic_communication_share_item_solid_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 317,
-				"id": 51,
+				"id": 47,
 				"name": "db_ic_communication_share_item_solid_20",
 				"prevSize": 32,
-				"code": 59695
+				"code": 59695,
+				"ligatures": "^share_item$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -1113,16 +1161,17 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_feature_day_solid_20"]
+				"tags": ["db_ic_feature_day_solid_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 318,
-				"id": 50,
+				"id": 48,
 				"name": "db_ic_feature_day_solid_20",
 				"prevSize": 32,
-				"code": 59696
+				"code": 59696,
+				"ligatures": "^day$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -1136,8 +1185,8 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_feature_hydrogen_solid_20"]
+				"tags": ["db_ic_feature_hydrogen_solid_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
@@ -1145,7 +1194,8 @@
 				"id": 49,
 				"name": "db_ic_feature_hydrogen_solid_20",
 				"prevSize": 32,
-				"code": 59697
+				"code": 59697,
+				"ligatures": "^hydrogen$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -1159,16 +1209,17 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_feature_marketplace_solid_20"]
+				"tags": ["db_ic_feature_marketplace_solid_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 320,
-				"id": 48,
+				"id": 50,
 				"name": "db_ic_feature_marketplace_solid_20",
 				"prevSize": 32,
-				"code": 59698
+				"code": 59698,
+				"ligatures": "^marketplace$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -1182,16 +1233,17 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_feature_medical_solid_20"]
+				"tags": ["db_ic_feature_medical_solid_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 321,
-				"id": 47,
+				"id": 51,
 				"name": "db_ic_feature_medical_solid_20",
 				"prevSize": 32,
-				"code": 59699
+				"code": 59699,
+				"ligatures": "^medical$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -1205,16 +1257,17 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_feature_night_solid_20"]
+				"tags": ["db_ic_feature_night_solid_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 322,
-				"id": 46,
+				"id": 52,
 				"name": "db_ic_feature_night_solid_20",
 				"prevSize": 32,
-				"code": 59700
+				"code": 59700,
+				"ligatures": "^night$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -1228,16 +1281,17 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_feature_platform_solid_20"]
+				"tags": ["db_ic_feature_platform_solid_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 323,
-				"id": 45,
+				"id": 53,
 				"name": "db_ic_feature_platform_solid_20",
 				"prevSize": 32,
-				"code": 59701
+				"code": 59701,
+				"ligatures": "^platform$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -1251,16 +1305,17 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_feature_reservation_solid_20"]
+				"tags": ["db_ic_feature_reservation_solid_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 324,
-				"id": 44,
+				"id": 54,
 				"name": "db_ic_feature_reservation_solid_20",
 				"prevSize": 32,
-				"code": 59702
+				"code": 59702,
+				"ligatures": "^reservation$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -1274,16 +1329,17 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_food_coffee_cup_solid_20"]
+				"tags": ["db_ic_food_coffee_cup_solid_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 325,
-				"id": 43,
+				"id": 55,
 				"name": "db_ic_food_coffee_cup_solid_20",
 				"prevSize": 32,
-				"code": 59703
+				"code": 59703,
+				"ligatures": "^coffee_cup$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -1297,16 +1353,17 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_it_database_solid_20"]
+				"tags": ["db_ic_it_database_solid_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 326,
-				"id": 42,
+				"id": 56,
 				"name": "db_ic_it_database_solid_20",
 				"prevSize": 32,
-				"code": 59704
+				"code": 59704,
+				"ligatures": "^database$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -1320,18 +1377,19 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
 				"tags": [
 					"db_ic_journey_capacity_indicator_fully_booked_solid_20"
-				]
+				],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 327,
-				"id": 41,
+				"id": 57,
 				"name": "db_ic_journey_capacity_indicator_fully_booked_solid_20",
 				"prevSize": 32,
-				"code": 59705
+				"code": 59705,
+				"ligatures": "^capacity_indicator_fully_booked$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -1345,16 +1403,17 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_journey_capacity_indicator_high_solid_20"]
+				"tags": ["db_ic_journey_capacity_indicator_high_solid_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 328,
-				"id": 40,
+				"id": 58,
 				"name": "db_ic_journey_capacity_indicator_high_solid_20",
 				"prevSize": 32,
-				"code": 59706
+				"code": 59706,
+				"ligatures": "^capacity_indicator_high$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -1368,16 +1427,17 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_journey_capacity_indicator_low_solid_20"]
+				"tags": ["db_ic_journey_capacity_indicator_low_solid_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 329,
-				"id": 39,
+				"id": 59,
 				"name": "db_ic_journey_capacity_indicator_low_solid_20",
 				"prevSize": 32,
-				"code": 59707
+				"code": 59707,
+				"ligatures": "^capacity_indicator_low$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -1391,16 +1451,17 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_journey_capacity_indicator_solid_20"]
+				"tags": ["db_ic_journey_capacity_indicator_solid_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 330,
-				"id": 38,
+				"id": 60,
 				"name": "db_ic_journey_capacity_indicator_solid_20",
 				"prevSize": 32,
-				"code": 59708
+				"code": 59708,
+				"ligatures": "^capacity_indicator$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -1414,16 +1475,17 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_journey_destination_solid_20"]
+				"tags": ["db_ic_journey_destination_solid_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 331,
-				"id": 37,
+				"id": 61,
 				"name": "db_ic_journey_destination_solid_20",
 				"prevSize": 32,
-				"code": 59709
+				"code": 59709,
+				"ligatures": "^destination$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -1437,16 +1499,17 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_maps_gps_north_solid_20"]
+				"tags": ["db_ic_maps_gps_north_solid_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 332,
-				"id": 36,
+				"id": 62,
 				"name": "db_ic_maps_gps_north_solid_20",
 				"prevSize": 32,
-				"code": 59710
+				"code": 59710,
+				"ligatures": "^gps_north$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -1460,16 +1523,17 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_maps_gps_solid_20"]
+				"tags": ["db_ic_maps_gps_solid_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 333,
-				"id": 35,
+				"id": 63,
 				"name": "db_ic_maps_gps_solid_20",
 				"prevSize": 32,
-				"code": 59711
+				"code": 59711,
+				"ligatures": "^gps$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -1483,16 +1547,17 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_maps_home_solid_20"]
+				"tags": ["db_ic_maps_home_solid_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 334,
-				"id": 34,
+				"id": 64,
 				"name": "db_ic_maps_home_solid_20",
 				"prevSize": 32,
-				"code": 59712
+				"code": 59712,
+				"ligatures": "^home$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -1506,16 +1571,17 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_maps_parking_solid_20"]
+				"tags": ["db_ic_maps_parking_solid_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 335,
-				"id": 33,
+				"id": 65,
 				"name": "db_ic_maps_parking_solid_20",
 				"prevSize": 32,
-				"code": 59713
+				"code": 59713,
+				"ligatures": "^parking$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -1529,16 +1595,17 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_maps_place_solid_20"]
+				"tags": ["db_ic_maps_place_solid_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 336,
-				"id": 32,
+				"id": 66,
 				"name": "db_ic_maps_place_solid_20",
 				"prevSize": 32,
-				"code": 59714
+				"code": 59714,
+				"ligatures": "^place$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -1552,16 +1619,17 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_maps_stop_solid_20"]
+				"tags": ["db_ic_maps_stop_solid_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 337,
-				"id": 31,
+				"id": 67,
 				"name": "db_ic_maps_stop_solid_20",
 				"prevSize": 32,
-				"code": 59715
+				"code": 59715,
+				"ligatures": "^stop$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -1575,16 +1643,17 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_navigation_cancel_solid_20"]
+				"tags": ["db_ic_navigation_cancel_solid_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 338,
-				"id": 30,
+				"id": 68,
 				"name": "db_ic_navigation_cancel_solid_20",
 				"prevSize": 32,
-				"code": 59716
+				"code": 59716,
+				"ligatures": "^cancel$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -1598,16 +1667,17 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_navigation_grid_view_solid_20"]
+				"tags": ["db_ic_navigation_grid_view_solid_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 339,
-				"id": 29,
+				"id": 69,
 				"name": "db_ic_navigation_grid_view_solid_20",
 				"prevSize": 32,
-				"code": 59717
+				"code": 59717,
+				"ligatures": "^grid_view$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -1621,16 +1691,17 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_notification_error_solid_20"]
+				"tags": ["db_ic_notification_error_solid_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 340,
-				"id": 28,
+				"id": 70,
 				"name": "db_ic_notification_error_solid_20",
 				"prevSize": 32,
-				"code": 59718
+				"code": 59718,
+				"ligatures": "^error$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -1644,16 +1715,17 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_notification_warning_solid_20"]
+				"tags": ["db_ic_notification_warning_solid_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 341,
-				"id": 27,
+				"id": 71,
 				"name": "db_ic_notification_warning_solid_20",
 				"prevSize": 32,
-				"code": 59719
+				"code": 59719,
+				"ligatures": "^warning$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -1667,16 +1739,17 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_ticket_bahnbonus_card_solid_20"]
+				"tags": ["db_ic_ticket_bahnbonus_card_solid_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 342,
-				"id": 26,
+				"id": 72,
 				"name": "db_ic_ticket_bahnbonus_card_solid_20",
 				"prevSize": 32,
-				"code": 59720
+				"code": 59720,
+				"ligatures": "^bahnbonus_card$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -1690,16 +1763,17 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_ticket_bahncard_solid_20"]
+				"tags": ["db_ic_ticket_bahncard_solid_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 343,
-				"id": 25,
+				"id": 73,
 				"name": "db_ic_ticket_bahncard_solid_20",
 				"prevSize": 32,
-				"code": 59721
+				"code": 59721,
+				"ligatures": "^bahncard$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -1713,16 +1787,17 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_ticket_multiple_cards_solid_20"]
+				"tags": ["db_ic_ticket_multiple_cards_solid_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 344,
-				"id": 24,
+				"id": 74,
 				"name": "db_ic_ticket_multiple_cards_solid_20",
 				"prevSize": 32,
-				"code": 59722
+				"code": 59722,
+				"ligatures": "^multiple_cards$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -1736,16 +1811,17 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_transportation_inverted_airplane_inverted_20"]
+				"tags": ["db_ic_transportation_inverted_airplane_inverted_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 345,
-				"id": 23,
+				"id": 75,
 				"name": "db_ic_transportation_inverted_airplane_inverted_20",
 				"prevSize": 32,
-				"code": 59723
+				"code": 59723,
+				"ligatures": "^inverted_airplane_inverted_20"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -1759,16 +1835,17 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_transportation_inverted_bicycle_inverted_20"]
+				"tags": ["db_ic_transportation_inverted_bicycle_inverted_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 346,
-				"id": 22,
+				"id": 76,
 				"name": "db_ic_transportation_inverted_bicycle_inverted_20",
 				"prevSize": 32,
-				"code": 59724
+				"code": 59724,
+				"ligatures": "^inverted_bicycle_inverted_20"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -1782,18 +1859,19 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
 				"tags": [
 					"db_ic_transportation_inverted_bicycle_trailer_inverted_20"
-				]
+				],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 347,
-				"id": 21,
+				"id": 77,
 				"name": "db_ic_transportation_inverted_bicycle_trailer_inverted_20",
 				"prevSize": 32,
-				"code": 59725
+				"code": 59725,
+				"ligatures": "^inverted_bicycle_trailer_inverted_20"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -1807,18 +1885,19 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
 				"tags": [
 					"db_ic_transportation_inverted_call_a_bike_inverted_20"
-				]
+				],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 348,
-				"id": 20,
+				"id": 78,
 				"name": "db_ic_transportation_inverted_call_a_bike_inverted_20",
 				"prevSize": 32,
-				"code": 59726
+				"code": 59726,
+				"ligatures": "^inverted_call_a_bike_inverted_20"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -1832,16 +1911,17 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_transportation_inverted_car_inverted_20"]
+				"tags": ["db_ic_transportation_inverted_car_inverted_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 349,
-				"id": 19,
+				"id": 79,
 				"name": "db_ic_transportation_inverted_car_inverted_20",
 				"prevSize": 32,
-				"code": 59727
+				"code": 59727,
+				"ligatures": "^inverted_car_inverted_20"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -1855,16 +1935,19 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_transportation_inverted_carsharing_inverted_20"]
+				"tags": [
+					"db_ic_transportation_inverted_carsharing_inverted_20"
+				],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 350,
-				"id": 18,
+				"id": 80,
 				"name": "db_ic_transportation_inverted_carsharing_inverted_20",
 				"prevSize": 32,
-				"code": 59728
+				"code": 59728,
+				"ligatures": "^inverted_carsharing_inverted_20"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -1878,18 +1961,19 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
 				"tags": [
 					"db_ic_transportation_inverted_electric_locomotive_inverted_20"
-				]
+				],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 351,
-				"id": 17,
+				"id": 81,
 				"name": "db_ic_transportation_inverted_electric_locomotive_inverted_20",
 				"prevSize": 32,
-				"code": 59729
+				"code": 59729,
+				"ligatures": "^inverted_electric_locomotive_inverted_20"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -1903,18 +1987,19 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
 				"tags": [
 					"db_ic_transportation_inverted_electric_scooter_inverted_20"
-				]
+				],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 352,
-				"id": 16,
+				"id": 82,
 				"name": "db_ic_transportation_inverted_electric_scooter_inverted_20",
 				"prevSize": 32,
-				"code": 59730
+				"code": 59730,
+				"ligatures": "^inverted_electric_scooter_inverted_20"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -1928,16 +2013,17 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_transportation_inverted_ev_car_inverted_20"]
+				"tags": ["db_ic_transportation_inverted_ev_car_inverted_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 353,
-				"id": 15,
+				"id": 83,
 				"name": "db_ic_transportation_inverted_ev_car_inverted_20",
 				"prevSize": 32,
-				"code": 59731
+				"code": 59731,
+				"ligatures": "^inverted_ev_car_inverted_20"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -1951,16 +2037,17 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_transportation_inverted_ferry_inverted_20"]
+				"tags": ["db_ic_transportation_inverted_ferry_inverted_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 354,
-				"id": 14,
+				"id": 84,
 				"name": "db_ic_transportation_inverted_ferry_inverted_20",
 				"prevSize": 32,
-				"code": 59732
+				"code": 59732,
+				"ligatures": "^inverted_ferry_inverted_20"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -1974,16 +2061,17 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_transportation_inverted_handcart_inverted_20"]
+				"tags": ["db_ic_transportation_inverted_handcart_inverted_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 355,
-				"id": 13,
+				"id": 85,
 				"name": "db_ic_transportation_inverted_handcart_inverted_20",
 				"prevSize": 32,
-				"code": 59733
+				"code": 59733,
+				"ligatures": "^inverted_handcart_inverted_20"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -1997,16 +2085,17 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_transportation_inverted_ice_inverted_20"]
+				"tags": ["db_ic_transportation_inverted_ice_inverted_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 356,
-				"id": 12,
+				"id": 86,
 				"name": "db_ic_transportation_inverted_ice_inverted_20",
 				"prevSize": 32,
-				"code": 59734
+				"code": 59734,
+				"ligatures": "^inverted_ice_inverted_20"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -2020,18 +2109,19 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
 				"tags": [
 					"db_ic_transportation_inverted_intercity_train_inverted_20"
-				]
+				],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 357,
-				"id": 11,
+				"id": 87,
 				"name": "db_ic_transportation_inverted_intercity_train_inverted_20",
 				"prevSize": 32,
-				"code": 59735
+				"code": 59735,
+				"ligatures": "^inverted_intercity_train_inverted_20"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -2045,16 +2135,17 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_transportation_inverted_local_bus_inverted_20"]
+				"tags": ["db_ic_transportation_inverted_local_bus_inverted_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 358,
-				"id": 10,
+				"id": 88,
 				"name": "db_ic_transportation_inverted_local_bus_inverted_20",
 				"prevSize": 32,
-				"code": 59736
+				"code": 59736,
+				"ligatures": "^inverted_local_bus_inverted_20"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -2068,18 +2159,19 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
 				"tags": [
 					"db_ic_transportation_inverted_local_train_inverted_20"
-				]
+				],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 359,
-				"id": 9,
+				"id": 89,
 				"name": "db_ic_transportation_inverted_local_train_inverted_20",
 				"prevSize": 32,
-				"code": 59737
+				"code": 59737,
+				"ligatures": "^inverted_local_train_inverted_20"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -2093,18 +2185,19 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
 				"tags": [
 					"db_ic_transportation_inverted_long_distance_bus_inverted_20"
-				]
+				],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 360,
-				"id": 8,
+				"id": 90,
 				"name": "db_ic_transportation_inverted_long_distance_bus_inverted_20",
 				"prevSize": 32,
-				"code": 59738
+				"code": 59738,
+				"ligatures": "^inverted_long_distance_bus_inverted_20"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -2118,16 +2211,17 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_transportation_inverted_s_bahn_inverted_20"]
+				"tags": ["db_ic_transportation_inverted_s_bahn_inverted_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 361,
-				"id": 7,
+				"id": 91,
 				"name": "db_ic_transportation_inverted_s_bahn_inverted_20",
 				"prevSize": 32,
-				"code": 59739
+				"code": 59739,
+				"ligatures": "^inverted_s_bahn_inverted_20"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -2141,16 +2235,17 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_transportation_inverted_scooter_inverted_20"]
+				"tags": ["db_ic_transportation_inverted_scooter_inverted_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 362,
-				"id": 6,
+				"id": 92,
 				"name": "db_ic_transportation_inverted_scooter_inverted_20",
 				"prevSize": 32,
-				"code": 59740
+				"code": 59740,
+				"ligatures": "^inverted_scooter_inverted_20"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -2164,16 +2259,17 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_transportation_inverted_speedboat_inverted_20"]
+				"tags": ["db_ic_transportation_inverted_speedboat_inverted_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 363,
-				"id": 5,
+				"id": 93,
 				"name": "db_ic_transportation_inverted_speedboat_inverted_20",
 				"prevSize": 32,
-				"code": 59741
+				"code": 59741,
+				"ligatures": "^inverted_speedboat_inverted_20"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -2187,16 +2283,17 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_transportation_inverted_subway_inverted_20"]
+				"tags": ["db_ic_transportation_inverted_subway_inverted_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 364,
-				"id": 4,
+				"id": 94,
 				"name": "db_ic_transportation_inverted_subway_inverted_20",
 				"prevSize": 32,
-				"code": 59742
+				"code": 59742,
+				"ligatures": "^inverted_subway_inverted_20"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -2210,16 +2307,17 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_transportation_inverted_taxi_inverted_20"]
+				"tags": ["db_ic_transportation_inverted_taxi_inverted_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 365,
-				"id": 3,
+				"id": 95,
 				"name": "db_ic_transportation_inverted_taxi_inverted_20",
 				"prevSize": 32,
-				"code": 59743
+				"code": 59743,
+				"ligatures": "^inverted_taxi_inverted_20"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -2233,18 +2331,19 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
 				"tags": [
 					"db_ic_transportation_inverted_train_and_car_inverted_20"
-				]
+				],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 366,
-				"id": 2,
+				"id": 96,
 				"name": "db_ic_transportation_inverted_train_and_car_inverted_20",
 				"prevSize": 32,
-				"code": 59744
+				"code": 59744,
+				"ligatures": "^inverted_train_and_car_inverted_20"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -2258,16 +2357,17 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_transportation_inverted_tram_inverted_20"]
+				"tags": ["db_ic_transportation_inverted_tram_inverted_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 367,
-				"id": 1,
+				"id": 97,
 				"name": "db_ic_transportation_inverted_tram_inverted_20",
 				"prevSize": 32,
-				"code": 59745
+				"code": 59745,
+				"ligatures": "^inverted_tram_inverted_20"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -2281,16 +2381,17 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_transportation_inverted_walking_inverted_20"]
+				"tags": ["db_ic_transportation_inverted_walking_inverted_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 368,
-				"id": 0,
+				"id": 98,
 				"name": "db_ic_transportation_inverted_walking_inverted_20",
 				"prevSize": 32,
-				"code": 59746
+				"code": 59746,
+				"ligatures": "^inverted_walking_inverted_20"
 			},
 			"setIdx": 0,
 			"setId": 0,

@@ -9,16 +9,17 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_action_account_20"]
+				"tags": ["db_ic_action_account_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 2,
-				"id": 267,
+				"id": 0,
 				"name": "db_ic_action_account_20",
 				"prevSize": 32,
-				"code": 59648
+				"code": 59648,
+				"ligatures": "^account$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -32,16 +33,17 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_action_add_20"]
+				"tags": ["db_ic_action_add_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 3,
-				"id": 266,
+				"id": 1,
 				"name": "db_ic_action_add_20",
 				"prevSize": 32,
-				"code": 59649
+				"code": 59649,
+				"ligatures": "^add$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -55,16 +57,17 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_action_add_circle_20"]
+				"tags": ["db_ic_action_add_circle_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 4,
-				"id": 265,
+				"id": 2,
 				"name": "db_ic_action_add_circle_20",
 				"prevSize": 32,
-				"code": 59650
+				"code": 59650,
+				"ligatures": "^add_circle$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -78,16 +81,17 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_action_add_link_20"]
+				"tags": ["db_ic_action_add_link_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 5,
-				"id": 264,
+				"id": 3,
 				"name": "db_ic_action_add_link_20",
 				"prevSize": 32,
-				"code": 59651
+				"code": 59651,
+				"ligatures": "^add_link$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -101,16 +105,17 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_action_alarm_20"]
+				"tags": ["db_ic_action_alarm_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 6,
-				"id": 263,
+				"id": 4,
 				"name": "db_ic_action_alarm_20",
 				"prevSize": 32,
-				"code": 59652
+				"code": 59652,
+				"ligatures": "^alarm$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -124,16 +129,17 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_action_alarm_add_20"]
+				"tags": ["db_ic_action_alarm_add_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 7,
-				"id": 262,
+				"id": 5,
 				"name": "db_ic_action_alarm_add_20",
 				"prevSize": 32,
-				"code": 59653
+				"code": 59653,
+				"ligatures": "^alarm_add$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -147,16 +153,17 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_action_alert_20"]
+				"tags": ["db_ic_action_alert_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 8,
-				"id": 261,
+				"id": 6,
 				"name": "db_ic_action_alert_20",
 				"prevSize": 32,
-				"code": 59654
+				"code": 59654,
+				"ligatures": "^alert$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -170,16 +177,17 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_action_alert_off_20"]
+				"tags": ["db_ic_action_alert_off_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 9,
-				"id": 260,
+				"id": 7,
 				"name": "db_ic_action_alert_off_20",
 				"prevSize": 32,
-				"code": 59655
+				"code": 59655,
+				"ligatures": "^alert_off$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -193,16 +201,17 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_action_attachment_20"]
+				"tags": ["db_ic_action_attachment_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 10,
-				"id": 259,
+				"id": 8,
 				"name": "db_ic_action_attachment_20",
 				"prevSize": 32,
-				"code": 59656
+				"code": 59656,
+				"ligatures": "^attachment$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -216,16 +225,17 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_action_augmented_reality_20"]
+				"tags": ["db_ic_action_augmented_reality_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 11,
-				"id": 258,
+				"id": 9,
 				"name": "db_ic_action_augmented_reality_20",
 				"prevSize": 32,
-				"code": 59657
+				"code": 59657,
+				"ligatures": "^augmented_reality$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -239,16 +249,17 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_action_block_20"]
+				"tags": ["db_ic_action_block_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 12,
-				"id": 257,
+				"id": 10,
 				"name": "db_ic_action_block_20",
 				"prevSize": 32,
-				"code": 59658
+				"code": 59658,
+				"ligatures": "^block$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -262,16 +273,17 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_action_bookmark_20"]
+				"tags": ["db_ic_action_bookmark_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 13,
-				"id": 256,
+				"id": 11,
 				"name": "db_ic_action_bookmark_20",
 				"prevSize": 32,
-				"code": 59659
+				"code": 59659,
+				"ligatures": "^bookmark$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -285,16 +297,17 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_action_bug_20"]
+				"tags": ["db_ic_action_bug_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 14,
-				"id": 255,
+				"id": 12,
 				"name": "db_ic_action_bug_20",
 				"prevSize": 32,
-				"code": 59660
+				"code": 59660,
+				"ligatures": "^bug$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -308,16 +321,17 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_action_build_20"]
+				"tags": ["db_ic_action_build_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 15,
-				"id": 254,
+				"id": 13,
 				"name": "db_ic_action_build_20",
 				"prevSize": 32,
-				"code": 59661
+				"code": 59661,
+				"ligatures": "^build$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -331,16 +345,17 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_action_calendar_20"]
+				"tags": ["db_ic_action_calendar_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 16,
-				"id": 253,
+				"id": 14,
 				"name": "db_ic_action_calendar_20",
 				"prevSize": 32,
-				"code": 59662
+				"code": 59662,
+				"ligatures": "^calendar$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -354,16 +369,17 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_action_camera_20"]
+				"tags": ["db_ic_action_camera_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 17,
-				"id": 252,
+				"id": 15,
 				"name": "db_ic_action_camera_20",
 				"prevSize": 32,
-				"code": 59663
+				"code": 59663,
+				"ligatures": "^camera$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -377,16 +393,17 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_action_cash_20"]
+				"tags": ["db_ic_action_cash_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 18,
-				"id": 251,
+				"id": 16,
 				"name": "db_ic_action_cash_20",
 				"prevSize": 32,
-				"code": 59664
+				"code": 59664,
+				"ligatures": "^cash$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -400,16 +417,17 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_action_check_circle_20"]
+				"tags": ["db_ic_action_check_circle_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 19,
-				"id": 250,
+				"id": 17,
 				"name": "db_ic_action_check_circle_20",
 				"prevSize": 32,
-				"code": 59665
+				"code": 59665,
+				"ligatures": "^check_circle$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -423,16 +441,17 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_action_cloud_20"]
+				"tags": ["db_ic_action_cloud_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 20,
-				"id": 249,
+				"id": 18,
 				"name": "db_ic_action_cloud_20",
 				"prevSize": 32,
-				"code": 59666
+				"code": 59666,
+				"ligatures": "^cloud$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -446,16 +465,17 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_action_cloud_download_20"]
+				"tags": ["db_ic_action_cloud_download_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 21,
-				"id": 248,
+				"id": 19,
 				"name": "db_ic_action_cloud_download_20",
 				"prevSize": 32,
-				"code": 59667
+				"code": 59667,
+				"ligatures": "^cloud_download$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -469,16 +489,17 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_action_cloud_upload_20"]
+				"tags": ["db_ic_action_cloud_upload_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 22,
-				"id": 247,
+				"id": 20,
 				"name": "db_ic_action_cloud_upload_20",
 				"prevSize": 32,
-				"code": 59668
+				"code": 59668,
+				"ligatures": "^cloud_upload$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -492,16 +513,17 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_action_compass_20"]
+				"tags": ["db_ic_action_compass_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 23,
-				"id": 246,
+				"id": 21,
 				"name": "db_ic_action_compass_20",
 				"prevSize": 32,
-				"code": 59669
+				"code": 59669,
+				"ligatures": "^compass$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -515,16 +537,17 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_action_copy_20"]
+				"tags": ["db_ic_action_copy_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 24,
-				"id": 245,
+				"id": 22,
 				"name": "db_ic_action_copy_20",
 				"prevSize": 32,
-				"code": 59670
+				"code": 59670,
+				"ligatures": "^copy$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -538,16 +561,17 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_action_credit_card_20"]
+				"tags": ["db_ic_action_credit_card_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 25,
-				"id": 244,
+				"id": 23,
 				"name": "db_ic_action_credit_card_20",
 				"prevSize": 32,
-				"code": 59671
+				"code": 59671,
+				"ligatures": "^credit_card$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -561,16 +585,17 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_action_dashboard_20"]
+				"tags": ["db_ic_action_dashboard_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 26,
-				"id": 243,
+				"id": 24,
 				"name": "db_ic_action_dashboard_20",
 				"prevSize": 32,
-				"code": 59672
+				"code": 59672,
+				"ligatures": "^dashboard$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -584,16 +609,17 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_action_delete_20"]
+				"tags": ["db_ic_action_delete_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 27,
-				"id": 242,
+				"id": 25,
 				"name": "db_ic_action_delete_20",
 				"prevSize": 32,
-				"code": 59673
+				"code": 59673,
+				"ligatures": "^delete$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -607,16 +633,17 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_action_discount_20"]
+				"tags": ["db_ic_action_discount_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 28,
-				"id": 241,
+				"id": 26,
 				"name": "db_ic_action_discount_20",
 				"prevSize": 32,
-				"code": 59674
+				"code": 59674,
+				"ligatures": "^discount$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -630,16 +657,17 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_action_document_20"]
+				"tags": ["db_ic_action_document_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 29,
-				"id": 240,
+				"id": 27,
 				"name": "db_ic_action_document_20",
 				"prevSize": 32,
-				"code": 59675
+				"code": 59675,
+				"ligatures": "^document$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -653,16 +681,17 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_action_done_20"]
+				"tags": ["db_ic_action_done_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 30,
-				"id": 239,
+				"id": 28,
 				"name": "db_ic_action_done_20",
 				"prevSize": 32,
-				"code": 59676
+				"code": 59676,
+				"ligatures": "^done$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -676,16 +705,17 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_action_download_20"]
+				"tags": ["db_ic_action_download_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 31,
-				"id": 238,
+				"id": 29,
 				"name": "db_ic_action_download_20",
 				"prevSize": 32,
-				"code": 59677
+				"code": 59677,
+				"ligatures": "^download$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -699,16 +729,17 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_action_drag_and_drop_20"]
+				"tags": ["db_ic_action_drag_and_drop_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 32,
-				"id": 237,
+				"id": 30,
 				"name": "db_ic_action_drag_and_drop_20",
 				"prevSize": 32,
-				"code": 59678
+				"code": 59678,
+				"ligatures": "^drag_and_drop$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -722,16 +753,17 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_action_edit_20"]
+				"tags": ["db_ic_action_edit_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 33,
-				"id": 236,
+				"id": 31,
 				"name": "db_ic_action_edit_20",
 				"prevSize": 32,
-				"code": 59679
+				"code": 59679,
+				"ligatures": "^edit$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -745,16 +777,17 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_action_face_neutral_20"]
+				"tags": ["db_ic_action_face_neutral_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 34,
-				"id": 235,
+				"id": 32,
 				"name": "db_ic_action_face_neutral_20",
 				"prevSize": 32,
-				"code": 59680
+				"code": 59680,
+				"ligatures": "^face_neutral$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -768,16 +801,17 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_action_face_sad_20"]
+				"tags": ["db_ic_action_face_sad_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 35,
-				"id": 234,
+				"id": 33,
 				"name": "db_ic_action_face_sad_20",
 				"prevSize": 32,
-				"code": 59681
+				"code": 59681,
+				"ligatures": "^face_sad$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -791,16 +825,17 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_action_face_smiling_20"]
+				"tags": ["db_ic_action_face_smiling_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 36,
-				"id": 233,
+				"id": 34,
 				"name": "db_ic_action_face_smiling_20",
 				"prevSize": 32,
-				"code": 59682
+				"code": 59682,
+				"ligatures": "^face_smiling$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -814,16 +849,17 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_action_filter_20"]
+				"tags": ["db_ic_action_filter_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 37,
-				"id": 232,
+				"id": 35,
 				"name": "db_ic_action_filter_20",
 				"prevSize": 32,
-				"code": 59683
+				"code": 59683,
+				"ligatures": "^filter$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -837,16 +873,17 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_action_fingerprint_20"]
+				"tags": ["db_ic_action_fingerprint_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 38,
-				"id": 231,
+				"id": 36,
 				"name": "db_ic_action_fingerprint_20",
 				"prevSize": 32,
-				"code": 59684
+				"code": 59684,
+				"ligatures": "^fingerprint$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -860,16 +897,17 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_action_folder_20"]
+				"tags": ["db_ic_action_folder_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 39,
-				"id": 230,
+				"id": 37,
 				"name": "db_ic_action_folder_20",
 				"prevSize": 32,
-				"code": 59685
+				"code": 59685,
+				"ligatures": "^folder$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -883,16 +921,17 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_action_folder_open_20"]
+				"tags": ["db_ic_action_folder_open_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 40,
-				"id": 229,
+				"id": 38,
 				"name": "db_ic_action_folder_open_20",
 				"prevSize": 32,
-				"code": 59686
+				"code": 59686,
+				"ligatures": "^folder_open$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -906,16 +945,17 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_action_generic_card_20"]
+				"tags": ["db_ic_action_generic_card_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 41,
-				"id": 228,
+				"id": 39,
 				"name": "db_ic_action_generic_card_20",
 				"prevSize": 32,
-				"code": 59687
+				"code": 59687,
+				"ligatures": "^generic_card$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -929,16 +969,17 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_action_giftcard_20"]
+				"tags": ["db_ic_action_giftcard_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 42,
-				"id": 227,
+				"id": 40,
 				"name": "db_ic_action_giftcard_20",
 				"prevSize": 32,
-				"code": 59688
+				"code": 59688,
+				"ligatures": "^giftcard$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -952,16 +993,17 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_action_hearing_20"]
+				"tags": ["db_ic_action_hearing_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 43,
-				"id": 226,
+				"id": 41,
 				"name": "db_ic_action_hearing_20",
 				"prevSize": 32,
-				"code": 59689
+				"code": 59689,
+				"ligatures": "^hearing$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -975,16 +1017,17 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_action_hearing_disabled_20"]
+				"tags": ["db_ic_action_hearing_disabled_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 44,
-				"id": 225,
+				"id": 42,
 				"name": "db_ic_action_hearing_disabled_20",
 				"prevSize": 32,
-				"code": 59690
+				"code": 59690,
+				"ligatures": "^hearing_disabled$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -998,16 +1041,17 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_action_heart_20"]
+				"tags": ["db_ic_action_heart_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 45,
-				"id": 224,
+				"id": 43,
 				"name": "db_ic_action_heart_20",
 				"prevSize": 32,
-				"code": 59691
+				"code": 59691,
+				"ligatures": "^heart$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -1021,16 +1065,17 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_action_help_20"]
+				"tags": ["db_ic_action_help_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 46,
-				"id": 223,
+				"id": 44,
 				"name": "db_ic_action_help_20",
 				"prevSize": 32,
-				"code": 59692
+				"code": 59692,
+				"ligatures": "^help$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -1044,16 +1089,17 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_action_image_20"]
+				"tags": ["db_ic_action_image_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 47,
-				"id": 222,
+				"id": 45,
 				"name": "db_ic_action_image_20",
 				"prevSize": 32,
-				"code": 59693
+				"code": 59693,
+				"ligatures": "^image$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -1067,16 +1113,17 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_action_info_20"]
+				"tags": ["db_ic_action_info_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 48,
-				"id": 221,
+				"id": 46,
 				"name": "db_ic_action_info_20",
 				"prevSize": 32,
-				"code": 59694
+				"code": 59694,
+				"ligatures": "^info$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -1090,16 +1137,17 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_action_key_20"]
+				"tags": ["db_ic_action_key_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 49,
-				"id": 220,
+				"id": 47,
 				"name": "db_ic_action_key_20",
 				"prevSize": 32,
-				"code": 59695
+				"code": 59695,
+				"ligatures": "^key$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -1113,16 +1161,17 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_action_legal_20"]
+				"tags": ["db_ic_action_legal_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 50,
-				"id": 219,
+				"id": 48,
 				"name": "db_ic_action_legal_20",
 				"prevSize": 32,
-				"code": 59696
+				"code": 59696,
+				"ligatures": "^legal$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -1136,16 +1185,17 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_action_lightbulb_20"]
+				"tags": ["db_ic_action_lightbulb_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 51,
-				"id": 218,
+				"id": 49,
 				"name": "db_ic_action_lightbulb_20",
 				"prevSize": 32,
-				"code": 59697
+				"code": 59697,
+				"ligatures": "^lightbulb$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -1159,16 +1209,17 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_action_lock_close_20"]
+				"tags": ["db_ic_action_lock_close_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 52,
-				"id": 217,
+				"id": 50,
 				"name": "db_ic_action_lock_close_20",
 				"prevSize": 32,
-				"code": 59698
+				"code": 59698,
+				"ligatures": "^lock_close$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -1182,16 +1233,17 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_action_lock_open_20"]
+				"tags": ["db_ic_action_lock_open_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 53,
-				"id": 216,
+				"id": 51,
 				"name": "db_ic_action_lock_open_20",
 				"prevSize": 32,
-				"code": 59699
+				"code": 59699,
+				"ligatures": "^lock_open$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -1205,16 +1257,17 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_action_log_out_20"]
+				"tags": ["db_ic_action_log_out_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 54,
-				"id": 215,
+				"id": 52,
 				"name": "db_ic_action_log_out_20",
 				"prevSize": 32,
-				"code": 59700
+				"code": 59700,
+				"ligatures": "^log_out$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -1228,16 +1281,17 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_action_logbook_20"]
+				"tags": ["db_ic_action_logbook_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 55,
-				"id": 214,
+				"id": 53,
 				"name": "db_ic_action_logbook_20",
 				"prevSize": 32,
-				"code": 59701
+				"code": 59701,
+				"ligatures": "^logbook$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -1251,16 +1305,17 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_action_minus_20"]
+				"tags": ["db_ic_action_minus_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 56,
-				"id": 213,
+				"id": 54,
 				"name": "db_ic_action_minus_20",
 				"prevSize": 32,
-				"code": 59702
+				"code": 59702,
+				"ligatures": "^minus$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -1274,16 +1329,17 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_action_pin_20"]
+				"tags": ["db_ic_action_pin_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 57,
-				"id": 212,
+				"id": 55,
 				"name": "db_ic_action_pin_20",
 				"prevSize": 32,
-				"code": 59703
+				"code": 59703,
+				"ligatures": "^pin$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -1297,16 +1353,17 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_action_print_20"]
+				"tags": ["db_ic_action_print_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 58,
-				"id": 211,
+				"id": 56,
 				"name": "db_ic_action_print_20",
 				"prevSize": 32,
-				"code": 59704
+				"code": 59704,
+				"ligatures": "^print$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -1320,16 +1377,17 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_action_remove_20"]
+				"tags": ["db_ic_action_remove_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 59,
-				"id": 210,
+				"id": 57,
 				"name": "db_ic_action_remove_20",
 				"prevSize": 32,
-				"code": 59705
+				"code": 59705,
+				"ligatures": "^remove$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -1343,16 +1401,17 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_action_resize_20"]
+				"tags": ["db_ic_action_resize_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 60,
-				"id": 209,
+				"id": 58,
 				"name": "db_ic_action_resize_20",
 				"prevSize": 32,
-				"code": 59706
+				"code": 59706,
+				"ligatures": "^resize$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -1366,16 +1425,17 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_action_save_20"]
+				"tags": ["db_ic_action_save_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 61,
-				"id": 208,
+				"id": 59,
 				"name": "db_ic_action_save_20",
 				"prevSize": 32,
-				"code": 59707
+				"code": 59707,
+				"ligatures": "^save$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -1389,16 +1449,17 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_action_schedule_20"]
+				"tags": ["db_ic_action_schedule_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 62,
-				"id": 207,
+				"id": 60,
 				"name": "db_ic_action_schedule_20",
 				"prevSize": 32,
-				"code": 59708
+				"code": 59708,
+				"ligatures": "^schedule$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -1412,16 +1473,17 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_action_search_20"]
+				"tags": ["db_ic_action_search_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 63,
-				"id": 206,
+				"id": 61,
 				"name": "db_ic_action_search_20",
 				"prevSize": 32,
-				"code": 59709
+				"code": 59709,
+				"ligatures": "^search$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -1435,16 +1497,17 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_action_send_20"]
+				"tags": ["db_ic_action_send_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 64,
-				"id": 205,
+				"id": 62,
 				"name": "db_ic_action_send_20",
 				"prevSize": 32,
-				"code": 59710
+				"code": 59710,
+				"ligatures": "^send$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -1458,16 +1521,17 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_action_sepa_20"]
+				"tags": ["db_ic_action_sepa_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 65,
-				"id": 204,
+				"id": 63,
 				"name": "db_ic_action_sepa_20",
 				"prevSize": 32,
-				"code": 59711
+				"code": 59711,
+				"ligatures": "^sepa$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -1481,16 +1545,17 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_action_settings_20"]
+				"tags": ["db_ic_action_settings_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 66,
-				"id": 203,
+				"id": 64,
 				"name": "db_ic_action_settings_20",
 				"prevSize": 32,
-				"code": 59712
+				"code": 59712,
+				"ligatures": "^settings$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -1504,16 +1569,17 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_action_share_20"]
+				"tags": ["db_ic_action_share_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 67,
-				"id": 202,
+				"id": 65,
 				"name": "db_ic_action_share_20",
 				"prevSize": 32,
-				"code": 59713
+				"code": 59713,
+				"ligatures": "^share$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -1527,16 +1593,17 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_action_shopping_bag_20"]
+				"tags": ["db_ic_action_shopping_bag_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 68,
-				"id": 201,
+				"id": 66,
 				"name": "db_ic_action_shopping_bag_20",
 				"prevSize": 32,
-				"code": 59714
+				"code": 59714,
+				"ligatures": "^shopping_bag$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -1550,16 +1617,17 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_action_shopping_basket_20"]
+				"tags": ["db_ic_action_shopping_basket_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 69,
-				"id": 200,
+				"id": 67,
 				"name": "db_ic_action_shopping_basket_20",
 				"prevSize": 32,
-				"code": 59715
+				"code": 59715,
+				"ligatures": "^shopping_basket$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -1573,16 +1641,17 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_action_shopping_basket_disabled_20"]
+				"tags": ["db_ic_action_shopping_basket_disabled_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 70,
-				"id": 199,
+				"id": 68,
 				"name": "db_ic_action_shopping_basket_disabled_20",
 				"prevSize": 32,
-				"code": 59716
+				"code": 59716,
+				"ligatures": "^shopping_basket_disabled$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -1596,16 +1665,17 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_action_shopping_cart_20"]
+				"tags": ["db_ic_action_shopping_cart_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 71,
-				"id": 198,
+				"id": 69,
 				"name": "db_ic_action_shopping_cart_20",
 				"prevSize": 32,
-				"code": 59717
+				"code": 59717,
+				"ligatures": "^shopping_cart$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -1619,16 +1689,17 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_action_shopping_cart_disabled_20"]
+				"tags": ["db_ic_action_shopping_cart_disabled_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 72,
-				"id": 197,
+				"id": 70,
 				"name": "db_ic_action_shopping_cart_disabled_20",
 				"prevSize": 32,
-				"code": 59718
+				"code": 59718,
+				"ligatures": "^shopping_cart_disabled$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -1642,16 +1713,17 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_action_sort_down_20"]
+				"tags": ["db_ic_action_sort_down_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 73,
-				"id": 196,
+				"id": 71,
 				"name": "db_ic_action_sort_down_20",
 				"prevSize": 32,
-				"code": 59719
+				"code": 59719,
+				"ligatures": "^sort_down$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -1665,16 +1737,17 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_action_sort_up_20"]
+				"tags": ["db_ic_action_sort_up_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 74,
-				"id": 195,
+				"id": 72,
 				"name": "db_ic_action_sort_up_20",
 				"prevSize": 32,
-				"code": 59720
+				"code": 59720,
+				"ligatures": "^sort_up$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -1688,16 +1761,17 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_action_star_20"]
+				"tags": ["db_ic_action_star_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 75,
-				"id": 194,
+				"id": 73,
 				"name": "db_ic_action_star_20",
 				"prevSize": 32,
-				"code": 59721
+				"code": 59721,
+				"ligatures": "^star$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -1711,16 +1785,17 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_action_swap_horizontal_20"]
+				"tags": ["db_ic_action_swap_horizontal_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 76,
-				"id": 193,
+				"id": 74,
 				"name": "db_ic_action_swap_horizontal_20",
 				"prevSize": 32,
-				"code": 59722
+				"code": 59722,
+				"ligatures": "^swap_horizontal$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -1734,16 +1809,17 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_action_swap_vertical_20"]
+				"tags": ["db_ic_action_swap_vertical_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 77,
-				"id": 192,
+				"id": 75,
 				"name": "db_ic_action_swap_vertical_20",
 				"prevSize": 32,
-				"code": 59723
+				"code": 59723,
+				"ligatures": "^swap_vertical$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -1757,16 +1833,17 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_action_thumb_up_20"]
+				"tags": ["db_ic_action_thumb_up_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 78,
-				"id": 191,
+				"id": 76,
 				"name": "db_ic_action_thumb_up_20",
 				"prevSize": 32,
-				"code": 59724
+				"code": 59724,
+				"ligatures": "^thumb_up$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -1780,16 +1857,17 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_action_thumb_up_down_20"]
+				"tags": ["db_ic_action_thumb_up_down_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 79,
-				"id": 190,
+				"id": 77,
 				"name": "db_ic_action_thumb_up_down_20",
 				"prevSize": 32,
-				"code": 59725
+				"code": 59725,
+				"ligatures": "^thumb_up_down$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -1803,16 +1881,17 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_action_translation_20"]
+				"tags": ["db_ic_action_translation_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 80,
-				"id": 189,
+				"id": 78,
 				"name": "db_ic_action_translation_20",
 				"prevSize": 32,
-				"code": 59726
+				"code": 59726,
+				"ligatures": "^translation$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -1826,16 +1905,17 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_action_undo_20"]
+				"tags": ["db_ic_action_undo_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 81,
-				"id": 188,
+				"id": 79,
 				"name": "db_ic_action_undo_20",
 				"prevSize": 32,
-				"code": 59727
+				"code": 59727,
+				"ligatures": "^undo$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -1849,16 +1929,17 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_action_upload_20"]
+				"tags": ["db_ic_action_upload_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 82,
-				"id": 187,
+				"id": 80,
 				"name": "db_ic_action_upload_20",
 				"prevSize": 32,
-				"code": 59728
+				"code": 59728,
+				"ligatures": "^upload$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -1872,16 +1953,17 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_action_visibility_20"]
+				"tags": ["db_ic_action_visibility_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 83,
-				"id": 186,
+				"id": 81,
 				"name": "db_ic_action_visibility_20",
 				"prevSize": 32,
-				"code": 59729
+				"code": 59729,
+				"ligatures": "^visibility$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -1895,16 +1977,17 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_action_visibility_off_20"]
+				"tags": ["db_ic_action_visibility_off_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 84,
-				"id": 185,
+				"id": 82,
 				"name": "db_ic_action_visibility_off_20",
 				"prevSize": 32,
-				"code": 59730
+				"code": 59730,
+				"ligatures": "^visibility_off$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -1918,16 +2001,17 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_action_voucher_20"]
+				"tags": ["db_ic_action_voucher_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 85,
-				"id": 184,
+				"id": 83,
 				"name": "db_ic_action_voucher_20",
 				"prevSize": 32,
-				"code": 59731
+				"code": 59731,
+				"ligatures": "^voucher$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -1941,16 +2025,17 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_action_website_20"]
+				"tags": ["db_ic_action_website_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 86,
-				"id": 183,
+				"id": 84,
 				"name": "db_ic_action_website_20",
 				"prevSize": 32,
-				"code": 59732
+				"code": 59732,
+				"ligatures": "^website$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -1964,16 +2049,17 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_action_zoom_in_20"]
+				"tags": ["db_ic_action_zoom_in_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 87,
-				"id": 182,
+				"id": 85,
 				"name": "db_ic_action_zoom_in_20",
 				"prevSize": 32,
-				"code": 59733
+				"code": 59733,
+				"ligatures": "^zoom_in$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -1987,16 +2073,17 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_action_zoom_out_20"]
+				"tags": ["db_ic_action_zoom_out_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 88,
-				"id": 181,
+				"id": 86,
 				"name": "db_ic_action_zoom_out_20",
 				"prevSize": 32,
-				"code": 59734
+				"code": 59734,
+				"ligatures": "^zoom_out$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -2010,16 +2097,17 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_av_fast_backward_10_20"]
+				"tags": ["db_ic_av_fast_backward_10_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 89,
-				"id": 180,
+				"id": 87,
 				"name": "db_ic_av_fast_backward_10_20",
 				"prevSize": 32,
-				"code": 59735
+				"code": 59735,
+				"ligatures": "^fast_backward_10$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -2033,16 +2121,17 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_av_fast_backward_30_20"]
+				"tags": ["db_ic_av_fast_backward_30_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 90,
-				"id": 179,
+				"id": 88,
 				"name": "db_ic_av_fast_backward_30_20",
 				"prevSize": 32,
-				"code": 59736
+				"code": 59736,
+				"ligatures": "^fast_backward_30$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -2056,16 +2145,17 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_av_fast_backward_empty_20"]
+				"tags": ["db_ic_av_fast_backward_empty_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 91,
-				"id": 178,
+				"id": 89,
 				"name": "db_ic_av_fast_backward_empty_20",
 				"prevSize": 32,
-				"code": 59737
+				"code": 59737,
+				"ligatures": "^fast_backward_empty$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -2079,16 +2169,17 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_av_fast_forward_10_20"]
+				"tags": ["db_ic_av_fast_forward_10_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 92,
-				"id": 177,
+				"id": 90,
 				"name": "db_ic_av_fast_forward_10_20",
 				"prevSize": 32,
-				"code": 59738
+				"code": 59738,
+				"ligatures": "^fast_forward_10$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -2102,16 +2193,17 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_av_fast_forward_30_20"]
+				"tags": ["db_ic_av_fast_forward_30_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 93,
-				"id": 176,
+				"id": 91,
 				"name": "db_ic_av_fast_forward_30_20",
 				"prevSize": 32,
-				"code": 59739
+				"code": 59739,
+				"ligatures": "^fast_forward_30$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -2125,16 +2217,17 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_av_fast_forward_empty_20"]
+				"tags": ["db_ic_av_fast_forward_empty_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 94,
-				"id": 175,
+				"id": 92,
 				"name": "db_ic_av_fast_forward_empty_20",
 				"prevSize": 32,
-				"code": 59740
+				"code": 59740,
+				"ligatures": "^fast_forward_empty$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -2148,16 +2241,17 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_av_microphone_20"]
+				"tags": ["db_ic_av_microphone_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 95,
-				"id": 174,
+				"id": 93,
 				"name": "db_ic_av_microphone_20",
 				"prevSize": 32,
-				"code": 59741
+				"code": 59741,
+				"ligatures": "^microphone$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -2171,16 +2265,17 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_av_pause_20"]
+				"tags": ["db_ic_av_pause_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 96,
-				"id": 173,
+				"id": 94,
 				"name": "db_ic_av_pause_20",
 				"prevSize": 32,
-				"code": 59742
+				"code": 59742,
+				"ligatures": "^pause$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -2194,16 +2289,17 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_av_play_20"]
+				"tags": ["db_ic_av_play_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 97,
-				"id": 172,
+				"id": 95,
 				"name": "db_ic_av_play_20",
 				"prevSize": 32,
-				"code": 59743
+				"code": 59743,
+				"ligatures": "^play$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -2217,16 +2313,17 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_av_skip_backward_20"]
+				"tags": ["db_ic_av_skip_backward_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 98,
-				"id": 171,
+				"id": 96,
 				"name": "db_ic_av_skip_backward_20",
 				"prevSize": 32,
-				"code": 59744
+				"code": 59744,
+				"ligatures": "^skip_backward$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -2240,16 +2337,17 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_av_skip_forward_20"]
+				"tags": ["db_ic_av_skip_forward_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 99,
-				"id": 170,
+				"id": 97,
 				"name": "db_ic_av_skip_forward_20",
 				"prevSize": 32,
-				"code": 59745
+				"code": 59745,
+				"ligatures": "^skip_forward$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -2263,16 +2361,17 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_av_stop_20"]
+				"tags": ["db_ic_av_stop_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 100,
-				"id": 169,
+				"id": 98,
 				"name": "db_ic_av_stop_20",
 				"prevSize": 32,
-				"code": 59746
+				"code": 59746,
+				"ligatures": "^stop$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -2286,16 +2385,17 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_av_subtitles_20"]
+				"tags": ["db_ic_av_subtitles_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 101,
-				"id": 168,
+				"id": 99,
 				"name": "db_ic_av_subtitles_20",
 				"prevSize": 32,
-				"code": 59747
+				"code": 59747,
+				"ligatures": "^subtitles$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -2309,16 +2409,17 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_av_volume_down_20"]
+				"tags": ["db_ic_av_volume_down_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 102,
-				"id": 167,
+				"id": 100,
 				"name": "db_ic_av_volume_down_20",
 				"prevSize": 32,
-				"code": 59748
+				"code": 59748,
+				"ligatures": "^volume_down$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -2332,16 +2433,17 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_av_volume_mute_20"]
+				"tags": ["db_ic_av_volume_mute_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 103,
-				"id": 166,
+				"id": 101,
 				"name": "db_ic_av_volume_mute_20",
 				"prevSize": 32,
-				"code": 59749
+				"code": 59749,
+				"ligatures": "^volume_mute$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -2355,16 +2457,17 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_av_volume_off_20"]
+				"tags": ["db_ic_av_volume_off_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 104,
-				"id": 165,
+				"id": 102,
 				"name": "db_ic_av_volume_off_20",
 				"prevSize": 32,
-				"code": 59750
+				"code": 59750,
+				"ligatures": "^volume_off$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -2378,16 +2481,17 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_av_volume_up_20"]
+				"tags": ["db_ic_av_volume_up_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 105,
-				"id": 164,
+				"id": 103,
 				"name": "db_ic_av_volume_up_20",
 				"prevSize": 32,
-				"code": 59751
+				"code": 59751,
+				"ligatures": "^volume_up$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -2401,16 +2505,17 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_brand_logo_20"]
+				"tags": ["db_ic_brand_logo_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 106,
-				"id": 163,
+				"id": 104,
 				"name": "db_ic_brand_logo_20",
 				"prevSize": 32,
-				"code": 59752
+				"code": 59752,
+				"ligatures": "^logo$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -2424,16 +2529,17 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_communication_call_20"]
+				"tags": ["db_ic_communication_call_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 107,
-				"id": 162,
+				"id": 105,
 				"name": "db_ic_communication_call_20",
 				"prevSize": 32,
-				"code": 59753
+				"code": 59753,
+				"ligatures": "^call$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -2447,16 +2553,17 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_communication_chat_20"]
+				"tags": ["db_ic_communication_chat_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 108,
-				"id": 161,
+				"id": 106,
 				"name": "db_ic_communication_chat_20",
 				"prevSize": 32,
-				"code": 59754
+				"code": 59754,
+				"ligatures": "^chat$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -2470,16 +2577,17 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_communication_conversation_20"]
+				"tags": ["db_ic_communication_conversation_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 109,
-				"id": 160,
+				"id": 107,
 				"name": "db_ic_communication_conversation_20",
 				"prevSize": 32,
-				"code": 59755
+				"code": 59755,
+				"ligatures": "^conversation$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -2493,16 +2601,17 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_communication_fax_20"]
+				"tags": ["db_ic_communication_fax_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 110,
-				"id": 159,
+				"id": 108,
 				"name": "db_ic_communication_fax_20",
 				"prevSize": 32,
-				"code": 59756
+				"code": 59756,
+				"ligatures": "^fax$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -2516,16 +2625,17 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_communication_feedback_20"]
+				"tags": ["db_ic_communication_feedback_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 111,
-				"id": 158,
+				"id": 109,
 				"name": "db_ic_communication_feedback_20",
 				"prevSize": 32,
-				"code": 59757
+				"code": 59757,
+				"ligatures": "^feedback$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -2539,16 +2649,17 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_communication_mail_20"]
+				"tags": ["db_ic_communication_mail_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 112,
-				"id": 157,
+				"id": 110,
 				"name": "db_ic_communication_mail_20",
 				"prevSize": 32,
-				"code": 59758
+				"code": 59758,
+				"ligatures": "^mail$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -2562,16 +2673,17 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_communication_mobile_off_20"]
+				"tags": ["db_ic_communication_mobile_off_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 113,
-				"id": 156,
+				"id": 111,
 				"name": "db_ic_communication_mobile_off_20",
 				"prevSize": 32,
-				"code": 59759
+				"code": 59759,
+				"ligatures": "^mobile_off$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -2585,16 +2697,17 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_communication_mobile_phone_20"]
+				"tags": ["db_ic_communication_mobile_phone_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 114,
-				"id": 155,
+				"id": 112,
 				"name": "db_ic_communication_mobile_phone_20",
 				"prevSize": 32,
-				"code": 59760
+				"code": 59760,
+				"ligatures": "^mobile_phone$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -2608,16 +2721,17 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_communication_question_20"]
+				"tags": ["db_ic_communication_question_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 115,
-				"id": 154,
+				"id": 113,
 				"name": "db_ic_communication_question_20",
 				"prevSize": 32,
-				"code": 59761
+				"code": 59761,
+				"ligatures": "^question$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -2631,16 +2745,17 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_communication_receive_item_20"]
+				"tags": ["db_ic_communication_receive_item_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 116,
-				"id": 153,
+				"id": 114,
 				"name": "db_ic_communication_receive_item_20",
 				"prevSize": 32,
-				"code": 59762
+				"code": 59762,
+				"ligatures": "^receive_item$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -2654,16 +2769,17 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_communication_share_item_20"]
+				"tags": ["db_ic_communication_share_item_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 117,
-				"id": 152,
+				"id": 115,
 				"name": "db_ic_communication_share_item_20",
 				"prevSize": 32,
-				"code": 59763
+				"code": 59763,
+				"ligatures": "^share_item$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -2677,16 +2793,17 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_communication_wifi_20"]
+				"tags": ["db_ic_communication_wifi_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 118,
-				"id": 151,
+				"id": 116,
 				"name": "db_ic_communication_wifi_20",
 				"prevSize": 32,
-				"code": 59764
+				"code": 59764,
+				"ligatures": "^wifi$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -2700,16 +2817,17 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_communication_wifi_off_20"]
+				"tags": ["db_ic_communication_wifi_off_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 119,
-				"id": 150,
+				"id": 117,
 				"name": "db_ic_communication_wifi_off_20",
 				"prevSize": 32,
-				"code": 59765
+				"code": 59765,
+				"ligatures": "^wifi_off$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -2723,16 +2841,17 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_covid_19_mask_20"]
+				"tags": ["db_ic_covid_19_mask_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 120,
-				"id": 149,
+				"id": 118,
 				"name": "db_ic_covid_19_mask_20",
 				"prevSize": 32,
-				"code": 59766
+				"code": 59766,
+				"ligatures": "^mask$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -2746,16 +2865,17 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_facilities_playground_20"]
+				"tags": ["db_ic_facilities_playground_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 121,
-				"id": 148,
+				"id": 119,
 				"name": "db_ic_facilities_playground_20",
 				"prevSize": 32,
-				"code": 59767
+				"code": 59767,
+				"ligatures": "^playground$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -2769,16 +2889,17 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_facilities_restricted_mobility_toilet_20"]
+				"tags": ["db_ic_facilities_restricted_mobility_toilet_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 122,
-				"id": 147,
+				"id": 120,
 				"name": "db_ic_facilities_restricted_mobility_toilet_20",
 				"prevSize": 32,
-				"code": 59768
+				"code": 59768,
+				"ligatures": "^restricted_mobility_toilet$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -2792,16 +2913,17 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_facilities_shower_20"]
+				"tags": ["db_ic_facilities_shower_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 123,
-				"id": 146,
+				"id": 121,
 				"name": "db_ic_facilities_shower_20",
 				"prevSize": 32,
-				"code": 59769
+				"code": 59769,
+				"ligatures": "^shower$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -2815,16 +2937,17 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_facilities_shower_men_20"]
+				"tags": ["db_ic_facilities_shower_men_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 124,
-				"id": 145,
+				"id": 122,
 				"name": "db_ic_facilities_shower_men_20",
 				"prevSize": 32,
-				"code": 59770
+				"code": 59770,
+				"ligatures": "^shower_men$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -2838,16 +2961,17 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_facilities_shower_women_20"]
+				"tags": ["db_ic_facilities_shower_women_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 125,
-				"id": 144,
+				"id": 123,
 				"name": "db_ic_facilities_shower_women_20",
 				"prevSize": 32,
-				"code": 59771
+				"code": 59771,
+				"ligatures": "^shower_women$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -2861,16 +2985,17 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_facilities_sink_20"]
+				"tags": ["db_ic_facilities_sink_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 126,
-				"id": 143,
+				"id": 124,
 				"name": "db_ic_facilities_sink_20",
 				"prevSize": 32,
-				"code": 59772
+				"code": 59772,
+				"ligatures": "^sink$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -2884,16 +3009,17 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_facilities_wc_20"]
+				"tags": ["db_ic_facilities_wc_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 127,
-				"id": 142,
+				"id": 125,
 				"name": "db_ic_facilities_wc_20",
 				"prevSize": 32,
-				"code": 59773
+				"code": 59773,
+				"ligatures": "^wc$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -2907,16 +3033,17 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_facilities_wc_men_20"]
+				"tags": ["db_ic_facilities_wc_men_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 128,
-				"id": 141,
+				"id": 126,
 				"name": "db_ic_facilities_wc_men_20",
 				"prevSize": 32,
-				"code": 59774
+				"code": 59774,
+				"ligatures": "^wc_men$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -2930,16 +3057,17 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_facilities_wc_sign_20"]
+				"tags": ["db_ic_facilities_wc_sign_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 129,
-				"id": 140,
+				"id": 127,
 				"name": "db_ic_facilities_wc_sign_20",
 				"prevSize": 32,
-				"code": 59775
+				"code": 59775,
+				"ligatures": "^wc_sign$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -2953,16 +3081,17 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_facilities_wc_women_20"]
+				"tags": ["db_ic_facilities_wc_women_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 130,
-				"id": 139,
+				"id": 128,
 				"name": "db_ic_facilities_wc_women_20",
 				"prevSize": 32,
-				"code": 59776
+				"code": 59776,
+				"ligatures": "^wc_women$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -2976,16 +3105,17 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_feature_air_condition_20"]
+				"tags": ["db_ic_feature_air_condition_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 131,
-				"id": 138,
+				"id": 129,
 				"name": "db_ic_feature_air_condition_20",
 				"prevSize": 32,
-				"code": 59777
+				"code": 59777,
+				"ligatures": "^air_condition$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -2999,16 +3129,17 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_feature_buggy_20"]
+				"tags": ["db_ic_feature_buggy_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 132,
-				"id": 137,
+				"id": 130,
 				"name": "db_ic_feature_buggy_20",
 				"prevSize": 32,
-				"code": 59778
+				"code": 59778,
+				"ligatures": "^buggy$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -3022,16 +3153,17 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_feature_clothing_hanger_20"]
+				"tags": ["db_ic_feature_clothing_hanger_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 133,
-				"id": 136,
+				"id": 131,
 				"name": "db_ic_feature_clothing_hanger_20",
 				"prevSize": 32,
-				"code": 59779
+				"code": 59779,
+				"ligatures": "^clothing_hanger$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -3045,16 +3177,17 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_feature_day_20"]
+				"tags": ["db_ic_feature_day_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 134,
-				"id": 135,
+				"id": 132,
 				"name": "db_ic_feature_day_20",
 				"prevSize": 32,
-				"code": 59780
+				"code": 59780,
+				"ligatures": "^day$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -3068,16 +3201,17 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_feature_entry_aid_20"]
+				"tags": ["db_ic_feature_entry_aid_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 135,
-				"id": 134,
+				"id": 133,
 				"name": "db_ic_feature_entry_aid_20",
 				"prevSize": 32,
-				"code": 59781
+				"code": 59781,
+				"ligatures": "^entry_aid$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -3091,16 +3225,17 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_feature_environmental_mobility_check_20"]
+				"tags": ["db_ic_feature_environmental_mobility_check_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 136,
-				"id": 133,
+				"id": 134,
 				"name": "db_ic_feature_environmental_mobility_check_20",
 				"prevSize": 32,
-				"code": 59782
+				"code": 59782,
+				"ligatures": "^environmental_mobility_check$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -3114,16 +3249,17 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_feature_hydrogen_20"]
+				"tags": ["db_ic_feature_hydrogen_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 137,
-				"id": 132,
+				"id": 135,
 				"name": "db_ic_feature_hydrogen_20",
 				"prevSize": 32,
-				"code": 59783
+				"code": 59783,
+				"ligatures": "^hydrogen$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -3137,16 +3273,17 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_feature_luggage_compartment_20"]
+				"tags": ["db_ic_feature_luggage_compartment_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 138,
-				"id": 131,
+				"id": 136,
 				"name": "db_ic_feature_luggage_compartment_20",
 				"prevSize": 32,
-				"code": 59784
+				"code": 59784,
+				"ligatures": "^luggage_compartment$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -3160,16 +3297,17 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_feature_luggage_rack_20"]
+				"tags": ["db_ic_feature_luggage_rack_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 139,
-				"id": 130,
+				"id": 137,
 				"name": "db_ic_feature_luggage_rack_20",
 				"prevSize": 32,
-				"code": 59785
+				"code": 59785,
+				"ligatures": "^luggage_rack$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -3183,16 +3321,17 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_feature_marketplace_20"]
+				"tags": ["db_ic_feature_marketplace_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 140,
-				"id": 129,
+				"id": 138,
 				"name": "db_ic_feature_marketplace_20",
 				"prevSize": 32,
-				"code": 59786
+				"code": 59786,
+				"ligatures": "^marketplace$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -3206,16 +3345,17 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_feature_medical_20"]
+				"tags": ["db_ic_feature_medical_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 141,
-				"id": 128,
+				"id": 139,
 				"name": "db_ic_feature_medical_20",
 				"prevSize": 32,
-				"code": 59787
+				"code": 59787,
+				"ligatures": "^medical$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -3229,16 +3369,17 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_feature_night_20"]
+				"tags": ["db_ic_feature_night_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 142,
-				"id": 127,
+				"id": 140,
 				"name": "db_ic_feature_night_20",
 				"prevSize": 32,
-				"code": 59788
+				"code": 59788,
+				"ligatures": "^night$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -3252,16 +3393,17 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_feature_no_smoking_20"]
+				"tags": ["db_ic_feature_no_smoking_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 143,
-				"id": 126,
+				"id": 141,
 				"name": "db_ic_feature_no_smoking_20",
 				"prevSize": 32,
-				"code": 59789
+				"code": 59789,
+				"ligatures": "^no_smoking$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -3275,16 +3417,17 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_feature_person_with_cane_20"]
+				"tags": ["db_ic_feature_person_with_cane_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 144,
-				"id": 125,
+				"id": 142,
 				"name": "db_ic_feature_person_with_cane_20",
 				"prevSize": 32,
-				"code": 59790
+				"code": 59790,
+				"ligatures": "^person_with_cane$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -3298,16 +3441,17 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_feature_person_with_rollator_20"]
+				"tags": ["db_ic_feature_person_with_rollator_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 145,
-				"id": 124,
+				"id": 143,
 				"name": "db_ic_feature_person_with_rollator_20",
 				"prevSize": 32,
-				"code": 59791
+				"code": 59791,
+				"ligatures": "^person_with_rollator$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -3321,16 +3465,17 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_feature_platform_20"]
+				"tags": ["db_ic_feature_platform_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 146,
-				"id": 123,
+				"id": 144,
 				"name": "db_ic_feature_platform_20",
 				"prevSize": 32,
-				"code": 59792
+				"code": 59792,
+				"ligatures": "^platform$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -3344,16 +3489,17 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_feature_power_outlet_20"]
+				"tags": ["db_ic_feature_power_outlet_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 147,
-				"id": 122,
+				"id": 145,
 				"name": "db_ic_feature_power_outlet_20",
 				"prevSize": 32,
-				"code": 59793
+				"code": 59793,
+				"ligatures": "^power_outlet$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -3367,16 +3513,17 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_feature_reservation_20"]
+				"tags": ["db_ic_feature_reservation_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 148,
-				"id": 121,
+				"id": 146,
 				"name": "db_ic_feature_reservation_20",
 				"prevSize": 32,
-				"code": 59794
+				"code": 59794,
+				"ligatures": "^reservation$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -3390,16 +3537,17 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_feature_standing_room_20"]
+				"tags": ["db_ic_feature_standing_room_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 149,
-				"id": 120,
+				"id": 147,
 				"name": "db_ic_feature_standing_room_20",
 				"prevSize": 32,
-				"code": 59795
+				"code": 59795,
+				"ligatures": "^standing_room$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -3413,16 +3561,17 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_feature_support_dog_20"]
+				"tags": ["db_ic_feature_support_dog_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 150,
-				"id": 119,
+				"id": 148,
 				"name": "db_ic_feature_support_dog_20",
 				"prevSize": 32,
-				"code": 59796
+				"code": 59796,
+				"ligatures": "^support_dog$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -3436,16 +3585,17 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_food_breakfast_20"]
+				"tags": ["db_ic_food_breakfast_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 151,
-				"id": 118,
+				"id": 149,
 				"name": "db_ic_food_breakfast_20",
 				"prevSize": 32,
-				"code": 59797
+				"code": 59797,
+				"ligatures": "^breakfast$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -3459,16 +3609,17 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_food_coffee_cup_20"]
+				"tags": ["db_ic_food_coffee_cup_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 152,
-				"id": 117,
+				"id": 150,
 				"name": "db_ic_food_coffee_cup_20",
 				"prevSize": 32,
-				"code": 59798
+				"code": 59798,
+				"ligatures": "^coffee_cup$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -3482,16 +3633,17 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_food_drink_20"]
+				"tags": ["db_ic_food_drink_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 153,
-				"id": 116,
+				"id": 151,
 				"name": "db_ic_food_drink_20",
 				"prevSize": 32,
-				"code": 59799
+				"code": 59799,
+				"ligatures": "^drink$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -3505,16 +3657,17 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_food_restaurant_20"]
+				"tags": ["db_ic_food_restaurant_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 154,
-				"id": 115,
+				"id": 152,
 				"name": "db_ic_food_restaurant_20",
 				"prevSize": 32,
-				"code": 59800
+				"code": 59800,
+				"ligatures": "^restaurant$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -3528,16 +3681,17 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_it_database_20"]
+				"tags": ["db_ic_it_database_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 155,
-				"id": 114,
+				"id": 153,
 				"name": "db_ic_it_database_20",
 				"prevSize": 32,
-				"code": 59801
+				"code": 59801,
+				"ligatures": "^database$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -3551,16 +3705,17 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_journey_1st_class_20"]
+				"tags": ["db_ic_journey_1st_class_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 156,
-				"id": 113,
+				"id": 154,
 				"name": "db_ic_journey_1st_class_20",
 				"prevSize": 32,
-				"code": 59802
+				"code": 59802,
+				"ligatures": "^1st_class$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -3574,16 +3729,17 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_journey_2nd_class_20"]
+				"tags": ["db_ic_journey_2nd_class_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 157,
-				"id": 112,
+				"id": 155,
 				"name": "db_ic_journey_2nd_class_20",
 				"prevSize": 32,
-				"code": 59803
+				"code": 59803,
+				"ligatures": "^2nd_class$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -3597,16 +3753,17 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_journey_alternative_connection_20"]
+				"tags": ["db_ic_journey_alternative_connection_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 158,
-				"id": 111,
+				"id": 156,
 				"name": "db_ic_journey_alternative_connection_20",
 				"prevSize": 32,
-				"code": 59804
+				"code": 59804,
+				"ligatures": "^alternative_connection$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -3620,16 +3777,17 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_journey_booking_20"]
+				"tags": ["db_ic_journey_booking_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 159,
-				"id": 110,
+				"id": 157,
 				"name": "db_ic_journey_booking_20",
 				"prevSize": 32,
-				"code": 59805
+				"code": 59805,
+				"ligatures": "^booking$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -3643,16 +3801,17 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_journey_capacity_indicator_20"]
+				"tags": ["db_ic_journey_capacity_indicator_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 160,
-				"id": 109,
+				"id": 158,
 				"name": "db_ic_journey_capacity_indicator_20",
 				"prevSize": 32,
-				"code": 59806
+				"code": 59806,
+				"ligatures": "^capacity_indicator$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -3666,16 +3825,17 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_journey_capacity_indicator_fully_booked_20"]
+				"tags": ["db_ic_journey_capacity_indicator_fully_booked_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 161,
-				"id": 108,
+				"id": 159,
 				"name": "db_ic_journey_capacity_indicator_fully_booked_20",
 				"prevSize": 32,
-				"code": 59807
+				"code": 59807,
+				"ligatures": "^capacity_indicator_fully_booked$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -3689,16 +3849,17 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_journey_capacity_indicator_high_20"]
+				"tags": ["db_ic_journey_capacity_indicator_high_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 162,
-				"id": 107,
+				"id": 160,
 				"name": "db_ic_journey_capacity_indicator_high_20",
 				"prevSize": 32,
-				"code": 59808
+				"code": 59808,
+				"ligatures": "^capacity_indicator_high$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -3712,16 +3873,17 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_journey_capacity_indicator_low_20"]
+				"tags": ["db_ic_journey_capacity_indicator_low_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 163,
-				"id": 106,
+				"id": 161,
 				"name": "db_ic_journey_capacity_indicator_low_20",
 				"prevSize": 32,
-				"code": 59809
+				"code": 59809,
+				"ligatures": "^capacity_indicator_low$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -3735,16 +3897,17 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_journey_destination_20"]
+				"tags": ["db_ic_journey_destination_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 164,
-				"id": 105,
+				"id": 162,
 				"name": "db_ic_journey_destination_20",
 				"prevSize": 32,
-				"code": 59810
+				"code": 59810,
+				"ligatures": "^destination$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -3758,16 +3921,17 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_journey_intermediary_stop_20"]
+				"tags": ["db_ic_journey_intermediary_stop_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 165,
-				"id": 104,
+				"id": 163,
 				"name": "db_ic_journey_intermediary_stop_20",
 				"prevSize": 32,
-				"code": 59811
+				"code": 59811,
+				"ligatures": "^intermediary_stop$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -3781,16 +3945,17 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_journey_mixed_class_20"]
+				"tags": ["db_ic_journey_mixed_class_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 166,
-				"id": 103,
+				"id": 164,
 				"name": "db_ic_journey_mixed_class_20",
 				"prevSize": 32,
-				"code": 59812
+				"code": 59812,
+				"ligatures": "^mixed_class$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -3804,16 +3969,17 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_journey_monochrome_capacity_indicator_high_20"]
+				"tags": ["db_ic_journey_monochrome_capacity_indicator_high_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 167,
-				"id": 102,
+				"id": 165,
 				"name": "db_ic_journey_monochrome_capacity_indicator_high_20",
 				"prevSize": 32,
-				"code": 59813
+				"code": 59813,
+				"ligatures": "^monochrome_capacity_indicator_high$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -3827,16 +3993,17 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_journey_monochrome_capacity_indicator_low_20"]
+				"tags": ["db_ic_journey_monochrome_capacity_indicator_low_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 168,
-				"id": 101,
+				"id": 166,
 				"name": "db_ic_journey_monochrome_capacity_indicator_low_20",
 				"prevSize": 32,
-				"code": 59814
+				"code": 59814,
+				"ligatures": "^monochrome_capacity_indicator_low$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -3850,18 +4017,19 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
 				"tags": [
 					"db_ic_journey_monochrome_capacity_indicator_moderate_20"
-				]
+				],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 169,
-				"id": 100,
+				"id": 167,
 				"name": "db_ic_journey_monochrome_capacity_indicator_moderate_20",
 				"prevSize": 32,
-				"code": 59815
+				"code": 59815,
+				"ligatures": "^monochrome_capacity_indicator_moderate$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -3875,16 +4043,17 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_journey_round_trip_20"]
+				"tags": ["db_ic_journey_round_trip_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 170,
-				"id": 99,
+				"id": 168,
 				"name": "db_ic_journey_round_trip_20",
 				"prevSize": 32,
-				"code": 59816
+				"code": 59816,
+				"ligatures": "^round_trip$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -3898,16 +4067,17 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_journey_single_trip_20"]
+				"tags": ["db_ic_journey_single_trip_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 171,
-				"id": 98,
+				"id": 169,
 				"name": "db_ic_journey_single_trip_20",
 				"prevSize": 32,
-				"code": 59817
+				"code": 59817,
+				"ligatures": "^single_trip$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -3921,16 +4091,17 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_journey_start_20"]
+				"tags": ["db_ic_journey_start_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 172,
-				"id": 97,
+				"id": 170,
 				"name": "db_ic_journey_start_20",
 				"prevSize": 32,
-				"code": 59818
+				"code": 59818,
+				"ligatures": "^start$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -3944,16 +4115,17 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_maps_gps_20"]
+				"tags": ["db_ic_maps_gps_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 173,
-				"id": 96,
+				"id": 171,
 				"name": "db_ic_maps_gps_20",
 				"prevSize": 32,
-				"code": 59819
+				"code": 59819,
+				"ligatures": "^gps$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -3967,16 +4139,17 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_maps_gps_north_20"]
+				"tags": ["db_ic_maps_gps_north_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 174,
-				"id": 95,
+				"id": 172,
 				"name": "db_ic_maps_gps_north_20",
 				"prevSize": 32,
-				"code": 59820
+				"code": 59820,
+				"ligatures": "^gps_north$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -3990,16 +4163,17 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_maps_home_20"]
+				"tags": ["db_ic_maps_home_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 175,
-				"id": 94,
+				"id": 173,
 				"name": "db_ic_maps_home_20",
 				"prevSize": 32,
-				"code": 59821
+				"code": 59821,
+				"ligatures": "^home$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -4013,16 +4187,17 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_maps_map_20"]
+				"tags": ["db_ic_maps_map_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 176,
-				"id": 93,
+				"id": 174,
 				"name": "db_ic_maps_map_20",
 				"prevSize": 32,
-				"code": 59822
+				"code": 59822,
+				"ligatures": "^map$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -4036,16 +4211,17 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_maps_parking_20"]
+				"tags": ["db_ic_maps_parking_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 177,
-				"id": 92,
+				"id": 175,
 				"name": "db_ic_maps_parking_20",
 				"prevSize": 32,
-				"code": 59823
+				"code": 59823,
+				"ligatures": "^parking$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -4059,16 +4235,17 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_maps_place_20"]
+				"tags": ["db_ic_maps_place_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 178,
-				"id": 91,
+				"id": 176,
 				"name": "db_ic_maps_place_20",
 				"prevSize": 32,
-				"code": 59824
+				"code": 59824,
+				"ligatures": "^place$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -4082,16 +4259,17 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_maps_set_position_20"]
+				"tags": ["db_ic_maps_set_position_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 179,
-				"id": 90,
+				"id": 177,
 				"name": "db_ic_maps_set_position_20",
 				"prevSize": 32,
-				"code": 59825
+				"code": 59825,
+				"ligatures": "^set_position$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -4105,16 +4283,17 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_maps_station_20"]
+				"tags": ["db_ic_maps_station_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 180,
-				"id": 89,
+				"id": 178,
 				"name": "db_ic_maps_station_20",
 				"prevSize": 32,
-				"code": 59826
+				"code": 59826,
+				"ligatures": "^station$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -4128,16 +4307,17 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_maps_stop_sign_20"]
+				"tags": ["db_ic_maps_stop_sign_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 181,
-				"id": 88,
+				"id": 179,
 				"name": "db_ic_maps_stop_sign_20",
 				"prevSize": 32,
-				"code": 59827
+				"code": 59827,
+				"ligatures": "^stop_sign$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -4151,16 +4331,17 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_maps_train_station_20"]
+				"tags": ["db_ic_maps_train_station_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 182,
-				"id": 87,
+				"id": 180,
 				"name": "db_ic_maps_train_station_20",
 				"prevSize": 32,
-				"code": 59828
+				"code": 59828,
+				"ligatures": "^train_station$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -4174,16 +4355,17 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_navigation_arrow_back_20"]
+				"tags": ["db_ic_navigation_arrow_back_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 183,
-				"id": 86,
+				"id": 181,
 				"name": "db_ic_navigation_arrow_back_20",
 				"prevSize": 32,
-				"code": 59829
+				"code": 59829,
+				"ligatures": "^arrow_back$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -4197,16 +4379,17 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_navigation_arrow_down_20"]
+				"tags": ["db_ic_navigation_arrow_down_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 184,
-				"id": 85,
+				"id": 182,
 				"name": "db_ic_navigation_arrow_down_20",
 				"prevSize": 32,
-				"code": 59830
+				"code": 59830,
+				"ligatures": "^arrow_down$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -4220,16 +4403,17 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_navigation_arrow_forward_20"]
+				"tags": ["db_ic_navigation_arrow_forward_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 185,
-				"id": 84,
+				"id": 183,
 				"name": "db_ic_navigation_arrow_forward_20",
 				"prevSize": 32,
-				"code": 59831
+				"code": 59831,
+				"ligatures": "^arrow_forward$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -4243,16 +4427,17 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_navigation_arrow_up_20"]
+				"tags": ["db_ic_navigation_arrow_up_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 186,
-				"id": 83,
+				"id": 184,
 				"name": "db_ic_navigation_arrow_up_20",
 				"prevSize": 32,
-				"code": 59832
+				"code": 59832,
+				"ligatures": "^arrow_up$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -4266,16 +4451,17 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_navigation_cancel_20"]
+				"tags": ["db_ic_navigation_cancel_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 187,
-				"id": 82,
+				"id": 185,
 				"name": "db_ic_navigation_cancel_20",
 				"prevSize": 32,
-				"code": 59833
+				"code": 59833,
+				"ligatures": "^cancel$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -4289,16 +4475,17 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_navigation_chevron_left_20"]
+				"tags": ["db_ic_navigation_chevron_left_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 188,
-				"id": 81,
+				"id": 186,
 				"name": "db_ic_navigation_chevron_left_20",
 				"prevSize": 32,
-				"code": 59834
+				"code": 59834,
+				"ligatures": "^chevron_left$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -4312,16 +4499,17 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_navigation_chevron_right_20"]
+				"tags": ["db_ic_navigation_chevron_right_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 189,
-				"id": 80,
+				"id": 187,
 				"name": "db_ic_navigation_chevron_right_20",
 				"prevSize": 32,
-				"code": 59835
+				"code": 59835,
+				"ligatures": "^chevron_right$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -4335,16 +4523,17 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_navigation_close_20"]
+				"tags": ["db_ic_navigation_close_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 190,
-				"id": 79,
+				"id": 188,
 				"name": "db_ic_navigation_close_20",
 				"prevSize": 32,
-				"code": 59836
+				"code": 59836,
+				"ligatures": "^close$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -4358,16 +4547,17 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_navigation_expand_less_20"]
+				"tags": ["db_ic_navigation_expand_less_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 191,
-				"id": 78,
+				"id": 189,
 				"name": "db_ic_navigation_expand_less_20",
 				"prevSize": 32,
-				"code": 59837
+				"code": 59837,
+				"ligatures": "^expand_less$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -4381,16 +4571,17 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_navigation_expand_more_20"]
+				"tags": ["db_ic_navigation_expand_more_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 192,
-				"id": 77,
+				"id": 190,
 				"name": "db_ic_navigation_expand_more_20",
 				"prevSize": 32,
-				"code": 59838
+				"code": 59838,
+				"ligatures": "^expand_more$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -4404,16 +4595,17 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_navigation_fullscreen_20"]
+				"tags": ["db_ic_navigation_fullscreen_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 193,
-				"id": 76,
+				"id": 191,
 				"name": "db_ic_navigation_fullscreen_20",
 				"prevSize": 32,
-				"code": 59839
+				"code": 59839,
+				"ligatures": "^fullscreen$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -4427,16 +4619,17 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_navigation_fullscreen_exit_20"]
+				"tags": ["db_ic_navigation_fullscreen_exit_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 194,
-				"id": 75,
+				"id": 192,
 				"name": "db_ic_navigation_fullscreen_exit_20",
 				"prevSize": 32,
-				"code": 59840
+				"code": 59840,
+				"ligatures": "^fullscreen_exit$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -4450,16 +4643,17 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_navigation_grid_view_20"]
+				"tags": ["db_ic_navigation_grid_view_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 195,
-				"id": 74,
+				"id": 193,
 				"name": "db_ic_navigation_grid_view_20",
 				"prevSize": 32,
-				"code": 59841
+				"code": 59841,
+				"ligatures": "^grid_view$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -4473,16 +4667,17 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_navigation_link_20"]
+				"tags": ["db_ic_navigation_link_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 196,
-				"id": 73,
+				"id": 194,
 				"name": "db_ic_navigation_link_20",
 				"prevSize": 32,
-				"code": 59842
+				"code": 59842,
+				"ligatures": "^link$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -4496,16 +4691,17 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_navigation_link_external_20"]
+				"tags": ["db_ic_navigation_link_external_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 197,
-				"id": 72,
+				"id": 195,
 				"name": "db_ic_navigation_link_external_20",
 				"prevSize": 32,
-				"code": 59843
+				"code": 59843,
+				"ligatures": "^link_external$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -4519,16 +4715,17 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_navigation_list_20"]
+				"tags": ["db_ic_navigation_list_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 198,
-				"id": 71,
+				"id": 196,
 				"name": "db_ic_navigation_list_20",
 				"prevSize": 32,
-				"code": 59844
+				"code": 59844,
+				"ligatures": "^list$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -4542,16 +4739,17 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_navigation_menu_20"]
+				"tags": ["db_ic_navigation_menu_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 199,
-				"id": 70,
+				"id": 197,
 				"name": "db_ic_navigation_menu_20",
 				"prevSize": 32,
-				"code": 59845
+				"code": 59845,
+				"ligatures": "^menu$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -4565,16 +4763,17 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_navigation_more_horizontal_20"]
+				"tags": ["db_ic_navigation_more_horizontal_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 200,
-				"id": 69,
+				"id": 198,
 				"name": "db_ic_navigation_more_horizontal_20",
 				"prevSize": 32,
-				"code": 59846
+				"code": 59846,
+				"ligatures": "^more_horizontal$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -4588,16 +4787,17 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_navigation_more_vertical_20"]
+				"tags": ["db_ic_navigation_more_vertical_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 201,
-				"id": 68,
+				"id": 199,
 				"name": "db_ic_navigation_more_vertical_20",
 				"prevSize": 32,
-				"code": 59847
+				"code": 59847,
+				"ligatures": "^more_vertical$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -4611,16 +4811,17 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_navigation_refresh_20"]
+				"tags": ["db_ic_navigation_refresh_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 202,
-				"id": 67,
+				"id": 200,
 				"name": "db_ic_navigation_refresh_20",
 				"prevSize": 32,
-				"code": 59848
+				"code": 59848,
+				"ligatures": "^refresh$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -4634,16 +4835,17 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_notification_error_20"]
+				"tags": ["db_ic_notification_error_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 203,
-				"id": 66,
+				"id": 201,
 				"name": "db_ic_notification_error_20",
 				"prevSize": 32,
-				"code": 59849
+				"code": 59849,
+				"ligatures": "^error$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -4657,16 +4859,17 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_notification_notify_20"]
+				"tags": ["db_ic_notification_notify_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 204,
-				"id": 65,
+				"id": 202,
 				"name": "db_ic_notification_notify_20",
 				"prevSize": 32,
-				"code": 59850
+				"code": 59850,
+				"ligatures": "^notify$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -4680,16 +4883,17 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_notification_notify_cutoff_20"]
+				"tags": ["db_ic_notification_notify_cutoff_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 205,
-				"id": 64,
+				"id": 203,
 				"name": "db_ic_notification_notify_cutoff_20",
 				"prevSize": 32,
-				"code": 59851
+				"code": 59851,
+				"ligatures": "^notify_cutoff$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -4703,16 +4907,17 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_notification_warning_20"]
+				"tags": ["db_ic_notification_warning_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 206,
-				"id": 63,
+				"id": 204,
 				"name": "db_ic_notification_warning_20",
 				"prevSize": 32,
-				"code": 59852
+				"code": 59852,
+				"ligatures": "^warning$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -4726,16 +4931,17 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_seat_aisle_20"]
+				"tags": ["db_ic_seat_aisle_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 207,
-				"id": 62,
+				"id": 205,
 				"name": "db_ic_seat_aisle_20",
 				"prevSize": 32,
-				"code": 59853
+				"code": 59853,
+				"ligatures": "^aisle$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -4749,16 +4955,17 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_seat_aisle_not_available_20"]
+				"tags": ["db_ic_seat_aisle_not_available_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 208,
-				"id": 61,
+				"id": 206,
 				"name": "db_ic_seat_aisle_not_available_20",
 				"prevSize": 32,
-				"code": 59854
+				"code": 59854,
+				"ligatures": "^aisle_not_available$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -4772,16 +4979,17 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_seat_bed_20"]
+				"tags": ["db_ic_seat_bed_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 209,
-				"id": 60,
+				"id": 207,
 				"name": "db_ic_seat_bed_20",
 				"prevSize": 32,
-				"code": 59855
+				"code": 59855,
+				"ligatures": "^bed$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -4795,16 +5003,17 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_seat_childrens_compartment_20"]
+				"tags": ["db_ic_seat_childrens_compartment_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 210,
-				"id": 59,
+				"id": 208,
 				"name": "db_ic_seat_childrens_compartment_20",
 				"prevSize": 32,
-				"code": 59856
+				"code": 59856,
+				"ligatures": "^childrens_compartment$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -4818,16 +5027,17 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_seat_couchette_20"]
+				"tags": ["db_ic_seat_couchette_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 211,
-				"id": 58,
+				"id": 209,
 				"name": "db_ic_seat_couchette_20",
 				"prevSize": 32,
-				"code": 59857
+				"code": 59857,
+				"ligatures": "^couchette$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -4841,16 +5051,17 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_seat_elderly_20"]
+				"tags": ["db_ic_seat_elderly_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 212,
-				"id": 57,
+				"id": 210,
 				"name": "db_ic_seat_elderly_20",
 				"prevSize": 32,
-				"code": 59858
+				"code": 59858,
+				"ligatures": "^elderly$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -4864,16 +5075,17 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_seat_handicapped_20"]
+				"tags": ["db_ic_seat_handicapped_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 213,
-				"id": 56,
+				"id": 211,
 				"name": "db_ic_seat_handicapped_20",
 				"prevSize": 32,
-				"code": 59859
+				"code": 59859,
+				"ligatures": "^handicapped$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -4887,16 +5099,17 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_seat_parent_child_compartment_20"]
+				"tags": ["db_ic_seat_parent_child_compartment_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 214,
-				"id": 55,
+				"id": 212,
 				"name": "db_ic_seat_parent_child_compartment_20",
 				"prevSize": 32,
-				"code": 59860
+				"code": 59860,
+				"ligatures": "^parent_child_compartment$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -4910,16 +5123,17 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_seat_priority_20"]
+				"tags": ["db_ic_seat_priority_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 215,
-				"id": 54,
+				"id": 213,
 				"name": "db_ic_seat_priority_20",
 				"prevSize": 32,
-				"code": 59861
+				"code": 59861,
+				"ligatures": "^priority$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -4933,16 +5147,17 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_seat_quiet_zone_20"]
+				"tags": ["db_ic_seat_quiet_zone_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 216,
-				"id": 53,
+				"id": 214,
 				"name": "db_ic_seat_quiet_zone_20",
 				"prevSize": 32,
-				"code": 59862
+				"code": 59862,
+				"ligatures": "^quiet_zone$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -4956,16 +5171,17 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_seat_table_20"]
+				"tags": ["db_ic_seat_table_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 217,
-				"id": 52,
+				"id": 215,
 				"name": "db_ic_seat_table_20",
 				"prevSize": 32,
-				"code": 59863
+				"code": 59863,
+				"ligatures": "^table$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -4979,16 +5195,17 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_seat_window_20"]
+				"tags": ["db_ic_seat_window_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 218,
-				"id": 51,
+				"id": 216,
 				"name": "db_ic_seat_window_20",
 				"prevSize": 32,
-				"code": 59864
+				"code": 59864,
+				"ligatures": "^window$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -5002,16 +5219,17 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_ticket_bahnbonus_20"]
+				"tags": ["db_ic_ticket_bahnbonus_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 219,
-				"id": 50,
+				"id": 217,
 				"name": "db_ic_ticket_bahnbonus_20",
 				"prevSize": 32,
-				"code": 59865
+				"code": 59865,
+				"ligatures": "^bahnbonus$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -5025,16 +5243,17 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_ticket_bahnbonus_card_20"]
+				"tags": ["db_ic_ticket_bahnbonus_card_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 220,
-				"id": 49,
+				"id": 218,
 				"name": "db_ic_ticket_bahnbonus_card_20",
 				"prevSize": 32,
-				"code": 59866
+				"code": 59866,
+				"ligatures": "^bahnbonus_card$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -5048,16 +5267,17 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_ticket_bahncard_20"]
+				"tags": ["db_ic_ticket_bahncard_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 221,
-				"id": 48,
+				"id": 219,
 				"name": "db_ic_ticket_bahncard_20",
 				"prevSize": 32,
-				"code": 59867
+				"code": 59867,
+				"ligatures": "^bahncard$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -5071,16 +5291,17 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_ticket_best_price_20"]
+				"tags": ["db_ic_ticket_best_price_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 222,
-				"id": 47,
+				"id": 220,
 				"name": "db_ic_ticket_best_price_20",
 				"prevSize": 32,
-				"code": 59868
+				"code": 59868,
+				"ligatures": "^best_price$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -5094,16 +5315,17 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_ticket_commuter_ticket_20"]
+				"tags": ["db_ic_ticket_commuter_ticket_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 223,
-				"id": 46,
+				"id": 221,
 				"name": "db_ic_ticket_commuter_ticket_20",
 				"prevSize": 32,
-				"code": 59869
+				"code": 59869,
+				"ligatures": "^commuter_ticket$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -5117,16 +5339,17 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_ticket_komfort_check_in_20"]
+				"tags": ["db_ic_ticket_komfort_check_in_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 224,
-				"id": 45,
+				"id": 222,
 				"name": "db_ic_ticket_komfort_check_in_20",
 				"prevSize": 32,
-				"code": 59870
+				"code": 59870,
+				"ligatures": "^komfort_check_in$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -5140,16 +5363,17 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_ticket_komfort_check_in_check_20"]
+				"tags": ["db_ic_ticket_komfort_check_in_check_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 225,
-				"id": 44,
+				"id": 223,
 				"name": "db_ic_ticket_komfort_check_in_check_20",
 				"prevSize": 32,
-				"code": 59871
+				"code": 59871,
+				"ligatures": "^komfort_check_in_check$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -5163,16 +5387,17 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_ticket_komfort_check_in_circle_20"]
+				"tags": ["db_ic_ticket_komfort_check_in_circle_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 226,
-				"id": 43,
+				"id": 224,
 				"name": "db_ic_ticket_komfort_check_in_circle_20",
 				"prevSize": 32,
-				"code": 59872
+				"code": 59872,
+				"ligatures": "^komfort_check_in_circle$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -5186,16 +5411,17 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_ticket_multiple_cards_20"]
+				"tags": ["db_ic_ticket_multiple_cards_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 227,
-				"id": 42,
+				"id": 225,
 				"name": "db_ic_ticket_multiple_cards_20",
 				"prevSize": 32,
-				"code": 59873
+				"code": 59873,
+				"ligatures": "^multiple_cards$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -5209,16 +5435,17 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_ticket_multiple_passenger_20"]
+				"tags": ["db_ic_ticket_multiple_passenger_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 228,
-				"id": 41,
+				"id": 226,
 				"name": "db_ic_ticket_multiple_passenger_20",
 				"prevSize": 32,
-				"code": 59874
+				"code": 59874,
+				"ligatures": "^multiple_passenger$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -5232,16 +5459,17 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_ticket_my_travel_20"]
+				"tags": ["db_ic_ticket_my_travel_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 229,
-				"id": 40,
+				"id": 227,
 				"name": "db_ic_ticket_my_travel_20",
 				"prevSize": 32,
-				"code": 59875
+				"code": 59875,
+				"ligatures": "^my_travel$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -5255,16 +5483,17 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_ticket_outward_journey_20"]
+				"tags": ["db_ic_ticket_outward_journey_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 230,
-				"id": 39,
+				"id": 228,
 				"name": "db_ic_ticket_outward_journey_20",
 				"prevSize": 32,
-				"code": 59876
+				"code": 59876,
+				"ligatures": "^outward_journey$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -5278,16 +5507,17 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_ticket_qr_code_20"]
+				"tags": ["db_ic_ticket_qr_code_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 231,
-				"id": 38,
+				"id": 229,
 				"name": "db_ic_ticket_qr_code_20",
 				"prevSize": 32,
-				"code": 59877
+				"code": 59877,
+				"ligatures": "^qr_code$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -5301,16 +5531,17 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_ticket_return_journey_20"]
+				"tags": ["db_ic_ticket_return_journey_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 232,
-				"id": 37,
+				"id": 230,
 				"name": "db_ic_ticket_return_journey_20",
 				"prevSize": 32,
-				"code": 59878
+				"code": 59878,
+				"ligatures": "^return_journey$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -5324,16 +5555,17 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_ticket_ticket_20"]
+				"tags": ["db_ic_ticket_ticket_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 233,
-				"id": 36,
+				"id": 231,
 				"name": "db_ic_ticket_ticket_20",
 				"prevSize": 32,
-				"code": 59879
+				"code": 59879,
+				"ligatures": "^ticket$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -5347,16 +5579,17 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_ticket_ticket_discount_20"]
+				"tags": ["db_ic_ticket_ticket_discount_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 234,
-				"id": 35,
+				"id": 232,
 				"name": "db_ic_ticket_ticket_discount_20",
 				"prevSize": 32,
-				"code": 59880
+				"code": 59880,
+				"ligatures": "^ticket_discount$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -5370,16 +5603,17 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_ticket_ticket_multiple_20"]
+				"tags": ["db_ic_ticket_ticket_multiple_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 235,
-				"id": 34,
+				"id": 233,
 				"name": "db_ic_ticket_ticket_multiple_20",
 				"prevSize": 32,
-				"code": 59881
+				"code": 59881,
+				"ligatures": "^ticket_multiple$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -5393,16 +5627,17 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_ticket_time_outward_journey_20"]
+				"tags": ["db_ic_ticket_time_outward_journey_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 236,
-				"id": 33,
+				"id": 234,
 				"name": "db_ic_ticket_time_outward_journey_20",
 				"prevSize": 32,
-				"code": 59882
+				"code": 59882,
+				"ligatures": "^time_outward_journey$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -5416,16 +5651,17 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_ticket_time_return_journey_20"]
+				"tags": ["db_ic_ticket_time_return_journey_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 237,
-				"id": 32,
+				"id": 235,
 				"name": "db_ic_ticket_time_return_journey_20",
 				"prevSize": 32,
-				"code": 59883
+				"code": 59883,
+				"ligatures": "^time_return_journey$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -5439,16 +5675,17 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_ticket_timetable_20"]
+				"tags": ["db_ic_ticket_timetable_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 238,
-				"id": 31,
+				"id": 236,
 				"name": "db_ic_ticket_timetable_20",
 				"prevSize": 32,
-				"code": 59884
+				"code": 59884,
+				"ligatures": "^timetable$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -5462,16 +5699,17 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_ticket_travel_insurance_20"]
+				"tags": ["db_ic_ticket_travel_insurance_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 239,
-				"id": 30,
+				"id": 237,
 				"name": "db_ic_ticket_travel_insurance_20",
 				"prevSize": 32,
-				"code": 59885
+				"code": 59885,
+				"ligatures": "^travel_insurance$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -5485,16 +5723,17 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_transportation_regular_airplane_20"]
+				"tags": ["db_ic_transportation_regular_airplane_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 240,
-				"id": 29,
+				"id": 238,
 				"name": "db_ic_transportation_regular_airplane_20",
 				"prevSize": 32,
-				"code": 59886
+				"code": 59886,
+				"ligatures": "^airplane$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -5508,16 +5747,17 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_transportation_regular_bicycle_20"]
+				"tags": ["db_ic_transportation_regular_bicycle_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 241,
-				"id": 28,
+				"id": 239,
 				"name": "db_ic_transportation_regular_bicycle_20",
 				"prevSize": 32,
-				"code": 59887
+				"code": 59887,
+				"ligatures": "^bicycle$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -5531,16 +5771,17 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_transportation_regular_bicycle_trailer_20"]
+				"tags": ["db_ic_transportation_regular_bicycle_trailer_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 242,
-				"id": 27,
+				"id": 240,
 				"name": "db_ic_transportation_regular_bicycle_trailer_20",
 				"prevSize": 32,
-				"code": 59888
+				"code": 59888,
+				"ligatures": "^bicycle_trailer$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -5554,16 +5795,17 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_transportation_regular_call_a_bike_20"]
+				"tags": ["db_ic_transportation_regular_call_a_bike_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 243,
-				"id": 26,
+				"id": 241,
 				"name": "db_ic_transportation_regular_call_a_bike_20",
 				"prevSize": 32,
-				"code": 59889
+				"code": 59889,
+				"ligatures": "^call_a_bike$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -5577,16 +5819,17 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_transportation_regular_car_20"]
+				"tags": ["db_ic_transportation_regular_car_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 244,
-				"id": 25,
+				"id": 242,
 				"name": "db_ic_transportation_regular_car_20",
 				"prevSize": 32,
-				"code": 59890
+				"code": 59890,
+				"ligatures": "^car$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -5600,16 +5843,17 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_transportation_regular_car_sequence_20"]
+				"tags": ["db_ic_transportation_regular_car_sequence_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 245,
-				"id": 24,
+				"id": 243,
 				"name": "db_ic_transportation_regular_car_sequence_20",
 				"prevSize": 32,
-				"code": 59891
+				"code": 59891,
+				"ligatures": "^car_sequence$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -5623,16 +5867,17 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_transportation_regular_carsharing_20"]
+				"tags": ["db_ic_transportation_regular_carsharing_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 246,
-				"id": 23,
+				"id": 244,
 				"name": "db_ic_transportation_regular_carsharing_20",
 				"prevSize": 32,
-				"code": 59892
+				"code": 59892,
+				"ligatures": "^carsharing$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -5646,16 +5891,17 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_transportation_regular_electric_locomotive_20"]
+				"tags": ["db_ic_transportation_regular_electric_locomotive_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 247,
-				"id": 22,
+				"id": 245,
 				"name": "db_ic_transportation_regular_electric_locomotive_20",
 				"prevSize": 32,
-				"code": 59893
+				"code": 59893,
+				"ligatures": "^electric_locomotive$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -5669,16 +5915,17 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_transportation_regular_electric_scooter_20"]
+				"tags": ["db_ic_transportation_regular_electric_scooter_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 248,
-				"id": 21,
+				"id": 246,
 				"name": "db_ic_transportation_regular_electric_scooter_20",
 				"prevSize": 32,
-				"code": 59894
+				"code": 59894,
+				"ligatures": "^electric_scooter$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -5692,16 +5939,17 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_transportation_regular_ev_car_20"]
+				"tags": ["db_ic_transportation_regular_ev_car_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 249,
-				"id": 20,
+				"id": 247,
 				"name": "db_ic_transportation_regular_ev_car_20",
 				"prevSize": 32,
-				"code": 59895
+				"code": 59895,
+				"ligatures": "^ev_car$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -5715,16 +5963,17 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_transportation_regular_ferry_20"]
+				"tags": ["db_ic_transportation_regular_ferry_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 250,
-				"id": 19,
+				"id": 248,
 				"name": "db_ic_transportation_regular_ferry_20",
 				"prevSize": 32,
-				"code": 59896
+				"code": 59896,
+				"ligatures": "^ferry$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -5738,16 +5987,17 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_transportation_regular_handcart_20"]
+				"tags": ["db_ic_transportation_regular_handcart_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 251,
-				"id": 18,
+				"id": 249,
 				"name": "db_ic_transportation_regular_handcart_20",
 				"prevSize": 32,
-				"code": 59897
+				"code": 59897,
+				"ligatures": "^handcart$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -5761,16 +6011,17 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_transportation_regular_ice_20"]
+				"tags": ["db_ic_transportation_regular_ice_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 252,
-				"id": 17,
+				"id": 250,
 				"name": "db_ic_transportation_regular_ice_20",
 				"prevSize": 32,
-				"code": 59898
+				"code": 59898,
+				"ligatures": "^ice$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -5784,16 +6035,17 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_transportation_regular_ice_side_view_20"]
+				"tags": ["db_ic_transportation_regular_ice_side_view_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 253,
-				"id": 16,
+				"id": 251,
 				"name": "db_ic_transportation_regular_ice_side_view_20",
 				"prevSize": 32,
-				"code": 59899
+				"code": 59899,
+				"ligatures": "^ice_side_view$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -5807,16 +6059,17 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_transportation_regular_intercity_train_20"]
+				"tags": ["db_ic_transportation_regular_intercity_train_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 254,
-				"id": 15,
+				"id": 252,
 				"name": "db_ic_transportation_regular_intercity_train_20",
 				"prevSize": 32,
-				"code": 59900
+				"code": 59900,
+				"ligatures": "^intercity_train$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -5830,16 +6083,17 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_transportation_regular_local_bus_20"]
+				"tags": ["db_ic_transportation_regular_local_bus_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 255,
-				"id": 14,
+				"id": 253,
 				"name": "db_ic_transportation_regular_local_bus_20",
 				"prevSize": 32,
-				"code": 59901
+				"code": 59901,
+				"ligatures": "^local_bus$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -5853,16 +6107,17 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_transportation_regular_local_train_20"]
+				"tags": ["db_ic_transportation_regular_local_train_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 256,
-				"id": 13,
+				"id": 254,
 				"name": "db_ic_transportation_regular_local_train_20",
 				"prevSize": 32,
-				"code": 59902
+				"code": 59902,
+				"ligatures": "^local_train$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -5876,16 +6131,17 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_transportation_regular_long_distance_bus_20"]
+				"tags": ["db_ic_transportation_regular_long_distance_bus_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 257,
-				"id": 12,
+				"id": 255,
 				"name": "db_ic_transportation_regular_long_distance_bus_20",
 				"prevSize": 32,
-				"code": 59903
+				"code": 59903,
+				"ligatures": "^long_distance_bus$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -5899,16 +6155,17 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_transportation_regular_rail_and_fly_20"]
+				"tags": ["db_ic_transportation_regular_rail_and_fly_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 258,
-				"id": 11,
+				"id": 256,
 				"name": "db_ic_transportation_regular_rail_and_fly_20",
 				"prevSize": 32,
-				"code": 59904
+				"code": 59904,
+				"ligatures": "^rail_and_fly$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -5922,16 +6179,17 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_transportation_regular_railroad_car_20"]
+				"tags": ["db_ic_transportation_regular_railroad_car_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 259,
-				"id": 10,
+				"id": 257,
 				"name": "db_ic_transportation_regular_railroad_car_20",
 				"prevSize": 32,
-				"code": 59905
+				"code": 59905,
+				"ligatures": "^railroad_car$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -5945,16 +6203,17 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_transportation_regular_s_bahn_20"]
+				"tags": ["db_ic_transportation_regular_s_bahn_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 260,
-				"id": 9,
+				"id": 258,
 				"name": "db_ic_transportation_regular_s_bahn_20",
 				"prevSize": 32,
-				"code": 59906
+				"code": 59906,
+				"ligatures": "^s_bahn$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -5968,16 +6227,17 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_transportation_regular_scooter_20"]
+				"tags": ["db_ic_transportation_regular_scooter_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 261,
-				"id": 8,
+				"id": 259,
 				"name": "db_ic_transportation_regular_scooter_20",
 				"prevSize": 32,
-				"code": 59907
+				"code": 59907,
+				"ligatures": "^scooter$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -5992,16 +6252,17 @@
 				"attrs": [{}, {}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_transportation_regular_sev_20"]
+				"tags": ["db_ic_transportation_regular_sev_20"],
+				"grid": 0
 			},
 			"attrs": [{}, {}],
 			"properties": {
 				"order": 262,
-				"id": 7,
+				"id": 260,
 				"name": "db_ic_transportation_regular_sev_20",
 				"prevSize": 32,
-				"code": 59908
+				"code": 59908,
+				"ligatures": "^sev$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -6015,16 +6276,17 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_transportation_regular_speedboat_20"]
+				"tags": ["db_ic_transportation_regular_speedboat_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 263,
-				"id": 6,
+				"id": 261,
 				"name": "db_ic_transportation_regular_speedboat_20",
 				"prevSize": 32,
-				"code": 59909
+				"code": 59909,
+				"ligatures": "^speedboat$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -6038,16 +6300,17 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_transportation_regular_sprinter_20"]
+				"tags": ["db_ic_transportation_regular_sprinter_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 264,
-				"id": 5,
+				"id": 262,
 				"name": "db_ic_transportation_regular_sprinter_20",
 				"prevSize": 32,
-				"code": 59910
+				"code": 59910,
+				"ligatures": "^sprinter$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -6061,16 +6324,17 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_transportation_regular_subway_20"]
+				"tags": ["db_ic_transportation_regular_subway_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 265,
-				"id": 4,
+				"id": 263,
 				"name": "db_ic_transportation_regular_subway_20",
 				"prevSize": 32,
-				"code": 59911
+				"code": 59911,
+				"ligatures": "^subway$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -6084,16 +6348,17 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_transportation_regular_taxi_20"]
+				"tags": ["db_ic_transportation_regular_taxi_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 266,
-				"id": 3,
+				"id": 264,
 				"name": "db_ic_transportation_regular_taxi_20",
 				"prevSize": 32,
-				"code": 59912
+				"code": 59912,
+				"ligatures": "^taxi$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -6107,16 +6372,17 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_transportation_regular_train_and_car_20"]
+				"tags": ["db_ic_transportation_regular_train_and_car_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 267,
-				"id": 2,
+				"id": 265,
 				"name": "db_ic_transportation_regular_train_and_car_20",
 				"prevSize": 32,
-				"code": 59913
+				"code": 59913,
+				"ligatures": "^train_and_car$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -6130,16 +6396,17 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_transportation_regular_tram_20"]
+				"tags": ["db_ic_transportation_regular_tram_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 268,
-				"id": 1,
+				"id": 266,
 				"name": "db_ic_transportation_regular_tram_20",
 				"prevSize": 32,
-				"code": 59914
+				"code": 59914,
+				"ligatures": "^tram$"
 			},
 			"setIdx": 0,
 			"setId": 0,
@@ -6153,16 +6420,17 @@
 				"attrs": [{}],
 				"isMulticolor": false,
 				"isMulticolor2": false,
-				"grid": 0,
-				"tags": ["db_ic_transportation_regular_walking_20"]
+				"tags": ["db_ic_transportation_regular_walking_20"],
+				"grid": 0
 			},
 			"attrs": [{}],
 			"properties": {
 				"order": 269,
-				"id": 0,
+				"id": 267,
 				"name": "db_ic_transportation_regular_walking_20",
 				"prevSize": 32,
-				"code": 59915
+				"code": 59915,
+				"ligatures": "^walking$"
 			},
 			"setIdx": 0,
 			"setId": 0,
