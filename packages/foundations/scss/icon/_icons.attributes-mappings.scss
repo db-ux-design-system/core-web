@@ -1,14 +1,14 @@
 @use "icons.variables" as *;
 
 // *** Attribute based method ***
-@each $icon-name, $icon-glyph in $icon-glyphs {
-	[data-icon="#{$icon-name}"],
-	[data-icon-before="#{$icon-name}"] {
-		&::before {
-			--icon-glyph: "#{$icon-glyph}";
-		}
-	}
-	[data-icon-after="#{$icon-name}"]::after {
-		--icon-glyph: "#{$icon-glyph}";
-	}
+[data-icon]::before {
+	--icon-glyph: "^" attr(data-icon) "$";
+}
+
+[data-icon-before]::before {
+	--icon-glyph: "^" + attr(data-icon-before) + "$";
+}
+
+[data-icon-after]::after {
+	--icon-glyph: "^" + attr(data-icon-after) + "$";
 }
