@@ -20,12 +20,32 @@ const getComponents = () => [
 		name: 'select',
 		defaultStylePath: 'components/select/select.css',
 		overwrites: {
+			global: [
+				{ from: 'handleChange(event)', to: 'handleChange(event:any)' },
+				{ from: 'handleBlur(event)', to: 'handleBlur(event:any)' },
+				{ from: 'handleFocus(event)', to: 'handleFocus(event:any)' }
+			],
+			angular: [
+				{
+					from: 'this.selectRef.nativeElement',
+					to: 'this.selectRef?.nativeElement'
+				}
+			],
 			vue: [
 				{
 					from: 'import { DBSelectState, DBSelectProps } from "./model";',
 					to: ''
+				},
+				{
+					from: '_isValid: undefined,',
+					to: ''
 				}
 			]
+		},
+		config: {
+			vue: {
+				vModel: [{ modelValue: 'value', binding: ':value' }]
+			}
 		}
 	},
 
