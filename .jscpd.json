@@ -28,7 +28,8 @@
 		"packages/components/src/components/alert/alert.lite.tsx",
 		"showcases/react-showcase/src/components/alert/index.tsx",
 		"packages/components/src/components/select/select.lite.tsx",
-		"showcases/react-showcase/src/components/select/index.tsx"
+		"showcases/react-showcase/src/components/select/index.tsx",
+		"packages/components/src/components/select/select.spec.tsx"
 	],
 	"absolute": true
 }

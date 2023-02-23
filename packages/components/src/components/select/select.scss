@@ -1,7 +1,121 @@
-/* Add styles for component here */
-
+@use "@db-ui/foundations/build/scss/default.assets-paths" as *;
+@use "@db-ui/foundations/build/scss/variables" as *;
+@use "@db-ui/foundations/build/scss/variables.global" as *;
 @use "@db-ui/foundations/build/scss/helpers/shadow-dom" as *;
+@use "@db-ui/foundations/build/scss/color-placeholder" as *;
+@use "@db-ui/foundations/build/scss/helpers/functions" as *;
 
 .db-select {
+	// @extend %form-element;
 	@extend %shadow-dom-extend;
+
+	appearance: none;
+	font-size: to-rem($pxValue: 16);
+
+	// For IE
+	&::-ms-expand {
+		display: none;
+	}
+
+	// Style the regular (non-multiple) select elements
+	&:not([multiple]) {
+		// TODO: Variants aren't being used by inputs as well, so we need to wait for the final spec
+		// Semitransparent is the default style
+		// @at-root :where(#{&}) {
+		// 	@extend %form-element-semitransparent;
+		// }
+
+		background-image: var(
+			--db-ic-expand-more-20,
+			url(#{$icons-path}functional/images/navigation/db_ic_expand_more_20.svg)
+		);
+		background-position: right to-rem($pxValue: 11) center;
+		background-repeat: no-repeat;
+		height: to-rem($pxValue: 44);
+		padding: to-rem($pxValue: 20) to-rem($pxValue: 42) 0
+			$db-spacing-fixed-md;
+
+		// Floating labels
+		& + .db-label {
+			pointer-events: none;
+			position: absolute;
+			transition: opacity, transform 250ms;
+			// Adopted by https://www.heise.de/developer/artikel/a11y-Reduced-Motion-4356171.html
+			@media (prefers-reduced-motion: reduce) {
+				transition-duration: 0.01s !important;
+			}
+		}
+
+		&:required:invalid,
+		&[aria-invalid="true"] {
+			& + .db-label {
+				// TODO: correct this colors value
+				// color: $db-color-cool-gray-500;
+				font-size: to-rem($pxValue: 16);
+				transform: translate(
+					$db-spacing-fixed-md,
+					-#{to-rem($pxValue: 35)}
+				);
+			}
+		}
+	}
+
+	// TODO: Variants aren't being used by inputs as well, so we need to wait for the final spec
+	// ### Style variations
+	// &[data-variant="semitransparent"] {
+	// 	@extend %form-element-semitransparent;
+	// }
+
+	// &[data-variant="white"] {
+	// 	@extend %form-element-white;
+	// }
+
+	// &[data-variant="solid"] {
+	// 	@extend %form-element-solid;
+	// }
+
+	// &[data-variant="outline"] {
+	// 	@extend %form-element-outline;
+	// }
+
+	// Floating labels
+	& + .db-label {
+		display: block;
+		font-size: to-rem($pxValue: 12);
+		margin-bottom: -#{to-rem($pxValue: 18)};
+		transform: translate($db-spacing-fixed-md, -#{to-rem($pxValue: 41)});
+		transition: opacity, transform 150ms;
+		// Adopted by https://www.heise.de/developer/artikel/a11y-Reduced-Motion-4356171.html
+		@media (prefers-reduced-motion: reduce) {
+			transition-duration: 0.01s !important;
+		}
+	}
+
+	&[multiple] {
+		margin-top: to-rem($pxValue: 16);
+
+		& + .db-label {
+			transform: translate(
+				$db-spacing-fixed-md,
+				-#{to-rem($pxValue: 100)}
+			);
+		}
+	}
+
+	optgroup {
+		background-color: transparent;
+		font-style: normal;
+	}
+
+	option {
+		&:not(:disabled):hover {
+			// TODO: replace by correct color
+			// background-color: $db-color-cool-gray-200;
+		}
+
+		&:checked {
+			// TODO: replace by correct color
+			// background-color: $db-color-cool-gray-200;
+		}
+	}
 }

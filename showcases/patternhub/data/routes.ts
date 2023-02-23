@@ -143,6 +143,20 @@ const componentChildren = [
 						link: '/components/input/how-to-use'
 					}
 				]
+			},
+			{
+				label: 'DBSelect',
+				link: '/components/select',
+				children: [
+					{
+						label: 'Examples',
+						link: '/components/select/examples'
+					},
+					{
+						label: 'How to use',
+						link: '/components/select/how-to-use'
+					}
+				]
 			}
 		]
 	},

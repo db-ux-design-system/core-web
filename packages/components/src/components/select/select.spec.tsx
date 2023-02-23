@@ -2,31 +2,51 @@ import { test, expect } from '@playwright/experimental-ct-react';
 import AxeBuilder from '@axe-core/playwright';
 
 import { DBSelect } from './index';
+import { TESTING_VIEWPORTS } from '../../shared/constants';
 
-const comp = <DBSelect>Test</DBSelect>;
+const comp = (
+	<DBSelect>
+		<option>Test</option>
+	</DBSelect>
+);
 
-const testComponent = () => {
-	test('DBSelect should contain text', async ({ mount }) => {
+const testComponent = (viewport) => {
+	test(`should contain text for device ${viewport.name}`, async ({
+		mount
+	}) => {
 		const component = await mount(comp);
 		await expect(component).toContainText('Test');
 	});
 
-	test('DBSelect should match screenshot', async ({ mount }) => {
+	test(`should match screenshot for device ${viewport.name}`, async ({
+		mount
+	}) => {
 		const component = await mount(comp);
 		await expect(component).toHaveScreenshot();
 	});
 };
 
-test.describe('DBSelect component on desktop', () => {
-	// Old-school CRT monitor screensize
-	test.use({ viewport: { width: 1024, height: 768 } });
-	testComponent();
-});
+const testVariants = (viewport) => {
+	for (const variant of VARIANTS) {
+		test(`should match screenshot for variant ${variant} and device ${viewport.name}`, async ({
+			mount
+		}) => {
+			const component = await mount(
+				<DBSelect variant={variant}>
+					<option>Test</option>
+				</DBSelect>
+			);
+			await expect(component).toHaveScreenshot();
+		});
+	}
+};
 
-test.describe('DBSelect component on mobile', () => {
-	// iPhone 13 / portrait screen size
-	test.use({ viewport: { width: 390, height: 884 } });
-	testComponent();
+test.describe('DBSelect component', () => {
+	TESTING_VIEWPORTS.forEach((viewport) => {
+		test.use({ viewport });
+		testComponent(viewport);
+		testVariants(viewport);
+	});
 });
 
 test.describe('DBSelect component A11y', () => {
