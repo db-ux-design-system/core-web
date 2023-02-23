@@ -36,3 +36,13 @@
 		url($fonts-path + $db-font-db-screensans-bold-woff2) format("woff2"),
 		url($fonts-path + $db-font-db-screensans-bold-woff) format("woff");
 }
+
+// As this font is not officially used within the Design System so far, we're not providing it as a token at the moment
+@font-face {
+	font-family: "DB Screen Sans Digital Regular";
+	font-style: normal;
+	font-weight: 400;
+	src: local("DB Screen Sans Digital Regular"),
+		url($fonts-path + "dbscreensans-digitalregular.woff2") format("woff2"),
+		url($fonts-path + "dbscreensans-digitalregular.woff") format("woff");
+}
