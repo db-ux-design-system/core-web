@@ -46,7 +46,7 @@
 	}
 
 	&[data-content="external"] {
-		@include icon(glyph(link-external), 24, "outline", "after");
+		@include icon(glyph(link_external), 24, "outline", "after");
 
 		&::after,
 		.db-icon::before {

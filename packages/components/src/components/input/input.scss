@@ -346,7 +346,7 @@
 
 		& ~ .icon-input-state,
 		& ~ .icon-input-state .db-icon {
-			@include icon(glyph(error-triangle), 20, "filled", "after", false);
+			@include icon(glyph(error_triangle), 20, "filled", "after", false);
 		}
 	}
 
@@ -365,7 +365,7 @@
 
 		& ~ .icon-input-state,
 		& ~ .icon-input-state .db-icon {
-			@include icon(glyph(check-circle), 20, "filled", "after", false);
+			@include icon(glyph(check_circle), 20, "filled", "after", false);
 		}
 	}
 

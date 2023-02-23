@@ -17,9 +17,9 @@ export type DefaultVariantProps =
 
 export const DefaultVariantsIcon: any = {
 	critical: 'error',
-	// TODO: 'error-triangle' will change to 'warning' soon
-	warning: 'error-triangle',
-	success: 'check-circle',
+	// TODO: 'error_triangle' will change to 'warning' soon
+	warning: 'error_triangle',
+	success: 'check_circle',
 	information: 'info'
 };
 
