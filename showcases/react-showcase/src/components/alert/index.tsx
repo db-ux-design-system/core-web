@@ -17,7 +17,8 @@ const variants: DefaultComponentVariants[] = [
 						slotLink="Link">
 						Type Something
 					</DBAlert>
-				)
+				),
+				code: '<DBAlert type="alert" headline="Headline" link={{ href: "#" }} slotLink="Link">Type Something</DBAlert>'
 			},
 			{
 				name: 'Inline',
@@ -30,7 +31,8 @@ const variants: DefaultComponentVariants[] = [
 						slotLink="Link">
 						Type Something
 					</DBAlert>
-				)
+				),
+				code: '<DBAlert type="inline" headline="Headline" link={{ href: "#" }} slotLink="Link">Type Something</DBAlert>'
 			}
 		]
 	},
@@ -48,7 +50,8 @@ const variants: DefaultComponentVariants[] = [
 						slotLink="Link">
 						Type Something
 					</DBAlert>
-				)
+				),
+				code: '<DBAlert icon="account" headline="Headline" link={{ href: "#" }} slotLink="Link">Type Something</DBAlert>'
 			},
 			{
 				name: 'Critical',
@@ -61,7 +64,8 @@ const variants: DefaultComponentVariants[] = [
 						slotLink="Link">
 						Type Something
 					</DBAlert>
-				)
+				),
+				code: '<DBAlert variant="critical" headline="Headline" link={{ href: "#" }} slotLink="Link">Type Something</DBAlert>'
 			},
 			{
 				name: 'Information',
@@ -74,7 +78,8 @@ const variants: DefaultComponentVariants[] = [
 						slotLink="Link">
 						Type Something
 					</DBAlert>
-				)
+				),
+				code: '<DBAlert variant="information" headline="Headline" link={{ href: "#" }} slotLink="Link">Type Something</DBAlert>'
 			},
 			{
 				name: 'Success',
@@ -87,7 +92,8 @@ const variants: DefaultComponentVariants[] = [
 						slotLink="Link">
 						Type Something
 					</DBAlert>
-				)
+				),
+				code: '<DBAlert variant="success" headline="Headline" link={{ href: "#" }} slotLink="Link">Type Something</DBAlert>'
 			},
 			{
 				name: 'Warning',
@@ -100,7 +106,8 @@ const variants: DefaultComponentVariants[] = [
 						slotLink="Link">
 						Type Something
 					</DBAlert>
-				)
+				),
+				code: '<DBAlert variant="warning" headline="Headline" link={{ href: "#" }} slotLink="Link">Type Something</DBAlert>'
 			}
 		]
 	},
@@ -118,7 +125,8 @@ const variants: DefaultComponentVariants[] = [
 						icon="account">
 						Type Something
 					</DBAlert>
-				)
+				),
+				code: '<DBAlert icon="account" headline="Headline" link={{ href: "#" }} slotLink="Link">Type Something</DBAlert>'
 			},
 			{
 				name: 'Headline & Text & Link',
@@ -130,7 +138,8 @@ const variants: DefaultComponentVariants[] = [
 						slotLink="Link">
 						Type Something
 					</DBAlert>
-				)
+				),
+				code: '<DBAlert headline="Headline" link={{ href: "#" }} slotLink="Link">Type Something</DBAlert>'
 			},
 			{
 				name: 'Text & Link',
@@ -139,12 +148,14 @@ const variants: DefaultComponentVariants[] = [
 					<DBAlert link={{ href: '#' }} slotLink="Link">
 						Type Something
 					</DBAlert>
-				)
+				),
+				code: '<DBAlert link={{ href: "#" }} slotLink="Link">Type Something</DBAlert>'
 			},
 			{
 				name: 'Text',
 				style: { width: '100%' },
-				example: <DBAlert>Type Something</DBAlert>
+				example: <DBAlert>Type Something</DBAlert>,
+				code: '<DBAlert>Type Something</DBAlert>'
 			}
 		]
 	},
@@ -165,7 +176,8 @@ const variants: DefaultComponentVariants[] = [
 						}}>
 						Type Something
 					</DBAlert>
-				)
+				),
+				code: '<DBAlert headline="Headline" link={{ href: "#" }} slotLink="Link" onClick={()=>{alert("click close button")}}>Type Something</DBAlert>'
 			}
 		]
 	}

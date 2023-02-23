@@ -13,7 +13,8 @@ const variants: DefaultComponentVariants[] = [
 					<DBSection className="db-bg-information-light">
 						Content
 					</DBSection>
-				)
+				),
+				code: '<DBSection>Content</DBSection>'
 			},
 			{
 				name: 'Medium',
@@ -24,7 +25,8 @@ const variants: DefaultComponentVariants[] = [
 						variant="medium">
 						Content
 					</DBSection>
-				)
+				),
+				code: '<DBSection variant="medium">Content</DBSection>'
 			},
 			{
 				name: 'Large',
@@ -35,7 +37,8 @@ const variants: DefaultComponentVariants[] = [
 						variant="large">
 						Content
 					</DBSection>
-				)
+				),
+				code: '<DBSection variant="large">Content</DBSection>'
 			}
 		]
 	},
@@ -48,7 +51,8 @@ const variants: DefaultComponentVariants[] = [
 					<DBSection className="db-bg-information-light">
 						Content
 					</DBSection>
-				)
+				),
+				code: '<DBSection>Content</DBSection>'
 			},
 			{
 				name: 'Large',
@@ -56,7 +60,8 @@ const variants: DefaultComponentVariants[] = [
 					<DBSection className="db-bg-information-light" size="large">
 						Content
 					</DBSection>
-				)
+				),
+				code: '<DBSection size="medium">Content</DBSection>'
 			},
 			{
 				name: 'Small',
@@ -64,7 +69,8 @@ const variants: DefaultComponentVariants[] = [
 					<DBSection className="db-bg-information-light" size="small">
 						Content
 					</DBSection>
-				)
+				),
+				code: '<DBSection size="small">Content</DBSection>'
 			}
 		]
 	}

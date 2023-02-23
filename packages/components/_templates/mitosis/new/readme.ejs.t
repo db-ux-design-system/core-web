@@ -1,7 +1,7 @@
 ---
 to: src/components/<%= name %>/README.md
 ---
-How to use DB<%= h.changeCase.pascal(name) %>
+# How to use DB<%= h.changeCase.pascal(name) %>
 
 ## Angular
 

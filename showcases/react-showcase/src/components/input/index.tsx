@@ -14,7 +14,8 @@ const variants: DefaultComponentVariants[] = [
 		examples: [
 			{
 				name: '(Default) Basic',
-				example: <DBInput label="Label" description="Description" />
+				example: <DBInput label="Label" description="Description" />,
+				code: '<DBInput label="Label" description="Description" />'
 			},
 			{
 				name: 'Information',
@@ -24,7 +25,8 @@ const variants: DefaultComponentVariants[] = [
 						description="Description"
 						variant="information"
 					/>
-				)
+				),
+				code: '<DBInput label="Label" description="Description" variant="information"/>'
 			},
 			{
 				name: 'Warning',
@@ -34,7 +36,8 @@ const variants: DefaultComponentVariants[] = [
 						description="Description"
 						variant="warning"
 					/>
-				)
+				),
+				code: '<DBInput label="Label" description="Description" variant="warning"/>'
 			},
 			{
 				name: 'Critical',
@@ -44,7 +47,8 @@ const variants: DefaultComponentVariants[] = [
 						description="Description"
 						variant="critical"
 					/>
-				)
+				),
+				code: '<DBInput label="Label" description="Description" variant="critical"/>'
 			},
 			{
 				name: 'Success',
@@ -54,7 +58,8 @@ const variants: DefaultComponentVariants[] = [
 						description="Description"
 						variant="success"
 					/>
-				)
+				),
+				code: '<DBInput label="Label" description="Description" variant="success"/>'
 			}
 		]
 	},
@@ -64,11 +69,13 @@ const variants: DefaultComponentVariants[] = [
 			{ name: 'Default', example: <DBInput label="Label" /> },
 			{
 				name: 'Filled',
-				example: <DBInput label="Label" value="Input Text" />
+				example: <DBInput label="Label" value="Input Text" />,
+				code: '<DBInput label="Label" value="Input Text"/>'
 			},
 			{
 				name: 'Filled Number',
-				example: <DBInput label="Label" value="123456" type="number" />
+				example: <DBInput label="Label" value="123456" type="number" />,
+				code: '<DBInput label="Label" value="123456" type="number"/>'
 			},
 			{
 				name: 'Invalid',
@@ -79,11 +86,13 @@ const variants: DefaultComponentVariants[] = [
 						required={true}
 						description="minLength=5"
 					/>
-				)
+				),
+				code: '<DBInput label="Label" minLength={5} required description="minLength=5"/>'
 			},
 			{
 				name: 'Disabled',
-				example: <DBInput label="Label" value="Input Text" disabled />
+				example: <DBInput label="Label" value="Input Text" disabled />,
+				code: '<DBInput label="Label" value="Input Text" disabled/>'
 			},
 			{
 				name: 'Required',
@@ -94,7 +103,8 @@ const variants: DefaultComponentVariants[] = [
 						disabled
 						required
 					/>
-				)
+				),
+				code: '<DBInput label="Label" value="Input Text" disabled required/>'
 			}
 		]
 	},
@@ -103,11 +113,13 @@ const variants: DefaultComponentVariants[] = [
 		examples: [
 			{
 				name: '(Default) Text',
-				example: <DBInput label="Label" />
+				example: <DBInput label="Label" />,
+				code: '<DBInput label="Label"/>'
 			},
 			{
 				name: 'Leading Icon + Text',
-				example: <DBInput iconBefore="account" label="Label" />
+				example: <DBInput iconBefore="account" label="Label" />,
+				code: '<DBInput iconBefore="account" label="Label"/>'
 			},
 			{
 				name: 'Leading Icon + Text + Trailing Icon',
@@ -117,17 +129,20 @@ const variants: DefaultComponentVariants[] = [
 						label="Label"
 						iconAfter="edit"
 					/>
-				)
+				),
+				code: '<DBInput iconBefore="account" label="Label" iconAfter="edit"/>'
 			},
 			{
 				name: 'Text + Trailing Icon',
-				example: <DBInput label="Label" iconAfter="edit" />
+				example: <DBInput label="Label" iconAfter="edit" />,
+				code: '<DBInput label="Label" iconAfter="edit"/>'
 			},
 			{
 				name: 'Text + Trailing Icon + Variant:Success',
 				example: (
 					<DBInput label="Label" iconAfter="edit" variant="success" />
-				)
+				),
+				code: '<DBInput label="Label" iconAfter="edit" variant="success"/>'
 			}
 		]
 	}

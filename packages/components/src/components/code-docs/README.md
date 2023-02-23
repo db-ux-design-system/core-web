@@ -1,4 +1,4 @@
-How to use DBCodeDocs
+# How to use DBCodeDocs
 
 ## Angular
 
