@@ -17,6 +17,19 @@
  */
 const getComponents = () => [
 	{
+		name: 'select',
+		defaultStylePath: 'components/select/select.css',
+		overwrites: {
+			vue: [
+				{
+					from: 'import { DBSelectState, DBSelectProps } from "./model";',
+					to: ''
+				}
+			]
+		}
+	},
+
+	{
 		name: 'alert',
 		defaultStylePath: 'components/alert/alert.css',
 		overwrites: {

@@ -1,0 +1,7 @@
+/* Add styles for component here */
+
+@use "@db-ui/foundations/build/scss/helpers/shadow-dom" as *;
+
+.db-select {
+	@extend %shadow-dom-extend;
+}
