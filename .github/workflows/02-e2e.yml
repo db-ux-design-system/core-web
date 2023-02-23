@@ -47,8 +47,7 @@ jobs:
       - name: 📥 Download deps
         uses: bahmutov/npm-install@v1
         with:
-          useLockFile: true
-          install-command: npm i
+          install-command: npm ci --ignore-scripts
 
       - name: 📲 Install esbuild (binary workaround)
         working-directory: ./output/react

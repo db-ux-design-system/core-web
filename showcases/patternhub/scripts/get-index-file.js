@@ -7,17 +7,23 @@ const getOptions = (tsType) => {
 		}
 
 		case 'signature': {
-			return tsType.raw;
+			return `${tsType.raw
+				.replace(/{/g, '&#123;')
+				.replace(/}/g, '&#125;')
+				.replace(/\r\n\t\t/g, ' ')
+				.replace(/\t/g, '&ensp;')
+				.replace(/\r\n|\r|\n/g, '<br/>')
+				.replace(/\|/g, '&#124;')}`;
 		}
 
 		case 'union': {
 			const options = [];
 			getUnionElements(options, tsType.elements);
-			return options.join(',');
+			return options.join(' &#124; ');
 		}
 
 		default: {
-			return '';
+			return undefined;
 		}
 	}
 };
@@ -34,13 +40,16 @@ const getIndexFile = ({ displayName, description, props }) => {
 
 	for (const propKey of propKeys) {
 		const prop = props[propKey];
+		const options = getOptions(prop.tsType);
 		propTable += `| ${propKey} `;
 		propTable += `| ${
 			prop.description.replace(/\r\n|\r|\n/g, '<br/>') || 'No description'
 		} `;
 		propTable += `| ${prop.required ? '✅' : '❌'} `;
 		propTable += `| ${prop.tsType.type ?? prop.tsType.name} `;
-		propTable += `| ${getOptions(prop.tsType)} |\n`;
+		propTable += `| ${
+			options ? `<pre><code>${options}</code></pre>` : ''
+		} |\n`;
 	}
 
 	return `
