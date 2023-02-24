@@ -21,7 +21,7 @@
 }
 
 %default-background-transition {
-	// Changing background-color on hover should be animated by a transition
+	// TODO Changing background-color on hover should be animated by a transition
 	transition: background-color
 		var(--db-transition-color, #{$db-transition-color});
 }
