@@ -54,15 +54,13 @@ jobs:
         env:
           HOME: /root
         working-directory: ./output/${{ matrix.framework}}
-        run: |
-          npx playwright test --project=${{ matrix.project }}
-          ls
+        run: npx playwright test --project=${{ matrix.project }}
 
-      - name: 🆙 Upload test results
+      - name: 🆙 Upload playwright-report
         if: always()
         uses: actions/upload-artifact@v3
         with:
-          name: playwright-report
+          name: ${{ matrix.framework}}-playwright-report
           path: ./output/${{ matrix.framework}}/playwright-report
           retention-days: 30
 
@@ -70,6 +68,6 @@ jobs:
         if: failure()
         uses: actions/upload-artifact@v3
         with:
-          name: playwright-results
+          name: ${{ matrix.framework}}-playwright-results
           path: ./output/${{ matrix.framework}}/test-results
           retention-days: 30
