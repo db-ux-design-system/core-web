@@ -6,6 +6,7 @@
 @use "@db-ui/foundations/build/scss/icon/icons.helpers" as *;
 @use "@db-ui/foundations/build/scss/helpers/shadow-dom" as *;
 @use "@db-ui/foundations/build/scss/color/color-variants" as *;
+@use "../../styles/component_defaults";
 
 .db-button {
 	// Including a loading indicator
@@ -14,12 +15,11 @@
 	$icon-size: var(--db-icon-size, 20);
 
 	@extend %shadow-dom-extend;
+	@extend %default-interactive-component;
+	@extend %default-background-transition;
 
 	align-items: center; // Centering the content vertically and horizontally
 
-	border: 1px solid transparent;
-	border-radius: 4px;
-	color: var(--db-current-color, $db-colors-neutral-on-bg-enabled);
 	display: inline-flex;
 
 	font-weight: 700;
@@ -28,10 +28,6 @@
 	padding: $db-spacing-fixed-xs $db-spacing-fixed-md;
 
 	text-align: center;
-
-	// Changing background-color on hover should be animated by a transition
-	transition: background-color
-		var(--db-transition-color, #{$db-transition-color});
 
 	&[data-icon],
 	&[data-icon-before] {

@@ -9,6 +9,7 @@
 @use "@db-ui/foundations/build/scss/color-placeholder" as *;
 @use "@db-ui/foundations/build/scss/helpers/shadow-dom" as *;
 @use "@db-ui/foundations/build/scss/color/color-variants" as *;
+@use "../../styles/component_defaults";
 
 @mixin label-focus-animation(
 	$translationX: var(--db-input-padding-inline-start)
@@ -103,11 +104,11 @@
 	}
 
 	label {
+		@extend %default-color;
 		position: absolute;
 		display: flex;
 		align-items: center;
 		font-size: var(--db-type-body-font-size-md);
-		color: var(--db-current-color, $db-colors-neutral-on-bg-enabled);
 
 		transform-origin: left;
 		transform: translate(
@@ -139,10 +140,9 @@
 
 	input {
 		@extend %bg-transparent-hover;
+		@extend %default-interactive-component;
 		@include get-variant-bg-color(0.08);
-		border: solid 1px var(--db-current-color, $db-colors-neutral-enabled);
-		border-radius: 4px;
-		color: var(--db-current-color, $db-colors-neutral-on-bg-enabled);
+
 		height: $db-sizing-md;
 		max-width: 100%;
 		width: 100%;
