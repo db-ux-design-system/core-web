@@ -53,6 +53,8 @@ jobs:
         run: npm i -D esbuild-linux-64
 
       - name: 👩‍🔬 Test with Playwright 🎭
+        env:
+          HOME: /root
         working-directory: ./output/${{ matrix.framework}}
         run: npx playwright test --project=${{ matrix.project }}
 
@@ -61,7 +63,7 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: playwright-report
-          path: ./output/react/playwright-report
+          path: ./output/${{ matrix.framework}}/playwright-report
           retention-days: 30
 
       - name: 🆙 Upload test videos
@@ -69,5 +71,5 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: playwright-videos
-          path: ./output/react/test-results
+          path: ./output/${{ matrix.framework}}/test-results
           retention-days: 30
