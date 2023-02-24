@@ -4,6 +4,9 @@ const getOption = (optionName, tsType) => {
 	if (tsType.name === 'boolean') {
 		return `${optionName}={true}`;
 	}
+	if (tsType.name === 'Array') {
+		return `${optionName}={['test1','test2']}`;
+	}
 
 	if (tsType.name === 'number') {
 		return `${optionName}={100}`;
