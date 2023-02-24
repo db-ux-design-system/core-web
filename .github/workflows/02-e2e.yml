@@ -43,8 +43,10 @@ jobs:
 
       - name: 📥 Download deps
         uses: bahmutov/npm-install@v1
+        env:
+          HOME: /root
         with:
-          install-command: HOME=/root npm ci --ignore-scripts
+          install-command: npm ci --ignore-scripts
 
       - name: 📲 Install esbuild (binary workaround)
         working-directory: ./output/react
