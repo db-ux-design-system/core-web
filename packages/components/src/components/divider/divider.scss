@@ -3,19 +3,20 @@
 @use "@db-ui/foundations/build/scss/helpers/functions" as *;
 
 .db-divider {
-	height: to-rem(1);
-	width: 100%;
-
-	opacity: 0.1;
-	background: var(--db-current-color, $db-colors-secondary-enabled);
-
 	&:not([data-margin="none"]) {
 		margin: $db-spacing-fixed-sm 0;
 	}
 
+	&:not([data-variant="vertical"]) {
+		@include divider();
+		height: 1px;
+		width: 100%;
+	}
+
 	&[data-variant="vertical"] {
+		@include divider("left");
 		height: auto;
-		width: to-rem(1);
+		width: 1px;
 
 		&:not([data-margin="none"]) {
 			margin: 0 $db-spacing-fixed-sm;
