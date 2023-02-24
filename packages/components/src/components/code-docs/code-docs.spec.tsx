@@ -3,7 +3,7 @@ import AxeBuilder from '@axe-core/playwright';
 
 import { DBCodeDocs } from './index';
 
-const comp = <DBCodeDocs>Test</DBCodeDocs>;
+const comp = <DBCodeDocs codeSnippets={['Test 1', 'Test 2']}>Test</DBCodeDocs>;
 
 const testComponent = () => {
 	test('DBCodeDocs should contain text', async ({ mount }) => {
