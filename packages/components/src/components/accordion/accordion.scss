@@ -2,9 +2,12 @@
 
 @use "@db-ui/foundations/build/scss/helpers/shadow-dom" as *;
 @use "@db-ui/foundations/build/scss/variables.global" as *;
+@use "@db-ui/foundations/build/scss/helpers/functions" as *;
 
 .db-accordion {
 	@extend %shadow-dom-extend;
+	@include divider($position: "top");
+
 	position: relative;
 	width: 100%;
 
@@ -17,22 +20,6 @@
 		padding: $db-spacing-fixed-md;
 		gap: $db-spacing-fixed-md;
 	}
-}
-
-%divider {
-	position: absolute;
-	left: 0;
-	right: 0;
-}
-
-.db-accordion-top-divider {
-	@extend %divider;
-	top: 0;
-}
-
-.db-accordion-bottom-divider {
-	@extend %divider;
-	bottom: 0;
 }
 
 .db-accordion-content {

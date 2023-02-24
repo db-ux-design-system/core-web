@@ -41,18 +41,9 @@ export default function DBAccordion(props: DBAccordionProps) {
 				<link rel="stylesheet" href={state.stylePath} />
 			</Show>
 			<summary>
-				<DBDivider
-					margin="none"
-					className="db-accordion-top-divider"></DBDivider>
 				{props.summary}
 				<DBIcon
 					icon={state._open ? 'expand-less' : 'expand-more'}></DBIcon>
-
-				<Show when={props.isLastChild}>
-					<DBDivider
-						margin="none"
-						className="db-accordion-bottom-divider"></DBDivider>
-				</Show>
 			</summary>
 			<div class="db-accordion-content">{props.children}</div>
 		</details>
