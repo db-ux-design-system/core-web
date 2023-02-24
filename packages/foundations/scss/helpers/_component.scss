@@ -1,6 +1,6 @@
-@use "@db-ui/foundations/build/scss/variables" as *;
-@use "@db-ui/foundations/build/scss/color-placeholder" as *;
-@use "@db-ui/foundations/build/scss/helpers/functions" as *;
+@use "../variables" as *;
+@use "../color-placeholder" as *;
+@use "../helpers/functions" as *;
 
 %default-adaptive-border {
 	border: solid 1px var(--db-current-color, $db-colors-neutral-on-bg-enabled);

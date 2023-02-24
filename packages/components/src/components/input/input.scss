@@ -9,7 +9,7 @@
 @use "@db-ui/foundations/build/scss/color-placeholder" as *;
 @use "@db-ui/foundations/build/scss/helpers/shadow-dom" as *;
 @use "@db-ui/foundations/build/scss/color/color-variants" as *;
-@use "../../styles/component_defaults";
+@use "@db-ui/foundations/build/scss/helpers/component";
 
 @mixin label-focus-animation(
 	$translationX: var(--db-input-padding-inline-start)
