@@ -1,5 +1,5 @@
 import { DBAccordion } from '../../../../../output/react/src';
-import DefaultComponent, { DefaultComponentVariants } from '../index';
+import DefaultComponent, { type DefaultComponentVariants } from '../index';
 
 const variants: DefaultComponentVariants[] = [
 	{
