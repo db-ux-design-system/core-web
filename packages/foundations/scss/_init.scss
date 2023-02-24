@@ -122,3 +122,10 @@ code {
 	padding-block: $db-spacing-fixed-2xs;
 	padding-inline: $db-spacing-fixed-xs;
 }
+
+// Cursor
+
+button,
+[role="button"] {
+	cursor: pointer;
+}

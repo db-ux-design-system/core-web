@@ -75,6 +75,22 @@ export type ClickEventState = {
 	handleClick: (event: any) => void;
 };
 
+export type ToggleEventProps = {
+	onToggle?: (open: boolean) => void;
+};
+
+export type ToggleEventState = {
+	toggle?: () => void;
+};
+
+export type CloseEventProps = {
+	onClose?: () => void;
+};
+
+export type CloseEventState = {
+	handleClose?: (event: any) => void;
+};
+
 export type ChangeEventProps = {
 	change?: (event: any) => void;
 	onChange?: (event: any) => void;

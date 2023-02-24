@@ -17,6 +17,19 @@
  */
 const getComponents = () => [
 	{
+		name: 'accordion',
+		defaultStylePath: 'components/accordion/accordion.css',
+		overwrites: {
+			vue: [
+				{
+					from: 'import { DBAccordionState, DBAccordionProps } from "./model";',
+					to: ''
+				}
+			]
+		}
+	},
+
+	{
 		name: 'alert',
 		defaultStylePath: 'components/alert/alert.css',
 		overwrites: {
