@@ -15,6 +15,7 @@ export interface DBCodeDocsDefaultState {
 	toggleCode?: () => void;
 	copyCode?: (code: string) => void;
 	getShowButtonLabel?: () => string;
+	getSnippetId?: () => string;
 }
 
 export type DBCodeDocsState = DBCodeDocsDefaultState & GlobalState;

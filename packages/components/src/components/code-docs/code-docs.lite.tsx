@@ -27,6 +27,9 @@ export default function DBCodeDocs(props: DBCodeDocsProps) {
 			return state.open
 				? props.hideCodeLabel ?? 'Hide Code'
 				: props.showCodeLabel ?? 'Show Code';
+		},
+		getSnippetId: () => {
+			return `snippet-${uuid()}`;
 		}
 	});
 
@@ -49,16 +52,20 @@ export default function DBCodeDocs(props: DBCodeDocsProps) {
 				<div class="code">
 					<Show
 						when={
+							!props.codeSnippets ||
+							props.codeSnippets.length === 0
+						}>
+						<DBInfotext class="no-code" variant="information">
+							{props.noCodeLabel ?? 'No Code available'}
+						</DBInfotext>
+					</Show>
+					<Show
+						when={
 							props.codeSnippets && props.codeSnippets.length > 0
-						}
-						else={
-							<DBInfotext class="no-code" variant="information">
-								{props.noCodeLabel ?? 'No Code available'}
-							</DBInfotext>
 						}>
 						<For each={props.codeSnippets}>
 							{(snippet: string) => (
-								<pre key={`snippet-${uuid()}`}>
+								<pre key={state.getSnippetId()}>
 									<code class="language-typescript">
 										{snippet}
 									</code>

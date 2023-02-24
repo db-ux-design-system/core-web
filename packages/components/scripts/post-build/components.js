@@ -36,9 +36,10 @@ const getComponents = () => [
 			],
 			vue: [
 				{
-					from: 'import { DBCodeDocsState, DBCodeDocsProps } from "./model";',
+					from: 'import { DBCodeDocsProps, DBCodeDocsState } from "./model";',
 					to: ''
-				}
+				},
+				{ from: '(snippet, index)', to: '(snippet)' }
 			]
 		}
 	},
