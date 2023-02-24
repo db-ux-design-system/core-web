@@ -40,7 +40,7 @@ export default function DBAccordion(props: DBAccordionProps) {
 			<Show when={state.stylePath}>
 				<link rel="stylesheet" href={state.stylePath} />
 			</Show>
-			<summary role="button">
+			<summary>
 				<DBDivider
 					margin="none"
 					className="db-accordion-top-divider"></DBDivider>
