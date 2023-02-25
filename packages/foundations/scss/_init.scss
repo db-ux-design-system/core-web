@@ -47,9 +47,10 @@ button,
 input,
 select,
 textarea {
-	font-family: inherit;
-	font-size: inherit;
-	line-height: inherit;
+	// Adapted from https://adrianroselli.com/2021/03/under-engineered-select-menus.html
+	font: inherit;
+	letter-spacing: inherit;
+	word-spacing: inherit;
 }
 
 // Media
