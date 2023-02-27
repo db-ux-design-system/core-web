@@ -52,21 +52,18 @@ jobs:
 
       - name: 🚋 Get working directory
         id: workingDirectory
-        env:
-          FRAMEWORK: ${{ matrix.framework}}
         run: |
-          if [[ $FRAMEWORK == "vue" ]]; then
+          if [[ ${{ matrix.framework }} == "vue" ]]; then
             echo "dir=vue/vue3" >> $GITHUB_OUTPUT
           else
-            echo "dir=$FRAMEWORK" >> $GITHUB_OUTPUT
+            echo "dir=${{ matrix.framework }}" >> $GITHUB_OUTPUT
           fi
 
       - name: 👩‍🔬 Test with Playwright 🎭
         env:
           WORKING_DIR: ${{ steps.workingDirectory.outputs.dir }}
           HOME: /root
-        working-directory: ./output/$WORKING_DIR
-        run: npx playwright test --project=${{ matrix.project }}
+        run: npx playwright test --config ./output/$WORKING_DIR --project=${{ matrix.project }}
 
       - name: 🆙 Upload playwright-report
         if: always()
