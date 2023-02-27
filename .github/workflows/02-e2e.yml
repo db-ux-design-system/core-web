@@ -17,7 +17,7 @@ jobs:
       fail-fast: false
       matrix:
         project: [chromium, firefox, webkit]
-        framework: [react, vue/vue3]
+        framework: [react, vue]
 
     steps:
       - name: ⬇ Checkout repo
@@ -50,24 +50,36 @@ jobs:
         working-directory: ./output/react
         run: npm i -D esbuild-linux-64
 
+      - name: 🚋 Get working directory
+        id: workingDirectory
+        env:
+          FRAMEWORK: ${{ matrix.framework}}
+        run: |
+          if [[ $FRAMEWORK == "vue" ]];
+          then
+            echo "dir=vue/vue3" >> $GITHUB_OUTPUT
+          else
+            echo "dir=$FRAMEWORK" >> $GITHUB_OUTPUT
+          fi
+
       - name: 👩‍🔬 Test with Playwright 🎭
         env:
           HOME: /root
-        working-directory: ./output/${{ matrix.framework}}
+        working-directory: ./output/${{ steps.workingDirectory.outputs.dir }}
         run: npx playwright test --project=${{ matrix.project }}
 
       - name: 🆙 Upload playwright-report
         if: always()
         uses: actions/upload-artifact@v3
         with:
-          name: ${{ matrix.framework//\//- }}-playwright-report
-          path: ./output/${{ matrix.framework}}/playwright-report
+          name: ${{ matrix.framework}}-playwright-report
+          path: ./output/${{ steps.workingDirectory.outputs.dir }}/playwright-report
           retention-days: 30
 
       - name: 🆙 Upload test results
         if: failure()
         uses: actions/upload-artifact@v3
         with:
-          name: ${{ matrix.framework//\//- }}-playwright-results
-          path: ./output/${{ matrix.framework}}/test-results
+          name: ${{ matrix.framework }}-playwright-results
+          path: ./output/${{ steps.workingDirectory.outputs.dir }}/test-results
           retention-days: 30
