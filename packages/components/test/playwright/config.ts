@@ -52,13 +52,13 @@ const config = defineConfig({
 		},
 		/* Test against mobile viewports. */
 		{
-			name: 'Mobile Chrome',
+			name: 'mobile_chrome',
 			use: {
 				...devices['Pixel 5']
 			}
 		},
 		{
-			name: 'Mobile Safari',
+			name: 'mobile_safari',
 			use: {
 				...devices['iPhone 12']
 			}
