@@ -17,6 +17,7 @@
 	@extend %shadow-dom-extend;
 	@extend %default-interactive-component;
 	@extend %default-background-transition;
+	@extend %bg-transparent-interactive;
 
 	align-items: center; // Centering the content vertically and horizontally
 
@@ -69,24 +70,17 @@
 		width: 100%;
 	}
 
-	&:not([data-variant]),
-	&[data-variant="outline"] {
-		@extend %bg-transparent-interactive;
-		border: solid 1px
-			var(--db-current-color, $db-colors-neutral-on-bg-enabled);
-	}
-
 	&[data-variant="primary"] {
 		@extend %db-bg-primary-ia;
 	}
 
 	&[data-variant="semi-transparent"] {
-		@extend %bg-transparent-interactive;
 		@include get-variant-bg-color(0.08);
+		border: solid 1px transparent;
 	}
 
 	&[data-variant="transparent"] {
-		@extend %bg-transparent-interactive;
+		border: solid 1px transparent;
 	}
 
 	&:disabled {
