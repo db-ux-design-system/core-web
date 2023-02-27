@@ -5,24 +5,43 @@
 
 const prefix = 'db';
 const fileHeader = `
+@use "sass:color";
 @use "variables" as *;
 // Do not edit directly
 // Generated on
 // ${new Date().toString()}
 `;
 
-const generateInteractiveVariants = (currentColorObject, cssProp) => {
+const getRBGA = (primaryColor, type) => `
+	--db-current-background-color-red: #{color.red($${prefix}-${primaryColor[type]?.name})};
+	--db-current-background-color-green: #{color.green($${prefix}-${primaryColor[type]?.name})};
+	--db-current-background-color-blue: #{color.blue($${prefix}-${primaryColor[type]?.name})};`;
+
+const generateInteractiveVariants = (
+	currentColorObject,
+	cssProp,
+	primaryColor,
+	noActive,
+	noHover
+) => {
+	const hoverColor = `${prefix}-${currentColorObject.hover.name}`;
+	const pressedColor = `${prefix}-${currentColorObject.pressed.name}`;
+	const activeState = `
+			&:active {
+    			--db-current-${cssProp}: var(--${pressedColor}, #{$${pressedColor}});
+				${cssProp}: var(--db-current-${cssProp}, #{$${pressedColor}});
+    			${primaryColor ? getRBGA(primaryColor, 'pressed') : ''}
+			}`;
+	const hoverState = `
+			&:hover {
+    			--db-current-${cssProp}: var(--${hoverColor}, #{$${hoverColor}});
+				${cssProp}: var(--db-current-${cssProp}, #{$${hoverColor}});
+    			${primaryColor ? getRBGA(primaryColor, 'hover') : ''}
+			}`;
 	return `
 		&:not(:disabled) {
-			&:hover {
-				${cssProp}: $${prefix}-${currentColorObject.hover.name};
-    			--db-current-${cssProp}: #{$${prefix}-${currentColorObject.hover.name}};
-			}
-
-			&:active {
-				${cssProp}: $${prefix}-${currentColorObject.pressed.name};
-				--db-current-${cssProp}: #{$${prefix}-${currentColorObject.pressed.name}};
-			}
+			${noHover ? '' : hoverState}
+			${noActive ? '' : activeState}
         }
         `;
 };
@@ -36,42 +55,80 @@ const generateBGVariants = (
 	value,
 	variant,
 	currentColorObject,
-	baseColorObject
+	baseColorObject,
+	primaryColor
 ) => {
 	const placeholderName = `${prefix}-bg-${value}${
 		variant ? `-${variant}` : ''
 	}`;
+
+	const bgColor = `${prefix}-${currentColorObject.enabled.name}`;
+	const fgColor = `${prefix}-${baseColorObject.enabled.name}`;
+	let weakFgColor;
+	if (baseColorObject.weak) {
+		weakFgColor = `${prefix}-${baseColorObject.weak.enabled.name}`;
+	}
+
+	let elementColor;
+	if (primaryColor.element) {
+		elementColor = `${prefix}-${primaryColor.element.enabled.name}`;
+	}
+
 	let result = `
-%${placeholderName}-ia-states {
-	${generateInteractiveVariants(currentColorObject, 'background-color')}
+%${placeholderName}-hover-state {
+	${generateInteractiveVariants(
+		currentColorObject,
+		'background-color',
+		primaryColor,
+		true
+	)}
+}
+%${placeholderName}-active-state {
+	${generateInteractiveVariants(
+		currentColorObject,
+		'background-color',
+		primaryColor,
+		false,
+		true
+	)}
 }
 
 %${placeholderName} {
-    background-color: $${prefix}-${currentColorObject.enabled.name};
-    color: $${prefix}-${baseColorObject.enabled.name};
-
-    --db-current-background-color: #{$${prefix}-${
-		currentColorObject.enabled.name
-	}};
-    --db-current-color: #{$${prefix}-${baseColorObject.enabled.name}};
+    --db-current-background-color: var(--${bgColor}, #{$${bgColor}});
+    --db-current-color: var(--${fgColor}, #{$${fgColor}});
+    ${
+		elementColor
+			? `--db-current-element-color: var(--${elementColor}, #{$${elementColor}});`
+			: ''
+	}
+    background-color: var(--db-current-background-color, #{$${bgColor}});
+    color: var(--db-current-color, #{$${fgColor}});
+    ${baseColorObject ? getRBGA(primaryColor, 'enabled') : ''}
+    ${
+		currentColorObject === primaryColor
+			? `--db-current-background-color-alpha: 1;`
+			: ''
+	}
 
     &-ia, &[data-variant="ia"] {
 		@extend %${placeholderName};
-		@extend %${placeholderName}-ia-states;
+		@extend %${placeholderName}-hover-state;
+		@extend %${placeholderName}-active-state;
     }
 
     button {
-		@extend %${placeholderName}-ia-states;
+		@extend %${placeholderName}-hover-state;
+		@extend %${placeholderName}-active-state;
     }
 
     a {
        ${generateInteractiveVariants(baseColorObject, 'color')}
     }
 `;
-	if (baseColorObject.weak) {
+	if (weakFgColor) {
 		result += `
     %weak {
-        color: $${prefix}-${baseColorObject.weak.enabled.name};
+        color: var(--${weakFgColor}, #{$${weakFgColor}});
 
 		a {
 		   ${generateInteractiveVariants(baseColorObject.weak, 'color')}
@@ -122,7 +179,8 @@ ${generateInteractiveVariants(colorToken[value].element, 'color')}
 				value,
 				undefined,
 				colorToken[value],
-				colorToken[value].on
+				colorToken[value].on,
+				colorToken[value]
 			);
 		}
 
@@ -132,7 +190,8 @@ ${generateInteractiveVariants(colorToken[value].element, 'color')}
 					value,
 					variant,
 					colorToken[value].bg[variant],
-					colorToken[value].on.bg
+					colorToken[value].on.bg,
+					colorToken[value]
 				);
 			} else {
 				for (const childVariant of Object.keys(
@@ -142,7 +201,8 @@ ${generateInteractiveVariants(colorToken[value].element, 'color')}
 						value,
 						variant + '-' + childVariant,
 						colorToken[value].bg[variant][childVariant],
-						colorToken[value].on.bg
+						colorToken[value].on.bg,
+						colorToken[value]
 					);
 				}
 			}

@@ -13,9 +13,17 @@ useMetadata({
 				type: 'Enum',
 				values: [
 					{ key: 'Primary', name: 'Primary', value: 'primary' },
-					{ key: 'Secondary', name: 'Secondary', value: 'secondary' },
-					{ key: 'Tertiary', name: 'Tertiary', value: 'tertiary' },
-					{ key: 'Ghost', name: 'Ghost', value: 'ghost' }
+					{ key: 'Outline', name: 'Outline', value: 'outline' },
+					{
+						key: 'Transparent',
+						name: 'Transparent',
+						value: 'transparent'
+					},
+					{
+						key: 'Semi-Transparent',
+						name: 'Semi-Transparent',
+						value: 'semi-transparent'
+					}
 				]
 			},
 			{

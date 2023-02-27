@@ -1,10 +1,4 @@
-import { useEffect, useState } from 'react';
-import { useSearchParams } from 'react-router-dom';
 import { DBInput } from '../../../../../output/react/src';
-import {
-	COLOR_CONST,
-	INVALID_INPUT_BACKGROUNDS
-} from '../../../../../packages/components/src/shared/constants';
 import DefaultComponent from '../index';
 import type { DefaultComponentVariants } from '../data';
 
@@ -91,19 +85,16 @@ const variants: DefaultComponentVariants[] = [
 			},
 			{
 				name: 'Disabled',
+				example: <DBInput label={defaultLabelText} disabled />
+			},
+			{
+				name: 'Disabled with value',
 				example: <DBInput label="Label" value="Input Text" disabled />,
 				code: '<DBInput label="Label" value="Input Text" disabled/>'
 			},
 			{
 				name: 'Required',
-				example: (
-					<DBInput
-						label="Label"
-						value="Input Text"
-						disabled
-						required
-					/>
-				),
+				example: <DBInput label="Label" value="Input Text" required />,
 				code: '<DBInput label="Label" value="Input Text" disabled required/>'
 			}
 		]
@@ -149,34 +140,9 @@ const variants: DefaultComponentVariants[] = [
 ];
 
 const InputComponent = () => {
-	const [searchParameters] = useSearchParams();
-	const [backgroundWarning, setBackgroundWarning] = useState<boolean>(false);
-
-	useEffect(() => {
-		setBackgroundWarning(
-			(searchParameters.has(COLOR_CONST) &&
-				Boolean(
-					INVALID_INPUT_BACKGROUNDS.some((iBg) =>
-						iBg.includes(searchParameters.get(COLOR_CONST) ?? '')
-					)
-				)) ||
-				false
-		);
-	}, [searchParameters]);
-
 	return (
 		<DefaultComponent
 			title={'DBInput'}
-			description={
-				<>
-					{backgroundWarning && (
-						<strong>
-							This background is not working with inputs! Please
-							use light colors as background.
-						</strong>
-					)}
-				</>
-			}
 			variants={variants}></DefaultComponent>
 	);
 };

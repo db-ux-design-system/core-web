@@ -1,0 +1,27 @@
+@use "../variables" as *;
+@use "../color-placeholder" as *;
+@use "../helpers/functions" as *;
+
+%default-adaptive-border {
+	border: solid 1px var(--db-current-color, $db-colors-neutral-on-bg-enabled);
+}
+
+%default-border-radius {
+	border-radius: to-rem(4);
+}
+
+%default-color {
+	color: var(--db-current-color, $db-colors-neutral-on-bg-enabled);
+}
+
+%default-interactive-component {
+	@extend %default-adaptive-border;
+	@extend %default-border-radius;
+	@extend %default-color;
+}
+
+%default-background-transition {
+	// TODO Changing background-color on hover should be animated by a transition
+	transition: background-color
+		var(--db-transition-color, #{$db-transition-color});
+}

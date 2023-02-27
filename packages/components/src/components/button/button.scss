@@ -5,6 +5,8 @@
 @use "@db-ui/foundations/build/scss/color-placeholder" as *;
 @use "@db-ui/foundations/build/scss/icon/icons.helpers" as *;
 @use "@db-ui/foundations/build/scss/helpers/shadow-dom" as *;
+@use "@db-ui/foundations/build/scss/color/color-variants" as *;
+@use "@db-ui/foundations/build/scss/helpers/component";
 
 .db-button {
 	// Including a loading indicator
@@ -13,11 +15,12 @@
 	$icon-size: var(--db-icon-size, 20);
 
 	@extend %shadow-dom-extend;
+	@extend %default-interactive-component;
+	@extend %default-background-transition;
+	@extend %bg-transparent-interactive;
 
 	align-items: center; // Centering the content vertically and horizontally
 
-	border: 1px solid transparent;
-	border-radius: 4px;
 	display: inline-flex;
 
 	font-weight: 700;
@@ -26,10 +29,6 @@
 	padding: $db-spacing-fixed-xs $db-spacing-fixed-md;
 
 	text-align: center;
-
-	// Changing background-color on hover should be animated by a transition
-	transition: background-color
-		var(--db-transition-color, #{$db-transition-color});
 
 	&[data-icon],
 	&[data-icon-before] {
@@ -56,61 +55,7 @@
 		width: $db-sizing-md;
 	}
 
-	&:not([data-variant]),
-	&[data-variant="primary"] {
-		@extend %db-bg-primary-ia;
-	}
-
-	&%variant-secondary {
-		background-color: $db-colors-neutral-bg-transparent-full-enabled;
-		border: solid 1px
-			var(--db-current-color, $db-colors-neutral-on-bg-enabled);
-		color: var(--db-current-color, $db-colors-neutral-on-bg-enabled);
-
-		&:not(:disabled) {
-			&:hover {
-				background-color: $db-colors-neutral-bg-transparent-full-hover;
-			}
-
-			&:active {
-				background-color: $db-colors-neutral-bg-transparent-full-pressed;
-			}
-		}
-	}
-
-	&%variant-tertiary {
-		background-color: $db-colors-neutral-bg-transparent-semi-enabled;
-		color: var(--db-current-color, $db-colors-neutral-on-bg-enabled);
-
-		&:not(:disabled) {
-			&:hover {
-				background-color: $db-colors-neutral-bg-transparent-semi-hover;
-			}
-
-			&:active {
-				background-color: $db-colors-neutral-bg-transparent-semi-pressed;
-			}
-		}
-	}
-
-	&%variant-ghost {
-		background-color: $db-colors-neutral-bg-transparent-full-enabled;
-		color: var(--db-current-color, $db-colors-neutral-on-bg-enabled);
-
-		&:not(:disabled) {
-			&:hover {
-				background-color: $db-colors-neutral-bg-transparent-full-hover;
-			}
-
-			&:active {
-				background-color: $db-colors-neutral-bg-transparent-full-pressed;
-			}
-		}
-	}
-
-	// Sizes
-
-	&%size-Small {
+	&[data-size="small"] {
 		@extend %db-body-sm;
 		height: $db-sizing-sm;
 		padding: $db-spacing-fixed-3xs $db-spacing-fixed-sm;
@@ -121,32 +66,21 @@
 		}
 	}
 
-	&[data-size="small"] {
-		@extend %size-Small;
-		@extend %db-body-sm;
-	}
-
-	// Width
-	&%width-full {
+	&[data-width="full"] {
 		width: 100%;
 	}
 
-	&[data-width="full"] {
-		@extend %width-full;
+	&[data-variant="primary"] {
+		@extend %db-bg-primary-ia;
 	}
 
-	// Providing the variants as HTML attributes as well
-
-	&[data-variant="secondary"] {
-		@extend %variant-secondary;
+	&[data-variant="semi-transparent"] {
+		@include get-variant-bg-color(0.08);
+		border: solid 1px transparent;
 	}
 
-	&[data-variant="tertiary"] {
-		@extend %variant-tertiary;
-	}
-
-	&[data-variant="ghost"] {
-		@extend %variant-ghost;
+	&[data-variant="transparent"] {
+		border: solid 1px transparent;
 	}
 
 	&:disabled {

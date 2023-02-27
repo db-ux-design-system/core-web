@@ -2,10 +2,10 @@
 <div class="button-container">
 	<!-- TODO: Use db-select here	-->
 	<select [(ngModel)]="variant">
-		<option checked>primary</option>
-		<option>secondary</option>
-		<option>ghost</option>
-		<option>tertiary</option>
+		<option checked>outline</option>
+		<option>primary</option>
+		<option>transparent</option>
+		<option>semi-transparent</option>
 	</select>
 
 	<DBButton [variant]="variant">{{ variant }}</DBButton>

@@ -12,19 +12,16 @@ jobs:
     name: 🧪 with 🎭
     runs-on: ubuntu-latest
     container:
-      image: mcr.microsoft.com/playwright:v1.30.0-focal
+      image: mcr.microsoft.com/playwright:v1.31.1-focal
     strategy:
       fail-fast: false
       matrix:
         project: [chromium, firefox, webkit]
-        framework: [react, vue/vue3]
+        framework: [react, vue]
 
     steps:
       - name: ⬇ Checkout repo
         uses: actions/checkout@v3
-
-      - name: 🔄 Init Cache
-        uses: ./.github/actions/npm-cache
 
       - name: ⬇ Download foundations build
         uses: ./.github/actions/download-tar-artifact
@@ -53,22 +50,34 @@ jobs:
         working-directory: ./output/react
         run: npm i -D esbuild-linux-64
 
+      - name: 🚋 Get working directory
+        id: workingDirectory
+        shell: bash
+        run: |
+          if [[ ${{ matrix.framework }} == "vue" ]]; then
+            echo "dir=vue/vue3" >> $GITHUB_OUTPUT
+          else
+            echo "dir=${{ matrix.framework }}" >> $GITHUB_OUTPUT
+          fi
+
       - name: 👩‍🔬 Test with Playwright 🎭
-        working-directory: ./output/${{ matrix.framework}}
+        working-directory: ./output/${{ steps.workingDirectory.outputs.dir }}
+        env:
+          HOME: /root
         run: npx playwright test --project=${{ matrix.project }}
+
+      - name: 🆙 Upload playwright-report
+        if: always()
+        uses: actions/upload-artifact@v3
+        with:
+          name: ${{ matrix.framework}}-playwright-report
+          path: ./output/${{ steps.workingDirectory.outputs.dir }}/playwright-report
+          retention-days: 30
 
       - name: 🆙 Upload test results
         if: failure()
         uses: actions/upload-artifact@v3
         with:
-          name: playwright-report
-          path: ./output/react/playwright-report
-          retention-days: 30
-
-      - name: 🆙 Upload test videos
-        if: failure()
-        uses: actions/upload-artifact@v3
-        with:
-          name: playwright-videos
-          path: ./output/react/test-results
+          name: ${{ matrix.framework }}-playwright-results
+          path: ./output/${{ steps.workingDirectory.outputs.dir }}/test-results
           retention-days: 30
