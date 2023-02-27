@@ -13,7 +13,7 @@ const variants: DefaultComponentVariants[] = [
 			},
 			{
 				name: 'Primary',
-				example: <DBButton variant="secondary">Button</DBButton>,
+				example: <DBButton variant="primary">Button</DBButton>,
 				code: '<DBButton variant="primary">Button</DBButton>'
 			},
 			{
