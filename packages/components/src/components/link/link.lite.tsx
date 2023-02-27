@@ -47,9 +47,13 @@ export default function DBLink(props: DBLinkProps) {
 				<link rel="stylesheet" href={state.stylePath} />
 			</Show>
 			{props.children}
-			<DBIcon
-				icon={props.content == 'external' ? 'link-external' : 'link'}
-				icntxt={true}></DBIcon>
+			<Show when={props.variant !== 'inline'}>
+				<DBIcon
+					icon={
+						props.content == 'external' ? 'link-external' : 'link'
+					}
+					icntxt={true}></DBIcon>
+			</Show>
 		</a>
 	);
 }

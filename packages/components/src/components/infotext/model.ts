@@ -7,8 +7,6 @@ import {
 export interface DBInfotextDefaultProps {
 	icon?: string;
 	size?: 'medium' | 'small';
-
-	title?: string;
 	variant?: 'adaptive' | DefaultVariantProps;
 }
 

@@ -19,6 +19,7 @@
 }
 
 .db-brand-title {
+	/* This is a workaround for internal tests to show svg inside the strong tag */
 	display: contents;
 }
 

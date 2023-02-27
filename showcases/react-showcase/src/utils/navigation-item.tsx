@@ -1,4 +1,6 @@
 import DrawerComponent from '../components/drawer';
+import AlertComponent from '../components/alert';
+
 import ButtonComponent from '../components/button';
 import InputComponent from '../components/input';
 import FormComponent from '../components/form';
@@ -13,6 +15,8 @@ export type NavigationItem = {
 	home?: boolean;
 };
 export const NAVIGATION_ITEMS: NavigationItem[] = [
+	{ path: 'alert', label: 'Alert', component: <AlertComponent /> },
+
 	{ path: 'drawer', label: 'Drawer', component: <DrawerComponent /> },
 	{ path: 'infotext', label: 'Infotext', component: <InfotextComponent /> },
 	{ path: 'section', label: 'Section', component: <SectionComponent /> },
