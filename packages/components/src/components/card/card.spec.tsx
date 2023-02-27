@@ -3,151 +3,98 @@ import AxeBuilder from '@axe-core/playwright';
 
 import { DBCard } from './index';
 
-const defaultComp = <DBCard>Test</DBCard>;
-
-// TODO: Get variants from https://github.com/db-ui/mono/blob/feat-unify-showcases/packages/components/src/shared/constants.ts when feat-unify branch is merged
-const colorVariants = [
-	'neutral-0',
-	'neutral-1',
-	'neutral-3',
-	'neutral-4',
-	'primary',
-	'secondary',
-	'critical',
-	'success',
-	'warning',
-	'information'
-];
+import { COLORS_SIMPLE, COLORS, TONALITIES } from '../../shared/constants.ts';
 
 const directions = ['row', 'column'];
 
 const variants = ['full-width', 'interactive'];
 
-const testDefaultCard = () => {
-	test('DBCard should contain text', async ({ mount }) => {
-		const component = await mount(defaultComp);
-		await expect(component).toContainText('Test');
-	});
+const componentConfiguration = (tonality, color, direction, variant) => (
+	<div className={`db-ui-${tonality} db-bg-${color}`}>
+		<DBCard colorVariant={color} direction={direction} variant={variant}>
+			<span>Test 1</span>
+			<span>Test 2</span>
+		</DBCard>
+	</div>
+);
 
-	test('DBCard should match screenshot', async ({ mount }) => {
-		const component = await mount(defaultComp);
+const componentConfigurationA11y = (tonality, color) => (
+	<div className={`db-ui-${tonality} db-bg-${color}`}>
+		<DBCard>Test</DBCard>
+	</div>
+);
+
+const loopAll = (tonalities, colors, directions, variants, testFunc) => {
+	for (const tonality of tonalities) {
+		for (const color of colors) {
+			for (const direction of directions) {
+				for (const variant of variants) {
+					testFunc(tonality, color, direction, variant);
+				}
+			}
+		}
+	}
+};
+
+const loopSome = (tonalities, colors, testFunc) => {
+	for (const tonality of tonalities) {
+		for (const color of colors) {
+			testFunc(tonality, color);
+		}
+	}
+};
+
+const screenshotTest = (tonality, color, direction, variant) => {
+	test(`should match screenshot for combination: "${tonality}/${color}/${direction}/${variant}"`, async ({
+		page,
+		mount
+	}) => {
+		const component = await mount(
+			componentConfiguration(tonality, color, direction, variant)
+		);
 		await expect(component).toHaveScreenshot();
 	});
 };
 
-const testCardColorVariants = () => {
-	for (const colorVariant of colorVariants) {
-		test(`DBCard should match screenshot for color variant ${colorVariant}`, async ({
-			mount
-		}) => {
-			const component = await mount(
-				<DBCard colorVariant={colorVariant}>Test</DBCard>
-			);
-			await expect(component).toHaveScreenshot();
-		});
-	}
-};
-
-const testCardRow = () => {
-	for (const direction of directions) {
-		test(`DBCard should match screenshot for direction ${direction}`, async ({
-			mount
-		}) => {
-			const component = await mount(
-				<div>
-					<DBCard direction={direction}>
-						<span>Test 1</span>
-						<span>Test 2</span>
-					</DBCard>
-				</div>
-			);
-			await expect(component).toHaveScreenshot();
-		});
-	}
-};
-
-const testCardVariants = () => {
-	for (const variant of variants) {
-		test(`DBCard should match screenshot for variant ${variant}`, async ({
-			mount
-		}) => {
-			const component = await mount(
-				<div>
-					<DBCard variant={variant}>Test</DBCard>
-				</div>
-			);
-			await expect(component).toHaveScreenshot();
-		});
-	}
-};
-
-test.describe('DBCard component on desktop: Default', () => {
-	// Old-school CRT monitor screensize
-	test.use({ viewport: { width: 1024, height: 768 } });
-
-	testDefaultCard();
-});
-
-test.describe('DBCard component on mobile: Default', () => {
-	// iPhone 13 / portrait screen size
-	test.use({ viewport: { width: 390, height: 884 } });
-
-	testDefaultCard();
-});
-
-test.describe('DBCard component on desktop: Color Variants', () => {
-	// Old-school CRT monitor screensize
-	test.use({ viewport: { width: 1024, height: 768 } });
-
-	testCardColorVariants();
-});
-
-test.describe('DBCard component on mobile: Color Variants', () => {
-	// iPhone 13 / portrait screen size
-	test.use({ viewport: { width: 390, height: 884 } });
-
-	testCardVariants();
-});
-
-test.describe('DBCard component on desktop: Row', () => {
-	// Old-school CRT monitor screensize
-	test.use({ viewport: { width: 1024, height: 768 } });
-
-	testCardRow();
-});
-
-test.describe('DBCard component on mobile: Row', () => {
-	// iPhone 13 / portrait screen size
-	test.use({ viewport: { width: 390, height: 884 } });
-
-	testCardRow();
-});
-
-test.describe('DBCard component on desktop: Variants', () => {
-	// Old-school CRT monitor screensize
-	test.use({ viewport: { width: 1024, height: 768 } });
-
-	testCardRow();
-});
-
-test.describe('DBCard component on mobile: Variants', () => {
-	// iPhone 13 / portrait screen size
-	test.use({ viewport: { width: 390, height: 884 } });
-
-	testCardVariants();
-});
-
-test.describe('DBCard component A11y', () => {
-	test('DBCard should not have any automatically detectable accessibility issues', async ({
+const textTest = (tonality, color, direction, variant) => {
+	test(`should match text for combination: "${tonality}/${color}/${direction}/${variant}"`, async ({
 		page,
 		mount
 	}) => {
-		await mount(defaultComp);
-		const accessibilityScanResults = await new AxeBuilder({ page })
-			// TODO: Check whether a default background color in DBCard makes sense
+		const component = await mount(
+			componentConfiguration(tonality, color, direction, variant)
+		);
+		await expect(component).toContainText('Test');
+	});
+};
+
+const a11yTest = (tonality, color, direction, variant) => {
+	test(`should not have any accessibility issues for combination: "${tonality}/${color}/${direction}/${variant}"`, async ({
+		page,
+		mount
+	}) => {
+		const component = await mount(
+			// 				<DBCard colorVariant={colorVariant}>Test</DBCard>
+			componentConfigurationA11y(tonality, color)
+		);
+		const accessibilityScanResults = await new AxeBuilder({
+			page
+		})
 			.include('.db-card')
 			.analyze();
 
 		expect(accessibilityScanResults.violations).toEqual([]);
 	});
+};
+
+test.describe('DBCard comp. @fast', () => {
+	loopAll(TONALITIES, COLORS_SIMPLE, directions, variants, screenshotTest);
+	loopAll(TONALITIES, COLORS_SIMPLE, directions, variants, textTest);
+	loopSome(TONALITIES, COLORS_SIMPLE, a11yTest);
+});
+
+test.describe('DBCard comp. @slow', () => {
+	loopAll(TONALITIES, COLORS, directions, variants, screenshotTest);
+	loopAll(TONALITIES, COLORS, directions, variants, textTest);
+	loopSome(TONALITIES, COLORS, a11yTest);
 });

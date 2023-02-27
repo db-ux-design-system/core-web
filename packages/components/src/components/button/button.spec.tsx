@@ -3,63 +3,115 @@ import AxeBuilder from '@axe-core/playwright';
 
 import { DBButton } from './index';
 
-const testButton = () => {
-	test('DBButton should contain text', async ({ mount }) => {
-		const component = await mount(<DBButton>Test</DBButton>);
-		await expect(component).toContainText('Test');
-	});
+import { COLORS_SIMPLE, COLORS, TONALITIES } from '../../shared/constants.ts';
 
-	test('DBButton should match screenshot', async ({ mount }) => {
-		const component = await mount(<DBButton>Test</DBButton>);
-		await expect(component).toHaveScreenshot();
-	});
+const componentConfigurationNoIcon = (tonality, color) => (
+	<div className={`db-ui-${tonality} db-bg-${color}`}>
+		<DBButton>Test</DBButton>
+	</div>
+);
 
-	test('DBButton should only have icon', async ({ mount }) => {
-		const component = await mount(<DBButton icon="account" />);
+// TODO: Test all icon variants?
+const componentConfigurationWithIcon = (tonality, color) => (
+	<div className={`db-ui-${tonality} db-bg-${color}`}>
+		<DBButton icon="account" onlyIcon={true}>
+			lorem ipsum
+		</DBButton>
+	</div>
+);
+
+const loopAll = (tonalities, colors, testFunc) => {
+	for (const tonality of tonalities) {
+		for (const color of colors) {
+			testFunc(tonality, color);
+		}
+	}
+};
+
+const screenshotTestNoIcon = (tonality, color) => {
+	test(`should match screenshot "no icon" for combination: "${tonality}/${color}"`, async ({
+		page,
+		mount
+	}) => {
+		const component = await mount(
+			componentConfigurationNoIcon(tonality, color)
+		);
 		await expect(component).toHaveScreenshot();
 	});
 };
 
-test.describe('DBButton component on desktop', () => {
-	// Old-school CRT monitor screensize
-	test.use({ viewport: { width: 1024, height: 768 } });
-
-	testButton();
-});
-
-test.describe('DBButton component on mobile', () => {
-	// iPhone 13 / portrait screen size
-	test.use({ viewport: { width: 390, height: 884 } });
-
-	testButton();
-});
-
-test.describe('DBButton component A11y', () => {
-	test('DBButton should not have any automatically detectable accessibility issues', async ({
+const screenshotTestWithIcon = (tonality, color) => {
+	test(`should match screenshot "with icon" for combination: "${tonality}/${color}"`, async ({
 		page,
 		mount
 	}) => {
-		await mount(<DBButton>Test</DBButton>);
-		const accessibilityScanResults = await new AxeBuilder({ page })
-			.include('.db-button')
-			.analyze();
-
-		expect(accessibilityScanResults.violations).toEqual([]);
-	});
-
-	test('DBButton with icon only should not have any automatically detectable accessibility issues', async ({
-		page,
-		mount
-	}) => {
-		await mount(
-			<DBButton icon="account" onlyIcon={true}>
-				lorem ipsum
-			</DBButton>
+		const component = await mount(
+			componentConfigurationWithIcon(tonality, color)
 		);
-		const accessibilityScanResults = await new AxeBuilder({ page })
+		await expect(component).toHaveScreenshot();
+	});
+};
+
+const textTest = (tonality, color) => {
+	test(`should match text for combination: "${tonality}/${color}"`, async ({
+		page,
+		mount
+	}) => {
+		const component = await mount(
+			componentConfigurationNoIcon(tonality, color)
+		);
+		await expect(component).toContainText('Test');
+	});
+};
+
+const a11yTestNoIcon = (tonality, color) => {
+	test(`should not have any accessibility issues for combination "no icon": "${tonality}/${color}"`, async ({
+		page,
+		mount
+	}) => {
+		const component = await mount(
+			componentConfigurationNoIcon(tonality, color)
+		);
+		const accessibilityScanResults = await new AxeBuilder({
+			page
+		})
 			.include('.db-button')
 			.analyze();
 
 		expect(accessibilityScanResults.violations).toEqual([]);
 	});
+};
+
+const a11yTestWithIcon = (tonality, color) => {
+	test(`should not have any accessibility issues for combination "with icon": "${tonality}/${color}"`, async ({
+		page,
+		mount
+	}) => {
+		const component = await mount(
+			componentConfigurationWithIcon(tonality, color)
+		);
+		const accessibilityScanResults = await new AxeBuilder({
+			page
+		})
+			.include('.db-button')
+			.analyze();
+
+		expect(accessibilityScanResults.violations).toEqual([]);
+	});
+};
+
+test.describe('DBButton comp. @fast', () => {
+	loopAll(TONALITIES, COLORS_SIMPLE, screenshotTestNoIcon);
+	loopAll(TONALITIES, COLORS_SIMPLE, screenshotTestWithIcon);
+	loopAll(TONALITIES, COLORS_SIMPLE, textTest);
+	loopAll(TONALITIES, COLORS_SIMPLE, a11yTestNoIcon);
+	loopAll(TONALITIES, COLORS_SIMPLE, a11yTestWithIcon);
+});
+
+test.describe('DBButton comp. @slow', () => {
+	loopAll(TONALITIES, COLORS, screenshotTestNoIcon);
+	loopAll(TONALITIES, COLORS, screenshotTestWithIcon);
+	loopAll(TONALITIES, COLORS, textTest);
+	loopAll(TONALITIES, COLORS, a11yTestNoIcon);
+	loopAll(TONALITIES, COLORS, a11yTestWithIcon);
 });

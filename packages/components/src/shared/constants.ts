@@ -14,6 +14,10 @@ export const TONALITIES: TONALITY[] = Object.entries(TONALITY).map(
 	([, value]) => value
 );
 
+export enum COLOR_SIMPLE {
+	'PRIMARY' = 'primary'
+}
+
 export enum COLOR {
 	'NEUTRAL_0' = 'neutral-0',
 	'NEUTRAL_1' = 'neutral-1',
@@ -43,6 +47,9 @@ export enum COLOR {
 }
 
 export const COLORS: COLOR[] = Object.entries(COLOR).map(([, value]) => value);
+export const COLORS_SIMPLE: COLOR_SIMPLE[] = Object.entries(COLOR_SIMPLE).map(
+	([, value]) => value
+);
 
 export enum VARIANT {
 	'CRITICAL' = 'critical',

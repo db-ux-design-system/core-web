@@ -28,7 +28,8 @@
     "mv:package.json": "cpr package.json ../../../build-outputs/vue/package.json -o",
     "mv:readme": "cpr README.md ../../../build-outputs/vue/README.md -o",
     "postbuild": "npm-run-all -p mv:*",
-    "test:components": "playwright test -c playwright.config.ts"
+    "test:components": "playwright test -c playwright.config.ts --grep @fast",
+    "test:components:goldmaster": "playwright test -c playwright.config.ts --grep @slow"
   },
   "dependencies": {
     "vue": "^3.2.47"
