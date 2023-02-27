@@ -20,10 +20,10 @@ const getContent = () => {
 		<h1>Button</h1>
 		<div class="button-container">
 			<select id="select-variant">
+				<option>outline</option>
 				<option>primary</option>
-				<option>secondary</option>
-				<option>ghost</option>
-				<option>tertiary</option>
+				<option>transparent</option>
+				<option>semi-transparent</option>
 			</select>
 
 			<db-button>Test</db-button>

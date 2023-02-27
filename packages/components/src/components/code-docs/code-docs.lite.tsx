@@ -72,7 +72,7 @@ export default function DBCodeDocs(props: DBCodeDocsProps) {
 									<DBButton
 										class="copy-button"
 										size="small"
-										variant="secondary"
+										variant="outline"
 										onClick={() => state.copyCode(snippet)}>
 										{props.copyLabel ?? 'Copy Code'}
 									</DBButton>
