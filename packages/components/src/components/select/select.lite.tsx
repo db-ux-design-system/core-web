@@ -90,6 +90,7 @@ export default function DBSelect(props: DBSelectProps) {
 	return (
 		<>
 			<select
+				ref={selectRef}
 				class={
 					'db-select' + (props.className ? ' ' + props.className : '')
 				}
