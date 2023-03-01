@@ -4,6 +4,7 @@ import {
 	type DefaultComponentProps,
 	type DefaultComponentVariants
 } from './data';
+import { useLocation } from 'react-router-dom';
 
 const VariantList = ({ examples }: DefaultComponentVariants) => (
 	<DBCodeDocs
@@ -11,19 +12,19 @@ const VariantList = ({ examples }: DefaultComponentVariants) => (
 		codeSnippets={examples
 			.filter((example) => example.code)
 			.map((example) => `/* ${example.name} */\n${example.code}`)}>
-		<ul className="variants-list">
+		<dl className="variants-list">
 			{examples.map((example, exampleIndex) => (
-				<li
+				<div
 					key={`${example.name}-${exampleIndex}`}
 					style={example.style}
 					className={example.className}>
-					<p className="example-name">
+					<dt className="example-name">
 						<small>{example.name}</small>
-					</p>
-					{example.example}
-				</li>
+					</dt>
+					<dd>{example.example}</dd>
+				</div>
 			))}
-		</ul>
+		</dl>
 	</DBCodeDocs>
 );
 
@@ -33,7 +34,6 @@ const DefaultComponent = ({
 	variants
 }: DefaultComponentProps) => {
 	const pageName = useQuery()[4];
-	const setPageName = useQuery()[5];
 
 	if (pageName) {
 		const foundVariant = variants.find(
@@ -51,11 +51,16 @@ const DefaultComponent = ({
 			{variants?.map((variant, index) => (
 				<div key={`${variant.name}-${index}`}>
 					<DBDivider></DBDivider>
-					<DBLink
-						content="external"
-						onClick={() => setPageName(variant.name.toLowerCase())}>
-						<strong>{variant.name}</strong>
-					</DBLink>
+					<h2>
+						<DBLink
+							content="external"
+							target="_blank"
+							href={`${
+								window.location.href
+							}&page=${variant.name.toLowerCase()}`}>
+							{variant.name}
+						</DBLink>
+					</h2>
 					<VariantList {...variant} />
 				</div>
 			))}

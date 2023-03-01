@@ -17,12 +17,13 @@
 }
 
 .variants-list {
-	list-style-type: none;
-	margin: 0;
-	padding: 0;
 	display: flex;
 	flex-wrap: wrap;
 	gap: var(--db-spacing-fixed-md);
+}
+
+dd {
+	margin-inline-start: 0;
 }
 
 .example-name {

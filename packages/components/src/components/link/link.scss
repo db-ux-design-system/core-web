@@ -10,7 +10,6 @@
 
 .db-link {
 	@extend %default-color;
-	cursor: pointer;
 	width: fit-content;
 	display: flex;
 	border-radius: to-rem($pxValue: 6);

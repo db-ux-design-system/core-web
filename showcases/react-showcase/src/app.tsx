@@ -9,7 +9,7 @@ import { NAVIGATION_ITEMS } from './utils/navigation-item';
 import useQuery from './hooks/use-query';
 
 const App = () => {
-	const [tonality, setTonality, color, setColor, pageName, , fullscreen] =
+	const [tonality, setTonality, color, setColor, pageName, fullscreen] =
 		useQuery();
 
 	if (pageName || fullscreen) {

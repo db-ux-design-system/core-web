@@ -48,7 +48,14 @@ export default function DBCodeDocs(props: DBCodeDocsProps) {
 				<link rel="stylesheet" href={state.stylePath} />
 			</Show>
 			{props.children}
-			<Show when={state.open}>
+			<details class="code-details" onToggle={() => state.toggleCode()}>
+				<summary
+					class="db-button code-button"
+					role="button"
+					data-size="small"
+					data-variant="primary">
+					{state.getShowButtonLabel()}
+				</summary>
 				<div class="code">
 					<Show
 						when={
@@ -81,14 +88,7 @@ export default function DBCodeDocs(props: DBCodeDocsProps) {
 						</For>
 					</Show>
 				</div>
-			</Show>
-			<DBButton
-				class="code-button"
-				size="small"
-				variant="primary"
-				onClick={() => state.toggleCode()}>
-				{state.getShowButtonLabel()}
-			</DBButton>
+			</details>
 		</DBCard>
 	);
 }

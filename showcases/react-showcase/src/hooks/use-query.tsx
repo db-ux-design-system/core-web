@@ -19,6 +19,7 @@ const useQuery = (): any => {
 	);
 	const [page, setPage] = useState<string | undefined>(undefined);
 	const [fullscreen, setFullscreen] = useState<boolean>(false);
+	const [searchRead, setSearchRead] = useState<boolean>(false);
 
 	useEffect(() => {
 		for (const [key, value] of searchParameters.entries()) {
@@ -40,22 +41,25 @@ const useQuery = (): any => {
 				}
 			}
 		}
+		setSearchRead(true);
 	}, [searchParameters]);
 
 	useEffect(() => {
-		const nextQuery: any = { tonality, color };
-		if (page) {
-			nextQuery.page = page;
+		if (searchRead) {
+			const nextQuery: any = { tonality, color };
+			if (page) {
+				nextQuery.page = page;
+			}
+
+			if (fullscreen) {
+				nextQuery.fullscreen = true;
+			}
+
+			setSearchParameters(nextQuery);
 		}
+	}, [color, tonality, page, fullscreen, searchRead]);
 
-		if (fullscreen) {
-			nextQuery.fullscreen = true;
-		}
-
-		setSearchParameters(nextQuery);
-	}, [color, tonality, page, fullscreen]);
-
-	return [tonality, setTonality, color, setColor, page, setPage, fullscreen];
+	return [tonality, setTonality, color, setColor, page, fullscreen];
 };
 
 export default useQuery;
