@@ -16,8 +16,12 @@
 
 %default-interactive-component {
 	@extend %default-adaptive-border;
-	@extend %default-border-radius;
 	@extend %default-color;
+	@extend %default-border-radius;
+
+	&:focus {
+		border-radius: var(--db-focus-outline-radius, to-rem(6));
+	}
 }
 
 %default-background-transition {
