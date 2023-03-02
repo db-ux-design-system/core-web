@@ -1,10 +1,10 @@
 const Fse = require('fs-extra');
 const Replace = require('replace-in-file');
-const Components = require('./components');
+const { components } = require('./components');
 
 const updateNestedComponents = (input, rootComponentName) => {
 	let fileContent = input;
-	for (const nestedComponent of Components.filter(
+	for (const nestedComponent of components.filter(
 		(nComp) => nComp.name !== rootComponentName
 	)) {
 		if (input.includes(`"../${nestedComponent.name}"`)) {
@@ -28,7 +28,7 @@ const updateNestedComponents = (input, rootComponentName) => {
 };
 
 module.exports = () => {
-	for (const component of Components) {
+	for (const component of components) {
 		try {
 			const powerAppsFolder = `DB${component.name[0].toUpperCase()}${component.name.slice(
 				1

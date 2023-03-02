@@ -31,6 +31,8 @@ useMetadata({
 });
 
 export default function DBDivider(props: DBDividerProps) {
+	// This is used as forwardRef
+	let component: any;
 	const state = useStore<DBDividerState>({});
 
 	onMount(() => {
@@ -41,6 +43,7 @@ export default function DBDivider(props: DBDividerProps) {
 
 	return (
 		<div
+			ref={component}
 			data-margin={props.margin}
 			data-variant={props.variant}
 			class={

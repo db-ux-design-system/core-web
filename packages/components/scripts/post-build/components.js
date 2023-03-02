@@ -9,7 +9,10 @@
  * 	vue?:{from:string,to:string}[]
  * },
  * config?:{
- *     vue?:{
+ * 		isFormComponent?:boolean,
+ * 		isClickComponent?:boolean,
+ * 		isIconComponent?:boolean,
+ *     	vue?:{
  *         vModel?: {modelValue:string, binding:string}[]
  *     }
  * }
@@ -19,138 +22,51 @@ const getComponents = () => [
 	{
 		name: 'alert',
 		defaultStylePath: 'components/alert/alert.css',
-		overwrites: {
-			global: [
-				{ from: 'handleClick(event)', to: 'handleClick(event:any)' },
-				{
-					from: 'getIcon(icon, variant) {',
-					to: 'getIcon(icon:any, variant:any) {'
-				}
-			],
-			vue: [
-				{
-					from: 'import { DBAlertState, DBAlertProps } from "./model";',
-					to: ''
-				}
-			]
+		config: {
+			isClickComponent: true,
+			isIconComponent: true
 		}
 	},
 
 	{
 		name: 'infotext',
 		defaultStylePath: 'components/infotext/infotext.css',
-		overwrites: {
-			global: [
-				{
-					from: 'getIcon(icon, variant) {',
-					to: 'getIcon(icon:any, variant:any) {'
-				}
-			],
-			vue: [
-				{
-					from: 'import { DBInfotextState, DBInfotextProps } from "./model";',
-					to: ''
-				}
-			]
+		config: {
+			isIconComponent: true
 		}
 	},
 
 	{
 		name: 'link',
 		defaultStylePath: 'components/link/link.css',
-		overwrites: {
-			global: [
-				{ from: 'handleClick(event)', to: 'handleClick(event:any)' }
-			],
-			vue: [
-				{
-					from: 'import { DBLinkState, DBLinkProps } from "./model";',
-					to: ''
-				}
-			]
+		config: {
+			isClickComponent: true
 		}
 	},
 
 	{
 		name: 'section',
-		defaultStylePath: 'components/section/section.css',
-		overwrites: {
-			vue: [
-				{
-					from: 'import { DBSectionState, DBSectionProps } from "./model";',
-					to: ''
-				}
-			]
-		}
+		defaultStylePath: 'components/section/section.css'
 	},
 
 	{
 		name: 'page',
-		defaultStylePath: 'components/page/page.css',
-		overwrites: {
-			vue: [
-				{
-					from: 'import { DBPageProps, DBPageState } from "./model";',
-					to: ''
-				}
-			]
-		}
+		defaultStylePath: 'components/page/page.css'
 	},
 	{
 		name: 'header',
-		defaultStylePath: 'components/header/header.css',
-		overwrites: {
-			vue: [
-				{
-					from: 'import { DBHeaderState, DBHeaderProps } from "./model";',
-					to: ''
-				}
-			]
-		}
+		defaultStylePath: 'components/header/header.css'
 	},
 	{
 		name: 'brand',
-		defaultStylePath: 'components/brand/brand.css',
-		overwrites: {
-			vue: [
-				{
-					from: 'import { DBBrandState, DBBrandProps } from "./model";',
-					to: ''
-				}
-			]
-		}
+		defaultStylePath: 'components/brand/brand.css'
 	},
 	{
 		name: 'input',
 		defaultStylePath: 'components/input/input.css',
-		overwrites: {
-			global: [
-				{ from: 'handleChange(event)', to: 'handleChange(event:any)' },
-				{ from: 'handleBlur(event)', to: 'handleBlur(event:any)' },
-				{ from: 'handleFocus(event)', to: 'handleFocus(event:any)' },
-				{
-					from: 'getIcon(variant) {',
-					to: 'getIcon(variant:any) {'
-				}
-			],
-			angular: [
-				{
-					from: 'this.textInputRef.nativeElement',
-					to: 'this.textInputRef?.nativeElement'
-				}
-			],
-			vue: [
-				{
-					from: 'import { DBInputState, DBInputProps } from "./model";',
-					to: ''
-				},
-				{
-					from: '_isValid: undefined,',
-					to: ''
-				}
-			]
-		},
 		config: {
+			isFormComponent: true,
+			isIconComponent: true,
 			vue: {
 				vModel: [{ modelValue: 'value', binding: ':value' }]
 			}
@@ -158,23 +74,13 @@ const getComponents = () => [
 	},
 	{
 		name: 'divider',
-		defaultStylePath: 'components/divider/divider.css',
-		overwrites: {
-			vue: [
-				{
-					from: 'import { DBDividerState, DBDividerProps } from "./model";',
-					to: ''
-				}
-			]
-		}
+		defaultStylePath: 'components/divider/divider.css'
 	},
 	{
 		name: 'card',
 		defaultStylePath: 'components/card/card.css',
-		overwrites: {
-			global: [
-				{ from: 'handleClick(event)', to: 'handleClick(event:any)' }
-			]
+		config: {
+			isClickComponent: true
 		}
 	},
 	{
@@ -221,10 +127,8 @@ const getComponents = () => [
 	{
 		name: 'button',
 		defaultStylePath: 'components/button/button.css',
-		overwrites: {
-			global: [
-				{ from: 'handleClick(event)', to: 'handleClick(event:any)' }
-			]
+		config: {
+			isClickComponent: true
 		}
 	},
 	{
@@ -233,4 +137,30 @@ const getComponents = () => [
 	}
 ];
 
-module.exports = getComponents();
+const formComponentChanges = [
+	{ from: 'handleChange(event)', to: 'handleChange(event:any)' },
+	{ from: 'handleBlur(event)', to: 'handleBlur(event:any)' },
+	{ from: 'handleFocus(event)', to: 'handleFocus(event:any)' }
+];
+
+const clickComponentChanges = [
+	{ from: 'handleClick(event)', to: 'handleClick(event:any)' }
+];
+
+const iconComponentChanges = [
+	{
+		from: 'getIcon(icon, variant) {',
+		to: 'getIcon(icon:any, variant:any) {'
+	},
+	{
+		from: 'getIcon(variant) {',
+		to: 'getIcon(variant:any) {'
+	}
+];
+
+module.exports = {
+	components: getComponents(),
+	formComponentChanges,
+	clickComponentChanges,
+	iconComponentChanges
+};

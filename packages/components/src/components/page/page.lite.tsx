@@ -16,6 +16,8 @@ useMetadata({
 });
 
 export default function DBPage(props: DBPageProps) {
+	// This is used as forwardRef
+	let component: any;
 	const state = useStore<DBPageState>({});
 
 	onMount(() => {
@@ -26,6 +28,7 @@ export default function DBPage(props: DBPageProps) {
 
 	return (
 		<div
+			ref={component}
 			class={
 				'db-page' +
 				(props.className ? ' ' + props.className : '') +
