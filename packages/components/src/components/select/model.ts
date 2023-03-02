@@ -7,7 +7,9 @@ import {
 	ClickEventProps,
 	ClickEventState,
 	GlobalProps,
-	GlobalState
+	GlobalState,
+	FormProps,
+	FormState
 } from '../../shared/model';
 
 export interface DBSelectDefaultProps {
@@ -15,14 +17,8 @@ export interface DBSelectDefaultProps {
 	// TODO: Variants aren't being used by inputs as well, so we need to wait for the final spec
 	// variant?: 'semitransparent' | 'white' | 'solid' | 'outline';
 	ariainvalid?: false;
-	disabled?: false;
-	id?: string;
 	multiple?: false;
-	name?: string;
-	required?: false;
 	size?: 'small';
-	label?: string;
-	value?: any;
 }
 
 export type DBSelectProps = DBSelectDefaultProps &
@@ -30,17 +26,14 @@ export type DBSelectProps = DBSelectDefaultProps &
 	ClickEventProps &
 	ChangeEventProps &
 	FocusEventProps &
-	ValidEventProps;
+	ValidEventProps &
+	FormProps;
 
-export interface DBSelectDefaultState {
-	mId?: string;
-	_isValid: boolean | undefined;
-	_value: any;
-	_label: string;
-}
+export interface DBSelectDefaultState {}
 
 export type DBSelectState = DBSelectDefaultState &
 	GlobalState &
 	ClickEventState &
 	ChangeEventState &
-	FocusEventState;
+	FocusEventState &
+	FormState;

@@ -1,11 +1,11 @@
 import {
 	onMount,
 	Show,
-	useRef,
 	useMetadata,
+	useRef,
 	useStore
 } from '@builder.io/mitosis';
-import { DBSelectState, DBSelectProps } from './model';
+import { DBSelectProps, DBSelectState } from './model';
 import { uuid } from '../../utils';
 import { DEFAULT_ID } from '../../shared/constants';
 
@@ -22,10 +22,7 @@ const DEFAULT_VALUES = {};
 export default function DBSelect(props: DBSelectProps) {
 	const selectRef = useRef<HTMLSelectElement>(null);
 	const state = useStore<DBSelectState>({
-		mId: DEFAULT_ID,
-		_isValid: undefined,
-		_value: '',
-		_label: 'LABEL SHOULD BE SET',
+		_id: DEFAULT_ID,
 
 		handleClick: (event) => {
 			if (props.onClick) {
@@ -72,7 +69,7 @@ export default function DBSelect(props: DBSelectProps) {
 	});
 
 	onMount(() => {
-		state.mId = props.id ? props.id : 'select-' + uuid();
+		state._id = props.id ? props.id : 'select-' + uuid();
 
 		if (props.value) {
 			state._value = props.value;
@@ -102,7 +99,7 @@ export default function DBSelect(props: DBSelectProps) {
 				// }
 				aria-invalid={props.ariainvalid ? 'true' : false}
 				disabled={props.disabled}
-				id={state.mId}
+				id={state._id}
 				multiple={props.multiple}
 				name={props.name}
 				required={props.required}
@@ -113,7 +110,7 @@ export default function DBSelect(props: DBSelectProps) {
 				onFocus={(event) => state.handleFocus(event)}>
 				{props.children}
 			</select>
-			<label class="db-label" htmlFor={state.mId}>
+			<label class="db-label" htmlFor={state._id}>
 				{this.label}
 			</label>
 			<Show when={state.stylePath}>
