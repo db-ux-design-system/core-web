@@ -1,8 +1,8 @@
 import { DBInfotext } from '../../../../../output/react/src';
 import DefaultComponent from '../index';
-import { DefaultComponentExample } from '../../../../shared/default-component-data';
+import { type DefaultComponentExample } from '../../../../shared/default-component-data';
 import defaultComponentVariants from '../../../../shared/infotext';
-import { DBInfotextProps } from '../../../../../output/react/src/components/infotext/model';
+import { type DBInfotextProps } from '../../../../../output/react/src/components/infotext/model';
 
 const getInfotext = ({ variant, size, icon }: DBInfotextProps) => (
 	<DBInfotext variant={variant} size={size} icon={icon}>

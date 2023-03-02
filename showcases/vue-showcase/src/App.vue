@@ -52,8 +52,12 @@ watch(
 		<template v-slot:header>
 			<DBHeader>
 				<template v-slot:brand>
-					<DBBrand src="db_logo.svg" href="/vue-showcase/">
-						Vue Showcase
+					<DBBrand
+						title="Vue Showcase"
+						src="db_logo.svg"
+						href="/vue-showcase/"
+					>
+						Showcase
 					</DBBrand>
 				</template>
 				<template v-slot:desktop-navigation>

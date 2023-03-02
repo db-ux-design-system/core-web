@@ -1,8 +1,8 @@
 import { DBSection } from '../../../../../output/react/src';
 import DefaultComponent from '../index';
-import { DefaultComponentExample } from '../../../../shared/default-component-data';
+import { type DefaultComponentExample } from '../../../../shared/default-component-data';
 import defaultComponentVariants from '../../../../shared/section';
-import { DBSectionProps } from '../../../../../output/react/src/components/section/model';
+import { type DBSectionProps } from '../../../../../output/react/src/components/section/model';
 
 const getSection = ({ variant, size }: DBSectionProps) => (
 	<DBSection

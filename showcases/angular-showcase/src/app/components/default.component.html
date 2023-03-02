@@ -1,0 +1,28 @@
+<div class="default-container">
+	<h1>{{ title }}</h1>
+	<div *ngFor="let variant of variants; index as variantIndex">
+		<DBDivider></DBDivider>
+		<strong>{{ variant.name }}</strong>
+		<ul class="variants-list">
+			<li
+				*ngFor="let example of variant.examples; index as exampleIndex"
+				[style]="example.style"
+				[class]="example.className"
+			>
+				<p>
+					<small>{{ example.name }}</small>
+				</p>
+				<ng-container
+					*ngTemplateOutlet="
+						exampleTemplate;
+						context: {
+							exampleIndex: exampleIndex,
+							variantIndex: variantIndex
+						}
+					"
+				>
+				</ng-container>
+			</li>
+		</ul>
+	</div>
+</div>

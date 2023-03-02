@@ -1,5 +1,5 @@
 import { DBDivider } from '../../../../output/react/src';
-import { DefaultComponentProps } from '../../../shared/default-component-data';
+import { type DefaultComponentProps } from '../../../shared/default-component-data';
 
 const DefaultComponent = ({
 	title,

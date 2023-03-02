@@ -1,8 +1,8 @@
 import { DBLink } from '../../../../../output/react/src';
 import DefaultComponent from '../index';
-import { DefaultComponentExample } from '../../../../shared/default-component-data';
+import { type DefaultComponentExample } from '../../../../shared/default-component-data';
 import defaultComponentVariants from '../../../../shared/link';
-import { DBLinkProps } from '../../../../../output/react/src/components/link/model';
+import { type DBLinkProps } from '../../../../../output/react/src/components/link/model';
 
 const getLink = ({ variant, disabled, size, content }: DBLinkProps) => (
 	<DBLink

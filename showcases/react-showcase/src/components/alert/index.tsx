@@ -1,8 +1,8 @@
 import { DBAlert } from '../../../../../output/react/src';
 import DefaultComponent from '../index';
-import { DefaultComponentExample } from '../../../../shared/default-component-data';
+import { type DefaultComponentExample } from '../../../../shared/default-component-data';
 import defaultComponentVariants from '../../../../shared/alert';
-import { DBAlertProps } from '../../../../../output/react/src/components/alert/model';
+import { type DBAlertProps } from '../../../../../output/react/src/components/alert/model';
 
 const getAlert = ({
 	variant,
@@ -60,7 +60,7 @@ const exampleMatrix: DefaultComponentExample[][] = [
 	[
 		{
 			example: getDefaultAlert({
-				onClick: () => {
+				onClick() {
 					/* eslint-disable-next-line no-alert */
 					alert('click close button');
 				}

@@ -1,8 +1,9 @@
 import { DBButton } from '../../../../../output/react/src';
 import DefaultComponent from '../index';
 import defaultComponentVariants from '../../../../shared/button';
-import { DefaultComponentExample } from '../../../../shared/default-component-data';
-import { DBButtonProps } from '../../../../../output/react/src/components/button/model';
+import { type DefaultComponentExample } from '../../../../shared/default-component-data';
+import { type DBButtonProps } from '../../../../../output/react/src/components/button/model';
+
 const getButton = ({
 	variant,
 	state,

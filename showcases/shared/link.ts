@@ -1,4 +1,4 @@
-import { DefaultComponentVariants } from './default-component-data';
+import { type DefaultComponentVariants } from './default-component-data';
 
 const defaultComponentVariants: DefaultComponentVariants[] = [
 	{

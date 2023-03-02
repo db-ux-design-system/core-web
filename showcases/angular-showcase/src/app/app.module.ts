@@ -18,10 +18,12 @@ import { AppRoutingModule } from './app.routing.module';
 import { FormComponent } from './components/form/form.component';
 import { ButtonComponent } from './components/button/button.component';
 import { InputComponent } from './components/input/input.component';
+import { DefaultComponent } from './components/default.component';
 
 @NgModule({
 	declarations: [
 		AppComponent,
+		DefaultComponent,
 		FormComponent,
 		ButtonComponent,
 		InputComponent

@@ -1,8 +1,8 @@
 import { DBInput } from '../../../../../output/react/src';
 import DefaultComponent from '../index';
-import { DefaultComponentExample } from '../../../../shared/default-component-data';
+import { type DefaultComponentExample } from '../../../../shared/default-component-data';
 import defaultComponentVariants from '../../../../shared/input';
-import { DBInputProps } from '../../../../../output/react/src/components/input/model';
+import { type DBInputProps } from '../../../../../output/react/src/components/input/model';
 
 const getInput = ({
 	variant,
