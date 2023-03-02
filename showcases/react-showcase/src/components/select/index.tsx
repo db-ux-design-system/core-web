@@ -1,10 +1,5 @@
-import { useEffect, useState } from 'react';
-import { useSearchParams } from 'react-router-dom';
 import { DBSelect } from '../../../../../output/react/src';
-import { COLOR_CONST } from '../../../../../packages/components/src/shared/constants';
 import DefaultComponent, { type DefaultComponentVariants } from '../index';
-
-const defaultLabelText = 'Label';
 
 const variants: DefaultComponentVariants[] = [
 	{
@@ -12,33 +7,21 @@ const variants: DefaultComponentVariants[] = [
 		examples: [
 			{
 				name: '(Default)',
-				example: <DBSelect label={defaultLabelText} />
+				example: <DBSelect label="Label" />
 			}
 		]
 	},
 	{
 		name: 'States',
 		examples: [
-			{ name: 'Default', example: <DBSelect label={defaultLabelText} /> },
+			{ name: 'Default', example: <DBSelect label="Label" /> },
 			{
 				name: 'Disabled',
-				example: (
-					<DBSelect
-						label={defaultLabelText}
-						value="Select Text"
-						disabled
-					/>
-				)
+				example: <DBSelect label="Label" value="Select Text" disabled />
 			},
 			{
 				name: 'Required',
-				example: (
-					<DBSelect
-						label={defaultLabelText}
-						value="Select Text"
-						required
-					/>
-				)
+				example: <DBSelect label="Label" value="Select Text" required />
 			}
 		]
 	}

@@ -20,7 +20,7 @@ export interface DBSelectDefaultProps {
 	multiple?: false;
 	name?: string;
 	required?: false;
-	size?: number;
+	size?: 'small';
 	label?: string;
 	value?: any;
 }
