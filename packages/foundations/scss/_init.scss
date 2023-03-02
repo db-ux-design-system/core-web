@@ -5,6 +5,7 @@
 :root {
 	// TODO: probably move these to the tokens as well
 	--db-focus-outline-offset: 1px;
+	--db-focus-outline-radius: to-rem(6);
 	--db-focus-outline-color: #{$db-colors-information-enabled};
 	--db-focus-outline-transition-duration: #{$db-transition-duration-ultra-fast};
 	--db-focus-outline-size: max(2px, 0.08em);
@@ -80,6 +81,7 @@ iframe {
 			--db-focus-outline-offset,
 			var(--db-focus-outline-size)
 		);
+		border-radius: var(--db-focus-outline-radius, #{to-rem(6)});
 	}
 }
 

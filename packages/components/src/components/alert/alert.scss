@@ -1,0 +1,112 @@
+@use "@db-ui/foundations/build/scss/variables" as *;
+@use "@db-ui/foundations/build/scss/variables.global" as *;
+@use "@db-ui/foundations/build/scss/helpers/shadow-dom" as *;
+@use "@db-ui/foundations/build/scss/color-placeholder" as *;
+
+$variants: (
+	"critical":
+		var(
+			--db-colors-critical-element-enabled,
+			$db-colors-critical-element-enabled
+		),
+	"information":
+		var(
+			--db-colors-information-element-enabled,
+			$db-colors-information-element-enabled
+		),
+	"warning":
+		var(
+			--db-colors-warning-element-enabled,
+			$db-colors-warning-element-enabled
+		),
+	"success":
+		var(
+			--db-colors-success-element-enabled,
+			$db-colors-success-element-enabled
+		)
+);
+
+@mixin handle-links($show-headline) {
+	.db-alert-headline-link {
+		@if ($show-headline) {
+			display: inherit;
+		} @else {
+			display: none;
+		}
+	}
+
+	.db-alert-content-link {
+		@if ($show-headline) {
+			display: none;
+		} @else {
+			display: inherit;
+		}
+	}
+}
+
+.db-alert {
+	@extend %shadow-dom-extend;
+	@extend %db-bg-neutral-0;
+
+	@include handle-links(true);
+
+	@media screen and (max-width: $db-screens-s) {
+		@include handle-links(false);
+	}
+
+	padding: $db-spacing-fixed-md;
+	display: flex;
+	gap: $db-spacing-fixed-md;
+	width: 100%;
+
+	.db-icon {
+		&::before {
+			/* TODO: Take filled icons if they are ready */
+			--icon-font-family: var(--db-base-icon-font-family);
+			--icon-font-size: var(--db-base-icon-font-size);
+		}
+	}
+
+	&[data-type="inline"] {
+		@include handle-links(false);
+
+		width: fit-content;
+		min-width: calc($db-screens-xs - $db-spacing-fixed-md);
+	}
+
+	@each $name, $icon-color in $variants {
+		&[data-variant="#{$name}"] {
+			@if ($name == "critical") {
+				@extend %db-bg-critical-light;
+			} @else if ($name == "information") {
+				@extend %db-bg-information-light;
+			} @else if ($name == "warning") {
+				@extend %db-bg-warning-light;
+			} @else if ($name == "success") {
+				@extend %db-bg-success-light;
+			}
+
+			.db-alert-icon {
+				color: $icon-color;
+			}
+		}
+	}
+}
+
+.db-alert-content-container {
+	display: flex;
+	flex-direction: column;
+	gap: $db-spacing-fixed-xs;
+	width: 100%;
+}
+
+.db-alert-headline-container {
+	display: flex;
+	gap: $db-spacing-fixed-lg;
+	justify-content: space-between;
+}
+
+.db-alert-close-container {
+	display: flex;
+	gap: $db-spacing-fixed-md;
+}

@@ -6,9 +6,10 @@
 @use "@db-ui/foundations/build/scss/color-placeholder" as *;
 @use "@db-ui/foundations/build/scss/helpers/functions" as *;
 @use "@db-ui/foundations/build/scss/icon/icons.helpers" as *;
+@use "@db-ui/foundations/build/scss/helpers/component";
 
 .db-link {
-	color: var(--db-current-color, $db-colors-neutral-on-bg-enabled);
+	@extend %default-color;
 	display: flex;
 	border-radius: to-rem($pxValue: 6);
 

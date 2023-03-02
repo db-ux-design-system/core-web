@@ -8,25 +8,29 @@ const variants: DefaultComponentVariants[] = [
 		name: 'Variant',
 		examples: [
 			{
-				name: '(Default) Primary',
+				name: '(Default) Adaptive Outline',
 				example: <DBButton>{defaultButtonText}</DBButton>
 			},
 			{
-				name: 'Secondary',
+				name: 'Primary',
 				example: (
-					<DBButton variant="secondary">{defaultButtonText}</DBButton>
+					<DBButton variant="primary">{defaultButtonText}</DBButton>
 				)
 			},
 			{
-				name: 'Ghost',
+				name: 'Transparent',
 				example: (
-					<DBButton variant="ghost">{defaultButtonText}</DBButton>
+					<DBButton variant="transparent">
+						{defaultButtonText}
+					</DBButton>
 				)
 			},
 			{
-				name: 'Tertiary',
+				name: 'Semi-Transparent',
 				example: (
-					<DBButton variant="tertiary">{defaultButtonText}</DBButton>
+					<DBButton variant="semi-transparent">
+						{defaultButtonText}
+					</DBButton>
 				)
 			}
 		]

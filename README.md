@@ -56,7 +56,7 @@ Here is an overview of all components you can use:
 | Breadcrumbs                                           | 02 - Action       |     ❌      |   ❌    |    ❌    |        ✅        |
 | [Button](packages/components/src/components/button)   | 02 - Action       |     ✅      |   v3    |    ❌    |        ✅        |
 | Button-Group                                          | 02 - Action       |     ❌      |   ❌    |    ❌    |        ❌        |
-| [Card](packages/components/src/components/car)        | 01 - Layout       |     ✅      |   v3    |    ❌    |        ✅        |
+| [Card](packages/components/src/components/card)       | 01 - Layout       |     ✅      |   v3    |    ❌    |        ✅        |
 | Carousel                                              | 06 - Utility      |     ❌      |   ❌    |    ❌    |        ❌        |
 | Checkbox                                              | 03 - Data-Input   |     ❌      |   ❌    |    ❌    |        ✅        |
 | Combobox                                              | 03 - Data-Input   |     ❌      |   ❌    |    ❌    |        ❌        |
@@ -94,7 +94,7 @@ Here is an overview of all components you can use:
 | Stepper                                               | 02 - Action       |     ❌      |   ❌    |    ❌    |        ❌        |
 | Switch                                                | 02 - Action       |     ❌      |   ❌    |    ❌    |        ❌        |
 | Table                                                 | 04 - Data-Display |     ❌      |   ❌    |    ❌    |        ❌        |
-| [Tabs](packages/components/src/components/input)      | 04 - Data-Display |     ✅      |   v2    |    ❌    |        ❌        |
+| [Tabs](packages/components/src/components/tabs)       | 04 - Data-Display |     ✅      |   v2    |    ❌    |        ❌        |
 | Tag                                                   | 04 - Data-Display |     ❌      |   ❌    |    ❌    |        ✅        |
 | Text                                                  | 04 - Data-Display |     ❌      |   ❌    |    ❌    |        ✅        |
 | Textarea                                              | 03 - Data-Input   |     ❌      |   ❌    |    ❌    |        ✅        |

@@ -10,10 +10,10 @@ const variant = ref("primary");
 		<h1>Button</h1>
 		<div class="button-container">
 			<select v-model="variant">
+				<option value="outline">outline</option>
 				<option value="primary">primary</option>
-				<option value="secondary">secondary</option>
-				<option value="ghost">ghost</option>
-				<option value="tertiary">tertiary</option>
+				<option value="transparent">transparent</option>
+				<option value="semi-transparent">semi-transparent</option>
 			</select>
 
 			<DBButton :variant="variant">{{ variant }}</DBButton>

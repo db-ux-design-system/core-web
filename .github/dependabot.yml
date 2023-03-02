@@ -5,7 +5,7 @@ updates:
     directory: "/"
     schedule:
       interval: "daily"
-      time: "04:00"
+      time: "02:00"
       timezone: "Europe/Berlin"
     pull-request-branch-name:
       separator: "-"
@@ -16,7 +16,7 @@ updates:
     open-pull-requests-limit: 10
     schedule:
       interval: "daily"
-      time: "04:00"
+      time: "02:00"
       timezone: "Europe/Berlin"
     ignore:
       - dependency-name: "ng-packagr"
@@ -57,7 +57,7 @@ updates:
     open-pull-requests-limit: 10
     schedule:
       interval: "daily"
-      time: "04:00"
+      time: "02:00"
       timezone: "Europe/Berlin"
     pull-request-branch-name:
       separator: "-"
@@ -68,7 +68,7 @@ updates:
     open-pull-requests-limit: 10
     schedule:
       interval: "daily"
-      time: "04:00"
+      time: "02:00"
       timezone: "Europe/Berlin"
     pull-request-branch-name:
       separator: "-"

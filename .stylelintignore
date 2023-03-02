@@ -5,3 +5,4 @@ out/
 output/
 source/_patterns/**
 showcases/patternhub/**
+showcases/**/public/**
