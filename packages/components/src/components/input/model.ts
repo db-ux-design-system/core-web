@@ -7,12 +7,12 @@ import {
 	ChangeEventProps,
 	GlobalProps,
 	GlobalState,
-	DefaultVariantProps
+	DefaultVariantProps,
+	FormProps,
+	FormState
 } from '../../shared/model';
 
 export type DBInputDefaultProps = {
-	id?: string;
-	label?: string;
 	type?:
 		| 'text'
 		| 'search'
@@ -28,11 +28,8 @@ export type DBInputDefaultProps = {
 	variant?: DefaultVariantProps;
 	iconBefore?: string;
 	iconAfter?: string;
-	disabled?: boolean;
-	required?: boolean;
-	value?: any;
 	description?: string;
-	name?: string;
+	value?: any;
 };
 
 export type DBInputProps = DBInputDefaultProps &
@@ -40,18 +37,17 @@ export type DBInputProps = DBInputDefaultProps &
 	GlobalTextProps &
 	ChangeEventProps &
 	FocusEventProps &
-	ValidEventProps;
+	ValidEventProps &
+	FormProps;
 
 export type DBInputDefaultState = {
-	mId?: string;
-	_isValid: boolean | undefined;
-	_value: any;
+	_value?: any;
 	_placeholder: string;
-	_label: string;
 	getIcon: (variant: DefaultVariantProps) => string;
 };
 
 export type DBInputState = DBInputDefaultState &
 	GlobalState &
 	ChangeEventState &
-	FocusEventState;
+	FocusEventState &
+	FormState;
