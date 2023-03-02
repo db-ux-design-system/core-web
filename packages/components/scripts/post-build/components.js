@@ -33,7 +33,7 @@ const getComponents = () => [
 			],
 			vue: [
 				{
-					from: 'import { DBSelectState, DBSelectProps } from "./model";',
+					from: 'import { DBSelectProps, DBSelectState } from "./model";',
 					to: ''
 				},
 				{
