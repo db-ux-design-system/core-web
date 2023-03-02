@@ -4,10 +4,26 @@
 @use "@db-ui/foundations/build/scss/color-placeholder" as *;
 
 $variants: (
-	"critical": $db-colors-critical-element-enabled,
-	"information": $db-colors-information-element-enabled,
-	"warning": $db-colors-warning-element-enabled,
-	"success": $db-colors-success-element-enabled
+	"critical":
+		var(
+			--db-colors-critical-element-enabled,
+			$db-colors-critical-element-enabled
+		),
+	"information":
+		var(
+			--db-colors-information-element-enabled,
+			$db-colors-information-element-enabled
+		),
+	"warning":
+		var(
+			--db-colors-warning-element-enabled,
+			$db-colors-warning-element-enabled
+		),
+	"success":
+		var(
+			--db-colors-success-element-enabled,
+			$db-colors-success-element-enabled
+		)
 );
 
 @mixin handle-links($show-headline) {

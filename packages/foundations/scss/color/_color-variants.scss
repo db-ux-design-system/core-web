@@ -1,9 +1,9 @@
 @use "../color-placeholder" as *;
 
-$color-variants: "neutral-0", "neutral-1", "neutral-3", "neutral-4", "neutral-5",
-	"neutral-6", "primary", "primary-light", "secondary", "secondary-light",
-	"critical", "critical-light", "success", "success-light", "warning",
-	"warning-light", "information", "information-light";
+$color-variants: "neutral-0", "neutral-1", "neutral-3", "neutral-4", "primary",
+	"primary-light", "secondary", "secondary-light", "critical",
+	"critical-light", "success", "success-light", "warning", "warning-light",
+	"information", "information-light";
 
 @mixin color-variants($ia) {
 	@each $variant in $color-variants {
@@ -23,4 +23,33 @@ $color-variants: "neutral-0", "neutral-1", "neutral-3", "neutral-4", "neutral-5"
 }
 %color-variants-ia {
 	@include color-variants(true);
+}
+
+@mixin get-variant-bg-color($alpha) {
+	background-color: rgba(
+		var(--db-current-background-color-red),
+		var(--db-current-background-color-green),
+		var(--db-current-background-color-blue),
+		var(--db-current-background-color-alpha, $alpha)
+	);
+}
+
+%bg-transparent-hover {
+	@include get-variant-bg-color(0);
+
+	&:not(:disabled) {
+		&:hover {
+			@include get-variant-bg-color(0.16);
+		}
+	}
+}
+
+%bg-transparent-interactive {
+	@extend %bg-transparent-hover;
+
+	&:not(:disabled) {
+		&:active {
+			@include get-variant-bg-color(0.24);
+		}
+	}
 }

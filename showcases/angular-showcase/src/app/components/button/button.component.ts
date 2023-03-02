@@ -5,5 +5,6 @@ import { Component } from '@angular/core';
 	templateUrl: './button.component.html'
 })
 export class ButtonComponent {
-	variant: 'primary' | 'secondary' | 'tertiary' | 'ghost' = 'primary';
+	variant: 'outline' | 'primary' | 'transparent' | 'semi-transparent' =
+		'outline';
 }
