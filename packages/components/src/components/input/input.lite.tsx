@@ -7,8 +7,8 @@ import {
 } from '@builder.io/mitosis';
 import { DBIcon } from '../icon';
 import { uuid } from '../../utils';
-import { DBInputState, DBInputProps } from './model';
-import { DEFAULT_ID } from '../../shared/constants';
+import { DBInputProps, DBInputState } from './model';
+import { DEFAULT_ID, DEFAULT_LABEL } from '../../shared/constants';
 import { DefaultVariantsIcon } from '../../shared/model';
 
 useMetadata({
@@ -24,11 +24,11 @@ export default function DBInput(props: DBInputProps) {
 	let component: any;
 	const formRef = useRef<HTMLInputElement>(null);
 	const state = useStore<DBInputState>({
-		mId: DEFAULT_ID,
+		_id: DEFAULT_ID,
 		_isValid: undefined,
 		_value: '',
 		_placeholder: ' ', // placeholder can't be empty
-		_label: 'LABEL SHOULD BE SET',
+		_label: DEFAULT_LABEL,
 		getIcon: (variant) => {
 			if (variant) {
 				return DefaultVariantsIcon[variant];
@@ -76,7 +76,7 @@ export default function DBInput(props: DBInputProps) {
 	});
 
 	onMount(() => {
-		state.mId = props.id ? props.id : 'input-' + uuid();
+		state._id = props.id ? props.id : 'input-' + uuid();
 
 		if (props.value) {
 			state._value = props.value;
@@ -108,11 +108,11 @@ export default function DBInput(props: DBInputProps) {
 			</Show>
 			<input
 				ref={formRef}
-				id={state.mId}
+				id={state._id}
 				name={props.name}
 				type={props.type || 'text'}
 				placeholder={state._placeholder}
-				aria-labelledby={state.mId + '-label'}
+				aria-labelledby={state._id + '-label'}
 				disabled={props.disabled}
 				required={props.required}
 				value={state._value}
@@ -124,9 +124,9 @@ export default function DBInput(props: DBInputProps) {
 				onFocus={(event) => state.handleFocus(event)}
 			/>
 			<label
-				htmlFor={state.mId}
+				htmlFor={state._id}
 				aria-hidden="true"
-				id={state.mId + '-label'}>
+				id={state._id + '-label'}>
 				<span>{state._label}</span>
 			</label>
 			<Show when={props.description}>
