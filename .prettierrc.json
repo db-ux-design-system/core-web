@@ -14,5 +14,6 @@
 			}
 		}
 	],
-	"bracketSpacing": true
+	"bracketSpacing": true,
+	"endOfLine": "auto"
 }
