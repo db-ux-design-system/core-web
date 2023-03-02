@@ -1,76 +1,34 @@
 import { DBLink } from '../../../../../output/react/src';
-import DefaultComponent, { type DefaultComponentVariants } from '../index';
+import DefaultComponent from '../index';
+import { DefaultComponentExample } from '../../../../shared/default-component-data';
+import defaultComponentVariants from '../../../../shared/link';
+import { DBLinkProps } from '../../../../../output/react/src/components/link/model';
 
-const variants: DefaultComponentVariants[] = [
-	{
-		name: 'Variant',
-		examples: [
-			{
-				name: '(Default) Adaptive',
-				example: <DBLink href="#">Type something</DBLink>
-			},
-			{
-				name: 'Primary',
-				example: (
-					<DBLink href="#" variant="primary">
-						Type something
-					</DBLink>
-				)
-			}
-		]
-	},
-	{
-		name: 'State',
-		examples: [
-			{
-				name: 'Default: (Enabled, Hover, Pressed)',
-				example: <DBLink href="#">Type something</DBLink>
-			},
-			{
-				name: 'Disabled',
-				example: (
-					<DBLink href="#" disabled>
-						Type something
-					</DBLink>
-				)
-			}
-		]
-	},
-	{
-		name: 'Size',
-		examples: [
-			{
-				name: '(Default) Medium',
-				example: <DBLink href="#">Type something</DBLink>
-			},
-			{
-				name: 'Small',
-				example: (
-					<DBLink href="#" size="small">
-						Type something
-					</DBLink>
-				)
-			}
-		]
-	},
-	{
-		name: 'Content',
-		examples: [
-			{
-				name: '(Default) Internal',
-				example: <DBLink href="#">Type something</DBLink>
-			},
-			{
-				name: 'External',
-				example: (
-					<DBLink href="#" content="external">
-						Type something
-					</DBLink>
-				)
-			}
-		]
-	}
+const getLink = ({ variant, disabled, size, content }: DBLinkProps) => (
+	<DBLink
+		href="#"
+		variant={variant}
+		disabled={disabled}
+		size={size}
+		content={content}>
+		Type something
+	</DBLink>
+);
+
+const exampleMatrix: DefaultComponentExample[][] = [
+	[{ example: getLink({}) }, { example: getLink({ variant: 'primary' }) }],
+	[{ example: getLink({}) }, { example: getLink({ disabled: true }) }],
+	[{ example: getLink({}) }, { example: getLink({ size: 'small' }) }],
+	[{ example: getLink({}) }, { example: getLink({ content: 'external' }) }]
 ];
+
+const variants = defaultComponentVariants.map((variant, index) => ({
+	...variant,
+	examples: variant.examples.map((example, exampleIndex) => ({
+		...example,
+		...exampleMatrix[index][exampleIndex]
+	}))
+}));
 
 const LinkComponent = () => {
 	return (

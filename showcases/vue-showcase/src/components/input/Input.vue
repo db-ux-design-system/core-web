@@ -1,76 +1,107 @@
 <script setup lang="ts">
-import { DBButton, DBInput } from "../../../../../output/vue/vue3/src";
-import "./index.scss";
+import DefaultComponent from "../DefaultComponent.vue";
+import defaultComponentVariants from "../../../../shared/input";
+import { DBInput } from "../../../../../output/vue/vue3/src";
+
+const variants = ["information", "warning", "critical", "success"];
 </script>
 
 <template>
-	<div>
-		<h1>Input</h1>
-		<div class="input-container">
-			<form>
-				<DBInput
-					description="This is a description"
-					label="Start train station"
-					placeholder="some text"
-					iconBefore="edit"
-					variant="critical"
-					value="hello"
-					name="testInput"
-				></DBInput>
-
-				<DBInput
-					description="Valid test"
-					label="With event"
-					placeholder="some text"
-					iconBefore="edit"
-					iconAfter="heart"
-					variant="warning"
-					id="input-expr-warning"
-					required="true"
-				></DBInput>
-				<DBInput
-					label="start date"
-					placeholder="some text"
-					type="datetime-local"
-					id="input-expr-date"
-				></DBInput>
-
-				<DBInput
-					label="Start train station"
-					placeholder="some text"
-					iconAfter="heart"
-					id="input-reg"
-					required="true"
-					:minLength="5"
-				></DBInput>
-				<DBInput
-					label="Start date"
-					placeholder="some text"
-					type="week"
-					id="input-reg-date"
-				></DBInput>
-
-				<DBInput
-					id="db-input-functional-1"
-					label="Start train station"
-					placeholder="some text"
-				></DBInput>
-				<DBInput
-					id="db-input-functional-2"
-					label="Textinput disabled"
-					placeholder="some text"
-					variant="information"
-					disabled="true"
-				></DBInput>
-
-				<DBInput
-					label="start date"
-					placeholder="some text"
-					type="datetime-local"
-					id="input-func-date"
-				></DBInput>
-				<DBButton type="submit">Submit</DBButton>
-			</form>
-		</div>
-	</div>
+	<DefaultComponent title="Input" :variants="defaultComponentVariants">
+		<template #example="{ exampleIndex, variantIndex }">
+			<template v-if="exampleIndex === 0">
+				<DBInput label="Label" description="Description" />
+			</template>
+			<template v-if="variantIndex === 0">
+				<template v-for="(variant, index) in variants">
+					<DBInput
+						v-if="exampleIndex === index + 1"
+						label="Label"
+						description="Description"
+						:variant="variant"
+					/>
+				</template>
+			</template>
+			<template v-if="variantIndex === 1">
+				<template v-if="exampleIndex === 1">
+					<DBInput
+						label="Label"
+						description="Description"
+						value="Input Text"
+					/>
+				</template>
+				<template v-if="exampleIndex === 2">
+					<DBInput
+						label="Label"
+						description="Description"
+						value="123456"
+						type="number"
+					/>
+				</template>
+				<template v-if="exampleIndex === 3">
+					<DBInput
+						label="Label"
+						description="Description"
+						min-length="5"
+						required="true"
+					/>
+				</template>
+				<template v-if="exampleIndex === 4">
+					<DBInput
+						label="Label"
+						description="Description"
+						disabled="true"
+					/>
+				</template>
+				<template v-if="exampleIndex === 5">
+					<DBInput
+						label="Label"
+						description="Description"
+						disabled="true"
+						value="Input Text"
+					/>
+				</template>
+				<template v-if="exampleIndex === 6">
+					<DBInput
+						label="Label"
+						description="Description"
+						required="true"
+						value="Input Text"
+					/>
+				</template>
+			</template>
+			<template v-if="variantIndex === 2">
+				<template v-if="exampleIndex === 1">
+					<DBInput
+						label="Label"
+						description="Description"
+						icon-before="account"
+					/>
+				</template>
+				<template v-if="exampleIndex === 2">
+					<DBInput
+						label="Label"
+						description="Description"
+						icon-before="account"
+						icon-after="edit"
+					/>
+				</template>
+				<template v-if="exampleIndex === 3">
+					<DBInput
+						label="Label"
+						description="Description"
+						icon-after="edit"
+					/>
+				</template>
+				<template v-if="exampleIndex === 4">
+					<DBInput
+						label="Label"
+						description="Description"
+						icon-after="edit"
+						variant="success"
+					/>
+				</template>
+			</template>
+		</template>
+	</DefaultComponent>
 </template>

@@ -1,46 +1,33 @@
 import { DBInfotext } from '../../../../../output/react/src';
-import DefaultComponent, { type DefaultComponentVariants } from '../index';
+import DefaultComponent from '../index';
+import { DefaultComponentExample } from '../../../../shared/default-component-data';
+import defaultComponentVariants from '../../../../shared/infotext';
+import { DBInfotextProps } from '../../../../../output/react/src/components/infotext/model';
 
-const variants: DefaultComponentVariants[] = [
-	{
-		name: 'Variant',
-		examples: [
-			{
-				name: '(Default) Adaptive',
-				example: <DBInfotext icon="account">Infotext</DBInfotext>
-			},
-			{
-				name: 'Critical',
-				example: <DBInfotext variant="critical">Infotext</DBInfotext>
-			},
-			{
-				name: 'Information',
-				example: <DBInfotext variant="information">Infotext</DBInfotext>
-			},
-			{
-				name: 'Success',
-				example: <DBInfotext variant="success">Infotext</DBInfotext>
-			},
-			{
-				name: 'Warning',
-				example: <DBInfotext variant="warning">Infotext</DBInfotext>
-			}
-		]
-	},
-	{
-		name: 'Size',
-		examples: [
-			{
-				name: '(Default) Medium',
-				example: <DBInfotext>Infotext</DBInfotext>
-			},
-			{
-				name: 'Small',
-				example: <DBInfotext size="small">Infotext</DBInfotext>
-			}
-		]
-	}
+const getInfotext = ({ variant, size, icon }: DBInfotextProps) => (
+	<DBInfotext variant={variant} size={size} icon={icon}>
+		Infotext
+	</DBInfotext>
+);
+
+const exampleMatrix: DefaultComponentExample[][] = [
+	[
+		{ example: getInfotext({ icon: 'account' }) },
+		{ example: getInfotext({ variant: 'critical' }) },
+		{ example: getInfotext({ variant: 'information' }) },
+		{ example: getInfotext({ variant: 'success' }) },
+		{ example: getInfotext({ variant: 'warning' }) }
+	],
+	[{ example: getInfotext({}) }, { example: getInfotext({ size: 'small' }) }]
 ];
+
+const variants = defaultComponentVariants.map((variant, index) => ({
+	...variant,
+	examples: variant.examples.map((example, exampleIndex) => ({
+		...example,
+		...exampleMatrix[index][exampleIndex]
+	}))
+}));
 
 const InfotextComponent = () => {
 	return (

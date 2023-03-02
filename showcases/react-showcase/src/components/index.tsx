@@ -1,24 +1,5 @@
-import { type CSSProperties, type ReactElement } from 'react';
 import { DBDivider } from '../../../../output/react/src';
-
-export type DefaultComponentExample = {
-	name: string;
-	example: ReactElement;
-	style?: CSSProperties;
-
-	className?: string;
-};
-
-export type DefaultComponentVariants = {
-	name: string;
-	examples: DefaultComponentExample[];
-};
-
-export type DefaultComponentProps = {
-	title: string;
-	description?: ReactElement;
-	variants: DefaultComponentVariants[];
-};
+import { DefaultComponentProps } from '../../../shared/default-component-data';
 
 const DefaultComponent = ({
 	title,
