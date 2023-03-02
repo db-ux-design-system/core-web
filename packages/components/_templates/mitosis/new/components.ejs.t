@@ -6,7 +6,6 @@ skip_if: <%= name %>
 ---
   {
     name: "<%= name %>",
-    defaultStylePath: "components/<%= name %>/<%= name %>.css",
 	overwrites: {
 		vue: [
 			{
