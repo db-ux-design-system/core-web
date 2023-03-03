@@ -16,7 +16,9 @@ jobs:
 
       - name: ⚡ Run Lint
         run: |
-          npm-run-all -p lint:jscpd lint:markdownlint lint:stylelint
+          npm run lint:jscpd
+          npm run lint:markdownlint
+          npm run lint:stylelint
           npm run lint:xo
 
       - name: 💀 Killing me softly
