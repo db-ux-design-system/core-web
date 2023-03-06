@@ -51,7 +51,6 @@ export default function DBCodeDocs(props: DBCodeDocsProps) {
 			<details class="code-details" onToggle={() => state.toggleCode()}>
 				<summary
 					class="db-button code-button"
-					role="button"
 					data-size="small"
 					data-variant="primary">
 					{state.getShowButtonLabel()}
