@@ -19,7 +19,7 @@ const VariantList = ({ examples }: DefaultComponentVariants) => (
 					style={example.style}
 					className={example.className}>
 					<dt className="example-name">
-						<small>{example.name}</small>
+						{example.name}
 					</dt>
 					<dd>{example.example}</dd>
 				</div>
