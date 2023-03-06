@@ -8,7 +8,7 @@ const comp = <DBCodeDocs codeSnippets={['Test 1', 'Test 2']}>Test</DBCodeDocs>;
 const testComponent = () => {
 	test('DBCodeDocs should contain text', async ({ mount }) => {
 		const component = await mount(comp);
-		await expect(component).toContainText('Test');
+		await expect(component).toContainText('Test ');
 	});
 
 	test('DBCodeDocs should match screenshot', async ({ mount }) => {
