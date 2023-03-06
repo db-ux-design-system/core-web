@@ -22,7 +22,7 @@
 	gap: var(--db-spacing-fixed-md);
 }
 
-dd {
+.variants-list dd {
 	margin-inline-start: 0;
 }
 
