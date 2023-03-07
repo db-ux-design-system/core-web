@@ -34,7 +34,7 @@ const Base64 = () => {
 					);
 				}}></textarea>
 			<div>
-				<!-- TODO: replace those by DBSelect as soon as this lands //-->
+				{/* TODO: replace those by DBSelect as soon as this lands */}
 				<select
 					value={tonality}
 					onChange={(event) => {
