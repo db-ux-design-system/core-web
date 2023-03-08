@@ -140,6 +140,7 @@
 	input {
 		@extend %bg-transparent-hover;
 		@extend %default-interactive-component;
+		@extend %component-border;
 		@include get-variant-bg-color(0.08);
 
 		height: $db-sizing-md;
@@ -304,13 +305,12 @@
 	&[data-variant="critical"] input,
 	input:required:invalid:not(:placeholder-shown),
 	input[aria-invalid="true"] {
+		--db-current-border-color: var(
+			--db-colors-critical-border-enabled,
+			#{$db-colors-critical-border-enabled}
+		);
 		@extend %db-bg-critical-transparent-semi;
 		@extend %db-bg-critical-transparent-semi-hover-state;
-		border: solid 1px
-			var(
-				--db-colors-critical-element-enabled,
-				$db-colors-critical-element-enabled
-			);
 
 		& + label {
 			color: $db-colors-critical-on-bg-enabled;
@@ -329,13 +329,12 @@
 	}
 
 	&[data-variant="warning"] input {
+		--db-current-border-color: var(
+			--db-colors-warning-border-enabled,
+			#{$db-colors-warning-border-enabled}
+		);
 		@extend %db-bg-warning-transparent-semi;
 		@extend %db-bg-warning-transparent-semi-hover-state;
-		border: solid 1px
-			var(
-				--db-colors-warning-element-enabled,
-				$db-colors-warning-element-enabled
-			);
 
 		& + label {
 			color: $db-colors-warning-on-bg-enabled;
@@ -354,13 +353,12 @@
 	}
 
 	&[data-variant="success"] input {
+		--db-current-border-color: var(
+			--db-colors-success-border-enabled,
+			#{$db-colors-success-border-enabled}
+		);
 		@extend %db-bg-success-transparent-semi;
 		@extend %db-bg-success-transparent-semi-hover-state;
-		border: solid 1px
-			var(
-				--db-colors-success-element-enabled,
-				$db-colors-success-element-enabled
-			);
 
 		& + label {
 			color: $db-colors-success-on-bg-enabled;
@@ -379,13 +377,12 @@
 	}
 
 	&[data-variant="information"] input {
+		--db-current-border-color: var(
+			--db-colors-information-border-enabled,
+			#{$db-colors-information-border-enabled}
+		);
 		@extend %db-bg-information-transparent-semi;
 		@extend %db-bg-information-transparent-semi-hover-state;
-		border: solid 1px
-			var(
-				--db-colors-information-element-enabled,
-				$db-colors-information-element-enabled
-			);
 
 		& + label {
 			color: $db-colors-information-on-bg-enabled;

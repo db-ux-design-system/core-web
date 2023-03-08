@@ -1,6 +1,7 @@
 @use "variables" as *;
 @use "variables.global" as *;
 @use "color-placeholder" as *;
+@use "helpers/functions" as *;
 
 :root {
 	// TODO: probably move these to the tokens as well

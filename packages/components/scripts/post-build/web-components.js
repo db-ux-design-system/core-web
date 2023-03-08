@@ -90,7 +90,7 @@ module.exports = () => {
 		const defaultStyleUrl = {
 			files: `../../output/webcomponent/src/components/${component.name}/${component.name}.ts`,
 			from: 'this.state = {',
-			to: `this.state = {stylePath: "${component.defaultStylePath}",`
+			to: `this.state = {stylePath: "components/${component.name}/${component.name}-web-component.css",`
 		};
 
 		try {

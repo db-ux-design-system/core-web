@@ -9,18 +9,14 @@ const variants: DefaultComponentVariants[] = [
 				name: '(Default) Full',
 				style: { width: '100%' },
 				example: (
-					<DBSection className="db-bg-information-light">
-						Content
-					</DBSection>
+					<DBSection className="db-bg-information">Content</DBSection>
 				)
 			},
 			{
 				name: 'Medium',
 				style: { width: '100%' },
 				example: (
-					<DBSection
-						className="db-bg-information-light"
-						variant="medium">
+					<DBSection className="db-bg-information" variant="medium">
 						Content
 					</DBSection>
 				)
@@ -29,9 +25,7 @@ const variants: DefaultComponentVariants[] = [
 				name: 'Large',
 				style: { width: '100%' },
 				example: (
-					<DBSection
-						className="db-bg-information-light"
-						variant="large">
+					<DBSection className="db-bg-information" variant="large">
 						Content
 					</DBSection>
 				)
@@ -44,15 +38,13 @@ const variants: DefaultComponentVariants[] = [
 			{
 				name: '(Default) Medium',
 				example: (
-					<DBSection className="db-bg-information-light">
-						Content
-					</DBSection>
+					<DBSection className="db-bg-information">Content</DBSection>
 				)
 			},
 			{
 				name: 'Large',
 				example: (
-					<DBSection className="db-bg-information-light" size="large">
+					<DBSection className="db-bg-information" size="large">
 						Content
 					</DBSection>
 				)
@@ -60,7 +52,7 @@ const variants: DefaultComponentVariants[] = [
 			{
 				name: 'Small',
 				example: (
-					<DBSection className="db-bg-information-light" size="small">
+					<DBSection className="db-bg-information" size="small">
 						Content
 					</DBSection>
 				)
