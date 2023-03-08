@@ -1,9 +1,7 @@
 @use "../color-placeholder" as *;
 
 $color-variants: "neutral-0", "neutral-1", "neutral-3", "neutral-4", "primary",
-	"primary-light", "secondary", "secondary-light", "critical",
-	"critical-light", "success", "success-light", "warning", "warning-light",
-	"information", "information-light";
+	"secondary", "critical", "success", "warning", "information";
 
 @mixin color-variants($ia) {
 	@each $variant in $color-variants {
