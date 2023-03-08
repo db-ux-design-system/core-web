@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import DBInfotext from '../src/components/infotext/infotext';
 import DBButton from '../src/components/button/button';
 import DBIcon from '../src/components/icon/icon';
+import { ComponentParserType, ComponentType } from './data';
 
 const validHosts = ['marketingportal.extranet.deutschebahn.com'];
 
