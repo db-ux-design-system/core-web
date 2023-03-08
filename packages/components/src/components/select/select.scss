@@ -60,6 +60,16 @@
 		}
 	}
 
+	// TODO: Evaluate whether those could get moved to ../_form-elements.scss
+	&:disabled,
+	fieldset:disabled & {
+		&,
+		& + .elm-label {
+			// Decided against cursor: not-allowed, compare to e.g. https://phabricator.wikimedia.org/T121960
+			opacity: 0.4;
+		}
+	}
+
 	// TODO: Variants aren't being used by inputs as well, so we need to wait for the final spec
 	// ### Style variations
 	// &[data-variant="semitransparent"] {
