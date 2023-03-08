@@ -4,7 +4,6 @@ import {
 	type DefaultComponentProps,
 	type DefaultComponentVariants
 } from './data';
-import { useLocation } from 'react-router-dom';
 
 const VariantList = ({ examples }: DefaultComponentVariants) => (
 	<DBCodeDocs
@@ -18,9 +17,7 @@ const VariantList = ({ examples }: DefaultComponentVariants) => (
 					key={`${example.name}-${exampleIndex}`}
 					style={example.style}
 					className={example.className}>
-					<dt className="example-name">
-						{example.name}
-					</dt>
+					<dt className="example-name">{example.name}</dt>
 					<dd>{example.example}</dd>
 				</div>
 			))}

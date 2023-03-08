@@ -2,10 +2,8 @@ import { useSearchParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import {
 	COLOR,
-	COLORS,
-	TONALITIES,
-	TONALITY,
 	COLOR_CONST,
+	TONALITY,
 	TONALITY_CONST
 } from '../../../../packages/components/src/shared/constants';
 
@@ -41,6 +39,7 @@ const useQuery = (): any => {
 				}
 			}
 		}
+
 		setSearchRead(true);
 	}, [searchParameters]);
 

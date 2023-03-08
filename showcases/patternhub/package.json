@@ -17,7 +17,7 @@
     "start": "npm-run-all copy next:start"
   },
   "dependencies": {
-    "@db-ui/react-elements": "^0.21.1",
+    "@db-ui/react-elements": "^0.21.2",
     "next": "13.2.3",
     "react": "18.2.0",
     "react-dom": "18.2.0",
@@ -27,7 +27,7 @@
     "@mdx-js/loader": "^2.3.0",
     "@mdx-js/react": "^2.3.0",
     "@next/mdx": "^13.2.3",
-    "@types/node": "18.14.2",
+    "@types/node": "18.14.6",
     "@types/react": "18.0.28",
     "@types/react-dom": "18.0.11",
     "eslint": "8.35.0",
