@@ -21,7 +21,6 @@
 const getComponents = () => [
 	{
 		name: 'alert',
-		defaultStylePath: 'components/alert/alert.css',
 		config: {
 			isClickComponent: true,
 			isIconComponent: true
@@ -30,7 +29,6 @@ const getComponents = () => [
 
 	{
 		name: 'infotext',
-		defaultStylePath: 'components/infotext/infotext.css',
 		config: {
 			isIconComponent: true
 		}
@@ -38,32 +36,26 @@ const getComponents = () => [
 
 	{
 		name: 'link',
-		defaultStylePath: 'components/link/link.css',
 		config: {
 			isClickComponent: true
 		}
 	},
 
 	{
-		name: 'section',
-		defaultStylePath: 'components/section/section.css'
+		name: 'section'
 	},
 
 	{
-		name: 'page',
-		defaultStylePath: 'components/page/page.css'
+		name: 'page'
 	},
 	{
-		name: 'header',
-		defaultStylePath: 'components/header/header.css'
+		name: 'header'
 	},
 	{
-		name: 'brand',
-		defaultStylePath: 'components/brand/brand.css'
+		name: 'brand'
 	},
 	{
 		name: 'input',
-		defaultStylePath: 'components/input/input.css',
 		config: {
 			isFormComponent: true,
 			isIconComponent: true,
@@ -73,19 +65,16 @@ const getComponents = () => [
 		}
 	},
 	{
-		name: 'divider',
-		defaultStylePath: 'components/divider/divider.css'
+		name: 'divider'
 	},
 	{
 		name: 'card',
-		defaultStylePath: 'components/card/card.css',
 		config: {
 			isClickComponent: true
 		}
 	},
 	{
 		name: 'tab-bar',
-		defaultStylePath: 'components/tab-bar/tab-bar.css',
 		overwrites: {
 			angular: [
 				{
@@ -121,19 +110,16 @@ const getComponents = () => [
 		}
 	},
 	{
-		name: 'tab',
-		defaultStylePath: 'components/tab/tab.css'
+		name: 'tab'
 	},
 	{
 		name: 'button',
-		defaultStylePath: 'components/button/button.css',
 		config: {
 			isClickComponent: true
 		}
 	},
 	{
-		name: 'icon',
-		defaultStylePath: 'components/icon/icon-web-component.css'
+		name: 'icon'
 	}
 ];
 
