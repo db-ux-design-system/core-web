@@ -3,6 +3,8 @@ import DBInfotext from '../src/components/infotext/infotext';
 import DBButton from '../src/components/button/button';
 import DBIcon from '../src/components/icon/icon';
 
+const validHosts = ['marketingportal.extranet.deutschebahn.com'];
+
 const ComponentSwitch = ({
 	type,
 	content,
@@ -53,8 +55,8 @@ const ComponentSwitch = ({
 	if (type === 'a') {
 		try {
 			const url = new URL('', props.href);
-			console.log(url);
-			if (url.hostname.endsWith('deutschebahn.com')) {
+			const host = url.host;
+			if (validHosts.includes(host)) {
 				return (
 					<a
 						className={className}
