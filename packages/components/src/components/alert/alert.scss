@@ -2,28 +2,49 @@
 @use "@db-ui/foundations/build/scss/variables.global" as *;
 @use "@db-ui/foundations/build/scss/helpers/shadow-dom" as *;
 @use "@db-ui/foundations/build/scss/color-placeholder" as *;
+@use "@db-ui/foundations/build/scss/helpers/component" as *;
 
 $variants: (
-	"critical":
+	"critical": (
+		var(
+			--db-colors-critical-border-enabled,
+			$db-colors-critical-border-enabled
+		),
 		var(
 			--db-colors-critical-element-enabled,
 			$db-colors-critical-element-enabled
+		)
+	),
+	"information": (
+		var(
+			--db-colors-information-border-enabled,
+			$db-colors-information-border-enabled
 		),
-	"information":
 		var(
 			--db-colors-information-element-enabled,
 			$db-colors-information-element-enabled
+		)
+	),
+	"warning": (
+		var(
+			--db-colors-warning-border-enabled,
+			$db-colors-warning-border-enabled
 		),
-	"warning":
 		var(
 			--db-colors-warning-element-enabled,
 			$db-colors-warning-element-enabled
+		)
+	),
+	"success": (
+		var(
+			--db-colors-success-border-enabled,
+			$db-colors-success-border-enabled
 		),
-	"success":
 		var(
 			--db-colors-success-element-enabled,
 			$db-colors-success-element-enabled
 		)
+	)
 );
 
 @mixin handle-links($show-headline) {
@@ -47,6 +68,7 @@ $variants: (
 .db-alert {
 	@extend %shadow-dom-extend;
 	@extend %db-bg-neutral-0;
+	@extend %component-border;
 
 	@include handle-links(true);
 
@@ -74,20 +96,22 @@ $variants: (
 		min-width: calc($db-screens-xs - $db-spacing-fixed-md);
 	}
 
-	@each $name, $icon-color in $variants {
+	@each $name, $colors in $variants {
 		&[data-variant="#{$name}"] {
 			@if ($name == "critical") {
-				@extend %db-bg-critical-light;
+				@extend %db-bg-critical;
 			} @else if ($name == "information") {
-				@extend %db-bg-information-light;
+				@extend %db-bg-information;
 			} @else if ($name == "warning") {
-				@extend %db-bg-warning-light;
+				@extend %db-bg-warning;
 			} @else if ($name == "success") {
-				@extend %db-bg-success-light;
+				@extend %db-bg-success;
 			}
 
+			--db-current-border-color: #{nth($colors, 1)};
+
 			.db-alert-icon {
-				color: $icon-color;
+				color: nth($colors, 2);
 			}
 		}
 	}

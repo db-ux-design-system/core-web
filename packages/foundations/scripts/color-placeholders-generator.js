@@ -61,20 +61,25 @@ const generateBGVariants = (
 	const placeholderName = `${prefix}-bg-${value}${
 		variant ? `-${variant}` : ''
 	}`;
+	try {
+		const bgColor = `${prefix}-${currentColorObject.enabled.name}`;
+		const fgColor = `${prefix}-${baseColorObject.enabled.name}`;
+		let weakFgColor;
+		if (baseColorObject.weak) {
+			weakFgColor = `${prefix}-${baseColorObject.weak.enabled.name}`;
+		}
 
-	const bgColor = `${prefix}-${currentColorObject.enabled.name}`;
-	const fgColor = `${prefix}-${baseColorObject.enabled.name}`;
-	let weakFgColor;
-	if (baseColorObject.weak) {
-		weakFgColor = `${prefix}-${baseColorObject.weak.enabled.name}`;
-	}
+		let elementColor;
+		if (primaryColor.element) {
+			elementColor = `${prefix}-${primaryColor.element.enabled.name}`;
+		}
 
-	let elementColor;
-	if (primaryColor.element) {
-		elementColor = `${prefix}-${primaryColor.element.enabled.name}`;
-	}
+		let borderColor;
+		if (primaryColor.border) {
+			borderColor = `${prefix}-${primaryColor.border.enabled.name}`;
+		}
 
-	let result = `
+		let result = `
 %${placeholderName}-hover-state {
 	${generateInteractiveVariants(
 		currentColorObject,
@@ -101,6 +106,11 @@ const generateBGVariants = (
 			? `--db-current-element-color: var(--${elementColor}, #{$${elementColor}});`
 			: ''
 	}
+    ${
+		borderColor
+			? `--db-current-border-color: var(--${borderColor}, #{$${borderColor}});`
+			: ''
+	}
     background-color: var(--db-current-background-color, #{$${bgColor}});
     color: var(--db-current-color, #{$${fgColor}});
     ${baseColorObject ? getRBGA(primaryColor, 'enabled') : ''}
@@ -125,8 +135,8 @@ const generateBGVariants = (
        ${generateInteractiveVariants(baseColorObject, 'color')}
     }
 `;
-	if (weakFgColor) {
-		result += `
+		if (weakFgColor) {
+			result += `
     %weak {
         color: var(--${weakFgColor}, #{$${weakFgColor}});
 
@@ -135,11 +145,16 @@ const generateBGVariants = (
 		}
     }
 `;
-	}
+		}
 
-	result += `}
+		result += `}
 	`;
-	return result;
+		return result;
+	} catch (error) {
+		console.error(`Error for ${placeholderName}`);
+		console.error(error);
+		return '';
+	}
 };
 
 /**
@@ -153,14 +168,9 @@ exports.generateColorUtilitityPlaceholder = (colorToken) => {
 	let output = fileHeader;
 
 	for (const [, value] of Object.keys(colorToken).entries()) {
-		output += `
-/**
-* ${value.toUpperCase()} - Placeholder Utilities
-**/
-`;
 		// Text colors with interactive variant, e.g. primary
 		if (colorToken[value].enabled) {
-			// Only text
+			// Text & elements & border
 			output += `
 %${prefix}-${value}-text-ia {
 	color: $${prefix}-${colorToken[value].enabled.name};
@@ -172,40 +182,52 @@ ${generateInteractiveVariants(colorToken[value], 'color')}
 ${generateInteractiveVariants(colorToken[value].element, 'color')}
 }
 
-`;
+%${prefix}-${value}-border-ia {
+	color: $${prefix}-${colorToken[value].border.enabled.name};
+${generateInteractiveVariants(colorToken[value].border, 'color')}
+}
 
-			// Text and background colors
+%${prefix}-${value}-component-ia {
+	background-color: $${prefix}-${colorToken[value].enabled.name};
+	color: $${prefix}-${colorToken[value].on.enabled.name};
+${generateInteractiveVariants(colorToken[value], 'background-color')}
+}
+`;
+		}
+
+		if (value === 'neutral') {
+			// Neutral has multiple default tones
+			const neutralTones = ['0', '1', '2', '3', '4'];
+			for (const neutralTone of neutralTones) {
+				output += generateBGVariants(
+					value,
+					neutralTone,
+					colorToken[value].bg[neutralTone],
+					colorToken[value].on.bg,
+					colorToken[value]
+				);
+			}
+		} else {
+			// Default text and background colors (former 'light' tone)
 			output += generateBGVariants(
 				value,
 				undefined,
-				colorToken[value],
-				colorToken[value].on,
+				colorToken[value].bg,
+				colorToken[value].on.bg,
 				colorToken[value]
 			);
 		}
 
-		for (const variant of Object.keys(colorToken[value].bg)) {
-			if (colorToken[value].bg[variant].enabled) {
-				output += generateBGVariants(
-					value,
-					variant,
-					colorToken[value].bg[variant],
-					colorToken[value].on.bg,
-					colorToken[value]
-				);
-			} else {
-				for (const childVariant of Object.keys(
-					colorToken[value].bg[variant]
-				)) {
-					output += generateBGVariants(
-						value,
-						variant + '-' + childVariant,
-						colorToken[value].bg[variant][childVariant],
-						colorToken[value].on.bg,
-						colorToken[value]
-					);
-				}
-			}
+		// Transparent tones
+		const transparentTones = ['full', 'semi'];
+		for (const transparentTone of transparentTones) {
+			output += generateBGVariants(
+				value,
+				`transparent-${transparentTone}`,
+				colorToken[value].bg.transparent[transparentTone],
+				colorToken[value].on.bg,
+				colorToken[value]
+			);
 		}
 	}
 
