@@ -1,5 +1,4 @@
 import AlertComponent from '../components/alert';
-
 import ButtonComponent from '../components/button';
 import InputComponent from '../components/input';
 import FormComponent from '../components/form';
@@ -15,7 +14,6 @@ export type NavigationItem = {
 };
 export const NAVIGATION_ITEMS: NavigationItem[] = [
 	{ path: 'alert', label: 'Alert', component: <AlertComponent /> },
-
 	{ path: 'infotext', label: 'Infotext', component: <InfotextComponent /> },
 	{ path: 'section', label: 'Section', component: <SectionComponent /> },
 	{ path: 'link', label: 'Link', component: <LinkComponent /> },

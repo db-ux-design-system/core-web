@@ -1,5 +1,6 @@
 import { DBLink } from '../../../../../output/react/src';
-import DefaultComponent, { type DefaultComponentVariants } from '../index';
+import DefaultComponent from '../index';
+import type { DefaultComponentVariants } from '../data';
 
 const variants: DefaultComponentVariants[] = [
 	{
@@ -7,7 +8,8 @@ const variants: DefaultComponentVariants[] = [
 		examples: [
 			{
 				name: '(Default) Adaptive',
-				example: <DBLink href="#">Type something</DBLink>
+				example: <DBLink href="#">Type something</DBLink>,
+				code: '<DBLink href="#">Type Something</DBLink>'
 			},
 			{
 				name: 'Primary',
@@ -15,7 +17,8 @@ const variants: DefaultComponentVariants[] = [
 					<DBLink href="#" variant="primary">
 						Type something
 					</DBLink>
-				)
+				),
+				code: '<DBLink href="#" variant="primary">Type Something</DBLink>'
 			}
 		]
 	},
@@ -24,7 +27,8 @@ const variants: DefaultComponentVariants[] = [
 		examples: [
 			{
 				name: 'Default: (Enabled, Hover, Pressed)',
-				example: <DBLink href="#">Type something</DBLink>
+				example: <DBLink href="#">Type something</DBLink>,
+				code: '<DBLink href="#">Type Something</DBLink>'
 			},
 			{
 				name: 'Disabled',
@@ -32,7 +36,8 @@ const variants: DefaultComponentVariants[] = [
 					<DBLink href="#" disabled>
 						Type something
 					</DBLink>
-				)
+				),
+				code: '<DBLink href="#" disabled>Type Something</DBLink>'
 			}
 		]
 	},
@@ -41,7 +46,8 @@ const variants: DefaultComponentVariants[] = [
 		examples: [
 			{
 				name: '(Default) Medium',
-				example: <DBLink href="#">Type something</DBLink>
+				example: <DBLink href="#">Type something</DBLink>,
+				code: '<DBLink href="#">Type Something</DBLink>'
 			},
 			{
 				name: 'Small',
@@ -49,7 +55,8 @@ const variants: DefaultComponentVariants[] = [
 					<DBLink href="#" size="small">
 						Type something
 					</DBLink>
-				)
+				),
+				code: '<DBLink href="#" size="small">Type Something</DBLink>'
 			}
 		]
 	},
@@ -58,7 +65,8 @@ const variants: DefaultComponentVariants[] = [
 		examples: [
 			{
 				name: '(Default) Internal',
-				example: <DBLink href="#">Type something</DBLink>
+				example: <DBLink href="#">Type something</DBLink>,
+				code: '<DBLink href="#">Type Something</DBLink>'
 			},
 			{
 				name: 'External',
@@ -66,7 +74,8 @@ const variants: DefaultComponentVariants[] = [
 					<DBLink href="#" content="external">
 						Type something
 					</DBLink>
-				)
+				),
+				code: '<DBLink href="#" content="external">Type Something</DBLink>'
 			}
 		]
 	}
