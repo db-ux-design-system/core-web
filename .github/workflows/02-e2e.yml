@@ -16,7 +16,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        project: [chromium, firefox, webkit]
+        project: [chromium, firefox, webkit, mobile_chrome, mobile_safari"]
         framework: [react, vue]
 
     steps:
