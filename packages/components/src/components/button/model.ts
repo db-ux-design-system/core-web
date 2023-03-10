@@ -15,7 +15,7 @@ export type DBButtonDefaultProps = {
 	text?: string;
 	label?: string;
 	type?: 'button' | 'reset' | 'submit';
-	width?: 'full';
+	width?: 'full' | 'auto';
 	variant?: 'outline' | 'primary' | 'transparent' | 'semi-transparent';
 };
 
