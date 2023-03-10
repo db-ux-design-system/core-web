@@ -1,7 +1,6 @@
 import { DBInput } from '../../../../../output/react/src';
-import DefaultComponent, { type DefaultComponentVariants } from '../index';
-
-const defaultLabelText = 'Label';
+import DefaultComponent from '../index';
+import type { DefaultComponentVariants } from '../data';
 
 const variants: DefaultComponentVariants[] = [
 	{
@@ -9,107 +8,94 @@ const variants: DefaultComponentVariants[] = [
 		examples: [
 			{
 				name: '(Default) Basic',
-				example: (
-					<DBInput
-						label={defaultLabelText}
-						description="Description"
-					/>
-				)
+				example: <DBInput label="Label" description="Description" />,
+				code: '<DBInput label="Label" description="Description" />'
 			},
 			{
 				name: 'Information',
 				example: (
 					<DBInput
-						label={defaultLabelText}
+						label="Label"
 						description="Description"
 						variant="information"
 					/>
-				)
+				),
+				code: '<DBInput label="Label" description="Description" variant="information"/>'
 			},
 			{
 				name: 'Warning',
 				example: (
 					<DBInput
-						label={defaultLabelText}
+						label="Label"
 						description="Description"
 						variant="warning"
 					/>
-				)
+				),
+				code: '<DBInput label="Label" description="Description" variant="warning"/>'
 			},
 			{
 				name: 'Critical',
 				example: (
 					<DBInput
-						label={defaultLabelText}
+						label="Label"
 						description="Description"
 						variant="critical"
 					/>
-				)
+				),
+				code: '<DBInput label="Label" description="Description" variant="critical"/>'
 			},
 			{
 				name: 'Success',
 				example: (
 					<DBInput
-						label={defaultLabelText}
+						label="Label"
 						description="Description"
 						variant="success"
 					/>
-				)
+				),
+				code: '<DBInput label="Label" description="Description" variant="success"/>'
 			}
 		]
 	},
 	{
 		name: 'States',
 		examples: [
-			{ name: 'Default', example: <DBInput label={defaultLabelText} /> },
+			{ name: 'Default', example: <DBInput label="Label" /> },
 			{
 				name: 'Filled',
-				example: <DBInput label={defaultLabelText} value="Input Text" />
+				example: <DBInput label="Label" value="Input Text" />,
+				code: '<DBInput label="Label" value="Input Text"/>'
 			},
 			{
 				name: 'Filled Number',
-				example: (
-					<DBInput
-						label={defaultLabelText}
-						value="123456"
-						type="number"
-					/>
-				)
+				example: <DBInput label="Label" value="123456" type="number" />,
+				code: '<DBInput label="Label" value="123456" type="number"/>'
 			},
 			{
 				name: 'Invalid',
 				example: (
 					<DBInput
-						label={defaultLabelText}
+						label="Label"
 						minLength={5}
 						required={true}
 						description="minLength=5"
 					/>
-				)
+				),
+				code: '<DBInput label="Label" minLength={5} required description="minLength=5"/>'
 			},
 			{
 				name: 'Disabled',
-				example: <DBInput label={defaultLabelText} disabled />
+				example: <DBInput label="Label" disabled />
 			},
 			{
 				name: 'Disabled with value',
-				example: (
-					<DBInput
-						label={defaultLabelText}
-						value="Input Text"
-						disabled
-					/>
-				)
+				example: <DBInput label="Label" value="Input Text" disabled />,
+				code: '<DBInput label="Label" value="Input Text" disabled/>'
 			},
 			{
 				name: 'Required',
-				example: (
-					<DBInput
-						label={defaultLabelText}
-						value="Input Text"
-						required
-					/>
-				)
+				example: <DBInput label="Label" value="Input Text" required />,
+				code: '<DBInput label="Label" value="Input Text" disabled required/>'
 			}
 		]
 	},
@@ -118,37 +104,36 @@ const variants: DefaultComponentVariants[] = [
 		examples: [
 			{
 				name: '(Default) Text',
-				example: <DBInput label={defaultLabelText} />
+				example: <DBInput label="Label" />,
+				code: '<DBInput label="Label"/>'
 			},
 			{
 				name: 'Leading Icon + Text',
-				example: (
-					<DBInput iconBefore="account" label={defaultLabelText} />
-				)
+				example: <DBInput iconBefore="account" label="Label" />,
+				code: '<DBInput iconBefore="account" label="Label"/>'
 			},
 			{
 				name: 'Leading Icon + Text + Trailing Icon',
 				example: (
 					<DBInput
 						iconBefore="account"
-						label={defaultLabelText}
+						label="Label"
 						iconAfter="edit"
 					/>
-				)
+				),
+				code: '<DBInput iconBefore="account" label="Label" iconAfter="edit"/>'
 			},
 			{
 				name: 'Text + Trailing Icon',
-				example: <DBInput label={defaultLabelText} iconAfter="edit" />
+				example: <DBInput label="Label" iconAfter="edit" />,
+				code: '<DBInput label="Label" iconAfter="edit"/>'
 			},
 			{
 				name: 'Text + Trailing Icon + Variant:Success',
 				example: (
-					<DBInput
-						label={defaultLabelText}
-						iconAfter="edit"
-						variant="success"
-					/>
-				)
+					<DBInput label="Label" iconAfter="edit" variant="success" />
+				),
+				code: '<DBInput label="Label" iconAfter="edit" variant="success"/>'
 			}
 		]
 	}
