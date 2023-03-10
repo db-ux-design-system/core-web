@@ -23,7 +23,7 @@ export type DBButtonDefaultProps = {
 	text?: string;
 	type?: 'button' | 'reset' | 'submit';
 	width?: 'full';
-	variant?: buttonVariants;
+	variant?: keyof typeof buttonVariants;
 };
 
 export type DBButtonProps = DBButtonDefaultProps &

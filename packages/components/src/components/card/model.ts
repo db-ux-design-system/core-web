@@ -23,8 +23,8 @@ export const cardDirectionsList = Object.values(cardDirections);
 export type DBCardDefaultProps = {
 	// TODO: Add colorVariant to test
 	colorVariant?: string;
-	direction?: cardDirections;
-	variant?: cardVariants;
+	direction?: keyof typeof cardDirections;
+	variant?: keyof typeof cardVariants;
 };
 
 export type DBCardProps = DBCardDefaultProps &
