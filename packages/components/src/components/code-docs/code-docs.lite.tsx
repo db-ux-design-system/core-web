@@ -14,6 +14,8 @@ useMetadata({
 });
 
 export default function DBCodeDocs(props: DBCodeDocsProps) {
+	// This is used as forwardRef
+	let component: any;
 	const state = useStore<DBCodeDocsState>({
 		open: false,
 		toggleCode: () => {
@@ -41,6 +43,7 @@ export default function DBCodeDocs(props: DBCodeDocsProps) {
 
 	return (
 		<DBCard
+			ref={component}
 			class={
 				'db-code-docs' + (props.className ? ' ' + props.className : '')
 			}>

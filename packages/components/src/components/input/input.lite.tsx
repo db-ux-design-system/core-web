@@ -42,7 +42,9 @@ const DEFAULT_VALUES = {
 };
 
 export default function DBInput(props: DBInputProps) {
-	const textInputRef = useRef<HTMLInputElement>(null);
+	// This is used as forwardRef
+	let component: any;
+	const formRef = useRef<HTMLInputElement>(null);
 	const state = useStore<DBInputState>({
 		_id: DEFAULT_ID,
 		_isValid: undefined,
@@ -69,10 +71,10 @@ export default function DBInput(props: DBInputProps) {
 			// using controlled components for react forces us to using state for value
 			state._value = event.target.value;
 
-			if (textInputRef?.validity?.valid != state._isValid) {
-				state._isValid = textInputRef?.validity?.valid;
+			if (formRef?.validity?.valid != state._isValid) {
+				state._isValid = formRef?.validity?.valid;
 				if (props.validityChange) {
-					props.validityChange(!!textInputRef?.validity?.valid);
+					props.validityChange(!!formRef?.validity?.valid);
 				}
 			}
 		},
@@ -110,6 +112,7 @@ export default function DBInput(props: DBInputProps) {
 
 	return (
 		<div
+			ref={component}
 			class={'db-input ' + (props.className || '')}
 			data-variant={props.variant}>
 			<Show when={state.stylePath}>
@@ -119,7 +122,7 @@ export default function DBInput(props: DBInputProps) {
 				<DBIcon icon={props.icon} class="icon-before" />
 			</Show>
 			<input
-				ref={textInputRef}
+				ref={formRef}
 				id={state._id}
 				name={props.name}
 				type={props.type || 'text'}

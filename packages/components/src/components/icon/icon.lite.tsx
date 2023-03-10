@@ -16,6 +16,8 @@ useMetadata({
 });
 
 export default function DBIcon(props: DBIconProps) {
+	// This is used as forwardRef
+	let component: any;
 	const state = useStore<DBIconState>({});
 
 	onMount(() => {
@@ -26,6 +28,7 @@ export default function DBIcon(props: DBIconProps) {
 
 	return (
 		<span
+			ref={component}
 			class={
 				'db-icon' +
 				(props.className ? ' ' + props.className : '') +
