@@ -22,7 +22,7 @@
     "postbuild": "npm-run-all -p mv:*",
     "regenerate:screenshots": "playwright test -c playwright.config.ts --update-snapshots",
     "regenerate:screenshots:goldmaster": "playwright test -c playwright.config.ts --update-snapshots --grep @slow",
-    "test:components": "playwright test -c playwright.config.ts --grep @fast",
+    "test:components": "playwright test -c playwright.config.ts",
     "test:components:goldmaster": "playwright test -c playwright.config.ts --grep @slow",
     "tsc": "tsc -p . --sourceMap false"
   },
