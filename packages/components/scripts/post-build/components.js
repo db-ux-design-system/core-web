@@ -9,7 +9,10 @@
  * 	vue?:{from:string,to:string}[]
  * },
  * config?:{
- *     vue?:{
+ * 		isFormComponent?:boolean,
+ * 		isClickComponent?:boolean,
+ * 		isIconComponent?:boolean,
+ *     	vue?:{
  *         vModel?: {modelValue:string, binding:string}[]
  *     }
  * }
@@ -46,154 +49,56 @@ const getComponents = () => [
 
 	{
 		name: 'alert',
-		defaultStylePath: 'components/alert/alert.css',
-		overwrites: {
-			global: [
-				{ from: 'handleClick(event)', to: 'handleClick(event:any)' },
-				{
-					from: 'getIcon(icon, variant) {',
-					to: 'getIcon(icon:any, variant:any) {'
-				}
-			],
-			vue: [
-				{
-					from: 'import { DBAlertState, DBAlertProps } from "./model";',
-					to: ''
-				}
-			]
+		config: {
+			isClickComponent: true,
+			isIconComponent: true
 		}
 	},
 
 	{
 		name: 'infotext',
-		overwrites: {
-			global: [
-				{
-					from: 'getIcon(icon, variant) {',
-					to: 'getIcon(icon:any, variant:any) {'
-				}
-			],
-			vue: [
-				{
-					from: 'import { DBInfotextState, DBInfotextProps } from "./model";',
-					to: ''
-				}
-			]
+		config: {
+			isIconComponent: true
 		}
 	},
 
 	{
 		name: 'link',
-		overwrites: {
-			global: [
-				{ from: 'handleClick(event)', to: 'handleClick(event:any)' }
-			],
-			vue: [
-				{
-					from: 'import { DBLinkState, DBLinkProps } from "./model";',
-					to: ''
-				}
-			]
+		config: {
+			isClickComponent: true
 		}
 	},
 
 	{
-		name: 'section',
-		overwrites: {
-			vue: [
-				{
-					from: 'import { DBSectionState, DBSectionProps } from "./model";',
-					to: ''
-				}
-			]
-		}
+		name: 'section'
 	},
 
 	{
-		name: 'page',
-		overwrites: {
-			vue: [
-				{
-					from: 'import { DBPageProps, DBPageState } from "./model";',
-					to: ''
-				}
-			]
-		}
+		name: 'page'
 	},
 	{
-		name: 'header',
-		overwrites: {
-			vue: [
-				{
-					from: 'import { DBHeaderState, DBHeaderProps } from "./model";',
-					to: ''
-				}
-			]
-		}
+		name: 'header'
 	},
 	{
-		name: 'brand',
-		overwrites: {
-			vue: [
-				{
-					from: 'import { DBBrandState, DBBrandProps } from "./model";',
-					to: ''
-				}
-			]
-		}
+		name: 'brand'
 	},
 	{
 		name: 'input',
-		overwrites: {
-			global: [
-				{ from: 'handleChange(event)', to: 'handleChange(event:any)' },
-				{ from: 'handleBlur(event)', to: 'handleBlur(event:any)' },
-				{ from: 'handleFocus(event)', to: 'handleFocus(event:any)' },
-				{
-					from: 'getIcon(variant) {',
-					to: 'getIcon(variant:any) {'
-				}
-			],
-			angular: [
-				{
-					from: 'this.textInputRef.nativeElement',
-					to: 'this.textInputRef?.nativeElement'
-				}
-			],
-			vue: [
-				{
-					from: 'import { DBInputProps, DBInputState } from "./model";',
-					to: ''
-				},
-				{
-					from: '_isValid: undefined,',
-					to: ''
-				}
-			]
-		},
 		config: {
+			isFormComponent: true,
+			isIconComponent: true,
 			vue: {
 				vModel: [{ modelValue: 'value', binding: ':value' }]
 			}
 		}
 	},
 	{
-		name: 'divider',
-		overwrites: {
-			vue: [
-				{
-					from: 'import { DBDividerState, DBDividerProps } from "./model";',
-					to: ''
-				}
-			]
-		}
+		name: 'divider'
 	},
 	{
 		name: 'card',
-		overwrites: {
-			global: [
-				{ from: 'handleClick(event)', to: 'handleClick(event:any)' }
-			]
+		config: {
+			isClickComponent: true
 		}
 	},
 	{
@@ -237,10 +142,8 @@ const getComponents = () => [
 	},
 	{
 		name: 'button',
-		overwrites: {
-			global: [
-				{ from: 'handleClick(event)', to: 'handleClick(event:any)' }
-			]
+		config: {
+			isClickComponent: true
 		}
 	},
 	{
@@ -248,4 +151,30 @@ const getComponents = () => [
 	}
 ];
 
-module.exports = getComponents();
+const formComponentChanges = [
+	{ from: 'handleChange(event)', to: 'handleChange(event:any)' },
+	{ from: 'handleBlur(event)', to: 'handleBlur(event:any)' },
+	{ from: 'handleFocus(event)', to: 'handleFocus(event:any)' }
+];
+
+const clickComponentChanges = [
+	{ from: 'handleClick(event)', to: 'handleClick(event:any)' }
+];
+
+const iconComponentChanges = [
+	{
+		from: 'getIcon(icon, variant) {',
+		to: 'getIcon(icon:any, variant:any) {'
+	},
+	{
+		from: 'getIcon(variant) {',
+		to: 'getIcon(variant:any) {'
+	}
+];
+
+module.exports = {
+	components: getComponents(),
+	formComponentChanges,
+	clickComponentChanges,
+	iconComponentChanges
+};

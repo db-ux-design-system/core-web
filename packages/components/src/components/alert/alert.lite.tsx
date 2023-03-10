@@ -24,6 +24,8 @@ const DEFAULT_VALUES = {
 };
 
 export default function DBAlert(props: DBAlertProps) {
+	// This is used as forwardRef
+	let component: any;
 	const state = useStore<DBAlertState>({
 		handleClick: (event) => {
 			if (props.onClick) {
@@ -43,6 +45,7 @@ export default function DBAlert(props: DBAlertProps) {
 
 	return (
 		<div
+			ref={component}
 			class={'db-alert' + (props.className ? ' ' + props.className : '')}
 			data-variant={props.variant}
 			data-type={props.type}>

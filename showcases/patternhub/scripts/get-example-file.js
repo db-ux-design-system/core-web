@@ -95,11 +95,11 @@ const getExampleFile = (componentName, { displayName, props }) => {
 	}
 
 	for (const optionArray of uniqueOptionArrays) {
-		variants += `<p>${optionArray.join(
+		variants += `<dt>${optionArray.join(
 			', '
-		)}:</p> <${displayName} ${optionArray
+		)}:</dt> <dd><${displayName} ${optionArray
 			.map((opt) => getOption(opt, props[opt].tsType))
-			.join(' ')}>Test</${displayName}>\n`;
+			.join(' ')}>Test</${displayName}></dd>\n`;
 	}
 
 	return `
@@ -109,10 +109,10 @@ import ${displayName} from "../../../components/src/components/${componentName}/
 export default () => <DefaultPage>
 <h1> ${displayName} Examples </h1>
 
-<div className="example-list">
-Default: <${displayName}>Test</${displayName}>
+<dl className="example-list">
+<dt>Default:</dt> <dd><${displayName}>Test</${displayName}></dd>
 ${variants}
-</div>
+</dl>
 </DefaultPage>;
 	`;
 };

@@ -40,6 +40,8 @@ useMetadata({
 });
 
 export default function DBButton(props: DBButtonProps) {
+	// This is used as forwardRef
+	let component: any;
 	const state = useStore<DBButtonState>({
 		handleClick: (event) => {
 			if (props.onClick) {
@@ -56,6 +58,7 @@ export default function DBButton(props: DBButtonProps) {
 
 	return (
 		<button
+			ref={component}
 			type={props.type}
 			disabled={props.disabled}
 			aria-label={props.text}

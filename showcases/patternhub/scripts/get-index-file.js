@@ -48,7 +48,9 @@ const getIndexFile = ({ displayName, description, props }) => {
 		propTable += `| ${prop.required ? '✅' : '❌'} `;
 		propTable += `| ${prop.tsType.type ?? prop.tsType.name} `;
 		propTable += `| ${
-			options ? `<pre><code>${options}</code></pre>` : ''
+			options
+				? `<pre><code className="code-pre-wrap">${options}</code></pre>`
+				: ''
 		} |\n`;
 	}
 

@@ -115,3 +115,5 @@ export type FocusEventState = {
 export type ValidEventProps = {
 	validityChange?: (valid: boolean) => void;
 };
+
+export type NestedRefComponentType = { getFormRef?: () => { current?: any } };

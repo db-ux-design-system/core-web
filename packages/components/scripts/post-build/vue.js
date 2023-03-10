@@ -1,15 +1,14 @@
 const Replace = require('replace-in-file');
-const Components = require('./components');
+const { components } = require('./components');
+const { getComponentName, runReplacements } = require('../utils');
 
 const updateNestedComponents = (input, rootComponentName) => {
 	let fileContent = input;
 
-	for (const nestedComponent of Components.filter(
+	for (const nestedComponent of components.filter(
 		(nComp) => nComp.name !== rootComponentName
 	)) {
-		const nCompUpperCase =
-			nestedComponent.name.charAt(0).toUpperCase() +
-			nestedComponent.name.slice(1);
+		const nCompUpperCase = getComponentName(nestedComponent.name);
 		while (fileContent.includes(`db${nestedComponent.name}`)) {
 			fileContent = fileContent.replace(
 				`db${nestedComponent.name}`,
@@ -77,31 +76,32 @@ module.exports = () => {
 		from: /react/g,
 		to: `vue`
 	});
-	for (const component of Components) {
-		const vueFile = `../../output/vue/vue3/src/components/${component.name}/${component.name}.vue`;
+	for (const component of components) {
+		const componentName = component.name;
+		const vueFile = `../../output/vue/vue3/src/components/${componentName}/${componentName}.vue`;
 
 		try {
 			// Rewire imports in Playwright component tests
 			Replace.sync({
-				files: `../../output/vue/vue3/src/components/${component.name}/${component.name}.spec.tsx`,
+				files: `../../output/vue/vue3/src/components/${componentName}/${componentName}.spec.tsx`,
 				from: `react`,
 				to: `vue`
 			});
 			Replace.sync({
-				files: `../../output/vue/vue3/src/components/${component.name}/${component.name}.spec.tsx`,
+				files: `../../output/vue/vue3/src/components/${componentName}/${componentName}.spec.tsx`,
 				from: /new AxeBuilder/g,
 				to: `new AxeBuilder.default`
 			});
 
 			Replace.sync({
-				files: `../../output/vue/vue3/src/components/${component.name}/index.ts`,
-				from: `./${component.name}`,
-				to: `./${component.name}.vue`
+				files: `../../output/vue/vue3/src/components/${componentName}/index.ts`,
+				from: `./${componentName}`,
+				to: `./${componentName}.vue`
 			});
 			Replace.sync({
 				files: vueFile,
 				processor(input) {
-					return updateNestedComponents(input, component.name);
+					return updateNestedComponents(input, componentName);
 				}
 			});
 
@@ -117,6 +117,8 @@ module.exports = () => {
 				});
 			}
 
+			const upperComponentName = getComponentName(componentName);
+
 			let replacements = [
 				{
 					from: `_classStringToObject(str)`,
@@ -125,28 +127,25 @@ module.exports = () => {
 				{
 					from: `const obj = {};`,
 					to: 'const obj:any = {};'
+				},
+				{
+					from: `import { DB${upperComponentName}State, DB${upperComponentName}Props } from "./model";`,
+					to: ''
+				},
+				{
+					from: `import { DB${upperComponentName}Props, DB${upperComponentName}State } from "./model";`,
+					to: ''
 				}
 			];
 
-			if (component?.overwrites?.vue) {
-				replacements = [...replacements, ...component.overwrites.vue];
+			if (component?.config?.isFormComponent) {
+				replacements.push({
+					from: '_isValid: undefined,',
+					to: ''
+				});
 			}
 
-			if (component?.overwrites?.global) {
-				replacements = [
-					...replacements,
-					...component.overwrites.global
-				];
-			}
-
-			for (const replacement of replacements) {
-				const option = {
-					files: vueFile,
-					from: replacement.from,
-					to: replacement.to
-				};
-				Replace.replaceInFileSync(option);
-			}
+			runReplacements(replacements, component, 'vue', vueFile);
 		} catch (error) {
 			console.error('Error occurred:', error);
 		}
