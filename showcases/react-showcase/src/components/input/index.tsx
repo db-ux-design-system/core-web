@@ -109,19 +109,15 @@ const variants: DefaultComponentVariants[] = [
 			},
 			{
 				name: 'Leading Icon + Text',
-				example: <DBInput iconBefore="account" label="Label" />,
-				code: '<DBInput iconBefore="account" label="Label"/>'
+				example: <DBInput icon="account" label="Label" />,
+				code: '<DBInput icon="account" label="Label"/>'
 			},
 			{
 				name: 'Leading Icon + Text + Trailing Icon',
 				example: (
-					<DBInput
-						iconBefore="account"
-						label="Label"
-						iconAfter="edit"
-					/>
+					<DBInput icon="account" label="Label" iconAfter="edit" />
 				),
-				code: '<DBInput iconBefore="account" label="Label" iconAfter="edit"/>'
+				code: '<DBInput icon="account" label="Label" iconAfter="edit"/>'
 			},
 			{
 				name: 'Text + Trailing Icon',
