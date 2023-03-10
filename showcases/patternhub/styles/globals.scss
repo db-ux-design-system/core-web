@@ -25,12 +25,12 @@ iframe {
 }
 
 .example-list {
-	display: flex;
-	flex-direction: column;
-	width: fit-content;
-	padding: 16px;
-
-	p {
+	dd {
+		margin-block-end: $db-spacing-fixed-md;
 		max-width: 500px;
 	}
+}
+
+.code-pre-wrap {
+	white-space: pre-wrap;
 }
