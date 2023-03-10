@@ -112,6 +112,13 @@ fieldset {
 	border: none;
 }
 
+// Cursor
+
+button,
+summary {
+	cursor: pointer;
+}
+
 // Code
 
 pre:has(code) {

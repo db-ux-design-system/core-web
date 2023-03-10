@@ -168,8 +168,6 @@ const variants: DefaultComponentVariants[] = [
 				example: (
 					<DBAlert
 						headline="Headline"
-						link={{ href: '#' }}
-						slotLink="Link"
 						onClick={() => {
 							/* eslint-disable-next-line no-alert */
 							alert('click close button');
@@ -177,7 +175,17 @@ const variants: DefaultComponentVariants[] = [
 						Type Something
 					</DBAlert>
 				),
-				code: '<DBAlert headline="Headline" link={{ href: "#" }} slotLink="Link" onClick={()=>{alert("click close button")}}>Type Something</DBAlert>'
+				code: '<DBAlert headline="Headline" onClick={()=>{alert("click close button")}}>Type Something</DBAlert>'
+			},
+			{
+				name: 'Permanent',
+				style: { width: '100%' },
+				example: (
+					<DBAlert headline="Headline" behaviour="permanent">
+						Type Something
+					</DBAlert>
+				),
+				code: '<DBAlert headline="Headline" behaviour="permanent">Type Something</DBAlert>'
 			}
 		]
 	}

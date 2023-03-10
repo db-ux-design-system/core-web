@@ -58,7 +58,10 @@
 	&[data-size="small"] {
 		@extend %db-body-sm;
 		height: $db-sizing-sm;
-		padding: $db-spacing-fixed-3xs $db-spacing-fixed-sm;
+
+		&:not(.is-icon-text-replace) {
+			padding: $db-spacing-fixed-3xs $db-spacing-fixed-sm;
+		}
 
 		// Square icon only buttons
 		&.is-icon-text-replace {
