@@ -56,10 +56,11 @@ export default function DBAlert(props: DBAlertProps) {
 			/>
 			<div class="db-alert-content-container">
 				<div class="db-alert-headline-container">
-					<Show
-						when={props.headline}
-						else={<span>{props.children}</span>}>
+					<Show when={props.headline}>
 						<strong>{props.headline}</strong>
+					</Show>
+					<Show when={!props.headline}>
+						<span>{props.children}</span>
 					</Show>
 					<div class="db-alert-close-container">
 						<Show when={props.type !== 'inline'}>

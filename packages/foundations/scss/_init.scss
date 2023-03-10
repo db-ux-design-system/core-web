@@ -34,7 +34,6 @@ html {
 // Make sure every elements has the current color from container above
 body {
 	color: var(--db-current-color, $db-colors-neutral-on-bg-enabled);
-	min-height: 100vh;
 }
 
 a {

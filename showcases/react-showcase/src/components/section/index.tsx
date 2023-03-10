@@ -1,5 +1,6 @@
 import { DBSection } from '../../../../../output/react/src';
-import DefaultComponent, { type DefaultComponentVariants } from '../index';
+import DefaultComponent from '../index';
+import type { DefaultComponentVariants } from '../data';
 
 const variants: DefaultComponentVariants[] = [
 	{
@@ -10,7 +11,8 @@ const variants: DefaultComponentVariants[] = [
 				style: { width: '100%' },
 				example: (
 					<DBSection className="db-bg-information">Content</DBSection>
-				)
+				),
+				code: '<DBSection>Content</DBSection>'
 			},
 			{
 				name: 'Medium',
@@ -19,7 +21,8 @@ const variants: DefaultComponentVariants[] = [
 					<DBSection className="db-bg-information" variant="medium">
 						Content
 					</DBSection>
-				)
+				),
+				code: '<DBSection variant="medium">Content</DBSection>'
 			},
 			{
 				name: 'Large',
@@ -28,7 +31,8 @@ const variants: DefaultComponentVariants[] = [
 					<DBSection className="db-bg-information" variant="large">
 						Content
 					</DBSection>
-				)
+				),
+				code: '<DBSection variant="large">Content</DBSection>'
 			}
 		]
 	},
@@ -39,7 +43,8 @@ const variants: DefaultComponentVariants[] = [
 				name: '(Default) Medium',
 				example: (
 					<DBSection className="db-bg-information">Content</DBSection>
-				)
+				),
+				code: '<DBSection>Content</DBSection>'
 			},
 			{
 				name: 'Large',
@@ -47,7 +52,8 @@ const variants: DefaultComponentVariants[] = [
 					<DBSection className="db-bg-information" size="large">
 						Content
 					</DBSection>
-				)
+				),
+				code: '<DBSection size="medium">Content</DBSection>'
 			},
 			{
 				name: 'Small',
@@ -55,7 +61,8 @@ const variants: DefaultComponentVariants[] = [
 					<DBSection className="db-bg-information" size="small">
 						Content
 					</DBSection>
-				)
+				),
+				code: '<DBSection size="small">Content</DBSection>'
 			}
 		]
 	}

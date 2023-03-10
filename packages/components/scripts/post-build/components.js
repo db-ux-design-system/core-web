@@ -17,6 +17,34 @@
  */
 const getComponents = () => [
 	{
+		name: 'code-docs',
+		defaultStylePath: 'components/code-docs/code-docs.css',
+		overwrites: {
+			global: [
+				{
+					from: '(event) => copyCode(snippet)',
+					to: '() => copyCode(snippet)'
+				},
+				{
+					from: 'copyCode(code)',
+					to: 'copyCode(code:any)'
+				},
+				{
+					from: '(event) => toggleCode()',
+					to: '() => toggleCode()'
+				}
+			],
+			vue: [
+				{
+					from: 'import { DBCodeDocsProps, DBCodeDocsState } from "./model";',
+					to: ''
+				},
+				{ from: '(snippet, index)', to: '(snippet)' }
+			]
+		}
+	},
+
+	{
 		name: 'alert',
 		defaultStylePath: 'components/alert/alert.css',
 		overwrites: {
