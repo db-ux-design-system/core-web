@@ -26,8 +26,9 @@ const Base64 = () => {
 	}, [tonality, color, base64]);
 
 	return (
-		<div className="base-64-container">
+		<div className="grid p-fix-md gap-fix-md">
 			<textarea
+				className="border min-h-[250px]"
 				onChange={(event) => {
 					setBase64(
 						Buffer.from(event.target.value).toString('base64')
@@ -36,6 +37,7 @@ const Base64 = () => {
 			<div>
 				{/* TODO: replace those by DBSelect as soon as this lands */}
 				<select
+					className="border"
 					value={tonality}
 					onChange={(event) => {
 						setTonality(event?.target?.value);
@@ -47,6 +49,7 @@ const Base64 = () => {
 					))}
 				</select>
 				<select
+					className="border"
 					value={color}
 					onChange={(event) => {
 						setColor(event?.target?.value);
@@ -58,7 +61,11 @@ const Base64 = () => {
 					))}
 				</select>
 			</div>
-			<DBLink href={url} target="_blank" variant="primary">
+			<DBLink
+				href={url}
+				target="_blank"
+				variant="primary"
+				content="external">
 				Open IFrame
 			</DBLink>
 		</div>
