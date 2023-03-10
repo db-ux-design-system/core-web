@@ -1,40 +1,11 @@
 <script setup lang="ts">
-import { DBInput, DBButton } from "../../../../../output/vue/vue3/src";
+import { DBButton, DBInput } from "../../../../../output/vue/vue3/src";
 import "./index.scss";
-
-import { ref, watch } from "vue";
-import { useRoute } from "vue-router";
-import {
-	COLOR_CONST,
-	INVALID_INPUT_BACKGROUNDS
-} from "../../../../../packages/components/src/shared/constants";
-
-const route = useRoute();
-const backgroundWarning = ref(false);
-
-watch(
-	() => route.query,
-	async (query: any) => {
-		if (query[COLOR_CONST]) {
-			backgroundWarning.value =
-				Boolean(
-					INVALID_INPUT_BACKGROUNDS.some((iBg) =>
-						iBg.includes(query[COLOR_CONST] ?? "")
-					)
-				) || false;
-		}
-	}
-);
 </script>
 
 <template>
 	<div>
 		<h1>Input</h1>
-
-		<strong v-if="backgroundWarning">
-			This background is not working with inputs! Please use light colors
-			as background.
-		</strong>
 		<div class="input-container">
 			<form>
 				<DBInput

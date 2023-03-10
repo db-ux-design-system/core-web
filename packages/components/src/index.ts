@@ -15,3 +15,4 @@ export * from './components/link';
 export * from './components/infotext';
 export * from './components/alert';
 export * from './components/accordion';
+export * from './components/code-docs';

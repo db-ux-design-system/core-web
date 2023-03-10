@@ -94,7 +94,7 @@ Here is an overview of all components you can use:
 | Stepper                                               | 02 - Action       |     ❌      |   ❌    |    ❌    |        ❌        |
 | Switch                                                | 02 - Action       |     ❌      |   ❌    |    ❌    |        ❌        |
 | Table                                                 | 04 - Data-Display |     ❌      |   ❌    |    ❌    |        ❌        |
-| [Tabs](packages/components/src/components/tabs)		| 04 - Data-Display |     ✅      |   v2    |    ❌    |        ❌        |
+| [Tabs](packages/components/src/components/tabs)       | 04 - Data-Display |     ✅      |   v2    |    ❌    |        ❌        |
 | Tag                                                   | 04 - Data-Display |     ❌      |   ❌    |    ❌    |        ✅        |
 | Text                                                  | 04 - Data-Display |     ❌      |   ❌    |    ❌    |        ✅        |
 | Textarea                                              | 03 - Data-Input   |     ❌      |   ❌    |    ❌    |        ✅        |
