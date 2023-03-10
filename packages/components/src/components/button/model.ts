@@ -5,6 +5,15 @@ import {
 	GlobalState
 } from '../../shared/model';
 
+enum buttonVariants {
+	'outline' = 'outline',
+	'primary' = 'primary',
+	'transparent' = 'transparent',
+	'semi-transparent' = 'semi-transparent'
+}
+
+export const buttonVariantsList = Object.values(buttonVariants);
+
 export type DBButtonDefaultProps = {
 	disabled?: boolean;
 	icon?: string;
@@ -14,7 +23,7 @@ export type DBButtonDefaultProps = {
 	text?: string;
 	type?: 'button' | 'reset' | 'submit';
 	width?: 'full';
-	variant?: 'outline' | 'primary' | 'transparent' | 'semi-transparent';
+	variant?: buttonVariants;
 };
 
 export type DBButtonProps = DBButtonDefaultProps &

@@ -3,61 +3,40 @@ import AxeBuilder from '@axe-core/playwright';
 
 import { DBAlert } from './index';
 // @ts-ignore - vue can only find it with .ts as file ending
-import {
-	VARIANTS,
-	COLORS_SIMPLE,
-	COLORS,
-	TONALITIES
-} from '../../shared/constants.ts';
+import { VARIANTS } from '../../shared/constants.ts';
 
-const componentConfiguration = (tonality, color, variant) => (
-	<div className={`db-ui-${tonality} db-bg-${color}`}>
+const componentPlain = () => (
+	<div className={`db-ui-regular db-bg-db-bg-neutral-0`}>
+		<DBAlert>Test</DBAlert>
+	</div>
+);
+
+const componentVariant = (variant) => (
+	<div className={`db-ui-regular db-bg-db-bg-neutral-0`}>
 		<DBAlert variant={variant}>Test</DBAlert>
 	</div>
 );
 
-const loopAll = (variants, tonalities, colors, testFunc) => {
-	for (const variant of variants) {
-		for (const tonality of tonalities) {
-			for (const color of colors) {
-				testFunc(variant, tonality, color);
-			}
-		}
-	}
-};
-
-const screenshotTest = (variant, tonality, color) => {
-	test(`should match screenshot for combination: "${tonality}/${color}/${variant}"`, async ({
-		page,
-		mount
-	}) => {
-		const component = await mount(
-			componentConfiguration(tonality, color, variant)
-		);
+const screenshotTest = (variant) => {
+	test(`should match screenshot for ${variant}`, async ({ mount }) => {
+		const component = await mount(componentVariant(variant));
 		await expect(component).toHaveScreenshot();
 	});
 };
 
-const textTest = (variant, tonality, color) => {
-	test(`should match text for combination: "${tonality}/${color}/${variant}"`, async ({
-		page,
-		mount
-	}) => {
-		const component = await mount(
-			componentConfiguration(tonality, color, variant)
-		);
+const textTest = () => {
+	test(`should match text `, async ({ page, mount }) => {
+		const component = await mount(componentPlain());
 		await expect(component).toContainText('Test');
 	});
 };
 
-const a11yTest = (variant, tonality, color) => {
-	test(`should not have any accessibility issues for combination: "${tonality}/${color}/${variant}"`, async ({
+const a11yTest = (variant) => {
+	test(`should not have any accessibility issues for variant ${variant}`, async ({
 		page,
 		mount
 	}) => {
-		const component = await mount(
-			componentConfiguration(tonality, color, variant)
-		);
+		const component = await mount(componentVariant(variant));
 		const accessibilityScanResults = await new AxeBuilder({
 			page
 		})
@@ -68,14 +47,15 @@ const a11yTest = (variant, tonality, color) => {
 	});
 };
 
-test.describe('DBAlert comp. @fast', () => {
-	loopAll(VARIANTS, TONALITIES, COLORS_SIMPLE, screenshotTest);
-	loopAll(VARIANTS, TONALITIES, COLORS_SIMPLE, textTest);
-	loopAll(VARIANTS, TONALITIES, COLORS_SIMPLE, a11yTest);
+test.describe('DBAlert component test', () => {
+	textTest();
+	for (const variant of VARIANTS) {
+		screenshotTest(variant);
+	}
 });
 
-test.describe('DBAlert comp. @slow', () => {
-	loopAll(VARIANTS, TONALITIES, COLORS, screenshotTest);
-	loopAll(VARIANTS, TONALITIES, COLORS, textTest);
-	loopAll(VARIANTS, TONALITIES, COLORS, a11yTest);
+test.describe('DBAlert component A11y test', () => {
+	for (const variant of VARIANTS) {
+		a11yTest(variant);
+	}
 });

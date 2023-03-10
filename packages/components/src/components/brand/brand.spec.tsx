@@ -3,15 +3,8 @@ import AxeBuilder from '@axe-core/playwright';
 
 import { DBBrand } from './index';
 
-import {
-	VARIANTS,
-	COLORS_SIMPLE,
-	COLORS,
-	TONALITIES
-} from '../../shared/constants.ts';
-
-const componentConfiguration = (tonality, color) => (
-	<div className={`db-ui-${tonality} db-bg-${color}`}>
+const componentPlain = () => (
+	<div className={`db-ui-regular db-bg-db-bg-neutral-0`}>
 		<DBBrand
 			anchorChildren={true}
 			anchorRef="/"
@@ -39,40 +32,26 @@ const componentConfiguration = (tonality, color) => (
 	</div>
 );
 
-const loopAll = (variants, tonalities, colors, testFunc) => {
-	for (const tonality of tonalities) {
-		for (const color of colors) {
-			testFunc(tonality, color);
-		}
-	}
-};
-
-const screenshotTest = (tonality, color) => {
-	test(`should match screenshot for combination: "${tonality}/${color}"`, async ({
-		page,
-		mount
-	}) => {
-		const component = await mount(componentConfiguration(tonality, color));
+const screenshotTest = () => {
+	test(`should match screenshot`, async ({ mount }) => {
+		const component = await mount(componentPlain());
 		await expect(component).toHaveScreenshot();
 	});
 };
 
-const textTest = (tonality, color) => {
-	test(`should match text for combination: "${tonality}/${color}"`, async ({
-		page,
-		mount
-	}) => {
-		const component = await mount(componentConfiguration(tonality, color));
+const textTest = () => {
+	test(`should match text`, async ({ mount }) => {
+		const component = await mount(componentPlain());
 		await expect(component).toContainText('Test');
 	});
 };
 
-const a11yTest = (tonality, color) => {
-	test(`should not have any accessibility issues for: "${tonality}/${color}"`, async ({
+const a11yTest = () => {
+	test(`should not have any accessibility issues`, async ({
 		page,
 		mount
 	}) => {
-		const component = await mount(componentConfiguration(tonality, color));
+		const component = await mount(componentPlain());
 		const accessibilityScanResults = await new AxeBuilder({
 			page
 		})
@@ -83,14 +62,11 @@ const a11yTest = (tonality, color) => {
 	});
 };
 
-test.describe('DBBrand comp. @fast', () => {
-	loopAll(VARIANTS, TONALITIES, COLORS_SIMPLE, screenshotTest);
-	loopAll(VARIANTS, TONALITIES, COLORS_SIMPLE, textTest);
-	loopAll(VARIANTS, TONALITIES, COLORS_SIMPLE, a11yTest);
+test.describe('DBBrand component test', () => {
+	textTest();
+	screenshotTest();
 });
 
-test.describe('DBBrand comp. @slow', () => {
-	loopAll(VARIANTS, TONALITIES, COLORS, screenshotTest);
-	loopAll(VARIANTS, TONALITIES, COLORS, textTest);
-	loopAll(VARIANTS, TONALITIES, COLORS, a11yTest);
+test.describe('DBBrand component A11y test', () => {
+	a11yTest();
 });

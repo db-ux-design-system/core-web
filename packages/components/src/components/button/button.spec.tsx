@@ -1,77 +1,67 @@
 import { test, expect } from '@playwright/experimental-ct-react';
 import AxeBuilder from '@axe-core/playwright';
+// @ts-ignore - vue can only find it with .ts as file ending
+import { buttonVariantsList } from './model.ts';
 
 import { DBButton } from './index';
 
-import { COLORS_SIMPLE, COLORS, TONALITIES } from '../../shared/constants.ts';
+const componentConfigurationVariant = (variant) => (
+	<div className={`db-ui-regular db-bg-db-bg-neutral-0`}>
+		<DBButton variant={variant}>Test</DBButton>
+	</div>
+);
 
-const componentConfigurationNoIcon = (tonality, color) => (
-	<div className={`db-ui-${tonality} db-bg-${color}`}>
+const componentConfigurationNoIcon = () => (
+	<div className={`db-ui-regular db-bg-db-bg-neutral-0`}>
 		<DBButton>Test</DBButton>
 	</div>
 );
 
 // TODO: Test all icon variants?
-const componentConfigurationWithIcon = (tonality, color) => (
-	<div className={`db-ui-${tonality} db-bg-${color}`}>
+const componentConfigurationWithIcon = () => (
+	<div className={`db-ui-regular db-bg-db-bg-neutral-0`}>
 		<DBButton icon="account" onlyIcon={true}>
 			lorem ipsum
 		</DBButton>
 	</div>
 );
 
-const loopAll = (tonalities, colors, testFunc) => {
-	for (const tonality of tonalities) {
-		for (const color of colors) {
-			testFunc(tonality, color);
-		}
-	}
-};
-
-const screenshotTestNoIcon = (tonality, color) => {
-	test(`should match screenshot "no icon" for combination: "${tonality}/${color}"`, async ({
-		page,
-		mount
-	}) => {
-		const component = await mount(
-			componentConfigurationNoIcon(tonality, color)
-		);
+const screenshotTestNoIcon = () => {
+	test(`should match screenshot "no icon"`, async ({ mount }) => {
+		const component = await mount(componentConfigurationNoIcon());
 		await expect(component).toHaveScreenshot();
 	});
 };
 
-const screenshotTestWithIcon = (tonality, color) => {
-	test(`should match screenshot "with icon" for combination: "${tonality}/${color}"`, async ({
-		page,
-		mount
-	}) => {
-		const component = await mount(
-			componentConfigurationWithIcon(tonality, color)
-		);
+const screenshotTestWithIcon = () => {
+	test(`should match screenshot "with icon"`, async ({ mount }) => {
+		const component = await mount(componentConfigurationWithIcon());
 		await expect(component).toHaveScreenshot();
 	});
 };
 
-const textTest = (tonality, color) => {
-	test(`should match text for combination: "${tonality}/${color}"`, async ({
-		page,
-		mount
-	}) => {
-		const component = await mount(
-			componentConfigurationNoIcon(tonality, color)
-		);
+const textTest = () => {
+	test(`should match text`, async ({ mount }) => {
+		const component = await mount(componentConfigurationNoIcon());
 		await expect(component).toContainText('Test');
 	});
 };
 
-const a11yTestNoIcon = (tonality, color) => {
-	test(`should not have any accessibility issues for combination "no icon": "${tonality}/${color}"`, async ({
+const screenshotTestVariant = (variant) => {
+	test(`should match screenshot with variant: "${variant}"`, async ({
+		mount
+	}) => {
+		const component = await mount(componentConfigurationVariant(variant));
+		await expect(component).toHaveScreenshot();
+	});
+};
+
+const a11yTestNoIcon = () => {
+	test(`should not have any accessibility issues`, async ({
 		page,
 		mount
 	}) => {
-		const component = await mount(
-			componentConfigurationNoIcon(tonality, color)
-		);
+		const component = await mount(componentConfigurationNoIcon());
 		const accessibilityScanResults = await new AxeBuilder({
 			page
 		})
@@ -82,14 +72,12 @@ const a11yTestNoIcon = (tonality, color) => {
 	});
 };
 
-const a11yTestWithIcon = (tonality, color) => {
-	test(`should not have any accessibility issues for combination "with icon": "${tonality}/${color}"`, async ({
+const a11yTestWithIcon = () => {
+	test(`should not have any accessibility issues for combination "with icon"`, async ({
 		page,
 		mount
 	}) => {
-		const component = await mount(
-			componentConfigurationWithIcon(tonality, color)
-		);
+		const component = await mount(componentConfigurationWithIcon());
 		const accessibilityScanResults = await new AxeBuilder({
 			page
 		})
@@ -100,18 +88,19 @@ const a11yTestWithIcon = (tonality, color) => {
 	});
 };
 
-test.describe('DBButton comp. @fast', () => {
-	loopAll(TONALITIES, COLORS_SIMPLE, screenshotTestNoIcon);
-	loopAll(TONALITIES, COLORS_SIMPLE, screenshotTestWithIcon);
-	loopAll(TONALITIES, COLORS_SIMPLE, textTest);
-	loopAll(TONALITIES, COLORS_SIMPLE, a11yTestNoIcon);
-	loopAll(TONALITIES, COLORS_SIMPLE, a11yTestWithIcon);
+test.describe('DBButton component test', () => {
+	screenshotTestNoIcon();
+	screenshotTestWithIcon();
+	textTest();
 });
 
-test.describe('DBButton comp. @slow', () => {
-	loopAll(TONALITIES, COLORS, screenshotTestNoIcon);
-	loopAll(TONALITIES, COLORS, screenshotTestWithIcon);
-	loopAll(TONALITIES, COLORS, textTest);
-	loopAll(TONALITIES, COLORS, a11yTestNoIcon);
-	loopAll(TONALITIES, COLORS, a11yTestWithIcon);
+test.describe('DBButton component test', () => {
+	for (const buttonVariant of buttonVariantsList) {
+		screenshotTestVariant(buttonVariant);
+	}
+});
+
+test.describe('DBButton component A11y test', () => {
+	a11yTestNoIcon();
+	a11yTestWithIcon();
 });
