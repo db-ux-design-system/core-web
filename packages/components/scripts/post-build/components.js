@@ -36,13 +36,6 @@ const getComponents = () => [
 					from: '(event) => toggleCode()',
 					to: '() => toggleCode()'
 				}
-			],
-			vue: [
-				{
-					from: 'import { DBCodeDocsProps, DBCodeDocsState } from "./model";',
-					to: ''
-				},
-				{ from: '(snippet, index)', to: '(snippet)' }
 			]
 		}
 	},
@@ -169,6 +162,10 @@ const iconComponentChanges = [
 	{
 		from: 'getIcon(variant) {',
 		to: 'getIcon(variant:any) {'
+	},
+	{
+		from: 'iconVisible(icon) {',
+		to: 'iconVisible(icon:any) {'
 	}
 ];
 
