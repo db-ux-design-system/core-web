@@ -8,11 +8,7 @@ useMetadata({
 		properties: [
 			{
 				name: 'icon',
-				type: 'Enum',
-				values: [
-					{ key: 'None', name: 'None', value: '_' },
-					{ key: 'Account', name: 'Account', value: 'account' }
-				]
+				type: 'Icon'
 			},
 			{ name: 'icntxt', type: 'TwoOptions' }
 		]

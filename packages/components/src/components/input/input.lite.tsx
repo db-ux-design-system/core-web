@@ -14,10 +14,32 @@ import { DefaultVariantsIcon } from '../../shared/model';
 useMetadata({
 	isAttachedToShadowDom: true,
 	component: {
-		includeIcon: false,
-		properties: []
+		includeIcon: true,
+		hasDisabledProp: true,
+		properties: [
+			{ name: 'label', type: 'SingleLine.Text', required: true },
+			{ name: 'placeholder', type: 'SingleLine.Text' },
+			{ name: 'value', type: 'SingleLine.Text', onChange: 'value' }, // $event.target["value"|"checked"|...]
+			{
+				name: 'icon',
+				type: 'Icon' // this is a custom type not provided by ms
+			},
+			{
+				name: 'iconAfter',
+				type: 'Icon'
+			},
+			{
+				name: 'variant',
+				type: 'DefaultVariant' // this is a custom type not provided by ms
+			}
+		]
 	}
 });
+
+const DEFAULT_VALUES = {
+	label: DEFAULT_LABEL,
+	placeholder: ' '
+};
 
 export default function DBInput(props: DBInputProps) {
 	const textInputRef = useRef<HTMLInputElement>(null);
@@ -25,8 +47,9 @@ export default function DBInput(props: DBInputProps) {
 		_id: DEFAULT_ID,
 		_isValid: undefined,
 		_value: '',
-		_placeholder: ' ', // placeholder can't be empty
-		_label: DEFAULT_LABEL,
+		iconVisible: (icon: string) => {
+			return icon && icon !== '_' && icon !== 'none';
+		},
 		getIcon: (variant) => {
 			if (variant) {
 				return DefaultVariantsIcon[variant];
@@ -83,14 +106,6 @@ export default function DBInput(props: DBInputProps) {
 		if (props.stylePath) {
 			state.stylePath = props.stylePath;
 		}
-
-		if (props.placeholder) {
-			state._placeholder = props.placeholder;
-		}
-
-		if (props.label) {
-			state._label = props.label;
-		}
 	});
 
 	return (
@@ -100,15 +115,15 @@ export default function DBInput(props: DBInputProps) {
 			<Show when={state.stylePath}>
 				<link rel="stylesheet" href={state.stylePath} />
 			</Show>
-			<Show when={props.iconBefore}>
-				<DBIcon icon={props.iconBefore} class="icon-before" />
+			<Show when={state.iconVisible(props.icon)}>
+				<DBIcon icon={props.icon} class="icon-before" />
 			</Show>
 			<input
 				ref={textInputRef}
 				id={state._id}
 				name={props.name}
 				type={props.type || 'text'}
-				placeholder={state._placeholder}
+				placeholder={props.placeholder ?? DEFAULT_VALUES.placeholder}
 				aria-labelledby={state._id + '-label'}
 				disabled={props.disabled}
 				required={props.required}
@@ -124,7 +139,7 @@ export default function DBInput(props: DBInputProps) {
 				htmlFor={state._id}
 				aria-hidden="true"
 				id={state._id + '-label'}>
-				<span>{state._label}</span>
+				<span>{props.label ?? DEFAULT_VALUES.label}</span>
 			</label>
 			<Show when={props.description}>
 				<p class="description">{props.description}</p>
@@ -135,7 +150,7 @@ export default function DBInput(props: DBInputProps) {
 					class="icon-input-state"
 				/>
 			</Show>
-			<Show when={props.iconAfter}>
+			<Show when={state.iconVisible(props.iconAfter)}>
 				<DBIcon icon={props.iconAfter} class="icon-after" />
 			</Show>
 		</div>

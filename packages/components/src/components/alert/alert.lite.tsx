@@ -14,8 +14,20 @@ import { DBLink } from '../link';
 useMetadata({
 	isAttachedToShadowDom: true,
 	component: {
-		includeIcon: false,
-		properties: []
+		includeIcon: true,
+		hasOnClick: true,
+		properties: [
+			{ name: 'headline', type: 'SingleLine.Text' },
+			{ name: 'text', type: 'SingleLine.Text' },
+			{
+				name: 'icon',
+				type: 'Icon' // this is a custom type not provided by ms
+			},
+			{
+				name: 'variant',
+				type: 'DefaultVariant' // this is a custom type not provided by ms
+			}
+		]
 	}
 });
 
@@ -31,7 +43,14 @@ export default function DBAlert(props: DBAlertProps) {
 			}
 		},
 		getIcon: (icon?: string, variant?: string) => {
-			return icon || DefaultVariantsIcon[variant] || 'info';
+			if (state.iconVisible(icon)) {
+				return icon;
+			}
+
+			return DefaultVariantsIcon[variant] || 'info';
+		},
+		iconVisible: (icon: string) => {
+			return icon && icon !== '_' && icon !== 'none';
 		}
 	});
 
@@ -58,7 +77,12 @@ export default function DBAlert(props: DBAlertProps) {
 				<div class="db-alert-headline-container">
 					<Show
 						when={props.headline}
-						else={<span>{props.children}</span>}>
+						else={
+							<span>
+								{props.children}
+								{props.text}
+							</span>
+						}>
 						<strong>{props.headline}</strong>
 					</Show>
 					<div class="db-alert-close-container">
@@ -90,7 +114,10 @@ export default function DBAlert(props: DBAlertProps) {
 				</div>
 
 				<Show when={props.headline}>
-					<span>{props.children}</span>
+					<span>
+						{props.children}
+						{props.text}
+					</span>
 				</Show>
 
 				<DBLink

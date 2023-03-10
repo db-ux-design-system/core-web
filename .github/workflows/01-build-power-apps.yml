@@ -40,9 +40,10 @@ jobs:
         run: |
           cd build-power-apps
           npm i
-          cd DBUI
           STRIPED_VERSION=${VALID_SEMVER_VERSION%-*}
-          npx replace-in-file 0.0.0 ${STRIPED_VERSION//-/.} src/Other/Solution.xml
+          npx replace-in-file 0.0.0 ${STRIPED_VERSION//-/.} **/ControlManifest.Input.xml
+          npx replace-in-file 0.0.0 ${STRIPED_VERSION//-/.} DBUI/src/Other/Solution.xml
+
           dotnet build --configuration Release
 
       - name: ⬆ Upload Power Apps zip

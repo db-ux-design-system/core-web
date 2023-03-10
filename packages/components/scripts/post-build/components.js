@@ -25,6 +25,10 @@ const getComponents = () => [
 				{
 					from: 'getIcon(icon, variant) {',
 					to: 'getIcon(icon:any, variant:any) {'
+				},
+				{
+					from: 'iconVisible(icon) {',
+					to: 'iconVisible(icon:any) {'
 				}
 			],
 			vue: [
@@ -124,6 +128,10 @@ const getComponents = () => [
 				{
 					from: 'getIcon(variant) {',
 					to: 'getIcon(variant:any) {'
+				},
+				{
+					from: 'iconVisible(icon) {',
+					to: 'iconVisible(icon:any) {'
 				}
 			],
 			angular: [
@@ -211,7 +219,11 @@ const getComponents = () => [
 		name: 'button',
 		overwrites: {
 			global: [
-				{ from: 'handleClick(event)', to: 'handleClick(event:any)' }
+				{ from: 'handleClick(event)', to: 'handleClick(event:any)' },
+				{
+					from: 'iconVisible(icon) {',
+					to: 'iconVisible(icon:any) {'
+				}
 			]
 		}
 	},
