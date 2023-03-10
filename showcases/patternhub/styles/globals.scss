@@ -1,4 +1,6 @@
 @use "@db-ui/components/build/styles/db-ui-42-webpack" as *;
+@use "@db-ui/foundations/build/scss/color-classes" as *;
+@use "@db-ui/foundations/build/scss/variables.global" as *;
 
 #__next {
 	height: inherit;
@@ -28,5 +30,30 @@ iframe {
 
 	p {
 		max-width: 500px;
+	}
+}
+
+.iframe-component-container {
+	display: flex;
+	flex-direction: column;
+	padding: $db-spacing-fixed-md;
+
+	.flex {
+		display: flex;
+		gap: $db-spacing-fixed-sm;
+
+		&[data-variant="column"] {
+			flex-direction: column;
+		}
+	}
+}
+
+.base-64-container {
+	display: grid;
+	padding: $db-spacing-fixed-md;
+	gap: $db-spacing-fixed-md;
+
+	span {
+		word-break: break-all;
 	}
 }
