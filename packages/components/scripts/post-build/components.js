@@ -136,6 +136,7 @@ const getComponents = () => [
 	{
 		name: 'button',
 		config: {
+			isIconComponent: true,
 			isClickComponent: true
 		}
 	},
