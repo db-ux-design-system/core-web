@@ -1,10 +1,4 @@
-import {
-	onMount,
-	Show,
-	useMetadata,
-	useRef,
-	useStore
-} from '@builder.io/mitosis';
+import { onMount, Show, useMetadata, useStore } from '@builder.io/mitosis';
 import { DBIcon } from '../icon';
 import { uuid } from '../../utils';
 import { DBInputProps, DBInputState } from './model';
@@ -22,7 +16,6 @@ useMetadata({
 export default function DBInput(props: DBInputProps) {
 	// This is used as forwardRef
 	let component: any;
-	const formRef = useRef<HTMLInputElement>(null);
 	const state = useStore<DBInputState>({
 		_id: DEFAULT_ID,
 		_isValid: undefined,
@@ -48,10 +41,10 @@ export default function DBInput(props: DBInputProps) {
 			// using controlled components for react forces us to using state for value
 			state._value = event.target.value;
 
-			if (formRef?.validity?.valid != state._isValid) {
-				state._isValid = formRef?.validity?.valid;
+			if (event.target?.validity?.valid != state._isValid) {
+				state._isValid = event.target?.validity?.valid;
 				if (props.validityChange) {
-					props.validityChange(!!formRef?.validity?.valid);
+					props.validityChange(!!event.target?.validity?.valid);
 				}
 			}
 		},
@@ -97,7 +90,6 @@ export default function DBInput(props: DBInputProps) {
 
 	return (
 		<div
-			ref={component}
 			class={'db-input ' + (props.className || '')}
 			data-variant={props.variant}>
 			<Show when={state.stylePath}>
@@ -107,7 +99,7 @@ export default function DBInput(props: DBInputProps) {
 				<DBIcon icon={props.iconBefore} class="icon-before" />
 			</Show>
 			<input
-				ref={formRef}
+				ref={component}
 				id={state._id}
 				name={props.name}
 				type={props.type || 'text'}
