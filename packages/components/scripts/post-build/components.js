@@ -36,7 +36,8 @@ const getComponents = () => [
 					from: '(event) => toggleCode()',
 					to: '() => toggleCode()'
 				}
-			]
+			],
+			vue: [{ from: '(snippet, index)', to: '(snippet)' }]
 		}
 	},
 
