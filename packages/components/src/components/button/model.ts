@@ -5,14 +5,19 @@ import {
 	GlobalState
 } from '../../shared/model';
 
+// TODO: 👇 Find a way to make react-docgen work withouth duplicating the types below
 enum buttonVariants {
 	'outline' = 'outline',
 	'primary' = 'primary',
 	'transparent' = 'transparent',
 	'semi-transparent' = 'semi-transparent'
 }
-
 export const buttonVariantsList = Object.values(buttonVariants);
+type buttonVariantsType =
+	| 'outline'
+	| 'primary'
+	| 'transparent'
+	| 'semi-transparent';
 
 export type DBButtonDefaultProps = {
 	disabled?: boolean;
@@ -23,7 +28,7 @@ export type DBButtonDefaultProps = {
 	text?: string;
 	type?: 'button' | 'reset' | 'submit';
 	width?: 'full';
-	variant?: keyof typeof buttonVariants;
+	variant?: buttonVariantsType;
 };
 
 export type DBButtonProps = DBButtonDefaultProps &
