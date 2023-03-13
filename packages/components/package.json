@@ -14,7 +14,7 @@
     "build": "npm-run-all build:*",
     "build:mitosis": "mitosis build",
     "build:mv-styles": "cpr src build -o -f \"(.ts|.tsx|.md)$\"",
-    "build:sass": "sass build --no-source-map --load-path=node_modules/ --load-path=../../node_modules/",
+    "build:sass": "sass build --no-source-map --load-path=node_modules/ --load-path=../../node_modules/ --future-deprecation=import",
     "build:z-post": "node scripts/post-build/index.js",
     "build:z2-docs": "react-docgen ../../output/react/src/components/**/*.tsx -o ../../output/docs.json -i *.spec.tsx",
     "copy-output": "npm-run-all copy:*",
@@ -37,7 +37,7 @@
     "hygen": "^6.2.11",
     "lit": "^2.6.1",
     "nodemon": "2.0.21",
-    "sass": "^1.58.3"
+    "sass": "^1.59.2"
   },
   "publishConfig": {
     "registry": "https://registry.npmjs.org/",
