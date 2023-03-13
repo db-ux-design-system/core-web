@@ -11,6 +11,7 @@ export type GlobalState = {
 };
 
 export type DefaultVariantProps =
+	| 'adaptive'
 	| 'critical'
 	| 'information'
 	| 'warning'
@@ -22,6 +23,14 @@ export const DefaultVariantsIcon: any = {
 	warning: 'error-triangle',
 	success: 'check-circle',
 	information: 'info'
+};
+
+export type IconProps = {
+	icon?: string; // TODO: Add correct icon strings here
+};
+
+export type IconState = {
+	iconVisible: (icon: string) => boolean;
 };
 
 export type FormProps = {
@@ -36,7 +45,6 @@ export type FormState = {
 	_id?: string;
 	_isValid?: boolean | undefined;
 	_value?: any;
-	_label?: string;
 };
 
 export type GlobalTextProps = {

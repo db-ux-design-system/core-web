@@ -32,19 +32,6 @@ module.exports = () => {
 				}
 			];
 
-			if (component?.config?.isFormComponent) {
-				replacements.push({
-					from: ` } from "react"`,
-					to: `, useImperativeHandle } from "react"`
-				});
-				replacements.push({
-					from: `const formRef = useRef<HTMLInputElement>(null);`,
-					to:
-						'const formRef = useRef<HTMLInputElement>(null);\n' +
-						'useImperativeHandle(component,()=>({getFormRef: ()=> formRef}));'
-				});
-			}
-
 			runReplacements(replacements, component, 'react', tsxFile);
 		} catch (error) {
 			console.error('Error occurred:', error);

@@ -14,7 +14,7 @@ const FormComponent = () => {
 							label="Textinput"
 							placeholder="Placeholder"
 							description="Description"
-							iconBefore="edit"
+							icon="edit"
 							name="input-name"
 							onChange={(event) => {
 								setInput(event.target.value);
