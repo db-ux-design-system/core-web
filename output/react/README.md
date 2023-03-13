@@ -97,28 +97,6 @@ const MyComponent = () => {
 };
 ```
 
-### Ref on nested component
-
-```tsx
-import { DBInput } from "@db-ui/react-components";
-import { useEffect, useRef } from "react";
-import type { NestedRefComponentType } from "@db-ui/react-components/src/shared/model";
-
-const MyComponent = () => {
-	const inputRef = useRef<NestedRefComponentType>(null);
-
-	useEffect(() => {
-		if (inputRef.current && inputRef.current.getFormRef) {
-			inputRef.current.getFormRef().current.onmouseenter = (ev) => {
-				console.log(ev);
-			};
-		}
-	}, [inputRef]);
-
-	return <DBInput ref={inputRef}>Test</DBInput>;
-};
-```
-
 ## Deutsche Bahn brand
 
 As we'd like to perfectly support our users and customers on their digital journey, the usage of Deutsche Bahn brand and trademarks are bound of clear guidelines and restrictions even when being used with the code that we're provide with this product; Deutsche Bahn fully reserves all rights regarding the Deutsche Bahn brand, even though that we're providing the code of DB UI products free to use and release it under the Apache 2.0 license.
