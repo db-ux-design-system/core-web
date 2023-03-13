@@ -20,9 +20,11 @@ useMetadata({
 const DEFAULT_VALUES = {};
 
 export default function DBSelect(props: DBSelectProps) {
-	const selectRef = useRef<HTMLSelectElement>(null);
+	// This is used as forwardRef
+	let component: any;
 	const state = useStore<DBSelectState>({
 		_id: DEFAULT_ID,
+		_isValid: undefined,
 
 		handleClick: (event) => {
 			if (props.onClick) {
@@ -41,10 +43,10 @@ export default function DBSelect(props: DBSelectProps) {
 			// using controlled components for react forces us to using state for value
 			state._value = event.target.value;
 
-			if (selectRef?.validity?.valid != state._isValid) {
-				state._isValid = selectRef?.validity?.valid;
+			if (event.target?.validity?.valid != state._isValid) {
+				state._isValid = event.target?.validity?.valid;
 				if (props.validityChange) {
-					props.validityChange(!!selectRef?.validity?.valid);
+					props.validityChange(!!event.target?.validity?.valid);
 				}
 			}
 		},
@@ -78,16 +80,12 @@ export default function DBSelect(props: DBSelectProps) {
 		if (props.stylePath) {
 			state.stylePath = props.stylePath;
 		}
-
-		if (props.label) {
-			state._label = props.label;
-		}
 	});
 
 	return (
 		<>
 			<select
-				ref={selectRef}
+				ref={component}
 				class={
 					'db-select' + (props.className ? ' ' + props.className : '')
 				}
@@ -97,7 +95,7 @@ export default function DBSelect(props: DBSelectProps) {
 				// 		? props.variant
 				// 		: ''
 				// }
-				aria-invalid={props.ariainvalid ? 'true' : false}
+				aria-invalid={props.invalid}
 				disabled={props.disabled}
 				id={state._id}
 				multiple={props.multiple}
@@ -111,7 +109,7 @@ export default function DBSelect(props: DBSelectProps) {
 				{props.children}
 			</select>
 			<label class="db-label" htmlFor={state._id}>
-				{this.label}
+				{props.label}
 			</label>
 			<Show when={state.stylePath}>
 				<link rel="stylesheet" href={state.stylePath} />

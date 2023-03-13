@@ -10,21 +10,9 @@
 	@extend %shadow-dom-extend;
 
 	appearance: none;
-	font-size: to-rem($pxValue: 16);
-
-	// For IE
-	&::-ms-expand {
-		display: none;
-	}
 
 	// Style the regular (non-multiple) select elements
 	&:not([multiple]) {
-		// TODO: Variants aren't being used by inputs as well, so we need to wait for the final spec
-		// Semitransparent is the default style
-		// @at-root :where(#{&}) {
-		// 	@extend %form-element-semitransparent;
-		// }
-
 		background-image: var(
 			--db-ic-expand-more-20,
 			url(#{$icons-path}functional/images/navigation/db_ic_expand_more_20.svg)
