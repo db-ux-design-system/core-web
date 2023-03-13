@@ -1,17 +1,18 @@
 import { NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
-import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 
 import {
+	DBBrandModule,
 	DBButtonModule,
-	DBIconModule,
 	DBCardModule,
 	DBDividerModule,
-	DBInputModule,
-	DBPageModule,
 	DBHeaderModule,
-	DBBrandModule,
-	DBLinkModule
+	DBIconModule,
+	DBInputModule,
+	DBLinkModule,
+	DBPageModule,
+	DBCodeDocsModule
 } from '../../../../output/angular/src';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app.routing.module';
@@ -40,6 +41,7 @@ import { DefaultComponent } from './components/default.component';
 		DBHeaderModule,
 		DBBrandModule,
 		DBLinkModule,
+		DBCodeDocsModule,
 		FormsModule
 	],
 	providers: [],

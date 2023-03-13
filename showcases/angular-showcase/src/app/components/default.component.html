@@ -1,28 +1,73 @@
-<div class="default-container">
-	<h1>{{ title }}</h1>
-	<div *ngFor="let variant of variants; index as variantIndex">
-		<DBDivider></DBDivider>
-		<strong>{{ variant.name }}</strong>
-		<ul class="variants-list">
-			<li
-				*ngFor="let example of variant.examples; index as exampleIndex"
-				[style]="example.style"
-				[class]="example.className"
-			>
-				<p>
-					<small>{{ example.name }}</small>
-				</p>
+<!-- TODO: Slots not working for nested components? -> Had to copy paste variant-cards... -->
+<DBCodeDocs
+	*ngIf="variantRef"
+	class="variants-card"
+	[codeSnippets]="getCodeSnippets(variantRef.examples)"
+>
+	<dl class="variants-list">
+		<div
+			*ngFor="let example of variantRef.examples; index as exampleIndex"
+			[style]="example.style"
+			[class]="example.className"
+		>
+			<dt class="example-name">{{ example.name }}</dt>
+			<dd>
 				<ng-container
 					*ngTemplateOutlet="
 						exampleTemplate;
 						context: {
 							exampleIndex: exampleIndex,
-							variantIndex: variantIndex
+							variantIndex: variantRefIndex
 						}
 					"
 				>
 				</ng-container>
-			</li>
-		</ul>
+			</dd>
+		</div>
+	</dl>
+</DBCodeDocs>
+
+<div *ngIf="!variantRef" class="default-container">
+	<h1>{{ title }}</h1>
+	<div *ngFor="let variant of variants; index as variantIndex">
+		<DBDivider></DBDivider>
+		<h2>
+			<DBLink
+				content="external"
+				target="_blank"
+				[href]="getLink(variant.name)"
+			>
+				{{ variant.name }}
+			</DBLink>
+		</h2>
+		<DBCodeDocs
+			class="variants-card"
+			[codeSnippets]="getCodeSnippets(variant.examples)"
+		>
+			<dl class="variants-list">
+				<div
+					*ngFor="
+						let example of variant.examples;
+						index as exampleIndex
+					"
+					[style]="example.style"
+					[class]="example.className"
+				>
+					<dt class="example-name">{{ example.name }}</dt>
+					<dd>
+						<ng-container
+							*ngTemplateOutlet="
+								exampleTemplate;
+								context: {
+									exampleIndex: exampleIndex,
+									variantIndex: variantIndex
+								}
+							"
+						>
+						</ng-container>
+					</dd>
+				</div>
+			</dl>
+		</DBCodeDocs>
 	</div>
 </div>
