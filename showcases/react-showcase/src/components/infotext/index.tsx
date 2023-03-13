@@ -12,13 +12,37 @@ const getInfotext = ({ variant, size, icon }: DBInfotextProps) => (
 
 const exampleMatrix: DefaultComponentExample[][] = [
 	[
-		{ example: getInfotext({ icon: 'account' }) },
-		{ example: getInfotext({ variant: 'critical' }) },
-		{ example: getInfotext({ variant: 'information' }) },
-		{ example: getInfotext({ variant: 'success' }) },
-		{ example: getInfotext({ variant: 'warning' }) }
+		{
+			example: getInfotext({ icon: 'account' }),
+			code: '<DBInfotext icon="account">Infotext</DBInfotext>'
+		},
+		{
+			example: getInfotext({ variant: 'critical' }),
+			code: '<DBInfotext variant="critical">Infotext</DBInfotext>'
+		},
+		{
+			example: getInfotext({ variant: 'information' }),
+			code: '<DBInfotext variant="information">Infotext</DBInfotext>'
+		},
+		{
+			example: getInfotext({ variant: 'success' }),
+			code: '<DBInfotext variant="success">Infotext</DBInfotext>'
+		},
+		{
+			example: getInfotext({ variant: 'warning' }),
+			code: '<DBInfotext variant="warning">Infotext</DBInfotext>'
+		}
 	],
-	[{ example: getInfotext({}) }, { example: getInfotext({ size: 'small' }) }]
+	[
+		{
+			example: getInfotext({}),
+			code: '<DBInfotext>Infotext</DBInfotext>'
+		},
+		{
+			example: getInfotext({ size: 'small' }),
+			code: '<DBInfotext size="small">Infotext</DBInfotext>'
+		}
+	]
 ];
 
 const variants = defaultComponentVariants.map((variant, index) => ({

@@ -36,26 +36,54 @@ const getDefaultAlert = (props: DBAlertProps) => {
 
 const exampleMatrix: DefaultComponentExample[][] = [
 	[
-		{ example: getDefaultAlert({ type: 'alert' }) },
-		{ example: getDefaultAlert({ type: 'inline' }) }
+		{
+			example: getDefaultAlert({ type: 'alert' }),
+			code: '<DBAlert type="alert" headline="Headline" link={{ href: "#" }} slotLink="Link">Type Something</DBAlert>'
+		},
+		{
+			example: getDefaultAlert({ type: 'inline' }),
+			code: '<DBAlert type="inline" headline="Headline" link={{ href: "#" }} slotLink="Link">Type Something</DBAlert>'
+		}
 	],
 	[
-		{ example: getDefaultAlert({ icon: 'account' }) },
-		{ example: getDefaultAlert({ variant: 'critical' }) },
-		{ example: getDefaultAlert({ variant: 'information' }) },
-		{ example: getDefaultAlert({ variant: 'success' }) },
-		{ example: getDefaultAlert({ variant: 'warning' }) }
+		{
+			example: getDefaultAlert({ icon: 'account' }),
+			code: '<DBAlert icon="account"  type="alert" headline="Headline" link={{ href: "#" }} slotLink="Link">Type Something</DBAlert>'
+		},
+		{
+			example: getDefaultAlert({ variant: 'critical' }),
+			code: '<DBAlert variant="critical" headline="Headline" link={{ href: "#" }} slotLink="Link">Type Something</DBAlert>'
+		},
+		{
+			example: getDefaultAlert({ variant: 'information' }),
+			code: '<DBAlert variant="information" headline="Headline" link={{ href: "#" }} slotLink="Link">Type Something</DBAlert>'
+		},
+		{
+			example: getDefaultAlert({ variant: 'success' }),
+			code: '<DBAlert variant="success" headline="Headline" link={{ href: "#" }} slotLink="Link">Type Something</DBAlert>'
+		},
+		{
+			example: getDefaultAlert({ variant: 'warning' }),
+			code: '<DBAlert variant="warning" headline="Headline" link={{ href: "#" }} slotLink="Link">Type Something</DBAlert>'
+		}
 	],
 	[
-		{ example: getDefaultAlert({ icon: 'account' }) },
-		{ example: getDefaultAlert({}) },
+		{
+			example: getDefaultAlert({ icon: 'account' }),
+			code: '<DBAlert icon="account" headline="Headline" link={{ href: "#" }} slotLink="Link">Type Something</DBAlert>'
+		},
+		{
+			example: getDefaultAlert({}),
+			code: '<DBAlert headline="Headline" link={{ href: "#" }} slotLink="Link">Type Something</DBAlert>'
+		},
 		{
 			example: getAlert({
 				slotLink: 'Link',
 				link: { href: '#' }
-			})
+			}),
+			code: '<DBAlert link={{ href: "#" }} slotLink="Link">Type Something</DBAlert>'
 		},
-		{ example: getAlert({}) }
+		{ example: getAlert({}), code: '<DBAlert>Type Something</DBAlert>' }
 	],
 	[
 		{
@@ -64,7 +92,8 @@ const exampleMatrix: DefaultComponentExample[][] = [
 					/* eslint-disable-next-line no-alert */
 					alert('click close button');
 				}
-			})
+			}),
+			code: '<DBAlert headline="Headline" link={{ href: "#" }} slotLink="Link" onClick={()=>{alert("click close button")}}>Type Something</DBAlert>'
 		}
 	]
 ];

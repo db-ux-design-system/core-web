@@ -1,14 +1,16 @@
 const Replace = require('replace-in-file');
-const Components = require('./components');
+const { components } = require('./components');
+const {
+	getComponentName,
+	getReplacements,
+	runReplacements
+} = require('../utils');
 
 module.exports = () => {
-	for (const component of Components) {
+	for (const component of components) {
 		try {
-			const cleanName = component.name
-				.split('-')
-				.map((part) => `${part[0].toUpperCase()}${part.slice(1)}`)
-				.join('');
-			const stateName = `DB${cleanName}State`;
+			const upperComponentName = getComponentName(component.name);
+			const stateName = `DB${upperComponentName}State`;
 
 			const tsxFile = `../../output/react/src/components/${component.name}/${component.name}.tsx`;
 
@@ -18,28 +20,19 @@ module.exports = () => {
 				{
 					from: /= useState/g,
 					to: '= useState<any>'
+				},
+				{ from: ` } from "react"`, to: `, forwardRef } from "react"` },
+				{
+					from: `function DB${upperComponentName}(props: DB${upperComponentName}Props) {`,
+					to: `function DB${upperComponentName}Fn(props: DB${upperComponentName}Props, component: any) {`
+				},
+				{
+					from: `export default DB${upperComponentName};`,
+					to: `const DB${upperComponentName} = forwardRef(DB${upperComponentName}Fn);\nexport default DB${upperComponentName};`
 				}
 			];
 
-			if (component?.overwrites?.react) {
-				replacements = [...replacements, ...component.overwrites.react];
-			}
-
-			if (component?.overwrites?.global) {
-				replacements = [
-					...replacements,
-					...component.overwrites.global
-				];
-			}
-
-			for (const replacement of replacements) {
-				const option = {
-					files: tsxFile,
-					from: replacement.from,
-					to: replacement.to
-				};
-				Replace.replaceInFileSync(option);
-			}
+			runReplacements(replacements, component, 'react', tsxFile);
 		} catch (error) {
 			console.error('Error occurred:', error);
 		}

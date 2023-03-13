@@ -30,48 +30,77 @@ const getInput = ({
 
 const exampleMatrix: DefaultComponentExample[][] = [
 	[
-		{ example: getInput({}) },
 		{
-			example: getInput({ variant: 'information' })
+			example: getInput({}),
+			code: '<DBInput label="Label" description="Description" />'
 		},
 		{
-			example: getInput({ variant: 'warning' })
+			example: getInput({ variant: 'information' }),
+			code: '<DBInput label="Label" description="Description" variant="information"/>'
 		},
 		{
-			example: getInput({ variant: 'critical' })
+			example: getInput({ variant: 'warning' }),
+			code: '<DBInput label="Label" description="Description" variant="warning"/>'
 		},
 		{
-			example: getInput({ variant: 'success' })
+			example: getInput({ variant: 'critical' }),
+			code: '<DBInput label="Label" description="Description" variant="critical"/>'
+		},
+		{
+			example: getInput({ variant: 'success' }),
+			code: '<DBInput label="Label" description="Description" variant="success"/>'
 		}
 	],
 	[
-		{ example: getInput({}) },
 		{
-			example: getInput({ value: 'Input Text' })
+			example: getInput({}),
+			code: '<DBInput label="Label" description="Description" />'
 		},
 		{
-			example: getInput({ value: '123456', type: 'number' })
+			example: getInput({ value: 'Input Text' }),
+			code: '<DBInput label="Label" value="Input Text"/>'
 		},
 		{
-			example: getInput({ minLength: 5, required: true })
+			example: getInput({ value: '123456', type: 'number' }),
+			code: '<DBInput label="Label" value="123456" type="number"/>'
 		},
-		{ example: getInput({ disabled: true }) },
-		{ example: getInput({ disabled: true, value: 'Input Text' }) },
-		{ example: getInput({ required: true, value: 'Input Text' }) }
+		{
+			example: getInput({ minLength: 5, required: true }),
+			code: '<DBInput label="Label" minLength={5} required description="minLength=5"/>'
+		},
+		{
+			example: getInput({ disabled: true }),
+			code: '<DBInput label="Label" disabled/>'
+		},
+		{
+			example: getInput({ disabled: true, value: 'Input Text' }),
+			code: '<DBInput label="Label" value="Input Text" disabled/>'
+		},
+		{
+			example: getInput({ required: true, value: 'Input Text' }),
+			code: '<DBInput label="Label" value="Input Text" disabled required/>'
+		}
 	],
 	[
-		{ example: getInput({}) },
 		{
-			example: getInput({ iconBefore: 'account' })
+			example: getInput({}),
+			code: '<DBInput label="Label"/>'
 		},
 		{
-			example: getInput({ iconBefore: 'account', iconAfter: 'edit' })
+			example: getInput({ iconBefore: 'account' }),
+			code: '<DBInput iconBefore="account" label="Label"/>'
 		},
 		{
-			example: getInput({ iconAfter: 'edit' })
+			example: getInput({ iconBefore: 'account', iconAfter: 'edit' }),
+			code: '<DBInput iconBefore="account" label="Label" iconAfter="edit"/>'
 		},
 		{
-			example: getInput({ iconAfter: 'edit', variant: 'success' })
+			example: getInput({ iconAfter: 'edit' }),
+			code: '<DBInput label="Label" iconAfter="edit"/>'
+		},
+		{
+			example: getInput({ iconAfter: 'edit', variant: 'success' }),
+			code: '<DBInput label="Label" iconAfter="edit" variant="success"/>'
 		}
 	]
 ];

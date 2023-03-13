@@ -19,6 +19,8 @@ useMetadata({
 });
 
 export default function DBTabBar(props: DBTabBarProps) {
+	// This is used as forwardRef
+	let component: any;
 	const state = useStore<DBTabBarState>({
 		convertTabs(tabs: DBTabProps[] | string | undefined) {
 			try {
@@ -43,6 +45,7 @@ export default function DBTabBar(props: DBTabBarProps) {
 
 	return (
 		<div
+			ref={component}
 			class={
 				'cmp-tab-bar' + (props.className ? ' ' + props.className : '')
 			}

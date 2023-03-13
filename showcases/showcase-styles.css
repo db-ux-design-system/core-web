@@ -12,13 +12,22 @@
 	padding: var(--db-spacing-fixed-md);
 }
 
+.variants-card {
+	margin: var(--db-spacing-fixed-md);
+}
+
 .variants-list {
-	list-style-type: none;
-	margin: 0;
-	padding: 0;
 	display: flex;
 	flex-wrap: wrap;
 	gap: var(--db-spacing-fixed-md);
+}
+
+.variants-list dd {
+	margin-inline-start: 0;
+}
+
+.example-name {
+	margin-block: 0 var(--db-spacing-fixed-md);
 }
 
 /**

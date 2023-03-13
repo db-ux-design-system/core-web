@@ -15,18 +15,29 @@ const getSection = ({ variant, size }: DBSectionProps) => (
 
 const exampleMatrix: DefaultComponentExample[][] = [
 	[
-		{ example: getSection({ variant: 'full' }) },
 		{
-			example: getSection({ variant: 'medium' })
+			example: getSection({ variant: 'full' }),
+			code: '<DBSection>Content</DBSection>'
 		},
-		{ example: getSection({ variant: 'large' }) }
+		{
+			example: getSection({ variant: 'medium' }),
+			code: '<DBSection variant="medium">Content</DBSection>'
+		},
+		{
+			example: getSection({ variant: 'large' }),
+			code: '<DBSection variant="large">Content</DBSection>'
+		}
 	],
 	[
-		{ example: getSection({}) },
+		{ example: getSection({}), code: '<DBSection>Content</DBSection>' },
 		{
-			example: getSection({ size: 'large' })
+			example: getSection({ size: 'large' }),
+			code: '<DBSection size="large">Content</DBSection>'
 		},
-		{ example: getSection({ size: 'small' }) }
+		{
+			example: getSection({ size: 'small' }),
+			code: '<DBSection size="small">Content</DBSection>'
+		}
 	]
 ];
 const variants = defaultComponentVariants.map((variant, index) => ({

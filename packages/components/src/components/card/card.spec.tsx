@@ -11,20 +11,12 @@ const colorVariants = [
 	'neutral-1',
 	'neutral-3',
 	'neutral-4',
-	'neutral-5',
-	'neutral-6',
 	'primary',
-	'primary-light',
 	'secondary',
-	'secondary-light',
 	'critical',
-	'critical-light',
 	'success',
-	'success-light',
 	'warning',
-	'warning-light',
-	'information',
-	'information-light'
+	'information'
 ];
 
 const directions = ['row', 'column'];

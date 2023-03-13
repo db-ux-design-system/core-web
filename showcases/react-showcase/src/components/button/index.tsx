@@ -25,21 +25,52 @@ const getButton = ({
 
 const exampleMatrix: DefaultComponentExample[][] = [
 	[
-		{ example: getButton({}) },
-		{ example: getButton({ variant: 'primary' }) },
-		{ example: getButton({ variant: 'transparent' }) },
-		{ example: getButton({ variant: 'semi-transparent' }) }
-	],
-	[{ example: getButton({}) }, { example: getButton({ state: 'loading' }) }],
-	[{ example: getButton({}) }, { example: getButton({ size: 'small' }) }],
-	[
-		{ example: getButton({}) },
+		{ example: getButton({}), code: '<DBButton>Button</DBButton>' },
 		{
-			example: getButton({ icon: 'account', icntxt: true })
+			example: getButton({ variant: 'primary' }),
+			code: '<DBButton variant="primary">Button</DBButton>'
 		},
-		{ example: getButton({ icon: 'account' }) }
+		{
+			example: getButton({ variant: 'transparent' }),
+			code: '<DBButton variant="transparent">Button</DBButton>'
+		},
+		{
+			example: getButton({ variant: 'semi-transparent' }),
+			code: '<DBButton variant="semi-transparent">Button</DBButton>'
+		}
 	],
-	[{ example: getButton({}) }, { example: getButton({ width: 'full' }) }]
+	[
+		{ example: getButton({}), code: '<DBButton>Button</DBButton>' },
+		{
+			example: getButton({ state: 'loading' }),
+			code: '<DBButton state="loading">Button</DBButton>'
+		}
+	],
+	[
+		{ example: getButton({}), code: '<DBButton>Button</DBButton>' },
+		{
+			example: getButton({ size: 'small' }),
+			code: '<DBButton size="small">Button</DBButton>'
+		}
+	],
+	[
+		{ example: getButton({}), code: '<DBButton>Button</DBButton>' },
+		{
+			example: getButton({ icon: 'account', icntxt: true }),
+			code: '<DBButton icon="account" icntxt>Button</DBButton>'
+		},
+		{
+			example: getButton({ icon: 'account' }),
+			code: '<DBButton icon="account">Button</DBButton>'
+		}
+	],
+	[
+		{ example: getButton({}), code: '<DBButton>Button</DBButton>' },
+		{
+			example: getButton({ width: 'full' }),
+			code: '<DBButton width="full">Button</DBButton>'
+		}
+	]
 ];
 const variants = defaultComponentVariants.map((variant, index) => ({
 	...variant,

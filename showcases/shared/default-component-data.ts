@@ -3,6 +3,7 @@ export type DefaultComponentExample = {
 	example?: any;
 	style?: any;
 	className?: string;
+	code?: any;
 };
 
 export type DefaultComponentVariants = {

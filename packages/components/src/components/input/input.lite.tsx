@@ -1,10 +1,4 @@
-import {
-	onMount,
-	Show,
-	useMetadata,
-	useRef,
-	useStore
-} from '@builder.io/mitosis';
+import { onMount, Show, useMetadata, useStore } from '@builder.io/mitosis';
 import { DBIcon } from '../icon';
 import { uuid } from '../../utils';
 import { DBInputProps, DBInputState } from './model';
@@ -20,7 +14,8 @@ useMetadata({
 });
 
 export default function DBInput(props: DBInputProps) {
-	const textInputRef = useRef<HTMLInputElement>(null);
+	// This is used as forwardRef
+	let component: any;
 	const state = useStore<DBInputState>({
 		_id: DEFAULT_ID,
 		_isValid: undefined,
@@ -46,10 +41,10 @@ export default function DBInput(props: DBInputProps) {
 			// using controlled components for react forces us to using state for value
 			state._value = event.target.value;
 
-			if (textInputRef?.validity?.valid != state._isValid) {
-				state._isValid = textInputRef?.validity?.valid;
+			if (event.target?.validity?.valid != state._isValid) {
+				state._isValid = event.target?.validity?.valid;
 				if (props.validityChange) {
-					props.validityChange(!!textInputRef?.validity?.valid);
+					props.validityChange(!!event.target?.validity?.valid);
 				}
 			}
 		},
@@ -104,7 +99,7 @@ export default function DBInput(props: DBInputProps) {
 				<DBIcon icon={props.iconBefore} class="icon-before" />
 			</Show>
 			<input
-				ref={textInputRef}
+				ref={component}
 				id={state._id}
 				name={props.name}
 				type={props.type || 'text'}
