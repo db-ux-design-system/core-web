@@ -9,7 +9,7 @@ const Search = () => (
 					pt-fix-lg pl-fix-lg pr-fix-lg s:pr-0 s:pb-fix-lg s:gap-fix-md">
 					<DBInput
 						className="w-full"
-						iconBefore="start"
+						icon="start"
 						label="Von"
 						placeholder="Frankfurt HBF"></DBInput>
 					<DBButton icon="swap-horizontal" variant="transparent">
@@ -17,7 +17,7 @@ const Search = () => (
 					</DBButton>
 					<DBInput
 						className="w-full"
-						iconBefore="destination"
+						icon="destination"
 						label="Nach"
 						placeholder="Berlin HBF"></DBInput>
 				</div>

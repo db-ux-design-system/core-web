@@ -81,6 +81,9 @@ $variants: (
 	gap: $db-spacing-fixed-md;
 	width: 100%;
 
+	// TODO: probably extract this to an overwrite or external file
+	text-align: start; // workaround for power apps
+
 	.db-icon {
 		&::before {
 			/* TODO: Take filled icons if they are ready */
