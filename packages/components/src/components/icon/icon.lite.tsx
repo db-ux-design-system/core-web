@@ -8,11 +8,7 @@ useMetadata({
 		properties: [
 			{
 				name: 'icon',
-				type: 'Enum',
-				values: [
-					{ key: 'None', name: 'None', value: '_' },
-					{ key: 'Account', name: 'Account', value: 'account' }
-				]
+				type: 'Icon'
 			},
 			{ name: 'icntxt', type: 'TwoOptions' }
 		]
@@ -20,6 +16,8 @@ useMetadata({
 });
 
 export default function DBIcon(props: DBIconProps) {
+	// This is used as forwardRef
+	let component: any;
 	const state = useStore<DBIconState>({});
 
 	onMount(() => {
@@ -30,6 +28,7 @@ export default function DBIcon(props: DBIconProps) {
 
 	return (
 		<span
+			ref={component}
 			class={
 				'db-icon' +
 				(props.className ? ' ' + props.className : '') +

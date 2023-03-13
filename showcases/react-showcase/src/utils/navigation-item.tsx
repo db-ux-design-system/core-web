@@ -17,7 +17,6 @@ export const NAVIGATION_ITEMS: NavigationItem[] = [
 	{ path: 'select', label: 'Select', component: <SelectComponent /> },
 
 	{ path: 'alert', label: 'Alert', component: <AlertComponent /> },
-
 	{ path: 'infotext', label: 'Infotext', component: <InfotextComponent /> },
 	{ path: 'section', label: 'Section', component: <SectionComponent /> },
 	{ path: 'link', label: 'Link', component: <LinkComponent /> },

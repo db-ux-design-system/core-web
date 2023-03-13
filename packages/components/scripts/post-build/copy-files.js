@@ -1,6 +1,6 @@
 const Fse = require('fs-extra');
 const Frameworks = require('./framworks');
-const components = require('./components');
+const { components } = require('./components');
 const Replace = require('replace-in-file');
 
 module.exports = () => {

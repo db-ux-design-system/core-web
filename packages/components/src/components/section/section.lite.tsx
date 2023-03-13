@@ -10,6 +10,8 @@ useMetadata({
 });
 
 export default function DBSection(props: DBSectionProps) {
+	// This is used as forwardRef
+	let component: any;
 	const state = useStore<DBSectionState>({});
 
 	onMount(() => {
@@ -20,6 +22,7 @@ export default function DBSection(props: DBSectionProps) {
 
 	return (
 		<section
+			ref={component}
 			className={
 				'db-section' + (props.className ? ' ' + props.className : '')
 			}

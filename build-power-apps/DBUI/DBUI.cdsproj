@@ -45,9 +45,9 @@
 
   <ItemGroup>
     <ProjectReference Include="..\button\DBButton.pcfproj" />
-    <ProjectReference Include="..\card\DBCard.pcfproj" />
-    <ProjectReference Include="..\divider\DBDivider.pcfproj" />
     <ProjectReference Include="..\icon\DBIcon.pcfproj" />
+    <ProjectReference Include="..\input\DBInput.pcfproj" />
+    <ProjectReference Include="..\alert\DBAlert.pcfproj" />
   </ItemGroup>
 
   <Import Project="$(MSBuildToolsPath)\Microsoft.Common.targets" />

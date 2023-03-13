@@ -1,6 +1,7 @@
 @use "variables" as *;
 @use "variables.global" as *;
 @use "color-placeholder" as *;
+@use "helpers/functions" as *;
 
 :root {
 	// TODO: probably move these to the tokens as well
@@ -33,7 +34,6 @@ html {
 // Make sure every elements has the current color from container above
 body {
 	color: var(--db-current-color, $db-colors-neutral-on-bg-enabled);
-	min-height: 100vh;
 }
 
 a {

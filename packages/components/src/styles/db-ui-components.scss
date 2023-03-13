@@ -15,3 +15,23 @@
 @use "../components/infotext/infotext" as *;
 @use "../components/alert/alert" as *;
 @use "../components/select/select" as *;
+@use "../components/code-docs/code-docs" as *;
+
+// angular-workaround
+dbalert,
+dbbrand,
+dbbutton,
+dbcard,
+dbdivider,
+dbdrawer,
+dbheader,
+dbicon,
+dbinfotext,
+dbinput,
+dblink,
+dbpage,
+dbsection,
+dbtab,
+dbtabbar {
+	display: contents;
+}
