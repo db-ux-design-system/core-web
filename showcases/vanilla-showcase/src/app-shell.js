@@ -74,28 +74,20 @@ const getAppShell = (content) =>
 				<option>neutral-2</option>
 				<option>neutral-3</option>
 				<option>neutral-4</option>
-				<option>neutral-5</option>
-				<option>neutral-6</option>
 				<option>neutral-transparent-full</option>
 				<option>neutral-transparent-semi</option>
 				<option>primary</option>
-				<option>primary-light</option>
 				<option>primary-transparent-semi</option>
 				<option>secondary</option>
-				<option>secondary-light</option>
 				<option>secondary-transparent-semi</option>
-				<option>success</option>
-				<option>success-light</option>
-				<option>success-transparent-semi</option>
+				<option>successful</option>
+				<option>successful-transparent-semi</option>
 				<option>critical</option>
-				<option>critical-light</option>
 				<option>critical-transparent-semi</option>
 				<option>warning</option>
-				<option>warning-light</option>
 				<option>warning-transparent-semi</option>
-				<option>information</option>
-				<option>information-light</option>
-				<option>information-transparent-semi</option>
+				<option>informational</option>
+				<option>informational-transparent-semi</option>
 			</select>
 			</div>
 		</db-header>

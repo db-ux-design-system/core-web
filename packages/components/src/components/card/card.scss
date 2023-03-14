@@ -39,7 +39,7 @@
 		border-radius: 0;
 	}
 
-	&[data-variant="ia"] {
+	&[data-variant="interactive"] {
 		&:hover {
 			cursor: pointer;
 			box-shadow: $db-elevation-4;

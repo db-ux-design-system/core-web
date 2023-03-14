@@ -1,4 +1,5 @@
 export type GlobalProps = {
+	id?: string;
 	title?: string;
 	stylePath?: string;
 	className?: string;
@@ -10,17 +11,40 @@ export type GlobalState = {
 };
 
 export type DefaultVariantProps =
+	| 'adaptive'
 	| 'critical'
-	| 'information'
+	| 'informational'
 	| 'warning'
-	| 'success';
+	| 'successful';
 
 export const DefaultVariantsIcon: any = {
 	critical: 'error',
-	// TODO: 'error_triangle' will change to 'warning' soon
-	warning: 'error_triangle',
-	success: 'check_circle',
-	information: 'info'
+	// TODO: 'error-triangle' will change to 'warning' soon
+	warning: 'error-triangle',
+	successful: 'check-circle',
+	informational: 'info'
+};
+
+export type IconProps = {
+	icon?: string; // TODO: Add correct icon strings here
+};
+
+export type IconState = {
+	iconVisible: (icon: string) => boolean;
+};
+
+export type FormProps = {
+	label?: string;
+	disabled?: boolean;
+	required?: boolean;
+	value?: any;
+	name?: string;
+};
+
+export type FormState = {
+	_id?: string;
+	_isValid?: boolean | undefined;
+	_value?: any;
 };
 
 export type GlobalTextProps = {
@@ -99,3 +123,5 @@ export type FocusEventState = {
 export type ValidEventProps = {
 	validityChange?: (valid: boolean) => void;
 };
+
+export type NestedRefComponentType = { getFormRef?: () => { current?: any } };

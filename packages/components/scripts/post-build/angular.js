@@ -1,8 +1,14 @@
 const Replace = require('replace-in-file');
-const Components = require('./components');
+const {
+	components,
+	formComponentChanges,
+	clickComponentChanges,
+	iconComponentChanges
+} = require('./components');
+const { runReplacements } = require('../utils');
 
 const changeFile = (component, input) => {
-	let result = input
+	return input
 		.split('\n')
 		.filter(
 			(line) =>
@@ -21,41 +27,30 @@ const changeFile = (component, input) => {
 				return line.replace(': ElementRef', ': ElementRef | undefined');
 			}
 
-			if (line.includes('inputRef.nativeElement')) {
+			if (line.includes('formRef.nativeElement')) {
 				return line.replace(
-					'inputRef.nativeElement',
-					'inputRef?.nativeElement'
+					'formRef.nativeElement',
+					'formRef?.nativeElement'
 				);
 			}
 
 			return line;
 		})
 		.join('\n');
-
-	if (component?.overwrites?.angular) {
-		for (const over of component.overwrites.angular) {
-			result = result.replace(over.from, over.to);
-		}
-	}
-
-	if (component?.overwrites?.global) {
-		for (const over of component.overwrites.global) {
-			result = result.replace(over.from, over.to);
-		}
-	}
-
-	return result;
 };
 
 module.exports = () => {
-	for (const component of Components) {
+	for (const component of components) {
+		const componentName = component.name;
+		const file = `../../output/angular/src/components/${componentName}/${componentName}.ts`;
 		const options = {
-			files: `../../output/angular/src/components/${component.name}/${component.name}.ts`,
+			files: file,
 			processor: (input) => changeFile(component, input)
 		};
 
 		try {
 			Replace.sync(options);
+			runReplacements([], component, 'angular', file);
 		} catch (error) {
 			console.error('Error occurred:', error);
 		}

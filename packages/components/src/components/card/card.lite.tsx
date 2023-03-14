@@ -27,6 +27,8 @@ useMetadata({
 });
 
 export default function DBCard(props: DBCardProps) {
+	// This is used as forwardRef
+	let component: any;
 	const state = useStore<DBCardState>({
 		handleClick: (event: any) => {
 			if (props.onClick) {
@@ -43,6 +45,7 @@ export default function DBCard(props: DBCardProps) {
 
 	return (
 		<div
+			ref={component}
 			class={'db-card' + (props.className ? ' ' + props.className : '')}
 			data-variant={props.variant}
 			data-color-variant={props.colorVariant}

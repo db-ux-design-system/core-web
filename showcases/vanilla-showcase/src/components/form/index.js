@@ -37,7 +37,7 @@ const getContent = () => {
 								label="Textinput"
 								placeholder="Placeholder"
 								description="Description"
-								iconBefore="edit"
+								icon="edit"
 							></db-input>
 						<p>DbButton:</p>
 						<db-button type="button" id="db-button" variant="primary">

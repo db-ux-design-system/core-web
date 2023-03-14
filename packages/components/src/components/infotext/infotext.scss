@@ -4,20 +4,35 @@
 
 $variants: (
 	"critical": (
-		$db-colors-critical-enabled,
-		$db-colors-critical-element-enabled
+		var(--db-colors-critical-enabled, $db-colors-critical-enabled),
+		var(
+			--db-colors-critical-element-enabled,
+			$db-colors-critical-element-enabled
+		)
 	),
-	"information": (
-		$db-colors-information-enabled,
-		$db-colors-information-element-enabled
+	"informational": (
+		var(
+			--db-colors-informational-enabled,
+			$db-colors-informational-enabled
+		),
+		var(
+			--db-colors-informational-element-enabled,
+			$db-colors-informational-element-enabled
+		)
 	),
 	"warning": (
-		$db-colors-warning-enabled,
-		$db-colors-warning-element-enabled
+		var(--db-colors-warning-enabled, $db-colors-warning-enabled),
+		var(
+			--db-colors-warning-element-enabled,
+			$db-colors-warning-element-enabled
+		)
 	),
-	"success": (
-		$db-colors-success-enabled,
-		$db-colors-success-element-enabled
+	"successful": (
+		var(--db-colors-successful-enabled, $db-colors-successful-enabled),
+		var(
+			--db-colors-successful-element-enabled,
+			$db-colors-successful-element-enabled
+		)
 	)
 );
 

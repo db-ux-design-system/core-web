@@ -1,47 +1,18 @@
 <script setup lang="ts">
-import { DBInput, DBButton } from "../../../../../output/vue/vue3/src";
+import { DBButton, DBInput } from "../../../../../output/vue/vue3/src";
 import "./index.scss";
-
-import { ref, watch } from "vue";
-import { useRoute } from "vue-router";
-import {
-	COLOR_CONST,
-	INVALID_INPUT_BACKGROUNDS
-} from "../../../../../packages/components/src/shared/constants";
-
-const route = useRoute();
-const backgroundWarning = ref(false);
-
-watch(
-	() => route.query,
-	async (query: any) => {
-		if (query[COLOR_CONST]) {
-			backgroundWarning.value =
-				Boolean(
-					INVALID_INPUT_BACKGROUNDS.some((iBg) =>
-						iBg.includes(query[COLOR_CONST] ?? "")
-					)
-				) || false;
-		}
-	}
-);
 </script>
 
 <template>
 	<div>
 		<h1>Input</h1>
-
-		<strong v-if="backgroundWarning">
-			This background is not working with inputs! Please use light colors
-			as background.
-		</strong>
 		<div class="input-container">
 			<form>
 				<DBInput
 					description="This is a description"
 					label="Start train station"
 					placeholder="some text"
-					iconBefore="edit"
+					icon="edit"
 					variant="critical"
 					value="hello"
 					name="testInput"
@@ -51,7 +22,7 @@ watch(
 					description="Valid test"
 					label="With event"
 					placeholder="some text"
-					iconBefore="edit"
+					icon="edit"
 					iconAfter="heart"
 					variant="warning"
 					id="input-expr-warning"
@@ -88,7 +59,7 @@ watch(
 					id="db-input-functional-2"
 					label="Textinput disabled"
 					placeholder="some text"
-					variant="information"
+					variant="informational"
 					disabled="true"
 				></DBInput>
 
