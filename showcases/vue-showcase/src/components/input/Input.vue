@@ -59,7 +59,7 @@ import "./index.scss";
 					id="db-input-functional-2"
 					label="Textinput disabled"
 					placeholder="some text"
-					variant="information"
+					variant="informational"
 					disabled="true"
 				></DBInput>
 

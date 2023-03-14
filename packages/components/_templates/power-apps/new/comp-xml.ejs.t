@@ -38,8 +38,8 @@ force: true
                   of-type="Enum">
                   <value name="Adaptive" display-name-key="Adaptive">adaptive</value>
                   <value name="Critical" display-name-key="Critical">critical</value>
-                  <value name="Information" display-name-key="Information">information</value>
-                  <value name="Success" display-name-key="Success">success</value>
+                  <value name="Informational" display-name-key="Informational">informational</value>
+                  <value name="Successful" display-name-key="Successful">successful</value>
                   <value name="Warning" display-name-key="Warning">warning</value>
                   </property>
 				  <% } -%>
