@@ -1,3 +1,4 @@
+/* eslint-disable unicorn/prefer-top-level-await */
 import childProcess from 'node:child_process';
 import inquirer from 'inquirer';
 
