@@ -58,7 +58,11 @@ const Base64 = () => {
 					))}
 				</select>
 			</div>
-			<DBLink href={url} target="_blank" variant="primary">
+			<DBLink
+				href={url}
+				target="_blank"
+				variant="primary"
+				content="external">
 				Open IFrame
 			</DBLink>
 		</div>
