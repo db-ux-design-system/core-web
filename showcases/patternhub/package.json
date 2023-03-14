@@ -14,8 +14,7 @@
     "lint": "next lint",
     "next:dev": "next dev",
     "next:start": "next start",
-    "start": "npm-run-all copy next:start",
-    "tailwind:generate": "tailwind -i ./styles/tailwind.css -o ./styles/tailwind.generated.css"
+    "start": "npm-run-all copy next:start"
   },
   "dependencies": {
     "@db-ui/react-elements": "^0.22.0",
