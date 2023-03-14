@@ -13,12 +13,6 @@
 			"options": {
 				"parser": "sh"
 			}
-		},
-		{
-			"files": ["*.scss"],
-			"options": {
-				"trailingComma": "none"
-			}
 		}
 	],
 	"endOfLine": "auto"
