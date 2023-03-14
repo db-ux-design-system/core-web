@@ -17,16 +17,16 @@ const variants: DefaultComponentVariants[] = [
 				code: '<DBInfotext variant="critical">Infotext</DBInfotext>'
 			},
 			{
-				name: 'Information',
+				name: 'Informational',
 				example: (
-					<DBInfotext variant="information">Infotext</DBInfotext>
+					<DBInfotext variant="informational">Infotext</DBInfotext>
 				),
-				code: '<DBInfotext variant="information">Infotext</DBInfotext>'
+				code: '<DBInfotext variant="informational">Infotext</DBInfotext>'
 			},
 			{
-				name: 'Success',
-				example: <DBInfotext variant="success">Infotext</DBInfotext>,
-				code: '<DBInfotext variant="success">Infotext</DBInfotext>'
+				name: 'Successful',
+				example: <DBInfotext variant="successful">Infotext</DBInfotext>,
+				code: '<DBInfotext variant="successful">Infotext</DBInfotext>'
 			},
 			{
 				name: 'Warning',

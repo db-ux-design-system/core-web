@@ -80,14 +80,14 @@ const getAppShell = (content) =>
 				<option>primary-transparent-semi</option>
 				<option>secondary</option>
 				<option>secondary-transparent-semi</option>
-				<option>success</option>
-				<option>success-transparent-semi</option>
+				<option>successful</option>
+				<option>successful-transparent-semi</option>
 				<option>critical</option>
 				<option>critical-transparent-semi</option>
 				<option>warning</option>
 				<option>warning-transparent-semi</option>
-				<option>information</option>
-				<option>information-transparent-semi</option>
+				<option>informational</option>
+				<option>informational-transparent-semi</option>
 			</select>
 			</div>
 		</db-header>
