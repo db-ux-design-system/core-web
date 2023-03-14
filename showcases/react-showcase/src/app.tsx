@@ -1,3 +1,4 @@
+import type { ChangeEvent } from 'react';
 import { Link, Outlet } from 'react-router-dom';
 import { DBBrand, DBHeader, DBPage } from '../../../output/react/src';
 
@@ -45,7 +46,9 @@ const App = () => {
 						<div>
 							<select
 								value={tonality}
-								onChange={(event) => {
+								onChange={(
+									event: ChangeEvent<HTMLSelectElement>
+								) => {
 									setTonality(event?.target?.value);
 								}}>
 								{TONALITIES.map((ton) => (
@@ -58,7 +61,9 @@ const App = () => {
 							</select>
 							<select
 								value={color}
-								onChange={(event) => {
+								onChange={(
+									event: ChangeEvent<HTMLSelectElement>
+								) => {
 									setColor(event?.target?.value);
 								}}>
 								{COLORS.map((col) => (
