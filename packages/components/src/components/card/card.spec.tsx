@@ -14,9 +14,9 @@ const colorVariants = [
 	'primary',
 	'secondary',
 	'critical',
-	'success',
+	'successful',
 	'warning',
-	'information'
+	'informational'
 ];
 
 const directions = ['row', 'column'];

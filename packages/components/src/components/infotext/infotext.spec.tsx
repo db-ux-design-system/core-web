@@ -3,7 +3,7 @@ import AxeBuilder from '@axe-core/playwright';
 
 import { DBInfotext } from './index';
 
-const comp = <DBInfotext variant="success">Test</DBInfotext>;
+const comp = <DBInfotext variant="successful">Test</DBInfotext>;
 
 const testComponent = () => {
 	test('DBInfotext should contain text', async ({ mount }) => {

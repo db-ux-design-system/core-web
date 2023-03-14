@@ -24,7 +24,7 @@ const logAll = () => {
 						label="Textinput"
 						placeholder="Placeholder"
 						description="Description"
-						iconBefore="edit"
+						icon="edit"
 						name="input-name"
 						class="fullWidth"
 						v-model:value="input"

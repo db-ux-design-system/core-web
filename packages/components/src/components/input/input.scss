@@ -352,22 +352,22 @@
 		}
 	}
 
-	&[data-variant="success"] input {
+	&[data-variant="successful"] input {
 		--db-current-border-color: var(
-			--db-colors-success-border-enabled,
-			#{$db-colors-success-border-enabled}
+			--db-colors-successful-border-enabled,
+			#{$db-colors-successful-border-enabled}
 		);
-		@extend %db-bg-success-transparent-semi;
-		@extend %db-bg-success-transparent-semi-hover-state;
+		@extend %db-bg-successful-transparent-semi;
+		@extend %db-bg-successful-transparent-semi-hover-state;
 
 		& + label {
-			color: $db-colors-success-on-bg-enabled;
+			color: $db-colors-successful-on-bg-enabled;
 		}
 
 		& ~ .description,
 		& ~ .icon-input-state,
 		& ~ .icon-input-state .db-icon {
-			color: $db-colors-success-element-enabled;
+			color: $db-colors-successful-element-enabled;
 		}
 
 		& ~ .icon-input-state,
@@ -376,22 +376,22 @@
 		}
 	}
 
-	&[data-variant="information"] input {
+	&[data-variant="informational"] input {
 		--db-current-border-color: var(
-			--db-colors-information-border-enabled,
-			#{$db-colors-information-border-enabled}
+			--db-colors-informational-border-enabled,
+			#{$db-colors-informational-border-enabled}
 		);
-		@extend %db-bg-information-transparent-semi;
-		@extend %db-bg-information-transparent-semi-hover-state;
+		@extend %db-bg-informational-transparent-semi;
+		@extend %db-bg-informational-transparent-semi-hover-state;
 
 		& + label {
-			color: $db-colors-information-on-bg-enabled;
+			color: $db-colors-informational-on-bg-enabled;
 		}
 
 		& ~ .description,
 		& ~ .icon-input-state,
 		& ~ .icon-input-state .db-icon {
-			color: $db-colors-information-element-enabled;
+			color: $db-colors-informational-element-enabled;
 		}
 
 		& ~ .icon-input-state,

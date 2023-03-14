@@ -1,6 +1,7 @@
 assets/fonts/**/sources
 build/
 build-outputs/
+build-power-apps/
 out/
 output/
 source/_patterns/**

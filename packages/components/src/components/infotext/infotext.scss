@@ -10,11 +10,14 @@ $variants: (
 			$db-colors-critical-element-enabled
 		)
 	),
-	"information": (
-		var(--db-colors-information-enabled, $db-colors-information-enabled),
+	"informational": (
 		var(
-			--db-colors-information-element-enabled,
-			$db-colors-information-element-enabled
+			--db-colors-informational-enabled,
+			$db-colors-informational-enabled
+		),
+		var(
+			--db-colors-informational-element-enabled,
+			$db-colors-informational-element-enabled
 		)
 	),
 	"warning": (
@@ -24,11 +27,11 @@ $variants: (
 			$db-colors-warning-element-enabled
 		)
 	),
-	"success": (
-		var(--db-colors-success-enabled, $db-colors-success-enabled),
+	"successful": (
+		var(--db-colors-successful-enabled, $db-colors-successful-enabled),
 		var(
-			--db-colors-success-element-enabled,
-			$db-colors-success-element-enabled
+			--db-colors-successful-element-enabled,
+			$db-colors-successful-element-enabled
 		)
 	)
 );

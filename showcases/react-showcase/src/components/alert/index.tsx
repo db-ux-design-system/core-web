@@ -72,28 +72,28 @@ const variants: DefaultComponentVariants[] = [
 				style: { width: '100%' },
 				example: (
 					<DBAlert
-						variant="information"
+						variant="informational"
 						headline="Headline"
 						link={{ href: '#' }}
 						slotLink="Link">
 						Type Something
 					</DBAlert>
 				),
-				code: '<DBAlert variant="information" headline="Headline" link={{ href: "#" }} slotLink="Link">Type Something</DBAlert>'
+				code: '<DBAlert variant="informational" headline="Headline" link={{ href: "#" }} slotLink="Link">Type Something</DBAlert>'
 			},
 			{
 				name: 'Success',
 				style: { width: '100%' },
 				example: (
 					<DBAlert
-						variant="success"
+						variant="successful"
 						headline="Headline"
 						link={{ href: '#' }}
 						slotLink="Link">
 						Type Something
 					</DBAlert>
 				),
-				code: '<DBAlert variant="success" headline="Headline" link={{ href: "#" }} slotLink="Link">Type Something</DBAlert>'
+				code: '<DBAlert variant="successful" headline="Headline" link={{ href: "#" }} slotLink="Link">Type Something</DBAlert>'
 			},
 			{
 				name: 'Warning',

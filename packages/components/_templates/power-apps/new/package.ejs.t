@@ -14,7 +14,6 @@ force: true
     "refreshTypes": "pcf-scripts refreshTypes"
   },
   "dependencies": {
-    "@db-ui/foundations": "*",
     "react": "17.0.2",
     "react-dom": "17.0.2"
   },
