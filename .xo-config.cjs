@@ -9,31 +9,43 @@ module.exports = {
 				"@typescript-eslint/consistent-type-imports": 0,
 			},
 		},
+
+		{
+			files: ["./**/angular-**/**"],
+			rules: {
+				"unicorn/prefer-top-level-await": 0, // we don't need it for angular, some files are generated this way
+			},
+		},
+		{
+			files: [
+				"./**/angular-**/**",
+				"./showcases/vanilla-showcase/**",
+				"./showcases/svelte-showcase/**",
+			],
+			rules: {
+				"new-cap": 0, // fixes issue with @Component annotation
+				"import/no-unassigned-import": 0, // fixes issue with including zone.js or db-components
+				"no-undef": 0, // fixes issue with document & window
+			},
+		},
 		{
 			files: ["./showcases/**", "./examples/**"],
 			rules: {
 				// In TS we don't need extension
 				"import/extensions": 0,
+				"n/file-extension-in-import": 0,
+				"@typescript-eslint/no-unsafe-assignment": 0, // We don't need this tsc will handle it anyway
+				"@typescript-eslint/no-unsafe-call": 0, // We don't need this tsc will handle it anyway
+				"@typescript-eslint/naming-convention": 0, // Too much trouble for different frameworks in a monorepo
+				"@typescript-eslint/restrict-template-expressions": 0, // Legit it react
 			},
 		},
 	],
 	rules: {
 		"@db-ui/v2-component-used": "warn",
 		"no-console": ["error", { allow: ["warn", "error"] }],
-		"unicorn/prefer-module": 0, // we need to change every package to type:module
-		"max-depth": 0,
-		"n/prefer-global/process": 0,
-		"max-params": 0,
-		"new-cap": 0,
-		"import/no-unassigned-import": 0,
-		"no-undef": 0,
-		"@typescript-eslint/no-unsafe-call": 0,
-		"n/file-extension-in-import": 0,
-		"@typescript-eslint/no-unsafe-return": 0,
-		"@typescript-eslint/no-unsafe-assignment": 0,
-		"unicorn/prefer-top-level-await": 0,
-		"@typescript-eslint/naming-convention": 0,
-		"@typescript-eslint/restrict-template-expressions": 0,
+		"unicorn/prefer-module": 0, // TODO: we need to change every package to "type":"module"
+		"n/prefer-global/process": 0, // We use process.env in config files so don't use require("process")
 		"unicorn/filename-case": [
 			"error",
 			{
