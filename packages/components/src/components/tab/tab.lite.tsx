@@ -3,7 +3,7 @@ import {
 	Show,
 	useMetadata,
 	useStore,
-	useRef,
+	useRef
 } from '@builder.io/mitosis';
 import { DEFAULT_ID } from '../../shared/constants';
 import type { DBTabState, DBTabProps } from './model';
@@ -21,11 +21,11 @@ useMetadata({
 				type: 'Enum',
 				values: [
 					{ key: 'False', name: 'False', value: 'false' },
-					{ key: 'True', name: 'True', value: 'true' },
-				],
-			},
-		],
-	},
+					{ key: 'True', name: 'True', value: 'true' }
+				]
+			}
+		]
+	}
 });
 
 export default function DBTab(props: DBTabProps) {
@@ -33,7 +33,7 @@ export default function DBTab(props: DBTabProps) {
 	let component: any;
 	const formRef = useRef<HTMLInputElement>(null);
 	const state = useStore<DBTabState>({
-		mId: DEFAULT_ID,
+		mId: DEFAULT_ID
 	});
 
 	onMount(() => {

@@ -6,8 +6,8 @@ useMetadata({
 	isAttachedToShadowDom: false,
 	component: {
 		includeIcon: false,
-		properties: [],
-	},
+		properties: []
+	}
 });
 
 export default function DBLink(props: DBLinkProps) {
@@ -18,7 +18,7 @@ export default function DBLink(props: DBLinkProps) {
 			if (props.onClick) {
 				props.onClick(event);
 			}
-		},
+		}
 	});
 
 	onMount(() => {

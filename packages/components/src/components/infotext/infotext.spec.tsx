@@ -31,7 +31,7 @@ test.describe('DBInfotext component on mobile', () => {
 test.describe('DBInfotext component A11y', () => {
 	test('DBInfotext should not have any automatically detectable accessibility issues', async ({
 		page,
-		mount,
+		mount
 	}) => {
 		await mount(comp);
 		const accessibilityScanResults = await new AxeBuilder({ page })

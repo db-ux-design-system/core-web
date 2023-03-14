@@ -32,7 +32,7 @@ test.describe('DBCodeDocs component on mobile', () => {
 test.describe('DBCodeDocs component A11y', () => {
 	test('DBCodeDocs should not have any automatically detectable accessibility issues', async ({
 		page,
-		mount,
+		mount
 	}) => {
 		await mount(comp);
 		const accessibilityScanResults = await new AxeBuilder({ page })

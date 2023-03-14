@@ -1,7 +1,7 @@
-import type { DbMainnavigationDataType } from "@db-ui/elements/dist/types/components/db-mainnavigation/db-mainnavigation-type";
-import DefaultPage from "../../components/default-page";
-import { DBCard } from "../../components/src/components/card";
-import { getRouteWithBasePath, ROUTES } from "../../data/routes";
+import type { DbMainnavigationDataType } from '@db-ui/elements/dist/types/components/db-mainnavigation/db-mainnavigation-type';
+import DefaultPage from '../../components/default-page';
+import { DBCard } from '../../components/src/components/card';
+import { getRouteWithBasePath, ROUTES } from '../../data/routes';
 
 const ShowcasesPage = () => (
 	<DefaultPage>

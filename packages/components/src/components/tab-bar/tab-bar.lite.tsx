@@ -12,10 +12,10 @@ useMetadata({
 			{
 				name: 'tabs',
 				type: 'Enum',
-				values: [{ key: 'TODO', name: 'TODO', value: 'TODO' }],
-			},
-		],
-	},
+				values: [{ key: 'TODO', name: 'TODO', value: 'TODO' }]
+			}
+		]
+	}
 });
 
 export default function DBTabBar(props: DBTabBarProps) {
@@ -34,7 +34,7 @@ export default function DBTabBar(props: DBTabBarProps) {
 			}
 
 			return undefined;
-		},
+		}
 	});
 
 	onMount(() => {

@@ -1,4 +1,4 @@
-import { DBCard, DBIcon, DBLink } from "../../../../../../output/react/src";
+import { DBCard, DBIcon, DBLink } from '../../../../../../output/react/src';
 
 const WelcomeCard = () => {
 	return (
@@ -12,7 +12,7 @@ const WelcomeCard = () => {
 					<p>
 						Die Webseite<strong> next.bahn.de </strong>
 						und<strong> </strong>die App
-						<strong> Next DB Navigator</strong> sind{" "}
+						<strong> Next DB Navigator</strong> sind{' '}
 						<strong>
 							ab sofort parallel zu bahn.de und dem DB Navigator
 							verfügbar

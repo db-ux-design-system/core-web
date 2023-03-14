@@ -1,4 +1,4 @@
-import { type CSSProperties, type ReactElement } from "react";
+import { type CSSProperties, type ReactElement } from 'react';
 
 export type DefaultComponentExample = {
 	name: string;

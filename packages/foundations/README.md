@@ -81,12 +81,12 @@ module.exports = {
 		spacing: tokens.spacing,
 		boxShadow: tokens.elevation,
 		gap: ({ theme }) => ({
-			...theme("spacing"),
+			...theme("spacing")
 		}),
 		space: ({ theme }) => ({
-			...theme("spacing"),
-		}),
-	},
+			...theme("spacing")
+		})
+	}
 };
 ```
 

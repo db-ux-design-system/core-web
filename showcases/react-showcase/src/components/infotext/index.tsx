@@ -1,61 +1,61 @@
-import { DBInfotext } from "../../../../../output/react/src";
-import DefaultComponent from "../index";
-import type { DefaultComponentVariants } from "../data";
+import { DBInfotext } from '../../../../../output/react/src';
+import DefaultComponent from '../index';
+import type { DefaultComponentVariants } from '../data';
 
 const variants: DefaultComponentVariants[] = [
 	{
-		name: "Variant",
+		name: 'Variant',
 		examples: [
 			{
-				name: "(Default) Adaptive",
+				name: '(Default) Adaptive',
 				example: <DBInfotext icon="account">Infotext</DBInfotext>,
-				code: '<DBInfotext icon="account">Infotext</DBInfotext>',
+				code: '<DBInfotext icon="account">Infotext</DBInfotext>'
 			},
 			{
-				name: "Critical",
+				name: 'Critical',
 				example: <DBInfotext variant="critical">Infotext</DBInfotext>,
-				code: '<DBInfotext variant="critical">Infotext</DBInfotext>',
+				code: '<DBInfotext variant="critical">Infotext</DBInfotext>'
 			},
 			{
-				name: "Informational",
+				name: 'Informational',
 				example: (
 					<DBInfotext variant="informational">Infotext</DBInfotext>
 				),
-				code: '<DBInfotext variant="informational">Infotext</DBInfotext>',
+				code: '<DBInfotext variant="informational">Infotext</DBInfotext>'
 			},
 			{
-				name: "Successful",
+				name: 'Successful',
 				example: <DBInfotext variant="successful">Infotext</DBInfotext>,
-				code: '<DBInfotext variant="successful">Infotext</DBInfotext>',
+				code: '<DBInfotext variant="successful">Infotext</DBInfotext>'
 			},
 			{
-				name: "Warning",
+				name: 'Warning',
 				example: <DBInfotext variant="warning">Infotext</DBInfotext>,
-				code: '<DBInfotext variant="warning">Infotext</DBInfotext>',
-			},
-		],
+				code: '<DBInfotext variant="warning">Infotext</DBInfotext>'
+			}
+		]
 	},
 	{
-		name: "Size",
+		name: 'Size',
 		examples: [
 			{
-				name: "(Default) Medium",
+				name: '(Default) Medium',
 				example: <DBInfotext>Infotext</DBInfotext>,
-				code: "<DBInfotext>Infotext</DBInfotext>",
+				code: '<DBInfotext>Infotext</DBInfotext>'
 			},
 			{
-				name: "Small",
+				name: 'Small',
 				example: <DBInfotext size="small">Infotext</DBInfotext>,
-				code: '<DBInfotext size="small">Infotext</DBInfotext>',
-			},
-		],
-	},
+				code: '<DBInfotext size="small">Infotext</DBInfotext>'
+			}
+		]
+	}
 ];
 
 const InfotextComponent = () => {
 	return (
 		<DefaultComponent
-			title={"DBInfotext"}
+			title={'DBInfotext'}
 			variants={variants}></DefaultComponent>
 	);
 };

@@ -5,13 +5,13 @@ useMetadata({
 	isAttachedToShadowDom: true,
 	component: {
 		includeIcon: false,
-		properties: [],
-	},
+		properties: []
+	}
 });
 
 const DEFAULT_VALUES = {
 	anchorRef: '/',
-	src: './assets/images/db_logo.svg',
+	src: './assets/images/db_logo.svg'
 };
 
 export default function DBBrand(props: DBBrandProps) {

@@ -8,7 +8,7 @@ export const COLOR_CONST = 'color';
 export enum TONALITY {
 	'FUNCTIONAL' = 'functional',
 	'REGULAR' = 'regular',
-	'EXPRESSIVE' = 'expressive',
+	'EXPRESSIVE' = 'expressive'
 }
 export const TONALITIES: TONALITY[] = Object.entries(TONALITY).map(
 	([, value]) => value
@@ -39,7 +39,7 @@ export enum COLOR {
 	'WARNING_TRANSPARENT_SEMI' = 'warning-transparent-semi',
 	'INFORMATIONAL' = 'informational',
 	'INFORMATIONAL_TRANSPARENT_FULL' = 'informational-transparent-full',
-	'INFORMATIONAL_TRANSPARENT_SEMI' = 'informational-transparent-semi',
+	'INFORMATIONAL_TRANSPARENT_SEMI' = 'informational-transparent-semi'
 }
 
 export const COLORS: COLOR[] = Object.entries(COLOR).map(([, value]) => value);
@@ -48,7 +48,7 @@ export enum VARIANT {
 	'CRITICAL' = 'critical',
 	'INFORMATIONAL' = 'informational',
 	'WARNING' = 'warning',
-	'SUCCESSFUL' = 'successful',
+	'SUCCESSFUL' = 'successful'
 }
 
 export const VARIANTS: VARIANT[] = Object.entries(VARIANT).map(
@@ -58,5 +58,5 @@ export const VARIANTS: VARIANT[] = Object.entries(VARIANT).map(
 export const TESTING_VIEWPORTS = [
 	{ name: 'desktop', width: 1920, height: 1280 },
 	{ name: 'tablet', width: 768, height: 1024 },
-	{ name: 'mobile', width: 390, height: 884 },
+	{ name: 'mobile', width: 390, height: 884 }
 ];

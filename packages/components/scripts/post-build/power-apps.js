@@ -1,6 +1,6 @@
-const Fse = require("fs-extra");
-const Replace = require("replace-in-file");
-const { components } = require("./components");
+const Fse = require('fs-extra');
+const Replace = require('replace-in-file');
+const { components } = require('./components');
 
 const updateNestedComponents = (input, rootComponentName, powerAppsFolder) => {
 	let fileContent = input;
@@ -15,7 +15,7 @@ const updateNestedComponents = (input, rootComponentName, powerAppsFolder) => {
 				`../../output/power-apps/${rootComponentName}/${nestedComponent.name}`,
 				{
 					overwrite: true,
-					filter: (src) => !src.includes("spec"),
+					filter: (src) => !src.includes('spec')
 				}
 			);
 
@@ -23,20 +23,20 @@ const updateNestedComponents = (input, rootComponentName, powerAppsFolder) => {
 				`./src/components/${nestedComponent.name}/${nestedComponent.name}.scss`,
 				`../../output/power-apps/${rootComponentName}/${nestedComponent.name}/${nestedComponent.name}.scss`,
 				{
-					overwrite: true,
+					overwrite: true
 				}
 			);
 
 			Replace.sync({
 				files: `../../output/power-apps/${rootComponentName}/${powerAppsFolder}/index.scss`,
 				from: `:root {`,
-				to: `@use "../${nestedComponent.name}/${nestedComponent.name}.scss" as *;\n:root {`,
+				to: `@use "../${nestedComponent.name}/${nestedComponent.name}.scss" as *;\n:root {`
 			});
 
 			Replace.sync({
 				files: `../../output/power-apps/${rootComponentName}/${nestedComponent.name}/model.ts`,
 				from: `../../shared/model`,
-				to: `../shared/model`,
+				to: `../shared/model`
 			});
 		}
 	}
@@ -50,8 +50,8 @@ module.exports = () => {
 			const powerAppsFolder = `DB${component.name[0].toUpperCase()}${component.name.slice(
 				1
 			)}`;
-			const cleanName = component.name.replace("-", "");
-			const files = [`${component.name}.tsx`, "model.ts"];
+			const cleanName = component.name.replace('-', '');
+			const files = [`${component.name}.tsx`, 'model.ts'];
 
 			Replace.sync({
 				files: `../../output/react/src/components/${component.name}/${component.name}.tsx`,
@@ -61,7 +61,7 @@ module.exports = () => {
 						cleanName,
 						powerAppsFolder
 					);
-				},
+				}
 			});
 
 			Fse.removeSync(`../../output/power-apps/${cleanName}/node_modules`);
@@ -91,22 +91,22 @@ module.exports = () => {
 			Replace.sync({
 				files: `../../output/power-apps/${cleanName}/${powerAppsFolder}/model.ts`,
 				from: `../../shared/model`,
-				to: `../shared/model`,
+				to: `../shared/model`
 			});
 
 			Replace.sync({
 				files: `../../output/power-apps/${cleanName}/${powerAppsFolder}/${component.name}.tsx`,
 				from: [`../../`, `../../`, `../../`],
-				to: `../`,
+				to: `../`
 			});
 
 			Replace.sync({
 				files: `../../output/power-apps/${cleanName}/${powerAppsFolder}/${component.name}.tsx`,
 				from: `import * as React from "react";`,
-				to: `import * as React from "react";\nimport "./index.scss";`,
+				to: `import * as React from "react";\nimport "./index.scss";`
 			});
 		} catch (error) {
-			console.error("Error occurred:", error);
+			console.error('Error occurred:', error);
 		}
 	}
 };

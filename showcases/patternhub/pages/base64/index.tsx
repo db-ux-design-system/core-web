@@ -1,17 +1,17 @@
 /* eslint-disable-next-line unicorn/prefer-node-protocol */
-import { Buffer } from "buffer";
-import { useEffect, useState } from "react";
-import DBLink from "../../components/src/components/link/link";
+import { Buffer } from 'buffer';
+import { useEffect, useState } from 'react';
+import DBLink from '../../components/src/components/link/link';
 import {
 	COLOR,
 	COLORS,
 	TONALITIES,
-	TONALITY,
-} from "../../components/src/shared/constants";
+	TONALITY
+} from '../../components/src/shared/constants';
 
 const Base64 = () => {
-	const [base64, setBase64] = useState<string>("");
-	const [url, setUrl] = useState<string>("");
+	const [base64, setBase64] = useState<string>('');
+	const [url, setUrl] = useState<string>('');
 
 	const [tonality, setTonality] = useState<string>(TONALITY.REGULAR);
 	const [color, setColor] = useState<string>(COLOR.NEUTRAL_0);
@@ -30,7 +30,7 @@ const Base64 = () => {
 			<textarea
 				onChange={(event) => {
 					setBase64(
-						Buffer.from(event.target.value).toString("base64")
+						Buffer.from(event.target.value).toString('base64')
 					);
 				}}></textarea>
 			<div>

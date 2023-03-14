@@ -7,8 +7,8 @@ useMetadata({
 	isAttachedToShadowDom: true,
 	component: {
 		includeIcon: false,
-		properties: [],
-	},
+		properties: []
+	}
 });
 
 export default function DBInfotext(props: DBInfotextProps) {
@@ -17,7 +17,7 @@ export default function DBInfotext(props: DBInfotextProps) {
 	const state = useStore<DBInfotextState>({
 		getIcon: (icon?: string, variant?: string) => {
 			return icon || DefaultVariantsIcon[variant] || 'info';
-		},
+		}
 	});
 
 	onMount(() => {

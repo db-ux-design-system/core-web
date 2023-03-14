@@ -1,6 +1,6 @@
-const Replace = require("replace-in-file");
-const { components } = require("./components");
-const { getComponentName, runReplacements } = require("../utils");
+const Replace = require('replace-in-file');
+const { components } = require('./components');
+const { getComponentName, runReplacements } = require('../utils');
 
 const updateNestedComponents = (input, rootComponentName) => {
 	let fileContent = input;
@@ -18,9 +18,9 @@ const updateNestedComponents = (input, rootComponentName) => {
 	}
 
 	return fileContent
-		.split("\n")
-		.filter((line) => !line.includes("import type"))
-		.join("\n");
+		.split('\n')
+		.filter((line) => !line.includes('import type'))
+		.join('\n');
 };
 
 /**
@@ -43,14 +43,14 @@ const updateVModelBindings = (input, bindings) => {
 	// Add emits to component config
 
 	fileContent = fileContent.replace(
-		"props: [",
+		'props: [',
 		`emits: ${JSON.stringify(
 			bindings.map((bin) => `update:${bin.modelValue}`)
 		)},\nprops: [`
 	);
 
 	return fileContent
-		.split("\n")
+		.split('\n')
 		.map((line) => {
 			const foundBinding = bindings.find(
 				(bin) =>
@@ -66,7 +66,7 @@ const updateVModelBindings = (input, bindings) => {
 
 			return line;
 		})
-		.join("\n");
+		.join('\n');
 };
 
 module.exports = () => {
@@ -74,7 +74,7 @@ module.exports = () => {
 	Replace.sync({
 		files: `../../output/vue/vue3/playwright.config.ts`,
 		from: /react/g,
-		to: `vue`,
+		to: `vue`
 	});
 	for (const component of components) {
 		const componentName = component.name;
@@ -85,24 +85,24 @@ module.exports = () => {
 			Replace.sync({
 				files: `../../output/vue/vue3/src/components/${componentName}/${componentName}.spec.tsx`,
 				from: `react`,
-				to: `vue`,
+				to: `vue`
 			});
 			Replace.sync({
 				files: `../../output/vue/vue3/src/components/${componentName}/${componentName}.spec.tsx`,
 				from: /new AxeBuilder/g,
-				to: `new AxeBuilder.default`,
+				to: `new AxeBuilder.default`
 			});
 
 			Replace.sync({
 				files: `../../output/vue/vue3/src/components/${componentName}/index.ts`,
 				from: `./${componentName}`,
-				to: `./${componentName}.vue`,
+				to: `./${componentName}.vue`
 			});
 			Replace.sync({
 				files: vueFile,
 				processor(input) {
 					return updateNestedComponents(input, componentName);
-				},
+				}
 			});
 
 			if (component?.config?.vue?.vModel) {
@@ -113,7 +113,7 @@ module.exports = () => {
 							input,
 							component.config.vue.vModel
 						);
-					},
+					}
 				});
 			}
 
@@ -122,32 +122,32 @@ module.exports = () => {
 			let replacements = [
 				{
 					from: `_classStringToObject(str)`,
-					to: "_classStringToObject(str:any)",
+					to: '_classStringToObject(str:any)'
 				},
 				{
 					from: `const obj = {};`,
-					to: "const obj:any = {};",
+					to: 'const obj:any = {};'
 				},
 				{
 					from: `import { DB${upperComponentName}State, DB${upperComponentName}Props } from "./model";`,
-					to: "",
+					to: ''
 				},
 				{
 					from: `import { DB${upperComponentName}Props, DB${upperComponentName}State } from "./model";`,
-					to: "",
-				},
+					to: ''
+				}
 			];
 
 			if (component?.config?.isFormComponent) {
 				replacements.push({
-					from: "_isValid: undefined,",
-					to: "",
+					from: '_isValid: undefined,',
+					to: ''
 				});
 			}
 
-			runReplacements(replacements, component, "vue", vueFile);
+			runReplacements(replacements, component, 'vue', vueFile);
 		} catch (error) {
-			console.error("Error occurred:", error);
+			console.error('Error occurred:', error);
 		}
 	}
 };

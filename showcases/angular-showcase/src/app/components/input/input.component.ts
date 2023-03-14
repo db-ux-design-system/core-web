@@ -1,12 +1,12 @@
-import { Component } from "@angular/core";
+import { Component } from '@angular/core';
 
 @Component({
-	selector: "app-input",
-	templateUrl: "./input.component.html",
+	selector: 'app-input',
+	templateUrl: './input.component.html'
 })
 export class InputComponent {
 	onSubmit = () => {
 		// eslint-disable-next-line no-console
-		console.log("onSubmit");
+		console.log('onSubmit');
 	};
 }

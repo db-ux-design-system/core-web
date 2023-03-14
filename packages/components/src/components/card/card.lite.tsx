@@ -13,17 +13,17 @@ useMetadata({
 					{
 						key: 'Interactive',
 						name: 'Interactive',
-						value: 'interactive',
+						value: 'interactive'
 					},
 					{
 						key: 'Full Width',
 						name: 'Full Width',
-						value: 'full-width',
-					},
-				],
-			},
-		],
-	},
+						value: 'full-width'
+					}
+				]
+			}
+		]
+	}
 });
 
 export default function DBCard(props: DBCardProps) {
@@ -34,7 +34,7 @@ export default function DBCard(props: DBCardProps) {
 			if (props.onClick) {
 				props.onClick(event);
 			}
-		},
+		}
 	});
 
 	onMount(() => {

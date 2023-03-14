@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState } from 'react';
 import {
 	DBInfotext,
 	DBButton,
@@ -10,18 +10,18 @@ import {
 	DBCard,
 	DBBrand,
 	DBSection,
-	DBHeader,
-} from "../src";
-import { ComponentParserType, ComponentType } from "./data";
+	DBHeader
+} from '../src';
+import { ComponentParserType, ComponentType } from './data';
 
-const validHosts = ["marketingportal.extranet.deutschebahn.com"];
+const validHosts = ['marketingportal.extranet.deutschebahn.com'];
 
 const ComponentSwitch = ({
 	type,
 	content,
 	index,
 	props,
-	className,
+	className
 }: ComponentType) => {
 	const resolvedContent =
 		content instanceof Array
@@ -39,36 +39,36 @@ const ComponentSwitch = ({
 			  )
 			: content;
 
-	if (type === "h1") {
+	if (type === 'h1') {
 		return <h1 className={className}>{resolvedContent}</h1>;
 	}
-	if (type === "h2") {
+	if (type === 'h2') {
 		return <h2 className={className}>{resolvedContent}</h2>;
 	}
-	if (type === "h3") {
+	if (type === 'h3') {
 		return <h3 className={className}>{resolvedContent}</h3>;
 	}
-	if (type === "h4") {
+	if (type === 'h4') {
 		return <h4 className={className}>{resolvedContent}</h4>;
 	}
-	if (type === "p") {
+	if (type === 'p') {
 		return <p className={className}>{resolvedContent}</p>;
 	}
-	if (type === "div") {
+	if (type === 'div') {
 		return <div className={className}>{resolvedContent}</div>;
 	}
-	if (type === "flex") {
+	if (type === 'flex') {
 		return (
 			<div
-				className={`flex ${className ? className : ""}`}
-				data-variant={props?.column ? "column" : "row"}>
+				className={`flex ${className ? className : ''}`}
+				data-variant={props?.column ? 'column' : 'row'}>
 				{resolvedContent}
 			</div>
 		);
 	}
-	if (type === "a") {
+	if (type === 'a') {
 		try {
-			const url = new URL("", props.href);
+			const url = new URL('', props.href);
 			const host = url.host;
 			if (validHosts.includes(host)) {
 				return (
@@ -84,77 +84,77 @@ const ComponentSwitch = ({
 			console.error(e);
 		}
 	}
-	if (type === "alert") {
+	if (type === 'alert') {
 		return (
 			<DBAlert className={className} {...props}>
 				{resolvedContent}
 			</DBAlert>
 		);
 	}
-	if (type === "brand") {
+	if (type === 'brand') {
 		return (
 			<DBBrand className={className} {...props}>
 				{resolvedContent}
 			</DBBrand>
 		);
 	}
-	if (type === "button") {
+	if (type === 'button') {
 		return (
 			<DBButton className={className} {...props}>
 				{resolvedContent}
 			</DBButton>
 		);
 	}
-	if (type === "card") {
+	if (type === 'card') {
 		return (
 			<DBCard className={className} {...props}>
 				{resolvedContent}
 			</DBCard>
 		);
 	}
-	if (type === "divider") {
+	if (type === 'divider') {
 		return (
 			<DBDivider className={className} {...props}>
 				{resolvedContent}
 			</DBDivider>
 		);
 	}
-	if (type === "header") {
+	if (type === 'header') {
 		return (
 			<DBHeader className={className} {...props}>
 				{resolvedContent}
 			</DBHeader>
 		);
 	}
-	if (type === "icon") {
+	if (type === 'icon') {
 		return (
 			<DBIcon className={className} {...props}>
 				{resolvedContent}
 			</DBIcon>
 		);
 	}
-	if (type === "infotext") {
+	if (type === 'infotext') {
 		return (
 			<DBInfotext className={className} {...props}>
 				{resolvedContent}
 			</DBInfotext>
 		);
 	}
-	if (type === "input") {
+	if (type === 'input') {
 		return (
 			<DBInput className={className} {...props}>
 				{resolvedContent}
 			</DBInput>
 		);
 	}
-	if (type === "link") {
+	if (type === 'link') {
 		return (
 			<DBLink className={className} {...props}>
 				{resolvedContent}
 			</DBLink>
 		);
 	}
-	if (type === "section") {
+	if (type === 'section') {
 		return (
 			<DBSection className={className} {...props}>
 				{resolvedContent}

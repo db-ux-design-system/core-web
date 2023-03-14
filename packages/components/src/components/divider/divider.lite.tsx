@@ -13,21 +13,21 @@ useMetadata({
 					{
 						key: 'Horizontal',
 						name: 'Horizontal',
-						value: 'horizontal',
+						value: 'horizontal'
 					},
-					{ key: 'Vertical', name: 'Vertical', value: 'vertical' },
-				],
+					{ key: 'Vertical', name: 'Vertical', value: 'vertical' }
+				]
 			},
 			{
 				name: 'margin',
 				type: 'Enum',
 				values: [
 					{ key: 'Default', name: 'Default', value: '_' },
-					{ key: 'None', name: 'None', value: 'none' },
-				],
-			},
-		],
-	},
+					{ key: 'None', name: 'None', value: 'none' }
+				]
+			}
+		]
+	}
 });
 
 export default function DBDivider(props: DBDividerProps) {

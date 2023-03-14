@@ -1,9 +1,9 @@
-import "../../../output/webcomponent/src/components/page/page.js";
-import "../../../output/webcomponent/src/components/header/header.js";
-import "../../../output/webcomponent/src/components/brand/brand.js";
-import "../../showcase-styles.css";
-import { navigationItems } from "./utils/navigation-items.js";
-import getQueryParams from "./utils/get-query-params.js";
+import '../../../output/webcomponent/src/components/page/page.js';
+import '../../../output/webcomponent/src/components/header/header.js';
+import '../../../output/webcomponent/src/components/brand/brand.js';
+import '../../showcase-styles.css';
+import { navigationItems } from './utils/navigation-items.js';
+import getQueryParams from './utils/get-query-params.js';
 
 const getClassName = (tonality, color) => {
 	return `db-ui-${tonality} db-bg-${color}`;
@@ -19,30 +19,30 @@ const insertParameter = (queryParameters, key, value) => {
 		return `${pKey}=${queryParameters[pKey]}`;
 	});
 
-	document.location.search = keys.join("&");
+	document.location.search = keys.join('&');
 };
 
 onload = () => {
-	const selectTonality = document.querySelector("#select-tonality");
-	const selectColor = document.querySelector("#select-color");
-	const content = document.querySelector("#content");
+	const selectTonality = document.querySelector('#select-tonality');
+	const selectColor = document.querySelector('#select-color');
+	const content = document.querySelector('#content');
 	const queryParameters = getQueryParams();
 
-	const tonality = queryParameters.tonality ?? "regular";
-	const color = queryParameters.color ?? "neutral-0";
+	const tonality = queryParameters.tonality ?? 'regular';
+	const color = queryParameters.color ?? 'neutral-0';
 	content.className = getClassName(tonality, color);
 
 	if (selectTonality) {
 		selectTonality.value = tonality;
-		selectTonality.addEventListener("change", (event) => {
-			insertParameter(queryParameters, "tonality", event.target.value);
+		selectTonality.addEventListener('change', (event) => {
+			insertParameter(queryParameters, 'tonality', event.target.value);
 		});
 	}
 
 	if (selectColor) {
 		selectColor.value = color;
-		selectColor.addEventListener("change", (event) => {
-			insertParameter(queryParameters, "color", event.target.value);
+		selectColor.addEventListener('change', (event) => {
+			insertParameter(queryParameters, 'color', event.target.value);
 		});
 	}
 };
@@ -59,7 +59,7 @@ const getAppShell = (content) =>
 							(item) =>
 								`<li><a href=".${item.path}">${item.label}</a></li>`
 						)
-						.join("")}
+						.join('')}
 				</ul>
 			</nav>
 			<div slot="meta-navigation">

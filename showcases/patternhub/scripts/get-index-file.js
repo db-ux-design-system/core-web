@@ -1,25 +1,25 @@
-import getUnionElements from "./get-union-elements.js";
+import getUnionElements from './get-union-elements.js';
 
 const getOptions = (tsType) => {
 	switch (tsType.name) {
-		case "literal": {
+		case 'literal': {
 			return tsType.value;
 		}
 
-		case "signature": {
+		case 'signature': {
 			return `${tsType.raw
-				.replace(/{/g, "&#123;")
-				.replace(/}/g, "&#125;")
-				.replace(/\r\n\t\t/g, " ")
-				.replace(/\t/g, "&ensp;")
-				.replace(/\r\n|\r|\n/g, "<br/>")
-				.replace(/\|/g, "&#124;")}`;
+				.replace(/{/g, '&#123;')
+				.replace(/}/g, '&#125;')
+				.replace(/\r\n\t\t/g, ' ')
+				.replace(/\t/g, '&ensp;')
+				.replace(/\r\n|\r|\n/g, '<br/>')
+				.replace(/\|/g, '&#124;')}`;
 		}
 
-		case "union": {
+		case 'union': {
 			const options = [];
 			getUnionElements(options, tsType.elements);
-			return options.join(" &#124; ");
+			return options.join(' &#124; ');
 		}
 
 		default: {
@@ -36,21 +36,21 @@ const getOptions = (tsType) => {
 const getIndexFile = ({ displayName, description, props }) => {
 	const propKeys = Object.keys(props);
 
-	let propTable = "";
+	let propTable = '';
 
 	for (const propKey of propKeys) {
 		const prop = props[propKey];
 		const options = getOptions(prop.tsType);
 		propTable += `| ${propKey} `;
 		propTable += `| ${
-			prop.description.replace(/\r\n|\r|\n/g, "<br/>") || "No description"
+			prop.description.replace(/\r\n|\r|\n/g, '<br/>') || 'No description'
 		} `;
-		propTable += `| ${prop.required ? "✅" : "❌"} `;
+		propTable += `| ${prop.required ? '✅' : '❌'} `;
 		propTable += `| ${prop.tsType.type ?? prop.tsType.name} `;
 		propTable += `| ${
 			options
 				? `<pre><code className="code-pre-wrap">${options}</code></pre>`
-				: ""
+				: ''
 		} |\n`;
 	}
 

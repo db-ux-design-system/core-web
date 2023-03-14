@@ -1,4 +1,4 @@
-const prefix = "db";
+const prefix = 'db';
 
 const fileHeader = `
 @use "variables" as *;
@@ -10,40 +10,40 @@ const fileHeader = `
 `;
 
 const getShortSize = (size) => {
-	if (size === "3xlarge") {
-		return "3xl";
+	if (size === '3xlarge') {
+		return '3xl';
 	}
 
-	if (size === "2xlarge") {
-		return "2xl";
+	if (size === '2xlarge') {
+		return '2xl';
 	}
 
-	if (size === "xlarge") {
-		return "xl";
+	if (size === 'xlarge') {
+		return 'xl';
 	}
 
-	if (size === "large") {
-		return "lg";
+	if (size === 'large') {
+		return 'lg';
 	}
 
-	if (size === "medium") {
-		return "md";
+	if (size === 'medium') {
+		return 'md';
 	}
 
-	if (size === "small") {
-		return "sm";
+	if (size === 'small') {
+		return 'sm';
 	}
 
-	if (size === "xsmall") {
-		return "xs";
+	if (size === 'xsmall') {
+		return 'xs';
 	}
 
-	if (size === "2xsmall") {
-		return "2xs";
+	if (size === '2xsmall') {
+		return '2xs';
 	}
 
-	if (size === "3xsmall") {
-		return "3xs";
+	if (size === '3xsmall') {
+		return '3xs';
 	}
 
 	return size;
@@ -74,7 +74,7 @@ const getMediaQueryProperties = (properties) => {
 };
 
 const getSizeProperties = (scale, textType, size, mQuery) => {
-	const isHeadline = textType === "headline";
+	const isHeadline = textType === 'headline';
 	const sSize = getShortSize(size);
 	return getMediaQueryProperties({
 		scale,
@@ -82,7 +82,7 @@ const getSizeProperties = (scale, textType, size, mQuery) => {
 		textType,
 		sSize,
 		isHeadline,
-		mQuery,
+		mQuery
 	});
 };
 
@@ -104,12 +104,12 @@ const generateTypography = (typography) => {
 				allClasses += `
 %${prefix}-typography-${textTypeKey}-${scaleTypeKey}{
 	`;
-				for (const mQuery of ["mobile", "tablet", "desktop"]) {
-					if (mQuery !== "mobile") {
+				for (const mQuery of ['mobile', 'tablet', 'desktop']) {
+					if (mQuery !== 'mobile') {
 						allClasses += `@media only screen and (min-width: ${
-							mQuery === "tablet"
-								? "#{$db-screens-s}"
-								: "#{$db-screens-m}"
+							mQuery === 'tablet'
+								? '#{$db-screens-s}'
+								: '#{$db-screens-m}'
 						}) {
 	`;
 					}
@@ -123,7 +123,7 @@ const generateTypography = (typography) => {
 						);
 					}
 
-					if (mQuery !== "mobile") {
+					if (mQuery !== 'mobile') {
 						allClasses += `}
 
 	`;

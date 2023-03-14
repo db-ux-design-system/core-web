@@ -3,7 +3,7 @@ import {
 	Show,
 	Slot,
 	useMetadata,
-	useStore,
+	useStore
 } from '@builder.io/mitosis';
 import { DBAlertState, DBAlertProps } from './model';
 import { DBIcon } from '../icon';
@@ -21,18 +21,18 @@ useMetadata({
 			{ name: 'text', type: 'SingleLine.Text' },
 			{
 				name: 'icon',
-				type: 'Icon', // this is a custom type not provided by ms
+				type: 'Icon' // this is a custom type not provided by ms
 			},
 			{
 				name: 'variant',
-				type: 'DefaultVariant', // this is a custom type not provided by ms
-			},
-		],
-	},
+				type: 'DefaultVariant' // this is a custom type not provided by ms
+			}
+		]
+	}
 });
 
 const DEFAULT_VALUES = {
-	closeButton: 'Close Button',
+	closeButton: 'Close Button'
 };
 
 export default function DBAlert(props: DBAlertProps) {
@@ -53,7 +53,7 @@ export default function DBAlert(props: DBAlertProps) {
 		},
 		iconVisible: (icon: string) => {
 			return icon && icon !== '_' && icon !== 'none';
-		},
+		}
 	});
 
 	onMount(() => {

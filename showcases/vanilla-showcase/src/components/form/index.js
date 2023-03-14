@@ -1,11 +1,11 @@
-import "../../../../../output/webcomponent/src/components/input/input.js";
-import "../../../../../output/webcomponent/src/components/button/button.js";
+import '../../../../../output/webcomponent/src/components/input/input.js';
+import '../../../../../output/webcomponent/src/components/button/button.js';
 
 const getContent = () => {
-	window.addEventListener("load", () => {
-		const input = document.querySelector("#db-input");
-		const button = document.querySelector("#db-button");
-		const inputContainer = document.querySelector("#db-input-container");
+	window.addEventListener('load', () => {
+		const input = document.querySelector('#db-input');
+		const button = document.querySelector('#db-button');
+		const inputContainer = document.querySelector('#db-input-container');
 
 		if (input) {
 			input.props.onChange = (event) => {
@@ -18,7 +18,7 @@ const getContent = () => {
 				// eslint-disable-next-line no-alert
 				alert(
 					JSON.stringify({
-						input: input.state._value,
+						input: input.state._value
 					})
 				);
 			};

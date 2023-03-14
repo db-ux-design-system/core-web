@@ -1,11 +1,11 @@
-import { useSearchParams } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useSearchParams } from 'react-router-dom';
+import { useEffect, useState } from 'react';
 import {
 	COLOR,
 	COLOR_CONST,
 	TONALITY,
-	TONALITY_CONST,
-} from "../../../../packages/components/src/shared/constants";
+	TONALITY_CONST
+} from '../../../../packages/components/src/shared/constants';
 
 const useQuery = (): any => {
 	const [searchParameters, setSearchParameters] = useSearchParams();
@@ -30,11 +30,11 @@ const useQuery = (): any => {
 					setColor(value);
 				}
 
-				if (key === "page" && page !== value.toLowerCase()) {
+				if (key === 'page' && page !== value.toLowerCase()) {
 					setPage(value.toLowerCase());
 				}
 
-				if (key === "fullscreen" && fullscreen !== Boolean(value)) {
+				if (key === 'fullscreen' && fullscreen !== Boolean(value)) {
 					setFullscreen(Boolean(value));
 				}
 			}

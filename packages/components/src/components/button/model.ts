@@ -4,7 +4,7 @@ import {
 	GlobalProps,
 	GlobalState,
 	IconProps,
-	IconState,
+	IconState
 } from '../../shared/model';
 
 export type DBButtonDefaultProps = {

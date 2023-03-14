@@ -11,7 +11,7 @@ import {
 	FormProps,
 	FormState,
 	IconProps,
-	IconState,
+	IconState
 } from '../../shared/model';
 
 export type DBInputDefaultProps = {

@@ -19,18 +19,18 @@ useMetadata({
 					{
 						key: 'Transparent',
 						name: 'Transparent',
-						value: 'transparent',
+						value: 'transparent'
 					},
 					{
 						key: 'Semi-Transparent',
 						name: 'Semi-Transparent',
-						value: 'semi-transparent',
-					},
-				],
+						value: 'semi-transparent'
+					}
+				]
 			},
 			{
 				name: 'icon',
-				type: 'Icon',
+				type: 'Icon'
 			},
 			{ name: 'icntxt', type: 'TwoOptions' },
 			{
@@ -38,11 +38,11 @@ useMetadata({
 				type: 'Enum',
 				values: [
 					{ key: 'Full', name: 'Full', value: 'full' },
-					{ key: 'Auto', name: 'Auto', value: 'auto' },
-				],
-			},
-		],
-	},
+					{ key: 'Auto', name: 'Auto', value: 'auto' }
+				]
+			}
+		]
+	}
 });
 
 export default function DBButton(props: DBButtonProps) {
@@ -56,7 +56,7 @@ export default function DBButton(props: DBButtonProps) {
 		},
 		iconVisible: (icon: string) => {
 			return icon && icon !== '_' && icon !== 'none';
-		},
+		}
 	});
 
 	onMount(() => {

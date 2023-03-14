@@ -1,10 +1,10 @@
-const v2Components = new Set(["DBTab", "DBTabBar"]);
-const v2ComponentImports = ["tab", "tab-bar"];
+const v2Components = new Set(['DBTab', 'DBTabBar']);
+const v2ComponentImports = ['tab', 'tab-bar'];
 
 const reportIssue = (context, node, name) => {
 	context.report({
 		node,
-		message: `${name} is still using v2 styles!`,
+		message: `${name} is still using v2 styles!`
 	});
 };
 
@@ -26,7 +26,7 @@ const onV2ComponentUsed = (context) => {
 			if (foundImport) {
 				reportIssue(context, node, foundImport);
 			}
-		},
+		}
 	};
 };
 

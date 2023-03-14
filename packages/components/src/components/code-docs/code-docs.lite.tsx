@@ -9,8 +9,8 @@ useMetadata({
 	isAttachedToShadowDom: true,
 	component: {
 		includeIcon: false,
-		properties: [],
-	},
+		properties: []
+	}
 });
 
 export default function DBCodeDocs(props: DBCodeDocsProps) {
@@ -32,7 +32,7 @@ export default function DBCodeDocs(props: DBCodeDocsProps) {
 		},
 		getSnippetId: () => {
 			return `snippet-${uuid()}`;
-		},
+		}
 	});
 
 	onMount(() => {

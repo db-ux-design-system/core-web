@@ -1,6 +1,5 @@
 {
-	"trailingComma": "es5",
-	"singleQuote": false,
+	"trailingComma": "none",
 	"bracketSpacing": true,
 	"overrides": [
 		{
@@ -19,15 +18,6 @@
 			"files": ["*.scss"],
 			"options": {
 				"trailingComma": "none"
-			}
-		},
-		{
-			"files": [
-				"packages/components/src/**/*.ts",
-				"packages/components/src/**/*.tsx"
-			],
-			"options": {
-				"singleQuote": true
 			}
 		}
 	],

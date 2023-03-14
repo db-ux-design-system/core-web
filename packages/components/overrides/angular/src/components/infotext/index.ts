@@ -1,1 +1,1 @@
-export { DBInfotext, DBInfotextModule } from "./infotext";
+export { DBInfotext, DBInfotextModule } from './infotext';

@@ -1,7 +1,7 @@
-import { DBButton, DBDivider, DBBrand } from "../../../../../output/react/src";
+import { DBButton, DBDivider, DBBrand } from '../../../../../output/react/src';
 
-const links = ["Startseite", "Hilfe & Kontakt", "Verkehrsmeldungen"];
-const menu = ["Tickets & Angebote", "Info & Services", "Meine Reisen"];
+const links = ['Startseite', 'Hilfe & Kontakt', 'Verkehrsmeldungen'];
+const menu = ['Tickets & Angebote', 'Info & Services', 'Meine Reisen'];
 
 const Header = () => (
 	<div className="header shadow-8">

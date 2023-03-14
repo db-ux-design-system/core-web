@@ -22,7 +22,7 @@ export const DefaultVariantsIcon: any = {
 	// TODO: 'error-triangle' will change to 'warning' soon
 	warning: 'error-triangle',
 	successful: 'check-circle',
-	informational: 'info',
+	informational: 'info'
 };
 
 export type IconProps = {

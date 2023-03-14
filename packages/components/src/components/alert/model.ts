@@ -6,7 +6,7 @@ import {
 	GlobalState,
 	IconProps,
 	IconState,
-	LinkProps,
+	LinkProps
 } from '../../shared/model';
 
 export interface DBAlertDefaultProps {

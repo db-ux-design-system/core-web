@@ -8,11 +8,11 @@ useMetadata({
 		properties: [
 			{
 				name: 'icon',
-				type: 'Icon',
+				type: 'Icon'
 			},
-			{ name: 'icntxt', type: 'TwoOptions' },
-		],
-	},
+			{ name: 'icntxt', type: 'TwoOptions' }
+		]
+	}
 });
 
 export default function DBIcon(props: DBIconProps) {

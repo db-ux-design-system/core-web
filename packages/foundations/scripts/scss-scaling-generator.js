@@ -1,28 +1,28 @@
 const fileHeader =
 	'@use "variables" as *;\n' +
-	"// Do not edit directly\n" +
-	"// Generated on " +
+	'// Do not edit directly\n' +
+	'// Generated on ' +
 	new Date().toString() +
-	"\n";
+	'\n';
 
 const generateScaling = () => {
 	let allClasses = fileHeader;
 
-	const scaleTypeKey = ["regular", "functional", "expressive"];
+	const scaleTypeKey = ['regular', 'functional', 'expressive'];
 
 	const inputCustomVars = {
 		regular: {
 			labelScale: 0.65,
-			focusOpacity: 1,
+			focusOpacity: 1
 		},
 		functional: {
 			labelScale: 1,
-			focusOpacity: 0,
+			focusOpacity: 0
 		},
 		expressive: {
 			labelScale: 0.55,
-			focusOpacity: 1,
-		},
+			focusOpacity: 1
+		}
 	};
 
 	for (const scale of scaleTypeKey) {

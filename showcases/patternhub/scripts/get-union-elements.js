@@ -6,7 +6,7 @@ const getUnionElements = (options, elements) => {
 	if (elements) {
 		for (const element of elements) {
 			options.push(
-				element.name === "literal"
+				element.name === 'literal'
 					? element.value
 					: getUnionElements(options, element.elements)
 			);

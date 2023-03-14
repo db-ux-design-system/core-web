@@ -3,7 +3,7 @@ import {
 	Show,
 	Slot,
 	useMetadata,
-	useStore,
+	useStore
 } from '@builder.io/mitosis';
 import { DBHeaderState, DBHeaderProps } from './model';
 
@@ -11,8 +11,8 @@ useMetadata({
 	isAttachedToShadowDom: true,
 	component: {
 		includeIcon: false,
-		properties: [],
-	},
+		properties: []
+	}
 });
 
 export default function DBHeader(props: DBHeaderProps) {

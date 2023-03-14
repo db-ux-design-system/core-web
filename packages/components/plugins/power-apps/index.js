@@ -1,19 +1,19 @@
-const ChildProcess = require("node:child_process");
-const Buff = require("node:buffer");
+const ChildProcess = require('node:child_process');
+const Buff = require('node:buffer');
 
 module.exports = () => ({
 	json: {
 		post(json) {
 			const component = json.meta?.useMetadata?.component;
-			let propsCliString = "";
-			let includeIcon = "";
-			let hasDisabledProp = "";
-			let hasOnClick = "";
+			let propsCliString = '';
+			let includeIcon = '';
+			let hasDisabledProp = '';
+			let hasOnClick = '';
 			if (component) {
 				if (component.properties) {
 					const propsString = JSON.stringify(component.properties);
 					const propsBuffer =
-						Buff.Buffer.from(propsString).toString("base64");
+						Buff.Buffer.from(propsString).toString('base64');
 					propsCliString = `--props ${propsBuffer}`;
 				}
 
@@ -32,10 +32,10 @@ module.exports = () => ({
 
 			ChildProcess.execSync(
 				`hygen power-apps new --version 0.0.0 ${json.name
-					.replace("DB", "")
+					.replace('DB', '')
 					.toLowerCase()} ${includeIcon} ${hasDisabledProp} ${hasOnClick} ${propsCliString}`
 			);
 			return json;
-		},
-	},
+		}
+	}
 });

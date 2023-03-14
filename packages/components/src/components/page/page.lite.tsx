@@ -3,7 +3,7 @@ import {
 	Show,
 	Slot,
 	useMetadata,
-	useStore,
+	useStore
 } from '@builder.io/mitosis';
 import { DBPageProps, DBPageState } from './model';
 
@@ -11,8 +11,8 @@ useMetadata({
 	isAttachedToShadowDom: true,
 	component: {
 		includeIcon: false,
-		properties: [],
-	},
+		properties: []
+	}
 });
 
 export default function DBPage(props: DBPageProps) {

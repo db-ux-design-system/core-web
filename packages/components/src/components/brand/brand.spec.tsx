@@ -53,7 +53,7 @@ test.describe('DBBrand component on mobile', () => {
 test.describe('DBBrand component A11y', () => {
 	test('DBBrand should not have any automatically detectable accessibility issues', async ({
 		page,
-		mount,
+		mount
 	}) => {
 		await mount(comp);
 		const accessibilityScanResults = await new AxeBuilder({ page })

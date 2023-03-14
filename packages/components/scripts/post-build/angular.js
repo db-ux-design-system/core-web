@@ -1,18 +1,18 @@
-const Replace = require("replace-in-file");
+const Replace = require('replace-in-file');
 const {
 	components,
 	formComponentChanges,
 	clickComponentChanges,
-	iconComponentChanges,
-} = require("./components");
-const { runReplacements } = require("../utils");
+	iconComponentChanges
+} = require('./components');
+const { runReplacements } = require('../utils');
 
 const changeFile = (component, input) => {
 	return input
-		.split("\n")
+		.split('\n')
 		.filter(
 			(line) =>
-				!line.includes("@db-ui") && !line.includes(`Props } from "../`)
+				!line.includes('@db-ui') && !line.includes(`Props } from "../`)
 		)
 		.map((line) => {
 			if (
@@ -23,20 +23,20 @@ const changeFile = (component, input) => {
 				return line.replace(` } from "../`, `Module } from "../`);
 			}
 
-			if (line.includes(": ElementRef")) {
-				return line.replace(": ElementRef", ": ElementRef | undefined");
+			if (line.includes(': ElementRef')) {
+				return line.replace(': ElementRef', ': ElementRef | undefined');
 			}
 
-			if (line.includes("formRef.nativeElement")) {
+			if (line.includes('formRef.nativeElement')) {
 				return line.replace(
-					"formRef.nativeElement",
-					"formRef?.nativeElement"
+					'formRef.nativeElement',
+					'formRef?.nativeElement'
 				);
 			}
 
 			return line;
 		})
-		.join("\n");
+		.join('\n');
 };
 
 module.exports = () => {
@@ -45,14 +45,14 @@ module.exports = () => {
 		const file = `../../output/angular/src/components/${componentName}/${componentName}.ts`;
 		const options = {
 			files: file,
-			processor: (input) => changeFile(component, input),
+			processor: (input) => changeFile(component, input)
 		};
 
 		try {
 			Replace.sync(options);
-			runReplacements([], component, "angular", file);
+			runReplacements([], component, 'angular', file);
 		} catch (error) {
-			console.error("Error occurred:", error);
+			console.error('Error occurred:', error);
 		}
 	}
 };

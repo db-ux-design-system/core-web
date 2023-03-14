@@ -1,11 +1,11 @@
-const Replace = require("replace-in-file");
-const Fse = require("fs-extra");
-const { components } = require("./components");
+const Replace = require('replace-in-file');
+const Fse = require('fs-extra');
+const { components } = require('./components');
 const toUpperCase = (component) => {
 	return component
-		.split("-")
+		.split('-')
 		.map((part) => part.charAt(0).toUpperCase() + part.slice(1))
-		.join("");
+		.join('');
 };
 const updateNestedComponents = (input, rootComponentName) => {
 	let fileContent = input;
@@ -46,15 +46,15 @@ const updateNestedComponents = (input, rootComponentName) => {
 
 const workaroundAttributes = (lines) => {
 	return lines.map((line) => {
-		if (line.includes("el.setAttribute") && line.includes(", this.props")) {
+		if (line.includes('el.setAttribute') && line.includes(', this.props')) {
 			const property = line.substring(
-				line.indexOf("this.props.") + 11,
-				line.indexOf(")")
+				line.indexOf('this.props.') + 11,
+				line.indexOf(')')
 			);
 			return `if(this.props.${property}) ${line}`;
 		}
 
-		if (line.includes("if (self.props.validityChange) {")) {
+		if (line.includes('if (self.props.validityChange) {')) {
 			return `if (self.props.validityChange && typeof self.props.validityChange === 'function') {`;
 		}
 
@@ -68,14 +68,14 @@ module.exports = () => {
 			files: `../../output/webcomponent/src/components/${component.name}/${component.name}.ts`,
 			processor(input) {
 				let lines = input
-					.split("\n")
+					.split('\n')
 					.filter(
 						(line) =>
-							!line.includes("@db-ui") &&
-							!line.includes("import type")
+							!line.includes('@db-ui') &&
+							!line.includes('import type')
 					);
 				lines = workaroundAttributes(lines);
-				const filteredInput = lines.join("\n");
+				const filteredInput = lines.join('\n');
 				const nestedComponent = updateNestedComponents(
 					filteredInput,
 					component.name
@@ -84,13 +84,13 @@ module.exports = () => {
 					component.name
 				)};`;
 				return `${nestedComponent}\n${exportComponent}`;
-			},
+			}
 		};
 
 		const defaultStyleUrl = {
 			files: `../../output/webcomponent/src/components/${component.name}/${component.name}.ts`,
-			from: "this.state = {",
-			to: `this.state = {stylePath: "components/${component.name}/${component.name}-web-component.css",`,
+			from: 'this.state = {',
+			to: `this.state = {stylePath: "components/${component.name}/${component.name}-web-component.css",`
 		};
 
 		try {
@@ -107,7 +107,7 @@ module.exports = () => {
 				);
 			}
 		} catch (error) {
-			console.error("Error occurred:", error);
+			console.error('Error occurred:', error);
 		}
 	}
 };

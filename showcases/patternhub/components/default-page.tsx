@@ -5,13 +5,13 @@ import {
 	DbHeader,
 	DbMainnavigation,
 	DbPage,
-	GithubVersionSwitcher,
-} from "@db-ui/react-elements";
-import StaticContent from "./static-content";
-import { getRouteWithBasePath, ROUTES } from "../data/routes";
-import "@db-ui/core/dist/css/db-ui-core.vars.css";
-import { useRouter } from "next/router";
-import { DbMainnavigationDataType } from "@db-ui/elements/dist/types/components/db-mainnavigation/db-mainnavigation-type";
+	GithubVersionSwitcher
+} from '@db-ui/react-elements';
+import StaticContent from './static-content';
+import { getRouteWithBasePath, ROUTES } from '../data/routes';
+import '@db-ui/core/dist/css/db-ui-core.vars.css';
+import { useRouter } from 'next/router';
+import { DbMainnavigationDataType } from '@db-ui/elements/dist/types/components/db-mainnavigation/db-mainnavigation-type';
 
 const getRoutesWithCurrent = (
 	routes: DbMainnavigationDataType[],
@@ -25,11 +25,11 @@ const getRoutesWithCurrent = (
 		.map((route) => ({
 			...route,
 			current:
-				(route.link === "/" && pathname === "/") ||
-				(route.link !== "/" && pathname.includes(route.link)),
+				(route.link === '/' && pathname === '/') ||
+				(route.link !== '/' && pathname.includes(route.link)),
 			children: route.children
 				? getRoutesWithCurrent(route.children, pathname)
-				: [],
+				: []
 		}))
 		.map((route) => getRouteWithBasePath(route));
 };
@@ -50,7 +50,7 @@ const DefaultPage = ({ children }: any) => {
 						)}
 					/>
 					{process.env.NEXT_PUBLIC_GITHUB_VERSION_SWITCHER ===
-						"true" && (
+						'true' && (
 						<GithubVersionSwitcher
 							owner={process.env.NEXT_PUBLIC_GITHUB_OWNER}
 							repo={process.env.NEXT_PUBLIC_GITHUB_REPO}

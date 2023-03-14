@@ -1,17 +1,17 @@
-import FS from "node:fs";
-import getExampleFile from "./get-example-file.js";
-import getIndexFile from "./get-index-file.js";
-import getHowToFile from "./get-how-to-file.js";
+import FS from 'node:fs';
+import getExampleFile from './get-example-file.js';
+import getIndexFile from './get-index-file.js';
+import getHowToFile from './get-how-to-file.js';
 
-const componentsPath = "./pages/components";
+const componentsPath = './pages/components';
 
 const generateDocsMdx = () => {
 	const docs = JSON.parse(
-		FS.readFileSync("./../../output/docs.json", "utf8").toString()
+		FS.readFileSync('./../../output/docs.json', 'utf8').toString()
 	);
 	for (const key of Object.keys(docs)) {
-		let componentName = key.split("/").at(-1);
-		componentName = componentName.replace(".tsx", "");
+		let componentName = key.split('/').at(-1);
+		componentName = componentName.replace('.tsx', '');
 
 		const componentValue = docs[key].at(0);
 		if (componentValue) {

@@ -1,7 +1,7 @@
 import {
 	DefaultVariantProps,
 	GlobalProps,
-	GlobalState,
+	GlobalState
 } from '../../shared/model';
 
 export interface DBInfotextDefaultProps {

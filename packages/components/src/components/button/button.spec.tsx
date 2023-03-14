@@ -37,7 +37,7 @@ test.describe('DBButton component on mobile', () => {
 test.describe('DBButton component A11y', () => {
 	test('DBButton should not have any automatically detectable accessibility issues', async ({
 		page,
-		mount,
+		mount
 	}) => {
 		await mount(<DBButton>Test</DBButton>);
 		const accessibilityScanResults = await new AxeBuilder({ page })
@@ -49,7 +49,7 @@ test.describe('DBButton component A11y', () => {
 
 	test('DBButton with icon only should not have any automatically detectable accessibility issues', async ({
 		page,
-		mount,
+		mount
 	}) => {
 		await mount(
 			<DBButton icon="account" onlyIcon={true}>

@@ -20,160 +20,160 @@
  */
 const getComponents = () => [
 	{
-		name: "code-docs",
-		defaultStylePath: "components/code-docs/code-docs.css",
+		name: 'code-docs',
+		defaultStylePath: 'components/code-docs/code-docs.css',
 		overwrites: {
 			global: [
 				{
-					from: "(event) => copyCode(snippet)",
-					to: "() => copyCode(snippet)",
+					from: '(event) => copyCode(snippet)',
+					to: '() => copyCode(snippet)'
 				},
 				{
-					from: "copyCode(code)",
-					to: "copyCode(code:any)",
+					from: 'copyCode(code)',
+					to: 'copyCode(code:any)'
 				},
 				{
-					from: "(event) => toggleCode()",
-					to: "() => toggleCode()",
-				},
+					from: '(event) => toggleCode()',
+					to: '() => toggleCode()'
+				}
 			],
-			vue: [{ from: "(snippet, index)", to: "(snippet)" }],
-		},
+			vue: [{ from: '(snippet, index)', to: '(snippet)' }]
+		}
 	},
 
 	{
-		name: "alert",
+		name: 'alert',
 		config: {
 			isClickComponent: true,
-			isIconComponent: true,
-		},
+			isIconComponent: true
+		}
 	},
 
 	{
-		name: "infotext",
+		name: 'infotext',
 		config: {
-			isIconComponent: true,
-		},
+			isIconComponent: true
+		}
 	},
 
 	{
-		name: "link",
+		name: 'link',
 		config: {
-			isClickComponent: true,
-		},
+			isClickComponent: true
+		}
 	},
 
 	{
-		name: "section",
+		name: 'section'
 	},
 
 	{
-		name: "page",
+		name: 'page'
 	},
 	{
-		name: "header",
+		name: 'header'
 	},
 	{
-		name: "brand",
+		name: 'brand'
 	},
 	{
-		name: "input",
+		name: 'input',
 		config: {
 			isFormComponent: true,
 			isIconComponent: true,
 			vue: {
-				vModel: [{ modelValue: "value", binding: ":value" }],
-			},
-		},
+				vModel: [{ modelValue: 'value', binding: ':value' }]
+			}
+		}
 	},
 	{
-		name: "divider",
+		name: 'divider'
 	},
 	{
-		name: "card",
+		name: 'card',
 		config: {
-			isClickComponent: true,
-		},
+			isClickComponent: true
+		}
 	},
 	{
-		name: "tab-bar",
+		name: 'tab-bar',
 		overwrites: {
 			angular: [
 				{
-					from: "convertTabs(tabs) {",
-					to: "convertTabs( tabs:any ) {",
+					from: 'convertTabs(tabs) {',
+					to: 'convertTabs( tabs:any ) {'
 				},
-				{ from: '[key]="tab.name"', to: "" },
+				{ from: '[key]="tab.name"', to: '' }
 			],
 			react: [
 				{
-					from: "convertTabs(tabs) {",
-					to: "convertTabs( tabs:any ) {",
+					from: 'convertTabs(tabs) {',
+					to: 'convertTabs( tabs:any ) {'
 				},
 				{
-					from: "convertTabs(props.tabs)?.map((tab)",
-					to: "convertTabs(props.tabs)?.map((tab:any)",
+					from: 'convertTabs(props.tabs)?.map((tab)',
+					to: 'convertTabs(props.tabs)?.map((tab:any)'
 				},
 				{
 					from: 'import type { DBTabProps } from "../tab/model";',
-					to: "",
-				},
+					to: ''
+				}
 			],
 			vue: [
 				{
-					from: "convertTabs(tabs) {",
-					to: "convertTabs( tabs:any ) {",
+					from: 'convertTabs(tabs) {',
+					to: 'convertTabs( tabs:any ) {'
 				},
 				{
 					from: 'v-for="(tab, index)',
-					to: 'v-for="(tab)',
-				},
-			],
-		},
+					to: 'v-for="(tab)'
+				}
+			]
+		}
 	},
 	{
-		name: "tab",
+		name: 'tab'
 	},
 	{
-		name: "button",
+		name: 'button',
 		config: {
 			isIconComponent: true,
-			isClickComponent: true,
-		},
+			isClickComponent: true
+		}
 	},
 	{
-		name: "icon",
-	},
+		name: 'icon'
+	}
 ];
 
 const formComponentChanges = [
-	{ from: "handleChange(event)", to: "handleChange(event:any)" },
-	{ from: "handleBlur(event)", to: "handleBlur(event:any)" },
-	{ from: "handleFocus(event)", to: "handleFocus(event:any)" },
+	{ from: 'handleChange(event)', to: 'handleChange(event:any)' },
+	{ from: 'handleBlur(event)', to: 'handleBlur(event:any)' },
+	{ from: 'handleFocus(event)', to: 'handleFocus(event:any)' }
 ];
 
 const clickComponentChanges = [
-	{ from: "handleClick(event)", to: "handleClick(event:any)" },
+	{ from: 'handleClick(event)', to: 'handleClick(event:any)' }
 ];
 
 const iconComponentChanges = [
 	{
-		from: "getIcon(icon, variant) {",
-		to: "getIcon(icon:any, variant:any) {",
+		from: 'getIcon(icon, variant) {',
+		to: 'getIcon(icon:any, variant:any) {'
 	},
 	{
-		from: "getIcon(variant) {",
-		to: "getIcon(variant:any) {",
+		from: 'getIcon(variant) {',
+		to: 'getIcon(variant:any) {'
 	},
 	{
-		from: "iconVisible(icon) {",
-		to: "iconVisible(icon:any) {",
-	},
+		from: 'iconVisible(icon) {',
+		to: 'iconVisible(icon:any) {'
+	}
 ];
 
 module.exports = {
 	components: getComponents(),
 	formComponentChanges,
 	clickComponentChanges,
-	iconComponentChanges,
+	iconComponentChanges
 };

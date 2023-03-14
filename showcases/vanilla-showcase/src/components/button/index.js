@@ -1,15 +1,15 @@
-import "../../../../../output/webcomponent/src/components/button/button.js";
-import "../../../../../output/webcomponent/src/components/icon/icon.js";
+import '../../../../../output/webcomponent/src/components/button/button.js';
+import '../../../../../output/webcomponent/src/components/icon/icon.js';
 
 const getContent = () => {
-	window.addEventListener("load", () => {
-		const selectVariant = document.querySelector("#select-variant");
+	window.addEventListener('load', () => {
+		const selectVariant = document.querySelector('#select-variant');
 
-		const buttons = Array.from(document.querySelectorAll("db-button"));
+		const buttons = Array.from(document.querySelectorAll('db-button'));
 		if (selectVariant) {
-			selectVariant.addEventListener("change", (event) => {
+			selectVariant.addEventListener('change', (event) => {
 				for (const button of buttons) {
-					button.setAttribute("variant", event.target.value);
+					button.setAttribute('variant', event.target.value);
 				}
 			});
 		}

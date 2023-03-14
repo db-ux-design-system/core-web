@@ -1,5 +1,5 @@
-import DefaultPage from "../../../components/default-page";
-import IFrame from "../../../components/iframe";
+import DefaultPage from '../../../components/default-page';
+import IFrame from '../../../components/iframe';
 
 const VanillaShowcase = () => (
 	<DefaultPage>

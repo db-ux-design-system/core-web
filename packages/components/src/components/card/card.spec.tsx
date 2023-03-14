@@ -16,7 +16,7 @@ const colorVariants = [
 	'critical',
 	'successful',
 	'warning',
-	'informational',
+	'informational'
 ];
 
 const directions = ['row', 'column'];
@@ -38,7 +38,7 @@ const testDefaultCard = () => {
 const testCardColorVariants = () => {
 	for (const colorVariant of colorVariants) {
 		test(`DBCard should match screenshot for color variant ${colorVariant}`, async ({
-			mount,
+			mount
 		}) => {
 			const component = await mount(
 				<DBCard colorVariant={colorVariant}>Test</DBCard>
@@ -51,7 +51,7 @@ const testCardColorVariants = () => {
 const testCardRow = () => {
 	for (const direction of directions) {
 		test(`DBCard should match screenshot for direction ${direction}`, async ({
-			mount,
+			mount
 		}) => {
 			const component = await mount(
 				<div>
@@ -69,7 +69,7 @@ const testCardRow = () => {
 const testCardVariants = () => {
 	for (const variant of variants) {
 		test(`DBCard should match screenshot for variant ${variant}`, async ({
-			mount,
+			mount
 		}) => {
 			const component = await mount(
 				<div>
@@ -140,7 +140,7 @@ test.describe('DBCard component on mobile: Variants', () => {
 test.describe('DBCard component A11y', () => {
 	test('DBCard should not have any automatically detectable accessibility issues', async ({
 		page,
-		mount,
+		mount
 	}) => {
 		await mount(defaultComp);
 		const accessibilityScanResults = await new AxeBuilder({ page })

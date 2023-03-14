@@ -3,7 +3,7 @@ import {
 	ClickEventState,
 	GlobalProps,
 	GlobalState,
-	LinkProps,
+	LinkProps
 } from '../../shared/model';
 
 export interface DBLinkDefaultProps {

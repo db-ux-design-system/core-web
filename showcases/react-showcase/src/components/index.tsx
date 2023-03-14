@@ -1,9 +1,9 @@
-import { DBCodeDocs, DBDivider, DBLink } from "../../../../output/react/src";
-import useQuery from "../hooks/use-query";
+import { DBCodeDocs, DBDivider, DBLink } from '../../../../output/react/src';
+import useQuery from '../hooks/use-query';
 import {
 	type DefaultComponentProps,
-	type DefaultComponentVariants,
-} from "./data";
+	type DefaultComponentVariants
+} from './data';
 
 const VariantList = ({ examples }: DefaultComponentVariants) => (
 	<DBCodeDocs
@@ -28,7 +28,7 @@ const VariantList = ({ examples }: DefaultComponentVariants) => (
 const DefaultComponent = ({
 	title,
 	description,
-	variants,
+	variants
 }: DefaultComponentProps) => {
 	const pageName = useQuery()[4];
 

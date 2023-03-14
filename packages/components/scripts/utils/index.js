@@ -1,14 +1,14 @@
 const {
 	clickComponentChanges,
 	formComponentChanges,
-	iconComponentChanges,
-} = require("../post-build/components");
-const Replace = require("replace-in-file");
+	iconComponentChanges
+} = require('../post-build/components');
+const Replace = require('replace-in-file');
 const getComponentName = (componentName) => {
 	return componentName
-		.split("-")
+		.split('-')
 		.map((part) => `${part[0].toUpperCase()}${part.slice(1)}`)
-		.join("");
+		.join('');
 };
 
 const runReplacements = (replacements, component, framework, file) => {
@@ -35,7 +35,7 @@ const runReplacements = (replacements, component, framework, file) => {
 		const option = {
 			files: file,
 			from: replacement.from,
-			to: replacement.to,
+			to: replacement.to
 		};
 		Replace.replaceInFileSync(option);
 	}

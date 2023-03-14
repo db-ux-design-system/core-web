@@ -3,7 +3,7 @@ import {
 	ClickEventState,
 	GlobalProps,
 	GlobalState,
-	ImageProps,
+	ImageProps
 } from '../../shared/model';
 
 export type DBCardDefaultProps = {

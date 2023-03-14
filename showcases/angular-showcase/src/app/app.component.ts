@@ -1,18 +1,18 @@
-import { Component, type OnInit } from "@angular/core";
-import { ActivatedRoute, Router } from "@angular/router";
+import { Component, type OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import {
 	COLOR,
 	COLORS,
 	TONALITIES,
 	TONALITY,
 	COLOR_CONST,
-	TONALITY_CONST,
-} from "../../../../packages/components/src/shared/constants";
-import { NAVIGATION_ITEMS } from "./utils/navigation-item";
+	TONALITY_CONST
+} from '../../../../packages/components/src/shared/constants';
+import { NAVIGATION_ITEMS } from './utils/navigation-item';
 
 @Component({
-	selector: "app-root",
-	templateUrl: "./app.component.html",
+	selector: 'app-root',
+	templateUrl: './app.component.html'
 })
 export class AppComponent implements OnInit {
 	navigationItems = NAVIGATION_ITEMS.sort((a, b) => {
@@ -51,7 +51,7 @@ export class AppComponent implements OnInit {
 		await this.router.navigate([], {
 			relativeTo: this.route,
 			queryParams: { tonality: this.tonality, color: this.color },
-			queryParamsHandling: "merge",
+			queryParamsHandling: 'merge'
 		});
 	};
 }

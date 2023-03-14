@@ -1,11 +1,11 @@
-import FS from "node:fs";
-import CPR from "cpr";
-import { navigationPaths } from "../src/utils/navigation-paths.js";
+import FS from 'node:fs';
+import CPR from 'cpr';
+import { navigationPaths } from '../src/utils/navigation-paths.js';
 
 const generateRoutes = () => {
 	for (const key of Object.keys(navigationPaths)) {
-		const splitPath = navigationPaths[key].split("/");
-		let lastPath = "";
+		const splitPath = navigationPaths[key].split('/');
+		let lastPath = '';
 		for (const [index, path] of splitPath.entries()) {
 			lastPath += `/${path}`;
 			if (!FS.existsSync(`./dist${lastPath}`)) {
@@ -19,7 +19,7 @@ const generateRoutes = () => {
 					{
 						deleteFirst: true,
 						overwrite: true,
-						confirm: true,
+						confirm: true
 					},
 					(error) => {
 						if (error) {

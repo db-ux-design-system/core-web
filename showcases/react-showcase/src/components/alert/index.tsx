@@ -1,192 +1,192 @@
-import { DBAlert } from "../../../../../output/react/src";
-import DefaultComponent from "../index";
-import type { DefaultComponentVariants } from "../data";
+import { DBAlert } from '../../../../../output/react/src';
+import DefaultComponent from '../index';
+import type { DefaultComponentVariants } from '../data';
 
 const variants: DefaultComponentVariants[] = [
 	{
-		name: "Type",
+		name: 'Type',
 		examples: [
 			{
-				name: "(Default) Alert",
-				style: { width: "100%" },
+				name: '(Default) Alert',
+				style: { width: '100%' },
 				example: (
 					<DBAlert
 						type="alert"
 						headline="Headline"
-						link={{ href: "#" }}
+						link={{ href: '#' }}
 						slotLink="Link">
 						Type Something
 					</DBAlert>
 				),
-				code: '<DBAlert type="alert" headline="Headline" link={{ href: "#" }} slotLink="Link">Type Something</DBAlert>',
+				code: '<DBAlert type="alert" headline="Headline" link={{ href: "#" }} slotLink="Link">Type Something</DBAlert>'
 			},
 			{
-				name: "Inline",
-				style: { width: "100%" },
+				name: 'Inline',
+				style: { width: '100%' },
 				example: (
 					<DBAlert
 						type="inline"
 						headline="Headline"
-						link={{ href: "#" }}
+						link={{ href: '#' }}
 						slotLink="Link">
 						Type Something
 					</DBAlert>
 				),
-				code: '<DBAlert type="inline" headline="Headline" link={{ href: "#" }} slotLink="Link">Type Something</DBAlert>',
-			},
-		],
+				code: '<DBAlert type="inline" headline="Headline" link={{ href: "#" }} slotLink="Link">Type Something</DBAlert>'
+			}
+		]
 	},
 	{
-		name: "Variant",
+		name: 'Variant',
 		examples: [
 			{
-				name: "(Default) Adaptive",
-				style: { width: "100%" },
+				name: '(Default) Adaptive',
+				style: { width: '100%' },
 				example: (
 					<DBAlert
 						icon="account"
 						headline="Headline"
-						link={{ href: "#" }}
+						link={{ href: '#' }}
 						slotLink="Link">
 						Type Something
 					</DBAlert>
 				),
-				code: '<DBAlert icon="account" headline="Headline" link={{ href: "#" }} slotLink="Link">Type Something</DBAlert>',
+				code: '<DBAlert icon="account" headline="Headline" link={{ href: "#" }} slotLink="Link">Type Something</DBAlert>'
 			},
 			{
-				name: "Critical",
-				style: { width: "100%" },
+				name: 'Critical',
+				style: { width: '100%' },
 				example: (
 					<DBAlert
 						variant="critical"
 						headline="Headline"
-						link={{ href: "#" }}
+						link={{ href: '#' }}
 						slotLink="Link">
 						Type Something
 					</DBAlert>
 				),
-				code: '<DBAlert variant="critical" headline="Headline" link={{ href: "#" }} slotLink="Link">Type Something</DBAlert>',
+				code: '<DBAlert variant="critical" headline="Headline" link={{ href: "#" }} slotLink="Link">Type Something</DBAlert>'
 			},
 			{
-				name: "Information",
-				style: { width: "100%" },
+				name: 'Information',
+				style: { width: '100%' },
 				example: (
 					<DBAlert
 						variant="informational"
 						headline="Headline"
-						link={{ href: "#" }}
+						link={{ href: '#' }}
 						slotLink="Link">
 						Type Something
 					</DBAlert>
 				),
-				code: '<DBAlert variant="informational" headline="Headline" link={{ href: "#" }} slotLink="Link">Type Something</DBAlert>',
+				code: '<DBAlert variant="informational" headline="Headline" link={{ href: "#" }} slotLink="Link">Type Something</DBAlert>'
 			},
 			{
-				name: "Success",
-				style: { width: "100%" },
+				name: 'Success',
+				style: { width: '100%' },
 				example: (
 					<DBAlert
 						variant="successful"
 						headline="Headline"
-						link={{ href: "#" }}
+						link={{ href: '#' }}
 						slotLink="Link">
 						Type Something
 					</DBAlert>
 				),
-				code: '<DBAlert variant="successful" headline="Headline" link={{ href: "#" }} slotLink="Link">Type Something</DBAlert>',
+				code: '<DBAlert variant="successful" headline="Headline" link={{ href: "#" }} slotLink="Link">Type Something</DBAlert>'
 			},
 			{
-				name: "Warning",
-				style: { width: "100%" },
+				name: 'Warning',
+				style: { width: '100%' },
 				example: (
 					<DBAlert
 						variant="warning"
 						headline="Headline"
-						link={{ href: "#" }}
+						link={{ href: '#' }}
 						slotLink="Link">
 						Type Something
 					</DBAlert>
 				),
-				code: '<DBAlert variant="warning" headline="Headline" link={{ href: "#" }} slotLink="Link">Type Something</DBAlert>',
-			},
-		],
+				code: '<DBAlert variant="warning" headline="Headline" link={{ href: "#" }} slotLink="Link">Type Something</DBAlert>'
+			}
+		]
 	},
 	{
-		name: "Content",
+		name: 'Content',
 		examples: [
 			{
-				name: "Headline & Text & Link & Icon",
-				style: { width: "100%" },
+				name: 'Headline & Text & Link & Icon',
+				style: { width: '100%' },
 				example: (
 					<DBAlert
 						headline="Headline"
-						link={{ href: "#" }}
+						link={{ href: '#' }}
 						slotLink="Link"
 						icon="account">
 						Type Something
 					</DBAlert>
 				),
-				code: '<DBAlert icon="account" headline="Headline" link={{ href: "#" }} slotLink="Link">Type Something</DBAlert>',
+				code: '<DBAlert icon="account" headline="Headline" link={{ href: "#" }} slotLink="Link">Type Something</DBAlert>'
 			},
 			{
-				name: "Headline & Text & Link",
-				style: { width: "100%" },
+				name: 'Headline & Text & Link',
+				style: { width: '100%' },
 				example: (
 					<DBAlert
 						headline="Headline"
-						link={{ href: "#" }}
+						link={{ href: '#' }}
 						slotLink="Link">
 						Type Something
 					</DBAlert>
 				),
-				code: '<DBAlert headline="Headline" link={{ href: "#" }} slotLink="Link">Type Something</DBAlert>',
+				code: '<DBAlert headline="Headline" link={{ href: "#" }} slotLink="Link">Type Something</DBAlert>'
 			},
 			{
-				name: "Text & Link",
-				style: { width: "100%" },
+				name: 'Text & Link',
+				style: { width: '100%' },
 				example: (
-					<DBAlert link={{ href: "#" }} slotLink="Link">
+					<DBAlert link={{ href: '#' }} slotLink="Link">
 						Type Something
 					</DBAlert>
 				),
-				code: '<DBAlert link={{ href: "#" }} slotLink="Link">Type Something</DBAlert>',
+				code: '<DBAlert link={{ href: "#" }} slotLink="Link">Type Something</DBAlert>'
 			},
 			{
-				name: "Text",
-				style: { width: "100%" },
+				name: 'Text',
+				style: { width: '100%' },
 				example: <DBAlert>Type Something</DBAlert>,
-				code: "<DBAlert>Type Something</DBAlert>",
-			},
-		],
+				code: '<DBAlert>Type Something</DBAlert>'
+			}
+		]
 	},
 	{
-		name: "Behaviour",
+		name: 'Behaviour',
 		examples: [
 			{
-				name: "Closable",
-				style: { width: "100%" },
+				name: 'Closable',
+				style: { width: '100%' },
 				example: (
 					<DBAlert
 						headline="Headline"
-						link={{ href: "#" }}
+						link={{ href: '#' }}
 						slotLink="Link"
 						onClick={() => {
 							/* eslint-disable-next-line no-alert */
-							alert("click close button");
+							alert('click close button');
 						}}>
 						Type Something
 					</DBAlert>
 				),
-				code: '<DBAlert headline="Headline" link={{ href: "#" }} slotLink="Link" onClick={()=>{alert("click close button")}}>Type Something</DBAlert>',
-			},
-		],
-	},
+				code: '<DBAlert headline="Headline" link={{ href: "#" }} slotLink="Link" onClick={()=>{alert("click close button")}}>Type Something</DBAlert>'
+			}
+		]
+	}
 ];
 
 const AlertComponent = () => {
 	return (
 		<DefaultComponent
-			title={"DBAlert"}
+			title={'DBAlert'}
 			variants={variants}></DefaultComponent>
 	);
 };

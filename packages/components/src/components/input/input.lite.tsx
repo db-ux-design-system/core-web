@@ -16,23 +16,23 @@ useMetadata({
 			{ name: 'value', type: 'SingleLine.Text', onChange: 'value' }, // $event.target["value"|"checked"|...]
 			{
 				name: 'icon',
-				type: 'Icon', // this is a custom type not provided by ms
+				type: 'Icon' // this is a custom type not provided by ms
 			},
 			{
 				name: 'iconAfter',
-				type: 'Icon',
+				type: 'Icon'
 			},
 			{
 				name: 'variant',
-				type: 'DefaultVariant', // this is a custom type not provided by ms
-			},
-		],
-	},
+				type: 'DefaultVariant' // this is a custom type not provided by ms
+			}
+		]
+	}
 });
 
 const DEFAULT_VALUES = {
 	label: DEFAULT_LABEL,
-	placeholder: ' ',
+	placeholder: ' '
 };
 
 export default function DBInput(props: DBInputProps) {
@@ -88,7 +88,7 @@ export default function DBInput(props: DBInputProps) {
 			if (props.focus) {
 				props.focus(event);
 			}
-		},
+		}
 	});
 
 	onMount(() => {
