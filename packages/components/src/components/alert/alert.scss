@@ -15,14 +15,14 @@ $variants: (
 			$db-colors-critical-element-enabled
 		)
 	),
-	"information": (
+	"informational": (
 		var(
-			--db-colors-information-border-enabled,
-			$db-colors-information-border-enabled
+			--db-colors-informational-border-enabled,
+			$db-colors-informational-border-enabled
 		),
 		var(
-			--db-colors-information-element-enabled,
-			$db-colors-information-element-enabled
+			--db-colors-informational-element-enabled,
+			$db-colors-informational-element-enabled
 		)
 	),
 	"warning": (
@@ -35,14 +35,14 @@ $variants: (
 			$db-colors-warning-element-enabled
 		)
 	),
-	"success": (
+	"successful": (
 		var(
-			--db-colors-success-border-enabled,
-			$db-colors-success-border-enabled
+			--db-colors-successful-border-enabled,
+			$db-colors-successful-border-enabled
 		),
 		var(
-			--db-colors-success-element-enabled,
-			$db-colors-success-element-enabled
+			--db-colors-successful-element-enabled,
+			$db-colors-successful-element-enabled
 		)
 	)
 );
@@ -81,6 +81,9 @@ $variants: (
 	gap: $db-spacing-fixed-md;
 	width: 100%;
 
+	// TODO: probably extract this to an overwrite or external file
+	text-align: start; // workaround for power apps
+
 	.db-icon {
 		&::before {
 			/* TODO: Take filled icons if they are ready */
@@ -100,12 +103,12 @@ $variants: (
 		&[data-variant="#{$name}"] {
 			@if ($name == "critical") {
 				@extend %db-bg-critical;
-			} @else if ($name == "information") {
-				@extend %db-bg-information;
+			} @else if ($name == "informational") {
+				@extend %db-bg-informational;
 			} @else if ($name == "warning") {
 				@extend %db-bg-warning;
-			} @else if ($name == "success") {
-				@extend %db-bg-success;
+			} @else if ($name == "successful") {
+				@extend %db-bg-successful;
 			}
 
 			--db-current-border-color: #{nth($colors, 1)};

@@ -64,7 +64,7 @@ export default function DBCodeDocs(props: DBCodeDocsProps) {
 							!props.codeSnippets ||
 							props.codeSnippets.length === 0
 						}>
-						<DBInfotext class="no-code" variant="information">
+						<DBInfotext class="no-code" variant="informational">
 							{props.noCodeLabel ?? 'No Code available'}
 						</DBInfotext>
 					</Show>
