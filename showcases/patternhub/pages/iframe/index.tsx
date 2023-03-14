@@ -15,7 +15,7 @@ const IframeComponent = () => {
 
 	return (
 		<div
-			className={`flex flex-col p-fix-md db-ui-${tonality} db-bg-${color}`}>
+			className={`iframe-component-container db-ui-${tonality} db-bg-${color}`}>
 			<ComponentParser componentsString={components} />
 		</div>
 	);

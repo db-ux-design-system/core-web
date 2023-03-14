@@ -57,6 +57,15 @@ const ComponentSwitch = ({
 	if (type === 'div') {
 		return <div className={className}>{resolvedContent}</div>;
 	}
+	if (type === 'flex') {
+		return (
+			<div
+				className={`flex ${className ? className : ''}`}
+				data-variant={props?.column ? 'column' : 'row'}>
+				{resolvedContent}
+			</div>
+		);
+	}
 	if (type === 'a') {
 		try {
 			const url = new URL('', props.href);
