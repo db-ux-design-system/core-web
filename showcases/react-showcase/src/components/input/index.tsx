@@ -12,7 +12,7 @@ const getInput = ({
 	required,
 	disabled,
 	iconAfter,
-	iconBefore
+	icon
 }: DBInputProps) => (
 	<DBInput
 		label="Label"
@@ -24,7 +24,7 @@ const getInput = ({
 		required={required}
 		disabled={disabled}
 		iconAfter={iconAfter}
-		iconBefore={iconBefore}
+		icon={icon}
 	/>
 );
 
@@ -88,11 +88,11 @@ const exampleMatrix: DefaultComponentExample[][] = [
 		},
 		{
 			example: getInput({ icon: 'account' }),
-			code: '<DBInput iconBefore="account" label="Label"/>'
+			code: '<DBInput icon="account" label="Label"/>'
 		},
 		{
 			example: getInput({ icon: 'account', iconAfter: 'edit' }),
-			code: '<DBInput iconBefore="account" label="Label" iconAfter="edit"/>'
+			code: '<DBInput icon="account" label="Label" iconAfter="edit"/>'
 		},
 		{
 			example: getInput({ iconAfter: 'edit' }),
