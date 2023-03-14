@@ -1,1 +1,1 @@
-export { default as DBLink } from "./link";
+export { default as DBLink } from './link';

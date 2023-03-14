@@ -1,1 +1,1 @@
-export { default as DBHeader } from "./header";
+export { default as DBHeader } from './header';

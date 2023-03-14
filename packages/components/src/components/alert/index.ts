@@ -1,1 +1,1 @@
-export { default as DBAlert } from "./alert";
+export { default as DBAlert } from './alert';

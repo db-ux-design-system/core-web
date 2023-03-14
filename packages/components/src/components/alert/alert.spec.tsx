@@ -1,9 +1,9 @@
-import { test, expect } from "@playwright/experimental-ct-react";
-import AxeBuilder from "@axe-core/playwright";
+import { test, expect } from '@playwright/experimental-ct-react';
+import AxeBuilder from '@axe-core/playwright';
 
-import { DBAlert } from "./index";
+import { DBAlert } from './index';
 // @ts-ignore - vue can only find it with .ts as file ending
-import { TESTING_VIEWPORTS, VARIANTS } from "../../shared/constants.ts";
+import { TESTING_VIEWPORTS, VARIANTS } from '../../shared/constants.ts';
 
 const comp = <DBAlert>Test</DBAlert>;
 
@@ -12,7 +12,7 @@ const testComponent = (viewport) => {
 		mount,
 	}) => {
 		const component = await mount(comp);
-		await expect(component).toContainText("Test");
+		await expect(component).toContainText('Test');
 	});
 
 	test(`should match screenshot for device ${viewport.name}`, async ({
@@ -36,7 +36,7 @@ const testVariants = (viewport) => {
 	}
 };
 
-test.describe("DBAlert component", () => {
+test.describe('DBAlert component', () => {
 	TESTING_VIEWPORTS.forEach((viewport) => {
 		test.use({ viewport });
 		testComponent(viewport);
@@ -44,14 +44,14 @@ test.describe("DBAlert component", () => {
 	});
 });
 
-test.describe("DBAlert component A11y", () => {
-	test("should not have any accessibility issues", async ({
+test.describe('DBAlert component A11y', () => {
+	test('should not have any accessibility issues', async ({
 		page,
 		mount,
 	}) => {
 		await mount(comp);
 		const accessibilityScanResults = await new AxeBuilder({ page })
-			.include(".db-alert")
+			.include('.db-alert')
 			.analyze();
 
 		expect(accessibilityScanResults.violations).toEqual([]);

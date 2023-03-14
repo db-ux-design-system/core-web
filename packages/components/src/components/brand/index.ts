@@ -1,1 +1,1 @@
-export { default as DBBrand } from "./brand";
+export { default as DBBrand } from './brand';

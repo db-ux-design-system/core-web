@@ -1,18 +1,18 @@
-import { For, onMount, Show, useMetadata, useStore } from "@builder.io/mitosis";
-import { DBTab } from "../tab";
-import type { DBTabProps } from "../tab/model";
-import type { DBTabBarState, DBTabBarProps } from "./model";
+import { For, onMount, Show, useMetadata, useStore } from '@builder.io/mitosis';
+import { DBTab } from '../tab';
+import type { DBTabProps } from '../tab/model';
+import type { DBTabBarState, DBTabBarProps } from './model';
 
 useMetadata({
 	isAttachedToShadowDom: true,
 	component: {
 		includeIcon: false,
 		properties: [
-			{ name: "name", type: "SingleLine.Text" },
+			{ name: 'name', type: 'SingleLine.Text' },
 			{
-				name: "tabs",
-				type: "Enum",
-				values: [{ key: "TODO", name: "TODO", value: "TODO" }],
+				name: 'tabs',
+				type: 'Enum',
+				values: [{ key: 'TODO', name: 'TODO', value: 'TODO' }],
 			},
 		],
 	},
@@ -24,7 +24,7 @@ export default function DBTabBar(props: DBTabBarProps) {
 	const state = useStore<DBTabBarState>({
 		convertTabs(tabs: DBTabProps[] | string | undefined) {
 			try {
-				if (typeof tabs === "string") {
+				if (typeof tabs === 'string') {
 					return JSON.parse(tabs);
 				}
 
@@ -47,7 +47,7 @@ export default function DBTabBar(props: DBTabBarProps) {
 		<div
 			ref={component}
 			class={
-				"cmp-tab-bar" + (props.className ? " " + props.className : "")
+				'cmp-tab-bar' + (props.className ? ' ' + props.className : '')
 			}
 			role="tablist">
 			<Show when={state.stylePath}>

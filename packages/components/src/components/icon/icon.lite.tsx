@@ -1,5 +1,5 @@
-import { onMount, Show, useMetadata, useStore } from "@builder.io/mitosis";
-import type { DBIconState, DBIconProps } from "./model";
+import { onMount, Show, useMetadata, useStore } from '@builder.io/mitosis';
+import type { DBIconState, DBIconProps } from './model';
 
 useMetadata({
 	isAttachedToShadowDom: true,
@@ -7,10 +7,10 @@ useMetadata({
 		includeIcon: true,
 		properties: [
 			{
-				name: "icon",
-				type: "Icon",
+				name: 'icon',
+				type: 'Icon',
 			},
-			{ name: "icntxt", type: "TwoOptions" },
+			{ name: 'icntxt', type: 'TwoOptions' },
 		],
 	},
 });
@@ -30,9 +30,9 @@ export default function DBIcon(props: DBIconProps) {
 		<span
 			ref={component}
 			class={
-				"db-icon" +
-				(props.className ? " " + props.className : "") +
-				(props.icntxt ? "" : " is-icon-text-replace")
+				'db-icon' +
+				(props.className ? ' ' + props.className : '') +
+				(props.icntxt ? '' : ' is-icon-text-replace')
 			}
 			data-icon={props.icon}
 			aria-hidden="true">

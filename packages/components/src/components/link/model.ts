@@ -4,13 +4,13 @@ import {
 	GlobalProps,
 	GlobalState,
 	LinkProps,
-} from "../../shared/model";
+} from '../../shared/model';
 
 export interface DBLinkDefaultProps {
-	content?: "external" | "internal";
+	content?: 'external' | 'internal';
 	id?: string;
-	size?: "medium" | "small";
-	variant?: "adaptive" | "primary" | "inline";
+	size?: 'medium' | 'small';
+	variant?: 'adaptive' | 'primary' | 'inline';
 }
 
 export type DBLinkProps = DBLinkDefaultProps &

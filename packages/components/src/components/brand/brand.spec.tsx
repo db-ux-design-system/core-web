@@ -1,7 +1,7 @@
-import { test, expect } from "@playwright/experimental-ct-react";
-import AxeBuilder from "@axe-core/playwright";
+import { test, expect } from '@playwright/experimental-ct-react';
+import AxeBuilder from '@axe-core/playwright';
 
-import { DBBrand } from "./index";
+import { DBBrand } from './index';
 
 const comp = (
 	<DBBrand
@@ -25,39 +25,39 @@ const comp = (
 	</DBBrand>
 );
 const testBrand = () => {
-	test("DBBrand should contain text", async ({ mount }) => {
+	test('DBBrand should contain text', async ({ mount }) => {
 		const component = await mount(comp);
-		await expect(component).toContainText("Test");
+		await expect(component).toContainText('Test');
 	});
 
-	test("DBBrand should match screenshot", async ({ mount }) => {
+	test('DBBrand should match screenshot', async ({ mount }) => {
 		const component = await mount(comp);
 		await expect(component).toHaveScreenshot();
 	});
 };
 
-test.describe("DBBrand component on desktop", () => {
+test.describe('DBBrand component on desktop', () => {
 	// Old-school CRT monitor screensize
 	test.use({ viewport: { width: 1024, height: 768 } });
 
 	testBrand();
 });
 
-test.describe("DBBrand component on mobile", () => {
+test.describe('DBBrand component on mobile', () => {
 	// iPhone 13 / portrait screen size
 	test.use({ viewport: { width: 390, height: 884 } });
 
 	testBrand();
 });
 
-test.describe("DBBrand component A11y", () => {
-	test("DBBrand should not have any automatically detectable accessibility issues", async ({
+test.describe('DBBrand component A11y', () => {
+	test('DBBrand should not have any automatically detectable accessibility issues', async ({
 		page,
 		mount,
 	}) => {
 		await mount(comp);
 		const accessibilityScanResults = await new AxeBuilder({ page })
-			.include(".db-brand")
+			.include('.db-brand')
 			.analyze();
 
 		expect(accessibilityScanResults.violations).toEqual([]);

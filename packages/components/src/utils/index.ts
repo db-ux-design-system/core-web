@@ -1,5 +1,5 @@
 export const uuid = () => {
-	if (typeof window !== "undefined") {
+	if (typeof window !== 'undefined') {
 		return window.crypto?.randomUUID();
 	}
 

@@ -4,8 +4,8 @@ import {
 	Slot,
 	useMetadata,
 	useStore,
-} from "@builder.io/mitosis";
-import { DBHeaderState, DBHeaderProps } from "./model";
+} from '@builder.io/mitosis';
+import { DBHeaderState, DBHeaderProps } from './model';
 
 useMetadata({
 	isAttachedToShadowDom: true,
@@ -29,7 +29,7 @@ export default function DBHeader(props: DBHeaderProps) {
 	return (
 		<header
 			ref={component}
-			class={"db-header" + (props.className ? " " + props.className : "")}
+			class={'db-header' + (props.className ? ' ' + props.className : '')}
 			role="banner">
 			<Show when={state.stylePath}>
 				<link rel="stylesheet" href={state.stylePath} />

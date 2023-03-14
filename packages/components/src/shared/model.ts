@@ -11,18 +11,18 @@ export type GlobalState = {
 };
 
 export type DefaultVariantProps =
-	| "adaptive"
-	| "critical"
-	| "informational"
-	| "warning"
-	| "successful";
+	| 'adaptive'
+	| 'critical'
+	| 'informational'
+	| 'warning'
+	| 'successful';
 
 export const DefaultVariantsIcon: any = {
-	critical: "error",
+	critical: 'error',
 	// TODO: 'error-triangle' will change to 'warning' soon
-	warning: "error-triangle",
-	successful: "check-circle",
-	informational: "info",
+	warning: 'error-triangle',
+	successful: 'check-circle',
+	informational: 'info',
 };
 
 export type IconProps = {
@@ -64,30 +64,30 @@ export type ImageProps = {
 export type LinkProps = {
 	current?:
 		| boolean
-		| "time"
-		| "true"
-		| "false"
-		| "date"
-		| "page"
-		| "step"
-		| "location"
+		| 'time'
+		| 'true'
+		| 'false'
+		| 'date'
+		| 'page'
+		| 'step'
+		| 'location'
 		| undefined;
 	disabled?: boolean;
 	href?: string;
 	hreflang?: string;
 	label?: string;
-	target?: "_self" | "_blank" | "_parent" | "_top";
+	target?: '_self' | '_blank' | '_parent' | '_top';
 	rel?: string;
 	role?: string;
 	referrerpolicy?:
-		| "no-referrer"
-		| "no-referrer-when-downgrade"
-		| "origin"
-		| "origin-when-cross-origin"
-		| "same-origin"
-		| "strict-origin"
-		| "strict-origin-when-cross-origin"
-		| "unsafe-url";
+		| 'no-referrer'
+		| 'no-referrer-when-downgrade'
+		| 'origin'
+		| 'origin-when-cross-origin'
+		| 'same-origin'
+		| 'strict-origin'
+		| 'strict-origin-when-cross-origin'
+		| 'unsafe-url';
 	selected?: boolean;
 };
 

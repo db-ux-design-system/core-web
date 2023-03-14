@@ -20,6 +20,15 @@
 			"options": {
 				"trailingComma": "none"
 			}
+		},
+		{
+			"files": [
+				"packages/components/src/**/*.ts",
+				"packages/components/src/**/*.tsx"
+			],
+			"options": {
+				"singleQuote": true
+			}
 		}
 	],
 	"endOfLine": "auto"

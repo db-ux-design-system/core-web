@@ -1,5 +1,5 @@
-import { onMount, Show, useMetadata, useStore } from "@builder.io/mitosis";
-import { DBBrandState, DBBrandProps } from "./model";
+import { onMount, Show, useMetadata, useStore } from '@builder.io/mitosis';
+import { DBBrandState, DBBrandProps } from './model';
 
 useMetadata({
 	isAttachedToShadowDom: true,
@@ -10,8 +10,8 @@ useMetadata({
 });
 
 const DEFAULT_VALUES = {
-	anchorRef: "/",
-	src: "./assets/images/db_logo.svg",
+	anchorRef: '/',
+	src: './assets/images/db_logo.svg',
 };
 
 export default function DBBrand(props: DBBrandProps) {
@@ -28,7 +28,7 @@ export default function DBBrand(props: DBBrandProps) {
 	return (
 		<div
 			ref={component}
-			class={"db-brand" + (props.className ? " " + props.className : "")}>
+			class={'db-brand' + (props.className ? ' ' + props.className : '')}>
 			<Show when={state.stylePath}>
 				<link rel="stylesheet" href={state.stylePath} />
 			</Show>

@@ -1,6 +1,6 @@
-import { onMount, Show, useMetadata, useStore } from "@builder.io/mitosis";
-import { DBIcon } from "../icon";
-import type { DBButtonProps, DBButtonState } from "./model";
+import { onMount, Show, useMetadata, useStore } from '@builder.io/mitosis';
+import { DBIcon } from '../icon';
+import type { DBButtonProps, DBButtonState } from './model';
 
 useMetadata({
 	isAttachedToShadowDom: true,
@@ -9,36 +9,36 @@ useMetadata({
 		hasDisabledProp: true,
 		hasOnClick: true,
 		properties: [
-			{ name: "text", type: "SingleLine.Text" },
+			{ name: 'text', type: 'SingleLine.Text' },
 			{
-				name: "variant",
-				type: "Enum",
+				name: 'variant',
+				type: 'Enum',
 				values: [
-					{ key: "Primary", name: "Primary", value: "primary" },
-					{ key: "Outline", name: "Outline", value: "outline" },
+					{ key: 'Primary', name: 'Primary', value: 'primary' },
+					{ key: 'Outline', name: 'Outline', value: 'outline' },
 					{
-						key: "Transparent",
-						name: "Transparent",
-						value: "transparent",
+						key: 'Transparent',
+						name: 'Transparent',
+						value: 'transparent',
 					},
 					{
-						key: "Semi-Transparent",
-						name: "Semi-Transparent",
-						value: "semi-transparent",
+						key: 'Semi-Transparent',
+						name: 'Semi-Transparent',
+						value: 'semi-transparent',
 					},
 				],
 			},
 			{
-				name: "icon",
-				type: "Icon",
+				name: 'icon',
+				type: 'Icon',
 			},
-			{ name: "icntxt", type: "TwoOptions" },
+			{ name: 'icntxt', type: 'TwoOptions' },
 			{
-				name: "width",
-				type: "Enum",
+				name: 'width',
+				type: 'Enum',
 				values: [
-					{ key: "Full", name: "Full", value: "full" },
-					{ key: "Auto", name: "Auto", value: "auto" },
+					{ key: 'Full', name: 'Full', value: 'full' },
+					{ key: 'Auto', name: 'Auto', value: 'auto' },
 				],
 			},
 		],
@@ -55,7 +55,7 @@ export default function DBButton(props: DBButtonProps) {
 			}
 		},
 		iconVisible: (icon: string) => {
-			return icon && icon !== "_" && icon !== "none";
+			return icon && icon !== '_' && icon !== 'none';
 		},
 	});
 
@@ -72,11 +72,11 @@ export default function DBButton(props: DBButtonProps) {
 			disabled={props.disabled}
 			aria-label={props.label}
 			class={
-				"db-button" +
-				(props.className ? " " + props.className : "") +
+				'db-button' +
+				(props.className ? ' ' + props.className : '') +
 				(state.iconVisible(props.icon) && !props.icntxt
-					? " is-icon-text-replace"
-					: "")
+					? ' is-icon-text-replace'
+					: '')
 			}
 			data-size={props.size}
 			data-state={props.state}

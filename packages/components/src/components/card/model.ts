@@ -4,12 +4,12 @@ import {
 	GlobalProps,
 	GlobalState,
 	ImageProps,
-} from "../../shared/model";
+} from '../../shared/model';
 
 export type DBCardDefaultProps = {
 	colorVariant?: string;
-	direction?: "column" | "row";
-	variant?: "full-width" | "interactive";
+	direction?: 'column' | 'row';
+	variant?: 'full-width' | 'interactive';
 };
 
 export type DBCardProps = DBCardDefaultProps &
