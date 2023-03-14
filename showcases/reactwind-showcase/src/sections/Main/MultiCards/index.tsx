@@ -1,5 +1,5 @@
-import { DBCard, DBLink } from '../../../../../../output/react/src';
-import type { MultiCardsType } from './data';
+import { DBCard, DBLink } from "../../../../../../output/react/src";
+import type { MultiCardsType } from "./data";
 
 const MultiCards = ({ cards }: MultiCardsType) => (
 	<div className={`grid grid-cols-1 s:grid-cols-${cards.length} gap-fix-md`}>

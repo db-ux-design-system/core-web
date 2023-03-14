@@ -5,9 +5,9 @@ const updatePrs = async ({ github, context }) => {
 	const pulls = await github.rest.pulls.list({
 		owner,
 		repo,
-		state: 'open',
-		base: 'main',
-		per_page: 100
+		state: "open",
+		base: "main",
+		per_page: 100,
 	});
 
 	const nonDraftPulls = pulls?.data?.filter((pr) => !pr.draft);
@@ -19,7 +19,7 @@ const updatePrs = async ({ github, context }) => {
 				await github.rest.pulls.updateBranch({
 					owner,
 					repo,
-					pull_number: pr.number
+					pull_number: pr.number,
 				});
 				updatedBranches++;
 			} catch (e) {

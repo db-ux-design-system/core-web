@@ -11,22 +11,22 @@ import {
 	FormProps,
 	FormState,
 	IconProps,
-	IconState
-} from '../../shared/model';
+	IconState,
+} from "../../shared/model";
 
 export type DBInputDefaultProps = {
 	type?:
-		| 'text'
-		| 'search'
-		| 'number'
-		| 'tel'
-		| 'url'
-		| 'email'
-		| 'password'
-		| 'hidden'
-		| 'date'
-		| 'datetime-local'
-		| 'week';
+		| "text"
+		| "search"
+		| "number"
+		| "tel"
+		| "url"
+		| "email"
+		| "password"
+		| "hidden"
+		| "date"
+		| "datetime-local"
+		| "week";
 	variant?: DefaultVariantProps;
 	iconAfter?: string;
 	description?: string;

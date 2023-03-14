@@ -1,24 +1,24 @@
-import '../../../../../output/webcomponent/src/components/input/input.js';
-import '../../../../../output/webcomponent/src/components/button/button.js';
-import getQueryParams from '../../utils/get-query-params.js';
+import "../../../../../output/webcomponent/src/components/input/input.js";
+import "../../../../../output/webcomponent/src/components/button/button.js";
+import getQueryParams from "../../utils/get-query-params.js";
 
 const getContent = () => {
-	window.addEventListener('load', () => {
+	window.addEventListener("load", () => {
 		const queryParameters = getQueryParams();
 		if (
 			[
-				'primary',
-				'secondary',
-				'successful',
-				'critical',
-				'warning',
-				'informational'
-			].some((iBg) => iBg.includes(queryParameters.color ?? ''))
+				"primary",
+				"secondary",
+				"successful",
+				"critical",
+				"warning",
+				"informational",
+			].some((iBg) => iBg.includes(queryParameters.color ?? ""))
 		) {
-			document.querySelector('#backgroundWarning').style.display =
-				'block';
+			document.querySelector("#backgroundWarning").style.display =
+				"block";
 		} else {
-			document.querySelector('#backgroundWarning').style.display = 'none';
+			document.querySelector("#backgroundWarning").style.display = "none";
 		}
 	});
 

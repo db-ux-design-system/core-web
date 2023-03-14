@@ -3,7 +3,7 @@
  * according to definitions made by DB UI v3
  */
 
-const prefix = 'db';
+const prefix = "db";
 
 /**
  * Backgrounds have more than one variant with the same color for text (on-color)
@@ -11,7 +11,7 @@ const prefix = 'db';
  */
 
 const generateBGVariants = (value, variant) => {
-	const nameEnding = variant ? `-${variant}` : '';
+	const nameEnding = variant ? `-${variant}` : "";
 	return `
 .${prefix}-bg-${value}${nameEnding} {
     @extend %${prefix}-bg-${value}${nameEnding};
@@ -42,9 +42,9 @@ exports.generateColorUtilitityClasses = (colorToken) => {
 	`;
 
 	for (const [, value] of Object.keys(colorToken).entries()) {
-		if (value === 'neutral') {
+		if (value === "neutral") {
 			// Neutral has multiple default tones
-			const neutralTones = ['0', '1', '2', '3', '4'];
+			const neutralTones = ["0", "1", "2", "3", "4"];
 			for (const neutralTone of neutralTones) {
 				output += generateBGVariants(value, neutralTone);
 			}
@@ -54,7 +54,7 @@ exports.generateColorUtilitityClasses = (colorToken) => {
 		}
 
 		// Transparent tones
-		const transparentTones = ['full', 'semi'];
+		const transparentTones = ["full", "semi"];
 		for (const transparentTone of transparentTones) {
 			output += generateBGVariants(
 				value,

@@ -1,16 +1,16 @@
-import FS from 'node:fs';
+import FS from "node:fs";
 
-const componentPath = '../../packages/components/src/components';
+const componentPath = "../../packages/components/src/components";
 
 /**
  * @param componentName {string}
  * @returns {string}
  */
 const getHowToFile = (componentName) => {
-	let howToReadme = '';
+	let howToReadme = "";
 	const fileName = `${componentPath}/${componentName}/README.md`;
 	if (FS.existsSync(fileName)) {
-		howToReadme = FS.readFileSync(fileName, 'utf8').toString();
+		howToReadme = FS.readFileSync(fileName, "utf8").toString();
 	}
 
 	return `

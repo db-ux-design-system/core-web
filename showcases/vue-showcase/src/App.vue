@@ -6,7 +6,7 @@ import {
 	TONALITIES,
 	TONALITY,
 	COLOR_CONST,
-	TONALITY_CONST
+	TONALITY_CONST,
 } from "../../../packages/components/src/shared/constants";
 import { navigationItems } from "./utils/navigation-items";
 
@@ -29,8 +29,8 @@ const onChange = (event: any) => {
 		query: {
 			...route.query,
 			[TONALITY_CONST]: tonality.value,
-			[COLOR_CONST]: color.value
-		}
+			[COLOR_CONST]: color.value,
+		},
 	});
 };
 

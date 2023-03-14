@@ -8,7 +8,7 @@ const input = ref("");
 const logAll = () => {
 	alert(
 		JSON.stringify({
-			input: input.value
+			input: input.value,
 		})
 	);
 };

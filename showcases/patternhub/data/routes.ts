@@ -1,259 +1,259 @@
-import type { DbMainnavigationDataType } from '@db-ui/elements/dist/types/components/db-mainnavigation/db-mainnavigation-type';
+import type { DbMainnavigationDataType } from "@db-ui/elements/dist/types/components/db-mainnavigation/db-mainnavigation-type";
 
 const componentChildren = [
 	{
-		label: '01 Layout',
-		link: '/components/01-layout',
+		label: "01 Layout",
+		link: "/components/01-layout",
 		children: [
 			{
-				label: 'DBCard',
-				link: '/components/card',
+				label: "DBCard",
+				link: "/components/card",
 				children: [
 					{
-						label: 'Examples',
-						link: '/components/card/examples'
+						label: "Examples",
+						link: "/components/card/examples",
 					},
 					{
-						label: 'How to use',
-						link: '/components/card/how-to-use'
-					}
-				]
+						label: "How to use",
+						link: "/components/card/how-to-use",
+					},
+				],
 			},
 			{
-				label: 'DBDivider',
-				link: '/components/divider',
+				label: "DBDivider",
+				link: "/components/divider",
 				children: [
 					{
-						label: 'Examples',
-						link: '/components/divider/examples'
+						label: "Examples",
+						link: "/components/divider/examples",
 					},
 					{
-						label: 'How to use',
-						link: '/components/divider/how-to-use'
-					}
-				]
+						label: "How to use",
+						link: "/components/divider/how-to-use",
+					},
+				],
 			},
 			{
-				label: 'DBHeader',
-				link: '/components/header',
+				label: "DBHeader",
+				link: "/components/header",
 				children: [
 					{
-						label: 'Examples',
-						link: '/components/header/examples'
+						label: "Examples",
+						link: "/components/header/examples",
 					},
 					{
-						label: 'How to use',
-						link: '/components/header/how-to-use'
-					}
-				]
+						label: "How to use",
+						link: "/components/header/how-to-use",
+					},
+				],
 			},
 			{
-				label: 'DBPage',
-				link: '/components/page',
+				label: "DBPage",
+				link: "/components/page",
 				children: [
 					{
-						label: 'Examples',
-						link: '/components/page/examples'
+						label: "Examples",
+						link: "/components/page/examples",
 					},
 					{
-						label: 'How to use',
-						link: '/components/page/how-to-use'
-					}
-				]
+						label: "How to use",
+						link: "/components/page/how-to-use",
+					},
+				],
 			},
 			{
-				label: 'DBSection',
-				link: '/components/section',
+				label: "DBSection",
+				link: "/components/section",
 				children: [
 					{
-						label: 'Examples',
-						link: '/components/section/examples'
+						label: "Examples",
+						link: "/components/section/examples",
 					},
 					{
-						label: 'How to use',
-						link: '/components/section/how-to-use'
-					}
-				]
-			}
-		]
+						label: "How to use",
+						link: "/components/section/how-to-use",
+					},
+				],
+			},
+		],
 	},
 	{
-		label: '02 Action',
-		link: '/components/02-action',
+		label: "02 Action",
+		link: "/components/02-action",
 		children: [
 			{
-				label: 'DBButton',
-				link: '/components/button',
+				label: "DBButton",
+				link: "/components/button",
 				children: [
 					{
-						label: 'Examples',
-						link: '/components/button/examples'
+						label: "Examples",
+						link: "/components/button/examples",
 					},
 					{
-						label: 'How to use',
-						link: '/components/button/how-to-use'
-					}
-				]
+						label: "How to use",
+						link: "/components/button/how-to-use",
+					},
+				],
 			},
 			{
-				label: 'DBLink',
-				link: '/components/link',
+				label: "DBLink",
+				link: "/components/link",
 				children: [
 					{
-						label: 'Examples',
-						link: '/components/link/examples'
+						label: "Examples",
+						link: "/components/link/examples",
 					},
 					{
-						label: 'How to use',
-						link: '/components/link/how-to-use'
-					}
-				]
-			}
-		]
+						label: "How to use",
+						link: "/components/link/how-to-use",
+					},
+				],
+			},
+		],
 	},
 	{
-		label: '03 Data-Input',
-		link: '/components/03-data-input',
+		label: "03 Data-Input",
+		link: "/components/03-data-input",
 		children: [
 			{
-				label: 'DBInput',
-				link: '/components/input',
+				label: "DBInput",
+				link: "/components/input",
 				children: [
 					{
-						label: 'Examples',
-						link: '/components/input/examples'
+						label: "Examples",
+						link: "/components/input/examples",
 					},
 					{
-						label: 'How to use',
-						link: '/components/input/how-to-use'
-					}
-				]
-			}
-		]
+						label: "How to use",
+						link: "/components/input/how-to-use",
+					},
+				],
+			},
+		],
 	},
 	{
-		label: '04 Data-Display',
-		link: '/components/04-data-display',
+		label: "04 Data-Display",
+		link: "/components/04-data-display",
 		children: [
 			{
-				label: 'DBBrand',
-				link: '/components/brand',
+				label: "DBBrand",
+				link: "/components/brand",
 				children: [
 					{
-						label: 'Examples',
-						link: '/components/brand/examples'
+						label: "Examples",
+						link: "/components/brand/examples",
 					},
 					{
-						label: 'How to use',
-						link: '/components/brand/how-to-use'
-					}
-				]
+						label: "How to use",
+						link: "/components/brand/how-to-use",
+					},
+				],
 			},
 			{
-				label: 'DBIcon',
-				link: '/components/icon',
+				label: "DBIcon",
+				link: "/components/icon",
 				children: [
 					{
-						label: 'Examples',
-						link: '/components/icon/examples'
+						label: "Examples",
+						link: "/components/icon/examples",
 					},
 					{
-						label: 'How to use',
-						link: '/components/icon/how-to-use'
-					}
-				]
+						label: "How to use",
+						link: "/components/icon/how-to-use",
+					},
+				],
 			},
 			{
-				label: 'DBInfotext',
-				link: '/components/infotext',
+				label: "DBInfotext",
+				link: "/components/infotext",
 				children: [
 					{
-						label: 'Examples',
-						link: '/components/infotext/examples'
+						label: "Examples",
+						link: "/components/infotext/examples",
 					},
 					{
-						label: 'How to use',
-						link: '/components/infotext/how-to-use'
-					}
-				]
-			}
-		]
+						label: "How to use",
+						link: "/components/infotext/how-to-use",
+					},
+				],
+			},
+		],
 	},
 	{
-		label: '06 Feedback',
-		link: '/components/06-feedback',
+		label: "06 Feedback",
+		link: "/components/06-feedback",
 		children: [
 			{
-				label: 'DBAlert',
-				link: '/components/alert',
+				label: "DBAlert",
+				link: "/components/alert",
 				children: [
 					{
-						label: 'Examples',
-						link: '/components/alert/examples'
+						label: "Examples",
+						link: "/components/alert/examples",
 					},
 					{
-						label: 'How to use',
-						link: '/components/alert/how-to-use'
-					}
-				]
-			}
-		]
-	}
+						label: "How to use",
+						link: "/components/alert/how-to-use",
+					},
+				],
+			},
+		],
+	},
 ];
 export const ROUTES: DbMainnavigationDataType[] = [
 	{
-		label: 'Home',
-		link: '/'
+		label: "Home",
+		link: "/",
 	},
 	{
-		label: 'Foundations',
-		link: '/foundations',
+		label: "Foundations",
+		link: "/foundations",
 		children: [
 			{
-				label: 'Colors',
-				link: '/foundations/colors',
+				label: "Colors",
+				link: "/foundations/colors",
 				children: [
-					{ label: 'Examples', link: '/foundations/colors/examples' }
-				]
+					{ label: "Examples", link: "/foundations/colors/examples" },
+				],
 			},
-			{ label: 'Icons', link: '/foundations/icons' }
-		]
+			{ label: "Icons", link: "/foundations/icons" },
+		],
 	},
 	{
-		label: 'Components',
-		link: '/components',
-		children: componentChildren
+		label: "Components",
+		link: "/components",
+		children: componentChildren,
 	},
 	{
-		label: 'Showcases',
-		link: '/showcases',
+		label: "Showcases",
+		link: "/showcases",
 		children: [
 			{
-				label: 'Angular',
-				link: '/showcases/angular-current'
+				label: "Angular",
+				link: "/showcases/angular-current",
 			},
 			{
-				label: 'Angular LTS',
-				link: '/showcases/angular-lts'
+				label: "Angular LTS",
+				link: "/showcases/angular-lts",
 			},
 			{
-				label: 'React',
-				link: '/showcases/react'
+				label: "React",
+				link: "/showcases/react",
 			},
 			{
-				label: 'Reactwind',
-				link: '/showcases/reactwind'
+				label: "Reactwind",
+				link: "/showcases/reactwind",
 			},
 			{
-				label: 'Vanilla',
-				link: '/showcases/vanilla'
+				label: "Vanilla",
+				link: "/showcases/vanilla",
 			},
 			{
-				label: 'Vue',
-				link: '/showcases/vue'
-			}
-		]
-	}
+				label: "Vue",
+				link: "/showcases/vue",
+			},
+		],
+	},
 ];
 
 export const getRouteWithBasePath = (route: DbMainnavigationDataType) => {
@@ -261,6 +261,6 @@ export const getRouteWithBasePath = (route: DbMainnavigationDataType) => {
 		...route,
 		link: process.env.NEXT_PUBLIC_BASE_PATH
 			? `${process.env.NEXT_PUBLIC_BASE_PATH}${route.link}`
-			: route.link
+			: route.link,
 	};
 };

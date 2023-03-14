@@ -1,1 +1,1 @@
-export { default as DBSection } from './section';
+export { default as DBSection } from "./section";

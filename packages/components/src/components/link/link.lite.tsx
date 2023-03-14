@@ -1,13 +1,13 @@
-import { onMount, Show, useMetadata, useStore } from '@builder.io/mitosis';
-import { DBIcon } from '../icon';
-import { DBLinkState, DBLinkProps } from './model';
+import { onMount, Show, useMetadata, useStore } from "@builder.io/mitosis";
+import { DBIcon } from "../icon";
+import { DBLinkState, DBLinkProps } from "./model";
 
 useMetadata({
 	isAttachedToShadowDom: false,
 	component: {
 		includeIcon: false,
-		properties: []
-	}
+		properties: [],
+	},
 });
 
 export default function DBLink(props: DBLinkProps) {
@@ -18,7 +18,7 @@ export default function DBLink(props: DBLinkProps) {
 			if (props.onClick) {
 				props.onClick(event);
 			}
-		}
+		},
 	});
 
 	onMount(() => {
@@ -30,7 +30,7 @@ export default function DBLink(props: DBLinkProps) {
 	return (
 		<a
 			ref={component}
-			class={'db-link' + (props.className ? ' ' + props.className : '')}
+			class={"db-link" + (props.className ? " " + props.className : "")}
 			href={props.href}
 			title={props.title}
 			target={props.target}
@@ -44,16 +44,16 @@ export default function DBLink(props: DBLinkProps) {
 			aria-current={props.current}
 			data-size={props.size}
 			data-variant={props.variant}
-			data-content={props.content || 'internal'}
+			data-content={props.content || "internal"}
 			onClick={(event) => state.handleClick(event)}>
 			<Show when={state.stylePath}>
 				<link rel="stylesheet" href={state.stylePath} />
 			</Show>
 			{props.children}
-			<Show when={props.variant !== 'inline'}>
+			<Show when={props.variant !== "inline"}>
 				<DBIcon
 					icon={
-						props.content == 'external' ? 'link-external' : 'link'
+						props.content == "external" ? "link-external" : "link"
 					}
 					icntxt={true}></DBIcon>
 			</Show>

@@ -1,1 +1,1 @@
-export { default as DBCodeDocs } from './code-docs';
+export { default as DBCodeDocs } from "./code-docs";

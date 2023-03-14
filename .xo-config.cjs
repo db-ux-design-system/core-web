@@ -1,21 +1,26 @@
-{
-	"prettier": true,
-	"plugins": ["@db-ui"],
-	"overrides": [
+module.exports = {
+	prettier: true,
+	plugins: ["@db-ui"],
+	overrides: [
 		{
-			"files": ["./showcases/angular-showcase/**"],
-			"rules": {
+			files: ["./showcases/angular-showcase/**"],
+			rules: {
 				"import/no-extraneous-dependencies": 0,
-				"@typescript-eslint/consistent-type-imports": 0
-			}
-		}
+				"@typescript-eslint/consistent-type-imports": 0,
+			},
+		},
+		{
+			files: ["./showcases/**", "./examples/**"],
+			rules: {
+				// In TS we don't need extension
+				"import/extensions": 0,
+			},
+		},
 	],
-	"rules": {
+	rules: {
 		"@db-ui/v2-component-used": "warn",
-		"no-console": ["error", { "allow": ["warn", "error"] }],
-		"unicorn/no-array-callback-reference": 0,
-		"unicorn/prefer-module": 0,
-		"import/extensions": 0,
+		"no-console": ["error", { allow: ["warn", "error"] }],
+		"unicorn/prefer-module": 0, // we need to change every package to type:module
 		"max-depth": 0,
 		"n/prefer-global/process": 0,
 		"max-params": 0,
@@ -32,11 +37,11 @@
 		"unicorn/filename-case": [
 			"error",
 			{
-				"cases": {
-					"kebabCase": true,
-					"pascalCase": true
-				}
-			}
-		]
-	}
-}
+				cases: {
+					kebabCase: true,
+					pascalCase: true,
+				},
+			},
+		],
+	},
+};

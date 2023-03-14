@@ -1,6 +1,6 @@
-import { NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
-import { ReactiveFormsModule, FormsModule } from '@angular/forms';
-import { BrowserModule } from '@angular/platform-browser';
+import { NgModule, NO_ERRORS_SCHEMA } from "@angular/core";
+import { ReactiveFormsModule, FormsModule } from "@angular/forms";
+import { BrowserModule } from "@angular/platform-browser";
 
 import {
 	DBButtonModule,
@@ -11,20 +11,20 @@ import {
 	DBPageModule,
 	DBHeaderModule,
 	DBBrandModule,
-	DBLinkModule
-} from '../../../../output/angular/src';
-import { AppComponent } from './app.component';
-import { AppRoutingModule } from './app.routing.module';
-import { FormComponent } from './components/form/form.component';
-import { ButtonComponent } from './components/button/button.component';
-import { InputComponent } from './components/input/input.component';
+	DBLinkModule,
+} from "../../../../output/angular/src";
+import { AppComponent } from "./app.component";
+import { AppRoutingModule } from "./app.routing.module";
+import { FormComponent } from "./components/form/form.component";
+import { ButtonComponent } from "./components/button/button.component";
+import { InputComponent } from "./components/input/input.component";
 
 @NgModule({
 	declarations: [
 		AppComponent,
 		FormComponent,
 		ButtonComponent,
-		InputComponent
+		InputComponent,
 	],
 	imports: [
 		AppRoutingModule,
@@ -38,10 +38,10 @@ import { InputComponent } from './components/input/input.component';
 		DBHeaderModule,
 		DBBrandModule,
 		DBLinkModule,
-		FormsModule
+		FormsModule,
 	],
 	providers: [],
 	schemas: [NO_ERRORS_SCHEMA],
-	bootstrap: [AppComponent]
+	bootstrap: [AppComponent],
 })
 export class AppModule {}

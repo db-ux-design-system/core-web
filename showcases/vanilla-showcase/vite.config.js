@@ -1,5 +1,5 @@
-import { defineConfig } from 'vite';
+import { defineConfig } from "vite";
 
 export default defineConfig({
-	base: `${process.env.BASE_URL ?? ''}/vanilla-showcase`
+	base: `${process.env.BASE_URL ?? ""}/vanilla-showcase`,
 });

@@ -1,5 +1,5 @@
-import { onMount, Show, useMetadata, useStore } from '@builder.io/mitosis';
-import type { DBCardState, DBCardProps } from './model';
+import { onMount, Show, useMetadata, useStore } from "@builder.io/mitosis";
+import type { DBCardState, DBCardProps } from "./model";
 
 useMetadata({
 	isAttachedToShadowDom: true,
@@ -7,23 +7,23 @@ useMetadata({
 		includeIcon: false,
 		properties: [
 			{
-				name: 'variant',
-				type: 'Enum',
+				name: "variant",
+				type: "Enum",
 				values: [
 					{
-						key: 'Interactive',
-						name: 'Interactive',
-						value: 'interactive'
+						key: "Interactive",
+						name: "Interactive",
+						value: "interactive",
 					},
 					{
-						key: 'Full Width',
-						name: 'Full Width',
-						value: 'full-width'
-					}
-				]
-			}
-		]
-	}
+						key: "Full Width",
+						name: "Full Width",
+						value: "full-width",
+					},
+				],
+			},
+		],
+	},
 });
 
 export default function DBCard(props: DBCardProps) {
@@ -34,7 +34,7 @@ export default function DBCard(props: DBCardProps) {
 			if (props.onClick) {
 				props.onClick(event);
 			}
-		}
+		},
 	});
 
 	onMount(() => {
@@ -46,7 +46,7 @@ export default function DBCard(props: DBCardProps) {
 	return (
 		<div
 			ref={component}
-			class={'db-card' + (props.className ? ' ' + props.className : '')}
+			class={"db-card" + (props.className ? " " + props.className : "")}
 			data-variant={props.variant}
 			data-color-variant={props.colorVariant}
 			data-direction={props.direction}

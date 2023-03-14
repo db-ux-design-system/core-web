@@ -3,13 +3,13 @@ import {
 	Show,
 	Slot,
 	useMetadata,
-	useStore
-} from '@builder.io/mitosis';
-import { DBAlertState, DBAlertProps } from './model';
-import { DBIcon } from '../icon';
-import { DefaultVariantsIcon } from '../../shared/model';
-import { DBButton } from '../button';
-import { DBLink } from '../link';
+	useStore,
+} from "@builder.io/mitosis";
+import { DBAlertState, DBAlertProps } from "./model";
+import { DBIcon } from "../icon";
+import { DefaultVariantsIcon } from "../../shared/model";
+import { DBButton } from "../button";
+import { DBLink } from "../link";
 
 useMetadata({
 	isAttachedToShadowDom: true,
@@ -17,22 +17,22 @@ useMetadata({
 		includeIcon: true,
 		hasOnClick: true,
 		properties: [
-			{ name: 'headline', type: 'SingleLine.Text' },
-			{ name: 'text', type: 'SingleLine.Text' },
+			{ name: "headline", type: "SingleLine.Text" },
+			{ name: "text", type: "SingleLine.Text" },
 			{
-				name: 'icon',
-				type: 'Icon' // this is a custom type not provided by ms
+				name: "icon",
+				type: "Icon", // this is a custom type not provided by ms
 			},
 			{
-				name: 'variant',
-				type: 'DefaultVariant' // this is a custom type not provided by ms
-			}
-		]
-	}
+				name: "variant",
+				type: "DefaultVariant", // this is a custom type not provided by ms
+			},
+		],
+	},
 });
 
 const DEFAULT_VALUES = {
-	closeButton: 'Close Button'
+	closeButton: "Close Button",
 };
 
 export default function DBAlert(props: DBAlertProps) {
@@ -49,11 +49,11 @@ export default function DBAlert(props: DBAlertProps) {
 				return icon;
 			}
 
-			return DefaultVariantsIcon[variant] || 'info';
+			return DefaultVariantsIcon[variant] || "info";
 		},
 		iconVisible: (icon: string) => {
-			return icon && icon !== '_' && icon !== 'none';
-		}
+			return icon && icon !== "_" && icon !== "none";
+		},
 	});
 
 	onMount(() => {
@@ -65,7 +65,7 @@ export default function DBAlert(props: DBAlertProps) {
 	return (
 		<div
 			ref={component}
-			class={'db-alert' + (props.className ? ' ' + props.className : '')}
+			class={"db-alert" + (props.className ? " " + props.className : "")}
 			data-variant={props.variant}
 			data-type={props.type}>
 			<Show when={state.stylePath}>
@@ -88,7 +88,7 @@ export default function DBAlert(props: DBAlertProps) {
 						</span>
 					</Show>
 					<div class="db-alert-close-container">
-						<Show when={props.type !== 'inline'}>
+						<Show when={props.type !== "inline"}>
 							<DBLink
 								className="db-alert-headline-link"
 								variant="inline"

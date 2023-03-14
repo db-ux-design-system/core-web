@@ -1,11 +1,11 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.scss';
-import { HashRouter, Navigate, Route, Routes } from 'react-router-dom';
-import App from './app';
-import { NAVIGATION_ITEMS } from './utils/navigation-item';
+import React from "react";
+import ReactDOM from "react-dom/client";
+import "./index.scss";
+import { HashRouter, Navigate, Route, Routes } from "react-router-dom";
+import App from "./app";
+import { NAVIGATION_ITEMS } from "./utils/navigation-item";
 
-ReactDOM.createRoot(document.querySelector('#root')!).render(
+ReactDOM.createRoot(document.querySelector("#root")!).render(
 	<React.StrictMode>
 		<HashRouter>
 			<Routes>

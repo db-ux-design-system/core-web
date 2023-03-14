@@ -3,16 +3,16 @@ import {
 	Show,
 	Slot,
 	useMetadata,
-	useStore
-} from '@builder.io/mitosis';
-import { DBPageProps, DBPageState } from './model';
+	useStore,
+} from "@builder.io/mitosis";
+import { DBPageProps, DBPageState } from "./model";
 
 useMetadata({
 	isAttachedToShadowDom: true,
 	component: {
 		includeIcon: false,
-		properties: []
-	}
+		properties: [],
+	},
 });
 
 export default function DBPage(props: DBPageProps) {
@@ -30,11 +30,11 @@ export default function DBPage(props: DBPageProps) {
 		<div
 			ref={component}
 			class={
-				'db-page' +
-				(props.className ? ' ' + props.className : '') +
-				(props.type === 'fixedHeaderFooter'
-					? ' fixed-header-footer'
-					: '')
+				"db-page" +
+				(props.className ? " " + props.className : "") +
+				(props.type === "fixedHeaderFooter"
+					? " fixed-header-footer"
+					: "")
 			}>
 			<Show when={state.stylePath}>
 				<link rel="stylesheet" href={state.stylePath} />

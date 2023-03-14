@@ -1,12 +1,12 @@
-import { Link, Outlet } from 'react-router-dom';
-import { DBBrand, DBHeader, DBPage } from '../../../output/react/src';
+import { Link, Outlet } from "react-router-dom";
+import { DBBrand, DBHeader, DBPage } from "../../../output/react/src";
 
 import {
 	COLORS,
-	TONALITIES
-} from '../../../packages/components/src/shared/constants';
-import { NAVIGATION_ITEMS } from './utils/navigation-item';
-import useQuery from './hooks/use-query';
+	TONALITIES,
+} from "../../../packages/components/src/shared/constants";
+import { NAVIGATION_ITEMS } from "./utils/navigation-item";
+import useQuery from "./hooks/use-query";
 
 const App = () => {
 	const [tonality, setTonality, color, setColor, pageName, fullscreen] =

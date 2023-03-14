@@ -71,7 +71,7 @@ import { DBButtonModule } from "@db-ui/ngx-components";
   declarations: [AppComponent],
   imports: [BrowserModule, DBButtonModule],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
 export class AppModule {}
 ```

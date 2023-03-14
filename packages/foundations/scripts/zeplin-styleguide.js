@@ -1,19 +1,19 @@
-require('dotenv').config();
-const FS = require('node:fs');
-const { ZeplinApi, Configuration } = require('@zeplin/sdk');
+require("dotenv").config();
+const FS = require("node:fs");
+const { ZeplinApi, Configuration } = require("@zeplin/sdk");
 
 const zeplin = new ZeplinApi(
 	new Configuration({
-		accessToken: process.env.DEVELOPER_ZEPLIN_ACCESS_TOKEN
+		accessToken: process.env.DEVELOPER_ZEPLIN_ACCESS_TOKEN,
 	})
 );
 
 const correctKey = (key) => {
 	let correctKey = key;
 	for (let i = 0; i < 20; i++) {
-		const replacementNumber = String(i).padStart(2, '0');
+		const replacementNumber = String(i).padStart(2, "0");
 		while (correctKey.includes(replacementNumber)) {
-			correctKey = correctKey.replace(`${replacementNumber}-`, '');
+			correctKey = correctKey.replace(`${replacementNumber}-`, "");
 		}
 	}
 
@@ -22,28 +22,28 @@ const correctKey = (key) => {
 
 const correctColor = (key) => {
 	let correctKey = key;
-	if (correctKey.startsWith('on') && !correctKey.startsWith('on-')) {
-		correctKey = correctKey.replace('on', 'on-');
+	if (correctKey.startsWith("on") && !correctKey.startsWith("on-")) {
+		correctKey = correctKey.replace("on", "on-");
 	}
 
 	if (
-		!correctKey.endsWith('-enabled') &&
-		!correctKey.endsWith('-hover') &&
-		!correctKey.endsWith('-pressed')
+		!correctKey.endsWith("-enabled") &&
+		!correctKey.endsWith("-hover") &&
+		!correctKey.endsWith("-pressed")
 	) {
 		correctKey = `${correctKey}-enabled`;
 	}
 
-	return correctKey.replace('background', 'bg');
+	return correctKey.replace("background", "bg");
 };
 
 const mergeData = (data) => {
 	const mData = {};
 	for (const key of Object.keys(data)) {
-		const splitKeys = key.split('-');
-		if (splitKeys.length > 1 && splitKeys[0] === 'on') {
+		const splitKeys = key.split("-");
+		if (splitKeys.length > 1 && splitKeys[0] === "on") {
 			splitKeys[0] = splitKeys[1];
-			splitKeys[1] = 'on';
+			splitKeys[1] = "on";
 		}
 
 		let temporaryData = mData;
@@ -71,15 +71,15 @@ const convertColors = (data) => {
 		newColors[correctColor(correctKey(key))] = {
 			value: color.value,
 			attributes: {
-				category: 'color'
-			}
+				category: "color",
+			},
 		};
 	}
 
 	data.colors = mergeData(newColors);
 };
 
-const alignments = new Set(['left', 'center', 'right']);
+const alignments = new Set(["left", "center", "right"]);
 
 const shortenTypographyRecursive = (data) => {
 	if (data instanceof Object) {
@@ -95,11 +95,11 @@ const shortenTypographyRecursive = (data) => {
 				const secondLvKeys = Object.keys(topLvlData);
 				if (
 					secondLvKeys.some(
-						(sKey) => sKey.includes('value') || alignments.has(sKey)
+						(sKey) => sKey.includes("value") || alignments.has(sKey)
 					)
 				) {
 					const foundValue =
-						secondLvKeys[0] === 'value'
+						secondLvKeys[0] === "value"
 							? topLvlData.value
 							: topLvlData[secondLvKeys[0]].value;
 					if (!foundValue) {
@@ -110,15 +110,15 @@ const shortenTypographyRecursive = (data) => {
 						lineHeight: {
 							value:
 								Number(foundValue.lineHeight) /
-								Number(foundValue.font.size)
+								Number(foundValue.font.size),
 						},
 						fontSize: {
 							value: `${foundValue.font.size}`,
 							attributes: {
-								category: 'size',
-								type: 'font'
-							}
-						}
+								category: "size",
+								type: "font",
+							},
+						},
 					};
 				} else {
 					result[topLvlKey] = shortenTypographyRecursive(topLvlData);
@@ -131,7 +131,7 @@ const shortenTypographyRecursive = (data) => {
 		return result;
 	}
 
-	return { value: 'error' };
+	return { value: "error" };
 };
 
 const convertTextStyles = (data) => {
@@ -139,22 +139,22 @@ const convertTextStyles = (data) => {
 	const newTextStyles = {};
 	for (const key of keys.filter((key) => {
 		return (
-			key.includes('token') &&
+			key.includes("token") &&
 			// We don't need bold and light
-			!key.includes('bold') &&
-			!key.includes('light')
+			!key.includes("bold") &&
+			!key.includes("light")
 		);
 	})) {
 		const textStyle = data.textStyles[key];
 		delete textStyle.value.color;
 		const cKey = correctKey(key)
-			.replace('foundation-', '')
-			.replace('typography-', '')
-			.replace('token-', '')
-			.replace('black-', '')
-			.replace('regular-center', 'center')
-			.replace('regular-left', 'left')
-			.replace('regular-right', 'right');
+			.replace("foundation-", "")
+			.replace("typography-", "")
+			.replace("token-", "")
+			.replace("black-", "")
+			.replace("regular-center", "center")
+			.replace("regular-left", "left")
+			.replace("regular-right", "right");
 		newTextStyles[cKey] = { value: textStyle.value };
 	}
 
@@ -163,37 +163,37 @@ const convertTextStyles = (data) => {
 
 const convertSpacings = (data) => {
 	const keys = Object.keys(data.spacing).filter(
-		(key) => !key.includes('-base')
+		(key) => !key.includes("-base")
 	);
 	const spacings = {};
 	const sizes = {};
 	const screens = {};
 	for (let key of keys) {
 		const spacing = data.spacing[key];
-		key = key.replace('normal', 'regular');
-		if (key?.includes('sizing')) {
-			if (key?.includes('screen')) {
-				screens[key.replace('sizing-', '').replace('screen-', '')] = {
+		key = key.replace("normal", "regular");
+		if (key?.includes("sizing")) {
+			if (key?.includes("screen")) {
+				screens[key.replace("sizing-", "").replace("screen-", "")] = {
 					value: `${Number(spacing.value) / 16}`,
 					attributes: {
-						category: 'size',
-						screen: true
-					}
+						category: "size",
+						screen: true,
+					},
 				};
 			} else {
-				sizes[key.replace('sizing-', '')] = {
+				sizes[key.replace("sizing-", "")] = {
 					value: `${spacing.value}`,
 					attributes: {
-						category: 'size'
-					}
+						category: "size",
+					},
 				};
 			}
 		} else {
-			spacings[key.replace('spacing-', '')] = {
+			spacings[key.replace("spacing-", "")] = {
 				value: `${spacing.value}`,
 				attributes: {
-					category: 'size'
-				}
+					category: "size",
+				},
 			};
 		}
 	}
@@ -206,7 +206,7 @@ const convertSpacings = (data) => {
 (async () => {
 	try {
 		const { data } = await zeplin.designTokens.getStyleguideDesignTokens(
-			'63037ab49bdcb913c9228718'
+			"63037ab49bdcb913c9228718"
 		);
 
 		convertColors(data);
@@ -214,13 +214,13 @@ const convertSpacings = (data) => {
 		convertSpacings(data);
 
 		FS.writeFileSync(
-			'./tokens/zeplin.json',
+			"./tokens/zeplin.json",
 			JSON.stringify({
 				spacing: data.spacing,
 				sizing: data.sizing,
 				screens: data.screens,
 				typography: data.textStyles,
-				colors: data.colors
+				colors: data.colors,
 			})
 		);
 	} catch (error) {

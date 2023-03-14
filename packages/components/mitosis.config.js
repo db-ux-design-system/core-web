@@ -1,19 +1,19 @@
-const PowerAppsPlugin = require('./plugins/power-apps');
+const PowerAppsPlugin = require("./plugins/power-apps");
 
 module.exports = {
-	files: 'src/**',
-	targets: ['angular', 'vue3', 'webcomponent', 'svelte', 'react'],
-	dest: '../../output',
+	files: "src/**",
+	targets: ["angular", "vue3", "webcomponent", "svelte", "react"],
+	dest: "../../output",
 	options: {
 		react: {
 			typescript: true,
-			plugins: [PowerAppsPlugin]
+			plugins: [PowerAppsPlugin],
 		},
 		angular: {
-			typescript: true
+			typescript: true,
 		},
 		vue3: {
-			typescript: true
+			typescript: true,
 		},
 		webcomponent: {
 			experimental: {
@@ -23,14 +23,14 @@ module.exports = {
 							(prop) => prop.name
 						) || [];
 					return (
-						'this.props[name] = newValue;\n' +
-						'    this.update();' +
-						'}' +
-						'static get observedAttributes() {\n' +
+						"this.props[name] = newValue;\n" +
+						"    this.update();" +
+						"}" +
+						"static get observedAttributes() {\n" +
 						`    return ${JSON.stringify(properties)};`
 					);
-				}
-			}
-		}
-	}
+				},
+			},
+		},
+	},
 };

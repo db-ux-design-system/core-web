@@ -6,15 +6,15 @@ import {
 	GlobalState,
 	IconProps,
 	IconState,
-	LinkProps
-} from '../../shared/model';
+	LinkProps,
+} from "../../shared/model";
 
 export interface DBAlertDefaultProps {
 	closeButtonText?: string;
 	headline?: string;
 	text?: string;
 	link?: LinkProps;
-	type?: 'alert' | 'inline';
+	type?: "alert" | "inline";
 	slotLink?: any;
 	variant?: DefaultVariantProps;
 }

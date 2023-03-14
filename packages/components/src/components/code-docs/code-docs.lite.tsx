@@ -1,16 +1,16 @@
-import { For, onMount, Show, useMetadata, useStore } from '@builder.io/mitosis';
-import { DBCodeDocsProps, DBCodeDocsState } from './model';
-import { DBCard } from '../card';
-import { DBButton } from '../button';
-import { DBInfotext } from '../infotext';
-import { uuid } from '../../utils';
+import { For, onMount, Show, useMetadata, useStore } from "@builder.io/mitosis";
+import { DBCodeDocsProps, DBCodeDocsState } from "./model";
+import { DBCard } from "../card";
+import { DBButton } from "../button";
+import { DBInfotext } from "../infotext";
+import { uuid } from "../../utils";
 
 useMetadata({
 	isAttachedToShadowDom: true,
 	component: {
 		includeIcon: false,
-		properties: []
-	}
+		properties: [],
+	},
 });
 
 export default function DBCodeDocs(props: DBCodeDocsProps) {
@@ -27,12 +27,12 @@ export default function DBCodeDocs(props: DBCodeDocsProps) {
 		},
 		getShowButtonLabel: () => {
 			return state.open
-				? props.hideCodeLabel ?? 'Hide Code'
-				: props.showCodeLabel ?? 'Show Code';
+				? props.hideCodeLabel ?? "Hide Code"
+				: props.showCodeLabel ?? "Show Code";
 		},
 		getSnippetId: () => {
 			return `snippet-${uuid()}`;
-		}
+		},
 	});
 
 	onMount(() => {
@@ -45,7 +45,7 @@ export default function DBCodeDocs(props: DBCodeDocsProps) {
 		<DBCard
 			ref={component}
 			class={
-				'db-code-docs' + (props.className ? ' ' + props.className : '')
+				"db-code-docs" + (props.className ? " " + props.className : "")
 			}>
 			<Show when={state.stylePath}>
 				<link rel="stylesheet" href={state.stylePath} />
@@ -65,7 +65,7 @@ export default function DBCodeDocs(props: DBCodeDocsProps) {
 							props.codeSnippets.length === 0
 						}>
 						<DBInfotext class="no-code" variant="informational">
-							{props.noCodeLabel ?? 'No Code available'}
+							{props.noCodeLabel ?? "No Code available"}
 						</DBInfotext>
 					</Show>
 					<Show
@@ -83,7 +83,7 @@ export default function DBCodeDocs(props: DBCodeDocsProps) {
 										size="small"
 										variant="outline"
 										onClick={() => state.copyCode(snippet)}>
-										{props.copyLabel ?? 'Copy Code'}
+										{props.copyLabel ?? "Copy Code"}
 									</DBButton>
 								</pre>
 							)}

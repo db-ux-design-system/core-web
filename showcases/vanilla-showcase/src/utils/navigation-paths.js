@@ -1,1 +1,1 @@
-export const navigationPaths = { button: '/button', input: '/input' };
+export const navigationPaths = { button: "/button", input: "/input" };

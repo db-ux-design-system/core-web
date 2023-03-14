@@ -1,8 +1,8 @@
-import { useState } from 'react';
-import { DBButton, DBInput } from '../../../../../output/react/src';
+import { useState } from "react";
+import { DBButton, DBInput } from "../../../../../output/react/src";
 
 const FormComponent = () => {
-	const [input, setInput] = useState('');
+	const [input, setInput] = useState("");
 
 	return (
 		<div className="form-container">
@@ -29,7 +29,7 @@ const FormComponent = () => {
 								// eslint-disable-next-line no-alert
 								alert(
 									JSON.stringify({
-										input
+										input,
 									})
 								);
 							}}>
@@ -42,7 +42,7 @@ const FormComponent = () => {
 				<h2>Output</h2>
 				<dl>
 					<dt>inputs value</dt>
-					<dd>{input || 'No Input set'}</dd>
+					<dd>{input || "No Input set"}</dd>
 				</dl>
 			</div>
 		</div>

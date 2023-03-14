@@ -1,10 +1,10 @@
 const footer = [
-	'Impressum',
-	'Beförderungsbedingungen',
-	'Datenschutz',
-	'Nutzungsbedingungen',
-	'Vertrag kündigen',
-	'© DB Vertrieb GmbH'
+	"Impressum",
+	"Beförderungsbedingungen",
+	"Datenschutz",
+	"Nutzungsbedingungen",
+	"Vertrag kündigen",
+	"© DB Vertrieb GmbH",
 ];
 
 const Footer = () => (

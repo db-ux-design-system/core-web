@@ -1,1 +1,1 @@
-export { default as DBPage } from './page';
+export { default as DBPage } from "./page";

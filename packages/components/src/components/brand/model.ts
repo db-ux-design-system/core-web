@@ -1,4 +1,4 @@
-import { GlobalProps, GlobalState, ImageProps } from '../../shared/model';
+import { GlobalProps, GlobalState, ImageProps } from "../../shared/model";
 
 export interface DBBrandDefaultProps {
 	/**

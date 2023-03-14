@@ -1,12 +1,12 @@
-import { onMount, Show, useMetadata, useStore } from '@builder.io/mitosis';
-import { DBSectionState, DBSectionProps } from './model';
+import { onMount, Show, useMetadata, useStore } from "@builder.io/mitosis";
+import { DBSectionState, DBSectionProps } from "./model";
 
 useMetadata({
 	isAttachedToShadowDom: true,
 	component: {
 		includeIcon: false,
-		properties: []
-	}
+		properties: [],
+	},
 });
 
 export default function DBSection(props: DBSectionProps) {
@@ -24,9 +24,9 @@ export default function DBSection(props: DBSectionProps) {
 		<section
 			ref={component}
 			className={
-				'db-section' + (props.className ? ' ' + props.className : '')
+				"db-section" + (props.className ? " " + props.className : "")
 			}
-			data-size={props.size || 'medium'}>
+			data-size={props.size || "medium"}>
 			<Show when={state.stylePath}>
 				<link rel="stylesheet" href={state.stylePath} />
 			</Show>

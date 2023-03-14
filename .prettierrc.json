@@ -1,5 +1,7 @@
 {
-	"trailingComma": "none",
+	"trailingComma": "es5",
+	"singleQuote": false,
+	"bracketSpacing": true,
 	"overrides": [
 		{
 			"files": ["*.js", "*.jsx", "*.cjs", "*.ts", "*.tsx"],
@@ -14,6 +16,5 @@
 			}
 		}
 	],
-	"bracketSpacing": true,
 	"endOfLine": "auto"
 }

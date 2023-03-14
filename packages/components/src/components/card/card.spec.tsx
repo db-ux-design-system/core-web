@@ -1,35 +1,35 @@
-import { test, expect } from '@playwright/experimental-ct-react';
-import AxeBuilder from '@axe-core/playwright';
+import { test, expect } from "@playwright/experimental-ct-react";
+import AxeBuilder from "@axe-core/playwright";
 
-import { DBCard } from './index';
+import { DBCard } from "./index";
 
 const defaultComp = <DBCard>Test</DBCard>;
 
 // TODO: Get variants from https://github.com/db-ui/mono/blob/feat-unify-showcases/packages/components/src/shared/constants.ts when feat-unify branch is merged
 const colorVariants = [
-	'neutral-0',
-	'neutral-1',
-	'neutral-3',
-	'neutral-4',
-	'primary',
-	'secondary',
-	'critical',
-	'successful',
-	'warning',
-	'informational'
+	"neutral-0",
+	"neutral-1",
+	"neutral-3",
+	"neutral-4",
+	"primary",
+	"secondary",
+	"critical",
+	"successful",
+	"warning",
+	"informational",
 ];
 
-const directions = ['row', 'column'];
+const directions = ["row", "column"];
 
-const variants = ['full-width', 'interactive'];
+const variants = ["full-width", "interactive"];
 
 const testDefaultCard = () => {
-	test('DBCard should contain text', async ({ mount }) => {
+	test("DBCard should contain text", async ({ mount }) => {
 		const component = await mount(defaultComp);
-		await expect(component).toContainText('Test');
+		await expect(component).toContainText("Test");
 	});
 
-	test('DBCard should match screenshot', async ({ mount }) => {
+	test("DBCard should match screenshot", async ({ mount }) => {
 		const component = await mount(defaultComp);
 		await expect(component).toHaveScreenshot();
 	});
@@ -38,7 +38,7 @@ const testDefaultCard = () => {
 const testCardColorVariants = () => {
 	for (const colorVariant of colorVariants) {
 		test(`DBCard should match screenshot for color variant ${colorVariant}`, async ({
-			mount
+			mount,
 		}) => {
 			const component = await mount(
 				<DBCard colorVariant={colorVariant}>Test</DBCard>
@@ -51,7 +51,7 @@ const testCardColorVariants = () => {
 const testCardRow = () => {
 	for (const direction of directions) {
 		test(`DBCard should match screenshot for direction ${direction}`, async ({
-			mount
+			mount,
 		}) => {
 			const component = await mount(
 				<div>
@@ -69,7 +69,7 @@ const testCardRow = () => {
 const testCardVariants = () => {
 	for (const variant of variants) {
 		test(`DBCard should match screenshot for variant ${variant}`, async ({
-			mount
+			mount,
 		}) => {
 			const component = await mount(
 				<div>
@@ -81,71 +81,71 @@ const testCardVariants = () => {
 	}
 };
 
-test.describe('DBCard component on desktop: Default', () => {
+test.describe("DBCard component on desktop: Default", () => {
 	// Old-school CRT monitor screensize
 	test.use({ viewport: { width: 1024, height: 768 } });
 
 	testDefaultCard();
 });
 
-test.describe('DBCard component on mobile: Default', () => {
+test.describe("DBCard component on mobile: Default", () => {
 	// iPhone 13 / portrait screen size
 	test.use({ viewport: { width: 390, height: 884 } });
 
 	testDefaultCard();
 });
 
-test.describe('DBCard component on desktop: Color Variants', () => {
+test.describe("DBCard component on desktop: Color Variants", () => {
 	// Old-school CRT monitor screensize
 	test.use({ viewport: { width: 1024, height: 768 } });
 
 	testCardColorVariants();
 });
 
-test.describe('DBCard component on mobile: Color Variants', () => {
+test.describe("DBCard component on mobile: Color Variants", () => {
 	// iPhone 13 / portrait screen size
 	test.use({ viewport: { width: 390, height: 884 } });
 
 	testCardVariants();
 });
 
-test.describe('DBCard component on desktop: Row', () => {
+test.describe("DBCard component on desktop: Row", () => {
 	// Old-school CRT monitor screensize
 	test.use({ viewport: { width: 1024, height: 768 } });
 
 	testCardRow();
 });
 
-test.describe('DBCard component on mobile: Row', () => {
+test.describe("DBCard component on mobile: Row", () => {
 	// iPhone 13 / portrait screen size
 	test.use({ viewport: { width: 390, height: 884 } });
 
 	testCardRow();
 });
 
-test.describe('DBCard component on desktop: Variants', () => {
+test.describe("DBCard component on desktop: Variants", () => {
 	// Old-school CRT monitor screensize
 	test.use({ viewport: { width: 1024, height: 768 } });
 
 	testCardRow();
 });
 
-test.describe('DBCard component on mobile: Variants', () => {
+test.describe("DBCard component on mobile: Variants", () => {
 	// iPhone 13 / portrait screen size
 	test.use({ viewport: { width: 390, height: 884 } });
 
 	testCardVariants();
 });
 
-test.describe('DBCard component A11y', () => {
-	test('DBCard should not have any automatically detectable accessibility issues', async ({
+test.describe("DBCard component A11y", () => {
+	test("DBCard should not have any automatically detectable accessibility issues", async ({
 		page,
-		mount
+		mount,
 	}) => {
 		await mount(defaultComp);
 		const accessibilityScanResults = await new AxeBuilder({ page })
 			// TODO: Check whether a default background color in DBCard makes sense
-			.include('.db-card')
+			.include(".db-card")
 			.analyze();
 
 		expect(accessibilityScanResults.violations).toEqual([]);

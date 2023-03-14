@@ -8,7 +8,7 @@ $all-icon-sizes: (
 	24: "icons-24-",
 	32: "icons-32-",
 	48: "icons-48-",
-	64: "icons-64-"
+	64: "icons-64-",
 );
 
 @function get-icon-size($font-size, $line-height) {

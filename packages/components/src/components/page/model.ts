@@ -1,7 +1,7 @@
-import { GlobalProps, GlobalState } from '../../shared/model';
+import { GlobalProps, GlobalState } from "../../shared/model";
 
 export interface DBPageDefaultProps {
-	type?: 'fixedHeaderFooter';
+	type?: "fixedHeaderFooter";
 	slotHeader?: any;
 	slotFooter?: any;
 }

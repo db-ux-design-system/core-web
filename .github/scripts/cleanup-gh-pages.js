@@ -1,12 +1,12 @@
 /*
  * Fetches all branches and deletes all review-branches in github pages
  */
-import FS from 'node:fs';
+import FS from "node:fs";
 
-const TAG = 'cleanup-gh-pages:';
+const TAG = "cleanup-gh-pages:";
 
 const removeOldFromPath = (isTag, data) => {
-	const path = `public/${isTag ? 'version' : 'review'}`;
+	const path = `public/${isTag ? "version" : "review"}`;
 	if (FS.existsSync(path) && data?.length > 0) {
 		const dirsToDelete = FS.readdirSync(path).filter(
 			(file) => !data.find((branch) => branch.name === file)
@@ -14,21 +14,21 @@ const removeOldFromPath = (isTag, data) => {
 		if (dirsToDelete?.length > 0) {
 			console.log(
 				TAG,
-				`Start removing ${isTag ? 'tags' : 'branches'} from gh-pages`
+				`Start removing ${isTag ? "tags" : "branches"} from gh-pages`
 			);
 			console.log(TAG, dirsToDelete);
 			dirsToDelete.forEach((dir) => {
 				FS.rmSync(`${path}/${dir}`, {
 					recursive: true,
-					force: true
+					force: true,
 				});
-				console.log(TAG, `deleted  ${isTag ? 'tag' : 'branch'} ${dir}`);
+				console.log(TAG, `deleted  ${isTag ? "tag" : "branch"} ${dir}`);
 			});
 			return true;
 		} else {
 			console.log(
 				TAG,
-				`All ${isTag ? 'tags' : 'branches'} are up to date`
+				`All ${isTag ? "tags" : "branches"} are up to date`
 			);
 		}
 	}
@@ -40,17 +40,17 @@ const cleanUpPages = async ({ github, context }) => {
 	const { repo, owner } = context.repo;
 	const branches = await github.rest.repos.listBranches({
 		owner,
-		repo
+		repo,
 	});
 	const tags = await github.rest.repos.listTags({
 		owner,
-		repo
+		repo,
 	});
 
 	return {
 		deploy:
 			removeOldFromPath(false, branches.data) ||
-			removeOldFromPath(true, tags.data)
+			removeOldFromPath(true, tags.data),
 	};
 };
 

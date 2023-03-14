@@ -1,1 +1,1 @@
-export { DBDivider, DBDividerModule } from './divider';
+export { DBDivider, DBDividerModule } from "./divider";

@@ -8,7 +8,7 @@ $variants: (
 		var(
 			--db-colors-critical-element-enabled,
 			$db-colors-critical-element-enabled
-		)
+		),
 	),
 	"informational": (
 		var(
@@ -18,22 +18,22 @@ $variants: (
 		var(
 			--db-colors-informational-element-enabled,
 			$db-colors-informational-element-enabled
-		)
+		),
 	),
 	"warning": (
 		var(--db-colors-warning-enabled, $db-colors-warning-enabled),
 		var(
 			--db-colors-warning-element-enabled,
 			$db-colors-warning-element-enabled
-		)
+		),
 	),
 	"successful": (
 		var(--db-colors-successful-enabled, $db-colors-successful-enabled),
 		var(
 			--db-colors-successful-element-enabled,
 			$db-colors-successful-element-enabled
-		)
-	)
+		),
+	),
 );
 
 .db-infotext {

@@ -1,4 +1,4 @@
-import { GlobalProps, GlobalState, IconProps } from '../../shared/model';
+import { GlobalProps, GlobalState, IconProps } from "../../shared/model";
 
 export type DBIconDefaultProps = {
 	icntxt?: boolean;

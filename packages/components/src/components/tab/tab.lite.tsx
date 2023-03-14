@@ -3,29 +3,29 @@ import {
 	Show,
 	useMetadata,
 	useStore,
-	useRef
-} from '@builder.io/mitosis';
-import { DEFAULT_ID } from '../../shared/constants';
-import type { DBTabState, DBTabProps } from './model';
-import { uuid } from '../../utils';
+	useRef,
+} from "@builder.io/mitosis";
+import { DEFAULT_ID } from "../../shared/constants";
+import type { DBTabState, DBTabProps } from "./model";
+import { uuid } from "../../utils";
 
 useMetadata({
 	isAttachedToShadowDom: true,
 	component: {
 		includeIcon: false,
 		properties: [
-			{ name: 'name', type: 'SingleLine.Text' },
-			{ name: 'label', type: 'SingleLine.Text' },
+			{ name: "name", type: "SingleLine.Text" },
+			{ name: "label", type: "SingleLine.Text" },
 			{
-				name: 'active',
-				type: 'Enum',
+				name: "active",
+				type: "Enum",
 				values: [
-					{ key: 'False', name: 'False', value: 'false' },
-					{ key: 'True', name: 'True', value: 'true' }
-				]
-			}
-		]
-	}
+					{ key: "False", name: "False", value: "false" },
+					{ key: "True", name: "True", value: "true" },
+				],
+			},
+		],
+	},
 });
 
 export default function DBTab(props: DBTabProps) {
@@ -33,7 +33,7 @@ export default function DBTab(props: DBTabProps) {
 	let component: any;
 	const formRef = useRef<HTMLInputElement>(null);
 	const state = useStore<DBTabState>({
-		mId: DEFAULT_ID
+		mId: DEFAULT_ID,
 	});
 
 	onMount(() => {
@@ -50,7 +50,7 @@ export default function DBTab(props: DBTabProps) {
 	return (
 		<div
 			ref={component}
-			class={'db-tab' + (props.className ? ' ' + props.className : '')}>
+			class={"db-tab" + (props.className ? " " + props.className : "")}>
 			<Show when={state.stylePath}>
 				<link rel="stylesheet" href={state.stylePath} />
 			</Show>
@@ -63,7 +63,7 @@ export default function DBTab(props: DBTabProps) {
 			<label htmlFor={state.mId} role="tab">
 				{props.label}
 			</label>
-			<section id={'content-' + state.mId} role="tabpanel">
+			<section id={"content-" + state.mId} role="tabpanel">
 				<Show when={props.content}> {props.content}</Show>
 				{props.children}
 			</section>

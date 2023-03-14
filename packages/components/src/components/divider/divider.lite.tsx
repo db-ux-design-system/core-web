@@ -1,5 +1,5 @@
-import { onMount, Show, useMetadata, useStore } from '@builder.io/mitosis';
-import { DBDividerState, DBDividerProps } from './model';
+import { onMount, Show, useMetadata, useStore } from "@builder.io/mitosis";
+import { DBDividerState, DBDividerProps } from "./model";
 
 useMetadata({
 	isAttachedToShadowDom: true,
@@ -7,27 +7,27 @@ useMetadata({
 		includeIcon: false,
 		properties: [
 			{
-				name: 'variant',
-				type: 'Enum',
+				name: "variant",
+				type: "Enum",
 				values: [
 					{
-						key: 'Horizontal',
-						name: 'Horizontal',
-						value: 'horizontal'
+						key: "Horizontal",
+						name: "Horizontal",
+						value: "horizontal",
 					},
-					{ key: 'Vertical', name: 'Vertical', value: 'vertical' }
-				]
+					{ key: "Vertical", name: "Vertical", value: "vertical" },
+				],
 			},
 			{
-				name: 'margin',
-				type: 'Enum',
+				name: "margin",
+				type: "Enum",
 				values: [
-					{ key: 'Default', name: 'Default', value: '_' },
-					{ key: 'None', name: 'None', value: 'none' }
-				]
-			}
-		]
-	}
+					{ key: "Default", name: "Default", value: "_" },
+					{ key: "None", name: "None", value: "none" },
+				],
+			},
+		],
+	},
 });
 
 export default function DBDivider(props: DBDividerProps) {
@@ -47,7 +47,7 @@ export default function DBDivider(props: DBDividerProps) {
 			data-margin={props.margin}
 			data-variant={props.variant}
 			class={
-				'db-divider' + (props.className ? ' ' + props.className : '')
+				"db-divider" + (props.className ? " " + props.className : "")
 			}>
 			<Show when={state.stylePath}>
 				<link rel="stylesheet" href={state.stylePath} />

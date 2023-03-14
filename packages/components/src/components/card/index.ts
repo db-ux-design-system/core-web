@@ -1,1 +1,1 @@
-export { default as DBCard } from './card';
+export { default as DBCard } from "./card";

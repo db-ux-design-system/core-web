@@ -1,4 +1,4 @@
-import { DBButton, DBCard, DBInput } from '../../../../../output/react/src';
+import { DBButton, DBCard, DBInput } from "../../../../../output/react/src";
 
 const Search = () => (
 	<div className="search px-fix-md">
