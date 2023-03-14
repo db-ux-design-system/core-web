@@ -9,10 +9,10 @@ const getContent = () => {
 			[
 				'primary',
 				'secondary',
-				'success',
+				'successful',
 				'critical',
 				'warning',
-				'information'
+				'informational'
 			].some((iBg) => iBg.includes(queryParameters.color ?? ''))
 		) {
 			document.querySelector('#backgroundWarning').style.display =
@@ -83,7 +83,7 @@ const getContent = () => {
 			 id="db-input-functional-2"
 			 label="Textinput disabled"
 			 placeholder="some text"
-			 variant="information"
+			 variant="informational"
 			 disabled="true"
 			></db-input>
 

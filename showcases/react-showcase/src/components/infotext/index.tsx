@@ -21,12 +21,12 @@ const exampleMatrix: DefaultComponentExample[][] = [
 			code: '<DBInfotext variant="critical">Infotext</DBInfotext>'
 		},
 		{
-			example: getInfotext({ variant: 'information' }),
-			code: '<DBInfotext variant="information">Infotext</DBInfotext>'
+			example: getInfotext({ variant: 'informational' }),
+			code: '<DBInfotext variant="informational">Infotext</DBInfotext>'
 		},
 		{
-			example: getInfotext({ variant: 'success' }),
-			code: '<DBInfotext variant="success">Infotext</DBInfotext>'
+			example: getInfotext({ variant: 'successful' }),
+			code: '<DBInfotext variant="successful">Infotext</DBInfotext>'
 		},
 		{
 			example: getInfotext({ variant: 'warning' }),

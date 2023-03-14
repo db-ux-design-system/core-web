@@ -26,11 +26,11 @@ const defaultComponentVariants: DefaultComponentVariants[] = [
 				style: { width: '100%' }
 			},
 			{
-				name: 'Information',
+				name: 'Informational',
 				style: { width: '100%' }
 			},
 			{
-				name: 'Success',
+				name: 'Successful',
 				style: { width: '100%' }
 			},
 			{

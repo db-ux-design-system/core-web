@@ -8,7 +8,12 @@ import defaultComponentVariants from '../../../../../shared/input';
 export class InputComponent implements OnInit {
 	variants = defaultComponentVariants;
 
-	variantColors: any[] = ['information', 'warning', 'critical', 'success'];
+	variantColors: any[] = [
+		'informational',
+		'warning',
+		'critical',
+		'successful'
+	];
 
 	ngOnInit() {
 		for (const variant of defaultComponentVariants) {
@@ -43,6 +48,6 @@ export class InputComponent implements OnInit {
 		defaultComponentVariants[2].examples[3].code =
 			'<DBInput label="Label" description="Description" icon-after="edit" />';
 		defaultComponentVariants[2].examples[4].code =
-			'<DBInput label="Label" description="Description" icon-after="edit" variant="success" />';
+			'<DBInput label="Label" description="Description" icon-after="edit" variant="successful" />';
 	}
 }

@@ -11,10 +11,10 @@ const defaultComponentVariants: DefaultComponentVariants[] = [
 				name: 'Critical'
 			},
 			{
-				name: 'Information'
+				name: 'Informational'
 			},
 			{
-				name: 'Success'
+				name: 'Successful'
 			},
 			{
 				name: 'Warning'

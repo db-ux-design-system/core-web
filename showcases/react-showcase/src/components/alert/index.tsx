@@ -55,12 +55,12 @@ const exampleMatrix: DefaultComponentExample[][] = [
 			code: '<DBAlert variant="critical" headline="Headline" link={{ href: "#" }} slotLink="Link">Type Something</DBAlert>'
 		},
 		{
-			example: getDefaultAlert({ variant: 'information' }),
-			code: '<DBAlert variant="information" headline="Headline" link={{ href: "#" }} slotLink="Link">Type Something</DBAlert>'
+			example: getDefaultAlert({ variant: 'informational' }),
+			code: '<DBAlert variant="informational" headline="Headline" link={{ href: "#" }} slotLink="Link">Type Something</DBAlert>'
 		},
 		{
-			example: getDefaultAlert({ variant: 'success' }),
-			code: '<DBAlert variant="success" headline="Headline" link={{ href: "#" }} slotLink="Link">Type Something</DBAlert>'
+			example: getDefaultAlert({ variant: 'successful' }),
+			code: '<DBAlert variant="successful" headline="Headline" link={{ href: "#" }} slotLink="Link">Type Something</DBAlert>'
 		},
 		{
 			example: getDefaultAlert({ variant: 'warning' }),

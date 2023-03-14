@@ -8,7 +8,7 @@ const defaultComponentVariants: DefaultComponentVariants[] = [
 				name: '(Default) Basic'
 			},
 			{
-				name: 'Information'
+				name: 'Informational'
 			},
 			{
 				name: 'Warning'
@@ -17,7 +17,7 @@ const defaultComponentVariants: DefaultComponentVariants[] = [
 				name: 'Critical'
 			},
 			{
-				name: 'Success'
+				name: 'Successful'
 			}
 		]
 	},
@@ -61,7 +61,7 @@ const defaultComponentVariants: DefaultComponentVariants[] = [
 				name: 'Text + Trailing Icon'
 			},
 			{
-				name: 'Text + Trailing Icon + Variant:Success'
+				name: 'Text + Trailing Icon + Variant:Successful'
 			}
 		]
 	}

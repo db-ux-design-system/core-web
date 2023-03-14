@@ -35,8 +35,8 @@ const exampleMatrix: DefaultComponentExample[][] = [
 			code: '<DBInput label="Label" description="Description" />'
 		},
 		{
-			example: getInput({ variant: 'information' }),
-			code: '<DBInput label="Label" description="Description" variant="information"/>'
+			example: getInput({ variant: 'informational' }),
+			code: '<DBInput label="Label" description="Description" variant="informational"/>'
 		},
 		{
 			example: getInput({ variant: 'warning' }),
@@ -47,8 +47,8 @@ const exampleMatrix: DefaultComponentExample[][] = [
 			code: '<DBInput label="Label" description="Description" variant="critical"/>'
 		},
 		{
-			example: getInput({ variant: 'success' }),
-			code: '<DBInput label="Label" description="Description" variant="success"/>'
+			example: getInput({ variant: 'successful' }),
+			code: '<DBInput label="Label" description="Description" variant="successful"/>'
 		}
 	],
 	[
@@ -87,11 +87,11 @@ const exampleMatrix: DefaultComponentExample[][] = [
 			code: '<DBInput label="Label"/>'
 		},
 		{
-			example: getInput({ iconBefore: 'account' }),
+			example: getInput({ icon: 'account' }),
 			code: '<DBInput iconBefore="account" label="Label"/>'
 		},
 		{
-			example: getInput({ iconBefore: 'account', iconAfter: 'edit' }),
+			example: getInput({ icon: 'account', iconAfter: 'edit' }),
 			code: '<DBInput iconBefore="account" label="Label" iconAfter="edit"/>'
 		},
 		{
@@ -99,8 +99,8 @@ const exampleMatrix: DefaultComponentExample[][] = [
 			code: '<DBInput label="Label" iconAfter="edit"/>'
 		},
 		{
-			example: getInput({ iconAfter: 'edit', variant: 'success' }),
-			code: '<DBInput label="Label" iconAfter="edit" variant="success"/>'
+			example: getInput({ iconAfter: 'edit', variant: 'successful' }),
+			code: '<DBInput label="Label" iconAfter="edit" variant="successful"/>'
 		}
 	]
 ];

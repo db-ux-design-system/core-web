@@ -3,7 +3,7 @@ import DefaultComponent from "../DefaultComponent.vue";
 import defaultComponentVariants from "../../../../shared/input";
 import { DBInput } from "../../../../../output/vue/vue3/src";
 
-const variants = ["information", "warning", "critical", "success"];
+const variants = ["informational", "warning", "critical", "successful"];
 
 defaultComponentVariants.forEach((variant) => {
 	variant.examples[0].code =
@@ -36,7 +36,7 @@ defaultComponentVariants[2].examples[2].code =
 defaultComponentVariants[2].examples[3].code =
 	'<DBInput label="Label" description="Description" icon-after="edit" />';
 defaultComponentVariants[2].examples[4].code =
-	'<DBInput label="Label" description="Description" icon-after="edit" variant="success" />';
+	'<DBInput label="Label" description="Description" icon-after="edit" variant="successful" />';
 </script>
 
 <template>
@@ -131,7 +131,7 @@ defaultComponentVariants[2].examples[4].code =
 						label="Label"
 						description="Description"
 						icon-after="edit"
-						variant="success"
+						variant="successful"
 					/>
 				</template>
 			</template>
