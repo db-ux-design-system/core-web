@@ -17,7 +17,8 @@
   },
   "dependencies": {},
   "devDependencies": {
-    "@angular-devkit/build-angular": "~14.2.10",
+    "@angular-devkit/build-angular": "14.2.10",
+    "@angular/common": "14.3.0",
     "ng-packagr": "14.2.2"
   },
   "publishConfig": {
