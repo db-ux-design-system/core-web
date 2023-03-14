@@ -13,7 +13,7 @@ $variants: (
 		var(
 			--db-colors-critical-element-enabled,
 			$db-colors-critical-element-enabled
-		),
+		)
 	),
 	"informational": (
 		var(
@@ -23,7 +23,7 @@ $variants: (
 		var(
 			--db-colors-informational-element-enabled,
 			$db-colors-informational-element-enabled
-		),
+		)
 	),
 	"warning": (
 		var(
@@ -33,7 +33,7 @@ $variants: (
 		var(
 			--db-colors-warning-element-enabled,
 			$db-colors-warning-element-enabled
-		),
+		)
 	),
 	"successful": (
 		var(
@@ -43,8 +43,8 @@ $variants: (
 		var(
 			--db-colors-successful-element-enabled,
 			$db-colors-successful-element-enabled
-		),
-	),
+		)
+	)
 );
 
 @mixin handle-links($show-headline) {
