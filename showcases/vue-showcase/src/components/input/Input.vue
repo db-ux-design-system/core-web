@@ -41,16 +41,16 @@ defaultComponentVariants[2].examples[4].code =
 
 <template>
 	<DefaultComponent title="Input" :variants="defaultComponentVariants">
-		<template #example="{ exampleIndex, variantIndex }">
+		<template #example="{ exampleIndex, variantIndex, exampleName }">
 			<template v-if="exampleIndex === 0">
-				<DBInput label="Label" description="Description" />
+				<DBInput label="Label" :description="exampleName" />
 			</template>
 			<template v-if="variantIndex === 0">
 				<template v-for="(variant, index) in variants">
 					<DBInput
 						v-if="exampleIndex === index + 1"
 						label="Label"
-						description="Description"
+						:description="exampleName"
 						:variant="variant"
 					/>
 				</template>
@@ -59,14 +59,14 @@ defaultComponentVariants[2].examples[4].code =
 				<template v-if="exampleIndex === 1">
 					<DBInput
 						label="Label"
-						description="Description"
+						:description="exampleName"
 						value="Input Text"
 					/>
 				</template>
 				<template v-if="exampleIndex === 2">
 					<DBInput
 						label="Label"
-						description="Description"
+						:description="exampleName"
 						value="123456"
 						type="number"
 					/>
@@ -74,7 +74,7 @@ defaultComponentVariants[2].examples[4].code =
 				<template v-if="exampleIndex === 3">
 					<DBInput
 						label="Label"
-						description="Description"
+						:description="exampleName"
 						min-length="5"
 						required="true"
 					/>
@@ -82,14 +82,14 @@ defaultComponentVariants[2].examples[4].code =
 				<template v-if="exampleIndex === 4">
 					<DBInput
 						label="Label"
-						description="Description"
+						:description="exampleName"
 						disabled="true"
 					/>
 				</template>
 				<template v-if="exampleIndex === 5">
 					<DBInput
 						label="Label"
-						description="Description"
+						:description="exampleName"
 						disabled="true"
 						value="Input Text"
 					/>
@@ -97,7 +97,7 @@ defaultComponentVariants[2].examples[4].code =
 				<template v-if="exampleIndex === 6">
 					<DBInput
 						label="Label"
-						description="Description"
+						:description="exampleName"
 						required="true"
 						value="Input Text"
 					/>
@@ -107,14 +107,14 @@ defaultComponentVariants[2].examples[4].code =
 				<template v-if="exampleIndex === 1">
 					<DBInput
 						label="Label"
-						description="Description"
+						:description="exampleName"
 						icon="account"
 					/>
 				</template>
 				<template v-if="exampleIndex === 2">
 					<DBInput
 						label="Label"
-						description="Description"
+						:description="exampleName"
 						icon="account"
 						icon-after="edit"
 					/>
@@ -122,14 +122,14 @@ defaultComponentVariants[2].examples[4].code =
 				<template v-if="exampleIndex === 3">
 					<DBInput
 						label="Label"
-						description="Description"
+						:description="exampleName"
 						icon-after="edit"
 					/>
 				</template>
 				<template v-if="exampleIndex === 4">
 					<DBInput
 						label="Label"
-						description="Description"
+						:description="exampleName"
 						icon-after="edit"
 						variant="successful"
 					/>

@@ -80,22 +80,20 @@ const getCodeSnippets = (examples: DefaultExample[]) => {
 		class="variants-card"
 		:codeSnippets="getCodeSnippets(variantRef.examples)"
 	>
-		<dl class="variants-list">
+		<div class="variants-list">
 			<div
 				v-for="(example, exampleIndex) in variantRef.examples"
 				:style="example.style"
 				:class="example.className"
 			>
-				<dt class="example-name">{{ example.name }}</dt>
-				<dd>
-					<slot
-						name="example"
-						v-bind:exampleIndex="exampleIndex"
-						v-bind:variantIndex="variantRefIndex"
-					></slot>
-				</dd>
+				<slot
+					name="example"
+					v-bind:exampleName="example.name"
+					v-bind:exampleIndex="exampleIndex"
+					v-bind:variantIndex="variantRefIndex"
+				></slot>
 			</div>
-		</dl>
+		</div>
 	</DBCodeDocs>
 	<div v-if="!variantRef" class="default-container">
 		<h1>{{ title }}</h1>
@@ -114,22 +112,20 @@ const getCodeSnippets = (examples: DefaultExample[]) => {
 				class="variants-card"
 				:codeSnippets="getCodeSnippets(variant.examples)"
 			>
-				<dl class="variants-list">
+				<div class="variants-list">
 					<div
 						v-for="(example, exampleIndex) in variant.examples"
 						:style="example.style"
 						:class="example.className"
 					>
-						<dt class="example-name">{{ example.name }}</dt>
-						<dd>
-							<slot
-								name="example"
-								v-bind:exampleIndex="exampleIndex"
-								v-bind:variantIndex="variantIndex"
-							></slot>
-						</dd>
+						<slot
+							name="example"
+							v-bind:exampleName="example.name"
+							v-bind:exampleIndex="exampleIndex"
+							v-bind:variantIndex="variantIndex"
+						></slot>
 					</div>
-				</dl>
+				</div>
 			</DBCodeDocs>
 		</div>
 	</div>

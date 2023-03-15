@@ -13,7 +13,6 @@
 	"rules": {
 		"@db-ui/v2-component-used": "warn",
 		"no-console": ["error", { "allow": ["warn", "error"] }],
-		"import/no-cycle": 0,
 		"unicorn/no-array-callback-reference": 0,
 		"unicorn/prefer-module": 0,
 		"import/extensions": 0,

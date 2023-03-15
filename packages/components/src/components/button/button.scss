@@ -28,6 +28,8 @@
 	height: $db-sizing-md;
 	padding: $db-spacing-fixed-xs $db-spacing-fixed-md;
 
+	white-space: nowrap; // we don't want to break buttons
+
 	text-align: center;
 
 	&[data-icon],

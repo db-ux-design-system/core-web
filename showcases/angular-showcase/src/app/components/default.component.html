@@ -4,27 +4,25 @@
 	class="variants-card"
 	[codeSnippets]="getCodeSnippets(variantRef.examples)"
 >
-	<dl class="variants-list">
+	<div class="variants-list">
 		<div
 			*ngFor="let example of variantRef.examples; index as exampleIndex"
 			[style]="example.style"
 			[class]="example.className"
 		>
-			<dt class="example-name">{{ example.name }}</dt>
-			<dd>
-				<ng-container
-					*ngTemplateOutlet="
-						exampleTemplate;
-						context: {
-							exampleIndex: exampleIndex,
-							variantIndex: variantRefIndex
-						}
-					"
-				>
-				</ng-container>
-			</dd>
+			<ng-container
+				*ngTemplateOutlet="
+					exampleTemplate;
+					context: {
+						exampleName: example.name,
+						exampleIndex: exampleIndex,
+						variantIndex: variantRefIndex
+					}
+				"
+			>
+			</ng-container>
 		</div>
-	</dl>
+	</div>
 </DBCodeDocs>
 
 <div *ngIf="!variantRef" class="default-container">
@@ -44,7 +42,7 @@
 			class="variants-card"
 			[codeSnippets]="getCodeSnippets(variant.examples)"
 		>
-			<dl class="variants-list">
+			<div class="variants-list">
 				<div
 					*ngFor="
 						let example of variant.examples;
@@ -53,21 +51,19 @@
 					[style]="example.style"
 					[class]="example.className"
 				>
-					<dt class="example-name">{{ example.name }}</dt>
-					<dd>
-						<ng-container
-							*ngTemplateOutlet="
-								exampleTemplate;
-								context: {
-									exampleIndex: exampleIndex,
-									variantIndex: variantIndex
-								}
-							"
-						>
-						</ng-container>
-					</dd>
+					<ng-container
+						*ngTemplateOutlet="
+							exampleTemplate;
+							context: {
+								exampleName: example.name,
+								exampleIndex: exampleIndex,
+								variantIndex: variantIndex
+							}
+						"
+					>
+					</ng-container>
 				</div>
-			</dl>
+			</div>
 		</DBCodeDocs>
 	</div>
 </div>

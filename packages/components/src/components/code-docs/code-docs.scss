@@ -26,6 +26,7 @@
 			position: absolute;
 			bottom: 0;
 			right: 0;
+			z-index: 1;
 		}
 
 		.no-code {
@@ -34,19 +35,18 @@
 
 		.code {
 			@extend %db-bg-secondary;
-			border-radius: 8px;
-			height: 100%;
-			width: 100%;
 			overflow: auto;
-			box-sizing: border-box;
-			padding-block-end: $db-sizing-sm;
+			position: absolute;
+			right: 0;
+			top: 0;
+			bottom: 0;
+			padding-block: var(--db-sizing-sm);
 
 			@media screen and (min-width: $db-screens-s) {
 				width: 50%;
-				margin-inline-start: auto;
 			}
 
-			pre {
+			div {
 				margin: 0;
 				display: flex;
 				gap: $db-spacing-fixed-sm;

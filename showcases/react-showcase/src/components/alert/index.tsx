@@ -3,6 +3,7 @@ import DefaultComponent from '../index';
 import { type DefaultComponentExample } from '../../../../shared/default-component-data';
 import defaultComponentVariants from '../../../../shared/alert';
 import { type DBAlertProps } from '../../../../../output/react/src/components/alert/model';
+import { getVariants } from '../../utils';
 
 const getAlert = ({
 	variant,
@@ -11,7 +12,8 @@ const getAlert = ({
 	link,
 	slotLink,
 	type,
-	onClick
+	onClick,
+	children
 }: DBAlertProps) => (
 	<DBAlert
 		variant={variant}
@@ -21,7 +23,7 @@ const getAlert = ({
 		slotLink={slotLink}
 		type={type}
 		onClick={onClick}>
-		Alert
+		{children}
 	</DBAlert>
 );
 
@@ -34,56 +36,78 @@ const getDefaultAlert = (props: DBAlertProps) => {
 	});
 };
 
-const exampleMatrix: DefaultComponentExample[][] = [
+const getExampleMatrix = (exampleName: string): DefaultComponentExample[][] => [
 	[
 		{
-			example: getDefaultAlert({ type: 'alert' }),
-			code: '<DBAlert type="alert" headline="Headline" link={{ href: "#" }} slotLink="Link">Type Something</DBAlert>'
+			example: getDefaultAlert({ children: exampleName, type: 'alert' }),
+			code: '<DBAlert type="alert" headline="Headline" link={{ href: "#" }} slotLink="Link">Alert</DBAlert>'
 		},
 		{
-			example: getDefaultAlert({ type: 'inline' }),
-			code: '<DBAlert type="inline" headline="Headline" link={{ href: "#" }} slotLink="Link">Type Something</DBAlert>'
+			example: getDefaultAlert({ children: exampleName, type: 'inline' }),
+			code: '<DBAlert type="inline" headline="Headline" link={{ href: "#" }} slotLink="Link">Alert</DBAlert>'
 		}
 	],
 	[
 		{
-			example: getDefaultAlert({ icon: 'account' }),
-			code: '<DBAlert icon="account"  type="alert" headline="Headline" link={{ href: "#" }} slotLink="Link">Type Something</DBAlert>'
+			example: getDefaultAlert({
+				children: exampleName,
+				icon: 'account'
+			}),
+			code: '<DBAlert icon="account"  type="alert" headline="Headline" link={{ href: "#" }} slotLink="Link">Alert</DBAlert>'
 		},
 		{
-			example: getDefaultAlert({ variant: 'critical' }),
-			code: '<DBAlert variant="critical" headline="Headline" link={{ href: "#" }} slotLink="Link">Type Something</DBAlert>'
+			example: getDefaultAlert({
+				children: exampleName,
+				variant: 'critical'
+			}),
+			code: '<DBAlert variant="critical" headline="Headline" link={{ href: "#" }} slotLink="Link">Alert</DBAlert>'
 		},
 		{
-			example: getDefaultAlert({ variant: 'informational' }),
-			code: '<DBAlert variant="informational" headline="Headline" link={{ href: "#" }} slotLink="Link">Type Something</DBAlert>'
+			example: getDefaultAlert({
+				children: exampleName,
+				variant: 'informational'
+			}),
+			code: '<DBAlert variant="informational" headline="Headline" link={{ href: "#" }} slotLink="Link">Alert</DBAlert>'
 		},
 		{
-			example: getDefaultAlert({ variant: 'successful' }),
-			code: '<DBAlert variant="successful" headline="Headline" link={{ href: "#" }} slotLink="Link">Type Something</DBAlert>'
+			example: getDefaultAlert({
+				children: exampleName,
+				variant: 'successful'
+			}),
+			code: '<DBAlert variant="successful" headline="Headline" link={{ href: "#" }} slotLink="Link">Alert</DBAlert>'
 		},
 		{
-			example: getDefaultAlert({ variant: 'warning' }),
-			code: '<DBAlert variant="warning" headline="Headline" link={{ href: "#" }} slotLink="Link">Type Something</DBAlert>'
+			example: getDefaultAlert({
+				children: exampleName,
+				variant: 'warning'
+			}),
+			code: '<DBAlert variant="warning" headline="Headline" link={{ href: "#" }} slotLink="Link">Alert</DBAlert>'
 		}
 	],
 	[
 		{
-			example: getDefaultAlert({ icon: 'account' }),
-			code: '<DBAlert icon="account" headline="Headline" link={{ href: "#" }} slotLink="Link">Type Something</DBAlert>'
+			example: getDefaultAlert({
+				children: exampleName,
+				icon: 'account'
+			}),
+			code: '<DBAlert icon="account" headline="Headline" link={{ href: "#" }} slotLink="Link">Alert</DBAlert>'
 		},
 		{
-			example: getDefaultAlert({}),
-			code: '<DBAlert headline="Headline" link={{ href: "#" }} slotLink="Link">Type Something</DBAlert>'
+			example: getDefaultAlert({ children: exampleName }),
+			code: '<DBAlert headline="Headline" link={{ href: "#" }} slotLink="Link">Alert</DBAlert>'
 		},
 		{
 			example: getAlert({
+				children: exampleName,
 				slotLink: 'Link',
 				link: { href: '#' }
 			}),
-			code: '<DBAlert link={{ href: "#" }} slotLink="Link">Type Something</DBAlert>'
+			code: '<DBAlert link={{ href: "#" }} slotLink="Link">Alert</DBAlert>'
 		},
-		{ example: getAlert({}), code: '<DBAlert>Type Something</DBAlert>' }
+		{
+			example: getAlert({ children: exampleName }),
+			code: '<DBAlert>Alert</DBAlert>'
+		}
 	],
 	[
 		{
@@ -93,24 +117,19 @@ const exampleMatrix: DefaultComponentExample[][] = [
 					alert('click close button');
 				}
 			}),
-			code: '<DBAlert headline="Headline" link={{ href: "#" }} slotLink="Link" onClick={()=>{alert("click close button")}}>Type Something</DBAlert>'
+			code: '<DBAlert headline="Headline" link={{ href: "#" }} slotLink="Link" onClick={()=>{alert("click close button")}}>Alert</DBAlert>'
 		}
 	]
 ];
-
-const variants = defaultComponentVariants.map((variant, index) => ({
-	...variant,
-	examples: variant.examples.map((example, exampleIndex) => ({
-		...example,
-		...exampleMatrix[index][exampleIndex]
-	}))
-}));
 
 const AlertComponent = () => {
 	return (
 		<DefaultComponent
 			title={'DBAlert'}
-			variants={variants}></DefaultComponent>
+			variants={getVariants(
+				defaultComponentVariants,
+				getExampleMatrix
+			)}></DefaultComponent>
 	);
 };
 

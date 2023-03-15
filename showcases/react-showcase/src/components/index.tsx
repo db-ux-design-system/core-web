@@ -11,17 +11,16 @@ const VariantList = ({ examples }: DefaultComponentVariants) => (
 		codeSnippets={examples
 			.filter((example) => example.code)
 			.map((example) => `/* ${example.name} */\n${example.code}`)}>
-		<dl className="variants-list">
+		<div className="variants-list">
 			{examples.map((example, exampleIndex) => (
 				<div
 					key={`${example.name}-${exampleIndex}`}
 					style={example.style}
 					className={example.className}>
-					<dt className="example-name">{example.name}</dt>
-					<dd>{example.example}</dd>
+					{example.example}
 				</div>
 			))}
-		</dl>
+		</div>
 	</DBCodeDocs>
 );
 
