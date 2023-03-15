@@ -13,7 +13,8 @@ const getAlert = ({
 	slotLink,
 	type,
 	onClick,
-	children
+	children,
+	behaviour
 }: DBAlertProps) => (
 	<DBAlert
 		variant={variant}
@@ -22,6 +23,7 @@ const getAlert = ({
 		link={link}
 		slotLink={slotLink}
 		type={type}
+		behaviour={behaviour}
 		onClick={onClick}>
 		{children}
 	</DBAlert>
@@ -118,6 +120,10 @@ const getExampleMatrix = (exampleName: string): DefaultComponentExample[][] => [
 				}
 			}),
 			code: '<DBAlert headline="Headline" link={{ href: "#" }} slotLink="Link" onClick={()=>{alert("click close button")}}>Alert</DBAlert>'
+		},
+		{
+			example: getDefaultAlert({ behaviour: 'permanent' }),
+			code: '<DBAlert headline="Headline" link={{ href: "#" }} slotLink="Link" behaviour="permanent">Alert</DBAlert>'
 		}
 	]
 ];

@@ -66,6 +66,10 @@ const defaultComponentVariants: DefaultComponentVariants[] = [
 			{
 				name: 'Closable',
 				style: { width: '100%' }
+			},
+			{
+				name: 'Permanent',
+				style: { width: '100%' }
 			}
 		]
 	}
