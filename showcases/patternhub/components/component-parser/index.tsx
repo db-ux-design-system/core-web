@@ -1,7 +1,17 @@
 import { useEffect, useState } from 'react';
-import DBInfotext from '../src/components/infotext/infotext';
-import DBButton from '../src/components/button/button';
-import DBIcon from '../src/components/icon/icon';
+import {
+	DBInfotext,
+	DBButton,
+	DBIcon,
+	DBLink,
+	DBAlert,
+	DBInput,
+	DBDivider,
+	DBCard,
+	DBBrand,
+	DBSection,
+	DBHeader
+} from '../src';
 import { ComponentParserType, ComponentType } from './data';
 
 const validHosts = ['marketingportal.extranet.deutschebahn.com'];
@@ -44,6 +54,9 @@ const ComponentSwitch = ({
 	if (type === 'p') {
 		return <p className={className}>{resolvedContent}</p>;
 	}
+	if (type === 'div') {
+		return <div className={className}>{resolvedContent}</div>;
+	}
 	if (type === 'flex') {
 		return (
 			<div
@@ -71,11 +84,46 @@ const ComponentSwitch = ({
 			console.error(e);
 		}
 	}
+	if (type === 'alert') {
+		return (
+			<DBAlert className={className} {...props}>
+				{resolvedContent}
+			</DBAlert>
+		);
+	}
+	if (type === 'brand') {
+		return (
+			<DBBrand className={className} {...props}>
+				{resolvedContent}
+			</DBBrand>
+		);
+	}
 	if (type === 'button') {
 		return (
 			<DBButton className={className} {...props}>
 				{resolvedContent}
 			</DBButton>
+		);
+	}
+	if (type === 'card') {
+		return (
+			<DBCard className={className} {...props}>
+				{resolvedContent}
+			</DBCard>
+		);
+	}
+	if (type === 'divider') {
+		return (
+			<DBDivider className={className} {...props}>
+				{resolvedContent}
+			</DBDivider>
+		);
+	}
+	if (type === 'header') {
+		return (
+			<DBHeader className={className} {...props}>
+				{resolvedContent}
+			</DBHeader>
 		);
 	}
 	if (type === 'icon') {
@@ -85,7 +133,36 @@ const ComponentSwitch = ({
 			</DBIcon>
 		);
 	}
-	// TODO: Add tag here
+	if (type === 'infotext') {
+		return (
+			<DBInfotext className={className} {...props}>
+				{resolvedContent}
+			</DBInfotext>
+		);
+	}
+	if (type === 'input') {
+		return (
+			<DBInput className={className} {...props}>
+				{resolvedContent}
+			</DBInput>
+		);
+	}
+	if (type === 'link') {
+		return (
+			<DBLink className={className} {...props}>
+				{resolvedContent}
+			</DBLink>
+		);
+	}
+	if (type === 'section') {
+		return (
+			<DBSection className={className} {...props}>
+				{resolvedContent}
+			</DBSection>
+		);
+	}
+
+	// hygen before
 
 	return <span className={className}>{resolvedContent}</span>;
 };

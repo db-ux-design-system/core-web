@@ -104,14 +104,16 @@ export default function DBAlert(props: DBAlertProps) {
 								<Slot name="link" />
 							</DBLink>
 						</Show>
-						<DBButton
-							icon="close"
-							variant="transparent"
-							size="small"
-							onClick={(event) => state.handleClick(event)}>
-							{props.closeButtonText ??
-								DEFAULT_VALUES.closeButton}
-						</DBButton>
+						<Show when={props.behaviour !== 'permanent'}>
+							<DBButton
+								icon="close"
+								variant="transparent"
+								size="small"
+								onClick={(event) => state.handleClick(event)}>
+								{props.closeButtonText ??
+									DEFAULT_VALUES.closeButton}
+							</DBButton>
+						</Show>
 					</div>
 				</div>
 
