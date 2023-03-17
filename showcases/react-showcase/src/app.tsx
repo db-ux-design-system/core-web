@@ -21,6 +21,7 @@ const App = () => {
 
 	return (
 		<DBPage
+			className="db-bg-neutral-0"
 			type="fixedHeaderFooter"
 			slotHeader={
 				<DBHeader
@@ -35,19 +36,19 @@ const App = () => {
 					}
 					slotCallToAction={
 						/* TODO: Use DBSearchBar in future */
-						<DBButton icon="search" variant="ghost">
+						<DBButton icon="search" variant="transparent">
 							Search
 						</DBButton>
 					}
 					slotActionBar={
 						<>
-							<DBButton icon="account" variant="ghost">
+							<DBButton icon="account" variant="transparent">
 								Profile
 							</DBButton>
-							<DBButton icon="alert" variant="ghost">
+							<DBButton icon="alert" variant="transparent">
 								Notification
 							</DBButton>
-							<DBButton icon="help" variant="ghost">
+							<DBButton icon="help" variant="transparent">
 								Help
 							</DBButton>
 						</>

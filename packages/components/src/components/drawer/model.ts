@@ -8,6 +8,16 @@ import {
 export interface DBDrawerDefaultProps {
 	open?: boolean;
 	slotDrawerHeader?: any;
+	size?: 'medium' | 'small';
+
+	width?: 'full';
+
+	withCloseButton?: boolean;
+
+	noBackdrop?: boolean;
+	rounded?: boolean;
+
+	direction?: 'left' | 'right' | 'up' | 'down';
 }
 
 export type DBDrawerProps = DBDrawerDefaultProps &

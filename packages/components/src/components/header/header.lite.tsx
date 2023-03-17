@@ -46,6 +46,9 @@ export default function DBHeader(props: DBHeaderProps) {
 
 			<DBDrawer
 				className="db-header-hide-on-desktop"
+				rounded
+				withCloseButton
+				size="small"
 				open={props.drawerOpen}
 				onClose={() => state.toggle()}>
 				<div class="db-header-drawer-navigation">

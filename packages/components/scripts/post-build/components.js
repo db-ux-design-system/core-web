@@ -34,10 +34,10 @@ const getComponents = () => [
 					to: 'this.dialogRef?.nativeElement'
 				}
 			],
-			vue: [
+			react: [
 				{
-					from: 'import { DBDrawerState, DBDrawerProps } from "./model";',
-					to: ''
+					from: 'const dialogRef = useRef<HTMLDialogElement>(null);',
+					to: 'const dialogRef = useRef<HTMLDialogElement>(component);'
 				}
 			],
 			webComponents: [{ from: '__prev.find', to: '!!__prev.find' }]

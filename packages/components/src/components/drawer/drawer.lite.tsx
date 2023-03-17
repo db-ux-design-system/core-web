@@ -2,6 +2,7 @@ import {
 	onMount,
 	onUpdate,
 	Show,
+	Slot,
 	useMetadata,
 	useRef,
 	useStore
@@ -19,9 +20,13 @@ useMetadata({
 
 export default function DBDrawer(props: DBDrawerProps) {
 	const dialogRef = useRef<HTMLDialogElement>(null);
+	const dialogContainerRef = useRef<HTMLDivElement>(null);
 	const state = useStore<DBDrawerState>({
 		handleClose: (event: any) => {
-			if (event === 'close' || event.target.nodeName === 'DIALOG') {
+			if (
+				event === 'close' ||
+				(event.target.nodeName === 'DIALOG' && !props.noBackdrop)
+			) {
 				if (props.onClose) {
 					props.onClose();
 				}
@@ -30,10 +35,19 @@ export default function DBDrawer(props: DBDrawerProps) {
 		handleDialogOpen: () => {
 			if (dialogRef) {
 				if (props.open && !dialogRef.open) {
-					dialogRef.showModal();
+					dialogContainerRef?.classList.remove('hide');
+					if (props.noBackdrop) {
+						dialogRef.show();
+					} else {
+						dialogRef.showModal();
+					}
 				}
 				if (!props.open && dialogRef.open) {
-					dialogRef.close();
+					dialogContainerRef?.classList.add('hide');
+					setTimeout(() => {
+						dialogContainerRef?.classList.remove('hide');
+						dialogRef?.close();
+					}, 401);
 				}
 			}
 		}
@@ -56,23 +70,34 @@ export default function DBDrawer(props: DBDrawerProps) {
 			class="db-drawer"
 			onClick={(event) => {
 				state.handleClose(event);
-			}}>
+			}}
+			data-backdrop={!props.noBackdrop}>
 			<Show when={state.stylePath}>
 				<link rel="stylesheet" href={state.stylePath} />
 			</Show>
 			<div
+				ref={dialogContainerRef}
 				class={
 					'db-drawer-container' +
 					(props.className ? ' ' + props.className : '')
-				}>
+				}
+				data-size={props.size}
+				data-width={props.width}
+				data-direction={props.direction}
+				data-rounded={props.rounded}>
 				<div class="db-drawer-header">
-					<DBButton
-						id="button-close-drawer"
-						icon="close"
-						variant="ghost"
-						onClick={() => state.handleClose('close')}>
-						Burger Menu
-					</DBButton>
+					<div>
+						<Slot name="drawer-header" />
+					</div>
+					<Show when={props.withCloseButton}>
+						<DBButton
+							id="button-close-drawer"
+							icon="close"
+							variant="transparent"
+							onClick={() => state.handleClose('close')}>
+							Close Drawer
+						</DBButton>
+					</Show>
 				</div>
 				<div class="db-drawer-content">{props.children}</div>
 			</div>

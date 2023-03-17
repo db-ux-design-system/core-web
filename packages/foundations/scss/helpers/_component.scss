@@ -40,7 +40,9 @@
 		var(--db-transition-color, #{$db-transition-color});
 }
 
+$default-card-border-radius: var(--default-card-border-radius, 8px);
+
 %default-card {
-	border-radius: 8px;
+	border-radius: $default-card-border-radius;
 	box-shadow: $db-elevation-4;
 }
