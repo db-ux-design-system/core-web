@@ -1,0 +1,171 @@
+@use "./../../styles/dialog-init" as *;
+@use "@db-ui/foundations/build/scss/variables" as *;
+@use "@db-ui/foundations/build/scss/variables.global" as *;
+@use "@db-ui/foundations/build/scss/helpers/functions" as *;
+@use "@db-ui/foundations/build/scss/helpers/component" as *;
+@use "@db-ui/foundations/build/scss/animation/animations" as *;
+
+%direction-right {
+	left: auto;
+	right: 0;
+
+	&[data-rounded="true"] {
+		border-top-left-radius: $default-card-border-radius;
+		border-bottom-left-radius: $default-card-border-radius;
+	}
+}
+
+%direction-left {
+	right: auto;
+	left: 0;
+
+	&[data-rounded="true"] {
+		border-top-right-radius: $default-card-border-radius;
+		border-bottom-right-radius: $default-card-border-radius;
+	}
+}
+
+%full-horizontal {
+	&:not([data-width="full"]) {
+		max-height: var(
+			--db-drawer-max-height,
+			calc(100% - $db-spacing-fixed-xl)
+		);
+		max-width: none;
+	}
+}
+
+%direction-up {
+	@extend %full-horizontal;
+	top: auto;
+	bottom: 0;
+	left: 0;
+	right: 0;
+
+	&[data-rounded="true"] {
+		border-top-right-radius: $default-card-border-radius;
+		border-top-left-radius: $default-card-border-radius;
+	}
+}
+%direction-down {
+	@extend %full-horizontal;
+	bottom: auto;
+	top: 0;
+	left: 0;
+	right: 0;
+
+	&[data-rounded="true"] {
+		border-bottom-right-radius: $default-card-border-radius;
+		border-bottom-left-radius: $default-card-border-radius;
+	}
+}
+
+.db-drawer {
+	.db-drawer-container {
+		@extend %direction-right;
+		display: flex;
+		flex-direction: column;
+		background-color: $db-colors-neutral-bg-0-enabled;
+		padding-block: $db-spacing-fixed-sm;
+		height: 100%;
+		width: 100%;
+		position: fixed;
+
+		&:not([data-width="full"]) {
+			max-width: var(
+				--db-drawer-max-width,
+				calc(100% - $db-spacing-fixed-xl)
+			);
+		}
+
+		&[data-size="small"] {
+			padding-block: $db-spacing-fixed-xs;
+
+			.db-drawer-header {
+				padding-block-end: $db-spacing-fixed-xs;
+				padding-inline: $db-spacing-fixed-md;
+			}
+
+			.db-drawer-content {
+				padding-inline: $db-spacing-fixed-md;
+			}
+		}
+
+		&[data-rounded="true"] {
+			box-shadow: $db-elevation-4;
+		}
+
+		&[data-direction="left"] {
+			@extend %direction-left;
+		}
+
+		&[data-direction="up"] {
+			@extend %direction-up;
+		}
+
+		&[data-direction="down"] {
+			@extend %direction-down;
+		}
+
+		.db-drawer-header {
+			@include divider("bottom");
+			display: flex;
+			gap: $db-spacing-fixed-lg;
+			justify-content: space-between;
+			padding-block-end: $db-spacing-fixed-sm;
+			padding-inline: $db-spacing-fixed-lg;
+
+			&:not(:has(> :nth-child(2))) {
+				display: none;
+			}
+		}
+
+		.db-drawer-content {
+			display: flex;
+			flex-direction: column;
+			height: 100%;
+			overflow: hidden;
+			padding-inline: $db-spacing-fixed-lg;
+		}
+	}
+
+	&[open] {
+		.db-drawer-container {
+			&:not([data-direction]),
+			&[data-direction="right"] {
+				animation: show-right-to-left $animation-show-timing;
+			}
+
+			&[data-direction="left"] {
+				animation: show-left-to-right $animation-show-timing;
+			}
+
+			&[data-direction="up"] {
+				animation: show-bottom-to-top $animation-show-timing;
+			}
+
+			&[data-direction="down"] {
+				animation: show-top-to-bottom $animation-show-timing;
+			}
+
+			&.hide {
+				&:not([data-direction]),
+				&[data-direction="right"] {
+					animation: hide-right-to-left $animation-hide-timing;
+				}
+
+				&[data-direction="left"] {
+					animation: hide-left-to-right $animation-hide-timing;
+				}
+
+				&[data-direction="up"] {
+					animation: hide-bottom-to-top $animation-hide-timing;
+				}
+
+				&[data-direction="down"] {
+					animation: hide-top-to-bottom $animation-hide-timing;
+				}
+			}
+		}
+	}
+}
