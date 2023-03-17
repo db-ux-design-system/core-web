@@ -40,7 +40,7 @@
 			right: 0;
 			top: 0;
 			bottom: 0;
-			padding-block: var(--db-sizing-sm);
+			padding: $db-sizing-sm $db-spacing-fixed-md;
 
 			@media screen and (min-width: $db-screens-s) {
 				width: 50%;

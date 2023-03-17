@@ -93,10 +93,7 @@ $variants: (
 	}
 
 	&[data-type="inline"] {
-		@include handle-links(false);
-
-		width: fit-content;
-		min-width: calc($db-screens-xs - $db-spacing-fixed-md);
+		@extend %default-card;
 	}
 
 	@each $name, $colors in $variants {

@@ -128,6 +128,20 @@ const componentChildren = [
 						link: '/components/input/how-to-use'
 					}
 				]
+			},
+			{
+				label: 'DBRadio',
+				link: '/components/radio',
+				children: [
+					{
+						label: 'Examples',
+						link: '/components/radio/examples'
+					},
+					{
+						label: 'How to use',
+						link: '/components/radio/how-to-use'
+					}
+				]
 			}
 		]
 	},

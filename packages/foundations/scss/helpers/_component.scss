@@ -39,3 +39,8 @@
 	transition: background-color
 		var(--db-transition-color, #{$db-transition-color});
 }
+
+%default-card {
+	border-radius: 8px;
+	box-shadow: $db-elevation-4;
+}

@@ -3,15 +3,16 @@ import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 
 import {
-	DBBrandModule,
 	DBButtonModule,
 	DBCardModule,
 	DBDividerModule,
-	DBHeaderModule,
 	DBIconModule,
 	DBInputModule,
-	DBLinkModule,
 	DBPageModule,
+	DBHeaderModule,
+	DBBrandModule,
+	DBLinkModule,
+	DBRadioModule,
 	DBCodeDocsModule
 } from '../../../../output/angular/src';
 import { AppComponent } from './app.component';
@@ -42,7 +43,8 @@ import { DefaultComponent } from './components/default.component';
 		DBBrandModule,
 		DBLinkModule,
 		DBCodeDocsModule,
-		FormsModule
+		FormsModule,
+		DBRadioModule
 	],
 	providers: [],
 	schemas: [NO_ERRORS_SCHEMA],
