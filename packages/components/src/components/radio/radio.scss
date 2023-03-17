@@ -1,0 +1,97 @@
+@use "@db-ui/foundations/build/scss/variables" as *;
+@use "@db-ui/foundations/build/scss/variables.global" as *;
+@use "@db-ui/foundations/build/scss/helpers/functions" as *;
+@use "@db-ui/foundations/build/scss/color-placeholder" as *;
+@use "@db-ui/foundations/build/scss/body-styles" as *;
+@use "@db-ui/foundations/build/scss/helpers/shadow-dom" as *;
+@use "@db-ui/foundations/build/scss/helpers/component";
+@use "@db-ui/foundations/build/scss/color/color-variants" as *;
+
+$font-size-height: calc(var(--db-base-font-size) * var(--db-base-line-height));
+
+.db-radio {
+	@extend %default-color;
+	@extend %bg-transparent-interactive;
+
+	appearance: none;
+
+	aspect-ratio: 1;
+
+	border: max(calc(#{$font-size-height} / 16 + 0.5px), 2px) solid currentColor;
+	// Full rounded
+	border-radius: 100px;
+
+	// * the basic, unchecked style
+	display: inline-block;
+
+	height: $font-size-height;
+
+	// TODO: Extract those transition durations as variables #645
+	transition: border-width 0.15s $db-transition-functional-timing;
+
+	&:checked {
+		border-width: calc(#{$font-size-height} * 0.3);
+
+		// The radio element still has the default background for the dot on :hover when in checked state
+		&:not(:disabled):hover {
+			@extend %bg-transparent;
+		}
+	}
+
+	// * The invalid style using the :user-invalid pseudo class (and [aria-invalid="true"] equivalent)
+	// TODO: We need to set the correct styling / color here after alignment
+	&:user-invalid,
+	&[aria-invalid="true"] {
+		@extend %db-bg-critical-transparent-semi;
+		@extend %db-bg-critical-transparent-semi-hover-state;
+		border-color: var(
+			--db-colors-critical-element-enabled,
+			$db-colors-critical-element-enabled
+		);
+
+		& + label {
+			color: var(
+				--db-colors-critical-enabled,
+				$db-colors-critical-enabled
+			);
+		}
+	}
+
+	& + label {
+		@extend %shadow-dom-extend;
+
+		margin-inline-start: $db-spacing-fixed-xs;
+
+		vertical-align: top;
+	}
+
+	&:disabled {
+		&,
+		& + label {
+			opacity: 0.25;
+		}
+	}
+
+	&:required {
+		& + label {
+			&::after {
+				content: " *";
+			}
+		}
+	}
+
+	// Sizes
+	&[data-size="small"] {
+		@extend %db-body-sm;
+
+		& + label {
+			@extend %db-body-sm;
+			margin-inline-start: $db-spacing-fixed-2xs;
+		}
+	}
+
+	// Adopted by https://www.heise.de/developer/artikel/a11y-Reduced-Motion-4356171.html
+	@media (prefers-reduced-motion: reduce) {
+		transition-duration: 0.01s !important;
+	}
+}

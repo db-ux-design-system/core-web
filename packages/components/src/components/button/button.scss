@@ -58,7 +58,10 @@
 	&[data-size="small"] {
 		@extend %db-body-sm;
 		height: $db-sizing-sm;
-		padding: $db-spacing-fixed-3xs $db-spacing-fixed-sm;
+
+		&:not(.is-icon-text-replace) {
+			padding: $db-spacing-fixed-3xs $db-spacing-fixed-sm;
+		}
 
 		// Square icon only buttons
 		&.is-icon-text-replace {
@@ -71,16 +74,17 @@
 	}
 
 	&[data-variant="primary"] {
-		@extend %db-bg-primary-ia;
+		@extend %db-primary-component-ia;
+		@extend %transparent-border;
 	}
 
 	&[data-variant="semi-transparent"] {
+		@extend %transparent-border;
 		@include get-variant-bg-color(0.08);
-		border: solid 1px transparent;
 	}
 
 	&[data-variant="transparent"] {
-		border: solid 1px transparent;
+		@extend %transparent-border;
 	}
 
 	&:disabled {

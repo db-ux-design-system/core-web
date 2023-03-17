@@ -1,8 +1,9 @@
 import { useState } from 'react';
-import { DBButton, DBInput } from '../../../../../output/react/src';
+import { DBButton, DBInput, DBRadio } from '../../../../../output/react/src';
 
 const FormComponent = () => {
 	const [input, setInput] = useState('');
+	const [radio, setRadio] = useState('');
 
 	return (
 		<div className="form-container">
@@ -14,13 +15,27 @@ const FormComponent = () => {
 							label="Textinput"
 							placeholder="Placeholder"
 							description="Description"
-							iconBefore="edit"
+							icon="edit"
 							name="input-name"
 							onChange={(event) => {
 								setInput(event.target.value);
 							}}
 							className="fullWidth"
 						/>
+						<p>DbRadio:</p>
+						<ul>
+							{['X', 'Y', 'Z'].map((radioName) => (
+								<li key={radioName}>
+									<DBRadio
+										name="radio-group"
+										onChange={() => {
+											setRadio(radioName);
+										}}>
+										Radio {radioName}
+									</DBRadio>
+								</li>
+							))}
+						</ul>
 						<p>DbButton:</p>
 						<DBButton
 							type="button"
@@ -29,7 +44,8 @@ const FormComponent = () => {
 								// eslint-disable-next-line no-alert
 								alert(
 									JSON.stringify({
-										input
+										input,
+										radio
 									})
 								);
 							}}>
@@ -43,6 +59,8 @@ const FormComponent = () => {
 				<dl>
 					<dt>inputs value</dt>
 					<dd>{input || 'No Input set'}</dd>
+					<dt>radio value</dt>
+					<dd>{radio || 'No radio set'}</dd>
 				</dl>
 			</div>
 		</div>

@@ -26,7 +26,9 @@
 		"**/angular-*/**/main.ts",
 		"**/README.md",
 		"packages/components/src/components/alert/alert.lite.tsx",
-		"showcases/react-showcase/src/components/alert/index.tsx"
+		"showcases/react-showcase/src/components/alert/index.tsx",
+		"packages/components/src/components/radio/radio.lite.tsx",
+		"showcases/react-showcase/src/components/radio/index.tsx"
 	],
 	"absolute": true
 }

@@ -29,7 +29,9 @@ useMetadata({
 });
 
 export default function DBTab(props: DBTabProps) {
-	const inputRef = useRef<HTMLInputElement>(null);
+	// This is used as forwardRef
+	let component: any;
+	const formRef = useRef<HTMLInputElement>(null);
 	const state = useStore<DBTabState>({
 		mId: DEFAULT_ID
 	});
@@ -41,17 +43,19 @@ export default function DBTab(props: DBTabProps) {
 		}
 
 		if (props.active) {
-			inputRef?.click();
+			formRef?.click();
 		}
 	});
 
 	return (
-		<div class={'db-tab' + (props.className ? ' ' + props.className : '')}>
+		<div
+			ref={component}
+			class={'db-tab' + (props.className ? ' ' + props.className : '')}>
 			<Show when={state.stylePath}>
 				<link rel="stylesheet" href={state.stylePath} />
 			</Show>
 			<input
-				ref={inputRef}
+				ref={formRef}
 				type="radio"
 				name={props.name}
 				id={state.mId}

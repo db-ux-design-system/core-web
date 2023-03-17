@@ -1,9 +1,9 @@
 const Replace = require('replace-in-file');
 
-const Components = require('./components');
+const { components } = require('./components');
 
 module.exports = () => {
-	for (const component of Components) {
+	for (const component of components) {
 		const options = {
 			files: `../../output/svelte/src/components/${component.name}/index.js`,
 			processor(input) {

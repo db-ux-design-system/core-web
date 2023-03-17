@@ -11,6 +11,8 @@ useMetadata({
 });
 
 export default function DBLink(props: DBLinkProps) {
+	// This is used as forwardRef
+	let component: any;
 	const state = useStore<DBLinkState>({
 		handleClick: (event) => {
 			if (props.onClick) {
@@ -27,6 +29,7 @@ export default function DBLink(props: DBLinkProps) {
 
 	return (
 		<a
+			ref={component}
 			class={'db-link' + (props.className ? ' ' + props.className : '')}
 			href={props.href}
 			title={props.title}

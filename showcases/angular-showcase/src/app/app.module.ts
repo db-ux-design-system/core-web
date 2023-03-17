@@ -11,7 +11,8 @@ import {
 	DBPageModule,
 	DBHeaderModule,
 	DBBrandModule,
-	DBLinkModule
+	DBLinkModule,
+	DBRadioModule
 } from '../../../../output/angular/src';
 import { ActionBarDirective } from '../../../../output/angular/src/components/header/action-bar.directive';
 import { NavigationDirective } from '../../../../output/angular/src/components/header/navigation.directive';
@@ -44,7 +45,8 @@ import { InputComponent } from './components/input/input.component';
 		DBHeaderModule,
 		DBBrandModule,
 		DBLinkModule,
-		FormsModule
+		FormsModule,
+		DBRadioModule
 	],
 	providers: [],
 	schemas: [NO_ERRORS_SCHEMA],

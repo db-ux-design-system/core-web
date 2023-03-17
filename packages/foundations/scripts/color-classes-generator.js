@@ -10,14 +10,15 @@ const prefix = 'db';
  * e.g. neutral with variants 1-6 or transparent-full and transparent-semi
  */
 
-const generateBGVariants = (value, index) => {
+const generateBGVariants = (value, variant) => {
+	const nameEnding = variant ? `-${variant}` : '';
 	return `
-.${prefix}-bg-${value}-${index} {
-    @extend %${prefix}-bg-${value}-${index};
+.${prefix}-bg-${value}${nameEnding} {
+    @extend %${prefix}-bg-${value}${nameEnding};
 
     &-ia,
     &[data-variant="ia"] {
-        @extend %${prefix}-bg-${value}-${index}-ia;
+        @extend %${prefix}-bg-${value}${nameEnding}-ia;
     }
 
     .db-weak {
@@ -41,36 +42,24 @@ exports.generateColorUtilitityClasses = (colorToken) => {
 	`;
 
 	for (const [, value] of Object.keys(colorToken).entries()) {
-		output += `/**
-* ${value.toUpperCase()} - Utility Classes
-**/
-`;
-		// Text colors with interactive variant, e.g. primary
-		if (colorToken[value].enabled) {
-			output += `
-.${prefix}-bg-${value} {
-    @extend %${prefix}-bg-${value};
-
-    &-ia,
-    &[data-variant="ia"] {
-        @extend %${prefix}-bg-${value}-ia;
-    }
-}`;
+		if (value === 'neutral') {
+			// Neutral has multiple default tones
+			const neutralTones = ['0', '1', '2', '3', '4'];
+			for (const neutralTone of neutralTones) {
+				output += generateBGVariants(value, neutralTone);
+			}
+		} else {
+			// Default text and background colors (former 'light' tone)
+			output += generateBGVariants(value);
 		}
 
-		for (const variant of Object.keys(colorToken[value].bg)) {
-			if (colorToken[value].bg[variant].enabled) {
-				output += generateBGVariants(value, variant);
-			} else {
-				for (const childVariant of Object.keys(
-					colorToken[value].bg[variant]
-				)) {
-					output += generateBGVariants(
-						value,
-						variant + '-' + childVariant
-					);
-				}
-			}
+		// Transparent tones
+		const transparentTones = ['full', 'semi'];
+		for (const transparentTone of transparentTones) {
+			output += generateBGVariants(
+				value,
+				`transparent-${transparentTone}`
+			);
 		}
 	}
 

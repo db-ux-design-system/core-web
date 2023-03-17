@@ -5,6 +5,10 @@ const getOption = (optionName, tsType) => {
 		return `${optionName}={true}`;
 	}
 
+	if (tsType.name === 'Array') {
+		return `${optionName}={['test1','test2']}`;
+	}
+
 	if (tsType.name === 'number') {
 		return `${optionName}={100}`;
 	}
@@ -26,7 +30,7 @@ const getOption = (optionName, tsType) => {
 		return `${optionName}={(event) => console.log(event)}`;
 	}
 
-	if (prop.tsType.name === 'signature' && prop.tsType.raw === '() => void') {
+	if (tsType.name === 'signature' && tsType.raw === '() => void') {
 		return `${optionName}={() => console.log("${optionName} triggered")}`;
 	}
 
@@ -107,17 +111,17 @@ const getExampleFile = (componentName, { displayName, props }) => {
 				!optionArray.includes('onClose')
 		)
 		.entries()) {
-		variants += `<p>${optionArray.join(', ')}:</p> ${
+		variants += `<dt>${optionArray.join(', ')}:</dt> ${
 			isDialog
 				? `<DBButton onClick={()=>{setDialog(${index})}}>Open Dialog</DBButton>`
 				: ''
-		} <${displayName} ${
+		}<dd> <${displayName} ${
 			isDialog
 				? `open={dialog===${index}} onClose={()=>setDialog(-1)}`
 				: ''
 		} ${optionArray
 			.map((opt) => getOption(opt, props[opt].tsType))
-			.join(' ')}>Test</${displayName}>\n`;
+			.join(' ')}>Test</${displayName}></dd>\n`;
 	}
 
 	return `
@@ -135,9 +139,9 @@ ${isDialog ? 'const [dialog, setDialog] = useState<number>(-1);' : ''}
 return (<DefaultPage>
 <h1> ${displayName} Examples </h1>
 
-<div className="example-list">
+<dl className="example-list">
 ${variants}
-</div>
+</dl>
 </DefaultPage>);
 }
 	`;

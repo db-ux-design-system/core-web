@@ -10,7 +10,10 @@
  * 	webComponents?:{from:string,to:string}[]
  * },
  * config?:{
- *     vue?:{
+ * 		isFormComponent?:boolean,
+ * 		isClickComponent?:boolean,
+ * 		isIconComponent?:boolean,
+ *     	vue?:{
  *         vModel?: {modelValue:string, binding:string}[]
  *     }
  * }
@@ -42,88 +45,77 @@ const getComponents = () => [
 	},
 
 	{
-		name: 'alert',
-		defaultStylePath: 'components/alert/alert.css',
+		name: 'code-docs',
+		defaultStylePath: 'components/code-docs/code-docs.css',
 		overwrites: {
 			global: [
-				{ from: 'handleClick(event)', to: 'handleClick(event:any)' },
 				{
-					from: 'getIcon(icon, variant) {',
-					to: 'getIcon(icon:any, variant:any) {'
+					from: '(event) => copyCode(snippet)',
+					to: '() => copyCode(snippet)'
+				},
+				{
+					from: 'copyCode(code)',
+					to: 'copyCode(code:any)'
+				},
+				{
+					from: '(event) => toggleCode()',
+					to: '() => toggleCode()'
 				}
 			],
+			vue: [{ from: '(snippet, index)', to: '(snippet)' }]
+		}
+	},
+
+	{
+		name: 'radio',
+		overwrites: {
 			vue: [
 				{
-					from: 'import { DBAlertState, DBAlertProps } from "./model";',
-					to: ''
+					from: 'immediate: true,',
+					to: 'immediate: true,\nflush: "post"'
 				}
 			]
+		},
+		config: {
+			isFormComponent: true,
+			isClickComponent: true,
+			vue: {
+				vModel: [{ modelValue: 'checked', binding: ':checked' }]
+			}
+		}
+	},
+
+	{
+		name: 'alert',
+		config: {
+			isClickComponent: true,
+			isIconComponent: true
 		}
 	},
 
 	{
 		name: 'infotext',
-		defaultStylePath: 'components/infotext/infotext.css',
-		overwrites: {
-			global: [
-				{
-					from: 'getIcon(icon, variant) {',
-					to: 'getIcon(icon:any, variant:any) {'
-				}
-			],
-			vue: [
-				{
-					from: 'import { DBInfotextState, DBInfotextProps } from "./model";',
-					to: ''
-				}
-			]
+		config: {
+			isIconComponent: true
 		}
 	},
 
 	{
 		name: 'link',
-		defaultStylePath: 'components/link/link.css',
-		overwrites: {
-			global: [
-				{ from: 'handleClick(event)', to: 'handleClick(event:any)' }
-			],
-			vue: [
-				{
-					from: 'import { DBLinkState, DBLinkProps } from "./model";',
-					to: ''
-				}
-			]
+		config: {
+			isClickComponent: true
 		}
 	},
 
 	{
-		name: 'section',
-		defaultStylePath: 'components/section/section.css',
-		overwrites: {
-			vue: [
-				{
-					from: 'import { DBSectionState, DBSectionProps } from "./model";',
-					to: ''
-				}
-			]
-		}
+		name: 'section'
 	},
 
 	{
-		name: 'page',
-		defaultStylePath: 'components/page/page.css',
-		overwrites: {
-			vue: [
-				{
-					from: 'import { DBPageProps, DBPageState } from "./model";',
-					to: ''
-				}
-			]
-		}
+		name: 'page'
 	},
 	{
 		name: 'header',
-		defaultStylePath: 'components/header/header-web-component.css',
 		overwrites: {
 			global: [
 				{
@@ -178,12 +170,6 @@ const getComponents = () => [
 						"import { MetaNavigationDirective } from './meta-navigation.directive';"
 				}
 			],
-			vue: [
-				{
-					from: 'import { DBHeaderState, DBHeaderProps } from "./model";',
-					to: ''
-				}
-			],
 			webComponents: [
 				{
 					from: '<slot></slot>',
@@ -211,77 +197,29 @@ const getComponents = () => [
 		}
 	},
 	{
-		name: 'brand',
-		defaultStylePath: 'components/brand/brand.css',
-		overwrites: {
-			vue: [
-				{
-					from: 'import { DBBrandState, DBBrandProps } from "./model";',
-					to: ''
-				}
-			]
-		}
+		name: 'brand'
 	},
 	{
 		name: 'input',
-		defaultStylePath: 'components/input/input.css',
-		overwrites: {
-			global: [
-				{ from: 'handleChange(event)', to: 'handleChange(event:any)' },
-				{ from: 'handleBlur(event)', to: 'handleBlur(event:any)' },
-				{ from: 'handleFocus(event)', to: 'handleFocus(event:any)' },
-				{
-					from: 'getIcon(variant) {',
-					to: 'getIcon(variant:any) {'
-				}
-			],
-			angular: [
-				{
-					from: 'this.textInputRef.nativeElement',
-					to: 'this.textInputRef?.nativeElement'
-				}
-			],
-			vue: [
-				{
-					from: 'import { DBInputProps, DBInputState } from "./model";',
-					to: ''
-				},
-				{
-					from: '_isValid: undefined,',
-					to: ''
-				}
-			]
-		},
 		config: {
+			isFormComponent: true,
+			isIconComponent: true,
 			vue: {
 				vModel: [{ modelValue: 'value', binding: ':value' }]
 			}
 		}
 	},
 	{
-		name: 'divider',
-		defaultStylePath: 'components/divider/divider-web-component.css',
-		overwrites: {
-			vue: [
-				{
-					from: 'import { DBDividerState, DBDividerProps } from "./model";',
-					to: ''
-				}
-			]
-		}
+		name: 'divider'
 	},
 	{
 		name: 'card',
-		defaultStylePath: 'components/card/card.css',
-		overwrites: {
-			global: [
-				{ from: 'handleClick(event)', to: 'handleClick(event:any)' }
-			]
+		config: {
+			isClickComponent: true
 		}
 	},
 	{
 		name: 'tab-bar',
-		defaultStylePath: 'components/tab-bar/tab-bar.css',
 		overwrites: {
 			angular: [
 				{
@@ -317,22 +255,48 @@ const getComponents = () => [
 		}
 	},
 	{
-		name: 'tab',
-		defaultStylePath: 'components/tab/tab.css'
+		name: 'tab'
 	},
 	{
 		name: 'button',
-		defaultStylePath: 'components/button/button.css',
-		overwrites: {
-			global: [
-				{ from: 'handleClick(event)', to: 'handleClick(event:any)' }
-			]
+		config: {
+			isIconComponent: true,
+			isClickComponent: true
 		}
 	},
 	{
-		name: 'icon',
-		defaultStylePath: 'components/icon/icon-web-component.css'
+		name: 'icon'
 	}
 ];
 
-module.exports = getComponents();
+const formComponentChanges = [
+	{ from: 'handleChange(event)', to: 'handleChange(event:any)' },
+	{ from: 'handleBlur(event)', to: 'handleBlur(event:any)' },
+	{ from: 'handleFocus(event)', to: 'handleFocus(event:any)' }
+];
+
+const clickComponentChanges = [
+	{ from: 'handleClick(event)', to: 'handleClick(event:any)' }
+];
+
+const iconComponentChanges = [
+	{
+		from: 'getIcon(icon, variant) {',
+		to: 'getIcon(icon:any, variant:any) {'
+	},
+	{
+		from: 'getIcon(variant) {',
+		to: 'getIcon(variant:any) {'
+	},
+	{
+		from: 'iconVisible(icon) {',
+		to: 'iconVisible(icon:any) {'
+	}
+];
+
+module.exports = {
+	components: getComponents(),
+	formComponentChanges,
+	clickComponentChanges,
+	iconComponentChanges
+};

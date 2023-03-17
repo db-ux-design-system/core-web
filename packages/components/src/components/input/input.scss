@@ -140,6 +140,7 @@
 	input {
 		@extend %bg-transparent-hover;
 		@extend %default-interactive-component;
+		@extend %component-border;
 		@include get-variant-bg-color(0.08);
 
 		height: $db-sizing-md;
@@ -304,13 +305,12 @@
 	&[data-variant="critical"] input,
 	input:required:invalid:not(:placeholder-shown),
 	input[aria-invalid="true"] {
+		--db-current-border-color: var(
+			--db-colors-critical-border-enabled,
+			#{$db-colors-critical-border-enabled}
+		);
 		@extend %db-bg-critical-transparent-semi;
 		@extend %db-bg-critical-transparent-semi-hover-state;
-		border: solid 1px
-			var(
-				--db-colors-critical-element-enabled,
-				$db-colors-critical-element-enabled
-			);
 
 		& + label {
 			color: $db-colors-critical-on-bg-enabled;
@@ -329,13 +329,12 @@
 	}
 
 	&[data-variant="warning"] input {
+		--db-current-border-color: var(
+			--db-colors-warning-border-enabled,
+			#{$db-colors-warning-border-enabled}
+		);
 		@extend %db-bg-warning-transparent-semi;
 		@extend %db-bg-warning-transparent-semi-hover-state;
-		border: solid 1px
-			var(
-				--db-colors-warning-element-enabled,
-				$db-colors-warning-element-enabled
-			);
 
 		& + label {
 			color: $db-colors-warning-on-bg-enabled;
@@ -353,23 +352,22 @@
 		}
 	}
 
-	&[data-variant="success"] input {
-		@extend %db-bg-success-transparent-semi;
-		@extend %db-bg-success-transparent-semi-hover-state;
-		border: solid 1px
-			var(
-				--db-colors-success-element-enabled,
-				$db-colors-success-element-enabled
-			);
+	&[data-variant="successful"] input {
+		--db-current-border-color: var(
+			--db-colors-successful-border-enabled,
+			#{$db-colors-successful-border-enabled}
+		);
+		@extend %db-bg-successful-transparent-semi;
+		@extend %db-bg-successful-transparent-semi-hover-state;
 
 		& + label {
-			color: $db-colors-success-on-bg-enabled;
+			color: $db-colors-successful-on-bg-enabled;
 		}
 
 		& ~ .description,
 		& ~ .icon-input-state,
 		& ~ .icon-input-state .db-icon {
-			color: $db-colors-success-element-enabled;
+			color: $db-colors-successful-element-enabled;
 		}
 
 		& ~ .icon-input-state,
@@ -378,23 +376,22 @@
 		}
 	}
 
-	&[data-variant="information"] input {
-		@extend %db-bg-information-transparent-semi;
-		@extend %db-bg-information-transparent-semi-hover-state;
-		border: solid 1px
-			var(
-				--db-colors-information-element-enabled,
-				$db-colors-information-element-enabled
-			);
+	&[data-variant="informational"] input {
+		--db-current-border-color: var(
+			--db-colors-informational-border-enabled,
+			#{$db-colors-informational-border-enabled}
+		);
+		@extend %db-bg-informational-transparent-semi;
+		@extend %db-bg-informational-transparent-semi-hover-state;
 
 		& + label {
-			color: $db-colors-information-on-bg-enabled;
+			color: $db-colors-informational-on-bg-enabled;
 		}
 
 		& ~ .description,
 		& ~ .icon-input-state,
 		& ~ .icon-input-state .db-icon {
-			color: $db-colors-information-element-enabled;
+			color: $db-colors-informational-element-enabled;
 		}
 
 		& ~ .icon-input-state,

@@ -1,6 +1,6 @@
 const Replace = require('replace-in-file');
 const Fse = require('fs-extra');
-const Components = require('./components');
+const { components } = require('./components');
 const toUpperCase = (component) => {
 	return component
 		.split('-')
@@ -10,7 +10,7 @@ const toUpperCase = (component) => {
 const updateNestedComponents = (input, rootComponentName) => {
 	let fileContent = input;
 
-	for (const nestedComponent of Components.filter(
+	for (const nestedComponent of components.filter(
 		(nComp) => nComp.name !== rootComponentName
 	)) {
 		const nCompUpperCase = toUpperCase(nestedComponent.name);
@@ -63,7 +63,7 @@ const workaroundAttributes = (lines) => {
 };
 
 module.exports = () => {
-	for (const component of Components) {
+	for (const component of components) {
 		const filePath = `../../output/webcomponent/src/components/${component.name}/${component.name}.ts`;
 		const fixImports = {
 			files: filePath,
@@ -91,7 +91,7 @@ module.exports = () => {
 		const defaultStyleUrl = {
 			files: filePath,
 			from: 'this.state = {',
-			to: `this.state = {stylePath: "${component.defaultStylePath}",`
+			to: `this.state = {stylePath: "components/${component.name}/${component.name}-web-component.css",`
 		};
 
 		try {

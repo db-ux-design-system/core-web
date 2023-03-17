@@ -9,9 +9,14 @@
 					label="Textinput"
 					placeholder="Placeholder"
 					description="Description"
-					iconBefore="edit"
+					icon="edit"
 					ngDefaultControl
-				></DBInput>
+				>
+				</DBInput>
+				<p>DbRadio:</p>
+				<DBRadio label="Test" name="Test" [checked]="true"></DBRadio>
+				<DBRadio label="Test2" name="Test"></DBRadio>
+				<DBRadio label="Test3" name="Test"></DBRadio>
 				<p>DbButton:</p>
 				<DBButton
 					type="button"
