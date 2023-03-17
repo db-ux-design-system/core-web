@@ -88,22 +88,20 @@ export default function DBAlert(props: DBAlertProps) {
 						</span>
 					</Show>
 					<div class="db-alert-close-container">
-						<Show when={props.type !== 'inline'}>
-							<DBLink
-								className="db-alert-headline-link"
-								variant="inline"
-								href={props.link?.href}
-								target={props.link?.target}
-								rel={props.link?.rel}
-								role={props.link?.role}
-								disabled={props.link?.disabled}
-								selected={props.link?.selected}
-								label={props.link?.label}
-								hreflang={props.link?.hreflang}
-								current={props.link?.current}>
-								<Slot name="link" />
-							</DBLink>
-						</Show>
+						<DBLink
+							className="db-alert-headline-link"
+							variant="inline"
+							href={props.link?.href}
+							target={props.link?.target}
+							rel={props.link?.rel}
+							role={props.link?.role}
+							disabled={props.link?.disabled}
+							selected={props.link?.selected}
+							label={props.link?.label}
+							hreflang={props.link?.hreflang}
+							current={props.link?.current}>
+							<Slot name="link" />
+						</DBLink>
 						<Show when={props.behaviour !== 'permanent'}>
 							<DBButton
 								icon="close"
