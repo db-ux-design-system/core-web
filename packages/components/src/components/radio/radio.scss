@@ -40,7 +40,7 @@ $font-size-height: calc(var(--db-base-font-size) * var(--db-base-line-height));
 
 	// * The invalid style using the :user-invalid pseudo class (and [aria-invalid="true"] equivalent)
 	// TODO: We need to set the correct styling / color here after alignment
-	&:user-invalid,
+	&:is(:user-invalid),
 	&[aria-invalid="true"] {
 		@extend %db-bg-critical-transparent-semi;
 		@extend %db-bg-critical-transparent-semi-hover-state;
