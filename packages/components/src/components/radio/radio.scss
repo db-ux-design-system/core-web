@@ -31,6 +31,11 @@ $font-size-height: calc(var(--db-base-font-size) * var(--db-base-line-height));
 
 	&:checked {
 		border-width: calc(#{$font-size-height} * 0.3);
+
+		// The radio element still has the default background for the dot on :hover when in checked state
+		&:not(:disabled):hover {
+			@extend %bg-transparent;
+		}
 	}
 
 	// * The invalid style using the :user-invalid pseudo class (and [aria-invalid="true"] equivalent)
@@ -55,7 +60,7 @@ $font-size-height: calc(var(--db-base-font-size) * var(--db-base-line-height));
 	& + label {
 		@extend %shadow-dom-extend;
 
-		margin-inline-start: $db-spacing-fixed-regular-xs;
+		margin-inline-start: $db-spacing-fixed-xs;
 
 		vertical-align: top;
 	}
@@ -81,7 +86,7 @@ $font-size-height: calc(var(--db-base-font-size) * var(--db-base-line-height));
 
 		& + label {
 			@extend %db-body-sm;
-			margin-inline-start: $db-spacing-fixed-regular-2xs;
+			margin-inline-start: $db-spacing-fixed-2xs;
 		}
 	}
 

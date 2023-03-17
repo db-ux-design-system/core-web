@@ -20,10 +20,7 @@ TODO
 To get DBRadio work with `v-model` you have to use v-model argument syntax:
 
 ```ts
-<DBRadio
-	label="Textlabel"
-	v-model:value="vModelTest"
-></DBRadio>
+<DBRadio label="Textlabel" v-model:checked="vModelTest"></DBRadio>
 ```
 
 or using on-change listener:
