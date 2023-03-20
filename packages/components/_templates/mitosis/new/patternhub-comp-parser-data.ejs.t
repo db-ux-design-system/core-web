@@ -1,6 +1,6 @@
 ---
 inject: true
 to: ../../showcases/patternhub/components/component-parser/data.ts
-after: type
+after: hygen type
 ---
 | '<%= name %>'

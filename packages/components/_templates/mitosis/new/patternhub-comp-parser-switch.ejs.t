@@ -7,6 +7,6 @@ before: hygen
 		return (
 			<DB<%= h.changeCase.pascal(name) %> className={className} {...props}>
 				{resolvedContent}
-			</DBIcon>
+			</DB<%= h.changeCase.pascal(name) %>>
 		);
 	}

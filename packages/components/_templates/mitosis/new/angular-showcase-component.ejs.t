@@ -1,5 +1,5 @@
 ---
-to: ../../showcases/angular-showcase/src/app/components/<%= name %>/<%= name %>.ts
+to: ../../showcases/angular-showcase/src/app/components/<%= name %>/<%= name %>.component.ts
 ---
 import { Component } from '@angular/core';
 
