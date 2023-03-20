@@ -3,7 +3,6 @@
 @use "@db-ui/foundations/build/scss/helpers/functions" as *;
 @use "@db-ui/foundations/build/scss/color-placeholder" as *;
 @use "@db-ui/foundations/build/scss/body-styles" as *;
-@use "@db-ui/foundations/build/scss/helpers/shadow-dom" as *;
 @use "@db-ui/foundations/build/scss/helpers/component";
 @use "@db-ui/foundations/build/scss/color/color-variants" as *;
 
@@ -58,8 +57,6 @@ $font-size-height: calc(var(--db-base-font-size) * var(--db-base-line-height));
 	}
 
 	& + label {
-		@extend %shadow-dom-extend;
-
 		margin-inline-start: $db-spacing-fixed-xs;
 
 		vertical-align: top;
