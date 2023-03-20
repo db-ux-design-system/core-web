@@ -75,7 +75,7 @@ export default function DBDrawer(props: DBDrawerProps) {
 			<Show when={state.stylePath}>
 				<link rel="stylesheet" href={state.stylePath} />
 			</Show>
-			<div
+			<article
 				ref={dialogContainerRef}
 				class={
 					'db-drawer-container' +
@@ -85,7 +85,7 @@ export default function DBDrawer(props: DBDrawerProps) {
 				data-width={props.width}
 				data-direction={props.direction}
 				data-rounded={props.rounded}>
-				<div class="db-drawer-header">
+				<header class="db-drawer-header">
 					<div>
 						<Slot name="drawer-header" />
 					</div>
@@ -98,9 +98,9 @@ export default function DBDrawer(props: DBDrawerProps) {
 							Close Drawer
 						</DBButton>
 					</Show>
-				</div>
+				</header>
 				<div class="db-drawer-content">{props.children}</div>
-			</div>
+			</article>
 		</dialog>
 	);
 }
