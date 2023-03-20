@@ -27,12 +27,6 @@ const getComponents = () => [
 				{ from: '(event) => handleClose', to: '() => handleClose' },
 				{ from: 'handleClose(event)', to: 'handleClose(event: any)' }
 			],
-			angular: [
-				{
-					from: 'this.dialogRef.nativeElement',
-					to: 'this.dialogRef?.nativeElement'
-				}
-			],
 			react: [
 				{
 					from: 'const dialogRef = useRef<HTMLDialogElement>(null);',
