@@ -1,7 +1,7 @@
 export type DefaultComponentExample = {
 	name?: string;
 	example?: any;
-	style?: unknown;
+	style?: any;
 	className?: string;
 	code?: string;
 };

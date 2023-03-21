@@ -24,11 +24,7 @@ const VariantList = ({ examples }: DefaultComponentVariants) => (
 	</DBCodeDocs>
 );
 
-const DefaultComponent = ({
-	title,
-	description,
-	variants
-}: DefaultComponentProps) => {
+const DefaultComponent = ({ title, variants }: DefaultComponentProps) => {
 	const pageName = useQuery()[4];
 
 	if (pageName) {
@@ -43,7 +39,6 @@ const DefaultComponent = ({
 	return (
 		<div className="default-container">
 			<h1>{title}</h1>
-			{description ?? <></>}
 			{variants?.map((variant, index) => (
 				<div key={`${variant.name}-${index}`}>
 					<DBDivider></DBDivider>
