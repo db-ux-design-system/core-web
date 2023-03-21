@@ -1,10 +1,6 @@
 const Replace = require('replace-in-file');
 const { components } = require('./components');
-const {
-	getComponentName,
-	getReplacements,
-	runReplacements
-} = require('../utils');
+const { getComponentName, runReplacements } = require('../utils');
 
 module.exports = () => {
 	for (const component of components) {
