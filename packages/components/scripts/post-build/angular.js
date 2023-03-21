@@ -34,10 +34,12 @@ const changeFile = (component, input) => {
 		.join('\n');
 };
 
-module.exports = () => {
+module.exports = (tmp) => {
 	for (const component of components) {
 		const componentName = component.name;
-		const file = `../../output/angular/src/components/${componentName}/${componentName}.ts`;
+		const file = `../../${
+			tmp ? 'output/tmp' : 'output'
+		}/angular/src/components/${componentName}/${componentName}.ts`;
 		const options = {
 			files: file,
 			processor: (input) => changeFile(component, input)

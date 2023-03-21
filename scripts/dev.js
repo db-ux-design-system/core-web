@@ -6,24 +6,15 @@ inquirer
 	.prompt([
 		{
 			type: 'checkbox',
-			message: 'Select frameworks to start;',
+			message: 'Select frameworks to develop;',
 			name: 'frameworks',
 			choices: [
 				{
-					name: 'angular-lts'
-				},
-				{
-					name: 'patternhub'
+					name: 'angular'
 				},
 				{
 					name: 'react',
 					checked: true
-				},
-				{
-					name: 'reactwind'
-				},
-				{
-					name: 'vanilla'
 				},
 				{
 					name: 'vue'
@@ -31,7 +22,7 @@ inquirer
 			],
 			validate(answer) {
 				if (answer.length === 0) {
-					return 'You must choose at least one framework.';
+					return 'You must choose at least one frameworks.';
 				}
 
 				return true;
@@ -40,14 +31,14 @@ inquirer
 	])
 
 	.then((answers) => {
-		let startCommand = 'npm-run-all -p build:* -p';
+		let startCommand = 'npm-run-all -p start:foundations dev:sass';
 		if (answers?.frameworks)
 			for (const answer of answers.frameworks) {
-				startCommand += ` start-showcase:${answer}`;
+				startCommand += ` dev:${answer}-components start-showcase:${
+					answer === 'angular' ? 'angular-lts' : answer
+				}`;
 			}
 
-		// eslint-disable-next-line no-console
-		console.log(`Start with command: '${startCommand}'`);
 		// TODO: Handle child process better
 		childProcess.execSync(startCommand, { stdio: 'inherit' });
 	});
