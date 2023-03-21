@@ -7,7 +7,7 @@
     "build": "npm-run-all build:*",
     "build:01_tsc": "tsc",
     "build:02_vite": "vite build",
-    "build:03_copy": "cpr dist ../../build-showcases/react-showcase -o",
+    "build:03_copy": "cpr dist ../../build-showcases/%VITE_NAME%-showcase -o",
     "dev": "vite --open",
     "start": "vite"
   },

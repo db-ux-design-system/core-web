@@ -251,6 +251,10 @@ export const ROUTES: DbMainnavigationDataType[] = [
 				link: '/showcases/angular-lts'
 			},
 			{
+				label: 'HTML',
+				link: '/showcases/html'
+			},
+			{
 				label: 'React',
 				link: '/showcases/react'
 			},
