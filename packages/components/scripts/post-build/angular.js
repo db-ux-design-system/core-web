@@ -1,10 +1,5 @@
 const Replace = require('replace-in-file');
-const {
-	components,
-	formComponentChanges,
-	clickComponentChanges,
-	iconComponentChanges
-} = require('./components');
+const { components } = require('./components');
 const { runReplacements } = require('../utils');
 
 const changeFile = (component, input) => {

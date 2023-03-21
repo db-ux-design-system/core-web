@@ -11,6 +11,16 @@
 @use "@db-ui/foundations/build/scss/color/color-variants" as *;
 @use "@db-ui/foundations/build/scss/helpers/component";
 
+:root,
+.db-ui-regular,
+.db-ui-expressive {
+	--db-input-disabled-label-opacity: 0.25;
+}
+
+.db-ui-functional {
+	--db-input-disabled-label-opacity: 0;
+}
+
 @mixin label-focus-animation(
 	$translationX: var(--db-input-padding-inline-start)
 ) {
@@ -90,7 +100,9 @@
 		padding: 0 $db-spacing-fixed-sm;
 	}
 
-	&:has(> .icon-after) .icon-after {
+	.icon-after,
+	// angular specific nesting
+	dbicon.icon-after > .db-icon {
 		right: 0;
 	}
 
@@ -182,6 +194,13 @@
 			+ label::after {
 				content: " *";
 				padding-left: 0.2rem;
+			}
+		}
+
+		// disabled and prefilled value – different in tonalities
+		&:disabled:not(:placeholder-shown) {
+			+ label {
+				opacity: var(--db-input-disabled-label-opacity);
 			}
 		}
 
@@ -295,6 +314,18 @@
 			--icon-font-family: var(--db-base-icon-font-family-filled);
 			--icon-font-size: var(--db-base-icon-font-size);
 		}
+
+		// angular specific nesting
+		> .db-icon {
+			position: static;
+			padding: 0;
+
+			// TODO: Check whether we could find a more general solution for this
+			&::before {
+				--icon-font-family: var(--db-base-icon-font-family-filled);
+				--icon-font-size: var(--db-base-icon-font-size);
+			}
+		}
 	}
 
 	&[data-variant="critical"] {
@@ -401,19 +432,6 @@
 	}
 }
 
-// disable transform animation for functional input
-.db-ui-functional .db-input > label {
-	&:focus,
-	&:not(:placeholder-shown) {
-		&:not(:disabled) {
-			transform: translate(
-				var(--db-input-padding-inline-start),
-				calc(-1 * var(--db-sizing-md))
-			);
-		}
-	}
-}
-
 .db-ui-regular,
 .db-ui-expressive {
 	.db-input > input[type="date"]::-webkit-calendar-picker-indicator,
@@ -423,17 +441,5 @@
 		// TODO change icon and use db-icons to adopt color for data-variants
 		margin-top: -0.75em;
 		padding: 0;
-	}
-}
-
-.db-ui-functional {
-	.db-input > input {
-		&:disabled {
-			&:not(:placeholder-shown) {
-				+ label {
-					opacity: 0;
-				}
-			}
-		}
 	}
 }
