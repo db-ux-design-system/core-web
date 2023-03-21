@@ -6,7 +6,7 @@ inquirer
 	.prompt([
 		{
 			type: 'checkbox',
-			message: 'Select frameworks to develop:',
+			message: 'Select frameworks to develop with:',
 			name: 'frameworks',
 			choices: [
 				{
@@ -22,7 +22,7 @@ inquirer
 			],
 			validate(answer) {
 				if (answer.length === 0) {
-					return 'You must choose at least one frameworks.';
+					return 'You must choose at least one framework.';
 				}
 
 				return true;
