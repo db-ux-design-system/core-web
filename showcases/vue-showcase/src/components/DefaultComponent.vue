@@ -12,12 +12,12 @@ import {
 	TONALITY_CONST
 } from "../../../../packages/components/src/shared/constants";
 import { useRoute } from "vue-router";
-import { CSSProperties, Ref, ref } from "vue";
+import { Ref, ref } from "vue";
 
 interface DefaultExample extends DefaultComponentExample {
 	name?: string;
 	example?: any;
-	style?: CSSProperties;
+	style?: { width?: string };
 	className?: string;
 	code?: string;
 }
