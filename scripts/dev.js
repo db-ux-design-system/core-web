@@ -6,7 +6,7 @@ inquirer
 	.prompt([
 		{
 			type: 'checkbox',
-			message: 'Select frameworks to develop;',
+			message: 'Select frameworks to develop:',
 			name: 'frameworks',
 			choices: [
 				{
