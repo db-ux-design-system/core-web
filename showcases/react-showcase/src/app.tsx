@@ -26,7 +26,11 @@ const App = () => {
 			type="fixedHeaderFooter"
 			slotHeader={
 				<DBHeader
-					slotBrand={<DBBrand anchorChildren>React Showcase</DBBrand>}
+					slotBrand={
+						<DBBrand title="React Showcase" anchorChildren>
+							Showcase
+						</DBBrand>
+					}
 					slotDesktopNavigation={
 						<nav className="desktop-navigation">
 							<ul>

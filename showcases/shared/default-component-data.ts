@@ -1,11 +1,9 @@
-import { type CSSProperties, type ReactElement } from 'react';
-
 export type DefaultComponentExample = {
-	name: string;
-	example: ReactElement;
-	style?: CSSProperties;
+	name?: string;
+	example?: any;
+	style?: { width?: string }; // Add additional css properties here if you need more
 	className?: string;
-	code?: any;
+	code?: string;
 };
 
 export type DefaultComponentVariants = {
@@ -15,6 +13,5 @@ export type DefaultComponentVariants = {
 
 export type DefaultComponentProps = {
 	title: string;
-	description?: ReactElement;
 	variants: DefaultComponentVariants[];
 };

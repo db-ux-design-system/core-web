@@ -4,8 +4,8 @@ export type ComponentParserType = {
 
 export type ComponentType = {
 	index?: string | number;
-	type?:
-		| 'h1'
+	type?: /* hygen type */
+	| 'h1'
 		| 'h2'
 		| 'h3'
 		| 'h4'

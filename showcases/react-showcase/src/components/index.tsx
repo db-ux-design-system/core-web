@@ -1,10 +1,10 @@
 import { renderToString } from 'react-dom/server';
 import { DBCodeDocs, DBDivider, DBLink } from '../../../../output/react/src';
 import useQuery from '../hooks/use-query';
-import {
-	type DefaultComponentProps,
-	type DefaultComponentVariants
-} from './data';
+import type {
+	DefaultComponentProps,
+	DefaultComponentVariants
+} from '../../../shared/default-component-data';
 
 const showcaseName = import.meta.env.VITE_NAME;
 
@@ -34,11 +34,7 @@ const VariantList = ({ examples }: DefaultComponentVariants) => (
 	</DBCodeDocs>
 );
 
-const DefaultComponent = ({
-	title,
-	description,
-	variants
-}: DefaultComponentProps) => {
+const DefaultComponent = ({ title, variants }: DefaultComponentProps) => {
 	const pageName = useQuery()[4];
 
 	if (pageName) {
@@ -53,7 +49,6 @@ const DefaultComponent = ({
 	return (
 		<div className="default-container">
 			<h1>{title}</h1>
-			{description ?? <></>}
 			{variants?.map((variant, index) => (
 				<div key={`${variant.name}-${index}`}>
 					<DBDivider></DBDivider>

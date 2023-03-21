@@ -28,6 +28,7 @@ export default function DB<%= h.changeCase.pascal(name) %>(props: DB<%= h.change
       <Show when={state.stylePath}>
         <link rel="stylesheet" href={state.stylePath} />
       </Show>
+      {props.children}
     </div>
   );
 }

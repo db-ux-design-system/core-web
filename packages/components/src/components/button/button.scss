@@ -4,7 +4,6 @@
 @use "@db-ui/foundations/build/scss/variables.global" as *;
 @use "@db-ui/foundations/build/scss/color-placeholder" as *;
 @use "@db-ui/foundations/build/scss/icon/icons.helpers" as *;
-@use "@db-ui/foundations/build/scss/helpers/shadow-dom" as *;
 @use "@db-ui/foundations/build/scss/color/color-variants" as *;
 @use "@db-ui/foundations/build/scss/helpers/component";
 
@@ -14,7 +13,6 @@
 
 	$icon-size: var(--db-icon-size, 20);
 
-	@extend %shadow-dom-extend;
 	@extend %default-interactive-component;
 	@extend %default-background-transition;
 	@extend %bg-transparent-interactive;
