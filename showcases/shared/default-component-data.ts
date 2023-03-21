@@ -1,9 +1,9 @@
 export type DefaultComponentExample = {
 	name?: string;
 	example?: any;
-	style?: any;
+	style?: CSSStyleDeclaration;
 	className?: string;
-	code?: any;
+	code?: string;
 };
 
 export type DefaultComponentVariants = {
@@ -13,6 +13,5 @@ export type DefaultComponentVariants = {
 
 export type DefaultComponentProps = {
 	title: string;
-	description?: any;
 	variants: DefaultComponentVariants[];
 };

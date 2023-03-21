@@ -17,9 +17,9 @@ import { Ref, ref } from "vue";
 interface DefaultExample extends DefaultComponentExample {
 	name?: string;
 	example?: any;
-	style?: any;
+	style?: CSSStyleDeclaration;
 	className?: string;
-	code?: any;
+	code?: string;
 }
 interface DefaultVariants extends DefaultComponentVariants {
 	name: string;
@@ -28,7 +28,6 @@ interface DefaultVariants extends DefaultComponentVariants {
 /* Workaround see: https://vuejs.org/guide/typescript/composition-api.html#typing-component-props */
 interface DefaultProps extends DefaultComponentProps {
 	title: string;
-	description?: any;
 	variants: DefaultVariants[];
 }
 
