@@ -26,6 +26,9 @@ export class AppComponent implements OnInit {
 	tonality = TONALITY.REGULAR;
 	color = COLOR.NEUTRAL_0;
 
+	page: string;
+	fullscreen: boolean;
+
 	constructor(
 		private readonly router: Router,
 		private readonly route: ActivatedRoute
@@ -39,6 +42,14 @@ export class AppComponent implements OnInit {
 
 			if (parameters[COLOR_CONST]) {
 				this.color = parameters[COLOR_CONST];
+			}
+
+			if (parameters['page']) {
+				this.page = parameters['page'];
+			}
+
+			if (parameters['fullscreen']) {
+				this.fullscreen = parameters['fullscreen'];
 			}
 		});
 	}

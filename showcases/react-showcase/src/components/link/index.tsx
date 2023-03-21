@@ -1,91 +1,78 @@
 import { DBLink } from '../../../../../output/react/src';
 import DefaultComponent from '../index';
-import type { DefaultComponentVariants } from '../data';
+import { type DefaultComponentExample } from '../../../../shared/default-component-data';
+import defaultComponentVariants from '../../../../shared/link';
+import { type DBLinkProps } from '../../../../../output/react/src/components/link/model';
+import { getVariants } from '../../utils';
 
-const variants: DefaultComponentVariants[] = [
-	{
-		name: 'Variant',
-		examples: [
-			{
-				name: '(Default) Adaptive',
-				example: <DBLink href="#">Type something</DBLink>,
-				code: '<DBLink href="#">Type Something</DBLink>'
-			},
-			{
-				name: 'Primary',
-				example: (
-					<DBLink href="#" variant="primary">
-						Type something
-					</DBLink>
-				),
-				code: '<DBLink href="#" variant="primary">Type Something</DBLink>'
-			}
-		]
-	},
-	{
-		name: 'State',
-		examples: [
-			{
-				name: 'Default: (Enabled, Hover, Pressed)',
-				example: <DBLink href="#">Type something</DBLink>,
-				code: '<DBLink href="#">Type Something</DBLink>'
-			},
-			{
-				name: 'Disabled',
-				example: (
-					<DBLink href="#" disabled>
-						Type something
-					</DBLink>
-				),
-				code: '<DBLink href="#" disabled>Type Something</DBLink>'
-			}
-		]
-	},
-	{
-		name: 'Size',
-		examples: [
-			{
-				name: '(Default) Medium',
-				example: <DBLink href="#">Type something</DBLink>,
-				code: '<DBLink href="#">Type Something</DBLink>'
-			},
-			{
-				name: 'Small',
-				example: (
-					<DBLink href="#" size="small">
-						Type something
-					</DBLink>
-				),
-				code: '<DBLink href="#" size="small">Type Something</DBLink>'
-			}
-		]
-	},
-	{
-		name: 'Content',
-		examples: [
-			{
-				name: '(Default) Internal',
-				example: <DBLink href="#">Type something</DBLink>,
-				code: '<DBLink href="#">Type Something</DBLink>'
-			},
-			{
-				name: 'External',
-				example: (
-					<DBLink href="#" content="external">
-						Type something
-					</DBLink>
-				),
-				code: '<DBLink href="#" content="external">Type Something</DBLink>'
-			}
-		]
-	}
+const getLink = ({
+	variant,
+	disabled,
+	size,
+	content,
+	children
+}: DBLinkProps) => (
+	<DBLink
+		href="#"
+		variant={variant}
+		disabled={disabled}
+		size={size}
+		content={content}>
+		{children}
+	</DBLink>
+);
+
+const getExampleMatrix = (exampleName: string): DefaultComponentExample[][] => [
+	[
+		{
+			example: getLink({ children: exampleName }),
+			code: '<DBLink href="#">Link</DBLink>'
+		},
+		{
+			example: getLink({ children: exampleName, variant: 'primary' }),
+			code: '<DBLink href="#" variant="primary">Link</DBLink>'
+		}
+	],
+	[
+		{
+			example: getLink({ children: exampleName }),
+			code: '<DBLink href="#">Link</DBLink>'
+		},
+		{
+			example: getLink({ children: exampleName, disabled: true }),
+			code: '<DBLink href="#" disabled>Link</DBLink>'
+		}
+	],
+	[
+		{
+			example: getLink({ children: exampleName }),
+			code: '<DBLink href="#">Link</DBLink>'
+		},
+		{
+			example: getLink({ children: exampleName, size: 'small' }),
+			code: '<DBLink href="#" size="small">Link</DBLink>'
+		}
+	],
+	[
+		{
+			example: getLink({ children: exampleName }),
+			code: '<DBLink href="#">Link</DBLink>'
+		},
+		{
+			example: getLink({ children: exampleName, content: 'external' }),
+			code: '<DBLink href="#" content="external">Link</DBLink>'
+		}
+	]
 ];
 
 const LinkComponent = () => {
 	return (
 		<DefaultComponent
 			title={'DBLink'}
-			variants={variants}></DefaultComponent>
+			variants={getVariants(
+				defaultComponentVariants,
+				getExampleMatrix
+			)}></DefaultComponent>
 	);
 };
 

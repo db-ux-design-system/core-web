@@ -1,28 +1,40 @@
-<h1>Button</h1>
-<div class="button-container">
-	<!-- TODO: Use db-select here	-->
-	<select [(ngModel)]="variant">
-		<option checked>outline</option>
-		<option>primary</option>
-		<option>transparent</option>
-		<option>semi-transparent</option>
-	</select>
-
-	<DBButton [variant]="variant">{{ variant }}</DBButton>
-	<DBButton [variant]="variant" [disabled]="true">{{ variant }}</DBButton>
-	<DBButton [variant]="variant" icon="account">{{ variant }}</DBButton>
-	<DBButton [variant]="variant" icon="account" [disabled]="true">{{
-		variant
-	}}</DBButton>
-	<DBButton [variant]="variant" icon="account" [icntxt]="true">{{
-		variant
-	}}</DBButton>
-	<DBButton
-		[variant]="variant"
-		icon="account"
-		[disabled]="true"
-		[icntxt]="true"
-		>{{ variant }}</DBButton
+<app-default-component
+	title="Button"
+	[variants]="variants"
+	[exampleTemplate]="exampleTemplate"
+>
+	<ng-template
+		#exampleTemplate
+		let-exampleName="exampleName"
+		let-exampleIndex="exampleIndex"
+		let-variantIndex="variantIndex"
 	>
-	<DBButton [variant]="variant" state="loading">{{ variant }}</DBButton>
-</div>
+		<DBButton *ngIf="exampleIndex === 0">{{ exampleName }}</DBButton>
+		<ng-container *ngIf="exampleIndex === 1 && variantIndex === 0">
+			<DBButton variant="primary">{{ exampleName }}</DBButton>
+		</ng-container>
+		<ng-container *ngIf="exampleIndex === 2 && variantIndex === 0">
+			<DBButton variant="transparent">{{ exampleName }}</DBButton>
+		</ng-container>
+		<ng-container *ngIf="exampleIndex === 3 && variantIndex === 0">
+			<DBButton variant="semi-transparent">{{ exampleName }}</DBButton>
+		</ng-container>
+		<ng-container *ngIf="exampleIndex === 1 && variantIndex === 1">
+			<DBButton state="loading">{{ exampleName }}</DBButton>
+		</ng-container>
+		<ng-container *ngIf="exampleIndex === 1 && variantIndex === 2">
+			<DBButton size="small">{{ exampleName }}</DBButton>
+		</ng-container>
+		<ng-container *ngIf="exampleIndex === 1 && variantIndex === 3">
+			<DBButton icon="account" [icntxt]="true">{{
+				exampleName
+			}}</DBButton>
+		</ng-container>
+		<ng-container *ngIf="exampleIndex === 2 && variantIndex === 3">
+			<DBButton icon="account">{{ exampleName }}</DBButton>
+		</ng-container>
+		<ng-container *ngIf="exampleIndex === 1 && variantIndex === 4">
+			<DBButton width="full">{{ exampleName }}</DBButton>
+		</ng-container>
+	</ng-template>
+</app-default-component>
