@@ -3,18 +3,18 @@
 @use "@db-ui/foundations/build/scss/variables.global" as *;
 @use "@db-ui/foundations/build/scss/helpers/functions" as *;
 @use "@db-ui/foundations/build/scss/color/color-variants" as *;
+@use "@db-ui/foundations/build/scss/helpers/component" as *;
 
 .db-card {
 	@extend %focus-placeholder;
 	@extend %color-variants;
+	@extend %default-card;
 
 	background-color: var(
 		--db-current-background-color,
 		$db-colors-neutral-bg-0-enabled
 	);
 
-	border-radius: 8px;
-	box-shadow: $db-elevation-4;
 	display: flex;
 	flex-direction: column;
 

@@ -8,9 +8,7 @@ COPY packages/ packages/
 
 # Install dependencies
 RUN npm install
-# Install browsers
-RUN npx playwright install
 # Build foundations and components
-RUN npm run build
+# RUN npm run build
 # Run playwright test
 CMD [ "npm", "run", "test" ]

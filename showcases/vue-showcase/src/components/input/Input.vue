@@ -12,7 +12,7 @@ import "./index.scss";
 					description="This is a description"
 					label="Start train station"
 					placeholder="some text"
-					iconBefore="edit"
+					icon="edit"
 					variant="critical"
 					value="hello"
 					name="testInput"
@@ -22,7 +22,7 @@ import "./index.scss";
 					description="Valid test"
 					label="With event"
 					placeholder="some text"
-					iconBefore="edit"
+					icon="edit"
 					iconAfter="heart"
 					variant="warning"
 					id="input-expr-warning"
@@ -59,7 +59,7 @@ import "./index.scss";
 					id="db-input-functional-2"
 					label="Textinput disabled"
 					placeholder="some text"
-					variant="information"
+					variant="informational"
 					disabled="true"
 				></DBInput>
 

@@ -12,6 +12,8 @@ useMetadata({
 });
 
 export default function DBInfotext(props: DBInfotextProps) {
+	// This is used as forwardRef
+	let component: any;
 	const state = useStore<DBInfotextState>({
 		getIcon: (icon?: string, variant?: string) => {
 			return icon || DefaultVariantsIcon[variant] || 'info';
@@ -27,6 +29,7 @@ export default function DBInfotext(props: DBInfotextProps) {
 	// TODO: Check if this should be a div or a span
 	return (
 		<span
+			ref={component}
 			class={
 				'db-infotext' + (props.className ? ' ' + props.className : '')
 			}

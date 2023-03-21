@@ -1,7 +1,7 @@
 @use "../color-placeholder" as *;
 
 $color-variants: "neutral-0", "neutral-1", "neutral-3", "neutral-4", "primary",
-	"secondary", "critical", "success", "warning", "information";
+	"secondary", "critical", "successful", "warning", "informational";
 
 @mixin color-variants($ia) {
 	@each $variant in $color-variants {
@@ -32,8 +32,12 @@ $color-variants: "neutral-0", "neutral-1", "neutral-3", "neutral-4", "primary",
 	);
 }
 
-%bg-transparent-hover {
+%bg-transparent {
 	@include get-variant-bg-color(0);
+}
+
+%bg-transparent-hover {
+	@extend %bg-transparent;
 
 	&:not(:disabled) {
 		&:hover {

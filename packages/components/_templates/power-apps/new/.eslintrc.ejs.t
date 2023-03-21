@@ -18,5 +18,8 @@ force: true
 		"sourceType": "module"
 	},
 	"plugins": ["@typescript-eslint"],
-	"rules": {}
+	"rules": {
+		"no-unused-vars": 0,
+		"no-mixed-spaces-and-tabs": 0
+	}
 }

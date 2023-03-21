@@ -4,26 +4,33 @@ import {
 	DefaultVariantProps,
 	GlobalProps,
 	GlobalState,
+	IconProps,
+	IconState,
 	LinkProps
 } from '../../shared/model';
 
 export interface DBAlertDefaultProps {
 	closeButtonText?: string;
 	headline?: string;
-	icon?: string;
+	text?: string;
 	link?: LinkProps;
 	type?: 'alert' | 'inline';
 	slotLink?: any;
-	variant?: 'adaptive' | DefaultVariantProps;
+
+	behaviour?: 'closable' | 'permanent';
+	variant?: DefaultVariantProps;
 }
 
-export type DBAlertProps = DBAlertDefaultProps & GlobalProps & ClickEventProps;
+export type DBAlertProps = DBAlertDefaultProps &
+	GlobalProps &
+	ClickEventProps &
+	IconProps;
 
 export interface DBAlertDefaultState {
-	getIcon: (
-		icon?: string,
-		variant?: 'adaptive' | DefaultVariantProps
-	) => string;
+	getIcon: (icon?: string, variant?: DefaultVariantProps) => string;
 }
 
-export type DBAlertState = DBAlertDefaultState & GlobalState & ClickEventState;
+export type DBAlertState = DBAlertDefaultState &
+	GlobalState &
+	ClickEventState &
+	IconState;

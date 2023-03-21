@@ -13,7 +13,15 @@ useMetadata({
 	}
 });
 
+const DEFAULT_VALUES = {
+	copyLabel: 'Copy Code',
+	hideCodeLabel: 'Hide Code',
+	showCodeLabel: 'Show Code'
+};
+
 export default function DBCodeDocs(props: DBCodeDocsProps) {
+	// This is used as forwardRef
+	let component: any;
 	const state = useStore<DBCodeDocsState>({
 		open: false,
 		toggleCode: () => {
@@ -25,8 +33,11 @@ export default function DBCodeDocs(props: DBCodeDocsProps) {
 		},
 		getShowButtonLabel: () => {
 			return state.open
-				? props.hideCodeLabel ?? 'Hide Code'
-				: props.showCodeLabel ?? 'Show Code';
+				? props.hideCodeLabel ?? DEFAULT_VALUES.hideCodeLabel
+				: props.showCodeLabel ?? DEFAULT_VALUES.showCodeLabel;
+		},
+		getCopyLabel: () => {
+			return props.copyLabel ?? DEFAULT_VALUES.copyLabel;
 		},
 		getSnippetId: () => {
 			return `snippet-${uuid()}`;
@@ -41,6 +52,7 @@ export default function DBCodeDocs(props: DBCodeDocsProps) {
 
 	return (
 		<DBCard
+			ref={component}
 			class={
 				'db-code-docs' + (props.className ? ' ' + props.className : '')
 			}>
@@ -61,7 +73,7 @@ export default function DBCodeDocs(props: DBCodeDocsProps) {
 							!props.codeSnippets ||
 							props.codeSnippets.length === 0
 						}>
-						<DBInfotext class="no-code" variant="information">
+						<DBInfotext class="no-code" variant="informational">
 							{props.noCodeLabel ?? 'No Code available'}
 						</DBInfotext>
 					</Show>
@@ -71,18 +83,16 @@ export default function DBCodeDocs(props: DBCodeDocsProps) {
 						}>
 						<For each={props.codeSnippets}>
 							{(snippet: string) => (
-								<pre key={state.getSnippetId()}>
-									<code class="language-typescript">
-										{snippet}
-									</code>
+								<div key={state.getSnippetId()}>
+									<code>{snippet}</code>
 									<DBButton
 										class="copy-button"
 										size="small"
 										variant="outline"
 										onClick={() => state.copyCode(snippet)}>
-										{props.copyLabel ?? 'Copy Code'}
+										{state.getCopyLabel()}
 									</DBButton>
-								</pre>
+								</div>
 							)}
 						</For>
 					</Show>

@@ -6,6 +6,8 @@ useMetadata({
 	isAttachedToShadowDom: true,
 	component: {
 		includeIcon: true,
+		hasDisabledProp: true,
+		hasOnClick: true,
 		properties: [
 			{ name: 'text', type: 'SingleLine.Text' },
 			{
@@ -28,23 +30,32 @@ useMetadata({
 			},
 			{
 				name: 'icon',
+				type: 'Icon'
+			},
+			{ name: 'icntxt', type: 'TwoOptions' },
+			{
+				name: 'width',
 				type: 'Enum',
 				values: [
-					{ key: 'None', name: 'None', value: '_' },
-					{ key: 'Account', name: 'Account', value: 'account' }
+					{ key: 'Full', name: 'Full', value: 'full' },
+					{ key: 'Auto', name: 'Auto', value: 'auto' }
 				]
-			},
-			{ name: 'icntxt', type: 'TwoOptions' }
+			}
 		]
 	}
 });
 
 export default function DBButton(props: DBButtonProps) {
+	// This is used as forwardRef
+	let component: any;
 	const state = useStore<DBButtonState>({
 		handleClick: (event) => {
 			if (props.onClick) {
 				props.onClick(event);
 			}
+		},
+		iconVisible: (icon: string) => {
+			return icon && icon !== '_' && icon !== 'none';
 		}
 	});
 
@@ -56,13 +67,16 @@ export default function DBButton(props: DBButtonProps) {
 
 	return (
 		<button
+			ref={component}
 			type={props.type}
 			disabled={props.disabled}
-			aria-label={props.text}
+			aria-label={props.label}
 			class={
 				'db-button' +
 				(props.className ? ' ' + props.className : '') +
-				(props.icon && !props.icntxt ? ' is-icon-text-replace' : '')
+				(state.iconVisible(props.icon) && !props.icntxt
+					? ' is-icon-text-replace'
+					: '')
 			}
 			data-size={props.size}
 			data-state={props.state}
@@ -72,9 +86,11 @@ export default function DBButton(props: DBButtonProps) {
 			<Show when={state.stylePath}>
 				<link rel="stylesheet" href={state.stylePath} />
 			</Show>
-
-			<DBIcon icon={props.icon} icntxt={props.icntxt}></DBIcon>
+			<Show when={state.iconVisible(props.icon)}>
+				<DBIcon icon={props.icon} icntxt={props.icntxt}></DBIcon>
+			</Show>
 			{props.children}
+			{props.text}
 		</button>
 	);
 }

@@ -12,15 +12,15 @@ const variants: DefaultComponentVariants[] = [
 				code: '<DBInput label="Label" description="Description" />'
 			},
 			{
-				name: 'Information',
+				name: 'Informational',
 				example: (
 					<DBInput
 						label="Label"
 						description="Description"
-						variant="information"
+						variant="informational"
 					/>
 				),
-				code: '<DBInput label="Label" description="Description" variant="information"/>'
+				code: '<DBInput label="Label" description="Description" variant="informational"/>'
 			},
 			{
 				name: 'Warning',
@@ -45,15 +45,15 @@ const variants: DefaultComponentVariants[] = [
 				code: '<DBInput label="Label" description="Description" variant="critical"/>'
 			},
 			{
-				name: 'Success',
+				name: 'Successful',
 				example: (
 					<DBInput
 						label="Label"
 						description="Description"
-						variant="success"
+						variant="successful"
 					/>
 				),
-				code: '<DBInput label="Label" description="Description" variant="success"/>'
+				code: '<DBInput label="Label" description="Description" variant="successful"/>'
 			}
 		]
 	},
@@ -109,19 +109,15 @@ const variants: DefaultComponentVariants[] = [
 			},
 			{
 				name: 'Leading Icon + Text',
-				example: <DBInput iconBefore="account" label="Label" />,
-				code: '<DBInput iconBefore="account" label="Label"/>'
+				example: <DBInput icon="account" label="Label" />,
+				code: '<DBInput icon="account" label="Label"/>'
 			},
 			{
 				name: 'Leading Icon + Text + Trailing Icon',
 				example: (
-					<DBInput
-						iconBefore="account"
-						label="Label"
-						iconAfter="edit"
-					/>
+					<DBInput icon="account" label="Label" iconAfter="edit" />
 				),
-				code: '<DBInput iconBefore="account" label="Label" iconAfter="edit"/>'
+				code: '<DBInput icon="account" label="Label" iconAfter="edit"/>'
 			},
 			{
 				name: 'Text + Trailing Icon',
@@ -129,11 +125,15 @@ const variants: DefaultComponentVariants[] = [
 				code: '<DBInput label="Label" iconAfter="edit"/>'
 			},
 			{
-				name: 'Text + Trailing Icon + Variant:Success',
+				name: 'Text + Trailing Icon + Variant:Successful',
 				example: (
-					<DBInput label="Label" iconAfter="edit" variant="success" />
+					<DBInput
+						label="Label"
+						iconAfter="edit"
+						variant="successful"
+					/>
 				),
-				code: '<DBInput label="Label" iconAfter="edit" variant="success"/>'
+				code: '<DBInput label="Label" iconAfter="edit" variant="successful"/>'
 			}
 		]
 	}

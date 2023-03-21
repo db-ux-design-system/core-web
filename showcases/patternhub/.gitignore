@@ -37,6 +37,7 @@ public/*-showcase
 
 styles/db-ui-components.scss
 components
+!components/component-parser
 !components/default-page.tsx
 !components/iframe.tsx
 !components/static-content.tsx

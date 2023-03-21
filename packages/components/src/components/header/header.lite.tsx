@@ -16,6 +16,8 @@ useMetadata({
 });
 
 export default function DBHeader(props: DBHeaderProps) {
+	// This is used as forwardRef
+	let component: any;
 	const state = useStore<DBHeaderState>({});
 
 	onMount(() => {
@@ -26,6 +28,7 @@ export default function DBHeader(props: DBHeaderProps) {
 
 	return (
 		<header
+			ref={component}
 			class={'db-header' + (props.className ? ' ' + props.className : '')}
 			role="banner">
 			<Show when={state.stylePath}>

@@ -1,4 +1,5 @@
 import AccordionComponent from '../components/accordion';
+import RadioComponent from '../components/radio';
 
 import AlertComponent from '../components/alert';
 import ButtonComponent from '../components/button';
@@ -15,12 +16,8 @@ export type NavigationItem = {
 	home?: boolean;
 };
 export const NAVIGATION_ITEMS: NavigationItem[] = [
-	{
-		path: 'accordion',
-		label: 'Accordion',
-		component: <AccordionComponent />
-	},
-
+	{	path: 'accordion', label: 'Accordion', component: <AccordionComponent /> },
+	{ path: 'radio', label: 'Radio', component: <RadioComponent /> },
 	{ path: 'alert', label: 'Alert', component: <AlertComponent /> },
 	{ path: 'infotext', label: 'Infotext', component: <InfotextComponent /> },
 	{ path: 'section', label: 'Section', component: <SectionComponent /> },
