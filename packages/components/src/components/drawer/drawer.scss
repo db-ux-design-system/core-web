@@ -109,13 +109,16 @@
 
 		.db-drawer-header {
 			@include divider("bottom");
-			display: flex;
-			gap: $db-spacing-fixed-lg;
-			justify-content: space-between;
+			display: block;
 			padding-block-end: $db-spacing-fixed-sm;
 			padding-inline: $db-spacing-fixed-lg;
 
-			&:not(:has(> :nth-child(2))) {
+			.button-close-drawer {
+				margin-inline-start: $db-spacing-fixed-lg;
+				float: right;
+			}
+
+			&:not(:has(> :nth-child(1))) {
 				display: none;
 			}
 		}
@@ -148,7 +151,7 @@
 				animation: show-top-to-bottom $animation-show-timing;
 			}
 
-			&.hide {
+			&[hidden] {
 				&:not([data-direction]),
 				&[data-direction="right"] {
 					animation: hide-right-to-left $animation-hide-timing;

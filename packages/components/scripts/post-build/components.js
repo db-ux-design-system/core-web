@@ -21,7 +21,6 @@
 const getComponents = () => [
 	{
 		name: 'drawer',
-		defaultStylePath: 'components/drawer/drawer-web-component.css',
 		overwrites: {
 			global: [
 				{ from: '(event) => handleClose', to: '() => handleClose' },

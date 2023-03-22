@@ -67,6 +67,7 @@ export default function DBButton(props: DBButtonProps) {
 
 	return (
 		<button
+			id={props.id}
 			ref={component}
 			type={props.type}
 			disabled={props.disabled}

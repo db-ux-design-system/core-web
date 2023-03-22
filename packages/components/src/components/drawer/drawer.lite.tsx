@@ -35,7 +35,7 @@ export default function DBDrawer(props: DBDrawerProps) {
 		handleDialogOpen: () => {
 			if (dialogRef) {
 				if (props.open && !dialogRef.open) {
-					dialogContainerRef?.classList.remove('hide');
+					dialogContainerRef.hidden = false;
 					if (props.noBackdrop) {
 						dialogRef.show();
 					} else {
@@ -43,9 +43,9 @@ export default function DBDrawer(props: DBDrawerProps) {
 					}
 				}
 				if (!props.open && dialogRef.open) {
-					dialogContainerRef?.classList.add('hide');
+					dialogContainerRef.hidden = true;
 					setTimeout(() => {
-						dialogContainerRef?.classList.remove('hide');
+						dialogContainerRef.hidden = false;
 						dialogRef?.close();
 					}, 401);
 				}
@@ -86,11 +86,10 @@ export default function DBDrawer(props: DBDrawerProps) {
 				data-direction={props.direction}
 				data-rounded={props.rounded}>
 				<header class="db-drawer-header">
-					<div>
-						<Slot name="drawer-header" />
-					</div>
+					<Slot name="drawer-header" />
 					<Show when={props.withCloseButton}>
 						<DBButton
+							className="button-close-drawer"
 							id="button-close-drawer"
 							icon="close"
 							variant="transparent"
