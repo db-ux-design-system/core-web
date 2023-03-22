@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { DBButton, DBDrawer } from '../../../../../output/react/src';
 import type { DBDrawerProps } from '../../../../../output/react/src/components/drawer/model';
 import DefaultComponent from '../index';
-import type { DefaultComponentVariants } from '../data';
+import type { DefaultComponentVariants } from '../../../../shared/default-component-data';
 
 type AdditionalDrawerProps = {
 	buttonText: string;
