@@ -5,9 +5,13 @@
   "private": true,
   "scripts": {
     "build": "npm-run-all build:*",
+    "build-html": "npm-run-all build-html:*",
+    "build-html:01_tsc": "tsc",
+    "build-html:02_vite": "cross-env VITE_NAME=html vite build",
+    "build-html:03_copy": "cpr dist-html ../../build-showcases/html-showcase -o",
     "build:01_tsc": "tsc",
-    "build:02_vite": "vite build",
-    "build:03_copy": "cpr dist ../../build-showcases/react-showcase -o",
+    "build:02_vite": "cross-env VITE_NAME=react vite build",
+    "build:03_copy": "cpr dist-react ../../build-showcases/react-showcase -o",
     "dev": "vite --open",
     "start": "vite"
   },

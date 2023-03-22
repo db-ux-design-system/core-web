@@ -32,6 +32,7 @@
     "build-showcases": "npm-run-all -p build-showcases:*",
     "build-showcases:angular-current": "npm run build --workspace=angular-current-showcase",
     "build-showcases:angular-lts": "npm run build --workspace=angular-lts-showcase",
+    "build-showcases:html": "npm run build-html --workspace=react-showcase",
     "build-showcases:patternhub": "npm run build --workspace=db-patternhub",
     "build-showcases:react": "npm run build --workspace=react-showcase",
     "build-showcases:reactwind": "npm run build --workspace=reactwind-showcase",
