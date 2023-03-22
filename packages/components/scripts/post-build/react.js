@@ -1,14 +1,15 @@
-const Replace = require('replace-in-file');
 const { components } = require('./components');
 const { getComponentName, runReplacements } = require('../utils');
 
-module.exports = () => {
+module.exports = (tmp) => {
 	for (const component of components) {
 		try {
 			const upperComponentName = getComponentName(component.name);
 			const stateName = `DB${upperComponentName}State`;
 
-			const tsxFile = `../../output/react/src/components/${component.name}/${component.name}.tsx`;
+			const tsxFile = `../../${
+				tmp ? 'output/tmp' : 'output'
+			}/react/src/components/${component.name}/${component.name}.tsx`;
 
 			let replacements = [
 				{ from: `${stateName}, `, to: '' },
