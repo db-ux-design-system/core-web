@@ -1,7 +1,15 @@
-<DBPage type="fixedHeaderFooter">
+<div *ngIf="page" [class]="getChangeableClasses()">
+	<router-outlet></router-outlet>
+</div>
+<DBPage *ngIf="!page" type="fixedHeaderFooter">
 	<DBHeader header>
-		<DBBrand brand src="./assets/db_logo.svg" href="/angular-showcase">
-			Angular Showcase
+		<DBBrand
+			brand
+			title="Angular Showcase"
+			src="./assets/db_logo.svg"
+			href="/angular-showcase"
+		>
+			Showcase
 		</DBBrand>
 		<nav class="desktop-navigation" desktop-navigation>
 			<ul>

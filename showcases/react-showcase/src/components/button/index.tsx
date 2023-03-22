@@ -1,108 +1,110 @@
 import { DBButton } from '../../../../../output/react/src';
 import DefaultComponent from '../index';
-import type { DefaultComponentVariants } from '../data';
+import defaultComponentVariants from '../../../../shared/button';
+import { type DefaultComponentExample } from '../../../../shared/default-component-data';
+import { type DBButtonProps } from '../../../../../output/react/src/components/button/model';
+import { getVariants } from '../../utils';
 
-const variants: DefaultComponentVariants[] = [
-	{
-		name: 'Variant',
-		examples: [
-			{
-				name: '(Default) Adaptive Outline',
-				example: <DBButton>Button</DBButton>,
-				code: '<DBButton>Button</DBButton>'
-			},
-			{
-				name: 'Primary',
-				example: <DBButton variant="primary">Button</DBButton>,
-				code: '<DBButton variant="primary">Button</DBButton>'
-			},
-			{
-				name: 'Transparent',
-				example: <DBButton variant="transparent">Button</DBButton>
-			},
-			{
-				name: 'Semi-Transparent',
-				example: <DBButton variant="semi-transparent">Button</DBButton>
-			}
-		]
-	},
-	{
-		name: 'State',
-		examples: [
-			{
-				name: 'Default: (Enabled, Hover, Pressed)',
-				example: <DBButton>Button</DBButton>,
-				code: '<DBButton>Button</DBButton>'
-			},
-			{
-				name: 'Loading',
-				example: <DBButton state="loading">Button</DBButton>,
-				code: '<DBButton state="loading">Button</DBButton>'
-			}
-		]
-	},
-	{
-		name: 'Size',
-		examples: [
-			{
-				name: 'Default: Medium',
-				example: <DBButton>Button</DBButton>,
-				code: '<DBButton>Button</DBButton>'
-			},
-			{
-				name: 'Small',
-				example: <DBButton size="small">Button</DBButton>,
-				code: '<DBButton size="small">Button</DBButton>'
-			}
-		]
-	},
-	{
-		name: 'Content',
-		examples: [
-			{
-				name: 'Default: Text',
-				example: <DBButton>Button</DBButton>,
-				code: '<DBButton>Button</DBButton>'
-			},
-			{
-				name: 'Icon & Text',
-				example: (
-					<DBButton icon="account" icntxt>
-						Button
-					</DBButton>
-				),
-				code: '<DBButton icon="account" icntxt>Button</DBButton>'
-			},
-			{
-				name: 'Icon',
-				example: <DBButton icon="account">Button</DBButton>,
-				code: '<DBButton icon="account">Button</DBButton>'
-			}
-		]
-	},
-	{
-		name: 'Behaviour',
-		examples: [
-			{
-				name: 'Default: Auto Width',
-				example: <DBButton>Button</DBButton>,
-				code: '<DBButton>Button</DBButton>'
-			},
-			{
-				name: 'Width full',
-				example: <DBButton width="full">Button</DBButton>,
-				style: { width: '500px' },
-				code: '<DBButton width="full">Button</DBButton>'
-			}
-		]
-	}
+const getButton = ({
+	variant,
+	state,
+	size,
+	icntxt,
+	icon,
+	width,
+	text
+}: DBButtonProps) => (
+	<DBButton
+		variant={variant}
+		state={state}
+		size={size}
+		icntxt={icntxt}
+		icon={icon}
+		width={width}>
+		{text}
+	</DBButton>
+);
+
+const getExampleMatrix = (exampleName: string): DefaultComponentExample[][] => [
+	[
+		{
+			example: getButton({ text: exampleName }),
+			code: '<DBButton>Button</DBButton>'
+		},
+		{
+			example: getButton({ text: exampleName, variant: 'primary' }),
+			code: '<DBButton variant="primary">Button</DBButton>'
+		},
+		{
+			example: getButton({ text: exampleName, variant: 'transparent' }),
+			code: '<DBButton variant="transparent">Button</DBButton>'
+		},
+		{
+			example: getButton({
+				text: exampleName,
+				variant: 'semi-transparent'
+			}),
+			code: '<DBButton variant="semi-transparent">Button</DBButton>'
+		}
+	],
+	[
+		{
+			example: getButton({ text: exampleName }),
+			code: '<DBButton>Button</DBButton>'
+		},
+		{
+			example: getButton({ text: exampleName, state: 'loading' }),
+			code: '<DBButton state="loading">Button</DBButton>'
+		}
+	],
+	[
+		{
+			example: getButton({ text: exampleName }),
+			code: '<DBButton>Button</DBButton>'
+		},
+		{
+			example: getButton({ text: exampleName, size: 'small' }),
+			code: '<DBButton size="small">Button</DBButton>'
+		}
+	],
+	[
+		{
+			example: getButton({ text: exampleName }),
+			code: '<DBButton>Button</DBButton>'
+		},
+		{
+			example: getButton({
+				text: exampleName,
+				icon: 'account',
+				icntxt: true
+			}),
+			code: '<DBButton icon="account" icntxt>Button</DBButton>'
+		},
+		{
+			example: getButton({ text: exampleName, icon: 'account' }),
+			code: '<DBButton icon="account">Button</DBButton>'
+		}
+	],
+	[
+		{
+			example: getButton({ text: exampleName }),
+			code: '<DBButton>Button</DBButton>'
+		},
+		{
+			example: getButton({ text: exampleName, width: 'full' }),
+			code: '<DBButton width="full">Button</DBButton>'
+		}
+	]
 ];
 
 const ButtonComponent = () => {
 	return (
 		<DefaultComponent
-			title={'DBButton'}
-			variants={variants}></DefaultComponent>
+			title="DBButton"
+			variants={getVariants(
+				defaultComponentVariants,
+				getExampleMatrix
+			)}></DefaultComponent>
 	);
 };
 

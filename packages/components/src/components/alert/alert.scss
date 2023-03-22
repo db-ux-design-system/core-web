@@ -1,6 +1,5 @@
 @use "@db-ui/foundations/build/scss/variables" as *;
 @use "@db-ui/foundations/build/scss/variables.global" as *;
-@use "@db-ui/foundations/build/scss/helpers/shadow-dom" as *;
 @use "@db-ui/foundations/build/scss/color-placeholder" as *;
 @use "@db-ui/foundations/build/scss/helpers/component" as *;
 
@@ -66,7 +65,6 @@ $variants: (
 }
 
 .db-alert {
-	@extend %shadow-dom-extend;
 	@extend %db-bg-neutral-0;
 	@extend %component-border;
 
