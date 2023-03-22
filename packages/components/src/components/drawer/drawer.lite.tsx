@@ -35,7 +35,9 @@ export default function DBDrawer(props: DBDrawerProps) {
 		handleDialogOpen: () => {
 			if (dialogRef) {
 				if (props.open && !dialogRef.open) {
-					dialogContainerRef.hidden = false;
+					if (dialogContainerRef) {
+						dialogContainerRef.hidden = false;
+					}
 					if (props.noBackdrop) {
 						dialogRef.show();
 					} else {
@@ -43,9 +45,13 @@ export default function DBDrawer(props: DBDrawerProps) {
 					}
 				}
 				if (!props.open && dialogRef.open) {
-					dialogContainerRef.hidden = true;
+					if (dialogContainerRef) {
+						dialogContainerRef.hidden = true;
+					}
 					setTimeout(() => {
-						dialogContainerRef.hidden = false;
+						if (dialogContainerRef) {
+							dialogContainerRef.hidden = false;
+						}
 						dialogRef?.close();
 					}, 401);
 				}
