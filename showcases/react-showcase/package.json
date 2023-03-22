@@ -12,7 +12,6 @@
     "build:01_tsc": "tsc",
     "build:02_vite": "cross-env VITE_NAME=react vite build",
     "build:03_copy": "cpr dist-react ../../build-showcases/react-showcase -o",
-    "copy:react": "",
     "dev": "vite --open",
     "start": "vite"
   },
