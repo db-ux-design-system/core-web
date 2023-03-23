@@ -92,7 +92,7 @@ export type LinkProps = {
 };
 
 export type CardProps = {
-	elevation: 'default' | 'none';
+	elevation?: 'default' | 'none';
 };
 
 export type ClickEventProps = {
