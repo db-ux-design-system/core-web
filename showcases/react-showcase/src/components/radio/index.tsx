@@ -12,7 +12,8 @@ const getRadio = ({
 	checked,
 	invalid,
 	required,
-	children
+	children,
+	disabled
 }: DBRadioProps) => (
 	<DBRadio
 		label={label}
@@ -20,7 +21,8 @@ const getRadio = ({
 		name={name}
 		checked={checked}
 		invalid={invalid}
-		required={required}>
+		required={required}
+		disabled={disabled}>
 		{children}
 	</DBRadio>
 );
@@ -38,6 +40,15 @@ const getExampleMatrix = (exampleName: string): DefaultComponentExample[][] => [
 				name: 'States'
 			}),
 			code: '<DBRadio disabled name="States">Label</DBRadio>'
+		},
+		{
+			example: getRadio({
+				children: exampleName,
+				disabled: true,
+				checked: true,
+				name: 'SpecialState'
+			}),
+			code: '<DBRadio disabled checked name="SpecialState">Label</DBRadio>'
 		},
 		{
 			example: getRadio({
