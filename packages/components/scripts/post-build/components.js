@@ -49,6 +49,18 @@ const getComponents = () => [
 					from: 'immediate: true,',
 					to: 'immediate: true,\nflush: "post"'
 				}
+			],
+			react: [
+				{
+					from: `radioElement = document?.getElementById(_id)`,
+					to: 'radioElement = document?.getElementById(_id) as HTMLInputElement'
+				}
+			],
+			global: [
+				{
+					from: `radioElement = document?.getElementById(this._id)`,
+					to: 'radioElement = document?.getElementById(this._id) as HTMLInputElement'
+				}
 			]
 		},
 		config: {

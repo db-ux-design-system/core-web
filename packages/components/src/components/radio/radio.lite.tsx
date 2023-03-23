@@ -13,6 +13,7 @@ useMetadata({
 	isAttachedToShadowDom: true,
 	component: {
 		includeIcon: false,
+		hasDisabledProp: true,
 		properties: []
 	}
 });
@@ -75,9 +76,11 @@ export default function DBRadio(props: DBRadioProps) {
 
 	onUpdate(() => {
 		if (props.checked && state.initialized && document && state._id) {
-			const radioElement = document?.getElementById(state._id);
+			const radioElement = document?.getElementById(
+				state._id
+			) as HTMLInputElement;
 			if (radioElement) {
-				radioElement.click();
+				radioElement.checked = true;
 				state.initialized = false;
 			}
 		}
@@ -96,8 +99,8 @@ export default function DBRadio(props: DBRadioProps) {
 				}
 				id={state._id}
 				name={props.name}
+				checked={props.checked}
 				disabled={props.disabled}
-				aria-labelledby={state._id + '-label'}
 				aria-describedby={props.describedbyid}
 				aria-invalid={props.invalid}
 				data-size={props.size}
@@ -106,10 +109,7 @@ export default function DBRadio(props: DBRadioProps) {
 				onBlur={(event) => state.handleBlur(event)}
 				onFocus={(event) => state.handleFocus(event)}
 			/>
-			<label
-				htmlFor={state._id}
-				aria-hidden="true"
-				id={state._id + '-label'}>
+			<label htmlFor={state._id}>
 				{props.label}
 				{props.children}
 			</label>
