@@ -9,6 +9,7 @@ import {
 } from '@builder.io/mitosis';
 import { DBDrawerState, DBDrawerProps } from './model';
 import { DBButton } from '../button';
+import { DEFAULT_CLOSE_BUTTON } from '../../shared/constants';
 
 useMetadata({
 	isAttachedToShadowDom: true,
@@ -96,11 +97,11 @@ export default function DBDrawer(props: DBDrawerProps) {
 					<Show when={props.withCloseButton}>
 						<DBButton
 							className="button-close-drawer"
-							id="button-close-drawer"
+							id={props.closeButtonId}
 							icon="close"
 							variant="transparent"
 							onClick={() => state.handleClose('close')}>
-							Close Drawer
+							{props.closeButtonText ?? DEFAULT_CLOSE_BUTTON}
 						</DBButton>
 					</Show>
 				</header>

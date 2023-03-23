@@ -141,3 +141,8 @@ export type ValidEventProps = {
 };
 
 export type NestedRefComponentType = { getFormRef?: () => { current?: any } };
+
+export type InnerCloseButtonProps = {
+	closeButtonId?: string;
+	closeButtonText?: string;
+};

@@ -2,7 +2,8 @@ import {
 	CloseEventProps,
 	CloseEventState,
 	GlobalProps,
-	GlobalState
+	GlobalState,
+	InnerCloseButtonProps
 } from '../../shared/model';
 
 export interface DBDrawerDefaultProps {
@@ -22,7 +23,8 @@ export interface DBDrawerDefaultProps {
 
 export type DBDrawerProps = DBDrawerDefaultProps &
 	GlobalProps &
-	CloseEventProps;
+	CloseEventProps &
+	InnerCloseButtonProps;
 
 export interface DBDrawerDefaultState {
 	handleDialogOpen: () => void;
