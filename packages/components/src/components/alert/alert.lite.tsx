@@ -67,7 +67,8 @@ export default function DBAlert(props: DBAlertProps) {
 			ref={component}
 			class={'db-alert' + (props.className ? ' ' + props.className : '')}
 			data-variant={props.variant}
-			data-type={props.type}>
+			data-type={props.type}
+			data-elevation={props.elevation}>
 			<Show when={state.stylePath}>
 				<link rel="stylesheet" href={state.stylePath} />
 			</Show>

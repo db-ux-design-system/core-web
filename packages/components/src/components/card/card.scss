@@ -40,13 +40,17 @@
 	}
 
 	&[data-variant="interactive"] {
-		&:hover {
+		&:hover:not([data-elevation="none"]) {
 			cursor: pointer;
 			box-shadow: $db-elevation-4;
 		}
 
-		&:active {
+		&:active:not([data-elevation="none"]) {
 			box-shadow: $db-elevation-2;
 		}
+	}
+
+	&[data-elevation="none"] {
+		box-shadow: none;
 	}
 }

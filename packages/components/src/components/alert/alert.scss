@@ -92,6 +92,10 @@ $variants: (
 
 	&[data-type="inline"] {
 		@extend %default-card;
+
+		&[data-elevation="none"] {
+			box-shadow: none;
+		}
 	}
 
 	@each $name, $colors in $variants {

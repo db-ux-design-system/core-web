@@ -6,8 +6,12 @@
 @use "@db-ui/foundations/build/scss/tonality" as *;
 
 %code-docs {
-	padding: $db-spacing-fixed-md;
-	padding-block-end: calc($db-spacing-fixed-md + $db-sizing-sm);
+	@extend %db-bg-neutral-1;
+	min-height: $db-sizing-3xl;
+	align-items: center;
+	justify-content: center;
+	padding: $db-spacing-fixed-xl;
+	padding-block-end: calc($db-spacing-fixed-xl + $db-sizing-sm);
 	position: relative;
 
 	.code-details {

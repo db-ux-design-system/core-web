@@ -50,6 +50,7 @@ export default function DBCard(props: DBCardProps) {
 			data-variant={props.variant}
 			data-color-variant={props.colorVariant}
 			data-direction={props.direction}
+			data-elevation={props.elevation}
 			onClick={(event) => state.handleClick(event)}>
 			<Show when={state.stylePath}>
 				<link rel="stylesheet" href={state.stylePath} />
