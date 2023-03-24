@@ -14,10 +14,12 @@
 @use "../components/section/section" as *;
 @use "../components/infotext/infotext" as *;
 @use "../components/alert/alert" as *;
+@use "../components/radio/radio" as *;
 @use "../components/code-docs/code-docs" as *;
 
 // angular-workaround
 dbalert,
+dbcodedocs,
 dbbrand,
 dbbutton,
 dbcard,

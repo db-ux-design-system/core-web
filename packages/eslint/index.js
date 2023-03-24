@@ -1,4 +1,4 @@
-const { onV2ComponentUsed } = require('./v2-components');
+const { onV2ComponentUsed } = require('./v2-components.js');
 
 module.exports = {
 	rules: {

@@ -16,7 +16,7 @@
 }
 
 %default-border-radius {
-	--db-focus-outline-radius: #{to-rem(4)};
+	// TODO: Get a general token from Zeplin
 	border-radius: to-rem(4);
 }
 
@@ -28,14 +28,15 @@
 	@extend %default-adaptive-border;
 	@extend %default-color;
 	@extend %default-border-radius;
-
-	&:focus {
-		border-radius: var(--db-focus-outline-radius, #{to-rem(6)});
-	}
 }
 
 %default-background-transition {
 	// TODO Changing background-color on hover should be animated by a transition
 	transition: background-color
 		var(--db-transition-color, #{$db-transition-color});
+}
+
+%default-card {
+	border-radius: 8px;
+	box-shadow: $db-elevation-4;
 }

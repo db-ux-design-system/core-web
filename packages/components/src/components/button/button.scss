@@ -4,7 +4,6 @@
 @use "@db-ui/foundations/build/scss/variables.global" as *;
 @use "@db-ui/foundations/build/scss/color-placeholder" as *;
 @use "@db-ui/foundations/build/scss/icon/icons.helpers" as *;
-@use "@db-ui/foundations/build/scss/helpers/shadow-dom" as *;
 @use "@db-ui/foundations/build/scss/color/color-variants" as *;
 @use "@db-ui/foundations/build/scss/helpers/component";
 
@@ -14,7 +13,6 @@
 
 	$icon-size: var(--db-icon-size, 20);
 
-	@extend %shadow-dom-extend;
 	@extend %default-interactive-component;
 	@extend %default-background-transition;
 	@extend %bg-transparent-interactive;
@@ -27,6 +25,8 @@
 	justify-content: center;
 	height: $db-sizing-md;
 	padding: $db-spacing-fixed-xs $db-spacing-fixed-md;
+
+	white-space: nowrap; // we don't want to break buttons
 
 	text-align: center;
 
@@ -58,7 +58,10 @@
 	&[data-size="small"] {
 		@extend %db-body-sm;
 		height: $db-sizing-sm;
-		padding: $db-spacing-fixed-3xs $db-spacing-fixed-sm;
+
+		&:not(.is-icon-text-replace) {
+			padding: $db-spacing-fixed-3xs $db-spacing-fixed-sm;
+		}
 
 		// Square icon only buttons
 		&.is-icon-text-replace {

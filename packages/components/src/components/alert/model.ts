@@ -16,6 +16,8 @@ export interface DBAlertDefaultProps {
 	link?: LinkProps;
 	type?: 'alert' | 'inline';
 	slotLink?: any;
+
+	behaviour?: 'closable' | 'permanent';
 	variant?: DefaultVariantProps;
 }
 

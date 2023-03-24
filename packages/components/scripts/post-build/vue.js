@@ -69,32 +69,33 @@ const updateVModelBindings = (input, bindings) => {
 		.join('\n');
 };
 
-module.exports = () => {
+module.exports = (tmp) => {
+	const outputFolder = `${tmp ? 'output/tmp' : 'output'}`;
 	// Rewire imports in Playwright config
 	Replace.sync({
-		files: `../../output/vue/vue3/playwright.config.ts`,
+		files: `../../${outputFolder}/vue/vue3/playwright.config.ts`,
 		from: /react/g,
 		to: `vue`
 	});
 	for (const component of components) {
 		const componentName = component.name;
-		const vueFile = `../../output/vue/vue3/src/components/${componentName}/${componentName}.vue`;
+		const vueFile = `../../${outputFolder}/vue/vue3/src/components/${componentName}/${componentName}.vue`;
 
 		try {
 			// Rewire imports in Playwright component tests
 			Replace.sync({
-				files: `../../output/vue/vue3/src/components/${componentName}/${componentName}.spec.tsx`,
+				files: `../../${outputFolder}/vue/vue3/src/components/${componentName}/${componentName}.spec.tsx`,
 				from: `react`,
 				to: `vue`
 			});
 			Replace.sync({
-				files: `../../output/vue/vue3/src/components/${componentName}/${componentName}.spec.tsx`,
+				files: `../../${outputFolder}/vue/vue3/src/components/${componentName}/${componentName}.spec.tsx`,
 				from: /new AxeBuilder/g,
 				to: `new AxeBuilder.default`
 			});
 
 			Replace.sync({
-				files: `../../output/vue/vue3/src/components/${componentName}/index.ts`,
+				files: `../../${outputFolder}/vue/vue3/src/components/${componentName}/index.ts`,
 				from: `./${componentName}`,
 				to: `./${componentName}.vue`
 			});

@@ -42,6 +42,37 @@ const getComponents = () => [
 	},
 
 	{
+		name: 'radio',
+		overwrites: {
+			vue: [
+				{
+					from: 'immediate: true,',
+					to: 'immediate: true,\nflush: "post"'
+				}
+			],
+			react: [
+				{
+					from: `radioElement = document?.getElementById(_id)`,
+					to: 'radioElement = document?.getElementById(_id) as HTMLInputElement'
+				}
+			],
+			global: [
+				{
+					from: `radioElement = document?.getElementById(this._id)`,
+					to: 'radioElement = document?.getElementById(this._id) as HTMLInputElement'
+				}
+			]
+		},
+		config: {
+			isFormComponent: true,
+			isClickComponent: true,
+			vue: {
+				vModel: [{ modelValue: 'checked', binding: ':checked' }]
+			}
+		}
+	},
+
+	{
 		name: 'alert',
 		config: {
 			isClickComponent: true,

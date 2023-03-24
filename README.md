@@ -83,7 +83,7 @@ Here is an overview of all components you can use:
 | Pagination                                            | 02 - Action       |     ❌      |   ❌    |    ❌    |        ❌        |
 | Popover                                               | 06 - Utility      |     ❌      |   ❌    |    ❌    |        ❌        |
 | Progress                                              | 05 - Feedback     |     ❌      |   ❌    |    ❌    |        ❌        |
-| Radio                                                 | 03 - Data-Input   |     ❌      |   ❌    |    ❌    |        ✅        |
+| [Radio](packages/components/src/components/radio)     | 03 - Data-Input   |     ✅      |   v3    |    ❌    |        ✅        |
 | Rating                                                | 03 - Data-Input   |     ❌      |   ❌    |    ❌    |        ❌        |
 | Section                                               | 01 - Layout       |     ❌      |   ❌    |    ❌    |        ✅        |
 | Select                                                | 03 - Data-Input   |     ❌      |   ❌    |    ❌    |        ✅        |
@@ -130,7 +130,7 @@ Add the plugin and rule to your configuration:
 	Consistent & Compliant
 	</strong></summary>
 
-DB UI Mono is based on the [DB UX Design System](https://marketingportal.extranet.deutschebahn.com/de/ui-komponenten),
+DB UI Mono is based on the [DB UX Design System](https://marketingportal.extranet.deutschebahn.com/marketingportal/Design-Anwendungen/DB-UX-Design-System/Design-fuer-Apps-Web/UI-Komponenten),
 that are the guidelines for any Personenverkehr Customer and Deutsche Bahn Enterprise website and web applications.
 
 </details>
@@ -153,7 +153,7 @@ read- and understandable, lean, performant and so much easier to update.
 <details>
   <summary><strong>Evergreen</strong></summary>
 
-As [DB UX Design System](https://marketingportal.extranet.deutschebahn.com/de/ui-komponenten) evolves, so does DB UI
+As [DB UX Design System](https://marketingportal.extranet.deutschebahn.com/marketingportal/Design-Anwendungen/DB-UX-Design-System/Design-fuer-Apps-Web/UI-Komponenten) evolves, so does DB UI
 Mono, meaning apps only need to keep their DB UI Mono package updated to ensure the latest look and feel.
 
 </details>
@@ -162,7 +162,7 @@ Mono, meaning apps only need to keep their DB UI Mono package updated to ensure 
 
 Additionally we'll provide some more information over time regrading the whole ecosystem:
 
--   [DB UX Design System documentation within the DB Marketingportal (german)](https://marketingportal.extranet.deutschebahn.com/de/ui-komponenten)
+-   [DB UX Design System documentation within the DB Marketingportal (german)](https://marketingportal.extranet.deutschebahn.com/marketingportal/Design-Anwendungen/DB-UX-Design-System/Design-fuer-Apps-Web/UI-Komponenten)
 -   [Confluence / Base Wiki - "Technische Umsetzung des Enterprise UI Design Systems" (german, only available internally)](https://db.de/pu8moh)
 -   [Confluence - Web UI Component Library (only available internally)](https://db.de/1tyr73)
 -   [Changelog](https://github.com/db-ui/core/blob/main/CHANGELOG.md)
@@ -210,7 +210,7 @@ we're providing the code of DB UI products free to use and release it under the 
 Please have a look at our brand portal at <https://marketingportal.extranet.deutschebahn.com/> for any further questions
 and whom to contact on any brand issues. As these assets and visual guidelines are retrieved from our Deutsche Bahn
 Marketingportal, you'll agree with
-the ["Allgemeine Nutzungsbedingungen für das DB-Marketingportal" (german)](https://marketingportal.extranet.deutschebahn.com/de/nutzungsbedingungen)
+the ["Allgemeine Nutzungsbedingungen für das DB-Marketingportal" (german)](https://marketingportal.extranet.deutschebahn.com/marketingportal/Nutzungsbedingungen-9702684#)
 in case of using them.
 
 For any usage outside of Deutsche Bahn websites and applications you must remove or replace any Deutsche Bahn brand and

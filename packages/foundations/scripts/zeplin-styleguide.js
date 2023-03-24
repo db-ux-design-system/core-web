@@ -1,3 +1,5 @@
+/* eslint-disable unicorn/prefer-top-level-await */
+
 require('dotenv').config();
 const FS = require('node:fs');
 const { ZeplinApi, Configuration } = require('@zeplin/sdk');
@@ -203,7 +205,7 @@ const convertSpacings = (data) => {
 	data.screens = screens;
 };
 
-(async () => {
+const run = async () => {
 	try {
 		const { data } = await zeplin.designTokens.getStyleguideDesignTokens(
 			'63037ab49bdcb913c9228718'
@@ -226,4 +228,6 @@ const convertSpacings = (data) => {
 	} catch (error) {
 		console.error(error);
 	}
-})();
+};
+
+run();

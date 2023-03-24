@@ -1,14 +1,11 @@
 /* Add styles for component here */
 
-@use "@db-ui/foundations/build/scss/helpers/shadow-dom" as *;
 @use "@db-ui/foundations/build/scss/variables" as *;
 @use "@db-ui/foundations/build/scss/variables.global" as *;
 @use "@db-ui/foundations/build/scss/color-placeholder" as *;
 @use "@db-ui/foundations/build/scss/tonality" as *;
 
-.db-code-docs {
-	@extend %shadow-dom-extend;
-
+%code-docs {
 	padding: $db-spacing-fixed-md;
 	padding-block-end: calc($db-spacing-fixed-md + $db-sizing-sm);
 	position: relative;
@@ -18,6 +15,7 @@
 		bottom: 0;
 		right: 0;
 		width: 100%;
+		display: flex;
 
 		&[open] {
 			left: 0;
@@ -28,6 +26,7 @@
 			position: absolute;
 			bottom: 0;
 			right: 0;
+			z-index: 1;
 		}
 
 		.no-code {
@@ -36,22 +35,18 @@
 
 		.code {
 			@extend %db-bg-secondary;
-			border-radius: 8px;
-			display: flex;
-			justify-content: space-around;
-			flex-direction: column;
-			height: 100%;
-			width: 100%;
 			overflow: auto;
-			box-sizing: border-box;
-			padding-block-end: $db-sizing-sm;
+			position: absolute;
+			right: 0;
+			top: 0;
+			bottom: 0;
+			padding: $db-sizing-sm $db-spacing-fixed-md;
 
 			@media screen and (min-width: $db-screens-s) {
 				width: 50%;
-				margin-inline-start: auto;
 			}
 
-			pre {
+			div {
 				margin: 0;
 				display: flex;
 				gap: $db-spacing-fixed-sm;
@@ -64,5 +59,13 @@
 				}
 			}
 		}
+	}
+}
+
+.db-code-docs {
+	@extend %code-docs;
+	/* Workaround for angular db-XYZ as root tag is not working */
+	:where(.db-card) {
+		@extend %code-docs;
 	}
 }

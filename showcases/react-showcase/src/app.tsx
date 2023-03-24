@@ -1,3 +1,4 @@
+import type { ChangeEvent } from 'react';
 import { Link, Outlet } from 'react-router-dom';
 import { DBBrand, DBHeader, DBPage } from '../../../output/react/src';
 
@@ -25,7 +26,11 @@ const App = () => {
 			type="fixedHeaderFooter"
 			slotHeader={
 				<DBHeader
-					slotBrand={<DBBrand anchorChildren>React Showcase</DBBrand>}
+					slotBrand={
+						<DBBrand title="React Showcase" anchorChildren>
+							Showcase
+						</DBBrand>
+					}
 					slotDesktopNavigation={
 						<nav className="desktop-navigation">
 							<ul>
@@ -45,7 +50,9 @@ const App = () => {
 						<div>
 							<select
 								value={tonality}
-								onChange={(event) => {
+								onChange={(
+									event: ChangeEvent<HTMLSelectElement>
+								) => {
 									setTonality(event?.target?.value);
 								}}>
 								{TONALITIES.map((ton) => (
@@ -58,7 +65,9 @@ const App = () => {
 							</select>
 							<select
 								value={color}
-								onChange={(event) => {
+								onChange={(
+									event: ChangeEvent<HTMLSelectElement>
+								) => {
 									setColor(event?.target?.value);
 								}}>
 								{COLORS.map((col) => (

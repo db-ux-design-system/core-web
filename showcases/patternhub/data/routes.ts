@@ -128,6 +128,20 @@ const componentChildren = [
 						link: '/components/input/how-to-use'
 					}
 				]
+			},
+			{
+				label: 'DBRadio',
+				link: '/components/radio',
+				children: [
+					{
+						label: 'Examples',
+						link: '/components/radio/examples'
+					},
+					{
+						label: 'How to use',
+						link: '/components/radio/how-to-use'
+					}
+				]
 			}
 		]
 	},
@@ -235,6 +249,10 @@ export const ROUTES: DbMainnavigationDataType[] = [
 			{
 				label: 'Angular LTS',
 				link: '/showcases/angular-lts'
+			},
+			{
+				label: 'HTML',
+				link: '/showcases/html'
 			},
 			{
 				label: 'React',
