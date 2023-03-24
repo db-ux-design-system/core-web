@@ -12,6 +12,7 @@
 	@extend %default-color;
 	width: fit-content;
 	display: flex;
+	align-items: center;
 	border-radius: to-rem($pxValue: 6);
 
 	// Link underline
@@ -40,20 +41,10 @@
 
 	&[data-content="internal"] {
 		@include icon(glyph(link), 24, "outline", "after");
-
-		&::after,
-		.db-icon::before {
-			margin-top: -0.3em;
-		}
 	}
 
 	&[data-content="external"] {
 		@include icon(glyph(link-external), 24, "outline", "after");
-
-		&::after,
-		.db-icon::before {
-			margin-top: -0.1em;
-		}
 	}
 
 	&:focus-visible {
@@ -67,7 +58,7 @@
 		}
 
 		&::after,
-		.db-icon::before {
+		.db-icon {
 			--icon-margin-before: var(--db-spacing-fixed-2xs);
 			margin-inline-start: var(--icon-margin-before);
 		}
@@ -83,7 +74,7 @@
 		&[data-content="internal"],
 		&[data-content="external"] {
 			&::after,
-			.db-icon::before {
+			.db-icon {
 				--icon-margin-before: var(--db-spacing-fixed-3xs);
 			}
 		}
