@@ -44,7 +44,7 @@
     "hygen": "^6.2.11",
     "lit": "^2.7.0",
     "nodemon": "2.0.22",
-    "sass": "^1.59.3"
+    "sass": "^1.60.0"
   },
   "publishConfig": {
     "registry": "https://registry.npmjs.org/",
