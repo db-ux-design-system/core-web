@@ -106,7 +106,7 @@ test.describe('DBCard component on mobile: Color Variants', () => {
 	// iPhone 13 / portrait screen size
 	test.use({ viewport: { width: 390, height: 884 } });
 
-	testCardVariants();
+	testCardColorVariants();
 });
 
 test.describe('DBCard component on desktop: Row', () => {
