@@ -10,6 +10,10 @@ const componentChildren = [
 				link: '/components/card',
 				children: [
 					{
+						label: 'Properties',
+						link: '/components/card/properties'
+					},
+					{
 						label: 'Examples',
 						link: '/components/card/examples'
 					},
@@ -23,6 +27,10 @@ const componentChildren = [
 				label: 'DBDivider',
 				link: '/components/divider',
 				children: [
+					{
+						label: 'Properties',
+						link: '/components/divider/properties'
+					},
 					{
 						label: 'Examples',
 						link: '/components/divider/examples'
@@ -38,6 +46,10 @@ const componentChildren = [
 				link: '/components/header',
 				children: [
 					{
+						label: 'Properties',
+						link: '/components/header/properties'
+					},
+					{
 						label: 'Examples',
 						link: '/components/header/examples'
 					},
@@ -52,6 +64,10 @@ const componentChildren = [
 				link: '/components/page',
 				children: [
 					{
+						label: 'Properties',
+						link: '/components/page/properties'
+					},
+					{
 						label: 'Examples',
 						link: '/components/page/examples'
 					},
@@ -65,6 +81,10 @@ const componentChildren = [
 				label: 'DBSection',
 				link: '/components/section',
 				children: [
+					{
+						label: 'Properties',
+						link: '/components/section/properties'
+					},
 					{
 						label: 'Examples',
 						link: '/components/section/examples'
@@ -86,6 +106,10 @@ const componentChildren = [
 				link: '/components/button',
 				children: [
 					{
+						label: 'Properties',
+						link: '/components/button/properties'
+					},
+					{
 						label: 'Examples',
 						link: '/components/button/examples'
 					},
@@ -99,6 +123,10 @@ const componentChildren = [
 				label: 'DBLink',
 				link: '/components/link',
 				children: [
+					{
+						label: 'Properties',
+						link: '/components/link/properties'
+					},
 					{
 						label: 'Examples',
 						link: '/components/link/examples'
@@ -120,6 +148,10 @@ const componentChildren = [
 				link: '/components/input',
 				children: [
 					{
+						label: 'Properties',
+						link: '/components/input/properties'
+					},
+					{
 						label: 'Examples',
 						link: '/components/input/examples'
 					},
@@ -133,6 +165,10 @@ const componentChildren = [
 				label: 'DBRadio',
 				link: '/components/radio',
 				children: [
+					{
+						label: 'Properties',
+						link: '/components/radio/properties'
+					},
 					{
 						label: 'Examples',
 						link: '/components/radio/examples'
@@ -154,6 +190,10 @@ const componentChildren = [
 				link: '/components/brand',
 				children: [
 					{
+						label: 'Properties',
+						link: '/components/brand/properties'
+					},
+					{
 						label: 'Examples',
 						link: '/components/brand/examples'
 					},
@@ -168,6 +208,10 @@ const componentChildren = [
 				link: '/components/icon',
 				children: [
 					{
+						label: 'Properties',
+						link: '/components/icon/properties'
+					},
+					{
 						label: 'Examples',
 						link: '/components/icon/examples'
 					},
@@ -181,6 +225,10 @@ const componentChildren = [
 				label: 'DBInfotext',
 				link: '/components/infotext',
 				children: [
+					{
+						label: 'Properties',
+						link: '/components/infotext/properties'
+					},
 					{
 						label: 'Examples',
 						link: '/components/infotext/examples'
@@ -201,6 +249,10 @@ const componentChildren = [
 				label: 'DBAlert',
 				link: '/components/alert',
 				children: [
+					{
+						label: 'Properties',
+						link: '/components/alert/properties'
+					},
 					{
 						label: 'Examples',
 						link: '/components/alert/examples'
@@ -237,40 +289,6 @@ export const ROUTES: DbMainnavigationDataType[] = [
 		label: 'Components',
 		link: '/components',
 		children: componentChildren
-	},
-	{
-		label: 'Showcases',
-		link: '/showcases',
-		children: [
-			{
-				label: 'Angular',
-				link: '/showcases/angular-current'
-			},
-			{
-				label: 'Angular LTS',
-				link: '/showcases/angular-lts'
-			},
-			{
-				label: 'HTML',
-				link: '/showcases/html'
-			},
-			{
-				label: 'React',
-				link: '/showcases/react'
-			},
-			{
-				label: 'Reactwind',
-				link: '/showcases/reactwind'
-			},
-			{
-				label: 'Vanilla',
-				link: '/showcases/vanilla'
-			},
-			{
-				label: 'Vue',
-				link: '/showcases/vue'
-			}
-		]
 	}
 ];
 

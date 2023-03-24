@@ -1,0 +1,70 @@
+[
+	{
+		"name": "Variant",
+		"examples": [
+			{
+				"name": "(Default) Adaptive",
+				"code": {
+					"default": "<DBLink href=\"#\">Link</DBLink>"
+				}
+			},
+			{
+				"name": "Primary",
+				"code": {
+					"default": "<DBLink href=\"#\" variant=\"primary\">Link</DBLink>"
+				}
+			}
+		]
+	},
+	{
+		"name": "State",
+		"examples": [
+			{
+				"name": "Default: (Enabled, Hover, Pressed)",
+				"code": {
+					"default": "<DBLink href=\"#\">Link</DBLink>"
+				}
+			},
+			{
+				"name": "Disabled",
+				"code": {
+					"default": "<DBLink href=\"#\" disabled>Link</DBLink>"
+				}
+			}
+		]
+	},
+	{
+		"name": "Size",
+		"examples": [
+			{
+				"name": "(Default) Medium",
+				"code": {
+					"default": "<DBLink href=\"#\">Link</DBLink>"
+				}
+			},
+			{
+				"name": "Small",
+				"code": {
+					"default": "<DBLink href=\"#\" size=\"small\">Link</DBLink>"
+				}
+			}
+		]
+	},
+	{
+		"name": "Content",
+		"examples": [
+			{
+				"name": "(Default) Internal",
+				"code": {
+					"default": "<DBLink href=\"#\">Link</DBLink>"
+				}
+			},
+			{
+				"name": "External",
+				"code": {
+					"default": "<DBLink href=\"#\" content=\"external\">Link</DBLink>"
+				}
+			}
+		]
+	}
+]

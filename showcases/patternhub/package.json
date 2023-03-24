@@ -17,6 +17,7 @@
     "start": "npm-run-all copy next:start"
   },
   "dependencies": {
+    "@code-hike/mdx": "^0.8.0",
     "@db-ui/react-elements": "^0.22.0",
     "next": "13.2.4",
     "react": "18.2.0",

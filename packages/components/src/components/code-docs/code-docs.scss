@@ -40,23 +40,10 @@
 			right: 0;
 			top: 0;
 			bottom: 0;
-			padding: $db-sizing-sm $db-spacing-fixed-md;
+			padding-block-end: $db-spacing-fixed-md;
 
 			@media screen and (min-width: $db-screens-s) {
 				width: 50%;
-			}
-
-			div {
-				margin: 0;
-				display: flex;
-				gap: $db-spacing-fixed-sm;
-				align-items: center;
-
-				code {
-					@extend %db-body-xs;
-					white-space: pre-wrap;
-					width: 100%;
-				}
 			}
 		}
 	}

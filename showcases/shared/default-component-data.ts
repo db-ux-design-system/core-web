@@ -3,12 +3,19 @@ export type DefaultComponentExample = {
 	example?: any;
 	style?: { width?: string }; // Add additional css properties here if you need more
 	className?: string;
-	code?: string;
+	code?: {
+		default: string;
+		html?: string; // We will generate this with reacts 'renderToString'
+		angular?: string;
+		react?: string;
+		vue?: string;
+	};
 };
 
 export type DefaultComponentVariants = {
 	name: string;
 	examples: DefaultComponentExample[];
+	slotCode?: any;
 };
 
 export type DefaultComponentProps = {

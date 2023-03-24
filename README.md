@@ -179,7 +179,7 @@ that we're gaining out of the community. So please support us in any way possibl
 
 ## How to start develop / contribute
 
-```Bash
+```shell
 npm install
 npm run build
 npm run start

@@ -33,7 +33,7 @@ const getOptions = (tsType) => {
  * @param componentValue {{description: string, methods: any[], displayName: string, props:any}}
  * @returns {string}
  */
-const getIndexFile = ({ displayName, description, props }) => {
+const getPropertiesFile = ({ displayName, description, props }) => {
 	const propKeys = Object.keys(props);
 
 	let propTable = '';
@@ -68,4 +68,4 @@ ${propTable}
 export default ({ children }) => <DefaultPage>{children}</DefaultPage>;`;
 };
 
-export default getIndexFile;
+export default getPropertiesFile;

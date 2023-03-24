@@ -1,0 +1,54 @@
+[
+	{
+		"name": "Variant",
+		"examples": [
+			{
+				"name": "(Default) Adaptive",
+				"code": {
+					"default": "<DBInfotext icon=\"account\">Infotext</DBInfotext>"
+				}
+			},
+			{
+				"name": "Critical",
+				"code": {
+					"default": "<DBInfotext variant=\"critical\">Infotext</DBInfotext>"
+				}
+			},
+			{
+				"name": "Informational",
+				"code": {
+					"default": "<DBInfotext variant=\"informational\">Infotext</DBInfotext>"
+				}
+			},
+			{
+				"name": "Successful",
+				"code": {
+					"default": "<DBInfotext variant=\"successful\">Infotext</DBInfotext>"
+				}
+			},
+			{
+				"name": "Warning",
+				"code": {
+					"default": "<DBInfotext variant=\"warning\">Infotext</DBInfotext>"
+				}
+			}
+		]
+	},
+	{
+		"name": "Size",
+		"examples": [
+			{
+				"name": "(Default) Medium",
+				"code": {
+					"default": "<DBInfotext>Infotext</DBInfotext>"
+				}
+			},
+			{
+				"name": "Small",
+				"code": {
+					"default": "<DBInfotext size=\"small\">Infotext</DBInfotext>"
+				}
+			}
+		]
+	}
+]
