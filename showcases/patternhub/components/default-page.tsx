@@ -38,19 +38,26 @@ const getRoutesWithCurrent = (
 const DefaultPage = ({ children }: any) => {
 	const [fullscreen, setFullscreen] = useState<boolean>(false);
 	const [noH1, setNoH1] = useState<boolean>(false);
+	const [properties, setProperties] = useState<boolean>(false);
 	const router = useRouter();
 
 	useEffect(() => {
 		if (router.query) {
 			setFullscreen(router.query.fullscreen === 'true');
 			setNoH1(router.query.noh1 === 'true');
+			setProperties(router.query.properties === 'true');
 		}
 	}, [router]);
 
 	return (
 		<StaticContent>
 			{router.isReady && fullscreen && (
-				<div className={noH1 ? 'noh1' : ''}>{children}</div>
+				<div
+					className={`${noH1 ? 'noh1' : ''} ${
+						properties ? 'is-properties' : ''
+					}`}>
+					{children}
+				</div>
 			)}
 			{router.isReady && !fullscreen && (
 				<DbPage>

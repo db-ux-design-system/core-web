@@ -56,6 +56,10 @@
 		}
 	}
 
+	&:focus-visible {
+		border-radius: 4px;
+	}
+
 	&[data-content="internal"],
 	&[data-content="external"] {
 		&:focus-visible {

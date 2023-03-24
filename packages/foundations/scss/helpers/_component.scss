@@ -16,7 +16,7 @@
 }
 
 %default-border-radius {
-	--db-focus-outline-radius: #{to-rem(4)};
+	// TODO: Get a general token from Zeplin
 	border-radius: to-rem(4);
 }
 
@@ -28,10 +28,6 @@
 	@extend %default-adaptive-border;
 	@extend %default-color;
 	@extend %default-border-radius;
-
-	&:focus {
-		border-radius: var(--db-focus-outline-radius, #{to-rem(6)});
-	}
 }
 
 %default-background-transition {
