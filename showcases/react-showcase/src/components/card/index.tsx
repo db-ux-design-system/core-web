@@ -1,36 +1,20 @@
-import { DBAlert, DBCard } from '../../../../../output/react/src';
+import { DBCard } from '../../../../../output/react/src';
 import DefaultComponent from '../index';
 import { type DefaultComponentExample } from '../../../../shared/default-component-data';
 import defaultComponentVariants from '../../../../shared/card';
 import { getVariants } from '../../utils';
 import type { DBCardProps } from '../../../../../output/react/src/components/card/model';
 
-const getCard = ({
-	colorVariant,
-	direction,
-	variant,
-	children
-}: DBCardProps) => (
-	<DBCard colorVariant={colorVariant} direction={direction} variant={variant}>
+const getCard = ({ colorVariant, variant, children }: DBCardProps) => (
+	<DBCard colorVariant={colorVariant} variant={variant} spacing="small">
 		<strong>{children}</strong>
 		{colorVariant && <span>{colorVariant}</span>}
 	</DBCard>
 );
 
-const getCardWithExampleImage = ({
-	colorVariant,
-	direction,
-	variant,
-	children
-}: DBCardProps) => (
-	<DBCard colorVariant={colorVariant} direction={direction} variant={variant}>
+const getCardWithSpacing = ({ variant, children, spacing }: DBCardProps) => (
+	<DBCard colorVariant="neutral-0" variant={variant} spacing={spacing}>
 		<strong>{children}</strong>
-		<div
-			style={{
-				width: '50px',
-				height: '50px',
-				backgroundColor: 'rgb(222, 224, 227)'
-			}}></div>
 	</DBCard>
 );
 
@@ -42,7 +26,7 @@ const getExampleMatrix = (exampleName: string): DefaultComponentExample[][] => [
 				variant: 'interactive',
 				children: exampleName
 			}),
-			code: `<DBCard colorVariant="neutral-0" variant="interactive"><strong>Card</strong>
+			code: `<DBCard colorVariant="neutral-0" variant="interactive" spacing="small"><strong>Card</strong>
 		<span>{colorVariant}</span></DBCard>`
 		},
 		{
@@ -124,38 +108,43 @@ const getExampleMatrix = (exampleName: string): DefaultComponentExample[][] => [
 			code: `<DBCard colorVariant="${exampleName}" variant="interactive">DBCard</DBCard>`
 		}
 	],
-	// Direction
+	// Spacing
 	[
 		{
-			example: getCardWithExampleImage({
-				direction: 'column',
-				variant: 'interactive',
+			example: getCardWithSpacing({
 				children: exampleName
 			}),
-			code: `<DBCard direction="column" variant="interactive">DBCard</DBCard>`
+			code: `<DBCard>DBCard</DBCard>`
 		},
 		{
-			example: getCardWithExampleImage({
-				direction: 'row',
-				variant: 'interactive',
+			example: getCardWithSpacing({
+				spacing: 'medium',
 				children: exampleName
 			}),
-			code: `<DBCard direction="row" variant="interactive">DBCard</DBCard>`
+			code: `<DBCard spacing="medium">DBCard</DBCard>`
+		},
+		{
+			example: getCardWithSpacing({
+				spacing: 'small',
+				children: exampleName
+			}),
+			code: `<DBCard spacing="small">DBCard</DBCard>`
 		}
 	],
 	// Variant
 	[
 		{
-			example: getCard({
-				variant: 'full-width',
-				children: exampleName
+			example: getCardWithSpacing({
+				children: exampleName,
+				spacing: 'medium'
 			}),
 			code: `<DBCard direction="column" variant="interactive">DBCard</DBCard>`
 		},
 		{
-			example: getCard({
+			example: getCardWithSpacing({
 				variant: 'interactive',
-				children: exampleName
+				children: exampleName,
+				spacing: 'medium'
 			}),
 			code: `<DBCard direction="row" variant="interactive">DBCard</DBCard>`
 		}

@@ -37,13 +37,16 @@ const defaultComponentVariants: DefaultComponentVariants[] = [
 		]
 	},
 	{
-		name: 'Direction',
+		name: 'Spacing',
 		examples: [
 			{
-				name: '(Default) Column'
+				name: '(Default) No Spacing'
 			},
 			{
-				name: 'Row'
+				name: 'Medium'
+			},
+			{
+				name: 'Small'
 			}
 		]
 	},
@@ -51,10 +54,10 @@ const defaultComponentVariants: DefaultComponentVariants[] = [
 		name: 'Variant',
 		examples: [
 			{
-				name: 'Default: full-width'
+				name: '(Default) Non interactive'
 			},
 			{
-				name: 'interactive'
+				name: 'Interactive'
 			}
 		]
 	}

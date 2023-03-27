@@ -22,6 +22,14 @@
 		text-decoration: none;
 	}
 
+	&[data-spacing="medium"] {
+		padding: $db-spacing-fixed-lg;
+	}
+
+	&[data-spacing="small"] {
+		padding: $db-spacing-fixed-md;
+	}
+
 	&[data-variant="interactive"] {
 		// TODO use transition duration as variable
 		transition: box-shadow 0.15s $db-transition-functional-timing;
