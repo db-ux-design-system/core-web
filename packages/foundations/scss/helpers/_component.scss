@@ -2,6 +2,10 @@
 @use "../color-placeholder" as *;
 @use "../helpers/functions" as *;
 
+/* TODO: We should get the variables from UX */
+$default-border-radius: 4px;
+$card-border-radius: 8px;
+
 %default-adaptive-border {
 	border: solid 1px var(--db-current-color, $db-colors-neutral-on-bg-enabled);
 }
@@ -37,6 +41,6 @@
 }
 
 %default-card {
-	border-radius: 8px;
+	border-radius: $card-border-radius;
 	box-shadow: $db-elevation-4;
 }

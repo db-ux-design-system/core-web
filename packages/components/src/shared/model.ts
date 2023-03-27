@@ -91,6 +91,10 @@ export type LinkProps = {
 	selected?: boolean;
 };
 
+export type CardProps = {
+	elevation?: 'default' | 'none';
+};
+
 export type ClickEventProps = {
 	onClick?: (event: any) => void;
 };

@@ -1,4 +1,5 @@
 import {
+	CardProps,
 	ClickEventProps,
 	ClickEventState,
 	GlobalProps,
@@ -15,7 +16,8 @@ export type DBCardDefaultProps = {
 export type DBCardProps = DBCardDefaultProps &
 	GlobalProps &
 	ClickEventProps &
-	ImageProps;
+	ImageProps &
+	CardProps;
 
 export type DBCardDefaultState = {};
 

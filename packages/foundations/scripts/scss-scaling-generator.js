@@ -32,6 +32,9 @@ const generateScaling = () => {
 \t--db-sizing-sm: #{$db-sizing-${scale}-s};
 \t--db-sizing-md: #{$db-sizing-${scale}-m};
 \t--db-sizing-lg: #{$db-sizing-${scale}-l};
+\t--db-sizing-xl: #{$db-sizing-${scale}-xl};
+\t--db-sizing-2xl: #{$db-sizing-${scale}-2xl};
+\t--db-sizing-3xl: #{$db-sizing-${scale}-3xl};
 
 \t--db-spacing-fixed-3xs: #{$db-spacing-fixed-${scale}-3xs};
 \t--db-spacing-fixed-2xs: #{$db-spacing-fixed-${scale}-2xs};
