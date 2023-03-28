@@ -8,6 +8,7 @@ import LinkComponent from '../components/link';
 import SectionComponent from '../components/section';
 import InfotextComponent from '../components/infotext';
 import CardComponent from '../components/card';
+import DividerComponent from '../components/divider';
 
 export type NavigationItem = {
 	path: string;
@@ -25,5 +26,6 @@ export const NAVIGATION_ITEMS: NavigationItem[] = [
 	{ path: 'button', label: 'Button', component: <ButtonComponent /> },
 	{ path: 'input', label: 'Input', component: <InputComponent /> },
 	{ path: 'card', label: 'Card', component: <CardComponent /> },
+	{ path: 'divider', label: 'Divider', component: <DividerComponent /> },
 	{ path: '', label: 'Home', component: <FormComponent />, home: true }
 ];
