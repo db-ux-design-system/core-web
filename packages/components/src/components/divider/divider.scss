@@ -15,7 +15,7 @@
 
 	&[data-variant="vertical"] {
 		@include divider("left");
-		height: auto;
+		height: 100%;
 		width: 1px;
 
 		&:not([data-margin="none"]) {

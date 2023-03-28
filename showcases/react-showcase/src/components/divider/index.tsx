@@ -5,22 +5,33 @@ import type { DBDividerDefaultProps } from '../../../../../output/react/src/comp
 import { DBDivider } from '../../../../../output/react/src';
 import { getVariants } from '../../utils';
 
-const getDivider = ({ variant }: DBDividerDefaultProps) => (
-	<DBDivider variant={variant} />
+export type HeadlineProps = {
+	exampleName: string;
+};
+
+export type ExtendedProps = DBDividerDefaultProps & HeadlineProps;
+
+const getDivider = ({ variant, exampleName }: ExtendedProps) => (
+	<>
+		<h6>{exampleName}</h6>
+		<DBDivider variant={variant} />
+	</>
 );
 
 const getExampleMatrix = (exampleName: string): DefaultComponentExample[][] => [
 	[
 		{
 			example: getDivider({
-				variant: 'horizontal'
+				variant: 'horizontal',
+				exampleName
 			}),
 			code: `<DBCard colorVariant="neutral-0" variant="interactive" spacing="small"><strong>Card</strong>
 		<span>{colorVariant}</span></DBCard>`
 		},
 		{
 			example: getDivider({
-				variant: 'vertical'
+				variant: 'vertical',
+				exampleName
 			}),
 			code: `<DBCard colorVariant="${exampleName}" variant="interactive"><strong>Card</strong>
 		<span>{colorVariant}</span></DBCard>`
@@ -31,7 +42,7 @@ const getExampleMatrix = (exampleName: string): DefaultComponentExample[][] => [
 const DividerComponent = () => {
 	return (
 		<DefaultComponent
-			title={'DBCard'}
+			title={'DBDivider'}
 			variants={getVariants(
 				defaultComponentVariants,
 				getExampleMatrix

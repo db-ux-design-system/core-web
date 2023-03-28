@@ -5,10 +5,16 @@ const defaultComponentVariants: DefaultComponentVariants[] = [
 		name: 'Variant',
 		examples: [
 			{
-				name: '(Default) Adaptive – Horizontal'
+				name: '(Default) Adaptive – Horizontal',
+				style: { width: '100%' }
 			},
 			{
-				name: 'Adaptive – Vertical'
+				name: 'Adaptive – Vertical',
+				style: {
+					height: '100px',
+					display: 'flex',
+					gap: '1rem'
+				}
 			}
 		]
 	}

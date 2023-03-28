@@ -60,3 +60,11 @@
 	flex-wrap: wrap;
 	gap: var(--db-spacing-fixed-md);
 }
+
+/**
+CODE DOCS
+**/
+.variants-list {
+	width: 100%;
+	justify-content: center;
+}
