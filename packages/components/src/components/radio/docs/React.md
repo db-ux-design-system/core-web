@@ -1,6 +1,6 @@
 ## React
 
-Load SCSS globally somewhere in your app:
+Load SCSS globally in a `index.scss` file inside `main.tsx`/`main.jsx` within your app:
 
 ```SCSS
 @use "@db-ui/components/build/styles/db-ui-42-rollup" as *;

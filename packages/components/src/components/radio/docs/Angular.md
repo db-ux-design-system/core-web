@@ -9,7 +9,7 @@ Load SCSS globally somewhere in your app:
 Third party controls require a `ControlValueAccessor` to function with Angular forms. Adding an `ngDefaultControl` attribute will allow them to use that directive.
 [Further information](https://stackoverflow.com/a/46465959)
 
-Load component:
+Load component within `app.module.ts`:
 
 ```typescript
 import { DBRadioModule } from '@db-ui/ngx-components';
