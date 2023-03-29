@@ -1,17 +1,14 @@
 ## Angular
 
-Load SCSS globally somewhere in your app:
+Load SCSS globally within `styles.scss` in your app:
 
-```
-@use "@db-ui/foundations/build/scss/variables.global" as *;
+```scss
 @use "@db-ui/components/build/styles/db-ui-42-webpack" as *;
-@use "@db-ui/foundations/build/scss/color-classes" as *;
-
 ```
 
 Load component:
 
-```
+```typescript
 import { DBCardModule } from '@db-ui/ngx-components';
 
 @NgModule({
@@ -24,6 +21,6 @@ import { DBCardModule } from '@db-ui/ngx-components';
 
 Use component in template:
 
-```
+```html
 <DBCard>Card content</DBCard>
 ```
