@@ -12,5 +12,6 @@ Import component:
 
 ```typescript
 import { DBRadio } from "@db-ui/react-components";
-<DBRadio label={label} value={value}></DBRadio>;
+
+<DBRadio value={value}>Label</DBRadio>;
 ```

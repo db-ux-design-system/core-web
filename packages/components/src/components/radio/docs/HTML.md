@@ -10,5 +10,5 @@ Load CSS globally somewhere in your app:
 
 ```html
 <input type="radio" class="db-radio" id="radio-element" name="States" />
-<label for="radio-element">Radio label</label>
+<label for="radio-element">Label</label>
 ```
