@@ -1,6 +1,6 @@
 ## Vue
 
-Load SCSS globally somewhere in your app:
+Load SCSS globally in a `index.scss` file and import it in your `main.ts`/`main.js` file in your app:
 
 ```scss
 @use "@db-ui/components/build/styles/db-ui-42-rollup" as *;
@@ -8,9 +8,9 @@ Load SCSS globally somewhere in your app:
 
 Use component:
 
-```html
+```vue
 <script>
-	import { DBRadio } from "@db-ui/v-components";
+import { DBRadio } from "@db-ui/v-components";
 </script>
 
 <template>
