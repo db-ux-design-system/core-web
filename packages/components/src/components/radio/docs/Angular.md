@@ -3,7 +3,7 @@
 Load SCSS globally somewhere in your app:
 
 ```scss
-@use "@db-ui/components/build/styles/db-ui-42-rollup" as *;
+@use "@db-ui/components/build/styles/db-ui-42-webpack" as *;
 ```
 
 Third party controls require a `ControlValueAccessor` to function with Angular forms. Adding an `ngDefaultControl` attribute will allow them to use that directive.
