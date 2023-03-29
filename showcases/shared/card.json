@@ -1,0 +1,107 @@
+[
+	{
+		"name": "ColorVariant",
+		"examples": [
+			{
+				"name": "(Default) neutral-0",
+				"code": {
+					"default": "<DBCard colorVariant=\"neutral-0\" variant=\"interactive\" spacing=\"small\"><strong>Card</strong><span>DB Card</span></DBCard>"
+				}
+			},
+			{
+				"name": "neutral-1",
+				"code": {
+					"default": "<DBCard colorVariant=\"neutral-1\" variant=\"interactive\" spacing=\"small\"><strong>Card</strong><span>DB Card</span></DBCard>"
+				}
+			},
+			{
+				"name": "neutral-3",
+				"code": {
+					"default": "<DBCard colorVariant=\"neutral-3\" variant=\"interactive\" spacing=\"small\"><strong>Card</strong><span>DB Card</span></DBCard>"
+				}
+			},
+			{
+				"name": "neutral-4",
+				"code": {
+					"default": "<DBCard colorVariant=\"neutral-4\" variant=\"interactive\" spacing=\"small\"><strong>Card</strong><span>DB Card</span></DBCard>"
+				}
+			},
+			{
+				"name": "primary",
+				"code": {
+					"default": "<DBCard colorVariant=\"primary\" variant=\"interactive\" spacing=\"small\"><strong>Card</strong><span>DB Card</span></DBCard>"
+				}
+			},
+			{
+				"name": "secondary",
+				"code": {
+					"default": "<DBCard colorVariant=\"secondary\" variant=\"interactive\" spacing=\"small\"><strong>Card</strong><span>DB Card</span></DBCard>"
+				}
+			},
+			{
+				"name": "critical",
+				"code": {
+					"default": "<DBCard colorVariant=\"critical\" variant=\"interactive\" spacing=\"small\"><strong>Card</strong><span>DB Card</span></DBCard>"
+				}
+			},
+			{
+				"name": "successful",
+				"code": {
+					"default": "<DBCard colorVariant=\"successful\" variant=\"interactive\" spacing=\"small\"><strong>Card</strong><span>DB Card</span></DBCard>"
+				}
+			},
+			{
+				"name": "warning",
+				"code": {
+					"default": "<DBCard colorVariant=\"warning\" variant=\"interactive\" spacing=\"small\"><strong>Card</strong><span>DB Card</span></DBCard>"
+				}
+			},
+			{
+				"name": "informational",
+				"code": {
+					"default": "<DBCard colorVariant=\"informational\" variant=\"interactive\" spacing=\"small\"><strong>Card</strong><span>DB Card</span></DBCard>"
+				}
+			}
+		]
+	},
+	{
+		"name": "Spacing",
+		"examples": [
+			{
+				"name": "(Default) No Spacing",
+				"code": {
+					"default": "<DBCard>DBCard</DBCard>"
+				}
+			},
+			{
+				"name": "Medium",
+				"code": {
+					"default": "<DBCard spacing=\"medium\">DBCard</DBCard>"
+				}
+			},
+			{
+				"name": "Small",
+				"code": {
+					"default": "<DBCard spacing=\"small\">DBCard</DBCard>"
+				}
+			}
+		]
+	},
+	{
+		"name": "Variant",
+		"examples": [
+			{
+				"name": "(Default) Non interactive",
+				"code": {
+					"default": "<DBCard>DBCard</DBCard>"
+				}
+			},
+			{
+				"name": "Interactive",
+				"code": {
+					"default": "<DBCard variant=\"interactive\">DBCard</DBCard>"
+				}
+			}
+		]
+	}
+]
