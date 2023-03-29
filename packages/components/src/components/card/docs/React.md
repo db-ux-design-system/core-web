@@ -1,18 +1,15 @@
 ## React
 
-Load SCSS globally somewhere in your app:
+Load SCSS globally in a `index.scss` file inside `main.tsx`/`main.jsx` within your app:
 
-```
-@use "@db-ui/foundations/build/scss/variables.global" as *;
+```scss
 @use "@db-ui/components/build/styles/db-ui-42-rollup" as *;
-@use "@db-ui/foundations/build/scss/color-classes" as *;
-
 ```
 
 Import component:
 
-```
+```typescript
 import { DBCard } from '@db-ui/react-components';
 
-	<DBCard>{children}</DBCard>
+<DBCard>{children}</DBCard>
 ```
