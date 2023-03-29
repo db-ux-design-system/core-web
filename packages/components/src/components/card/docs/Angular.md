@@ -6,7 +6,7 @@ Load SCSS globally within `styles.scss` in your app:
 @use "@db-ui/components/build/styles/db-ui-42-webpack" as *;
 ```
 
-Load component:
+Load component within `app.module.ts`:
 
 ```typescript
 import { DBCardModule } from '@db-ui/ngx-components';
