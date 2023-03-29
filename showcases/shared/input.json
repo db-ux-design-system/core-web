@@ -5,30 +5,35 @@
 			{
 				"name": "(Default) Basic",
 				"code": {
+					"html": "<div class=\"db-input \"><input id=\"OVERWRITE_DEFAULT_ID\" type=\"text\" placeholder=\" \" aria-labelledby=\"OVERWRITE_DEFAULT_ID-label\" value=\"\"/><label aria-hidden=\"true\" for=\"OVERWRITE_DEFAULT_ID\" id=\"OVERWRITE_DEFAULT_ID-label\"><span>Label</span></label><p class=\"description\">(Default) Basic</p></div>",
 					"default": "<DBInput label=\"Label\" description=\"Description\" />"
 				}
 			},
 			{
 				"name": "Informational",
 				"code": {
+					"html": "<div class=\"db-input \" data-variant=\"informational\"><input id=\"OVERWRITE_DEFAULT_ID\" type=\"text\" placeholder=\" \" aria-labelledby=\"OVERWRITE_DEFAULT_ID-label\" value=\"\"/><label aria-hidden=\"true\" for=\"OVERWRITE_DEFAULT_ID\" id=\"OVERWRITE_DEFAULT_ID-label\"><span>Label</span></label><p class=\"description\">Informational</p><span aria-hidden=\"true\" class=\"db-icon icon-input-state is-icon-text-replace\" data-icon=\"info\"></span></div>",
 					"default": "<DBInput label=\"Label\" description=\"Description\" variant=\"informational\"/>"
 				}
 			},
 			{
 				"name": "Warning",
 				"code": {
+					"html": "<div class=\"db-input \" data-variant=\"warning\"><input id=\"OVERWRITE_DEFAULT_ID\" type=\"text\" placeholder=\" \" aria-labelledby=\"OVERWRITE_DEFAULT_ID-label\" value=\"\"/><label aria-hidden=\"true\" for=\"OVERWRITE_DEFAULT_ID\" id=\"OVERWRITE_DEFAULT_ID-label\"><span>Label</span></label><p class=\"description\">Warning</p><span aria-hidden=\"true\" class=\"db-icon icon-input-state is-icon-text-replace\" data-icon=\"error-triangle\"></span></div>",
 					"default": "<DBInput label=\"Label\" description=\"Description\" variant=\"warning\"/>"
 				}
 			},
 			{
 				"name": "Critical",
 				"code": {
+					"html": "<div class=\"db-input \" data-variant=\"critical\"><input id=\"OVERWRITE_DEFAULT_ID\" type=\"text\" placeholder=\" \" aria-labelledby=\"OVERWRITE_DEFAULT_ID-label\" value=\"\"/><label aria-hidden=\"true\" for=\"OVERWRITE_DEFAULT_ID\" id=\"OVERWRITE_DEFAULT_ID-label\"><span>Label</span></label><p class=\"description\">Critical</p><span aria-hidden=\"true\" class=\"db-icon icon-input-state is-icon-text-replace\" data-icon=\"error\"></span></div>",
 					"default": "<DBInput label=\"Label\" description=\"Description\" variant=\"critical\"/>"
 				}
 			},
 			{
 				"name": "Successful",
 				"code": {
+					"html": "<div class=\"db-input \" data-variant=\"successful\"><input id=\"OVERWRITE_DEFAULT_ID\" type=\"text\" placeholder=\" \" aria-labelledby=\"OVERWRITE_DEFAULT_ID-label\" value=\"\"/><label aria-hidden=\"true\" for=\"OVERWRITE_DEFAULT_ID\" id=\"OVERWRITE_DEFAULT_ID-label\"><span>Label</span></label><p class=\"description\">Successful</p><span aria-hidden=\"true\" class=\"db-icon icon-input-state is-icon-text-replace\" data-icon=\"check-circle\"></span></div>",
 					"default": "<DBInput label=\"Label\" description=\"Description\" variant=\"successful\"/>"
 				}
 			}
@@ -40,42 +45,49 @@
 			{
 				"name": "Default",
 				"code": {
+					"html": "<div class=\"db-input \"><input id=\"OVERWRITE_DEFAULT_ID\" type=\"text\" placeholder=\" \" aria-labelledby=\"OVERWRITE_DEFAULT_ID-label\" value=\"\"/><label aria-hidden=\"true\" for=\"OVERWRITE_DEFAULT_ID\" id=\"OVERWRITE_DEFAULT_ID-label\"><span>Label</span></label><p class=\"description\">Default</p></div>",
 					"default": "<DBInput label=\"Label\" description=\"Description\" />"
 				}
 			},
 			{
 				"name": "Filled",
 				"code": {
+					"html": "<div class=\"db-input \"><input id=\"OVERWRITE_DEFAULT_ID\" type=\"text\" placeholder=\" \" aria-labelledby=\"OVERWRITE_DEFAULT_ID-label\" value=\"\"/><label aria-hidden=\"true\" for=\"OVERWRITE_DEFAULT_ID\" id=\"OVERWRITE_DEFAULT_ID-label\"><span>Label</span></label><p class=\"description\">Filled</p></div>",
 					"default": "<DBInput label=\"Label\" value=\"Input Text\"/>"
 				}
 			},
 			{
 				"name": "Filled Number",
 				"code": {
+					"html": "<div class=\"db-input \"><input id=\"OVERWRITE_DEFAULT_ID\" type=\"number\" placeholder=\" \" aria-labelledby=\"OVERWRITE_DEFAULT_ID-label\" value=\"\"/><label aria-hidden=\"true\" for=\"OVERWRITE_DEFAULT_ID\" id=\"OVERWRITE_DEFAULT_ID-label\"><span>Label</span></label><p class=\"description\">Filled Number</p></div>",
 					"default": "<DBInput label=\"Label\" value=\"123456\" type=\"number\"/>"
 				}
 			},
 			{
 				"name": "Invalid",
 				"code": {
+					"html": "<div class=\"db-input \"><input id=\"OVERWRITE_DEFAULT_ID\" type=\"text\" placeholder=\" \" aria-labelledby=\"OVERWRITE_DEFAULT_ID-label\" required=\"\" minLength=\"5\" value=\"\"/><label aria-hidden=\"true\" for=\"OVERWRITE_DEFAULT_ID\" id=\"OVERWRITE_DEFAULT_ID-label\"><span>Label</span></label><p class=\"description\">Invalid</p><span aria-hidden=\"true\" class=\"db-icon icon-input-state is-icon-text-replace\" data-icon=\"\"></span></div>",
 					"default": "<DBInput label=\"Label\" minLength={5} required description=\"minLength=5\"/>"
 				}
 			},
 			{
 				"name": "Disabled",
 				"code": {
+					"html": "<div class=\"db-input \"><input id=\"OVERWRITE_DEFAULT_ID\" type=\"text\" placeholder=\" \" aria-labelledby=\"OVERWRITE_DEFAULT_ID-label\" disabled=\"\" value=\"\"/><label aria-hidden=\"true\" for=\"OVERWRITE_DEFAULT_ID\" id=\"OVERWRITE_DEFAULT_ID-label\"><span>Label</span></label><p class=\"description\">Disabled</p></div>",
 					"default": "<DBInput label=\"Label\" disabled/>"
 				}
 			},
 			{
 				"name": "Disabled with value",
 				"code": {
+					"html": "<div class=\"db-input \"><input id=\"OVERWRITE_DEFAULT_ID\" type=\"text\" placeholder=\" \" aria-labelledby=\"OVERWRITE_DEFAULT_ID-label\" disabled=\"\" value=\"\"/><label aria-hidden=\"true\" for=\"OVERWRITE_DEFAULT_ID\" id=\"OVERWRITE_DEFAULT_ID-label\"><span>Label</span></label><p class=\"description\">Disabled with value</p></div>",
 					"default": "<DBInput label=\"Label\" value=\"Input Text\" disabled/>"
 				}
 			},
 			{
 				"name": "Required",
 				"code": {
+					"html": "<div class=\"db-input \"><input id=\"OVERWRITE_DEFAULT_ID\" type=\"text\" placeholder=\" \" aria-labelledby=\"OVERWRITE_DEFAULT_ID-label\" required=\"\" value=\"\"/><label aria-hidden=\"true\" for=\"OVERWRITE_DEFAULT_ID\" id=\"OVERWRITE_DEFAULT_ID-label\"><span>Label</span></label><p class=\"description\">Required</p><span aria-hidden=\"true\" class=\"db-icon icon-input-state is-icon-text-replace\" data-icon=\"\"></span></div>",
 					"default": "<DBInput label=\"Label\" value=\"Input Text\" disabled required/>"
 				}
 			}
@@ -87,30 +99,35 @@
 			{
 				"name": "(Default) Text",
 				"code": {
+					"html": "<div class=\"db-input \"><input id=\"OVERWRITE_DEFAULT_ID\" type=\"text\" placeholder=\" \" aria-labelledby=\"OVERWRITE_DEFAULT_ID-label\" value=\"\"/><label aria-hidden=\"true\" for=\"OVERWRITE_DEFAULT_ID\" id=\"OVERWRITE_DEFAULT_ID-label\"><span>Label</span></label><p class=\"description\">(Default) Text</p></div>",
 					"default": "<DBInput label=\"Label\"/>"
 				}
 			},
 			{
 				"name": "Leading Icon + Text",
 				"code": {
+					"html": "<div class=\"db-input \"><span aria-hidden=\"true\" class=\"db-icon icon-before is-icon-text-replace\" data-icon=\"account\"></span><input id=\"OVERWRITE_DEFAULT_ID\" type=\"text\" placeholder=\" \" aria-labelledby=\"OVERWRITE_DEFAULT_ID-label\" value=\"\"/><label aria-hidden=\"true\" for=\"OVERWRITE_DEFAULT_ID\" id=\"OVERWRITE_DEFAULT_ID-label\"><span>Label</span></label><p class=\"description\">Leading Icon + Text</p></div>",
 					"default": "<DBInput icon=\"account\" label=\"Label\"/>"
 				}
 			},
 			{
 				"name": "Leading Icon + Text + Trailing Icon",
 				"code": {
+					"html": "<div class=\"db-input \"><span aria-hidden=\"true\" class=\"db-icon icon-before is-icon-text-replace\" data-icon=\"account\"></span><input id=\"OVERWRITE_DEFAULT_ID\" type=\"text\" placeholder=\" \" aria-labelledby=\"OVERWRITE_DEFAULT_ID-label\" value=\"\"/><label aria-hidden=\"true\" for=\"OVERWRITE_DEFAULT_ID\" id=\"OVERWRITE_DEFAULT_ID-label\"><span>Label</span></label><p class=\"description\">Leading Icon + Text + Trailing Icon</p><span aria-hidden=\"true\" class=\"db-icon icon-after is-icon-text-replace\" data-icon=\"edit\"></span></div>",
 					"default": "<DBInput icon=\"account\" label=\"Label\" iconAfter=\"edit\"/>"
 				}
 			},
 			{
 				"name": "Text + Trailing Icon",
 				"code": {
+					"html": "<div class=\"db-input \"><input id=\"OVERWRITE_DEFAULT_ID\" type=\"text\" placeholder=\" \" aria-labelledby=\"OVERWRITE_DEFAULT_ID-label\" value=\"\"/><label aria-hidden=\"true\" for=\"OVERWRITE_DEFAULT_ID\" id=\"OVERWRITE_DEFAULT_ID-label\"><span>Label</span></label><p class=\"description\">Text + Trailing Icon</p><span aria-hidden=\"true\" class=\"db-icon icon-after is-icon-text-replace\" data-icon=\"edit\"></span></div>",
 					"default": "<DBInput label=\"Label\" iconAfter=\"edit\"/>"
 				}
 			},
 			{
 				"name": "Text + Trailing Icon + Variant:Successful",
 				"code": {
+					"html": "<div class=\"db-input \" data-variant=\"successful\"><input id=\"OVERWRITE_DEFAULT_ID\" type=\"text\" placeholder=\" \" aria-labelledby=\"OVERWRITE_DEFAULT_ID-label\" value=\"\"/><label aria-hidden=\"true\" for=\"OVERWRITE_DEFAULT_ID\" id=\"OVERWRITE_DEFAULT_ID-label\"><span>Label</span></label><p class=\"description\">Text + Trailing Icon + Variant:Successful</p><span aria-hidden=\"true\" class=\"db-icon icon-input-state is-icon-text-replace\" data-icon=\"check-circle\"></span><span aria-hidden=\"true\" class=\"db-icon icon-after is-icon-text-replace\" data-icon=\"edit\"></span></div>",
 					"default": "<DBInput label=\"Label\" iconAfter=\"edit\" variant=\"successful\"/>"
 				}
 			}

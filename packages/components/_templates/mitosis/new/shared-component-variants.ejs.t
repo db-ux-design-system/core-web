@@ -8,6 +8,7 @@ to: ../../showcases/shared/<%= name %>.json
 			{
 				name: '(Default) <%= name %>',
 				code: {
+					"html":""
 					"default":""
 				}
 			}

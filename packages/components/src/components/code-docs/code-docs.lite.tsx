@@ -47,8 +47,7 @@ export default function DBCodeDocs(props: DBCodeDocsProps) {
 		<DBCard
 			ref={component}
 			className={
-				'db-code-docs' +
-				(props.className ? ' ' + props.className : '')
+				'db-code-docs' + (props.className ? ' ' + props.className : '')
 			}
 			elevation="none">
 			<Show when={state.stylePath}>
@@ -62,7 +61,7 @@ export default function DBCodeDocs(props: DBCodeDocsProps) {
 					data-variant="primary">
 					{state.getShowButtonLabel()}
 				</summary>
-				<div class="code">
+				<div class="db-ui-functional code">
 					<Slot name="code"></Slot>
 				</div>
 			</details>

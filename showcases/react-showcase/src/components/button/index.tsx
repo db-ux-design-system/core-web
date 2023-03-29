@@ -48,14 +48,6 @@ const getExampleMatrix = (exampleName: string): DefaultComponentExample[][] => [
 			example: getButton({ text: exampleName })
 		},
 		{
-			example: getButton({ text: exampleName, state: 'loading' })
-		}
-	],
-	[
-		{
-			example: getButton({ text: exampleName })
-		},
-		{
 			example: getButton({ text: exampleName, size: 'small' })
 		}
 	],

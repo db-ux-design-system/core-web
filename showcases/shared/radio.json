@@ -5,36 +5,42 @@
 			{
 				"name": "Default",
 				"code": {
+					"html": "<input type=\"radio\" class=\"db-radio\" id=\"OVERWRITE_DEFAULT_ID\" name=\"States\"/><label for=\"OVERWRITE_DEFAULT_ID\">Default</label>",
 					"default": "<DBRadio name=\"States\">Label</DBRadio>"
 				}
 			},
 			{
 				"name": "Disabled",
 				"code": {
+					"html": "<input type=\"radio\" class=\"db-radio\" id=\"OVERWRITE_DEFAULT_ID\" name=\"States\" disabled=\"\"/><label for=\"OVERWRITE_DEFAULT_ID\">Disabled</label>",
 					"default": "<DBRadio disabled name=\"States\">Label</DBRadio>"
 				}
 			},
 			{
 				"name": "Disabled checked",
 				"code": {
+					"html": "<input type=\"radio\" class=\"db-radio\" id=\"OVERWRITE_DEFAULT_ID\" name=\"SpecialState\" disabled=\"\" checked=\"\"/><label for=\"OVERWRITE_DEFAULT_ID\">Disabled checked</label>",
 					"default": "<DBRadio disabled checked name=\"SpecialState\">Label</DBRadio>"
 				}
 			},
 			{
 				"name": "Required",
 				"code": {
+					"html": "<input type=\"radio\" class=\"db-radio\" id=\"OVERWRITE_DEFAULT_ID\" name=\"States\" required=\"\"/><label for=\"OVERWRITE_DEFAULT_ID\">Required</label>",
 					"default": "<DBRadio required name=\"States\">Label</DBRadio>"
 				}
 			},
 			{
 				"name": "Checked",
 				"code": {
+					"html": "<input type=\"radio\" class=\"db-radio\" id=\"OVERWRITE_DEFAULT_ID\" name=\"States\" checked=\"\"/><label for=\"OVERWRITE_DEFAULT_ID\">Checked</label>",
 					"default": "<DBRadio checked name=\"States\">Label</DBRadio>"
 				}
 			},
 			{
 				"name": "Invalid",
 				"code": {
+					"html": "<input type=\"radio\" class=\"db-radio\" id=\"OVERWRITE_DEFAULT_ID\" name=\"States\" aria-invalid=\"true\"/><label for=\"OVERWRITE_DEFAULT_ID\">Invalid</label>",
 					"default": "<DBRadio invalid name=\"States\">Label</DBRadio>"
 				}
 			}
@@ -46,12 +52,14 @@
 			{
 				"name": "Default",
 				"code": {
+					"html": "<input type=\"radio\" class=\"db-radio\" id=\"OVERWRITE_DEFAULT_ID\" name=\"Size\"/><label for=\"OVERWRITE_DEFAULT_ID\">Default</label>",
 					"default": "<DBRadio name=\"Size\">Label</DBRadio>"
 				}
 			},
 			{
 				"name": "Small",
 				"code": {
+					"html": "<input type=\"radio\" class=\"db-radio\" id=\"OVERWRITE_DEFAULT_ID\" name=\"Size\" data-size=\"small\"/><label for=\"OVERWRITE_DEFAULT_ID\">Small</label>",
 					"default": "<DBRadio size=\"small\" name=\"Size\">Label</DBRadio>"
 				}
 			}

@@ -1,11 +1,31 @@
 /* eslint-disable unicorn/prefer-logical-operator-over-ternary */
 import FS from 'node:fs';
 
+import prettier from 'prettier';
+
+import prettier0 from 'prettier/parser-babel.js';
+
 const sharedPath = '../shared';
 const reactPath = '../react-showcase/src/components';
 
-// TODO: Pass renderToString as html code
-const codeFrameworks = ['html', 'angular', 'react', 'vue'];
+const codeFrameworks = ['angular', 'react', 'vue', 'html'];
+const plugins = [prettier0];
+
+const getFileTypeByFramework = (framework) => {
+	if (framework === 'react') {
+		return 'tsx';
+	}
+
+	if (framework === 'vue') {
+		return 'vue-html';
+	}
+
+	if (framework === 'angular') {
+		return 'vue-html';
+	}
+
+	return 'html';
+};
 
 const getExamplesAsMDX = (examples) => {
 	if (!examples?.find((example) => example.code)) {
@@ -14,21 +34,31 @@ const getExamplesAsMDX = (examples) => {
 
 	let result = '';
 
-	for (const example1 of examples.filter((example) => example.code)) {
-		result += '<CH.Code>\n';
+	for (const example of examples.filter((example) => example.code)) {
+		result += '<CH.Code>\n\n';
 		for (const framework of codeFrameworks) {
-			if (example1.code) {
-				result += `\`\`\`js ${framework}\n`;
-				result += `\n${
-					example1.code[framework]
-						? example1.code[framework]
-						: example1.code.default
-				}\n`;
-				result += '```\n';
+			if (example.code) {
+				let exampleCode = example.code[framework]
+					? example.code[framework]
+					: example.code.default;
+				try {
+					exampleCode = prettier.format(exampleCode, {
+						parser: 'babel',
+						plugins
+					});
+				} catch {
+					// We do not care about errors here
+				}
+
+				result += `\`\`\`${getFileTypeByFramework(
+					framework
+				)} ${framework}\n`;
+				result += `${exampleCode.replace(/;/g, '')}`;
+				result += '```\n\n';
 			}
 		}
 
-		result += '</CH.Code>\n';
+		result += '</CH.Code>\n\n';
 	}
 
 	return result;

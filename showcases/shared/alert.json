@@ -6,6 +6,7 @@
 				"name": "(Default) Alert",
 				"style": { "width": "100%" },
 				"code": {
+					"html": "<div class=\"db-alert\" data-type=\"alert\"><span aria-hidden=\"true\" class=\"db-icon db-alert-icon is-icon-text-replace\" data-icon=\"info\"></span><div class=\"db-alert-content-container\"><div class=\"db-alert-headline-container\"><strong>Headline</strong><div class=\"db-alert-close-container\"><a class=\"db-link db-alert-headline-link\" href=\"#\" tabindex=\"0\" data-variant=\"inline\" data-content=\"internal\">Link</a><button class=\"db-button is-icon-text-replace\" data-size=\"small\" data-variant=\"transparent\"><span aria-hidden=\"true\" class=\"db-icon is-icon-text-replace\" data-icon=\"close\"></span>Close Button</button></div></div><span>(Default) Alert</span><a class=\"db-link db-alert-content-link\" href=\"#\" tabindex=\"0\" data-variant=\"inline\" data-content=\"internal\">Link</a></div></div>",
 					"default": "<DBAlert type=\"alert\" headline=\"Headline\" link={{ href: \"#\" }} slotLink=\"Link\">Alert</DBAlert>"
 				}
 			},
@@ -13,6 +14,7 @@
 				"name": "Inline",
 				"style": { "width": "100%" },
 				"code": {
+					"html": "<div class=\"db-alert\" data-type=\"inline\"><span aria-hidden=\"true\" class=\"db-icon db-alert-icon is-icon-text-replace\" data-icon=\"info\"></span><div class=\"db-alert-content-container\"><div class=\"db-alert-headline-container\"><strong>Headline</strong><div class=\"db-alert-close-container\"><a class=\"db-link db-alert-headline-link\" href=\"#\" tabindex=\"0\" data-variant=\"inline\" data-content=\"internal\">Link</a><button class=\"db-button is-icon-text-replace\" data-size=\"small\" data-variant=\"transparent\"><span aria-hidden=\"true\" class=\"db-icon is-icon-text-replace\" data-icon=\"close\"></span>Close Button</button></div></div><span>Inline</span><a class=\"db-link db-alert-content-link\" href=\"#\" tabindex=\"0\" data-variant=\"inline\" data-content=\"internal\">Link</a></div></div>",
 					"default": "<DBAlert type=\"inline\" headline=\"Headline\" link={{ href: \"#\" }} slotLink=\"Link\">Alert</DBAlert>"
 				}
 			}
@@ -25,6 +27,7 @@
 				"name": "(Default) Adaptive",
 				"style": { "width": "100%" },
 				"code": {
+					"html": "<div class=\"db-alert\"><span aria-hidden=\"true\" class=\"db-icon db-alert-icon is-icon-text-replace\" data-icon=\"account\"></span><div class=\"db-alert-content-container\"><div class=\"db-alert-headline-container\"><strong>Headline</strong><div class=\"db-alert-close-container\"><a class=\"db-link db-alert-headline-link\" href=\"#\" tabindex=\"0\" data-variant=\"inline\" data-content=\"internal\">Link</a><button class=\"db-button is-icon-text-replace\" data-size=\"small\" data-variant=\"transparent\"><span aria-hidden=\"true\" class=\"db-icon is-icon-text-replace\" data-icon=\"close\"></span>Close Button</button></div></div><span>(Default) Adaptive</span><a class=\"db-link db-alert-content-link\" href=\"#\" tabindex=\"0\" data-variant=\"inline\" data-content=\"internal\">Link</a></div></div>",
 					"default": "<DBAlert icon=\"account\"  type=\"alert\" headline=\"Headline\" link={{ href: \"#\" }} slotLink=\"Link\">Alert</DBAlert>"
 				}
 			},
@@ -32,6 +35,7 @@
 				"name": "Critical",
 				"style": { "width": "100%" },
 				"code": {
+					"html": "<div class=\"db-alert\" data-variant=\"critical\"><span aria-hidden=\"true\" class=\"db-icon db-alert-icon is-icon-text-replace\" data-icon=\"error\"></span><div class=\"db-alert-content-container\"><div class=\"db-alert-headline-container\"><strong>Headline</strong><div class=\"db-alert-close-container\"><a class=\"db-link db-alert-headline-link\" href=\"#\" tabindex=\"0\" data-variant=\"inline\" data-content=\"internal\">Link</a><button class=\"db-button is-icon-text-replace\" data-size=\"small\" data-variant=\"transparent\"><span aria-hidden=\"true\" class=\"db-icon is-icon-text-replace\" data-icon=\"close\"></span>Close Button</button></div></div><span>Critical</span><a class=\"db-link db-alert-content-link\" href=\"#\" tabindex=\"0\" data-variant=\"inline\" data-content=\"internal\">Link</a></div></div>",
 					"default": "<DBAlert variant=\"critical\" headline=\"Headline\" link={{ href: \"#\" }} slotLink=\"Link\">Alert</DBAlert>"
 				}
 			},
@@ -39,6 +43,7 @@
 				"name": "Informational",
 				"style": { "width": "100%" },
 				"code": {
+					"html": "<div class=\"db-alert\" data-variant=\"informational\"><span aria-hidden=\"true\" class=\"db-icon db-alert-icon is-icon-text-replace\" data-icon=\"info\"></span><div class=\"db-alert-content-container\"><div class=\"db-alert-headline-container\"><strong>Headline</strong><div class=\"db-alert-close-container\"><a class=\"db-link db-alert-headline-link\" href=\"#\" tabindex=\"0\" data-variant=\"inline\" data-content=\"internal\">Link</a><button class=\"db-button is-icon-text-replace\" data-size=\"small\" data-variant=\"transparent\"><span aria-hidden=\"true\" class=\"db-icon is-icon-text-replace\" data-icon=\"close\"></span>Close Button</button></div></div><span>Informational</span><a class=\"db-link db-alert-content-link\" href=\"#\" tabindex=\"0\" data-variant=\"inline\" data-content=\"internal\">Link</a></div></div>",
 					"default": "<DBAlert variant=\"informational\" headline=\"Headline\" link={{ href: \"#\" }} slotLink=\"Link\">Alert</DBAlert>"
 				}
 			},
@@ -46,6 +51,7 @@
 				"name": "Successful",
 				"style": { "width": "100%" },
 				"code": {
+					"html": "<div class=\"db-alert\" data-variant=\"successful\"><span aria-hidden=\"true\" class=\"db-icon db-alert-icon is-icon-text-replace\" data-icon=\"check-circle\"></span><div class=\"db-alert-content-container\"><div class=\"db-alert-headline-container\"><strong>Headline</strong><div class=\"db-alert-close-container\"><a class=\"db-link db-alert-headline-link\" href=\"#\" tabindex=\"0\" data-variant=\"inline\" data-content=\"internal\">Link</a><button class=\"db-button is-icon-text-replace\" data-size=\"small\" data-variant=\"transparent\"><span aria-hidden=\"true\" class=\"db-icon is-icon-text-replace\" data-icon=\"close\"></span>Close Button</button></div></div><span>Successful</span><a class=\"db-link db-alert-content-link\" href=\"#\" tabindex=\"0\" data-variant=\"inline\" data-content=\"internal\">Link</a></div></div>",
 					"default": "<DBAlert variant=\"successful\" headline=\"Headline\" link={{ href: \"#\" }} slotLink=\"Link\">Alert</DBAlert>"
 				}
 			},
@@ -53,6 +59,7 @@
 				"name": "Warning",
 				"style": { "width": "100%" },
 				"code": {
+					"html": "<div class=\"db-alert\" data-variant=\"warning\"><span aria-hidden=\"true\" class=\"db-icon db-alert-icon is-icon-text-replace\" data-icon=\"error-triangle\"></span><div class=\"db-alert-content-container\"><div class=\"db-alert-headline-container\"><strong>Headline</strong><div class=\"db-alert-close-container\"><a class=\"db-link db-alert-headline-link\" href=\"#\" tabindex=\"0\" data-variant=\"inline\" data-content=\"internal\">Link</a><button class=\"db-button is-icon-text-replace\" data-size=\"small\" data-variant=\"transparent\"><span aria-hidden=\"true\" class=\"db-icon is-icon-text-replace\" data-icon=\"close\"></span>Close Button</button></div></div><span>Warning</span><a class=\"db-link db-alert-content-link\" href=\"#\" tabindex=\"0\" data-variant=\"inline\" data-content=\"internal\">Link</a></div></div>",
 					"default": "<DBAlert variant=\"warning\" headline=\"Headline\" link={{ href: \"#\" }} slotLink=\"Link\">Alert</DBAlert>"
 				}
 			}
@@ -65,6 +72,7 @@
 				"name": "Headline & Text & Link & Icon",
 				"style": { "width": "100%" },
 				"code": {
+					"html": "<div class=\"db-alert\"><span aria-hidden=\"true\" class=\"db-icon db-alert-icon is-icon-text-replace\" data-icon=\"account\"></span><div class=\"db-alert-content-container\"><div class=\"db-alert-headline-container\"><strong>Headline</strong><div class=\"db-alert-close-container\"><a class=\"db-link db-alert-headline-link\" href=\"#\" tabindex=\"0\" data-variant=\"inline\" data-content=\"internal\">Link</a><button class=\"db-button is-icon-text-replace\" data-size=\"small\" data-variant=\"transparent\"><span aria-hidden=\"true\" class=\"db-icon is-icon-text-replace\" data-icon=\"close\"></span>Close Button</button></div></div><span>Headline &amp; Text &amp; Link &amp; Icon</span><a class=\"db-link db-alert-content-link\" href=\"#\" tabindex=\"0\" data-variant=\"inline\" data-content=\"internal\">Link</a></div></div>",
 					"default": "<DBAlert icon=\"account\" headline=\"Headline\" link={{ href: \"#\" }} slotLink=\"Link\">Alert</DBAlert>"
 				}
 			},
@@ -72,6 +80,7 @@
 				"name": "Headline & Text & Link",
 				"style": { "width": "100%" },
 				"code": {
+					"html": "<div class=\"db-alert\"><span aria-hidden=\"true\" class=\"db-icon db-alert-icon is-icon-text-replace\" data-icon=\"info\"></span><div class=\"db-alert-content-container\"><div class=\"db-alert-headline-container\"><strong>Headline</strong><div class=\"db-alert-close-container\"><a class=\"db-link db-alert-headline-link\" href=\"#\" tabindex=\"0\" data-variant=\"inline\" data-content=\"internal\">Link</a><button class=\"db-button is-icon-text-replace\" data-size=\"small\" data-variant=\"transparent\"><span aria-hidden=\"true\" class=\"db-icon is-icon-text-replace\" data-icon=\"close\"></span>Close Button</button></div></div><span>Headline &amp; Text &amp; Link</span><a class=\"db-link db-alert-content-link\" href=\"#\" tabindex=\"0\" data-variant=\"inline\" data-content=\"internal\">Link</a></div></div>",
 					"default": "<DBAlert headline=\"Headline\" link={{ href: \"#\" }} slotLink=\"Link\">Alert</DBAlert>"
 				}
 			},
@@ -79,6 +88,7 @@
 				"name": "Text & Link",
 				"style": { "width": "100%" },
 				"code": {
+					"html": "<div class=\"db-alert\"><span aria-hidden=\"true\" class=\"db-icon db-alert-icon is-icon-text-replace\" data-icon=\"info\"></span><div class=\"db-alert-content-container\"><div class=\"db-alert-headline-container\"><span>Text &amp; Link</span><div class=\"db-alert-close-container\"><a class=\"db-link db-alert-headline-link\" href=\"#\" tabindex=\"0\" data-variant=\"inline\" data-content=\"internal\">Link</a><button class=\"db-button is-icon-text-replace\" data-size=\"small\" data-variant=\"transparent\"><span aria-hidden=\"true\" class=\"db-icon is-icon-text-replace\" data-icon=\"close\"></span>Close Button</button></div></div><a class=\"db-link db-alert-content-link\" href=\"#\" tabindex=\"0\" data-variant=\"inline\" data-content=\"internal\">Link</a></div></div>",
 					"default": "<DBAlert link={{ href: \"#\" }} slotLink=\"Link\">Alert</DBAlert>"
 				}
 			},
@@ -86,6 +96,7 @@
 				"name": "Text",
 				"style": { "width": "100%" },
 				"code": {
+					"html": "<div class=\"db-alert\"><span aria-hidden=\"true\" class=\"db-icon db-alert-icon is-icon-text-replace\" data-icon=\"info\"></span><div class=\"db-alert-content-container\"><div class=\"db-alert-headline-container\"><span>Text</span><div class=\"db-alert-close-container\"><a class=\"db-link db-alert-headline-link\" tabindex=\"0\" data-variant=\"inline\" data-content=\"internal\"></a><button class=\"db-button is-icon-text-replace\" data-size=\"small\" data-variant=\"transparent\"><span aria-hidden=\"true\" class=\"db-icon is-icon-text-replace\" data-icon=\"close\"></span>Close Button</button></div></div><a class=\"db-link db-alert-content-link\" tabindex=\"0\" data-variant=\"inline\" data-content=\"internal\"></a></div></div>",
 					"default": "<DBAlert>Alert</DBAlert>"
 				}
 			}
@@ -98,6 +109,7 @@
 				"name": "Closable",
 				"style": { "width": "100%" },
 				"code": {
+					"html": "<div class=\"db-alert\"><span aria-hidden=\"true\" class=\"db-icon db-alert-icon is-icon-text-replace\" data-icon=\"info\"></span><div class=\"db-alert-content-container\"><div class=\"db-alert-headline-container\"><strong>Headline</strong><div class=\"db-alert-close-container\"><a class=\"db-link db-alert-headline-link\" href=\"#\" tabindex=\"0\" data-variant=\"inline\" data-content=\"internal\">Link</a><button class=\"db-button is-icon-text-replace\" data-size=\"small\" data-variant=\"transparent\"><span aria-hidden=\"true\" class=\"db-icon is-icon-text-replace\" data-icon=\"close\"></span>Close Button</button></div></div><span></span><a class=\"db-link db-alert-content-link\" href=\"#\" tabindex=\"0\" data-variant=\"inline\" data-content=\"internal\">Link</a></div></div>",
 					"default": "<DBAlert headline=\"Headline\" link={{ href: \"#\" }} slotLink=\"Link\" onClick={()=>{alert(\"click close button\")}}>Alert</DBAlert>"
 				}
 			},
@@ -105,6 +117,7 @@
 				"name": "Permanent",
 				"style": { "width": "100%" },
 				"code": {
+					"html": "<div class=\"db-alert\"><span aria-hidden=\"true\" class=\"db-icon db-alert-icon is-icon-text-replace\" data-icon=\"info\"></span><div class=\"db-alert-content-container\"><div class=\"db-alert-headline-container\"><strong>Headline</strong><div class=\"db-alert-close-container\"><a class=\"db-link db-alert-headline-link\" href=\"#\" tabindex=\"0\" data-variant=\"inline\" data-content=\"internal\">Link</a></div></div><span></span><a class=\"db-link db-alert-content-link\" href=\"#\" tabindex=\"0\" data-variant=\"inline\" data-content=\"internal\">Link</a></div></div>",
 					"default": "<DBAlert headline=\"Headline\" link={{ href: \"#\" }} slotLink=\"Link\" behaviour=\"permanent\">Alert</DBAlert>"
 				}
 			}

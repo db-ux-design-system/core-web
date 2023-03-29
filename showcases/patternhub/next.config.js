@@ -12,7 +12,8 @@ const withMDX = generated({
 				remarkCodeHike,
 				{
 					theme: getTheme(),
-					showCopyButton: true
+					showCopyButton: true,
+					showExpandButton: true
 				}
 			]
 		],

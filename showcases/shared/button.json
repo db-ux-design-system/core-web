@@ -5,31 +5,30 @@
 			{
 				"name": "(Default) Adaptive Outline",
 				"code": {
+					"html": "<button class=\"db-button\">(Default) Adaptive Outline</button>",
 					"default": "<DBButton>(Default) Adaptive Outline</DBButton>"
 				}
 			},
 			{
 				"name": "Primary",
 				"code": {
+					"html": "<button class=\"db-button\" data-variant=\"primary\">Primary</button>",
 					"default": "<DBButton variant=\"primary\">Primary</DBButton>"
 				}
 			},
 			{
-				"name": "Transparent"
+				"name": "Transparent",
+				"code": {
+					"html": "<button class=\"db-button\" data-variant=\"transparent\">Transparent</button>",
+					"default": "<DBButton variant=\"transparent\">Transparent</DBButton>"
+				}
 			},
 			{
-				"name": "Semi-Transparent"
-			}
-		]
-	},
-	{
-		"name": "State",
-		"examples": [
-			{
-				"name": "Default: (Enabled, Hover, Pressed)"
-			},
-			{
-				"name": "Loading"
+				"name": "Semi-Transparent",
+				"code": {
+					"html": "",
+					"default": "<DBButton variant=\"semi-transparent\">Semi-Transparent</DBButton>"
+				}
 			}
 		]
 	},
@@ -37,10 +36,18 @@
 		"name": "Size",
 		"examples": [
 			{
-				"name": "Default: Medium"
+				"name": "Default: Medium",
+				"code": {
+					"html": "<button class=\"db-button\">Default: Medium</button>",
+					"default": "<DBButton>Button</DBButton>"
+				}
 			},
 			{
-				"name": "Small"
+				"name": "Small",
+				"code": {
+					"html": "<button class=\"db-button\" data-size=\"small\">Small</button>",
+					"default": "<DBButton size=\"small\">Button</DBButton>"
+				}
 			}
 		]
 	},
@@ -48,13 +55,25 @@
 		"name": "Content",
 		"examples": [
 			{
-				"name": "Default: Text"
+				"name": "Default: Text",
+				"code": {
+					"html": "<button class=\"db-button\">Default: Text</button>",
+					"default": "<DBButton>Button</DBButton>"
+				}
 			},
 			{
-				"name": "Icon & Text"
+				"name": "Icon & Text",
+				"code": {
+					"html": "<button class=\"db-button\"><span aria-hidden=\"true\" class=\"db-icon\" data-icon=\"account\"></span>Icon &amp; Text</button>",
+					"default": "<DBButton icon=\"account\" icntxt>Button</DBButton>"
+				}
 			},
 			{
-				"name": "Icon"
+				"name": "Icon",
+				"code": {
+					"html": "<button class=\"db-button is-icon-text-replace\"><span aria-hidden=\"true\" class=\"db-icon is-icon-text-replace\" data-icon=\"account\"></span>Icon</button>",
+					"default": "<DBButton icon=\"account\">Button</DBButton>"
+				}
 			}
 		]
 	},
@@ -62,11 +81,19 @@
 		"name": "Behaviour",
 		"examples": [
 			{
-				"name": "Default: Auto Width"
+				"name": "Default: Auto Width",
+				"code": {
+					"html": "<button class=\"db-button\">Default: Auto Width</button>",
+					"default": "<DBButton>Button</DBButton>"
+				}
 			},
 			{
 				"name": "Width full",
-				"style": { "width": "500px" }
+				"style": { "width": "500px" },
+				"code": {
+					"html": "<button class=\"db-button\" data-width=\"full\">Width full</button>",
+					"default": "<DBButton width=\"full\">Button</DBButton>"
+				}
 			}
 		]
 	}
