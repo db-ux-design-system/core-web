@@ -22,11 +22,8 @@ import { DBRadioModule } from '@db-ui/ngx-components';
 
 Use component in template:
 
-```typescript
-<DBRadio
-	ngDefaultControl
-	[(ngModel)]="value"
->Label</DBRadio>
+```html
+<DBRadio ngDefaultControl [(ngModel)]="value">Label</DBRadio>
 ```
 
 ## How to use with Template Driven Forms
