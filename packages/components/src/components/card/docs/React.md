@@ -1,15 +1,17 @@
 ## React
 
-Load SCSS globally in a `index.scss` file inside `main.tsx`/`main.jsx` within your app:
+For general installation and configuration look at the [react-components](https://www.npmjs.com/package/@db-ui/react-components) package.
 
-```scss
-@use "@db-ui/components/build/styles/db-ui-42-rollup" as *;
-```
+### Use component
 
-Import component:
-
-```typescript
+```tsx App.tsx
+// App.tsx
 import { DBCard } from '@db-ui/react-components';
 
-<DBCard>{children}</DBCard>
+const App = () => (
+	<DBCard>
+		Card content
+	</DBCard>
+);
+export default App;
 ```
