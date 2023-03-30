@@ -1,4 +1,5 @@
 ---
+force: true
 to: src/components/<%= name %>/docs/Angular.md
 ---
 ## Angular
