@@ -58,14 +58,21 @@ An Angular library containing all styles & components of [DB UX Design System (t
 
 ## Usage
 
-```ts
-<script setup lang="ts">
-	import { DBButton } from "@db-ui/v-components";
-</script>
+```ts app.module.ts
+//app.module.ts
+import { DBButtonModule } from '@db-ui/ngx-components';
 
+@NgModule({
+	...
+		imports: [..., DBButtonModule],
 ...
-<DBButton icon="account">Test</DBButton>
-...
+})
+
+```
+
+```html app.component.html
+<!-- app.component.html -->
+<db-button variant="primary">Button</db-button>
 ```
 
 ## Custom Events
