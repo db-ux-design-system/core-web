@@ -24,9 +24,9 @@ If you just need the styling follow this:
 
 Import the styles in `scss` or `css`. Based on your technology the file names could be different.
 
--   Default (db-ui-42): points to `../assets`
--   Webpack (db-ui-42-webpack): points to `~@db-ui/foundations/assets`
--   Rollup (db-ui-42-rollup): points to `@db-ui/foundations/assets`
+-   Default (db-ui-42): asset path point to `../assets`
+-   Webpack (db-ui-42-webpack): asset path point to `~@db-ui/foundations/assets`
+-   Rollup (db-ui-42-rollup): asset path point to `@db-ui/foundations/assets`
 
 **SCSS**
 
