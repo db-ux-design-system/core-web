@@ -14,11 +14,6 @@ useMetadata({
 						key: 'Interactive',
 						name: 'Interactive',
 						value: 'interactive'
-					},
-					{
-						key: 'Full Width',
-						name: 'Full Width',
-						value: 'full-width'
 					}
 				]
 			}
@@ -49,8 +44,8 @@ export default function DBCard(props: DBCardProps) {
 			class={'db-card' + (props.className ? ' ' + props.className : '')}
 			data-variant={props.variant}
 			data-color-variant={props.colorVariant}
-			data-direction={props.direction}
 			data-elevation={props.elevation}
+			data-spacing={props.spacing}
 			onClick={(event) => state.handleClick(event)}>
 			<Show when={state.stylePath}>
 				<link rel="stylesheet" href={state.stylePath} />

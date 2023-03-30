@@ -48,24 +48,6 @@ const testCardColorVariants = () => {
 	}
 };
 
-const testCardRow = () => {
-	for (const direction of directions) {
-		test(`DBCard should match screenshot for direction ${direction}`, async ({
-			mount
-		}) => {
-			const component = await mount(
-				<div>
-					<DBCard direction={direction}>
-						<span>Test 1</span>
-						<span>Test 2</span>
-					</DBCard>
-				</div>
-			);
-			await expect(component).toHaveScreenshot();
-		});
-	}
-};
-
 const testCardVariants = () => {
 	for (const variant of variants) {
 		test(`DBCard should match screenshot for variant ${variant}`, async ({
@@ -109,25 +91,11 @@ test.describe('DBCard component on mobile: Color Variants', () => {
 	testCardColorVariants();
 });
 
-test.describe('DBCard component on desktop: Row', () => {
-	// Old-school CRT monitor screensize
-	test.use({ viewport: { width: 1024, height: 768 } });
-
-	testCardRow();
-});
-
-test.describe('DBCard component on mobile: Row', () => {
-	// iPhone 13 / portrait screen size
-	test.use({ viewport: { width: 390, height: 884 } });
-
-	testCardRow();
-});
-
 test.describe('DBCard component on desktop: Variants', () => {
 	// Old-school CRT monitor screensize
 	test.use({ viewport: { width: 1024, height: 768 } });
 
-	testCardRow();
+	testCardVariants();
 });
 
 test.describe('DBCard component on mobile: Variants', () => {

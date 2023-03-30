@@ -56,7 +56,8 @@
 .db-code-docs {
 	@extend %code-docs;
 	/* Workaround for angular db-XYZ as root tag is not working */
-	:where(.db-card) {
+	&.db-card,
+	& > .db-card {
 		@extend %code-docs;
 	}
 }
