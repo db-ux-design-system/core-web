@@ -29,6 +29,7 @@
     "dev:scss": "nodemon --watch src -e scss -x \"npm run build:mv-styles && npm run build:sass\"",
     "dev:vue": "nodemon --watch src --watch overrides -e tsx,ts -x \"npm run compile:vue\"",
     "generate:component": "hygen mitosis new",
+    "generate:docs": "hygen update-docs new",
     "start": "nodemon --watch src --watch scripts --watch overrides -e js,tsx,ts,scss,json -x \"npm run build\""
   },
   "dependencies": {
