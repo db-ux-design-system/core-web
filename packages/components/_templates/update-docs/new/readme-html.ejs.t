@@ -1,3 +1,7 @@
+---
+force: true
+to: src/components/<%= name %>/docs/HTML.md
+---
 ## HTML
 
 For general installation and configuration look at the [components](https://www.npmjs.com/package/@db-ui/components) package.
@@ -8,7 +12,9 @@ For general installation and configuration look at the [components](https://www.
 <!-- index.html -->
 ...
 <body>
-	<input type="radio" class="db-radio" id="radio-element" name="States" />
-	<label for="radio-element">Label</label>
+	<div class="db-<%= name %>">
+		<%= h.changeCase.pascal(name) %>
+	</div>
 </body>
 ```
+

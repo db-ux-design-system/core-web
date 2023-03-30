@@ -1,3 +1,7 @@
+---
+force: true
+to: src/components/<%= name %>/docs/Angular.md
+---
 ## Angular
 
 For general installation and configuration look at the [ngx-components](https://www.npmjs.com/package/@db-ui/ngx-components) package.
@@ -6,11 +10,11 @@ For general installation and configuration look at the [ngx-components](https://
 
 ```ts app.module.ts
 //app.module.ts
-import { DBLinkModule } from '@db-ui/ngx-components';
+import { DB<%= h.changeCase.pascal(name) %>Module } from '@db-ui/ngx-components';
 
 @NgModule({
   ...
-  imports: [..., DBLinkModule],
+  imports: [..., DB<%= h.changeCase.pascal(name) %>Module],
   ...
 })
 
@@ -20,5 +24,7 @@ import { DBLinkModule } from '@db-ui/ngx-components';
 
 ```html app.component.html
 <!-- app.component.html -->
-<db-link href="#" variant="primary">Link</db-link>
+<db-<%= name %>><%= h.changeCase.pascal(name) %></db-<%= name %>>
 ```
+
+
