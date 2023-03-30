@@ -1,16 +1,11 @@
 ## Angular
 
-Load SCSS globally somewhere in your app:
+For general installation and configuration look at the [ngx-components](https://www.npmjs.com/package/@db-ui/ngx-components) package.
 
-```scss
-@use "@db-ui/foundations/build/scss/variables.global" as *;
-@use "@db-ui/components/build/styles/db-ui-42-webpack" as *;
-@use "@db-ui/foundations/build/scss/color-classes" as *;
-```
+### Load component
 
-Load component:
-
-```ts
+```ts app.module.ts
+//app.module.ts
 import { DBLinkModule } from '@db-ui/ngx-components';
 
 @NgModule({
@@ -21,8 +16,9 @@ import { DBLinkModule } from '@db-ui/ngx-components';
 
 ```
 
-Use component in template:
+### Use component
 
-```html
-<db-link variant="primary">Link</db-link>
+```html app.component.html
+<!-- app.component.html -->
+<db-link href="#" variant="primary">Link</db-link>
 ```

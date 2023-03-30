@@ -4,7 +4,6 @@ Load SCSS globally in a `index.scss` file inside `main.tsx`/`main.jsx` within yo
 
 ```scss
 @use "@db-ui/components/build/styles/db-ui-42-rollup" as *;
-
 ```
 
 Import component:
