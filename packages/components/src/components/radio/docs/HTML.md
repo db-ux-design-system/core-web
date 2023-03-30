@@ -1,12 +1,14 @@
 ## HTML
 
-Load CSS globally somewhere in your app:
+For general installation and configuration look at the [components](https://www.npmjs.com/package/@db-ui/components) package.
 
-```html
-<link rel="stylesheet" href="@db-ui/components/build/styles/db-ui-42.css" />
-```
+### Use component
 
-```html
-<input type="radio" class="db-radio" id="radio-element" name="States" />
-<label for="radio-element">Label</label>
+```html index.html
+<!-- index.html -->
+...
+<body>
+	<input type="radio" class="db-radio" id="radio-element" name="States" />
+	<label for="radio-element">Label</label>
+</body>
 ```

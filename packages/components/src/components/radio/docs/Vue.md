@@ -1,34 +1,26 @@
 ## Vue
 
-Load SCSS globally in a `index.scss` file and import it in your `main.ts`/`main.js` file in your app:
+For general installation and configuration look at the [v-components](https://www.npmjs.com/package/@db-ui/v-components) package.
 
-```scss
-@use "@db-ui/components/build/styles/db-ui-42-rollup" as *;
-```
+### Use component
 
-Use component:
-
-```vue
-<script>
+```vue App.vue
+<!-- App.vue -->
+<script setup lang="ts">
 import { DBRadio } from "@db-ui/v-components";
+import { ref } from "vue";
+const radio = ref("");
+
+const radioNames = ["X", "Y", "Z"];
 </script>
 
 <template>
-	<DBRadio value="value">Label</DBRadio>
+	<ul>
+		<li v-for="radioName in radioNames">
+			<DBRadio @change="radio = radioName" name="radio-group">
+				Radio {{ radioName }}
+			</DBRadio>
+		</li>
+	</ul>
 </template>
-```
-
-To get DBRadio work with `v-model` you have to use `v-model` argument syntax:
-
-```typescript
-<DBRadio v-model:checked="vModelTest">Label</DBRadio>
-```
-
-or using on-change listener:
-
-```typescript
-<DBRadio
-	:value="modelAndChange"
-	:on-change="($event) => { modelAndChange = $event.target.value;}"
->Label</DBRadio>
 ```

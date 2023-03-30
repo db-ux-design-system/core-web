@@ -1,15 +1,30 @@
 ## React
 
-Load SCSS globally in a `index.scss` file inside `main.tsx`/`main.jsx` within your app:
+For general installation and configuration look at the [react-components](https://www.npmjs.com/package/@db-ui/react-components) package.
 
-```SCSS
-@use "@db-ui/components/build/styles/db-ui-42-rollup" as *;
-```
+### Use component
 
-Import component:
-
-```typescript
+```tsx App.tsx
+// App.tsx
+import { useState } from "react";
 import { DBRadio } from "@db-ui/react-components";
 
-<DBRadio value={value}>Label</DBRadio>;
+const App = () => (
+	<ul>
+		{["X", "Y", "Z"].map((radioName) => (
+			<li key={radioName}>
+				<DBRadio
+					name="radio-group"
+					onChange={() => {
+						setRadio(radioName);
+					}}
+				>
+					Radio {radioName}
+				</DBRadio>
+			</li>
+		))}
+	</ul>
+);
+
+export default App;
 ```

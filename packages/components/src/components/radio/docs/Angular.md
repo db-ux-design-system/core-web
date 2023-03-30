@@ -1,29 +1,26 @@
 ## Angular
 
-Load SCSS globally within `styles.scss` in your app:
+For general installation and configuration look at the [ngx-components](https://www.npmjs.com/package/@db-ui/ngx-components) package.
 
-```scss
-@use "@db-ui/components/build/styles/db-ui-42-webpack" as *;
-```
+### Load component
 
-Third party controls require a `ControlValueAccessor` to function with Angular forms. Adding an `ngDefaultControl` attribute will allow them to use that directive.
-[Further information](https://stackoverflow.com/a/46465959)
-
-Load component within `app.module.ts`:
-
-```typescript
+```ts app.module.ts
+//app.module.ts
 import { DBRadioModule } from '@db-ui/ngx-components';
+
 @NgModule({
   ...
   imports: [..., DBRadioModule],
   ...
 })
+
 ```
 
-Use component in template:
+### Use component
 
-```html
-<DBRadio ngDefaultControl [(ngModel)]="value">Label</DBRadio>
+```html app.component.html
+<!-- app.component.html -->
+<db-radio ngDefaultControl [(ngModel)]="value">Radio</db-radio>
 ```
 
 ## How to use with Template Driven Forms
@@ -31,7 +28,7 @@ Use component in template:
 Third party controls require a `ControlValueAccessor` to function with angular forms. Adding an `ngDefaultControl` attribute will allow them to use that directive.
 [Further information](https://stackoverflow.com/a/46465959)
 
-```typescript
+```ts app.module.ts
 // app.module.ts
 @NgModule({
   …
@@ -39,8 +36,8 @@ Third party controls require a `ControlValueAccessor` to function with angular f
 })
 ```
 
-```html
-<!-- form.component.html-->
+```html form.component.html
+<!-- form.component.html -->
 <form>
 	<DBRadio ngDefaultControl [(ngModel)]="radio">Label</DBRadio>
 	<DBButton type="button" variant="primary" (click)="showValues()"
@@ -55,7 +52,7 @@ Third party controls require a `ControlValueAccessor` to function with angular f
 </dl>
 ```
 
-```typescript
+```ts form.component.ts
 // form.component.ts
 export class FormComponent {
 	radio = "";
