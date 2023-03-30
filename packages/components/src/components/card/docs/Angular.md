@@ -19,5 +19,5 @@ import { DBCardModule } from '@db-ui/ngx-components';
 
 ```html app.component.html
 <!-- app.component.html -->
-<DBCard>Card content</DBCard>
+<db-card>Card content</db-card>
 ```
