@@ -11,6 +11,63 @@ An Angular library containing all styles & components of [DB UX Design System (t
 
 `npm i @db-ui/ngx-components`
 
+## Dependencies (simple)
+
+<details>
+  <summary><strong>SCSS</strong></summary>
+
+```scss styles.scss
+// styles.scss
+@use "@db-ui/components/build/styles/db-ui-42-webpack" as *;
+```
+
+</details>
+<details>
+  <summary><strong>CSS</strong></summary>
+
+```css styles.css
+/* styles.css */
+@import "@db-ui/components/build/styles/db-ui-42-webpack";
+```
+
+</details>
+
+## Dependencies (advanced)
+
+<details>
+  <summary><strong>SCSS</strong></summary>
+
+```scss styles.scss
+// styles.scss
+@use "@db-ui/foundations/build/scss/webpack.assets-paths" as *;
+@use "@db-ui/foundations/build/scss/icon/icons" as *;
+@use "@db-ui/foundations/build/scss/db-ui-foundations" as *;
+```
+
+</details>
+<details>
+  <summary><strong>CSS</strong></summary>
+
+```css styles.css
+/* styles.css */
+@import "@db-ui/foundations/build/css/icon/icons.css";
+@import "@db-ui/foundations/build/css/db-ui-foundations.css";
+```
+
+</details>
+
+## Usage
+
+```ts
+<script setup lang="ts">
+	import { DBButton } from "@db-ui/v-components";
+</script>
+
+...
+<DBButton icon="account">Test</DBButton>
+...
+```
+
 ## Custom Events
 
 We do not provide every event on every component. If you are missing an event please [add an issue](https://github.com/db-ui/mono/issues).

@@ -7,13 +7,58 @@
 
 A library containing all styles for components of [DB UX Design System (technical components)](https://github.com/db-ui/mono).
 
-We currently support:
+We currently support additional frameworks:
 
 -   [Angular components](https://www.npmjs.com/package/@db-ui/ngx-components)
 -   [React components](https://www.npmjs.com/package/@db-ui/react-components)
 -   [Vue components](https://www.npmjs.com/package/@db-ui/v-components)
 
 Please look at your desired framework to retrieve more information.
+If you just need the styling follow this:
+
+## Install
+
+`npm i @db-ui/components`
+
+## Dependencies (simple)
+
+Import the styles in `scss` or `css`. Based on your technology the file names could be different.
+
+-   Default (db-ui-42): points to `../assets`
+-   Webpack (db-ui-42-webpack): points to `~@db-ui/foundations/assets`
+-   Rollup (db-ui-42-rollup): points to `@db-ui/foundations/assets`
+
+**SCSS**
+
+```scss
+// index.scss
+@use "@db-ui/components/build/styles/db-ui-42-rollup" as *;
+```
+
+**CSS**
+
+```js
+// main.js
+import "@db-ui/components/build/styles/db-ui-42-rollup.css";
+```
+
+## Dependencies (advanced)
+
+**SCSS**
+
+```scss
+@use "@db-ui/foundations/build/scss/rollup.assets-paths" as *;
+@use "@db-ui/foundations/build/scss/icon/icons" as *;
+@use "@db-ui/foundations/build/scss/db-ui-foundations" as *;
+```
+
+**CSS**
+
+```js
+// main.js
+import "@db-ui/foundations/build/css/icon/icons.css";
+import "@db-ui/foundations/build/css/db-ui-foundations.css";
+```
 
 ## Deutsche Bahn brand
 
