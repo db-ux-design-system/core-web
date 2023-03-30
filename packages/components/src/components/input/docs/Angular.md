@@ -4,7 +4,6 @@ Load SCSS globally within `styles.scss` in your app:
 
 ```scss
 @use "@db-ui/components/build/styles/db-ui-42-webpack" as *;
-
 ```
 
 Load component within `app.module.ts`:
@@ -23,7 +22,12 @@ import { DBInputModule } from '@db-ui/ngx-components';
 Use component in template:
 
 ```html
-<DBInput label="Label" placeholder="placeholder" description="Description" (change)="onInputChange()"></DBInput>
+<DBInput
+	label="Label"
+	placeholder="placeholder"
+	description="Description"
+	(change)="onInputChange()"
+></DBInput>
 ```
 
 ## How to use with Template Driven Forms
