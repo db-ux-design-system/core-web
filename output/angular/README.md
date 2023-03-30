@@ -11,7 +11,12 @@ An Angular library containing all styles & components of [DB UX Design System (t
 
 `npm i @db-ui/ngx-components`
 
-## Dependencies (simple)
+## Styling Dependencies
+Import the styles in scss or css. Based on your technology the file names could be different.
+
+-   Default (db-ui-42): points to `../assets`
+-   Webpack (db-ui-42-webpack): points to `~@db-ui/foundations/assets`
+-   Rollup (db-ui-42-rollup): points to `@db-ui/foundations/assets`
 
 <details>
   <summary><strong>SCSS</strong></summary>
@@ -28,30 +33,6 @@ An Angular library containing all styles & components of [DB UX Design System (t
 ```css styles.css
 /* styles.css */
 @import "@db-ui/components/build/styles/db-ui-42-webpack";
-```
-
-</details>
-
-## Dependencies (advanced)
-
-<details>
-  <summary><strong>SCSS</strong></summary>
-
-```scss styles.scss
-// styles.scss
-@use "@db-ui/foundations/build/scss/webpack.assets-paths" as *;
-@use "@db-ui/foundations/build/scss/icon/icons" as *;
-@use "@db-ui/foundations/build/scss/db-ui-foundations" as *;
-```
-
-</details>
-<details>
-  <summary><strong>CSS</strong></summary>
-
-```css styles.css
-/* styles.css */
-@import "@db-ui/foundations/build/css/icon/icons.css";
-@import "@db-ui/foundations/build/css/db-ui-foundations.css";
 ```
 
 </details>
