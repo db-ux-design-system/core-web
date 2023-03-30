@@ -1,14 +1,11 @@
 ## Vue
 
-Load SCSS globally in a `index.scss` file and import it in your `main.ts`/`main.js` file in your app:
+For general installation and configuration look at the [v-components](https://www.npmjs.com/package/@db-ui/v-components) package.
 
-```scss
-@use "@db-ui/components/build/styles/db-ui-42-rollup" as *;
-```
+### Use component
 
-Use component:
-
-```vue
+```vue App.vue
+<!-- App.vue -->
 <script>
 import { DBCard } from '@db-ui/v-components';
 </script>
