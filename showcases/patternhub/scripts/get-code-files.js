@@ -17,11 +17,7 @@ const getFileTypeByFramework = (framework) => {
 	}
 
 	if (framework === 'vue') {
-		return 'vue-html';
-	}
-
-	if (framework === 'angular') {
-		return 'vue-html';
+		return 'tsx';
 	}
 
 	return 'html';
@@ -53,7 +49,7 @@ const getExamplesAsMDX = (examples) => {
 				result += `\`\`\`${getFileTypeByFramework(
 					framework
 				)} ${framework}\n`;
-				result += `${exampleCode.replace(/;/g, '')}`;
+				result += `${exampleCode.replace(/;/g, '')}\n`;
 				result += '```\n\n';
 			}
 		}
