@@ -69,6 +69,7 @@
 	}
 
 	&[data-size="small"] {
+		--icon-font-size: var(--db-base-icon-font-size);
 		@extend %db-body-sm;
 
 		&[data-content="internal"],
@@ -76,6 +77,8 @@
 			&::after,
 			.db-icon {
 				--icon-margin-before: var(--db-spacing-fixed-3xs);
+				--icon-font-size: var(--db-base-icon-font-size);
+				@extend %db-body-sm;
 			}
 		}
 	}
