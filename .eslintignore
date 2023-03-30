@@ -2,6 +2,10 @@
 **/public
 **/out
 **/helpers
+**/dist
 /packages/components/**
 !/packages/components/scripts
 /showcases/patternhub/pages/components/**
+build-outputs/
+build-showcases/
+build-power-apps/
