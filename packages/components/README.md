@@ -7,7 +7,7 @@
 
 A library containing all styles for components of [DB UX Design System (technical components)](https://github.com/db-ui/mono).
 
-We currently support additional frameworks:
+We currently support additional JavaScript frameworks:
 
 -   [Angular components](https://www.npmjs.com/package/@db-ui/ngx-components)
 -   [React components](https://www.npmjs.com/package/@db-ui/react-components)
@@ -24,9 +24,9 @@ If you just need the styling follow this:
 
 Import the styles in `scss` or `css`. Based on your technology the file names could be different.
 
--   Default (db-ui-42): points to `../assets`
--   Webpack (db-ui-42-webpack): points to `~@db-ui/foundations/assets`
--   Rollup (db-ui-42-rollup): points to `@db-ui/foundations/assets`
+-   Default (db-ui-42): asset path point to `../assets`
+-   Webpack (db-ui-42-webpack): asset path point to `~@db-ui/foundations/assets`
+-   Rollup (db-ui-42-rollup): asset path point to `@db-ui/foundations/assets`
 
 **SCSS**
 
@@ -36,6 +36,15 @@ Import the styles in `scss` or `css`. Based on your technology the file names co
 ```
 
 **CSS**
+
+Within HTML files directly:
+
+```html
+// index.html
+<link rel="stylesheet" href="/styles/db-ui-42.css">
+```
+
+Or within your JavaScript files, with the related bundler as a prefix (in this case rollup and equivalents like Vite):
 
 ```js
 // main.js
