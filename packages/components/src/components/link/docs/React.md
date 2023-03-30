@@ -1,25 +1,18 @@
 ## React
 
-Load SCSS globally somewhere in your app:
+For general installation and configuration look at the [react-components](https://www.npmjs.com/package/@db-ui/react-components) package.
 
-```scss
-@use "@db-ui/foundations/build/scss/variables.global" as *;
-@use "@db-ui/components/build/styles/db-ui-42-rollup" as *;
-@use "@db-ui/foundations/build/scss/color-classes" as *;
-```
+### Use component
 
-Import component:
-
-```tsx
+```tsx App.tsx
+// App.tsx
 import { DBLink } from "@db-ui/react-components";
 
-<DBLink
-	href="#"
-	variant={variant}
-	disabled={disabled}
-	size={size}
-	content={content}
->
-	{children}
-</DBLink>;
+const App = () => (
+	<DBLink href="#" variant="primary">
+		Link
+	</DBLink>
+);
+
+export default App;
 ```

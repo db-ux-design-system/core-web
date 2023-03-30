@@ -4,18 +4,21 @@ Load SCSS globally in a `index.scss` file and import it in your `main.ts`/`main.
 
 ```scss
 @use "@db-ui/components/build/styles/db-ui-42-rollup" as *;
-
 ```
 
 Use component:
 
 ```vue
 <script>
-import { DBInput } from '@db-ui/v-components';
+import { DBInput } from "@db-ui/v-components";
 </script>
 
 <template>
-  <DBInput label="Label" placeholder="Placeholder" @change="onChange($event)"></DBInput>
+	<DBInput
+		label="Label"
+		placeholder="Placeholder"
+		@change="onChange($event)"
+	></DBInput>
 </template>
 ```
 

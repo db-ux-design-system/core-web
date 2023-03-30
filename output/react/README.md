@@ -11,7 +11,7 @@ A React library containing all styles & components of [DB UX Design System (tech
 
 `npm i @db-ui/react-components`
 
-## Dependencies (simple)
+## Styling Dependencies
 
 Import the styles in scss or css. Based on your technology the file names could be different.
 
@@ -34,29 +34,6 @@ Import the styles in scss or css. Based on your technology the file names could 
 ```tsx
 // main.tsx
 import "@db-ui/components/build/styles/db-ui-42-rollup.css";
-```
-
-</details>
-
-## Dependencies (advanced)
-
-<details>
-  <summary><strong>SCSS</strong></summary>
-
-```scss
-@use "@db-ui/foundations/build/scss/rollup.assets-paths" as *;
-@use "@db-ui/foundations/build/scss/icon/icons" as *;
-@use "@db-ui/foundations/build/scss/db-ui-foundations" as *;
-```
-
-</details>
-<details>
-  <summary><strong>CSS</strong></summary>
-
-```tsx
-// main.tsx
-import "@db-ui/foundations/build/css/icon/icons.css";
-import "@db-ui/foundations/build/css/db-ui-foundations.css";
 ```
 
 </details>

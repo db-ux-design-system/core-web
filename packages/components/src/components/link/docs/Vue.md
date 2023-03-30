@@ -1,21 +1,16 @@
 ## Vue
 
-Load SCSS globally somewhere in your app:
+For general installation and configuration look at the [v-components](https://www.npmjs.com/package/@db-ui/v-components) package.
 
-```scss
-@use "@db-ui/foundations/build/scss/variables.global" as *;
-@use "@db-ui/components/build/styles/db-ui-42-rollup" as *;
-@use "@db-ui/foundations/build/scss/color-classes" as *;
-```
+### Use component
 
-Use component:
-
-```vue
+```vue App.vue
+<!-- App.vue -->
 <script>
 import { DBLink } from "@db-ui/v-components";
 </script>
 
 <template>
-	<DBLink variant="primary">Link</DBLink>
+	<DBLink href="#" variant="primary">Link</DBLink>
 </template>
 ```
