@@ -1,15 +1,15 @@
 ## HTML
 
-Load SCSS globally somewhere in your app:
+For general installation and configuration look at the [components](https://www.npmjs.com/package/@db-ui/components) package.
 
-```scss
-@use "@db-ui/components/build/styles/db-ui-42" as *;
-```
+### Use component
 
-Use it:
-
-```html
-<div
-	class="db-card"
->Card content</div>
+```html index.html
+<!-- index.html -->
+...
+<body>
+	<div
+		class="db-card"
+	>Card content</div>
+</body>
 ```
