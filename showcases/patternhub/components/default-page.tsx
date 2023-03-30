@@ -13,6 +13,8 @@ import '@db-ui/core/dist/css/db-ui-core.vars.css';
 import { useRouter } from 'next/router';
 import { DbMainnavigationDataType } from '@db-ui/elements/dist/types/components/db-mainnavigation/db-mainnavigation-type';
 import { useEffect, useState } from 'react';
+// Using this one for adapting our iframes on the Marketingportal
+import 'iframe-resizer/js/iframeResizer.contentWindow.min.js';
 
 const getRoutesWithCurrent = (
 	routes: DbMainnavigationDataType[],
