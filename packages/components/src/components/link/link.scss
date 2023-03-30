@@ -40,7 +40,7 @@
 	}
 
 	&[data-content="internal"] {
-		@include icon(glyph(link), 24, "outline", "after");
+		@include icon(glyph(arrow-forward), 24, "outline", "after");
 	}
 
 	&[data-content="external"] {
