@@ -33,6 +33,7 @@
     "@types/react-dom": "18.0.11",
     "eslint": "8.37.0",
     "eslint-config-next": "13.2.4",
+    "iframe-resizer": "^4.3.6",
     "open-cli": "^7.2.0",
     "sass": "^1.60.0",
     "typescript": "4.9.5"
