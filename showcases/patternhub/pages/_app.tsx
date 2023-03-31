@@ -10,7 +10,7 @@ export default function App({ Component, pageProps }: AppProps) {
 			<Head>
 				<script
 					type="text/javascript"
-					src="/iframeResizer.contentWindow.min.js"></script>
+					src="iframeResizer.contentWindow.min.js"></script>
 			</Head>
 			<Component {...pageProps} />
 		</>
