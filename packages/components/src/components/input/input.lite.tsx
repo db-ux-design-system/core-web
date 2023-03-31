@@ -41,6 +41,7 @@ export default function DBInput(props: DBInputProps) {
 	const state = useStore<DBInputState>({
 		_id: DEFAULT_ID,
 		_isValid: undefined,
+		_dataListId: DEFAULT_ID,
 		_value: '',
 		iconVisible: (icon: string) => {
 			return icon && icon !== '_' && icon !== 'none';
@@ -159,7 +160,9 @@ export default function DBInput(props: DBInputProps) {
 					<For each={props.dataList}>
 						{(option: KeyValueType) => (
 							<option
-								key={`${state._dataListId}-option-${option.key}`}
+								key={
+									state._dataListId + '-option-' + option.key
+								}
 								value={option.key}>
 								{option.value}
 							</option>

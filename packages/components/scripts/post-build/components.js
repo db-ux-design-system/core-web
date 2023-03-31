@@ -109,6 +109,10 @@ const getComponents = () => [
 	},
 	{
 		name: 'input',
+		overwrites: {
+			global: [{ from: ', KeyValueType', to: '' }],
+			vue: [{ from: ', index', to: '' }]
+		},
 		config: {
 			isFormComponent: true,
 			isIconComponent: true,
