@@ -1,9 +1,9 @@
-import { onMount, Show, useMetadata, useStore } from '@builder.io/mitosis';
+import { For, onMount, Show, useMetadata, useStore } from '@builder.io/mitosis';
 import { DBIcon } from '../icon';
 import { uuid } from '../../utils';
 import { DBInputProps, DBInputState } from './model';
 import { DEFAULT_ID, DEFAULT_LABEL } from '../../shared/constants';
-import { DefaultVariantsIcon } from '../../shared/model';
+import { DefaultVariantsIcon, KeyValueType } from '../../shared/model';
 
 useMetadata({
 	isAttachedToShadowDom: true,
@@ -93,6 +93,9 @@ export default function DBInput(props: DBInputProps) {
 
 	onMount(() => {
 		state._id = props.id ? props.id : 'input-' + uuid();
+		state._dataListId = props.dataListId
+			? props.dataListId
+			: `datalist-${state._id}`;
 
 		if (props.value) {
 			state._value = props.value;
@@ -122,6 +125,7 @@ export default function DBInput(props: DBInputProps) {
 				aria-labelledby={state._id + '-label'}
 				disabled={props.disabled}
 				required={props.required}
+				defaultValue={props.defaultValue}
 				value={state._value}
 				maxLength={props.maxLength}
 				minLength={props.minLength}
@@ -129,6 +133,7 @@ export default function DBInput(props: DBInputProps) {
 				onChange={(event) => state.handleChange(event)}
 				onBlur={(event) => state.handleBlur(event)}
 				onFocus={(event) => state.handleFocus(event)}
+				list={state._dataListId}
 			/>
 			<label
 				htmlFor={state._id}
@@ -148,6 +153,22 @@ export default function DBInput(props: DBInputProps) {
 			<Show when={state.iconVisible(props.iconAfter)}>
 				<DBIcon icon={props.iconAfter} class="icon-after" />
 			</Show>
+			<DBIcon icon="expand-more" class="datalist-icon" />
+			<Show when={props.dataList}>
+				<datalist id={state._dataListId}>
+					<For each={props.dataList}>
+						{(option: KeyValueType) => (
+							<option
+								key={`${state._dataListId}-option-${option.key}`}
+								value={option.key}>
+								{option.value}
+							</option>
+						)}
+					</For>
+				</datalist>
+			</Show>
+
+			{props.children}
 		</div>
 	);
 }

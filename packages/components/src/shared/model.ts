@@ -38,6 +38,7 @@ export type FormProps = {
 	disabled?: boolean;
 	required?: boolean;
 	value?: any;
+	defaultValue?: any;
 	name?: string;
 };
 
@@ -129,3 +130,8 @@ export type ValidEventProps = {
 };
 
 export type NestedRefComponentType = { getFormRef?: () => { current?: any } };
+
+export type KeyValueType = {
+	key: string;
+	value?: string;
+};
