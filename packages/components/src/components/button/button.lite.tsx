@@ -49,12 +49,12 @@ export default function DBButton(props: DBButtonProps) {
 	// This is used as forwardRef
 	let component: any;
 	const state = useStore<DBButtonState>({
-		handleClick: (event) => {
+		handleClick: (event: any) => {
 			if (props.onClick) {
 				props.onClick(event);
 			}
 		},
-		iconVisible: (icon: string) => {
+		iconVisible: (icon?: string) => {
 			return icon && icon !== '_' && icon !== 'none';
 		}
 	});

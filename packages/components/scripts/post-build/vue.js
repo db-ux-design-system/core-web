@@ -118,35 +118,7 @@ module.exports = (tmp) => {
 				});
 			}
 
-			const upperComponentName = getComponentName(componentName);
-
-			let replacements = [
-				{
-					from: `_classStringToObject(str)`,
-					to: '_classStringToObject(str:any)'
-				},
-				{
-					from: `const obj = {};`,
-					to: 'const obj:any = {};'
-				},
-				{
-					from: `import { DB${upperComponentName}State, DB${upperComponentName}Props } from "./model";`,
-					to: ''
-				},
-				{
-					from: `import { DB${upperComponentName}Props, DB${upperComponentName}State } from "./model";`,
-					to: ''
-				}
-			];
-
-			if (component?.config?.isFormComponent) {
-				replacements.push({
-					from: '_isValid: undefined,',
-					to: ''
-				});
-			}
-
-			runReplacements(replacements, component, 'vue', vueFile);
+			runReplacements([], component, 'vue', vueFile);
 		} catch (error) {
 			console.error('Error occurred:', error);
 		}
