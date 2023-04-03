@@ -20,7 +20,30 @@ import { DBRadioModule } from '@db-ui/ngx-components';
 
 ```html app.component.html
 <!-- app.component.html -->
-<db-radio ngDefaultControl [(ngModel)]="value">Radio</db-radio>
+<ul>
+	<li *ngFor="let radioName of radioNames">
+		<db-radio
+			(change)="radio = radioName"
+			[label]="'Radio ' + radioName"
+			[value]="radioName"
+			name="RadioGroup"
+		></db-radio>
+	</li>
+</ul>
+```
+
+```ts app.component.ts
+// app.component.ts
+import { Component } from "@angular/core";
+
+@Component({
+	selector: "app-app",
+	templateUrl: "./app.component.html"
+})
+export class AppComponent {
+	radioNames = ["X", "Y", "Z"];
+	radio = "";
+}
 ```
 
 ## How to use with Template Driven Forms
