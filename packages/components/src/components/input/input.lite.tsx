@@ -3,7 +3,7 @@ import { DBIcon } from '../icon';
 import { uuid } from '../../utils';
 import { DBInputProps, DBInputState } from './model';
 import { DEFAULT_ID, DEFAULT_LABEL } from '../../shared/constants';
-import { DefaultVariantsIcon } from '../../shared/model';
+import { DefaultVariantProps, DefaultVariantsIcon } from '../../shared/model';
 
 useMetadata({
 	isAttachedToShadowDom: true,
@@ -42,17 +42,17 @@ export default function DBInput(props: DBInputProps) {
 		_id: DEFAULT_ID,
 		_isValid: undefined,
 		_value: '',
-		iconVisible: (icon: string) => {
+		iconVisible: (icon?: string) => {
 			return icon && icon !== '_' && icon !== 'none';
 		},
-		getIcon: (variant) => {
+		getIcon: (variant?: DefaultVariantProps) => {
 			if (variant) {
 				return DefaultVariantsIcon[variant];
 			}
 
 			return '';
 		},
-		handleChange: (event) => {
+		handleChange: (event: any) => {
 			if (props.onChange) {
 				props.onChange(event);
 			}
@@ -71,7 +71,7 @@ export default function DBInput(props: DBInputProps) {
 				}
 			}
 		},
-		handleBlur: (event) => {
+		handleBlur: (event: any) => {
 			if (props.onBlur) {
 				props.onBlur(event);
 			}
@@ -80,7 +80,7 @@ export default function DBInput(props: DBInputProps) {
 				props.blur(event);
 			}
 		},
-		handleFocus: (event) => {
+		handleFocus: (event: any) => {
 			if (props.onFocus) {
 				props.onFocus(event);
 			}
