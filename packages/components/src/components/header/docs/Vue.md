@@ -11,6 +11,8 @@ import { DBHeader, DBBrand } from "@db-ui/v-components";
 </script>
 
 <template>
-	<DBHeader><DBBrand slot="brand">Header</DBBrand></DBHeader>
+	<DBHeader>
+		<DBBrand slot="brand">Header</DBBrand>
+	</DBHeader>
 </template>
 ```
