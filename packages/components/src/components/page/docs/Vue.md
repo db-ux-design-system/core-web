@@ -11,9 +11,9 @@ import { DBPage, DBHeader } from "@db-ui/v-components";
 </script>
 
 <template>
-	<DBPage
-		><DBHeader slot="header">...</DBHeader>
-		<div>Main Page</div></DBPage
-	>
+	<DBPage>
+		<DBHeader slot="header">...</DBHeader>
+		<main>Main Page</main>
+	</DBPage>
 </template>
 ```
