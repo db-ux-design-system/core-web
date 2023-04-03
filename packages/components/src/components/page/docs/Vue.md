@@ -13,7 +13,7 @@ import { DBPage, DBHeader } from "@db-ui/v-components";
 <template>
 	<DBPage>
 		<DBHeader slot="header">...</DBHeader>
-		<main>Main Page</main>
+		<main class="db-main">Main Page</main>
 	</DBPage>
 </template>
 ```
