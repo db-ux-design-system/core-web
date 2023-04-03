@@ -1,4 +1,5 @@
 export type GlobalProps = {
+	key?: string;
 	id?: string;
 	title?: string;
 	stylePath?: string;
@@ -30,7 +31,7 @@ export type IconProps = {
 };
 
 export type IconState = {
-	iconVisible: (icon: string) => boolean;
+	iconVisible: (icon?: string) => boolean;
 };
 
 export type FormProps = {

@@ -14,7 +14,7 @@ export default function DBLink(props: DBLinkProps) {
 	// This is used as forwardRef
 	let component: any;
 	const state = useStore<DBLinkState>({
-		handleClick: (event) => {
+		handleClick: (event: any) => {
 			if (props.onClick) {
 				props.onClick(event);
 			}

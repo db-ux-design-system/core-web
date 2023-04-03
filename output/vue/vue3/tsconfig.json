@@ -1,5 +1,6 @@
 {
 	"compilerOptions": {
+		"strict": false,
 		"isolatedModules": true,
 		"useDefineForClassFields": true,
 		"allowUnreachableCode": false,
@@ -11,10 +12,10 @@
 		"lib": ["dom", "esnext"],
 		"module": "esnext",
 		"moduleResolution": "node",
-		"noImplicitAny": true,
-		"noImplicitReturns": true,
-		"noUnusedLocals": true,
-		"noUnusedParameters": true,
+		"noImplicitAny": false,
+		"noImplicitReturns": false,
+		"noUnusedLocals": false,
+		"noUnusedParameters": false,
 		"outDir": "dist",
 		"removeComments": false,
 		"sourceMap": true,
