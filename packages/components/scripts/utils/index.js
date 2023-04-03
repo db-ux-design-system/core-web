@@ -1,8 +1,3 @@
-const {
-	clickComponentChanges,
-	formComponentChanges,
-	iconComponentChanges
-} = require('../post-build/components');
 const Replace = require('replace-in-file');
 const getComponentName = (componentName) => {
 	return componentName
@@ -18,17 +13,6 @@ const runReplacements = (replacements, component, framework, file) => {
 
 	if (component?.overwrites?.global) {
 		replacements = [...replacements, ...component.overwrites.global];
-	}
-	if (component?.config?.isClickComponent) {
-		replacements = [...replacements, ...clickComponentChanges];
-	}
-
-	if (component?.config?.isFormComponent) {
-		replacements = [...replacements, ...formComponentChanges];
-	}
-
-	if (component?.config?.isIconComponent) {
-		replacements = [...replacements, ...iconComponentChanges];
 	}
 
 	for (const replacement of replacements) {

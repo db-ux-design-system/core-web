@@ -22,7 +22,7 @@ export default function DBTabBar(props: DBTabBarProps) {
 	// This is used as forwardRef
 	let component: any;
 	const state = useStore<DBTabBarState>({
-		convertTabs(tabs: DBTabProps[] | string | undefined) {
+		convertTabs(tabs: any[] | string | undefined) {
 			try {
 				if (typeof tabs === 'string') {
 					return JSON.parse(tabs);
