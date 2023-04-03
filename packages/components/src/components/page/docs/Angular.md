@@ -10,10 +10,8 @@ import { DBPageModule, DBHeaderModule } from '@db-ui/ngx-components';
 
 @NgModule({
 	...
-		imports:
-[..., DBPageModule, DBHeaderModule
-],
-...
+	imports: [..., DBPageModule, DBHeaderModule],
+	...
 })
 
 ```
