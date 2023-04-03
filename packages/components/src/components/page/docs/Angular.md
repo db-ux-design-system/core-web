@@ -22,6 +22,6 @@ import { DBPageModule, DBHeaderModule } from '@db-ui/ngx-components';
 <!-- app.component.html -->
 <db-page>
 	<db-header header>...</db-header>
-	<div>Main Page</div>
+	<main>Main Page</main>
 </db-page>
 ```
