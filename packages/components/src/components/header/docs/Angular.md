@@ -20,5 +20,7 @@ import { DBHeaderModule } from '@db-ui/ngx-components';
 
 ```html app.component.html
 <!-- app.component.html -->
-<db-header><db-brand brand>Header</db-brand></db-header>
+<db-header>
+	<db-brand brand>Header</db-brand>
+</db-header>
 ```
