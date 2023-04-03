@@ -20,8 +20,8 @@ import { DBPageModule, DBHeaderModule } from '@db-ui/ngx-components';
 
 ```html app.component.html
 <!-- app.component.html -->
-<db-page
-	><db-header header>...</db-header>
-	<div>Main Page</div></db-page
->
+<db-page>
+	<db-header header>...</db-header>
+	<div>Main Page</div>
+</db-page>
 ```
