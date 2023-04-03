@@ -10,7 +10,7 @@ import { DBPage, DBHeader } from "@db-ui/react-components";
 
 const App = () => (
 	<DBPage slotHeader={<DBHeader>...</DBHeader>}>
-		<main>Main Page</main>
+		<main class="db-main">Main Page</main>
 	</DBPage>
 );
 
