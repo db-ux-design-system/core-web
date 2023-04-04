@@ -3,7 +3,7 @@
 		<form>
 			<fieldset>
 				<p>DbInput:</p>
-				<DBInput
+				<db-input
 					[(ngModel)]="input"
 					name="username"
 					label="Textinput"
@@ -12,19 +12,26 @@
 					icon="edit"
 					ngDefaultControl
 				>
-				</DBInput>
+				</db-input>
 				<p>DbRadio:</p>
-				<DBRadio label="Test" name="Test" [checked]="true"></DBRadio>
-				<DBRadio label="Test2" name="Test"></DBRadio>
-				<DBRadio label="Test3" name="Test"></DBRadio>
+				<ul>
+					<li *ngFor="let radioName of radioNames">
+						<db-radio
+							(change)="radio = radioName"
+							[label]="'Radio ' + radioName"
+							[value]="radioName"
+							name="RadioGroup"
+						></db-radio>
+					</li>
+				</ul>
 				<p>DbButton:</p>
-				<DBButton
+				<db-button
 					type="button"
 					variant="primary"
 					(click)="showValues()"
 				>
 					Hi from Showcase!
-				</DBButton>
+				</db-button>
 			</fieldset>
 		</form>
 	</div>
@@ -33,6 +40,10 @@
 		<dl>
 			<dt>inputs value</dt>
 			<dd>{{ input ? input : "No Input set" }}</dd>
+		</dl>
+		<dl>
+			<dt>radio's value</dt>
+			<dd>{{ radio ? radio : "No radio set" }}</dd>
 		</dl>
 	</div>
 </div>

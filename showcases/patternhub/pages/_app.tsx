@@ -8,9 +8,10 @@ export default function App({ Component, pageProps }: AppProps) {
 	return (
 		<>
 			<Script
-				src="https://davidjbradshaw.github.io/iframe-resizer/js/iframeResizer.min.js"
-				integrity="sha384-FrvUFAIT+KOe9p2UMtL+H5mRPUtMScnZgT8JWcXYoy4FkXSPZkBqN72JCUK+/KtJ"
-				crossOrigin="anonymous"
+				src={
+					(process.env.NEXT_PUBLIC_BASE_PATH ?? '') +
+					'/iframe-resizer/iframeResizer.contentWindow.min.js'
+				}
 			/>
 			<Component {...pageProps} />
 		</>
