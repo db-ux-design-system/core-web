@@ -4,6 +4,8 @@ For general installation and configuration look at the [components](https://www.
 
 ### Use component
 
+You could use the `data-icon` or `data-icon-after` attributes on any HTML tag:
+
 ```html index.html
 <!-- index.html -->
 ...
