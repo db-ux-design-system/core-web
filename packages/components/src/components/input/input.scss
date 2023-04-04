@@ -75,22 +75,25 @@
 		}
 	}
 
-	.datalist-icon {
-		transition: transform $db-transition-emotional-straight;
-	}
+	&:has(> datalist) {
+		--db-input-padding-end-datalist: 1;
 
-	&:not(:has(> datalist)) {
-		.datalist-icon {
-			display: none !important;
+		// Datalist icon
+		@include icon(glyph(expand-more), 24, "outline", "after");
+
+		&::after {
+			transition: transform $db-transition-emotional-straight;
+
+			&:focus,
+			&:not(:placeholder-shown) {
+				transform: rotate(180deg);
+			}
 		}
 	}
 
-	&:has(> datalist) {
-		--db-input-padding-end-datalist: 1;
-	}
-
 	.db-icon,
-	db-icon {
+	db-icon,
+	&:has(> datalist)::after {
 		--icon-font-family: var(--db-base-icon-font-family);
 		--icon-font-size: var(--db-base-icon-font-size);
 
@@ -105,10 +108,9 @@
 	}
 
 	.icon-after,
-	.datalist-icon,
 	// angular specific nesting
 	dbicon.icon-after > .db-icon,
-	dbicon.datalist-icon > .db-icon {
+	&:has(> datalist)::after {
 		right: 0;
 	}
 
@@ -122,7 +124,8 @@
 	// currently not supported by firefox
 	&:has(> input:disabled) {
 		.db-icon,
-		.icon-input-state {
+		.icon-input-state,
+		&:has(> datalist)::after {
 			opacity: 0.5;
 		}
 	}
@@ -201,10 +204,6 @@
 
 			+ label {
 				@include label-focus-animation();
-			}
-
-			& ~ .datalist-icon {
-				transform: rotate(180deg);
 			}
 		}
 

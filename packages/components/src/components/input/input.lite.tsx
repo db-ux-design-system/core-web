@@ -158,7 +158,6 @@ export default function DBInput(props: DBInputProps) {
 			<Show when={state.iconVisible(props.iconAfter)}>
 				<DBIcon icon={props.iconAfter} class="icon-after" />
 			</Show>
-			<DBIcon icon="expand-more" class="datalist-icon" />
 			<Show when={props.dataList}>
 				<datalist id={state._dataListId}>
 					<For each={props.dataList}>
