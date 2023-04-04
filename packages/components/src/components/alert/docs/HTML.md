@@ -8,12 +8,7 @@ For general installation and configuration look at the [components](https://www.
 <!-- index.html -->
 ...
 <body>
-	<div class="db-alert">
-		<span
-			aria-hidden="true"
-			class="db-icon db-alert-icon is-icon-text-replace"
-			data-icon="info"
-		></span>
+	<div class="db-alert" data-icon="info">
 		<div class="db-alert-content-container">
 			<div class="db-alert-headline-container">
 				<strong>Headline</strong>
@@ -22,14 +17,8 @@ For general installation and configuration look at the [components](https://www.
 						class="db-button is-icon-text-replace"
 						data-size="small"
 						data-variant="transparent"
-					>
-						<span
-							aria-hidden="true"
-							class="db-icon is-icon-text-replace"
-							data-icon="close"
-						></span>
-						Close Button
-					</button>
+						data-icon="close"
+					>Close Button</button>
 				</div>
 			</div>
 			<span>Alert</span>
