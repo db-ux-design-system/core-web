@@ -8,6 +8,6 @@ For general installation and configuration look at the [components](https://www.
 <!-- index.html -->
 ...
 <body>
-	<div class="db-button" data-variant="primary">Button</div>
+	<button class="db-button" data-variant="primary">Button</button>
 </body>
 ```
