@@ -5,14 +5,14 @@
 			{
 				"name": "(Default) Adaptive",
 				"code": {
-					"html": "<a class=\"db-link\" href=\"#\" tabindex=\"0\" data-content=\"internal\">(Default) Adaptive<span aria-hidden=\"true\" class=\"db-icon\" data-icon=\"link\"></span></a>",
+					"html": "<a class=\"db-link\" href=\"#\" data-content=\"internal\">(Default) Adaptive</a>",
 					"default": "<DBLink href=\"#\">Link</DBLink>"
 				}
 			},
 			{
 				"name": "Primary",
 				"code": {
-					"html": "<a class=\"db-link\" href=\"#\" tabindex=\"0\" data-variant=\"primary\" data-content=\"internal\">Primary<span aria-hidden=\"true\" class=\"db-icon\" data-icon=\"link\"></span></a>",
+					"html": "<a class=\"db-link\" href=\"#\" data-variant=\"primary\" data-content=\"internal\">Primary</a>",
 					"default": "<DBLink href=\"#\" variant=\"primary\">Link</DBLink>"
 				}
 			}
@@ -24,14 +24,14 @@
 			{
 				"name": "Default: (Enabled, Hover, Pressed)",
 				"code": {
-					"html": "<a class=\"db-link\" href=\"#\" tabindex=\"0\" data-content=\"internal\">Default: (Enabled, Hover, Pressed)<span aria-hidden=\"true\" class=\"db-icon\" data-icon=\"link\"></span></a>",
+					"html": "<a class=\"db-link\" href=\"#\" data-content=\"internal\">Default: (Enabled, Hover, Pressed)</a>",
 					"default": "<DBLink href=\"#\">Link</DBLink>"
 				}
 			},
 			{
 				"name": "Disabled",
 				"code": {
-					"html": "<a class=\"db-link\" href=\"#\" aria-disabled=\"true\" tabindex=\"-1\" data-content=\"internal\">Disabled<span aria-hidden=\"true\" class=\"db-icon\" data-icon=\"link\"></span></a>",
+					"html": "<a class=\"db-link\" href=\"#\" aria-disabled=\"true\" tabindex=\"-1\" data-content=\"internal\">Disabled</a>",
 					"default": "<DBLink href=\"#\" disabled>Link</DBLink>"
 				}
 			}
@@ -43,14 +43,14 @@
 			{
 				"name": "(Default) Medium",
 				"code": {
-					"html": "<a class=\"db-link\" href=\"#\" tabindex=\"0\" data-content=\"internal\">(Default) Medium<span aria-hidden=\"true\" class=\"db-icon\" data-icon=\"link\"></span></a>",
+					"html": "<a class=\"db-link\" href=\"#\" data-content=\"internal\">(Default) Medium</a>",
 					"default": "<DBLink href=\"#\">Link</DBLink>"
 				}
 			},
 			{
 				"name": "Small",
 				"code": {
-					"html": "<a class=\"db-link\" href=\"#\" tabindex=\"0\" data-size=\"small\" data-content=\"internal\">Small<span aria-hidden=\"true\" class=\"db-icon\" data-icon=\"link\"></span></a>",
+					"html": "<a class=\"db-link\" href=\"#\" data-size=\"small\" data-content=\"internal\">Small</a>",
 					"default": "<DBLink href=\"#\" size=\"small\">Link</DBLink>"
 				}
 			}
@@ -62,14 +62,14 @@
 			{
 				"name": "(Default) Internal",
 				"code": {
-					"html": "<a class=\"db-link\" href=\"#\" tabindex=\"0\" data-content=\"internal\">(Default) Internal<span aria-hidden=\"true\" class=\"db-icon\" data-icon=\"link\"></span></a>",
+					"html": "<a class=\"db-link\" href=\"#\" data-content=\"internal\">(Default) Internal</a>",
 					"default": "<DBLink href=\"#\">Link</DBLink>"
 				}
 			},
 			{
 				"name": "External",
 				"code": {
-					"html": "<a class=\"db-link\" href=\"#\" tabindex=\"0\" data-content=\"external\">External<span aria-hidden=\"true\" class=\"db-icon\" data-icon=\"link-external\"></span></a>",
+					"html": "<a class=\"db-link\" href=\"#\" data-content=\"external\">External</a>",
 					"default": "<DBLink href=\"#\" content=\"external\">Link</DBLink>"
 				}
 			}
