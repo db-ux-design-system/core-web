@@ -16,7 +16,7 @@ export default function DBInfotext(props: DBInfotextProps) {
 	let component: any;
 	const state = useStore<DBInfotextState>({
 		getIcon: (icon?: string, variant?: string) => {
-			return icon || DefaultVariantsIcon[variant] || 'info';
+			return icon || (variant && DefaultVariantsIcon[variant]) || 'info';
 		}
 	});
 

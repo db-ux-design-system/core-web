@@ -1,17 +1,16 @@
 ---
-to: ../../showcases/shared/<%= name %>.ts
+to: ../../showcases/shared/<%= name %>.json
 ---
-import { DefaultComponentVariants } from './default-component-data';
-
-const defaultComponentVariants: DefaultComponentVariants[] = [
+[
 	{
-		name: 'TODO: Edit me in ./showcases/shared/<%= name %>.ts',
+		name: 'TODO: Edit me in ./showcases/shared/<%= name %>.json',
 		examples: [
 			{
-				name: '(Default) <%= name %>'
+				name: '(Default) <%= name %>',
+				code: {
+					"default":""
+				}
 			}
 		]
 	}
 ]
-
-export default defaultComponentVariants;

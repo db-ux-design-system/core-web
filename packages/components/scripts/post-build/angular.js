@@ -7,7 +7,9 @@ const changeFile = (component, input) => {
 		.split('\n')
 		.filter(
 			(line) =>
-				!line.includes('@db-ui') && !line.includes(`Props } from "../`)
+				!line.includes('@db-ui') &&
+				!line.includes(`Props } from "../`) &&
+				!line.includes(`[key]=`)
 		)
 		.map((line) => {
 			if (

@@ -27,7 +27,7 @@ export default function DBRadio(props: DBRadioProps) {
 		_checked: false,
 		_isValid: undefined,
 
-		handleChange: (event) => {
+		handleChange: (event: any) => {
 			if (props.onChange) {
 				props.onChange(event);
 			}
@@ -45,7 +45,7 @@ export default function DBRadio(props: DBRadioProps) {
 				}
 			}
 		},
-		handleBlur: (event) => {
+		handleBlur: (event: any) => {
 			if (props.onBlur) {
 				props.onBlur(event);
 			}
@@ -54,7 +54,7 @@ export default function DBRadio(props: DBRadioProps) {
 				props.blur(event);
 			}
 		},
-		handleFocus: (event) => {
+		handleFocus: (event: any) => {
 			if (props.onFocus) {
 				props.onFocus(event);
 			}

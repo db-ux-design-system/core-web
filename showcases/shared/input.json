@@ -1,0 +1,119 @@
+[
+	{
+		"name": "Variant",
+		"examples": [
+			{
+				"name": "(Default) Basic",
+				"code": {
+					"default": "<DBInput label=\"Label\" description=\"Description\" />"
+				}
+			},
+			{
+				"name": "Informational",
+				"code": {
+					"default": "<DBInput label=\"Label\" description=\"Description\" variant=\"informational\"/>"
+				}
+			},
+			{
+				"name": "Warning",
+				"code": {
+					"default": "<DBInput label=\"Label\" description=\"Description\" variant=\"warning\"/>"
+				}
+			},
+			{
+				"name": "Critical",
+				"code": {
+					"default": "<DBInput label=\"Label\" description=\"Description\" variant=\"critical\"/>"
+				}
+			},
+			{
+				"name": "Successful",
+				"code": {
+					"default": "<DBInput label=\"Label\" description=\"Description\" variant=\"successful\"/>"
+				}
+			}
+		]
+	},
+	{
+		"name": "States",
+		"examples": [
+			{
+				"name": "Default",
+				"code": {
+					"default": "<DBInput label=\"Label\" description=\"Description\" />"
+				}
+			},
+			{
+				"name": "Filled",
+				"code": {
+					"default": "<DBInput label=\"Label\" value=\"Input Text\"/>"
+				}
+			},
+			{
+				"name": "Filled Number",
+				"code": {
+					"default": "<DBInput label=\"Label\" value=\"123456\" type=\"number\"/>"
+				}
+			},
+			{
+				"name": "Invalid",
+				"code": {
+					"default": "<DBInput label=\"Label\" minLength={5} required description=\"minLength=5\"/>"
+				}
+			},
+			{
+				"name": "Disabled",
+				"code": {
+					"default": "<DBInput label=\"Label\" disabled/>"
+				}
+			},
+			{
+				"name": "Disabled with value",
+				"code": {
+					"default": "<DBInput label=\"Label\" value=\"Input Text\" disabled/>"
+				}
+			},
+			{
+				"name": "Required",
+				"code": {
+					"default": "<DBInput label=\"Label\" value=\"Input Text\" disabled required/>"
+				}
+			}
+		]
+	},
+	{
+		"name": "Content",
+		"examples": [
+			{
+				"name": "(Default) Text",
+				"code": {
+					"default": "<DBInput label=\"Label\"/>"
+				}
+			},
+			{
+				"name": "Leading Icon + Text",
+				"code": {
+					"default": "<DBInput icon=\"account\" label=\"Label\"/>"
+				}
+			},
+			{
+				"name": "Leading Icon + Text + Trailing Icon",
+				"code": {
+					"default": "<DBInput icon=\"account\" label=\"Label\" iconAfter=\"edit\"/>"
+				}
+			},
+			{
+				"name": "Text + Trailing Icon",
+				"code": {
+					"default": "<DBInput label=\"Label\" iconAfter=\"edit\"/>"
+				}
+			},
+			{
+				"name": "Text + Trailing Icon + Variant:Successful",
+				"code": {
+					"default": "<DBInput label=\"Label\" iconAfter=\"edit\" variant=\"successful\"/>"
+				}
+			}
+		]
+	}
+]

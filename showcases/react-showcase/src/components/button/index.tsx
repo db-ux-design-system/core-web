@@ -1,9 +1,9 @@
 import { DBButton } from '../../../../../output/react/src';
 import DefaultComponent from '../index';
-import defaultComponentVariants from '../../../../shared/button';
+import defaultComponentVariants from '../../../../shared/button.json';
 import { type DefaultComponentExample } from '../../../../shared/default-component-data';
 import { type DBButtonProps } from '../../../../../output/react/src/components/button/model';
-import { getVariants } from '../../utils';
+import { getVariants } from '../data';
 
 const getButton = ({
 	variant,
@@ -28,71 +28,58 @@ const getButton = ({
 const getExampleMatrix = (exampleName: string): DefaultComponentExample[][] => [
 	[
 		{
-			example: getButton({ text: exampleName }),
-			code: '<DBButton>Button</DBButton>'
+			example: getButton({ text: exampleName })
 		},
 		{
-			example: getButton({ text: exampleName, variant: 'primary' }),
-			code: '<DBButton variant="primary">Button</DBButton>'
+			example: getButton({ text: exampleName, variant: 'primary' })
 		},
 		{
-			example: getButton({ text: exampleName, variant: 'transparent' }),
-			code: '<DBButton variant="transparent">Button</DBButton>'
+			example: getButton({ text: exampleName, variant: 'transparent' })
 		},
 		{
 			example: getButton({
 				text: exampleName,
 				variant: 'semi-transparent'
-			}),
-			code: '<DBButton variant="semi-transparent">Button</DBButton>'
+			})
 		}
 	],
 	[
 		{
-			example: getButton({ text: exampleName }),
-			code: '<DBButton>Button</DBButton>'
+			example: getButton({ text: exampleName })
 		},
 		{
-			example: getButton({ text: exampleName, state: 'loading' }),
-			code: '<DBButton state="loading">Button</DBButton>'
+			example: getButton({ text: exampleName, state: 'loading' })
 		}
 	],
 	[
 		{
-			example: getButton({ text: exampleName }),
-			code: '<DBButton>Button</DBButton>'
+			example: getButton({ text: exampleName })
 		},
 		{
-			example: getButton({ text: exampleName, size: 'small' }),
-			code: '<DBButton size="small">Button</DBButton>'
+			example: getButton({ text: exampleName, size: 'small' })
 		}
 	],
 	[
 		{
-			example: getButton({ text: exampleName }),
-			code: '<DBButton>Button</DBButton>'
+			example: getButton({ text: exampleName })
 		},
 		{
 			example: getButton({
 				text: exampleName,
 				icon: 'account',
 				icntxt: true
-			}),
-			code: '<DBButton icon="account" icntxt>Button</DBButton>'
+			})
 		},
 		{
-			example: getButton({ text: exampleName, icon: 'account' }),
-			code: '<DBButton icon="account">Button</DBButton>'
+			example: getButton({ text: exampleName, icon: 'account' })
 		}
 	],
 	[
 		{
-			example: getButton({ text: exampleName }),
-			code: '<DBButton>Button</DBButton>'
+			example: getButton({ text: exampleName })
 		},
 		{
-			example: getButton({ text: exampleName, width: 'full' }),
-			code: '<DBButton width="full">Button</DBButton>'
+			example: getButton({ text: exampleName, width: 'full' })
 		}
 	]
 ];

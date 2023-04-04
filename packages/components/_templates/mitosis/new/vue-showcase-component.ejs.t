@@ -3,7 +3,7 @@ to: ../../showcases/vue-showcase/src/components/<%= name %>/<%= h.changeCase.pas
 ---
 <script setup lang="ts">
 import DefaultComponent from "../DefaultComponent.vue";
-import defaultComponentVariants from "../../../../shared/<%= name %>";
+import defaultComponentVariants from "../../../../shared/<%= name %>.json";
 import { DB<%= h.changeCase.pascal(name) %> } from "../../../../../output/vue/vue3/src";
 </script>
 

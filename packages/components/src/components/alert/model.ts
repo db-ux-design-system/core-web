@@ -1,4 +1,5 @@
 import {
+	CardProps,
 	ClickEventProps,
 	ClickEventState,
 	DefaultVariantProps,
@@ -24,7 +25,8 @@ export interface DBAlertDefaultProps {
 export type DBAlertProps = DBAlertDefaultProps &
 	GlobalProps &
 	ClickEventProps &
-	IconProps;
+	IconProps &
+	CardProps;
 
 export interface DBAlertDefaultState {
 	getIcon: (icon?: string, variant?: DefaultVariantProps) => string;

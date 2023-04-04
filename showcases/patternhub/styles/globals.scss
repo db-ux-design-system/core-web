@@ -94,3 +94,12 @@ table th {
 	padding-inline: $db-spacing-fixed-md;
 	background-color: $db-colors-neutral-bg-2-enabled;
 }
+
+/* Workaround for current db-page from db-ui-elements */
+div[class^="ch-"] {
+	div,
+	span {
+		@extend %db-body-sm;
+		color: $db-colors-secondary-on-enabled;
+	}
+}
