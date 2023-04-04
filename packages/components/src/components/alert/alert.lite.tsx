@@ -39,7 +39,7 @@ export default function DBAlert(props: DBAlertProps) {
 	// This is used as forwardRef
 	let component: any;
 	const state = useStore<DBAlertState>({
-		handleClick: (event) => {
+		handleClick: (event: any) => {
 			if (props.onClick) {
 				props.onClick(event);
 			}
@@ -49,9 +49,9 @@ export default function DBAlert(props: DBAlertProps) {
 				return icon;
 			}
 
-			return DefaultVariantsIcon[variant] || 'info';
+			return (variant && DefaultVariantsIcon[variant]) || 'info';
 		},
-		iconVisible: (icon: string) => {
+		iconVisible: (icon?: string) => {
 			return icon && icon !== '_' && icon !== 'none';
 		}
 	});
