@@ -14,6 +14,7 @@
     "lint": "next lint",
     "next:dev": "next dev",
     "next:start": "next start",
+    "prebuild:app": "cpr ../../node_modules/iframe-resizer/js/ public/iframe-resizer -o",
     "start": "npm-run-all copy next:start"
   },
   "dependencies": {
