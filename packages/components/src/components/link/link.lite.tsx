@@ -1,5 +1,4 @@
 import { onMount, Show, useMetadata, useStore } from '@builder.io/mitosis';
-import { DBIcon } from '../icon';
 import { DBLinkState, DBLinkProps } from './model';
 
 useMetadata({
@@ -50,13 +49,6 @@ export default function DBLink(props: DBLinkProps) {
 				<link rel="stylesheet" href={state.stylePath} />
 			</Show>
 			{props.children}
-			<Show when={props.variant !== 'inline'}>
-				<DBIcon
-					icon={
-						props.content == 'external' ? 'link-external' : 'link'
-					}
-					icntxt={true}></DBIcon>
-			</Show>
 		</a>
 	);
 }
