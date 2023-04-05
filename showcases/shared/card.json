@@ -5,7 +5,7 @@
 			{
 				"name": "(Default) neutral-0",
 				"code": {
-					"html": "<div class=\"db-card\" data-variant=\"interactive\" data-color-variant=\"neutral-0\" data-spacing=\"small\"><strong>(Default) neutral-0</strong><span>neutral-0</span></div>",
+					"html": "<div class=\"db-card\" data-variant=\"interactive\" data-color-variant=\"neutral-0\" data-spacing=\"small\"><strong>Default neutral-0</strong><span>neutral-0</span></div>",
 					"default": "<DBCard colorVariant=\"neutral-0\" variant=\"interactive\" spacing=\"small\"><strong>Card</strong><span>DB Card</span></DBCard>"
 				}
 			},
@@ -80,7 +80,7 @@
 			{
 				"name": "(Default) No Spacing",
 				"code": {
-					"html": "<div class=\"db-card\" data-color-variant=\"neutral-0\"><strong>(Default) No Spacing</strong></div>",
+					"html": "<div class=\"db-card\" data-color-variant=\"neutral-0\"><strong>Default No Spacing</strong></div>",
 					"default": "<DBCard>DBCard</DBCard>"
 				}
 			},
@@ -106,7 +106,7 @@
 			{
 				"name": "(Default) Non interactive",
 				"code": {
-					"html": "<div class=\"db-card\" data-color-variant=\"neutral-0\" data-spacing=\"medium\"><strong>(Default) Non interactive</strong></div>",
+					"html": "<div class=\"db-card\" data-color-variant=\"neutral-0\" data-spacing=\"medium\"><strong>Default Non interactive</strong></div>",
 					"default": "<DBCard>DBCard</DBCard>"
 				}
 			},

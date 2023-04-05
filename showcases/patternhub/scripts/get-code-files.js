@@ -5,6 +5,8 @@ import prettier from 'prettier';
 
 import prettier0 from 'prettier/parser-babel.js';
 
+import { allExamples } from './generated';
+
 const sharedPath = '../shared';
 const reactPath = '../react-showcase/src/components';
 
@@ -23,7 +25,8 @@ const getFileTypeByFramework = (framework) => {
 	return 'html';
 };
 
-const getExamplesAsMDX = (examples) => {
+const getExamplesAsMDX = (componentName, variant) => {
+	const examples = variant.examples;
 	if (!examples?.find((example) => example.code)) {
 		return `No code available`;
 	}
@@ -37,6 +40,13 @@ const getExamplesAsMDX = (examples) => {
 				let exampleCode = example.code[framework]
 					? example.code[framework]
 					: example.code.default;
+				if (framework === 'html') {
+					exampleCode =
+						allExamples[
+							`${componentName}${variant.name}${example.name}`
+						];
+				}
+
 				try {
 					exampleCode = prettier.format(exampleCode, {
 						parser: 'babel',
@@ -78,7 +88,7 @@ const writeCodeFiles = async (componentPath, componentName) => {
 
 			FS.writeFileSync(
 				`${codePath}/${variant.name}.mdx`,
-				getExamplesAsMDX(variant.examples)
+				getExamplesAsMDX(componentName, variant)
 			);
 		}
 	}

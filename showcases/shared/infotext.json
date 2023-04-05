@@ -5,35 +5,30 @@
 			{
 				"name": "(Default) Adaptive",
 				"code": {
-					"html": "<span class=\"db-infotext\"><span aria-hidden=\"true\" class=\"db-icon is-icon-text-replace\" data-icon=\"account\"></span>(Default) Adaptive</span>",
 					"default": "<DBInfotext icon=\"account\">Infotext</DBInfotext>"
 				}
 			},
 			{
 				"name": "Critical",
 				"code": {
-					"html": "<span class=\"db-infotext\" data-variant=\"critical\"><span aria-hidden=\"true\" class=\"db-icon is-icon-text-replace\" data-icon=\"error\"></span>Critical</span>",
 					"default": "<DBInfotext variant=\"critical\">Infotext</DBInfotext>"
 				}
 			},
 			{
 				"name": "Informational",
 				"code": {
-					"html": "<span class=\"db-infotext\" data-variant=\"informational\"><span aria-hidden=\"true\" class=\"db-icon is-icon-text-replace\" data-icon=\"info\"></span>Informational</span>",
 					"default": "<DBInfotext variant=\"informational\">Infotext</DBInfotext>"
 				}
 			},
 			{
 				"name": "Successful",
 				"code": {
-					"html": "<span class=\"db-infotext\" data-variant=\"successful\"><span aria-hidden=\"true\" class=\"db-icon is-icon-text-replace\" data-icon=\"check-circle\"></span>Successful</span>",
 					"default": "<DBInfotext variant=\"successful\">Infotext</DBInfotext>"
 				}
 			},
 			{
 				"name": "Warning",
 				"code": {
-					"html": "<span class=\"db-infotext\" data-variant=\"warning\"><span aria-hidden=\"true\" class=\"db-icon is-icon-text-replace\" data-icon=\"error-triangle\"></span>Warning</span>",
 					"default": "<DBInfotext variant=\"warning\">Infotext</DBInfotext>"
 				}
 			}
@@ -45,14 +40,12 @@
 			{
 				"name": "(Default) Medium",
 				"code": {
-					"html": "<span class=\"db-infotext\"><span aria-hidden=\"true\" class=\"db-icon is-icon-text-replace\" data-icon=\"info\"></span>(Default) Medium</span>",
 					"default": "<DBInfotext>Infotext</DBInfotext>"
 				}
 			},
 			{
 				"name": "Small",
 				"code": {
-					"html": "<span class=\"db-infotext\" data-size=\"small\">Small</span>",
 					"default": "<DBInfotext size=\"small\">Infotext</DBInfotext>"
 				}
 			}

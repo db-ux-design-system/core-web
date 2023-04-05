@@ -6,7 +6,6 @@
 				"name": "(Default) Full",
 				"style": { "width": "100%" },
 				"code": {
-					"html": "<section data-size=\"medium\"><div data-variant=\"full\">(Default) Full</div></section>",
 					"default": "<DBSection>Section</DBSection>"
 				}
 			},
@@ -14,7 +13,6 @@
 				"name": "Medium",
 				"style": { "width": "100%" },
 				"code": {
-					"html": "<section data-size=\"medium\"><div data-variant=\"medium\">Medium</div></section>",
 					"default": "<DBSection variant=\"medium\">Section</DBSection>"
 				}
 			},
@@ -22,7 +20,6 @@
 				"name": "Large",
 				"style": { "width": "100%" },
 				"code": {
-					"html": "<section data-size=\"medium\"><div data-variant=\"large\">Large</div></section>",
 					"default": "<DBSection variant=\"large\">Section</DBSection>"
 				}
 			}
@@ -34,21 +31,18 @@
 			{
 				"name": "(Default) Medium",
 				"code": {
-					"html": "<section data-size=\"medium\"><div>(Default) Medium</div></section>",
 					"default": "<DBSection>Section</DBSection>"
 				}
 			},
 			{
 				"name": "Large",
 				"code": {
-					"html": "<section data-size=\"large\"><div>Large</div></section>",
 					"default": "<DBSection size=\"large\">Section</DBSection>"
 				}
 			},
 			{
 				"name": "Small",
 				"code": {
-					"html": "<section data-size=\"small\"><div>Small</div></section>",
 					"default": "<DBSection size=\"small\">Section</DBSection>"
 				}
 			}
