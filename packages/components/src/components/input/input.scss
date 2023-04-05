@@ -83,9 +83,10 @@
 
 		&::after {
 			transition: transform $db-transition-emotional-straight;
+		}
 
-			&:focus,
-			&:not(:placeholder-shown) {
+		&:has(input:is(:focus, :not(:placeholder-shown))) {
+			&::after {
 				transform: rotate(180deg);
 			}
 		}
