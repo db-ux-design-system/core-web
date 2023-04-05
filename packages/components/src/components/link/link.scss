@@ -11,7 +11,6 @@
 .db-link {
 	@extend %default-color;
 	width: fit-content;
-	display: flex;
 	align-items: center;
 	border-radius: to-rem($pxValue: 6);
 
@@ -34,17 +33,14 @@
 		pointer-events: none;
 	}
 
-	&[data-content] {
-		--icon-font-family: var(--db-base-icon-font-family);
-		--icon-font-size: var(--db-base-icon-font-size);
-	}
+	&:not([data-variant="inline"]) {
+		&[data-content="internal"] {
+			@include icon(glyph(arrow-forward), 24, "outline", "after");
+		}
 
-	&[data-content="internal"] {
-		@include icon(glyph(arrow-forward), 24, "outline", "after");
-	}
-
-	&[data-content="external"] {
-		@include icon(glyph(link-external), 24, "outline", "after");
+		&[data-content="external"] {
+			@include icon(glyph(link-external), 24, "outline", "after");
+		}
 	}
 
 	&:focus-visible {
@@ -57,8 +53,7 @@
 			outline-offset: var(--db-focus-outline-offset, 1px);
 		}
 
-		&::after,
-		.db-icon {
+		&::after {
 			--icon-margin-before: var(--db-spacing-fixed-2xs);
 			margin-inline-start: var(--icon-margin-before);
 		}
@@ -74,16 +69,11 @@
 
 		&[data-content="internal"],
 		&[data-content="external"] {
-			&::after,
-			.db-icon {
+			&::after {
 				--icon-margin-before: var(--db-spacing-fixed-3xs);
 				--icon-font-size: var(--db-base-icon-font-size);
 				@extend %db-body-sm;
 			}
 		}
-	}
-
-	.db-icon {
-		display: inline;
 	}
 }
