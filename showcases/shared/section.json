@@ -1,0 +1,51 @@
+[
+	{
+		"name": "Variant",
+		"examples": [
+			{
+				"name": "(Default) Full",
+				"style": { "width": "100%" },
+				"code": {
+					"default": "<DBSection>Section</DBSection>"
+				}
+			},
+			{
+				"name": "Medium",
+				"style": { "width": "100%" },
+				"code": {
+					"default": "<DBSection variant=\"medium\">Section</DBSection>"
+				}
+			},
+			{
+				"name": "Large",
+				"style": { "width": "100%" },
+				"code": {
+					"default": "<DBSection variant=\"large\">Section</DBSection>"
+				}
+			}
+		]
+	},
+	{
+		"name": "Size",
+		"examples": [
+			{
+				"name": "(Default) Medium",
+				"code": {
+					"default": "<DBSection>Section</DBSection>"
+				}
+			},
+			{
+				"name": "Large",
+				"code": {
+					"default": "<DBSection size=\"large\">Section</DBSection>"
+				}
+			},
+			{
+				"name": "Small",
+				"code": {
+					"default": "<DBSection size=\"small\">Section</DBSection>"
+				}
+			}
+		]
+	}
+]

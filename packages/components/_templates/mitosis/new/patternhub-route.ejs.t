@@ -9,6 +9,10 @@ skip_if: '/components/<%= name %>'
 				link: '/components/<%= name %>',
 				children: [
 					{
+						label: 'Properties',
+						link: '/components/<%= name %>/properties'
+					},
+					{
 						label: 'Examples',
 						link: '/components/<%= name %>/examples'
 					},

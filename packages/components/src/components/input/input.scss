@@ -253,7 +253,7 @@
 
 			& ~ .icon-input-state {
 				// TODO replace with svg icon
-				@include icon(glyph(search), 20, "filled", "before", false);
+				@include icon(glyph(search), 20, "filled", "before");
 			}
 
 			+ label {
@@ -353,7 +353,7 @@
 		& ~ .icon-input-state {
 			// TODO fix this workaround after new icon implementation
 			--icon-glyph: "\e1123";
-			@include icon(glyph(error), 24, "filled", "after", false);
+			@include icon(glyph(error), 24, "filled", "after");
 		}
 	}
 
@@ -377,7 +377,7 @@
 
 		& ~ .icon-input-state,
 		& ~ .icon-input-state .db-icon {
-			@include icon(glyph(error-triangle), 20, "filled", "after", false);
+			@include icon(glyph(error-triangle), 20, "filled", "after");
 		}
 	}
 
@@ -401,7 +401,7 @@
 
 		& ~ .icon-input-state,
 		& ~ .icon-input-state .db-icon {
-			@include icon(glyph(check-circle), 20, "filled", "after", false);
+			@include icon(glyph(check-circle), 20, "filled", "after");
 		}
 	}
 
@@ -425,7 +425,7 @@
 
 		& ~ .icon-input-state,
 		& ~ .icon-input-state .db-icon {
-			@include icon(glyph(info), 20, "filled", "after", false);
+			@include icon(glyph(info), 20, "filled", "after");
 		}
 	}
 }

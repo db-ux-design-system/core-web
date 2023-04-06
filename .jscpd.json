@@ -25,6 +25,7 @@
 		"**/tsconfig.json",
 		"**/angular-*/**/main.ts",
 		"**/README.md",
+		"**/generated/**",
 		"packages/components/src/components/alert/alert.lite.tsx",
 		"showcases/react-showcase/src/components/alert/index.tsx",
 		"packages/components/src/components/radio/radio.lite.tsx",

@@ -1,9 +1,12 @@
-import { For, onMount, Show, useMetadata, useStore } from '@builder.io/mitosis';
+import {
+	onMount,
+	Show,
+	Slot,
+	useMetadata,
+	useStore
+} from '@builder.io/mitosis';
 import { DBCodeDocsProps, DBCodeDocsState } from './model';
 import { DBCard } from '../card';
-import { DBButton } from '../button';
-import { DBInfotext } from '../infotext';
-import { uuid } from '../../utils';
 
 useMetadata({
 	isAttachedToShadowDom: true,
@@ -27,20 +30,10 @@ export default function DBCodeDocs(props: DBCodeDocsProps) {
 		toggleCode: () => {
 			state.open = !state.open;
 		},
-		copyCode: (code: string) => {
-			navigator.clipboard.writeText(code);
-			// TODO: Trigger Snackbar
-		},
 		getShowButtonLabel: () => {
 			return state.open
 				? props.hideCodeLabel ?? DEFAULT_VALUES.hideCodeLabel
 				: props.showCodeLabel ?? DEFAULT_VALUES.showCodeLabel;
-		},
-		getCopyLabel: () => {
-			return props.copyLabel ?? DEFAULT_VALUES.copyLabel;
-		},
-		getSnippetId: () => {
-			return `snippet-${uuid()}`;
 		}
 	});
 
@@ -53,9 +46,10 @@ export default function DBCodeDocs(props: DBCodeDocsProps) {
 	return (
 		<DBCard
 			ref={component}
-			class={
+			className={
 				'db-code-docs' + (props.className ? ' ' + props.className : '')
-			}>
+			}
+			elevation="none">
 			<Show when={state.stylePath}>
 				<link rel="stylesheet" href={state.stylePath} />
 			</Show>
@@ -67,35 +61,8 @@ export default function DBCodeDocs(props: DBCodeDocsProps) {
 					data-variant="primary">
 					{state.getShowButtonLabel()}
 				</summary>
-				<div class="code">
-					<Show
-						when={
-							!props.codeSnippets ||
-							props.codeSnippets.length === 0
-						}>
-						<DBInfotext class="no-code" variant="informational">
-							{props.noCodeLabel ?? 'No Code available'}
-						</DBInfotext>
-					</Show>
-					<Show
-						when={
-							props.codeSnippets && props.codeSnippets.length > 0
-						}>
-						<For each={props.codeSnippets}>
-							{(snippet: string) => (
-								<div key={state.getSnippetId()}>
-									<code>{snippet}</code>
-									<DBButton
-										class="copy-button"
-										size="small"
-										variant="outline"
-										onClick={() => state.copyCode(snippet)}>
-										{state.getCopyLabel()}
-									</DBButton>
-								</div>
-							)}
-						</For>
-					</Show>
+				<div class="db-ui-functional code">
+					<Slot name="code"></Slot>
 				</div>
 			</details>
 		</DBCard>

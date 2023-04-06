@@ -3,7 +3,7 @@ to: ../../showcases/angular-showcase/src/app/components/<%= name %>/<%= name %>.
 ---
 import { Component } from '@angular/core';
 
-import defaultComponentVariants from '../../../../../shared/<%= name %>';
+import defaultComponentVariants from '../../../../../shared/<%= name %>.json';
 
 @Component({
 	selector: 'app-<%= name %>',

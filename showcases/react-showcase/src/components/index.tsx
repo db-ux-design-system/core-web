@@ -6,21 +6,18 @@ import type {
 	DefaultComponentVariants
 } from '../../../shared/default-component-data';
 
-const showcaseName = import.meta.env.VITE_NAME;
-
 const VariantList = ({ examples }: DefaultComponentVariants) => (
 	<DBCodeDocs
 		className="variants-card"
-		codeSnippets={examples
-			.filter((example) => example.code)
-			.map(
-				(example) =>
-					`/* ${example.name} */\n${
-						showcaseName === 'html' && example.example
-							? renderToString(example.example)
-							: example.code
-					}`
-			)}>
+		slotCode={
+			<div className="html-code-container">
+				{examples.map((example, exampleIndex) => (
+					<code key={`html-${example.name}-${exampleIndex}`}>
+						{renderToString(example.example)}
+					</code>
+				))}
+			</div>
+		}>
 		<div className="variants-list">
 			{examples.map((example, exampleIndex) => (
 				<div

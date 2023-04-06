@@ -1,14 +1,26 @@
 ## Vue
 
-To get DBRadio work with `v-model` you have to use v-model argument syntax:
+For general installation and configuration look at the [v-components](https://www.npmjs.com/package/@db-ui/v-components) package.
 
-```ts
-<DBRadio label="Textlabel" v-model:checked="vModelTest"></DBRadio>
-```
+### Use component
 
-or using on-change listener:
+```vue App.vue
+<!-- App.vue -->
+<script setup lang="ts">
+import { DBRadio } from "@db-ui/v-components";
+import { ref } from "vue";
+const radio = ref("");
 
-```ts
-<DBRadio label="Textlabel" :value="modelAndChange" :on-change="($event) => { modelAndChange = $event.target.value;
-}"/> {{ modelAndChange }}
+const radioNames = ["X", "Y", "Z"];
+</script>
+
+<template>
+	<ul>
+		<li v-for="radioName in radioNames">
+			<DBRadio @change="radio = radioName" name="radio-group">
+				Radio {{ radioName }}
+			</DBRadio>
+		</li>
+	</ul>
+</template>
 ```
