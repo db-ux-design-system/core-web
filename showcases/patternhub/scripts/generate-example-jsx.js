@@ -36,6 +36,10 @@ const generateExampleJSX = () => {
 		}
 	}
 
+	if (!FS.existsSync('./scripts/generated')) {
+		FS.mkdirSync('./scripts/generated');
+	}
+
 	FS.writeFileSync(
 		`./scripts/generated/index.jsx`,
 		"import { renderToString } from 'react-dom/server';\n" +
