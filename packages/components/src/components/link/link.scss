@@ -49,12 +49,13 @@
 
 	&[data-content="internal"],
 	&[data-content="external"] {
+		--icon-margin-before: var(--db-spacing-fixed-2xs);
+
 		&:focus-visible {
 			outline-offset: var(--db-focus-outline-offset, 1px);
 		}
 
 		&::after {
-			--icon-margin-before: var(--db-spacing-fixed-2xs);
 			margin-inline-start: var(--icon-margin-before);
 		}
 	}
@@ -65,15 +66,7 @@
 
 	&[data-size="small"] {
 		--icon-font-size: var(--db-base-icon-font-size);
+		--icon-margin-before: var(--db-spacing-fixed-3xs);
 		@extend %db-body-sm;
-
-		&[data-content="internal"],
-		&[data-content="external"] {
-			&::after {
-				--icon-margin-before: var(--db-spacing-fixed-3xs);
-				--icon-font-size: var(--db-base-icon-font-size);
-				@extend %db-body-sm;
-			}
-		}
 	}
 }
