@@ -7,7 +7,7 @@ COPY output/ output/
 COPY packages/ packages/
 
 # Install dependencies
-RUN npm install
+RUN npm install --ignore-scripts
 # Build foundations and components
 # RUN npm run build
 # Run playwright test

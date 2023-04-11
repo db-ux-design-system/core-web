@@ -18,6 +18,7 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app.routing.module';
 import { FormComponent } from './components/form/form.component';
 import { ButtonComponent } from './components/button/button.component';
+import { LinkComponent } from './components/link/link.component';
 import { InputComponent } from './components/input/input.component';
 import { DefaultComponent } from './components/default.component';
 
@@ -27,7 +28,8 @@ import { DefaultComponent } from './components/default.component';
 		DefaultComponent,
 		FormComponent,
 		ButtonComponent,
-		InputComponent
+		InputComponent,
+		LinkComponent
 	],
 	imports: [
 		AppRoutingModule,

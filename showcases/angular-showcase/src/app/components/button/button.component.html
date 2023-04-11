@@ -9,32 +9,32 @@
 		let-exampleIndex="exampleIndex"
 		let-variantIndex="variantIndex"
 	>
-		<DBButton *ngIf="exampleIndex === 0">{{ exampleName }}</DBButton>
+		<db-button *ngIf="exampleIndex === 0">{{ exampleName }}</db-button>
 		<ng-container *ngIf="exampleIndex === 1 && variantIndex === 0">
-			<DBButton variant="primary">{{ exampleName }}</DBButton>
+			<db-button variant="primary">{{ exampleName }}</db-button>
 		</ng-container>
 		<ng-container *ngIf="exampleIndex === 2 && variantIndex === 0">
-			<DBButton variant="transparent">{{ exampleName }}</DBButton>
+			<db-button variant="transparent">{{ exampleName }}</db-button>
 		</ng-container>
 		<ng-container *ngIf="exampleIndex === 3 && variantIndex === 0">
-			<DBButton variant="semi-transparent">{{ exampleName }}</DBButton>
+			<db-button variant="semi-transparent">{{ exampleName }}</db-button>
 		</ng-container>
 		<ng-container *ngIf="exampleIndex === 1 && variantIndex === 1">
-			<DBButton state="loading">{{ exampleName }}</DBButton>
+			<db-button state="loading">{{ exampleName }}</db-button>
 		</ng-container>
 		<ng-container *ngIf="exampleIndex === 1 && variantIndex === 2">
-			<DBButton size="small">{{ exampleName }}</DBButton>
+			<db-button size="small">{{ exampleName }}</db-button>
 		</ng-container>
 		<ng-container *ngIf="exampleIndex === 1 && variantIndex === 3">
-			<DBButton icon="account" [icntxt]="true">{{
+			<db-button icon="account" [icntxt]="true">{{
 				exampleName
-			}}</DBButton>
+			}}</db-button>
 		</ng-container>
 		<ng-container *ngIf="exampleIndex === 2 && variantIndex === 3">
-			<DBButton icon="account">{{ exampleName }}</DBButton>
+			<db-button icon="account">{{ exampleName }}</db-button>
 		</ng-container>
 		<ng-container *ngIf="exampleIndex === 1 && variantIndex === 4">
-			<DBButton width="full">{{ exampleName }}</DBButton>
+			<db-button width="full">{{ exampleName }}</db-button>
 		</ng-container>
 	</ng-template>
 </app-default-component>

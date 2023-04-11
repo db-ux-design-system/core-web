@@ -19,8 +19,6 @@ const colorVariants = [
 	'informational'
 ];
 
-const directions = ['row', 'column'];
-
 const variants = ['full-width', 'interactive'];
 
 const testDefaultCard = () => {
