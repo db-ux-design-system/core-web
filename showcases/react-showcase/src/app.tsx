@@ -1,7 +1,6 @@
 import type { ChangeEvent } from 'react';
 import { Link, Outlet } from 'react-router-dom';
 import { DBBrand, DBHeader, DBPage } from '../../../output/react/src';
-
 import {
 	COLORS,
 	TONALITIES

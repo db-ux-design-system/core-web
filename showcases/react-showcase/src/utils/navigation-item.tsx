@@ -1,5 +1,4 @@
 import RadioComponent from '../components/radio';
-
 import AlertComponent from '../components/alert';
 import ButtonComponent from '../components/button';
 import InputComponent from '../components/input';

@@ -1,10 +1,7 @@
 /* eslint-disable unicorn/prefer-logical-operator-over-ternary */
 import FS from 'node:fs';
-
 import prettier from 'prettier';
-
 import prettier0 from 'prettier/parser-babel.js';
-
 import { allExamples } from './generated';
 
 const sharedPath = '../shared';
