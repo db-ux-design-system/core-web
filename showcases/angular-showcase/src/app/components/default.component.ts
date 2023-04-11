@@ -1,6 +1,5 @@
 import { Component, type OnInit, Input, TemplateRef } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-
 import type {
 	DefaultComponentProps,
 	DefaultComponentVariants
