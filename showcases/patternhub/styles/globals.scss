@@ -103,3 +103,8 @@ div[class^="ch-"] {
 		color: $db-colors-secondary-on-enabled;
 	}
 }
+
+// Code Hike (https://github.com/code-hike/codehike) styles
+.ch-frame-buttons {
+	display: none !important;
+}

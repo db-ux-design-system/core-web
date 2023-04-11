@@ -5,7 +5,7 @@
 			{
 				"name": "(Default) Adaptive Outline",
 				"code": {
-					"default": "<DBButton>(Default) Adaptive Outline</DBButton>"
+					"default": "<DBButton>Default Adaptive Outline</DBButton>"
 				}
 			},
 			{
@@ -15,21 +15,16 @@
 				}
 			},
 			{
-				"name": "Transparent"
+				"name": "Transparent",
+				"code": {
+					"default": "<DBButton variant=\"transparent\">Transparent</DBButton>"
+				}
 			},
 			{
-				"name": "Semi-Transparent"
-			}
-		]
-	},
-	{
-		"name": "State",
-		"examples": [
-			{
-				"name": "Default: (Enabled, Hover, Pressed)"
-			},
-			{
-				"name": "Loading"
+				"name": "Semi-Transparent",
+				"code": {
+					"default": "<DBButton variant=\"semi-transparent\">Semi-Transparent</DBButton>"
+				}
 			}
 		]
 	},
@@ -37,10 +32,16 @@
 		"name": "Size",
 		"examples": [
 			{
-				"name": "Default: Medium"
+				"name": "Default: Medium",
+				"code": {
+					"default": "<DBButton>Button</DBButton>"
+				}
 			},
 			{
-				"name": "Small"
+				"name": "Small",
+				"code": {
+					"default": "<DBButton size=\"small\">Button</DBButton>"
+				}
 			}
 		]
 	},
@@ -48,13 +49,22 @@
 		"name": "Content",
 		"examples": [
 			{
-				"name": "Default: Text"
+				"name": "Default: Text",
+				"code": {
+					"default": "<DBButton>Button</DBButton>"
+				}
 			},
 			{
-				"name": "Icon & Text"
+				"name": "Icon & Text",
+				"code": {
+					"default": "<DBButton icon=\"account\" icntxt>Button</DBButton>"
+				}
 			},
 			{
-				"name": "Icon"
+				"name": "Icon",
+				"code": {
+					"default": "<DBButton icon=\"account\">Button</DBButton>"
+				}
 			}
 		]
 	},
@@ -62,11 +72,17 @@
 		"name": "Behaviour",
 		"examples": [
 			{
-				"name": "Default: Auto Width"
+				"name": "Default: Auto Width",
+				"code": {
+					"default": "<DBButton>Button</DBButton>"
+				}
 			},
 			{
 				"name": "Width full",
-				"style": { "width": "500px" }
+				"style": { "width": "500px" },
+				"code": {
+					"default": "<DBButton width=\"full\">Button</DBButton>"
+				}
 			}
 		]
 	}

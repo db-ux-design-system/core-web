@@ -1,3 +1,4 @@
+import { renderToString } from 'react-dom/server';
 import { DBCodeDocs, DBDivider, DBLink } from '../../../../output/react/src';
 import useQuery from '../hooks/use-query';
 import type {
@@ -6,7 +7,17 @@ import type {
 } from '../../../shared/default-component-data';
 
 const VariantList = ({ examples }: DefaultComponentVariants) => (
-	<DBCodeDocs className="variants-card">
+	<DBCodeDocs
+		className="variants-card"
+		slotCode={
+			<div className="html-code-container">
+				{examples.map((example, exampleIndex) => (
+					<code key={`html-${example.name}-${exampleIndex}`}>
+						{renderToString(example.example)}
+					</code>
+				))}
+			</div>
+		}>
 		<div className="variants-list">
 			{examples.map((example, exampleIndex) => (
 				<div
