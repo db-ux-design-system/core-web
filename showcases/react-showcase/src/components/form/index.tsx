@@ -1,9 +1,15 @@
 import { useState } from 'react';
 import { DBButton, DBInput, DBRadio } from '../../../../../output/react/src';
+import type { KeyValueType } from '../../../../../output/react/src/shared/model';
 
 const FormComponent = () => {
 	const [input, setInput] = useState('');
 	const [radio, setRadio] = useState('');
+
+	const dataList: KeyValueType[] = [
+		{ key: 'test', value: 'Test' },
+		{ key: 'test2' }
+	];
 
 	return (
 		<div className="form-container">
@@ -15,12 +21,13 @@ const FormComponent = () => {
 							label="Textinput"
 							placeholder="Placeholder"
 							description="Description"
-							icon="edit"
+							icon="account"
 							name="input-name"
 							onChange={(event) => {
 								setInput(event.target.value);
 							}}
 							className="fullWidth"
+							dataList={dataList}
 						/>
 						<p>DbRadio:</p>
 						<ul>
