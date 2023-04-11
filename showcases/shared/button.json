@@ -4,26 +4,29 @@
 		"examples": [
 			{
 				"name": "(Default) Adaptive Outline",
-				"code": {
-					"default": "<DBButton>Default Adaptive Outline</DBButton>"
+				"props": {
+					"children": "Default Adaptive Outline"
 				}
 			},
 			{
 				"name": "Primary",
-				"code": {
-					"default": "<DBButton variant=\"primary\">Primary</DBButton>"
+				"props": {
+					"variant": "primary",
+					"children": "Primary"
 				}
 			},
 			{
 				"name": "Transparent",
-				"code": {
-					"default": "<DBButton variant=\"transparent\">Transparent</DBButton>"
+				"props": {
+					"variant": "transparent",
+					"children": "Transparent"
 				}
 			},
 			{
 				"name": "Semi-Transparent",
-				"code": {
-					"default": "<DBButton variant=\"semi-transparent\">Semi-Transparent</DBButton>"
+				"props": {
+					"variant": "semi-transparent",
+					"children": "Semi-Transparent"
 				}
 			}
 		]
@@ -33,14 +36,18 @@
 		"examples": [
 			{
 				"name": "Default: Medium",
+				"props": {
+					"children": "Button"
+				},
 				"code": {
 					"default": "<DBButton>Button</DBButton>"
 				}
 			},
 			{
 				"name": "Small",
-				"code": {
-					"default": "<DBButton size=\"small\">Button</DBButton>"
+				"props": {
+					"size": "small",
+					"children": "Transparent"
 				}
 			}
 		]
@@ -50,20 +57,23 @@
 		"examples": [
 			{
 				"name": "Default: Text",
-				"code": {
-					"default": "<DBButton>Button</DBButton>"
+				"props": {
+					"children": "Button"
 				}
 			},
 			{
 				"name": "Icon & Text",
-				"code": {
-					"default": "<DBButton icon=\"account\" icntxt>Button</DBButton>"
+				"props": {
+					"children": "Button",
+					"icon": "account",
+					"icntxt": true
 				}
 			},
 			{
 				"name": "Icon",
-				"code": {
-					"default": "<DBButton icon=\"account\">Button</DBButton>"
+				"props": {
+					"children": "Button",
+					"icon": "account"
 				}
 			}
 		]
@@ -73,15 +83,16 @@
 		"examples": [
 			{
 				"name": "Default: Auto Width",
-				"code": {
-					"default": "<DBButton>Button</DBButton>"
+				"props": {
+					"children": "Button"
 				}
 			},
 			{
 				"name": "Width full",
 				"style": { "width": "500px" },
-				"code": {
-					"default": "<DBButton width=\"full\">Button</DBButton>"
+				"props": {
+					"width": "full",
+					"children": "Button"
 				}
 			}
 		]

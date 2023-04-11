@@ -4,14 +4,17 @@
 		"examples": [
 			{
 				"name": "(Default) Adaptive",
-				"code": {
-					"default": "<DBLink href=\"#\">Link</DBLink>"
+				"props": {
+					"href": "#",
+					"children": "Link"
 				}
 			},
 			{
 				"name": "Primary",
-				"code": {
-					"default": "<DBLink href=\"#\" variant=\"primary\">Link</DBLink>"
+				"props": {
+					"href": "#",
+					"variant": "primary",
+					"children": "Link"
 				}
 			}
 		]
@@ -21,14 +24,17 @@
 		"examples": [
 			{
 				"name": "Default: (Enabled, Hover, Pressed)",
-				"code": {
-					"default": "<DBLink href=\"#\">Link</DBLink>"
+				"props": {
+					"href": "#",
+					"children": "Link"
 				}
 			},
 			{
 				"name": "Disabled",
-				"code": {
-					"default": "<DBLink href=\"#\" disabled>Link</DBLink>"
+				"props": {
+					"href": "#",
+					"disabled": true,
+					"children": "Link"
 				}
 			}
 		]
@@ -38,14 +44,17 @@
 		"examples": [
 			{
 				"name": "(Default) Medium",
-				"code": {
-					"default": "<DBLink href=\"#\">Link</DBLink>"
+				"props": {
+					"href": "#",
+					"children": "Link"
 				}
 			},
 			{
 				"name": "Small",
-				"code": {
-					"default": "<DBLink href=\"#\" size=\"small\">Link</DBLink>"
+				"props": {
+					"href": "#",
+					"size": "small",
+					"children": "Link"
 				}
 			}
 		]
@@ -55,14 +64,17 @@
 		"examples": [
 			{
 				"name": "(Default) Internal",
-				"code": {
-					"default": "<DBLink href=\"#\">Link</DBLink>"
+				"props": {
+					"href": "#",
+					"children": "Link"
 				}
 			},
 			{
 				"name": "External",
-				"code": {
-					"default": "<DBLink href=\"#\" content=\"external\">Link</DBLink>"
+				"props": {
+					"href": "#",
+					"content": "external",
+					"children": "Link"
 				}
 			}
 		]

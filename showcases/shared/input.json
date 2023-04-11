@@ -4,32 +4,41 @@
 		"examples": [
 			{
 				"name": "(Default) Basic",
-				"code": {
-					"default": "<DBInput label=\"Label\" description=\"Description\" />"
+				"props": {
+					"label": "Label",
+					"description": "Description"
 				}
 			},
 			{
 				"name": "Informational",
-				"code": {
-					"default": "<DBInput label=\"Label\" description=\"Description\" variant=\"informational\"/>"
+				"props": {
+					"label": "Label",
+					"description": "Description",
+					"variant": "informational"
 				}
 			},
 			{
 				"name": "Warning",
-				"code": {
-					"default": "<DBInput label=\"Label\" description=\"Description\" variant=\"warning\"/>"
+				"props": {
+					"label": "Label",
+					"description": "Description",
+					"variant": "warning"
 				}
 			},
 			{
 				"name": "Critical",
-				"code": {
-					"default": "<DBInput label=\"Label\" description=\"Description\" variant=\"critical\"/>"
+				"props": {
+					"label": "Label",
+					"description": "Description",
+					"variant": "critical"
 				}
 			},
 			{
 				"name": "Successful",
-				"code": {
-					"default": "<DBInput label=\"Label\" description=\"Description\" variant=\"successful\"/>"
+				"props": {
+					"label": "Label",
+					"description": "Description",
+					"variant": "successful"
 				}
 			}
 		]
@@ -39,44 +48,57 @@
 		"examples": [
 			{
 				"name": "Default",
-				"code": {
-					"default": "<DBInput label=\"Label\" description=\"Description\" />"
+				"props": {
+					"label": "Label",
+					"description": "Description"
 				}
 			},
 			{
 				"name": "Filled",
-				"code": {
-					"default": "<DBInput label=\"Label\" value=\"Input Text\"/>"
+				"props": {
+					"label": "Label",
+					"value": "Input Text"
 				}
 			},
 			{
 				"name": "Filled Number",
-				"code": {
-					"default": "<DBInput label=\"Label\" value=\"123456\" type=\"number\"/>"
+				"props": {
+					"label": "Label",
+					"value": "123456",
+					"type": "number"
 				}
 			},
 			{
 				"name": "Invalid",
-				"code": {
-					"default": "<DBInput label=\"Label\" minLength={5} required description=\"minLength=5\"/>"
+				"props": {
+					"label": "Label",
+					"description": "minLength=5",
+					"required": true,
+					"minLength": 5
 				}
 			},
 			{
 				"name": "Disabled",
-				"code": {
-					"default": "<DBInput label=\"Label\" disabled/>"
+				"props": {
+					"label": "Label",
+					"disabled": true
 				}
 			},
 			{
 				"name": "Disabled with value",
-				"code": {
-					"default": "<DBInput label=\"Label\" value=\"Input Text\" disabled/>"
+				"props": {
+					"label": "Label",
+					"value": "Input Text",
+					"disabled": true
 				}
 			},
 			{
 				"name": "Required",
-				"code": {
-					"default": "<DBInput label=\"Label\" value=\"Input Text\" disabled required/>"
+				"props": {
+					"label": "Label",
+					"value": "Input Text",
+					"disabled": true,
+					"required": true
 				}
 			}
 		]
@@ -86,32 +108,38 @@
 		"examples": [
 			{
 				"name": "(Default) Text",
-				"code": {
-					"default": "<DBInput label=\"Label\"/>"
+				"props": {
+					"label": "Label"
 				}
 			},
 			{
 				"name": "Leading Icon + Text",
-				"code": {
-					"default": "<DBInput icon=\"account\" label=\"Label\"/>"
+				"props": {
+					"label": "Label",
+					"icon": "account"
 				}
 			},
 			{
 				"name": "Leading Icon + Text + Trailing Icon",
-				"code": {
-					"default": "<DBInput icon=\"account\" label=\"Label\" iconAfter=\"edit\"/>"
+				"props": {
+					"label": "Label",
+					"icon": "account",
+					"iconAfter": "edit"
 				}
 			},
 			{
 				"name": "Text + Trailing Icon",
-				"code": {
-					"default": "<DBInput label=\"Label\" iconAfter=\"edit\"/>"
+				"props": {
+					"label": "Label",
+					"iconAfter": "edit"
 				}
 			},
 			{
 				"name": "Text + Trailing Icon + Variant:Successful",
-				"code": {
-					"default": "<DBInput label=\"Label\" iconAfter=\"edit\" variant=\"successful\"/>"
+				"props": {
+					"label": "Label",
+					"variant": "successful",
+					"iconAfter": "edit"
 				}
 			}
 		]
