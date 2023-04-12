@@ -4,72 +4,82 @@
 		"examples": [
 			{
 				"name": "(Default) neutral-0",
-				"code": {
-					"html": "<div class=\"db-card\" data-variant=\"interactive\" data-color-variant=\"neutral-0\" data-spacing=\"small\"><strong>Default neutral-0</strong><span>neutral-0</span></div>",
-					"default": "<DBCard colorVariant=\"neutral-0\" variant=\"interactive\" spacing=\"small\"><strong>Card</strong><span>DB Card</span></DBCard>"
+				"props": {
+					"colorVariant": "neutral-0",
+					"variant": "interactive",
+					"spacing": "small"
 				}
 			},
 			{
 				"name": "neutral-1",
-				"code": {
-					"html": "<div class=\"db-card\" data-variant=\"interactive\" data-color-variant=\"neutral-1\" data-spacing=\"small\"><strong>neutral-1</strong><span>neutral-1</span></div>",
-					"default": "<DBCard colorVariant=\"neutral-1\" variant=\"interactive\" spacing=\"small\"><strong>Card</strong><span>DB Card</span></DBCard>"
+				"props": {
+					"colorVariant": "neutral-1",
+					"variant": "interactive",
+					"spacing": "small"
 				}
 			},
 			{
 				"name": "neutral-3",
-				"code": {
-					"html": "<div class=\"db-card\" data-variant=\"interactive\" data-color-variant=\"neutral-3\" data-spacing=\"small\"><strong>neutral-3</strong><span>neutral-3</span></div>",
-					"default": "<DBCard colorVariant=\"neutral-3\" variant=\"interactive\" spacing=\"small\"><strong>Card</strong><span>DB Card</span></DBCard>"
+				"props": {
+					"colorVariant": "neutral-3",
+					"variant": "interactive",
+					"spacing": "small"
 				}
 			},
 			{
 				"name": "neutral-4",
-				"code": {
-					"html": "<div class=\"db-card\" data-variant=\"interactive\" data-color-variant=\"neutral-4\" data-spacing=\"small\"><strong>neutral-4</strong><span>neutral-4</span></div>",
-					"default": "<DBCard colorVariant=\"neutral-4\" variant=\"interactive\" spacing=\"small\"><strong>Card</strong><span>DB Card</span></DBCard>"
+				"props": {
+					"colorVariant": "neutral-4",
+					"variant": "interactive",
+					"spacing": "small"
 				}
 			},
 			{
 				"name": "primary",
-				"code": {
-					"html": "<div class=\"db-card\" data-variant=\"interactive\" data-color-variant=\"primary\" data-spacing=\"small\"><strong>primary</strong><span>primary</span></div>",
-					"default": "<DBCard colorVariant=\"primary\" variant=\"interactive\" spacing=\"small\"><strong>Card</strong><span>DB Card</span></DBCard>"
+				"props": {
+					"colorVariant": "primary",
+					"variant": "interactive",
+					"spacing": "small"
 				}
 			},
 			{
 				"name": "secondary",
-				"code": {
-					"html": "<div class=\"db-card\" data-variant=\"interactive\" data-color-variant=\"secondary\" data-spacing=\"small\"><strong>secondary</strong><span>secondary</span></div>",
-					"default": "<DBCard colorVariant=\"secondary\" variant=\"interactive\" spacing=\"small\"><strong>Card</strong><span>DB Card</span></DBCard>"
+				"props": {
+					"colorVariant": "secondary",
+					"variant": "interactive",
+					"spacing": "small"
 				}
 			},
 			{
 				"name": "critical",
-				"code": {
-					"html": "<div class=\"db-card\" data-variant=\"interactive\" data-color-variant=\"critical\" data-spacing=\"small\"><strong>critical</strong><span>critical</span></div>",
-					"default": "<DBCard colorVariant=\"critical\" variant=\"interactive\" spacing=\"small\"><strong>Card</strong><span>DB Card</span></DBCard>"
+				"props": {
+					"colorVariant": "critical",
+					"variant": "interactive",
+					"spacing": "small"
 				}
 			},
 			{
 				"name": "successful",
-				"code": {
-					"html": "<div class=\"db-card\" data-variant=\"interactive\" data-color-variant=\"successful\" data-spacing=\"small\"><strong>successful</strong><span>successful</span></div>",
-					"default": "<DBCard colorVariant=\"successful\" variant=\"interactive\" spacing=\"small\"><strong>Card</strong><span>DB Card</span></DBCard>"
+				"props": {
+					"colorVariant": "successful",
+					"variant": "interactive",
+					"spacing": "small"
 				}
 			},
 			{
 				"name": "warning",
-				"code": {
-					"html": "<div class=\"db-card\" data-variant=\"interactive\" data-color-variant=\"warning\" data-spacing=\"small\"><strong>warning</strong><span>warning</span></div>",
-					"default": "<DBCard colorVariant=\"warning\" variant=\"interactive\" spacing=\"small\"><strong>Card</strong><span>DB Card</span></DBCard>"
+				"props": {
+					"colorVariant": "warning",
+					"variant": "interactive",
+					"spacing": "small"
 				}
 			},
 			{
 				"name": "informational",
-				"code": {
-					"html": "<div class=\"db-card\" data-variant=\"interactive\" data-color-variant=\"informational\" data-spacing=\"small\"><strong>informational</strong><span>informational</span></div>",
-					"default": "<DBCard colorVariant=\"informational\" variant=\"interactive\" spacing=\"small\"><strong>Card</strong><span>DB Card</span></DBCard>"
+				"props": {
+					"colorVariant": "informational",
+					"variant": "interactive",
+					"spacing": "small"
 				}
 			}
 		]
@@ -79,23 +89,18 @@
 		"examples": [
 			{
 				"name": "(Default) No Spacing",
-				"code": {
-					"html": "<div class=\"db-card\" data-color-variant=\"neutral-0\"><strong>Default No Spacing</strong></div>",
-					"default": "<DBCard>DBCard</DBCard>"
-				}
+				"props": {}
 			},
 			{
 				"name": "Medium",
-				"code": {
-					"html": "<div class=\"db-card\" data-color-variant=\"neutral-0\" data-spacing=\"medium\"><strong>Medium</strong></div>",
-					"default": "<DBCard spacing=\"medium\">DBCard</DBCard>"
+				"props": {
+					"spacing": "medium"
 				}
 			},
 			{
 				"name": "Small",
-				"code": {
-					"html": "<div class=\"db-card\" data-color-variant=\"neutral-0\" data-spacing=\"small\"><strong>Small</strong></div>",
-					"default": "<DBCard spacing=\"small\">DBCard</DBCard>"
+				"props": {
+					"spacing": "small"
 				}
 			}
 		]
@@ -105,16 +110,15 @@
 		"examples": [
 			{
 				"name": "(Default) Non interactive",
-				"code": {
-					"html": "<div class=\"db-card\" data-color-variant=\"neutral-0\" data-spacing=\"medium\"><strong>Default Non interactive</strong></div>",
-					"default": "<DBCard>DBCard</DBCard>"
+				"props": {
+					"spacing": "small"
 				}
 			},
 			{
 				"name": "Interactive",
-				"code": {
-					"html": "<div class=\"db-card\" data-variant=\"interactive\" data-color-variant=\"neutral-0\" data-spacing=\"medium\"><strong>Interactive</strong></div>",
-					"default": "<DBCard variant=\"interactive\">DBCard</DBCard>"
+				"props": {
+					"spacing": "small",
+					"variant": "interactive"
 				}
 			}
 		]

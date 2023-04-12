@@ -1,4 +1,5 @@
 import FS from 'node:fs';
+import { getCodeByFramework } from './utils.js';
 
 const sharedPath = '../shared';
 
@@ -19,16 +20,16 @@ const generateExampleJSX = () => {
 				const variants = JSON.parse(FS.readFileSync(path, 'utf8'));
 
 				for (const variant of variants) {
-					for (const example of variant.examples.filter(
-						(example) => example.code
-					)) {
+					for (const example of variant.examples) {
+						const code = getCodeByFramework(
+							componentName,
+							'react',
+							example
+						);
 						examples.push(
 							`"${componentName}${variant.name}${
 								example.name
-							}":renderToString(${example.code.default.slice(
-								0,
-								example.code.default.length
-							)})`
+							}":renderToString(${code.slice(0, code.length)})`
 						);
 					}
 				}

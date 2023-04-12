@@ -7,9 +7,7 @@ to: ../../showcases/shared/<%= name %>.json
 		examples: [
 			{
 				name: '(Default) <%= name %>',
-				code: {
-					"html":""
-					"default":""
+				props: {
 				}
 			}
 		]

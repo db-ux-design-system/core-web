@@ -8,11 +8,12 @@ to: ../../showcases/angular-showcase/src/app/components/<%= name %>/<%= name %>.
 >
 	<ng-template
 		#exampleTemplate
+		let-exampleProps="exampleProps"
 		let-exampleName="exampleName"
 		let-exampleIndex="exampleIndex"
 		let-variantIndex="variantIndex"
 	>
-		<db-<%= name %> *ngIf="exampleIndex === 0">{{exampleName}}</db-<%= name %>>
+		<db-<%= name %>>{{exampleName}}</db-<%= name %>>
 	</ng-template>
 </app-default-component>
 

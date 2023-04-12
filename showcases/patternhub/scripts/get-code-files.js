@@ -1,8 +1,8 @@
-/* eslint-disable unicorn/prefer-logical-operator-over-ternary */
 import FS from 'node:fs';
 import prettier from 'prettier';
 import prettier0 from 'prettier/parser-babel.js';
 import { allExamples } from './generated';
+import { getCodeByFramework } from './utils.js';
 
 const sharedPath = '../shared';
 const reactPath = '../react-showcase/src/components';
@@ -24,41 +24,45 @@ const getFileTypeByFramework = (framework) => {
 
 const getExamplesAsMDX = (componentName, variant) => {
 	const examples = variant.examples;
-	if (!examples?.find((example) => example.code)) {
-		return `No code available`;
-	}
 
 	let result = '';
 
-	for (const example of examples.filter((example) => example.code)) {
+	for (const example of examples) {
 		result += '<CH.Code>\n\n';
 		for (const framework of codeFrameworks) {
-			if (example.code) {
-				let exampleCode = example.code[framework]
-					? example.code[framework]
-					: example.code.default;
-				if (framework === 'html') {
-					exampleCode =
-						allExamples[
-							`${componentName}${variant.name}${example.name}`
-						];
-				}
+			let exampleCode;
 
-				try {
-					exampleCode = prettier.format(exampleCode, {
-						parser: 'babel',
-						plugins
-					});
-				} catch {
-					// We do not care about errors here
-				}
-
-				result += `\`\`\`${getFileTypeByFramework(
-					framework
-				)} ${framework}\n`;
-				result += `${exampleCode.replace(/;/g, '')}\n`;
-				result += '```\n\n';
+			if (example.code && example.code[framework]) {
+				exampleCode = example.code[framework];
+			} else {
+				exampleCode = getCodeByFramework(
+					componentName,
+					framework,
+					example
+				);
 			}
+
+			if (framework === 'html') {
+				exampleCode =
+					allExamples[
+						`${componentName}${variant.name}${example.name}`
+					];
+			}
+
+			try {
+				exampleCode = prettier.format(exampleCode, {
+					parser: 'babel',
+					plugins
+				});
+			} catch {
+				// We do not care about errors here
+			}
+
+			result += `\`\`\`${getFileTypeByFramework(
+				framework
+			)} ${framework}\n`;
+			result += `${exampleCode.replace(/;/g, '')}\n`;
+			result += '```\n\n';
 		}
 
 		result += '</CH.Code>\n\n';

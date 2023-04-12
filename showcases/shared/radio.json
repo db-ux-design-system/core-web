@@ -4,38 +4,44 @@
 		"examples": [
 			{
 				"name": "Default",
-				"code": {
-					"default": "<DBRadio name=\"States\">Label</DBRadio>"
+				"props": {
+					"name": "States"
 				}
 			},
 			{
 				"name": "Disabled",
-				"code": {
-					"default": "<DBRadio disabled name=\"States\">Label</DBRadio>"
+				"props": {
+					"name": "States",
+					"disabled": true
 				}
 			},
 			{
 				"name": "Disabled checked",
-				"code": {
-					"default": "<DBRadio disabled checked name=\"SpecialState\">Label</DBRadio>"
+				"props": {
+					"name": "SpecialState",
+					"disabled": true,
+					"checked": true
 				}
 			},
 			{
 				"name": "Required",
-				"code": {
-					"default": "<DBRadio required name=\"States\">Label</DBRadio>"
+				"props": {
+					"name": "States",
+					"required": true
 				}
 			},
 			{
 				"name": "Checked",
-				"code": {
-					"default": "<DBRadio checked name=\"States\">Label</DBRadio>"
+				"props": {
+					"name": "States",
+					"checked": true
 				}
 			},
 			{
 				"name": "Invalid",
-				"code": {
-					"default": "<DBRadio invalid name=\"States\">Label</DBRadio>"
+				"props": {
+					"name": "States",
+					"invalid": true
 				}
 			}
 		]
@@ -45,14 +51,15 @@
 		"examples": [
 			{
 				"name": "Default",
-				"code": {
-					"default": "<DBRadio name=\"Size\">Label</DBRadio>"
+				"props": {
+					"name": "Size"
 				}
 			},
 			{
 				"name": "Small",
-				"code": {
-					"default": "<DBRadio size=\"small\" name=\"Size\">Label</DBRadio>"
+				"props": {
+					"name": "Size",
+					"size": "small"
 				}
 			}
 		]

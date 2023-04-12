@@ -19,7 +19,13 @@ interface DefaultExample extends DefaultComponentExample {
 	example?: any;
 	style?: { width?: string };
 	className?: string;
-	code?: string;
+	props?: any;
+	code?: {
+		html?: string; // We will generate this with reacts 'renderToString'
+		angular?: string;
+		react?: string;
+		vue?: string;
+	};
 }
 interface DefaultVariants extends DefaultComponentVariants {
 	name: string;
@@ -87,6 +93,7 @@ const getCodeSnippets = (examples: DefaultExample[]) => {
 			>
 				<slot
 					name="example"
+					v-bind:exampleProps="example.props"
 					v-bind:exampleName="example.name"
 					v-bind:exampleIndex="exampleIndex"
 					v-bind:variantIndex="variantRefIndex"
@@ -119,6 +126,7 @@ const getCodeSnippets = (examples: DefaultExample[]) => {
 					>
 						<slot
 							name="example"
+							v-bind:exampleProps="example.props"
 							v-bind:exampleName="example.name"
 							v-bind:exampleIndex="exampleIndex"
 							v-bind:variantIndex="variantIndex"

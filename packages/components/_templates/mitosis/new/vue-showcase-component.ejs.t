@@ -9,10 +9,8 @@ import { DB<%= h.changeCase.pascal(name) %> } from "../../../../../output/vue/vu
 
 <template>
 	<DefaultComponent title="<%= h.changeCase.pascal(name) %>" :variants="defaultComponentVariants">
-		<template #example="{ exampleIndex, variantIndex, exampleName }">
-				<template v-if="exampleIndex === 0">
-            		<DB<%= h.changeCase.pascal(name) %>>{{exampleName}}</DB<%= h.changeCase.pascal(name) %>>
-            	</template>
+		<template #example="{ exampleIndex, variantIndex, exampleName, exampleProps }">
+            <DB<%= h.changeCase.pascal(name) %>>{{exampleName}}</DB<%= h.changeCase.pascal(name) %>>
 		</template>
 	</DefaultComponent>
 </template>
