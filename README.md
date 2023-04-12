@@ -273,4 +273,4 @@ our [Contributor Covenant Code of Conduct](CODE-OF-CONDUCT.md).
 
 ## License
 
-This project is licensed under [Apache-2.0](LICENSE), Copyright 2022 by DB Systel GmbH.
+This project is licensed under [Apache-2.0](LICENSE), Copyright 2023 by DB Systel GmbH.

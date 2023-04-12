@@ -5,22 +5,20 @@
 			{
 				"name": "(Default) Full",
 				"style": { "width": "100%" },
-				"code": {
-					"default": "<DBSection>Section</DBSection>"
-				}
+				"props": {}
 			},
 			{
 				"name": "Medium",
 				"style": { "width": "100%" },
-				"code": {
-					"default": "<DBSection variant=\"medium\">Section</DBSection>"
+				"props": {
+					"variant": "medium"
 				}
 			},
 			{
 				"name": "Large",
 				"style": { "width": "100%" },
-				"code": {
-					"default": "<DBSection variant=\"large\">Section</DBSection>"
+				"props": {
+					"variant": "large"
 				}
 			}
 		]
@@ -30,20 +28,18 @@
 		"examples": [
 			{
 				"name": "(Default) Medium",
-				"code": {
-					"default": "<DBSection>Section</DBSection>"
-				}
+				"props": {}
 			},
 			{
 				"name": "Large",
-				"code": {
-					"default": "<DBSection size=\"large\">Section</DBSection>"
+				"props": {
+					"size": "large"
 				}
 			},
 			{
 				"name": "Small",
-				"code": {
-					"default": "<DBSection size=\"small\">Section</DBSection>"
+				"props": {
+					"size": "small"
 				}
 			}
 		]

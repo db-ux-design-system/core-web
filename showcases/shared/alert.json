@@ -5,15 +5,25 @@
 			{
 				"name": "(Default) Alert",
 				"style": { "width": "100%" },
-				"code": {
-					"default": "<DBAlert type=\"alert\" headline=\"Headline\" link={{ href: \"#\" }} slotLink=\"Link\">Alert</DBAlert>"
+				"props": {
+					"type": "alert",
+					"headline": "Headline",
+					"link": {
+						"href": "#"
+					},
+					"slotLink": "Link"
 				}
 			},
 			{
 				"name": "Inline",
 				"style": { "width": "100%" },
-				"code": {
-					"default": "<DBAlert type=\"inline\" headline=\"Headline\" link={{ href: \"#\" }} slotLink=\"Link\">Alert</DBAlert>"
+				"props": {
+					"type": "inline",
+					"headline": "Headline",
+					"link": {
+						"href": "#"
+					},
+					"slotLink": "Link"
 				}
 			}
 		]
@@ -24,36 +34,66 @@
 			{
 				"name": "(Default) Adaptive",
 				"style": { "width": "100%" },
-				"code": {
-					"default": "<DBAlert icon=\"account\"  type=\"alert\" headline=\"Headline\" link={{ href: \"#\" }} slotLink=\"Link\">Alert</DBAlert>"
+				"props": {
+					"type": "alert",
+					"icon": "account",
+					"headline": "Headline",
+					"link": {
+						"href": "#"
+					},
+					"slotLink": "Link"
 				}
 			},
 			{
 				"name": "Critical",
 				"style": { "width": "100%" },
-				"code": {
-					"default": "<DBAlert variant=\"critical\" headline=\"Headline\" link={{ href: \"#\" }} slotLink=\"Link\">Alert</DBAlert>"
+				"props": {
+					"type": "alert",
+					"variant": "critical",
+					"headline": "Headline",
+					"link": {
+						"href": "#"
+					},
+					"slotLink": "Link"
 				}
 			},
 			{
 				"name": "Informational",
 				"style": { "width": "100%" },
-				"code": {
-					"default": "<DBAlert variant=\"informational\" headline=\"Headline\" link={{ href: \"#\" }} slotLink=\"Link\">Alert</DBAlert>"
+				"props": {
+					"type": "alert",
+					"variant": "informational",
+					"headline": "Headline",
+					"link": {
+						"href": "#"
+					},
+					"slotLink": "Link"
 				}
 			},
 			{
 				"name": "Successful",
 				"style": { "width": "100%" },
-				"code": {
-					"default": "<DBAlert variant=\"successful\" headline=\"Headline\" link={{ href: \"#\" }} slotLink=\"Link\">Alert</DBAlert>"
+				"props": {
+					"type": "alert",
+					"variant": "successful",
+					"headline": "Headline",
+					"link": {
+						"href": "#"
+					},
+					"slotLink": "Link"
 				}
 			},
 			{
 				"name": "Warning",
 				"style": { "width": "100%" },
-				"code": {
-					"default": "<DBAlert variant=\"warning\" headline=\"Headline\" link={{ href: \"#\" }} slotLink=\"Link\">Alert</DBAlert>"
+				"props": {
+					"type": "alert",
+					"variant": "warning",
+					"headline": "Headline",
+					"link": {
+						"href": "#"
+					},
+					"slotLink": "Link"
 				}
 			}
 		]
@@ -64,30 +104,41 @@
 			{
 				"name": "Headline & Text & Link & Icon",
 				"style": { "width": "100%" },
-				"code": {
-					"default": "<DBAlert icon=\"account\" headline=\"Headline\" link={{ href: \"#\" }} slotLink=\"Link\">Alert</DBAlert>"
+				"props": {
+					"type": "alert",
+					"icon": "account",
+					"headline": "Headline",
+					"link": {
+						"href": "#"
+					},
+					"slotLink": "Link"
 				}
 			},
 			{
 				"name": "Headline & Text & Link",
 				"style": { "width": "100%" },
-				"code": {
-					"default": "<DBAlert headline=\"Headline\" link={{ href: \"#\" }} slotLink=\"Link\">Alert</DBAlert>"
+				"props": {
+					"headline": "Headline",
+					"link": {
+						"href": "#"
+					},
+					"slotLink": "Link"
 				}
 			},
 			{
 				"name": "Text & Link",
 				"style": { "width": "100%" },
-				"code": {
-					"default": "<DBAlert link={{ href: \"#\" }} slotLink=\"Link\">Alert</DBAlert>"
+				"props": {
+					"link": {
+						"href": "#"
+					},
+					"slotLink": "Link"
 				}
 			},
 			{
 				"name": "Text",
 				"style": { "width": "100%" },
-				"code": {
-					"default": "<DBAlert>Alert</DBAlert>"
-				}
+				"props": {}
 			}
 		]
 	},
@@ -97,15 +148,27 @@
 			{
 				"name": "Closable",
 				"style": { "width": "100%" },
-				"code": {
-					"default": "<DBAlert headline=\"Headline\" link={{ href: \"#\" }} slotLink=\"Link\" onClick={()=>{alert(\"click close button\")}}>Alert</DBAlert>"
+				"props": {
+					"type": "alert",
+					"headline": "Headline",
+					"link": {
+						"href": "#"
+					},
+					"click": "()=>{alert(\"click close button\")}",
+					"slotLink": "Link"
 				}
 			},
 			{
 				"name": "Permanent",
 				"style": { "width": "100%" },
-				"code": {
-					"default": "<DBAlert headline=\"Headline\" link={{ href: \"#\" }} slotLink=\"Link\" behaviour=\"permanent\">Alert</DBAlert>"
+				"props": {
+					"type": "alert",
+					"headline": "Headline",
+					"link": {
+						"href": "#"
+					},
+					"behaviour": "permanent",
+					"slotLink": "Link"
 				}
 			}
 		]

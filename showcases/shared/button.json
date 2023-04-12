@@ -4,26 +4,24 @@
 		"examples": [
 			{
 				"name": "(Default) Adaptive Outline",
-				"code": {
-					"default": "<DBButton>Default Adaptive Outline</DBButton>"
-				}
+				"props": {}
 			},
 			{
 				"name": "Primary",
-				"code": {
-					"default": "<DBButton variant=\"primary\">Primary</DBButton>"
+				"props": {
+					"variant": "primary"
 				}
 			},
 			{
 				"name": "Transparent",
-				"code": {
-					"default": "<DBButton variant=\"transparent\">Transparent</DBButton>"
+				"props": {
+					"variant": "transparent"
 				}
 			},
 			{
 				"name": "Semi-Transparent",
-				"code": {
-					"default": "<DBButton variant=\"semi-transparent\">Semi-Transparent</DBButton>"
+				"props": {
+					"variant": "semi-transparent"
 				}
 			}
 		]
@@ -33,14 +31,12 @@
 		"examples": [
 			{
 				"name": "Default: Medium",
-				"code": {
-					"default": "<DBButton>Button</DBButton>"
-				}
+				"props": {}
 			},
 			{
 				"name": "Small",
-				"code": {
-					"default": "<DBButton size=\"small\">Button</DBButton>"
+				"props": {
+					"size": "small"
 				}
 			}
 		]
@@ -50,20 +46,19 @@
 		"examples": [
 			{
 				"name": "Default: Text",
-				"code": {
-					"default": "<DBButton>Button</DBButton>"
-				}
+				"props": {}
 			},
 			{
 				"name": "Icon & Text",
-				"code": {
-					"default": "<DBButton icon=\"account\" icntxt>Button</DBButton>"
+				"props": {
+					"icon": "account",
+					"icntxt": true
 				}
 			},
 			{
 				"name": "Icon",
-				"code": {
-					"default": "<DBButton icon=\"account\">Button</DBButton>"
+				"props": {
+					"icon": "account"
 				}
 			}
 		]
@@ -73,15 +68,13 @@
 		"examples": [
 			{
 				"name": "Default: Auto Width",
-				"code": {
-					"default": "<DBButton>Button</DBButton>"
-				}
+				"props": {}
 			},
 			{
 				"name": "Width full",
 				"style": { "width": "500px" },
-				"code": {
-					"default": "<DBButton width=\"full\">Button</DBButton>"
+				"props": {
+					"width": "full"
 				}
 			}
 		]

@@ -1,4 +1,4 @@
-import getUnionElements from './get-union-elements.js';
+import { getUnionElements } from './utils.js';
 
 const getOption = (optionName, tsType) => {
 	if (tsType.name === 'boolean') {

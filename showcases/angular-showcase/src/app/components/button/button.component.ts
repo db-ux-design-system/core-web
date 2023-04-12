@@ -7,4 +7,9 @@ import defaultComponentVariants from '../../../../../shared/button.json';
 })
 export class ButtonComponent {
 	variants = defaultComponentVariants;
+
+	showAlert = (exampleName: string) => {
+		// eslint-disable-next-line no-alert
+		alert(exampleName);
+	};
 }

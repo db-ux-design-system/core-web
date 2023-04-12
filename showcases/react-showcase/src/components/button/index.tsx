@@ -12,7 +12,7 @@ const getButton = ({
 	icntxt,
 	icon,
 	width,
-	text
+	children
 }: DBButtonProps) => (
 	<DBButton
 		variant={variant}
@@ -20,61 +20,14 @@ const getButton = ({
 		size={size}
 		icntxt={icntxt}
 		icon={icon}
-		width={width}>
-		{text}
+		width={width}
+		onClick={() => {
+			// eslint-disable-next-line no-alert
+			alert(children.toString());
+		}}>
+		{children}
 	</DBButton>
 );
-
-const getExampleMatrix = (exampleName: string): DefaultComponentExample[][] => [
-	[
-		{
-			example: getButton({ text: exampleName })
-		},
-		{
-			example: getButton({ text: exampleName, variant: 'primary' })
-		},
-		{
-			example: getButton({ text: exampleName, variant: 'transparent' })
-		},
-		{
-			example: getButton({
-				text: exampleName,
-				variant: 'semi-transparent'
-			})
-		}
-	],
-	[
-		{
-			example: getButton({ text: exampleName })
-		},
-		{
-			example: getButton({ text: exampleName, size: 'small' })
-		}
-	],
-	[
-		{
-			example: getButton({ text: exampleName })
-		},
-		{
-			example: getButton({
-				text: exampleName,
-				icon: 'account',
-				icntxt: true
-			})
-		},
-		{
-			example: getButton({ text: exampleName, icon: 'account' })
-		}
-	],
-	[
-		{
-			example: getButton({ text: exampleName })
-		},
-		{
-			example: getButton({ text: exampleName, width: 'full' })
-		}
-	]
-];
 
 const ButtonComponent = () => {
 	return (
@@ -82,7 +35,7 @@ const ButtonComponent = () => {
 			title="DBButton"
 			variants={getVariants(
 				defaultComponentVariants,
-				getExampleMatrix
+				getButton
 			)}></DefaultComponent>
 	);
 };

@@ -5,22 +5,19 @@
 >
 	<ng-template
 		#exampleTemplate
+		let-exampleProps="exampleProps"
 		let-exampleName="exampleName"
 		let-exampleIndex="exampleIndex"
 		let-variantIndex="variantIndex"
 	>
-		<db-link *ngIf="exampleIndex === 0" href="#">{{ exampleName }}</db-link>
-		<ng-container *ngIf="exampleIndex === 1 && variantIndex === 0">
-			<db-link variant="primary" href="#">{{ exampleName }}</db-link>
-		</ng-container>
-		<ng-container *ngIf="exampleIndex === 1 && variantIndex === 1">
-			<db-link [disabled]="true">{{ exampleName }}</db-link>
-		</ng-container>
-		<ng-container *ngIf="exampleIndex === 1 && variantIndex === 2">
-			<db-link size="small">{{ exampleName }}</db-link>
-		</ng-container>
-		<ng-container *ngIf="exampleIndex === 1 && variantIndex === 3">
-			<db-link content="external">{{ exampleName }}</db-link>
-		</ng-container>
+		<db-link
+			[variant]="exampleProps.variant"
+			[href]="exampleProps.href"
+			[disabled]="exampleProps.disabled"
+			[size]="exampleProps.size"
+			[content]="exampleProps.content"
+		>
+			{{ exampleName }}
+		</db-link>
 	</ng-template>
 </app-default-component>
