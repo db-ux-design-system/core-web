@@ -1,0 +1,25 @@
+<app-default-component
+	title="Link"
+	[variants]="variants"
+	[exampleTemplate]="exampleTemplate"
+>
+	<ng-template
+		#exampleTemplate
+		let-exampleProps="exampleProps"
+		let-exampleName="exampleName"
+		let-exampleIndex="exampleIndex"
+		let-variantIndex="variantIndex"
+	>
+		<db-radio
+			[label]="exampleProps.label"
+			[size]="exampleProps.size"
+			[name]="exampleProps.name"
+			[checked]="exampleProps.checked"
+			[invalid]="exampleProps.invalid"
+			[required]="exampleProps.required"
+			[disabled]="exampleProps.disabled"
+		>
+			{{ exampleName }}
+		</db-radio>
+	</ng-template>
+</app-default-component>
