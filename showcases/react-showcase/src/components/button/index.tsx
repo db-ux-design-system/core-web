@@ -22,6 +22,7 @@ const getButton = ({
 		icon={icon}
 		width={width}
 		onClick={() => {
+			// eslint-disable-next-line no-alert
 			alert(children.toString());
 		}}>
 		{children}

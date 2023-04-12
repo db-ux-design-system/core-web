@@ -23,6 +23,7 @@ const getAlert = ({
 		type={type}
 		behaviour={behaviour}
 		onClick={() => {
+			// eslint-disable-next-line no-alert
 			alert(children.toString());
 		}}>
 		{children}

@@ -41,6 +41,7 @@ const FormComponent = () => {
 							type="button"
 							variant="primary"
 							onClick={(_) => {
+								// eslint-disable-next-line no-alert
 								alert(
 									JSON.stringify({
 										input,
