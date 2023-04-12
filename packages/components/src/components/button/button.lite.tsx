@@ -15,16 +15,16 @@ useMetadata({
 				type: 'Enum',
 				values: [
 					{ key: 'Primary', name: 'Primary', value: 'primary' },
-					{ key: 'Outline', name: 'Outline', value: 'outline' },
+					{ key: 'Outlined', name: 'Outlined', value: 'outlined' },
 					{
-						key: 'Transparent',
-						name: 'Transparent',
-						value: 'transparent'
+						key: 'Text',
+						name: 'Text',
+						value: 'text'
 					},
 					{
-						key: 'Semi-Transparent',
-						name: 'Semi-Transparent',
-						value: 'semi-transparent'
+						key: 'Solid',
+						name: 'Solid',
+						value: 'solid'
 					}
 				]
 			},
