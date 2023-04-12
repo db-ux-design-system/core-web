@@ -43,7 +43,8 @@ Import the styles in `scss` or `css`. Based on your technology the file names co
 Within HTML files directly:
 
 ```html
-// index.html <link rel="stylesheet" href="/styles/db-ui-42.css" />
+<!-- index.html //-->
+<link rel="stylesheet" href="/styles/db-ui-42.css" />
 ```
 
 Or within your JavaScript files, with the related bundler as a prefix (in this case rollup and equivalents like Vite):
