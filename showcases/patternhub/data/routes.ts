@@ -113,10 +113,6 @@ export const ROUTES: DbMainnavigationDataType[] = [
 				link: `/components/${component.name}`,
 				children: [
 					{
-						label: 'Migration',
-						link: `/components/${component.name}/migration`
-					},
-					{
 						label: 'Properties',
 						link: `/components/${component.name}/properties`
 					},
@@ -127,6 +123,10 @@ export const ROUTES: DbMainnavigationDataType[] = [
 					{
 						label: 'How to use',
 						link: `/components/${component.name}/how-to-use`
+					},
+					{
+						label: 'Migration',
+						link: `/components/${component.name}/migration`
 					}
 				]
 			}))
