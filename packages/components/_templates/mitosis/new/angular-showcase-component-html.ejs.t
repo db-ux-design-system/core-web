@@ -12,7 +12,7 @@ to: ../../showcases/angular-showcase/src/app/components/<%= name %>/<%= name %>.
 		let-exampleIndex="exampleIndex"
 		let-variantIndex="variantIndex"
 	>
-		<DB<%= h.changeCase.pascal(name) %> *ngIf="exampleIndex === 0">{{exampleName}}</DB<%= h.changeCase.pascal(name) %>>
+		<db-<%= name %> *ngIf="exampleIndex === 0">{{exampleName}}</db-<%= name %>>
 	</ng-template>
 </app-default-component>
 
