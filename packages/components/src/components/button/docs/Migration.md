@@ -21,7 +21,7 @@
 
 | Before              | Status | After      | Description                                                 |
 | ------------------- | :----: | ---------- | ----------------------------------------------------------- |
-| `primary`           |   ❌   | ❌         | not valid anymore use `outlined` buttons for those purposes |
+| `primary`           |   ❌   | ❌         | not valid anymore, use `outlined` buttons for those purposes |
 | `brand-primary`     |   🔁   | `primary`  |                                                             |
 | `secondary-outline` |   🔁   | `outlined` |                                                             |
 | `secondary-solid`   |   🔁   | `solid`    |                                                             |
