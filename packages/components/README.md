@@ -7,20 +7,23 @@
 
 A library containing all styles for components of [DB UX Design System (technical components)](https://github.com/db-ui/mono).
 
-We currently support additional JavaScript frameworks:
+❗ We currently support additional JavaScript frameworks: ❗
 
 -   [Angular components](https://www.npmjs.com/package/@db-ui/ngx-components)
 -   [React components](https://www.npmjs.com/package/@db-ui/react-components)
 -   [Vue components](https://www.npmjs.com/package/@db-ui/v-components)
 
 Please look at your desired framework to retrieve more information.
+
+---
+
 If you just need the styling follow this:
 
 ## Install
 
 `npm i @db-ui/components`
 
-## Dependencies (simple)
+## Dependencies
 
 Import the styles in `scss` or `css`. Based on your technology the file names could be different.
 
@@ -40,8 +43,7 @@ Import the styles in `scss` or `css`. Based on your technology the file names co
 Within HTML files directly:
 
 ```html
-// index.html
-<link rel="stylesheet" href="/styles/db-ui-42.css">
+// index.html <link rel="stylesheet" href="/styles/db-ui-42.css" />
 ```
 
 Or within your JavaScript files, with the related bundler as a prefix (in this case rollup and equivalents like Vite):
@@ -49,24 +51,6 @@ Or within your JavaScript files, with the related bundler as a prefix (in this c
 ```js
 // main.js
 import "@db-ui/components/build/styles/db-ui-42-rollup.css";
-```
-
-## Dependencies (advanced)
-
-**SCSS**
-
-```scss
-@use "@db-ui/foundations/build/scss/rollup.assets-paths" as *;
-@use "@db-ui/foundations/build/scss/icon/icons" as *;
-@use "@db-ui/foundations/build/scss/db-ui-foundations" as *;
-```
-
-**CSS**
-
-```js
-// main.js
-import "@db-ui/foundations/build/css/icon/icons.css";
-import "@db-ui/foundations/build/css/db-ui-foundations.css";
 ```
 
 ## Deutsche Bahn brand

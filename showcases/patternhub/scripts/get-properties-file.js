@@ -60,13 +60,9 @@ import DefaultPage from "../../../components/default-page";
 ${description}
 ## Properties
 
-<div className="db-ui-functional">
-
 | Name | Description | Type | Options |
 | ---- | ----------- | ---- | ------- |
 ${propTable}
-
-</div>
 
 export default ({ children }) => <DefaultPage>{children}</DefaultPage>;`;
 };

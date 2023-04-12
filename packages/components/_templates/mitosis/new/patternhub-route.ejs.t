@@ -6,19 +6,5 @@ skip_if: '/components/<%= name %>'
 ---
 			{
 				label: 'TODO: Add to specific category; DB<%= h.changeCase.pascal(name) %>',
-				link: '/components/<%= name %>',
-				children: [
-					{
-						label: 'Properties',
-						link: '/components/<%= name %>/properties'
-					},
-					{
-						label: 'Examples',
-						link: '/components/<%= name %>/examples'
-					},
-					{
-						label: 'How to use',
-						link: '/components/<%= name %>/how-to-use'
-					}
-				]
+				name: '<%= name %>',
 			},
