@@ -2,7 +2,7 @@
 
 ❗ For a general installation or migration process check out this [documentation](https://www.npmjs.com/package/@db-ui/components). ❗
 
-## DBUI-Core ➡ DBUI-Components
+## DB UI Core ➡ DB UI Components
 
 ### class
 
