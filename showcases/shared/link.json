@@ -5,16 +5,14 @@
 			{
 				"name": "(Default) Adaptive",
 				"props": {
-					"href": "#",
-					"children": "Link"
+					"href": "#"
 				}
 			},
 			{
 				"name": "Primary",
 				"props": {
 					"href": "#",
-					"variant": "primary",
-					"children": "Link"
+					"variant": "primary"
 				}
 			}
 		]
@@ -25,16 +23,14 @@
 			{
 				"name": "Default: (Enabled, Hover, Pressed)",
 				"props": {
-					"href": "#",
-					"children": "Link"
+					"href": "#"
 				}
 			},
 			{
 				"name": "Disabled",
 				"props": {
 					"href": "#",
-					"disabled": true,
-					"children": "Link"
+					"disabled": true
 				}
 			}
 		]
@@ -45,16 +41,14 @@
 			{
 				"name": "(Default) Medium",
 				"props": {
-					"href": "#",
-					"children": "Link"
+					"href": "#"
 				}
 			},
 			{
 				"name": "Small",
 				"props": {
 					"href": "#",
-					"size": "small",
-					"children": "Link"
+					"size": "small"
 				}
 			}
 		]
@@ -65,16 +59,14 @@
 			{
 				"name": "(Default) Internal",
 				"props": {
-					"href": "#",
-					"children": "Link"
+					"href": "#"
 				}
 			},
 			{
 				"name": "External",
 				"props": {
 					"href": "#",
-					"content": "external",
-					"children": "Link"
+					"content": "external"
 				}
 			}
 		]

@@ -7,8 +7,7 @@
 				"props": {
 					"colorVariant": "neutral-0",
 					"variant": "interactive",
-					"spacing": "small",
-					"children": "Card"
+					"spacing": "small"
 				}
 			},
 			{
@@ -16,8 +15,7 @@
 				"props": {
 					"colorVariant": "neutral-1",
 					"variant": "interactive",
-					"spacing": "small",
-					"children": "Card"
+					"spacing": "small"
 				}
 			},
 			{
@@ -25,8 +23,7 @@
 				"props": {
 					"colorVariant": "neutral-3",
 					"variant": "interactive",
-					"spacing": "small",
-					"children": "Card"
+					"spacing": "small"
 				}
 			},
 			{
@@ -34,8 +31,7 @@
 				"props": {
 					"colorVariant": "neutral-4",
 					"variant": "interactive",
-					"spacing": "small",
-					"children": "Card"
+					"spacing": "small"
 				}
 			},
 			{
@@ -43,8 +39,7 @@
 				"props": {
 					"colorVariant": "primary",
 					"variant": "interactive",
-					"spacing": "small",
-					"children": "Card"
+					"spacing": "small"
 				}
 			},
 			{
@@ -52,8 +47,7 @@
 				"props": {
 					"colorVariant": "secondary",
 					"variant": "interactive",
-					"spacing": "small",
-					"children": "Card"
+					"spacing": "small"
 				}
 			},
 			{
@@ -61,8 +55,7 @@
 				"props": {
 					"colorVariant": "critical",
 					"variant": "interactive",
-					"spacing": "small",
-					"children": "Card"
+					"spacing": "small"
 				}
 			},
 			{
@@ -70,8 +63,7 @@
 				"props": {
 					"colorVariant": "successful",
 					"variant": "interactive",
-					"spacing": "small",
-					"children": "Card"
+					"spacing": "small"
 				}
 			},
 			{
@@ -79,8 +71,7 @@
 				"props": {
 					"colorVariant": "warning",
 					"variant": "interactive",
-					"spacing": "small",
-					"children": "Card"
+					"spacing": "small"
 				}
 			},
 			{
@@ -88,8 +79,7 @@
 				"props": {
 					"colorVariant": "informational",
 					"variant": "interactive",
-					"spacing": "small",
-					"children": "Card"
+					"spacing": "small"
 				}
 			}
 		]
@@ -99,22 +89,18 @@
 		"examples": [
 			{
 				"name": "(Default) No Spacing",
-				"props": {
-					"children": "Card"
-				}
+				"props": {}
 			},
 			{
 				"name": "Medium",
 				"props": {
-					"spacing": "medium",
-					"children": "Card"
+					"spacing": "medium"
 				}
 			},
 			{
 				"name": "Small",
 				"props": {
-					"spacing": "small",
-					"children": "Card"
+					"spacing": "small"
 				}
 			}
 		]
@@ -125,14 +111,14 @@
 			{
 				"name": "(Default) Non interactive",
 				"props": {
-					"children": "Card"
+					"spacing": "small"
 				}
 			},
 			{
 				"name": "Interactive",
 				"props": {
-					"variant": "interactive",
-					"children": "Card"
+					"spacing": "small",
+					"variant": "interactive"
 				}
 			}
 		]

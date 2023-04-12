@@ -5,15 +5,12 @@
 			{
 				"name": "(Default) Full",
 				"style": { "width": "100%" },
-				"props": {
-					"children": "Section"
-				}
+				"props": {}
 			},
 			{
 				"name": "Medium",
 				"style": { "width": "100%" },
 				"props": {
-					"children": "Section",
 					"variant": "medium"
 				}
 			},
@@ -21,7 +18,6 @@
 				"name": "Large",
 				"style": { "width": "100%" },
 				"props": {
-					"children": "Section",
 					"variant": "large"
 				}
 			}
@@ -32,21 +28,17 @@
 		"examples": [
 			{
 				"name": "(Default) Medium",
-				"props": {
-					"children": "Section"
-				}
+				"props": {}
 			},
 			{
 				"name": "Large",
 				"props": {
-					"children": "Section",
 					"size": "large"
 				}
 			},
 			{
 				"name": "Small",
 				"props": {
-					"children": "Section",
 					"size": "small"
 				}
 			}

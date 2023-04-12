@@ -5,36 +5,31 @@
 			{
 				"name": "(Default) Adaptive",
 				"props": {
-					"icon": "account",
-					"children": "Infotext"
+					"icon": "account"
 				}
 			},
 			{
 				"name": "Critical",
 				"props": {
-					"variant": "critical",
-					"children": "Infotext"
+					"variant": "critical"
 				}
 			},
 			{
 				"name": "Informational",
 				"props": {
-					"variant": "informational",
-					"children": "Infotext"
+					"variant": "informational"
 				}
 			},
 			{
 				"name": "Successful",
 				"props": {
-					"variant": "successful",
-					"children": "Infotext"
+					"variant": "successful"
 				}
 			},
 			{
 				"name": "Warning",
 				"props": {
-					"variant": "warning",
-					"children": "Infotext"
+					"variant": "warning"
 				}
 			}
 		]
@@ -44,15 +39,12 @@
 		"examples": [
 			{
 				"name": "(Default) Medium",
-				"props": {
-					"children": "Infotext"
-				}
+				"props": {}
 			},
 			{
 				"name": "Small",
 				"props": {
-					"size": "small",
-					"children": "Infotext"
+					"size": "small"
 				}
 			}
 		]

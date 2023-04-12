@@ -6,14 +6,14 @@
 				"name": "(Default) Basic",
 				"props": {
 					"label": "Label",
-					"description": "Description"
+					"description": "(Default) Basic"
 				}
 			},
 			{
 				"name": "Informational",
 				"props": {
 					"label": "Label",
-					"description": "Description",
+					"description": "Informational",
 					"variant": "informational"
 				}
 			},
@@ -21,7 +21,7 @@
 				"name": "Warning",
 				"props": {
 					"label": "Label",
-					"description": "Description",
+					"description": "Warning",
 					"variant": "warning"
 				}
 			},
@@ -29,7 +29,7 @@
 				"name": "Critical",
 				"props": {
 					"label": "Label",
-					"description": "Description",
+					"description": "Critical",
 					"variant": "critical"
 				}
 			},
@@ -37,7 +37,7 @@
 				"name": "Successful",
 				"props": {
 					"label": "Label",
-					"description": "Description",
+					"description": "Successful",
 					"variant": "successful"
 				}
 			}
@@ -50,14 +50,15 @@
 				"name": "Default",
 				"props": {
 					"label": "Label",
-					"description": "Description"
+					"description": "Default"
 				}
 			},
 			{
 				"name": "Filled",
 				"props": {
 					"label": "Label",
-					"value": "Input Text"
+					"value": "Input Text",
+					"description": "Filled"
 				}
 			},
 			{
@@ -65,14 +66,15 @@
 				"props": {
 					"label": "Label",
 					"value": "123456",
-					"type": "number"
+					"type": "number",
+					"description": "Filled Number"
 				}
 			},
 			{
 				"name": "Invalid",
 				"props": {
 					"label": "Label",
-					"description": "minLength=5",
+					"description": "Invalid",
 					"required": true,
 					"minLength": 5
 				}
@@ -81,7 +83,8 @@
 				"name": "Disabled",
 				"props": {
 					"label": "Label",
-					"disabled": true
+					"disabled": true,
+					"description": "Disabled"
 				}
 			},
 			{
@@ -89,7 +92,8 @@
 				"props": {
 					"label": "Label",
 					"value": "Input Text",
-					"disabled": true
+					"disabled": true,
+					"description": "Disabled with value"
 				}
 			},
 			{
@@ -98,7 +102,8 @@
 					"label": "Label",
 					"value": "Input Text",
 					"disabled": true,
-					"required": true
+					"required": true,
+					"description": "Required"
 				}
 			}
 		]
@@ -109,14 +114,16 @@
 			{
 				"name": "(Default) Text",
 				"props": {
-					"label": "Label"
+					"label": "Label",
+					"description": "(Default) Text"
 				}
 			},
 			{
 				"name": "Leading Icon + Text",
 				"props": {
 					"label": "Label",
-					"icon": "account"
+					"icon": "account",
+					"description": "Leading Icon + Text"
 				}
 			},
 			{
@@ -124,14 +131,16 @@
 				"props": {
 					"label": "Label",
 					"icon": "account",
-					"iconAfter": "edit"
+					"iconAfter": "edit",
+					"description": "Leading Icon + Text + Trailing Icon"
 				}
 			},
 			{
 				"name": "Text + Trailing Icon",
 				"props": {
 					"label": "Label",
-					"iconAfter": "edit"
+					"iconAfter": "edit",
+					"description": "Text + Trailing Icon"
 				}
 			},
 			{
@@ -139,7 +148,8 @@
 				"props": {
 					"label": "Label",
 					"variant": "successful",
-					"iconAfter": "edit"
+					"iconAfter": "edit",
+					"description": "Text + Trailing Icon + Variant:Successful"
 				}
 			}
 		]

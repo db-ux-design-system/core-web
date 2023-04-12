@@ -4,29 +4,24 @@
 		"examples": [
 			{
 				"name": "(Default) Adaptive Outline",
-				"props": {
-					"children": "Default Adaptive Outline"
-				}
+				"props": {}
 			},
 			{
 				"name": "Primary",
 				"props": {
-					"variant": "primary",
-					"children": "Primary"
+					"variant": "primary"
 				}
 			},
 			{
 				"name": "Transparent",
 				"props": {
-					"variant": "transparent",
-					"children": "Transparent"
+					"variant": "transparent"
 				}
 			},
 			{
 				"name": "Semi-Transparent",
 				"props": {
-					"variant": "semi-transparent",
-					"children": "Semi-Transparent"
+					"variant": "semi-transparent"
 				}
 			}
 		]
@@ -36,18 +31,12 @@
 		"examples": [
 			{
 				"name": "Default: Medium",
-				"props": {
-					"children": "Button"
-				},
-				"code": {
-					"default": "<DBButton>Button</DBButton>"
-				}
+				"props": {}
 			},
 			{
 				"name": "Small",
 				"props": {
-					"size": "small",
-					"children": "Transparent"
+					"size": "small"
 				}
 			}
 		]
@@ -57,14 +46,11 @@
 		"examples": [
 			{
 				"name": "Default: Text",
-				"props": {
-					"children": "Button"
-				}
+				"props": {}
 			},
 			{
 				"name": "Icon & Text",
 				"props": {
-					"children": "Button",
 					"icon": "account",
 					"icntxt": true
 				}
@@ -72,7 +58,6 @@
 			{
 				"name": "Icon",
 				"props": {
-					"children": "Button",
 					"icon": "account"
 				}
 			}
@@ -83,16 +68,13 @@
 		"examples": [
 			{
 				"name": "Default: Auto Width",
-				"props": {
-					"children": "Button"
-				}
+				"props": {}
 			},
 			{
 				"name": "Width full",
 				"style": { "width": "500px" },
 				"props": {
-					"width": "full",
-					"children": "Button"
+					"width": "full"
 				}
 			}
 		]

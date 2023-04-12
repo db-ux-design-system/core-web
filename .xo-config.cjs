@@ -38,7 +38,9 @@ module.exports = {
 				'@typescript-eslint/no-unsafe-call': 0, // We don't need this tsc will handle it anyway
 				'@typescript-eslint/naming-convention': 0, // Too much trouble for different frameworks in a monorepo
 				'@typescript-eslint/restrict-template-expressions': 0, // Legit it ,
-				'@typescript-eslint/no-unsafe-argument': 0 // valid for app
+				'@typescript-eslint/no-unsafe-argument': 0, // valid for app
+				'unicorn/prefer-logical-operator-over-ternary': 0, // legit for jsx apps
+				'no-alert': 0 // we need it for showcase click events
 			}
 		}
 	],

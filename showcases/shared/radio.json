@@ -5,15 +5,13 @@
 			{
 				"name": "Default",
 				"props": {
-					"name": "States",
-					"children": "Label"
+					"name": "States"
 				}
 			},
 			{
 				"name": "Disabled",
 				"props": {
 					"name": "States",
-					"children": "Label",
 					"disabled": true
 				}
 			},
@@ -21,7 +19,6 @@
 				"name": "Disabled checked",
 				"props": {
 					"name": "SpecialState",
-					"children": "Label",
 					"disabled": true,
 					"checked": true
 				}
@@ -30,7 +27,6 @@
 				"name": "Required",
 				"props": {
 					"name": "States",
-					"children": "Label",
 					"required": true
 				}
 			},
@@ -38,7 +34,6 @@
 				"name": "Checked",
 				"props": {
 					"name": "States",
-					"children": "Label",
 					"checked": true
 				}
 			},
@@ -46,7 +41,6 @@
 				"name": "Invalid",
 				"props": {
 					"name": "States",
-					"children": "Label",
 					"invalid": true
 				}
 			}
@@ -58,16 +52,14 @@
 			{
 				"name": "Default",
 				"props": {
-					"name": "Size",
-					"children": "Label"
+					"name": "Size"
 				}
 			},
 			{
 				"name": "Small",
 				"props": {
 					"name": "Size",
-					"size": "small",
-					"children": "Label"
+					"size": "small"
 				}
 			}
 		]

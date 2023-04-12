@@ -38,7 +38,7 @@ const getExamplesAsMDX = (componentName, variant) => {
 				exampleCode = getCodeByFramework(
 					componentName,
 					framework,
-					example.props
+					example
 				);
 			}
 

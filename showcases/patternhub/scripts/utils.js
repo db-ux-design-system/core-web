@@ -19,10 +19,11 @@ export const getUnionElements = (options, elements) => {
 /**
  * @param componentName {string}
  * @param framework {'angular'|'react'|'vue'}
- * @param props {any}
+ * @param example {{name:string, props: object}}
  * @returns {string}
  */
-export const getCodeByFramework = (componentName, framework, props) => {
+export const getCodeByFramework = (componentName, framework, example) => {
+	const props = example.props;
 	let tag = `DB${componentName
 		.split('-')
 		.map((part) => part.charAt(0).toUpperCase() + part.slice(1))
@@ -73,7 +74,7 @@ export const getCodeByFramework = (componentName, framework, props) => {
 		}
 	}
 
-	return `<${tag} ${attributes.join(' ')}>${props.children}</${tag}>`;
+	return `<${tag} ${attributes.join(' ')}>${example.name}</${tag}>`;
 };
 
 export default { getUnionElements, getCodeByFramework };

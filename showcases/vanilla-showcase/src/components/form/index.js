@@ -15,7 +15,6 @@ const getContent = () => {
 
 		if (button) {
 			button.props.onClick = () => {
-				// eslint-disable-next-line no-alert
 				alert(
 					JSON.stringify({
 						input: input.state._value

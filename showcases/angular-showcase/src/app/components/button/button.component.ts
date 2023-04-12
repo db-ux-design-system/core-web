@@ -7,4 +7,8 @@ import defaultComponentVariants from '../../../../../shared/button.json';
 })
 export class ButtonComponent {
 	variants = defaultComponentVariants;
+
+	showAlert = (exampleName: string) => {
+		alert(exampleName);
+	};
 }

@@ -11,7 +11,6 @@ export class FormComponent {
 	radio = '';
 
 	showValues(): void {
-		// eslint-disable-next-line no-alert
 		alert(
 			JSON.stringify({
 				input: this.input,
