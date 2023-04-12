@@ -16,7 +16,6 @@ export type NavigationItem = {
 };
 export const NAVIGATION_ITEMS: NavigationItem[] = [
 	{ path: 'radio', label: 'Radio', component: <RadioComponent /> },
-
 	{ path: 'alert', label: 'Alert', component: <AlertComponent /> },
 	{ path: 'infotext', label: 'Infotext', component: <InfotextComponent /> },
 	{ path: 'section', label: 'Section', component: <SectionComponent /> },

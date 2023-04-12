@@ -12,7 +12,10 @@ import {
 	DBBrandModule,
 	DBLinkModule,
 	DBRadioModule,
-	DBCodeDocsModule
+	DBCodeDocsModule,
+	DBAlertModule,
+	DBSectionModule,
+	DBInfotextModule
 } from '../../../../output/angular/src';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app.routing.module';
@@ -20,6 +23,11 @@ import { FormComponent } from './components/form/form.component';
 import { ButtonComponent } from './components/button/button.component';
 import { LinkComponent } from './components/link/link.component';
 import { InputComponent } from './components/input/input.component';
+import { AlertComponent } from './components/alert/alert.component';
+import { RadioComponent } from './components/radio/radio.component';
+import { InfotextComponent } from './components/infotext/infotext.component';
+import { SectionComponent } from './components/section/section.component';
+import { CardComponent } from './components/card/card.component';
 import { DefaultComponent } from './components/default.component';
 
 @NgModule({
@@ -29,7 +37,12 @@ import { DefaultComponent } from './components/default.component';
 		FormComponent,
 		ButtonComponent,
 		InputComponent,
-		LinkComponent
+		LinkComponent,
+		AlertComponent,
+		RadioComponent,
+		InfotextComponent,
+		SectionComponent,
+		CardComponent
 	],
 	imports: [
 		AppRoutingModule,
@@ -44,6 +57,9 @@ import { DefaultComponent } from './components/default.component';
 		DBBrandModule,
 		DBLinkModule,
 		DBCodeDocsModule,
+		DBAlertModule,
+		DBSectionModule,
+		DBInfotextModule,
 		FormsModule,
 		DBRadioModule
 	],
