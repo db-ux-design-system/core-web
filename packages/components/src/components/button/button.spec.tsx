@@ -51,11 +51,7 @@ test.describe('DBButton component A11y', () => {
 		page,
 		mount
 	}) => {
-		await mount(
-			<DBButton icon="account" onlyIcon={true}>
-				lorem ipsum
-			</DBButton>
-		);
+		await mount(<DBButton icon="account">lorem ipsum</DBButton>);
 		const accessibilityScanResults = await new AxeBuilder({ page })
 			.include('.db-button')
 			.analyze();
