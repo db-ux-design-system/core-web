@@ -45,7 +45,6 @@ const getPropertiesFile = ({ displayName, description, props }) => {
 		propTable += `| ${
 			prop.description.replace(/\r\n|\r|\n/g, '<br/>') || 'No description'
 		} `;
-		propTable += `| ${prop.required ? '✅' : '❌'} `;
 		propTable += `| ${prop.tsType.type ?? prop.tsType.name} `;
 		propTable += `| ${
 			options
@@ -61,8 +60,8 @@ import DefaultPage from "../../../components/default-page";
 ${description}
 ## Properties
 
-| Name | Description | Required | Type | Options |
-| ---- | ----------- | :------: | ---- | ------- |
+| Name | Description | Type | Options |
+| ---- | ----------- | ---- | ------- |
 ${propTable}
 
 export default ({ children }) => <DefaultPage>{children}</DefaultPage>;`;
