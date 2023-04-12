@@ -9,15 +9,20 @@
 		let-exampleIndex="exampleIndex"
 		let-variantIndex="variantIndex"
 	>
-		<db-button *ngIf="exampleIndex === 0">{{ exampleName }}</db-button>
-		<ng-container *ngIf="exampleIndex === 1 && variantIndex === 0">
+		<db-button *ngIf="exampleIndex === 0 && variantIndex !== 0">{{
+			exampleName
+		}}</db-button>
+		<ng-container *ngIf="exampleIndex === 0 && variantIndex === 0">
 			<db-button variant="primary">{{ exampleName }}</db-button>
 		</ng-container>
+		<ng-container *ngIf="exampleIndex === 1 && variantIndex === 0">
+			<db-button>{{ exampleName }}</db-button>
+		</ng-container>
 		<ng-container *ngIf="exampleIndex === 2 && variantIndex === 0">
-			<db-button variant="transparent">{{ exampleName }}</db-button>
+			<db-button variant="solid">{{ exampleName }}</db-button>
 		</ng-container>
 		<ng-container *ngIf="exampleIndex === 3 && variantIndex === 0">
-			<db-button variant="semi-transparent">{{ exampleName }}</db-button>
+			<db-button variant="text">{{ exampleName }}</db-button>
 		</ng-container>
 		<ng-container *ngIf="exampleIndex === 1 && variantIndex === 1">
 			<db-button state="loading">{{ exampleName }}</db-button>

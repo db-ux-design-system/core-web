@@ -28,19 +28,19 @@ const getButton = ({
 const getExampleMatrix = (exampleName: string): DefaultComponentExample[][] => [
 	[
 		{
-			example: getButton({ text: exampleName })
-		},
-		{
 			example: getButton({ text: exampleName, variant: 'primary' })
 		},
 		{
-			example: getButton({ text: exampleName, variant: 'transparent' })
+			example: getButton({ text: exampleName })
 		},
 		{
 			example: getButton({
 				text: exampleName,
-				variant: 'semi-transparent'
+				variant: 'solid'
 			})
+		},
+		{
+			example: getButton({ text: exampleName, variant: 'text' })
 		}
 	],
 	[

@@ -84,6 +84,7 @@ table td,
 table th {
 	border: 1px solid $db-colors-neutral-bg-2-enabled;
 	padding: $db-spacing-fixed-md;
+	max-width: 33vw;
 }
 
 table tr:nth-child(even) {

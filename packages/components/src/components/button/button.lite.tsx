@@ -68,9 +68,6 @@ export default function DBButton(props: DBButtonProps) {
 	return (
 		<button
 			ref={component}
-			type={props.type}
-			disabled={props.disabled}
-			aria-label={props.label}
 			class={
 				'db-button' +
 				(props.className ? ' ' + props.className : '') +
@@ -78,16 +75,21 @@ export default function DBButton(props: DBButtonProps) {
 					? ' is-icon-text-replace'
 					: '')
 			}
+			type={props.type}
+			disabled={props.disabled}
+			aria-label={props.label}
+			data-icon={state.iconVisible(props.icon) && props.icon}
 			data-size={props.size}
 			data-state={props.state}
 			data-width={props.width}
 			data-variant={props.variant}
+			name={props.name}
+			value={props.value}
+			aria-expanded={props.ariaexpanded}
+			aria-pressed={props.ariapressed}
 			onClick={(event) => state.handleClick(event)}>
 			<Show when={state.stylePath}>
 				<link rel="stylesheet" href={state.stylePath} />
-			</Show>
-			<Show when={state.iconVisible(props.icon)}>
-				<DBIcon icon={props.icon} icntxt={props.icntxt}></DBIcon>
 			</Show>
 			{props.children}
 			{props.text}

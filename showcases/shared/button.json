@@ -3,27 +3,27 @@
 		"name": "Variant",
 		"examples": [
 			{
-				"name": "(Default) Adaptive Outline",
-				"code": {
-					"default": "<DBButton>Default Adaptive Outline</DBButton>"
-				}
-			},
-			{
 				"name": "Primary",
 				"code": {
 					"default": "<DBButton variant=\"primary\">Primary</DBButton>"
 				}
 			},
 			{
-				"name": "Transparent",
+				"name": "Outlined (Adaptive)",
 				"code": {
-					"default": "<DBButton variant=\"transparent\">Transparent</DBButton>"
+					"default": "<DBButton variant=\"outlined\">Outlined (Adaptive)</DBButton>"
 				}
 			},
 			{
-				"name": "Semi-Transparent",
+				"name": "Solid (Adaptive)",
 				"code": {
-					"default": "<DBButton variant=\"semi-transparent\">Semi-Transparent</DBButton>"
+					"default": "<DBButton variant=\"solid\">Solid (Adaptive)</DBButton>"
+				}
+			},
+			{
+				"name": "Text (Adaptive)",
+				"code": {
+					"default": "<DBButton variant=\"text\">Text (Adaptive)</DBButton>"
 				}
 			}
 		]

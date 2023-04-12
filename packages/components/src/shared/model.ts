@@ -1,10 +1,32 @@
 export type GlobalProps = {
-	key?: string;
-	id?: string;
-	title?: string;
-	stylePath?: string;
-	className?: string;
+	/**
+	 * default slot
+	 */
+
 	children?: any;
+	/**
+	 * React specific for adding className to the component.
+	 */
+	className?: string;
+	/**
+	 * React specific for render process.
+	 */
+	key?: string;
+
+	/**
+	 * ID of the component generated automatically for some components.
+	 */
+	id?: string;
+
+	/**
+	 * Web-Component specific adds a link tag with the path to show css inside shadow-dom.
+	 */
+	stylePath?: string;
+
+	/**
+	 * The title attribute specifies the tooltip of the component.
+	 */
+	title?: string;
 };
 
 export type GlobalState = {
@@ -27,6 +49,9 @@ export const DefaultVariantsIcon: any = {
 };
 
 export type IconProps = {
+	/**
+	 * Define an icon by it's identifier (like e.g. _account_, compare to [Icons](https://db-ui.github.io/mono/review/main/foundations/icons) to get displayed in front of the elements content.
+	 */
 	icon?: string; // TODO: Add correct icon strings here
 };
 
@@ -97,6 +122,9 @@ export type CardProps = {
 };
 
 export type ClickEventProps = {
+	/**
+	 * React specific onClick to pass to forward ref.
+	 */
 	onClick?: (event: any) => void;
 };
 
