@@ -2,12 +2,13 @@ export type GlobalProps = {
 	/**
 	 * default slot
 	 */
-
 	children?: any;
+
 	/**
 	 * React specific for adding className to the component.
 	 */
 	className?: string;
+
 	/**
 	 * React specific for render process.
 	 */
