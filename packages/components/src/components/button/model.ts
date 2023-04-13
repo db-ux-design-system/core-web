@@ -9,17 +9,17 @@ import {
 
 export type DBButtonDefaultProps = {
 	/**
-	 * If the button controls a grouping of other elements, the ariaexpanded state indicates whether the controlled grouping is currently expanded or collapsed.
+	 * If the button controls a grouping of other elements, the ariaexpanded state [indicates whether the controlled grouping is currently expanded or collapsed](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-expanded).
 	 */
 	ariaexpanded?: boolean;
 
 	/**
-	 * Defines the button as a toggle button. The value of aria-pressed describes the state of the button.
+	 * Defines the button as a toggle button. The value of [ariapressed describes the state of the button](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-pressed).
 	 */
 	ariapressed?: boolean;
 
 	/**
-	 * The disabled attribute can be set to keep a user from clicking on the button.
+	 * The disabled attribute can be set to [keep a user from clicking on the button](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button#disabled).
 	 */
 	disabled?: boolean;
 
@@ -29,22 +29,22 @@ export type DBButtonDefaultProps = {
 	noText?: boolean; // We had to rename this to noText because web-components uses a regex and always finds "icon" instead of "onlyIcon"
 
 	/**
-	 * The label represents the aria-label of the button
+	 * The label represents the [aria-label attributes](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-label) value of the button
 	 */
 	label?: string;
 
 	/**
-	 * The name attribute specifies a name for the button.
+	 * The name attribute specifies a [name attributes value](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button#name) for the button.
 	 */
 	name?: string;
 
 	/**
-	 * The type attribute specifies the type of button.
+	 * The type attribute specifies the [type of button](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button#type).
 	 */
 	type?: 'button' | 'reset' | 'submit';
 
 	/**
-	 * The value attribute specifies an initial value for the button.
+	 * The value attribute specifies an initial [value for the button](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button#value).
 	 */
 	value?: string;
 
@@ -59,12 +59,12 @@ export type DBButtonDefaultProps = {
 	size?: 'small';
 
 	/**
-	 * Width of the button. Auto width based on text size, full width based on parent width.
+	 * Width of the button. Auto width based on text size, full width based on parent elements width.
 	 */
 	width?: 'full' | 'auto';
 
 	/**
-	 * Width of the button. Auto width based on text size, full width based on parent width.
+	 * Width of the button. Auto width based on text size, full width based on parent elements width.
 	 */
 	variant?: 'outlined' | 'primary' | 'solid' | 'text';
 };
