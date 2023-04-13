@@ -51,14 +51,14 @@
 			{
 				"name": "Icon & Text",
 				"props": {
-					"icon": "account",
-					"noText": true
+					"icon": "account"
 				}
 			},
 			{
 				"name": "Icon",
 				"props": {
-					"icon": "account"
+					"icon": "account",
+					"noText": true
 				}
 			}
 		]
