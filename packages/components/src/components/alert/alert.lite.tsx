@@ -52,7 +52,7 @@ export default function DBAlert(props: DBAlertProps) {
 			return (variant && DefaultVariantsIcon[variant]) || 'info';
 		},
 		iconVisible: (icon?: string) => {
-			return icon && icon !== '_' && icon !== 'none';
+			return Boolean(icon && icon !== '_' && icon !== 'none');
 		}
 	});
 
