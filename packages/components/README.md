@@ -7,7 +7,8 @@
 
 A library containing all styles for components of [DB UX Design System (technical components)](https://github.com/db-ui/mono).
 
-❗ Furthermore we currently support these additional JavaScript frameworks, with more coming soon: ❗
+> **Note**
+> Furthermore we currently support these additional JavaScript frameworks, with more coming soon:
 
 -   [Angular components](https://www.npmjs.com/package/@db-ui/ngx-components)
 -   [React components](https://www.npmjs.com/package/@db-ui/react-components)
