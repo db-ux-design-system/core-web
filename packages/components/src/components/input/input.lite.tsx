@@ -48,7 +48,7 @@ export default function DBInput(props: DBInputProps) {
 		_dataListId: DEFAULT_ID,
 		_value: '',
 		iconVisible: (icon?: string) => {
-			return icon && icon !== '_' && icon !== 'none';
+			return Boolean(icon && icon !== '_' && icon !== 'none');
 		},
 		getIcon: (variant?: DefaultVariantProps) => {
 			if (variant) {
