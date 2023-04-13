@@ -17,7 +17,8 @@ const withMDX = generated({
 				}
 			]
 		],
-		rehypePlugins: []
+		rehypePlugins: [],
+		providerImportSource: '@mdx-js/react'
 	}
 });
 
