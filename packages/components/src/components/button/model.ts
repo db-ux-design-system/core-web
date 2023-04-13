@@ -64,7 +64,7 @@ export type DBButtonDefaultProps = {
 	width?: 'full' | 'auto';
 
 	/**
-	 * Width of the button. Auto width based on text size, full width based on parent elements width.
+	 * Variant of the button. Use only 1 primary button on a page as CTA otherwise use one of the adaptive buttons.
 	 */
 	variant?: 'outlined' | 'primary' | 'solid' | 'text';
 };
