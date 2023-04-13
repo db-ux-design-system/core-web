@@ -1,7 +1,6 @@
 import { DBButton } from '../../../../../output/react/src';
 import DefaultComponent from '../index';
 import defaultComponentVariants from '../../../../shared/button.json';
-import { type DefaultComponentExample } from '../../../../shared/default-component-data';
 import { type DBButtonProps } from '../../../../../output/react/src/components/button/model';
 import { getVariants } from '../data';
 
@@ -9,7 +8,7 @@ const getButton = ({
 	variant,
 	state,
 	size,
-	icntxt,
+	noText,
 	icon,
 	width,
 	children
@@ -18,7 +17,7 @@ const getButton = ({
 		variant={variant}
 		state={state}
 		size={size}
-		icntxt={icntxt}
+		noText={noText}
 		icon={icon}
 		width={width}
 		onClick={() => {

@@ -15,7 +15,11 @@ const testButton = () => {
 	});
 
 	test('DBButton should only have icon', async ({ mount }) => {
-		const component = await mount(<DBButton icon="account" />);
+		const component = await mount(
+			<DBButton icon="account" noText={true}>
+				Account
+			</DBButton>
+		);
 		await expect(component).toHaveScreenshot();
 	});
 };
@@ -52,7 +56,7 @@ test.describe('DBButton component A11y', () => {
 		mount
 	}) => {
 		await mount(
-			<DBButton icon="account" onlyIcon={true}>
+			<DBButton icon="account" noText={true}>
 				lorem ipsum
 			</DBButton>
 		);

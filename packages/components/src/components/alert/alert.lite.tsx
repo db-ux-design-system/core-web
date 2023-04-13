@@ -106,8 +106,9 @@ export default function DBAlert(props: DBAlertProps) {
 						<Show when={props.behaviour !== 'permanent'}>
 							<DBButton
 								icon="close"
-								variant="transparent"
+								variant="text"
 								size="small"
+								noText
 								onClick={(event) => state.handleClick(event)}>
 								{props.closeButtonText ??
 									DEFAULT_VALUES.closeButton}

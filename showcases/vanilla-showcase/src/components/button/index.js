@@ -30,11 +30,11 @@ const getContent = () => {
 			<db-button disabled="true">Test</db-button>
 			<db-button icon="account">Test</db-button>
 			<db-button icon="account" disabled="true">Test</db-button>
-			<db-button icon="account" icntxt="true">Test</db-button>
+			<db-button icon="account" noText="true">Test</db-button>
 			<db-button
 			icon="account"
 			disabled="true"
-			icntxt="true"
+			noText="true"
 			>Test</db-button>
 			<db-button state="loading">Test</db-button>
 		</div>

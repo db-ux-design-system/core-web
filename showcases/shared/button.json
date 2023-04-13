@@ -3,25 +3,25 @@
 		"name": "Variant",
 		"examples": [
 			{
-				"name": "(Default) Adaptive Outline",
-				"props": {}
-			},
-			{
 				"name": "Primary",
 				"props": {
 					"variant": "primary"
 				}
 			},
 			{
-				"name": "Transparent",
+				"name": "Outlined (Adaptive)",
+				"props": {}
+			},
+			{
+				"name": "Solid (Adaptive)",
 				"props": {
-					"variant": "transparent"
+					"variant": "solid"
 				}
 			},
 			{
-				"name": "Semi-Transparent",
+				"name": "Text (Adaptive)",
 				"props": {
-					"variant": "semi-transparent"
+					"variant": "text"
 				}
 			}
 		]
@@ -51,14 +51,14 @@
 			{
 				"name": "Icon & Text",
 				"props": {
-					"icon": "account",
-					"icntxt": true
+					"icon": "account"
 				}
 			},
 			{
 				"name": "Icon",
 				"props": {
-					"icon": "account"
+					"icon": "account",
+					"noText": true
 				}
 			}
 		]

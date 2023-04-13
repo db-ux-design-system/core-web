@@ -10,7 +10,7 @@ useMetadata({
 				name: 'icon',
 				type: 'Icon'
 			},
-			{ name: 'icntxt', type: 'TwoOptions' }
+			{ name: 'withText', type: 'TwoOptions' }
 		]
 	}
 });
@@ -32,7 +32,7 @@ export default function DBIcon(props: DBIconProps) {
 			class={
 				'db-icon' +
 				(props.className ? ' ' + props.className : '') +
-				(props.icntxt ? '' : ' is-icon-text-replace')
+				(!props.withText ? '' : ' is-icon-text-replace')
 			}
 			data-icon={props.icon}
 			aria-hidden="true">
