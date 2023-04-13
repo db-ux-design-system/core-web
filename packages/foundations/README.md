@@ -19,7 +19,14 @@ We currently support:
 
 ## Usage
 
+The defaults for `db-ui-foundations.css` are:
+
+-   [Tonality](https://marketingportal.extranet.deutschebahn.com/marketingportal/Design-Anwendungen/db-ux-design-system-v3/principles/tonalities): `regular`
+-   [Adaptive Coloring](https://marketingportal.extranet.deutschebahn.com/marketingportal/Design-Anwendungen/db-ux-design-system-v3/principles/adaptive-styles): `neutral-0`
+
 ### CSS
+
+Default assets path for `db-ui-foundations.css` is `../assets`. Make sure to copy all used resources like icons and fonts into your `public` folder before build.
 
 ```ts
 // main.ts / main.js
@@ -45,7 +52,6 @@ Based on your technology/setup you need to change the paths of the assets folder
 -   Default: points to `../assets`
 -   Webpack: points to `~@db-ui/foundations/assets`
 -   Rollup: points to `@db-ui/foundations/assets`
--
 
 ```scss
 // index.scss

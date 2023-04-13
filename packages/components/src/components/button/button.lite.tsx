@@ -55,7 +55,7 @@ export default function DBButton(props: DBButtonProps) {
 			}
 		},
 		iconVisible: (icon?: string) => {
-			return icon && icon !== '_' && icon !== 'none';
+			return Boolean(icon && icon !== '_' && icon !== 'none');
 		}
 	});
 
