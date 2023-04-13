@@ -14,7 +14,7 @@ export type GlobalProps = {
 	key?: string;
 
 	/**
-	 * ID of the component generated automatically for some components.
+	 * ID of the component, generated automatically for some components as a fallback if unset.
 	 */
 	id?: string;
 
