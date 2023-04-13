@@ -19,7 +19,7 @@ export type GlobalProps = {
 	id?: string;
 
 	/**
-	 * Web-Component specific adds a link tag with the path to show css inside shadow-dom.
+	 * Web Component specific: Adds a link tag with the path to show css inside Shadow DOM.
 	 */
 	stylePath?: string;
 
