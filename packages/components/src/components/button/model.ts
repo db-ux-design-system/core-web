@@ -24,9 +24,9 @@ export type DBButtonDefaultProps = {
 	disabled?: boolean;
 
 	/**
-	 * Define the text next to the icon specified via the icon Property to get shown.
+	 * Define the text next to the icon specified via the icon Property to get hidden.
 	 */
-	icntxt?: boolean; // We had to rename this to icntxt because wc uses a regex and always finds "icon" instead of "onlyIcon"
+	noText?: boolean; // We had to rename this to noText because web-components uses a regex and always finds "icon" instead of "onlyIcon"
 
 	/**
 	 * The label represents the aria-label of the button
@@ -57,11 +57,6 @@ export type DBButtonDefaultProps = {
 	 * The size of the button
 	 */
 	size?: 'small';
-
-	/**
-	 * Fallback for text inside button if you don't/can't use slot/children.
-	 */
-	text?: string;
 
 	/**
 	 * Width of the button. Auto width based on text size, full width based on parent width.

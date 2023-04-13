@@ -19,17 +19,17 @@
 
 ### variants
 
-| Before              | Status | After      | Description                                                 |
-| ------------------- | :----: | ---------- | ----------------------------------------------------------- |
+| Before              | Status | After      | Description                                                  |
+| ------------------- | :----: | ---------- | ------------------------------------------------------------ |
 | `primary`           |   ❌   | ❌         | not valid anymore, use `outlined` buttons for those purposes |
-| `brand-primary`     |   🔁   | `primary`  |                                                             |
-| `secondary-outline` |   🔁   | `outlined` |                                                             |
-| `secondary-solid`   |   🔁   | `solid`    |                                                             |
-| `tertiary-plain`    |   🔁   | `text`     |                                                             |
+| `brand-primary`     |   🔁   | `primary`  |                                                              |
+| `secondary-outline` |   🔁   | `outlined` |                                                              |
+| `secondary-solid`   |   🔁   | `solid`    |                                                              |
+| `tertiary-plain`    |   🔁   | `text`     |                                                              |
 
 ### icons
 
-| Before      | Status | After    | Description                                                                                                                                                                  |
-| ----------- | :----: | -------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `iconAfter` |   ❌   | ❌       | not valid anymore for buttons only icons before text are allowed                                                                                                             |
-| `iconOnly`  |   🔁   | `icntxt` | default behaviour of `icon` has been changed: If you use it no text will be shown and you have to activate with `icntxt="true"`, instead of hiding it with `iconOnly="true"` |
+| Before      | Status | After    | Description                                                      |
+| ----------- | :----: | -------- | ---------------------------------------------------------------- |
+| `iconAfter` |   ❌   | ❌       | not valid anymore for buttons only icons before text are allowed |
+| `iconOnly`  |   🔁   | `noText` |                                                                  |

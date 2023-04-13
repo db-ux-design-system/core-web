@@ -9,7 +9,7 @@ useMetadata({
 		hasDisabledProp: true,
 		hasOnClick: true,
 		properties: [
-			{ name: 'text', type: 'SingleLine.Text' },
+			{ name: 'children', type: 'SingleLine.Text' },
 			{
 				name: 'variant',
 				type: 'Enum',
@@ -32,7 +32,7 @@ useMetadata({
 				name: 'icon',
 				type: 'Icon'
 			},
-			{ name: 'icntxt', type: 'TwoOptions' },
+			{ name: 'noText', type: 'TwoOptions' },
 			{
 				name: 'width',
 				type: 'Enum',
@@ -71,7 +71,7 @@ export default function DBButton(props: DBButtonProps) {
 			class={
 				'db-button' +
 				(props.className ? ' ' + props.className : '') +
-				(state.iconVisible(props.icon) && !props.icntxt
+				(state.iconVisible(props.icon) && props.noText
 					? ' is-icon-text-replace'
 					: '')
 			}
@@ -92,7 +92,6 @@ export default function DBButton(props: DBButtonProps) {
 				<link rel="stylesheet" href={state.stylePath} />
 			</Show>
 			{props.children}
-			{props.text}
 		</button>
 	);
 }

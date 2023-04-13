@@ -52,7 +52,7 @@
 				"name": "Icon & Text",
 				"props": {
 					"icon": "account",
-					"icntxt": true
+					"noText": true
 				}
 			},
 			{

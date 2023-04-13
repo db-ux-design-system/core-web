@@ -26,7 +26,7 @@ const Header = () => (
 				<DBButton icon="search" variant="text" />
 				<DBDivider variant="vertical" />
 				<DBButton
-					icntxt
+					noText
 					className="hidden md:flex"
 					icon="account"
 					variant="text">

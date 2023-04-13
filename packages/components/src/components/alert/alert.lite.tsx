@@ -108,6 +108,7 @@ export default function DBAlert(props: DBAlertProps) {
 								icon="close"
 								variant="text"
 								size="small"
+								noText
 								onClick={(event) => state.handleClick(event)}>
 								{props.closeButtonText ??
 									DEFAULT_VALUES.closeButton}
