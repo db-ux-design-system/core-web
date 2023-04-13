@@ -15,7 +15,7 @@ export type GlobalProps = {
 	key?: string;
 
 	/**
-	 * ID of the component, generated automatically for some components as a fallback if unset.
+	 * [ID](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/id) of the component, generated automatically for some components as a fallback if unset.
 	 */
 	id?: string;
 
@@ -25,7 +25,7 @@ export type GlobalProps = {
 	stylePath?: string;
 
 	/**
-	 * The title attribute specifies the tooltip of the component.
+	 * The [title attribute](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/title) specifies the tooltip of the component.
 	 */
 	title?: string;
 };
