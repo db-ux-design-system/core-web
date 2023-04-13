@@ -15,7 +15,11 @@ const testButton = () => {
 	});
 
 	test('DBButton should only have icon', async ({ mount }) => {
-		const component = await mount(<DBButton icon="account" />);
+		const component = await mount(
+			<DBButton icon="account" noText={true}>
+				Account
+			</DBButton>
+		);
 		await expect(component).toHaveScreenshot();
 	});
 };
@@ -51,7 +55,11 @@ test.describe('DBButton component A11y', () => {
 		page,
 		mount
 	}) => {
-		await mount(<DBButton icon="account">lorem ipsum</DBButton>);
+		await mount(
+			<DBButton icon="account" noText={true}>
+				lorem ipsum
+			</DBButton>
+		);
 		const accessibilityScanResults = await new AxeBuilder({ page })
 			.include('.db-button')
 			.analyze();
