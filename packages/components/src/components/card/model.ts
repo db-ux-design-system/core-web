@@ -14,7 +14,7 @@ export type DBCardDefaultProps = {
 	 */
 	colorVariant?: COLOR;
 	/**
-	 * The spacing attribute changes teh padding of the card.
+	 * The spacing attribute changes the padding of the card.
 	 */
 	spacing?: 'none' | 'medium' | 'small';
 	/**
