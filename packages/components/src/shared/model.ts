@@ -37,12 +37,18 @@ export type GlobalState = {
 	getClassNames: (...args: classNames.ArgumentArray) => string;
 };
 
-export type DefaultVariantProps =
+export type DefaultVariantType =
 	| 'adaptive'
 	| 'critical'
 	| 'informational'
 	| 'warning'
 	| 'successful';
+export type DefaultVariantProps = {
+	/**
+	 * The variant defines the default variants for most components.
+	 */
+	variant?: DefaultVariantType;
+};
 
 export const DefaultVariantsIcon: any = {
 	critical: 'error',
