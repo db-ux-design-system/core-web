@@ -27,10 +27,25 @@
 		]
 	},
 	{
+		"name": "State",
+		"examples": [
+			{
+				"name": "Enabled (Default)",
+				"props": {}
+			},
+			{
+				"name": "Disabled",
+				"props": {
+					"disabled": true
+				}
+			}
+		]
+	},
+	{
 		"name": "Size",
 		"examples": [
 			{
-				"name": "Default: Medium",
+				"name": "Medium (Default)",
 				"props": {}
 			},
 			{
@@ -45,7 +60,7 @@
 		"name": "Content",
 		"examples": [
 			{
-				"name": "Default: Text",
+				"name": "Text (Default)",
 				"props": {}
 			},
 			{
@@ -67,7 +82,7 @@
 		"name": "Behaviour",
 		"examples": [
 			{
-				"name": "Default: Auto Width",
+				"name": "Auto Width (Default)",
 				"props": {}
 			},
 			{
