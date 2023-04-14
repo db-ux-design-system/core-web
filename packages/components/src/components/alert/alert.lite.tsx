@@ -10,6 +10,7 @@ import { DBIcon } from '../icon';
 import { DefaultVariantsIcon } from '../../shared/model';
 import { DBButton } from '../button';
 import { DBLink } from '../link';
+import classNames from 'classnames';
 
 useMetadata({
 	isAttachedToShadowDom: true,
@@ -38,6 +39,7 @@ const DEFAULT_VALUES = {
 export default function DBAlert(props: DBAlertProps) {
 	// This is used as forwardRef
 	let component: any;
+	// jscpd:ignore-start
 	const state = useStore<DBAlertState>({
 		handleClick: (event: any) => {
 			if (props.onClick) {
@@ -53,6 +55,9 @@ export default function DBAlert(props: DBAlertProps) {
 		},
 		iconVisible: (icon?: string) => {
 			return Boolean(icon && icon !== '_' && icon !== 'none');
+		},
+		getClassNames: (...args: classNames.ArgumentArray) => {
+			return classNames(args);
 		}
 	});
 
@@ -61,11 +66,12 @@ export default function DBAlert(props: DBAlertProps) {
 			state.stylePath = props.stylePath;
 		}
 	});
+	// jscpd:ignore-end
 
 	return (
 		<div
 			ref={component}
-			class={'db-alert' + (props.className ? ' ' + props.className : '')}
+			class={state.getClassNames('db-alert', props.className)}
 			data-variant={props.variant}
 			data-type={props.type}
 			data-elevation={props.elevation}>

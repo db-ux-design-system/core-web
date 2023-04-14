@@ -27,5 +27,8 @@
     "access": "public"
   },
   "sideEffects": false,
-  "source": "src/index.js"
+  "source": "src/index.js",
+  "dependencies": {
+    "classnames": "^2.3.2"
+  }
 }

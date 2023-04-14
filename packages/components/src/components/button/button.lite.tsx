@@ -1,6 +1,7 @@
 import { onMount, Show, useMetadata, useStore } from '@builder.io/mitosis';
 import { DBIcon } from '../icon';
 import type { DBButtonProps, DBButtonState } from './model';
+import classNames from 'classnames';
 
 useMetadata({
 	isAttachedToShadowDom: true,
@@ -48,6 +49,7 @@ useMetadata({
 export default function DBButton(props: DBButtonProps) {
 	// This is used as forwardRef
 	let component: any;
+	// jscpd:ignore-start
 	const state = useStore<DBButtonState>({
 		handleClick: (event: any) => {
 			if (props.onClick) {
@@ -56,6 +58,9 @@ export default function DBButton(props: DBButtonProps) {
 		},
 		iconVisible: (icon?: string) => {
 			return Boolean(icon && icon !== '_' && icon !== 'none');
+		},
+		getClassNames: (...args: classNames.ArgumentArray) => {
+			return classNames(args);
 		}
 	});
 
@@ -64,17 +69,15 @@ export default function DBButton(props: DBButtonProps) {
 			state.stylePath = props.stylePath;
 		}
 	});
+	// jscpd:ignore-end
 
 	return (
 		<button
 			ref={component}
-			class={
-				'db-button' +
-				(props.className ? ' ' + props.className : '') +
-				(state.iconVisible(props.icon) && props.noText
-					? ' is-icon-text-replace'
-					: '')
-			}
+			class={state.getClassNames('db-button', props.className, {
+				'is-icon-text-replace':
+					state.iconVisible(props.icon) && props.noText
+			})}
 			type={props.type}
 			disabled={props.disabled}
 			aria-label={props.label}
