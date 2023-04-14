@@ -135,7 +135,7 @@ export type LinkProps = {
 
 export type CardProps = {
 	/**
-	 * The elevation attribute change the style of the card (box-shadow).
+	 * The elevation attribute changes the style of the card (box-shadow).
 	 */
 	elevation?: 'default' | 'none';
 };
