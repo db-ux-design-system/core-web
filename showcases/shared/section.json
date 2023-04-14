@@ -3,7 +3,7 @@
 		"name": "Variant",
 		"examples": [
 			{
-				"name": "(Default) Full",
+				"name": "Full (Default)",
 				"style": { "width": "100%" },
 				"props": {}
 			},
@@ -27,7 +27,7 @@
 		"name": "Size",
 		"examples": [
 			{
-				"name": "(Default) Medium",
+				"name": "Medium (Default)",
 				"props": {}
 			},
 			{
