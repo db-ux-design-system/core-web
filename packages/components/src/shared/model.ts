@@ -85,9 +85,21 @@ export type GlobalTextProps = {
 };
 
 export type ImageProps = {
+	/**
+	 * The alt attribute for the image.
+	 */
 	imgAlt?: string;
-	imgSrc?: string;
+	/**
+	 * The height attribute for the image.
+	 */
 	imgHeight?: number;
+	/**
+	 * The src attribute for the image.
+	 */
+	imgSrc?: string;
+	/**
+	 * The width attribute for the image.
+	 */
 	imgWidth?: number;
 };
 
@@ -122,6 +134,9 @@ export type LinkProps = {
 };
 
 export type CardProps = {
+	/**
+	 * The elevation attribute change the style of the card (box-shadow).
+	 */
 	elevation?: 'default' | 'none';
 };
 

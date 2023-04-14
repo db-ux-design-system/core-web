@@ -12,6 +12,11 @@ useMetadata({
 				type: 'Enum',
 				values: [
 					{
+						key: 'Default',
+						name: 'Default',
+						value: 'default'
+					},
+					{
 						key: 'Interactive',
 						name: 'Interactive',
 						value: 'interactive'
