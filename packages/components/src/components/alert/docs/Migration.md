@@ -17,7 +17,7 @@
 | -------- | :----: | -------- | ------------------------------------------------------ |
 | `alert`  |   🔁   | `alert`  | Default alert with different look                      |
 | `status` |   ❌   | ❌       | Status can be changed by `variants`                    |
-|          |   🆕   | `inline` | New stling with shadow and rounded corners (like card) |
+|          |   🆕   | `inline` | New styling with shadow and rounded corners (like card) |
 
 ### type ➡ variants
 
