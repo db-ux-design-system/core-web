@@ -17,7 +17,7 @@ export interface DBAlertDefaultProps {
 	 * out the notification if set to "assertive", while it will wait for the
 	 * user's idleness when set to "polite"
 	 */
-	ariaLive: 'assertive' | 'polite';
+	ariaLive?: 'assertive' | 'polite';
 	/**
 	 * The behaviour attribute shows/hides the close button on the top right.
 	 */
