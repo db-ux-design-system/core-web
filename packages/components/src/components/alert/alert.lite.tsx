@@ -33,8 +33,7 @@ useMetadata({
 });
 
 const DEFAULT_VALUES = {
-	closeButton: 'Close Button',
-	ariaLive: 'polite'
+	closeButton: 'Close Button'
 };
 
 export default function DBAlert(props: DBAlertProps) {
@@ -73,7 +72,7 @@ export default function DBAlert(props: DBAlertProps) {
 		<div
 			ref={component}
 			class={state.getClassNames('db-alert', props.className)}
-			aria-live={props.ariaLive || DEFAULT_VALUES.ariaLive}
+			aria-live={props.ariaLive}
 			data-variant={props.variant}
 			data-type={props.type}
 			data-elevation={props.elevation}>
