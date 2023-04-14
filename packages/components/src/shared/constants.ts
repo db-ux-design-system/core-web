@@ -57,7 +57,7 @@ export const VARIANTS: VARIANT[] = Object.entries(VARIANT).map(
 export const DEFAULT_VIEWPORT = { width: 390, height: 884 };
 
 /**
- * Use those viewports if your component hase a css media-query otherwise use the DEFAULT_VIEWPORT
+ * Use those viewports if your component has a css media-query otherwise use the DEFAULT_VIEWPORT
  */
 export const TESTING_VIEWPORTS = [
 	{ name: 'desktop', width: 1920, height: 1280 },
