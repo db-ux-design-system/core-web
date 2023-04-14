@@ -13,9 +13,9 @@ import {
 
 export interface DBAlertDefaultProps {
 	/**
-	 * The arialive attribute will interrupt the screenreader immediately and read
-	 * out the notification if set to "assertive", while it will wait for the
-	 * user's idleness when set to "polite"
+	 * The arialive attribute will lead to that the screenreader interrupts immediately
+	 * and reads out the notification if set to "assertive", while it will wait for the
+	 * user's idleness when set to "polite", compare to [aria-live](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-live)
 	 */
 	ariaLive?: 'assertive' | 'polite' | 'off' | undefined;
 	/**
