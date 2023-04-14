@@ -86,19 +86,19 @@ export type GlobalTextProps = {
 
 export type ImageProps = {
 	/**
-	 * The alt attribute for the image.
+	 * [Alternative text](https://developer.mozilla.org/en-US/docs/Web/API/HTMLImageElement/alt) for an image.
 	 */
 	imgAlt?: string;
 	/**
-	 * The height attribute for the image.
+	 * The [height attribute](https://developer.mozilla.org/en-US/docs/Web/API/HTMLImageElement/height) for the image.
 	 */
 	imgHeight?: number;
 	/**
-	 * The src attribute for the image.
+	 * The [source](https://developer.mozilla.org/en-US/docs/Web/API/HTMLImageElement/src) of an image.
 	 */
 	imgSrc?: string;
 	/**
-	 * The width attribute for the image.
+	 * The [width attribute](https://developer.mozilla.org/en-US/docs/Web/API/HTMLImageElement/width) for the image.
 	 */
 	imgWidth?: number;
 };
