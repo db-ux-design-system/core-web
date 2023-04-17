@@ -3,7 +3,7 @@ import AxeBuilder from '@axe-core/playwright';
 
 import { DBBrand } from './index';
 // @ts-ignore - vue can only find it with .ts as file ending
-import { TESTING_VIEWPORTS } from '../../shared/constants';
+import { TESTING_VIEWPORTS } from '../../shared/constants.ts';
 
 const comp = (
 	<DBBrand
