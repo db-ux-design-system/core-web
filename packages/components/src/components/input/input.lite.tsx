@@ -3,7 +3,7 @@ import { DBIcon } from '../icon';
 import { uuid } from '../../utils';
 import { DBInputProps, DBInputState } from './model';
 import { DEFAULT_ID, DEFAULT_LABEL } from '../../shared/constants';
-import { DefaultVariantProps, DefaultVariantsIcon } from '../../shared/model';
+import { DefaultVariantType, DefaultVariantsIcon } from '../../shared/model';
 import classNames from 'classnames';
 
 useMetadata({
@@ -47,7 +47,7 @@ export default function DBInput(props: DBInputProps) {
 		iconVisible: (icon?: string) => {
 			return Boolean(icon && icon !== '_' && icon !== 'none');
 		},
-		getIcon: (variant?: DefaultVariantProps) => {
+		getIcon: (variant?: DefaultVariantType) => {
 			if (variant) {
 				return DefaultVariantsIcon[variant];
 			}

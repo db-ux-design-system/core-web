@@ -30,6 +30,7 @@
     "dev:vue": "nodemon --watch src --watch overrides -e tsx,ts -x \"npm run compile:vue\"",
     "generate:component": "hygen mitosis new",
     "generate:docs": "hygen update-docs new",
+    "generate:icon-types": "node scripts/generate-icon-types.js",
     "start": "nodemon --watch src --watch scripts --watch overrides -e js,tsx,ts,scss,json -x \"npm run build\""
   },
   "dependencies": {
