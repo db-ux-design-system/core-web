@@ -7,16 +7,16 @@
 
 ### class
 
-| Before             | Status | After      | Description |
-| ------------------ | :----: | ---------- | ----------- |
-| `elm-notification` |   🔁   | `db-alert` |             |
+| Before             | Status | After      | Description                                                                                                                                                                                                                                                                                                                                                                                                                                    |
+| ------------------ | :----: | ---------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `elm-notification` |   🔁   | `db-alert` | The old notification component has been split into 2 different components check [Notification](https://marketingportal.extranet.deutschebahn.com/marketingportal/Design-Anwendungen/db-ux-design-system-v3/components/feedback/notification) and [Alert](https://marketingportal.extranet.deutschebahn.com/marketingportal/Design-Anwendungen/db-ux-design-system-v3/components/feedback/alert) for more information (when and how to use it). |
 
 ### variant ➡ type
 
-| Before   | Status | After    | Description                                            |
-| -------- | :----: | -------- | ------------------------------------------------------ |
-| `alert`  |   🔁   | `alert`  | Default alert with different look                      |
-| `status` |   ❌   | ❌       | Status can be changed by `variants`                    |
+| Before   | Status | After    | Description                                             |
+| -------- | :----: | -------- | ------------------------------------------------------- |
+| `alert`  |   🔁   | `alert`  | Default alert with different look                       |
+| `status` |   ❌   | ❌       | Status can be changed by `variants`                     |
 |          |   🆕   | `inline` | New styling with shadow and rounded corners (like card) |
 
 ### type ➡ variants
