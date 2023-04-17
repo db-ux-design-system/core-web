@@ -26,6 +26,10 @@ const getOption = (optionName, tsType) => {
 		)}"`;
 	}
 
+	if (tsType.name === 'COLOR') {
+		return `${optionName}="primary"`;
+	}
+
 	if (tsType.name === 'signature' && tsType.raw === '(event: any) => void') {
 		return `${optionName}={(event) => console.log(event)}`;
 	}

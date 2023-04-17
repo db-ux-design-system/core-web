@@ -1,4 +1,4 @@
-import { getUnionElements } from './utils.js';
+import { getColorVariants, getUnionElements } from './utils.js';
 
 const getOptions = (tsType) => {
 	switch (tsType.name) {
@@ -23,33 +23,7 @@ const getOptions = (tsType) => {
 		}
 
 		case 'COLOR': {
-			return [
-				'neutral-0',
-				'neutral-1',
-				'neutral-2',
-				'neutral-3',
-				'neutral-4',
-				'neutral-transparent-full',
-				'neutral-transparent-semi',
-				'primary',
-				'primary-transparent-full',
-				'primary-transparent-semi',
-				'secondary',
-				'secondary-transparent-full',
-				'secondary-transparent-semi',
-				'successful',
-				'successful-transparent-full',
-				'successful-transparent-semi',
-				'critical',
-				'critical-transparent-full',
-				'critical-transparent-semi',
-				'warning',
-				'warning-transparent-full',
-				'warning-transparent-semi',
-				'informational',
-				'informational-transparent-full',
-				'informational-transparent-semi'
-			].join(' &#124; ');
+			return getColorVariants().join(' &#124; ');
 		}
 
 		default: {
