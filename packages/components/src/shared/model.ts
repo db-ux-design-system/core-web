@@ -1,4 +1,5 @@
 import classNames from 'classnames';
+import { IconTypes } from './icon-types';
 
 export type GlobalProps = {
 	/**
@@ -56,7 +57,7 @@ export type IconProps = {
 	/**
 	 * Define an icon by it's identifier (like e.g. _account_, compare to [Icons](https://db-ui.github.io/mono/review/main/foundations/icons) to get displayed in front of the elements content.
 	 */
-	icon?: string; // TODO: Add correct icon strings here
+	icon?: IconTypes;
 };
 
 export type IconState = {
