@@ -2,11 +2,6 @@
 import DefaultComponent from "../DefaultComponent.vue";
 import defaultComponentVariants from "../../../../shared/divider.json";
 import { DBDivider, DBInfotext } from "../../../../../output/vue/vue3/src";
-
-const log = (exampleName: string) => {
-	// eslint-disable-next-line no-alert
-	alert(exampleName);
-};
 </script>
 
 <template>
