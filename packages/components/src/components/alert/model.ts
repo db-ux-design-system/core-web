@@ -36,7 +36,7 @@ export interface DBAlertDefaultProps {
 	link?: LinkProps;
 
 	/**
-	 * React specific to pass in any content to the <DBLink>.
+	 * React specific to pass in any content to the DBLink.
 	 * Default will be a simple text, but it could be a framework specific router link or something similar.
 	 */
 	slotLink?: any;
