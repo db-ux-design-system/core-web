@@ -19,7 +19,7 @@ useMetadata({
 		hasOnClick: true,
 		properties: [
 			{ name: 'headline', type: 'SingleLine.Text' },
-			{ name: 'text', type: 'SingleLine.Text' },
+			{ name: 'children', type: 'SingleLine.Text' },
 			{
 				name: 'icon',
 				type: 'Icon' // this is a custom type not provided by ms
@@ -72,6 +72,7 @@ export default function DBAlert(props: DBAlertProps) {
 		<div
 			ref={component}
 			class={state.getClassNames('db-alert', props.className)}
+			aria-live={props.ariaLive}
 			data-variant={props.variant}
 			data-type={props.type}
 			data-elevation={props.elevation}>
@@ -89,10 +90,7 @@ export default function DBAlert(props: DBAlertProps) {
 						<strong>{props.headline}</strong>
 					</Show>
 					<Show when={!props.headline}>
-						<span>
-							{props.children}
-							{props.text}
-						</span>
+						<span>{props.children}</span>
 					</Show>
 					<div class="db-alert-close-container">
 						<DBLink
@@ -124,10 +122,7 @@ export default function DBAlert(props: DBAlertProps) {
 				</div>
 
 				<Show when={props.headline}>
-					<span>
-						{props.children}
-						{props.text}
-					</span>
+					<span>{props.children}</span>
 				</Show>
 
 				<DBLink
