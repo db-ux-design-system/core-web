@@ -12,7 +12,7 @@ export type DBCardDefaultProps = {
 	/**
 	 * Valid background [colors](https://marketingportal.extranet.deutschebahn.com/marketingportal/Design-Anwendungen/db-ux-design-system-v3/foundation/colors).
 	 */
-	colorVariant?: COLOR;
+	colorVariant?: COLOR | string;
 	/**
 	 * The spacing attribute changes the padding of the card.
 	 */
