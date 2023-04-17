@@ -66,8 +66,8 @@
     "start:foundations": "npm run start --workspace=@db-ui/foundations"
   },
   "devDependencies": {
-    "@commitlint/cli": "17.6.0",
-    "@commitlint/config-conventional": "17.6.0",
+    "@commitlint/cli": "17.6.1",
+    "@commitlint/config-conventional": "17.6.1",
     "classnames": "^2.3.2",
     "cpr": "3.0.1",
     "cross-env": "^7.0.3",
