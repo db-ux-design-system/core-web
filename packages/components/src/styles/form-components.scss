@@ -1,0 +1,12 @@
+@use "@db-ui/foundations/build/scss/icon/icons.helpers" as *;
+@use "@db-ui/foundations/build/scss/body-styles" as *;
+@use "@db-ui/foundations/build/scss/variables" as *;
+@use "@db-ui/foundations/build/scss/variables.global" as *;
+
+%dropdown-icon {
+	@include icon(glyph(expand-more), 24, "outline", "after");
+
+	&::after {
+		transition: transform $db-transition-emotional-straight;
+	}
+}

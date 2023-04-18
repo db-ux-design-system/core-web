@@ -44,6 +44,8 @@
   </ItemGroup>
 
   <ItemGroup>
+<ProjectReference Include="..\select\DBSelect.pcfproj" />
+
     <ProjectReference Include="..\button\DBButton.pcfproj" />
     <ProjectReference Include="..\icon\DBIcon.pcfproj" />
     <ProjectReference Include="..\input\DBInput.pcfproj" />

@@ -2,49 +2,7 @@
 @use "@db-ui/foundations/build/scss/variables.global" as *;
 @use "@db-ui/foundations/build/scss/color-placeholder" as *;
 @use "@db-ui/foundations/build/scss/helpers/component" as *;
-
-$variants: (
-	"critical": (
-		var(
-			--db-colors-critical-border-enabled,
-			$db-colors-critical-border-enabled
-		),
-		var(
-			--db-colors-critical-element-enabled,
-			$db-colors-critical-element-enabled
-		)
-	),
-	"informational": (
-		var(
-			--db-colors-informational-border-enabled,
-			$db-colors-informational-border-enabled
-		),
-		var(
-			--db-colors-informational-element-enabled,
-			$db-colors-informational-element-enabled
-		)
-	),
-	"warning": (
-		var(
-			--db-colors-warning-border-enabled,
-			$db-colors-warning-border-enabled
-		),
-		var(
-			--db-colors-warning-element-enabled,
-			$db-colors-warning-element-enabled
-		)
-	),
-	"successful": (
-		var(
-			--db-colors-successful-border-enabled,
-			$db-colors-successful-border-enabled
-		),
-		var(
-			--db-colors-successful-element-enabled,
-			$db-colors-successful-element-enabled
-		)
-	)
-);
+@use "@db-ui/foundations/build/scss/color/color-variants" as *;
 
 @mixin handle-links($show-headline) {
 	.db-alert-headline-link {
@@ -98,7 +56,7 @@ $variants: (
 		}
 	}
 
-	@each $name, $colors in $variants {
+	@each $name, $colors in $component-variants {
 		&[data-variant="#{$name}"] {
 			@if ($name == "critical") {
 				@extend %db-bg-critical;

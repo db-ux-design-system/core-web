@@ -70,7 +70,7 @@ iframe {
 
 // Focus styles
 %focus-placeholder,
-:is(a, button, input, textarea, summary) {
+:is(a, button, input, textarea, summary, select) {
 	transition: outline var(--db-focus-outline-transition-duration);
 
 	&:focus-visible {

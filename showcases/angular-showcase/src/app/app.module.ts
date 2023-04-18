@@ -15,7 +15,8 @@ import {
 	DBCodeDocsModule,
 	DBAlertModule,
 	DBSectionModule,
-	DBInfotextModule
+	DBInfotextModule,
+	DBSelectModule
 } from '../../../../output/angular/src';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app.routing.module';
@@ -29,9 +30,12 @@ import { InfotextComponent } from './components/infotext/infotext.component';
 import { SectionComponent } from './components/section/section.component';
 import { CardComponent } from './components/card/card.component';
 import { DefaultComponent } from './components/default.component';
+import { SelectComponent } from './components/select/select.component';
 
 @NgModule({
 	declarations: [
+		SelectComponent,
+
 		AppComponent,
 		DefaultComponent,
 		FormComponent,
@@ -45,6 +49,8 @@ import { DefaultComponent } from './components/default.component';
 		CardComponent
 	],
 	imports: [
+		DBSelectModule,
+
 		AppRoutingModule,
 		BrowserModule,
 		DBButtonModule,

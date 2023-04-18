@@ -17,7 +17,11 @@
 @use "../components/radio/radio" as *;
 @use "../components/code-docs/code-docs" as *;
 
+@use "../components/select/select" as *;
+
 // angular-workaround
+dbselect,
+db-select,
 dbalert,
 db-alert,
 dbcodedocs,

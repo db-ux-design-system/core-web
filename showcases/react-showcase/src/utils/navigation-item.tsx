@@ -1,3 +1,5 @@
+import SelectComponent from '../components/select';
+
 import RadioComponent from '../components/radio';
 import AlertComponent from '../components/alert';
 import ButtonComponent from '../components/button';
@@ -15,6 +17,8 @@ export type NavigationItem = {
 	home?: boolean;
 };
 export const NAVIGATION_ITEMS: NavigationItem[] = [
+	{ path: 'select', label: 'Select', component: <SelectComponent /> },
+
 	{ path: 'radio', label: 'Radio', component: <RadioComponent /> },
 	{ path: 'alert', label: 'Alert', component: <AlertComponent /> },
 	{ path: 'infotext', label: 'Infotext', component: <InfotextComponent /> },

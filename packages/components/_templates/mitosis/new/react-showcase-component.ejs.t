@@ -4,7 +4,7 @@ to: ../../showcases/react-showcase/src/components/<%= name %>/index.tsx
 import { DB<%= h.changeCase.pascal(name) %> } from '../../../../../output/react/src';
 import DefaultComponent from '../index';
 import defaultComponentVariants from '../../../../shared/<%= name %>.json';
-import { DB<%= h.changeCase.pascal(name) %>Props } from '../../../../../output/react/src/components/<%= name %>/model';
+import type { DB<%= h.changeCase.pascal(name) %>Props } from '../../../../../output/react/src/components/<%= name %>/model';
 import { getVariants } from '../data';
 
 const get<%= h.changeCase.pascal(name) %> = ({ children }: DB<%= h.changeCase.pascal(name) %>Props) => (

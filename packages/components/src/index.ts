@@ -14,3 +14,4 @@ export * from './components/infotext';
 export * from './components/alert';
 export * from './components/radio';
 export * from './components/code-docs';
+export * from './components/select';

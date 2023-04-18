@@ -1,4 +1,6 @@
 import { useEffect, useState } from 'react';
+import DBSelect from '../src/components/select/select';
+
 import {
 	DBInfotext,
 	DBButton,
@@ -159,6 +161,14 @@ const ComponentSwitch = ({
 			<DBSection className={className} {...props}>
 				{resolvedContent}
 			</DBSection>
+		);
+	}
+
+	if (type === 'select') {
+		return (
+			<DBSelect className={className} {...props}>
+				{resolvedContent}
+			</DBSelect>
 		);
 	}
 

@@ -1,9 +1,15 @@
 import { useState } from 'react';
-import { DBButton, DBInput, DBRadio } from '../../../../../output/react/src';
+import {
+	DBButton,
+	DBInput,
+	DBRadio,
+	DBSelect
+} from '../../../../../output/react/src';
 
 const FormComponent = () => {
 	const [input, setInput] = useState('');
 	const [radio, setRadio] = useState('');
+	const [select, setSelect] = useState('');
 
 	return (
 		<div className="form-container">
@@ -36,6 +42,16 @@ const FormComponent = () => {
 								</li>
 							))}
 						</ul>
+						<p>DBSelect:</p>
+						<DBSelect
+							value={select}
+							label="Label"
+							onChange={(event) => {
+								setSelect(event.target.value);
+							}}>
+							<option value="test1">Test1</option>
+							<option value="test2">Test2</option>
+						</DBSelect>
 						<p>DbButton:</p>
 						<DBButton
 							type="button"
@@ -45,7 +61,8 @@ const FormComponent = () => {
 								alert(
 									JSON.stringify({
 										input,
-										radio
+										radio,
+										select
 									})
 								);
 							}}>
@@ -61,6 +78,8 @@ const FormComponent = () => {
 					<dd>{input || 'No Input set'}</dd>
 					<dt>radio value</dt>
 					<dd>{radio || 'No radio set'}</dd>
+					<dt>select value</dt>
+					<dd>{select || 'No select set'}</dd>
 				</dl>
 			</div>
 		</div>
