@@ -122,7 +122,7 @@ export default function DBSelect(props: DBSelectProps) {
 								<>
 									<Show when={option.options}>
 										<optgroup
-											key={`optgroup-${option.value}`}
+											key={'optgroup-' + option.value}
 											label={
 												option.label || option.value
 											}>
@@ -131,7 +131,10 @@ export default function DBSelect(props: DBSelectProps) {
 													optgroupOption: DBSelectOptionType
 												) => (
 													<option
-														key={`option-${option.value}`}
+														key={
+															'option-' +
+															optgroupOption.value
+														}
 														value={
 															optgroupOption.value
 														}
@@ -147,7 +150,7 @@ export default function DBSelect(props: DBSelectProps) {
 									</Show>
 									<Show when={!option.options}>
 										<option
-											key={`option-${option.value}`}
+											key={'option-' + option.value}
 											value={option.value}
 											disabled={option.disabled}>
 											{option.label || option.value}

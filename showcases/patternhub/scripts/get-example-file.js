@@ -6,6 +6,10 @@ const getOption = (optionName, tsType) => {
 	}
 
 	if (tsType.name === 'Array') {
+		if (tsType?.raw.includes('DBSelect')) {
+			return `${optionName}={[{"value":"Test1"},{"value":"Test2"}]}`;
+		}
+
 		return `${optionName}={['test1','test2']}`;
 	}
 
