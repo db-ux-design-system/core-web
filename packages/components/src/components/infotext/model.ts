@@ -2,17 +2,21 @@ import {
 	DefaultVariantProps,
 	DefaultVariantType,
 	GlobalProps,
-	GlobalState
+	GlobalState,
+	IconProps
 } from '../../shared/model';
 
 export interface DBInfotextDefaultProps {
-	icon?: string;
+	/**
+	 * The size attribute changes the font-size of the infotext and hides the icon for size="small".
+	 */
 	size?: 'medium' | 'small';
 }
 
 export type DBInfotextProps = DBInfotextDefaultProps &
 	GlobalProps &
-	DefaultVariantProps;
+	DefaultVariantProps &
+	IconProps;
 
 export interface DBInfotextDefaultState {
 	getIcon: (icon?: string, variant?: DefaultVariantType) => string;
