@@ -213,6 +213,12 @@ export type ValidEventProps = {
 export type NestedRefComponentType = { getFormRef?: () => { current?: any } };
 
 export type InnerCloseButtonProps = {
+	/**
+	 * The closeButtonId attribute changes the id inside the close button.
+	 */
 	closeButtonId?: string;
+	/**
+	 * The closeButtonText attribute changes the text inside the close button.
+	 */
 	closeButtonText?: string;
 };
