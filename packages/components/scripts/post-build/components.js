@@ -19,10 +19,6 @@ const getComponents = () => [
 	{
 		name: 'drawer',
 		overwrites: {
-			global: [
-				{ from: '(event) => handleClose', to: '() => handleClose' },
-				{ from: 'handleClose(event)', to: 'handleClose(event: any)' }
-			],
 			react: [
 				{
 					from: 'const dialogRef = useRef<HTMLDialogElement>(null);',

@@ -10,6 +10,7 @@ import {
 import { DBDrawerState, DBDrawerProps } from './model';
 import { DBButton } from '../button';
 import { DEFAULT_CLOSE_BUTTON } from '../../shared/constants';
+import classNames from 'classnames';
 
 useMetadata({
 	isAttachedToShadowDom: true,
@@ -57,6 +58,9 @@ export default function DBDrawer(props: DBDrawerProps) {
 					}, 401);
 				}
 			}
+		},
+		getClassNames: (...args: classNames.ArgumentArray) => {
+			return classNames(args);
 		}
 	});
 
