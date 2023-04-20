@@ -8,7 +8,12 @@ For general installation and configuration look at the [react-components](https:
 // App.tsx
 import { DBSelect } from "@db-ui/react-components";
 
-const App = () => <DBSelect>Select</DBSelect>;
+const App = () => (
+	<DBSelect>
+		<option value="test1">Test1</option>
+		<option value="test2">Test2</option>
+	</DBSelect>
+);
 
 export default App;
 ```

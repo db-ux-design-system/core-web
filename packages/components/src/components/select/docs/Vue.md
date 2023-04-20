@@ -11,6 +11,9 @@ import { DBSelect } from "@db-ui/v-components";
 </script>
 
 <template>
-	<DBSelect>Select</DBSelect>
+	<DBSelect>
+		<option value="test1">Test1</option>
+		<option value="test2">Test2</option>
+	</DBSelect>
 </template>
 ```

@@ -20,5 +20,8 @@ import { DBSelectModule } from '@db-ui/ngx-components';
 
 ```html app.component.html
 <!-- app.component.html -->
-<db-select>Select</db-select>
+<db-select>
+	<option value="test1">Test1</option>
+	<option value="test2">Test2</option>
+</db-select>
 ```
