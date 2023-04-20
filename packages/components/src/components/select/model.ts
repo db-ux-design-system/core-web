@@ -22,11 +22,6 @@ export interface DBSelectDefaultProps {
 	description?: string;
 
 	/**
-	 * The invalid attribute will at aria-invalid to the select.
-	 */
-	invalid?: boolean;
-
-	/**
 	 * If you don't/can't use children/slots you can pass in the options as an array.
 	 */
 	options?: DBSelectOptionType[];
