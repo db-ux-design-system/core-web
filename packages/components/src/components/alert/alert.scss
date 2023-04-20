@@ -1,3 +1,4 @@
+@use "sass:map";
 @use "@db-ui/foundations/build/scss/variables" as *;
 @use "@db-ui/foundations/build/scss/variables.global" as *;
 @use "@db-ui/foundations/build/scss/color-placeholder" as *;
@@ -68,10 +69,10 @@
 				@extend %db-bg-successful;
 			}
 
-			--db-current-border-color: #{nth($colors, 1)};
+			--db-current-border-color: #{map.get($colors, "border")};
 
 			.db-alert-icon {
-				color: nth($colors, 2);
+				color: map.get($colors, "element");
 			}
 		}
 	}
