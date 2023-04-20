@@ -29,6 +29,7 @@ import { RadioComponent } from './components/radio/radio.component';
 import { InfotextComponent } from './components/infotext/infotext.component';
 import { SectionComponent } from './components/section/section.component';
 import { CardComponent } from './components/card/card.component';
+import { DividerComponent } from './components/divider/divider.component';
 import { DefaultComponent } from './components/default.component';
 import { SelectComponent } from './components/select/select.component';
 
@@ -46,7 +47,8 @@ import { SelectComponent } from './components/select/select.component';
 		RadioComponent,
 		InfotextComponent,
 		SectionComponent,
-		CardComponent
+		CardComponent,
+		DividerComponent
 	],
 	imports: [
 		DBSelectModule,

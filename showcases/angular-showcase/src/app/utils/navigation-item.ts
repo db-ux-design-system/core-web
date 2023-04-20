@@ -1,5 +1,4 @@
 import { SelectComponent } from '../components/select/select.component';
-
 import { InputComponent } from '../components/input/input.component';
 import { ButtonComponent } from '../components/button/button.component';
 import { FormComponent } from '../components/form/form.component';
@@ -9,10 +8,11 @@ import { RadioComponent } from '../components/radio/radio.component';
 import { InfotextComponent } from '../components/infotext/infotext.component';
 import { SectionComponent } from '../components/section/section.component';
 import { CardComponent } from '../components/card/card.component';
+import { DividerComponent } from '../components/divider/divider.component';
 
 export const NAVIGATION_ITEMS = [
+	{ path: 'divider', label: 'Divider', component: DividerComponent },
 	{ path: 'select', label: 'Select', component: SelectComponent },
-
 	{ path: 'radio', label: 'Radio', component: RadioComponent },
 	{ path: 'alert', label: 'Alert', component: AlertComponent },
 	{ path: 'infotext', label: 'Infotext', component: InfotextComponent },
