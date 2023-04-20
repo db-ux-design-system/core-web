@@ -29,8 +29,8 @@ const updateNestedComponents = (input, rootComponentName, powerAppsFolder) => {
 
 			Replace.sync({
 				files: `../../output/power-apps/${rootComponentName}/${powerAppsFolder}/index.scss`,
-				from: `:root {`,
-				to: `@use "../${nestedComponent.name}/${nestedComponent.name}.scss" as *;\n:root {`
+				from: `@use "@db-ui/foundations/build/scss/default.assets-paths" with (`,
+				to: `@use "../${nestedComponent.name}/${nestedComponent.name}.scss" as *;\n@use "@db-ui/foundations/build/scss/default.assets-paths" with (`
 			});
 
 			Replace.sync({

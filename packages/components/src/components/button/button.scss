@@ -78,12 +78,12 @@
 		@extend %transparent-border;
 	}
 
-	&[data-variant="semi-transparent"] {
+	&[data-variant="solid"] {
 		@extend %transparent-border;
 		@include get-variant-bg-color(0.08);
 	}
 
-	&[data-variant="transparent"] {
+	&[data-variant="text"] {
 		@extend %transparent-border;
 	}
 

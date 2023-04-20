@@ -3,7 +3,8 @@ import { DBIcon } from '../icon';
 import { uuid } from '../../utils';
 import { DBInputProps, DBInputState } from './model';
 import { DEFAULT_ID, DEFAULT_LABEL } from '../../shared/constants';
-import { DefaultVariantsIcon } from '../../shared/model';
+import { DefaultVariantType, DefaultVariantsIcon } from '../../shared/model';
+import classNames from 'classnames';
 
 useMetadata({
 	isAttachedToShadowDom: true,
@@ -38,21 +39,22 @@ const DEFAULT_VALUES = {
 export default function DBInput(props: DBInputProps) {
 	// This is used as forwardRef
 	let component: any;
+	// jscpd:ignore-start
 	const state = useStore<DBInputState>({
 		_id: DEFAULT_ID,
 		_isValid: undefined,
 		_value: '',
-		iconVisible: (icon: string) => {
-			return icon && icon !== '_' && icon !== 'none';
+		iconVisible: (icon?: string) => {
+			return Boolean(icon && icon !== '_' && icon !== 'none');
 		},
-		getIcon: (variant) => {
+		getIcon: (variant?: DefaultVariantType) => {
 			if (variant) {
 				return DefaultVariantsIcon[variant];
 			}
 
 			return '';
 		},
-		handleChange: (event) => {
+		handleChange: (event: any) => {
 			if (props.onChange) {
 				props.onChange(event);
 			}
@@ -71,7 +73,7 @@ export default function DBInput(props: DBInputProps) {
 				}
 			}
 		},
-		handleBlur: (event) => {
+		handleBlur: (event: any) => {
 			if (props.onBlur) {
 				props.onBlur(event);
 			}
@@ -80,7 +82,7 @@ export default function DBInput(props: DBInputProps) {
 				props.blur(event);
 			}
 		},
-		handleFocus: (event) => {
+		handleFocus: (event: any) => {
 			if (props.onFocus) {
 				props.onFocus(event);
 			}
@@ -88,6 +90,9 @@ export default function DBInput(props: DBInputProps) {
 			if (props.focus) {
 				props.focus(event);
 			}
+		},
+		getClassNames: (...args: classNames.ArgumentArray) => {
+			return classNames(args);
 		}
 	});
 
@@ -102,10 +107,11 @@ export default function DBInput(props: DBInputProps) {
 			state.stylePath = props.stylePath;
 		}
 	});
+	// jscpd:ignore-end
 
 	return (
 		<div
-			class={'db-input ' + (props.className || '')}
+			class={state.getClassNames('db-input', props.className)}
 			data-variant={props.variant}>
 			<Show when={state.stylePath}>
 				<link rel="stylesheet" href={state.stylePath} />
@@ -123,6 +129,7 @@ export default function DBInput(props: DBInputProps) {
 				disabled={props.disabled}
 				required={props.required}
 				value={state._value}
+				aria-invalid={props.invalid}
 				maxLength={props.maxLength}
 				minLength={props.minLength}
 				pattern={props.pattern}
@@ -142,7 +149,7 @@ export default function DBInput(props: DBInputProps) {
 			<Show when={props.variant || props.required || props.pattern}>
 				<DBIcon
 					icon={state.getIcon(props.variant)}
-					class="icon-input-state"
+					class="icon-state"
 				/>
 			</Show>
 			<Show when={state.iconVisible(props.iconAfter)}>

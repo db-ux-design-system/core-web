@@ -1,4 +1,5 @@
 import {
+	CardProps,
 	ClickEventProps,
 	ClickEventState,
 	GlobalProps,
@@ -8,14 +9,15 @@ import {
 
 export type DBCardDefaultProps = {
 	colorVariant?: string;
-	direction?: 'column' | 'row';
-	variant?: 'full-width' | 'interactive';
+	variant?: 'interactive';
+	spacing?: 'medium' | 'small';
 };
 
 export type DBCardProps = DBCardDefaultProps &
 	GlobalProps &
 	ClickEventProps &
-	ImageProps;
+	ImageProps &
+	CardProps;
 
 export type DBCardDefaultState = {};
 

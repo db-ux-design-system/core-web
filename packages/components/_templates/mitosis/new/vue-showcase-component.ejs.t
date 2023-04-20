@@ -3,16 +3,14 @@ to: ../../showcases/vue-showcase/src/components/<%= name %>/<%= h.changeCase.pas
 ---
 <script setup lang="ts">
 import DefaultComponent from "../DefaultComponent.vue";
-import defaultComponentVariants from "../../../../shared/<%= name %>";
+import defaultComponentVariants from "../../../../shared/<%= name %>.json";
 import { DB<%= h.changeCase.pascal(name) %> } from "../../../../../output/vue/vue3/src";
 </script>
 
 <template>
 	<DefaultComponent title="<%= h.changeCase.pascal(name) %>" :variants="defaultComponentVariants">
-		<template #example="{ exampleIndex, variantIndex, exampleName }">
-				<template v-if="exampleIndex === 0">
-            		<DB<%= h.changeCase.pascal(name) %>>{{exampleName}}</DB<%= h.changeCase.pascal(name) %>>
-            	</template>
+		<template #example="{ exampleIndex, variantIndex, exampleName, exampleProps }">
+            <DB<%= h.changeCase.pascal(name) %>>{{exampleName}}</DB<%= h.changeCase.pascal(name) %>>
 		</template>
 	</DefaultComponent>
 </template>

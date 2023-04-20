@@ -1,16 +1,16 @@
 <div *ngIf="page" [class]="getChangeableClasses()">
 	<router-outlet></router-outlet>
 </div>
-<DBPage *ngIf="!page" type="fixedHeaderFooter">
-	<DBHeader header>
-		<DBBrand
+<db-page *ngIf="!page" type="fixedHeaderFooter">
+	<db-header header>
+		<db-brand
 			brand
 			title="Angular Showcase"
 			src="./assets/db_logo.svg"
 			href="/angular-showcase"
 		>
 			Showcase
-		</DBBrand>
+		</db-brand>
 		<nav class="desktop-navigation" desktop-navigation>
 			<ul>
 				<li *ngFor="let item of navigationItems; index as i">
@@ -33,9 +33,9 @@
 				</option>
 			</select>
 		</div>
-	</DBHeader>
+	</db-header>
 	<div [class]="getChangeableClasses()">
 		<router-outlet></router-outlet>
 	</div>
 	<div footer>Footer</div>
-</DBPage>
+</db-page>

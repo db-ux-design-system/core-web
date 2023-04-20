@@ -8,6 +8,7 @@ import {
 import { DBRadioProps, DBRadioState } from './model';
 import { uuid } from '../../utils';
 import { DEFAULT_ID } from '../../shared/constants';
+import classNames from 'classnames';
 
 useMetadata({
 	isAttachedToShadowDom: true,
@@ -21,13 +22,14 @@ useMetadata({
 export default function DBRadio(props: DBRadioProps) {
 	// This is used as forwardRef
 	let component: any;
+	// jscpd:ignore-start
 	const state = useStore<DBRadioState>({
 		initialized: false,
 		_id: DEFAULT_ID,
 		_checked: false,
 		_isValid: undefined,
 
-		handleChange: (event) => {
+		handleChange: (event: any) => {
 			if (props.onChange) {
 				props.onChange(event);
 			}
@@ -45,7 +47,7 @@ export default function DBRadio(props: DBRadioProps) {
 				}
 			}
 		},
-		handleBlur: (event) => {
+		handleBlur: (event: any) => {
 			if (props.onBlur) {
 				props.onBlur(event);
 			}
@@ -54,7 +56,7 @@ export default function DBRadio(props: DBRadioProps) {
 				props.blur(event);
 			}
 		},
-		handleFocus: (event) => {
+		handleFocus: (event: any) => {
 			if (props.onFocus) {
 				props.onFocus(event);
 			}
@@ -62,6 +64,9 @@ export default function DBRadio(props: DBRadioProps) {
 			if (props.focus) {
 				props.focus(event);
 			}
+		},
+		getClassNames: (...args: classNames.ArgumentArray) => {
+			return classNames(args);
 		}
 	});
 
@@ -73,6 +78,7 @@ export default function DBRadio(props: DBRadioProps) {
 			state.stylePath = props.stylePath;
 		}
 	});
+	// jscpd:ignore-end
 
 	onUpdate(() => {
 		if (props.checked && state.initialized && document && state._id) {
@@ -94,9 +100,7 @@ export default function DBRadio(props: DBRadioProps) {
 			<input
 				ref={component}
 				type="radio"
-				class={
-					'db-radio' + (props.className ? ' ' + props.className : '')
-				}
+				class={state.getClassNames('db-radio', props.className)}
 				id={state._id}
 				name={props.name}
 				checked={props.checked}

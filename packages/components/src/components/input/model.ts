@@ -7,11 +7,12 @@ import {
 	ChangeEventProps,
 	GlobalProps,
 	GlobalState,
-	DefaultVariantProps,
+	DefaultVariantType,
 	FormProps,
 	FormState,
 	IconProps,
-	IconState
+	IconState,
+	DefaultVariantProps
 } from '../../shared/model';
 
 export type DBInputDefaultProps = {
@@ -27,7 +28,6 @@ export type DBInputDefaultProps = {
 		| 'date'
 		| 'datetime-local'
 		| 'week';
-	variant?: DefaultVariantProps;
 	iconAfter?: string;
 	description?: string;
 	value?: any;
@@ -40,11 +40,12 @@ export type DBInputProps = DBInputDefaultProps &
 	FocusEventProps &
 	ValidEventProps &
 	FormProps &
-	IconProps;
+	IconProps &
+	DefaultVariantProps;
 
 export type DBInputDefaultState = {
 	_value?: any;
-	getIcon: (variant: DefaultVariantProps) => string;
+	getIcon: (variant?: DefaultVariantType) => string;
 };
 
 export type DBInputState = DBInputDefaultState &

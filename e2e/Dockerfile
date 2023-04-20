@@ -1,4 +1,4 @@
-FROM mcr.microsoft.com/playwright:v1.31.2-focal as playwright
+FROM mcr.microsoft.com/playwright:v1.32.3-focal as playwright
 
 COPY e2e /e2e
 WORKDIR /e2e
@@ -7,7 +7,7 @@ COPY output/ output/
 COPY packages/ packages/
 
 # Install dependencies
-RUN npm install
+RUN npm install --ignore-scripts
 # Build foundations and components
 # RUN npm run build
 # Run playwright test

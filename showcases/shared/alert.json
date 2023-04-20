@@ -1,0 +1,176 @@
+[
+	{
+		"name": "Type",
+		"examples": [
+			{
+				"name": "(Default) Alert",
+				"style": { "width": "100%" },
+				"props": {
+					"type": "alert",
+					"headline": "Headline",
+					"link": {
+						"href": "#"
+					},
+					"slotLink": "Link"
+				}
+			},
+			{
+				"name": "Inline",
+				"style": { "width": "100%" },
+				"props": {
+					"type": "inline",
+					"headline": "Headline",
+					"link": {
+						"href": "#"
+					},
+					"slotLink": "Link"
+				}
+			}
+		]
+	},
+	{
+		"name": "Variant",
+		"examples": [
+			{
+				"name": "(Default) Adaptive",
+				"style": { "width": "100%" },
+				"props": {
+					"type": "alert",
+					"icon": "account",
+					"headline": "Headline",
+					"link": {
+						"href": "#"
+					},
+					"slotLink": "Link"
+				}
+			},
+			{
+				"name": "Critical",
+				"style": { "width": "100%" },
+				"props": {
+					"type": "alert",
+					"variant": "critical",
+					"headline": "Headline",
+					"link": {
+						"href": "#"
+					},
+					"slotLink": "Link"
+				}
+			},
+			{
+				"name": "Informational",
+				"style": { "width": "100%" },
+				"props": {
+					"type": "alert",
+					"variant": "informational",
+					"headline": "Headline",
+					"link": {
+						"href": "#"
+					},
+					"slotLink": "Link"
+				}
+			},
+			{
+				"name": "Successful",
+				"style": { "width": "100%" },
+				"props": {
+					"type": "alert",
+					"variant": "successful",
+					"headline": "Headline",
+					"link": {
+						"href": "#"
+					},
+					"slotLink": "Link"
+				}
+			},
+			{
+				"name": "Warning",
+				"style": { "width": "100%" },
+				"props": {
+					"type": "alert",
+					"variant": "warning",
+					"headline": "Headline",
+					"link": {
+						"href": "#"
+					},
+					"slotLink": "Link"
+				}
+			}
+		]
+	},
+	{
+		"name": "Content",
+		"examples": [
+			{
+				"name": "Headline & Text & Link & Icon",
+				"style": { "width": "100%" },
+				"props": {
+					"type": "alert",
+					"icon": "account",
+					"headline": "Headline",
+					"link": {
+						"href": "#"
+					},
+					"slotLink": "Link"
+				}
+			},
+			{
+				"name": "Headline & Text & Link",
+				"style": { "width": "100%" },
+				"props": {
+					"headline": "Headline",
+					"link": {
+						"href": "#"
+					},
+					"slotLink": "Link"
+				}
+			},
+			{
+				"name": "Text & Link",
+				"style": { "width": "100%" },
+				"props": {
+					"link": {
+						"href": "#"
+					},
+					"slotLink": "Link"
+				}
+			},
+			{
+				"name": "Text",
+				"style": { "width": "100%" },
+				"props": {}
+			}
+		]
+	},
+	{
+		"name": "Behaviour",
+		"examples": [
+			{
+				"name": "Closable",
+				"style": { "width": "100%" },
+				"props": {
+					"type": "alert",
+					"headline": "Headline",
+					"link": {
+						"href": "#"
+					},
+					"click": "()=>{alert(\"click close button\")}",
+					"slotLink": "Link"
+				}
+			},
+			{
+				"name": "Permanent",
+				"style": { "width": "100%" },
+				"props": {
+					"type": "alert",
+					"headline": "Headline",
+					"link": {
+						"href": "#"
+					},
+					"behaviour": "permanent",
+					"slotLink": "Link"
+				}
+			}
+		]
+	}
+]

@@ -25,8 +25,8 @@ designers, and content authors build, maintain, and scale best of class digital 
 
 | Package                             | Content                             | Version                                                                                                                                                                                                              |
 | ----------------------------------- | ----------------------------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| [foundations](packages/foundations) | CSS/Scss/Tailwind styles and assets | [![@db-ui/foundations on Npmjs](https://img.shields.io/npm/v/@db-ui/foundations.svg?color=rgb%28237%2C%2028%2C%2036%29 "npm version")](https://npmjs.com/package/@db-ui/foundations "DB UI – on NPM")                |
-| [components](packages/components)   | CSS/Scss styles for components      | [![@db-ui/components on Npmjs](https://img.shields.io/npm/v/@db-ui/components.svg?color=rgb%28237%2C%2028%2C%2036%29 "npm version")](https://npmjs.com/package/@db-ui/components "DB UI – on NPM")                   |
+| [foundations](packages/foundations) | CSS/SCSS/Tailwind styles and assets | [![@db-ui/foundations on Npmjs](https://img.shields.io/npm/v/@db-ui/foundations.svg?color=rgb%28237%2C%2028%2C%2036%29 "npm version")](https://npmjs.com/package/@db-ui/foundations "DB UI – on NPM")                |
+| [components](packages/components)   | CSS/SCSS styles for components      | [![@db-ui/components on Npmjs](https://img.shields.io/npm/v/@db-ui/components.svg?color=rgb%28237%2C%2028%2C%2036%29 "npm version")](https://npmjs.com/package/@db-ui/components "DB UI – on NPM")                   |
 | [ngx-components](output/angular)    | Native Angular components           | [![@db-ui/ngx-components on Npmjs](https://img.shields.io/npm/v/@db-ui/ngx-components.svg?color=rgb%28237%2C%2028%2C%2036%29 "npm version")](https://npmjs.com/package/@db-ui/ngx-components "DB UI – on NPM")       |
 | [react-components](output/react)    | Native React components             | [![@db-ui/react-components on Npmjs](https://img.shields.io/npm/v/@db-ui/react-components.svg?color=rgb%28237%2C%2028%2C%2036%29 "npm version")](https://npmjs.com/package/@db-ui/react-components "DB UI – on NPM") |
 | [v-components](output/vue/vue3)     | Native Vue components               | [![@db-ui/v-components on Npmjs](https://img.shields.io/npm/v/@db-ui/v-components.svg?color=rgb%28237%2C%2028%2C%2036%29 "npm version")](https://npmjs.com/package/@db-ui/v-components "DB UI – on NPM")             |
@@ -35,7 +35,7 @@ designers, and content authors build, maintain, and scale best of class digital 
 
 Install your preferred package via npm or yarn e.g. `npm i @db-ui/react-components`.
 
-Afterwards you need to add the specific css or scss files to provide the styles of DB UX Design System.
+Afterwards you need to add the specific CSS or SCSS files to provide the styles of DB UX Design System.
 For a detailed overview look at our [examples](examples).
 
 ## Components
@@ -179,7 +179,7 @@ that we're gaining out of the community. So please support us in any way possibl
 
 ## How to start develop / contribute
 
-```Bash
+```shell
 npm install
 npm run build
 npm run start
@@ -273,4 +273,4 @@ our [Contributor Covenant Code of Conduct](CODE-OF-CONDUCT.md).
 
 ## License
 
-This project is licensed under [Apache-2.0](LICENSE), Copyright 2022 by DB Systel GmbH.
+This project is licensed under [Apache-2.0](LICENSE), Copyright 2023 by DB Systel GmbH.
