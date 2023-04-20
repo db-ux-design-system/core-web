@@ -30,6 +30,7 @@
     "dev:vue": "nodemon --watch src --watch overrides -e tsx,ts -x \"npm run compile:vue\"",
     "generate:component": "hygen mitosis new",
     "generate:docs": "hygen update-docs new",
+    "generate:icon-types": "node scripts/generate-icon-types.js",
     "start": "nodemon --watch src --watch scripts --watch overrides -e js,tsx,ts,scss,json -x \"npm run build\""
   },
   "dependencies": {
@@ -37,8 +38,8 @@
   },
   "devDependencies": {
     "@builder.io/eslint-plugin-mitosis": "^0.0.14",
-    "@builder.io/mitosis": "^0.0.96",
-    "@builder.io/mitosis-cli": "^0.0.55",
+    "@builder.io/mitosis": "^0.0.97",
+    "@builder.io/mitosis-cli": "^0.0.56",
     "@react-docgen/cli": "^1.0.0-alpha.1",
     "cpr": "3.0.1",
     "eslint": "^8.38.0",

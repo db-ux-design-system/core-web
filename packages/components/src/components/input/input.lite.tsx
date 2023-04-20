@@ -3,7 +3,7 @@ import { DBIcon } from '../icon';
 import { uuid } from '../../utils';
 import { DBInputProps, DBInputState } from './model';
 import { DEFAULT_ID, DEFAULT_LABEL } from '../../shared/constants';
-import { DefaultVariantProps, DefaultVariantsIcon } from '../../shared/model';
+import { DefaultVariantType, DefaultVariantsIcon } from '../../shared/model';
 import classNames from 'classnames';
 
 useMetadata({
@@ -47,7 +47,7 @@ export default function DBInput(props: DBInputProps) {
 		iconVisible: (icon?: string) => {
 			return Boolean(icon && icon !== '_' && icon !== 'none');
 		},
-		getIcon: (variant?: DefaultVariantProps) => {
+		getIcon: (variant?: DefaultVariantType) => {
 			if (variant) {
 				return DefaultVariantsIcon[variant];
 			}
@@ -129,6 +129,7 @@ export default function DBInput(props: DBInputProps) {
 				disabled={props.disabled}
 				required={props.required}
 				value={state._value}
+				aria-invalid={props.invalid}
 				maxLength={props.maxLength}
 				minLength={props.minLength}
 				pattern={props.pattern}
@@ -148,7 +149,7 @@ export default function DBInput(props: DBInputProps) {
 			<Show when={props.variant || props.required || props.pattern}>
 				<DBIcon
 					icon={state.getIcon(props.variant)}
-					class="icon-input-state"
+					class="icon-state"
 				/>
 			</Show>
 			<Show when={state.iconVisible(props.iconAfter)}>
