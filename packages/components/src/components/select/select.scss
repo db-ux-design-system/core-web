@@ -1,3 +1,4 @@
+@use "sass:map";
 @use "@db-ui/foundations/build/scss/default.assets-paths" as *;
 @use "@db-ui/foundations/build/scss/variables" as *;
 @use "@db-ui/foundations/build/scss/variables.global" as *;
@@ -147,8 +148,8 @@
 
 	@each $name, $colors in $component-variants {
 		&[data-variant="#{$name}"] {
-			--db-current-border-color: #{nth($colors, 1)};
-			color: nth($colors, 3);
+			--db-current-border-color: #{map.get($colors, "border")};
+			color: map.get($colors, "on-bg");
 
 			@if ($name == "critical") {
 				@extend %adaptive-critical-component;
@@ -163,7 +164,7 @@
 			& ~ .description,
 			.icon-state,
 			.icon-state .db-icon {
-				color: nth($colors, 2);
+				color: map.get($colors, "element");
 			}
 		}
 	}
