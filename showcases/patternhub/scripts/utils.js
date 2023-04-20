@@ -77,4 +77,32 @@ export const getCodeByFramework = (componentName, framework, example) => {
 	return `<${tag} ${attributes.join(' ')}>${example.name}</${tag}>`;
 };
 
-export default { getUnionElements, getCodeByFramework };
+export const getColorVariants = () => [
+	'neutral-0',
+	'neutral-1',
+	'neutral-2',
+	'neutral-3',
+	'neutral-4',
+	'neutral-transparent-full',
+	'neutral-transparent-semi',
+	'primary',
+	'primary-transparent-full',
+	'primary-transparent-semi',
+	'secondary',
+	'secondary-transparent-full',
+	'secondary-transparent-semi',
+	'successful',
+	'successful-transparent-full',
+	'successful-transparent-semi',
+	'critical',
+	'critical-transparent-full',
+	'critical-transparent-semi',
+	'warning',
+	'warning-transparent-full',
+	'warning-transparent-semi',
+	'informational',
+	'informational-transparent-full',
+	'informational-transparent-semi'
+];
+
+export default { getUnionElements, getCodeByFramework, getColorVariants };

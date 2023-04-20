@@ -19,6 +19,14 @@
 				}
 			},
 			{
+				"name": "neutral-2",
+				"props": {
+					"colorVariant": "neutral-2",
+					"variant": "interactive",
+					"spacing": "small"
+				}
+			},
+			{
 				"name": "neutral-3",
 				"props": {
 					"colorVariant": "neutral-3",
