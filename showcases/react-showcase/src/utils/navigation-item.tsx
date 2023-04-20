@@ -7,6 +7,7 @@ import LinkComponent from '../components/link';
 import SectionComponent from '../components/section';
 import InfotextComponent from '../components/infotext';
 import CardComponent from '../components/card';
+import DividerComponent from '../components/divider';
 
 export type NavigationItem = {
 	path: string;
@@ -15,6 +16,7 @@ export type NavigationItem = {
 	home?: boolean;
 };
 export const NAVIGATION_ITEMS: NavigationItem[] = [
+	{ path: 'divider', label: 'Divider', component: <DividerComponent /> },
 	{ path: 'radio', label: 'Radio', component: <RadioComponent /> },
 	{ path: 'alert', label: 'Alert', component: <AlertComponent /> },
 	{ path: 'infotext', label: 'Infotext', component: <InfotextComponent /> },

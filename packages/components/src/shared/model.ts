@@ -1,4 +1,5 @@
 import classNames from 'classnames';
+import { IconTypes } from './icon-types';
 
 export type GlobalProps = {
 	/**
@@ -22,6 +23,11 @@ export type GlobalProps = {
 	id?: string;
 
 	/**
+	 * [`aria-describedby`](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-describedby) is used to link to the elements that describe the element with the set attribute.
+	 */
+	describedbyid?: string;
+
+	/**
 	 * Web Component specific: Adds a link tag with the path to show css inside Shadow DOM.
 	 */
 	stylePath?: string;
@@ -37,12 +43,18 @@ export type GlobalState = {
 	getClassNames: (...args: classNames.ArgumentArray) => string;
 };
 
-export type DefaultVariantProps =
+export type DefaultVariantType =
 	| 'adaptive'
 	| 'critical'
 	| 'informational'
 	| 'warning'
 	| 'successful';
+export type DefaultVariantProps = {
+	/**
+	 * The variant defines the default variants for most components.
+	 */
+	variant?: DefaultVariantType;
+};
 
 export const DefaultVariantsIcon: any = {
 	critical: 'error',
@@ -56,7 +68,7 @@ export type IconProps = {
 	/**
 	 * Define an icon by it's identifier (like e.g. _account_, compare to [Icons](https://db-ui.github.io/mono/review/main/foundations/icons) to get displayed in front of the elements content.
 	 */
-	icon?: string; // TODO: Add correct icon strings here
+	icon?: IconTypes;
 };
 
 export type IconState = {
@@ -64,12 +76,36 @@ export type IconState = {
 };
 
 export type FormProps = {
-	label?: string;
-	disabled?: boolean;
-	required?: boolean;
-	value?: any;
+	/**
+	 * React specific attribute to set default value.
+	 */
 	defaultValue?: any;
+	/**
+	 * The disabled attribute can be set to keep a user from clicking on the form element.
+	 */
+	disabled?: boolean;
+
+	/**
+	 * The label attribute specifies the caption of the form element.
+	 */
+	label?: string;
+	/**
+	 * The name attribute gives the name of the form control, as used in form submission and in the form element's elements object.
+	 */
 	name?: string;
+	/**
+	 * When the required attribute specified, the user will be required to fill the form element before submitting the form.
+	 */
+	required?: boolean;
+	/**
+	 * The value property is to receive results from the native form element.
+	 */
+	value?: any;
+
+	/**
+	 * Marks an input element as invalid.
+	 */
+	invalid?: boolean;
 };
 
 export type FormState = {
@@ -86,9 +122,21 @@ export type GlobalTextProps = {
 };
 
 export type ImageProps = {
+	/**
+	 * [Alternative text](https://developer.mozilla.org/en-US/docs/Web/API/HTMLImageElement/alt) for an image.
+	 */
 	imgAlt?: string;
-	imgSrc?: string;
+	/**
+	 * The [height attribute](https://developer.mozilla.org/en-US/docs/Web/API/HTMLImageElement/height) for the image.
+	 */
 	imgHeight?: number;
+	/**
+	 * The [source](https://developer.mozilla.org/en-US/docs/Web/API/HTMLImageElement/src) of an image.
+	 */
+	imgSrc?: string;
+	/**
+	 * The [width attribute](https://developer.mozilla.org/en-US/docs/Web/API/HTMLImageElement/width) for the image.
+	 */
 	imgWidth?: number;
 };
 
@@ -123,6 +171,9 @@ export type LinkProps = {
 };
 
 export type CardProps = {
+	/**
+	 * The elevation attribute changes the style of the card (box-shadow).
+	 */
 	elevation?: 'default' | 'none';
 };
 

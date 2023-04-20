@@ -1,0 +1,19 @@
+[
+	{
+		"name": "Variant",
+		"examples": [
+			{
+				"name": "Adaptive - Horizontal (Default)",
+				"style": { "width": "200px" },
+				"props": {}
+			},
+			{
+				"name": "Adaptive - Vertical",
+				"style": { "height": "100px" },
+				"props": {
+					"variant": "vertical"
+				}
+			}
+		]
+	}
+]

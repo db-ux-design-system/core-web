@@ -7,8 +7,10 @@ import { RadioComponent } from '../components/radio/radio.component';
 import { InfotextComponent } from '../components/infotext/infotext.component';
 import { SectionComponent } from '../components/section/section.component';
 import { CardComponent } from '../components/card/card.component';
+import { DividerComponent } from '../components/divider/divider.component';
 
 export const NAVIGATION_ITEMS = [
+	{ path: 'divider', label: 'Divider', component: DividerComponent },
 	{ path: 'radio', label: 'Radio', component: RadioComponent },
 	{ path: 'alert', label: 'Alert', component: AlertComponent },
 	{ path: 'infotext', label: 'Infotext', component: InfotextComponent },
