@@ -48,7 +48,7 @@ const DrawerComponent = () => {
 	const [openDrawer, setOpenDrawer] = useState<string | undefined>(undefined);
 	return (
 		<DefaultComponent
-			title={'DBDrawer'}
+			title="DBDrawer"
 			variants={getVariants(defaultComponentVariants, (props: any) =>
 				getDrawer({
 					...props,

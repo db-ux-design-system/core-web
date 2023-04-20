@@ -25,5 +25,18 @@ import { DBDrawerModule } from '@db-ui/ngx-components';
 ```html app.component.html
 <!-- app.component.html -->
 
-TODO
+<db-drawer [open]="openDrawer" (onClose)="toggleDrawer(false)">
+	My Drawer content
+</db-drawer>
+<db-button (click)="toggleDrawer(true)"> Open me </db-button>
+```
+
+```ts app.component.ts
+// app.component.ts
+export class AppComponent {
+	openDrawer: boolean = false;
+	toggleDrawer = (open: boolean) => {
+		this.openDrawer = open;
+	};
+}
 ```

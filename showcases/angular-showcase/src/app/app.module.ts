@@ -15,7 +15,8 @@ import {
 	DBCodeDocsModule,
 	DBAlertModule,
 	DBSectionModule,
-	DBInfotextModule
+	DBInfotextModule,
+	DBDrawerModule
 } from '../../../../output/angular/src';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app.routing.module';
@@ -30,6 +31,7 @@ import { SectionComponent } from './components/section/section.component';
 import { CardComponent } from './components/card/card.component';
 import { DividerComponent } from './components/divider/divider.component';
 import { DefaultComponent } from './components/default.component';
+import { DrawerComponent } from './components/drawer/drawer.component';
 
 @NgModule({
 	declarations: [
@@ -44,7 +46,8 @@ import { DefaultComponent } from './components/default.component';
 		InfotextComponent,
 		SectionComponent,
 		CardComponent,
-		DividerComponent
+		DividerComponent,
+		DrawerComponent
 	],
 	imports: [
 		AppRoutingModule,
@@ -63,7 +66,8 @@ import { DefaultComponent } from './components/default.component';
 		DBSectionModule,
 		DBInfotextModule,
 		FormsModule,
-		DBRadioModule
+		DBRadioModule,
+		DBDrawerModule
 	],
 	providers: [],
 	schemas: [NO_ERRORS_SCHEMA],

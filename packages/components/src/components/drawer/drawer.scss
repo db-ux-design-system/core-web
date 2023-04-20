@@ -60,6 +60,11 @@
 	}
 }
 
+%close-button-position {
+	margin-inline-start: $db-spacing-fixed-lg;
+	float: right;
+}
+
 .db-drawer {
 	.db-drawer-container {
 		@extend %direction-right;
@@ -114,8 +119,12 @@
 			padding-inline: $db-spacing-fixed-lg;
 
 			.button-close-drawer {
-				margin-inline-start: $db-spacing-fixed-lg;
-				float: right;
+				@extend %close-button-position;
+
+				// angular-workaround
+				button {
+					@extend %close-button-position;
+				}
 			}
 
 			&:not(:has(> :nth-child(1))) {

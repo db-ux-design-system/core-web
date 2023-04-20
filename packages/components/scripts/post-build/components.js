@@ -25,6 +25,12 @@ const getComponents = () => [
 					to: 'const dialogRef = useRef<HTMLDialogElement>(component);'
 				}
 			],
+			vue: [
+				{
+					from: 'immediate: true,',
+					to: 'immediate: true,\nflush: "post"'
+				}
+			],
 			webComponents: [{ from: '__prev.find', to: '!!__prev.find' }]
 		}
 	},

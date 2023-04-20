@@ -9,7 +9,7 @@ import {
 } from '@builder.io/mitosis';
 import { DBDrawerState, DBDrawerProps } from './model';
 import { DBButton } from '../button';
-import { DEFAULT_CLOSE_BUTTON } from '../../shared/constants';
+import { DEFAULT_CLOSE_BUTTON, DEFAULT_ID } from '../../shared/constants';
 import classNames from 'classnames';
 import { uuid } from '../../utils';
 
@@ -25,6 +25,7 @@ export default function DBDrawer(props: DBDrawerProps) {
 	const dialogRef = useRef<HTMLDialogElement>(null);
 	const dialogContainerRef = useRef<HTMLDivElement>(null);
 	const state = useStore<DBDrawerState>({
+		_id: DEFAULT_ID,
 		handleClose: (event: any) => {
 			if (
 				event === 'close' ||
