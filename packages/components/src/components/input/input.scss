@@ -1,5 +1,5 @@
 @charset "utf-8";
-
+@use "sass:map";
 @use "@db-ui/foundations/build/scss/default.assets-paths" as *;
 @use "@db-ui/foundations/build/scss/variables" as *;
 @use "@db-ui/foundations/build/scss/variables.global" as *;
@@ -339,7 +339,7 @@
 		}
 
 		&[data-variant="#{$name}"] input {
-			--db-current-border-color: #{nth($colors, 1)};
+			--db-current-border-color: #{map.get($colors, "border")};
 			@if ($name == "critical") {
 				@extend %adaptive-critical-component;
 			} @else if ($name == "informational") {
@@ -351,13 +351,13 @@
 			}
 
 			& + label {
-				color: nth($colors, 3);
+				color: map.get($colors, "on-bg");
 			}
 
 			& ~ .description,
 			& ~ .icon-state,
 			& ~ .icon-state .db-icon {
-				color: nth($colors, 2);
+				color: map.get($colors, "element");
 			}
 		}
 	}

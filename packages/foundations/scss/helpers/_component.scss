@@ -49,43 +49,19 @@ $card-border-radius: 8px;
 %adaptive-critical-component {
 	@extend %db-bg-critical-transparent-semi;
 	@extend %db-bg-critical-transparent-semi-hover-state;
-
-	& ~ .icon-state,
-	& ~ .icon-state .db-icon {
-		// TODO: This will double input icons, we should only use this or DBIcon
-		// @include icon(glyph(error), 24, "filled", "after");
-	}
 }
 
 %adaptive-warning-component {
 	@extend %db-bg-warning-transparent-semi;
 	@extend %db-bg-warning-transparent-semi-hover-state;
-
-	& ~ .icon-state,
-	& ~ .icon-state .db-icon {
-		// TODO: This will double input icons, we should only use this or DBIcon
-		// @include icon(glyph(error-triangle), 20, "filled", "after");
-	}
 }
 
 %adaptive-informational-component {
 	@extend %db-bg-informational-transparent-semi;
 	@extend %db-bg-informational-transparent-semi-hover-state;
-
-	& ~ .icon-state,
-	& ~ .icon-state .db-icon {
-		// TODO: This will double input icons, we should only use this or DBIcon
-		// @include icon(glyph(info), 20, "filled", "after");
-	}
 }
 
 %adaptive-successful-component {
 	@extend %db-bg-successful-transparent-semi;
 	@extend %db-bg-successful-transparent-semi-hover-state;
-
-	& ~ .icon-state,
-	& ~ .icon-state .db-icon {
-		// TODO: This will double input icons, we should only use this or DBIcon
-		// @include icon(glyph(check-circle), 20, "filled", "after");
-	}
 }

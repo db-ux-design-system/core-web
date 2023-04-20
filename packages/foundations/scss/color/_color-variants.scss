@@ -132,27 +132,27 @@ $db-colors-successful: var(
 
 $component-variants: (
 	"critical": (
-		$db-colors-critical-border,
-		$db-colors-critical-element,
-		$db-colors-critical-on-bg,
-		$db-colors-successful
+		"border": $db-colors-critical-border,
+		"element": $db-colors-critical-element,
+		"on-bg": $db-colors-critical-on-bg,
+		"primary": $db-colors-critical
 	),
 	"informational": (
-		$db-colors-informational-border,
-		$db-colors-informational-element,
-		$db-colors-informational-on-bg,
-		$db-colors-successful
+		"border": $db-colors-informational-border,
+		"element": $db-colors-informational-element,
+		"on-bg": $db-colors-informational-on-bg,
+		"primary": $db-colors-informational
 	),
 	"warning": (
-		$db-colors-warning-border,
-		$db-colors-warning-element,
-		$db-colors-warning-on-bg,
-		$db-colors-successful
+		"border": $db-colors-warning-border,
+		"element": $db-colors-warning-element,
+		"on-bg": $db-colors-warning-on-bg,
+		"primary": $db-colors-warning
 	),
 	"successful": (
-		$db-colors-successful-border,
-		$db-colors-successful-element,
-		$db-colors-successful-on-bg,
-		$db-colors-successful
+		"border": $db-colors-successful-border,
+		"element": $db-colors-successful-element,
+		"on-bg": $db-colors-successful-on-bg,
+		"primary": $db-colors-successful
 	)
 );
