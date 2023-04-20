@@ -189,7 +189,7 @@ Please mind the [conventions for git commits](/docs/conventions.adoc#user-conten
 
 ### Versions
 
-All versions in all `package.json` files are set to `0.0.0` we change those during release process in cicd.
+All versions in all `package.json` files are set to `0.0.0`, we change those during release process in CI/CD.
 
 <!-- markdownlint-disable MD026 -->
 
