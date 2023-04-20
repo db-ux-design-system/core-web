@@ -11,6 +11,7 @@ import { DBDrawerState, DBDrawerProps } from './model';
 import { DBButton } from '../button';
 import { DEFAULT_CLOSE_BUTTON } from '../../shared/constants';
 import classNames from 'classnames';
+import { uuid } from '../../utils';
 
 useMetadata({
 	isAttachedToShadowDom: true,
@@ -65,6 +66,7 @@ export default function DBDrawer(props: DBDrawerProps) {
 	});
 
 	onMount(() => {
+		state._id = props.id ? props.id : 'drawer-' + uuid();
 		if (props.stylePath) {
 			state.stylePath = props.stylePath;
 		}
@@ -77,6 +79,7 @@ export default function DBDrawer(props: DBDrawerProps) {
 
 	return (
 		<dialog
+			id={state._id}
 			ref={dialogRef}
 			class="db-drawer"
 			onClick={(event) => {
@@ -103,7 +106,8 @@ export default function DBDrawer(props: DBDrawerProps) {
 							className="button-close-drawer"
 							id={props.closeButtonId}
 							icon="close"
-							variant="transparent"
+							variant="text"
+							noText
 							onClick={() => state.handleClose('close')}>
 							{props.closeButtonText ?? DEFAULT_CLOSE_BUTTON}
 						</DBButton>

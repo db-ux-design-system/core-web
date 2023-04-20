@@ -39,6 +39,7 @@ export type GlobalProps = {
 };
 
 export type GlobalState = {
+	_id?: string;
 	stylePath?: string;
 	getClassNames: (...args: classNames.ArgumentArray) => string;
 };
@@ -105,7 +106,6 @@ export type FormProps = {
 };
 
 export type FormState = {
-	_id?: string;
 	_isValid?: boolean | undefined;
 	_value?: any;
 };
