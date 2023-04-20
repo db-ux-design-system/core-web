@@ -1,4 +1,4 @@
-import { getUnionElements } from './utils.js';
+import { getColorVariants, getUnionElements } from './utils.js';
 
 const getOptions = (tsType) => {
 	switch (tsType.name) {
@@ -20,6 +20,10 @@ const getOptions = (tsType) => {
 			const options = [];
 			getUnionElements(options, tsType.elements);
 			return options.join(' &#124; ');
+		}
+
+		case 'COLOR': {
+			return getColorVariants().join(' &#124; ');
 		}
 
 		default: {
