@@ -21,6 +21,7 @@ export type ComponentType = {
 		| 'icon'
 		| 'infotext'
 		| 'input'
+		| 'radio'
 		| 'link'
 		| 'section'
 		| string;
