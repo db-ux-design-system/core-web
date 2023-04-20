@@ -1,5 +1,5 @@
 @charset "utf-8";
-
+@use "sass:map";
 @use "@db-ui/foundations/build/scss/default.assets-paths" as *;
 @use "@db-ui/foundations/build/scss/variables" as *;
 @use "@db-ui/foundations/build/scss/variables.global" as *;
@@ -78,7 +78,7 @@
 			padding-inline-end: var(--db-input-padding-inline-end);
 		}
 
-		.icon-input-state {
+		.icon-state {
 			margin-inline-end: calc(0.75rem + 2 * $db-spacing-fixed-sm);
 		}
 	}
@@ -107,7 +107,7 @@
 	// currently not supported by firefox
 	&:has(> input:disabled) {
 		.db-icon,
-		.icon-input-state {
+		.icon-state {
 			opacity: 0.5;
 		}
 	}
@@ -251,7 +251,7 @@
 					)};
 			}
 
-			& ~ .icon-input-state {
+			& ~ .icon-state {
 				// TODO replace with svg icon
 				@include icon(glyph(search), 20, "filled", "before");
 			}
@@ -294,7 +294,7 @@
 	}
 
 	// #variations
-	.icon-input-state {
+	.icon-state {
 		--icon-font-family: var(--db-base-icon-font-family-filled);
 		--icon-font-size: var(--db-base-icon-font-size);
 		display: flex;
@@ -326,106 +326,39 @@
 		}
 	}
 
-	&[data-variant="critical"] {
-		color: $db-colors-critical-on-bg-enabled;
-	}
-
-	// Variant error or invalid state
-	&[data-variant="critical"] input,
 	input:required:invalid:not(:placeholder-shown),
 	input[aria-invalid="true"] {
-		--db-current-border-color: var(
-			--db-colors-critical-border-enabled,
-			#{$db-colors-critical-border-enabled}
-		);
-		@extend %db-bg-critical-transparent-semi;
-		@extend %db-bg-critical-transparent-semi-hover-state;
-
-		& + label {
-			color: $db-colors-critical-on-bg-enabled;
-		}
-
-		& ~ .description,
-		& ~ .icon-input-state {
-			color: $db-colors-critical-enabled;
-		}
-
-		& ~ .icon-input-state {
-			// TODO fix this workaround after new icon implementation
-			--icon-glyph: "\e1123";
-			@include icon(glyph(error), 24, "filled", "after");
-		}
+		@extend %adaptive-critical-component;
 	}
 
-	&[data-variant="warning"] input {
-		--db-current-border-color: var(
-			--db-colors-warning-border-enabled,
-			#{$db-colors-warning-border-enabled}
-		);
-		@extend %db-bg-warning-transparent-semi;
-		@extend %db-bg-warning-transparent-semi-hover-state;
-
-		& + label {
-			color: $db-colors-warning-on-bg-enabled;
+	@each $name, $colors in $component-variants {
+		@if ($name == "critical") {
+			&[data-variant="critical"] {
+				color: nth($colors, 3);
+			}
 		}
 
-		& ~ .description,
-		& ~ .icon-input-state,
-		& ~ .icon-input-state .db-icon {
-			color: $db-colors-warning-element-enabled;
-		}
+		&[data-variant="#{$name}"] input {
+			--db-current-border-color: #{map.get($colors, "border")};
+			@if ($name == "critical") {
+				@extend %adaptive-critical-component;
+			} @else if ($name == "informational") {
+				@extend %adaptive-informational-component;
+			} @else if ($name == "warning") {
+				@extend %adaptive-warning-component;
+			} @else if ($name == "successful") {
+				@extend %adaptive-successful-component;
+			}
 
-		& ~ .icon-input-state,
-		& ~ .icon-input-state .db-icon {
-			@include icon(glyph(error-triangle), 20, "filled", "after");
-		}
-	}
+			& + label {
+				color: map.get($colors, "on-bg");
+			}
 
-	&[data-variant="successful"] input {
-		--db-current-border-color: var(
-			--db-colors-successful-border-enabled,
-			#{$db-colors-successful-border-enabled}
-		);
-		@extend %db-bg-successful-transparent-semi;
-		@extend %db-bg-successful-transparent-semi-hover-state;
-
-		& + label {
-			color: $db-colors-successful-on-bg-enabled;
-		}
-
-		& ~ .description,
-		& ~ .icon-input-state,
-		& ~ .icon-input-state .db-icon {
-			color: $db-colors-successful-element-enabled;
-		}
-
-		& ~ .icon-input-state,
-		& ~ .icon-input-state .db-icon {
-			@include icon(glyph(check-circle), 20, "filled", "after");
-		}
-	}
-
-	&[data-variant="informational"] input {
-		--db-current-border-color: var(
-			--db-colors-informational-border-enabled,
-			#{$db-colors-informational-border-enabled}
-		);
-		@extend %db-bg-informational-transparent-semi;
-		@extend %db-bg-informational-transparent-semi-hover-state;
-
-		& + label {
-			color: $db-colors-informational-on-bg-enabled;
-		}
-
-		& ~ .description,
-		& ~ .icon-input-state,
-		& ~ .icon-input-state .db-icon {
-			color: $db-colors-informational-element-enabled;
-		}
-
-		& ~ .icon-input-state,
-		& ~ .icon-input-state .db-icon {
-			@include icon(glyph(info), 20, "filled", "after");
+			& ~ .description,
+			& ~ .icon-state,
+			& ~ .icon-state .db-icon {
+				color: map.get($colors, "element");
+			}
 		}
 	}
 }
