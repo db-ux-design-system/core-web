@@ -148,7 +148,7 @@ export default function DBInput(props: DBInputProps) {
 			<Show when={props.variant || props.required || props.pattern}>
 				<DBIcon
 					icon={state.getIcon(props.variant)}
-					class="icon-input-state"
+					class="icon-state"
 				/>
 			</Show>
 			<Show when={state.iconVisible(props.iconAfter)}>
