@@ -5,30 +5,25 @@ import { test, expect } from '@playwright/experimental-ct-react';
 import AxeBuilder from '@axe-core/playwright';
 
 import { DB<%= h.changeCase.pascal(name) %> } from "./index";
+// @ts-ignore - vue can only find it with .ts as file ending
+import { DEFAULT_VIEWPORT } from '../../shared/constants.ts';
 
 const comp = <DB<%= h.changeCase.pascal(name) %>>Test</DB<%= h.changeCase.pascal(name) %>>;
 
 const testComponent = () =>{
-	test('DB<%= h.changeCase.pascal(name) %> should contain text', async ({ mount }) => {
+	test('should contain text', async ({ mount }) => {
 		const component = await mount(comp);
 		await expect(component).toContainText('Test');
 	});
 
-	test('DB<%= h.changeCase.pascal(name) %> should match screenshot', async ({ mount }) => {
+	test('should match screenshot', async ({ mount }) => {
 		const component = await mount(comp);
 		await expect(component).toHaveScreenshot();
 	});
 }
 
-test.describe('DB<%= h.changeCase.pascal(name) %> component on desktop', () => {
-	// Old-school CRT monitor screensize
-	test.use({ viewport: { width: 1024, height: 768 } });
-	testComponent();
-});
-
-test.describe('DB<%= h.changeCase.pascal(name) %> component on mobile', () => {
-	// iPhone 13 / portrait screen size
-	test.use({ viewport: { width: 390, height: 884 } });
+test.describe('DB<%= h.changeCase.pascal(name) %>', () => {
+	test.use({ viewport: DEFAULT_VIEWPORT });
 	testComponent();
 });
 
