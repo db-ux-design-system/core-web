@@ -12,7 +12,6 @@
 	@extend %default-color;
 	width: fit-content;
 	align-items: center;
-	border-radius: to-rem($pxValue: 6);
 
 	// Link underline
 	// TODO: We should evaluate whether we could move this declaration to the @font-face declarations even already
@@ -44,7 +43,7 @@
 	}
 
 	&:focus-visible {
-		border-radius: 4px;
+		border-radius: $default-border-radius;
 	}
 
 	&[data-content="internal"],
