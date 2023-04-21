@@ -193,6 +193,9 @@ export type ToggleEventState = {
 };
 
 export type CloseEventProps = {
+	/**
+	 * Function to handle button click (close).
+	 */
 	onClose?: () => void;
 };
 

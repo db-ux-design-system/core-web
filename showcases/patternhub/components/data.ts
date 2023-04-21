@@ -13,6 +13,7 @@ export const getVariants = (
 			...example,
 			example: getExample({
 				...example.props,
+				id: example.props.id ?? example.name,
 				children: example.props?.children
 					? example.props.children
 					: example.name

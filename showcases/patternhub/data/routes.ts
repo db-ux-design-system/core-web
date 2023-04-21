@@ -14,6 +14,10 @@ const componentChildren = [
 				name: 'divider'
 			},
 			{
+				label: 'DBDrawer',
+				name: 'drawer'
+			},
+			{
 				label: 'DBHeader',
 				name: 'header'
 			},

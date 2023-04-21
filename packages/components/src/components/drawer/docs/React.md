@@ -11,7 +11,7 @@ If you use `width !== full` you are able to overwrite the `max-width` with `--db
 ```tsx App.tsx
 // App.tsx
 import { useState } from "react";
-import { DBButton, DBDrawer } from "../../../../../output/react/src";
+import { DBButton, DBDrawer } from "@db-ui/react-components";
 
 const App = () => {
 	const [open, setOpen] = useState<boolean>(false);
