@@ -30,7 +30,7 @@ const getContent = () => {
 			<div>
 				<form>
 					<fieldset>
-							<p>DbInput:</p>
+							<p>db-input:</p>
 							<db-input
 								id="db-input"
 								name="username"
@@ -39,7 +39,7 @@ const getContent = () => {
 								description="Description"
 								icon="edit"
 							></db-input>
-						<p>DbButton:</p>
+						<p>db-button:</p>
 						<db-button type="button" id="db-button" variant="primary">
 							Hi from Showcase!
 						</db-button>
