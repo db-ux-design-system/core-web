@@ -97,8 +97,8 @@ export type FormProps = {
 	 * The value property is to receive results from the native form element.
 	 */
 	value?: any;
-  
-  /**
+
+	/**
 	 * Marks an input element as invalid.
 	 */
 	invalid?: boolean;
