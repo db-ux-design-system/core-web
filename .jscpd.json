@@ -15,6 +15,7 @@
 		"**/output/**",
 		"**/node_modules/**",
 		"**/__snapshots__/**",
+		"**/*.spec.tsx",
 		"**/.next/**",
 		"**/.github/**",
 		"**/next-showcase/components/**",
@@ -25,11 +26,14 @@
 		"**/tsconfig.json",
 		"**/angular-*/**/main.ts",
 		"**/README.md",
+		"**/generated/**",
 		"packages/components/src/components/alert/alert.lite.tsx",
 		"showcases/react-showcase/src/components/alert/index.tsx",
+		"packages/components/src/components/radio/radio.lite.tsx",
+		"showcases/react-showcase/src/components/radio/index.tsx",
+		"showcases/react-showcase/src/components/alert/index.tsx",
 		"packages/components/src/components/**/*.spec.tsx",
-		"/**/playwright.config.ts",
-		"/packages/components/test/playwright/config.ts"
+		"**/**config.ts"
 	],
 	"absolute": true
 }

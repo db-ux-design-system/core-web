@@ -9,7 +9,7 @@ import { devices } from '@playwright/test';
 
 const config: PlaywrightTestConfig = {
 	testDir: './e2e',
-	snapshotDir: './__snapshots__',
+	snapshotDir: './../__snapshots__',
 	/* Maximum time one test can run for. */
 	timeout: 30 * 1000,
 	expect: {
@@ -28,7 +28,9 @@ const config: PlaywrightTestConfig = {
 	/* Opt out of parallel tests on CI. */
 	workers: process.env.CI ? 1 : undefined,
 	/* Reporter to use. See https://playwright.dev/docs/test-reporters */
-	reporter: 'html',
+	reporter: process.env.CI
+		? [['github'], ['html', { open: 'never' }]]
+		: [['list'], ['html', { open: 'never' }]],
 	/* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
 	use: {
 		/* Maximum time each action such as `click()` can take. Defaults to 0 (no limit). */
@@ -42,12 +44,6 @@ const config: PlaywrightTestConfig = {
 		// 	mode: 'only-on-failure',
 		// 	fullPage: true
 		// }
-	},
-	webServer: {
-		command: `cd ${process.env.showcase} && npm run start:e2e`,
-		port: 8080,
-		reuseExistingServer: !process.env.CI,
-		timeout: 120 * 1000
 	},
 
 	/* Configure projects for major browsers */

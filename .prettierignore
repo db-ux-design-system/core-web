@@ -3,4 +3,7 @@ public/
 package-lock.json
 build/
 node_modules
-**/node_modules
+output
+build-outputs
+build-power-apps
+build-showcases

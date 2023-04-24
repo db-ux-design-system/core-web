@@ -18,6 +18,8 @@ const route = useRoute();
 
 const tonality = ref(TONALITY.REGULAR);
 const color = ref(COLOR.NEUTRAL_0);
+const page = ref();
+const fullscreen = ref();
 
 const getClassNames = () => {
 	return `db-ui-${tonality.value} db-bg-${color.value}`;
@@ -43,17 +45,30 @@ watch(
 		if (query[TONALITY_CONST] && query[TONALITY_CONST] !== tonality.value) {
 			tonality.value = query[TONALITY_CONST];
 		}
+		if (query.page) {
+			page.value = query.page;
+		}
+		if (query.fullscreen) {
+			page.value = query.fullscreen;
+		}
 	}
 );
 </script>
 
 <template>
-	<DBPage type="fixedHeaderFooter">
+	<div v-if="page || fullscreen" :class="getClassNames()">
+		<router-view></router-view>
+	</div>
+	<DBPage v-if="!page && !fullscreen" type="fixedHeaderFooter">
 		<template v-slot:header>
 			<DBHeader>
 				<template v-slot:brand>
-					<DBBrand src="db_logo.svg" href="/vue-showcase/">
-						Vue Showcase
+					<DBBrand
+						title="Vue Showcase"
+						src="db_logo.svg"
+						href="/vue-showcase/"
+					>
+						Showcase
 					</DBBrand>
 				</template>
 				<template v-slot:desktop-navigation>

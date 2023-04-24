@@ -6,11 +6,10 @@
     "build": "ng build",
     "dev": "npm run start -- --open",
     "ng": "ng",
-    "prestart:e2e": "npm run build",
+    "preview": "npx http-server ../../build-showcases",
     "start": "ng serve --serve-path angular-current-showcase",
-    "start:e2e": "npx http-server ../../build-showcases",
-    "test": "ng test",
     "test:e2e": "cross-env showcase=angular-current-showcase npx playwright test --config=../playwright.config.ts",
+    "test:local": "npm-run-all build -p preview test:e2e",
     "watch": "ng build --watch --configuration development"
   },
   "dependencies": {
@@ -24,15 +23,14 @@
     "@angular/router": "15.2.0",
     "rxjs": "~7.8.0",
     "tslib": "^2.5.0",
-    "zone.js": "~0.13.0"
+    "zone.js": "~0.12.0"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "15.2.0",
-    "@angular/cli": "15.2.2",
+    "@angular/cli": "14.2.11",
     "@angular/compiler-cli": "15.2.0",
-    "@playwright/test": "1.31.1",
     "cross-env": "^7.0.3",
-    "schematics-scss-migrate": "^1.3.15",
+    "schematics-scss-migrate": "^2.3.17",
     "typescript": "4.9.5"
   }
 }

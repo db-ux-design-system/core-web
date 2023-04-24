@@ -1,78 +1,23 @@
 import { DBSection } from '../../../../../output/react/src';
 import DefaultComponent from '../index';
-import type { DefaultComponentVariants } from '../data';
+import defaultComponentVariants from '../../../../shared/section.json';
+import { type DBSectionProps } from '../../../../../output/react/src/components/section/model';
+import { getVariants } from '../data';
 
-const variants: DefaultComponentVariants[] = [
-	{
-		name: 'Variant',
-		examples: [
-			{
-				name: '(Default) Full',
-				style: { width: '100%' },
-				example: (
-					<DBSection className="db-bg-information">Content</DBSection>
-				),
-				code: '<DBSection>Content</DBSection>'
-			},
-			{
-				name: 'Medium',
-				style: { width: '100%' },
-				example: (
-					<DBSection className="db-bg-information" variant="medium">
-						Content
-					</DBSection>
-				),
-				code: '<DBSection variant="medium">Content</DBSection>'
-			},
-			{
-				name: 'Large',
-				style: { width: '100%' },
-				example: (
-					<DBSection className="db-bg-information" variant="large">
-						Content
-					</DBSection>
-				),
-				code: '<DBSection variant="large">Content</DBSection>'
-			}
-		]
-	},
-	{
-		name: 'Size',
-		examples: [
-			{
-				name: '(Default) Medium',
-				example: (
-					<DBSection className="db-bg-information">Content</DBSection>
-				),
-				code: '<DBSection>Content</DBSection>'
-			},
-			{
-				name: 'Large',
-				example: (
-					<DBSection className="db-bg-information" size="large">
-						Content
-					</DBSection>
-				),
-				code: '<DBSection size="medium">Content</DBSection>'
-			},
-			{
-				name: 'Small',
-				example: (
-					<DBSection className="db-bg-information" size="small">
-						Content
-					</DBSection>
-				),
-				code: '<DBSection size="small">Content</DBSection>'
-			}
-		]
-	}
-];
+const getSection = ({ variant, size, children }: DBSectionProps) => (
+	<DBSection className="db-bg-informational" size={size} variant={variant}>
+		{children}
+	</DBSection>
+);
 
 const SectionComponent = () => {
 	return (
 		<DefaultComponent
 			title={'DBSection'}
-			variants={variants}></DefaultComponent>
+			variants={getVariants(
+				defaultComponentVariants,
+				getSection
+			)}></DefaultComponent>
 	);
 };
 

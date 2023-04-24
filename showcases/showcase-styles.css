@@ -12,18 +12,18 @@
 	padding: var(--db-spacing-fixed-md);
 }
 
-.variants-card {
-	margin: var(--db-spacing-fixed-md);
-}
-
 .variants-list {
 	display: flex;
 	flex-wrap: wrap;
+	width: 100%;
+	justify-content: center;
 	gap: var(--db-spacing-fixed-md);
 }
 
-.variants-list dd {
-	margin-inline-start: 0;
+.html-code-container {
+	display: flex;
+	flex-direction: column;
+	gap: var(--db-spacing-fixed-md);
 }
 
 .example-name {

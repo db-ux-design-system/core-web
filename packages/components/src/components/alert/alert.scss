@@ -1,51 +1,9 @@
+@use "sass:map";
 @use "@db-ui/foundations/build/scss/variables" as *;
 @use "@db-ui/foundations/build/scss/variables.global" as *;
-@use "@db-ui/foundations/build/scss/helpers/shadow-dom" as *;
 @use "@db-ui/foundations/build/scss/color-placeholder" as *;
 @use "@db-ui/foundations/build/scss/helpers/component" as *;
-
-$variants: (
-	"critical": (
-		var(
-			--db-colors-critical-border-enabled,
-			$db-colors-critical-border-enabled
-		),
-		var(
-			--db-colors-critical-element-enabled,
-			$db-colors-critical-element-enabled
-		)
-	),
-	"information": (
-		var(
-			--db-colors-information-border-enabled,
-			$db-colors-information-border-enabled
-		),
-		var(
-			--db-colors-information-element-enabled,
-			$db-colors-information-element-enabled
-		)
-	),
-	"warning": (
-		var(
-			--db-colors-warning-border-enabled,
-			$db-colors-warning-border-enabled
-		),
-		var(
-			--db-colors-warning-element-enabled,
-			$db-colors-warning-element-enabled
-		)
-	),
-	"success": (
-		var(
-			--db-colors-success-border-enabled,
-			$db-colors-success-border-enabled
-		),
-		var(
-			--db-colors-success-element-enabled,
-			$db-colors-success-element-enabled
-		)
-	)
-);
+@use "@db-ui/foundations/build/scss/color/color-variants" as *;
 
 @mixin handle-links($show-headline) {
 	.db-alert-headline-link {
@@ -66,7 +24,6 @@ $variants: (
 }
 
 .db-alert {
-	@extend %shadow-dom-extend;
 	@extend %db-bg-neutral-0;
 	@extend %component-border;
 
@@ -93,28 +50,29 @@ $variants: (
 	}
 
 	&[data-type="inline"] {
-		@include handle-links(false);
+		@extend %default-card;
 
-		width: fit-content;
-		min-width: calc($db-screens-xs - $db-spacing-fixed-md);
+		&[data-elevation="none"] {
+			box-shadow: none;
+		}
 	}
 
-	@each $name, $colors in $variants {
+	@each $name, $colors in $component-variants {
 		&[data-variant="#{$name}"] {
 			@if ($name == "critical") {
 				@extend %db-bg-critical;
-			} @else if ($name == "information") {
-				@extend %db-bg-information;
+			} @else if ($name == "informational") {
+				@extend %db-bg-informational;
 			} @else if ($name == "warning") {
 				@extend %db-bg-warning;
-			} @else if ($name == "success") {
-				@extend %db-bg-success;
+			} @else if ($name == "successful") {
+				@extend %db-bg-successful;
 			}
 
-			--db-current-border-color: #{nth($colors, 1)};
+			--db-current-border-color: #{map.get($colors, "border")};
 
 			.db-alert-icon {
-				color: nth($colors, 2);
+				color: map.get($colors, "element");
 			}
 		}
 	}

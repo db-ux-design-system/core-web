@@ -6,11 +6,16 @@ import { Component } from '@angular/core';
 })
 export class FormComponent {
 	input = '';
+
+	radioNames = ['X', 'Y', 'Z'];
+	radio = '';
+
 	showValues(): void {
 		// eslint-disable-next-line no-alert
 		alert(
 			JSON.stringify({
-				input: this.input
+				input: this.input,
+				radio: this.radio
 			})
 		);
 	}

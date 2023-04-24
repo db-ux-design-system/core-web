@@ -1,22 +1,16 @@
-const Replace = require('replace-in-file');
 const { components } = require('./components');
-const {
-	getComponentName,
-	getReplacements,
-	runReplacements
-} = require('../utils');
+const { getComponentName, runReplacements } = require('../utils');
 
-module.exports = () => {
+module.exports = (tmp) => {
 	for (const component of components) {
 		try {
 			const upperComponentName = getComponentName(component.name);
-			const stateName = `DB${upperComponentName}State`;
 
-			const tsxFile = `../../output/react/src/components/${component.name}/${component.name}.tsx`;
+			const tsxFile = `../../${
+				tmp ? 'output/tmp' : 'output'
+			}/react/src/components/${component.name}/${component.name}.tsx`;
 
 			let replacements = [
-				{ from: `${stateName}, `, to: '' },
-				{ from: `, ${stateName}`, to: '' },
 				{
 					from: /= useState/g,
 					to: '= useState<any>'
@@ -29,6 +23,10 @@ module.exports = () => {
 				{
 					from: `export default DB${upperComponentName};`,
 					to: `const DB${upperComponentName} = forwardRef(DB${upperComponentName}Fn);\nexport default DB${upperComponentName};`
+				},
+				{
+					from: `checked={props.checked}`,
+					to: `defaultChecked={props.checked}`
 				}
 			];
 

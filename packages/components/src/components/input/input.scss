@@ -1,5 +1,5 @@
 @charset "utf-8";
-
+@use "sass:map";
 @use "@db-ui/foundations/build/scss/default.assets-paths" as *;
 @use "@db-ui/foundations/build/scss/variables" as *;
 @use "@db-ui/foundations/build/scss/variables.global" as *;
@@ -7,9 +7,18 @@
 @use "@db-ui/foundations/build/scss/icon/icons.helpers" as *;
 @use "@db-ui/foundations/build/scss/body-styles" as *;
 @use "@db-ui/foundations/build/scss/color-placeholder" as *;
-@use "@db-ui/foundations/build/scss/helpers/shadow-dom" as *;
 @use "@db-ui/foundations/build/scss/color/color-variants" as *;
-@use "@db-ui/foundations/build/scss/helpers/component";
+@use "@db-ui/foundations/build/scss/helpers/component" as *;
+
+:root,
+.db-ui-regular,
+.db-ui-expressive {
+	--db-input-disabled-label-opacity: 0.25;
+}
+
+.db-ui-functional {
+	--db-input-disabled-label-opacity: 0;
+}
 
 @mixin label-focus-animation(
 	$translationX: var(--db-input-padding-inline-start)
@@ -33,7 +42,6 @@
 	--icon-margin-after: 0;
 	--db-input-label-max-width: 80%;
 
-	@extend %shadow-dom-extend;
 	position: relative;
 
 	// padding-inline-end according to current amount of icons
@@ -70,7 +78,7 @@
 			padding-inline-end: var(--db-input-padding-inline-end);
 		}
 
-		.icon-input-state {
+		.icon-state {
 			margin-inline-end: calc(0.75rem + 2 * $db-spacing-fixed-sm);
 		}
 	}
@@ -90,14 +98,16 @@
 		padding: 0 $db-spacing-fixed-sm;
 	}
 
-	&:has(> .icon-after) .icon-after {
+	.icon-after,
+	// angular specific nesting
+	dbicon.icon-after > .db-icon {
 		right: 0;
 	}
 
 	// currently not supported by firefox
 	&:has(> input:disabled) {
 		.db-icon,
-		.icon-input-state {
+		.icon-state {
 			opacity: 0.5;
 		}
 	}
@@ -185,6 +195,13 @@
 			}
 		}
 
+		// disabled and prefilled value – different in tonalities
+		&:disabled:not(:placeholder-shown) {
+			+ label {
+				opacity: var(--db-input-disabled-label-opacity);
+			}
+		}
+
 		&[type="color"],
 		&[type="date"],
 		&[type="datetime-local"],
@@ -234,9 +251,9 @@
 					)};
 			}
 
-			& ~ .icon-input-state {
+			& ~ .icon-state {
 				// TODO replace with svg icon
-				@include icon(glyph(search), 20, "filled", "before", false);
+				@include icon(glyph(search), 20, "filled", "before");
 			}
 
 			+ label {
@@ -277,7 +294,7 @@
 	}
 
 	// #variations
-	.icon-input-state {
+	.icon-state {
 		--icon-font-family: var(--db-base-icon-font-family-filled);
 		--icon-font-size: var(--db-base-icon-font-size);
 		display: flex;
@@ -295,121 +312,53 @@
 			--icon-font-family: var(--db-base-icon-font-family-filled);
 			--icon-font-size: var(--db-base-icon-font-size);
 		}
+
+		// angular specific nesting
+		> .db-icon {
+			position: static;
+			padding: 0;
+
+			// TODO: Check whether we could find a more general solution for this
+			&::before {
+				--icon-font-family: var(--db-base-icon-font-family-filled);
+				--icon-font-size: var(--db-base-icon-font-size);
+			}
+		}
 	}
 
-	&[data-variant="critical"] {
-		color: $db-colors-critical-on-bg-enabled;
-	}
-
-	// Variant error or invalid state
-	&[data-variant="critical"] input,
 	input:required:invalid:not(:placeholder-shown),
 	input[aria-invalid="true"] {
-		--db-current-border-color: var(
-			--db-colors-critical-border-enabled,
-			#{$db-colors-critical-border-enabled}
-		);
-		@extend %db-bg-critical-transparent-semi;
-		@extend %db-bg-critical-transparent-semi-hover-state;
-
-		& + label {
-			color: $db-colors-critical-on-bg-enabled;
-		}
-
-		& ~ .description,
-		& ~ .icon-input-state {
-			color: $db-colors-critical-enabled;
-		}
-
-		& ~ .icon-input-state {
-			// TODO fix this workaround after new icon implementation
-			--icon-glyph: "\e1123";
-			@include icon(glyph(error), 24, "filled", "after", false);
-		}
+		@extend %adaptive-critical-component;
 	}
 
-	&[data-variant="warning"] input {
-		--db-current-border-color: var(
-			--db-colors-warning-border-enabled,
-			#{$db-colors-warning-border-enabled}
-		);
-		@extend %db-bg-warning-transparent-semi;
-		@extend %db-bg-warning-transparent-semi-hover-state;
-
-		& + label {
-			color: $db-colors-warning-on-bg-enabled;
+	@each $name, $colors in $component-variants {
+		@if ($name == "critical") {
+			&[data-variant="critical"] {
+				color: nth($colors, 3);
+			}
 		}
 
-		& ~ .description,
-		& ~ .icon-input-state,
-		& ~ .icon-input-state .db-icon {
-			color: $db-colors-warning-element-enabled;
-		}
+		&[data-variant="#{$name}"] input {
+			--db-current-border-color: #{map.get($colors, "border")};
+			@if ($name == "critical") {
+				@extend %adaptive-critical-component;
+			} @else if ($name == "informational") {
+				@extend %adaptive-informational-component;
+			} @else if ($name == "warning") {
+				@extend %adaptive-warning-component;
+			} @else if ($name == "successful") {
+				@extend %adaptive-successful-component;
+			}
 
-		& ~ .icon-input-state,
-		& ~ .icon-input-state .db-icon {
-			@include icon(glyph(error-triangle), 20, "filled", "after", false);
-		}
-	}
+			& + label {
+				color: map.get($colors, "on-bg");
+			}
 
-	&[data-variant="success"] input {
-		--db-current-border-color: var(
-			--db-colors-success-border-enabled,
-			#{$db-colors-success-border-enabled}
-		);
-		@extend %db-bg-success-transparent-semi;
-		@extend %db-bg-success-transparent-semi-hover-state;
-
-		& + label {
-			color: $db-colors-success-on-bg-enabled;
-		}
-
-		& ~ .description,
-		& ~ .icon-input-state,
-		& ~ .icon-input-state .db-icon {
-			color: $db-colors-success-element-enabled;
-		}
-
-		& ~ .icon-input-state,
-		& ~ .icon-input-state .db-icon {
-			@include icon(glyph(check-circle), 20, "filled", "after", false);
-		}
-	}
-
-	&[data-variant="information"] input {
-		--db-current-border-color: var(
-			--db-colors-information-border-enabled,
-			#{$db-colors-information-border-enabled}
-		);
-		@extend %db-bg-information-transparent-semi;
-		@extend %db-bg-information-transparent-semi-hover-state;
-
-		& + label {
-			color: $db-colors-information-on-bg-enabled;
-		}
-
-		& ~ .description,
-		& ~ .icon-input-state,
-		& ~ .icon-input-state .db-icon {
-			color: $db-colors-information-element-enabled;
-		}
-
-		& ~ .icon-input-state,
-		& ~ .icon-input-state .db-icon {
-			@include icon(glyph(info), 20, "filled", "after", false);
-		}
-	}
-}
-
-// disable transform animation for functional input
-.db-ui-functional .db-input > label {
-	&:focus,
-	&:not(:placeholder-shown) {
-		&:not(:disabled) {
-			transform: translate(
-				var(--db-input-padding-inline-start),
-				calc(-1 * var(--db-sizing-md))
-			);
+			& ~ .description,
+			& ~ .icon-state,
+			& ~ .icon-state .db-icon {
+				color: map.get($colors, "element");
+			}
 		}
 	}
 }
@@ -423,17 +372,5 @@
 		// TODO change icon and use db-icons to adopt color for data-variants
 		margin-top: -0.75em;
 		padding: 0;
-	}
-}
-
-.db-ui-functional {
-	.db-input > input {
-		&:disabled {
-			&:not(:placeholder-shown) {
-				+ label {
-					opacity: 0;
-				}
-			}
-		}
 	}
 }

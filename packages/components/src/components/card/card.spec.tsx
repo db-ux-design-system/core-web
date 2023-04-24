@@ -1,78 +1,85 @@
 import { test, expect } from '@playwright/experimental-ct-react';
 import AxeBuilder from '@axe-core/playwright';
+
 import { DBCard } from './index';
 // @ts-ignore - vue can only find it with .ts as file ending
-import { cardVariantsList, cardDirectionsList } from './model.ts';
+import { DEFAULT_VIEWPORT } from '../../shared/constants.ts';
 
-const componentVariants = (direction, variant) => (
-	<div className={`db-ui-regular db-bg-db-bg-neutral-0`}>
-		<DBCard direction={direction} variant={variant}>
-			<span>Test 1</span>
-			<span>Test 2</span>
-		</DBCard>
-	</div>
-);
+const defaultComp = <DBCard>Test</DBCard>;
 
-const componentPlain = () => (
-	<div className={`db-ui-regular db-bg-db-bg-neutral-0`}>
-		<DBCard>Test</DBCard>
-	</div>
-);
+// TODO: Get variants from https://github.com/db-ui/mono/blob/feat-unify-showcases/packages/components/src/shared/constants.ts when feat-unify branch is merged
+const colorVariants = [
+	'neutral-0',
+	'neutral-1',
+	'neutral-3',
+	'neutral-4',
+	'primary',
+	'secondary',
+	'critical',
+	'successful',
+	'warning',
+	'informational'
+];
 
-const loopAll = (directions, variants, testFunc) => {
-	for (const direction of directions) {
-		for (const variant of variants) {
-			testFunc(direction, variant);
-		}
-	}
-};
+const variants = ['interactive'];
 
-const screenshotTest = (direction, variant) => {
-	test(`should match screenshot for combination: "${direction}/${variant}"`, async ({
-		page,
-		mount
-	}) => {
-		const component = await mount(componentVariants(direction, variant));
+const testDefaultCard = () => {
+	test('should contain text', async ({ mount }) => {
+		const component = await mount(defaultComp);
+		await expect(component).toContainText('Test');
+	});
+
+	test('should match screenshot', async ({ mount }) => {
+		const component = await mount(defaultComp);
 		await expect(component).toHaveScreenshot();
 	});
 };
 
-const textTest = () => {
-	test(`should match text`, async ({ page, mount }) => {
-		const component = await mount(componentPlain());
-		await expect(component).toContainText('Test');
-	});
+const testCardColorVariants = () => {
+	for (const colorVariant of colorVariants) {
+		test(`should match screenshot for color variant ${colorVariant}`, async ({
+			mount
+		}) => {
+			const component = await mount(
+				<DBCard colorVariant={colorVariant}>Test</DBCard>
+			);
+			await expect(component).toHaveScreenshot();
+		});
+	}
 };
 
-const a11yTest = (direction, variant) => {
-	test(`should not have any accessibility issues for combination: "${direction}/${variant}"`, async ({
+const testCardVariants = () => {
+	for (const variant of variants) {
+		test(`should match screenshot for variant ${variant}`, async ({
+			mount
+		}) => {
+			const component = await mount(
+				<div>
+					<DBCard variant={variant}>Test</DBCard>
+				</div>
+			);
+			await expect(component).toHaveScreenshot();
+		});
+	}
+};
+
+test.describe('DBCard component', () => {
+	test.use({ viewport: DEFAULT_VIEWPORT });
+	testDefaultCard();
+	testCardColorVariants();
+	testCardVariants();
+});
+
+test.describe('DBCard component A11y', () => {
+	test('DBCard should not have any automatically detectable accessibility issues', async ({
 		page,
 		mount
 	}) => {
-		const component = await mount(
-			// 				<DBCard colorVariant={colorVariant}>Test</DBCard>
-			componentVariants(direction, variant)
-		);
-		const accessibilityScanResults = await new AxeBuilder({
-			page
-		})
+		await mount(defaultComp);
+		const accessibilityScanResults = await new AxeBuilder({ page })
 			.include('.db-card')
 			.analyze();
 
 		expect(accessibilityScanResults.violations).toEqual([]);
 	});
-};
-
-test.describe('DBCard component test', () => {
-	textTest();
-	const [firstDirection, ...restDirections] = cardDirectionsList;
-	const [firstVariant, ..._] = cardVariantsList;
-	// Test all variants (with one direction)
-	loopAll([firstDirection], cardVariantsList, screenshotTest);
-	// Test remaining directions (with one variant)
-	loopAll(restDirections, [firstVariant], screenshotTest);
-});
-
-test.describe('DBCard component A11y test', () => {
-	loopAll(cardDirectionsList, cardVariantsList, a11yTest);
 });

@@ -1,4 +1,4 @@
-import getUnionElements from './get-union-elements.js';
+import { getUnionElements } from './utils.js';
 
 const getOption = (optionName, tsType) => {
 	if (tsType.name === 'boolean') {
@@ -24,6 +24,10 @@ const getOption = (optionName, tsType) => {
 			/'/g,
 			''
 		)}"`;
+	}
+
+	if (tsType.name === 'COLOR') {
+		return `${optionName}="primary"`;
 	}
 
 	if (tsType.name === 'signature' && tsType.raw === '(event: any) => void') {

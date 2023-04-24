@@ -1,0 +1,47 @@
+[
+	{
+		"name": "Variant",
+		"examples": [
+			{
+				"name": "Full (Default)",
+				"style": { "width": "100%" },
+				"props": {}
+			},
+			{
+				"name": "Medium",
+				"style": { "width": "100%" },
+				"props": {
+					"variant": "medium"
+				}
+			},
+			{
+				"name": "Large",
+				"style": { "width": "100%" },
+				"props": {
+					"variant": "large"
+				}
+			}
+		]
+	},
+	{
+		"name": "Size",
+		"examples": [
+			{
+				"name": "Medium (Default)",
+				"props": {}
+			},
+			{
+				"name": "Large",
+				"props": {
+					"size": "large"
+				}
+			},
+			{
+				"name": "Small",
+				"props": {
+					"size": "small"
+				}
+			}
+		]
+	}
+]

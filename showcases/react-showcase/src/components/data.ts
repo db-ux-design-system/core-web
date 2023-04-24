@@ -1,20 +1,17 @@
-import { type CSSProperties, type ReactElement } from 'react';
+import type { ReactElement } from 'react';
+import type { DefaultComponentVariants } from '../../../shared/default-component-data';
 
-export type DefaultComponentExample = {
-	name: string;
-	example: ReactElement;
-	style?: CSSProperties;
-	className?: string;
-	code?: any;
-};
-
-export type DefaultComponentVariants = {
-	name: string;
-	examples: DefaultComponentExample[];
-};
-
-export type DefaultComponentProps = {
-	title: string;
-	description?: ReactElement;
-	variants: DefaultComponentVariants[];
-};
+export const getVariants = (
+	defaultComponentVariants: DefaultComponentVariants[],
+	getExample: (props: any) => ReactElement
+): DefaultComponentVariants[] =>
+	defaultComponentVariants.map((variant) => ({
+		...variant,
+		examples: variant.examples.map((example) => ({
+			...example,
+			example: getExample({
+				...example.props,
+				children: example.props.children ?? example.name
+			})
+		}))
+	}));

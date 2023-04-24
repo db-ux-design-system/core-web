@@ -36,9 +36,13 @@ next-env.d.ts
 public/*-showcase
 
 styles/db-ui-components.scss
+scripts/generated
 components
+!components/src/tsconfig.json
 !components/component-parser
 !components/default-page.tsx
+!components/index.tsx
+!components/data.ts
 !components/iframe.tsx
 !components/static-content.tsx
 !components/01-layout.mdx

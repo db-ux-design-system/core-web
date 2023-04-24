@@ -10,4 +10,3 @@ We're getting these icons by the [DB Design System colleagues](https://dbsw.shar
         -   replace `fill="#EC0016"` by `fill="var(--db-icon-pulse-color, #EC0016)"`
         -   replace `fill="#78be14"` by `fill="var(--db-icon-pulse-color, #78be14)"`
     -   `id`-Attribute (generic `icon` id within all SVG files)
--   Afterwards the JSON files within the `source/_patterns/icons` path might need to get updated

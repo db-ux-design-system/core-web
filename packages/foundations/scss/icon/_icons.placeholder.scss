@@ -11,9 +11,12 @@
 	display: inline-block;
 	/*** icon - placeholder ***/
 	// * use !important to prevent issues with browser extensions that change fonts
-	font-family: var(--icon-font-family) !important;
+	font-family: var(
+		--icon-font-family,
+		var(--db-base-icon-font-family)
+	) !important;
 
-	font-size: var(--icon-font-size);
+	font-size: var(--icon-font-size, var(--db-base-icon-font-size));
 
 	// * Better Font Rendering ===========
 	-webkit-font-smoothing: antialiased;

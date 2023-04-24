@@ -27,5 +27,5 @@ getTestBed().initTestEnvironment(
 // Then we find all the tests.
 const context = require.context('./', true, /\.spec\.ts$/);
 // And load the modules.
-/* eslint-disable-next-line unicorn/no-array-for-each */
+/* eslint-disable-next-line unicorn/no-array-for-each, unicorn/no-array-callback-reference */
 context.keys().forEach(context);
