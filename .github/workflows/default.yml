@@ -27,7 +27,7 @@ jobs:
     uses: ./.github/workflows/01-build-outputs.yml
     needs: [build-packages]
 
-  test-packages:
+  test-components:
     uses: ./.github/workflows/02-e2e.yml
     needs: [build-packages]
 
@@ -41,6 +41,10 @@ jobs:
     secrets: inherit
     with:
       version: 0.0.0-test
+
+  test-showcases:
+    uses: ./.github/workflows/02-e2e-showcases.yml
+    needs: [build-showcases]
 
   checks-done:
     if: ${{ always() }}
@@ -59,7 +63,14 @@ jobs:
              echo "Some tests were failing."
             exit 1
           fi
-    needs: [build-showcases, build-outputs, test-packages, build-power-apps]
+    needs:
+      [
+        build-showcases,
+        build-outputs,
+        test-components,
+        test-showcases,
+        build-power-apps
+      ]
 
   deploy:
     uses: ./.github/workflows/03-deploy-gh-pages.yml

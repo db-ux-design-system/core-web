@@ -21,7 +21,7 @@
     "regenerate:components": "npm run regenerate:screenshots --workspace=@db-ui/react-components",
     "regenerate:showcases": "npm run regenerate:screenshots --workspace=react-showcase",
     "test": "npm-run-all -p preview test:*",
-    "test:angular-showcase": "npm run test:e2e --workspace=angular-showcase",
+    "test:angular-current-showcase": "npm run test:e2e --workspace=angular-current-showcase",
     "test:react": "npm run test:components --workspace=@db-ui/react-components",
     "test:react-showcase": "npm run test:e2e --workspace=react-showcase",
     "test:vue": "npm run test:components --workspace=@db-ui/v-components",
