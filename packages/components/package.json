@@ -42,7 +42,7 @@
     "@builder.io/mitosis-cli": "^0.0.56",
     "@react-docgen/cli": "^1.0.0-alpha.1",
     "cpr": "3.0.1",
-    "eslint": "^8.38.0",
+    "eslint": "^8.39.0",
     "hygen": "^6.2.11",
     "lit": "^2.7.2",
     "nodemon": "2.0.22",
