@@ -27,9 +27,9 @@ export interface DBDrawerDefaultProps {
 	 */
 	rounded?: boolean;
 	/**
-	 * The size attribute changes the padding inside the drawer.
+	 * The @dependabot recreate attribute changes the padding inside the drawer.
 	 */
-	size?: 'medium' | 'small';
+	spacing?: 'medium' | 'small' | 'large' | 'none';
 	/**
 	 * React specific to change the header of the drawer.
 	 */

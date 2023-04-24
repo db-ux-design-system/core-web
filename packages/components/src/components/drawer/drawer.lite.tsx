@@ -96,7 +96,7 @@ export default function DBDrawer(props: DBDrawerProps) {
 					'db-drawer-container' +
 					(props.className ? ' ' + props.className : '')
 				}
-				data-size={props.size}
+				data-spacing={props.spacing}
 				data-width={props.width}
 				data-direction={props.direction}
 				data-rounded={props.rounded}>

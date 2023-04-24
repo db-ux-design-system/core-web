@@ -15,7 +15,7 @@ const getDrawer = ({
 	rounded,
 	noBackdrop,
 	withCloseButton,
-	size,
+	spacing,
 	openDrawer,
 	setOpenDrawer,
 	direction,
@@ -27,7 +27,7 @@ const getDrawer = ({
 			withCloseButton={withCloseButton}
 			rounded={rounded}
 			width={width}
-			size={size}
+			spacing={spacing}
 			direction={direction}
 			open={openDrawer === id}
 			onClose={() => {

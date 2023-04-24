@@ -1,3 +1,4 @@
+@use "sass:map";
 @use "./../../styles/dialog-init" as *;
 @use "@db-ui/foundations/build/scss/variables" as *;
 @use "@db-ui/foundations/build/scss/variables.global" as *;
@@ -65,13 +66,57 @@
 	float: right;
 }
 
+$spacings: (
+	"small": (
+		"block": $db-spacing-fixed-xs,
+		"inline": $db-spacing-fixed-md
+	),
+	"medium": (
+		"block": $db-spacing-fixed-sm,
+		"inline": $db-spacing-fixed-lg
+	),
+	"large": (
+		"block": $db-spacing-fixed-md,
+		"inline": $db-spacing-fixed-xl
+	),
+	"none": (
+		"block": 0,
+		"inline": 0
+	)
+);
+
+@mixin get-spacing($spacing) {
+	padding-block: map.get($spacing, "block");
+
+	.db-drawer-header {
+		padding-block-end: map.get($spacing, "block");
+		padding-inline: map.get($spacing, "inline");
+	}
+
+	.db-drawer-content {
+		padding-inline: map.get($spacing, "inline");
+	}
+}
+
+%spacing-drawer {
+	@each $name, $spacing in $spacings {
+		@if ($name == "medium") {
+			@include get-spacing($spacing);
+		}
+
+		&[data-spacing="#{$name}"] {
+			@include get-spacing($spacing);
+		}
+	}
+}
+
 .db-drawer {
 	.db-drawer-container {
 		@extend %direction-right;
+		@extend %spacing-drawer;
 		display: flex;
 		flex-direction: column;
 		background-color: $db-colors-neutral-bg-0-enabled;
-		padding-block: $db-spacing-fixed-sm;
 		height: 100%;
 		width: 100%;
 		position: fixed;
@@ -81,19 +126,6 @@
 				--db-drawer-max-width,
 				calc(100% - $db-spacing-fixed-xl)
 			);
-		}
-
-		&[data-size="small"] {
-			padding-block: $db-spacing-fixed-xs;
-
-			.db-drawer-header {
-				padding-block-end: $db-spacing-fixed-xs;
-				padding-inline: $db-spacing-fixed-md;
-			}
-
-			.db-drawer-content {
-				padding-inline: $db-spacing-fixed-md;
-			}
 		}
 
 		&[data-rounded="true"] {
@@ -115,8 +147,6 @@
 		.db-drawer-header {
 			@include divider("bottom");
 			display: block;
-			padding-block-end: $db-spacing-fixed-sm;
-			padding-inline: $db-spacing-fixed-lg;
 
 			.button-close-drawer {
 				@extend %close-button-position;
@@ -130,10 +160,6 @@
 			&:not(:has(> :nth-child(1))) {
 				display: none;
 			}
-		}
-
-		.db-drawer-content {
-			padding-inline: $db-spacing-fixed-lg;
 		}
 	}
 

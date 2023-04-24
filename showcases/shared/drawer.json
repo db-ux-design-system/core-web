@@ -1,6 +1,6 @@
 [
 	{
-		"name": "Width",
+		"name": "Size",
 		"examples": [
 			{
 				"name": "With padding (Default)",
@@ -36,7 +36,7 @@
 		]
 	},
 	{
-		"name": "Size",
+		"name": "Spacing",
 		"examples": [
 			{
 				"name": "Medium (Default)",
@@ -48,7 +48,21 @@
 				"name": "Small",
 				"props": {
 					"withCloseButton": true,
-					"size": "small"
+					"spacing": "small"
+				}
+			},
+			{
+				"name": "Large",
+				"props": {
+					"withCloseButton": true,
+					"spacing": "large"
+				}
+			},
+			{
+				"name": "No spacing",
+				"props": {
+					"withCloseButton": true,
+					"spacing": "none"
 				}
 			}
 		]
