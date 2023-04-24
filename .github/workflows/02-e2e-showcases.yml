@@ -34,7 +34,7 @@ jobs:
           install-command: npm ci --ignore-scripts
 
       - name: 👩‍🔬 Test showcase with Playwright 🎭
-        run: npm-run-all -p preview test:${{ matrix.framework }}-showcase
+        run: npm run test:${{ matrix.framework }}-showcase
 
       - name: 🆙 Upload playwright-report
         if: always()

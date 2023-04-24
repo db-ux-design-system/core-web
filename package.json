@@ -53,7 +53,6 @@
     "lint:stylelint": "stylelint **/*.scss",
     "lint:xo": "cross-env TIMING=1 NODE_OPTIONS=\"--max-old-space-size=4096\" xo",
     "prepare": "node -e \"try { require('husky').install() } catch (e) {}\"",
-    "preview:build-showcases": "npx http-server build-showcases",
     "regenerate:screenshots": "docker run --rm --network host -v $(pwd):/work/ -w /work/ -it mcr.microsoft.com/playwright:v1.32.3-focal /bin/bash -c 'npm ci --ignore-scripts && cd output/react/ && npx playwright test --update-snapshots'",
     "start": "node scripts/start.js",
     "start-showcase:angular-current": "npm run dev --workspace=angular-current-showcase",
@@ -65,9 +64,9 @@
     "start-showcase:vue": "npm run dev --workspace=vue-showcase",
     "start:components": "npm run start --workspace=@db-ui/components",
     "start:foundations": "npm run start --workspace=@db-ui/foundations",
-    "test:angular-current-showcase": "npm run test:e2e --workspace=angular-current-showcase",
-    "test:react-showcase": "npm run test:e2e --workspace=react-showcase",
-    "test:vue-showcase": "npm run test:e2e --workspace=vue-showcase"
+    "test:angular-current-showcase": "npm run test:local --workspace=angular-current-showcase",
+    "test:react-showcase": "npm run test:local --workspace=react-showcase",
+    "test:vue-showcase": "npm run test:local --workspace=vue-showcase"
   },
   "devDependencies": {
     "@commitlint/cli": "17.6.1",
