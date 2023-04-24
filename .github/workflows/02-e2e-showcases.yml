@@ -51,6 +51,9 @@ jobs:
         with:
           install-command: npm ci --ignore-scripts
 
+      - name: 📲 Install esbuild (binary workaround)
+        run: npm i -D esbuild-linux-64
+
       - name: 👩‍🔬 Test showcase with Playwright 🎭
         run: npm run test:${{ matrix.framework }}-showcase
 
