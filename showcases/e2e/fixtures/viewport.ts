@@ -2,21 +2,18 @@ import type { Page } from '@playwright/test';
 
 export const setScrollViewport = (page: Page) => {
 	return async () => {
-		const viewportHeight = await page.evaluate(() => {
-			const header = document.querySelector('.db-header');
-			const main = document.querySelector('.db-main');
-
-			return 5000;
-			// TODO: Those heights are not working all the time maybe we need some timeout here?
-			/* return (
-				(header?.scrollHeight ?? header?.clientHeight ?? 0) +
-				(main?.scrollHeight ?? 0)
-			); */
-		});
+		const header = await page.locator('.db-header');
+		const headerHeight: number = await header.evaluate((node) =>
+			Number(node?.scrollHeight ?? node?.clientHeight ?? 72)
+		);
+		const main = await page.locator('.db-main');
+		const mainHeight: number = await main.evaluate((node) =>
+			Number(node?.scrollHeight ?? node?.clientHeight ?? 2500)
+		);
 
 		await page.setViewportSize({
 			width: page.viewportSize().width,
-			height: viewportHeight
+			height: headerHeight + mainHeight
 		});
 	};
 };

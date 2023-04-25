@@ -10,7 +10,7 @@ const FormComponent = () => {
 			<div>
 				<form>
 					<fieldset>
-						<p>DBInput:</p>
+						<p>Input:</p>
 						<DBInput
 							label="Textinput"
 							placeholder="Placeholder"
@@ -22,7 +22,7 @@ const FormComponent = () => {
 							}}
 							className="fullWidth"
 						/>
-						<p>DBRadio:</p>
+						<p>Radio:</p>
 						<ul>
 							{['X', 'Y', 'Z'].map((radioName) => (
 								<li key={radioName}>
@@ -36,7 +36,7 @@ const FormComponent = () => {
 								</li>
 							))}
 						</ul>
-						<p>DBButton:</p>
+						<p>Button:</p>
 						<DBButton
 							type="button"
 							variant="primary"
@@ -59,6 +59,8 @@ const FormComponent = () => {
 				<dl>
 					<dt>inputs value</dt>
 					<dd>{input || 'No Input set'}</dd>
+				</dl>
+				<dl>
 					<dt>radio value</dt>
 					<dd>{radio || 'No radio set'}</dd>
 				</dl>

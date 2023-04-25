@@ -23,7 +23,7 @@ const logAll = () => {
 		<div>
 			<form>
 				<fieldset>
-					<p>DBInput:</p>
+					<p>Input:</p>
 					<DBInput
 						label="Textinput"
 						placeholder="Placeholder"
@@ -33,18 +33,17 @@ const logAll = () => {
 						class="fullWidth"
 						v-model:value="input"
 					/>
-					<p>DBRadio:</p>
+					<p>Radio:</p>
 					<ul>
 						<li v-for="radioName in radioNames">
 							<DBRadio
 								@change="radio = radioName"
 								name="radio-group"
+								>Radio {{ radioName }}</DBRadio
 							>
-								Radio {{ radioName }}
-							</DBRadio>
 						</li>
 					</ul>
-					<p>DBButton:</p>
+					<p>Button:</p>
 					<DBButton type="button" variant="primary" @click="logAll()">
 						Hi from Showcase!
 					</DBButton>

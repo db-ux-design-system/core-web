@@ -11,7 +11,8 @@ services:
       - "./../__snapshots__:/e2e/__snapshots__"
       - "./../packages/foundations/build:/e2e/packages/foundations/build"
       - "./../packages/components/build:/e2e/packages/components/build"
-      - "./../showcases/e2e/:/e2e/showcases/e2e"
+      - "./../build-showcases:/e2e/build-showcases"
+      - "./../showcases:/e2e/showcases"
       - "./../output/react/src:/e2e/output/react/src"
       - "./../output/vue/vue3/src:/e2e/output/vue/vue3/src"
       - type: bind
@@ -23,6 +24,3 @@ services:
       - type: bind
         source: ./../output/vue/vue3/playwright.config.ts
         target: /e2e/output/vue/vue3/playwright.config.ts
-      - type: bind
-        source: ./../showcase/playwright.config.ts
-        target: /e2e/showcase/playwright.config.ts

@@ -5,7 +5,7 @@ import { DBSection } from "../../../../../output/vue/vue3/src";
 </script>
 
 <template>
-	<DefaultComponent title="Section" :variants="defaultComponentVariants">
+	<DefaultComponent title="DBSection" :variants="defaultComponentVariants">
 		<template
 			#example="{ exampleIndex, variantIndex, exampleName, exampleProps }"
 		>

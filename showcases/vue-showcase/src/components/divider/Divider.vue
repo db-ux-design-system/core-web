@@ -5,7 +5,7 @@ import { DBDivider, DBInfotext } from "../../../../../output/vue/vue3/src";
 </script>
 
 <template>
-	<DefaultComponent title="Divider" :variants="defaultComponentVariants">
+	<DefaultComponent title="DBDivider" :variants="defaultComponentVariants">
 		<template
 			#example="{ exampleIndex, variantIndex, exampleName, exampleProps }"
 		>

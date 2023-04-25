@@ -8,7 +8,7 @@ import {
 	COLOR_CONST,
 	TONALITY_CONST
 } from "../../../packages/components/src/shared/constants";
-import { navigationItems } from "./utils/navigation-items";
+import { getSortedNavigationItems } from "./utils/navigation-items";
 
 import { ref, watch } from "vue";
 import { useRouter, useRoute } from "vue-router";
@@ -64,7 +64,7 @@ watch(
 			<DBHeader>
 				<template v-slot:brand>
 					<DBBrand
-						title="Vue Showcase"
+						title="Showcase"
 						src="db_logo.svg"
 						href="/vue-showcase/"
 					>
@@ -74,7 +74,7 @@ watch(
 				<template v-slot:desktop-navigation>
 					<nav class="desktop-navigation">
 						<ul>
-							<li v-for="item of navigationItems">
+							<li v-for="item of getSortedNavigationItems()">
 								<router-link :to="item.path">{{
 									item.label
 								}}</router-link>
@@ -102,8 +102,5 @@ watch(
 		<div :class="getClassNames()">
 			<router-view></router-view>
 		</div>
-		<template v-slot:footer>
-			<div slot="footer">FOOTER</div>
-		</template>
 	</DBPage>
 </template>

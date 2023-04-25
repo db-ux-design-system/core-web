@@ -5,7 +5,7 @@ import { DBRadio } from "../../../../../output/vue/vue3/src";
 </script>
 
 <template>
-	<DefaultComponent title="Radio" :variants="defaultComponentVariants">
+	<DefaultComponent title="DBRadio" :variants="defaultComponentVariants">
 		<template
 			#example="{ exampleIndex, variantIndex, exampleName, exampleProps }"
 		>

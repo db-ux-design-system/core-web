@@ -36,6 +36,20 @@
 	@supports (content: ""/"") {
 		content: var(--icon-glyph) / ""; // https://www.w3.org/TR/css-content-3/#alt
 	}
+
+	/* Safari hack */
+	@supports (-webkit-hyphens: none) {
+		height: calc(
+			var(
+					--icon-font-size,
+					var(
+						--db-base-icon-font-size,
+						#{to-rem($pxValue: $icon-size)}
+					)
+				) - 6px
+		);
+	}
+
 	@media aural {
 		content: none;
 	}

@@ -9,7 +9,6 @@
     "preview": "npx http-server ../../build-showcases",
     "start": "ng serve --serve-path angular-current-showcase",
     "test:e2e": "cross-env showcase=angular-current-showcase npx playwright test --config=../playwright.config.ts",
-    "test:local": "npm-run-all build -p preview test:e2e",
     "watch": "ng build --watch --configuration development"
   },
   "dependencies": {

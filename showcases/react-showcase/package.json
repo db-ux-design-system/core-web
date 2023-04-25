@@ -7,14 +7,11 @@
     "build": "npm-run-all build:*",
     "build:01_tsc": "tsc",
     "build:02_vite": "vite build",
-    "build:03_copy": "cpr dist ../../build-showcases/react-showcase -o",
     "dev": "vite --open",
     "preview": "npx http-server ../../build-showcases",
-    "regenerate:screenshots": "npm-run-all build -p preview test:e2e-regenerate",
+    "regenerate:screenshots": "cross-env showcase=react-showcase npx playwright test -c ../playwright.config.ts --update-snapshots",
     "start": "vite",
-    "test:e2e": "cross-env showcase=react-showcase npx playwright test --config=../playwright.config.ts",
-    "test:e2e-regenerate": "cross-env showcase=react-showcase npx playwright test -c ../playwright.config.ts --update-snapshots",
-    "test:local": "npm-run-all build -p preview test:e2e"
+    "test:e2e": "cross-env showcase=react-showcase npx playwright test --config=../playwright.config.ts"
   },
   "dependencies": {
     "react": "^18.2.0",
