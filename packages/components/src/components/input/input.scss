@@ -90,6 +90,12 @@
 				transform: rotate(180deg);
 			}
 		}
+
+		input {
+			&::-webkit-calendar-picker-indicator {
+				display: none !important;
+			}
+		}
 	}
 
 	.db-icon,
@@ -99,6 +105,8 @@
 		--icon-font-size: var(--db-base-icon-font-size);
 
 		@extend %db-body-sm;
+
+		font-size: var(--icon-font-size);
 
 		height: $db-sizing-md;
 		display: flex;
@@ -185,10 +193,6 @@
 		width: 100%;
 		padding: $db-spacing-fixed-xs var(--db-input-padding-inline-end)
 			$db-spacing-fixed-xs var(--db-input-padding-inline-start);
-
-		&::-webkit-calendar-picker-indicator {
-			display: none !important;
-		}
 
 		// TODO: Evaluate whether those could get moved to ../_form-elements.scss
 		&:focus,
