@@ -11,7 +11,7 @@ const config: PlaywrightTestConfig = {
 	testDir: './e2e',
 	snapshotDir: './../__snapshots__',
 	/* Maximum time one test can run for. */
-	timeout: 30 * 1000,
+	timeout: 5000,
 	expect: {
 		/**
 		 * Maximum time expect() should wait for the condition to be met.
@@ -43,17 +43,12 @@ const config: PlaywrightTestConfig = {
 		baseURL: `http://localhost:8080/${process.env.showcase}/`,
 
 		/* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
-		trace: 'on-first-retry'
-		// Screenshot: {
-		// 	mode: 'only-on-failure',
-		// 	fullPage: true
-		// }
+		trace: 'retain-on-failure'
 	},
 	webServer: {
 		command: `cd ${process.env.showcase} && npm run preview`,
 		port: 8080,
-		reuseExistingServer: !process.env.CI,
-		timeout: 120 * 1000
+		reuseExistingServer: !process.env.CI
 	},
 
 	/* Configure projects for major browsers */
