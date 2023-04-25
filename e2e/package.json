@@ -13,6 +13,7 @@
     "regenerate": "npm-run-all -p regenerate:*",
     "regenerate:components": "npm run regenerate:screenshots --workspace=@db-ui/react-components",
     "regenerate:showcases": "npm run regenerate:screenshots --workspace=react-showcase",
+    "start": "npx http-server build-showcases",
     "test": "npm-run-all -p test:*",
     "test:angular-current-showcase": "npm run test:e2e --workspace=angular-current-showcase",
     "test:react": "npm run test:components --workspace=@db-ui/react-components",

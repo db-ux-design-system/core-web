@@ -10,3 +10,7 @@ This directory provides `docker-compose.yml` to test or regenerate screenshots.
 ## Update Playwright Version and rebuild
 
 -   run `docker-compose -f ./e2e/docker-compose.yml build`
+
+## Test with linux build
+
+-   run `docker-compose -f ./e2e/docker-compose.start.yml up`
