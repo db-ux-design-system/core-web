@@ -1,12 +1,12 @@
 {
-  "name": "angular-lts-showcase",
+  "name": "angular-showcase",
   "version": "0.0.0",
   "private": true,
   "scripts": {
     "build": "ng build",
     "dev": "npm run start -- --open",
     "ng": "ng",
-    "start": "ng serve --serve-path angular-lts-showcase",
+    "start": "ng serve --serve-path angular-showcase",
     "test": "ng test",
     "watch": "ng build --watch --configuration development"
   },
