@@ -22,8 +22,8 @@
   ],
   "scripts": {
     "build": "npm-run-all build:*",
-    "build:types": "vue-tsc --declaration --emitDeclarationOnly",
-    "build:vite": "vite build",
+    "build:01_vite": "vite build",
+    "build:02_types": "vue-tsc --declaration --emitDeclarationOnly",
     "mv:dist": "cpr dist ../../../build-outputs/vue/dist -o",
     "mv:package.json": "cpr package.json ../../../build-outputs/vue/package.json -o",
     "mv:readme": "cpr README.md ../../../build-outputs/vue/README.md -o",
