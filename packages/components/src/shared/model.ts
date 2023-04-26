@@ -77,6 +77,10 @@ export type IconState = {
 
 export type FormProps = {
 	/**
+	 * React specific attribute to set default value.
+	 */
+	defaultValue?: any;
+	/**
 	 * The disabled attribute can be set to keep a user from clicking on the form element.
 	 */
 	disabled?: boolean;
@@ -210,3 +214,8 @@ export type ValidEventProps = {
 };
 
 export type NestedRefComponentType = { getFormRef?: () => { current?: any } };
+
+export type KeyValueType = {
+	key: string;
+	value?: string;
+};

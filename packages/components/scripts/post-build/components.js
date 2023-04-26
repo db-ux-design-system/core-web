@@ -64,6 +64,10 @@ const getComponents = () => [
 	},
 	{
 		name: 'input',
+		overwrites: {
+			global: [{ from: ', KeyValueType', to: '' }],
+			vue: [{ from: ', index', to: '' }]
+		},
 		config: {
 			vue: {
 				vModel: [{ modelValue: 'value', binding: ':value' }]

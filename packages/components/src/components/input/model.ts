@@ -12,10 +12,15 @@ import {
 	FormState,
 	IconProps,
 	IconState,
-	DefaultVariantProps
+	DefaultVariantProps,
+	KeyValueType
 } from '../../shared/model';
 
 export type DBInputDefaultProps = {
+	dataList?: KeyValueType[];
+	dataListId?: string;
+	description?: string;
+	iconAfter?: string;
 	type?:
 		| 'text'
 		| 'search'
@@ -28,9 +33,8 @@ export type DBInputDefaultProps = {
 		| 'date'
 		| 'datetime-local'
 		| 'week';
-	iconAfter?: string;
-	description?: string;
 	value?: any;
+	variant?: DefaultVariantProps;
 };
 
 export type DBInputProps = DBInputDefaultProps &
@@ -44,6 +48,7 @@ export type DBInputProps = DBInputDefaultProps &
 	DefaultVariantProps;
 
 export type DBInputDefaultState = {
+	_dataListId?: string;
 	_value?: any;
 	getIcon: (variant?: DefaultVariantType) => string;
 };

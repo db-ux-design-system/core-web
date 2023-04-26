@@ -44,9 +44,9 @@
     "cpr": "3.0.1",
     "eslint": "^8.39.0",
     "hygen": "^6.2.11",
-    "lit": "^2.7.2",
+    "lit": "^2.7.3",
     "nodemon": "2.0.22",
-    "sass": "^1.62.0"
+    "sass": "^1.62.1"
   },
   "publishConfig": {
     "registry": "https://registry.npmjs.org/",
