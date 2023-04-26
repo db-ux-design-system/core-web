@@ -14,7 +14,8 @@ export const getDefaultScreenshotTest = (component: string) => {
 					testInfo.project.name === 'webkit' ||
 					testInfo.project.name === 'mobile_safari';
 				await page.goto(
-					`./#/${component}?tonality=${tonality}&color=${color}`
+					`./#/${component}?tonality=${tonality}&color=${color}`,
+					{ waitUntil: 'networkidle' }
 				);
 				await setScrollViewport(page)();
 				await expect(page).toHaveScreenshot({

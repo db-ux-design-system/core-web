@@ -41,7 +41,7 @@ const config: PlaywrightTestConfig = {
 		baseURL: `http://localhost:8080/${process.env.showcase}/`,
 
 		/* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
-		trace: 'retain-on-failure'
+		trace: process.env.CI ? 'retain-on-failure' : 'on'
 	},
 	webServer: {
 		command: `cd ${process.env.showcase} && npm run preview`,

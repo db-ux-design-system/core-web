@@ -7,6 +7,8 @@ const radio = ref("");
 
 const radioNames = ["X", "Y", "Z"];
 
+const dataList = [{ key: "test", value: "Test" }, { key: "test2" }];
+
 // eslint-disable-next-line no-alert
 const logAll = () => {
 	alert(
@@ -28,9 +30,10 @@ const logAll = () => {
 						label="Textinput"
 						placeholder="Placeholder"
 						description="Description"
-						icon="edit"
+						icon="account"
 						name="input-name"
 						class="fullWidth"
+						:dataList="dataList"
 						v-model:value="input"
 					/>
 					<p>Radio:</p>
