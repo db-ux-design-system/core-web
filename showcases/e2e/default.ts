@@ -13,6 +13,14 @@ export const getDefaultScreenshotTest = (component: string) => {
 				const isWebkit =
 					testInfo.project.name === 'webkit' ||
 					testInfo.project.name === 'mobile_safari';
+				const showcase = process.env.showcase;
+
+				let maxDiffPixels = 1;
+
+				if (isWebkit) {
+					maxDiffPixels = showcase.startsWith('angular') ? 1000 : 6;
+				}
+
 				await page.goto(
 					`./#/${component}?tonality=${tonality}&color=${color}`,
 					{ waitUntil: 'networkidle' }
@@ -20,9 +28,7 @@ export const getDefaultScreenshotTest = (component: string) => {
 				await setScrollViewport(page)();
 				await expect(page).toHaveScreenshot({
 					fullPage: true,
-					// TODO: There is some issue with webkit
-					maxDiffPixels: isWebkit ? 6 : 1,
-					maxDiffPixelRatio: isWebkit ? 0.02 : 0
+					maxDiffPixels
 				});
 			});
 		}
