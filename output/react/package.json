@@ -24,6 +24,9 @@
     "test:components": "playwright test -c playwright.config.ts",
     "tsc": "tsc -p . --sourceMap false"
   },
+  "dependencies": {
+    "classnames": "^2.3.2"
+  },
   "devDependencies": {
     "@axe-core/playwright": "^4.6.1",
     "@playwright/experimental-ct-react": "1.32.3",
