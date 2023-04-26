@@ -54,9 +54,10 @@ jobs:
         run: |
           resultBuildShowcases="${{ needs.build-showcases.result }}"
           resultBuildOutputs="${{ needs.build-outputs.result }}"
-          resultTestPackages="${{ needs.test-packages.result }}"
+          resultTestPackages="${{ needs.test-components.result }}"
+          resultTestShowcases="${{ needs.test-showcases.result }}"
           resultBuildPowerApps="${{ needs.build-power-apps.result }}"
-          if [[ $resultBuildShowcases == "success" && $resultBuildOutputs == "success" && $resultTestPackages == "success" && $resultBuildPowerApps == "success" ]]; then
+          if [[ $resultTestShowcases == "success" && $resultBuildShowcases == "success" && $resultBuildOutputs == "success" && $resultTestPackages == "success" && $resultBuildPowerApps == "success" ]]; then
              echo "🎉 All tests were successful."
             exit 0
           else
