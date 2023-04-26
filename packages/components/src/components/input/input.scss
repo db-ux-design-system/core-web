@@ -36,6 +36,36 @@
 		scale(var(--db-input-label-scale));
 }
 
+%input-icon-state {
+	--icon-input-margin-inline-end: calc(
+		(
+				var(--db-input-padding-end-icon-after) +
+					var(--db-input-padding-end-datalist)
+			) * #{$db-sizing-md} + #{$db-spacing-fixed-sm} -
+			var(--db-input-padding-end-datalist) * #{$db-spacing-fixed-sm} - var(
+				--db-input-padding-end-icon-after
+			) * #{$db-spacing-fixed-sm}
+	);
+	--icon-font-family: var(--db-base-icon-font-family-filled);
+	--icon-font-size: var(--db-base-icon-font-size);
+	display: flex;
+	align-items: center;
+	flex-direction: row;
+	position: absolute;
+	top: 0;
+	height: $db-sizing-md;
+
+	pointer-events: none;
+	right: 0;
+
+	margin-inline-end: var(--icon-input-margin-inline-end);
+
+	&::before {
+		--icon-font-family: var(--db-base-icon-font-family-filled);
+		--icon-font-size: var(--db-base-icon-font-size);
+	}
+}
+
 .db-input {
 	--db-input-padding-inline-start: #{$db-spacing-fixed-sm};
 	--db-input-padding-end-icon-after: 0;
@@ -331,43 +361,13 @@
 
 	// #variations
 	.icon-state {
-		--icon-input-margin-inline-end: calc(
-			(
-					var(--db-input-padding-end-icon-after) +
-						var(--db-input-padding-end-datalist)
-				) * #{$db-sizing-md} + #{$db-spacing-fixed-sm} -
-				var(--db-input-padding-end-datalist) * #{$db-spacing-fixed-sm} -
-				var(--db-input-padding-end-icon-after) * #{$db-spacing-fixed-sm}
-		);
-		--icon-font-family: var(--db-base-icon-font-family-filled);
-		--icon-font-size: var(--db-base-icon-font-size);
-		display: flex;
-		align-items: center;
-		flex-direction: row;
-		position: absolute;
-		top: 0;
-		height: $db-sizing-md;
-
-		pointer-events: none;
-		right: 0;
-
-		margin-inline-end: var(--icon-input-margin-inline-end);
-
-		&::before {
-			--icon-font-family: var(--db-base-icon-font-family-filled);
-			--icon-font-size: var(--db-base-icon-font-size);
+		&.db-icon {
+			@extend %input-icon-state;
 		}
 
 		// angular specific nesting
 		> .db-icon {
-			position: static;
-			padding: 0;
-
-			// TODO: Check whether we could find a more general solution for this
-			&::before {
-				--icon-font-family: var(--db-base-icon-font-family-filled);
-				--icon-font-size: var(--db-base-icon-font-size);
-			}
+			@extend %input-icon-state;
 		}
 	}
 
