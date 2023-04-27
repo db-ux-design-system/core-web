@@ -22,6 +22,9 @@ updates:
       # disable playwright auto update for now, because we need to update them manually anyways
       - dependency-name: "@playwright/experimental-ct-react"
       - dependency-name: "@playwright/experimental-ct-vue"
+      - dependency-name: "@playwright/test"
+      - dependency-name: "typescript"
+        update-types: ["version-update:semver-major"]
       - dependency-name: "ng-packagr"
         update-types: ["version-update:semver-major"]
       - dependency-name: "@angular/cli"
