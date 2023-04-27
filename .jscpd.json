@@ -30,7 +30,11 @@
 		"packages/components/src/components/alert/alert.lite.tsx",
 		"showcases/react-showcase/src/components/alert/index.tsx",
 		"packages/components/src/components/radio/radio.lite.tsx",
-		"showcases/react-showcase/src/components/radio/index.tsx"
+		"showcases/react-showcase/src/components/radio/index.tsx",
+		"showcases/react-showcase/src/components/alert/index.tsx",
+		"showcases/vue-showcase/src/components/form/Form.vue",
+		"packages/components/src/components/**/*.spec.tsx",
+		"**/**config.ts"
 	],
 	"absolute": true
 }

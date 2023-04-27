@@ -46,3 +46,5 @@ output/power-apps
 /.parcel-cache/
 /output/docs.json
 showcases/patternhub/public/iframe-resizer/*
+
+/showcases/**/test-results/

@@ -5,7 +5,7 @@ import { DBLink } from "../../../../../output/vue/vue3/src";
 </script>
 
 <template>
-	<DefaultComponent title="Link" :variants="defaultComponentVariants">
+	<DefaultComponent title="DBLink" :variants="defaultComponentVariants">
 		<template
 			#example="{ exampleIndex, variantIndex, exampleName, exampleProps }"
 		>

@@ -10,7 +10,7 @@ const log = (exampleName: string) => {
 </script>
 
 <template>
-	<DefaultComponent title="Button" :variants="defaultComponentVariants">
+	<DefaultComponent title="DBButton" :variants="defaultComponentVariants">
 		<template
 			#example="{ exampleIndex, variantIndex, exampleName, exampleProps }"
 		>

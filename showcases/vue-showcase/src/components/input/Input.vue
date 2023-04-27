@@ -5,7 +5,7 @@ import { DBInput } from "../../../../../output/vue/vue3/src";
 </script>
 
 <template>
-	<DefaultComponent title="Input" :variants="defaultComponentVariants">
+	<DefaultComponent title="DBInput" :variants="defaultComponentVariants">
 		<template
 			#example="{ exampleIndex, variantIndex, exampleName, exampleProps }"
 		>

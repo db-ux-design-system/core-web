@@ -31,8 +31,8 @@
     "cpr": "3.0.1",
     "dotenv": "^16.0.3",
     "nodemon": "2.0.22",
-    "sass": "^1.62.0",
-    "style-dictionary": "3.7.2"
+    "sass": "^1.62.1",
+    "style-dictionary": "3.8.0"
   },
   "publishConfig": {
     "registry": "https://registry.npmjs.org/",

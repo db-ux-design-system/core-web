@@ -16,7 +16,6 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        project: [chromium, firefox, webkit]
         framework: [react, vue]
 
     steps:
@@ -64,7 +63,7 @@ jobs:
         working-directory: ./output/${{ steps.workingDirectory.outputs.dir }}
         env:
           HOME: /root
-        run: npx playwright test --project=${{ matrix.project }}
+        run: npx playwright test
 
       - name: 🆙 Upload playwright-report
         if: always()

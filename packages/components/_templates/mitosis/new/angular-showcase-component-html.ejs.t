@@ -2,7 +2,7 @@
 to: ../../showcases/angular-showcase/src/app/components/<%= name %>/<%= name %>.component.html
 ---
 <app-default-component
-	title="<%= h.changeCase.pascal(name) %>"
+	title="DB<%= h.changeCase.pascal(name) %>"
 	[variants]="variants"
 	[exampleTemplate]="exampleTemplate"
 >

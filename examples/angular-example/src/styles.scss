@@ -1,9 +1,0 @@
-@use "@db-ui/components/build/styles/db-ui-42-webpack" as *;
-// We use $db-spacing-fixed-md variable so we need to import the file where the variable is defined
-@use "@db-ui/foundations/build/scss/variables.global" as *;
-// Color-classes are optional, we use them in the example to have easy access to colors
-@import "@db-ui/foundations/build/scss/color-classes";
-
-.container-with-padding {
-  padding: $db-spacing-fixed-md;
-}
