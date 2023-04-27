@@ -1,5 +1,5 @@
 ---
-to: src/components/<%= name %>/docs/Vue.md
+to: "<%= readme ? `src/components/${name}/docs/Vue.md` : null %>"
 ---
 ## Vue
 

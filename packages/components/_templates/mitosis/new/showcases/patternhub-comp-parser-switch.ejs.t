@@ -1,6 +1,6 @@
 ---
 inject: true
-to: ../../showcases/patternhub/components/component-parser/index.tsx
+to: "<%= showcases ? `../../showcases/patternhub/components/component-parser/index.tsx` : null %>"
 before: hygen
 ---
 	if (type === '<%= name %>') {

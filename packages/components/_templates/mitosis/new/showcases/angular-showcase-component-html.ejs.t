@@ -1,5 +1,5 @@
 ---
-to: ../../showcases/angular-showcase/src/app/components/<%= name %>/<%= name %>.component.html
+to: "<%= showcases ? `../../showcases/angular-showcase/src/app/components/${name}/${name}.component.html` : null %>"
 ---
 <app-default-component
 	title="DB<%= h.changeCase.pascal(name) %>"
