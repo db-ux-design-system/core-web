@@ -1,12 +1,12 @@
 {
-  "name": "angular-lts-showcase",
+  "name": "angular-showcase",
   "version": "0.0.0",
   "private": true,
   "scripts": {
     "build": "ng build",
     "dev": "npm run start -- --open",
     "ng": "ng",
-    "start": "ng serve --serve-path angular-lts-showcase",
+    "start": "ng serve --serve-path angular-showcase",
     "test": "ng test",
     "watch": "ng build --watch --configuration development"
   },
@@ -19,7 +19,7 @@
     "@angular/platform-browser": "14.3.0",
     "@angular/platform-browser-dynamic": "14.3.0",
     "@angular/router": "14.3.0",
-    "rxjs": "~7.8.0",
+    "rxjs": "~7.8.1",
     "tslib": "^2.5.0",
     "zone.js": "~0.12.0"
   },
