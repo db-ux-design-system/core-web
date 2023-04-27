@@ -8,6 +8,7 @@ import {
 	DBLink,
 	DBAlert,
 	DBInput,
+	DBRadio,
 	DBDivider,
 	DBCard,
 	DBBrand,
@@ -147,6 +148,13 @@ const ComponentSwitch = ({
 			<DBInput className={className} {...props}>
 				{resolvedContent}
 			</DBInput>
+		);
+	}
+	if (type === 'radio') {
+		return (
+			<DBRadio className={className} {...props}>
+				{resolvedContent}
+			</DBRadio>
 		);
 	}
 	if (type === 'link') {

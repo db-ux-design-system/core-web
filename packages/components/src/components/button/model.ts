@@ -7,6 +7,16 @@ import {
 	IconState
 } from '../../shared/model';
 
+// TODO: 👇 Find a way to make react-docgen work withouth duplicating the types below
+enum buttonVariants {
+	'outlined' = 'outlined',
+	'primary' = 'primary',
+	'solid' = 'solid',
+	'text' = 'text'
+}
+export const buttonVariantsList = Object.values(buttonVariants);
+type ButtonVariantsType = 'outlined' | 'primary' | 'solid' | 'text';
+
 export type DBButtonDefaultProps = {
 	/**
 	 * If the button controls a grouping of other elements, the ariaexpanded state [indicates whether the controlled grouping is currently expanded or collapsed](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-expanded).
@@ -66,7 +76,7 @@ export type DBButtonDefaultProps = {
 	/**
 	 * Variant of the button. Use only 1 primary button on a page as CTA otherwise use one of the adaptive buttons.
 	 */
-	variant?: 'outlined' | 'primary' | 'solid' | 'text';
+	variant?: ButtonVariantsType;
 };
 
 export type DBButtonProps = DBButtonDefaultProps &

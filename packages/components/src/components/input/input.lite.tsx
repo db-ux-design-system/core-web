@@ -1,9 +1,13 @@
-import { onMount, Show, useMetadata, useStore } from '@builder.io/mitosis';
+import { For, onMount, Show, useMetadata, useStore } from '@builder.io/mitosis';
 import { DBIcon } from '../icon';
 import { uuid } from '../../utils';
 import { DBInputProps, DBInputState } from './model';
 import { DEFAULT_ID, DEFAULT_LABEL } from '../../shared/constants';
-import { DefaultVariantType, DefaultVariantsIcon } from '../../shared/model';
+import {
+	DefaultVariantType,
+	DefaultVariantsIcon,
+	KeyValueType
+} from '../../shared/model';
 import classNames from 'classnames';
 
 useMetadata({
@@ -43,6 +47,7 @@ export default function DBInput(props: DBInputProps) {
 	const state = useStore<DBInputState>({
 		_id: DEFAULT_ID,
 		_isValid: undefined,
+		_dataListId: DEFAULT_ID,
 		_value: '',
 		iconVisible: (icon?: string) => {
 			return Boolean(icon && icon !== '_' && icon !== 'none');
@@ -98,6 +103,9 @@ export default function DBInput(props: DBInputProps) {
 
 	onMount(() => {
 		state._id = props.id ? props.id : 'input-' + uuid();
+		state._dataListId = props.dataListId
+			? props.dataListId
+			: `datalist-${state._id}`;
 
 		if (props.value) {
 			state._value = props.value;
@@ -128,6 +136,7 @@ export default function DBInput(props: DBInputProps) {
 				aria-labelledby={state._id + '-label'}
 				disabled={props.disabled}
 				required={props.required}
+				defaultValue={props.defaultValue}
 				value={state._value}
 				aria-invalid={props.invalid}
 				maxLength={props.maxLength}
@@ -136,6 +145,7 @@ export default function DBInput(props: DBInputProps) {
 				onChange={(event) => state.handleChange(event)}
 				onBlur={(event) => state.handleBlur(event)}
 				onFocus={(event) => state.handleFocus(event)}
+				list={state._dataListId}
 			/>
 			<label
 				htmlFor={state._id}
@@ -155,6 +165,23 @@ export default function DBInput(props: DBInputProps) {
 			<Show when={state.iconVisible(props.iconAfter)}>
 				<DBIcon icon={props.iconAfter} class="icon-after" />
 			</Show>
+			<Show when={props.dataList}>
+				<datalist id={state._dataListId}>
+					<For each={props.dataList}>
+						{(option: KeyValueType) => (
+							<option
+								key={
+									state._dataListId + '-option-' + option.key
+								}
+								value={option.key}>
+								{option.value}
+							</option>
+						)}
+					</For>
+				</datalist>
+			</Show>
+
+			{props.children}
 		</div>
 	);
 }

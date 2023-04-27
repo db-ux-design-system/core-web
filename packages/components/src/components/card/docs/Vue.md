@@ -7,10 +7,10 @@ For general installation and configuration look at the [v-components](https://ww
 ```vue App.vue
 <!-- App.vue -->
 <script>
-import { DBCard } from '@db-ui/v-components';
+import { DBCard } from "@db-ui/v-components";
 </script>
 
 <template>
-  <DBCard>Card content</DBCard>
+	<DBCard>Card content</DBCard>
 </template>
 ```

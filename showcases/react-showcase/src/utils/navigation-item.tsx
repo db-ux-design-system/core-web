@@ -30,3 +30,6 @@ export const NAVIGATION_ITEMS: NavigationItem[] = [
 	{ path: 'card', label: 'Card', component: <CardComponent /> },
 	{ path: '', label: 'Home', component: <FormComponent />, home: true }
 ];
+
+export const getSortedNavigationItems = (): any[] =>
+	NAVIGATION_ITEMS.sort((a, b) => a.path.localeCompare(b.path));

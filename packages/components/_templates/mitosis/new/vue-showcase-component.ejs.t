@@ -8,7 +8,7 @@ import { DB<%= h.changeCase.pascal(name) %> } from "../../../../../output/vue/vu
 </script>
 
 <template>
-	<DefaultComponent title="<%= h.changeCase.pascal(name) %>" :variants="defaultComponentVariants">
+	<DefaultComponent title="DB<%= h.changeCase.pascal(name) %>" :variants="defaultComponentVariants">
 		<template #example="{ exampleIndex, variantIndex, exampleName, exampleProps }">
             <DB<%= h.changeCase.pascal(name) %>>{{exampleName}}</DB<%= h.changeCase.pascal(name) %>>
 		</template>

@@ -11,7 +11,7 @@ import Infotext from '../components/infotext/Infotext.vue';
 import Section from '../components/section/Section.vue';
 import Card from '../components/card/Card.vue';
 
-export const navigationItems: any = [
+export const navigationItems: any[] = [
 	{ path: '/', label: 'Home', component: Form },
 	{ path: '/divider', label: 'Divider', component: Divider },
 	{ path: '/select', label: 'Select', component: Select },
@@ -24,3 +24,7 @@ export const navigationItems: any = [
 	{ path: '/input', label: 'Input', component: Input },
 	{ path: '/card', label: 'Card', component: Card }
 ];
+
+export const getSortedNavigationItems = (): any[] =>
+	// eslint-disable-next-line @typescript-eslint/no-unsafe-return
+	navigationItems.sort((a: any, b: any) => a.path.localeCompare(b.path));

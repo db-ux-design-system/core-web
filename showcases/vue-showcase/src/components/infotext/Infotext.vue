@@ -5,7 +5,7 @@ import { DBInfotext } from "../../../../../output/vue/vue3/src";
 </script>
 
 <template>
-	<DefaultComponent title="Infotext" :variants="defaultComponentVariants">
+	<DefaultComponent title="DBInfotext" :variants="defaultComponentVariants">
 		<template
 			#example="{ exampleIndex, variantIndex, exampleName, exampleProps }"
 		>

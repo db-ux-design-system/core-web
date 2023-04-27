@@ -6,12 +6,8 @@ For general installation and configuration look at the [react-components](https:
 
 ```tsx App.tsx
 // App.tsx
-import { DBCard } from '@db-ui/react-components';
+import { DBCard } from "@db-ui/react-components";
 
-const App = () => (
-	<DBCard>
-		Card content
-	</DBCard>
-);
+const App = () => <DBCard>Card content</DBCard>;
 export default App;
 ```

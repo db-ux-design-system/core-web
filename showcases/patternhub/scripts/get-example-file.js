@@ -6,6 +6,10 @@ const getOption = (optionName, tsType) => {
 	}
 
 	if (tsType.name === 'Array') {
+		if (optionName === 'dataList') {
+			return `${optionName}={[{key:'test1', value:'Test1'},{key:'test2', value:'Test2'}]}`;
+		}
+
 		if (tsType?.raw.includes('DBSelect')) {
 			return `${optionName}={[{"value":"Test1"},{"value":"Test2"}]}`;
 		}
@@ -28,6 +32,10 @@ const getOption = (optionName, tsType) => {
 			/'/g,
 			''
 		)}"`;
+	}
+
+	if (tsType.name === 'COLOR') {
+		return `${optionName}="primary"`;
 	}
 
 	if (tsType.name === 'signature' && tsType.raw === '(event: any) => void') {

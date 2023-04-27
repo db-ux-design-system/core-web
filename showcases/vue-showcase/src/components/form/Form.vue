@@ -7,6 +7,8 @@ const radio = ref("");
 
 const radioNames = ["X", "Y", "Z"];
 
+const dataList = [{ key: "test", value: "Test" }, { key: "test2" }];
+
 // eslint-disable-next-line no-alert
 const logAll = () => {
 	alert(
@@ -23,28 +25,28 @@ const logAll = () => {
 		<div>
 			<form>
 				<fieldset>
-					<p>DbInput:</p>
+					<p>Input:</p>
 					<DBInput
 						label="Textinput"
 						placeholder="Placeholder"
 						description="Description"
-						icon="edit"
+						icon="account"
 						name="input-name"
 						class="fullWidth"
+						:dataList="dataList"
 						v-model:value="input"
 					/>
-					<p>DbRadio:</p>
+					<p>Radio:</p>
 					<ul>
 						<li v-for="radioName in radioNames">
 							<DBRadio
 								@change="radio = radioName"
 								name="radio-group"
+								>Radio {{ radioName }}</DBRadio
 							>
-								Radio {{ radioName }}
-							</DBRadio>
 						</li>
 					</ul>
-					<p>DbButton:</p>
+					<p>Button:</p>
 					<DBButton type="button" variant="primary" @click="logAll()">
 						Hi from Showcase!
 					</DBButton>

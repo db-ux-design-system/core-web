@@ -5,7 +5,7 @@ import { DBCard } from "../../../../../output/vue/vue3/src";
 </script>
 
 <template>
-	<DefaultComponent title="Card" :variants="defaultComponentVariants">
+	<DefaultComponent title="DBCard" :variants="defaultComponentVariants">
 		<template
 			#example="{ exampleIndex, variantIndex, exampleName, exampleProps }"
 		>

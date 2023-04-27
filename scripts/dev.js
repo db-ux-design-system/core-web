@@ -34,9 +34,7 @@ inquirer
 		let startCommand = 'npm-run-all -p start:foundations dev:sass';
 		if (answers?.frameworks)
 			for (const answer of answers.frameworks) {
-				startCommand += ` dev:${answer}-components start-showcase:${
-					answer === 'angular' ? 'angular-lts' : answer
-				}`;
+				startCommand += ` dev:${answer}-components start-showcase:${answer}`;
 			}
 
 		// TODO: Handle child process better

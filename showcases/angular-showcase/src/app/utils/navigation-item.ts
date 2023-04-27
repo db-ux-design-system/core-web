@@ -10,7 +10,7 @@ import { SectionComponent } from '../components/section/section.component';
 import { CardComponent } from '../components/card/card.component';
 import { DividerComponent } from '../components/divider/divider.component';
 
-export const NAVIGATION_ITEMS = [
+export const NAVIGATION_ITEMS: any[] = [
 	{ path: 'divider', label: 'Divider', component: DividerComponent },
 	{ path: 'select', label: 'Select', component: SelectComponent },
 	{ path: 'radio', label: 'Radio', component: RadioComponent },
@@ -23,3 +23,7 @@ export const NAVIGATION_ITEMS = [
 	{ path: 'card', label: 'Card', component: CardComponent },
 	{ path: '', label: 'Home', component: FormComponent, pathMatch: 'full' }
 ];
+
+export const getSortedNavigationItems = (): any[] =>
+	// eslint-disable-next-line @typescript-eslint/no-unsafe-return
+	NAVIGATION_ITEMS.sort((a, b) => a.path.localeCompare(b.path));
