@@ -1,9 +1,15 @@
 <script setup lang="ts">
-import { DBButton, DBInput, DBRadio } from "../../../../../output/vue/vue3/src";
+import {
+	DBButton,
+	DBInput,
+	DBRadio,
+	DBSelect
+} from "../../../../../output/vue/vue3/src";
 
 import { ref } from "vue";
 const input = ref("");
 const radio = ref("");
+const select = ref("");
 
 const radioNames = ["X", "Y", "Z"];
 
@@ -14,7 +20,8 @@ const logAll = () => {
 	alert(
 		JSON.stringify({
 			input: input.value,
-			radio: radio.value
+			radio: radio.value,
+			select: select.value
 		})
 	);
 };
@@ -46,6 +53,15 @@ const logAll = () => {
 							>
 						</li>
 					</ul>
+					<p>DBSelect:</p>
+					<DBSelect
+						:value="select"
+						label="Label"
+						@change="(event) => (select = event.target.value)"
+					>
+						<option value="test1">Test1</option>
+						<option value="test2">Test2</option>
+					</DBSelect>
 					<p>Button:</p>
 					<DBButton type="button" variant="primary" @click="logAll()">
 						Hi from Showcase!
@@ -62,6 +78,10 @@ const logAll = () => {
 			<dl>
 				<dt>radio value</dt>
 				<dd>{{ radio ? radio : "No radio set" }}</dd>
+			</dl>
+			<dl>
+				<dt>select value</dt>
+				<dd>{{ select ? select : "No select set" }}</dd>
 			</dl>
 		</div>
 	</div>

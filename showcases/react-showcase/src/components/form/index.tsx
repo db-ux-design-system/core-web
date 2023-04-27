@@ -87,6 +87,8 @@ const FormComponent = () => {
 				<dl>
 					<dt>radio value</dt>
 					<dd>{radio || 'No radio set'}</dd>
+				</dl>
+				<dl>
 					<dt>select value</dt>
 					<dd>{select || 'No select set'}</dd>
 				</dl>

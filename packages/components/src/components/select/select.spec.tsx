@@ -2,6 +2,8 @@ import { test, expect } from '@playwright/experimental-ct-react';
 import AxeBuilder from '@axe-core/playwright';
 
 import { DBSelect } from './index';
+// @ts-ignore - vue can only find it with .ts as file ending
+import { DEFAULT_VIEWPORT } from '../../shared/constants.ts';
 
 const comp = (
 	<DBSelect label="Label" description="Description">
@@ -22,15 +24,8 @@ const testComponent = () => {
 	});
 };
 
-test.describe('DBSelect component on desktop', () => {
-	// Old-school CRT monitor screensize
-	test.use({ viewport: { width: 1024, height: 768 } });
-	testComponent();
-});
-
-test.describe('DBSelect component on mobile', () => {
-	// iPhone 13 / portrait screen size
-	test.use({ viewport: { width: 390, height: 884 } });
+test.describe('DBSelect component', () => {
+	test.use({ viewport: DEFAULT_VIEWPORT });
 	testComponent();
 });
 
