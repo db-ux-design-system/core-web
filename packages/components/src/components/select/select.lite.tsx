@@ -74,6 +74,9 @@ export default function DBSelect(props: DBSelectProps) {
 		},
 		getClassNames: (...args: classNames.ArgumentArray) => {
 			return classNames(args);
+		},
+		getOptionLabel: (option: DBSelectOptionType) => {
+			return option.label ?? option.value.toString();
 		}
 	});
 
@@ -123,9 +126,9 @@ export default function DBSelect(props: DBSelectProps) {
 									<Show when={option.options}>
 										<optgroup
 											key={'optgroup-' + option.value}
-											label={
-												option.label || option.value
-											}>
+											label={state.getOptionLabel(
+												option
+											)}>
 											<For each={option.options}>
 												{(
 													optgroupOption: DBSelectOptionType
@@ -141,8 +144,9 @@ export default function DBSelect(props: DBSelectProps) {
 														disabled={
 															optgroupOption.disabled
 														}>
-														{optgroupOption.label ||
-															optgroupOption.value}
+														{state.getOptionLabel(
+															optgroupOption
+														)}
 													</option>
 												)}
 											</For>
@@ -153,7 +157,7 @@ export default function DBSelect(props: DBSelectProps) {
 											key={'option-' + option.value}
 											value={option.value}
 											disabled={option.disabled}>
-											{option.label || option.value}
+											{state.getOptionLabel(option)}
 										</option>
 									</Show>
 								</>

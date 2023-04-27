@@ -6,8 +6,17 @@ const getOptions = (tsType) => {
 			return tsType.value;
 		}
 
+		case 'Array': {
+			return `const array:${tsType.raw} = [${tsType.elements
+				.map((element) => getOptions(element))
+				.join('\n')}]`;
+		}
+
 		case 'signature': {
 			return `${tsType.raw
+				.replace(/\/\*\*\n\t/g, '')
+				.replace(/\*\/\n\t/g, '')
+				.replace(/\*/g, '//')
 				.replace(/{/g, '&#123;')
 				.replace(/}/g, '&#125;')
 				.replace(/\r\n\t\t/g, ' ')

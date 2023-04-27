@@ -31,11 +31,14 @@ export type DBSelectOptionType = {
 	/**
 	 * Disables this option
 	 */
+	// Disables this option
 	disabled?: boolean;
+
 	/**
 	 * If the value is different from the label you want to show to the user.
 	 */
 	label?: string;
+
 	/**
 	 * If you want to use optgroup you can nest options here.
 	 */
@@ -59,6 +62,7 @@ export type DBSelectProps = DBSelectDefaultProps &
 
 export interface DBSelectDefaultState {
 	getIcon: (variant?: DefaultVariantType) => string;
+	getOptionLabel: (option: DBSelectOptionType) => string;
 }
 
 export type DBSelectState = DBSelectDefaultState &
