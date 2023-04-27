@@ -60,7 +60,7 @@
     "start-showcase:vue": "npm run dev --workspace=vue-showcase",
     "start:components": "npm run start --workspace=@db-ui/components",
     "start:foundations": "npm run start --workspace=@db-ui/foundations",
-    "test:angular-current-showcase": "npm run test:e2e --workspace=angular-current-showcase",
+    "test:angular-showcase": "npm run test:e2e --workspace=angular-showcase",
     "test:react-showcase": "npm run test:e2e --workspace=react-showcase",
     "test:vue-showcase": "npm run test:e2e --workspace=vue-showcase"
   },

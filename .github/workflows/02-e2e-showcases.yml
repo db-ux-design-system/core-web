@@ -16,7 +16,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        framework: [angular-current, react, vue]
+        framework: [angular, react, vue]
 
     steps:
       - name: ⬇ Checkout repo

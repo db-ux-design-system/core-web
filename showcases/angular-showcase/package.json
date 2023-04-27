@@ -6,8 +6,9 @@
     "build": "ng build",
     "dev": "npm run start -- --open",
     "ng": "ng",
+    "preview": "npx http-server ../../build-showcases",
     "start": "ng serve --serve-path angular-showcase",
-    "test": "ng test",
+    "test:e2e": "cross-env showcase=angular-showcase npx playwright test --config=../playwright.config.ts",
     "watch": "ng build --watch --configuration development"
   },
   "dependencies": {
