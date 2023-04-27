@@ -28,10 +28,23 @@ export interface DBSelectDefaultProps {
 }
 
 export type DBSelectOptionType = {
+	/**
+	 * Disables this option
+	 */
 	disabled?: boolean;
+	/**
+	 * If the value is different from the label you want to show to the user.
+	 */
 	label?: string;
+	/**
+	 * If you want to use optgroup you can nest options here.
+	 */
 	options?: DBSelectOptionType[];
-	value: string;
+
+	/**
+	 * The main value you select, will be shown as default label if no label is set.
+	 */
+	value: string | number | readonly string[];
 };
 
 export type DBSelectProps = DBSelectDefaultProps &

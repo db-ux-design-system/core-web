@@ -75,7 +75,7 @@
 			$db-sizing-md + var(--has-status) * ($db-sizing-md)
 		);
 
-		&:required:invalid,
+		&:has(option:checked:empty),
 		&:disabled:not([data-value]) {
 			& ~ label {
 				@extend %select-label;

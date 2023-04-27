@@ -101,11 +101,11 @@ export default function DBSelect(props: DBSelectProps) {
 				</Show>
 				{/* Required has to be true to use floating label */}
 				<select
-					required
 					data-value={state._value}
 					ref={component}
 					aria-invalid={props.invalid}
 					aria-required={props.required}
+					required={props.required}
 					disabled={props.disabled}
 					id={state._id}
 					name={props.name}
