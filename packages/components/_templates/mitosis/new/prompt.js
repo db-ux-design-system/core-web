@@ -2,7 +2,7 @@ module.exports = [
 	{
 		type: 'input',
 		name: 'name',
-		message: "What's the component name?"
+		message: "What's the component name (lowerCase, hyphen-separated)?"
 	},
 	{
 		type: 'confirm',
