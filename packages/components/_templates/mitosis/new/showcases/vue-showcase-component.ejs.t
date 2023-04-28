@@ -1,5 +1,5 @@
 ---
-to: ../../showcases/vue-showcase/src/components/<%= name %>/<%= h.changeCase.pascal(name) %>.vue
+to: "<%= showcases ? `../../showcases/vue-showcase/src/components/${name}/${h.changeCase.pascal(name)}.vue` : null %>"
 ---
 <script setup lang="ts">
 import DefaultComponent from "../DefaultComponent.vue";

@@ -1,5 +1,5 @@
 ---
-to: src/components/<%= name %>/docs/HTML.md
+to: "<%= readme ? `src/components/${name}/docs/HTML.md` : null %>"
 ---
 ## HTML
 

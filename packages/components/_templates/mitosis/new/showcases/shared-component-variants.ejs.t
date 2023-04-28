@@ -1,5 +1,5 @@
 ---
-to: ../../showcases/shared/<%= name %>.json
+to: "<%= showcases ? `../../showcases/shared/${name}.json` : null %>"
 ---
 [
 	{

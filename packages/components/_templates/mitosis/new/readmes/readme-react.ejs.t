@@ -1,5 +1,5 @@
 ---
-to: src/components/<%= name %>/docs/React.md
+to: "<%= readme ? `src/components/${name}/docs/React.md` : null %>"
 ---
 ## React
 
