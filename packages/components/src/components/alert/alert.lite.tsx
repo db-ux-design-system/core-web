@@ -11,6 +11,7 @@ import { DefaultVariantsIcon } from '../../shared/model';
 import { DBButton } from '../button';
 import { DBLink } from '../link';
 import classNames from 'classnames';
+import { DEFAULT_CLOSE_BUTTON } from '../../shared/constants';
 
 useMetadata({
 	isAttachedToShadowDom: true,
@@ -31,10 +32,6 @@ useMetadata({
 		]
 	}
 });
-
-const DEFAULT_VALUES = {
-	closeButton: 'Close Button'
-};
 
 export default function DBAlert(props: DBAlertProps) {
 	// This is used as forwardRef
@@ -109,13 +106,13 @@ export default function DBAlert(props: DBAlertProps) {
 						</DBLink>
 						<Show when={props.behaviour !== 'permanent'}>
 							<DBButton
+								id={props.closeButtonId}
 								icon="close"
 								variant="text"
 								size="small"
 								noText
 								onClick={(event) => state.handleClick(event)}>
-								{props.closeButtonText ??
-									DEFAULT_VALUES.closeButton}
+								{props.closeButtonText ?? DEFAULT_CLOSE_BUTTON}
 							</DBButton>
 						</Show>
 					</div>

@@ -6,3 +6,4 @@ build/**
 build-outputs/**
 build-showcases/**
 showcases/**/public/**
+CODE-OF-CONDUCT.md

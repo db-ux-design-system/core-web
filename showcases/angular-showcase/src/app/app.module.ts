@@ -16,7 +16,8 @@ import {
 	DBAlertModule,
 	DBSectionModule,
 	DBInfotextModule,
-	DBSelectModule
+	DBSelectModule,
+	DBDrawerModule
 } from '../../../../output/angular/src';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app.routing.module';
@@ -31,6 +32,7 @@ import { SectionComponent } from './components/section/section.component';
 import { CardComponent } from './components/card/card.component';
 import { DividerComponent } from './components/divider/divider.component';
 import { DefaultComponent } from './components/default.component';
+import { DrawerComponent } from './components/drawer/drawer.component';
 import { SelectComponent } from './components/select/select.component';
 
 @NgModule({
@@ -48,7 +50,8 @@ import { SelectComponent } from './components/select/select.component';
 		InfotextComponent,
 		SectionComponent,
 		CardComponent,
-		DividerComponent
+		DividerComponent,
+		DrawerComponent
 	],
 	imports: [
 		DBSelectModule,
@@ -69,7 +72,8 @@ import { SelectComponent } from './components/select/select.component';
 		DBSectionModule,
 		DBInfotextModule,
 		FormsModule,
-		DBRadioModule
+		DBRadioModule,
+		DBDrawerModule
 	],
 	providers: [],
 	schemas: [NO_ERRORS_SCHEMA],

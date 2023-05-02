@@ -73,6 +73,7 @@ export default function DBButton(props: DBButtonProps) {
 
 	return (
 		<button
+			id={props.id}
 			ref={component}
 			class={state.getClassNames('db-button', props.className, {
 				'is-icon-text-replace':

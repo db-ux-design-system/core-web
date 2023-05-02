@@ -24,11 +24,8 @@ const changeFile = (component, input) => {
 				return line.replace(': ElementRef', ': ElementRef | undefined');
 			}
 
-			if (line.includes('formRef.nativeElement')) {
-				return line.replace(
-					'formRef.nativeElement',
-					'formRef?.nativeElement'
-				);
+			if (line.includes('.nativeElement') && !line.includes('=')) {
+				return line.replace('.nativeElement', '?.nativeElement');
 			}
 
 			return line;

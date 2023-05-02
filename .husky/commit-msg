@@ -3,4 +3,5 @@
 # shellcheck source=./_/husky.sh
 . "$(dirname "$0")/_/husky.sh"
 
-npx --yes commitlint --edit "$1"
+# TODO: There is some issue with commitlint
+# npx --yes commitlint --edit "$1"

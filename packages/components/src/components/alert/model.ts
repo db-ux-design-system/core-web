@@ -8,6 +8,7 @@ import {
 	GlobalState,
 	IconProps,
 	IconState,
+	InnerCloseButtonProps,
 	LinkProps
 } from '../../shared/model';
 
@@ -52,7 +53,8 @@ export type DBAlertProps = DBAlertDefaultProps &
 	ClickEventProps &
 	IconProps &
 	CardProps &
-	DefaultVariantProps;
+	DefaultVariantProps &
+	InnerCloseButtonProps;
 
 export interface DBAlertDefaultState {
 	getIcon: (icon?: string, variant?: DefaultVariantType) => string;
