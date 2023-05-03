@@ -3,5 +3,5 @@
 # shellcheck source=./_/husky.sh
 . "$(dirname "$0")/_/husky.sh"
 
-# TODO: There is some issue with commitlint
+# TODO: There is some peerDependency not working with type:module from commitlint
 # npx --yes commitlint --edit "$1"
