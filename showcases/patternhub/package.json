@@ -22,7 +22,7 @@
     "start": "npm-run-all generate copy next:start"
   },
   "dependencies": {
-    "@code-hike/mdx": "^0.8.2",
+    "@code-hike/mdx": "^0.8.3",
     "@db-ui/react-elements": "^0.24.0",
     "next": "13.3.4",
     "react": "18.2.0",
@@ -37,7 +37,7 @@
     "@next/mdx": "^13.3.4",
     "@types/node": "18.16.3",
     "@types/react": "18.0.34",
-    "@types/react-dom": "18.2.1",
+    "@types/react-dom": "18.2.3",
     "eslint": "8.39.0",
     "eslint-config-next": "13.3.4",
     "iframe-resizer": "^4.3.6",
