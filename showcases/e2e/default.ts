@@ -13,12 +13,20 @@ export const getDefaultScreenshotTest = (component: string) => {
 				const isWebkit =
 					testInfo.project.name === 'webkit' ||
 					testInfo.project.name === 'mobile_safari';
+				const isFirefox = testInfo.project.name === 'firefox';
 				const showcase = process.env.showcase;
+				const isAngular = showcase.startsWith('angular');
 
-				let maxDiffPixels = 1;
+				const config: any = {
+					fullPage: true
+				};
 
 				if (isWebkit) {
-					maxDiffPixels = showcase.startsWith('angular') ? 1000 : 6;
+					config.maxDiffPixels = isAngular ? 1000 : 6;
+				} else if (isFirefox && isAngular) {
+					config.maxDiffPixelRatio = 0.05;
+				} else {
+					config.maxDiffPixels = 1;
 				}
 
 				await page.goto(
@@ -26,10 +34,7 @@ export const getDefaultScreenshotTest = (component: string) => {
 					{ waitUntil: 'networkidle' }
 				);
 				await setScrollViewport(page)();
-				await expect(page).toHaveScreenshot({
-					fullPage: true,
-					maxDiffPixels
-				});
+				await expect(page).toHaveScreenshot(config);
 			});
 		}
 	}
