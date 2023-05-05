@@ -1,6 +1,6 @@
 import { onMount, Show, useMetadata, useStore } from '@builder.io/mitosis';
-import { DBIcon } from '../icon';
 import { DBLinkState, DBLinkProps } from './model';
+import classNames from 'classnames';
 
 useMetadata({
 	isAttachedToShadowDom: false,
@@ -13,11 +13,15 @@ useMetadata({
 export default function DBLink(props: DBLinkProps) {
 	// This is used as forwardRef
 	let component: any;
+	// jscpd:ignore-start
 	const state = useStore<DBLinkState>({
-		handleClick: (event) => {
+		handleClick: (event: any) => {
 			if (props.onClick) {
 				props.onClick(event);
 			}
+		},
+		getClassNames: (...args: classNames.ArgumentArray) => {
+			return classNames(args);
 		}
 	});
 
@@ -26,11 +30,12 @@ export default function DBLink(props: DBLinkProps) {
 			state.stylePath = props.stylePath;
 		}
 	});
+	// jscpd:ignore-end
 
 	return (
 		<a
 			ref={component}
-			class={'db-link' + (props.className ? ' ' + props.className : '')}
+			class={state.getClassNames('db-link', props.className)}
 			href={props.href}
 			title={props.title}
 			target={props.target}
@@ -50,13 +55,6 @@ export default function DBLink(props: DBLinkProps) {
 				<link rel="stylesheet" href={state.stylePath} />
 			</Show>
 			{props.children}
-			<Show when={props.variant !== 'inline'}>
-				<DBIcon
-					icon={
-						props.content == 'external' ? 'link-external' : 'link'
-					}
-					icntxt={true}></DBIcon>
-			</Show>
 		</a>
 	);
 }

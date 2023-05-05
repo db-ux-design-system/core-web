@@ -1,12 +1,10 @@
 const StyleDictionary = require('style-dictionary').extend(
 	'style-dictionary.config.json'
 );
-
 const minifyDictionary = require('style-dictionary/lib/common/formatHelpers/minifyDictionary');
 const transforms = require('style-dictionary/lib/common/transforms');
 const SCSSPlaceholders = require('./scripts/color-placeholders-generator.js');
 const SCSSClasses = require('./scripts/color-classes-generator.js');
-
 const generateTypography = require('./scripts/scss-typography-generator.js');
 const generateScaling = require('./scripts/scss-scaling-generator.js');
 

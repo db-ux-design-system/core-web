@@ -1,0 +1,21 @@
+<app-default-component
+	title="DBInfotext"
+	[variants]="variants"
+	[exampleTemplate]="exampleTemplate"
+>
+	<ng-template
+		#exampleTemplate
+		let-exampleProps="exampleProps"
+		let-exampleName="exampleName"
+		let-exampleIndex="exampleIndex"
+		let-variantIndex="variantIndex"
+	>
+		<db-infotext
+			[size]="exampleProps.size"
+			[variant]="exampleProps.variant"
+			[icon]="exampleProps.icon"
+		>
+			{{ exampleName }}
+		</db-infotext>
+	</ng-template>
+</app-default-component>

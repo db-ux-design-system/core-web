@@ -1,0 +1,52 @@
+[
+	{
+		"name": "Variant",
+		"examples": [
+			{
+				"name": "(Default) Adaptive",
+				"props": {
+					"icon": "account"
+				}
+			},
+			{
+				"name": "Critical",
+				"props": {
+					"variant": "critical"
+				}
+			},
+			{
+				"name": "Informational",
+				"props": {
+					"variant": "informational"
+				}
+			},
+			{
+				"name": "Successful",
+				"props": {
+					"variant": "successful"
+				}
+			},
+			{
+				"name": "Warning",
+				"props": {
+					"variant": "warning"
+				}
+			}
+		]
+	},
+	{
+		"name": "Size",
+		"examples": [
+			{
+				"name": "(Default) Medium",
+				"props": {}
+			},
+			{
+				"name": "Small",
+				"props": {
+					"size": "small"
+				}
+			}
+		]
+	}
+]

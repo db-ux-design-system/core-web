@@ -1,6 +1,9 @@
 node_modules
 CHANGELOG.md
 build/**
+**/dist/**
 **/output/**
 build-outputs/**
+build-showcases/**
 showcases/**/public/**
+CODE-OF-CONDUCT.md

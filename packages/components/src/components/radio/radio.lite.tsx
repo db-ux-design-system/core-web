@@ -8,11 +8,13 @@ import {
 import { DBRadioProps, DBRadioState } from './model';
 import { uuid } from '../../utils';
 import { DEFAULT_ID } from '../../shared/constants';
+import classNames from 'classnames';
 
 useMetadata({
 	isAttachedToShadowDom: true,
 	component: {
 		includeIcon: false,
+		hasDisabledProp: true,
 		properties: []
 	}
 });
@@ -20,13 +22,14 @@ useMetadata({
 export default function DBRadio(props: DBRadioProps) {
 	// This is used as forwardRef
 	let component: any;
+	// jscpd:ignore-start
 	const state = useStore<DBRadioState>({
 		initialized: false,
 		_id: DEFAULT_ID,
 		_checked: false,
 		_isValid: undefined,
 
-		handleChange: (event) => {
+		handleChange: (event: any) => {
 			if (props.onChange) {
 				props.onChange(event);
 			}
@@ -44,7 +47,7 @@ export default function DBRadio(props: DBRadioProps) {
 				}
 			}
 		},
-		handleBlur: (event) => {
+		handleBlur: (event: any) => {
 			if (props.onBlur) {
 				props.onBlur(event);
 			}
@@ -53,7 +56,7 @@ export default function DBRadio(props: DBRadioProps) {
 				props.blur(event);
 			}
 		},
-		handleFocus: (event) => {
+		handleFocus: (event: any) => {
 			if (props.onFocus) {
 				props.onFocus(event);
 			}
@@ -61,6 +64,9 @@ export default function DBRadio(props: DBRadioProps) {
 			if (props.focus) {
 				props.focus(event);
 			}
+		},
+		getClassNames: (...args: classNames.ArgumentArray) => {
+			return classNames(args);
 		}
 	});
 
@@ -72,12 +78,15 @@ export default function DBRadio(props: DBRadioProps) {
 			state.stylePath = props.stylePath;
 		}
 	});
+	// jscpd:ignore-end
 
 	onUpdate(() => {
 		if (props.checked && state.initialized && document && state._id) {
-			const radioElement = document?.getElementById(state._id);
+			const radioElement = document?.getElementById(
+				state._id
+			) as HTMLInputElement;
 			if (radioElement) {
-				radioElement.click();
+				radioElement.checked = true;
 				state.initialized = false;
 			}
 		}
@@ -91,13 +100,11 @@ export default function DBRadio(props: DBRadioProps) {
 			<input
 				ref={component}
 				type="radio"
-				class={
-					'db-radio' + (props.className ? ' ' + props.className : '')
-				}
+				class={state.getClassNames('db-radio', props.className)}
 				id={state._id}
 				name={props.name}
+				checked={props.checked}
 				disabled={props.disabled}
-				aria-labelledby={state._id + '-label'}
 				aria-describedby={props.describedbyid}
 				aria-invalid={props.invalid}
 				data-size={props.size}
@@ -106,11 +113,10 @@ export default function DBRadio(props: DBRadioProps) {
 				onBlur={(event) => state.handleBlur(event)}
 				onFocus={(event) => state.handleFocus(event)}
 			/>
-			<label
-				htmlFor={state._id}
-				aria-hidden="true"
-				id={state._id + '-label'}>
-				{props.label}
+			<label htmlFor={state._id}>
+				<Show when={props.label}>
+					<span>{props.label}</span>
+				</Show>
 				{props.children}
 			</label>
 		</>

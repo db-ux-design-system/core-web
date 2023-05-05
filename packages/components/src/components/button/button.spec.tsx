@@ -2,35 +2,44 @@ import { test, expect } from '@playwright/experimental-ct-react';
 import AxeBuilder from '@axe-core/playwright';
 
 import { DBButton } from './index';
+// @ts-ignore - vue can only find it with .ts as file ending
+import { DEFAULT_VIEWPORT } from '../../shared/constants.ts';
 
 const testButton = () => {
-	test('DBButton should contain text', async ({ mount }) => {
-		const component = await mount(<DBButton>Test</DBButton>);
-		await expect(component).toContainText('Test');
-	});
+	for (const variant of ['outlined', 'primary', 'solid', 'text']) {
+		test(`should contain text for variant ${variant}`, async ({
+			mount
+		}) => {
+			const component = await mount(
+				<DBButton variant={variant}>Test</DBButton>
+			);
+			await expect(component).toContainText('Test');
+		});
 
-	test('DBButton should match screenshot', async ({ mount }) => {
-		const component = await mount(<DBButton>Test</DBButton>);
-		await expect(component).toHaveScreenshot();
-	});
+		test(`should match screenshot for variant ${variant}`, async ({
+			mount
+		}) => {
+			const component = await mount(
+				<DBButton variant={variant}>Test</DBButton>
+			);
+			await expect(component).toHaveScreenshot();
+		});
 
-	test('DBButton should only have icon', async ({ mount }) => {
-		const component = await mount(<DBButton icon="account" />);
-		await expect(component).toHaveScreenshot();
-	});
+		test(`should only have icon for variant ${variant}`, async ({
+			mount
+		}) => {
+			const component = await mount(
+				<DBButton icon="account" noText={true} variant={variant}>
+					Account
+				</DBButton>
+			);
+			await expect(component).toHaveScreenshot();
+		});
+	}
 };
 
-test.describe('DBButton component on desktop', () => {
-	// Old-school CRT monitor screensize
-	test.use({ viewport: { width: 1024, height: 768 } });
-
-	testButton();
-});
-
-test.describe('DBButton component on mobile', () => {
-	// iPhone 13 / portrait screen size
-	test.use({ viewport: { width: 390, height: 884 } });
-
+test.describe('DBButton component', () => {
+	test.use({ viewport: DEFAULT_VIEWPORT });
 	testButton();
 });
 
@@ -52,7 +61,7 @@ test.describe('DBButton component A11y', () => {
 		mount
 	}) => {
 		await mount(
-			<DBButton icon="account" onlyIcon={true}>
+			<DBButton icon="account" noText={true}>
 				lorem ipsum
 			</DBButton>
 		);

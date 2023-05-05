@@ -1,10 +1,15 @@
 import { Component } from '@angular/core';
+import defaultComponentVariants from '../../../../../shared/button.json';
 
 @Component({
 	selector: 'app-button',
 	templateUrl: './button.component.html'
 })
 export class ButtonComponent {
-	variant: 'outline' | 'primary' | 'transparent' | 'semi-transparent' =
-		'outline';
+	variants = defaultComponentVariants;
+
+	showAlert = (exampleName: string) => {
+		// eslint-disable-next-line no-alert
+		alert(exampleName);
+	};
 }

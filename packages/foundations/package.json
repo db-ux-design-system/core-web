@@ -30,9 +30,9 @@
     "@zeplin/sdk": "^1.17.0",
     "cpr": "3.0.1",
     "dotenv": "^16.0.3",
-    "nodemon": "2.0.21",
-    "sass": "^1.59.3",
-    "style-dictionary": "3.7.2"
+    "nodemon": "2.0.22",
+    "sass": "^1.62.1",
+    "style-dictionary": "3.8.0"
   },
   "publishConfig": {
     "registry": "https://registry.npmjs.org/",

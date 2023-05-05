@@ -6,6 +6,7 @@ import {
 	useStore
 } from '@builder.io/mitosis';
 import { DBHeaderState, DBHeaderProps } from './model';
+import classNames from 'classnames';
 
 useMetadata({
 	isAttachedToShadowDom: true,
@@ -18,18 +19,24 @@ useMetadata({
 export default function DBHeader(props: DBHeaderProps) {
 	// This is used as forwardRef
 	let component: any;
-	const state = useStore<DBHeaderState>({});
+	// jscpd:ignore-start
+	const state = useStore<DBHeaderState>({
+		getClassNames: (...args: classNames.ArgumentArray) => {
+			return classNames(args);
+		}
+	});
 
 	onMount(() => {
 		if (props.stylePath) {
 			state.stylePath = props.stylePath;
 		}
 	});
+	// jscpd:ignore-end
 
 	return (
 		<header
 			ref={component}
-			class={'db-header' + (props.className ? ' ' + props.className : '')}
+			class={state.getClassNames('db-header', props.className)}
 			role="banner">
 			<Show when={state.stylePath}>
 				<link rel="stylesheet" href={state.stylePath} />

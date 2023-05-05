@@ -8,7 +8,7 @@ import {
 	COLOR_CONST,
 	TONALITY_CONST
 } from "../../../packages/components/src/shared/constants";
-import { navigationItems } from "./utils/navigation-items";
+import { getSortedNavigationItems } from "./utils/navigation-items";
 
 import { ref, watch } from "vue";
 import { useRouter, useRoute } from "vue-router";
@@ -18,6 +18,8 @@ const route = useRoute();
 
 const tonality = ref(TONALITY.REGULAR);
 const color = ref(COLOR.NEUTRAL_0);
+const page = ref();
+const fullscreen = ref();
 
 const getClassNames = () => {
 	return `db-ui-${tonality.value} db-bg-${color.value}`;
@@ -43,23 +45,36 @@ watch(
 		if (query[TONALITY_CONST] && query[TONALITY_CONST] !== tonality.value) {
 			tonality.value = query[TONALITY_CONST];
 		}
+		if (query.page) {
+			page.value = query.page;
+		}
+		if (query.fullscreen) {
+			page.value = query.fullscreen;
+		}
 	}
 );
 </script>
 
 <template>
-	<DBPage type="fixedHeaderFooter">
+	<div v-if="page || fullscreen" :class="getClassNames()">
+		<router-view></router-view>
+	</div>
+	<DBPage v-if="!page && !fullscreen" type="fixedHeaderFooter">
 		<template v-slot:header>
 			<DBHeader>
 				<template v-slot:brand>
-					<DBBrand src="db_logo.svg" href="/vue-showcase/">
-						Vue Showcase
+					<DBBrand
+						title="Showcase"
+						src="db_logo.svg"
+						href="/vue-showcase/"
+					>
+						Showcase
 					</DBBrand>
 				</template>
 				<template v-slot:desktop-navigation>
 					<nav class="desktop-navigation">
 						<ul>
-							<li v-for="item of navigationItems">
+							<li v-for="item of getSortedNavigationItems()">
 								<router-link :to="item.path">{{
 									item.label
 								}}</router-link>
@@ -87,8 +102,5 @@ watch(
 		<div :class="getClassNames()">
 			<router-view></router-view>
 		</div>
-		<template v-slot:footer>
-			<div slot="footer">FOOTER</div>
-		</template>
 	</DBPage>
 </template>
