@@ -30,15 +30,14 @@
 	<h1>{{ title }}</h1>
 	<div *ngFor="let variant of variants; index as variantIndex">
 		<db-divider></db-divider>
-		<h2>
-			<db-link
-				content="external"
-				target="_blank"
-				[href]="getLink(variant.name)"
-			>
-				<span>{{ variant.name }}</span>
-			</db-link>
-		</h2>
+		<db-link
+			class="link-headline"
+			content="external"
+			target="_blank"
+			[href]="getLink(variant.name)"
+		>
+			<span>{{ variant.name }}</span>
+		</db-link>
 		<db-code-docs
 			class="variants-card"
 			[codeSnippets]="getCodeSnippets(variant.examples)"

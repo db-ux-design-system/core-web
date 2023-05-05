@@ -30,6 +30,12 @@
 	margin-block: 0 var(--db-spacing-fixed-md);
 }
 
+.link-headline {
+	display: block;
+	margin-block: var(--db-spacing-fixed-md);
+	font-weight: 700;
+}
+
 /**
  component container styles
 **/

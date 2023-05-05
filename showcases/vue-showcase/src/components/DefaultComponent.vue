@@ -105,15 +105,14 @@ const getCodeSnippets = (examples: DefaultExample[]) => {
 		<h1>{{ title }}</h1>
 		<div v-for="(variant, variantIndex) in variants">
 			<DBDivider></DBDivider>
-			<h2>
-				<DBLink
-					content="external"
-					target="_blank"
-					:href="getLink(variant.name)"
-				>
-					{{ variant.name }}
-				</DBLink>
-			</h2>
+			<DBLink
+				class="link-headline"
+				content="external"
+				target="_blank"
+				:href="getLink(variant.name)"
+			>
+				{{ variant.name }}
+			</DBLink>
 			<DBCodeDocs
 				class="variants-card"
 				:codeSnippets="getCodeSnippets(variant.examples)"
