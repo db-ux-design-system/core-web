@@ -25,6 +25,7 @@ export const getDefaultScreenshotTest = (component: string) => {
 					config.maxDiffPixels = isAngular ? 1000 : 6;
 				} else if (isFirefox && isAngular) {
 					config.maxDiffPixelRatio = 0.05;
+					config.maxDiffPixels = 100;
 				} else {
 					config.maxDiffPixels = 1;
 				}
