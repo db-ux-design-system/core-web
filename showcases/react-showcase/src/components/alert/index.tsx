@@ -9,7 +9,6 @@ const getAlert = ({
 	icon,
 	headline,
 	link,
-	slotLink,
 	type,
 	children,
 	behaviour
@@ -19,7 +18,6 @@ const getAlert = ({
 		icon={icon}
 		headline={headline}
 		link={link}
-		slotLink={slotLink}
 		type={type}
 		behaviour={behaviour}
 		onClick={() => {
