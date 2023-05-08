@@ -54,6 +54,9 @@ export default function DBLink(props: DBLinkProps) {
 			<Show when={state.stylePath}>
 				<link rel="stylesheet" href={state.stylePath} />
 			</Show>
+			<Show when={props.text}>
+				<span>{props.text}</span>
+			</Show>
 			{props.children}
 		</a>
 	);

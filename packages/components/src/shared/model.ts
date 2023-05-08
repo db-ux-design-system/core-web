@@ -179,6 +179,7 @@ export type LinkProps = {
 		| 'strict-origin-when-cross-origin'
 		| 'unsafe-url';
 	selected?: boolean;
+	text?: string;
 };
 
 export type CardProps = {

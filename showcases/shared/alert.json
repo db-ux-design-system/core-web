@@ -9,9 +9,9 @@
 					"type": "alert",
 					"headline": "Headline",
 					"link": {
-						"href": "#"
-					},
-					"slotLink": "Link"
+						"href": "#",
+						"text": "Link"
+					}
 				}
 			},
 			{
@@ -21,9 +21,9 @@
 					"type": "inline",
 					"headline": "Headline",
 					"link": {
-						"href": "#"
-					},
-					"slotLink": "Link"
+						"href": "#",
+						"text": "Link"
+					}
 				}
 			}
 		]
@@ -39,9 +39,9 @@
 					"icon": "account",
 					"headline": "Headline",
 					"link": {
-						"href": "#"
-					},
-					"slotLink": "Link"
+						"href": "#",
+						"text": "Link"
+					}
 				}
 			},
 			{
@@ -52,9 +52,9 @@
 					"variant": "critical",
 					"headline": "Headline",
 					"link": {
-						"href": "#"
-					},
-					"slotLink": "Link"
+						"href": "#",
+						"text": "Link"
+					}
 				}
 			},
 			{
@@ -65,9 +65,9 @@
 					"variant": "informational",
 					"headline": "Headline",
 					"link": {
-						"href": "#"
-					},
-					"slotLink": "Link"
+						"href": "#",
+						"text": "Link"
+					}
 				}
 			},
 			{
@@ -78,9 +78,9 @@
 					"variant": "successful",
 					"headline": "Headline",
 					"link": {
-						"href": "#"
-					},
-					"slotLink": "Link"
+						"href": "#",
+						"text": "Link"
+					}
 				}
 			},
 			{
@@ -91,9 +91,9 @@
 					"variant": "warning",
 					"headline": "Headline",
 					"link": {
-						"href": "#"
-					},
-					"slotLink": "Link"
+						"href": "#",
+						"text": "Link"
+					}
 				}
 			}
 		]
@@ -109,9 +109,9 @@
 					"icon": "account",
 					"headline": "Headline",
 					"link": {
-						"href": "#"
-					},
-					"slotLink": "Link"
+						"href": "#",
+						"text": "Link"
+					}
 				}
 			},
 			{
@@ -120,9 +120,9 @@
 				"props": {
 					"headline": "Headline",
 					"link": {
-						"href": "#"
-					},
-					"slotLink": "Link"
+						"href": "#",
+						"text": "Link"
+					}
 				}
 			},
 			{
@@ -130,9 +130,9 @@
 				"style": { "width": "100%" },
 				"props": {
 					"link": {
-						"href": "#"
-					},
-					"slotLink": "Link"
+						"href": "#",
+						"text": "Link"
+					}
 				}
 			},
 			{
@@ -152,10 +152,10 @@
 					"type": "alert",
 					"headline": "Headline",
 					"link": {
-						"href": "#"
+						"href": "#",
+						"text": "Link"
 					},
-					"click": "()=>{alert(\"click close button\")}",
-					"slotLink": "Link"
+					"click": "()=>{alert(\"click close button\")}"
 				}
 			},
 			{
@@ -165,10 +165,10 @@
 					"type": "alert",
 					"headline": "Headline",
 					"link": {
-						"href": "#"
+						"href": "#",
+						"text": "Link"
 					},
-					"behaviour": "permanent",
-					"slotLink": "Link"
+					"behaviour": "permanent"
 				}
 			}
 		]

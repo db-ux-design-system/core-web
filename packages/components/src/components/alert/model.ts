@@ -37,11 +37,6 @@ export interface DBAlertDefaultProps {
 	link?: LinkProps;
 
 	/**
-	 * React specific to pass in any content to the DBLink.
-	 * Default will be a simple text, but it could be a framework specific router link or something similar.
-	 */
-	slotLink?: any;
-	/**
 	 * The type attribute changes the styling of the alert.
 	 * The inline alert has a box-shadow and rounded corners (similar to card).
 	 */
