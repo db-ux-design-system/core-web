@@ -44,6 +44,26 @@ const getComponents = () => [
 	},
 
 	{
+		name: 'checkbox',
+		overwrites: {
+			vue: [
+				{
+					from: 'immediate: true,',
+					to: 'immediate: true,\nflush: "post"'
+				}
+			]
+		},
+		config: {
+			vue: {
+				vModel: [
+					{ modelValue: 'checked', binding: ':checked' },
+					{ modelValue: 'indeterminate', binding: ':indeterminate' }
+				]
+			}
+		}
+	},
+
+	{
 		name: 'radio',
 		overwrites: {
 			vue: [

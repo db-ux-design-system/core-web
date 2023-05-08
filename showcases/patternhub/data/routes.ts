@@ -58,6 +58,10 @@ const componentChildren = [
 				name: 'radio'
 			},
 			{
+				label: 'DBCheckbox',
+				name: 'checkbox'
+			},
+			{
 				label: 'DBSelect',
 				name: 'select'
 			}

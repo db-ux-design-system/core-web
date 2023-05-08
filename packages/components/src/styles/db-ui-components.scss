@@ -14,6 +14,7 @@
 @use "../components/section/section" as *;
 @use "../components/infotext/infotext" as *;
 @use "../components/alert/alert" as *;
+@use "../components/checkbox/checkbox" as *;
 @use "../components/radio/radio" as *;
 @use "../components/code-docs/code-docs" as *;
 @use "../components/drawer/drawer" as *;
@@ -33,6 +34,8 @@ dbbutton,
 db-button,
 dbcard,
 db-card,
+dbcheckbox,
+db-checkbox,
 dbdivider,
 db-divider,
 dbdrawer,

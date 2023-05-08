@@ -10,7 +10,7 @@ export class FormComponent {
 	radio = '';
 
 	select = '';
-
+	checkbox = '';
 	dataList = [{ key: 'test', value: 'Test' }, { key: 'test2' }];
 	getRadioName = (radioName: string): string => `Radio ${radioName}`;
 	showValues(): void {
@@ -19,7 +19,8 @@ export class FormComponent {
 			JSON.stringify({
 				input: this.input,
 				radio: this.radio,
-				select: this.select
+				select: this.select,
+				checkbox: this.checkbox
 			})
 		);
 	}

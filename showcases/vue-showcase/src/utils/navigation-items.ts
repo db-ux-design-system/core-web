@@ -6,6 +6,7 @@ import Input from '../components/input/Input.vue';
 import Link from '../components/link/Link.vue';
 import Alert from '../components/alert/Alert.vue';
 import Radio from '../components/radio/Radio.vue';
+import Checkbox from '../components/checkbox/Checkbox.vue';
 import Divider from '../components/divider/Divider.vue';
 import Infotext from '../components/infotext/Infotext.vue';
 import Section from '../components/section/Section.vue';
@@ -17,6 +18,7 @@ export const navigationItems: any[] = [
 	{ path: '/divider', label: 'Divider', component: Divider },
 	{ path: '/select', label: 'Select', component: Select },
 	{ path: '/radio', label: 'Radio', component: Radio },
+	{ path: '/checkbox', label: 'Checkbox', component: Checkbox },
 	{ path: '/alert', label: 'Alert', component: Alert },
 	{ path: '/drawer', label: 'Drawer', component: Drawer },
 	{ path: '/infotext', label: 'Infotext', component: Infotext },

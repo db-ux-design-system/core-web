@@ -13,12 +13,19 @@ import {
 	FormCheckState
 } from '../../shared/model';
 
-export interface DBRadioDefaultProps {
-	describedbyid?: string;
+export interface DBCheckboxDefaultProps {
+	/**
+	 * Decide for a size (either regular, which is the default, or small)
+	 */
 	size?: 'small';
+
+	/**
+	 * Define an [indeterminate](https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement#indeterminate) state of a checkbox
+	 */
+	indeterminate?: boolean;
 }
 
-export type DBRadioProps = DBRadioDefaultProps &
+export type DBCheckboxProps = DBCheckboxDefaultProps &
 	GlobalProps &
 	GlobalTextProps &
 	ChangeEventProps &
@@ -27,11 +34,12 @@ export type DBRadioProps = DBRadioDefaultProps &
 	FormProps &
 	FormCheckProps;
 
-export type DBRadioDefaultState = {
+export type DBCheckboxDefaultState = {
 	initialized: boolean;
+	_indeterminate: boolean;
 };
 
-export type DBRadioState = DBRadioDefaultState &
+export type DBCheckboxState = DBCheckboxDefaultState &
 	GlobalState &
 	ChangeEventState &
 	FocusEventState &

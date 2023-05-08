@@ -25,6 +25,12 @@
 						></db-radio>
 					</li>
 				</ul>
+				<p>Checkbox:</p>
+				<db-checkbox
+					(change)="checkbox = $event.target.checked"
+					name="checkbox"
+					label="Checkbox"
+				></db-checkbox>
 				<p>DBSelect:</p>
 				<db-select
 					[value]="select"
@@ -50,12 +56,10 @@
 		<dl>
 			<dt>inputs value</dt>
 			<dd>{{ input ? input : "No Input set" }}</dd>
-		</dl>
-		<dl>
 			<dt>radio value</dt>
 			<dd>{{ radio ? radio : "No radio set" }}</dd>
-		</dl>
-		<dl>
+			<dt>checkbox value</dt>
+			<dd>checkbox {{ checkbox ? "" : "un" }}checked</dd>
 			<dt>select value</dt>
 			<dd>{{ select ? select : "No select set" }}</dd>
 		</dl>

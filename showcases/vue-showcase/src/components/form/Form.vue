@@ -3,12 +3,14 @@ import {
 	DBButton,
 	DBInput,
 	DBRadio,
+	DBCheckbox,
 	DBSelect
 } from "../../../../../output/vue/vue3/src";
 
 import { ref } from "vue";
 const input = ref("");
 const radio = ref("");
+const checkbox = ref("");
 const select = ref("");
 
 const radioNames = ["X", "Y", "Z"];
@@ -21,7 +23,8 @@ const logAll = () => {
 		JSON.stringify({
 			input: input.value,
 			radio: radio.value,
-			select: select.value
+			select: select.value,
+			checkbox: checkbox.checked
 		})
 	);
 };
@@ -53,6 +56,12 @@ const logAll = () => {
 							>
 						</li>
 					</ul>
+					<p>Checkbox:</p>
+					<DBCheckbox
+						@change="checkbox = $event.target.checked"
+						name="checkbox"
+						>Checkbox</DBCheckbox
+					>
 					<p>DBSelect:</p>
 					<DBSelect
 						:value="select"
@@ -74,12 +83,10 @@ const logAll = () => {
 			<dl>
 				<dt>inputs value</dt>
 				<dd>{{ input ? input : "No Input set" }}</dd>
-			</dl>
-			<dl>
 				<dt>radio value</dt>
 				<dd>{{ radio ? radio : "No radio set" }}</dd>
-			</dl>
-			<dl>
+				<dt>checkbox value</dt>
+				<dd>{{ `checkbox ${checkbox ? "" : "un"}checked` }}</dd>
 				<dt>select value</dt>
 				<dd>{{ select ? select : "No select set" }}</dd>
 			</dl>

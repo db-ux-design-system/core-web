@@ -3,7 +3,8 @@ import {
 	DBButton,
 	DBInput,
 	DBRadio,
-	DBSelect
+	DBSelect,
+	DBCheckbox
 } from '../../../../../output/react/src';
 import type { KeyValueType } from '../../../../../output/react/src/shared/model';
 
@@ -11,6 +12,7 @@ const FormComponent = () => {
 	const [input, setInput] = useState('');
 	const [radio, setRadio] = useState('');
 	const [select, setSelect] = useState('');
+	const [checkbox, setCheckbox] = useState('');
 
 	const dataList: KeyValueType[] = [
 		{ key: 'test', value: 'Test' },
@@ -49,6 +51,15 @@ const FormComponent = () => {
 								</li>
 							))}
 						</ul>
+						<p>Checkbox:</p>
+						<DBCheckbox
+							name="checkbox"
+							value="Checkbox checked"
+							onChange={(event) => {
+								setCheckbox(event.target.checked);
+							}}>
+							Checkbox
+						</DBCheckbox>
 						<p>DBSelect:</p>
 						<DBSelect
 							value={select}
@@ -69,6 +80,7 @@ const FormComponent = () => {
 									JSON.stringify({
 										input,
 										radio,
+										checkbox,
 										select
 									})
 								);
@@ -83,12 +95,10 @@ const FormComponent = () => {
 				<dl>
 					<dt>inputs value</dt>
 					<dd>{input || 'No Input set'}</dd>
-				</dl>
-				<dl>
 					<dt>radio value</dt>
 					<dd>{radio || 'No radio set'}</dd>
-				</dl>
-				<dl>
+					<dt>checkbox value</dt>
+					<dd>{`checkbox ${checkbox ? '' : 'un'}checked`}</dd>
 					<dt>select value</dt>
 					<dd>{select || 'No select set'}</dd>
 				</dl>
