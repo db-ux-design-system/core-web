@@ -82,7 +82,12 @@ export default function DBAlert(props: DBAlertProps) {
 				icon={state.getIcon(props.icon, props.variant)}
 			/>
 
-			<div class="db-alert-content-container">
+			<div
+				class={state.getClassNames(
+					'db-alert-content-container',
+					{ 'has-link': props.link },
+					{ 'has-headline': props.headline }
+				)}>
 				<Show when={props.headline}>
 					<strong class="db-alert-headline">{props.headline}</strong>
 				</Show>

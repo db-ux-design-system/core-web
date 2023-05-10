@@ -66,6 +66,22 @@
 	}
 }
 
+%default-icon {
+	--icon-font-family: var(--db-base-icon-font-family);
+	--icon-font-size: var(--db-base-icon-font-size);
+
+	@extend %db-body-sm;
+
+	font-size: var(--icon-font-size);
+
+	height: $db-sizing-md;
+	display: flex;
+	align-items: center;
+	position: absolute;
+	top: 0;
+	margin-inline: $db-spacing-fixed-sm;
+}
+
 .db-input {
 	--db-input-padding-inline-start: #{$db-spacing-fixed-sm};
 	--db-input-padding-end-icon-after: 0;
@@ -77,7 +93,7 @@
 	position: relative;
 
 	// padding-inline-end according to current amount of icons
-	&:has(> .icon-before) {
+	&.has-icon-before {
 		--db-input-padding-inline-start: #{calc(#{$db-sizing-md})};
 		--db-input-label-max-width: 70%;
 
@@ -86,35 +102,36 @@
 		}
 	}
 
-	&:has(> .icon-after) {
+	&.has-icon-after {
 		--db-input-padding-end-icon-after: 1;
 	}
 
 	&[data-variant] {
 		--db-input-padding-end-data-variant: 1;
-	}
 
-	// two trailing icons
-	&[data-variant]:has(> .icon-after) {
-		--db-input-label-max-width: 61%;
-	}
-
-	&:has(> datalist):has(> .icon-after) {
-		.icon-after {
-			padding-inline-start: $db-spacing-fixed-xs;
+		&.has-icon-after {
+			// two trailing icons
+			--db-input-label-max-width: 61%;
 		}
 	}
 
-	&:has(> datalist) {
+	&.has-datalist {
 		--db-input-padding-end-datalist: 1;
 
 		// Datalist icon
 		@include icon(glyph(expand-more), 24, "outline", "after");
 
-		&::after {
-			transition: transform $db-transition-emotional-straight;
+		&.has-icon-after {
+			padding-inline-start: $db-spacing-fixed-xs;
 		}
 
+		&::after {
+			@extend %default-icon;
+			transition: transform $db-transition-emotional-straight;
+			right: 0;
+		}
+
+		// TODO: Change the :has selector
 		&:has(input:is(:focus, :not(:placeholder-shown))) {
 			&::after {
 				transform: rotate(180deg);
@@ -129,27 +146,13 @@
 	}
 
 	.db-icon,
-	db-icon,
-	&:has(> datalist)::after {
-		--icon-font-family: var(--db-base-icon-font-family);
-		--icon-font-size: var(--db-base-icon-font-size);
-
-		@extend %db-body-sm;
-
-		font-size: var(--icon-font-size);
-
-		height: $db-sizing-md;
-		display: flex;
-		align-items: center;
-		position: absolute;
-		top: 0;
-		margin-inline: $db-spacing-fixed-sm;
+	db-icon {
+		@extend %default-icon;
 	}
 
 	.icon-after,
 	// angular specific nesting
-	dbicon.icon-after > .db-icon,
-	&:has(> datalist)::after {
+	dbicon.icon-after > .db-icon {
 		right: 0;
 	}
 
@@ -161,10 +164,10 @@
 	}
 
 	// currently not supported by firefox
-	&:has(> input:disabled) {
+	&.has-disabled {
 		.db-icon,
 		.icon-state,
-		&:has(> datalist)::after {
+		&.has-datalist::after {
 			opacity: 0.5;
 		}
 	}
