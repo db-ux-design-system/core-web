@@ -338,7 +338,7 @@
 
 			&:focus,
 			&:not(:placeholder-shown) {
-				&:not(:disabled) {
+				&:enabled {
 					+ label {
 						padding-inline-start: 0;
 					}

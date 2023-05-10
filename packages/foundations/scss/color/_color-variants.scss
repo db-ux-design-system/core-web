@@ -40,7 +40,7 @@ $color-variants: "neutral-0", "neutral-1", "neutral-3", "neutral-4", "primary",
 %bg-transparent-hover {
 	@extend %bg-transparent;
 
-	&:not(:disabled) {
+	&:enabled {
 		&:hover {
 			@include get-variant-bg-color(0.16);
 		}
@@ -50,7 +50,7 @@ $color-variants: "neutral-0", "neutral-1", "neutral-3", "neutral-4", "primary",
 %bg-transparent-interactive {
 	@extend %bg-transparent-hover;
 
-	&:not(:disabled) {
+	&:enabled {
 		&:active {
 			@include get-variant-bg-color(0.24);
 		}
