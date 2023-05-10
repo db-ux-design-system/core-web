@@ -39,7 +39,7 @@ const generateInteractiveVariants = (
     			${primaryColor ? getRBGA(primaryColor, 'hover') : ''}
 			}`;
 	return `
-		&:not(:disabled) {
+		&:enabled {
 			${noHover ? '' : hoverState}
 			${noActive ? '' : activeState}
         }
