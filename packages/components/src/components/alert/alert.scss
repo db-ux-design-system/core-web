@@ -9,13 +9,13 @@
 	grid-template-areas: "content close";
 	grid-template-columns: 1fr min-content;
 
-	&:has(.db-alert-link) {
+	&.has-link {
 		grid-template-areas: "content link close";
 		grid-template-columns: 1fr min-content min-content;
 	}
 
 	@media screen and (max-width: $db-screens-s) {
-		&:has(.db-alert-link) {
+		&.has-link {
 			grid-template-columns: 1fr min-content;
 			grid-template-areas:
 				"content close"
@@ -23,13 +23,13 @@
 		}
 	}
 
-	&:has(.db-alert-headline) {
+	&.has-headline {
 		grid-template-columns: 1fr 1fr min-content;
 		grid-template-areas:
 			"head head close"
 			"content content content";
 
-		&:has(.db-alert-link) {
+		&.has-link {
 			grid-template-columns: 1fr 1fr min-content min-content;
 			grid-template-areas:
 				"head head link close"
@@ -42,7 +42,7 @@
 				"head close"
 				"content content";
 
-			&:has(.db-alert-link) {
+			&.has-link {
 				grid-template-columns: 1fr min-content;
 				grid-template-areas:
 					"head close"

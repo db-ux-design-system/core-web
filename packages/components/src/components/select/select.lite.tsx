@@ -96,7 +96,11 @@ export default function DBSelect(props: DBSelectProps) {
 	return (
 		<>
 			<div
-				class={state.getClassNames('db-select', props.className)}
+				class={state.getClassNames(
+					'db-select',
+					{ 'has-disabled': props.disabled },
+					props.className
+				)}
 				data-variant={props.variant}
 				data-icon={props.icon}>
 				<Show when={state.stylePath}>

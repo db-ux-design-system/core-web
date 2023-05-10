@@ -119,7 +119,16 @@ export default function DBInput(props: DBInputProps) {
 
 	return (
 		<div
-			class={state.getClassNames('db-input', props.className)}
+			class={state.getClassNames(
+				'db-input',
+				{
+					'has-datalist': props.dataList,
+					'has-icon-before': props.icon,
+					'has-icon-after': props.iconAfter,
+					'has-disabled': props.disabled
+				},
+				props.className
+			)}
 			data-variant={props.variant}>
 			<Show when={state.stylePath}>
 				<link rel="stylesheet" href={state.stylePath} />

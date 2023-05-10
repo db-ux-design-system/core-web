@@ -17,6 +17,7 @@
 		right: $db-spacing-fixed-sm;
 	}
 
+	// TODO: Change the :has selector
 	&:has(select:focus-within) {
 		&::after {
 			transform: rotate(180deg);
@@ -75,8 +76,7 @@
 			$db-sizing-md + var(--has-status) * ($db-sizing-md)
 		);
 
-		&:has(option:checked:empty),
-		&:disabled:not([data-value]) {
+		&:not([data-value]) {
 			& ~ label {
 				@extend %select-label;
 			}
@@ -91,7 +91,7 @@
 		pointer-events: none;
 	}
 
-	&:has(select:disabled) {
+	&.has-disabled {
 		// Decided against cursor: not-allowed, compare to e.g. https://phabricator.wikimedia.org/T121960
 		opacity: 0.25;
 		pointer-events: none;
