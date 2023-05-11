@@ -82,46 +82,39 @@ export default function DBAlert(props: DBAlertProps) {
 				icon={state.getIcon(props.icon, props.variant)}
 			/>
 
-			<div
-				class={state.getClassNames(
-					'db-alert-content-container',
-					{ 'has-link': props.link },
-					{ 'has-headline': props.headline }
-				)}>
-				<Show when={props.headline}>
-					<strong class="db-alert-headline">{props.headline}</strong>
-				</Show>
-				<span class="db-alert-content">{props.children}</span>
+			<Show when={props.headline}>
+				<strong class="db-alert-headline">{props.headline}</strong>
+			</Show>
+			<span class="db-alert-content">{props.children}</span>
 
-				<Show when={props.link}>
-					<DBLink
-						className="db-alert-link"
-						variant="inline"
-						href={props.link.href}
-						target={props.link.target}
-						rel={props.link.rel}
-						role={props.link.role}
-						disabled={props.link.disabled}
-						selected={props.link.selected}
-						label={props.link.label}
-						hreflang={props.link.hreflang}
-						current={props.link.current}
-						text={props.link.text}
-					/>
-				</Show>
-				<Show when={props.behaviour !== 'permanent'}>
-					<DBButton
-						className="db-alert-close"
-						id={props.closeButtonId}
-						icon="close"
-						variant="text"
-						size="small"
-						noText
-						onClick={(event) => state.handleClick(event)}>
-						{props.closeButtonText ?? DEFAULT_CLOSE_BUTTON}
-					</DBButton>
-				</Show>
-			</div>
+			<Show when={props.link}>
+				<DBLink
+					className="db-alert-link"
+					variant="inline"
+					href={props.link.href}
+					target={props.link.target}
+					rel={props.link.rel}
+					role={props.link.role}
+					disabled={props.link.disabled}
+					selected={props.link.selected}
+					label={props.link.label}
+					hreflang={props.link.hreflang}
+					current={props.link.current}
+					text={props.link.text}
+				/>
+			</Show>
+			<Show when={props.behaviour !== 'permanent'}>
+				<DBButton
+					className="db-alert-close"
+					id={props.closeButtonId}
+					icon="close"
+					variant="text"
+					size="small"
+					noText
+					onClick={(event) => state.handleClick(event)}>
+					{props.closeButtonText ?? DEFAULT_CLOSE_BUTTON}
+				</DBButton>
+			</Show>
 		</div>
 	);
 }

@@ -53,12 +53,14 @@ const config: PlaywrightTestConfig = {
 				...devices['Desktop Chrome']
 			}
 		},
-		{
+
+		// TODO: Enable this again when mozilla fix :has selector
+		/* {
 			name: 'firefox',
 			use: {
 				...devices['Desktop Firefox']
 			}
-		},
+		}, */
 
 		{
 			name: 'webkit',

@@ -6,48 +6,48 @@
 @use "@db-ui/foundations/build/scss/color/color-variants" as *;
 
 %grid-layout {
-	grid-template-areas: "content close";
-	grid-template-columns: 1fr min-content;
+	grid-template-areas: "icon content close";
+	grid-template-columns: min-content 1fr min-content;
 
-	&.has-link {
-		grid-template-areas: "content link close";
-		grid-template-columns: 1fr min-content min-content;
+	&:has(.db-alert-link) {
+		grid-template-areas: "icon content link close";
+		grid-template-columns: min-content 1fr min-content min-content;
 	}
 
 	@media screen and (max-width: $db-screens-s) {
-		&.has-link {
-			grid-template-columns: 1fr min-content;
+		&:has(.db-alert-link) {
+			grid-template-columns: min-content 1fr min-content;
 			grid-template-areas:
-				"content close"
-				"link link";
+				"icon content close"
+				"icon link link";
 		}
 	}
 
-	&.has-headline {
-		grid-template-columns: 1fr 1fr min-content;
+	&:has(.db-alert-headline) {
+		grid-template-columns: min-content 1fr 1fr min-content;
 		grid-template-areas:
-			"head head close"
-			"content content content";
+			"icon head head close"
+			"icon content content content";
 
-		&.has-link {
-			grid-template-columns: 1fr 1fr min-content min-content;
+		&:has(.db-alert-link) {
+			grid-template-columns: min-content 1fr 1fr min-content min-content;
 			grid-template-areas:
-				"head head link close"
-				"content content content content";
+				"icon head head link close"
+				"icon content content content content";
 		}
 
 		@media screen and (max-width: $db-screens-s) {
-			grid-template-columns: 1fr min-content;
+			grid-template-columns: min-content 1fr min-content;
 			grid-template-areas:
-				"head close"
-				"content content";
+				"icon head close"
+				"icon content content";
 
-			&.has-link {
-				grid-template-columns: 1fr min-content;
+			&:has(.db-alert-link) {
+				grid-template-columns: min-content 1fr min-content;
 				grid-template-areas:
-					"head close"
-					"content content"
-					"link link";
+					"icon head close"
+					"icon content content"
+					"icon link link";
 			}
 		}
 	}
@@ -56,14 +56,36 @@
 .db-alert {
 	@extend %db-bg-neutral-0;
 	@extend %component-border;
-
-	padding: $db-spacing-fixed-md;
-	display: flex;
-	gap: $db-spacing-fixed-md;
+	@extend %grid-layout;
 	width: 100%;
+	display: grid;
+	padding: $db-spacing-fixed-md;
+	gap: $db-spacing-fixed-xs $db-spacing-fixed-md;
 
 	// TODO: probably extract this to an overwrite or external file
 	text-align: start; // workaround for power apps
+
+	.db-alert-icon {
+		grid-area: icon;
+	}
+
+	.db-alert-headline {
+		grid-area: head;
+	}
+
+	.db-alert-content {
+		grid-area: content;
+	}
+
+	.db-alert-link {
+		grid-area: link;
+		// required for angular build
+		display: inline;
+	}
+
+	.db-alert-close {
+		grid-area: close;
+	}
 
 	.db-icon {
 		&::before {
@@ -99,30 +121,5 @@
 				color: map.get($colors, "element");
 			}
 		}
-	}
-}
-
-.db-alert-content-container {
-	@extend %grid-layout;
-	width: 100%;
-	display: grid;
-	gap: $db-spacing-fixed-xs $db-spacing-fixed-md;
-
-	.db-alert-headline {
-		grid-area: head;
-	}
-
-	.db-alert-content {
-		grid-area: content;
-	}
-
-	.db-alert-link {
-		grid-area: link;
-		// required for angular build
-		display: inline;
-	}
-
-	.db-alert-close {
-		grid-area: close;
 	}
 }
