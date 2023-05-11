@@ -1,5 +1,31 @@
 [
 	{
+		"name": "Tonality",
+		"examples": [
+			{
+				"name": "Card (functional)",
+				"className": "db-ui-functional",
+				"props": {
+					"spacing": "small"
+				}
+			},
+			{
+				"name": "Card (regular)",
+				"className": "db-ui-regular",
+				"props": {
+					"spacing": "small"
+				}
+			},
+			{
+				"name": "Card (expressive)",
+				"className": "db-ui-expressive",
+				"props": {
+					"spacing": "small"
+				}
+			}
+		]
+	},
+	{
 		"name": "ColorVariant",
 		"examples": [
 			{

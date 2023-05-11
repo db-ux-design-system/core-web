@@ -1,5 +1,28 @@
 [
 	{
+		"name": "Tonality",
+		"examples": [
+			{
+				"name": "Divider (functional)",
+				"style": { "width": "200px" },
+				"className": "db-ui-functional",
+				"props": {}
+			},
+			{
+				"name": "Divider (regular)",
+				"style": { "width": "200px" },
+				"className": "db-ui-regular",
+				"props": {}
+			},
+			{
+				"name": "Divider (expressive)",
+				"style": { "width": "200px" },
+				"className": "db-ui-expressive",
+				"props": {}
+			}
+		]
+	},
+	{
 		"name": "Variant",
 		"examples": [
 			{

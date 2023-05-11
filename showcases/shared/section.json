@@ -1,5 +1,25 @@
 [
 	{
+		"name": "Tonality",
+		"examples": [
+			{
+				"name": "Section (functional)",
+				"className": "db-ui-functional",
+				"props": {}
+			},
+			{
+				"name": "Section (regular)",
+				"className": "db-ui-regular",
+				"props": {}
+			},
+			{
+				"name": "Section (expressive)",
+				"className": "db-ui-expressive",
+				"props": {}
+			}
+		]
+	},
+	{
 		"name": "Variant",
 		"examples": [
 			{

@@ -1,5 +1,25 @@
 [
 	{
+		"name": "Tonality",
+		"examples": [
+			{
+				"name": "Infotext (functional)",
+				"className": "db-ui-functional",
+				"props": {}
+			},
+			{
+				"name": "Infotext (regular)",
+				"className": "db-ui-regular",
+				"props": {}
+			},
+			{
+				"name": "Infotext (expressive)",
+				"className": "db-ui-expressive",
+				"props": {}
+			}
+		]
+	},
+	{
 		"name": "Variant",
 		"examples": [
 			{

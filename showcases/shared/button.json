@@ -1,5 +1,26 @@
 [
 	{
+		"name": "Tonality",
+		"examples": [
+			{
+				"name": "Button (functional)",
+				"className": "db-ui-functional",
+				"props": {}
+			},
+			{
+				"name": "Button (regular)",
+				"className": "db-ui-regular",
+				"props": {}
+			},
+			{
+				"name": "Button (expressive)",
+				"className": "db-ui-expressive",
+				"props": {}
+			}
+		]
+	},
+
+	{
 		"name": "Variant",
 		"examples": [
 			{

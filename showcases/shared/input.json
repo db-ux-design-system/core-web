@@ -1,5 +1,34 @@
 [
 	{
+		"name": "Tonality",
+		"examples": [
+			{
+				"name": "Input (functional)",
+				"className": "db-ui-functional",
+				"props": {
+					"label": "Label",
+					"description": "Input (functional)"
+				}
+			},
+			{
+				"name": "Input (regular)",
+				"className": "db-ui-regular",
+				"props": {
+					"label": "Label",
+					"description": "Input (regular)"
+				}
+			},
+			{
+				"name": "Input (expressive)",
+				"className": "db-ui-expressive",
+				"props": {
+					"label": "Label",
+					"description": "Input (expressive)"
+				}
+			}
+		]
+	},
+	{
 		"name": "Variant",
 		"examples": [
 			{

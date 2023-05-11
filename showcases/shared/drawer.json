@@ -1,5 +1,25 @@
 [
 	{
+		"name": "Tonality",
+		"examples": [
+			{
+				"name": "Drawer (functional)",
+				"className": "db-ui-functional",
+				"props": {}
+			},
+			{
+				"name": "Drawer (regular)",
+				"className": "db-ui-regular",
+				"props": {}
+			},
+			{
+				"name": "Drawer (expressive)",
+				"className": "db-ui-expressive",
+				"props": {}
+			}
+		]
+	},
+	{
 		"name": "Size",
 		"examples": [
 			{
