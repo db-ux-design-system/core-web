@@ -1,7 +1,7 @@
-# MS Power Apps
+# Microsoft Power Apps
 
-We generate components for power apps via mitosis and a custom plugin.
-The base for power apps are "React Components" with a `.ts` wrapper file and a `.xml` description file.
+We generate components for Power Apps via mitosis and a custom plugin.
+The base for Power Apps are "React Components" with a `.ts` wrapper file and a `.xml` description file.
 
 ## The magic
 
