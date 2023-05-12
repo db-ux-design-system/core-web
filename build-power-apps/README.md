@@ -1,11 +1,11 @@
-# MS Power Apps
+# Microsoft Power Apps
 
-We generate components for power apps via mitosis and a custom plugin.
-The base for power apps are "React Components" with a `.ts` wrapper file and a `.xml` description file.
+We generate components for Power Apps via mitosis and a custom plugin.
+The base for Power Apps are "React Components" with a `.ts` wrapper file and a `.xml` description file.
 
 ## The magic
 
-We have a custom mitosis plugin under `packages/components/plugins/power-apps` . This plugin uses the mitosis `useMetadata` hook to automate the building process for power-apps components.
+We have a custom mitosis plugin under `packages/components/plugins/power-apps` . This plugin uses the mitosis `useMetadata` hook to automate the building process for Power Apps components.
 For example inside `packages/components/src/components/button/button.lite.tsx` we have this metadata (all [property types](https://learn.microsoft.com/en-us/power-apps/developer/component-framework/manifest-schema-reference/property#remarks) are provided by MS):
 
 ```tsx
@@ -47,7 +47,7 @@ useMetadata({
 
 ```
 
-We pass this config file to `hygen` and use the templates from `packages/components/_templates/power-apps/new` to generate all required files for power app components inside `build-power-apps` folder.
+We pass this config file to `hygen` and use the templates from `packages/components/_templates/power-apps/new` to generate all required files for Power Apps components inside `build-power-apps` folder.
 
 ## How to test
 
