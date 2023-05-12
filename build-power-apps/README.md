@@ -76,3 +76,11 @@ Find `ProjectReference` and add your component there:
 
 For build run `npm run build:dotnet` or `build:msbuild`, based on what you installed e.g. [MSBuild](https://learn.microsoft.com/de-de/visualstudio/msbuild/msbuild?view=vs-2022).
 Afterwards you should have a `.zip` file inside `build-power-apps/DBUI/bin/Release/DBUI.zip`.
+
+## How to deploy
+
+1. You can test your components with an upload to [PowerApps](https://make.powerapps.com/).
+2. In the header is a dropdown for environments, select one with the rights to upload own components (your personal environment might not have the rights in a company account).
+3. Goto `Solutions` on the right navigation and click on `import solution`.
+4. Select the `build-power-apps/DBUI/bin/Release/DBUI.zip` file.
+5. Create a new Power App and [add the custom components](https://learn.microsoft.com/en-us/power-apps/developer/component-framework/component-framework-for-canvas-apps#add-components-to-a-canvas-app).
