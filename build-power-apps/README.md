@@ -47,7 +47,7 @@ useMetadata({
 
 ```
 
-We pass this config file to `hygen` and use the templates from `packages/components/_templates/power-apps/new` to generate all required files for power app components inside `build-power-apps` folder.
+We pass this config file to `hygen` and use the templates from `packages/components/_templates/power-apps/new` to generate all required files for Power Apps components inside `build-power-apps` folder.
 
 ## How to test
 
