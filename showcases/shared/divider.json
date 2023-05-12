@@ -3,19 +3,19 @@
 		"name": "Tonality",
 		"examples": [
 			{
-				"name": "Divider (functional)",
+				"name": "functional",
 				"style": { "width": "200px" },
 				"className": "db-ui-functional",
 				"props": {}
 			},
 			{
-				"name": "Divider (regular)",
+				"name": "regular (Default)",
 				"style": { "width": "200px" },
 				"className": "db-ui-regular",
 				"props": {}
 			},
 			{
-				"name": "Divider (expressive)",
+				"name": "expressive (Default)",
 				"style": { "width": "200px" },
 				"className": "db-ui-expressive",
 				"props": {}

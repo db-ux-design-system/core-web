@@ -3,21 +3,21 @@
 		"name": "Tonality",
 		"examples": [
 			{
-				"name": "Checkbox (functional)",
+				"name": "functional",
 				"className": "db-ui-functional",
 				"props": {
 					"name": "Tonality"
 				}
 			},
 			{
-				"name": "Checkbox (regular)",
+				"name": "regular (Default)",
 				"className": "db-ui-regular",
 				"props": {
 					"name": "Tonality"
 				}
 			},
 			{
-				"name": "Checkbox (expressive)",
+				"name": "expressive",
 				"className": "db-ui-expressive",
 				"props": {
 					"name": "Tonality"

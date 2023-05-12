@@ -3,17 +3,17 @@
 		"name": "Tonality",
 		"examples": [
 			{
-				"name": "Section (functional)",
+				"name": "functional",
 				"className": "db-ui-functional",
 				"props": {}
 			},
 			{
-				"name": "Section (regular)",
+				"name": "regular (Default)",
 				"className": "db-ui-regular",
 				"props": {}
 			},
 			{
-				"name": "Section (expressive)",
+				"name": "expressive",
 				"className": "db-ui-expressive",
 				"props": {}
 			}

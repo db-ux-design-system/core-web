@@ -3,17 +3,17 @@
 		"name": "Tonality",
 		"examples": [
 			{
-				"name": "Drawer (functional)",
+				"name": "functional",
 				"className": "db-ui-functional",
 				"props": {}
 			},
 			{
-				"name": "Drawer (regular)",
+				"name": "regular (Default)",
 				"className": "db-ui-regular",
 				"props": {}
 			},
 			{
-				"name": "Drawer (expressive)",
+				"name": "xpressive",
 				"className": "db-ui-expressive",
 				"props": {}
 			}

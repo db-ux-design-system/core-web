@@ -3,7 +3,7 @@
 		"name": "Tonality",
 		"examples": [
 			{
-				"name": "Alert (functional)",
+				"name": "functional",
 				"style": { "width": "100%" },
 				"className": "db-ui-functional",
 				"props": {
@@ -15,7 +15,7 @@
 				}
 			},
 			{
-				"name": "Alert (regular)",
+				"name": "regular (Default)",
 				"style": { "width": "100%" },
 				"className": "db-ui-regular",
 				"props": {
@@ -27,7 +27,7 @@
 				}
 			},
 			{
-				"name": "Alert (expressive)",
+				"name": "expressive",
 				"style": { "width": "100%" },
 				"className": "db-ui-expressive",
 				"props": {

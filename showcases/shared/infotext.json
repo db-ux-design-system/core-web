@@ -3,17 +3,17 @@
 		"name": "Tonality",
 		"examples": [
 			{
-				"name": "Infotext (functional)",
+				"name": "functional",
 				"className": "db-ui-functional",
 				"props": {}
 			},
 			{
-				"name": "Infotext (regular)",
+				"name": "regular (Default)",
 				"className": "db-ui-regular",
 				"props": {}
 			},
 			{
-				"name": "Infotext (expressive)",
+				"name": "expressive",
 				"className": "db-ui-expressive",
 				"props": {}
 			}
