@@ -5,7 +5,7 @@ The base for Power Apps are "React Components" with a `.ts` wrapper file and a `
 
 ## The magic
 
-We have a custom mitosis plugin under `packages/components/plugins/power-apps` . This plugin uses the mitosis `useMetadata` hook to automate the building process for power-apps components.
+We have a custom mitosis plugin under `packages/components/plugins/power-apps` . This plugin uses the mitosis `useMetadata` hook to automate the building process for Power Apps components.
 For example inside `packages/components/src/components/button/button.lite.tsx` we have this metadata (all [property types](https://learn.microsoft.com/en-us/power-apps/developer/component-framework/manifest-schema-reference/property#remarks) are provided by MS):
 
 ```tsx
