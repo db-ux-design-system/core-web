@@ -74,7 +74,7 @@ Find `ProjectReference` and add your component there:
 </ItemGroup>
 ```
 
-For build run `npm run build:dotnet` or `build:msbuild`, based on what you installed e.g. [MSBuild](https://learn.microsoft.com/de-de/visualstudio/msbuild/msbuild?view=vs-2022).
+For build run `npm run build:dotnet` or `npm run build:msbuild`, based on what you installed e.g. [MSBuild](https://learn.microsoft.com/de-de/visualstudio/msbuild/msbuild?view=vs-2022).
 Afterwards you should have a `.zip` file inside `build-power-apps/DBUI/bin/Release/DBUI.zip`.
 
 ## How to deploy
