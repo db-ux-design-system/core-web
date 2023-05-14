@@ -3,10 +3,23 @@ to: "<%= showcases ? `../../showcases/shared/${name}.json` : null %>"
 ---
 [
 	{
-		"name": "TODO: Edit me in ./showcases/shared/<%= name %>.json",
+		"name": "Tonality",
 		"examples": [
 			{
-				"name": "(Default) <%= name %>",
+				"name": "functional",
+				"className": "db-ui-functional",
+				"props": {
+				}
+			},
+			{
+				"name": "regular (Default)",
+				"className": "db-ui-regular",
+				"props": {
+				}
+			},
+			{
+				"name": "expressive",
+				"className": "db-ui-expressive",
 				"props": {
 				}
 			}
