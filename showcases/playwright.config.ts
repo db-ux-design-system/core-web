@@ -54,7 +54,7 @@ const config: PlaywrightTestConfig = {
 			}
 		},
 
-		// TODO: Enable this again when mozilla fix :has selector
+		// TODO: Enable this again when Mozilla introduces :has selector
 		/* {
 			name: 'firefox',
 			use: {
