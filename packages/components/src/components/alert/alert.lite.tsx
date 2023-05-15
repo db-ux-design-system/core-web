@@ -16,6 +16,7 @@ import { DEFAULT_CLOSE_BUTTON } from '../../shared/constants';
 useMetadata({
 	isAttachedToShadowDom: true,
 	component: {
+		// MS Power Apps
 		includeIcon: true,
 		hasOnClick: true,
 		properties: [

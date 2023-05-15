@@ -16,6 +16,7 @@ import { uuid } from '../../utils';
 useMetadata({
 	isAttachedToShadowDom: true,
 	component: {
+		// MS Power Apps
 		includeIcon: false,
 		properties: [{ name: 'open', type: 'TwoOptions' }]
 	}

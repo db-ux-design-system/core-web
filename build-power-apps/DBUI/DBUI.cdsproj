@@ -48,6 +48,7 @@
     <ProjectReference Include="..\icon\DBIcon.pcfproj" />
     <ProjectReference Include="..\input\DBInput.pcfproj" />
     <ProjectReference Include="..\alert\DBAlert.pcfproj" />
+    <ProjectReference Include="..\link\DBLink.pcfproj" />
   </ItemGroup>
 
   <Import Project="$(MSBuildToolsPath)\Microsoft.Common.targets" />
