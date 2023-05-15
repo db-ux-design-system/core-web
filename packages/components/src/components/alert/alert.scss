@@ -57,7 +57,6 @@
 	@extend %db-bg-neutral-0;
 	@extend %component-border;
 	@extend %grid-layout;
-	width: 100%;
 	display: grid;
 	padding: $db-spacing-fixed-md;
 	gap: $db-spacing-fixed-xs $db-spacing-fixed-md;
