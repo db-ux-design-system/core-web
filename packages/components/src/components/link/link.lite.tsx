@@ -5,6 +5,7 @@ import classNames from 'classnames';
 useMetadata({
 	isAttachedToShadowDom: false,
 	component: {
+		// MS Power Apps
 		includeIcon: false,
 		properties: []
 	}

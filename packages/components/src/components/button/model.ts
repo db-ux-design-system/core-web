@@ -7,7 +7,7 @@ import {
 	IconState
 } from '../../shared/model';
 
-// TODO: 👇 Find a way to make react-docgen work withouth duplicating the types below
+// TODO: 👇 Find a way to make react-docgen work without duplicating the types below
 enum buttonVariants {
 	'outlined' = 'outlined',
 	'primary' = 'primary',
