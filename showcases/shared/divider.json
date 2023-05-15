@@ -15,7 +15,7 @@
 				"props": {}
 			},
 			{
-				"name": "expressive (Default)",
+				"name": "expressive",
 				"style": { "width": "200px" },
 				"className": "db-ui-expressive",
 				"props": {}
