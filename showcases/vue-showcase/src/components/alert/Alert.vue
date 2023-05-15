@@ -24,9 +24,6 @@ const log = (exampleName: string) => {
 				@click="log(exampleName)"
 			>
 				{{ exampleName }}
-				<span v-if="exampleProps.slotLink" slot="link">{{
-					exampleProps.slotLink
-				}}</span>
 			</DBAlert>
 		</template>
 	</DefaultComponent>

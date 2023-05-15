@@ -82,62 +82,40 @@ export default function DBAlert(props: DBAlertProps) {
 				className="db-alert-icon"
 				icon={state.getIcon(props.icon, props.variant)}
 			/>
-			<div class="db-alert-content-container">
-				<div class="db-alert-headline-container">
-					<Show when={props.headline}>
-						<strong>{props.headline}</strong>
-					</Show>
-					<Show when={!props.headline}>
-						<span>{props.children}</span>
-					</Show>
-					<div class="db-alert-close-container">
-						<DBLink
-							className="db-alert-headline-link"
-							variant="inline"
-							href={props.link?.href}
-							target={props.link?.target}
-							rel={props.link?.rel}
-							role={props.link?.role}
-							disabled={props.link?.disabled}
-							selected={props.link?.selected}
-							label={props.link?.label}
-							hreflang={props.link?.hreflang}
-							current={props.link?.current}>
-							<Slot name="link" />
-						</DBLink>
-						<Show when={props.behaviour !== 'permanent'}>
-							<DBButton
-								id={props.closeButtonId}
-								icon="close"
-								variant="text"
-								size="small"
-								noText
-								onClick={(event) => state.handleClick(event)}>
-								{props.closeButtonText ?? DEFAULT_CLOSE_BUTTON}
-							</DBButton>
-						</Show>
-					</div>
-				</div>
 
-				<Show when={props.headline}>
-					<span>{props.children}</span>
-				</Show>
+			<Show when={props.headline}>
+				<strong class="db-alert-headline">{props.headline}</strong>
+			</Show>
+			<span class="db-alert-content">{props.children}</span>
 
+			<Show when={props.link}>
 				<DBLink
-					className="db-alert-content-link"
+					className="db-alert-link"
 					variant="inline"
-					href={props.link?.href}
-					target={props.link?.target}
-					rel={props.link?.rel}
-					role={props.link?.role}
-					disabled={props.link?.disabled}
-					selected={props.link?.selected}
-					label={props.link?.label}
-					hreflang={props.link?.hreflang}
-					current={props.link?.current}>
-					<Slot name="link" />
-				</DBLink>
-			</div>
+					href={props.link.href}
+					target={props.link.target}
+					rel={props.link.rel}
+					role={props.link.role}
+					disabled={props.link.disabled}
+					selected={props.link.selected}
+					label={props.link.label}
+					hreflang={props.link.hreflang}
+					current={props.link.current}
+					text={props.link.text}
+				/>
+			</Show>
+			<Show when={props.behaviour !== 'permanent'}>
+				<DBButton
+					className="db-alert-close"
+					id={props.closeButtonId}
+					icon="close"
+					variant="text"
+					size="small"
+					noText
+					onClick={(event) => state.handleClick(event)}>
+					{props.closeButtonText ?? DEFAULT_CLOSE_BUTTON}
+				</DBButton>
+			</Show>
 		</div>
 	);
 }

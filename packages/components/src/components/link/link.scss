@@ -2,14 +2,21 @@
 
 @use "@db-ui/foundations/build/scss/body-styles" as *;
 @use "@db-ui/foundations/build/scss/variables" as *;
+@use "@db-ui/foundations/build/scss/variables.global" as *;
 @use "@db-ui/foundations/build/scss/scaling-placeholder" as *;
 @use "@db-ui/foundations/build/scss/color-placeholder" as *;
 @use "@db-ui/foundations/build/scss/helpers/functions" as *;
 @use "@db-ui/foundations/build/scss/icon/icons.helpers" as *;
 @use "@db-ui/foundations/build/scss/helpers/component" as *;
 
+%db-link-height {
+	display: inline-block;
+	height: $db-sizing-sm;
+}
+
 .db-link {
 	@extend %default-color;
+	@extend %db-link-height;
 	width: fit-content;
 	align-items: center;
 
@@ -20,6 +27,11 @@
 
 	// Changing color on hover should be animated by a transition
 	transition: outline 0.06s, color $db-transition-color;
+
+	a {
+		// Workaround for angular
+		@extend %db-link-height;
+	}
 
 	&:hover {
 		color: inherit;
