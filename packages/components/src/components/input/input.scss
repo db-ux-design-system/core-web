@@ -147,7 +147,7 @@
 	}
 
 	.icon-after,
-		// angular specific nesting
+	// angular specific nesting
 	dbicon.icon-after > .db-icon,
 	&:has(> datalist)::after {
 		right: 0;
