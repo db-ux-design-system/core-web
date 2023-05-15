@@ -10,7 +10,7 @@
 @use "@db-ui/foundations/build/scss/helpers/component" as *;
 
 %db-link-height {
-	display: block;
+	display: inline-block;
 	height: $db-sizing-sm;
 }
 

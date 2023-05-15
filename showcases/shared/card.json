@@ -1,5 +1,31 @@
 [
 	{
+		"name": "Tonality",
+		"examples": [
+			{
+				"name": "functional",
+				"className": "db-ui-functional",
+				"props": {
+					"spacing": "small"
+				}
+			},
+			{
+				"name": "regular (Default)",
+				"className": "db-ui-regular",
+				"props": {
+					"spacing": "small"
+				}
+			},
+			{
+				"name": "expressive",
+				"className": "db-ui-expressive",
+				"props": {
+					"spacing": "small"
+				}
+			}
+		]
+	},
+	{
 		"name": "ColorVariant",
 		"examples": [
 			{
