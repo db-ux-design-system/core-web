@@ -32,7 +32,7 @@ jobs:
           path: output
 
       - name: 🖨 Copy Power Apps
-        run: npm run copy:power-apps
+        run: npm run postbuild:02_components
 
       - name: 🔨 Build Power Apps
         env:
