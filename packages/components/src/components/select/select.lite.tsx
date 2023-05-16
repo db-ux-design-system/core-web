@@ -104,6 +104,7 @@ export default function DBSelect(props: DBSelectProps) {
 				</Show>
 				{/* Required has to be true to use floating label */}
 				<select
+					{/* is used in css to check if value is set */}
 					data-value={state._value}
 					ref={component}
 					aria-invalid={props.invalid}
