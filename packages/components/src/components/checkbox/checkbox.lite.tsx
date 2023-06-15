@@ -90,27 +90,26 @@ export default function DBCheckbox(props: DBCheckboxProps) {
 	});
 	// jscpd:ignore-end
 
+	// TODO we have to check how to update on every change..
 	onUpdate(() => {
-		if (
-			(props.checked || props.indeterminate) &&
-			state.initialized &&
-			document &&
-			state._id
-		) {
+		if (state.initialized && document && state._id) {
 			const checkboxElement = document?.getElementById(
 				state._id
 			) as HTMLInputElement;
 			if (checkboxElement) {
-				if (props.checked) {
-					checkboxElement.checked = true;
-				}
-				if (props.indeterminate) {
+				if (
+					props.indeterminate === true ||
+					props.indeterminate === false
+				) {
+					// When indeterminate is set, the value of the checked prop only impacts the form submitted values.
+					// It has no accessibility or UX implications. (https://mui.com/material-ui/react-checkbox/)
 					checkboxElement.indeterminate = props.indeterminate;
 				}
-				state.initialized = false;
+				// TODO why do we set this here?
+				// state.initialized = false;
 			}
 		}
-	}, [state.initialized]);
+	}, [state.initialized, props.indeterminate]);
 
 	return (
 		<>

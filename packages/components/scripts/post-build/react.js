@@ -23,10 +23,6 @@ module.exports = (tmp) => {
 				{
 					from: `export default DB${upperComponentName};`,
 					to: `const DB${upperComponentName} = forwardRef(DB${upperComponentName}Fn);\nexport default DB${upperComponentName};`
-				},
-				{
-					from: `checked={props.checked}`,
-					to: `defaultChecked={props.checked}`
 				}
 			];
 

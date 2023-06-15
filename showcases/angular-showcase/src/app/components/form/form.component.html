@@ -39,10 +39,26 @@
 				</ul>
 				<p>Checkbox:</p>
 				<db-checkbox
-					(change)="checkbox = $event.target.checked"
 					name="checkbox"
 					label="Checkbox"
+					[checked]="checked[0] && checked[1]"
+					[indeterminate]="false"
+					(change)="handleChange1($event)"
 				></db-checkbox>
+				<fieldset>
+					<db-checkbox
+						[checked]="false"
+						(change)="handleChange2($event)"
+						name="checkbox2"
+						label="Checkbox"
+					></db-checkbox>
+					<db-checkbox
+						[checked]="false"
+						(change)="handleChange3($event)"
+						name="checkbox3"
+						label="Checkbox"
+					></db-checkbox>
+				</fieldset>
 				<p>DBSelect:</p>
 				<db-select
 					[value]="select"

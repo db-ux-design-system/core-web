@@ -9,6 +9,8 @@ export class FormComponent {
 	array = ['X', 'Y', 'Z'];
 	radio = '';
 	tags: string[] = [];
+	// fieldset checkbox state
+	checked = [true, true];
 
 	select = '';
 	checkbox = '';
@@ -24,6 +26,20 @@ export class FormComponent {
 		this.tags = this.tags.includes(tag)
 			? this.tags.filter((t) => t !== tag)
 			: [...this.tags, tag];
+	};
+
+	// checkbox changes
+	handleChange1 = (event?: any) => {
+		console.log(event);
+		this.checked = [event.target.checked, event.target.checked];
+	};
+
+	handleChange2 = (event: any) => {
+		this.checked = [event.target.checked, this.checked[1]];
+	};
+
+	handleChange3 = (event: any) => {
+		this.checked = [this.checked[0], event.target.checked];
 	};
 
 	showValues(): void {

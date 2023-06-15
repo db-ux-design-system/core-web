@@ -20,7 +20,8 @@ $font-size-height: calc(var(--db-base-font-size) * var(--db-base-line-height));
 	aspect-ratio: 1;
 
 	border: max(calc(#{$font-size-height} / 16 + 0.5px), 2px) solid currentColor;
-	border-radius: $default-border-radius;
+	// TODO update foundations
+	border-radius: to-rem(2.5);
 
 	display: inline-flex;
 	height: $font-size-height;
