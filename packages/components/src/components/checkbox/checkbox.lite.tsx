@@ -97,6 +97,11 @@ export default function DBCheckbox(props: DBCheckboxProps) {
 				state._id
 			) as HTMLInputElement;
 			if (checkboxElement) {
+				// in angular this must be set via native element
+				if (props.checked) {
+					checkboxElement.checked = true;
+				}
+
 				if (
 					props.indeterminate === true ||
 					props.indeterminate === false

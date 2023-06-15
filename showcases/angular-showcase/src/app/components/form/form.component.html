@@ -42,18 +42,18 @@
 					name="checkbox"
 					label="Checkbox"
 					[checked]="checked[0] && checked[1]"
-					[indeterminate]="false"
+					[indeterminate]="checked[0] !== checked[1]"
 					(change)="handleChange1($event)"
 				></db-checkbox>
 				<fieldset>
 					<db-checkbox
-						[checked]="false"
+						[checked]="checked[0]"
 						(change)="handleChange2($event)"
 						name="checkbox2"
 						label="Checkbox"
 					></db-checkbox>
 					<db-checkbox
-						[checked]="false"
+						[checked]="checked[1]"
 						(change)="handleChange3($event)"
 						name="checkbox3"
 						label="Checkbox"
