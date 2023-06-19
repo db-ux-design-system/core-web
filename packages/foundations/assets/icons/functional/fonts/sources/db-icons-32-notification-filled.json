@@ -1,0 +1,93 @@
+{
+	"IcoMoonType": "selection",
+	"icons": [
+		{
+			"icon": {
+				"paths": [
+					"M64 832c0-16.544 3.296-32 11.104-46.464l350.176-669.856c16.916-31.001 49.277-51.68 86.468-51.68 0.089 0 0.177 0 0.266 0l-0.014-0c36.224 0 69.44 19.584 86.72 51.68l350.176 669.856c7.808 14.464 11.104 29.92 11.104 46.464 0 55.52-40.64 96-96 96h-699.424c-55.456 0-100.576-40.64-100.576-96zM467.52 755.072c0 23.808 20.672 44.48 44.48 44.48 24.493-0.18 44.3-19.987 44.48-44.463l0-0.017c0.001-0.095 0.001-0.208 0.001-0.321 0-24.389-19.771-44.16-44.16-44.16-0.113 0-0.226 0-0.338 0.001l0.017-0c-24.493 0.18-44.3 19.987-44.48 44.463l-0 0.017zM480 615.52c0 18.624 13.376 31.936 32 31.936s32-13.312 32-31.936v-311.52c0-18.624-13.376-34.496-32-34.496s-32 15.872-32 34.496v311.52z"
+				],
+				"attrs": [{}],
+				"isMulticolor": false,
+				"isMulticolor2": false,
+				"tags": ["db_ic_warning_solid_32"],
+				"grid": 0
+			},
+			"attrs": [{}],
+			"properties": {
+				"order": 191,
+				"id": 0,
+				"name": "db_ic_warning_solid_32",
+				"prevSize": 32,
+				"code": 9888
+			},
+			"setIdx": 0,
+			"setId": 0,
+			"iconIdx": 0
+		},
+		{
+			"icon": {
+				"paths": [
+					"M512 64c247.008 0 448 200.992 448 448s-200.992 448-448 448-448-200.992-448-448 200.992-448 448-448zM512 747.008c24 0 43.008-20 43.008-43.008s-19.008-43.008-43.008-43.008-43.008 19.008-43.008 43.008 20 43.008 43.008 43.008zM512 256c-17.984 0-32 13.984-32 32v280c0 19.008 15.008 32 32 32s32-13.984 32-32v-280c0-18.016-13.984-32-32-32z"
+				],
+				"attrs": [{}],
+				"isMulticolor": false,
+				"isMulticolor2": false,
+				"tags": ["db_ic_error_solid_32"],
+				"grid": 0
+			},
+			"attrs": [{}],
+			"properties": {
+				"order": 190,
+				"id": 1,
+				"name": "db_ic_error_solid_32",
+				"prevSize": 32,
+				"code": 921891
+			},
+			"setIdx": 0,
+			"setId": 0,
+			"iconIdx": 1
+		}
+	],
+	"height": 1024,
+	"metadata": {
+		"name": "db-icons",
+		"url": "https://db.de/db-ui",
+		"designerURL": "https://marketingportal.extranet.deutschebahn.com/de/icons-2"
+	},
+	"preferences": {
+		"showGlyphs": true,
+		"showCodes": true,
+		"showQuickUse": true,
+		"showQuickUse2": true,
+		"showSVGs": true,
+		"fontPref": {
+			"prefix": "icon-",
+			"metadata": {
+				"fontFamily": "db-icons",
+				"majorVersion": 1,
+				"minorVersion": 0,
+				"designerURL": "https://marketingportal.extranet.deutschebahn.com/de/icons-2",
+				"fontURL": "https://db.de/db-ui"
+			},
+			"metrics": { "emSize": 1024, "baseline": 6.25, "whitespace": 50 },
+			"embed": false,
+			"noie8": true,
+			"ie7": false,
+			"showSelector": true,
+			"showMetrics": true,
+			"showMetadata": true
+		},
+		"imagePref": {
+			"prefix": "icon-",
+			"png": true,
+			"useClassSelector": true,
+			"color": 0,
+			"bgColor": 16777215,
+			"name": "icomoon",
+			"classSelector": ".icon"
+		},
+		"historySize": 50,
+		"gridSize": 16,
+		"showGrid": true
+	}
+}

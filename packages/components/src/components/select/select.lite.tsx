@@ -81,7 +81,7 @@ export default function DBSelect(props: DBSelectProps) {
 	});
 
 	onMount(() => {
-		state._id = props.id ? props.id : 'select-' + uuid();
+		state._id = props.id || 'select-' + uuid();
 
 		if (props.value) {
 			state._value = props.value;

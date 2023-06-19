@@ -39,7 +39,8 @@
 		"showcases/vue-showcase/src/components/form/Form.vue",
 		"packages/components/src/components/**/*.spec.tsx",
 		"packages/components/src/components/tag/tag.spec.tsx",
-		"**/**config.ts"
+		"**/**config.ts",
+		"packages/foundations/assets/icons/functional/fonts/sources/*.json"
 	],
 	"absolute": true
 }

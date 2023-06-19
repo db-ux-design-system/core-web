@@ -104,7 +104,7 @@ export default function DBTag(props: DBTagProps) {
 
 	onMount(() => {
 		state.initialized = true;
-		state._id = props.id ? props.id : 'tag-' + uuid();
+		state._id = props.id || 'tag-' + uuid();
 		if (props.stylePath) {
 			state.stylePath = props.stylePath;
 		}

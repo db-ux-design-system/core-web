@@ -15,6 +15,7 @@ const showAlert = (exampleName: string) => {
 			#example="{ exampleIndex, variantIndex, exampleName, exampleProps }"
 		>
 			<DBTag
+				:name="exampleProps.name"
 				:variant="exampleProps.variant"
 				:disabled="exampleProps.disabled"
 				:icon="exampleProps.icon"

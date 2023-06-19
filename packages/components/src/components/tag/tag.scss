@@ -152,13 +152,18 @@
 			overflow: hidden;
 		}
 
-		// TODO: Clarify whether this is necessary, as it should be defined globally already
-		&::before {
-			&[data-icon] {
-				--icon-font-family: var(--db-base-icon-font-family);
-				--icon-font-size: var(--db-base-icon-font-size);
+		&[data-icon] {
+			--icon-margin-after: #{$db-spacing-fixed-3xs};
+
+			&::before {
+				vertical-align: top;
 			}
 		}
+	}
+
+	.db-button[data-size="small"] {
+		border-radius: to-rem(3);
+		height: 100%;
 	}
 
 	&[data-disabled="true"] {

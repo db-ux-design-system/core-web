@@ -15,7 +15,8 @@ const getTag = ({
 	behaviour,
 	type,
 	label,
-	removeButton
+	removeButton,
+	name
 }: DBTagProps) => (
 	<DBTag
 		variant={variant}
@@ -28,6 +29,7 @@ const getTag = ({
 		label={label}
 		overflow={overflow}
 		removeButton={removeButton}
+		name={name}
 		onRemove={() => {
 			// eslint-disable-next-line no-alert
 			alert(children.toString());

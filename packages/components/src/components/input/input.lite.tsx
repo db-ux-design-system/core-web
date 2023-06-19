@@ -102,10 +102,8 @@ export default function DBInput(props: DBInputProps) {
 	});
 
 	onMount(() => {
-		state._id = props.id ? props.id : 'input-' + uuid();
-		state._dataListId = props.dataListId
-			? props.dataListId
-			: `datalist-${state._id}`;
+		state._id = props.id || 'input-' + uuid();
+		state._dataListId = props.dataListId || `datalist-${uuid()}`;
 
 		if (props.stylePath) {
 			state.stylePath = props.stylePath;
@@ -137,11 +135,13 @@ export default function DBInput(props: DBInputProps) {
 				aria-invalid={props.invalid}
 				maxLength={props.maxLength}
 				minLength={props.minLength}
+				max={props.max}
+				min={props.min}
 				pattern={props.pattern}
 				onChange={(event) => state.handleChange(event)}
 				onBlur={(event) => state.handleBlur(event)}
 				onFocus={(event) => state.handleFocus(event)}
-				list={state._dataListId}
+				list={props.dataList && state._dataListId}
 			/>
 			<label
 				htmlFor={state._id}

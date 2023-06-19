@@ -1,0 +1,70 @@
+{
+	"IcoMoonType": "selection",
+	"icons": [
+		{
+			"icon": {
+				"paths": [
+					"M768 153.6c84.829 0.002 153.597 68.77 153.597 153.6 0 39.409-14.841 75.352-39.24 102.543l0.127-0.143c24.32 27.136 39.117 63.027 39.117 102.4s-14.848 75.264-39.168 102.4c24.371 27.136 39.168 63.078 39.168 102.4 0 81.818-65.792 153.6-153.6 154.931l-512-1.331c-84.829-0.002-153.597-68.77-153.597-153.6 0-39.409 14.841-75.352 39.24-102.543l-0.127 0.143c-24.272-26.972-39.117-62.847-39.117-102.189 0-0.074 0-0.149 0-0.223l-0 0.012c0-39.322 14.797-75.264 39.117-102.4-24.272-26.972-39.117-62.847-39.117-102.189 0-0.074 0-0.149 0-0.223l-0 0.012c0-81.818 65.536-153.6 153.6-153.6zM256 665.6c-28.277 0-51.2 22.923-51.2 51.2s22.923 51.2 51.2 51.2v0h512c28.277 0 51.2-22.923 51.2-51.2v0c0-26.266-20.634-51.2-51.2-51.2zM256 460.8c-28.277 0-51.2 22.923-51.2 51.2v0c0 26.266 21.862 51.2 51.2 51.2h512c28.277 0 51.2-22.923 51.2-51.2v0c0-26.266-19.558-49.562-51.2-51.2zM256 256c-28.277 0-51.2 22.923-51.2 51.2v0c0 26.266 22.016 51.2 51.2 51.2h512c28.277 0 51.2-22.923 51.2-51.2s-22.923-51.2-51.2-51.2v0z"
+				],
+				"attrs": [{}],
+				"isMulticolor": false,
+				"isMulticolor2": false,
+				"grid": 0,
+				"tags": ["db_ic_database_20"]
+			},
+			"attrs": [{}],
+			"properties": {
+				"order": 170,
+				"id": 0,
+				"name": "db_ic_database_20",
+				"prevSize": 32,
+				"code": 921985
+			},
+			"setIdx": 0,
+			"setId": 1,
+			"iconIdx": 0
+		}
+	],
+	"height": 1024,
+	"metadata": {
+		"name": "db-icons",
+		"url": "https://db.de/db-ui",
+		"designerURL": "https://marketingportal.extranet.deutschebahn.com/de/icons-2"
+	},
+	"preferences": {
+		"showGlyphs": true,
+		"showCodes": true,
+		"showQuickUse": true,
+		"showQuickUse2": true,
+		"showSVGs": true,
+		"fontPref": {
+			"prefix": "icon-",
+			"metadata": {
+				"fontFamily": "db-icons",
+				"majorVersion": 1,
+				"minorVersion": 0,
+				"designerURL": "https://marketingportal.extranet.deutschebahn.com/de/icons-2",
+				"fontURL": "https://db.de/db-ui"
+			},
+			"metrics": { "emSize": 1024, "baseline": 6.25, "whitespace": 50 },
+			"embed": false,
+			"noie8": true,
+			"ie7": false,
+			"showSelector": true,
+			"showMetrics": true,
+			"showMetadata": true
+		},
+		"imagePref": {
+			"prefix": "icon-",
+			"png": true,
+			"useClassSelector": true,
+			"color": 0,
+			"bgColor": 16777215,
+			"name": "icomoon",
+			"classSelector": ".icon"
+		},
+		"historySize": 50,
+		"gridSize": 16,
+		"showGrid": true
+	}
+}

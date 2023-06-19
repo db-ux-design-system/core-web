@@ -68,7 +68,7 @@ export default function DBDrawer(props: DBDrawerProps) {
 	});
 
 	onMount(() => {
-		state._id = props.id ? props.id : 'drawer-' + uuid();
+		state._id = props.id || 'drawer-' + uuid();
 		if (props.stylePath) {
 			state.stylePath = props.stylePath;
 		}

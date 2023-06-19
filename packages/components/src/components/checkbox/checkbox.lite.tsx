@@ -82,7 +82,7 @@ export default function DBCheckbox(props: DBCheckboxProps) {
 
 	onMount(() => {
 		state.initialized = true;
-		state._id = props.id ? props.id : 'checkbox-' + uuid();
+		state._id = props.id || 'checkbox-' + uuid();
 
 		if (props.stylePath) {
 			state.stylePath = props.stylePath;

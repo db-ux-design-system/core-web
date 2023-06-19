@@ -120,6 +120,7 @@ $spacings: (
 		height: 100%;
 		width: 100%;
 		position: fixed;
+		box-shadow: $db-elevation-4;
 
 		&:not([data-width="full"]) {
 			max-width: var(
@@ -160,12 +161,6 @@ $spacings: (
 			&:not(:has(> :nth-child(1))) {
 				display: none;
 			}
-		}
-	}
-
-	&[data-backdrop="false"] {
-		.db-drawer-container {
-			box-shadow: $db-elevation-4;
 		}
 	}
 
