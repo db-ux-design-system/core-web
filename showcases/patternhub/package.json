@@ -22,7 +22,7 @@
     "start": "npm-run-all generate copy next:start"
   },
   "dependencies": {
-    "@code-hike/mdx": "^0.8.3",
+    "@code-hike/mdx": "^0.9.0",
     "@db-ui/react-elements": "^0.24.3",
     "next": "13.4.6",
     "react": "18.2.0",
