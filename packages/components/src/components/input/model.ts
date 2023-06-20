@@ -13,14 +13,14 @@ import {
 	IconProps,
 	IconState,
 	DefaultVariantProps,
-	KeyValueType
+	KeyValueType,
+	IconAfterProps
 } from '../../shared/model';
 
 export type DBInputDefaultProps = {
 	dataList?: KeyValueType[];
 	dataListId?: string;
 	description?: string;
-	iconAfter?: string;
 	type?:
 		| 'text'
 		| 'search'
@@ -45,6 +45,7 @@ export type DBInputProps = DBInputDefaultProps &
 	ValidEventProps &
 	FormProps &
 	IconProps &
+	IconAfterProps &
 	DefaultVariantProps;
 
 export type DBInputDefaultState = {

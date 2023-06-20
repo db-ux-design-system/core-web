@@ -1,3 +1,5 @@
+import NavigationItemComponent from '../components/navigation-item';
+
 import CheckboxComponent from '../components/checkbox';
 import TagComponent from '../components/tag';
 import DrawerComponent from '../components/drawer';
@@ -21,6 +23,12 @@ export type NavigationItem = {
 	home?: boolean;
 };
 export const NAVIGATION_ITEMS: NavigationItem[] = [
+	{
+		path: 'navigation-item',
+		label: 'NavigationItem',
+		component: <NavigationItemComponent />
+	},
+
 	{ path: 'checkbox', label: 'Checkbox', component: <CheckboxComponent /> },
 	{ path: 'divider', label: 'Divider', component: <DividerComponent /> },
 	{ path: 'tag', label: 'Tag', component: <TagComponent /> },

@@ -13,10 +13,12 @@
 		</db-brand>
 		<nav class="desktop-navigation" desktop-navigation>
 			<ul>
-				<li *ngFor="let item of navigationItems; index as i">
-					<a [routerLink]="item.path" queryParamsHandling="merge">{{
-						item.label
-					}}</a>
+				<li *ngFor="let item of navigationItems">
+					<a [routerLink]="item.path" queryParamsHandling="merge">
+						<db-navigation-item>{{
+							item.label
+						}}</db-navigation-item></a
+					>
 				</li>
 			</ul>
 		</nav>

@@ -1,0 +1,51 @@
+@use "@db-ui/foundations/build/scss/variables" as *;
+@use "@db-ui/foundations/build/scss/variables.global" as *;
+@use "@db-ui/foundations/build/scss/helpers/component" as *;
+@use "@db-ui/foundations/build/scss/color/color-variants" as *;
+
+.db-navigation-item {
+	display: inline-flex;
+
+	&[data-width="full"] {
+		width: 100%;
+	}
+}
+
+.db-navigation-item-button {
+	@extend %default-interactive-component;
+	@extend %default-background-transition;
+	@extend %bg-transparent-interactive;
+	@extend %transparent-border;
+
+	border-radius: $default-card-border-radius;
+	padding: $db-spacing-fixed-xs $db-spacing-fixed-sm;
+	white-space: nowrap; // we don't want to break
+	display: inline-flex;
+	justify-content: center;
+	text-align: center;
+	align-items: center; // Centering the content vertically and horizontally
+
+	&::before {
+		margin-inline-end: $db-spacing-fixed-sm;
+	}
+
+	&::after {
+		margin-inline-start: $db-spacing-fixed-sm;
+	}
+
+	&[data-active="true"] {
+		font-weight: 700;
+	}
+
+	&[data-width="full"] {
+		width: 100%;
+
+		&::after {
+			margin-inline-start: auto;
+		}
+	}
+
+	&:disabled {
+		opacity: $default-opacity;
+	}
+}

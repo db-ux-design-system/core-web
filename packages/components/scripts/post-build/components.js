@@ -17,6 +17,10 @@
  */
 const getComponents = () => [
 	{
+		name: 'navigation-item'
+	},
+
+	{
 		name: 'select'
 	},
 

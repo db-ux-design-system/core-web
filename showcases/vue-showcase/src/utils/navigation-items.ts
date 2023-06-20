@@ -1,3 +1,5 @@
+import NavigationItem from '../components/navigation-item/NavigationItem.vue';
+
 import Select from '../components/select/Select.vue';
 
 import Tag from '../components/tag/Tag.vue';
@@ -15,6 +17,12 @@ import Card from '../components/card/Card.vue';
 import Drawer from '../components/drawer/Drawer.vue';
 
 export const navigationItems: any[] = [
+	{
+		path: '/navigation-item',
+		label: 'NavigationItem',
+		component: NavigationItem
+	},
+
 	{ path: '/tag', label: 'Tag', component: Tag },
 	{ path: '/', label: 'Home', component: Form },
 	{ path: '/divider', label: 'Divider', component: Divider },
