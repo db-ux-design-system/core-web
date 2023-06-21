@@ -44,7 +44,6 @@ const updateVModelBindings = (input, bindings) => {
 	return fileContent
 		.split('\n')
 		.map((line) => {
-
 			return line.replace('// VUE:', '');
 		})
 		.join('\n');
@@ -99,7 +98,17 @@ module.exports = (tmp) => {
 				});
 			}
 
-			runReplacements([], component, 'vue', vueFile);
+			runReplacements(
+				[
+					{
+						from: 'immediate: true,',
+						to: 'immediate: true,\nflush: "post"'
+					}
+				],
+				component,
+				'vue',
+				vueFile
+			);
 		} catch (error) {
 			console.error('Error occurred:', error);
 		}

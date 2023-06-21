@@ -40,6 +40,7 @@
 		"packages/components/src/components/**/*.spec.tsx",
 		"packages/components/src/components/tag/tag.spec.tsx",
 		"**/**config.ts",
+		"**/navigation-items.ts",
 		"packages/foundations/assets/icons/functional/fonts/sources/*.json"
 	],
 	"absolute": true

@@ -3,7 +3,9 @@ import {
 	DBPage,
 	DBHeader,
 	DBBrand,
-	DBNavigationItem
+	DBNavigationItem,
+	DBSubNavigation,
+	DBMainNavigation
 } from "../../../output/vue/vue3/src";
 import {
 	COLOR,
@@ -13,10 +15,14 @@ import {
 	COLOR_CONST,
 	TONALITY_CONST
 } from "../../../packages/components/src/shared/constants";
-import { getSortedNavigationItems } from "./utils/navigation-items";
+import {
+	getSortedNavigationItems,
+	navigationItems
+} from "./utils/navigation-items";
 
 import { ref, watch } from "vue";
 import { useRouter, useRoute } from "vue-router";
+import NavItemComponent from "./NavItemComponent.vue";
 
 const router = useRouter();
 const route = useRoute();
@@ -58,6 +64,8 @@ watch(
 		}
 	}
 );
+
+const sortedNavigation = getSortedNavigationItems(navigationItems);
 </script>
 
 <template>
@@ -77,17 +85,19 @@ watch(
 					</DBBrand>
 				</template>
 				<template v-slot:desktop-navigation>
-					<nav class="desktop-navigation">
-						<ul>
-							<li v-for="item of getSortedNavigationItems()">
-								<router-link :to="item.path">
-									<DBNavigationItem>
-										{{ item.label }}
-									</DBNavigationItem>
-								</router-link>
-							</li>
-						</ul>
-					</nav>
+					<DBMainNavigation>
+						<template v-for="item of sortedNavigation">
+							<router-link v-if="item.component" :to="item.path">
+								<NavItemComponent
+									:navItem="item"
+								></NavItemComponent>
+							</router-link>
+							<NavItemComponent
+								v-if="!item.component"
+								:navItem="item"
+							></NavItemComponent>
+						</template>
+					</DBMainNavigation>
 				</template>
 
 				<template v-slot:meta-navigation>

@@ -22,7 +22,12 @@
 @use "../components/select/select" as *;
 @use "../components/navigation-item/navigation-item" as *;
 
+@use "../components/main-navigation/main-navigation" as *;
+
 // angular-workaround
+
+dbmain-navigation,
+db-main-navigation,
 dbnavigation-item,
 db-navigation-item,
 dbtag,
