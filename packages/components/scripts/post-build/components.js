@@ -17,6 +17,14 @@
  */
 const getComponents = () => [
 	{
+		name: 'sub-navigation'
+	},
+
+	{
+		name: 'main-navigation'
+	},
+
+	{
 		name: 'navigation-item'
 	},
 
@@ -33,12 +41,6 @@ const getComponents = () => [
 					to: 'const dialogRef = useRef<HTMLDialogElement>(component);'
 				}
 			],
-			vue: [
-				{
-					from: 'immediate: true,',
-					to: 'immediate: true,\nflush: "post"'
-				}
-			],
 			webComponents: [{ from: '__prev.find', to: '!!__prev.find' }]
 		}
 	},
@@ -52,14 +54,6 @@ const getComponents = () => [
 
 	{
 		name: 'checkbox',
-		overwrites: {
-			vue: [
-				{
-					from: 'immediate: true,',
-					to: 'immediate: true,\nflush: "post"'
-				}
-			]
-		},
 		config: {
 			vue: {
 				vModel: [{ modelValue: 'checked', binding: ':checked' }]
@@ -69,14 +63,6 @@ const getComponents = () => [
 
 	{
 		name: 'radio',
-		overwrites: {
-			vue: [
-				{
-					from: 'immediate: true,',
-					to: 'immediate: true,\nflush: "post"'
-				}
-			]
-		},
 		config: {
 			vue: {
 				vModel: [{ modelValue: 'checked', binding: ':checked' }]

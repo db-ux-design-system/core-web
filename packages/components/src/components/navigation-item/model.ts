@@ -6,6 +6,7 @@ import {
 	IconAfterProps,
 	IconProps,
 	IconState,
+	InitializedState,
 	WidthProps
 } from '../../shared/model';
 
@@ -28,6 +29,10 @@ export interface DBNavigationItemDefaultProps {
 	 * Use an icon button here for additional actions.
 	 */
 	action?: DBNavigationItemActionProps & IconProps & ClickEventProps;
+
+	slotSubNavigation?: any;
+
+	isMainMenuItem?: boolean;
 }
 
 export type DBNavigationItemProps = DBNavigationItemDefaultProps &
@@ -39,9 +44,12 @@ export type DBNavigationItemProps = DBNavigationItemDefaultProps &
 
 export interface DBNavigationItemDefaultState {
 	handleActionClick: (event: any) => void;
+	hasAreaPopup: boolean;
+	subNavigationId: string;
 }
 
 export type DBNavigationItemState = DBNavigationItemDefaultState &
 	ClickEventState &
 	GlobalState &
-	IconState;
+	IconState &
+	InitializedState;

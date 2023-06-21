@@ -20,7 +20,8 @@ import {
 	DBSelectModule,
 	DBDrawerModule,
 	DBTagModule,
-	DBNavigationItemModule
+	DBNavigationItemModule,
+	DBMainNavigationModule
 } from '../../../../output/angular/src';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app.routing.module';
@@ -40,6 +41,7 @@ import { TagComponent } from './components/tag/tag.component';
 import { DrawerComponent } from './components/drawer/drawer.component';
 import { SelectComponent } from './components/select/select.component';
 import { NavigationItemComponent } from './components/navigation-item/navigation-item.component';
+import { NavItemComponent } from './nav-item/nav-item.component';
 
 @NgModule({
 	declarations: [
@@ -60,9 +62,11 @@ import { NavigationItemComponent } from './components/navigation-item/navigation
 		SectionComponent,
 		CardComponent,
 		DividerComponent,
-		DrawerComponent
+		DrawerComponent,
+		NavItemComponent
 	],
 	imports: [
+		DBMainNavigationModule,
 		DBNavigationItemModule,
 
 		DBTagModule,
