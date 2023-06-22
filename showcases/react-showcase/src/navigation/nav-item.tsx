@@ -1,6 +1,6 @@
 import { Link, useLocation } from 'react-router-dom';
-import { DBNavigationItem } from '../../../output/react/src';
-import type { NavigationItem } from './utils/navigation-item';
+import { DBNavigationItem } from '../../../../output/react/src';
+import type { NavigationItem } from '../utils/navigation-item';
 
 const NavItem = ({ navItem }: { navItem: NavigationItem }) => {
 	const location = useLocation();
@@ -13,15 +13,16 @@ const NavItem = ({ navItem }: { navItem: NavigationItem }) => {
 	return (
 		<DBNavigationItem
 			active={isActive}
+			backButtonText={`Back to ${navItem.label}`}
 			slotSubNavigation={
 				navItem.subNavigation && (
 					<>
 						{navItem.subNavigation
-							.map((subItem) => ({
+							.map((subItem: NavigationItem) => ({
 								...subItem,
 								path: `${navItem.path}/${subItem.path}`
 							}))
-							.map((subItem) =>
+							.map((subItem: NavigationItem) =>
 								subItem.component ? (
 									<Link
 										key={`router-path-${subItem.path}`}

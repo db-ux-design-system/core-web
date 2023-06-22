@@ -14,4 +14,8 @@ export class NavItemComponent {
 		this.navItem.path === ''
 			? this.router.url === '/'
 			: this.router.url.includes(this.navItem.path);
+
+	getBackButtonText = () => {
+		return `Back to ${this.navItem.label}`;
+	};
 }

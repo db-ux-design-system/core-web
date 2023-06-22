@@ -1,4 +1,7 @@
-<db-navigation-item [active]="isActive()">
+<db-navigation-item
+	[backButtonText]="getBackButtonText()"
+	[active]="isActive()"
+>
 	<ng-container *ngIf="navItem.subNavigation" sub-navigation>
 		<ng-container *ngFor="let item of navItem.subNavigation">
 			<a

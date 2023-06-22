@@ -18,10 +18,6 @@
  */
 const getComponents = () => [
 	{
-		name: 'sub-navigation'
-	},
-
-	{
 		name: 'main-navigation'
 	},
 

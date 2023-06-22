@@ -1,6 +1,7 @@
 @use "@db-ui/foundations/build/scss/variables" as *;
 @use "@db-ui/foundations/build/scss/variables.global" as *;
 @use "@db-ui/foundations/build/scss/helpers/functions" as *;
+@use "@db-ui/foundations/build/scss/helpers/component" as *;
 @use "@db-ui/foundations/build/scss/tonality" as *;
 
 .db-header {
@@ -11,11 +12,7 @@
 	margin-bottom: $db-spacing-fixed-2xs;
 	position: relative;
 
-	/* Mobile header should always be 56px */
-	min-height: to-rem(56);
-
-	gap: $db-spacing-fixed-md;
-	padding-inline: $db-spacing-fixed-md;
+	min-height: $default-mobile-header-height;
 
 	.db-link {
 		display: inline-block;
@@ -30,6 +27,10 @@
 	gap: $db-spacing-fixed-xs;
 	width: 100%;
 	align-items: center;
+
+	@media screen and (min-width: $db-screens-s) {
+		padding: $db-spacing-fixed-md;
+	}
 }
 
 .db-header-meta-navigation {

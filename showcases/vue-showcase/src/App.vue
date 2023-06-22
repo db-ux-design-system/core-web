@@ -104,6 +104,11 @@ const sortedNavigation = getSortedNavigationItems(navigationItems);
 						></NavItemComponent>
 					</template>
 				</DBMainNavigation>
+				<template v-slot:call-to-action>
+					<DBButton icon="search" variant="text" :no-text="true">
+						Search
+					</DBButton>
+				</template>
 				<template v-slot:action-bar>
 					<DBButton icon="account" variant="text" :no-text="true">
 						Profile

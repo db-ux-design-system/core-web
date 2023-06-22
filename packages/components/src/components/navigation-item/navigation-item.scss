@@ -12,6 +12,7 @@
 	@include get-variant-bg-color(0);
 	display: inline-flex;
 	cursor: pointer;
+	width: 100%;
 
 	position: relative;
 
@@ -28,47 +29,112 @@
 
 	.active-indicator {
 		position: absolute;
-		width: 0;
-		transition: width 0.15s $db-transition-emotional-timing;
-		left: 50%;
-		transform: translate(-50%, 0);
+		border-radius: $default-border-radius;
+
+		@media screen and (max-width: $db-screens-s) {
+			transition: height 0.15s $db-transition-emotional-timing;
+			height: 0;
+			top: 50%;
+			transform: translate(0, -50%);
+		}
+
+		@media screen and (min-width: $db-screens-s) {
+			transition: width 0.15s $db-transition-emotional-timing;
+			width: 0;
+			left: 50%;
+			transform: translate(-50%, 0);
+		}
 	}
 
 	&[data-main-menu="true"] {
 		&[aria-current="page"] {
 			& > .active-indicator {
-				border-bottom: $default-border-radius solid
-					$db-colors-primary-enabled;
-				width: 100%;
-				border-radius: $default-border-radius;
-				bottom: calc(-1 * $db-spacing-fixed-xs);
+				@media screen and (max-width: $db-screens-s) {
+					border-left: $default-border-radius solid
+						$db-colors-primary-enabled;
+					height: 100%;
+					left: calc(-1 * #{$db-spacing-fixed-xs});
+				}
+
+				@media screen and (min-width: $db-screens-s) {
+					border-bottom: $default-border-radius solid
+						$db-colors-primary-enabled;
+					width: 100%;
+					bottom: calc(-1 * #{$db-spacing-fixed-xs});
+				}
 			}
 		}
 	}
 
 	&[aria-haspopup="true"] {
-		&[data-main-menu="true"] {
+		@include icon(glyph(chevron-right), 24, "outline", "after");
+
+		&::after {
 			--icon-margin-before: auto;
-			@include icon(glyph(expand-more), 24, "outline", "after");
+		}
+
+		// show back button for mobile navigation
+		@media screen and (max-width: $db-screens-s) {
+			&:focus,
+			&:focus-within {
+				&:has([aria-haspopup="true"]:focus-within) {
+					& ~ .db-mobile-navigation-back {
+						display: none;
+					}
+				}
+
+				& ~ .db-mobile-navigation-back {
+					opacity: 1;
+					z-index: 71;
+					width: 100%;
+					padding: $db-spacing-fixed-md;
+
+					& button {
+						padding: inherit;
+						width: auto;
+					}
+				}
+			}
+		}
+
+		// sub-navigation visibility
+		&[data-main-menu="true"] {
+			@media screen and (min-width: $db-screens-s) {
+				&::after {
+					--icon-glyph: "⌄";
+				}
+			}
 
 			&:focus,
 			&:focus-within {
 				& > .db-sub-navigation {
 					visibility: visible;
-					top: 100%;
-					left: 0;
+
+					@media screen and (min-width: $db-screens-s) {
+						top: calc(100% + #{$db-spacing-fixed-md});
+					}
 				}
 			}
 		}
 
 		&:not([data-main-menu="true"]) {
-			@include icon(glyph(chevron-right), 24, "outline", "after");
+			@media screen and (max-width: $db-screens-s) {
+				&:focus,
+				&:focus-within {
+					& > .db-sub-navigation {
+						visibility: visible;
+					}
+				}
+			}
 
-			&:hover {
-				& > .db-sub-navigation {
-					visibility: visible;
-					top: calc(-100% + $db-spacing-fixed-sm);
-					left: 100%;
+			// hover sub-navigation for desktop
+			@media screen and (min-width: $db-screens-s) {
+				&:hover {
+					& > .db-sub-navigation {
+						visibility: visible;
+						top: calc(-50% + $db-spacing-fixed-xs);
+						left: 100%;
+					}
 				}
 			}
 		}
@@ -78,9 +144,14 @@
 		@include get-variant-bg-color(0.16);
 	}
 
-	&:active,
-	&:focus {
+	&:active {
 		@include get-variant-bg-color(0.24);
+	}
+
+	@media screen and (min-width: $db-screens-m) {
+		&:focus {
+			@include get-variant-bg-color(0.24);
+		}
 	}
 
 	&::before {
@@ -111,17 +182,42 @@
 @mixin desktop-card-style {
 	border-radius: $default-card-border-radius;
 	box-shadow: $db-elevation-4;
-
-	background-color: var(
-		--db-current-background-color,
-		$db-colors-neutral-bg-0-enabled
-	);
 	padding: $db-spacing-fixed-sm;
 }
 
 .db-sub-navigation {
+	margin: 0;
 	display: flex;
 	flex-direction: column;
+
+	visibility: hidden;
+	z-index: 70;
+	left: 0;
+	background-color: var(
+		--db-current-background-color,
+		$db-colors-neutral-bg-0-enabled
+	);
+
+	@media screen and (max-width: $db-screens-m) {
+		--back-container-height: calc(
+			#{$db-sizing-md} + 2 * #{$db-spacing-fixed-md}
+		);
+		padding: $db-spacing-fixed-md;
+		width: 100%;
+		position: fixed;
+		// additional 2px for border
+		bottom: calc(#{$db-sizing-md} + #{$db-spacing-fixed-xs} * 2 + 2px);
+		top: calc(
+			#{$default-mobile-header-height} + 2px + var(--back-container-height)
+		);
+	}
+
+	@media screen and (min-width: $db-screens-m) {
+		@include desktop-card-style;
+
+		position: absolute;
+		min-width: 328px; // We should get this value from UX
+	}
 
 	.db-navigation-item {
 		width: 100%;
@@ -129,15 +225,5 @@
 		&::after {
 			margin-inline-start: auto;
 		}
-	}
-
-	@media screen and (min-width: $db-screens-m) {
-		@include desktop-card-style;
-
-		min-width: 328px; // We should get this value from UX
-
-		position: absolute;
-		visibility: hidden;
-		z-index: 70;
 	}
 }

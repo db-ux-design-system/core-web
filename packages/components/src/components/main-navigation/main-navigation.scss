@@ -1,11 +1,52 @@
 @use "@db-ui/foundations/build/scss/variables" as *;
 @use "@db-ui/foundations/build/scss/variables.global" as *;
+@use "@db-ui/foundations/build/scss/helpers/functions" as *;
+@use "@db-ui/foundations/build/scss/helpers/component" as *;
 
 .db-main-navigation {
+	-webkit-tap-highlight-color: transparent; /* for removing the highlight */
+	width: 100%;
+
 	& > menu {
 		display: flex;
+		flex-direction: column;
 		padding: 0;
 		margin: 0;
 		gap: $db-spacing-fixed-sm;
+
+		@media screen and (min-width: $db-screens-s) {
+			flex-direction: row;
+		}
+	}
+}
+
+.db-mobile-navigation-back {
+	@include divider("bottom");
+	display: none;
+	//width: calc(100% - 2 * $db-spacing-fixed-md);
+	font-weight: normal;
+	background-color: var(
+		--db-current-background-color,
+		$db-colors-neutral-bg-0-enabled
+	);
+
+	@media screen and (max-width: $db-screens-m) {
+		display: flex;
+		opacity: 0;
+		position: fixed;
+		width: 0;
+		left: 0;
+		right: 0;
+		top: calc(#{$default-mobile-header-height} + 2px);
+
+		&::before {
+			left: $db-spacing-fixed-md;
+			right: $db-spacing-fixed-md;
+		}
+
+		& button {
+			padding: 0;
+			width: 0;
+		}
 	}
 }

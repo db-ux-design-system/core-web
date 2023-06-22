@@ -19,7 +19,10 @@ const isActive = (navItem: NavItem) =>
 </script>
 
 <template>
-	<DBNavigationItem :active="isActive(navItem)">
+	<DBNavigationItem
+		:backButtonText="`Back to ${navItem.label}`"
+		:active="isActive(navItem)"
+	>
 		<template v-if="navItem.subNavigation" v-slot:sub-navigation>
 			<template v-for="item of navItem.subNavigation">
 				<router-link v-if="item.component" :to="item.path">

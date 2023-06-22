@@ -1,25 +1,9 @@
-import { useState, typeChangeEvent } from 'react';
-import { Link, Outlet } from 'react-router-dom';
-import {
-	DBBrand,
-	DBButton,
-	DBHeader,
-	DBMainNavigation,
-	DBPage
-} from '../../../output/react/src';
-import {
-	COLORS,
-	TONALITIES
-} from '../../../packages/components/src/shared/constants';
-import {
-	getSortedNavigationItems,
-	NAVIGATION_ITEMS,
-	type NavigationItem
-} from './utils/navigation-item';
+import { useState } from 'react';
+import { Outlet } from 'react-router-dom';
+import { DBBrand, DBButton, DBHeader, DBPage } from '../../../output/react/src';
 import useQuery from './hooks/use-query';
 import MetaNavigation from './meta-navigation';
 import Navigation from './navigation';
-import NavItem from './nav-item';
 
 const App = () => {
 	const [tonality, setTonality, color, setColor, pageName, fullscreen] =

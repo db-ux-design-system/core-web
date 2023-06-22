@@ -278,6 +278,17 @@ export type InnerCloseButtonProps = {
 	closeButtonText?: string;
 };
 
+export type NavigationBackButtonProps = {
+	/**
+	 * The backButtonId attribute changes the id inside the back button.
+	 */
+	backButtonId?: string;
+	/**
+	 * The backButtonText attribute changes the text inside the back button.
+	 */
+	backButtonText?: string;
+};
+
 export type KeyValueType = {
 	key: string;
 	value?: string;

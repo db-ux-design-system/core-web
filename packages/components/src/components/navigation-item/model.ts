@@ -7,6 +7,7 @@ import {
 	IconProps,
 	IconState,
 	InitializedState,
+	NavigationBackButtonProps,
 	WidthProps
 } from '../../shared/model';
 
@@ -32,6 +33,8 @@ export interface DBNavigationItemDefaultProps {
 
 	slotSubNavigation?: any;
 
+	subNavigationOpen?: boolean;
+
 	isMainMenuItem?: boolean;
 }
 
@@ -40,7 +43,8 @@ export type DBNavigationItemProps = DBNavigationItemDefaultProps &
 	ClickEventProps &
 	IconProps &
 	IconAfterProps &
-	WidthProps;
+	WidthProps &
+	NavigationBackButtonProps;
 
 export interface DBNavigationItemDefaultState {
 	handleActionClick: (event: any) => void;

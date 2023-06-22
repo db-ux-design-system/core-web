@@ -11,7 +11,7 @@ import { DBNavigationItemState, DBNavigationItemProps } from './model';
 import classNames from 'classnames';
 import { DBButton } from '../button';
 import { uuid } from '../../utils';
-import { DEFAULT_ID } from '../../shared/constants';
+import { DEFAULT_BACK } from '../../shared/constants';
 
 useMetadata({
 	isAttachedToShadowDom: true,
@@ -65,7 +65,7 @@ export default function DBNavigationItem(props: DBNavigationItemProps) {
 			) as HTMLMenuElement;
 			if (subNavigationSlot) {
 				const children = subNavigationSlot.children;
-				if (children?.length > 0) {
+				if (children?.length > 1) {
 					state.hasAreaPopup = true;
 				}
 			}
@@ -80,7 +80,7 @@ export default function DBNavigationItem(props: DBNavigationItemProps) {
 			aria-haspopup={state.hasAreaPopup}
 			class={state.getClassNames('db-navigation-item', props.className)}
 			data-width={props.width}
-			tabIndex={props.tabIndex || -1}
+			tabIndex={props.tabIndex || 0}
 			data-main-menu={props.isMainMenuItem}
 			data-icon={state.iconVisible(props.icon) ? props.icon : undefined}
 			data-icon-after={
@@ -107,6 +107,14 @@ export default function DBNavigationItem(props: DBNavigationItemProps) {
 
 			<menu class="db-sub-navigation" id={state.subNavigationId}>
 				<Slot name="sub-navigation"></Slot>
+				<div class="db-mobile-navigation-back">
+					<DBButton
+						id={props.backButtonId}
+						icon="arrow-back"
+						variant="text">
+						{props.backButtonText ?? DEFAULT_BACK}
+					</DBButton>
+				</div>
 			</menu>
 
 			<div class="active-indicator" />
