@@ -77,8 +77,22 @@ export type IconProps = {
 	icon?: IconTypes;
 };
 
+export type IconAfterProps = {
+	/**
+	 * Define an icon by it's identifier (like e.g. _account_, compare to [Icons](https://db-ui.github.io/mono/review/main/foundations/icons) to get displayed in front of the elements content.
+	 */
+	iconAfter?: IconTypes;
+};
+
 export type IconState = {
 	iconVisible: (icon?: string) => boolean;
+};
+
+export type WidthProps = {
+	/**
+	 * Width of the component. Auto width based on children size, full width based on parent elements width.
+	 */
+	width?: 'full' | 'auto';
 };
 
 export type FormProps = {
@@ -126,7 +140,7 @@ export type FormState = {
 	_value?: any;
 };
 
-export type FormCheckState = {
+export type InitializedState = {
 	initialized: boolean;
 };
 

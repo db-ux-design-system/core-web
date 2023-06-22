@@ -11,6 +11,12 @@
 	margin-bottom: $db-spacing-fixed-2xs;
 	position: relative;
 
+	/* Mobile header should always be 56px */
+	min-height: to-rem(56);
+
+	gap: $db-spacing-fixed-md;
+	padding-inline: $db-spacing-fixed-md;
+
 	.db-link {
 		display: inline-block;
 	}

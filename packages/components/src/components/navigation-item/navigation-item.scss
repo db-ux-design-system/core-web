@@ -1,0 +1,143 @@
+@use "@db-ui/foundations/build/scss/variables" as *;
+@use "@db-ui/foundations/build/scss/variables.global" as *;
+@use "@db-ui/foundations/build/scss/helpers/component" as *;
+@use "@db-ui/foundations/build/scss/color/color-variants" as *;
+@use "@db-ui/foundations/build/scss/icon/icons.helpers" as *;
+
+.db-navigation-item {
+	@extend %default-interactive-component;
+	@extend %default-background-transition;
+	@extend %transparent-border;
+
+	@include get-variant-bg-color(0);
+	display: inline-flex;
+	cursor: pointer;
+
+	position: relative;
+
+	font-weight: normal;
+	border-radius: $default-card-border-radius;
+	padding: $db-spacing-fixed-xs $db-spacing-fixed-sm;
+	white-space: nowrap; // we don't want to break
+	text-align: center;
+	align-items: center; // Centering the content vertically and horizontally
+
+	& > a {
+		text-decoration: none;
+	}
+
+	.active-indicator {
+		position: absolute;
+		width: 0;
+		transition: width 0.15s $db-transition-emotional-timing;
+		left: 50%;
+		transform: translate(-50%, 0);
+	}
+
+	&[data-main-menu="true"] {
+		&[aria-current="page"] {
+			& > .active-indicator {
+				border-bottom: $default-border-radius solid
+					$db-colors-primary-enabled;
+				width: 100%;
+				border-radius: $default-border-radius;
+				bottom: calc(-1 * $db-spacing-fixed-xs);
+			}
+		}
+	}
+
+	&[aria-haspopup="true"] {
+		&[data-main-menu="true"] {
+			--icon-margin-before: auto;
+			@include icon(glyph(expand-more), 24, "outline", "after");
+
+			&:focus,
+			&:focus-within {
+				& > .db-sub-navigation {
+					visibility: visible;
+					top: 100%;
+					left: 0;
+				}
+			}
+		}
+
+		&:not([data-main-menu="true"]) {
+			@include icon(glyph(chevron-right), 24, "outline", "after");
+
+			&:hover {
+				& > .db-sub-navigation {
+					visibility: visible;
+					top: calc(-100% + $db-spacing-fixed-sm);
+					left: 100%;
+				}
+			}
+		}
+	}
+
+	&:hover {
+		@include get-variant-bg-color(0.16);
+	}
+
+	&:active,
+	&:focus {
+		@include get-variant-bg-color(0.24);
+	}
+
+	&::before {
+		margin-inline-end: $db-spacing-fixed-sm;
+	}
+
+	&::after {
+		margin-inline-start: $db-spacing-fixed-sm;
+	}
+
+	&[aria-current="page"] {
+		font-weight: 700;
+	}
+
+	&[data-width="full"] {
+		width: 100%;
+
+		&::after {
+			margin-inline-start: auto;
+		}
+	}
+
+	&[data-disabled="true"] {
+		opacity: $default-opacity;
+	}
+}
+
+@mixin desktop-card-style {
+	border-radius: $default-card-border-radius;
+	box-shadow: $db-elevation-4;
+
+	background-color: var(
+		--db-current-background-color,
+		$db-colors-neutral-bg-0-enabled
+	);
+	padding: $db-spacing-fixed-sm;
+}
+
+.db-sub-navigation {
+	display: flex;
+	flex-direction: column;
+
+	.db-navigation-item {
+		width: 100%;
+
+		&::after {
+			margin-inline-start: auto;
+		}
+	}
+
+	@media screen and (min-width: $db-screens-m) {
+		@include desktop-card-style;
+
+		min-width: 328px; // We should get this value from UX
+
+		position: absolute;
+		visibility: hidden;
+		z-index: 70;
+	}
+}
