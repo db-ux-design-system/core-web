@@ -39,7 +39,7 @@ const generateInteractiveVariants = (
     			${primaryColor ? getRBGA(primaryColor, 'hover') : ''}
 			}`;
 	return `
-		&:not(:disabled) {
+		&:enabled {
 			${noHover ? '' : hoverState}
 			${noActive ? '' : activeState}
         }
@@ -191,6 +191,11 @@ ${generateInteractiveVariants(colorToken[value].border, 'color')}
 	background-color: $${prefix}-${colorToken[value].enabled.name};
 	color: $${prefix}-${colorToken[value].on.enabled.name};
 ${generateInteractiveVariants(colorToken[value], 'background-color')}
+}
+
+%${prefix}-${value}-component {
+	background-color: $${prefix}-${colorToken[value].enabled.name};
+	color: $${prefix}-${colorToken[value].on.enabled.name};
 }
 `;
 		}

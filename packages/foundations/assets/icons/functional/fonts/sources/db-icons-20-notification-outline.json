@@ -1,0 +1,141 @@
+{
+	"IcoMoonType": "selection",
+	"icons": [
+		{
+			"icon": {
+				"paths": [
+					"M487.619 97.524c37.644 0 68.12 21.26 84.456 52.37l288.037 587.483c6.534 14.726 9.801 29.452 9.801 42.52 0 54.028-37.352 97.816-89.722 97.816h-585.143c-52.37 0-97.524-43.788-97.524-97.816 0-14.726 3.267-29.452 9.801-42.52l291.304-584.265c14.726-32.67 53.004-55.589 88.99-55.589zM487.619 195.048l-292.571 585.143h585.143l-292.571-585.143zM438.857 585.143v-195.048h97.524v195.048h-97.524zM487.619 634.246c26.722 0 48.762 22.040 48.762 48.762 0 26.77-22.040 48.762-48.762 48.762s-48.762-21.992-48.762-48.762c0-26.722 22.040-48.762 48.762-48.762z"
+				],
+				"attrs": [{}],
+				"width": 975,
+				"isMulticolor": false,
+				"isMulticolor2": false,
+				"grid": 0,
+				"tags": ["error-triangle"]
+			},
+			"attrs": [{}],
+			"properties": {
+				"order": 235,
+				"id": 3,
+				"name": "error-triangle",
+				"prevSize": 32,
+				"code": 9888
+			},
+			"setIdx": 44,
+			"setId": 10,
+			"iconIdx": 0
+		},
+		{
+			"icon": {
+				"paths": [
+					"M487.619 97.524c214.845 0 390.095 175.25 390.095 390.095s-175.25 390.095-390.095 390.095c-214.845 0-390.095-175.25-390.095-390.095s175.25-390.095 390.095-390.095zM487.619 195.048c-161.548 0-292.571 131.072-292.571 292.571 0 161.548 131.072 292.571 292.571 292.571 161.548 0 292.571-131.072 292.571-292.571 0-161.548-131.072-292.571-292.571-292.571zM487.619 585.143c27.453 0 48.762 21.65 48.762 47.982 0.007 0.305 0.011 0.664 0.011 1.025 0 26.796-21.722 48.518-48.518 48.518-0.090 0-0.179-0-0.268-0.001l0.014 0c-25.893 0-48.762-21.65-48.762-49.542 0-26.331 22.869-47.982 48.762-47.982zM536.381 292.571v243.81h-97.524v-243.81h97.524z"
+				],
+				"attrs": [{}],
+				"width": 975,
+				"isMulticolor": false,
+				"isMulticolor2": false,
+				"grid": 0,
+				"tags": ["error"]
+			},
+			"attrs": [{}],
+			"properties": {
+				"order": 236,
+				"id": 2,
+				"name": "error",
+				"prevSize": 32,
+				"code": 921891
+			},
+			"setIdx": 44,
+			"setId": 10,
+			"iconIdx": 1
+		},
+		{
+			"icon": {
+				"paths": [
+					"M1024.051 253.030c-32.482 33.404-77.842 54.139-128.046 54.17l-0.006 0c-98.852-0.29-178.91-80.348-179.2-179.172l-0-0.028c0.031-50.235 20.786-95.616 54.178-128.061l0.043-0.041 252.979 0.102v253.030z"
+				],
+				"attrs": [{}],
+				"isMulticolor": false,
+				"isMulticolor2": false,
+				"grid": 0,
+				"tags": ["notify-cutoff"]
+			},
+			"attrs": [{}],
+			"properties": {
+				"order": 237,
+				"id": 1,
+				"name": "notify-cutoff",
+				"prevSize": 32,
+				"code": 921895
+			},
+			"setIdx": 44,
+			"setId": 10,
+			"iconIdx": 2
+		},
+		{
+			"icon": {
+				"paths": [
+					"M896 0c70.4 0 128 57.6 128 128s-57.6 128-128 128c-70.611-0.203-127.797-57.39-128-127.981l-0-0.019c0-70.4 57.6-128 128-128z"
+				],
+				"attrs": [{}],
+				"isMulticolor": false,
+				"isMulticolor2": false,
+				"grid": 0,
+				"tags": ["notify"]
+			},
+			"attrs": [{}],
+			"properties": {
+				"order": 238,
+				"id": 0,
+				"name": "notify",
+				"prevSize": 32,
+				"code": 921894
+			},
+			"setIdx": 44,
+			"setId": 10,
+			"iconIdx": 3
+		}
+	],
+	"height": 1024,
+	"metadata": {
+		"name": "db-icons",
+		"url": "https://db.de/db-ui",
+		"designerURL": "https://marketingportal.extranet.deutschebahn.com/de/icons-2"
+	},
+	"preferences": {
+		"showGlyphs": true,
+		"showCodes": true,
+		"showQuickUse": true,
+		"showQuickUse2": true,
+		"showSVGs": true,
+		"fontPref": {
+			"prefix": "icon-",
+			"metadata": {
+				"fontFamily": "db-icons",
+				"majorVersion": 1,
+				"minorVersion": 0,
+				"designerURL": "https://marketingportal.extranet.deutschebahn.com/de/icons-2",
+				"fontURL": "https://db.de/db-ui"
+			},
+			"metrics": { "emSize": 1024, "baseline": 6.25, "whitespace": 50 },
+			"embed": false,
+			"noie8": true,
+			"ie7": false,
+			"showSelector": true,
+			"showMetrics": true,
+			"showMetadata": true
+		},
+		"imagePref": {
+			"prefix": "icon-",
+			"png": true,
+			"useClassSelector": true,
+			"color": 0,
+			"bgColor": 16777215,
+			"name": "icomoon",
+			"classSelector": ".icon"
+		},
+		"historySize": 50,
+		"gridSize": 16,
+		"showGrid": true
+	}
+}

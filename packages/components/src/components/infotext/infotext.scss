@@ -1,40 +1,8 @@
+@use "sass:map";
 @use "@db-ui/foundations/build/scss/body-styles" as *;
 @use "@db-ui/foundations/build/scss/variables" as *;
 @use "@db-ui/foundations/build/scss/variables.global" as *;
-
-$variants: (
-	"critical": (
-		var(--db-colors-critical-enabled, $db-colors-critical-enabled),
-		var(
-			--db-colors-critical-element-enabled,
-			$db-colors-critical-element-enabled
-		)
-	),
-	"informational": (
-		var(
-			--db-colors-informational-enabled,
-			$db-colors-informational-enabled
-		),
-		var(
-			--db-colors-informational-element-enabled,
-			$db-colors-informational-element-enabled
-		)
-	),
-	"warning": (
-		var(--db-colors-warning-enabled, $db-colors-warning-enabled),
-		var(
-			--db-colors-warning-element-enabled,
-			$db-colors-warning-element-enabled
-		)
-	),
-	"successful": (
-		var(--db-colors-successful-enabled, $db-colors-successful-enabled),
-		var(
-			--db-colors-successful-element-enabled,
-			$db-colors-successful-element-enabled
-		)
-	)
-);
+@use "@db-ui/foundations/build/scss/color/color-variants" as *;
 
 .db-infotext {
 	@extend %db-body-sm;
@@ -59,12 +27,12 @@ $variants: (
 		}
 	}
 
-	@each $name, $colors in $variants {
+	@each $name, $colors in $component-variants {
 		&[data-variant="#{$name}"] {
-			color: nth($colors, 1);
+			color: map.get($colors, "primary");
 
 			.db-icon {
-				color: nth($colors, 2);
+				color: map.get($colors, "element");
 			}
 		}
 	}

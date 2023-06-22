@@ -1,76 +1,26 @@
 <script setup lang="ts">
-import { DBButton, DBInput } from "../../../../../output/vue/vue3/src";
-import "./index.scss";
+import DefaultComponent from "../DefaultComponent.vue";
+import defaultComponentVariants from "../../../../shared/input.json";
+import { DBInput } from "../../../../../output/vue/vue3/src";
 </script>
 
 <template>
-	<div>
-		<h1>Input</h1>
-		<div class="input-container">
-			<form>
-				<DBInput
-					description="This is a description"
-					label="Start train station"
-					placeholder="some text"
-					icon="edit"
-					variant="critical"
-					value="hello"
-					name="testInput"
-				></DBInput>
-
-				<DBInput
-					description="Valid test"
-					label="With event"
-					placeholder="some text"
-					icon="edit"
-					iconAfter="heart"
-					variant="warning"
-					id="input-expr-warning"
-					required="true"
-				></DBInput>
-				<DBInput
-					label="start date"
-					placeholder="some text"
-					type="datetime-local"
-					id="input-expr-date"
-				></DBInput>
-
-				<DBInput
-					label="Start train station"
-					placeholder="some text"
-					iconAfter="heart"
-					id="input-reg"
-					required="true"
-					:minLength="5"
-				></DBInput>
-				<DBInput
-					label="Start date"
-					placeholder="some text"
-					type="week"
-					id="input-reg-date"
-				></DBInput>
-
-				<DBInput
-					id="db-input-functional-1"
-					label="Start train station"
-					placeholder="some text"
-				></DBInput>
-				<DBInput
-					id="db-input-functional-2"
-					label="Textinput disabled"
-					placeholder="some text"
-					variant="informational"
-					disabled="true"
-				></DBInput>
-
-				<DBInput
-					label="start date"
-					placeholder="some text"
-					type="datetime-local"
-					id="input-func-date"
-				></DBInput>
-				<DBButton type="submit">Submit</DBButton>
-			</form>
-		</div>
-	</div>
+	<DefaultComponent title="DBInput" :variants="defaultComponentVariants">
+		<template
+			#example="{ exampleIndex, variantIndex, exampleName, exampleProps }"
+		>
+			<DBInput
+				:variant="exampleProps.variant"
+				:label="exampleProps.label"
+				:description="exampleProps.description"
+				:minLength="exampleProps.minLength"
+				:required="exampleProps.required"
+				:type="exampleProps.type"
+				:disabled="exampleProps.disabled"
+				:value="exampleProps.value"
+				:icon="exampleProps.icon"
+				:iconAfter="exampleProps.iconAfter"
+			></DBInput>
+		</template>
+	</DefaultComponent>
 </template>

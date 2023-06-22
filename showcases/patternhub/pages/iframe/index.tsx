@@ -11,7 +11,7 @@ const IframeComponent = () => {
 
 	const componentsString: string = (router.query.components as string) ?? '';
 	const componentsBuffer = Buffer.from(componentsString, 'base64');
-	const components = componentsBuffer.toString('ascii');
+	const components = componentsBuffer.toString('utf8');
 
 	return (
 		<div

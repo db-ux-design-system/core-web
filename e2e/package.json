@@ -4,23 +4,29 @@
   "type": "module",
   "description": "",
   "workspaces": [
+    "showcases/*",
     "packages/*",
     "output/*",
     "output/vue/vue3"
   ],
   "scripts": {
-    "build": "npm-run-all build:*",
-    "build:components": "npm run build --workspace=@db-ui/components",
-    "build:foundations": "npm run build --workspace=@db-ui/foundations",
-    "regenerate": "npm run regenerate:screenshots --workspace=@db-ui/react-components ",
+    "regenerate": "npm-run-all -p regenerate:*",
+    "regenerate:components": "npm run regenerate:screenshots --workspace=@db-ui/react-components",
+    "regenerate:showcases": "npm run regenerate:screenshots --workspace=react-showcase",
+    "start": "npx http-server build-showcases",
     "test": "npm-run-all -p test:*",
+    "test:angular-showcase": "npm run test:e2e --workspace=angular-showcase",
     "test:react": "npm run test:components --workspace=@db-ui/react-components",
-    "test:vue": "npm run test:components --workspace=@db-ui/v-components"
+    "test:react-showcase": "npm run test:e2e --workspace=react-showcase",
+    "test:vue": "npm run test:components --workspace=@db-ui/v-components",
+    "test:vue-showcase": "npm run test:e2e --workspace=vue-showcase"
   },
   "devDependencies": {
     "cpr": "3.0.1",
+    "cross-env": "^7.0.3",
     "dotenv": "^16.0.3",
     "fs-extra": "^11.1.0",
+    "http-server": "14.1.1",
     "npm-run-all": "4.1.5",
     "replace-in-file": "^6.3.5",
     "tslib": "^2.5.0",

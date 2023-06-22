@@ -1,6 +1,6 @@
 import { createApp } from 'vue';
-import './index.scss';
 import { createRouter, createWebHashHistory } from 'vue-router';
+import './index.scss';
 import App from './App.vue';
 import { navigationItems } from './utils/navigation-items';
 

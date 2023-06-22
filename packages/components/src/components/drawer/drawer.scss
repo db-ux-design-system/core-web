@@ -1,3 +1,5 @@
+@use "sass:map";
+@use "./../../styles/dialog-init" as *;
 @use "@db-ui/foundations/build/scss/variables" as *;
 @use "@db-ui/foundations/build/scss/variables.global" as *;
 @use "@db-ui/foundations/build/scss/helpers/functions" as *;
@@ -59,35 +61,72 @@
 	}
 }
 
+%close-button-position {
+	margin-inline-start: $db-spacing-fixed-lg;
+	float: right;
+}
+
+$spacings: (
+	"small": (
+		"block": $db-spacing-fixed-xs,
+		"inline": $db-spacing-fixed-md
+	),
+	"medium": (
+		"block": $db-spacing-fixed-sm,
+		"inline": $db-spacing-fixed-lg
+	),
+	"large": (
+		"block": $db-spacing-fixed-md,
+		"inline": $db-spacing-fixed-xl
+	),
+	"none": (
+		"block": 0,
+		"inline": 0
+	)
+);
+
+@mixin get-spacing($spacing) {
+	padding-block: map.get($spacing, "block");
+
+	.db-drawer-header {
+		padding-block-end: map.get($spacing, "block");
+		padding-inline: map.get($spacing, "inline");
+	}
+
+	.db-drawer-content {
+		padding-inline: map.get($spacing, "inline");
+	}
+}
+
+%spacing-drawer {
+	@each $name, $spacing in $spacings {
+		@if ($name == "medium") {
+			@include get-spacing($spacing);
+		}
+
+		&[data-spacing="#{$name}"] {
+			@include get-spacing($spacing);
+		}
+	}
+}
+
 .db-drawer {
 	.db-drawer-container {
 		@extend %direction-right;
+		@extend %spacing-drawer;
 		display: flex;
 		flex-direction: column;
 		background-color: $db-colors-neutral-bg-0-enabled;
-		padding-block: $db-spacing-fixed-sm;
 		height: 100%;
 		width: 100%;
 		position: fixed;
+		box-shadow: $db-elevation-4;
 
 		&:not([data-width="full"]) {
 			max-width: var(
 				--db-drawer-max-width,
 				calc(100% - $db-spacing-fixed-xl)
 			);
-		}
-
-		&[data-size="small"] {
-			padding-block: $db-spacing-fixed-xs;
-
-			.db-drawer-header {
-				padding-block-end: $db-spacing-fixed-xs;
-				padding-inline: $db-spacing-fixed-md;
-			}
-
-			.db-drawer-content {
-				padding-inline: $db-spacing-fixed-md;
-			}
 		}
 
 		&[data-rounded="true"] {
@@ -108,23 +147,20 @@
 
 		.db-drawer-header {
 			@include divider("bottom");
-			display: flex;
-			gap: $db-spacing-fixed-lg;
-			justify-content: space-between;
-			padding-block-end: $db-spacing-fixed-sm;
-			padding-inline: $db-spacing-fixed-lg;
+			display: block;
 
-			&:not(:has(> :nth-child(2))) {
+			.button-close-drawer {
+				@extend %close-button-position;
+
+				// angular-workaround
+				button {
+					@extend %close-button-position;
+				}
+			}
+
+			&:not(:has(> :nth-child(1))) {
 				display: none;
 			}
-		}
-
-		.db-drawer-content {
-			display: flex;
-			flex-direction: column;
-			height: 100%;
-			overflow: hidden;
-			padding-inline: $db-spacing-fixed-lg;
 		}
 	}
 
@@ -147,7 +183,7 @@
 				animation: show-top-to-bottom $animation-show-timing;
 			}
 
-			&.hide {
+			&[hidden] {
 				&:not([data-direction]),
 				&[data-direction="right"] {
 					animation: hide-right-to-left $animation-hide-timing;

@@ -2,23 +2,61 @@ import { onMount, Show, useMetadata, useStore } from '@builder.io/mitosis';
 import { DBIcon } from '../icon';
 import { DBInfotextState, DBInfotextProps } from './model';
 import { DefaultVariantsIcon } from '../../shared/model';
+import classNames from 'classnames';
 
 useMetadata({
 	isAttachedToShadowDom: true,
 	component: {
-		includeIcon: false,
-		properties: []
+		// MS Power Apps
+		includeIcon: true,
+		properties: [
+			// jscpd:ignore-start
+			{ name: 'children', type: 'SingleLine.Text' },
+			{
+				name: 'variant',
+				type: 'Enum',
+				values: [
+					{ key: 'Adaptive', name: 'Adaptive', value: 'adaptive' },
+					{ key: 'Critical', name: 'Critical', value: 'critical' },
+					{
+						key: 'Informational',
+						name: 'Informational',
+						value: 'informational'
+					},
+					{ key: 'Warning', name: 'Warning', value: 'warning' },
+					{
+						key: 'Successful',
+						name: 'Successful',
+						value: 'successful'
+					}
+				]
+			},
+			{
+				name: 'size',
+				type: 'Enum',
+				values: [
+					{ key: 'Sedium', name: 'Medium', value: 'medium' },
+					{ key: 'Small', name: 'Small', value: 'small' }
+				]
+			}
+			// jscpd:ignore-end
+		]
 	}
 });
 
 export default function DBInfotext(props: DBInfotextProps) {
 	// This is used as forwardRef
 	let component: any;
+	// jscpd:ignore-start
 	const state = useStore<DBInfotextState>({
 		getIcon: (icon?: string, variant?: string) => {
-			return icon || DefaultVariantsIcon[variant] || 'info';
+			return icon || (variant && DefaultVariantsIcon[variant]) || 'info';
+		},
+		getClassNames: (...args: classNames.ArgumentArray) => {
+			return classNames(args);
 		}
 	});
+	// jscpd:ignore-end
 
 	onMount(() => {
 		if (props.stylePath) {
@@ -30,9 +68,7 @@ export default function DBInfotext(props: DBInfotextProps) {
 	return (
 		<span
 			ref={component}
-			class={
-				'db-infotext' + (props.className ? ' ' + props.className : '')
-			}
+			class={state.getClassNames('db-infotext', props.className)}
 			title={props.title}
 			data-variant={props.variant}
 			data-size={props.size}>

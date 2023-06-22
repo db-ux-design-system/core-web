@@ -6,6 +6,7 @@ import {
 	useStore
 } from '@builder.io/mitosis';
 import { DBHeaderState, DBHeaderProps } from './model';
+import classNames from 'classnames';
 import { DBDivider } from '../divider';
 import { DBButton } from '../button';
 import { DBDrawer } from '../drawer';
@@ -13,6 +14,7 @@ import { DBDrawer } from '../drawer';
 useMetadata({
 	isAttachedToShadowDom: true,
 	component: {
+		// MS Power Apps
 		includeIcon: false,
 		properties: [{ name: 'drawerOpen', type: 'TwoOptions' }]
 	}
@@ -21,7 +23,11 @@ useMetadata({
 export default function DBHeader(props: DBHeaderProps) {
 	// This is used as forwardRef
 	let component: any;
+	// jscpd:ignore-start
 	const state = useStore<DBHeaderState>({
+		getClassNames: (...args: classNames.ArgumentArray) => {
+			return classNames(args);
+		},
 		toggle: () => {
 			if (props.onToggle) {
 				props.onToggle(!props.drawerOpen);
@@ -34,11 +40,12 @@ export default function DBHeader(props: DBHeaderProps) {
 			state.stylePath = props.stylePath;
 		}
 	});
+	// jscpd:ignore-end
 
 	return (
 		<header
 			ref={component}
-			class={'db-header' + (props.className ? ' ' + props.className : '')}
+			class={state.getClassNames('db-header', props.className)}
 			role="banner">
 			<Show when={state.stylePath}>
 				<link rel="stylesheet" href={state.stylePath} />

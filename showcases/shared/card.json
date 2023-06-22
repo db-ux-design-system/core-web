@@ -1,0 +1,160 @@
+[
+	{
+		"name": "Tonality",
+		"examples": [
+			{
+				"name": "functional",
+				"className": "db-ui-functional",
+				"props": {
+					"spacing": "small"
+				}
+			},
+			{
+				"name": "regular (Default)",
+				"className": "db-ui-regular",
+				"props": {
+					"spacing": "small"
+				}
+			},
+			{
+				"name": "expressive",
+				"className": "db-ui-expressive",
+				"props": {
+					"spacing": "small"
+				}
+			}
+		]
+	},
+	{
+		"name": "ColorVariant",
+		"examples": [
+			{
+				"name": "(Default) neutral-0",
+				"props": {
+					"colorVariant": "neutral-0",
+					"variant": "interactive",
+					"spacing": "small"
+				}
+			},
+			{
+				"name": "neutral-1",
+				"props": {
+					"colorVariant": "neutral-1",
+					"variant": "interactive",
+					"spacing": "small"
+				}
+			},
+			{
+				"name": "neutral-2",
+				"props": {
+					"colorVariant": "neutral-2",
+					"variant": "interactive",
+					"spacing": "small"
+				}
+			},
+			{
+				"name": "neutral-3",
+				"props": {
+					"colorVariant": "neutral-3",
+					"variant": "interactive",
+					"spacing": "small"
+				}
+			},
+			{
+				"name": "neutral-4",
+				"props": {
+					"colorVariant": "neutral-4",
+					"variant": "interactive",
+					"spacing": "small"
+				}
+			},
+			{
+				"name": "primary",
+				"props": {
+					"colorVariant": "primary",
+					"variant": "interactive",
+					"spacing": "small"
+				}
+			},
+			{
+				"name": "secondary",
+				"props": {
+					"colorVariant": "secondary",
+					"variant": "interactive",
+					"spacing": "small"
+				}
+			},
+			{
+				"name": "critical",
+				"props": {
+					"colorVariant": "critical",
+					"variant": "interactive",
+					"spacing": "small"
+				}
+			},
+			{
+				"name": "successful",
+				"props": {
+					"colorVariant": "successful",
+					"variant": "interactive",
+					"spacing": "small"
+				}
+			},
+			{
+				"name": "warning",
+				"props": {
+					"colorVariant": "warning",
+					"variant": "interactive",
+					"spacing": "small"
+				}
+			},
+			{
+				"name": "informational",
+				"props": {
+					"colorVariant": "informational",
+					"variant": "interactive",
+					"spacing": "small"
+				}
+			}
+		]
+	},
+	{
+		"name": "Spacing",
+		"examples": [
+			{
+				"name": "(Default) No Spacing",
+				"props": {}
+			},
+			{
+				"name": "Medium",
+				"props": {
+					"spacing": "medium"
+				}
+			},
+			{
+				"name": "Small",
+				"props": {
+					"spacing": "small"
+				}
+			}
+		]
+	},
+	{
+		"name": "Variant",
+		"examples": [
+			{
+				"name": "(Default) Non interactive",
+				"props": {
+					"spacing": "small"
+				}
+			},
+			{
+				"name": "Interactive",
+				"props": {
+					"spacing": "small",
+					"variant": "interactive"
+				}
+			}
+		]
+	}
+]

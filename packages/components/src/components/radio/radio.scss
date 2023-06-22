@@ -3,8 +3,7 @@
 @use "@db-ui/foundations/build/scss/helpers/functions" as *;
 @use "@db-ui/foundations/build/scss/color-placeholder" as *;
 @use "@db-ui/foundations/build/scss/body-styles" as *;
-@use "@db-ui/foundations/build/scss/helpers/shadow-dom" as *;
-@use "@db-ui/foundations/build/scss/helpers/component";
+@use "@db-ui/foundations/build/scss/helpers/component" as *;
 @use "@db-ui/foundations/build/scss/color/color-variants" as *;
 
 $font-size-height: calc(var(--db-base-font-size) * var(--db-base-line-height));
@@ -29,18 +28,23 @@ $font-size-height: calc(var(--db-base-font-size) * var(--db-base-line-height));
 	// TODO: Extract those transition durations as variables #645
 	transition: border-width 0.15s $db-transition-functional-timing;
 
+	// TODO: probably extract this to an overwrite or external file
+	// workarounds for power apps
+	width: auto;
+	padding: 0;
+
 	&:checked {
 		border-width: calc(#{$font-size-height} * 0.3);
 
 		// The radio element still has the default background for the dot on :hover when in checked state
-		&:not(:disabled):hover {
+		&:enabled:hover {
 			@extend %bg-transparent;
 		}
 	}
 
 	// * The invalid style using the :user-invalid pseudo class (and [aria-invalid="true"] equivalent)
 	// TODO: We need to set the correct styling / color here after alignment
-	&:user-invalid,
+	&:is(:user-invalid),
 	&[aria-invalid="true"] {
 		@extend %db-bg-critical-transparent-semi;
 		@extend %db-bg-critical-transparent-semi-hover-state;
@@ -58,8 +62,6 @@ $font-size-height: calc(var(--db-base-font-size) * var(--db-base-line-height));
 	}
 
 	& + label {
-		@extend %shadow-dom-extend;
-
 		margin-inline-start: $db-spacing-fixed-xs;
 
 		vertical-align: top;
@@ -68,7 +70,7 @@ $font-size-height: calc(var(--db-base-font-size) * var(--db-base-line-height));
 	&:disabled {
 		&,
 		& + label {
-			opacity: 0.25;
+			opacity: $default-opacity;
 		}
 	}
 

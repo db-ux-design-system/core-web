@@ -1,9 +1,11 @@
 import { onMount, Show, useMetadata, useStore } from '@builder.io/mitosis';
 import { DBBrandState, DBBrandProps } from './model';
+import classNames from 'classnames';
 
 useMetadata({
 	isAttachedToShadowDom: true,
 	component: {
+		// MS Power Apps
 		includeIcon: false,
 		properties: []
 	}
@@ -17,18 +19,24 @@ const DEFAULT_VALUES = {
 export default function DBBrand(props: DBBrandProps) {
 	// This is used as forwardRef
 	let component: any;
-	const state = useStore<DBBrandState>({});
+	// jscpd:ignore-start
+	const state = useStore<DBBrandState>({
+		getClassNames: (...args: classNames.ArgumentArray) => {
+			return classNames(args);
+		}
+	});
 
 	onMount(() => {
 		if (props.stylePath) {
 			state.stylePath = props.stylePath;
 		}
 	});
+	// jscpd:ignore-end
 
 	return (
 		<div
 			ref={component}
-			class={'db-brand' + (props.className ? ' ' + props.className : '')}>
+			class={state.getClassNames('db-brand', props.className)}>
 			<Show when={state.stylePath}>
 				<link rel="stylesheet" href={state.stylePath} />
 			</Show>

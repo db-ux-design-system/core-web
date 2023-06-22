@@ -11,6 +11,51 @@ An Angular library containing all styles & components of [DB UX Design System (t
 
 `npm i @db-ui/ngx-components`
 
+## Styling Dependencies
+Import the styles in scss or css. Based on your technology the file names could be different.
+
+-   Default (db-ui-42): points to `../assets`
+-   Webpack (db-ui-42-webpack): points to `~@db-ui/foundations/assets`
+-   Rollup (db-ui-42-rollup): points to `@db-ui/foundations/assets`
+
+<details>
+  <summary><strong>SCSS</strong></summary>
+
+```scss styles.scss
+// styles.scss
+@use "@db-ui/components/build/styles/db-ui-42-webpack" as *;
+```
+
+</details>
+<details>
+  <summary><strong>CSS</strong></summary>
+
+```css styles.css
+/* styles.css */
+@import "@db-ui/components/build/styles/db-ui-42-webpack";
+```
+
+</details>
+
+## Usage
+
+```ts app.module.ts
+//app.module.ts
+import { DBButtonModule } from '@db-ui/ngx-components';
+
+@NgModule({
+	...
+		imports: [..., DBButtonModule],
+...
+})
+
+```
+
+```html app.component.html
+<!-- app.component.html -->
+<db-button variant="primary">Button</db-button>
+```
+
 ## Custom Events
 
 We do not provide every event on every component. If you are missing an event please [add an issue](https://github.com/db-ui/mono/issues).

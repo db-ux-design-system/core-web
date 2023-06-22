@@ -2,29 +2,64 @@
 	<div>
 		<form>
 			<fieldset>
-				<p>DbInput:</p>
-				<DBInput
+				<p>Input:</p>
+				<db-input
 					[(ngModel)]="input"
 					name="username"
 					label="Textinput"
 					placeholder="Placeholder"
 					description="Description"
-					icon="edit"
+					[dataList]="dataList"
+					icon="account"
 					ngDefaultControl
 				>
-				</DBInput>
-				<p>DbRadio:</p>
-				<DBRadio label="Test" name="Test" [checked]="true"></DBRadio>
-				<DBRadio label="Test2" name="Test"></DBRadio>
-				<DBRadio label="Test3" name="Test"></DBRadio>
-				<p>DbButton:</p>
-				<DBButton
+				</db-input>
+				<p>Radio:</p>
+				<ul>
+					<li *ngFor="let radioName of array">
+						<db-radio
+							(change)="radio = radioName"
+							[label]="getRadioName(radioName)"
+							[value]="radioName"
+							name="RadioGroup"
+						></db-radio>
+					</li>
+				</ul>
+				<p>Tags:</p>
+				<ul>
+					<li *ngFor="let tag of array; let i = index">
+						<db-tag
+							[variant]="i === 0 ? undefined : 'successful'"
+							(onChange)="changeTags(tag)"
+							[type]="i === 2 ? 'strong' : 'weak'"
+							behaviour="interactive"
+							>{{ getTagName(tag) }}</db-tag
+						>
+					</li>
+				</ul>
+				<p>Checkbox:</p>
+				<db-checkbox
+					(change)="checkbox = $event.target.checked"
+					name="checkbox"
+					label="Checkbox"
+				></db-checkbox>
+				<p>DBSelect:</p>
+				<db-select
+					[value]="select"
+					label="Label"
+					(change)="select = $event.target.value"
+				>
+					<option value="test1">Test1</option>
+					<option value="test2">Test2</option>
+				</db-select>
+				<p>Button:</p>
+				<db-button
 					type="button"
 					variant="primary"
 					(click)="showValues()"
 				>
 					Hi from Showcase!
-				</DBButton>
+				</db-button>
 			</fieldset>
 		</form>
 	</div>
@@ -33,6 +68,14 @@
 		<dl>
 			<dt>inputs value</dt>
 			<dd>{{ input ? input : "No Input set" }}</dd>
+			<dt>radio value</dt>
+			<dd>{{ radio ? radio : "No radio set" }}</dd>
+			<dt>checkbox value</dt>
+			<dd>checkbox {{ checkbox ? "" : "un" }}checked</dd>
+			<dt>select value</dt>
+			<dd>{{ select ? select : "No select set" }}</dd>
+			<dt>tags value</dt>
+			<dd>{{ getTags() }}</dd>
 		</dl>
 	</div>
 </div>

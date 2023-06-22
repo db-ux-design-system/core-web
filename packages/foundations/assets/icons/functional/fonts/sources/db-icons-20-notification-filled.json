@@ -1,0 +1,82 @@
+{
+	"IcoMoonType": "selection",
+	"icons": [
+		{
+			"icon": {
+				"paths": [
+					"M487.57 97.524c38.766 0 72.85 20.578 88.552 52.175l291.499 587.142c6.875 13.848 9.947 28.574 9.947 42.374 0 54.126-44.763 98.499-98.499 98.499h-583.046c-53.736 0-98.499-44.373-98.499-98.499 0-14.775 3.413-29.355 9.947-42.374l293.547-585.143c16.243-32.070 48.792-53.761 86.448-54.174l0.055-0zM487.619 679.741c-0.001-0-0.002-0-0.002-0-27.836 0-50.434 22.428-50.71 50.199l-0 0.026c0 28.021 22.716 50.737 50.737 50.737s50.737-22.716 50.737-50.737v0c0-27.599-22.918-50.225-50.761-50.225zM536.381 292.571h-97.524v292.571h97.524v-292.571z"
+				],
+				"attrs": [{}],
+				"width": 975,
+				"isMulticolor": false,
+				"isMulticolor2": false,
+				"grid": 0,
+				"tags": ["ic-db_error-triangle-filled_20"]
+			},
+			"attrs": [{}],
+			"properties": {
+				"order": 61,
+				"id": 2,
+				"name": "ic-db_error-triangle-filled_20",
+				"prevSize": 32,
+				"code": 9888
+			},
+			"setIdx": 47,
+			"setId": 21,
+			"iconIdx": 0
+		},
+		{
+			"icon": {
+				"paths": [
+					"M487.619 97.524c214.845 0 390.095 175.25 390.095 390.095s-175.25 390.095-390.095 390.095c-214.845 0-390.095-175.25-390.095-390.095s175.25-390.095 390.095-390.095zM487.619 595.822c-25.893 0-48.762 21.309-48.762 47.25 0 27.404 22.869 48.762 48.762 48.762 27.453 0 48.762-21.358 48.762-48.762-0.27-26.186-21.56-47.309-47.784-47.309-0.344 0-0.687 0.004-1.029 0.011l0.051-0.001zM536.381 292.571h-97.524v243.81h97.524v-243.81z"
+				],
+				"width": 975,
+				"attrs": [{}],
+				"isMulticolor": false,
+				"isMulticolor2": false,
+				"tags": ["error-filled"],
+				"grid": 0
+			},
+			"attrs": [{}],
+			"properties": {
+				"order": 63,
+				"id": 0,
+				"name": "error-filled",
+				"prevSize": 32,
+				"code": 921891
+			},
+			"setIdx": 47,
+			"setId": 21,
+			"iconIdx": 1
+		}
+	],
+	"height": 1024,
+	"metadata": { "name": "icomoon" },
+	"preferences": {
+		"showGlyphs": true,
+		"showQuickUse": true,
+		"showQuickUse2": true,
+		"showSVGs": true,
+		"fontPref": {
+			"prefix": "icon-",
+			"metadata": {
+				"fontFamily": "icomoon",
+				"majorVersion": 1,
+				"minorVersion": 0
+			},
+			"metrics": { "emSize": 1024, "baseline": 6.25, "whitespace": 50 },
+			"embed": false
+		},
+		"imagePref": {
+			"prefix": "icon-",
+			"png": true,
+			"useClassSelector": true,
+			"color": 0,
+			"bgColor": 16777215,
+			"classSelector": ".icon"
+		},
+		"historySize": 50,
+		"showCodes": true,
+		"gridSize": 16
+	}
+}

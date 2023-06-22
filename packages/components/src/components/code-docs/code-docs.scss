@@ -6,8 +6,12 @@
 @use "@db-ui/foundations/build/scss/tonality" as *;
 
 %code-docs {
-	padding: $db-spacing-fixed-md;
-	padding-block-end: calc($db-spacing-fixed-md + $db-sizing-sm);
+	@extend %db-bg-neutral-1;
+	min-height: $db-sizing-3xl;
+	align-items: center;
+	justify-content: center;
+	padding: $db-spacing-fixed-xl;
+	padding-block-end: calc($db-spacing-fixed-xl + $db-sizing-sm);
 	position: relative;
 
 	.code-details {
@@ -40,23 +44,10 @@
 			right: 0;
 			top: 0;
 			bottom: 0;
-			padding: $db-sizing-sm $db-spacing-fixed-md;
+			padding-block-end: $db-spacing-fixed-md;
 
 			@media screen and (min-width: $db-screens-s) {
 				width: 50%;
-			}
-
-			div {
-				margin: 0;
-				display: flex;
-				gap: $db-spacing-fixed-sm;
-				align-items: center;
-
-				code {
-					@extend %db-body-xs;
-					white-space: pre-wrap;
-					width: 100%;
-				}
 			}
 		}
 	}
@@ -65,7 +56,8 @@
 .db-code-docs {
 	@extend %code-docs;
 	/* Workaround for angular db-XYZ as root tag is not working */
-	:where(.db-card) {
+	&.db-card,
+	& > .db-card {
 		@extend %code-docs;
 	}
 }

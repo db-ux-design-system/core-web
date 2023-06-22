@@ -12,16 +12,9 @@ force: true
 @use "@db-ui/foundations/build/scss/icon/icons" as *;
 <% } -%>
 
-@use "@db-ui/foundations/build/scss/db-ui-foundations" as *;
-@use "@db-ui/foundations/build/scss/variables.global" as *;
-@use "@db-ui/foundations/build/scss/color-placeholder" as *;
+@forward "@db-ui/foundations/build/scss/db-ui-foundations";
 
-@use "./<%= name %>.scss" as *;
-
-:root {
-	@extend %db-ui-regular;
-	@extend %db-bg-neutral-0;
-}
+@forward "./<%= name %>.scss";
 
 .db-<%= name %> {
 	box-sizing: border-box;

@@ -1,6 +1,12 @@
-@use "@db-ui/foundations/build/scss/helpers/shadow-dom" as *;
-
 .db-icon {
-	@extend %shadow-dom-extend;
 	display: flex;
+
+	/* Safari hack */
+	@supports (-webkit-hyphens: none) {
+		display: inline-block;
+
+		&::before {
+			height: auto;
+		}
+	}
 }

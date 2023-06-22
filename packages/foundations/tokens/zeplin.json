@@ -273,19 +273,28 @@
 			"l": { "value": "64", "attributes": { "category": "size" } },
 			"m": { "value": "40", "attributes": { "category": "size" } },
 			"s": { "value": "24", "attributes": { "category": "size" } },
-			"xs": { "value": "16", "attributes": { "category": "size" } }
+			"xs": { "value": "16", "attributes": { "category": "size" } },
+			"xl": { "value": "96", "attributes": { "category": "size" } },
+			"2xl": { "value": "160", "attributes": { "category": "size" } },
+			"3xl": { "value": "240", "attributes": { "category": "size" } }
 		},
 		"functional": {
 			"xs": { "value": "14", "attributes": { "category": "size" } },
 			"s": { "value": "20", "attributes": { "category": "size" } },
 			"m": { "value": "32", "attributes": { "category": "size" } },
-			"l": { "value": "48", "attributes": { "category": "size" } }
+			"l": { "value": "48", "attributes": { "category": "size" } },
+			"2xl": { "value": "120", "attributes": { "category": "size" } },
+			"xl": { "value": "80", "attributes": { "category": "size" } },
+			"3xl": { "value": "160", "attributes": { "category": "size" } }
 		},
 		"expressive": {
 			"xs": { "value": "20", "attributes": { "category": "size" } },
 			"s": { "value": "28", "attributes": { "category": "size" } },
 			"m": { "value": "48", "attributes": { "category": "size" } },
-			"l": { "value": "80", "attributes": { "category": "size" } }
+			"l": { "value": "80", "attributes": { "category": "size" } },
+			"xl": { "value": "120", "attributes": { "category": "size" } },
+			"2xl": { "value": "240", "attributes": { "category": "size" } },
+			"3xl": { "value": "480", "attributes": { "category": "size" } }
 		}
 	},
 	"screens": {

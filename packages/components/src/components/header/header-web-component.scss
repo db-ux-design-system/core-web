@@ -1,5 +1,5 @@
 @use "@db-ui/foundations/build/scss/helpers/functions" as *;
-@import "header";
+@forward "header";
 
 .db-header-navigation-bar {
 	height: to-rem(32);

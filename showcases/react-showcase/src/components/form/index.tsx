@@ -1,33 +1,50 @@
 import { useState } from 'react';
-import { DBButton, DBInput, DBRadio } from '../../../../../output/react/src';
+import {
+	DBButton,
+	DBInput,
+	DBRadio,
+	DBSelect,
+	DBCheckbox,
+	DBTag
+} from '../../../../../output/react/src';
+import type { KeyValueType } from '../../../../../output/react/src/shared/model';
 
 const FormComponent = () => {
 	const [input, setInput] = useState('');
 	const [radio, setRadio] = useState('');
+	const [select, setSelect] = useState('');
+	const [checkbox, setCheckbox] = useState('');
+	const [tags, setTags] = useState<string[]>([]);
+
+	const dataList: KeyValueType[] = [
+		{ key: 'test', value: 'Test' },
+		{ key: 'test2' }
+	];
 
 	return (
 		<div className="form-container">
 			<div>
 				<form>
 					<fieldset>
-						<p>DbInput:</p>
+						<p>Input:</p>
 						<DBInput
 							label="Textinput"
 							placeholder="Placeholder"
 							description="Description"
-							icon="edit"
+							icon="account"
 							name="input-name"
 							onChange={(event) => {
 								setInput(event.target.value);
 							}}
-							className="fullWidth"
+							dataList={dataList}
 						/>
-						<p>DbRadio:</p>
+						<p>Radio:</p>
 						<ul>
 							{['X', 'Y', 'Z'].map((radioName) => (
-								<li key={radioName}>
+								<li key={`radio-${radioName}`}>
 									<DBRadio
 										name="radio-group"
+										value={radioName}
 										onChange={() => {
 											setRadio(radioName);
 										}}>
@@ -36,7 +53,56 @@ const FormComponent = () => {
 								</li>
 							))}
 						</ul>
-						<p>DbButton:</p>
+						<p>Tags:</p>
+						<ul>
+							{['X', 'Y', 'Z'].map((tag, index) => (
+								<li key={`tag-${tag}`}>
+									<DBTag
+										variant={
+											index === 0
+												? undefined
+												: 'successful'
+										}
+										type={
+											index === 2 ? 'strong' : undefined
+										}
+										behaviour="interactive"
+										onChange={() => {
+											if (tags.includes(tag)) {
+												setTags(
+													tags.filter(
+														(t) => t !== tag
+													)
+												);
+											} else {
+												setTags([...tags, tag]);
+											}
+										}}>
+										Tag {tag}
+									</DBTag>
+								</li>
+							))}
+						</ul>
+						<p>Checkbox:</p>
+						<DBCheckbox
+							name="checkbox"
+							value="Checkbox checked"
+							onChange={(event) => {
+								setCheckbox(event.target.checked);
+							}}>
+							Checkbox
+						</DBCheckbox>
+						<p>DBSelect:</p>
+						<DBSelect
+							value={select}
+							label="Label"
+							onChange={(event) => {
+								setSelect(event.target.value);
+							}}>
+							<option value="test1">Test1</option>
+							<option value="test2">Test2</option>
+						</DBSelect>
+						<p>Button:</p>
 						<DBButton
 							type="button"
 							variant="primary"
@@ -45,7 +111,10 @@ const FormComponent = () => {
 								alert(
 									JSON.stringify({
 										input,
-										radio
+										radio,
+										checkbox,
+										select,
+										tags
 									})
 								);
 							}}>
@@ -61,6 +130,12 @@ const FormComponent = () => {
 					<dd>{input || 'No Input set'}</dd>
 					<dt>radio value</dt>
 					<dd>{radio || 'No radio set'}</dd>
+					<dt>checkbox value</dt>
+					<dd>{`checkbox ${checkbox ? '' : 'un'}checked`}</dd>
+					<dt>select value</dt>
+					<dd>{select || 'No select set'}</dd>
+					<dt>tags value</dt>
+					<dd>{JSON.stringify(tags)}</dd>
 				</dl>
 			</div>
 		</div>

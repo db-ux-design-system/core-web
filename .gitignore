@@ -45,3 +45,6 @@ output/power-apps
 **/playwright-report
 /.parcel-cache/
 /output/docs.json
+showcases/patternhub/public/iframe-resizer/*
+
+/showcases/**/test-results/

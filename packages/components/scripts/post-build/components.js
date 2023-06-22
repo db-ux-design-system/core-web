@@ -10,9 +10,6 @@
  * 	webComponents?:{from:string,to:string}[]
  * },
  * config?:{
- * 		isFormComponent?:boolean,
- * 		isClickComponent?:boolean,
- * 		isIconComponent?:boolean,
  *     	vue?:{
  *         vModel?: {modelValue:string, binding:string}[]
  *     }
@@ -45,24 +42,49 @@ const getComponents = () => [
 	},
 
 	{
-		name: 'code-docs',
-		defaultStylePath: 'components/code-docs/code-docs.css',
+		name: 'select'
+	},
+
+	{
+		name: 'drawer',
 		overwrites: {
-			global: [
+			react: [
 				{
-					from: '(event) => copyCode(snippet)',
-					to: '() => copyCode(snippet)'
-				},
-				{
-					from: 'copyCode(code)',
-					to: 'copyCode(code:any)'
-				},
-				{
-					from: '(event) => toggleCode()',
-					to: '() => toggleCode()'
+					from: 'const dialogRef = useRef<HTMLDialogElement>(null);',
+					to: 'const dialogRef = useRef<HTMLDialogElement>(component);'
 				}
 			],
-			vue: [{ from: '(snippet, index)', to: '(snippet)' }]
+			vue: [
+				{
+					from: 'immediate: true,',
+					to: 'immediate: true,\nflush: "post"'
+				}
+			],
+			webComponents: [{ from: '__prev.find', to: '!!__prev.find' }]
+		}
+	},
+
+	{
+		name: 'tag'
+	},
+	{
+		name: 'code-docs'
+	},
+
+	{
+		name: 'checkbox',
+		overwrites: {
+			vue: [
+				{
+					from: 'immediate: true,',
+					to: 'immediate: true,\nflush: "post"'
+				}
+			]
+		},
+		config: {
+			vue: {
+				vModel: [{ modelValue: 'checked', binding: ':checked' }]
+			}
 		}
 	},
 
@@ -77,8 +99,6 @@ const getComponents = () => [
 			]
 		},
 		config: {
-			isFormComponent: true,
-			isClickComponent: true,
 			vue: {
 				vModel: [{ modelValue: 'checked', binding: ':checked' }]
 			}
@@ -86,25 +106,15 @@ const getComponents = () => [
 	},
 
 	{
-		name: 'alert',
-		config: {
-			isClickComponent: true,
-			isIconComponent: true
-		}
+		name: 'alert'
 	},
 
 	{
-		name: 'infotext',
-		config: {
-			isIconComponent: true
-		}
+		name: 'infotext'
 	},
 
 	{
-		name: 'link',
-		config: {
-			isClickComponent: true
-		}
+		name: 'link'
 	},
 
 	{
@@ -201,9 +211,11 @@ const getComponents = () => [
 	},
 	{
 		name: 'input',
+		overwrites: {
+			global: [{ from: ', KeyValueType', to: '' }],
+			vue: [{ from: ', index', to: '' }]
+		},
 		config: {
-			isFormComponent: true,
-			isIconComponent: true,
 			vue: {
 				vModel: [{ modelValue: 'value', binding: ':value' }]
 			}
@@ -213,90 +225,22 @@ const getComponents = () => [
 		name: 'divider'
 	},
 	{
-		name: 'card',
-		config: {
-			isClickComponent: true
-		}
+		name: 'card'
 	},
 	{
-		name: 'tab-bar',
-		overwrites: {
-			angular: [
-				{
-					from: 'convertTabs(tabs) {',
-					to: 'convertTabs( tabs:any ) {'
-				},
-				{ from: '[key]="tab.name"', to: '' }
-			],
-			react: [
-				{
-					from: 'convertTabs(tabs) {',
-					to: 'convertTabs( tabs:any ) {'
-				},
-				{
-					from: 'convertTabs(props.tabs)?.map((tab)',
-					to: 'convertTabs(props.tabs)?.map((tab:any)'
-				},
-				{
-					from: 'import type { DBTabProps } from "../tab/model";',
-					to: ''
-				}
-			],
-			vue: [
-				{
-					from: 'convertTabs(tabs) {',
-					to: 'convertTabs( tabs:any ) {'
-				},
-				{
-					from: 'v-for="(tab, index)',
-					to: 'v-for="(tab)'
-				}
-			]
-		}
+		name: 'tab-bar'
 	},
 	{
 		name: 'tab'
 	},
 	{
-		name: 'button',
-		config: {
-			isIconComponent: true,
-			isClickComponent: true
-		}
+		name: 'button'
 	},
 	{
 		name: 'icon'
 	}
 ];
 
-const formComponentChanges = [
-	{ from: 'handleChange(event)', to: 'handleChange(event:any)' },
-	{ from: 'handleBlur(event)', to: 'handleBlur(event:any)' },
-	{ from: 'handleFocus(event)', to: 'handleFocus(event:any)' }
-];
-
-const clickComponentChanges = [
-	{ from: 'handleClick(event)', to: 'handleClick(event:any)' }
-];
-
-const iconComponentChanges = [
-	{
-		from: 'getIcon(icon, variant) {',
-		to: 'getIcon(icon:any, variant:any) {'
-	},
-	{
-		from: 'getIcon(variant) {',
-		to: 'getIcon(variant:any) {'
-	},
-	{
-		from: 'iconVisible(icon) {',
-		to: 'iconVisible(icon:any) {'
-	}
-];
-
 module.exports = {
-	components: getComponents(),
-	formComponentChanges,
-	clickComponentChanges,
-	iconComponentChanges
+	components: getComponents()
 };

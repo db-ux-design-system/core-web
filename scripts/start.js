@@ -9,13 +9,8 @@ inquirer
 			message: 'Select frameworks to start;',
 			name: 'frameworks',
 			choices: [
-				// eslint-disable-next-line no-warning-comments
-				/*	TODO: Fix the issue that components are deleted at mitosis build
 				{
 					name: 'angular'
-				}, */
-				{
-					name: 'next'
 				},
 				{
 					name: 'patternhub'
@@ -26,9 +21,6 @@ inquirer
 				},
 				{
 					name: 'reactwind'
-				},
-				{
-					name: 'svelte'
 				},
 				{
 					name: 'vanilla'
@@ -48,7 +40,7 @@ inquirer
 	])
 
 	.then((answers) => {
-		let startCommand = 'npm-run-all -p start:*';
+		let startCommand = 'npm-run-all -p build:* -p';
 		if (answers?.frameworks)
 			for (const answer of answers.frameworks) {
 				startCommand += ` start-showcase:${answer}`;
@@ -56,5 +48,6 @@ inquirer
 
 		// eslint-disable-next-line no-console
 		console.log(`Start with command: '${startCommand}'`);
+		// TODO: Handle child process better
 		childProcess.execSync(startCommand, { stdio: 'inherit' });
 	});

@@ -1,6 +1,12 @@
 @use "../variables" as *;
 @use "../color-placeholder" as *;
 @use "../helpers/functions" as *;
+@use "../icon/icons.helpers" as *;
+
+/* TODO: We should get the variables from UX, and probably want to make those global variables */
+$default-border-radius: 4px;
+$default-card-border-radius: var(--default-card-border-radius, 8px);
+$default-opacity: 0.25;
 
 %default-adaptive-border {
 	border: solid 1px var(--db-current-color, $db-colors-neutral-on-bg-enabled);
@@ -16,7 +22,7 @@
 }
 
 %default-border-radius {
-	--db-focus-outline-radius: #{to-rem(4)};
+	// TODO: Get a general token from Zeplin
 	border-radius: to-rem(4);
 }
 
@@ -28,10 +34,6 @@
 	@extend %default-adaptive-border;
 	@extend %default-color;
 	@extend %default-border-radius;
-
-	&:focus {
-		border-radius: var(--db-focus-outline-radius, #{to-rem(6)});
-	}
 }
 
 %default-background-transition {
@@ -45,4 +47,24 @@ $default-card-border-radius: var(--default-card-border-radius, 8px);
 %default-card {
 	border-radius: $default-card-border-radius;
 	box-shadow: $db-elevation-4;
+}
+
+%adaptive-critical-component {
+	@extend %db-bg-critical-transparent-semi;
+	@extend %db-bg-critical-transparent-semi-hover-state;
+}
+
+%adaptive-warning-component {
+	@extend %db-bg-warning-transparent-semi;
+	@extend %db-bg-warning-transparent-semi-hover-state;
+}
+
+%adaptive-informational-component {
+	@extend %db-bg-informational-transparent-semi;
+	@extend %db-bg-informational-transparent-semi-hover-state;
+}
+
+%adaptive-successful-component {
+	@extend %db-bg-successful-transparent-semi;
+	@extend %db-bg-successful-transparent-semi-hover-state;
 }

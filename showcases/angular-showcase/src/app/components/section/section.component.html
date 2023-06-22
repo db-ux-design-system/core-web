@@ -1,0 +1,21 @@
+<app-default-component
+	title="DBSection"
+	[variants]="variants"
+	[exampleTemplate]="exampleTemplate"
+>
+	<ng-template
+		#exampleTemplate
+		let-exampleProps="exampleProps"
+		let-exampleName="exampleName"
+		let-exampleIndex="exampleIndex"
+		let-variantIndex="variantIndex"
+	>
+		<db-section
+			className="db-bg-informational"
+			[size]="exampleProps.size"
+			[variant]="exampleProps.variant"
+		>
+			{{ exampleName }}
+		</db-section>
+	</ng-template>
+</app-default-component>

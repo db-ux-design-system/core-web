@@ -9,10 +9,14 @@ import {
 } from '@builder.io/mitosis';
 import { DBDrawerState, DBDrawerProps } from './model';
 import { DBButton } from '../button';
+import { DEFAULT_CLOSE_BUTTON, DEFAULT_ID } from '../../shared/constants';
+import classNames from 'classnames';
+import { uuid } from '../../utils';
 
 useMetadata({
 	isAttachedToShadowDom: true,
 	component: {
+		// MS Power Apps
 		includeIcon: false,
 		properties: [{ name: 'open', type: 'TwoOptions' }]
 	}
@@ -22,6 +26,7 @@ export default function DBDrawer(props: DBDrawerProps) {
 	const dialogRef = useRef<HTMLDialogElement>(null);
 	const dialogContainerRef = useRef<HTMLDivElement>(null);
 	const state = useStore<DBDrawerState>({
+		_id: DEFAULT_ID,
 		handleClose: (event: any) => {
 			if (
 				event === 'close' ||
@@ -35,7 +40,9 @@ export default function DBDrawer(props: DBDrawerProps) {
 		handleDialogOpen: () => {
 			if (dialogRef) {
 				if (props.open && !dialogRef.open) {
-					dialogContainerRef?.classList.remove('hide');
+					if (dialogContainerRef) {
+						dialogContainerRef.hidden = false;
+					}
 					if (props.noBackdrop) {
 						dialogRef.show();
 					} else {
@@ -43,17 +50,25 @@ export default function DBDrawer(props: DBDrawerProps) {
 					}
 				}
 				if (!props.open && dialogRef.open) {
-					dialogContainerRef?.classList.add('hide');
+					if (dialogContainerRef) {
+						dialogContainerRef.hidden = true;
+					}
 					setTimeout(() => {
-						dialogContainerRef?.classList.remove('hide');
+						if (dialogContainerRef) {
+							dialogContainerRef.hidden = false;
+						}
 						dialogRef?.close();
 					}, 401);
 				}
 			}
+		},
+		getClassNames: (...args: classNames.ArgumentArray) => {
+			return classNames(args);
 		}
 	});
 
 	onMount(() => {
+		state._id = props.id || 'drawer-' + uuid();
 		if (props.stylePath) {
 			state.stylePath = props.stylePath;
 		}
@@ -66,6 +81,7 @@ export default function DBDrawer(props: DBDrawerProps) {
 
 	return (
 		<dialog
+			id={state._id}
 			ref={dialogRef}
 			class="db-drawer"
 			onClick={(event) => {
@@ -75,32 +91,32 @@ export default function DBDrawer(props: DBDrawerProps) {
 			<Show when={state.stylePath}>
 				<link rel="stylesheet" href={state.stylePath} />
 			</Show>
-			<div
+			<article
 				ref={dialogContainerRef}
 				class={
 					'db-drawer-container' +
 					(props.className ? ' ' + props.className : '')
 				}
-				data-size={props.size}
+				data-spacing={props.spacing}
 				data-width={props.width}
 				data-direction={props.direction}
 				data-rounded={props.rounded}>
-				<div class="db-drawer-header">
-					<div>
-						<Slot name="drawer-header" />
-					</div>
+				<header class="db-drawer-header">
+					<Slot name="drawer-header" />
 					<Show when={props.withCloseButton}>
 						<DBButton
-							id="button-close-drawer"
+							className="button-close-drawer"
+							id={props.closeButtonId}
 							icon="close"
-							variant="transparent"
+							variant="text"
+							noText
 							onClick={() => state.handleClose('close')}>
-							Close Drawer
+							{props.closeButtonText ?? DEFAULT_CLOSE_BUTTON}
 						</DBButton>
 					</Show>
-				</div>
+				</header>
 				<div class="db-drawer-content">{props.children}</div>
-			</div>
+			</article>
 		</dialog>
 	);
 }

@@ -18,35 +18,33 @@
 	display: flex;
 	flex-direction: column;
 
-	&[data-direction="row"] {
-		@media only screen and (min-width: #{$db-screens-s}) {
-			display: grid;
-			grid-template-columns: repeat(2, minmax(0, 1fr));
-			gap: $db-spacing-fixed-md;
-
-			& > .db-card-image {
-				height: 100%;
-			}
-		}
-	}
-
 	& > a {
 		text-decoration: none;
 	}
 
-	&[data-variant="full-width"] {
-		width: 100vw;
-		border-radius: 0;
+	&[data-spacing="medium"] {
+		padding: $db-spacing-fixed-lg;
+	}
+
+	&[data-spacing="small"] {
+		padding: $db-spacing-fixed-md;
 	}
 
 	&[data-variant="interactive"] {
-		&:hover {
+		// TODO use transition duration as variable
+		transition: box-shadow 0.15s $db-transition-functional-timing;
+
+		&:hover:not([data-elevation="none"]) {
 			cursor: pointer;
-			box-shadow: $db-elevation-4;
+			box-shadow: $db-elevation-8;
 		}
 
-		&:active {
+		&:active:not([data-elevation="none"]) {
 			box-shadow: $db-elevation-2;
 		}
+	}
+
+	&[data-elevation="none"] {
+		box-shadow: none;
 	}
 }

@@ -8,10 +8,12 @@ import {
 import { DEFAULT_ID } from '../../shared/constants';
 import type { DBTabState, DBTabProps } from './model';
 import { uuid } from '../../utils';
+import classNames from 'classnames';
 
 useMetadata({
 	isAttachedToShadowDom: true,
 	component: {
+		// MS Power Apps
 		includeIcon: false,
 		properties: [
 			{ name: 'name', type: 'SingleLine.Text' },
@@ -32,8 +34,12 @@ export default function DBTab(props: DBTabProps) {
 	// This is used as forwardRef
 	let component: any;
 	const formRef = useRef<HTMLInputElement>(null);
+	// jscpd:ignore-start
 	const state = useStore<DBTabState>({
-		mId: DEFAULT_ID
+		mId: DEFAULT_ID,
+		getClassNames: (...args: classNames.ArgumentArray) => {
+			return classNames(args);
+		}
 	});
 
 	onMount(() => {
@@ -46,11 +52,12 @@ export default function DBTab(props: DBTabProps) {
 			formRef?.click();
 		}
 	});
+	// jscpd:ignore-end
 
 	return (
 		<div
 			ref={component}
-			class={'db-tab' + (props.className ? ' ' + props.className : '')}>
+			class={state.getClassNames('db-tab', props.className)}>
 			<Show when={state.stylePath}>
 				<link rel="stylesheet" href={state.stylePath} />
 			</Show>

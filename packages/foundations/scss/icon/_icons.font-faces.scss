@@ -6,9 +6,9 @@
 @font-face {
 	font-display: block;
 	font-family: "missing-icons";
-	src: url("#{$icons-path}functional/fonts/icons-empty.woff2?4r2095")
+	src: url("#{$icons-path}functional/fonts/icons-empty.woff2?4r2096")
 			format("woff2"),
-		url("#{$icons-path}functional/fonts/icons-empty.woff?4r2095")
+		url("#{$icons-path}functional/fonts/icons-empty.woff?4r2096")
 			format("woff");
 }
 
@@ -24,9 +24,9 @@
 				font-family: $icon-font-family;
 				font-style: normal;
 				font-weight: normal;
-				src: url("#{$icons-path}functional/fonts/#{$icon-font-family+ "-" + $icon-category}.woff2?4r2095")
+				src: url("#{$icons-path}functional/fonts/#{$icon-font-family+ "-" + $icon-category}.woff2?4r2096")
 						format("woff2"),
-					url("#{$icons-path}functional/fonts/#{$icon-font-family+ "-" + $icon-category}.woff?4r2095")
+					url("#{$icons-path}functional/fonts/#{$icon-font-family+ "-" + $icon-category}.woff?4r2096")
 						format("woff");
 
 				unicode-range: unquote($icon-font-unicodes);

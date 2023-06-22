@@ -19,6 +19,12 @@ updates:
       time: "02:00"
       timezone: "Europe/Berlin"
     ignore:
+      # disable playwright auto update for now, because we need to update them manually anyways
+      - dependency-name: "@playwright/experimental-ct-react"
+      - dependency-name: "@playwright/experimental-ct-vue"
+      - dependency-name: "@playwright/test"
+      - dependency-name: "typescript"
+        update-types: ["version-update:semver-major"]
       - dependency-name: "ng-packagr"
         update-types: ["version-update:semver-major"]
       - dependency-name: "@angular/cli"
@@ -47,6 +53,9 @@ updates:
         update-types: ["version-update:semver-major"]
       - dependency-name: "react-dom"
         update-types: ["version-update:semver-major"]
+      # We currently need to ignore this until we migrate to TypeScript 5
+      - dependency-name: "xo"
+        update-types: ["version-update:semver-minor"]
       # We currently need to ignore this for the actual (LTS) Angular version
       - dependency-name: "zone.js"
         update-types: ["version-update:semver-minor"]

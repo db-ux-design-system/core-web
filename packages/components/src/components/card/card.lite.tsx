@@ -1,9 +1,11 @@
 import { onMount, Show, useMetadata, useStore } from '@builder.io/mitosis';
 import type { DBCardState, DBCardProps } from './model';
+import classNames from 'classnames';
 
 useMetadata({
 	isAttachedToShadowDom: true,
 	component: {
+		// MS Power Apps
 		includeIcon: false,
 		properties: [
 			{
@@ -11,14 +13,14 @@ useMetadata({
 				type: 'Enum',
 				values: [
 					{
+						key: 'Default',
+						name: 'Default',
+						value: 'default'
+					},
+					{
 						key: 'Interactive',
 						name: 'Interactive',
 						value: 'interactive'
-					},
-					{
-						key: 'Full Width',
-						name: 'Full Width',
-						value: 'full-width'
 					}
 				]
 			}
@@ -29,11 +31,15 @@ useMetadata({
 export default function DBCard(props: DBCardProps) {
 	// This is used as forwardRef
 	let component: any;
+	// jscpd:ignore-start
 	const state = useStore<DBCardState>({
 		handleClick: (event: any) => {
 			if (props.onClick) {
 				props.onClick(event);
 			}
+		},
+		getClassNames: (...args: classNames.ArgumentArray) => {
+			return classNames(args);
 		}
 	});
 
@@ -42,14 +48,16 @@ export default function DBCard(props: DBCardProps) {
 			state.stylePath = props.stylePath;
 		}
 	});
+	// jscpd:ignore-end
 
 	return (
 		<div
 			ref={component}
-			class={'db-card' + (props.className ? ' ' + props.className : '')}
+			class={state.getClassNames('db-card', props.className)}
 			data-variant={props.variant}
 			data-color-variant={props.colorVariant}
-			data-direction={props.direction}
+			data-elevation={props.elevation}
+			data-spacing={props.spacing}
 			onClick={(event) => state.handleClick(event)}>
 			<Show when={state.stylePath}>
 				<link rel="stylesheet" href={state.stylePath} />

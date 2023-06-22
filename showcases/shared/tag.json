@@ -1,0 +1,202 @@
+[
+	{
+		"name": "Tonality",
+		"examples": [
+			{
+				"name": "functional",
+				"className": "db-ui-functional",
+				"props": {}
+			},
+			{
+				"name": "regular (Default)",
+				"className": "db-ui-regular",
+				"props": {}
+			},
+			{
+				"name": "expressive",
+				"className": "db-ui-expressive",
+				"props": {}
+			}
+		]
+	},
+	{
+		"name": "Type",
+		"examples": [
+			{
+				"name": "Weak (Default)",
+				"props": {}
+			},
+			{
+				"name": "Strong",
+				"props": {
+					"type": "strong"
+				}
+			}
+		]
+	},
+	{
+		"name": "Variant",
+		"examples": [
+			{
+				"name": "Neutral (Default)",
+				"props": {}
+			},
+			{
+				"name": "Critical",
+				"props": {
+					"variant": "critical"
+				}
+			},
+			{
+				"name": "Informational",
+				"props": {
+					"variant": "informational"
+				}
+			},
+			{
+				"name": "Successful",
+				"props": {
+					"variant": "successful"
+				}
+			},
+			{
+				"name": "Warning",
+				"props": {
+					"variant": "warning"
+				}
+			},
+			{
+				"name": "Neutral Strong",
+				"props": {
+					"type": "strong"
+				}
+			},
+			{
+				"name": "Critical Strong",
+				"props": {
+					"variant": "critical",
+					"type": "strong"
+				}
+			},
+			{
+				"name": "Informational Strong",
+				"props": {
+					"variant": "informational",
+					"type": "strong"
+				}
+			},
+			{
+				"name": "Successful Strong",
+				"props": {
+					"variant": "successful",
+					"type": "strong"
+				}
+			},
+			{
+				"name": "Warning Strong",
+				"props": {
+					"variant": "warning",
+					"type": "strong"
+				}
+			}
+		]
+	},
+	{
+		"name": "Behaviour",
+		"examples": [
+			{
+				"name": "Static (Default)",
+				"props": {}
+			},
+			{
+				"name": "Interactive",
+				"props": {
+					"behaviour": "interactive"
+				}
+			},
+			{
+				"name": "Interactive-unique 01",
+				"props": {
+					"name": "interactive-unique",
+					"behaviour": "interactive-unique"
+				}
+			},
+			{
+				"name": "Interactive-unique 02",
+				"props": {
+					"name": "interactive-unique",
+					"behaviour": "interactive-unique"
+				}
+			},
+			{
+				"name": "Removeable",
+				"props": {
+					"behaviour": "removable"
+				}
+			}
+		]
+	},
+	{
+		"name": "State",
+		"examples": [
+			{
+				"name": "Unchecked (Default)",
+				"props": {
+					"behaviour": "interactive"
+				}
+			},
+			{
+				"name": "Checked",
+				"props": {
+					"behaviour": "interactive",
+					"checked": true
+				}
+			},
+			{
+				"name": "Disabled",
+				"props": {
+					"behaviour": "interactive",
+					"checked": true,
+					"disabled": true
+				}
+			}
+		]
+	},
+	{
+		"name": "Content",
+		"examples": [
+			{
+				"name": "Text (Default)",
+				"props": {}
+			},
+			{
+				"name": "Icon",
+				"props": {
+					"icon": "account",
+					"noText": true
+				}
+			},
+			{
+				"name": "Icon & Text",
+				"props": {
+					"icon": "account"
+				}
+			}
+		]
+	},
+	{
+		"name": "Overflow",
+		"examples": [
+			{
+				"name": "No Overflow (Default)",
+				"props": {}
+			},
+			{
+				"name": "With Overflow (max-width)",
+				"props": {
+					"overflow": true
+				}
+			}
+		]
+	}
+]

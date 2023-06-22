@@ -1,9 +1,14 @@
-import { useState } from 'react';
-import { Outlet } from 'react-router-dom';
+import { useState, typeChangeEvent } from 'react';
+import { Link, Outlet } from 'react-router-dom';
 import { DBBrand, DBButton, DBHeader, DBPage } from '../../../output/react/src';
+import {
+	COLORS,
+	TONALITIES
+} from '../../../packages/components/src/shared/constants';
+import { getSortedNavigationItems } from './utils/navigation-item';
+import useQuery from './hooks/use-query';
 import MetaNavigation from './meta-navigation';
 import Navigation from './navigation';
-import useQuery from './hooks/use-query';
 
 const App = () => {
 	const [tonality, setTonality, color, setColor, pageName, fullscreen] =
@@ -27,7 +32,24 @@ const App = () => {
 				<DBHeader
 					drawerOpen={drawerOpen}
 					onToggle={setDrawerOpen}
-					slotBrand={<DBBrand anchorChildren>React Showcase</DBBrand>}
+					slotBrand={
+						<DBBrand title="React Showcase" anchorChildren>
+							Showcase
+						</DBBrand>
+					}
+					slotDesktopNavigation={
+						<nav className="desktop-navigation">
+							<ul>
+								{getSortedNavigationItems().map((navItem) => (
+									<li key={`router-path-${navItem.path}`}>
+										<Link to={navItem.path}>
+											{navItem.label}
+										</Link>
+									</li>
+								))}
+							</ul>
+						</nav>
+					}
 					slotMetaNavigation={
 						<MetaNavigation
 							onColorChange={setColor}

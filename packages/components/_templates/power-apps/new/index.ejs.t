@@ -37,11 +37,13 @@ export class DB<%= h.capitalize(name) %>
     currentPageContext = currentPageContext
       ? currentPageContext["page"]
       : undefined;
+	<%  if(locals.props && Object.keys(locals.props).length){ -%>
     if (currentPageContext) {
-    <%  if(locals.props){ locals.props.forEach((prop)=>{ -%>
-      this.props.<%= prop.name %> = currentPageContext.<%= prop.name %>;
-    <% })} -%>
+		<%  locals.props.forEach((prop)=>{ -%>
+		this.props.<%= prop.name %> = currentPageContext.<%= prop.name %>;
+		<% }) -%>
     }
+	<% } -%>
 	this._notifyOutputChanged = notifyOutputChanged;
     this.overViewContainer = container;
   }

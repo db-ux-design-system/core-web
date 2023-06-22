@@ -2,7 +2,7 @@ const PowerAppsPlugin = require('./plugins/power-apps');
 
 module.exports = {
 	files: 'src/**',
-	targets: ['angular', 'vue3', 'webcomponent', 'svelte', 'react'],
+	targets: ['angular', 'vue3', 'webcomponent', 'react'],
 	dest: '../../output',
 	options: {
 		react: {

@@ -1,28 +1,25 @@
-<h1>Button</h1>
-<div class="button-container">
-	<!-- TODO: Use db-select here	-->
-	<select [(ngModel)]="variant">
-		<option checked>outline</option>
-		<option>primary</option>
-		<option>transparent</option>
-		<option>semi-transparent</option>
-	</select>
-
-	<DBButton [variant]="variant">{{ variant }}</DBButton>
-	<DBButton [variant]="variant" [disabled]="true">{{ variant }}</DBButton>
-	<DBButton [variant]="variant" icon="account">{{ variant }}</DBButton>
-	<DBButton [variant]="variant" icon="account" [disabled]="true">{{
-		variant
-	}}</DBButton>
-	<DBButton [variant]="variant" icon="account" [icntxt]="true">{{
-		variant
-	}}</DBButton>
-	<DBButton
-		[variant]="variant"
-		icon="account"
-		[disabled]="true"
-		[icntxt]="true"
-		>{{ variant }}</DBButton
+<app-default-component
+	title="DBButton"
+	[variants]="variants"
+	[exampleTemplate]="exampleTemplate"
+>
+	<ng-template
+		#exampleTemplate
+		let-exampleProps="exampleProps"
+		let-exampleName="exampleName"
+		let-exampleIndex="exampleIndex"
+		let-variantIndex="variantIndex"
 	>
-	<DBButton [variant]="variant" state="loading">{{ variant }}</DBButton>
-</div>
+		<db-button
+			[variant]="exampleProps.variant"
+			[size]="exampleProps.size"
+			[icon]="exampleProps.icon"
+			[noText]="exampleProps.noText"
+			[disabled]="exampleProps.disabled"
+			[width]="exampleProps.width"
+			(click)="showAlert(exampleName)"
+		>
+			{{ exampleName }}
+		</db-button>
+	</ng-template>
+</app-default-component>

@@ -1,0 +1,217 @@
+[
+	{
+		"name": "Tonality",
+		"examples": [
+			{
+				"name": "functional",
+				"style": { "width": "100%" },
+				"className": "db-ui-functional",
+				"props": {
+					"headline": "Headline",
+					"link": {
+						"href": "#",
+						"text": "Link"
+					}
+				}
+			},
+			{
+				"name": "regular (Default)",
+				"style": { "width": "100%" },
+				"className": "db-ui-regular",
+				"props": {
+					"headline": "Headline",
+					"link": {
+						"href": "#",
+						"text": "Link"
+					}
+				}
+			},
+			{
+				"name": "expressive",
+				"style": { "width": "100%" },
+				"className": "db-ui-expressive",
+				"props": {
+					"headline": "Headline",
+					"link": {
+						"href": "#"
+					},
+					"slotLink": "Link"
+				}
+			}
+		]
+	},
+	{
+		"name": "Type",
+		"examples": [
+			{
+				"name": "(Default) Alert",
+				"style": { "width": "100%" },
+				"props": {
+					"type": "alert",
+					"headline": "Headline",
+					"link": {
+						"href": "#",
+						"text": "Link"
+					}
+				}
+			},
+			{
+				"name": "Inline",
+				"style": { "width": "100%" },
+				"props": {
+					"type": "inline",
+					"headline": "Headline",
+					"link": {
+						"href": "#",
+						"text": "Link"
+					}
+				}
+			}
+		]
+	},
+	{
+		"name": "Variant",
+		"examples": [
+			{
+				"name": "(Default) Adaptive",
+				"style": { "width": "100%" },
+				"props": {
+					"type": "alert",
+					"icon": "account",
+					"headline": "Headline",
+					"link": {
+						"href": "#",
+						"text": "Link"
+					}
+				}
+			},
+			{
+				"name": "Critical",
+				"style": { "width": "100%" },
+				"props": {
+					"type": "alert",
+					"variant": "critical",
+					"headline": "Headline",
+					"link": {
+						"href": "#",
+						"text": "Link"
+					}
+				}
+			},
+			{
+				"name": "Informational",
+				"style": { "width": "100%" },
+				"props": {
+					"type": "alert",
+					"variant": "informational",
+					"headline": "Headline",
+					"link": {
+						"href": "#",
+						"text": "Link"
+					}
+				}
+			},
+			{
+				"name": "Successful",
+				"style": { "width": "100%" },
+				"props": {
+					"type": "alert",
+					"variant": "successful",
+					"headline": "Headline",
+					"link": {
+						"href": "#",
+						"text": "Link"
+					}
+				}
+			},
+			{
+				"name": "Warning",
+				"style": { "width": "100%" },
+				"props": {
+					"type": "alert",
+					"variant": "warning",
+					"headline": "Headline",
+					"link": {
+						"href": "#",
+						"text": "Link"
+					}
+				}
+			}
+		]
+	},
+	{
+		"name": "Content",
+		"examples": [
+			{
+				"name": "Headline & Text & Link & Icon",
+				"style": { "width": "100%" },
+				"props": {
+					"type": "alert",
+					"icon": "account",
+					"headline": "Headline",
+					"link": {
+						"href": "#",
+						"text": "Link"
+					}
+				}
+			},
+			{
+				"name": "Headline & Text & Link",
+				"style": { "width": "100%" },
+				"props": {
+					"headline": "Headline",
+					"link": {
+						"href": "#",
+						"text": "Link"
+					}
+				}
+			},
+			{
+				"name": "Text & Link",
+				"style": { "width": "100%" },
+				"props": {
+					"link": {
+						"href": "#",
+						"text": "Link"
+					}
+				}
+			},
+			{
+				"name": "Text",
+				"style": { "width": "100%" },
+				"props": {}
+			}
+		]
+	},
+	{
+		"name": "Behaviour",
+		"examples": [
+			{
+				"name": "Closable",
+				"style": { "width": "100%" },
+				"props": {
+					"type": "alert",
+					"headline": "Headline",
+					"link": {
+						"href": "#",
+						"text": "Link"
+					},
+					"click": "()=>{alert(\"click close button\")}"
+				}
+			},
+			{
+				"name": "Permanent",
+				"style": { "width": "100%" },
+				"props": {
+					"type": "alert",
+					"headline": "Headline",
+					"link": {
+						"href": "#",
+						"text": "Link"
+					},
+					"behaviour": "permanent"
+				}
+			}
+		]
+	}
+]

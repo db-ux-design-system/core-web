@@ -1,50 +1,41 @@
 import { DBRadio } from '../../../../../output/react/src';
 import DefaultComponent from '../index';
-import type { DefaultComponentVariants } from '../data';
+import { getVariants } from '../data';
+import defaultComponentVariants from '../../../../shared/radio.json';
+import { type DBRadioProps } from '../../../../../output/react/src/components/radio/model';
 
-const variants: DefaultComponentVariants[] = [
-	{
-		name: 'States',
-		examples: [
-			{
-				name: 'Default',
-				example: <DBRadio name="States">Label</DBRadio>
-			},
-			{
-				name: 'Disabled',
-				example: <DBRadio label="Label" disabled name="States" />
-			},
-			{
-				name: 'Required',
-				example: <DBRadio label="Label" required name="States" />
-			},
-			{
-				name: 'Checked',
-				example: <DBRadio label="Label" checked name="States" />
-			},
-			{
-				name: 'Invalid',
-				example: <DBRadio label="Label" invalid name="States" />
-			}
-		]
-	},
-	{
-		name: 'Size',
-		examples: [
-			{ name: 'Default', example: <DBRadio label="Label" name="Size" /> },
-			{
-				name: 'Small',
-				example: <DBRadio label="Label" size="small" name="Size" />
-			}
-		]
-	}
-];
+const getRadio = ({
+	label,
+	size,
+	name,
+	checked,
+	invalid,
+	required,
+	children,
+	disabled,
+	value
+}: DBRadioProps) => (
+	<DBRadio
+		label={label}
+		size={size}
+		name={name}
+		checked={checked}
+		invalid={invalid}
+		required={required}
+		disabled={disabled}
+		value={value}>
+		{children}
+	</DBRadio>
+);
 
 const RadioComponent = () => {
 	return (
 		<DefaultComponent
 			title={'DBRadio'}
-			variants={variants}></DefaultComponent>
+			variants={getVariants(
+				defaultComponentVariants,
+				getRadio
+			)}></DefaultComponent>
 	);
 };
 

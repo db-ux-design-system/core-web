@@ -1,6 +1,8 @@
 @use "@db-ui/components/build/styles/db-ui-42-webpack" as *;
 @use "@db-ui/foundations/build/scss/color-classes" as *;
 @use "@db-ui/foundations/build/scss/variables.global" as *;
+@use "@db-ui/foundations/build/scss/variables" as *;
+@use "@db-ui/foundations/build/scss/tonality" as *;
 
 #__next {
 	height: inherit;
@@ -36,7 +38,6 @@ iframe {
 .iframe-component-container {
 	display: flex;
 	flex-direction: column;
-	padding: $db-spacing-fixed-md;
 
 	.flex {
 		display: flex;
@@ -56,4 +57,57 @@ iframe {
 	span {
 		word-break: break-all;
 	}
+}
+
+.noh1 {
+	h1 {
+		display: none;
+	}
+}
+
+.is-properties {
+	height: 100%;
+	overflow: auto;
+
+	h1,
+	h2 {
+		display: none;
+	}
+}
+
+/* TODO: Use real table css in future */
+table {
+	@extend %db-ui-functional;
+	width: 100%;
+	border-collapse: collapse;
+}
+
+table td,
+table th {
+	border: 1px solid $db-colors-neutral-bg-2-enabled;
+	padding: $db-spacing-fixed-md;
+	max-width: 33vw;
+}
+
+table tr:nth-child(even) {
+	background-color: $db-colors-neutral-bg-1-enabled;
+}
+
+table th {
+	padding-inline: $db-spacing-fixed-md;
+	background-color: $db-colors-neutral-bg-2-enabled;
+}
+
+/* Workaround for current db-page from db-ui-elements */
+div[class^="ch-"] {
+	div,
+	span {
+		@extend %db-body-sm;
+		color: $db-colors-secondary-on-enabled;
+	}
+}
+
+// Code Hike (https://github.com/code-hike/codehike) styles
+.ch-frame-buttons {
+	display: none !important;
 }
