@@ -21,7 +21,7 @@
 @use "../components/drawer/drawer" as *;
 @use "../components/select/select" as *;
 
-@import "dialog-init";
+@forward "dialog-init";
 // angular-workaround
 dbtag,
 db-tag,

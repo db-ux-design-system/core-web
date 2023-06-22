@@ -30,19 +30,19 @@
 
 .db-header-meta-navigation {
 	@extend %db-ui-functional;
+	@include divider("top");
 	display: flex;
-	gap: inherit;
+	flex-direction: column;
+	gap: $db-spacing-fixed-sm;
 	justify-content: end;
 	background-color: $db-colors-neutral-bg-1-enabled;
 
 	padding: $db-spacing-fixed-md;
 
-	// Workaround for rounded border in mobile
-	margin: 1px;
-
 	@media screen and (min-width: $db-screens-s) {
 		padding: $db-spacing-fixed-xs $db-spacing-fixed-md;
 		margin: 0;
+		flex-direction: row;
 	}
 
 	&:empty {
@@ -85,11 +85,11 @@
 
 .db-header-action-bar {
 	@media screen and (max-width: $db-screens-s) {
+		@include divider("top");
 		flex: 0 1 auto;
 		flex-grow: 0;
 		flex-shrink: 0;
-		box-shadow: $db-elevation-4;
-		margin-top: $db-spacing-fixed-2xs;
+		padding-block-start: $db-spacing-fixed-xs;
 	}
 }
 
@@ -104,15 +104,31 @@
 	}
 }
 
+.db-header-navigation {
+	padding-block: $db-spacing-fixed-md;
+}
+
 .db-header-navigation,
 .db-header-action-bar {
 	display: flex;
 	gap: $db-spacing-fixed-sm;
-	padding: $db-spacing-fixed-md;
+	padding-inline: $db-spacing-fixed-md;
 
 	@media screen and (min-width: $db-screens-s) {
 		gap: $db-spacing-fixed-xs;
 		padding: 0;
+	}
+}
+
+.db-header-drawer {
+	--db-drawer-content-padding-inline: 0;
+	padding-block-end: 0;
+
+	& > .db-drawer-content {
+		display: flex;
+		flex-direction: column;
+		height: 100%;
+		overflow: hidden;
 	}
 }
 

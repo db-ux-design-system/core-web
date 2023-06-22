@@ -52,10 +52,10 @@ export default function DBHeader(props: DBHeaderProps) {
 			</Show>
 
 			<DBDrawer
-				className="db-header-hide-on-desktop"
+				className="db-header-drawer db-header-hide-on-desktop"
 				rounded
 				withCloseButton
-				size="small"
+				spacing="small"
 				open={props.drawerOpen}
 				onClose={() => state.toggle()}>
 				<div class="db-header-drawer-navigation">
@@ -96,7 +96,8 @@ export default function DBHeader(props: DBHeaderProps) {
 						id="button-burger-menu"
 						className="db-header-hide-on-desktop"
 						icon="menu"
-						variant="ghost"
+						noText
+						variant="text"
 						onClick={() => state.toggle()}>
 						Burger Menu
 					</DBButton>

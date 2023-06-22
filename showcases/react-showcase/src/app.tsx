@@ -37,19 +37,6 @@ const App = () => {
 							Showcase
 						</DBBrand>
 					}
-					slotDesktopNavigation={
-						<nav className="desktop-navigation">
-							<ul>
-								{getSortedNavigationItems().map((navItem) => (
-									<li key={`router-path-${navItem.path}`}>
-										<Link to={navItem.path}>
-											{navItem.label}
-										</Link>
-									</li>
-								))}
-							</ul>
-						</nav>
-					}
 					slotMetaNavigation={
 						<MetaNavigation
 							onColorChange={setColor}
@@ -58,19 +45,19 @@ const App = () => {
 					}
 					slotCallToAction={
 						/* TODO: Use DBSearchBar in future */
-						<DBButton icon="search" variant="transparent">
+						<DBButton icon="search" variant="text" noText>
 							Search
 						</DBButton>
 					}
 					slotActionBar={
 						<>
-							<DBButton icon="account" variant="transparent">
+							<DBButton icon="account" variant="text" noText>
 								Profile
 							</DBButton>
-							<DBButton icon="alert" variant="transparent">
+							<DBButton icon="alert" variant="text" noText>
 								Notification
 							</DBButton>
-							<DBButton icon="help" variant="transparent">
+							<DBButton icon="help" variant="text" noText>
 								Help
 							</DBButton>
 						</>

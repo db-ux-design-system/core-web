@@ -94,7 +94,10 @@ $spacings: (
 	}
 
 	.db-drawer-content {
-		padding-inline: map.get($spacing, "inline");
+		padding-inline: var(
+			--db-drawer-content-padding-inline,
+			map.get($spacing, "inline")
+		);
 	}
 }
 
