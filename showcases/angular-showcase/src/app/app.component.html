@@ -24,7 +24,7 @@
 				</li>
 			</ul>
 		</nav>
-		<div *dbMetaNavigation>
+		<ng-container *dbMetaNavigation>
 			<!-- TODO: Use db-select here	-->
 			<select [(ngModel)]="tonality" (change)="onChange($event)">
 				<option *ngFor="let t of tonalities">
@@ -36,15 +36,23 @@
 					{{ c }}
 				</option>
 			</select>
-		</div>
-		<div call-to-action>
-			<DBButton icon="search" variant="ghost">Search</DBButton>
-		</div>
-		<div *dbActionBar>
-			<DBButton icon="account" variant="ghost"> Profile </DBButton>
-			<DBButton icon="alert" variant="ghost"> Notification </DBButton>
-			<DBButton icon="help" variant="ghost"> Help </DBButton>
-		</div>
+		</ng-container>
+		<ng-container call-to-action>
+			<DBButton icon="search" variant="text" [noText]="true"
+				>Search</DBButton
+			>
+		</ng-container>
+		<ng-container *dbActionBar>
+			<DBButton icon="account" variant="text" [noText]="true">
+				Profile
+			</DBButton>
+			<DBButton icon="alert" variant="text" [noText]="true">
+				Notification
+			</DBButton>
+			<DBButton icon="help" variant="text" [noText]="true">
+				Help
+			</DBButton>
+		</ng-container>
 	</db-header>
 	<div [class]="getChangeableClasses()">
 		<router-outlet></router-outlet>

@@ -41,8 +41,6 @@ export type GlobalProps = {
 	 * The [title attribute](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/title) specifies the tooltip of the component.
 	 */
 	title?: string;
-
-	id?: string;
 };
 
 export type GlobalState = {

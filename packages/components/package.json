@@ -22,7 +22,7 @@
     "build:z-directives": "cpr overrides/angular ../../output/angular -o",
     "build:z-post": "node scripts/post-build/index.js",
     "build:z2-docs": "react-docgen ../../output/react/src/components/**/*.tsx -o ../../output/docs.json -i *.spec.tsx",
-    "compile:angular": "mitosis build -c mitosis-angular.config.js && node -e \"require('./scripts/post-build/angular.js')(true)\" && cpr ../../output/tmp/angular/src ../../output/angular/src -o",
+    "compile:angular": "mitosis build -c mitosis-angular.config.js && node -e \"require('./scripts/post-build/angular.js')(true)\" && npm run build:z-directives && cpr ../../output/tmp/angular/src ../../output/angular/src -o",
     "compile:react": "mitosis build -c mitosis-react.config.js && node -e \"require('./scripts/post-build/react.js')(true)\" && cpr ../../output/tmp/react/src ../../output/react/src -o",
     "compile:vue": "mitosis build -c mitosis-vue.config.js && node -e \"require('./scripts/post-build/vue.js')(true)\" && cpr ../../output/tmp/vue/vue3/src ../../output/vue/vue3/src -o",
     "copy-output": "npm-run-all copy:*",

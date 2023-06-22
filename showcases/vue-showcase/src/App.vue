@@ -92,30 +92,32 @@ watch(
 					</ul>
 				</nav>
 				<template v-slot:call-to-action>
-					<DBButton icon="search" variant="ghost"> Search </DBButton>
+					<DBButton icon="search" variant="text" :no-text="true">
+						Search
+					</DBButton>
 				</template>
 				<template v-slot:action-bar>
-					<DBButton icon="account" variant="ghost">
+					<DBButton icon="account" variant="text" :no-text="true">
 						Profile
 					</DBButton>
-					<DBButton icon="alert" variant="ghost">
+					<DBButton icon="alert" variant="text" :no-text="true">
 						Notification
 					</DBButton>
-					<DBButton icon="help" variant="ghost"> Help </DBButton>
+					<DBButton icon="help" variant="text" :no-text="true">
+						Help
+					</DBButton>
 				</template>
 				<template v-slot:meta-navigation>
-					<div>
-						<select v-model="tonality" @change="onChange($event)">
-							<option v-for="ton of TONALITIES" :value="ton">
-								{{ ton }}
-							</option>
-						</select>
-						<select v-model="color" @change="onChange($event)">
-							<option v-for="col of COLORS" :value="col">
-								{{ col }}
-							</option>
-						</select>
-					</div>
+					<select v-model="tonality" @change="onChange($event)">
+						<option v-for="ton of TONALITIES" :value="ton">
+							{{ ton }}
+						</option>
+					</select>
+					<select v-model="color" @change="onChange($event)">
+						<option v-for="col of COLORS" :value="col">
+							{{ col }}
+						</option>
+					</select>
 				</template>
 			</DBHeader>
 		</template>

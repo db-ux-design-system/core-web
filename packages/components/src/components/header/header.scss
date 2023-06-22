@@ -19,13 +19,11 @@
 .db-header-navigation-bar {
 	display: flex;
 	position: relative;
-	padding: $db-spacing-fixed-md;
+	padding-block: $db-spacing-fixed-xs;
+	padding-inline: $db-spacing-fixed-md;
 	gap: $db-spacing-fixed-xs;
 	width: 100%;
 	align-items: center;
-
-	// TODO: why 72px?
-	height: to-rem(72);
 }
 
 .db-header-meta-navigation {
@@ -122,9 +120,11 @@
 
 .db-header-drawer {
 	--db-drawer-content-padding-inline: 0;
+	// 1px for box shadow of header
+	--db-drawer-header-padding-block-end: calc(1px + #{$db-spacing-fixed-xs});
 	padding-block-end: 0;
 
-	& > .db-drawer-content {
+	& .db-drawer-content {
 		display: flex;
 		flex-direction: column;
 		height: 100%;

@@ -47,7 +47,7 @@ const MetaNavigation = ({
 	}, [color, tonality]);
 
 	return (
-		<div>
+		<>
 			<select
 				value={tonality}
 				onChange={(event) => {
@@ -70,7 +70,7 @@ const MetaNavigation = ({
 					</option>
 				))}
 			</select>
-		</div>
+		</>
 	);
 };
 
