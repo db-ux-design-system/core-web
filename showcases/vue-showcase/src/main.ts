@@ -2,9 +2,9 @@ import { createApp } from 'vue';
 import { createRouter, createWebHashHistory } from 'vue-router';
 import './index.scss';
 import App from './App.vue';
-import { getRoutes } from './utils/navigation-items';
+import { navigationItems } from './utils/navigation-items';
 
-const routes = getRoutes();
+const routes = navigationItems;
 
 const router = createRouter({
 	history: createWebHashHistory('/vue-showcase/'),

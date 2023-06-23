@@ -140,7 +140,7 @@ export type FormState = {
 	_value?: any;
 };
 
-export type InitializedState = {
+export type FormCheckState = {
 	initialized: boolean;
 };
 

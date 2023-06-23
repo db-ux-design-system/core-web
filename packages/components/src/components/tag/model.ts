@@ -10,7 +10,7 @@ import {
 	IconProps,
 	IconState,
 	FormCheckProps,
-	InitializedState
+	FormCheckState
 } from '../../shared/model';
 
 export interface DBTagDefaultProps {
@@ -68,5 +68,5 @@ export type DBTagState = DBTagDefaultState &
 	GlobalState &
 	ChangeEventState &
 	FormState &
-	InitializedState &
+	FormCheckState &
 	IconState;

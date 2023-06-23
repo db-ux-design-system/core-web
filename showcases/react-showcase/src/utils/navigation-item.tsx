@@ -19,99 +19,32 @@ import DividerComponent from '../components/divider';
 export type NavigationItem = {
 	path: string;
 	label: string;
-	component?: any;
-	subNavigation?: NavigationItem[];
+	component: any;
+	home?: boolean;
 };
-
-export const getSortedNavigationItems = (
-	navigationItems: NavigationItem[]
-): any[] =>
-	navigationItems.sort((a: NavigationItem, b: NavigationItem) =>
-		a.path.localeCompare(b.path)
-	);
 export const NAVIGATION_ITEMS: NavigationItem[] = [
 	{
-		path: '06',
-		label: '06 Feedback',
-		subNavigation: getSortedNavigationItems([
-			{ path: 'alert', label: 'Alert', component: <AlertComponent /> }
-		])
+		path: 'navigation-item',
+		label: 'NavigationItem',
+		component: <NavigationItemComponent />
 	},
 
-	{
-		path: '05',
-		label: '05 Navigation',
-		subNavigation: getSortedNavigationItems([
-			{
-				path: 'navigation-item',
-				label: 'NavigationItem',
-				component: <NavigationItemComponent />
-			},
-			{
-				path: 'xxx-test',
-				label: 'Navigation Test',
-				subNavigation: [
-					{
-						path: 'xxx-test-2',
-						label: 'Navigation Test 2',
-						component: <FormComponent />
-					}
-				]
-			}
-		])
-	},
+	{ path: 'checkbox', label: 'Checkbox', component: <CheckboxComponent /> },
+	{ path: 'divider', label: 'Divider', component: <DividerComponent /> },
+	{ path: 'tag', label: 'Tag', component: <TagComponent /> },
+	{ path: 'select', label: 'Select', component: <SelectComponent /> },
+	{ path: 'radio', label: 'Radio', component: <RadioComponent /> },
+	{ path: 'alert', label: 'Alert', component: <AlertComponent /> },
 
-	{
-		path: '04',
-		label: '04 Data-Display',
-		subNavigation: getSortedNavigationItems([
-			{
-				path: 'infotext',
-				label: 'Infotext',
-				component: <InfotextComponent />
-			},
-			{ path: 'tag', label: 'Tag', component: <TagComponent /> }
-		])
-	},
-	{
-		path: '03',
-		label: '03 Data-Input',
-		subNavigation: getSortedNavigationItems([
-			{ path: 'input', label: 'Input', component: <InputComponent /> },
-			{ path: 'radio', label: 'Radio', component: <RadioComponent /> },
-			{
-				path: 'checkbox',
-				label: 'Checkbox',
-				component: <CheckboxComponent />
-			},
-			{ path: 'select', label: 'Select', component: <SelectComponent /> }
-		])
-	},
-	{
-		path: '02',
-		label: '02 Action',
-		subNavigation: getSortedNavigationItems([
-			{ path: 'link', label: 'Link', component: <LinkComponent /> },
-			{ path: 'button', label: 'Button', component: <ButtonComponent /> }
-		])
-	},
-	{
-		path: '01',
-		label: '01 Layout',
-		subNavigation: getSortedNavigationItems([
-			{ path: 'card', label: 'Card', component: <CardComponent /> },
-			{ path: 'drawer', label: 'Drawer', component: <DrawerComponent /> },
-			{
-				path: 'divider',
-				label: 'Divider',
-				component: <DividerComponent />
-			},
-			{
-				path: 'section',
-				label: 'Section',
-				component: <SectionComponent />
-			}
-		])
-	},
-	{ path: '', label: 'Home', component: <FormComponent /> }
+	{ path: 'drawer', label: 'Drawer', component: <DrawerComponent /> },
+	{ path: 'infotext', label: 'Infotext', component: <InfotextComponent /> },
+	{ path: 'section', label: 'Section', component: <SectionComponent /> },
+	{ path: 'link', label: 'Link', component: <LinkComponent /> },
+	{ path: 'button', label: 'Button', component: <ButtonComponent /> },
+	{ path: 'input', label: 'Input', component: <InputComponent /> },
+	{ path: 'card', label: 'Card', component: <CardComponent /> },
+	{ path: '', label: 'Home', component: <FormComponent />, home: true }
 ];
+
+export const getSortedNavigationItems = (): any[] =>
+	NAVIGATION_ITEMS.sort((a, b) => a.path.localeCompare(b.path));

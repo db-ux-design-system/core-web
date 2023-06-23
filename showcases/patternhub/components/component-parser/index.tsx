@@ -1,23 +1,22 @@
 import { useEffect, useState } from 'react';
 
 import {
-	DBAlert,
-	DBBrand,
-	DBButton,
-	DBCard,
-	DBCheckbox,
-	DBDivider,
-	DBHeader,
-	DBIcon,
 	DBInfotext,
-	DBInput,
+	DBButton,
+	DBIcon,
 	DBLink,
-	DBMainNavigation,
-	DBNavigationItem,
-	DBRadio,
-	DBSection,
+	DBAlert,
+	DBInput,
 	DBSelect,
-	DBTag
+	DBCheckbox,
+	DBTag,
+	DBRadio,
+	DBDivider,
+	DBCard,
+	DBBrand,
+	DBSection,
+	DBHeader,
+	DBNavigationItem
 } from '../src';
 import { ComponentParserType, ComponentType } from './data';
 
@@ -204,14 +203,6 @@ const ComponentSwitch = ({
 			<DBNavigationItem className={className} {...props}>
 				{resolvedContent}
 			</DBNavigationItem>
-		);
-	}
-
-	if (type === 'main-navigation') {
-		return (
-			<DBMainNavigation className={className} {...props}>
-				{resolvedContent}
-			</DBMainNavigation>
 		);
 	}
 

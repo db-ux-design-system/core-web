@@ -3,20 +3,15 @@ import { Link, Outlet } from 'react-router-dom';
 import {
 	DBBrand,
 	DBHeader,
-	DBMainNavigation,
-	DBPage
+	DBPage,
+	DBNavigationItem
 } from '../../../output/react/src';
 import {
 	COLORS,
 	TONALITIES
 } from '../../../packages/components/src/shared/constants';
-import {
-	getSortedNavigationItems,
-	NAVIGATION_ITEMS,
-	type NavigationItem
-} from './utils/navigation-item';
+import { getSortedNavigationItems } from './utils/navigation-item';
 import useQuery from './hooks/use-query';
-import NavItem from './nav-item';
 
 const App = () => {
 	const [tonality, setTonality, color, setColor, pageName, fullscreen] =
@@ -41,23 +36,19 @@ const App = () => {
 						</DBBrand>
 					}
 					slotDesktopNavigation={
-						<DBMainNavigation>
-							{getSortedNavigationItems(NAVIGATION_ITEMS).map(
-								(navItem: NavigationItem) =>
-									navItem.component ? (
-										<Link
-											key={`router-path-${navItem.path}`}
-											to={navItem.path}>
-											<NavItem
-												navItem={navItem}></NavItem>
+						<nav className="desktop-navigation">
+							<ul>
+								{getSortedNavigationItems().map((navItem) => (
+									<li key={`router-path-${navItem.path}`}>
+										<Link to={navItem.path}>
+											<DBNavigationItem>
+												{navItem.label}
+											</DBNavigationItem>
 										</Link>
-									) : (
-										<NavItem
-											key={`router-path-${navItem.path}`}
-											navItem={navItem}></NavItem>
-									)
-							)}
-						</DBMainNavigation>
+									</li>
+								))}
+							</ul>
+						</nav>
 					}
 					slotMetaNavigation={
 						<div>

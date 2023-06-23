@@ -8,18 +8,14 @@ import {
 	COLOR_CONST,
 	TONALITY_CONST
 } from '../../../../packages/components/src/shared/constants';
-import {
-	getSortedNavigationItems,
-	NAVIGATION_ITEMS,
-	NavItem
-} from './utils/navigation-item';
+import { getSortedNavigationItems } from './utils/navigation-item';
 
 @Component({
 	selector: 'app-root',
 	templateUrl: './app.component.html'
 })
 export class AppComponent implements OnInit {
-	navigationItems: NavItem[] = getSortedNavigationItems(NAVIGATION_ITEMS);
+	navigationItems = getSortedNavigationItems();
 
 	tonalities = TONALITIES;
 	colors = COLORS;

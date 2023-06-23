@@ -5,8 +5,7 @@ export type ComponentParserType = {
 export type ComponentType = {
 	index?: string | number;
 	type?: /* hygen type */
-	| 'main-navigation'
-		| 'navigation-item'
+	| 'navigation-item'
 		| 'tag'
 		| 'select'
 		| 'h1'

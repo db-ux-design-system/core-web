@@ -1,17 +1,7 @@
-import {
-	onMount,
-	onUpdate,
-	Show,
-	Slot,
-	useMetadata,
-	useRef,
-	useStore
-} from '@builder.io/mitosis';
+import { onMount, Show, useMetadata, useStore } from '@builder.io/mitosis';
 import { DBNavigationItemState, DBNavigationItemProps } from './model';
 import classNames from 'classnames';
 import { DBButton } from '../button';
-import { uuid } from '../../utils';
-import { DEFAULT_ID } from '../../shared/constants';
 
 useMetadata({
 	isAttachedToShadowDom: true,
@@ -25,12 +15,8 @@ useMetadata({
 export default function DBNavigationItem(props: DBNavigationItemProps) {
 	// This is used as forwardRef
 	let component: any;
-
 	// jscpd:ignore-start
 	const state = useStore<DBNavigationItemState>({
-		initialized: false,
-		hasAreaPopup: false,
-		subNavigationId: 'sub-navigation-' + uuid(),
 		handleClick: (event: any) => {
 			if (props.onClick) {
 				props.onClick(event);
@@ -52,48 +38,36 @@ export default function DBNavigationItem(props: DBNavigationItemProps) {
 	});
 
 	onMount(() => {
-		state.initialized = true;
 		if (props.stylePath) {
 			state.stylePath = props.stylePath;
 		}
 	});
-
-	onUpdate(() => {
-		if (state.initialized && document && state.subNavigationId) {
-			const subNavigationSlot = document?.getElementById(
-				state.subNavigationId
-			) as HTMLMenuElement;
-			if (subNavigationSlot) {
-				const children = subNavigationSlot.children;
-				if (children?.length > 0) {
-					state.hasAreaPopup = true;
-				}
-			}
-		}
-	}, [state.initialized]);
-
 	// jscpd:ignore-end
 
 	return (
-		<li
-			ref={component}
-			aria-haspopup={state.hasAreaPopup}
+		<div
 			class={state.getClassNames('db-navigation-item', props.className)}
-			data-width={props.width}
-			tabIndex={props.tabIndex || -1}
-			data-main-menu={props.isMainMenuItem}
-			data-icon={state.iconVisible(props.icon) ? props.icon : undefined}
-			data-icon-after={
-				state.iconVisible(props.iconAfter) ? props.iconAfter : undefined
-			}
-			aria-current={props.active ? 'page' : undefined}
-			data-disabled={props.disabled}
-			onClick={(event) => state.handleClick(event)}>
-			<Show when={state.stylePath}>
-				<link rel="stylesheet" href={state.stylePath} />
-			</Show>
-			{props.children}
-
+			data-width={props.width}>
+			<button
+				class="db-navigation-item-button"
+				ref={component}
+				data-icon={
+					state.iconVisible(props.icon) ? props.icon : undefined
+				}
+				data-icon-after={
+					state.iconVisible(props.iconAfter)
+						? props.iconAfter
+						: undefined
+				}
+				data-active={props.active}
+				data-width={props.width}
+				disabled={props.disabled}
+				onClick={(event) => state.handleClick(event)}>
+				<Show when={state.stylePath}>
+					<link rel="stylesheet" href={state.stylePath} />
+				</Show>
+				{props.children}
+			</button>
 			<Show when={props.action}>
 				<DBButton
 					noText
@@ -104,12 +78,6 @@ export default function DBNavigationItem(props: DBNavigationItemProps) {
 					{props.action.text || props.action.icon}
 				</DBButton>
 			</Show>
-
-			<menu class="db-sub-navigation" id={state.subNavigationId}>
-				<Slot name="sub-navigation"></Slot>
-			</menu>
-
-			<div class="active-indicator" />
-		</li>
+		</div>
 	);
 }
