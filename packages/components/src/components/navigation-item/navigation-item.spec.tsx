@@ -5,7 +5,13 @@ import { DBNavigationItem } from './index';
 // @ts-ignore - vue can only find it with .ts as file ending
 import { DEFAULT_VIEWPORT } from '../../shared/constants.ts';
 
-const comp = <DBNavigationItem>Test</DBNavigationItem>;
+const comp = (
+	<menu>
+		<DBNavigationItem>Test1</DBNavigationItem>
+		<DBNavigationItem>Test2</DBNavigationItem>
+		<DBNavigationItem>Test3</DBNavigationItem>
+	</menu>
+);
 
 const testComponent = () => {
 	test('should contain text', async ({ mount }) => {

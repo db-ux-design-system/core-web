@@ -39,19 +39,18 @@
 				}
 			},
 			{
-				"name": "Active",
-				"props": {
-					"active": true,
-					"icon": "account",
-					"iconAfter": "expand-more"
-				}
-			},
-			{
 				"name": "Disabled",
 				"props": {
 					"disabled": true,
 					"icon": "account",
 					"iconAfter": "expand-more"
+				}
+			},
+			{
+				"name": "Active",
+				"props": {
+					"active": true,
+					"iconAfter": "chevron-right"
 				}
 			}
 		]
@@ -81,12 +80,6 @@
 			{
 				"name": "Text",
 				"props": {}
-			},
-			{
-				"name": "Text - Action",
-				"props": {
-					"action": true
-				}
 			}
 		]
 	},

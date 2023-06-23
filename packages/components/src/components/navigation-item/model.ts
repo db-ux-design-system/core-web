@@ -6,12 +6,9 @@ import {
 	IconAfterProps,
 	IconProps,
 	IconState,
+	InitializedState,
 	WidthProps
 } from '../../shared/model';
-
-export interface DBNavigationItemActionProps {
-	text?: string;
-}
 
 export interface DBNavigationItemDefaultProps {
 	/**
@@ -25,9 +22,15 @@ export interface DBNavigationItemDefaultProps {
 	disabled?: boolean;
 
 	/**
-	 * Use an icon button here for additional actions.
+	 * To show puls indicator for active navigation items.
 	 */
-	action?: DBNavigationItemActionProps & IconProps & ClickEventProps;
+	isMainMenuItem?: boolean;
+
+	/**
+	 * React-specific property to pass in a slot for sub-navigation
+	 */
+
+	slotSubNavigation?: any;
 }
 
 export type DBNavigationItemProps = DBNavigationItemDefaultProps &
@@ -38,10 +41,12 @@ export type DBNavigationItemProps = DBNavigationItemDefaultProps &
 	WidthProps;
 
 export interface DBNavigationItemDefaultState {
-	handleActionClick: (event: any) => void;
+	hasAreaPopup: boolean;
+	subNavigationId: string;
 }
 
 export type DBNavigationItemState = DBNavigationItemDefaultState &
 	ClickEventState &
 	GlobalState &
-	IconState;
+	IconState &
+	InitializedState;

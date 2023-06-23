@@ -7,18 +7,6 @@ const log = (exampleName: string) => {
 	// eslint-disable-next-line no-alert
 	alert(exampleName);
 };
-
-const getAction = (action: boolean) =>
-	action
-		? {
-				text: "Action",
-				icon: "edit",
-				onClick: () => {
-					// eslint-disable-next-line no-alert
-					alert("Action");
-				}
-		  }
-		: undefined;
 </script>
 
 <template>
@@ -35,7 +23,7 @@ const getAction = (action: boolean) =>
 				:width="exampleProps.width"
 				:disabled="exampleProps.disabled"
 				:active="exampleProps.active"
-				:action="getAction(exampleProps.action)"
+				:isMainMenuItem="exampleProps.isMainMenuItem"
 				@click="log(exampleName)"
 				>{{ exampleName }}</DBNavigationItem
 			>
