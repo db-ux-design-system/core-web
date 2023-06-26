@@ -13,7 +13,9 @@ useMetadata({
 
 const DEFAULT_VALUES = {
 	anchorRef: '/',
-	src: './assets/images/db_logo.svg'
+	src: './assets/images/db_logo.svg',
+	width: 34,
+	height: 24
 };
 
 export default function DBBrand(props: DBBrandProps) {
@@ -48,9 +50,9 @@ export default function DBBrand(props: DBBrandProps) {
 				<Show when={!props.hideDefaultAsset}>
 					<img
 						src={props.imgSrc ?? DEFAULT_VALUES.src}
-						alt={props.imgAlt}
-						height={props.imgHeight}
-						width={props.imgWidth}
+						alt={props.imgAlt ?? ''}
+						height={props.imgHeight ?? DEFAULT_VALUES.height}
+						width={props.imgWidth ?? DEFAULT_VALUES.width}
 						className="db-logo"
 					/>
 				</Show>
