@@ -27,7 +27,7 @@ test.describe('DB<%= h.changeCase.pascal(name) %>', () => {
 	testComponent();
 });
 
-test.describe('DB<%= h.changeCase.pascal(name) %> component A11y', () => {
+test.describe('DB<%= h.changeCase.pascal(name) %>', () => {
 	test('should not have any A11y issues', async ({
 		page,
 		mount
