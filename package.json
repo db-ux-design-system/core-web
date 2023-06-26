@@ -63,7 +63,7 @@
     "test:angular-showcase": "npm run test:e2e --workspace=angular-showcase",
     "test:react-showcase": "npm run test:e2e --workspace=react-showcase",
     "test:vue-showcase": "npm run test:e2e --workspace=vue-showcase",
-    "update:playwright": "node scripts/update-playwright.js"
+    "update:dependency:playwright": "node scripts/update-playwright.js"
   },
   "devDependencies": {
     "@commitlint/cli": "17.6.6",
