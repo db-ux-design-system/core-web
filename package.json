@@ -62,12 +62,13 @@
     "start:foundations": "npm run start --workspace=@db-ui/foundations",
     "test:angular-showcase": "npm run test:e2e --workspace=angular-showcase",
     "test:react-showcase": "npm run test:e2e --workspace=react-showcase",
-    "test:vue-showcase": "npm run test:e2e --workspace=vue-showcase"
+    "test:vue-showcase": "npm run test:e2e --workspace=vue-showcase",
+    "update:playwright": "node scripts/update-playwright.js"
   },
   "devDependencies": {
     "@commitlint/cli": "17.6.6",
     "@commitlint/config-conventional": "17.6.6",
-    "@playwright/test": "1.32.3",
+    "@playwright/test": "1.35.1",
     "classnames": "^2.3.2",
     "cpr": "3.0.1",
     "cross-env": "^7.0.3",
