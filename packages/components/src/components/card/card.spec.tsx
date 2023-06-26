@@ -63,18 +63,15 @@ const testCardVariants = () => {
 	}
 };
 
-test.describe('DBCard component', () => {
+test.describe('DBCard', () => {
 	test.use({ viewport: DEFAULT_VIEWPORT });
 	testDefaultCard();
 	testCardColorVariants();
 	testCardVariants();
 });
 
-test.describe('DBCard component A11y', () => {
-	test('DBCard should not have any automatically detectable accessibility issues', async ({
-		page,
-		mount
-	}) => {
+test.describe('DBCard', () => {
+	test('should not have A11y issues', async ({ page, mount }) => {
 		await mount(defaultComp);
 		const accessibilityScanResults = await new AxeBuilder({ page })
 			.include('.db-card')

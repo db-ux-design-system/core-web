@@ -8,12 +8,12 @@ import { VARIANTS } from '../../shared/constants.ts';
 const comp = <DBTag>Test</DBTag>;
 
 const testComponent = () => {
-	test('DBTag should contain text', async ({ mount }) => {
+	test('should contain text', async ({ mount }) => {
 		const component = await mount(comp);
 		await expect(component).toContainText('Test');
 	});
 
-	test('DBTag should match screenshot', async ({ mount }) => {
+	test('should match screenshot', async ({ mount }) => {
 		const component = await mount(comp);
 		await expect(component).toHaveScreenshot();
 	});
@@ -32,16 +32,13 @@ const testVariants = () => {
 	}
 };
 
-test.describe('DBTag component', () => {
+test.describe('DBTag', () => {
 	testComponent();
 	testVariants();
 });
 
-test.describe('DBTag component A11y', () => {
-	test('DBTag should not have any automatically detectable accessibility issues', async ({
-		page,
-		mount
-	}) => {
+test.describe('DBTag', () => {
+	test('should not have A11y issues', async ({ page, mount }) => {
 		await mount(comp);
 		const accessibilityScanResults = await new AxeBuilder({ page })
 			.include('.db-tag')

@@ -19,16 +19,13 @@ const testComponent = () => {
 	});
 };
 
-test.describe('DBCheckbox component', () => {
+test.describe('DBCheckbox', () => {
 	test.use({ viewport: DEFAULT_VIEWPORT });
 	testComponent();
 });
 
-test.describe('DBCheckbox component A11y', () => {
-	test('DBCheckbox should not have any automatically detectable accessibility issues', async ({
-		page,
-		mount
-	}) => {
+test.describe('DBCheckbox', () => {
+	test('should not have A11y issues', async ({ page, mount }) => {
 		await mount(comp);
 		const accessibilityScanResults = await new AxeBuilder({ page })
 			.include('.db-checkbox')

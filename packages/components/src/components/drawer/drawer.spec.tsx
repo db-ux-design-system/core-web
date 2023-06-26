@@ -2,39 +2,36 @@ import { test, expect } from '@playwright/experimental-ct-react';
 import AxeBuilder from '@axe-core/playwright';
 
 import { DBDrawer } from './index';
+import { DEFAULT_VIEWPORT, TESTING_VIEWPORTS } from '../../shared/constants';
 
 const comp = <DBDrawer open={true}>Test</DBDrawer>;
 
-const testComponent = () => {
-	test('DBDrawer should contain text', async ({ mount }) => {
+const testComponent = (viewport) => {
+	test(`should contain text for device ${viewport.name}`, async ({
+		mount
+	}) => {
 		const component = await mount(comp);
 		await expect(component).toContainText('Test');
 	});
 
-	test.fixme('DBDrawer should match screenshot', async ({ mount }) => {
-		const component = await mount(comp);
-		// TODO: Screenshots are not captured for top-layer
-		await expect(component).toHaveScreenshot();
-	});
+	test.fixme(
+		`should match screenshot for device ${viewport.name}`,
+		async ({ mount }) => {
+			const component = await mount(comp);
+			// TODO: Screenshots are not captured for top-layer
+			await expect(component).toHaveScreenshot();
+		}
+	);
 };
-
-test.describe('DBDrawer component on desktop', () => {
-	// Old-school CRT monitor screensize
-	test.use({ viewport: { width: 1024, height: 768 } });
-	testComponent();
+test.describe('DBDrawer', () => {
+	TESTING_VIEWPORTS.forEach((viewport) => {
+		test.use({ viewport });
+		testComponent(viewport);
+	});
 });
 
-test.describe('DBDrawer component on mobile', () => {
-	// iPhone 13 / portrait screen size
-	test.use({ viewport: { width: 390, height: 884 } });
-	testComponent();
-});
-
-test.describe('DBDrawer component A11y', () => {
-	test('DBDrawer should not have any automatically detectable accessibility issues', async ({
-		page,
-		mount
-	}) => {
+test.describe('DBDrawer', () => {
+	test('should not have A11y issues', async ({ page, mount }) => {
 		await mount(comp);
 		const accessibilityScanResults = await new AxeBuilder({ page })
 			.include('.db-drawer')

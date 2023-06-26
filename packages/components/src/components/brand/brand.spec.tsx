@@ -3,7 +3,7 @@ import AxeBuilder from '@axe-core/playwright';
 
 import { DBBrand } from './index';
 // @ts-ignore - vue can only find it with .ts as file ending
-import { TESTING_VIEWPORTS } from '../../shared/constants.ts';
+import { DEFAULT_VIEWPORT, TESTING_VIEWPORTS } from '../../shared/constants.ts';
 
 const comp = (
 	<DBBrand
@@ -26,34 +26,25 @@ const comp = (
 		Test
 	</DBBrand>
 );
-const testBrand = (viewport) => {
-	test(`should contain text for device ${viewport.name}`, async ({
-		mount
-	}) => {
+const testBrand = () => {
+	test(`should contain text`, async ({ mount }) => {
 		const component = await mount(comp);
 		await expect(component).toContainText('Test');
 	});
 
-	test(`should match screenshot for device ${viewport.name}`, async ({
-		mount
-	}) => {
+	test(`should match screenshot`, async ({ mount }) => {
 		const component = await mount(comp);
 		await expect(component).toHaveScreenshot();
 	});
 };
 
-test.describe('DBBrand component', () => {
-	TESTING_VIEWPORTS.forEach((viewport) => {
-		test.use({ viewport });
-		testBrand(viewport);
-	});
+test.describe('DBBrand', () => {
+	test.use({ viewport: DEFAULT_VIEWPORT });
+	testBrand();
 });
 
-test.describe('DBBrand component A11y', () => {
-	test('DBBrand should not have any automatically detectable accessibility issues', async ({
-		page,
-		mount
-	}) => {
+test.describe('DBBrand', () => {
+	test('should not have A11y issues', async ({ page, mount }) => {
 		await mount(comp);
 		const accessibilityScanResults = await new AxeBuilder({ page })
 			.include('.db-brand')
