@@ -48,3 +48,5 @@ output/power-apps
 showcases/patternhub/public/iframe-resizer/*
 
 /showcases/**/test-results/
+
+/__snapshots__/**/*-win32.png

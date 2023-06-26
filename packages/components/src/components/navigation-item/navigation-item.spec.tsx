@@ -6,7 +6,7 @@ import { DBNavigationItem } from './index';
 import { DEFAULT_VIEWPORT } from '../../shared/constants.ts';
 
 const comp = (
-	<menu>
+	<menu style={{ display: 'flex' }}>
 		<DBNavigationItem>Test1</DBNavigationItem>
 		<DBNavigationItem>Test2</DBNavigationItem>
 		<DBNavigationItem>Test3</DBNavigationItem>
