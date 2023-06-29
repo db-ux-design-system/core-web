@@ -62,12 +62,13 @@
     "start:foundations": "npm run start --workspace=@db-ui/foundations",
     "test:angular-showcase": "npm run test:e2e --workspace=angular-showcase",
     "test:react-showcase": "npm run test:e2e --workspace=react-showcase",
-    "test:vue-showcase": "npm run test:e2e --workspace=vue-showcase"
+    "test:vue-showcase": "npm run test:e2e --workspace=vue-showcase",
+    "update:dependency:playwright": "node scripts/update-playwright.js"
   },
   "devDependencies": {
-    "@commitlint/cli": "17.6.5",
-    "@commitlint/config-conventional": "17.6.5",
-    "@playwright/test": "1.32.3",
+    "@commitlint/cli": "17.6.6",
+    "@commitlint/config-conventional": "17.6.6",
+    "@playwright/test": "1.35.1",
     "classnames": "^2.3.2",
     "cpr": "3.0.1",
     "cross-env": "^7.0.3",
@@ -87,7 +88,7 @@
     "stylelint": "14.16.1",
     "stylelint-config-prettier": "9.0.5",
     "stylelint-config-sass-guidelines": "9.0.1",
-    "tslib": "^2.5.3",
+    "tslib": "^2.6.0",
     "typescript": "^4.9.5",
     "validate-branch-name": "^1.3.0",
     "xo": "^0.53.1"

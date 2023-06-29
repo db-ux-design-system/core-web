@@ -24,11 +24,8 @@ test.describe('DBCodeDocs', () => {
 	testComponent();
 });
 
-test.describe('DBCodeDocs component A11y', () => {
-	test('DBCodeDocs should not have any automatically detectable accessibility issues', async ({
-		page,
-		mount
-	}) => {
+test.describe('DBCodeDocs', () => {
+	test('should not have A11y issues', async ({ page, mount }) => {
 		await mount(comp);
 		const accessibilityScanResults = await new AxeBuilder({ page })
 			.include('.db-code-docs')

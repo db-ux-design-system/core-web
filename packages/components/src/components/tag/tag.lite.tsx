@@ -10,6 +10,7 @@ import { DBButton } from '../button';
 import { uuid } from '../../utils';
 import { DBTagState, DBTagProps } from './model';
 import { DEFAULT_ID } from '../../shared/constants';
+import { DBIcon } from '../icon';
 import classNames from 'classnames';
 
 useMetadata({
@@ -18,6 +19,7 @@ useMetadata({
 		includeIcon: true,
 		isFormComponent: true,
 		properties: [
+			{ name: 'children', type: 'SingleLine.Text' },
 			{ name: 'name', type: 'SingleLine.Text' },
 			// { name: 'disabled', type: 'TwoOptions' },
 			{

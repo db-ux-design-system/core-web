@@ -1,7 +1,7 @@
 {
   "name": "@db-ui/foundations",
   "version": "0.0.0",
-  "description": "Provides basic tokens and assets based on the DB UX Design System.",
+  "description": "Provides basic tokens and assets based on DB UX Design System Core.",
   "repository": {
     "type": "git",
     "url": "https://github.com/db-ui/mono.git"

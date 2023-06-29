@@ -5,7 +5,7 @@
 
 # DB UI Mono (Alpha) 🚂💖
 
-![Based on DB UX Design System guidelines](https://img.shields.io/badge/Based%20on-DB%20Design%20System%20UX%20Guides%20%2B%20Standards-d7dce1.svg)
+![Part of DB UX Design System Core](https://img.shields.io/badge/Part%20of-DB%20UX%20Design%20System%20Core-d7dce1.svg)
 ![Main pipeline](https://github.com/db-ui/mono/actions/workflows/default.yml/badge.svg)
 ![Apache 2.0 license badge](https://img.shields.io/badge/License-Apache_2.0-blue.svg)
 [![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
@@ -130,7 +130,7 @@ Add the plugin and rule to your configuration:
 	Consistent & Compliant
 	</strong></summary>
 
-DB UI Mono is based on the [DB UX Design System](https://marketingportal.extranet.deutschebahn.com/marketingportal/Design-Anwendungen/DB-UX-Design-System/Design-fuer-Apps-Web/UI-Komponenten),
+DB UI Mono is part of [DB UX Design System Core](https://marketingportal.extranet.deutschebahn.com/marketingportal/Design-Anwendungen/DB-UX-Design-System/Design-fuer-Apps-Web/UI-Komponenten),
 that are the guidelines for any Personenverkehr Customer and Deutsche Bahn Enterprise website and web applications.
 
 </details>
