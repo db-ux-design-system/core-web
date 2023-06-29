@@ -27,8 +27,8 @@ test.describe('DB<%= h.changeCase.pascal(name) %>', () => {
 	testComponent();
 });
 
-test.describe('DB<%= h.changeCase.pascal(name) %> component A11y', () => {
-	test('DB<%= h.changeCase.pascal(name) %> should not have any automatically detectable accessibility issues', async ({
+test.describe('DB<%= h.changeCase.pascal(name) %>', () => {
+	test('should not have any A11y issues', async ({
 		page,
 		mount
 	}) => {

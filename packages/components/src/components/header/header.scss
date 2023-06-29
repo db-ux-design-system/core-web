@@ -28,7 +28,7 @@
 	width: 100%;
 	align-items: center;
 
-	@media screen and (min-width: $db-screens-s) {
+	@media screen and (min-width: $db-screens-m) {
 		padding: $db-spacing-fixed-md;
 	}
 }
@@ -44,7 +44,7 @@
 
 	padding: $db-spacing-fixed-md;
 
-	@media screen and (min-width: $db-screens-s) {
+	@media screen and (min-width: $db-screens-m) {
 		padding: $db-spacing-fixed-xs $db-spacing-fixed-md;
 		margin: 0;
 		flex-direction: row;
@@ -72,7 +72,7 @@
 }
 
 .db-header-action-container:has(> .db-header-action-bar:empty) {
-	@media screen and (min-width: $db-screens-s) {
+	@media screen and (min-width: $db-screens-m) {
 		display: none;
 	}
 }
@@ -89,7 +89,7 @@
 }
 
 .db-header-action-bar {
-	@media screen and (max-width: $db-screens-s) {
+	@media screen and (max-width: $db-screens-m) {
 		@include divider("top");
 		flex: 0 1 auto;
 		flex-grow: 0;
@@ -99,7 +99,7 @@
 }
 
 .db-header-drawer-navigation {
-	@media screen and (max-width: $db-screens-s) {
+	@media screen and (max-width: $db-screens-m) {
 		display: flex;
 		flex-direction: column;
 		flex: 1 1 auto;
@@ -119,7 +119,7 @@
 	gap: $db-spacing-fixed-sm;
 	padding-inline: $db-spacing-fixed-md;
 
-	@media screen and (min-width: $db-screens-s) {
+	@media screen and (min-width: $db-screens-m) {
 		gap: $db-spacing-fixed-xs;
 		padding: 0;
 	}
@@ -140,13 +140,13 @@
 }
 
 .db-header-hide-on-mobile {
-	@media screen and (max-width: $db-screens-s) {
+	@media screen and (max-width: $db-screens-m) {
 		display: none;
 	}
 }
 
 .db-header-hide-on-desktop {
-	@media screen and (min-width: $db-screens-s) {
+	@media screen and (min-width: $db-screens-m) {
 		display: none;
 	}
 }

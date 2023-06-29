@@ -58,17 +58,7 @@ export default function DBMainNavigation(props: DBMainNavigationProps) {
 			<Show when={state.stylePath}>
 				<link rel="stylesheet" href={state.stylePath} />
 			</Show>
-			<menu id={state.mainNavigationId}>
-				{props.children}
-				<div class="db-mobile-navigation-back db-mobile-main-navigation-back">
-					<DBButton
-						id={props.backButtonId}
-						icon="arrow-back"
-						variant="text">
-						{props.backButtonText ?? DEFAULT_BACK}
-					</DBButton>
-				</div>
-			</menu>
+			<menu id={state.mainNavigationId}>{props.children}</menu>
 		</nav>
 	);
 }

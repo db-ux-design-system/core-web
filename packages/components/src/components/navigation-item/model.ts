@@ -17,6 +17,11 @@ export interface DBNavigationItemActionProps {
 
 export interface DBNavigationItemDefaultProps {
 	/**
+	 * Use an icon button here for additional actions.
+	 */
+	action?: DBNavigationItemActionProps & IconProps & ClickEventProps;
+
+	/**
 	 * Indicator for active navigation item (bold font).
 	 */
 	active?: boolean;
@@ -26,16 +31,11 @@ export interface DBNavigationItemDefaultProps {
 	 */
 	disabled?: boolean;
 
-	/**
-	 * Use an icon button here for additional actions.
-	 */
-	action?: DBNavigationItemActionProps & IconProps & ClickEventProps;
+	isMainMenuItem?: boolean;
 
 	slotSubNavigation?: any;
 
-	subNavigationOpen?: boolean;
-
-	isMainMenuItem?: boolean;
+	subNavigationExpanded?: boolean;
 }
 
 export type DBNavigationItemProps = DBNavigationItemDefaultProps &
@@ -48,7 +48,9 @@ export type DBNavigationItemProps = DBNavigationItemDefaultProps &
 
 export interface DBNavigationItemDefaultState {
 	handleActionClick: (event: any) => void;
+	handleBackClick: (event: any) => void;
 	hasAreaPopup: boolean;
+	isSubNavigationExpanded: boolean;
 	subNavigationId: string;
 }
 

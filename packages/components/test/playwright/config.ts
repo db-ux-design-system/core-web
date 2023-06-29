@@ -5,6 +5,9 @@ import { defineConfig, devices } from '@playwright/experimental-ct-react';
  */
 const config = defineConfig({
 	testDir: './src/components',
+	// Example: __snapshots__/alert/showcase/chromium/functional/neutral-0/DBAlert-should-match-screenshit.png
+	snapshotPathTemplate:
+		'{snapshotDir}/{testFileDir}/component/{projectName}/{testName}{ext}',
 	/* The base directory, relative to the config file, for snapshot files created with toMatchSnapshot and toHaveScreenshot. */
 	snapshotDir: './../../__snapshots__',
 	/* Run tests in files in parallel */

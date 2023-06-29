@@ -53,6 +53,9 @@ const getComponents = () => [
 		config: {
 			vue: {
 				vModel: [{ modelValue: 'checked', binding: ':checked' }]
+			},
+			angular: {
+				controlValueAccessor: 'checked'
 			}
 		}
 	},
@@ -62,6 +65,9 @@ const getComponents = () => [
 		config: {
 			vue: {
 				vModel: [{ modelValue: 'checked', binding: ':checked' }]
+			},
+			angular: {
+				controlValueAccessor: false
 			}
 		}
 	},
@@ -179,6 +185,9 @@ const getComponents = () => [
 		config: {
 			vue: {
 				vModel: [{ modelValue: 'value', binding: ':value' }]
+			},
+			angular: {
+				controlValueAccessor: 'value'
 			}
 		}
 	},

@@ -38,11 +38,8 @@ test.describe('DBInfotext', () => {
 	testVariants();
 });
 
-test.describe('DBInfotext component A11y', () => {
-	test('DBInfotext should not have any automatically detectable accessibility issues', async ({
-		page,
-		mount
-	}) => {
+test.describe('DBInfotext', () => {
+	test('should not have A11y issues', async ({ page, mount }) => {
 		await mount(comp);
 		const accessibilityScanResults = await new AxeBuilder({ page })
 			.include('.db-infotext')

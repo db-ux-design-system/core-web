@@ -30,11 +30,20 @@ export default function DBNavigationItem(props: DBNavigationItemProps) {
 	const state = useStore<DBNavigationItemState>({
 		initialized: false,
 		hasAreaPopup: false,
+		isSubNavigationExpanded: false,
 		subNavigationId: 'sub-navigation-' + uuid(),
 		handleClick: (event: any) => {
 			if (props.onClick) {
 				props.onClick(event);
 			}
+
+			if (state.hasAreaPopup) {
+				state.isSubNavigationExpanded = true;
+			}
+		},
+		handleBackClick: (event: any) => {
+			event.stopPropagation();
+			state.isSubNavigationExpanded = false;
 		},
 		handleActionClick: (event: any) => {
 			event.stopPropagation();
@@ -59,13 +68,19 @@ export default function DBNavigationItem(props: DBNavigationItemProps) {
 	});
 
 	onUpdate(() => {
+		if (props.subNavigationExpanded !== undefined) {
+			state.isSubNavigationExpanded = !!props.subNavigationExpanded;
+		}
+	}, [props.subNavigationExpanded]);
+
+	onUpdate(() => {
 		if (state.initialized && document && state.subNavigationId) {
 			const subNavigationSlot = document?.getElementById(
 				state.subNavigationId
 			) as HTMLMenuElement;
 			if (subNavigationSlot) {
 				const children = subNavigationSlot.children;
-				if (children?.length > 1) {
+				if (children?.length > 0) {
 					state.hasAreaPopup = true;
 				}
 			}
@@ -80,13 +95,13 @@ export default function DBNavigationItem(props: DBNavigationItemProps) {
 			aria-haspopup={state.hasAreaPopup}
 			class={state.getClassNames('db-navigation-item', props.className)}
 			data-width={props.width}
-			tabIndex={props.tabIndex || 0}
 			data-main-menu={props.isMainMenuItem}
 			data-icon={state.iconVisible(props.icon) ? props.icon : undefined}
 			data-icon-after={
 				state.iconVisible(props.iconAfter) ? props.iconAfter : undefined
 			}
 			aria-current={props.active ? 'page' : undefined}
+			aria-expanded={state.isSubNavigationExpanded}
 			data-disabled={props.disabled}
 			onClick={(event) => state.handleClick(event)}>
 			<Show when={state.stylePath}>
@@ -106,15 +121,18 @@ export default function DBNavigationItem(props: DBNavigationItemProps) {
 			</Show>
 
 			<menu class="db-sub-navigation" id={state.subNavigationId}>
+				<Show when={state.hasAreaPopup}>
+					<div class="db-mobile-navigation-back">
+						<DBButton
+							id={props.backButtonId}
+							icon="arrow-back"
+							variant="text"
+							onClick={(event) => state.handleBackClick(event)}>
+							{props.backButtonText ?? DEFAULT_BACK}
+						</DBButton>
+					</div>
+				</Show>
 				<Slot name="sub-navigation"></Slot>
-				<div class="db-mobile-navigation-back">
-					<DBButton
-						id={props.backButtonId}
-						icon="arrow-back"
-						variant="text">
-						{props.backButtonText ?? DEFAULT_BACK}
-					</DBButton>
-				</div>
 			</menu>
 
 			<div class="active-indicator" />
