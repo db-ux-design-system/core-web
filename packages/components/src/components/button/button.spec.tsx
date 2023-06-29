@@ -38,16 +38,13 @@ const testButton = () => {
 	}
 };
 
-test.describe('DBButton component', () => {
+test.describe('DBButton', () => {
 	test.use({ viewport: DEFAULT_VIEWPORT });
 	testButton();
 });
 
-test.describe('DBButton component A11y', () => {
-	test('DBButton should not have any automatically detectable accessibility issues', async ({
-		page,
-		mount
-	}) => {
+test.describe('DBButton', () => {
+	test('should not have A11y issues', async ({ page, mount }) => {
 		await mount(<DBButton>Test</DBButton>);
 		const accessibilityScanResults = await new AxeBuilder({ page })
 			.include('.db-button')
@@ -56,7 +53,7 @@ test.describe('DBButton component A11y', () => {
 		expect(accessibilityScanResults.violations).toEqual([]);
 	});
 
-	test('DBButton with icon only should not have any automatically detectable accessibility issues', async ({
+	test('DBButton with icon only should not have A11y issues', async ({
 		page,
 		mount
 	}) => {

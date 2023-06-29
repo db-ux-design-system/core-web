@@ -2,21 +2,53 @@ import { onMount, Show, useMetadata, useStore } from '@builder.io/mitosis';
 import { DBBrandState, DBBrandProps } from './model';
 import classNames from 'classnames';
 
-useMetadata({
-	isAttachedToShadowDom: true,
-	component: {
-		// MS Power Apps
-		includeIcon: false,
-		properties: []
-	}
-});
-
 const DEFAULT_VALUES = {
 	anchorRef: '/',
 	src: './assets/images/db_logo.svg',
 	width: 34,
 	height: 24
 };
+
+useMetadata({
+	isAttachedToShadowDom: true,
+	component: {
+		// MS Power Apps
+		includeIcon: false,
+		properties: [
+			{
+				name: 'anchorRef',
+				type: 'SingleLine.URL'
+			},
+			{
+				name: 'title',
+				type: 'SingleLine.Text'
+			},
+			{
+				name: 'children',
+				type: 'SingleLine.Text'
+			},
+			{
+				name: 'imgSrc',
+				type: 'SingleLine.URL',
+				defaultValue: 'https://db-ui.github.io/images/db_logo.svg'
+			},
+			{
+				name: 'imgAlt',
+				type: 'SingleLine.Text'
+			},
+			{
+				name: 'imgWidth',
+				type: 'Decimal',
+				defaultValue: 34
+			},
+			{
+				name: 'imgHeight',
+				type: 'Decimal',
+				defaultValue: 24
+			}
+		]
+	}
+});
 
 export default function DBBrand(props: DBBrandProps) {
 	// This is used as forwardRef

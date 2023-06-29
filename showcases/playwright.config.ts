@@ -9,6 +9,9 @@ import { devices } from '@playwright/test';
 
 const config: PlaywrightTestConfig = {
 	testDir: './e2e',
+	// Example: __snapshots__/alert/showcase/chromium/functional/neutral-0/DBAlert-should-match-screenshit.png
+	snapshotPathTemplate:
+		'{snapshotDir}/{testFileDir}/showcase/{projectName}/{arg}/{testName}{ext}',
 	snapshotDir: './../__snapshots__',
 	expect: {
 		/**

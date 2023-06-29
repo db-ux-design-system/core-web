@@ -7,9 +7,7 @@ import { setScrollViewport } from './fixtures/viewport.ts';
 export const getDefaultScreenshotTest = (component: string) => {
 	for (const tonality of TONALITIES) {
 		for (const color of COLORS) {
-			test(`should match screenshot for tonality "${tonality}" and color "${color}"`, async ({
-				page
-			}, testInfo) => {
+			test(`should match screenshot`, async ({ page }, testInfo) => {
 				const isWebkit =
 					testInfo.project.name === 'webkit' ||
 					testInfo.project.name === 'mobile_safari';
@@ -35,7 +33,10 @@ export const getDefaultScreenshotTest = (component: string) => {
 					{ waitUntil: 'networkidle' }
 				);
 				await setScrollViewport(page)();
-				await expect(page).toHaveScreenshot(config);
+				await expect(page).toHaveScreenshot(
+					[tonality, `${color}.png`],
+					config
+				);
 			});
 		}
 	}
