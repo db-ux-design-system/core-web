@@ -13,27 +13,24 @@ const comp = (
 );
 
 const testComponent = () => {
-	test('DBSelect should contain text', async ({ mount }) => {
+	test('should contain text', async ({ mount }) => {
 		const component = await mount(comp);
 		await expect(component).toContainText('Test');
 	});
 
-	test('DBSelect should match screenshot', async ({ mount }) => {
+	test('should match screenshot', async ({ mount }) => {
 		const component = await mount(comp);
 		await expect(component).toHaveScreenshot();
 	});
 };
 
-test.describe('DBSelect component', () => {
+test.describe('DBSelect', () => {
 	test.use({ viewport: DEFAULT_VIEWPORT });
 	testComponent();
 });
 
-test.describe('DBSelect component A11y', () => {
-	test('DBSelect should not have any automatically detectable accessibility issues', async ({
-		page,
-		mount
-	}) => {
+test.describe('DBSelect', () => {
+	test('should not have A11y issues', async ({ page, mount }) => {
 		await mount(comp);
 		const accessibilityScanResults = await new AxeBuilder({ page })
 			.include('.db-select')

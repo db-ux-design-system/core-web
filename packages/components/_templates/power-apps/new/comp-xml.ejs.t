@@ -11,19 +11,24 @@ force: true
 
         <%  if(locals.props){ locals.props.forEach((prop)=>{ -%>
         <property name="<%= prop.name %>" display-name-key="<%= prop.name %>_Display_Key"
+
                   description-key="<%= prop.name %>_Desc_Key"
 
                   <% if(typeof prop.onChange !== 'undefined' && prop.onChange){ -%>
                   usage="bound"
-                  <% } else{ -%>
+                  <% } else { -%>
                   usage="input"
 				  <% } -%>
 
                   <% if(typeof prop.required !== 'undefined' && prop.required){ -%>
                   required="true"
-                  <% } else{ -%>
+                  <% } else { -%>
                   required="false"
 				  <% } -%>
+
+				  <% if(typeof prop.defaultValue !== 'undefined' && prop.defaultValue){ -%>
+                  default-value="<%= prop.defaultValue %>"
+                  <% } -%>
 
 				  <% if(typeof prop.type !== 'undefined' && prop.type !== "Icon" && prop.type !== "DefaultVariant"){ -%>
                   of-type="<%= prop.type %>"
@@ -68,6 +73,7 @@ force: true
 
         <resources>
             <code path="index.ts" order="1"/>
+			<resx path="strings/DB<%= h.capitalize(name) %>.de.resx" version="1.0.0" />
         </resources>
     </control>
 </manifest>

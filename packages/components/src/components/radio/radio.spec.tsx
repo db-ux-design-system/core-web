@@ -19,16 +19,13 @@ const testComponent = () => {
 	});
 };
 
-test.describe('DBRadio component', () => {
+test.describe('DBRadio', () => {
 	test.use({ viewport: DEFAULT_VIEWPORT });
 	testComponent();
 });
 
-test.describe('DBRadio component A11y', () => {
-	test('DBRadio should not have any automatically detectable accessibility issues', async ({
-		page,
-		mount
-	}) => {
+test.describe('DBRadio', () => {
+	test('should not have A11y issues', async ({ page, mount }) => {
 		await mount(comp);
 		const accessibilityScanResults = await new AxeBuilder({ page })
 			.include('.db-radio')
