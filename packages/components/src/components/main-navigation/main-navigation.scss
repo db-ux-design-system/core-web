@@ -1,0 +1,19 @@
+@use "@db-ui/foundations/build/scss/variables" as *;
+@use "@db-ui/foundations/build/scss/variables.global" as *;
+
+.db-main-navigation {
+	-webkit-tap-highlight-color: transparent; /* for removing the highlight */
+	width: 100%;
+
+	& > menu {
+		display: flex;
+		flex-direction: column;
+		padding: 0;
+		margin: 0;
+		gap: $db-spacing-fixed-sm;
+
+		@media screen and (min-width: $db-screens-m) {
+			flex-direction: row;
+		}
+	}
+}

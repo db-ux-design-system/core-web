@@ -8,6 +8,8 @@ $default-border-radius: 4px;
 $default-card-border-radius: var(--default-card-border-radius, 8px);
 $default-opacity: 0.25;
 
+$default-mobile-header-height: to-rem(56);
+
 %default-adaptive-border {
 	border: solid 1px var(--db-current-color, $db-colors-neutral-on-bg-enabled);
 }

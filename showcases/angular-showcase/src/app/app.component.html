@@ -15,15 +15,21 @@
 		>
 			Showcase
 		</db-brand>
-		<nav class="desktop-navigation" *dbNavigation>
-			<ul>
-				<li *ngFor="let item of navigationItems; index as i">
-					<a [routerLink]="item.path" queryParamsHandling="merge">{{
-						item.label
-					}}</a>
-				</li>
-			</ul>
-		</nav>
+		<db-main-navigation *dbNavigation>
+			<ng-container *ngFor="let item of navigationItems">
+				<a
+					*ngIf="item.component"
+					[routerLink]="item.path"
+					queryParamsHandling="merge"
+				>
+					<app-nav-item [navItem]="item"></app-nav-item>
+				</a>
+				<app-nav-item
+					*ngIf="!item.component"
+					[navItem]="item"
+				></app-nav-item>
+			</ng-container>
+		</db-main-navigation>
 		<ng-container *dbMetaNavigation>
 			<!-- TODO: Use db-select here	-->
 			<select [(ngModel)]="tonality" (change)="onChange($event)">

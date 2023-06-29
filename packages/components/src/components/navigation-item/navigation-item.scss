@@ -1,0 +1,244 @@
+@use "@db-ui/foundations/build/scss/variables" as *;
+@use "@db-ui/foundations/build/scss/variables.global" as *;
+@use "@db-ui/foundations/build/scss/helpers/component" as *;
+@use "@db-ui/foundations/build/scss/color/color-variants" as *;
+@use "@db-ui/foundations/build/scss/icon/icons.helpers" as *;
+@use "@db-ui/foundations/build/scss/helpers/functions" as *;
+@use "@db-ui/foundations/build/scss/helpers/component" as *;
+@use "@db-ui/foundations/build/scss/animation/animations" as *;
+
+%sub-navi-handler {
+	&[aria-haspopup="true"] {
+		@include icon(glyph(chevron-right), 24, "outline", "after");
+
+		@media screen and (max-width: $db-screens-m) {
+			&[aria-expanded="true"] {
+				& > .db-sub-navigation {
+					animation: show-right-to-left $animation-show-timing;
+
+					.db-sub-navigation {
+						top: 0;
+						bottom: 0;
+					}
+				}
+			}
+
+			&:not(&[aria-expanded="true"]) {
+				& > .db-sub-navigation {
+					animation: hide-right-to-left $animation-hide-timing;
+				}
+			}
+		}
+
+		@media screen and (min-width: $db-screens-m) {
+			&:hover {
+				& > .db-sub-navigation {
+					visibility: visible;
+
+					.db-sub-navigation {
+						top: calc(-50% + $db-spacing-fixed-xs);
+						left: calc(100% + $db-spacing-fixed-xs);
+
+						&::before {
+							content: "";
+							padding: $db-spacing-fixed-xs;
+							top: 0;
+							left: calc(-1 * #{$db-spacing-fixed-xs});
+							height: 100%;
+							width: $db-spacing-fixed-xs;
+						}
+					}
+				}
+			}
+		}
+
+		&::after {
+			--icon-margin-before: auto;
+		}
+
+		&[data-main-menu="true"] {
+			@media screen and (min-width: $db-screens-m) {
+				&::after {
+					--icon-glyph: "⌄";
+				}
+			}
+		}
+
+		:not(&[data-main-menu="true"]) {
+			.db-mobile-navigation-back {
+				@media screen and (max-width: $db-screens-m) {
+					display: flex;
+				}
+			}
+		}
+	}
+}
+
+%active-indicator {
+	.active-indicator {
+		position: absolute;
+		border-radius: $default-border-radius;
+
+		@media screen and (max-width: $db-screens-m) {
+			transition: height 0.15s $db-transition-emotional-timing;
+			height: 0;
+			top: 50%;
+			transform: translate(0, -50%);
+		}
+
+		@media screen and (min-width: $db-screens-m) {
+			transition: width 0.15s $db-transition-emotional-timing;
+			width: 0;
+			left: 50%;
+			transform: translate(-50%, 0);
+		}
+	}
+
+	&[data-main-menu="true"] {
+		&[aria-current="page"] {
+			& > .active-indicator {
+				@media screen and (max-width: $db-screens-m) {
+					border-left: $default-border-radius solid
+						$db-colors-primary-enabled;
+					height: 100%;
+					left: calc(-1 * #{$db-spacing-fixed-xs});
+				}
+
+				@media screen and (min-width: $db-screens-m) {
+					border-bottom: $default-border-radius solid
+						$db-colors-primary-enabled;
+					width: 100%;
+					bottom: calc(-1 * #{$db-spacing-fixed-xs});
+				}
+			}
+		}
+	}
+}
+
+.db-navigation-item {
+	@extend %default-interactive-component;
+	@extend %default-background-transition;
+	@extend %transparent-border;
+
+	@extend %sub-navi-handler;
+	@extend %active-indicator;
+
+	@include get-variant-bg-color(0);
+	display: inline-flex;
+	cursor: pointer;
+	width: 100%;
+
+	position: relative;
+
+	font-weight: normal;
+	border-radius: $default-card-border-radius;
+	padding: $db-spacing-fixed-xs $db-spacing-fixed-sm;
+	white-space: nowrap; // we don't want to break
+	text-align: center;
+	align-items: center; // Centering the content vertically and horizontally
+
+	& > a {
+		text-decoration: none;
+	}
+
+	&:hover {
+		@include get-variant-bg-color(0.16);
+	}
+
+	&:active {
+		@include get-variant-bg-color(0.24);
+	}
+
+	&::before {
+		margin-inline-end: $db-spacing-fixed-sm;
+	}
+
+	&::after {
+		margin-inline-start: $db-spacing-fixed-sm;
+	}
+
+	&[aria-current="page"] {
+		font-weight: 700;
+	}
+
+	&[data-width="full"] {
+		width: 100%;
+
+		&::after {
+			margin-inline-start: auto;
+		}
+	}
+
+	&[data-disabled="true"] {
+		opacity: $default-opacity;
+	}
+}
+
+@mixin desktop-card-style {
+	border-radius: $default-card-border-radius;
+	box-shadow: $db-elevation-4;
+	padding: $db-spacing-fixed-sm;
+}
+
+.db-sub-navigation {
+	margin: 0;
+	display: flex;
+	flex-direction: column;
+	z-index: 70;
+	left: 0;
+	background-color: var(
+		--db-current-background-color,
+		$db-colors-neutral-bg-0-enabled
+	);
+
+	&:empty {
+		display: none;
+	}
+
+	@media screen and (max-width: $db-screens-m) {
+		padding: $db-spacing-fixed-md;
+		width: 100%;
+		position: fixed;
+		// additional 2px for border
+		bottom: calc(#{$db-sizing-md} + #{$db-spacing-fixed-xs} * 2 + 2px);
+		top: calc(#{$default-mobile-header-height} + 2px);
+	}
+
+	@media screen and (min-width: $db-screens-m) {
+		@include desktop-card-style;
+
+		visibility: hidden;
+		position: absolute;
+		min-width: 328px; // We should get this value from UX
+
+		top: calc(100% + #{$db-spacing-fixed-md});
+
+		&::before {
+			content: "";
+			position: absolute;
+			padding: $db-spacing-fixed-md;
+			top: calc(-1 * #{$db-spacing-fixed-md});
+			left: calc(-1 * #{$db-spacing-fixed-md});
+			width: 100%;
+		}
+	}
+
+	.db-navigation-item {
+		width: 100%;
+
+		&::after {
+			margin-inline-start: auto;
+		}
+	}
+}
+
+.db-mobile-navigation-back {
+	@include divider("bottom");
+	display: none;
+	font-weight: normal;
+	background-color: var(
+		--db-current-background-color,
+		$db-colors-neutral-bg-0-enabled
+	);
+	padding-block-end: $db-spacing-fixed-md;
+}

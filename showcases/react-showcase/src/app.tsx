@@ -1,11 +1,6 @@
-import { useState, typeChangeEvent } from 'react';
-import { Link, Outlet } from 'react-router-dom';
+import { useState } from 'react';
+import { Outlet } from 'react-router-dom';
 import { DBBrand, DBButton, DBHeader, DBPage } from '../../../output/react/src';
-import {
-	COLORS,
-	TONALITIES
-} from '../../../packages/components/src/shared/constants';
-import { getSortedNavigationItems } from './utils/navigation-item';
 import useQuery from './hooks/use-query';
 import MetaNavigation from './meta-navigation';
 import Navigation from './navigation';

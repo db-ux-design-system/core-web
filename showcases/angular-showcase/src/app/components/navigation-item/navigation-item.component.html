@@ -1,0 +1,24 @@
+<app-default-component
+	title="DBNavigationItem"
+	[variants]="variants"
+	[exampleTemplate]="exampleTemplate"
+>
+	<ng-template
+		#exampleTemplate
+		let-exampleProps="exampleProps"
+		let-exampleName="exampleName"
+		let-exampleIndex="exampleIndex"
+		let-variantIndex="variantIndex"
+	>
+		<db-navigation-item
+			[icon]="exampleProps.icon"
+			[iconAfter]="exampleProps.iconAfter"
+			[width]="exampleProps.width"
+			[disabled]="exampleProps.disabled"
+			[active]="exampleProps.active"
+			[action]="getAction(exampleProps.action)"
+			(click)="showAlert(exampleName)"
+			>{{ exampleName }}</db-navigation-item
+		>
+	</ng-template>
+</app-default-component>

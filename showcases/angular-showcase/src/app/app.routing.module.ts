@@ -1,8 +1,8 @@
 import { NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { NAVIGATION_ITEMS } from './utils/navigation-item';
+import { getRoutes } from './utils/navigation-item';
 
-const routes: any = NAVIGATION_ITEMS;
+const routes: any = getRoutes();
 
 @NgModule({
 	imports: [RouterModule.forRoot(routes, { useHash: true })],

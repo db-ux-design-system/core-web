@@ -1,3 +1,6 @@
+import { Routes } from '@angular/router';
+import { NavigationItemComponent } from '../components/navigation-item/navigation-item.component';
+
 import { SelectComponent } from '../components/select/select.component';
 import { TagComponent } from '../components/tag/tag.component';
 
@@ -14,23 +17,126 @@ import { CardComponent } from '../components/card/card.component';
 import { DividerComponent } from '../components/divider/divider.component';
 import { DrawerComponent } from '../components/drawer/drawer.component';
 
-export const NAVIGATION_ITEMS: any[] = [
-	{ path: 'divider', label: 'Divider', component: DividerComponent },
-	{ path: 'select', label: 'Select', component: SelectComponent },
-	{ path: 'radio', label: 'Radio', component: RadioComponent },
-	{ path: 'checkbox', label: 'Checkbox', component: CheckboxComponent },
-	{ path: 'alert', label: 'Alert', component: AlertComponent },
-	{ path: 'drawer', label: 'Drawer', component: DrawerComponent },
-	{ path: 'infotext', label: 'Infotext', component: InfotextComponent },
-	{ path: 'section', label: 'Section', component: SectionComponent },
-	{ path: 'link', label: 'Link', component: LinkComponent },
-	{ path: 'tag', label: 'Tag', component: TagComponent },
-	{ path: 'button', label: 'Button', component: ButtonComponent },
-	{ path: 'input', label: 'Input', component: InputComponent },
-	{ path: 'card', label: 'Card', component: CardComponent },
-	{ path: '', label: 'Home', component: FormComponent, pathMatch: 'full' }
+export type NavItem = {
+	path: string;
+	label: string;
+	component?: any;
+	subNavigation?: NavItem[];
+};
+
+export const getSortedNavigationItems = (navigationItems: NavItem[]): any[] =>
+	navigationItems.sort((a: NavItem, b: NavItem) =>
+		a.path.localeCompare(b.path)
+	);
+
+export const NAVIGATION_ITEMS: NavItem[] = [
+	{
+		path: '06',
+		label: '06 Feedback',
+		subNavigation: getSortedNavigationItems([
+			{ path: '06/alert', label: 'Alert', component: AlertComponent }
+		])
+	},
+
+	{
+		path: '05',
+		label: '05 Navigation',
+		subNavigation: getSortedNavigationItems([
+			{
+				path: '05/navigation-item',
+				label: 'NavigationItem',
+				component: NavigationItemComponent
+			},
+			{
+				path: '05/xxx-test',
+				label: 'Navigation Test',
+				subNavigation: [
+					{
+						path: '05/xxx-test/xxx-test-2',
+						label: 'Navigation Test 2',
+						component: FormComponent
+					}
+				]
+			}
+		])
+	},
+
+	{
+		path: '04',
+		label: '04 Data-Display',
+		subNavigation: getSortedNavigationItems([
+			{
+				path: '04/infotext',
+				label: 'Infotext',
+				component: InfotextComponent
+			},
+			{ path: '04/tag', label: 'Tag', component: TagComponent }
+		])
+	},
+	{
+		path: '03',
+		label: '03 Data-Input',
+		subNavigation: getSortedNavigationItems([
+			{ path: '03/input', label: 'Input', component: InputComponent },
+			{ path: '03/radio', label: 'Radio', component: RadioComponent },
+			{
+				path: '03/checkbox',
+				label: 'Checkbox',
+				component: CheckboxComponent
+			},
+			{ path: '03/select', label: 'Select', component: SelectComponent }
+		])
+	},
+	{
+		path: '02',
+		label: '02 Action',
+		subNavigation: getSortedNavigationItems([
+			{ path: '02/link', label: 'Link', component: LinkComponent },
+			{ path: '02/button', label: 'Button', component: ButtonComponent }
+		])
+	},
+	{
+		path: '01',
+		label: '01 Layout',
+		subNavigation: getSortedNavigationItems([
+			{ path: '01/card', label: 'Card', component: CardComponent },
+			{ path: '01/drawer', label: 'Drawer', component: DrawerComponent },
+			{
+				path: '01/divider',
+				label: 'Divider',
+				component: DividerComponent
+			},
+			{
+				path: '01/section',
+				label: 'Section',
+				component: SectionComponent
+			}
+		])
+	},
+	{ path: '', label: 'Home', component: FormComponent }
 ];
 
-export const getSortedNavigationItems = (): any[] =>
-	// eslint-disable-next-line @typescript-eslint/no-unsafe-return
-	NAVIGATION_ITEMS.sort((a, b) => a.path.localeCompare(b.path));
+const pushRoute = (routes: Routes, item: NavItem) => {
+	routes.push({
+		path: item.path,
+		component: item.component,
+		redirectTo: item.component ? undefined : '/',
+		pathMatch: 'full'
+	});
+
+	if (item.subNavigation) {
+		for (const subItem of item.subNavigation) {
+			pushRoute(routes, subItem);
+		}
+	}
+};
+
+export const getRoutes = (): Routes => {
+	const routes: Routes = [];
+
+	for (const item of NAVIGATION_ITEMS) {
+		pushRoute(routes, item);
+	}
+
+	return routes;
+};

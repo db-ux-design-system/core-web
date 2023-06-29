@@ -17,6 +17,13 @@ const getOption = (optionName, tsType) => {
 		return `${optionName}={['test1','test2']}`;
 	}
 
+	if (
+		tsType.name === 'intersection' &&
+		tsType.raw.includes('DBNavigationItemActionProps')
+	) {
+		return `${optionName}={{"text":"Test", "icon":"edit"}}`;
+	}
+
 	if (tsType.name === 'number') {
 		return `${optionName}={100}`;
 	}

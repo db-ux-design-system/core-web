@@ -20,9 +20,17 @@
 @use "../components/tag/tag" as *;
 @use "../components/drawer/drawer" as *;
 @use "../components/select/select" as *;
+@use "../components/navigation-item/navigation-item" as *;
+
+@use "../components/main-navigation/main-navigation" as *;
 
 @forward "dialog-init";
 // angular-workaround
+
+dbmain-navigation,
+db-main-navigation,
+dbnavigation-item,
+db-navigation-item,
 dbtag,
 db-tag,
 dbselect,
