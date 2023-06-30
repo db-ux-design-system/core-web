@@ -36,7 +36,8 @@
 					visibility: visible;
 
 					.db-sub-navigation {
-						top: calc(-50% + $db-spacing-fixed-xs);
+						// -1px for box shadow
+						top: calc(-50% + $db-spacing-fixed-xs - 1px);
 						left: calc(100% + $db-spacing-fixed-xs);
 
 						&::before {

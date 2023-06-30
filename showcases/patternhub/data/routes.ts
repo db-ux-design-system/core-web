@@ -1,10 +1,15 @@
-import type { DbMainnavigationDataType } from '@db-ui/elements/dist/types/components/db-mainnavigation/db-mainnavigation-type';
+export type NavigationItem = {
+	label: string;
+	name?: string;
+	path?: string;
+	subNavigation?: NavigationItem[];
+};
 
-const componentChildren = [
+const componentChildren: NavigationItem[] = [
 	{
 		label: '01 Layout',
-		link: '/components/01-layout',
-		children: [
+		path: '/components/01-layout',
+		subNavigation: [
 			{
 				label: 'DBCard',
 				name: 'card'
@@ -16,20 +21,6 @@ const componentChildren = [
 			{
 				label: 'DBDrawer',
 				name: 'drawer'
-			},
-			{
-				label: 'DBDrawer',
-				link: '/components/drawer',
-				children: [
-					{
-						label: 'Examples',
-						link: '/components/drawer/examples'
-					},
-					{
-						label: 'How to use',
-						link: '/components/drawer/how-to-use'
-					}
-				]
 			},
 			{
 				label: 'DBHeader',
@@ -47,22 +38,22 @@ const componentChildren = [
 	},
 	{
 		label: '02 Action',
-		link: '/components/02-action',
-		children: [
+		path: '/components/02-action',
+		subNavigation: [
 			{
 				label: 'DBButton',
 				name: 'button'
 			},
 			{
 				label: 'DBLink',
-				name: 'link'
+				name: 'path'
 			}
 		]
 	},
 	{
 		label: '03 Data-Input',
-		link: '/components/03-data-input',
-		children: [
+		path: '/components/03-data-input',
+		subNavigation: [
 			{
 				label: 'DBInput',
 				name: 'input'
@@ -83,8 +74,8 @@ const componentChildren = [
 	},
 	{
 		label: '04 Data-Display',
-		link: '/components/04-data-display',
-		children: [
+		path: '/components/04-data-display',
+		subNavigation: [
 			{
 				label: 'DBBrand',
 				name: 'brand'
@@ -105,8 +96,8 @@ const componentChildren = [
 	},
 	{
 		label: '05 Navigation',
-		link: '/components/05-navigation',
-		children: [
+		path: '/components/05-navigation',
+		subNavigation: [
 			{
 				label: 'DBNavigationItem',
 				name: 'navigation-item'
@@ -115,8 +106,8 @@ const componentChildren = [
 	},
 	{
 		label: '06 Feedback',
-		link: '/components/06-feedback',
-		children: [
+		path: '/components/06-feedback',
+		subNavigation: [
 			{
 				label: 'DBAlert',
 				name: 'alert'
@@ -124,59 +115,68 @@ const componentChildren = [
 		]
 	}
 ];
-export const ROUTES: DbMainnavigationDataType[] = [
+export const ROUTES: NavigationItem[] = [
 	{
 		label: 'Home',
-		link: '/'
+		path: '/'
 	},
 	{
 		label: 'Foundations',
-		link: '/foundations',
-		children: [
+		path: '/foundations',
+		subNavigation: [
+			{ label: 'Readme', path: '/foundations/readme' },
 			{
 				label: 'Colors',
-				link: '/foundations/colors',
-				children: [
-					{ label: 'Examples', link: '/foundations/colors/examples' }
+				path: '/foundations/colors',
+				subNavigation: [
+					{ label: 'Readme', path: '/foundations/colors/readme' },
+					{ label: 'Examples', path: '/foundations/colors/examples' }
 				]
 			},
-			{ label: 'Icons', link: '/foundations/icons' }
+			{ label: 'Icons', path: '/foundations/icons' }
 		]
 	},
 	{
 		label: 'Components',
-		link: '/components',
-		children: componentChildren.map((category) => ({
-			...category,
-			children: category.children.map((component) => ({
-				label: component.label,
-				link: `/components/${component.name}`,
-				children: [
-					{
-						label: 'Properties',
-						link: `/components/${component.name}/properties`
-					},
-					{
-						label: 'Examples',
-						link: `/components/${component.name}/examples`
-					},
-					{
-						label: 'How to use',
-						link: `/components/${component.name}/how-to-use`
-					},
-					{
-						label: 'Migration',
-						link: `/components/${component.name}/migration`
-					}
-				]
+		path: '/components',
+		subNavigation: [
+			{ label: 'Readme', path: '/components/readme' },
+			...componentChildren.map((category) => ({
+				...category,
+				subNavigation: category?.subNavigation?.map((component) => ({
+					label: component.label,
+					path: `/components/${component.name}`,
+					subNavigation: [
+						{
+							label: 'Overview',
+							path: `/components/${component.name}`
+						},
+						{
+							label: 'Properties',
+							path: `/components/${component.name}/properties`
+						},
+						{
+							label: 'Examples',
+							path: `/components/${component.name}/examples`
+						},
+						{
+							label: 'How to use',
+							path: `/components/${component.name}/how-to-use`
+						},
+						{
+							label: 'Migration',
+							path: `/components/${component.name}/migration`
+						}
+					]
+				}))
 			}))
-		}))
+		]
 	}
 ];
 
-export const getRouteWithBasePath = (route: DbMainnavigationDataType) => {
+export const getRouteWithBasePath = (route: NavigationItem) => {
 	return {
 		...route,
-		link: `${process.env.NEXT_PUBLIC_BASE_PATH ?? ''}${route.link}`
+		path: `${process.env.NEXT_PUBLIC_BASE_PATH ?? ''}${route.path}`
 	};
 };

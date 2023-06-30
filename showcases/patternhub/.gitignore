@@ -37,7 +37,8 @@ public/*-showcase
 
 styles/db-ui-components.scss
 scripts/generated
-components
+pages/components/
+components/src
 !components/src/tsconfig.json
 !components/component-parser
 !components/default-page.tsx
