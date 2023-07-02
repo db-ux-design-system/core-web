@@ -124,6 +124,8 @@ export type FormCheckProps = {
 export type FormState = {
 	_isValid?: boolean | undefined;
 	_value?: any;
+	// callback for controlValueAccessor's onChange handler
+	propagateChange?: (value: any) => void;
 };
 
 export type FormCheckState = {
@@ -233,6 +235,9 @@ export type ChangeEventProps = {
 
 export type ChangeEventState = {
 	handleChange: (event: any) => void;
+
+	// some frameworks, e.g. angular need specific change listeners for internal use
+	propagateChange?: (_: any) => void;
 };
 
 export type FocusEventProps = {

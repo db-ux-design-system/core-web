@@ -73,6 +73,7 @@ force: true
 
         <resources>
             <code path="index.ts" order="1"/>
+			<resx path="strings/DB<%= h.capitalize(name) %>.de.resx" version="1.0.0" />
         </resources>
     </control>
 </manifest>
