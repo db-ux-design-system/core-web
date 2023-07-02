@@ -1,5 +1,5 @@
 import { NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import {
 	DBButtonModule,
@@ -83,6 +83,7 @@ import { NavigationItemComponent } from './components/navigation-item/navigation
 		DBSectionModule,
 		DBInfotextModule,
 		FormsModule,
+		ReactiveFormsModule,
 		DBCheckboxModule,
 		DBRadioModule,
 		DBDrawerModule
