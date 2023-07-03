@@ -27,6 +27,7 @@ export default function DBNavigationItem(props: DBNavigationItemProps) {
 	const state = useStore<DBNavigationItemState>({
 		initialized: false,
 		hasAreaPopup: false,
+		hideSubNavigation: false,
 		subNavigationId: 'sub-navigation-' + uuid(),
 		handleClick: (event: any) => {
 			if (props.onClick) {
@@ -57,6 +58,8 @@ export default function DBNavigationItem(props: DBNavigationItemProps) {
 				const children = subNavigationSlot.children;
 				if (children?.length > 0) {
 					state.hasAreaPopup = true;
+				} else {
+					state.hideSubNavigation = true;
 				}
 			}
 		}
@@ -67,10 +70,10 @@ export default function DBNavigationItem(props: DBNavigationItemProps) {
 	return (
 		<li
 			ref={component}
+			role={state.hasAreaPopup ? 'button' : ''}
 			aria-haspopup={state.hasAreaPopup}
 			class={state.getClassNames('db-navigation-item', props.className)}
 			data-width={props.width}
-			tabIndex={props.tabIndex || -1}
 			data-main-menu={props.isMainMenuItem}
 			data-icon={state.iconVisible(props.icon) ? props.icon : undefined}
 			data-icon-after={
@@ -84,9 +87,11 @@ export default function DBNavigationItem(props: DBNavigationItemProps) {
 			</Show>
 			{props.children}
 
-			<menu class="db-sub-navigation" id={state.subNavigationId}>
-				<Slot name="sub-navigation"></Slot>
-			</menu>
+			<Show when={state.hideSubNavigation}>
+				<menu className="db-sub-navigation" id={state.subNavigationId}>
+					<Slot name="sub-navigation"></Slot>
+				</menu>
+			</Show>
 
 			<div class="active-indicator" />
 		</li>

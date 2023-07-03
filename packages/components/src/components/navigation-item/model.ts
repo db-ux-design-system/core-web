@@ -43,6 +43,7 @@ export type DBNavigationItemProps = DBNavigationItemDefaultProps &
 export interface DBNavigationItemDefaultState {
 	hasAreaPopup: boolean;
 	subNavigationId: string;
+	hideSubNavigation?: boolean;
 }
 
 export type DBNavigationItemState = DBNavigationItemDefaultState &
