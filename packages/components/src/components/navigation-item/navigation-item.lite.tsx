@@ -74,7 +74,6 @@ export default function DBNavigationItem(props: DBNavigationItemProps) {
 			aria-haspopup={state.hasAreaPopup}
 			class={state.getClassNames('db-navigation-item', props.className)}
 			data-width={props.width}
-			data-main-menu={props.isMainMenuItem}
 			data-icon={state.iconVisible(props.icon) ? props.icon : undefined}
 			data-icon-after={
 				state.iconVisible(props.iconAfter) ? props.iconAfter : undefined
@@ -92,8 +91,6 @@ export default function DBNavigationItem(props: DBNavigationItemProps) {
 					<Slot name="sub-navigation"></Slot>
 				</menu>
 			</Show>
-
-			<div class="active-indicator" />
 		</li>
 	);
 }

@@ -25,66 +25,6 @@
 		text-decoration: none;
 	}
 
-	.active-indicator {
-		position: absolute;
-		border-radius: $default-border-radius;
-
-		@media screen and (max-width: $db-screens-s) {
-			transition: height 0.15s $db-transition-emotional-timing;
-			height: 0;
-			top: 50%;
-			transform: translate(0, -50%);
-		}
-
-		@media screen and (min-width: $db-screens-s) {
-			transition: width 0.15s $db-transition-emotional-timing;
-			width: 0;
-			left: 50%;
-			transform: translate(-50%, 0);
-		}
-	}
-
-	&[data-main-menu="true"] {
-		&[aria-current="page"] {
-			& > .active-indicator {
-				@media screen and (max-width: $db-screens-s) {
-					border-left: $default-border-radius solid
-						$db-colors-primary-enabled;
-					height: 100%;
-					left: calc(-1 * #{$db-spacing-fixed-xs});
-				}
-
-				@media screen and (min-width: $db-screens-s) {
-					border-bottom: $default-border-radius solid
-						$db-colors-primary-enabled;
-					width: 100%;
-					bottom: calc(-1 * #{$db-spacing-fixed-xs});
-				}
-			}
-		}
-	}
-
-	&[aria-haspopup="true"] {
-		@include icon(glyph(chevron-right), 24, "outline", "after");
-
-		&[data-main-menu="true"] {
-			--icon-margin-before: auto;
-			@include icon(glyph(expand-more), 24, "outline", "after");
-
-			& > .db-sub-navigation {
-				top: 100%;
-				left: 0;
-			}
-		}
-
-		&:not([data-main-menu="true"]) {
-			& > .db-sub-navigation {
-				top: calc(-100% + $db-spacing-fixed-sm);
-				left: 100%;
-			}
-		}
-	}
-
 	&:hover {
 		@include get-variant-bg-color(0.16);
 	}
@@ -121,40 +61,5 @@
 
 	&[data-disabled="true"] {
 		opacity: $default-opacity;
-	}
-}
-
-@mixin desktop-card-style {
-	border-radius: $default-card-border-radius;
-	box-shadow: $db-elevation-4;
-
-	background-color: var(
-		--db-current-background-color,
-		$db-colors-neutral-bg-0-enabled
-	);
-	padding: $db-spacing-fixed-sm;
-}
-
-.db-sub-navigation {
-	margin: 0;
-	display: flex;
-	flex-direction: column;
-
-	position: absolute;
-	visibility: hidden;
-	z-index: 70;
-
-	@media screen and (min-width: $db-screens-m) {
-		@include desktop-card-style;
-
-		min-width: 328px; // We should get this value from UX
-	}
-
-	.db-navigation-item {
-		width: 100%;
-
-		&::after {
-			margin-inline-start: auto;
-		}
 	}
 }

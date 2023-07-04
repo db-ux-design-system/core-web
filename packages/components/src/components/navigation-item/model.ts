@@ -22,11 +22,6 @@ export interface DBNavigationItemDefaultProps {
 	disabled?: boolean;
 
 	/**
-	 * To show puls indicator for active navigation items.
-	 */
-	isMainMenuItem?: boolean;
-
-	/**
 	 * React-specific property to pass in a slot for sub-navigation
 	 */
 
