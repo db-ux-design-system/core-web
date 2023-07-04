@@ -20,24 +20,21 @@ const NavItem = ({ navItem }: { navItem: NavigationItem }) => {
 					<>
 						{navItem?.subNavigation.map(
 							(subItem: NavigationItem) => (
-								<>
-									{subItem.subNavigation ? (
-										<NavItem navItem={subItem}></NavItem>
-									) : (
-										<Link
-											key={`router-path-${subItem.path}`}
-											href={subItem.path ?? ''}>
-											<NavItem
-												navItem={subItem}></NavItem>
-										</Link>
-									)}
-								</>
+								<NavItem navItem={subItem}></NavItem>
 							)
 						)}
 					</>
 				)
 			}>
-			{navItem.label}
+			{navItem.subNavigation ? (
+				navItem.label
+			) : (
+				<Link
+					key={`router-path-${navItem.path}`}
+					href={navItem.path ?? ''}>
+					{navItem.label}
+				</Link>
+			)}
 		</DBNavigationItem>
 	);
 };

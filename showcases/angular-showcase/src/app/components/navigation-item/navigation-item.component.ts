@@ -13,16 +13,4 @@ export class NavigationItemComponent {
 		// eslint-disable-next-line no-alert
 		alert(exampleName);
 	};
-
-	getAction = (action: boolean) =>
-		action
-			? {
-					text: 'Action',
-					icon: 'edit',
-					onClick() {
-						// eslint-disable-next-line no-alert
-						alert('Action');
-					}
-			  }
-			: undefined;
 }

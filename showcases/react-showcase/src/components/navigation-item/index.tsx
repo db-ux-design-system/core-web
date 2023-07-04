@@ -7,30 +7,15 @@ import { getVariants } from '../data';
 const getNavigationItem = ({
 	children,
 	icon,
-	iconAfter,
 	disabled,
 	active,
-	width,
-	action
+	width
 }: DBNavigationItemProps) => (
 	<DBNavigationItem
 		icon={icon}
-		iconAfter={iconAfter}
 		disabled={disabled}
 		active={active}
 		width={width}
-		action={
-			action
-				? {
-						text: 'Action',
-						icon: 'edit',
-						onClick() {
-							// eslint-disable-next-line no-alert
-							alert('Action');
-						}
-				  }
-				: undefined
-		}
 		onClick={() => {
 			// eslint-disable-next-line no-alert
 			alert(children.toString());
