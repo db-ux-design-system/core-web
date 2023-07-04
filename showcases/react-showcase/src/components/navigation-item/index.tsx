@@ -10,8 +10,7 @@ const getNavigationItem = ({
 	iconAfter,
 	disabled,
 	active,
-	width,
-	isMainMenuItem
+	width
 }: DBNavigationItemProps) => (
 	<DBNavigationItem
 		icon={icon}
@@ -19,7 +18,6 @@ const getNavigationItem = ({
 		disabled={disabled}
 		active={active}
 		width={width}
-		isMainMenuItem={isMainMenuItem}
 		onClick={() => {
 			// eslint-disable-next-line no-alert
 			alert(children.toString());
