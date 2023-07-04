@@ -21,6 +21,12 @@ designers, and content authors build, maintain, and scale best of class digital 
 	<figcaption><a href="https://bradfrost.com/blog/post/bdconf-stephen-hay-presents-responsive-design-workflow/" target="_blank" rel="noopener noreferrer">Stephen Hay</a>. <a href="https://vimeo.com/67476280" title="Brad Frosts at beyond tellerrand conference regarding Atomic Design" target="_blank" rel="noopener noreferrer">Citated in a talk by Brad Frost at beyond tellerrand conference.</a></figcaption>
 </figure>
 
+> **Warning**
+> We currently don't fully support Mozilla Firefox until it adds the following functionalities, that are expected to get integrated later this year:
+>
+> -   [CSS: `:has`](https://caniuse.com/css-has)
+> -   [`popover`-attribute](https://caniuse.com/mdn-api_htmlinputelement_popovertargetaction)(not in use by us currently, but planned)
+
 ## Packages
 
 | Package                             | Content                             | Version                                                                                                                                                                                                              |

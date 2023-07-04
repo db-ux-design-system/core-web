@@ -140,4 +140,7 @@
     <data name="imgHeight_Display_Key" xml:space="preserve">
         <value>Logo Höhe</value>
     </data>
+    <data name="DBBrand_Display_Key" xml:space="preserve">
+        <value>DBBrand</value>
+    </data>
 </root>

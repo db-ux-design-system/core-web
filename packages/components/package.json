@@ -30,6 +30,7 @@
     "copy:package.json": "cpr package.json ../../build-outputs/components/package.json -o",
     "copy:readme": "cpr README.md ../../build-outputs/components/README.md -o",
     "dev:angular": "nodemon --watch src --watch overrides -e tsx,ts -x \"npm run compile:angular\"",
+    "dev:html": "cpr ../foundations/assets build/assets -o && npm run build:mv-styles && npm run build:sass &&  vite --open",
     "dev:react": "nodemon --watch src --watch overrides -e tsx,ts -x \"npm run compile:react\"",
     "dev:scss": "nodemon --watch src -e scss -x \"npm run build:mv-styles && npm run build:sass\"",
     "dev:vue": "nodemon --watch src --watch overrides -e tsx,ts -x \"npm run compile:vue\"",

@@ -141,4 +141,7 @@
     <data name="componentWidth_Display_Key" xml:space="preserve">
         <value>Breite</value>
     </data>
+    <data name="DBButton_Display_Key" xml:space="preserve">
+        <value>DBButton</value>
+    </data>
 </root>
