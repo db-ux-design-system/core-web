@@ -25,15 +25,12 @@ const isActive = (navItem: NavItem) =>
 	>
 		<template v-if="navItem.subNavigation" v-slot:sub-navigation>
 			<template v-for="item of navItem.subNavigation">
-				<router-link v-if="item.component" :to="item.path">
-					<NavItemComponent :navItem="item"></NavItemComponent>
-				</router-link>
-				<NavItemComponent
-					v-if="!item.component"
-					:navItem="item"
-				></NavItemComponent>
+				<NavItemComponent :navItem="item"></NavItemComponent>
 			</template>
 		</template>
-		{{ navItem.label }}
+		<router-link v-if="navItem.component" :to="navItem.path">
+			{{ navItem.label }}
+		</router-link>
+		<template v-if="!navItem.component">{{ navItem.label }}</template>
 	</DBNavigationItem>
 </template>

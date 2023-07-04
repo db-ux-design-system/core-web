@@ -18,27 +18,40 @@
 		}
 
 		.db-navigation-item {
-			@media screen and (min-width: $db-screens-m) {
-				&::after {
-					--icon-margin-before: #{$db-spacing-fixed-sm};
-					--icon-glyph: "⌄";
+			.db-navigation-item-expand-button:is(button),
+			.db-navigation-item-expand-button > button {
+				// overwrite for main-navigation items
+				@media screen and (min-width: $db-screens-m) {
+					&::after {
+						--icon-margin-before: #{$db-spacing-fixed-sm};
+						--icon-glyph: "⌄";
+					}
 				}
+			}
 
+			@media screen and (min-width: $db-screens-m) {
+				// re overwrite for non main-navigation items
 				menu {
-					.db-navigation-item {
+					.db-navigation-item-expand-button:is(button),
+					.db-navigation-item-expand-button > button {
 						&::after {
 							--icon-glyph: ">";
+							--icon-margin-before: auto;
 						}
 					}
 				}
 			}
 
 			&[aria-current="page"] {
+				// add puls for main-navigation items
 				@extend %show-db-puls;
 
 				menu {
-					.db-puls {
-						display: none;
+					// hide puls for non main-navigation items
+					[aria-current="page"] {
+						&::after {
+							display: none;
+						}
 					}
 				}
 			}

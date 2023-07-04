@@ -6,87 +6,88 @@
 @use "@db-ui/foundations/build/scss/helpers/functions" as *;
 @use "@db-ui/foundations/build/scss/helpers/component" as *;
 @use "@db-ui/foundations/build/scss/animation/animations" as *;
+@use "@db-ui/foundations/build/scss/icon/icons.placeholder" as *;
+@use "@db-ui/foundations/build/scss/icon/icons.helpers" as *;
+@use "@db-ui/foundations/build/scss/icon/icons.variables" as *;
+@use "../../styles/db-puls" as *;
 
-@forward "../../styles/db-puls";
-
-%sub-navi-handler {
-	&[aria-haspopup="true"] {
-		@include icon(glyph(chevron-right), 24, "outline", "after");
-
-		@media screen and (max-width: $db-screens-m) {
-			&[aria-expanded="true"] {
-				& > .db-sub-navigation {
-					animation: show-right-to-left $animation-show-timing;
-
-					.db-sub-navigation {
-						top: 0;
-						bottom: 0;
-					}
-				}
-			}
-
-			&:not(&[aria-expanded="true"]) {
-				& > .db-sub-navigation {
-					animation: hide-right-to-left $animation-hide-timing;
-				}
-			}
+%icon-passing {
+	&[data-icon] {
+		&::before {
+			// don't show default icon
+			display: none;
 		}
+	}
 
-		@media screen and (min-width: $db-screens-m) {
-			&:hover {
-				& > .db-sub-navigation {
-					visibility: visible;
-
-					.db-sub-navigation {
-						// -1px for box shadow
-						top: calc(-50% + $db-spacing-fixed-xs - 1px);
-						left: calc(100% + $db-spacing-fixed-xs);
-
-						&::before {
-							content: "";
-							padding: $db-spacing-fixed-xs;
-							top: 0;
-							left: calc(-1 * #{$db-spacing-fixed-xs});
-							height: 100%;
-							width: $db-spacing-fixed-xs;
-						}
-					}
+	@each $icon-name, $icon-glyph in $icon-glyphs {
+		&[data-icon="#{$icon-name}"] {
+			> a,
+			> .db-navigation-item-expand-button:is(button),
+			> .db-navigation-item-expand-button > button {
+				&::before {
+					@extend %icon;
+					content: "#{$icon-glyph}";
+					margin-inline-end: var(
+						--icon-margin-after,
+						#{$db-spacing-fixed-sm}
+					);
 				}
 			}
-		}
-
-		&::after {
-			--icon-margin-before: auto;
 		}
 	}
 }
 
-.db-navigation-item {
+%sub-navi-handler-desktop {
+	// show sub-navigation on hover
+	@media screen and (min-width: $db-screens-m) {
+		&:hover {
+			& ~ .db-sub-navigation {
+				visibility: visible;
+			}
+		}
+	}
+}
+
+%sub-navi-handler-mobile {
+	// show/hide sub-navigation by click
+	@media screen and (max-width: $db-screens-m) {
+		&[aria-expanded="true"] {
+			& ~ .db-sub-navigation {
+				animation: show-right-to-left $animation-show-timing;
+
+				.db-sub-navigation {
+					top: 0;
+					bottom: 0;
+				}
+			}
+		}
+
+		&:not(&[aria-expanded="true"]) {
+			& ~ .db-sub-navigation {
+				animation: hide-right-to-left $animation-hide-timing;
+			}
+		}
+	}
+}
+
+%navigation-item {
 	@extend %default-interactive-component;
 	@extend %default-background-transition;
 	@extend %transparent-border;
 
-	@extend %sub-navi-handler;
-
 	@include get-variant-bg-color(0);
-	display: inline-flex;
 	cursor: pointer;
 	width: 100%;
+	display: inline-flex;
 
-	position: relative;
-
-	font-weight: normal;
 	border-radius: $default-card-border-radius;
 	padding: $db-spacing-fixed-xs $db-spacing-fixed-sm;
 	white-space: nowrap; // we don't want to break
 	text-align: center;
 	align-items: center; // Centering the content vertically and horizontally
 
-	& > a {
-		text-decoration: none;
-	}
-
-	&:hover {
+	&:hover,
+	&:has(~ .db-sub-navigation:hover) {
 		@include get-variant-bg-color(0.16);
 	}
 
@@ -94,16 +95,46 @@
 		@include get-variant-bg-color(0.24);
 	}
 
-	&::before {
-		--icon-margin-after: #{$db-spacing-fixed-sm};
+	&::after {
+		--icon-margin-before: auto;
+	}
+}
+
+.db-navigation-item {
+	@extend %db-puls;
+	@extend %icon-passing;
+
+	display: inline-flex;
+	position: relative;
+	width: 100%;
+
+	a {
+		@extend %navigation-item;
+		text-decoration: none;
 	}
 
-	&::after {
-		--icon-margin-before: #{$db-spacing-fixed-sm};
+	.db-navigation-item-expand-button {
+		@extend %sub-navi-handler-mobile;
+
+		&:is(button),
+		& > button {
+			@extend %sub-navi-handler-desktop;
+			@extend %navigation-item;
+
+			// default icon for navigation
+			@include icon(glyph(chevron-right), 24, "outline", "after");
+
+			font-weight: inherit;
+		}
 	}
 
 	&[aria-current="page"] {
 		font-weight: 700;
+	}
+
+	&:not([aria-current="page"]) {
+		// revert for sub-navigation
+		font-weight: normal;
 	}
 
 	&[data-width="full"] {
@@ -125,13 +156,14 @@
 	flex-direction: column;
 	z-index: 70;
 	left: 0;
-	background-color: var(
-		--db-current-background-color,
-		$db-colors-neutral-bg-0-enabled
-	);
+	background-color: $db-colors-neutral-bg-0-enabled;
 
 	&:empty {
 		display: none;
+	}
+
+	&:hover {
+		visibility: visible;
 	}
 
 	@media screen and (max-width: $db-screens-m) {
@@ -157,10 +189,27 @@
 		&::before {
 			content: "";
 			position: absolute;
-			padding: $db-spacing-fixed-md;
-			top: calc(-1 * #{$db-spacing-fixed-md});
-			left: calc(-1 * #{$db-spacing-fixed-md});
+			left: 0;
 			width: 100%;
+			// 2px for shadows
+			height: calc(2px + #{$db-spacing-fixed-md});
+			top: calc(-1 * #{$db-spacing-fixed-md} - 2px);
+		}
+
+		.db-sub-navigation {
+			// 1px for box shadow
+			top: calc(-50% + $db-spacing-fixed-xs + 1px);
+			left: calc(100% + $db-spacing-fixed-xs);
+
+			&::before {
+				content: "";
+				padding: $db-spacing-fixed-xs;
+				// 2px for box shadow
+				top: 2px;
+				left: calc(-1 * #{$db-spacing-fixed-xs});
+				height: 100%;
+				width: $db-spacing-fixed-xs;
+			}
 		}
 	}
 
@@ -177,10 +226,7 @@
 	@include divider("bottom");
 	display: flex;
 	font-weight: normal;
-	background-color: var(
-		--db-current-background-color,
-		$db-colors-neutral-bg-0-enabled
-	);
+	background-color: $db-colors-neutral-bg-0-enabled;
 	padding-block-end: $db-spacing-fixed-md;
 
 	@media screen and (min-width: $db-screens-m) {

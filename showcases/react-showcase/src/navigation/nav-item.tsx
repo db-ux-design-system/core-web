@@ -22,23 +22,21 @@ const NavItem = ({ navItem }: { navItem: NavigationItem }) => {
 								...subItem,
 								path: `${navItem.path}/${subItem.path}`
 							}))
-							.map((subItem: NavigationItem) =>
-								subItem.component ? (
-									<Link
-										key={`router-path-${subItem.path}`}
-										to={subItem.path}>
-										<NavItem navItem={subItem}></NavItem>
-									</Link>
-								) : (
-									<NavItem
-										key={`router-path-${subItem.path}`}
-										navItem={subItem}></NavItem>
-								)
-							)}
+							.map((subItem: NavigationItem) => (
+								<NavItem
+									key={`router-path-${subItem.path}`}
+									navItem={subItem}></NavItem>
+							))}
 					</>
 				)
 			}>
-			{navItem.label}
+			{navItem.component ? (
+				<Link key={`router-path-${navItem.path}`} to={navItem.path}>
+					{navItem.label}
+				</Link>
+			) : (
+				navItem.label
+			)}
 		</DBNavigationItem>
 	);
 };

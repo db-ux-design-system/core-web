@@ -22,7 +22,9 @@ export interface DBNavigationItemDefaultProps {
 	 */
 	disabled?: boolean;
 
-	isMainMenuItem?: boolean;
+	/**
+	 * React-specific property to pass in a slot for sub-navigation
+	 */
 
 	slotSubNavigation?: any;
 
@@ -33,7 +35,6 @@ export type DBNavigationItemProps = DBNavigationItemDefaultProps &
 	GlobalProps &
 	ClickEventProps &
 	IconProps &
-	IconAfterProps &
 	WidthProps &
 	NavigationBackButtonProps;
 
@@ -42,6 +43,7 @@ export interface DBNavigationItemDefaultState {
 	hasAreaPopup: boolean;
 	isSubNavigationExpanded: boolean;
 	subNavigationId: string;
+	showSubNavigation?: boolean;
 }
 
 export type DBNavigationItemState = DBNavigationItemDefaultState &

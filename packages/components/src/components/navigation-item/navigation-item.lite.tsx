@@ -30,6 +30,7 @@ export default function DBNavigationItem(props: DBNavigationItemProps) {
 	const state = useStore<DBNavigationItemState>({
 		initialized: false,
 		hasAreaPopup: false,
+		showSubNavigation: true,
 		isSubNavigationExpanded: false,
 		subNavigationId: 'sub-navigation-' + uuid(),
 		handleClick: (event: any) => {
@@ -75,6 +76,8 @@ export default function DBNavigationItem(props: DBNavigationItemProps) {
 				const children = subNavigationSlot.children;
 				if (children?.length > 0) {
 					state.hasAreaPopup = true;
+				} else {
+					state.showSubNavigation = false;
 				}
 			}
 		}
@@ -85,40 +88,44 @@ export default function DBNavigationItem(props: DBNavigationItemProps) {
 	return (
 		<li
 			ref={component}
-			aria-haspopup={state.hasAreaPopup}
 			class={state.getClassNames('db-navigation-item', props.className)}
 			data-width={props.width}
-			data-main-menu={props.isMainMenuItem}
 			data-icon={state.iconVisible(props.icon) ? props.icon : undefined}
-			data-icon-after={
-				state.iconVisible(props.iconAfter) ? props.iconAfter : undefined
-			}
 			aria-current={props.active ? 'page' : undefined}
-			aria-expanded={state.isSubNavigationExpanded}
-			data-disabled={props.disabled}
-			onClick={(event) => state.handleClick(event)}>
+			data-disabled={props.disabled}>
 			<Show when={state.stylePath}>
 				<link rel="stylesheet" href={state.stylePath} />
 			</Show>
 
-			{props.children}
+			<Show when={!state.showSubNavigation}>{props.children}</Show>
 
-			<menu class="db-sub-navigation" id={state.subNavigationId}>
-				<Show when={state.hasAreaPopup}>
-					<div class="db-mobile-navigation-back">
-						<DBButton
-							id={props.backButtonId}
-							icon="arrow-back"
-							variant="text"
-							onClick={(event) => state.handleBackClick(event)}>
-							{props.backButtonText ?? DEFAULT_BACK}
-						</DBButton>
-					</div>
-				</Show>
-				<Slot name="sub-navigation"></Slot>
-			</menu>
+			<Show when={state.showSubNavigation}>
+				<button
+					aria-haspopup={state.hasAreaPopup}
+					aria-expanded={state.isSubNavigationExpanded}
+					className="db-navigation-item-expand-button"
+					disabled={props.disabled}
+					onClick={(event) => state.handleClick(event)}>
+					{props.children}
+				</button>
 
-			<div class="db-puls" />
+				<menu className="db-sub-navigation" id={state.subNavigationId}>
+					<Show when={state.hasAreaPopup}>
+						<div class="db-mobile-navigation-back">
+							<DBButton
+								id={props.backButtonId}
+								icon="arrow-back"
+								variant="text"
+								onClick={(event) =>
+									state.handleBackClick(event)
+								}>
+								{props.backButtonText ?? DEFAULT_BACK}
+							</DBButton>
+						</div>
+					</Show>
+					<Slot name="sub-navigation"></Slot>
+				</menu>
+			</Show>
 		</li>
 	);
 }

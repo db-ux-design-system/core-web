@@ -22,7 +22,27 @@ const getComponents = () => [
 	},
 
 	{
-		name: 'navigation-item'
+		name: 'navigation-item',
+		overwrites: {
+			angular: [
+				{
+					from: /<ng-content>/g,
+					to: '<ng-content *ngTemplateOutlet="dbNavigationContent">'
+				},
+				{
+					from: 'export class DBNavigationItem {\n',
+					to:
+						'export class DBNavigationItem {\n' +
+						'\t@ContentChild(NavigationContentDirective, { read: TemplateRef }) dbNavigationContent: any;\n'
+				},
+				{
+					from: 'import { NgModule } from "@angular/core";',
+					to:
+						"import { NgModule, ContentChild, TemplateRef } from '@angular/core';\t\n" +
+						"import { NavigationContentDirective } from './navigation-content.directive';\n"
+				}
+			]
+		}
 	},
 
 	{

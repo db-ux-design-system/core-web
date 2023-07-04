@@ -17,17 +17,7 @@
 		</db-brand>
 		<db-main-navigation *dbNavigation>
 			<ng-container *ngFor="let item of navigationItems">
-				<a
-					*ngIf="item.component"
-					[routerLink]="item.path"
-					queryParamsHandling="merge"
-				>
-					<app-nav-item [navItem]="item"></app-nav-item>
-				</a>
-				<app-nav-item
-					*ngIf="!item.component"
-					[navItem]="item"
-				></app-nav-item>
+				<app-nav-item [navItem]="item"> </app-nav-item>
 			</ng-container>
 		</db-main-navigation>
 		<ng-container *dbMetaNavigation>
