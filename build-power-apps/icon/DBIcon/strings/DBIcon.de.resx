@@ -133,4 +133,7 @@
     <data name="componentWidth_Display_Key" xml:space="preserve">
         <value>Breite</value>
     </data>
+    <data name="DBIcon_Display_Key" xml:space="preserve">
+        <value>DBIcon</value>
+    </data>
 </root>

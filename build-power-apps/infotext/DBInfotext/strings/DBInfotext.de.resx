@@ -132,4 +132,7 @@
     <data name="componentWidth_Display_Key" xml:space="preserve">
         <value>Breite</value>
     </data>
+    <data name="DBInfotext_Display_Key" xml:space="preserve">
+        <value>DBInfotext</value>
+    </data>
 </root>

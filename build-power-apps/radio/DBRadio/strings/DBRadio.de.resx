@@ -136,4 +136,7 @@
     <data name="componentWidth_Display_Key" xml:space="preserve">
         <value>Breite</value>
     </data>
+    <data name="DBRadio_Display_Key" xml:space="preserve">
+        <value>DBRadio</value>
+    </data>
 </root>
