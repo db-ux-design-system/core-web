@@ -93,15 +93,7 @@ const sortedNavigation = getSortedNavigationItems(navigationItems);
 				</template>
 				<DBMainNavigation>
 					<template v-for="item of sortedNavigation">
-						<router-link v-if="item.component" :to="item.path">
-							<NavItemComponent
-								:navItem="item"
-							></NavItemComponent>
-						</router-link>
-						<NavItemComponent
-							v-if="!item.component"
-							:navItem="item"
-						></NavItemComponent>
+						<NavItemComponent :navItem="item"></NavItemComponent>
 					</template>
 				</DBMainNavigation>
 				<template v-slot:call-to-action>
