@@ -147,6 +147,7 @@
 
 	&[data-disabled="true"] {
 		opacity: $default-opacity;
+		pointer-events: none;
 	}
 }
 
@@ -170,9 +171,13 @@
 		padding: $db-spacing-fixed-md;
 		width: 100%;
 		position: fixed;
-		// additional 2px for border
-		bottom: calc(#{$db-sizing-md} + #{$db-spacing-fixed-xs} * 2 + 2px);
-		top: calc(#{$default-mobile-header-height} + 2px);
+		// additional #{$db-spacing-fixed-regular-3xs} for border
+		bottom: calc(
+			#{$db-sizing-md} + #{$db-spacing-fixed-xs} * 2 + #{$db-spacing-fixed-regular-3xs}
+		);
+		top: calc(
+			#{$default-mobile-header-height} + #{$db-spacing-fixed-regular-3xs}
+		);
 	}
 
 	@media screen and (min-width: $db-screens-m) {
@@ -191,9 +196,13 @@
 			position: absolute;
 			left: 0;
 			width: 100%;
-			// 2px for shadows
-			height: calc(2px + #{$db-spacing-fixed-md});
-			top: calc(-1 * #{$db-spacing-fixed-md} - 2px);
+			// #{$db-spacing-fixed-regular-3xs} for shadows
+			height: calc(
+				#{$db-spacing-fixed-regular-3xs} + #{$db-spacing-fixed-md}
+			);
+			top: calc(
+				-1 * #{$db-spacing-fixed-md} - #{$db-spacing-fixed-regular-3xs}
+			);
 		}
 
 		.db-sub-navigation {
@@ -204,8 +213,8 @@
 			&::before {
 				content: "";
 				padding: $db-spacing-fixed-xs;
-				// 2px for box shadow
-				top: 2px;
+				// #{$db-spacing-fixed-regular-3xs} for box shadow
+				top: #{$db-spacing-fixed-regular-3xs};
 				left: calc(-1 * #{$db-spacing-fixed-xs});
 				height: 100%;
 				width: $db-spacing-fixed-xs;

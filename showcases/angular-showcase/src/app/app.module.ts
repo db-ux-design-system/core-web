@@ -47,9 +47,12 @@ import { DrawerComponent } from './components/drawer/drawer.component';
 import { SelectComponent } from './components/select/select.component';
 import { NavigationItemComponent } from './components/navigation-item/navigation-item.component';
 import { NavItemComponent } from './nav-item/nav-item.component';
+import { MainNavigationComponent } from './components/main-navigation/main-navigation.component';
 
 @NgModule({
 	declarations: [
+		MainNavigationComponent,
+
 		NavigationItemComponent,
 
 		SelectComponent,

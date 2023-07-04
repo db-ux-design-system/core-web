@@ -1,5 +1,6 @@
 import type { RouteRecordRaw } from 'vue-router';
 import NavigationItem from '../components/navigation-item/NavigationItem.vue';
+import MainNavigation from '../components/main-navigation/MainNavigation.vue';
 
 import Select from '../components/select/Select.vue';
 
@@ -48,15 +49,9 @@ export const navigationItems: NavItem[] = [
 				component: NavigationItem
 			},
 			{
-				path: '/05/xxx-test',
-				label: 'Navigation Test',
-				subNavigation: [
-					{
-						path: '/05/xxx-test/xxx-test-2',
-						label: 'Navigation Test 2',
-						component: Form
-					}
-				]
+				path: '/05/main-navigation',
+				label: 'MainNavigation',
+				component: MainNavigation
 			}
 		])
 	},

@@ -101,6 +101,10 @@ const componentChildren: NavigationItem[] = [
 			{
 				label: 'DBNavigationItem',
 				name: 'navigation-item'
+			},
+			{
+				label: 'DBMainNavigation',
+				name: 'main-navigation'
 			}
 		]
 	},

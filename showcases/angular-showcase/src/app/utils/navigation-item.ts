@@ -1,5 +1,6 @@
 import { Routes } from '@angular/router';
 import { NavigationItemComponent } from '../components/navigation-item/navigation-item.component';
+import { MainNavigationComponent } from '../components/main-navigation/main-navigation.component';
 
 import { SelectComponent } from '../components/select/select.component';
 import { TagComponent } from '../components/tag/tag.component';
@@ -48,15 +49,9 @@ export const NAVIGATION_ITEMS: NavItem[] = [
 				component: NavigationItemComponent
 			},
 			{
-				path: '05/xxx-test',
-				label: 'Navigation Test',
-				subNavigation: [
-					{
-						path: '05/xxx-test/xxx-test-2',
-						label: 'Navigation Test 2',
-						component: FormComponent
-					}
-				]
+				path: '05/main-navigation',
+				label: 'MainNavigation',
+				component: MainNavigationComponent
 			}
 		])
 	},

@@ -1,3 +1,5 @@
+import MainNavigationComponent from '../components/main-navigation';
+
 import NavigationItemComponent from '../components/navigation-item';
 
 import CheckboxComponent from '../components/checkbox';
@@ -48,15 +50,9 @@ export const NAVIGATION_ITEMS: NavigationItem[] = [
 				component: <NavigationItemComponent />
 			},
 			{
-				path: 'xxx-test',
-				label: 'Navigation Test',
-				subNavigation: [
-					{
-						path: 'xxx-test-2',
-						label: 'Navigation Test 2',
-						component: <FormComponent />
-					}
-				]
+				path: 'main-navigation',
+				label: 'MainNavigation',
+				component: <MainNavigationComponent />
 			}
 		])
 	},

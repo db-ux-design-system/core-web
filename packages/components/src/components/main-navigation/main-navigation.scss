@@ -3,8 +3,10 @@
 @use "../../styles/db-puls" as *;
 
 .db-main-navigation {
-	-webkit-tap-highlight-color: transparent; /* for removing the highlight */
-	width: 100%;
+	@media screen and (max-width: $db-screens-m) {
+		-webkit-tap-highlight-color: transparent; /* for removing the highlight */
+		width: 100%;
+	}
 
 	& > menu {
 		display: flex;
