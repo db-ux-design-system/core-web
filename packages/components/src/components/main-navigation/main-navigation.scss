@@ -1,5 +1,6 @@
 @use "@db-ui/foundations/build/scss/variables" as *;
 @use "@db-ui/foundations/build/scss/variables.global" as *;
+@use "../../styles/db-puls" as *;
 
 .db-main-navigation {
 	-webkit-tap-highlight-color: transparent; /* for removing the highlight */
@@ -14,6 +15,33 @@
 
 		@media screen and (min-width: $db-screens-m) {
 			flex-direction: row;
+		}
+
+		.db-navigation-item {
+			@media screen and (min-width: $db-screens-m) {
+				&::after {
+					--icon-margin-before: #{$db-spacing-fixed-sm};
+					--icon-glyph: "⌄";
+				}
+
+				menu {
+					.db-navigation-item {
+						&::after {
+							--icon-glyph: ">";
+						}
+					}
+				}
+			}
+
+			&[aria-current="page"] {
+				@extend %show-db-puls;
+
+				menu {
+					.db-puls {
+						display: none;
+					}
+				}
+			}
 		}
 	}
 }

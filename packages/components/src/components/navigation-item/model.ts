@@ -11,16 +11,7 @@ import {
 	WidthProps
 } from '../../shared/model';
 
-export interface DBNavigationItemActionProps {
-	text?: string;
-}
-
 export interface DBNavigationItemDefaultProps {
-	/**
-	 * Use an icon button here for additional actions.
-	 */
-	action?: DBNavigationItemActionProps & IconProps & ClickEventProps;
-
 	/**
 	 * Indicator for active navigation item (bold font).
 	 */
@@ -47,7 +38,6 @@ export type DBNavigationItemProps = DBNavigationItemDefaultProps &
 	NavigationBackButtonProps;
 
 export interface DBNavigationItemDefaultState {
-	handleActionClick: (event: any) => void;
 	handleBackClick: (event: any) => void;
 	hasAreaPopup: boolean;
 	isSubNavigationExpanded: boolean;

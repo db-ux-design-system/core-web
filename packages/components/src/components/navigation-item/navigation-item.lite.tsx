@@ -45,13 +45,6 @@ export default function DBNavigationItem(props: DBNavigationItemProps) {
 			event.stopPropagation();
 			state.isSubNavigationExpanded = false;
 		},
-		handleActionClick: (event: any) => {
-			event.stopPropagation();
-			if (props.action?.onClick) {
-				props.action.onClick(event);
-			}
-			event.preventDefault();
-		},
 		iconVisible: (icon?: string) => {
 			return Boolean(icon && icon !== '_' && icon !== 'none');
 		},
@@ -107,18 +100,8 @@ export default function DBNavigationItem(props: DBNavigationItemProps) {
 			<Show when={state.stylePath}>
 				<link rel="stylesheet" href={state.stylePath} />
 			</Show>
-			{props.children}
 
-			<Show when={props.action}>
-				<DBButton
-					noText
-					variant="text"
-					icon={props.action.icon}
-					title={props.action.text || props.action.icon}
-					onClick={(event) => state.handleActionClick(event)}>
-					{props.action.text || props.action.icon}
-				</DBButton>
-			</Show>
+			{props.children}
 
 			<menu class="db-sub-navigation" id={state.subNavigationId}>
 				<Show when={state.hasAreaPopup}>
@@ -135,7 +118,7 @@ export default function DBNavigationItem(props: DBNavigationItemProps) {
 				<Slot name="sub-navigation"></Slot>
 			</menu>
 
-			<div class="active-indicator" />
+			<div class="db-puls" />
 		</li>
 	);
 }

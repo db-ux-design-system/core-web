@@ -7,6 +7,8 @@
 @use "@db-ui/foundations/build/scss/helpers/component" as *;
 @use "@db-ui/foundations/build/scss/animation/animations" as *;
 
+@forward "../../styles/db-puls";
+
 %sub-navi-handler {
 	&[aria-haspopup="true"] {
 		@include icon(glyph(chevron-right), 24, "outline", "after");
@@ -56,63 +58,6 @@
 		&::after {
 			--icon-margin-before: auto;
 		}
-
-		&[data-main-menu="true"] {
-			@media screen and (min-width: $db-screens-m) {
-				&::after {
-					--icon-glyph: "⌄";
-				}
-			}
-		}
-
-		:not(&[data-main-menu="true"]) {
-			.db-mobile-navigation-back {
-				@media screen and (max-width: $db-screens-m) {
-					display: flex;
-				}
-			}
-		}
-	}
-}
-
-%active-indicator {
-	.active-indicator {
-		position: absolute;
-		border-radius: $default-border-radius;
-
-		@media screen and (max-width: $db-screens-m) {
-			transition: height 0.15s $db-transition-emotional-timing;
-			height: 0;
-			top: 50%;
-			transform: translate(0, -50%);
-		}
-
-		@media screen and (min-width: $db-screens-m) {
-			transition: width 0.15s $db-transition-emotional-timing;
-			width: 0;
-			left: 50%;
-			transform: translate(-50%, 0);
-		}
-	}
-
-	&[data-main-menu="true"] {
-		&[aria-current="page"] {
-			& > .active-indicator {
-				@media screen and (max-width: $db-screens-m) {
-					border-left: $default-border-radius solid
-						$db-colors-primary-enabled;
-					height: 100%;
-					left: calc(-1 * #{$db-spacing-fixed-xs});
-				}
-
-				@media screen and (min-width: $db-screens-m) {
-					border-bottom: $default-border-radius solid
-						$db-colors-primary-enabled;
-					width: 100%;
-					bottom: calc(-1 * #{$db-spacing-fixed-xs});
-				}
-			}
-		}
 	}
 }
 
@@ -122,7 +67,6 @@
 	@extend %transparent-border;
 
 	@extend %sub-navi-handler;
-	@extend %active-indicator;
 
 	@include get-variant-bg-color(0);
 	display: inline-flex;
@@ -151,11 +95,11 @@
 	}
 
 	&::before {
-		margin-inline-end: $db-spacing-fixed-sm;
+		--icon-margin-after: #{$db-spacing-fixed-sm};
 	}
 
 	&::after {
-		margin-inline-start: $db-spacing-fixed-sm;
+		--icon-margin-before: #{$db-spacing-fixed-sm};
 	}
 
 	&[aria-current="page"] {
@@ -166,19 +110,13 @@
 		width: 100%;
 
 		&::after {
-			margin-inline-start: auto;
+			--icon-margin-before: auto;
 		}
 	}
 
 	&[data-disabled="true"] {
 		opacity: $default-opacity;
 	}
-}
-
-@mixin desktop-card-style {
-	border-radius: $default-card-border-radius;
-	box-shadow: $db-elevation-4;
-	padding: $db-spacing-fixed-sm;
 }
 
 .db-sub-navigation {
@@ -206,7 +144,9 @@
 	}
 
 	@media screen and (min-width: $db-screens-m) {
-		@include desktop-card-style;
+		border-radius: $default-card-border-radius;
+		box-shadow: $db-elevation-4;
+		padding: $db-spacing-fixed-sm;
 
 		visibility: hidden;
 		position: absolute;
@@ -235,11 +175,15 @@
 
 .db-mobile-navigation-back {
 	@include divider("bottom");
-	display: none;
+	display: flex;
 	font-weight: normal;
 	background-color: var(
 		--db-current-background-color,
 		$db-colors-neutral-bg-0-enabled
 	);
 	padding-block-end: $db-spacing-fixed-md;
+
+	@media screen and (min-width: $db-screens-m) {
+		display: none;
+	}
 }
