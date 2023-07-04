@@ -1,16 +1,6 @@
-import {
-	onMount,
-	onUpdate,
-	Show,
-	useMetadata,
-	useStore
-} from '@builder.io/mitosis';
+import { onMount, Show, useMetadata, useStore } from '@builder.io/mitosis';
 import { DBMainNavigationState, DBMainNavigationProps } from './model';
 import classNames from 'classnames';
-import { setMainMenuToFirstListElement, uuid } from '../../utils';
-import { DBButton } from '../button';
-import { DEFAULT_BACK } from '../../shared/constants';
-
 useMetadata({
 	isAttachedToShadowDom: true,
 	component: {
@@ -26,29 +16,17 @@ export default function DBMainNavigation(props: DBMainNavigationProps) {
 	// jscpd:ignore-start
 	const state = useStore<DBMainNavigationState>({
 		initialized: false,
-		mainNavigationId: 'main-navigation-' + uuid(),
 		getClassNames: (...args: classNames.ArgumentArray) => {
 			return classNames(args);
 		}
 	});
 
 	onMount(() => {
-		state.initialized = true;
 		if (props.stylePath) {
 			state.stylePath = props.stylePath;
 		}
 	});
 
-	onUpdate(() => {
-		if (state.initialized && document && state.mainNavigationId) {
-			const menuElement = document?.getElementById(
-				state.mainNavigationId
-			) as HTMLMenuElement;
-			if (menuElement) {
-				setMainMenuToFirstListElement(menuElement);
-			}
-		}
-	}, [state.initialized]);
 	// jscpd:ignore-end
 
 	return (
@@ -58,7 +36,7 @@ export default function DBMainNavigation(props: DBMainNavigationProps) {
 			<Show when={state.stylePath}>
 				<link rel="stylesheet" href={state.stylePath} />
 			</Show>
-			<menu id={state.mainNavigationId}>{props.children}</menu>
+			<menu>{props.children}</menu>
 		</nav>
 	);
 }

@@ -1,19 +1,10 @@
-import {
-	GlobalProps,
-	GlobalState,
-	InitializedState,
-	NavigationBackButtonProps
-} from '../../shared/model';
+import { GlobalProps, GlobalState, InitializedState } from '../../shared/model';
 
 export interface DBMainNavigationDefaultProps {}
 
-export type DBMainNavigationProps = DBMainNavigationDefaultProps &
-	GlobalProps &
-	NavigationBackButtonProps;
+export type DBMainNavigationProps = DBMainNavigationDefaultProps & GlobalProps;
 
-export interface DBMainNavigationDefaultState {
-	mainNavigationId: string;
-}
+export interface DBMainNavigationDefaultState {}
 
 export type DBMainNavigationState = DBMainNavigationDefaultState &
 	GlobalState &
