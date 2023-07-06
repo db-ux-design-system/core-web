@@ -3,5 +3,5 @@ import { test } from '@playwright/test';
 import { getDefaultScreenshotTest } from '../default.ts';
 
 test.describe('DBNavigationItem', () => {
-	getDefaultScreenshotTest('navigation-item');
+	getDefaultScreenshotTest('05/navigation-item');
 });
