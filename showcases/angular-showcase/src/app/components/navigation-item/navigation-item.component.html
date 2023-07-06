@@ -16,7 +16,33 @@
 			[disabled]="exampleProps.disabled"
 			[active]="exampleProps.active"
 			(click)="showAlert(exampleName)"
-			>{{ exampleName }}</db-navigation-item
 		>
+			<ng-container *dbNavigationContent>
+				<ng-container *ngIf="exampleProps.iconAfter">{{
+					exampleName
+				}}</ng-container>
+				<a href="#" *ngIf="!exampleProps.iconAfter">{{
+					exampleName
+				}}</a>
+			</ng-container>
+
+			<ng-container *ngIf="exampleProps.iconAfter" sub-navigation>
+				<db-navigation-item>
+					<ng-container *dbNavigationContent>
+						<a href="#">Test1</a>
+					</ng-container>
+				</db-navigation-item>
+				<db-navigation-item>
+					<ng-container *dbNavigationContent>
+						<a href="#">Test2</a>
+					</ng-container>
+				</db-navigation-item>
+				<db-navigation-item>
+					<ng-container *dbNavigationContent>
+						<a href="#">Test3</a>
+					</ng-container>
+				</db-navigation-item>
+			</ng-container>
+		</db-navigation-item>
 	</ng-template>
 </app-default-component>

@@ -14,6 +14,9 @@
 			<h6>{{ exampleName }}</h6>
 			<db-main-navigation>
 				<db-navigation-item [active]="true">
+					<ng-container *dbNavigationContent>
+						Navi-Item 1
+					</ng-container>
 					<ng-container sub-navigation>
 						<db-navigation-item [active]="true">
 							<ng-container *dbNavigationContent>
@@ -37,9 +40,6 @@
 								<a href="#">Sub-Navi-Item 2</a>
 							</ng-container>
 						</db-navigation-item>
-					</ng-container>
-					<ng-container *dbNavigationContent>
-						Navi-Item 1
 					</ng-container>
 				</db-navigation-item>
 				<db-navigation-item icon="account">

@@ -23,8 +23,17 @@ const log = (exampleName: string) => {
 				:disabled="exampleProps.disabled"
 				:active="exampleProps.active"
 				@click="log(exampleName)"
-				>{{ exampleName }}</DBNavigationItem
 			>
+				<template v-if="exampleProps.iconAfter" #sub-navigation>
+					<DBNavigationItem><a href="#">Test1</a></DBNavigationItem>
+					<DBNavigationItem><a href="#">Test2</a></DBNavigationItem>
+					<DBNavigationItem><a href="#">Test3</a></DBNavigationItem>
+				</template>
+				<template v-if="exampleProps.iconAfter">
+					{{ exampleName }}
+				</template>
+				<a v-if="!exampleProps.iconAfter" href="#">{{ exampleName }}</a>
+			</DBNavigationItem>
 		</template>
 	</DefaultComponent>
 </template>

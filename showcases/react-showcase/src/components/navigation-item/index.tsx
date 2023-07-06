@@ -9,8 +9,9 @@ const getNavigationItem = ({
 	icon,
 	disabled,
 	active,
-	width
-}: DBNavigationItemProps) => (
+	width,
+	iconAfter
+}: DBNavigationItemProps & { iconAfter?: string }) => (
 	<DBNavigationItem
 		icon={icon}
 		disabled={disabled}
@@ -19,8 +20,20 @@ const getNavigationItem = ({
 		onClick={() => {
 			// eslint-disable-next-line no-alert
 			alert(children.toString());
-		}}>
-		{children}
+		}}
+		slotSubNavigation={
+			iconAfter && (
+				<>
+					<DBNavigationItem>
+						<a href="#">Test1</a>
+					</DBNavigationItem>
+					<DBNavigationItem>
+						<a href="#">Test2</a>
+					</DBNavigationItem>
+				</>
+			)
+		}>
+		{iconAfter ? children : <a href="#">{children}</a>}
 	</DBNavigationItem>
 );
 
