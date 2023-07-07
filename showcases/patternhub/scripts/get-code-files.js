@@ -1,3 +1,4 @@
+/* eslint-disable no-await-in-loop */
 import FS from 'node:fs';
 import prettier from 'prettier';
 import prettier0 from 'prettier/parser-babel.js';
@@ -22,7 +23,7 @@ const getFileTypeByFramework = (framework) => {
 	return 'html';
 };
 
-const getExamplesAsMDX = (componentName, variant) => {
+const getExamplesAsMDX = async (componentName, variant) => {
 	const examples = variant.examples;
 
 	let result = '';
@@ -50,7 +51,7 @@ const getExamplesAsMDX = (componentName, variant) => {
 			}
 
 			try {
-				exampleCode = prettier.format(exampleCode, {
+				exampleCode = await prettier.format(exampleCode, {
 					parser: 'babel',
 					plugins
 				});
@@ -61,7 +62,7 @@ const getExamplesAsMDX = (componentName, variant) => {
 			result += `\`\`\`${getFileTypeByFramework(
 				framework
 			)} ${framework}\n`;
-			result += `${exampleCode.replace(/;/g, '')}\n`;
+			result += `${exampleCode?.replace(/;/g, '')}\n`;
 			result += '```\n\n';
 		}
 
@@ -89,7 +90,7 @@ const writeCodeFiles = async (componentPath, componentName) => {
 
 			FS.writeFileSync(
 				`${codePath}/${variant.name}.mdx`,
-				getExamplesAsMDX(componentName, variant)
+				await getExamplesAsMDX(componentName, variant)
 			);
 		}
 	}

@@ -1,10 +1,8 @@
 import NavigationItemComponent from '../components/navigation-item';
-
 import CheckboxComponent from '../components/checkbox';
 import TagComponent from '../components/tag';
 import DrawerComponent from '../components/drawer';
 import SelectComponent from '../components/select';
-
 import RadioComponent from '../components/radio';
 import AlertComponent from '../components/alert';
 import ButtonComponent from '../components/button';
@@ -35,7 +33,6 @@ export const NAVIGATION_ITEMS: NavigationItem[] = [
 	{ path: 'select', label: 'Select', component: <SelectComponent /> },
 	{ path: 'radio', label: 'Radio', component: <RadioComponent /> },
 	{ path: 'alert', label: 'Alert', component: <AlertComponent /> },
-
 	{ path: 'drawer', label: 'Drawer', component: <DrawerComponent /> },
 	{ path: 'infotext', label: 'Infotext', component: <InfotextComponent /> },
 	{ path: 'section', label: 'Section', component: <SectionComponent /> },
