@@ -1,5 +1,4 @@
 import NavigationItem from '../components/navigation-item/NavigationItem.vue';
-
 import Select from '../components/select/Select.vue';
 import Tag from '../components/tag/Tag.vue';
 import Form from '../components/form/Form.vue';

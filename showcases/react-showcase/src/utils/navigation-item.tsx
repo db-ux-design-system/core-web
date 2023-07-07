@@ -1,5 +1,4 @@
 import NavigationItemComponent from '../components/navigation-item';
-
 import CheckboxComponent from '../components/checkbox';
 import TagComponent from '../components/tag';
 import DrawerComponent from '../components/drawer';

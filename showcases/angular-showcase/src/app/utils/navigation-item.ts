@@ -1,5 +1,4 @@
 import { NavigationItemComponent } from '../components/navigation-item/navigation-item.component';
-
 import { SelectComponent } from '../components/select/select.component';
 import { TagComponent } from '../components/tag/tag.component';
 import { InputComponent } from '../components/input/input.component';
