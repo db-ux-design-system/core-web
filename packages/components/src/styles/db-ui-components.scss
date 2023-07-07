@@ -19,10 +19,12 @@
 @use "../components/code-docs/code-docs" as *;
 @use "../components/tag/tag" as *;
 @use "../components/drawer/drawer" as *;
-
 @use "../components/select/select" as *;
+@use "../components/navigation-item/navigation-item" as *;
 
 // angular-workaround
+dbnavigation-item,
+db-navigation-item,
 dbtag,
 db-tag,
 dbselect,

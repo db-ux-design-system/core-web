@@ -1,0 +1,65 @@
+@use "@db-ui/foundations/build/scss/variables" as *;
+@use "@db-ui/foundations/build/scss/variables.global" as *;
+@use "@db-ui/foundations/build/scss/helpers/component" as *;
+@use "@db-ui/foundations/build/scss/color/color-variants" as *;
+@use "@db-ui/foundations/build/scss/icon/icons.helpers" as *;
+
+.db-navigation-item {
+	@extend %default-interactive-component;
+	@extend %default-background-transition;
+	@extend %transparent-border;
+
+	@include get-variant-bg-color(0);
+	display: inline-flex;
+	cursor: pointer;
+
+	position: relative;
+
+	border-radius: $default-card-border-radius;
+	padding: $db-spacing-fixed-xs $db-spacing-fixed-sm;
+	white-space: nowrap; // we don't want to break
+	text-align: center;
+	align-items: center; // Centering the content vertically and horizontally
+
+	& > a {
+		text-decoration: none;
+	}
+
+	&:hover {
+		@include get-variant-bg-color(0.16);
+	}
+
+	&:active {
+		@include get-variant-bg-color(0.24);
+	}
+
+	@media screen and (min-width: $db-screens-m) {
+		&:focus {
+			@include get-variant-bg-color(0.24);
+		}
+	}
+
+	&::before {
+		margin-inline-end: $db-spacing-fixed-sm;
+	}
+
+	&::after {
+		margin-inline-start: $db-spacing-fixed-sm;
+	}
+
+	&[aria-current="page"] {
+		font-weight: 700;
+	}
+
+	&[data-width="full"] {
+		width: 100%;
+
+		&::after {
+			margin-inline-start: auto;
+		}
+	}
+
+	&[data-disabled="true"] {
+		opacity: $default-opacity;
+	}
+}

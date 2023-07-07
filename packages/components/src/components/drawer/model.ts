@@ -3,7 +3,8 @@ import {
 	CloseEventState,
 	GlobalProps,
 	GlobalState,
-	InnerCloseButtonProps
+	InnerCloseButtonProps,
+	WidthProps
 } from '../../shared/model';
 
 export interface DBDrawerDefaultProps {
@@ -34,11 +35,7 @@ export interface DBDrawerDefaultProps {
 	 * React specific to change the header of the drawer.
 	 */
 	slotDrawerHeader?: any;
-	/**
-	 * The width attribute disables the max-width of the drawer and overlays over the entire screen.
-	 * Default max-width is: calc(100% - $db-spacing-fixed-xl), but you can overwrite it with --db-drawer-max-width.
-	 */
-	width?: 'full';
+
 	/**
 	 * The withCloseButton attribute shows/hides the default close button.
 	 */
@@ -48,7 +45,8 @@ export interface DBDrawerDefaultProps {
 export type DBDrawerProps = DBDrawerDefaultProps &
 	GlobalProps &
 	CloseEventProps &
-	InnerCloseButtonProps;
+	InnerCloseButtonProps &
+	WidthProps;
 
 export interface DBDrawerDefaultState {
 	handleDialogOpen: () => void;

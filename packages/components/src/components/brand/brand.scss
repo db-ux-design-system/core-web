@@ -19,6 +19,7 @@
 }
 
 .db-logo {
+	max-width: none;
 	height: $db-sizing-sm;
 	@media screen and (min-width: $db-screens-m) {
 		height: $db-sizing-md;

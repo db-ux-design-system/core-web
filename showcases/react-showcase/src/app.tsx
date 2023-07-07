@@ -1,6 +1,11 @@
 import type { ChangeEvent } from 'react';
 import { Link, Outlet } from 'react-router-dom';
-import { DBBrand, DBHeader, DBPage } from '../../../output/react/src';
+import {
+	DBBrand,
+	DBHeader,
+	DBPage,
+	DBNavigationItem
+} from '../../../output/react/src';
 import {
 	COLORS,
 	TONALITIES
@@ -36,7 +41,9 @@ const App = () => {
 								{getSortedNavigationItems().map((navItem) => (
 									<li key={`router-path-${navItem.path}`}>
 										<Link to={navItem.path}>
-											{navItem.label}
+											<DBNavigationItem>
+												{navItem.label}
+											</DBNavigationItem>
 										</Link>
 									</li>
 								))}

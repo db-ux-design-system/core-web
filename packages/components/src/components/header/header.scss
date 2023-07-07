@@ -13,8 +13,8 @@
 	/* Mobile header should always be 56px */
 	min-height: to-rem(56);
 
-	padding-left: $db-spacing-fixed-md;
-	padding-right: $db-spacing-fixed-md;
+	gap: $db-spacing-fixed-md;
+	padding-inline: $db-spacing-fixed-md;
 
 	.db-link {
 		display: inline-block;
@@ -39,10 +39,6 @@
 
 		.desktop-navigation {
 			display: inherit;
-			position: absolute;
-			top: 50%;
-			left: 50%;
-			transform: translate(-50%, -50%);
 		}
 	}
 }
