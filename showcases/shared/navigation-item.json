@@ -7,7 +7,7 @@
 				"className": "db-ui-functional",
 				"props": {
 					"icon": "account",
-					"iconAfter": "expand-more"
+					"areaPopup": true
 				}
 			},
 			{
@@ -15,7 +15,7 @@
 				"className": "db-ui-regular",
 				"props": {
 					"icon": "account",
-					"iconAfter": "expand-more"
+					"areaPopup": true
 				}
 			},
 			{
@@ -23,7 +23,7 @@
 				"className": "db-ui-expressive",
 				"props": {
 					"icon": "account",
-					"iconAfter": "expand-more"
+					"areaPopup": true
 				}
 			}
 		]
@@ -35,7 +35,7 @@
 				"name": "Enabled (Default)",
 				"props": {
 					"icon": "account",
-					"iconAfter": "expand-more"
+					"areaPopup": true
 				}
 			},
 			{
@@ -43,7 +43,7 @@
 				"props": {
 					"active": true,
 					"icon": "account",
-					"iconAfter": "expand-more"
+					"areaPopup": true
 				}
 			},
 			{
@@ -51,7 +51,7 @@
 				"props": {
 					"disabled": true,
 					"icon": "account",
-					"iconAfter": "expand-more"
+					"areaPopup": true
 				}
 			}
 		]
@@ -62,30 +62,27 @@
 			{
 				"name": "Leading Icon - Text",
 				"props": {
-					"icon": "account"
+					"icon": "account",
+					"areaPopup": false
 				}
 			},
 			{
 				"name": "Leading Icon - Text - Trailing Icon",
 				"props": {
 					"icon": "account",
-					"iconAfter": "expand-more"
+					"areaPopup": true
 				}
 			},
 			{
 				"name": "Text - Trailing Icon",
 				"props": {
-					"iconAfter": "expand-more"
+					"areaPopup": true
 				}
 			},
 			{
 				"name": "Text",
-				"props": {}
-			},
-			{
-				"name": "Text - Action",
 				"props": {
-					"action": true
+					"areaPopup": false
 				}
 			}
 		]
@@ -98,7 +95,7 @@
 				"style": { "width": "400px" },
 				"props": {
 					"icon": "account",
-					"iconAfter": "expand-more"
+					"areaPopup": true
 				}
 			},
 			{
@@ -107,7 +104,7 @@
 				"props": {
 					"width": "full",
 					"icon": "account",
-					"iconAfter": "expand-more"
+					"areaPopup": true
 				}
 			}
 		]

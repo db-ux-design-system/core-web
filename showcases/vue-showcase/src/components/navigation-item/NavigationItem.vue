@@ -22,17 +22,18 @@ const log = (exampleName: string) => {
 				:width="exampleProps.width"
 				:disabled="exampleProps.disabled"
 				:active="exampleProps.active"
+				:areaPopup="exampleProps.areaPopup"
 				@click="log(exampleName)"
 			>
-				<template v-if="exampleProps.iconAfter" #sub-navigation>
+				<template v-if="exampleProps.areaPopup" #sub-navigation>
 					<DBNavigationItem><a href="#">Test1</a></DBNavigationItem>
 					<DBNavigationItem><a href="#">Test2</a></DBNavigationItem>
 					<DBNavigationItem><a href="#">Test3</a></DBNavigationItem>
 				</template>
-				<template v-if="exampleProps.iconAfter">
+				<template v-if="exampleProps.areaPopup">
 					{{ exampleName }}
 				</template>
-				<a v-if="!exampleProps.iconAfter" href="#">{{ exampleName }}</a>
+				<a v-if="!exampleProps.areaPopup" href="#">{{ exampleName }}</a>
 			</DBNavigationItem>
 		</template>
 	</DefaultComponent>

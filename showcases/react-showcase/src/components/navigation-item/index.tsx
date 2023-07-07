@@ -10,19 +10,20 @@ const getNavigationItem = ({
 	disabled,
 	active,
 	width,
-	iconAfter
-}: DBNavigationItemProps & { iconAfter?: string }) => (
+	areaPopup
+}: DBNavigationItemProps) => (
 	<DBNavigationItem
 		icon={icon}
 		disabled={disabled}
 		active={active}
 		width={width}
+		areaPopup={areaPopup}
 		onClick={() => {
 			// eslint-disable-next-line no-alert
 			alert(children.toString());
 		}}
 		slotSubNavigation={
-			iconAfter && (
+			areaPopup && (
 				<>
 					<DBNavigationItem>
 						<a href="#">Test1</a>
@@ -33,7 +34,7 @@ const getNavigationItem = ({
 				</>
 			)
 		}>
-		{iconAfter ? children : <a href="#">{children}</a>}
+		{areaPopup ? children : <a href="#">{children}</a>}
 	</DBNavigationItem>
 );
 

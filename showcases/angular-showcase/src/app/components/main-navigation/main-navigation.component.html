@@ -23,31 +23,34 @@
 								Sub-Navi-Item 1
 							</ng-container>
 							<ng-container sub-navigation>
-								<db-navigation-item [active]="true">
+								<db-navigation-item
+									[active]="true"
+									[areaPopup]="false"
+								>
 									<ng-container *dbNavigationContent>
 										<a href="#">Sub-Sub-Navi-Item 1</a>
 									</ng-container>
 								</db-navigation-item>
-								<db-navigation-item>
+								<db-navigation-item [areaPopup]="false">
 									<ng-container *dbNavigationContent>
 										<a href="#">Sub-Sub-Navi-Item 2</a>
 									</ng-container>
 								</db-navigation-item>
 							</ng-container>
 						</db-navigation-item>
-						<db-navigation-item>
+						<db-navigation-item [areaPopup]="false">
 							<ng-container *dbNavigationContent>
 								<a href="#">Sub-Navi-Item 2</a>
 							</ng-container>
 						</db-navigation-item>
 					</ng-container>
 				</db-navigation-item>
-				<db-navigation-item icon="account">
+				<db-navigation-item icon="account" [areaPopup]="false">
 					<ng-container *dbNavigationContent>
 						<a href="#">Navi-Item 2</a>
 					</ng-container>
 				</db-navigation-item>
-				<db-navigation-item [disabled]="true">
+				<db-navigation-item [disabled]="true" [areaPopup]="false">
 					<ng-container *dbNavigationContent>
 						<a href="#">Navi-Item 3</a>
 					</ng-container>
