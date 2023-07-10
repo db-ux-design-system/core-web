@@ -1,9 +1,9 @@
 # @db-ui/ngx-components
 
-![Apache 2.0 license badge](https://img.shields.io/badge/License-Apache_2.0-blue.svg)
-[![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
-[![Conventional Commits](https://img.shields.io/badge/Conventional%20Commits-1.0.0-yellow.svg)](https://conventionalcommits.org)
-[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](https://makeapullrequest.com)
+![Apache 2.0 license badge](/docs/images/download/License-Apache_2.0-blue.svg)
+[![code style: prettier](/docs/images/download/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
+[![Conventional Commits](/docs/images/download/Conventional Commits-1.0.0-yellow.svg)](https://conventionalcommits.org)
+[![PRs Welcome](/docs/images/download/PRs-welcome-brightgreen.svg?style=flat-square)](https://makeapullrequest.com)
 
 An Angular library containing all styles & components of [DB UX Design System (technical components)](https://github.com/db-ui/mono).
 
