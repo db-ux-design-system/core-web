@@ -152,7 +152,7 @@
 		}
 	}
 
-	&[data-disabled="true"] {
+	&[aria-disabled="true"] {
 		opacity: $default-opacity;
 		pointer-events: none;
 	}

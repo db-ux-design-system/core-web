@@ -95,7 +95,7 @@ export default function DBNavigationItem(props: DBNavigationItemProps) {
 			data-width={props.width}
 			data-icon={state.iconVisible(props.icon) ? props.icon : undefined}
 			aria-current={props.active ? 'page' : undefined}
-			data-disabled={props.disabled}>
+			aria-disabled={props.disabled}>
 			<Show when={state.stylePath}>
 				<link rel="stylesheet" href={state.stylePath} />
 			</Show>
