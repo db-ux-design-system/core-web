@@ -52,7 +52,7 @@
 	}
 
 	&[data-width="full"] {
-		width: 100%;
+		inline-size: 100%;
 
 		&::after {
 			margin-inline-start: auto;

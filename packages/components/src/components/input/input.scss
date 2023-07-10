@@ -52,11 +52,11 @@
 	align-items: center;
 	flex-direction: row;
 	position: absolute;
-	top: 0;
-	height: $db-sizing-md;
+	inset-block-start: 0;
+	block-size: $db-sizing-md;
 
 	pointer-events: none;
-	right: 0;
+	inset-inline-end: 0;
 
 	margin-inline-end: var(--icon-input-margin-inline-end);
 
@@ -138,11 +138,11 @@
 
 		font-size: var(--icon-font-size);
 
-		height: $db-sizing-md;
+		block-size: $db-sizing-md;
 		display: flex;
 		align-items: center;
 		position: absolute;
-		top: 0;
+		inset-block-start: 0;
 		margin-inline: $db-spacing-fixed-sm;
 	}
 
@@ -150,7 +150,7 @@
 	// angular specific nesting
 	dbicon.icon-after > .db-icon,
 	&:has(> datalist)::after {
-		right: 0;
+		inset-inline-end: 0;
 	}
 
 	.icon-after {
@@ -183,10 +183,10 @@
 		);
 		transition: transform 0.2s $db-transition-functional-timing;
 		will-change: transform;
-		height: $db-sizing-md;
+		block-size: $db-sizing-md;
 		cursor: text;
 		// setting max-width to prevent users from too long labels by displaying text-overflow: ellipsis
-		max-width: var(--db-input-label-max-width, 80%);
+		max-inline-size: var(--db-input-label-max-width, 80%);
 
 		span:first-child {
 			text-overflow: ellipsis;
@@ -218,24 +218,23 @@
 		@extend %component-border;
 		@include get-variant-bg-color(0.08);
 
-		height: $db-sizing-md;
-		max-width: 100%;
-		width: 100%;
+		block-size: $db-sizing-md;
+		max-inline-size: 100%;
+		inline-size: 100%;
 		padding: $db-spacing-fixed-xs var(--db-input-padding-inline-end)
 			$db-spacing-fixed-xs var(--db-input-padding-inline-start);
 
 		// TODO: Evaluate whether those could get moved to ../_form-elements.scss
 		&:focus,
 		&:not(:placeholder-shown) {
-			padding-bottom: calc(
+			padding-block: calc(
+				var(--db-spacing-fixed-xs) + 0.25em *
+					var(--db-input-focus-opacity)
+			) calc(
 				$db-spacing-fixed-xs - var(--db-input-focus-opacity) *
 					$db-spacing-fixed-xs
 			);
 			// move filled text for expressive and regular to center with focused label
-			padding-top: calc(
-				var(--db-spacing-fixed-xs) + 0.25em *
-					var(--db-input-focus-opacity)
-			);
 
 			+ label {
 				@include label-focus-animation();
@@ -256,7 +255,7 @@
 		&:required {
 			+ label::after {
 				content: " *";
-				padding-left: 0.2rem;
+				padding-inline-start: 0.2rem;
 			}
 		}
 
@@ -346,10 +345,10 @@
 			&::-webkit-search-cancel-button {
 				appearance: none;
 				position: absolute;
-				right: $db-spacing-fixed-sm;
-				top: 0;
-				height: $db-sizing-md;
-				width: 1em;
+				inset-inline-end: $db-spacing-fixed-sm;
+				inset-block-start: 0;
+				block-size: $db-sizing-md;
+				inline-size: 1em;
 				background: url(#{$icons-path}functional/images/navigation/db_ic_cancel_24.svg)
 					no-repeat 50% 50%;
 				background-size: contain;
@@ -419,7 +418,7 @@
 	.db-input
 		> input[type="datetime-local"]::-webkit-calendar-picker-indicator {
 		// TODO change icon and use db-icons to adopt color for data-variants
-		margin-top: -0.75em;
+		margin-block-start: -0.75em;
 		padding: 0;
 	}
 }

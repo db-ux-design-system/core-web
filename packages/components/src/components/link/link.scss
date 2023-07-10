@@ -11,13 +11,13 @@
 
 %db-link-height {
 	display: inline-block;
-	height: $db-sizing-sm;
+	block-size: $db-sizing-sm;
 }
 
 .db-link {
 	@extend %default-color;
 	@extend %db-link-height;
-	width: fit-content;
+	inline-size: fit-content;
 	align-items: center;
 
 	// Link underline

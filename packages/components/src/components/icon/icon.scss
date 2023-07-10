@@ -6,7 +6,7 @@
 		display: inline-block;
 
 		&::before {
-			height: auto;
+			block-size: auto;
 		}
 	}
 }
