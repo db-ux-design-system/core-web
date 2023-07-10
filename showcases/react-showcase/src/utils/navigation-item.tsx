@@ -50,6 +50,18 @@ export const NAVIGATION_ITEMS: NavigationItem[] = [
 				path: 'main-navigation',
 				label: 'MainNavigation',
 				component: <MainNavigationComponent />
+			},
+
+			{
+				path: 'test',
+				label: 'Test',
+				subNavigation: [
+					{
+						path: 'test2',
+						label: 'NavigationItem',
+						component: <NavigationItemComponent />
+					}
+				]
 			}
 		])
 	},

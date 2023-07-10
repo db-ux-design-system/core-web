@@ -40,7 +40,8 @@
 %sub-navi-handler-desktop {
 	// show sub-navigation on hover
 	@media screen and (min-width: $db-screens-m) {
-		&:hover {
+		&:hover,
+		&:focus-visible {
 			& ~ .db-sub-navigation {
 				visibility: visible;
 			}
@@ -53,6 +54,8 @@
 	@media screen and (max-width: $db-screens-m) {
 		&[aria-expanded="true"] {
 			& ~ .db-sub-navigation {
+				visibility: visible;
+				transition: visibility 0ms linear 0ms;
 				animation: show-right-to-left $animation-show-timing;
 
 				.db-sub-navigation {
@@ -64,6 +67,7 @@
 
 		&:not(&[aria-expanded="true"]) {
 			& ~ .db-sub-navigation {
+				transition: visibility 0ms linear 410ms; // hide animation is 0.4s
 				animation: hide-right-to-left $animation-hide-timing;
 			}
 		}
@@ -87,7 +91,10 @@
 	align-items: center; // Centering the content vertically and horizontally
 
 	&:hover,
-	&:has(~ .db-sub-navigation:hover) {
+	&:focus-visible,
+	&:has(~ .db-sub-navigation:hover),
+	&:has(~ .db-sub-navigation:focus-visible),
+	&:has(~ .db-sub-navigation:focus-within) {
 		@include get-variant-bg-color(0.16);
 	}
 
@@ -159,12 +166,10 @@
 	left: 0;
 	background-color: $db-colors-neutral-bg-0-enabled;
 
+	visibility: hidden;
+
 	&:empty {
 		display: none;
-	}
-
-	&:hover {
-		visibility: visible;
 	}
 
 	@media screen and (max-width: $db-screens-m) {
@@ -185,11 +190,17 @@
 		box-shadow: $db-elevation-4;
 		padding: $db-spacing-fixed-sm;
 
-		visibility: hidden;
 		position: absolute;
 		min-width: 328px; // We should get this value from UX
 
 		top: calc(100% + #{$db-spacing-fixed-md});
+
+		transition: visibility 1ms linear; // workaround to enable focus with keyboard
+
+		&:hover,
+		&:focus-within {
+			visibility: visible;
+		}
 
 		&::before {
 			content: "";
