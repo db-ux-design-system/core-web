@@ -52,7 +52,11 @@ export interface DBNavigationItemDefaultState {
 	hasAreaPopup: boolean;
 	isSubNavigationExpanded: boolean;
 	subNavigationId: string;
-	showSubNavigation?: boolean;
+
+	/**
+	 * Internal state property to show/hide sub-navigation button
+	 */
+	hasSubNavigation?: boolean;
 }
 
 export type DBNavigationItemState = DBNavigationItemDefaultState &

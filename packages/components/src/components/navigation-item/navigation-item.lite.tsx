@@ -30,7 +30,7 @@ export default function DBNavigationItem(props: DBNavigationItemProps) {
 	const state = useStore<DBNavigationItemState>({
 		initialized: false,
 		hasAreaPopup: false,
-		showSubNavigation: true,
+		hasSubNavigation: true,
 		isSubNavigationExpanded: false,
 		subNavigationId: 'sub-navigation-' + uuid(),
 		handleClick: (event: any) => {
@@ -70,7 +70,7 @@ export default function DBNavigationItem(props: DBNavigationItemProps) {
 	onUpdate(() => {
 		if (props.areaPopup !== undefined) {
 			state.hasAreaPopup = props.areaPopup;
-			state.showSubNavigation = state.hasAreaPopup;
+			state.hasSubNavigation = state.hasAreaPopup;
 		} else if (state.initialized && document && state.subNavigationId) {
 			const subNavigationSlot = document?.getElementById(
 				state.subNavigationId
@@ -80,7 +80,7 @@ export default function DBNavigationItem(props: DBNavigationItemProps) {
 				if (children?.length > 0) {
 					state.hasAreaPopup = true;
 				} else {
-					state.showSubNavigation = false;
+					state.hasSubNavigation = false;
 				}
 			}
 		}
@@ -100,9 +100,9 @@ export default function DBNavigationItem(props: DBNavigationItemProps) {
 				<link rel="stylesheet" href={state.stylePath} />
 			</Show>
 
-			<Show when={!state.showSubNavigation}>{props.children}</Show>
+			<Show when={!state.hasSubNavigation}>{props.children}</Show>
 
-			<Show when={state.showSubNavigation}>
+			<Show when={state.hasSubNavigation}>
 				<button
 					aria-haspopup={state.hasAreaPopup}
 					aria-expanded={state.isSubNavigationExpanded}
