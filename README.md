@@ -5,13 +5,13 @@
 
 # DB UI Mono (Alpha) 🚂💖
 
-![Part of DB UX Design System Core](https://img.shields.io/badge/Part%20of-DB%20UX%20Design%20System%20Core-d7dce1.svg)
+![Part of DB UX Design System Core](/docs/images/download/Part of-DB UX Design System Core-d7dce1.svg)
 ![Main pipeline](https://github.com/db-ui/mono/actions/workflows/default.yml/badge.svg)
-![Apache 2.0 license badge](https://img.shields.io/badge/License-Apache_2.0-blue.svg)
-[![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
-[![XO code style](https://img.shields.io/badge/code_style-XO-5ed9c7.svg)](https://github.com/xojs/xo)
-[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)
-[![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-2.0-4baaaa.svg)](CODE-OF-CONDUCT.md)
+![Apache 2.0 license badge](/docs/images/download/License-Apache_2.0-blue.svg)
+[![code style: prettier](/docs/images/download/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
+[![XO code style](/docs/images/download/code_style-XO-5ed9c7.svg)](https://github.com/xojs/xo)
+[![PRs Welcome](/docs/images/download/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)
+[![Contributor Covenant](/docs/images/download/Contributor Covenant-2.0-4baaaa.svg)](CODE-OF-CONDUCT.md)
 
 DB UI Mono provides robust HTML UI components, reusable visual styles, and powerful tooling to help developers,
 designers, and content authors build, maintain, and scale best of class digital experiences.
