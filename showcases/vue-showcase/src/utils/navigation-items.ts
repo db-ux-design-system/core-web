@@ -1,9 +1,7 @@
 import type { RouteRecordRaw } from 'vue-router';
 import NavigationItem from '../components/navigation-item/NavigationItem.vue';
 import MainNavigation from '../components/main-navigation/MainNavigation.vue';
-
 import Select from '../components/select/Select.vue';
-
 import Tag from '../components/tag/Tag.vue';
 import Form from '../components/form/Form.vue';
 import Button from '../components/button/Button.vue';

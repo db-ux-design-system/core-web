@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-
 import defaultComponentVariants from '../../../../../shared/main-navigation.json';
 
 @Component({

@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-
 import defaultComponentVariants from '../../../../../shared/select.json';
 
 @Component({

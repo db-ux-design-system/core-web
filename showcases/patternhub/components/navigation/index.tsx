@@ -1,5 +1,4 @@
 import Link from 'next/link';
-
 import { DBMainNavigation } from '../../../../output/react/src';
 import {
 	getRouteWithBasePath,

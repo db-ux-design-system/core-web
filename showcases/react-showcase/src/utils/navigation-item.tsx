@@ -1,12 +1,9 @@
 import MainNavigationComponent from '../components/main-navigation';
-
 import NavigationItemComponent from '../components/navigation-item';
-
 import CheckboxComponent from '../components/checkbox';
 import TagComponent from '../components/tag';
 import DrawerComponent from '../components/drawer';
 import SelectComponent from '../components/select';
-
 import RadioComponent from '../components/radio';
 import AlertComponent from '../components/alert';
 import ButtonComponent from '../components/button';
