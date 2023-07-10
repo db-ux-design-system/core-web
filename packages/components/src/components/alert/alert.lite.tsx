@@ -73,20 +73,16 @@ export default function DBAlert(props: DBAlertProps) {
 			aria-live={props.ariaLive}
 			data-variant={props.variant}
 			data-type={props.type}
+			data-icon={state.getIcon(props.icon, props.variant)}
 			data-elevation={props.elevation}>
 			<Show when={state.stylePath}>
 				<link rel="stylesheet" href={state.stylePath} />
 			</Show>
 
-			<DBIcon
-				className="db-alert-icon"
-				icon={state.getIcon(props.icon, props.variant)}
-			/>
-
 			<Show when={props.headline}>
 				<strong class="db-alert-headline">{props.headline}</strong>
 			</Show>
-			<span class="db-alert-content">{props.children}</span>
+			<p class="db-alert-content">{props.children}</p>
 
 			<Show when={props.link}>
 				<DBLink

@@ -4,7 +4,7 @@
 		"examples": [
 			{
 				"name": "functional",
-				"style": { "width": "100%" },
+				"style": { "width": "500px" },
 				"className": "db-ui-functional",
 				"props": {
 					"headline": "Headline",
@@ -16,7 +16,7 @@
 			},
 			{
 				"name": "regular (Default)",
-				"style": { "width": "100%" },
+				"style": { "width": "500px" },
 				"className": "db-ui-regular",
 				"props": {
 					"headline": "Headline",
@@ -28,7 +28,7 @@
 			},
 			{
 				"name": "expressive",
-				"style": { "width": "100%" },
+				"style": { "width": "500px" },
 				"className": "db-ui-expressive",
 				"props": {
 					"headline": "Headline",
@@ -45,7 +45,7 @@
 		"examples": [
 			{
 				"name": "(Default) Alert",
-				"style": { "width": "100%" },
+				"style": { "width": "500px" },
 				"props": {
 					"type": "alert",
 					"headline": "Headline",
@@ -57,7 +57,7 @@
 			},
 			{
 				"name": "Inline",
-				"style": { "width": "100%" },
+				"style": { "width": "500px" },
 				"props": {
 					"type": "inline",
 					"headline": "Headline",
@@ -74,7 +74,7 @@
 		"examples": [
 			{
 				"name": "(Default) Adaptive",
-				"style": { "width": "100%" },
+				"style": { "width": "500px" },
 				"props": {
 					"type": "alert",
 					"icon": "account",
@@ -87,7 +87,7 @@
 			},
 			{
 				"name": "Critical",
-				"style": { "width": "100%" },
+				"style": { "width": "500px" },
 				"props": {
 					"type": "alert",
 					"variant": "critical",
@@ -100,7 +100,7 @@
 			},
 			{
 				"name": "Informational",
-				"style": { "width": "100%" },
+				"style": { "width": "500px" },
 				"props": {
 					"type": "alert",
 					"variant": "informational",
@@ -113,7 +113,7 @@
 			},
 			{
 				"name": "Successful",
-				"style": { "width": "100%" },
+				"style": { "width": "500px" },
 				"props": {
 					"type": "alert",
 					"variant": "successful",
@@ -126,7 +126,7 @@
 			},
 			{
 				"name": "Warning",
-				"style": { "width": "100%" },
+				"style": { "width": "500px" },
 				"props": {
 					"type": "alert",
 					"variant": "warning",
@@ -144,7 +144,7 @@
 		"examples": [
 			{
 				"name": "Headline & Text & Link & Icon",
-				"style": { "width": "100%" },
+				"style": { "width": "500px" },
 				"props": {
 					"type": "alert",
 					"icon": "account",
@@ -157,7 +157,7 @@
 			},
 			{
 				"name": "Headline & Text & Link",
-				"style": { "width": "100%" },
+				"style": { "width": "500px" },
 				"props": {
 					"headline": "Headline",
 					"link": {
@@ -168,7 +168,7 @@
 			},
 			{
 				"name": "Text & Link",
-				"style": { "width": "100%" },
+				"style": { "width": "500px" },
 				"props": {
 					"link": {
 						"href": "#",
@@ -178,7 +178,7 @@
 			},
 			{
 				"name": "Text",
-				"style": { "width": "100%" },
+				"style": { "width": "500px" },
 				"props": {}
 			}
 		]
@@ -188,7 +188,7 @@
 		"examples": [
 			{
 				"name": "Closable",
-				"style": { "width": "100%" },
+				"style": { "width": "500px" },
 				"props": {
 					"type": "alert",
 					"headline": "Headline",
@@ -201,7 +201,7 @@
 			},
 			{
 				"name": "Permanent",
-				"style": { "width": "100%" },
+				"style": { "width": "500px" },
 				"props": {
 					"type": "alert",
 					"headline": "Headline",
