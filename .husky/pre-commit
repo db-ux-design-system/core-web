@@ -4,7 +4,7 @@
 . "$(dirname "$0")/_/husky.sh"
 
 npx validate-branch-name
-npm run scritps:check-commit-mail
-npm run scritps:md-resolve-svg
-npm run scritps:prettier-stage
+npm run scripts:check-commit-mail
+npm run scripts:md-resolve-svg
+npm run scripts:prettier-stage
 npm run lint
