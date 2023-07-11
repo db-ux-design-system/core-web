@@ -45,7 +45,7 @@
 }
 %direction-down {
 	@extend %full-horizontal;
-	inset: logical 0 0 auto;
+	inset: 0 0 auto;
 
 	&[data-rounded="true"] {
 		border-end-end-radius: $default-card-border-radius;
