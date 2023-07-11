@@ -9,10 +9,10 @@
 	box-shadow: $db-elevation-4;
 	display: flex;
 	flex-direction: column;
-	margin-bottom: $db-spacing-fixed-2xs;
+	margin-block-end: $db-spacing-fixed-2xs;
 	position: relative;
 
-	min-height: $default-mobile-header-height;
+	min-block-size: $default-mobile-header-height;
 
 	.db-link {
 		display: inline-block;
@@ -25,7 +25,7 @@
 	padding-block: $db-spacing-fixed-xs;
 	padding-inline: $db-spacing-fixed-md;
 	gap: $db-spacing-fixed-xs;
-	width: 100%;
+	inline-size: 100%;
 	align-items: center;
 
 	@media screen and (min-width: $db-screens-m) {
@@ -58,7 +58,7 @@
 .db-header-navigation-container {
 	display: inherit;
 	flex: 1 1 auto;
-	width: 100%;
+	inline-size: 100%;
 	gap: inherit;
 	align-items: center;
 }
@@ -80,7 +80,7 @@
 .db-header-brand-container,
 .db-header-action-container {
 	align-items: center;
-	height: 100%;
+	block-size: 100%;
 	display: inherit;
 	gap: inherit;
 	flex: 0 1 auto;
@@ -103,7 +103,7 @@
 		display: flex;
 		flex-direction: column;
 		flex: 1 1 auto;
-		height: 100%;
+		block-size: 100%;
 		overflow: auto;
 		justify-content: space-between;
 	}
@@ -134,7 +134,7 @@
 	& .db-drawer-content {
 		display: flex;
 		flex-direction: column;
-		height: 100%;
+		block-size: 100%;
 		overflow: hidden;
 	}
 }

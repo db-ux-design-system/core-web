@@ -7,63 +7,55 @@
 @use "@db-ui/foundations/build/scss/animation/animations" as *;
 
 %direction-right {
-	left: auto;
-	right: 0;
+	inset-inline: auto 0;
 
 	&[data-rounded="true"] {
-		border-top-left-radius: $default-card-border-radius;
-		border-bottom-left-radius: $default-card-border-radius;
+		border-start-start-radius: $default-card-border-radius;
+		border-end-start-radius: $default-card-border-radius;
 	}
 }
 
 %direction-left {
-	right: auto;
-	left: 0;
+	inset-inline: 0 auto;
 
 	&[data-rounded="true"] {
-		border-top-right-radius: $default-card-border-radius;
-		border-bottom-right-radius: $default-card-border-radius;
+		border-start-end-radius: $default-card-border-radius;
+		border-end-end-radius: $default-card-border-radius;
 	}
 }
 
 %full-horizontal {
 	&:not([data-width="full"]) {
-		max-height: var(
+		max-block-size: var(
 			--db-drawer-max-height,
 			calc(100% - $db-spacing-fixed-xl)
 		);
-		max-width: none;
+		max-inline-size: none;
 	}
 }
 
 %direction-up {
 	@extend %full-horizontal;
-	top: auto;
-	bottom: 0;
-	left: 0;
-	right: 0;
+	inset: auto 0 0;
 
 	&[data-rounded="true"] {
-		border-top-right-radius: $default-card-border-radius;
-		border-top-left-radius: $default-card-border-radius;
+		border-start-end-radius: $default-card-border-radius;
+		border-start-start-radius: $default-card-border-radius;
 	}
 }
 %direction-down {
 	@extend %full-horizontal;
-	bottom: auto;
-	top: 0;
-	left: 0;
-	right: 0;
+	inset: 0 0 auto;
 
 	&[data-rounded="true"] {
-		border-bottom-right-radius: $default-card-border-radius;
-		border-bottom-left-radius: $default-card-border-radius;
+		border-end-end-radius: $default-card-border-radius;
+		border-end-start-radius: $default-card-border-radius;
 	}
 }
 
 %close-button-position {
 	margin-inline-start: $db-spacing-fixed-lg;
-	float: right;
+	float: inline-end;
 }
 
 $spacings: (
@@ -123,13 +115,13 @@ $spacings: (
 		display: flex;
 		flex-direction: column;
 		background-color: $db-colors-neutral-bg-0-enabled;
-		height: 100%;
-		width: 100%;
+		block-size: 100%;
+		inline-size: 100%;
 		position: fixed;
 		box-shadow: $db-elevation-4;
 
 		&:not([data-width="full"]) {
-			max-width: var(
+			max-inline-size: var(
 				--db-drawer-max-width,
 				calc(100% - $db-spacing-fixed-xl)
 			);

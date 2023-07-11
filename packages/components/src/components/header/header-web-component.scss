@@ -2,10 +2,10 @@
 @forward "header";
 
 .db-header-navigation-bar {
-	height: to-rem(32);
-	width: auto;
+	block-size: to-rem(32);
+	inline-size: auto;
 }
 
 .db-header-divider {
-	height: to-rem(32);
+	block-size: to-rem(32);
 }

@@ -33,15 +33,15 @@
 		margin: 0 auto;
 
 		&[data-variant="full"] {
-			max-width: none;
+			max-inline-size: none;
 		}
 
 		&[data-variant="medium"] {
-			max-width: $db-screens-m;
+			max-inline-size: $db-screens-m;
 		}
 
 		&[data-variant="large"] {
-			max-width: $db-screens-l;
+			max-inline-size: $db-screens-l;
 		}
 	}
 }

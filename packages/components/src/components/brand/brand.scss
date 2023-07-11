@@ -24,6 +24,6 @@
 }
 
 .db-logo {
-	max-width: none;
-	height: $db-sizing-sm;
+	max-inline-size: none;
+	block-size: $db-sizing-sm;
 }

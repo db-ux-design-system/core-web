@@ -23,14 +23,14 @@ $font-size-height: calc(var(--db-base-font-size) * var(--db-base-line-height));
 	// * the basic, unchecked style
 	display: inline-block;
 
-	height: $font-size-height;
+	block-size: $font-size-height;
 
 	// TODO: Extract those transition durations as variables #645
 	transition: border-width 0.15s $db-transition-functional-timing;
 
 	// TODO: probably extract this to an overwrite or external file
 	// workarounds for power apps
-	width: auto;
+	inline-size: auto;
 	padding: 0;
 
 	&:checked {

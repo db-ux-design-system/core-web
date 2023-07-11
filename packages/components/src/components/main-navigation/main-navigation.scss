@@ -5,7 +5,7 @@
 .db-main-navigation {
 	@media screen and (max-width: $db-screens-m) {
 		-webkit-tap-highlight-color: transparent; /* for removing the highlight */
-		width: 100%;
+		inline-size: 100%;
 	}
 
 	& > menu {

@@ -59,8 +59,7 @@
 				animation: show-right-to-left $animation-show-timing;
 
 				.db-sub-navigation {
-					top: 0;
-					bottom: 0;
+					inset-block: 0;
 				}
 			}
 		}
@@ -81,7 +80,7 @@
 
 	@include get-variant-bg-color(0);
 	cursor: pointer;
-	width: 100%;
+	inline-size: 100%;
 	display: inline-flex;
 
 	border-radius: $default-card-border-radius;
@@ -113,7 +112,7 @@
 
 	display: inline-flex;
 	position: relative;
-	width: 100%;
+	inline-size: 100%;
 
 	a {
 		@extend %navigation-item;
@@ -145,7 +144,7 @@
 	}
 
 	&[data-width="full"] {
-		width: 100%;
+		inline-size: 100%;
 
 		&::after {
 			--icon-margin-before: auto;
@@ -163,7 +162,7 @@
 	display: flex;
 	flex-direction: column;
 	z-index: 70;
-	left: 0;
+	inset-inline-start: 0;
 	background-color: $db-colors-neutral-bg-0-enabled;
 
 	visibility: hidden;
@@ -174,14 +173,13 @@
 
 	@media screen and (max-width: $db-screens-m) {
 		padding: $db-spacing-fixed-md;
-		width: 100%;
+		inline-size: 100%;
 		position: fixed;
 		// additional #{$db-spacing-fixed-regular-3xs} for border
-		bottom: calc(
-			#{$db-sizing-md} + #{$db-spacing-fixed-xs} * 2 + #{$db-spacing-fixed-regular-3xs}
-		);
-		top: calc(
+		inset-block: calc(
 			#{$default-mobile-header-height} + #{$db-spacing-fixed-regular-3xs}
+		) calc(
+			#{$db-sizing-md} + #{$db-spacing-fixed-xs} * 2 + #{$db-spacing-fixed-regular-3xs}
 		);
 	}
 
@@ -191,9 +189,9 @@
 		padding: $db-spacing-fixed-sm;
 
 		position: absolute;
-		min-width: 328px; // We should get this value from UX
+		min-inline-size: 328px; // We should get this value from UX
 
-		top: calc(100% + #{$db-spacing-fixed-md});
+		inset-block-start: calc(100% + #{$db-spacing-fixed-md});
 
 		transition: visibility 1ms linear; // workaround to enable focus with keyboard
 
@@ -205,36 +203,36 @@
 		&::before {
 			content: "";
 			position: absolute;
-			left: 0;
-			width: 100%;
+			inset-inline-start: 0;
+			inline-size: 100%;
 			// #{$db-spacing-fixed-regular-3xs} for shadows
-			height: calc(
+			block-size: calc(
 				#{$db-spacing-fixed-regular-3xs} + #{$db-spacing-fixed-md}
 			);
-			top: calc(
+			inset-block-start: calc(
 				-1 * #{$db-spacing-fixed-md} - #{$db-spacing-fixed-regular-3xs}
 			);
 		}
 
 		.db-sub-navigation {
 			// 1px for box shadow
-			top: calc(-50% + $db-spacing-fixed-xs + 1px);
-			left: calc(100% + $db-spacing-fixed-xs);
+			inset-block-start: calc(-50% + $db-spacing-fixed-xs + 1px);
+			inset-inline-start: calc(100% + $db-spacing-fixed-xs);
 
 			&::before {
 				content: "";
 				padding: $db-spacing-fixed-xs;
 				// #{$db-spacing-fixed-regular-3xs} for box shadow
-				top: #{$db-spacing-fixed-regular-3xs};
-				left: calc(-1 * #{$db-spacing-fixed-xs});
-				height: 100%;
-				width: $db-spacing-fixed-xs;
+				inset-block-start: #{$db-spacing-fixed-regular-3xs};
+				inset-inline-start: calc(-1 * #{$db-spacing-fixed-xs});
+				block-size: 100%;
+				inline-size: $db-spacing-fixed-xs;
 			}
 		}
 	}
 
 	.db-navigation-item {
-		width: 100%;
+		inline-size: 100%;
 
 		&::after {
 			margin-inline-start: auto;

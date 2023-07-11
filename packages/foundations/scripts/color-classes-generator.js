@@ -17,7 +17,7 @@ const generateBGVariants = (value, variant) => {
     @extend %${prefix}-bg-${value}${nameEnding};
 
     &-ia,
-    &[data-variant="ia"] {
+    &[data-variant="interactive"] {
         @extend %${prefix}-bg-${value}${nameEnding}-ia;
     }
 

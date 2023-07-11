@@ -23,12 +23,12 @@ $font-size-height: calc(var(--db-base-font-size) * var(--db-base-line-height));
 	border-radius: $default-border-radius;
 
 	display: inline-flex;
-	height: $font-size-height;
+	block-size: $font-size-height;
 	justify-content: center;
 
 	// TODO: probably extract this to an overwrite or external file
 	// workarounds for power apps
-	width: auto;
+	inline-size: auto;
 	padding: 0;
 
 	// We need to reset the general icons margin, as we want to use it in a tiny space

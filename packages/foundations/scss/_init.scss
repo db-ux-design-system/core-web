@@ -59,8 +59,8 @@ embed,
 iframe,
 object,
 video {
-	height: auto;
-	max-width: 100%;
+	block-size: auto;
+	max-inline-size: 100%;
 }
 
 // Iframe

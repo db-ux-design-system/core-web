@@ -115,9 +115,9 @@
 	@extend %db-body-sm;
 	@extend %default-button;
 
-	height: $db-sizing-sm;
-	min-width: $db-sizing-sm;
-	width: fit-content;
+	block-size: $db-sizing-sm;
+	min-inline-size: $db-sizing-sm;
+	inline-size: fit-content;
 	transition: background-color $db-transition-color,
 		color $db-transition-color;
 
@@ -147,7 +147,7 @@
 		}
 
 		&[data-overflow="true"] {
-			max-width: $db-sizing-2xl;
+			max-inline-size: $db-sizing-2xl;
 			text-overflow: ellipsis;
 			overflow: hidden;
 		}
@@ -163,7 +163,7 @@
 
 	.db-button[data-size="small"] {
 		border-radius: to-rem(3);
-		height: 100%;
+		block-size: 100%;
 	}
 
 	&[data-disabled="true"] {
