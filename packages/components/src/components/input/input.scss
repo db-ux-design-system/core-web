@@ -227,6 +227,7 @@
 		// TODO: Evaluate whether those could get moved to ../_form-elements.scss
 		&:focus,
 		&:not(:placeholder-shown) {
+			// move filled text for expressive and regular to center with focused label
 			padding-block: calc(
 				var(--db-spacing-fixed-xs) + 0.25em *
 					var(--db-input-focus-opacity)
@@ -234,7 +235,6 @@
 				$db-spacing-fixed-xs - var(--db-input-focus-opacity) *
 					$db-spacing-fixed-xs
 			);
-			// move filled text for expressive and regular to center with focused label
 
 			+ label {
 				@include label-focus-animation();
