@@ -33,9 +33,9 @@
 				"props": {
 					"headline": "Headline",
 					"link": {
-						"href": "#"
-					},
-					"slotLink": "Link"
+						"href": "#",
+						"text": "Link"
+					}
 				}
 			}
 		]

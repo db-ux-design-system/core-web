@@ -76,8 +76,6 @@
 
 	.db-alert-link {
 		grid-area: link;
-		// required for angular build
-		display: inline;
 	}
 
 	.db-alert-close {
