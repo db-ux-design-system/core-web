@@ -65,6 +65,12 @@
 	// TODO: probably extract this to an overwrite or external file
 	text-align: start; // workaround for power apps
 
+	dblink,
+	db-link {
+		// workaround angular
+		display: inline-flex;
+	}
+
 	.db-alert-headline {
 		grid-area: head;
 	}
