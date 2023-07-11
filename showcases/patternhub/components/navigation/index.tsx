@@ -1,4 +1,3 @@
-import Link from 'next/link';
 import { DBMainNavigation } from '../../../../output/react/src';
 import {
 	getRouteWithBasePath,
@@ -10,19 +9,12 @@ import NavItem from './nav-item';
 const Navigation = () => (
 	<DBMainNavigation>
 		{ROUTES.map((route) => getRouteWithBasePath(route)).map(
-			(navItem: NavigationItem) =>
-				navItem.subNavigation ? (
-					<NavItem
-						key={`router-path-${navItem.path}`}
-						navItem={navItem}
-					/>
-				) : (
-					<Link
-						key={`router-path-${navItem.path}`}
-						href={navItem.path ?? ''}>
-						<NavItem navItem={navItem} />
-					</Link>
-				)
+			(navItem: NavigationItem) => (
+				<NavItem
+					key={`router-path-${navItem.path}`}
+					navItem={navItem}
+				/>
+			)
 		)}
 	</DBMainNavigation>
 );
