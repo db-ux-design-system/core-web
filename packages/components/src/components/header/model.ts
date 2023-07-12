@@ -16,10 +16,7 @@ export interface DBHeaderDefaultProps {
 	/**
 	 * Forces the header to use mobile layout for desktop as well.
 	 * You should only use this setting if you really can't provide a smaller navigation.
-	 * Overwrite size of the drawer with:
-	 * 	@media screen and (min-width: $db-screens-m) {
-	 * 		--db-drawer-max-width: xxx;
-	 * 	}
+	 * Overwrite size of the drawer with '--db-drawer-max-width: xxx'
 	 */
 	forceMobile?: boolean;
 }
