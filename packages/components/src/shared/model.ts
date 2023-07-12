@@ -1,4 +1,3 @@
-import classNames from 'classnames';
 import { IconTypes } from './icon-types';
 
 export type GlobalProps = {
@@ -46,7 +45,7 @@ export type GlobalProps = {
 export type GlobalState = {
 	_id?: string;
 	stylePath?: string;
-	getClassNames: (...args: classNames.ArgumentArray) => string;
+	defaultValues?: { [key: string]: string };
 };
 
 export type DefaultVariantType =

@@ -7,8 +7,7 @@ import {
 	useStore
 } from '@builder.io/mitosis';
 import { DBNavigationItemProps, DBNavigationItemState } from './model';
-import classNames from 'classnames';
-import { uuid } from '../../utils';
+import { cls, uuid } from "../../utils";
 
 useMetadata({
 	isAttachedToShadowDom: true,
@@ -36,9 +35,6 @@ export default function DBNavigationItem(props: DBNavigationItemProps) {
 		},
 		iconVisible: (icon?: string) => {
 			return Boolean(icon && icon !== '_' && icon !== 'none');
-		},
-		getClassNames: (...args: classNames.ArgumentArray) => {
-			return classNames(args);
 		}
 	});
 
@@ -72,7 +68,7 @@ export default function DBNavigationItem(props: DBNavigationItemProps) {
 			ref={component}
 			role={state.hasAreaPopup ? 'button' : ''}
 			aria-haspopup={state.hasAreaPopup}
-			class={state.getClassNames('db-navigation-item', props.className)}
+			class={cls('db-navigation-item', props.className)}
 			data-width={props.width}
 			data-icon={state.iconVisible(props.icon) ? props.icon : undefined}
 			data-icon-after={

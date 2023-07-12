@@ -1,6 +1,6 @@
 import { onMount, Show, useMetadata, useStore } from '@builder.io/mitosis';
 import { DBSectionState, DBSectionProps } from './model';
-import classNames from 'classnames';
+import { cls } from "../../utils";
 
 useMetadata({
 	isAttachedToShadowDom: true,
@@ -15,11 +15,7 @@ export default function DBSection(props: DBSectionProps) {
 	// This is used as forwardRef
 	let component: any;
 	// jscpd:ignore-start
-	const state = useStore<DBSectionState>({
-		getClassNames: (...args: classNames.ArgumentArray) => {
-			return classNames(args);
-		}
-	});
+	const state = useStore<DBSectionState>({});
 
 	onMount(() => {
 		if (props.stylePath) {
@@ -31,7 +27,7 @@ export default function DBSection(props: DBSectionProps) {
 	return (
 		<section
 			ref={component}
-			className={state.getClassNames('db-section', props.className)}
+			className={cls('db-section', props.className)}
 			data-size={props.size || 'medium'}>
 			<Show when={state.stylePath}>
 				<link rel="stylesheet" href={state.stylePath} />

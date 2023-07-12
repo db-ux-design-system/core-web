@@ -41,6 +41,7 @@ output/power-apps
 !/build-power-apps/package.json
 !/build-power-apps/package-lock.json
 !/build-power-apps/DBUI/**
+!/build-power-apps/**/*.*.resx
 .cache
 **/playwright-report
 /.parcel-cache/
