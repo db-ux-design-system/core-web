@@ -1,6 +1,7 @@
 import { onMount, Show, useMetadata, useStore } from '@builder.io/mitosis';
 import { DBMainNavigationState, DBMainNavigationProps } from './model';
-import classNames from 'classnames';
+import { cls } from '../../utils';
+
 useMetadata({
 	isAttachedToShadowDom: true,
 	component: {
@@ -15,10 +16,7 @@ export default function DBMainNavigation(props: DBMainNavigationProps) {
 	let component: any;
 	// jscpd:ignore-start
 	const state = useStore<DBMainNavigationState>({
-		initialized: false,
-		getClassNames: (...args: classNames.ArgumentArray) => {
-			return classNames(args);
-		}
+		initialized: false
 	});
 
 	onMount(() => {
@@ -30,9 +28,7 @@ export default function DBMainNavigation(props: DBMainNavigationProps) {
 	// jscpd:ignore-end
 
 	return (
-		<nav
-			ref={component}
-			class={state.getClassNames('db-main-navigation', props.className)}>
+		<nav ref={component} class={cls('db-main-navigation', props.className)}>
 			<Show when={state.stylePath}>
 				<link rel="stylesheet" href={state.stylePath} />
 			</Show>
