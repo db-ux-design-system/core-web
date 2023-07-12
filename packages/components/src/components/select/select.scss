@@ -14,7 +14,7 @@
 	@extend %dropdown-icon;
 
 	&::after {
-		right: $db-spacing-fixed-sm;
+		inset-inline-end: $db-spacing-fixed-sm;
 	}
 
 	&:has(select:focus-within) {
@@ -26,7 +26,7 @@
 
 %select-label {
 	@extend %db-body-md;
-	top: calc(
+	inset-block-start: calc(
 		($db-sizing-md - var(--db-base-font-size) * var(--db-base-line-height)) /
 			2
 	);
@@ -43,8 +43,8 @@
 	@include get-variant-bg-color(0.08);
 
 	position: relative;
-	height: $db-sizing-md;
-	min-width: calc(
+	block-size: $db-sizing-md;
+	min-inline-size: calc(
 		var(--db-select-min-width, calc(3 * $db-sizing-md)) + var(--has-before) *
 			($db-sizing-md) + var(--has-status) * ($db-sizing-md)
 	);
@@ -63,12 +63,12 @@
 		appearance: none;
 		background-color: transparent;
 		border: none;
-		height: $db-sizing-md;
+		block-size: $db-sizing-md;
 		text-overflow: ellipsis;
 		text-indent: calc(
 			var(--has-before) * ($db-sizing-md - $db-spacing-fixed-sm)
 		);
-		width: 100%;
+		inline-size: 100%;
 		padding-block-start: $db-spacing-fixed-sm;
 		padding-inline-start: $db-spacing-fixed-sm;
 		padding-inline-end: calc(
@@ -98,9 +98,9 @@
 
 	label {
 		@extend %db-body-2xs;
-		top: $db-spacing-fixed-2xs;
+		inset-block-start: $db-spacing-fixed-2xs;
 		transition: left, top, font-size 0.2s $db-transition-functional-timing;
-		left: calc(
+		inset-inline-start: calc(
 			var(--has-before) * ($db-sizing-md - $db-spacing-fixed-sm) +
 				$db-spacing-fixed-sm
 		);
@@ -109,18 +109,18 @@
 	&::after,
 	&::before,
 	.icon-state {
-		top: calc(var(--db-base-font-size) * var(--db-base-line-height) / 2);
+		inset-block-start: calc(var(--db-base-font-size) * var(--db-base-line-height) / 2);
 	}
 
 	&::before {
-		left: $db-spacing-fixed-sm;
+		inset-inline-start: $db-spacing-fixed-sm;
 	}
 
 	.icon-state {
 		@extend %db-body-sm;
 
 		display: flex;
-		right: calc($db-sizing-md - $db-spacing-fixed-xs);
+		inset-inline-end: calc($db-sizing-md - $db-spacing-fixed-xs);
 
 		&::before {
 			--icon-font-family: var(--db-base-icon-font-family-filled);

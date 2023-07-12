@@ -120,7 +120,7 @@ const generateBGVariants = (
 			: ''
 	}
 
-    &-ia, &[data-variant="ia"] {
+    &-ia, &[data-variant="interactive"] {
 		@extend %${placeholderName};
 		@extend %${placeholderName}-hover-state;
 		@extend %${placeholderName}-active-state;
