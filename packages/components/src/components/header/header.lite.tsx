@@ -6,7 +6,7 @@ import {
 	useStore
 } from '@builder.io/mitosis';
 import { DBHeaderState, DBHeaderProps } from './model';
-import classNames from 'classnames';
+import { cls } from "../../utils";
 import { DBDivider } from '../divider';
 import { DBButton } from '../button';
 import { DBDrawer } from '../drawer';
@@ -25,9 +25,6 @@ export default function DBHeader(props: DBHeaderProps) {
 	let component: any;
 	// jscpd:ignore-start
 	const state = useStore<DBHeaderState>({
-		getClassNames: (...args: classNames.ArgumentArray) => {
-			return classNames(args);
-		},
 		toggle: () => {
 			if (props.onToggle) {
 				props.onToggle(!props.drawerOpen);
@@ -45,7 +42,7 @@ export default function DBHeader(props: DBHeaderProps) {
 	return (
 		<header
 			ref={component}
-			class={state.getClassNames('db-header', props.className)}
+			class={cls('db-header', props.className)}
 			role="banner">
 			<Show when={state.stylePath}>
 				<link rel="stylesheet" href={state.stylePath} />

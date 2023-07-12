@@ -24,13 +24,10 @@
     "test:components": "playwright test -c playwright.config.ts",
     "tsc": "tsc -p . --sourceMap false"
   },
-  "dependencies": {
-    "classnames": "^2.3.2"
-  },
   "devDependencies": {
     "@axe-core/playwright": "^4.7.3",
     "@playwright/experimental-ct-react": "1.35.1",
-    "@types/react": "^18.0.31",
+    "@types/react": "^18.2.14",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "rimraf": "5.0.1",

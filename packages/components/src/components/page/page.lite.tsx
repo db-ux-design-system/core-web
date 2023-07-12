@@ -6,7 +6,7 @@ import {
 	useStore
 } from '@builder.io/mitosis';
 import { DBPageProps, DBPageState } from './model';
-import classNames from 'classnames';
+import { cls } from "../../utils";
 
 useMetadata({
 	isAttachedToShadowDom: true,
@@ -21,11 +21,7 @@ export default function DBPage(props: DBPageProps) {
 	// This is used as forwardRef
 	let component: any;
 	// jscpd:ignore-start
-	const state = useStore<DBPageState>({
-		getClassNames: (...args: classNames.ArgumentArray) => {
-			return classNames(args);
-		}
-	});
+	const state = useStore<DBPageState>({});
 
 	onMount(() => {
 		if (props.stylePath) {
@@ -37,7 +33,7 @@ export default function DBPage(props: DBPageProps) {
 	return (
 		<div
 			ref={component}
-			class={state.getClassNames('db-page', props.className, {
+			class={cls('db-page', props.className, {
 				'fixed-header-footer': props.type === 'fixedHeaderFooter'
 			})}>
 			<Show when={state.stylePath}>

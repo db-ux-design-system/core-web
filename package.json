@@ -73,7 +73,6 @@
     "@commitlint/cli": "17.6.6",
     "@commitlint/config-conventional": "17.6.6",
     "@playwright/test": "1.35.1",
-    "classnames": "^2.3.2",
     "cpr": "3.0.1",
     "cross-env": "^7.0.3",
     "dotenv": "^16.3.1",

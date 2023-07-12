@@ -1,17 +1,14 @@
 import {
 	onMount,
+	onUpdate,
 	Show,
 	useMetadata,
-	useStore,
-	useRef,
-	onUpdate
+	useStore
 } from '@builder.io/mitosis';
 import { DBButton } from '../button';
-import { uuid } from '../../utils';
-import { DBTagState, DBTagProps } from './model';
+import { cls, uuid } from '../../utils';
+import { DBTagProps, DBTagState } from './model';
 import { DEFAULT_ID } from '../../shared/constants';
-import { DBIcon } from '../icon';
-import classNames from 'classnames';
 
 useMetadata({
 	isAttachedToShadowDom: true,
@@ -19,7 +16,11 @@ useMetadata({
 		includeIcon: true,
 		isFormComponent: true,
 		properties: [
-			{ name: 'children', type: 'SingleLine.Text' },
+			{
+				name: 'children',
+				type: 'SingleLine.Text',
+				defaultValue: 'Tag'
+			},
 			{ name: 'name', type: 'SingleLine.Text' },
 			// { name: 'disabled', type: 'TwoOptions' },
 			{
@@ -46,18 +47,12 @@ useMetadata({
 	}
 });
 
-const DEFAULT_VALUES = {
-	// TODO: We should think this through again, if we would really like to have default and especially english, instead of german labels in here
-	removeButtonText: 'Remove tag'
-};
-
 export default function DBTag(props: DBTagProps) {
 	// This is used as forwardRef
 	let component: any;
 	const state = useStore<DBTagState>({
 		initialized: false,
 		_id: DEFAULT_ID,
-		_checked: false,
 		_isValid: undefined,
 		handleChange: (event: any) => {
 			if (props.onChange) {
@@ -67,14 +62,9 @@ export default function DBTag(props: DBTagProps) {
 			if (props.change) {
 				props.change(event);
 			}
-
-			state._checked = event.target?.checked;
 		},
 		iconVisible: (icon?: string) => {
 			return Boolean(icon && icon !== '_' && icon !== 'none');
-		},
-		getClassNames: (...args: classNames.ArgumentArray) => {
-			return classNames(args);
 		},
 		getTabIndex: () => {
 			if (props.disabled) {
@@ -93,7 +83,8 @@ export default function DBTag(props: DBTagProps) {
 				return props.removeButton;
 			}
 
-			return DEFAULT_VALUES.removeButtonText;
+			// TODO: We should think this through again, if we would really like to have default and especially english, instead of german labels in here
+			return 'Remove tag';
 		},
 		isInteractive: () => {
 			if (props.behaviour) {
@@ -127,7 +118,7 @@ export default function DBTag(props: DBTagProps) {
 	return (
 		<div
 			ref={component}
-			class={state.getClassNames('db-tag', props.className)}
+			class={cls('db-tag', props.className)}
 			tabIndex={state.getTabIndex()}
 			data-interactive={state.isInteractive()}
 			data-disabled={props.disabled}
@@ -141,7 +132,7 @@ export default function DBTag(props: DBTagProps) {
 				when={state.isInteractive()}
 				else={
 					<span
-						class={state.getClassNames('tag-label', {
+						class={cls('tag-label', {
 							'is-icon-text-replace':
 								state.iconVisible(props.icon) && props.noText
 						})}
@@ -166,7 +157,7 @@ export default function DBTag(props: DBTagProps) {
 					onChange={(event) => state.handleChange(event)}
 				/>
 				<label
-					class={state.getClassNames('tag-label', {
+					class={cls('tag-label', {
 						'is-icon-text-replace':
 							state.iconVisible(props.icon) && props.noText
 					})}

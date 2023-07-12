@@ -8,9 +8,8 @@ import {
 	useStore
 } from '@builder.io/mitosis';
 import { DBNavigationItemState, DBNavigationItemProps } from './model';
-import classNames from 'classnames';
 import { DBButton } from '../button';
-import { uuid } from '../../utils';
+import { cls,uuid } from '../../utils';
 import { DEFAULT_BACK } from '../../shared/constants';
 
 useMetadata({
@@ -48,9 +47,6 @@ export default function DBNavigationItem(props: DBNavigationItemProps) {
 		},
 		iconVisible: (icon?: string) => {
 			return Boolean(icon && icon !== '_' && icon !== 'none');
-		},
-		getClassNames: (...args: classNames.ArgumentArray) => {
-			return classNames(args);
 		}
 	});
 
@@ -91,7 +87,7 @@ export default function DBNavigationItem(props: DBNavigationItemProps) {
 	return (
 		<li
 			ref={component}
-			class={state.getClassNames('db-navigation-item', props.className)}
+			class={cls('db-navigation-item', props.className)}
 			data-width={props.width}
 			data-icon={state.iconVisible(props.icon) ? props.icon : undefined}
 			aria-current={props.active ? 'page' : undefined}

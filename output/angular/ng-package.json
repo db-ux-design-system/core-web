@@ -6,7 +6,6 @@
 	},
 	"allowedNonPeerDependencies": [
 		"@db-ui/foundations",
-		"@db-ui/components",
-		"classnames"
+		"@db-ui/components"
 	]
 }

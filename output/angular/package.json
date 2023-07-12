@@ -15,9 +15,6 @@
     "ng": "ng",
     "start": "ng serve"
   },
-  "dependencies": {
-    "classnames": "^2.3.2"
-  },
   "devDependencies": {
     "@angular-devkit/build-angular": "14.2.12",
     "@angular/common": "14.3.0",
