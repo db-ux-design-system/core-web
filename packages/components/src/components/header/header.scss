@@ -17,6 +17,14 @@
 	.db-link {
 		display: inline-block;
 	}
+
+	@media screen and (min-width: $db-screens-m) {
+		--db-drawer-max-width: #{$db-screens-s};
+	}
+
+	&[data-on-forcing-mobile="true"] {
+		visibility: hidden;
+	}
 }
 
 .db-header-navigation-bar {
@@ -28,7 +36,7 @@
 	inline-size: 100%;
 	align-items: center;
 
-	@media screen and (min-width: $db-screens-m) {
+	@include screen("m") {
 		padding: $db-spacing-fixed-md;
 	}
 }
@@ -44,7 +52,7 @@
 
 	padding: $db-spacing-fixed-md;
 
-	@media screen and (min-width: $db-screens-m) {
+	@include screen("m") {
 		padding: $db-spacing-fixed-xs $db-spacing-fixed-md;
 		margin: 0;
 		flex-direction: row;
@@ -72,7 +80,7 @@
 }
 
 .db-header-action-container:has(> .db-header-action-bar:empty) {
-	@media screen and (min-width: $db-screens-m) {
+	@include screen("m") {
 		display: none;
 	}
 }
@@ -89,24 +97,26 @@
 }
 
 .db-header-action-bar {
-	@media screen and (max-width: $db-screens-m) {
-		@include divider("top");
-		flex: 0 1 auto;
-		flex-grow: 0;
-		flex-shrink: 0;
-		padding-block-start: $db-spacing-fixed-xs;
+	@include divider("top");
+	flex: 0 1 auto;
+	flex-grow: 0;
+	flex-shrink: 0;
+	padding-block-start: $db-spacing-fixed-xs;
+
+	@include screen("m") {
+		&::before {
+			display: none;
+		}
 	}
 }
 
 .db-header-drawer-navigation {
-	@media screen and (max-width: $db-screens-m) {
-		display: flex;
-		flex-direction: column;
-		flex: 1 1 auto;
-		block-size: 100%;
-		overflow: auto;
-		justify-content: space-between;
-	}
+	display: flex;
+	flex-direction: column;
+	flex: 1 1 auto;
+	block-size: 100%;
+	overflow: auto;
+	justify-content: space-between;
 }
 
 .db-header-navigation {
@@ -119,7 +129,7 @@
 	gap: $db-spacing-fixed-sm;
 	padding-inline: $db-spacing-fixed-md;
 
-	@media screen and (min-width: $db-screens-m) {
+	@include screen("m") {
 		gap: $db-spacing-fixed-xs;
 		padding: 0;
 	}
@@ -140,13 +150,15 @@
 }
 
 .db-header-hide-on-mobile {
-	@media screen and (max-width: $db-screens-m) {
-		display: none;
+	display: none;
+
+	@include screen("m") {
+		display: inherit;
 	}
 }
 
 .db-header-hide-on-desktop {
-	@media screen and (min-width: $db-screens-m) {
+	@include screen("m") {
 		display: none;
 	}
 }

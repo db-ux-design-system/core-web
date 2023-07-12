@@ -1,15 +1,17 @@
 import {
 	onMount,
+	onUpdate,
 	Show,
 	Slot,
 	useMetadata,
 	useStore
 } from '@builder.io/mitosis';
 import { DBHeaderState, DBHeaderProps } from './model';
-import { cls } from "../../utils";
+import { addAttributeToChildren, cls, uuid } from '../../utils';
 import { DBDivider } from '../divider';
 import { DBButton } from '../button';
 import { DBDrawer } from '../drawer';
+import { DEFAULT_ID } from '../../shared/constants';
 
 useMetadata({
 	isAttachedToShadowDom: true,
@@ -25,6 +27,9 @@ export default function DBHeader(props: DBHeaderProps) {
 	let component: any;
 	// jscpd:ignore-start
 	const state = useStore<DBHeaderState>({
+		_id: DEFAULT_ID,
+		initialized: false,
+		forcedToMobile: false,
 		toggle: () => {
 			if (props.onToggle) {
 				props.onToggle(!props.drawerOpen);
@@ -33,17 +38,37 @@ export default function DBHeader(props: DBHeaderProps) {
 	});
 
 	onMount(() => {
+		state.initialized = true;
+		state._id = props.id || 'header-' + uuid();
 		if (props.stylePath) {
 			state.stylePath = props.stylePath;
 		}
 	});
+
+	onUpdate(() => {
+		if (state.initialized && document && state._id && props.forceMobile) {
+			const headerElement = document.getElementById(
+				state._id
+			) as HTMLElement;
+			if (headerElement) {
+				addAttributeToChildren(headerElement, {
+					key: 'force-mobile',
+					value: ''
+				});
+			}
+			state.forcedToMobile = true;
+		}
+	}, [state.initialized]);
+
 	// jscpd:ignore-end
 
 	return (
 		<header
 			ref={component}
 			class={cls('db-header', props.className)}
-			role="banner">
+			role="banner"
+			id={state._id}
+			data-on-forcing-mobile={props.forceMobile && !state.forcedToMobile}>
 			<Show when={state.stylePath}>
 				<link rel="stylesheet" href={state.stylePath} />
 			</Show>

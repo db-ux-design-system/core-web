@@ -39,7 +39,7 @@
 
 %sub-navi-handler-desktop {
 	// show sub-navigation on hover
-	@media screen and (min-width: $db-screens-m) {
+	@include screen("m") {
 		&:hover,
 		&:focus-visible {
 			& ~ .db-sub-navigation {
@@ -49,26 +49,24 @@
 	}
 }
 
-%sub-navi-handler-mobile {
+@mixin sub-navi-handler-mobile() {
 	// show/hide sub-navigation by click
-	@media screen and (max-width: $db-screens-m) {
-		&[aria-expanded="true"] {
-			& ~ .db-sub-navigation {
-				visibility: visible;
-				transition: visibility 0ms linear 0ms;
-				animation: show-right-to-left $animation-show-timing;
+	&[aria-expanded="true"] {
+		& ~ .db-sub-navigation {
+			visibility: visible;
+			transition: visibility 0ms linear 0ms;
+			animation: show-right-to-left $animation-show-timing;
 
-				.db-sub-navigation {
-					inset-block: 0;
-				}
+			.db-sub-navigation {
+				inset-block: 0;
 			}
 		}
+	}
 
-		&:not(&[aria-expanded="true"]) {
-			& ~ .db-sub-navigation {
-				transition: visibility 0ms linear 410ms; // hide animation is 0.4s
-				animation: hide-right-to-left $animation-hide-timing;
-			}
+	&:not(&[aria-expanded="true"]) {
+		& ~ .db-sub-navigation {
+			transition: visibility 0ms linear 410ms; // hide animation is 0.4s
+			animation: hide-right-to-left $animation-hide-timing;
 		}
 	}
 }
@@ -120,7 +118,9 @@
 	}
 
 	.db-navigation-item-expand-button {
-		@extend %sub-navi-handler-mobile;
+		@include screen("m", "max") {
+			@include sub-navi-handler-mobile();
+		}
 
 		&:is(button),
 		& > button {
@@ -157,6 +157,19 @@
 	}
 }
 
+@mixin sub-navigation-mobile() {
+	padding: $db-spacing-fixed-md;
+	inline-size: 100%;
+	position: fixed;
+	// additional #{$db-spacing-fixed-regular-3xs} for border
+	inset-block: calc(
+			#{$default-mobile-header-height} + #{$db-spacing-fixed-regular-3xs}
+		)
+		calc(
+			#{$db-sizing-md} + #{$db-spacing-fixed-xs} * 2 + #{$db-spacing-fixed-regular-3xs}
+		);
+}
+
 .db-sub-navigation {
 	margin: 0;
 	display: flex;
@@ -167,23 +180,17 @@
 
 	visibility: hidden;
 
-	&:empty {
-		display: none;
+	@include screen("m", "max") {
+		@include sub-navigation-mobile();
 	}
 
-	@media screen and (max-width: $db-screens-m) {
-		padding: $db-spacing-fixed-md;
-		inline-size: 100%;
-		position: fixed;
-		// additional #{$db-spacing-fixed-regular-3xs} for border
-		inset-block: calc(
-			#{$default-mobile-header-height} + #{$db-spacing-fixed-regular-3xs}
-		) calc(
-			#{$db-sizing-md} + #{$db-spacing-fixed-xs} * 2 + #{$db-spacing-fixed-regular-3xs}
-		);
+	@include screen("m") {
+		.db-mobile-navigation-back {
+			display: none;
+		}
 	}
 
-	@media screen and (min-width: $db-screens-m) {
+	@include screen("m") {
 		border-radius: $default-card-border-radius;
 		box-shadow: $db-elevation-4;
 		padding: $db-spacing-fixed-sm;
@@ -231,6 +238,10 @@
 		}
 	}
 
+	&:empty {
+		display: none;
+	}
+
 	.db-navigation-item {
 		inline-size: 100%;
 
@@ -246,8 +257,5 @@
 	font-weight: normal;
 	background-color: $db-colors-neutral-bg-0-enabled;
 	padding-block-end: $db-spacing-fixed-md;
-
-	@media screen and (min-width: $db-screens-m) {
-		display: none;
-	}
+	margin-block-end: $db-spacing-fixed-md;
 }

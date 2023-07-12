@@ -15,9 +15,7 @@ export default function DBMainNavigation(props: DBMainNavigationProps) {
 	// This is used as forwardRef
 	let component: any;
 	// jscpd:ignore-start
-	const state = useStore<DBMainNavigationState>({
-		initialized: false
-	});
+	const state = useStore<DBMainNavigationState>({});
 
 	onMount(() => {
 		if (props.stylePath) {

@@ -70,3 +70,32 @@ $default-card-border-radius: var(--default-card-border-radius, 8px);
 	@extend %db-bg-successful-transparent-semi;
 	@extend %db-bg-successful-transparent-semi-hover-state;
 }
+
+@mixin screen($size: "s", $width: "min") {
+	$screen: $db-screens-s;
+	@if ($size == "xs") {
+		$screen: $db-screens-xs;
+	} @else if ($size == "m") {
+		$screen: $db-screens-m;
+	} @else if ($size == "l") {
+		$screen: $db-screens-l;
+	} @else if ($size == "xl") {
+		$screen: $db-screens-xl;
+	}
+
+	@if ($width == "min") {
+		@media screen and (min-width: $screen) {
+			&:not([force-mobile]) {
+				@content;
+			}
+		}
+	} @else {
+		&[force-mobile] {
+			@content;
+		}
+
+		@media screen and (max-width: $screen) {
+			@content;
+		}
+	}
+}

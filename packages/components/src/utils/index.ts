@@ -6,6 +6,19 @@ export const uuid = () => {
 	return Math.random().toString();
 };
 
+export const addAttributeToChildren = (
+	element: Element,
+	attribute: { key: string; value: string }
+) => {
+	const children = element.children;
+	Object.values(children).forEach((child: Element) => {
+		child.setAttribute(attribute.key, attribute.value);
+		if (child.children.length > 0) {
+			addAttributeToChildren(child, attribute);
+		}
+	});
+};
+
 export type ClassNameArg =
 	| string
 	| { [key: string]: boolean | undefined }

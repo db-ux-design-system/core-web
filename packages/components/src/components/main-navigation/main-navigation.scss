@@ -1,11 +1,15 @@
 @use "@db-ui/foundations/build/scss/variables" as *;
 @use "@db-ui/foundations/build/scss/variables.global" as *;
+@use "@db-ui/foundations/build/scss/helpers/component" as *;
 @use "../../styles/db-puls" as *;
 
 .db-main-navigation {
-	@media screen and (max-width: $db-screens-m) {
-		-webkit-tap-highlight-color: transparent; /* for removing the highlight */
-		inline-size: 100%;
+	-webkit-tap-highlight-color: transparent; /* for removing the highlight */
+	inline-size: 100%;
+
+	@include screen("m") {
+		-webkit-tap-highlight-color: inherit;
+		inline-size: auto;
 	}
 
 	& > menu {
@@ -15,31 +19,31 @@
 		margin: 0;
 		gap: $db-spacing-fixed-sm;
 
-		@media screen and (min-width: $db-screens-m) {
+		@include screen("m") {
 			flex-direction: row;
+		}
+
+		@include screen("m") {
+			// re overwrite for non main-navigation items
+			menu {
+				.db-navigation-item-expand-button:is(button),
+				.db-navigation-item-expand-button > button {
+					&::after {
+						--icon-glyph: ">";
+						--icon-margin-before: auto;
+					}
+				}
+			}
 		}
 
 		.db-navigation-item {
 			.db-navigation-item-expand-button:is(button),
 			.db-navigation-item-expand-button > button {
 				// overwrite for main-navigation items
-				@media screen and (min-width: $db-screens-m) {
+				@include screen("m") {
 					&::after {
 						--icon-margin-before: #{$db-spacing-fixed-sm};
 						--icon-glyph: "⌄";
-					}
-				}
-			}
-
-			@media screen and (min-width: $db-screens-m) {
-				// re overwrite for non main-navigation items
-				menu {
-					.db-navigation-item-expand-button:is(button),
-					.db-navigation-item-expand-button > button {
-						&::after {
-							--icon-glyph: ">";
-							--icon-margin-before: auto;
-						}
 					}
 				}
 			}
