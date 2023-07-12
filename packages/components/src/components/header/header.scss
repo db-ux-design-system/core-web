@@ -11,7 +11,7 @@
 	position: relative;
 
 	/* Mobile header should always be 56px */
-	min-height: to-rem(56);
+	min-block-size: to-rem(56);
 
 	gap: $db-spacing-fixed-md;
 	padding-inline: $db-spacing-fixed-md;
@@ -27,7 +27,7 @@
 
 	@media screen and (min-width: $db-screens-m) {
 		/* Desktop header should always be 80px */
-		min-height: to-rem(80);
+		min-block-size: to-rem(80);
 
 		.mobile-navigation {
 			display: none;

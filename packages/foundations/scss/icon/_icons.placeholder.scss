@@ -39,7 +39,7 @@
 
 	/* Safari hack */
 	@supports (-webkit-hyphens: none) {
-		height: calc(
+		block-size: calc(
 			var(
 					--icon-font-size,
 					var(

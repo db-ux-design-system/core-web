@@ -19,9 +19,9 @@
 }
 
 .db-logo {
-	max-width: none;
-	height: $db-sizing-sm;
+	max-inline-size: none;
+	block-size: $db-sizing-sm;
 	@media screen and (min-width: $db-screens-m) {
-		height: $db-sizing-md;
+		block-size: $db-sizing-md;
 	}
 }
