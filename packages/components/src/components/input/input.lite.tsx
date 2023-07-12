@@ -2,13 +2,13 @@ import { For, onMount, Show, useMetadata, useStore } from '@builder.io/mitosis';
 import { DBIcon } from '../icon';
 import { uuid } from '../../utils';
 import { DBInputProps, DBInputState } from './model';
+import { cls } from '../../utils';
 import { DEFAULT_ID, DEFAULT_LABEL } from '../../shared/constants';
 import {
 	DefaultVariantType,
 	DefaultVariantsIcon,
 	KeyValueType
 } from '../../shared/model';
-import classNames from 'classnames';
 
 useMetadata({
 	isAttachedToShadowDom: true,
@@ -17,7 +17,12 @@ useMetadata({
 		includeIcon: true,
 		hasDisabledProp: true,
 		properties: [
-			{ name: 'label', type: 'SingleLine.Text', required: true },
+			{
+				name: 'label',
+				type: 'SingleLine.Text',
+				required: true,
+				defaultValue: 'Input'
+			},
 			{ name: 'placeholder', type: 'SingleLine.Text' },
 			{ name: 'value', type: 'SingleLine.Text', onChange: 'value' }, // $event.target["value"|"checked"|...]
 			{
@@ -36,11 +41,6 @@ useMetadata({
 	}
 });
 
-const DEFAULT_VALUES = {
-	label: DEFAULT_LABEL,
-	placeholder: ' '
-};
-
 export default function DBInput(props: DBInputProps) {
 	// This is used as forwardRef
 	let component: any;
@@ -49,6 +49,10 @@ export default function DBInput(props: DBInputProps) {
 		_id: DEFAULT_ID,
 		_isValid: undefined,
 		_dataListId: DEFAULT_ID,
+		defaultValues: {
+			label: DEFAULT_LABEL,
+			placeholder: ' '
+		},
 		iconVisible: (icon?: string) => {
 			return Boolean(icon && icon !== '_' && icon !== 'none');
 		},
@@ -99,10 +103,6 @@ export default function DBInput(props: DBInputProps) {
 				props.focus(event);
 			}
 		},
-		getClassNames: (...args: classNames.ArgumentArray) => {
-			return classNames(args);
-		},
-
 		// callback for controlValueAccessor's onChange handler
 		propagateChange: (_: any) => {}
 	});
@@ -119,7 +119,7 @@ export default function DBInput(props: DBInputProps) {
 
 	return (
 		<div
-			class={state.getClassNames('db-input', props.className)}
+			class={cls('db-input', props.className)}
 			data-variant={props.variant}>
 			<Show when={state.stylePath}>
 				<link rel="stylesheet" href={state.stylePath} />
@@ -132,7 +132,10 @@ export default function DBInput(props: DBInputProps) {
 				id={state._id}
 				name={props.name}
 				type={props.type || 'text'}
-				placeholder={props.placeholder ?? DEFAULT_VALUES.placeholder}
+				placeholder={
+					props.placeholder ??
+					state.defaultValues.placeholder
+				}
 				aria-labelledby={state._id + '-label'}
 				disabled={props.disabled}
 				required={props.required}
@@ -153,7 +156,7 @@ export default function DBInput(props: DBInputProps) {
 				htmlFor={state._id}
 				aria-hidden="true"
 				id={state._id + '-label'}>
-				<span>{props.label ?? DEFAULT_VALUES.label}</span>
+				<span>{props.label ?? state.defaultValues.label}</span>
 			</label>
 			<Show when={props.description}>
 				<p class="description">{props.description}</p>
