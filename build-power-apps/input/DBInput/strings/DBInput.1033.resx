@@ -142,6 +142,6 @@
         <value>Breite</value>
     </data>
     <data name="DBInput_Display_Key" xml:space="preserve">
-        <value>DBInput</value>
+        <value>DB Input</value>
     </data>
 </root>

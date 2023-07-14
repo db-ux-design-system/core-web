@@ -140,6 +140,6 @@
         <value>Breite</value>
     </data>
     <data name="DBAlert_Display_Key" xml:space="preserve">
-        <value>DBAlert</value>
+        <value>DB Alert</value>
     </data>
 </root>

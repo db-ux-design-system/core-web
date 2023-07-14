@@ -138,6 +138,6 @@
         <value>Breite</value>
     </data>
     <data name="DBCheckbox_Display_Key" xml:space="preserve">
-        <value>DBCheckbox</value>
+        <value>DB Checkbox</value>
     </data>
 </root>

@@ -136,6 +136,6 @@
         <value>Breite</value>
     </data>
     <data name="DBLink_Display_Key" xml:space="preserve">
-        <value>DBLink</value>
+        <value>DB Link</value>
     </data>
 </root>
