@@ -18,7 +18,11 @@ export type NavigationItem = {
 	home?: boolean;
 };
 export const NAVIGATION_ITEMS: NavigationItem[] = [
-	{	path: 'accordion', label: 'Accordion', component: <AccordionComponent /> },
+	{
+		path: 'accordion',
+		label: 'Accordion',
+		component: <AccordionComponent />
+	},
 	{ path: 'divider', label: 'Divider', component: <DividerComponent /> },
 	{ path: 'radio', label: 'Radio', component: <RadioComponent /> },
 	{ path: 'alert', label: 'Alert', component: <AlertComponent /> },
