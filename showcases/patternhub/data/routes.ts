@@ -7,8 +7,76 @@ export type NavigationItem = {
 
 const componentChildren: NavigationItem[] = [
 	{
-		label: '01 Layout',
-		path: '/components/01-layout',
+		label: 'Action',
+		path: '/components/action',
+		subNavigation: [
+			{
+				label: 'DBButton',
+				name: 'button'
+			},
+			{
+				label: 'DBLink',
+				name: 'link'
+			}
+		]
+	},
+	{
+		label: 'Data-Display',
+		path: '/components/data-display',
+		subNavigation: [
+			{
+				label: 'DBBrand',
+				name: 'brand'
+			},
+			{
+				label: 'DBIcon',
+				name: 'icon'
+			},
+			{
+				label: 'DBInfotext',
+				name: 'infotext'
+			},
+			{
+				label: 'DBTag',
+				name: 'tag'
+			}
+		]
+	},
+	{
+		label: 'Data-Input',
+		path: '/components/data-input',
+		subNavigation: [
+			{
+				label: 'DBCheckbox',
+				name: 'checkbox'
+			},
+			{
+				label: 'DBInput',
+				name: 'input'
+			},
+			{
+				label: 'DBRadio',
+				name: 'radio'
+			},
+			{
+				label: 'DBSelect',
+				name: 'select'
+			}
+		]
+	},
+	{
+		label: 'Feedback',
+		path: '/components/feedback',
+		subNavigation: [
+			{
+				label: 'DBAlert',
+				name: 'alert'
+			}
+		]
+	},
+	{
+		label: 'Layout',
+		path: '/components/layout',
 		subNavigation: [
 			{
 				label: 'DBCard',
@@ -37,84 +105,16 @@ const componentChildren: NavigationItem[] = [
 		]
 	},
 	{
-		label: '02 Action',
-		path: '/components/02-action',
+		label: 'Navigation',
+		path: '/components/navigation',
 		subNavigation: [
-			{
-				label: 'DBButton',
-				name: 'button'
-			},
-			{
-				label: 'DBLink',
-				name: 'path'
-			}
-		]
-	},
-	{
-		label: '03 Data-Input',
-		path: '/components/03-data-input',
-		subNavigation: [
-			{
-				label: 'DBInput',
-				name: 'input'
-			},
-			{
-				label: 'DBRadio',
-				name: 'radio'
-			},
-			{
-				label: 'DBCheckbox',
-				name: 'checkbox'
-			},
-			{
-				label: 'DBSelect',
-				name: 'select'
-			}
-		]
-	},
-	{
-		label: '04 Data-Display',
-		path: '/components/04-data-display',
-		subNavigation: [
-			{
-				label: 'DBBrand',
-				name: 'brand'
-			},
-			{
-				label: 'DBIcon',
-				name: 'icon'
-			},
-			{
-				label: 'DBInfotext',
-				name: 'infotext'
-			},
-			{
-				label: 'DBTag',
-				name: 'tag'
-			}
-		]
-	},
-	{
-		label: '05 Navigation',
-		path: '/components/05-navigation',
-		subNavigation: [
-			{
-				label: 'DBNavigationItem',
-				name: 'navigation-item'
-			},
 			{
 				label: 'DBMainNavigation',
 				name: 'main-navigation'
-			}
-		]
-	},
-	{
-		label: '06 Feedback',
-		path: '/components/06-feedback',
-		subNavigation: [
+			},
 			{
-				label: 'DBAlert',
-				name: 'alert'
+				label: 'DBNavigationItem',
+				name: 'navigation-item'
 			}
 		]
 	}
@@ -153,7 +153,7 @@ export const ROUTES: NavigationItem[] = [
 					subNavigation: [
 						{
 							label: 'Overview',
-							path: `/components/${component.name}`
+							path: `/components/${component.name}/overview`
 						},
 						{
 							label: 'Properties',

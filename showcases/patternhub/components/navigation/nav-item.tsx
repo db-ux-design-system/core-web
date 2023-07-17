@@ -9,7 +9,12 @@ const NavItem = ({ navItem }: { navItem: NavigationItem }) => {
 	const isActive =
 		navItem.path === '/'
 			? router.pathname === '/'
-			: router.pathname.includes(navItem.path ?? '');
+			: router.pathname.includes(navItem.path ?? '') ||
+			  Boolean(
+					navItem.subNavigation?.find((subItem) =>
+						router.pathname.includes(subItem.path ?? '')
+					)
+			  );
 
 	return (
 		<DBNavigationItem
