@@ -23,19 +23,6 @@
 			flex-direction: row;
 		}
 
-		@include screen("m") {
-			// re overwrite for non main-navigation items
-			menu {
-				.db-navigation-item-expand-button:is(button),
-				.db-navigation-item-expand-button > button {
-					&::after {
-						--icon-glyph: ">";
-						--icon-margin-before: auto;
-					}
-				}
-			}
-		}
-
 		.db-navigation-item {
 			.db-navigation-item-expand-button:is(button),
 			.db-navigation-item-expand-button > button {
@@ -44,6 +31,19 @@
 					&::after {
 						--icon-margin-before: #{$db-spacing-fixed-sm};
 						--icon-glyph: "⌄";
+					}
+				}
+			}
+
+			// re overwrite for non main-navigation items
+			& > menu {
+				.db-navigation-item-expand-button:is(button),
+				.db-navigation-item-expand-button > button {
+					@include screen("m") {
+						&::after {
+							--icon-glyph: ">";
+							--icon-margin-before: auto;
+						}
 					}
 				}
 			}

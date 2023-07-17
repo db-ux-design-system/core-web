@@ -20,7 +20,9 @@ const NavItem = ({ navItem }: { navItem: NavigationItem }) => {
 					<>
 						{navItem?.subNavigation.map(
 							(subItem: NavigationItem) => (
-								<NavItem navItem={subItem}></NavItem>
+								<NavItem
+									key={`router-path-${subItem.path}`}
+									navItem={subItem}></NavItem>
 							)
 						)}
 					</>
