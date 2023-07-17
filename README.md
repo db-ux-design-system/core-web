@@ -33,9 +33,9 @@ designers, and content authors build, maintain, and scale best of class digital 
 | ----------------------------------- | ----------------------------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | [foundations](packages/foundations) | CSS/SCSS/Tailwind styles and assets | [![@db-ui/foundations on Npmjs](/docs/images/download/npm-ed1c24.svg "npm version")](https://npmjs.com/package/@db-ui/foundations "DB UI – on NPM")                  |
 | [components](packages/components)   | CSS/SCSS styles for components      | [![@db-ui/components on Npmjs](/docs/images/download/npm-ed1c24.svg "npm version")](https://npmjs.com/package/@db-ui/components "DB UI – on NPM")                    |
-| [ngx-components](output/angular)    | Native Angular components           | [![@db-ui/ngx-components on Npmjs](https://img.shields.io/badge/npm-ed1c24.svg "npm version")](https://npmjs.com/package/@db-ui/ngx-components "DB UI – on NPM")     |
-| [react-components](output/react)    | Native React components             | [![@db-ui/react-components on Npmjs](https://img.shields.io/badge/npm-ed1c24.svg "npm version")](https://npmjs.com/package/@db-ui/react-components "DB UI – on NPM") |
-| [v-components](output/vue/vue3)     | Native Vue components               | [![@db-ui/v-components on Npmjs](https://img.shields.io/badge/npm-ed1c24.svg "npm version")](https://npmjs.com/package/@db-ui/v-components "DB UI – on NPM")         |
+| [ngx-components](output/angular)    | Native Angular components           | [![@db-ui/ngx-components on Npmjs](/docs/images/download/npm-ed1c24.svg "npm version")](https://npmjs.com/package/@db-ui/ngx-components "DB UI – on NPM")            |
+| [react-components](output/react)    | Native React components             | [![@db-ui/react-components on Npmjs](/docs/images/download/npm-ed1c24.svg "npm version")](https://npmjs.com/package/@db-ui/react-components "DB UI – on NPM") |
+| [v-components](output/vue/vue3)     | Native Vue components               | [![@db-ui/v-components on Npmjs](/docs/images/download/npm-ed1c24.svg "npm version")](https://npmjs.com/package/@db-ui/v-components "DB UI – on NPM")         |
 
 ## How to use
 
