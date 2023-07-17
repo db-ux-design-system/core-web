@@ -5,13 +5,13 @@
 
 # DB UI Mono (Alpha) 🚂💖
 
-![Part of DB UX Design System Core](/docs/images/download/Part of-DB UX Design System Core-d7dce1.svg)
+[![Part of DB UX Design System Core](/docs/images/download/Part_of-DB_UX_Design_System_Core-d7dce1.svg)](https://marketingportal.extranet.deutschebahn.com/)
 ![Main pipeline](https://github.com/db-ui/mono/actions/workflows/default.yml/badge.svg)
-![Apache 2.0 license badge](/docs/images/download/License-Apache_2.0-blue.svg)
+[![Apache 2.0 license badge](/docs/images/download/License-Apache_2.0-blue.svg)](https://github.com/db-ui/mono/blob/main/LICENSE)
 [![code style: prettier](/docs/images/download/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
 [![XO code style](/docs/images/download/code_style-XO-5ed9c7.svg)](https://github.com/xojs/xo)
 [![PRs Welcome](/docs/images/download/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)
-[![Contributor Covenant](/docs/images/download/Contributor Covenant-2.0-4baaaa.svg)](CODE-OF-CONDUCT.md)
+[![Contributor Covenant](/docs/images/download/Contributor_Covenant-2.0-4baaaa.svg)](https://github.com/db-ui/mono/blob/main/CODE-OF-CONDUCT.md)
 
 DB UI Mono provides robust HTML UI components, reusable visual styles, and powerful tooling to help developers,
 designers, and content authors build, maintain, and scale best of class digital experiences.
@@ -21,22 +21,21 @@ designers, and content authors build, maintain, and scale best of class digital 
 	<figcaption><a href="https://bradfrost.com/blog/post/bdconf-stephen-hay-presents-responsive-design-workflow/" target="_blank" rel="noopener noreferrer">Stephen Hay</a>. <a href="https://vimeo.com/67476280" title="Brad Frosts at beyond tellerrand conference regarding Atomic Design" target="_blank" rel="noopener noreferrer">Citated in a talk by Brad Frost at beyond tellerrand conference.</a></figcaption>
 </figure>
 
-
 > **Warning**
 > We currently don't fully support Mozilla Firefox until it adds the following functionalities, that are expected to get integrated later this year:
-> - [CSS: `:has`](https://caniuse.com/css-has)
-> - [`popover`-attribute](https://caniuse.com/mdn-api_htmlinputelement_popovertargetaction)(not in use by us currently, but planned)
-
+>
+> -   [CSS: `:has`](https://caniuse.com/css-has)
+> -   [`popover`-attribute](https://caniuse.com/mdn-api_htmlinputelement_popovertargetaction)(not in use by us currently, but planned)
 
 ## Packages
 
-| Package                             | Content                             | Version                                                                                                                                                                                                              |
-| ----------------------------------- | ----------------------------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| [foundations](packages/foundations) | CSS/SCSS/Tailwind styles and assets | [![@db-ui/foundations on Npmjs](https://img.shields.io/npm/v/@db-ui/foundations.svg?color=rgb%28237%2C%2028%2C%2036%29 "npm version")](https://npmjs.com/package/@db-ui/foundations "DB UI – on NPM")                |
-| [components](packages/components)   | CSS/SCSS styles for components      | [![@db-ui/components on Npmjs](https://img.shields.io/npm/v/@db-ui/components.svg?color=rgb%28237%2C%2028%2C%2036%29 "npm version")](https://npmjs.com/package/@db-ui/components "DB UI – on NPM")                   |
-| [ngx-components](output/angular)    | Native Angular components           | [![@db-ui/ngx-components on Npmjs](https://img.shields.io/npm/v/@db-ui/ngx-components.svg?color=rgb%28237%2C%2028%2C%2036%29 "npm version")](https://npmjs.com/package/@db-ui/ngx-components "DB UI – on NPM")       |
-| [react-components](output/react)    | Native React components             | [![@db-ui/react-components on Npmjs](https://img.shields.io/npm/v/@db-ui/react-components.svg?color=rgb%28237%2C%2028%2C%2036%29 "npm version")](https://npmjs.com/package/@db-ui/react-components "DB UI – on NPM") |
-| [v-components](output/vue/vue3)     | Native Vue components               | [![@db-ui/v-components on Npmjs](https://img.shields.io/npm/v/@db-ui/v-components.svg?color=rgb%28237%2C%2028%2C%2036%29 "npm version")](https://npmjs.com/package/@db-ui/v-components "DB UI – on NPM")             |
+| Package                             | Content                             | Version                                                                                                                                                              |
+| ----------------------------------- | ----------------------------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| [foundations](packages/foundations) | CSS/SCSS/Tailwind styles and assets | [![@db-ui/foundations on Npmjs](/docs/images/download/npm-ed1c24.svg "npm version")](https://npmjs.com/package/@db-ui/foundations "DB UI – on NPM")           |
+| [components](packages/components)   | CSS/SCSS styles for components      | [![@db-ui/components on Npmjs](https://img.shields.io/badge/npm-ed1c24.svg "npm version")](https://npmjs.com/package/@db-ui/components "DB UI – on NPM")             |
+| [ngx-components](output/angular)    | Native Angular components           | [![@db-ui/ngx-components on Npmjs](https://img.shields.io/badge/npm-ed1c24.svg "npm version")](https://npmjs.com/package/@db-ui/ngx-components "DB UI – on NPM")     |
+| [react-components](output/react)    | Native React components             | [![@db-ui/react-components on Npmjs](https://img.shields.io/badge/npm-ed1c24.svg "npm version")](https://npmjs.com/package/@db-ui/react-components "DB UI – on NPM") |
+| [v-components](output/vue/vue3)     | Native Vue components               | [![@db-ui/v-components on Npmjs](https://img.shields.io/badge/npm-ed1c24.svg "npm version")](https://npmjs.com/package/@db-ui/v-components "DB UI – on NPM")         |
 
 ## How to use
 

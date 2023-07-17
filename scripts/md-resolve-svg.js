@@ -14,7 +14,7 @@ const startReplacement = (file, filesToReplace) => {
 
 	while (match?.length > 0) {
 		const svgUrl = match[0];
-		const svgName = decodeURI(match[1]);
+		const svgName = decodeURI(match[1]).replace(/ /g, '_');
 		const pathname = `${docsPath}/${svgName}`;
 		const pathNameSvg = `${pathname}.svg`;
 

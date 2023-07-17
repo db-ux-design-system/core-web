@@ -1,8 +1,8 @@
 # @db-ui/foundations
 
-![Apache 2.0 license badge](/docs/images/download/License-Apache_2.0-blue.svg)
+[![Apache 2.0 license badge](/docs/images/download/License-Apache_2.0-blue.svg)](https://github.com/db-ui/mono/blob/main/LICENSE)
 [![code style: prettier](/docs/images/download/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
-[![Conventional Commits](/docs/images/download/Conventional Commits-1.0.0-yellow.svg)](https://conventionalcommits.org)
+[![Conventional Commits](/docs/images/download/Conventional_Commits-1.0.0-yellow.svg)](https://conventionalcommits.org)
 [![PRs Welcome](/docs/images/download/PRs-welcome-brightgreen.svg?style=flat-square)](https://makeapullrequest.com)
 
 A library containing all tokens of [DB UX Design System (technical components)](https://github.com/db-ui/mono).

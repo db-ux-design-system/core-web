@@ -15,6 +15,14 @@ export default function App({ Component, pageProps }: AppProps) {
 						referrerPolicy="no-referrer"
 						{...props}
 					/>
+				),
+				img: (props) => (
+					<img
+						{...props}
+						src={`${process.env.NEXT_PUBLIC_BASE_PATH ?? ''}${
+							props.src
+						}`}
+					/>
 				)
 			}}>
 			<Script
