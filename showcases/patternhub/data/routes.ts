@@ -177,10 +177,3 @@ export const ROUTES: NavigationItem[] = [
 		]
 	}
 ];
-
-export const getRouteWithBasePath = (route: NavigationItem) => {
-	return {
-		...route,
-		path: `${process.env.NEXT_PUBLIC_BASE_PATH ?? ''}${route.path}`
-	};
-};

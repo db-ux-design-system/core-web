@@ -11,7 +11,8 @@
     "copy:components": "cpr ../../output/react/src ./components/src -o",
     "copy:components-build": "tsc -p ./components/src --sourceMap false",
     "copy:docs": "node --experimental-specifier-resolution=node scripts/generate-docs-mdx.js",
-    "dev": "npm-run-all generate copy next:dev",
+    "open": "open-cli http://localhost:3000/mono/sub",
+    "dev": "cross-env NEXT_PUBLIC_BASE_PATH=/mono/sub npm-run-all generate copy -p open next:dev",
     "generate": "npm-run-all generate:*",
     "generate:jsx": "node --experimental-specifier-resolution=node scripts/generate-example-jsx.js",
     "generate:parse-jsx": "babel  scripts/generated --out-dir scripts/generated --extensions \".jsx\" --presets=@babel/preset-react",
@@ -19,7 +20,7 @@
     "next:dev": "next dev",
     "next:start": "next start",
     "prebuild:app": "cpr ../../node_modules/iframe-resizer/js/ public/iframe-resizer -o",
-    "start": "npm-run-all generate copy next:start"
+    "start": "cross-env NEXT_PUBLIC_BASE_PATH=/mono/sub npm-run-all generate copy next:start"
   },
   "dependencies": {
     "@code-hike/mdx": "^0.9.0",
