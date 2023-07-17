@@ -122,10 +122,13 @@
     </data>
     <data name="name_Display_Key" xml:space="preserve">
         <value>Feldname</value>
-        <comment>Key mit dem der Feldwert übermittelt wird.</comment>
     </data>
-    <data name="variant_Display_Key" xml:space="preserve">
-        <value>Variante</value>
+    <data name="id_Display_Key" xml:space="preserve">
+        <value>ID</value>
+        <comment>Feld ID-HTML-Wert</comment>
+    </data>
+    <data name="value_Display_Key" xml:space="preserve">
+        <value>Eingangswert</value>
     </data>
     <data name="componentHeight_Display_Key" xml:space="preserve">
         <value>Höhe</value>
@@ -133,7 +136,7 @@
     <data name="componentWidth_Display_Key" xml:space="preserve">
         <value>Breite</value>
     </data>
-    <data name="DBTag_Display_Key" xml:space="preserve">
-        <value>DBTag</value>
+    <data name="DBRadio_Display_Key" xml:space="preserve">
+        <value>DB Radio</value>
     </data>
 </root>

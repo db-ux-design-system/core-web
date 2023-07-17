@@ -117,18 +117,8 @@
     <resheader name="writer">
         <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
     </resheader>
-    <data name="children_Display_Key" xml:space="preserve">
-        <value>Text</value>
-    </data>
-    <data name="name_Display_Key" xml:space="preserve">
-        <value>Feldname</value>
-    </data>
-    <data name="id_Display_Key" xml:space="preserve">
-        <value>ID</value>
-        <comment>Feld ID-HTML-Wert</comment>
-    </data>
-    <data name="value_Display_Key" xml:space="preserve">
-        <value>Eingangswert</value>
+    <data name="variant_Display_Key" xml:space="preserve">
+        <value>Variante</value>
     </data>
     <data name="componentHeight_Display_Key" xml:space="preserve">
         <value>Höhe</value>
@@ -136,7 +126,7 @@
     <data name="componentWidth_Display_Key" xml:space="preserve">
         <value>Breite</value>
     </data>
-    <data name="DBRadio_Display_Key" xml:space="preserve">
-        <value>DBRadio</value>
+    <data name="DBCard_Display_Key" xml:space="preserve">
+        <value>DB Card</value>
     </data>
 </root>

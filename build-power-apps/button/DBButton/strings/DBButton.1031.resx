@@ -123,8 +123,17 @@
     <data name="variant_Display_Key" xml:space="preserve">
         <value>Variante</value>
     </data>
-    <data name="size_Display_Key" xml:space="preserve">
-        <value>Größe</value>
+    <data name="icon_Display_Key" xml:space="preserve">
+        <value>Icon</value>
+    </data>
+    <data name="noText_Display_Key" xml:space="preserve">
+        <value>Text ausblenden</value>
+    </data>
+    <data name="width_Display_Key" xml:space="preserve">
+        <value>Icon Breite</value>
+    </data>
+    <data name="clicked_Display_Key" xml:space="preserve">
+        <value>Clicked</value>
     </data>
     <data name="componentHeight_Display_Key" xml:space="preserve">
         <value>Höhe</value>
@@ -132,7 +141,7 @@
     <data name="componentWidth_Display_Key" xml:space="preserve">
         <value>Breite</value>
     </data>
-    <data name="DBInfotext_Display_Key" xml:space="preserve">
-        <value>DBInfotext</value>
+    <data name="DBButton_Display_Key" xml:space="preserve">
+        <value>DB Button</value>
     </data>
 </root>
