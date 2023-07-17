@@ -19,11 +19,13 @@ export default function App({ Component, pageProps }: AppProps) {
 				img: (props) => (
 					<img
 						{...props}
-						src={`${
+						src={
 							props.src?.startsWith('http')
-								? ''
-								: process.env.NEXT_PUBLIC_BASE_PATH ?? ''
-						}${props.src}`}
+								? props.src
+								: `${process.env.NEXT_PUBLIC_BASE_PATH ?? ''}${
+										props.src
+								  }`
+						}
 					/>
 				)
 			}}>
