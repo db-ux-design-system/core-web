@@ -42,8 +42,6 @@ body:
     attributes:
       description: If applicable, add screenshots to help explain your problem.
       label: Screenshots
-    validations:
-      required: true
 
   - type: dropdown
     id: browser
