@@ -38,6 +38,24 @@
 		]
 	},
 	{
+		"name": "Emphasis",
+		"examples": [
+			{
+				"name": "Strong (Default)",
+				"props": {
+					"withCloseButton": true
+				}
+			},
+			{
+				"name": "Weak",
+				"props": {
+					"withCloseButton": true,
+					"emphasis": "weak"
+				}
+			}
+		]
+	},
+	{
 		"name": "Rounded",
 		"examples": [
 			{
