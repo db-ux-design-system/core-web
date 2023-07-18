@@ -81,7 +81,7 @@ export default function DBTag(props: DBTagProps) {
 			tabIndex={state.getTabIndex()}
 			data-disabled={props.disabled}
 			data-variant={props.variant}
-			data-type={props.type}
+			data-emphasis={props.type}
 			data-icon={props.icon}
 			data-no-text={props.noText}
 			data-overflow={props.overflow}>

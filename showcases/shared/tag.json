@@ -20,7 +20,7 @@
 		]
 	},
 	{
-		"name": "Type",
+		"name": "Emphasis",
 		"examples": [
 			{
 				"name": "Weak (Default)",
@@ -29,7 +29,7 @@
 			{
 				"name": "Strong",
 				"props": {
-					"type": "strong"
+					"emphasis": "strong"
 				}
 			}
 		]

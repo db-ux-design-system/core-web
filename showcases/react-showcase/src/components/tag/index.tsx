@@ -18,7 +18,7 @@ const getTag = ({
 	overflow,
 	noText,
 	behaviour,
-	type,
+	emphasis,
 	removeButton,
 	checked,
 	component
@@ -32,7 +32,7 @@ const getTag = ({
 		icon={icon}
 		noText={noText}
 		behaviour={behaviour}
-		type={type}
+		emphasis={emphasis}
 		overflow={overflow}
 		removeButton={removeButton}
 		onRemove={() => {

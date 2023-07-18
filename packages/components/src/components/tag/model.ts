@@ -40,9 +40,9 @@ export interface DBTagDefaultProps {
 	text?: string;
 
 	/**
-	 * The type attribute divides in between a weak or strong importance.
+	 * The emphasis attribute divides in between a weak or strong importance.
 	 */
-	type?: 'weak' | 'strong';
+	emphasis?: 'weak' | 'strong';
 
 	/**
 	 * If "interactive" is set to true, you can pass a value to the underlying checkbox or radio input.

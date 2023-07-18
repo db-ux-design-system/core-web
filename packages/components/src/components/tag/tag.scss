@@ -13,7 +13,7 @@
 @use "@db-ui/foundations/build/scss/icon/icons.variables" as *;
 
 @mixin get-border-and-icon($colors) {
-	&:not(&[data-type="strong"]) {
+	&:not(&[data-emphasis="strong"]) {
 		--db-current-border-color: #{map.get($colors, "border")};
 	}
 }
@@ -21,7 +21,7 @@
 %tag-colors {
 	@extend %db-bg-neutral-4;
 
-	&[data-type="strong"] {
+	&[data-emphasis="strong"] {
 		@extend %db-neutral-component;
 	}
 
@@ -30,25 +30,25 @@
 			@if ($name == "critical") {
 				@extend %db-bg-critical;
 
-				&[data-type="strong"] {
+				&[data-emphasis="strong"] {
 					@extend %db-critical-component;
 				}
 			} @else if ($name == "informational") {
 				@extend %db-bg-informational;
 
-				&[data-type="strong"] {
+				&[data-emphasis="strong"] {
 					@extend %db-informational-component;
 				}
 			} @else if ($name == "warning") {
 				@extend %db-bg-warning;
 
-				&[data-type="strong"] {
+				&[data-emphasis="strong"] {
 					@extend %db-warning-component;
 				}
 			} @else if ($name == "successful") {
 				@extend %db-bg-successful;
 
-				&[data-type="strong"] {
+				&[data-emphasis="strong"] {
 					@extend %db-successful-component;
 				}
 			}
@@ -84,7 +84,7 @@
 		@extend %db-bg-neutral-0-ia;
 	}
 
-	&[data-type="strong"] {
+	&[data-emphasis="strong"] {
 		@include interactive {
 			--db-colors-neutral-on-bg-hover: #{$db-colors-neutral-on-enabled};
 			--db-colors-neutral-on-bg-pressed: #{$db-colors-neutral-on-enabled};
@@ -99,7 +99,7 @@
 					@extend %db-bg-critical-ia;
 				}
 
-				&[data-type="strong"] {
+				&[data-emphasis="strong"] {
 					@include interactive {
 						@extend %db-critical-component-ia;
 					}
@@ -109,7 +109,7 @@
 					@extend %db-bg-informational-ia;
 				}
 
-				&[data-type="strong"] {
+				&[data-emphasis="strong"] {
 					@include interactive {
 						@extend %db-informational-component-ia;
 					}
@@ -119,7 +119,7 @@
 					@extend %db-bg-warning-ia;
 				}
 
-				&[data-type="strong"] {
+				&[data-emphasis="strong"] {
 					@include interactive {
 						@extend %db-warning-component-ia;
 					}
@@ -129,7 +129,7 @@
 					@extend %db-bg-successful-ia;
 				}
 
-				&[data-type="strong"] {
+				&[data-emphasis="strong"] {
 					@include interactive {
 						@extend %db-successful-component-ia;
 					}

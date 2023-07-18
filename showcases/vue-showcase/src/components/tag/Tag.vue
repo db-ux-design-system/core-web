@@ -26,7 +26,7 @@ const showAlert = (exampleName: string) => {
 				:icon="exampleProps.icon"
 				:noText="exampleProps.noText"
 				:behaviour="exampleProps.behaviour"
-				:type="exampleProps.type"
+				:emphasis="exampleProps.emphasis"
 				:overflow="exampleProps.overflow"
 				:removeButton="exampleProps.removeButton"
 				@remove="showAlert(exampleName)"
