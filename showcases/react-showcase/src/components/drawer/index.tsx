@@ -19,7 +19,8 @@ const getDrawer = ({
 	openDrawer,
 	setOpenDrawer,
 	direction,
-	children
+	children,
+	emphasis
 }: DBDrawerProps & AdditionalDrawerProps) => (
 	<div>
 		<DBDrawer
@@ -28,6 +29,7 @@ const getDrawer = ({
 			rounded={rounded}
 			width={width}
 			spacing={spacing}
+			emphasis={emphasis}
 			direction={direction}
 			open={openDrawer === id}
 			onClose={() => {
