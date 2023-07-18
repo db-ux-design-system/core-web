@@ -117,20 +117,18 @@
     <resheader name="writer">
         <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
     </resheader>
-    <data name="children_Display_Key" xml:space="preserve">
-        <value>Text</value>
+    <data name="headline_Display_Key" xml:space="preserve">
+        <value>Überschrift</value>
+        <comment>Text der Überschrift</comment>
     </data>
-    <data name="variant_Display_Key" xml:space="preserve">
-        <value>Variante</value>
+    <data name="children_Display_Key" xml:space="preserve">
+        <value>Fließtext</value>
     </data>
     <data name="icon_Display_Key" xml:space="preserve">
         <value>Icon</value>
     </data>
-    <data name="noText_Display_Key" xml:space="preserve">
-        <value>Text ausblenden</value>
-    </data>
-    <data name="width_Display_Key" xml:space="preserve">
-        <value>Icon Breite</value>
+    <data name="variant_Display_Key" xml:space="preserve">
+        <value>Variante</value>
     </data>
     <data name="clicked_Display_Key" xml:space="preserve">
         <value>Clicked</value>
@@ -141,7 +139,7 @@
     <data name="componentWidth_Display_Key" xml:space="preserve">
         <value>Breite</value>
     </data>
-    <data name="DBButton_Display_Key" xml:space="preserve">
-        <value>DBButton</value>
+    <data name="DBAlert_Display_Key" xml:space="preserve">
+        <value>DB Alert</value>
     </data>
 </root>

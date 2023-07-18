@@ -117,23 +117,14 @@
     <resheader name="writer">
         <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
     </resheader>
-    <data name="label_Display_Key" xml:space="preserve">
-        <value>Label</value>
-    </data>
-    <data name="placeholder_Display_Key" xml:space="preserve">
-        <value>Platzhalter</value>
-    </data>
-    <data name="value_Display_Key" xml:space="preserve">
-        <value>Eingangswert</value>
-    </data>
-    <data name="icon_Display_Key" xml:space="preserve">
-        <value>Icon</value>
-    </data>
-    <data name="iconAfter_Display_Key" xml:space="preserve">
-        <value>Hinteres Icon</value>
+    <data name="children_Display_Key" xml:space="preserve">
+        <value>Text</value>
     </data>
     <data name="variant_Display_Key" xml:space="preserve">
         <value>Variante</value>
+    </data>
+    <data name="size_Display_Key" xml:space="preserve">
+        <value>Größe</value>
     </data>
     <data name="componentHeight_Display_Key" xml:space="preserve">
         <value>Höhe</value>
@@ -141,7 +132,7 @@
     <data name="componentWidth_Display_Key" xml:space="preserve">
         <value>Breite</value>
     </data>
-    <data name="DBInput_Display_Key" xml:space="preserve">
-        <value>DBInput</value>
+    <data name="DBInfotext_Display_Key" xml:space="preserve">
+        <value>DB Infotext</value>
     </data>
 </root>

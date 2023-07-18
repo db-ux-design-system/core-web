@@ -117,30 +117,23 @@
     <resheader name="writer">
         <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
     </resheader>
-    <data name="anchorRef_Display_Key" xml:space="preserve">
-        <value>Logo URL</value>
-        <comment>Linkziel des Logos</comment>
-    </data>
-    <data name="title_Display_Key" xml:space="preserve">
-        <value>Titel des Links</value>
-        <comment>Title Attribut</comment>
-    </data>
     <data name="children_Display_Key" xml:space="preserve">
         <value>Text</value>
     </data>
-    <data name="imgSrc_Display_Key" xml:space="preserve">
-        <value>Logo URL</value>
+    <data name="name_Display_Key" xml:space="preserve">
+        <value>Feldname</value>
+        <comment>Key mit dem der Feldwert übermittelt wird.</comment>
     </data>
-    <data name="imgAlt_Display_Key" xml:space="preserve">
-        <value>Alternativtext</value>
+    <data name="variant_Display_Key" xml:space="preserve">
+        <value>Variante</value>
     </data>
-    <data name="imgWidth_Display_Key" xml:space="preserve">
-        <value>Logo Breite</value>
+    <data name="componentHeight_Display_Key" xml:space="preserve">
+        <value>Höhe</value>
     </data>
-    <data name="imgHeight_Display_Key" xml:space="preserve">
-        <value>Logo Höhe</value>
+    <data name="componentWidth_Display_Key" xml:space="preserve">
+        <value>Breite</value>
     </data>
-    <data name="DBBrand_Display_Key" xml:space="preserve">
-        <value>DBBrand</value>
+    <data name="DBTag_Display_Key" xml:space="preserve">
+        <value>DB Tag</value>
     </data>
 </root>

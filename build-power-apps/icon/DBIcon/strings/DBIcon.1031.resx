@@ -117,19 +117,15 @@
     <resheader name="writer">
         <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
     </resheader>
-    <data name="children_Display_Key" xml:space="preserve">
-        <value>Text</value>
+    <data name="icon_Display_Key" xml:space="preserve">
+        <value>Icon</value>
     </data>
-    <data name="name_Display_Key" xml:space="preserve">
-        <value>Feldname</value>
-        <comment>Name für die Formularübermittlung</comment>
+    <data name="withText_Display_Key" xml:space="preserve">
+        <value>Text darstellen</value>
     </data>
-    <data name="value_Display_Key" xml:space="preserve">
-        <value>Eingangswert</value>
-    </data>
-    <data name="id_Display_Key" xml:space="preserve">
-        <value>ID</value>
-        <comment>Wert des id-HTML-Attributs</comment>
+    <data name="title_Display_Key" xml:space="preserve">
+        <value>Alternativtext</value>
+        <comment>Text des title-HTML-Attributs</comment>
     </data>
     <data name="componentHeight_Display_Key" xml:space="preserve">
         <value>Höhe</value>
@@ -137,7 +133,7 @@
     <data name="componentWidth_Display_Key" xml:space="preserve">
         <value>Breite</value>
     </data>
-    <data name="DBCheckbox_Display_Key" xml:space="preserve">
-        <value>DBCheckbox</value>
+    <data name="DBIcon_Display_Key" xml:space="preserve">
+        <value>DB Icon</value>
     </data>
 </root>

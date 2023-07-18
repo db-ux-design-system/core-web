@@ -120,14 +120,16 @@
     <data name="children_Display_Key" xml:space="preserve">
         <value>Text</value>
     </data>
-    <data name="href_Display_Key" xml:space="preserve">
-        <value>Link URL</value>
+    <data name="name_Display_Key" xml:space="preserve">
+        <value>Feldname</value>
+        <comment>Name für die Formularübermittlung</comment>
     </data>
-    <data name="title_Display_Key" xml:space="preserve">
-        <value>Alternativtext</value>
+    <data name="value_Display_Key" xml:space="preserve">
+        <value>Eingangswert</value>
     </data>
-    <data name="variant_Display_Key" xml:space="preserve">
-        <value>Variante</value>
+    <data name="id_Display_Key" xml:space="preserve">
+        <value>ID</value>
+        <comment>Wert des id-HTML-Attributs</comment>
     </data>
     <data name="componentHeight_Display_Key" xml:space="preserve">
         <value>Höhe</value>
@@ -135,7 +137,7 @@
     <data name="componentWidth_Display_Key" xml:space="preserve">
         <value>Breite</value>
     </data>
-    <data name="DBLink_Display_Key" xml:space="preserve">
-        <value>DBLink</value>
+    <data name="DBCheckbox_Display_Key" xml:space="preserve">
+        <value>DB Checkbox</value>
     </data>
 </root>
