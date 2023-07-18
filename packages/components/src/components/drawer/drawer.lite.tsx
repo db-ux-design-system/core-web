@@ -10,7 +10,7 @@ import {
 import { DBDrawerState, DBDrawerProps } from './model';
 import { DBButton } from '../button';
 import { DEFAULT_CLOSE_BUTTON, DEFAULT_ID } from '../../shared/constants';
-import { cls } from "../../utils";
+import { cls } from '../../utils';
 import { uuid } from '../../utils';
 
 useMetadata({
@@ -90,7 +90,8 @@ export default function DBDrawer(props: DBDrawerProps) {
 				state.handleClose(event);
 			}}
 			onKeyDown={(event) => state.handleClose(event)}
-			data-backdrop={!props.noBackdrop}>
+			data-backdrop={!props.noBackdrop}
+			data-emphasis={props.emphasis}>
 			<Show when={state.stylePath}>
 				<link rel="stylesheet" href={state.stylePath} />
 			</Show>

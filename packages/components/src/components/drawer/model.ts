@@ -13,6 +13,11 @@ export interface DBDrawerDefaultProps {
 	 * E. g. "left" slides from left screen border to the right.
 	 */
 	direction?: 'left' | 'right' | 'up' | 'down';
+
+	/**
+	 * The emphasis attribute changes the opacity of the backdrop.
+	 */
+	emphasis?: 'strong' | 'weak';
 	/**
 	 * If noBackdrop is set there is no semi-transparent black background behind the drawer.
 	 * You can click behind the drawer without closing it.
@@ -28,13 +33,13 @@ export interface DBDrawerDefaultProps {
 	 */
 	rounded?: boolean;
 	/**
-	 * The @dependabot recreate attribute changes the padding inside the drawer.
-	 */
-	spacing?: 'medium' | 'small' | 'large' | 'none';
-	/**
 	 * React specific to change the header of the drawer.
 	 */
 	slotDrawerHeader?: any;
+	/**
+	 * The @dependabot recreate attribute changes the padding inside the drawer.
+	 */
+	spacing?: 'medium' | 'small' | 'large' | 'none';
 
 	/**
 	 * The withCloseButton attribute shows/hides the default close button.
