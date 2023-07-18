@@ -64,7 +64,7 @@ const FormComponent = () => {
 												? undefined
 												: 'successful'
 										}
-										type={
+										emphasis={
 											index === 2 ? 'strong' : undefined
 										}>
 										<DBCheckbox
