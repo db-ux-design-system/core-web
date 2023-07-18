@@ -9,21 +9,17 @@
 
 	display: flex;
 
-	.db-icon {
-		@extend %db-body-sm;
-		margin-inline-end: $db-spacing-fixed-2xs;
-
-		&::before {
-			--icon-font-family: var(--db-base-icon-font-family-filled);
-			--icon-font-size: var(--db-base-icon-font-size);
-		}
+	&[data-icon]::before {
+		--icon-margin-after: #{$db-spacing-fixed-2xs};
+		--icon-font-family: var(--db-base-icon-font-family-filled);
+		--icon-font-size: var(--db-base-icon-font-size);
 	}
 
 	&[data-size="small"] {
 		@extend %db-body-xs;
 
-		.db-icon {
-			@extend %db-body-xs;
+		&::before {
+			display: none;
 		}
 	}
 
@@ -31,7 +27,7 @@
 		&[data-variant="#{$name}"] {
 			color: map.get($colors, "primary");
 
-			.db-icon {
+			&::before {
 				color: map.get($colors, "element");
 			}
 		}
