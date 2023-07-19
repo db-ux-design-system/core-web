@@ -21,8 +21,11 @@
 @use "../components/drawer/drawer" as *;
 @use "../components/select/select" as *;
 @use "../components/navigation-item/navigation-item" as *;
+@use "../components/badge/badge" as *;
 
 // angular-workaround
+dbbadge,
+db-badge,
 dbnavigation-item,
 db-navigation-item,
 dbtag,

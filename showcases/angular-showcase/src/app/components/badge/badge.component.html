@@ -1,0 +1,18 @@
+<app-default-component
+	title="DBBadge"
+	[variants]="variants"
+	[exampleTemplate]="exampleTemplate"
+>
+	<ng-template
+		#exampleTemplate
+		let-exampleProps="exampleProps"
+		let-exampleName="exampleName"
+		let-exampleIndex="exampleIndex"
+		let-variantIndex="variantIndex"
+	>
+		<db-badge>{{exampleName}}</db-badge>
+	</ng-template>
+</app-default-component>
+
+
+

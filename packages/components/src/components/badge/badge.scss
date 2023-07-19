@@ -1,0 +1,82 @@
+@use "sass:map";
+@use "@db-ui/foundations/build/scss/init" as *;
+@use "@db-ui/foundations/build/scss/variables" as *;
+@use "@db-ui/foundations/build/scss/variables.global" as *;
+@use "@db-ui/foundations/build/scss/color-placeholder" as *;
+@use "@db-ui/foundations/build/scss/color/color-variants" as *;
+@use "@db-ui/foundations/build/scss/helpers/component" as *;
+@use "@db-ui/foundations/build/scss/body-styles" as *;
+@use "../../styles/button-components";
+
+%tag-colors {
+	// TODO: Color from zeplin does not exist is it neutral-4??
+	@extend %db-bg-neutral-4;
+
+	&[data-emphasis="strong"] {
+		@extend %db-neutral-component;
+	}
+
+	@each $name, $colors in $component-variants {
+		&[data-variant="#{$name}"] {
+			@if ($name == "critical") {
+				@extend %db-bg-critical;
+
+				&[data-emphasis="strong"] {
+					@extend %db-critical-component;
+				}
+			} @else if ($name == "informational") {
+				@extend %db-bg-informational;
+
+				&[data-emphasis="strong"] {
+					@extend %db-informational-component;
+				}
+			} @else if ($name == "warning") {
+				@extend %db-bg-warning;
+
+				&[data-emphasis="strong"] {
+					@extend %db-warning-component;
+				}
+			} @else if ($name == "successful") {
+				@extend %db-bg-successful;
+
+				&[data-emphasis="strong"] {
+					@extend %db-successful-component;
+				}
+			}
+
+			&:not(&[data-emphasis="strong"]) {
+				--db-current-border-color: #{map.get($colors, "border")};
+			}
+		}
+	}
+}
+
+.db-badge {
+	@extend %tag-colors;
+	@extend %component-border;
+	@extend %db-body-sm;
+	@extend %default-button;
+
+	display: flex;
+
+	border-radius: 42px; // extreme radius
+
+	padding-inline: $db-spacing-fixed-xs;
+
+	&:empty,
+	> span:empty {
+		padding-block: $db-spacing-fixed-2xs;
+		padding-inline: $db-spacing-fixed-2xs;
+	}
+
+	&[data-size="small"] {
+		@extend %db-body-2xs;
+		padding-inline: $db-spacing-fixed-2xs;
+
+		&:empty,
+		> span:empty {
+			padding-block: $db-spacing-fixed-3xs;
+			padding-inline: $db-spacing-fixed-3xs;
+		}
+	}
+}
