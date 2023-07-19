@@ -79,7 +79,7 @@ const sortedNavigation = getSortedNavigationItems(navigationItems);
 	<div v-if="page || fullscreen" :class="getClassNames()">
 		<router-view></router-view>
 	</div>
-	<DBPage v-if="!page && !fullscreen" type="fixedHeaderFooter">
+	<DBPage v-if="!page && !fullscreen" type="fixedHeaderFooter" :fadeIn="true">
 		<template v-slot:header>
 			<DBHeader :drawerOpen="drawerOpen" :onToggle="toggleDrawer">
 				<template v-slot:brand>

@@ -66,7 +66,6 @@ export default function DBHeader(props: DBHeaderProps) {
 		<header
 			ref={component}
 			class={cls('db-header', props.className)}
-			role="banner"
 			id={state._id}
 			data-on-forcing-mobile={props.forceMobile && !state.forcedToMobile}>
 			<Show when={state.stylePath}>

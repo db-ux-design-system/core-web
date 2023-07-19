@@ -23,6 +23,7 @@ const App = () => {
 		<DBPage
 			className="db-bg-neutral-0"
 			type="fixedHeaderFooter"
+			fadeIn
 			slotHeader={
 				<DBHeader
 					drawerOpen={drawerOpen}

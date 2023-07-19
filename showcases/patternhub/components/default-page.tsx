@@ -38,6 +38,7 @@ const DefaultPage = ({ children }: any) => {
 			{router.isReady && !fullscreen && (
 				<DBPage
 					className="db-bg-neutral-0"
+					fadeIn
 					type="fixedHeaderFooter"
 					slotHeader={
 						<DBHeader

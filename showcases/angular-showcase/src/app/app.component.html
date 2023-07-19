@@ -1,7 +1,7 @@
 <div *ngIf="page" [class]="getChangeableClasses()">
 	<router-outlet></router-outlet>
 </div>
-<db-page *ngIf="!page" type="fixedHeaderFooter">
+<db-page *ngIf="!page" type="fixedHeaderFooter" [fadeIn]="true">
 	<db-header
 		header
 		[drawerOpen]="drawerOpen"
