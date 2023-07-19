@@ -117,7 +117,7 @@
 
 		&:has(input:is(:focus, :not(:placeholder-shown))) {
 			&::after {
-				transform: rotate(180deg);
+				transform: rotate(-180deg);
 			}
 		}
 

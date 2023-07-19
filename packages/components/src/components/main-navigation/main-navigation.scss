@@ -2,6 +2,7 @@
 @use "@db-ui/foundations/build/scss/variables.global" as *;
 @use "@db-ui/foundations/build/scss/helpers/component" as *;
 @use "../../styles/db-puls" as *;
+@use "../../styles/form-components" as *;
 
 .db-main-navigation {
 	-webkit-tap-highlight-color: transparent; /* for removing the highlight */
@@ -31,6 +32,17 @@
 					&::after {
 						--icon-margin-before: #{$db-spacing-fixed-sm};
 						--icon-glyph: "⌄";
+						transition: $dropdown-icon-transition;
+					}
+
+					&:hover,
+					&:focus-visible,
+					&:has(~ .db-sub-navigation:hover),
+					&:has(~ .db-sub-navigation:focus-visible),
+					&:has(~ .db-sub-navigation:focus-within) {
+						&::after {
+							transform: rotate(-180deg);
+						}
 					}
 				}
 			}
@@ -43,6 +55,16 @@
 						&::after {
 							--icon-glyph: ">";
 							--icon-margin-before: auto;
+						}
+
+						&:hover,
+						&:focus-visible,
+						&:has(~ .db-sub-navigation:hover),
+						&:has(~ .db-sub-navigation:focus-visible),
+						&:has(~ .db-sub-navigation:focus-within) {
+							&::after {
+								transform: none;
+							}
 						}
 					}
 				}
