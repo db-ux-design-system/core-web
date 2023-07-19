@@ -18,7 +18,10 @@ $default-opacity: 0.25;
 
 %component-border {
 	border: solid 1px
-		var(--db-current-border-color, $db-colors-neutral-border-enabled);
+		var(
+			--db-current-border-weak-color,
+			$db-colors-neutral-border-weak-enabled
+		);
 }
 
 %default-border-radius {
