@@ -36,7 +36,6 @@ export default function DBIcon(props: DBIconProps) {
 			ref={component}
 			class={cls(
 				'db-icon',
-				'is-icon-text-replace',
 				props.className
 			)}
 			data-icon={props.icon}
