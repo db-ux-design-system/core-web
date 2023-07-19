@@ -80,7 +80,9 @@ jobs:
       - name: 🔨 Build Showcases
         env:
           NEXT_PUBLIC_BASE_PATH: ${{ steps.base-path.outputs.result }}
-        run: npm run build-showcases
+        run: |
+          npm run scripts:md-resolve-svg
+          npm run build-showcases
 
       - name: ⬆ Upload Showcases
         uses: ./.github/actions/upload-tar-artifact

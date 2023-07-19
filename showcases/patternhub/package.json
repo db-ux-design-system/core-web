@@ -9,8 +9,7 @@
     "build:copy": "cpr out ../../build-showcases/patternhub -o",
     "copy": "npm-run-all copy:*",
     "copy:components": "cpr ../../output/react/src ./components/src -o",
-    "copy:components-build": "tsc -p ./components/src --sourceMap false",
-    "copy:docs": "node --experimental-specifier-resolution=node scripts/generate-docs-mdx.js",
+    "copy:docs": "cpr ../../docs ./public/docs -o",
     "open": "open-cli http://localhost:3000/mono/sub",
     "dev": "cross-env NEXT_PUBLIC_BASE_PATH=/mono/sub npm-run-all generate copy -p open next:dev",
     "generate": "npm-run-all generate:*",
@@ -19,6 +18,7 @@
     "lint": "next lint",
     "next:dev": "next dev",
     "next:start": "next start",
+    "postcopy:components": "tsc -p ./components/src --sourceMap false && node --experimental-specifier-resolution=node scripts/generate-docs-mdx.js",
     "prebuild:app": "cpr ../../node_modules/iframe-resizer/js/ public/iframe-resizer -o",
     "start": "cross-env NEXT_PUBLIC_BASE_PATH=/mono/sub npm-run-all generate copy next:start"
   },
