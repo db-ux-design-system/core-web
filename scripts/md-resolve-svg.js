@@ -5,7 +5,7 @@ import { glob } from 'glob';
 import Replace from 'replace-in-file';
 
 // eslint-disable-next-line prefer-regex-literals
-const shieldRegex = new RegExp('https://img\\.shields\\.io/badge/(.*)\\.svg');
+const shieldRegex = new RegExp('https://img\\.shields\\.io/[^)|\\s]*');
 const docsPath = 'docs/images/download';
 
 const startReplacement = (file, filesToReplace) => {
