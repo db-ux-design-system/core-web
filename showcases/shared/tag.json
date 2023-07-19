@@ -68,35 +68,35 @@
 			{
 				"name": "Neutral Strong",
 				"props": {
-					"type": "strong"
+					"emphasis": "strong"
 				}
 			},
 			{
 				"name": "Critical Strong",
 				"props": {
 					"variant": "critical",
-					"type": "strong"
+					"emphasis": "strong"
 				}
 			},
 			{
 				"name": "Informational Strong",
 				"props": {
 					"variant": "informational",
-					"type": "strong"
+					"emphasis": "strong"
 				}
 			},
 			{
 				"name": "Successful Strong",
 				"props": {
 					"variant": "successful",
-					"type": "strong"
+					"emphasis": "strong"
 				}
 			},
 			{
 				"name": "Warning Strong",
 				"props": {
 					"variant": "warning",
-					"type": "strong"
+					"emphasis": "strong"
 				}
 			}
 		]
