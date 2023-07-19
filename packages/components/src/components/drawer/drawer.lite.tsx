@@ -35,7 +35,8 @@ export default function DBDrawer(props: DBDrawerProps) {
 			if (
 				event === 'close' ||
 				event.key === 'Escape' ||
-				(event.target.nodeName === 'DIALOG' && !props.noBackdrop)
+				(event.target.nodeName === 'DIALOG' &&
+					props.backdrop !== 'none')
 			) {
 				if (props.onClose) {
 					props.onClose();
@@ -48,7 +49,7 @@ export default function DBDrawer(props: DBDrawerProps) {
 					if (dialogContainerRef) {
 						dialogContainerRef.hidden = false;
 					}
-					if (props.noBackdrop) {
+					if (props.backdrop === 'none') {
 						dialogRef.show();
 					} else {
 						dialogRef.showModal();
@@ -90,8 +91,7 @@ export default function DBDrawer(props: DBDrawerProps) {
 				state.handleClose(event);
 			}}
 			onKeyDown={(event) => state.handleClose(event)}
-			data-backdrop={!props.noBackdrop}
-			data-emphasis={props.emphasis}>
+			data-backdrop={props.backdrop}>
 			<Show when={state.stylePath}>
 				<link rel="stylesheet" href={state.stylePath} />
 			</Show>

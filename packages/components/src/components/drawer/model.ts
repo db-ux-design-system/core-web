@@ -15,14 +15,10 @@ export interface DBDrawerDefaultProps {
 	direction?: 'left' | 'right' | 'up' | 'down';
 
 	/**
-	 * The emphasis attribute changes the opacity of the backdrop.
+	 * The backdrop attribute changes the opacity of the backdrop.
 	 */
-	emphasis?: 'strong' | 'weak';
-	/**
-	 * If noBackdrop is set there is no semi-transparent black background behind the drawer.
-	 * You can click behind the drawer without closing it.
-	 */
-	noBackdrop?: boolean;
+	backdrop?: 'strong' | 'weak' | 'none';
+
 	/**
 	 * The open attribute opens or closes the drawer based on the state.
 	 */
