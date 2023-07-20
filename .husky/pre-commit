@@ -5,6 +5,5 @@
 
 npx validate-branch-name
 npm run scripts:check-commit-mail
-npm run scripts:md-resolve-svg
 npx lint-staged
 npm run lint
