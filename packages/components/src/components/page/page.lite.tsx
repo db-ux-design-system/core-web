@@ -22,10 +22,11 @@ export default function DBPage(props: DBPageProps) {
 	let component: any;
 	// jscpd:ignore-start
 	const state = useStore<DBPageState>({
-		fontsLoaded: !props.fadeIn
+		fontsLoaded: false
 	});
 
 	onMount(() => {
+		state.fontsLoaded = !props.fadeIn;
 		if (props.stylePath) {
 			state.stylePath = props.stylePath;
 		}
