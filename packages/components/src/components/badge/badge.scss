@@ -51,6 +51,37 @@
 	}
 }
 
+%absolute-badge {
+	position: absolute;
+
+	transform: translate(var(--badge-transform-x), var(--badge-transform-y));
+
+	&[data-placement$="right"] {
+		--badge-transform-x: 50%;
+		inset-inline-end: 0;
+	}
+
+	&[data-placement$="left"] {
+		--badge-transform-x: -50%;
+		inset-inline-start: 0;
+	}
+
+	&[data-placement*="top"] {
+		--badge-transform-y: -50%;
+		inset-block-start: 0;
+	}
+
+	&[data-placement*="center"] {
+		--badge-transform-y: -50%;
+		inset-block-start: 50%;
+	}
+
+	&[data-placement*="bottom"] {
+		--badge-transform-y: 50%;
+		inset-block-end: 0;
+	}
+}
+
 .db-badge {
 	--badge-size: #{$db-spacing-fixed-sm};
 	@extend %tag-colors;
@@ -65,18 +96,20 @@
 	pointer-events: none;
 
 	&:empty,
-	> span:empty {
+	> span:empty,
+	&[data-no-text="true"] {
 		block-size: var(--badge-size);
 		inline-size: var(--badge-size);
 		padding: 0;
 	}
 
-	&:has(> .db-icon) {
+	&:has(.db-icon) {
 		padding-block: $db-spacing-fixed-2xs;
 		padding-inline: $db-spacing-fixed-2xs;
 	}
 
-	& > * {
+	& > *,
+	.db-icon {
 		@extend %db-body-sm;
 	}
 
@@ -86,51 +119,23 @@
 		padding-inline: $db-spacing-fixed-2xs;
 
 		&:empty,
-		> span:empty {
+		> span:empty,
+		&[data-no-text="true"] {
 			padding: 0;
 		}
 
-		&:has(> .db-icon) {
+		&:has(.db-icon) {
 			padding-block: $db-spacing-fixed-3xs;
 			padding-inline: $db-spacing-fixed-3xs;
 		}
 
-		& > * {
+		& > *,
+		.db-icon {
 			@extend %db-body-2xs;
 		}
 	}
 
 	&[data-placement^="corner"] {
-		position: absolute;
-
-		transform: translate(
-			var(--badge-transform-x),
-			var(--badge-transform-y)
-		);
-
-		&[data-placement$="right"] {
-			--badge-transform-x: 50%;
-			inset-inline-end: 0;
-		}
-
-		&[data-placement$="left"] {
-			--badge-transform-x: -50%;
-			inset-inline-start: 0;
-		}
-
-		&[data-placement*="top"] {
-			--badge-transform-y: -50%;
-			inset-block-start: 0;
-		}
-
-		&[data-placement*="center"] {
-			--badge-transform-y: -50%;
-			inset-block-start: 50%;
-		}
-
-		&[data-placement*="bottom"] {
-			--badge-transform-y: 50%;
-			inset-block-end: 0;
-		}
+		@extend %absolute-badge;
 	}
 }
