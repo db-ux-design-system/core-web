@@ -52,31 +52,85 @@
 }
 
 .db-badge {
+	--badge-size: #{$db-spacing-fixed-sm};
 	@extend %tag-colors;
 	@extend %component-border;
 	@extend %db-body-sm;
 	@extend %default-button;
 
 	display: flex;
-
 	border-radius: 42px; // extreme radius
-
 	padding-inline: $db-spacing-fixed-xs;
+	block-size: fit-content;
+	pointer-events: none;
 
 	&:empty,
 	> span:empty {
+		block-size: var(--badge-size);
+		inline-size: var(--badge-size);
+		padding: 0;
+	}
+
+	&:has(> .db-icon) {
 		padding-block: $db-spacing-fixed-2xs;
 		padding-inline: $db-spacing-fixed-2xs;
 	}
 
+	& > * {
+		@extend %db-body-sm;
+	}
+
 	&[data-size="small"] {
+		--badge-size: #{$db-spacing-fixed-xs};
 		@extend %db-body-2xs;
 		padding-inline: $db-spacing-fixed-2xs;
 
 		&:empty,
 		> span:empty {
+			padding: 0;
+		}
+
+		&:has(> .db-icon) {
 			padding-block: $db-spacing-fixed-3xs;
 			padding-inline: $db-spacing-fixed-3xs;
+		}
+
+		& > * {
+			@extend %db-body-2xs;
+		}
+	}
+
+	&[data-placement^="corner"] {
+		position: absolute;
+
+		transform: translate(
+			var(--badge-transform-x),
+			var(--badge-transform-y)
+		);
+
+		&[data-placement$="right"] {
+			--badge-transform-x: 50%;
+			inset-inline-end: 0;
+		}
+
+		&[data-placement$="left"] {
+			--badge-transform-x: -50%;
+			inset-inline-start: 0;
+		}
+
+		&[data-placement*="top"] {
+			--badge-transform-y: -50%;
+			inset-block-start: 0;
+		}
+
+		&[data-placement*="center"] {
+			--badge-transform-y: -50%;
+			inset-block-start: 50%;
+		}
+
+		&[data-placement*="bottom"] {
+			--badge-transform-y: 50%;
+			inset-block-end: 0;
 		}
 	}
 }

@@ -30,7 +30,8 @@ export default function DBBadge(props: DBBadgeProps) {
 			class={cls('db-badge', props.className)}
 			data-variant={props.variant}
 			data-size={props.size}
-			data-emphasis={props.emphasis}>
+			data-emphasis={props.emphasis}
+			data-placement={props.placement}>
 			<Show when={state.stylePath}>
 				<link rel="stylesheet" href={state.stylePath} />
 			</Show>

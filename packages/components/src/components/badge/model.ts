@@ -6,7 +6,16 @@ import {
 	SizeProps
 } from '../../shared/model';
 
-export interface DBBadgeDefaultProps {}
+export interface DBBadgeDefaultProps {
+	placement?:
+		| 'inline'
+		| 'corner-top-left'
+		| 'corner-top-right'
+		| 'corner-center-left'
+		| 'corner-center-right'
+		| 'corner-bottom-left'
+		| 'corner-bottom-right';
+}
 
 export type DBBadgeProps = DBBadgeDefaultProps &
 	GlobalProps &

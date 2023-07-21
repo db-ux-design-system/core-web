@@ -73,3 +73,9 @@ db-alert,
 dbalert {
 	inline-size: inherit;
 }
+
+// for db-badge
+
+*:has(.db-badge[data-placement^="corner"]) {
+	position: relative;
+}

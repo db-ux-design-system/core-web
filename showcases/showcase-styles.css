@@ -80,3 +80,16 @@
 	flex-wrap: wrap;
 	gap: var(--db-spacing-fixed-md);
 }
+
+.badge-inline-container {
+	display: flex;
+	gap: var(--db-spacing-fixed-sm);
+	padding-block: var(--db-spacing-fixed-xs);
+	padding-inline: var(--db-spacing-fixed-sm);
+	background-color: #fff;
+}
+
+.badge-inline-container .db-badge {
+	margin-inline-start: var(--db-spacing-responsive-md);
+	margin-block: auto;
+}

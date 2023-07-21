@@ -126,8 +126,86 @@
 				}
 			},
 			{
+				"name": "Dot - Small",
+				"props": {
+					"noContent": true,
+					"size": "small"
+				}
+			},
+			{
 				"name": "Text",
 				"props": {}
+			},
+			{
+				"name": "Icon",
+				"props": {
+					"example": "icon"
+				}
+			},
+			{
+				"name": "Icon - Small",
+				"props": {
+					"example": "icon",
+					"size": "small"
+				}
+			}
+		]
+	},
+	{
+		"name": "Placement",
+		"examples": [
+			{
+				"name": "Inline (Default)",
+				"props": {
+					"placement": "inline"
+				}
+			},
+			{
+				"name": "Corner - Top - Left",
+				"props": {
+					"placement": "corner-top-left"
+				}
+			},
+			{
+				"name": "Corner - Center - Left",
+				"props": {
+					"placement": "corner-center-left"
+				}
+			},
+			{
+				"name": "Corner - Bottom- Left",
+				"props": {
+					"placement": "corner-bottom-left"
+				}
+			},
+			{
+				"name": "Corner - Top - Right",
+				"props": {
+					"placement": "corner-top-right"
+				}
+			},
+			{
+				"name": "Corner - Center - Right",
+				"props": {
+					"placement": "corner-center-right"
+				}
+			},
+			{
+				"name": "Corner - Bottom- Right",
+				"props": {
+					"placement": "corner-bottom-right"
+				}
+			}
+		]
+	},
+	{
+		"name": "Examples",
+		"examples": [
+			{
+				"name": "Numbers",
+				"props": {
+					"example": "number"
+				}
 			}
 		]
 	}
