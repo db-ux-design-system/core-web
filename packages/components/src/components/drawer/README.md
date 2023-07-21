@@ -2,7 +2,7 @@
 
 ## General
 
-If you use `width !== full` you are able to overwrite the `max-width` with: `var(--db-drawer-max-width,calc(100% - $db-spacing-fixed-xl));`.
+If you use `width !== full` you are able to overwrite the `max-width` with: `var(--db-drawer-max-width, calc(100% - $db-spacing-fixed-xl));`.
 
 ## Angular
 
