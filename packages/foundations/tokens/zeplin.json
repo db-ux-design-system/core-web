@@ -1390,134 +1390,6 @@
 		}
 	},
 	"colors": {
-		"warning": {
-			"on": {
-				"enabled": {
-					"value": "rgb(255, 255, 255)",
-					"attributes": { "category": "color" }
-				},
-				"bg": {
-					"weak": {
-						"pressed": {
-							"value": "rgba(62, 37, 0, 0.25)",
-							"attributes": { "category": "color" }
-						},
-						"hover": {
-							"value": "rgba(62, 37, 0, 0.5)",
-							"attributes": { "category": "color" }
-						},
-						"enabled": {
-							"value": "rgba(62, 37, 0, 0.75)",
-							"attributes": { "category": "color" }
-						}
-					},
-					"pressed": {
-						"value": "rgba(62, 37, 0, 0.5)",
-						"attributes": { "category": "color" }
-					},
-					"enabled": {
-						"value": "rgb(62, 37, 0)",
-						"attributes": { "category": "color" }
-					},
-					"hover": {
-						"value": "rgba(62, 37, 0, 0.75)",
-						"attributes": { "category": "color" }
-					}
-				},
-				"hover": {
-					"value": "rgba(255, 255, 255, 0.75)",
-					"attributes": { "category": "color" }
-				},
-				"pressed": {
-					"value": "rgba(255, 255, 255, 0.5)",
-					"attributes": { "category": "color" }
-				}
-			},
-			"bg": {
-				"hover": {
-					"value": "rgb(236, 219, 197)",
-					"attributes": { "category": "color" }
-				},
-				"transparent": {
-					"full": {
-						"pressed": {
-							"value": "rgba(172, 102, 0, 0.24)",
-							"attributes": { "category": "color" }
-						},
-						"enabled": {
-							"value": "rgba(172, 102, 0, 0.0)",
-							"attributes": { "category": "color" }
-						},
-						"hover": {
-							"value": "rgba(172, 102, 0, 0.16)",
-							"attributes": { "category": "color" }
-						}
-					},
-					"semi": {
-						"hover": {
-							"value": "rgba(172, 102, 0, 0.16)",
-							"attributes": { "category": "color" }
-						},
-						"enabled": {
-							"value": "rgba(172, 102, 0, 0.08)",
-							"attributes": { "category": "color" }
-						},
-						"pressed": {
-							"value": "rgba(172, 102, 0, 0.24)",
-							"attributes": { "category": "color" }
-						}
-					}
-				},
-				"pressed": {
-					"value": "rgb(227, 204, 170)",
-					"attributes": { "category": "color" }
-				},
-				"enabled": {
-					"value": "rgb(245, 236, 224)",
-					"attributes": { "category": "color" }
-				}
-			},
-			"element": {
-				"hover": {
-					"value": "rgb(195, 116, 0)",
-					"attributes": { "category": "color" }
-				},
-				"enabled": {
-					"value": "rgb(214, 128, 0)",
-					"attributes": { "category": "color" }
-				},
-				"pressed": {
-					"value": "rgb(178, 106, 0)",
-					"attributes": { "category": "color" }
-				}
-			},
-			"border": {
-				"hover": {
-					"value": "rgba(158, 94, 0, 0.32)",
-					"attributes": { "category": "color" }
-				},
-				"enabled": {
-					"value": "rgba(172, 102, 0, 0.32)",
-					"attributes": { "category": "color" }
-				},
-				"pressed": {
-					"value": "rgba(146, 87, 0, 0.32)",
-					"attributes": { "category": "color" }
-				}
-			},
-			"pressed": {
-				"value": "rgb(146, 87, 0)",
-				"attributes": { "category": "color" }
-			},
-			"hover": {
-				"value": "rgb(158, 94, 0)",
-				"attributes": { "category": "color" }
-			},
-			"enabled": {
-				"value": "rgb(172, 102, 0)",
-				"attributes": { "category": "color" }
-			}
-		},
 		"informational": {
 			"on": {
 				"bg": {
@@ -1561,23 +1433,37 @@
 					"attributes": { "category": "color" }
 				}
 			},
-			"border": {
-				"pressed": {
-					"value": "rgba(0, 115, 157, 0.32)",
-					"attributes": { "category": "color" }
-				},
-				"hover": {
-					"value": "rgba(0, 125, 171, 0.32)",
-					"attributes": { "category": "color" }
-				},
-				"enabled": {
-					"value": "rgba(0, 135, 185, 0.32)",
-					"attributes": { "category": "color" }
-				}
-			},
 			"pressed": {
 				"value": "rgb(0, 115, 157)",
 				"attributes": { "category": "color" }
+			},
+			"border": {
+				"weak": {
+					"pressed": {
+						"value": "rgba(37, 133, 175, 0.32)",
+						"attributes": { "category": "color" }
+					},
+					"hover": {
+						"value": "rgba(42, 146, 192, 0.32)",
+						"attributes": { "category": "color" }
+					},
+					"enabled": {
+						"value": "rgba(0, 135, 185, 0.32)",
+						"attributes": { "category": "color" }
+					}
+				},
+				"hover": {
+					"value": "rgba(42, 146, 192, 0.64)",
+					"attributes": { "category": "color" }
+				},
+				"pressed": {
+					"value": "rgba(37, 133, 175, 0.64)",
+					"attributes": { "category": "color" }
+				},
+				"enabled": {
+					"value": "rgba(48, 159, 209, 0.64)",
+					"attributes": { "category": "color" }
+				}
 			},
 			"bg": {
 				"transparent": {
@@ -1611,7 +1497,7 @@
 					}
 				},
 				"pressed": {
-					"value": "rgb(170, 215, 231)",
+					"value": "rgb(170, 216, 232)",
 					"attributes": { "category": "color" }
 				},
 				"enabled": {
@@ -1619,7 +1505,7 @@
 					"attributes": { "category": "color" }
 				},
 				"hover": {
-					"value": "rgb(197, 227, 238)",
+					"value": "rgb(198, 228, 239)",
 					"attributes": { "category": "color" }
 				}
 			},
@@ -1643,134 +1529,6 @@
 			},
 			"enabled": {
 				"value": "rgb(0, 135, 185)",
-				"attributes": { "category": "color" }
-			}
-		},
-		"secondary": {
-			"border": {
-				"hover": {
-					"value": "rgba(66, 70, 79, 0.32)",
-					"attributes": { "category": "color" }
-				},
-				"pressed": {
-					"value": "rgba(91, 95, 102, 0.32)",
-					"attributes": { "category": "color" }
-				},
-				"enabled": {
-					"value": "rgba(40, 45, 55, 0.32)",
-					"attributes": { "category": "color" }
-				}
-			},
-			"on": {
-				"bg": {
-					"hover": {
-						"value": "rgba(14, 16, 19, 0.75)",
-						"attributes": { "category": "color" }
-					},
-					"weak": {
-						"enabled": {
-							"value": "rgba(14, 16, 19, 0.75)",
-							"attributes": { "category": "color" }
-						},
-						"hover": {
-							"value": "rgba(14, 16, 19, 0.5)",
-							"attributes": { "category": "color" }
-						},
-						"pressed": {
-							"value": "rgba(14, 16, 19, 0.25)",
-							"attributes": { "category": "color" }
-						}
-					},
-					"enabled": {
-						"value": "rgb(14, 16, 19)",
-						"attributes": { "category": "color" }
-					},
-					"pressed": {
-						"value": "rgba(14, 16, 19, 0.5)",
-						"attributes": { "category": "color" }
-					}
-				},
-				"hover": {
-					"value": "rgba(255, 255, 255, 0.75)",
-					"attributes": { "category": "color" }
-				},
-				"enabled": {
-					"value": "rgb(255, 255, 255)",
-					"attributes": { "category": "color" }
-				},
-				"pressed": {
-					"value": "rgba(255, 255, 255, 0.25)",
-					"attributes": { "category": "color" }
-				}
-			},
-			"bg": {
-				"transparent": {
-					"semi": {
-						"hover": {
-							"value": "rgba(40, 45, 55, 0.16)",
-							"attributes": { "category": "color" }
-						},
-						"enabled": {
-							"value": "rgba(40, 45, 55, 0.08)",
-							"attributes": { "category": "color" }
-						},
-						"pressed": {
-							"value": "rgba(40, 45, 55, 0.24)",
-							"attributes": { "category": "color" }
-						}
-					},
-					"full": {
-						"hover": {
-							"value": "rgba(40, 45, 55, 0.16)",
-							"attributes": { "category": "color" }
-						},
-						"enabled": {
-							"value": "rgba(40, 45, 55, 0.0)",
-							"attributes": { "category": "color" }
-						},
-						"pressed": {
-							"value": "rgba(40, 45, 55, 0.24)",
-							"attributes": { "category": "color" }
-						}
-					}
-				},
-				"hover": {
-					"value": "rgb(205, 206, 209)",
-					"attributes": { "category": "color" }
-				},
-				"pressed": {
-					"value": "rgb(183, 185, 187)",
-					"attributes": { "category": "color" }
-				},
-				"enabled": {
-					"value": "rgb(228, 229, 230)",
-					"attributes": { "category": "color" }
-				}
-			},
-			"element": {
-				"hover": {
-					"value": "rgb(66, 70, 79)",
-					"attributes": { "category": "color" }
-				},
-				"enabled": {
-					"value": "rgb(40, 45, 55)",
-					"attributes": { "category": "color" }
-				},
-				"pressed": {
-					"value": "rgb(91, 95, 102)",
-					"attributes": { "category": "color" }
-				}
-			},
-			"hover": {
-				"value": "rgb(66, 70, 79)",
-				"attributes": { "category": "color" }
-			},
-			"enabled": {
-				"value": "rgb(40, 45, 55)",
-				"attributes": { "category": "color" }
-			},
-			"pressed": {
-				"value": "rgb(91, 95, 102)",
 				"attributes": { "category": "color" }
 			}
 		},
@@ -1821,15 +1579,29 @@
 			},
 			"border": {
 				"hover": {
-					"value": "rgba(217, 0, 20, 0.32)",
+					"value": "rgba(217, 0, 20, 0.64)",
 					"attributes": { "category": "color" }
 				},
+				"weak": {
+					"hover": {
+						"value": "rgba(217, 0, 20, 0.32)",
+						"attributes": { "category": "color" }
+					},
+					"enabled": {
+						"value": "rgba(236, 0, 22, 0.32)",
+						"attributes": { "category": "color" }
+					},
+					"pressed": {
+						"value": "rgba(199, 0, 18, 0.32)",
+						"attributes": { "category": "color" }
+					}
+				},
 				"enabled": {
-					"value": "rgba(236, 0, 22, 0.32)",
+					"value": "rgba(236, 0, 22, 0.64)",
 					"attributes": { "category": "color" }
 				},
 				"pressed": {
-					"value": "rgba(199, 0, 18, 0.32)",
+					"value": "rgba(200, 0, 18, 0.64)",
 					"attributes": { "category": "color" }
 				}
 			},
@@ -1837,28 +1609,28 @@
 				"bg": {
 					"weak": {
 						"pressed": {
-							"value": "rgba(85, 0, 7, 0.25)",
+							"value": "rgba(85, 0, 8, 0.25)",
 							"attributes": { "category": "color" }
 						},
 						"hover": {
-							"value": "rgba(85, 0, 7, 0.5)",
+							"value": "rgba(85, 0, 8, 0.5)",
 							"attributes": { "category": "color" }
 						},
 						"enabled": {
-							"value": "rgba(85, 0, 7, 0.75)",
+							"value": "rgba(85, 0, 8, 0.75)",
 							"attributes": { "category": "color" }
 						}
 					},
 					"pressed": {
-						"value": "rgba(85, 0, 7, 0.5)",
+						"value": "rgba(85, 0, 8, 0.5)",
 						"attributes": { "category": "color" }
 					},
 					"enabled": {
-						"value": "rgb(85, 0, 7)",
+						"value": "rgb(85, 0, 8)",
 						"attributes": { "category": "color" }
 					},
 					"hover": {
-						"value": "rgba(85, 0, 7, 0.75)",
+						"value": "rgba(85, 0, 8, 0.75)",
 						"attributes": { "category": "color" }
 					}
 				},
@@ -1885,7 +1657,7 @@
 					"attributes": { "category": "color" }
 				},
 				"pressed": {
-					"value": "rgb(199, 0, 18)",
+					"value": "rgb(200, 0, 18)",
 					"attributes": { "category": "color" }
 				},
 				"hover": {
@@ -1898,11 +1670,167 @@
 				"attributes": { "category": "color" }
 			},
 			"pressed": {
-				"value": "rgb(199, 0, 18)",
+				"value": "rgb(200, 0, 18)",
+				"attributes": { "category": "color" }
+			}
+		},
+		"warning": {
+			"bg": {
+				"hover": {
+					"value": "rgb(236, 219, 197)",
+					"attributes": { "category": "color" }
+				},
+				"transparent": {
+					"full": {
+						"pressed": {
+							"value": "rgba(172, 102, 0, 0.24)",
+							"attributes": { "category": "color" }
+						},
+						"enabled": {
+							"value": "rgba(172, 102, 0, 0.0)",
+							"attributes": { "category": "color" }
+						},
+						"hover": {
+							"value": "rgba(172, 102, 0, 0.16)",
+							"attributes": { "category": "color" }
+						}
+					},
+					"semi": {
+						"hover": {
+							"value": "rgba(172, 102, 0, 0.16)",
+							"attributes": { "category": "color" }
+						},
+						"enabled": {
+							"value": "rgba(172, 102, 0, 0.08)",
+							"attributes": { "category": "color" }
+						},
+						"pressed": {
+							"value": "rgba(172, 102, 0, 0.24)",
+							"attributes": { "category": "color" }
+						}
+					}
+				},
+				"pressed": {
+					"value": "rgb(227, 204, 170)",
+					"attributes": { "category": "color" }
+				},
+				"enabled": {
+					"value": "rgb(245, 236, 224)",
+					"attributes": { "category": "color" }
+				}
+			},
+			"on": {
+				"enabled": {
+					"value": "rgb(255, 255, 255)",
+					"attributes": { "category": "color" }
+				},
+				"bg": {
+					"weak": {
+						"pressed": {
+							"value": "rgba(62, 37, 0, 0.25)",
+							"attributes": { "category": "color" }
+						},
+						"hover": {
+							"value": "rgba(62, 37, 0, 0.5)",
+							"attributes": { "category": "color" }
+						},
+						"enabled": {
+							"value": "rgba(62, 37, 0, 0.75)",
+							"attributes": { "category": "color" }
+						}
+					},
+					"pressed": {
+						"value": "rgba(62, 37, 0, 0.5)",
+						"attributes": { "category": "color" }
+					},
+					"enabled": {
+						"value": "rgb(62, 37, 0)",
+						"attributes": { "category": "color" }
+					},
+					"hover": {
+						"value": "rgba(62, 37, 0, 0.75)",
+						"attributes": { "category": "color" }
+					}
+				},
+				"hover": {
+					"value": "rgba(255, 255, 255, 0.75)",
+					"attributes": { "category": "color" }
+				},
+				"pressed": {
+					"value": "rgba(255, 255, 255, 0.5)",
+					"attributes": { "category": "color" }
+				}
+			},
+			"border": {
+				"enabled": {
+					"value": "rgba(172, 102, 0, 0.64)",
+					"attributes": { "category": "color" }
+				},
+				"weak": {
+					"hover": {
+						"value": "rgba(158, 94, 0, 0.32)",
+						"attributes": { "category": "color" }
+					},
+					"enabled": {
+						"value": "rgba(172, 102, 0, 0.32)",
+						"attributes": { "category": "color" }
+					},
+					"pressed": {
+						"value": "rgba(146, 87, 0, 0.32)",
+						"attributes": { "category": "color" }
+					}
+				},
+				"pressed": {
+					"value": "rgba(146, 87, 0, 0.64)",
+					"attributes": { "category": "color" }
+				},
+				"hover": {
+					"value": "rgba(158, 94, 0, 0.64)",
+					"attributes": { "category": "color" }
+				}
+			},
+			"element": {
+				"hover": {
+					"value": "rgb(196, 117, 0)",
+					"attributes": { "category": "color" }
+				},
+				"enabled": {
+					"value": "rgb(214, 128, 0)",
+					"attributes": { "category": "color" }
+				},
+				"pressed": {
+					"value": "rgb(177, 106, 0)",
+					"attributes": { "category": "color" }
+				}
+			},
+			"pressed": {
+				"value": "rgb(146, 87, 0)",
+				"attributes": { "category": "color" }
+			},
+			"hover": {
+				"value": "rgb(158, 94, 0)",
+				"attributes": { "category": "color" }
+			},
+			"enabled": {
+				"value": "rgb(172, 102, 0)",
 				"attributes": { "category": "color" }
 			}
 		},
 		"successful": {
+			"element": {
+				"hover": {
+					"value": "rgb(90, 152, 19)",
+					"attributes": { "category": "color" }
+				},
+				"pressed": {
+					"value": "rgb(81, 137, 16)",
+					"attributes": { "category": "color" }
+				},
+				"enabled": {
+					"value": "rgb(99, 166, 21)",
+					"attributes": { "category": "color" }
+				}
+			},
 			"bg": {
 				"transparent": {
 					"full": {
@@ -1943,54 +1871,40 @@
 					"attributes": { "category": "color" }
 				},
 				"hover": {
-					"value": "rgb(214, 227, 197)",
-					"attributes": { "category": "color" }
-				}
-			},
-			"element": {
-				"hover": {
-					"value": "rgb(91, 153, 19)",
-					"attributes": { "category": "color" }
-				},
-				"pressed": {
-					"value": "rgb(84, 140, 18)",
-					"attributes": { "category": "color" }
-				},
-				"enabled": {
-					"value": "rgb(99, 166, 21)",
+					"value": "rgb(215, 228, 198)",
 					"attributes": { "category": "color" }
 				}
 			},
 			"pressed": {
-				"value": "rgb(67, 115, 2)",
+				"value": "rgb(64, 112, 0)",
 				"attributes": { "category": "color" }
 			},
 			"on": {
 				"bg": {
 					"enabled": {
-						"value": "rgb(36, 60, 8)",
+						"value": "rgb(27, 48, 0)",
 						"attributes": { "category": "color" }
 					},
 					"weak": {
 						"pressed": {
-							"value": "rgba(36, 60, 8, 0.25)",
+							"value": "rgba(27, 48, 0, 0.25)",
 							"attributes": { "category": "color" }
 						},
 						"hover": {
-							"value": "rgba(36, 60, 8, 0.5)",
+							"value": "rgba(27, 48, 0, 0.5)",
 							"attributes": { "category": "color" }
 						},
 						"enabled": {
-							"value": "rgba(36, 60, 8, 0.75)",
+							"value": "rgba(27, 48, 0, 0.75)",
 							"attributes": { "category": "color" }
 						}
 					},
 					"hover": {
-						"value": "rgba(36, 60, 8, 0.75)",
+						"value": "rgba(27, 48, 0, 0.75)",
 						"attributes": { "category": "color" }
 					},
 					"pressed": {
-						"value": "rgba(36, 60, 8, 0.5)",
+						"value": "rgba(27, 48, 0, 0.5)",
 						"attributes": { "category": "color" }
 					}
 				},
@@ -2008,16 +1922,30 @@
 				}
 			},
 			"border": {
+				"weak": {
+					"hover": {
+						"value": "rgba(90, 152, 19, 0.32)",
+						"attributes": { "category": "color" }
+					},
+					"pressed": {
+						"value": "rgba(81, 137, 16, 0.32)",
+						"attributes": { "category": "color" }
+					},
+					"enabled": {
+						"value": "rgba(99, 166, 21, 0.32)",
+						"attributes": { "category": "color" }
+					}
+				},
+				"enabled": {
+					"value": "rgba(99, 166, 21, 0.64)",
+					"attributes": { "category": "color" }
+				},
 				"hover": {
-					"value": "rgba(71, 124, 1, 0.32)",
+					"value": "rgba(90, 152, 19, 0.64)",
 					"attributes": { "category": "color" }
 				},
 				"pressed": {
-					"value": "rgba(67, 115, 2, 0.32)",
-					"attributes": { "category": "color" }
-				},
-				"enabled": {
-					"value": "rgba(76, 133, 0, 0.32)",
+					"value": "rgba(81, 137, 16, 0.64)",
 					"attributes": { "category": "color" }
 				}
 			},
@@ -2026,11 +1954,181 @@
 				"attributes": { "category": "color" }
 			},
 			"hover": {
-				"value": "rgb(71, 124, 1)",
+				"value": "rgb(71, 123, 0)",
+				"attributes": { "category": "color" }
+			}
+		},
+		"secondary": {
+			"border": {
+				"weak": {
+					"hover": {
+						"value": "rgba(66, 71, 79, 0.32)",
+						"attributes": { "category": "color" }
+					},
+					"pressed": {
+						"value": "rgba(91, 95, 102, 0.32)",
+						"attributes": { "category": "color" }
+					},
+					"enabled": {
+						"value": "rgba(40, 45, 55, 0.32)",
+						"attributes": { "category": "color" }
+					}
+				},
+				"pressed": {
+					"value": "rgba(91, 95, 102, 0.64)",
+					"attributes": { "category": "color" }
+				},
+				"hover": {
+					"value": "rgba(66, 71, 79, 0.64)",
+					"attributes": { "category": "color" }
+				},
+				"enabled": {
+					"value": "rgba(40, 45, 55, 0.64)",
+					"attributes": { "category": "color" }
+				}
+			},
+			"on": {
+				"bg": {
+					"hover": {
+						"value": "rgba(14, 16, 20, 0.75)",
+						"attributes": { "category": "color" }
+					},
+					"weak": {
+						"enabled": {
+							"value": "rgba(14, 16, 20, 0.75)",
+							"attributes": { "category": "color" }
+						},
+						"hover": {
+							"value": "rgba(14, 16, 20, 0.5)",
+							"attributes": { "category": "color" }
+						},
+						"pressed": {
+							"value": "rgba(14, 16, 20, 0.25)",
+							"attributes": { "category": "color" }
+						}
+					},
+					"enabled": {
+						"value": "rgb(14, 16, 20)",
+						"attributes": { "category": "color" }
+					},
+					"pressed": {
+						"value": "rgba(14, 16, 20, 0.5)",
+						"attributes": { "category": "color" }
+					}
+				},
+				"hover": {
+					"value": "rgba(255, 255, 255, 0.75)",
+					"attributes": { "category": "color" }
+				},
+				"enabled": {
+					"value": "rgb(255, 255, 255)",
+					"attributes": { "category": "color" }
+				},
+				"pressed": {
+					"value": "rgba(255, 255, 255, 0.25)",
+					"attributes": { "category": "color" }
+				}
+			},
+			"bg": {
+				"transparent": {
+					"semi": {
+						"hover": {
+							"value": "rgba(40, 45, 55, 0.16)",
+							"attributes": { "category": "color" }
+						},
+						"enabled": {
+							"value": "rgba(40, 45, 55, 0.08)",
+							"attributes": { "category": "color" }
+						},
+						"pressed": {
+							"value": "rgba(40, 45, 55, 0.24)",
+							"attributes": { "category": "color" }
+						}
+					},
+					"full": {
+						"hover": {
+							"value": "rgba(40, 45, 55, 0.16)",
+							"attributes": { "category": "color" }
+						},
+						"enabled": {
+							"value": "rgba(40, 45, 55, 0.0)",
+							"attributes": { "category": "color" }
+						},
+						"pressed": {
+							"value": "rgba(40, 45, 55, 0.24)",
+							"attributes": { "category": "color" }
+						}
+					}
+				},
+				"hover": {
+					"value": "rgb(207, 207, 210)",
+					"attributes": { "category": "color" }
+				},
+				"pressed": {
+					"value": "rgb(184, 185, 189)",
+					"attributes": { "category": "color" }
+				},
+				"enabled": {
+					"value": "rgb(229, 229, 231)",
+					"attributes": { "category": "color" }
+				}
+			},
+			"element": {
+				"hover": {
+					"value": "rgb(66, 71, 79)",
+					"attributes": { "category": "color" }
+				},
+				"enabled": {
+					"value": "rgb(40, 45, 55)",
+					"attributes": { "category": "color" }
+				},
+				"pressed": {
+					"value": "rgb(91, 95, 102)",
+					"attributes": { "category": "color" }
+				}
+			},
+			"hover": {
+				"value": "rgb(66, 71, 79)",
+				"attributes": { "category": "color" }
+			},
+			"enabled": {
+				"value": "rgb(40, 45, 55)",
+				"attributes": { "category": "color" }
+			},
+			"pressed": {
+				"value": "rgb(91, 95, 102)",
 				"attributes": { "category": "color" }
 			}
 		},
 		"neutral": {
+			"border": {
+				"pressed": {
+					"value": "rgba(137, 141, 148, 0.64)",
+					"attributes": { "category": "color" }
+				},
+				"weak": {
+					"enabled": {
+						"value": "rgba(100, 105, 115, 0.32)",
+						"attributes": { "category": "color" }
+					},
+					"pressed": {
+						"value": "rgba(137, 141, 148, 0.32)",
+						"attributes": { "category": "color" }
+					},
+					"hover": {
+						"value": "rgba(119, 123, 132, 0.32)",
+						"attributes": { "category": "color" }
+					}
+				},
+				"hover": {
+					"value": "rgba(119, 123, 132, 0.64)",
+					"attributes": { "category": "color" }
+				},
+				"enabled": {
+					"value": "rgba(100, 105, 115, 0.64)",
+					"attributes": { "category": "color" }
+				}
+			},
 			"element": {
 				"hover": {
 					"value": "rgb(119, 123, 132)",
@@ -2045,28 +2143,14 @@
 					"attributes": { "category": "color" }
 				}
 			},
-			"border": {
-				"enabled": {
-					"value": "rgba(100, 105, 115, 0.32)",
-					"attributes": { "category": "color" }
-				},
-				"pressed": {
-					"value": "rgba(137, 141, 148, 0.32)",
-					"attributes": { "category": "color" }
-				},
-				"hover": {
-					"value": "rgba(119, 123, 132, 0.32)",
-					"attributes": { "category": "color" }
-				}
-			},
 			"bg": {
 				"0": {
 					"hover": {
-						"value": "rgb(228, 229, 229)",
+						"value": "rgb(236, 238, 237)",
 						"attributes": { "category": "color" }
 					},
 					"pressed": {
-						"value": "rgb(203, 203, 204)",
+						"value": "rgb(217, 219, 221)",
 						"attributes": { "category": "color" }
 					},
 					"enabled": {
@@ -2076,57 +2160,57 @@
 				},
 				"1": {
 					"pressed": {
-						"value": "rgb(195, 195, 197)",
+						"value": "rgb(213, 214, 217)",
 						"attributes": { "category": "color" }
 					},
 					"enabled": {
-						"value": "rgb(244, 245, 246)",
+						"value": "rgb(249, 249, 250)",
 						"attributes": { "category": "color" }
 					},
 					"hover": {
-						"value": "rgb(218, 220, 221)",
+						"value": "rgb(231, 232, 234)",
 						"attributes": { "category": "color" }
 					}
 				},
 				"2": {
 					"enabled": {
-						"value": "rgb(233, 234, 236)",
+						"value": "rgb(243, 243, 244)",
 						"attributes": { "category": "color" }
 					},
 					"hover": {
-						"value": "rgb(209, 211, 212)",
+						"value": "rgb(226, 226, 229)",
 						"attributes": { "category": "color" }
 					},
 					"pressed": {
-						"value": "rgb(186, 187, 190)",
+						"value": "rgb(209, 210, 214)",
 						"attributes": { "category": "color" }
 					}
 				},
 				"3": {
 					"hover": {
-						"value": "rgb(199, 202, 204)",
+						"value": "rgb(220, 221, 224)",
 						"attributes": { "category": "color" }
 					},
 					"pressed": {
-						"value": "rgb(178, 179, 183)",
+						"value": "rgb(204, 205, 209)",
 						"attributes": { "category": "color" }
 					},
 					"enabled": {
-						"value": "rgb(222, 224, 227)",
+						"value": "rgb(236, 237, 238)",
 						"attributes": { "category": "color" }
 					}
 				},
 				"4": {
 					"enabled": {
-						"value": "rgb(211, 213, 217)",
+						"value": "rgb(230, 231, 232)",
 						"attributes": { "category": "color" }
 					},
 					"hover": {
-						"value": "rgb(189, 192, 196)",
+						"value": "rgb(214, 216, 218)",
 						"attributes": { "category": "color" }
 					},
 					"pressed": {
-						"value": "rgb(170, 171, 175)",
+						"value": "rgb(199, 201, 205)",
 						"attributes": { "category": "color" }
 					}
 				},
@@ -2262,49 +2346,63 @@
 				}
 			},
 			"pressed": {
-				"value": "rgb(198, 0, 18)",
+				"value": "rgb(200, 0, 18)",
 				"attributes": { "category": "color" }
 			},
 			"border": {
-				"hover": {
-					"value": "rgba(217, 0, 20, 0.32)",
+				"weak": {
+					"hover": {
+						"value": "rgba(217, 0, 20, 0.32)",
+						"attributes": { "category": "color" }
+					},
+					"enabled": {
+						"value": "rgba(236, 0, 22, 0.32)",
+						"attributes": { "category": "color" }
+					},
+					"pressed": {
+						"value": "rgba(198, 0, 18, 0.32)",
+						"attributes": { "category": "color" }
+					}
+				},
+				"pressed": {
+					"value": "rgba(200, 0, 18, 0.64)",
 					"attributes": { "category": "color" }
 				},
 				"enabled": {
-					"value": "rgba(236, 0, 22, 0.32)",
+					"value": "rgba(236, 0, 22, 0.64)",
 					"attributes": { "category": "color" }
 				},
-				"pressed": {
-					"value": "rgba(198, 0, 18, 0.32)",
+				"hover": {
+					"value": "rgba(217, 0, 20, 0.64)",
 					"attributes": { "category": "color" }
 				}
 			},
 			"on": {
 				"bg": {
 					"pressed": {
-						"value": "rgba(85, 0, 7, 0.5)",
+						"value": "rgba(85, 0, 8, 0.5)",
 						"attributes": { "category": "color" }
 					},
 					"weak": {
 						"pressed": {
-							"value": "rgba(85, 0, 7, 0.25)",
+							"value": "rgba(85, 0, 8, 0.25)",
 							"attributes": { "category": "color" }
 						},
 						"hover": {
-							"value": "rgba(85, 0, 7, 0.5)",
+							"value": "rgba(85, 0, 8, 0.5)",
 							"attributes": { "category": "color" }
 						},
 						"enabled": {
-							"value": "rgba(85, 0, 7, 0.75)",
+							"value": "rgba(85, 0, 8, 0.75)",
 							"attributes": { "category": "color" }
 						}
 					},
 					"enabled": {
-						"value": "rgb(85, 0, 7)",
+						"value": "rgb(85, 0, 8)",
 						"attributes": { "category": "color" }
 					},
 					"hover": {
-						"value": "rgba(85, 0, 7, 0.75)",
+						"value": "rgba(85, 0, 8, 0.75)",
 						"attributes": { "category": "color" }
 					}
 				},
@@ -2331,7 +2429,7 @@
 					"attributes": { "category": "color" }
 				},
 				"pressed": {
-					"value": "rgb(198, 0, 18)",
+					"value": "rgb(200, 0, 18)",
 					"attributes": { "category": "color" }
 				},
 				"hover": {

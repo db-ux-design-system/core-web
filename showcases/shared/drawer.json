@@ -38,24 +38,6 @@
 		]
 	},
 	{
-		"name": "Emphasis",
-		"examples": [
-			{
-				"name": "Strong (Default)",
-				"props": {
-					"withCloseButton": true
-				}
-			},
-			{
-				"name": "Weak",
-				"props": {
-					"withCloseButton": true,
-					"emphasis": "weak"
-				}
-			}
-		]
-	},
-	{
 		"name": "Rounded",
 		"examples": [
 			{
@@ -115,10 +97,17 @@
 				}
 			},
 			{
+				"name": "Backdrop-weak",
+				"props": {
+					"withCloseButton": true,
+					"backdrop": "weak"
+				}
+			},
+			{
 				"name": "No Backdrop",
 				"props": {
 					"withCloseButton": true,
-					"noBackdrop": true
+					"backdrop": "none"
 				}
 			}
 		]
