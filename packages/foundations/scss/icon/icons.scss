@@ -8,14 +8,14 @@
 [data-icon],
 [data-icon-before] {
 	&::before {
-		@extend %icon !optional;
+		@extend %icon;
 		margin-inline-end: var(--icon-margin-after, #{$db-spacing-fixed-xs});
 	}
 }
 
 [data-icon-after] {
 	&::after {
-		@extend %icon !optional;
+		@extend %icon;
 		margin-inline-start: var(--icon-margin-before, #{$db-spacing-fixed-xs});
 	}
 }
