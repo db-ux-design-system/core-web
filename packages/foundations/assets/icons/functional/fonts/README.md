@@ -11,3 +11,5 @@ We're taking the SVG icons out of the other folder `packages/foundations/assets/
 -   Overwrite the previous used sources JSON file by the new `selection.json` ouf of that downloaded package
 -   Create an `woff2` version out of the included `woff` icon font file e.g. via the service <https://everythingfonts.com/woff-to-woff2>
 -   Overwrite the existing font file within `packages/foundations/assets/icons/functional/fonts` folder.
+
+Please additionally run `npm run generate:icon-types -w=@db-ui/components` after copying new SVG files to the `packages/foundations/assets/icons/functional/images` folder for our types to get updated.
