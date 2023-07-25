@@ -1,0 +1,71 @@
+{
+	"IcoMoonType": "selection",
+	"icons": [
+		{
+			"icon": {
+				"width": 975,
+				"paths": [
+					"M731.429 390.095c80.75 0 146.286 65.536 146.286 147.797 0 79.238-65.536 144.774-146.286 144.774h-48.762v24.381c0 94.501-76.215 170.667-170.667 170.667h-195.048c-0.087 0-0.19 0-0.293 0-94.095 0-170.374-76.279-170.374-170.374 0-0.103 0-0.206 0-0.309v0.016-316.952zM731.429 487.619h-48.762v97.524h48.762c0.291 0.006 0.634 0.010 0.978 0.010 26.207 0 47.486-21.096 47.784-47.232v-0.028c0-28.965-21.358-50.274-48.762-50.274zM292.571 292.571h97.524v-146.286h-97.524v146.286zM487.619 292.571h97.524v-195.048h-97.524v195.048z"
+				],
+				"attrs": [{}],
+				"isMulticolor": false,
+				"isMulticolor2": false,
+				"tags": ["coffee-cup-filled"],
+				"grid": 0
+			},
+			"attrs": [{}],
+			"properties": {
+				"order": 294,
+				"id": 0,
+				"name": "coffee-cup-filled",
+				"prevSize": 32,
+				"code": 9749
+			},
+			"setIdx": 51,
+			"setId": 59,
+			"iconIdx": 0
+		}
+	],
+	"height": 1024,
+	"metadata": {
+		"name": "db-icons",
+		"url": "https://db.de/db-ui",
+		"designerURL": "https://marketingportal.extranet.deutschebahn.com/de/icons-2"
+	},
+	"preferences": {
+		"showGlyphs": true,
+		"showCodes": true,
+		"showQuickUse": true,
+		"showQuickUse2": true,
+		"showSVGs": true,
+		"fontPref": {
+			"prefix": "icon-",
+			"metadata": {
+				"fontFamily": "db-icons",
+				"majorVersion": 1,
+				"minorVersion": 0,
+				"designerURL": "https://marketingportal.extranet.deutschebahn.com/de/icons-2",
+				"fontURL": "https://db.de/db-ui"
+			},
+			"metrics": { "emSize": 1024, "baseline": 6.25, "whitespace": 50 },
+			"embed": false,
+			"noie8": true,
+			"ie7": false,
+			"showSelector": true,
+			"showMetrics": true,
+			"showMetadata": true
+		},
+		"imagePref": {
+			"prefix": "icon-",
+			"png": true,
+			"useClassSelector": true,
+			"color": 0,
+			"bgColor": 16777215,
+			"name": "icomoon",
+			"classSelector": ".icon"
+		},
+		"historySize": 50,
+		"gridSize": 16,
+		"showGrid": true
+	}
+}

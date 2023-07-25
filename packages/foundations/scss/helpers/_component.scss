@@ -1,10 +1,12 @@
 @use "../variables" as *;
 @use "../color-placeholder" as *;
 @use "../helpers/functions" as *;
+@use "../icon/icons.helpers" as *;
 
-/* TODO: We should get the variables from UX */
+/* TODO: We should get the variables from UX, and probably want to make those global variables */
 $default-border-radius: 4px;
-$card-border-radius: 8px;
+$default-card-border-radius: var(--default-card-border-radius, 8px);
+$default-opacity: 0.25;
 
 %default-adaptive-border {
 	border: solid 1px var(--db-current-color, $db-colors-neutral-on-bg-enabled);
@@ -16,7 +18,10 @@ $card-border-radius: 8px;
 
 %component-border {
 	border: solid 1px
-		var(--db-current-border-color, $db-colors-neutral-border-enabled);
+		var(
+			--db-current-border-weak-color,
+			$db-colors-neutral-border-weak-enabled
+		);
 }
 
 %default-border-radius {
@@ -41,6 +46,26 @@ $card-border-radius: 8px;
 }
 
 %default-card {
-	border-radius: $card-border-radius;
+	border-radius: $default-card-border-radius;
 	box-shadow: $db-elevation-4;
+}
+
+%adaptive-critical-component {
+	@extend %db-bg-critical-transparent-semi;
+	@extend %db-bg-critical-transparent-semi-hover-state;
+}
+
+%adaptive-warning-component {
+	@extend %db-bg-warning-transparent-semi;
+	@extend %db-bg-warning-transparent-semi-hover-state;
+}
+
+%adaptive-informational-component {
+	@extend %db-bg-informational-transparent-semi;
+	@extend %db-bg-informational-transparent-semi-hover-state;
+}
+
+%adaptive-successful-component {
+	@extend %db-bg-successful-transparent-semi;
+	@extend %db-bg-successful-transparent-semi-hover-state;
 }

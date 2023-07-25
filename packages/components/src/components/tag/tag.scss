@@ -1,0 +1,174 @@
+@use "sass:map";
+@use "@db-ui/foundations/build/scss/init" as *;
+@use "@db-ui/foundations/build/scss/variables" as *;
+@use "@db-ui/foundations/build/scss/variables.global" as *;
+@use "@db-ui/foundations/build/scss/color-placeholder" as *;
+@use "@db-ui/foundations/build/scss/helpers/component" as *;
+@use "@db-ui/foundations/build/scss/color/color-variants" as *;
+@use "@db-ui/foundations/build/scss/body-styles" as *;
+@use "../../styles/button-components";
+@use "@db-ui/foundations/build/scss/helpers/functions" as *;
+
+@mixin get-border-and-icon($colors) {
+	&:not(&[data-type="strong"]) {
+		--db-current-border-color: #{map.get($colors, "border")};
+		/*
+		.tag-label {
+			::before {
+				color: map.get($colors, "element");
+			}
+		}
+*/
+	}
+}
+
+%tag-colors {
+	@extend %db-bg-neutral-4;
+
+	&[data-type="strong"] {
+		@extend %db-neutral-component;
+	}
+
+	@each $name, $colors in $component-variants {
+		&[data-variant="#{$name}"] {
+			@if ($name == "critical") {
+				@extend %db-bg-critical;
+
+				&[data-type="strong"] {
+					@extend %db-critical-component;
+				}
+			} @else if ($name == "informational") {
+				@extend %db-bg-informational;
+
+				&[data-type="strong"] {
+					@extend %db-informational-component;
+				}
+			} @else if ($name == "warning") {
+				@extend %db-bg-warning;
+
+				&[data-type="strong"] {
+					@extend %db-warning-component;
+				}
+			} @else if ($name == "successful") {
+				@extend %db-bg-successful;
+
+				&[data-type="strong"] {
+					@extend %db-successful-component;
+				}
+			}
+
+			@include get-border-and-icon($colors);
+		}
+	}
+}
+
+%interactive-colors {
+	&:has(input:not(:checked)) {
+		@extend %db-bg-neutral-0-ia;
+	}
+
+	&:has(input:checked) {
+		@extend %db-bg-neutral-4-ia;
+
+		&[data-type="strong"] {
+			@extend %db-neutral-component-ia;
+		}
+
+		@each $name, $colors in $component-variants {
+			&[data-variant="#{$name}"] {
+				@if ($name == "critical") {
+					@extend %db-bg-critical-ia;
+
+					&[data-type="strong"] {
+						@extend %db-critical-component-ia;
+					}
+				} @else if ($name == "informational") {
+					@extend %db-bg-informational-ia;
+
+					&[data-type="strong"] {
+						@extend %db-informational-component-ia;
+					}
+				} @else if ($name == "warning") {
+					@extend %db-bg-warning-ia;
+
+					&[data-type="strong"] {
+						@extend %db-warning-component-ia;
+					}
+				} @else if ($name == "successful") {
+					@extend %db-bg-successful-ia;
+
+					&[data-type="strong"] {
+						@extend %db-successful-component-ia;
+					}
+				}
+
+				@include get-border-and-icon($colors);
+			}
+		}
+	}
+}
+
+.db-tag {
+	@extend %focus-placeholder;
+	@extend %default-interactive-component;
+	@extend %component-border;
+	@extend %db-body-sm;
+	@extend %default-button;
+
+	block-size: $db-sizing-sm;
+	min-inline-size: $db-sizing-sm;
+	inline-size: fit-content;
+	transition:
+		background-color $db-transition-color,
+		color $db-transition-color;
+
+	&:not(&[data-interactive="true"]) {
+		@extend %tag-colors;
+	}
+
+	&[data-interactive="true"] {
+		@extend %interactive-colors;
+	}
+
+	input {
+		@include a11y-visually-hidden();
+	}
+
+	.tag-label {
+		@extend %db-body-sm;
+		display: block;
+
+		&:not(.is-icon-text-replace) {
+			margin-inline: $db-spacing-fixed-2xs;
+			/*
+			::before {
+				margin-inline-end: $db-spacing-fixed-2xs;
+			}
+*/
+		}
+
+		&[data-overflow="true"] {
+			max-inline-size: $db-sizing-2xl;
+			text-overflow: ellipsis;
+			overflow: hidden;
+		}
+
+		&[data-icon] {
+			--icon-margin-after: #{$db-spacing-fixed-3xs};
+
+			&::before {
+				vertical-align: top;
+			}
+		}
+	}
+
+	.db-button[data-size="small"] {
+		border-radius: to-rem(3);
+		block-size: 100%;
+	}
+
+	&[data-disabled="true"] {
+		opacity: $default-opacity;
+		pointer-events: none;
+	}
+}

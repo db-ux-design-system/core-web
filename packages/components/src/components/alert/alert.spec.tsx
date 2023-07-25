@@ -2,30 +2,30 @@ import { test, expect } from '@playwright/experimental-ct-react';
 import AxeBuilder from '@axe-core/playwright';
 
 import { DBAlert } from './index';
-// @ts-ignore - vue can only find it with .ts as file ending
-import { TESTING_VIEWPORTS, VARIANTS } from '../../shared/constants.ts';
+import {
+	DEFAULT_VIEWPORT,
+	TESTING_VIEWPORTS,
+	VARIANTS
+	// @ts-ignore - vue can only find it with .ts as file ending
+} from '../../shared/constants.ts';
 
 const comp = <DBAlert>Test</DBAlert>;
 
-const testComponent = (viewport) => {
-	test(`should contain text for device ${viewport.name}`, async ({
-		mount
-	}) => {
+const testComponent = () => {
+	test(`should contain text`, async ({ mount }) => {
 		const component = await mount(comp);
 		await expect(component).toContainText('Test');
 	});
 
-	test(`should match screenshot for device ${viewport.name}`, async ({
-		mount
-	}) => {
+	test(`should match screenshot`, async ({ mount }) => {
 		const component = await mount(comp);
 		await expect(component).toHaveScreenshot();
 	});
 };
 
-const testVariants = (viewport) => {
+const testVariants = () => {
 	for (const variant of VARIANTS) {
-		test(`should match screenshot for variant ${variant} and device ${viewport.name}`, async ({
+		test(`should match screenshot for variant ${variant}`, async ({
 			mount
 		}) => {
 			const component = await mount(
@@ -36,15 +36,16 @@ const testVariants = (viewport) => {
 	}
 };
 
-test.describe('DBAlert component', () => {
-	TESTING_VIEWPORTS.forEach((viewport) => {
-		test.use({ viewport });
-		testComponent(viewport);
-		testVariants(viewport);
-	});
+test.describe('DBAlert', () => {
+	test.use({ viewport: DEFAULT_VIEWPORT });
+	testComponent();
+});
+test.describe('DBAlert', () => {
+	test.use({ viewport: DEFAULT_VIEWPORT });
+	testVariants();
 });
 
-test.describe('DBAlert component A11y', () => {
+test.describe('DBAlert', () => {
 	test('should not have any accessibility issues', async ({
 		page,
 		mount

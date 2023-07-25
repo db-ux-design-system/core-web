@@ -1,35 +1,73 @@
 [
 	{
+		"name": "Tonality",
+		"examples": [
+			{
+				"name": "functional",
+				"className": "db-ui-functional",
+				"props": {
+					"label": "Label",
+					"description": "functional"
+				}
+			},
+			{
+				"name": "regular (Default)",
+				"className": "db-ui-regular",
+				"props": {
+					"label": "Label",
+					"description": "regular (Default)"
+				}
+			},
+			{
+				"name": "expressive",
+				"className": "db-ui-expressive",
+				"props": {
+					"label": "Label",
+					"description": "expressive"
+				}
+			}
+		]
+	},
+	{
 		"name": "Variant",
 		"examples": [
 			{
 				"name": "(Default) Basic",
-				"code": {
-					"default": "<DBInput label=\"Label\" description=\"Description\" />"
+				"props": {
+					"label": "Label",
+					"description": "(Default) Basic"
 				}
 			},
 			{
 				"name": "Informational",
-				"code": {
-					"default": "<DBInput label=\"Label\" description=\"Description\" variant=\"informational\"/>"
+				"props": {
+					"label": "Label",
+					"description": "Informational",
+					"variant": "informational"
 				}
 			},
 			{
 				"name": "Warning",
-				"code": {
-					"default": "<DBInput label=\"Label\" description=\"Description\" variant=\"warning\"/>"
+				"props": {
+					"label": "Label",
+					"description": "Warning",
+					"variant": "warning"
 				}
 			},
 			{
 				"name": "Critical",
-				"code": {
-					"default": "<DBInput label=\"Label\" description=\"Description\" variant=\"critical\"/>"
+				"props": {
+					"label": "Label",
+					"description": "Critical",
+					"variant": "critical"
 				}
 			},
 			{
 				"name": "Successful",
-				"code": {
-					"default": "<DBInput label=\"Label\" description=\"Description\" variant=\"successful\"/>"
+				"props": {
+					"label": "Label",
+					"description": "Successful",
+					"variant": "successful"
 				}
 			}
 		]
@@ -39,44 +77,62 @@
 		"examples": [
 			{
 				"name": "Default",
-				"code": {
-					"default": "<DBInput label=\"Label\" description=\"Description\" />"
+				"props": {
+					"label": "Label",
+					"description": "Default"
 				}
 			},
 			{
 				"name": "Filled",
-				"code": {
-					"default": "<DBInput label=\"Label\" value=\"Input Text\"/>"
+				"props": {
+					"label": "Label",
+					"value": "Input Text",
+					"description": "Filled"
 				}
 			},
 			{
 				"name": "Filled Number",
-				"code": {
-					"default": "<DBInput label=\"Label\" value=\"123456\" type=\"number\"/>"
+				"props": {
+					"label": "Label",
+					"value": "123456",
+					"type": "number",
+					"description": "Filled Number"
 				}
 			},
 			{
 				"name": "Invalid",
-				"code": {
-					"default": "<DBInput label=\"Label\" minLength={5} required description=\"minLength=5\"/>"
+				"props": {
+					"label": "Label",
+					"description": "Invalid",
+					"required": true,
+					"minLength": 5
 				}
 			},
 			{
 				"name": "Disabled",
-				"code": {
-					"default": "<DBInput label=\"Label\" disabled/>"
+				"props": {
+					"label": "Label",
+					"disabled": true,
+					"description": "Disabled"
 				}
 			},
 			{
 				"name": "Disabled with value",
-				"code": {
-					"default": "<DBInput label=\"Label\" value=\"Input Text\" disabled/>"
+				"props": {
+					"label": "Label",
+					"value": "Input Text",
+					"disabled": true,
+					"description": "Disabled with value"
 				}
 			},
 			{
 				"name": "Required",
-				"code": {
-					"default": "<DBInput label=\"Label\" value=\"Input Text\" disabled required/>"
+				"props": {
+					"label": "Label",
+					"value": "Input Text",
+					"disabled": true,
+					"required": true,
+					"description": "Required"
 				}
 			}
 		]
@@ -86,32 +142,43 @@
 		"examples": [
 			{
 				"name": "(Default) Text",
-				"code": {
-					"default": "<DBInput label=\"Label\"/>"
+				"props": {
+					"label": "Label",
+					"description": "(Default) Text"
 				}
 			},
 			{
 				"name": "Leading Icon + Text",
-				"code": {
-					"default": "<DBInput icon=\"account\" label=\"Label\"/>"
+				"props": {
+					"label": "Label",
+					"icon": "account",
+					"description": "Leading Icon + Text"
 				}
 			},
 			{
 				"name": "Leading Icon + Text + Trailing Icon",
-				"code": {
-					"default": "<DBInput icon=\"account\" label=\"Label\" iconAfter=\"edit\"/>"
+				"props": {
+					"label": "Label",
+					"icon": "account",
+					"iconAfter": "edit",
+					"description": "Leading Icon + Text + Trailing Icon"
 				}
 			},
 			{
 				"name": "Text + Trailing Icon",
-				"code": {
-					"default": "<DBInput label=\"Label\" iconAfter=\"edit\"/>"
+				"props": {
+					"label": "Label",
+					"iconAfter": "edit",
+					"description": "Text + Trailing Icon"
 				}
 			},
 			{
 				"name": "Text + Trailing Icon + Variant:Successful",
-				"code": {
-					"default": "<DBInput label=\"Label\" iconAfter=\"edit\" variant=\"successful\"/>"
+				"props": {
+					"label": "Label",
+					"variant": "successful",
+					"iconAfter": "edit",
+					"description": "Text + Trailing Icon + Variant:Successful"
 				}
 			}
 		]

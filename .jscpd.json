@@ -15,6 +15,8 @@
 		"**/output/**",
 		"**/node_modules/**",
 		"**/__snapshots__/**",
+		"**/test-results/**",
+		"**/*.spec.tsx",
 		"**/.next/**",
 		"**/.github/**",
 		"**/next-showcase/components/**",
@@ -25,10 +27,21 @@
 		"**/tsconfig.json",
 		"**/angular-*/**/main.ts",
 		"**/README.md",
+		"**/generated/**",
+		"showcases/shared/*.json",
 		"packages/components/src/components/alert/alert.lite.tsx",
 		"showcases/react-showcase/src/components/alert/index.tsx",
+		"packages/components/src/components/checkbox/checkbox.lite.tsx",
+		"showcases/react-showcase/src/components/checkbox/index.tsx",
 		"packages/components/src/components/radio/radio.lite.tsx",
-		"showcases/react-showcase/src/components/radio/index.tsx"
+		"showcases/react-showcase/src/components/radio/index.tsx",
+		"showcases/react-showcase/src/components/radio/index.tsx",
+		"showcases/react-showcase/src/components/alert/index.tsx",
+		"showcases/vue-showcase/src/components/form/Form.vue",
+		"packages/components/src/components/**/*.spec.tsx",
+		"packages/components/src/components/tag/tag.spec.tsx",
+		"**/**config.ts",
+		"packages/foundations/assets/icons/functional/fonts/sources/*.json"
 	],
 	"absolute": true
 }

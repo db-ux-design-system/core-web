@@ -1,17 +1,18 @@
-import type {
-	DefaultComponentExample,
-	DefaultComponentVariants
-} from '../../../shared/default-component-data';
+import type { ReactElement } from 'react';
+import type { DefaultComponentVariants } from '../../../shared/default-component-data';
 
 export const getVariants = (
 	defaultComponentVariants: DefaultComponentVariants[],
-	getExampleMatrix: (exampleName: string) => DefaultComponentExample[][]
-): DefaultComponentVariants[] => {
-	return defaultComponentVariants.map((variant, index) => ({
+	getExample: (props: any) => ReactElement
+): DefaultComponentVariants[] =>
+	defaultComponentVariants.map((variant, variantIndex) => ({
 		...variant,
 		examples: variant.examples.map((example, exampleIndex) => ({
 			...example,
-			...getExampleMatrix(example.name ?? '')[index][exampleIndex]
+			example: getExample({
+				...example.props,
+				id: example.props.id ?? example.name,
+				children: example.props.children ?? example.name
+			})
 		}))
 	}));
-};

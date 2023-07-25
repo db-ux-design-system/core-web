@@ -1,0 +1,198 @@
+@use "sass:map";
+@use "./../../styles/dialog-init" as *;
+@use "@db-ui/foundations/build/scss/variables" as *;
+@use "@db-ui/foundations/build/scss/variables.global" as *;
+@use "@db-ui/foundations/build/scss/helpers/functions" as *;
+@use "@db-ui/foundations/build/scss/helpers/component" as *;
+@use "@db-ui/foundations/build/scss/animation/animations" as *;
+
+%direction-right {
+	inset-inline: auto 0;
+
+	&[data-rounded="true"] {
+		border-start-start-radius: $default-card-border-radius;
+		border-end-start-radius: $default-card-border-radius;
+	}
+}
+
+%direction-left {
+	inset-inline: 0 auto;
+
+	&[data-rounded="true"] {
+		border-start-end-radius: $default-card-border-radius;
+		border-end-end-radius: $default-card-border-radius;
+	}
+}
+
+%full-horizontal {
+	&:not([data-width="full"]) {
+		max-block-size: var(
+			--db-drawer-max-height,
+			calc(100% - $db-spacing-fixed-xl)
+		);
+		max-inline-size: none;
+	}
+}
+
+%direction-up {
+	@extend %full-horizontal;
+	inset: auto 0 0;
+
+	&[data-rounded="true"] {
+		border-start-end-radius: $default-card-border-radius;
+		border-start-start-radius: $default-card-border-radius;
+	}
+}
+%direction-down {
+	@extend %full-horizontal;
+	inset: 0 0 auto;
+
+	&[data-rounded="true"] {
+		border-end-end-radius: $default-card-border-radius;
+		border-end-start-radius: $default-card-border-radius;
+	}
+}
+
+%close-button-position {
+	margin-inline-start: $db-spacing-fixed-lg;
+	float: right;
+}
+
+$spacings: (
+	"small": (
+		"block": $db-spacing-fixed-xs,
+		"inline": $db-spacing-fixed-md
+	),
+	"medium": (
+		"block": $db-spacing-fixed-sm,
+		"inline": $db-spacing-fixed-lg
+	),
+	"large": (
+		"block": $db-spacing-fixed-md,
+		"inline": $db-spacing-fixed-xl
+	),
+	"none": (
+		"block": 0,
+		"inline": 0
+	)
+);
+
+@mixin get-spacing($spacing) {
+	padding-block: map.get($spacing, "block");
+
+	.db-drawer-header {
+		padding-block-end: map.get($spacing, "block");
+		padding-inline: map.get($spacing, "inline");
+	}
+
+	.db-drawer-content {
+		padding-inline: map.get($spacing, "inline");
+	}
+}
+
+%spacing-drawer {
+	@each $name, $spacing in $spacings {
+		@if ($name == "medium") {
+			@include get-spacing($spacing);
+		}
+
+		&[data-spacing="#{$name}"] {
+			@include get-spacing($spacing);
+		}
+	}
+}
+
+.db-drawer {
+	.db-drawer-container {
+		@extend %direction-right;
+		@extend %spacing-drawer;
+		display: flex;
+		flex-direction: column;
+		background-color: $db-colors-neutral-bg-0-enabled;
+		block-size: 100%;
+		inline-size: 100%;
+		position: fixed;
+		box-shadow: $db-elevation-4;
+
+		&:not([data-width="full"]) {
+			max-inline-size: var(
+				--db-drawer-max-width,
+				calc(100% - $db-spacing-fixed-xl)
+			);
+		}
+
+		&[data-rounded="true"] {
+			box-shadow: $db-elevation-4;
+		}
+
+		&[data-direction="left"] {
+			@extend %direction-left;
+		}
+
+		&[data-direction="up"] {
+			@extend %direction-up;
+		}
+
+		&[data-direction="down"] {
+			@extend %direction-down;
+		}
+
+		.db-drawer-header {
+			@include divider("bottom");
+			display: block;
+
+			.button-close-drawer {
+				@extend %close-button-position;
+
+				// angular-workaround
+				button {
+					@extend %close-button-position;
+				}
+			}
+
+			&:not(:has(> :nth-child(1))) {
+				display: none;
+			}
+		}
+	}
+
+	&[open] {
+		.db-drawer-container {
+			&:not([data-direction]),
+			&[data-direction="right"] {
+				animation: show-right-to-left $animation-show-timing;
+			}
+
+			&[data-direction="left"] {
+				animation: show-left-to-right $animation-show-timing;
+			}
+
+			&[data-direction="up"] {
+				animation: show-bottom-to-top $animation-show-timing;
+			}
+
+			&[data-direction="down"] {
+				animation: show-top-to-bottom $animation-show-timing;
+			}
+
+			&[hidden] {
+				&:not([data-direction]),
+				&[data-direction="right"] {
+					animation: hide-right-to-left $animation-hide-timing;
+				}
+
+				&[data-direction="left"] {
+					animation: hide-left-to-right $animation-hide-timing;
+				}
+
+				&[data-direction="up"] {
+					animation: hide-bottom-to-top $animation-hide-timing;
+				}
+
+				&[data-direction="down"] {
+					animation: hide-top-to-bottom $animation-hide-timing;
+				}
+			}
+		}
+	}
+}

@@ -38,16 +38,15 @@ const DefaultComponent = ({ title, variants }: DefaultComponentProps) => {
 			{variants?.map((variant, index) => (
 				<div key={`${variant.name}-${index}`}>
 					<DBDivider></DBDivider>
-					<h2>
-						<DBLink
-							content="external"
-							target="_blank"
-							href={`${
-								window.location.href
-							}&page=${variant.name.toLowerCase()}`}>
-							{variant.name}
-						</DBLink>
-					</h2>
+					<DBLink
+						className="link-headline"
+						content="external"
+						target="_blank"
+						href={`${
+							window.location.href
+						}&page=${variant.name.toLowerCase()}`}>
+						{variant.name}
+					</DBLink>
 					<VariantList {...variant} />
 				</div>
 			))}

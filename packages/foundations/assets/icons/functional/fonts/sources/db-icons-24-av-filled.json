@@ -1,0 +1,162 @@
+{
+	"IcoMoonType": "selection",
+	"icons": [
+		{
+			"icon": {
+				"paths": [
+					"M768 426.667c23.564 0 42.667 19.103 42.667 42.667v0c0 150.528-111.189 278.016-256 298.667v85.333h85.333c23.564 0 42.667 19.103 42.667 42.667v0c0 21.888-19.2 42.667-42.667 42.667h-256c-23.564 0-42.667-19.103-42.667-42.667v0c0-21.888 19.2-42.667 42.667-42.667h85.333v-85.333c-144.811-20.651-256-148.139-256-298.667 0-23.564 19.103-42.667 42.667-42.667s42.667 19.103 42.667 42.667v0c0 117.821 95.513 213.333 213.333 213.333s213.333-95.513 213.333-213.333v0c0-23.564 19.103-42.667 42.667-42.667v0zM512 85.333c79.744 0 149.333 66.987 149.333 149.333v234.667c0 82.475-66.859 149.333-149.333 149.333v0c-79.744 0-149.333-66.987-149.333-149.333v-234.667c0-82.475 66.859-149.333 149.333-149.333v0z"
+				],
+				"attrs": [{}],
+				"isMulticolor": false,
+				"isMulticolor2": false,
+				"grid": 0,
+				"tags": ["db_ic_microphone_solid_24"]
+			},
+			"attrs": [{}],
+			"properties": {
+				"order": 92,
+				"id": 4,
+				"name": "db_ic_microphone_solid_24",
+				"prevSize": 32,
+				"code": 127908
+			},
+			"setIdx": 0,
+			"setId": 1,
+			"iconIdx": 0
+		},
+		{
+			"icon": {
+				"paths": [
+					"M298.667 725.163v-424.96c0-45.483 34.688-86.869 85.333-86.869 18.688 0 34.688 5.333 50.688 16.043l338.645 211.115c22.656 17.408 37.333 44.117 37.333 72.192 0 28.032-13.355 54.784-37.333 70.827l-338.688 212.48c-13.948 9.080-30.984 14.533-49.285 14.677h-0.038c-0.355 0.005-0.775 0.008-1.195 0.008-47.199 0-85.461-38.262-85.461-85.461 0-0.018 0-0.036 0-0.054v0.003z"
+				],
+				"attrs": [{}],
+				"isMulticolor": false,
+				"isMulticolor2": false,
+				"tags": ["play-filled"],
+				"grid": 0
+			},
+			"attrs": [{}],
+			"properties": {
+				"order": 147,
+				"id": 0,
+				"name": "play-filled",
+				"prevSize": 32,
+				"code": 9655
+			},
+			"setIdx": 0,
+			"setId": 1,
+			"iconIdx": 1
+		},
+		{
+			"icon": {
+				"paths": [
+					"M810.667 723.456v-422.912c-0.383-48.010-39.201-86.827-87.174-87.21h-0.037c-17.024 0-34.048 5.973-49.067 16.043l-275.371 211.456c-23.040 16.043-36.053 43.093-36.053 71.168s13.013 55.125 36.053 71.168l275.328 211.456c15.061 10.027 32.085 16.043 50.133 16.043 44.075 0 86.187-37.12 86.187-87.211zM298.539 725.461v-427.947c-0.168-23.181-18.927-41.925-42.098-42.069h-0.014c-23.040 0-43.093 19.029-43.093 42.069v427.947c0 23.040 19.029 42.112 43.093 42.112 23.040 0 42.112-19.029 42.112-42.112z"
+				],
+				"attrs": [{}],
+				"isMulticolor": false,
+				"isMulticolor2": false,
+				"tags": ["skip-backward-filled"],
+				"grid": 0
+			},
+			"attrs": [{}],
+			"properties": {
+				"order": 148,
+				"id": 1,
+				"name": "skip-backward-filled",
+				"prevSize": 32,
+				"code": 9198
+			},
+			"setIdx": 0,
+			"setId": 1,
+			"iconIdx": 2
+		},
+		{
+			"icon": {
+				"paths": [
+					"M213.333 723.456v-422.912c0.383-48.010 39.201-86.827 87.174-87.21h0.037c17.024 0 34.048 5.973 49.067 16.043l275.371 211.456c23.040 16.043 36.053 43.093 36.053 71.168s-13.013 55.125-36.053 71.168l-275.328 211.456c-14.010 9.817-31.35 15.782-50.069 16.042l-0.064 0.001c-44.075 0-86.187-37.12-86.187-87.211zM725.461 725.461v-427.947c0-23.040 19.072-42.069 42.112-42.069s43.093 19.029 43.093 42.069v427.947c0 23.040-19.029 42.112-43.093 42.112-23.209-0.12-41.992-18.903-42.112-42.101v-0.011z"
+				],
+				"attrs": [{}],
+				"isMulticolor": false,
+				"isMulticolor2": false,
+				"tags": ["skip-forward-filled"],
+				"grid": 0
+			},
+			"attrs": [{}],
+			"properties": {
+				"order": 149,
+				"id": 2,
+				"name": "skip-forward-filled",
+				"prevSize": 32,
+				"code": 9197
+			},
+			"setIdx": 0,
+			"setId": 1,
+			"iconIdx": 3
+		},
+		{
+			"icon": {
+				"paths": [
+					"M256 640v-256c0-70.692 57.308-128 128-128v0h256c70.692 0 128 57.308 128 128v0 256c0 70.692-57.308 128-128 128v0h-256c-70.692 0-128-57.308-128-128v0z"
+				],
+				"attrs": [{}],
+				"isMulticolor": false,
+				"isMulticolor2": false,
+				"tags": ["stop-filled"],
+				"grid": 0
+			},
+			"attrs": [{}],
+			"properties": {
+				"order": 150,
+				"id": 3,
+				"name": "stop-filled",
+				"prevSize": 32,
+				"code": 9633
+			},
+			"setIdx": 0,
+			"setId": 1,
+			"iconIdx": 4
+		}
+	],
+	"height": 1024,
+	"metadata": {
+		"name": "db-icons",
+		"url": "https://db.de/db-ui",
+		"designerURL": "https://marketingportal.extranet.deutschebahn.com/de/icons-2"
+	},
+	"preferences": {
+		"showGlyphs": true,
+		"showCodes": true,
+		"showQuickUse": true,
+		"showQuickUse2": true,
+		"showSVGs": true,
+		"fontPref": {
+			"prefix": "icon-",
+			"metadata": {
+				"fontFamily": "db-icons",
+				"majorVersion": 1,
+				"minorVersion": 0,
+				"designerURL": "https://marketingportal.extranet.deutschebahn.com/de/icons-2",
+				"fontURL": "https://db.de/db-ui"
+			},
+			"metrics": { "emSize": 1024, "baseline": 6.25, "whitespace": 50 },
+			"embed": false,
+			"noie8": true,
+			"ie7": false,
+			"showSelector": true,
+			"showMetrics": true,
+			"showMetadata": true
+		},
+		"imagePref": {
+			"prefix": "icon-",
+			"png": true,
+			"useClassSelector": true,
+			"color": 0,
+			"bgColor": 16777215,
+			"name": "icomoon",
+			"classSelector": ".icon"
+		},
+		"historySize": 50,
+		"gridSize": 16,
+		"showGrid": true
+	}
+}

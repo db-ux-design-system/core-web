@@ -8,8 +8,6 @@ For general installation and configuration look at the [components](https://www.
 <!-- index.html -->
 ...
 <body>
-	<div
-		class="db-card"
-	>Card content</div>
+	<div class="db-card">Card content</div>
 </body>
 ```

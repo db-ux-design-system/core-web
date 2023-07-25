@@ -3,8 +3,8 @@
   "version": "0.0.0",
   "description": "",
   "scripts": {
-    "build:dotnet": " cd DBUI && dotnet build --configuration Release",
-    "build:msbuild": " cd DBUI && msbuild -property:configuration=Release"
+    "build:dotnet": "cd DBUI && dotnet build --configuration Release",
+    "build:msbuild": "cd DBUI && msbuild -property:configuration=Release"
   },
   "devDependencies": {
     "@types/node": "^16.4",

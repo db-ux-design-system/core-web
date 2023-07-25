@@ -1,0 +1,93 @@
+{
+	"IcoMoonType": "selection",
+	"icons": [
+		{
+			"icon": {
+				"paths": [
+					"M439.893 137.088l-343.893 682.667c-6.656 13.995-10.667 27.989-10.667 41.984 0 41.941 32.043 76.928 78.805 76.928h695.723c46.805 0 78.805-34.987 78.805-76.928 0-12.587-4.011-27.989-10.667-41.984l-342.571-682.667c-17.963-33.579-45.397-51.755-73.429-51.755s-53.76 18.176-72.107 51.755zM511.317 802.987c-24.021 0-42.709-19.584-42.709-44.757s18.688-44.8 42.709-44.8 42.752 19.584 42.752 44.757-18.688 44.8-42.752 44.8zM469.333 623.915v-239.915c0-25.173 18.645-42.667 42.667-42.667s42.667 17.493 42.667 42.667v239.915c0.725 27.989-18.645 44.8-42.667 44.8s-42.667-18.219-42.667-44.8z"
+				],
+				"attrs": [{}],
+				"isMulticolor": false,
+				"isMulticolor2": false,
+				"tags": ["db_ic_warning_solid_24"],
+				"grid": 0
+			},
+			"attrs": [{}],
+			"properties": {
+				"order": 189,
+				"id": 0,
+				"name": "db_ic_warning_solid_24",
+				"prevSize": 32,
+				"code": 9888
+			},
+			"setIdx": 0,
+			"setId": 0,
+			"iconIdx": 0
+		},
+		{
+			"icon": {
+				"paths": [
+					"M85.333 512c-0-0.127-0-0.277-0-0.427 0-235.406 190.834-426.24 426.24-426.24 0.15 0 0.3 0 0.45 0l-0.023-0c0.127-0 0.277-0 0.427-0 235.406 0 426.24 190.834 426.24 426.24 0 0.15-0 0.3-0 0.45l0-0.023c0 0.127 0 0.277 0 0.427 0 235.406-190.834 426.24-426.24 426.24-0.15 0-0.3-0-0.45-0l0.023 0c-0.127 0-0.277 0-0.427 0-235.406 0-426.24-190.834-426.24-426.24 0-0.15 0-0.3 0-0.45l-0 0.023zM513.067 759.979c26.667 0 48-21.333 48-48s-21.333-48-48-48-48 21.333-48 48.043 21.333 48 48 48v-0.043zM469.333 557.312h0.043c-0.043 22.699 19.968 41.387 43.947 41.387s41.344-17.365 41.344-41.387v-258.645c0-23.979-17.323-42.667-41.344-42.667s-43.989 18.645-43.989 42.667v258.645z"
+				],
+				"attrs": [{}],
+				"isMulticolor": false,
+				"isMulticolor2": false,
+				"tags": ["db_ic_error_solid_24"],
+				"grid": 0
+			},
+			"attrs": [{}],
+			"properties": {
+				"order": 188,
+				"id": 1,
+				"name": "db_ic_error_solid_24",
+				"prevSize": 32,
+				"code": 921891
+			},
+			"setIdx": 0,
+			"setId": 0,
+			"iconIdx": 1
+		}
+	],
+	"height": 1024,
+	"metadata": {
+		"name": "db-icons",
+		"url": "https://db.de/db-ui",
+		"designerURL": "https://marketingportal.extranet.deutschebahn.com/de/icons-2"
+	},
+	"preferences": {
+		"showGlyphs": true,
+		"showCodes": true,
+		"showQuickUse": true,
+		"showQuickUse2": true,
+		"showSVGs": true,
+		"fontPref": {
+			"prefix": "icon-",
+			"metadata": {
+				"fontFamily": "db-icons",
+				"majorVersion": 1,
+				"minorVersion": 0,
+				"designerURL": "https://marketingportal.extranet.deutschebahn.com/de/icons-2",
+				"fontURL": "https://db.de/db-ui"
+			},
+			"metrics": { "emSize": 1024, "baseline": 6.25, "whitespace": 50 },
+			"embed": false,
+			"noie8": true,
+			"ie7": false,
+			"showSelector": true,
+			"showMetrics": true,
+			"showMetadata": true
+		},
+		"imagePref": {
+			"prefix": "icon-",
+			"png": true,
+			"useClassSelector": true,
+			"color": 0,
+			"bgColor": 16777215,
+			"name": "icomoon",
+			"classSelector": ".icon"
+		},
+		"historySize": 50,
+		"gridSize": 16,
+		"showGrid": true
+	}
+}

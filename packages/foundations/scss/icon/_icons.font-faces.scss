@@ -13,9 +13,10 @@
 		font-family: $icon-font-family;
 		font-style: normal;
 		font-weight: normal;
-		src: url("#{$icons-path}functional/fonts/#{$icon-font-family}.woff2?4r2095")
+		src:
+			url("#{$icons-path}functional/fonts/#{$icon-font-family}.woff2?4r2096")
 				format("woff2"),
-			url("#{$icons-path}functional/fonts/#{$icon-font-family}.woff?4r2095")
+			url("#{$icons-path}functional/fonts/#{$icon-font-family}.woff?4r2096")
 				format("woff");
 	}
 }

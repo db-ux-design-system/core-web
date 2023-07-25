@@ -1,41 +1,82 @@
 [
 	{
+		"name": "Tonality",
+		"examples": [
+			{
+				"name": "functional",
+				"className": "db-ui-functional",
+				"props": {
+					"name": "Tonality",
+					"value": "functional"
+				}
+			},
+			{
+				"name": "regular (Default)",
+				"className": "db-ui-regular",
+				"props": {
+					"name": "Tonality",
+					"value": "regular"
+				}
+			},
+			{
+				"name": "expressive",
+				"className": "db-ui-expressive",
+				"props": {
+					"name": "Tonality",
+					"value": "expressive"
+				}
+			}
+		]
+	},
+	{
 		"name": "States",
 		"examples": [
 			{
 				"name": "Default",
-				"code": {
-					"default": "<DBRadio name=\"States\">Label</DBRadio>"
+				"props": {
+					"name": "States",
+					"value": "default"
 				}
 			},
 			{
 				"name": "Disabled",
-				"code": {
-					"default": "<DBRadio disabled name=\"States\">Label</DBRadio>"
+				"props": {
+					"name": "States",
+					"disabled": true,
+					"value": "disabled"
 				}
 			},
 			{
 				"name": "Disabled checked",
-				"code": {
-					"default": "<DBRadio disabled checked name=\"SpecialState\">Label</DBRadio>"
+				"props": {
+					"name": "SpecialState",
+					"disabled": true,
+					"checked": true,
+					"value": "disabled-checked"
 				}
 			},
 			{
 				"name": "Required",
-				"code": {
-					"default": "<DBRadio required name=\"States\">Label</DBRadio>"
+				"props": {
+					"name": "States",
+					"required": true,
+					"value": "required"
 				}
 			},
 			{
 				"name": "Checked",
-				"code": {
-					"default": "<DBRadio checked name=\"States\">Label</DBRadio>"
+				"props": {
+					"name": "States",
+					"checked": true,
+					"value": "checked"
 				}
 			},
 			{
 				"name": "Invalid",
-				"code": {
-					"default": "<DBRadio invalid name=\"States\">Label</DBRadio>"
+				"props": {
+					"name": "States",
+					"invalid": true,
+					"value": "invalid"
 				}
 			}
 		]
@@ -45,14 +86,17 @@
 		"examples": [
 			{
 				"name": "Default",
-				"code": {
-					"default": "<DBRadio name=\"Size\">Label</DBRadio>"
+				"props": {
+					"name": "Size",
+					"value": "default"
 				}
 			},
 			{
 				"name": "Small",
-				"code": {
-					"default": "<DBRadio size=\"small\" name=\"Size\">Label</DBRadio>"
+				"props": {
+					"name": "Size",
+					"size": "small",
+					"value": "small"
 				}
 			}
 		]

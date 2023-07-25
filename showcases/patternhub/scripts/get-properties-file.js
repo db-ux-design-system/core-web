@@ -1,4 +1,4 @@
-import getUnionElements from './get-union-elements.js';
+import { getColorVariants, getUnionElements } from './utils.js';
 
 const getOptions = (tsType) => {
 	switch (tsType.name) {
@@ -6,8 +6,17 @@ const getOptions = (tsType) => {
 			return tsType.value;
 		}
 
+		case 'Array': {
+			return `const array:${tsType.raw} = [${tsType.elements
+				.map((element) => getOptions(element))
+				.join('\n')}]`;
+		}
+
 		case 'signature': {
 			return `${tsType.raw
+				.replace(/\/\*\*\n\t/g, '')
+				.replace(/\*\/\n\t/g, '')
+				.replace(/\*/g, '//')
 				.replace(/{/g, '&#123;')
 				.replace(/}/g, '&#125;')
 				.replace(/\r\n\t\t/g, ' ')
@@ -20,6 +29,10 @@ const getOptions = (tsType) => {
 			const options = [];
 			getUnionElements(options, tsType.elements);
 			return options.join(' &#124; ');
+		}
+
+		case 'COLOR': {
+			return getColorVariants().join(' &#124; ');
 		}
 
 		default: {
@@ -45,7 +58,6 @@ const getPropertiesFile = ({ displayName, description, props }) => {
 		propTable += `| ${
 			prop.description.replace(/\r\n|\r|\n/g, '<br/>') || 'No description'
 		} `;
-		propTable += `| ${prop.required ? '✅' : '❌'} `;
 		propTable += `| ${prop.tsType.type ?? prop.tsType.name} `;
 		propTable += `| ${
 			options
@@ -61,8 +73,8 @@ import DefaultPage from "../../../components/default-page";
 ${description}
 ## Properties
 
-| Name | Description | Required | Type | Options |
-| ---- | ----------- | :------: | ---- | ------- |
+| Name | Description | Type | Options |
+| ---- | ----------- | ---- | ------- |
 ${propTable}
 
 export default ({ children }) => <DefaultPage>{children}</DefaultPage>;`;

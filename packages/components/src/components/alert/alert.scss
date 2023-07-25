@@ -1,65 +1,54 @@
+@use "sass:map";
 @use "@db-ui/foundations/build/scss/variables" as *;
 @use "@db-ui/foundations/build/scss/variables.global" as *;
 @use "@db-ui/foundations/build/scss/color-placeholder" as *;
 @use "@db-ui/foundations/build/scss/helpers/component" as *;
+@use "@db-ui/foundations/build/scss/color/color-variants" as *;
 
-$variants: (
-	"critical": (
-		var(
-			--db-colors-critical-border-enabled,
-			$db-colors-critical-border-enabled
-		),
-		var(
-			--db-colors-critical-element-enabled,
-			$db-colors-critical-element-enabled
-		)
-	),
-	"informational": (
-		var(
-			--db-colors-informational-border-enabled,
-			$db-colors-informational-border-enabled
-		),
-		var(
-			--db-colors-informational-element-enabled,
-			$db-colors-informational-element-enabled
-		)
-	),
-	"warning": (
-		var(
-			--db-colors-warning-border-enabled,
-			$db-colors-warning-border-enabled
-		),
-		var(
-			--db-colors-warning-element-enabled,
-			$db-colors-warning-element-enabled
-		)
-	),
-	"successful": (
-		var(
-			--db-colors-successful-border-enabled,
-			$db-colors-successful-border-enabled
-		),
-		var(
-			--db-colors-successful-element-enabled,
-			$db-colors-successful-element-enabled
-		)
-	)
-);
+%grid-layout {
+	grid-template-areas: "icon content close";
+	grid-template-columns: min-content 1fr min-content;
 
-@mixin handle-links($show-headline) {
-	.db-alert-headline-link {
-		@if ($show-headline) {
-			display: inherit;
-		} @else {
-			display: none;
+	&:has(.db-alert-link) {
+		grid-template-areas: "icon content link close";
+		grid-template-columns: min-content 1fr min-content min-content;
+	}
+
+	@media screen and (max-width: $db-screens-s) {
+		&:has(.db-alert-link) {
+			grid-template-columns: min-content 1fr min-content;
+			grid-template-areas:
+				"icon content close"
+				"icon link link";
 		}
 	}
 
-	.db-alert-content-link {
-		@if ($show-headline) {
-			display: none;
-		} @else {
-			display: inherit;
+	&:has(.db-alert-headline) {
+		grid-template-columns: min-content 1fr 1fr min-content;
+		grid-template-areas:
+			"icon head head close"
+			"icon content content content";
+
+		&:has(.db-alert-link) {
+			grid-template-columns: min-content 1fr 1fr min-content min-content;
+			grid-template-areas:
+				"icon head head link close"
+				"icon content content content content";
+		}
+
+		@media screen and (max-width: $db-screens-s) {
+			grid-template-columns: min-content 1fr min-content;
+			grid-template-areas:
+				"icon head close"
+				"icon content content";
+
+			&:has(.db-alert-link) {
+				grid-template-columns: min-content 1fr min-content;
+				grid-template-areas:
+					"icon head close"
+					"icon content content"
+					"icon link link";
+			}
 		}
 	}
 }
@@ -67,27 +56,44 @@ $variants: (
 .db-alert {
 	@extend %db-bg-neutral-0;
 	@extend %component-border;
-
-	@include handle-links(true);
-
-	@media screen and (max-width: $db-screens-s) {
-		@include handle-links(false);
-	}
-
+	@extend %grid-layout;
+	display: grid;
 	padding: $db-spacing-fixed-md;
-	display: flex;
-	gap: $db-spacing-fixed-md;
-	width: 100%;
+	gap: $db-spacing-fixed-xs $db-spacing-fixed-md;
+	inline-size: inherit;
 
 	// TODO: probably extract this to an overwrite or external file
 	text-align: start; // workaround for power apps
 
-	.db-icon {
-		&::before {
-			/* TODO: Take filled icons if they are ready */
-			--icon-font-family: var(--db-base-icon-font-family);
-			--icon-font-size: var(--db-base-icon-font-size);
-		}
+	dblink,
+	db-link {
+		// workaround angular
+		display: inline-flex;
+	}
+
+	.db-alert-headline {
+		grid-area: head;
+	}
+
+	.db-alert-content {
+		grid-area: content;
+		margin: 0;
+	}
+
+	.db-alert-link {
+		grid-area: link;
+	}
+
+	.db-alert-close {
+		grid-area: close;
+	}
+
+	&::before {
+		/* TODO: Take filled icons if they are ready */
+		--icon-font-family: var(--db-base-icon-font-family);
+		--icon-font-size: var(--db-base-icon-font-size);
+		grid-area: icon;
+		margin-inline-end: 0;
 	}
 
 	&[data-type="inline"] {
@@ -98,7 +104,7 @@ $variants: (
 		}
 	}
 
-	@each $name, $colors in $variants {
+	@each $name, $colors in $component-variants {
 		&[data-variant="#{$name}"] {
 			@if ($name == "critical") {
 				@extend %db-bg-critical;
@@ -110,29 +116,11 @@ $variants: (
 				@extend %db-bg-successful;
 			}
 
-			--db-current-border-color: #{nth($colors, 1)};
+			--db-current-border-color: #{map.get($colors, "border")};
 
-			.db-alert-icon {
-				color: nth($colors, 2);
+			&::before {
+				color: map.get($colors, "element");
 			}
 		}
 	}
-}
-
-.db-alert-content-container {
-	display: flex;
-	flex-direction: column;
-	gap: $db-spacing-fixed-xs;
-	width: 100%;
-}
-
-.db-alert-headline-container {
-	display: flex;
-	gap: $db-spacing-fixed-lg;
-	justify-content: space-between;
-}
-
-.db-alert-close-container {
-	display: flex;
-	gap: $db-spacing-fixed-md;
 }

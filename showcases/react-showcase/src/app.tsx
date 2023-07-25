@@ -1,12 +1,16 @@
 import type { ChangeEvent } from 'react';
 import { Link, Outlet } from 'react-router-dom';
-import { DBBrand, DBHeader, DBPage } from '../../../output/react/src';
-
+import {
+	DBBrand,
+	DBHeader,
+	DBPage,
+	DBNavigationItem
+} from '../../../output/react/src';
 import {
 	COLORS,
 	TONALITIES
 } from '../../../packages/components/src/shared/constants';
-import { NAVIGATION_ITEMS } from './utils/navigation-item';
+import { getSortedNavigationItems } from './utils/navigation-item';
 import useQuery from './hooks/use-query';
 
 const App = () => {
@@ -34,12 +38,12 @@ const App = () => {
 					slotDesktopNavigation={
 						<nav className="desktop-navigation">
 							<ul>
-								{NAVIGATION_ITEMS.sort((a, b) => {
-									return a.home ? -1 : 0;
-								}).map((navItem) => (
+								{getSortedNavigationItems().map((navItem) => (
 									<li key={`router-path-${navItem.path}`}>
 										<Link to={navItem.path}>
-											{navItem.label}
+											<DBNavigationItem>
+												{navItem.label}
+											</DBNavigationItem>
 										</Link>
 									</li>
 								))}

@@ -1,35 +1,55 @@
 [
 	{
+		"name": "Tonality",
+		"examples": [
+			{
+				"name": "functional",
+				"className": "db-ui-functional",
+				"props": {}
+			},
+			{
+				"name": "regular (Default)",
+				"className": "db-ui-regular",
+				"props": {}
+			},
+			{
+				"name": "expressive",
+				"className": "db-ui-expressive",
+				"props": {}
+			}
+		]
+	},
+	{
 		"name": "Variant",
 		"examples": [
 			{
 				"name": "(Default) Adaptive",
-				"code": {
-					"default": "<DBInfotext icon=\"account\">Infotext</DBInfotext>"
+				"props": {
+					"icon": "account"
 				}
 			},
 			{
 				"name": "Critical",
-				"code": {
-					"default": "<DBInfotext variant=\"critical\">Infotext</DBInfotext>"
+				"props": {
+					"variant": "critical"
 				}
 			},
 			{
 				"name": "Informational",
-				"code": {
-					"default": "<DBInfotext variant=\"informational\">Infotext</DBInfotext>"
+				"props": {
+					"variant": "informational"
 				}
 			},
 			{
 				"name": "Successful",
-				"code": {
-					"default": "<DBInfotext variant=\"successful\">Infotext</DBInfotext>"
+				"props": {
+					"variant": "successful"
 				}
 			},
 			{
 				"name": "Warning",
-				"code": {
-					"default": "<DBInfotext variant=\"warning\">Infotext</DBInfotext>"
+				"props": {
+					"variant": "warning"
 				}
 			}
 		]
@@ -39,14 +59,12 @@
 		"examples": [
 			{
 				"name": "(Default) Medium",
-				"code": {
-					"default": "<DBInfotext>Infotext</DBInfotext>"
-				}
+				"props": {}
 			},
 			{
 				"name": "Small",
-				"code": {
-					"default": "<DBInfotext size=\"small\">Infotext</DBInfotext>"
+				"props": {
+					"size": "small"
 				}
 			}
 		]

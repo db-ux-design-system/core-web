@@ -1,10 +1,10 @@
 export type DefaultComponentExample = {
 	name?: string;
 	example?: any;
-	style?: { width?: string }; // Add additional css properties here if you need more
+	style?: { display?: string; width?: string; height?: string }; // Add additional css properties here if you need more
 	className?: string;
+	props?: any;
 	code?: {
-		default: string;
 		html?: string; // We will generate this with reacts 'renderToString'
 		angular?: string;
 		react?: string;

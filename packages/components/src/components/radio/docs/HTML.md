@@ -8,7 +8,13 @@ For general installation and configuration look at the [components](https://www.
 <!-- index.html -->
 ...
 <body>
-	<input type="radio" class="db-radio" id="radio-element" name="States" />
+	<input
+		type="radio"
+		class="db-radio"
+		id="radio-element"
+		name="States"
+		value="Y"
+	/>
 	<label for="radio-element">Label</label>
 </body>
 ```

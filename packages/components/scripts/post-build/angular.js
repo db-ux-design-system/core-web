@@ -24,16 +24,85 @@ const changeFile = (component, input) => {
 				return line.replace(': ElementRef', ': ElementRef | undefined');
 			}
 
-			if (line.includes('formRef.nativeElement')) {
-				return line.replace(
-					'formRef.nativeElement',
-					'formRef?.nativeElement'
-				);
+			if (line.includes('.nativeElement') && !line.includes('=')) {
+				return line.replace('.nativeElement', '?.nativeElement');
 			}
 
 			return line;
 		})
 		.join('\n');
+};
+
+/**
+ * This replacement inserts everything used for form elements to work with reactive forms and ngModel in angular
+ *
+ * @param {*} replacements
+ * @param {*} componentName
+ * @param {*} valueAccessor 	'checked' | 'value' [adopt if needed]
+ */
+const setControlValueAccessorReplacements = (
+	replacements,
+	componentName,
+	valueAccessor
+) => {
+	// for native angular support (e.g. reactive forms) we have to implement
+	// the ControlValueAccessor interface with all impacts :/
+	const upperComponentName = `DB${
+		componentName.charAt(0).toUpperCase() + componentName.slice(1)
+	}`;
+
+	replacements.push({
+		from: '} from "@angular/core";',
+		to:
+			`, Renderer2 } from "@angular/core";\n` +
+			`import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';\n`
+	});
+
+	// inserting provider
+	replacements.push({
+		from: '@Component({',
+		to: `@Component({
+		providers: [{
+			provide: NG_VALUE_ACCESSOR,
+			useExisting: ${upperComponentName},
+			multi: true
+		}],	`
+	});
+
+	// implementing interface and constructor
+	replacements.push({
+		from: `export class ${upperComponentName} {`,
+		to: `export class ${upperComponentName} implements ControlValueAccessor {
+		constructor(private renderer: Renderer2) { }`
+	});
+
+	// insert custom interface functions before ngOnInit
+	// TODO update attribute by config if necessary (e.g. for checked attribute?)
+	replacements.push({
+		from: 'ngOnInit()',
+		to: `
+		writeValue(value: any) {
+		  this.${valueAccessor} = value;
+
+		  if (this.component?.nativeElement) {
+			 this.renderer.setProperty(this.component?.nativeElement, '${valueAccessor}', value);
+		  }
+		}
+
+		registerOnChange(onChange: any) {
+		  this.propagateChange = onChange;
+		}
+
+		registerOnTouched(onTouched: any) {
+		 //this.onTouched = onTouched;
+		}
+
+		setDisabledState(disabled: boolean) {
+		  this.disabled = disabled;
+		}
+
+		ngOnInit()`
+	});
 };
 
 module.exports = (tmp) => {
@@ -47,9 +116,23 @@ module.exports = (tmp) => {
 			processor: (input) => changeFile(component, input)
 		};
 
+		const replacements = [];
+
+		if (
+			component.config &&
+			component.config.angular &&
+			component.config.angular.controlValueAccessor
+		) {
+			setControlValueAccessorReplacements(
+				replacements,
+				componentName,
+				component.config.angular.controlValueAccessor // value / checked / ...
+			);
+		}
+
 		try {
 			Replace.sync(options);
-			runReplacements([], component, 'angular', file);
+			runReplacements(replacements, component, 'angular', file);
 		} catch (error) {
 			console.error('Error occurred:', error);
 		}

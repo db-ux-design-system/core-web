@@ -8,17 +8,14 @@ import {
 	COLOR_CONST,
 	TONALITY_CONST
 } from '../../../../packages/components/src/shared/constants';
-import { NAVIGATION_ITEMS } from './utils/navigation-item';
+import { getSortedNavigationItems } from './utils/navigation-item';
 
 @Component({
 	selector: 'app-root',
 	templateUrl: './app.component.html'
 })
 export class AppComponent implements OnInit {
-	navigationItems = NAVIGATION_ITEMS.sort((a, b) => {
-		if (a.pathMatch) return -1;
-		return 0;
-	});
+	navigationItems = getSortedNavigationItems();
 
 	tonalities = TONALITIES;
 	colors = COLORS;

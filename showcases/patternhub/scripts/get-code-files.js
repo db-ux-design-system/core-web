@@ -1,34 +1,72 @@
-/* eslint-disable unicorn/prefer-logical-operator-over-ternary */
+/* eslint-disable no-await-in-loop */
 import FS from 'node:fs';
+import prettier from 'prettier';
+import prettier0 from 'prettier/parser-babel.js';
+import { allExamples } from './generated';
+import { getCodeByFramework } from './utils.js';
 
 const sharedPath = '../shared';
 const reactPath = '../react-showcase/src/components';
 
-// TODO: Pass renderToString as html code
-const codeFrameworks = ['html', 'angular', 'react', 'vue'];
+const codeFrameworks = ['angular', 'react', 'vue', 'html'];
+const plugins = [prettier0];
 
-const getExamplesAsMDX = (examples) => {
-	if (!examples?.find((example) => example.code)) {
-		return `No code available`;
+const getFileTypeByFramework = (framework) => {
+	if (framework === 'react') {
+		return 'tsx';
 	}
+
+	if (framework === 'vue') {
+		return 'tsx';
+	}
+
+	return 'html';
+};
+
+const getExamplesAsMDX = async (componentName, variant) => {
+	const examples = variant.examples;
 
 	let result = '';
 
-	for (const example1 of examples.filter((example) => example.code)) {
-		result += '<CH.Code>\n';
+	for (const example of examples) {
+		result += '<CH.Code>\n\n';
 		for (const framework of codeFrameworks) {
-			if (example1.code) {
-				result += `\`\`\`js ${framework}\n`;
-				result += `\n${
-					example1.code[framework]
-						? example1.code[framework]
-						: example1.code.default
-				}\n`;
-				result += '```\n';
+			let exampleCode;
+
+			if (example.code && example.code[framework]) {
+				exampleCode = example.code[framework];
+			} else {
+				exampleCode = getCodeByFramework(
+					componentName,
+					framework,
+					example
+				);
 			}
+
+			if (framework === 'html') {
+				exampleCode =
+					allExamples[
+						`${componentName}${variant.name}${example.name}`
+					];
+			}
+
+			try {
+				exampleCode = await prettier.format(exampleCode, {
+					parser: 'babel',
+					plugins
+				});
+			} catch {
+				// We do not care about errors here
+			}
+
+			result += `\`\`\`${getFileTypeByFramework(
+				framework
+			)} ${framework}\n`;
+			result += `${exampleCode?.replace(/;/g, '')}\n`;
+			result += '```\n\n';
 		}
 
-		result += '</CH.Code>\n';
+		result += '</CH.Code>\n\n';
 	}
 
 	return result;
@@ -52,7 +90,7 @@ const writeCodeFiles = async (componentPath, componentName) => {
 
 			FS.writeFileSync(
 				`${codePath}/${variant.name}.mdx`,
-				getExamplesAsMDX(variant.examples)
+				await getExamplesAsMDX(componentName, variant)
 			);
 		}
 	}

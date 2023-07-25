@@ -1,3 +1,14 @@
-# Angular Showcase shared components
+# Findings angular
 
-This directory contains all shared components for current und lts version of angular.
+```json
+/tsconfig.json
+
+
+"compilerOptions": {
+...
+    "paths": {
+      "@angular/*": ["./node_modules/@angular/*"]
+    }
+}
+``
+```

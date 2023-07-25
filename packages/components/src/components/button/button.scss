@@ -5,72 +5,48 @@
 @use "@db-ui/foundations/build/scss/color-placeholder" as *;
 @use "@db-ui/foundations/build/scss/icon/icons.helpers" as *;
 @use "@db-ui/foundations/build/scss/color/color-variants" as *;
-@use "@db-ui/foundations/build/scss/helpers/component";
+@use "@db-ui/foundations/build/scss/helpers/component" as *;
+@use "../../styles/button-components";
 
 .db-button {
 	// Including a loading indicator
 	--loadingIndicator---color: currentColor;
 
-	$icon-size: var(--db-icon-size, 20);
-
 	@extend %default-interactive-component;
 	@extend %default-background-transition;
 	@extend %bg-transparent-interactive;
+	@extend %default-button;
 
-	align-items: center; // Centering the content vertically and horizontally
-
-	display: inline-flex;
-
-	font-weight: 700;
-	justify-content: center;
-	height: $db-sizing-md;
+	block-size: $db-sizing-md;
 	padding: $db-spacing-fixed-xs $db-spacing-fixed-md;
 
-	white-space: nowrap; // we don't want to break buttons
-
-	text-align: center;
-
-	&[data-icon],
-	&[data-icon-before] {
-		padding-left: $db-spacing-fixed-xs;
-
-		&::before {
-			--icon-font-family: var(--db-base-icon-font-family);
-			--icon-font-size: var(--db-base-icon-font-size);
-		}
-	}
-
-	&[data-icon-after] {
-		padding-right: $db-spacing-fixed-xs;
-
-		&::after {
-			--icon-font-family: var(--db-base-icon-font-family);
-			--icon-font-size: var(--db-base-icon-font-size);
-		}
-	}
 	// Square icon only buttons
 	&.is-icon-text-replace {
 		font-size: 0;
 		padding: 0;
-		width: $db-sizing-md;
+		inline-size: $db-sizing-md;
 	}
 
 	&[data-size="small"] {
 		@extend %db-body-sm;
-		height: $db-sizing-sm;
+		block-size: $db-sizing-sm;
 
 		&:not(.is-icon-text-replace) {
 			padding: $db-spacing-fixed-3xs $db-spacing-fixed-sm;
+
+			&::before {
+				margin-inline-end: $db-spacing-fixed-2xs;
+			}
 		}
 
 		// Square icon only buttons
 		&.is-icon-text-replace {
-			width: $db-sizing-sm;
+			inline-size: $db-sizing-sm;
 		}
 	}
 
 	&[data-width="full"] {
-		width: 100%;
+		inline-size: 100%;
 	}
 
 	&[data-variant="primary"] {
@@ -78,17 +54,17 @@
 		@extend %transparent-border;
 	}
 
-	&[data-variant="semi-transparent"] {
+	&[data-variant="solid"] {
 		@extend %transparent-border;
 		@include get-variant-bg-color(0.08);
 	}
 
-	&[data-variant="transparent"] {
+	&[data-variant="text"] {
 		@extend %transparent-border;
 	}
 
 	&:disabled {
-		opacity: 0.25;
+		opacity: $default-opacity;
 	}
 
 	// States (currently only "loading")

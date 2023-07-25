@@ -6,10 +6,12 @@ import {
 	useStore
 } from '@builder.io/mitosis';
 import { DBPageProps, DBPageState } from './model';
+import { cls } from '../../utils';
 
 useMetadata({
 	isAttachedToShadowDom: true,
 	component: {
+		// MS Power Apps
 		includeIcon: false,
 		properties: []
 	}
@@ -18,6 +20,7 @@ useMetadata({
 export default function DBPage(props: DBPageProps) {
 	// This is used as forwardRef
 	let component: any;
+	// jscpd:ignore-start
 	const state = useStore<DBPageState>({});
 
 	onMount(() => {
@@ -25,17 +28,14 @@ export default function DBPage(props: DBPageProps) {
 			state.stylePath = props.stylePath;
 		}
 	});
+	// jscpd:ignore-end
 
 	return (
 		<div
 			ref={component}
-			class={
-				'db-page' +
-				(props.className ? ' ' + props.className : '') +
-				(props.type === 'fixedHeaderFooter'
-					? ' fixed-header-footer'
-					: '')
-			}>
+			class={cls('db-page', props.className, {
+				'fixed-header-footer': props.type === 'fixedHeaderFooter'
+			})}>
 			<Show when={state.stylePath}>
 				<link rel="stylesheet" href={state.stylePath} />
 			</Show>

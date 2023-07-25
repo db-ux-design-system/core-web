@@ -18,7 +18,9 @@ For general installation and configuration look at the [components](https://www.
 						data-size="small"
 						data-variant="transparent"
 						data-icon="close"
-					>Close Button</button>
+					>
+						Close Button
+					</button>
 				</div>
 			</div>
 			<span>Alert</span>

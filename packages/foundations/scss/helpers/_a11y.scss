@@ -1,8 +1,8 @@
 %a11y-visually-hidden {
 	clip: rect(0, 0, 0, 0);
-	height: 1px;
+	block-size: 1px;
 	overflow: hidden;
 	position: absolute !important;
 	white-space: nowrap;
-	width: 1px;
+	inline-size: 1px;
 }

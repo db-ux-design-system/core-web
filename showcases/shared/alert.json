@@ -1,19 +1,70 @@
 [
 	{
+		"name": "Tonality",
+		"examples": [
+			{
+				"name": "functional",
+				"style": { "width": "300px" },
+				"className": "db-ui-functional",
+				"props": {
+					"headline": "Headline",
+					"link": {
+						"href": "#",
+						"text": "Link"
+					}
+				}
+			},
+			{
+				"name": "regular (Default)",
+				"style": { "width": "300px" },
+				"className": "db-ui-regular",
+				"props": {
+					"headline": "Headline",
+					"link": {
+						"href": "#",
+						"text": "Link"
+					}
+				}
+			},
+			{
+				"name": "expressive",
+				"style": { "width": "300px" },
+				"className": "db-ui-expressive",
+				"props": {
+					"headline": "Headline",
+					"link": {
+						"href": "#",
+						"text": "Link"
+					}
+				}
+			}
+		]
+	},
+	{
 		"name": "Type",
 		"examples": [
 			{
 				"name": "(Default) Alert",
-				"style": { "width": "100%" },
-				"code": {
-					"default": "<DBAlert type=\"alert\" headline=\"Headline\" link={{ href: \"#\" }} slotLink=\"Link\">Alert</DBAlert>"
+				"style": { "width": "300px" },
+				"props": {
+					"type": "alert",
+					"headline": "Headline",
+					"link": {
+						"href": "#",
+						"text": "Link"
+					}
 				}
 			},
 			{
 				"name": "Inline",
-				"style": { "width": "100%" },
-				"code": {
-					"default": "<DBAlert type=\"inline\" headline=\"Headline\" link={{ href: \"#\" }} slotLink=\"Link\">Alert</DBAlert>"
+				"style": { "width": "300px" },
+				"props": {
+					"type": "inline",
+					"headline": "Headline",
+					"link": {
+						"href": "#",
+						"text": "Link"
+					}
 				}
 			}
 		]
@@ -23,37 +74,67 @@
 		"examples": [
 			{
 				"name": "(Default) Adaptive",
-				"style": { "width": "100%" },
-				"code": {
-					"default": "<DBAlert icon=\"account\"  type=\"alert\" headline=\"Headline\" link={{ href: \"#\" }} slotLink=\"Link\">Alert</DBAlert>"
+				"style": { "width": "300px" },
+				"props": {
+					"type": "alert",
+					"icon": "account",
+					"headline": "Headline",
+					"link": {
+						"href": "#",
+						"text": "Link"
+					}
 				}
 			},
 			{
 				"name": "Critical",
-				"style": { "width": "100%" },
-				"code": {
-					"default": "<DBAlert variant=\"critical\" headline=\"Headline\" link={{ href: \"#\" }} slotLink=\"Link\">Alert</DBAlert>"
+				"style": { "width": "300px" },
+				"props": {
+					"type": "alert",
+					"variant": "critical",
+					"headline": "Headline",
+					"link": {
+						"href": "#",
+						"text": "Link"
+					}
 				}
 			},
 			{
 				"name": "Informational",
-				"style": { "width": "100%" },
-				"code": {
-					"default": "<DBAlert variant=\"informational\" headline=\"Headline\" link={{ href: \"#\" }} slotLink=\"Link\">Alert</DBAlert>"
+				"style": { "width": "300px" },
+				"props": {
+					"type": "alert",
+					"variant": "informational",
+					"headline": "Headline",
+					"link": {
+						"href": "#",
+						"text": "Link"
+					}
 				}
 			},
 			{
 				"name": "Successful",
-				"style": { "width": "100%" },
-				"code": {
-					"default": "<DBAlert variant=\"successful\" headline=\"Headline\" link={{ href: \"#\" }} slotLink=\"Link\">Alert</DBAlert>"
+				"style": { "width": "300px" },
+				"props": {
+					"type": "alert",
+					"variant": "successful",
+					"headline": "Headline",
+					"link": {
+						"href": "#",
+						"text": "Link"
+					}
 				}
 			},
 			{
 				"name": "Warning",
-				"style": { "width": "100%" },
-				"code": {
-					"default": "<DBAlert variant=\"warning\" headline=\"Headline\" link={{ href: \"#\" }} slotLink=\"Link\">Alert</DBAlert>"
+				"style": { "width": "300px" },
+				"props": {
+					"type": "alert",
+					"variant": "warning",
+					"headline": "Headline",
+					"link": {
+						"href": "#",
+						"text": "Link"
+					}
 				}
 			}
 		]
@@ -63,31 +144,42 @@
 		"examples": [
 			{
 				"name": "Headline & Text & Link & Icon",
-				"style": { "width": "100%" },
-				"code": {
-					"default": "<DBAlert icon=\"account\" headline=\"Headline\" link={{ href: \"#\" }} slotLink=\"Link\">Alert</DBAlert>"
+				"style": { "width": "300px" },
+				"props": {
+					"type": "alert",
+					"icon": "account",
+					"headline": "Headline",
+					"link": {
+						"href": "#",
+						"text": "Link"
+					}
 				}
 			},
 			{
 				"name": "Headline & Text & Link",
-				"style": { "width": "100%" },
-				"code": {
-					"default": "<DBAlert headline=\"Headline\" link={{ href: \"#\" }} slotLink=\"Link\">Alert</DBAlert>"
+				"style": { "width": "300px" },
+				"props": {
+					"headline": "Headline",
+					"link": {
+						"href": "#",
+						"text": "Link"
+					}
 				}
 			},
 			{
 				"name": "Text & Link",
-				"style": { "width": "100%" },
-				"code": {
-					"default": "<DBAlert link={{ href: \"#\" }} slotLink=\"Link\">Alert</DBAlert>"
+				"style": { "width": "300px" },
+				"props": {
+					"link": {
+						"href": "#",
+						"text": "Link"
+					}
 				}
 			},
 			{
 				"name": "Text",
-				"style": { "width": "100%" },
-				"code": {
-					"default": "<DBAlert>Alert</DBAlert>"
-				}
+				"style": { "width": "300px" },
+				"props": {}
 			}
 		]
 	},
@@ -96,16 +188,28 @@
 		"examples": [
 			{
 				"name": "Closable",
-				"style": { "width": "100%" },
-				"code": {
-					"default": "<DBAlert headline=\"Headline\" link={{ href: \"#\" }} slotLink=\"Link\" onClick={()=>{alert(\"click close button\")}}>Alert</DBAlert>"
+				"style": { "width": "300px" },
+				"props": {
+					"type": "alert",
+					"headline": "Headline",
+					"link": {
+						"href": "#",
+						"text": "Link"
+					},
+					"click": "()=>{alert(\"click close button\")}"
 				}
 			},
 			{
 				"name": "Permanent",
-				"style": { "width": "100%" },
-				"code": {
-					"default": "<DBAlert headline=\"Headline\" link={{ href: \"#\" }} slotLink=\"Link\" behaviour=\"permanent\">Alert</DBAlert>"
+				"style": { "width": "300px" },
+				"props": {
+					"type": "alert",
+					"headline": "Headline",
+					"link": {
+						"href": "#",
+						"text": "Link"
+					},
+					"behaviour": "permanent"
 				}
 			}
 		]

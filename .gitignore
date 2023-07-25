@@ -41,8 +41,13 @@ output/power-apps
 !/build-power-apps/package.json
 !/build-power-apps/package-lock.json
 !/build-power-apps/DBUI/**
+!/build-power-apps/**/strings/*.*.resx
 .cache
 **/playwright-report
 /.parcel-cache/
 /output/docs.json
 showcases/patternhub/public/iframe-resizer/*
+
+/showcases/**/test-results/
+
+/__snapshots__/**/*-win32.png

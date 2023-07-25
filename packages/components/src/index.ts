@@ -6,13 +6,16 @@ export * from './components/card';
 export * from './components/divider';
 export * from './components/input';
 export * from './components/brand';
-
 export * from './components/header';
-
 export * from './components/page';
 export * from './components/section';
 export * from './components/link';
 export * from './components/infotext';
 export * from './components/alert';
+export * from './components/checkbox';
+export * from './components/drawer';
 export * from './components/radio';
 export * from './components/code-docs';
+export * from './components/select';
+export * from './components/tag';
+export * from './components/navigation-item';

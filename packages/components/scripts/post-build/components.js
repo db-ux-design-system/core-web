@@ -17,22 +17,53 @@
  */
 const getComponents = () => [
 	{
+		name: 'navigation-item'
+	},
+
+	{
+		name: 'select'
+	},
+
+	{
+		name: 'drawer',
+		overwrites: {
+			react: [
+				{
+					from: 'const dialogRef = useRef<HTMLDialogElement>(null);',
+					to: 'const dialogRef = useRef<HTMLDialogElement>(component);'
+				}
+			],
+			webComponents: [{ from: '__prev.find', to: '!!__prev.find' }]
+		}
+	},
+
+	{
+		name: 'tag'
+	},
+	{
 		name: 'code-docs'
 	},
 
 	{
-		name: 'radio',
-		overwrites: {
-			vue: [
-				{
-					from: 'immediate: true,',
-					to: 'immediate: true,\nflush: "post"'
-				}
-			]
-		},
+		name: 'checkbox',
 		config: {
 			vue: {
 				vModel: [{ modelValue: 'checked', binding: ':checked' }]
+			},
+			angular: {
+				controlValueAccessor: 'checked'
+			}
+		}
+	},
+
+	{
+		name: 'radio',
+		config: {
+			vue: {
+				vModel: [{ modelValue: 'checked', binding: ':checked' }]
+			},
+			angular: {
+				controlValueAccessor: false
 			}
 		}
 	},
@@ -64,9 +95,16 @@ const getComponents = () => [
 	},
 	{
 		name: 'input',
+		overwrites: {
+			global: [{ from: ', KeyValueType', to: '' }],
+			vue: [{ from: ', index', to: '' }]
+		},
 		config: {
 			vue: {
 				vModel: [{ modelValue: 'value', binding: ':value' }]
+			},
+			angular: {
+				controlValueAccessor: 'value'
 			}
 		}
 	},

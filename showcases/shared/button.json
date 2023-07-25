@@ -1,24 +1,49 @@
 [
 	{
+		"name": "Tonality",
+		"examples": [
+			{
+				"name": "functional",
+				"className": "db-ui-functional",
+				"props": {}
+			},
+			{
+				"name": "regular (Default)",
+				"className": "db-ui-regular",
+				"props": {}
+			},
+			{
+				"name": "expressive",
+				"className": "db-ui-expressive",
+				"props": {}
+			}
+		]
+	},
+
+	{
 		"name": "Variant",
 		"examples": [
 			{
-				"name": "(Default) Adaptive Outline",
-				"code": {
-					"default": "<DBButton>(Default) Adaptive Outline</DBButton>"
-				}
-			},
-			{
 				"name": "Primary",
-				"code": {
-					"default": "<DBButton variant=\"primary\">Primary</DBButton>"
+				"props": {
+					"variant": "primary"
 				}
 			},
 			{
-				"name": "Transparent"
+				"name": "Outlined (Adaptive)",
+				"props": {}
 			},
 			{
-				"name": "Semi-Transparent"
+				"name": "Solid (Adaptive)",
+				"props": {
+					"variant": "solid"
+				}
+			},
+			{
+				"name": "Text (Adaptive)",
+				"props": {
+					"variant": "text"
+				}
 			}
 		]
 	},
@@ -26,10 +51,14 @@
 		"name": "State",
 		"examples": [
 			{
-				"name": "Default: (Enabled, Hover, Pressed)"
+				"name": "Enabled (Default)",
+				"props": {}
 			},
 			{
-				"name": "Loading"
+				"name": "Disabled",
+				"props": {
+					"disabled": true
+				}
 			}
 		]
 	},
@@ -37,10 +66,14 @@
 		"name": "Size",
 		"examples": [
 			{
-				"name": "Default: Medium"
+				"name": "Medium (Default)",
+				"props": {}
 			},
 			{
-				"name": "Small"
+				"name": "Small",
+				"props": {
+					"size": "small"
+				}
 			}
 		]
 	},
@@ -48,13 +81,21 @@
 		"name": "Content",
 		"examples": [
 			{
-				"name": "Default: Text"
+				"name": "Text (Default)",
+				"props": {}
 			},
 			{
-				"name": "Icon & Text"
+				"name": "Icon & Text",
+				"props": {
+					"icon": "account"
+				}
 			},
 			{
-				"name": "Icon"
+				"name": "Icon",
+				"props": {
+					"icon": "account",
+					"noText": true
+				}
 			}
 		]
 	},
@@ -62,11 +103,15 @@
 		"name": "Behaviour",
 		"examples": [
 			{
-				"name": "Default: Auto Width"
+				"name": "Auto Width (Default)",
+				"props": {}
 			},
 			{
 				"name": "Width full",
-				"style": { "width": "500px" }
+				"style": { "width": "500px" },
+				"props": {
+					"width": "full"
+				}
 			}
 		]
 	}

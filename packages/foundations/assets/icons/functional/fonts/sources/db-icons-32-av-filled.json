@@ -1,0 +1,162 @@
+{
+	"IcoMoonType": "selection",
+	"icons": [
+		{
+			"icon": {
+				"paths": [
+					"M768 448c17.673 0 32 14.327 32 32v0c0 148.256-111.968 272.128-256 288v128h64c17.673 0 32 14.327 32 32v0c0 16.416-14.4 32-32 32h-192c-17.673 0-32-14.327-32-32v0c0-16.416 14.4-32 32-32h64v-128c-144.064-15.872-256-139.712-256-288 0-17.673 14.327-32 32-32s32 14.327 32 32v0c0 123.712 100.288 224 224 224s224-100.288 224-224v0c0-17.673 14.327-32 32-32v0zM512 64c88.366 0 160 71.634 160 160v0 256c0 88.366-71.634 160-160 160s-160-71.634-160-160v0-256c0-88.366 71.634-160 160-160v0z"
+				],
+				"attrs": [{}],
+				"isMulticolor": false,
+				"isMulticolor2": false,
+				"grid": 0,
+				"tags": ["db_ic_microphone_solid_32"]
+			},
+			"attrs": [{}],
+			"properties": {
+				"order": 94,
+				"id": 4,
+				"name": "db_ic_microphone_solid_32",
+				"prevSize": 32,
+				"code": 127908
+			},
+			"setIdx": 0,
+			"setId": 1,
+			"iconIdx": 0
+		},
+		{
+			"icon": {
+				"paths": [
+					"M320 736v-448c0-35.008 28-64 63.008-64 12.992 0 25.984 4 36.992 11.008l352.992 224.992c17.024 12 27.008 31.008 27.008 52s-10.016 40-27.008 52l-352.992 224.992c-11.008 7.008-24 11.008-36.992 11.008-35.008 0-63.008-28.992-63.008-64z"
+				],
+				"attrs": [{}],
+				"isMulticolor": false,
+				"isMulticolor2": false,
+				"tags": ["play-filled"],
+				"grid": 0
+			},
+			"attrs": [{}],
+			"properties": {
+				"order": 101,
+				"id": 0,
+				"name": "play-filled",
+				"prevSize": 32,
+				"code": 9655
+			},
+			"setIdx": 0,
+			"setId": 1,
+			"iconIdx": 1
+		},
+		{
+			"icon": {
+				"paths": [
+					"M800 736v-448c0-35.008-28.992-64-63.008-64-12.992 0-25.984 4-36.992 11.008l-320.992 224.992c-16.415 11.554-27.008 30.421-27.008 51.761 0 0.084 0 0.168 0 0.252v-0.013c0 20.992 10.016 40 27.008 52l320.992 224.992c11.008 7.008 24 11.008 36.992 11.008 35.008 0 63.008-28.992 63.008-64zM288 736v-448c0-18.016-14.016-32-32-32-18.016 0-32 14.016-32 32v448c0 18.016 14.016 32 32 32 18.016 0 32-14.016 32-32z"
+				],
+				"attrs": [{}],
+				"isMulticolor": false,
+				"isMulticolor2": false,
+				"tags": ["skip-backward-filled"],
+				"grid": 0
+			},
+			"attrs": [{}],
+			"properties": {
+				"order": 102,
+				"id": 1,
+				"name": "skip-backward-filled",
+				"prevSize": 32,
+				"code": 9198
+			},
+			"setIdx": 0,
+			"setId": 1,
+			"iconIdx": 2
+		},
+		{
+			"icon": {
+				"paths": [
+					"M224 736v-448c0-35.008 28.992-64 63.008-64 12.992 0 25.984 4 36.992 11.008l320.992 224.992c17.024 12 27.008 31.008 27.008 52s-10.016 40-27.008 52l-320.992 224.992c-11.008 7.008-24 11.008-36.992 11.008-35.008 0-63.008-28.992-63.008-64zM736 736v-448c0-18.016 14.016-32 32-32 18.016 0 32 14.016 32 32v448c0 18.016-14.016 32-32 32-18.016 0-32-14.016-32-32z"
+				],
+				"attrs": [{}],
+				"isMulticolor": false,
+				"isMulticolor2": false,
+				"tags": ["skip-forward-filled"],
+				"grid": 0
+			},
+			"attrs": [{}],
+			"properties": {
+				"order": 103,
+				"id": 2,
+				"name": "skip-forward-filled",
+				"prevSize": 32,
+				"code": 9197
+			},
+			"setIdx": 0,
+			"setId": 1,
+			"iconIdx": 3
+		},
+		{
+			"icon": {
+				"paths": [
+					"M352 768c-53.019 0-96-42.981-96-96v0-320c0-53.019 42.981-96 96-96v0h320c53.019 0 96 42.981 96 96v0 320c0 53.019-42.981 96-96 96v0h-320z"
+				],
+				"attrs": [{}],
+				"isMulticolor": false,
+				"isMulticolor2": false,
+				"tags": ["stop-filled"],
+				"grid": 0
+			},
+			"attrs": [{}],
+			"properties": {
+				"order": 104,
+				"id": 3,
+				"name": "stop-filled",
+				"prevSize": 32,
+				"code": 9633
+			},
+			"setIdx": 0,
+			"setId": 1,
+			"iconIdx": 4
+		}
+	],
+	"height": 1024,
+	"metadata": {
+		"name": "db-icons",
+		"url": "https://db.de/db-ui",
+		"designerURL": "https://marketingportal.extranet.deutschebahn.com/de/icons-2"
+	},
+	"preferences": {
+		"showGlyphs": true,
+		"showCodes": true,
+		"showQuickUse": true,
+		"showQuickUse2": true,
+		"showSVGs": true,
+		"fontPref": {
+			"prefix": "icon-",
+			"metadata": {
+				"fontFamily": "db-icons",
+				"majorVersion": 1,
+				"minorVersion": 0,
+				"designerURL": "https://marketingportal.extranet.deutschebahn.com/de/icons-2",
+				"fontURL": "https://db.de/db-ui"
+			},
+			"metrics": { "emSize": 1024, "baseline": 6.25, "whitespace": 50 },
+			"embed": false,
+			"noie8": true,
+			"ie7": false,
+			"showSelector": true,
+			"showMetrics": true,
+			"showMetadata": true
+		},
+		"imagePref": {
+			"prefix": "icon-",
+			"png": true,
+			"useClassSelector": true,
+			"color": 0,
+			"bgColor": 16777215,
+			"name": "icomoon",
+			"classSelector": ".icon"
+		},
+		"historySize": 50,
+		"gridSize": 16,
+		"showGrid": true
+	}
+}

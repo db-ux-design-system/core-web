@@ -1,70 +1,34 @@
 @use "../helpers/functions" as *;
+@use "../variables.global" as *;
 @use "icons.variables" as *;
+@use "icons.placeholder" as *;
 
 // Icon SCSS mixin
 @mixin icon(
 	$glyph: "",
 	$size: $icon-size,
 	$style: $icon-style,
-	$position: "before",
-	$partial: false
+	$position: "before"
 ) {
 	&::#{$position} {
 		@if $position == "before" {
-			margin-inline-end: var(--icon-margin-after, #{$icon-content-space});
+			margin-inline-end: var(
+				--icon-margin-after,
+				#{$db-spacing-fixed-xs}
+			);
 		}
 		@if $position == "after" {
 			margin-inline-start: var(
 				--icon-margin-before,
-				#{$icon-content-space}
+				#{$db-spacing-fixed-xs}
 			);
 		}
 
 		@if $glyph != "" {
 			--icon-glyph: "^" attr(data-icon) "$";
 		}
-		@if $partial {
-			content: var(--icon-glyph, "^" attr(data-icon) "$");
-			display: inline-block;
-			/*** icon - partial ***/
-			// * use !important to prevent issues with browser extensions that change fonts
-			font-family: var(
-				--icon-font-family,
-				"#{"icons-" + $style}"
-			) !important;
 
-			font-size: var(--icon-font-size, #{to-rem($pxValue: $size)});
-			font-style: normal;
-			font-variant: normal;
-
-			font-weight: var(--icon-font-weight, normal);
-			line-height: 1;
-			text-transform: none;
-			vertical-align: middle;
-
-			// * Better Font Rendering ===========
-			-webkit-font-smoothing: antialiased;
-			-moz-osx-font-smoothing: grayscale;
-
-			// Hiding icon from screenreaders
-			@supports (content: ""/"") {
-				content: var(--icon-glyph, "^" attr(data-icon) "$") / ""; // https://www.w3.org/TR/css-content-3/#alt
-			}
-
-			-webkit-alt: "";
-
-			alt: "";
-			speak: none; // Hiding icon from screenreaders, fallback by older notation
-			speak: never; // Hiding icon from screenreaders
-			@media aural {
-				content: none;
-			}
-			@media speech {
-				content: none;
-			}
-		} @else {
-			@extend %icon !optional;
-		}
+		@extend %icon;
 	}
 }
 

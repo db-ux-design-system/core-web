@@ -1,0 +1,28 @@
+<app-default-component
+	title="Tag"
+	[variants]="variants"
+	[exampleTemplate]="exampleTemplate"
+>
+	<ng-template
+		#exampleTemplate
+		let-exampleProps="exampleProps"
+		let-exampleName="exampleName"
+	>
+		<db-tag
+			[variant]="exampleProps.variant"
+			[disabled]="exampleProps.disabled"
+			[icon]="exampleProps.icon"
+			[noText]="exampleProps.noText"
+			[behaviour]="exampleProps.behaviour"
+			[type]="exampleProps.type"
+			[checked]="exampleProps.checked"
+			[label]="exampleProps.label"
+			[name]="exampleProps.name"
+			[overflow]="exampleProps.overflow"
+			[removeButton]="exampleProps.removeButton"
+			(onRemove)="showAlert(exampleName)"
+		>
+			{{ exampleName }}
+		</db-tag>
+	</ng-template>
+</app-default-component>

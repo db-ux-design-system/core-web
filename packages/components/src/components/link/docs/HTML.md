@@ -8,9 +8,6 @@ For general installation and configuration look at the [components](https://www.
 <!-- index.html -->
 ...
 <body>
-	<a class="db-link" href="#">
-		Link
-		<span aria-hidden="true" class="db-icon" data-icon="link"></span>
-	</a>
+	<a class="db-link" href="#">Link</a>
 </body>
 ```

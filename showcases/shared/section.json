@@ -1,26 +1,47 @@
 [
 	{
+		"name": "Tonality",
+		"examples": [
+			{
+				"name": "functional",
+				"className": "db-ui-functional",
+				"props": {}
+			},
+			{
+				"name": "regular (Default)",
+				"className": "db-ui-regular",
+				"props": {}
+			},
+			{
+				"name": "expressive",
+				"className": "db-ui-expressive",
+				"props": {}
+			}
+		]
+	},
+	{
 		"name": "Variant",
 		"examples": [
 			{
-				"name": "(Default) Full",
-				"style": { "width": "100%" },
-				"code": {
-					"default": "<DBSection>Section</DBSection>"
-				}
+				"name": "Full (Default)",
+				"style": {
+					"width": "100%",
+					"display": "block"
+				},
+				"props": {}
 			},
 			{
 				"name": "Medium",
-				"style": { "width": "100%" },
-				"code": {
-					"default": "<DBSection variant=\"medium\">Section</DBSection>"
+				"style": { "width": "100%", "display": "block" },
+				"props": {
+					"variant": "medium"
 				}
 			},
 			{
 				"name": "Large",
-				"style": { "width": "100%" },
-				"code": {
-					"default": "<DBSection variant=\"large\">Section</DBSection>"
+				"style": { "width": "100%", "display": "block" },
+				"props": {
+					"variant": "large"
 				}
 			}
 		]
@@ -29,21 +50,19 @@
 		"name": "Size",
 		"examples": [
 			{
-				"name": "(Default) Medium",
-				"code": {
-					"default": "<DBSection>Section</DBSection>"
-				}
+				"name": "Medium (Default)",
+				"props": {}
 			},
 			{
 				"name": "Large",
-				"code": {
-					"default": "<DBSection size=\"large\">Section</DBSection>"
+				"props": {
+					"size": "large"
 				}
 			},
 			{
 				"name": "Small",
-				"code": {
-					"default": "<DBSection size=\"small\">Section</DBSection>"
+				"props": {
+					"size": "small"
 				}
 			}
 		]

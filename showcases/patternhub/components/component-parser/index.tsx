@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+
 import {
 	DBInfotext,
 	DBButton,
@@ -6,11 +7,16 @@ import {
 	DBLink,
 	DBAlert,
 	DBInput,
+	DBSelect,
+	DBCheckbox,
+	DBTag,
+	DBRadio,
 	DBDivider,
 	DBCard,
 	DBBrand,
 	DBSection,
-	DBHeader
+	DBHeader,
+	DBNavigationItem
 } from '../src';
 import { ComponentParserType, ComponentType } from './data';
 
@@ -147,6 +153,20 @@ const ComponentSwitch = ({
 			</DBInput>
 		);
 	}
+	if (type === 'checkbox') {
+		return (
+			<DBCheckbox className={className} {...props}>
+				{resolvedContent}
+			</DBCheckbox>
+		);
+	}
+	if (type === 'radio') {
+		return (
+			<DBRadio className={className} {...props}>
+				{resolvedContent}
+			</DBRadio>
+		);
+	}
 	if (type === 'link') {
 		return (
 			<DBLink className={className} {...props}>
@@ -159,6 +179,30 @@ const ComponentSwitch = ({
 			<DBSection className={className} {...props}>
 				{resolvedContent}
 			</DBSection>
+		);
+	}
+
+	if (type === 'select') {
+		return (
+			<DBSelect className={className} {...props}>
+				{resolvedContent}
+			</DBSelect>
+		);
+	}
+
+	if (type === 'tag') {
+		return (
+			<DBTag className={className} {...props}>
+				{resolvedContent}
+			</DBTag>
+		);
+	}
+
+	if (type === 'navigation-item') {
+		return (
+			<DBNavigationItem className={className} {...props}>
+				{resolvedContent}
+			</DBNavigationItem>
 		);
 	}
 

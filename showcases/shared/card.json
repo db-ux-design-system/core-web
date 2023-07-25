@@ -1,65 +1,119 @@
 [
 	{
+		"name": "Tonality",
+		"examples": [
+			{
+				"name": "functional",
+				"className": "db-ui-functional",
+				"props": {
+					"spacing": "small"
+				}
+			},
+			{
+				"name": "regular (Default)",
+				"className": "db-ui-regular",
+				"props": {
+					"spacing": "small"
+				}
+			},
+			{
+				"name": "expressive",
+				"className": "db-ui-expressive",
+				"props": {
+					"spacing": "small"
+				}
+			}
+		]
+	},
+	{
 		"name": "ColorVariant",
 		"examples": [
 			{
 				"name": "(Default) neutral-0",
-				"code": {
-					"default": "<DBCard colorVariant=\"neutral-0\" variant=\"interactive\" spacing=\"small\"><strong>Card</strong><span>DB Card</span></DBCard>"
+				"props": {
+					"colorVariant": "neutral-0",
+					"variant": "interactive",
+					"spacing": "small"
 				}
 			},
 			{
 				"name": "neutral-1",
-				"code": {
-					"default": "<DBCard colorVariant=\"neutral-1\" variant=\"interactive\" spacing=\"small\"><strong>Card</strong><span>DB Card</span></DBCard>"
+				"props": {
+					"colorVariant": "neutral-1",
+					"variant": "interactive",
+					"spacing": "small"
+				}
+			},
+			{
+				"name": "neutral-2",
+				"props": {
+					"colorVariant": "neutral-2",
+					"variant": "interactive",
+					"spacing": "small"
 				}
 			},
 			{
 				"name": "neutral-3",
-				"code": {
-					"default": "<DBCard colorVariant=\"neutral-3\" variant=\"interactive\" spacing=\"small\"><strong>Card</strong><span>DB Card</span></DBCard>"
+				"props": {
+					"colorVariant": "neutral-3",
+					"variant": "interactive",
+					"spacing": "small"
 				}
 			},
 			{
 				"name": "neutral-4",
-				"code": {
-					"default": "<DBCard colorVariant=\"neutral-4\" variant=\"interactive\" spacing=\"small\"><strong>Card</strong><span>DB Card</span></DBCard>"
+				"props": {
+					"colorVariant": "neutral-4",
+					"variant": "interactive",
+					"spacing": "small"
 				}
 			},
 			{
 				"name": "primary",
-				"code": {
-					"default": "<DBCard colorVariant=\"primary\" variant=\"interactive\" spacing=\"small\"><strong>Card</strong><span>DB Card</span></DBCard>"
+				"props": {
+					"colorVariant": "primary",
+					"variant": "interactive",
+					"spacing": "small"
 				}
 			},
 			{
 				"name": "secondary",
-				"code": {
-					"default": "<DBCard colorVariant=\"secondary\" variant=\"interactive\" spacing=\"small\"><strong>Card</strong><span>DB Card</span></DBCard>"
+				"props": {
+					"colorVariant": "secondary",
+					"variant": "interactive",
+					"spacing": "small"
 				}
 			},
 			{
 				"name": "critical",
-				"code": {
-					"default": "<DBCard colorVariant=\"critical\" variant=\"interactive\" spacing=\"small\"><strong>Card</strong><span>DB Card</span></DBCard>"
+				"props": {
+					"colorVariant": "critical",
+					"variant": "interactive",
+					"spacing": "small"
 				}
 			},
 			{
 				"name": "successful",
-				"code": {
-					"default": "<DBCard colorVariant=\"successful\" variant=\"interactive\" spacing=\"small\"><strong>Card</strong><span>DB Card</span></DBCard>"
+				"props": {
+					"colorVariant": "successful",
+					"variant": "interactive",
+					"spacing": "small"
 				}
 			},
 			{
 				"name": "warning",
-				"code": {
-					"default": "<DBCard colorVariant=\"warning\" variant=\"interactive\" spacing=\"small\"><strong>Card</strong><span>DB Card</span></DBCard>"
+				"props": {
+					"colorVariant": "warning",
+					"variant": "interactive",
+					"spacing": "small"
 				}
 			},
 			{
 				"name": "informational",
-				"code": {
-					"default": "<DBCard colorVariant=\"informational\" variant=\"interactive\" spacing=\"small\"><strong>Card</strong><span>DB Card</span></DBCard>"
+				"props": {
+					"colorVariant": "informational",
+					"variant": "interactive",
+					"spacing": "small"
 				}
 			}
 		]
@@ -69,20 +123,18 @@
 		"examples": [
 			{
 				"name": "(Default) No Spacing",
-				"code": {
-					"default": "<DBCard>DBCard</DBCard>"
-				}
+				"props": {}
 			},
 			{
 				"name": "Medium",
-				"code": {
-					"default": "<DBCard spacing=\"medium\">DBCard</DBCard>"
+				"props": {
+					"spacing": "medium"
 				}
 			},
 			{
 				"name": "Small",
-				"code": {
-					"default": "<DBCard spacing=\"small\">DBCard</DBCard>"
+				"props": {
+					"spacing": "small"
 				}
 			}
 		]
@@ -92,14 +144,15 @@
 		"examples": [
 			{
 				"name": "(Default) Non interactive",
-				"code": {
-					"default": "<DBCard>DBCard</DBCard>"
+				"props": {
+					"spacing": "small"
 				}
 			},
 			{
 				"name": "Interactive",
-				"code": {
-					"default": "<DBCard variant=\"interactive\">DBCard</DBCard>"
+				"props": {
+					"spacing": "small",
+					"variant": "interactive"
 				}
 			}
 		]

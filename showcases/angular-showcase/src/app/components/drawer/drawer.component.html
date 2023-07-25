@@ -1,0 +1,29 @@
+<app-default-component
+	title="Drawer"
+	[variants]="variants"
+	[exampleTemplate]="exampleTemplate"
+>
+	<ng-template
+		#exampleTemplate
+		let-exampleProps="exampleProps"
+		let-exampleName="exampleName"
+		let-exampleIndex="exampleIndex"
+		let-variantIndex="variantIndex"
+	>
+		<db-drawer
+			[backdrop]="exampleProps.backdrop"
+			[withCloseButton]="exampleProps.withCloseButton"
+			[rounded]="exampleProps.rounded"
+			[width]="exampleProps.width"
+			[spacing]="exampleProps.spacing"
+			[direction]="exampleProps.direction"
+			[open]="openDrawer === exampleName"
+			(onClose)="toggleDrawer(undefined)"
+		>
+			{{ exampleName }}
+		</db-drawer>
+		<db-button (click)="toggleDrawer(exampleName)">
+			Open: {{ exampleName }}
+		</db-button>
+	</ng-template>
+</app-default-component>

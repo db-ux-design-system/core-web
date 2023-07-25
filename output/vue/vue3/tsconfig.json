@@ -18,6 +18,7 @@
 		"noUnusedParameters": false,
 		"outDir": "dist",
 		"removeComments": false,
+		"strictNullChecks": true,
 		"sourceMap": true,
 		"target": "esnext",
 		"types": [],

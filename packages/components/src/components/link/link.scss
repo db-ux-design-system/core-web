@@ -2,18 +2,23 @@
 
 @use "@db-ui/foundations/build/scss/body-styles" as *;
 @use "@db-ui/foundations/build/scss/variables" as *;
+@use "@db-ui/foundations/build/scss/variables.global" as *;
 @use "@db-ui/foundations/build/scss/scaling-placeholder" as *;
 @use "@db-ui/foundations/build/scss/color-placeholder" as *;
 @use "@db-ui/foundations/build/scss/helpers/functions" as *;
 @use "@db-ui/foundations/build/scss/icon/icons.helpers" as *;
-@use "@db-ui/foundations/build/scss/helpers/component";
+@use "@db-ui/foundations/build/scss/helpers/component" as *;
+
+%db-link-height {
+	display: inline-block;
+	block-size: $db-sizing-sm;
+}
 
 .db-link {
 	@extend %default-color;
-	width: fit-content;
-	display: flex;
+	@extend %db-link-height;
+	inline-size: fit-content;
 	align-items: center;
-	border-radius: to-rem($pxValue: 6);
 
 	// Link underline
 	// TODO: We should evaluate whether we could move this declaration to the @font-face declarations even already
@@ -21,7 +26,14 @@
 	text-decoration-thickness: to-rem($pxValue: 1);
 
 	// Changing color on hover should be animated by a transition
-	transition: outline 0.06s, color $db-transition-color;
+	transition:
+		outline 0.06s,
+		color $db-transition-color;
+
+	a {
+		// Workaround for angular
+		@extend %db-link-height;
+	}
 
 	&:hover {
 		color: inherit;
@@ -34,32 +46,29 @@
 		pointer-events: none;
 	}
 
-	&[data-content] {
-		--icon-font-family: var(--db-base-icon-font-family);
-		--icon-font-size: var(--db-base-icon-font-size);
-	}
+	&:not([data-variant="inline"]) {
+		&[data-content="internal"] {
+			@include icon(glyph(arrow-forward), 24, "outline", "after");
+		}
 
-	&[data-content="internal"] {
-		@include icon(glyph(arrow-forward), 24, "outline", "after");
-	}
-
-	&[data-content="external"] {
-		@include icon(glyph(link_external), 24, "outline", "after");
+		&[data-content="external"] {
+			@include icon(glyph(link_external), 24, "outline", "after");
+		}
 	}
 
 	&:focus-visible {
-		border-radius: 4px;
+		border-radius: $default-border-radius;
 	}
 
 	&[data-content="internal"],
 	&[data-content="external"] {
+		--icon-margin-before: var(--db-spacing-fixed-2xs);
+
 		&:focus-visible {
 			outline-offset: var(--db-focus-outline-offset, 1px);
 		}
 
-		&::after,
-		.db-icon {
-			--icon-margin-before: var(--db-spacing-fixed-2xs);
+		&::after {
 			margin-inline-start: var(--icon-margin-before);
 		}
 	}
@@ -70,20 +79,7 @@
 
 	&[data-size="small"] {
 		--icon-font-size: var(--db-base-icon-font-size);
+		--icon-margin-before: var(--db-spacing-fixed-3xs);
 		@extend %db-body-sm;
-
-		&[data-content="internal"],
-		&[data-content="external"] {
-			&::after,
-			.db-icon {
-				--icon-margin-before: var(--db-spacing-fixed-3xs);
-				--icon-font-size: var(--db-base-icon-font-size);
-				@extend %db-body-sm;
-			}
-		}
-	}
-
-	.db-icon {
-		display: inline;
 	}
 }
