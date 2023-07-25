@@ -8,7 +8,7 @@ We'll provide both SVG files, as well as icon fonts for total flexibility by the
 
 In general, these would be the ways how to reference a functional icon:
 - Icons that we'd like to set based on the guidelines (like a specific icon for a specific variant, type or whatever): Via SCSS mixin, especially to separate markup from styling, and to ensure non-breaking update feasibility.
-- Icons that the user could set: Either via SCSS mixin, or HTML attribute data-icon, depending on their tech stack.
+- Icons that the user could set: Either via SCSS mixin, or HTML attribute `data-icon`, depending on their tech stack.
 
 ## Problem description and context
 
