@@ -5,7 +5,8 @@
 	font-family: $db-font-db-screenhead-light-font-family;
 	font-style: normal;
 	font-weight: $db-font-db-screenhead-light-font-weight;
-	src: local($db-font-db-screenhead-light-name),
+	src:
+		local($db-font-db-screenhead-light-name),
 		url($fonts-path + $db-font-db-screenhead-light-woff2) format("woff2"),
 		url($fonts-path + $db-font-db-screenhead-light-woff) format("woff");
 }
@@ -14,7 +15,8 @@
 	font-family: $db-font-db-screenhead-black-font-family;
 	font-style: normal;
 	font-weight: $db-font-db-screenhead-black-font-weight;
-	src: local($db-font-db-screenhead-black-name),
+	src:
+		local($db-font-db-screenhead-black-name),
 		url($fonts-path + $db-font-db-screenhead-black-woff2) format("woff2"),
 		url($fonts-path + $db-font-db-screenhead-black-woff) format("woff");
 }
@@ -23,7 +25,8 @@
 	font-family: $db-font-db-screensans-regular-font-family;
 	font-style: normal;
 	font-weight: $db-font-db-screensans-regular-font-weight;
-	src: local($db-font-db-screensans-regular-name),
+	src:
+		local($db-font-db-screensans-regular-name),
 		url($fonts-path + $db-font-db-screensans-regular-woff2) format("woff2"),
 		url($fonts-path + $db-font-db-screensans-regular-woff) format("woff");
 }
@@ -32,7 +35,8 @@
 	font-family: $db-font-db-screensans-bold-font-family;
 	font-style: normal;
 	font-weight: $db-font-db-screensans-bold-font-weight;
-	src: local($db-font-db-screensans-bold-name),
+	src:
+		local($db-font-db-screensans-bold-name),
 		url($fonts-path + $db-font-db-screensans-bold-woff2) format("woff2"),
 		url($fonts-path + $db-font-db-screensans-bold-woff) format("woff");
 }
@@ -42,7 +46,8 @@
 	font-family: "DB Screen Sans Digital Regular";
 	font-style: normal;
 	font-weight: 400;
-	src: local("DB Screen Sans Digital Regular"),
+	src:
+		local("DB Screen Sans Digital Regular"),
 		url($fonts-path + "dbscreensans-digitalregular.woff2") format("woff2"),
 		url($fonts-path + "dbscreensans-digitalregular.woff") format("woff");
 }
