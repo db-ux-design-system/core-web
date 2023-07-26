@@ -1,5 +1,75 @@
 /* Add styles for component here */
 
+@use "@db-ui/foundations/build/scss/helpers/shadow-dom" as *;
+@use "@db-ui/foundations/build/scss/variables" as *;
+@use "@db-ui/foundations/build/scss/variables.global" as *;
+@use "@db-ui/foundations/build/scss/helpers/functions" as *;
+@use "@db-ui/foundations/build/scss/icon/icons.helpers" as *;
+@use "@db-ui/foundations/build/scss/helpers/component";
+@use "../../styles/form-components" as *;
+
+%summary-icon {
+	@extend %dropdown-icon;
+
+	&::after {
+		inset-inline-end: $db-spacing-fixed-sm;
+	}
+}
+
+%divider {
+	position: absolute;
+	inset-inline: 0;
+	inset-inline-end: 0;
+}
+
 .db-accordion-item {
-	// TODO
+	@extend %shadow-dom-extend;
+	@include divider($position: "top");
+
+	position: relative;
+	inline-size: 100%;
+
+	&:last-of-type {
+		@include divider($position: "bottom", $slot: "after");
+	}
+
+	/* TODO: add hover states for new adaptive colors from https://github.com/db-ui/mono/pull/488 */
+
+	summary {
+		@extend %summary-icon;
+
+		list-style: none;
+		display: flex;
+		justify-content: space-between;
+		padding: $db-spacing-fixed-md;
+		gap: $db-spacing-fixed-md;
+	}
+
+	&[open] {
+		summary::after {
+			transform: rotate(180deg);
+		}
+
+		// this only works for the first opening, why??
+		.db-accordion-content {
+			opacity: 1;
+		}
+	}
+}
+
+.db-accordion-top-divider {
+	@extend %divider;
+	inset-block-start: 0;
+}
+
+.db-accordion-bottom-divider {
+	@extend %divider;
+	inset-block-end: 0;
+}
+
+.db-accordion-content {
+	padding: $db-spacing-fixed-md;
+	padding-block-end: $db-spacing-fixed-lg;
+	opacity: 0;
+	transition: opacity $db-transition-emotional-straight;
 }

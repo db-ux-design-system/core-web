@@ -11,6 +11,31 @@ useMetadata({
 	}
 });
 
+/**
+ *
+ * FRAGEN: we handeln wir multiple elemente auf einer Ebene?
+ * --> dialog müsste mehrmals auftauchen?
+ * --> mit JSON optional
+ *
+ *
+ * // Default
+ * <DBAccordion>
+ * {list.map( (listItem) => (
+ *	 <DBAccordionItem slotSummary="{listItem.summary}" summary="onlyText">{listItem.content}</DBAccordionItem>
+ * ))}
+ * </DBAccordion>
+ *
+ * // gedoppelt, aber für WebComponents als propListener sinnvoll
+ * <DBAccordion data={[{summary: "Headline", content: "123"}]}></DBAccordion>
+ *
+ *
+ * --> Für alles eigene Child komponenten?
+ * --> HTML pure dann
+ *
+ * @param props
+ * @returns
+ */
+
 export default function DBAccordion(props: DBAccordionProps) {
 	// This is used as forwardRef
 	let component: any;
