@@ -22,7 +22,15 @@
 @use "../components/select/select" as *;
 @use "../components/navigation-item/navigation-item" as *;
 
+@use "../components/accordion/accordion" as *;
+
+@use "../components/accordion-item/accordion-item" as *;
+
 // angular-workaround
+dbaccordion-item,
+db-accordion-item,
+dbaccordion,
+db-accordion,
 dbnavigation-item,
 db-navigation-item,
 dbtag,

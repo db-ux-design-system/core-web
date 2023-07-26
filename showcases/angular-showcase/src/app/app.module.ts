@@ -20,10 +20,14 @@ import {
 	DBSelectModule,
 	DBDrawerModule,
 	DBTagModule,
-	DBNavigationItemModule
+	DBNavigationItemModule,
+	DBAccordionModule,
+	DBAccordionItemModule
 } from '../../../../output/angular/src';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app.routing.module';
+import { AccordionComponent } from './components/accordion/accordion.component';
+import { AccordionItemComponent } from './components/accordion-item/accordion-item.component';
 import { FormComponent } from './components/form/form.component';
 import { ButtonComponent } from './components/button/button.component';
 import { LinkComponent } from './components/link/link.component';
@@ -43,8 +47,9 @@ import { NavigationItemComponent } from './components/navigation-item/navigation
 
 @NgModule({
 	declarations: [
+		AccordionItemComponent,
+		AccordionComponent,
 		NavigationItemComponent,
-
 		SelectComponent,
 		TagComponent,
 		AppComponent,
@@ -63,8 +68,9 @@ import { NavigationItemComponent } from './components/navigation-item/navigation
 		DrawerComponent
 	],
 	imports: [
+		DBAccordionItemModule,
+		DBAccordionModule,
 		DBNavigationItemModule,
-
 		DBTagModule,
 		DBSelectModule,
 		AppRoutingModule,

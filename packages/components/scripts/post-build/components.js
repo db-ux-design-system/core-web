@@ -17,6 +17,14 @@
  */
 const getComponents = () => [
 	{
+		name: 'accordion-item'
+	},
+
+	{
+		name: 'accordion'
+	},
+
+	{
 		name: 'navigation-item'
 	},
 

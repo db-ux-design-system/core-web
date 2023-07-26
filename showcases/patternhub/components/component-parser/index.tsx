@@ -1,4 +1,7 @@
 import { useEffect, useState } from 'react';
+import DBAccordionItem from '../src/components/accordion-item/accordion-item';
+
+import DBAccordion from '../src/components/accordion/accordion';
 
 import {
 	DBInfotext,
@@ -203,6 +206,22 @@ const ComponentSwitch = ({
 			<DBNavigationItem className={className} {...props}>
 				{resolvedContent}
 			</DBNavigationItem>
+		);
+	}
+
+	if (type === 'accordion') {
+		return (
+			<DBAccordion className={className} {...props}>
+				{resolvedContent}
+			</DBAccordion>
+		);
+	}
+
+	if (type === 'accordion-item') {
+		return (
+			<DBAccordionItem className={className} {...props}>
+				{resolvedContent}
+			</DBAccordionItem>
 		);
 	}
 

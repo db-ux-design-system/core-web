@@ -1,3 +1,5 @@
+import { AccordionItemComponent } from '../components/accordion-item/accordion-item.component';
+import { AccordionComponent } from '../components/accordion/accordion.component';
 import { NavigationItemComponent } from '../components/navigation-item/navigation-item.component';
 import { SelectComponent } from '../components/select/select.component';
 import { TagComponent } from '../components/tag/tag.component';
@@ -15,6 +17,14 @@ import { DividerComponent } from '../components/divider/divider.component';
 import { DrawerComponent } from '../components/drawer/drawer.component';
 
 export const NAVIGATION_ITEMS: any[] = [
+	{
+		path: 'accordion-item',
+		label: 'AccordionItem',
+		component: AccordionItemComponent
+	},
+
+	{ path: 'accordion', label: 'Accordion', component: AccordionComponent },
+
 	{
 		path: 'navigation-item',
 		label: 'NavigationItem',

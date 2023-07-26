@@ -1,3 +1,5 @@
+import AccordionItemComponent from '../components/accordion-item';
+import AccordionComponent from '../components/accordion';
 import NavigationItemComponent from '../components/navigation-item';
 import CheckboxComponent from '../components/checkbox';
 import TagComponent from '../components/tag';
@@ -21,6 +23,18 @@ export type NavigationItem = {
 	home?: boolean;
 };
 export const NAVIGATION_ITEMS: NavigationItem[] = [
+	{
+		path: 'accordion-item',
+		label: 'AccordionItem',
+		component: <AccordionItemComponent />
+	},
+
+	{
+		path: 'accordion',
+		label: 'Accordion',
+		component: <AccordionComponent />
+	},
+
 	{
 		path: 'navigation-item',
 		label: 'NavigationItem',
