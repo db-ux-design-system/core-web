@@ -6,7 +6,7 @@ import { GlobalProps, GlobalState } from '../../shared/model';
 
 export interface DBAccordionItemDefaultProps {
 	open?: boolean;
-	summary?: string;
+	slotSummary?: string;
 	isLastChild?: boolean;
 }
 

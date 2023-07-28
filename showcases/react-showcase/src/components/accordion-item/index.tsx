@@ -4,8 +4,8 @@ import defaultComponentVariants from '../../../../shared/accordion-item.json';
 import type { DBAccordionItemProps } from '../../../../../output/react/src/components/accordion-item/model';
 import { getVariants } from '../data';
 
-const getAccordionItem = ({ children }: DBAccordionItemProps) => (
-	<DBAccordionItem>{children}</DBAccordionItem>
+const getAccordionItem = ({ slotSummary, children }: DBAccordionItemProps) => (
+	<DBAccordionItem slotSummary={slotSummary}>{children}</DBAccordionItem>
 );
 
 const AccordionItemComponent = () => {

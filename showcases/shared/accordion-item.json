@@ -6,18 +6,24 @@
 				"name": "functional",
 				"className": "db-ui-functional",
 				"props": {
+					"slotSummary": "DBAccordionItem",
+					"children": "Default content"
 				}
 			},
 			{
 				"name": "regular (Default)",
 				"className": "db-ui-regular",
 				"props": {
+					"slotSummary": "DBAccordionItem",
+					"children": "Default content"
 				}
 			},
 			{
 				"name": "expressive",
 				"className": "db-ui-expressive",
 				"props": {
+					"slotSummary": "DBAccordionItem",
+					"children": "Default content"
 				}
 			}
 		]

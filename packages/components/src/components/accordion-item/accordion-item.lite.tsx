@@ -1,4 +1,10 @@
-import { onMount, Show, useMetadata, useStore } from '@builder.io/mitosis';
+import {
+	onMount,
+	Show,
+	Slot,
+	useMetadata,
+	useStore
+} from '@builder.io/mitosis';
 import { DBAccordionItemState, DBAccordionItemProps } from './model';
 import { DBIcon } from '../icon';
 import { DBDivider } from '../divider';
@@ -53,18 +59,7 @@ export default function DBAccordionItem(props: DBAccordionItemProps) {
 				<link rel="stylesheet" href={state.stylePath} />
 			</Show>
 			<summary role="button">
-				<DBDivider
-					margin="none"
-					className="db-accordion-top-divider"></DBDivider>
-				{props.summary}
-				<DBIcon
-					icon={state._open ? 'expand-less' : 'expand-more'}></DBIcon>
-
-				<Show when={props.isLastChild}>
-					<DBDivider
-						margin="none"
-						className="db-accordion-bottom-divider"></DBDivider>
-				</Show>
+				<Slot name="summary" />
 			</summary>
 			<div class="db-accordion-content">{props.children}</div>
 		</details>
