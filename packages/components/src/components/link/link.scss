@@ -26,7 +26,9 @@
 	text-decoration-thickness: to-rem($pxValue: 1);
 
 	// Changing color on hover should be animated by a transition
-	transition: outline 0.06s, color $db-transition-color;
+	transition:
+		outline 0.06s,
+		color $db-transition-color;
 
 	a {
 		// Workaround for angular

@@ -1,6 +1,6 @@
 import { onMount, Show, useMetadata, useStore } from '@builder.io/mitosis';
 import { DBSectionState, DBSectionProps } from './model';
-import { cls } from "../../utils";
+import { cls } from '../../utils';
 
 useMetadata({
 	isAttachedToShadowDom: true,

@@ -8,7 +8,6 @@ import {
 } from '@builder.io/mitosis';
 import { DBHeaderState, DBHeaderProps } from './model';
 import { addAttributeToChildren, cls, uuid } from '../../utils';
-import { DBDivider } from '../divider';
 import { DBButton } from '../button';
 import { DBDrawer } from '../drawer';
 import { DEFAULT_ID } from '../../shared/constants';

@@ -99,7 +99,10 @@
 	label {
 		@extend %db-body-2xs;
 		inset-block-start: $db-spacing-fixed-2xs;
-		transition: left, top, font-size 0.2s $db-transition-functional-timing;
+		transition:
+			left,
+			top,
+			font-size 0.2s $db-transition-functional-timing;
 		inset-inline-start: calc(
 			var(--has-before) * ($db-sizing-md - $db-spacing-fixed-sm) +
 				$db-spacing-fixed-sm
@@ -109,7 +112,9 @@
 	&::after,
 	&::before,
 	.icon-state {
-		inset-block-start: calc(var(--db-base-font-size) * var(--db-base-line-height) / 2);
+		inset-block-start: calc(
+			var(--db-base-font-size) * var(--db-base-line-height) / 2
+		);
 	}
 
 	&::before {

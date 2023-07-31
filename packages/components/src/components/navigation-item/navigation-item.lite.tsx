@@ -4,12 +4,11 @@ import {
 	Show,
 	Slot,
 	useMetadata,
-	useRef,
 	useStore
 } from '@builder.io/mitosis';
 import { DBNavigationItemState, DBNavigationItemProps } from './model';
 import { DBButton } from '../button';
-import { cls,uuid } from '../../utils';
+import { cls, uuid } from '../../utils';
 import { DEFAULT_BACK } from '../../shared/constants';
 
 useMetadata({
