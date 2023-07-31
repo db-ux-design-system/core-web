@@ -1,6 +1,5 @@
 import { DBMainNavigation } from '../../../../output/react/src';
-import { ROUTES } from '../../data/routes';
-import type { NavigationItem } from '../../data/routes';
+import { ROUTES, type NavigationItem } from '../../data/routes';
 import NavItem from './nav-item';
 
 const Navigation = () => (

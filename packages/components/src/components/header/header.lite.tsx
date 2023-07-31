@@ -30,6 +30,9 @@ export default function DBHeader(props: DBHeaderProps) {
 		_id: DEFAULT_ID,
 		initialized: false,
 		forcedToMobile: false,
+		defaultValues: {
+			burgerMenuLabel: 'BurgerMenu'
+		},
 		toggle: () => {
 			if (props.onToggle) {
 				props.onToggle(!props.drawerOpen);
@@ -96,9 +99,6 @@ export default function DBHeader(props: DBHeaderProps) {
 			<div class="db-header-navigation-bar">
 				<div class="db-header-brand-container">
 					<Slot name="brand" />
-					<DBDivider
-						className="db-header-divider db-header-hide-on-mobile"
-						variant="vertical"></DBDivider>
 				</div>
 				<div class="db-header-navigation-container">
 					<div class="db-header-navigation db-header-hide-on-mobile">
@@ -109,10 +109,6 @@ export default function DBHeader(props: DBHeaderProps) {
 					</div>
 				</div>
 				<div class="db-header-action-container">
-					<DBDivider
-						className="db-header-divider"
-						variant="vertical"
-						margin="none"></DBDivider>
 					<DBButton
 						id="button-burger-menu"
 						className="db-header-hide-on-desktop"
@@ -120,7 +116,8 @@ export default function DBHeader(props: DBHeaderProps) {
 						noText
 						variant="text"
 						onClick={() => state.toggle()}>
-						Burger Menu
+						{props.burgerMenuLabel ||
+							state.defaultValues?.burgerMenuLabel}
 					</DBButton>
 					<div class="db-header-action-bar db-header-hide-on-mobile">
 						<Slot name="action-bar" />

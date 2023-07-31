@@ -19,6 +19,12 @@ export interface DBHeaderDefaultProps {
 	 * Overwrite size of the drawer with '--db-drawer-max-width: xxx'
 	 */
 	forceMobile?: boolean;
+
+	/**
+	 * This attribute sets the label for the burger menu button for mobile headers.
+	 */
+
+	burgerMenuLabel?: string;
 }
 
 export type DBHeaderProps = DBHeaderDefaultProps &
