@@ -2,7 +2,8 @@ import { Component, type OnInit, Input, TemplateRef } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import type {
 	DefaultComponentProps,
-	DefaultComponentVariants
+	DefaultComponentVariants,
+	DefaultComponentExample
 } from '../../../../shared/default-component-data';
 import {
 	COLOR,
@@ -10,7 +11,6 @@ import {
 	TONALITY,
 	TONALITY_CONST
 } from '../../../../../packages/components/src/shared/constants';
-import { DefaultComponentExample } from '../../../../shared/default-component-data';
 
 @Component({
 	selector: 'app-default-component',
