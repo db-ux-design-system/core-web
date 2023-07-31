@@ -1,7 +1,6 @@
 ---
 to: src/components/<%= name %>/<%= name %>.scss
 ---
-/* Add styles for component here */
-
 .db-<%= name %>{
+	/* Add your styles for this new component here */
 }
