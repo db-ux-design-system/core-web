@@ -90,7 +90,7 @@ export default function DBBrand(props: DBBrandProps) {
 				</Show>
 			</a>
 			<Show when={!props.anchorChildren}>
-				<strong class="db-brand-title">{props.children}</strong>
+				<>{props.children}</>
 			</Show>
 		</div>
 	);
