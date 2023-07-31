@@ -1,4 +1,4 @@
 {
 	"*.{css,scss}": "stylelint --fix",
-	"*.{js,css,scss,md,adoc,ts,tsx,sh,yml}": "prettier --write"
+	"*": "prettier --write --ignore-unknown"
 }

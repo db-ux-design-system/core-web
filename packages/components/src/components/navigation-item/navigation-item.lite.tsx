@@ -7,7 +7,7 @@ import {
 	useStore
 } from '@builder.io/mitosis';
 import { DBNavigationItemProps, DBNavigationItemState } from './model';
-import { cls, uuid } from "../../utils";
+import { cls, uuid } from '../../utils';
 
 useMetadata({
 	isAttachedToShadowDom: true,

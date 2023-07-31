@@ -1,11 +1,11 @@
-import { onMount, Show, useMetadata, useStore } from "@builder.io/mitosis";
-import { DBAlertProps, DBAlertState } from "./model";
-import { DBIcon } from "../icon";
-import { DefaultVariantsIcon } from "../../shared/model";
-import { DBButton } from "../button";
-import { DBLink } from "../link";
-import { DEFAULT_CLOSE_BUTTON } from "../../shared/constants";
-import { cls } from "../../utils";
+import { onMount, Show, useMetadata, useStore } from '@builder.io/mitosis';
+import { DBAlertProps, DBAlertState } from './model';
+import { DBIcon } from '../icon';
+import { DefaultVariantsIcon } from '../../shared/model';
+import { DBButton } from '../button';
+import { DBLink } from '../link';
+import { DEFAULT_CLOSE_BUTTON } from '../../shared/constants';
+import { cls } from '../../utils';
 
 useMetadata({
 	isAttachedToShadowDom: true,

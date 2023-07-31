@@ -2,7 +2,7 @@ import { onMount, Show, useMetadata, useStore } from '@builder.io/mitosis';
 import { DBIcon } from '../icon';
 import { DBInfotextState, DBInfotextProps } from './model';
 import { DefaultVariantsIcon } from '../../shared/model';
-import { cls } from "../../utils";
+import { cls } from '../../utils';
 
 useMetadata({
 	isAttachedToShadowDom: true,

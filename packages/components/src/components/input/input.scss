@@ -25,7 +25,9 @@
 ) {
 	$transformScale: -1.25;
 
-	transition: opacity 0.08s, transform 0.15s;
+	transition:
+		opacity 0.08s,
+		transform 0.15s;
 	opacity: var(--db-input-focus-opacity);
 
 	// add 0.1em to adjust label with input padding-inline-start
@@ -229,12 +231,13 @@
 		&:not(:placeholder-shown) {
 			// move filled text for expressive and regular to center with focused label
 			padding-block: calc(
-				var(--db-spacing-fixed-xs) + 0.25em *
-					var(--db-input-focus-opacity)
-			) calc(
-				$db-spacing-fixed-xs - var(--db-input-focus-opacity) *
-					$db-spacing-fixed-xs
-			);
+					var(--db-spacing-fixed-xs) + 0.25em *
+						var(--db-input-focus-opacity)
+				)
+				calc(
+					$db-spacing-fixed-xs - var(--db-input-focus-opacity) *
+						$db-spacing-fixed-xs
+				);
 
 			+ label {
 				@include label-focus-animation();
