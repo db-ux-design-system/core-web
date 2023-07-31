@@ -46,7 +46,15 @@ const getComponents = () => [
 	},
 
 	{
-		name: 'select'
+		name: 'select',
+		config: {
+			vue: {
+				vModel: [{ modelValue: 'value', binding: ':value' }]
+			},
+			angular: {
+				controlValueAccessor: 'value'
+			}
+		}
 	},
 	{
 		name: 'drawer',

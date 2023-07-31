@@ -3,8 +3,7 @@ import {
 	DBPage,
 	DBHeader,
 	DBBrand,
-	DBNavigationItem,
-	DBSubNavigation,
+	DBSelect,
 	DBMainNavigation,
 	DBButton
 } from "../../../output/vue/vue3/src";
@@ -113,16 +112,24 @@ const sortedNavigation = getSortedNavigationItems(navigationItems);
 					</DBButton>
 				</template>
 				<template v-slot:meta-navigation>
-					<select v-model="tonality" @change="onChange($event)">
+					<DBSelect
+						label="Tonality"
+						v-model:value="tonality"
+						@change="onChange($event)"
+					>
 						<option v-for="ton of TONALITIES" :value="ton">
 							{{ ton }}
 						</option>
-					</select>
-					<select v-model="color" @change="onChange($event)">
+					</DBSelect>
+					<DBSelect
+						label="Color"
+						v-model:value="color"
+						@change="onChange($event)"
+					>
 						<option v-for="col of COLORS" :value="col">
 							{{ col }}
 						</option>
-					</select>
+					</DBSelect>
 				</template>
 			</DBHeader>
 		</template>

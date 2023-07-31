@@ -8,6 +8,7 @@ import {
 	COLOR_CONST,
 	TONALITY_CONST
 } from '../../../../packages/components/src/shared/constants';
+import { DBSelect } from '../../../../output/react/src';
 
 export type MetaNavigationProps = {
 	onTonalityChange: (tonality: string) => void;
@@ -48,7 +49,8 @@ const MetaNavigation = ({
 
 	return (
 		<>
-			<select
+			<DBSelect
+				label="Tonality"
 				value={tonality}
 				onChange={(event) => {
 					setTonality(event?.target?.value);
@@ -58,18 +60,19 @@ const MetaNavigation = ({
 						{ton}
 					</option>
 				))}
-			</select>
-			<select
+			</DBSelect>
+			<DBSelect
+				label="Color"
 				value={color}
 				onChange={(event) => {
 					setColor(event?.target?.value);
 				}}>
 				{COLORS.map((col) => (
-					<option key={`tonality-option-${col}`} value={col}>
+					<option key={`color-option-${col}`} value={col}>
 						{col}
 					</option>
 				))}
-			</select>
+			</DBSelect>
 		</>
 	);
 };

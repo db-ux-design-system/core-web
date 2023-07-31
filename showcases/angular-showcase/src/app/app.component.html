@@ -22,16 +22,24 @@
 		</db-main-navigation>
 		<ng-container *dbMetaNavigation>
 			<!-- TODO: Use db-select here	-->
-			<select [(ngModel)]="tonality" (change)="onChange($event)">
+			<db-select
+				label="Tonality"
+				[(ngModel)]="tonality"
+				(change)="onChange($event)"
+			>
 				<option *ngFor="let t of tonalities">
 					{{ t }}
 				</option>
-			</select>
-			<select [(ngModel)]="color" (change)="onChange($event)">
+			</db-select>
+			<db-select
+				label="Color"
+				[(ngModel)]="color"
+				(change)="onChange($event)"
+			>
 				<option *ngFor="let c of colors">
 					{{ c }}
 				</option>
-			</select>
+			</db-select>
 		</ng-container>
 		<ng-container call-to-action>
 			<DBButton icon="search" variant="text" [noText]="true"

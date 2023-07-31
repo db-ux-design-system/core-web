@@ -115,8 +115,8 @@ export default function DBHeader(props: DBHeaderProps) {
 						noText
 						variant="text"
 						onClick={() => state.toggle()}>
-						{props.burgerMenuLabel ||
-							state.defaultValues?.burgerMenuLabel}
+						{props.burgerMenuLabel ??
+							state.defaultValues.burgerMenuLabel}
 					</DBButton>
 					<div class="db-header-action-bar db-header-hide-on-mobile">
 						<Slot name="action-bar" />
