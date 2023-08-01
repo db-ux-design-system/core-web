@@ -23,10 +23,10 @@ import {
 	DBNavigationItemModule,
 	DBMainNavigationModule
 } from '../../../../output/angular/src';
-import { ActionBarDirective } from '../../../../output/angular/src/components/header/action-bar.directive';
-import { NavigationDirective } from '../../../../output/angular/src/components/header/navigation.directive';
-import { MetaNavigationDirective } from '../../../../output/angular/src/components/header/meta-navigation.directive';
-import { NavigationContentDirective } from '../../../../output/angular/src/components/navigation-item/navigation-content.directive';
+import { ActionBarDirective } from '../../../../output/angular/src/components/header/ActionBar.directive';
+import { NavigationDirective } from '../../../../output/angular/src/components/header/Navigation.directive';
+import { MetaNavigationDirective } from '../../../../output/angular/src/components/header/MetaNavigation.directive';
+import { NavigationContentDirective } from '../../../../output/angular/src/components/navigation-item/NavigationContent.directive';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app.routing.module';
 import { FormComponent } from './components/form/form.component';

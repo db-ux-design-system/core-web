@@ -1,7 +1,6 @@
 /**
  * @returns {[{
  * name:string,
- * defaultStylePath:string,
  * overwrites?:{
  * 	global?:{from:string,to:string}[],
  * 	angular?:{from:string,to:string}[],
@@ -12,7 +11,11 @@
  * config?:{
  *     	vue?:{
  *         vModel?: {modelValue:string, binding:string}[]
- *     }
+ *     },
+ *     angular?: {
+ * 			controlValueAccessor?: string,
+ * 			directives?: {name:string, ngContentName?:string}[]
+ * 		}
  * }
  * }]}
  */
@@ -23,25 +26,10 @@ const getComponents = () => [
 
 	{
 		name: 'navigation-item',
-		overwrites: {
-			angular: [
-				{
-					from: /<ng-content>/g,
-					to: '<ng-content *ngTemplateOutlet="dbNavigationContent">'
-				},
-				{
-					from: 'export class DBNavigationItem {\n',
-					to:
-						'export class DBNavigationItem {\n' +
-						'\t@ContentChild(NavigationContentDirective, { read: TemplateRef }) dbNavigationContent: any;\n'
-				},
-				{
-					from: 'import { NgModule } from "@angular/core";',
-					to:
-						"import { NgModule, ContentChild, TemplateRef } from '@angular/core';\t\n" +
-						"import { NavigationContentDirective } from './navigation-content.directive';\n"
-				}
-			]
+		config: {
+			angular: {
+				directives: [{ name: 'NavigationContent' }]
+			}
 		}
 	},
 
@@ -121,6 +109,18 @@ const getComponents = () => [
 	},
 	{
 		name: 'header',
+		config: {
+			angular: {
+				directives: [
+					{ name: 'ActionBar', ngContentName: 'action-bar' },
+					{
+						name: 'MetaNavigation',
+						ngContentName: 'meta-navigation'
+					},
+					{ name: 'Navigation' }
+				]
+			}
+		},
 		overwrites: {
 			global: [
 				{
@@ -130,49 +130,6 @@ const getComponents = () => [
 				{
 					from: '(event) => toggle()',
 					to: '() => toggle()'
-				}
-			],
-			angular: [
-				{ from: '(close)', to: '(onClose)' },
-				{
-					from: '<ng-content select="[action-bar]">',
-					to: '<ng-content *ngTemplateOutlet="dbActionBar">'
-				},
-				{
-					from: '<ng-content select="[meta-navigation]">',
-					to: '<ng-content *ngTemplateOutlet="dbMetaNavigation">'
-				},
-				{
-					from: '<ng-content>',
-					to: '<ng-content *ngTemplateOutlet="dbNavigation">'
-				},
-				{
-					from: '<ng-content select="[action-bar]">',
-					to: '<ng-content *ngTemplateOutlet="dbActionBar">'
-				},
-				{
-					from: '<ng-content select="[meta-navigation]">',
-					to: '<ng-content *ngTemplateOutlet="dbMetaNavigation">'
-				},
-				{
-					from: '<ng-content>',
-					to: '<ng-content *ngTemplateOutlet="dbNavigation">'
-				},
-				{
-					from: 'export class DBHeader {\n',
-					to:
-						'export class DBHeader {\n' +
-						'\t@ContentChild(ActionBarDirective, { read: TemplateRef }) dbActionBar: any;\n' +
-						'\t@ContentChild(NavigationDirective, { read: TemplateRef }) dbNavigation: any;\n' +
-						'\t@ContentChild(MetaNavigationDirective, { read: TemplateRef }) dbMetaNavigation: any;\n'
-				},
-				{
-					from: 'import { NgModule } from "@angular/core";',
-					to:
-						"import { NgModule, ContentChild, TemplateRef } from '@angular/core';\t\n" +
-						"import { ActionBarDirective } from './action-bar.directive';\n" +
-						"import { NavigationDirective } from './navigation.directive';\n" +
-						"import { MetaNavigationDirective } from './meta-navigation.directive';"
 				}
 			],
 			webComponents: [
