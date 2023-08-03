@@ -1,8 +1,9 @@
 import {
+	GlobalProps,
+	GlobalState,
 	ToggleEventProps,
 	ToggleEventState
-} from './../../../../../build-outputs/react/dist/shared/model.d';
-import { GlobalProps, GlobalState } from '../../shared/model';
+} from '../../shared/model';
 
 export interface DBAccordionItemDefaultProps {
 	open?: boolean;
