@@ -36,7 +36,7 @@ export default function DBAccordionItem(props: DBAccordionItemProps) {
 			state.stylePath = props.stylePath;
 		}
 
-		state._open = props.open;
+		state._open = !!props.open;
 	});
 	// jscpd:ignore-end
 
