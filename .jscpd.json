@@ -30,6 +30,7 @@
 		"**/README.md",
 		"**/generated/**",
 		"showcases/shared/*.json",
+		"showcases/patternhub/out/**",
 		"packages/components/src/components/alert/alert.lite.tsx",
 		"showcases/react-showcase/src/components/alert/index.tsx",
 		"packages/components/src/components/checkbox/checkbox.lite.tsx",

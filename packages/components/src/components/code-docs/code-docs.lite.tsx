@@ -7,7 +7,7 @@ import {
 } from '@builder.io/mitosis';
 import { DBCodeDocsProps, DBCodeDocsState } from './model';
 import { DBCard } from '../card';
-import { cls } from "../../utils";
+import { cls } from '../../utils';
 
 useMetadata({
 	isAttachedToShadowDom: true,

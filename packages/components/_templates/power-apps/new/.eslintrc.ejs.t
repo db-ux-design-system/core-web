@@ -20,6 +20,7 @@ force: true
 	"plugins": ["@typescript-eslint"],
 	"rules": {
 		"no-unused-vars": 0,
-		"no-mixed-spaces-and-tabs": 0
+		"no-mixed-spaces-and-tabs": 0,
+		"react/no-deprecated": 0
 	}
 }

@@ -8,7 +8,7 @@ import {
 import { DBCheckboxProps, DBCheckboxState } from './model';
 import { uuid } from '../../utils';
 import { DEFAULT_ID } from '../../shared/constants';
-import { cls } from "../../utils";
+import { cls } from '../../utils';
 
 useMetadata({
 	isAttachedToShadowDom: true,

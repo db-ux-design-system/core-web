@@ -155,7 +155,8 @@
 	block-size: $db-sizing-sm;
 	min-inline-size: $db-sizing-sm;
 	inline-size: fit-content;
-	transition: background-color $db-transition-color,
+	transition:
+		background-color $db-transition-color,
 		color $db-transition-color;
 
 	input {

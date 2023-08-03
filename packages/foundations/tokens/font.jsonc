@@ -19,12 +19,6 @@
 					"target": "web"
 				}
 			},
-			"woff": {
-				"value": "'dbscreensans-regular.woff'",
-				"attributes": {
-					"target": "web"
-				}
-			},
 			"woff2": {
 				"value": "'dbscreensans-regular.woff2'",
 				"attributes": {
@@ -47,12 +41,6 @@
 			},
 			"font-weight": {
 				"value": "700",
-				"attributes": {
-					"target": "web"
-				}
-			},
-			"woff": {
-				"value": "'dbscreensans-bold.woff'",
 				"attributes": {
 					"target": "web"
 				}
@@ -83,12 +71,6 @@
 					"target": "web"
 				}
 			},
-			"woff": {
-				"value": "'dbscreenhead-light.woff'",
-				"attributes": {
-					"target": "web"
-				}
-			},
 			"woff2": {
 				"value": "'dbscreenhead-light.woff2'",
 				"attributes": {
@@ -111,12 +93,6 @@
 			},
 			"font-weight": {
 				"value": "900",
-				"attributes": {
-					"target": "web"
-				}
-			},
-			"woff": {
-				"value": "'dbscreenhead-black.woff'",
 				"attributes": {
 					"target": "web"
 				}
