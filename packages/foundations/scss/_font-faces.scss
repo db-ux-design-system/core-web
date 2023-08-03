@@ -7,8 +7,7 @@
 	font-weight: $db-font-db-screenhead-light-font-weight;
 	src:
 		local($db-font-db-screenhead-light-name),
-		url($fonts-path + $db-font-db-screenhead-light-woff2) format("woff2"),
-		url($fonts-path + $db-font-db-screenhead-light-woff) format("woff");
+		url($fonts-path + $db-font-db-screenhead-light-woff2) format("woff2");
 }
 
 @font-face {
@@ -17,8 +16,7 @@
 	font-weight: $db-font-db-screenhead-black-font-weight;
 	src:
 		local($db-font-db-screenhead-black-name),
-		url($fonts-path + $db-font-db-screenhead-black-woff2) format("woff2"),
-		url($fonts-path + $db-font-db-screenhead-black-woff) format("woff");
+		url($fonts-path + $db-font-db-screenhead-black-woff2) format("woff2");
 }
 
 @font-face {
@@ -27,8 +25,7 @@
 	font-weight: $db-font-db-screensans-regular-font-weight;
 	src:
 		local($db-font-db-screensans-regular-name),
-		url($fonts-path + $db-font-db-screensans-regular-woff2) format("woff2"),
-		url($fonts-path + $db-font-db-screensans-regular-woff) format("woff");
+		url($fonts-path + $db-font-db-screensans-regular-woff2) format("woff2");
 }
 
 @font-face {
@@ -37,8 +34,7 @@
 	font-weight: $db-font-db-screensans-bold-font-weight;
 	src:
 		local($db-font-db-screensans-bold-name),
-		url($fonts-path + $db-font-db-screensans-bold-woff2) format("woff2"),
-		url($fonts-path + $db-font-db-screensans-bold-woff) format("woff");
+		url($fonts-path + $db-font-db-screensans-bold-woff2) format("woff2");
 }
 
 // As this font is not officially used within the Design System so far, we're not providing it as a token at the moment
@@ -48,6 +44,5 @@
 	font-weight: 400;
 	src:
 		local("DB Screen Sans Digital Regular"),
-		url($fonts-path + "dbscreensans-digitalregular.woff2") format("woff2"),
-		url($fonts-path + "dbscreensans-digitalregular.woff") format("woff");
+		url($fonts-path + "dbscreensans-digitalregular.woff2") format("woff2");
 }

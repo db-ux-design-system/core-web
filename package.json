@@ -85,7 +85,7 @@
     "glob": "^10.3.3",
     "http-server": "14.1.1",
     "husky": "8.0.3",
-    "inquirer": "^9.2.8",
+    "inquirer": "^9.2.9",
     "jscpd": "^3.5.9",
     "lint-staged": "^13.2.3",
     "markdownlint-cli": "^0.35.0",

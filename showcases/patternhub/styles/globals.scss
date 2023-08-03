@@ -102,7 +102,7 @@ table th {
 div[class^="ch-"] {
 	div,
 	span {
-		@extend %db-body-sm;
+		@extend %db-overwrite-font-size-sm;
 		color: $db-colors-secondary-on-enabled;
 	}
 }
