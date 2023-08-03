@@ -5,7 +5,8 @@
 @use "@db-ui/foundations/build/scss/variables.global" as *;
 @use "@db-ui/foundations/build/scss/helpers/functions" as *;
 @use "@db-ui/foundations/build/scss/icon/icons.helpers" as *;
-@use "@db-ui/foundations/build/scss/helpers/component";
+@use "@db-ui/foundations/build/scss/helpers/component" as *;
+@use "@db-ui/foundations/build/scss/color/color-variants" as *;
 @use "../../styles/form-components" as *;
 
 %summary-icon {
@@ -24,10 +25,20 @@
 
 .db-accordion-item {
 	@extend %shadow-dom-extend;
+	// @extend %default-background-transition;
 	@include divider($position: "top");
+	@include get-variant-bg-color(0);
 
 	position: relative;
 	inline-size: 100%;
+
+	// &:hover {
+	// 	@include get-variant-bg-color(0.16);
+	// }
+
+	// &:active {
+	// 	@include get-variant-bg-color(0.24);
+	// }
 
 	&:last-of-type {
 		@include divider($position: "bottom", $slot: "after");

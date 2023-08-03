@@ -8,7 +8,7 @@ For general installation and configuration look at the [react-components](https:
 // App.tsx
 import { DBAccordionItem } from "@db-ui/react-components";
 
-const App = () => <DBAccordionItem>AccordionItem</DBAccordionItem>;
+const App = () => <DBAccordionItem slotSummary={slotSummary} onToggle={() => {console.log("toggle accordion item")}}>{children}</DBAccordionItem>;
 
 export default App;
 ```

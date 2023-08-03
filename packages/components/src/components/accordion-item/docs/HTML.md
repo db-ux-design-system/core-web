@@ -8,6 +8,11 @@ For general installation and configuration look at the [components](https://www.
 <!-- index.html -->
 ...
 <body>
-	<div class="db-accordion-item">AccordionItem</div>
+ <details class="db-accordion-item">
+  <summary role="button">
+   DB Accordion Item
+  </summary>
+  <p class="db-accordion-content">Und hier ist der Content</p>
+ </details>
 </body>
 ```

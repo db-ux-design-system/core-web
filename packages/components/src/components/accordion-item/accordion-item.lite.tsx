@@ -6,8 +6,6 @@ import {
 	useStore
 } from '@builder.io/mitosis';
 import { DBAccordionItemState, DBAccordionItemProps } from './model';
-import { DBIcon } from '../icon';
-import { DBDivider } from '../divider';
 import { cls } from '../../utils';
 
 useMetadata({
@@ -43,13 +41,6 @@ export default function DBAccordionItem(props: DBAccordionItemProps) {
 	// jscpd:ignore-end
 
 	return (
-		// <div ref={component} class={cls('db-accordion-item', props.className)}>
-		// 	<Show when={state.stylePath}>
-		// 		<link rel="stylesheet" href={state.stylePath} />
-		// 	</Show>
-		// 	{props.children}
-		// </div>
-
 		<details
 			ref={component}
 			class={cls('db-accordion-item', props.className)}
