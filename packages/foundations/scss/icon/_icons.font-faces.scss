@@ -7,9 +7,7 @@
 	font-display: block;
 	font-family: "missing-icons";
 	src: url("#{$icons-path}functional/fonts/icons-empty.woff2?4r2096")
-			format("woff2"),
-		url("#{$icons-path}functional/fonts/icons-empty.woff?4r2096")
-			format("woff");
+		format("woff2");
 }
 
 // DB UX Icons
@@ -25,9 +23,7 @@
 				font-style: normal;
 				font-weight: normal;
 				src: url("#{$icons-path}functional/fonts/#{$icon-font-family+ "-" + $icon-category}.woff2?4r2096")
-						format("woff2"),
-					url("#{$icons-path}functional/fonts/#{$icon-font-family+ "-" + $icon-category}.woff?4r2096")
-						format("woff");
+					format("woff2");
 
 				unicode-range: unquote($icon-font-unicodes);
 			}

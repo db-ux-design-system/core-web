@@ -43,15 +43,15 @@
   },
   "devDependencies": {
     "@builder.io/eslint-plugin-mitosis": "^0.0.14",
-    "@builder.io/mitosis": "^0.0.114",
-    "@builder.io/mitosis-cli": "^0.0.72",
+    "@builder.io/mitosis": "^0.0.117",
+    "@builder.io/mitosis-cli": "^0.0.75",
     "@react-docgen/cli": "^1.0.2",
     "cpr": "3.0.1",
-    "eslint": "^8.45.0",
+    "eslint": "^8.46.0",
     "hygen": "^6.2.11",
-    "lit": "^2.7.6",
+    "lit": "^2.8.0",
     "nodemon": "3.0.1",
-    "sass": "^1.64.1"
+    "sass": "^1.64.2"
   },
   "publishConfig": {
     "registry": "https://registry.npmjs.org/",

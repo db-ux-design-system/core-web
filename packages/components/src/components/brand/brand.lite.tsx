@@ -24,7 +24,8 @@ useMetadata({
 			{
 				name: 'imgSrc',
 				type: 'SingleLine.URL',
-				defaultValue: 'https://ppassets.azureedge.net/assets/images/db_logo.svg'
+				defaultValue:
+					'https://ppassets.azureedge.net/assets/images/db_logo.svg'
 			},
 			{
 				name: 'imgAlt',
@@ -71,9 +72,7 @@ export default function DBBrand(props: DBBrandProps) {
 			</Show>
 
 			<a
-				href={
-					props.anchorRef ?? state.defaultValues.anchorRef
-				}
+				href={props.anchorRef ?? state.defaultValues.anchorRef}
 				title={props.anchorTitle}
 				rel={props.anchorRelation}>
 				<Show when={!props.hideDefaultAsset}>
