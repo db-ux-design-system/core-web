@@ -2,16 +2,6 @@ import type { DbMainnavigationDataType } from '@db-ui/elements/dist/types/compon
 
 const componentChildren = [
 	{
-		label: 'TODO: Add to specific category; DBAccordionItem',
-		name: 'accordion-item'
-	},
-
-	{
-		label: 'TODO: Add to specific category; DBAccordion',
-		name: 'accordion'
-	},
-
-	{
 		label: '01 Layout',
 		link: '/components/01-layout',
 		children: [
@@ -81,6 +71,14 @@ const componentChildren = [
 		label: '04 Data-Display',
 		link: '/components/04-data-display',
 		children: [
+			{
+				label: 'DBAccordion',
+				name: 'accordion'
+			},
+			{
+				label: 'DBAccordionItem',
+				name: 'accordion-item'
+			},
 			{
 				label: 'DBBrand',
 				name: 'brand'
