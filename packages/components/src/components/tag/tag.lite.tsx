@@ -1,4 +1,10 @@
-import { onMount, onUpdate,Show, useMetadata, useStore } from '@builder.io/mitosis';
+import {
+	onMount,
+	onUpdate,
+	Show,
+	useMetadata,
+	useStore
+} from '@builder.io/mitosis';
 import { DBButton } from '../button';
 import { DBTagProps, DBTagState } from './model';
 import { cls } from '../../utils';
@@ -51,7 +57,7 @@ export default function DBTag(props: DBTagProps) {
 				return undefined;
 			}
 
-			return props.tabIndex ?? -1;
+			return props.tabIndex ?? null;
 		},
 		handleRemove: () => {
 			if (props.onRemove) {
