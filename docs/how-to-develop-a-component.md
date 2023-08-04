@@ -19,7 +19,7 @@
 
 ### Styling with SCSS
 
-Starting with the `packages/components/src/components/my-awesome-component/my-awesome-component.scss` there are some thing you should know:
+Starting with `packages/components/src/components/my-awesome-component/my-awesome-component.scss` there are some thing you should know:
 
 1. The most important dependency are the variables.global `@use "@db-ui/foundations/build/scss/variables.global" as *;`. They enable you to use e.g. `$db-spacing-fixed-md` for paddings, margins etc.
 2. A lot of times you have to force another `font-size / line-height`, you can do it with `@use "@db-ui/foundations/build/scss/helpers/font" as *;` and the corresponding placeholder extend `@extend %db-overwrite-font-size-sm;`.
