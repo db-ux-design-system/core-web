@@ -59,7 +59,7 @@
 }
 
 @mixin interactive {
-	&:has(input:checked, button:not(.db-tab-remove-button), a) {
+	&:has(input, button:not(.db-tab-remove-button), a) {
 		@content;
 	}
 }
