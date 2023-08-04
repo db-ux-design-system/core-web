@@ -1,3 +1,4 @@
+/* Use sizing's for fixed heights/widths e.g. the db-button has always a fixed height*/
 $db-sizing-xs: var(--db-sizing-xs);
 $db-sizing-sm: var(--db-sizing-sm);
 $db-sizing-md: var(--db-sizing-md);
@@ -6,6 +7,7 @@ $db-sizing-xl: var(--db-sizing-xl);
 $db-sizing-2xl: var(--db-sizing-2xl);
 $db-sizing-3xl: var(--db-sizing-3xl);
 
+/* Use fixed spacings for all kind of distances (margin, padding, ...) */
 $db-spacing-fixed-3xs: var(--db-spacing-fixed-3xs);
 $db-spacing-fixed-2xs: var(--db-spacing-fixed-2xs);
 $db-spacing-fixed-xs: var(--db-spacing-fixed-xs);
@@ -14,6 +16,8 @@ $db-spacing-fixed-md: var(--db-spacing-fixed-md);
 $db-spacing-fixed-lg: var(--db-spacing-fixed-lg);
 $db-spacing-fixed-xl: var(--db-spacing-fixed-xl);
 
+/* The primary use-case for responsive spacings are
+paddings/gaps in an application e.g. the <main> should have a responsive padding. */
 $db-spacing-responsive-xs: var(--db-spacing-responsive-xs);
 $db-spacing-responsive-sm: var(--db-spacing-responsive-sm);
 $db-spacing-responsive-md: var(--db-spacing-responsive-md);

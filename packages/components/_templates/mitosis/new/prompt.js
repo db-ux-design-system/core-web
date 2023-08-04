@@ -15,5 +15,14 @@ module.exports = [
 		name: 'readme',
 		default: true,
 		message: 'Do you want to auto-generate READMEs?'
+	},
+	{
+		type: 'input',
+		name: 'formValue',
+		default: 'no',
+		message:
+			'Is your component a form component like an input, ' +
+			'which has to inform the user if event.target.value changed? ' +
+			'If it is a form component what the name of the changing value (checked, value, ...)?'
 	}
 ];
