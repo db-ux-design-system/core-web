@@ -58,44 +58,72 @@
 	}
 }
 
+@mixin interactive {
+	&:has(input:checked),
+	button:not(.db-tab-remove-button):not(.is-icon-text-replace),
+	a {
+		@content;
+	}
+}
+
 %interactive-colors {
-	@extend %db-bg-neutral-4-ia;
+	@include interactive {
+		@extend %db-bg-neutral-4-ia;
+	}
 
 	&:has(input:not(:checked)) {
 		@extend %db-bg-neutral-0-ia;
 	}
 
 	&[data-emphasis="strong"] {
-		--db-colors-neutral-on-bg-hover: #{$db-colors-neutral-on-enabled};
-		--db-colors-neutral-on-bg-pressed: #{$db-colors-neutral-on-enabled};
-		@extend %db-neutral-component-ia;
+		@include interactive {
+			--db-colors-neutral-on-bg-hover: #{$db-colors-neutral-on-enabled};
+			--db-colors-neutral-on-bg-pressed: #{$db-colors-neutral-on-enabled};
+			@extend %db-neutral-component-ia;
+		}
 	}
 
 	@each $name, $colors in $component-variants {
 		&[data-variant="#{$name}"] {
 			@if ($name == "critical") {
-				@extend %db-bg-critical-ia;
+				@include interactive {
+					@extend %db-bg-critical-ia;
+				}
 
 				&[data-emphasis="strong"] {
-					@extend %db-critical-component-ia;
+					@include interactive {
+						@extend %db-critical-component-ia;
+					}
 				}
 			} @else if ($name == "informational") {
-				@extend %db-bg-informational-ia;
+				@include interactive {
+					@extend %db-bg-informational-ia;
+				}
 
 				&[data-emphasis="strong"] {
-					@extend %db-informational-component-ia;
+					@include interactive {
+						@extend %db-informational-component-ia;
+					}
 				}
 			} @else if ($name == "warning") {
-				@extend %db-bg-warning-ia;
+				@include interactive {
+					@extend %db-bg-warning-ia;
+				}
 
 				&[data-emphasis="strong"] {
-					@extend %db-warning-component-ia;
+					@include interactive {
+						@extend %db-warning-component-ia;
+					}
 				}
 			} @else if ($name == "successful") {
-				@extend %db-bg-successful-ia;
+				@include interactive {
+					@extend %db-bg-successful-ia;
+				}
 
 				&[data-emphasis="strong"] {
-					@extend %db-successful-component-ia;
+					@include interactive {
+						@extend %db-successful-component-ia;
+					}
 				}
 			}
 
