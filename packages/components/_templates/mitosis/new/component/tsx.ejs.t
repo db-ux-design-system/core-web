@@ -3,7 +3,8 @@ to: src/components/<%= name %>/<%= name %>.lite.tsx
 ---
 import { onMount, Show, useMetadata, useStore } from "@builder.io/mitosis";
 import { DB<%= h.changeCase.pascal(name) %>State, DB<%= h.changeCase.pascal(name) %>Props } from "./model";
-import { cls } from "../../utils";
+import { cls, uuid } from "../../utils";
+import {DEFAULT_ID} from "../../shared/constants";
 
 useMetadata({
   isAttachedToShadowDom: true,

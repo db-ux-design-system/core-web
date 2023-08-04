@@ -1,7 +1,18 @@
 ---
 to: src/components/<%= name %>/model.ts
 ---
-import { GlobalProps, GlobalState } from '../../shared/model';
+import {
+<% if(formValue!=="no"){   -%>
+	ChangeEventProps,
+	ChangeEventState,
+	FocusEventProps,
+	ValidEventProps,
+	FocusEventState,
+	FormProps,
+	FormState,
+<% } -%>
+GlobalProps,
+GlobalState } from '../../shared/model';
 
 export interface DB<%= h.changeCase.pascal(name) %>DefaultProps {
 }

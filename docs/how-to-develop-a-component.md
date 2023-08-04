@@ -91,13 +91,24 @@ Afterward, you need to enable those properties inside all frameworks.
 
 Goto `showcases/angular-showcase/src/app/components/my-awesome-component` and update the properties inside the `my-awesome-component.html` with `exampleProps.xxx`. If you need some additional `JS` logic you need to add it in the `.ts` file. Again check out some existing component to get a feeling for this.
 
+Maybe you need to change the navigation to see the component: `showcases/angular-showcase/src/app/utils/navigation-item.ts`
+
 ### React
 
 Goto `showcases/react-showcase/src/components/my-awesome-component/index.tsx` and update the properties inside the `getMyAwsomeComponent` function and inside the `tsx` component. Again check out some existing component to get a feeling for this.
 
+Maybe you need to change the navigation to see the component: `showcases/react-showcase/src/utils/navigation-item.tsx`
+
 ### Vue
 
 Goto `showcases/vue-showcase/src/components/my-awesome-component/MyAwesomeComponent.vue` and update the properties inside the `DBMyAwsomeComponent` with `exampleProps.xxx`. Again check out some existing component to get a feeling for this.
+
+Maybe you need to change the navigation to see the component: `showcases/vue-showcase/src/utils/navigation-items.ts`
+
+
+### Patternhub
+
+To show the component on GitHub pages we use another showcase. After you generated the component you need to sort your component to the correct sub-item inside ``showcases/patternhub/data/routes.ts``.
 
 ## Write Tests for Quality
 
