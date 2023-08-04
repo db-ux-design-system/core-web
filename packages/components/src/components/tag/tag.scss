@@ -58,87 +58,48 @@
 	}
 }
 
-@mixin interactive {
-	&:has(input:checked),
-	button:not(.db-tab-remove-button):not(.is-icon-text-replace),
-	a {
-		@content;
-	}
-}
-
-@mixin tag-types {
-	button:not(.db-tab-remove-button):not(.is-icon-text-replace),
-	a,
-	&:has(input),
-	&:has(span) {
-		@content;
-	}
-}
-
 %interactive-colors {
-	@include interactive {
-		@extend %db-bg-neutral-4-ia;
-	}
+	@extend %db-bg-neutral-4-ia;
 
 	&:has(input:not(:checked)) {
 		@extend %db-bg-neutral-0-ia;
 	}
 
 	&[data-emphasis="strong"] {
-		@include interactive {
-			--db-colors-neutral-on-bg-hover: #{$db-colors-neutral-on-enabled};
-			--db-colors-neutral-on-bg-pressed: #{$db-colors-neutral-on-enabled};
-			@extend %db-neutral-component-ia;
-		}
+		--db-colors-neutral-on-bg-hover: #{$db-colors-neutral-on-enabled};
+		--db-colors-neutral-on-bg-pressed: #{$db-colors-neutral-on-enabled};
+		@extend %db-neutral-component-ia;
 	}
 
 	@each $name, $colors in $component-variants {
 		&[data-variant="#{$name}"] {
 			@if ($name == "critical") {
-				@include interactive {
-					@extend %db-bg-critical-ia;
-				}
+				@extend %db-bg-critical-ia;
 
 				&[data-emphasis="strong"] {
-					@include interactive {
-						@extend %db-critical-component-ia;
-					}
+					@extend %db-critical-component-ia;
 				}
 			} @else if ($name == "informational") {
-				@include interactive {
-					@extend %db-bg-informational-ia;
-				}
+				@extend %db-bg-informational-ia;
 
 				&[data-emphasis="strong"] {
-					@include interactive {
-						@extend %db-informational-component-ia;
-					}
+					@extend %db-informational-component-ia;
 				}
 			} @else if ($name == "warning") {
-				@include interactive {
-					@extend %db-bg-warning-ia;
-				}
+				@extend %db-bg-warning-ia;
 
 				&[data-emphasis="strong"] {
-					@include interactive {
-						@extend %db-warning-component-ia;
-					}
+					@extend %db-warning-component-ia;
 				}
 			} @else if ($name == "successful") {
-				@include interactive {
-					@extend %db-bg-successful-ia;
-				}
+				@extend %db-bg-successful-ia;
 
 				&[data-emphasis="strong"] {
-					@include interactive {
-						@extend %db-successful-component-ia;
-					}
+					@extend %db-successful-component-ia;
 				}
 			}
 
-			@include interactive {
-				@include get-border-and-icon($colors);
-			}
+			@include get-border-and-icon($colors);
 		}
 	}
 }
@@ -159,8 +120,29 @@
 		background-color $db-transition-color,
 		color $db-transition-color;
 
+	&:has(input) {
+		position: relative;
+	}
+
 	input {
-		@include a11y-visually-hidden();
+		appearance: none;
+		border: none;
+		inline-size: 100%;
+		block-size: 100%;
+		position: absolute;
+
+		// Resetting regular DBCheckbox and DBRadio styling
+		&:hover,
+		&:checked,
+		&:active {
+			background: none !important;
+		}
+
+		&:checked {
+			&::before {
+				content: none;
+			}
+		}
 	}
 
 	label,
@@ -205,22 +187,18 @@
 
 %no-text {
 	&[data-no-text="true"] {
-		@include tag-types {
-			--icon-margin-after: 0;
-			@include is-icon-text-replace();
-			padding: 0;
+		--icon-margin-after: 0;
+		@include is-icon-text-replace();
+		padding: 0;
 
-			label,
-			span {
-				@include is-icon-text-replace();
-			}
+		label,
+		span {
+			@include is-icon-text-replace();
 		}
 	}
 
 	&:not(&[data-no-text="true"]) {
-		@include tag-types {
-			padding-inline: $db-spacing-fixed-2xs;
-		}
+		padding-inline: $db-spacing-fixed-2xs;
 
 		&:has(.db-tab-remove-button) {
 			padding-inline-end: 0;
@@ -234,30 +212,30 @@
 	@extend %interactive-icon-passing;
 	@extend %no-text;
 
+	@extend %db-tag;
+
 	display: flex;
 
-	@include tag-types {
-		@extend %db-tag;
-		text-decoration: none;
-
-		&::after {
-			display: none !important;
-		}
+	button {
+		border: none;
+		block-size: auto;
+		padding: 0;
+		background-color: none;
 	}
 
 	a {
-		display: inline-flex;
+		// display: inline-flex;
+		text-decoration: none;
+
+		&::after {
+			content: "" !important;
+		}
 	}
 
 	&[data-overflow="true"] {
-		span,
-		label,
-		a,
-		button {
-			max-inline-size: $db-sizing-2xl;
-			text-overflow: ellipsis;
-			overflow: hidden;
-		}
+		max-inline-size: $db-sizing-2xl;
+		text-overflow: ellipsis;
+		overflow: hidden;
 	}
 
 	&[data-disabled="true"] {

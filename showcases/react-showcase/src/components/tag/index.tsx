@@ -49,7 +49,7 @@ const getTag = ({
 				{children}
 			</DBRadio>
 		)}
-		{!component && <span>{children}</span>}
+		{!component && <>{children}</>}
 	</DBTag>
 );
 

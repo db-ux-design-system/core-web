@@ -16,7 +16,7 @@ You can use different types of tags by adding another component into it:
 <db-tag><db-link>Tag as Link</db-link></db-tag>
 <db-tag><db-checkbox>Tag as Checkbox</db-checkbox></db-tag>
 <db-tag><db-radio>Tag as Radio</db-radio></db-tag>
-<db-tag><span>Static Tag</span></db-tag>
+<db-tag>Static Tag</db-tag>
 ```
 
 ### class
