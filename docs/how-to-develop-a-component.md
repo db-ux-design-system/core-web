@@ -21,25 +21,25 @@
 
 Starting with `packages/components/src/components/my-awesome-component/my-awesome-component.scss` there are some thing you should know:
 
-1. The most important dependency are the variables.global `@use "@db-ui/foundations/build/scss/variables.global" as *;`. They enable you to use e.g. `$db-spacing-fixed-md` for paddings, margins etc.
-2. A lot of times you have to force another `font-size / line-height`, you can do it with `@use "@db-ui/foundations/build/scss/helpers/font" as *;` and the corresponding placeholder extend `@extend %db-overwrite-font-size-sm;`.
-3. Some components have an 'adaptive' styling. We exclude it in an own file `@use "@db-ui/foundations/build/scss/helpers/component" as *;` so you might use this dependency. As a reference look at another component e.g. `packages/components/src/components/button/button.scss`.
-4. If you have to set a specific color (informational, warning, etc.) directly you can use `@use "@db-ui/foundations/build/scss/color-placeholder" as *;`, but we also provide a file to cover all variants with `@use "@db-ui/foundations/build/scss/color/color-variants" as *;`. You can look at the alert for an example `packages/components/src/components/alert/alert.scss` you might use the `@each` to reduce the amount of code for color-variants.
-5. To set a fixed icon you might use `@use "@db-ui/foundations/build/scss/icon/icons.helpers" as *;` as dependency and e.g. `@include icon(glyph(arrow-forward), 24, "outline", "after");`. For a dynamic icon you should prefer solving it in `html` with the `data-icon` attribute.
+1. The most important dependency are the `variables.global` included via `@use "@db-ui/foundations/build/scss/variables.global" as *;`. They enable you to use e.g. `$db-spacing-fixed-md` for paddings, margins etc.
+2. A lot of times you have to force another `font-size` / `line-height`, you can do it with `@use "@db-ui/foundations/build/scss/helpers/font" as *;` and the corresponding placeholder extend: `@extend %db-overwrite-font-size-sm;`.
+3. Some components have an 'adaptive' styling. We exclude it in an own file `@use "@db-ui/foundations/build/scss/helpers/component" as *;` so you might use this dependency. As a reference look at another component e.g. [`packages/components/src/components/button/button.scss`](../packages/components/src/components/button/button.scss).
+4. If you have to set a specific color (informational, warning, etc.) directly you can use `@use "@db-ui/foundations/build/scss/color-placeholder" as *;`, but we also provide a file to cover all variants with `@use "@db-ui/foundations/build/scss/color/color-variants" as *;`. You can look at the `alert` component for an example `packages/components/src/components/alert/alert.scss` you might use the `@each` to reduce the amount of code for color-variants.
+5. To set a fixed icon you might use `@use "@db-ui/foundations/build/scss/icon/icons.helpers" as *;` as dependency and e.g. `@include icon(glyph(arrow-forward), 24, "outline", "after");`. For a dynamic icon you could prefer integrating it in HTML code with the `data-icon` attribute.
 
-### Component Structure with HTML
+### Component structure with HTML
 
-Besides of the `scss` you need to change the `html` for you component. If you start with `plain-html` you can test your component inside `packages/components/src/components/my-awesome-component/index.html` for advanced users you can change the `jsx` directly inside `packages/components/src/components/my-awesome-component/my-awesome-component.lite.tsx`.
+Besides of the `scss` you need to change the HTML code for you component. If you start with `plain-html` you can test your component inside `packages/components/src/components/my-awesome-component/index.html`; for _advanced_ users you can change the `jsx` directly inside `packages/components/src/components/my-awesome-component/my-awesome-component.lite.tsx`.
 
 There are some things you have to know:
 
-1. There are some reserved `data-*` attributes. For example `data-icon="xxx"` or `data-icon-after="xxx"` this will set an icon as `::before / ::after`.
-2. Moreover, there are some `data-*` attributes with the same meaning which we try to align across all components. For example `data-width` should be always `auto` or `full-width` to have the same possible options. For a closer look on this ask the Design Team for the glossary.
-3. Try to use native `html` tags. For example if you have something like an Accordion use `<details><summary>`. So you would reduce the amount of custom JS/TS code for the Components.
+1. There are some reserved `data-*` attributes. For example `data-icon="xxx"` or `data-icon-after="xxx"` which will set an icon as `::before` / `::after` contents.
+2. Moreover, there are some `data-*` attributes with the same meaning which we try to align across all components. For example `data-width` should be always `auto` or `full-width` to have the same possible options. We've additionally summarized those by providing models / types for these. For a closer look on this ask the Design Team for the glossary.
+3. Try to use native HTML tags. For example if you have something like an Accordion use `<details><summary>`, so you would reduce the amount of custom JS/TS code for the components.
 
 ### Define the API in `model.ts`
 
-If you are happy with the styling and your html the next thing would be to define all possible properties for the component. Update the `packages/components/src/components/my-awesome-component/model.ts` to include properties and/or states for the Component. A lot of properties are already defined. They are located in `packages/components/src/shared/model.ts` to include them import it like this:
+If you are happy with the styling and your html the next thing would be to define all possible properties for the component. Update the `packages/components/src/components/my-awesome-component/model.ts` to include properties and/or states for the component. A lot of properties are already predefined; they are located in `packages/components/src/shared/model.ts` to include them import that file like this:
 
 ```ts
 import { WidthProps } from '../../shared/model';
@@ -53,18 +53,18 @@ export type DBMyAwesomeComponentProps =
 
 ### Code the 'real' Component
 
-We use [Mitosis](https://github.com/BuilderIO/mitosis/tree/main/docs) to develop our components for all kind of frameworks. The component will be placed in `packages/components/src/components/my-awesome-component/my-awesome-component.lite.tsx`. You can add your `html` here inside the `return`. Afterward, you should map all `data-*` attributes with the corresponding properties from `model.ts`. Check out the existing components to get a feeling how to develop a new component.
+We use [Mitosis](https://github.com/BuilderIO/Mitosis/tree/main/docs) to develop our components for all kinds of frameworks. The component will be placed in `packages/components/src/components/my-awesome-component/my-awesome-component.lite.tsx`. You can add your HTML code here inside the `return`. Afterwards you should map all `data-*` attributes with the corresponding properties from `model.ts`. Check out the existing components to get a feeling how to develop a new component.
 
 ### Good to know
 
-1. You cannot use functions directly in a mitosis component. A function has to be inside the `state`. So add your function to the `model.ts` `DBMyAwesomeComponentDefaultState`. Then you can define your component inside the `.tsx` file and use it in the `jsx` with `state.myAwsomeFunction()`.
-2. Try to enable multiple ways of data-binding: For example in `select` you are able to pass in a list of `<option>` via the `props.children` but we also give the user the possibility to pass in a stripped down option list via another property `options?: DBSelectOptionType[]`. We populate this with the internal `<For>` from mitosis. Why do we do this? We have multiple frameworks and all behave different. With multiple ways of data-binding we try to make the component as native as we can.
+1. You cannot use functions directly in a Mitosis component. A function has to be inside the `state`. So add your function to the `model.ts` `DBMyAwesomeComponentDefaultState`. Then you can define your component inside the `.tsx` file and use it in the `jsx` with `state.myAwsomeFunction()`.
+2. Try to enable multiple ways of data-binding: For example in `select` you are able to pass in a list of `<option>` via the `props.children` similiar to standard HTML composition, but we also give the developers the possibility to pass in a stripped down option list via another property: `options?: DBSelectOptionType[]`. We populate this with the internal `<For>` from Mitosis. Why do we do this? We have multiple frameworks and all behave differently. With multiple ways of data-binding we try to provide a JS framework native experience as closely as we can.
 3. Try to parameterize a lot: For example if your component includes an icon button you should give it a text for accessibility. You should provide a default text, so it can't be empty, but you should also let the user change it with a property e.g. `iconButtonText`.
-4. To enable some native functionalities for vue and angular (`v-model` & `[(ng-model)]`) you might add some extra code to your component. At the generation process you might select formValue anyhow, but otherwise look at the `input` to see what you need to add to make this work.
-5. Angular is pain... There are some issues with angular and how this framework works:
+4. To enable some native functionalities for Vue and Angular (`v-model` & `[(ng-model)]`) you might need to add some extra code to your component. At the generation process you might select `formValueà anyhow, but otherwise look at the `input` to see what you need to add to make this work.
+5. Angular is pain... There are some issues with Angular and how this framework works:
 
-    1. There are some `css` selectors which do not work in angular for example `:empty`, because Angular adds a comment in a component for data-binding.
-    2. Angular generates custom `html` tags as wrappers, which might influence your `css` selectors. For example if we have a button inside our component and we try to change the styling with `.db-button: {xxx:abc;}` it would not add the styling to the button. As a workaround you should write `.db-button, .db-button > button: {xxx:abc;}` to cover angular as well:
+    1. There are some `css` selectors which do not work in Angular for example `:empty`, because Angular adds a comment in a component for data-binding.
+    2. Angular generates custom `html` tags as wrappers, which might influence your `css` selectors. For example if we have a button inside our component and we try to change the styling with `.db-button: {xxx:abc;}` it would not add the styling to the button. As a workaround you should write `.db-button, .db-button > button: {xxx:abc;}` to cover Angular as well:
 
     ```html
     <db-my-awesome-component>
@@ -79,7 +79,7 @@ We use [Mitosis](https://github.com/BuilderIO/mitosis/tree/main/docs) to develop
     </db-my-awesome-component>
     ```
 
-    3. You cannot use multiple slots with the same name. In other frameworks you can use the `<Slot name="bla">` multiple times like this `<div class="my-awesome-component"><Slot name="bla"><Slot name="bla"></div>` but in angular only the last one would be shown in the DOM. As a workaround you have to create a `Directive`. We automate this via the `packages/components/scripts/post-build/components.js` as an example look at the `header` to see how it works.
+    3. You cannot use multiple slots with the same name. In other frameworks you can use the `<Slot name="bla">` multiple times like this `<div class="my-awesome-component"><Slot name="bla"><Slot name="bla"></div>` but in Angular only the last one would be shown in the DOM. As a workaround you have to create a `Directive`. We automate this via the `packages/components/scripts/post-build/components.js` as an example look at the `header` to see how it works.
 
 ## Test Frameworks with Showcases
 
