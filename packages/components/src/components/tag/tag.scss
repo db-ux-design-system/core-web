@@ -5,7 +5,7 @@
 @use "@db-ui/foundations/build/scss/color-placeholder" as *;
 @use "@db-ui/foundations/build/scss/helpers/component" as *;
 @use "@db-ui/foundations/build/scss/color/color-variants" as *;
-@use "@db-ui/foundations/build/scss/body-styles" as *;
+@use "@db-ui/foundations/build/scss/helpers/font" as *;
 @use "../../styles/button-components";
 @use "@db-ui/foundations/build/scss/helpers/functions" as *;
 @use "@db-ui/foundations/build/scss/icon/icons.placeholder" as *;
@@ -147,7 +147,7 @@
 	@extend %focus-placeholder;
 	@extend %default-interactive-component;
 	@extend %component-border;
-	@extend %db-body-sm;
+	@extend %db-overwrite-font-size-sm;
 	@extend %default-button;
 
 	padding-block: 0;
@@ -165,7 +165,7 @@
 
 	label,
 	span {
-		@extend %db-body-sm;
+		@extend %db-overwrite-font-size-sm;
 		margin-inline-start: 0;
 	}
 
