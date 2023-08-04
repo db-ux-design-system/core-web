@@ -130,7 +130,7 @@
         <value>Text ausblenden</value>
     </data>
     <data name="width_Display_Key" xml:space="preserve">
-        <value>Icon Breite</value>
+        <value>Button Breite</value>
     </data>
     <data name="clicked_Display_Key" xml:space="preserve">
         <value>Clicked</value>

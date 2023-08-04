@@ -130,7 +130,7 @@
         <value>Hide text</value>
     </data>
     <data name="width_Display_Key" xml:space="preserve">
-        <value>Icon width</value>
+        <value>Button width</value>
     </data>
     <data name="clicked_Display_Key" xml:space="preserve">
         <value>Clicked</value>
