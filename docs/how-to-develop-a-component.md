@@ -4,7 +4,7 @@
 
 1. Run `npm run generate:component` in a terminal.
 
-2. You should type in the name of your new component like `my-awesome-component` and answer everything with yes.
+2. You should type in the name of your new component like `my-awesome-component` and answer everything with "yes".
 
 3. The generation process will generate files mainly in these directories:
 
