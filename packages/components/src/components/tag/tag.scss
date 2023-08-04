@@ -59,9 +59,7 @@
 }
 
 @mixin interactive {
-	&:has(input:checked),
-	button:not(.db-tab-remove-button):not(.is-icon-text-replace),
-	a {
+	&:has(input:checked, button:not(.db-tab-remove-button), a) {
 		@content;
 	}
 }
