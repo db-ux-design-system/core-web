@@ -58,9 +58,10 @@ We use [Mitosis](https://github.com/BuilderIO/Mitosis/tree/main/docs) to develop
 ### Good to know
 
 1. You cannot use functions directly in a Mitosis component. A function has to be inside the `state`. So add your function to the `model.ts` `DBMyAwesomeComponentDefaultState`. Then you can define your component inside the `.tsx` file and use it in the `jsx` with `state.myAwsomeFunction()`.
-2. Try to enable multiple ways of data-binding: For example in `select` you are able to pass in a list of `<option>` via the `props.children` similiar to standard HTML composition, but we also give the developers the possibility to pass in a stripped down option list via another property: `options?: DBSelectOptionType[]`. We populate this with the internal `<For>` from Mitosis. Why do we do this? We have multiple frameworks and all behave differently. With multiple ways of data-binding we try to provide a JS framework native experience as closely as we can.
+2. Try to enable multiple ways of data-binding: For example in `select` you are able to pass in a list of `<option>` via the `props.children` similiar to standard HTML composition, but we also give the developers the possibility to pass in a stripped down option list via another property: `options?: DBSelectOptionType[]`. We populate this with the internal `<For>` from Mitosis.
+Why do we do this? We have multiple frameworks and all behave differently. With multiple ways of data-binding we try to provide a JS framework native experience as closely as we can.
 3. Try to parameterize a lot: For example if your component includes an icon button you should give it a text for accessibility. You should provide a default text, so it can't be empty, but you should also let the user change it with a property e.g. `iconButtonText`.
-4. To enable some native functionalities for Vue and Angular (`v-model` & `[(ng-model)]`) you might need to add some extra code to your component. At the generation process you might select `formValueà anyhow, but otherwise look at the `input` to see what you need to add to make this work.
+4. To enable some native functionalities for Vue and Angular (`v-model` and `[(ng-model)]`) you might need to add some extra code to your component. At the generation process you might select `formValue` anyhow, but otherwise look at the `input` to see what you need to add to make this work.
 5. Angular is pain... There are some issues with Angular and how this framework works:
 
     1. There are some `css` selectors which do not work in Angular for example `:empty`, because Angular adds a comment in a component for data-binding.
@@ -104,7 +105,6 @@ Maybe you need to change the navigation to see the component: `showcases/react-s
 Go to `showcases/vue-showcase/src/components/my-awesome-component/MyAwesomeComponent.vue` and update the properties inside the `DBMyAwsomeComponent` with `exampleProps.xxx`. Again check out some existing component to get a feeling for this.
 
 Maybe you need to change the navigation to see the component: `showcases/vue-showcase/src/utils/navigation-items.ts`
-
 
 ### Patternhub
 
