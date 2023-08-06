@@ -23,6 +23,6 @@ module.exports = [
 		message:
 			'Is your component a form component like an input, ' +
 			'which has to inform the user if event.target.value changed? ' +
-			'If it is a form component what the name of the changing value (checked, value, ...)?'
+			'If it is a form component what´s the name of the changing value (checked, value, ...)?'
 	}
 ];
