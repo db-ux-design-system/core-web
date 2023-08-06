@@ -29,7 +29,7 @@ Starting with `packages/components/src/components/my-awesome-component/my-awesom
 
 ### Component structure with HTML
 
-Besides of the `scss` you need to change the HTML code for you component. If you start with `plain-html` you can test your component inside `packages/components/src/components/my-awesome-component/index.html`; for _advanced_ users you can change the `jsx` directly inside `packages/components/src/components/my-awesome-component/my-awesome-component.lite.tsx`.
+Besides of the `scss` you need to change the HTML code for your component. If you start with `plain-html` you can test your component inside `packages/components/src/components/my-awesome-component/index.html`; for _advanced_ users you can change the `jsx` directly inside `packages/components/src/components/my-awesome-component/my-awesome-component.lite.tsx`.
 
 There are some things you have to know:
 
@@ -39,7 +39,7 @@ There are some things you have to know:
 
 ### Define the API in `model.ts`
 
-If you are happy with the styling and your html the next thing would be to define all possible properties for the component. Update the `packages/components/src/components/my-awesome-component/model.ts` to include properties and/or states for the component. A lot of properties are already predefined; they are located in `packages/components/src/shared/model.ts` to include them import that file like this:
+If you're happy with the styling and your HTML code the next thing would be to define all possible properties for the component. Update the `packages/components/src/components/my-awesome-component/model.ts` to include properties and/or states for your component. A lot of properties are already predefined; they are located in `packages/components/src/shared/model.ts` to include them import that file like this:
 
 ```ts
 import { WidthProps } from '../../shared/model';
@@ -64,7 +64,7 @@ We use [Mitosis](https://github.com/BuilderIO/Mitosis/tree/main/docs) to develop
 5. Angular is pain... There are some issues with Angular and how this framework works:
 
     1. There are some `css` selectors which do not work in Angular for example `:empty`, because Angular adds a comment in a component for data-binding.
-    2. Angular generates custom `html` tags as wrappers, which might influence your `css` selectors. For example if we have a button inside our component and we try to change the styling with `.db-button: {xxx:abc;}` it would not add the styling to the button. As a workaround you should write `.db-button, .db-button > button: {xxx:abc;}` to cover Angular as well:
+    2. Angular generates custom HTML tags as wrappers, which might influence your `css` selectors. For example if we have a button inside our component and we try to change the styling with `.db-button: {xxx:abc;}` it would not add the styling to the button. As a workaround you should write `.db-button, .db-button > button: {xxx:abc;}` to cover Angular as well:
 
     ```html
     <db-my-awesome-component>
@@ -83,38 +83,38 @@ We use [Mitosis](https://github.com/BuilderIO/Mitosis/tree/main/docs) to develop
 
 ## Test Frameworks with Showcases
 
-Our goal is to support the 3 main frameworks (Angular, React, Vue) so you should test your component in every framework. To have the same testing possibilities we generate `showcases/shared/my-awesome-component.json`. This file is used by every framework to pass in the same properties. You should add the same blocks you see in the designs to this file.
+Our goal is to support at least the three major frameworks (Angular, React, Vue) being used at Deutsche Bahn so you should test your component in every framework. To have the same testing possibilities we generate `showcases/shared/my-awesome-component.json`. This file is used by every framework to pass in the same properties. You should add the same blocks you see in the designs to this file.
 
-Afterward, you need to enable those properties inside all frameworks.
+Afterwards you need to enable those properties inside all frameworks.
 
 ### Angular
 
-Goto `showcases/angular-showcase/src/app/components/my-awesome-component` and update the properties inside the `my-awesome-component.html` with `exampleProps.xxx`. If you need some additional `JS` logic you need to add it in the `.ts` file. Again check out some existing component to get a feeling for this.
+Go to `showcases/angular-showcase/src/app/components/my-awesome-component` and update the properties inside the `my-awesome-component.html` with `exampleProps.xxx`. If you need some additional `JS` logic you have to add it to the `.ts` file. Again check out some existing component to get a feeling for this.
 
 Maybe you need to change the navigation to see the component: `showcases/angular-showcase/src/app/utils/navigation-item.ts`
 
 ### React
 
-Goto `showcases/react-showcase/src/components/my-awesome-component/index.tsx` and update the properties inside the `getMyAwsomeComponent` function and inside the `tsx` component. Again check out some existing component to get a feeling for this.
+Go to `showcases/react-showcase/src/components/my-awesome-component/index.tsx` and update the properties inside the `getMyAwsomeComponent` function and inside the `tsx` component. Again check out some existing component to get a feeling for this.
 
 Maybe you need to change the navigation to see the component: `showcases/react-showcase/src/utils/navigation-item.tsx`
 
 ### Vue
 
-Goto `showcases/vue-showcase/src/components/my-awesome-component/MyAwesomeComponent.vue` and update the properties inside the `DBMyAwsomeComponent` with `exampleProps.xxx`. Again check out some existing component to get a feeling for this.
+Go to `showcases/vue-showcase/src/components/my-awesome-component/MyAwesomeComponent.vue` and update the properties inside the `DBMyAwsomeComponent` with `exampleProps.xxx`. Again check out some existing component to get a feeling for this.
 
 Maybe you need to change the navigation to see the component: `showcases/vue-showcase/src/utils/navigation-items.ts`
 
 
 ### Patternhub
 
-To show the component on GitHub pages we use another showcase. After you generated the component you need to sort your component to the correct sub-item inside ``showcases/patternhub/data/routes.ts``.
+To show the component on GitHub pages we use another showcase. After you generated the component you need to add your component to the correct sub-item inside `showcases/patternhub/data/routes.ts`.
 
-## Write Tests for Quality
+## Write Tests for Quality Assurance
 
 We have multiple tests you should update:
 
 1. Component Test: `packages/components/src/components/my-awesome-component/my-awesome-component.spec.tsx`. Just test all attributes here with screenshot tests and accessibility testing.
-2. Showcase Test: `showcases/e2e/my-awesome-component/showcase-my-awesome-component.spec.ts`. Test the styling in a specific framework here and also the functionality/ events.
+2. Showcase Test: `showcases/e2e/my-awesome-component/showcase-my-awesome-component.spec.ts`. Test the styling in a specific framework here and also the functionality/events.
 
-To run all tests/ update the screenshots you need `docker`. More information here: `e2e/README.md`.
+To run all tests/update the screenshots you need `Docker`. More information here: `e2e/README.md`.
