@@ -53,11 +53,7 @@ export default function DBTag(props: DBTagProps) {
 			return Boolean(icon && icon !== '_' && icon !== 'none');
 		},
 		getTabIndex: () => {
-			if (props.disabled) {
-				return undefined;
-			}
-
-			return props.tabIndex ?? null;
+			return props.disabled ? undefined : props.tabIndex;
 		},
 		handleRemove: () => {
 			if (props.onRemove) {
