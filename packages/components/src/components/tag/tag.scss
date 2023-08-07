@@ -176,7 +176,7 @@
 }
 
 %interactive-icon-passing {
-	&:not(:has(span)) {
+	&:has(a, button, label) {
 		// only for interactive elements link/button/checkbox/radio
 		&[data-icon] {
 			&::before {
