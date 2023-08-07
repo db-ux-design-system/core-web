@@ -9,6 +9,7 @@
 [data-icon-before] {
 	&::before {
 		@extend %icon !optional;
+		content: var(--icon-glyph-before);
 		margin-inline-end: var(--icon-margin-after, #{$db-spacing-fixed-xs});
 	}
 }
@@ -16,6 +17,7 @@
 [data-icon-after] {
 	&::after {
 		@extend %icon !optional;
+		content: var(--icon-glyph-after);
 		margin-inline-start: var(--icon-margin-before, #{$db-spacing-fixed-xs});
 	}
 }

@@ -183,21 +183,17 @@
 				// don't show default icon
 				display: none;
 			}
-		}
 
-		@each $icon-name, $icon-glyph in $icon-glyphs {
-			&[data-icon="#{$icon-name}"] {
-				label,
-				button:not(.db-tab-remove-button):not(.is-icon-text-replace),
-				a {
-					&::before {
-						@extend %icon;
-						content: "#{$icon-glyph}";
-						margin-inline-end: var(
-							--icon-margin-after,
-							#{$db-spacing-fixed-2xs}
-						);
-					}
+			label,
+			button:not(.db-tab-remove-button):not(.is-icon-text-replace),
+			a {
+				&::before {
+					@extend %icon;
+					content: var(--icon-glyph-before);
+					margin-inline-end: var(
+						--icon-margin-after,
+						#{$db-spacing-fixed-2xs}
+					);
 				}
 			}
 		}

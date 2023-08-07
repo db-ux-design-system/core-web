@@ -11,6 +11,10 @@
 	$position: "before"
 ) {
 	&::#{$position} {
+
+		@extend %icon;
+
+		content: var(--icon-glyph-#{$position});
 		@if $position == "before" {
 			margin-inline-end: var(
 				--icon-margin-after,
@@ -27,8 +31,6 @@
 		@if $glyph != "" {
 			--icon-glyph: "#{$glyph}";
 		}
-
-		@extend %icon;
 	}
 }
 
