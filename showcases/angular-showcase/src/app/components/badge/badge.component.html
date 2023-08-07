@@ -16,9 +16,7 @@
 				[emphasis]="exampleProps.emphasis"
 				[size]="exampleProps.size"
 				[noText]="exampleProps.noContent"
-			>
-				{{ exampleProps.noContent ? "" : exampleName }}
-			</db-badge>
+			>{{ exampleProps.noContent ? "" : exampleName }}</db-badge>
 			<db-infotext
 				*ngIf="exampleProps.noContent"
 				variant="informational"
@@ -41,8 +39,7 @@
 					variant="critical"
 					size="small"
 					[placement]="exampleProps.placement"
-				>
-				</db-badge>
+				></db-badge>
 				{{ exampleName }}
 			</db-button>
 			<db-infotext variant="informational" size="small">
