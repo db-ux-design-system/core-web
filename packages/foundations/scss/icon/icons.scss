@@ -10,6 +10,12 @@
 	&::before {
 		@extend %icon !optional;
 		content: var(--icon-glyph-before);
+
+		// Hiding icon from screenreaders
+		@supports (content: ""/"") {
+			content: var(--icon-glyph-before) / ""; // https://www.w3.org/TR/css-content-3/#alt
+		}
+
 		margin-inline-end: var(--icon-margin-after, #{$db-spacing-fixed-xs});
 	}
 }
@@ -18,6 +24,12 @@
 	&::after {
 		@extend %icon !optional;
 		content: var(--icon-glyph-after);
+
+		// Hiding icon from screenreaders
+		@supports (content: ""/"") {
+			content: var(--icon-glyph-after) / ""; // https://www.w3.org/TR/css-content-3/#alt
+		}
+
 		margin-inline-start: var(--icon-margin-before, #{$db-spacing-fixed-xs});
 	}
 }
