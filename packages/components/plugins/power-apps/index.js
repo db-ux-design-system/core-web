@@ -9,8 +9,10 @@ module.exports = () => ({
 			let includeIcon = '';
 			let hasDisabledProp = '';
 			let hasOnClick = '';
-			let canvasHeight = '--canvasHeight controlled';
-			let canvasWidth = '--canvasWidth controlled';
+			let canvasHeight = '--canvasHeight fixed';
+			let canvasWidth = '--canvasWidth fixed';
+			let canvasMinHeight = '';
+			let canvasMinWidth = '';
 			if (component) {
 				if (component.properties) {
 					const propsString = JSON.stringify(component.properties);
@@ -33,10 +35,16 @@ module.exports = () => ({
 
 				if (component.canvasSize) {
 					if (component.canvasSize.width) {
-						canvasHeight = `--canvasWidth ${component.canvasSize.width}`;
+						canvasWidth = `--canvasWidth ${component.canvasSize.width}`;
 					}
 					if (component.canvasSize.height) {
-						canvasWidth = `--canvasHeight ${component.canvasSize.height}`;
+						canvasHeight = `--canvasHeight ${component.canvasSize.height}`;
+					}
+					if (component.canvasSize.minWidth) {
+						canvasMinWidth = `--canvasMinWidth ${component.canvasSize.minWidth}`;
+					}
+					if (component.canvasSize.minHeight) {
+						canvasMinHeight = `--canvasMinHeight ${component.canvasSize.minHeight}`;
 					}
 				}
 			}
@@ -44,7 +52,7 @@ module.exports = () => ({
 			ChildProcess.execSync(
 				`hygen power-apps new --version 0.0.0 ${json.name
 					.replace('DB', '')
-					.toLowerCase()} ${canvasHeight} ${canvasWidth} ${includeIcon} ${hasDisabledProp} ${hasOnClick} ${propsCliString}`
+					.toLowerCase()} ${canvasHeight} ${canvasWidth} ${canvasMinHeight} ${canvasMinWidth} ${includeIcon} ${hasDisabledProp} ${hasOnClick} ${propsCliString}`
 			);
 			return json;
 		}

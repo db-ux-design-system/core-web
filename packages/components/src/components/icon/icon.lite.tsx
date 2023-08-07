@@ -7,15 +7,11 @@ useMetadata({
 	component: {
 		// MS Power Apps
 		includeIcon: true,
-		canvasSize: {
-			height: 'fixed', // 'fixed', 'controlled'
-			width: 'fixed' // 'fixed', 'dynamic' (requires width property), 'controlled'
-		},
 		properties: [
 			{
 				name: 'icon',
 				type: 'Icon',
-				defaultValue: 'None'
+				defaultValue: 'account'
 			},
 			{ name: 'title', type: 'SingleLine.Text' }
 		]
