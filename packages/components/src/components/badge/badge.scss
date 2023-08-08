@@ -95,8 +95,7 @@
 	inline-size: fit-content;
 
 	&:empty,
-	> span:empty,
-	&[data-no-text="true"] {
+	> span:empty {
 		block-size: var(--badge-size);
 		inline-size: var(--badge-size);
 		padding: 0;
@@ -117,8 +116,7 @@
 		padding-inline: $db-spacing-fixed-2xs;
 
 		&:empty,
-		> span:empty,
-		&[data-no-text="true"] {
+		> span:empty {
 			padding: 0;
 		}
 

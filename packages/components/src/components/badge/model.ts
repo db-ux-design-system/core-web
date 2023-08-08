@@ -8,12 +8,6 @@ import {
 
 export interface DBBadgeDefaultProps {
 	/**
-	 * Workaround property for angular to force a dot style without any text in it.
-	 * Angular adds a comment with binding to the component which disables the :empty css selector.
-	 */
-	noText?: boolean;
-
-	/**
 	 * The `placement` attributes `corner-*` values change the position to absolute and adds a transform based on the placement.
 	 */
 	placement?:
