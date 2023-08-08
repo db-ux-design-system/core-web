@@ -14,7 +14,7 @@ export interface DBBadgeDefaultProps {
 	noText?: boolean;
 
 	/**
-	 * The corner attributes changes the position to absolute and adds a transform based on the placement.
+	 * The `placement` attributes `corner-*` values change the position to absolute and adds a transform based on the placement.
 	 */
 	placement?:
 		| 'inline'
