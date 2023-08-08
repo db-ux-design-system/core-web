@@ -8,8 +8,7 @@ import {
 
 export interface DBBadgeDefaultProps {
 	/**
-	 * Workaround property for angular to force a dot style without any text in it.
-	 * Angular adds a comment with binding to the component which disables the :empty css selector.
+	 * Define the text within the badge to get hidden.
 	 */
 	noText?: boolean;
 
