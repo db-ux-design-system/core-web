@@ -28,7 +28,6 @@ export const initMutationObserver = async () => {
 			};
 			const callback = (mutationList: MutationRecord[]) => {
 				// SideBar has a change try to find the canvasSize Elements
-				console.log('MutationObserver', mutationList);
 				startCustomControlProcess();
 			};
 			const observer = new MutationObserver(callback);
@@ -39,34 +38,64 @@ export const initMutationObserver = async () => {
 	}
 };
 
-export const startCustomControlProcess = () => {
-	if (isDev() || isProdEditor()) {
-		let customControl;
+const isDBUIElementSelected = () => {
+	const sideBarDBUIInputs =
+		getControlSideBar()?.querySelectorAll('[id*="DBUI"]');
+	const currentSelectedControlContent = document.getElementById(
+		'currentSelectedControl'
+	)?.textContent;
 
-		if (isDev()) {
-			customControl = document.querySelector('[class*="customControl"]');
-		} else {
-			const selectedContainers = getSelectedContainers();
-			if (selectedContainers?.length === 2) {
-				customControl = selectedContainers[0].querySelector(
-					'[class*="customControl"]'
+	if (sideBarDBUIInputs && currentSelectedControlContent) {
+		return (
+			currentSelectedControlContent.includes('DBUI') &&
+			sideBarDBUIInputs.length > 0
+		);
+	}
+
+	return false;
+};
+
+export const startCustomControlProcess = () => {
+		if (isDev() || isProdEditor()) {
+			if (isDev() || isDBUIElementSelected()) {
+			let customControl;
+
+			if (isDev()) {
+				customControl = document.querySelector('[class*="customControl"]');
+			} else {
+				const selectedContainers = getSelectedContainers();
+				if (selectedContainers?.length >= 2) {
+					customControl = selectedContainers[0].querySelector(
+						'[class*="customControl"]'
+					);
+				}
+			}
+
+			if (customControl) {
+				const canvasHeightState = customControl.getAttribute(
+					'data-canvas-height-state'
+				);
+				const canvasWidthState = customControl.getAttribute(
+					'data-canvas-width-state'
+				);
+				handleCanvasSize(
+					customControl,
+					canvasHeightState,
+					canvasWidthState
 				);
 			}
-		}
-
-		if (customControl) {
-			const canvasHeightState = customControl.getAttribute(
-				'data-canvas-height-state'
-			);
-			const canvasWidthState = customControl.getAttribute(
-				'data-canvas-width-state'
-			);
-			console.log('handleCanvasSize', customControl);
-			handleCanvasSize(
-				customControl,
-				canvasHeightState,
-				canvasWidthState
-			);
+		} else {
+			const canvasSizeElements = getCanvasSizeElements();
+			if (canvasSizeElements?.length === 2) {
+				const canvasWidthElement = canvasSizeElements[0];
+				const canvasHeightElement = canvasSizeElements[1];
+				if (canvasHeightElement) {
+					canvasHeightElement.disabled = false;
+				}
+				if (canvasWidthElement) {
+					canvasWidthElement.disabled = false;
+				}
+			}
 		}
 	}
 };
@@ -154,12 +183,12 @@ const handleCanvasSize = (
 				// TODO: Add min size for this based on config
 				customControl.style.height = '100%';
 			} else {
+				customControl.style.height = 'fit-content';
 				changeCanvasSize(
 					canvasHeightElement,
 					customControl.offsetHeight
 				);
 				canvasHeightElement.disabled = true;
-				customControl.style.height = 'fit-content';
 				//hideResizers(true);
 			}
 		}
@@ -170,9 +199,9 @@ const handleCanvasSize = (
 				(canvasWidthState === 'dynamic' &&
 					customControl.querySelector('[data-width="auto"]'));
 			if (unchangeable) {
+				customControl.style.width = 'fit-content';
 				changeCanvasSize(canvasWidthElement, customControl.offsetWidth);
 				canvasWidthElement.disabled = true;
-				customControl.style.width = 'fit-content';
 				//hideResizers(false);
 			} else {
 				canvasWidthElement.disabled = false;

@@ -15,8 +15,7 @@ useMetadata({
 		hasOnClick: true,
 		canvasSize: {
 			height: 'fixed', // 'fixed', 'controlled'
-			width: 'controlled', // 'fixed', 'dynamic' (requires width property), 'controlled'
-			minWidth: 250 // in px
+			width: 'controlled' // 'fixed', 'dynamic' (requires width property), 'controlled'
 		},
 		properties: [
 			{ name: 'headline', type: 'SingleLine.Text' },
