@@ -19,7 +19,6 @@ import {
 					:variant="exampleProps.variant"
 					:emphasis="exampleProps.emphasis"
 					:size="exampleProps.size"
-					:noText="exampleProps.noContent"
 				>
 					{{ exampleProps.noContent ? "" : exampleName }}
 				</DBBadge>

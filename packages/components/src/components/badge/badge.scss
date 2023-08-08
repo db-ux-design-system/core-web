@@ -1,15 +1,13 @@
 @use "sass:map";
-@use "@db-ui/foundations/build/scss/init" as *;
 @use "@db-ui/foundations/build/scss/variables" as *;
 @use "@db-ui/foundations/build/scss/variables.global" as *;
 @use "@db-ui/foundations/build/scss/color-placeholder" as *;
 @use "@db-ui/foundations/build/scss/color/color-variants" as *;
 @use "@db-ui/foundations/build/scss/helpers/component" as *;
-@use "@db-ui/foundations/build/scss/body-styles" as *;
+@use "@db-ui/foundations/build/scss/helpers/font" as *;
 @use "../../styles/button-components";
 
-%tag-colors {
-	// TODO: Color from zeplin does not exist is it neutral-4??
+@mixin get-tag-colors() {
 	@extend %db-bg-neutral-4;
 
 	&[data-emphasis="strong"] {
@@ -84,16 +82,17 @@
 
 .db-badge {
 	--badge-size: #{$db-spacing-fixed-sm};
-	@extend %tag-colors;
 	@extend %component-border;
-	@extend %db-body-sm;
+	@extend %db-overwrite-font-size-sm;
 	@extend %default-button;
+
+	@include get-tag-colors();
 
 	display: flex;
 	border-radius: 42px; // extreme radius
 	padding-inline: $db-spacing-fixed-xs;
 	block-size: fit-content;
-	pointer-events: none;
+	inline-size: fit-content;
 
 	&:empty,
 	> span:empty,
@@ -104,18 +103,17 @@
 	}
 
 	&:has(.db-icon) {
-		padding-block: $db-spacing-fixed-2xs;
-		padding-inline: $db-spacing-fixed-2xs;
+		padding: $db-spacing-fixed-2xs;
 	}
 
 	& > *,
 	.db-icon {
-		@extend %db-body-sm;
+		@extend %db-overwrite-font-size-sm;
 	}
 
 	&[data-size="small"] {
 		--badge-size: #{$db-spacing-fixed-xs};
-		@extend %db-body-2xs;
+		@extend %db-overwrite-font-size-2xs;
 		padding-inline: $db-spacing-fixed-2xs;
 
 		&:empty,
@@ -125,13 +123,12 @@
 		}
 
 		&:has(.db-icon) {
-			padding-block: $db-spacing-fixed-3xs;
-			padding-inline: $db-spacing-fixed-3xs;
+			padding: $db-spacing-fixed-3xs;
 		}
 
 		& > *,
 		.db-icon {
-			@extend %db-body-2xs;
+			@extend %db-overwrite-font-size-2xs;
 		}
 	}
 

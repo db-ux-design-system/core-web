@@ -76,6 +76,6 @@ dbalert {
 
 // for db-badge
 
-*:has(.db-badge[data-placement^="corner"]) {
+:has(.db-badge[data-placement^="corner"]) {
 	position: relative;
 }

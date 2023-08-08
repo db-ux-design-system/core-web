@@ -8,6 +8,6 @@ For general installation and configuration look at the [components](https://www.
 <!-- index.html -->
 ...
 <body>
-	<div class="db-badge">Badge</div>
+	<span class="db-badge">Badge</span>
 </body>
 ```

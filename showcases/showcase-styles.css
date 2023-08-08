@@ -84,8 +84,7 @@
 .badge-inline-container {
 	display: flex;
 	gap: var(--db-spacing-fixed-sm);
-	padding-block: var(--db-spacing-fixed-xs);
-	padding-inline: var(--db-spacing-fixed-sm);
+	padding: var(--db-spacing-fixed-xs) var(--db-spacing-fixed-sm);
 	background-color: #fff;
 }
 
