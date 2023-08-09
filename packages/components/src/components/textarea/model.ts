@@ -11,7 +11,8 @@ import {
 	GlobalState,
 	GlobalTextProps,
 	IconProps,
-	IconState
+	IconState,
+	ValidEventProps
 } from '../../shared/model';
 
 export interface DBTextareaDefaultProps {
@@ -25,6 +26,7 @@ export type DBTextareaProps = DBTextareaDefaultProps &
 	ChangeEventProps &
 	DefaultVariantProps &
 	FocusEventProps &
+	ValidEventProps &
 	FormProps &
 	GlobalProps &
 	GlobalTextProps &
