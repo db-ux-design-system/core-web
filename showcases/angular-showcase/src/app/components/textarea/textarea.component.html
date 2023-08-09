@@ -10,6 +10,15 @@
 		let-exampleIndex="exampleIndex"
 		let-variantIndex="variantIndex"
 	>
-		<db-textarea>{{ exampleName }}</db-textarea>
+		<db-textarea
+			[variant]="exampleProps.variant"
+			[label]="exampleProps.label"
+			[description]="exampleProps.description"
+			[minLength]="exampleProps.minLength"
+			[required]="exampleProps.required"
+			[disabled]="exampleProps.disabled"
+			[value]="exampleProps.value"
+			[icon]="exampleProps.icon"
+			[iconAfter]="exampleProps.iconAfter">{{ exampleName }}</db-textarea>
 	</ng-template>
 </app-default-component>
