@@ -75,7 +75,7 @@
   },
   "devDependencies": {
     "@commitlint/cli": "17.6.7",
-    "@commitlint/config-conventional": "17.6.7",
+    "@commitlint/config-conventional": "17.7.0",
     "@playwright/test": "1.35.1",
     "cpr": "3.0.1",
     "cross-env": "^7.0.3",
