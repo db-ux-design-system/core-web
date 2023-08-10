@@ -21,8 +21,10 @@ import {
 	DBDrawerModule,
 	DBTagModule,
 	DBNavigationItemModule,
-	DBTextareaModule
+	DBTextareaModule,
+	DBBadgeModule
 } from '../../../../output/angular/src';
+import { BadgeComponent } from './components/badge/badge.component';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app.routing.module';
 import { FormComponent } from './components/form/form.component';
@@ -46,6 +48,10 @@ import { TextareaComponent } from './components/textarea/textarea.component';
 @NgModule({
 	declarations: [
 		AlertComponent,
+		BadgeComponent,
+		NavigationItemComponent,
+		SelectComponent,
+		TagComponent,
 		AppComponent,
 		ButtonComponent,
 		CardComponent,
@@ -65,6 +71,10 @@ import { TextareaComponent } from './components/textarea/textarea.component';
 		TextareaComponent
 	],
 	imports: [
+		DBBadgeModule,
+		DBNavigationItemModule,
+		DBTagModule,
+		DBSelectModule,
 		AppRoutingModule,
 		BrowserModule,
 		DBAlertModule,

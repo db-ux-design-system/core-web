@@ -1,5 +1,7 @@
 import { useEffect, useState } from 'react';
 import DBTextarea from '../src/components/textarea/textarea';
+import DBBadge from '../src/components/badge/badge';
+
 import {
 	DBInfotext,
 	DBButton,
@@ -219,6 +221,14 @@ const ComponentSwitch = ({
 			<DBTextarea className={className} {...props}>
 				{resolvedContent}
 			</DBTextarea>
+		);
+	}
+
+	if (type === 'badge') {
+		return (
+			<DBBadge className={className} {...props}>
+				{resolvedContent}
+			</DBBadge>
 		);
 	}
 

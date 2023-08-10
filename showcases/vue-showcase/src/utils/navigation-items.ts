@@ -1,22 +1,24 @@
-import Textarea from '../components/textarea/Textarea.vue';
-import NavigationItem from '../components/navigation-item/NavigationItem.vue';
-import Select from '../components/select/Select.vue';
-import Tag from '../components/tag/Tag.vue';
-import Form from '../components/form/Form.vue';
-import Button from '../components/button/Button.vue';
-import Input from '../components/input/Input.vue';
-import Link from '../components/link/Link.vue';
 import Alert from '../components/alert/Alert.vue';
-import Radio from '../components/radio/Radio.vue';
+import Badge from '../components/badge/Badge.vue';
+import Button from '../components/button/Button.vue';
+import Card from '../components/card/Card.vue';
 import Checkbox from '../components/checkbox/Checkbox.vue';
 import Divider from '../components/divider/Divider.vue';
-import Infotext from '../components/infotext/Infotext.vue';
-import Section from '../components/section/Section.vue';
-import Card from '../components/card/Card.vue';
 import Drawer from '../components/drawer/Drawer.vue';
+import Form from '../components/form/Form.vue';
+import Infotext from '../components/infotext/Infotext.vue';
+import Input from '../components/input/Input.vue';
+import Link from '../components/link/Link.vue';
+import NavigationItem from '../components/navigation-item/NavigationItem.vue';
+import Radio from '../components/radio/Radio.vue';
+import Section from '../components/section/Section.vue';
+import Select from '../components/select/Select.vue';
+import Tag from '../components/tag/Tag.vue';
+import Textarea from '../components/textarea/Textarea.vue';
 
 export const navigationItems: any[] = [
 	{ path: '/textarea', label: 'Textarea', component: Textarea },
+	{ path: '/badge', label: 'Badge', component: Badge },
 	{
 		path: '/navigation-item',
 		label: 'NavigationItem',

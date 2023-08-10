@@ -1,19 +1,20 @@
-import TextareaComponent from '../components/textarea';
-import NavigationItemComponent from '../components/navigation-item';
-import CheckboxComponent from '../components/checkbox';
-import TagComponent from '../components/tag';
-import DrawerComponent from '../components/drawer';
-import SelectComponent from '../components/select';
-import RadioComponent from '../components/radio';
 import AlertComponent from '../components/alert';
+import BadgeComponent from '../components/badge';
 import ButtonComponent from '../components/button';
-import InputComponent from '../components/input';
-import FormComponent from '../components/form';
-import LinkComponent from '../components/link';
-import SectionComponent from '../components/section';
-import InfotextComponent from '../components/infotext';
 import CardComponent from '../components/card';
+import CheckboxComponent from '../components/checkbox';
 import DividerComponent from '../components/divider';
+import DrawerComponent from '../components/drawer';
+import FormComponent from '../components/form';
+import InfotextComponent from '../components/infotext';
+import InputComponent from '../components/input';
+import LinkComponent from '../components/link';
+import NavigationItemComponent from '../components/navigation-item';
+import RadioComponent from '../components/radio';
+import SectionComponent from '../components/section';
+import SelectComponent from '../components/select';
+import TagComponent from '../components/tag';
+import TextareaComponent from '../components/textarea';
 
 export type NavigationItem = {
 	path: string;
@@ -23,6 +24,7 @@ export type NavigationItem = {
 };
 export const NAVIGATION_ITEMS: NavigationItem[] = [
 	{ path: 'textarea', label: 'Textarea', component: <TextareaComponent /> },
+	{ path: 'badge', label: 'Badge', component: <BadgeComponent /> },
 	{
 		path: 'navigation-item',
 		label: 'NavigationItem',

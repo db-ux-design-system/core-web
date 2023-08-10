@@ -9,7 +9,17 @@ import { DBTextarea } from "../../../../../output/vue/vue3/src";
 		<template
 			#example="{ exampleIndex, variantIndex, exampleName, exampleProps }"
 		>
-			<DBTextarea>{{ exampleName }}</DBTextarea>
+			<DBTextarea
+				:cols="exampleProps.cols"
+				:disabled="exampleProps.disabled"
+				:icon="exampleProps.icon"
+				:infomsg="exampleProps.infomsg"
+				:label="exampleProps.label"
+				:placeholder="exampleProps.placeholder"
+				:rows="exampleProps.rows"
+				:value="exampleProps.value"
+				:variant="exampleProps.variant"
+			></DBTextarea>
 		</template>
 	</DefaultComponent>
 </template>
