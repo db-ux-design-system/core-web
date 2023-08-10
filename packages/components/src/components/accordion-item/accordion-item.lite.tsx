@@ -49,7 +49,7 @@ export default function DBAccordionItem(props: DBAccordionItemProps) {
 			<Show when={state.stylePath}>
 				<link rel="stylesheet" href={state.stylePath} />
 			</Show>
-			<summary role="button">
+			<summary>
 				<Slot name="summary" />
 			</summary>
 			<div class="db-accordion-content">{props.children}</div>

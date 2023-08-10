@@ -9,7 +9,7 @@ For general installation and configuration look at the [components](https://www.
 ...
 <body>
  <details class="db-accordion-item">
-  <summary role="button">
+  <summary>
    DB Accordion Item
   </summary>
   <p class="db-accordion-content">Und hier ist der Content</p>
