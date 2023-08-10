@@ -69,9 +69,6 @@ export default function DBTextarea(props: DBTextareaProps) {
 
 			// Angular: propagate change event to work with reactive and template driven forms
 			this.propagateChange(event.target.value);
-
-			// using controlled components for react forces us to use state for value
-			state._value = event.target.value;
 		},
 		handleBlur: (event: any) => {
 			if (props.onBlur) {
