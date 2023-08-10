@@ -135,9 +135,8 @@ export default function DBTextarea(props: DBTextareaProps) {
 				cols={props.cols ?? state.defaultValues.cols}
 				placeholder={
 					props.placeholder ?? state.defaultValues.placeholder
-				}>
-				{props.children}
-			</textarea>
+				}
+			/>
 			<DBInfotext
 				size="medium"
 				variant={props.variant}
