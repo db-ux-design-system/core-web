@@ -42,7 +42,8 @@
 		"packages/components/src/components/**/*.spec.tsx",
 		"packages/components/src/components/tag/tag.spec.tsx",
 		"**/**config.ts",
-		"packages/foundations/assets/icons/functional/fonts/sources/*.json"
+		"packages/foundations/assets/icons/functional/fonts/sources/*.json",
+		"showcases/angular-showcase/.angular/cache"
 	],
 	"absolute": true
 }
