@@ -54,6 +54,10 @@
 		justify-content: space-between;
 		padding: $db-spacing-fixed-md;
 		gap: $db-spacing-fixed-md;
+
+		.db-ui-functional & {
+			@include icon-meta($size: 20, $position: "after", $font-size: 20);
+		}
 	}
 
 	&[open] {
