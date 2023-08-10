@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import DBAccordionItem from '../src/components/accordion-item/accordion-item';
 
 import DBAccordion from '../src/components/accordion/accordion';
+import DBBadge from '../src/components/badge/badge';
 
 import {
 	DBInfotext,
@@ -222,6 +223,14 @@ const ComponentSwitch = ({
 			<DBAccordionItem className={className} {...props}>
 				{resolvedContent}
 			</DBAccordionItem>
+		);
+	}
+
+  if (type === 'badge') {
+		return (
+			<DBBadge className={className} {...props}>
+				{resolvedContent}
+			</DBBadge>
 		);
 	}
 

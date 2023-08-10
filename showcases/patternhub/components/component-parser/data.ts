@@ -7,6 +7,7 @@ export type ComponentType = {
 	type?: /* hygen type */
 	| 'accordion-item'
 		| 'accordion'
+	| 'badge'
 		| 'navigation-item'
 		| 'tag'
 		| 'select'

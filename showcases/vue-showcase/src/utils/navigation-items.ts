@@ -1,5 +1,6 @@
 import AccordionItem from '../components/accordion-item/AccordionItem.vue';
 import Accordion from '../components/accordion/Accordion.vue';
+import Badge from '../components/badge/Badge.vue';
 import NavigationItem from '../components/navigation-item/NavigationItem.vue';
 import Select from '../components/select/Select.vue';
 import Tag from '../components/tag/Tag.vue';
@@ -17,6 +18,8 @@ import Card from '../components/card/Card.vue';
 import Drawer from '../components/drawer/Drawer.vue';
 
 export const navigationItems: any[] = [
+	{ path: '/badge', label: 'Badge', component: Badge },
+
 	{
 		path: '/accordion-item',
 		label: 'AccordionItem',

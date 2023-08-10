@@ -22,8 +22,10 @@ import {
 	DBTagModule,
 	DBNavigationItemModule,
 	DBAccordionModule,
-	DBAccordionItemModule
+	DBAccordionItemModule,
+	DBBadgeModule
 } from '../../../../output/angular/src';
+import { BadgeComponent } from './components/badge/badge.component';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app.routing.module';
 import { AccordionComponent } from './components/accordion/accordion.component';
@@ -49,6 +51,7 @@ import { NavigationItemComponent } from './components/navigation-item/navigation
 	declarations: [
 		AccordionItemComponent,
 		AccordionComponent,
+		BadgeComponent,
 		NavigationItemComponent,
 		SelectComponent,
 		TagComponent,
@@ -70,6 +73,7 @@ import { NavigationItemComponent } from './components/navigation-item/navigation
 	imports: [
 		DBAccordionItemModule,
 		DBAccordionModule,
+		DBBadgeModule,
 		DBNavigationItemModule,
 		DBTagModule,
 		DBSelectModule,

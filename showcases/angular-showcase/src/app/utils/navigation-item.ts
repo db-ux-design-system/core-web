@@ -1,5 +1,6 @@
 import { AccordionItemComponent } from '../components/accordion-item/accordion-item.component';
 import { AccordionComponent } from '../components/accordion/accordion.component';
+import { BadgeComponent } from '../components/badge/badge.component';
 import { NavigationItemComponent } from '../components/navigation-item/navigation-item.component';
 import { SelectComponent } from '../components/select/select.component';
 import { TagComponent } from '../components/tag/tag.component';
@@ -17,6 +18,8 @@ import { DividerComponent } from '../components/divider/divider.component';
 import { DrawerComponent } from '../components/drawer/drawer.component';
 
 export const NAVIGATION_ITEMS: any[] = [
+	{ path: 'badge', label: 'Badge', component: BadgeComponent },
+
 	{
 		path: 'accordion-item',
 		label: 'AccordionItem',
