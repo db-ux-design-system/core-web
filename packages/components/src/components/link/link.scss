@@ -15,7 +15,6 @@
 }
 
 .db-link {
-	@extend %default-color;
 	@extend %db-link-height;
 	inline-size: fit-content;
 	align-items: center;
@@ -30,13 +29,33 @@
 		outline 0.06s,
 		color $db-transition-color;
 
+	&:hover {
+		color: color-mix(
+			in srgb,
+			transparent 25%,
+			var(
+				--db-current-color,
+				--neutral-bg-on-color,
+				$db-colors-neutral-on-bg-enabled
+			)
+		);
+	}
+
+	&:active {
+		color: color-mix(
+			in srgb,
+			transparent 50%,
+			var(
+				--db-current-color,
+				--neutral-on-bg-color,
+				$db-colors-neutral-on-bg-enabled
+			)
+		);
+	}
+
 	a {
 		// Workaround for angular
 		@extend %db-link-height;
-	}
-
-	&:hover {
-		color: inherit;
 	}
 
 	// "disabled" links
@@ -74,7 +93,18 @@
 	}
 
 	&[data-variant="primary"] {
-		@extend %db-primary-text-ia;
+		color: var(--primary-base-color, #{$db-colors-primary-enabled});
+
+		&:hover {
+			color: var(--primary-base-hover-color, #{$db-colors-primary-hover});
+		}
+
+		&:active {
+			color: var(
+				--primary-base-pressed-color,
+				#{$db-colors-primary-pressed}
+			);
+		}
 	}
 
 	&[data-size="small"] {

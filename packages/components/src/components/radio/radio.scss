@@ -9,7 +9,6 @@
 $font-size-height: calc(var(--db-base-font-size) * var(--db-base-line-height));
 
 .db-radio {
-	@extend %default-color;
 	@extend %bg-transparent-interactive;
 
 	appearance: none;
@@ -47,7 +46,6 @@ $font-size-height: calc(var(--db-base-font-size) * var(--db-base-line-height));
 	&:is(:user-invalid),
 	&[aria-invalid="true"] {
 		@extend %db-bg-critical-transparent-semi;
-		@extend %db-bg-critical-transparent-semi-hover-state;
 		border-color: var(
 			--db-colors-critical-element-enabled,
 			$db-colors-critical-element-enabled

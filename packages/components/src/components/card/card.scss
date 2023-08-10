@@ -11,7 +11,7 @@
 	@extend %default-card;
 
 	background-color: var(
-		--db-current-background-color,
+		--db-current-bg-color,
 		$db-colors-neutral-bg-0-enabled
 	);
 

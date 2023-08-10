@@ -10,7 +10,6 @@
 $font-size-height: calc(var(--db-base-font-size) * var(--db-base-line-height));
 
 .db-checkbox {
-	@extend %default-color;
 	@extend %bg-transparent-interactive;
 
 	align-content: center;

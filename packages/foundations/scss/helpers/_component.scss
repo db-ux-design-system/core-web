@@ -29,13 +29,8 @@ $default-opacity: 0.25;
 	border-radius: to-rem(4);
 }
 
-%default-color {
-	color: var(--db-current-color, $db-colors-neutral-on-bg-enabled);
-}
-
 %default-interactive-component {
 	@extend %default-adaptive-border;
-	@extend %default-color;
 	@extend %default-border-radius;
 }
 
@@ -52,20 +47,16 @@ $default-opacity: 0.25;
 
 %adaptive-critical-component {
 	@extend %db-bg-critical-transparent-semi;
-	@extend %db-bg-critical-transparent-semi-hover-state;
 }
 
 %adaptive-warning-component {
 	@extend %db-bg-warning-transparent-semi;
-	@extend %db-bg-warning-transparent-semi-hover-state;
 }
 
 %adaptive-informational-component {
 	@extend %db-bg-informational-transparent-semi;
-	@extend %db-bg-informational-transparent-semi-hover-state;
 }
 
 %adaptive-successful-component {
 	@extend %db-bg-successful-transparent-semi;
-	@extend %db-bg-successful-transparent-semi-hover-state;
 }

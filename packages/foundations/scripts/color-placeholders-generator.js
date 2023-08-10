@@ -12,40 +12,6 @@ const fileHeader = `
 // ${new Date().toString()}
 `;
 
-const getRBGA = (primaryColor, type) => `
-	--db-current-background-color-red: #{color.red($${prefix}-${primaryColor[type]?.name})};
-	--db-current-background-color-green: #{color.green($${prefix}-${primaryColor[type]?.name})};
-	--db-current-background-color-blue: #{color.blue($${prefix}-${primaryColor[type]?.name})};`;
-
-const generateInteractiveVariants = (
-	currentColorObject,
-	cssProp,
-	primaryColor,
-	noActive,
-	noHover
-) => {
-	const hoverColor = `${prefix}-${currentColorObject.hover.name}`;
-	const pressedColor = `${prefix}-${currentColorObject.pressed.name}`;
-	const activeState = `
-			&:active {
-    			--db-current-${cssProp}: var(--${pressedColor}, #{$${pressedColor}});
-				${cssProp}: var(--db-current-${cssProp}, #{$${pressedColor}});
-    			${primaryColor ? getRBGA(primaryColor, 'pressed') : ''}
-			}`;
-	const hoverState = `
-			&:hover {
-    			--db-current-${cssProp}: var(--${hoverColor}, #{$${hoverColor}});
-				${cssProp}: var(--db-current-${cssProp}, #{$${hoverColor}});
-    			${primaryColor ? getRBGA(primaryColor, 'hover') : ''}
-			}`;
-	return `
-		&:enabled {
-			${noHover ? '' : hoverState}
-			${noActive ? '' : activeState}
-        }
-        `;
-};
-
 /**
  * Backgrounds have more than one variant with the same color for text (on-color)
  * e.g. neutral with variants 1-6 or transparent-full or transparent-semi
@@ -56,7 +22,7 @@ const generateBGVariants = (
 	variant,
 	currentColorObject,
 	baseColorObject,
-	primaryColor
+	baseColor
 ) => {
 	const placeholderName = `${prefix}-bg-${value}${
 		variant ? `-${variant}` : ''
@@ -70,88 +36,90 @@ const generateBGVariants = (
 		}
 
 		let elementColor;
-		if (primaryColor.element) {
-			elementColor = `${prefix}-${primaryColor.element.enabled.name}`;
+		if (baseColor.element) {
+			elementColor = `${prefix}-${baseColor.element.enabled.name}`;
 		}
 
 		let borderColor;
 		let borderColorWeak;
-		if (primaryColor.border) {
-			borderColor = `${prefix}-${primaryColor.border.enabled.name}`;
-			if (primaryColor.border.weak) {
-				borderColorWeak = `${prefix}-${primaryColor.border.weak.enabled.name}`;
+		if (baseColor.border) {
+			borderColor = `${prefix}-${baseColor.border.enabled.name}`;
+			if (baseColor.border.weak) {
+				borderColorWeak = `${prefix}-${baseColor.border.weak.enabled.name}`;
 			}
 		}
 
 		let result = `
-%${placeholderName}-hover-state {
-	${generateInteractiveVariants(
-		currentColorObject,
-		'background-color',
-		primaryColor,
-		true
-	)}
-}
-%${placeholderName}-active-state {
-	${generateInteractiveVariants(
-		currentColorObject,
-		'background-color',
-		primaryColor,
-		false,
-		true
-	)}
-}
-
-%${placeholderName} {
-    --db-current-background-color: var(--${bgColor}, #{$${bgColor}});
-    --db-current-color: var(--${fgColor}, #{$${fgColor}});
+%${placeholderName}-variables {
+	--db-current-base-color: var(--${value}-base-color,
+	#{$${prefix}-${baseColor.enabled.name}});
+	--db-current-color: var(--${value}-on-bg-color, #{$${fgColor}});
+	--db-current-bg-color: color-mix(
+		in srgb,
+		transparent	var(--db-bg-transparent, 0%),
+		var(--${value}-bg-color, #{$${bgColor}})
+	);
     ${
 		elementColor
-			? `--db-current-element-color: var(--${elementColor}, #{$${elementColor}});`
+			? `--db-current-element-color: var(--${value}-element-color, #{$${elementColor}});`
 			: ''
 	}
     ${
 		borderColor
-			? `--db-current-border-color: var(--${borderColor}, #{$${borderColor}});`
+			? `--db-current-border-color: var(--${value}-border-color, #{$${borderColor}});`
 			: ''
 	}
     ${
 		borderColorWeak
-			? `--db-current-border-weak-color: var(--${borderColorWeak}, #{$${borderColorWeak}});`
+			? `--db-current-border-weak-color: var(--${value}-border-weak-color, #{$${borderColorWeak}});`
 			: ''
 	}
-    background-color: var(--db-current-background-color, #{$${bgColor}});
-    color: var(--db-current-color, #{$${fgColor}});
-    ${baseColorObject ? getRBGA(primaryColor, 'enabled') : ''}
+}
+
+%${placeholderName} {
+	@extend %${placeholderName}-variables;
+	background-color: var(--db-current-bg-color);
+    color: var(--db-current-color);
+
     ${
-		currentColorObject === primaryColor
-			? `--db-current-background-color-alpha: 1;`
+		currentColorObject === baseColor
+			? `--db-current-base-color-alpha: 100%;`
 			: ''
+	}
+
+	&-transparent {
+		&-semi{
+			--db-bg-transparent: 92%;
+		}
+
+		&-full, &-semi{
+    		color: var(--${value}-bg-on-color, #{$${fgColor}});
+			@extend %${placeholderName}-variables;
+    		background-color: color-mix(
+				in srgb,
+				transparent	var(--db-bg-transparent, 100%),
+				var(--db-current-base-color)
+			);
+		}
 	}
 
     &-ia, &[data-variant="interactive"] {
 		@extend %${placeholderName};
-		@extend %${placeholderName}-hover-state;
-		@extend %${placeholderName}-active-state;
-    }
-
-    button {
-		@extend %${placeholderName}-hover-state;
-		@extend %${placeholderName}-active-state;
-    }
-
-    a {
-       ${generateInteractiveVariants(baseColorObject, 'color')}
+		&:enabled{
+			&:hover{
+				--db-bg-transparent: 84%;
+			}
+			&:active{
+				--db-bg-transparent: 68%;
+			}
+		}
     }
 `;
 		if (weakFgColor) {
 			result += `
     %weak {
-        color: var(--${weakFgColor}, #{$${weakFgColor}});
-
-		a {
-		   ${generateInteractiveVariants(baseColorObject.weak, 'color')}
-		}
+		--db-current-color: var(--${value}-on-bg-weak-color, #{$${weakFgColor}});
+		color: var(--db-current-color);
     }
 `;
 		}
@@ -181,30 +149,22 @@ exports.generateColorUtilitityPlaceholder = (colorToken) => {
 		if (colorToken[value].enabled) {
 			// Text & elements & border
 			output += `
-%${prefix}-${value}-text-ia {
-	color: $${prefix}-${colorToken[value].enabled.name};
-${generateInteractiveVariants(colorToken[value], 'color')}
-}
-
-%${prefix}-${value}-element-ia {
-	color: $${prefix}-${colorToken[value].element.enabled.name};
-${generateInteractiveVariants(colorToken[value].element, 'color')}
-}
-
-%${prefix}-${value}-border-ia {
-	color: $${prefix}-${colorToken[value].border.enabled.name};
-${generateInteractiveVariants(colorToken[value].border, 'color')}
-}
-
 %${prefix}-${value}-component-ia {
-	background-color: $${prefix}-${colorToken[value].enabled.name};
-	color: $${prefix}-${colorToken[value].on.enabled.name};
-${generateInteractiveVariants(colorToken[value], 'background-color')}
+	color: var(--${value}-base-on-color, #{$${prefix}-${colorToken[value].on.enabled.name}});
+	background-color: var(--${value}-base-color, #{$${prefix}-${colorToken[value].enabled.name}});
+	&:enabled {
+		&:hover{
+			background-color: var(--${value}-base-hover-color, #{$${prefix}-${colorToken[value].hover.name}});
+		}
+		&:active{
+			background-color: var(--${value}-base-pressed-color, #{$${prefix}-${colorToken[value].pressed.name}});
+		}
+	}
 }
 
 %${prefix}-${value}-component {
-	background-color: $${prefix}-${colorToken[value].enabled.name};
-	color: $${prefix}-${colorToken[value].on.enabled.name};
+	background-color: var(--${value}-base-color, #{$${prefix}-${colorToken[value].enabled.name}});
+	color: var(--${value}-base-on-color, #{$${prefix}-${colorToken[value].on.enabled.name}});
 }
 `;
 		}
@@ -227,18 +187,6 @@ ${generateInteractiveVariants(colorToken[value], 'background-color')}
 				value,
 				undefined,
 				colorToken[value].bg,
-				colorToken[value].on.bg,
-				colorToken[value]
-			);
-		}
-
-		// Transparent tones
-		const transparentTones = ['full', 'semi'];
-		for (const transparentTone of transparentTones) {
-			output += generateBGVariants(
-				value,
-				`transparent-${transparentTone}`,
-				colorToken[value].bg.transparent[transparentTone],
 				colorToken[value].on.bg,
 				colorToken[value]
 			);
