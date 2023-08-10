@@ -11,6 +11,6 @@ import { DBTextarea } from "@db-ui/v-components";
 </script>
 
 <template>
-	<DBTextarea>Textarea</DBTextarea>
+	<DBTextarea></dbTextarea>
 </template>
 ```

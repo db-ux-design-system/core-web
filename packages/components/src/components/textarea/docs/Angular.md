@@ -20,5 +20,5 @@ import { DBTextareaModule } from '@db-ui/ngx-components';
 
 ```html app.component.html
 <!-- app.component.html -->
-<db-textarea>Textarea</db-textarea>
+<db-textarea></db-textarea>
 ```
