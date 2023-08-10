@@ -20,6 +20,10 @@ const getComponents = () => [
 		name: 'textarea'
 	},
 	{
+		name: 'badge'
+	},
+
+	{
 		name: 'navigation-item'
 	},
 	{

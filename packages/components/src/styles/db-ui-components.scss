@@ -21,10 +21,14 @@
 @use "../components/select/select" as *;
 @use "../components/navigation-item/navigation-item" as *;
 @use "../components/textarea/textarea" as *;
+@use "../components/badge/badge" as *;
 
 // angular-workaround
 dbtextarea,
 db-textarea,
+// angular-workaround
+dbbadge,
+db-badge,
 dbnavigation-item,
 db-navigation-item,
 dbtag,
@@ -71,4 +75,10 @@ db-tabbar {
 db-alert,
 dbalert {
 	inline-size: inherit;
+}
+
+// for db-badge
+
+:has(.db-badge[data-placement^="corner"]) {
+	position: relative;
 }

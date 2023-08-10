@@ -1,0 +1,136 @@
+@use "sass:map";
+@use "@db-ui/foundations/build/scss/variables" as *;
+@use "@db-ui/foundations/build/scss/variables.global" as *;
+@use "@db-ui/foundations/build/scss/color-placeholder" as *;
+@use "@db-ui/foundations/build/scss/color/color-variants" as *;
+@use "@db-ui/foundations/build/scss/helpers/component" as *;
+@use "@db-ui/foundations/build/scss/helpers/font" as *;
+@use "../../styles/button-components";
+
+@mixin get-tag-colors() {
+	@extend %db-bg-neutral-4;
+
+	&[data-emphasis="strong"] {
+		@extend %db-neutral-component;
+	}
+
+	@each $name, $colors in $component-variants {
+		&[data-variant="#{$name}"] {
+			@if ($name == "critical") {
+				@extend %db-bg-critical;
+
+				&[data-emphasis="strong"] {
+					@extend %db-critical-component;
+				}
+			} @else if ($name == "informational") {
+				@extend %db-bg-informational;
+
+				&[data-emphasis="strong"] {
+					@extend %db-informational-component;
+				}
+			} @else if ($name == "warning") {
+				@extend %db-bg-warning;
+
+				&[data-emphasis="strong"] {
+					@extend %db-warning-component;
+				}
+			} @else if ($name == "successful") {
+				@extend %db-bg-successful;
+
+				&[data-emphasis="strong"] {
+					@extend %db-successful-component;
+				}
+			}
+
+			&:not(&[data-emphasis="strong"]) {
+				--db-current-border-color: #{map.get($colors, "border")};
+			}
+		}
+	}
+}
+
+%absolute-badge {
+	position: absolute;
+
+	transform: translate(var(--badge-transform-x), var(--badge-transform-y));
+
+	&[data-placement$="right"] {
+		--badge-transform-x: 50%;
+		inset-inline-end: 0;
+	}
+
+	&[data-placement$="left"] {
+		--badge-transform-x: -50%;
+		inset-inline-start: 0;
+	}
+
+	&[data-placement*="top"] {
+		--badge-transform-y: -50%;
+		inset-block-start: 0;
+	}
+
+	&[data-placement*="center"] {
+		--badge-transform-y: -50%;
+		inset-block-start: 50%;
+	}
+
+	&[data-placement*="bottom"] {
+		--badge-transform-y: 50%;
+		inset-block-end: 0;
+	}
+}
+
+.db-badge {
+	--badge-size: #{$db-spacing-fixed-sm};
+	@extend %component-border;
+	@extend %db-overwrite-font-size-sm;
+	@extend %default-button;
+
+	@include get-tag-colors();
+
+	display: flex;
+	border-radius: 42px; // extreme radius
+	padding-inline: $db-spacing-fixed-xs;
+	block-size: fit-content;
+	inline-size: fit-content;
+
+	&:empty,
+	> span:empty {
+		block-size: var(--badge-size);
+		inline-size: var(--badge-size);
+		padding: 0;
+	}
+
+	&:has(.db-icon) {
+		padding: $db-spacing-fixed-2xs;
+	}
+
+	& > *,
+	.db-icon {
+		@extend %db-overwrite-font-size-sm;
+	}
+
+	&[data-size="small"] {
+		--badge-size: #{$db-spacing-fixed-xs};
+		@extend %db-overwrite-font-size-2xs;
+		padding-inline: $db-spacing-fixed-2xs;
+
+		&:empty,
+		> span:empty {
+			padding: 0;
+		}
+
+		&:has(.db-icon) {
+			padding: $db-spacing-fixed-3xs;
+		}
+
+		& > *,
+		.db-icon {
+			@extend %db-overwrite-font-size-2xs;
+		}
+	}
+
+	&[data-placement^="corner"] {
+		@extend %absolute-badge;
+	}
+}
