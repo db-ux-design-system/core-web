@@ -1,3 +1,4 @@
+import BadgeComponent from '../components/badge';
 import NavigationItemComponent from '../components/navigation-item';
 import CheckboxComponent from '../components/checkbox';
 import TagComponent from '../components/tag';
@@ -21,6 +22,8 @@ export type NavigationItem = {
 	home?: boolean;
 };
 export const NAVIGATION_ITEMS: NavigationItem[] = [
+	{ path: 'badge', label: 'Badge', component: <BadgeComponent /> },
+
 	{
 		path: 'navigation-item',
 		label: 'NavigationItem',

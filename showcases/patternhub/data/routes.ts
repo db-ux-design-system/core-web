@@ -106,6 +106,10 @@ const componentChildren = [
 			{
 				label: 'DBAlert',
 				name: 'alert'
+			},
+			{
+				label: 'DBBadge',
+				name: 'badge'
 			}
 		]
 	}
