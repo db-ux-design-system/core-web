@@ -44,9 +44,9 @@
   </ItemGroup>
 
   <ItemGroup>
-<ProjectReference Include="..\accordion-item\DBAccordionItem.pcfproj" />
+<!-- <ProjectReference Include="..\accordion-item\DBAccordionItem.pcfproj" />
 
-<ProjectReference Include="..\accordion\DBAccordion.pcfproj" />
+<ProjectReference Include="..\accordion\DBAccordion.pcfproj" /> -->
 
     <ProjectReference Include="..\button\DBButton.pcfproj" />
     <ProjectReference Include="..\icon\DBIcon.pcfproj" />
