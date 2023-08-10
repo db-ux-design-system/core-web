@@ -32,7 +32,8 @@ export type DBInputDefaultProps = {
 		| 'hidden'
 		| 'date'
 		| 'datetime-local'
-		| 'week';
+		| 'week'
+		| 'color';
 	value?: any;
 	variant?: DefaultVariantProps;
 };

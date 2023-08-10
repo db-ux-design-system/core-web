@@ -2,17 +2,23 @@
 @use "font-faces" as *;
 @use "typography-placeholder" as *;
 @use "scaling-placeholder" as *;
-@use "body-styles" as *;
+@use "helpers/font" as *;
 
-body,
-* {
-	@extend %db-body-md;
+body {
 	font-family: $db-font-family-sans;
+}
+
+:root {
+	@extend %db-component-variables-md;
+}
+
+* {
+	@extend %db-font-size-md;
 }
 
 small,
 code {
-	@extend %db-body-sm;
+	@extend %db-overwrite-font-size-sm;
 }
 
 h1,

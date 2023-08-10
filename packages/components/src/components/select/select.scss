@@ -7,7 +7,7 @@
 @use "@db-ui/foundations/build/scss/helpers/component";
 @use "@db-ui/foundations/build/scss/color/color-variants" as *;
 @use "@db-ui/foundations/build/scss/icon/icons.helpers" as *;
-@use "@db-ui/foundations/build/scss/body-styles" as *;
+@use "@db-ui/foundations/build/scss/helpers/font" as *;
 @use "../../styles/form-components" as *;
 
 %select-icon {
@@ -25,7 +25,7 @@
 }
 
 %select-label {
-	@extend %db-body-md;
+	@extend %db-overwrite-font-size-md;
 	inset-block-start: calc(
 		($db-sizing-md - var(--db-base-font-size) * var(--db-base-line-height)) /
 			2
@@ -35,7 +35,7 @@
 .db-select {
 	--has-before: 0;
 	--has-status: 0;
-	@extend %db-body-sm;
+	@extend %db-overwrite-font-size-sm;
 	@extend %select-icon;
 	@extend %bg-transparent-hover;
 	@extend %default-interactive-component;
@@ -97,7 +97,7 @@
 	}
 
 	label {
-		@extend %db-body-2xs;
+		@extend %db-overwrite-font-size-2xs;
 		inset-block-start: $db-spacing-fixed-2xs;
 		transition:
 			left,
@@ -122,7 +122,7 @@
 	}
 
 	.icon-state {
-		@extend %db-body-sm;
+		@extend %db-overwrite-font-size-sm;
 
 		display: flex;
 		inset-inline-end: calc($db-sizing-md - $db-spacing-fixed-xs);
@@ -135,7 +135,7 @@
 		// angular specific nesting
 
 		.db-icon {
-			@extend %db-body-sm;
+			@extend %db-overwrite-font-size-sm;
 
 			&::before {
 				--icon-font-family: var(--db-base-icon-font-family-filled);
@@ -145,7 +145,7 @@
 	}
 
 	& ~ .description {
-		@extend %db-body-xs;
+		@extend %db-overwrite-font-size-xs;
 		margin-inline: $db-spacing-fixed-sm;
 		margin-block: $db-spacing-fixed-2xs 0;
 	}
