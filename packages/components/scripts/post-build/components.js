@@ -21,6 +21,10 @@
  */
 const getComponents = () => [
 	{
+		name: 'badge'
+	},
+
+	{
 		name: 'main-navigation'
 	},
 

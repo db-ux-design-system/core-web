@@ -1,4 +1,5 @@
 import { Routes } from '@angular/router';
+import { BadgeComponent } from '../components/badge/badge.component';
 import { NavigationItemComponent } from '../components/navigation-item/navigation-item.component';
 import { MainNavigationComponent } from '../components/main-navigation/main-navigation.component';
 import { SelectComponent } from '../components/select/select.component';
@@ -33,7 +34,8 @@ export const NAVIGATION_ITEMS: NavItem[] = [
 		path: '06',
 		label: '06 Feedback',
 		subNavigation: getSortedNavigationItems([
-			{ path: '06/alert', label: 'Alert', component: AlertComponent }
+			{ path: '06/alert', label: 'Alert', component: AlertComponent },
+			{ path: '06/badge', label: 'Badge', component: BadgeComponent }
 		])
 	},
 

@@ -71,6 +71,10 @@ const componentChildren: NavigationItem[] = [
 			{
 				label: 'DBAlert',
 				name: 'alert'
+			},
+			{
+				label: 'DBBadge',
+				name: 'badge'
 			}
 		]
 	},

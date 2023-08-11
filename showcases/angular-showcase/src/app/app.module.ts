@@ -21,12 +21,14 @@ import {
 	DBDrawerModule,
 	DBTagModule,
 	DBNavigationItemModule,
-	DBMainNavigationModule
+	DBMainNavigationModule,
+	DBBadgeModule
 } from '../../../../output/angular/src';
 import { ActionBarDirective } from '../../../../output/angular/src/components/header/ActionBar.directive';
 import { NavigationDirective } from '../../../../output/angular/src/components/header/Navigation.directive';
 import { MetaNavigationDirective } from '../../../../output/angular/src/components/header/MetaNavigation.directive';
 import { NavigationContentDirective } from '../../../../output/angular/src/components/navigation-item/NavigationContent.directive';
+import { BadgeComponent } from './components/badge/badge.component';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app.routing.module';
 import { FormComponent } from './components/form/form.component';
@@ -51,9 +53,8 @@ import { MainNavigationComponent } from './components/main-navigation/main-navig
 @NgModule({
 	declarations: [
 		MainNavigationComponent,
-
+		BadgeComponent,
 		NavigationItemComponent,
-
 		SelectComponent,
 		TagComponent,
 		AppComponent,
@@ -77,9 +78,9 @@ import { MainNavigationComponent } from './components/main-navigation/main-navig
 		NavigationContentDirective
 	],
 	imports: [
+		DBBadgeModule,
 		DBMainNavigationModule,
 		DBNavigationItemModule,
-
 		DBTagModule,
 		DBSelectModule,
 		AppRoutingModule,

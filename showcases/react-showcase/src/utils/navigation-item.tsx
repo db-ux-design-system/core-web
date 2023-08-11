@@ -1,4 +1,5 @@
 import MainNavigationComponent from '../components/main-navigation';
+import BadgeComponent from '../components/badge';
 import NavigationItemComponent from '../components/navigation-item';
 import CheckboxComponent from '../components/checkbox';
 import TagComponent from '../components/tag';
@@ -33,7 +34,8 @@ export const NAVIGATION_ITEMS: NavigationItem[] = [
 		path: '06',
 		label: '06 Feedback',
 		subNavigation: getSortedNavigationItems([
-			{ path: 'alert', label: 'Alert', component: <AlertComponent /> }
+			{ path: 'alert', label: 'Alert', component: <AlertComponent /> },
+			{ path: 'badge', label: 'Badge', component: <BadgeComponent /> }
 		])
 	},
 

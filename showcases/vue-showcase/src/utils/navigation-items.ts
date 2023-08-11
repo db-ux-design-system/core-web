@@ -1,4 +1,5 @@
 import type { RouteRecordRaw } from 'vue-router';
+import Badge from '../components/badge/Badge.vue';
 import NavigationItem from '../components/navigation-item/NavigationItem.vue';
 import MainNavigation from '../components/main-navigation/MainNavigation.vue';
 import Select from '../components/select/Select.vue';
@@ -33,7 +34,8 @@ export const navigationItems: NavItem[] = [
 		path: '/06',
 		label: '06 Feedback',
 		subNavigation: getSortedNavigationItems([
-			{ path: '/06/alert', label: 'Alert', component: Alert }
+			{ path: '/06/alert', label: 'Alert', component: Alert },
+			{ path: '/06/badge', label: 'Badge', component: Badge }
 		])
 	},
 
