@@ -17,6 +17,10 @@
  */
 const getComponents = () => [
 	{
+		name: 'badge'
+	},
+
+	{
 		name: 'navigation-item'
 	},
 

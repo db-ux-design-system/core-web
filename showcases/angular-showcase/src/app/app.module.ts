@@ -20,8 +20,10 @@ import {
 	DBSelectModule,
 	DBDrawerModule,
 	DBTagModule,
-	DBNavigationItemModule
+	DBNavigationItemModule,
+	DBBadgeModule
 } from '../../../../output/angular/src';
+import { BadgeComponent } from './components/badge/badge.component';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app.routing.module';
 import { FormComponent } from './components/form/form.component';
@@ -43,6 +45,8 @@ import { NavigationItemComponent } from './components/navigation-item/navigation
 
 @NgModule({
 	declarations: [
+		BadgeComponent,
+
 		NavigationItemComponent,
 
 		SelectComponent,
@@ -63,6 +67,8 @@ import { NavigationItemComponent } from './components/navigation-item/navigation
 		DrawerComponent
 	],
 	imports: [
+		DBBadgeModule,
+
 		DBNavigationItemModule,
 
 		DBTagModule,

@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import DBBadge from '../src/components/badge/badge';
 
 import {
 	DBInfotext,
@@ -203,6 +204,14 @@ const ComponentSwitch = ({
 			<DBNavigationItem className={className} {...props}>
 				{resolvedContent}
 			</DBNavigationItem>
+		);
+	}
+
+	if (type === 'badge') {
+		return (
+			<DBBadge className={className} {...props}>
+				{resolvedContent}
+			</DBBadge>
 		);
 	}
 
