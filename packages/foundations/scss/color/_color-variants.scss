@@ -62,7 +62,28 @@ $color-variants: "neutral-0", "neutral-1", "neutral-3", "neutral-4", "primary",
 	}
 }
 
+%db-bg-inverted-ia {
+	color: var(--db-current-bg-color);
+	background-color: var(--db-current-color);
 
+	&:enabled {
+		&:hover {
+			background-color: color-mix(
+				in srgb,
+				transparent 16%,
+				var(--db-current-color)
+			);
+		}
+
+		&:active {
+			background-color: color-mix(
+				in srgb,
+				transparent 24%,
+				var(--db-current-color)
+			);
+		}
+	}
+}
 
 $component-variants: (
 	"critical": (
