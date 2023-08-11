@@ -30,8 +30,7 @@
 .db-header-navigation-bar {
 	display: flex;
 	position: relative;
-	padding-block: $db-spacing-fixed-xs;
-	padding-inline: $db-spacing-fixed-md;
+	padding: $db-spacing-fixed-xs $db-spacing-fixed-md;
 	gap: $db-spacing-fixed-xs;
 	inline-size: 100%;
 	align-items: center;
