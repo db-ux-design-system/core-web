@@ -94,7 +94,7 @@
 			}
 
 			& ~ .db-icon {
-				color: $db-colors-informational-on-bg-enabled;
+				color: map.get($colors, "on-bg");
 			}
 
 			& ~ .description,

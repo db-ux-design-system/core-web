@@ -33,11 +33,7 @@ html {
 
 // Make sure every elements has the current color from container above
 body {
-	color: var(
-		--db-current-color,
-		--neutral-on-bg-color,
-		$db-colors-neutral-on-bg-enabled
-	);
+	color: $db-colors-neutral-on-bg;
 }
 
 a {
@@ -93,7 +89,7 @@ iframe {
 	list-style-type: "\2022"+ "   ";
 
 	li::marker {
-		color: #{$db-colors-primary-enabled};
+		color: var (--primary-enabled, #{$db-colors-primary-enabled});
 	}
 }
 

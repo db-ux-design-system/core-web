@@ -51,27 +51,27 @@ const generateBGVariants = (
 
 		let result = `
 %${placeholderName}-variables {
-	--db-current-base-color: var(--${value}-base-color,
+	--db-current-base-color: var(--${value}-enabled,
 	#{$${prefix}-${baseColor.enabled.name}});
-	--db-current-color: var(--${value}-on-bg-color, #{$${fgColor}});
+	--db-current-color: var(--${value}-on-bg-enabled, #{$${fgColor}});
 	--db-current-bg-color: color-mix(
 		in srgb,
 		transparent	var(--db-bg-transparent, 0%),
-		var(--${value}-bg-color, #{$${bgColor}})
+		var(--${value}-bg-enabled, #{$${bgColor}})
 	);
     ${
 		elementColor
-			? `--db-current-element-color: var(--${value}-element-color, #{$${elementColor}});`
+			? `--db-current-element-color: var(--${value}-element-enabled, #{$${elementColor}});`
 			: ''
 	}
     ${
 		borderColor
-			? `--db-current-border-color: var(--${value}-border-color, #{$${borderColor}});`
+			? `--db-current-border-color: var(--${value}-border-enabled, #{$${borderColor}});`
 			: ''
 	}
     ${
 		borderColorWeak
-			? `--db-current-border-weak-color: var(--${value}-border-weak-color, #{$${borderColorWeak}});`
+			? `--db-current-border-weak-color: var(--${value}-border-weak-enabled, #{$${borderColorWeak}});`
 			: ''
 	}
 }
@@ -88,16 +88,20 @@ const generateBGVariants = (
 	}
 
 	&-transparent {
-		&-semi{
-			--db-bg-transparent: 92%;
-		}
-
 		&-full, &-semi{
-    		color: var(--${value}-bg-on-color, #{$${fgColor}});
+    		color: var(--${value}-bg-on-enabled, #{$${fgColor}});
 			@extend %${placeholderName}-variables;
     		background-color: color-mix(
 				in srgb,
 				transparent	var(--db-bg-transparent, 100%),
+				var(--db-current-base-color)
+			);
+		}
+
+		&-semi{
+    		background-color: color-mix(
+				in srgb,
+				transparent	var(--db-bg-transparent, 92%),
 				var(--db-current-base-color)
 			);
 		}
@@ -118,7 +122,7 @@ const generateBGVariants = (
 		if (weakFgColor) {
 			result += `
     %weak {
-		--db-current-color: var(--${value}-on-bg-weak-color, #{$${weakFgColor}});
+		--db-current-color: var(--${value}-on-bg-weak-enabled, #{$${weakFgColor}});
 		color: var(--db-current-color);
     }
 `;
@@ -150,21 +154,21 @@ exports.generateColorUtilitityPlaceholder = (colorToken) => {
 			// Text & elements & border
 			output += `
 %${prefix}-${value}-component-ia {
-	color: var(--${value}-base-on-color, #{$${prefix}-${colorToken[value].on.enabled.name}});
-	background-color: var(--${value}-base-color, #{$${prefix}-${colorToken[value].enabled.name}});
+	color: var(--${value}-on-enabled, #{$${prefix}-${colorToken[value].on.enabled.name}});
+	background-color: var(--${value}-enabled, #{$${prefix}-${colorToken[value].enabled.name}});
 	&:enabled {
 		&:hover{
-			background-color: var(--${value}-base-hover-color, #{$${prefix}-${colorToken[value].hover.name}});
+			background-color: var(--${value}-hover, #{$${prefix}-${colorToken[value].hover.name}});
 		}
 		&:active{
-			background-color: var(--${value}-base-pressed-color, #{$${prefix}-${colorToken[value].pressed.name}});
+			background-color: var(--${value}-pressed, #{$${prefix}-${colorToken[value].pressed.name}});
 		}
 	}
 }
 
 %${prefix}-${value}-component {
-	background-color: var(--${value}-base-color, #{$${prefix}-${colorToken[value].enabled.name}});
-	color: var(--${value}-base-on-color, #{$${prefix}-${colorToken[value].on.enabled.name}});
+	background-color: var(--${value}-enabled, #{$${prefix}-${colorToken[value].enabled.name}});
+	color: var(--${value}-on-enabled, #{$${prefix}-${colorToken[value].on.enabled.name}});
 }
 `;
 		}

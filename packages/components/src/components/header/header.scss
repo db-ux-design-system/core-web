@@ -3,7 +3,7 @@
 @use "@db-ui/foundations/build/scss/helpers/functions" as *;
 
 .db-header {
-	background-color: $db-colors-neutral-bg-0-enabled;
+	background-color: $db-colors-neutral-bg;
 	box-shadow: $db-elevation-4;
 	display: flex;
 	justify-content: space-between;

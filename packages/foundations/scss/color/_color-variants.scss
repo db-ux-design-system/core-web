@@ -1,6 +1,7 @@
 @use "sass:string";
 @use "../color-placeholder" as *;
 @use "../variables" as *;
+@use "../variables.global" as *;
 
 $color-variants: "neutral-0", "neutral-1", "neutral-3", "neutral-4", "primary",
 	"secondary", "critical", "successful", "warning", "informational";
@@ -61,72 +62,7 @@ $color-variants: "neutral-0", "neutral-1", "neutral-3", "neutral-4", "primary",
 	}
 }
 
-// Variants for adaptive components like input, select, alert, ...
 
-$db-colors-critical-border-weak: var(
-	--critical-border-weak-color,
-	$db-colors-critical-border-weak-enabled
-);
-
-$db-colors-critical-element: var(
-	--critical-element-color,
-	$db-colors-critical-element-enabled
-);
-
-$db-colors-critical-on-bg: var(
-	--critical-on-bg-color,
-	$db-colors-critical-on-bg-enabled
-);
-$db-colors-critical: var(--critical-base-color, $db-colors-critical-enabled);
-
-$db-colors-informational-border-weak: var(
-	--informational-border-weak-color,
-	$db-colors-informational-border-weak-enabled
-);
-$db-colors-informational-element: var(
-	--informational-element-color,
-	$db-colors-informational-element-enabled
-);
-
-$db-colors-informational-on-bg: var(
-	--informational-on-bg-color,
-	$db-colors-informational-on-bg-enabled
-);
-$db-colors-informational: var(
-	--informational-base-color,
-	$db-colors-informational-enabled
-);
-
-$db-colors-warning-border-weak: var(
-	--warning-border-weak-color,
-	$db-colors-warning-border-weak-enabled
-);
-$db-colors-warning-element: var(
-	--warning-element-color,
-	$db-colors-warning-element-enabled
-);
-$db-colors-warning-on-bg: var(
-	--warning-on-bg-color,
-	$db-colors-warning-on-bg-enabled
-);
-$db-colors-warning: var(--warning-base-color, $db-colors-warning-enabled);
-
-$db-colors-successful-border-weak: var(
-	--successful-border-weak-color,
-	$db-colors-successful-border-weak-enabled
-);
-$db-colors-successful-element: var(
-	--successful-element-color,
-	$db-colors-successful-element-enabled
-);
-$db-colors-successful-on-bg: var(
-	--successful-on-bg-color,
-	$db-colors-successful-on-bg-enabled
-);
-$db-colors-successful: var(
-	--successful-base-color,
-	$db-colors-successful-enabled
-);
 
 $component-variants: (
 	"critical": (

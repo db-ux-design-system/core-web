@@ -19,7 +19,7 @@ $default-opacity: 0.25;
 %component-border {
 	border: solid 1px
 		var(
-			--db-current-border-weak-color,
+			--db-current-border-weak-enabled,
 			$db-colors-neutral-border-weak-enabled
 		);
 }

@@ -46,16 +46,10 @@ $font-size-height: calc(var(--db-base-font-size) * var(--db-base-line-height));
 	&:is(:user-invalid),
 	&[aria-invalid="true"] {
 		@extend %db-bg-critical-transparent-semi;
-		border-color: var(
-			--db-colors-critical-element-enabled,
-			$db-colors-critical-element-enabled
-		);
+		border-color: $db-colors-critical-border-weak;
 
 		& + label {
-			color: var(
-				--db-colors-critical-enabled,
-				$db-colors-critical-enabled
-			);
+			color: $db-colors-critical;
 		}
 	}
 
