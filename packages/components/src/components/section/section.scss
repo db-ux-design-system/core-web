@@ -1,11 +1,12 @@
 @use "@db-ui/foundations/build/scss/variables" as *;
 @use "@db-ui/foundations/build/scss/variables.global" as *;
 @use "@db-ui/foundations/build/scss/helpers/functions" as *;
+@use "@db-ui/foundations/build/scss/helpers/component" as *;
 
 .db-section {
 	padding-inline: $db-spacing-fixed-md;
 
-	@media screen and (min-width: $db-screens-m) {
+	@include screen("m") {
 		padding-inline: $db-spacing-fixed-md;
 	}
 

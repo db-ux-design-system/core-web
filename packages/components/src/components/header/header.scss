@@ -14,12 +14,12 @@
 
 	min-block-size: $default-mobile-header-height;
 
-	.db-link {
-		display: inline-block;
+	@include screen("m") {
+		--db-drawer-max-width: #{$db-screens-s};
 	}
 
-	@media screen and (min-width: $db-screens-m) {
-		--db-drawer-max-width: #{$db-screens-s};
+	.db-link {
+		display: inline-block;
 	}
 
 	&[data-on-forcing-mobile="true"] {
