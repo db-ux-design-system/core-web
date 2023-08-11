@@ -12,7 +12,7 @@ If you use `width !== full` you are able to overwrite the `max-width` with `--db
 <!-- index.html -->
 ...
 <body>
-	<dialog class="db-drawer" data-backdrop="true" open="true">
+	<dialog class="db-drawer" data-backdrop="true" open>
 		<article class="db-drawer-container">
 			<header class="db-drawer-header">
 				<button
