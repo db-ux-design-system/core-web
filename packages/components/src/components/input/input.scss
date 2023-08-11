@@ -73,7 +73,7 @@
 	@each $name, $colors in $component-variants {
 		@if ($name == "critical") {
 			&[data-variant="critical"] {
-				color: nth($colors, 3);
+				color: map.get($colors, "on-bg");
 			}
 		}
 
