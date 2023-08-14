@@ -65,7 +65,7 @@
 
 	&[data-content="internal"],
 	&[data-content="external"] {
-		--icon-margin-before: $db-spacing-fixed-2xs;
+		--icon-margin-before: #{$db-spacing-fixed-2xs};
 
 		&:focus-visible {
 			outline-offset: var(--db-focus-outline-offset, 1px);
