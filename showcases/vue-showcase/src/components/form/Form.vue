@@ -12,6 +12,7 @@ import { ref } from "vue";
 const input = ref("");
 const select = ref("");
 const firstInput = ref("");
+const dateInput = ref("");
 const radio = ref<HTMLInputElement>();
 const checkbox = ref<HTMLInputElement>();
 const tags = ref<string[]>([]);
@@ -33,6 +34,7 @@ const logAll = () => {
 	alert(
 		JSON.stringify({
 			input: firstInput.value,
+			dateinput: dateInput.value,
 			radio: radio.value,
 			select: select.value,
 			checkbox: checkbox.checked,
@@ -43,6 +45,7 @@ const logAll = () => {
 
 const reset = () => {
 	firstInput.value = "resetted";
+	dateInput.value = "";
 	checkbox.value = false;
 };
 </script>
@@ -61,6 +64,13 @@ const reset = () => {
 						name="input-name"
 						:dataList="dataList"
 						v-model:value="firstInput"
+					/>
+					<DBInput
+						label="Dateinput"
+						description="Description"
+						name="date-name"
+						v-model:value="dateInput"
+						type="date"
 					/>
 					<p>Radio:</p>
 					<ul>
@@ -117,6 +127,8 @@ const reset = () => {
 			<dl>
 				<dt>inputs value</dt>
 				<dd>{{ firstInput ? firstInput : "No Input set" }}</dd>
+				<dt>date inputs value</dt>
+				<dd>{{ dateInput ? dateInput : "No Date Input set" }}</dd>
 				<dt>radio value</dt>
 				<dd>{{ radio ? radio : "No radio set" }}</dd>
 				<dt>checkbox value</dt>
