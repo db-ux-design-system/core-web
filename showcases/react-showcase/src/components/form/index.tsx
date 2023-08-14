@@ -11,6 +11,7 @@ import type { KeyValueType } from '../../../../../output/react/src/shared/model'
 
 const FormComponent = () => {
 	const [input, setInput] = useState('');
+	const [dateinput, setDateinput] = useState('');
 	const [radio, setRadio] = useState('');
 	const [select, setSelect] = useState('');
 	const [checkbox, setCheckbox] = useState('');
@@ -37,6 +38,15 @@ const FormComponent = () => {
 								setInput(event.target.value);
 							}}
 							dataList={dataList}
+						/>
+						<DBInput
+							label="Date input"
+							description="Description"
+							name="input-date-name"
+							onChange={(event) => {
+								setDateinput(event.target.value);
+							}}
+							type="date"
 						/>
 						<p>Radio:</p>
 						<ul>
@@ -128,6 +138,8 @@ const FormComponent = () => {
 				<dl>
 					<dt>inputs value</dt>
 					<dd>{input || 'No Input set'}</dd>
+					<dt>date inputs value</dt>
+					<dd>{dateinput || 'No date input set'}</dd>
 					<dt>radio value</dt>
 					<dd>{radio || 'No radio set'}</dd>
 					<dt>checkbox value</dt>
