@@ -182,5 +182,17 @@
 				}
 			}
 		]
+	},
+	{
+		"name": "Types",
+		"examples": [
+			{
+				"name": "date type",
+				"props": {
+					"label": "Label",
+					"type": "date"
+				}
+			}
+		]
 	}
 ]
