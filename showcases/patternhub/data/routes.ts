@@ -90,12 +90,26 @@ const componentChildren = [
 		]
 	},
 	{
+		label: '05 Navigation',
+		link: '/components/05-navigation',
+		children: [
+			{
+				label: 'DBNavigationItem',
+				name: 'navigation-item'
+			}
+		]
+	},
+	{
 		label: '06 Feedback',
 		link: '/components/06-feedback',
 		children: [
 			{
 				label: 'DBAlert',
 				name: 'alert'
+			},
+			{
+				label: 'DBBadge',
+				name: 'badge'
 			}
 		]
 	}

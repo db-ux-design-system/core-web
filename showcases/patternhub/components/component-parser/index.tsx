@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import DBBadge from '../src/components/badge/badge';
 
 import {
 	DBInfotext,
@@ -15,7 +16,8 @@ import {
 	DBCard,
 	DBBrand,
 	DBSection,
-	DBHeader
+	DBHeader,
+	DBNavigationItem
 } from '../src';
 import { ComponentParserType, ComponentType } from './data';
 
@@ -194,6 +196,22 @@ const ComponentSwitch = ({
 			<DBTag className={className} {...props}>
 				{resolvedContent}
 			</DBTag>
+		);
+	}
+
+	if (type === 'navigation-item') {
+		return (
+			<DBNavigationItem className={className} {...props}>
+				{resolvedContent}
+			</DBNavigationItem>
+		);
+	}
+
+	if (type === 'badge') {
+		return (
+			<DBBadge className={className} {...props}>
+				{resolvedContent}
+			</DBBadge>
 		);
 	}
 

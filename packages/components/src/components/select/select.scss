@@ -7,14 +7,14 @@
 @use "@db-ui/foundations/build/scss/helpers/component";
 @use "@db-ui/foundations/build/scss/color/color-variants" as *;
 @use "@db-ui/foundations/build/scss/icon/icons.helpers" as *;
-@use "@db-ui/foundations/build/scss/body-styles" as *;
+@use "@db-ui/foundations/build/scss/helpers/font" as *;
 @use "../../styles/form-components" as *;
 
 %select-icon {
 	@extend %dropdown-icon;
 
 	&::after {
-		right: $db-spacing-fixed-sm;
+		inset-inline-end: $db-spacing-fixed-sm;
 	}
 
 	&:has(select:focus-within) {
@@ -25,8 +25,8 @@
 }
 
 %select-label {
-	@extend %db-body-md;
-	top: calc(
+	@extend %db-overwrite-font-size-md;
+	inset-block-start: calc(
 		($db-sizing-md - var(--db-base-font-size) * var(--db-base-line-height)) /
 			2
 	);
@@ -35,7 +35,7 @@
 .db-select {
 	--has-before: 0;
 	--has-status: 0;
-	@extend %db-body-sm;
+	@extend %db-overwrite-font-size-sm;
 	@extend %select-icon;
 	@extend %bg-transparent-hover;
 	@extend %default-interactive-component;
@@ -43,8 +43,8 @@
 	@include get-variant-bg-color(0.08);
 
 	position: relative;
-	height: $db-sizing-md;
-	min-width: calc(
+	block-size: $db-sizing-md;
+	min-inline-size: calc(
 		var(--db-select-min-width, calc(3 * $db-sizing-md)) + var(--has-before) *
 			($db-sizing-md) + var(--has-status) * ($db-sizing-md)
 	);
@@ -63,12 +63,12 @@
 		appearance: none;
 		background-color: transparent;
 		border: none;
-		height: $db-sizing-md;
+		block-size: $db-sizing-md;
 		text-overflow: ellipsis;
 		text-indent: calc(
 			var(--has-before) * ($db-sizing-md - $db-spacing-fixed-sm)
 		);
-		width: 100%;
+		inline-size: 100%;
 		padding-block-start: $db-spacing-fixed-sm;
 		padding-inline-start: $db-spacing-fixed-sm;
 		padding-inline-end: calc(
@@ -97,10 +97,13 @@
 	}
 
 	label {
-		@extend %db-body-2xs;
-		top: $db-spacing-fixed-2xs;
-		transition: left, top, font-size 0.2s $db-transition-functional-timing;
-		left: calc(
+		@extend %db-overwrite-font-size-2xs;
+		inset-block-start: $db-spacing-fixed-2xs;
+		transition:
+			left,
+			top,
+			font-size 0.2s $db-transition-functional-timing;
+		inset-inline-start: calc(
 			var(--has-before) * ($db-sizing-md - $db-spacing-fixed-sm) +
 				$db-spacing-fixed-sm
 		);
@@ -109,18 +112,20 @@
 	&::after,
 	&::before,
 	.icon-state {
-		top: calc(var(--db-base-font-size) * var(--db-base-line-height) / 2);
+		inset-block-start: calc(
+			var(--db-base-font-size) * var(--db-base-line-height) / 2
+		);
 	}
 
 	&::before {
-		left: $db-spacing-fixed-sm;
+		inset-inline-start: $db-spacing-fixed-sm;
 	}
 
 	.icon-state {
-		@extend %db-body-sm;
+		@extend %db-overwrite-font-size-sm;
 
 		display: flex;
-		right: calc($db-sizing-md - $db-spacing-fixed-xs);
+		inset-inline-end: calc($db-sizing-md - $db-spacing-fixed-xs);
 
 		&::before {
 			--icon-font-family: var(--db-base-icon-font-family-filled);
@@ -130,7 +135,7 @@
 		// angular specific nesting
 
 		.db-icon {
-			@extend %db-body-sm;
+			@extend %db-overwrite-font-size-sm;
 
 			&::before {
 				--icon-font-family: var(--db-base-icon-font-family-filled);
@@ -140,7 +145,7 @@
 	}
 
 	& ~ .description {
-		@extend %db-body-xs;
+		@extend %db-overwrite-font-size-xs;
 		margin-inline: $db-spacing-fixed-sm;
 		margin-block: $db-spacing-fixed-2xs 0;
 	}

@@ -2,7 +2,6 @@
 .desktop-navigation ul {
 	list-style-type: none;
 	display: flex;
-	gap: var(--db-spacing-fixed-md);
 }
 
 .default-container {
@@ -15,7 +14,7 @@
 .variants-list {
 	display: flex;
 	flex-wrap: wrap;
-	width: 100%;
+	inline-size: 100%;
 	justify-content: center;
 	gap: var(--db-spacing-fixed-md);
 }
@@ -23,6 +22,7 @@
 .variants-list > div {
 	align-items: center;
 	display: flex;
+	gap: var(--db-spacing-fixed-md);
 }
 
 .html-code-container {
@@ -59,7 +59,7 @@
 
 .form-container > div {
 	flex-direction: column;
-	width: 50%;
+	inline-size: 50%;
 }
 
 .button-container {
@@ -79,4 +79,16 @@
 	display: flex;
 	flex-wrap: wrap;
 	gap: var(--db-spacing-fixed-md);
+}
+
+.badge-inline-container {
+	display: flex;
+	gap: var(--db-spacing-fixed-sm);
+	padding: var(--db-spacing-fixed-xs) var(--db-spacing-fixed-sm);
+	background-color: #fff;
+}
+
+.badge-inline-container .db-badge {
+	margin-inline-start: var(--db-spacing-responsive-md);
+	margin-block: auto;
 }

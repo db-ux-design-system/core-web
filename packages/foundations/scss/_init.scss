@@ -22,7 +22,7 @@ body {
 
 // Box sizing
 html {
-	box-sizing: border-box;
+	box-sizing: var(--db-box-sizing, border-box);
 }
 
 *,
@@ -59,8 +59,8 @@ embed,
 iframe,
 object,
 video {
-	height: auto;
-	max-width: 100%;
+	block-size: auto;
+	max-inline-size: 100%;
 }
 
 // Iframe
@@ -122,4 +122,13 @@ code {
 	@extend %code-style;
 	padding-block: $db-spacing-fixed-2xs;
 	padding-inline: $db-spacing-fixed-xs;
+}
+
+// details/summary box-sizing / https://kittygiraudel.com/2021/08/23/shadow-roots-and-inheritance/
+details {
+	& > *,
+	& > ::before,
+	& > ::after {
+		box-sizing: var(--db-box-sizing, border-box);
+	}
 }

@@ -8,7 +8,7 @@ import {
 import { DBCheckboxProps, DBCheckboxState } from './model';
 import { uuid } from '../../utils';
 import { DEFAULT_ID } from '../../shared/constants';
-import classNames from 'classnames';
+import { cls } from '../../utils';
 
 useMetadata({
 	isAttachedToShadowDom: true,
@@ -18,7 +18,11 @@ useMetadata({
 		hasDisabledProp: true,
 		properties: [
 			// jscpd:ignore-start
-			{ name: 'children', type: 'SingleLine.Text' },
+			{
+				name: 'children',
+				type: 'SingleLine.Text',
+				defaultValue: 'Checkbox'
+			},
 			{ name: 'name', type: 'SingleLine.Text' },
 			// { name: 'checked', type: 'TwoOptions' },
 			{ name: 'value', type: 'SingleLine.Text', onChange: 'value' }, // $event.target["value"|"checked"|...]
@@ -56,6 +60,10 @@ export default function DBCheckbox(props: DBCheckboxProps) {
 
 			// TODO: Replace this with the solution out of https://github.com/BuilderIO/mitosis/issues/833 after this has been "solved"
 			// VUE:this.$emit("update:checked", event.target.checked);
+
+			// Change event to work with reactive and template driven forms
+			// ANGULAR: this.propagateChange(event.target.checked);
+			// ANGULAR: this.writeValue(event.target.checked);
 		},
 		handleBlur: (event: any) => {
 			if (props.onBlur) {
@@ -74,9 +82,6 @@ export default function DBCheckbox(props: DBCheckboxProps) {
 			if (props.focus) {
 				props.focus(event);
 			}
-		},
-		getClassNames: (...args: classNames.ArgumentArray) => {
-			return classNames(args);
 		}
 	});
 
@@ -98,14 +103,11 @@ export default function DBCheckbox(props: DBCheckboxProps) {
 			) as HTMLInputElement;
 			if (checkboxElement) {
 				// in angular this must be set via native element
-				if (props.checked) {
-					checkboxElement.checked = true;
+				if (props.checked != undefined) {
+					checkboxElement.checked = props.checked;
 				}
 
-				if (
-					props.indeterminate === true ||
-					props.indeterminate === false
-				) {
+				if (props.indeterminate !== undefined) {
 					// When indeterminate is set, the value of the checked prop only impacts the form submitted values.
 					// It has no accessibility or UX implications. (https://mui.com/material-ui/react-checkbox/)
 					checkboxElement.indeterminate = props.indeterminate;
@@ -114,7 +116,7 @@ export default function DBCheckbox(props: DBCheckboxProps) {
 				// state.initialized = false;
 			}
 		}
-	}, [state.initialized, props.indeterminate]);
+	}, [state.initialized, props.indeterminate, props.checked]);
 
 	return (
 		<>
@@ -124,7 +126,7 @@ export default function DBCheckbox(props: DBCheckboxProps) {
 			<input
 				ref={component}
 				type="checkbox"
-				class={state.getClassNames('db-checkbox', props.className)}
+				class={cls('db-checkbox', props.className)}
 				id={state._id}
 				name={props.name}
 				checked={props.checked}

@@ -1,4 +1,8 @@
+@use "@db-ui/foundations/build/scss/icon/icons.helpers" as *;
+
 .db-icon {
+	@include is-icon-text-replace();
+
 	display: flex;
 
 	/* Safari hack */
@@ -6,7 +10,7 @@
 		display: inline-block;
 
 		&::before {
-			height: auto;
+			block-size: auto;
 		}
 	}
 }

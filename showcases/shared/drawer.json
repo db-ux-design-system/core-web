@@ -97,10 +97,17 @@
 				}
 			},
 			{
+				"name": "Backdrop-weak",
+				"props": {
+					"withCloseButton": true,
+					"backdrop": "weak"
+				}
+			},
+			{
 				"name": "No Backdrop",
 				"props": {
 					"withCloseButton": true,
-					"noBackdrop": true
+					"backdrop": "none"
 				}
 			}
 		]

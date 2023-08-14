@@ -1,11 +1,20 @@
 @use "@db-ui/foundations/build/scss/variables" as *;
 
+$backdrop-color: $db-colors-neutral-on-bg-enabled;
+
+%backdrop {
+	background-color: $backdrop-color;
+	opacity: 0.64;
+}
+
+%backdrop-weak {
+	background-color: $backdrop-color;
+	opacity: 0.32;
+}
+
 %dialog-container {
 	position: fixed;
-	top: 0;
-	right: 0;
-	bottom: 0;
-	left: 0;
+	inset: 0;
 	z-index: 9995;
 }
 
@@ -15,14 +24,20 @@ dialog {
 	border: 0;
 	z-index: 9996;
 	color: inherit;
-}
 
-dialog[data-backdrop="false"] {
-	@extend %dialog-container;
-}
+	&[data-backdrop] {
+		@extend %dialog-container;
+	}
 
-dialog[data-backdrop="true"]::backdrop {
-	@extend %dialog-container;
-	background-color: $db-colors-neutral-on-bg-enabled;
-	opacity: 0.5;
+	&:not([data-backdrop="none"]) {
+		&::backdrop {
+			@extend %backdrop;
+		}
+	}
+
+	&[data-backdrop="weak"] {
+		&::backdrop {
+			@extend %backdrop-weak;
+		}
+	}
 }

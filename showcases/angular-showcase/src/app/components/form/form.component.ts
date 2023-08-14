@@ -1,20 +1,27 @@
 import { Component } from '@angular/core';
+import { FormControl, FormGroup } from '@angular/forms';
 
 @Component({
 	selector: 'app-form',
 	templateUrl: './form.component.html'
 })
 export class FormComponent {
-	input = '';
 	array = ['X', 'Y', 'Z'];
 	radio = '';
+	input = '';
 	tags: string[] = [];
-	// fieldset checkbox state
-	checked = [true, true];
+	// Fieldset checkbox state
+	checked = [true, false];
 
 	select = '';
-	checkbox = '';
+	model = { input: 'Anna', radio: 'X', checkbox: true, checkbox2: true };
 	dataList = [{ key: 'test', value: 'Test' }, { key: 'test2' }];
+
+	// Reference: https://blog.angular-university.io/angular-custom-form-controls/
+	form = new FormGroup({
+		input: new FormControl('Filled with formControl'),
+		checkbox: new FormControl(true)
+	});
 
 	getRadioName = (radioName: string): string => `Radio ${radioName}`;
 
@@ -28,9 +35,26 @@ export class FormComponent {
 			: [...this.tags, tag];
 	};
 
-	// checkbox changes
+	resetValues(): void {
+		this.model.input = 'reset';
+		this.model.checkbox = false;
+		this.model.checkbox2 = false;
+		this.form.get('input')?.setValue('reset');
+		this.form.get('checkbox')?.setValue(false);
+	}
+
+	onFormSubmit(): void {
+		// eslint-disable-next-line no-alert
+		alert(
+			'Formvalue: ' +
+				JSON.stringify(this.form.value) +
+				' / Model data: ' +
+				JSON.stringify(this.model)
+		);
+	}
+
+	// Checkbox changes
 	handleChange1 = (event?: any) => {
-		console.log(event);
 		this.checked = [event.target.checked, event.target.checked];
 	};
 
@@ -49,7 +73,8 @@ export class FormComponent {
 				input: this.input,
 				radio: this.radio,
 				select: this.select,
-				checkbox: this.checkbox,
+				checkbox: this.model.checkbox,
+				checkbox2: this.model.checkbox2,
 				tags: this.tags
 			})
 		);

@@ -1,0 +1,212 @@
+[
+	{
+		"name": "Tonality",
+		"examples": [
+			{
+				"name": "functional",
+				"className": "db-ui-functional",
+				"props": {}
+			},
+			{
+				"name": "regular (Default)",
+				"className": "db-ui-regular",
+				"props": {}
+			},
+			{
+				"name": "expressive",
+				"className": "db-ui-expressive",
+				"props": {}
+			}
+		]
+	},
+	{
+		"name": "Emphasis",
+		"examples": [
+			{
+				"name": "Weak (Default)",
+				"props": {}
+			},
+			{
+				"name": "Strong",
+				"props": {
+					"emphasis": "strong"
+				}
+			}
+		]
+	},
+	{
+		"name": "Variant",
+		"examples": [
+			{
+				"name": "Neutral (Default)",
+				"props": {}
+			},
+			{
+				"name": "Critical",
+				"props": {
+					"variant": "critical"
+				}
+			},
+			{
+				"name": "Informational",
+				"props": {
+					"variant": "informational"
+				}
+			},
+			{
+				"name": "Successful",
+				"props": {
+					"variant": "successful"
+				}
+			},
+			{
+				"name": "Warning",
+				"props": {
+					"variant": "warning"
+				}
+			},
+			{
+				"name": "Neutral Strong",
+				"props": {
+					"emphasis": "strong"
+				}
+			},
+			{
+				"name": "Critical Strong",
+				"props": {
+					"variant": "critical",
+					"emphasis": "strong"
+				}
+			},
+			{
+				"name": "Informational Strong",
+				"props": {
+					"variant": "informational",
+					"emphasis": "strong"
+				}
+			},
+			{
+				"name": "Successful Strong",
+				"props": {
+					"variant": "successful",
+					"emphasis": "strong"
+				}
+			},
+			{
+				"name": "Warning Strong",
+				"props": {
+					"variant": "warning",
+					"emphasis": "strong"
+				}
+			}
+		]
+	},
+	{
+		"name": "Size",
+		"examples": [
+			{
+				"name": "Medium (Default)",
+				"props": {}
+			},
+			{
+				"name": "Small",
+				"props": {
+					"size": "small"
+				}
+			}
+		]
+	},
+	{
+		"name": "Content",
+		"examples": [
+			{
+				"name": "Dot (Default)",
+				"props": {
+					"noContent": true
+				}
+			},
+			{
+				"name": "Dot - Small",
+				"props": {
+					"noContent": true,
+					"size": "small"
+				}
+			},
+			{
+				"name": "Text",
+				"props": {}
+			},
+			{
+				"name": "Icon",
+				"props": {
+					"example": "icon"
+				}
+			},
+			{
+				"name": "Icon - Small",
+				"props": {
+					"example": "icon",
+					"size": "small"
+				}
+			}
+		]
+	},
+	{
+		"name": "Placement",
+		"examples": [
+			{
+				"name": "Inline (Default)",
+				"props": {
+					"placement": "inline"
+				}
+			},
+			{
+				"name": "Corner - Top - Left",
+				"props": {
+					"placement": "corner-top-left"
+				}
+			},
+			{
+				"name": "Corner - Center - Left",
+				"props": {
+					"placement": "corner-center-left"
+				}
+			},
+			{
+				"name": "Corner - Bottom- Left",
+				"props": {
+					"placement": "corner-bottom-left"
+				}
+			},
+			{
+				"name": "Corner - Top - Right",
+				"props": {
+					"placement": "corner-top-right"
+				}
+			},
+			{
+				"name": "Corner - Center - Right",
+				"props": {
+					"placement": "corner-center-right"
+				}
+			},
+			{
+				"name": "Corner - Bottom- Right",
+				"props": {
+					"placement": "corner-bottom-right"
+				}
+			}
+		]
+	},
+	{
+		"name": "Examples",
+		"examples": [
+			{
+				"name": "Numbers",
+				"props": {
+					"example": "number"
+				}
+			}
+		]
+	}
+]

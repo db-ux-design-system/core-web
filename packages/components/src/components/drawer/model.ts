@@ -3,7 +3,8 @@ import {
 	CloseEventState,
 	GlobalProps,
 	GlobalState,
-	InnerCloseButtonProps
+	InnerCloseButtonProps,
+	WidthProps
 } from '../../shared/model';
 
 export interface DBDrawerDefaultProps {
@@ -12,11 +13,12 @@ export interface DBDrawerDefaultProps {
 	 * E. g. "left" slides from left screen border to the right.
 	 */
 	direction?: 'left' | 'right' | 'up' | 'down';
+
 	/**
-	 * If noBackdrop is set there is no semi-transparent black background behind the drawer.
-	 * You can click behind the drawer without closing it.
+	 * The backdrop attribute changes the opacity of the backdrop.
 	 */
-	noBackdrop?: boolean;
+	backdrop?: 'strong' | 'weak' | 'none';
+
 	/**
 	 * The open attribute opens or closes the drawer based on the state.
 	 */
@@ -27,18 +29,14 @@ export interface DBDrawerDefaultProps {
 	 */
 	rounded?: boolean;
 	/**
-	 * The @dependabot recreate attribute changes the padding inside the drawer.
-	 */
-	spacing?: 'medium' | 'small' | 'large' | 'none';
-	/**
 	 * React specific to change the header of the drawer.
 	 */
 	slotDrawerHeader?: any;
 	/**
-	 * The width attribute disables the max-width of the drawer and overlays over the entire screen.
-	 * Default max-width is: calc(100% - $db-spacing-fixed-xl), but you can overwrite it with --db-drawer-max-width.
+	 * The @dependabot recreate attribute changes the padding inside the drawer.
 	 */
-	width?: 'full';
+	spacing?: 'medium' | 'small' | 'large' | 'none';
+
 	/**
 	 * The withCloseButton attribute shows/hides the default close button.
 	 */
@@ -48,7 +46,8 @@ export interface DBDrawerDefaultProps {
 export type DBDrawerProps = DBDrawerDefaultProps &
 	GlobalProps &
 	CloseEventProps &
-	InnerCloseButtonProps;
+	InnerCloseButtonProps &
+	WidthProps;
 
 export interface DBDrawerDefaultState {
 	handleDialogOpen: () => void;

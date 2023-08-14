@@ -1,7 +1,6 @@
 import { onMount, Show, useMetadata, useStore } from '@builder.io/mitosis';
-import { DBIcon } from '../icon';
 import type { DBButtonProps, DBButtonState } from './model';
-import classNames from 'classnames';
+import { cls } from '../../utils';
 
 useMetadata({
 	isAttachedToShadowDom: true,
@@ -11,7 +10,11 @@ useMetadata({
 		hasDisabledProp: true,
 		hasOnClick: true,
 		properties: [
-			{ name: 'children', type: 'SingleLine.Text' },
+			{
+				name: 'children',
+				type: 'SingleLine.Text',
+				defaultValue: 'Button'
+			},
 			{
 				name: 'variant',
 				type: 'Enum',
@@ -28,7 +31,8 @@ useMetadata({
 						name: 'Solid',
 						value: 'solid'
 					}
-				]
+				],
+				defaultValue: 'primary'
 			},
 			{
 				name: 'icon',
@@ -59,9 +63,6 @@ export default function DBButton(props: DBButtonProps) {
 		},
 		iconVisible: (icon?: string) => {
 			return Boolean(icon && icon !== '_' && icon !== 'none');
-		},
-		getClassNames: (...args: classNames.ArgumentArray) => {
-			return classNames(args);
 		}
 	});
 
@@ -76,7 +77,7 @@ export default function DBButton(props: DBButtonProps) {
 		<button
 			id={props.id}
 			ref={component}
-			class={state.getClassNames('db-button', props.className, {
+			class={cls('db-button', props.className, {
 				'is-icon-text-replace':
 					state.iconVisible(props.icon) && props.noText
 			})}

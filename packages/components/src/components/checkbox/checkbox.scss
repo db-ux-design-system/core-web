@@ -16,20 +16,20 @@ $font-size-height: calc(var(--db-base-font-size) * var(--db-base-line-height));
 	align-content: center;
 
 	appearance: none;
-
 	aspect-ratio: 1;
+	position: relative;
 
 	border: max(calc(#{$font-size-height} / 16 + 0.5px), 2px) solid currentColor;
 	// TODO update foundations
 	border-radius: to-rem(2.5);
 
 	display: inline-flex;
-	height: $font-size-height;
+	block-size: $font-size-height;
 	justify-content: center;
 
 	// TODO: probably extract this to an overwrite or external file
 	// workarounds for power apps
-	width: auto;
+	inline-size: auto;
 	padding: 0;
 
 	// We need to reset the general icons margin, as we want to use it in a tiny space
@@ -81,11 +81,11 @@ $font-size-height: calc(var(--db-base-font-size) * var(--db-base-line-height));
 
 	// Sizes
 	&%size-Small {
-		@extend %db-body-sm;
+		@extend %db-overwrite-font-size-sm;
 
 		// TODO: we still need to scale this
 		& + label {
-			@extend %db-body-sm;
+			@extend %db-overwrite-font-size-sm;
 			margin-inline-start: $db-spacing-fixed-2xs;
 		}
 	}

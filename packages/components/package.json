@@ -29,6 +29,7 @@
     "copy:package.json": "cpr package.json ../../build-outputs/components/package.json -o",
     "copy:readme": "cpr README.md ../../build-outputs/components/README.md -o",
     "dev:angular": "nodemon --watch src --watch overrides -e tsx,ts -x \"npm run compile:angular\"",
+    "dev:html": "cpr ../foundations/assets build/assets -o && npm run build:mv-styles && npm run build:sass &&  vite --open",
     "dev:react": "nodemon --watch src --watch overrides -e tsx,ts -x \"npm run compile:react\"",
     "dev:scss": "nodemon --watch src -e scss -x \"npm run build:mv-styles && npm run build:sass\"",
     "dev:vue": "nodemon --watch src --watch overrides -e tsx,ts -x \"npm run compile:vue\"",
@@ -42,15 +43,15 @@
   },
   "devDependencies": {
     "@builder.io/eslint-plugin-mitosis": "^0.0.14",
-    "@builder.io/mitosis": "^0.0.106",
-    "@builder.io/mitosis-cli": "^0.0.64",
-    "@react-docgen/cli": "^1.0.1",
+    "@builder.io/mitosis": "^0.0.118",
+    "@builder.io/mitosis-cli": "^0.0.76",
+    "@react-docgen/cli": "^1.0.2",
     "cpr": "3.0.1",
-    "eslint": "^8.39.0",
+    "eslint": "^8.47.0",
     "hygen": "^6.2.11",
-    "lit": "^2.7.5",
-    "nodemon": "2.0.22",
-    "sass": "^1.63.6"
+    "lit": "^2.8.0",
+    "nodemon": "3.0.1",
+    "sass": "^1.65.1"
   },
   "publishConfig": {
     "registry": "https://registry.npmjs.org/",

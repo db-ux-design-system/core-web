@@ -7,7 +7,7 @@ import {
 } from '@builder.io/mitosis';
 import { DBCodeDocsProps, DBCodeDocsState } from './model';
 import { DBCard } from '../card';
-import classNames from 'classnames';
+import { cls } from '../../utils';
 
 useMetadata({
 	isAttachedToShadowDom: true,
@@ -17,12 +17,6 @@ useMetadata({
 		properties: []
 	}
 });
-
-const DEFAULT_VALUES = {
-	copyLabel: 'Copy Code',
-	hideCodeLabel: 'Hide Code',
-	showCodeLabel: 'Show Code'
-};
 
 export default function DBCodeDocs(props: DBCodeDocsProps) {
 	// This is used as forwardRef
@@ -35,11 +29,8 @@ export default function DBCodeDocs(props: DBCodeDocsProps) {
 		},
 		getShowButtonLabel: () => {
 			return state.open
-				? props.hideCodeLabel ?? DEFAULT_VALUES.hideCodeLabel
-				: props.showCodeLabel ?? DEFAULT_VALUES.showCodeLabel;
-		},
-		getClassNames: (...args: classNames.ArgumentArray) => {
-			return classNames(args);
+				? props.hideCodeLabel ?? 'Hide Code'
+				: props.showCodeLabel ?? 'Show Code';
 		}
 	});
 
@@ -53,7 +44,7 @@ export default function DBCodeDocs(props: DBCodeDocsProps) {
 	return (
 		<DBCard
 			ref={component}
-			className={state.getClassNames('db-code-docs', props.className)}
+			className={cls('db-code-docs', props.className)}
 			elevation="none">
 			<Show when={state.stylePath}>
 				<link rel="stylesheet" href={state.stylePath} />

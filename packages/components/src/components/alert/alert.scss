@@ -60,12 +60,15 @@
 	display: grid;
 	padding: $db-spacing-fixed-md;
 	gap: $db-spacing-fixed-xs $db-spacing-fixed-md;
+	inline-size: inherit;
 
 	// TODO: probably extract this to an overwrite or external file
 	text-align: start; // workaround for power apps
 
-	.db-alert-icon {
-		grid-area: icon;
+	dblink,
+	db-link {
+		// workaround angular
+		display: inline-flex;
 	}
 
 	.db-alert-headline {
@@ -74,24 +77,23 @@
 
 	.db-alert-content {
 		grid-area: content;
+		margin: 0;
 	}
 
 	.db-alert-link {
 		grid-area: link;
-		// required for angular build
-		display: inline;
 	}
 
 	.db-alert-close {
 		grid-area: close;
 	}
 
-	.db-icon {
-		&::before {
-			/* TODO: Take filled icons if they are ready */
-			--icon-font-family: var(--db-base-icon-font-family);
-			--icon-font-size: var(--db-base-icon-font-size);
-		}
+	&::before {
+		/* TODO: Take filled icons if they are ready */
+		--icon-font-family: var(--db-base-icon-font-family);
+		--icon-font-size: var(--db-base-icon-font-size);
+		grid-area: icon;
+		margin-inline-end: 0;
 	}
 
 	&[data-type="inline"] {
@@ -116,7 +118,7 @@
 
 			--db-current-border-color: #{map.get($colors, "border")};
 
-			.db-alert-icon {
+			&::before {
 				color: map.get($colors, "element");
 			}
 		}

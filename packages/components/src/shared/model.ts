@@ -1,4 +1,3 @@
-import classNames from 'classnames';
 import { IconTypes } from './icon-types';
 
 export type GlobalProps = {
@@ -46,7 +45,7 @@ export type GlobalProps = {
 export type GlobalState = {
 	_id?: string;
 	stylePath?: string;
-	getClassNames: (...args: classNames.ArgumentArray) => string;
+	defaultValues?: { [key: string]: string };
 };
 
 export type DefaultVariantType =
@@ -77,8 +76,36 @@ export type IconProps = {
 	icon?: IconTypes;
 };
 
+export type IconAfterProps = {
+	/**
+	 * Define an icon by it's identifier (like e.g. _account_, compare to [Icons](https://db-ui.github.io/mono/review/main/foundations/icons) to get displayed in front of the elements content.
+	 */
+	iconAfter?: IconTypes;
+};
+
 export type IconState = {
 	iconVisible: (icon?: string) => boolean;
+};
+
+export type WidthProps = {
+	/**
+	 * Width of the component. Auto width based on children size, full width based on parent elements width.
+	 */
+	width?: 'full' | 'auto';
+};
+
+export type SizeProps = {
+	/**
+	 * The size attribute changes the font-size and other related sizes of the component.
+	 */
+	size?: 'medium' | 'small';
+};
+
+export type EmphasisProps = {
+	/**
+	 * The emphasis attribute divides in between a weak or strong importance.
+	 */
+	emphasis?: 'weak' | 'strong';
 };
 
 export type FormProps = {
@@ -126,7 +153,7 @@ export type FormState = {
 	_value?: any;
 };
 
-export type FormCheckState = {
+export type InitializedState = {
 	initialized: boolean;
 };
 

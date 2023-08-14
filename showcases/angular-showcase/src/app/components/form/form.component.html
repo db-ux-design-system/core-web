@@ -1,30 +1,60 @@
 <div class="form-container">
 	<div>
-		<form>
+		<db-input
+			name="ngModelInput"
+			[(ngModel)]="model.input"
+			label="Input with ngModel"
+			placeholder="Placeholder"
+			description="Description"
+			icon="account"
+		>
+		</db-input>
+		<db-checkbox
+			[(ngModel)]="model.checkbox2"
+			name="checkbox2"
+			label="Checkbox ngModel"
+		></db-checkbox>
+
+		<h6>Reactive Forms Example:</h6>
+		<form [formGroup]="form" (submit)="onFormSubmit()">
 			<fieldset>
 				<p>Input:</p>
+
 				<db-input
-					[(ngModel)]="input"
-					name="username"
+					name="form"
+					id="form"
 					label="Textinput"
+					placeholder="Placeholder"
+					description="Description"
+					icon="account"
+					formControlName="input"
+				>
+				</db-input>
+
+				<db-input
+					name="form"
+					id="datalist"
+					label="Textinput with Datalist"
 					placeholder="Placeholder"
 					description="Description"
 					[dataList]="dataList"
 					icon="account"
-					ngDefaultControl
 				>
 				</db-input>
+
 				<p>Radio:</p>
 				<ul>
 					<li *ngFor="let radioName of array">
 						<db-radio
-							(change)="radio = radioName"
-							[label]="getRadioName(radioName)"
-							[value]="radioName"
+							label="Label"
 							name="RadioGroup"
+							[value]="radioName"
+							(change)="model.radio = radioName"
+							[label]="getRadioName(radioName)"
 						></db-radio>
 					</li>
 				</ul>
+
 				<p>Tags:</p>
 				<ul>
 					<li *ngFor="let tag of array; let i = index">
@@ -39,8 +69,15 @@
 				</ul>
 				<p>Checkbox:</p>
 				<db-checkbox
+					formControlName="checkbox"
+					name="checkbox4"
+					label="Checkbox formControl value"
+				></db-checkbox>
+				<db-divider></db-divider>
+				<db-checkbox
 					name="checkbox"
-					label="Checkbox"
+					value="Checkbox checked"
+					label="Checkbox Indeterminate"
 					[checked]="checked[0] && checked[1]"
 					[indeterminate]="checked[0] !== checked[1]"
 					(change)="handleChange1($event)"
@@ -69,11 +106,10 @@
 					<option value="test2">Test2</option>
 				</db-select>
 				<p>Button:</p>
-				<db-button
-					type="button"
-					variant="primary"
-					(click)="showValues()"
-				>
+				<db-button type="button" (click)="resetValues()">
+					Reset
+				</db-button>
+				<db-button type="submit" variant="primary">
 					Hi from Showcase!
 				</db-button>
 			</fieldset>
@@ -83,11 +119,25 @@
 		<h2>Output</h2>
 		<dl>
 			<dt>inputs value</dt>
-			<dd>{{ input ? input : "No Input set" }}</dd>
+			<dd>
+				{{
+					form.get("input")?.value
+						? form.get("input")?.value
+						: "No Input set"
+				}}
+			</dd>
+			<dt>NgModel inputs value</dt>
+			<dd>{{ model.input ? model.input : "No Input set" }}</dd>
 			<dt>radio value</dt>
-			<dd>{{ radio ? radio : "No radio set" }}</dd>
-			<dt>checkbox value</dt>
-			<dd>checkbox {{ checkbox ? "" : "un" }}checked</dd>
+			<dd>{{ model.radio ? model.radio : "No radio set" }}</dd>
+			<dt>checkbox value (ngModel)</dt>
+			<dd>checkbox {{ model.checkbox2 ? "" : "un" }}checked</dd>
+			<dt>checkbox formControl value</dt>
+			<dd>
+				checkbox {{ form.get("checkbox")?.value ? "" : "un" }}checked
+			</dd>
+			<dt>checkbox value indeterminate</dt>
+			<dd>checkbox {{ checked[0] && checked[1] ? "" : "un" }}checked</dd>
 			<dt>select value</dt>
 			<dd>{{ select ? select : "No select set" }}</dd>
 			<dt>tags value</dt>

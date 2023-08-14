@@ -1,5 +1,10 @@
 <script setup lang="ts">
-import { DBPage, DBHeader, DBBrand } from "../../../output/vue/vue3/src";
+import {
+	DBPage,
+	DBHeader,
+	DBBrand,
+	DBNavigationItem
+} from "../../../output/vue/vue3/src";
 import {
 	COLOR,
 	COLORS,
@@ -75,9 +80,11 @@ watch(
 					<nav class="desktop-navigation">
 						<ul>
 							<li v-for="item of getSortedNavigationItems()">
-								<router-link :to="item.path">{{
-									item.label
-								}}</router-link>
+								<router-link :to="item.path">
+									<DBNavigationItem>
+										{{ item.label }}
+									</DBNavigationItem>
+								</router-link>
 							</li>
 						</ul>
 					</nav>

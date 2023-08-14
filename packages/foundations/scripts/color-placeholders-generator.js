@@ -75,8 +75,12 @@ const generateBGVariants = (
 		}
 
 		let borderColor;
+		let borderColorWeak;
 		if (primaryColor.border) {
 			borderColor = `${prefix}-${primaryColor.border.enabled.name}`;
+			if (primaryColor.border.weak) {
+				borderColorWeak = `${prefix}-${primaryColor.border.weak.enabled.name}`;
+			}
 		}
 
 		let result = `
@@ -111,6 +115,11 @@ const generateBGVariants = (
 			? `--db-current-border-color: var(--${borderColor}, #{$${borderColor}});`
 			: ''
 	}
+    ${
+		borderColorWeak
+			? `--db-current-border-weak-color: var(--${borderColorWeak}, #{$${borderColorWeak}});`
+			: ''
+	}
     background-color: var(--db-current-background-color, #{$${bgColor}});
     color: var(--db-current-color, #{$${fgColor}});
     ${baseColorObject ? getRBGA(primaryColor, 'enabled') : ''}
@@ -120,7 +129,7 @@ const generateBGVariants = (
 			: ''
 	}
 
-    &-ia, &[data-variant="ia"] {
+    &-ia, &[data-variant="interactive"] {
 		@extend %${placeholderName};
 		@extend %${placeholderName}-hover-state;
 		@extend %${placeholderName}-active-state;

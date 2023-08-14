@@ -10,9 +10,10 @@ import {
 
 import { ref } from "vue";
 const input = ref("");
-const radio = ref("");
-const checkbox = ref("");
 const select = ref("");
+const firstInput = ref("");
+const radio = ref<HTMLInputElement>();
+const checkbox = ref<boolean[]>([true, false]);
 const tags = ref<string[]>([]);
 
 const array = ["X", "Y", "Z"];
@@ -31,13 +32,18 @@ const changeTags = (tag: string) => {
 const logAll = () => {
 	alert(
 		JSON.stringify({
-			input: input.value,
+			input: firstInput.value,
 			radio: radio.value,
 			select: select.value,
-			checkbox: checkbox.checked,
+			checkbox: checkbox.value,
 			tags: tags.value
 		})
 	);
+};
+
+const reset = () => {
+	firstInput.value = "resetted";
+	checkbox.value = [true, false];
 };
 </script>
 
@@ -54,7 +60,7 @@ const logAll = () => {
 						icon="account"
 						name="input-name"
 						:dataList="dataList"
-						v-model:value="input"
+						v-model:value="firstInput"
 					/>
 					<p>Radio:</p>
 					<ul>
@@ -83,10 +89,39 @@ const logAll = () => {
 					</ul>
 					<p>Checkbox:</p>
 					<DBCheckbox
-						@change="checkbox = $event.target.checked"
+						@change="
+							checkbox = [
+								$event.target.checked,
+								$event.target.checked
+							]
+						"
+						:checked="checkbox[0] && checkbox[1]"
+						:indeterminate="checkbox[0] !== checkbox[1]"
 						name="checkbox"
 						>Checkbox</DBCheckbox
 					>
+					<fieldset>
+						<DBCheckbox
+							name="checkbox-1"
+							value="Checkbox checked"
+							@change="
+								checkbox = [$event.target.checked, checkbox[1]]
+							"
+							:checked="checkbox[0]"
+						>
+							Checkbox
+						</DBCheckbox>
+						<DBCheckbox
+							name="checkbox-2"
+							value="Checkbox checked"
+							@change="
+								checkbox = [checkbox[0], $event.target.checked]
+							"
+							:checked="checkbox[1]"
+						>
+							Checkbox
+						</DBCheckbox>
+					</fieldset>
 					<p>DBSelect:</p>
 					<DBSelect
 						:value="select"
@@ -97,6 +132,9 @@ const logAll = () => {
 						<option value="test2">Test2</option>
 					</DBSelect>
 					<p>Button:</p>
+					<DBButton type="button" @click="reset()">
+						Reset Form
+					</DBButton>
 					<DBButton type="button" variant="primary" @click="logAll()">
 						Hi from Showcase!
 					</DBButton>
@@ -107,7 +145,7 @@ const logAll = () => {
 			<h2>Output</h2>
 			<dl>
 				<dt>inputs value</dt>
-				<dd>{{ input ? input : "No Input set" }}</dd>
+				<dd>{{ firstInput ? firstInput : "No Input set" }}</dd>
 				<dt>radio value</dt>
 				<dd>{{ radio ? radio : "No radio set" }}</dd>
 				<dt>checkbox value</dt>

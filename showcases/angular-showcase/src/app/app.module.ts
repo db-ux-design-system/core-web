@@ -1,5 +1,5 @@
 import { NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import {
 	DBButtonModule,
@@ -19,8 +19,11 @@ import {
 	DBInfotextModule,
 	DBSelectModule,
 	DBDrawerModule,
-	DBTagModule
+	DBTagModule,
+	DBNavigationItemModule,
+	DBBadgeModule
 } from '../../../../output/angular/src';
+import { BadgeComponent } from './components/badge/badge.component';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app.routing.module';
 import { FormComponent } from './components/form/form.component';
@@ -38,9 +41,14 @@ import { DefaultComponent } from './components/default.component';
 import { TagComponent } from './components/tag/tag.component';
 import { DrawerComponent } from './components/drawer/drawer.component';
 import { SelectComponent } from './components/select/select.component';
+import { NavigationItemComponent } from './components/navigation-item/navigation-item.component';
 
 @NgModule({
 	declarations: [
+		BadgeComponent,
+
+		NavigationItemComponent,
+
 		SelectComponent,
 		TagComponent,
 		AppComponent,
@@ -59,6 +67,10 @@ import { SelectComponent } from './components/select/select.component';
 		DrawerComponent
 	],
 	imports: [
+		DBBadgeModule,
+
+		DBNavigationItemModule,
+
 		DBTagModule,
 		DBSelectModule,
 		AppRoutingModule,
@@ -77,6 +89,7 @@ import { SelectComponent } from './components/select/select.component';
 		DBSectionModule,
 		DBInfotextModule,
 		FormsModule,
+		ReactiveFormsModule,
 		DBCheckboxModule,
 		DBRadioModule,
 		DBDrawerModule

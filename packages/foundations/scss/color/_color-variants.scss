@@ -60,8 +60,8 @@ $color-variants: "neutral-0", "neutral-1", "neutral-3", "neutral-4", "primary",
 // Variants for adaptive components like input, select, alert, ...
 
 $db-colors-critical-border: var(
-	--db-colors-critical-border-enabled,
-	$db-colors-critical-border-enabled
+	--db-colors-critical-border-weak-enabled,
+	$db-colors-critical-border-weak-enabled
 );
 
 $db-colors-critical-element: var(
@@ -79,8 +79,8 @@ $db-colors-critical: var(
 );
 
 $db-colors-informational-border: var(
-	--db-colors-informational-border-enabled,
-	$db-colors-informational-border-enabled
+	--db-colors-informational-border-weak-enabled,
+	$db-colors-informational-border-weak-enabled
 );
 $db-colors-informational-element: var(
 	--db-colors-informational-element-enabled,
@@ -97,8 +97,8 @@ $db-colors-informational: var(
 );
 
 $db-colors-warning-border: var(
-	--db-colors-warning-border-enabled,
-	$db-colors-warning-border-enabled
+	--db-colors-warning-border-weak-enabled,
+	$db-colors-warning-border-weak-enabled
 );
 $db-colors-warning-element: var(
 	--db-colors-warning-element-enabled,
@@ -114,8 +114,8 @@ $db-colors-warning: var(
 );
 
 $db-colors-successful-border: var(
-	--db-colors-successful-border-enabled,
-	$db-colors-successful-border-enabled
+	--db-colors-successful-border-weak-enabled,
+	$db-colors-successful-border-weak-enabled
 );
 $db-colors-successful-element: var(
 	--db-colors-successful-element-enabled,

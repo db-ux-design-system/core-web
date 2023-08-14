@@ -13,21 +13,21 @@ const getDrawer = ({
 	id,
 	width,
 	rounded,
-	noBackdrop,
 	withCloseButton,
 	spacing,
 	openDrawer,
 	setOpenDrawer,
 	direction,
-	children
+	children,
+	backdrop
 }: DBDrawerProps & AdditionalDrawerProps) => (
 	<div>
 		<DBDrawer
-			noBackdrop={noBackdrop}
 			withCloseButton={withCloseButton}
 			rounded={rounded}
 			width={width}
 			spacing={spacing}
+			backdrop={backdrop}
 			direction={direction}
 			open={openDrawer === id}
 			onClose={() => {

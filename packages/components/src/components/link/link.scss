@@ -1,6 +1,6 @@
 @charset "utf-8";
 
-@use "@db-ui/foundations/build/scss/body-styles" as *;
+@use "@db-ui/foundations/build/scss/helpers/font" as *;
 @use "@db-ui/foundations/build/scss/variables" as *;
 @use "@db-ui/foundations/build/scss/variables.global" as *;
 @use "@db-ui/foundations/build/scss/scaling-placeholder" as *;
@@ -11,13 +11,13 @@
 
 %db-link-height {
 	display: inline-block;
-	height: $db-sizing-sm;
+	block-size: $db-sizing-sm;
 }
 
 .db-link {
 	@extend %default-color;
 	@extend %db-link-height;
-	width: fit-content;
+	inline-size: fit-content;
 	align-items: center;
 
 	// Link underline
@@ -26,7 +26,9 @@
 	text-decoration-thickness: to-rem($pxValue: 1);
 
 	// Changing color on hover should be animated by a transition
-	transition: outline 0.06s, color $db-transition-color;
+	transition:
+		outline 0.06s,
+		color $db-transition-color;
 
 	a {
 		// Workaround for angular
@@ -78,6 +80,6 @@
 	&[data-size="small"] {
 		--icon-font-size: var(--db-base-icon-font-size);
 		--icon-margin-before: var(--db-spacing-fixed-3xs);
-		@extend %db-body-sm;
+		@extend %db-overwrite-font-size-sm;
 	}
 }

@@ -1,13 +1,6 @@
 import { onMount, Show, useMetadata, useStore } from '@builder.io/mitosis';
+import { cls } from '../../utils';
 import { DBBrandState, DBBrandProps } from './model';
-import classNames from 'classnames';
-
-const DEFAULT_VALUES = {
-	anchorRef: '/',
-	src: './assets/images/db_logo.svg',
-	width: 34,
-	height: 24
-};
 
 useMetadata({
 	isAttachedToShadowDom: true,
@@ -25,12 +18,14 @@ useMetadata({
 			},
 			{
 				name: 'children',
-				type: 'SingleLine.Text'
+				type: 'SingleLine.Text',
+				defaultValue: 'Anwendungsname'
 			},
 			{
 				name: 'imgSrc',
 				type: 'SingleLine.URL',
-				defaultValue: 'https://db-ui.github.io/images/db_logo.svg'
+				defaultValue:
+					'https://ppassets.azureedge.net/assets/images/db_logo.svg'
 			},
 			{
 				name: 'imgAlt',
@@ -55,8 +50,11 @@ export default function DBBrand(props: DBBrandProps) {
 	let component: any;
 	// jscpd:ignore-start
 	const state = useStore<DBBrandState>({
-		getClassNames: (...args: classNames.ArgumentArray) => {
-			return classNames(args);
+		defaultValues: {
+			anchorRef: '/',
+			src: './assets/images/db_logo.svg',
+			width: '34',
+			height: '24'
 		}
 	});
 
@@ -68,23 +66,21 @@ export default function DBBrand(props: DBBrandProps) {
 	// jscpd:ignore-end
 
 	return (
-		<div
-			ref={component}
-			class={state.getClassNames('db-brand', props.className)}>
+		<div ref={component} class={cls('db-brand', props.className)}>
 			<Show when={state.stylePath}>
 				<link rel="stylesheet" href={state.stylePath} />
 			</Show>
 
 			<a
-				href={props.anchorRef ?? DEFAULT_VALUES.anchorRef}
+				href={props.anchorRef ?? state.defaultValues.anchorRef}
 				title={props.anchorTitle}
 				rel={props.anchorRelation}>
 				<Show when={!props.hideDefaultAsset}>
 					<img
-						src={props.imgSrc ?? DEFAULT_VALUES.src}
+						src={props.imgSrc ?? state.defaultValues.src}
 						alt={props.imgAlt ?? ''}
-						height={props.imgHeight ?? DEFAULT_VALUES.height}
-						width={props.imgWidth ?? DEFAULT_VALUES.width}
+						height={props.imgHeight ?? state.defaultValues.height}
+						width={props.imgWidth ?? state.defaultValues.width}
 						className="db-logo"
 					/>
 				</Show>

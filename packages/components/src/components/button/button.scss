@@ -1,5 +1,5 @@
 @charset "utf-8";
-@use "@db-ui/foundations/build/scss/body-styles" as *;
+@use "@db-ui/foundations/build/scss/helpers/font" as *;
 @use "@db-ui/foundations/build/scss/variables" as *;
 @use "@db-ui/foundations/build/scss/variables.global" as *;
 @use "@db-ui/foundations/build/scss/color-placeholder" as *;
@@ -17,19 +17,19 @@
 	@extend %bg-transparent-interactive;
 	@extend %default-button;
 
-	height: $db-sizing-md;
+	block-size: $db-sizing-md;
 	padding: $db-spacing-fixed-xs $db-spacing-fixed-md;
 
 	// Square icon only buttons
 	&.is-icon-text-replace {
 		font-size: 0;
 		padding: 0;
-		width: $db-sizing-md;
+		inline-size: $db-sizing-md;
 	}
 
 	&[data-size="small"] {
-		@extend %db-body-sm;
-		height: $db-sizing-sm;
+		@extend %db-overwrite-font-size-sm;
+		block-size: $db-sizing-sm;
 
 		&:not(.is-icon-text-replace) {
 			padding: $db-spacing-fixed-3xs $db-spacing-fixed-sm;
@@ -41,12 +41,12 @@
 
 		// Square icon only buttons
 		&.is-icon-text-replace {
-			width: $db-sizing-sm;
+			inline-size: $db-sizing-sm;
 		}
 	}
 
 	&[data-width="full"] {
-		width: 100%;
+		inline-size: 100%;
 	}
 
 	&[data-variant="primary"] {

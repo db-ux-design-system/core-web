@@ -48,7 +48,6 @@ const FormComponent = () => {
 							value={input}
 							dataList={dataList}
 							onChange={(evt) => {
-								console.log(evt);
 								setInput(evt.target.value);
 							}}
 						/>
@@ -149,7 +148,6 @@ const FormComponent = () => {
 									JSON.stringify({
 										input,
 										radio,
-										//checked[0],
 										select,
 										tags
 									})
