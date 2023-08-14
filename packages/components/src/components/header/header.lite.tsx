@@ -111,16 +111,17 @@ export default function DBHeader(props: DBHeaderProps) {
 					</div>
 				</div>
 				<div class="db-header-action-container">
-					<DBButton
-						id="button-burger-menu"
-						data-hide-on="desktop"
-						icon="menu"
-						noText
-						variant="text"
-						onClick={() => state.toggle()}>
-						{props.burgerMenuLabel ??
-							state.defaultValues.burgerMenuLabel}
-					</DBButton>
+					<div data-hide-on="desktop">
+						<DBButton
+							id="button-burger-menu"
+							icon="menu"
+							noText
+							variant="text"
+							onClick={() => state.toggle()}>
+							{props.burgerMenuLabel ??
+								state.defaultValues.burgerMenuLabel}
+						</DBButton>
+					</div>
 					<div class="db-header-action-bar" data-hide-on="mobile">
 						<Slot name="action-bar" />
 					</div>
