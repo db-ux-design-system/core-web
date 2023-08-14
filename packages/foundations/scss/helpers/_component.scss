@@ -29,11 +29,6 @@ $default-opacity: 0.25;
 	border-radius: to-rem(4);
 }
 
-%default-border-radius-sm {
-	// TODO: Get a general token from Zeplin
-	border-radius: to-rem(2.5);
-}
-
 %default-color {
 	color: var(--db-current-color, $db-colors-neutral-on-bg-enabled);
 }
