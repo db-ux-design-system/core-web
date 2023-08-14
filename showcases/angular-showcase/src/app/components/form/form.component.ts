@@ -9,15 +9,24 @@ export class FormComponent {
 	array = ['X', 'Y', 'Z'];
 	radio = '';
 	input = '';
+	dateinput = '';
 	tags: string[] = [];
 
 	select = '';
-	model = { input: 'Anna', radio: 'X', checkbox: true, checkbox2: true };
+	model = {
+		input: 'Anna',
+		dateinput: '2023-05-04',
+		radio: 'X',
+		checkbox: true,
+		checkbox2: true
+	};
+
 	dataList = [{ key: 'test', value: 'Test' }, { key: 'test2' }];
 
 	// Reference: https://blog.angular-university.io/angular-custom-form-controls/
 	form = new FormGroup({
 		input: new FormControl('Filled with formControl'),
+		dateinput: new FormControl('2023-05-04'),
 		checkbox: new FormControl(true)
 	});
 
@@ -38,6 +47,7 @@ export class FormComponent {
 		this.model.checkbox = false;
 		this.model.checkbox2 = false;
 		this.form.get('input')?.setValue('reset');
+		this.form.get('dateinput')?.setValue('reset');
 		this.form.get('checkbox')?.setValue(false);
 	}
 

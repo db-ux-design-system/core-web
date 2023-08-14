@@ -42,6 +42,15 @@
 				>
 				</db-input>
 
+				<db-input
+					name="form"
+					label="Date input"
+					description="Description"
+					type="date"
+					formControlName="dateinput"
+				>
+				</db-input>
+
 				<p>Radio:</p>
 				<ul>
 					<li *ngFor="let radioName of array">
@@ -113,6 +122,12 @@
 			</dd>
 			<dt>NgModel inputs value</dt>
 			<dd>{{ model.input ? model.input : "No Input set" }}</dd>
+			<dt>date inputs value</dt>
+			<dd>
+				{{
+					form.get("dateinput")?.value || "No Date Input set"
+				}}
+			</dd>
 			<dt>radio value</dt>
 			<dd>{{ model.radio ? model.radio : "No radio set" }}</dd>
 			<dt>checkbox value</dt>
