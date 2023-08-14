@@ -23,6 +23,10 @@
 	}
 
 	&[data-on-forcing-mobile="true"] {
+		/*
+		We make the header invisible for a short time if the user passes in force-mobile property.
+		We do it because otherwise we see the default desktop-navigation for some mil. sec.
+		*/
 		visibility: hidden;
 	}
 }
@@ -173,7 +177,7 @@
 	}
 }
 
-.db-header-hide-on-mobile {
+[data-hide-on="mobile"] {
 	display: none;
 
 	@include screen("m") {
@@ -181,7 +185,7 @@
 	}
 }
 
-.db-header-hide-on-desktop {
+[data-hide-on="desktop"] {
 	@include screen("m") {
 		display: none;
 	}

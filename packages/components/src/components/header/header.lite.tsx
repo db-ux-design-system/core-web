@@ -53,6 +53,8 @@ export default function DBHeader(props: DBHeaderProps) {
 				state._id
 			) as HTMLElement;
 			if (headerElement) {
+				// Adds this attribute to the header to enable all styling which would have
+				// @media screen and (min-width: $db-screens-m) to show mobile navigation on a desktop device
 				addAttributeToChildren(headerElement, {
 					key: 'force-mobile',
 					value: ''
@@ -75,7 +77,8 @@ export default function DBHeader(props: DBHeaderProps) {
 			</Show>
 
 			<DBDrawer
-				className="db-header-drawer db-header-hide-on-desktop"
+				data-hide-on="desktop"
+				className="db-header-drawer"
 				rounded
 				withCloseButton
 				spacing="small"
@@ -92,7 +95,7 @@ export default function DBHeader(props: DBHeaderProps) {
 				</div>
 			</DBDrawer>
 
-			<div class="db-header-meta-navigation db-header-hide-on-mobile">
+			<div class="db-header-meta-navigation" data-hide-on="mobile">
 				<Slot name="meta-navigation" />
 			</div>
 			<div class="db-header-navigation-bar">
@@ -100,7 +103,7 @@ export default function DBHeader(props: DBHeaderProps) {
 					<Slot name="brand" />
 				</div>
 				<div class="db-header-navigation-container">
-					<div class="db-header-navigation db-header-hide-on-mobile">
+					<div class="db-header-navigation" data-hide-on="mobile">
 						{props.children}
 					</div>
 					<div class="db-header-call-to-action">
@@ -110,7 +113,7 @@ export default function DBHeader(props: DBHeaderProps) {
 				<div class="db-header-action-container">
 					<DBButton
 						id="button-burger-menu"
-						className="db-header-hide-on-desktop"
+						data-hide-on="desktop"
 						icon="menu"
 						noText
 						variant="text"
@@ -118,7 +121,7 @@ export default function DBHeader(props: DBHeaderProps) {
 						{props.burgerMenuLabel ??
 							state.defaultValues.burgerMenuLabel}
 					</DBButton>
-					<div class="db-header-action-bar db-header-hide-on-mobile">
+					<div class="db-header-action-bar" data-hide-on="mobile">
 						<Slot name="action-bar" />
 					</div>
 				</div>
