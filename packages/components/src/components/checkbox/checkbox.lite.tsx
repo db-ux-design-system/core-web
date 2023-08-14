@@ -112,8 +112,6 @@ export default function DBCheckbox(props: DBCheckboxProps) {
 					// It has no accessibility or UX implications. (https://mui.com/material-ui/react-checkbox/)
 					checkboxElement.indeterminate = props.indeterminate;
 				}
-				// TODO why do we set this here?
-				// state.initialized = false;
 			}
 		}
 	}, [state.initialized, props.indeterminate, props.checked]);
