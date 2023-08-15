@@ -8,7 +8,7 @@ For general installation and configuration look at the [react-components](https:
 // App.tsx
 import { DBTextarea } from "@db-ui/react-components";
 
-const App = () => <DBTextarea></DBTextarea>;
+const App = () => <DBTextarea>Textarea</DBTextarea>;
 
 export default App;
 ```
