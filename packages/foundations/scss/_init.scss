@@ -89,7 +89,7 @@ iframe {
 	list-style-type: "\2022"+ "   ";
 
 	li::marker {
-		color: var (--primary-enabled, #{$db-colors-primary-enabled});
+		color: var (--db-primary-enabled, #{$db-colors-primary-enabled});
 	}
 }
 

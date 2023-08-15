@@ -30,90 +30,90 @@ $db-spacing-responsive-xl: var(--db-spacing-responsive-xl);
 
 // neutral
 $db-colors-neutral-bg: var(
-		--neutral-bg-enabled,
+		--db-neutral-bg-enabled,
 		$db-colors-neutral-bg-0-enabled
 );
 
 $db-colors-neutral-on-bg: var(
 		--db-current-color,
-		--neutral-on-bg-enabled,
+		--db-neutral-on-bg-enabled,
 		$db-colors-neutral-on-bg-enabled
 );
 
 // primary
 
-$db-colors-primary: var(--primary-enabled, $db-colors-primary-enabled);
+$db-colors-primary: var(--db-primary-enabled, $db-colors-primary-enabled);
 
-$db-colors-primary-hover: var(--primary-hover, $db-colors-primary-hover);
+$db-colors-primary-hover: var(--db-primary-hover, $db-colors-primary-hover);
 
-$db-colors-primary-pressed: var(--primary-pressed, $db-colors-primary-pressed);
+$db-colors-primary-pressed: var(--db-primary-pressed, $db-colors-primary-pressed);
 
 // critical
 $db-colors-critical-border-weak: var(
-	--critical-border-weak-enabled,
+	--db-critical-border-weak-enabled,
 	$db-colors-critical-border-weak-enabled
 );
 
 $db-colors-critical-element: var(
-	--critical-element-enabled,
+	--db-critical-element-enabled,
 	$db-colors-critical-element-enabled
 );
 
 $db-colors-critical-on-bg: var(
-	--critical-on-bg-enabled,
+	--db-critical-on-bg-enabled,
 	$db-colors-critical-on-bg-enabled
 );
-$db-colors-critical: var(--critical-enabled, $db-colors-critical-enabled);
+$db-colors-critical: var(--db-critical-enabled, $db-colors-critical-enabled);
 
 // informational
 $db-colors-informational-border-weak: var(
-	--informational-border-weak-enabled,
+	--db-informational-border-weak-enabled,
 	$db-colors-informational-border-weak-enabled
 );
 $db-colors-informational-element: var(
-	--informational-element-enabled,
+	--db-informational-element-enabled,
 	$db-colors-informational-element-enabled
 );
 
 $db-colors-informational-on-bg: var(
-	--informational-on-bg-enabled,
+	--db-informational-on-bg-enabled,
 	$db-colors-informational-on-bg-enabled
 );
 $db-colors-informational: var(
-	--informational-enabled,
+	--db-informational-enabled,
 	$db-colors-informational-enabled
 );
 
 // warning
 $db-colors-warning-border-weak: var(
-	--warning-border-weak-enabled,
+	--db-warning-border-weak-enabled,
 	$db-colors-warning-border-weak-enabled
 );
 $db-colors-warning-element: var(
-	--warning-element-enabled,
+	--db-warning-element-enabled,
 	$db-colors-warning-element-enabled
 );
 $db-colors-warning-on-bg: var(
-	--warning-on-bg-enabled,
+	--db-warning-on-bg-enabled,
 	$db-colors-warning-on-bg-enabled
 );
-$db-colors-warning: var(--warning-enabled, $db-colors-warning-enabled);
+$db-colors-warning: var(--db-warning-enabled, $db-colors-warning-enabled);
 
 
 // successful
 $db-colors-successful-border-weak: var(
-	--successful-border-weak-enabled,
+	--db-successful-border-weak-enabled,
 	$db-colors-successful-border-weak-enabled
 );
 $db-colors-successful-element: var(
-	--successful-element-enabled,
+	--db-successful-element-enabled,
 	$db-colors-successful-element-enabled
 );
 $db-colors-successful-on-bg: var(
-	--successful-on-bg-enabled,
+	--db-successful-on-bg-enabled,
 	$db-colors-successful-on-bg-enabled
 );
 $db-colors-successful: var(
-	--successful-enabled,
+	--db-successful-enabled,
 	$db-colors-successful-enabled
 );

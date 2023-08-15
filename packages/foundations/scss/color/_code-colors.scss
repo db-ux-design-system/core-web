@@ -3,28 +3,28 @@
 
 %code-style {
 	--db-current-base-color: var(
-		--neutral-enabled,
+		--db-neutral-enabled,
 		#{$db-colors-neutral-enabled}
 	);
 	--db-current-color: var(
-		--neutral-bg-enabled,
+		--db-neutral-bg-enabled,
 		#{$db-colors-neutral-bg-0-enabled}
 	);
 	--db-current-bg-color: color-mix(
 		in srgb,
 		transparent var(--db-bg-transparent, 0%),
-		var(--neutral-on-bg-enabled, #{$db-colors-neutral-on-bg-enabled})
+		var(--db-neutral-on-bg-enabled, #{$db-colors-neutral-on-bg-enabled})
 	);
 	--db-current-element-color: var(
-		--neutral-element-enabled,
+		--db-neutral-element-enabled,
 		#{$db-colors-neutral-element-enabled}
 	);
 	--db-current-border-color: var(
-		--neutral-border-enabled,
+		--db-neutral-border-enabled,
 		#{$db-colors-neutral-border-enabled}
 	);
 	--db-current-border-weak-color: var(
-		--neutral-border-weak-enabled,
+		--db-neutral-border-weak-enabled,
 		#{$db-colors-neutral-border-weak-enabled}
 	);
 
