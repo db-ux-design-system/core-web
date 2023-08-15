@@ -94,6 +94,20 @@ export type WidthProps = {
 	width?: 'full' | 'auto';
 };
 
+export type SizeProps = {
+	/**
+	 * The size attribute changes the font-size and other related sizes of the component.
+	 */
+	size?: 'medium' | 'small';
+};
+
+export type EmphasisProps = {
+	/**
+	 * The emphasis attribute divides in between a weak or strong importance.
+	 */
+	emphasis?: 'weak' | 'strong';
+};
+
 export type FormProps = {
 	/**
 	 * React specific attribute to set default value.

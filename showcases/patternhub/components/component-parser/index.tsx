@@ -1,5 +1,7 @@
 import { useEffect, useState } from 'react';
 import DBTextarea from '../src/components/textarea/textarea';
+import DBBadge from '../src/components/badge/badge';
+
 import {
 	DBInfotext,
 	DBButton,
@@ -214,6 +216,14 @@ const ComponentSwitch = ({
 		);
 	}
 
+	if (type === 'badge') {
+		return (
+			<DBBadge className={className} {...props}>
+				{resolvedContent}
+			</DBBadge>
+		);
+	}
+  
 	// hygen before
 
 	return <span className={className}>{resolvedContent}</span>;
