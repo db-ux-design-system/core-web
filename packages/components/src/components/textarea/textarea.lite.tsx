@@ -28,7 +28,6 @@ export default function DBTextarea(props: DBTextareaProps) {
 	let component: any;
 	// jscpd:ignore-start
 	const state = useStore<DBTextareaState>({
-		_value: '',
 		_infomsg: '',
 		_id: DEFAULT_ID,
 		_isValid: undefined,
@@ -98,9 +97,6 @@ export default function DBTextarea(props: DBTextareaProps) {
 
 		state._id = props.id || 'textarea-' + uuid();
 
-		if (props.value) {
-			state._value = props.value;
-		}
 		if (props.infomsg) {
 			state._infomsg = props.infomsg;
 		}
@@ -127,7 +123,7 @@ export default function DBTextarea(props: DBTextareaProps) {
 				onChange={(event) => state.handleChange(event)}
 				onBlur={(event) => state.handleBlur(event)}
 				onFocus={(event) => state.handleFocus(event)}
-				value={state._value}
+				value={props.value}
 				rows={props.rows ?? state.defaultValues.rows}
 				cols={props.cols ?? state.defaultValues.cols}
 				placeholder={
