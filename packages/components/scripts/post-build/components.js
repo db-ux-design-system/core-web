@@ -25,6 +25,18 @@ const getComponents = () => [
 			angular: {
 				controlValueAccessor: 'value'
 			}
+		},
+		overwrites: {
+			react: [
+				{
+					from: '{props.children}',
+					to: ''
+				},
+				{
+					from: 'value={props.value}',
+					to: 'value={props.value}\ndefaultValue={props.children || props.defaultValue}'
+				}
+			]
 		}
 	},
 	{
