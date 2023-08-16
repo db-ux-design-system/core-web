@@ -5,13 +5,17 @@ import {
 	DBRadio,
 	DBCheckbox,
 	DBSelect,
-	DBTag
+	DBTag,
+	DBTextarea
 } from "../../../../../output/vue/vue3/src";
 
 import { ref } from "vue";
 const input = ref("");
 const select = ref("");
 const firstInput = ref("");
+const textareavModel = ref("");
+const textarea = ref("");
+const textareaDefaultValue = ref("");
 const radio = ref<HTMLInputElement>();
 const checkbox = ref<HTMLInputElement>();
 const tags = ref<string[]>([]);
@@ -33,6 +37,9 @@ const logAll = () => {
 	alert(
 		JSON.stringify({
 			input: firstInput.value,
+			textarea: textarea.value,
+			textareaDefaultValue: textareaDefaultValue.value,
+			textareavModel: textareavModel.value,
 			radio: radio.value,
 			select: select.value,
 			checkbox: checkbox.checked,
@@ -43,6 +50,8 @@ const logAll = () => {
 
 const reset = () => {
 	firstInput.value = "resetted";
+	textarea.value = "resetted";
+	textareavModel.value = "resetted";
 	checkbox.value = false;
 };
 </script>
@@ -61,6 +70,33 @@ const reset = () => {
 						name="input-name"
 						:dataList="dataList"
 						v-model:value="firstInput"
+					/>
+					<p>Textarea:</p>
+					<DBTextarea
+						label="Textarea"
+						placeholder="Placeholder"
+						description="Description"
+						icon="account"
+						name="textarea-name"
+						v-model:value="textareavModel"
+					/>
+					<DBTextarea
+						label="Textarea"
+						placeholder="Placeholder"
+						description="Description"
+						icon="account"
+						name="textareaDefaultValue-name"
+						:default-value="textareaDefaultValue"
+						@change="textareaDefaultValue = $event.target.value"
+					/>
+					<DBTextarea
+						label="Textarea"
+						placeholder="Placeholder"
+						description="Description"
+						icon="account"
+						name="textarevalue-name"
+						:value="textarea"
+						@change="textarea = $event.target.value"
 					/>
 					<p>Radio:</p>
 					<ul>
@@ -117,6 +153,12 @@ const reset = () => {
 			<dl>
 				<dt>inputs value</dt>
 				<dd>{{ firstInput ? firstInput : "No Input set" }}</dd>
+				<dt>textarea v-model</dt>
+				<dd>{{ textareavModel || "No Input set" }}</dd>
+				<dt>textarea value</dt>
+				<dd>{{ textarea || "No Textarea set" }}</dd>
+				<dt>textarea defaultValue</dt>
+				<dd>{{ textareaDefaultValue || "No Input set" }}</dd>
 				<dt>radio value</dt>
 				<dd>{{ radio ? radio : "No radio set" }}</dd>
 				<dt>checkbox value</dt>
