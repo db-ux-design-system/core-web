@@ -1,3 +1,5 @@
+@use "variables" as *;
+
 /* Use sizing's for fixed heights/widths e.g. the db-button has always a fixed height*/
 $db-sizing-xs: var(--db-sizing-xs);
 $db-sizing-sm: var(--db-sizing-sm);
@@ -23,3 +25,95 @@ $db-spacing-responsive-sm: var(--db-spacing-responsive-sm);
 $db-spacing-responsive-md: var(--db-spacing-responsive-md);
 $db-spacing-responsive-lg: var(--db-spacing-responsive-lg);
 $db-spacing-responsive-xl: var(--db-spacing-responsive-xl);
+
+// Variants for adaptive components like input, select, alert, ...
+
+// neutral
+$db-colors-neutral-bg: var(
+		--db-neutral-bg-enabled,
+		$db-colors-neutral-bg-0-enabled
+);
+
+$db-colors-neutral-on-bg: var(
+		--db-current-color,
+		--db-neutral-on-bg-enabled,
+		$db-colors-neutral-on-bg-enabled
+);
+
+// primary
+
+$db-colors-primary: var(--db-primary-enabled, $db-colors-primary-enabled);
+
+$db-colors-primary-hover: var(--db-primary-hover, $db-colors-primary-hover);
+
+$db-colors-primary-pressed: var(--db-primary-pressed, $db-colors-primary-pressed);
+
+// critical
+$db-colors-critical-border-weak: var(
+	--db-critical-border-weak-enabled,
+	$db-colors-critical-border-weak-enabled
+);
+
+$db-colors-critical-element: var(
+	--db-critical-element-enabled,
+	$db-colors-critical-element-enabled
+);
+
+$db-colors-critical-on-bg: var(
+	--db-critical-on-bg-enabled,
+	$db-colors-critical-on-bg-enabled
+);
+$db-colors-critical: var(--db-critical-enabled, $db-colors-critical-enabled);
+
+// informational
+$db-colors-informational-border-weak: var(
+	--db-informational-border-weak-enabled,
+	$db-colors-informational-border-weak-enabled
+);
+$db-colors-informational-element: var(
+	--db-informational-element-enabled,
+	$db-colors-informational-element-enabled
+);
+
+$db-colors-informational-on-bg: var(
+	--db-informational-on-bg-enabled,
+	$db-colors-informational-on-bg-enabled
+);
+$db-colors-informational: var(
+	--db-informational-enabled,
+	$db-colors-informational-enabled
+);
+
+// warning
+$db-colors-warning-border-weak: var(
+	--db-warning-border-weak-enabled,
+	$db-colors-warning-border-weak-enabled
+);
+$db-colors-warning-element: var(
+	--db-warning-element-enabled,
+	$db-colors-warning-element-enabled
+);
+$db-colors-warning-on-bg: var(
+	--db-warning-on-bg-enabled,
+	$db-colors-warning-on-bg-enabled
+);
+$db-colors-warning: var(--db-warning-enabled, $db-colors-warning-enabled);
+
+
+// successful
+$db-colors-successful-border-weak: var(
+	--db-successful-border-weak-enabled,
+	$db-colors-successful-border-weak-enabled
+);
+$db-colors-successful-element: var(
+	--db-successful-element-enabled,
+	$db-colors-successful-element-enabled
+);
+$db-colors-successful-on-bg: var(
+	--db-successful-on-bg-enabled,
+	$db-colors-successful-on-bg-enabled
+);
+$db-colors-successful: var(
+	--db-successful-enabled,
+	$db-colors-successful-enabled
+);

@@ -5,6 +5,8 @@
 @use "@db-ui/foundations/build/scss/color-placeholder" as *;
 @use "@db-ui/foundations/build/scss/tonality" as *;
 
+/* TODO: Adapt this colors as well */
+
 %code-docs {
 	@extend %db-bg-neutral-1;
 	min-block-size: $db-sizing-3xl;
@@ -38,7 +40,7 @@
 		}
 
 		.code {
-			@extend %db-bg-secondary;
+			@extend %db-bg-neutral-4;
 			overflow: auto;
 			position: absolute;
 			inset-inline-end: 0;
