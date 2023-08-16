@@ -90,7 +90,7 @@
 
 	&[data-size="small"] {
 		--icon-font-size: var(--db-base-icon-font-size);
-		--icon-margin-before: $db-spacing-fixed-3xs;
+		--icon-margin-before: #{$db-spacing-fixed-3xs};
 		@extend %db-overwrite-font-size-sm;
 	}
 }
