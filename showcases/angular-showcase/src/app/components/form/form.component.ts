@@ -9,13 +9,14 @@ export class FormComponent {
 	array = ['X', 'Y', 'Z'];
 	radio = '';
 	input = '';
-	textarea = '';
+	textarea = 'default value';
+	textareaDefaultValue = '';
 	tags: string[] = [];
 
 	select = '';
 	model = {
 		input: 'Anna',
-		textarea: 'Nico',
+		textarea: 'default value',
 		radio: 'X',
 		checkbox: true,
 		checkbox2: true

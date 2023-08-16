@@ -33,8 +33,14 @@ const getComponents = () => [
 					to: ''
 				},
 				{
-					from: 'value={props.value}',
-					to: 'value={props.value}\ndefaultValue={props.children || props.defaultValue}'
+					from: 'defaultValue={props.defaultValue}',
+					to: 'defaultValue={props.children || props.defaultValue}'
+				}
+			],
+			angular: [
+				{
+					from: '<ng-content></ng-content>',
+					to: '{{value || defaultValue}}'
 				}
 			]
 		}

@@ -123,6 +123,7 @@ export default function DBTextarea(props: DBTextareaProps) {
 				onChange={(event) => state.handleChange(event)}
 				onBlur={(event) => state.handleBlur(event)}
 				onFocus={(event) => state.handleFocus(event)}
+				defaultValue={props.defaultValue}
 				value={props.value}
 				rows={props.rows ?? state.defaultValues.rows}
 				cols={props.cols ?? state.defaultValues.cols}
