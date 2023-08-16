@@ -16,6 +16,14 @@ const generateBGVariants = (value, variant) => {
 .${prefix}-bg-${value}${nameEnding} {
     @extend %${prefix}-bg-${value}${nameEnding};
 
+    &-transparent-full {
+        @extend %${prefix}-bg-${value}${nameEnding}-transparent-full;
+    }
+
+    &-transparent-semi {
+        @extend %${prefix}-bg-${value}${nameEnding}-transparent-semi;
+    }
+
     &-ia,
     &[data-variant="interactive"] {
         @extend %${prefix}-bg-${value}${nameEnding}-ia;
@@ -51,15 +59,6 @@ exports.generateColorUtilitityClasses = (colorToken) => {
 		} else {
 			// Default text and background colors (former 'light' tone)
 			output += generateBGVariants(value);
-		}
-
-		// Transparent tones
-		const transparentTones = ['full', 'semi'];
-		for (const transparentTone of transparentTones) {
-			output += generateBGVariants(
-				value,
-				`transparent-${transparentTone}`
-			);
 		}
 	}
 
