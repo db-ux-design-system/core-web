@@ -39,12 +39,17 @@ $db-colors-neutral-on-bg: var(
 	var(--db-neutral-on-bg-enabled, $db-colors-neutral-on-bg-enabled)
 );
 
+$db-colors-neutral-border-weak: var(
+	--db-current-border-weak-color,
+	var(
+		--db-neutral-border-weak-enabled,
+		$db-colors-neutral-border-weak-enabled
+	)
+);
+
 // primary
 
-$db-colors-primary: var(
-	--db-primary-enabled,
-	$db-colors-primary-enabled
-);
+$db-colors-primary: var(--db-primary-enabled, $db-colors-primary-enabled);
 
 $db-colors-primary-text: var(
 	--db-primary-text-enabled,

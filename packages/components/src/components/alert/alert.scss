@@ -115,8 +115,6 @@
 				@extend %db-bg-successful;
 			}
 
-			--db-current-border-color: #{map.get($colors, "border")};
-
 			&::before {
 				color: map.get($colors, "element");
 			}
