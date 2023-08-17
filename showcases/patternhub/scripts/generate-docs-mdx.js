@@ -60,7 +60,10 @@ const generateDocsMdx = async () => {
 				componentName
 			);
 			if (reactComponent) {
-				FS.writeFileSync(`${componentPath}/index.tsx`, reactComponent);
+				FS.writeFileSync(
+					`${componentPath}/overview.tsx`,
+					reactComponent
+				);
 			}
 		}
 	}

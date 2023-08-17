@@ -3,5 +3,6 @@ import { test } from '@playwright/test';
 import { getDefaultScreenshotTest } from '../default.ts';
 
 test.describe('DBNavigationItem', () => {
-	getDefaultScreenshotTest('navigation-item');
+	// Set fixed height, because of issues with angulars `ngAfterContentInit`
+	getDefaultScreenshotTest('05/navigation-item', 1800);
 });

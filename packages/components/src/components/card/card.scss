@@ -10,10 +10,7 @@
 	@extend %color-variants;
 	@extend %default-card;
 
-	background-color: var(
-		--db-current-background-color,
-		$db-colors-neutral-bg-0-enabled
-	);
+	background-color: $db-colors-neutral-bg;
 
 	display: flex;
 	flex-direction: column;
