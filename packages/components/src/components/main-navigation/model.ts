@@ -6,5 +6,4 @@ export type DBMainNavigationProps = DBMainNavigationDefaultProps & GlobalProps;
 
 export interface DBMainNavigationDefaultState {}
 
-export type DBMainNavigationState = DBMainNavigationDefaultState &
-	GlobalState;
+export type DBMainNavigationState = DBMainNavigationDefaultState & GlobalState;
