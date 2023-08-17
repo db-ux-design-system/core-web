@@ -1,11 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<title>DBTextarea</title>
-		<link rel="stylesheet" href="/styles/db-ui-42.css" />
-	</head>
-	<body style="padding: var(--db-spacing-fixed-md)">
-		<div class="db-textarea">Test</div>
-	</body>
+
+<head>
+	<meta charset="UTF-8" />
+	<title>DBTextarea</title>
+	<link rel="stylesheet" href="/styles/db-ui-42.css" />
+</head>
+
+<body style="padding: var(--db-spacing-fixed-md)">
+	<div class="db-textarea">
+		<label aria-hidden="true" for="textarea"
+			id="textarea-label">Label</label>
+		<textarea id="textarea" rows="2" cols="33" placeholder=" "></textarea>
+		<span class="db-infotext" data-icon="info" data-size="medium">functional</span>
+	</div>
+</body>
+
 </html>
