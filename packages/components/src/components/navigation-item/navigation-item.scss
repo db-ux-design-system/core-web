@@ -12,6 +12,7 @@
 @use "../../styles/db-puls" as *;
 
 %icon-passing {
+	// TODO: Probably we could still simplify the following two blocks of declarations
 	&[data-icon] {
 		&::before {
 			// don't show default icon
