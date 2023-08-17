@@ -66,6 +66,10 @@ $color-variants: "neutral-0", "neutral-1", "neutral-3", "neutral-4", "primary",
 	color: var(--db-current-bg-color);
 	background-color: var(--db-current-color);
 
+	&::before {
+		color: var(--db-current-bg-color);
+	}
+
 	&:enabled {
 		&:hover {
 			background-color: color-mix(

@@ -30,23 +30,25 @@ $db-spacing-responsive-xl: var(--db-spacing-responsive-xl);
 
 // neutral
 $db-colors-neutral-bg: var(
-		--db-neutral-bg-enabled,
-		$db-colors-neutral-bg-0-enabled
+	--db-neutral-bg-enabled,
+	$db-colors-neutral-bg-0-enabled
 );
 
 $db-colors-neutral-on-bg: var(
-		--db-current-color,
-		--db-neutral-on-bg-enabled,
-		$db-colors-neutral-on-bg-enabled
+	--db-current-color,
+	var(--db-neutral-on-bg-enabled, $db-colors-neutral-on-bg-enabled)
 );
 
 // primary
 
-$db-colors-primary: var(--db-primary-enabled, $db-colors-primary-enabled);
+$db-colors-primary-text: var(--db-primary-text-enabled, $db-colors-primary-enabled);
 
-$db-colors-primary-hover: var(--db-primary-hover, $db-colors-primary-hover);
+$db-colors-primary-text-hover: var(--db-primary-text-hover, $db-colors-primary-hover);
 
-$db-colors-primary-pressed: var(--db-primary-pressed, $db-colors-primary-pressed);
+$db-colors-primary-text-pressed: var(
+	--db-primary-text-pressed,
+	$db-colors-primary-pressed
+);
 
 // critical
 $db-colors-critical-border-weak: var(
@@ -98,7 +100,6 @@ $db-colors-warning-on-bg: var(
 	$db-colors-warning-on-bg-enabled
 );
 $db-colors-warning: var(--db-warning-enabled, $db-colors-warning-enabled);
-
 
 // successful
 $db-colors-successful-border-weak: var(

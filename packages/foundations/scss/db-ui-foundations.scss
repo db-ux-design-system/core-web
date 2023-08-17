@@ -5,8 +5,13 @@
 @use "color-placeholder" as *;
 @use "tonality" as *;
 @use "init" as *;
+@use "helpers/component" as *;
 
 :root {
 	@extend %db-ui-regular;
 	@extend %db-bg-neutral-0;
+}
+
+[class^="db-"] {
+	@extend %default-color-transition;
 }

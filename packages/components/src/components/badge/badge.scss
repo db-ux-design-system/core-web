@@ -5,49 +5,8 @@
 @use "@db-ui/foundations/build/scss/color/color-variants" as *;
 @use "@db-ui/foundations/build/scss/helpers/component" as *;
 @use "@db-ui/foundations/build/scss/helpers/font" as *;
-@use "../../styles/button-components";
-
-@mixin get-tag-colors() {
-	@extend %db-bg-neutral-4;
-
-	&[data-emphasis="strong"] {
-		@extend %db-neutral-component;
-	}
-
-	@each $name, $colors in $component-variants {
-		&[data-variant="#{$name}"] {
-			@if ($name == "critical") {
-				@extend %db-bg-critical;
-
-				&[data-emphasis="strong"] {
-					@extend %db-critical-component;
-				}
-			} @else if ($name == "informational") {
-				@extend %db-bg-informational;
-
-				&[data-emphasis="strong"] {
-					@extend %db-informational-component;
-				}
-			} @else if ($name == "warning") {
-				@extend %db-bg-warning;
-
-				&[data-emphasis="strong"] {
-					@extend %db-warning-component;
-				}
-			} @else if ($name == "successful") {
-				@extend %db-bg-successful;
-
-				&[data-emphasis="strong"] {
-					@extend %db-successful-component;
-				}
-			}
-
-			&:not(&[data-emphasis="strong"]) {
-				--db-current-border-color: #{map.get($colors, "border")};
-			}
-		}
-	}
-}
+@use "../../styles/button-components" as *;
+@use "../../styles/tag-components" as *;
 
 %absolute-badge {
 	position: absolute;

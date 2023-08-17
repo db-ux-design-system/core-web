@@ -24,11 +24,6 @@
 	text-underline-position: from-font;
 	text-decoration-thickness: to-rem($pxValue: 1);
 
-	// Changing color on hover should be animated by a transition
-	transition:
-		outline 0.06s,
-		color $db-transition-color;
-
 	&:hover {
 		color: color-mix(in srgb, transparent 25%, $db-colors-neutral-on-bg);
 	}
@@ -77,14 +72,15 @@
 	}
 
 	&[data-variant="primary"] {
-		color: $db-colors-primary;
+		--db-current-color: #{$db-colors-primary-text};
+		color: var(--db-current-color);
 
 		&:hover {
-			color: $db-colors-primary-hover;
+			--db-current-color: #{$db-colors-primary-text-hover};
 		}
 
 		&:active {
-			color: $db-colors-primary-pressed;
+			--db-current-color: #{$db-colors-primary-text-pressed};
 		}
 	}
 

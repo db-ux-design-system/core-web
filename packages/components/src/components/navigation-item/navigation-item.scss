@@ -6,7 +6,6 @@
 
 .db-navigation-item {
 	@extend %default-interactive-component;
-	@extend %default-background-transition;
 	@extend %transparent-border;
 
 	@include get-variant-bg-color(0);

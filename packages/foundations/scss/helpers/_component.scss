@@ -34,10 +34,11 @@ $default-opacity: 0.25;
 	@extend %default-border-radius;
 }
 
-%default-background-transition {
-	// TODO Changing background-color on hover should be animated by a transition
-	transition: background-color
-		var(--db-transition-color, #{$db-transition-color});
+%default-color-transition {
+	transition:
+		outline var(--db-transition-color, #{$db-transition-color}),
+		background-color var(--db-transition-color, #{$db-transition-color}),
+		color var(--db-transition-color, #{$db-transition-color});
 }
 
 %default-card {
