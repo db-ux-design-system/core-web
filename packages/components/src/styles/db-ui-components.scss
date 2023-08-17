@@ -23,10 +23,15 @@
 @use "../components/textarea/textarea" as *;
 @use "../components/badge/badge" as *;
 
+@use "../components/main-navigation/main-navigation" as *;
+
+@forward "dialog-init";
 // angular-workaround
 dbtextarea,
 db-textarea,
 // angular-workaround
+dbmain-navigation,
+db-main-navigation,
 dbbadge,
 db-badge,
 dbnavigation-item,

@@ -4,7 +4,7 @@ to: src/components/<%= name %>/docs/Angular.md
 ---
 ## Angular
 
-For general installation and configuration look at the [ngx-components](https://www.npmjs.com/package/@db-ui/ngx-components) package.
+For general installation and configuration take a look at the [ngx-components](https://www.npmjs.com/package/@db-ui/ngx-components) package.
 
 ### Load component
 

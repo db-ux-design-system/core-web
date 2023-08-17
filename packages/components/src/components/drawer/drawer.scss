@@ -81,12 +81,18 @@ $spacings: (
 	padding-block: map.get($spacing, "block");
 
 	.db-drawer-header {
-		padding-block-end: map.get($spacing, "block");
+		padding-block-end: var(
+			--db-drawer-header-padding-block-end,
+			map.get($spacing, "block")
+		);
 		padding-inline: map.get($spacing, "inline");
 	}
 
 	.db-drawer-content {
-		padding-inline: map.get($spacing, "inline");
+		padding-inline: var(
+			--db-drawer-content-padding-inline,
+			map.get($spacing, "inline")
+		);
 	}
 }
 
@@ -108,7 +114,7 @@ $spacings: (
 		@extend %spacing-drawer;
 		display: flex;
 		flex-direction: column;
-		background-color: $db-colors-neutral-bg-0-enabled;
+		background-color: $db-colors-neutral-bg;
 		block-size: 100%;
 		inline-size: 100%;
 		position: fixed;
