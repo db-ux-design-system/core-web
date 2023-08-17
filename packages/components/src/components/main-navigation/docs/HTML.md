@@ -46,7 +46,7 @@ For general installation and configuration look at the [components](https://www.
 				<a href="#">Navi-Item 2</a>
 			</li>
 
-			<li class="db-navigation-item" data-disabled="true">
+			<li class="db-navigation-item" aria-disabled="true">
 				<a href="#">Navi-Item 3</a>
 			</li>
 		</menu>
