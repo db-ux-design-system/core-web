@@ -216,14 +216,6 @@ const ComponentSwitch = ({
 		);
 	}
 
-	if (type === 'textarea') {
-		return (
-			<DBTextarea className={className} {...props}>
-				{resolvedContent}
-			</DBTextarea>
-		);
-	}
-
 	if (type === 'badge') {
 		return (
 			<DBBadge className={className} {...props}>
@@ -231,7 +223,7 @@ const ComponentSwitch = ({
 			</DBBadge>
 		);
 	}
-
+  
 	// hygen before
 
 	return <span className={className}>{resolvedContent}</span>;

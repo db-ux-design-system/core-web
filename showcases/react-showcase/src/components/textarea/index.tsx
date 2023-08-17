@@ -29,7 +29,7 @@ const getTextarea = ({
 		onChange={handleChange}
 		placeholder={placeholder}
 		rows={rows}
-		value={value}
+		defaultValue={value}
 		variant={variant}></DBTextarea>
 );
 

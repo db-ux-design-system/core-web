@@ -5,12 +5,15 @@ import {
 	DBRadio,
 	DBSelect,
 	DBCheckbox,
-	DBTag
+	DBTag,
+	DBTextarea
 } from '../../../../../output/react/src';
 import type { KeyValueType } from '../../../../../output/react/src/shared/model';
 
 const FormComponent = () => {
 	const [input, setInput] = useState('');
+	const [textarea, setTextarea] = useState('default textarea');
+	const [textareaChildren, setTextareaChildren] = useState('');
 	const [radio, setRadio] = useState('');
 	const [select, setSelect] = useState('');
 	const [checkbox, setCheckbox] = useState('');
@@ -38,6 +41,21 @@ const FormComponent = () => {
 							}}
 							dataList={dataList}
 						/>
+						<p>Textarea:</p>
+						<DBTextarea
+							label="Textarea Controlled"
+							value={textarea}
+							onChange={(event) => {
+								setTextarea(event.target.value);
+							}}
+						/>
+						<DBTextarea
+							label="Textarea Default value"
+							onChange={(event) => {
+								setTextareaChildren(event.target.value);
+							}}>
+							text area default value
+						</DBTextarea>
 						<p>Radio:</p>
 						<ul>
 							{['X', 'Y', 'Z'].map((radioName) => (
@@ -128,6 +146,9 @@ const FormComponent = () => {
 				<dl>
 					<dt>inputs value</dt>
 					<dd>{input || 'No Input set'}</dd>
+					<dt>textarea values</dt>
+					<dd>{textarea || 'No Textrea set'}</dd>
+					<dd>{textareaChildren || 'No Textrea set'}</dd>
 					<dt>radio value</dt>
 					<dd>{radio || 'No radio set'}</dd>
 					<dt>checkbox value</dt>

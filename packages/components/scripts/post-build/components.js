@@ -17,7 +17,33 @@
  */
 const getComponents = () => [
 	{
-		name: 'textarea'
+		name: 'textarea',
+		config: {
+			vue: {
+				vModel: [{ modelValue: 'value', binding: ':value' }]
+			},
+			angular: {
+				controlValueAccessor: 'value'
+			}
+		},
+		overwrites: {
+			react: [
+				{
+					from: '{props.children}',
+					to: ''
+				},
+				{
+					from: 'defaultValue={props.defaultValue}',
+					to: 'defaultValue={props.children || props.defaultValue}'
+				}
+			],
+			angular: [
+				{
+					from: '<ng-content></ng-content>',
+					to: '{{value || defaultValue}}'
+				}
+			]
+		}
 	},
 	{
 		name: 'badge'
