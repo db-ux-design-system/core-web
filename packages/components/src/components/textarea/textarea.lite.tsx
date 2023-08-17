@@ -117,6 +117,7 @@ export default function DBTextarea(props: DBTextareaProps) {
 				id={state._id + '-label'}>
 				{props.label ?? state.defaultValues.label}
 			</label>
+			{/* prettier-ignore */}
 			<textarea
 				id={state._id}
 				disabled={props.disabled}
@@ -129,9 +130,7 @@ export default function DBTextarea(props: DBTextareaProps) {
 				cols={props.cols ?? state.defaultValues.cols}
 				placeholder={
 					props.placeholder ?? state.defaultValues.placeholder
-				}>
-				{props.children}
-			</textarea>
+				}>{props.children}</textarea>
 			<DBInfotext
 				size="medium"
 				variant={props.variant}
