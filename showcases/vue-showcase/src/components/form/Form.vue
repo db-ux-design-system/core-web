@@ -13,8 +13,8 @@ import { ref } from "vue";
 const input = ref("");
 const select = ref("");
 const firstInput = ref("");
-const textareavModel = ref("");
-const textarea = ref("");
+const textareavModel = ref("default value");
+const textarea = ref("default value");
 const textareaDefaultValue = ref("");
 const radio = ref<HTMLInputElement>();
 const checkbox = ref<HTMLInputElement>();
@@ -73,7 +73,7 @@ const reset = () => {
 					/>
 					<p>Textarea:</p>
 					<DBTextarea
-						label="Textarea"
+						label="Textarea v-model"
 						placeholder="Placeholder"
 						description="Description"
 						icon="account"
@@ -81,7 +81,7 @@ const reset = () => {
 						v-model:value="textareavModel"
 					/>
 					<DBTextarea
-						label="Textarea"
+						label="Textarea default-value"
 						placeholder="Placeholder"
 						description="Description"
 						icon="account"
@@ -90,7 +90,7 @@ const reset = () => {
 						@change="textareaDefaultValue = $event.target.value"
 					/>
 					<DBTextarea
-						label="Textarea"
+						label="Textarea value"
 						placeholder="Placeholder"
 						description="Description"
 						icon="account"
