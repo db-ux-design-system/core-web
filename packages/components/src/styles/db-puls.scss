@@ -21,7 +21,8 @@
 		content: "";
 		position: absolute;
 		border-radius: $default-border-radius;
-		transition: height 0.15s $db-transition-emotional-timing,
+		transition:
+			height 0.15s $db-transition-emotional-timing,
 			width 0.15s $db-transition-emotional-timing;
 		block-size: 0;
 		transform: translate(0, -50%);
