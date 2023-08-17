@@ -3,5 +3,5 @@ import { test } from '@playwright/test';
 import { getDefaultScreenshotTest } from '../default.ts';
 
 test.describe('DBLink', () => {
-	getDefaultScreenshotTest('link');
+	getDefaultScreenshotTest('02/link');
 });
