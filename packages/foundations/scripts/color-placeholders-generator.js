@@ -160,23 +160,19 @@ exports.generateColorUtilitityPlaceholder = (colorToken) => {
 				// Text & elements & border
 				output += `
 %${prefix}-${value}-component-ia {
-	--db-current-color: var(--${prefix}-${value}-on-enabled, #{$${prefix}-${
-		colorToken[value].on.enabled.name
-	}});
+	--db-current-color: var(--${prefix}-${value}-on-enabled,
+	#{$${prefix}-${colorToken[value].on.enabled.name}});
     color: var(--${prefix}-current-color);
-	background-color: var(--${prefix}-${value}-enabled, #{$${prefix}-${
-		colorToken[value].enabled.name
-	}});
+	background-color: var(--${prefix}-${value}-enabled,
+	#{$${prefix}-${colorToken[value].enabled.name}});
 	&:enabled {
 		&:hover{
-			background-color: var(--${prefix}-${value}-hover, #{$${prefix}-${
-				colorToken[value].hover.name
-			}});
+			background-color: var(--${prefix}-${value}-hover,
+			#{$${prefix}-${colorToken[value].hover.name}});
 		}
 		&:active{
-			background-color: var(--${prefix}-${value}-pressed, #{$${prefix}-${
-				colorToken[value].pressed.name
-			}});
+			background-color: var(--${prefix}-${value}-pressed,
+			#{$${prefix}-${colorToken[value].pressed.name}});
 		}
 	}
 }
@@ -187,9 +183,8 @@ exports.generateColorUtilitityPlaceholder = (colorToken) => {
 			? `--${prefix}-primary-on-enabled`
 			: `--${prefix}-neutral-on-bg-enabled`
 	}, #{$${prefix}-${colorToken[value].on.enabled.name}});
-	background-color: var(--${prefix}-${value}-enabled, #{$${prefix}-${
-		colorToken[value].enabled.name
-	}});
+	background-color: var(--${prefix}-${value}-enabled,
+	#{$${prefix}-${colorToken[value].enabled.name}});
     color: var(--${prefix}-current-color);
 }
 `;
