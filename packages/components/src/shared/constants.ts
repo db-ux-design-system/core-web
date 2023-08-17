@@ -21,19 +21,13 @@ export enum COLOR_SIMPLE {
 }
 
 export enum COLOR {
-	'NEUTRAL_0' = 'neutral-0',
-	'NEUTRAL_1' = 'neutral-1',
-	'NEUTRAL_2' = 'neutral-2',
-	'NEUTRAL_3' = 'neutral-3',
-	'NEUTRAL_4' = 'neutral-4',
+	'NEUTRAL' = 'neutral',
+	'NEUTRAL_STRONG' = 'neutral-strong',
 	'NEUTRAL_TRANSPARENT_FULL' = 'neutral-transparent-full',
 	'NEUTRAL_TRANSPARENT_SEMI' = 'neutral-transparent-semi',
 	'PRIMARY' = 'primary',
 	'PRIMARY_TRANSPARENT_FULL' = 'primary-transparent-full',
 	'PRIMARY_TRANSPARENT_SEMI' = 'primary-transparent-semi',
-	'SECONDARY' = 'secondary',
-	'SECONDARY_TRANSPARENT_FULL' = 'secondary-transparent-full',
-	'SECONDARY_TRANSPARENT_SEMI' = 'secondary-transparent-semi',
 	'SUCCESSFUL' = 'successful',
 	'SUCCESSFUL_TRANSPARENT_FULL' = 'successful-transparent-full',
 	'SUCCESSFUL_TRANSPARENT_SEMI' = 'successful-transparent-semi',

@@ -25,7 +25,8 @@ const generateBGVariants = (
 	baseColor
 ) => {
 	const placeholderName = `${prefix}-bg-${value}${
-		variant ? `-${variant}` : ''
+		// TODO: This will be replaced with 0===bg-neutral and 0=bg-neutral-strong
+		variant === '4' ? `-strong` : ''
 	}`;
 	try {
 		const bgColor = `${prefix}-${currentColorObject.enabled.name}`;
@@ -57,7 +58,10 @@ const generateBGVariants = (
 	--db-current-bg-color: color-mix(
 		in srgb,
 		transparent	var(--${prefix}-bg-transparent, 0%),
-		var(--${prefix}-${value}-bg-enabled, #{$${bgColor}})
+		var(--${prefix}-${value}-bg${
+			// TODO: This will be replaced with 0===bg-neutral and 0=bg-neutral-strong
+			variant === '4' ? `-strong` : ''
+		}-enabled, #{$${bgColor}})
 	);
     ${
 		elementColor
@@ -89,7 +93,7 @@ const generateBGVariants = (
 
 	&-transparent {
 		&-full, &-semi{
-    		color: var(--${prefix}-${value}-bg-on-enabled, #{$${fgColor}});
+    		color: var(--${prefix}-${value}-on-bg-enabled, #{$${fgColor}});
 			@extend %${placeholderName}-variables;
     		background-color: color-mix(
 				in srgb,
@@ -149,17 +153,20 @@ exports.generateColorUtilitityPlaceholder = (colorToken) => {
 	let output = fileHeader;
 
 	for (const [, value] of Object.keys(colorToken).entries()) {
-		// Text colors with interactive variant, e.g. primary
-		if (colorToken[value].enabled) {
-			// Text & elements & border
-			output += `
+		// TODO: remove this if secondary becomes obsolete
+		if (value !== 'secondary') {
+			// Text colors with interactive variant, e.g. primary
+			if (colorToken[value].enabled) {
+				// Text & elements & border
+				output += `
 %${prefix}-${value}-component-ia {
-	color: var(--${prefix}-${value}-on-enabled, #{$${prefix}-${
-				colorToken[value].on.enabled.name
-			}});
+	--db-current-color: var(--${prefix}-${value}-on-enabled, #{$${prefix}-${
+		colorToken[value].on.enabled.name
+	}});
+    color: var(--${prefix}-current-color);
 	background-color: var(--${prefix}-${value}-enabled, #{$${prefix}-${
-				colorToken[value].enabled.name
-			}});
+		colorToken[value].enabled.name
+	}});
 	&:enabled {
 		&:hover{
 			background-color: var(--${prefix}-${value}-hover, #{$${prefix}-${
@@ -181,34 +188,36 @@ exports.generateColorUtilitityPlaceholder = (colorToken) => {
 			: `--${prefix}-neutral-on-bg-enabled`
 	}, #{$${prefix}-${colorToken[value].on.enabled.name}});
 	background-color: var(--${prefix}-${value}-enabled, #{$${prefix}-${
-				colorToken[value].enabled.name
-			}});
+		colorToken[value].enabled.name
+	}});
     color: var(--${prefix}-current-color);
 }
 `;
-		}
+			}
 
-		if (value === 'neutral') {
-			// Neutral has multiple default tones
-			const neutralTones = ['0', '1', '2', '3', '4'];
-			for (const neutralTone of neutralTones) {
+			if (value === 'neutral') {
+				// Neutral has multiple default tones
+				// TODO: This will be replaced with 0===bg-neutral and 0=bg-neutral-strong
+				const neutralTones = ['0', '4'];
+				for (const neutralTone of neutralTones) {
+					output += generateBGVariants(
+						value,
+						neutralTone,
+						colorToken[value].bg[neutralTone],
+						colorToken[value].on.bg,
+						colorToken[value]
+					);
+				}
+			} else {
+				// Default text and background colors (former 'light' tone)
 				output += generateBGVariants(
 					value,
-					neutralTone,
-					colorToken[value].bg[neutralTone],
+					undefined,
+					colorToken[value].bg,
 					colorToken[value].on.bg,
 					colorToken[value]
 				);
 			}
-		} else {
-			// Default text and background colors (former 'light' tone)
-			output += generateBGVariants(
-				value,
-				undefined,
-				colorToken[value].bg,
-				colorToken[value].on.bg,
-				colorToken[value]
-			);
 		}
 	}
 

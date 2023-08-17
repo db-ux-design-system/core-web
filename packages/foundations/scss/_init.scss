@@ -32,7 +32,12 @@ html {
 }
 
 // Make sure every elements has the current color from container above
-body {
+body,
+button,
+input,
+textarea,
+summary,
+select {
 	color: $db-colors-neutral-on-bg;
 }
 

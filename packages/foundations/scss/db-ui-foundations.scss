@@ -9,9 +9,13 @@
 
 :root {
 	@extend %db-ui-regular;
-	@extend %db-bg-neutral-0;
+	@extend %db-bg-neutral;
 }
 
 [class^="db-"] {
 	@extend %default-color-transition;
+
+	::before {
+		@extend %default-color-transition;
+	}
 }

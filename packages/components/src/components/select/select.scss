@@ -150,6 +150,10 @@
 		margin-block: $db-spacing-fixed-2xs 0;
 	}
 
+	option {
+		background-color: var(--db-current-bg-color);
+	}
+
 	@each $name, $colors in $component-variants {
 		&[data-variant="#{$name}"] {
 			--db-current-border-color: #{map.get($colors, "border")};

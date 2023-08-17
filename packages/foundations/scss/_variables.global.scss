@@ -41,9 +41,20 @@ $db-colors-neutral-on-bg: var(
 
 // primary
 
-$db-colors-primary-text: var(--db-primary-text-enabled, $db-colors-primary-enabled);
+$db-colors-primary: var(
+	--db-primary-enabled,
+	$db-colors-primary-enabled
+);
 
-$db-colors-primary-text-hover: var(--db-primary-text-hover, $db-colors-primary-hover);
+$db-colors-primary-text: var(
+	--db-primary-text-enabled,
+	$db-colors-primary-enabled
+);
+
+$db-colors-primary-text-hover: var(
+	--db-primary-text-hover,
+	$db-colors-primary-hover
+);
 
 $db-colors-primary-text-pressed: var(
 	--db-primary-text-pressed,

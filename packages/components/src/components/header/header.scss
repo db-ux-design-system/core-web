@@ -45,13 +45,13 @@
 }
 
 .db-header-meta-navigation {
+	@extend %db-bg-neutral-transparent-semi;
 	@extend %db-ui-functional;
 	@include divider("top");
 	display: flex;
 	flex-direction: column;
 	gap: $db-spacing-fixed-sm;
 	justify-content: end;
-	background-color: $db-colors-neutral-bg-2-enabled;
 
 	padding: $db-spacing-fixed-md;
 
