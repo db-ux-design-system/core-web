@@ -1,5 +1,7 @@
 {
+	"*": "jscpd --exitCode 1 .",
+	"*.md": "markdownlint -c .markdown-lint.yml",
 	"*.{css,scss}": "stylelint --fix",
-	"*.{js,ts,tsx}": ["xo --fix", "prettier --write"],
-	"*.!{js,ts,tsx}": "prettier --write --ignore-unknown"
+	"*.{js,ts,tsx}": "xo --fix",
+	"!*.{js,ts,tsx}": "prettier --write --ignore-unknown"
 }
