@@ -59,10 +59,10 @@
 		padding: $db-spacing-fixed-xs $db-spacing-fixed-md;
 		margin: 0;
 		flex-direction: row;
-	}
 
-	&:empty {
-		display: none;
+		&:empty {
+			display: none;
+		}
 	}
 }
 
