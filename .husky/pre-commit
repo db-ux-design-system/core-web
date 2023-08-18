@@ -5,6 +5,4 @@
 
 npx validate-branch-name
 npm run scripts:check-commit-mail
-# TODO: Those two include redundant lintings
-npx lint-staged
-npm run lint
+npx lint-staged --config ./.lintstagedrc
