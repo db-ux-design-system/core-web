@@ -172,7 +172,8 @@
 			& ~ .description,
 			.icon-state,
 			.icon-state .db-icon {
-				color: map.get($colors, "element");
+				--db-current-color: #{map.get($colors, "element")};
+				color: var(--db-current-color);
 			}
 		}
 	}
