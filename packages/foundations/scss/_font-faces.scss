@@ -6,7 +6,8 @@
 	font-style: normal;
 	font-weight: $db-font-db-screenhead-light-font-weight;
 	src:
-		local($db-font-db-screenhead-light-name),
+		local($db-font-db-screenhead-light-local-name),
+		local($db-font-db-screenhead-light-local-name-short),
 		url($fonts-path + $db-font-db-screenhead-light-woff2) format("woff2");
 }
 
@@ -15,7 +16,8 @@
 	font-style: normal;
 	font-weight: $db-font-db-screenhead-black-font-weight;
 	src:
-		local($db-font-db-screenhead-black-name),
+		local($db-font-db-screenhead-black-local-name),
+		local($db-font-db-screenhead-black-local-name-short),
 		url($fonts-path + $db-font-db-screenhead-black-woff2) format("woff2");
 }
 
@@ -24,7 +26,8 @@
 	font-style: normal;
 	font-weight: $db-font-db-screensans-regular-font-weight;
 	src:
-		local($db-font-db-screensans-regular-name),
+		local($db-font-db-screensans-regular-local-name),
+		local($db-font-db-screensans-regular-local-name-short),
 		url($fonts-path + $db-font-db-screensans-regular-woff2) format("woff2");
 }
 
@@ -33,16 +36,18 @@
 	font-style: normal;
 	font-weight: $db-font-db-screensans-bold-font-weight;
 	src:
-		local($db-font-db-screensans-bold-name),
+		local($db-font-db-screensans-bold-local-name),
+		local($db-font-db-screensans-bold-local-name-short),
 		url($fonts-path + $db-font-db-screensans-bold-woff2) format("woff2");
 }
 
-// As this font is not officially used within the Design System so far, we're not providing it as a token at the moment
 @font-face {
-	font-family: "DB Screen Sans Digital Regular";
+	font-family: $db-font-db-screensans-digital-regular-font-family;
 	font-style: normal;
-	font-weight: 400;
+	font-weight: $db-font-db-screensans-digital-regular-font-weight;
 	src:
-		local("DB Screen Sans Digital Regular"),
-		url($fonts-path + "dbscreensans-digitalregular.woff2") format("woff2");
+		local($db-font-db-screensans-digital-regular-local-name),
+		local($db-font-db-screensans-digital-regular-local-name-short),
+		url($fonts-path + $db-font-db-screensans-digital-regular-woff2)
+			format("woff2");
 }
