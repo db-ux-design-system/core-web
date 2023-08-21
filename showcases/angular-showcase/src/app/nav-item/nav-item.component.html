@@ -1,0 +1,23 @@
+<db-navigation-item
+	*ngIf="navItem"
+	[backButtonText]="getBackButtonText()"
+	[active]="isActive()"
+>
+	<ng-container *ngIf="navItem.subNavigation" sub-navigation>
+		<ng-container *ngFor="let item of navItem.subNavigation">
+			<app-nav-item [navItem]="item"> </app-nav-item>
+		</ng-container>
+	</ng-container>
+	<ng-container *dbNavigationContent>
+		<a
+			*ngIf="navItem.component"
+			[routerLink]="navItem.path"
+			queryParamsHandling="merge"
+		>
+			{{ navItem.label }}
+		</a>
+		<ng-container *ngIf="!navItem.component">{{
+			navItem.label
+		}}</ng-container>
+	</ng-container>
+</db-navigation-item>

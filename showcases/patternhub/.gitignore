@@ -38,7 +38,9 @@ public/docs
 
 styles/db-ui-components.scss
 scripts/generated
-components
+pages/components/
+components/src
+!pages/components/readme.mdx
 !components/src/tsconfig.json
 !components/component-parser
 !components/default-page.tsx

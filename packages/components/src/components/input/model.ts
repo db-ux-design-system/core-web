@@ -51,7 +51,6 @@ export type DBInputProps = DBInputDefaultProps &
 
 export type DBInputDefaultState = {
 	_dataListId?: string;
-	_value?: any;
 	getIcon: (variant?: DefaultVariantType) => string;
 };
 

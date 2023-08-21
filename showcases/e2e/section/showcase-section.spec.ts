@@ -3,5 +3,5 @@ import { test } from '@playwright/test';
 import { getDefaultScreenshotTest } from '../default.ts';
 
 test.describe('DBSection', () => {
-	getDefaultScreenshotTest('section');
+	getDefaultScreenshotTest('01/section');
 });

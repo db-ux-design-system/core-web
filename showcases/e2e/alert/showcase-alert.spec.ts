@@ -3,5 +3,5 @@ import { test } from '@playwright/test';
 import { getDefaultScreenshotTest } from '../default.ts';
 
 test.describe('DBAlert', () => {
-	getDefaultScreenshotTest('alert');
+	getDefaultScreenshotTest('06/alert');
 });
