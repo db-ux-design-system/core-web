@@ -17,21 +17,29 @@ inputs:
 runs:
   using: "composite"
   steps:
-    - name: 🆙 Init Cache
+    - name: 🆙 Setup node
+      # pick the Node version to use and install it
+      # https://github.com/actions/setup-node
       uses: actions/setup-node@v3
-      id: "setup-node"
       with:
         node-version: ${{ inputs.nodeVersion }}
-        cache: "npm"
-        cache-dependency-path: "**/package-lock.json"
 
-    - name: 🔢 Display node and npm version
+    - name: Display node and npm version
       shell: bash
       run: |
         node --version
         npm --version
 
+    - name: 🆒 Init Cache
+      uses: actions/cache@v3
+      id: "cache"
+      with:
+        path: ${{ inputs.nodeModulesPath }}
+        key: ${{ runner.os }}-node-${{ inputs.nodeVersion }}-${{ hashFiles(inputs.packageLockPath) }}
+        restore-keys: |
+          ${{ runner.os }}-node-${{ inputs.nodeVersion }}
+
     - name: ⏬ NPM ci
       shell: bash
-      if: steps.setup-node.outputs.cache-hit != 'true'
+      if: steps.cache.outputs.cache-hit != 'true'
       run: npm ci
