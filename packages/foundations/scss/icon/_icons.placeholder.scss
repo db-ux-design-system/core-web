@@ -1,6 +1,5 @@
 @use "icons.variables" as *;
 @use "../helpers/functions" as *;
-@use "../variables.global" as *;
 
 %icon {
 	// Hiding icon from screenreaders
@@ -8,7 +7,7 @@
 	alt: "";
 
 	content: var(--icon-glyph);
-	color: $db-colors-neutral-on-bg;
+	color: inherit;
 
 	display: inline-block;
 	/*** icon - placeholder ***/

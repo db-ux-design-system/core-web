@@ -36,16 +36,9 @@ button,
 input,
 textarea,
 summary,
-select {
-	color: $db-colors-neutral-on-bg;
-}
-
+select,
 a {
 	color: inherit;
-
-	strong {
-		color: currentColor;
-	}
 }
 
 button,

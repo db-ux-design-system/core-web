@@ -15,7 +15,8 @@
 [class^="db-"] {
 	@extend %default-color-transition;
 
-	::before {
+	::before,
+	::after {
 		@extend %default-color-transition;
 	}
 }
