@@ -7,6 +7,18 @@
 					"target": "web"
 				}
 			},
+			"local-name": {
+				"value": "DB Screen Sans",
+				"attributes": {
+					"target": "web"
+				}
+			},
+			"local-name-short": {
+				"value": "DB Sans",
+				"attributes": {
+					"target": "web"
+				}
+			},
 			"font-family": {
 				"value": "'DB Screen Sans'",
 				"attributes": {
@@ -29,6 +41,18 @@
 		"db-screensans-bold": {
 			"name": {
 				"value": "'DB Screen Sans Bold'",
+				"attributes": {
+					"target": "web"
+				}
+			},
+			"local-name": {
+				"value": "DB Screen Sans Bold",
+				"attributes": {
+					"target": "web"
+				}
+			},
+			"local-name-short": {
+				"value": "DB Sans Bold",
 				"attributes": {
 					"target": "web"
 				}
@@ -59,6 +83,18 @@
 					"target": "web"
 				}
 			},
+			"local-name": {
+				"value": "DB Screen Head",
+				"attributes": {
+					"target": "web"
+				}
+			},
+			"local-name-short": {
+				"value": "DB Head Light",
+				"attributes": {
+					"target": "web"
+				}
+			},
 			"font-family": {
 				"value": "'DB Screen Head'",
 				"attributes": {
@@ -85,6 +121,18 @@
 					"target": "web"
 				}
 			},
+			"local-name": {
+				"value": "DB Screen Head Black",
+				"attributes": {
+					"target": "web"
+				}
+			},
+			"local-name-short": {
+				"value": "DB Head Black",
+				"attributes": {
+					"target": "web"
+				}
+			},
 			"font-family": {
 				"value": "'DB Screen Head'",
 				"attributes": {
@@ -99,6 +147,44 @@
 			},
 			"woff2": {
 				"value": "'dbscreenhead-black.woff2'",
+				"attributes": {
+					"target": "web"
+				}
+			}
+		},
+		"db-screensans-digital-regular": {
+			"name": {
+				"value": "'DB Screen Sans Digital Regular'",
+				"attributes": {
+					"target": "web"
+				}
+			},
+			"local-name": {
+				"value": "DB Screen Sans Digital",
+				"attributes": {
+					"target": "web"
+				}
+			},
+			"local-name-short": {
+				"value": "DB Sans Digital",
+				"attributes": {
+					"target": "web"
+				}
+			},
+			"font-family": {
+				"value": "'DB Screen Sans Digital'",
+				"attributes": {
+					"target": "web"
+				}
+			},
+			"font-weight": {
+				"value": "400",
+				"attributes": {
+					"target": "web"
+				}
+			},
+			"woff2": {
+				"value": "'dbscreensans-digitalregular.woff2'",
 				"attributes": {
 					"target": "web"
 				}
