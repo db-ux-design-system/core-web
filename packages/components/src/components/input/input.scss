@@ -219,6 +219,8 @@
 
 		@include get-variant-bg-color(0.08);
 
+		color: $db-colors-neutral-on-bg;
+
 		block-size: $db-sizing-md;
 		max-inline-size: 100%;
 		inline-size: 100%;

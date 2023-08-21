@@ -108,7 +108,7 @@ const reset = () => {
 									index === 0 ? undefined : 'successful'
 								"
 								@Change="changeTags(tag)"
-								:strong="index === 2"
+								:emphasis="index === 2 ? 'strong' : 'weak'"
 								behaviour="interactive"
 								>Tag {{ tag }}</DBTag
 							>

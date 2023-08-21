@@ -10,7 +10,6 @@
 		>
 		</db-input>
 
-
 		<db-textarea
 			name="textarea"
 			label="Textarea Controlled"
@@ -105,7 +104,7 @@
 						<db-tag
 							[variant]="i === 0 ? undefined : 'successful'"
 							(onChange)="changeTags(tag)"
-							[type]="i === 2 ? 'strong' : 'weak'"
+							[emphasis]="i === 2 ? 'strong' : 'weak'"
 							behaviour="interactive"
 							>{{ getTagName(tag) }}</db-tag
 						>
@@ -160,7 +159,13 @@
 			<dt>textarea value</dt>
 			<dd>{{ textarea ? textarea : "No textarea set" }}</dd>
 			<dt>textarea default value</dt>
-			<dd>{{ textareaDefaultValue ? textareaDefaultValue : "No textareaDefaultValue set" }}</dd>
+			<dd>
+				{{
+					textareaDefaultValue
+						? textareaDefaultValue
+						: "No textareaDefaultValue set"
+				}}
+			</dd>
 			<dt>textareas value</dt>
 			<dd>
 				{{

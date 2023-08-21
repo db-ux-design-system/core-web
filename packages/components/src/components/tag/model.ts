@@ -11,7 +11,8 @@ import {
 	IconVisibleState,
 	FormCheckProps,
 	InitializedState,
-	OverflowProps
+	OverflowProps,
+	EmphasisProps
 } from '../../shared/model';
 
 export interface DBTagDefaultProps {
@@ -37,10 +38,6 @@ export interface DBTagDefaultProps {
 	 */
 	removeButton?: string;
 	/**
-	 * The type attribute divides in between a weak or strong importance.
-	 */
-	type?: 'weak' | 'strong';
-	/**
 	 * If "interactive" is set to true, you can pass a value to the underlying checkbox or radio input.
 	 */
 	value?: string;
@@ -53,7 +50,8 @@ export type DBTagProps = DBTagDefaultProps &
 	FormCheckProps &
 	IconProps &
 	DefaultVariantProps &
-	OverflowProps;
+	OverflowProps &
+	EmphasisProps;
 
 export interface DBTagDefaultState {
 	getRemoveButtonText?: () => string;

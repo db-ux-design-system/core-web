@@ -1,0 +1,93 @@
+@use "sass:map";
+@use "@db-ui/foundations/build/scss/color/color-variants" as *;
+@use "@db-ui/foundations/build/scss/helpers/component" as *;
+
+@mixin get-tag-colors() {
+	@include get-variant-bg-color(0.08);
+
+	&[data-emphasis="strong"] {
+		@extend %db-neutral-component;
+	}
+
+	@each $name, $colors in $component-variants {
+		&[data-variant="#{$name}"] {
+			@if ($name == "critical") {
+				@extend %db-bg-critical;
+
+				&[data-emphasis="strong"] {
+					@extend %db-critical-component;
+				}
+			} @else if ($name == "informational") {
+				@extend %db-bg-informational;
+
+				&[data-emphasis="strong"] {
+					@extend %db-informational-component;
+				}
+			} @else if ($name == "warning") {
+				@extend %db-bg-warning;
+
+				&[data-emphasis="strong"] {
+					@extend %db-warning-component;
+				}
+			} @else if ($name == "successful") {
+				@extend %db-bg-successful;
+
+				&[data-emphasis="strong"] {
+					@extend %db-successful-component;
+				}
+			}
+
+			&:not(&[data-emphasis="strong"]) {
+				--db-current-border-color: #{map.get($colors, "border")};
+			}
+		}
+	}
+}
+
+@mixin get-tag-colors-interactive() {
+	&:has(input:not(:checked)) {
+		@extend %bg-transparent-interactive;
+	}
+
+	&:has(input:checked) {
+		@include get-variant-bg-color(0.08);
+
+		&[data-emphasis="strong"] {
+			@extend %db-neutral-component-ia;
+		}
+
+		@each $name, $colors in $component-variants {
+			&[data-variant="#{$name}"] {
+				@if ($name == "critical") {
+					@extend %db-bg-critical-ia;
+
+					&[data-emphasis="strong"] {
+						@extend %db-critical-component-ia;
+					}
+				} @else if ($name == "informational") {
+					@extend %db-bg-informational-ia;
+
+					&[data-emphasis="strong"] {
+						@extend %db-informational-component-ia;
+					}
+				} @else if ($name == "warning") {
+					@extend %db-bg-warning-ia;
+
+					&[data-emphasis="strong"] {
+						@extend %db-warning-component-ia;
+					}
+				} @else if ($name == "successful") {
+					@extend %db-bg-successful-ia;
+
+					&[data-emphasis="strong"] {
+						@extend %db-successful-component-ia;
+					}
+				}
+
+				&:not(&[data-emphasis="strong"]) {
+					--db-current-border-color: #{map.get($colors, "border")};
+				}
+			}
+		}
+	}
+}
