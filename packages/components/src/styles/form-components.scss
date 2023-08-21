@@ -72,21 +72,15 @@ $dropdown-icon-transition: transform $db-transition-emotional-straight;
 	@each $name, $colors in variants.$component-variants {
 		&[data-variant="#{$name}"] {
 			--db-current-border-color: #{map.get($colors, "border")};
-
-			&[data-label="floating"] {
-				color: map.get($colors, "on-bg");
-			}
 		}
 
 		&[data-variant="#{$name}"] {
-			&:has(input),
-			&:has(select) {
-				/* TODO: remove this if we have data-label=floating for all form components */
-				color: map.get($colors, "on-bg");
-			}
+			--db-current-color: #{map.get($colors, "on-bg")};
+			color: map.get($colors, "on-bg");
 		}
 
 		&[data-variant="#{$name}"] select {
+			--db-current-color: #{map.get($colors, "on-bg")};
 			color: map.get($colors, "on-bg");
 		}
 
