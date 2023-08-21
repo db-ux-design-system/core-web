@@ -8,6 +8,8 @@ $default-border-radius: 4px;
 $default-card-border-radius: var(--default-card-border-radius, 8px);
 $default-opacity: 0.25;
 
+$default-mobile-header-height: to-rem(56);
+
 %default-adaptive-border {
 	border: solid 1px var(--db-current-color, $db-colors-neutral-on-bg-enabled);
 }
@@ -19,7 +21,7 @@ $default-opacity: 0.25;
 %component-border {
 	border: solid 1px
 		var(
-			--db-current-border-weak-color,
+			--db-current-border-weak-enabled,
 			$db-colors-neutral-border-weak-enabled
 		);
 }
@@ -29,13 +31,8 @@ $default-opacity: 0.25;
 	border-radius: to-rem(4);
 }
 
-%default-color {
-	color: var(--db-current-color, $db-colors-neutral-on-bg-enabled);
-}
-
 %default-interactive-component {
 	@extend %default-adaptive-border;
-	@extend %default-color;
 	@extend %default-border-radius;
 }
 
@@ -45,6 +42,8 @@ $default-opacity: 0.25;
 		var(--db-transition-color, #{$db-transition-color});
 }
 
+$default-card-border-radius: var(--default-card-border-radius, 8px);
+
 %default-card {
 	border-radius: $default-card-border-radius;
 	box-shadow: $db-elevation-4;
@@ -52,20 +51,45 @@ $default-opacity: 0.25;
 
 %adaptive-critical-component {
 	@extend %db-bg-critical-transparent-semi;
-	@extend %db-bg-critical-transparent-semi-hover-state;
 }
 
 %adaptive-warning-component {
 	@extend %db-bg-warning-transparent-semi;
-	@extend %db-bg-warning-transparent-semi-hover-state;
 }
 
 %adaptive-informational-component {
 	@extend %db-bg-informational-transparent-semi;
-	@extend %db-bg-informational-transparent-semi-hover-state;
 }
 
 %adaptive-successful-component {
 	@extend %db-bg-successful-transparent-semi;
-	@extend %db-bg-successful-transparent-semi-hover-state;
+}
+
+@mixin screen($size: "s", $width: "min") {
+	$screen: $db-screens-s;
+	@if ($size == "xs") {
+		$screen: $db-screens-xs;
+	} @else if ($size == "m") {
+		$screen: $db-screens-m;
+	} @else if ($size == "l") {
+		$screen: $db-screens-l;
+	} @else if ($size == "xl") {
+		$screen: $db-screens-xl;
+	}
+
+	@if ($width == "min") {
+		@media screen and (min-width: $screen) {
+			&:not([force-mobile]) {
+				@content;
+			}
+		}
+	} @else {
+		&[force-mobile] {
+			@content;
+		}
+
+		@media screen and (max-width: $screen) {
+			@content;
+		}
+	}
 }

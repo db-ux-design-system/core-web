@@ -39,9 +39,11 @@
 		"showcases/react-showcase/src/components/radio/index.tsx",
 		"showcases/react-showcase/src/components/alert/index.tsx",
 		"showcases/vue-showcase/src/components/form/Form.vue",
+		"showcases/angular-showcase/.angular/cache/**",
 		"packages/components/src/components/**/*.spec.tsx",
 		"packages/components/src/components/tag/tag.spec.tsx",
 		"**/**config.ts",
+		"**/navigation-items.ts",
 		"packages/foundations/assets/icons/functional/fonts/sources/*.json"
 	],
 	"absolute": true

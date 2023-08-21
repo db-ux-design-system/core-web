@@ -1,11 +1,11 @@
-import { DBCodeDocs, DBDivider, DBLink } from './src';
+import { useRouter } from 'next/router';
+import { useEffect, useState } from 'react';
 import type {
 	DefaultComponentProps,
 	DefaultComponentVariants
 } from '../../shared/default-component-data';
-import { useRouter } from 'next/router';
 import DefaultPage from './default-page';
-import { useEffect, useState } from 'react';
+import { DBCodeDocs, DBDivider, DBLink } from './src';
 
 const VariantList = ({ examples, slotCode }: DefaultComponentVariants) => (
 	<DBCodeDocs className="variants-card" slotCode={slotCode}>
@@ -35,7 +35,6 @@ const DefaultComponent = ({ title, variants }: DefaultComponentProps) => {
 					(variant) => variant.name.toLowerCase() === pageName
 				);
 				setFoundVariant(foundVariant);
-				console.log(pageName);
 			}
 		}
 	}, [router]);

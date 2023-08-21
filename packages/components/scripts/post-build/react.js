@@ -23,6 +23,14 @@ module.exports = (tmp) => {
 				{
 					from: `export default DB${upperComponentName};`,
 					to: `const DB${upperComponentName} = forwardRef(DB${upperComponentName}Fn);\nexport default DB${upperComponentName};`
+				},
+				{
+					from: 'if (ref.current)',
+					to: 'if (ref?.current)'
+				},
+				{
+					from: '[ref.current]',
+					to: '[ref]'
 				}
 			];
 

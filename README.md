@@ -75,7 +75,7 @@ Here is an overview of all components you can use:
 | Floating-Button                                                     | 02 - Action       |   ❌   |        ❌        |
 | Footer                                                              | 01 - Layout       |   ❌   |        ✅        |
 | Grid                                                                | 01 - Layout       |   ❌   |        ✅        |
-| Header                                                              | 01 - Layout       |   ❌   |        ✅        |
+| Header                                                              | 01 - Layout       |  Beta  |        ✅        |
 | [Icons](packages/components/src/components/icon)                    | 04 - Data-Display |  Beta  |        ✅        |
 | Image                                                               | 04 - Data-Display |   ❌   |        ✅        |
 | Indicator                                                           | 04 - Data-Display |   ❌   |        ❌        |

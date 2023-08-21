@@ -59,13 +59,12 @@ We use [Mitosis](https://github.com/BuilderIO/Mitosis/tree/main/docs) to develop
 
 1. You cannot use functions directly in a Mitosis component. A function has to be inside the `state`. So add your function to the `model.ts` `DBMyAwesomeComponentDefaultState`. Then you can define your component inside the `.tsx` file and use it in the `jsx` with `state.myAwsomeFunction()`.
 2. Try to enable multiple ways of data-binding: For example in `select` you are able to pass in a list of `<option>` via the `props.children` similiar to standard HTML composition, but we also give the developers the possibility to pass in a stripped down option list via another property: `options?: DBSelectOptionType[]`. We populate this with the internal `<For>` from Mitosis.
-Why do we do this? We have multiple frameworks and all behave differently. With multiple ways of data-binding we try to provide a JS framework native experience as closely as we can.
+   Why do we do this? We have multiple frameworks and all behave differently. With multiple ways of data-binding we try to provide a JS framework native experience as closely as we can.
 3. Try to parameterize a lot: For example if your component includes an icon button you should give it a text for accessibility. You should provide a default text, so it can't be empty, but you should also let the user change it with a property e.g. `iconButtonText`.
 4. To enable some native functionalities for Vue and Angular (`v-model` and `[(ng-model)]`) you might need to add some extra code to your component. At the generation process you might select `formValue` anyhow, but otherwise take a look at the `input` to see what you need to add to make this work.
 5. Angular is pain... There are some issues with Angular and how this framework works:
 
-    1. There are some `css` selectors which do not work in Angular for example `:empty`, because Angular adds a comment in a component for data-binding.
-    2. Angular generates custom HTML tags as wrappers, which might influence your `css` selectors. For example if we have a button inside our component and we try to change the styling with `.db-button: {xxx:abc;}` it would not add the styling to the button. As a workaround you should write `.db-button, .db-button > button: {xxx:abc;}` to cover Angular as well:
+    1. Angular generates custom HTML tags as wrappers, which might influence your `css` selectors. For example if we have a button inside our component and we try to change the styling with `.db-button: {xxx:abc;}` it would not add the styling to the button. As a workaround you should write `.db-button, .db-button > button: {xxx:abc;}` to cover Angular as well:
 
     ```html
     <db-my-awesome-component>
@@ -80,7 +79,7 @@ Why do we do this? We have multiple frameworks and all behave differently. With 
     </db-my-awesome-component>
     ```
 
-    3. You cannot use multiple slots with the same name. In other frameworks you can use the `<Slot name="bla">` multiple times like this `<div class="my-awesome-component"><Slot name="bla"><Slot name="bla"></div>` but in Angular only the last one would be shown in the DOM. As a workaround you have to create a `Directive`. We automate this via the `packages/components/scripts/post-build/components.js` as an example take a look at the `header` to see how it works.
+    2. You cannot use multiple slots with the same name. In other frameworks you can use the `<Slot name="bla">` multiple times like this `<div class="my-awesome-component"><Slot name="bla"><Slot name="bla"></div>` but in Angular only the last one would be shown in the DOM. As a workaround you have to create a `Directive`. We automate this via the `packages/components/scripts/post-build/components.js` as an example look at the `header` to see how it works.
 
 ## Test Frameworks with Showcases
 
