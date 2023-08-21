@@ -45,13 +45,13 @@
 }
 
 .db-header-meta-navigation {
+	@extend %db-bg-neutral-transparent-semi;
 	@extend %db-ui-functional;
 	@include divider("top");
 	display: flex;
 	flex-direction: column;
 	gap: $db-spacing-fixed-sm;
 	justify-content: end;
-	background-color: $db-colors-neutral-bg-2-enabled;
 
 	padding: $db-spacing-fixed-md;
 
@@ -59,10 +59,10 @@
 		padding: $db-spacing-fixed-xs $db-spacing-fixed-md;
 		margin: 0;
 		flex-direction: row;
-	}
 
-	&:empty {
-		display: none;
+		&:empty {
+			display: none;
+		}
 	}
 }
 
