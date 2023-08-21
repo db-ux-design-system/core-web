@@ -150,6 +150,7 @@
 		margin-block: $db-spacing-fixed-2xs 0;
 	}
 
+	// Most likely this wouldn't work on MacOS, but we're still progressively enhancing Windows by this
 	option {
 		background-color: var(--db-current-bg-color);
 	}
