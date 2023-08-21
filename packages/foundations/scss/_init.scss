@@ -8,7 +8,6 @@
 	// TODO: probably move these to the tokens as well
 	--db-focus-outline-offset: 1px;
 	--db-focus-outline-color: #{$db-colors-informational};
-	--db-focus-outline-transition-duration: #{$db-transition-duration-ultra-fast};
 	--db-focus-outline-size: max(2px, 0.08em);
 	--db-disabled-text-opacity: 0.5;
 }
@@ -76,8 +75,6 @@ iframe {
 // Focus styles
 %focus-placeholder,
 :is(a, button, input, textarea, summary, select) {
-	transition: outline var(--db-focus-outline-transition-duration);
-
 	&:focus-visible {
 		outline: var(--db-focus-outline-size)
 			var(--db-focus-outline-style, solid)

@@ -35,7 +35,11 @@ $default-mobile-header-height: to-rem(56);
 
 %default-color-transition {
 	transition:
-		outline var(--db-transition-color, #{$db-transition-color}),
+		outline
+			var(
+				--db-transition-duration-ultra-fast,
+				#{$db-transition-duration-ultra-fast}
+			),
 		background-color var(--db-transition-color, #{$db-transition-color}),
 		color var(--db-transition-color, #{$db-transition-color});
 }
