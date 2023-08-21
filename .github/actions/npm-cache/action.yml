@@ -10,6 +10,10 @@ inputs:
     description: "Path for package-lock.json"
     required: false
     default: "**/package-lock.json"
+  nodeVersion:
+    description: "Node version"
+    required: false
+    default: "18"
 outputs:
   cache-hit:
     description: "A boolean value to indicate an exact match was found for the primary key"
@@ -22,7 +26,8 @@ runs:
       # https://github.com/actions/setup-node
       uses: actions/setup-node@v3
       with:
-        node-version: 18
+        node-version: ${{ inputs.nodeVersion }}
+        cache: "npm"
 
     - name: Display node and npm version
       shell: bash
@@ -32,16 +37,16 @@ runs:
 
     - name: ⏬ Init Cache
       uses: actions/cache@v3
-      id: "npm-cache"
+      id: "cache"
       with:
         path: ${{ inputs.nodeModulesPath }}
-        key: ${{ runner.os }}-node-${{ hashFiles(inputs.packageLockPath) }}
+        key: ${{ runner.os }}-node-${{ inputs.nodeVersion }}-${{ hashFiles(inputs.packageLockPath) }}
         restore-keys: |
-          ${{ runner.os }}-node-
+          ${{ runner.os }}-node-${{ inputs.nodeVersion }}
 
     - name: 🥊 Set cache-hit
       id: "set-cache"
       run: echo "cache-hit=$CACHE_HIT" >> $GITHUB_OUTPUT
       shell: bash
       env:
-        CACHE_HIT: ${{steps.npm-cache.outputs.cache-hit}}
+        CACHE_HIT: ${{steps.cache.outputs.cache-hit}}
