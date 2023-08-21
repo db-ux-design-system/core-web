@@ -1,26 +1,28 @@
 import {
+	ChangeEventProps,
+	ChangeEventState,
+	DefaultVariantProps,
+	DefaultVariantType,
 	FocusEventProps,
 	FocusEventState,
-	GlobalTextProps,
-	ValidEventProps,
-	ChangeEventState,
-	ChangeEventProps,
+	FormMessageProps,
+	FormProps,
+	FormReadonlyProps,
+	FormState,
 	GlobalProps,
 	GlobalState,
-	DefaultVariantType,
-	FormProps,
-	FormState,
+	GlobalTextProps,
+	IconAfterProps,
 	IconProps,
-	IconState,
-	DefaultVariantProps,
+	IconVariantState,
+	IconVisibleState,
 	KeyValueType,
-	IconAfterProps
+	ValidEventProps
 } from '../../shared/model';
 
 export type DBInputDefaultProps = {
 	dataList?: KeyValueType[];
 	dataListId?: string;
-	description?: string;
 	type?:
 		| 'text'
 		| 'search'
@@ -34,7 +36,6 @@ export type DBInputDefaultProps = {
 		| 'datetime-local'
 		| 'week'
 		| 'color';
-	value?: any;
 	variant?: DefaultVariantProps;
 };
 
@@ -47,7 +48,9 @@ export type DBInputProps = DBInputDefaultProps &
 	FormProps &
 	IconProps &
 	IconAfterProps &
-	DefaultVariantProps;
+	DefaultVariantProps &
+	FormMessageProps &
+	FormReadonlyProps;
 
 export type DBInputDefaultState = {
 	_dataListId?: string;
@@ -59,4 +62,5 @@ export type DBInputState = DBInputDefaultState &
 	ChangeEventState &
 	FocusEventState &
 	FormState &
-	IconState;
+	IconVisibleState &
+	IconVariantState;

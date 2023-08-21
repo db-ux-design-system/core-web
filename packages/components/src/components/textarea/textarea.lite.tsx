@@ -28,24 +28,23 @@ export default function DBTextarea(props: DBTextareaProps) {
 	let component: any;
 	// jscpd:ignore-start
 	const state = useStore<DBTextareaState>({
-		_infomsg: '',
 		_id: DEFAULT_ID,
 		_isValid: undefined,
 		defaultValues: {
 			label: DEFAULT_LABEL,
 			placeholder: ' ',
-			rows: '2',
+			rows: '4',
 			cols: '33'
 		},
 		iconVisible: (icon?: string) => {
 			return Boolean(icon && icon !== '_' && icon !== 'none');
 		},
-		getIcon: (variant?: DefaultVariantType) => {
-			if (variant) {
-				return DefaultVariantsIcon[variant];
+		getVariantIcon: (icon?: string, variant?: string) => {
+			if (state.iconVisible(icon)) {
+				return icon;
 			}
 
-			return '';
+			return (variant && DefaultVariantsIcon[variant]) || 'none';
 		},
 		handleChange: (event: any) => {
 			if (props.onChange) {
@@ -96,10 +95,6 @@ export default function DBTextarea(props: DBTextareaProps) {
 		}
 
 		state._id = props.id || 'textarea-' + uuid();
-
-		if (props.infomsg) {
-			state._infomsg = props.infomsg;
-		}
 	});
 	// jscpd:ignore-end
 
@@ -111,32 +106,46 @@ export default function DBTextarea(props: DBTextareaProps) {
 			<Show when={state.stylePath}>
 				<link rel="stylesheet" href={state.stylePath} />
 			</Show>
+
 			<label
 				htmlFor={state._id}
 				aria-hidden="true"
+				data-overflow={props.overflow}
 				id={state._id + '-label'}>
 				{props.label ?? state.defaultValues.label}
 			</label>
-			{/* prettier-ignore */}
+
 			<textarea
 				id={state._id}
+				data-resize={props.resize}
+				autoComplete={props.autoComplete}
+				autoFocus={props.autoFocus}
 				disabled={props.disabled}
+				required={props.required}
+				readOnly={props.readonly}
 				onChange={(event) => state.handleChange(event)}
 				onBlur={(event) => state.handleBlur(event)}
 				onFocus={(event) => state.handleFocus(event)}
-				defaultValue={props.defaultValue}
+				defaultValue={props.defaultValue ?? props.children}
 				value={props.value}
-				rows={props.rows ?? state.defaultValues.rows}
-				cols={props.cols ?? state.defaultValues.cols}
 				placeholder={
 					props.placeholder ?? state.defaultValues.placeholder
-				}>{props.children}</textarea>
-			<DBInfotext
-				size="medium"
-				variant={props.variant}
-				icon={props.icon || state.getIcon(props.variant)}>
-				{props.infomsg}
-			</DBInfotext>
+				}
+				rows={props.rows ?? state.defaultValues.rows}
+				cols={props.cols ?? state.defaultValues.cols}
+			/>
+
+			<Show when={props.message}>
+				<DBInfotext
+					size="small"
+					variant={props.variant}
+					icon={state.getVariantIcon(
+						props.messageIcon,
+						props.variant
+					)}>
+					{props.message}
+				</DBInfotext>
+			</Show>
 		</div>
 	);
 }

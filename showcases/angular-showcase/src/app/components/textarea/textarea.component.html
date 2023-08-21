@@ -13,12 +13,14 @@
 		<db-textarea
 			[variant]="exampleProps.variant"
 			[label]="exampleProps.label"
-			[description]="exampleProps.description"
-			[minLength]="exampleProps.minLength"
 			[required]="exampleProps.required"
 			[disabled]="exampleProps.disabled"
+			[readonly]="exampleProps.readonly"
 			[value]="exampleProps.value"
-			[icon]="exampleProps.icon"
-			[iconAfter]="exampleProps.iconAfter"></db-textarea>
+			[cols]="exampleProps.cols"
+			[rows]="exampleProps.rows"
+			[placeholder]="exampleProps.placeholder || exampleName"
+			[message]="exampleProps.message"
+		></db-textarea>
 	</ng-template>
 </app-default-component>

@@ -42,7 +42,7 @@ export default function DBAlert(props: DBAlertProps) {
 				props.onClick(event);
 			}
 		},
-		getIcon: (icon?: string, variant?: string) => {
+		getVariantIcon: (icon?: string, variant?: string) => {
 			if (state.iconVisible(icon)) {
 				return icon;
 			}
@@ -68,7 +68,7 @@ export default function DBAlert(props: DBAlertProps) {
 			aria-live={props.ariaLive}
 			data-variant={props.variant}
 			data-type={props.type}
-			data-icon={state.getIcon(props.icon, props.variant)}
+			data-icon={state.getVariantIcon(props.icon, props.variant)}
 			data-elevation={props.elevation}>
 			<Show when={state.stylePath}>
 				<link rel="stylesheet" href={state.stylePath} />

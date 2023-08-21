@@ -3,5 +3,5 @@ import { test } from '@playwright/test';
 import { getDefaultScreenshotTest } from '../default.ts';
 
 test.describe('DBTextarea', () => {
-	getDefaultScreenshotTest('textarea');
+	getDefaultScreenshotTest('03/textarea');
 });

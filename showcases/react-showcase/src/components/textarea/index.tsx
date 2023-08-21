@@ -12,22 +12,25 @@ const handleChange = (evt) => {
 const getTextarea = ({
 	cols,
 	disabled,
-	icon,
-	infomsg,
+	message,
 	label,
 	placeholder,
 	rows,
 	value,
-	variant
+	variant,
+	readonly,
+	required,
+	children
 }: DBTextareaProps) => (
 	<DBTextarea
 		cols={cols}
 		disabled={disabled}
-		icon={icon}
-		infomsg={infomsg}
+		message={message}
 		label={label}
+		readonly={readonly}
 		onChange={handleChange}
-		placeholder={placeholder}
+		required={required}
+		placeholder={placeholder ?? children}
 		rows={rows}
 		defaultValue={value}
 		variant={variant}></DBTextarea>

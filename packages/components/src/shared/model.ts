@@ -83,8 +83,19 @@ export type IconAfterProps = {
 	iconAfter?: IconTypes;
 };
 
-export type IconState = {
+export type IconVisibleState = {
 	iconVisible: (icon?: string) => boolean;
+};
+
+export type IconVariantState = {
+	getVariantIcon: (icon?: string, variant?: DefaultVariantType) => string;
+};
+
+export type OverflowProps = {
+	/**
+	 * The overflow attribute sets a max-width and longer text will be dotted.
+	 */
+	overflow?: boolean;
 };
 
 export type WidthProps = {
@@ -119,6 +130,10 @@ export type FormProps = {
 	disabled?: boolean;
 
 	/**
+	 * Marks an input element as invalid.
+	 */
+	invalid?: boolean;
+	/**
 	 * The label attribute specifies the caption of the form element.
 	 */
 	label?: string;
@@ -130,15 +145,11 @@ export type FormProps = {
 	 * When the required attribute specified, the user will be required to fill the form element before submitting the form.
 	 */
 	required?: boolean;
+
 	/**
 	 * The value property is to receive results from the native form element.
 	 */
 	value?: any;
-
-	/**
-	 * Marks an input element as invalid.
-	 */
-	invalid?: boolean;
 };
 
 export type FormCheckProps = {
@@ -146,6 +157,19 @@ export type FormCheckProps = {
 	 * Define the radio or checkbox elements checked state
 	 */
 	checked?: boolean;
+};
+
+export type FormReadonlyProps = {
+	/**
+	 * The disabled attribute can be set to keep a user from edit on the form element
+	 */
+	readonly?: boolean;
+};
+
+export type FormMessageProps = {
+	message?: string;
+	messageIcon?: IconTypes;
+	messageWrap?: string;
 };
 
 export type FormState = {

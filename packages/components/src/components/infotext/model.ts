@@ -4,6 +4,7 @@ import {
 	GlobalProps,
 	GlobalState,
 	IconProps,
+	IconVariantState,
 	SizeProps
 } from '../../shared/model';
 
@@ -15,8 +16,8 @@ export type DBInfotextProps = DBInfotextDefaultProps &
 	IconProps &
 	SizeProps;
 
-export interface DBInfotextDefaultState {
-	getIcon: (icon?: string, variant?: DefaultVariantType) => string;
-}
+export interface DBInfotextDefaultState {}
 
-export type DBInfotextState = DBInfotextDefaultState & GlobalState;
+export type DBInfotextState = DBInfotextDefaultState &
+	GlobalState &
+	IconVariantState;

@@ -12,6 +12,7 @@ import { DEFAULT_ID, DEFAULT_LABEL } from '../../shared/constants';
 import { uuid } from '../../utils';
 import { DBIcon } from '../icon';
 import { DefaultVariantsIcon, DefaultVariantType } from '../../shared/model';
+import { DBInfotext } from '../infotext';
 
 useMetadata({
 	isAttachedToShadowDom: true,
@@ -77,8 +78,22 @@ export default function DBSelect(props: DBSelectProps) {
 				props.focus(event);
 			}
 		},
+		iconVisible: (icon?: string) => {
+			return Boolean(icon && icon !== '_' && icon !== 'none');
+		},
 		getIcon: (variant?: DefaultVariantType) => {
-			return variant ? DefaultVariantsIcon[variant] : '';
+			if (variant) {
+				return DefaultVariantsIcon[variant];
+			}
+
+			return '';
+		},
+		getVariantIcon: (icon?: string, variant?: string) => {
+			if (state.iconVisible(icon)) {
+				return icon;
+			}
+
+			return (variant && DefaultVariantsIcon[variant]) || 'none';
 		},
 		getOptionLabel: (option: DBSelectOptionType) => {
 			return option.label ?? option.value.toString();
@@ -107,93 +122,86 @@ export default function DBSelect(props: DBSelectProps) {
 	// jscpd:ignore-end
 
 	return (
-		<>
-			<div
-				class={cls('db-select', props.className)}
-				data-variant={props.variant}
-				data-icon={props.icon}>
-				<Show when={state.stylePath}>
-					<link rel="stylesheet" href={state.stylePath} />
-				</Show>
-				{/* Required has to be true to use floating label */}
-				{/* data-value is used in css to check if value is set */}
-				<select
-					ref={component}
-					data-value={props.value || state._value}
-					aria-invalid={props.invalid}
-					aria-required={props.required}
-					required={props.required}
-					disabled={props.disabled}
-					id={state._id}
-					name={props.name}
-					value={props.value || state._value}
-					onClick={(event) => state.handleClick(event)}
-					onChange={(event) => state.handleChange(event)}
-					onBlur={(event) => state.handleBlur(event)}
-					onFocus={(event) => state.handleFocus(event)}>
-					{/* Empty option for floating label */}
-					<option hidden></option>
-					<Show when={props.options}>
-						<For each={props.options}>
-							{(option: DBSelectOptionType) => (
-								<>
-									<Show when={option.options}>
-										<optgroup
-											key={'optgroup-' + option.value}
-											label={state.getOptionLabel(
-												option
-											)}>
-											<For each={option.options}>
-												{(
-													optgroupOption: DBSelectOptionType
-												) => (
-													<option
-														key={
-															'option-' +
-															optgroupOption.value
-														}
-														value={
-															optgroupOption.value
-														}
-														disabled={
-															optgroupOption.disabled
-														}>
-														{state.getOptionLabel(
-															optgroupOption
-														)}
-													</option>
-												)}
-											</For>
-										</optgroup>
-									</Show>
-									<Show when={!option.options}>
-										<option
-											key={'option-' + option.value}
-											value={option.value}
-											disabled={option.disabled}>
-											{state.getOptionLabel(option)}
-										</option>
-									</Show>
-								</>
-							)}
-						</For>
-					</Show>
-					{props.children}
-				</select>
-				<label htmlFor={state._id}>
-					{props.label ?? DEFAULT_LABEL}
-				</label>
-
-				<Show when={props.variant}>
-					<DBIcon
-						icon={state.getIcon(props.variant)}
-						class="icon-state"
-					/>
-				</Show>
-			</div>
-			<Show when={props.description}>
-				<p class="description">{props.description}</p>
+		<div
+			class={cls('db-select', props.className)}
+			data-variant={props.variant}
+			data-icon={props.icon}>
+			<Show when={state.stylePath}>
+				<link rel="stylesheet" href={state.stylePath} />
 			</Show>
-		</>
+			{/* Required has to be true to use floating label */}
+			{/* data-value is used in css to check if value is set */}
+			<select
+				ref={component}
+				data-value={props.value || state._value}
+				aria-invalid={props.invalid}
+				aria-required={props.required}
+				required={props.required}
+				disabled={props.disabled}
+				id={state._id}
+				name={props.name}
+				value={props.value || state._value}
+				onClick={(event) => state.handleClick(event)}
+				onChange={(event) => state.handleChange(event)}
+				onBlur={(event) => state.handleBlur(event)}
+				onFocus={(event) => state.handleFocus(event)}>
+				{/* Empty option for floating label */}
+				<option hidden></option>
+				<Show when={props.options}>
+					<For each={props.options}>
+						{(option: DBSelectOptionType) => (
+							<>
+								<Show when={option.options}>
+									<optgroup
+										key={'optgroup-' + option.value}
+										label={state.getOptionLabel(option)}>
+										<For each={option.options}>
+											{(
+												optgroupOption: DBSelectOptionType
+											) => (
+												<option
+													key={
+														'option-' +
+														optgroupOption.value
+													}
+													value={optgroupOption.value}
+													disabled={
+														optgroupOption.disabled
+													}>
+													{state.getOptionLabel(
+														optgroupOption
+													)}
+												</option>
+											)}
+										</For>
+									</optgroup>
+								</Show>
+								<Show when={!option.options}>
+									<option
+										key={'option-' + option.value}
+										value={option.value}
+										disabled={option.disabled}>
+										{state.getOptionLabel(option)}
+									</option>
+								</Show>
+							</>
+						)}
+					</For>
+				</Show>
+				{props.children}
+			</select>
+			<label htmlFor={state._id}>{props.label ?? DEFAULT_LABEL}</label>
+			<Show when={props.message}>
+				<DBInfotext
+					size="small"
+					variant={props.variant}
+					icon={state.getVariantIcon(
+						props.messageIcon,
+						props.variant
+					)}>
+					{props.message}
+				</DBInfotext>
+			</Show>
+		</div>
 	);
 }

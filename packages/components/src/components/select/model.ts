@@ -12,7 +12,8 @@ import {
 	FormState,
 	DefaultVariantProps,
 	IconProps,
-	DefaultVariantType
+	DefaultVariantType,
+	IconVariantState, FormMessageProps, IconVisibleState
 } from '../../shared/model';
 
 export interface DBSelectDefaultProps {
@@ -58,7 +59,8 @@ export type DBSelectProps = DBSelectDefaultProps &
 	ValidEventProps &
 	FormProps &
 	DefaultVariantProps &
-	IconProps;
+	IconProps &
+	FormMessageProps;
 
 export interface DBSelectDefaultState {
 	getIcon: (variant?: DefaultVariantType) => string;
@@ -71,4 +73,6 @@ export type DBSelectState = DBSelectDefaultState &
 	ClickEventState &
 	ChangeEventState &
 	FocusEventState &
-	FormState;
+	FormState &
+	IconVisibleState &
+	IconVariantState;

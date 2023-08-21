@@ -53,7 +53,7 @@ export default function DBInfotext(props: DBInfotextProps) {
 	let component: any;
 	// jscpd:ignore-start
 	const state = useStore<DBInfotextState>({
-		getIcon: (icon?: string, variant?: string) => {
+		getVariantIcon: (icon?: string, variant?: string) => {
 			return icon || (variant && DefaultVariantsIcon[variant]) || 'info';
 		}
 	});
@@ -71,7 +71,7 @@ export default function DBInfotext(props: DBInfotextProps) {
 			ref={component}
 			class={cls('db-infotext', props.className)}
 			title={props.title}
-			data-icon={state.getIcon(props.icon, props.variant)}
+			data-icon={state.getVariantIcon(props.icon, props.variant)}
 			data-variant={props.variant}
 			data-size={props.size}>
 			<Show when={state.stylePath}>

@@ -8,9 +8,10 @@ import {
 	FormProps,
 	FormState,
 	IconProps,
-	IconState,
+	IconVisibleState,
 	FormCheckProps,
-	InitializedState
+	InitializedState,
+	OverflowProps
 } from '../../shared/model';
 
 export interface DBTagDefaultProps {
@@ -32,10 +33,6 @@ export interface DBTagDefaultProps {
 	 */
 	onRemove?: () => void;
 	/**
-	 * The overflow attribute sets a max-width and longer text will be dotted.
-	 */
-	overflow?: boolean;
-	/**
 	 * The removeButton attribute shows the cancel button.
 	 */
 	removeButton?: string;
@@ -55,7 +52,8 @@ export type DBTagProps = DBTagDefaultProps &
 	FormProps &
 	FormCheckProps &
 	IconProps &
-	DefaultVariantProps;
+	DefaultVariantProps &
+	OverflowProps;
 
 export interface DBTagDefaultState {
 	getRemoveButtonText?: () => string;
@@ -69,4 +67,4 @@ export type DBTagState = DBTagDefaultState &
 	ChangeEventState &
 	FormState &
 	InitializedState &
-	IconState;
+	IconVisibleState;

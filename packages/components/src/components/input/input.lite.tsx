@@ -9,6 +9,7 @@ import {
 	DefaultVariantsIcon,
 	KeyValueType
 } from '../../shared/model';
+import { DBInfotext } from '../infotext';
 
 useMetadata({
 	isAttachedToShadowDom: true,
@@ -62,6 +63,13 @@ export default function DBInput(props: DBInputProps) {
 			}
 
 			return '';
+		},
+		getVariantIcon: (icon?: string, variant?: string) => {
+			if (state.iconVisible(icon)) {
+				return icon;
+			}
+
+			return (variant && DefaultVariantsIcon[variant]) || 'none';
 		},
 		handleChange: (event: any) => {
 			if (props.onChange) {
@@ -145,6 +153,7 @@ export default function DBInput(props: DBInputProps) {
 				minLength={props.minLength}
 				max={props.max}
 				min={props.min}
+				readOnly={props.readonly}
 				pattern={props.pattern}
 				onChange={(event) => state.handleChange(event)}
 				onBlur={(event) => state.handleBlur(event)}
@@ -157,15 +166,6 @@ export default function DBInput(props: DBInputProps) {
 				id={state._id + '-label'}>
 				<span>{props.label ?? state.defaultValues.label}</span>
 			</label>
-			<Show when={props.description}>
-				<p class="description">{props.description}</p>
-			</Show>
-			<Show when={props.variant || props.required || props.pattern}>
-				<DBIcon
-					icon={state.getIcon(props.variant)}
-					class="icon-state"
-				/>
-			</Show>
 			<Show when={state.iconVisible(props.iconAfter)}>
 				<DBIcon icon={props.iconAfter} class="icon-after" />
 			</Show>
@@ -186,6 +186,18 @@ export default function DBInput(props: DBInputProps) {
 			</Show>
 
 			{props.children}
+
+			<Show when={props.message}>
+				<DBInfotext
+					size="small"
+					variant={props.variant}
+					icon={state.getVariantIcon(
+						props.messageIcon,
+						props.variant
+					)}>
+					{props.message}
+				</DBInfotext>
+			</Show>
 		</div>
 	);
 }

@@ -31,20 +31,20 @@ const getComponents = () => [
 			}
 		},
 		overwrites: {
-			react: [
+			angular: [
 				{
-					from: '{props.children}',
+					from: '[attr.defaultValue]="defaultValue || children"',
 					to: ''
 				},
 				{
-					from: 'defaultValue={props.defaultValue}',
-					to: 'defaultValue={props.children || props.defaultValue}'
+					from: '</textarea>',
+					to: '{{value || defaultValue}}</textarea>'
 				}
 			],
-			angular: [
+			vue: [
 				{
-					from: '<ng-content></ng-content>',
-					to: '{{value || defaultValue}}'
+					from: ':defaultValue="defaultValue || $slots.default"',
+					to: ''
 				}
 			]
 		}

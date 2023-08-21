@@ -2,24 +2,28 @@ import {
 	ChangeEventProps,
 	ChangeEventState,
 	DefaultVariantProps,
-	DefaultVariantType,
 	FocusEventProps,
 	FocusEventState,
+	FormMessageProps,
 	FormProps,
+	FormReadonlyProps,
 	FormState,
 	GlobalProps,
 	GlobalState,
 	GlobalTextProps,
 	IconProps,
-	IconState,
+	IconVariantState,
+	IconVisibleState,
+	OverflowProps,
 	ValidEventProps
 } from '../../shared/model';
 
 export interface DBTextareaDefaultProps {
+	autoComplete?: 'on' | 'off';
+	autoFocus?: boolean;
 	cols?: number;
-	infomsg?: string;
 	rows?: number;
-	variant?: DefaultVariantProps;
+	resize?: 'none' | 'both' | 'horizontal' | 'vertical';
 }
 
 export type DBTextareaProps = DBTextareaDefaultProps &
@@ -30,16 +34,16 @@ export type DBTextareaProps = DBTextareaDefaultProps &
 	FormProps &
 	GlobalProps &
 	GlobalTextProps &
-	IconProps;
+	FormMessageProps &
+	OverflowProps &
+	FormReadonlyProps;
 
-export interface DBTextareaDefaultState {
-	_infomsg: string;
-	getIcon: (variant?: DefaultVariantType) => string;
-}
+export interface DBTextareaDefaultState {}
 
 export type DBTextareaState = DBTextareaDefaultState &
 	ChangeEventState &
 	FocusEventState &
 	FormState &
 	GlobalState &
-	IconState;
+	IconVisibleState &
+	IconVariantState;

@@ -81,15 +81,6 @@ const reset = () => {
 						v-model:value="textareavModel"
 					/>
 					<DBTextarea
-						label="Textarea default-value"
-						placeholder="Placeholder"
-						description="Description"
-						icon="account"
-						name="textareaDefaultValue-name"
-						:default-value="textareaDefaultValue"
-						@change="textareaDefaultValue = $event.target.value"
-					/>
-					<DBTextarea
 						label="Textarea value"
 						placeholder="Placeholder"
 						description="Description"
@@ -158,7 +149,7 @@ const reset = () => {
 				<dt>textarea value</dt>
 				<dd>{{ textarea || "No Textarea set" }}</dd>
 				<dt>textarea defaultValue</dt>
-				<dd>{{ textareaDefaultValue || "No Input set" }}</dd>
+				<dd>{{ textareaDefaultValue || "No Input set" }}</dd>
 				<dt>radio value</dt>
 				<dd>{{ radio ? radio : "No radio set" }}</dd>
 				<dt>checkbox value</dt>

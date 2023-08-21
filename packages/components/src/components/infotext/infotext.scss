@@ -17,10 +17,6 @@
 
 	&[data-size="small"] {
 		@extend %db-overwrite-font-size-xs;
-
-		&::before {
-			display: none;
-		}
 	}
 
 	@each $name, $colors in $component-variants {
