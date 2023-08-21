@@ -54,7 +54,6 @@
 }
 
 .db-alert {
-	@extend %db-bg-neutral-0;
 	@extend %component-border;
 	@extend %grid-layout;
 	display: grid;
@@ -115,8 +114,6 @@
 			} @else if ($name == "successful") {
 				@extend %db-bg-successful;
 			}
-
-			--db-current-border-color: #{map.get($colors, "border")};
 
 			&::before {
 				color: map.get($colors, "element");

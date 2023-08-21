@@ -10,7 +10,6 @@
 $font-size-height: calc(var(--db-base-font-size) * var(--db-base-line-height));
 
 .db-checkbox {
-	@extend %default-color;
 	@extend %bg-transparent-interactive;
 
 	align-content: center;
@@ -19,7 +18,8 @@ $font-size-height: calc(var(--db-base-font-size) * var(--db-base-line-height));
 
 	aspect-ratio: 1;
 
-	border: max(calc(#{$font-size-height} / 16 + 0.5px), 2px) solid currentColor;
+	border: max(calc(#{$font-size-height} / 16 + 0.5px), 2px) solid
+		$db-colors-neutral-on-bg;
 	border-radius: $default-border-radius;
 
 	display: inline-flex;
@@ -42,7 +42,7 @@ $font-size-height: calc(var(--db-base-font-size) * var(--db-base-line-height));
 	}
 
 	&:checked {
-		@extend %db-secondary-component-ia;
+		@extend %db-bg-inverted-ia;
 
 		// Check icon
 		@include icon(glyph(done), 24, "outline");

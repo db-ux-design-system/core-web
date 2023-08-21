@@ -7,22 +7,34 @@ import { getVariants } from '../data';
 const getNavigationItem = ({
 	children,
 	icon,
-	iconAfter,
 	disabled,
 	active,
-	width
+	width,
+	areaPopup
 }: DBNavigationItemProps) => (
 	<DBNavigationItem
 		icon={icon}
-		iconAfter={iconAfter}
 		disabled={disabled}
 		active={active}
 		width={width}
+		areaPopup={areaPopup}
 		onClick={() => {
 			// eslint-disable-next-line no-alert
 			alert(children.toString());
-		}}>
-		{children}
+		}}
+		slotSubNavigation={
+			areaPopup && (
+				<>
+					<DBNavigationItem>
+						<a href="#">Test1</a>
+					</DBNavigationItem>
+					<DBNavigationItem>
+						<a href="#">Test2</a>
+					</DBNavigationItem>
+				</>
+			)
+		}>
+		{areaPopup ? children : <a href="#">{children}</a>}
 	</DBNavigationItem>
 );
 

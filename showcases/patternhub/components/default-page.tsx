@@ -1,44 +1,20 @@
-// TODO: Import @db-ui/react-components after those have been migrated
-import {
-	DbBrand,
-	DbFooter,
-	DbHeader,
-	DbMainnavigation,
-	DbPage,
-	GithubVersionSwitcher
-} from '@db-ui/react-elements';
-import StaticContent from './static-content';
-import { getRouteWithBasePath, ROUTES } from '../data/routes';
-import '@db-ui/core/dist/css/db-ui-core.vars.css';
 import { useRouter } from 'next/router';
-import { DbMainnavigationDataType } from '@db-ui/elements/dist/types/components/db-mainnavigation/db-mainnavigation-type';
 import { useEffect, useState } from 'react';
-
-const getRoutesWithCurrent = (
-	routes: DbMainnavigationDataType[],
-	pathname: string
-): DbMainnavigationDataType[] => {
-	if (!routes) {
-		return [];
-	}
-
-	return routes
-		.map((route) => ({
-			...route,
-			current:
-				(route.link === '/' && pathname === '/') ||
-				(route.link !== '/' && pathname.includes(route.link)),
-			children: route.children
-				? getRoutesWithCurrent(route.children, pathname)
-				: []
-		}))
-		.map((route) => getRouteWithBasePath(route));
-};
+import {
+	DBBrand,
+	DBButton,
+	DBHeader,
+	DBPage,
+	DBSection
+} from '../../../output/react/src';
+import StaticContent from './static-content';
+import Navigation from './navigation';
 
 const DefaultPage = ({ children }: any) => {
 	const [fullscreen, setFullscreen] = useState<boolean>(false);
 	const [noH1, setNoH1] = useState<boolean>(false);
 	const [properties, setProperties] = useState<boolean>(false);
+	const [drawerOpen, setDrawerOpen] = useState<boolean>(false);
 	const router = useRouter();
 
 	useEffect(() => {
@@ -60,29 +36,60 @@ const DefaultPage = ({ children }: any) => {
 				</div>
 			)}
 			{router.isReady && !fullscreen && (
-				<DbPage>
-					<DbHeader slot="header">
-						{/* TODO: provide correct https://db-ui.github.io/mono/* path later on in here */}
-						<DbBrand src="https://db-ui.github.io/images/db_logo.svg">
-							{process.env.NEXT_PUBLIC_APP_NAME}
-						</DbBrand>
-						<DbMainnavigation
-							data={JSON.stringify(
-								getRoutesWithCurrent(ROUTES, router.pathname)
-							)}
-						/>
-						{process.env.NEXT_PUBLIC_GITHUB_VERSION_SWITCHER ===
-							'true' && (
-							<GithubVersionSwitcher
-								owner={process.env.NEXT_PUBLIC_GITHUB_OWNER}
-								repo={process.env.NEXT_PUBLIC_GITHUB_REPO}
-							/>
-						)}
-					</DbHeader>
-					<div>{children}</div>
-
-					<DbFooter slot="footer" copyright />
-				</DbPage>
+				<DBPage
+					className="db-bg-neutral-0"
+					fadeIn
+					type="fixedHeaderFooter"
+					slotHeader={
+						<DBHeader
+							drawerOpen={drawerOpen}
+							onToggle={setDrawerOpen}
+							slotBrand={
+								<DBBrand
+									imgSrc="https://db-ui.github.io/images/db_logo.svg"
+									title={process.env.NEXT_PUBLIC_APP_NAME}
+									anchorChildren>
+									{process.env.NEXT_PUBLIC_APP_NAME}
+								</DBBrand>
+							}
+							slotMetaNavigation={
+								<>
+									/* TODO: Add github version switcher */
+									<a href="#">Link1</a>
+									<a href="#">Link2</a>
+									<a href="#">Link3</a>
+								</>
+							}
+							slotCallToAction={
+								/* TODO: Use DBSearchBar in future */
+								<DBButton icon="search" variant="text" noText>
+									Search
+								</DBButton>
+							}
+							slotActionBar={
+								<>
+									<DBButton
+										icon="account"
+										variant="text"
+										noText>
+										Profile
+									</DBButton>
+									<DBButton
+										icon="alert"
+										variant="text"
+										noText>
+										Notification
+									</DBButton>
+									<DBButton icon="help" variant="text" noText>
+										Help
+									</DBButton>
+								</>
+							}>
+							<Navigation />
+						</DBHeader>
+					}>
+					<DBSection size="none">{children}</DBSection>
+				</DBPage>
 			)}
 		</StaticContent>
 	);

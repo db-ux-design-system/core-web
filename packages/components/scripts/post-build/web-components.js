@@ -64,8 +64,9 @@ const workaroundAttributes = (lines) => {
 
 module.exports = () => {
 	for (const component of components) {
+		const filePath = `../../output/webcomponent/src/components/${component.name}/${component.name}.ts`;
 		const fixImports = {
-			files: `../../output/webcomponent/src/components/${component.name}/${component.name}.ts`,
+			files: filePath,
 			processor(input) {
 				let lines = input
 					.split('\n')
@@ -88,7 +89,7 @@ module.exports = () => {
 		};
 
 		const defaultStyleUrl = {
-			files: `../../output/webcomponent/src/components/${component.name}/${component.name}.ts`,
+			files: filePath,
 			from: 'this.state = {',
 			to: `this.state = {stylePath: "components/${component.name}/${component.name}-web-component.css",`
 		};
@@ -96,11 +97,18 @@ module.exports = () => {
 		try {
 			Replace.sync(fixImports);
 			Replace.sync(defaultStyleUrl);
-			if (
-				Fse.pathExistsSync(
-					`../../output/webcomponent/src/components/${component.name}/${component.name}.ts`
-				)
-			) {
+
+			if (component?.overwrites?.webComponents) {
+				for (const over of component.overwrites.webComponents) {
+					Replace.sync({
+						files: filePath,
+						from: over.from,
+						to: over.to
+					});
+				}
+			}
+
+			if (Fse.pathExistsSync(filePath)) {
 				Fse.moveSync(
 					`../../output/webcomponent/src/components/${component.name}/${component.name}.ts`,
 					`../../output/webcomponent/src/components/${component.name}/${component.name}.js`

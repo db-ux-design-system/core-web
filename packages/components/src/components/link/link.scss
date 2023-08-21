@@ -15,7 +15,6 @@
 }
 
 .db-link {
-	@extend %default-color;
 	@extend %db-link-height;
 	inline-size: fit-content;
 	align-items: center;
@@ -25,18 +24,17 @@
 	text-underline-position: from-font;
 	text-decoration-thickness: to-rem($pxValue: 1);
 
-	// Changing color on hover should be animated by a transition
-	transition:
-		outline 0.06s,
-		color $db-transition-color;
+	&:hover {
+		color: color-mix(in srgb, transparent 25%, $db-colors-neutral-on-bg);
+	}
+
+	&:active {
+		color: color-mix(in srgb, transparent 50%, $db-colors-neutral-on-bg);
+	}
 
 	a {
 		// Workaround for angular
 		@extend %db-link-height;
-	}
-
-	&:hover {
-		color: inherit;
 	}
 
 	// "disabled" links
@@ -62,7 +60,7 @@
 
 	&[data-content="internal"],
 	&[data-content="external"] {
-		--icon-margin-before: var(--db-spacing-fixed-2xs);
+		--icon-margin-before: #{$db-spacing-fixed-2xs};
 
 		&:focus-visible {
 			outline-offset: var(--db-focus-outline-offset, 1px);
@@ -73,13 +71,23 @@
 		}
 	}
 
+	// We couldn't extend any existing SCSS placeholders, as this is a special construct
 	&[data-variant="primary"] {
-		@extend %db-primary-text-ia;
+		--db-current-color: #{$db-colors-primary-text};
+		color: var(--db-current-color);
+
+		&:hover {
+			--db-current-color: #{$db-colors-primary-text-hover};
+		}
+
+		&:active {
+			--db-current-color: #{$db-colors-primary-text-pressed};
+		}
 	}
 
 	&[data-size="small"] {
 		--icon-font-size: var(--db-base-icon-font-size);
-		--icon-margin-before: var(--db-spacing-fixed-3xs);
+		--icon-margin-before: #{$db-spacing-fixed-3xs};
 		@extend %db-overwrite-font-size-sm;
 	}
 }

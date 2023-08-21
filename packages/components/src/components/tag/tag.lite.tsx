@@ -123,7 +123,7 @@ export default function DBTag(props: DBTagProps) {
 			data-interactive={state.isInteractive()}
 			data-disabled={props.disabled}
 			data-variant={props.variant}
-			data-type={props.type}>
+			data-emphasis={props.emphasis}>
 			<Show when={state.stylePath}>
 				<link rel="stylesheet" href={state.stylePath} />
 			</Show>

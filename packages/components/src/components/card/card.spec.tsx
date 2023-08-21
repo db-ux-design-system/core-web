@@ -9,12 +9,9 @@ const defaultComp = <DBCard>Test</DBCard>;
 
 // TODO: Get variants from https://github.com/db-ui/mono/blob/feat-unify-showcases/packages/components/src/shared/constants.ts when feat-unify branch is merged
 const colorVariants = [
-	'neutral-0',
-	'neutral-1',
-	'neutral-3',
-	'neutral-4',
+	'neutral',
+	'neutral-strong',
 	'primary',
-	'secondary',
 	'critical',
 	'successful',
 	'warning',

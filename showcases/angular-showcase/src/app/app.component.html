@@ -1,8 +1,12 @@
 <div *ngIf="page" [class]="getChangeableClasses()">
 	<router-outlet></router-outlet>
 </div>
-<db-page *ngIf="!page" type="fixedHeaderFooter">
-	<db-header header>
+<db-page *ngIf="!page" type="fixedHeaderFooter" [fadeIn]="true">
+	<db-header
+		header
+		[drawerOpen]="drawerOpen"
+		(onToggle)="toggleDrawer($event)"
+	>
 		<db-brand
 			brand
 			title="Angular Showcase"
@@ -11,30 +15,47 @@
 		>
 			Showcase
 		</db-brand>
-		<nav class="desktop-navigation" desktop-navigation>
-			<ul>
-				<li *ngFor="let item of navigationItems">
-					<a [routerLink]="item.path" queryParamsHandling="merge">
-						<db-navigation-item>{{
-							item.label
-						}}</db-navigation-item></a
-					>
-				</li>
-			</ul>
-		</nav>
-		<div meta-navigation>
-			<!-- TODO: Use db-select here	-->
-			<select [(ngModel)]="tonality" (change)="onChange($event)">
+		<db-main-navigation *dbNavigation>
+			<ng-container *ngFor="let item of navigationItems">
+				<app-nav-item [navItem]="item"> </app-nav-item>
+			</ng-container>
+		</db-main-navigation>
+		<ng-container *dbMetaNavigation>
+			<db-select
+				label="Tonality"
+				[(ngModel)]="tonality"
+				(change)="onChange($event)"
+			>
 				<option *ngFor="let t of tonalities">
 					{{ t }}
 				</option>
-			</select>
-			<select [(ngModel)]="color" (change)="onChange($event)">
+			</db-select>
+			<db-select
+				label="Color"
+				[(ngModel)]="color"
+				(change)="onChange($event)"
+			>
 				<option *ngFor="let c of colors">
 					{{ c }}
 				</option>
-			</select>
-		</div>
+			</db-select>
+		</ng-container>
+		<ng-container call-to-action>
+			<DBButton icon="search" variant="text" [noText]="true"
+				>Search</DBButton
+			>
+		</ng-container>
+		<ng-container *dbActionBar>
+			<DBButton icon="account" variant="text" [noText]="true">
+				Profile
+			</DBButton>
+			<DBButton icon="alert" variant="text" [noText]="true">
+				Notification
+			</DBButton>
+			<DBButton icon="help" variant="text" [noText]="true">
+				Help
+			</DBButton>
+		</ng-container>
 	</db-header>
 	<div [class]="getChangeableClasses()">
 		<router-outlet></router-outlet>

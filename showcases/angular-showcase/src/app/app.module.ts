@@ -21,8 +21,13 @@ import {
 	DBDrawerModule,
 	DBTagModule,
 	DBNavigationItemModule,
+	DBMainNavigationModule,
 	DBBadgeModule
 } from '../../../../output/angular/src';
+import { ActionBarDirective } from '../../../../output/angular/src/components/header/ActionBar.directive';
+import { NavigationDirective } from '../../../../output/angular/src/components/header/Navigation.directive';
+import { MetaNavigationDirective } from '../../../../output/angular/src/components/header/MetaNavigation.directive';
+import { NavigationContentDirective } from '../../../../output/angular/src/components/navigation-item/NavigationContent.directive';
 import { BadgeComponent } from './components/badge/badge.component';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app.routing.module';
@@ -42,13 +47,14 @@ import { TagComponent } from './components/tag/tag.component';
 import { DrawerComponent } from './components/drawer/drawer.component';
 import { SelectComponent } from './components/select/select.component';
 import { NavigationItemComponent } from './components/navigation-item/navigation-item.component';
+import { NavItemComponent } from './nav-item/nav-item.component';
+import { MainNavigationComponent } from './components/main-navigation/main-navigation.component';
 
 @NgModule({
 	declarations: [
+		MainNavigationComponent,
 		BadgeComponent,
-
 		NavigationItemComponent,
-
 		SelectComponent,
 		TagComponent,
 		AppComponent,
@@ -64,13 +70,17 @@ import { NavigationItemComponent } from './components/navigation-item/navigation
 		SectionComponent,
 		CardComponent,
 		DividerComponent,
-		DrawerComponent
+		DrawerComponent,
+		ActionBarDirective,
+		NavigationDirective,
+		MetaNavigationDirective,
+		NavItemComponent,
+		NavigationContentDirective
 	],
 	imports: [
 		DBBadgeModule,
-
+		DBMainNavigationModule,
 		DBNavigationItemModule,
-
 		DBTagModule,
 		DBSelectModule,
 		AppRoutingModule,
