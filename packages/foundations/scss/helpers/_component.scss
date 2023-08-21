@@ -4,6 +4,7 @@
 @use "../icon/icons.helpers" as *;
 
 /* TODO: We should get the variables from UX, and probably want to make those global variables */
+$checkbox-border-radius: to-rem(2.5);
 $default-border-radius: 4px;
 $default-card-border-radius: var(--default-card-border-radius, 8px);
 $default-opacity: 0.25;
