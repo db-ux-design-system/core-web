@@ -71,6 +71,7 @@
 		}
 	}
 
+	// We couldn't extend any existing SCSS placeholders, as this is a special construct
 	&[data-variant="primary"] {
 		--db-current-color: #{$db-colors-primary-text};
 		color: var(--db-current-color);
