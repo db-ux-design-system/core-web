@@ -14,6 +14,10 @@ inputs:
     description: "Node version"
     required: false
     default: "18"
+outputs:
+  cache-hit:
+    description: "A boolean value to indicate an exact match was found for the primary key"
+    value: ${{ steps.set-cache.outputs.cache-hit }}
 runs:
   using: "composite"
   steps:
@@ -31,5 +35,17 @@ runs:
         node --version
         npm --version
 
+    - name: ⏬ Init Cache
+      uses: actions/cache@v3
+      id: "cache"
+      with:
+        path: ${{ inputs.nodeModulesPath }}
+        key: ${{ runner.os }}-node-${{ inputs.nodeVersion }}-${{ hashFiles(inputs.packageLockPath) }}
+        restore-keys: |
+          ${{ runner.os }}-node-${{ inputs.nodeVersion }}
+          node-cache-${{ runner.os }}-npm-
+
     - name: 📥 Download deps default-npm-cache
-      uses: bahmutov/npm-install@v1
+      shell: bash
+      if: steps.cache.outputs.cache-hit != 'true'
+      run: npm ci
