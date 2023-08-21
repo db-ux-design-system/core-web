@@ -9,13 +9,11 @@
 @use "../../styles/button-components";
 
 .db-button {
-	// Including a loading indicator
-	--loadingIndicator---color: currentColor;
-
 	@extend %default-interactive-component;
-	@extend %default-background-transition;
 	@extend %bg-transparent-interactive;
 	@extend %default-button;
+
+	color: $db-colors-neutral-on-bg;
 
 	block-size: $db-sizing-md;
 	padding: $db-spacing-fixed-xs $db-spacing-fixed-md;

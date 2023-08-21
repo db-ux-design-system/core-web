@@ -78,19 +78,13 @@ export const getCodeByFramework = (componentName, framework, example) => {
 };
 
 export const getColorVariants = () => [
-	'neutral-0',
-	'neutral-1',
-	'neutral-2',
-	'neutral-3',
-	'neutral-4',
+	'neutral',
+	'neutral-strong',
 	'neutral-transparent-full',
 	'neutral-transparent-semi',
 	'primary',
 	'primary-transparent-full',
 	'primary-transparent-semi',
-	'secondary',
-	'secondary-transparent-full',
-	'secondary-transparent-semi',
 	'successful',
 	'successful-transparent-full',
 	'successful-transparent-semi',

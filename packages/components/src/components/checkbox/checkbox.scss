@@ -18,7 +18,8 @@ $font-size-height: calc(var(--db-base-font-size) * var(--db-base-line-height));
 
 	aspect-ratio: 1;
 
-	border: max(calc(#{$font-size-height} / 16 + 0.5px), 2px) solid currentColor;
+	border: max(calc(#{$font-size-height} / 16 + 0.5px), 2px) solid
+		$db-colors-neutral-on-bg;
 	border-radius: $default-border-radius;
 
 	display: inline-flex;

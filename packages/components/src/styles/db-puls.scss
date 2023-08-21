@@ -6,8 +6,7 @@
 	@include screen("m") {
 		&::after {
 			border-inline-start: none;
-			border-block-end: $default-border-radius solid
-				$db-colors-primary-enabled;
+			border-block-end: $default-border-radius solid $db-colors-primary;
 			inset-block-end: calc(-1 * #{$db-spacing-fixed-xs});
 			inline-size: 0;
 			block-size: auto;
@@ -28,8 +27,7 @@
 		transform: translate(0, -50%);
 		inset-block-start: 50%;
 		inset-inline-start: calc(-1 * #{$db-spacing-fixed-xs});
-		border-inline-start: $default-border-radius solid
-			$db-colors-primary-enabled;
+		border-inline-start: $default-border-radius solid $db-colors-primary;
 	}
 }
 

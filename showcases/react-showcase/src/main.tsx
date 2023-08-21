@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom/client';
 import { HashRouter, Navigate, Route, Routes } from 'react-router-dom';
 import './index.scss';
 import App from './app';
-import { NAVIGATION_ITEMS, NavigationItem } from './utils/navigation-item';
+import { NAVIGATION_ITEMS } from './utils/navigation-item';
 
 ReactDOM.createRoot(document.querySelector('#root')!).render(
 	<React.StrictMode>

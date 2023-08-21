@@ -77,6 +77,11 @@
 			}
 		}
 
+		&[data-variant="#{$name}"] {
+			--db-current-color: #{map.get($colors, "on-bg")};
+			color: map.get($colors, "on-bg");
+		}
+
 		&[data-variant="#{$name}"] input {
 			--db-current-border-color: #{map.get($colors, "border")};
 			@if ($name == "critical") {
@@ -94,13 +99,14 @@
 			}
 
 			& ~ .db-icon {
-				color: map.get($colors, "on-bg");
+				--db-current-color: #{map.get($colors, "on-bg")};
 			}
 
 			& ~ .description,
 			& ~ .icon-state,
 			& ~ .icon-state .db-icon {
-				color: map.get($colors, "element");
+				--db-current-color: #{map.get($colors, "element")};
+				color: var(--db-current-color);
 			}
 		}
 	}
@@ -259,6 +265,8 @@
 		@extend %default-interactive-component;
 		@extend %component-border;
 		@include get-variant-bg-color(0.08);
+
+		color: $db-colors-neutral-on-bg;
 
 		block-size: $db-sizing-md;
 		max-inline-size: 100%;

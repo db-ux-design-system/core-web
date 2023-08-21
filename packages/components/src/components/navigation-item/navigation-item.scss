@@ -74,7 +74,6 @@
 
 %navigation-item {
 	@extend %default-interactive-component;
-	@extend %default-background-transition;
 	@extend %transparent-border;
 
 	@include get-variant-bg-color(0);
@@ -177,7 +176,7 @@
 	flex-direction: column;
 	z-index: 70;
 	inset-inline-start: 0;
-	background-color: $db-colors-neutral-bg-0-enabled;
+	background-color: $db-colors-neutral-bg;
 
 	visibility: hidden;
 
