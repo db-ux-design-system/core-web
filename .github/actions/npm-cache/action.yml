@@ -14,38 +14,24 @@ inputs:
     description: "Node version"
     required: false
     default: "18"
-outputs:
-  cache-hit:
-    description: "A boolean value to indicate an exact match was found for the primary key"
-    value: ${{ steps.set-cache.outputs.cache-hit }}
 runs:
   using: "composite"
   steps:
-    - name: Setup node equally to our local development version
-      # pick the Node version to use and install it
-      # https://github.com/actions/setup-node
+    - name: 🆙 Init Cache
       uses: actions/setup-node@v3
+      id: "setup-node"
       with:
         node-version: ${{ inputs.nodeVersion }}
         cache: "npm"
+        cache-dependency-path: "**/package-lock.json"
 
-    - name: Display node and npm version
+    - name: 🔢 Display node and npm version
       shell: bash
       run: |
         node --version
         npm --version
 
-    - name: ⏬ Init Cache
-      uses: actions/cache@v3
-      id: "cache"
-      with:
-        path: ${{ inputs.nodeModulesPath }}
-        key: ${{ runner.os }}-node-${{ inputs.nodeVersion }}-${{ hashFiles(inputs.packageLockPath) }}
-        restore-keys: |
-          ${{ runner.os }}-node-${{ inputs.nodeVersion }}
-          node-cache-${{ runner.os }}-npm-
-
-    - name: 📥 Download deps default-npm-cache
+    - name: ⏬ NPM ci
       shell: bash
-      if: steps.cache.outputs.cache-hit != 'true'
+      if: steps.setup-node.outputs.cache-hit != 'true'
       run: npm ci
