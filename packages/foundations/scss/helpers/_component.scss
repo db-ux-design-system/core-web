@@ -1,4 +1,5 @@
 @use "../variables" as *;
+@use "../variables.global" as *;
 @use "../color-placeholder" as *;
 @use "../helpers/functions" as *;
 @use "../icon/icons.helpers" as *;
@@ -12,7 +13,7 @@ $default-opacity: 0.25;
 $default-mobile-header-height: to-rem(56);
 
 %default-adaptive-border {
-	border: solid 1px var(--db-current-color, $db-colors-neutral-on-bg-enabled);
+	border: solid 1px $db-colors-neutral-on-bg;
 }
 
 %transparent-border {
@@ -20,11 +21,7 @@ $default-mobile-header-height: to-rem(56);
 }
 
 %component-border {
-	border: solid 1px
-		var(
-			--db-current-border-weak-enabled,
-			$db-colors-neutral-border-weak-enabled
-		);
+	border: solid 1px $db-colors-neutral-border-weak;
 }
 
 %default-border-radius {
@@ -37,10 +34,15 @@ $default-mobile-header-height: to-rem(56);
 	@extend %default-border-radius;
 }
 
-%default-background-transition {
-	// TODO Changing background-color on hover should be animated by a transition
-	transition: background-color
-		var(--db-transition-color, #{$db-transition-color});
+%default-color-transition {
+	transition:
+		outline
+			var(
+				--db-transition-duration-ultra-fast,
+				#{$db-transition-duration-ultra-fast}
+			),
+		background-color var(--db-transition-color, #{$db-transition-color}),
+		color var(--db-transition-color, #{$db-transition-color});
 }
 
 $default-card-border-radius: var(--default-card-border-radius, 8px);

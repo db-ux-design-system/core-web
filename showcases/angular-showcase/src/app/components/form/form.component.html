@@ -61,7 +61,7 @@
 						<db-tag
 							[variant]="i === 0 ? undefined : 'successful'"
 							(onChange)="changeTags(tag)"
-							[type]="i === 2 ? 'strong' : 'weak'"
+							[emphasis]="i === 2 ? 'strong' : 'weak'"
 							behaviour="interactive"
 							>{{ getTagName(tag) }}</db-tag
 						>

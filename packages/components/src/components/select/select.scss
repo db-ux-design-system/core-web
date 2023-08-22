@@ -150,6 +150,11 @@
 		margin-block: $db-spacing-fixed-2xs 0;
 	}
 
+	// Most likely this wouldn't work on MacOS, but we're still progressively enhancing Windows by this
+	option {
+		background-color: var(--db-current-bg-color);
+	}
+
 	@each $name, $colors in $component-variants {
 		&[data-variant="#{$name}"] {
 			--db-current-border-color: #{map.get($colors, "border")};
@@ -168,7 +173,8 @@
 			& ~ .description,
 			.icon-state,
 			.icon-state .db-icon {
-				color: map.get($colors, "element");
+				--db-current-color: #{map.get($colors, "element")};
+				color: var(--db-current-color);
 			}
 		}
 	}

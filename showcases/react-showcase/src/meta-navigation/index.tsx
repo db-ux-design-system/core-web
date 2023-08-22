@@ -24,7 +24,7 @@ const MetaNavigation = ({
 		searchParameters.get(TONALITY_CONST) ?? TONALITY.REGULAR
 	);
 	const [color, setColor] = useState<string>(
-		searchParameters.get(COLOR_CONST) ?? COLOR.NEUTRAL_0
+		searchParameters.get(COLOR_CONST) ?? COLOR.NEUTRAL
 	);
 
 	useEffect(() => {

@@ -21,7 +21,7 @@ const showAlert = (exampleName: string) => {
 				:icon="exampleProps.icon"
 				:noText="exampleProps.noText"
 				:behaviour="exampleProps.behaviour"
-				:type="exampleProps.type"
+				:emphasis="exampleProps.emphasis"
 				:checked="exampleProps.checked"
 				:label="exampleProps.label"
 				:overflow="exampleProps.overflow"

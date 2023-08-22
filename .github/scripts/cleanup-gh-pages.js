@@ -8,9 +8,9 @@ const TAG = 'cleanup-gh-pages:';
 const removeOldFromPath = (isTag, data) => {
 	const path = `public/${isTag ? 'version' : 'review'}`;
 	if (FS.existsSync(path) && data?.length > 0) {
-		const dirsToDelete = FS.readdirSync(path).filter(
-			(file) => !data.find((branch) => branch.name === file)
-		);
+		const dirsToDelete = FS.readdirSync(path)
+			.filter((file) => !data.find((branch) => branch.name === file))
+			.filter((file) => file !== 'main');
 		if (dirsToDelete?.length > 0) {
 			console.log(
 				TAG,

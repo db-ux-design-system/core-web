@@ -36,18 +36,38 @@ $db-colors-neutral-bg: var(
 
 $db-colors-neutral-on-bg: var(
 	--db-current-color,
-	--db-neutral-on-bg-enabled,
-	$db-colors-neutral-on-bg-enabled
+	var(--db-neutral-on-bg-enabled, $db-colors-neutral-on-bg-enabled)
+);
+
+$db-colors-neutral-border-weak: var(
+	--db-current-border-weak-color,
+	var(
+		--db-neutral-border-weak-enabled,
+		$db-colors-neutral-border-weak-enabled
+	)
+);
+
+$db-colors-neutral-border: var(
+	--db-current-border-color,
+	var(--db-neutral-border-enabled, $db-colors-neutral-border-enabled)
 );
 
 // primary
 
 $db-colors-primary: var(--db-primary-enabled, $db-colors-primary-enabled);
 
-$db-colors-primary-hover: var(--db-primary-hover, $db-colors-primary-hover);
+$db-colors-primary-text: var(
+	--db-primary-text-enabled,
+	$db-colors-primary-enabled
+);
 
-$db-colors-primary-pressed: var(
-	--db-primary-pressed,
+$db-colors-primary-text-hover: var(
+	--db-primary-text-hover,
+	$db-colors-primary-hover
+);
+
+$db-colors-primary-text-pressed: var(
+	--db-primary-text-pressed,
 	$db-colors-primary-pressed
 );
 
