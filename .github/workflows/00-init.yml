@@ -14,8 +14,8 @@ jobs:
       - name: ⬇ Checkout repo
         uses: actions/checkout@v3
 
-      - name: 🔄 Init Cache Default
-        uses: ./.github/actions/npm-cache
+      - name: 🔄 Init Cache
+        uses: ./.github/actions/playwright-cache
 
       - name: 💀 Killing me softly
         uses: ./.github/actions/cancel-workflow

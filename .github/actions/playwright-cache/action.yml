@@ -1,0 +1,26 @@
+---
+name: "Playwright Cache Action"
+description: "Initialize Playwright Cache"
+runs:
+  using: "composite"
+  steps:
+    - name: 🔄 Init Cache Default
+      uses: ./.github/actions/npm-cache
+
+    - name: 🔢 Get installed Playwright version
+      shell: bash
+      id: playwright-version
+      run: echo "PLAYWRIGHT_VERSION=$(node -e "console.log(require('./package-lock.json').dependencies['@playwright/test'].version)")" >> $GITHUB_ENV
+
+    - name: 🆒 Cache playwright binaries
+      uses: actions/cache@v3
+      id: playwright-cache
+      with:
+        path: |
+          ~/.cache/ms-playwright
+        key: ${{ runner.os }}-playwright-${{ env.PLAYWRIGHT_VERSION }}
+
+    - name: ⏬ Playwright install
+      shell: bash
+      if: steps.cache.outputs.cache-hit != 'true'
+      run: npx playwright install --with-deps

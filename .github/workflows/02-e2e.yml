@@ -11,43 +11,35 @@ jobs:
   playwright-ct-react:
     name: 🧪 with 🎭
     runs-on: ubuntu-latest
-    container:
-      image: mcr.microsoft.com/playwright:v1.35.1-focal
     strategy:
       fail-fast: false
       matrix:
         framework: [react, vue]
 
     steps:
-      - name: ⬇ Checkout repo
+      - name: ⏬ Checkout repo
         uses: actions/checkout@v3
 
-      - name: ⬇ Download foundations build
+      - name: 🔄 Init Playwright Cache
+        uses: ./.github/actions/playwright-cache
+
+      - name: ⏬ Download foundations build
         uses: ./.github/actions/download-tar-artifact
         with:
           name: db-ui-foundations-build
           path: packages/foundations/build
 
-      - name: ⬇ Download output
+      - name: ⏬ Download output
         uses: ./.github/actions/download-tar-artifact
         with:
           name: db-ui-output
           path: output
 
-      - name: ⬇ Download components styles build
+      - name: ⏬ Download components styles build
         uses: ./.github/actions/download-tar-artifact
         with:
           name: db-ui-components-build
           path: packages/components/build
-
-      - name: 📥 Download deps
-        uses: bahmutov/npm-install@v1
-        with:
-          install-command: npm ci --ignore-scripts
-
-      - name: 📲 Install esbuild (binary workaround)
-        working-directory: ./output/react
-        run: npm i -D esbuild-linux-64
 
       - name: 🚋 Get working directory
         id: workingDirectory
