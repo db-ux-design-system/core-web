@@ -33,8 +33,7 @@ export default function DBTextarea(props: DBTextareaProps) {
 		defaultValues: {
 			label: DEFAULT_LABEL,
 			placeholder: ' ',
-			rows: '4',
-			cols: '33'
+			rows: '4'
 		},
 		iconVisible: (icon?: string) => {
 			return Boolean(icon && icon !== '_' && icon !== 'none');
@@ -132,7 +131,7 @@ export default function DBTextarea(props: DBTextareaProps) {
 					props.placeholder ?? state.defaultValues.placeholder
 				}
 				rows={props.rows ?? state.defaultValues.rows}
-				cols={props.cols ?? state.defaultValues.cols}
+				cols={props.cols}
 			/>
 
 			<Show when={props.message}>
