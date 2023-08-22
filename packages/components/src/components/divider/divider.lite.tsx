@@ -50,6 +50,7 @@ export default function DBDivider(props: DBDividerProps) {
 			ref={component}
 			data-margin={props.margin}
 			data-variant={props.variant}
+			data-emphasis={props.emphasis}
 			class={cls('db-divider', props.className)}>
 			<Show when={state.stylePath}>
 				<link rel="stylesheet" href={state.stylePath} />
