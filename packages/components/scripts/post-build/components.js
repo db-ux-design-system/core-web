@@ -33,7 +33,7 @@ const getComponents = () => [
 		overwrites: {
 			angular: [
 				{
-					from: '[attr.defaultValue]="defaultValue || children"',
+					from: '[attr.defaultValue]="defaultValue ?? children"',
 					to: ''
 				},
 				{
