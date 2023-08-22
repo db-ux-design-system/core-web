@@ -79,6 +79,7 @@
 
 	@extend %default-form-message;
 	@extend %disabled-form-element;
+	@extend %required-form-element;
 
 	@include form.get-input-color-variants();
 
@@ -215,7 +216,6 @@
 		@extend %bg-transparent-hover;
 		@extend %default-interactive-component;
 		@extend %component-border;
-		@extend %required-form-element;
 
 		@include get-variant-bg-color(0.08);
 
