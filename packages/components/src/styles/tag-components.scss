@@ -3,7 +3,7 @@
 @use "@db-ui/foundations/build/scss/helpers/component" as *;
 
 @mixin get-tag-colors() {
-	@include get-variant-bg-color(0.08);
+	@extend %db-bg-neutral-strong;
 
 	&[data-emphasis="strong"] {
 		@extend %db-neutral-component;
@@ -46,11 +46,11 @@
 
 @mixin get-tag-colors-interactive() {
 	&:has(input:not(:checked)) {
-		@extend %bg-transparent-interactive;
+		@extend %db-bg-neutral;
 	}
 
 	&:has(input:checked) {
-		@include get-variant-bg-color(0.08);
+		@extend %db-bg-neutral-strong-ia;
 
 		&[data-emphasis="strong"] {
 			@extend %db-neutral-component-ia;
@@ -88,6 +88,11 @@
 					--db-current-border-color: #{map.get($colors, "border")};
 				}
 			}
+		}
+
+		&[data-emphasis="strong"] {
+			/* We force white as color for strong tags */
+			color: #fff;
 		}
 	}
 }
