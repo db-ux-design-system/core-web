@@ -53,8 +53,6 @@ jobs:
 
       - name: 👩‍🔬 Test with Playwright 🎭
         working-directory: ./output/${{ steps.workingDirectory.outputs.dir }}
-        env:
-          HOME: /root
         run: npx playwright test
 
       - name: 🆙 Upload playwright-report

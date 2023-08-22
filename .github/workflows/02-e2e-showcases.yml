@@ -48,8 +48,6 @@ jobs:
           path: build-showcases
 
       - name: 👩‍🔬 Test showcase with Playwright 🎭
-        env:
-          HOME: /root
         run: npm run test:${{ matrix.framework }}-showcase
 
       - name: 🆙 Upload playwright-report
