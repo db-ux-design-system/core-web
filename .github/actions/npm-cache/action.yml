@@ -44,4 +44,3 @@ runs:
       if: steps.cache.outputs.cache-hit != 'true'
       run: |
         npm ci
-        npm i -D esbuild-linux-64

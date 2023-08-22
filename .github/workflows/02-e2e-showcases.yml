@@ -8,8 +8,8 @@ permissions:
   contents: write
 
 jobs:
-  playwright-ct-react:
-    name: 🧪 with 🎭
+  playwright-showcases:
+    name: 🧪 with 🎭 - Framework ${{ matrix.framework }} - Shard ${{ matrix.shard }}
     runs-on: ubuntu-latest
     container:
       image: mcr.microsoft.com/playwright:v1.35.1-focal
@@ -17,33 +17,36 @@ jobs:
       fail-fast: false
       matrix:
         framework: [angular, react, vue]
-
+        shard: [1/3, 2/3, 3/3]
     steps:
-      - name: ⬇ Checkout repo
+      - name: ⏬ Checkout repo
         uses: actions/checkout@v3
 
       - name: 🔄 Init Cache
         uses: ./.github/actions/npm-cache
 
-      - name: ⬇ Download foundations build
+      - name: 📲 Install esbuild (binary workaround)
+        run: npm i -D esbuild-linux-64
+
+      - name: ⏬ Download foundations build
         uses: ./.github/actions/download-tar-artifact
         with:
           name: db-ui-foundations-build
           path: packages/foundations/build
 
-      - name: ⬇ Download output
+      - name: ⏬ Download output
         uses: ./.github/actions/download-tar-artifact
         with:
           name: db-ui-output
           path: output
 
-      - name: ⬇ Download components styles build
+      - name: ⏬ Download components styles build
         uses: ./.github/actions/download-tar-artifact
         with:
           name: db-ui-components-build
           path: packages/components/build
 
-      - name: ⬇ Download showcases
+      - name: ⏬ Download showcases
         uses: ./.github/actions/download-tar-artifact
         with:
           name: db-ui-showcases
@@ -52,15 +55,15 @@ jobs:
       - name: 👩‍🔬 Test showcase with Playwright 🎭
         env:
           HOME: /root
-        run: npm run test:${{ matrix.framework }}-showcase
+        run: npm run test:${{ matrix.framework }}-showcase -- -- --shard=${{ matrix.shard }}
 
-      - name: 🆙 Upload playwright-report
+      - name: 🆙 Upload blob report to GitHub Actions Artifacts
         if: always()
         uses: actions/upload-artifact@v3
         with:
-          name: ${{ matrix.framework}}-showcase-playwright-report
-          path: ./showcases/${{ matrix.framework }}-showcase/playwright-report
-          retention-days: 30
+          name: all-blob-reports
+          path: blob-report
+          retention-days: 1
 
       - name: 🆙 Upload test results
         if: failure()
