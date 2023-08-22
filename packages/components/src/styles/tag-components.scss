@@ -60,8 +60,9 @@
 }
 
 @mixin get-tag-colors-interactive() {
-
-	@include overwrite-strong-white();
+	&[data-emphasis="strong"] {
+		@include overwrite-strong-white();
+	}
 
 	&:has(input:not(:checked)) {
 		@extend %db-bg-neutral;
@@ -72,6 +73,7 @@
 
 		&[data-emphasis="strong"] {
 			@extend %db-neutral-component-ia;
+			@include overwrite-strong-white();
 		}
 
 		@each $name, $colors in $component-variants {
