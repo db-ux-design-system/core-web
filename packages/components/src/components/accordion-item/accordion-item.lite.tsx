@@ -1,12 +1,14 @@
 import {
 	onMount,
+	onUpdate,
 	Show,
 	Slot,
 	useMetadata,
 	useStore
 } from '@builder.io/mitosis';
 import { DBAccordionItemState, DBAccordionItemProps } from './model';
-import { cls } from '../../utils';
+import { cls, uuid } from '../../utils';
+import { DEFAULT_ID } from '../../shared/constants';
 
 useMetadata({
 	isAttachedToShadowDom: true,
@@ -22,37 +24,44 @@ export default function DBAccordionItem(props: DBAccordionItemProps) {
 	let component: any;
 	// jscpd:ignore-start
 	const state = useStore<DBAccordionItemState>({
-		_open: false,
-		toggle: () => {
-			state._open = !state._open;
+		_id: DEFAULT_ID,
+		toggle: (event: any) => {
+			// We need this for react https://github.com/facebook/react/issues/15486#issuecomment-488028431
+			event?.preventDefault();
 			if (props.onToggle) {
-				props.onToggle(state._open);
+				props.onToggle(!props.open);
 			}
 		}
 	});
 
 	onMount(() => {
+		state._id = props.id || 'accordion-item-' + uuid();
 		if (props.stylePath) {
 			state.stylePath = props.stylePath;
 		}
-
-		state._open = !!props.open;
 	});
 	// jscpd:ignore-end
 
 	return (
 		<details
 			ref={component}
+			id={state._id}
 			class={cls('db-accordion-item', props.className)}
-			open={state._open}
-			onToggle={() => state.toggle()}>
+			aria-disabled={props.disabled}
+			open={props.open}>
 			<Show when={state.stylePath}>
 				<link rel="stylesheet" href={state.stylePath} />
 			</Show>
-			<summary>
-				<Slot name="summary" />
+			<summary onClick={(event) => state.toggle(event)}>
+				<Show when={props.title}>{props.title}</Show>
+				<Show when={!props.title}>
+					<Slot name="title" />
+				</Show>
 			</summary>
-			<div class="db-accordion-content">{props.children}</div>
+			<div class="db-accordion-content">
+				<Show when={props.content}>{props.content}</Show>
+				<Show when={!props.content}>{props.children}</Show>
+			</div>
 		</details>
 	);
 }

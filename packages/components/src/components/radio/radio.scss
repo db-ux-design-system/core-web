@@ -4,12 +4,12 @@
 @use "@db-ui/foundations/build/scss/color-placeholder" as *;
 @use "@db-ui/foundations/build/scss/helpers/font" as *;
 @use "@db-ui/foundations/build/scss/helpers/component" as *;
-@use "@db-ui/foundations/build/scss/color/color-variants" as *;
+@use "@db-ui/foundations/build/scss/color/color-variants" as col-var;
 
 $font-size-height: calc(var(--db-base-font-size) * var(--db-base-line-height));
 
 .db-radio {
-	@extend %bg-transparent-interactive;
+	@include col-var.bg-transparent-interactive();
 
 	appearance: none;
 

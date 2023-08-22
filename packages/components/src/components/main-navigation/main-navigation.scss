@@ -41,7 +41,7 @@
 					&:has(~ .db-sub-navigation:focus-visible),
 					&:has(~ .db-sub-navigation:focus-within) {
 						&::after {
-							transform: rotate(-180deg);
+							transform: $dropdown-icon-transform;
 						}
 					}
 				}

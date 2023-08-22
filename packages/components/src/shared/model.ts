@@ -240,7 +240,7 @@ export type ToggleEventProps = {
 };
 
 export type ToggleEventState = {
-	toggle?: () => void;
+	toggle?: (event?: any) => void;
 };
 
 export type CloseEventProps = {

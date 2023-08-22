@@ -5,12 +5,12 @@
 @use "@db-ui/foundations/build/scss/color-placeholder" as *;
 @use "@db-ui/foundations/build/scss/tonality" as *;
 @use "@db-ui/foundations/build/scss/helpers/component" as *;
-@use "@db-ui/foundations/build/scss/color/color-variants" as *;
+@use "@db-ui/foundations/build/scss/color/color-variants" as col-var;
 
 $font-size-height: calc(var(--db-base-font-size) * var(--db-base-line-height));
 
 .db-checkbox {
-	@extend %bg-transparent-interactive;
+	@include col-var.bg-transparent-interactive();
 
 	align-content: center;
 

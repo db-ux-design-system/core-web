@@ -5,19 +5,33 @@
 			{
 				"name": "functional",
 				"className": "db-ui-functional",
-				"props": {
-				}
+				"props": {}
 			},
 			{
 				"name": "regular (Default)",
 				"className": "db-ui-regular",
-				"props": {
-				}
+				"props": {}
 			},
 			{
 				"name": "expressive",
 				"className": "db-ui-expressive",
+				"props": {}
+			}
+		]
+	},
+	{
+		"name": "Behaviour",
+		"examples": [
+			{
+				"name": "Multiple (Default)",
 				"props": {
+					"behaviour": "multiple"
+				}
+			},
+			{
+				"name": "Single",
+				"props": {
+					"behaviour": "single"
 				}
 			}
 		]

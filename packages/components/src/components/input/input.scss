@@ -9,6 +9,7 @@
 @use "@db-ui/foundations/build/scss/color-placeholder" as *;
 @use "@db-ui/foundations/build/scss/color/color-variants" as *;
 @use "@db-ui/foundations/build/scss/helpers/component" as *;
+@use "../../styles/form-components" as *;
 
 :root,
 .db-ui-regular,
@@ -165,7 +166,7 @@
 
 		&:has(input:is(:focus, :not(:placeholder-shown))) {
 			&::after {
-				transform: rotate(-180deg);
+				transform: $dropdown-icon-transform;
 			}
 		}
 
@@ -261,9 +262,10 @@
 				) * #{$db-sizing-md}
 		);
 
-		@extend %bg-transparent-hover;
 		@extend %default-interactive-component;
 		@extend %component-border;
+
+		@include bg-transparent-hover();
 		@include get-variant-bg-color(0.08);
 
 		color: $db-colors-neutral-on-bg;

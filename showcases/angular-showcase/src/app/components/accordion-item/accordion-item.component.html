@@ -10,9 +10,13 @@
 		let-exampleIndex="exampleIndex"
 		let-variantIndex="variantIndex"
 	>
-		<db-accordion-item>{{exampleName}}</db-accordion-item>
+		<db-accordion-item
+			[title]="exampleName"
+			[disabled]="exampleProps.disabled"
+			[open]="isOpen(exampleIndex, variantIndex, exampleProps.open)"
+			(onToggle)="toggle(exampleIndex, variantIndex)"
+		>
+			{{ exampleName }}
+		</db-accordion-item>
 	</ng-template>
 </app-default-component>
-
-
-

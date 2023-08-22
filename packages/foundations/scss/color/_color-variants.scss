@@ -42,20 +42,32 @@ $color-variants: "neutral", "neutral-strong", "primary", "critical",
 	@include get-variant-bg-color(0);
 }
 
-%bg-transparent-hover {
+@mixin bg-transparent-hover($with-enabled: true) {
 	@extend %bg-transparent;
 
-	&:enabled {
+	@if ($with-enabled) {
+		&:enabled {
+			&:hover {
+				@include get-variant-bg-color(0.16);
+			}
+		}
+	} @else {
 		&:hover {
 			@include get-variant-bg-color(0.16);
 		}
 	}
 }
 
-%bg-transparent-interactive {
-	@extend %bg-transparent-hover;
+@mixin bg-transparent-interactive($with-enabled: true) {
+	@include bg-transparent-hover($with-enabled);
 
-	&:enabled {
+	@if ($with-enabled) {
+		&:enabled {
+			&:active {
+				@include get-variant-bg-color(0.24);
+			}
+		}
+	} @else {
 		&:active {
 			@include get-variant-bg-color(0.24);
 		}

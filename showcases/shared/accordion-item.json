@@ -5,25 +5,44 @@
 			{
 				"name": "functional",
 				"className": "db-ui-functional",
-				"props": {
-					"slotSummary": "DBAccordionItem",
-					"children": "Default content"
-				}
+				"props": {}
 			},
 			{
 				"name": "regular (Default)",
 				"className": "db-ui-regular",
-				"props": {
-					"slotSummary": "DBAccordionItem",
-					"children": "Default content"
-				}
+				"props": {}
 			},
 			{
 				"name": "expressive",
 				"className": "db-ui-expressive",
+				"props": {}
+			}
+		]
+	},
+	{
+		"name": "States",
+		"examples": [
+			{
+				"name": "Enabled (Default)",
+				"props": {}
+			},
+			{
+				"name": "Disabled",
 				"props": {
-					"slotSummary": "DBAccordionItem",
-					"children": "Default content"
+					"disabled": true
+				}
+			},
+			{
+				"name": "Open",
+				"props": {
+					"open": true
+				}
+			},
+			{
+				"name": "Open Disabled",
+				"props": {
+					"open": true,
+					"disabled": true
 				}
 			}
 		]

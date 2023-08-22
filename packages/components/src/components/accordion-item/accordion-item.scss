@@ -1,92 +1,69 @@
-/* Add styles for component here */
-
-@use "@db-ui/foundations/build/scss/helpers/shadow-dom" as *;
 @use "@db-ui/foundations/build/scss/variables" as *;
-@use "@db-ui/foundations/build/scss/variables.global" as *;
-@use "@db-ui/foundations/build/scss/helpers/functions" as *;
-@use "@db-ui/foundations/build/scss/icon/icons.helpers" as *;
-@use "@db-ui/foundations/build/scss/helpers/component" as *;
-@use "@db-ui/foundations/build/scss/color/color-variants" as *;
+@use "@db-ui/foundations/build/scss/variables.global" as var;
+@use "@db-ui/foundations/build/scss/helpers/functions" as functions;
+@use "@db-ui/foundations/build/scss/icon/icons.helpers" as icons;
+@use "@db-ui/foundations/build/scss/helpers/component" as component;
+@use "@db-ui/foundations/build/scss/color/color-variants" as col-var;
+@use "@db-ui/foundations/build/scss/animation/animations" as animations;
 @use "../../styles/form-components" as *;
 
-%summary-icon {
-	@extend %dropdown-icon;
-
-	&::after {
-		inset-inline-end: $db-spacing-fixed-sm;
-	}
-}
-
-%divider {
-	position: absolute;
-	inset-inline: 0;
-	inset-inline-end: 0;
-}
-
 .db-accordion-item {
-	@extend %shadow-dom-extend;
-	// @extend %default-background-transition;
-	@include divider($position: "top");
-	@include get-variant-bg-color(0);
+	@extend %bg-transparent;
+	@include functions.divider($position: "top");
 
 	position: relative;
 	inline-size: 100%;
 
-	// &:hover {
-	// 	@include get-variant-bg-color(0.16);
-	// }
-
-	// &:active {
-	// 	@include get-variant-bg-color(0.24);
-	// }
-
 	&:last-of-type {
-		@include divider($position: "bottom", $slot: "after");
+		@include functions.divider($position: "bottom", $slot: "after");
 	}
 
-	/* TODO: add hover states for new adaptive colors from https://github.com/db-ui/mono/pull/488 */
+	&[aria-disabled="true"] {
+		pointer-events: none;
+		opacity: component.$default-opacity;
+	}
 
 	summary {
-		@extend %summary-icon;
+		@extend %dropdown-icon;
+		@include col-var.bg-transparent-interactive(false);
 
 		list-style: none;
 		display: flex;
 		justify-content: space-between;
-		padding: $db-spacing-fixed-md;
-		gap: $db-spacing-fixed-md;
-		// TODO: Evaluate whether this number is intended
-		border-radius: $default-border-radius + 2;
+		padding: var.$db-spacing-fixed-md;
+		gap: var.$db-spacing-fixed-md;
+
+		&::after {
+			inset-inline-end: var.$db-spacing-fixed-sm;
+		}
+
+		&:focus-visible {
+			// TODO: Evaluate whether this number is intended
+			border-radius: component.$default-border-radius + 2;
+		}
 
 		.db-ui-functional & {
-			@include icon-meta($size: 20, $position: "after", $font-size: 20);
+			@include icons.icon-meta(
+				$size: 20,
+				$position: "after",
+				$font-size: 20
+			);
 		}
 	}
 
 	&[open] {
 		summary::after {
-			transform: rotate(180deg);
+			transform: $dropdown-icon-transform;
 		}
 
-		// this only works for the first opening, why??
 		.db-accordion-content {
-			opacity: 1;
+			animation: accordion-open $db-transition-emotional-straight normal
+				both;
 		}
 	}
 }
 
-.db-accordion-top-divider {
-	@extend %divider;
-	inset-block-start: 0;
-}
-
-.db-accordion-bottom-divider {
-	@extend %divider;
-	inset-block-end: 0;
-}
-
 .db-accordion-content {
-	padding: $db-spacing-fixed-md;
-	padding-block-end: $db-spacing-fixed-lg;
-	opacity: 0;
-	transition: opacity $db-transition-emotional-straight;
+	padding: var.$db-spacing-fixed-md;
+	padding-block-end: var.$db-spacing-fixed-lg;
 }
