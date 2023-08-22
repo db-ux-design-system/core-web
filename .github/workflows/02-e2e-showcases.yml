@@ -9,7 +9,7 @@ permissions:
 
 jobs:
   playwright-showcases:
-    name: 🧪 with 🎭 - Framework ${{ matrix.framework }} - Shard ${{ matrix.shard }}
+    name: 🧪🎭 - ${{ matrix.framework }}:${{ matrix.shard }}
     runs-on: ubuntu-latest
     container:
       image: mcr.microsoft.com/playwright:v1.35.1-focal
