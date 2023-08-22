@@ -62,7 +62,7 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: all-blob-reports
-          path: ./showcases/${{ matrix.framework }}-showcase/blob-report
+          path: ./showcases/blob-report
           retention-days: 1
 
       - name: 🆙 Upload test results
