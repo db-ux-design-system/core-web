@@ -27,9 +27,7 @@ const config = defineConfig({
 		/* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
 		trace: 'on-first-retry',
 		/* Port to use for Playwright component endpoint. */
-		ctPort: 3100,
-		/* Playwright Test can record videos for your tests, controlled by the video option. By default videos are off. */
-		video: 'on-first-retry'
+		ctPort: 3100
 	},
 	/* Configure projects for major browsers */
 	projects: [

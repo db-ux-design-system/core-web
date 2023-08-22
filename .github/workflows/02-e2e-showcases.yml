@@ -17,7 +17,7 @@ jobs:
       fail-fast: false
       matrix:
         framework: [angular, react, vue]
-        shard: [1/4, 2/4, 3/4, 4/4]
+        shard: [1/2, 2/2]
     steps:
       - name: ⏬ Checkout repo
         uses: actions/checkout@v3
