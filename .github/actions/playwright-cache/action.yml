@@ -1,6 +1,11 @@
 ---
 name: "Playwright Cache Action"
 description: "Initialize Playwright Cache"
+inputs:
+  installDeps:
+    description: "Force install dependencies for playwright on host system"
+    required: false
+    default: "false"
 runs:
   using: "composite"
   steps:
@@ -19,8 +24,15 @@ runs:
         path: |
           ~/.cache/ms-playwright
         key: ${{ runner.os }}-playwright-${{ env.PLAYWRIGHT_VERSION }}
+        restore-keys: |
+          ${{ runner.os }}-playwright-
 
-    - name: ⏬ Playwright install
+    - name: ⏬ Install Playwright with dependencies
       shell: bash
       if: steps.playwright-cache.outputs.cache-hit != 'true'
       run: npx playwright install --with-deps
+
+    - name: ⏬ Install Playwright's dependencies
+      shell: bash
+      if: ${{ inputs.installDeps }} == 'true'
+      run: npx playwright install-deps

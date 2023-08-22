@@ -22,6 +22,8 @@ jobs:
 
       - name: 🔄 Init Playwright Cache
         uses: ./.github/actions/playwright-cache
+        with:
+          installDeps: "true"
 
       - name: ⏬ Download foundations build
         uses: ./.github/actions/download-tar-artifact
