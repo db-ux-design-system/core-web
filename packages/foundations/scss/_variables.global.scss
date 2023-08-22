@@ -47,6 +47,11 @@ $db-colors-neutral-border-weak: var(
 	)
 );
 
+$db-colors-neutral-border: var(
+	--db-current-border-color,
+	var(--db-neutral-border-enabled, $db-colors-neutral-border-enabled)
+);
+
 // primary
 
 $db-colors-primary: var(--db-primary-enabled, $db-colors-primary-enabled);
