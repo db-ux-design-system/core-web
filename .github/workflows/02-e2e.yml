@@ -43,15 +43,6 @@ jobs:
           name: db-ui-components-build
           path: packages/components/build
 
-      - name: 📥 Download deps
-        uses: bahmutov/npm-install@v1
-        with:
-          install-command: npm ci --ignore-scripts
-
-      - name: 📲 Install esbuild (binary workaround)
-        working-directory: ./output/react
-        run: npm i -D esbuild-linux-64
-
       - name: 🚋 Get working directory
         id: workingDirectory
         shell: bash
