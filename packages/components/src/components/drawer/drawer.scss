@@ -53,11 +53,6 @@
 	}
 }
 
-%close-button-position {
-	margin-inline-start: $db-spacing-fixed-lg;
-	float: right;
-}
-
 $spacings: (
 	"small": (
 		"block": $db-spacing-fixed-xs,
@@ -81,18 +76,12 @@ $spacings: (
 	padding-block: map.get($spacing, "block");
 
 	.db-drawer-header {
-		padding-block-end: var(
-			--db-drawer-header-padding-block-end,
-			map.get($spacing, "block")
-		);
+		padding-block-end: map.get($spacing, "block");
 		padding-inline: map.get($spacing, "inline");
 	}
 
 	.db-drawer-content {
-		padding-inline: var(
-			--db-drawer-content-padding-inline,
-			map.get($spacing, "inline")
-		);
+		padding-inline: map.get($spacing, "inline");
 	}
 }
 
@@ -145,19 +134,25 @@ $spacings: (
 
 		.db-drawer-header {
 			@include divider("bottom");
-			display: block;
+			display: none;
+
+			.db-drawer-header-text {
+				margin-block: auto;
+				font-weight: 700;
+			}
 
 			.button-close-drawer {
-				@extend %close-button-position;
+				margin-inline-start: auto;
 
 				// angular-workaround
 				button {
-					@extend %close-button-position;
+					margin-inline-start: auto;
 				}
 			}
 
-			&:not(:has(> :nth-child(1))) {
-				display: none;
+			&:has(.button-close-drawer),
+			&:has(:not(.db-drawer-header-text:empty)) {
+				display: flex;
 			}
 		}
 	}

@@ -117,5 +117,10 @@
 				}
 			}
 		}
+
+		&[data-emphasis="strong"] {
+			/* We force white as color for strong tags */
+			color: #fff;
+		}
 	}
 }
