@@ -130,16 +130,10 @@
         <value>Hide text</value>
     </data>
     <data name="width_Display_Key" xml:space="preserve">
-        <value>Icon width</value>
+        <value>Button width</value>
     </data>
     <data name="clicked_Display_Key" xml:space="preserve">
         <value>Clicked</value>
-    </data>
-    <data name="componentHeight_Display_Key" xml:space="preserve">
-        <value>Height</value>
-    </data>
-    <data name="componentWidth_Display_Key" xml:space="preserve">
-        <value>Width</value>
     </data>
     <data name="DBButton_Display_Key" xml:space="preserve">
         <value>DB Button</value>
