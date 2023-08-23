@@ -31,7 +31,8 @@ useMetadata({
 						name: 'Inline',
 						value: 'inline'
 					}
-				]
+				],
+				defaultValue: 'adaptive'
 			}
 			// jscpd:ignore-end
 		]

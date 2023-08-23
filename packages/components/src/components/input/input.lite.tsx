@@ -16,6 +16,10 @@ useMetadata({
 		// MS Power Apps
 		includeIcon: true,
 		hasDisabledProp: true,
+		canvasSize: {
+			height: 'fixed', // 'fixed', 'controlled'
+			width: 'controlled' // 'fixed', 'dynamic' (requires width property), 'controlled'
+		},
 		properties: [
 			{
 				name: 'label',
@@ -35,7 +39,8 @@ useMetadata({
 			},
 			{
 				name: 'variant',
-				type: 'DefaultVariant' // this is a custom type not provided by ms
+				type: 'DefaultVariant', // this is a custom type not provided by ms
+				defaultValue: 'adaptive'
 			}
 		]
 	}
