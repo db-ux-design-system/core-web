@@ -28,9 +28,7 @@ const config: PlaywrightTestConfig = {
 	/* Opt out of parallel tests on CI. */
 	workers: process.env.CI ? 1 : undefined,
 	/* Reporter to use. See https://playwright.dev/docs/test-reporters */
-	reporter: process.env.CI
-		? [['github'], ['html', { open: 'never' }]]
-		: [['list'], ['html', { open: 'never' }]],
+	reporter: process.env.CI ? 'blob' : [['list'], ['html', { open: 'never' }]],
 	/* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
 	use: {
 		/* Maximum time each action such as `click()` can take. Defaults to 0 (no limit). */
@@ -39,7 +37,7 @@ const config: PlaywrightTestConfig = {
 		baseURL: `http://localhost:8080/${process.env.showcase}/`,
 
 		/* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
-		trace: process.env.CI ? 'retain-on-failure' : 'on'
+		trace: process.env.CI ? 'on-first-retry' : 'on'
 	},
 	webServer: {
 		command: `cd ${process.env.showcase} && npm run preview`,
@@ -84,20 +82,6 @@ const config: PlaywrightTestConfig = {
 				...devices['iPhone 12']
 			}
 		}
-
-		/* Test against branded browsers. */
-		// {
-		//   name: 'Microsoft Edge',
-		//   use: {
-		//     channel: 'msedge',
-		//   },
-		// },
-		// {
-		//   name: 'Google Chrome',
-		//   use: {
-		//     channel: 'chrome',
-		//   },
-		// },
 	],
 
 	/* Folder for test artifacts such as screenshots, videos, traces, etc. */
