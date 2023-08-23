@@ -130,16 +130,10 @@
         <value>Text ausblenden</value>
     </data>
     <data name="width_Display_Key" xml:space="preserve">
-        <value>Icon Breite</value>
+        <value>Button Breite</value>
     </data>
     <data name="clicked_Display_Key" xml:space="preserve">
         <value>Clicked</value>
-    </data>
-    <data name="componentHeight_Display_Key" xml:space="preserve">
-        <value>Höhe</value>
-    </data>
-    <data name="componentWidth_Display_Key" xml:space="preserve">
-        <value>Breite</value>
     </data>
     <data name="DBButton_Display_Key" xml:space="preserve">
         <value>DB Button</value>
