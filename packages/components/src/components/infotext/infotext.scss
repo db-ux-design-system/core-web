@@ -30,7 +30,7 @@
 			color: map.get($colors, "primary");
 
 			&::before {
-				color: map.get($colors, "element");
+				--db-current-icon-color: #{map.get($colors, "element")};
 			}
 		}
 	}
