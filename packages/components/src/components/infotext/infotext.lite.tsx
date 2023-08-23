@@ -31,15 +31,17 @@ useMetadata({
 						name: 'Successful',
 						value: 'successful'
 					}
-				]
+				],
+				defaultValue: 'adaptive'
 			},
 			{
 				name: 'size',
 				type: 'Enum',
 				values: [
-					{ key: 'Sedium', name: 'Medium', value: 'medium' },
+					{ key: 'Medium', name: 'Medium', value: 'medium' },
 					{ key: 'Small', name: 'Small', value: 'small' }
-				]
+				],
+				defaultValue: 'medium'
 			}
 			// jscpd:ignore-end
 		]

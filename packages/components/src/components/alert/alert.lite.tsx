@@ -20,11 +20,13 @@ useMetadata({
 			},
 			{
 				name: 'icon',
-				type: 'Icon' // this is a custom type not provided by ms
+				type: 'Icon', // this is a custom type not provided by ms
+				defaultValue: 'info'
 			},
 			{
 				name: 'variant',
-				type: 'DefaultVariant' // this is a custom type not provided by ms
+				type: 'DefaultVariant', // this is a custom type not provided by ms
+				defaultValue: 'adaptive'
 			}
 		]
 	}

@@ -40,7 +40,8 @@ useMetadata({
 						name: 'Successful',
 						value: 'successful'
 					}
-				]
+				],
+				defaultValue: 'adaptive'
 			}
 			// type
 		]
