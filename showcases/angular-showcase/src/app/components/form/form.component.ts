@@ -10,6 +10,8 @@ export class FormComponent {
 	radio = '';
 	input = '';
 	tags: string[] = [];
+	// Fieldset checkbox state
+	checked = [true, false];
 
 	select = '';
 	model = { input: 'Anna', radio: 'X', checkbox: true, checkbox2: true };
@@ -50,6 +52,19 @@ export class FormComponent {
 				JSON.stringify(this.model)
 		);
 	}
+
+	// Checkbox changes
+	handleChange1 = (event?: any) => {
+		this.checked = [event.target.checked, event.target.checked];
+	};
+
+	handleChange2 = (event: any) => {
+		this.checked = [event.target.checked, this.checked[1]];
+	};
+
+	handleChange3 = (event: any) => {
+		this.checked = [this.checked[0], event.target.checked];
+	};
 
 	showValues(): void {
 		// eslint-disable-next-line no-alert

@@ -42,8 +42,9 @@ export default function DB<%= h.changeCase.pascal(name) %>(props: DB<%= h.change
 			// TODO: Replace this with the solution out of https://github.com/BuilderIO/mitosis/issues/833 after this has been "solved"
 			// VUE:this.$emit("update:<%= formValue %>", event.target.<%= formValue %>);
 
-			// Angular: propagate change event to work with reactive and template driven forms
-			this.propagateChange(event.target.<%= formValue %>);
+			// Change event to work with reactive and template driven forms
+			// ANGULAR: this.propagateChange(event.target.<%= formValue %>);
+			// ANGULAR: this.writeValue(event.target.<%= formValue %>);
 		},
 		handleBlur: (event: any) => {
 			if (props.onBlur) {
@@ -62,8 +63,7 @@ export default function DB<%= h.changeCase.pascal(name) %>(props: DB<%= h.change
 			if (props.focus) {
 				props.focus(event);
 			}
-		},
-		propagateChange: (_: any) => {}
+		}
       <% } -%>
   });
 

@@ -34,9 +34,7 @@ export type DBCheckboxProps = DBCheckboxDefaultProps &
 	FormProps &
 	FormCheckProps;
 
-export type DBCheckboxDefaultState = {
-	_indeterminate?: boolean;
-};
+export type DBCheckboxDefaultState = {};
 
 export type DBCheckboxState = DBCheckboxDefaultState &
 	GlobalState &
