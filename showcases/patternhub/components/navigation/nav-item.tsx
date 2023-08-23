@@ -3,29 +3,21 @@ import Link from 'next/link';
 import { DBNavigationItem } from '../../../../output/react/src';
 import type { NavigationItem } from '../../data/routes';
 
+const isRouteActive = (pathname: string, navItem: NavigationItem): boolean =>
+	navItem.path === '/'
+		? pathname === '/'
+		: pathname.includes(`${navItem.path}/`) ||
+		  pathname === navItem.path ||
+		  Boolean(
+				navItem.subNavigation?.find((subItem) => {
+					return pathname.includes(`${subItem.path}/`);
+				})
+		  );
+
 const NavItem = ({ navItem }: { navItem: NavigationItem }) => {
 	const router = useRouter();
 
-	const isActive =
-		navItem.path === '/'
-			? router.pathname === '/'
-			: router.pathname.includes(navItem.path ?? '') ||
-			  Boolean(
-					navItem.subNavigation?.find((subItem) =>
-						router.pathname.includes(subItem.path ?? '')
-					)
-			  ) ||
-			  Boolean(
-					navItem.subNavigation?.find((subItem) =>
-						subItem.subNavigation?.find(
-							(subSubItem) =>
-								router.pathname.includes(
-									subSubItem.path ?? ''
-								) &&
-								router.pathname.includes(navItem.path ?? '')
-						)
-					)
-			  );
+	const isActive = isRouteActive(router.pathname, navItem);
 
 	return (
 		<DBNavigationItem
