@@ -5,7 +5,7 @@
   "private": true,
   "scripts": {
     "build": "npm-run-all generate copy build:*",
-    "build:app": "next build && next export",
+    "build:app": "next build",
     "build:copy": "cpr out ../../build-showcases/patternhub -o",
     "copy": "npm-run-all copy:*",
     "copy:components": "cpr ../../output/react/src ./components/src -o",
