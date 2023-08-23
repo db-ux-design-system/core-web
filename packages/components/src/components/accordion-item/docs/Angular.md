@@ -18,7 +18,19 @@ import { DBAccordionItemModule } from '@db-ui/ngx-components';
 
 ### Use component
 
+#### With Slots
+
 ```html app.component.html
 <!-- app.component.html -->
-<db-accordion-item>AccordionItem</db-accordion-item>
+<db-accordion-item>
+	<ng-container *title>Title</ng-container>
+	Content
+</db-accordion-item>
+```
+
+#### With attributes
+
+```html app.component.html
+<!-- app.component.html -->
+<db-accordion-item title="Title" content="Content"></db-accordion-item>
 ```

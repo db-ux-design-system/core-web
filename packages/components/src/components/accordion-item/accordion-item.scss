@@ -5,7 +5,13 @@
 @use "@db-ui/foundations/build/scss/helpers/component" as component;
 @use "@db-ui/foundations/build/scss/color/color-variants" as col-var;
 @use "@db-ui/foundations/build/scss/animation/animations" as animations;
-@use "../../styles/form-components" as *;
+@use "../../styles/form-components" as form;
+
+@mixin accordion-item-content() {
+	:not(summary):not(link) {
+		@content;
+	}
+}
 
 .db-accordion-item {
 	@extend %bg-transparent;
@@ -13,6 +19,11 @@
 
 	position: relative;
 	inline-size: 100%;
+
+	@include accordion-item-content() {
+		padding: var.$db-spacing-fixed-md;
+		padding-block-end: var.$db-spacing-fixed-lg;
+	}
 
 	&:last-of-type {
 		@include functions.divider($position: "bottom", $slot: "after");
@@ -52,18 +63,14 @@
 	}
 
 	&[open] {
-		summary::after {
-			transform: $dropdown-icon-transform;
-		}
 
-		.db-accordion-content {
+		@include accordion-item-content() {
 			animation: accordion-open $db-transition-emotional-straight normal
 				both;
 		}
-	}
-}
 
-.db-accordion-content {
-	padding: var.$db-spacing-fixed-md;
-	padding-block-end: var.$db-spacing-fixed-lg;
+		summary::after {
+			transform: form.$dropdown-icon-transform;
+		}
+	}
 }

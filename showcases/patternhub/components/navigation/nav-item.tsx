@@ -16,15 +16,14 @@ const NavItem = ({ navItem }: { navItem: NavigationItem }) => {
 					)
 			  ) ||
 			  Boolean(
-					navItem.subNavigation?.find(
-						(subItem) =>
-							subItem.subNavigation?.find(
-								(subSubItem) =>
-									router.pathname.includes(
-										subSubItem.path ?? ''
-									) &&
-									router.pathname.includes(navItem.path ?? '')
-							)
+					navItem.subNavigation?.find((subItem) =>
+						subItem.subNavigation?.find(
+							(subSubItem) =>
+								router.pathname.includes(
+									subSubItem.path ?? ''
+								) &&
+								router.pathname.includes(navItem.path ?? '')
+						)
 					)
 			  );
 

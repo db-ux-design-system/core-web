@@ -58,6 +58,10 @@ export default function DBAccordion(props: DBAccordionProps) {
 			} else {
 				state.openItems = [...state.openItems, id];
 			}
+
+			if (props.onChange) {
+				props.onChange(state.openItems);
+			}
 		}
 	});
 
@@ -127,8 +131,9 @@ export default function DBAccordion(props: DBAccordionProps) {
 			<Show when={!props.items}>{props.children}</Show>
 			<Show when={props.items}>
 				<For each={state.convertItems(props.items)}>
-					{(item: DBAccordionItemInterface) => (
+					{(item: DBAccordionItemInterface, index: number) => (
 						<DBAccordionItem
+							key={`accordion-item-${item.title}-${index}`}
 							title={item.title}
 							disabled={item.disabled}
 							content={item.content}

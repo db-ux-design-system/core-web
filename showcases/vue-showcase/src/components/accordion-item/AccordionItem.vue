@@ -29,7 +29,7 @@ const isOpen = (exampleIndex: number, variantIndex: number, open?: boolean) =>
 			#example="{ exampleIndex, variantIndex, exampleName, exampleProps }"
 		>
 			<DBAccordionItem
-				:title="exampleName"
+				:title="exampleProps.title"
 				:disabled="exampleProps.disabled"
 				:open="isOpen(exampleIndex, variantIndex, exampleProps.open)"
 				@onToggle="toggle(exampleIndex, variantIndex)"

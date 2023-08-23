@@ -5,7 +5,7 @@ import { DBAccordionItem } from './index';
 // @ts-ignore - vue can only find it with .ts as file ending
 import { DEFAULT_VIEWPORT } from '../../shared/constants.ts';
 
-const comp = <DBAccordionItem>Test</DBAccordionItem>;
+const comp = <DBAccordionItem title="Test">Test</DBAccordionItem>;
 
 const testComponent = () => {
 	test('should contain text', async ({ mount }) => {

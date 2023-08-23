@@ -8,12 +8,13 @@ import { getVariants } from '../data';
 const getAccordionItem = ({
 	children,
 	disabled,
-	open
+	open,
+	title
 }: DBAccordionItemProps) => {
 	const [openAcc, setOpenAcc] = useState<boolean>(open ?? false);
 	return (
 		<DBAccordionItem
-			slotTitle={children}
+			title={title}
 			disabled={disabled}
 			open={openAcc}
 			onToggle={setOpenAcc}>

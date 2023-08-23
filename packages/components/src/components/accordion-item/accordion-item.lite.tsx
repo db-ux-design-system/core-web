@@ -58,7 +58,7 @@ export default function DBAccordionItem(props: DBAccordionItemProps) {
 					<Slot name="title" />
 				</Show>
 			</summary>
-			<div class="db-accordion-content">
+			<div>
 				<Show when={props.content}>{props.content}</Show>
 				<Show when={!props.content}>{props.children}</Show>
 			</div>
