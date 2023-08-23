@@ -1,14 +1,9 @@
 import { For, onMount, Show, useMetadata, useStore } from '@builder.io/mitosis';
 import { DBIcon } from '../icon';
-import { uuid } from '../../utils';
+import { cls, uuid } from '../../utils';
 import { DBInputProps, DBInputState } from './model';
-import { cls } from '../../utils';
 import { DEFAULT_ID, DEFAULT_LABEL } from '../../shared/constants';
-import {
-	DefaultVariantType,
-	DefaultVariantsIcon,
-	KeyValueType
-} from '../../shared/model';
+import { KeyValueType } from '../../shared/model';
 import { DBInfotext } from '../infotext';
 
 useMetadata({
@@ -56,20 +51,6 @@ export default function DBInput(props: DBInputProps) {
 		},
 		iconVisible: (icon?: string) => {
 			return Boolean(icon && icon !== '_' && icon !== 'none');
-		},
-		getIcon: (variant?: DefaultVariantType) => {
-			if (variant) {
-				return DefaultVariantsIcon[variant];
-			}
-
-			return '';
-		},
-		getVariantIcon: (icon?: string, variant?: string) => {
-			if (state.iconVisible(icon)) {
-				return icon;
-			}
-
-			return (variant && DefaultVariantsIcon[variant]) || 'none';
 		},
 		handleChange: (event: any) => {
 			if (props.onChange) {
@@ -132,6 +113,7 @@ export default function DBInput(props: DBInputProps) {
 			<Show when={state.stylePath}>
 				<link rel="stylesheet" href={state.stylePath} />
 			</Show>
+			{/* TODO: move this icon to [data-icon] */}
 			<Show when={state.iconVisible(props.icon)}>
 				<DBIcon icon={props.icon} class="icon-before" />
 			</Show>
@@ -191,10 +173,7 @@ export default function DBInput(props: DBInputProps) {
 				<DBInfotext
 					size="small"
 					variant={props.variant}
-					icon={state.getVariantIcon(
-						props.messageIcon,
-						props.variant
-					)}>
+					icon={props.messageIcon}>
 					{props.message}
 				</DBInfotext>
 			</Show>

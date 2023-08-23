@@ -11,9 +11,6 @@ import {
 	GlobalProps,
 	GlobalState,
 	GlobalTextProps,
-	IconProps,
-	IconVariantState,
-	IconVisibleState,
 	OverflowProps,
 	ValidEventProps
 } from '../../shared/model';
@@ -44,6 +41,4 @@ export type DBTextareaState = DBTextareaDefaultState &
 	ChangeEventState &
 	FocusEventState &
 	FormState &
-	GlobalState &
-	IconVisibleState &
-	IconVariantState;
+	GlobalState;

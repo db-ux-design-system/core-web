@@ -43,9 +43,6 @@ export default function DBNavigationItem(props: DBNavigationItemProps) {
 		handleBackClick: (event: any) => {
 			event.stopPropagation();
 			state.isSubNavigationExpanded = false;
-		},
-		iconVisible: (icon?: string) => {
-			return Boolean(icon && icon !== '_' && icon !== 'none');
 		}
 	});
 
@@ -88,7 +85,7 @@ export default function DBNavigationItem(props: DBNavigationItemProps) {
 			ref={component}
 			class={cls('db-navigation-item', props.className)}
 			data-width={props.width}
-			data-icon={state.iconVisible(props.icon) ? props.icon : undefined}
+			data-icon={props.icon}
 			aria-current={props.active ? 'page' : undefined}
 			aria-disabled={props.disabled}>
 			<Show when={state.stylePath}>

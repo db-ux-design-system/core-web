@@ -118,7 +118,7 @@
 		--db-input-padding-end-datalist: 1;
 
 		// Datalist icon
-		@include icon(glyph(expand-more), 24, "outline", "after");
+		@include icon(expand-more, "after");
 
 		&::after {
 			transition: transform $db-transition-emotional-straight;
@@ -304,7 +304,7 @@
 
 			& ~ .icon-state {
 				// TODO replace with svg icon
-				@include icon(glyph(search), 20, "filled", "before");
+				@include icon(search);
 			}
 
 			+ label {

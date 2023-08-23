@@ -6,8 +6,6 @@ import {
 	GlobalProps,
 	GlobalState,
 	IconProps,
-	IconVariantState,
-	IconVisibleState,
 	InnerCloseButtonProps,
 	LinkProps
 } from '../../shared/model';
@@ -53,8 +51,4 @@ export type DBAlertProps = DBAlertDefaultProps &
 
 export interface DBAlertDefaultState {}
 
-export type DBAlertState = DBAlertDefaultState &
-	GlobalState &
-	ClickEventState &
-	IconVisibleState &
-	IconVariantState;
+export type DBAlertState = DBAlertDefaultState & GlobalState & ClickEventState;

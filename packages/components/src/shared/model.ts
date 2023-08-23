@@ -61,14 +61,6 @@ export type DefaultVariantProps = {
 	variant?: DefaultVariantType;
 };
 
-export const DefaultVariantsIcon: any = {
-	critical: 'error',
-	// TODO: 'error-triangle' will change to 'warning' soon
-	warning: 'error-triangle',
-	successful: 'check-circle',
-	informational: 'info'
-};
-
 export type IconProps = {
 	/**
 	 * Define an icon by it's identifier (like e.g. _account_, compare to [Icons](https://db-ui.github.io/mono/review/main/foundations/icons) to get displayed in front of the elements content.
@@ -85,10 +77,6 @@ export type IconAfterProps = {
 
 export type IconVisibleState = {
 	iconVisible: (icon?: string) => boolean;
-};
-
-export type IconVariantState = {
-	getVariantIcon: (icon?: string, variant?: DefaultVariantType) => string;
 };
 
 export type OverflowProps = {

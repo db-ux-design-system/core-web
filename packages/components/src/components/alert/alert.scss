@@ -5,6 +5,8 @@
 @use "@db-ui/foundations/build/scss/helpers/component" as *;
 @use "@db-ui/foundations/build/scss/color/color-variants" as *;
 
+@use "@db-ui/foundations/build/scss/icon/icons.helpers" as icons;
+
 %grid-layout {
 	grid-template-areas: "icon content close";
 	grid-template-columns: min-content 1fr min-content;
@@ -64,6 +66,10 @@
 	// TODO: probably extract this to an overwrite or external file
 	text-align: start; // workaround for power apps
 
+	@include icons.no-icon() {
+		@include icons.icon(info);
+	}
+
 	dblink,
 	db-link {
 		// workaround angular
@@ -87,12 +93,13 @@
 		grid-area: close;
 	}
 
+	&[data-icon]::before,
 	&::before {
 		/* TODO: Take filled icons if they are ready */
+		--icon-margin-after: 0;
 		--icon-font-family: var(--db-base-icon-font-family);
 		--icon-font-size: var(--db-base-icon-font-size);
 		grid-area: icon;
-		margin-inline-end: 0;
 	}
 
 	&[data-type="inline"] {
@@ -115,7 +122,10 @@
 				@extend %db-bg-successful;
 			}
 
+			@include icons.variant-icons($name);
+
 			&::before {
+				--db-current-icon-color: #{map.get($colors, "element")};
 				color: map.get($colors, "element");
 			}
 		}

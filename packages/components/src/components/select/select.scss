@@ -1,10 +1,8 @@
 @use "sass:map";
-@use "@db-ui/foundations/build/scss/default.assets-paths" as *;
 @use "@db-ui/foundations/build/scss/variables" as *;
 @use "@db-ui/foundations/build/scss/variables.global" as *;
 @use "@db-ui/foundations/build/scss/color-placeholder" as *;
-@use "@db-ui/foundations/build/scss/helpers/functions" as *;
-@use "@db-ui/foundations/build/scss/helpers/component";
+@use "@db-ui/foundations/build/scss/helpers/component" as component;
 @use "@db-ui/foundations/build/scss/color/color-variants" as *;
 @use "@db-ui/foundations/build/scss/icon/icons.helpers" as *;
 @use "@db-ui/foundations/build/scss/helpers/font" as *;
@@ -37,16 +35,11 @@
 	--has-status: 0;
 	@extend %db-overwrite-font-size-sm;
 	@extend %select-icon;
-	@extend %bg-transparent-hover;
-	@extend %default-interactive-component;
-	@extend %component-border;
-
 	@extend %default-form-message;
 
 	@include form.get-input-color-variants();
 
 	position: relative;
-	block-size: $db-sizing-md;
 	min-inline-size: calc(
 		var(--db-select-min-width, calc(3 * $db-sizing-md)) + var(--has-before) *
 			($db-sizing-md)
@@ -58,15 +51,20 @@
 
 	&[data-variant="adaptive"],
 	&:not([data-variant]) {
-		@include get-variant-bg-color(0.08);
+		select {
+			@include get-variant-bg-color(0.08);
+		}
 	}
 
 	select {
-		@extend %transparent-border;
-		@extend %default-border-radius;
+		@extend %bg-transparent-hover;
+		@extend %default-interactive-component;
+		@extend %component-border;
+
+		border-radius: component.$default-border-radius;
+
 		appearance: none;
 		background-color: transparent;
-		border: none;
 		block-size: $db-sizing-md;
 		text-overflow: ellipsis;
 		text-indent: calc(

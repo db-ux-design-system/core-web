@@ -46,11 +46,11 @@
 
 	&:not([data-variant="inline"]) {
 		&[data-content="internal"] {
-			@include icon(glyph(arrow-forward), 24, "outline", "after");
+			@include icon(arrow-forward, "after");
 		}
 
 		&[data-content="external"] {
-			@include icon(glyph(link-external), 24, "outline", "after");
+			@include icon(link-external, "after");
 		}
 	}
 

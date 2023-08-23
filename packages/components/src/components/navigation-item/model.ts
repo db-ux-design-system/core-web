@@ -4,7 +4,6 @@ import {
 	GlobalProps,
 	GlobalState,
 	IconProps,
-	IconVisibleState,
 	InitializedState,
 	NavigationBackButtonProps,
 	WidthProps
@@ -61,5 +60,4 @@ export interface DBNavigationItemDefaultState {
 export type DBNavigationItemState = DBNavigationItemDefaultState &
 	ClickEventState &
 	GlobalState &
-	IconVisibleState &
 	InitializedState;

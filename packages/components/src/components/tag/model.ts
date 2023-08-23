@@ -1,18 +1,16 @@
 import {
-	GlobalTextProps,
-	ChangeEventState,
 	ChangeEventProps,
-	GlobalProps,
-	GlobalState,
+	ChangeEventState,
 	DefaultVariantProps,
+	EmphasisProps,
+	FormCheckProps,
 	FormProps,
 	FormState,
+	GlobalProps,
+	GlobalState,
 	IconProps,
-	IconVisibleState,
-	FormCheckProps,
 	InitializedState,
-	OverflowProps,
-	EmphasisProps
+	OverflowProps
 } from '../../shared/model';
 
 export interface DBTagDefaultProps {
@@ -64,5 +62,4 @@ export type DBTagState = DBTagDefaultState &
 	GlobalState &
 	ChangeEventState &
 	FormState &
-	InitializedState &
-	IconVisibleState;
+	InitializedState;

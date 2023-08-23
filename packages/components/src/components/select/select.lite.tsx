@@ -6,12 +6,9 @@ import {
 	useMetadata,
 	useStore
 } from '@builder.io/mitosis';
-import { DBSelectState, DBSelectProps, DBSelectOptionType } from './model';
-import { cls } from '../../utils';
+import { DBSelectOptionType, DBSelectProps, DBSelectState } from './model';
+import { cls, uuid } from '../../utils';
 import { DEFAULT_ID, DEFAULT_LABEL } from '../../shared/constants';
-import { uuid } from '../../utils';
-import { DBIcon } from '../icon';
-import { DefaultVariantsIcon, DefaultVariantType } from '../../shared/model';
 import { DBInfotext } from '../infotext';
 
 useMetadata({
@@ -77,23 +74,6 @@ export default function DBSelect(props: DBSelectProps) {
 			if (props.focus) {
 				props.focus(event);
 			}
-		},
-		iconVisible: (icon?: string) => {
-			return Boolean(icon && icon !== '_' && icon !== 'none');
-		},
-		getIcon: (variant?: DefaultVariantType) => {
-			if (variant) {
-				return DefaultVariantsIcon[variant];
-			}
-
-			return '';
-		},
-		getVariantIcon: (icon?: string, variant?: string) => {
-			if (state.iconVisible(icon)) {
-				return icon;
-			}
-
-			return (variant && DefaultVariantsIcon[variant]) || 'none';
 		},
 		getOptionLabel: (option: DBSelectOptionType) => {
 			return option.label ?? option.value.toString();
@@ -195,10 +175,7 @@ export default function DBSelect(props: DBSelectProps) {
 				<DBInfotext
 					size="small"
 					variant={props.variant}
-					icon={state.getVariantIcon(
-						props.messageIcon,
-						props.variant
-					)}>
+					icon={props.messageIcon}>
 					{props.message}
 				</DBInfotext>
 			</Show>

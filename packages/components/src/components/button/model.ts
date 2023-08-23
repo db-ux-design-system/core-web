@@ -4,7 +4,6 @@ import {
 	GlobalProps,
 	GlobalState,
 	IconProps,
-	IconVisibleState,
 	WidthProps
 } from '../../shared/model';
 
@@ -85,5 +84,4 @@ export type DBButtonDefaultState = {};
 
 export type DBButtonState = DBButtonDefaultState &
 	GlobalState &
-	ClickEventState &
-	IconVisibleState;
+	ClickEventState;

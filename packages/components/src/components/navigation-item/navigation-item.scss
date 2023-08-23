@@ -128,7 +128,7 @@
 			@extend %navigation-item;
 
 			// default icon for navigation
-			@include icon(glyph(chevron-right), 24, "outline", "after");
+			@include icon(chevron-right, "after");
 
 			font-weight: inherit;
 		}

@@ -2,7 +2,6 @@ import {
 	ChangeEventProps,
 	ChangeEventState,
 	DefaultVariantProps,
-	DefaultVariantType,
 	FocusEventProps,
 	FocusEventState,
 	FormMessageProps,
@@ -14,7 +13,6 @@ import {
 	GlobalTextProps,
 	IconAfterProps,
 	IconProps,
-	IconVariantState,
 	IconVisibleState,
 	KeyValueType,
 	ValidEventProps
@@ -54,7 +52,6 @@ export type DBInputProps = DBInputDefaultProps &
 
 export type DBInputDefaultState = {
 	_dataListId?: string;
-	getIcon: (variant?: DefaultVariantType) => string;
 };
 
 export type DBInputState = DBInputDefaultState &
@@ -62,5 +59,4 @@ export type DBInputState = DBInputDefaultState &
 	ChangeEventState &
 	FocusEventState &
 	FormState &
-	IconVisibleState &
-	IconVariantState;
+	IconVisibleState;
