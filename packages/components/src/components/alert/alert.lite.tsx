@@ -1,7 +1,5 @@
 import { onMount, Show, useMetadata, useStore } from '@builder.io/mitosis';
 import { DBAlertProps, DBAlertState } from './model';
-import { DBIcon } from '../icon';
-import { DefaultVariantsIcon } from '../../shared/model';
 import { DBButton } from '../button';
 import { DBLink } from '../link';
 import { DEFAULT_CLOSE_BUTTON } from '../../shared/constants';
@@ -13,10 +11,6 @@ useMetadata({
 		// MS Power Apps
 		includeIcon: true,
 		hasOnClick: true,
-		canvasSize: {
-			height: 'fixed', // 'fixed', 'controlled'
-			width: 'controlled' // 'fixed', 'dynamic' (requires width property), 'controlled'
-		},
 		properties: [
 			{ name: 'headline', type: 'SingleLine.Text' },
 			{
@@ -45,16 +39,6 @@ export default function DBAlert(props: DBAlertProps) {
 			if (props.onClick) {
 				props.onClick(event);
 			}
-		},
-		getIcon: (icon?: string, variant?: string) => {
-			if (state.iconVisible(icon)) {
-				return icon;
-			}
-
-			return (variant && DefaultVariantsIcon[variant]) || 'info';
-		},
-		iconVisible: (icon?: string) => {
-			return Boolean(icon && icon !== '_' && icon !== 'none');
 		}
 	});
 
@@ -72,7 +56,7 @@ export default function DBAlert(props: DBAlertProps) {
 			aria-live={props.ariaLive}
 			data-variant={props.variant}
 			data-type={props.type}
-			data-icon={state.getIcon(props.icon, props.variant)}
+			data-icon={props.icon}
 			data-elevation={props.elevation}>
 			<Show when={state.stylePath}>
 				<link rel="stylesheet" href={state.stylePath} />

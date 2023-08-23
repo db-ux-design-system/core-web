@@ -9,10 +9,6 @@ useMetadata({
 		includeIcon: true,
 		hasDisabledProp: true,
 		hasOnClick: true,
-		canvasSize: {
-			height: 'fixed', // 'fixed', 'controlled'
-			width: 'dynamic' // 'fixed', 'dynamic' (requires width property), 'controlled'
-		},
 		properties: [
 			{
 				name: 'children',
@@ -45,9 +41,7 @@ useMetadata({
 			{ name: 'noText', type: 'TwoOptions' },
 			{
 				name: 'width',
-				powerAppsName: 'autoWidth', // width property is reserved in power apps
 				type: 'Enum',
-				defaultValue: 'auto',
 				values: [
 					{ key: 'Full', name: 'Full', value: 'full' },
 					{ key: 'Auto', name: 'Auto', value: 'auto' }
@@ -66,9 +60,6 @@ export default function DBButton(props: DBButtonProps) {
 			if (props.onClick) {
 				props.onClick(event);
 			}
-		},
-		iconVisible: (icon?: string) => {
-			return Boolean(icon && icon !== '_' && icon !== 'none');
 		}
 	});
 
@@ -84,14 +75,13 @@ export default function DBButton(props: DBButtonProps) {
 			id={props.id}
 			ref={component}
 			class={cls('db-button', props.className, {
-				'is-icon-text-replace':
-					state.iconVisible(props.icon) && props.noText
+				'is-icon-text-replace': props.noText
 			})}
 			type={props.type}
 			title={props.title}
 			disabled={props.disabled}
 			aria-label={props.label}
-			data-icon={state.iconVisible(props.icon) ? props.icon : undefined}
+			data-icon={props.icon}
 			data-size={props.size}
 			data-state={props.state}
 			data-width={props.width}

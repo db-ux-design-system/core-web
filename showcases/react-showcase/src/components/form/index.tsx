@@ -30,7 +30,7 @@ const FormComponent = () => {
 						<DBInput
 							label="Textinput"
 							placeholder="Placeholder"
-							description="Description"
+							message="Description"
 							icon="account"
 							name="input-name"
 							onChange={(event) => {

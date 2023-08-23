@@ -7,7 +7,7 @@
 	alt: "";
 
 	content: var(--icon-glyph);
-	color: inherit;
+	color: var(--db-current-icon-color, inherit);
 
 	display: inline-block;
 	/*** icon - placeholder ***/

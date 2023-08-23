@@ -1,3 +1,5 @@
+import { DefaultVariantType } from '../shared/model';
+
 export const uuid = () => {
 	if (typeof window !== 'undefined') {
 		return window.crypto?.randomUUID();
@@ -42,3 +44,9 @@ export const cls = (...args: ClassNameArg[]) => {
 
 	return result.trim();
 };
+
+export const getMessageIcon = (
+	variant?: DefaultVariantType,
+	messageIcon?: string
+): string | undefined =>
+	(!variant || variant !== 'adaptive') && !messageIcon ? 'none' : messageIcon;

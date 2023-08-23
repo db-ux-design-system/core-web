@@ -1,14 +1,10 @@
 import { For, onMount, Show, useMetadata, useStore } from '@builder.io/mitosis';
 import { DBIcon } from '../icon';
-import { uuid } from '../../utils';
+import { cls, getMessageIcon, uuid } from '../../utils';
 import { DBInputProps, DBInputState } from './model';
-import { cls } from '../../utils';
 import { DEFAULT_ID, DEFAULT_LABEL } from '../../shared/constants';
-import {
-	DefaultVariantType,
-	DefaultVariantsIcon,
-	KeyValueType
-} from '../../shared/model';
+import { KeyValueType } from '../../shared/model';
+import { DBInfotext } from '../infotext';
 
 useMetadata({
 	isAttachedToShadowDom: true,
@@ -16,10 +12,6 @@ useMetadata({
 		// MS Power Apps
 		includeIcon: true,
 		hasDisabledProp: true,
-		canvasSize: {
-			height: 'fixed', // 'fixed', 'controlled'
-			width: 'controlled' // 'fixed', 'dynamic' (requires width property), 'controlled'
-		},
 		properties: [
 			{
 				name: 'label',
@@ -59,13 +51,6 @@ export default function DBInput(props: DBInputProps) {
 		},
 		iconVisible: (icon?: string) => {
 			return Boolean(icon && icon !== '_' && icon !== 'none');
-		},
-		getIcon: (variant?: DefaultVariantType) => {
-			if (variant) {
-				return DefaultVariantsIcon[variant];
-			}
-
-			return '';
 		},
 		handleChange: (event: any) => {
 			if (props.onChange) {
@@ -128,6 +113,7 @@ export default function DBInput(props: DBInputProps) {
 			<Show when={state.stylePath}>
 				<link rel="stylesheet" href={state.stylePath} />
 			</Show>
+			{/* TODO: move this icon to [data-icon] */}
 			<Show when={state.iconVisible(props.icon)}>
 				<DBIcon icon={props.icon} class="icon-before" />
 			</Show>
@@ -149,6 +135,7 @@ export default function DBInput(props: DBInputProps) {
 				minLength={props.minLength}
 				max={props.max}
 				min={props.min}
+				readOnly={props.readonly}
 				pattern={props.pattern}
 				onChange={(event) => state.handleChange(event)}
 				onBlur={(event) => state.handleBlur(event)}
@@ -161,15 +148,6 @@ export default function DBInput(props: DBInputProps) {
 				id={state._id + '-label'}>
 				<span>{props.label ?? state.defaultValues.label}</span>
 			</label>
-			<Show when={props.description}>
-				<p class="description">{props.description}</p>
-			</Show>
-			<Show when={props.variant || props.required || props.pattern}>
-				<DBIcon
-					icon={state.getIcon(props.variant)}
-					class="icon-state"
-				/>
-			</Show>
 			<Show when={state.iconVisible(props.iconAfter)}>
 				<DBIcon icon={props.iconAfter} class="icon-after" />
 			</Show>
@@ -190,6 +168,15 @@ export default function DBInput(props: DBInputProps) {
 			</Show>
 
 			{props.children}
+
+			<Show when={props.message}>
+				<DBInfotext
+					size="small"
+					variant={props.variant}
+					icon={getMessageIcon(props.variant, props.messageIcon)}>
+					{props.message}
+				</DBInfotext>
+			</Show>
 		</div>
 	);
 }
