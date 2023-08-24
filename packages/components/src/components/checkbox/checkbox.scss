@@ -43,7 +43,7 @@ $font-size-height: calc(var(--db-base-font-size) * var(--db-base-line-height));
 		@extend %db-bg-inverted-ia;
 
 		// Check icon
-		@include icon(glyph(done), 24, "outline");
+		@include icon(done);
 
 		// The icon within the checkbox has the same dimensions as the checkbox itself and that for there can't be any border
 		border-width: 0;
@@ -56,7 +56,7 @@ $font-size-height: calc(var(--db-base-font-size) * var(--db-base-line-height));
 	// }
 
 	&:indeterminate {
-		@include icon(glyph(minus), 24, "outline");
+		@include icon(minus);
 
 		&::before {
 			line-height: 20px;

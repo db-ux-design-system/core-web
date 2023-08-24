@@ -66,9 +66,6 @@ export default function DBButton(props: DBButtonProps) {
 			if (props.onClick) {
 				props.onClick(event);
 			}
-		},
-		iconVisible: (icon?: string) => {
-			return Boolean(icon && icon !== '_' && icon !== 'none');
 		}
 	});
 
@@ -84,14 +81,13 @@ export default function DBButton(props: DBButtonProps) {
 			id={props.id}
 			ref={component}
 			class={cls('db-button', props.className, {
-				'is-icon-text-replace':
-					state.iconVisible(props.icon) && props.noText
+				'is-icon-text-replace': props.noText
 			})}
 			type={props.type}
 			title={props.title}
 			disabled={props.disabled}
 			aria-label={props.label}
-			data-icon={state.iconVisible(props.icon) ? props.icon : undefined}
+			data-icon={props.icon}
 			data-size={props.size}
 			data-state={props.state}
 			data-width={props.width}

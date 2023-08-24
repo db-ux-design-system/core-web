@@ -26,6 +26,7 @@ import {
 					v-if="exampleProps.noContent"
 					variant="informational"
 					size="small"
+					icon="none"
 				>
 					{{ exampleName }}
 				</DBInfotext>
@@ -48,7 +49,7 @@ import {
 					</DBBadge>
 					{{ exampleName }}
 				</DBButton>
-				<DBInfotext variant="informational" size="small">
+				<DBInfotext variant="informational" size="small" icon="none">
 					{{ exampleName }}
 				</DBInfotext>
 			</template>
@@ -72,7 +73,7 @@ import {
 				>
 					<DBIcon icon="account">{{ exampleName }}</DBIcon>
 				</DBBadge>
-				<DBInfotext variant="informational" size="small">
+				<DBInfotext variant="informational" size="small" icon="none">
 					{{ exampleName }}
 				</DBInfotext>
 			</template>
@@ -90,10 +91,10 @@ import {
 				<DBBadge size="small" emphasis="strong" variant="warning">
 					123
 				</DBBadge>
-				<DBInfotext variant="informational" size="small">
+				<DBInfotext variant="informational" size="small" icon="none">
 					{{ exampleName }}
-				</DBInfotext></template
-			>
+				</DBInfotext>
+			</template>
 		</template>
 	</DefaultComponent>
 </template>

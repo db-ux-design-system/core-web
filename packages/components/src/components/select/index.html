@@ -7,8 +7,24 @@
 	</head>
 	<body style="padding: var(--db-spacing-fixed-md)">
 		<div class="db-select">
-			<option value="test1">Test1</option>
-			<option value="test2">Test2</option>
+			<select id="test">
+				<option hidden></option>
+				<option value="test1">Test1</option>
+				<option value="test2">Test2</option>
+			</select>
+			<label for="test" aria-hidden="true">Label</label>
+			<span class="db-infotext">No Icon</span>
+		</div>
+		<div class="db-select" data-variant="informational">
+			<select id="test">
+				<option hidden></option>
+				<option value="test1">Test1</option>
+				<option value="test2">Test2</option>
+			</select>
+			<label for="test" aria-hidden="true">Label</label>
+			<span class="db-infotext" data-variant="informational">
+				informational
+			</span>
 		</div>
 	</body>
 </html>

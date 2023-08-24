@@ -10,7 +10,7 @@ const getSelect = ({
 	variant,
 	options,
 	icon,
-	description,
+	message,
 	disabled,
 	value
 }: DBSelectProps) => (
@@ -21,7 +21,7 @@ const getSelect = ({
 		disabled={disabled}
 		icon={icon}
 		value={value}
-		description={description}>
+		message={message}>
 		{children}
 	</DBSelect>
 );

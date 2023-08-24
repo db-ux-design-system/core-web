@@ -66,7 +66,7 @@
 	}
 
 	&[data-disabled="true"] {
-		opacity: $default-opacity;
+		opacity: $default-disabled-opacity;
 		pointer-events: none;
 	}
 }

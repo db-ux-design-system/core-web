@@ -1,46 +1,45 @@
 @charset "utf-8";
-@use "@db-ui/foundations/build/scss/helpers/font" as *;
-@use "@db-ui/foundations/build/scss/variables" as *;
-@use "@db-ui/foundations/build/scss/variables.global" as *;
-@use "@db-ui/foundations/build/scss/color-placeholder" as *;
-@use "@db-ui/foundations/build/scss/icon/icons.helpers" as *;
-@use "@db-ui/foundations/build/scss/color/color-variants" as col-var;
-@use "@db-ui/foundations/build/scss/helpers/component" as *;
-@use "../../styles/button-components";
+@use "@db-ui/foundations/build/scss/helpers/font" as font;
+@use "@db-ui/foundations/build/scss/variables.global" as var;
+@use "@db-ui/foundations/build/scss/color-placeholder" as color-placeholder;
+@use "@db-ui/foundations/build/scss/color/color-variants" as color-variants;
+@use "@db-ui/foundations/build/scss/icon/icons.helpers" as icons;
+@use "@db-ui/foundations/build/scss/helpers/component" as component;
+@use "../../styles/button-components" as *;
 
 .db-button {
 	@extend %default-interactive-component;
 	@extend %default-button;
 
-	@include col-var.bg-transparent-interactive();
+	@include color-variants.bg-transparent-interactive();
 
-	color: $db-colors-neutral-on-bg;
+	color: var.$db-colors-neutral-on-bg;
 
-	block-size: $db-sizing-md;
-	padding: $db-spacing-fixed-xs $db-spacing-fixed-md;
+	block-size: var.$db-sizing-md;
+	padding: var.$db-spacing-fixed-xs var.$db-spacing-fixed-md;
 
 	// Square icon only buttons
 	&.is-icon-text-replace {
 		font-size: 0;
 		padding: 0;
-		inline-size: $db-sizing-md;
+		inline-size: var.$db-sizing-md;
 	}
 
 	&[data-size="small"] {
 		@extend %db-overwrite-font-size-sm;
-		block-size: $db-sizing-sm;
+		block-size: var.$db-sizing-sm;
 
 		&:not(.is-icon-text-replace) {
-			padding: $db-spacing-fixed-3xs $db-spacing-fixed-sm;
+			padding: var.$db-spacing-fixed-3xs var.$db-spacing-fixed-sm;
 
 			&::before {
-				margin-inline-end: $db-spacing-fixed-2xs;
+				margin-inline-end: var.$db-spacing-fixed-2xs;
 			}
 		}
 
 		// Square icon only buttons
 		&.is-icon-text-replace {
-			inline-size: $db-sizing-sm;
+			inline-size: var.$db-sizing-sm;
 		}
 	}
 
@@ -55,7 +54,7 @@
 
 	&[data-variant="solid"] {
 		@extend %transparent-border;
-		@include col-var.get-variant-bg-color(0.08);
+		@include color-variants.get-variant-bg-color(0.08);
 	}
 
 	&[data-variant="text"] {
@@ -63,12 +62,12 @@
 	}
 
 	&:disabled {
-		opacity: $default-opacity;
+		opacity: component.$default-disabled-opacity;
 	}
 
 	// States (currently only "loading")
 	&[data-state="loading"] {
-		@include is-icon-text-replace();
+		@include icons.is-icon-text-replace();
 
 		&::before {
 			content: "";

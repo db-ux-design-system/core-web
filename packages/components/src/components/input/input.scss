@@ -1,5 +1,4 @@
 @charset "utf-8";
-@use "sass:map";
 @use "@db-ui/foundations/build/scss/default.assets-paths" as *;
 @use "@db-ui/foundations/build/scss/variables" as *;
 @use "@db-ui/foundations/build/scss/variables.global" as *;
@@ -9,7 +8,7 @@
 @use "@db-ui/foundations/build/scss/color-placeholder" as *;
 @use "@db-ui/foundations/build/scss/color/color-variants" as *;
 @use "@db-ui/foundations/build/scss/helpers/component" as *;
-@use "../../styles/form-components" as *;
+@use "../../styles/form-components" as form;
 
 :root,
 .db-ui-regular,
@@ -70,49 +69,6 @@
 	}
 }
 
-%input-color-variants {
-	@each $name, $colors in $component-variants {
-		@if ($name == "critical") {
-			&[data-variant="critical"] {
-				color: map.get($colors, "on-bg");
-			}
-		}
-
-		&[data-variant="#{$name}"] {
-			--db-current-color: #{map.get($colors, "on-bg")};
-			color: map.get($colors, "on-bg");
-		}
-
-		&[data-variant="#{$name}"] input {
-			--db-current-border-color: #{map.get($colors, "border")};
-			@if ($name == "critical") {
-				@extend %adaptive-critical-component;
-			} @else if ($name == "informational") {
-				@extend %adaptive-informational-component;
-			} @else if ($name == "warning") {
-				@extend %adaptive-warning-component;
-			} @else if ($name == "successful") {
-				@extend %adaptive-successful-component;
-			}
-
-			& + label {
-				color: map.get($colors, "on-bg");
-			}
-
-			& ~ .db-icon {
-				--db-current-color: #{map.get($colors, "on-bg")};
-			}
-
-			& ~ .description,
-			& ~ .icon-state,
-			& ~ .icon-state .db-icon {
-				--db-current-color: #{map.get($colors, "element")};
-				color: var(--db-current-color);
-			}
-		}
-	}
-}
-
 .db-input {
 	--db-input-padding-inline-start: #{$db-spacing-fixed-sm};
 	--db-input-padding-end-icon-after: 0;
@@ -121,7 +77,11 @@
 	--icon-margin-after: 0;
 	--db-input-label-max-width: 80%;
 
-	@extend %input-color-variants;
+	@extend %default-form-message;
+	@extend %disabled-form-element;
+	@extend %required-form-element;
+
+	@include form.get-input-color-variants();
 
 	position: relative;
 
@@ -158,7 +118,7 @@
 		--db-input-padding-end-datalist: 1;
 
 		// Datalist icon
-		@include icon(glyph(expand-more), 24, "outline", "after");
+		@include icon(expand-more, "after");
 
 		&::after {
 			transition: transform $db-transition-emotional-straight;
@@ -166,7 +126,7 @@
 
 		&:has(input:is(:focus, :not(:placeholder-shown))) {
 			&::after {
-				transform: $dropdown-icon-transform;
+				transform: form.$dropdown-icon-transform;
 			}
 		}
 
@@ -244,15 +204,6 @@
 		}
 	}
 
-	.description {
-		@extend %db-overwrite-font-size-xs;
-		margin: $db-spacing-fixed-2xs $db-spacing-fixed-sm 0;
-
-		display: flex;
-		align-items: flex-start;
-		justify-content: space-between;
-	}
-
 	input {
 		--db-input-padding-inline-end: calc(
 			(
@@ -291,24 +242,6 @@
 
 			+ label {
 				@include label-focus-animation();
-			}
-		}
-
-		// TODO: Evaluate whether those could get moved to ../_form-elements.scss
-		&:disabled,
-		fieldset:disabled & {
-			&,
-			& + label {
-				// Decided against cursor: not-allowed, compare to e.g. https://phabricator.wikimedia.org/T121960
-				opacity: $default-opacity;
-				pointer-events: none;
-			}
-		}
-
-		&:required {
-			+ label::after {
-				content: " *";
-				padding-inline-start: 0.2rem;
 			}
 		}
 
@@ -371,7 +304,7 @@
 
 			& ~ .icon-state {
 				// TODO replace with svg icon
-				@include icon(glyph(search), 20, "filled", "before");
+				@include icon(search);
 			}
 
 			+ label {
@@ -379,10 +312,6 @@
 					$paddingLeft,
 					calc(-1 * var(--db-sizing-md))
 				);
-			}
-
-			~ .description {
-				padding-inline-start: $paddingLeft;
 			}
 
 			&:focus,

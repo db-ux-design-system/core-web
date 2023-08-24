@@ -61,14 +61,6 @@ export type DefaultVariantProps = {
 	variant?: DefaultVariantType;
 };
 
-export const DefaultVariantsIcon: any = {
-	critical: 'error',
-	// TODO: 'error-triangle' will change to 'warning' soon
-	warning: 'error-triangle',
-	successful: 'check-circle',
-	informational: 'info'
-};
-
 export type IconProps = {
 	/**
 	 * Define an icon by it's identifier (like e.g. _account_, compare to [Icons](https://db-ui.github.io/mono/review/main/foundations/icons) to get displayed in front of the elements content.
@@ -83,8 +75,15 @@ export type IconAfterProps = {
 	iconAfter?: IconTypes;
 };
 
-export type IconState = {
+export type IconVisibleState = {
 	iconVisible: (icon?: string) => boolean;
+};
+
+export type OverflowProps = {
+	/**
+	 * The overflow attribute sets a max-width and longer text will be dotted.
+	 */
+	overflow?: boolean;
 };
 
 export type WidthProps = {
@@ -119,6 +118,10 @@ export type FormProps = {
 	disabled?: boolean;
 
 	/**
+	 * Marks an input element as invalid.
+	 */
+	invalid?: boolean;
+	/**
 	 * The label attribute specifies the caption of the form element.
 	 */
 	label?: string;
@@ -130,15 +133,11 @@ export type FormProps = {
 	 * When the required attribute specified, the user will be required to fill the form element before submitting the form.
 	 */
 	required?: boolean;
+
 	/**
 	 * The value property is to receive results from the native form element.
 	 */
 	value?: any;
-
-	/**
-	 * Marks an input element as invalid.
-	 */
-	invalid?: boolean;
 };
 
 export type FormCheckProps = {
@@ -146,6 +145,25 @@ export type FormCheckProps = {
 	 * Define the radio or checkbox elements checked state
 	 */
 	checked?: boolean;
+};
+
+export type FormReadonlyProps = {
+	/**
+	 * The disabled attribute can be set to keep a user from edit on the form element
+	 */
+	readonly?: boolean;
+};
+
+export type FormMessageProps = {
+	/**
+	 * Optional helper message for form components
+	 */
+	message?: string;
+
+	/**
+	 * Set/overwrite icon for helper message for form components
+	 */
+	messageIcon?: IconTypes;
 };
 
 export type FormState = {
