@@ -44,6 +44,10 @@
 		padding: var.$db-spacing-fixed-md;
 		gap: var.$db-spacing-fixed-md;
 
+		&::-webkit-details-marker {
+			display: none;
+		}
+
 		&::after {
 			inset-inline-end: var.$db-spacing-fixed-sm;
 		}
