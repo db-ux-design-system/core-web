@@ -12,7 +12,8 @@
 	@extend %db-bg-neutral;
 }
 
-[class^="db-"] {
+[class^="db-"],
+[class^="db-"] * {
 	@extend %default-color-transition;
 
 	::before,

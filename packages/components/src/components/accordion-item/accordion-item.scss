@@ -44,6 +44,10 @@
 		padding: var.$db-spacing-fixed-md;
 		gap: var.$db-spacing-fixed-md;
 
+		&::-webkit-details-marker {
+			display: none;
+		}
+
 		&::after {
 			inset-inline-end: var.$db-spacing-fixed-sm;
 		}
@@ -63,7 +67,6 @@
 	}
 
 	&[open] {
-
 		@include accordion-item-content() {
 			animation: accordion-open $db-transition-emotional-straight normal
 				both;
