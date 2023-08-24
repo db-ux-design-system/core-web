@@ -39,7 +39,8 @@ useMetadata({
 			},
 			{
 				name: 'variant',
-				type: 'DefaultVariant' // this is a custom type not provided by ms
+				type: 'DefaultVariant', // this is a custom type not provided by ms
+				defaultValue: 'adaptive'
 			}
 		]
 	}
@@ -86,8 +87,9 @@ export default function DBInput(props: DBInputProps) {
 			// TODO: Replace this with the solution out of https://github.com/BuilderIO/mitosis/issues/833 after this has been "solved"
 			// VUE:this.$emit("update:value", event.target.value);
 
-			// Angular: propagate change event to work with reactive and template driven forms
-			this.propagateChange(event.target.value);
+			// Change event to work with reactive and template driven forms
+			// ANGULAR: this.propagateChange(event.target.value);
+			// ANGULAR: this.writeValue(event.target.value);
 		},
 		handleBlur: (event: any) => {
 			if (props.onBlur) {
@@ -106,9 +108,7 @@ export default function DBInput(props: DBInputProps) {
 			if (props.focus) {
 				props.focus(event);
 			}
-		},
-		// callback for controlValueAccessor's onChange handler
-		propagateChange: (_: any) => {}
+		}
 	});
 
 	onMount(() => {

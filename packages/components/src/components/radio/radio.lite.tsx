@@ -61,8 +61,9 @@ export default function DBRadio(props: DBRadioProps) {
 			// TODO: Replace this with the solution out of https://github.com/BuilderIO/mitosis/issues/833 after this has been "solved"
 			// VUE:this.$emit("update:checked", event.target.checked);
 
-			// Angular: propagate change event to work with reactive and template driven forms
-			this.propagateChange(event.target.checked);
+			// Change event to work with reactive and template driven forms
+			// ANGULAR: this.propagateChange(event.target.checked);
+			// ANGULAR: this.writeValue(event.target.checked);
 		},
 		handleBlur: (event: any) => {
 			if (props.onBlur) {
@@ -81,9 +82,7 @@ export default function DBRadio(props: DBRadioProps) {
 			if (props.focus) {
 				props.focus(event);
 			}
-		},
-		// callback for controlValueAccessor's onChange handler
-		propagateChange: (_: any) => {}
+		}
 	});
 
 	onMount(() => {

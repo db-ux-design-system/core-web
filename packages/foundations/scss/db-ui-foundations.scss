@@ -8,8 +8,13 @@
 @use "helpers/component" as *;
 
 :root {
-	@extend %db-ui-regular;
 	@extend %db-bg-neutral;
+
+	/* This is a MS power apps specific class name */
+	.app-canvas,
+	&:not(:has(.app-canvas)) {
+		@extend %db-ui-regular;
+	}
 }
 
 [class^="db-"] {
