@@ -24,6 +24,8 @@
 	text-underline-position: from-font;
 	text-decoration-thickness: to-rem($pxValue: 1);
 
+	white-space: nowrap;
+
 	&:hover {
 		color: color-mix(in srgb, transparent 25%, $db-colors-neutral-on-bg);
 	}
