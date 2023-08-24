@@ -52,18 +52,9 @@
 			// TODO: Evaluate whether this number is intended
 			border-radius: component.$default-border-radius + 2;
 		}
-
-		.db-ui-functional & {
-			@include icons.icon-meta(
-				$size: 20,
-				$position: "after",
-				$font-size: 20
-			);
-		}
 	}
 
 	&[open] {
-
 		@include accordion-item-content() {
 			animation: accordion-open $db-transition-emotional-straight normal
 				both;
