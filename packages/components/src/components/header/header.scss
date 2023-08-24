@@ -64,6 +64,10 @@
 			display: none;
 		}
 	}
+
+	&:empty {
+		display: none;
+	}
 }
 
 .db-header-navigation-container {
