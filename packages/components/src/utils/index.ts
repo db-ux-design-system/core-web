@@ -1,6 +1,18 @@
 export const uuid = () => {
-	if (typeof window !== 'undefined') {
-		return window.crypto?.randomUUID();
+	try {
+		if (typeof window !== 'undefined') {
+			if (window.crypto) {
+				if (window.crypto.randomUUID) {
+					return window.crypto.randomUUID();
+				} else if (window.crypto.getRandomValues) {
+					return window.crypto
+						.getRandomValues(new Uint32Array(3))
+						.join('-');
+				}
+			}
+		}
+	} catch (error) {
+		console.warn(error);
 	}
 
 	return Math.random().toString();
