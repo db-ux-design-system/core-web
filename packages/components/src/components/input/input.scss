@@ -126,7 +126,7 @@
 
 		&:has(input:is(:focus, :not(:placeholder-shown))) {
 			&::after {
-				transform: $dropdown-icon-transform;
+				transform: form.$dropdown-icon-transform;
 			}
 		}
 

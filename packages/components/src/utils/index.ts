@@ -60,5 +60,10 @@ export const cls = (...args: ClassNameArg[]) => {
 export const getMessageIcon = (
 	variant?: DefaultVariantType,
 	messageIcon?: string
-): string | undefined =>
-	(!variant || variant !== 'adaptive') && !messageIcon ? 'none' : messageIcon;
+): string | undefined => {
+	return messageIcon
+		? messageIcon
+		: !variant || variant === 'adaptive'
+		? 'none'
+		: undefined;
+};
