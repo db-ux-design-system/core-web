@@ -21,6 +21,8 @@ import {
 	DBDrawerModule,
 	DBTagModule,
 	DBNavigationItemModule,
+	DBAccordionModule,
+	DBAccordionItemModule,
 	DBMainNavigationModule,
 	DBBadgeModule
 } from '../../../../output/angular/src';
@@ -31,6 +33,8 @@ import { NavigationContentDirective } from '../../../../output/angular/src/compo
 import { BadgeComponent } from './components/badge/badge.component';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app.routing.module';
+import { AccordionComponent } from './components/accordion/accordion.component';
+import { AccordionItemComponent } from './components/accordion-item/accordion-item.component';
 import { FormComponent } from './components/form/form.component';
 import { ButtonComponent } from './components/button/button.component';
 import { LinkComponent } from './components/link/link.component';
@@ -52,6 +56,8 @@ import { MainNavigationComponent } from './components/main-navigation/main-navig
 
 @NgModule({
 	declarations: [
+		AccordionItemComponent,
+		AccordionComponent,
 		MainNavigationComponent,
 		BadgeComponent,
 		NavigationItemComponent,
@@ -78,6 +84,8 @@ import { MainNavigationComponent } from './components/main-navigation/main-navig
 		NavigationContentDirective
 	],
 	imports: [
+		DBAccordionItemModule,
+		DBAccordionModule,
 		DBBadgeModule,
 		DBMainNavigationModule,
 		DBNavigationItemModule,

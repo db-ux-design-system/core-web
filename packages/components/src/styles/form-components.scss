@@ -9,6 +9,7 @@
 @use "@db-ui/foundations/build/scss/color/color-variants" as variants;
 
 $dropdown-icon-transition: transform var-todo.$db-transition-emotional-straight;
+$dropdown-icon-transform: rotate(-180deg);
 
 %dropdown-icon {
 	@include icons.icon(expand-more, "after");

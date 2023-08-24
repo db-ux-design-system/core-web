@@ -162,8 +162,6 @@ export type FormMessageProps = {
 
 export type FormState = {
 	_isValid?: boolean | undefined;
-	// callback for controlValueAccessor's onChange handler
-	propagateChange?: (value: any) => void;
 };
 
 export type InitializedState = {
@@ -252,7 +250,7 @@ export type ToggleEventProps = {
 };
 
 export type ToggleEventState = {
-	toggle?: () => void;
+	toggle?: (event?: any) => void;
 };
 
 export type CloseEventProps = {
@@ -273,9 +271,6 @@ export type ChangeEventProps = {
 
 export type ChangeEventState = {
 	handleChange: (event: any) => void;
-
-	// some frameworks, e.g. angular need specific change listeners for internal use
-	propagateChange?: (_: any) => void;
 };
 
 export type FocusEventProps = {

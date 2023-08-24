@@ -39,6 +39,14 @@ const componentChildren: NavigationItem[] = [
 			{
 				label: 'DBTag',
 				name: 'tag'
+			},
+			{
+				label: 'DBAccordion',
+				name: 'accordion'
+			},
+			{
+				label: 'DBAccordionItem',
+				name: 'accordion-item'
 			}
 		]
 	},

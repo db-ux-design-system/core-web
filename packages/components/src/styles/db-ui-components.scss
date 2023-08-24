@@ -23,12 +23,20 @@
 @use "../components/navigation-item/navigation-item" as *;
 @use "../components/badge/badge" as *;
 
+@use "../components/accordion/accordion" as *;
+
+@use "../components/accordion-item/accordion-item" as *;
 @use "../components/main-navigation/main-navigation" as *;
 
 @forward "dialog-init";
 // angular-workaround
 dbmain-navigation,
 db-main-navigation,
+// angular-workaround
+dbaccordion-item,
+db-accordion-item,
+dbaccordion,
+db-accordion,
 dbbadge,
 db-badge,
 dbnavigation-item,

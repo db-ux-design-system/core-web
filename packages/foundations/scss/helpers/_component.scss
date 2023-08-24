@@ -5,6 +5,7 @@
 @use "../helpers/functions" as functions;
 
 /* TODO: We should get the variables from UX, and probably want to make those global variables */
+$checkbox-border-radius: to-rem(2.5);
 $default-border-radius: functions.to-rem(4);
 $default-card-border-radius: var(
 	--default-card-border-radius,

@@ -1,4 +1,6 @@
 import type { RouteRecordRaw } from 'vue-router';
+import AccordionItem from '../components/accordion-item/AccordionItem.vue';
+import Accordion from '../components/accordion/Accordion.vue';
 import Badge from '../components/badge/Badge.vue';
 import NavigationItem from '../components/navigation-item/NavigationItem.vue';
 import MainNavigation from '../components/main-navigation/MainNavigation.vue';
@@ -65,7 +67,13 @@ export const navigationItems: NavItem[] = [
 				label: 'Infotext',
 				component: Infotext
 			},
-			{ path: '/04/tag', label: 'Tag', component: Tag }
+			{ path: '/04/tag', label: 'Tag', component: Tag },
+			{ path: '/04/accordion', label: 'Accordion', component: Accordion },
+			{
+				path: '/04/accordion-item',
+				label: 'AccordionItem',
+				component: AccordionItem
+			}
 		])
 	},
 	{

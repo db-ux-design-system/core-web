@@ -17,7 +17,7 @@
 
 	&:has(select:focus-within) {
 		&::after {
-			transform: rotate(-180deg);
+			transform: $dropdown-icon-transform;
 		}
 	}
 }
@@ -36,6 +36,9 @@
 	@extend %db-overwrite-font-size-sm;
 	@extend %select-icon;
 	@extend %default-form-message;
+	@extend %component-border;
+	@include bg-transparent-hover();
+	@include get-variant-bg-color(0.08);
 
 	@include form.get-input-color-variants();
 

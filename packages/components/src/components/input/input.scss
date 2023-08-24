@@ -126,7 +126,7 @@
 
 		&:has(input:is(:focus, :not(:placeholder-shown))) {
 			&::after {
-				transform: rotate(-180deg);
+				transform: $dropdown-icon-transform;
 			}
 		}
 
@@ -213,10 +213,10 @@
 				) * #{$db-sizing-md}
 		);
 
-		@extend %bg-transparent-hover;
 		@extend %default-interactive-component;
 		@extend %component-border;
 
+		@include bg-transparent-hover();
 		@include get-variant-bg-color(0.08);
 
 		color: $db-colors-neutral-on-bg;

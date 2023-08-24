@@ -21,6 +21,25 @@
  */
 const getComponents = () => [
 	{
+		name: 'accordion-item'
+	},
+
+	{
+		name: 'accordion',
+		overwrites: {
+			angular: [
+				{ from: 'openItems = []', to: 'openItems: string[] = []' }
+			],
+			react: [
+				{
+					from: 'const ref = useRef<HTMLDivElement>(null);',
+					to: 'const ref = useRef<HTMLDivElement>(component);'
+				}
+			]
+		}
+	},
+
+	{
 		name: 'badge'
 	},
 

@@ -6,6 +6,8 @@ export type ComponentType = {
 	index?: string | number;
 	type?: /* Template hygen type */
 	| 'main-navigation'
+		| 'accordion-item'
+		| 'accordion'
 		| 'badge'
 		| 'navigation-item'
 		| 'tag'

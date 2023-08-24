@@ -1,3 +1,5 @@
+import AccordionItemComponent from '../components/accordion-item';
+import AccordionComponent from '../components/accordion';
 import MainNavigationComponent from '../components/main-navigation';
 import BadgeComponent from '../components/badge';
 import NavigationItemComponent from '../components/navigation-item';
@@ -77,7 +79,17 @@ export const NAVIGATION_ITEMS: NavigationItem[] = [
 				label: 'Infotext',
 				component: <InfotextComponent />
 			},
-			{ path: 'tag', label: 'Tag', component: <TagComponent /> }
+			{ path: 'tag', label: 'Tag', component: <TagComponent /> },
+			{
+				path: 'accordion',
+				label: 'Accordion',
+				component: <AccordionComponent />
+			},
+			{
+				path: 'accordion-item',
+				label: 'AccordionItem',
+				component: <AccordionItemComponent />
+			}
 		])
 	},
 	{

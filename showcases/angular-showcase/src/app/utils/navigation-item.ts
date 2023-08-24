@@ -1,4 +1,6 @@
 import { Routes } from '@angular/router';
+import { AccordionItemComponent } from '../components/accordion-item/accordion-item.component';
+import { AccordionComponent } from '../components/accordion/accordion.component';
 import { BadgeComponent } from '../components/badge/badge.component';
 import { NavigationItemComponent } from '../components/navigation-item/navigation-item.component';
 import { MainNavigationComponent } from '../components/main-navigation/main-navigation.component';
@@ -65,7 +67,17 @@ export const NAVIGATION_ITEMS: NavItem[] = [
 				label: 'Infotext',
 				component: InfotextComponent
 			},
-			{ path: '04/tag', label: 'Tag', component: TagComponent }
+			{ path: '04/tag', label: 'Tag', component: TagComponent },
+			{
+				path: '04/accordion',
+				label: 'Accordion',
+				component: AccordionComponent
+			},
+			{
+				path: '04/accordion-item',
+				label: 'AccordionItem',
+				component: AccordionItemComponent
+			}
 		])
 	},
 	{

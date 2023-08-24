@@ -9,8 +9,9 @@
 
 .db-button {
 	@extend %default-interactive-component;
-	@extend %bg-transparent-interactive;
 	@extend %default-button;
+
+	@include col-var.bg-transparent-interactive();
 
 	color: var.$db-colors-neutral-on-bg;
 

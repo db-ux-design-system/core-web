@@ -52,6 +52,11 @@ const setControlValueAccessorReplacements = (
 	// the ControlValueAccessor interface with all impacts :/
 
 	replacements.push({
+		from: /\/\/ ANGULAR:/g,
+		to: ''
+	});
+
+	replacements.push({
 		from: '} from "@angular/core";',
 		to:
 			`, Renderer2 } from "@angular/core";\n` +
@@ -88,6 +93,8 @@ const setControlValueAccessorReplacements = (
 			 this.renderer.setProperty(this.component?.nativeElement, '${valueAccessor}', value);
 		  }
 		}
+
+		propagateChange(_: any) {}
 
 		registerOnChange(onChange: any) {
 		  this.propagateChange = onChange;

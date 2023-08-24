@@ -1,0 +1,22 @@
+<app-default-component
+	title="DBAccordionItem"
+	[variants]="variants"
+	[exampleTemplate]="exampleTemplate"
+>
+	<ng-template
+		#exampleTemplate
+		let-exampleProps="exampleProps"
+		let-exampleName="exampleName"
+		let-exampleIndex="exampleIndex"
+		let-variantIndex="variantIndex"
+	>
+		<db-accordion-item
+			[title]="exampleProps.title"
+			[disabled]="exampleProps.disabled"
+			[open]="isOpen(exampleIndex, variantIndex, exampleProps.open)"
+			(onToggle)="toggle(exampleIndex, variantIndex)"
+		>
+			{{ exampleName }}
+		</db-accordion-item>
+	</ng-template>
+</app-default-component>
