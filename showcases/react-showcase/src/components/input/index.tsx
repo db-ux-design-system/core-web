@@ -18,7 +18,8 @@ const getInput = ({
 }: DBInputProps) => (
 	<DBInput
 		label={label}
-		description={children}
+		message={children}
+		placeholder={children}
 		variant={variant}
 		value={value}
 		type={type}

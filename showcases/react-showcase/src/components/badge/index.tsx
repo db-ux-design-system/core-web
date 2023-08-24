@@ -28,7 +28,10 @@ const getBadge = ({
 					{noContent ? '' : children}
 				</DBBadge>
 				{noContent && (
-					<DBInfotext variant="informational" size="small">
+					<DBInfotext
+						variant="informational"
+						size="small"
+						icon="none">
 						{children}
 					</DBInfotext>
 				)}
@@ -45,7 +48,7 @@ const getBadge = ({
 						placement={placement}></DBBadge>
 					{children}
 				</DBButton>
-				<DBInfotext variant="informational" size="small">
+				<DBInfotext variant="informational" size="small" icon="none">
 					{children}
 				</DBInfotext>
 			</>
@@ -69,7 +72,7 @@ const getBadge = ({
 				<DBBadge variant="critical" emphasis="strong" size={size}>
 					<DBIcon icon="account">{children}</DBIcon>
 				</DBBadge>
-				<DBInfotext variant="informational" size="small">
+				<DBInfotext variant="informational" size="small" icon="none">
 					{children}
 				</DBInfotext>
 			</>
@@ -89,7 +92,7 @@ const getBadge = ({
 				<DBBadge size="small" emphasis="strong" variant="warning">
 					123
 				</DBBadge>
-				<DBInfotext variant="informational" size="small">
+				<DBInfotext variant="informational" size="small" icon="none">
 					{children}
 				</DBInfotext>
 			</>

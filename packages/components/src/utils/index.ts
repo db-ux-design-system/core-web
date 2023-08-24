@@ -1,3 +1,5 @@
+import { DefaultVariantType } from '../shared/model';
+
 export const uuid = () => {
 	try {
 		if (typeof window !== 'undefined') {
@@ -53,4 +55,15 @@ export const cls = (...args: ClassNameArg[]) => {
 	});
 
 	return result.trim();
+};
+
+export const getMessageIcon = (
+	variant?: DefaultVariantType,
+	messageIcon?: string
+): string | undefined => {
+	return messageIcon
+		? messageIcon
+		: !variant || variant === 'adaptive'
+		? 'none'
+		: undefined;
 };

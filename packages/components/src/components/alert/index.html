@@ -6,23 +6,41 @@
 		<link rel="stylesheet" href="/styles/db-ui-42.css" />
 	</head>
 	<body style="padding: var(--db-spacing-fixed-md)">
-		<div class="db-alert" data-icon="info">
-			<div class="db-alert-content-container">
-				<div class="db-alert-headline-container">
-					<strong>Headline</strong>
-					<div class="db-alert-close-container">
-						<button
-							class="db-button is-icon-text-replace"
-							data-size="small"
-							data-variant="transparent"
-							data-icon="close"
-						>
-							Close Button
-						</button>
-					</div>
-				</div>
-				<span>Alert</span>
-			</div>
+		<div class="db-alert" data-icon="account">
+			<strong class="db-alert-headline">Headline</strong>
+			<button
+				class="db-button is-icon-text-replace db-alert-close"
+				data-size="small"
+				data-variant="text"
+				data-icon="close"
+			>
+				Close Button
+			</button>
+			<p class="db-alert-content">Custom Icon</p>
+		</div>
+		<div class="db-alert" data-variant="informational">
+			<strong class="db-alert-headline">Headline</strong>
+			<button
+				class="db-button is-icon-text-replace db-alert-close"
+				data-size="small"
+				data-variant="text"
+				data-icon="close"
+			>
+				Close Button
+			</button>
+			<p class="db-alert-content">informational</p>
+		</div>
+		<div class="db-alert" data-variant="informational" data-icon="account">
+			<strong class="db-alert-headline">Headline</strong>
+			<button
+				class="db-button is-icon-text-replace db-alert-close"
+				data-size="small"
+				data-variant="text"
+				data-icon="close"
+			>
+				Close Button
+			</button>
+			<p class="db-alert-content">Overwrite Icon in Variant</p>
 		</div>
 	</body>
 </html>

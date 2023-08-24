@@ -6,7 +6,7 @@
 				"name": "(Default) Adaptive",
 				"props": {
 					"label": "Label",
-					"description": "(Default) Adaptive",
+					"message": "(Default) Adaptive",
 					"options": [
 						{
 							"value": "Option 1"
@@ -21,7 +21,7 @@
 				"name": "Informational",
 				"props": {
 					"label": "Label",
-					"description": "Informational",
+					"message": "Informational",
 					"variant": "informational",
 					"options": [
 						{
@@ -37,7 +37,7 @@
 				"name": "Warning",
 				"props": {
 					"label": "Label",
-					"description": "Warning",
+					"message": "Warning",
 					"variant": "warning",
 					"options": [
 						{
@@ -53,7 +53,7 @@
 				"name": "Critical",
 				"props": {
 					"label": "Label",
-					"description": "Critical",
+					"message": "Critical",
 					"variant": "critical",
 					"options": [
 						{
@@ -69,7 +69,7 @@
 				"name": "Successful",
 				"props": {
 					"label": "Label",
-					"description": "Successful",
+					"message": "Successful",
 					"variant": "successful",
 					"options": [
 						{
@@ -90,7 +90,7 @@
 				"name": "Default",
 				"props": {
 					"label": "Label",
-					"description": "Default",
+					"message": "Default",
 					"options": [
 						{
 							"value": "Option 1"
@@ -105,7 +105,7 @@
 				"name": "With value",
 				"props": {
 					"label": "Label",
-					"description": "With value",
+					"message": "With value",
 					"value": "Option 2",
 					"options": [
 						{
@@ -121,7 +121,7 @@
 				"name": "Disabled",
 				"props": {
 					"label": "Label",
-					"description": "Disabled",
+					"message": "Disabled",
 					"disabled": true,
 					"options": [
 						{
@@ -137,7 +137,7 @@
 				"name": "Disabled + value",
 				"props": {
 					"label": "Label",
-					"description": "Disabled + value",
+					"message": "Disabled + value",
 					"disabled": true,
 					"value": "Option 2",
 					"options": [
@@ -154,7 +154,7 @@
 				"name": "Optgroup",
 				"props": {
 					"label": "Label",
-					"description": "Optgroup",
+					"message": "Optgroup",
 					"options": [
 						{
 							"value": "Optgroup 1",
@@ -182,7 +182,7 @@
 				"name": "Default",
 				"props": {
 					"label": "Label",
-					"description": "Default",
+					"message": "Default",
 					"options": [
 						{
 							"value": "Option 1"
@@ -197,7 +197,7 @@
 				"name": "With Icon",
 				"props": {
 					"label": "Label",
-					"description": "With Icon",
+					"message": "With Icon",
 					"icon": "edit",
 					"options": [
 						{
@@ -213,7 +213,7 @@
 				"name": "With Icon + Variant",
 				"props": {
 					"label": "Label",
-					"description": "With Icon + Variant",
+					"message": "With Icon + Variant",
 					"icon": "edit",
 					"variant": "successful",
 					"options": [

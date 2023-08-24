@@ -64,9 +64,6 @@ export default function DBTag(props: DBTagProps) {
 				props.change(event);
 			}
 		},
-		iconVisible: (icon?: string) => {
-			return Boolean(icon && icon !== '_' && icon !== 'none');
-		},
 		getTabIndex: () => {
 			if (props.disabled) {
 				return undefined;
@@ -134,8 +131,7 @@ export default function DBTag(props: DBTagProps) {
 				else={
 					<span
 						class={cls('tag-label', {
-							'is-icon-text-replace':
-								state.iconVisible(props.icon) && props.noText
+							'is-icon-text-replace': props.noText
 						})}
 						data-icon={props.icon}
 						data-overflow={props.overflow}>
@@ -159,8 +155,7 @@ export default function DBTag(props: DBTagProps) {
 				/>
 				<label
 					class={cls('tag-label', {
-						'is-icon-text-replace':
-							state.iconVisible(props.icon) && props.noText
+						'is-icon-text-replace': props.noText
 					})}
 					htmlFor={state._id}
 					data-icon={props.icon}

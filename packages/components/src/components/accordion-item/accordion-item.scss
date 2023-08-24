@@ -31,7 +31,7 @@
 
 	&[aria-disabled="true"] {
 		pointer-events: none;
-		opacity: component.$default-opacity;
+		opacity: component.$default-disabled-opacity;
 	}
 
 	summary {
