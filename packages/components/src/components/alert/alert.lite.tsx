@@ -11,6 +11,10 @@ useMetadata({
 		// MS Power Apps
 		includeIcon: true,
 		hasOnClick: true,
+		canvasSize: {
+			height: 'fixed', // 'fixed', 'controlled'
+			width: 'controlled' // 'fixed', 'dynamic' (requires width property), 'controlled'
+		},
 		properties: [
 			{ name: 'headline', type: 'SingleLine.Text' },
 			{

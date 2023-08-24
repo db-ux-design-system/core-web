@@ -155,9 +155,15 @@ export type FormReadonlyProps = {
 };
 
 export type FormMessageProps = {
+	/**
+	 * Optional helper message for form components
+	 */
 	message?: string;
+
+	/**
+	 * Set/overwrite icon for helper message for form components
+	 */
 	messageIcon?: IconTypes;
-	messageWrap?: string;
 };
 
 export type FormState = {

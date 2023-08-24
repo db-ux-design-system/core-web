@@ -9,7 +9,7 @@
 
 	display: flex;
 
-	@include icons.no-icon() {
+	@include icons.has-no-icon() {
 		@include icons.icon(info);
 	}
 

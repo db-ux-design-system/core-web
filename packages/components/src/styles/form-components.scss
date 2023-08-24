@@ -44,8 +44,6 @@ $dropdown-icon-transform: rotate(-180deg);
 }
 
 %disabled-form-element {
-	// TODO: Evaluate whether those could get moved to ../_form-elements.scss
-
 	&:has(input:disabled),
 	&:has(textarea:disabled),
 	&:has(select:disabled) {

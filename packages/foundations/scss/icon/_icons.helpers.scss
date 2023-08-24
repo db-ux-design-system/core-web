@@ -51,14 +51,14 @@
 	}
 }
 
-@mixin no-icon() {
+@mixin has-no-icon() {
 	&:not([data-icon]) {
 		@content;
 	}
 }
 
 @mixin variant-icons($variant) {
-	@include no-icon() {
+	@include has-no-icon() {
 		@if ($variant == "critical") {
 			@include icon(error);
 		} @else if ($variant == "informational") {
