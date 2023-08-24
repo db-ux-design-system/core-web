@@ -4,7 +4,8 @@
 @use "scaling-placeholder" as *;
 @use "helpers/font" as *;
 
-body {
+body,
+.app-canvas {
 	font-family: $db-font-family-sans;
 }
 
