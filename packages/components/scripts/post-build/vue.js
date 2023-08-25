@@ -96,7 +96,7 @@ module.exports = (tmp) => {
 			runReplacements(
 				[
 					{
-						from: 'immediate: true,',
+						from: /immediate: true,/g,
 						to: 'immediate: true,\nflush: "post"'
 					}
 				],

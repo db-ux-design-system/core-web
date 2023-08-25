@@ -61,14 +61,6 @@ export type DefaultVariantProps = {
 	variant?: DefaultVariantType;
 };
 
-export const DefaultVariantsIcon: any = {
-	critical: 'error',
-	// TODO: 'error-triangle' will change to 'warning' soon
-	warning: 'error-triangle',
-	successful: 'check-circle',
-	informational: 'info'
-};
-
 export type IconProps = {
 	/**
 	 * Define an icon by it's identifier (like e.g. _account_, compare to [Icons](https://db-ui.github.io/mono/review/main/foundations/icons) to get displayed in front of the elements content.
@@ -83,8 +75,15 @@ export type IconAfterProps = {
 	iconAfter?: IconTypes;
 };
 
-export type IconState = {
+export type IconVisibleState = {
 	iconVisible: (icon?: string) => boolean;
+};
+
+export type OverflowProps = {
+	/**
+	 * The overflow attribute sets a max-width and longer text will be dotted.
+	 */
+	overflow?: boolean;
 };
 
 export type WidthProps = {
@@ -92,6 +91,20 @@ export type WidthProps = {
 	 * Width of the component. Auto width based on children size, full width based on parent elements width.
 	 */
 	width?: 'full' | 'auto';
+};
+
+export type SizeProps = {
+	/**
+	 * The size attribute changes the font-size and other related sizes of the component.
+	 */
+	size?: 'medium' | 'small';
+};
+
+export type EmphasisProps = {
+	/**
+	 * The emphasis attribute divides in between a weak or strong importance.
+	 */
+	emphasis?: 'weak' | 'strong';
 };
 
 export type FormProps = {
@@ -105,6 +118,10 @@ export type FormProps = {
 	disabled?: boolean;
 
 	/**
+	 * Marks an input element as invalid.
+	 */
+	invalid?: boolean;
+	/**
 	 * The label attribute specifies the caption of the form element.
 	 */
 	label?: string;
@@ -116,15 +133,11 @@ export type FormProps = {
 	 * When the required attribute specified, the user will be required to fill the form element before submitting the form.
 	 */
 	required?: boolean;
+
 	/**
 	 * The value property is to receive results from the native form element.
 	 */
 	value?: any;
-
-	/**
-	 * Marks an input element as invalid.
-	 */
-	invalid?: boolean;
 };
 
 export type FormCheckProps = {
@@ -134,11 +147,27 @@ export type FormCheckProps = {
 	checked?: boolean;
 };
 
+export type FormReadonlyProps = {
+	/**
+	 * The disabled attribute can be set to keep a user from edit on the form element
+	 */
+	readonly?: boolean;
+};
+
+export type FormMessageProps = {
+	/**
+	 * Optional helper message for form components
+	 */
+	message?: string;
+
+	/**
+	 * Set/overwrite icon for helper message for form components
+	 */
+	messageIcon?: IconTypes;
+};
+
 export type FormState = {
 	_isValid?: boolean | undefined;
-	_value?: any;
-	// callback for controlValueAccessor's onChange handler
-	propagateChange?: (value: any) => void;
 };
 
 export type InitializedState = {
@@ -227,7 +256,7 @@ export type ToggleEventProps = {
 };
 
 export type ToggleEventState = {
-	toggle?: () => void;
+	toggle?: (event?: any) => void;
 };
 
 export type CloseEventProps = {
@@ -248,9 +277,6 @@ export type ChangeEventProps = {
 
 export type ChangeEventState = {
 	handleChange: (event: any) => void;
-
-	// some frameworks, e.g. angular need specific change listeners for internal use
-	propagateChange?: (_: any) => void;
 };
 
 export type FocusEventProps = {
@@ -280,6 +306,17 @@ export type InnerCloseButtonProps = {
 	 * The closeButtonText attribute changes the text inside the close button.
 	 */
 	closeButtonText?: string;
+};
+
+export type NavigationBackButtonProps = {
+	/**
+	 * The backButtonId attribute changes the id inside the back button.
+	 */
+	backButtonId?: string;
+	/**
+	 * The backButtonText attribute changes the text inside the back button.
+	 */
+	backButtonText?: string;
 };
 
 export type KeyValueType = {

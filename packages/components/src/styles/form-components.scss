@@ -1,12 +1,101 @@
-@use "@db-ui/foundations/build/scss/icon/icons.helpers" as *;
-@use "@db-ui/foundations/build/scss/body-styles" as *;
-@use "@db-ui/foundations/build/scss/variables" as *;
-@use "@db-ui/foundations/build/scss/variables.global" as *;
+@use "sass:map";
+@use "@db-ui/foundations/build/scss/icon/icons.helpers" as icons;
+@use "@db-ui/foundations/build/scss/helpers/font" as font;
+/* TODO: We shouldn't use this variables move them to global to make them themeable */
+@use "@db-ui/foundations/build/scss/variables" as var-todo;
+@use "@db-ui/foundations/build/scss/variables.global" as var;
+
+@use "@db-ui/foundations/build/scss/helpers/component" as component;
+@use "@db-ui/foundations/build/scss/color/color-variants" as variants;
+
+$dropdown-icon-transition: transform var-todo.$db-transition-emotional-straight;
+$dropdown-icon-transform: rotate(-180deg);
 
 %dropdown-icon {
-	@include icon(glyph(expand-more), 24, "outline", "after");
+	@include icons.icon(expand-more, "after");
 
 	&::after {
-		transition: transform $db-transition-emotional-straight;
+		transition: $dropdown-icon-transition;
+	}
+}
+
+%default-form-message {
+	& .db-infotext {
+		margin-block-start: var.$db-spacing-fixed-2xs;
+	}
+}
+
+%default-form-label {
+	label {
+		@extend %db-overwrite-font-size-xs;
+		display: flex;
+		align-items: center;
+		padding-block-end: var.$db-spacing-fixed-xs;
+
+		cursor: text;
+
+		&[data-overflow="true"] {
+			max-inline-size: 25ch;
+			text-overflow: ellipsis;
+			white-space: nowrap;
+			overflow: hidden;
+		}
+	}
+}
+
+%disabled-form-element {
+	&:has(input:disabled),
+	&:has(textarea:disabled),
+	&:has(select:disabled) {
+		& {
+			// Decided against cursor: not-allowed, compare to e.g. https://phabricator.wikimedia.org/T121960
+			opacity: component.$default-disabled-opacity;
+			pointer-events: none;
+		}
+	}
+}
+
+%required-form-element {
+	&:has(input:required),
+	&:has(textarea:required),
+	&:has(select:required) {
+		& label {
+			&::after {
+				content: " *";
+				padding-inline-start: var.$db-spacing-fixed-2xs;
+			}
+		}
+	}
+}
+
+@mixin get-input-color-variants() {
+	@each $name, $colors in variants.$component-variants {
+		&[data-variant="#{$name}"] {
+			--db-current-border-color: #{map.get($colors, "border")};
+		}
+
+		&[data-variant="#{$name}"] {
+			--db-current-color: #{map.get($colors, "on-bg")};
+			color: map.get($colors, "on-bg");
+		}
+
+		&[data-variant="#{$name}"] select {
+			--db-current-color: #{map.get($colors, "on-bg")};
+			color: map.get($colors, "on-bg");
+		}
+
+		&[data-variant="#{$name}"] input,
+		&[data-variant="#{$name}"] textarea,
+		&[data-variant="#{$name}"] select {
+			@if ($name == "critical") {
+				@extend %adaptive-critical-component;
+			} @else if ($name == "informational") {
+				@extend %adaptive-informational-component;
+			} @else if ($name == "warning") {
+				@extend %adaptive-warning-component;
+			} @else if ($name == "successful") {
+				@extend %adaptive-successful-component;
+			}
+		}
 	}
 }

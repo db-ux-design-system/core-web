@@ -40,7 +40,8 @@ useMetadata({
 						name: 'Successful',
 						value: 'successful'
 					}
-				]
+				],
+				defaultValue: 'adaptive'
 			}
 			// type
 		]
@@ -62,9 +63,6 @@ export default function DBTag(props: DBTagProps) {
 			if (props.change) {
 				props.change(event);
 			}
-		},
-		iconVisible: (icon?: string) => {
-			return Boolean(icon && icon !== '_' && icon !== 'none');
 		},
 		getTabIndex: () => {
 			if (props.disabled) {
@@ -118,12 +116,13 @@ export default function DBTag(props: DBTagProps) {
 	return (
 		<div
 			ref={component}
+			id={props.id}
 			class={cls('db-tag', props.className)}
 			tabIndex={state.getTabIndex()}
 			data-interactive={state.isInteractive()}
 			data-disabled={props.disabled}
 			data-variant={props.variant}
-			data-type={props.type}>
+			data-emphasis={props.emphasis}>
 			<Show when={state.stylePath}>
 				<link rel="stylesheet" href={state.stylePath} />
 			</Show>
@@ -133,8 +132,7 @@ export default function DBTag(props: DBTagProps) {
 				else={
 					<span
 						class={cls('tag-label', {
-							'is-icon-text-replace':
-								state.iconVisible(props.icon) && props.noText
+							'is-icon-text-replace': props.noText
 						})}
 						data-icon={props.icon}
 						data-overflow={props.overflow}>
@@ -158,8 +156,7 @@ export default function DBTag(props: DBTagProps) {
 				/>
 				<label
 					class={cls('tag-label', {
-						'is-icon-text-replace':
-							state.iconVisible(props.icon) && props.noText
+						'is-icon-text-replace': props.noText
 					})}
 					htmlFor={state._id}
 					data-icon={props.icon}

@@ -10,7 +10,7 @@ force: true
              control-type="standard">
 
         <%  if(locals.props){ locals.props.forEach((prop)=>{ -%>
-        <property name="<%= prop.name %>" display-name-key="<%= prop.name %>_Display_Key"
+        <property name="<%= prop.powerAppsName || prop.name %>" display-name-key="<%= prop.name %>_Display_Key"
 
                   description-key="<%= prop.name %>_Desc_Key"
 
@@ -358,11 +358,6 @@ force: true
 		<property name="clicked" display-name-key="clicked_Display_Key"
 		description-key="clicked_Desc_Key" of-type="TwoOptions" usage="bound" required="false"/>
 		<% } -%>
-
-		<property name="componentHeight" display-name-key="componentHeight_Display_Key"
-		description-key="componentHeight_Desc_Key" of-type="Decimal" usage="bound" required="false"/>
-		<property name="componentWidth" display-name-key="componentWidth_Display_Key"
-		description-key="componentWidth_Desc_Key" of-type="Decimal" usage="bound" required="false"/>
 
         <resources>
             <code path="index.ts" order="1"/>

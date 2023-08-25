@@ -5,7 +5,7 @@
 			[(ngModel)]="model.input"
 			label="Input with ngModel"
 			placeholder="Placeholder"
-			description="Description"
+			message="Description"
 			icon="account"
 		>
 		</db-input>
@@ -61,7 +61,7 @@
 						<db-tag
 							[variant]="i === 0 ? undefined : 'successful'"
 							(onChange)="changeTags(tag)"
-							[type]="i === 2 ? 'strong' : 'weak'"
+							[emphasis]="i === 2 ? 'strong' : 'weak'"
 							behaviour="interactive"
 							>{{ getTagName(tag) }}</db-tag
 						>
@@ -69,18 +69,33 @@
 				</ul>
 				<p>Checkbox:</p>
 				<db-checkbox
-					(change)="model.checkbox = $event.target.checked"
-					[checked]="model.checkbox"
-					name="checkbox"
-					label="Checkbox"
-				></db-checkbox>
-
-				<db-checkbox
 					formControlName="checkbox"
-					name="checkbox3"
-					label="Checkbox reactive"
+					name="checkbox4"
+					label="Checkbox formControl value"
 				></db-checkbox>
-
+				<db-divider></db-divider>
+				<db-checkbox
+					name="checkbox"
+					value="Checkbox checked"
+					label="Checkbox Indeterminate"
+					[checked]="checked[0] && checked[1]"
+					[indeterminate]="checked[0] !== checked[1]"
+					(change)="handleChange1($event)"
+				></db-checkbox>
+				<fieldset>
+					<db-checkbox
+						[checked]="checked[0]"
+						(change)="handleChange2($event)"
+						name="checkbox2"
+						label="Checkbox"
+					></db-checkbox>
+					<db-checkbox
+						[checked]="checked[1]"
+						(change)="handleChange3($event)"
+						name="checkbox3"
+						label="Checkbox"
+					></db-checkbox>
+				</fieldset>
 				<p>DBSelect:</p>
 				<db-select
 					[value]="select"
@@ -115,14 +130,14 @@
 			<dd>{{ model.input ? model.input : "No Input set" }}</dd>
 			<dt>radio value</dt>
 			<dd>{{ model.radio ? model.radio : "No radio set" }}</dd>
-			<dt>checkbox value</dt>
-			<dd>checkbox {{ model.checkbox ? "" : "un" }}checked</dd>
-			<dt>checkbox2 value (ngModel)</dt>
+			<dt>checkbox value (ngModel)</dt>
 			<dd>checkbox {{ model.checkbox2 ? "" : "un" }}checked</dd>
 			<dt>checkbox formControl value</dt>
 			<dd>
 				checkbox {{ form.get("checkbox")?.value ? "" : "un" }}checked
 			</dd>
+			<dt>checkbox value indeterminate</dt>
+			<dd>checkbox {{ checked[0] && checked[1] ? "" : "un" }}checked</dd>
 			<dt>select value</dt>
 			<dd>{{ select ? select : "No select set" }}</dd>
 			<dt>tags value</dt>

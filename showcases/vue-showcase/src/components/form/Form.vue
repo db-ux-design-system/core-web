@@ -13,7 +13,7 @@ const input = ref("");
 const select = ref("");
 const firstInput = ref("");
 const radio = ref<HTMLInputElement>();
-const checkbox = ref<HTMLInputElement>();
+const checkbox = ref<boolean[]>([true, false]);
 const tags = ref<string[]>([]);
 
 const array = ["X", "Y", "Z"];
@@ -35,7 +35,7 @@ const logAll = () => {
 			input: firstInput.value,
 			radio: radio.value,
 			select: select.value,
-			checkbox: checkbox.checked,
+			checkbox: checkbox.value,
 			tags: tags.value
 		})
 	);
@@ -43,7 +43,7 @@ const logAll = () => {
 
 const reset = () => {
 	firstInput.value = "resetted";
-	checkbox.value = false;
+	checkbox.value = [true, false];
 };
 </script>
 
@@ -56,7 +56,7 @@ const reset = () => {
 					<DBInput
 						label="Textinput"
 						placeholder="Placeholder"
-						description="Description"
+						message="Description"
 						icon="account"
 						name="input-name"
 						:dataList="dataList"
@@ -81,7 +81,7 @@ const reset = () => {
 									index === 0 ? undefined : 'successful'
 								"
 								@Change="changeTags(tag)"
-								:strong="index === 2"
+								:emphasis="index === 2 ? 'strong' : 'weak'"
 								behaviour="interactive"
 								>Tag {{ tag }}</DBTag
 							>
@@ -89,10 +89,39 @@ const reset = () => {
 					</ul>
 					<p>Checkbox:</p>
 					<DBCheckbox
-						@change="checkbox = $event.target.checked"
+						@change="
+							checkbox = [
+								$event.target.checked,
+								$event.target.checked
+							]
+						"
+						:checked="checkbox[0] && checkbox[1]"
+						:indeterminate="checkbox[0] !== checkbox[1]"
 						name="checkbox"
 						>Checkbox</DBCheckbox
 					>
+					<fieldset>
+						<DBCheckbox
+							name="checkbox-1"
+							value="Checkbox checked"
+							@change="
+								checkbox = [$event.target.checked, checkbox[1]]
+							"
+							:checked="checkbox[0]"
+						>
+							Checkbox
+						</DBCheckbox>
+						<DBCheckbox
+							name="checkbox-2"
+							value="Checkbox checked"
+							@change="
+								checkbox = [checkbox[0], $event.target.checked]
+							"
+							:checked="checkbox[1]"
+						>
+							Checkbox
+						</DBCheckbox>
+					</fieldset>
 					<p>DBSelect:</p>
 					<DBSelect
 						:value="select"

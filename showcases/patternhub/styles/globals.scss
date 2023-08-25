@@ -3,6 +3,7 @@
 @use "@db-ui/foundations/build/scss/variables.global" as *;
 @use "@db-ui/foundations/build/scss/variables" as *;
 @use "@db-ui/foundations/build/scss/tonality" as *;
+@use "@db-ui/foundations/build/scss/color-placeholder" as *;
 
 #__next {
 	height: inherit;
@@ -84,26 +85,26 @@ table {
 
 table td,
 table th {
-	border: 1px solid $db-colors-neutral-bg-2-enabled;
+	border: 1px solid $db-colors-neutral-border-weak;
 	padding: $db-spacing-fixed-md;
 	max-width: 33vw;
 }
 
 table tr:nth-child(even) {
-	background-color: $db-colors-neutral-bg-1-enabled;
+	@extend %db-bg-neutral-transparent-semi;
 }
 
 table th {
+	@extend %db-bg-neutral-transparent-semi;
 	padding-inline: $db-spacing-fixed-md;
-	background-color: $db-colors-neutral-bg-2-enabled;
 }
 
 /* Workaround for current db-page from db-ui-elements */
 div[class^="ch-"] {
 	div,
 	span {
-		@extend %db-body-sm;
-		color: $db-colors-secondary-on-enabled;
+		@extend %db-overwrite-font-size-sm;
+		color: $db-colors-neutral-bg;
 	}
 }
 

@@ -1,26 +1,29 @@
 import { useEffect, useState } from 'react';
-
 import {
-	DBInfotext,
-	DBButton,
-	DBIcon,
-	DBLink,
 	DBAlert,
-	DBInput,
-	DBSelect,
-	DBCheckbox,
-	DBTag,
-	DBRadio,
-	DBDivider,
-	DBCard,
 	DBBrand,
-	DBSection,
+	DBButton,
+	DBCard,
+	DBCheckbox,
+	DBDivider,
 	DBHeader,
-	DBNavigationItem
+	DBIcon,
+	DBInfotext,
+	DBInput,
+	DBLink,
+	DBBadge,
+	DBMainNavigation,
+	DBNavigationItem,
+	DBRadio,
+	DBSection,
+	DBSelect,
+	DBTag,
+	DBAccordion,
+	DBAccordionItem
 } from '../src';
-import { ComponentParserType, ComponentType } from './data';
+import type { ComponentParserType, ComponentType } from './data';
 
-const validHosts = ['marketingportal.extranet.deutschebahn.com'];
+const validHosts = new Set(['marketingportal.extranet.deutschebahn.com']);
 
 const ComponentSwitch = ({
 	type,
@@ -29,54 +32,58 @@ const ComponentSwitch = ({
 	props,
 	className
 }: ComponentType) => {
-	const resolvedContent =
-		content instanceof Array
-			? content.map(
-					(innerComponent: ComponentType, innerIndex: number) => (
-						<ComponentSwitch
-							key={`innerComponent-${index}-${innerIndex}`}
-							index={`${index}-${innerIndex}`}
-							type={innerComponent.type}
-							content={innerComponent.content}
-							props={innerComponent.props}
-							className={innerComponent.className}
-						/>
-					)
-			  )
-			: content;
+	const resolvedContent = Array.isArray(content)
+		? content.map((innerComponent: ComponentType, innerIndex: number) => (
+				<ComponentSwitch
+					key={`innerComponent-${index}-${innerIndex}`}
+					index={`${index}-${innerIndex}`}
+					type={innerComponent.type}
+					content={innerComponent.content}
+					props={innerComponent.props}
+					className={innerComponent.className}
+				/>
+		  ))
+		: content;
 
 	if (type === 'h1') {
 		return <h1 className={className}>{resolvedContent}</h1>;
 	}
+
 	if (type === 'h2') {
 		return <h2 className={className}>{resolvedContent}</h2>;
 	}
+
 	if (type === 'h3') {
 		return <h3 className={className}>{resolvedContent}</h3>;
 	}
+
 	if (type === 'h4') {
 		return <h4 className={className}>{resolvedContent}</h4>;
 	}
+
 	if (type === 'p') {
 		return <p className={className}>{resolvedContent}</p>;
 	}
+
 	if (type === 'div') {
 		return <div className={className}>{resolvedContent}</div>;
 	}
+
 	if (type === 'flex') {
 		return (
 			<div
-				className={`flex ${className ? className : ''}`}
+				className={`flex ${className ?? ''}`}
 				data-variant={props?.column ? 'column' : 'row'}>
 				{resolvedContent}
 			</div>
 		);
 	}
+
 	if (type === 'a') {
 		try {
 			const url = new URL('', props.href);
 			const host = url.host;
-			if (validHosts.includes(host)) {
+			if (validHosts.has(host)) {
 				return (
 					<a
 						className={className}
@@ -86,10 +93,11 @@ const ComponentSwitch = ({
 					</a>
 				);
 			}
-		} catch (e) {
-			console.error(e);
+		} catch (error: unknown) {
+			console.error(error);
 		}
 	}
+
 	if (type === 'alert') {
 		return (
 			<DBAlert className={className} {...props}>
@@ -97,6 +105,7 @@ const ComponentSwitch = ({
 			</DBAlert>
 		);
 	}
+
 	if (type === 'brand') {
 		return (
 			<DBBrand className={className} {...props}>
@@ -104,6 +113,7 @@ const ComponentSwitch = ({
 			</DBBrand>
 		);
 	}
+
 	if (type === 'button') {
 		return (
 			<DBButton className={className} {...props}>
@@ -111,6 +121,7 @@ const ComponentSwitch = ({
 			</DBButton>
 		);
 	}
+
 	if (type === 'card') {
 		return (
 			<DBCard className={className} {...props}>
@@ -118,6 +129,7 @@ const ComponentSwitch = ({
 			</DBCard>
 		);
 	}
+
 	if (type === 'divider') {
 		return (
 			<DBDivider className={className} {...props}>
@@ -125,6 +137,7 @@ const ComponentSwitch = ({
 			</DBDivider>
 		);
 	}
+
 	if (type === 'header') {
 		return (
 			<DBHeader className={className} {...props}>
@@ -132,6 +145,7 @@ const ComponentSwitch = ({
 			</DBHeader>
 		);
 	}
+
 	if (type === 'icon') {
 		return (
 			<DBIcon className={className} {...props}>
@@ -139,6 +153,7 @@ const ComponentSwitch = ({
 			</DBIcon>
 		);
 	}
+
 	if (type === 'infotext') {
 		return (
 			<DBInfotext className={className} {...props}>
@@ -146,6 +161,7 @@ const ComponentSwitch = ({
 			</DBInfotext>
 		);
 	}
+
 	if (type === 'input') {
 		return (
 			<DBInput className={className} {...props}>
@@ -153,6 +169,7 @@ const ComponentSwitch = ({
 			</DBInput>
 		);
 	}
+
 	if (type === 'checkbox') {
 		return (
 			<DBCheckbox className={className} {...props}>
@@ -160,6 +177,7 @@ const ComponentSwitch = ({
 			</DBCheckbox>
 		);
 	}
+
 	if (type === 'radio') {
 		return (
 			<DBRadio className={className} {...props}>
@@ -167,6 +185,7 @@ const ComponentSwitch = ({
 			</DBRadio>
 		);
 	}
+
 	if (type === 'link') {
 		return (
 			<DBLink className={className} {...props}>
@@ -174,6 +193,7 @@ const ComponentSwitch = ({
 			</DBLink>
 		);
 	}
+
 	if (type === 'section') {
 		return (
 			<DBSection className={className} {...props}>
@@ -206,7 +226,39 @@ const ComponentSwitch = ({
 		);
 	}
 
-	// hygen before
+	if (type === 'accordion') {
+		return (
+			<DBAccordion className={className} {...props}>
+				{resolvedContent}
+			</DBAccordion>
+		);
+	}
+
+	if (type === 'accordion-item') {
+		return (
+			<DBAccordionItem className={className} {...props}>
+				{resolvedContent}
+			</DBAccordionItem>
+		);
+	}
+
+	if (type === 'main-navigation') {
+		return (
+			<DBMainNavigation className={className} {...props}>
+				{resolvedContent}
+			</DBMainNavigation>
+		);
+	}
+
+	if (type === 'badge') {
+		return (
+			<DBBadge className={className} {...props}>
+				{resolvedContent}
+			</DBBadge>
+		);
+	}
+
+	// Template hygen before
 
 	return <span className={className}>{resolvedContent}</span>;
 };
@@ -217,12 +269,12 @@ const ComponentParser = ({ componentsString }: ComponentParserType) => {
 	useEffect(() => {
 		try {
 			setComponents(JSON.parse(componentsString));
-		} catch (e) {
-			console.error(e);
+		} catch (error: unknown) {
+			console.error(error);
 		}
 	}, [componentsString]);
 
-	if (components && components instanceof Array) {
+	if (components && Array.isArray(components)) {
 		return (
 			<>
 				{components.map((component: ComponentType, index: number) => {

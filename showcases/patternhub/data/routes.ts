@@ -1,10 +1,95 @@
-import type { DbMainnavigationDataType } from '@db-ui/elements/dist/types/components/db-mainnavigation/db-mainnavigation-type';
+export type NavigationItem = {
+	label: string;
+	name?: string;
+	path?: string;
+	subNavigation?: NavigationItem[];
+};
 
-const componentChildren = [
+const componentChildren: NavigationItem[] = [
 	{
-		label: '01 Layout',
-		link: '/components/01-layout',
-		children: [
+		label: 'Action',
+		path: '/components/action',
+		subNavigation: [
+			{
+				label: 'DBButton',
+				name: 'button'
+			},
+			{
+				label: 'DBLink',
+				name: 'link'
+			}
+		]
+	},
+	{
+		label: 'Data-Display',
+		path: '/components/data-display',
+		subNavigation: [
+			{
+				label: 'DBBrand',
+				name: 'brand'
+			},
+			{
+				label: 'DBIcon',
+				name: 'icon'
+			},
+			{
+				label: 'DBInfotext',
+				name: 'infotext'
+			},
+			{
+				label: 'DBTag',
+				name: 'tag'
+			},
+			{
+				label: 'DBAccordion',
+				name: 'accordion'
+			},
+			{
+				label: 'DBAccordionItem',
+				name: 'accordion-item'
+			}
+		]
+	},
+	{
+		label: 'Data-Input',
+		path: '/components/data-input',
+		subNavigation: [
+			{
+				label: 'DBCheckbox',
+				name: 'checkbox'
+			},
+			{
+				label: 'DBInput',
+				name: 'input'
+			},
+			{
+				label: 'DBRadio',
+				name: 'radio'
+			},
+			{
+				label: 'DBSelect',
+				name: 'select'
+			}
+		]
+	},
+	{
+		label: 'Feedback',
+		path: '/components/feedback',
+		subNavigation: [
+			{
+				label: 'DBAlert',
+				name: 'alert'
+			},
+			{
+				label: 'DBBadge',
+				name: 'badge'
+			}
+		]
+	},
+	{
+		label: 'Layout',
+		path: '/components/layout',
+		subNavigation: [
 			{
 				label: 'DBCard',
 				name: 'card'
@@ -32,137 +117,75 @@ const componentChildren = [
 		]
 	},
 	{
-		label: '02 Action',
-		link: '/components/02-action',
-		children: [
+		label: 'Navigation',
+		path: '/components/navigation',
+		subNavigation: [
 			{
-				label: 'DBButton',
-				name: 'button'
+				label: 'DBMainNavigation',
+				name: 'main-navigation'
 			},
-			{
-				label: 'DBLink',
-				name: 'link'
-			}
-		]
-	},
-	{
-		label: '03 Data-Input',
-		link: '/components/03-data-input',
-		children: [
-			{
-				label: 'DBInput',
-				name: 'input'
-			},
-			{
-				label: 'DBRadio',
-				name: 'radio'
-			},
-			{
-				label: 'DBCheckbox',
-				name: 'checkbox'
-			},
-			{
-				label: 'DBSelect',
-				name: 'select'
-			}
-		]
-	},
-	{
-		label: '04 Data-Display',
-		link: '/components/04-data-display',
-		children: [
-			{
-				label: 'DBBrand',
-				name: 'brand'
-			},
-			{
-				label: 'DBIcon',
-				name: 'icon'
-			},
-			{
-				label: 'DBInfotext',
-				name: 'infotext'
-			},
-			{
-				label: 'DBTag',
-				name: 'tag'
-			}
-		]
-	},
-	{
-		label: '05 Navigation',
-		link: '/components/05-navigation',
-		children: [
 			{
 				label: 'DBNavigationItem',
 				name: 'navigation-item'
 			}
 		]
-	},
-	{
-		label: '06 Feedback',
-		link: '/components/06-feedback',
-		children: [
-			{
-				label: 'DBAlert',
-				name: 'alert'
-			}
-		]
 	}
 ];
-export const ROUTES: DbMainnavigationDataType[] = [
+export const ROUTES: NavigationItem[] = [
 	{
 		label: 'Home',
-		link: '/'
+		path: '/'
 	},
 	{
 		label: 'Foundations',
-		link: '/foundations',
-		children: [
+		path: '/foundations',
+		subNavigation: [
+			{ label: 'Readme', path: '/foundations/readme' },
 			{
 				label: 'Colors',
-				link: '/foundations/colors',
-				children: [
-					{ label: 'Examples', link: '/foundations/colors/examples' }
+				path: '/foundations/colors',
+				subNavigation: [
+					{ label: 'Readme', path: '/foundations/colors/readme' },
+					{ label: 'Examples', path: '/foundations/colors/examples' }
 				]
 			},
-			{ label: 'Icons', link: '/foundations/icons' }
+			{ label: 'Icons', path: '/foundations/icons' }
 		]
 	},
 	{
 		label: 'Components',
-		link: '/components',
-		children: componentChildren.map((category) => ({
-			...category,
-			children: category.children.map((component) => ({
-				label: component.label,
-				link: `/components/${component.name}`,
-				children: [
-					{
-						label: 'Properties',
-						link: `/components/${component.name}/properties`
-					},
-					{
-						label: 'Examples',
-						link: `/components/${component.name}/examples`
-					},
-					{
-						label: 'How to use',
-						link: `/components/${component.name}/how-to-use`
-					},
-					{
-						label: 'Migration',
-						link: `/components/${component.name}/migration`
-					}
-				]
+		path: '/components',
+		subNavigation: [
+			{ label: 'Readme', path: '/components/readme' },
+			...componentChildren.map((category) => ({
+				...category,
+				subNavigation: category?.subNavigation?.map((component) => ({
+					label: component.label,
+					path: `/components/${component.name}`,
+					subNavigation: [
+						{
+							label: 'Overview',
+							path: `/components/${component.name}/overview`
+						},
+						{
+							label: 'Properties',
+							path: `/components/${component.name}/properties`
+						},
+						{
+							label: 'Examples',
+							path: `/components/${component.name}/examples`
+						},
+						{
+							label: 'How to use',
+							path: `/components/${component.name}/how-to-use`
+						},
+						{
+							label: 'Migration',
+							path: `/components/${component.name}/migration`
+						}
+					]
+				}))
 			}))
-		}))
+		]
 	}
 ];
-
-export const getRouteWithBasePath = (route: DbMainnavigationDataType) => {
-	return {
-		...route,
-		link: `${process.env.NEXT_PUBLIC_BASE_PATH ?? ''}${route.link}`
-	};
-};

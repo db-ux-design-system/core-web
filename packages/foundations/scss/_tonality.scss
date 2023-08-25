@@ -2,17 +2,24 @@
 @use "font-faces" as *;
 @use "typography-placeholder" as *;
 @use "scaling-placeholder" as *;
-@use "body-styles" as *;
+@use "helpers/font" as *;
 
 body,
-* {
-	@extend %db-body-md;
+.app-canvas {
 	font-family: $db-font-family-sans;
+}
+
+:root {
+	@extend %db-component-variables-md;
+}
+
+* {
+	@extend %db-font-size-md;
 }
 
 small,
 code {
-	@extend %db-body-sm;
+	@extend %db-overwrite-font-size-sm;
 }
 
 h1,
@@ -67,6 +74,7 @@ h6 {
 			@extend %db-scaling-#{nth($styles, $i + 1)};
 			@extend %db-typography-headline-#{nth($styles, $i + 1)};
 			@extend %db-typography-body-#{nth($styles, $i + 1)};
+			@extend %db-component-variables-md;
 		}
 	}
 }

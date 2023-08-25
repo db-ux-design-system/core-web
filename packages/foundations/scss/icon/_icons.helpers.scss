@@ -4,12 +4,7 @@
 @use "icons.placeholder" as *;
 
 // Icon SCSS mixin
-@mixin icon(
-	$glyph: "",
-	$size: $icon-size,
-	$style: $icon-style,
-	$position: "before"
-) {
+@mixin icon($glyph: "", $position: "before") {
 	&::#{$position} {
 		@if $position == "before" {
 			margin-inline-end: var(
@@ -46,16 +41,32 @@
 		}
 	}
 }
+
 // Icon meta data mixin
-@mixin icon-meta(
-	$size: $icon-size,
-	$style: $icon-style,
-	$position: "before",
-	$font-size: $icon-size
-) {
+@mixin icon-meta($size: $icon-size, $style: $icon-style, $position: "before") {
 	&::#{$position} {
 		--icon-font-family: "#{"icons-" + $size + "-" + $style}",
 			"missing-icons";
-		--icon-font-size: #{to-rem($pxValue: $font-size)};
+		--icon-font-size: #{to-rem($pxValue: $size)};
+	}
+}
+
+@mixin has-no-icon() {
+	&:not([data-icon]) {
+		@content;
+	}
+}
+
+@mixin variant-icons($variant) {
+	@include has-no-icon() {
+		@if ($variant == "critical") {
+			@include icon(error);
+		} @else if ($variant == "informational") {
+			@include icon(info);
+		} @else if ($variant == "warning") {
+			@include icon(error-triangle);
+		} @else if ($variant == "successful") {
+			@include icon(check-circle);
+		}
 	}
 }

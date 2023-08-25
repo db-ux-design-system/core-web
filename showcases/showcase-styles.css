@@ -22,6 +22,7 @@
 .variants-list > div {
 	align-items: center;
 	display: flex;
+	gap: var(--db-spacing-fixed-md);
 }
 
 .html-code-container {
@@ -78,4 +79,15 @@
 	display: flex;
 	flex-wrap: wrap;
 	gap: var(--db-spacing-fixed-md);
+}
+
+.badge-inline-container {
+	display: flex;
+	gap: var(--db-spacing-fixed-sm);
+	padding: var(--db-spacing-fixed-xs) var(--db-spacing-fixed-sm);
+}
+
+.badge-inline-container .db-badge {
+	margin-inline-start: var(--db-spacing-responsive-md);
+	margin-block: auto;
 }

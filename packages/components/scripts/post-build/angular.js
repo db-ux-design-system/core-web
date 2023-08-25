@@ -1,6 +1,7 @@
 const Replace = require('replace-in-file');
+const FS = require('node:fs');
 const { components } = require('./components');
-const { runReplacements } = require('../utils');
+const { runReplacements, getComponentName } = require('../utils');
 
 const changeFile = (component, input) => {
 	return input
@@ -38,18 +39,22 @@ const changeFile = (component, input) => {
  *
  * @param {*} replacements
  * @param {*} componentName
+ * @param {*} upperComponentName
  * @param {*} valueAccessor 	'checked' | 'value' [adopt if needed]
  */
 const setControlValueAccessorReplacements = (
 	replacements,
 	componentName,
+	upperComponentName,
 	valueAccessor
 ) => {
 	// for native angular support (e.g. reactive forms) we have to implement
 	// the ControlValueAccessor interface with all impacts :/
-	const upperComponentName = `DB${
-		componentName.charAt(0).toUpperCase() + componentName.slice(1)
-	}`;
+
+	replacements.push({
+		from: /\/\/ ANGULAR:/g,
+		to: ''
+	});
 
 	replacements.push({
 		from: '} from "@angular/core";',
@@ -89,6 +94,8 @@ const setControlValueAccessorReplacements = (
 		  }
 		}
 
+		propagateChange(_: any) {}
+
 		registerOnChange(onChange: any) {
 		  this.propagateChange = onChange;
 		}
@@ -105,9 +112,71 @@ const setControlValueAccessorReplacements = (
 	});
 };
 
+/**
+ * It's not possible to use <ng-content> multiple times in a component.
+ * In Angular, you have to use a directive for this...
+ * This is a workaround to replace it in the file.
+ * @param replacements
+ * @param componentName {string}
+ * @param upperComponentName {string}
+ * @param directives {{name:string, ngContentName?:string}[]}
+ */
+const setDirectiveReplacements = (
+	replacements,
+	componentName,
+	upperComponentName,
+	directives
+) => {
+	for (const directive of directives) {
+		// Add ng-content multiple times to overwrite all
+		for (let i = 0; i < 4; i++) {
+			replacements.push({
+				from: `<ng-content${
+					directive.ngContentName
+						? ` select="[${directive.ngContentName}]"`
+						: ''
+				}>`,
+				to: `<ng-content *ngTemplateOutlet="db${directive.name}">`
+			});
+		}
+
+		replacements.push({
+			from: `export class ${upperComponentName} {\n`,
+			to:
+				`export class ${upperComponentName} {\n` +
+				`\t@ContentChild(${directive.name}Directive, { read: TemplateRef }) db${directive.name}: any;\n`
+		});
+
+		replacements.push({
+			from: 'import { NgModule } from "@angular/core";',
+			to:
+				'import { NgModule } from "@angular/core";\n' +
+				`import { ${directive.name}Directive } from './${directive.name}.directive';\n`
+		});
+
+		FS.writeFileSync(
+			`../../output/angular/src/components/${componentName}/${directive.name}.directive.ts`,
+			'/* Angular cannot handle multiple slots with the same name, we need to use Directives for this. */\n' +
+				"import { Directive } from '@angular/core';" +
+				`
+@Directive({
+\tselector: '[db${directive.name}]'
+})
+export class ${directive.name}Directive {}
+`
+		);
+	}
+
+	replacements.push({
+		from: 'import { NgModule } from "@angular/core";',
+		to: "import { NgModule, ContentChild, TemplateRef } from '@angular/core';"
+	});
+};
+
 module.exports = (tmp) => {
 	for (const component of components) {
 		const componentName = component.name;
+		const upperComponentName = `DB${getComponentName(component.name)}`;
 		const file = `../../${
 			tmp ? 'output/tmp' : 'output'
 		}/angular/src/components/${componentName}/${componentName}.ts`;
@@ -118,15 +187,21 @@ module.exports = (tmp) => {
 
 		const replacements = [];
 
-		if (
-			component.config &&
-			component.config.angular &&
-			component.config.angular.controlValueAccessor
-		) {
+		if (component.config?.angular?.controlValueAccessor) {
 			setControlValueAccessorReplacements(
 				replacements,
 				componentName,
+				upperComponentName,
 				component.config.angular.controlValueAccessor // value / checked / ...
+			);
+		}
+
+		if (component.config?.angular?.directives?.length > 0) {
+			setDirectiveReplacements(
+				replacements,
+				componentName,
+				upperComponentName,
+				component.config.angular.directives
 			);
 		}
 

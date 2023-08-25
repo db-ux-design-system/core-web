@@ -29,41 +29,17 @@
 		"name": "ColorVariant",
 		"examples": [
 			{
-				"name": "(Default) neutral-0",
+				"name": "(Default) neutral",
 				"props": {
-					"colorVariant": "neutral-0",
+					"colorVariant": "neutral",
 					"variant": "interactive",
 					"spacing": "small"
 				}
 			},
 			{
-				"name": "neutral-1",
+				"name": "neutral-strong",
 				"props": {
-					"colorVariant": "neutral-1",
-					"variant": "interactive",
-					"spacing": "small"
-				}
-			},
-			{
-				"name": "neutral-2",
-				"props": {
-					"colorVariant": "neutral-2",
-					"variant": "interactive",
-					"spacing": "small"
-				}
-			},
-			{
-				"name": "neutral-3",
-				"props": {
-					"colorVariant": "neutral-3",
-					"variant": "interactive",
-					"spacing": "small"
-				}
-			},
-			{
-				"name": "neutral-4",
-				"props": {
-					"colorVariant": "neutral-4",
+					"colorVariant": "neutral-strong",
 					"variant": "interactive",
 					"spacing": "small"
 				}
@@ -72,14 +48,6 @@
 				"name": "primary",
 				"props": {
 					"colorVariant": "primary",
-					"variant": "interactive",
-					"spacing": "small"
-				}
-			},
-			{
-				"name": "secondary",
-				"props": {
-					"colorVariant": "secondary",
 					"variant": "interactive",
 					"spacing": "small"
 				}

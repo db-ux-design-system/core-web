@@ -19,9 +19,10 @@
     "build:mitosis": "mitosis build",
     "build:mv-styles": "cpr src build -o -f \"(.ts|.tsx|.md)$\"",
     "build:sass": "sass build --no-source-map --load-path=node_modules/ --load-path=../../node_modules/ --future-deprecation=import",
+    "build:z-directives": "cpr overrides/angular ../../output/angular -o",
     "build:z-post": "node scripts/post-build/index.js",
     "build:z2-docs": "react-docgen ../../output/react/src/components/**/*.tsx -o ../../output/docs.json -i *.spec.tsx",
-    "compile:angular": "mitosis build -c mitosis-angular.config.js && node -e \"require('./scripts/post-build/angular.js')(true)\" && cpr ../../output/tmp/angular/src ../../output/angular/src -o",
+    "compile:angular": "mitosis build -c mitosis-angular.config.js && node -e \"require('./scripts/post-build/angular.js')(true)\" && npm run build:z-directives && cpr ../../output/tmp/angular/src ../../output/angular/src -o",
     "compile:react": "mitosis build -c mitosis-react.config.js && node -e \"require('./scripts/post-build/react.js')(true)\" && cpr ../../output/tmp/react/src ../../output/react/src -o",
     "compile:vue": "mitosis build -c mitosis-vue.config.js && node -e \"require('./scripts/post-build/vue.js')(true)\" && cpr ../../output/tmp/vue/vue3/src ../../output/vue/vue3/src -o",
     "copy-output": "npm-run-all copy:*",
@@ -43,15 +44,15 @@
   },
   "devDependencies": {
     "@builder.io/eslint-plugin-mitosis": "^0.0.14",
-    "@builder.io/mitosis": "^0.0.116",
-    "@builder.io/mitosis-cli": "^0.0.74",
-    "@react-docgen/cli": "^1.0.2",
+    "@builder.io/mitosis": "^0.0.119",
+    "@builder.io/mitosis-cli": "^0.0.77",
+    "@react-docgen/cli": "^1.0.3",
     "cpr": "3.0.1",
-    "eslint": "^8.45.0",
+    "eslint": "^8.47.0",
     "hygen": "^6.2.11",
-    "lit": "^2.7.6",
+    "lit": "^2.8.0",
     "nodemon": "3.0.1",
-    "sass": "^1.64.1"
+    "sass": "^1.66.1"
   },
   "publishConfig": {
     "registry": "https://registry.npmjs.org/",

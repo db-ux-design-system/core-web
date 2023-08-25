@@ -45,23 +45,26 @@ const getOption = (optionName, tsType) => {
 		return `${optionName}="primary"`;
 	}
 
-	if (tsType.name === 'signature' && tsType.raw === '() => void') {
-		return `${optionName}={() => console.log("Click")}`;
-	}
-
-	if (tsType.name === 'signature' && tsType.raw === '() => void') {
-		return `${optionName}={() => console.log("${optionName}")}`;
-	}
-
 	if (tsType.name === 'signature' && tsType.raw === '(event: any) => void') {
+		return `${optionName}={(event) => console.log(event)}`;
+	}
+
+	if (tsType.name === 'signature' && tsType.raw === '() => void') {
+		return `${optionName}={() => console.log("${optionName} triggered")}`;
+	}
+
+	if (
+		tsType.name === 'signature' &&
+		tsType.raw.includes('boolean) => void')
+	) {
 		return `${optionName}={(event) => console.log(event)}`;
 	}
 
 	if (
 		tsType.name === 'signature' &&
-		tsType.raw === '(valid: boolean) => void'
+		tsType.raw.includes('openAccordionItemIds')
 	) {
-		return `${optionName}={(valid) => console.log(valid)}`;
+		return `${optionName}={(openAccordionItemIds) => console.log(openAccordionItemIds)}`;
 	}
 
 	if (tsType.name === 'signature' && tsType.type === 'object') {
@@ -78,6 +81,10 @@ const getOption = (optionName, tsType) => {
 		return `${optionName}="https://db-ui.github.io/images/db_logo.svg"`;
 	}
 
+	if (optionName.toLowerCase().startsWith('slot')) {
+		return `${optionName}={<div>${optionName}</div>}`;
+	}
+
 	return `${optionName}="account"`;
 };
 
@@ -89,6 +96,8 @@ const getOption = (optionName, tsType) => {
 const getExampleFile = (componentName, { displayName, props }) => {
 	let variants = '';
 	const optionArrays = [];
+
+	const isDialog = ['drawer'].includes(componentName);
 
 	const propKeys = Object.keys(props).filter(
 		(key) =>
@@ -121,26 +130,46 @@ const getExampleFile = (componentName, { displayName, props }) => {
 		}
 	}
 
-	for (const optionArray of uniqueOptionArrays) {
-		variants += `<dt>${optionArray.join(
-			', '
-		)}:</dt> <dd><${displayName} ${optionArray
+	for (const [index, optionArray] of uniqueOptionArrays
+		.filter(
+			(optionArray) =>
+				!optionArray.includes('open') &&
+				!optionArray.includes('onClose')
+		)
+		.entries()) {
+		variants += `<dt>${optionArray.join(', ')}:</dt> ${
+			isDialog
+				? `<DBButton onClick={()=>{setDialog(${index})}}>Open Dialog</DBButton>`
+				: ''
+		}<dd> <${displayName} ${
+			isDialog
+				? `open={dialog===${index}} onClose={()=>setDialog(-1)}`
+				: ''
+		} ${optionArray
 			.map((opt) => getOption(opt, props[opt].tsType))
 			.join(' ')}>Test</${displayName}></dd>\n`;
 	}
 
 	return `
+${
+	isDialog
+		? 'import { useState } from "react";\nimport DBButton from "../../../components/src/components/button/button";'
+		: ''
+}
 import DefaultPage from "../../../components/default-page";
 import ${displayName} from "../../../components/src/components/${componentName}/${componentName}";
 
-export default () => <DefaultPage>
+
+export default () => {
+${isDialog ? 'const [dialog, setDialog] = useState<number>(-1);' : ''}
+return (<DefaultPage>
 <h1> ${displayName} Examples </h1>
 
 <dl className="example-list">
-<dt>Default:</dt> <dd><${displayName}>Test</${displayName}></dd>
 ${variants}
 </dl>
-</DefaultPage>;
+</DefaultPage>);
+}
 	`;
 };
 
