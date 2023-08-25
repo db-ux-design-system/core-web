@@ -44,6 +44,7 @@ export default function DBPage(props: DBPageProps) {
 	return (
 		<div
 			ref={component}
+			id={props.id}
 			class={cls('db-page', props.className, {
 				'fixed-header-footer': props.type === 'fixedHeaderFooter'
 			})}

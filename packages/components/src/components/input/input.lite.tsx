@@ -1,6 +1,6 @@
 import { For, onMount, Show, useMetadata, useStore } from '@builder.io/mitosis';
 import { DBIcon } from '../icon';
-import { cls, uuid } from '../../utils';
+import { cls, getMessageIcon, uuid } from '../../utils';
 import { DBInputProps, DBInputState } from './model';
 import { DEFAULT_ID, DEFAULT_LABEL } from '../../shared/constants';
 import { KeyValueType } from '../../shared/model';
@@ -12,6 +12,10 @@ useMetadata({
 		// MS Power Apps
 		includeIcon: true,
 		hasDisabledProp: true,
+		canvasSize: {
+			height: 'fixed', // 'fixed', 'controlled'
+			width: 'controlled' // 'fixed', 'dynamic' (requires width property), 'controlled'
+		},
 		properties: [
 			{
 				name: 'label',
@@ -31,7 +35,8 @@ useMetadata({
 			},
 			{
 				name: 'variant',
-				type: 'DefaultVariant' // this is a custom type not provided by ms
+				type: 'DefaultVariant', // this is a custom type not provided by ms
+				defaultValue: 'adaptive'
 			}
 		]
 	}
@@ -71,8 +76,9 @@ export default function DBInput(props: DBInputProps) {
 			// TODO: Replace this with the solution out of https://github.com/BuilderIO/mitosis/issues/833 after this has been "solved"
 			// VUE:this.$emit("update:value", event.target.value);
 
-			// Angular: propagate change event to work with reactive and template driven forms
-			this.propagateChange(event.target.value);
+			// Change event to work with reactive and template driven forms
+			// ANGULAR: this.propagateChange(event.target.value);
+			// ANGULAR: this.writeValue(event.target.value);
 		},
 		handleBlur: (event: any) => {
 			if (props.onBlur) {
@@ -91,9 +97,7 @@ export default function DBInput(props: DBInputProps) {
 			if (props.focus) {
 				props.focus(event);
 			}
-		},
-		// callback for controlValueAccessor's onChange handler
-		propagateChange: (_: any) => {}
+		}
 	});
 
 	onMount(() => {
@@ -173,7 +177,7 @@ export default function DBInput(props: DBInputProps) {
 				<DBInfotext
 					size="small"
 					variant={props.variant}
-					icon={props.messageIcon}>
+					icon={getMessageIcon(props.variant, props.messageIcon)}>
 					{props.message}
 				</DBInfotext>
 			</Show>

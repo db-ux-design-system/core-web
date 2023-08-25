@@ -1,14 +1,13 @@
-@use "@db-ui/foundations/build/scss/variables" as *;
-@use "@db-ui/foundations/build/scss/variables.global" as *;
-@use "@db-ui/foundations/build/scss/helpers/component" as *;
-@use "../../styles/db-puls" as *;
-@use "../../styles/form-components" as *;
+@use "@db-ui/foundations/build/scss/variables.global" as var;
+@use "@db-ui/foundations/build/scss/helpers/component" as component;
+@use "../../styles/db-puls" as puls;
+@use "../../styles/form-components" as form;
 
 .db-main-navigation {
 	-webkit-tap-highlight-color: transparent; /* for removing the highlight */
 	inline-size: 100%;
 
-	@include screen("m") {
+	@include component.screen("m") {
 		-webkit-tap-highlight-color: inherit;
 		inline-size: auto;
 	}
@@ -18,9 +17,9 @@
 		flex-direction: column;
 		padding: 0;
 		margin: 0;
-		gap: $db-spacing-fixed-sm;
+		gap: var.$db-spacing-fixed-sm;
 
-		@include screen("m") {
+		@include component.screen("m") {
 			flex-direction: row;
 		}
 
@@ -28,11 +27,11 @@
 			.db-navigation-item-expand-button:is(button),
 			.db-navigation-item-expand-button > button {
 				// overwrite for main-navigation items
-				@include screen("m") {
+				@include component.screen("m") {
 					&::after {
-						--icon-margin-before: #{$db-spacing-fixed-sm};
+						--icon-margin-before: #{var.$db-spacing-fixed-sm};
 						--icon-glyph: "⌄";
-						transition: $dropdown-icon-transition;
+						transition: form.$dropdown-icon-transition;
 					}
 
 					&:hover,
@@ -41,7 +40,7 @@
 					&:has(~ .db-sub-navigation:focus-visible),
 					&:has(~ .db-sub-navigation:focus-within) {
 						&::after {
-							transform: rotate(-180deg);
+							transform: form.$dropdown-icon-transform;
 						}
 					}
 				}
@@ -51,7 +50,7 @@
 			& > menu {
 				.db-navigation-item-expand-button:is(button),
 				.db-navigation-item-expand-button > button {
-					@include screen("m") {
+					@include component.screen("m") {
 						&::after {
 							--icon-glyph: ">";
 							--icon-margin-before: auto;

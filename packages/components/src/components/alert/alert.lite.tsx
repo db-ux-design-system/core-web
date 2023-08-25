@@ -11,6 +11,10 @@ useMetadata({
 		// MS Power Apps
 		includeIcon: true,
 		hasOnClick: true,
+		canvasSize: {
+			height: 'fixed', // 'fixed', 'controlled'
+			width: 'controlled' // 'fixed', 'dynamic' (requires width property), 'controlled'
+		},
 		properties: [
 			{ name: 'headline', type: 'SingleLine.Text' },
 			{
@@ -20,11 +24,13 @@ useMetadata({
 			},
 			{
 				name: 'icon',
-				type: 'Icon' // this is a custom type not provided by ms
+				type: 'Icon', // this is a custom type not provided by ms
+				defaultValue: 'info'
 			},
 			{
 				name: 'variant',
-				type: 'DefaultVariant' // this is a custom type not provided by ms
+				type: 'DefaultVariant', // this is a custom type not provided by ms
+				defaultValue: 'adaptive'
 			}
 		]
 	}
@@ -52,6 +58,7 @@ export default function DBAlert(props: DBAlertProps) {
 	return (
 		<div
 			ref={component}
+			id={props.id}
 			class={cls('db-alert', props.className)}
 			aria-live={props.ariaLive}
 			data-variant={props.variant}

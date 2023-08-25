@@ -9,6 +9,10 @@ useMetadata({
 		includeIcon: true,
 		hasDisabledProp: true,
 		hasOnClick: true,
+		canvasSize: {
+			height: 'fixed', // 'fixed', 'controlled'
+			width: 'dynamic' // 'fixed', 'dynamic' (requires width property), 'controlled'
+		},
 		properties: [
 			{
 				name: 'children',
@@ -41,7 +45,9 @@ useMetadata({
 			{ name: 'noText', type: 'TwoOptions' },
 			{
 				name: 'width',
+				powerAppsName: 'autoWidth', // width property is reserved in power apps
 				type: 'Enum',
+				defaultValue: 'auto',
 				values: [
 					{ key: 'Full', name: 'Full', value: 'full' },
 					{ key: 'Auto', name: 'Auto', value: 'auto' }

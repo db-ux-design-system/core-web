@@ -1,26 +1,24 @@
 @use "@db-ui/foundations/build/scss/variables" as *;
 @use "@db-ui/foundations/build/scss/variables.global" as *;
-@use "@db-ui/foundations/build/scss/helpers/functions" as *;
 @use "@db-ui/foundations/build/scss/icon/icons.helpers" as *;
 @use "@db-ui/foundations/build/scss/color-placeholder" as *;
 @use "@db-ui/foundations/build/scss/tonality" as *;
 @use "@db-ui/foundations/build/scss/helpers/component" as *;
-@use "@db-ui/foundations/build/scss/color/color-variants" as *;
+@use "@db-ui/foundations/build/scss/color/color-variants" as col-var;
 
 $font-size-height: calc(var(--db-base-font-size) * var(--db-base-line-height));
 
 .db-checkbox {
-	@extend %bg-transparent-interactive;
+	@include col-var.bg-transparent-interactive();
 
 	align-content: center;
 
 	appearance: none;
-
 	aspect-ratio: 1;
+	position: relative;
 
-	border: max(calc(#{$font-size-height} / 16 + 0.5px), 2px) solid
-		$db-colors-neutral-on-bg;
-	border-radius: $default-border-radius;
+	border: max(calc(#{$font-size-height} / 16 + 0.5px), 2px) solid currentColor;
+	border-radius: $checkbox-border-radius;
 
 	display: inline-flex;
 	block-size: $font-size-height;

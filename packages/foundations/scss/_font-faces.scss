@@ -6,6 +6,7 @@
 	font-style: normal;
 	font-weight: $db-font-db-screenhead-light-font-weight;
 	src:
+		local($db-font-db-screenhead-light-name),
 		local($db-font-db-screenhead-light-local-name),
 		local($db-font-db-screenhead-light-local-name-short),
 		url($fonts-path + $db-font-db-screenhead-light-woff2) format("woff2");
@@ -26,6 +27,7 @@
 	font-style: normal;
 	font-weight: $db-font-db-screensans-regular-font-weight;
 	src:
+		local($db-font-db-screensans-regular-name),
 		local($db-font-db-screensans-regular-local-name),
 		local($db-font-db-screensans-regular-local-name-short),
 		url($fonts-path + $db-font-db-screensans-regular-woff2) format("woff2");
@@ -46,6 +48,7 @@
 	font-style: normal;
 	font-weight: $db-font-db-screensans-digital-regular-font-weight;
 	src:
+		local($db-font-db-screensans-digital-regular-name),
 		local($db-font-db-screensans-digital-regular-local-name),
 		local($db-font-db-screensans-digital-regular-local-name-short),
 		url($fonts-path + $db-font-db-screensans-digital-regular-woff2)

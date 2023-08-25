@@ -1,10 +1,11 @@
-@use "../variables" as *;
-@use "../variables.global" as *;
-@use "../color-placeholder" as *;
+/* TODO: We shouldn't use this variables move them to global to make them themeable */
+@use "../variables" as var-todo;
+@use "../variables.global" as var;
+@use "../color-placeholder" as color;
 @use "../helpers/functions" as functions;
-@use "../icon/icons.helpers" as *;
 
 /* TODO: We should get the variables from UX, and probably want to make those global variables */
+$checkbox-border-radius: to-rem(2.5);
 $default-border-radius: functions.to-rem(4);
 $default-card-border-radius: var(
 	--default-card-border-radius,
@@ -16,7 +17,7 @@ $default-placeholder-opacity: 0.25;
 $default-mobile-header-height: functions.to-rem(56);
 
 %default-adaptive-border {
-	border: solid 1px $db-colors-neutral-on-bg;
+	border: solid 1px var.$db-colors-neutral-on-bg;
 }
 
 %transparent-border {
@@ -24,9 +25,8 @@ $default-mobile-header-height: functions.to-rem(56);
 }
 
 %component-border {
-	border: solid 1px $db-colors-neutral-border-weak;
+	border: solid 1px var.$db-colors-neutral-border-weak;
 }
-
 %default-interactive-component {
 	@extend %default-adaptive-border;
 	border-radius: $default-border-radius;
@@ -37,15 +37,16 @@ $default-mobile-header-height: functions.to-rem(56);
 		outline
 			var(
 				--db-transition-duration-ultra-fast,
-				#{$db-transition-duration-ultra-fast}
+				#{var-todo.$db-transition-duration-ultra-fast}
 			),
-		background-color var(--db-transition-color, #{$db-transition-color}),
-		color var(--db-transition-color, #{$db-transition-color});
+		background-color
+			var(--db-transition-color, #{var-todo.$db-transition-color}),
+		color var(--db-transition-color, #{var-todo.$db-transition-color});
 }
 
 %default-card {
 	border-radius: $default-card-border-radius;
-	box-shadow: $db-elevation-4;
+	box-shadow: var-todo.$db-elevation-4;
 }
 
 %adaptive-critical-component {
@@ -65,15 +66,15 @@ $default-mobile-header-height: functions.to-rem(56);
 }
 
 @mixin screen($size: "s", $width: "min") {
-	$screen: $db-screens-s;
+	$screen: var-todo.$db-screens-s;
 	@if ($size == "xs") {
-		$screen: $db-screens-xs;
+		$screen: var-todo.$db-screens-xs;
 	} @else if ($size == "m") {
-		$screen: $db-screens-m;
+		$screen: var-todo.$db-screens-m;
 	} @else if ($size == "l") {
-		$screen: $db-screens-l;
+		$screen: var-todo.$db-screens-l;
 	} @else if ($size == "xl") {
-		$screen: $db-screens-xl;
+		$screen: var-todo.$db-screens-xl;
 	}
 
 	@if ($width == "min") {

@@ -9,6 +9,10 @@
 
 	display: flex;
 
+	@include icons.has-no-icon() {
+		@include icons.icon(info);
+	}
+
 	&[data-size="small"] {
 		@extend %db-overwrite-font-size-xs;
 	}
@@ -26,7 +30,7 @@
 			color: map.get($colors, "primary");
 
 			&::before {
-				color: map.get($colors, "element");
+				--db-current-icon-color: #{map.get($colors, "element")};
 			}
 		}
 	}

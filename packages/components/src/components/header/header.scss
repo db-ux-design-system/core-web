@@ -51,7 +51,7 @@
 	display: flex;
 	flex-direction: column;
 	gap: $db-spacing-fixed-sm;
-	justify-content: end;
+	justify-content: flex-end;
 
 	padding: $db-spacing-fixed-md;
 
@@ -63,6 +63,10 @@
 		&:empty {
 			display: none;
 		}
+	}
+
+	&:empty {
+		display: none;
 	}
 }
 
@@ -89,6 +93,7 @@
 }
 
 .db-header-brand-container {
+	min-block-size: $db-sizing-md;
 	@include screen("m") {
 		@include divider("left", "after");
 

@@ -48,6 +48,7 @@ jobs:
     needs: [build-showcases]
 
   merge-reports:
+    if: ${{ always() }}
     uses: ./.github/workflows/03-e2e-merge-reports.yml
     needs: [test-components, test-showcases]
 

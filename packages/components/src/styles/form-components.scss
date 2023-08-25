@@ -9,6 +9,7 @@
 @use "@db-ui/foundations/build/scss/color/color-variants" as variants;
 
 $dropdown-icon-transition: transform var-todo.$db-transition-emotional-straight;
+$dropdown-icon-transform: rotate(-180deg);
 
 %dropdown-icon {
 	@include icons.icon(expand-more, "after");
@@ -43,8 +44,6 @@ $dropdown-icon-transition: transform var-todo.$db-transition-emotional-straight;
 }
 
 %disabled-form-element {
-	// TODO: Evaluate whether those could get moved to ../_form-elements.scss
-
 	&:has(input:disabled),
 	&:has(textarea:disabled),
 	&:has(select:disabled) {

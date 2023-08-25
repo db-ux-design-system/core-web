@@ -21,6 +21,8 @@ import {
 	DBDrawerModule,
 	DBTagModule,
 	DBNavigationItemModule,
+	DBAccordionModule,
+	DBAccordionItemModule,
 	DBTextareaModule,
 	DBMainNavigationModule,
 	DBBadgeModule
@@ -32,6 +34,8 @@ import { NavigationContentDirective } from '../../../../output/angular/src/compo
 import { BadgeComponent } from './components/badge/badge.component';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app.routing.module';
+import { AccordionComponent } from './components/accordion/accordion.component';
+import { AccordionItemComponent } from './components/accordion-item/accordion-item.component';
 import { FormComponent } from './components/form/form.component';
 import { ButtonComponent } from './components/button/button.component';
 import { LinkComponent } from './components/link/link.component';
@@ -54,6 +58,8 @@ import { TextareaComponent } from './components/textarea/textarea.component';
 
 @NgModule({
 	declarations: [
+		AccordionItemComponent,
+		AccordionComponent,
 		AlertComponent,
 		MainNavigationComponent,
 		BadgeComponent,
@@ -87,6 +93,8 @@ import { TextareaComponent } from './components/textarea/textarea.component';
 		TextareaComponent
 	],
 	imports: [
+		DBAccordionItemModule,
+		DBAccordionModule,
 		DBBadgeModule,
 		DBBadgeModule,
 		DBMainNavigationModule,

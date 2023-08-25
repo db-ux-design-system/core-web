@@ -66,7 +66,7 @@
 	// TODO: probably extract this to an overwrite or external file
 	text-align: start; // workaround for power apps
 
-	@include icons.no-icon() {
+	@include icons.has-no-icon() {
 		@include icons.icon(info);
 	}
 
@@ -126,7 +126,6 @@
 
 			&::before {
 				--db-current-icon-color: #{map.get($colors, "element")};
-				color: map.get($colors, "element");
 			}
 		}
 	}

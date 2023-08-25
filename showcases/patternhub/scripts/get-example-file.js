@@ -45,14 +45,6 @@ const getOption = (optionName, tsType) => {
 		return `${optionName}="primary"`;
 	}
 
-	if (tsType.name === 'signature' && tsType.raw === '() => void') {
-		return `${optionName}={() => console.log("Click")}`;
-	}
-
-	if (tsType.name === 'signature' && tsType.raw === '() => void') {
-		return `${optionName}={() => console.log("${optionName}")}`;
-	}
-
 	if (tsType.name === 'signature' && tsType.raw === '(event: any) => void') {
 		return `${optionName}={(event) => console.log(event)}`;
 	}
@@ -66,6 +58,13 @@ const getOption = (optionName, tsType) => {
 		tsType.raw.includes('boolean) => void')
 	) {
 		return `${optionName}={(event) => console.log(event)}`;
+	}
+
+	if (
+		tsType.name === 'signature' &&
+		tsType.raw.includes('openAccordionItemIds')
+	) {
+		return `${optionName}={(openAccordionItemIds) => console.log(openAccordionItemIds)}`;
 	}
 
 	if (tsType.name === 'signature' && tsType.type === 'object') {

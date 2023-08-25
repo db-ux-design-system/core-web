@@ -18,6 +18,8 @@ import {
 	DBSection,
 	DBSelect,
 	DBTag,
+	DBAccordion,
+	DBAccordionItem,
 	DBTextarea
 } from '../src';
 import type { ComponentParserType, ComponentType } from './data';
@@ -230,6 +232,22 @@ const ComponentSwitch = ({
 			<DBNavigationItem className={className} {...props}>
 				{resolvedContent}
 			</DBNavigationItem>
+		);
+	}
+
+	if (type === 'accordion') {
+		return (
+			<DBAccordion className={className} {...props}>
+				{resolvedContent}
+			</DBAccordion>
+		);
+	}
+
+	if (type === 'accordion-item') {
+		return (
+			<DBAccordionItem className={className} {...props}>
+				{resolvedContent}
+			</DBAccordionItem>
 		);
 	}
 
