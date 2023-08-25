@@ -93,6 +93,7 @@
 }
 
 .db-header-brand-container {
+	min-block-size: $db-sizing-md;
 	@include screen("m") {
 		@include divider("left", "after");
 
