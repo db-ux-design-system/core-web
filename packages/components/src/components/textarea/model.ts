@@ -6,21 +6,40 @@ import {
 	FocusEventState,
 	FormMessageProps,
 	FormProps,
-	FormReadonlyProps,
 	FormState,
 	GlobalProps,
 	GlobalState,
-	GlobalTextProps,
+	FormTextProps,
 	OverflowProps,
 	ValidEventProps
 } from '../../shared/model';
 
 export interface DBTextareaDefaultProps {
-	autoComplete?: 'on' | 'off';
-	autoFocus?: boolean;
+	/**
+	 * The visible width of the text control, in average character widths. If it is specified, it must be a positive integer
+	 */
 	cols?: number;
-	rows?: number;
+	/**
+	 * Name of form field to use for sending the element's directionality in form submission
+	 */
+	dirName?: string;
+	/**
+	 * In most browsers, <textarea>s are resizable — you'll notice the drag handle in the right-hand corner, you can control it with this
+	 */
 	resize?: 'none' | 'both' | 'horizontal' | 'vertical';
+	/**
+	 * The number of visible text lines for the control. If it is specified, it must be a positive integer
+	 */
+	rows?: number;
+	/**
+	 * Specifies whether the <textarea> is subject to spell checking by the underlying browser/OS
+	 */
+	spellCheck?: boolean;
+
+	/**
+	 * Indicates how the control should wrap the value for form submission.
+	 */
+	wrap?: 'hard' | 'soft' | 'off';
 }
 
 export type DBTextareaProps = DBTextareaDefaultProps &
@@ -30,10 +49,9 @@ export type DBTextareaProps = DBTextareaDefaultProps &
 	ValidEventProps &
 	FormProps &
 	GlobalProps &
-	GlobalTextProps &
+	FormTextProps &
 	FormMessageProps &
-	OverflowProps &
-	FormReadonlyProps;
+	OverflowProps;
 
 export interface DBTextareaDefaultState {}
 

@@ -18,7 +18,7 @@ const getTextarea = ({
 	rows,
 	value,
 	variant,
-	readonly,
+	readOnly,
 	required,
 	children
 }: DBTextareaProps) => (
@@ -27,7 +27,7 @@ const getTextarea = ({
 		disabled={disabled}
 		message={message}
 		label={label}
-		readonly={readonly}
+		readOnly={readOnly}
 		onChange={handleChange}
 		required={required}
 		placeholder={placeholder ?? children}

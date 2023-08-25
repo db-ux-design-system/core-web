@@ -124,7 +124,7 @@
 				"props": {
 					"label": "Label",
 					"value": "Readonly",
-					"readonly": true,
+					"readOnly": true,
 					"message": "Helper Message"
 				}
 			}

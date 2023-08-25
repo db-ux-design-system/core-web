@@ -9,10 +9,11 @@ For general installation and configuration look at the [components](https://www.
 ...
 <body>
 	<div class="db-textarea">
-		<label aria-hidden="true" for="textarea"
-			id="textarea-label">Label</label>
+		<label aria-hidden="true" for="textarea" id="textarea-label"
+			>Label</label
+		>
 		<textarea id="textarea" rows="2" cols="33" placeholder=" "></textarea>
-		<span class="db-infotext" data-icon="info" data-size="medium">functional</span>
+		<span class="db-infotext">functional</span>
 	</div>
 </body>
 ```

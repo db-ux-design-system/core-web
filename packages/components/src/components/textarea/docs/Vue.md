@@ -11,11 +11,21 @@ Use `v-model:value` or `:value` instead with a `ref("My default value")`.
 
 ```vue App.vue
 <!-- App.vue -->
-<script>
+<script setup lang="ts">
+import { ref } from "vue";
 import { DBTextarea } from "@db-ui/v-components";
+
+const textarea = ref("default value");
 </script>
 
 <template>
-	<DBTextarea>Textarea</DBTextarea>
+	<DBTextarea
+		label="Textarea value"
+		placeholder="Placeholder"
+		description="Description"
+		icon="account"
+		name="textarevalue-name"
+		v-model:value="textarea"
+	/>
 </template>
 ```

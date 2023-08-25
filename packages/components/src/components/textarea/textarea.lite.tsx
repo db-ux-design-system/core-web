@@ -110,7 +110,14 @@ export default function DBTextarea(props: DBTextareaProps) {
 				autoFocus={props.autoFocus}
 				disabled={props.disabled}
 				required={props.required}
-				readOnly={props.readonly}
+				readOnly={props.readOnly}
+				dirName={props.dirName}
+				form={props.form}
+				maxLength={props.maxLength}
+				minLength={props.minLength}
+				name={props.name}
+				wrap={props.wrap}
+				spellcheck={props.spellCheck}
 				onChange={(event) => state.handleChange(event)}
 				onBlur={(event) => state.handleBlur(event)}
 				onFocus={(event) => state.handleFocus(event)}

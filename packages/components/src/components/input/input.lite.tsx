@@ -139,7 +139,10 @@ export default function DBInput(props: DBInputProps) {
 				minLength={props.minLength}
 				max={props.max}
 				min={props.min}
-				readOnly={props.readonly}
+				readOnly={props.readOnly}
+				form={props.form}
+				autoComplete={props.autoComplete}
+				autoFocus={props.autoFocus}
 				pattern={props.pattern}
 				onChange={(event) => state.handleChange(event)}
 				onBlur={(event) => state.handleBlur(event)}

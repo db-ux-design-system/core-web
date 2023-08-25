@@ -6,11 +6,10 @@ import {
 	FocusEventState,
 	FormMessageProps,
 	FormProps,
-	FormReadonlyProps,
 	FormState,
 	GlobalProps,
 	GlobalState,
-	GlobalTextProps,
+	FormTextProps,
 	IconAfterProps,
 	IconProps,
 	IconVisibleState,
@@ -21,25 +20,45 @@ import {
 export type DBInputDefaultProps = {
 	dataList?: KeyValueType[];
 	dataListId?: string;
+	/**
+	 * Maximum value
+	 */
+	max?: number;
+	/**
+	 * Minimum value
+	 */
+	min?: number;
+
+	/**
+	 * Pattern the value must match to be valid
+	 */
+	pattern?: string;
+	/**
+	 * 	Type of form control
+	 */
 	type?:
-		| 'text'
-		| 'search'
-		| 'number'
-		| 'tel'
-		| 'url'
-		| 'email'
-		| 'password'
-		| 'hidden'
+		| 'color'
 		| 'date'
 		| 'datetime-local'
+		| 'email'
+		| 'file' // TODO: move this to own component
+		| 'hidden'
+		| 'month'
+		| 'number'
+		| 'password'
+		| 'range' // TODO: move this to own component
+		| 'search'
+		| 'tel'
+		| 'text'
+		| 'time'
+		| 'url'
 		| 'week'
-		| 'color';
-	variant?: DefaultVariantProps;
+		| string;
 };
 
 export type DBInputProps = DBInputDefaultProps &
 	GlobalProps &
-	GlobalTextProps &
+	FormTextProps &
 	ChangeEventProps &
 	FocusEventProps &
 	ValidEventProps &
@@ -47,8 +66,7 @@ export type DBInputProps = DBInputDefaultProps &
 	IconProps &
 	IconAfterProps &
 	DefaultVariantProps &
-	FormMessageProps &
-	FormReadonlyProps;
+	FormMessageProps;
 
 export type DBInputDefaultState = {
 	_dataListId?: string;

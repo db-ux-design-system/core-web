@@ -18,7 +18,28 @@ import { DBTextareaModule } from '@db-ui/ngx-components';
 
 ### Use component
 
+```ts app.component.ts
+import { Component } from "@angular/core";
+
+@Component({
+	selector: "app-root",
+	templateUrl: "./app.component.html"
+})
+export class AppComponent {
+	textarea = "default value";
+}
+```
+
 ```html app.component.html
 <!-- app.component.html -->
-<db-textarea>Textarea</db-textarea>
+
+<db-textarea
+	name="textarea"
+	label="Textarea Controlled"
+	placeholder="Placeholder"
+	description="Description"
+	icon="account"
+	[value]="textarea"
+	(change)="textarea = $event.target.value"
+></db-textarea>
 ```
