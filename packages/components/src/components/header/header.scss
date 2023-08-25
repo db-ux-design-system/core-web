@@ -184,14 +184,17 @@
 
 [data-hide-on="mobile"] {
 	display: none;
+	visibility: hidden;
 
 	@include screen("m") {
 		display: inherit;
+		visibility: visible;
 	}
 }
 
 [data-hide-on="desktop"] {
 	@include screen("m") {
 		display: none;
+		visibility: hidden;
 	}
 }

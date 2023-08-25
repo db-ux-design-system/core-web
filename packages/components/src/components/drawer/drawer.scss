@@ -76,12 +76,20 @@ $spacings: (
 	padding-block: map.get($spacing, "block");
 
 	.db-drawer-header {
-		padding-block-end: map.get($spacing, "block");
+		// We need this variable to overwrite it inside the header
+		padding-block-end: var(
+			--db-drawer-header-padding-block-end,
+			#{map.get($spacing, "block")}
+		);
 		padding-inline: map.get($spacing, "inline");
 	}
 
 	.db-drawer-content {
-		padding-inline: map.get($spacing, "inline");
+		// We need this variable to overwrite it inside the header
+		padding-inline: var(
+			--db-drawer-content-padding-inline,
+			#{map.get($spacing, "inline")}
+		);
 	}
 }
 
