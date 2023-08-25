@@ -29,8 +29,8 @@
 				// overwrite for main-navigation items
 				@include component.screen("m") {
 					&::after {
-						--icon-margin-before: #{var.$db-spacing-fixed-sm};
-						--icon-glyph: "⌄";
+						--icon-margin-start: #{var.$db-spacing-fixed-sm};
+						--icon: "expand_more";
 						transition: form.$dropdown-icon-transition;
 					}
 
@@ -52,8 +52,8 @@
 				.db-navigation-item-expand-button > button {
 					@include component.screen("m") {
 						&::after {
-							--icon-glyph: ">";
-							--icon-margin-before: auto;
+							--icon: "chevron_right";
+							--icon-margin-start: auto;
 						}
 
 						&:hover,

@@ -2,7 +2,7 @@
  * This script can be used to update the icon type for all components using icons.
  */
 
-const FS = require('fs');
+const FS = require('node:fs');
 
 const foundationAssetsPath = '../foundations/assets/icons/functional/images';
 

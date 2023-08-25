@@ -52,7 +52,7 @@
 		}
 
 		&[data-icon] {
-			--icon-margin-after: #{$db-spacing-fixed-3xs};
+			--icon-margin-end: #{$db-spacing-fixed-3xs};
 
 			&::before {
 				vertical-align: top;

@@ -125,23 +125,17 @@
 	.icon-state {
 		@extend %db-overwrite-font-size-sm;
 
+		@include to-solid-icon();
+
 		display: flex;
 		inset-inline-end: calc($db-sizing-md - $db-spacing-fixed-xs);
-
-		&::before {
-			--icon-font-family: var(--db-base-icon-font-family-filled);
-			--icon-font-size: var(--db-base-icon-font-size);
-		}
 
 		// angular specific nesting
 
 		.db-icon {
 			@extend %db-overwrite-font-size-sm;
 
-			&::before {
-				--icon-font-family: var(--db-base-icon-font-family-filled);
-				--icon-font-size: var(--db-base-icon-font-size);
-			}
+			@include to-solid-icon();
 		}
 	}
 

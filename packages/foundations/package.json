@@ -25,7 +25,8 @@
     "copy-build:web": "cpr build ../../build-outputs/foundations/build -o -f \"(compose|ios-swift)\"",
     "copy:scss": "cpr scss build/scss -o",
     "start": "nodemon --watch tokens/ --watch scss --watch scripts -e json,scss,js -x \"npm run build:01_style-dictionary\"",
-    "zeplin:tokens": "node scripts/zeplin-styleguide.js"
+    "zeplin:tokens": "node scripts/zeplin-styleguide.js",
+    "generate:fonts": "node scripts/generate-icon-fonts/index.js"
   },
   "dependencies": {
     "@csstools/normalize.css": "^12.0.0"
@@ -36,7 +37,8 @@
     "dotenv": "^16.3.1",
     "nodemon": "3.0.1",
     "sass": "^1.66.1",
-    "style-dictionary": "3.8.0"
+    "style-dictionary": "3.8.0",
+    "svgtofont": "^4.0.0"
   },
   "publishConfig": {
     "registry": "https://registry.npmjs.org/",

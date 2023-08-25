@@ -49,8 +49,6 @@
 				--db-input-padding-end-icon-after
 			) * #{$db-spacing-fixed-sm}
 	);
-	--icon-font-family: var(--db-base-icon-font-family-filled);
-	--icon-font-size: var(--db-base-icon-font-size);
 	display: flex;
 	align-items: center;
 	flex-direction: row;
@@ -62,11 +60,6 @@
 	inset-inline-end: 0;
 
 	margin-inline-end: var(--icon-input-margin-inline-end);
-
-	&::before {
-		--icon-font-family: var(--db-base-icon-font-family-filled);
-		--icon-font-size: var(--db-base-icon-font-size);
-	}
 }
 
 .db-input {
@@ -74,7 +67,7 @@
 	--db-input-padding-end-icon-after: 0;
 	--db-input-padding-end-data-variant: 0;
 	--db-input-padding-end-datalist: 0;
-	--icon-margin-after: 0;
+	--icon-margin-end: 0;
 	--db-input-label-max-width: 80%;
 
 	@extend %default-form-message;
@@ -117,12 +110,7 @@
 	&:has(> datalist) {
 		--db-input-padding-end-datalist: 1;
 
-		// Datalist icon
-		@include icon(expand-more, "after");
-
-		&::after {
-			transition: transform $db-transition-emotional-straight;
-		}
+		@extend %dropdown-icon;
 
 		&:has(input:is(:focus, :not(:placeholder-shown))) {
 			&::after {
@@ -140,12 +128,7 @@
 	.db-icon,
 	db-icon,
 	&:has(> datalist)::after {
-		--icon-font-family: var(--db-base-icon-font-family);
-		--icon-font-size: var(--db-base-icon-font-size);
-
 		@extend %db-overwrite-font-size-sm;
-
-		font-size: var(--icon-font-size);
 
 		block-size: $db-sizing-md;
 		display: flex;
@@ -304,7 +287,7 @@
 
 			& ~ .icon-state {
 				// TODO replace with svg icon
-				@include icon(search);
+				@include icon("search");
 			}
 
 			+ label {

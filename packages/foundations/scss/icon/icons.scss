@@ -1,22 +1,29 @@
-@use "icons.helpers" as *;
-@use "icons.placeholder" as *;
-@use "../variables.global" as *;
-@forward "icons.attributes-mappings";
-@forward "icons.custom-properties";
-@forward "icons.font-faces";
+@use "icons.helpers" as icon-helper;
+@use "../variables.global" as var;
+@use "../default.assets-paths" as *;
+
+@font-face {
+	font-display: block;
+	font-family: "db-ux";
+	font-style: normal;
+	font-weight: normal;
+	src: var(--db-custom-font-family-src) format("woff2");
+	src: url("#{$icons-path}functional/fonts/db-ux.woff2?4r2096")
+		format("woff2");
+}
 
 [data-icon],
 [data-icon-before] {
 	&::before {
 		@extend %icon !optional;
-		margin-inline-end: var(--icon-margin-after, #{$db-spacing-fixed-xs});
+		margin-inline-end: icon-helper.$default-icon-margin-end;
 	}
 }
 
 [data-icon-after] {
 	&::after {
 		@extend %icon !optional;
-		margin-inline-start: var(--icon-margin-before, #{$db-spacing-fixed-xs});
+		margin-inline-start: icon-helper.$default-icon-margin-start;
 	}
 }
 
@@ -24,10 +31,10 @@
 .is-icon-text-replace {
 	&[data-icon],
 	&[data-icon-before] {
-		@include is-icon-text-replace();
+		@include icon-helper.is-icon-text-replace();
 	}
 
 	&[data-icon-after] {
-		@include is-icon-text-replace("after");
+		@include icon-helper.is-icon-text-replace("after");
 	}
 }
