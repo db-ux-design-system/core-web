@@ -24,7 +24,7 @@ export interface DBTextareaDefaultProps {
 	 */
 	dirName?: string;
 	/**
-	 * In most browsers, <textarea>s are resizable — you'll notice the drag handle in the right-hand corner, you can control it with this
+	 * In most browsers, textareas are resizable — you'll notice the drag handle in the right-hand corner, you can control it with this
 	 */
 	resize?: 'none' | 'both' | 'horizontal' | 'vertical';
 	/**
