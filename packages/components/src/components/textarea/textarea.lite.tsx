@@ -1,7 +1,7 @@
 import { onMount, Show, useMetadata, useStore } from '@builder.io/mitosis';
 import { DBTextareaProps, DBTextareaState } from './model';
 import { DBInfotext } from '../infotext';
-import { cls, uuid } from '../../utils';
+import { cls, getMessageIcon, uuid } from '../../utils';
 import { DEFAULT_ID, DEFAULT_LABEL } from '../../shared/constants';
 
 useMetadata({
@@ -53,8 +53,9 @@ export default function DBTextarea(props: DBTextareaProps) {
 			// TODO: Replace this with the solution out of https://github.com/BuilderIO/mitosis/issues/833 after this has been "solved"
 			// VUE:this.$emit("update:value", event.target.value);
 
-			// Angular: propagate change event to work with reactive and template driven forms
-			this.propagateChange(event.target.value);
+			// Change event to work with reactive and template driven forms
+			// ANGULAR: this.propagateChange(event.target.value);
+			// ANGULAR: this.writeValue(event.target.value);
 		},
 		handleBlur: (event: any) => {
 			if (props.onBlur) {
@@ -73,8 +74,7 @@ export default function DBTextarea(props: DBTextareaProps) {
 			if (props.focus) {
 				props.focus(event);
 			}
-		},
-		propagateChange: (_: any) => {}
+		}
 	});
 
 	onMount(() => {
@@ -127,7 +127,7 @@ export default function DBTextarea(props: DBTextareaProps) {
 				<DBInfotext
 					size="small"
 					variant={props.variant}
-					icon={props.messageIcon}>
+					icon={getMessageIcon(props.variant, props.messageIcon)}>
 					{props.message}
 				</DBInfotext>
 			</Show>

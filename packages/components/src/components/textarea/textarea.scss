@@ -1,16 +1,8 @@
-/* Add styles for component here */
-@charset "utf-8";
-// jscpd:ignore-start
 @use "sass:map";
-@use "@db-ui/foundations/build/scss/default.assets-paths" as *;
-@use "@db-ui/foundations/build/scss/variables" as *;
 @use "@db-ui/foundations/build/scss/variables.global" as var;
-@use "@db-ui/foundations/build/scss/helpers/functions" as *;
-@use "@db-ui/foundations/build/scss/icon/icons.helpers" as *;
-@use "@db-ui/foundations/build/scss/helpers/font" as *;
-@use "@db-ui/foundations/build/scss/color-placeholder" as *;
-@use "@db-ui/foundations/build/scss/color/color-variants" as *;
-@use "@db-ui/foundations/build/scss/helpers/component" as *;
+@use "@db-ui/foundations/build/scss/helpers/font" as font;
+@use "@db-ui/foundations/build/scss/color/color-variants" as col-var;
+@use "@db-ui/foundations/build/scss/helpers/component" as component;
 @use "../../styles/form-components" as form;
 
 %resize-textarea {
@@ -48,20 +40,20 @@
 	flex-direction: column;
 
 	textarea {
-		@extend %bg-transparent-hover;
 		@extend %default-interactive-component;
 		@extend %component-border;
 		@extend %db-overwrite-font-size-md;
 		@extend %resize-textarea;
 
-		@include get-variant-bg-color(0.08);
+		@include col-var.bg-transparent-hover();
+		@include col-var.get-variant-bg-color(0.08);
 
 		max-inline-size: 100%;
 		inline-size: 100%;
 		padding: var.$db-spacing-fixed-xs var.$db-spacing-fixed-sm;
 
 		&::placeholder {
-			opacity: $default-placeholder-opacity;
+			opacity: component.$default-placeholder-opacity;
 		}
 	}
 
