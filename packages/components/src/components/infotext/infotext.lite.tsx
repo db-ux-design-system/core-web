@@ -65,6 +65,7 @@ export default function DBInfotext(props: DBInfotextProps) {
 	return (
 		<span
 			ref={component}
+			id={props.id}
 			class={cls('db-infotext', props.className)}
 			title={props.title}
 			data-icon={props.icon}

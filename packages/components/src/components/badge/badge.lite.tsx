@@ -27,6 +27,7 @@ export default function DBBadge(props: DBBadgeProps) {
 	return (
 		<span
 			ref={component}
+			id={props.id}
 			class={cls('db-badge', props.className)}
 			data-variant={props.variant}
 			data-size={props.size}

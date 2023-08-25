@@ -61,6 +61,7 @@ export default function DBLink(props: DBLinkProps) {
 	return (
 		<a
 			ref={component}
+			id={props.id}
 			class={cls('db-link', props.className)}
 			href={props.href}
 			title={props.title}
