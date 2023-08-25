@@ -26,7 +26,10 @@ export default function DBMainNavigation(props: DBMainNavigationProps) {
 	// jscpd:ignore-end
 
 	return (
-		<nav ref={component} class={cls('db-main-navigation', props.className)}>
+		<nav
+			ref={component}
+			id={props.id}
+			class={cls('db-main-navigation', props.className)}>
 			<Show when={state.stylePath}>
 				<link rel="stylesheet" href={state.stylePath} />
 			</Show>

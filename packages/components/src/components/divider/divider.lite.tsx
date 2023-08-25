@@ -48,6 +48,7 @@ export default function DBDivider(props: DBDividerProps) {
 	return (
 		<div
 			ref={component}
+			id={props.id}
 			data-margin={props.margin}
 			data-variant={props.variant}
 			data-emphasis={props.emphasis}

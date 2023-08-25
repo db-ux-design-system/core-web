@@ -50,6 +50,7 @@ export default function DBTabBar(props: DBTabBarProps) {
 	return (
 		<div
 			ref={component}
+			id={props.id}
 			class={cls('cmp-tab-bar', props.className)}
 			role="tablist">
 			<Show when={state.stylePath}>

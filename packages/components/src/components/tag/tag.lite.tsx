@@ -116,6 +116,7 @@ export default function DBTag(props: DBTagProps) {
 	return (
 		<div
 			ref={component}
+			id={props.id}
 			class={cls('db-tag', props.className)}
 			tabIndex={state.getTabIndex()}
 			data-interactive={state.isInteractive()}
