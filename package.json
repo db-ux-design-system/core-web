@@ -40,9 +40,9 @@
     "clean": "npm-run-all -p clean:*",
     "clean:components-build": "rimraf packages/components/build",
     "clean:outputs": "rimraf -g output/**/src",
+    "clean:patternhub-pages": "rimraf -g showcases/patternhub/pages/components/*/*",
     "clean:patternhub-src-ts": "rimraf -g showcases/patternhub/components/src/**/*.ts",
     "clean:patternhub-src-tsx": "rimraf -g showcases/patternhub/components/src/**/*.tsx",
-    "clean:patternhub-pages": "rimraf -g showcases/patternhub/pages/components/*/*",
     "dev": "node scripts/dev.js",
     "dev:angular-components": "npm run dev:angular --workspace=@db-ui/components",
     "dev:plain-html": "npm run dev:html --workspace=@db-ui/components",
@@ -50,6 +50,8 @@
     "dev:sass": "npm run dev:scss --workspace=@db-ui/components",
     "dev:vue-components": "npm run dev:vue --workspace=@db-ui/components",
     "generate:component": "npm run generate:component --workspace=@db-ui/components",
+    "generate:fonts": "npm run generate:fonts --workspace=@db-ui/foundations",
+    "generate:icon-types": "npm run generate:icon-types --workspace=@db-ui/components",
     "lint": "npm-run-all -p lint:*",
     "lint:jscpd": "jscpd --exitCode 1 .",
     "lint:markdownlint": "markdownlint -c .markdown-lint.yml **/*.md",
@@ -71,7 +73,8 @@
     "test:angular-showcase": "npm run test:e2e --workspace=angular-showcase",
     "test:react-showcase": "npm run test:e2e --workspace=react-showcase",
     "test:vue-showcase": "npm run test:e2e --workspace=vue-showcase",
-    "update:dependency:playwright": "node scripts/update-playwright.js"
+    "update:dependency:playwright": "node scripts/update-playwright.js",
+    "update:fonts": "npm-run-all generate:fonts generate:icon-types"
   },
   "devDependencies": {
     "@commitlint/cli": "17.7.1",

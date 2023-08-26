@@ -1,41 +1,47 @@
 const FSE = require('fs-extra');
 const { globSync } = require('glob');
 
-const dbIconPrefix = 'db_ic_';
 const generalPrefix = '';
-const defaultIconPath = 'assets/icons/functional/**/*.svg';
 
 const availableSizes = [16, 20, 24, 32];
 
 /**
- * @param tmpDirectory {string}
- * @param values {{ extraIconsGlob:string|string[], ignoreGlobs:string|string[], }}
+ * @param temporaryDirectory {string}
+ * @param values {{ src: string, prefix: string, ignoreGlobs:string|string[], dryRun:boolean }}
  */
 const gatherIcons = (temporaryDirectory, values) => {
-	const paths = [defaultIconPath];
-
-	if (values.extraIconsGlob) {
-		paths.push(values.extraIconsGlob);
-	}
+	const src = values.src;
+	const paths = `${src}/**/*.svg`;
 
 	const globPaths = globSync(paths, { ignore: values.ignoreGlobs }).map(
 		(path) => path.replace(/\\/g, '/')
 	);
+
+	if (values.dryRun) {
+		// eslint-disable-next-line no-console
+		console.log('files:', globPaths);
+		return;
+	}
 
 	if (!FSE.existsSync(temporaryDirectory)) {
 		FSE.mkdirSync(temporaryDirectory);
 	}
 
 	const foundIconFiles = [];
+	let hasSizes = false;
 
 	for (const svgPath of globPaths) {
 		const paths = svgPath.split('/');
 		let filename = paths.at(-1);
 		let iconName;
-		if (filename.startsWith(dbIconPrefix)) {
-			filename = filename.replace(dbIconPrefix, '');
-			iconName = filename.replace('.svg', '');
-			for (const size of availableSizes) {
+		if (values.prefix) {
+			filename = filename.replace(values.prefix, '');
+		}
+
+		iconName = filename.replace('.svg', '');
+		for (const size of availableSizes) {
+			if (iconName.endsWith(`_${size}`)) {
+				hasSizes = true;
 				iconName = iconName.replace(`_${size}`, '');
 			}
 		}
@@ -47,6 +53,16 @@ const gatherIcons = (temporaryDirectory, values) => {
 
 		if (iconName && !foundIconFiles.includes(iconName)) {
 			foundIconFiles.push(iconName);
+		}
+	}
+
+	if (!hasSizes) {
+		// Generate the svg with _24 as ending
+		for (const iconFileName of foundIconFiles) {
+			FSE.renameSync(
+				`${temporaryDirectory}/${generalPrefix}${iconFileName}.svg`,
+				`${temporaryDirectory}/${generalPrefix}${iconFileName}_24.svg`
+			);
 		}
 	}
 

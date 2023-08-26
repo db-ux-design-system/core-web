@@ -3,14 +3,7 @@ const FSE = require('fs-extra');
 const { gatherIcons } = require('./gather-icons.js');
 const { svgToFont } = require('./svg-to-font.js');
 
-const temporaryDirectory = 'tmp';
 const options = [
-	{
-		name: 'extraIconsGlobs',
-		short: 'ei',
-		description: 'Path icon glob to include into the fonts',
-		array: true
-	},
 	{
 		name: 'ignoreGlobs',
 		short: 'ig',
@@ -18,19 +11,34 @@ const options = [
 		array: true
 	},
 	{
-		name: 'dist',
-		description: 'Folder where to generate fonts'
+		name: 'src',
+		description: 'Src folder with all svgs',
+		defaultValue: './assets/icons/functional',
+		required: true
 	},
 	{
-		name: 'name',
-		description: 'Name of your font'
+		name: 'prefix',
+		description: 'Prefix of icons to delete for icons'
+	},
+	{
+		name: 'fontName',
+		description: 'The name of your font',
+		required: true
+	},
+	{
+		name: 'dryRun',
+		description: 'prints the output of the command'
+	},
+	{
+		name: 'debug',
+		description: 'Extra logging',
+		defaultValue: false
 	}
 ];
 
 program
 	.name('@db-ui/foundtaions - generate fonts')
-	.description('CLI to generate icon fonts for DB UX Design System')
-	.option('--dry-run', 'prints the output of the command');
+	.description('CLI to generate icon fonts for DB UX Design System');
 
 for (const option of options) {
 	const short =
@@ -41,21 +49,61 @@ for (const option of options) {
 		`--${option.name} ${option.array ? '[' : '<'}${option.name}${
 			option.array ? 's...]' : '>'
 		}`;
-	program.option(`${short}, ${long}`, option.description || '');
+	if (option.required) {
+		program.requiredOption(
+			`${short}, ${long}`,
+			option.description || '',
+			option.defaultValue
+		);
+	} else {
+		program.option(
+			`${short}, ${long}`,
+			option.description || '',
+			option.defaultValue
+		);
+	}
 }
 
+const fileEndingsToDelete = [
+	'eot',
+	'less',
+	'module.less',
+	'styl',
+	'svg',
+	'symbol.svg',
+	'ttf',
+	'woff'
+];
 program.action(async (string_, options) => {
 	const values = options._optionValues;
+	const dist = `${values.src}/fonts`;
+	const fontName = values.fontName;
+	const temporaryDirectory = `${values.src}/tmp`;
 
 	if (values.dryRun) {
 		// eslint-disable-next-line no-console
 		console.log('values:', values);
-	} else {
-		const dist = values.dist ?? './assets/icons/functional/fonts';
-		const fontName = values.name ?? 'db-ux';
-		FSE.removeSync(temporaryDirectory);
 		gatherIcons(temporaryDirectory, values);
-		await svgToFont(temporaryDirectory, fontName, dist);
+	} else {
+		if (FSE.existsSync(temporaryDirectory)) {
+			FSE.removeSync(temporaryDirectory);
+		}
+
+		if (FSE.existsSync(dist)) {
+			FSE.removeSync(dist);
+		}
+
+		gatherIcons(temporaryDirectory, values);
+		await svgToFont(temporaryDirectory, dist, values);
+		for (const ending of fileEndingsToDelete) {
+			FSE.removeSync(`${dist}/${fontName}.${ending}`);
+		}
+
+		FSE.removeSync(`${dist}/symbol.html`);
+		FSE.removeSync(`${dist}/unicode.html`);
+		if (!values.debug) {
+			FSE.removeSync(temporaryDirectory);
+		}
 	}
 });
 

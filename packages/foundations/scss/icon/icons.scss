@@ -7,9 +7,7 @@
 	font-family: "db-ux";
 	font-style: normal;
 	font-weight: normal;
-	src: var(--db-custom-font-family-src) format("woff2");
-	src: url("#{$icons-path}functional/fonts/db-ux.woff2?4r2096")
-		format("woff2");
+	src: url("#{$icons-path}functional/fonts/db-ux.woff2") format("woff2");
 }
 
 [data-icon],
