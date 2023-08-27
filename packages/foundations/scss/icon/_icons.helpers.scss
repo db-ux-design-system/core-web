@@ -7,8 +7,8 @@
 $default-icon-size: 24;
 $default-icon-size-rem: #{to-rem($default-icon-size)};
 
-$default-icon-content: attr(data-icon) var(--icon, "") var(--icon-type, "") "_"
-	var(--icon-size, "#{$default-icon-size}");
+$default-icon-content: attr(data-icon) var(--icon, "") var(--icon-type, "")
+	var(--icon-size);
 
 $default-icon-margin-end: var(--icon-margin-end, #{var.$db-spacing-fixed-xs});
 $default-icon-margin-start: var(

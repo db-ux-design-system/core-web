@@ -117,7 +117,7 @@ node node_modules/@db-ui/foundations/scripts/generate-icon-fonts/index.js --src 
 
 We search for all `**/*.svg` files inside the `src` directory and create a new icon font with the provided name.
 
-> **_NOTE:_** We use 4 different sizes for components (16,20,24,32). That's the reason why we generate your icons with a postfix for every size so our components would work.
+> **_NOTE:_** We use 3 different sizes for components (16,20,24) to show more or less details. You can do the same by providing another file with a size postfix for example "icon_file_name_16.svg".
 
 In your app you need to include some of the generated files:
 
@@ -129,7 +129,7 @@ Now you can use your icons with your `font-familiy: my-name`, e.g.:
 
 ```html
 <!--example.html-->
-<i class="my-name">icon_file_name_24</i>
+<i class="my-name">icon_file_name</i>
 ```
 
 ### data-icon
@@ -147,7 +147,6 @@ If you like to use a custom icon in one of our components you can do it by overw
 ```html
 <!--example.html-->
 
-<!-- ! no need for size here because 24 is the default postfix of our data-icon ! -->
 <p class="some-style" data-icon="icon_file_name">Test</p>
 ```
 

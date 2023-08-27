@@ -3,7 +3,8 @@ const { globSync } = require('glob');
 
 const generalPrefix = '';
 
-const availableSizes = [16, 20, 24, 32];
+const availableSizes = [16, 20, 24, 32, 48, 64];
+const componentSizes = [24, 20, 16];
 
 /**
  * @param temporaryDirectory {string}
@@ -28,7 +29,6 @@ const gatherIcons = (temporaryDirectory, values) => {
 	}
 
 	const foundIconFiles = [];
-	let hasSizes = false;
 
 	for (const svgPath of globPaths) {
 		const paths = svgPath.split('/');
@@ -40,10 +40,7 @@ const gatherIcons = (temporaryDirectory, values) => {
 
 		iconName = filename.replace('.svg', '');
 		for (const size of availableSizes) {
-			if (iconName.endsWith(`_${size}`)) {
-				hasSizes = true;
-				iconName = iconName.replace(`_${size}`, '');
-			}
+			iconName = iconName.replace(`_${size}`, '');
 		}
 
 		FSE.copyFileSync(
@@ -56,29 +53,34 @@ const gatherIcons = (temporaryDirectory, values) => {
 		}
 	}
 
-	if (!hasSizes) {
-		// Generate the svg with _24 as ending
-		for (const iconFileName of foundIconFiles) {
-			FSE.renameSync(
-				`${temporaryDirectory}/${generalPrefix}${iconFileName}.svg`,
-				`${temporaryDirectory}/${generalPrefix}${iconFileName}_24.svg`
-			);
-		}
-	}
-
 	for (const iconFileName of foundIconFiles) {
-		for (const size of availableSizes) {
+		const defaultFileExists = FSE.existsSync(
+			`${temporaryDirectory}/${generalPrefix}${iconFileName}.svg`
+		);
+
+		if (!defaultFileExists) {
+			for (const size of componentSizes) {
+				const sizeFileName = `${temporaryDirectory}/${generalPrefix}${iconFileName}_${size}.svg`;
+				if (FSE.existsSync(sizeFileName)) {
+					FSE.copyFileSync(
+						sizeFileName,
+						`${temporaryDirectory}/${generalPrefix}${iconFileName}.svg`
+					);
+					break;
+				}
+			}
+		}
+
+		for (const size of componentSizes) {
 			const requiredFilePath = `${temporaryDirectory}/${generalPrefix}${iconFileName}_${size}.svg`;
 			if (!FSE.existsSync(requiredFilePath)) {
-				// TODO: If 16 is missing this takes 32 instead of 20 as fallback...
 				const nextBestSizeArray =
-					size < 24
-						? availableSizes.filter((aSize) => aSize > size)
-						: availableSizes.slice().reverse();
+					size === 16 ? [20, 24] : size === 20 ? [24, 16] : [20, 16];
 				for (const nextSize of nextBestSizeArray) {
 					const nextSizeFilePath = `${temporaryDirectory}/${generalPrefix}${iconFileName}_${nextSize}.svg`;
 					if (FSE.existsSync(nextSizeFilePath)) {
 						FSE.copyFileSync(nextSizeFilePath, requiredFilePath);
+						break;
 					}
 				}
 			}
