@@ -136,18 +136,12 @@ Now you can use your icons with your `font-familiy: my-name`, e.g.:
 
 If you like to use a custom icon in one of our components you can do it by overwriting the default font-family like this:
 
-```css
-/* my-style-file.css/scss */
-
-.some-style {
-	--icon-font-family: "my-name";
-}
-```
-
 ```html
 <!--example.html-->
 
-<p class="some-style" data-icon="icon_file_name">Test</p>
+<p class="icon-family-my-name" data-icon="icon_file_name">Test</p>
+<!-- or -->
+<p data-icon-family="my-name" data-icon="icon_file_name">Test</p>
 ```
 
 ### Foundation Developer

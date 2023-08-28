@@ -13,3 +13,14 @@
 	font-style:normal;
 	font-weight: normal;
 }
+
+.icon-family-{{fontname}}::before,
+[data-icon-family="{{fontname}}"]::before,
+[data-icon-family-before="{{fontname}}"]::before{
+	--icon-font-family: '{{fontname}}';
+}
+
+
+[data-icon-family-after="{{fontname}}"]::after{
+	--icon-font-family: '{{fontname}}';
+}
