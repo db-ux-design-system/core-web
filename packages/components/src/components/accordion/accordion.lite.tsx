@@ -124,7 +124,10 @@ export default function DBAccordion(props: DBAccordionProps) {
 	}, [state.openItems]);
 
 	return (
-		<div ref={ref} class={cls('db-accordion', props.className)}>
+		<div
+			ref={ref}
+			id={props.id}
+			class={cls('db-accordion', props.className)}>
 			<Show when={state.stylePath}>
 				<link rel="stylesheet" href={state.stylePath} />
 			</Show>
