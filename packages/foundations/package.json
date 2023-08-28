@@ -17,6 +17,7 @@
     "build:01_style-dictionary": "node style-dictionary.js && npm run copy:scss",
     "build:02_css": "sass --no-source-map --load-path=node_modules/ --load-path=../../node_modules/ build/scss/:build/css/ --future-deprecation=import",
     "build:03_tailwind": "node scripts/tailwind-config-generator.mjs false true && cpr scripts/tailwind-config-generator.mjs build/tailwind/tailwind-config-generator.mjs -o",
+    "build:04_postcss": "postcss build/css/**/*.css --replace",
     "clean": "rm -rf build",
     "copy-build": "npm-run-all copy-build:*",
     "copy-build:assets": "cpr assets ../../build-outputs/foundations/assets -o",
