@@ -178,8 +178,8 @@ export type GlobalTextProps = {
 	placeholder?: string;
 	maxLength?: number;
 	minLength?: number;
-	max?: number;
-	min?: number;
+	max?: number | string;
+	min?: number | string;
 	pattern?: string;
 };
 
