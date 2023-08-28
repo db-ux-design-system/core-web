@@ -32,7 +32,7 @@ export interface DBTextareaDefaultProps {
 	 */
 	rows?: number;
 	/**
-	 * Specifies whether the <textarea> is subject to spell checking by the underlying browser/OS
+	 * Specifies whether the textarea is subject to spell checking by the underlying browser/OS
 	 */
 	spellCheck?: boolean;
 
