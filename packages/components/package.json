@@ -23,7 +23,7 @@
     "build-style": "npm-run-all build-style:*",
     "build-style:01_mv": "cpr src build -o -f \"(.ts|.tsx|.md)$\"",
     "build-style:02_sass": "sass build --no-source-map --load-path=node_modules/ --load-path=../../node_modules/ --future-deprecation=import",
-    "build-style:03_postcss": "postcss build/**/*.css --replace --config ./../..",
+    "build-style:03_postcss": "postcss build/**/*.css --replace --config",
     "build:mitosis": "mitosis build",
     "compile:angular": "mitosis build -c mitosis-angular.config.js && node -e \"require('./scripts/post-build/angular.js')(true)\" && npm run build-components:directives && cpr ../../output/tmp/angular/src ../../output/angular/src -o",
     "compile:react": "mitosis build -c mitosis-react.config.js && node -e \"require('./scripts/post-build/react.js')(true)\" && cpr ../../output/tmp/react/src ../../output/react/src -o",
