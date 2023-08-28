@@ -23,11 +23,11 @@ export type DBInputDefaultProps = {
 	/**
 	 * Maximum value
 	 */
-	max?: number;
+	max?: number | string;
 	/**
 	 * Minimum value
 	 */
-	min?: number;
+	min?: number | string;
 
 	/**
 	 * Pattern the value must match to be valid
