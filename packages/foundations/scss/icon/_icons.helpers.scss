@@ -6,9 +6,9 @@
 
 $default-icon-size: 24;
 $default-icon-size-rem: #{to-rem($default-icon-size)};
+$default-icon-variants: "default", "inverted", "solid";
 
-$default-icon-content: attr(data-icon) var(--icon, "") var(--icon-type, "")
-	var(--icon-size);
+$default-icon-content: var(--icon, attr(data-icon));
 
 $default-icon-margin-end: var(--icon-margin-end, #{var.$db-spacing-fixed-xs});
 $default-icon-margin-start: var(
@@ -35,10 +35,10 @@ $default-icon-margin-start: var(
 
 @mixin to-solid-icon($position: "before") {
 	@if $position == "before" {
-		--icon-type: "_solid";
+		--icon-font-family: "db-ux-solid";
 	}
 	@if $position == "after" {
-		--icon-type: "_solid";
+		--icon-font-family: "db-ux-solid";
 	}
 }
 
@@ -83,14 +83,16 @@ $default-icon-margin-start: var(
 
 @mixin variant-icons($variant) {
 	@include has-no-icon() {
-		@if ($variant == "critical") {
-			@include icon(error);
-		} @else if ($variant == "informational") {
-			@include icon(info);
-		} @else if ($variant == "warning") {
-			@include icon(warning);
-		} @else if ($variant == "successful") {
-			@include icon(check_circle);
+		&::before {
+			@if ($variant == "critical") {
+				--icon: "error";
+			} @else if ($variant == "informational") {
+				--icon: "info";
+			} @else if ($variant == "warning") {
+				--icon: "warning";
+			} @else if ($variant == "successful") {
+				--icon: "check_circle";
+			}
 		}
 	}
 }
@@ -106,7 +108,7 @@ $default-icon-margin-start: var(
 	display: inline-block;
 	/*** icon - placeholder ***/
 	// * use !important to prevent issues with browser extensions that change fonts
-	font-family: var(--icon-font-family, "db-ux") !important;
+	font-family: var(--icon-font-family, "db-ux-default") !important;
 
 	font-size: var(--icon-font-size, #{$default-icon-size-rem});
 

@@ -86,14 +86,15 @@ export default function DBNavigationItem(props: DBNavigationItemProps) {
 			id={props.id}
 			class={cls('db-navigation-item', props.className)}
 			data-width={props.width}
-			data-icon={props.icon}
 			aria-current={props.active ? 'page' : undefined}
 			aria-disabled={props.disabled}>
 			<Show when={state.stylePath}>
 				<link rel="stylesheet" href={state.stylePath} />
 			</Show>
 
-			<Show when={!state.hasSubNavigation}>{props.children}</Show>
+			<Show when={!state.hasSubNavigation}>
+				<div data-icon={props.icon}>{props.children}</div>
+			</Show>
 
 			<Show when={state.hasSubNavigation}>
 				<button
@@ -101,6 +102,7 @@ export default function DBNavigationItem(props: DBNavigationItemProps) {
 					aria-expanded={state.isSubNavigationExpanded}
 					className="db-navigation-item-expand-button"
 					disabled={props.disabled}
+					data-icon={props.icon}
 					onClick={(event) => state.handleClick(event)}>
 					{props.children}
 				</button>

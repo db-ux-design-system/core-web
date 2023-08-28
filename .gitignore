@@ -52,5 +52,7 @@ showcases/patternhub/public/iframe-resizer/*
 
 /__snapshots__/**/*-win32.png
 /packages/foundations/assets/icons/functional/tmp/
-/packages/foundations/assets/icons/functional/fonts/**
-!/packages/foundations/assets/icons/functional/fonts/db-ux.woff2
+/packages/foundations/assets/icons/functional/fonts/**/index.html
+/packages/foundations/assets/icons/functional/fonts/**/index.css
+/packages/foundations/assets/icons/functional/fonts/**/font-face.css
+/packages/foundations/assets/icons/functional/fonts/**/info.json

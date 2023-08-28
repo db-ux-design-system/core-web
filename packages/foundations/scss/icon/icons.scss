@@ -2,12 +2,52 @@
 @use "../variables.global" as var;
 @use "../default.assets-paths" as *;
 
-@font-face {
-	font-display: block;
-	font-family: "db-ux";
-	font-style: normal;
-	font-weight: normal;
-	src: url("#{$icons-path}functional/fonts/db-ux.woff2") format("woff2");
+@each $variant in icon-helper.$default-icon-variants {
+	@font-face {
+		font-display: block;
+		font-family: "db-ux-#{$variant}";
+		font-style: normal;
+		font-weight: normal;
+		src: url("#{$icons-path}functional/fonts/#{$variant}/db-ux.woff2")
+			format("woff2");
+	}
+
+	@each $size in (16, 20, 24, 32, 48, 64) {
+		@font-face {
+			font-display: block;
+			font-family: "db-ux-#{$variant}";
+			font-style: normal;
+			font-weight: $size;
+			src: url("#{$icons-path}functional/fonts/#{$variant}_#{$size}/db-ux.woff2")
+				format("woff2");
+		}
+
+		[data-icon-weight="#{$size}"],
+		[data-icon-weight-before="#{$size}"] {
+			&::before {
+				--icon-font-weight: #{$size};
+			}
+		}
+
+		[data-icon-weight-after="#{$size}"] {
+			&::after {
+				--icon-font-weight: #{$size};
+			}
+		}
+	}
+
+	[data-icon-variant="#{$variant}"],
+	[data-icon-variant-before="#{$variant}"] {
+		&::before {
+			--icon-font-family: "db-ux-#{$variant}";
+		}
+	}
+
+	[data-icon-variant-after="#{$variant}"] {
+		&::after {
+			--icon-font-family: "db-ux-#{$variant}";
+		}
+	}
 }
 
 [data-icon],
@@ -18,10 +58,23 @@
 	}
 }
 
+[data-icon="none"],
+[data-icon-before="none"] {
+	&::before {
+		margin-inline-end: 0;
+	}
+}
+
 [data-icon-after] {
 	&::after {
 		@extend %icon !optional;
 		margin-inline-start: icon-helper.$default-icon-margin-start;
+	}
+}
+
+[data-icon-after="none"] {
+	&::after {
+		margin-inline-start: 0;
 	}
 }
 

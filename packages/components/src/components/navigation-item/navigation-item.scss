@@ -9,25 +9,6 @@
 @use "@db-ui/foundations/build/scss/icon/icons.helpers" as icon-helper;
 @use "../../styles/db-puls" as *;
 
-%icon-passing {
-	&[data-icon] {
-		&::before {
-			// don't show default icon
-			display: none;
-		}
-
-		> a,
-		> .db-navigation-item-expand-button:is(button),
-		> .db-navigation-item-expand-button > button {
-			&::before {
-				@extend %icon;
-				content: icon-helper.$default-icon-content;
-				margin-inline-end: icon-helper.$default-icon-margin-end;
-			}
-		}
-	}
-}
-
 %sub-navi-handler-desktop {
 	// show sub-navigation on hover
 	@include screen("m") {
@@ -96,15 +77,18 @@
 
 .db-navigation-item {
 	@extend %db-puls;
-	@extend %icon-passing;
 
 	display: inline-flex;
 	position: relative;
 	inline-size: 100%;
 
 	a {
-		@extend %navigation-item;
 		text-decoration: none;
+	}
+
+	> div,
+	> a {
+		@extend %navigation-item;
 	}
 
 	.db-navigation-item-expand-button {

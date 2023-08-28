@@ -11,6 +11,15 @@ const options = [
 		array: true
 	},
 	{
+		name: 'variants',
+		description: 'Font variants e.g. solid, inverted, etc.',
+		array: true
+	},
+	{
+		name: 'withSizes',
+		description: 'Splits the font into different sizes'
+	},
+	{
 		name: 'src',
 		description: 'Src folder with all svgs',
 		defaultValue: './assets/icons/functional',
@@ -94,13 +103,21 @@ program.action(async (string_, options) => {
 		}
 
 		gatherIcons(temporaryDirectory, values);
-		await svgToFont(temporaryDirectory, dist, values);
-		for (const ending of fileEndingsToDelete) {
-			FSE.removeSync(`${dist}/${fontName}.${ending}`);
+
+		const allTemporaryDirectories = FSE.readdirSync(temporaryDirectory);
+		for (const directory of allTemporaryDirectories) {
+			const subDist = `${dist}/${directory}`;
+			const subTemporaryDir = `${temporaryDirectory}/${directory}`;
+			// eslint-disable-next-line no-await-in-loop
+			await svgToFont(subTemporaryDir, subDist, values);
+			for (const ending of fileEndingsToDelete) {
+				FSE.removeSync(`${subDist}/${fontName}.${ending}`);
+			}
+
+			FSE.removeSync(`${subDist}/symbol.html`);
+			FSE.removeSync(`${subDist}/unicode.html`);
 		}
 
-		FSE.removeSync(`${dist}/symbol.html`);
-		FSE.removeSync(`${dist}/unicode.html`);
 		if (!values.debug) {
 			FSE.removeSync(temporaryDirectory);
 		}

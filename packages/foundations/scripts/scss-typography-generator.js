@@ -61,8 +61,8 @@ const getMediaQueryProperties = (properties) => {
 
 	if (!isHeadline) {
 		result += `
-	--db-base-icon-size-${sSize}: "_#{icon-helper.get-icon-size(icon-helper.get-icon-font-size($${prefix}-typography-${scale}-${mQuery}-${textType}-${size}-font-size,
-	$${prefix}-typography-${scale}-${mQuery}-${textType}-${size}-line-height))}";
+	--db-base-icon-weight-${sSize}: #{icon-helper.get-icon-size(icon-helper.get-icon-font-size($${prefix}-typography-${scale}-${mQuery}-${textType}-${size}-font-size,
+	$${prefix}-typography-${scale}-${mQuery}-${textType}-${size}-line-height))};
 	--db-base-icon-font-size-${sSize}: #{functions.to-rem(icon-helper.get-icon-font-size($${prefix}-typography-${scale}-${mQuery}-${textType}-${size}-font-size,
 	$${prefix}-typography-${scale}-${mQuery}-${textType}-${size}-line-height))};
 		`;
