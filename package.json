@@ -50,7 +50,7 @@
     "dev:sass": "npm run dev:scss --workspace=@db-ui/components",
     "dev:vue-components": "npm run dev:vue --workspace=@db-ui/components",
     "generate:component": "npm run generate:component --workspace=@db-ui/components",
-    "generate:fonts": "npm run generate:fonts --workspace=@db-ui/foundations",
+    "generate:fonts": "npm run generate:icon-fonts --workspace=@db-ui/foundations",
     "generate:icon-types": "npm run generate:icon-types --workspace=@db-ui/components",
     "lint": "npm-run-all -p lint:*",
     "lint:jscpd": "jscpd --exitCode 1 .",
