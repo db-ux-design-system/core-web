@@ -46,7 +46,7 @@ const options = [
 ];
 
 program
-	.name('@db-ui/foundtaions - generate fonts')
+	.name('@db-ui/foundations - generate fonts')
 	.description('CLI to generate icon fonts for DB UX Design System');
 
 for (const option of options) {
