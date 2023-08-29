@@ -61,12 +61,10 @@
 		padding: $db-spacing-fixed-xs $db-spacing-fixed-sm;
 	}
 
-	&:has(a) {
-		a {
-			padding: $db-spacing-fixed-xs $db-spacing-fixed-sm;
-			inline-size: 100%;
-			text-align: start;
-		}
+	a {
+		padding: $db-spacing-fixed-xs $db-spacing-fixed-sm;
+		inline-size: 100%;
+		text-align: start;
 	}
 
 	&:hover,

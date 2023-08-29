@@ -136,6 +136,7 @@ $default-icon-margin-start: var(
 		);
 	}
 
+	// Hiding icon from screenreaders
 	@media aural {
 		content: none;
 	}

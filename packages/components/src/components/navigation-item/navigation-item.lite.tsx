@@ -112,7 +112,7 @@ export default function DBNavigationItem(props: DBNavigationItemProps) {
 						<div class="db-mobile-navigation-back">
 							<DBButton
 								id={props.backButtonId}
-								icon="arrow-back"
+								icon="arrow_back"
 								variant="text"
 								onClick={(event) =>
 									state.handleBackClick(event)
