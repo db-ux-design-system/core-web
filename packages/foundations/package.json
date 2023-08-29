@@ -26,7 +26,7 @@
     "copy-build:readme": "cpr README.md ../../build-outputs/foundations/README.md -o",
     "copy-build:web": "cpr build ../../build-outputs/foundations/build -o -f \"(compose|ios-swift)\"",
     "copy:scss": "cpr scss build/scss -o",
-    "generate:fonts": "node scripts/generate-icon-fonts/index.js --src ./assets/icons/functional --variants solid inverted --prefix db_ic_ --fontName db-ux --withSizes true --debug true",
+    "generate:icon-fonts": "node scripts/generate-icon-fonts/index.js --src ./assets/icons/functional --variants solid inverted --prefix db_ic_ --fontName db-ux --withSizes true --debug true",
     "start": "nodemon --watch tokens/ --watch scss --watch scripts -e json,scss,js -x \"npm run build:01_style-dictionary\"",
     "zeplin:tokens": "node scripts/zeplin-styleguide.js"
   },
