@@ -102,8 +102,8 @@ module.exports = {
 
 ## Icons
 
-We use icon fonts as `woff2` for all our icons.
-We auto generate this file out of `.svg` files.
+We use icon fonts as `woff2` icon fonts for all our icons.
+We auto generate these files out of `.svg` files.
 
 ### Custom Icons
 
