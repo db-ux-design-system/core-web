@@ -1,5 +1,8 @@
+/* eslint-disable no-await-in-loop */
+
 const FSE = require('fs-extra');
 const { startProgram } = require('../program.js');
+const { cleanIcons } = require('../clean-icons/index.js');
 const { gatherIcons } = require('./gather-icons.js');
 const { svgToFont } = require('./svg-to-font.js');
 
@@ -60,6 +63,7 @@ const action = async (string_, options) => {
 	const dist = `${values.src}/fonts`;
 	const fontName = values.fontName;
 	const temporaryDirectory = `${values.src}/tmp`;
+	const variants = values.variants;
 
 	if (values.dryRun) {
 		// eslint-disable-next-line no-console
@@ -76,11 +80,14 @@ const action = async (string_, options) => {
 
 		gatherIcons(temporaryDirectory, values);
 
+		for (const variant of variants) {
+			await cleanIcons(`${temporaryDirectory}/${variant}*`);
+		}
+
 		const allTemporaryDirectories = FSE.readdirSync(temporaryDirectory);
 		for (const directory of allTemporaryDirectories) {
 			const subDist = `${dist}/${directory}`;
 			const subTemporaryDir = `${temporaryDirectory}/${directory}`;
-			// eslint-disable-next-line no-await-in-loop
 			await svgToFont(subTemporaryDir, subDist, values);
 			for (const ending of fileEndingsToDelete) {
 				FSE.removeSync(`${subDist}/${fontName}.${ending}`);
