@@ -30,7 +30,8 @@ const svgToFont = async (temporaryDirectory, dist, values) => {
 			// SvgoOptions: TODO: https://github.com/svg/svgo#configuration,
 			svgicons2svgfont: {
 				fontHeight: 1000,
-				normalize: true
+				normalize: true,
+				centerHorizontally: true
 			},
 			website: {
 				index: 'font-class',
