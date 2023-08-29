@@ -53,10 +53,21 @@
 	display: inline-flex;
 
 	border-radius: $default-card-border-radius;
-	padding: $db-spacing-fixed-xs $db-spacing-fixed-sm;
 	white-space: nowrap; // we don't want to break
 	text-align: center;
 	align-items: center; // Centering the content vertically and horizontally
+
+	&:not(:has(a)) {
+		padding: $db-spacing-fixed-xs $db-spacing-fixed-sm;
+	}
+
+	&:has(a) {
+		a {
+			padding: $db-spacing-fixed-xs $db-spacing-fixed-sm;
+			inline-size: 100%;
+			text-align: start;
+		}
+	}
 
 	&:hover,
 	&:focus-visible,
