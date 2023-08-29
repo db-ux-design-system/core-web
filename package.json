@@ -74,7 +74,7 @@
     "test:react-showcase": "npm run test:e2e --workspace=react-showcase",
     "test:vue-showcase": "npm run test:e2e --workspace=vue-showcase",
     "update:dependency:playwright": "node scripts/update-playwright.js",
-    "update:fonts": "npm-run-all generate:fonts generate:icon-types"
+    "update:icon-fonts": "npm-run-all generate:icon-fonts generate:icon-types"
   },
   "devDependencies": {
     "@commitlint/cli": "17.7.1",
