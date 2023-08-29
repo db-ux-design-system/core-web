@@ -151,7 +151,7 @@ If you update a `svg` inside `assets/icons/functional/images` you need to recrea
 For this you just need to run
 
 ```shell
-npm run generate:fonts
+npm run generate:icon-fonts
 ```
 
 Your new icon should be inside `assets/icons/functional/fonts/info.json` and you should see it inside `assets/icons/functional/fonts/index.html` in the browser.
