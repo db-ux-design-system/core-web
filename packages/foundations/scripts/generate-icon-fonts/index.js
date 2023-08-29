@@ -1,5 +1,5 @@
-const { program } = require('commander');
 const FSE = require('fs-extra');
+const { startProgram } = require('../program.js');
 const { gatherIcons } = require('./gather-icons.js');
 const { svgToFont } = require('./svg-to-font.js');
 
@@ -22,7 +22,6 @@ const options = [
 	{
 		name: 'src',
 		description: 'Src folder with all svgs',
-		defaultValue: './assets/icons/functional',
 		required: true
 	},
 	{
@@ -45,34 +44,6 @@ const options = [
 	}
 ];
 
-program
-	.name('@db-ui/foundations - generate fonts')
-	.description('CLI to generate icon fonts for DB UX Design System');
-
-for (const option of options) {
-	const short =
-		(option.short?.startsWith('-') ? option.short : `-${option.short}`) ||
-		`-${option.name.charAt(0)}`;
-	const long =
-		option.long ||
-		`--${option.name} ${option.array ? '[' : '<'}${option.name}${
-			option.array ? 's...]' : '>'
-		}`;
-	if (option.required) {
-		program.requiredOption(
-			`${short}, ${long}`,
-			option.description || '',
-			option.defaultValue
-		);
-	} else {
-		program.option(
-			`${short}, ${long}`,
-			option.description || '',
-			option.defaultValue
-		);
-	}
-}
-
 const fileEndingsToDelete = [
 	'eot',
 	'less',
@@ -83,7 +54,8 @@ const fileEndingsToDelete = [
 	'ttf',
 	'woff'
 ];
-program.action(async (string_, options) => {
+
+const action = async (string_, options) => {
 	const values = options._optionValues;
 	const dist = `${values.src}/fonts`;
 	const fontName = values.fontName;
@@ -122,6 +94,11 @@ program.action(async (string_, options) => {
 			FSE.removeSync(temporaryDirectory);
 		}
 	}
-});
+};
 
-program.parse();
+startProgram(
+	'@db-ui/foundations - generate fonts',
+	'CLI to generate icon fonts for DB UX Design System',
+	options,
+	action
+);
