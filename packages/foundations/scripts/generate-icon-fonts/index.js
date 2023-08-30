@@ -10,7 +10,7 @@ const options = [
 	{
 		name: 'ignoreGlobs',
 		short: 'ig',
-		description: 'Path icon glob to exclude into the fonts',
+		description: 'Path icon glob to exclude from the fonts',
 		array: true
 	},
 	{
