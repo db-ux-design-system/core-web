@@ -53,19 +53,10 @@
 	display: inline-flex;
 
 	border-radius: $default-card-border-radius;
+	padding: $db-spacing-fixed-xs $db-spacing-fixed-sm;
 	white-space: nowrap; // we don't want to break
 	text-align: center;
 	align-items: center; // Centering the content vertically and horizontally
-
-	&:not(:has(a)) {
-		padding: $db-spacing-fixed-xs $db-spacing-fixed-sm;
-	}
-
-	a {
-		padding: $db-spacing-fixed-xs $db-spacing-fixed-sm;
-		inline-size: 100%;
-		text-align: start;
-	}
 
 	&:hover,
 	&:focus-visible,
@@ -91,13 +82,25 @@
 	position: relative;
 	inline-size: 100%;
 
-	a {
-		text-decoration: none;
+	&[data-icon] {
+		&::before {
+			position: absolute;
+			inset-block-start: calc(50% - 0.5em);
+			inset-inline-start: #{$default-icon-margin-end};
+			pointer-events: none;
+		}
+
+		a,
+		button {
+			padding-inline-start: calc(
+				#{$db-spacing-fixed-sm} + 1em + #{$default-icon-margin-end}
+			);
+		}
 	}
 
-	> div,
-	> a {
+	a {
 		@extend %navigation-item;
+		text-decoration: none;
 	}
 
 	.db-navigation-item-expand-button {
