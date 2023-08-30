@@ -5,7 +5,7 @@
 @use "@db-ui/foundations/build/scss/icon/icons.helpers" as icons;
 
 .db-infotext {
-	--icon-margin-end: #{var.$db-spacing-fixed-2xs};
+	--db-icon-margin-end: #{var.$db-spacing-fixed-2xs};
 	@extend %db-overwrite-font-size-sm;
 
 	@include icons.to-solid-icon();

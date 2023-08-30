@@ -8,11 +8,14 @@ $default-icon-size: 24;
 $default-icon-size-rem: #{to-rem($default-icon-size)};
 $default-icon-variants: "default", "inverted", "solid";
 
-$default-icon-content: var(--icon, attr(data-icon));
+$default-icon-content: var(--db-icon, attr(data-icon));
 
-$default-icon-margin-end: var(--icon-margin-end, #{var.$db-spacing-fixed-xs});
+$default-icon-margin-end: var(
+	--db-icon-margin-end,
+	#{var.$db-spacing-fixed-xs}
+);
 $default-icon-margin-start: var(
-	--icon-margin-start,
+	--db-icon-margin-start,
 	#{var.$db-spacing-fixed-xs}
 );
 
@@ -35,10 +38,10 @@ $default-icon-margin-start: var(
 
 @mixin to-solid-icon($position: "before") {
 	@if $position == "before" {
-		--icon-font-family: "db-ux-solid";
+		--db-icon-font-family: "db-ux-solid";
 	}
 	@if $position == "after" {
-		--icon-font-family: "db-ux-solid";
+		--db-icon-font-family: "db-ux-solid";
 	}
 }
 
@@ -46,7 +49,7 @@ $default-icon-margin-start: var(
 @mixin icon($icon: "", $position: "before") {
 	&::#{$position} {
 		@if $icon != "" {
-			--icon: "#{$icon}";
+			--db-icon: "#{$icon}";
 		}
 
 		@if $position == "before" {
@@ -66,11 +69,11 @@ $default-icon-margin-start: var(
 
 	@if $position == "before" {
 		&::before {
-			--icon-margin-end: 0;
+			--db-icon-margin-end: 0;
 		}
 	} @else {
 		&::after {
-			--icon-margin-start: 0;
+			--db-icon-margin-start: 0;
 		}
 	}
 }
@@ -85,13 +88,13 @@ $default-icon-margin-start: var(
 	@include has-no-icon() {
 		&::before {
 			@if ($variant == "critical") {
-				--icon: "error";
+				--db-icon: "error";
 			} @else if ($variant == "informational") {
-				--icon: "info";
+				--db-icon: "info";
 			} @else if ($variant == "warning") {
-				--icon: "warning";
+				--db-icon: "warning";
 			} @else if ($variant == "successful") {
-				--icon: "check_circle";
+				--db-icon: "check_circle";
 			}
 		}
 	}
@@ -108,9 +111,9 @@ $default-icon-margin-start: var(
 	display: inline-block;
 	/*** icon - placeholder ***/
 	// * use !important to prevent issues with browser extensions that change fonts
-	font-family: var(--icon-font-family, "db-ux-default") !important;
+	font-family: var(--db-icon-font-family, "db-ux-default") !important;
 
-	font-size: var(--icon-font-size, #{$default-icon-size-rem});
+	font-size: var(--db-icon-font-size, #{$default-icon-size-rem});
 
 	// * Better Font Rendering ===========
 	-webkit-font-smoothing: antialiased;
@@ -118,7 +121,7 @@ $default-icon-margin-start: var(
 
 	font-style: normal;
 	font-variant: normal;
-	font-weight: var(--icon-font-weight, normal);
+	font-weight: var(--db-icon-font-weight, normal);
 	line-height: 1;
 	speak: none; // Hiding icon from screenreaders, fallback by older notation
 	speak: never; // Hiding icon from screenreaders
@@ -130,7 +133,7 @@ $default-icon-margin-start: var(
 	@supports (-webkit-hyphens: none) {
 		block-size: calc(
 			var(
-					--icon-font-size,
+					--db-icon-font-size,
 					var(--db-base-icon-font-size, #{$default-icon-size-rem})
 				) - 6px
 		);

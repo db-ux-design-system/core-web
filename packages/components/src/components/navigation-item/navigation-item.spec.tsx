@@ -7,9 +7,15 @@ import { DEFAULT_VIEWPORT } from '../../shared/constants.ts';
 
 const comp = (
 	<menu style={{ display: 'flex' }}>
-		<DBNavigationItem>Test1</DBNavigationItem>
-		<DBNavigationItem>Test2</DBNavigationItem>
-		<DBNavigationItem>Test3</DBNavigationItem>
+		<DBNavigationItem>
+			<a href="#">Test1</a>
+		</DBNavigationItem>
+		<DBNavigationItem>
+			<a href="#">Test2</a>
+		</DBNavigationItem>
+		<DBNavigationItem>
+			<a href="#">Test3</a>
+		</DBNavigationItem>
 	</menu>
 );
 

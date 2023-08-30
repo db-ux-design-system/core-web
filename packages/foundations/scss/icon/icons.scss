@@ -25,13 +25,13 @@
 		[data-icon-weight="#{$size}"],
 		[data-icon-weight-before="#{$size}"] {
 			&::before {
-				--icon-font-weight: #{$size};
+				--db-icon-font-weight: #{$size};
 			}
 		}
 
 		[data-icon-weight-after="#{$size}"] {
 			&::after {
-				--icon-font-weight: #{$size};
+				--db-icon-font-weight: #{$size};
 			}
 		}
 	}
@@ -39,13 +39,13 @@
 	[data-icon-variant="#{$variant}"],
 	[data-icon-variant-before="#{$variant}"] {
 		&::before {
-			--icon-font-family: "db-ux-#{$variant}";
+			--db-icon-font-family: "db-ux-#{$variant}";
 		}
 	}
 
 	[data-icon-variant-after="#{$variant}"] {
 		&::after {
-			--icon-font-family: "db-ux-#{$variant}";
+			--db-icon-font-family: "db-ux-#{$variant}";
 		}
 	}
 }

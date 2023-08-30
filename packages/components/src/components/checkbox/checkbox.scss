@@ -6,6 +6,7 @@
 @use "@db-ui/foundations/build/scss/helpers/component" as *;
 @use "@db-ui/foundations/build/scss/color/color-variants" as col-var;
 
+// TODO: Move this to shared style
 $font-size-height: calc(var(--db-base-font-size) * var(--db-base-line-height));
 
 .db-checkbox {
@@ -32,7 +33,7 @@ $font-size-height: calc(var(--db-base-font-size) * var(--db-base-line-height));
 	// We need to reset the general icons margin, as we want to use it in a tiny space
 	&:checked,
 	&:indeterminate {
-		--icon-margin-end: 0;
+		--db-icon-margin-end: 0;
 
 		&::before {
 			position: absolute;

@@ -39,7 +39,7 @@
 }
 
 %input-icon-state {
-	--icon-input-margin-inline-end: calc(
+	--db-icon-input-margin-inline-end: calc(
 		(
 				var(--db-input-padding-end-icon-after) +
 					var(--db-input-padding-end-datalist)
@@ -59,7 +59,7 @@
 	pointer-events: none;
 	inset-inline-end: 0;
 
-	margin-inline-end: var(--icon-input-margin-inline-end);
+	margin-inline-end: var(--db-icon-input-margin-inline-end);
 }
 
 .db-input {
@@ -67,7 +67,7 @@
 	--db-input-padding-end-icon-after: 0;
 	--db-input-padding-end-data-variant: 0;
 	--db-input-padding-end-datalist: 0;
-	--icon-margin-end: 0;
+	--db-icon-margin-end: 0;
 	--db-input-label-max-width: 80%;
 
 	@extend %default-form-message;

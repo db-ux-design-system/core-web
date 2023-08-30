@@ -95,7 +95,7 @@
 
 	&[data-icon]::before,
 	&::before {
-		--icon-margin-end: 0;
+		--db-icon-margin-end: 0;
 		grid-area: icon;
 	}
 
