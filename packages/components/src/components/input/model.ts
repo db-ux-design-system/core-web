@@ -22,18 +22,24 @@ export type DBInputDefaultProps = {
 	dataList?: KeyValueType[];
 	dataListId?: string;
 	type?:
-		| 'text'
-		| 'search'
-		| 'number'
-		| 'tel'
-		| 'url'
-		| 'email'
-		| 'password'
-		| 'hidden'
+		| 'color'
 		| 'date'
 		| 'datetime-local'
+		| 'email'
+		| 'file' // TODO: move this to own component
+		| 'hidden'
+		| 'month'
+		| 'number'
+		| 'password'
+		| 'range' // TODO: move this to own component
+		| 'search'
+		| 'tel'
+		| 'text'
+		| 'time'
+		| 'url'
 		| 'week'
-		| 'color';
+		| string;
+	step?: number | string;
 	variant?: DefaultVariantProps;
 };
 

@@ -17,6 +17,9 @@
 		"siz-xs": "var(--db-sizing-xs)",
 		"siz-sm": "var(--db-sizing-sm)",
 		"siz-md": "var(--db-sizing-md)",
-		"siz-lg": "var(---db-sizing-lg)"
+		"siz-lg": "var(--db-sizing-lg)",
+		"siz-xl": "var(--db-sizing-xl)",
+		"siz-2xl": "var(--db-sizing-2xl)",
+		"siz-3xl": "var(--db-sizing-3xl)"
 	}
 }
