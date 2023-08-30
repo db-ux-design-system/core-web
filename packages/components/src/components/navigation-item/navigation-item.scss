@@ -8,7 +8,6 @@
 @use "@db-ui/foundations/build/scss/animation/animations" as *;
 @use "@db-ui/foundations/build/scss/icon/icons.helpers" as icon-helper;
 @use "../../styles/db-puls" as *;
-@use "../../styles/absolute-component" as absolute;
 
 %sub-navi-handler-desktop {
 	// show sub-navigation on hover
