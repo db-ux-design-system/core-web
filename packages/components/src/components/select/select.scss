@@ -32,7 +32,7 @@
 
 .db-select {
 	--db-has-before: 0;
-	--has-status: 0;
+	--db-has-status: 0;
 	@extend %db-overwrite-font-size-sm;
 	@extend %select-icon;
 	@extend %default-form-message;
