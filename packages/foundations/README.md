@@ -125,7 +125,7 @@ In your app you need to include some of the generated files:
 
 `./my-path-to/icons/fonts/font-face.css`
 
-Now you can use your icons with your `font-familiy: my-name`, e.g.:
+Now you can use your icons with your `font-family: my-name`, e.g.:
 
 ```html
 <!--example.html-->
