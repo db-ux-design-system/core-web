@@ -67,7 +67,7 @@
 	text-align: start; // workaround for power apps
 
 	@include icons.has-no-icon() {
-		@include icons.icon(info);
+		@include icons.icon("info");
 	}
 
 	dblink,
@@ -95,10 +95,7 @@
 
 	&[data-icon]::before,
 	&::before {
-		/* TODO: Take filled icons if they are ready */
-		--icon-margin-after: 0;
-		--icon-font-family: var(--db-base-icon-font-family);
-		--icon-font-size: var(--db-base-icon-font-size);
+		--db-icon-margin-end: 0;
 		grid-area: icon;
 	}
 

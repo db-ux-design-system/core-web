@@ -54,6 +54,7 @@ export type DBInputDefaultProps = {
 		| 'url'
 		| 'week'
 		| string;
+	step?: number | string;
 };
 
 export type DBInputProps = DBInputDefaultProps &

@@ -6,37 +6,8 @@
 @use "@db-ui/foundations/build/scss/helpers/functions" as *;
 @use "@db-ui/foundations/build/scss/helpers/component" as *;
 @use "@db-ui/foundations/build/scss/animation/animations" as *;
-@use "@db-ui/foundations/build/scss/icon/icons.placeholder" as *;
-@use "@db-ui/foundations/build/scss/icon/icons.helpers" as *;
-@use "@db-ui/foundations/build/scss/icon/icons.variables" as *;
+@use "@db-ui/foundations/build/scss/icon/icons.helpers" as icon-helper;
 @use "../../styles/db-puls" as *;
-
-%icon-passing {
-	// TODO: Probably we could still simplify the following two blocks of declarations
-	&[data-icon] {
-		&::before {
-			// don't show default icon
-			display: none;
-		}
-	}
-
-	@each $icon-name, $icon-glyph in $icon-glyphs {
-		&[data-icon="#{$icon-name}"] {
-			> a,
-			> .db-navigation-item-expand-button:is(button),
-			> .db-navigation-item-expand-button > button {
-				&::before {
-					@extend %icon;
-					content: "#{$icon-glyph}";
-					margin-inline-end: var(
-						--icon-margin-after,
-						#{$db-spacing-fixed-sm}
-					);
-				}
-			}
-		}
-	}
-}
 
 %sub-navi-handler-desktop {
 	// show sub-navigation on hover
@@ -100,17 +71,36 @@
 	}
 
 	&::after {
-		--icon-margin-before: auto;
+		--db-icon-margin-start: auto;
 	}
 }
 
 .db-navigation-item {
+	--db-has-before: 0;
 	@extend %db-puls;
-	@extend %icon-passing;
 
 	display: inline-flex;
 	position: relative;
 	inline-size: 100%;
+
+	&[data-icon] {
+		&::before {
+			position: absolute;
+			inset-block-start: calc(50% - 0.5em);
+			inset-inline-start: $db-spacing-fixed-sm;
+			pointer-events: none;
+		}
+
+		a,
+		button {
+			// TODO: Move this to shared style
+			padding-inline-start: calc(
+				#{$db-spacing-fixed-sm} + var(--db-base-font-size) * var(
+						--db-base-line-height
+					) + #{$default-icon-margin-end}
+			);
+		}
+	}
 
 	a {
 		@extend %navigation-item;
@@ -128,7 +118,7 @@
 			@extend %navigation-item;
 
 			// default icon for navigation
-			@include icon(chevron-right, "after");
+			@include icon-helper.icon("chevron_right", "after");
 
 			font-weight: inherit;
 		}
@@ -147,7 +137,7 @@
 		inline-size: 100%;
 
 		&::after {
-			--icon-margin-before: auto;
+			--db-icon-margin-start: auto;
 		}
 	}
 

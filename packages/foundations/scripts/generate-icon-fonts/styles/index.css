@@ -1,0 +1,11 @@
+@font-face {
+	font-family: "{{fontname}}";
+	src: url("{{cssPath}}{{fontname}}.woff2?t={{timestamp}}") format("woff2");
+}
+
+.{{prefix}} {
+	font-family: '{{fontname}}' !important;
+	font-style:normal;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}

@@ -133,6 +133,7 @@ export default function DBInput(props: DBInputProps) {
 				disabled={props.disabled}
 				required={props.required}
 				defaultValue={props.defaultValue}
+				step={props.step}
 				value={props.value}
 				aria-invalid={props.invalid}
 				maxLength={props.maxLength}
