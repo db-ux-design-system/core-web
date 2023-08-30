@@ -76,7 +76,7 @@
 }
 
 .db-navigation-item {
-	--has-before: 0;
+	--db-has-before: 0;
 	@extend %db-puls;
 
 	display: inline-flex;

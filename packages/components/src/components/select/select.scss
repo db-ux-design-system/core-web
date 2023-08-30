@@ -31,7 +31,7 @@
 }
 
 .db-select {
-	--has-before: 0;
+	--db-has-before: 0;
 	--has-status: 0;
 	@extend %db-overwrite-font-size-sm;
 	@extend %select-icon;
@@ -41,12 +41,12 @@
 
 	position: relative;
 	min-inline-size: calc(
-		var(--db-select-min-width, calc(3 * $db-sizing-md)) + var(--has-before) *
-			($db-sizing-md)
+		var(--db-select-min-width, calc(3 * $db-sizing-md)) +
+			var(--db-has-before) * ($db-sizing-md)
 	);
 
 	&[data-icon] {
-		--has-before: 1;
+		--db-has-before: 1;
 	}
 
 	&[data-variant="adaptive"],
@@ -69,7 +69,7 @@
 		block-size: $db-sizing-md;
 		text-overflow: ellipsis;
 		text-indent: calc(
-			var(--has-before) * ($db-sizing-md - $db-spacing-fixed-sm)
+			var(--db-has-before) * ($db-sizing-md - $db-spacing-fixed-sm)
 		);
 		inline-size: 100%;
 		padding-block-start: $db-spacing-fixed-sm;
@@ -105,7 +105,7 @@
 			top,
 			font-size 0.2s $db-transition-functional-timing;
 		inset-inline-start: calc(
-			var(--has-before) * ($db-sizing-md - $db-spacing-fixed-sm) +
+			var(--db-has-before) * ($db-sizing-md - $db-spacing-fixed-sm) +
 				$db-spacing-fixed-sm
 		);
 	}
