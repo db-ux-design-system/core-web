@@ -49,7 +49,7 @@
     "@builder.io/eslint-plugin-mitosis": "^0.0.14",
     "@builder.io/mitosis": "^0.0.119",
     "@builder.io/mitosis-cli": "^0.0.77",
-    "@react-docgen/cli": "^1.0.3",
+    "@react-docgen/cli": "^1.0.4",
     "cpr": "3.0.1",
     "eslint": "^8.48.0",
     "hygen": "^6.2.11",
