@@ -12,7 +12,7 @@ $dropdown-icon-transition: transform var-todo.$db-transition-emotional-straight;
 $dropdown-icon-transform: rotate(-180deg);
 
 %dropdown-icon {
-	@include icons.icon(expand_more, "after");
+	@include icons.icon("expand_more", "after");
 
 	&::after {
 		transition: $dropdown-icon-transition;
