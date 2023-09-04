@@ -1,23 +1,15 @@
 import { DefaultVariantType } from '../shared/model';
 
 export const uuid = () => {
-	try {
-		if (typeof window !== 'undefined') {
-			if (window.crypto) {
-				if (window.crypto.randomUUID) {
-					return window.crypto.randomUUID();
-				} else if (window.crypto.getRandomValues) {
-					return window.crypto
-						.getRandomValues(new Uint32Array(3))
-						.join('-');
-				}
-			}
+	if (typeof window !== 'undefined') {
+		if (window.crypto?.randomUUID) {
+			return window.crypto.randomUUID();
+		} else if (window.crypto?.getRandomValues) {
+			return window.crypto.getRandomValues(new Uint32Array(3)).join('-');
 		}
-	} catch (error) {
-		console.warn(error);
 	}
 
-	return Math.random().toString();
+	return Math.random().toString().substring(2);
 };
 
 export const addAttributeToChildren = (
