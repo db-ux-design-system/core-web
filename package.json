@@ -59,7 +59,7 @@
     "lint:xo": "cross-env TIMING=1 NODE_OPTIONS=\"--max-old-space-size=4096\" xo",
     "postbuild:02_components": "cpr output/power-apps build-power-apps -o",
     "prepare": "node -e \"try { require('husky').install() } catch (e) {}\"",
-    "regenerate:screenshots": "docker run --rm --network host -v $(pwd):/work/ -w /work/ -it mcr.microsoft.com/playwright:v1.32.3-focal /bin/bash -c 'npm ci --ignore-scripts && cd output/react/ && npx playwright test --update-snapshots'",
+    "regenerate:screenshots": "git clean -dfx --exclude=.env && npm i && npm run build && npm run build-showcases:react && docker-compose -f ./e2e/docker-compose.regenerate.yml up --build",
     "scripts:check-commit-mail": "node scripts/check-commit-mail.js",
     "scripts:md-resolve-svg": "node scripts/md-resolve-svg.js",
     "start": "node scripts/start.js",
