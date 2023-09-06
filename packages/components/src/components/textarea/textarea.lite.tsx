@@ -97,7 +97,6 @@ export default function DBTextarea(props: DBTextareaProps) {
 
 			<label
 				htmlFor={state._id}
-				aria-hidden="true"
 				data-overflow={props.overflow}
 				id={state._id + '-label'}>
 				{props.label ?? state.defaultValues.label}
