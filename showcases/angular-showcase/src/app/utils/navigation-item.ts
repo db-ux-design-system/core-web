@@ -1,6 +1,7 @@
 import { Routes } from '@angular/router';
 import { AccordionItemComponent } from '../components/accordion-item/accordion-item.component';
 import { AccordionComponent } from '../components/accordion/accordion.component';
+import { TextareaComponent } from '../components/textarea/textarea.component';
 import { BadgeComponent } from '../components/badge/badge.component';
 import { NavigationItemComponent } from '../components/navigation-item/navigation-item.component';
 import { MainNavigationComponent } from '../components/main-navigation/main-navigation.component';
@@ -85,6 +86,11 @@ export const NAVIGATION_ITEMS: NavItem[] = [
 		label: '03 Data-Input',
 		subNavigation: getSortedNavigationItems([
 			{ path: '03/input', label: 'Input', component: InputComponent },
+			{
+				path: '03/textarea',
+				label: 'Textarea',
+				component: TextareaComponent
+			},
 			{ path: '03/radio', label: 'Radio', component: RadioComponent },
 			{
 				path: '03/checkbox',

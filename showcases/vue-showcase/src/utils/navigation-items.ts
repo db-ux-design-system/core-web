@@ -11,13 +11,14 @@ import Button from '../components/button/Button.vue';
 import Input from '../components/input/Input.vue';
 import Link from '../components/link/Link.vue';
 import Alert from '../components/alert/Alert.vue';
-import Radio from '../components/radio/Radio.vue';
+import Card from '../components/card/Card.vue';
 import Checkbox from '../components/checkbox/Checkbox.vue';
 import Divider from '../components/divider/Divider.vue';
-import Infotext from '../components/infotext/Infotext.vue';
-import Section from '../components/section/Section.vue';
-import Card from '../components/card/Card.vue';
 import Drawer from '../components/drawer/Drawer.vue';
+import Infotext from '../components/infotext/Infotext.vue';
+import Radio from '../components/radio/Radio.vue';
+import Section from '../components/section/Section.vue';
+import Textarea from '../components/textarea/Textarea.vue';
 
 export type NavItem = {
 	path: string;
@@ -81,6 +82,7 @@ export const navigationItems: NavItem[] = [
 		label: '03 Data-Input',
 		subNavigation: getSortedNavigationItems([
 			{ path: '/03/input', label: 'Input', component: Input },
+			{ path: '/03/textarea', label: 'Textarea', component: Textarea },
 			{ path: '/03/radio', label: 'Radio', component: Radio },
 			{
 				path: '/03/checkbox',

@@ -8,6 +8,7 @@ export type ComponentType = {
 	| 'main-navigation'
 		| 'accordion-item'
 		| 'accordion'
+		| 'textarea'
 		| 'badge'
 		| 'navigation-item'
 		| 'tag'
@@ -35,6 +36,5 @@ export type ComponentType = {
 		| string;
 	content?: string | ComponentType[];
 	props?: any;
-
 	className?: string;
 };

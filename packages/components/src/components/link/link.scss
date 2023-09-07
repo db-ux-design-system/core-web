@@ -48,11 +48,11 @@
 
 	&:not([data-variant="inline"]) {
 		&[data-content="internal"] {
-			@include icon(arrow-forward, "after");
+			@include icon("arrow_forward", "after");
 		}
 
 		&[data-content="external"] {
-			@include icon(link-external, "after");
+			@include icon("link_external", "after");
 		}
 	}
 
@@ -62,14 +62,14 @@
 
 	&[data-content="internal"],
 	&[data-content="external"] {
-		--icon-margin-before: #{$db-spacing-fixed-2xs};
+		--db-icon-margin-start: #{$db-spacing-fixed-2xs};
 
 		&:focus-visible {
 			outline-offset: var(--db-focus-outline-offset, 1px);
 		}
 
 		&::after {
-			margin-inline-start: var(--icon-margin-before);
+			margin-inline-start: var(--db-icon-margin-start);
 		}
 	}
 
@@ -88,8 +88,7 @@
 	}
 
 	&[data-size="small"] {
-		--icon-font-size: var(--db-base-icon-font-size);
-		--icon-margin-before: #{$db-spacing-fixed-3xs};
+		--db-icon-margin-start: #{$db-spacing-fixed-3xs};
 		@extend %db-overwrite-font-size-sm;
 	}
 }

@@ -31,8 +31,8 @@
 }
 
 .db-select {
-	--has-before: 0;
-	--has-status: 0;
+	--db-has-before: 0;
+	--db-has-status: 0;
 	@extend %db-overwrite-font-size-sm;
 	@extend %select-icon;
 	@extend %default-form-message;
@@ -41,12 +41,12 @@
 
 	position: relative;
 	min-inline-size: calc(
-		var(--db-select-min-width, calc(3 * $db-sizing-md)) + var(--has-before) *
-			($db-sizing-md)
+		var(--db-select-min-width, calc(3 * $db-sizing-md)) +
+			var(--db-has-before) * ($db-sizing-md)
 	);
 
 	&[data-icon] {
-		--has-before: 1;
+		--db-has-before: 1;
 	}
 
 	&[data-variant="adaptive"],
@@ -69,7 +69,7 @@
 		block-size: $db-sizing-md;
 		text-overflow: ellipsis;
 		text-indent: calc(
-			var(--has-before) * ($db-sizing-md - $db-spacing-fixed-sm)
+			var(--db-has-before) * ($db-sizing-md - $db-spacing-fixed-sm)
 		);
 		inline-size: 100%;
 		padding-block-start: $db-spacing-fixed-sm;
@@ -105,7 +105,7 @@
 			top,
 			font-size 0.2s $db-transition-functional-timing;
 		inset-inline-start: calc(
-			var(--has-before) * ($db-sizing-md - $db-spacing-fixed-sm) +
+			var(--db-has-before) * ($db-sizing-md - $db-spacing-fixed-sm) +
 				$db-spacing-fixed-sm
 		);
 	}
@@ -125,23 +125,17 @@
 	.icon-state {
 		@extend %db-overwrite-font-size-sm;
 
+		@include to-solid-icon();
+
 		display: flex;
 		inset-inline-end: calc($db-sizing-md - $db-spacing-fixed-xs);
-
-		&::before {
-			--icon-font-family: var(--db-base-icon-font-family-filled);
-			--icon-font-size: var(--db-base-icon-font-size);
-		}
 
 		// angular specific nesting
 
 		.db-icon {
 			@extend %db-overwrite-font-size-sm;
 
-			&::before {
-				--icon-font-family: var(--db-base-icon-font-family-filled);
-				--icon-font-size: var(--db-base-icon-font-size);
-			}
+			@include to-solid-icon();
 		}
 	}
 

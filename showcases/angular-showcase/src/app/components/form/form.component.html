@@ -9,6 +9,37 @@
 			icon="account"
 		>
 		</db-input>
+
+		<db-textarea
+			name="textarea"
+			label="Textarea Controlled"
+			placeholder="Placeholder"
+			description="Description"
+			icon="account"
+			[value]="textarea"
+			(change)="textarea = $event.target.value"
+		></db-textarea>
+
+		<db-textarea
+			name="textarea"
+			label="Textarea with defaultValue"
+			placeholder="Placeholder"
+			description="Description"
+			icon="account"
+			defaultValue="default value"
+			(change)="textareaDefaultValue = $event.target.value"
+		></db-textarea>
+
+		<db-textarea
+			name="ngModelTextarea"
+			[(ngModel)]="model.textarea"
+			label="Textarea with ngModel"
+			placeholder="Placeholder"
+			description="Description"
+			icon="account"
+			value="Textarea"
+		></db-textarea>
+
 		<db-checkbox
 			[(ngModel)]="model.checkbox2"
 			name="checkbox2"
@@ -54,6 +85,18 @@
 						></db-radio>
 					</li>
 				</ul>
+
+				<p>Textarea:</p>
+
+				<db-textarea
+					name="textarea"
+					id="textarea"
+					label="Textarea"
+					placeholder="Placeholder"
+					description="Description"
+					icon="account"
+					formControlName="textarea"
+				></db-textarea>
 
 				<p>Tags:</p>
 				<ul>
@@ -128,6 +171,26 @@
 			</dd>
 			<dt>NgModel inputs value</dt>
 			<dd>{{ model.input ? model.input : "No Input set" }}</dd>
+			<dt>textarea value</dt>
+			<dd>{{ textarea ? textarea : "No textarea set" }}</dd>
+			<dt>textarea default value</dt>
+			<dd>
+				{{
+					textareaDefaultValue
+						? textareaDefaultValue
+						: "No textareaDefaultValue set"
+				}}
+			</dd>
+			<dt>textareas value</dt>
+			<dd>
+				{{
+					form.get("textarea")?.value
+						? form.get("textarea")?.value
+						: "No Textarea set"
+				}}
+			</dd>
+			<dt>NgModel textareas value</dt>
+			<dd>{{ model.textarea ? model.textarea : "No Textarea set" }}</dd>
 			<dt>radio value</dt>
 			<dd>{{ model.radio ? model.radio : "No radio set" }}</dd>
 			<dt>checkbox value (ngModel)</dt>

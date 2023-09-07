@@ -19,7 +19,8 @@ import {
 	DBSelect,
 	DBTag,
 	DBAccordion,
-	DBAccordionItem
+	DBAccordionItem,
+	DBTextarea
 } from '../src';
 import type { ComponentParserType, ComponentType } from './data';
 
@@ -199,6 +200,14 @@ const ComponentSwitch = ({
 			<DBSection className={className} {...props}>
 				{resolvedContent}
 			</DBSection>
+		);
+	}
+
+	if (type === 'textarea') {
+		return (
+			<DBTextarea className={className} {...props}>
+				{resolvedContent}
+			</DBTextarea>
 		);
 	}
 

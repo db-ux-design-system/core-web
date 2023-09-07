@@ -40,13 +40,41 @@ const getComponents = () => [
 	},
 
 	{
+		name: 'textarea',
+		config: {
+			vue: {
+				vModel: [{ modelValue: 'value', binding: ':value' }]
+			},
+			angular: {
+				controlValueAccessor: 'value'
+			}
+		},
+		overwrites: {
+			angular: [
+				{
+					from: '[attr.defaultValue]="defaultValue ?? children"',
+					to: ''
+				},
+				{
+					from: '</textarea>',
+					to: '{{value || defaultValue}}</textarea>'
+				}
+			],
+			vue: [
+				{
+					from: ':defaultValue="defaultValue || $slots.default"',
+					to: ''
+				}
+			]
+		}
+	},
+	{
 		name: 'badge'
 	},
 
 	{
 		name: 'main-navigation'
 	},
-
 	{
 		name: 'navigation-item',
 		config: {

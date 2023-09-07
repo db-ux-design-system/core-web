@@ -13,7 +13,7 @@ import {
 		<template
 			#example="{ exampleIndex, variantIndex, exampleName, exampleProps }"
 		>
-			<DBInfotext size="small" variant="informational">
+			<DBInfotext size="small" variant="informational" icon="none">
 				{{ exampleName }}
 			</DBInfotext>
 			<DBAccordion :behaviour="exampleProps.behaviour">

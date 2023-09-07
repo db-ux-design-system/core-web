@@ -1,9 +1,8 @@
 @mixin set-component-variables($size) {
 	/* Those variables are only for components to calculate heights and change icons */
-	--db-base-icon-font-size: var(--db-base-icon-font-size-#{$size});
-	--db-base-icon-font-family: var(--db-base-icon-font-family-#{$size});
+	--db-icon-font-weight: var(--db-base-icon-weight-#{$size});
+	--db-icon-font-size: var(--db-base-icon-font-size-#{$size});
 	/* prettier-ignore */
-	--db-base-icon-font-family-filled: var(--db-base-icon-font-family-filled-#{$size});
 	--db-base-line-height: var(--db-type-body-line-height-#{$size});
 	--db-base-font-size: var(--db-type-body-font-size-#{$size});
 }

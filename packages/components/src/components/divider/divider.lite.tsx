@@ -18,7 +18,8 @@ useMetadata({
 						value: 'horizontal'
 					},
 					{ key: 'Vertical', name: 'Vertical', value: 'vertical' }
-				]
+				],
+				defaultValue: 'horizontal'
 			},
 			{
 				name: 'margin',
@@ -26,7 +27,8 @@ useMetadata({
 				values: [
 					{ key: 'Default', name: 'Default', value: '_' },
 					{ key: 'None', name: 'None', value: 'none' }
-				]
+				],
+				defaultValue: '_'
 			}
 		]
 	}

@@ -112,11 +112,15 @@ export type FormProps = {
 	 * React specific attribute to set default value.
 	 */
 	defaultValue?: any;
+
 	/**
 	 * The disabled attribute can be set to keep a user from clicking on the form element.
 	 */
 	disabled?: boolean;
-
+	/**
+	 * 	Associates the control with a form element
+	 */
+	form?: string;
 	/**
 	 * Marks an input element as invalid.
 	 */
@@ -125,19 +129,47 @@ export type FormProps = {
 	 * The label attribute specifies the caption of the form element.
 	 */
 	label?: string;
+
 	/**
 	 * The name attribute gives the name of the form control, as used in form submission and in the form element's elements object.
 	 */
 	name?: string;
+
 	/**
 	 * When the required attribute specified, the user will be required to fill the form element before submitting the form.
 	 */
 	required?: boolean;
-
 	/**
 	 * The value property is to receive results from the native form element.
 	 */
 	value?: any;
+};
+
+export type FormTextProps = {
+	/**
+	 * This attribute indicates whether the value of the control can be automatically completed by the browser.
+	 */
+	autoComplete?: 'on' | 'off';
+	/**
+	 * This Boolean attribute lets you specify that a form control should have input focus when the page loads. Only one form-associated element in a document can have this attribute specified.
+	 */
+	autoFocus?: boolean;
+	/**
+	 * Maximum length (number of characters) of value
+	 */
+	maxLength?: number;
+	/**
+	 * Minimum length (number of characters) of value
+	 */
+	minLength?: number;
+	/**
+	 * Text that appears in the form control when it has no value set
+	 */
+	placeholder?: string;
+	/**
+	 * The disabled attribute can be set to keep a user from edit on the form element
+	 */
+	readOnly?: boolean;
 };
 
 export type FormCheckProps = {
@@ -145,13 +177,6 @@ export type FormCheckProps = {
 	 * Define the radio or checkbox elements checked state
 	 */
 	checked?: boolean;
-};
-
-export type FormReadonlyProps = {
-	/**
-	 * The disabled attribute can be set to keep a user from edit on the form element
-	 */
-	readonly?: boolean;
 };
 
 export type FormMessageProps = {
@@ -172,15 +197,6 @@ export type FormState = {
 
 export type InitializedState = {
 	initialized: boolean;
-};
-
-export type GlobalTextProps = {
-	placeholder?: string;
-	maxLength?: number;
-	minLength?: number;
-	max?: number | string;
-	min?: number | string;
-	pattern?: string;
 };
 
 export type ImageProps = {

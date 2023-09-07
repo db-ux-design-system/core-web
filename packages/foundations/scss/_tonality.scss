@@ -5,7 +5,9 @@
 @use "helpers/font" as *;
 
 body,
-.app-canvas {
+// Power Apps related
+.app-canvas,
+.control-pane {
 	font-family: $db-font-family-sans;
 }
 

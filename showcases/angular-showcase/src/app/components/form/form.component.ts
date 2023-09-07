@@ -9,17 +9,27 @@ export class FormComponent {
 	array = ['X', 'Y', 'Z'];
 	radio = '';
 	input = '';
+	textarea = 'default value';
+	textareaDefaultValue = '';
 	tags: string[] = [];
 	// Fieldset checkbox state
 	checked = [true, false];
 
 	select = '';
-	model = { input: 'Anna', radio: 'X', checkbox: true, checkbox2: true };
+	model = {
+		input: 'Anna',
+		textarea: 'default value',
+		radio: 'X',
+		checkbox: true,
+		checkbox2: true
+	};
+
 	dataList = [{ key: 'test', value: 'Test' }, { key: 'test2' }];
 
 	// Reference: https://blog.angular-university.io/angular-custom-form-controls/
 	form = new FormGroup({
 		input: new FormControl('Filled with formControl'),
+		textarea: new FormControl('Filled with formControl as well'),
 		checkbox: new FormControl(true)
 	});
 
@@ -37,9 +47,11 @@ export class FormComponent {
 
 	resetValues(): void {
 		this.model.input = 'reset';
+		this.model.textarea = 'resetted as well';
 		this.model.checkbox = false;
 		this.model.checkbox2 = false;
 		this.form.get('input')?.setValue('reset');
+		this.form.get('textarea')?.setValue('reset');
 		this.form.get('checkbox')?.setValue(false);
 	}
 
@@ -71,6 +83,7 @@ export class FormComponent {
 		alert(
 			JSON.stringify({
 				input: this.input,
+				textarea: this.textarea,
 				radio: this.radio,
 				select: this.select,
 				checkbox: this.model.checkbox,

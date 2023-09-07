@@ -10,7 +10,7 @@ import { getVariants } from '../data';
 
 const getAccordion = ({ behaviour, children }: DBAccordionProps) => (
 	<>
-		<DBInfotext size="small" variant="informational">
+		<DBInfotext size="small" variant="informational" icon="none">
 			{children}
 		</DBInfotext>
 		<DBAccordion behaviour={behaviour}>

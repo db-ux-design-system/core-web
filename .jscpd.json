@@ -45,8 +45,8 @@
 		"packages/components/src/components/tag/tag.spec.tsx",
 		"**/**config.ts",
 		"**/navigation-items.ts",
-		"packages/foundations/assets/icons/functional/fonts/sources/*.json",
-		"showcases/angular-showcase/.angular/cache"
+		"showcases/angular-showcase/.angular/cache",
+		"packages/foundations/assets/icons/functional/fonts/**"
 	],
 	"absolute": true
 }

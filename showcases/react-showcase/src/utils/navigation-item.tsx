@@ -10,13 +10,14 @@ import SelectComponent from '../components/select';
 import RadioComponent from '../components/radio';
 import AlertComponent from '../components/alert';
 import ButtonComponent from '../components/button';
-import InputComponent from '../components/input';
-import FormComponent from '../components/form';
-import LinkComponent from '../components/link';
-import SectionComponent from '../components/section';
-import InfotextComponent from '../components/infotext';
 import CardComponent from '../components/card';
 import DividerComponent from '../components/divider';
+import FormComponent from '../components/form';
+import InfotextComponent from '../components/infotext';
+import InputComponent from '../components/input';
+import LinkComponent from '../components/link';
+import SectionComponent from '../components/section';
+import TextareaComponent from '../components/textarea';
 
 export type NavigationItem = {
 	path: string;
@@ -97,6 +98,11 @@ export const NAVIGATION_ITEMS: NavigationItem[] = [
 		label: '03 Data-Input',
 		subNavigation: getSortedNavigationItems([
 			{ path: 'input', label: 'Input', component: <InputComponent /> },
+			{
+				path: 'textarea',
+				label: 'Textarea',
+				component: <TextareaComponent />
+			},
 			{ path: 'radio', label: 'Radio', component: <RadioComponent /> },
 			{
 				path: 'checkbox',

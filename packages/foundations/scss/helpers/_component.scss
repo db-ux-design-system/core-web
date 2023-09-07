@@ -27,7 +27,6 @@ $default-mobile-header-height: functions.to-rem(56);
 %component-border {
 	border: solid 1px var.$db-colors-neutral-border-weak;
 }
-
 %default-interactive-component {
 	@extend %default-adaptive-border;
 	border-radius: $default-border-radius;
