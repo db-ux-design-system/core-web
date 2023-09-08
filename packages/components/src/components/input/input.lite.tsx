@@ -121,6 +121,10 @@ export default function DBInput(props: DBInputProps) {
 			<Show when={state.iconVisible(props.icon)}>
 				<DBIcon icon={props.icon} class="icon-before" />
 			</Show>
+			<label
+				htmlFor={state._id}>
+				<span>{props.label ?? state.defaultValues.label}</span>
+			</label>
 			<input
 				ref={component}
 				id={state._id}
@@ -129,7 +133,6 @@ export default function DBInput(props: DBInputProps) {
 				placeholder={
 					props.placeholder ?? state.defaultValues.placeholder
 				}
-				aria-labelledby={state._id + '-label'}
 				disabled={props.disabled}
 				required={props.required}
 				defaultValue={props.defaultValue}
@@ -150,12 +153,6 @@ export default function DBInput(props: DBInputProps) {
 				onFocus={(event) => state.handleFocus(event)}
 				list={props.dataList && state._dataListId}
 			/>
-			<label
-				htmlFor={state._id}
-				aria-hidden="true"
-				id={state._id + '-label'}>
-				<span>{props.label ?? state.defaultValues.label}</span>
-			</label>
 			<Show when={state.iconVisible(props.iconAfter)}>
 				<DBIcon icon={props.iconAfter} class="icon-after" />
 			</Show>
