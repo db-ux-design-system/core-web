@@ -101,24 +101,25 @@ $dropdown-icon-transform: rotate(-180deg);
 }
 
 %validity {
-	// Validity
-	&[aria-invalid="true"], // programmatically set validity
-		&:required:invalid:not(:placeholder-shown), // :user-invalid fallback
-		&:is(:user-invalid) {
-		@extend %db-bg-critical-transparent-semi;
-
-		// label:has(+ &) {
-		// 	color: $db-colors-critical-element;
-		// }
-	}
-
+	// Valid
 	&[aria-invalid="false"], // programmatically set validity
-		&:required:valid:not(:placeholder-shown), // :user-valid fallback
-		&:is(:user-valid) {
+	&:required:valid:not(:placeholder-shown), // :user-valid fallback
+	&:is(:user-valid) {
 		@extend %adaptive-successful-component;
 
 		// label:has(+ &) {
 		// 	color: $db-colors-successful-element;
+		// }
+	}
+
+	// Invalid
+	&[aria-invalid="true"], // programmatically set validity
+	&:required:invalid:not(:placeholder-shown), // :user-invalid fallback
+	&:is(:user-invalid) {
+		@extend %db-bg-critical-transparent-semi;
+
+		// label:has(+ &) {
+		// 	color: $db-colors-critical-element;
 		// }
 	}
 }
