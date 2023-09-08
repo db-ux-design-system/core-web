@@ -26,7 +26,7 @@
 		]
 	},
 	{
-		"name": "Helper message",
+		"name": "HelperMessage",
 		"examples": [
 			{
 				"name": "Basic (Default)",
@@ -129,7 +129,7 @@
 		]
 	},
 	{
-		"name": "Interaction states",
+		"name": "InteractionStates",
 		"examples": [
 			{
 				"name": "(Default) Enabled",
