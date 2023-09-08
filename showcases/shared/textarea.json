@@ -26,7 +26,7 @@
 		]
 	},
 	{
-		"name": "Message",
+		"name": "Helper message",
 		"examples": [
 			{
 				"name": "Basic (Default)",
@@ -110,6 +110,27 @@
 					"message": "Helper Message"
 				}
 			},
+			{
+				"name": "Invalid",
+				"props": {
+					"label": "Label",
+					"message": "Fille – Invalid",
+					"invalid": true
+				}
+			},
+			{
+				"name": "Valid",
+				"props": {
+					"label": "Label",
+					"message": "Fille – Valid",
+					"invalid": false
+				}
+			}
+		]
+	},
+	{
+		"name": "Interaction states",
+		"examples": [
 			{
 				"name": "Disabled",
 				"props": {
