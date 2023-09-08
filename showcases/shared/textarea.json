@@ -132,12 +132,17 @@
 		"name": "Interaction states",
 		"examples": [
 			{
+				"name": "(Default) Enabled",
+				"props": {
+					"label": "Label"
+				}
+			},
+			{
 				"name": "Disabled",
 				"props": {
 					"label": "Label",
 					"value": "Disabled",
-					"disabled": true,
-					"message": "Helper Message"
+					"disabled": true
 				}
 			},
 			{
@@ -145,8 +150,7 @@
 				"props": {
 					"label": "Label",
 					"value": "Readonly",
-					"readOnly": true,
-					"message": "Helper Message"
+					"readOnly": true
 				}
 			}
 		]
