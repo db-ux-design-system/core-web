@@ -1,5 +1,34 @@
 [
 	{
+		"name": "Tonality",
+		"examples": [
+			{
+				"name": "functional",
+				"className": "db-ui-functional",
+				"props": {
+					"label": "Label",
+					"message": "functional"
+				}
+			},
+			{
+				"name": "regular (Default)",
+				"className": "db-ui-regular",
+				"props": {
+					"label": "Label",
+					"message": "regular (Default)"
+				}
+			},
+			{
+				"name": "expressive",
+				"className": "db-ui-expressive",
+				"props": {
+					"label": "Label",
+					"message": "expressive"
+				}
+			}
+		]
+	},
+	{
 		"name": "Variant",
 		"examples": [
 			{
@@ -115,6 +144,22 @@
 							"value": "Option 2"
 						}
 					]
+				}
+			},
+			{
+				"name": "Required",
+				"props": {
+					"label": "Label",
+					"message": "Required",
+					"options": [
+						{
+							"value": "Option 1"
+						},
+						{
+							"value": "Option 2"
+						}
+					],
+					"required": true
 				}
 			},
 			{

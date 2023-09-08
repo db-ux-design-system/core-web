@@ -36,6 +36,8 @@
 	@extend %db-overwrite-font-size-sm;
 	@extend %select-icon;
 	@extend %default-form-message;
+	@extend %disabled-form-element;
+	@extend %required-form-element;
 
 	@include form.get-input-color-variants();
 

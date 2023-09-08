@@ -6,7 +6,6 @@
 @use "../../styles/form-components" as form;
 
 %resize-textarea {
-	&:not([data-resize]),
 	&[data-resize="none"] {
 		resize: none;
 	}

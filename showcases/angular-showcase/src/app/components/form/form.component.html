@@ -46,6 +46,17 @@
 			label="Checkbox ngModel"
 		></db-checkbox>
 
+		<p>DBSelect:</p>
+		<db-select
+			name="ngModelSelect"
+			[(ngModel)]="model.select"
+			label="Select with ngModel"
+			message="Description"
+		>
+			<option value="test1">Test1</option>
+			<option value="test2">Test2</option>
+		</db-select>
+
 		<h6>Reactive Forms Example:</h6>
 		<form [formGroup]="form" (submit)="onFormSubmit()">
 			<fieldset>
@@ -139,15 +150,27 @@
 						label="Checkbox"
 					></db-checkbox>
 				</fieldset>
-				<p>DBSelect:</p>
+				<p>Select:</p>
 				<db-select
+					name="select"
+					label="Select"
+					placeholder="Placeholder"
+					description="Description"
+					icon="account"
+					formControlName="select"
+					(change)="handleChange4($event)"
+				>
+					<option value="test1">Test1</option>
+					<option value="test2">Test2</option>
+				</db-select>
+				<!-- <db-select
 					[value]="select"
 					label="Label"
 					(change)="select = $event.target.value"
 				>
 					<option value="test1">Test1</option>
 					<option value="test2">Test2</option>
-				</db-select>
+				</db-select> -->
 				<p>Button:</p>
 				<db-button type="button" (click)="resetValues()">
 					Reset

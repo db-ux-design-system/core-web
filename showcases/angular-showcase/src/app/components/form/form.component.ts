@@ -21,7 +21,8 @@ export class FormComponent {
 		textarea: 'default value',
 		radio: 'X',
 		checkbox: true,
-		checkbox2: true
+		checkbox2: true,
+		select: 'test2'
 	};
 
 	dataList = [{ key: 'test', value: 'Test' }, { key: 'test2' }];
@@ -30,7 +31,8 @@ export class FormComponent {
 	form = new FormGroup({
 		input: new FormControl('Filled with formControl'),
 		textarea: new FormControl('Filled with formControl as well'),
-		checkbox: new FormControl(true)
+		checkbox: new FormControl(true),
+		select: new FormControl('test2')
 	});
 
 	getRadioName = (radioName: string): string => `Radio ${radioName}`;
@@ -76,6 +78,12 @@ export class FormComponent {
 
 	handleChange3 = (event: any) => {
 		this.checked = [this.checked[0], event.target.checked];
+	};
+
+	handleChange4 = (event: any) => {
+		this.form.get('select')?.setValue(event.target.value, {
+			onlySelf: true
+		});
 	};
 
 	showValues(): void {

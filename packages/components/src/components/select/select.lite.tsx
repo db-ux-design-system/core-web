@@ -114,7 +114,6 @@ export default function DBSelect(props: DBSelectProps) {
 				ref={component}
 				data-value={props.value || state._value}
 				aria-invalid={props.invalid}
-				aria-required={props.required}
 				required={props.required}
 				disabled={props.disabled}
 				id={state._id}
