@@ -66,7 +66,7 @@ $dropdown-icon-transform: rotate(-180deg);
 	}
 }
 %required-form-element-check {
-	&:required + label {
+	:required + & {
 		&::after {
 			content: "*";
 			padding-inline-start: var.$db-spacing-fixed-2xs;
