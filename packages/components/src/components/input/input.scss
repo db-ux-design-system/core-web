@@ -72,7 +72,6 @@
 
 	@extend %default-form-message;
 	@extend %disabled-form-element;
-	@extend %required-form-element;
 
 	@include form.get-input-color-variants();
 
@@ -262,6 +261,7 @@
 		&[type="url"],
 		&[type="week"] {
 			@extend %db-overwrite-font-size-sm;
+			@extend %required-form-element;
 
 			&:not([type="date"]):not([type="datetime-local"]):not(
 					[type="month"]

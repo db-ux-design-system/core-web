@@ -59,6 +59,7 @@
 	select {
 		@extend %default-interactive-component;
 		@extend %component-border;
+		@extend %required-form-element;
 
 		@include bg-transparent-hover();
 

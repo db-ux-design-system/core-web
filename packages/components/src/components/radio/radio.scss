@@ -5,6 +5,7 @@
 @use "@db-ui/foundations/build/scss/helpers/font" as *;
 @use "@db-ui/foundations/build/scss/helpers/component" as *;
 @use "@db-ui/foundations/build/scss/color/color-variants" as col-var;
+@use "../../styles/form-components" as form;
 
 $font-size-height: calc(var(--db-base-font-size) * var(--db-base-line-height));
 
@@ -54,6 +55,8 @@ $font-size-height: calc(var(--db-base-font-size) * var(--db-base-line-height));
 	}
 
 	& + label {
+		@extend %required-form-element-check;
+
 		margin-inline-start: $db-spacing-fixed-xs;
 
 		vertical-align: top;
@@ -63,14 +66,6 @@ $font-size-height: calc(var(--db-base-font-size) * var(--db-base-line-height));
 		&,
 		& + label {
 			opacity: $default-disabled-opacity;
-		}
-	}
-
-	&:required {
-		& + label {
-			&::after {
-				content: " *";
-			}
 		}
 	}
 

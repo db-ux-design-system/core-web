@@ -8,6 +8,8 @@
 @use "@db-ui/foundations/build/scss/helpers/component" as component;
 @use "@db-ui/foundations/build/scss/color/color-variants" as variants;
 
+@use "@db-ui/foundations/build/scss/variables.global" as *;
+
 $dropdown-icon-transition: transform var-todo.$db-transition-emotional-straight;
 $dropdown-icon-transform: rotate(-180deg);
 
@@ -56,14 +58,18 @@ $dropdown-icon-transform: rotate(-180deg);
 }
 
 %required-form-element {
-	&:has(input:required),
-	&:has(textarea:required),
-	&:has(select:required) {
-		& label {
-			&::after {
-				content: " *";
-				padding-inline-start: var.$db-spacing-fixed-2xs;
-			}
+	&:has(+ :required) {
+		&::after {
+			content: "*";
+			padding-inline-start: var.$db-spacing-fixed-2xs;
+		}
+	}
+}
+%required-form-element-check {
+	&:required + label {
+		&::after {
+			content: "*";
+			padding-inline-start: var.$db-spacing-fixed-2xs;
 		}
 	}
 }

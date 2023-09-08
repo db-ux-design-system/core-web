@@ -31,7 +31,6 @@
 	@extend %default-form-label;
 
 	@extend %disabled-form-element;
-	@extend %required-form-element;
 
 	@include form.get-input-color-variants();
 
