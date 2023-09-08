@@ -61,4 +61,8 @@
 	textarea[aria-invalid="true"] {
 		@extend %adaptive-critical-component;
 	}
+
+	textarea[aria-invalid="false"] {
+		@extend %adaptive-successful-component;
+	}
 }
