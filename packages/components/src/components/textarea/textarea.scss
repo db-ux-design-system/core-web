@@ -44,6 +44,7 @@
 		@extend %component-border;
 		@extend %db-overwrite-font-size-md;
 		@extend %resize-textarea;
+		@extend %validity;
 
 		@include col-var.bg-transparent-hover();
 		@include col-var.get-variant-bg-color(0.08);
@@ -55,14 +56,5 @@
 		&::placeholder {
 			opacity: component.$default-placeholder-opacity;
 		}
-	}
-
-	textarea:required:invalid:not(:placeholder-shown),
-	textarea[aria-invalid="true"] {
-		@extend %adaptive-critical-component;
-	}
-
-	textarea[aria-invalid="false"] {
-		@extend %adaptive-successful-component;
 	}
 }
