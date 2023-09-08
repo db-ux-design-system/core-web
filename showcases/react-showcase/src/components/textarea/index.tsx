@@ -20,7 +20,8 @@ const getTextarea = ({
 	variant,
 	readOnly,
 	required,
-	children
+	children,
+	invalid
 }: DBTextareaProps) => (
 	<DBTextarea
 		cols={cols}
@@ -33,7 +34,8 @@ const getTextarea = ({
 		placeholder={placeholder ?? children}
 		rows={rows}
 		defaultValue={value}
-		variant={variant}></DBTextarea>
+		variant={variant}
+		invalid={invalid}></DBTextarea>
 );
 
 const TextareaComponent = () => {

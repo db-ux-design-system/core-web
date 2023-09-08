@@ -111,6 +111,7 @@ export default function DBTextarea(props: DBTextareaProps) {
 				required={props.required}
 				readOnly={props.readOnly}
 				dirName={props.dirName}
+				aria-invalid={props.invalid}
 				form={props.form}
 				maxLength={props.maxLength}
 				minLength={props.minLength}
