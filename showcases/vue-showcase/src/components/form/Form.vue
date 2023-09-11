@@ -107,10 +107,10 @@ const reset = () => {
 								:variant="
 									index === 0 ? undefined : 'successful'
 								"
-								@Change="changeTags(tag)"
 								:emphasis="index === 2 ? 'strong' : 'weak'"
-								behaviour="interactive"
-								>Tag {{ tag }}</DBTag
+								><DBCheckbox @Change="changeTags(tag)"
+									>Tag {{ tag }}</DBCheckbox
+								></DBTag
 							>
 						</li>
 					</ul>

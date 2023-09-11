@@ -46,8 +46,6 @@
 	@extend %default-button;
 
 	@include get-tag-colors();
-
-	display: flex;
 	border-radius: 42px; // extreme radius
 	padding-inline: $db-spacing-fixed-xs;
 	block-size: fit-content;

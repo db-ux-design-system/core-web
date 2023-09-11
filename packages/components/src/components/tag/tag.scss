@@ -1,72 +1,151 @@
 @use "sass:map";
-@use "@db-ui/foundations/build/scss/init" as *;
-@use "@db-ui/foundations/build/scss/variables" as *;
-@use "@db-ui/foundations/build/scss/variables.global" as *;
-@use "@db-ui/foundations/build/scss/color-placeholder" as *;
-@use "@db-ui/foundations/build/scss/helpers/component" as *;
-@use "@db-ui/foundations/build/scss/helpers/font" as *;
-@use "../../styles/button-components" as *;
-@use "../../styles/tag-components" as *;
-@use "@db-ui/foundations/build/scss/helpers/functions" as *;
+@use "@db-ui/foundations/build/scss/variables.global" as var;
+@use "@db-ui/foundations/build/scss/helpers/component" as component;
+@use "@db-ui/foundations/build/scss/helpers/font" as font;
+@use "@db-ui/foundations/build/scss/icon/icons.helpers" as icons;
+@use "../../styles/button-components" as button-components;
+@use "../../styles/tag-components" as tag-components;
+@use "@db-ui/foundations/build/scss/helpers/functions" as functions;
+@use "@db-ui/foundations/build/scss/color/color-variants" as col-var;
+@use "../../styles/icon-passing" as icon-passing;
 
-.db-tag {
-	@extend %focus-placeholder;
+%no-text {
+	&[data-no-text="true"] {
+		--icon-margin-after: 0;
+		@include icons.is-icon-text-replace();
+		padding: 0;
+
+		label,
+		span {
+			@include icons.is-icon-text-replace();
+		}
+	}
+
+	&:not(&[data-no-text="true"]) {
+		padding-inline: var.$db-spacing-fixed-2xs;
+
+		&:has(.db-tab-remove-button) {
+			padding-inline-start: var.$db-spacing-fixed-2xs;
+			padding-inline-end: 0;
+		}
+
+		&:has(dbbutton):has(dbbutton:not(.db-tab-remove-button)),
+		&:not(:has(dbbutton)):has(button:not(.db-tab-remove-button)),
+		&:has(a) {
+			padding-inline: 0;
+		}
+	}
+}
+
+%db-tag {
+	--db-icon-margin-end: #{var.$db-spacing-fixed-2xs};
 	@extend %default-interactive-component;
-	@extend %component-border;
 	@extend %db-overwrite-font-size-sm;
 	@extend %default-button;
+	@extend %no-text;
 
-	block-size: $db-sizing-sm;
-	min-inline-size: $db-sizing-sm;
+	padding-block: 0;
+	block-size: var.$db-sizing-sm;
+	min-inline-size: var.$db-sizing-sm;
 	inline-size: fit-content;
 
-	&:not(&[data-interactive="true"]) {
-		@include get-tag-colors();
+	&:not([data-emphasis="strong"]) {
+		@extend %component-border;
 	}
 
-	&[data-interactive="true"] {
-		@include get-tag-colors-interactive();
+	&:has(input) {
+		@extend %component-border;
 	}
+
+	&:not(:has(#{tag-components.$interactive-selectors})) {
+		@include tag-components.get-tag-colors();
+	}
+
+	&:has(#{tag-components.$interactive-selectors}) {
+		@include icon-passing.icon-passing(var.$db-spacing-fixed-2xs);
+		@include tag-components.get-tag-colors-interactive();
+	}
+
+	button:nth-of-type(2),
+	dbbutton:nth-of-type(2),
+	&:has(db-button):has(dbbutton) .db-tab-remove-button {
+		display: none;
+	}
+}
+
+.db-tag {
+	@extend %db-tag;
+	position: relative;
 
 	input {
-		@include a11y-visually-hidden();
-	}
+		appearance: none;
+		border: none;
+		inline-size: 100%;
+		block-size: 100%;
+		border-radius: component.$default-border-radius;
+		position: absolute;
 
-	.tag-label {
-		@extend %db-overwrite-font-size-sm;
-		display: block;
-
-		&:not(.is-icon-text-replace) {
-			margin-inline: $db-spacing-fixed-2xs;
-			/*
-			::before {
-				margin-inline-end: $db-spacing-fixed-2xs;
+		&:checked {
+			&[type="checkbox"] {
+				// overwrite for checkbox
+				@include col-var.bg-transparent-interactive();
+				color: var(--db-current-color);
 			}
-*/
-		}
-
-		&[data-overflow="true"] {
-			max-inline-size: $db-sizing-2xl;
-			text-overflow: ellipsis;
-			overflow: hidden;
-		}
-
-		&[data-icon] {
-			--db-icon-margin-end: #{$db-spacing-fixed-3xs};
 
 			&::before {
-				vertical-align: top;
+				content: none;
 			}
 		}
 	}
 
-	.db-button[data-size="small"] {
-		border-radius: to-rem(3);
+	label,
+	span {
+		@extend %db-overwrite-font-size-sm;
+		margin-inline-start: 0;
+	}
+
+	button,
+	a {
+		@extend %db-overwrite-font-size-sm;
+		border: transparent;
 		block-size: 100%;
+		padding: 0 var.$db-spacing-fixed-2xs;
+		border-radius: component.$default-border-radius;
+	}
+
+	a {
+		display: inline-flex;
+		text-decoration: none;
+
+		&::after {
+			--db-icon-margin-start: 0;
+			content: "" !important;
+		}
 	}
 
 	&[data-disabled="true"] {
-		opacity: $default-disabled-opacity;
+		opacity: component.$default-disabled-opacity;
 		pointer-events: none;
+	}
+
+	.db-button[data-size="small"] {
+		border-radius: functions.to-rem(3);
+		block-size: 100%;
+	}
+
+	&[data-overflow="true"] {
+		max-inline-size: var.$db-sizing-2xl;
+		flex-wrap: wrap;
+		flex-direction: column-reverse;
+		overflow: hidden;
+	}
+
+	.db-tab-remove-button {
+		margin-inline-start: var.$db-spacing-fixed-2xs;
+
+		&:is(button),
+		button {
+			block-size: 100%;
+		}
 	}
 }

@@ -8,6 +8,7 @@
 @use "@db-ui/foundations/build/scss/animation/animations" as *;
 @use "@db-ui/foundations/build/scss/icon/icons.helpers" as icon-helper;
 @use "../../styles/db-puls" as *;
+@use "../../styles/icon-passing" as icon-passing;
 
 %sub-navi-handler-desktop {
 	// show sub-navigation on hover
@@ -79,28 +80,11 @@
 	--db-has-before: 0;
 	@extend %db-puls;
 
+	@include icon-passing.icon-passing();
+
 	display: inline-flex;
 	position: relative;
 	inline-size: 100%;
-
-	&[data-icon] {
-		&::before {
-			position: absolute;
-			inset-block-start: calc(50% - 0.5em);
-			inset-inline-start: $db-spacing-fixed-sm;
-			pointer-events: none;
-		}
-
-		a,
-		button {
-			// TODO: Move this to shared style
-			padding-inline-start: calc(
-				#{$db-spacing-fixed-sm} + var(--db-base-font-size) * var(
-						--db-base-line-height
-					) + #{$default-icon-margin-end}
-			);
-		}
-	}
 
 	a {
 		@extend %navigation-item;

@@ -6,7 +6,8 @@ import {
 	DBSelect,
 	DBCheckbox,
 	DBTag,
-	DBTextarea
+	DBTextarea,
+	DBLink
 } from '../../../../../output/react/src';
 import type { KeyValueType } from '../../../../../output/react/src/shared/model';
 
@@ -96,20 +97,21 @@ const FormComponent = () => {
 										}
 										emphasis={
 											index === 2 ? 'strong' : undefined
-										}
-										behaviour="interactive"
-										onChange={() => {
-											if (tags.includes(tag)) {
-												setTags(
-													tags.filter(
-														(t) => t !== tag
-													)
-												);
-											} else {
-												setTags([...tags, tag]);
-											}
-										}}>
-										Tag {tag}
+										}>
+										<DBCheckbox
+											onChange={() => {
+												if (tags.includes(tag)) {
+													setTags(
+														tags.filter(
+															(t) => t !== tag
+														)
+													);
+												} else {
+													setTags([...tags, tag]);
+												}
+											}}>
+											Tag {tag}
+										</DBCheckbox>
 									</DBTag>
 								</li>
 							))}
@@ -176,6 +178,8 @@ const FormComponent = () => {
 					</fieldset>
 				</form>
 			</div>
+
+			<div></div>
 			<div>
 				<h2>Output</h2>
 				<dl>
