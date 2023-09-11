@@ -7,6 +7,10 @@ useMetadata({
 	component: {
 		// MS Power Apps
 		includeIcon: true,
+		canvasSize: {
+			height: 'fixed', // 'fixed', 'controlled'
+			width: 'controlled' // 'fixed', 'dynamic' (requires width property), 'controlled'
+		},
 		properties: [
 			// jscpd:ignore-start
 			{
