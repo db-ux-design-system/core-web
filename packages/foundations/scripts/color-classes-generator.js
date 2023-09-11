@@ -11,10 +11,19 @@ const prefix = 'db';
  */
 
 const generateBGVariants = (value, variant) => {
-	const nameEnding = variant ? `-${variant}` : '';
+	// TODO: This will be replaced with 0===bg-neutral and 0=bg-neutral-strong
+	const nameEnding = variant === '4' ? `-strong` : '';
 	return `
 .${prefix}-bg-${value}${nameEnding} {
     @extend %${prefix}-bg-${value}${nameEnding};
+
+    &-transparent-full {
+        @extend %${prefix}-bg-${value}${nameEnding}-transparent-full;
+    }
+
+    &-transparent-semi {
+        @extend %${prefix}-bg-${value}${nameEnding}-transparent-semi;
+    }
 
     &-ia,
     &[data-variant="interactive"] {
@@ -42,24 +51,18 @@ exports.generateColorUtilitityClasses = (colorToken) => {
 	`;
 
 	for (const [, value] of Object.keys(colorToken).entries()) {
-		if (value === 'neutral') {
-			// Neutral has multiple default tones
-			const neutralTones = ['0', '1', '2', '3', '4'];
-			for (const neutralTone of neutralTones) {
-				output += generateBGVariants(value, neutralTone);
+		// TODO: remove this if secondary becomes obsolete
+		if (value !== 'secondary') {
+			if (value === 'neutral') {
+				// Neutral has multiple default tones
+				const neutralTones = ['0', '4'];
+				for (const neutralTone of neutralTones) {
+					output += generateBGVariants(value, neutralTone);
+				}
+			} else {
+				// Default text and background colors (former 'light' tone)
+				output += generateBGVariants(value);
 			}
-		} else {
-			// Default text and background colors (former 'light' tone)
-			output += generateBGVariants(value);
-		}
-
-		// Transparent tones
-		const transparentTones = ['full', 'semi'];
-		for (const transparentTone of transparentTones) {
-			output += generateBGVariants(
-				value,
-				`transparent-${transparentTone}`
-			);
 		}
 	}
 

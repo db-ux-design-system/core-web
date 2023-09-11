@@ -9,6 +9,8 @@ module.exports = () => ({
 			let includeIcon = '';
 			let hasDisabledProp = '';
 			let hasOnClick = '';
+			let canvasHeight = '--canvasHeight fixed';
+			let canvasWidth = '--canvasWidth fixed';
 			if (component) {
 				if (component.properties) {
 					const propsString = JSON.stringify(component.properties);
@@ -28,12 +30,21 @@ module.exports = () => ({
 				if (component.hasOnClick) {
 					hasOnClick = `--hasOnClick true`;
 				}
+
+				if (component.canvasSize) {
+					if (component.canvasSize.width) {
+						canvasWidth = `--canvasWidth ${component.canvasSize.width}`;
+					}
+					if (component.canvasSize.height) {
+						canvasHeight = `--canvasHeight ${component.canvasSize.height}`;
+					}
+				}
 			}
 
 			ChildProcess.execSync(
 				`hygen power-apps new --version 0.0.0 ${json.name
 					.replace('DB', '')
-					.toLowerCase()} ${includeIcon} ${hasDisabledProp} ${hasOnClick} ${propsCliString}`
+					.toLowerCase()} ${canvasHeight} ${canvasWidth} ${includeIcon} ${hasDisabledProp} ${hasOnClick} ${propsCliString}`
 			);
 			return json;
 		}

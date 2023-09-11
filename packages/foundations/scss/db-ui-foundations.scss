@@ -5,8 +5,24 @@
 @use "color-placeholder" as *;
 @use "tonality" as *;
 @use "init" as *;
+@use "helpers/component" as *;
 
 :root {
-	@extend %db-ui-regular;
-	@extend %db-bg-neutral-0;
+	@extend %db-bg-neutral;
+
+	/* This is a MS power apps specific class name */
+	.app-canvas,
+	&:not(:has(.app-canvas)) {
+		@extend %db-ui-regular;
+	}
+}
+
+[class^="db-"],
+[class^="db-"] * {
+	@extend %default-color-transition;
+
+	::before,
+	::after {
+		@extend %default-color-transition;
+	}
 }

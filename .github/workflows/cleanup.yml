@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: ⬇ Checkout repo
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: 📥 Get gh-pages tar
         run: wget -q https://github.com/db-ui/mono/tarball/gh-pages

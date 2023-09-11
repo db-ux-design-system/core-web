@@ -5,6 +5,8 @@
 @use "@db-ui/foundations/build/scss/helpers/component" as *;
 @use "@db-ui/foundations/build/scss/color/color-variants" as *;
 
+@use "@db-ui/foundations/build/scss/icon/icons.helpers" as icons;
+
 %grid-layout {
 	grid-template-areas: "icon content close";
 	grid-template-columns: min-content 1fr min-content;
@@ -54,7 +56,6 @@
 }
 
 .db-alert {
-	@extend %db-bg-neutral-0;
 	@extend %component-border;
 	@extend %grid-layout;
 	display: grid;
@@ -64,6 +65,10 @@
 
 	// TODO: probably extract this to an overwrite or external file
 	text-align: start; // workaround for power apps
+
+	@include icons.has-no-icon() {
+		@include icons.icon("info");
+	}
 
 	dblink,
 	db-link {
@@ -88,12 +93,10 @@
 		grid-area: close;
 	}
 
+	&[data-icon]::before,
 	&::before {
-		/* TODO: Take filled icons if they are ready */
-		--icon-font-family: var(--db-base-icon-font-family);
-		--icon-font-size: var(--db-base-icon-font-size);
+		--db-icon-margin-end: 0;
 		grid-area: icon;
-		margin-inline-end: 0;
 	}
 
 	&[data-type="inline"] {
@@ -116,10 +119,10 @@
 				@extend %db-bg-successful;
 			}
 
-			--db-current-border-color: #{map.get($colors, "border")};
+			@include icons.variant-icons($name);
 
 			&::before {
-				color: map.get($colors, "element");
+				--db-current-icon-color: #{map.get($colors, "element")};
 			}
 		}
 	}

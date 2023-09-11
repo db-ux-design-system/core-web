@@ -16,7 +16,8 @@ import { DBSelect } from "../../../../../output/vue/vue3/src";
 				:disabled="exampleProps.disabled"
 				:icon="exampleProps.icon"
 				:value="exampleProps.value"
-				:description="exampleProps.description"
+				:message="exampleProps.message"
+				:required="exampleProps.required"
 				>{{ exampleName }}</DBSelect
 			>
 		</template>

@@ -1,10 +1,4 @@
-import {
-	onMount,
-	onUpdate,
-	Show,
-	useMetadata,
-	useStore
-} from '@builder.io/mitosis';
+import { onMount, Show, useMetadata, useStore } from '@builder.io/mitosis';
 import { DBButton } from '../button';
 import { DBTagProps, DBTagState } from './model';
 import { cls } from '../../utils';
@@ -38,7 +32,8 @@ useMetadata({
 						name: 'Successful',
 						value: 'successful'
 					}
-				]
+				],
+				defaultValue: 'adaptive'
 			}
 			// type
 		]
@@ -49,12 +44,6 @@ export default function DBTag(props: DBTagProps) {
 	// This is used as forwardRef
 	let component: any;
 	const state = useStore<DBTagState>({
-		iconVisible: (icon?: string) => {
-			return Boolean(icon && icon !== '_' && icon !== 'none');
-		},
-		getTabIndex: () => {
-			return props.disabled ? undefined : props.tabIndex;
-		},
 		handleRemove: () => {
 			if (props.onRemove) {
 				props.onRemove();
@@ -79,8 +68,8 @@ export default function DBTag(props: DBTagProps) {
 	return (
 		<div
 			ref={component}
+			id={props.id}
 			class={cls('db-tag', props.className)}
-			tabIndex={state.getTabIndex()}
 			data-disabled={props.disabled}
 			data-variant={props.variant}
 			data-emphasis={props.emphasis}

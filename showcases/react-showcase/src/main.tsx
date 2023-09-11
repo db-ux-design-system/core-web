@@ -14,8 +14,17 @@ ReactDOM.createRoot(document.querySelector('#root')!).render(
 						<Route
 							key={`router-${navItem.path}`}
 							path={navItem.path}
-							element={navItem.component}
-						/>
+							element={navItem.component}>
+							{navItem.subNavigation
+								? navItem.subNavigation.map((subItem) => (
+										<Route
+											key={`router-${subItem.path}`}
+											path={subItem.path}
+											element={subItem.component}
+										/>
+								  ))
+								: null}
+						</Route>
 					))}
 				</Route>
 				<Route path="/*" element={<Navigate to="/" />} />

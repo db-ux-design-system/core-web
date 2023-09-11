@@ -9,3 +9,4 @@ output/
 source/_patterns/**
 showcases/patternhub/**
 showcases/**/public/**
+packages/foundations/scripts/generate-icon-fonts/styles/**

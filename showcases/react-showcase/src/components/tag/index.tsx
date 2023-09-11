@@ -19,6 +19,7 @@ const getTag = ({
 	noText,
 	behaviour,
 	emphasis,
+	label,
 	removeButton,
 	checked,
 	component

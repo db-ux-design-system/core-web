@@ -1,18 +1,18 @@
 import {
-	FocusEventProps,
-	FocusEventState,
-	ValidEventProps,
-	ChangeEventState,
 	ChangeEventProps,
+	ChangeEventState,
 	ClickEventProps,
 	ClickEventState,
-	GlobalProps,
-	GlobalState,
+	DefaultVariantProps,
+	FocusEventProps,
+	FocusEventState,
+	FormMessageProps,
 	FormProps,
 	FormState,
-	DefaultVariantProps,
+	GlobalProps,
+	GlobalState,
 	IconProps,
-	DefaultVariantType
+	ValidEventProps
 } from '../../shared/model';
 
 export interface DBSelectDefaultProps {
@@ -47,7 +47,7 @@ export type DBSelectOptionType = {
 	/**
 	 * The main value you select, will be shown as default label if no label is set.
 	 */
-	value: string | number | readonly string[];
+	value: string | string[] | number;
 };
 
 export type DBSelectProps = DBSelectDefaultProps &
@@ -58,11 +58,12 @@ export type DBSelectProps = DBSelectDefaultProps &
 	ValidEventProps &
 	FormProps &
 	DefaultVariantProps &
-	IconProps;
+	IconProps &
+	FormMessageProps;
 
 export interface DBSelectDefaultState {
-	getIcon: (variant?: DefaultVariantType) => string;
 	getOptionLabel: (option: DBSelectOptionType) => string;
+	_value?: any;
 }
 
 export type DBSelectState = DBSelectDefaultState &

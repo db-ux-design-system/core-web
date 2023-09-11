@@ -9,16 +9,30 @@ export class FormComponent {
 	array = ['X', 'Y', 'Z'];
 	radio = '';
 	input = '';
+	textarea = 'default value';
+	textareaDefaultValue = '';
 	tags: string[] = [];
+	// Fieldset checkbox state
+	checked = [true, false];
 
 	select = '';
-	model = { input: 'Anna', radio: 'X', checkbox: true, checkbox2: true };
+	model = {
+		input: 'Anna',
+		textarea: 'default value',
+		radio: 'X',
+		checkbox: true,
+		checkbox2: true,
+		select: 'test2'
+	};
+
 	dataList = [{ key: 'test', value: 'Test' }, { key: 'test2' }];
 
 	// Reference: https://blog.angular-university.io/angular-custom-form-controls/
 	form = new FormGroup({
 		input: new FormControl('Filled with formControl'),
-		checkbox: new FormControl(true)
+		textarea: new FormControl('Filled with formControl as well'),
+		checkbox: new FormControl(true),
+		select: new FormControl('test2')
 	});
 
 	getRadioName = (radioName: string): string => `Radio ${radioName}`;
@@ -35,9 +49,11 @@ export class FormComponent {
 
 	resetValues(): void {
 		this.model.input = 'reset';
+		this.model.textarea = 'resetted as well';
 		this.model.checkbox = false;
 		this.model.checkbox2 = false;
 		this.form.get('input')?.setValue('reset');
+		this.form.get('textarea')?.setValue('reset');
 		this.form.get('checkbox')?.setValue(false);
 	}
 
@@ -51,11 +67,31 @@ export class FormComponent {
 		);
 	}
 
+	// Checkbox changes
+	handleChange1 = (event?: any) => {
+		this.checked = [event.target.checked, event.target.checked];
+	};
+
+	handleChange2 = (event: any) => {
+		this.checked = [event.target.checked, this.checked[1]];
+	};
+
+	handleChange3 = (event: any) => {
+		this.checked = [this.checked[0], event.target.checked];
+	};
+
+	handleChange4 = (event: any) => {
+		this.form.get('select')?.setValue(event.target.value, {
+			onlySelf: true
+		});
+	};
+
 	showValues(): void {
 		// eslint-disable-next-line no-alert
 		alert(
 			JSON.stringify({
 				input: this.input,
+				textarea: this.textarea,
 				radio: this.radio,
 				select: this.select,
 				checkbox: this.model.checkbox,

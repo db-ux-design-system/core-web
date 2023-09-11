@@ -4,7 +4,10 @@
 @use "scaling-placeholder" as *;
 @use "helpers/font" as *;
 
-body {
+body,
+// Power Apps related
+.app-canvas,
+.control-pane {
 	font-family: $db-font-family-sans;
 }
 
@@ -73,6 +76,7 @@ h6 {
 			@extend %db-scaling-#{nth($styles, $i + 1)};
 			@extend %db-typography-headline-#{nth($styles, $i + 1)};
 			@extend %db-typography-body-#{nth($styles, $i + 1)};
+			@extend %db-component-variables-md;
 		}
 	}
 }

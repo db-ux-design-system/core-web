@@ -12,21 +12,10 @@ jobs:
         uses: styfle/cancel-workflow-action@0.11.0
 
       - name: ⬇ Checkout repo
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: 🔄 Init Cache Default
-        id: "npm-cache"
         uses: ./.github/actions/npm-cache
-
-      - name: 🎄🥊 Log cache-hit
-        run: echo $CACHE_HIT
-        shell: bash
-        env:
-          CACHE_HIT: ${{steps.npm-cache.outputs.cache-hit}}
-
-      - name: 📥 Download deps default-npm-cache
-        if: steps.npm-cache.outputs.cache-hit != 'true'
-        uses: bahmutov/npm-install@v1
 
       - name: 💀 Killing me softly
         uses: ./.github/actions/cancel-workflow

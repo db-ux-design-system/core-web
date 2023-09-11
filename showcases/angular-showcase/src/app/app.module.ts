@@ -20,10 +20,22 @@ import {
 	DBSelectModule,
 	DBDrawerModule,
 	DBTagModule,
-	DBNavigationItemModule
+	DBNavigationItemModule,
+	DBAccordionModule,
+	DBAccordionItemModule,
+	DBTextareaModule,
+	DBMainNavigationModule,
+	DBBadgeModule
 } from '../../../../output/angular/src';
+import { ActionBarDirective } from '../../../../output/angular/src/components/header/ActionBar.directive';
+import { NavigationDirective } from '../../../../output/angular/src/components/header/Navigation.directive';
+import { MetaNavigationDirective } from '../../../../output/angular/src/components/header/MetaNavigation.directive';
+import { NavigationContentDirective } from '../../../../output/angular/src/components/navigation-item/NavigationContent.directive';
+import { BadgeComponent } from './components/badge/badge.component';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app.routing.module';
+import { AccordionComponent } from './components/accordion/accordion.component';
+import { AccordionItemComponent } from './components/accordion-item/accordion-item.component';
 import { FormComponent } from './components/form/form.component';
 import { ButtonComponent } from './components/button/button.component';
 import { LinkComponent } from './components/link/link.component';
@@ -40,53 +52,79 @@ import { TagComponent } from './components/tag/tag.component';
 import { DrawerComponent } from './components/drawer/drawer.component';
 import { SelectComponent } from './components/select/select.component';
 import { NavigationItemComponent } from './components/navigation-item/navigation-item.component';
+import { NavItemComponent } from './nav-item/nav-item.component';
+import { MainNavigationComponent } from './components/main-navigation/main-navigation.component';
+import { TextareaComponent } from './components/textarea/textarea.component';
 
 @NgModule({
 	declarations: [
+		AccordionItemComponent,
+		AccordionComponent,
+		AlertComponent,
+		MainNavigationComponent,
+		BadgeComponent,
 		NavigationItemComponent,
-
 		SelectComponent,
 		TagComponent,
 		AppComponent,
-		DefaultComponent,
-		FormComponent,
 		ButtonComponent,
+		CardComponent,
+		CheckboxComponent,
+		DefaultComponent,
+		DividerComponent,
+		DrawerComponent,
+		FormComponent,
+		InfotextComponent,
 		InputComponent,
 		LinkComponent,
-		AlertComponent,
+		NavigationItemComponent,
 		RadioComponent,
-		CheckboxComponent,
-		InfotextComponent,
 		SectionComponent,
 		CardComponent,
 		DividerComponent,
-		DrawerComponent
+		DrawerComponent,
+		ActionBarDirective,
+		NavigationDirective,
+		MetaNavigationDirective,
+		NavItemComponent,
+		NavigationContentDirective,
+		SelectComponent,
+		TagComponent,
+		TextareaComponent
 	],
 	imports: [
+		DBAccordionItemModule,
+		DBAccordionModule,
+		DBBadgeModule,
+		DBBadgeModule,
+		DBMainNavigationModule,
 		DBNavigationItemModule,
-
 		DBTagModule,
 		DBSelectModule,
 		AppRoutingModule,
 		BrowserModule,
-		DBButtonModule,
-		DBIconModule,
-		DBDividerModule,
-		DBCardModule,
-		DBInputModule,
-		DBPageModule,
-		DBHeaderModule,
-		DBBrandModule,
-		DBLinkModule,
-		DBCodeDocsModule,
 		DBAlertModule,
-		DBSectionModule,
-		DBInfotextModule,
-		FormsModule,
-		ReactiveFormsModule,
+		DBBrandModule,
+		DBButtonModule,
+		DBCardModule,
 		DBCheckboxModule,
+		DBCodeDocsModule,
+		DBDividerModule,
+		DBDrawerModule,
+		DBHeaderModule,
+		DBIconModule,
+		DBInfotextModule,
+		DBInputModule,
+		DBLinkModule,
+		DBNavigationItemModule,
+		DBPageModule,
 		DBRadioModule,
-		DBDrawerModule
+		DBSectionModule,
+		DBSelectModule,
+		DBTagModule,
+		DBTextareaModule,
+		FormsModule,
+		ReactiveFormsModule
 	],
 	providers: [],
 	schemas: [NO_ERRORS_SCHEMA],
