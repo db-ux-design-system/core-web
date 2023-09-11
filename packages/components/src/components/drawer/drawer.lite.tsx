@@ -103,7 +103,9 @@ export default function DBDrawer(props: DBDrawerProps) {
 				data-direction={props.direction}
 				data-rounded={props.rounded}>
 				<header class="db-drawer-header">
-					<Slot name="drawer-header" />
+					<div class="db-drawer-header-text">
+						<Slot name="drawer-header" />
+					</div>
 					<Show when={props.withCloseButton}>
 						<DBButton
 							className="button-close-drawer"

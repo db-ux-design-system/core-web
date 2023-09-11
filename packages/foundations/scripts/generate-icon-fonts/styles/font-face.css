@@ -1,0 +1,26 @@
+/* Include this file in your app to load your custom icon font */
+
+@font-face {
+	font-display: block;
+	font-family: "{{fontname}}";
+	font-style: normal;
+	font-weight: normal;
+	src: url("{{fontname}}.woff2?t={{timestamp}}") format("woff2");
+}
+
+.{{prefix}} {
+	font-family: '{{fontname}}' !important;
+	font-style:normal;
+	font-weight: normal;
+}
+
+.icon-family-{{fontname}}::before,
+[data-icon-family="{{fontname}}"]::before,
+[data-icon-family-before="{{fontname}}"]::before{
+	--db-icon-font-family: '{{fontname}}';
+}
+
+
+[data-icon-family-after="{{fontname}}"]::after{
+	--db-icon-font-family: '{{fontname}}';
+}

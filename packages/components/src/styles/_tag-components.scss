@@ -1,0 +1,126 @@
+@use "sass:map";
+@use "@db-ui/foundations/build/scss/color/color-variants" as *;
+@use "@db-ui/foundations/build/scss/helpers/component" as *;
+
+@mixin overwrite-strong-white() {
+	/* We force white as color for strong tags */
+	--db-current-color: #fff;
+	color: var(--db-current-color);
+}
+
+@mixin get-tag-colors() {
+	@extend %db-bg-neutral-strong;
+
+	&[data-emphasis="strong"] {
+		@extend %db-neutral-component;
+		@include overwrite-strong-white();
+	}
+
+	@each $name, $colors in $component-variants {
+		&[data-variant="#{$name}"] {
+			@if ($name == "critical") {
+				@extend %db-bg-critical;
+
+				&[data-emphasis="strong"] {
+					@extend %db-critical-component;
+
+					@include overwrite-strong-white();
+				}
+			} @else if ($name == "informational") {
+				@extend %db-bg-informational;
+
+				&[data-emphasis="strong"] {
+					@extend %db-informational-component;
+
+					@include overwrite-strong-white();
+				}
+			} @else if ($name == "warning") {
+				@extend %db-bg-warning;
+
+				&[data-emphasis="strong"] {
+					@extend %db-warning-component;
+
+					@include overwrite-strong-white();
+				}
+			} @else if ($name == "successful") {
+				@extend %db-bg-successful;
+
+				&[data-emphasis="strong"] {
+					@extend %db-successful-component;
+
+					@include overwrite-strong-white();
+				}
+			}
+
+			&:not(&[data-emphasis="strong"]) {
+				--db-current-border-color: #{map.get($colors, "border")};
+			}
+		}
+	}
+}
+
+@mixin get-tag-colors-interactive() {
+	&[data-emphasis="strong"] {
+		@include overwrite-strong-white();
+	}
+
+	&:has(input:not(:checked)) {
+		@extend %db-bg-neutral;
+	}
+
+	&:has(input:checked) {
+		@extend %db-bg-neutral-strong-ia;
+
+		&[data-emphasis="strong"] {
+			@extend %db-neutral-component-ia;
+			@include overwrite-strong-white();
+		}
+
+		@each $name, $colors in $component-variants {
+			&[data-variant="#{$name}"] {
+				@if ($name == "critical") {
+					@extend %db-bg-critical-ia;
+
+					&[data-emphasis="strong"] {
+						@extend %db-critical-component-ia;
+
+						@include overwrite-strong-white();
+					}
+				} @else if ($name == "informational") {
+					@extend %db-bg-informational-ia;
+
+					&[data-emphasis="strong"] {
+						@extend %db-informational-component-ia;
+
+						@include overwrite-strong-white();
+					}
+				} @else if ($name == "warning") {
+					@extend %db-bg-warning-ia;
+
+					&[data-emphasis="strong"] {
+						@extend %db-warning-component-ia;
+
+						@include overwrite-strong-white();
+					}
+				} @else if ($name == "successful") {
+					@extend %db-bg-successful-ia;
+
+					&[data-emphasis="strong"] {
+						@extend %db-successful-component-ia;
+
+						@include overwrite-strong-white();
+					}
+				}
+
+				&:not(&[data-emphasis="strong"]) {
+					--db-current-border-color: #{map.get($colors, "border")};
+				}
+			}
+		}
+
+		&[data-emphasis="strong"] {
+			/* We force white as color for strong tags */
+			color: #fff;
+		}
+	}
+}

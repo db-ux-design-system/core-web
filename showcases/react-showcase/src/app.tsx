@@ -1,21 +1,15 @@
-import type { ChangeEvent } from 'react';
-import { Link, Outlet } from 'react-router-dom';
-import {
-	DBBrand,
-	DBHeader,
-	DBPage,
-	DBNavigationItem
-} from '../../../output/react/src';
-import {
-	COLORS,
-	TONALITIES
-} from '../../../packages/components/src/shared/constants';
-import { getSortedNavigationItems } from './utils/navigation-item';
+import { useState } from 'react';
+import { Outlet } from 'react-router-dom';
+import { DBBrand, DBButton, DBHeader, DBPage } from '../../../output/react/src';
 import useQuery from './hooks/use-query';
+import MetaNavigation from './meta-navigation';
+import Navigation from './navigation';
 
 const App = () => {
 	const [tonality, setTonality, color, setColor, pageName, fullscreen] =
 		useQuery();
+
+	const [drawerOpen, setDrawerOpen] = useState<boolean>(false);
 
 	if (pageName || fullscreen) {
 		return (
@@ -27,64 +21,45 @@ const App = () => {
 
 	return (
 		<DBPage
+			className="db-bg-neutral-0"
 			type="fixedHeaderFooter"
+			fadeIn
 			slotHeader={
 				<DBHeader
+					drawerOpen={drawerOpen}
+					onToggle={setDrawerOpen}
 					slotBrand={
 						<DBBrand title="React Showcase" anchorChildren>
 							Showcase
 						</DBBrand>
 					}
-					slotDesktopNavigation={
-						<nav className="desktop-navigation">
-							<ul>
-								{getSortedNavigationItems().map((navItem) => (
-									<li key={`router-path-${navItem.path}`}>
-										<Link to={navItem.path}>
-											<DBNavigationItem>
-												{navItem.label}
-											</DBNavigationItem>
-										</Link>
-									</li>
-								))}
-							</ul>
-						</nav>
-					}
 					slotMetaNavigation={
-						<div>
-							<select
-								value={tonality}
-								onChange={(
-									event: ChangeEvent<HTMLSelectElement>
-								) => {
-									setTonality(event?.target?.value);
-								}}>
-								{TONALITIES.map((ton) => (
-									<option
-										key={`tonality-option-${ton}`}
-										value={ton}>
-										{ton}
-									</option>
-								))}
-							</select>
-							<select
-								value={color}
-								onChange={(
-									event: ChangeEvent<HTMLSelectElement>
-								) => {
-									setColor(event?.target?.value);
-								}}>
-								{COLORS.map((col) => (
-									<option
-										key={`tonality-option-${col}`}
-										value={col}>
-										{col}
-									</option>
-								))}
-							</select>
-						</div>
+						<MetaNavigation
+							onColorChange={setColor}
+							onTonalityChange={setTonality}
+						/>
 					}
-				/>
+					slotCallToAction={
+						/* TODO: Use DBSearchBar in future */
+						<DBButton icon="search" variant="text" noText>
+							Search
+						</DBButton>
+					}
+					slotActionBar={
+						<>
+							<DBButton icon="account" variant="text" noText>
+								Profile
+							</DBButton>
+							<DBButton icon="alert" variant="text" noText>
+								Notification
+							</DBButton>
+							<DBButton icon="help" variant="text" noText>
+								Help
+							</DBButton>
+						</>
+					}>
+					<Navigation />
+				</DBHeader>
 			}>
 			<div className={`db-ui-${tonality} db-bg-${color}`}>
 				<Outlet />

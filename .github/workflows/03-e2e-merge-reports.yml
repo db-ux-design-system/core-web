@@ -1,0 +1,38 @@
+name: 🎭 Merge Playwright Reports
+
+on:
+  workflow_call:
+
+permissions:
+  actions: write
+  contents: write
+
+jobs:
+  merge-playwright-reports:
+    name: 🎭 Merge Playwright Reports
+    runs-on: ubuntu-latest
+    steps:
+      - name: ⏬ Checkout repo
+        uses: actions/checkout@v4
+
+      - name: 🔄 Init Cache
+        uses: ./.github/actions/npm-cache
+
+      - name: ⏬ Download blob reports from GitHub Actions Artifacts
+        uses: actions/download-artifact@v3
+        with:
+          name: all-blob-reports
+          path: all-blob-reports
+
+      - name: 🔀 Merge into HTML Report
+        shell: bash
+        run: |
+          npx playwright merge-reports --reporter html ./all-blob-reports
+          npx playwright merge-reports --reporter github ./all-blob-reports
+
+      - name: 🆙 Upload HTML report
+        uses: actions/upload-artifact@v3
+        with:
+          name: report--attempt-${{ github.run_attempt }}
+          path: playwright-report
+          retention-days: 14

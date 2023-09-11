@@ -1,6 +1,6 @@
 ## React
 
-For general installation and configuration look at the [react-components](https://www.npmjs.com/package/@db-ui/react-components) package.
+For general installation and configuration take a look at the [react-components](https://www.npmjs.com/package/@db-ui/react-components) package.
 
 ### Use component
 
@@ -13,7 +13,7 @@ const App = () => <>
 	<DBTag><DBLink>Tag as Link</DBLink></DBTag>
 	<DBTag><DBCheckbox>Tag as Checkbox</DBCheckbox></DBTag>
 	<DBTag><DBRadio>Tag as Radio</DBRadio></DBTag>
-	<DBTag><span>Static Tag</span></DBTag>
+	<DBTag>Static Tag</DBTag>
 	<>;
 
 export default App;

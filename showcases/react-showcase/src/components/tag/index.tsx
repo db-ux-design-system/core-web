@@ -19,6 +19,7 @@ const getTag = ({
 	noText,
 	behaviour,
 	emphasis,
+	label,
 	removeButton,
 	checked,
 	component
@@ -49,7 +50,7 @@ const getTag = ({
 				{children}
 			</DBRadio>
 		)}
-		{!component && <span>{children}</span>}
+		{!component && <>{children}</>}
 	</DBTag>
 );
 

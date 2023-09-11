@@ -4,19 +4,18 @@
 @use "@db-ui/foundations/build/scss/color-placeholder" as *;
 @use "@db-ui/foundations/build/scss/helpers/font" as *;
 @use "@db-ui/foundations/build/scss/helpers/component" as *;
-@use "@db-ui/foundations/build/scss/color/color-variants" as *;
+@use "@db-ui/foundations/build/scss/color/color-variants" as col-var;
 
 $font-size-height: calc(var(--db-base-font-size) * var(--db-base-line-height));
 
 .db-radio {
-	@extend %default-color;
-	@extend %bg-transparent-interactive;
+	@include col-var.bg-transparent-interactive();
 
 	appearance: none;
 
 	aspect-ratio: 1;
 
-	border: max(calc(#{$font-size-height} / 16 + 0.5px), 2px) solid currentColor;
+	border: max(calc(#{$font-size-height} / 16 + 0.5px), 2px) solid #{$db-colors-neutral-on-bg};
 	// Full rounded
 	border-radius: 100px;
 
@@ -47,17 +46,10 @@ $font-size-height: calc(var(--db-base-font-size) * var(--db-base-line-height));
 	&:is(:user-invalid),
 	&[aria-invalid="true"] {
 		@extend %db-bg-critical-transparent-semi;
-		@extend %db-bg-critical-transparent-semi-hover-state;
-		border-color: var(
-			--db-colors-critical-element-enabled,
-			$db-colors-critical-element-enabled
-		);
+		border-color: $db-colors-critical-border-weak;
 
 		& + label {
-			color: var(
-				--db-colors-critical-enabled,
-				$db-colors-critical-enabled
-			);
+			color: $db-colors-critical;
 		}
 	}
 
@@ -70,7 +62,7 @@ $font-size-height: calc(var(--db-base-font-size) * var(--db-base-line-height));
 	&:disabled {
 		&,
 		& + label {
-			opacity: $default-opacity;
+			opacity: $default-disabled-opacity;
 		}
 	}
 

@@ -1,57 +1,76 @@
 import {
+	ChangeEventProps,
+	ChangeEventState,
+	DefaultVariantProps,
 	FocusEventProps,
 	FocusEventState,
-	GlobalTextProps,
-	ValidEventProps,
-	ChangeEventState,
-	ChangeEventProps,
-	GlobalProps,
-	GlobalState,
-	DefaultVariantType,
+	FormMessageProps,
 	FormProps,
 	FormState,
+	GlobalProps,
+	GlobalState,
+	FormTextProps,
+	IconAfterProps,
 	IconProps,
-	IconState,
-	DefaultVariantProps,
+	IconVisibleState,
 	KeyValueType,
-	IconAfterProps
+	ValidEventProps
 } from '../../shared/model';
 
 export type DBInputDefaultProps = {
 	dataList?: KeyValueType[];
 	dataListId?: string;
-	description?: string;
+	/**
+	 * Maximum value
+	 */
+	max?: number | string;
+	/**
+	 * Minimum value
+	 */
+	min?: number | string;
+
+	/**
+	 * Pattern the value must match to be valid
+	 */
+	pattern?: string;
+	/**
+	 * 	Type of form control
+	 */
 	type?:
-		| 'text'
-		| 'search'
-		| 'number'
-		| 'tel'
-		| 'url'
-		| 'email'
-		| 'password'
-		| 'hidden'
+		| 'color'
 		| 'date'
 		| 'datetime-local'
-		| 'week';
-	value?: any;
-	variant?: DefaultVariantProps;
+		| 'email'
+		| 'file' // TODO: move this to own component
+		| 'hidden'
+		| 'month'
+		| 'number'
+		| 'password'
+		| 'range' // TODO: move this to own component
+		| 'search'
+		| 'tel'
+		| 'text'
+		| 'time'
+		| 'url'
+		| 'week'
+		| string;
+	step?: number | string;
 };
 
 export type DBInputProps = DBInputDefaultProps &
 	GlobalProps &
-	GlobalTextProps &
+	FormTextProps &
 	ChangeEventProps &
 	FocusEventProps &
 	ValidEventProps &
 	FormProps &
 	IconProps &
 	IconAfterProps &
-	DefaultVariantProps;
+	DefaultVariantProps &
+	FormMessageProps;
 
 export type DBInputDefaultState = {
 	_dataListId?: string;
-	_value?: any;
-	getIcon: (variant?: DefaultVariantType) => string;
 };
 
 export type DBInputState = DBInputDefaultState &
@@ -59,4 +78,4 @@ export type DBInputState = DBInputDefaultState &
 	ChangeEventState &
 	FocusEventState &
 	FormState &
-	IconState;
+	IconVisibleState;

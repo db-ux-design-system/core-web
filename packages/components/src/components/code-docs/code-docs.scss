@@ -4,9 +4,12 @@
 @use "@db-ui/foundations/build/scss/variables.global" as *;
 @use "@db-ui/foundations/build/scss/color-placeholder" as *;
 @use "@db-ui/foundations/build/scss/tonality" as *;
+@use "@db-ui/foundations/build/scss/color/color-variants" as *;
+
+/* TODO: Adapt this colors as well */
 
 %code-docs {
-	@extend %db-bg-neutral-1;
+	@extend %db-bg-neutral-transparent-semi;
 	min-block-size: $db-sizing-3xl;
 	align-items: center;
 	justify-content: center;
@@ -38,7 +41,7 @@
 		}
 
 		.code {
-			@extend %db-bg-secondary;
+			@extend %db-bg-inverted;
 			overflow: auto;
 			position: absolute;
 			inset-inline-end: 0;

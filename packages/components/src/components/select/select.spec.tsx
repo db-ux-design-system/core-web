@@ -6,7 +6,7 @@ import { DBSelect } from './index';
 import { DEFAULT_VIEWPORT } from '../../shared/constants.ts';
 
 const comp = (
-	<DBSelect label="Label" description="Description">
+	<DBSelect label="Label" message="Description">
 		<option value="test1">Test1</option>
 		<option value="test2">Test2</option>
 	</DBSelect>

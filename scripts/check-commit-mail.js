@@ -9,7 +9,7 @@ const checkCommitMail = () => {
 	console.warn(`Check COMMIT_MAIL`);
 	if (!process.env.COMMIT_MAIL) {
 		console.error(
-			`No COMMIT_MAIL set in .env, please look at the file '.env.template'`
+			`No COMMIT_MAIL set in .env, please take a look at the file '.env.template'`
 		);
 		process.exit(1);
 	}

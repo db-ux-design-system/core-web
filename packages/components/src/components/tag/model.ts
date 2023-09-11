@@ -1,9 +1,13 @@
 import {
+	ChangeEventState,
 	DefaultVariantProps,
+	EmphasisProps,
+	FormState,
 	GlobalProps,
 	GlobalState,
 	IconProps,
-	IconState
+	InitializedState,
+	OverflowProps
 } from '../../shared/model';
 
 export interface DBTagDefaultProps {
@@ -27,10 +31,6 @@ export interface DBTagDefaultProps {
 	 */
 	onRemove?: () => void;
 	/**
-	 * The overflow attribute sets a max-width and longer text will be dotted.
-	 */
-	overflow?: boolean;
-	/**
 	 * The removeButton attribute shows the cancel button.
 	 */
 	removeButton?: string;
@@ -38,12 +38,6 @@ export interface DBTagDefaultProps {
 	 * Alternative for children to set content as property.
 	 */
 	text?: string;
-
-	/**
-	 * The emphasis attribute divides in between a weak or strong importance.
-	 */
-	emphasis?: 'weak' | 'strong';
-
 	/**
 	 * If "interactive" is set to true, you can pass a value to the underlying checkbox or radio input.
 	 */
@@ -53,12 +47,14 @@ export interface DBTagDefaultProps {
 export type DBTagProps = DBTagDefaultProps &
 	GlobalProps &
 	IconProps &
-	DefaultVariantProps;
+	DefaultVariantProps &
+	OverflowProps &
+	EmphasisProps;
 
 export interface DBTagDefaultState {
 	getRemoveButtonText?: () => string;
-	getTabIndex?: () => number | null;
 	handleRemove?: () => void;
 }
 
-export type DBTagState = DBTagDefaultState & GlobalState & IconState;
+export type DBTagState = DBTagDefaultState &
+	GlobalState ;

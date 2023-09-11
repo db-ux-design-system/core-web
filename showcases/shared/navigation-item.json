@@ -6,24 +6,21 @@
 				"name": "functional",
 				"className": "db-ui-functional",
 				"props": {
-					"icon": "account",
-					"iconAfter": "expand-more"
+					"areaPopup": true
 				}
 			},
 			{
 				"name": "regular (Default)",
 				"className": "db-ui-regular",
 				"props": {
-					"icon": "account",
-					"iconAfter": "expand-more"
+					"areaPopup": true
 				}
 			},
 			{
 				"name": "expressive",
 				"className": "db-ui-expressive",
 				"props": {
-					"icon": "account",
-					"iconAfter": "expand-more"
+					"areaPopup": true
 				}
 			}
 		]
@@ -34,23 +31,21 @@
 			{
 				"name": "Enabled (Default)",
 				"props": {
-					"icon": "account",
-					"iconAfter": "expand-more"
-				}
-			},
-			{
-				"name": "Disabled",
-				"props": {
-					"disabled": true,
-					"icon": "account",
-					"iconAfter": "expand-more"
+					"areaPopup": true
 				}
 			},
 			{
 				"name": "Active",
 				"props": {
 					"active": true,
-					"iconAfter": "chevron-right"
+					"areaPopup": true
+				}
+			},
+			{
+				"name": "Disabled",
+				"props": {
+					"disabled": true,
+					"areaPopup": true
 				}
 			}
 		]
@@ -61,25 +56,28 @@
 			{
 				"name": "Leading Icon - Text",
 				"props": {
-					"icon": "account"
+					"icon": "account",
+					"areaPopup": false
 				}
 			},
 			{
 				"name": "Leading Icon - Text - Trailing Icon",
 				"props": {
 					"icon": "account",
-					"iconAfter": "expand-more"
+					"areaPopup": true
 				}
 			},
 			{
 				"name": "Text - Trailing Icon",
 				"props": {
-					"iconAfter": "expand-more"
+					"areaPopup": true
 				}
 			},
 			{
 				"name": "Text",
-				"props": {}
+				"props": {
+					"areaPopup": false
+				}
 			}
 		]
 	},
@@ -90,8 +88,7 @@
 				"name": "Auto (Default)",
 				"style": { "width": "400px" },
 				"props": {
-					"icon": "account",
-					"iconAfter": "expand-more"
+					"areaPopup": true
 				}
 			},
 			{
@@ -99,8 +96,7 @@
 				"style": { "width": "400px" },
 				"props": {
 					"width": "full",
-					"icon": "account",
-					"iconAfter": "expand-more"
+					"areaPopup": true
 				}
 			}
 		]

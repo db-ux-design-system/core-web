@@ -7,3 +7,4 @@ output
 build-outputs
 build-power-apps
 build-showcases
+packages/foundations/scripts/generate-icon-fonts/styles/**

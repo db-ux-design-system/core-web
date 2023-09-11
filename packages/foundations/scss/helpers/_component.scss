@@ -1,15 +1,23 @@
-@use "../variables" as *;
-@use "../color-placeholder" as *;
-@use "../helpers/functions" as *;
-@use "../icon/icons.helpers" as *;
+/* TODO: We shouldn't use this variables move them to global to make them themeable */
+@use "../variables" as var-todo;
+@use "../variables.global" as var;
+@use "../color-placeholder" as color;
+@use "../helpers/functions" as functions;
 
 /* TODO: We should get the variables from UX, and probably want to make those global variables */
-$default-border-radius: 4px;
-$default-card-border-radius: var(--default-card-border-radius, 8px);
-$default-opacity: 0.25;
+$checkbox-border-radius: to-rem(2.5);
+$default-border-radius: functions.to-rem(4);
+$default-card-border-radius: var(
+	--default-card-border-radius,
+	functions.to-rem(8)
+);
+$default-disabled-opacity: 0.25;
+$default-placeholder-opacity: 0.25;
+
+$default-mobile-header-height: functions.to-rem(56);
 
 %default-adaptive-border {
-	border: solid 1px var(--db-current-color, $db-colors-neutral-on-bg-enabled);
+	border: solid 1px var.$db-colors-neutral-on-bg;
 }
 
 %transparent-border {
@@ -17,55 +25,71 @@ $default-opacity: 0.25;
 }
 
 %component-border {
-	border: solid 1px
-		var(
-			--db-current-border-weak-color,
-			$db-colors-neutral-border-weak-enabled
-		);
+	border: solid 1px var.$db-colors-neutral-border-weak;
 }
-
-%default-border-radius {
-	// TODO: Get a general token from Zeplin
-	border-radius: to-rem(4);
-}
-
-%default-color {
-	color: var(--db-current-color, $db-colors-neutral-on-bg-enabled);
-}
-
 %default-interactive-component {
 	@extend %default-adaptive-border;
-	@extend %default-color;
-	@extend %default-border-radius;
+	border-radius: $default-border-radius;
 }
 
-%default-background-transition {
-	// TODO Changing background-color on hover should be animated by a transition
-	transition: background-color
-		var(--db-transition-color, #{$db-transition-color});
+%default-color-transition {
+	transition:
+		outline
+			var(
+				--db-transition-duration-ultra-fast,
+				#{var-todo.$db-transition-duration-ultra-fast}
+			),
+		background-color
+			var(--db-transition-color, #{var-todo.$db-transition-color}),
+		color var(--db-transition-color, #{var-todo.$db-transition-color});
 }
 
 %default-card {
 	border-radius: $default-card-border-radius;
-	box-shadow: $db-elevation-4;
+	box-shadow: var-todo.$db-elevation-4;
 }
 
 %adaptive-critical-component {
 	@extend %db-bg-critical-transparent-semi;
-	@extend %db-bg-critical-transparent-semi-hover-state;
 }
 
 %adaptive-warning-component {
 	@extend %db-bg-warning-transparent-semi;
-	@extend %db-bg-warning-transparent-semi-hover-state;
 }
 
 %adaptive-informational-component {
 	@extend %db-bg-informational-transparent-semi;
-	@extend %db-bg-informational-transparent-semi-hover-state;
 }
 
 %adaptive-successful-component {
 	@extend %db-bg-successful-transparent-semi;
-	@extend %db-bg-successful-transparent-semi-hover-state;
+}
+
+@mixin screen($size: "s", $width: "min") {
+	$screen: var-todo.$db-screens-s;
+	@if ($size == "xs") {
+		$screen: var-todo.$db-screens-xs;
+	} @else if ($size == "m") {
+		$screen: var-todo.$db-screens-m;
+	} @else if ($size == "l") {
+		$screen: var-todo.$db-screens-l;
+	} @else if ($size == "xl") {
+		$screen: var-todo.$db-screens-xl;
+	}
+
+	@if ($width == "min") {
+		@media screen and (min-width: $screen) {
+			&:not([force-mobile]) {
+				@content;
+			}
+		}
+	} @else {
+		&[force-mobile] {
+			@content;
+		}
+
+		@media screen and (max-width: $screen) {
+			@content;
+		}
+	}
 }

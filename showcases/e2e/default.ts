@@ -4,7 +4,10 @@ import { COLORS, TONALITIES } from './fixtures/variants.ts';
 // @ts-expect-error - required for playwright
 import { setScrollViewport } from './fixtures/viewport.ts';
 
-export const getDefaultScreenshotTest = (component: string) => {
+export const getDefaultScreenshotTest = (
+	path: string,
+	fixedHeight?: number
+) => {
 	for (const tonality of TONALITIES) {
 		for (const color of COLORS) {
 			test(`should match screenshot`, async ({ page }, testInfo) => {
@@ -30,10 +33,10 @@ export const getDefaultScreenshotTest = (component: string) => {
 				}
 
 				await page.goto(
-					`./#/${component}?tonality=${tonality}&color=${color}`,
+					`./#/${path}?tonality=${tonality}&color=${color}`,
 					{ waitUntil: 'networkidle' }
 				);
-				await setScrollViewport(page)();
+				await setScrollViewport(page, fixedHeight)();
 				await expect(page).toHaveScreenshot(
 					[tonality, `${color}.png`],
 					config

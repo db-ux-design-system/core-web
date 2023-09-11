@@ -4,8 +4,13 @@ export type ComponentParserType = {
 
 export type ComponentType = {
 	index?: string | number;
-	type?: /* hygen type */
-	| 'navigation-item'
+	type?: /* Template hygen type */
+	| 'main-navigation'
+		| 'accordion-item'
+		| 'accordion'
+		| 'textarea'
+		| 'badge'
+		| 'navigation-item'
 		| 'tag'
 		| 'select'
 		| 'h1'
@@ -31,6 +36,5 @@ export type ComponentType = {
 		| string;
 	content?: string | ComponentType[];
 	props?: any;
-
 	className?: string;
 };

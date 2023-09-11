@@ -1,226 +1,33 @@
 @use "sass:map";
-@use "@db-ui/foundations/build/scss/init" as *;
-@use "@db-ui/foundations/build/scss/variables" as *;
-@use "@db-ui/foundations/build/scss/variables.global" as *;
-@use "@db-ui/foundations/build/scss/color-placeholder" as *;
-@use "@db-ui/foundations/build/scss/helpers/component" as *;
-@use "@db-ui/foundations/build/scss/color/color-variants" as *;
-@use "@db-ui/foundations/build/scss/helpers/font" as *;
-@use "../../styles/button-components";
-@use "@db-ui/foundations/build/scss/helpers/functions" as *;
-@use "@db-ui/foundations/build/scss/icon/icons.placeholder" as *;
-@use "@db-ui/foundations/build/scss/icon/icons.helpers" as *;
-@use "@db-ui/foundations/build/scss/icon/icons.variables" as *;
+@use "@db-ui/foundations/build/scss/variables.global" as var;
+@use "@db-ui/foundations/build/scss/helpers/component" as component;
+@use "@db-ui/foundations/build/scss/helpers/font" as font;
+@use "@db-ui/foundations/build/scss/icon/icons.helpers" as icons;
+@use "../../styles/button-components" as button-components;
+@use "../../styles/tag-components" as tag-components;
+@use "@db-ui/foundations/build/scss/helpers/functions" as functions;
 
-@mixin get-border-and-icon($colors) {
-	&:not(&[data-emphasis="strong"]) {
-		--db-current-border-color: #{map.get($colors, "border")};
-	}
-}
-
-%tag-colors {
-	@extend %db-bg-neutral-4;
-
-	&[data-emphasis="strong"] {
-		@extend %db-neutral-component;
-	}
-
-	@each $name, $colors in $component-variants {
-		&[data-variant="#{$name}"] {
-			@if ($name == "critical") {
-				@extend %db-bg-critical;
-
-				&[data-emphasis="strong"] {
-					@extend %db-critical-component;
-				}
-			} @else if ($name == "informational") {
-				@extend %db-bg-informational;
-
-				&[data-emphasis="strong"] {
-					@extend %db-informational-component;
-				}
-			} @else if ($name == "warning") {
-				@extend %db-bg-warning;
-
-				&[data-emphasis="strong"] {
-					@extend %db-warning-component;
-				}
-			} @else if ($name == "successful") {
-				@extend %db-bg-successful;
-
-				&[data-emphasis="strong"] {
-					@extend %db-successful-component;
-				}
-			}
-
-			@include get-border-and-icon($colors);
-		}
-	}
-}
 
 @mixin interactive {
-	&:has(input:checked),
-	button:not(.db-tab-remove-button):not(.is-icon-text-replace),
-	a {
+	&:has(input, button:not(.db-tab-remove-button), a) {
 		@content;
-	}
-}
-
-@mixin tag-types {
-	button:not(.db-tab-remove-button):not(.is-icon-text-replace),
-	a,
-	&:has(input),
-	&:has(span) {
-		@content;
-	}
-}
-
-%interactive-colors {
-	@include interactive {
-		@extend %db-bg-neutral-4-ia;
-	}
-
-	&:has(input:not(:checked)) {
-		@extend %db-bg-neutral-0-ia;
-	}
-
-	&[data-emphasis="strong"] {
-		@include interactive {
-			--db-colors-neutral-on-bg-hover: #{$db-colors-neutral-on-enabled};
-			--db-colors-neutral-on-bg-pressed: #{$db-colors-neutral-on-enabled};
-			@extend %db-neutral-component-ia;
-		}
-	}
-
-	@each $name, $colors in $component-variants {
-		&[data-variant="#{$name}"] {
-			@if ($name == "critical") {
-				@include interactive {
-					@extend %db-bg-critical-ia;
-				}
-
-				&[data-emphasis="strong"] {
-					@include interactive {
-						@extend %db-critical-component-ia;
-					}
-				}
-			} @else if ($name == "informational") {
-				@include interactive {
-					@extend %db-bg-informational-ia;
-				}
-
-				&[data-emphasis="strong"] {
-					@include interactive {
-						@extend %db-informational-component-ia;
-					}
-				}
-			} @else if ($name == "warning") {
-				@include interactive {
-					@extend %db-bg-warning-ia;
-				}
-
-				&[data-emphasis="strong"] {
-					@include interactive {
-						@extend %db-warning-component-ia;
-					}
-				}
-			} @else if ($name == "successful") {
-				@include interactive {
-					@extend %db-bg-successful-ia;
-				}
-
-				&[data-emphasis="strong"] {
-					@include interactive {
-						@extend %db-successful-component-ia;
-					}
-				}
-			}
-
-			@include interactive {
-				@include get-border-and-icon($colors);
-			}
-		}
-	}
-}
-
-%db-tag {
-	@extend %focus-placeholder;
-	@extend %default-interactive-component;
-	@extend %component-border;
-	@extend %db-overwrite-font-size-sm;
-	@extend %default-button;
-
-	padding-block: 0;
-
-	block-size: $db-sizing-sm;
-	min-inline-size: $db-sizing-sm;
-	inline-size: fit-content;
-	transition:
-		background-color $db-transition-color,
-		color $db-transition-color;
-
-	input {
-		@include a11y-visually-hidden();
-	}
-
-	label,
-	span {
-		@extend %db-overwrite-font-size-sm;
-		margin-inline-start: 0;
-	}
-
-	&:has(span) {
-		@extend %tag-colors;
-	}
-}
-
-%interactive-icon-passing {
-	&:not(:has(span)) {
-		// only for interactive elements link/button/checkbox/radio
-		&[data-icon] {
-			&::before {
-				// don't show default icon
-				display: none;
-			}
-		}
-
-		@each $icon-name, $icon-glyph in $icon-glyphs {
-			&[data-icon="#{$icon-name}"] {
-				label,
-				button:not(.db-tab-remove-button):not(.is-icon-text-replace),
-				a {
-					&::before {
-						@extend %icon;
-						content: "#{$icon-glyph}";
-						margin-inline-end: var(
-							--icon-margin-after,
-							#{$db-spacing-fixed-2xs}
-						);
-					}
-				}
-			}
-		}
 	}
 }
 
 %no-text {
 	&[data-no-text="true"] {
-		@include tag-types {
-			--icon-margin-after: 0;
-			@include is-icon-text-replace();
-			padding: 0;
+		--icon-margin-after: 0;
+		@include icons.is-icon-text-replace();
+		padding: 0;
 
-			label,
-			span {
-				@include is-icon-text-replace();
-			}
+		label,
+		span {
+			@include icons.is-icon-text-replace();
 		}
 	}
 
 	&:not(&[data-no-text="true"]) {
-		@include tag-types {
-			padding-inline: $db-spacing-fixed-2xs;
-		}
+		padding-inline: var.$db-spacing-fixed-2xs;
 
 		&:has(.db-tab-remove-button) {
 			padding-inline-end: 0;
@@ -229,40 +36,88 @@
 }
 
 .db-tag {
-	--icon-margin-after: #{$db-spacing-fixed-2xs};
-	@extend %interactive-colors;
-	@extend %interactive-icon-passing;
 	@extend %no-text;
+	@extend %default-interactive-component;
+	@extend %component-border;
+	@extend %db-overwrite-font-size-sm;
+	@extend %default-button;
+
+	padding-block: 0;
+	block-size: var.$db-sizing-sm;
+	min-inline-size: var.$db-sizing-sm;
+	inline-size: fit-content;
 
 	display: flex;
 
-	@include tag-types {
-		@extend %db-tag;
-		text-decoration: none;
+	&:not(&[data-interactive="true"]) {
+		@include tag-components.get-tag-colors();
+	}
 
-		&::after {
-			display: none !important;
+	&[data-interactive="true"] {
+		@include tag-components.get-tag-colors-interactive();
+	}
+
+	&:has(input) {
+		position: relative;
+	}
+
+	input {
+		appearance: none;
+		border: none;
+		inline-size: 100%;
+		block-size: 100%;
+		position: absolute;
+
+		// Resetting regular DBCheckbox and DBRadio styling
+		&:hover,
+		&:checked,
+		&:active {
+			background: none !important;
 		}
+
+		&:checked {
+			&::before {
+				content: none;
+			}
+		}
+	}
+
+	label,
+	span {
+		@extend %db-overwrite-font-size-sm;
+		margin-inline-start: 0;
+	}
+
+	button {
+		border: none;
+		block-size: auto;
+		padding: 0;
+		background-color: none;
 	}
 
 	a {
-		display: inline-flex;
-	}
+		// display: inline-flex;
+		text-decoration: none;
 
-	&[data-overflow="true"] {
-		span,
-		label,
-		a,
-		button {
-			max-inline-size: $db-sizing-2xl;
-			text-overflow: ellipsis;
-			overflow: hidden;
+		&::after {
+			content: "" !important;
 		}
 	}
 
+	&[data-overflow="true"] {
+		max-inline-size: var.$db-sizing-2xl;
+		text-overflow: ellipsis;
+		overflow: hidden;
+	}
+
 	&[data-disabled="true"] {
-		opacity: $default-opacity;
+		opacity: component.$default-disabled-opacity;
 		pointer-events: none;
+	}
+
+	.db-button[data-size="small"] {
+		border-radius: functions.to-rem(3);
+		block-size: 100%;
 	}
 
 	.db-tab-remove-button {

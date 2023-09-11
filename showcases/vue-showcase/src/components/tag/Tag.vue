@@ -48,7 +48,7 @@ const showAlert = (exampleName: string) => {
 					:checked="exampleProps.checked"
 					>{{ exampleName }}</DBRadio
 				>
-				<span v-if="!exampleProps.component">{{ exampleName }}</span>
+				{{ exampleName }}
 			</DBTag>
 		</template>
 	</DefaultComponent>
