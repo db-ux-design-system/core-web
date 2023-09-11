@@ -54,13 +54,6 @@
 [data-icon-before] {
 	&::before {
 		@extend %icon !optional;
-		content: var(--icon-glyph-before);
-
-		// Hiding icon from screenreaders
-		@supports (content: ""/"") {
-			content: var(--icon-glyph-before) / ""; // https://www.w3.org/TR/css-content-3/#alt
-		}
-
 		margin-inline-end: icon-helper.$default-icon-margin-end;
 	}
 }
@@ -75,13 +68,6 @@
 [data-icon-after] {
 	&::after {
 		@extend %icon !optional;
-		content: var(--icon-glyph-after);
-
-		// Hiding icon from screenreaders
-		@supports (content: ""/"") {
-			content: var(--icon-glyph-after) / ""; // https://www.w3.org/TR/css-content-3/#alt
-		}
-
 		margin-inline-start: icon-helper.$default-icon-margin-start;
 	}
 }

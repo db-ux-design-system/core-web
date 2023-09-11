@@ -58,6 +58,8 @@ $default-icon-margin-start: var(
 		@if $position == "after" {
 			margin-inline-start: $default-icon-margin-start;
 		}
+
+		@extend %icon;
 	}
 }
 

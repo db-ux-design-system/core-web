@@ -114,10 +114,10 @@
 					<li *ngFor="let tag of array; let i = index">
 						<db-tag
 							[variant]="i === 0 ? undefined : 'successful'"
+							(onChange)="changeTags(tag)"
 							[emphasis]="i === 2 ? 'strong' : 'weak'"
-							><db-checkbox (onChange)="changeTags(tag)">{{
-								getTagName(tag)
-							}}</db-checkbox></db-tag
+							behaviour="interactive"
+							>{{ getTagName(tag) }}</db-tag
 						>
 					</li>
 				</ul>
