@@ -30,6 +30,7 @@
 		}
 
 		&:has(dbbutton):has(dbbutton:not(.db-tab-remove-button)),
+		&:has(db-button):has(db-button:not(.db-tab-remove-button)),
 		&:not(:has(dbbutton)):has(button:not(.db-tab-remove-button)),
 		&:has(a) {
 			padding-inline: 0;
@@ -141,10 +142,9 @@
 	}
 
 	.db-tab-remove-button {
-		margin-inline-start: var.$db-spacing-fixed-2xs;
-
 		&:is(button),
 		button {
+			margin-inline-start: var.$db-spacing-fixed-2xs;
 			block-size: 100%;
 		}
 	}
