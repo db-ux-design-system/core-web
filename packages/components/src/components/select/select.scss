@@ -87,8 +87,7 @@
 
 	&::after,
 	&::before,
-	label,
-	.icon-state {
+	label {
 		position: absolute;
 		pointer-events: none;
 	}
@@ -113,8 +112,7 @@
 	}
 
 	&::after,
-	&::before,
-	.icon-state {
+	&::before {
 		inset-block-start: calc(
 			var(--db-base-font-size) * var(--db-base-line-height) / 2
 		);
@@ -122,23 +120,6 @@
 
 	&::before {
 		inset-inline-start: $db-spacing-fixed-sm;
-	}
-
-	.icon-state {
-		@extend %db-overwrite-font-size-sm;
-
-		@include to-solid-icon();
-
-		display: flex;
-		inset-inline-end: calc($db-sizing-md - $db-spacing-fixed-xs);
-
-		// angular specific nesting
-
-		.db-icon {
-			@extend %db-overwrite-font-size-sm;
-
-			@include to-solid-icon();
-		}
 	}
 
 	// Most likely this wouldn't work on MacOS, but we're still progressively enhancing Windows by this
