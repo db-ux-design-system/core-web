@@ -1,12 +1,12 @@
 @use "sass:map";
 @use "@db-ui/foundations/build/scss/color/color-variants" as *;
 @use "@db-ui/foundations/build/scss/helpers/component" as *;
+@use "@db-ui/foundations/build/scss/variables.global" as var;
 
 $interactive-selectors: "input, a, button";
 
-@mixin overwrite-strong-white() {
-	/* We force white as color for strong tags */
-	--db-current-color: #fff;
+@mixin overwrite-strong() {
+	--db-current-color: #{var.$db-colors-neutral-bg};
 	color: var(--db-current-color);
 }
 
@@ -15,7 +15,7 @@ $interactive-selectors: "input, a, button";
 
 	&[data-emphasis="strong"] {
 		@extend %db-neutral-component;
-		@include overwrite-strong-white();
+		@include overwrite-strong();
 	}
 
 	@each $name, $colors in $component-variants {
@@ -26,7 +26,7 @@ $interactive-selectors: "input, a, button";
 				&[data-emphasis="strong"] {
 					@extend %db-critical-component;
 
-					@include overwrite-strong-white();
+					@include overwrite-strong();
 				}
 			} @else if ($name == "informational") {
 				@extend %db-bg-informational;
@@ -34,7 +34,7 @@ $interactive-selectors: "input, a, button";
 				&[data-emphasis="strong"] {
 					@extend %db-informational-component;
 
-					@include overwrite-strong-white();
+					@include overwrite-strong();
 				}
 			} @else if ($name == "warning") {
 				@extend %db-bg-warning;
@@ -42,7 +42,7 @@ $interactive-selectors: "input, a, button";
 				&[data-emphasis="strong"] {
 					@extend %db-warning-component;
 
-					@include overwrite-strong-white();
+					@include overwrite-strong();
 				}
 			} @else if ($name == "successful") {
 				@extend %db-bg-successful;
@@ -50,7 +50,7 @@ $interactive-selectors: "input, a, button";
 				&[data-emphasis="strong"] {
 					@extend %db-successful-component;
 
-					@include overwrite-strong-white();
+					@include overwrite-strong();
 				}
 			}
 
@@ -119,7 +119,7 @@ $interactive-selectors: "input, a, button";
 		&:has(button),
 		&:has(a),
 		&:has(input:checked) {
-			@include overwrite-strong-white();
+			@include overwrite-strong();
 		}
 	}
 }
