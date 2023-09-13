@@ -19,10 +19,10 @@
 
 [class^="db-"],
 [class^="db-"] * {
-	@extend %default-color-transition;
+	@extend %default-transition;
 
 	::before,
 	::after {
-		@extend %default-color-transition;
+		@extend %default-transition;
 	}
 }
