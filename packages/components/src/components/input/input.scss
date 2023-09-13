@@ -38,30 +38,6 @@
 		scale(var(--db-input-label-scale));
 }
 
-%input-icon-state {
-	--db-icon-input-margin-inline-end: calc(
-		(
-				var(--db-input-padding-end-icon-after) +
-					var(--db-input-padding-end-datalist)
-			) * #{$db-sizing-md} + #{$db-spacing-fixed-sm} - var(
-				--db-input-padding-end-datalist
-			) * #{$db-spacing-fixed-sm} - var(
-				--db-input-padding-end-icon-after
-			) * #{$db-spacing-fixed-sm}
-	);
-	display: flex;
-	align-items: center;
-	flex-direction: row;
-	position: absolute;
-	inset-block-start: 0;
-	block-size: $db-sizing-md;
-
-	pointer-events: none;
-	inset-inline-end: 0;
-
-	margin-inline-end: var(--db-icon-input-margin-inline-end);
-}
-
 .db-input {
 	--db-input-padding-inline-start: #{$db-spacing-fixed-sm};
 	--db-input-padding-end-icon-after: 0;
@@ -169,7 +145,6 @@
 	// currently not supported by firefox
 	&:has(> input:disabled) {
 		.db-icon,
-		.icon-state,
 		&:has(> datalist)::after {
 			opacity: 0.5;
 		}
@@ -321,18 +296,6 @@
 				cursor: pointer;
 				transition: opacity 0.12s;
 			}
-		}
-	}
-
-	// #variations
-	.icon-state {
-		&.db-icon {
-			@extend %input-icon-state;
-		}
-
-		// angular specific nesting
-		> .db-icon {
-			@extend %input-icon-state;
 		}
 	}
 
