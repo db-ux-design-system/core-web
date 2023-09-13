@@ -138,6 +138,12 @@ const FormComponent = () => {
 								onChange={handleChange3}>
 								Checkbox
 							</DBCheckbox>
+							<DBCheckbox
+								name="checkbox-3"
+								value="Irgendwas"
+								defaultChecked={false}>
+								DefaultChecked
+							</DBCheckbox>
 						</fieldset>
 						<p>DBSelect:</p>
 						<DBSelect
