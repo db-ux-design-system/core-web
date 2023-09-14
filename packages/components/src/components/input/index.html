@@ -8,13 +8,13 @@
 	<body style="padding: var(--db-spacing-fixed-md)">
 		<div class="db-input">
 			<label for="username1">Label</label>
-			<input type="text" name="username" id="username1" />
-			<span class="db-infotext">No Icon</span>
+			<input type="text" name="username" id="username1" aria-describedby="db-infotext-01" />
+			<span class="db-infotext" id="db-infotext-01">No Icon</span>
 		</div>
 		<div class="db-input" data-variant="informational">
 			<label for="username2">Label</label>
-			<input type="text" name="username2" id="username2" />
-			<span class="db-infotext" data-variant="informational">
+			<input type="text" name="username2" id="username2" aria-describedby="db-infotext-02" />
+			<span class="db-infotext" data-variant="informational" id="db-infotext-02">
 				informational
 			</span>
 		</div>
