@@ -5,7 +5,7 @@
 @use "@db-ui/foundations/build/scss/tonality" as *;
 @use "@db-ui/foundations/build/scss/helpers/component" as *;
 @use "@db-ui/foundations/build/scss/color/color-variants" as col-var;
-@use "../../styles/form-components" as form;
+@use "../../styles/form-components";
 
 // TODO: Move this to shared style
 $font-size-height: calc(var(--db-base-font-size) * var(--db-base-line-height));
