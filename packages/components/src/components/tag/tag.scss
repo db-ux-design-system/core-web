@@ -19,6 +19,7 @@
 	block-size: $db-sizing-sm;
 	min-inline-size: $db-sizing-sm;
 	inline-size: fit-content;
+	position: relative;
 
 	&:not(&[data-interactive="true"]) {
 		@include get-tag-colors();
