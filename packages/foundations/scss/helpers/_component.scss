@@ -32,7 +32,7 @@ $default-mobile-header-height: functions.to-rem(56);
 	border-radius: $default-border-radius;
 }
 
-%default-color-transition {
+%default-transition {
 	transition:
 		outline
 			var(
@@ -40,7 +40,16 @@ $default-mobile-header-height: functions.to-rem(56);
 				#{var-todo.$db-transition-duration-ultra-fast}
 			),
 		background-color
-			var(--db-transition-color, #{var-todo.$db-transition-color}),
+			var(--db-transition-color, #{var-todo.$db-transition-color});
+}
+
+%default-fg-transition {
+	transition:
+		outline
+			var(
+				--db-transition-duration-ultra-fast,
+				#{var-todo.$db-transition-duration-ultra-fast}
+			),
 		color var(--db-transition-color, #{var-todo.$db-transition-color});
 }
 

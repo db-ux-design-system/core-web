@@ -112,9 +112,14 @@ export default function DBCheckbox(props: DBCheckboxProps) {
 					// It has no accessibility or UX implications. (https://mui.com/material-ui/react-checkbox/)
 					checkboxElement.indeterminate = props.indeterminate;
 				}
+
+				if (props.defaultChecked !== undefined) {
+					// only set by JS: https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement#instance_properties_that_apply_only_to_elements_of_type_checkbox_or_radio
+					checkboxElement.defaultChecked = props.defaultChecked;
+				}
 			}
 		}
-	}, [state.initialized, props.indeterminate, props.checked]);
+	}, [state.initialized, props.indeterminate, props.checked, props.defaultChecked]);
 
 	return (
 		<>

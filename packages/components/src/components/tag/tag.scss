@@ -49,6 +49,7 @@
 	block-size: var.$db-sizing-sm;
 	min-inline-size: var.$db-sizing-sm;
 	inline-size: fit-content;
+	position: relative;
 
 	&:not([data-emphasis="strong"]) {
 		@extend %component-border;

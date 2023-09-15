@@ -15,6 +15,7 @@
 }
 
 .db-link {
+	@extend %default-fg-transition;
 	@extend %db-link-height;
 	inline-size: fit-content;
 	align-items: center;

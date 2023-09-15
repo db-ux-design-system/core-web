@@ -1,3 +1,4 @@
+<!-- [html-validate-disable attr-case] -->
 <div class="form-container">
 	<div>
 		<db-input
@@ -60,7 +61,7 @@
 		<h6>Reactive Forms Example:</h6>
 		<form [formGroup]="form" (submit)="onFormSubmit()">
 			<fieldset>
-				<p>Input:</p>
+				<legend>Input:</legend>
 
 				<db-input
 					name="form"
@@ -137,6 +138,7 @@
 					(change)="handleChange1($event)"
 				></db-checkbox>
 				<fieldset>
+					<legend>Checkboxes</legend>
 					<db-checkbox
 						[checked]="checked[0]"
 						(change)="handleChange2($event)"
@@ -150,6 +152,11 @@
 						label="Checkbox"
 					></db-checkbox>
 				</fieldset>
+				<db-checkbox
+					name="checkbox4"
+					label="Checkbox with defaultValue"
+					[defaultChecked]="true"
+				></db-checkbox>
 				<p>Select:</p>
 				<db-select
 					name="select"
