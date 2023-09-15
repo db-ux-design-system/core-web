@@ -39,7 +39,8 @@ module.exports = {
 				'@typescript-eslint/naming-convention': 0, // Too much trouble for different frameworks in a monorepo
 				'@typescript-eslint/restrict-template-expressions': 0, // Legit in react
 				'@typescript-eslint/no-redundant-type-constituents': 0, // only happens in cicd
-				'@typescript-eslint/no-unsafe-argument': 0 // valid for app
+				'@typescript-eslint/no-unsafe-argument': 0, // valid for app
+				'import/no-extraneous-dependencies': 0 // foundation and component.css are inside this repo
 			}
 		}
 	],

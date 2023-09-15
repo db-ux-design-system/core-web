@@ -4,7 +4,7 @@
 @use "@db-ui/foundations/build/scss/variables";
 @use "@db-ui/foundations/build/scss/icon/icon-helpers";
 @use "@db-ui/foundations/build/scss/helpers/font";
-@use "@db-ui/foundations/build/scss/color-placeholder" as *;
+@use "@db-ui/foundations/build/scss/color-placeholder";
 @use "@db-ui/foundations/build/scss/color/color-variants";
 @use "@db-ui/foundations/build/scss/helpers/component";
 @use "../../styles/form-components";
@@ -101,6 +101,7 @@
 	}
 
 	&:has(> [type="search"]) {
+		@extend %db-overwrite-font-size-sm;
 		@include icon-helpers.icon("search");
 	}
 
@@ -120,10 +121,6 @@
 	db-icon,
 	&:has(> datalist)::after {
 		@extend %db-overwrite-font-size-sm;
-	}
-
-	&:has(> [type="search"])::before {
-		@extend %db-overwrite-font-size-md;
 	}
 
 	.icon-after,
@@ -264,17 +261,12 @@
 		}
 
 		&[type="search"] {
-			// TODO: Change rem to a x times db-sizing-md
-			$paddingLeft: calc(
-				#{variables.$db-spacing-fixed-sm} * 2 + 0.625rem
-			);
-
 			padding-inline-start: var(--db-input-padding-inline-start);
 
 			&,
 			& + label {
 				--db-input-padding-inline-start: #{calc(
-						#{variables.$db-spacing-fixed-sm} * 2 + 0.625rem
+						#{variables.$db-spacing-fixed-sm} * 2 + #{variables.$db-spacing-fixed-md}
 					)};
 			}
 
