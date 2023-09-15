@@ -10,6 +10,10 @@ useMetadata({
 		// MS Power Apps
 		includeIcon: false,
 		hasDisabledProp: true,
+		canvasSize: {
+			height: 'controlled', // 'fixed', 'controlled'
+			width: 'controlled' // 'fixed', 'dynamic' (requires width property), 'controlled'
+		},
 		properties: [
 			{
 				name: 'label',
