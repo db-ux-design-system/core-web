@@ -108,24 +108,44 @@ $dropdown-icon-transform: rotate(-180deg);
 
 %validity {
 	// Valid
+	// Programmatic valid status, most likely set via JavaScript
 	&[aria-invalid="false"], // programmatically set validity
-	&:required:valid:not(:placeholder-shown), // :user-valid fallback
-	&:is(:user-valid) {
+	&:is(:user-valid):not([aria-invalid]) {
 		@extend %adaptive-successful-component;
 
 		// label:has(+ &) {
 		// 	color: $db-colors-successful-element;
 		// }
 	}
+	// :user-valid workaround
+	@supports not selector(:user-valid) {
+		&:required:valid:not(:placeholder-shown) {
+			@extend %adaptive-successful-component;
+
+			// label:has(+ &) {
+			// 	color: $db-colors-successful-element;
+			// }
+		}
+	}
 
 	// Invalid
-	&[aria-invalid="true"], // programmatically set validity
-	&:required:invalid:not(:placeholder-shown), // :user-invalid fallback
+	// Programmatic invalid status, most likely set via JavaScript
+	&[aria-invalid="true"],
 	&:is(:user-invalid) {
 		@extend %db-bg-critical-transparent-semi;
 
 		// label:has(+ &) {
 		// 	color: $db-colors-critical-element;
 		// }
+	}
+	// :user-invalid workaround
+	@supports not selector(:user-invalid) {
+		&:required:invalid:not(:placeholder-shown) {
+			@extend %db-bg-critical-transparent-semi;
+
+			// label:has(+ &) {
+			// 	color: $db-colors-critical-element;
+			// }
+		}
 	}
 }
