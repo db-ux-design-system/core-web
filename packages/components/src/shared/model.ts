@@ -200,6 +200,7 @@ export type FormMessageProps = {
 
 export type FormState = {
 	_isValid?: boolean | undefined;
+	_messageId?: string;
 };
 
 export type InitializedState = {

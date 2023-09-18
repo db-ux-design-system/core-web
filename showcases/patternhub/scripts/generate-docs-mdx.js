@@ -64,6 +64,7 @@ const generateDocsMdx = async () => {
 					`${componentPath}/overview.tsx`,
 					reactComponent
 				);
+				FS.writeFileSync(`${componentPath}/index.tsx`, reactComponent);
 			}
 		}
 	}

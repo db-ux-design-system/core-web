@@ -1,16 +1,14 @@
-@use "@db-ui/foundations/build/scss/variables" as *;
-@use "@db-ui/foundations/build/scss/variables.global" as *;
-@use "@db-ui/foundations/build/scss/icon/icons.helpers" as *;
-@use "@db-ui/foundations/build/scss/color-placeholder" as *;
-@use "@db-ui/foundations/build/scss/tonality" as *;
-@use "@db-ui/foundations/build/scss/helpers/component" as *;
-@use "@db-ui/foundations/build/scss/color/color-variants" as col-var;
+@use "@db-ui/foundations/build/scss/variables";
+@use "@db-ui/foundations/build/scss/icon/icon-helpers";
+@use "@db-ui/foundations/build/scss/tonality";
+@use "@db-ui/foundations/build/scss/helpers/component";
+@use "@db-ui/foundations/build/scss/color/color-variants";
 
 // TODO: Move this to shared style
 $font-size-height: calc(var(--db-base-font-size) * var(--db-base-line-height));
 
 .db-checkbox {
-	@include col-var.bg-transparent-interactive();
+	@include color-variants.bg-transparent-interactive();
 
 	align-content: center;
 
@@ -19,7 +17,7 @@ $font-size-height: calc(var(--db-base-font-size) * var(--db-base-line-height));
 	position: relative;
 
 	border: max(calc(#{$font-size-height} / 16 + 0.5px), 2px) solid currentColor;
-	border-radius: $checkbox-border-radius;
+	border-radius: component.$checkbox-border-radius;
 
 	display: inline-flex;
 	block-size: $font-size-height;
@@ -44,7 +42,7 @@ $font-size-height: calc(var(--db-base-font-size) * var(--db-base-line-height));
 		@extend %db-bg-inverted-ia;
 
 		// Check icon
-		@include icon("done");
+		@include icon-helpers.icon("done");
 
 		// The icon within the checkbox has the same dimensions as the checkbox itself and that for there can't be any border
 		border-width: 0;
@@ -57,7 +55,7 @@ $font-size-height: calc(var(--db-base-font-size) * var(--db-base-line-height));
 	// }
 
 	&:indeterminate {
-		@include icon("minus");
+		@include icon-helpers.icon("minus");
 
 		&::before {
 			line-height: 20px;
@@ -72,7 +70,7 @@ $font-size-height: calc(var(--db-base-font-size) * var(--db-base-line-height));
 	}
 
 	& + label {
-		margin-inline-start: $db-spacing-fixed-xs;
+		margin-inline-start: variables.$db-spacing-fixed-xs;
 
 		vertical-align: top;
 	}
@@ -84,7 +82,7 @@ $font-size-height: calc(var(--db-base-font-size) * var(--db-base-line-height));
 		// TODO: we still need to scale this
 		& + label {
 			@extend %db-overwrite-font-size-sm;
-			margin-inline-start: $db-spacing-fixed-2xs;
+			margin-inline-start: variables.$db-spacing-fixed-2xs;
 		}
 	}
 

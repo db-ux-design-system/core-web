@@ -1,6 +1,8 @@
 export const DEFAULT_ID = 'OVERWRITE_DEFAULT_ID';
 export const DEFAULT_LABEL = 'LABEL SHOULD BE SET';
 
+export const DEFAULT_MESSAGE_ID_SUFFIX = '-message';
+
 export const DEFAULT_BACK = 'Back';
 
 export const DEFAULT_CLOSE_BUTTON = 'Close Button';

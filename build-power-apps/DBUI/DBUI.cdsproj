@@ -59,7 +59,7 @@
     <ProjectReference Include="..\infotext\DBInfotext.pcfproj" />
     <ProjectReference Include="..\brand\DBBrand.pcfproj" />
 	<ProjectReference Include="..\tag\DBTag.pcfproj" />
-<!-- <ProjectReference Include="..\textarea\DBTextarea.pcfproj" /> -->
+	<ProjectReference Include="..\textarea\DBTextarea.pcfproj" />
   </ItemGroup>
 
   <Import Project="$(MSBuildToolsPath)\Microsoft.Common.targets" />

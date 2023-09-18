@@ -20,10 +20,6 @@ export interface DBTextareaDefaultProps {
 	 */
 	cols?: number;
 	/**
-	 * Name of form field to use for sending the element's directionality in form submission
-	 */
-	dirName?: string;
-	/**
 	 * In most browsers, textareas are resizable — you'll notice the drag handle in the right-hand corner, you can control it with this
 	 */
 	resize?: 'none' | 'both' | 'horizontal' | 'vertical';

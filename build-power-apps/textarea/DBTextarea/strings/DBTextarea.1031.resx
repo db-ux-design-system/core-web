@@ -117,28 +117,25 @@
     <resheader name="writer">
         <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
     </resheader>
-    <data name="children_Display_Key" xml:space="preserve">
-        <value>Text</value>
+    <data name="label_Display_Key" xml:space="preserve">
+        <value>Label</value>
     </data>
-    <data name="href_Display_Key" xml:space="preserve">
-        <value>Link URL</value>
+    <data name="placeholder_Display_Key" xml:space="preserve">
+        <value>Platzhalter</value>
     </data>
-    <data name="title_Display_Key" xml:space="preserve">
-        <value>Alternative text</value>
+    <data name="value_Display_Key" xml:space="preserve">
+        <value>Eingangswert</value>
     </data>
     <data name="variant_Display_Key" xml:space="preserve">
-        <value>Variant</value>
+        <value>Variante</value>
     </data>
     <data name="componentHeight_Display_Key" xml:space="preserve">
-        <value>Height</value>
+        <value>Höhe</value>
     </data>
     <data name="componentWidth_Display_Key" xml:space="preserve">
-        <value>Width</value>
+        <value>Breite</value>
     </data>
-    <data name="DBLink_Display_Key" xml:space="preserve">
-        <value>DB Link</value>
-    </data>
-    <data name="target_Display_key" xml:space="preserve">
-        <value>link target</value>
+    <data name="DBTextarea_Display_Key" xml:space="preserve">
+        <value>DB Textarea</value>
     </data>
 </root>

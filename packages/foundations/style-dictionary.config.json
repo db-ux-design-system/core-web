@@ -7,7 +7,7 @@
 			"prefix": "db",
 			"files": [
 				{
-					"destination": "variables.css",
+					"destination": "default-variables.css",
 					"format": "css/variables"
 				}
 			]
@@ -18,7 +18,7 @@
 			"prefix": "db",
 			"files": [
 				{
-					"destination": "_variables.scss",
+					"destination": "_default-variables.scss",
 					"format": "scss/variables"
 				}
 			]

@@ -1,9 +1,9 @@
 @use "sass:map";
-@use "@db-ui/foundations/build/scss/variables.global" as var;
-@use "@db-ui/foundations/build/scss/helpers/font" as font;
-@use "@db-ui/foundations/build/scss/color/color-variants" as col-var;
-@use "@db-ui/foundations/build/scss/helpers/component" as component;
-@use "../../styles/form-components" as form;
+@use "@db-ui/foundations/build/scss/variables";
+@use "@db-ui/foundations/build/scss/helpers/font";
+@use "@db-ui/foundations/build/scss/color/color-variants";
+@use "@db-ui/foundations/build/scss/helpers/component";
+@use "../../styles/form-components";
 
 %resize-textarea {
 	&[data-resize="none"] {
@@ -32,7 +32,7 @@
 	@extend %disabled-form-element;
 	@extend %required-form-element;
 
-	@include form.get-input-color-variants();
+	@include form-components.get-input-color-variants();
 
 	position: relative;
 	display: flex;
@@ -44,12 +44,12 @@
 		@extend %db-overwrite-font-size-md;
 		@extend %resize-textarea;
 
-		@include col-var.bg-transparent-hover();
-		@include col-var.get-variant-bg-color(0.08);
+		@include color-variants.bg-transparent-hover();
+		@include color-variants.get-variant-bg-color(0.08);
 
 		max-inline-size: 100%;
 		inline-size: 100%;
-		padding: var.$db-spacing-fixed-xs var.$db-spacing-fixed-sm;
+		padding: variables.$db-spacing-fixed-xs variables.$db-spacing-fixed-sm;
 
 		&::placeholder {
 			opacity: component.$default-placeholder-opacity;

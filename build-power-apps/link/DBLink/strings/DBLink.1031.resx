@@ -138,4 +138,7 @@
     <data name="DBLink_Display_Key" xml:space="preserve">
         <value>DB Link</value>
     </data>
+    <data name="target_Display_key" xml:space="preserve">
+        <value>Linkziel</value>
+    </data>
 </root>

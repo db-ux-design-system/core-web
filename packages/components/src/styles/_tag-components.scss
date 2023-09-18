@@ -1,6 +1,6 @@
 @use "sass:map";
 @use "@db-ui/foundations/build/scss/color/color-variants" as *;
-@use "@db-ui/foundations/build/scss/helpers/component" as *;
+@use "@db-ui/foundations/build/scss/helpers/component";
 @use "@db-ui/foundations/build/scss/variables.global" as var;
 
 $interactive-selectors: "input, a, button";

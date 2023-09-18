@@ -1,5 +1,4 @@
-@use "@db-ui/foundations/build/scss/variables" as *;
-@use "@db-ui/foundations/build/scss/variables.global" as *;
+@use "@db-ui/foundations/build/scss/variables";
 
 :root {
 	body {
@@ -23,7 +22,7 @@
 	opacity: 0;
 
 	&[data-fade-in="true"] {
-		transition: opacity $db-transition-emotional-straight;
+		transition: opacity variables.$db-transition-emotional-straight;
 	}
 
 	&:not([data-fonts-loaded]),

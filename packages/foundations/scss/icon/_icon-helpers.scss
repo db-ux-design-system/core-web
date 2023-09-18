@@ -1,22 +1,22 @@
 @use "sass:math";
 @use "sass:map";
 @use "sass:list";
-@use "../helpers/functions" as *;
-@use "../variables.global" as var;
+@use "../helpers/functions";
+@use "../variables";
 
 $default-icon-size: 24;
-$default-icon-size-rem: #{to-rem($default-icon-size)};
+$default-icon-size-rem: #{functions.to-rem($default-icon-size)};
 $default-icon-variants: "default", "inverted", "solid";
 
 $default-icon-content: var(--db-icon, attr(data-icon));
 
 $default-icon-margin-end: var(
 	--db-icon-margin-end,
-	#{var.$db-spacing-fixed-xs}
+	#{variables.$db-spacing-fixed-xs}
 );
 $default-icon-margin-start: var(
 	--db-icon-margin-start,
-	#{var.$db-spacing-fixed-xs}
+	#{variables.$db-spacing-fixed-xs}
 );
 
 @function get-icon-font-size($font-size, $line-height) {

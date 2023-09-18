@@ -9,10 +9,8 @@ For general installation and configuration look at the [components](https://www.
 ...
 <body>
 	<div class="db-textarea">
-		<label for="textarea">Label</label
-		>
+		<label for="textarea">Label</label>
 		<textarea id="textarea" rows="2" cols="33" placeholder=" "></textarea>
-		<span class="db-infotext">functional</span>
 	</div>
 </body>
 ```

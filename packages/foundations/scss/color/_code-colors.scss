@@ -1,31 +1,34 @@
 @use "sass:color";
-@use "../variables" as *;
+@use "../default-variables";
 
 %code-style {
 	--db-current-base-color: var(
 		--db-neutral-enabled,
-		#{$db-colors-neutral-enabled}
+		#{default-variables.$db-colors-neutral-enabled}
 	);
 	--db-current-color: var(
 		--db-neutral-bg-enabled,
-		#{$db-colors-neutral-bg-0-enabled}
+		#{default-variables.$db-colors-neutral-bg-0-enabled}
 	);
 	--db-current-bg-color: color-mix(
 		in srgb,
 		transparent var(--db-bg-transparent, 0%),
-		var(--db-neutral-on-bg-enabled, #{$db-colors-neutral-on-bg-enabled})
+		var(
+			--db-neutral-on-bg-enabled,
+			#{default-variables.$db-colors-neutral-on-bg-enabled}
+		)
 	);
 	--db-current-element-color: var(
 		--db-neutral-element-enabled,
-		#{$db-colors-neutral-element-enabled}
+		#{default-variables.$db-colors-neutral-element-enabled}
 	);
 	--db-current-border-color: var(
 		--db-neutral-border-enabled,
-		#{$db-colors-neutral-border-enabled}
+		#{default-variables.$db-colors-neutral-border-enabled}
 	);
 	--db-current-border-weak-color: var(
 		--db-neutral-border-weak-enabled,
-		#{$db-colors-neutral-border-weak-enabled}
+		#{default-variables.$db-colors-neutral-border-weak-enabled}
 	);
 
 	background-color: var(--db-current-bg-color);

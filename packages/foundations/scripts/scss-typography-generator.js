@@ -1,9 +1,10 @@
 const prefix = 'db';
 
 const fileHeader = `
-@use "variables" as *;
-@use "icon/icons.helpers" as icon-helper;
-@use "helpers/functions" as functions;
+@use "default-variables";
+@use "icon/icon-helpers";
+@use "helpers/functions";
+@use "helpers/component";
 // Do not edit directly
 // Generated on
 // ${new Date().toString()}
@@ -55,16 +56,16 @@ const getShortSize = (size) => {
  */
 const getMediaQueryProperties = (properties) => {
 	const { textType, sSize, scale, size, isHeadline, mQuery } = properties;
-	let result = `--db-type-${textType}-font-size-${sSize}: #{$${prefix}-typography-${scale}-${mQuery}-${textType}-${size}-font-size};
-	--db-type-${textType}-line-height-${sSize}: #{$${prefix}-typography-${scale}-${mQuery}-${textType}-${size}-line-height};
+	let result = `--db-type-${textType}-font-size-${sSize}: #{default-variables.$${prefix}-typography-${scale}-${mQuery}-${textType}-${size}-font-size};
+	--db-type-${textType}-line-height-${sSize}: #{default-variables.$${prefix}-typography-${scale}-${mQuery}-${textType}-${size}-line-height};
 	`;
 
 	if (!isHeadline) {
 		result += `
-	--db-base-icon-weight-${sSize}: #{icon-helper.get-icon-size(icon-helper.get-icon-font-size($${prefix}-typography-${scale}-${mQuery}-${textType}-${size}-font-size,
-	$${prefix}-typography-${scale}-${mQuery}-${textType}-${size}-line-height))};
-	--db-base-icon-font-size-${sSize}: #{functions.to-rem(icon-helper.get-icon-font-size($${prefix}-typography-${scale}-${mQuery}-${textType}-${size}-font-size,
-	$${prefix}-typography-${scale}-${mQuery}-${textType}-${size}-line-height))};
+	--db-base-icon-weight-${sSize}: #{icon-helpers.get-icon-size(icon-helpers.get-icon-font-size(default-variables.$${prefix}-typography-${scale}-${mQuery}-${textType}-${size}-font-size,
+	default-variables.$${prefix}-typography-${scale}-${mQuery}-${textType}-${size}-line-height))};
+	--db-base-icon-font-size-${sSize}: #{functions.to-rem(icon-helpers.get-icon-font-size(default-variables.$${prefix}-typography-${scale}-${mQuery}-${textType}-${size}-font-size,
+	default-variables.$${prefix}-typography-${scale}-${mQuery}-${textType}-${size}-line-height))};
 		`;
 	}
 
@@ -104,10 +105,8 @@ const generateTypography = (typography) => {
 	`;
 				for (const mQuery of ['mobile', 'tablet', 'desktop']) {
 					if (mQuery !== 'mobile') {
-						allClasses += `@media only screen and (min-width: ${
-							mQuery === 'tablet'
-								? '#{$db-screens-s}'
-								: '#{$db-screens-m}'
+						allClasses += `@include component.screen(${
+							mQuery === 'tablet' ? '"sm"' : '"md"'
 						}) {
 	`;
 					}

@@ -1,18 +1,15 @@
 @use "sass:map";
-@use "@db-ui/foundations/build/scss/icon/icons.helpers" as icons;
-@use "@db-ui/foundations/build/scss/helpers/font" as font;
-/* TODO: We shouldn't use this variables move them to global to make them themeable */
-@use "@db-ui/foundations/build/scss/variables" as var-todo;
-@use "@db-ui/foundations/build/scss/variables.global" as var;
+@use "@db-ui/foundations/build/scss/icon/icon-helpers";
+@use "@db-ui/foundations/build/scss/helpers/font";
+@use "@db-ui/foundations/build/scss/variables";
+@use "@db-ui/foundations/build/scss/helpers/component";
+@use "@db-ui/foundations/build/scss/color/color-variants";
 
-@use "@db-ui/foundations/build/scss/helpers/component" as component;
-@use "@db-ui/foundations/build/scss/color/color-variants" as variants;
-
-$dropdown-icon-transition: transform var-todo.$db-transition-emotional-straight;
+$dropdown-icon-transition: transform variables.$db-transition-emotional-straight;
 $dropdown-icon-transform: rotate(-180deg);
 
 %dropdown-icon {
-	@include icons.icon("expand_more", "after");
+	@include icon-helpers.icon("expand_more", "after");
 
 	&::after {
 		transition: $dropdown-icon-transition;
@@ -21,7 +18,7 @@ $dropdown-icon-transform: rotate(-180deg);
 
 %default-form-message {
 	& .db-infotext {
-		margin-block-start: var.$db-spacing-fixed-2xs;
+		margin-block-start: variables.$db-spacing-fixed-2xs;
 	}
 }
 
@@ -30,7 +27,7 @@ $dropdown-icon-transform: rotate(-180deg);
 		@extend %db-overwrite-font-size-xs;
 		display: flex;
 		align-items: center;
-		padding-block-end: var.$db-spacing-fixed-xs;
+		padding-block-end: variables.$db-spacing-fixed-xs;
 
 		cursor: text;
 
@@ -62,14 +59,14 @@ $dropdown-icon-transform: rotate(-180deg);
 		& label {
 			&::after {
 				content: " *";
-				padding-inline-start: var.$db-spacing-fixed-2xs;
+				padding-inline-start: variables.$db-spacing-fixed-2xs;
 			}
 		}
 	}
 }
 
 @mixin get-input-color-variants() {
-	@each $name, $colors in variants.$component-variants {
+	@each $name, $colors in color-variants.$component-variants {
 		&[data-variant="#{$name}"] {
 			--db-current-border-color: #{map.get($colors, "border")};
 		}

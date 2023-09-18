@@ -9,8 +9,11 @@ For general installation and configuration take a look at the [components](https
 ...
 <body>
 	<div class="db-select">
-		<option value="test1">Test1</option>
-		<option value="test2">Test2</option>
+		<label for="test">Label</label>
+		<select id="test">
+			<option value="test1">Test1</option>
+			<option value="test2">Test2</option>
+		</select>
 	</div>
 </body>
 ```

@@ -8,31 +8,32 @@
 
 	<body style="padding: var(--db-spacing-fixed-md)">
 		<div class="db-textarea">
-			<label for="textarea">
-				Label
-			</label>
+			<label for="textarea"> Label </label>
 			<textarea
 				id="textarea"
 				rows="2"
 				cols="33"
 				placeholder=" "
+				aria-describedby="db-infotext-01"
 			></textarea>
-			<span class="db-infotext" data-size="medium">No icon</span>
+			<span class="db-infotext" data-size="medium" id="db-infotext-01"
+				>No icon</span
+			>
 		</div>
 		<div class="db-textarea" data-variant="informational">
-			<label for="textarea2">
-				Label
-			</label>
+			<label for="textarea2"> Label </label>
 			<textarea
 				id="textarea2"
 				rows="2"
 				cols="33"
 				placeholder=" "
+				aria-describedby="db-infotext-02"
 			></textarea>
 			<span
 				class="db-infotext"
 				data-size="medium"
 				data-variant="informational"
+				id="db-infotext-02"
 				>informational</span
 			>
 		</div>

@@ -1,13 +1,13 @@
-@use "@db-ui/foundations/build/scss/variables" as *;
-@use "@db-ui/foundations/build/scss/variables.global" as *;
-@use "@db-ui/foundations/build/scss/helpers/component" as *;
+@use "@db-ui/foundations/build/scss/variables";
+@use "@db-ui/foundations/build/scss/helpers/component";
 
 %db-puls {
-	@include screen("m") {
+	@include component.screen("md") {
 		&::after {
 			border-inline-start: none;
-			border-block-end: $default-border-radius solid $db-colors-primary;
-			inset-block-end: calc(-1 * #{$db-spacing-fixed-xs});
+			border-block-end: component.$default-border-radius solid
+				variables.$db-colors-primary;
+			inset-block-end: calc(-1 * #{variables.$db-spacing-fixed-xs});
 			inline-size: 0;
 			block-size: auto;
 			inset-inline-start: 50%;
@@ -19,20 +19,21 @@
 	&::after {
 		content: "";
 		position: absolute;
-		border-radius: $default-border-radius;
+		border-radius: component.$default-border-radius;
 		transition:
-			height 0.15s $db-transition-emotional-timing,
-			width 0.15s $db-transition-emotional-timing;
+			height 0.15s variables.$db-transition-emotional-timing,
+			width 0.15s variables.$db-transition-emotional-timing;
 		block-size: 0;
 		transform: translate(0, -50%);
 		inset-block-start: 50%;
-		inset-inline-start: calc(-1 * #{$db-spacing-fixed-xs});
-		border-inline-start: $default-border-radius solid $db-colors-primary;
+		inset-inline-start: calc(-1 * #{variables.$db-spacing-fixed-xs});
+		border-inline-start: component.$default-border-radius solid
+			variables.$db-colors-primary;
 	}
 }
 
 %show-db-puls {
-	@include screen("m") {
+	@include component.screen("md") {
 		&::after {
 			block-size: auto;
 			inline-size: 100%;
