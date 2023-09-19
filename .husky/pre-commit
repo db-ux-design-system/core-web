@@ -1,9 +1,9 @@
-#!/bin/sh
+#!/usr/bin/env sh
 # shellcheck disable=SC1091
 # shellcheck source=./_/husky.sh
-. "$(dirname "$0")/_/husky.sh"
+. "$(dirname -- "$0")/_/husky.sh"
 
 npx validate-branch-name
 npm run scripts:check-commit-mail
-npx lint-staged --config ./.lintstagedrc.js
+npx --no -- lint-staged --config ./.lintstagedrc.js
 npm run lint:jscpd
