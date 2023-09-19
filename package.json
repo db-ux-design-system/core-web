@@ -18,7 +18,8 @@
     "packages/*",
     "output/*",
     "output/vue/vue3",
-    "showcases/*"
+    "showcases/*",
+    "docs"
   ],
   "scripts": {
     "build": "npm-run-all build:*",
