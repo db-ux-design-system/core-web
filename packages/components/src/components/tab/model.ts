@@ -20,17 +20,12 @@ export type DBTabDefaultProps = {
 	 * The content if you don't want to use children.
 	 */
 	content?: string;
-
-	/**
-	 *  Default key property.
-	 */
-	key?: string;
 };
 
 export type DBTabProps = DBTabDefaultProps & GlobalProps;
 
 export type DBTabDefaultState = {
-	id?: string;
+	mId?: string;
 };
 
 export type DBTabState = DBTabDefaultState & GlobalState;

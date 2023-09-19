@@ -1,0 +1,27 @@
+{
+  "name": "@db-ui/ngx-components",
+  "version": "0.0.0",
+  "description": "Angular components @db-ui/components",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/db-ui/mono.git"
+  },
+  "license": "Apache-2.0",
+  "main": "dist/fesm5.js",
+  "module": "dist/fesm5.js",
+  "types": "dist/core.d.ts",
+  "scripts": {
+    "build": "ng build",
+    "ng": "ng",
+    "start": "ng serve"
+  },
+  "devDependencies": {
+    "@angular-devkit/build-angular": "14.2.12",
+    "@angular/common": "14.3.0",
+    "ng-packagr": "14.2.2"
+  },
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/",
+    "access": "public"
+  }
+}

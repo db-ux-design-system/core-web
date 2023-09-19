@@ -1,0 +1,57 @@
+@use "@db-ui/foundations/build/scss/variables";
+
+:root {
+	body {
+		margin: 0;
+	}
+}
+
+:root:has(.fixed-header-footer),
+:root:has(db-page[type="fixedHeaderFooter"]) {
+	block-size: 100%;
+	overflow: hidden;
+
+	body,
+	#root,
+	#app {
+		block-size: 100%;
+	}
+}
+
+.db-page {
+	opacity: 0;
+
+	&[data-fade-in="true"] {
+		transition: opacity variables.$db-transition-emotional-straight;
+	}
+
+	&:not([data-fonts-loaded]),
+	&[data-fonts-loaded="true"] {
+		opacity: 1;
+	}
+
+	&.fixed-header-footer {
+		block-size: 100%;
+		min-block-size: 100%;
+		// TODO: We most likely need to refactor all of our overflow-declarations
+		overflow: hidden;
+		display: flex;
+		flex-direction: column;
+
+		header,
+		footer {
+			display: flex;
+			flex: 0 1 auto;
+			flex-grow: 0;
+			flex-shrink: 0;
+		}
+
+		main {
+			display: flex;
+			flex-direction: column;
+			overflow: auto;
+			flex: 1 1 auto;
+			inline-size: 100%;
+		}
+	}
+}

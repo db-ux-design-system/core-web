@@ -1,12 +1,16 @@
-const ChildProcess = require('child_process');
-const Buff = require('buffer');
+const ChildProcess = require('node:child_process');
+const Buff = require('node:buffer');
 
 module.exports = () => ({
 	json: {
 		post(json) {
 			const component = json.meta?.useMetadata?.component;
 			let propsCliString = '';
-			let includeIconCliString = '';
+			let includeIcon = '';
+			let hasDisabledProp = '';
+			let hasOnClick = '';
+			let canvasHeight = '--canvasHeight fixed';
+			let canvasWidth = '--canvasWidth fixed';
 			if (component) {
 				if (component.properties) {
 					const propsString = JSON.stringify(component.properties);
@@ -16,15 +20,31 @@ module.exports = () => ({
 				}
 
 				if (component.includeIcon) {
-					includeIconCliString = `--includeIcon true`;
+					includeIcon = `--includeIcon true`;
+				}
+
+				if (component.hasDisabledProp) {
+					hasDisabledProp = `--hasDisabledProp true`;
+				}
+
+				if (component.hasOnClick) {
+					hasOnClick = `--hasOnClick true`;
+				}
+
+				if (component.canvasSize) {
+					if (component.canvasSize.width) {
+						canvasWidth = `--canvasWidth ${component.canvasSize.width}`;
+					}
+					if (component.canvasSize.height) {
+						canvasHeight = `--canvasHeight ${component.canvasSize.height}`;
+					}
 				}
 			}
 
-			// TODO: Make Version dynamic
 			ChildProcess.execSync(
-				`hygen power-apps new --version 1.0.0 ${json.name
+				`hygen power-apps new --version 0.0.0 ${json.name
 					.replace('DB', '')
-					.toLowerCase()} ${includeIconCliString} ${propsCliString} `
+					.toLowerCase()} ${canvasHeight} ${canvasWidth} ${includeIcon} ${hasDisabledProp} ${hasOnClick} ${propsCliString}`
 			);
 			return json;
 		}

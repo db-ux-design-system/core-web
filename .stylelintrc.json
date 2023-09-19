@@ -3,7 +3,9 @@
 		"stylelint-config-sass-guidelines",
 		"stylelint-config-prettier"
 	],
+	"plugins": ["stylelint-use-logical"],
 	"rules": {
+		"csstools/use-logical": ["always", { "except": ["float"] }],
 		"order/properties-alphabetical-order": null,
 		"scss/operator-no-newline-after": null,
 		"declaration-empty-line-before": null,
@@ -17,6 +19,7 @@
 		"declaration-property-value-disallowed-list": null,
 		"scss/percent-placeholder-pattern": null,
 		"scss/at-mixin-pattern": null,
-		"scss/at-import-partial-extension": null
+		"scss/at-import-partial-extension": null,
+		"selector-max-id": null
 	}
 }

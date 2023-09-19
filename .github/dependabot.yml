@@ -5,7 +5,7 @@ updates:
     directory: "/"
     schedule:
       interval: "daily"
-      time: "04:00"
+      time: "02:00"
       timezone: "Europe/Berlin"
     pull-request-branch-name:
       separator: "-"
@@ -16,9 +16,15 @@ updates:
     open-pull-requests-limit: 10
     schedule:
       interval: "daily"
-      time: "04:00"
+      time: "02:00"
       timezone: "Europe/Berlin"
     ignore:
+      # disable playwright auto update for now, because we need to update them manually anyways
+      - dependency-name: "@playwright/experimental-ct-react"
+      - dependency-name: "@playwright/experimental-ct-vue"
+      - dependency-name: "@playwright/test"
+      - dependency-name: "typescript"
+        update-types: ["version-update:semver-major"]
       - dependency-name: "ng-packagr"
         update-types: ["version-update:semver-major"]
       - dependency-name: "@angular/cli"
@@ -27,11 +33,55 @@ updates:
         update-types: ["version-update:semver-major"]
       - dependency-name: "@angular/compiler"
         update-types: ["version-update:semver-major"]
+      - dependency-name: "@angular/forms"
+        update-types: ["version-update:semver-major"]
+      - dependency-name: "@angular-devkit/build-angular"
+        update-types: ["version-update:semver-major"]
+      - dependency-name: "@angular/compiler-cli"
+        update-types: ["version-update:semver-major"]
+      - dependency-name: "@angular/common"
+        update-types: ["version-update:semver-major"]
+      - dependency-name: "@angular/router"
+        update-types: ["version-update:semver-major"]
+      - dependency-name: "@angular/animations"
+        update-types: ["version-update:semver-major"]
+      - dependency-name: "@angular/platform-browser"
+        update-types: ["version-update:semver-major"]
+      - dependency-name: "@angular/platform-browser-dynamic"
+        update-types: ["version-update:semver-major"]
       - dependency-name: "react"
         update-types: ["version-update:semver-major"]
       - dependency-name: "react-dom"
         update-types: ["version-update:semver-major"]
+      # We currently need to ignore this until we migrate to TypeScript 5
+      - dependency-name: "xo"
+        update-types: ["version-update:semver-minor"]
+      # We currently need to ignore this for the actual (LTS) Angular version
+      - dependency-name: "zone.js"
+        update-types: ["version-update:semver-minor"]
     pull-request-branch-name:
       separator: "-"
     # https://github.com/dependabot/dependabot-core/issues/5226#issuecomment-1179434437
+    versioning-strategy: increase
+
+  - package-ecosystem: "npm"
+    directory: "/examples/react-example"
+    open-pull-requests-limit: 10
+    schedule:
+      interval: "daily"
+      time: "02:00"
+      timezone: "Europe/Berlin"
+    pull-request-branch-name:
+      separator: "-"
+    versioning-strategy: increase
+
+  - package-ecosystem: "npm"
+    directory: "/examples/vue-example"
+    open-pull-requests-limit: 10
+    schedule:
+      interval: "daily"
+      time: "02:00"
+      timezone: "Europe/Berlin"
+    pull-request-branch-name:
+      separator: "-"
     versioning-strategy: increase

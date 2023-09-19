@@ -1,16 +1,16 @@
 /*
  * Fetches all branches and deletes all review-branches in github pages
  */
-const FS = require('fs');
+import FS from 'node:fs';
 
 const TAG = 'cleanup-gh-pages:';
 
 const removeOldFromPath = (isTag, data) => {
 	const path = `public/${isTag ? 'version' : 'review'}`;
 	if (FS.existsSync(path) && data?.length > 0) {
-		const dirsToDelete = FS.readdirSync(path).filter(
-			(file) => !data.find((branch) => branch.name === file)
-		);
+		const dirsToDelete = FS.readdirSync(path)
+			.filter((file) => !data.find((branch) => branch.name === file))
+			.filter((file) => file !== 'main');
 		if (dirsToDelete?.length > 0) {
 			console.log(
 				TAG,
@@ -36,7 +36,7 @@ const removeOldFromPath = (isTag, data) => {
 	return false;
 };
 
-module.exports = async ({ github, context }) => {
+const cleanUpPages = async ({ github, context }) => {
 	const { repo, owner } = context.repo;
 	const branches = await github.rest.repos.listBranches({
 		owner,
@@ -53,3 +53,5 @@ module.exports = async ({ github, context }) => {
 			removeOldFromPath(true, tags.data)
 	};
 };
+
+export default cleanUpPages;

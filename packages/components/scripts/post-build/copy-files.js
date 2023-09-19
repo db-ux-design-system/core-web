@@ -1,42 +1,44 @@
 const Fse = require('fs-extra');
-const Components = require('./components');
 const Frameworks = require('./framworks');
+const { components } = require('./components');
+const Replace = require('replace-in-file');
 
 module.exports = () => {
-	for (const fileEnding of ['scss', 'css']) {
+	for (const { name } of components) {
 		for (const framework of Frameworks) {
-			for (const component of Components) {
+			// TODO: Add other frameworks after Playwright supports them in component tests
+			if (framework === 'react' || framework === 'vue') {
+				const resolvedFramework =
+					framework === 'vue' ? `vue/vue3` : framework;
+				if (
+					Fse.pathExistsSync(
+						`./src/components/${name}/${name}.spec.tsx`
+					)
+				) {
+					Fse.copySync(
+						`./src/components/${name}/${name}.spec.tsx`,
+						`../../output/${resolvedFramework}/src/components/${name}/${name}.spec.tsx`
+					);
+				}
 				Fse.copySync(
-					`./src/components/${component.name}/${component.name}.${fileEnding}`,
-					`./output/${
-						framework === 'vue' ? `vue/vue3` : framework
-					}/src/components/${component.name}/${
-						component.name
-					}.${fileEnding}`
+					`./test/playwright/boilerplate`,
+					`../../output/${resolvedFramework}/playwright`,
+					{ overwrite: true }
 				);
+				Fse.copySync(
+					`./test/playwright/config.ts`,
+					`../../output/${resolvedFramework}/playwright.config.ts`,
+					{ overwrite: true }
+				);
+
+				if (framework === 'vue') {
+					Replace({
+						files: `../../output/${resolvedFramework}/playwright.config.ts`,
+						from: './../../__snapshots__',
+						to: './../../../__snapshots__'
+					});
+				}
 			}
-			Fse.copySync(
-				`./src/db-ui-components.${fileEnding}`,
-				`./output/${
-					framework === 'vue' ? `vue/vue3` : framework
-				}/src/db-ui-components.${fileEnding}`
-			);
 		}
 	}
-
-	[
-		'package.json',
-		'angular.json',
-		'tsconfig.json',
-		'ng-package.json'
-	].forEach((file) => {
-		Frameworks.forEach((framework) => {
-			if (Fse.pathExistsSync(`./overrides/${framework}/${file}`)) {
-				Fse.copySync(
-					`./overrides/${framework}/${file}`,
-					`./output/${framework}/${file}`
-				);
-			}
-		});
-	});
 };

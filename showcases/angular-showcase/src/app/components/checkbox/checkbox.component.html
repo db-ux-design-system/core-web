@@ -1,0 +1,25 @@
+<app-default-component
+	title="Checkbox"
+	[variants]="variants"
+	[exampleTemplate]="exampleTemplate"
+>
+	<ng-template
+		#exampleTemplate
+		let-exampleProps="exampleProps"
+		let-exampleName="exampleName"
+		let-exampleIndex="exampleIndex"
+		let-variantIndex="variantIndex"
+	>
+		<db-checkbox
+			[label]="exampleProps.label"
+			[disabled]="exampleProps.disabled"
+			[checked]="exampleProps.checked"
+			[value]="exampleProps.value"
+			[required]="exampleProps.required"
+			[indeterminate]="exampleProps.indeterminate"
+			[invalid]="exampleProps.invalid"
+			[size]="exampleProps.size"
+			>{{ exampleName }}</db-checkbox
+		>
+	</ng-template>
+</app-default-component>

@@ -1,0 +1,90 @@
+@use "sass:map";
+@use "@db-ui/foundations/build/scss/variables";
+@use "@db-ui/foundations/build/scss/helpers/component";
+@use "@db-ui/foundations/build/scss/helpers/font";
+@use "../../styles/button-components";
+@use "../../styles/tag-components";
+
+%absolute-badge {
+	position: absolute;
+
+	transform: translate(var(--badge-transform-x), var(--badge-transform-y));
+
+	&[data-placement$="right"] {
+		--badge-transform-x: 50%;
+		inset-inline-end: 0;
+	}
+
+	&[data-placement$="left"] {
+		--badge-transform-x: -50%;
+		inset-inline-start: 0;
+	}
+
+	&[data-placement*="top"] {
+		--badge-transform-y: -50%;
+		inset-block-start: 0;
+	}
+
+	&[data-placement*="center"] {
+		--badge-transform-y: -50%;
+		inset-block-start: 50%;
+	}
+
+	&[data-placement*="bottom"] {
+		--badge-transform-y: 50%;
+		inset-block-end: 0;
+	}
+}
+
+.db-badge {
+	--badge-size: #{variables.$db-spacing-fixed-sm};
+	@extend %component-border;
+	@extend %db-overwrite-font-size-sm;
+	@extend %default-button;
+
+	@include tag-components.get-tag-colors();
+	border-radius: 42px; // extreme radius
+	padding-inline: variables.$db-spacing-fixed-xs;
+	block-size: fit-content;
+	inline-size: fit-content;
+
+	&:empty,
+	> span:empty {
+		block-size: var(--badge-size);
+		inline-size: var(--badge-size);
+		padding: 0;
+	}
+
+	&:has(.db-icon) {
+		padding: variables.$db-spacing-fixed-2xs;
+	}
+
+	& > *,
+	.db-icon {
+		@extend %db-overwrite-font-size-sm;
+	}
+
+	&[data-size="small"] {
+		--badge-size: #{variables.$db-spacing-fixed-xs};
+		@extend %db-overwrite-font-size-2xs;
+		padding-inline: variables.$db-spacing-fixed-2xs;
+
+		&:empty,
+		> span:empty {
+			padding: 0;
+		}
+
+		&:has(.db-icon) {
+			padding: variables.$db-spacing-fixed-3xs;
+		}
+
+		& > *,
+		.db-icon {
+			@extend %db-overwrite-font-size-2xs;
+		}
+	}
+
+	&[data-placement^="corner"] {
+		@extend %absolute-badge;
+	}
+}

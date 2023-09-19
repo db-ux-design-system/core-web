@@ -19,16 +19,21 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: ⬇ Checkout repo
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: 🔄 Init Cache
         uses: ./.github/actions/npm-cache
 
-      - name: ⬇ Download build
+      - name: ⬇ Download showcases
         uses: ./.github/actions/download-tar-artifact
         with:
-          name: build
-          path: out
+          name: db-ui-showcases
+          path: build-showcases
+
+      - name: 🦵🦿 I like to move it move it
+        shell: bash
+        run: |
+          mv build-showcases/patternhub out
 
       - name: ↔ Extract branch name
         uses: ./.github/actions/extract-branch
@@ -45,7 +50,7 @@ jobs:
           then
             echo "name=${GITHUB_REF#refs/tags/}" >> $GITHUB_OUTPUT
           else
-            echo "name=${$BRANCH_NAME}" >> $GITHUB_OUTPUT
+            echo "name=${BRANCH_NAME}" >> $GITHUB_OUTPUT
           fi
         id: extract
 
@@ -56,20 +61,13 @@ jobs:
           result-encoding: string
           script: return context?.payload?.repository?.name
 
-      - name: 🎩 Get owner name
-        uses: actions/github-script@v6
-        id: owner-name
-        with:
-          result-encoding: string
-          script: return context?.payload?.repository?.owner?.login
-
       - name: 🔨 Build page
         env:
           RELEASE: ${{ inputs.release }}
           PRE_RELEASE: ${{ inputs.preRelease }}
           NAME: ${{ steps.extract.outputs.name }}
           REPO_NAME: ${{ steps.repo-name.outputs.result }}
-          OWNER_NAME: ${{ steps.owner-name.outputs.result }}
+          OWNER_NAME: ${{ github.repository_owner }}
         run: |
           chmod +rx ./.github/scripts/build-gh-page.sh
           ./.github/scripts/build-gh-page.sh
@@ -84,9 +82,9 @@ jobs:
         env:
           RELEASE: ${{ inputs.release }}
           PRE_RELEASE: ${{ inputs.preRelease }}
-          NAME: ${{ steps.extract.outputs.name }}
+          NAME: ${{ steps.extract_branch.outputs.branch-name }}
           REPO_NAME: ${{ steps.repo-name.outputs.result }}
-          OWNER_NAME: ${{ steps.owner-name.outputs.result }}
+          OWNER_NAME: ${{ github.repository_owner }}
         run: |
           if [[ $RELEASE == "true" ]];
           then

@@ -10,16 +10,28 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: ⬇ Checkout repo
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: 🔄 Init Cache
         uses: ./.github/actions/npm-cache
 
-      - name: ⬇ Download Packages
+      - name: ⬇ Download foundations build
         uses: ./.github/actions/download-tar-artifact
         with:
-          name: db-ui-packages
-          path: packages
+          name: db-ui-foundations-build
+          path: packages/foundations/build
+
+      - name: ⬇ Download components build
+        uses: ./.github/actions/download-tar-artifact
+        with:
+          name: db-ui-components-build
+          path: packages/components/build
+
+      - name: ⬇ Download output
+        uses: ./.github/actions/download-tar-artifact
+        with:
+          name: db-ui-output
+          path: output
 
       - name: 📥 Install output dependencies
         uses: bahmutov/npm-install@v1

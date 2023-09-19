@@ -1,0 +1,49 @@
+<app-default-component
+	title="DBNavigationItem"
+	[variants]="variants"
+	[exampleTemplate]="exampleTemplate"
+>
+	<ng-template
+		#exampleTemplate
+		let-exampleProps="exampleProps"
+		let-exampleName="exampleName"
+		let-exampleIndex="exampleIndex"
+		let-variantIndex="variantIndex"
+	>
+		<db-navigation-item
+			[icon]="exampleProps.icon"
+			[width]="exampleProps.width"
+			[disabled]="exampleProps.disabled"
+			[active]="exampleProps.active"
+			[areaPopup]="exampleProps.areaPopup"
+			(click)="showAlert(exampleName)"
+		>
+			<ng-container *dbNavigationContent>
+				<ng-container *ngIf="exampleProps.areaPopup">{{
+					exampleName
+				}}</ng-container>
+				<a href="#" *ngIf="!exampleProps.areaPopup">{{
+					exampleName
+				}}</a>
+			</ng-container>
+
+			<ng-container *ngIf="exampleProps.areaPopup" sub-navigation>
+				<db-navigation-item [areaPopup]="false">
+					<ng-container *dbNavigationContent>
+						<a href="#">Test1</a>
+					</ng-container>
+				</db-navigation-item>
+				<db-navigation-item [areaPopup]="false">
+					<ng-container *dbNavigationContent>
+						<a href="#">Test2</a>
+					</ng-container>
+				</db-navigation-item>
+				<db-navigation-item [areaPopup]="false">
+					<ng-container *dbNavigationContent>
+						<a href="#">Test3</a>
+					</ng-container>
+				</db-navigation-item>
+			</ng-container>
+		</db-navigation-item>
+	</ng-template>
+</app-default-component>

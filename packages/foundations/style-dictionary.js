@@ -1,14 +1,12 @@
 const StyleDictionary = require('style-dictionary').extend(
 	'style-dictionary.config.json'
 );
-
 const minifyDictionary = require('style-dictionary/lib/common/formatHelpers/minifyDictionary');
 const transforms = require('style-dictionary/lib/common/transforms');
-const SCSSPlaceholders = require('./scripts/color-placeholders-generator');
-const SCSSClasses = require('./scripts/color-classes-generator');
-
-const generateClasses = require('./scripts/scss-typography-generator');
-const generateScaling = require('./scripts/scss-scaling-generator');
+const SCSSPlaceholders = require('./scripts/color-placeholders-generator.js');
+const SCSSClasses = require('./scripts/color-classes-generator.js');
+const generateTypography = require('./scripts/scss-typography-generator.js');
+const generateScaling = require('./scripts/scss-scaling-generator.js');
 
 const modifyTailwind = (dictionary) => {
 	for (const token of [
@@ -45,32 +43,17 @@ StyleDictionary.registerFormat({
 });
 
 StyleDictionary.registerFormat({
-	name: 'db-core-typography-classes',
-	formatter({ dictionary }) {
-		const typography = dictionary.tokens.typography;
-		return generateClasses(typography, true);
-	}
-});
-
-StyleDictionary.registerFormat({
 	name: 'db-core-typography-placeholder',
 	formatter({ dictionary }) {
 		const typography = dictionary.tokens.typography;
-		return generateClasses(typography, false);
-	}
-});
-
-StyleDictionary.registerFormat({
-	name: 'db-core-scaling-classes',
-	formatter() {
-		return generateScaling(true);
+		return generateTypography(typography);
 	}
 });
 
 StyleDictionary.registerFormat({
 	name: 'db-core-scaling-placeholder',
 	formatter() {
-		return generateScaling(false);
+		return generateScaling();
 	}
 });
 
@@ -121,7 +104,20 @@ StyleDictionary.registerTransform({
 	name: `size/real/rem`,
 	matcher: (token) => token.attributes.category === 'size',
 	transformer(token) {
+		if (token.attributes.screen) {
+			return token.value;
+		}
+
 		return `${Number(token.value) / 16}rem`;
+	}
+});
+
+StyleDictionary.registerTransform({
+	type: `value`,
+	name: `size/upscale/screen`,
+	matcher: (token) => token.attributes.screen === true,
+	transformer(token) {
+		return `${Number(token.value) * 16}px`;
 	}
 });
 
@@ -139,6 +135,7 @@ StyleDictionary.registerTransformGroup({
 	transforms: [
 		'attribute/cti',
 		'name/dotty/pascal',
+		'size/upscale/screen',
 		'size/real/rem',
 		'color/hex'
 	]
@@ -151,6 +148,7 @@ StyleDictionary.registerTransformGroup({
 		'name/cti/kebab',
 		'time/seconds',
 		'content/icon',
+		'size/upscale/screen',
 		'size/real/rem',
 		'color/css'
 	]
@@ -163,6 +161,7 @@ StyleDictionary.registerTransformGroup({
 		'name/cti/kebab',
 		'time/seconds',
 		'content/icon',
+		'size/upscale/screen',
 		'size/real/rem',
 		'color/css'
 	]

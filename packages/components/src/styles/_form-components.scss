@@ -1,0 +1,98 @@
+@use "sass:map";
+@use "@db-ui/foundations/build/scss/icon/icon-helpers";
+@use "@db-ui/foundations/build/scss/helpers/font";
+@use "@db-ui/foundations/build/scss/variables";
+@use "@db-ui/foundations/build/scss/helpers/component";
+@use "@db-ui/foundations/build/scss/color/color-variants";
+
+$dropdown-icon-transition: transform variables.$db-transition-emotional-straight;
+$dropdown-icon-transform: rotate(-180deg);
+
+%dropdown-icon {
+	@include icon-helpers.icon("expand_more", "after");
+
+	&::after {
+		transition: $dropdown-icon-transition;
+	}
+}
+
+%default-form-message {
+	& .db-infotext {
+		margin-block-start: variables.$db-spacing-fixed-2xs;
+	}
+}
+
+%default-form-label {
+	label {
+		@extend %db-overwrite-font-size-xs;
+		display: flex;
+		align-items: center;
+		padding-block-end: variables.$db-spacing-fixed-xs;
+
+		cursor: text;
+
+		&[data-overflow="true"] {
+			max-inline-size: 25ch;
+			text-overflow: ellipsis;
+			white-space: nowrap;
+			overflow: hidden;
+		}
+	}
+}
+
+%disabled-form-element {
+	&:has(input:disabled),
+	&:has(textarea:disabled),
+	&:has(select:disabled) {
+		& {
+			// Decided against cursor: not-allowed, compare to e.g. https://phabricator.wikimedia.org/T121960
+			opacity: component.$default-disabled-opacity;
+			pointer-events: none;
+		}
+	}
+}
+
+%required-form-element {
+	&:has(input:required),
+	&:has(textarea:required),
+	&:has(select:required) {
+		& label {
+			&::after {
+				content: " *";
+				padding-inline-start: variables.$db-spacing-fixed-2xs;
+			}
+		}
+	}
+}
+
+@mixin get-input-color-variants() {
+	@each $name, $colors in color-variants.$component-variants {
+		&[data-variant="#{$name}"] {
+			--db-current-border-color: #{map.get($colors, "border")};
+		}
+
+		&[data-variant="#{$name}"] {
+			--db-current-color: #{map.get($colors, "on-bg")};
+			color: map.get($colors, "on-bg");
+		}
+
+		&[data-variant="#{$name}"] select {
+			--db-current-color: #{map.get($colors, "on-bg")};
+			color: map.get($colors, "on-bg");
+		}
+
+		&[data-variant="#{$name}"] input,
+		&[data-variant="#{$name}"] textarea,
+		&[data-variant="#{$name}"] select {
+			@if ($name == "critical") {
+				@extend %adaptive-critical-component;
+			} @else if ($name == "informational") {
+				@extend %adaptive-informational-component;
+			} @else if ($name == "warning") {
+				@extend %adaptive-warning-component;
+			} @else if ($name == "successful") {
+				@extend %adaptive-successful-component;
+			}
+		}
+	}
+}

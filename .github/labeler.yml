@@ -19,3 +19,7 @@ components:
 # Add 'showcases' label to any file changes for the showcases files
 showcases:
   - showcases/**
+  -
+# Add 'examples' label to any file changes for the examples files
+examples:
+  - examples/**

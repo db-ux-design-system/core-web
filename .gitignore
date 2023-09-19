@@ -6,13 +6,13 @@ npm-debug.log
 **/build/
 **/dist/
 build-old/
-public/
 out/
 dependencyGraph.json
 source/_meta/_head.mustache
 source/_meta/_foot.mustache
 
 tailwind.config.js
+!e2e/.env
 .env
 **/*/.env
 
@@ -26,9 +26,13 @@ ctags.tmp
 packages/components/src/**/*.css
 packages/components/src/**/*.css.map
 
-packages/components/output/power-apps
-packages/components/output/**/src
-packages/components/output/**/dist
+output/power-apps
+/output/**/src
+/output/**/dist
+/output/**/.angular
+/output/**/playwright*
+/output/**/test-results
+
 /build-showcases/
 /build-outputs/
 !/build-outputs/package.json
@@ -37,3 +41,18 @@ packages/components/output/**/dist
 !/build-power-apps/package.json
 !/build-power-apps/package-lock.json
 !/build-power-apps/DBUI/**
+!/build-power-apps/**/strings/*.*.resx
+.cache
+**/playwright-report
+/.parcel-cache/
+/output/docs.json
+showcases/patternhub/public/iframe-resizer/*
+
+/showcases/**/test-results/
+
+/__snapshots__/**/*-win32.png
+/packages/foundations/assets/icons/functional/tmp/
+/packages/foundations/assets/icons/functional/fonts/**/index.html
+/packages/foundations/assets/icons/functional/fonts/**/index.css
+/packages/foundations/assets/icons/functional/fonts/**/font-face.css
+/packages/foundations/assets/icons/functional/fonts/**/info.json

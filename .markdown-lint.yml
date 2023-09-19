@@ -15,6 +15,8 @@
 #   <!-- markdownlint-restore -->
 #
 
+default: true
+
 ###############
 # Rules by id #
 ###############
@@ -29,8 +31,8 @@ MD026:
   punctuation: ".,;:!。，；:" # List of not allowed
 MD029: false # Ordered list item prefix
 MD030: false
-MD033: false # Allow inline HTML
 MD036: false # Emphasis used instead of a heading
+MD041: false # h1 first line is not working in this monorepo
 MD049: false # emphasis-style Emphasis style should be consistent
 
 #################

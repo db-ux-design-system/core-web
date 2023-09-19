@@ -1,12 +1,19 @@
 {
 	"trailingComma": "none",
+	"bracketSpacing": true,
 	"overrides": [
 		{
 			"files": ["*.js", "*.jsx", "*.cjs", "*.ts", "*.tsx"],
 			"options": {
 				"bracketSameLine": true
 			}
+		},
+		{
+			"files": ["*.sh", ".env"],
+			"options": {
+				"parser": "sh"
+			}
 		}
 	],
-	"bracketSpacing": true
+	"endOfLine": "auto"
 }

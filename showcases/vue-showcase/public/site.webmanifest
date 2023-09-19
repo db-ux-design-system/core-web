@@ -1,0 +1,14 @@
+{
+	"short_name": "",
+	"name": "",
+	"icons": [
+		{
+			"src": "/images/db_logo.svg",
+			"type": "image/svg",
+			"sizes": "192x192"
+		}
+	],
+	"start_url": "/",
+	"background_color": "#fdfdfd",
+	"theme_color": "#fdfdfd"
+}

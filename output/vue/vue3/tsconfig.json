@@ -1,0 +1,31 @@
+{
+	"compilerOptions": {
+		"strict": false,
+		"isolatedModules": true,
+		"useDefineForClassFields": true,
+		"allowUnreachableCode": false,
+		"allowSyntheticDefaultImports": true,
+		"declaration": true,
+		"emitDecoratorMetadata": true,
+		"experimentalDecorators": true,
+		"esModuleInterop": true,
+		"lib": ["dom", "esnext"],
+		"module": "esnext",
+		"moduleResolution": "node",
+		"noImplicitAny": false,
+		"noImplicitReturns": false,
+		"noUnusedLocals": false,
+		"noUnusedParameters": false,
+		"outDir": "dist",
+		"removeComments": false,
+		"strictNullChecks": true,
+		"sourceMap": true,
+		"target": "esnext",
+		"types": [],
+		"skipLibCheck": true
+	},
+	"include": ["src/**/*.ts", "src/**/*.vue"],
+	"exclude": ["node_modules", "src/**/*.scss", "src/**/*.spec.tsx"],
+	"compileOnSave": false,
+	"buildOnSave": false
+}

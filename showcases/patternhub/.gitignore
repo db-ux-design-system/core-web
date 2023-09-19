@@ -1,0 +1,56 @@
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
+# dependencies
+/node_modules
+/.pnp
+.pnp.js
+
+# testing
+/coverage
+
+# next.js
+/.next/
+/out/
+
+# production
+/build
+
+# misc
+.DS_Store
+*.pem
+
+# debug
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+
+# vercel
+.vercel
+
+# typescript
+*.tsbuildinfo
+next-env.d.ts
+/.idea/
+
+public/*-showcase
+public/docs
+
+styles/db-ui-components.scss
+scripts/generated
+pages/components/
+components/src
+!pages/components/readme.mdx
+!components/src/tsconfig.json
+!components/component-parser
+!components/default-page.tsx
+!components/index.tsx
+!components/data.ts
+!components/iframe.tsx
+!components/static-content.tsx
+!components/01-layout.mdx
+!components/02-action.mdx
+!components/03-data-input.mdx
+!components/04-data-display.mdx
+!components/06-feedback.mdx
+!.env

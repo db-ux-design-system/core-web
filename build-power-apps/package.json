@@ -2,11 +2,24 @@
   "name": "@db-ui/power-apps-deployment",
   "version": "0.0.0",
   "description": "",
-  "workspaces": [
-    "*"
-  ],
   "scripts": {
-    "build:dotnet": " cd DBUI && dotnet build --configuration Release",
-    "build:msbuild": " cd DBUI && msbuild -property:configuration=Release"
+    "build:dotnet": "cd DBUI && dotnet build --configuration Release",
+    "build:msbuild": "cd DBUI && msbuild -property:configuration=Release"
+  },
+  "devDependencies": {
+    "@types/node": "^16.4",
+    "@types/powerapps-component-framework": "^1.3.0",
+    "@types/react-dom": "^18.0.7",
+    "@typescript-eslint/eslint-plugin": "^4.29.0",
+    "@typescript-eslint/parser": "^4.29.0",
+    "eslint": "^7.32.0",
+    "eslint-plugin-import": "^2.23.4",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-promise": "^5.1.0",
+    "pcf-scripts": "^1",
+    "pcf-start": "^1",
+    "sass": "^1.55.0",
+    "sass-loader": "^13.1.0",
+    "typescript": "^4.3"
   }
 }

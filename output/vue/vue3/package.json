@@ -1,0 +1,51 @@
+{
+  "name": "@db-ui/v-components",
+  "version": "0.0.0",
+  "type": "module",
+  "description": "Vue components for @db-ui/components",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/db-ui/mono.git"
+  },
+  "license": "Apache-2.0",
+  "main": "./dist/db-ui.umd.js",
+  "module": "./dist/db-ui.es.js",
+  "exports": {
+    ".": {
+      "import": "./dist/db-ui.es.js",
+      "require": "./dist/db-ui.umd.js"
+    }
+  },
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist/"
+  ],
+  "scripts": {
+    "build": "npm-run-all build:*",
+    "build:01_vite": "vite build",
+    "build:02_types": "vue-tsc --declaration --emitDeclarationOnly",
+    "mv:dist": "cpr dist ../../../build-outputs/vue/dist -o",
+    "mv:package.json": "cpr package.json ../../../build-outputs/vue/package.json -o",
+    "mv:readme": "cpr README.md ../../../build-outputs/vue/README.md -o",
+    "postbuild": "npm-run-all -p mv:*",
+    "test:components": "playwright test -c playwright.config.ts"
+  },
+  "dependencies": {
+    "vue": "^3.3.4"
+  },
+  "devDependencies": {
+    "@axe-core/playwright": "^4.7.3",
+    "@playwright/experimental-ct-vue": "1.35.1",
+    "@vitejs/plugin-vue": "^4.3.4",
+    "sass": "^1.67.0",
+    "typescript": "^4.9.5",
+    "vite": "^4.4.9",
+    "vue-tsc": "^1.8.11"
+  },
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/",
+    "access": "public"
+  },
+  "sideEffects": false,
+  "source": "src/index.ts"
+}

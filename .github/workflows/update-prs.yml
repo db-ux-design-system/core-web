@@ -1,0 +1,25 @@
+---
+name: Update all PR branches if main gets update
+
+on:
+  push:
+    branches:
+      - "main"
+
+jobs:
+  update-prs:
+    name: Update PRs
+    runs-on: ubuntu-latest
+    steps:
+      - name: ⬇ Checkout repo
+        uses: actions/checkout@v4
+
+      - name: ⌚ Update PRs
+        id: cleanup
+        uses: actions/github-script@v6
+        with:
+          script: |
+            // TODO: we need to wait for some results on https://github.com/orgs/community/discussions/43427 for this one
+            // const { default: updatePrs } = await import('${{ github.workspace }}/.github/scripts/update-prs.js');
+            // print how many PRs are updated
+            // console.log(await updatePrs({github, context}));

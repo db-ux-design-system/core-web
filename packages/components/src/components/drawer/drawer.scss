@@ -1,0 +1,210 @@
+@use "sass:map";
+@use "./../../styles/dialog-init";
+@use "@db-ui/foundations/build/scss/variables";
+@use "@db-ui/foundations/build/scss/helpers/functions";
+@use "@db-ui/foundations/build/scss/helpers/component";
+@use "@db-ui/foundations/build/scss/animation/animations";
+
+%direction-right {
+	inset-inline: auto 0;
+
+	&[data-rounded="true"] {
+		border-start-start-radius: component.$default-card-border-radius;
+		border-end-start-radius: component.$default-card-border-radius;
+	}
+}
+
+%direction-left {
+	inset-inline: 0 auto;
+
+	&[data-rounded="true"] {
+		border-start-end-radius: component.$default-card-border-radius;
+		border-end-end-radius: component.$default-card-border-radius;
+	}
+}
+
+%full-horizontal {
+	&:not([data-width="full"]) {
+		max-block-size: var(
+			--db-drawer-max-height,
+			calc(100% - #{variables.$db-spacing-fixed-xl})
+		);
+		max-inline-size: none;
+	}
+}
+
+%direction-up {
+	@extend %full-horizontal;
+	inset: auto 0 0;
+
+	&[data-rounded="true"] {
+		border-start-end-radius: component.$default-card-border-radius;
+		border-start-start-radius: component.$default-card-border-radius;
+	}
+}
+%direction-down {
+	@extend %full-horizontal;
+	inset: 0 0 auto;
+
+	&[data-rounded="true"] {
+		border-end-end-radius: component.$default-card-border-radius;
+		border-end-start-radius: component.$default-card-border-radius;
+	}
+}
+
+$spacings: (
+	"small": (
+		"block": variables.$db-spacing-fixed-xs,
+		"inline": variables.$db-spacing-fixed-md
+	),
+	"medium": (
+		"block": variables.$db-spacing-fixed-sm,
+		"inline": variables.$db-spacing-fixed-lg
+	),
+	"large": (
+		"block": variables.$db-spacing-fixed-md,
+		"inline": variables.$db-spacing-fixed-xl
+	),
+	"none": (
+		"block": 0,
+		"inline": 0
+	)
+);
+
+@mixin get-spacing($spacing) {
+	padding-block: map.get($spacing, "block");
+
+	.db-drawer-header {
+		// We need this variable to overwrite it inside the header
+		padding-block-end: var(
+			--db-drawer-header-padding-block-end,
+			#{map.get($spacing, "block")}
+		);
+		padding-inline: map.get($spacing, "inline");
+	}
+
+	.db-drawer-content {
+		// We need this variable to overwrite it inside the header
+		padding-inline: var(
+			--db-drawer-content-padding-inline,
+			#{map.get($spacing, "inline")}
+		);
+	}
+}
+
+%spacing-drawer {
+	@each $name, $spacing in $spacings {
+		@if ($name == "medium") {
+			@include get-spacing($spacing);
+		}
+
+		&[data-spacing="#{$name}"] {
+			@include get-spacing($spacing);
+		}
+	}
+}
+
+.db-drawer {
+	.db-drawer-container {
+		@extend %direction-right;
+		@extend %spacing-drawer;
+		display: flex;
+		flex-direction: column;
+		background-color: variables.$db-colors-neutral-bg;
+		block-size: 100%;
+		inline-size: 100%;
+		position: fixed;
+		box-shadow: variables.$db-elevation-4;
+
+		&:not([data-width="full"]) {
+			max-inline-size: var(
+				--db-drawer-max-width,
+				calc(100% - #{variables.$db-spacing-fixed-xl})
+			);
+		}
+
+		&[data-rounded="true"] {
+			box-shadow: variables.$db-elevation-4;
+		}
+
+		&[data-direction="left"] {
+			@extend %direction-left;
+		}
+
+		&[data-direction="up"] {
+			@extend %direction-up;
+		}
+
+		&[data-direction="down"] {
+			@extend %direction-down;
+		}
+
+		.db-drawer-header {
+			@include functions.divider("bottom");
+			display: none;
+
+			.db-drawer-header-text {
+				margin-block: auto;
+				font-weight: 700;
+			}
+
+			.button-close-drawer {
+				margin-inline-start: auto;
+
+				// angular-workaround
+				button {
+					margin-inline-start: auto;
+				}
+			}
+
+			&:has(.button-close-drawer),
+			&:has(:not(.db-drawer-header-text:empty)) {
+				display: flex;
+			}
+		}
+	}
+
+	&[open] {
+		.db-drawer-container {
+			&:not([data-direction]),
+			&[data-direction="right"] {
+				animation: show-right-to-left animations.$animation-show-timing;
+			}
+
+			&[data-direction="left"] {
+				animation: show-left-to-right animations.$animation-show-timing;
+			}
+
+			&[data-direction="up"] {
+				animation: show-bottom-to-top animations.$animation-show-timing;
+			}
+
+			&[data-direction="down"] {
+				animation: show-top-to-bottom animations.$animation-show-timing;
+			}
+
+			&[hidden] {
+				&:not([data-direction]),
+				&[data-direction="right"] {
+					animation: hide-right-to-left
+						animations.$animation-hide-timing;
+				}
+
+				&[data-direction="left"] {
+					animation: hide-left-to-right
+						animations.$animation-hide-timing;
+				}
+
+				&[data-direction="up"] {
+					animation: hide-bottom-to-top
+						animations.$animation-hide-timing;
+				}
+
+				&[data-direction="down"] {
+					animation: hide-top-to-bottom
+						animations.$animation-hide-timing;
+				}
+			}
+		}
+	}
+}

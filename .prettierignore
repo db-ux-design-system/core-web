@@ -2,3 +2,9 @@ assets/fonts/**/sources/
 public/
 package-lock.json
 build/
+node_modules
+output
+build-outputs
+build-power-apps
+build-showcases
+packages/foundations/scripts/generate-icon-fonts/styles/**

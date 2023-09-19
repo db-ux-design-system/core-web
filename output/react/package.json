@@ -1,0 +1,40 @@
+{
+  "name": "@db-ui/react-components",
+  "version": "0.0.0",
+  "description": "React components for @db-ui/components",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/db-ui/mono.git"
+  },
+  "license": "Apache-2.0",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist/"
+  ],
+  "scripts": {
+    "build": "npm-run-all tsc",
+    "mv:dist": "cpr dist ../../build-outputs/react/dist -o",
+    "mv:package.json": "cpr package.json ../../build-outputs/react/package.json -o",
+    "mv:readme": "cpr README.md ../../build-outputs/react/README.md -o",
+    "open:report": "npx playwright show-report",
+    "postbuild": "npm-run-all -p mv:*",
+    "regenerate:screenshots": "playwright test -c playwright.config.ts --update-snapshots",
+    "test:components": "playwright test -c playwright.config.ts",
+    "tsc": "tsc -p . --sourceMap false"
+  },
+  "devDependencies": {
+    "@axe-core/playwright": "^4.7.3",
+    "@playwright/experimental-ct-react": "1.35.1",
+    "@types/react": "^18.2.22",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "sass": "^1.67.0"
+  },
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/",
+    "access": "public"
+  },
+  "sideEffects": false
+}

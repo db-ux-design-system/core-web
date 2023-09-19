@@ -25,38 +25,53 @@ jobs:
     uses: ./.github/workflows/01-build-outputs.yml
     needs: [build-packages]
 
-  #  build-showcases:
-  #    uses: ./.github/workflows/01-build-showcases.yml
-  #    needs: [build-packages]
+  build-showcases:
+    uses: ./.github/workflows/01-build-showcases.yml
+    needs: [build-packages, get-publish-version]
+    with:
+      release: ${{ needs.get-publish-version.outputs.release }}
+      preRelease: ${{ needs.get-publish-version.outputs.preRelease }}
 
-  #  cypress:
-  #    uses: ./.github/workflows/02-cypress.yml
-  #    needs: [install-cypress,build-showcases]
+  test-components:
+    uses: ./.github/workflows/02-e2e.yml
+    needs: [build-packages]
+
+  build-power-apps:
+    uses: ./.github/workflows/01-build-power-apps.yml
+    needs: [get-publish-version, build-packages]
+    secrets: inherit
+    with:
+      version: ${{ needs.get-publish-version.outputs.version }}
+
+  test-showcases:
+    uses: ./.github/workflows/02-e2e-showcases.yml
+    needs: [build-showcases]
+
+  merge-reports:
+    if: ${{ always() }}
+    uses: ./.github/workflows/03-e2e-merge-reports.yml
+    needs: [test-components, test-showcases]
 
   checks-done:
     runs-on: ubuntu-latest
     steps:
       - name: 🎉 Checks done
         run: echo "🎉 All builds were successful."
-        # TODO: integrate the cypress builds and use the following two lines afterwards
-        # run: echo "🎉 All tests were successful."
-    #    needs: [cypress]
-    needs: [build-outputs]
+    needs:
+      [
+        test-components,
+        build-outputs,
+        build-showcases,
+        test-showcases,
+        build-power-apps
+      ]
 
-  #  deploy:
-  #    uses: ./.github/workflows/03-deploy-gh-pages.yml
-  #    needs: [checks-done, get-publish-version]
-  #    with:
-  #      release: ${{ needs.get-publish-version.outputs.release }}
-  #      preRelease: ${{ needs.get-publish-version.outputs.preRelease }}
-
-  #    needs: [checks-done, get-publish-version, build-outputs]
-
-  build-power-apps:
-    uses: ./.github/workflows/01-build-power-apps.yml
-    needs: [get-publish-version, checks-done, build-packages]
+  deploy:
+    uses: ./.github/workflows/03-deploy-gh-pages.yml
+    needs: [checks-done, get-publish-version]
     with:
-      version: ${{ needs.get-publish-version.outputs.version }}
+      release: ${{ needs.get-publish-version.outputs.release }}
+      preRelease: ${{ needs.get-publish-version.outputs.preRelease }}
 
   publishpackages:
     uses: ./.github/workflows/03-publish-packages.yml

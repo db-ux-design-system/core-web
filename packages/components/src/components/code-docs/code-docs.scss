@@ -1,0 +1,62 @@
+@use "@db-ui/foundations/build/scss/variables";
+@use "@db-ui/foundations/build/scss/color-placeholder";
+@use "@db-ui/foundations/build/scss/color/color-variants";
+@use "@db-ui/foundations/build/scss/helpers/component";
+
+%code-docs {
+	@extend %db-bg-neutral-transparent-semi;
+	min-block-size: variables.$db-sizing-3xl;
+	align-items: center;
+	justify-content: center;
+	padding: variables.$db-spacing-fixed-xl;
+	padding-block-end: calc(
+		#{variables.$db-spacing-fixed-xl} + #{variables.$db-sizing-sm}
+	);
+	position: relative;
+
+	.code-details {
+		position: absolute;
+		inset-block-end: 0;
+		inset-inline-end: 0;
+		inline-size: 100%;
+		display: flex;
+
+		&[open] {
+			inset-inline-start: 0;
+			inset-block-start: 0;
+		}
+
+		.code-button {
+			position: absolute;
+			inset-block-end: 0;
+			inset-inline-end: 0;
+			z-index: 1;
+		}
+
+		.no-code {
+			margin: auto;
+		}
+
+		.code {
+			@extend %db-bg-inverted;
+			overflow: auto;
+			position: absolute;
+			inset-inline-end: 0;
+			inset-block: 0;
+			padding-block-end: variables.$db-spacing-fixed-md;
+
+			@include component.screen() {
+				inline-size: 50%;
+			}
+		}
+	}
+}
+
+.db-code-docs {
+	@extend %code-docs;
+	/* Workaround for angular db-XYZ as root tag is not working */
+	&.db-card,
+	& > .db-card {
+		@extend %code-docs;
+	}
+}

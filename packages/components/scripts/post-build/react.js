@@ -1,38 +1,40 @@
-const Replace = require('replace-in-file');
-const Components = require('./components');
+const { components } = require('./components');
+const { getComponentName, runReplacements } = require('../utils');
 
-module.exports = () => {
-	for (const component of Components) {
+module.exports = (tmp) => {
+	for (const component of components) {
 		try {
-			const cleanName = component.name
-				.split('-')
-				.map((part) => `${part[0].toUpperCase()}${part.substring(1)}`)
-				.join('');
-			const stateName = `DB${cleanName}State`;
+			const upperComponentName = getComponentName(component.name);
 
-			const tsxFile = `./output/react/src/components/${component.name}/${component.name}.tsx`;
+			const tsxFile = `../../${
+				tmp ? 'output/tmp' : 'output'
+			}/react/src/components/${component.name}/${component.name}.tsx`;
 
 			let replacements = [
-				{ from: `${stateName}, `, to: '' },
-				{ from: `, ${stateName}`, to: '' },
 				{
 					from: /= useState/g,
 					to: '= useState<any>'
+				},
+				{ from: ` } from "react"`, to: `, forwardRef } from "react"` },
+				{
+					from: `function DB${upperComponentName}(props: DB${upperComponentName}Props) {`,
+					to: `function DB${upperComponentName}Fn(props: DB${upperComponentName}Props, component: any) {`
+				},
+				{
+					from: `export default DB${upperComponentName};`,
+					to: `const DB${upperComponentName} = forwardRef(DB${upperComponentName}Fn);\nexport default DB${upperComponentName};`
+				},
+				{
+					from: 'if (ref.current)',
+					to: 'if (ref?.current)'
+				},
+				{
+					from: '[ref.current]',
+					to: '[ref]'
 				}
 			];
 
-			if (component?.overwrites?.react) {
-				replacements = [...replacements, ...component.overwrites.react];
-			}
-
-			replacements.forEach((replacement) => {
-				const option = {
-					files: tsxFile,
-					from: replacement.from,
-					to: replacement.to
-				};
-				Replace.replaceInFileSync(option);
-			});
+			runReplacements(replacements, component, 'react', tsxFile);
 		} catch (error) {
 			console.error('Error occurred:', error);
 		}

@@ -1,24 +1,24 @@
-@use "@db-ui/foundations/build/scss/variables" as *;
-@use "@db-ui/foundations/build/scss/variables.global" as *;
-@use "@db-ui/foundations/build/scss/helpers/functions" as *;
+@use "@db-ui/foundations/build/scss/variables";
+@use "@db-ui/foundations/build/scss/helpers/functions";
 
 .db-divider {
-	height: to-rem(1);
-	width: 100%;
-
-	opacity: 0.1;
-	background: var(--db-current-color, $db-colors-secondary-enabled);
-
 	&:not([data-margin="none"]) {
-		margin: $db-spacing-fixed-sm 0;
+		margin: variables.$db-spacing-fixed-sm 0;
+	}
+
+	&:not([data-variant="vertical"]) {
+		@include functions.divider();
+		block-size: 1px;
+		inline-size: 100%;
 	}
 
 	&[data-variant="vertical"] {
-		height: auto;
-		width: to-rem(1);
+		@include functions.divider("left");
+		block-size: 100%;
+		inline-size: 1px;
 
 		&:not([data-margin="none"]) {
-			margin: 0 $db-spacing-fixed-sm;
+			margin: 0 variables.$db-spacing-fixed-sm;
 		}
 	}
 }

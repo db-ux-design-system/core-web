@@ -1,25 +1,25 @@
 {
   "name": "vanilla-showcase",
-  "private": true,
   "version": "0.0.0",
   "type": "module",
+  "private": true,
   "scripts": {
-    "copy:assets": "cpr ../../packages/foundations/assets ./public/foundations/assets  -o",
-    "copy:css": "cpr ../../packages/foundations/build/css ./public/foundations/css  -o",
-    "copy:components": "cpr ../../packages/components/output/webcomponent/src/components ./public/components  -o",
-    "predev": "npm-run-all -p copy:*",
-    "prebuild": "npm-run-all -p copy:*",
+    "build": "npm-run-all build:*",
+    "build:01_vite": "vite build",
+    "build:02_generate": "node scripts/generate-routes.js",
+    "build:03_copy": "cpr dist ../../build-showcases/vanilla-showcase -o",
+    "copy:assets": "cpr ../../packages/foundations/assets ./public/assets  -o",
+    "copy:colors": "cpr ../../packages/foundations/build/css/color-classes.css ./public/styles/color-classes.css  -o",
+    "copy:components": "cpr ../../packages/components/build/components ./public/components  -o",
+    "copy:styles": "cpr ../../packages/components/build/styles/db-ui-42.css ./public/styles/db-ui-42.css  -o",
     "dev": "vite --open",
-    "start": "vite",
-    "build": "vite build",
-    "preview": "vite preview"
-  },
-  "dependencies": {
-    "@db-ui/foundations": "file:./../../packages/foundations"
+    "prebuild": "npm-run-all -p copy:*",
+    "predev": "npm-run-all -p copy:*",
+    "start": "vite"
   },
   "devDependencies": {
     "cpr": "3.0.1",
     "npm-run-all": "4.1.5",
-    "vite": "^3.1.0"
+    "vite": "^4.4.9"
   }
 }

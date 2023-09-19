@@ -1,84 +1,85 @@
-@use "variables" as *;
-@use "font-faces" as *;
-@use "typography-placeholder" as *;
-@use "scaling-placeholder" as *;
+@use "default-variables";
+@use "typography-placeholder";
+@use "scaling-placeholder";
+@use "helpers/font";
+
+@forward "font-faces";
+
+body,
+// Power Apps related
+.app-canvas,
+.control-pane {
+	font-family: default-variables.$db-font-family-sans;
+}
 
 :root {
-	font-family: $db-font-family-sans;
+	@extend %db-component-variables-md;
+}
 
-	h1,
-	h2,
-	h3,
-	h4,
-	h5,
-	h6 {
-		font-family: $db-font-family-head;
+* {
+	@extend %db-font-size-md;
+}
+
+small,
+code {
+	@extend %db-overwrite-font-size-sm;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	font-family: default-variables.$db-font-family-head;
+	font-weight: 700;
+
+	&[data-variant="light"] {
+		font-weight: 300;
 	}
 }
 
-@mixin styles($styles...) {
-	@for $i from 0 to length($styles) {
-		%db-ui-#{nth($styles, $i + 1)},
-		.db-ui-#{nth($styles, $i + 1)} {
-			@extend %db-scaling-#{nth($styles, $i + 1)};
+h1 {
+	line-height: var(--db-type-headline-line-height-xl);
+	font-size: var(--db-type-headline-font-size-xl);
+}
 
-			*, // TODO: let's check whether we could even also enable this without the asterisk just by inheriting line-height and font-size on non-inheriting elements like buttons
-			[data-size="medium"],
-			%db-body-md {
-				@extend %db-#{nth($styles, $i + 1)}-body-md;
-			}
+h2 {
+	line-height: var(--db-type-headline-line-height-lg);
+	font-size: var(--db-type-headline-font-size-lg);
+}
 
-			small,
-			[data-size="small"],
-			%db-body-sm {
-				@extend %db-#{nth($styles, $i + 1)}-body-sm;
-			}
+h3 {
+	line-height: var(--db-type-headline-line-height-md);
+	font-size: var(--db-type-headline-font-size-md);
+}
 
-			%db-body-2xl {
-				@extend %db-#{nth($styles, $i + 1)}-body-2xl;
-			}
+h4 {
+	line-height: var(--db-type-headline-line-height-sm);
+	font-size: var(--db-type-headline-font-size-sm);
+}
 
-			%db-body-xl {
-				@extend %db-#{nth($styles, $i + 1)}-body-xl;
-			}
+h5 {
+	line-height: var(--db-type-headline-line-height-xs);
+	font-size: var(--db-type-headline-font-size-xs);
+}
 
-			%db-body-lg {
-				@extend %db-#{nth($styles, $i + 1)}-body-lg;
-			}
+h6 {
+	line-height: var(--db-type-headline-line-height-2xs);
+	font-size: var(--db-type-headline-font-size-2xs);
+}
 
-			%db-body-xs {
-				@extend %db-#{nth($styles, $i + 1)}-body-xs;
-			}
-
-			%db-body-2xs {
-				@extend %db-#{nth($styles, $i + 1)}-body-2xs;
-			}
-
-			h1 {
-				@extend %db-#{nth($styles, $i + 1)}-headline-xl;
-			}
-
-			h2 {
-				@extend %db-#{nth($styles, $i + 1)}-headline-lg;
-			}
-
-			h3 {
-				@extend %db-#{nth($styles, $i + 1)}-headline-md;
-			}
-
-			h4 {
-				@extend %db-#{nth($styles, $i + 1)}-headline-sm;
-			}
-
-			h5 {
-				@extend %db-#{nth($styles, $i + 1)}-headline-xs;
-			}
-
-			h6 {
-				@extend %db-#{nth($styles, $i + 1)}-headline-2xs;
-			}
+@mixin tonalities($tonalities...) {
+	@for $i from 0 to length($tonalities) {
+		%db-ui-#{nth($tonalities, $i + 1)},
+		.db-ui-#{nth($tonalities, $i + 1)},
+		[data-tonality="#{nth($tonalities, $i + 1)}"] {
+			@extend %db-scaling-#{nth($tonalities, $i + 1)};
+			@extend %db-typography-headline-#{nth($tonalities, $i + 1)};
+			@extend %db-typography-body-#{nth($tonalities, $i + 1)};
+			@extend %db-component-variables-md;
 		}
 	}
 }
 
-@include styles("expressive", "regular", "functional");
+@include tonalities("expressive", "regular", "functional");

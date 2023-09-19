@@ -1,22 +1,61 @@
+import { DefaultVariantType } from '../shared/model';
+
 export const uuid = () => {
-	try {
-		// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-		// @ts-expect-error
-		return ([1e7] + -1e3 + -4e3 + -8e3 + -1e11).replace(/[018]/g, (c) =>
-			(
-				c ^
-				(crypto.getRandomValues(new Uint8Array(1))[0] & (15 >> (c / 4)))
-			).toString(16)
-		);
-	} catch {
-		// This is only for jest tests
-		return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(
-			/[xy]/g,
-			function (c) {
-				const r = (Math.random() * 16) | 0;
-				const v = c == 'x' ? r : (r & 0x3) | 0x8;
-				return v.toString(16);
-			}
-		);
+	if (typeof window !== 'undefined') {
+		if (window.crypto?.randomUUID) {
+			return window.crypto.randomUUID();
+		} else if (window.crypto?.getRandomValues) {
+			return window.crypto.getRandomValues(new Uint32Array(3)).join('-');
+		}
 	}
+
+	return Math.random().toString().substring(2);
+};
+
+export const addAttributeToChildren = (
+	element: Element,
+	attribute: { key: string; value: string }
+) => {
+	const children = element.children;
+	Object.values(children).forEach((child: Element) => {
+		child.setAttribute(attribute.key, attribute.value);
+		if (child.children.length > 0) {
+			addAttributeToChildren(child, attribute);
+		}
+	});
+};
+
+export type ClassNameArg =
+	| string
+	| { [key: string]: boolean | undefined }
+	| undefined;
+export const cls = (...args: ClassNameArg[]) => {
+	let result = '';
+
+	args.forEach((arg, index) => {
+		if (arg) {
+			if (typeof arg === 'string') {
+				result += `${arg} `;
+			} else {
+				for (let key in arg) {
+					if (arg[key]) {
+						result += `${key} `;
+					}
+				}
+			}
+		}
+	});
+
+	return result.trim();
+};
+
+export const getMessageIcon = (
+	variant?: DefaultVariantType,
+	messageIcon?: string
+): string | undefined => {
+	return messageIcon
+		? messageIcon
+		: !variant || variant === 'adaptive'
+		? 'none'
+		: undefined;
 };

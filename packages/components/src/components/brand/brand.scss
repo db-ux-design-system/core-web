@@ -1,0 +1,25 @@
+@use "@db-ui/foundations/build/scss/variables";
+
+%brand-display {
+	display: flex;
+	gap: variables.$db-spacing-fixed-md;
+	align-items: center;
+}
+
+.db-brand {
+	@extend %brand-display;
+
+	font-weight: 700;
+
+	a {
+		@extend %brand-display;
+		color: inherit;
+		// Deactivate underline on site name being made clickable by added to the link as well
+		text-decoration: none;
+	}
+}
+
+.db-logo {
+	max-inline-size: none;
+	block-size: variables.$db-sizing-sm;
+}

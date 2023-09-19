@@ -1,0 +1,26 @@
+<app-default-component
+	title="DBInput"
+	[variants]="variants"
+	[exampleTemplate]="exampleTemplate"
+>
+	<ng-template
+		#exampleTemplate
+		let-exampleProps="exampleProps"
+		let-exampleName="exampleName"
+		let-exampleIndex="exampleIndex"
+		let-variantIndex="variantIndex"
+	>
+		<db-input
+			[variant]="exampleProps.variant"
+			[label]="exampleProps.label"
+			[message]="exampleProps.message"
+			[minLength]="exampleProps.minLength"
+			[required]="exampleProps.required"
+			[type]="exampleProps.type"
+			[disabled]="exampleProps.disabled"
+			[value]="exampleProps.value"
+			[icon]="exampleProps.icon"
+			[iconAfter]="exampleProps.iconAfter"
+		></db-input>
+	</ng-template>
+</app-default-component>

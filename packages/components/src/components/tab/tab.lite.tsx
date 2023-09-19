@@ -5,13 +5,15 @@ import {
 	useStore,
 	useRef
 } from '@builder.io/mitosis';
-import { uuid } from '../../utils';
+import { DEFAULT_ID } from '../../shared/constants';
 import type { DBTabState, DBTabProps } from './model';
-import './tab.scss';
+import { uuid } from '../../utils';
+import { cls } from '../../utils';
 
 useMetadata({
 	isAttachedToShadowDom: true,
 	component: {
+		// MS Power Apps
 		includeIcon: false,
 		properties: [
 			{ name: 'name', type: 'SingleLine.Text' },
@@ -29,37 +31,43 @@ useMetadata({
 });
 
 export default function DBTab(props: DBTabProps) {
-	const inputRef = useRef<HTMLInputElement>(null);
+	// This is used as forwardRef
+	let component: any;
+	const formRef = useRef<HTMLInputElement>(null);
+	// jscpd:ignore-start
 	const state = useStore<DBTabState>({
-		id: 'ID_WILL_BE_OVERWRITE_ON_MOUNT_AND_THIS_CONSTANT_WONT_SHOW_UP_ONLY_IF_YOU_ARE_A_JAVA_DEVELOPER'
+		mId: DEFAULT_ID
 	});
 
 	onMount(() => {
-		state.id = uuid();
+		state.mId = uuid();
 		if (props.stylePath) {
 			state.stylePath = props.stylePath;
 		}
 
 		if (props.active) {
-			inputRef?.click();
+			formRef?.click();
 		}
 	});
+	// jscpd:ignore-end
 
 	return (
-		<div class={'db-tab' + (props.className || '')}>
+		<div ref={component}
+			 id={props.id}
+			 class={cls('db-tab', props.className)}>
 			<Show when={state.stylePath}>
 				<link rel="stylesheet" href={state.stylePath} />
 			</Show>
 			<input
-				ref={inputRef}
+				ref={formRef}
 				type="radio"
 				name={props.name}
-				id={state.id}
+				id={state.mId}
 			/>
-			<label htmlFor={state.id} role="tab">
+			<label htmlFor={state.mId} role="tab">
 				{props.label}
 			</label>
-			<section id={'content-' + state.id} role="tabpanel">
+			<section id={'content-' + state.mId} role="tabpanel">
 				<Show when={props.content}> {props.content}</Show>
 				{props.children}
 			</section>

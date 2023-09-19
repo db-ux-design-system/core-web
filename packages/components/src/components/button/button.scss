@@ -1,154 +1,75 @@
 @charset "utf-8";
-
-@use "@db-ui/foundations/build/scss/variables" as *;
-@use "@db-ui/foundations/build/scss/variables.global" as *;
-@use "@db-ui/foundations/build/scss/color-placeholder" as *;
-@use "@db-ui/foundations/build/scss/icon/icons.helpers" as *;
+@use "@db-ui/foundations/build/scss/helpers/font";
+@use "@db-ui/foundations/build/scss/variables";
+@use "@db-ui/foundations/build/scss/color-placeholder";
+@use "@db-ui/foundations/build/scss/color/color-variants";
+@use "@db-ui/foundations/build/scss/icon/icon-helpers";
+@use "@db-ui/foundations/build/scss/helpers/component";
+@use "../../styles/button-components";
 
 .db-button {
-	// Including a loading indicator
-	--loadingIndicator---color: currentColor;
+	@extend %default-interactive-component;
+	@extend %default-button;
 
-	$icon-size: var(--db-icon-size, 20);
-	align-items: center; // Centering the content vertically and horizontally
+	@include color-variants.bg-transparent-interactive();
 
-	border: 1px solid transparent;
-	border-radius: 4px;
-	display: inline-flex;
+	color: variables.$db-colors-neutral-on-bg;
 
-	font-weight: 700;
-	justify-content: center;
-	min-height: $db-sizing-md;
-	padding: $db-spacing-fixed-xs $db-spacing-fixed-md;
+	block-size: variables.$db-sizing-md;
+	inline-size: fit-content;
+	padding: variables.$db-spacing-fixed-xs variables.$db-spacing-fixed-md;
 
-	text-align: center;
-
-	// Changing background-color on hover should be animated by a transition
-	transition: background-color
-		var(--db-transition-color, #{$db-transition-color});
-
-	&[data-icon],
-	&[data-icon-before] {
-		padding-left: $db-spacing-fixed-xs;
-
-		&::before {
-			--icon-font-family: var(--db-base-icon-font-family);
-			--icon-font-size: var(--db-base-icon-font-size);
-		}
-	}
-
-	&[data-icon-after] {
-		padding-right: $db-spacing-fixed-xs;
-
-		&::after {
-			--icon-font-family: var(--db-base-icon-font-family);
-			--icon-font-size: var(--db-base-icon-font-size);
-		}
-	}
 	// Square icon only buttons
 	&.is-icon-text-replace {
+		font-size: 0;
 		padding: 0;
-		width: $db-sizing-md;
-	}
-
-	&:not([data-variant]),
-	&[data-variant="primary"] {
-		@extend %db-bg-primary-ia;
-	}
-
-	&%variant-secondary {
-		background-color: $db-colors-neutral-bg-transparent-full-enabled;
-		border: solid 1px
-			var(--db-current-color, $db-colors-neutral-on-bg-enabled);
-		color: var(--db-current-color, $db-colors-neutral-on-bg-enabled);
-
-		&:not(:disabled) {
-			&:hover {
-				background-color: $db-colors-neutral-bg-transparent-full-hover;
-			}
-
-			&:active {
-				background-color: $db-colors-neutral-bg-transparent-full-pressed;
-			}
-		}
-	}
-
-	&%variant-tertiary {
-		background-color: $db-colors-neutral-bg-transparent-semi-enabled;
-		color: var(--db-current-color, $db-colors-neutral-on-bg-enabled);
-
-		&:not(:disabled) {
-			&:hover {
-				background-color: $db-colors-neutral-bg-transparent-semi-hover;
-			}
-
-			&:active {
-				background-color: $db-colors-neutral-bg-transparent-semi-pressed;
-			}
-		}
-	}
-
-	&%variant-ghost {
-		background-color: $db-colors-neutral-bg-transparent-full-enabled;
-		color: var(--db-current-color, $db-colors-neutral-on-bg-enabled);
-
-		&:not(:disabled) {
-			&:hover {
-				background-color: $db-colors-neutral-bg-transparent-full-hover;
-			}
-
-			&:active {
-				background-color: $db-colors-neutral-bg-transparent-full-pressed;
-			}
-		}
-	}
-
-	// Sizes
-
-	&%size-Small {
-		min-height: $db-sizing-sm;
-		padding: $db-spacing-fixed-3xs $db-spacing-fixed-sm;
-
-		// Square icon only buttons
-		&.is-icon-text-replace {
-			width: $db-sizing-sm;
-		}
+		inline-size: variables.$db-sizing-md;
 	}
 
 	&[data-size="small"] {
-		@extend %size-Small;
-	}
+		@extend %db-overwrite-font-size-sm;
+		block-size: variables.$db-sizing-sm;
 
-	// Width
-	&%width-full {
-		width: 100%;
+		&:not(.is-icon-text-replace) {
+			padding: variables.$db-spacing-fixed-3xs
+				variables.$db-spacing-fixed-sm;
+
+			&::before {
+				margin-inline-end: variables.$db-spacing-fixed-2xs;
+			}
+		}
+
+		// Square icon only buttons
+		&.is-icon-text-replace {
+			inline-size: variables.$db-sizing-sm;
+		}
 	}
 
 	&[data-width="full"] {
-		@extend %width-full;
+		inline-size: 100%;
 	}
 
-	// Providing the variants as HTML attributes as well
-
-	&[data-variant="secondary"] {
-		@extend %variant-secondary;
+	&[data-variant="primary"] {
+		@extend %db-primary-component-ia;
+		@extend %transparent-border;
 	}
 
-	&[data-variant="tertiary"] {
-		@extend %variant-tertiary;
+	&[data-variant="solid"] {
+		@extend %transparent-border;
+		@include color-variants.get-variant-bg-color(0.08);
 	}
 
-	&[data-variant="ghost"] {
-		@extend %variant-ghost;
+	&[data-variant="text"] {
+		@extend %transparent-border;
 	}
 
 	&:disabled {
-		opacity: 0.25;
+		opacity: component.$default-disabled-opacity;
 	}
 
 	// States (currently only "loading")
 	&[data-state="loading"] {
-		@include is-icon-text-replace();
+		@include icon-helpers.is-icon-text-replace();
 
 		&::before {
 			content: "";

@@ -1,5 +1,5 @@
 ---
-to: output/power-apps/<%= name %>/featureconfig.json
+to: ../../output/power-apps/<%= name %>/featureconfig.json
 force: true
 ---
 {

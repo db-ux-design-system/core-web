@@ -9,24 +9,30 @@ on:
         type: string
 
 jobs:
-  build-showcases:
+  build-power-apps:
     name: Build Power Apps
     runs-on: ubuntu-latest
     steps:
       - name: ⬇ Checkout repo
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: 🔄 Init Cache
         uses: ./.github/actions/npm-cache
 
-      - name: ⬇ Download Packages
+      - name: ⬇ Download foundations build
         uses: ./.github/actions/download-tar-artifact
         with:
-          name: db-ui-packages
-          path: packages
+          name: db-ui-foundations-build
+          path: packages/foundations/build
+
+      - name: ⬇ Download output
+        uses: ./.github/actions/download-tar-artifact
+        with:
+          name: db-ui-output
+          path: output
 
       - name: 🖨 Copy Power Apps
-        run: npm run copy:power-apps
+        run: npm run postbuild:02_components
 
       - name: 🔨 Build Power Apps
         env:
@@ -34,8 +40,10 @@ jobs:
         run: |
           cd build-power-apps
           npm i
+          STRIPED_VERSION=${VALID_SEMVER_VERSION%-*}
+          npx replace-in-file 0.0.0 ${STRIPED_VERSION//-/.} **/ControlManifest.Input.xml
           cd DBUI
-          npx replace-in-file 0.0.0 ${VALID_SEMVER_VERSION} src/Other/Solution.xml
+          npx replace-in-file 0.0.0 ${STRIPED_VERSION//-/.} src/Other/Solution.xml
           dotnet build --configuration Release
 
       - name: ⬆ Upload Power Apps zip

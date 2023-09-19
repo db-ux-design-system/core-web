@@ -1,3 +1,4 @@
+/* eslint-disable unicorn/prefer-top-level-await */
 import childProcess from 'node:child_process';
 import inquirer from 'inquirer';
 
@@ -8,19 +9,18 @@ inquirer
 			message: 'Select frameworks to start;',
 			name: 'frameworks',
 			choices: [
-				/*	TODO: Fix the issue that components are deleted at mitosis build
 				{
 					name: 'angular'
-				}, */
+				},
 				{
-					name: 'next'
+					name: 'patternhub'
 				},
 				{
 					name: 'react',
 					checked: true
 				},
 				{
-					name: 'svelte'
+					name: 'reactwind'
 				},
 				{
 					name: 'vanilla'
@@ -38,13 +38,16 @@ inquirer
 			}
 		}
 	])
+
 	.then((answers) => {
-		let startCommand = 'npm-run-all -p start:*';
+		let startCommand = 'npm-run-all -p build:* -p';
 		if (answers?.frameworks)
 			for (const answer of answers.frameworks) {
 				startCommand += ` start-showcase:${answer}`;
 			}
 
+		// eslint-disable-next-line no-console
 		console.log(`Start with command: '${startCommand}'`);
+		// TODO: Handle child process better
 		childProcess.execSync(startCommand, { stdio: 'inherit' });
 	});

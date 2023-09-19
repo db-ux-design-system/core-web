@@ -1,5 +1,5 @@
 ---
-to: output/power-apps/<%= name %>/tsconfig.json
+to: ../../output/power-apps/<%= name %>/tsconfig.json
 force: true
 ---
 {
@@ -10,7 +10,8 @@ force: true
         "lib": ["ES6", "DOM"],
         "strict": true,
         "strictPropertyInitialization": false,
-        "typeRoots": ["../node_modules/@types","node_modules/@types"]
+        "typeRoots": ["../node_modules/@types","node_modules/@types"],
+        "allowSyntheticDefaultImports": true
     },
     "exclude": [
         "./node_modules",

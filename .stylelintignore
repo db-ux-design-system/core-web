@@ -1,5 +1,12 @@
 assets/fonts/**/sources
 build/
 build-outputs/
+build-power-apps/
+build-showcases/
+dist/
 out/
+output/
 source/_patterns/**
+showcases/patternhub/**
+showcases/**/public/**
+packages/foundations/scripts/generate-icon-fonts/styles/**

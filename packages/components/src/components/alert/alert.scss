@@ -1,0 +1,125 @@
+@use "sass:map";
+@use "@db-ui/foundations/build/scss/variables";
+@use "@db-ui/foundations/build/scss/color-placeholder";
+@use "@db-ui/foundations/build/scss/helpers/component";
+@use "@db-ui/foundations/build/scss/color/color-variants";
+@use "@db-ui/foundations/build/scss/icon/icon-helpers";
+
+%grid-layout {
+	grid-template-areas: "icon content close";
+	grid-template-columns: min-content 1fr min-content;
+
+	&:has(.db-alert-link) {
+		grid-template-areas: "icon content link close";
+		grid-template-columns: min-content 1fr min-content min-content;
+
+		@include component.screen("sm", "max") {
+			grid-template-columns: min-content 1fr min-content;
+			grid-template-areas:
+				"icon content close"
+				"icon link link";
+		}
+	}
+
+	&:has(.db-alert-headline) {
+		grid-template-columns: min-content 1fr 1fr min-content;
+		grid-template-areas:
+			"icon head head close"
+			"icon content content content";
+
+		@include component.screen("sm", "max") {
+			grid-template-columns: min-content 1fr min-content;
+			grid-template-areas:
+				"icon head close"
+				"icon content content";
+		}
+
+		&:has(.db-alert-link) {
+			grid-template-columns: min-content 1fr 1fr min-content min-content;
+			grid-template-areas:
+				"icon head head link close"
+				"icon content content content content";
+
+			@include component.screen("sm", "max") {
+				grid-template-columns: min-content 1fr min-content;
+				grid-template-areas:
+					"icon head close"
+					"icon content content"
+					"icon link link";
+			}
+		}
+	}
+}
+
+.db-alert {
+	@extend %component-border;
+	@extend %grid-layout;
+	display: grid;
+	padding: variables.$db-spacing-fixed-md;
+	gap: variables.$db-spacing-fixed-xs variables.$db-spacing-fixed-md;
+	inline-size: inherit;
+
+	// TODO: probably extract this to an overwrite or external file
+	text-align: start; // workaround for power apps
+
+	@include icon-helpers.has-no-icon() {
+		@include icon-helpers.icon("info");
+	}
+
+	dblink,
+	db-link {
+		// workaround angular
+		display: inline-flex;
+	}
+
+	.db-alert-headline {
+		grid-area: head;
+	}
+
+	.db-alert-content {
+		grid-area: content;
+		margin: 0;
+	}
+
+	.db-alert-link {
+		grid-area: link;
+	}
+
+	.db-alert-close {
+		grid-area: close;
+	}
+
+	&[data-icon]::before,
+	&::before {
+		--db-icon-margin-end: 0;
+		grid-area: icon;
+	}
+
+	&[data-type="inline"] {
+		@extend %default-card;
+
+		&[data-elevation="none"] {
+			box-shadow: none;
+		}
+	}
+
+	@each $name, $colors in color-variants.$component-variants {
+		&[data-variant="#{$name}"] {
+			@if ($name == "critical") {
+				@extend %db-bg-critical;
+			} @else if ($name == "informational") {
+				@extend %db-bg-informational;
+			} @else if ($name == "warning") {
+				@extend %db-bg-warning;
+			} @else if ($name == "successful") {
+				@extend %db-bg-successful;
+			}
+
+			@include icon-helpers.variant-icons($name);
+
+			&::before {
+				--db-current-icon-color: #{map.get($colors, "element")};
+			}
+		}
+	}
+}

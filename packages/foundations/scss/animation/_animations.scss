@@ -1,0 +1,95 @@
+$animation-show-timing: 0.5s cubic-bezier(0.49, 0.1, 0.16, 1) normal both;
+/* hide timing is used in JS if you change it you need to change it there as well */
+$animation-hide-timing: 0.4s cubic-bezier(0.49, 0.1, 0.16, 1) normal both;
+
+@keyframes show-right-to-left {
+	from {
+		transform: translateX(110%);
+	}
+
+	to {
+		transform: translateX(0%);
+	}
+}
+
+@keyframes hide-right-to-left {
+	from {
+		transform: translateX(0%);
+	}
+
+	to {
+		transform: translateX(110%);
+	}
+}
+
+@keyframes show-left-to-right {
+	from {
+		transform: translateX(-110%);
+	}
+
+	to {
+		transform: translateX(0%);
+	}
+}
+
+@keyframes hide-left-to-right {
+	from {
+		transform: translateX(0%);
+	}
+
+	to {
+		transform: translateX(-110%);
+	}
+}
+
+@keyframes show-bottom-to-top {
+	from {
+		transform: translateY(110%);
+	}
+
+	to {
+		transform: translateY(0%);
+	}
+}
+
+@keyframes hide-bottom-to-top {
+	from {
+		transform: translateY(0%);
+	}
+
+	to {
+		transform: translateY(110%);
+	}
+}
+
+@keyframes show-top-to-bottom {
+	from {
+		transform: translateY(-110%);
+	}
+
+	to {
+		transform: translateY(0%);
+	}
+}
+
+@keyframes hide-top-to-bottom {
+	from {
+		transform: translateY(0%);
+	}
+
+	to {
+		transform: translateY(-110%);
+	}
+}
+
+@keyframes accordion-open {
+	0% {
+		opacity: 0;
+		transform: translateY(-50%);
+	}
+
+	100% {
+		opacity: 1;
+		transform: translateY(0%);
+	}
+}

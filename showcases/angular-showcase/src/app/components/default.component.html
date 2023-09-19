@@ -1,0 +1,70 @@
+<!-- TODO: Slots not working for nested components? -> Had to copy paste variant-cards... -->
+<db-code-docs
+	*ngIf="variantRef"
+	class="variants-card"
+	[codeSnippets]="getCodeSnippets(variantRef.examples)"
+>
+	<div class="variants-list">
+		<div
+			*ngFor="let example of variantRef.examples; index as exampleIndex"
+			[style]="example.style"
+			[class]="example.className"
+		>
+			<ng-container
+				*ngTemplateOutlet="
+					exampleTemplate;
+					context: {
+						exampleProps: example.props,
+						exampleName: example.name,
+						exampleIndex: exampleIndex,
+						variantIndex: variantRefIndex
+					}
+				"
+			>
+			</ng-container>
+		</div>
+	</div>
+</db-code-docs>
+
+<div *ngIf="!variantRef" class="default-container">
+	<h1>{{ title }}</h1>
+	<div *ngFor="let variant of variants; index as variantIndex">
+		<db-divider></db-divider>
+		<db-link
+			class="link-headline"
+			content="external"
+			target="_blank"
+			[href]="getLink(variant.name)"
+		>
+			<span>{{ variant.name }}</span>
+		</db-link>
+		<db-code-docs
+			class="variants-card"
+			[codeSnippets]="getCodeSnippets(variant.examples)"
+		>
+			<div class="variants-list">
+				<div
+					*ngFor="
+						let example of variant.examples;
+						index as exampleIndex
+					"
+					[style]="example.style"
+					[class]="example.className"
+				>
+					<ng-container
+						*ngTemplateOutlet="
+							exampleTemplate;
+							context: {
+								exampleProps: example.props,
+								exampleName: example.name,
+								exampleIndex: exampleIndex,
+								variantIndex: variantIndex
+							}
+						"
+					>
+					</ng-container>
+				</div>
+			</div>
+		</db-code-docs>
+	</div>
+</div>

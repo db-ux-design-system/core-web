@@ -1,0 +1,69 @@
+@use "@db-ui/foundations/build/scss/variables";
+@use "@db-ui/foundations/build/scss/helpers/functions";
+@use "@db-ui/foundations/build/scss/helpers/component";
+@use "@db-ui/foundations/build/scss/color/color-variants";
+@use "@db-ui/foundations/build/scss/animation/animations";
+@use "../../styles/form-components";
+
+@mixin accordion-item-content() {
+	:not(summary):not(link) {
+		@content;
+	}
+}
+
+.db-accordion-item {
+	@extend %bg-transparent;
+	@include functions.divider($position: "top");
+
+	position: relative;
+	inline-size: 100%;
+
+	@include accordion-item-content() {
+		padding: variables.$db-spacing-fixed-md;
+		padding-block-end: variables.$db-spacing-fixed-lg;
+	}
+
+	&:last-of-type {
+		@include functions.divider($position: "bottom", $slot: "after");
+	}
+
+	&[aria-disabled="true"] {
+		pointer-events: none;
+		opacity: component.$default-disabled-opacity;
+	}
+
+	summary {
+		@extend %dropdown-icon;
+		@include color-variants.bg-transparent-interactive(false);
+
+		list-style: none;
+		display: flex;
+		justify-content: space-between;
+		padding: variables.$db-spacing-fixed-md;
+		gap: variables.$db-spacing-fixed-md;
+
+		&::-webkit-details-marker {
+			display: none;
+		}
+
+		&::after {
+			inset-inline-end: variables.$db-spacing-fixed-sm;
+		}
+
+		&:focus-visible {
+			// TODO: Evaluate whether this number is intended
+			border-radius: component.$default-border-radius + 2;
+		}
+	}
+
+	&[open] {
+		@include accordion-item-content() {
+			animation: accordion-open
+				variables.$db-transition-emotional-straight normal both;
+		}
+
+		summary::after {
+			transform: form-components.$dropdown-icon-transform;
+		}
+	}
+}

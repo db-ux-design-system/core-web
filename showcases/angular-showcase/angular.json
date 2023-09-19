@@ -22,8 +22,8 @@
 						"main": "src/main.ts",
 						"polyfills": "src/polyfills.ts",
 						"tsConfig": "tsconfig.app.json",
-						"assets": [],
-						"styles": ["src/styles.scss"],
+						"assets": ["src/assets"],
+						"styles": ["src/styles.css"],
 						"scripts": [],
 						"preserveSymlinks": true
 					},
@@ -33,7 +33,7 @@
 								{
 									"type": "initial",
 									"maximumWarning": "500kb",
-									"maximumError": "1mb"
+									"maximumError": "5mb"
 								},
 								{
 									"type": "anyComponentStyle",
@@ -81,5 +81,7 @@
 			}
 		}
 	},
-	"defaultProject": "angular-showcase"
+	"cli": {
+		"analytics": false
+	}
 }

@@ -1,0 +1,31 @@
+{
+  "name": "@db-ui/web-components",
+  "version": "0.0.0",
+  "type": "module",
+  "description": "Web components for @db-ui/components",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/db-ui/mono.git"
+  },
+  "license": "Apache-2.0",
+  "main": "dist/main.js",
+  "files": [
+    "dist/"
+  ],
+  "scripts": {
+    "build": "parcel build",
+    "mv:dist": "cpr dist ../../build-outputs/web-components/dist -o",
+    "mv:package.json": "cpr package.json ../../build-outputs/web-components/package.json -o",
+    "mv:readme": "cpr README.md ../../build-outputs/web-components/README.md -o",
+    "postbuild": "npm-run-all -p mv:*"
+  },
+  "devDependencies": {
+    "parcel": "2.9.3"
+  },
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/",
+    "access": "public"
+  },
+  "sideEffects": false,
+  "source": "src/index.js"
+}

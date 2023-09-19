@@ -1,5 +1,5 @@
 ---
-to: output/power-apps/<%= name %>/pcfconfig.json
+to: ../../output/power-apps/<%= name %>/pcfconfig.json
 force: true
 ---
 {

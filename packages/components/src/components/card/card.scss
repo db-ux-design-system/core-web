@@ -1,87 +1,43 @@
-@use "@db-ui/foundations/build/scss/init" as *;
-@use "@db-ui/foundations/build/scss/variables" as *;
-@use "@db-ui/foundations/build/scss/variables.global" as *;
-@use "@db-ui/foundations/build/scss/helpers/functions" as *;
-@use "@db-ui/foundations/build/scss/color/color-variants" as *;
+@use "@db-ui/foundations/build/scss/variables";
+@use "@db-ui/foundations/build/scss/color/color-variants";
+@use "@db-ui/foundations/build/scss/helpers/component";
 
 .db-card {
-	@extend %focus-placeholder;
 	@extend %color-variants;
+	@extend %default-card;
 
-	background-color: var(
-		--db-current-background-color,
-		$db-colors-neutral-bg-0-enabled
-	);
+	background-color: variables.$db-colors-neutral-bg;
 
-	border-radius: 8px;
-	box-shadow: $db-elevation-4;
-	padding: $db-spacing-fixed-md;
+	display: flex;
+	flex-direction: column;
 
 	& > a {
 		text-decoration: none;
 	}
 
-	&[data-variant="w-full"],
-	&[data-variant="width-full"] {
-		width: 100vw;
-		border-radius: 0;
+	&[data-spacing="medium"] {
+		padding: variables.$db-spacing-fixed-lg;
 	}
 
-	&[data-variant="ia"] {
-		&:hover {
+	&[data-spacing="small"] {
+		padding: variables.$db-spacing-fixed-md;
+	}
+
+	&[data-variant="interactive"] {
+		// TODO use transition duration as variable
+		transition: box-shadow 0.15s variables.$db-transition-functional-timing;
+
+		&:hover:not([data-elevation="none"]) {
 			cursor: pointer;
-			box-shadow: $db-elevation-8;
+			box-shadow: variables.$db-elevation-8;
 		}
 
-		&:active {
-			box-shadow: $db-elevation-2;
+		&:active:not([data-elevation="none"]) {
+			box-shadow: variables.$db-elevation-2;
 		}
 	}
 
-	// Cards contents are probably deprecated
-	// TODO: probably remove after discussions and/or move to demonstration styles for the homepage
-	figure {
-		margin: $db-spacing-fixed-md $db-spacing-fixed-md $db-spacing-fixed-md
-			$db-spacing-fixed-xs;
-	}
-	// Banner variant
-	&[data-variant="banner"] {
-		figure {
-			display: flex;
-		}
-
-		figcaption {
-			margin-left: 1rem;
-
-			h1,
-			h2,
-			h3,
-			h4,
-			h5,
-			h6 {
-				font-size: to-rem($pxValue: 18);
-
-				&,
-				& ~ p {
-					margin: 0.125rem 0;
-				}
-			}
-
-			p {
-				font-size: to-rem($pxValue: 14);
-
-				max-width: to-rem(
-					$pxValue: 290
-				); // TODO: This would need some rework
-			}
-		}
-	}
-	// Tile variant
-	&[data-variant="tile"] {
-		text-align: center;
-	}
-
-	figcaption {
-		max-width: 60ch;
+	&[data-elevation="none"] {
+		box-shadow: none;
 	}
 }
