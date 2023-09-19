@@ -14,7 +14,7 @@ $font-size-height: calc(var(--db-base-font-size) * var(--db-base-line-height));
 
 	aspect-ratio: 1;
 
-	border: max(calc(#{$font-size-height} / 16 + 0.5px), 2px) solid #{variables.$db-colors-neutral-on-bg};
+	border: min(calc(#{$font-size-height} / 16 + 0.5px), 2px) solid #{variables.$db-colors-neutral-on-bg};
 	// Full rounded
 	border-radius: 100px;
 
