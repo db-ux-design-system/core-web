@@ -1,0 +1,25 @@
+<app-default-component
+	title="DBAlert"
+	[variants]="variants"
+	[exampleTemplate]="exampleTemplate"
+>
+	<ng-template
+		#exampleTemplate
+		let-exampleProps="exampleProps"
+		let-exampleName="exampleName"
+		let-exampleIndex="exampleIndex"
+		let-variantIndex="variantIndex"
+	>
+		<db-alert
+			[variant]="exampleProps.variant"
+			[headline]="exampleProps.headline"
+			[link]="exampleProps.link"
+			[icon]="exampleProps.icon"
+			[behaviour]="exampleProps.behaviour"
+			[type]="exampleProps.type"
+			(click)="showAlert(exampleName)"
+		>
+			{{ exampleName }}
+		</db-alert>
+	</ng-template>
+</app-default-component>

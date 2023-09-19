@@ -47,13 +47,6 @@
 					"target": "web"
 				}
 			}
-		},
-		"color": {
-			"value": "{transition.functional.straight.value}",
-			"comment": "Consider this as beta for the moment",
-			"attributes": {
-				"target": "web"
-			}
 		}
 	}
 }

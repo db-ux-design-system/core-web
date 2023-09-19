@@ -1,11 +1,11 @@
 import { DBLink } from '../../../../../output/react/src';
 import DefaultComponent from '../index';
-import { type DefaultComponentExample } from '../../../../shared/default-component-data';
-import defaultComponentVariants from '../../../../shared/link';
+import defaultComponentVariants from '../../../../shared/link.json';
 import { type DBLinkProps } from '../../../../../output/react/src/components/link/model';
-import { getVariants } from '../../utils';
+import { getVariants } from '../data';
 
 const getLink = ({
+	href,
 	variant,
 	disabled,
 	size,
@@ -13,7 +13,7 @@ const getLink = ({
 	children
 }: DBLinkProps) => (
 	<DBLink
-		href="#"
+		href={href}
 		variant={variant}
 		disabled={disabled}
 		size={size}
@@ -22,56 +22,13 @@ const getLink = ({
 	</DBLink>
 );
 
-const getExampleMatrix = (exampleName: string): DefaultComponentExample[][] => [
-	[
-		{
-			example: getLink({ children: exampleName }),
-			code: '<DBLink href="#">Link</DBLink>'
-		},
-		{
-			example: getLink({ children: exampleName, variant: 'primary' }),
-			code: '<DBLink href="#" variant="primary">Link</DBLink>'
-		}
-	],
-	[
-		{
-			example: getLink({ children: exampleName }),
-			code: '<DBLink href="#">Link</DBLink>'
-		},
-		{
-			example: getLink({ children: exampleName, disabled: true }),
-			code: '<DBLink href="#" disabled>Link</DBLink>'
-		}
-	],
-	[
-		{
-			example: getLink({ children: exampleName }),
-			code: '<DBLink href="#">Link</DBLink>'
-		},
-		{
-			example: getLink({ children: exampleName, size: 'small' }),
-			code: '<DBLink href="#" size="small">Link</DBLink>'
-		}
-	],
-	[
-		{
-			example: getLink({ children: exampleName }),
-			code: '<DBLink href="#">Link</DBLink>'
-		},
-		{
-			example: getLink({ children: exampleName, content: 'external' }),
-			code: '<DBLink href="#" content="external">Link</DBLink>'
-		}
-	]
-];
-
 const LinkComponent = () => {
 	return (
 		<DefaultComponent
 			title={'DBLink'}
 			variants={getVariants(
 				defaultComponentVariants,
-				getExampleMatrix
+				getLink
 			)}></DefaultComponent>
 	);
 };

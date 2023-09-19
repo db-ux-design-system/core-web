@@ -1,76 +1,52 @@
 @charset "utf-8";
-@use "@db-ui/foundations/build/scss/body-styles" as *;
-@use "@db-ui/foundations/build/scss/variables" as *;
-@use "@db-ui/foundations/build/scss/variables.global" as *;
-@use "@db-ui/foundations/build/scss/color-placeholder" as *;
-@use "@db-ui/foundations/build/scss/icon/icons.helpers" as *;
-@use "@db-ui/foundations/build/scss/color/color-variants" as *;
+@use "@db-ui/foundations/build/scss/helpers/font";
+@use "@db-ui/foundations/build/scss/variables";
+@use "@db-ui/foundations/build/scss/color-placeholder";
+@use "@db-ui/foundations/build/scss/color/color-variants";
+@use "@db-ui/foundations/build/scss/icon/icon-helpers";
 @use "@db-ui/foundations/build/scss/helpers/component";
+@use "../../styles/button-components";
 
 .db-button {
-	// Including a loading indicator
-	--loadingIndicator---color: currentColor;
-
-	$icon-size: var(--db-icon-size, 20);
-
 	@extend %default-interactive-component;
-	@extend %default-background-transition;
-	@extend %bg-transparent-interactive;
+	@extend %default-button;
 
-	align-items: center; // Centering the content vertically and horizontally
+	@include color-variants.bg-transparent-interactive();
 
-	display: inline-flex;
+	color: variables.$db-colors-neutral-on-bg;
 
-	font-weight: 700;
-	justify-content: center;
-	height: $db-sizing-md;
-	padding: $db-spacing-fixed-xs $db-spacing-fixed-md;
+	block-size: variables.$db-sizing-md;
+	inline-size: fit-content;
+	padding: variables.$db-spacing-fixed-xs variables.$db-spacing-fixed-md;
 
-	white-space: nowrap; // we don't want to break buttons
-
-	text-align: center;
-
-	&[data-icon],
-	&[data-icon-before] {
-		padding-left: $db-spacing-fixed-xs;
-
-		&::before {
-			--icon-font-family: var(--db-base-icon-font-family);
-			--icon-font-size: var(--db-base-icon-font-size);
-		}
-	}
-
-	&[data-icon-after] {
-		padding-right: $db-spacing-fixed-xs;
-
-		&::after {
-			--icon-font-family: var(--db-base-icon-font-family);
-			--icon-font-size: var(--db-base-icon-font-size);
-		}
-	}
 	// Square icon only buttons
 	&.is-icon-text-replace {
 		font-size: 0;
 		padding: 0;
-		width: $db-sizing-md;
+		inline-size: variables.$db-sizing-md;
 	}
 
 	&[data-size="small"] {
-		@extend %db-body-sm;
-		height: $db-sizing-sm;
+		@extend %db-overwrite-font-size-sm;
+		block-size: variables.$db-sizing-sm;
 
 		&:not(.is-icon-text-replace) {
-			padding: $db-spacing-fixed-3xs $db-spacing-fixed-sm;
+			padding: variables.$db-spacing-fixed-3xs
+				variables.$db-spacing-fixed-sm;
+
+			&::before {
+				margin-inline-end: variables.$db-spacing-fixed-2xs;
+			}
 		}
 
 		// Square icon only buttons
 		&.is-icon-text-replace {
-			width: $db-sizing-sm;
+			inline-size: variables.$db-sizing-sm;
 		}
 	}
 
 	&[data-width="full"] {
-		width: 100%;
+		inline-size: 100%;
 	}
 
 	&[data-variant="primary"] {
@@ -78,22 +54,22 @@
 		@extend %transparent-border;
 	}
 
-	&[data-variant="semi-transparent"] {
+	&[data-variant="solid"] {
 		@extend %transparent-border;
-		@include get-variant-bg-color(0.08);
+		@include color-variants.get-variant-bg-color(0.08);
 	}
 
-	&[data-variant="transparent"] {
+	&[data-variant="text"] {
 		@extend %transparent-border;
 	}
 
 	&:disabled {
-		opacity: 0.25;
+		opacity: component.$default-disabled-opacity;
 	}
 
 	// States (currently only "loading")
 	&[data-state="loading"] {
-		@include is-icon-text-replace();
+		@include icon-helpers.is-icon-text-replace();
 
 		&::before {
 			content: "";

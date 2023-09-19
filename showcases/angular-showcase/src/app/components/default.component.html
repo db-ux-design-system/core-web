@@ -1,5 +1,5 @@
 <!-- TODO: Slots not working for nested components? -> Had to copy paste variant-cards... -->
-<DBCodeDocs
+<db-code-docs
 	*ngIf="variantRef"
 	class="variants-card"
 	[codeSnippets]="getCodeSnippets(variantRef.examples)"
@@ -14,6 +14,7 @@
 				*ngTemplateOutlet="
 					exampleTemplate;
 					context: {
+						exampleProps: example.props,
 						exampleName: example.name,
 						exampleIndex: exampleIndex,
 						variantIndex: variantRefIndex
@@ -23,22 +24,21 @@
 			</ng-container>
 		</div>
 	</div>
-</DBCodeDocs>
+</db-code-docs>
 
 <div *ngIf="!variantRef" class="default-container">
 	<h1>{{ title }}</h1>
 	<div *ngFor="let variant of variants; index as variantIndex">
-		<DBDivider></DBDivider>
-		<h2>
-			<DBLink
-				content="external"
-				target="_blank"
-				[href]="getLink(variant.name)"
-			>
-				{{ variant.name }}
-			</DBLink>
-		</h2>
-		<DBCodeDocs
+		<db-divider></db-divider>
+		<db-link
+			class="link-headline"
+			content="external"
+			target="_blank"
+			[href]="getLink(variant.name)"
+		>
+			<span>{{ variant.name }}</span>
+		</db-link>
+		<db-code-docs
 			class="variants-card"
 			[codeSnippets]="getCodeSnippets(variant.examples)"
 		>
@@ -55,6 +55,7 @@
 						*ngTemplateOutlet="
 							exampleTemplate;
 							context: {
+								exampleProps: example.props,
 								exampleName: example.name,
 								exampleIndex: exampleIndex,
 								variantIndex: variantIndex
@@ -64,6 +65,6 @@
 					</ng-container>
 				</div>
 			</div>
-		</DBCodeDocs>
+		</db-code-docs>
 	</div>
 </div>

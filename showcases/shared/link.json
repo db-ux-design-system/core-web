@@ -1,0 +1,100 @@
+[
+	{
+		"name": "Tonality",
+		"examples": [
+			{
+				"name": "functional",
+				"className": "db-ui-functional",
+				"props": {
+					"href": "#"
+				}
+			},
+			{
+				"name": "regular (Default)",
+				"className": "db-ui-regular",
+				"props": {
+					"href": "#"
+				}
+			},
+			{
+				"name": "expressive",
+				"className": "db-ui-expressive",
+				"props": {
+					"href": "#"
+				}
+			}
+		]
+	},
+	{
+		"name": "Variant",
+		"examples": [
+			{
+				"name": "(Default) Adaptive",
+				"props": {
+					"href": "#"
+				}
+			},
+			{
+				"name": "Primary",
+				"props": {
+					"href": "#",
+					"variant": "primary"
+				}
+			}
+		]
+	},
+	{
+		"name": "State",
+		"examples": [
+			{
+				"name": "Default: (Enabled, Hover, Pressed)",
+				"props": {
+					"href": "#"
+				}
+			},
+			{
+				"name": "Disabled",
+				"props": {
+					"href": "#",
+					"disabled": true
+				}
+			}
+		]
+	},
+	{
+		"name": "Size",
+		"examples": [
+			{
+				"name": "(Default) Medium",
+				"props": {
+					"href": "#"
+				}
+			},
+			{
+				"name": "Small",
+				"props": {
+					"href": "#",
+					"size": "small"
+				}
+			}
+		]
+	},
+	{
+		"name": "Content",
+		"examples": [
+			{
+				"name": "(Default) Internal",
+				"props": {
+					"href": "#"
+				}
+			},
+			{
+				"name": "External",
+				"props": {
+					"href": "#",
+					"content": "external"
+				}
+			}
+		]
+	}
+]

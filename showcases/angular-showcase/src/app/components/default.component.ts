@@ -1,9 +1,9 @@
 import { Component, type OnInit, Input, TemplateRef } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-
 import type {
 	DefaultComponentProps,
-	DefaultComponentVariants
+	DefaultComponentVariants,
+	DefaultComponentExample
 } from '../../../../shared/default-component-data';
 import {
 	COLOR,
@@ -11,7 +11,6 @@ import {
 	TONALITY,
 	TONALITY_CONST
 } from '../../../../../packages/components/src/shared/constants';
-import { DefaultComponentExample } from '../../../../shared/default-component-data';
 
 @Component({
 	selector: 'app-default-component',
@@ -23,7 +22,7 @@ export class DefaultComponent implements OnInit {
 	@Input() exampleTemplate: TemplateRef<any>;
 
 	tonality = TONALITY.REGULAR;
-	color = COLOR.NEUTRAL_0;
+	color = COLOR.NEUTRAL;
 	page: string;
 
 	variantRef: DefaultComponentVariants | undefined;
@@ -63,7 +62,7 @@ export class DefaultComponent implements OnInit {
 		}
 
 		if (!currentUrl.includes('color=')) {
-			currentUrl += `&color=${this.color || COLOR.NEUTRAL_0}`;
+			currentUrl += `&color=${this.color || COLOR.NEUTRAL}`;
 		}
 
 		if (!currentUrl.includes('tonality=')) {

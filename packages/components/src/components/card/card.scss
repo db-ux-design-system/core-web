@@ -1,52 +1,43 @@
-@use "@db-ui/foundations/build/scss/init" as *;
-@use "@db-ui/foundations/build/scss/variables" as *;
-@use "@db-ui/foundations/build/scss/variables.global" as *;
-@use "@db-ui/foundations/build/scss/helpers/functions" as *;
-@use "@db-ui/foundations/build/scss/color/color-variants" as *;
-@use "@db-ui/foundations/build/scss/helpers/component" as *;
+@use "@db-ui/foundations/build/scss/variables";
+@use "@db-ui/foundations/build/scss/color/color-variants";
+@use "@db-ui/foundations/build/scss/helpers/component";
 
 .db-card {
-	@extend %focus-placeholder;
 	@extend %color-variants;
 	@extend %default-card;
 
-	background-color: var(
-		--db-current-background-color,
-		$db-colors-neutral-bg-0-enabled
-	);
+	background-color: variables.$db-colors-neutral-bg;
 
 	display: flex;
 	flex-direction: column;
-
-	&[data-direction="row"] {
-		@media only screen and (min-width: #{$db-screens-s}) {
-			display: grid;
-			grid-template-columns: repeat(2, minmax(0, 1fr));
-			gap: $db-spacing-fixed-md;
-
-			& > .db-card-image {
-				height: 100%;
-			}
-		}
-	}
 
 	& > a {
 		text-decoration: none;
 	}
 
-	&[data-variant="full-width"] {
-		width: 100vw;
-		border-radius: 0;
+	&[data-spacing="medium"] {
+		padding: variables.$db-spacing-fixed-lg;
+	}
+
+	&[data-spacing="small"] {
+		padding: variables.$db-spacing-fixed-md;
 	}
 
 	&[data-variant="interactive"] {
-		&:hover {
+		// TODO use transition duration as variable
+		transition: box-shadow 0.15s variables.$db-transition-functional-timing;
+
+		&:hover:not([data-elevation="none"]) {
 			cursor: pointer;
-			box-shadow: $db-elevation-4;
+			box-shadow: variables.$db-elevation-8;
 		}
 
-		&:active {
-			box-shadow: $db-elevation-2;
+		&:active:not([data-elevation="none"]) {
+			box-shadow: variables.$db-elevation-2;
 		}
+	}
+
+	&[data-elevation="none"] {
+		box-shadow: none;
 	}
 }

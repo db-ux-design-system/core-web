@@ -1,0 +1,64 @@
+name: 🐞 Bug Report
+description: Create a report to help us improve
+labels: [bug]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to fill out this bug report! Feedback by the community has a very high value for us, to improve our work and to have every other user benefit from it as well. 🙂
+
+  - type: checkboxes
+    id: component
+    attributes:
+      label: Which generators are impacted?
+      description: Select all the ones that apply, to the best of your knowledge.
+      options:
+        - label: All
+        - label: HTML
+        - label: React
+        - label: Angular
+        - label: Vue
+        - label: Web components
+        - label: Power Apps
+
+  - type: textarea
+    id: reproduction_fiddle
+    attributes:
+      description: A clear and concise description of what the bug is.
+      label: Reproduction case
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected_behaviour
+    attributes:
+      description: A clear and concise description of what you expected to happen.
+      label: Expected Behaviour
+    validations:
+      required: true
+
+  - type: textarea
+    id: screenshots
+    attributes:
+      description: If applicable, add screenshots to help explain your problem.
+      label: Screenshots
+
+  - type: dropdown
+    id: browser
+    validations:
+      required: false
+    attributes:
+      label: Browser version
+      description: Does this bug affect specific browser?
+      options:
+        - Chrome
+        - Safari
+        - Edge
+        - other
+
+  - type: textarea
+    id: additional_information
+    attributes:
+      label: Add any other context about the problem here.
+    validations:
+      required: false

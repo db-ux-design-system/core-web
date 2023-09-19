@@ -1,0 +1,8 @@
+services:
+  playwright:
+    command: "npm run start"
+    extends:
+      file: docker-compose.yml
+      service: playwright
+    ports:
+      - 8080:8080

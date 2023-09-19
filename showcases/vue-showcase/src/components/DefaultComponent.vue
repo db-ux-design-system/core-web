@@ -17,9 +17,15 @@ import { Ref, ref } from "vue";
 interface DefaultExample extends DefaultComponentExample {
 	name?: string;
 	example?: any;
-	style?: { width?: string };
+	style?: { display?: string; width?: string; height?: string };
 	className?: string;
-	code?: string;
+	props?: any;
+	code?: {
+		html?: string; // We will generate this with reacts 'renderToString'
+		angular?: string;
+		react?: string;
+		vue?: string;
+	};
 }
 interface DefaultVariants extends DefaultComponentVariants {
 	name: string;
@@ -55,7 +61,7 @@ const getLink = (variantName: string) => {
 		currentUrl += "?";
 	}
 	if (!currentUrl.includes("color=")) {
-		currentUrl += `&color=${route.query[COLOR_CONST] || COLOR.NEUTRAL_0}`;
+		currentUrl += `&color=${route.query[COLOR_CONST] || COLOR.NEUTRAL}`;
 	}
 	if (!currentUrl.includes("tonality=")) {
 		currentUrl += `&tonality=${
@@ -87,6 +93,7 @@ const getCodeSnippets = (examples: DefaultExample[]) => {
 			>
 				<slot
 					name="example"
+					v-bind:exampleProps="example.props"
 					v-bind:exampleName="example.name"
 					v-bind:exampleIndex="exampleIndex"
 					v-bind:variantIndex="variantRefIndex"
@@ -98,15 +105,14 @@ const getCodeSnippets = (examples: DefaultExample[]) => {
 		<h1>{{ title }}</h1>
 		<div v-for="(variant, variantIndex) in variants">
 			<DBDivider></DBDivider>
-			<h2>
-				<DBLink
-					content="external"
-					target="_blank"
-					:href="getLink(variant.name)"
-				>
-					{{ variant.name }}
-				</DBLink>
-			</h2>
+			<DBLink
+				class="link-headline"
+				content="external"
+				target="_blank"
+				:href="getLink(variant.name)"
+			>
+				{{ variant.name }}
+			</DBLink>
 			<DBCodeDocs
 				class="variants-card"
 				:codeSnippets="getCodeSnippets(variant.examples)"
@@ -119,6 +125,7 @@ const getCodeSnippets = (examples: DefaultExample[]) => {
 					>
 						<slot
 							name="example"
+							v-bind:exampleProps="example.props"
 							v-bind:exampleName="example.name"
 							v-bind:exampleIndex="exampleIndex"
 							v-bind:variantIndex="variantIndex"

@@ -2,10 +2,12 @@ import { For, onMount, Show, useMetadata, useStore } from '@builder.io/mitosis';
 import { DBTab } from '../tab';
 import type { DBTabProps } from '../tab/model';
 import type { DBTabBarState, DBTabBarProps } from './model';
+import { cls } from '../../utils';
 
 useMetadata({
 	isAttachedToShadowDom: true,
 	component: {
+		// MS Power Apps
 		includeIcon: false,
 		properties: [
 			{ name: 'name', type: 'SingleLine.Text' },
@@ -21,8 +23,9 @@ useMetadata({
 export default function DBTabBar(props: DBTabBarProps) {
 	// This is used as forwardRef
 	let component: any;
+	// jscpd:ignore-start
 	const state = useStore<DBTabBarState>({
-		convertTabs(tabs: DBTabProps[] | string | undefined) {
+		convertTabs(tabs: any[] | string | undefined) {
 			try {
 				if (typeof tabs === 'string') {
 					return JSON.parse(tabs);
@@ -42,13 +45,13 @@ export default function DBTabBar(props: DBTabBarProps) {
 			state.stylePath = props.stylePath;
 		}
 	});
+	// jscpd:ignore-end
 
 	return (
 		<div
 			ref={component}
-			class={
-				'cmp-tab-bar' + (props.className ? ' ' + props.className : '')
-			}
+			id={props.id}
+			class={cls('cmp-tab-bar', props.className)}
 			role="tablist">
 			<Show when={state.stylePath}>
 				<link rel="stylesheet" href={state.stylePath} />

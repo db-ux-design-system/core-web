@@ -34,11 +34,18 @@ next-env.d.ts
 /.idea/
 
 public/*-showcase
+public/docs
 
 styles/db-ui-components.scss
-components
+scripts/generated
+pages/components/
+components/src
+!pages/components/readme.mdx
+!components/src/tsconfig.json
 !components/component-parser
 !components/default-page.tsx
+!components/index.tsx
+!components/data.ts
 !components/iframe.tsx
 !components/static-content.tsx
 !components/01-layout.mdx

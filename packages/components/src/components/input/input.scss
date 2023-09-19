@@ -1,14 +1,13 @@
-@charset "utf-8";
-
+// TODO: Why do we need the default assets here?
 @use "@db-ui/foundations/build/scss/default.assets-paths" as *;
-@use "@db-ui/foundations/build/scss/variables" as *;
-@use "@db-ui/foundations/build/scss/variables.global" as *;
-@use "@db-ui/foundations/build/scss/helpers/functions" as *;
-@use "@db-ui/foundations/build/scss/icon/icons.helpers" as *;
-@use "@db-ui/foundations/build/scss/body-styles" as *;
-@use "@db-ui/foundations/build/scss/color-placeholder" as *;
-@use "@db-ui/foundations/build/scss/color/color-variants" as *;
+
+@use "@db-ui/foundations/build/scss/variables";
+@use "@db-ui/foundations/build/scss/icon/icon-helpers";
+@use "@db-ui/foundations/build/scss/helpers/font";
+@use "@db-ui/foundations/build/scss/color-placeholder";
+@use "@db-ui/foundations/build/scss/color/color-variants";
 @use "@db-ui/foundations/build/scss/helpers/component";
+@use "../../styles/form-components";
 
 :root,
 .db-ui-regular,
@@ -25,30 +24,38 @@
 ) {
 	$transformScale: -1.25;
 
-	transition: opacity 0.08s, transform 0.15s;
+	transition:
+		opacity 0.08s,
+		transform 0.15s;
 	opacity: var(--db-input-focus-opacity);
 
 	// add 0.1em to adjust label with input padding-inline-start
 	transform: translate(
-			calc($translationX + 0.1em),
-			calc($db-sizing-md * $transformScale)
+			calc(#{$translationX} + 0.1em),
+			calc(#{variables.$db-sizing-md} * #{$transformScale})
 		)
 		scale(var(--db-input-label-scale));
 }
 
 .db-input {
-	--db-input-padding-inline-start: #{$db-spacing-fixed-sm};
-	--db-input-padding-inline-end: #{$db-spacing-fixed-sm};
-	--icon-margin-after: 0;
+	--db-input-padding-inline-start: #{variables.$db-spacing-fixed-sm};
+	--db-input-padding-end-icon-after: 0;
+	--db-input-padding-end-data-variant: 0;
+	--db-input-padding-end-datalist: 0;
+	--db-icon-margin-end: 0;
 	--db-input-label-max-width: 80%;
+
+	@extend %default-form-message;
+	@extend %disabled-form-element;
+	@extend %required-form-element;
+
+	@include form-components.get-input-color-variants();
 
 	position: relative;
 
 	// padding-inline-end according to current amount of icons
-	&:has(> .icon-before) {
-		--db-input-padding-inline-start: #{calc(
-				2 * $db-spacing-fixed-sm + 1.25rem - 0.375rem
-			)};
+	&:has(> .icon-before, > [type="search"]) {
+		--db-input-padding-inline-start: #{calc(#{variables.$db-sizing-md})};
 		--db-input-label-max-width: 70%;
 
 		input {
@@ -56,64 +63,92 @@
 		}
 	}
 
-	&:has(> .icon-after),
-	&[data-variant] {
-		--db-input-padding-inline-end: #{calc(
-				2 * #{$db-spacing-fixed-sm} + 0.425rem
-			)};
+	&:has(> .icon-after) {
+		--db-input-padding-end-icon-after: 1;
+	}
 
-		input {
-			padding-inline-end: var(--db-input-padding-inline-end);
-		}
+	&[data-variant] {
+		--db-input-padding-end-data-variant: 1;
 	}
 
 	// two trailing icons
 	&[data-variant]:has(> .icon-after) {
-		--db-input-padding-inline-end: #{calc(
-				2 * #{$db-spacing-fixed-sm} + 0.425rem + 0.75rem + #{$db-spacing-fixed-sm}
-			)};
 		--db-input-label-max-width: 61%;
+	}
 
-		input {
-			padding-inline-end: var(--db-input-padding-inline-end);
-		}
-
-		.icon-input-state {
-			margin-inline-end: calc(0.75rem + 2 * $db-spacing-fixed-sm);
+	&:has(> datalist):has(> .icon-after) {
+		.icon-after {
+			padding-inline-start: variables.$db-spacing-fixed-xs;
 		}
 	}
 
+	&:has(> datalist) {
+		--db-input-padding-end-datalist: 1;
+
+		@extend %dropdown-icon;
+
+		&:has(input:is(:focus, :not(:placeholder-shown))) {
+			&::after {
+				transform: form-components.$dropdown-icon-transform;
+			}
+		}
+
+		input {
+			&::-webkit-calendar-picker-indicator {
+				display: none !important;
+			}
+		}
+	}
+
+	&:has(> [type="search"]) {
+		@extend %db-overwrite-font-size-sm;
+		@include icon-helpers.icon("search");
+	}
+
 	.db-icon,
-	db-icon {
-		--icon-font-family: var(--db-base-icon-font-family);
-		--icon-font-size: var(--db-base-icon-font-size);
-
-		@extend %db-body-sm;
-
-		height: var(--db-sizing-md);
+	db-icon,
+	&:has(> datalist)::after,
+	&:has(> [type="search"])::before {
+		block-size: variables.$db-sizing-md;
 		display: flex;
 		align-items: center;
 		position: absolute;
-		top: 0;
-		padding: 0 $db-spacing-fixed-sm;
+		inset-block-start: 0;
+		margin-inline: variables.$db-spacing-fixed-sm;
+	}
+
+	.db-icon,
+	db-icon,
+	&:has(> datalist)::after {
+		@extend %db-overwrite-font-size-sm;
 	}
 
 	.icon-after,
 	// angular specific nesting
-	dbicon.icon-after > .db-icon {
-		right: 0;
+	dbicon.icon-after > .db-icon,
+	&:has(> datalist)::after {
+		inset-inline-end: 0;
+	}
+
+	.icon-after {
+		margin-inline-end: calc(
+			#{variables.$db-spacing-fixed-sm} + var(
+					--db-input-padding-end-datalist
+				) * #{variables.$db-sizing-md} - var(
+					--db-input-padding-end-datalist
+				) * #{variables.$db-spacing-fixed-sm}
+		);
 	}
 
 	// currently not supported by firefox
 	&:has(> input:disabled) {
 		.db-icon,
-		.icon-input-state {
+		&:has(> datalist)::after {
 			opacity: 0.5;
 		}
 	}
 
 	label {
-		@extend %default-color;
 		position: absolute;
 		display: flex;
 		align-items: center;
@@ -122,14 +157,14 @@
 		transform-origin: left;
 		transform: translate(
 			var(--db-input-padding-inline-start),
-			calc(-1 * var(--db-sizing-md))
+			calc(-1 * #{variables.$db-sizing-md})
 		);
-		transition: transform 0.2s $db-transition-functional-timing;
+		transition: transform 0.2s variables.$db-transition-functional-timing;
 		will-change: transform;
-		height: $db-sizing-md;
+		block-size: variables.$db-sizing-md;
 		cursor: text;
 		// setting max-width to prevent users from too long labels by displaying text-overflow: ellipsis
-		max-width: var(--db-input-label-max-width, 80%);
+		max-inline-size: var(--db-input-label-max-width, 80%);
 
 		span:first-child {
 			text-overflow: ellipsis;
@@ -138,60 +173,46 @@
 		}
 	}
 
-	.description {
-		@extend %db-body-xs;
-		margin: $db-spacing-fixed-2xs $db-spacing-fixed-sm 0;
-
-		display: flex;
-		align-items: flex-start;
-		justify-content: space-between;
-	}
-
 	input {
-		@extend %bg-transparent-hover;
+		--db-input-padding-inline-end: calc(
+			(
+					var(--db-input-padding-end-icon-after) +
+						var(--db-input-padding-end-data-variant) +
+						var(--db-input-padding-end-datalist)
+				) * #{variables.$db-sizing-md}
+		);
+
 		@extend %default-interactive-component;
 		@extend %component-border;
-		@include get-variant-bg-color(0.08);
 
-		height: $db-sizing-md;
-		max-width: 100%;
-		width: 100%;
-		padding: $db-spacing-fixed-xs var(--db-input-padding-inline-end)
-			$db-spacing-fixed-xs var(--db-input-padding-inline-start);
+		@include color-variants.bg-transparent-hover();
+		@include color-variants.get-variant-bg-color(0.08);
+
+		color: variables.$db-colors-neutral-on-bg;
+
+		block-size: variables.$db-sizing-md;
+		max-inline-size: 100%;
+		inline-size: 100%;
+		padding: variables.$db-spacing-fixed-xs
+			var(--db-input-padding-inline-end) variables.$db-spacing-fixed-xs
+			var(--db-input-padding-inline-start);
 
 		// TODO: Evaluate whether those could get moved to ../_form-elements.scss
 		&:focus,
 		&:not(:placeholder-shown) {
-			padding-bottom: calc(
-				$db-spacing-fixed-xs - var(--db-input-focus-opacity) *
-					$db-spacing-fixed-xs
-			);
 			// move filled text for expressive and regular to center with focused label
-			padding-top: calc(
-				var(--db-spacing-fixed-xs) + 0.25em *
-					var(--db-input-focus-opacity)
-			);
+			padding-block: calc(
+					var(--db-spacing-fixed-xs) + 0.25em *
+						var(--db-input-focus-opacity)
+				)
+				calc(
+					#{variables.$db-spacing-fixed-xs} - var(
+							--db-input-focus-opacity
+						) * #{variables.$db-spacing-fixed-xs}
+				);
 
 			+ label {
 				@include label-focus-animation();
-			}
-		}
-
-		// TODO: Evaluate whether those could get moved to ../_form-elements.scss
-		&:disabled,
-		fieldset:disabled & {
-			&,
-			& + label {
-				// Decided against cursor: not-allowed, compare to e.g. https://phabricator.wikimedia.org/T121960
-				opacity: 0.25;
-				pointer-events: none;
-			}
-		}
-
-		&:required {
-			+ label::after {
-				content: " *";
-				padding-left: 0.2rem;
 			}
 		}
 
@@ -215,7 +236,7 @@
 		&[type="time"],
 		&[type="url"],
 		&[type="week"] {
-			@extend %db-body-sm;
+			@extend %db-overwrite-font-size-sm;
 
 			&:not([type="date"]):not([type="datetime-local"]):not(
 					[type="month"]
@@ -240,36 +261,18 @@
 		}
 
 		&[type="search"] {
-			$paddingLeft: calc($db-spacing-fixed-sm * 2 + 0.625rem);
-
 			padding-inline-start: var(--db-input-padding-inline-start);
 
 			&,
 			& + label {
 				--db-input-padding-inline-start: #{calc(
-						$db-spacing-fixed-sm * 2 + 0.625rem
+						#{variables.$db-spacing-fixed-sm} * 2 + #{variables.$db-spacing-fixed-md}
 					)};
-			}
-
-			& ~ .icon-input-state {
-				// TODO replace with svg icon
-				@include icon(glyph(search), 20, "filled", "before", false);
-			}
-
-			+ label {
-				transform: translate(
-					$paddingLeft,
-					calc(-1 * var(--db-sizing-md))
-				);
-			}
-
-			~ .description {
-				padding-inline-start: $paddingLeft;
 			}
 
 			&:focus,
 			&:not(:placeholder-shown) {
-				&:not(:disabled) {
+				&:enabled {
 					+ label {
 						padding-inline-start: 0;
 					}
@@ -280,10 +283,11 @@
 			&::-webkit-search-cancel-button {
 				appearance: none;
 				position: absolute;
-				right: $db-spacing-fixed-sm;
-				top: 0;
-				height: $db-sizing-md;
-				width: 1em;
+				inset-inline-end: variables.$db-spacing-fixed-sm;
+				inset-block-start: 0;
+				block-size: variables.$db-sizing-md;
+				inline-size: 1em;
+				// TODO: find a better solution for this
 				background: url(#{$icons-path}functional/images/navigation/db_ic_cancel_24.svg)
 					no-repeat 50% 50%;
 				background-size: contain;
@@ -293,140 +297,9 @@
 		}
 	}
 
-	// #variations
-	.icon-input-state {
-		--icon-font-family: var(--db-base-icon-font-family-filled);
-		--icon-font-size: var(--db-base-icon-font-size);
-		display: flex;
-		align-items: center;
-		flex-direction: row;
-		position: absolute;
-		top: 0;
-		padding: 0 $db-spacing-fixed-xs;
-		height: $db-sizing-md;
-
-		pointer-events: none;
-		right: 0;
-
-		&::before {
-			--icon-font-family: var(--db-base-icon-font-family-filled);
-			--icon-font-size: var(--db-base-icon-font-size);
-		}
-
-		// angular specific nesting
-		> .db-icon {
-			position: static;
-			padding: 0;
-
-			// TODO: Check whether we could find a more general solution for this
-			&::before {
-				--icon-font-family: var(--db-base-icon-font-family-filled);
-				--icon-font-size: var(--db-base-icon-font-size);
-			}
-		}
-	}
-
-	&[data-variant="critical"] {
-		color: $db-colors-critical-on-bg-enabled;
-	}
-
-	// Variant error or invalid state
-	&[data-variant="critical"] input,
 	input:required:invalid:not(:placeholder-shown),
 	input[aria-invalid="true"] {
-		--db-current-border-color: var(
-			--db-colors-critical-border-enabled,
-			#{$db-colors-critical-border-enabled}
-		);
-		@extend %db-bg-critical-transparent-semi;
-		@extend %db-bg-critical-transparent-semi-hover-state;
-
-		& + label {
-			color: $db-colors-critical-on-bg-enabled;
-		}
-
-		& ~ .description,
-		& ~ .icon-input-state {
-			color: $db-colors-critical-enabled;
-		}
-
-		& ~ .icon-input-state {
-			// TODO fix this workaround after new icon implementation
-			--icon-glyph: "\e1123";
-			@include icon(glyph(error), 24, "filled", "after", false);
-		}
-	}
-
-	&[data-variant="warning"] input {
-		--db-current-border-color: var(
-			--db-colors-warning-border-enabled,
-			#{$db-colors-warning-border-enabled}
-		);
-		@extend %db-bg-warning-transparent-semi;
-		@extend %db-bg-warning-transparent-semi-hover-state;
-
-		& + label {
-			color: $db-colors-warning-on-bg-enabled;
-		}
-
-		& ~ .description,
-		& ~ .icon-input-state,
-		& ~ .icon-input-state .db-icon {
-			color: $db-colors-warning-element-enabled;
-		}
-
-		& ~ .icon-input-state,
-		& ~ .icon-input-state .db-icon {
-			@include icon(glyph(error-triangle), 20, "filled", "after", false);
-		}
-	}
-
-	&[data-variant="successful"] input {
-		--db-current-border-color: var(
-			--db-colors-successful-border-enabled,
-			#{$db-colors-successful-border-enabled}
-		);
-		@extend %db-bg-successful-transparent-semi;
-		@extend %db-bg-successful-transparent-semi-hover-state;
-
-		& + label {
-			color: $db-colors-successful-on-bg-enabled;
-		}
-
-		& ~ .description,
-		& ~ .icon-input-state,
-		& ~ .icon-input-state .db-icon {
-			color: $db-colors-successful-element-enabled;
-		}
-
-		& ~ .icon-input-state,
-		& ~ .icon-input-state .db-icon {
-			@include icon(glyph(check-circle), 20, "filled", "after", false);
-		}
-	}
-
-	&[data-variant="informational"] input {
-		--db-current-border-color: var(
-			--db-colors-informational-border-enabled,
-			#{$db-colors-informational-border-enabled}
-		);
-		@extend %db-bg-informational-transparent-semi;
-		@extend %db-bg-informational-transparent-semi-hover-state;
-
-		& + label {
-			color: $db-colors-informational-on-bg-enabled;
-		}
-
-		& ~ .description,
-		& ~ .icon-input-state,
-		& ~ .icon-input-state .db-icon {
-			color: $db-colors-informational-element-enabled;
-		}
-
-		& ~ .icon-input-state,
-		& ~ .icon-input-state .db-icon {
-			@include icon(glyph(info), 20, "filled", "after", false);
-		}
+		@extend %adaptive-critical-component;
 	}
 }
 
@@ -437,7 +310,7 @@
 	.db-input
 		> input[type="datetime-local"]::-webkit-calendar-picker-indicator {
 		// TODO change icon and use db-icons to adopt color for data-variants
-		margin-top: -0.75em;
+		margin-block-start: -0.75em;
 		padding: 0;
 	}
 }

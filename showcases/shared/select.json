@@ -1,0 +1,276 @@
+[
+	{
+		"name": "Tonality",
+		"examples": [
+			{
+				"name": "functional",
+				"className": "db-ui-functional",
+				"props": {
+					"label": "Label",
+					"message": "functional"
+				}
+			},
+			{
+				"name": "regular (Default)",
+				"className": "db-ui-regular",
+				"props": {
+					"label": "Label",
+					"message": "regular (Default)"
+				}
+			},
+			{
+				"name": "expressive",
+				"className": "db-ui-expressive",
+				"props": {
+					"label": "Label",
+					"message": "expressive"
+				}
+			}
+		]
+	},
+	{
+		"name": "Variant",
+		"examples": [
+			{
+				"name": "(Default) Adaptive",
+				"props": {
+					"label": "Label",
+					"message": "(Default) Adaptive",
+					"options": [
+						{
+							"value": "Option 1"
+						},
+						{
+							"value": "Option 2"
+						}
+					]
+				}
+			},
+			{
+				"name": "Informational",
+				"props": {
+					"label": "Label",
+					"message": "Informational",
+					"variant": "informational",
+					"options": [
+						{
+							"value": "Option 1"
+						},
+						{
+							"value": "Option 2"
+						}
+					]
+				}
+			},
+			{
+				"name": "Warning",
+				"props": {
+					"label": "Label",
+					"message": "Warning",
+					"variant": "warning",
+					"options": [
+						{
+							"value": "Option 1"
+						},
+						{
+							"value": "Option 2"
+						}
+					]
+				}
+			},
+			{
+				"name": "Critical",
+				"props": {
+					"label": "Label",
+					"message": "Critical",
+					"variant": "critical",
+					"options": [
+						{
+							"value": "Option 1"
+						},
+						{
+							"value": "Option 2"
+						}
+					]
+				}
+			},
+			{
+				"name": "Successful",
+				"props": {
+					"label": "Label",
+					"message": "Successful",
+					"variant": "successful",
+					"options": [
+						{
+							"value": "Option 1"
+						},
+						{
+							"value": "Option 2"
+						}
+					]
+				}
+			}
+		]
+	},
+	{
+		"name": "States",
+		"examples": [
+			{
+				"name": "Default",
+				"props": {
+					"label": "Label",
+					"message": "Default",
+					"options": [
+						{
+							"value": "Option 1"
+						},
+						{
+							"value": "Option 2"
+						}
+					]
+				}
+			},
+			{
+				"name": "With value",
+				"props": {
+					"label": "Label",
+					"message": "With value",
+					"value": "Option 2",
+					"options": [
+						{
+							"value": "Option 1"
+						},
+						{
+							"value": "Option 2"
+						}
+					]
+				}
+			},
+			{
+				"name": "Required",
+				"props": {
+					"label": "Label",
+					"message": "Required",
+					"options": [
+						{
+							"value": "Option 1"
+						},
+						{
+							"value": "Option 2"
+						}
+					],
+					"required": true
+				}
+			},
+			{
+				"name": "Disabled",
+				"props": {
+					"label": "Label",
+					"message": "Disabled",
+					"disabled": true,
+					"options": [
+						{
+							"value": "Option 1"
+						},
+						{
+							"value": "Option 2"
+						}
+					]
+				}
+			},
+			{
+				"name": "Disabled + value",
+				"props": {
+					"label": "Label",
+					"message": "Disabled + value",
+					"disabled": true,
+					"value": "Option 2",
+					"options": [
+						{
+							"value": "Option 1"
+						},
+						{
+							"value": "Option 2"
+						}
+					]
+				}
+			},
+			{
+				"name": "Optgroup",
+				"props": {
+					"label": "Label",
+					"message": "Optgroup",
+					"options": [
+						{
+							"value": "Optgroup 1",
+							"options": [
+								{
+									"value": "Option 1"
+								},
+								{
+									"value": "Option 2"
+								}
+							]
+						},
+						{
+							"value": "Option 2"
+						}
+					]
+				}
+			}
+		]
+	},
+	{
+		"name": "Content",
+		"examples": [
+			{
+				"name": "Default",
+				"props": {
+					"label": "Label",
+					"message": "Default",
+					"options": [
+						{
+							"value": "Option 1"
+						},
+						{
+							"value": "Option 2"
+						}
+					]
+				}
+			},
+			{
+				"name": "With Icon",
+				"props": {
+					"label": "Label",
+					"message": "With Icon",
+					"icon": "edit",
+					"options": [
+						{
+							"value": "Option 1"
+						},
+						{
+							"value": "Option 2"
+						}
+					]
+				}
+			},
+			{
+				"name": "With Icon + Variant",
+				"props": {
+					"label": "Label",
+					"message": "With Icon + Variant",
+					"icon": "edit",
+					"variant": "successful",
+					"options": [
+						{
+							"value": "Option 1"
+						},
+						{
+							"value": "Option 2"
+						}
+					]
+				}
+			}
+		]
+	}
+]

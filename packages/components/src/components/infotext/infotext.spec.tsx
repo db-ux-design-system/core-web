@@ -2,37 +2,44 @@ import { test, expect } from '@playwright/experimental-ct-react';
 import AxeBuilder from '@axe-core/playwright';
 
 import { DBInfotext } from './index';
+// @ts-ignore - vue can only find it with .ts as file ending
+import { DEFAULT_VIEWPORT, VARIANTS } from '../../shared/constants.ts';
 
-const comp = <DBInfotext variant="successful">Test</DBInfotext>;
+const comp = <DBInfotext>Test</DBInfotext>;
 
 const testComponent = () => {
-	test('DBInfotext should contain text', async ({ mount }) => {
+	test('should contain text', async ({ mount }) => {
 		const component = await mount(comp);
 		await expect(component).toContainText('Test');
 	});
 
-	test('DBInfotext should match screenshot', async ({ mount }) => {
+	test('should match screenshot', async ({ mount }) => {
 		const component = await mount(comp);
 		await expect(component).toHaveScreenshot();
 	});
 };
-test.describe('DBInfotext component on desktop', () => {
-	// Old-school CRT monitor screensize
-	test.use({ viewport: { width: 1024, height: 768 } });
+
+const testVariants = () => {
+	for (const variant of VARIANTS) {
+		test(`should match screenshot for variant ${variant}`, async ({
+			mount
+		}) => {
+			const component = await mount(
+				<DBInfotext variant={variant}>Test</DBInfotext>
+			);
+			await expect(component).toHaveScreenshot();
+		});
+	}
+};
+
+test.describe('DBInfotext', () => {
+	test.use({ viewport: DEFAULT_VIEWPORT });
 	testComponent();
+	testVariants();
 });
 
-test.describe('DBInfotext component on mobile', () => {
-	// iPhone 13 / portrait screen size
-	test.use({ viewport: { width: 390, height: 884 } });
-	testComponent();
-});
-
-test.describe('DBInfotext component A11y', () => {
-	test('DBInfotext should not have any automatically detectable accessibility issues', async ({
-		page,
-		mount
-	}) => {
+test.describe('DBInfotext', () => {
+	test('should not have A11y issues', async ({ page, mount }) => {
 		await mount(comp);
 		const accessibilityScanResults = await new AxeBuilder({ page })
 			.include('.db-infotext')

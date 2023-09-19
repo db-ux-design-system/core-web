@@ -8,47 +8,43 @@ permissions:
   contents: write
 
 jobs:
-  playwright-ct-react:
-    name: 🧪 with 🎭
+  playwright-ct:
+    name: 🧪🎭 - ${{ matrix.framework }}:${{ matrix.shard }}
     runs-on: ubuntu-latest
     container:
-      image: mcr.microsoft.com/playwright:v1.31.2-focal
+      image: mcr.microsoft.com/playwright:v1.35.1-focal
     strategy:
       fail-fast: false
       matrix:
-        project: [chromium, firefox, webkit]
         framework: [react, vue]
-
+        shard: [1/4, 2/4, 3/4, 4/4]
     steps:
-      - name: ⬇ Checkout repo
-        uses: actions/checkout@v3
+      - name: ⏬ Checkout repo
+        uses: actions/checkout@v4
 
-      - name: ⬇ Download foundations build
+      - name: 🔄 Init Cache
+        uses: ./.github/actions/npm-cache
+
+      - name: 📲 Install esbuild (binary workaround)
+        run: npm i -D esbuild-linux-64
+
+      - name: ⏬ Download foundations build
         uses: ./.github/actions/download-tar-artifact
         with:
           name: db-ui-foundations-build
           path: packages/foundations/build
 
-      - name: ⬇ Download output
+      - name: ⏬ Download output
         uses: ./.github/actions/download-tar-artifact
         with:
           name: db-ui-output
           path: output
 
-      - name: ⬇ Download components styles build
+      - name: ⏬ Download components styles build
         uses: ./.github/actions/download-tar-artifact
         with:
           name: db-ui-components-build
           path: packages/components/build
-
-      - name: 📥 Download deps
-        uses: bahmutov/npm-install@v1
-        with:
-          install-command: npm ci --ignore-scripts
-
-      - name: 📲 Install esbuild (binary workaround)
-        working-directory: ./output/react
-        run: npm i -D esbuild-linux-64
 
       - name: 🚋 Get working directory
         id: workingDirectory
@@ -64,15 +60,15 @@ jobs:
         working-directory: ./output/${{ steps.workingDirectory.outputs.dir }}
         env:
           HOME: /root
-        run: npx playwright test --project=${{ matrix.project }}
+        run: npx playwright test --shard=${{ matrix.shard }}
 
-      - name: 🆙 Upload playwright-report
+      - name: 🆙 Upload blob report to GitHub Actions Artifacts
         if: always()
         uses: actions/upload-artifact@v3
         with:
-          name: ${{ matrix.framework}}-playwright-report
-          path: ./output/${{ steps.workingDirectory.outputs.dir }}/playwright-report
-          retention-days: 30
+          name: all-blob-reports
+          path: ./output/${{ steps.workingDirectory.outputs.dir }}/blob-report
+          retention-days: 1
 
       - name: 🆙 Upload test results
         if: failure()

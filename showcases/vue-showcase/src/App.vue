@@ -1,5 +1,12 @@
 <script setup lang="ts">
-import { DBPage, DBHeader, DBBrand } from "../../../output/vue/vue3/src";
+import {
+	DBPage,
+	DBHeader,
+	DBBrand,
+	DBSelect,
+	DBMainNavigation,
+	DBButton
+} from "../../../output/vue/vue3/src";
 import {
 	COLOR,
 	COLORS,
@@ -8,18 +15,28 @@ import {
 	COLOR_CONST,
 	TONALITY_CONST
 } from "../../../packages/components/src/shared/constants";
-import { navigationItems } from "./utils/navigation-items";
+import {
+	getSortedNavigationItems,
+	navigationItems
+} from "./utils/navigation-items";
 
 import { ref, watch } from "vue";
 import { useRouter, useRoute } from "vue-router";
+import NavItemComponent from "./NavItemComponent.vue";
 
 const router = useRouter();
 const route = useRoute();
 
 const tonality = ref(TONALITY.REGULAR);
-const color = ref(COLOR.NEUTRAL_0);
+const color = ref(COLOR.NEUTRAL);
 const page = ref();
 const fullscreen = ref();
+
+const drawerOpen = ref(false);
+
+const toggleDrawer = (open: boolean) => {
+	drawerOpen.value = open;
+};
 
 const getClassNames = () => {
 	return `db-ui-${tonality.value} db-bg-${color.value}`;
@@ -53,57 +70,71 @@ watch(
 		}
 	}
 );
+
+const sortedNavigation = getSortedNavigationItems(navigationItems);
 </script>
 
 <template>
 	<div v-if="page || fullscreen" :class="getClassNames()">
 		<router-view></router-view>
 	</div>
-	<DBPage v-if="!page && !fullscreen" type="fixedHeaderFooter">
+	<DBPage v-if="!page && !fullscreen" type="fixedHeaderFooter" :fadeIn="true">
 		<template v-slot:header>
-			<DBHeader>
+			<DBHeader :drawerOpen="drawerOpen" :onToggle="toggleDrawer">
 				<template v-slot:brand>
 					<DBBrand
-						title="Vue Showcase"
+						title="Showcase"
 						src="db_logo.svg"
 						href="/vue-showcase/"
 					>
 						Showcase
 					</DBBrand>
 				</template>
-				<template v-slot:desktop-navigation>
-					<nav class="desktop-navigation">
-						<ul>
-							<li v-for="item of navigationItems">
-								<router-link :to="item.path">{{
-									item.label
-								}}</router-link>
-							</li>
-						</ul>
-					</nav>
+				<DBMainNavigation>
+					<template v-for="item of sortedNavigation">
+						<NavItemComponent :navItem="item"></NavItemComponent>
+					</template>
+				</DBMainNavigation>
+				<template v-slot:call-to-action>
+					<DBButton icon="search" variant="text" :no-text="true">
+						Search
+					</DBButton>
 				</template>
-
+				<template v-slot:action-bar>
+					<DBButton icon="account" variant="text" :no-text="true">
+						Profile
+					</DBButton>
+					<DBButton icon="alert" variant="text" :no-text="true">
+						Notification
+					</DBButton>
+					<DBButton icon="help" variant="text" :no-text="true">
+						Help
+					</DBButton>
+				</template>
 				<template v-slot:meta-navigation>
-					<div>
-						<select v-model="tonality" @change="onChange($event)">
-							<option v-for="ton of TONALITIES" :value="ton">
-								{{ ton }}
-							</option>
-						</select>
-						<select v-model="color" @change="onChange($event)">
-							<option v-for="col of COLORS" :value="col">
-								{{ col }}
-							</option>
-						</select>
-					</div>
+					<DBSelect
+						label="Tonality"
+						v-model:value="tonality"
+						@change="onChange($event)"
+					>
+						<option v-for="ton of TONALITIES" :value="ton">
+							{{ ton }}
+						</option>
+					</DBSelect>
+					<DBSelect
+						label="Color"
+						v-model:value="color"
+						@change="onChange($event)"
+					>
+						<option v-for="col of COLORS" :value="col">
+							{{ col }}
+						</option>
+					</DBSelect>
 				</template>
 			</DBHeader>
 		</template>
 		<div :class="getClassNames()">
 			<router-view></router-view>
 		</div>
-		<template v-slot:footer>
-			<div slot="footer">FOOTER</div>
-		</template>
 	</DBPage>
 </template>

@@ -4,8 +4,16 @@ export type ComponentParserType = {
 
 export type ComponentType = {
 	index?: string | number;
-	type?: /* hygen type */
-	| 'h1'
+	type?: /* Template hygen type */
+	| 'main-navigation'
+		| 'accordion-item'
+		| 'accordion'
+		| 'textarea'
+		| 'badge'
+		| 'navigation-item'
+		| 'tag'
+		| 'select'
+		| 'h1'
 		| 'h2'
 		| 'h3'
 		| 'h4'
@@ -15,17 +23,18 @@ export type ComponentType = {
 		| 'alert'
 		| 'brand'
 		| 'button'
+		| 'checkbox'
 		| 'card'
 		| 'divider'
 		| 'header'
 		| 'icon'
 		| 'infotext'
 		| 'input'
+		| 'radio'
 		| 'link'
 		| 'section'
 		| string;
 	content?: string | ComponentType[];
 	props?: any;
-
 	className?: string;
 };

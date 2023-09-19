@@ -1,3 +1,5 @@
+/* eslint-disable unicorn/prefer-top-level-await */
+
 require('dotenv').config();
 const FS = require('node:fs');
 const { ZeplinApi, Configuration } = require('@zeplin/sdk');
@@ -228,4 +230,4 @@ const run = async () => {
 	}
 };
 
-await run();
+run();

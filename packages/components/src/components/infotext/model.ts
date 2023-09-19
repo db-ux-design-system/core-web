@@ -1,22 +1,19 @@
 import {
 	DefaultVariantProps,
 	GlobalProps,
-	GlobalState
+	GlobalState,
+	IconProps,
+	SizeProps
 } from '../../shared/model';
 
-export interface DBInfotextDefaultProps {
-	icon?: string;
-	size?: 'medium' | 'small';
-	variant?: 'adaptive' | DefaultVariantProps;
-}
+export interface DBInfotextDefaultProps {}
 
-export type DBInfotextProps = DBInfotextDefaultProps & GlobalProps;
+export type DBInfotextProps = DBInfotextDefaultProps &
+	GlobalProps &
+	DefaultVariantProps &
+	IconProps &
+	SizeProps;
 
-export interface DBInfotextDefaultState {
-	getIcon: (
-		icon?: string,
-		variant?: 'adaptive' | DefaultVariantProps
-	) => string;
-}
+export interface DBInfotextDefaultState {}
 
 export type DBInfotextState = DBInfotextDefaultState & GlobalState;

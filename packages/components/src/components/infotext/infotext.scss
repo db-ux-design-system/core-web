@@ -1,70 +1,32 @@
-@use "@db-ui/foundations/build/scss/body-styles" as *;
-@use "@db-ui/foundations/build/scss/variables" as *;
-@use "@db-ui/foundations/build/scss/variables.global" as *;
-
-$variants: (
-	"critical": (
-		var(--db-colors-critical-enabled, $db-colors-critical-enabled),
-		var(
-			--db-colors-critical-element-enabled,
-			$db-colors-critical-element-enabled
-		)
-	),
-	"informational": (
-		var(
-			--db-colors-informational-enabled,
-			$db-colors-informational-enabled
-		),
-		var(
-			--db-colors-informational-element-enabled,
-			$db-colors-informational-element-enabled
-		)
-	),
-	"warning": (
-		var(--db-colors-warning-enabled, $db-colors-warning-enabled),
-		var(
-			--db-colors-warning-element-enabled,
-			$db-colors-warning-element-enabled
-		)
-	),
-	"successful": (
-		var(--db-colors-successful-enabled, $db-colors-successful-enabled),
-		var(
-			--db-colors-successful-element-enabled,
-			$db-colors-successful-element-enabled
-		)
-	)
-);
+@use "sass:map";
+@use "@db-ui/foundations/build/scss/helpers/font";
+@use "@db-ui/foundations/build/scss/variables";
+@use "@db-ui/foundations/build/scss/color/color-variants";
+@use "@db-ui/foundations/build/scss/icon/icon-helpers";
 
 .db-infotext {
-	@extend %db-body-sm;
+	--db-icon-margin-end: #{variables.$db-spacing-fixed-2xs};
+	@extend %db-overwrite-font-size-sm;
+
+	@include icon-helpers.to-solid-icon();
 
 	display: flex;
 
-	.db-icon {
-		@extend %db-body-sm;
-		margin-inline-end: $db-spacing-fixed-2xs;
-
-		&::before {
-			--icon-font-family: var(--db-base-icon-font-family-filled);
-			--icon-font-size: var(--db-base-icon-font-size);
-		}
+	@include icon-helpers.has-no-icon() {
+		@include icon-helpers.icon("info");
 	}
 
 	&[data-size="small"] {
-		@extend %db-body-xs;
-
-		.db-icon {
-			@extend %db-body-xs;
-		}
+		@extend %db-overwrite-font-size-xs;
 	}
 
-	@each $name, $colors in $variants {
+	@each $name, $colors in color-variants.$component-variants {
 		&[data-variant="#{$name}"] {
-			color: nth($colors, 1);
+			@include icon-helpers.variant-icons($name);
+			color: map.get($colors, "primary");
 
-			.db-icon {
-				color: nth($colors, 2);
+			&::before {
+				--db-current-icon-color: #{map.get($colors, "element")};
 			}
 		}
 	}

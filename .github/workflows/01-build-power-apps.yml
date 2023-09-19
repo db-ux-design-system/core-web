@@ -14,7 +14,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: ⬇ Checkout repo
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: 🔄 Init Cache
         uses: ./.github/actions/npm-cache
@@ -32,7 +32,7 @@ jobs:
           path: output
 
       - name: 🖨 Copy Power Apps
-        run: npm run copy:power-apps
+        run: npm run postbuild:02_components
 
       - name: 🔨 Build Power Apps
         env:

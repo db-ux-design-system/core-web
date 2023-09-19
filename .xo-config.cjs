@@ -37,7 +37,10 @@ module.exports = {
 				'@typescript-eslint/no-unsafe-assignment': 0, // We don't need this tsc will handle it anyway
 				'@typescript-eslint/no-unsafe-call': 0, // We don't need this tsc will handle it anyway
 				'@typescript-eslint/naming-convention': 0, // Too much trouble for different frameworks in a monorepo
-				'@typescript-eslint/restrict-template-expressions': 0 // Legit it react
+				'@typescript-eslint/restrict-template-expressions': 0, // Legit in react
+				'@typescript-eslint/no-redundant-type-constituents': 0, // only happens in cicd
+				'@typescript-eslint/no-unsafe-argument': 0, // valid for app
+				'import/no-extraneous-dependencies': 0 // foundation and component.css are inside this repo
 			}
 		}
 	],

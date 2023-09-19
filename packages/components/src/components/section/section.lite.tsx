@@ -1,9 +1,11 @@
 import { onMount, Show, useMetadata, useStore } from '@builder.io/mitosis';
 import { DBSectionState, DBSectionProps } from './model';
+import { cls } from '../../utils';
 
 useMetadata({
 	isAttachedToShadowDom: true,
 	component: {
+		// MS Power Apps
 		includeIcon: false,
 		properties: []
 	}
@@ -12,6 +14,7 @@ useMetadata({
 export default function DBSection(props: DBSectionProps) {
 	// This is used as forwardRef
 	let component: any;
+	// jscpd:ignore-start
 	const state = useStore<DBSectionState>({});
 
 	onMount(() => {
@@ -19,13 +22,13 @@ export default function DBSection(props: DBSectionProps) {
 			state.stylePath = props.stylePath;
 		}
 	});
+	// jscpd:ignore-end
 
 	return (
 		<section
 			ref={component}
-			className={
-				'db-section' + (props.className ? ' ' + props.className : '')
-			}
+			id={props.id}
+			className={cls('db-section', props.className)}
 			data-size={props.size || 'medium'}>
 			<Show when={state.stylePath}>
 				<link rel="stylesheet" href={state.stylePath} />

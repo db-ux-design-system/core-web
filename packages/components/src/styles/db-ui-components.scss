@@ -1,5 +1,4 @@
 @use "@db-ui/foundations/build/scss/db-ui-foundations" as *;
-
 @use "../components/button/button" as *;
 @use "../components/icon/icon" as *;
 @use "../components/tab/tab" as *;
@@ -14,25 +13,87 @@
 @use "../components/section/section" as *;
 @use "../components/infotext/infotext" as *;
 @use "../components/alert/alert" as *;
+@use "../components/checkbox/checkbox" as *;
 @use "../components/radio/radio" as *;
 @use "../components/code-docs/code-docs" as *;
+@use "../components/tag/tag" as *;
+@use "../components/drawer/drawer" as *;
+@use "../components/select/select" as *;
+@use "../components/navigation-item/navigation-item" as *;
+@use "../components/textarea/textarea" as *;
+@use "../components/badge/badge" as *;
 
+@use "../components/accordion/accordion" as *;
+
+@use "../components/accordion-item/accordion-item" as *;
+@use "../components/main-navigation/main-navigation" as *;
+
+@forward "dialog-init";
 // angular-workaround
+dbtextarea,
+db-textarea,
+// angular-workaround
+dbmain-navigation,
+db-main-navigation,
+// angular-workaround
+dbaccordion-item,
+db-accordion-item,
+dbaccordion,
+db-accordion,
+dbbadge,
+db-badge,
+dbnavigation-item,
+db-navigation-item,
+dbtag,
+db-tag,
+dbradio,
+db-radio,
+dbselect,
+db-select,
 dbalert,
+db-alert,
 dbcodedocs,
+db-codedocs,
 dbbrand,
+db-brand,
 dbbutton,
+db-button,
 dbcard,
+db-card,
+dbcheckbox,
+db-checkbox,
 dbdivider,
+db-divider,
 dbdrawer,
+db-drawer,
 dbheader,
+db-header,
 dbicon,
+db-icon,
 dbinfotext,
+db-infotext,
 dbinput,
+db-input,
 dblink,
+db-link,
 dbpage,
+db-page,
 dbsection,
+db-section,
 dbtab,
-dbtabbar {
+db-tab,
+dbtabbar,
+db-tabbar {
 	display: contents;
+}
+
+db-alert,
+dbalert {
+	inline-size: inherit;
+}
+
+// for db-badge
+
+:has(.db-badge[data-placement^="corner"]) {
+	position: relative;
 }

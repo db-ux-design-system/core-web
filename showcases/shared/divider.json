@@ -1,0 +1,59 @@
+[
+	{
+		"name": "Tonality",
+		"examples": [
+			{
+				"name": "functional",
+				"style": { "width": "200px" },
+				"className": "db-ui-functional",
+				"props": {}
+			},
+			{
+				"name": "regular (Default)",
+				"style": { "width": "200px" },
+				"className": "db-ui-regular",
+				"props": {}
+			},
+			{
+				"name": "expressive",
+				"style": { "width": "200px" },
+				"className": "db-ui-expressive",
+				"props": {}
+			}
+		]
+	},
+	{
+		"name": "Variant",
+		"examples": [
+			{
+				"name": "Adaptive - Horizontal (Default)",
+				"style": { "width": "200px" },
+				"props": {}
+			},
+			{
+				"name": "Adaptive - Vertical",
+				"style": { "height": "100px" },
+				"props": {
+					"variant": "vertical"
+				}
+			}
+		]
+	},
+	{
+		"name": "Emphasis",
+		"examples": [
+			{
+				"name": "Weak (Default)",
+				"style": { "width": "200px" },
+				"props": {}
+			},
+			{
+				"name": "Strong",
+				"style": { "width": "200px" },
+				"props": {
+					"emphasis": "strong"
+				}
+			}
+		]
+	}
+]

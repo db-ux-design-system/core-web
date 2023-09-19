@@ -5,27 +5,25 @@
   "private": true,
   "scripts": {
     "build": "npm-run-all build:*",
-    "build-html": "npm-run-all build-html:*",
-    "build-html:01_tsc": "tsc",
-    "build-html:02_vite": "cross-env VITE_NAME=html vite build",
-    "build-html:03_copy": "cpr dist-html ../../build-showcases/html-showcase -o",
     "build:01_tsc": "tsc",
-    "build:02_vite": "cross-env VITE_NAME=react vite build",
-    "build:03_copy": "cpr dist-react ../../build-showcases/react-showcase -o",
+    "build:02_vite": "vite build",
     "dev": "vite --open",
-    "start": "vite"
+    "preview": "npx http-server ../../build-showcases",
+    "regenerate:screenshots": "cross-env showcase=react-showcase npx playwright test -c ../playwright.config.ts --update-snapshots",
+    "start": "vite",
+    "test:e2e": "cross-env showcase=react-showcase npx playwright test --config=../playwright.config.ts"
   },
   "dependencies": {
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-router-dom": "6.9.0"
+    "react-router-dom": "6.16.0"
   },
   "devDependencies": {
-    "@types/react": "^18.0.28",
-    "@types/react-dom": "^18.0.11",
-    "@vitejs/plugin-react": "^3.1.0",
-    "sass": "^1.59.3",
+    "@types/react": "^18.2.22",
+    "@types/react-dom": "^18.2.7",
+    "@vitejs/plugin-react": "^4.0.4",
+    "cross-env": "^7.0.3",
     "typescript": "^4.9.5",
-    "vite": "^4.2.1"
+    "vite": "^4.4.9"
   }
 }

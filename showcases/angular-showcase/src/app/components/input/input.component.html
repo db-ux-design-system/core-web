@@ -1,106 +1,26 @@
 <app-default-component
-	title="Input"
+	title="DBInput"
 	[variants]="variants"
 	[exampleTemplate]="exampleTemplate"
 >
 	<ng-template
 		#exampleTemplate
+		let-exampleProps="exampleProps"
 		let-exampleName="exampleName"
 		let-exampleIndex="exampleIndex"
 		let-variantIndex="variantIndex"
 	>
-		<ng-container *ngIf="exampleIndex === 0">
-			<DBInput label="Label" [description]="exampleName"></DBInput>
-		</ng-container>
-		<ng-container *ngIf="variantIndex === 0">
-			<ng-container *ngFor="let variant of variantColors; index as index">
-				<DBInput
-					*ngIf="exampleIndex === index + 1"
-					label="Label"
-					[description]="exampleName"
-					[variant]="variant"
-				></DBInput>
-			</ng-container>
-		</ng-container>
-		<ng-container *ngIf="variantIndex === 1">
-			<ng-container *ngIf="exampleIndex === 1">
-				<DBInput
-					label="Label"
-					[description]="exampleName"
-					value="Input Text"
-				></DBInput>
-			</ng-container>
-			<ng-container *ngIf="exampleIndex === 2">
-				<DBInput
-					label="Label"
-					[description]="exampleName"
-					value="123456"
-					type="number"
-				></DBInput>
-			</ng-container>
-			<ng-container *ngIf="exampleIndex === 3">
-				<DBInput
-					label="Label"
-					[description]="exampleName"
-					min-length="5"
-					[required]="true"
-				></DBInput>
-			</ng-container>
-			<ng-container *ngIf="exampleIndex === 4">
-				<DBInput
-					label="Label"
-					[description]="exampleName"
-					[disabled]="true"
-				></DBInput>
-			</ng-container>
-			<ng-container *ngIf="exampleIndex === 5">
-				<DBInput
-					label="Label"
-					[description]="exampleName"
-					[disabled]="true"
-					value="Input Text"
-				></DBInput>
-			</ng-container>
-			<ng-container *ngIf="exampleIndex === 6">
-				<DBInput
-					label="Label"
-					[description]="exampleName"
-					[required]="true"
-					value="Input Text"
-				></DBInput>
-			</ng-container>
-		</ng-container>
-		<ng-container *ngIf="variantIndex === 2">
-			<ng-container *ngIf="exampleIndex === 1">
-				<DBInput
-					label="Label"
-					[description]="exampleName"
-					icon="account"
-				></DBInput>
-			</ng-container>
-			<ng-container *ngIf="exampleIndex === 2">
-				<DBInput
-					label="Label"
-					[description]="exampleName"
-					icon="account"
-					icon-after="edit"
-				></DBInput>
-			</ng-container>
-			<ng-container *ngIf="exampleIndex === 3">
-				<DBInput
-					label="Label"
-					[description]="exampleName"
-					icon-after="edit"
-				></DBInput>
-			</ng-container>
-			<ng-container *ngIf="exampleIndex === 4">
-				<DBInput
-					label="Label"
-					[description]="exampleName"
-					icon-after="edit"
-					variant="successful"
-				></DBInput>
-			</ng-container>
-		</ng-container>
+		<db-input
+			[variant]="exampleProps.variant"
+			[label]="exampleProps.label"
+			[message]="exampleProps.message"
+			[minLength]="exampleProps.minLength"
+			[required]="exampleProps.required"
+			[type]="exampleProps.type"
+			[disabled]="exampleProps.disabled"
+			[value]="exampleProps.value"
+			[icon]="exampleProps.icon"
+			[iconAfter]="exampleProps.iconAfter"
+		></db-input>
 	</ng-template>
 </app-default-component>

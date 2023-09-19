@@ -1,0 +1,22 @@
+<app-default-component
+	title="DBDivider"
+	[variants]="variants"
+	[exampleTemplate]="exampleTemplate"
+>
+	<ng-template
+		#exampleTemplate
+		let-exampleProps="exampleProps"
+		let-exampleName="exampleName"
+		let-exampleIndex="exampleIndex"
+		let-variantIndex="variantIndex"
+	>
+		<db-infotext size="small" variant="informational">
+			{{ exampleName }}</db-infotext
+		>
+		<db-divider
+			[variant]="exampleProps.variant"
+			[emphasis]="exampleProps.emphasis"
+		>
+		</db-divider>
+	</ng-template>
+</app-default-component>

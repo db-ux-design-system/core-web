@@ -1,25 +1,34 @@
+import { remarkCodeHike } from '@code-hike/mdx';
 import remarkGfm from 'remark-gfm';
-
 import generated from '@next/mdx';
+import { getTheme } from './code-theme.js';
 
 const withMDX = generated({
 	extension: /\.mdx?$/,
 	options: {
-		// If you use remark-gfm, you'll need to use next.config.mjs
-		// as the package is ESM only
-		// https://github.com/remarkjs/remark-gfm#install
-		remarkPlugins: [remarkGfm],
-		rehypePlugins: []
-		// If you use `MDXProvider`, uncomment the following line.
-		// providerImportSource: "@mdx-js/react",
+		remarkPlugins: [
+			remarkGfm,
+			[
+				remarkCodeHike,
+				{
+					theme: getTheme(),
+					showCopyButton: true,
+					showExpandButton: true
+				}
+			]
+		],
+		rehypePlugins: [],
+		providerImportSource: '@mdx-js/react'
 	}
 });
 
 const config = {
+	output: 'export',
 	basePath: process.env.NEXT_PUBLIC_BASE_PATH || '',
 	transpilePackages: ['@db-ui'],
 	...withMDX({
-		pageExtensions: ['ts', 'tsx', 'js', 'jsx', 'md', 'mdx']
+		pageExtensions: ['ts', 'tsx', 'js', 'jsx', 'md', 'mdx'],
+		eslint: { ignoreDuringBuilds: true }
 	})
 };
 

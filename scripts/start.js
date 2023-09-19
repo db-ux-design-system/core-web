@@ -10,7 +10,7 @@ inquirer
 			name: 'frameworks',
 			choices: [
 				{
-					name: 'angular-lts'
+					name: 'angular'
 				},
 				{
 					name: 'patternhub'

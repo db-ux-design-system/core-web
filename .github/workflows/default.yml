@@ -27,7 +27,7 @@ jobs:
     uses: ./.github/workflows/01-build-outputs.yml
     needs: [build-packages]
 
-  test-packages:
+  test-components:
     uses: ./.github/workflows/02-e2e.yml
     needs: [build-packages]
 
@@ -42,6 +42,15 @@ jobs:
     with:
       version: 0.0.0-test
 
+  test-showcases:
+    uses: ./.github/workflows/02-e2e-showcases.yml
+    needs: [build-showcases]
+
+  merge-reports:
+    if: ${{ always() }}
+    uses: ./.github/workflows/03-e2e-merge-reports.yml
+    needs: [test-components, test-showcases]
+
   checks-done:
     if: ${{ always() }}
     runs-on: ubuntu-latest
@@ -50,16 +59,24 @@ jobs:
         run: |
           resultBuildShowcases="${{ needs.build-showcases.result }}"
           resultBuildOutputs="${{ needs.build-outputs.result }}"
-          resultTestPackages="${{ needs.test-packages.result }}"
+          resultTestPackages="${{ needs.test-components.result }}"
+          resultTestShowcases="${{ needs.test-showcases.result }}"
           resultBuildPowerApps="${{ needs.build-power-apps.result }}"
-          if [[ $resultBuildShowcases == "success" && $resultBuildOutputs == "success" && $resultTestPackages == "success" && $resultBuildPowerApps == "success" ]]; then
+          if [[ $resultTestShowcases == "success" && $resultBuildShowcases == "success" && $resultBuildOutputs == "success" && $resultTestPackages == "success" && $resultBuildPowerApps == "success" ]]; then
              echo "🎉 All tests were successful."
             exit 0
           else
              echo "Some tests were failing."
             exit 1
           fi
-    needs: [build-showcases, build-outputs, test-packages, build-power-apps]
+    needs:
+      [
+        build-showcases,
+        build-outputs,
+        test-components,
+        test-showcases,
+        build-power-apps
+      ]
 
   deploy:
     uses: ./.github/workflows/03-deploy-gh-pages.yml

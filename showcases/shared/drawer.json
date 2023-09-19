@@ -1,0 +1,147 @@
+[
+	{
+		"name": "Tonality",
+		"examples": [
+			{
+				"name": "functional",
+				"className": "db-ui-functional",
+				"props": {}
+			},
+			{
+				"name": "regular (Default)",
+				"className": "db-ui-regular",
+				"props": {}
+			},
+			{
+				"name": "expressive",
+				"className": "db-ui-expressive",
+				"props": {}
+			}
+		]
+	},
+	{
+		"name": "Size",
+		"examples": [
+			{
+				"name": "With padding (Default)",
+				"props": {
+					"withCloseButton": true
+				}
+			},
+			{
+				"name": "Full",
+				"props": {
+					"withCloseButton": true,
+					"width": "full"
+				}
+			}
+		]
+	},
+	{
+		"name": "Rounded",
+		"examples": [
+			{
+				"name": "No rounding (Default)",
+				"props": {
+					"withCloseButton": true
+				}
+			},
+			{
+				"name": "Rounded",
+				"props": {
+					"withCloseButton": true,
+					"rounded": true
+				}
+			}
+		]
+	},
+	{
+		"name": "Spacing",
+		"examples": [
+			{
+				"name": "Medium (Default)",
+				"props": {
+					"withCloseButton": true
+				}
+			},
+			{
+				"name": "Small",
+				"props": {
+					"withCloseButton": true,
+					"spacing": "small"
+				}
+			},
+			{
+				"name": "Large",
+				"props": {
+					"withCloseButton": true,
+					"spacing": "large"
+				}
+			},
+			{
+				"name": "No spacing",
+				"props": {
+					"withCloseButton": true,
+					"spacing": "none"
+				}
+			}
+		]
+	},
+	{
+		"name": "Backdrop",
+		"examples": [
+			{
+				"name": "With Backdrop (Default)",
+				"props": {
+					"withCloseButton": true
+				}
+			},
+			{
+				"name": "Backdrop-weak",
+				"props": {
+					"withCloseButton": true,
+					"backdrop": "weak"
+				}
+			},
+			{
+				"name": "No Backdrop",
+				"props": {
+					"withCloseButton": true,
+					"backdrop": "none"
+				}
+			}
+		]
+	},
+	{
+		"name": "Directions",
+		"examples": [
+			{
+				"name": "Right (Default)",
+				"props": {
+					"withCloseButton": true
+				}
+			},
+			{
+				"name": "Left",
+				"props": {
+					"withCloseButton": true,
+					"direction": "left"
+				}
+			},
+			{
+				"name": "Up",
+				"props": {
+					"withCloseButton": true,
+					"direction": "up"
+				}
+			},
+			{
+				"name": "Down",
+				"props": {
+					"withCloseButton": true,
+					"direction": "down"
+				}
+			}
+		]
+	}
+]

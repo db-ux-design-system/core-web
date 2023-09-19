@@ -5,15 +5,12 @@ module.exports = (tmp) => {
 	for (const component of components) {
 		try {
 			const upperComponentName = getComponentName(component.name);
-			const stateName = `DB${upperComponentName}State`;
 
 			const tsxFile = `../../${
 				tmp ? 'output/tmp' : 'output'
 			}/react/src/components/${component.name}/${component.name}.tsx`;
 
 			let replacements = [
-				{ from: `${stateName}, `, to: '' },
-				{ from: `, ${stateName}`, to: '' },
 				{
 					from: /= useState/g,
 					to: '= useState<any>'
@@ -26,6 +23,14 @@ module.exports = (tmp) => {
 				{
 					from: `export default DB${upperComponentName};`,
 					to: `const DB${upperComponentName} = forwardRef(DB${upperComponentName}Fn);\nexport default DB${upperComponentName};`
+				},
+				{
+					from: 'if (ref.current)',
+					to: 'if (ref?.current)'
+				},
+				{
+					from: '[ref.current]',
+					to: '[ref]'
 				}
 			];
 

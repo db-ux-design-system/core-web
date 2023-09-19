@@ -1,20 +1,61 @@
 import { onMount, Show, useMetadata, useStore } from '@builder.io/mitosis';
-import { DBIcon } from '../icon';
 import { DBLinkState, DBLinkProps } from './model';
+import { cls } from '../../utils';
 
 useMetadata({
 	isAttachedToShadowDom: false,
 	component: {
-		includeIcon: false,
-		properties: []
+		// MS Power Apps
+		includeIcon: true,
+		properties: [
+			// jscpd:ignore-start
+			{
+				name: 'children',
+				type: 'SingleLine.Text',
+				defaultValue: 'Link'
+			},
+			{
+				name: 'href',
+				type: 'SingleLine.URL',
+				defaultValue: 'https://www.deutschebahn.com/'
+			},
+			{ name: 'title', type: 'SingleLine.Text' },
+			{
+				name: 'variant',
+				type: 'Enum',
+				values: [
+					{ key: 'Adaptive', name: 'Adaptive', value: 'adaptive' },
+					{ key: 'Primary', name: 'primary', value: 'primary' },
+					{
+						key: 'Inline',
+						name: 'Inline',
+						value: 'inline'
+					}
+				],
+				defaultValue: 'adaptive'
+			},
+			{
+				name: 'target',
+				type: 'Enum',
+				values: [
+					{ key: '_self', name: '_self', value: '_self' },
+					{ key: '_blank', name: '_blank', value: '_blank' },
+					{ key: '_parent', name: '_parent', value: '_parent' },
+					{ key: '_top', name: '_top', value: '_top' }
+				],
+				defaultValue: '_blank'
+			}
+			// jscpd:ignore-end
+		]
 	}
 });
 
 export default function DBLink(props: DBLinkProps) {
 	// This is used as forwardRef
 	let component: any;
+	// jscpd:ignore-start
 	const state = useStore<DBLinkState>({
-		handleClick: (event) => {
+		handleClick: (event: any) => {
 			if (props.onClick) {
 				props.onClick(event);
 			}
@@ -26,11 +67,13 @@ export default function DBLink(props: DBLinkProps) {
 			state.stylePath = props.stylePath;
 		}
 	});
+	// jscpd:ignore-end
 
 	return (
 		<a
 			ref={component}
-			class={'db-link' + (props.className ? ' ' + props.className : '')}
+			id={props.id}
+			class={cls('db-link', props.className)}
 			href={props.href}
 			title={props.title}
 			target={props.target}
@@ -49,14 +92,10 @@ export default function DBLink(props: DBLinkProps) {
 			<Show when={state.stylePath}>
 				<link rel="stylesheet" href={state.stylePath} />
 			</Show>
-			{props.children}
-			<Show when={props.variant !== 'inline'}>
-				<DBIcon
-					icon={
-						props.content == 'external' ? 'link-external' : 'link'
-					}
-					icntxt={true}></DBIcon>
+			<Show when={props.text}>
+				<span>{props.text}</span>
 			</Show>
+			{props.children}
 		</a>
 	);
 }

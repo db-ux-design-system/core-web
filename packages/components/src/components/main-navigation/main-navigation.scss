@@ -1,0 +1,87 @@
+@use "@db-ui/foundations/build/scss/variables";
+@use "@db-ui/foundations/build/scss/helpers/component";
+@use "../../styles/db-puls";
+@use "../../styles/form-components";
+
+.db-main-navigation {
+	-webkit-tap-highlight-color: transparent; /* for removing the highlight */
+	inline-size: 100%;
+
+	@include component.screen("md") {
+		-webkit-tap-highlight-color: inherit;
+		inline-size: auto;
+	}
+
+	& > menu {
+		display: flex;
+		flex-direction: column;
+		padding: 0;
+		margin: 0;
+		gap: variables.$db-spacing-fixed-sm;
+
+		@include component.screen("md") {
+			flex-direction: row;
+		}
+
+		.db-navigation-item {
+			.db-navigation-item-expand-button:is(button),
+			.db-navigation-item-expand-button > button {
+				// overwrite for main-navigation items
+				@include component.screen("md") {
+					&::after {
+						--db-icon-margin-start: #{variables.$db-spacing-fixed-sm};
+						--db-icon: "expand_more";
+						transition: form-components.$dropdown-icon-transition;
+					}
+
+					&:hover,
+					&:focus-visible,
+					&:has(~ .db-sub-navigation:hover),
+					&:has(~ .db-sub-navigation:focus-visible),
+					&:has(~ .db-sub-navigation:focus-within) {
+						&::after {
+							transform: form-components.$dropdown-icon-transform;
+						}
+					}
+				}
+			}
+
+			// re overwrite for non main-navigation items
+			& > menu {
+				.db-navigation-item-expand-button:is(button),
+				.db-navigation-item-expand-button > button {
+					@include component.screen("md") {
+						&::after {
+							--db-icon: "chevron_right";
+							--db-icon-margin-start: auto;
+						}
+
+						&:hover,
+						&:focus-visible,
+						&:has(~ .db-sub-navigation:hover),
+						&:has(~ .db-sub-navigation:focus-visible),
+						&:has(~ .db-sub-navigation:focus-within) {
+							&::after {
+								transform: none;
+							}
+						}
+					}
+				}
+			}
+
+			&[aria-current="page"] {
+				// add puls for main-navigation items
+				@extend %show-db-puls;
+
+				menu {
+					// hide puls for non main-navigation items
+					[aria-current="page"] {
+						&::after {
+							display: none;
+						}
+					}
+				}
+			}
+		}
+	}
+}

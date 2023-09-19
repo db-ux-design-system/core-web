@@ -1,0 +1,22 @@
+<app-default-component
+	title="DBLink"
+	[variants]="variants"
+	[exampleTemplate]="exampleTemplate"
+>
+	<ng-template
+		#exampleTemplate
+		let-exampleProps="exampleProps"
+		let-exampleName="exampleName"
+		let-exampleIndex="exampleIndex"
+		let-variantIndex="variantIndex"
+	>
+		<db-link
+			[variant]="exampleProps.variant"
+			[href]="exampleProps.href"
+			[disabled]="exampleProps.disabled"
+			[size]="exampleProps.size"
+			[content]="exampleProps.content"
+			>{{ exampleName }}</db-link
+		>
+	</ng-template>
+</app-default-component>

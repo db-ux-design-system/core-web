@@ -1,31 +1,35 @@
-/* Add styles for component here */
-
-@use "@db-ui/foundations/build/scss/variables" as *;
-@use "@db-ui/foundations/build/scss/variables.global" as *;
-@use "@db-ui/foundations/build/scss/color-placeholder" as *;
-@use "@db-ui/foundations/build/scss/tonality" as *;
+@use "@db-ui/foundations/build/scss/variables";
+@use "@db-ui/foundations/build/scss/color-placeholder";
+@use "@db-ui/foundations/build/scss/color/color-variants";
+@use "@db-ui/foundations/build/scss/helpers/component";
 
 %code-docs {
-	padding: $db-spacing-fixed-md;
-	padding-block-end: calc($db-spacing-fixed-md + $db-sizing-sm);
+	@extend %db-bg-neutral-transparent-semi;
+	min-block-size: variables.$db-sizing-3xl;
+	align-items: center;
+	justify-content: center;
+	padding: variables.$db-spacing-fixed-xl;
+	padding-block-end: calc(
+		#{variables.$db-spacing-fixed-xl} + #{variables.$db-sizing-sm}
+	);
 	position: relative;
 
 	.code-details {
 		position: absolute;
-		bottom: 0;
-		right: 0;
-		width: 100%;
+		inset-block-end: 0;
+		inset-inline-end: 0;
+		inline-size: 100%;
 		display: flex;
 
 		&[open] {
-			left: 0;
-			top: 0;
+			inset-inline-start: 0;
+			inset-block-start: 0;
 		}
 
 		.code-button {
 			position: absolute;
-			bottom: 0;
-			right: 0;
+			inset-block-end: 0;
+			inset-inline-end: 0;
 			z-index: 1;
 		}
 
@@ -34,29 +38,15 @@
 		}
 
 		.code {
-			@extend %db-bg-secondary;
+			@extend %db-bg-inverted;
 			overflow: auto;
 			position: absolute;
-			right: 0;
-			top: 0;
-			bottom: 0;
-			padding: $db-sizing-sm $db-spacing-fixed-md;
+			inset-inline-end: 0;
+			inset-block: 0;
+			padding-block-end: variables.$db-spacing-fixed-md;
 
-			@media screen and (min-width: $db-screens-s) {
-				width: 50%;
-			}
-
-			div {
-				margin: 0;
-				display: flex;
-				gap: $db-spacing-fixed-sm;
-				align-items: center;
-
-				code {
-					@extend %db-body-xs;
-					white-space: pre-wrap;
-					width: 100%;
-				}
+			@include component.screen() {
+				inline-size: 50%;
 			}
 		}
 	}
@@ -65,7 +55,8 @@
 .db-code-docs {
 	@extend %code-docs;
 	/* Workaround for angular db-XYZ as root tag is not working */
-	:where(.db-card) {
+	&.db-card,
+	& > .db-card {
 		@extend %code-docs;
 	}
 }

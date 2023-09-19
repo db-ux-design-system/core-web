@@ -1,0 +1,46 @@
+@use "@db-ui/foundations/build/scss/variables";
+@use "@db-ui/foundations/build/scss/helpers/component";
+
+%db-puls {
+	@include component.screen("md") {
+		&::after {
+			border-inline-start: none;
+			border-block-end: component.$default-border-radius solid
+				variables.$db-colors-primary;
+			inset-block-end: calc(-1 * #{variables.$db-spacing-fixed-xs});
+			inline-size: 0;
+			block-size: auto;
+			inset-inline-start: 50%;
+			inset-block-start: auto;
+			transform: translate(-50%, 0);
+		}
+	}
+
+	&::after {
+		content: "";
+		position: absolute;
+		border-radius: component.$default-border-radius;
+		transition:
+			height 0.15s variables.$db-transition-emotional-timing,
+			width 0.15s variables.$db-transition-emotional-timing;
+		block-size: 0;
+		transform: translate(0, -50%);
+		inset-block-start: 50%;
+		inset-inline-start: calc(-1 * #{variables.$db-spacing-fixed-xs});
+		border-inline-start: component.$default-border-radius solid
+			variables.$db-colors-primary;
+	}
+}
+
+%show-db-puls {
+	@include component.screen("md") {
+		&::after {
+			block-size: auto;
+			inline-size: 100%;
+		}
+	}
+
+	&::after {
+		block-size: 100%;
+	}
+}

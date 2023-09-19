@@ -19,7 +19,14 @@ We currently support:
 
 ## Usage
 
+The defaults for `db-ui-foundations.css` are:
+
+-   [Tonality](https://marketingportal.extranet.deutschebahn.com/marketingportal/Design-Anwendungen/db-ux-design-system-v3/principles/tonalities): `regular`
+-   [Adaptive Coloring](https://marketingportal.extranet.deutschebahn.com/marketingportal/Design-Anwendungen/db-ux-design-system-v3/principles/adaptive-styles): `neutral-0`
+
 ### CSS
+
+Default assets path for `db-ui-foundations.css` is `../assets`. Make sure to copy all used resources like icons and fonts into your `public` folder before build.
 
 ```ts
 // main.ts / main.js
@@ -45,7 +52,6 @@ Based on your technology/setup you need to change the paths of the assets folder
 -   Default: points to `../assets`
 -   Webpack: points to `~@db-ui/foundations/assets`
 -   Rollup: points to `@db-ui/foundations/assets`
--
 
 ```scss
 // index.scss
@@ -93,6 +99,62 @@ module.exports = {
 ```html
 <div class="p-fix-md"></div>
 ```
+
+## Icons
+
+We use icon fonts as `woff2` files for all our icons.
+We auto generate these files out of `.svg` files.
+
+### Custom Icons
+
+If you have custom icons and want to use them for foundations and/or in components, you need to generate a `woff2` file.
+
+For this run:
+
+```shell
+node node_modules/@db-ui/foundations/scripts/generate-icon-fonts/index.js --src ./my-path-to/icons --fontName my-name
+```
+
+We search for all `**/*.svg` files inside the `src` directory and create a new icon font with the provided name.
+
+> **_NOTE:_** We use 3 different sizes for components (16,20,24) to show more or less details. You can do the same by providing another file with a size postfix for example "icon_file_name_16.svg".
+
+In your app you need to include some of the generated files:
+
+`./my-path-to/icons/fonts/my-name.woff2`
+
+`./my-path-to/icons/fonts/font-face.css`
+
+Now you can use your icons with your `font-family: my-name`, e.g.:
+
+```html
+<!--example.html-->
+<i class="my-name">icon_file_name</i>
+```
+
+### data-icon
+
+If you like to use a custom icon in one of our components you can do it by overwriting the default font-family like this:
+
+```html
+<!--example.html-->
+
+<p class="icon-family-my-name" data-icon="icon_file_name">Test</p>
+<!-- or -->
+<p data-icon-family="my-name" data-icon="icon_file_name">Test</p>
+```
+
+### Foundation Developer
+
+If you update a `svg` inside `assets/icons/functional/images` you need to recreate the `woff2` file.
+
+For this you just need to run
+
+```shell
+npm run generate:icon-fonts
+```
+
+Your new icon should be inside `assets/icons/functional/fonts/info.json` and you should see it inside `assets/icons/functional/fonts/index.html` in the browser.
 
 ## Deutsche Bahn brand
 

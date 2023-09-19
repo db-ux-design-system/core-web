@@ -19,7 +19,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: ⬇ Checkout repo
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: 🔄 Init Cache
         uses: ./.github/actions/npm-cache
@@ -80,10 +80,8 @@ jobs:
       - name: 🔨 Build Showcases
         env:
           NEXT_PUBLIC_BASE_PATH: ${{ steps.base-path.outputs.result }}
-          BASE_URL: ${{ steps.base-path.outputs.result }}
         run: |
-          npx replace-in-file /angular-current-showcase/ ${BASE_URL}/angular-current-showcase/ showcases/angular-current-showcase/src/index.html
-          npx replace-in-file /angular-lts-showcase/ ${BASE_URL}/angular-lts-showcase/ showcases/angular-lts-showcase/src/index.html
+          npm run scripts:md-resolve-svg
           npm run build-showcases
 
       - name: ⬆ Upload Showcases

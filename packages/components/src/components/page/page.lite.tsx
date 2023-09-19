@@ -6,10 +6,12 @@ import {
 	useStore
 } from '@builder.io/mitosis';
 import { DBPageProps, DBPageState } from './model';
+import { cls } from '../../utils';
 
 useMetadata({
 	isAttachedToShadowDom: true,
 	component: {
+		// MS Power Apps
 		includeIcon: false,
 		properties: []
 	}
@@ -18,24 +20,36 @@ useMetadata({
 export default function DBPage(props: DBPageProps) {
 	// This is used as forwardRef
 	let component: any;
-	const state = useStore<DBPageState>({});
+	// jscpd:ignore-start
+	const state = useStore<DBPageState>({
+		fontsLoaded: false
+	});
 
 	onMount(() => {
+		state.fontsLoaded = !props.fadeIn;
 		if (props.stylePath) {
 			state.stylePath = props.stylePath;
 		}
+
+		if (document && props.fadeIn) {
+			document.fonts.ready.then(() => {
+				state.fontsLoaded = true;
+			});
+		} else {
+			state.fontsLoaded = true;
+		}
 	});
+	// jscpd:ignore-end
 
 	return (
 		<div
 			ref={component}
-			class={
-				'db-page' +
-				(props.className ? ' ' + props.className : '') +
-				(props.type === 'fixedHeaderFooter'
-					? ' fixed-header-footer'
-					: '')
-			}>
+			id={props.id}
+			class={cls('db-page', props.className, {
+				'fixed-header-footer': props.type === 'fixedHeaderFooter'
+			})}
+			data-fade-in={props.fadeIn}
+			data-fonts-loaded={state.fontsLoaded}>
 			<Show when={state.stylePath}>
 				<link rel="stylesheet" href={state.stylePath} />
 			</Show>

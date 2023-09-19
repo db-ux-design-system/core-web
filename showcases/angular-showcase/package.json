@@ -1,0 +1,32 @@
+{
+  "name": "angular-showcase",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "build": "ng build",
+    "dev": "npm run start -- --open",
+    "ng": "ng",
+    "preview": "npx http-server ../../build-showcases",
+    "start": "ng serve --serve-path angular-showcase",
+    "test:e2e": "cross-env showcase=angular-showcase npx playwright test --config=../playwright.config.ts",
+    "watch": "ng build --watch --configuration development"
+  },
+  "dependencies": {
+    "@angular/animations": "14.3.0",
+    "@angular/common": "14.3.0",
+    "@angular/compiler": "14.3.0",
+    "@angular/core": "14.3.0",
+    "@angular/forms": "14.3.0",
+    "@angular/platform-browser": "14.3.0",
+    "@angular/platform-browser-dynamic": "14.3.0",
+    "@angular/router": "14.3.0",
+    "rxjs": "~7.8.1",
+    "tslib": "^2.6.2",
+    "zone.js": "~0.12.0"
+  },
+  "devDependencies": {
+    "@angular-devkit/build-angular": "14.2.12",
+    "@angular/cli": "14.2.12",
+    "@angular/compiler-cli": "14.3.0"
+  }
+}

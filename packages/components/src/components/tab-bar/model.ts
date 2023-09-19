@@ -12,7 +12,7 @@ export type DBTabBarDefaultProps = {
 export type DBTabBarProps = DBTabBarDefaultProps & GlobalProps;
 
 export type DBTabBarDefaultState = {
-	convertTabs: (tabs?: DBTabProps[] | string) => DBTabProps[];
+	convertTabs: (tabs?: any[] | string | undefined) => DBTabProps[];
 };
 
 export type DBTabBarState = DBTabBarDefaultState & GlobalState;

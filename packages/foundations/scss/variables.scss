@@ -1,0 +1,188 @@
+@use "default-variables";
+
+/* Use sizing's for fixed heights/widths e.g. the db-button has always a fixed height*/
+$db-sizing-xs: var(--db-sizing-xs);
+$db-sizing-sm: var(--db-sizing-sm);
+$db-sizing-md: var(--db-sizing-md);
+$db-sizing-lg: var(--db-sizing-lg);
+$db-sizing-xl: var(--db-sizing-xl);
+$db-sizing-2xl: var(--db-sizing-2xl);
+$db-sizing-3xl: var(--db-sizing-3xl);
+
+/* Use fixed spacings for all kind of distances (margin, padding, ...) */
+$db-spacing-fixed-3xs: var(--db-spacing-fixed-3xs);
+$db-spacing-fixed-2xs: var(--db-spacing-fixed-2xs);
+$db-spacing-fixed-xs: var(--db-spacing-fixed-xs);
+$db-spacing-fixed-sm: var(--db-spacing-fixed-sm);
+$db-spacing-fixed-md: var(--db-spacing-fixed-md);
+$db-spacing-fixed-lg: var(--db-spacing-fixed-lg);
+$db-spacing-fixed-xl: var(--db-spacing-fixed-xl);
+
+/* The primary use-case for responsive spacings are
+paddings/gaps in an application e.g. the <main> should have a responsive padding. */
+$db-spacing-responsive-xs: var(--db-spacing-responsive-xs);
+$db-spacing-responsive-sm: var(--db-spacing-responsive-sm);
+$db-spacing-responsive-md: var(--db-spacing-responsive-md);
+$db-spacing-responsive-lg: var(--db-spacing-responsive-lg);
+$db-spacing-responsive-xl: var(--db-spacing-responsive-xl);
+
+/* Elevation */
+
+$db-elevation-1: var(--db-elevation-1, default-variables.$db-elevation-1);
+$db-elevation-2: var(--db-elevation-2, default-variables.$db-elevation-2);
+$db-elevation-4: var(--db-elevation-4, default-variables.$db-elevation-4);
+$db-elevation-8: var(--db-elevation-8, default-variables.$db-elevation-8);
+$db-elevation-12: var(--db-elevation-12, default-variables.$db-elevation-12);
+$db-elevation-24: var(--db-elevation-24, default-variables.$db-elevation-24);
+
+/* Transitions */
+
+$db-transition-duration-fast: var(
+	--db-transition-duration-fast,
+	default-variables.$db-transition-duration-fast
+);
+$db-transition-duration-ultra-fast: var(
+	--db-transition-duration-ultra-fast,
+	default-variables.$db-transition-duration-ultra-fast
+);
+
+$db-transition-emotional-timing: var(
+	--db-transition-emotional-timing,
+	default-variables.$db-transition-emotional-timing
+);
+$db-transition-functional-timing: var(
+	--db-transition-functional-timing,
+	default-variables.$db-transition-functional-timing
+);
+
+$db-transition-emotional-straight: #{$db-transition-duration-fast} #{$db-transition-emotional-timing};
+$db-transition-functional-straight: #{$db-transition-duration-fast} #{$db-transition-functional-timing};
+
+// Variants for adaptive components like input, select, alert, ...
+
+// neutral
+$db-colors-neutral-bg: var(
+	--db-neutral-bg-enabled,
+	default-variables.$db-colors-neutral-bg-0-enabled
+);
+
+$db-colors-neutral-on-bg: var(
+	--db-current-color,
+	var(
+		--db-neutral-on-bg-enabled,
+		default-variables.$db-colors-neutral-on-bg-enabled
+	)
+);
+
+$db-colors-neutral-border-weak: var(
+	--db-current-border-weak-color,
+	var(
+		--db-neutral-border-weak-enabled,
+		default-variables.$db-colors-neutral-border-weak-enabled
+	)
+);
+
+$db-colors-neutral-border: var(
+	--db-current-border-color,
+	var(
+		--db-neutral-border-enabled,
+		default-variables.$db-colors-neutral-border-enabled
+	)
+);
+
+// primary
+
+$db-colors-primary: var(
+	--db-primary-enabled,
+	default-variables.$db-colors-primary-enabled
+);
+
+$db-colors-primary-text: var(
+	--db-primary-text-enabled,
+	default-variables.$db-colors-primary-enabled
+);
+
+$db-colors-primary-text-hover: var(
+	--db-primary-text-hover,
+	default-variables.$db-colors-primary-hover
+);
+
+$db-colors-primary-text-pressed: var(
+	--db-primary-text-pressed,
+	default-variables.$db-colors-primary-pressed
+);
+
+// critical
+$db-colors-critical-border-weak: var(
+	--db-critical-border-weak-enabled,
+	default-variables.$db-colors-critical-border-weak-enabled
+);
+
+$db-colors-critical-element: var(
+	--db-critical-element-enabled,
+	default-variables.$db-colors-critical-element-enabled
+);
+
+$db-colors-critical-on-bg: var(
+	--db-critical-on-bg-enabled,
+	default-variables.$db-colors-critical-on-bg-enabled
+);
+$db-colors-critical: var(
+	--db-critical-enabled,
+	default-variables.$db-colors-critical-enabled
+);
+
+// informational
+$db-colors-informational-border-weak: var(
+	--db-informational-border-weak-enabled,
+	default-variables.$db-colors-informational-border-weak-enabled
+);
+$db-colors-informational-element: var(
+	--db-informational-element-enabled,
+	default-variables.$db-colors-informational-element-enabled
+);
+
+$db-colors-informational-on-bg: var(
+	--db-informational-on-bg-enabled,
+	default-variables.$db-colors-informational-on-bg-enabled
+);
+$db-colors-informational: var(
+	--db-informational-enabled,
+	default-variables.$db-colors-informational-enabled
+);
+
+// warning
+$db-colors-warning-border-weak: var(
+	--db-warning-border-weak-enabled,
+	default-variables.$db-colors-warning-border-weak-enabled
+);
+$db-colors-warning-element: var(
+	--db-warning-element-enabled,
+	default-variables.$db-colors-warning-element-enabled
+);
+$db-colors-warning-on-bg: var(
+	--db-warning-on-bg-enabled,
+	default-variables.$db-colors-warning-on-bg-enabled
+);
+$db-colors-warning: var(
+	--db-warning-enabled,
+	default-variables.$db-colors-warning-enabled
+);
+
+// successful
+$db-colors-successful-border-weak: var(
+	--db-successful-border-weak-enabled,
+	default-variables.$db-colors-successful-border-weak-enabled
+);
+$db-colors-successful-element: var(
+	--db-successful-element-enabled,
+	default-variables.$db-colors-successful-element-enabled
+);
+$db-colors-successful-on-bg: var(
+	--db-successful-on-bg-enabled,
+	default-variables.$db-colors-successful-on-bg-enabled
+);
+$db-colors-successful: var(
+	--db-successful-enabled,
+	default-variables.$db-colors-successful-enabled
+);

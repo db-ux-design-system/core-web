@@ -1,9 +1,1 @@
-module.exports = [
-	'angular',
-	'preact',
-	'react',
-	'svelte',
-	'vue',
-	'next',
-	'webcomponent'
-];
+module.exports = ['angular', 'react', 'vue', 'webcomponent'];

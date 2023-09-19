@@ -25,7 +25,7 @@ jobs:
       version: ${{ steps.getVersion.outputs.version }}
     steps:
       - name: ⬇ Checkout repo
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: 🔄 Init Cache
         uses: ./.github/actions/npm-cache

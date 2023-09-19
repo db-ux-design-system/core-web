@@ -4,5 +4,8 @@
 	"lib": {
 		"entryFile": "src/index.ts"
 	},
-	"allowedNonPeerDependencies": ["@db-ui/foundations", "@db-ui/components"]
+	"allowedNonPeerDependencies": [
+		"@db-ui/foundations",
+		"@db-ui/components"
+	]
 }

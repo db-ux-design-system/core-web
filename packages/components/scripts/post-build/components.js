@@ -1,85 +1,154 @@
 /**
  * @returns {[{
  * name:string,
- * defaultStylePath:string,
  * overwrites?:{
  * 	global?:{from:string,to:string}[],
  * 	angular?:{from:string,to:string}[],
  * 	react?:{from:string,to:string}[],
- * 	vue?:{from:string,to:string}[]
+ * 	vue?:{from:string,to:string}[],
+ * 	webComponents?:{from:string,to:string}[]
  * },
  * config?:{
- * 		isFormComponent?:boolean,
- * 		isClickComponent?:boolean,
- * 		isIconComponent?:boolean,
  *     	vue?:{
  *         vModel?: {modelValue:string, binding:string}[]
- *     }
+ *     },
+ *     angular?: {
+ * 			controlValueAccessor?: string,
+ * 			directives?: {name:string, ngContentName?:string}[]
+ * 		}
  * }
  * }]}
  */
 const getComponents = () => [
 	{
-		name: 'code-docs',
-		defaultStylePath: 'components/code-docs/code-docs.css',
+		name: 'accordion-item'
+	},
+
+	{
+		name: 'accordion',
 		overwrites: {
-			global: [
-				{
-					from: '(event) => copyCode(snippet)',
-					to: '() => copyCode(snippet)'
-				},
-				{
-					from: 'copyCode(code)',
-					to: 'copyCode(code:any)'
-				},
-				{
-					from: '(event) => toggleCode()',
-					to: '() => toggleCode()'
-				}
+			angular: [
+				{ from: 'openItems = []', to: 'openItems: string[] = []' }
 			],
-			vue: [{ from: '(snippet, index)', to: '(snippet)' }]
+			react: [
+				{
+					from: 'const ref = useRef<HTMLDivElement>(null);',
+					to: 'const ref = useRef<HTMLDivElement>(component);'
+				}
+			]
 		}
 	},
 
 	{
-		name: 'radio',
+		name: 'textarea',
+		config: {
+			vue: {
+				vModel: [{ modelValue: 'value', binding: ':value' }]
+			},
+			angular: {
+				controlValueAccessor: 'value'
+			}
+		},
 		overwrites: {
+			angular: [
+				{
+					from: '[attr.defaultValue]="defaultValue ?? children"',
+					to: ''
+				},
+				{
+					from: '</textarea>',
+					to: '{{value || defaultValue}}</textarea>'
+				}
+			],
 			vue: [
 				{
-					from: 'immediate: true,',
-					to: 'immediate: true,\nflush: "post"'
+					from: ':defaultValue="defaultValue || $slots.default"',
+					to: ''
 				}
 			]
-		},
+		}
+	},
+	{
+		name: 'badge'
+	},
+
+	{
+		name: 'main-navigation'
+	},
+	{
+		name: 'navigation-item',
 		config: {
-			isFormComponent: true,
-			isClickComponent: true,
-			vue: {
-				vModel: [{ modelValue: 'checked', binding: ':checked' }]
+			angular: {
+				directives: [{ name: 'NavigationContent' }]
 			}
 		}
 	},
 
 	{
-		name: 'alert',
+		name: 'select',
 		config: {
-			isClickComponent: true,
-			isIconComponent: true
+			vue: {
+				vModel: [{ modelValue: 'value', binding: ':value' }]
+			},
+			angular: {
+				controlValueAccessor: 'value'
+			}
+		}
+	},
+	{
+		name: 'drawer',
+		overwrites: {
+			react: [
+				{
+					from: 'const dialogRef = useRef<HTMLDialogElement>(null);',
+					to: 'const dialogRef = useRef<HTMLDialogElement>(component);'
+				}
+			],
+			webComponents: [{ from: '__prev.find', to: '!!__prev.find' }]
 		}
 	},
 
 	{
-		name: 'infotext',
+		name: 'tag'
+	},
+	{
+		name: 'code-docs'
+	},
+
+	{
+		name: 'checkbox',
 		config: {
-			isIconComponent: true
+			vue: {
+				vModel: [{ modelValue: 'checked', binding: ':checked' }]
+			},
+			angular: {
+				controlValueAccessor: 'checked'
+			}
 		}
 	},
 
 	{
-		name: 'link',
+		name: 'radio',
 		config: {
-			isClickComponent: true
+			vue: {
+				vModel: [{ modelValue: 'checked', binding: ':checked' }]
+			},
+			angular: {
+				controlValueAccessor: false
+			}
 		}
+	},
+
+	{
+		name: 'alert'
+	},
+
+	{
+		name: 'infotext'
+	},
+
+	{
+		name: 'link'
 	},
 
 	{
@@ -90,18 +159,71 @@ const getComponents = () => [
 		name: 'page'
 	},
 	{
-		name: 'header'
+		name: 'header',
+		config: {
+			angular: {
+				directives: [
+					{ name: 'ActionBar', ngContentName: 'action-bar' },
+					{
+						name: 'MetaNavigation',
+						ngContentName: 'meta-navigation'
+					},
+					{ name: 'Navigation' }
+				]
+			}
+		},
+		overwrites: {
+			global: [
+				{
+					from: '(event) => toggle()',
+					to: '() => toggle()'
+				},
+				{
+					from: '(event) => toggle()',
+					to: '() => toggle()'
+				}
+			],
+			webComponents: [
+				{
+					from: '<slot></slot>',
+					to: '<slot name="navigation-mobile"></slot>'
+				},
+				{
+					from: 'name="meta-navigation"',
+					to: 'name="meta-navigation-mobile"'
+				},
+				{
+					from: 'name="action-bar"',
+					to: 'name="action-bar-mobile"'
+				},
+				{
+					from:
+						'        el.removeEventListener("close", this.onDbDrawerDbHeaderClose);\n' +
+						'        el.addEventListener("close", this.onDbDrawerDbHeaderClose);',
+					to: 'el.props.onClose = this.onDbDrawerDbHeaderClose;'
+				},
+				{
+					from: 'if(this.props.drawerOpen)         el.setAttribute("open", this.props.drawerOpen);',
+					to: '        el.setAttribute("open", Boolean(this.props.drawerOpen));'
+				}
+			]
+		}
 	},
 	{
 		name: 'brand'
 	},
 	{
 		name: 'input',
+		overwrites: {
+			global: [{ from: ', KeyValueType', to: '' }],
+			vue: [{ from: ', index', to: '' }]
+		},
 		config: {
-			isFormComponent: true,
-			isIconComponent: true,
 			vue: {
 				vModel: [{ modelValue: 'value', binding: ':value' }]
+			},
+			angular: {
+				controlValueAccessor: 'value'
 			}
 		}
 	},
@@ -109,90 +231,22 @@ const getComponents = () => [
 		name: 'divider'
 	},
 	{
-		name: 'card',
-		config: {
-			isClickComponent: true
-		}
+		name: 'card'
 	},
 	{
-		name: 'tab-bar',
-		overwrites: {
-			angular: [
-				{
-					from: 'convertTabs(tabs) {',
-					to: 'convertTabs( tabs:any ) {'
-				},
-				{ from: '[key]="tab.name"', to: '' }
-			],
-			react: [
-				{
-					from: 'convertTabs(tabs) {',
-					to: 'convertTabs( tabs:any ) {'
-				},
-				{
-					from: 'convertTabs(props.tabs)?.map((tab)',
-					to: 'convertTabs(props.tabs)?.map((tab:any)'
-				},
-				{
-					from: 'import type { DBTabProps } from "../tab/model";',
-					to: ''
-				}
-			],
-			vue: [
-				{
-					from: 'convertTabs(tabs) {',
-					to: 'convertTabs( tabs:any ) {'
-				},
-				{
-					from: 'v-for="(tab, index)',
-					to: 'v-for="(tab)'
-				}
-			]
-		}
+		name: 'tab-bar'
 	},
 	{
 		name: 'tab'
 	},
 	{
-		name: 'button',
-		config: {
-			isIconComponent: true,
-			isClickComponent: true
-		}
+		name: 'button'
 	},
 	{
 		name: 'icon'
 	}
 ];
 
-const formComponentChanges = [
-	{ from: 'handleChange(event)', to: 'handleChange(event:any)' },
-	{ from: 'handleBlur(event)', to: 'handleBlur(event:any)' },
-	{ from: 'handleFocus(event)', to: 'handleFocus(event:any)' }
-];
-
-const clickComponentChanges = [
-	{ from: 'handleClick(event)', to: 'handleClick(event:any)' }
-];
-
-const iconComponentChanges = [
-	{
-		from: 'getIcon(icon, variant) {',
-		to: 'getIcon(icon:any, variant:any) {'
-	},
-	{
-		from: 'getIcon(variant) {',
-		to: 'getIcon(variant:any) {'
-	},
-	{
-		from: 'iconVisible(icon) {',
-		to: 'iconVisible(icon:any) {'
-	}
-];
-
 module.exports = {
-	components: getComponents(),
-	formComponentChanges,
-	clickComponentChanges,
-	iconComponentChanges
+	components: getComponents()
 };

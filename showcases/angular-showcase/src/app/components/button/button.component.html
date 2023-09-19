@@ -1,40 +1,25 @@
 <app-default-component
-	title="Button"
+	title="DBButton"
 	[variants]="variants"
 	[exampleTemplate]="exampleTemplate"
 >
 	<ng-template
 		#exampleTemplate
+		let-exampleProps="exampleProps"
 		let-exampleName="exampleName"
 		let-exampleIndex="exampleIndex"
 		let-variantIndex="variantIndex"
 	>
-		<DBButton *ngIf="exampleIndex === 0">{{ exampleName }}</DBButton>
-		<ng-container *ngIf="exampleIndex === 1 && variantIndex === 0">
-			<DBButton variant="primary">{{ exampleName }}</DBButton>
-		</ng-container>
-		<ng-container *ngIf="exampleIndex === 2 && variantIndex === 0">
-			<DBButton variant="transparent">{{ exampleName }}</DBButton>
-		</ng-container>
-		<ng-container *ngIf="exampleIndex === 3 && variantIndex === 0">
-			<DBButton variant="semi-transparent">{{ exampleName }}</DBButton>
-		</ng-container>
-		<ng-container *ngIf="exampleIndex === 1 && variantIndex === 1">
-			<DBButton state="loading">{{ exampleName }}</DBButton>
-		</ng-container>
-		<ng-container *ngIf="exampleIndex === 1 && variantIndex === 2">
-			<DBButton size="small">{{ exampleName }}</DBButton>
-		</ng-container>
-		<ng-container *ngIf="exampleIndex === 1 && variantIndex === 3">
-			<DBButton icon="account" [icntxt]="true">{{
-				exampleName
-			}}</DBButton>
-		</ng-container>
-		<ng-container *ngIf="exampleIndex === 2 && variantIndex === 3">
-			<DBButton icon="account">{{ exampleName }}</DBButton>
-		</ng-container>
-		<ng-container *ngIf="exampleIndex === 1 && variantIndex === 4">
-			<DBButton width="full">{{ exampleName }}</DBButton>
-		</ng-container>
+		<db-button
+			[variant]="exampleProps.variant"
+			[size]="exampleProps.size"
+			[icon]="exampleProps.icon"
+			[noText]="exampleProps.noText"
+			[disabled]="exampleProps.disabled"
+			[width]="exampleProps.width"
+			(click)="showAlert(exampleName)"
+		>
+			{{ exampleName }}
+		</db-button>
 	</ng-template>
 </app-default-component>

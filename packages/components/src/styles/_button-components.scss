@@ -1,0 +1,8 @@
+%default-button {
+	font-weight: 700;
+	white-space: nowrap; // we don't want to break buttons
+	justify-content: center;
+	text-align: center;
+	display: inline-flex;
+	align-items: center; // Centering the content vertically and horizontally
+}

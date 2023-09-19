@@ -1,6 +1,7 @@
 @use "sass:math";
-@use "a11y" as *;
-@use "clearfix" as *;
+@use "a11y";
+@use "clearfix";
+@use "../variables";
 
 @function to-rem($pxValue) {
 	@return #{$pxValue * 0.0625}rem;
@@ -15,11 +16,11 @@
 @mixin a11y-visually-hidden($partial: false) {
 	@if $partial {
 		clip: rect(0, 0, 0, 0);
-		height: 1px;
+		block-size: 1px;
 		overflow: hidden;
 		position: absolute !important;
 		white-space: nowrap;
-		width: 1px;
+		inline-size: 1px;
 	} @else {
 		@extend %a11y-visually-hidden;
 	}
@@ -41,34 +42,34 @@
 // https://bugs.chromium.org/p/chromium/issues/detail?id=1274133
 // https://github.com/WebKit/WebKit/commit/1890bfb551da24735804cb1a3d5f14b210f7c7b8
 @mixin divider($position: "top", $slot: "before") {
+	--db-divider-bg-color: #{variables.$db-colors-neutral-border-weak};
 	position: relative;
+
+	&[data-emphasis="strong"] {
+		--db-divider-bg-color: #{variables.$db-colors-neutral-border};
+	}
 
 	&::#{$slot} {
 		content: "";
-		background-color: currentColor;
-		opacity: 0.16;
+		background-color: var(--db-divider-bg-color);
 
 		position: absolute;
 		@if $position == "top" {
-			height: 1px;
-			top: 0;
-			right: 0;
-			left: 0;
+			block-size: 1px;
+			inset-block-start: 0;
+			inset-inline: 0;
 		} @else if $position == "bottom" {
-			height: 1px;
-			bottom: 0;
-			right: 0;
-			left: 0;
+			block-size: 1px;
+			inset-block-end: 0;
+			inset-inline: 0;
 		} @else if $position == "left" {
-			width: 1px;
-			left: 0;
-			bottom: 0;
-			top: 0;
+			inline-size: 1px;
+			inset-inline-start: 0;
+			inset-block: 0;
 		} @else if $position == "right" {
-			width: 1px;
-			right: 0;
-			bottom: 0;
-			top: 0;
+			inline-size: 1px;
+			inset-inline-end: 0;
+			inset-block: 0;
 		}
 	}
 }

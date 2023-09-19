@@ -2,7 +2,6 @@
 .desktop-navigation ul {
 	list-style-type: none;
 	display: flex;
-	gap: var(--db-spacing-fixed-md);
 }
 
 .default-container {
@@ -15,11 +14,31 @@
 .variants-list {
 	display: flex;
 	flex-wrap: wrap;
+	inline-size: 100%;
+	justify-content: center;
+	gap: var(--db-spacing-fixed-md);
+}
+
+.variants-list > div {
+	align-items: center;
+	display: flex;
+	gap: var(--db-spacing-fixed-md);
+}
+
+.html-code-container {
+	display: flex;
+	flex-direction: column;
 	gap: var(--db-spacing-fixed-md);
 }
 
 .example-name {
 	margin-block: 0 var(--db-spacing-fixed-md);
+}
+
+.link-headline {
+	display: block;
+	margin-block: var(--db-spacing-fixed-md);
+	font-weight: 700;
 }
 
 /**
@@ -28,6 +47,7 @@
 
 .form-container {
 	display: flex;
+	gap: var(--db-spacing-fixed-md);
 	margin: var(--db-spacing-fixed-md);
 }
 
@@ -37,9 +57,9 @@
 	border-color: transparent;
 }
 
-.form-container div {
+.form-container > div {
 	flex-direction: column;
-	width: 50%;
+	inline-size: 50%;
 }
 
 .button-container {
@@ -59,4 +79,15 @@
 	display: flex;
 	flex-wrap: wrap;
 	gap: var(--db-spacing-fixed-md);
+}
+
+.badge-inline-container {
+	display: flex;
+	gap: var(--db-spacing-fixed-sm);
+	padding: var(--db-spacing-fixed-xs) var(--db-spacing-fixed-sm);
+}
+
+.badge-inline-container .db-badge {
+	margin-inline-start: var(--db-spacing-responsive-md);
+	margin-block: auto;
 }
