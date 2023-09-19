@@ -14,7 +14,7 @@ const App = () => <>
 	<DBTag><DBCheckbox>Tag as Checkbox</DBCheckbox></DBTag>
 	<DBTag><DBRadio>Tag as Radio</DBRadio></DBTag>
 	<DBTag>Static Tag</DBTag>
-	<>;
+	</>;
 
 export default App;
 ```
