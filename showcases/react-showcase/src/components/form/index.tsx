@@ -66,7 +66,7 @@ const FormComponent = () => {
 						/>
 						<DBInput
 							label="Date input"
-							description="Description"
+							message="Description"
 							name="input-date-name"
 							onChange={(event) => {
 								setDateinput(event.target.value);

@@ -15,7 +15,7 @@
 			name="textarea"
 			label="Textarea Controlled"
 			placeholder="Placeholder"
-			description="Description"
+			message="Description"
 			icon="account"
 			[value]="textarea"
 			(change)="textarea = $event.target.value"
@@ -25,7 +25,7 @@
 			name="textarea"
 			label="Textarea with defaultValue"
 			placeholder="Placeholder"
-			description="Description"
+			message="Description"
 			icon="account"
 			defaultValue="default value"
 			(change)="textareaDefaultValue = $event.target.value"
@@ -36,7 +36,7 @@
 			[(ngModel)]="model.textarea"
 			label="Textarea with ngModel"
 			placeholder="Placeholder"
-			description="Description"
+			message="Description"
 			icon="account"
 			value="Textarea"
 		></db-textarea>
@@ -68,7 +68,7 @@
 					id="form"
 					label="Textinput"
 					placeholder="Placeholder"
-					description="Description"
+					message="Description"
 					icon="account"
 					formControlName="input"
 				>
@@ -79,7 +79,7 @@
 					id="datalist"
 					label="Textinput with Datalist"
 					placeholder="Placeholder"
-					description="Description"
+					message="Description"
 					[dataList]="dataList"
 					icon="account"
 				>
@@ -88,7 +88,7 @@
 				<db-input
 					name="form"
 					label="Date input"
-					description="Description"
+					message="Description"
 					type="date"
 					formControlName="dateinput"
 				>
@@ -114,7 +114,7 @@
 					id="textarea"
 					label="Textarea"
 					placeholder="Placeholder"
-					description="Description"
+					message="Description"
 					icon="account"
 					formControlName="textarea"
 				></db-textarea>
@@ -171,7 +171,7 @@
 					name="select"
 					label="Select"
 					placeholder="Placeholder"
-					description="Description"
+					message="Description"
 					icon="account"
 					formControlName="select"
 					(change)="handleChange4($event)"
@@ -232,9 +232,7 @@
 			<dd>{{ model.textarea ? model.textarea : "No Textarea set" }}</dd>
 			<dt>date inputs value</dt>
 			<dd>
-				{{
-					form.get("dateinput")?.value || "No Date Input set"
-				}}
+				{{ form.get("dateinput")?.value || "No Date Input set" }}
 			</dd>
 			<dt>radio value</dt>
 			<dd>{{ model.radio ? model.radio : "No radio set" }}</dd>

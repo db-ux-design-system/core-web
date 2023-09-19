@@ -76,7 +76,7 @@ const reset = () => {
 					/>
 					<DBInput
 						label="Dateinput"
-						description="Description"
+						message="Description"
 						name="date-name"
 						v-model:value="dateInput"
 						type="date"
@@ -85,7 +85,7 @@ const reset = () => {
 					<DBTextarea
 						label="Textarea v-model"
 						placeholder="Placeholder"
-						description="Description"
+						message="Description"
 						icon="account"
 						name="textarea-name"
 						v-model:value="textareavModel"
@@ -93,7 +93,7 @@ const reset = () => {
 					<DBTextarea
 						label="Textarea value"
 						placeholder="Placeholder"
-						description="Description"
+						message="Description"
 						icon="account"
 						name="textarevalue-name"
 						:value="textarea"

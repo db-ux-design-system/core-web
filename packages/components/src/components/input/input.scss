@@ -37,6 +37,32 @@
 		scale(var(--db-input-label-scale));
 }
 
+%absolute-icon {
+	block-size: variables.$db-sizing-md;
+	display: flex;
+	align-items: center;
+	position: absolute;
+	inset-block-start: 0;
+	margin-inline: variables.$db-spacing-fixed-sm;
+}
+
+%date-icon {
+	&::after {
+		@extend %absolute-icon;
+		pointer-events: none;
+	}
+
+	input {
+		&::-webkit-calendar-picker-indicator {
+			margin-block-start: -0.75em;
+			background-image: none;
+			padding: 0 variables.$db-spacing-fixed-sm 0 0;
+			inline-size: icon-helpers.$default-icon-font-size;
+			block-size: icon-helpers.$default-icon-font-size;
+		}
+	}
+}
+
 .db-input {
 	--db-input-padding-inline-start: #{variables.$db-spacing-fixed-sm};
 	--db-input-padding-end-icon-after: 0;
@@ -48,6 +74,7 @@
 	@extend %default-form-message;
 	@extend %disabled-form-element;
 	@extend %required-form-element;
+	@extend %db-overwrite-font-size-sm;
 
 	@include form-components.get-input-color-variants();
 
@@ -84,8 +111,11 @@
 
 	&:has(> datalist) {
 		--db-input-padding-end-datalist: 1;
-
 		@extend %dropdown-icon;
+
+		&::after {
+			@extend %absolute-icon;
+		}
 
 		&:has(input:is(:focus, :not(:placeholder-shown))) {
 			&::after {
@@ -101,32 +131,35 @@
 	}
 
 	&:has(> [type="search"]) {
-		@extend %db-overwrite-font-size-sm;
 		@include icon-helpers.icon("search");
+
+		&::before {
+			@extend %absolute-icon;
+		}
+	}
+
+	&:has(> [type="date"]),
+	&:has(> [type="week"]),
+	&:has(> [type="datetime-local"]),
+	&:has(> [type="month"]) {
+		@extend %date-icon;
+		@include icon-helpers.icon("calendar", "after");
+	}
+
+	&:has(> [type="time"]) {
+		@extend %date-icon;
+		@include icon-helpers.icon("schedule", "after");
 	}
 
 	.db-icon,
-	db-icon,
-	&:has(> datalist)::after,
-	&:has(> [type="search"])::before {
-		block-size: variables.$db-sizing-md;
-		display: flex;
-		align-items: center;
-		position: absolute;
-		inset-block-start: 0;
-		margin-inline: variables.$db-spacing-fixed-sm;
-	}
-
-	.db-icon,
-	db-icon,
-	&:has(> datalist)::after {
-		@extend %db-overwrite-font-size-sm;
+	db-icon {
+		@extend %absolute-icon;
 	}
 
 	.icon-after,
 	// angular specific nesting
 	dbicon.icon-after > .db-icon,
-	&:has(> datalist)::after {
+	&::after, {
 		inset-inline-end: 0;
 	}
 
@@ -300,17 +333,5 @@
 	input:required:invalid:not(:placeholder-shown),
 	input[aria-invalid="true"] {
 		@extend %adaptive-critical-component;
-	}
-}
-
-.db-ui-regular,
-.db-ui-expressive {
-	.db-input > input[type="date"]::-webkit-calendar-picker-indicator,
-	.db-input > input[type="week"]::-webkit-calendar-picker-indicator,
-	.db-input
-		> input[type="datetime-local"]::-webkit-calendar-picker-indicator {
-		// TODO change icon and use db-icons to adopt color for data-variants
-		margin-block-start: -0.75em;
-		padding: 0;
 	}
 }

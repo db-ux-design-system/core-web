@@ -240,17 +240,40 @@
 					"message": "URL",
 					"type": "url"
 				}
-			}
-		]
-	},
-	{
-		"name": "Types",
-		"examples": [
+			},
 			{
-				"name": "date type",
+				"name": "Date",
 				"props": {
 					"label": "Label",
 					"type": "date"
+				}
+			},
+			{
+				"name": "Datetime Local",
+				"props": {
+					"label": "Label",
+					"type": "datetime-local"
+				}
+			},
+			{
+				"name": "Month",
+				"props": {
+					"label": "Label",
+					"type": "month"
+				}
+			},
+			{
+				"name": "Time",
+				"props": {
+					"label": "Label",
+					"type": "time"
+				}
+			},
+			{
+				"name": "Week",
+				"props": {
+					"label": "Label",
+					"type": "week"
 				}
 			}
 		]
