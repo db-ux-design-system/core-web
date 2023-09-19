@@ -1,47 +1,47 @@
 @charset "utf-8";
-@use "@db-ui/foundations/build/scss/helpers/font" as *;
-@use "@db-ui/foundations/build/scss/variables" as *;
-@use "@db-ui/foundations/build/scss/variables.global" as *;
-@use "@db-ui/foundations/build/scss/color-placeholder" as *;
-@use "@db-ui/foundations/build/scss/icon/icons.helpers" as *;
-@use "@db-ui/foundations/build/scss/color/color-variants" as *;
-@use "@db-ui/foundations/build/scss/helpers/component" as *;
+@use "@db-ui/foundations/build/scss/helpers/font";
+@use "@db-ui/foundations/build/scss/variables";
+@use "@db-ui/foundations/build/scss/color-placeholder";
+@use "@db-ui/foundations/build/scss/color/color-variants";
+@use "@db-ui/foundations/build/scss/icon/icon-helpers";
+@use "@db-ui/foundations/build/scss/helpers/component";
 @use "../../styles/button-components";
 
 .db-button {
-	// Including a loading indicator
-	--loadingIndicator---color: currentColor;
-
 	@extend %default-interactive-component;
-	@extend %default-background-transition;
-	@extend %bg-transparent-interactive;
 	@extend %default-button;
 
-	block-size: $db-sizing-md;
-	padding: $db-spacing-fixed-xs $db-spacing-fixed-md;
+	@include color-variants.bg-transparent-interactive();
+
+	color: variables.$db-colors-neutral-on-bg;
+
+	block-size: variables.$db-sizing-md;
+	inline-size: fit-content;
+	padding: variables.$db-spacing-fixed-xs variables.$db-spacing-fixed-md;
 
 	// Square icon only buttons
 	&.is-icon-text-replace {
 		font-size: 0;
 		padding: 0;
-		inline-size: $db-sizing-md;
+		inline-size: variables.$db-sizing-md;
 	}
 
 	&[data-size="small"] {
 		@extend %db-overwrite-font-size-sm;
-		block-size: $db-sizing-sm;
+		block-size: variables.$db-sizing-sm;
 
 		&:not(.is-icon-text-replace) {
-			padding: $db-spacing-fixed-3xs $db-spacing-fixed-sm;
+			padding: variables.$db-spacing-fixed-3xs
+				variables.$db-spacing-fixed-sm;
 
 			&::before {
-				margin-inline-end: $db-spacing-fixed-2xs;
+				margin-inline-end: variables.$db-spacing-fixed-2xs;
 			}
 		}
 
 		// Square icon only buttons
 		&.is-icon-text-replace {
-			inline-size: $db-sizing-sm;
+			inline-size: variables.$db-sizing-sm;
 		}
 	}
 
@@ -56,7 +56,7 @@
 
 	&[data-variant="solid"] {
 		@extend %transparent-border;
-		@include get-variant-bg-color(0.08);
+		@include color-variants.get-variant-bg-color(0.08);
 	}
 
 	&[data-variant="text"] {
@@ -64,12 +64,12 @@
 	}
 
 	&:disabled {
-		opacity: $default-opacity;
+		opacity: component.$default-disabled-opacity;
 	}
 
 	// States (currently only "loading")
 	&[data-state="loading"] {
-		@include is-icon-text-replace();
+		@include icon-helpers.is-icon-text-replace();
 
 		&::before {
 			content: "";

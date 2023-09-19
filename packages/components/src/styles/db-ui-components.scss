@@ -1,5 +1,4 @@
 @use "@db-ui/foundations/build/scss/db-ui-foundations" as *;
-
 @use "../components/button/button" as *;
 @use "../components/icon/icon" as *;
 @use "../components/tab/tab" as *;
@@ -21,15 +20,34 @@
 @use "../components/drawer/drawer" as *;
 @use "../components/select/select" as *;
 @use "../components/navigation-item/navigation-item" as *;
+@use "../components/textarea/textarea" as *;
 @use "../components/badge/badge" as *;
 
+@use "../components/accordion/accordion" as *;
+
+@use "../components/accordion-item/accordion-item" as *;
+@use "../components/main-navigation/main-navigation" as *;
+
+@forward "dialog-init";
 // angular-workaround
+dbtextarea,
+db-textarea,
+// angular-workaround
+dbmain-navigation,
+db-main-navigation,
+// angular-workaround
+dbaccordion-item,
+db-accordion-item,
+dbaccordion,
+db-accordion,
 dbbadge,
 db-badge,
 dbnavigation-item,
 db-navigation-item,
 dbtag,
 db-tag,
+dbradio,
+db-radio,
 dbselect,
 db-select,
 dbalert,

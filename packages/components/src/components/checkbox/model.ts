@@ -1,7 +1,6 @@
 import {
 	FocusEventProps,
 	FocusEventState,
-	GlobalTextProps,
 	ValidEventProps,
 	ChangeEventState,
 	ChangeEventProps,
@@ -27,16 +26,13 @@ export interface DBCheckboxDefaultProps {
 
 export type DBCheckboxProps = DBCheckboxDefaultProps &
 	GlobalProps &
-	GlobalTextProps &
 	ChangeEventProps &
 	FocusEventProps &
 	ValidEventProps &
 	FormProps &
 	FormCheckProps;
 
-export type DBCheckboxDefaultState = {
-	_indeterminate?: boolean;
-};
+export type DBCheckboxDefaultState = {};
 
 export type DBCheckboxState = DBCheckboxDefaultState &
 	GlobalState &

@@ -1,65 +1,237 @@
-@use "@db-ui/foundations/build/scss/variables" as *;
-@use "@db-ui/foundations/build/scss/variables.global" as *;
-@use "@db-ui/foundations/build/scss/helpers/component" as *;
-@use "@db-ui/foundations/build/scss/color/color-variants" as *;
-@use "@db-ui/foundations/build/scss/icon/icons.helpers" as *;
+@use "@db-ui/foundations/build/scss/variables";
+@use "@db-ui/foundations/build/scss/helpers/component";
+@use "@db-ui/foundations/build/scss/color/color-variants";
+@use "@db-ui/foundations/build/scss/helpers/functions";
+@use "@db-ui/foundations/build/scss/animation/animations";
+@use "@db-ui/foundations/build/scss/icon/icon-helpers";
+@use "../../styles/db-puls";
+@use "../../styles/icon-passing";
 
-.db-navigation-item {
+%sub-navi-handler-desktop {
+	// show sub-navigation on hover
+	@include component.screen("md") {
+		&:hover,
+		&:focus-visible {
+			& ~ .db-sub-navigation {
+				visibility: visible;
+			}
+		}
+	}
+}
+
+@mixin sub-navi-handler-mobile() {
+	// show/hide sub-navigation by click
+	&[aria-expanded="true"] {
+		& ~ .db-sub-navigation {
+			visibility: visible;
+			transition: visibility 0ms linear 0ms;
+			animation: show-right-to-left animations.$animation-show-timing;
+
+			.db-sub-navigation {
+				inset-block: 0;
+			}
+		}
+	}
+
+	&:not(&[aria-expanded="true"]) {
+		& ~ .db-sub-navigation {
+			transition: visibility 0ms linear 410ms; // hide animation is 0.4s
+			animation: hide-right-to-left animations.$animation-hide-timing;
+		}
+	}
+}
+
+%navigation-item {
 	@extend %default-interactive-component;
-	@extend %default-background-transition;
 	@extend %transparent-border;
 
-	@include get-variant-bg-color(0);
-	display: inline-flex;
+	@include color-variants.get-variant-bg-color(0);
 	cursor: pointer;
+	inline-size: 100%;
+	display: inline-flex;
 
-	position: relative;
-
-	border-radius: $default-card-border-radius;
-	padding: $db-spacing-fixed-xs $db-spacing-fixed-sm;
+	border-radius: component.$default-card-border-radius;
+	padding: variables.$db-spacing-fixed-xs variables.$db-spacing-fixed-sm;
 	white-space: nowrap; // we don't want to break
 	text-align: center;
 	align-items: center; // Centering the content vertically and horizontally
 
-	& > a {
-		text-decoration: none;
-	}
-
-	&:hover {
-		@include get-variant-bg-color(0.16);
+	&:hover,
+	&:focus-visible,
+	&:has(~ .db-sub-navigation:hover),
+	&:has(~ .db-sub-navigation:focus-visible),
+	&:has(~ .db-sub-navigation:focus-within) {
+		@include color-variants.get-variant-bg-color(0.16);
 	}
 
 	&:active {
-		@include get-variant-bg-color(0.24);
-	}
-
-	@media screen and (min-width: $db-screens-m) {
-		&:focus {
-			@include get-variant-bg-color(0.24);
-		}
-	}
-
-	&::before {
-		margin-inline-end: $db-spacing-fixed-sm;
+		@include color-variants.get-variant-bg-color(0.24);
 	}
 
 	&::after {
-		margin-inline-start: $db-spacing-fixed-sm;
+		--db-icon-margin-start: auto;
+	}
+}
+
+.db-navigation-item {
+	--db-has-before: 0;
+	@extend %db-puls;
+
+	@include icon-passing.icon-passing();
+
+	display: inline-flex;
+	position: relative;
+	inline-size: 100%;
+
+	a {
+		@extend %navigation-item;
+		text-decoration: none;
+	}
+
+	.db-navigation-item-expand-button {
+		@include component.screen("md", "max") {
+			@include sub-navi-handler-mobile();
+		}
+
+		&:is(button),
+		& > button {
+			@extend %sub-navi-handler-desktop;
+			@extend %navigation-item;
+
+			// default icon for navigation
+			@include icon-helpers.icon("chevron_right", "after");
+
+			font-weight: inherit;
+		}
 	}
 
 	&[aria-current="page"] {
 		font-weight: 700;
 	}
 
+	&:not([aria-current="page"]) {
+		// revert for sub-navigation
+		font-weight: normal;
+	}
+
 	&[data-width="full"] {
+		inline-size: 100%;
+
+		&::after {
+			--db-icon-margin-start: auto;
+		}
+	}
+
+	&[aria-disabled="true"] {
+		opacity: component.$default-disabled-opacity;
+		pointer-events: none;
+	}
+}
+
+@mixin sub-navigation-mobile() {
+	padding: variables.$db-spacing-fixed-md;
+	inline-size: 100%;
+	position: fixed;
+	// additional #{$db-spacing-fixed-3xs} for border
+	inset-block: calc(
+			#{component.$default-mobile-header-height} + #{variables.$db-spacing-fixed-3xs}
+		)
+		calc(
+			#{variables.$db-sizing-md} + #{variables.$db-spacing-fixed-xs} * 2 +
+				#{variables.$db-spacing-fixed-3xs}
+		);
+}
+
+.db-sub-navigation {
+	margin: 0;
+	display: flex;
+	flex-direction: column;
+	z-index: 70;
+	inset-inline-start: 0;
+	background-color: variables.$db-colors-neutral-bg;
+
+	visibility: hidden;
+
+	@include component.screen("md", "max") {
+		@include sub-navigation-mobile();
+	}
+
+	@include component.screen("md") {
+		.db-mobile-navigation-back {
+			display: none;
+		}
+	}
+
+	@include component.screen("md") {
+		border-radius: component.$default-card-border-radius;
+		box-shadow: variables.$db-elevation-4;
+		padding: variables.$db-spacing-fixed-sm;
+
+		position: absolute;
+		min-inline-size: 328px; // We should get this value from UX
+
+		inset-block-start: calc(100% + #{variables.$db-spacing-fixed-md});
+
+		transition: visibility 1ms linear; // workaround to enable focus with keyboard
+
+		&:hover,
+		&:focus-within {
+			visibility: visible;
+		}
+
+		&::before {
+			content: "";
+			position: absolute;
+			inset-inline-start: 0;
+			inline-size: 100%;
+			// #{$db-spacing-fixed--3xs} for shadows
+			block-size: calc(
+				#{variables.$db-spacing-fixed-3xs} + #{variables.$db-spacing-fixed-md}
+			);
+			inset-block-start: calc(
+				-1 * #{variables.$db-spacing-fixed-md} - #{variables.$db-spacing-fixed-3xs}
+			);
+		}
+
+		.db-sub-navigation {
+			// 1px for box shadow
+			inset-block-start: calc(
+				-50% + #{variables.$db-spacing-fixed-xs} + 1px
+			);
+			inset-inline-start: calc(100% + #{variables.$db-spacing-fixed-xs});
+
+			&::before {
+				content: "";
+				padding: variables.$db-spacing-fixed-xs;
+				// #{$db-spacing-fixed-3xs} for box shadow
+				inset-block-start: #{variables.$db-spacing-fixed-3xs};
+				inset-inline-start: calc(
+					-1 * #{variables.$db-spacing-fixed-xs}
+				);
+				block-size: 100%;
+				inline-size: variables.$db-spacing-fixed-xs;
+			}
+		}
+	}
+
+	&:empty {
+		display: none;
+	}
+
+	.db-navigation-item {
 		inline-size: 100%;
 
 		&::after {
 			margin-inline-start: auto;
 		}
 	}
+}
 
-	&[data-disabled="true"] {
-		opacity: $default-opacity;
-	}
+.db-mobile-navigation-back {
+	@include functions.divider("bottom");
+	display: flex;
+	font-weight: normal;
+	background-color: variables.$db-colors-neutral-bg;
+	padding-block-end: variables.$db-spacing-fixed-md;
+	margin-block-end: variables.$db-spacing-fixed-md;
 }

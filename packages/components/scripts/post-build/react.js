@@ -25,8 +25,12 @@ module.exports = (tmp) => {
 					to: `const DB${upperComponentName} = forwardRef(DB${upperComponentName}Fn);\nexport default DB${upperComponentName};`
 				},
 				{
-					from: `checked={props.checked}`,
-					to: `defaultChecked={props.checked}`
+					from: 'if (ref.current)',
+					to: 'if (ref?.current)'
+				},
+				{
+					from: '[ref.current]',
+					to: '[ref]'
 				}
 			];
 

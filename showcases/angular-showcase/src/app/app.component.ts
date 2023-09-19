@@ -8,20 +8,25 @@ import {
 	COLOR_CONST,
 	TONALITY_CONST
 } from '../../../../packages/components/src/shared/constants';
-import { getSortedNavigationItems } from './utils/navigation-item';
+import {
+	getSortedNavigationItems,
+	NAVIGATION_ITEMS,
+	NavItem
+} from './utils/navigation-item';
 
 @Component({
 	selector: 'app-root',
 	templateUrl: './app.component.html'
 })
 export class AppComponent implements OnInit {
-	navigationItems = getSortedNavigationItems();
+	drawerOpen = false;
+	navigationItems: NavItem[] = getSortedNavigationItems(NAVIGATION_ITEMS);
 
 	tonalities = TONALITIES;
 	colors = COLORS;
 
 	tonality = TONALITY.REGULAR;
-	color = COLOR.NEUTRAL_0;
+	color = COLOR.NEUTRAL;
 
 	page: string;
 	fullscreen: boolean;
@@ -61,5 +66,9 @@ export class AppComponent implements OnInit {
 			queryParams: { tonality: this.tonality, color: this.color },
 			queryParamsHandling: 'merge'
 		});
+	};
+
+	toggleDrawer = (open: boolean) => {
+		this.drawerOpen = open;
 	};
 }

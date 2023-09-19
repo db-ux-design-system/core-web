@@ -1,14 +1,15 @@
-@use "@db-ui/foundations/build/scss/variables" as *;
-@use "@db-ui/foundations/build/scss/variables.global" as *;
+@use "@db-ui/foundations/build/scss/variables";
 
 %brand-display {
 	display: flex;
-	gap: $db-spacing-fixed-md;
+	gap: variables.$db-spacing-fixed-md;
 	align-items: center;
 }
 
 .db-brand {
 	@extend %brand-display;
+
+	font-weight: 700;
 
 	a {
 		@extend %brand-display;
@@ -20,8 +21,5 @@
 
 .db-logo {
 	max-inline-size: none;
-	block-size: $db-sizing-sm;
-	@media screen and (min-width: $db-screens-m) {
-		block-size: $db-sizing-md;
-	}
+	block-size: variables.$db-sizing-sm;
 }

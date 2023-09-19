@@ -2,7 +2,7 @@
  * This script can be used to update the icon type for all components using icons.
  */
 
-const FS = require('fs');
+const FS = require('node:fs');
 
 const foundationAssetsPath = '../foundations/assets/icons/functional/images';
 
@@ -47,7 +47,12 @@ const generateIconTypes = () => {
 					(!icon.includes('_solid') && icon.includes('_24')) ||
 					icon.startsWith('//')
 			)
-			.map((icon) => icon.replace('db_ic_', '').replace('_24.svg', ''))
+			.map((icon) =>
+				icon
+					.replace('db_ic_', '')
+					.replace('_24.svg', '')
+					.replace(/-/g, '_')
+			)
 			.map((icon) => {
 				if (icon.startsWith('//')) {
 					return icon;

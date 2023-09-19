@@ -1,34 +1,32 @@
 @use "sass:map";
-@use "@db-ui/foundations/build/scss/helpers/font" as *;
-@use "@db-ui/foundations/build/scss/variables" as *;
-@use "@db-ui/foundations/build/scss/variables.global" as *;
-@use "@db-ui/foundations/build/scss/color/color-variants" as *;
+@use "@db-ui/foundations/build/scss/helpers/font";
+@use "@db-ui/foundations/build/scss/variables";
+@use "@db-ui/foundations/build/scss/color/color-variants";
+@use "@db-ui/foundations/build/scss/icon/icon-helpers";
 
 .db-infotext {
+	--db-icon-margin-end: #{variables.$db-spacing-fixed-2xs};
 	@extend %db-overwrite-font-size-sm;
+
+	@include icon-helpers.to-solid-icon();
 
 	display: flex;
 
-	&[data-icon]::before {
-		--icon-margin-after: #{$db-spacing-fixed-2xs};
-		--icon-font-family: var(--db-base-icon-font-family-filled);
-		--icon-font-size: var(--db-base-icon-font-size);
+	@include icon-helpers.has-no-icon() {
+		@include icon-helpers.icon("info");
 	}
 
 	&[data-size="small"] {
 		@extend %db-overwrite-font-size-xs;
-
-		&::before {
-			display: none;
-		}
 	}
 
-	@each $name, $colors in $component-variants {
+	@each $name, $colors in color-variants.$component-variants {
 		&[data-variant="#{$name}"] {
+			@include icon-helpers.variant-icons($name);
 			color: map.get($colors, "primary");
 
 			&::before {
-				color: map.get($colors, "element");
+				--db-current-icon-color: #{map.get($colors, "element")};
 			}
 		}
 	}

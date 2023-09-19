@@ -1,48 +1,66 @@
-@use "variables" as *;
+@use "default-variables";
 @use "default.assets-paths" as *;
 
 @font-face {
-	font-family: $db-font-db-screenhead-light-font-family;
+	font-family: default-variables.$db-font-db-screenhead-light-font-family;
 	font-style: normal;
-	font-weight: $db-font-db-screenhead-light-font-weight;
+	font-weight: default-variables.$db-font-db-screenhead-light-font-weight;
 	src:
-		local($db-font-db-screenhead-light-name),
-		url($fonts-path + $db-font-db-screenhead-light-woff2) format("woff2");
+		local(default-variables.$db-font-db-screenhead-light-name),
+		local(default-variables.$db-font-db-screenhead-light-local-name),
+		local(default-variables.$db-font-db-screenhead-light-local-name-short),
+		url($fonts-path + default-variables.$db-font-db-screenhead-light-woff2)
+			format("woff2");
 }
 
 @font-face {
-	font-family: $db-font-db-screenhead-black-font-family;
+	font-family: default-variables.$db-font-db-screenhead-black-font-family;
 	font-style: normal;
-	font-weight: $db-font-db-screenhead-black-font-weight;
+	font-weight: default-variables.$db-font-db-screenhead-black-font-weight;
 	src:
-		local($db-font-db-screenhead-black-name),
-		url($fonts-path + $db-font-db-screenhead-black-woff2) format("woff2");
+		local(default-variables.$db-font-db-screenhead-black-local-name),
+		local(default-variables.$db-font-db-screenhead-black-local-name-short),
+		url($fonts-path + default-variables.$db-font-db-screenhead-black-woff2)
+			format("woff2");
 }
 
 @font-face {
-	font-family: $db-font-db-screensans-regular-font-family;
+	font-family: default-variables.$db-font-db-screensans-regular-font-family;
 	font-style: normal;
-	font-weight: $db-font-db-screensans-regular-font-weight;
+	font-weight: default-variables.$db-font-db-screensans-regular-font-weight;
 	src:
-		local($db-font-db-screensans-regular-name),
-		url($fonts-path + $db-font-db-screensans-regular-woff2) format("woff2");
+		local(default-variables.$db-font-db-screensans-regular-name),
+		local(default-variables.$db-font-db-screensans-regular-local-name),
+		local(
+			default-variables.$db-font-db-screensans-regular-local-name-short
+		),
+		url($fonts-path + default-variables.$db-font-db-screensans-regular-woff2)
+			format("woff2");
 }
 
 @font-face {
-	font-family: $db-font-db-screensans-bold-font-family;
+	font-family: default-variables.$db-font-db-screensans-bold-font-family;
 	font-style: normal;
-	font-weight: $db-font-db-screensans-bold-font-weight;
+	font-weight: default-variables.$db-font-db-screensans-bold-font-weight;
 	src:
-		local($db-font-db-screensans-bold-name),
-		url($fonts-path + $db-font-db-screensans-bold-woff2) format("woff2");
+		local(default-variables.$db-font-db-screensans-bold-local-name),
+		local(default-variables.$db-font-db-screensans-bold-local-name-short),
+		url($fonts-path + default-variables.$db-font-db-screensans-bold-woff2)
+			format("woff2");
 }
 
-// As this font is not officially used within the Design System so far, we're not providing it as a token at the moment
 @font-face {
-	font-family: "DB Screen Sans Digital Regular";
+	font-family: default-variables.$db-font-db-screensans-digital-regular-font-family;
 	font-style: normal;
-	font-weight: 400;
+	font-weight: default-variables.$db-font-db-screensans-digital-regular-font-weight;
 	src:
-		local("DB Screen Sans Digital Regular"),
-		url($fonts-path + "dbscreensans-digitalregular.woff2") format("woff2");
+		local(default-variables.$db-font-db-screensans-digital-regular-name),
+		local(
+			default-variables.$db-font-db-screensans-digital-regular-local-name
+		),
+		local(
+			default-variables.$db-font-db-screensans-digital-regular-local-name-short
+		),
+		url($fonts-path + default-variables.$db-font-db-screensans-digital-regular-woff2)
+			format("woff2");
 }

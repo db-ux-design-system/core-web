@@ -5,5 +5,5 @@
 // 	TONALITIES
 // } from '../../../packages/components/src/shared/constants.ts';
 
-export const COLORS = ['neutral-0'];
+export const COLORS = ['neutral'];
 export const TONALITIES = ['regular'];

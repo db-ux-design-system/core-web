@@ -27,6 +27,7 @@ export default function DBSection(props: DBSectionProps) {
 	return (
 		<section
 			ref={component}
+			id={props.id}
 			className={cls('db-section', props.className)}
 			data-size={props.size || 'medium'}>
 			<Show when={state.stylePath}>

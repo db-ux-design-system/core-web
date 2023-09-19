@@ -1,0 +1,63 @@
+@use "sass:map";
+@use "@db-ui/foundations/build/scss/variables";
+@use "@db-ui/foundations/build/scss/helpers/font";
+@use "@db-ui/foundations/build/scss/color/color-variants";
+@use "@db-ui/foundations/build/scss/helpers/component";
+@use "../../styles/form-components";
+
+%resize-textarea {
+	&[data-resize="none"] {
+		resize: none;
+	}
+
+	&[data-resize="both"] {
+		resize: both;
+	}
+
+	&[data-resize="horizontal"] {
+		resize: horizontal;
+	}
+
+	&[data-resize="vertical"] {
+		resize: vertical;
+	}
+}
+
+.db-textarea {
+	--db-textarea-label-max-width: 80%;
+
+	@extend %default-form-message;
+	@extend %default-form-label;
+
+	@extend %disabled-form-element;
+	@extend %required-form-element;
+
+	@include form-components.get-input-color-variants();
+
+	position: relative;
+	display: flex;
+	flex-direction: column;
+
+	textarea {
+		@extend %default-interactive-component;
+		@extend %component-border;
+		@extend %db-overwrite-font-size-md;
+		@extend %resize-textarea;
+
+		@include color-variants.bg-transparent-hover();
+		@include color-variants.get-variant-bg-color(0.08);
+
+		max-inline-size: 100%;
+		inline-size: 100%;
+		padding: variables.$db-spacing-fixed-xs variables.$db-spacing-fixed-sm;
+
+		&::placeholder {
+			opacity: component.$default-placeholder-opacity;
+		}
+	}
+
+	textarea:required:invalid:not(:placeholder-shown),
+	textarea[aria-invalid="true"] {
+		@extend %adaptive-critical-component;
+	}
+}

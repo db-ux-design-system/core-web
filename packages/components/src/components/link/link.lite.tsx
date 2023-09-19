@@ -31,7 +31,19 @@ useMetadata({
 						name: 'Inline',
 						value: 'inline'
 					}
-				]
+				],
+				defaultValue: 'adaptive'
+			},
+			{
+				name: 'target',
+				type: 'Enum',
+				values: [
+					{ key: '_self', name: '_self', value: '_self' },
+					{ key: '_blank', name: '_blank', value: '_blank' },
+					{ key: '_parent', name: '_parent', value: '_parent' },
+					{ key: '_top', name: '_top', value: '_top' }
+				],
+				defaultValue: '_blank'
 			}
 			// jscpd:ignore-end
 		]
@@ -60,6 +72,7 @@ export default function DBLink(props: DBLinkProps) {
 	return (
 		<a
 			ref={component}
+			id={props.id}
 			class={cls('db-link', props.className)}
 			href={props.href}
 			title={props.title}

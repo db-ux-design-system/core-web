@@ -1,17 +1,17 @@
-/* Add styles for component here */
-
-@use "@db-ui/foundations/build/scss/variables" as *;
-@use "@db-ui/foundations/build/scss/variables.global" as *;
-@use "@db-ui/foundations/build/scss/color-placeholder" as *;
-@use "@db-ui/foundations/build/scss/tonality" as *;
+@use "@db-ui/foundations/build/scss/variables";
+@use "@db-ui/foundations/build/scss/color-placeholder";
+@use "@db-ui/foundations/build/scss/color/color-variants";
+@use "@db-ui/foundations/build/scss/helpers/component";
 
 %code-docs {
-	@extend %db-bg-neutral-1;
-	min-block-size: $db-sizing-3xl;
+	@extend %db-bg-neutral-transparent-semi;
+	min-block-size: variables.$db-sizing-3xl;
 	align-items: center;
 	justify-content: center;
-	padding: $db-spacing-fixed-xl;
-	padding-block-end: calc($db-spacing-fixed-xl + $db-sizing-sm);
+	padding: variables.$db-spacing-fixed-xl;
+	padding-block-end: calc(
+		#{variables.$db-spacing-fixed-xl} + #{variables.$db-sizing-sm}
+	);
 	position: relative;
 
 	.code-details {
@@ -38,14 +38,14 @@
 		}
 
 		.code {
-			@extend %db-bg-secondary;
+			@extend %db-bg-inverted;
 			overflow: auto;
 			position: absolute;
 			inset-inline-end: 0;
 			inset-block: 0;
-			padding-block-end: $db-spacing-fixed-md;
+			padding-block-end: variables.$db-spacing-fixed-md;
 
-			@media screen and (min-width: $db-screens-s) {
+			@include component.screen() {
 				inline-size: 50%;
 			}
 		}

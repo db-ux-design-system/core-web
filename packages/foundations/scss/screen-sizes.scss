@@ -1,0 +1,14 @@
+/**
+Overwrite screen-sizes like this in a global stylesheet.
+
+@use "screen-sizes" with (
+	$db-screen-xs: 123px;
+);
+ */
+
+@use "default-variables";
+$db-screen-xs: default-variables.$db-screens-xs;
+$db-screen-sm: default-variables.$db-screens-s;
+$db-screen-md: default-variables.$db-screens-m;
+$db-screen-lg: default-variables.$db-screens-l;
+$db-screen-xl: default-variables.$db-screens-xl;

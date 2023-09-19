@@ -10,19 +10,19 @@ inputs:
     description: "Path for package-lock.json"
     required: false
     default: "**/package-lock.json"
-outputs:
-  cache-hit:
-    description: "A boolean value to indicate an exact match was found for the primary key"
-    value: ${{ steps.set-cache.outputs.cache-hit }}
+  nodeVersion:
+    description: "Node version"
+    required: false
+    default: "18"
 runs:
   using: "composite"
   steps:
-    - name: Setup node equally to our local development version
+    - name: 🆙 Setup node
       # pick the Node version to use and install it
       # https://github.com/actions/setup-node
       uses: actions/setup-node@v3
       with:
-        node-version: 16
+        node-version: ${{ inputs.nodeVersion }}
 
     - name: Display node and npm version
       shell: bash
@@ -30,18 +30,17 @@ runs:
         node --version
         npm --version
 
-    - name: ⏬ Init Cache
+    - name: 🆒 Init Cache
       uses: actions/cache@v3
-      id: "npm-cache"
+      id: "cache"
       with:
         path: ${{ inputs.nodeModulesPath }}
-        key: ${{ runner.os }}-node-${{ hashFiles(inputs.packageLockPath) }}
+        key: ${{ runner.os }}-node-${{ inputs.nodeVersion }}-${{ hashFiles(inputs.packageLockPath) }}
         restore-keys: |
-          ${{ runner.os }}-node-
+          ${{ runner.os }}-node-${{ inputs.nodeVersion }}
 
-    - name: 🥊 Set cache-hit
-      id: "set-cache"
-      run: echo "cache-hit=$CACHE_HIT" >> $GITHUB_OUTPUT
+    - name: ⏬ NPM ci
       shell: bash
-      env:
-        CACHE_HIT: ${{steps.npm-cache.outputs.cache-hit}}
+      if: steps.cache.outputs.cache-hit != 'true'
+      run: |
+        npm ci

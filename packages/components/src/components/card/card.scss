@@ -1,19 +1,12 @@
-@use "@db-ui/foundations/build/scss/init" as *;
-@use "@db-ui/foundations/build/scss/variables" as *;
-@use "@db-ui/foundations/build/scss/variables.global" as *;
-@use "@db-ui/foundations/build/scss/helpers/functions" as *;
-@use "@db-ui/foundations/build/scss/color/color-variants" as *;
-@use "@db-ui/foundations/build/scss/helpers/component" as *;
+@use "@db-ui/foundations/build/scss/variables";
+@use "@db-ui/foundations/build/scss/color/color-variants";
+@use "@db-ui/foundations/build/scss/helpers/component";
 
 .db-card {
-	@extend %focus-placeholder;
 	@extend %color-variants;
 	@extend %default-card;
 
-	background-color: var(
-		--db-current-background-color,
-		$db-colors-neutral-bg-0-enabled
-	);
+	background-color: variables.$db-colors-neutral-bg;
 
 	display: flex;
 	flex-direction: column;
@@ -23,24 +16,24 @@
 	}
 
 	&[data-spacing="medium"] {
-		padding: $db-spacing-fixed-lg;
+		padding: variables.$db-spacing-fixed-lg;
 	}
 
 	&[data-spacing="small"] {
-		padding: $db-spacing-fixed-md;
+		padding: variables.$db-spacing-fixed-md;
 	}
 
 	&[data-variant="interactive"] {
 		// TODO use transition duration as variable
-		transition: box-shadow 0.15s $db-transition-functional-timing;
+		transition: box-shadow 0.15s variables.$db-transition-functional-timing;
 
 		&:hover:not([data-elevation="none"]) {
 			cursor: pointer;
-			box-shadow: $db-elevation-8;
+			box-shadow: variables.$db-elevation-8;
 		}
 
 		&:active:not([data-elevation="none"]) {
-			box-shadow: $db-elevation-2;
+			box-shadow: variables.$db-elevation-2;
 		}
 	}
 

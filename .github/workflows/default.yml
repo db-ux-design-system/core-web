@@ -46,6 +46,11 @@ jobs:
     uses: ./.github/workflows/02-e2e-showcases.yml
     needs: [build-showcases]
 
+  merge-reports:
+    if: ${{ always() }}
+    uses: ./.github/workflows/03-e2e-merge-reports.yml
+    needs: [test-components, test-showcases]
+
   checks-done:
     if: ${{ always() }}
     runs-on: ubuntu-latest

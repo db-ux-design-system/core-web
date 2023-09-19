@@ -1,28 +1,27 @@
 import {
-	GlobalTextProps,
 	ChangeEventState,
-	ChangeEventProps,
+	DefaultVariantProps,
+	EmphasisProps,
+	FormState,
 	GlobalProps,
 	GlobalState,
-	DefaultVariantProps,
-	FormProps,
-	FormState,
 	IconProps,
-	IconState,
-	FormCheckProps,
-	InitializedState
+	InitializedState,
+	OverflowProps
 } from '../../shared/model';
 
 export interface DBTagDefaultProps {
 	/**
 	 *	Defines the behaviour of the component:
-	 *	- static: default behaviour only label
-	 *  - interactive: use the tag like a checkbox
-	 *  - interactive-unique: use the tag like a radio
+	 *	- static: default behaviour without remove button
 	 *  - removable: add a remove button at the end of the tag
 	 */
-	behaviour?: 'static' | 'interactive-unique' | 'interactive' | 'removable';
+	behaviour?: 'static' | 'removable';
 
+	/**
+	 * Disable tag.
+	 */
+	disabled?: boolean;
 	/**
 	 * Define the text next to the icon specified via the icon Property to get hidden.
 	 */
@@ -32,17 +31,13 @@ export interface DBTagDefaultProps {
 	 */
 	onRemove?: () => void;
 	/**
-	 * The overflow attribute sets a max-width and longer text will be dotted.
-	 */
-	overflow?: boolean;
-	/**
 	 * The removeButton attribute shows the cancel button.
 	 */
 	removeButton?: string;
 	/**
-	 * The type attribute divides in between a weak or strong importance.
+	 * Alternative for children to set content as property.
 	 */
-	type?: 'weak' | 'strong';
+	text?: string;
 	/**
 	 * If "interactive" is set to true, you can pass a value to the underlying checkbox or radio input.
 	 */
@@ -51,22 +46,15 @@ export interface DBTagDefaultProps {
 
 export type DBTagProps = DBTagDefaultProps &
 	GlobalProps &
-	ChangeEventProps &
-	FormProps &
-	FormCheckProps &
 	IconProps &
-	DefaultVariantProps;
+	DefaultVariantProps &
+	OverflowProps &
+	EmphasisProps;
 
 export interface DBTagDefaultState {
 	getRemoveButtonText?: () => string;
-	getTabIndex?: () => number | null;
 	handleRemove?: () => void;
-	isInteractive?: () => boolean;
 }
 
 export type DBTagState = DBTagDefaultState &
-	GlobalState &
-	ChangeEventState &
-	FormState &
-	InitializedState &
-	IconState;
+	GlobalState ;

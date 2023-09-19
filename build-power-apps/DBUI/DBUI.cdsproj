@@ -44,7 +44,12 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\button\DBButton.pcfproj" />
+<!-- <ProjectReference Include="..\accordion-item\DBAccordionItem.pcfproj" />
+
+<ProjectReference Include="..\accordion\DBAccordion.pcfproj" /> -->
+
+    <!-- <ProjectReference Include="..\divider\DBDivider.pcfproj" /> -->
+	<ProjectReference Include="..\button\DBButton.pcfproj" />
     <ProjectReference Include="..\icon\DBIcon.pcfproj" />
     <ProjectReference Include="..\input\DBInput.pcfproj" />
     <ProjectReference Include="..\alert\DBAlert.pcfproj" />
@@ -54,6 +59,7 @@
     <ProjectReference Include="..\infotext\DBInfotext.pcfproj" />
     <ProjectReference Include="..\brand\DBBrand.pcfproj" />
 	<ProjectReference Include="..\tag\DBTag.pcfproj" />
+	<ProjectReference Include="..\textarea\DBTextarea.pcfproj" />
   </ItemGroup>
 
   <Import Project="$(MSBuildToolsPath)\Microsoft.Common.targets" />

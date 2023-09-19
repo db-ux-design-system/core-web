@@ -1,22 +1,79 @@
-@use "icons.helpers" as *;
-@use "icons.placeholder" as *;
-@use "../variables.global" as *;
-@forward "icons.attributes-mappings";
-@forward "icons.custom-properties";
-@forward "icons.font-faces";
+@use "icon-helpers";
+@use "../default.assets-paths" as *;
+
+@each $variant in icon-helpers.$default-icon-variants {
+	@font-face {
+		font-display: block;
+		font-family: "db-ux-#{$variant}";
+		font-style: normal;
+		font-weight: normal;
+		src: url("#{$icons-path}functional/fonts/#{$variant}/db-ux.woff2")
+			format("woff2");
+	}
+
+	@each $size in (16, 20, 24, 32, 48, 64) {
+		@font-face {
+			font-display: block;
+			font-family: "db-ux-#{$variant}";
+			font-style: normal;
+			font-weight: $size;
+			src: url("#{$icons-path}functional/fonts/#{$variant}_#{$size}/db-ux.woff2")
+				format("woff2");
+		}
+
+		[data-icon-weight="#{$size}"],
+		[data-icon-weight-before="#{$size}"] {
+			&::before {
+				--db-icon-font-weight: #{$size};
+			}
+		}
+
+		[data-icon-weight-after="#{$size}"] {
+			&::after {
+				--db-icon-font-weight: #{$size};
+			}
+		}
+	}
+
+	[data-icon-variant="#{$variant}"],
+	[data-icon-variant-before="#{$variant}"] {
+		&::before {
+			--db-icon-font-family: "db-ux-#{$variant}";
+		}
+	}
+
+	[data-icon-variant-after="#{$variant}"] {
+		&::after {
+			--db-icon-font-family: "db-ux-#{$variant}";
+		}
+	}
+}
 
 [data-icon],
 [data-icon-before] {
 	&::before {
 		@extend %icon !optional;
-		margin-inline-end: var(--icon-margin-after, #{$db-spacing-fixed-xs});
+		margin-inline-end: icon-helpers.$default-icon-margin-end;
+	}
+}
+
+[data-icon="none"],
+[data-icon-before="none"] {
+	&::before {
+		margin-inline-end: 0;
 	}
 }
 
 [data-icon-after] {
 	&::after {
 		@extend %icon !optional;
-		margin-inline-start: var(--icon-margin-before, #{$db-spacing-fixed-xs});
+		margin-inline-start: icon-helpers.$default-icon-margin-start;
+	}
+}
+
+[data-icon-after="none"] {
+	&::after {
+		margin-inline-start: 0;
 	}
 }
 
@@ -24,10 +81,10 @@
 .is-icon-text-replace {
 	&[data-icon],
 	&[data-icon-before] {
-		@include is-icon-text-replace();
+		@include icon-helpers.is-icon-text-replace();
 	}
 
 	&[data-icon-after] {
-		@include is-icon-text-replace("after");
+		@include icon-helpers.is-icon-text-replace("after");
 	}
 }

@@ -1,14 +1,13 @@
-@charset "utf-8";
-@use "sass:map";
+// TODO: Why do we need the default assets here?
 @use "@db-ui/foundations/build/scss/default.assets-paths" as *;
-@use "@db-ui/foundations/build/scss/variables" as *;
-@use "@db-ui/foundations/build/scss/variables.global" as *;
-@use "@db-ui/foundations/build/scss/helpers/functions" as *;
-@use "@db-ui/foundations/build/scss/icon/icons.helpers" as *;
-@use "@db-ui/foundations/build/scss/helpers/font" as *;
-@use "@db-ui/foundations/build/scss/color-placeholder" as *;
-@use "@db-ui/foundations/build/scss/color/color-variants" as *;
-@use "@db-ui/foundations/build/scss/helpers/component" as *;
+
+@use "@db-ui/foundations/build/scss/variables";
+@use "@db-ui/foundations/build/scss/icon/icon-helpers";
+@use "@db-ui/foundations/build/scss/helpers/font";
+@use "@db-ui/foundations/build/scss/color-placeholder";
+@use "@db-ui/foundations/build/scss/color/color-variants";
+@use "@db-ui/foundations/build/scss/helpers/component";
+@use "../../styles/form-components";
 
 :root,
 .db-ui-regular,
@@ -32,55 +31,31 @@
 
 	// add 0.1em to adjust label with input padding-inline-start
 	transform: translate(
-			calc($translationX + 0.1em),
-			calc($db-sizing-md * $transformScale)
+			calc(#{$translationX} + 0.1em),
+			calc(#{variables.$db-sizing-md} * #{$transformScale})
 		)
 		scale(var(--db-input-label-scale));
 }
 
-%input-icon-state {
-	--icon-input-margin-inline-end: calc(
-		(
-				var(--db-input-padding-end-icon-after) +
-					var(--db-input-padding-end-datalist)
-			) * #{$db-sizing-md} + #{$db-spacing-fixed-sm} -
-			var(--db-input-padding-end-datalist) * #{$db-spacing-fixed-sm} - var(
-				--db-input-padding-end-icon-after
-			) * #{$db-spacing-fixed-sm}
-	);
-	--icon-font-family: var(--db-base-icon-font-family-filled);
-	--icon-font-size: var(--db-base-icon-font-size);
-	display: flex;
-	align-items: center;
-	flex-direction: row;
-	position: absolute;
-	inset-block-start: 0;
-	block-size: $db-sizing-md;
-
-	pointer-events: none;
-	inset-inline-end: 0;
-
-	margin-inline-end: var(--icon-input-margin-inline-end);
-
-	&::before {
-		--icon-font-family: var(--db-base-icon-font-family-filled);
-		--icon-font-size: var(--db-base-icon-font-size);
-	}
-}
-
 .db-input {
-	--db-input-padding-inline-start: #{$db-spacing-fixed-sm};
+	--db-input-padding-inline-start: #{variables.$db-spacing-fixed-sm};
 	--db-input-padding-end-icon-after: 0;
 	--db-input-padding-end-data-variant: 0;
 	--db-input-padding-end-datalist: 0;
-	--icon-margin-after: 0;
+	--db-icon-margin-end: 0;
 	--db-input-label-max-width: 80%;
+
+	@extend %default-form-message;
+	@extend %disabled-form-element;
+	@extend %required-form-element;
+
+	@include form-components.get-input-color-variants();
 
 	position: relative;
 
 	// padding-inline-end according to current amount of icons
-	&:has(> .icon-before) {
-		--db-input-padding-inline-start: #{calc(#{$db-sizing-md})};
+	&:has(> .icon-before, > [type="search"]) {
+		--db-input-padding-inline-start: #{calc(#{variables.$db-sizing-md})};
 		--db-input-label-max-width: 70%;
 
 		input {
@@ -103,23 +78,18 @@
 
 	&:has(> datalist):has(> .icon-after) {
 		.icon-after {
-			padding-inline-start: $db-spacing-fixed-xs;
+			padding-inline-start: variables.$db-spacing-fixed-xs;
 		}
 	}
 
 	&:has(> datalist) {
 		--db-input-padding-end-datalist: 1;
 
-		// Datalist icon
-		@include icon(glyph(expand-more), 24, "outline", "after");
-
-		&::after {
-			transition: transform $db-transition-emotional-straight;
-		}
+		@extend %dropdown-icon;
 
 		&:has(input:is(:focus, :not(:placeholder-shown))) {
 			&::after {
-				transform: rotate(180deg);
+				transform: form-components.$dropdown-icon-transform;
 			}
 		}
 
@@ -130,22 +100,27 @@
 		}
 	}
 
+	&:has(> [type="search"]) {
+		@extend %db-overwrite-font-size-sm;
+		@include icon-helpers.icon("search");
+	}
+
 	.db-icon,
 	db-icon,
-	&:has(> datalist)::after {
-		--icon-font-family: var(--db-base-icon-font-family);
-		--icon-font-size: var(--db-base-icon-font-size);
-
-		@extend %db-overwrite-font-size-sm;
-
-		font-size: var(--icon-font-size);
-
-		block-size: $db-sizing-md;
+	&:has(> datalist)::after,
+	&:has(> [type="search"])::before {
+		block-size: variables.$db-sizing-md;
 		display: flex;
 		align-items: center;
 		position: absolute;
 		inset-block-start: 0;
-		margin-inline: $db-spacing-fixed-sm;
+		margin-inline: variables.$db-spacing-fixed-sm;
+	}
+
+	.db-icon,
+	db-icon,
+	&:has(> datalist)::after {
+		@extend %db-overwrite-font-size-sm;
 	}
 
 	.icon-after,
@@ -157,22 +132,23 @@
 
 	.icon-after {
 		margin-inline-end: calc(
-			#{$db-spacing-fixed-sm} + var(--db-input-padding-end-datalist) * #{$db-sizing-md} -
-				var(--db-input-padding-end-datalist) * #{$db-spacing-fixed-sm}
+			#{variables.$db-spacing-fixed-sm} + var(
+					--db-input-padding-end-datalist
+				) * #{variables.$db-sizing-md} - var(
+					--db-input-padding-end-datalist
+				) * #{variables.$db-spacing-fixed-sm}
 		);
 	}
 
 	// currently not supported by firefox
 	&:has(> input:disabled) {
 		.db-icon,
-		.icon-state,
 		&:has(> datalist)::after {
 			opacity: 0.5;
 		}
 	}
 
 	label {
-		@extend %default-color;
 		position: absolute;
 		display: flex;
 		align-items: center;
@@ -181,11 +157,11 @@
 		transform-origin: left;
 		transform: translate(
 			var(--db-input-padding-inline-start),
-			calc(-1 * var(--db-sizing-md))
+			calc(-1 * #{variables.$db-sizing-md})
 		);
-		transition: transform 0.2s $db-transition-functional-timing;
+		transition: transform 0.2s variables.$db-transition-functional-timing;
 		will-change: transform;
-		block-size: $db-sizing-md;
+		block-size: variables.$db-sizing-md;
 		cursor: text;
 		// setting max-width to prevent users from too long labels by displaying text-overflow: ellipsis
 		max-inline-size: var(--db-input-label-max-width, 80%);
@@ -197,34 +173,29 @@
 		}
 	}
 
-	.description {
-		@extend %db-overwrite-font-size-xs;
-		margin: $db-spacing-fixed-2xs $db-spacing-fixed-sm 0;
-
-		display: flex;
-		align-items: flex-start;
-		justify-content: space-between;
-	}
-
 	input {
 		--db-input-padding-inline-end: calc(
 			(
 					var(--db-input-padding-end-icon-after) +
 						var(--db-input-padding-end-data-variant) +
 						var(--db-input-padding-end-datalist)
-				) * #{$db-sizing-md}
+				) * #{variables.$db-sizing-md}
 		);
 
-		@extend %bg-transparent-hover;
 		@extend %default-interactive-component;
 		@extend %component-border;
-		@include get-variant-bg-color(0.08);
 
-		block-size: $db-sizing-md;
+		@include color-variants.bg-transparent-hover();
+		@include color-variants.get-variant-bg-color(0.08);
+
+		color: variables.$db-colors-neutral-on-bg;
+
+		block-size: variables.$db-sizing-md;
 		max-inline-size: 100%;
 		inline-size: 100%;
-		padding: $db-spacing-fixed-xs var(--db-input-padding-inline-end)
-			$db-spacing-fixed-xs var(--db-input-padding-inline-start);
+		padding: variables.$db-spacing-fixed-xs
+			var(--db-input-padding-inline-end) variables.$db-spacing-fixed-xs
+			var(--db-input-padding-inline-start);
 
 		// TODO: Evaluate whether those could get moved to ../_form-elements.scss
 		&:focus,
@@ -235,30 +206,13 @@
 						var(--db-input-focus-opacity)
 				)
 				calc(
-					$db-spacing-fixed-xs - var(--db-input-focus-opacity) *
-						$db-spacing-fixed-xs
+					#{variables.$db-spacing-fixed-xs} - var(
+							--db-input-focus-opacity
+						) * #{variables.$db-spacing-fixed-xs}
 				);
 
 			+ label {
 				@include label-focus-animation();
-			}
-		}
-
-		// TODO: Evaluate whether those could get moved to ../_form-elements.scss
-		&:disabled,
-		fieldset:disabled & {
-			&,
-			& + label {
-				// Decided against cursor: not-allowed, compare to e.g. https://phabricator.wikimedia.org/T121960
-				opacity: $default-opacity;
-				pointer-events: none;
-			}
-		}
-
-		&:required {
-			+ label::after {
-				content: " *";
-				padding-inline-start: 0.2rem;
 			}
 		}
 
@@ -307,32 +261,13 @@
 		}
 
 		&[type="search"] {
-			// TODO: Change rem to a x times db-sizing-md
-			$paddingLeft: calc($db-spacing-fixed-sm * 2 + 0.625rem);
-
 			padding-inline-start: var(--db-input-padding-inline-start);
 
 			&,
 			& + label {
 				--db-input-padding-inline-start: #{calc(
-						$db-spacing-fixed-sm * 2 + 0.625rem
+						#{variables.$db-spacing-fixed-sm} * 2 + #{variables.$db-spacing-fixed-md}
 					)};
-			}
-
-			& ~ .icon-state {
-				// TODO replace with svg icon
-				@include icon(glyph(search), 20, "filled", "before");
-			}
-
-			+ label {
-				transform: translate(
-					$paddingLeft,
-					calc(-1 * var(--db-sizing-md))
-				);
-			}
-
-			~ .description {
-				padding-inline-start: $paddingLeft;
 			}
 
 			&:focus,
@@ -348,10 +283,11 @@
 			&::-webkit-search-cancel-button {
 				appearance: none;
 				position: absolute;
-				inset-inline-end: $db-spacing-fixed-sm;
+				inset-inline-end: variables.$db-spacing-fixed-sm;
 				inset-block-start: 0;
-				block-size: $db-sizing-md;
+				block-size: variables.$db-sizing-md;
 				inline-size: 1em;
+				// TODO: find a better solution for this
 				background: url(#{$icons-path}functional/images/navigation/db_ic_cancel_24.svg)
 					no-repeat 50% 50%;
 				background-size: contain;
@@ -361,56 +297,9 @@
 		}
 	}
 
-	// #variations
-	.icon-state {
-		&.db-icon {
-			@extend %input-icon-state;
-		}
-
-		// angular specific nesting
-		> .db-icon {
-			@extend %input-icon-state;
-		}
-	}
-
 	input:required:invalid:not(:placeholder-shown),
 	input[aria-invalid="true"] {
 		@extend %adaptive-critical-component;
-	}
-
-	@each $name, $colors in $component-variants {
-		@if ($name == "critical") {
-			&[data-variant="critical"] {
-				color: nth($colors, 3);
-			}
-		}
-
-		&[data-variant="#{$name}"] input {
-			--db-current-border-color: #{map.get($colors, "border")};
-			@if ($name == "critical") {
-				@extend %adaptive-critical-component;
-			} @else if ($name == "informational") {
-				@extend %adaptive-informational-component;
-			} @else if ($name == "warning") {
-				@extend %adaptive-warning-component;
-			} @else if ($name == "successful") {
-				@extend %adaptive-successful-component;
-			}
-
-			& + label {
-				color: map.get($colors, "on-bg");
-			}
-
-			& ~ .db-icon {
-				color: $db-colors-informational-on-bg-enabled;
-			}
-
-			& ~ .description,
-			& ~ .icon-state,
-			& ~ .icon-state .db-icon {
-				color: map.get($colors, "element");
-			}
-		}
 	}
 }
 

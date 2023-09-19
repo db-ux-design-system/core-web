@@ -1,5 +1,4 @@
-@use "@db-ui/foundations/build/scss/variables" as *;
-@use "@db-ui/foundations/build/scss/variables.global" as *;
+@use "@db-ui/foundations/build/scss/variables";
 
 :root {
 	body {
@@ -20,6 +19,17 @@
 }
 
 .db-page {
+	opacity: 0;
+
+	&[data-fade-in="true"] {
+		transition: opacity variables.$db-transition-emotional-straight;
+	}
+
+	&:not([data-fonts-loaded]),
+	&[data-fonts-loaded="true"] {
+		opacity: 1;
+	}
+
 	&.fixed-header-footer {
 		block-size: 100%;
 		min-block-size: 100%;

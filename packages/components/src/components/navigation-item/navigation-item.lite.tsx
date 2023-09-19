@@ -6,8 +6,10 @@ import {
 	useMetadata,
 	useStore
 } from '@builder.io/mitosis';
-import { DBNavigationItemProps, DBNavigationItemState } from './model';
+import { DBNavigationItemState, DBNavigationItemProps } from './model';
+import { DBButton } from '../button';
 import { cls, uuid } from '../../utils';
+import { DEFAULT_BACK } from '../../shared/constants';
 
 useMetadata({
 	isAttachedToShadowDom: true,
@@ -26,15 +28,21 @@ export default function DBNavigationItem(props: DBNavigationItemProps) {
 	const state = useStore<DBNavigationItemState>({
 		initialized: false,
 		hasAreaPopup: false,
-		hideSubNavigation: false,
+		hasSubNavigation: true,
+		isSubNavigationExpanded: false,
 		subNavigationId: 'sub-navigation-' + uuid(),
 		handleClick: (event: any) => {
 			if (props.onClick) {
 				props.onClick(event);
 			}
+
+			if (state.hasAreaPopup) {
+				state.isSubNavigationExpanded = true;
+			}
 		},
-		iconVisible: (icon?: string) => {
-			return Boolean(icon && icon !== '_' && icon !== 'none');
+		handleBackClick: (event: any) => {
+			event.stopPropagation();
+			state.isSubNavigationExpanded = false;
 		}
 	});
 
@@ -46,7 +54,16 @@ export default function DBNavigationItem(props: DBNavigationItemProps) {
 	});
 
 	onUpdate(() => {
-		if (state.initialized && document && state.subNavigationId) {
+		if (props.subNavigationExpanded !== undefined) {
+			state.isSubNavigationExpanded = !!props.subNavigationExpanded;
+		}
+	}, [props.subNavigationExpanded]);
+
+	onUpdate(() => {
+		if (props.areaPopup !== undefined) {
+			state.hasAreaPopup = props.areaPopup;
+			state.hasSubNavigation = state.hasAreaPopup;
+		} else if (state.initialized && document && state.subNavigationId) {
 			const subNavigationSlot = document?.getElementById(
 				state.subNavigationId
 			) as HTMLMenuElement;
@@ -55,35 +72,53 @@ export default function DBNavigationItem(props: DBNavigationItemProps) {
 				if (children?.length > 0) {
 					state.hasAreaPopup = true;
 				} else {
-					state.hideSubNavigation = true;
+					state.hasSubNavigation = false;
 				}
 			}
 		}
-	}, [state.initialized]);
+	}, [state.initialized, props.areaPopup]);
 
 	// jscpd:ignore-end
 
 	return (
 		<li
 			ref={component}
-			role={state.hasAreaPopup ? 'button' : ''}
-			aria-haspopup={state.hasAreaPopup}
+			id={props.id}
 			class={cls('db-navigation-item', props.className)}
 			data-width={props.width}
-			data-icon={state.iconVisible(props.icon) ? props.icon : undefined}
-			data-icon-after={
-				state.iconVisible(props.iconAfter) ? props.iconAfter : undefined
-			}
+			data-icon={props.icon}
 			aria-current={props.active ? 'page' : undefined}
-			data-disabled={props.disabled}
-			onClick={(event) => state.handleClick(event)}>
+			aria-disabled={props.disabled}>
 			<Show when={state.stylePath}>
 				<link rel="stylesheet" href={state.stylePath} />
 			</Show>
-			{props.children}
 
-			<Show when={state.hideSubNavigation}>
+			<Show when={!state.hasSubNavigation}>{props.children}</Show>
+
+			<Show when={state.hasSubNavigation}>
+				<button
+					aria-haspopup={state.hasAreaPopup}
+					aria-expanded={state.isSubNavigationExpanded}
+					className="db-navigation-item-expand-button"
+					disabled={props.disabled}
+					onClick={(event) => state.handleClick(event)}>
+					{props.children}
+				</button>
+
 				<menu className="db-sub-navigation" id={state.subNavigationId}>
+					<Show when={state.hasAreaPopup}>
+						<div class="db-mobile-navigation-back">
+							<DBButton
+								id={props.backButtonId}
+								icon="arrow_back"
+								variant="text"
+								onClick={(event) =>
+									state.handleBackClick(event)
+								}>
+								{props.backButtonText ?? DEFAULT_BACK}
+							</DBButton>
+						</div>
+					</Show>
 					<Slot name="sub-navigation"></Slot>
 				</menu>
 			</Show>

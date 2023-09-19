@@ -1,5 +1,5 @@
 <app-default-component
-	title="Tag"
+	title="DBTag"
 	[variants]="variants"
 	[exampleTemplate]="exampleTemplate"
 >
@@ -14,15 +14,31 @@
 			[icon]="exampleProps.icon"
 			[noText]="exampleProps.noText"
 			[behaviour]="exampleProps.behaviour"
-			[type]="exampleProps.type"
-			[checked]="exampleProps.checked"
-			[label]="exampleProps.label"
-			[name]="exampleProps.name"
+			[emphasis]="exampleProps.emphasis"
 			[overflow]="exampleProps.overflow"
 			[removeButton]="exampleProps.removeButton"
 			(onRemove)="showAlert(exampleName)"
 		>
-			{{ exampleName }}
+			<db-button *ngIf="exampleProps.component === 'button'">{{
+				exampleName
+			}}</db-button>
+			<db-link *ngIf="exampleProps.component === 'link'" href="#">{{
+				exampleName
+			}}</db-link>
+			<db-checkbox
+				*ngIf="exampleProps.component === 'checkbox'"
+				[checked]="exampleProps.checked"
+				>{{ exampleName }}</db-checkbox
+			>
+			<db-radio
+				name="radio"
+				*ngIf="exampleProps.component === 'radio'"
+				[checked]="exampleProps.checked"
+				>{{ exampleName }}</db-radio
+			>
+			<ng-container *ngIf="!exampleProps.component">{{
+				exampleName
+			}}</ng-container>
 		</db-tag>
 	</ng-template>
 </app-default-component>

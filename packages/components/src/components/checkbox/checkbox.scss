@@ -1,26 +1,23 @@
-@use "@db-ui/foundations/build/scss/variables" as *;
-@use "@db-ui/foundations/build/scss/variables.global" as *;
-@use "@db-ui/foundations/build/scss/helpers/functions" as *;
-@use "@db-ui/foundations/build/scss/icon/icons.helpers" as *;
-@use "@db-ui/foundations/build/scss/color-placeholder" as *;
-@use "@db-ui/foundations/build/scss/tonality" as *;
-@use "@db-ui/foundations/build/scss/helpers/component" as *;
-@use "@db-ui/foundations/build/scss/color/color-variants" as *;
+@use "@db-ui/foundations/build/scss/variables";
+@use "@db-ui/foundations/build/scss/icon/icon-helpers";
+@use "@db-ui/foundations/build/scss/tonality";
+@use "@db-ui/foundations/build/scss/helpers/component";
+@use "@db-ui/foundations/build/scss/color/color-variants";
 
+// TODO: Move this to shared style
 $font-size-height: calc(var(--db-base-font-size) * var(--db-base-line-height));
 
 .db-checkbox {
-	@extend %default-color;
-	@extend %bg-transparent-interactive;
+	@include color-variants.bg-transparent-interactive();
 
 	align-content: center;
 
 	appearance: none;
-
 	aspect-ratio: 1;
+	position: relative;
 
 	border: max(calc(#{$font-size-height} / 16 + 0.5px), 2px) solid currentColor;
-	border-radius: $default-border-radius;
+	border-radius: component.$checkbox-border-radius;
 
 	display: inline-flex;
 	block-size: $font-size-height;
@@ -34,7 +31,7 @@ $font-size-height: calc(var(--db-base-font-size) * var(--db-base-line-height));
 	// We need to reset the general icons margin, as we want to use it in a tiny space
 	&:checked,
 	&:indeterminate {
-		--icon-margin-after: 0;
+		--db-icon-margin-end: 0;
 
 		&::before {
 			position: absolute;
@@ -42,10 +39,10 @@ $font-size-height: calc(var(--db-base-font-size) * var(--db-base-line-height));
 	}
 
 	&:checked {
-		@extend %db-secondary-component-ia;
+		@extend %db-bg-inverted-ia;
 
 		// Check icon
-		@include icon(glyph(done), 24, "outline");
+		@include icon-helpers.icon("done");
 
 		// The icon within the checkbox has the same dimensions as the checkbox itself and that for there can't be any border
 		border-width: 0;
@@ -58,7 +55,7 @@ $font-size-height: calc(var(--db-base-font-size) * var(--db-base-line-height));
 	// }
 
 	&:indeterminate {
-		@include icon(glyph(minus), 24, "outline");
+		@include icon-helpers.icon("minus");
 
 		&::before {
 			line-height: 20px;
@@ -73,7 +70,7 @@ $font-size-height: calc(var(--db-base-font-size) * var(--db-base-line-height));
 	}
 
 	& + label {
-		margin-inline-start: $db-spacing-fixed-xs;
+		margin-inline-start: variables.$db-spacing-fixed-xs;
 
 		vertical-align: top;
 	}
@@ -85,7 +82,7 @@ $font-size-height: calc(var(--db-base-font-size) * var(--db-base-line-height));
 		// TODO: we still need to scale this
 		& + label {
 			@extend %db-overwrite-font-size-sm;
-			margin-inline-start: $db-spacing-fixed-2xs;
+			margin-inline-start: variables.$db-spacing-fixed-2xs;
 		}
 	}
 

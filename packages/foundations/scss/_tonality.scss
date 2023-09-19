@@ -1,11 +1,15 @@
-@use "variables" as *;
-@use "font-faces" as *;
-@use "typography-placeholder" as *;
-@use "scaling-placeholder" as *;
-@use "helpers/font" as *;
+@use "default-variables";
+@use "typography-placeholder";
+@use "scaling-placeholder";
+@use "helpers/font";
 
-body {
-	font-family: $db-font-family-sans;
+@forward "font-faces";
+
+body,
+// Power Apps related
+.app-canvas,
+.control-pane {
+	font-family: default-variables.$db-font-family-sans;
 }
 
 :root {
@@ -27,7 +31,7 @@ h3,
 h4,
 h5,
 h6 {
-	font-family: $db-font-family-head;
+	font-family: default-variables.$db-font-family-head;
 	font-weight: 700;
 
 	&[data-variant="light"] {
@@ -65,16 +69,17 @@ h6 {
 	font-size: var(--db-type-headline-font-size-2xs);
 }
 
-@mixin styles($styles...) {
-	@for $i from 0 to length($styles) {
-		%db-ui-#{nth($styles, $i + 1)},
-		.db-ui-#{nth($styles, $i + 1)},
-		[data-tonality="#{nth($styles, $i + 1)}"] {
-			@extend %db-scaling-#{nth($styles, $i + 1)};
-			@extend %db-typography-headline-#{nth($styles, $i + 1)};
-			@extend %db-typography-body-#{nth($styles, $i + 1)};
+@mixin tonalities($tonalities...) {
+	@for $i from 0 to length($tonalities) {
+		%db-ui-#{nth($tonalities, $i + 1)},
+		.db-ui-#{nth($tonalities, $i + 1)},
+		[data-tonality="#{nth($tonalities, $i + 1)}"] {
+			@extend %db-scaling-#{nth($tonalities, $i + 1)};
+			@extend %db-typography-headline-#{nth($tonalities, $i + 1)};
+			@extend %db-typography-body-#{nth($tonalities, $i + 1)};
+			@extend %db-component-variables-md;
 		}
 	}
 }
 
-@include styles("expressive", "regular", "functional");
+@include tonalities("expressive", "regular", "functional");

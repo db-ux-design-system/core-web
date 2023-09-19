@@ -1,25 +1,22 @@
 @use "sass:map";
-@use "@db-ui/foundations/build/scss/default.assets-paths" as *;
-@use "@db-ui/foundations/build/scss/variables" as *;
-@use "@db-ui/foundations/build/scss/variables.global" as *;
-@use "@db-ui/foundations/build/scss/color-placeholder" as *;
-@use "@db-ui/foundations/build/scss/helpers/functions" as *;
+@use "@db-ui/foundations/build/scss/variables";
+@use "@db-ui/foundations/build/scss/color-placeholder";
 @use "@db-ui/foundations/build/scss/helpers/component";
-@use "@db-ui/foundations/build/scss/color/color-variants" as *;
-@use "@db-ui/foundations/build/scss/icon/icons.helpers" as *;
-@use "@db-ui/foundations/build/scss/helpers/font" as *;
-@use "../../styles/form-components" as *;
+@use "@db-ui/foundations/build/scss/color/color-variants";
+@use "@db-ui/foundations/build/scss/icon/icon-helpers";
+@use "@db-ui/foundations/build/scss/helpers/font";
+@use "../../styles/form-components";
 
 %select-icon {
 	@extend %dropdown-icon;
 
 	&::after {
-		inset-inline-end: $db-spacing-fixed-sm;
+		inset-inline-end: variables.$db-spacing-fixed-sm;
 	}
 
 	&:has(select:focus-within) {
 		&::after {
-			transform: rotate(180deg);
+			transform: form-components.$dropdown-icon-transform;
 		}
 	}
 }
@@ -27,53 +24,60 @@
 %select-label {
 	@extend %db-overwrite-font-size-md;
 	inset-block-start: calc(
-		($db-sizing-md - var(--db-base-font-size) * var(--db-base-line-height)) /
-			2
+		(
+				#{variables.$db-sizing-md} - var(--db-base-font-size) * var(--db-base-line-height)
+			) / 2
 	);
 }
 
 .db-select {
-	--has-before: 0;
-	--has-status: 0;
+	--db-has-before: 0;
+	--db-has-status: 0;
 	@extend %db-overwrite-font-size-sm;
 	@extend %select-icon;
-	@extend %bg-transparent-hover;
-	@extend %default-interactive-component;
-	@extend %component-border;
-	@include get-variant-bg-color(0.08);
+	@extend %default-form-message;
+	@extend %disabled-form-element;
+	@extend %required-form-element;
+
+	@include form-components.get-input-color-variants();
 
 	position: relative;
-	block-size: $db-sizing-md;
 	min-inline-size: calc(
-		var(--db-select-min-width, calc(3 * $db-sizing-md)) + var(--has-before) *
-			($db-sizing-md) + var(--has-status) * ($db-sizing-md)
+		var(--db-select-min-width, calc(3 * #{variables.$db-sizing-md})) +
+			var(--db-has-before) * #{variables.$db-sizing-md}
 	);
 
 	&[data-icon] {
-		--has-before: 1;
+		--db-has-before: 1;
 	}
 
-	&[data-variant]:not([data-variant="adaptive"]) {
-		--has-status: 1;
+	&[data-variant="adaptive"],
+	&:not([data-variant]) {
+		select {
+			@include color-variants.get-variant-bg-color(0.08);
+		}
 	}
 
 	select {
-		@extend %transparent-border;
-		@extend %default-border-radius;
+		@extend %default-interactive-component;
+		@extend %component-border;
+
+		@include color-variants.bg-transparent-hover();
+
+		border-radius: component.$default-border-radius;
+
 		appearance: none;
 		background-color: transparent;
-		border: none;
-		block-size: $db-sizing-md;
+		block-size: variables.$db-sizing-md;
 		text-overflow: ellipsis;
 		text-indent: calc(
-			var(--has-before) * ($db-sizing-md - $db-spacing-fixed-sm)
+			var(--db-has-before) *
+				(#{variables.$db-sizing-md} - #{variables.$db-spacing-fixed-sm})
 		);
 		inline-size: 100%;
-		padding-block-start: $db-spacing-fixed-sm;
-		padding-inline-start: $db-spacing-fixed-sm;
-		padding-inline-end: calc(
-			$db-sizing-md + var(--has-status) * ($db-sizing-md)
-		);
+		padding-block-start: variables.$db-spacing-fixed-sm;
+		padding-inline-start: variables.$db-spacing-fixed-sm;
+		padding-inline-end: variables.$db-sizing-md;
 
 		&:not([data-value]) {
 			& ~ label {
@@ -84,8 +88,7 @@
 
 	&::after,
 	&::before,
-	label,
-	.icon-state {
+	label {
 		position: absolute;
 		pointer-events: none;
 	}
@@ -98,78 +101,31 @@
 
 	label {
 		@extend %db-overwrite-font-size-2xs;
-		inset-block-start: $db-spacing-fixed-2xs;
+		inset-block-start: variables.$db-spacing-fixed-2xs;
 		transition:
 			left,
 			top,
-			font-size 0.2s $db-transition-functional-timing;
+			font-size 0.2s variables.$db-transition-functional-timing;
 		inset-inline-start: calc(
-			var(--has-before) * ($db-sizing-md - $db-spacing-fixed-sm) +
-				$db-spacing-fixed-sm
+			var(--db-has-before) *
+				(#{variables.$db-sizing-md} - #{variables.$db-spacing-fixed-sm}) +
+				#{variables.$db-spacing-fixed-sm}
 		);
 	}
 
 	&::after,
-	&::before,
-	.icon-state {
+	&::before {
 		inset-block-start: calc(
 			var(--db-base-font-size) * var(--db-base-line-height) / 2
 		);
 	}
 
 	&::before {
-		inset-inline-start: $db-spacing-fixed-sm;
+		inset-inline-start: variables.$db-spacing-fixed-sm;
 	}
 
-	.icon-state {
-		@extend %db-overwrite-font-size-sm;
-
-		display: flex;
-		inset-inline-end: calc($db-sizing-md - $db-spacing-fixed-xs);
-
-		&::before {
-			--icon-font-family: var(--db-base-icon-font-family-filled);
-			--icon-font-size: var(--db-base-icon-font-size);
-		}
-
-		// angular specific nesting
-
-		.db-icon {
-			@extend %db-overwrite-font-size-sm;
-
-			&::before {
-				--icon-font-family: var(--db-base-icon-font-family-filled);
-				--icon-font-size: var(--db-base-icon-font-size);
-			}
-		}
-	}
-
-	& ~ .description {
-		@extend %db-overwrite-font-size-xs;
-		margin-inline: $db-spacing-fixed-sm;
-		margin-block: $db-spacing-fixed-2xs 0;
-	}
-
-	@each $name, $colors in $component-variants {
-		&[data-variant="#{$name}"] {
-			--db-current-border-color: #{map.get($colors, "border")};
-			color: map.get($colors, "on-bg");
-
-			@if ($name == "critical") {
-				@extend %adaptive-critical-component;
-			} @else if ($name == "informational") {
-				@extend %adaptive-informational-component;
-			} @else if ($name == "warning") {
-				@extend %adaptive-warning-component;
-			} @else if ($name == "successful") {
-				@extend %adaptive-successful-component;
-			}
-
-			& ~ .description,
-			.icon-state,
-			.icon-state .db-icon {
-				color: map.get($colors, "element");
-			}
-		}
+	// Most likely this wouldn't work on MacOS, but we're still progressively enhancing Windows by this
+	option {
+		background-color: var(--db-current-bg-color);
 	}
 }

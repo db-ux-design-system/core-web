@@ -1,7 +1,5 @@
 import { onMount, Show, useMetadata, useStore } from '@builder.io/mitosis';
-import { DBIcon } from '../icon';
-import { DBInfotextState, DBInfotextProps } from './model';
-import { DefaultVariantsIcon } from '../../shared/model';
+import { DBInfotextProps, DBInfotextState } from './model';
 import { cls } from '../../utils';
 
 useMetadata({
@@ -9,6 +7,10 @@ useMetadata({
 	component: {
 		// MS Power Apps
 		includeIcon: true,
+		canvasSize: {
+			height: 'fixed', // 'fixed', 'controlled'
+			width: 'controlled' // 'fixed', 'dynamic' (requires width property), 'controlled'
+		},
 		properties: [
 			// jscpd:ignore-start
 			{
@@ -33,15 +35,17 @@ useMetadata({
 						name: 'Successful',
 						value: 'successful'
 					}
-				]
+				],
+				defaultValue: 'adaptive'
 			},
 			{
 				name: 'size',
 				type: 'Enum',
 				values: [
-					{ key: 'Sedium', name: 'Medium', value: 'medium' },
+					{ key: 'Medium', name: 'Medium', value: 'medium' },
 					{ key: 'Small', name: 'Small', value: 'small' }
-				]
+				],
+				defaultValue: 'medium'
 			}
 			// jscpd:ignore-end
 		]
@@ -52,11 +56,7 @@ export default function DBInfotext(props: DBInfotextProps) {
 	// This is used as forwardRef
 	let component: any;
 	// jscpd:ignore-start
-	const state = useStore<DBInfotextState>({
-		getIcon: (icon?: string, variant?: string) => {
-			return icon || (variant && DefaultVariantsIcon[variant]) || 'info';
-		}
-	});
+	const state = useStore<DBInfotextState>({});
 	// jscpd:ignore-end
 
 	onMount(() => {
@@ -69,9 +69,10 @@ export default function DBInfotext(props: DBInfotextProps) {
 	return (
 		<span
 			ref={component}
+			id={props.id}
 			class={cls('db-infotext', props.className)}
 			title={props.title}
-			data-icon={state.getIcon(props.icon, props.variant)}
+			data-icon={props.icon}
 			data-variant={props.variant}
 			data-size={props.size}>
 			<Show when={state.stylePath}>

@@ -4,13 +4,12 @@ import defaultComponentVariants from '../../../../shared/divider.json';
 import { type DBDividerProps } from '../../../../../output/react/src/components/divider/model';
 import { getVariants } from '../data';
 
-const getDivider = ({ variant, children }: DBDividerProps) => (
+const getDivider = ({ variant, emphasis, children }: DBDividerProps) => (
 	<>
 		<DBInfotext size="small" variant="informational">
-			{' '}
 			{children}
 		</DBInfotext>
-		<DBDivider variant={variant} />
+		<DBDivider variant={variant} emphasis={emphasis} />
 	</>
 );
 

@@ -1,32 +1,36 @@
 @use "sass:color";
-@use "../variables" as *;
+@use "../default-variables";
 
 %code-style {
-	--db-current-background-color: var(
-		--db-colors-secondary-bg-enabled,
-		#{$db-colors-secondary-enabled}
+	--db-current-base-color: var(
+		--db-neutral-enabled,
+		#{default-variables.$db-colors-neutral-enabled}
 	);
 	--db-current-color: var(
-		--db-colors-secondary-on-bg-enabled,
-		#{$db-colors-secondary-on-enabled}
+		--db-neutral-bg-enabled,
+		#{default-variables.$db-colors-neutral-bg-0-enabled}
+	);
+	--db-current-bg-color: color-mix(
+		in srgb,
+		transparent var(--db-bg-transparent, 0%),
+		var(
+			--db-neutral-on-bg-enabled,
+			#{default-variables.$db-colors-neutral-on-bg-enabled}
+		)
 	);
 	--db-current-element-color: var(
-		--db-colors-secondary-element-enabled,
-		#{$db-colors-secondary-element-enabled}
+		--db-neutral-element-enabled,
+		#{default-variables.$db-colors-neutral-element-enabled}
 	);
 	--db-current-border-color: var(
-		--db-colors-secondary-border-enabled,
-		#{$db-colors-secondary-border-enabled}
+		--db-neutral-border-enabled,
+		#{default-variables.$db-colors-neutral-border-enabled}
+	);
+	--db-current-border-weak-color: var(
+		--db-neutral-border-weak-enabled,
+		#{default-variables.$db-colors-neutral-border-weak-enabled}
 	);
 
-	--db-current-background-color-red: #{color.red($db-colors-secondary-enabled)};
-	--db-current-background-color-green: #{color.green(
-			$db-colors-secondary-enabled
-		)};
-	--db-current-background-color-blue: #{color.blue(
-			$db-colors-secondary-enabled
-		)};
-
-	background-color: $db-colors-secondary-enabled;
-	color: $db-colors-secondary-on-enabled;
+	background-color: var(--db-current-bg-color);
+	color: var(--db-current-color);
 }

@@ -1,0 +1,32 @@
+<app-default-component
+	title="DBAccordion"
+	[variants]="variants"
+	[exampleTemplate]="exampleTemplate"
+>
+	<ng-template
+		#exampleTemplate
+		let-exampleProps="exampleProps"
+		let-exampleName="exampleName"
+		let-exampleIndex="exampleIndex"
+		let-variantIndex="variantIndex"
+		><ng-container>
+			<db-infotext size="small" variant="informational" icon="none">
+				{{ exampleName }}
+			</db-infotext>
+			<db-accordion [behaviour]="exampleProps.behaviour">
+				<db-accordion-item
+					title="Item 1"
+					content="Content 1"
+				></db-accordion-item>
+				<db-accordion-item
+					title="Item 2"
+					content="Content 2"
+				></db-accordion-item>
+				<db-accordion-item
+					title="Item 3"
+					content="Content 3"
+				></db-accordion-item>
+			</db-accordion>
+		</ng-container>
+	</ng-template>
+</app-default-component>

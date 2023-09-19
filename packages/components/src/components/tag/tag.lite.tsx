@@ -1,14 +1,7 @@
-import {
-	onMount,
-	onUpdate,
-	Show,
-	useMetadata,
-	useStore
-} from '@builder.io/mitosis';
+import { onMount, Show, useMetadata, useStore } from '@builder.io/mitosis';
 import { DBButton } from '../button';
-import { cls, uuid } from '../../utils';
 import { DBTagProps, DBTagState } from './model';
-import { DEFAULT_ID } from '../../shared/constants';
+import { cls } from '../../utils';
 
 useMetadata({
 	isAttachedToShadowDom: true,
@@ -21,7 +14,6 @@ useMetadata({
 				type: 'SingleLine.Text',
 				defaultValue: 'Tag'
 			},
-			{ name: 'name', type: 'SingleLine.Text' },
 			// { name: 'disabled', type: 'TwoOptions' },
 			{
 				name: 'variant',
@@ -40,7 +32,8 @@ useMetadata({
 						name: 'Successful',
 						value: 'successful'
 					}
-				]
+				],
+				defaultValue: 'adaptive'
 			}
 			// type
 		]
@@ -51,28 +44,6 @@ export default function DBTag(props: DBTagProps) {
 	// This is used as forwardRef
 	let component: any;
 	const state = useStore<DBTagState>({
-		initialized: false,
-		_id: DEFAULT_ID,
-		_isValid: undefined,
-		handleChange: (event: any) => {
-			if (props.onChange) {
-				props.onChange(event);
-			}
-
-			if (props.change) {
-				props.change(event);
-			}
-		},
-		iconVisible: (icon?: string) => {
-			return Boolean(icon && icon !== '_' && icon !== 'none');
-		},
-		getTabIndex: () => {
-			if (props.disabled) {
-				return undefined;
-			}
-
-			return props.tabIndex ?? undefined;
-		},
 		handleRemove: () => {
 			if (props.onRemove) {
 				props.onRemove();
@@ -85,91 +56,37 @@ export default function DBTag(props: DBTagProps) {
 
 			// TODO: We should think this through again, if we would really like to have default and especially english, instead of german labels in here
 			return 'Remove tag';
-		},
-		isInteractive: () => {
-			if (props.behaviour) {
-				return props.behaviour.includes('interactive');
-			}
-
-			return false;
 		}
 	});
 
 	onMount(() => {
-		state.initialized = true;
-		state._id = props.id || 'tag-' + uuid();
 		if (props.stylePath) {
 			state.stylePath = props.stylePath;
 		}
 	});
 
-	onUpdate(() => {
-		if (props.checked && state.initialized && document && state._id) {
-			const checkElement = document?.getElementById(
-				state._id
-			) as HTMLInputElement;
-			if (checkElement) {
-				checkElement.checked = true;
-				state.initialized = false;
-			}
-		}
-	}, [state.initialized]);
-
 	return (
 		<div
 			ref={component}
+			id={props.id}
 			class={cls('db-tag', props.className)}
-			tabIndex={state.getTabIndex()}
-			data-interactive={state.isInteractive()}
 			data-disabled={props.disabled}
 			data-variant={props.variant}
-			data-type={props.type}>
+			data-emphasis={props.emphasis}
+			data-icon={props.icon}
+			data-no-text={props.noText}
+			data-overflow={props.overflow}>
 			<Show when={state.stylePath}>
 				<link rel="stylesheet" href={state.stylePath} />
 			</Show>
 
-			<Show
-				when={state.isInteractive()}
-				else={
-					<span
-						class={cls('tag-label', {
-							'is-icon-text-replace':
-								state.iconVisible(props.icon) && props.noText
-						})}
-						data-icon={props.icon}
-						data-overflow={props.overflow}>
-						{props.children}
-					</span>
-				}>
-				<input
-					id={state._id}
-					type={
-						props.behaviour === 'interactive-unique'
-							? 'radio'
-							: 'checkbox'
-					}
-					checked={props.checked}
-					name={props.name}
-					value={props.value}
-					disabled={props.disabled}
-					required={props.required}
-					aria-invalid={props.invalid}
-					onChange={(event) => state.handleChange(event)}
-				/>
-				<label
-					class={cls('tag-label', {
-						'is-icon-text-replace':
-							state.iconVisible(props.icon) && props.noText
-					})}
-					htmlFor={state._id}
-					data-icon={props.icon}
-					data-overflow={props.overflow}>
-					{props.children}
-				</label>
-			</Show>
+			{props.children}
+
+			<Show when={props.text}>{props.text}</Show>
 
 			<Show when={props.behaviour === 'removable'}>
 				<DBButton
+					className="db-tab-remove-button"
 					onClick={() => state.handleRemove()}
 					icon="close"
 					size="small"

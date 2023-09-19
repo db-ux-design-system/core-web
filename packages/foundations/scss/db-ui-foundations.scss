@@ -1,12 +1,26 @@
-@use "@csstools/normalize.css/normalize" as *;
+@use "color-placeholder";
+@use "helpers/component";
+@use "tonality";
 
-@use "variables" as *;
-@use "variables.global" as *;
-@use "color-placeholder" as *;
-@use "tonality" as *;
-@use "init" as *;
+@forward "@csstools/normalize.css/normalize";
+@forward "init";
 
 :root {
-	@extend %db-ui-regular;
-	@extend %db-bg-neutral-0;
+	@extend %db-bg-neutral;
+
+	/* This is a MS power apps specific class name */
+	.app-canvas,
+	&:not(:has(.app-canvas)) {
+		@extend %db-ui-regular;
+	}
+}
+
+[class^="db-"],
+[class^="db-"] * {
+	@extend %default-transition;
+
+	::before,
+	::after {
+		@extend %default-transition;
+	}
 }

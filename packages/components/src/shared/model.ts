@@ -61,14 +61,6 @@ export type DefaultVariantProps = {
 	variant?: DefaultVariantType;
 };
 
-export const DefaultVariantsIcon: any = {
-	critical: 'error',
-	// TODO: 'error-triangle' will change to 'warning' soon
-	warning: 'error-triangle',
-	successful: 'check-circle',
-	informational: 'info'
-};
-
 export type IconProps = {
 	/**
 	 * Define an icon by it's identifier (like e.g. _account_, compare to [Icons](https://db-ui.github.io/mono/review/main/foundations/icons) to get displayed in front of the elements content.
@@ -83,8 +75,15 @@ export type IconAfterProps = {
 	iconAfter?: IconTypes;
 };
 
-export type IconState = {
+export type IconVisibleState = {
 	iconVisible: (icon?: string) => boolean;
+};
+
+export type OverflowProps = {
+	/**
+	 * The overflow attribute sets a max-width and longer text will be dotted.
+	 */
+	overflow?: boolean;
 };
 
 export type WidthProps = {
@@ -113,19 +112,29 @@ export type FormProps = {
 	 * React specific attribute to set default value.
 	 */
 	defaultValue?: any;
+
 	/**
 	 * The disabled attribute can be set to keep a user from clicking on the form element.
 	 */
 	disabled?: boolean;
-
+	/**
+	 * 	Associates the control with a form element
+	 */
+	form?: string;
+	/**
+	 * Marks an input element as invalid.
+	 */
+	invalid?: boolean;
 	/**
 	 * The label attribute specifies the caption of the form element.
 	 */
 	label?: string;
+
 	/**
 	 * The name attribute gives the name of the form control, as used in form submission and in the form element's elements object.
 	 */
 	name?: string;
+
 	/**
 	 * When the required attribute specified, the user will be required to fill the form element before submitting the form.
 	 */
@@ -134,11 +143,33 @@ export type FormProps = {
 	 * The value property is to receive results from the native form element.
 	 */
 	value?: any;
+};
 
+export type FormTextProps = {
 	/**
-	 * Marks an input element as invalid.
+	 * This attribute indicates whether the value of the control can be automatically completed by the browser.
 	 */
-	invalid?: boolean;
+	autoComplete?: 'on' | 'off';
+	/**
+	 * This Boolean attribute lets you specify that a form control should have input focus when the page loads. Only one form-associated element in a document can have this attribute specified.
+	 */
+	autoFocus?: boolean;
+	/**
+	 * Maximum length (number of characters) of value
+	 */
+	maxLength?: number;
+	/**
+	 * Minimum length (number of characters) of value
+	 */
+	minLength?: number;
+	/**
+	 * Text that appears in the form control when it has no value set
+	 */
+	placeholder?: string;
+	/**
+	 * The disabled attribute can be set to keep a user from edit on the form element
+	 */
+	readOnly?: boolean;
 };
 
 export type FormCheckProps = {
@@ -146,26 +177,34 @@ export type FormCheckProps = {
 	 * Define the radio or checkbox elements checked state
 	 */
 	checked?: boolean;
+
+	/**
+	 * Returns / Sets the default state of a radio button or checkbox as originally specified in HTML that created this object.
+	 * Vue: according to our research this property should not be used. Please refer to v-model instead.
+	 * cf. https://react.carbondesignsystem.com/?path=/docs/components-checkbox--overview#component-api vs. https://vue.carbondesignsystem.com/?path=/story/components-cvcheckbox--default
+	 */
+	defaultChecked?: boolean;
+};
+
+export type FormMessageProps = {
+	/**
+	 * Optional helper message for form components
+	 */
+	message?: string;
+
+	/**
+	 * Set/overwrite icon for helper message for form components
+	 */
+	messageIcon?: IconTypes;
 };
 
 export type FormState = {
 	_isValid?: boolean | undefined;
-	_value?: any;
-	// callback for controlValueAccessor's onChange handler
-	propagateChange?: (value: any) => void;
+	_messageId?: string;
 };
 
 export type InitializedState = {
 	initialized: boolean;
-};
-
-export type GlobalTextProps = {
-	placeholder?: string;
-	maxLength?: number;
-	minLength?: number;
-	max?: number;
-	min?: number;
-	pattern?: string;
 };
 
 export type ImageProps = {
@@ -241,7 +280,7 @@ export type ToggleEventProps = {
 };
 
 export type ToggleEventState = {
-	toggle?: () => void;
+	toggle?: (event?: any) => void;
 };
 
 export type CloseEventProps = {
@@ -262,9 +301,6 @@ export type ChangeEventProps = {
 
 export type ChangeEventState = {
 	handleChange: (event: any) => void;
-
-	// some frameworks, e.g. angular need specific change listeners for internal use
-	propagateChange?: (_: any) => void;
 };
 
 export type FocusEventProps = {
@@ -294,6 +330,17 @@ export type InnerCloseButtonProps = {
 	 * The closeButtonText attribute changes the text inside the close button.
 	 */
 	closeButtonText?: string;
+};
+
+export type NavigationBackButtonProps = {
+	/**
+	 * The backButtonId attribute changes the id inside the back button.
+	 */
+	backButtonId?: string;
+	/**
+	 * The backButtonText attribute changes the text inside the back button.
+	 */
+	backButtonText?: string;
 };
 
 export type KeyValueType = {

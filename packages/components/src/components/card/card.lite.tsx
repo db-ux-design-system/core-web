@@ -50,6 +50,7 @@ export default function DBCard(props: DBCardProps) {
 	return (
 		<div
 			ref={component}
+			id={props.id}
 			class={cls('db-card', props.className)}
 			data-variant={props.variant}
 			data-color-variant={props.colorVariant}

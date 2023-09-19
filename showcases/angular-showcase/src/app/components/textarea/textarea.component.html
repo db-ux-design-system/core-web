@@ -1,0 +1,26 @@
+<app-default-component
+	title="DBTextarea"
+	[variants]="variants"
+	[exampleTemplate]="exampleTemplate"
+>
+	<ng-template
+		#exampleTemplate
+		let-exampleProps="exampleProps"
+		let-exampleName="exampleName"
+		let-exampleIndex="exampleIndex"
+		let-variantIndex="variantIndex"
+	>
+		<db-textarea
+			[variant]="exampleProps.variant"
+			[label]="exampleProps.label"
+			[required]="exampleProps.required"
+			[disabled]="exampleProps.disabled"
+			[readOnly]="exampleProps.readOnly"
+			[value]="exampleProps.value"
+			[cols]="exampleProps.cols"
+			[rows]="exampleProps.rows"
+			[placeholder]="exampleProps.placeholder || exampleName"
+			[message]="exampleProps.message"
+		></db-textarea>
+	</ng-template>
+</app-default-component>

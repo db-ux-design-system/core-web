@@ -7,7 +7,7 @@
 				"className": "db-ui-functional",
 				"props": {
 					"label": "Label",
-					"description": "functional"
+					"message": "functional"
 				}
 			},
 			{
@@ -15,7 +15,7 @@
 				"className": "db-ui-regular",
 				"props": {
 					"label": "Label",
-					"description": "regular (Default)"
+					"message": "regular (Default)"
 				}
 			},
 			{
@@ -23,7 +23,7 @@
 				"className": "db-ui-expressive",
 				"props": {
 					"label": "Label",
-					"description": "expressive"
+					"message": "expressive"
 				}
 			}
 		]
@@ -35,14 +35,15 @@
 				"name": "(Default) Basic",
 				"props": {
 					"label": "Label",
-					"description": "(Default) Basic"
+					"message": "(Default) Basic",
+					"placeholder": "I am a placeholder"
 				}
 			},
 			{
 				"name": "Informational",
 				"props": {
 					"label": "Label",
-					"description": "Informational",
+					"message": "Informational",
 					"variant": "informational"
 				}
 			},
@@ -50,7 +51,7 @@
 				"name": "Warning",
 				"props": {
 					"label": "Label",
-					"description": "Warning",
+					"message": "Warning",
 					"variant": "warning"
 				}
 			},
@@ -58,7 +59,7 @@
 				"name": "Critical",
 				"props": {
 					"label": "Label",
-					"description": "Critical",
+					"message": "Critical",
 					"variant": "critical"
 				}
 			},
@@ -66,7 +67,7 @@
 				"name": "Successful",
 				"props": {
 					"label": "Label",
-					"description": "Successful",
+					"message": "Successful",
 					"variant": "successful"
 				}
 			}
@@ -79,7 +80,7 @@
 				"name": "Default",
 				"props": {
 					"label": "Label",
-					"description": "Default"
+					"message": "Default"
 				}
 			},
 			{
@@ -87,7 +88,7 @@
 				"props": {
 					"label": "Label",
 					"value": "Input Text",
-					"description": "Filled"
+					"message": "Filled"
 				}
 			},
 			{
@@ -96,14 +97,14 @@
 					"label": "Label",
 					"value": "123456",
 					"type": "number",
-					"description": "Filled Number"
+					"message": "Filled Number"
 				}
 			},
 			{
 				"name": "Invalid",
 				"props": {
 					"label": "Label",
-					"description": "Invalid",
+					"message": "Invalid",
 					"required": true,
 					"minLength": 5
 				}
@@ -113,16 +114,16 @@
 				"props": {
 					"label": "Label",
 					"disabled": true,
-					"description": "Disabled"
+					"message": "Disabled"
 				}
 			},
 			{
-				"name": "Disabled with value",
+				"name": "Disabled filled",
 				"props": {
 					"label": "Label",
 					"value": "Input Text",
 					"disabled": true,
-					"description": "Disabled with value"
+					"message": "Disabled filled"
 				}
 			},
 			{
@@ -130,9 +131,8 @@
 				"props": {
 					"label": "Label",
 					"value": "Input Text",
-					"disabled": true,
 					"required": true,
-					"description": "Required"
+					"message": "Required"
 				}
 			}
 		]
@@ -144,7 +144,7 @@
 				"name": "(Default) Text",
 				"props": {
 					"label": "Label",
-					"description": "(Default) Text"
+					"message": "(Default) Text"
 				}
 			},
 			{
@@ -152,7 +152,7 @@
 				"props": {
 					"label": "Label",
 					"icon": "account",
-					"description": "Leading Icon + Text"
+					"message": "Leading Icon + Text"
 				}
 			},
 			{
@@ -161,7 +161,7 @@
 					"label": "Label",
 					"icon": "account",
 					"iconAfter": "edit",
-					"description": "Leading Icon + Text + Trailing Icon"
+					"message": "Leading Icon + Text + Trailing Icon"
 				}
 			},
 			{
@@ -169,7 +169,7 @@
 				"props": {
 					"label": "Label",
 					"iconAfter": "edit",
-					"description": "Text + Trailing Icon"
+					"message": "Text + Trailing Icon"
 				}
 			},
 			{
@@ -178,7 +178,67 @@
 					"label": "Label",
 					"variant": "successful",
 					"iconAfter": "edit",
-					"description": "Text + Trailing Icon + Variant:Successful"
+					"message": "Text + Trailing Icon + Variant:Successful"
+				}
+			}
+		]
+	},
+	{
+		"name": "Types",
+		"examples": [
+			{
+				"name": "(Default) Text",
+				"props": {
+					"label": "Label",
+					"message": "(Default) Text"
+				}
+			},
+			{
+				"name": "Password",
+				"props": {
+					"label": "Label",
+					"message": "Password",
+					"type": "password"
+				}
+			},
+			{
+				"name": "Search",
+				"props": {
+					"label": "Label",
+					"message": "Search",
+					"type": "search"
+				}
+			},
+			{
+				"name": "E-Mail",
+				"props": {
+					"label": "Label",
+					"message": "E-Mail",
+					"type": "email"
+				}
+			},
+			{
+				"name": "Number",
+				"props": {
+					"label": "Label",
+					"message": "Number",
+					"type": "number"
+				}
+			},
+			{
+				"name": "Tel",
+				"props": {
+					"label": "Label",
+					"message": "Tel",
+					"type": "tel"
+				}
+			},
+			{
+				"name": "URL",
+				"props": {
+					"label": "Label",
+					"message": "URL",
+					"type": "url"
 				}
 			}
 		]

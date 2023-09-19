@@ -1,14 +1,10 @@
-@use "variables" as *;
-@use "variables.global" as *;
-@use "color-placeholder" as *;
-@use "helpers/functions" as *;
-@use "color/code-colors" as *;
+@use "variables";
+@use "color/code-colors";
 
 :root {
 	// TODO: probably move these to the tokens as well
 	--db-focus-outline-offset: 1px;
-	--db-focus-outline-color: #{$db-colors-informational-enabled};
-	--db-focus-outline-transition-duration: #{$db-transition-duration-ultra-fast};
+	--db-focus-outline-color: #{variables.$db-colors-informational};
 	--db-focus-outline-size: max(2px, 0.08em);
 	--db-disabled-text-opacity: 0.5;
 }
@@ -32,16 +28,14 @@ html {
 }
 
 // Make sure every elements has the current color from container above
-body {
-	color: var(--db-current-color, $db-colors-neutral-on-bg-enabled);
-}
-
+body,
+button,
+input,
+textarea,
+summary,
+select,
 a {
 	color: inherit;
-
-	strong {
-		color: currentColor;
-	}
 }
 
 button,
@@ -71,8 +65,6 @@ iframe {
 // Focus styles
 %focus-placeholder,
 :is(a, button, input, textarea, summary, select) {
-	transition: outline var(--db-focus-outline-transition-duration);
-
 	&:focus-visible {
 		outline: var(--db-focus-outline-size)
 			var(--db-focus-outline-style, solid)
@@ -89,7 +81,7 @@ iframe {
 	list-style-type: "\2022"+ "   ";
 
 	li::marker {
-		color: #{$db-colors-primary-enabled};
+		color: var (--db-primary-enabled, #{variables.$db-colors-primary});
 	}
 }
 
@@ -115,13 +107,13 @@ fieldset {
 
 pre:has(code) {
 	@extend %code-style;
-	padding: $db-spacing-fixed-xs;
+	padding: variables.$db-spacing-fixed-xs;
 }
 
 code {
 	@extend %code-style;
-	padding-block: $db-spacing-fixed-2xs;
-	padding-inline: $db-spacing-fixed-xs;
+	padding-block: variables.$db-spacing-fixed-2xs;
+	padding-inline: variables.$db-spacing-fixed-xs;
 }
 
 // details/summary box-sizing / https://kittygiraudel.com/2021/08/23/shadow-roots-and-inheritance/

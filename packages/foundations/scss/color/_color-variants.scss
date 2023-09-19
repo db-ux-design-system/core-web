@@ -1,8 +1,9 @@
-@use "../color-placeholder" as *;
-@use "../variables" as *;
+@use "sass:string";
+@use "../color-placeholder";
+@use "../variables";
 
-$color-variants: "neutral-0", "neutral-1", "neutral-3", "neutral-4", "primary",
-	"secondary", "critical", "successful", "warning", "informational";
+$color-variants: "neutral", "neutral-strong", "primary", "critical",
+	"successful", "warning", "informational";
 
 @mixin color-variants($ia) {
 	@each $variant in $color-variants {
@@ -25,11 +26,14 @@ $color-variants: "neutral-0", "neutral-1", "neutral-3", "neutral-4", "primary",
 }
 
 @mixin get-variant-bg-color($alpha) {
-	background-color: rgba(
-		var(--db-current-background-color-red),
-		var(--db-current-background-color-green),
-		var(--db-current-background-color-blue),
-		var(--db-current-background-color-alpha, $alpha)
+	background-color: color-mix(
+		in srgb,
+		transparent
+			var(
+				--db-current-base-color-alpha,
+				string.unquote(calc((1 - $alpha) * 100) + "%")
+			),
+		var(--db-current-base-color, #fff)
 	);
 }
 
@@ -37,122 +41,92 @@ $color-variants: "neutral-0", "neutral-1", "neutral-3", "neutral-4", "primary",
 	@include get-variant-bg-color(0);
 }
 
-%bg-transparent-hover {
+@mixin bg-transparent-hover($with-enabled: true) {
 	@extend %bg-transparent;
 
-	&:enabled {
+	@if ($with-enabled) {
+		&:enabled {
+			&:hover {
+				@include get-variant-bg-color(0.16);
+			}
+		}
+	} @else {
 		&:hover {
 			@include get-variant-bg-color(0.16);
 		}
 	}
 }
 
-%bg-transparent-interactive {
-	@extend %bg-transparent-hover;
+@mixin bg-transparent-interactive($with-enabled: true) {
+	@include bg-transparent-hover($with-enabled);
 
-	&:enabled {
+	@if ($with-enabled) {
+		&:enabled {
+			&:active {
+				@include get-variant-bg-color(0.24);
+			}
+		}
+	} @else {
 		&:active {
 			@include get-variant-bg-color(0.24);
 		}
 	}
 }
 
-// Variants for adaptive components like input, select, alert, ...
+%db-bg-inverted {
+	color: var(--db-current-bg-color);
+	background-color: var(--db-current-color);
+}
 
-$db-colors-critical-border: var(
-	--db-colors-critical-border-weak-enabled,
-	$db-colors-critical-border-weak-enabled
-);
+%db-bg-inverted-ia {
+	@extend %db-bg-inverted;
 
-$db-colors-critical-element: var(
-	--db-colors-critical-element-enabled,
-	$db-colors-critical-element-enabled
-);
+	&::before {
+		color: var(--db-current-bg-color);
+	}
 
-$db-colors-critical-on-bg: var(
-	--db-colors-critical-on-bg-enabled,
-	$db-colors-critical-on-bg-enabled
-);
-$db-colors-critical: var(
-	--db-colors-critical-enabled,
-	$db-colors-critical-enabled
-);
+	&:enabled {
+		&:hover {
+			background-color: color-mix(
+				in srgb,
+				transparent 16%,
+				var(--db-current-color)
+			);
+		}
 
-$db-colors-informational-border: var(
-	--db-colors-informational-border-weak-enabled,
-	$db-colors-informational-border-weak-enabled
-);
-$db-colors-informational-element: var(
-	--db-colors-informational-element-enabled,
-	$db-colors-informational-element-enabled
-);
-
-$db-colors-informational-on-bg: var(
-	--db-colors-informational-on-bg-enabled,
-	$db-colors-informational-on-bg-enabled
-);
-$db-colors-informational: var(
-	--db-colors-informational-enabled,
-	$db-colors-informational-enabled
-);
-
-$db-colors-warning-border: var(
-	--db-colors-warning-border-weak-enabled,
-	$db-colors-warning-border-weak-enabled
-);
-$db-colors-warning-element: var(
-	--db-colors-warning-element-enabled,
-	$db-colors-warning-element-enabled
-);
-$db-colors-warning-on-bg: var(
-	--db-colors-warning-on-bg-enabled,
-	$db-colors-warning-on-bg-enabled
-);
-$db-colors-warning: var(
-	--db-colors-warning-enabled,
-	$db-colors-warning-enabled
-);
-
-$db-colors-successful-border: var(
-	--db-colors-successful-border-weak-enabled,
-	$db-colors-successful-border-weak-enabled
-);
-$db-colors-successful-element: var(
-	--db-colors-successful-element-enabled,
-	$db-colors-successful-element-enabled
-);
-$db-colors-successful-on-bg: var(
-	--db-colors-successful-on-bg-enabled,
-	$db-colors-successful-on-bg-enabled
-);
-$db-colors-successful: var(
-	--db-colors-successful-enabled,
-	$db-colors-successful-enabled
-);
+		&:active {
+			background-color: color-mix(
+				in srgb,
+				transparent 24%,
+				var(--db-current-color)
+			);
+		}
+	}
+}
 
 $component-variants: (
 	"critical": (
-		"border": $db-colors-critical-border,
-		"element": $db-colors-critical-element,
-		"on-bg": $db-colors-critical-on-bg,
-		"primary": $db-colors-critical
+		"border": variables.$db-colors-critical-border-weak,
+		"element": variables.$db-colors-critical-element,
+		"on-bg": variables.$db-colors-critical-on-bg,
+		"primary": variables.$db-colors-critical
 	),
 	"informational": (
-		"border": $db-colors-informational-border,
-		"element": $db-colors-informational-element,
-		"on-bg": $db-colors-informational-on-bg,
-		"primary": $db-colors-informational
+		"border": variables.$db-colors-informational-border-weak,
+		"element": variables.$db-colors-informational-element,
+		"on-bg": variables.$db-colors-informational-on-bg,
+		"primary": variables.$db-colors-informational
 	),
 	"warning": (
-		"border": $db-colors-warning-border,
-		"element": $db-colors-warning-element,
-		"on-bg": $db-colors-warning-on-bg,
-		"primary": $db-colors-warning
+		"border": variables.$db-colors-warning-border-weak,
+		"element": variables.$db-colors-warning-element,
+		"on-bg": variables.$db-colors-warning-on-bg,
+		"primary": variables.$db-colors-warning
 	),
 	"successful": (
-		"border": $db-colors-successful-border,
-		"element": $db-colors-successful-element,
-		"on-bg": $db-colors-successful-on-bg,
-		"primary": $db-colors-successful
+		"border": variables.$db-colors-successful-border-weak,
+		"element": variables.$db-colors-successful-element,
+		"on-bg": variables.$db-colors-successful-on-bg,
+		"primary": variables.$db-colors-successful
 	)
 );

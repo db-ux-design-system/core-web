@@ -1,44 +1,199 @@
-@use "@db-ui/foundations/build/scss/variables" as *;
-@use "@db-ui/foundations/build/scss/variables.global" as *;
-@use "@db-ui/foundations/build/scss/helpers/functions" as *;
+@use "@db-ui/foundations/build/scss/variables";
+@use "@db-ui/foundations/build/scss/screen-sizes";
+@use "@db-ui/foundations/build/scss/helpers/functions";
+@use "@db-ui/foundations/build/scss/helpers/component";
+@use "@db-ui/foundations/build/scss/tonality";
 
 .db-header {
-	background-color: $db-colors-neutral-bg-0-enabled;
-	box-shadow: $db-elevation-4;
+	background-color: variables.$db-colors-neutral-bg;
+	box-shadow: variables.$db-elevation-4;
 	display: flex;
-	justify-content: space-between;
-	align-items: center;
+	flex-direction: column;
+	margin-block-end: variables.$db-spacing-fixed-2xs;
 	position: relative;
 
-	/* Mobile header should always be 56px */
-	min-block-size: to-rem(56);
+	min-block-size: component.$default-mobile-header-height;
 
-	gap: $db-spacing-fixed-md;
-	padding-inline: $db-spacing-fixed-md;
+	@include component.screen("md") {
+		--db-drawer-max-width: #{screen-sizes.$db-screen-sm};
+	}
 
 	.db-link {
 		display: inline-block;
 	}
 
-	.desktop-navigation,
-	.meta-navigation {
-		display: none;
+	&[data-on-forcing-mobile="true"] {
+		/*
+		We make the header invisible for a short time if the user passes in force-mobile property.
+		We do it because otherwise we see the default desktop-navigation for some mil. sec.
+		*/
+		visibility: hidden;
 	}
+}
 
-	@media screen and (min-width: $db-screens-m) {
-		/* Desktop header should always be 80px */
-		min-block-size: to-rem(80);
+.db-header-navigation-bar {
+	display: flex;
+	position: relative;
+	padding: variables.$db-spacing-fixed-xs variables.$db-spacing-fixed-md;
+	gap: variables.$db-spacing-fixed-xs;
+	inline-size: 100%;
+	align-items: center;
 
-		.mobile-navigation {
+	@include component.screen("md") {
+		padding: variables.$db-spacing-fixed-md;
+	}
+}
+
+.db-header-meta-navigation {
+	@extend %db-bg-neutral-transparent-semi;
+	@extend %db-ui-functional;
+	@include functions.divider("top");
+	display: flex;
+	flex-direction: column;
+	gap: variables.$db-spacing-fixed-sm;
+	justify-content: flex-end;
+
+	padding: variables.$db-spacing-fixed-md;
+
+	@include component.screen("md") {
+		padding: variables.$db-spacing-fixed-xs variables.$db-spacing-fixed-md;
+		margin: 0;
+		flex-direction: row;
+
+		&:empty {
 			display: none;
 		}
+	}
 
-		.meta-navigation {
-			display: inherit;
-		}
+	&:empty {
+		display: none;
+	}
+}
 
-		.desktop-navigation {
-			display: inherit;
+.db-header-navigation-container {
+	display: inherit;
+	flex: 1 1 auto;
+	inline-size: 100%;
+	gap: inherit;
+	align-items: center;
+}
+
+.db-header-call-to-action {
+	margin-inline-start: auto;
+}
+
+.db-header-brand-container:not(:has(> :nth-child(1))) {
+	display: none;
+}
+
+.db-header-action-container:has(> .db-header-action-bar:empty) {
+	@include component.screen("md") {
+		display: none;
+	}
+}
+
+.db-header-brand-container {
+	min-block-size: variables.$db-sizing-md;
+	@include component.screen("md") {
+		@include functions.divider("left", "after");
+
+		&::after {
+			position: inherit;
+			block-size: 100%;
+			margin-inline: variables.$db-spacing-fixed-sm;
 		}
+	}
+}
+
+.db-header-action-container {
+	@include functions.divider("left");
+
+	&::before {
+		position: inherit;
+		block-size: 100%;
+
+		@include component.screen("md") {
+			margin-inline-end: variables.$db-spacing-fixed-sm;
+		}
+	}
+}
+
+.db-header-brand-container,
+.db-header-action-container {
+	align-items: center;
+	block-size: 100%;
+	display: inherit;
+	gap: inherit;
+	flex: 0 1 auto;
+	flex-grow: 0;
+	flex-shrink: 0;
+}
+
+.db-header-action-bar {
+	@include functions.divider("top");
+	flex: 0 1 auto;
+	flex-grow: 0;
+	flex-shrink: 0;
+	padding-block-start: variables.$db-spacing-fixed-xs;
+
+	@include component.screen("md") {
+		&::before {
+			display: none;
+		}
+	}
+}
+
+.db-header-drawer-navigation {
+	display: flex;
+	flex-direction: column;
+	flex: 1 1 auto;
+	block-size: 100%;
+	overflow: auto;
+	justify-content: space-between;
+}
+
+.db-header-navigation {
+	padding-block: variables.$db-spacing-fixed-md;
+}
+
+.db-header-navigation,
+.db-header-action-bar {
+	display: flex;
+	gap: variables.$db-spacing-fixed-sm;
+	padding-inline: variables.$db-spacing-fixed-md;
+
+	@include component.screen("md") {
+		gap: variables.$db-spacing-fixed-xs;
+		padding: 0;
+	}
+}
+
+.db-header-drawer {
+	--db-drawer-content-padding-inline: 0;
+	// 1px for box shadow of header
+	--db-drawer-header-padding-block-end: calc(
+		1px + #{variables.$db-spacing-fixed-xs}
+	);
+	padding-block-end: 0;
+
+	& .db-drawer-content {
+		display: flex;
+		flex-direction: column;
+		block-size: 100%;
+		overflow: hidden;
+	}
+}
+
+[data-hide-on="mobile"] {
+	display: none;
+
+	@include component.screen("md") {
+		display: inherit;
+	}
+}
+
+[data-hide-on="desktop"] {
+	@include component.screen("md") {
+		display: none;
 	}
 }

@@ -1,174 +1,152 @@
 @use "sass:map";
-@use "@db-ui/foundations/build/scss/init" as *;
-@use "@db-ui/foundations/build/scss/variables" as *;
-@use "@db-ui/foundations/build/scss/variables.global" as *;
-@use "@db-ui/foundations/build/scss/color-placeholder" as *;
-@use "@db-ui/foundations/build/scss/helpers/component" as *;
-@use "@db-ui/foundations/build/scss/color/color-variants" as *;
-@use "@db-ui/foundations/build/scss/helpers/font" as *;
+@use "@db-ui/foundations/build/scss/variables";
+@use "@db-ui/foundations/build/scss/helpers/component";
+@use "@db-ui/foundations/build/scss/helpers/font";
+@use "@db-ui/foundations/build/scss/icon/icon-helpers";
+@use "@db-ui/foundations/build/scss/helpers/functions";
+@use "@db-ui/foundations/build/scss/color/color-variants";
 @use "../../styles/button-components";
-@use "@db-ui/foundations/build/scss/helpers/functions" as *;
+@use "../../styles/tag-components";
+@use "../../styles/icon-passing";
 
-@mixin get-border-and-icon($colors) {
-	&:not(&[data-type="strong"]) {
-		--db-current-border-color: #{map.get($colors, "border")};
-		/*
-		.tag-label {
-			::before {
-				color: map.get($colors, "element");
-			}
+%no-text {
+	&[data-no-text="true"] {
+		--icon-margin-after: 0;
+		@include icon-helpers.is-icon-text-replace();
+		padding: 0;
+
+		label,
+		span {
+			@include icon-helpers.is-icon-text-replace();
 		}
-*/
-	}
-}
-
-%tag-colors {
-	@extend %db-bg-neutral-4;
-
-	&[data-type="strong"] {
-		@extend %db-neutral-component;
 	}
 
-	@each $name, $colors in $component-variants {
-		&[data-variant="#{$name}"] {
-			@if ($name == "critical") {
-				@extend %db-bg-critical;
+	&:not([data-no-text="true"]) {
+		padding-inline: variables.$db-spacing-fixed-2xs;
 
-				&[data-type="strong"] {
-					@extend %db-critical-component;
-				}
-			} @else if ($name == "informational") {
-				@extend %db-bg-informational;
+		&:has(.db-tab-remove-button) {
+			padding-inline-start: variables.$db-spacing-fixed-2xs;
+			padding-inline-end: 0;
+		}
 
-				&[data-type="strong"] {
-					@extend %db-informational-component;
-				}
-			} @else if ($name == "warning") {
-				@extend %db-bg-warning;
-
-				&[data-type="strong"] {
-					@extend %db-warning-component;
-				}
-			} @else if ($name == "successful") {
-				@extend %db-bg-successful;
-
-				&[data-type="strong"] {
-					@extend %db-successful-component;
-				}
-			}
-
-			@include get-border-and-icon($colors);
+		&:has(dbbutton):has(dbbutton:not(.db-tab-remove-button)),
+		&:has(db-button):has(db-button:not(.db-tab-remove-button)),
+		&:not(:has(dbbutton)):has(button:not(.db-tab-remove-button)),
+		&:has(a) {
+			padding-inline: 0;
 		}
 	}
 }
 
-%interactive-colors {
-	&:has(input:not(:checked)) {
-		@extend %db-bg-neutral-0-ia;
+%db-tag {
+	--db-icon-margin-end: #{variables.$db-spacing-fixed-2xs};
+	@extend %default-interactive-component;
+	@extend %db-overwrite-font-size-sm;
+	@extend %default-button;
+	@extend %no-text;
+
+	padding-block: 0;
+	block-size: variables.$db-sizing-sm;
+	min-inline-size: variables.$db-sizing-sm;
+	inline-size: fit-content;
+	position: relative;
+
+	&:not([data-emphasis="strong"]) {
+		@extend %component-border;
 	}
 
-	&:has(input:checked) {
-		@extend %db-bg-neutral-4-ia;
+	&:has(input) {
+		@extend %component-border;
+	}
 
-		&[data-type="strong"] {
-			@extend %db-neutral-component-ia;
-		}
+	&:not(:has(#{tag-components.$interactive-selectors})) {
+		@include tag-components.get-tag-colors();
+	}
 
-		@each $name, $colors in $component-variants {
-			&[data-variant="#{$name}"] {
-				@if ($name == "critical") {
-					@extend %db-bg-critical-ia;
+	&:has(#{tag-components.$interactive-selectors}) {
+		@include icon-passing.icon-passing(variables.$db-spacing-fixed-2xs);
+		@include tag-components.get-tag-colors-interactive();
+	}
 
-					&[data-type="strong"] {
-						@extend %db-critical-component-ia;
-					}
-				} @else if ($name == "informational") {
-					@extend %db-bg-informational-ia;
-
-					&[data-type="strong"] {
-						@extend %db-informational-component-ia;
-					}
-				} @else if ($name == "warning") {
-					@extend %db-bg-warning-ia;
-
-					&[data-type="strong"] {
-						@extend %db-warning-component-ia;
-					}
-				} @else if ($name == "successful") {
-					@extend %db-bg-successful-ia;
-
-					&[data-type="strong"] {
-						@extend %db-successful-component-ia;
-					}
-				}
-
-				@include get-border-and-icon($colors);
-			}
-		}
+	button:nth-of-type(2),
+	dbbutton:nth-of-type(2),
+	&:has(db-button):has(dbbutton) .db-tab-remove-button {
+		display: none;
 	}
 }
 
 .db-tag {
-	@extend %focus-placeholder;
-	@extend %default-interactive-component;
-	@extend %component-border;
-	@extend %db-overwrite-font-size-sm;
-	@extend %default-button;
-
-	block-size: $db-sizing-sm;
-	min-inline-size: $db-sizing-sm;
-	inline-size: fit-content;
-	transition:
-		background-color $db-transition-color,
-		color $db-transition-color;
-
-	&:not(&[data-interactive="true"]) {
-		@extend %tag-colors;
-	}
-
-	&[data-interactive="true"] {
-		@extend %interactive-colors;
-	}
+	@extend %db-tag;
+	position: relative;
 
 	input {
-		@include a11y-visually-hidden();
-	}
+		appearance: none;
+		border: none;
+		inline-size: 100%;
+		block-size: 100%;
+		border-radius: component.$default-border-radius;
+		position: absolute;
 
-	.tag-label {
-		@extend %db-overwrite-font-size-sm;
-		display: block;
-
-		&:not(.is-icon-text-replace) {
-			margin-inline: $db-spacing-fixed-2xs;
-			/*
-			::before {
-				margin-inline-end: $db-spacing-fixed-2xs;
+		&:checked {
+			&[type="checkbox"] {
+				// overwrite for checkbox
+				@include color-variants.bg-transparent-interactive();
+				color: var(--db-current-color);
 			}
-*/
-		}
-
-		&[data-overflow="true"] {
-			max-inline-size: $db-sizing-2xl;
-			text-overflow: ellipsis;
-			overflow: hidden;
-		}
-
-		&[data-icon] {
-			--icon-margin-after: #{$db-spacing-fixed-3xs};
 
 			&::before {
-				vertical-align: top;
+				content: none;
 			}
 		}
 	}
 
-	.db-button[data-size="small"] {
-		border-radius: to-rem(3);
+	label,
+	span {
+		@extend %db-overwrite-font-size-sm;
+		margin-inline-start: 0;
+	}
+
+	button,
+	a {
+		@extend %db-overwrite-font-size-sm;
+		border: transparent;
 		block-size: 100%;
+		padding: 0 variables.$db-spacing-fixed-2xs;
+		border-radius: component.$default-border-radius;
+	}
+
+	a {
+		display: inline-flex;
+		text-decoration: none;
+
+		&::after {
+			--db-icon-margin-start: 0;
+			content: "" !important;
+		}
 	}
 
 	&[data-disabled="true"] {
-		opacity: $default-opacity;
+		opacity: component.$default-disabled-opacity;
 		pointer-events: none;
+	}
+
+	.db-button[data-size="small"] {
+		border-radius: functions.to-rem(3);
+		block-size: 100%;
+	}
+
+	&[data-overflow="true"] {
+		max-inline-size: variables.$db-sizing-2xl;
+		flex-wrap: wrap;
+		flex-direction: column-reverse;
+		overflow: hidden;
+	}
+
+	.db-tab-remove-button {
+		&:is(button),
+		button {
+			margin-inline-start: variables.$db-spacing-fixed-2xs;
+			block-size: 100%;
+		}
 	}
 }

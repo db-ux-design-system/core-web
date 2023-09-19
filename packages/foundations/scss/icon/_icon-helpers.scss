@@ -1,0 +1,149 @@
+@use "sass:math";
+@use "sass:map";
+@use "sass:list";
+@use "../helpers/functions";
+@use "../variables";
+
+$default-icon-size: 24;
+$default-icon-size-rem: #{functions.to-rem($default-icon-size)};
+$default-icon-variants: "default", "inverted", "solid";
+
+$default-icon-content: var(--db-icon, attr(data-icon));
+
+$default-icon-margin-end: var(
+	--db-icon-margin-end,
+	#{variables.$db-spacing-fixed-xs}
+);
+$default-icon-margin-start: var(
+	--db-icon-margin-start,
+	#{variables.$db-spacing-fixed-xs}
+);
+
+@function get-icon-font-size($font-size, $line-height) {
+	@return (math.div($font-size, 1rem) * 16 * $line-height);
+}
+
+@function get-icon-size($icon-font-size) {
+	@if ($icon-font-size<20) {
+		@return 16;
+	}
+	@if ($icon-font-size<24) {
+		@return 20;
+	}
+	@if ($icon-font-size<32) {
+		@return 24;
+	}
+	@return 32;
+}
+
+@mixin to-solid-icon($position: "before") {
+	@if $position == "before" {
+		--db-icon-font-family: "db-ux-solid";
+	}
+	@if $position == "after" {
+		--db-icon-font-family: "db-ux-solid";
+	}
+}
+
+// Icon SCSS mixin
+@mixin icon($icon: "", $position: "before") {
+	&::#{$position} {
+		@if $icon != "" {
+			--db-icon: "#{$icon}";
+		}
+
+		@if $position == "before" {
+			margin-inline-end: $default-icon-margin-end;
+		}
+		@if $position == "after" {
+			margin-inline-start: $default-icon-margin-start;
+		}
+
+		@extend %icon;
+	}
+}
+
+// SCSS mixin for elements that text should get hidden in favour of only displaying the included icon
+@mixin is-icon-text-replace($position: "before") {
+	font-size: 0 !important;
+
+	@if $position == "before" {
+		&::before {
+			--db-icon-margin-end: 0;
+		}
+	} @else {
+		&::after {
+			--db-icon-margin-start: 0;
+		}
+	}
+}
+
+@mixin has-no-icon() {
+	&:not([data-icon]) {
+		@content;
+	}
+}
+
+@mixin variant-icons($variant) {
+	@include has-no-icon() {
+		&::before {
+			@if ($variant == "critical") {
+				--db-icon: "error";
+			} @else if ($variant == "informational") {
+				--db-icon: "info";
+			} @else if ($variant == "warning") {
+				--db-icon: "warning";
+			} @else if ($variant == "successful") {
+				--db-icon: "check_circle";
+			}
+		}
+	}
+}
+
+%icon {
+	// Hiding icon from screenreaders
+	-webkit-alt: "";
+	alt: "";
+
+	content: $default-icon-content;
+	color: var(--db-current-icon-color, inherit);
+
+	display: inline-block;
+	/*** icon - placeholder ***/
+	// * use !important to prevent issues with browser extensions that change fonts
+	font-family: var(--db-icon-font-family, "db-ux-default") !important;
+
+	font-size: var(--db-icon-font-size, #{$default-icon-size-rem});
+
+	// * Better Font Rendering ===========
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+
+	font-style: normal;
+	font-variant: normal;
+	font-weight: var(--db-icon-font-weight, normal);
+	line-height: 1;
+	speak: none; // Hiding icon from screenreaders, fallback by older notation
+	speak: never; // Hiding icon from screenreaders
+	text-transform: none;
+
+	vertical-align: middle;
+
+	/* Safari hack */
+	@supports (-webkit-hyphens: none) {
+		block-size: calc(
+			var(
+					--db-icon-font-size,
+					var(--db-base-icon-font-size, #{$default-icon-size-rem})
+				) - 6px
+		);
+	}
+
+	// Hiding icon from screenreaders
+	@media aural {
+		content: none;
+	}
+	@media speech {
+		content: none;
+	}
+}

@@ -1,21 +1,18 @@
 @charset "utf-8";
 
-@use "@db-ui/foundations/build/scss/helpers/font" as *;
-@use "@db-ui/foundations/build/scss/variables" as *;
-@use "@db-ui/foundations/build/scss/variables.global" as *;
-@use "@db-ui/foundations/build/scss/scaling-placeholder" as *;
-@use "@db-ui/foundations/build/scss/color-placeholder" as *;
-@use "@db-ui/foundations/build/scss/helpers/functions" as *;
-@use "@db-ui/foundations/build/scss/icon/icons.helpers" as *;
-@use "@db-ui/foundations/build/scss/helpers/component" as *;
+@use "@db-ui/foundations/build/scss/helpers/font";
+@use "@db-ui/foundations/build/scss/variables";
+@use "@db-ui/foundations/build/scss/helpers/functions";
+@use "@db-ui/foundations/build/scss/icon/icon-helpers";
+@use "@db-ui/foundations/build/scss/helpers/component";
 
 %db-link-height {
 	display: inline-block;
-	block-size: $db-sizing-sm;
+	block-size: variables.$db-sizing-sm;
 }
 
 .db-link {
-	@extend %default-color;
+	@extend %default-fg-transition;
 	@extend %db-link-height;
 	inline-size: fit-content;
 	align-items: center;
@@ -23,20 +20,29 @@
 	// Link underline
 	// TODO: We should evaluate whether we could move this declaration to the @font-face declarations even already
 	text-underline-position: from-font;
-	text-decoration-thickness: to-rem($pxValue: 1);
+	text-decoration-thickness: functions.to-rem($pxValue: 1);
 
-	// Changing color on hover should be animated by a transition
-	transition:
-		outline 0.06s,
-		color $db-transition-color;
+	white-space: nowrap;
+
+	&:hover {
+		color: color-mix(
+			in srgb,
+			transparent 25%,
+			variables.$db-colors-neutral-on-bg
+		);
+	}
+
+	&:active {
+		color: color-mix(
+			in srgb,
+			transparent 50%,
+			variables.$db-colors-neutral-on-bg
+		);
+	}
 
 	a {
 		// Workaround for angular
 		@extend %db-link-height;
-	}
-
-	&:hover {
-		color: inherit;
 	}
 
 	// "disabled" links
@@ -48,38 +54,47 @@
 
 	&:not([data-variant="inline"]) {
 		&[data-content="internal"] {
-			@include icon(glyph(arrow-forward), 24, "outline", "after");
+			@include icon-helpers.icon("arrow_forward", "after");
 		}
 
 		&[data-content="external"] {
-			@include icon(glyph(link-external), 24, "outline", "after");
+			@include icon-helpers.icon("link_external", "after");
 		}
 	}
 
 	&:focus-visible {
-		border-radius: $default-border-radius;
+		border-radius: component.$default-border-radius;
 	}
 
 	&[data-content="internal"],
 	&[data-content="external"] {
-		--icon-margin-before: var(--db-spacing-fixed-2xs);
+		--db-icon-margin-start: #{variables.$db-spacing-fixed-2xs};
 
 		&:focus-visible {
 			outline-offset: var(--db-focus-outline-offset, 1px);
 		}
 
 		&::after {
-			margin-inline-start: var(--icon-margin-before);
+			margin-inline-start: var(--db-icon-margin-start);
 		}
 	}
 
+	// We couldn't extend any existing SCSS placeholders, as this is a special construct
 	&[data-variant="primary"] {
-		@extend %db-primary-text-ia;
+		--db-current-color: #{variables.$db-colors-primary-text};
+		color: var(--db-current-color);
+
+		&:hover {
+			--db-current-color: #{variables.$db-colors-primary-text-hover};
+		}
+
+		&:active {
+			--db-current-color: #{variables.$db-colors-primary-text-pressed};
+		}
 	}
 
 	&[data-size="small"] {
-		--icon-font-size: var(--db-base-icon-font-size);
-		--icon-margin-before: var(--db-spacing-fixed-3xs);
+		--db-icon-margin-start: #{variables.$db-spacing-fixed-3xs};
 		@extend %db-overwrite-font-size-sm;
 	}
 }

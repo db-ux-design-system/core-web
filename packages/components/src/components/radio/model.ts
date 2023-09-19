@@ -1,7 +1,6 @@
 import {
 	FocusEventProps,
 	FocusEventState,
-	GlobalTextProps,
 	ValidEventProps,
 	ChangeEventState,
 	ChangeEventProps,
@@ -20,7 +19,6 @@ export interface DBRadioDefaultProps {
 
 export type DBRadioProps = DBRadioDefaultProps &
 	GlobalProps &
-	GlobalTextProps &
 	ChangeEventProps &
 	FocusEventProps &
 	ValidEventProps &
