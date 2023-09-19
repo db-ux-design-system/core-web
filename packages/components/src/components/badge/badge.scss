@@ -43,8 +43,6 @@
 	@extend %default-button;
 
 	@include tag-components.get-tag-colors();
-
-	display: flex;
 	border-radius: 42px; // extreme radius
 	padding-inline: variables.$db-spacing-fixed-xs;
 	block-size: fit-content;

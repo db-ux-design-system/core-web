@@ -13,6 +13,7 @@ services:
       - "./../packages/components/build:/e2e/packages/components/build"
       - "./../build-showcases:/e2e/build-showcases"
       - "./../showcases:/e2e/showcases"
+      - "./../output/react/playwright:/e2e/output/react/playwright"
       - "./../output/react/src:/e2e/output/react/src"
       - "./../output/vue/vue3/src:/e2e/output/vue/vue3/src"
       - type: bind

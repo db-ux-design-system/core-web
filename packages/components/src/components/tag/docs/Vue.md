@@ -11,6 +11,10 @@ import { DBTag } from "@db-ui/v-components";
 </script>
 
 <template>
-	<DBTag>Tag</DBTag>
+	<DBTag><DBButton>Tag as Button</DBButton></DBTag>
+	<DBTag><DBLink>Tag as Link</DBLink></DBTag>
+	<DBTag><DBCheckbox>Tag as Checkbox</DBCheckbox></DBTag>
+	<DBTag><DBRadio>Tag as Radio</DBRadio></DBTag>
+	<DBTag>Static Tag</DBTag>
 </template>
 ```
