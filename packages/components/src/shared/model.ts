@@ -177,6 +177,13 @@ export type FormCheckProps = {
 	 * Define the radio or checkbox elements checked state
 	 */
 	checked?: boolean;
+
+	/**
+	 * Returns / Sets the default state of a radio button or checkbox as originally specified in HTML that created this object.
+	 * Vue: according to our research this property should not be used. Please refer to v-model instead.
+	 * cf. https://react.carbondesignsystem.com/?path=/docs/components-checkbox--overview#component-api vs. https://vue.carbondesignsystem.com/?path=/story/components-cvcheckbox--default
+	 */
+	defaultChecked?: boolean;
 };
 
 export type FormMessageProps = {
@@ -193,6 +200,7 @@ export type FormMessageProps = {
 
 export type FormState = {
 	_isValid?: boolean | undefined;
+	_messageId?: string;
 };
 
 export type InitializedState = {

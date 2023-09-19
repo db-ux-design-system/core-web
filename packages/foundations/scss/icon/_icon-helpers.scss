@@ -1,23 +1,25 @@
 @use "sass:math";
 @use "sass:map";
 @use "sass:list";
-@use "../helpers/functions" as *;
-@use "../variables.global" as var;
+@use "../helpers/functions";
+@use "../variables";
 
 $default-icon-size: 24;
-$default-icon-size-rem: #{to-rem($default-icon-size)};
+$default-icon-size-rem: #{functions.to-rem($default-icon-size)};
 $default-icon-variants: "default", "inverted", "solid";
 
 $default-icon-content: var(--db-icon, attr(data-icon));
 
 $default-icon-margin-end: var(
 	--db-icon-margin-end,
-	#{var.$db-spacing-fixed-xs}
+	#{variables.$db-spacing-fixed-xs}
 );
 $default-icon-margin-start: var(
 	--db-icon-margin-start,
-	#{var.$db-spacing-fixed-xs}
+	#{variables.$db-spacing-fixed-xs}
 );
+
+$default-icon-font-size: var(--db-icon-font-size, #{$default-icon-size-rem});
 
 @function get-icon-font-size($font-size, $line-height) {
 	@return (math.div($font-size, 1rem) * 16 * $line-height);
@@ -113,7 +115,7 @@ $default-icon-margin-start: var(
 	// * use !important to prevent issues with browser extensions that change fonts
 	font-family: var(--db-icon-font-family, "db-ux-default") !important;
 
-	font-size: var(--db-icon-font-size, #{$default-icon-size-rem});
+	font-size: $default-icon-font-size;
 
 	// * Better Font Rendering ===========
 	-webkit-font-smoothing: antialiased;

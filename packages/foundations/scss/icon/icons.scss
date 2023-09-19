@@ -1,8 +1,7 @@
-@use "icons.helpers" as icon-helper;
-@use "../variables.global" as var;
+@use "icon-helpers";
 @use "../default.assets-paths" as *;
 
-@each $variant in icon-helper.$default-icon-variants {
+@each $variant in icon-helpers.$default-icon-variants {
 	@font-face {
 		font-display: block;
 		font-family: "db-ux-#{$variant}";
@@ -54,7 +53,7 @@
 [data-icon-before] {
 	&::before {
 		@extend %icon !optional;
-		margin-inline-end: icon-helper.$default-icon-margin-end;
+		margin-inline-end: icon-helpers.$default-icon-margin-end;
 	}
 }
 
@@ -68,7 +67,7 @@
 [data-icon-after] {
 	&::after {
 		@extend %icon !optional;
-		margin-inline-start: icon-helper.$default-icon-margin-start;
+		margin-inline-start: icon-helpers.$default-icon-margin-start;
 	}
 }
 
@@ -82,10 +81,10 @@
 .is-icon-text-replace {
 	&[data-icon],
 	&[data-icon-before] {
-		@include icon-helper.is-icon-text-replace();
+		@include icon-helpers.is-icon-text-replace();
 	}
 
 	&[data-icon-after] {
-		@include icon-helper.is-icon-text-replace("after");
+		@include icon-helpers.is-icon-text-replace("after");
 	}
 }

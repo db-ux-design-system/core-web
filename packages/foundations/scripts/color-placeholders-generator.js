@@ -6,7 +6,7 @@
 const prefix = 'db';
 const fileHeader = `
 @use "sass:color";
-@use "variables" as *;
+@use "default-variables" as *;
 // Do not edit directly
 // Generated on
 // ${new Date().toString()}

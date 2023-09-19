@@ -1,10 +1,12 @@
 @use "sass:map";
-@use "@db-ui/foundations/build/scss/color/color-variants" as *;
-@use "@db-ui/foundations/build/scss/helpers/component" as *;
+@use "@db-ui/foundations/build/scss/color/color-variants";
+@use "@db-ui/foundations/build/scss/helpers/component";
+@use "@db-ui/foundations/build/scss/variables";
 
-@mixin overwrite-strong-white() {
-	/* We force white as color for strong tags */
-	--db-current-color: #fff;
+$interactive-selectors: "input, a, button";
+
+@mixin overwrite-strong() {
+	--db-current-color: #{variables.$db-colors-neutral-bg};
 	color: var(--db-current-color);
 }
 
@@ -13,10 +15,10 @@
 
 	&[data-emphasis="strong"] {
 		@extend %db-neutral-component;
-		@include overwrite-strong-white();
+		@include overwrite-strong();
 	}
 
-	@each $name, $colors in $component-variants {
+	@each $name, $colors in color-variants.$component-variants {
 		&[data-variant="#{$name}"] {
 			@if ($name == "critical") {
 				@extend %db-bg-critical;
@@ -24,7 +26,7 @@
 				&[data-emphasis="strong"] {
 					@extend %db-critical-component;
 
-					@include overwrite-strong-white();
+					@include overwrite-strong();
 				}
 			} @else if ($name == "informational") {
 				@extend %db-bg-informational;
@@ -32,7 +34,7 @@
 				&[data-emphasis="strong"] {
 					@extend %db-informational-component;
 
-					@include overwrite-strong-white();
+					@include overwrite-strong();
 				}
 			} @else if ($name == "warning") {
 				@extend %db-bg-warning;
@@ -40,7 +42,7 @@
 				&[data-emphasis="strong"] {
 					@extend %db-warning-component;
 
-					@include overwrite-strong-white();
+					@include overwrite-strong();
 				}
 			} @else if ($name == "successful") {
 				@extend %db-bg-successful;
@@ -48,7 +50,7 @@
 				&[data-emphasis="strong"] {
 					@extend %db-successful-component;
 
-					@include overwrite-strong-white();
+					@include overwrite-strong();
 				}
 			}
 
@@ -59,68 +61,65 @@
 	}
 }
 
-@mixin get-tag-colors-interactive() {
-	&[data-emphasis="strong"] {
-		@include overwrite-strong-white();
-	}
-
-	&:has(input:not(:checked)) {
-		@extend %db-bg-neutral;
-	}
-
+@mixin interactive-selectors() {
+	&:not(:has(dbbutton)) button:not(.db-tab-remove-button),
+	dbbutton:not(.db-tab-remove-button) > button,
+	db-button > button,
+	a,
+	&:has(input:checked),
 	&:has(input:checked) {
+		@content;
+	}
+}
+
+@mixin get-tag-colors-interactive() {
+	@include interactive-selectors() {
 		@extend %db-bg-neutral-strong-ia;
+	}
 
-		&[data-emphasis="strong"] {
-			@extend %db-neutral-component-ia;
-			@include overwrite-strong-white();
-		}
-
-		@each $name, $colors in $component-variants {
-			&[data-variant="#{$name}"] {
+	@each $name, $colors in color-variants.$component-variants {
+		&[data-variant="#{$name}"] {
+			@include interactive-selectors() {
 				@if ($name == "critical") {
 					@extend %db-bg-critical-ia;
-
-					&[data-emphasis="strong"] {
-						@extend %db-critical-component-ia;
-
-						@include overwrite-strong-white();
-					}
 				} @else if ($name == "informational") {
 					@extend %db-bg-informational-ia;
-
-					&[data-emphasis="strong"] {
-						@extend %db-informational-component-ia;
-
-						@include overwrite-strong-white();
-					}
 				} @else if ($name == "warning") {
 					@extend %db-bg-warning-ia;
-
-					&[data-emphasis="strong"] {
-						@extend %db-warning-component-ia;
-
-						@include overwrite-strong-white();
-					}
 				} @else if ($name == "successful") {
 					@extend %db-bg-successful-ia;
-
-					&[data-emphasis="strong"] {
-						@extend %db-successful-component-ia;
-
-						@include overwrite-strong-white();
-					}
 				}
 
-				&:not(&[data-emphasis="strong"]) {
-					--db-current-border-color: #{map.get($colors, "border")};
+				--db-current-border-color: #{map.get($colors, "border")};
+			}
+		}
+	}
+
+	&[data-emphasis="strong"] {
+		@include interactive-selectors() {
+			@extend %db-neutral-component-ia;
+		}
+
+		@each $name, $colors in color-variants.$component-variants {
+			&[data-variant="#{$name}"] {
+				@include interactive-selectors() {
+					@if ($name == "critical") {
+						@extend %db-critical-component-ia;
+					} @else if ($name == "informational") {
+						@extend %db-informational-component-ia;
+					} @else if ($name == "warning") {
+						@extend %db-warning-component-ia;
+					} @else if ($name == "successful") {
+						@extend %db-successful-component-ia;
+					}
 				}
 			}
 		}
 
-		&[data-emphasis="strong"] {
-			/* We force white as color for strong tags */
-			color: #fff;
+		&:has(button),
+		&:has(a),
+		&:has(input:checked) {
+			@include overwrite-strong();
 		}
 	}
 }

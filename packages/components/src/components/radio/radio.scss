@@ -1,22 +1,21 @@
-@use "@db-ui/foundations/build/scss/variables" as *;
-@use "@db-ui/foundations/build/scss/variables.global" as *;
-@use "@db-ui/foundations/build/scss/helpers/functions" as *;
-@use "@db-ui/foundations/build/scss/color-placeholder" as *;
-@use "@db-ui/foundations/build/scss/helpers/font" as *;
-@use "@db-ui/foundations/build/scss/helpers/component" as *;
-@use "@db-ui/foundations/build/scss/color/color-variants" as col-var;
+@use "@db-ui/foundations/build/scss/variables";
+@use "@db-ui/foundations/build/scss/helpers/functions";
+@use "@db-ui/foundations/build/scss/color-placeholder";
+@use "@db-ui/foundations/build/scss/helpers/font";
+@use "@db-ui/foundations/build/scss/helpers/component";
+@use "@db-ui/foundations/build/scss/color/color-variants";
 @use "../../styles/form-components" as form;
 
 $font-size-height: calc(var(--db-base-font-size) * var(--db-base-line-height));
 
 .db-radio {
-	@include col-var.bg-transparent-interactive();
+	@include color-variants.bg-transparent-interactive();
 
 	appearance: none;
 
 	aspect-ratio: 1;
 
-	border: max(calc(#{$font-size-height} / 16 + 0.5px), 2px) solid #{$db-colors-neutral-on-bg};
+	border: min(calc(#{$font-size-height} / 16 + 0.5px), 2px) solid #{variables.$db-colors-neutral-on-bg};
 	// Full rounded
 	border-radius: 100px;
 
@@ -26,7 +25,7 @@ $font-size-height: calc(var(--db-base-font-size) * var(--db-base-line-height));
 	block-size: $font-size-height;
 
 	// TODO: Extract those transition durations as variables #645
-	transition: border-width 0.15s $db-transition-functional-timing;
+	transition: border-width 0.15s variables.$db-transition-functional-timing;
 
 	// TODO: probably extract this to an overwrite or external file
 	// workarounds for power apps
@@ -47,17 +46,17 @@ $font-size-height: calc(var(--db-base-font-size) * var(--db-base-line-height));
 	&:is(:user-invalid),
 	&[aria-invalid="true"] {
 		@extend %db-bg-critical-transparent-semi;
-		border-color: $db-colors-critical-border-weak;
+		border-color: variables.$db-colors-critical-border-weak;
 
 		& + label {
-			color: $db-colors-critical;
+			color: variables.$db-colors-critical;
 		}
 	}
 
 	& + label {
 		@extend %required-form-element-check;
 
-		margin-inline-start: $db-spacing-fixed-xs;
+		margin-inline-start: variables.$db-spacing-fixed-xs;
 
 		vertical-align: top;
 	}
@@ -65,7 +64,7 @@ $font-size-height: calc(var(--db-base-font-size) * var(--db-base-line-height));
 	&:disabled {
 		&,
 		& + label {
-			opacity: $default-disabled-opacity;
+			opacity: component.$default-disabled-opacity;
 		}
 	}
 
@@ -75,7 +74,7 @@ $font-size-height: calc(var(--db-base-font-size) * var(--db-base-line-height));
 
 		& + label {
 			@extend %db-overwrite-font-size-sm;
-			margin-inline-start: $db-spacing-fixed-2xs;
+			margin-inline-start: variables.$db-spacing-fixed-2xs;
 		}
 	}
 

@@ -8,7 +8,7 @@ import {
 } from '@builder.io/mitosis';
 import { DBSelectOptionType, DBSelectProps, DBSelectState } from './model';
 import { cls, getMessageIcon, uuid } from '../../utils';
-import { DEFAULT_ID, DEFAULT_LABEL } from '../../shared/constants';
+import { DEFAULT_ID, DEFAULT_LABEL, DEFAULT_MESSAGE_ID_SUFFIX } from '../../shared/constants';
 import { DBInfotext } from '../infotext';
 
 useMetadata({
@@ -25,6 +25,7 @@ export default function DBSelect(props: DBSelectProps) {
 	// jscpd:ignore-start
 	const state = useStore<DBSelectState>({
 		_id: DEFAULT_ID,
+		_messageId: DEFAULT_ID + DEFAULT_MESSAGE_ID_SUFFIX,
 		_isValid: undefined,
 		_value: undefined,
 		handleClick: (event: any) => {
@@ -83,6 +84,7 @@ export default function DBSelect(props: DBSelectProps) {
 
 	onMount(() => {
 		state._id = props.id || 'select-' + uuid();
+		state._messageId = state._id + DEFAULT_MESSAGE_ID_SUFFIX;
 
 		if (props.value) {
 			state._value = props.value;
@@ -122,7 +124,8 @@ export default function DBSelect(props: DBSelectProps) {
 				onClick={(event) => state.handleClick(event)}
 				onChange={(event) => state.handleChange(event)}
 				onBlur={(event) => state.handleBlur(event)}
-				onFocus={(event) => state.handleFocus(event)}>
+				onFocus={(event) => state.handleFocus(event)}
+				aria-describedby={props.message && state._messageId}>
 				{/* Empty option for floating label */}
 				<option hidden></option>
 				<Show when={props.options}>
@@ -173,7 +176,8 @@ export default function DBSelect(props: DBSelectProps) {
 				<DBInfotext
 					size="small"
 					variant={props.variant}
-					icon={getMessageIcon(props.variant, props.messageIcon)}>
+					icon={getMessageIcon(props.variant, props.messageIcon)}
+					id={state._messageId}>
 					{props.message}
 				</DBInfotext>
 			</Show>

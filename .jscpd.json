@@ -19,6 +19,7 @@
 		"**/*.spec.tsx",
 		"**/.next/**",
 		"**/.github/**",
+		"**/docs/**",
 		"**/next-showcase/components/**",
 		"**/patternhub/**/components/**",
 		"**/*-example/index.html",

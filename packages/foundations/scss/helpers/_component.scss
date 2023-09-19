@@ -1,8 +1,7 @@
-/* TODO: We shouldn't use this variables move them to global to make them themeable */
-@use "../variables" as var-todo;
-@use "../variables.global" as var;
-@use "../color-placeholder" as color;
-@use "../helpers/functions" as functions;
+@use "../variables";
+@use "../screen-sizes";
+@use "../color-placeholder";
+@use "../helpers/functions";
 
 /* TODO: We should get the variables from UX, and probably want to make those global variables */
 $checkbox-border-radius: functions.to-rem(2.5);
@@ -17,7 +16,7 @@ $default-placeholder-opacity: 0.25;
 $default-mobile-header-height: functions.to-rem(56);
 
 %default-adaptive-border {
-	border: solid 1px var.$db-colors-neutral-on-bg;
+	border: solid 1px variables.$db-colors-neutral-on-bg;
 }
 
 %transparent-border {
@@ -25,7 +24,7 @@ $default-mobile-header-height: functions.to-rem(56);
 }
 
 %component-border {
-	border: solid 1px var.$db-colors-neutral-border-weak;
+	border: solid 1px variables.$db-colors-neutral-border-weak;
 }
 %default-interactive-component {
 	@extend %default-adaptive-border;
@@ -37,10 +36,13 @@ $default-mobile-header-height: functions.to-rem(56);
 		outline
 			var(
 				--db-transition-duration-ultra-fast,
-				#{var-todo.$db-transition-duration-ultra-fast}
+				#{variables.$db-transition-duration-ultra-fast}
 			),
 		background-color
-			var(--db-transition-color, #{var-todo.$db-transition-color});
+			var(
+				--db-transition-color,
+				#{variables.$db-transition-emotional-straight}
+			);
 }
 
 %default-fg-transition {
@@ -48,14 +50,18 @@ $default-mobile-header-height: functions.to-rem(56);
 		outline
 			var(
 				--db-transition-duration-ultra-fast,
-				#{var-todo.$db-transition-duration-ultra-fast}
+				#{variables.$db-transition-duration-ultra-fast}
 			),
-		color var(--db-transition-color, #{var-todo.$db-transition-color});
+		color
+			var(
+				--db-transition-color,
+				#{variables.$db-transition-emotional-straight}
+			);
 }
 
 %default-card {
 	border-radius: $default-card-border-radius;
-	box-shadow: var-todo.$db-elevation-4;
+	box-shadow: variables.$db-elevation-4;
 }
 
 %adaptive-critical-component {
@@ -74,16 +80,16 @@ $default-mobile-header-height: functions.to-rem(56);
 	@extend %db-bg-successful-transparent-semi;
 }
 
-@mixin screen($size: "s", $width: "min") {
-	$screen: var-todo.$db-screens-s;
+@mixin screen($size: "sm", $width: "min") {
+	$screen: screen-sizes.$db-screen-sm;
 	@if ($size == "xs") {
-		$screen: var-todo.$db-screens-xs;
-	} @else if ($size == "m") {
-		$screen: var-todo.$db-screens-m;
-	} @else if ($size == "l") {
-		$screen: var-todo.$db-screens-l;
+		$screen: screen-sizes.$db-screen-xs;
+	} @else if ($size == "md") {
+		$screen: screen-sizes.$db-screen-md;
+	} @else if ($size == "lg") {
+		$screen: screen-sizes.$db-screen-lg;
 	} @else if ($size == "xl") {
-		$screen: var-todo.$db-screens-xl;
+		$screen: screen-sizes.$db-screen-xl;
 	}
 
 	@if ($width == "min") {

@@ -12,6 +12,5 @@ Use it:
 <div class="db-input">
 	<label for="username">Label</label>
 	<input type="text" name="username" id="username" />
-	<p class="description">Description</p>
 </div>
 ```

@@ -11,6 +11,7 @@ export class FormComponent {
 	input = '';
 	textarea = 'default value';
 	textareaDefaultValue = '';
+	dateinput = '';
 	tags: string[] = [];
 	// Fieldset checkbox state
 	checked = [true, false];
@@ -18,6 +19,7 @@ export class FormComponent {
 	select = '';
 	model = {
 		input: 'Anna',
+		dateinput: '2023-05-04',
 		textarea: 'default value',
 		radio: 'X',
 		checkbox: true,
@@ -30,6 +32,7 @@ export class FormComponent {
 	// Reference: https://blog.angular-university.io/angular-custom-form-controls/
 	form = new FormGroup({
 		input: new FormControl('Filled with formControl'),
+		dateinput: new FormControl('2023-05-04'),
 		textarea: new FormControl('Filled with formControl as well'),
 		checkbox: new FormControl(true),
 		select: new FormControl('test2')
@@ -54,6 +57,7 @@ export class FormComponent {
 		this.model.checkbox2 = false;
 		this.form.get('input')?.setValue('reset');
 		this.form.get('textarea')?.setValue('reset');
+		this.form.get('dateinput')?.setValue('reset');
 		this.form.get('checkbox')?.setValue(false);
 	}
 

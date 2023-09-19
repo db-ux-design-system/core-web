@@ -1,17 +1,14 @@
 @charset "utf-8";
 
-@use "@db-ui/foundations/build/scss/helpers/font" as *;
-@use "@db-ui/foundations/build/scss/variables" as *;
-@use "@db-ui/foundations/build/scss/variables.global" as *;
-@use "@db-ui/foundations/build/scss/scaling-placeholder" as *;
-@use "@db-ui/foundations/build/scss/color-placeholder" as *;
-@use "@db-ui/foundations/build/scss/helpers/functions" as *;
-@use "@db-ui/foundations/build/scss/icon/icons.helpers" as *;
-@use "@db-ui/foundations/build/scss/helpers/component" as *;
+@use "@db-ui/foundations/build/scss/helpers/font";
+@use "@db-ui/foundations/build/scss/variables";
+@use "@db-ui/foundations/build/scss/helpers/functions";
+@use "@db-ui/foundations/build/scss/icon/icon-helpers";
+@use "@db-ui/foundations/build/scss/helpers/component";
 
 %db-link-height {
 	display: inline-block;
-	block-size: $db-sizing-sm;
+	block-size: variables.$db-sizing-sm;
 }
 
 .db-link {
@@ -23,16 +20,24 @@
 	// Link underline
 	// TODO: We should evaluate whether we could move this declaration to the @font-face declarations even already
 	text-underline-position: from-font;
-	text-decoration-thickness: to-rem($pxValue: 1);
+	text-decoration-thickness: functions.to-rem($pxValue: 1);
 
 	white-space: nowrap;
 
 	&:hover {
-		color: color-mix(in srgb, transparent 25%, $db-colors-neutral-on-bg);
+		color: color-mix(
+			in srgb,
+			transparent 25%,
+			variables.$db-colors-neutral-on-bg
+		);
 	}
 
 	&:active {
-		color: color-mix(in srgb, transparent 50%, $db-colors-neutral-on-bg);
+		color: color-mix(
+			in srgb,
+			transparent 50%,
+			variables.$db-colors-neutral-on-bg
+		);
 	}
 
 	a {
@@ -49,21 +54,21 @@
 
 	&:not([data-variant="inline"]) {
 		&[data-content="internal"] {
-			@include icon("arrow_forward", "after");
+			@include icon-helpers.icon("arrow_forward", "after");
 		}
 
 		&[data-content="external"] {
-			@include icon("link_external", "after");
+			@include icon-helpers.icon("link_external", "after");
 		}
 	}
 
 	&:focus-visible {
-		border-radius: $default-border-radius;
+		border-radius: component.$default-border-radius;
 	}
 
 	&[data-content="internal"],
 	&[data-content="external"] {
-		--db-icon-margin-start: #{$db-spacing-fixed-2xs};
+		--db-icon-margin-start: #{variables.$db-spacing-fixed-2xs};
 
 		&:focus-visible {
 			outline-offset: var(--db-focus-outline-offset, 1px);
@@ -76,20 +81,20 @@
 
 	// We couldn't extend any existing SCSS placeholders, as this is a special construct
 	&[data-variant="primary"] {
-		--db-current-color: #{$db-colors-primary-text};
+		--db-current-color: #{variables.$db-colors-primary-text};
 		color: var(--db-current-color);
 
 		&:hover {
-			--db-current-color: #{$db-colors-primary-text-hover};
+			--db-current-color: #{variables.$db-colors-primary-text-hover};
 		}
 
 		&:active {
-			--db-current-color: #{$db-colors-primary-text-pressed};
+			--db-current-color: #{variables.$db-colors-primary-text-pressed};
 		}
 	}
 
 	&[data-size="small"] {
-		--db-icon-margin-start: #{$db-spacing-fixed-3xs};
+		--db-icon-margin-start: #{variables.$db-spacing-fixed-3xs};
 		@extend %db-overwrite-font-size-sm;
 	}
 }

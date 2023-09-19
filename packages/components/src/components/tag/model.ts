@@ -1,10 +1,7 @@
 import {
-	ChangeEventProps,
 	ChangeEventState,
 	DefaultVariantProps,
 	EmphasisProps,
-	FormCheckProps,
-	FormProps,
 	FormState,
 	GlobalProps,
 	GlobalState,
@@ -16,13 +13,15 @@ import {
 export interface DBTagDefaultProps {
 	/**
 	 *	Defines the behaviour of the component:
-	 *	- static: default behaviour only label
-	 *  - interactive: use the tag like a checkbox
-	 *  - interactive-unique: use the tag like a radio
+	 *	- static: default behaviour without remove button
 	 *  - removable: add a remove button at the end of the tag
 	 */
-	behaviour?: 'static' | 'interactive-unique' | 'interactive' | 'removable';
+	behaviour?: 'static' | 'removable';
 
+	/**
+	 * Disable tag.
+	 */
+	disabled?: boolean;
 	/**
 	 * Define the text next to the icon specified via the icon Property to get hidden.
 	 */
@@ -36,6 +35,10 @@ export interface DBTagDefaultProps {
 	 */
 	removeButton?: string;
 	/**
+	 * Alternative for children to set content as property.
+	 */
+	text?: string;
+	/**
 	 * If "interactive" is set to true, you can pass a value to the underlying checkbox or radio input.
 	 */
 	value?: string;
@@ -43,9 +46,6 @@ export interface DBTagDefaultProps {
 
 export type DBTagProps = DBTagDefaultProps &
 	GlobalProps &
-	ChangeEventProps &
-	FormProps &
-	FormCheckProps &
 	IconProps &
 	DefaultVariantProps &
 	OverflowProps &
@@ -53,13 +53,8 @@ export type DBTagProps = DBTagDefaultProps &
 
 export interface DBTagDefaultState {
 	getRemoveButtonText?: () => string;
-	getTabIndex?: () => number | null;
 	handleRemove?: () => void;
-	isInteractive?: () => boolean;
 }
 
 export type DBTagState = DBTagDefaultState &
-	GlobalState &
-	ChangeEventState &
-	FormState &
-	InitializedState;
+	GlobalState ;

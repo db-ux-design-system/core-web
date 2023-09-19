@@ -16,6 +16,7 @@ const firstInput = ref("");
 const textareavModel = ref("default value");
 const textarea = ref("default value");
 const textareaDefaultValue = ref("");
+const dateInput = ref("");
 const radio = ref<HTMLInputElement>();
 const checkbox = ref<boolean[]>([true, false]);
 const tags = ref<string[]>([]);
@@ -40,6 +41,7 @@ const logAll = () => {
 			textarea: textarea.value,
 			textareaDefaultValue: textareaDefaultValue.value,
 			textareavModel: textareavModel.value,
+			dateinput: dateInput.value,
 			radio: radio.value,
 			select: select.value,
 			checkbox: checkbox.value,
@@ -53,6 +55,7 @@ const reset = () => {
 	textarea.value = "resetted";
 	textareavModel.value = "resetted";
 	checkbox.value = [true, false];
+	dateInput.value = "";
 };
 </script>
 
@@ -71,11 +74,18 @@ const reset = () => {
 						:dataList="dataList"
 						v-model:value="firstInput"
 					/>
+					<DBInput
+						label="Dateinput"
+						message="Description"
+						name="date-name"
+						v-model:value="dateInput"
+						type="date"
+					/>
 					<p>Textarea:</p>
 					<DBTextarea
 						label="Textarea v-model"
 						placeholder="Placeholder"
-						description="Description"
+						message="Description"
 						icon="account"
 						name="textarea-name"
 						v-model:value="textareavModel"
@@ -83,7 +93,7 @@ const reset = () => {
 					<DBTextarea
 						label="Textarea value"
 						placeholder="Placeholder"
-						description="Description"
+						message="Description"
 						icon="account"
 						name="textarevalue-name"
 						:value="textarea"
@@ -107,10 +117,10 @@ const reset = () => {
 								:variant="
 									index === 0 ? undefined : 'successful'
 								"
-								@Change="changeTags(tag)"
 								:emphasis="index === 2 ? 'strong' : 'weak'"
-								behaviour="interactive"
-								>Tag {{ tag }}</DBTag
+								><DBCheckbox @Change="changeTags(tag)"
+									>Tag {{ tag }}</DBCheckbox
+								></DBTag
 							>
 						</li>
 					</ul>
@@ -173,6 +183,8 @@ const reset = () => {
 			<dl>
 				<dt>inputs value</dt>
 				<dd>{{ firstInput ? firstInput : "No Input set" }}</dd>
+				<dt>date inputs value</dt>
+				<dd>{{ dateInput ? dateInput : "No Date Input set" }}</dd>
 				<dt>textarea v-model</dt>
 				<dd>{{ textareavModel || "No Input set" }}</dd>
 				<dt>textarea value</dt>

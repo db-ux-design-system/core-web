@@ -1,10 +1,9 @@
-@use "@db-ui/foundations/build/scss/variables" as *;
-@use "@db-ui/foundations/build/scss/variables.global" as var;
-@use "@db-ui/foundations/build/scss/helpers/functions" as functions;
-@use "@db-ui/foundations/build/scss/helpers/component" as component;
-@use "@db-ui/foundations/build/scss/color/color-variants" as col-var;
-@use "@db-ui/foundations/build/scss/animation/animations" as animations;
-@use "../../styles/form-components" as form;
+@use "@db-ui/foundations/build/scss/variables";
+@use "@db-ui/foundations/build/scss/helpers/functions";
+@use "@db-ui/foundations/build/scss/helpers/component";
+@use "@db-ui/foundations/build/scss/color/color-variants";
+@use "@db-ui/foundations/build/scss/animation/animations";
+@use "../../styles/form-components";
 
 @mixin accordion-item-content() {
 	:not(summary):not(link) {
@@ -20,8 +19,8 @@
 	inline-size: 100%;
 
 	@include accordion-item-content() {
-		padding: var.$db-spacing-fixed-md;
-		padding-block-end: var.$db-spacing-fixed-lg;
+		padding: variables.$db-spacing-fixed-md;
+		padding-block-end: variables.$db-spacing-fixed-lg;
 	}
 
 	&:last-of-type {
@@ -35,20 +34,20 @@
 
 	summary {
 		@extend %dropdown-icon;
-		@include col-var.bg-transparent-interactive(false);
+		@include color-variants.bg-transparent-interactive(false);
 
 		list-style: none;
 		display: flex;
 		justify-content: space-between;
-		padding: var.$db-spacing-fixed-md;
-		gap: var.$db-spacing-fixed-md;
+		padding: variables.$db-spacing-fixed-md;
+		gap: variables.$db-spacing-fixed-md;
 
 		&::-webkit-details-marker {
 			display: none;
 		}
 
 		&::after {
-			inset-inline-end: var.$db-spacing-fixed-sm;
+			inset-inline-end: variables.$db-spacing-fixed-sm;
 		}
 
 		&:focus-visible {
@@ -59,12 +58,12 @@
 
 	&[open] {
 		@include accordion-item-content() {
-			animation: accordion-open $db-transition-emotional-straight normal
-				both;
+			animation: accordion-open
+				variables.$db-transition-emotional-straight normal both;
 		}
 
 		summary::after {
-			transform: form.$dropdown-icon-transform;
+			transform: form-components.$dropdown-icon-transform;
 		}
 	}
 }

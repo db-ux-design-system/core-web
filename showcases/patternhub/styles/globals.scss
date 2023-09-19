@@ -1,7 +1,6 @@
 @use "@db-ui/components/build/styles/db-ui-42-webpack" as *;
 @use "@db-ui/foundations/build/scss/color-classes" as *;
-@use "@db-ui/foundations/build/scss/variables.global" as *;
-@use "@db-ui/foundations/build/scss/variables" as *;
+@use "@db-ui/foundations/build/scss/variables";
 @use "@db-ui/foundations/build/scss/tonality" as *;
 @use "@db-ui/foundations/build/scss/color-placeholder" as *;
 
@@ -27,7 +26,7 @@ iframe {
 
 .example-list {
 	dd {
-		margin-block-end: $db-spacing-fixed-md;
+		margin-block-end: variables.$db-spacing-fixed-md;
 		max-width: 500px;
 	}
 }
@@ -42,7 +41,7 @@ iframe {
 
 	.flex {
 		display: flex;
-		gap: $db-spacing-fixed-sm;
+		gap: variables.$db-spacing-fixed-sm;
 
 		&[data-variant="column"] {
 			flex-direction: column;
@@ -52,8 +51,8 @@ iframe {
 
 .base-64-container {
 	display: grid;
-	padding: $db-spacing-fixed-md;
-	gap: $db-spacing-fixed-md;
+	padding: variables.$db-spacing-fixed-md;
+	gap: variables.$db-spacing-fixed-md;
 
 	span {
 		word-break: break-all;
@@ -85,8 +84,8 @@ table {
 
 table td,
 table th {
-	border: 1px solid $db-colors-neutral-border-weak;
-	padding: $db-spacing-fixed-md;
+	border: 1px solid variables.$db-colors-neutral-border-weak;
+	padding: variables.$db-spacing-fixed-md;
 	max-width: 33vw;
 }
 
@@ -96,7 +95,7 @@ table tr:nth-child(even) {
 
 table th {
 	@extend %db-bg-neutral-transparent-semi;
-	padding-inline: $db-spacing-fixed-md;
+	padding-inline: variables.$db-spacing-fixed-md;
 }
 
 /* Workaround for current db-page from db-ui-elements */
@@ -104,7 +103,7 @@ div[class^="ch-"] {
 	div,
 	span {
 		@extend %db-overwrite-font-size-sm;
-		color: $db-colors-neutral-bg;
+		color: variables.$db-colors-neutral-bg;
 	}
 }
 

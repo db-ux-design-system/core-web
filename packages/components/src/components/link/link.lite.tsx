@@ -33,6 +33,17 @@ useMetadata({
 					}
 				],
 				defaultValue: 'adaptive'
+			},
+			{
+				name: 'target',
+				type: 'Enum',
+				values: [
+					{ key: '_self', name: '_self', value: '_self' },
+					{ key: '_blank', name: '_blank', value: '_blank' },
+					{ key: '_parent', name: '_parent', value: '_parent' },
+					{ key: '_top', name: '_top', value: '_top' }
+				],
+				defaultValue: '_blank'
 			}
 			// jscpd:ignore-end
 		]

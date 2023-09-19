@@ -6,12 +6,14 @@ import {
 	DBSelect,
 	DBCheckbox,
 	DBTag,
-	DBTextarea
+	DBTextarea,
+	DBLink
 } from '../../../../../output/react/src';
 import type { KeyValueType } from '../../../../../output/react/src/shared/model';
 
 const FormComponent = () => {
 	const [input, setInput] = useState('');
+	const [dateinput, setDateinput] = useState('');
 	const [textarea, setTextarea] = useState('default textarea');
 	const [textareaChildren, setTextareaChildren] = useState('');
 	const [radio, setRadio] = useState('');
@@ -62,6 +64,15 @@ const FormComponent = () => {
 								setTextarea(event.target.value);
 							}}
 						/>
+						<DBInput
+							label="Date input"
+							message="Description"
+							name="input-date-name"
+							onChange={(event) => {
+								setDateinput(event.target.value);
+							}}
+							type="date"
+						/>
 						<DBTextarea
 							label="Textarea Default value"
 							onChange={(event) => {
@@ -96,20 +107,21 @@ const FormComponent = () => {
 										}
 										emphasis={
 											index === 2 ? 'strong' : undefined
-										}
-										behaviour="interactive"
-										onChange={() => {
-											if (tags.includes(tag)) {
-												setTags(
-													tags.filter(
-														(t) => t !== tag
-													)
-												);
-											} else {
-												setTags([...tags, tag]);
-											}
-										}}>
-										Tag {tag}
+										}>
+										<DBCheckbox
+											onChange={() => {
+												if (tags.includes(tag)) {
+													setTags(
+														tags.filter(
+															(t) => t !== tag
+														)
+													);
+												} else {
+													setTags([...tags, tag]);
+												}
+											}}>
+											Tag {tag}
+										</DBCheckbox>
 									</DBTag>
 								</li>
 							))}
@@ -137,6 +149,12 @@ const FormComponent = () => {
 								checked={checked[1]}
 								onChange={handleChange3}>
 								Checkbox
+							</DBCheckbox>
+							<DBCheckbox
+								name="checkbox-3"
+								value="Irgendwas"
+								defaultChecked={false}>
+								DefaultChecked
 							</DBCheckbox>
 						</fieldset>
 						<p>DBSelect:</p>
@@ -181,6 +199,8 @@ const FormComponent = () => {
 				<dl>
 					<dt>inputs value</dt>
 					<dd>{input || 'No Input set'}</dd>
+					<dt>date inputs value</dt>
+					<dd>{dateinput || 'No date input set'}</dd>
 					<dt>textarea values</dt>
 					<dd>{textarea || 'No Textrea set'}</dd>
 					<dd>{textareaChildren || 'No Textrea set'}</dd>
