@@ -5,7 +5,7 @@
 @use "@db-ui/foundations/build/scss/animation/animations";
 @use "@db-ui/foundations/build/scss/icon/icon-helpers";
 @use "../../styles/db-puls";
-@use "../../styles/icon-passing" as icon-passing;
+@use "../../styles/icon-passing";
 
 %sub-navi-handler-desktop {
 	// show sub-navigation on hover
