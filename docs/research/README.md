@@ -1,6 +1,6 @@
 # How to research
 
-If you want to research for a new component run this in the `docs` folder:
+If you want to do a research for a new component run this in the `docs` folder:
 
 ```shell
 npm run generate:component-research
