@@ -21,7 +21,7 @@
 		}
 	}
 
-	&:not(&[data-no-text="true"]) {
+	&:not([data-no-text="true"]) {
 		padding-inline: variables.$db-spacing-fixed-2xs;
 
 		&:has(.db-tab-remove-button) {
