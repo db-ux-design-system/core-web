@@ -184,8 +184,6 @@ const FormComponent = () => {
 					</fieldset>
 				</form>
 			</div>
-
-			<div></div>
 			<div>
 				<h2>Output</h2>
 				<dl>
