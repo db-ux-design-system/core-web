@@ -1,0 +1,30 @@
+@use "@db-ui/foundations/build/scss/variables";
+@use "@db-ui/foundations/build/scss/icon/icon-helpers";
+
+@mixin icon-passing($inline-start: variables.$db-spacing-fixed-sm) {
+	&[data-icon] {
+		&::before {
+			position: absolute;
+			inset-block-start: calc(50% - 0.5em);
+			inset-inline-start: $inline-start;
+			pointer-events: none;
+		}
+
+		> a,
+		> dblink > a,
+		> db-link > a,
+		> button,
+		> dbbutton > button,
+		> db-button > button,
+		> label,
+		> dbradio > label,
+		> db-radio > label,
+		> db-checkbox > label,
+		> dbcheckbox > label {
+			padding-inline-start: calc(
+				#{$inline-start} + #{icon-helpers.$default-icon-margin-end} +
+					var(--db-base-font-size) * var(--db-base-line-height)
+			);
+		}
+	}
+}
