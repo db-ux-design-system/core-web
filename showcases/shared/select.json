@@ -7,7 +7,15 @@
 				"className": "db-ui-functional",
 				"props": {
 					"label": "Label",
-					"message": "functional"
+					"message": "functional",
+					"options": [
+						{
+							"value": "Option 1"
+						},
+						{
+							"value": "Option 2"
+						}
+					]
 				}
 			},
 			{
@@ -15,7 +23,15 @@
 				"className": "db-ui-regular",
 				"props": {
 					"label": "Label",
-					"message": "regular (Default)"
+					"message": "regular (Default)",
+					"options": [
+						{
+							"value": "Option 1"
+						},
+						{
+							"value": "Option 2"
+						}
+					]
 				}
 			},
 			{
@@ -23,7 +39,49 @@
 				"className": "db-ui-expressive",
 				"props": {
 					"label": "Label",
-					"message": "expressive"
+					"message": "expressive",
+					"options": [
+						{
+							"value": "Option 1"
+						},
+						{
+							"value": "Option 2"
+						}
+					]
+				}
+			}
+		]
+	},
+	{
+		"name": "Variant Label",
+		"examples": [
+			{
+				"name": "Label Above (Default)",
+				"props": {
+					"label": "Label Above",
+					"options": [
+						{
+							"value": "Option 1"
+						},
+						{
+							"value": "Option 2"
+						}
+					]
+				}
+			},
+			{
+				"name": "Floating Label",
+				"props": {
+					"label": "Floating Label",
+					"labelVariant": "floating",
+					"options": [
+						{
+							"value": "Option 1"
+						},
+						{
+							"value": "Option 2"
+						}
+					]
 				}
 			}
 		]

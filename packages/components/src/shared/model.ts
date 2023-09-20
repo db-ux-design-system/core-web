@@ -75,10 +75,6 @@ export type IconAfterProps = {
 	iconAfter?: IconTypes;
 };
 
-export type IconVisibleState = {
-	iconVisible: (icon?: string) => boolean;
-};
-
 export type OverflowProps = {
 	/**
 	 * The overflow attribute sets a max-width and longer text will be dotted.
@@ -163,10 +159,6 @@ export type FormTextProps = {
 	 */
 	minLength?: number;
 	/**
-	 * Text that appears in the form control when it has no value set
-	 */
-	placeholder?: string;
-	/**
 	 * The disabled attribute can be set to keep a user from edit on the form element
 	 */
 	readOnly?: boolean;
@@ -187,6 +179,14 @@ export type FormCheckProps = {
 };
 
 export type FormMessageProps = {
+	/**
+	 * Change the variant of the label to float
+	 */
+	labelVariant?: 'above' | 'floating';
+	/**
+	 * Text that appears in the form control when it has no value set
+	 */
+	placeholder?: string;
 	/**
 	 * Optional helper message for form components
 	 */

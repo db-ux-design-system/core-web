@@ -24,35 +24,17 @@
 }
 
 .db-textarea {
-	--db-textarea-label-max-width: 80%;
-
-	@extend %default-form-message;
-	@extend %default-form-label;
-
-	@extend %disabled-form-element;
-
-	@include form-components.get-input-color-variants();
-
-	position: relative;
-	display: flex;
-	flex-direction: column;
+	@include form-components.set-default-form-component(textarea);
 
 	textarea {
-		@extend %default-interactive-component;
-		@extend %component-border;
-		@extend %db-overwrite-font-size-md;
 		@extend %resize-textarea;
-		@extend %validity;
 
-		@include color-variants.bg-transparent-hover();
-		@include color-variants.get-variant-bg-color(0.08);
+		// we don't have icons in textarea so we can overwrite it here
+		padding-block: variables.$db-spacing-fixed-xs
+			variables.$db-spacing-fixed-xs;
+	}
 
-		max-inline-size: 100%;
-		inline-size: 100%;
-		padding: variables.$db-spacing-fixed-xs variables.$db-spacing-fixed-sm;
-
-		&::placeholder {
-			opacity: component.$default-placeholder-opacity;
-		}
+	&[data-label-variant="floating"] {
+		// TODO: If we have floating + scrolling the text will scroll over the label, we need to discuss this
 	}
 }

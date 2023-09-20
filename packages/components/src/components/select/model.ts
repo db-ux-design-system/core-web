@@ -62,6 +62,7 @@ export type DBSelectProps = DBSelectDefaultProps &
 	FormMessageProps;
 
 export interface DBSelectDefaultState {
+	_placeholderId: string;
 	getOptionLabel: (option: DBSelectOptionType) => string;
 	_value?: any;
 }

@@ -71,12 +71,21 @@ h6 {
 
 @mixin tonalities($tonalities...) {
 	@for $i from 0 to length($tonalities) {
-		%db-ui-#{nth($tonalities, $i + 1)},
-		.db-ui-#{nth($tonalities, $i + 1)},
-		[data-tonality="#{nth($tonalities, $i + 1)}"] {
-			@extend %db-scaling-#{nth($tonalities, $i + 1)};
-			@extend %db-typography-headline-#{nth($tonalities, $i + 1)};
-			@extend %db-typography-body-#{nth($tonalities, $i + 1)};
+		$tonality: #{nth($tonalities, $i + 1)};
+		%db-ui-#{$tonality},
+		.db-ui-#{$tonality},
+		[data-tonality="#{$tonality}"] {
+			@if ($tonality == functional) {
+				--db-ui-functional: 1;
+			} @else if($tonality == expressive) {
+				--db-ui-expressive: 1;
+			} @else {
+				--db-ui-regular: 1;
+			}
+
+			@extend %db-scaling-#{$tonality};
+			@extend %db-typography-headline-#{$tonality};
+			@extend %db-typography-body-#{$tonality};
 			@extend %db-component-variables-md;
 		}
 	}

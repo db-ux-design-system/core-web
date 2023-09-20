@@ -8,7 +8,12 @@ import {
 } from '@builder.io/mitosis';
 import { DBSelectOptionType, DBSelectProps, DBSelectState } from './model';
 import { cls, getMessageIcon, uuid } from '../../utils';
-import { DEFAULT_ID, DEFAULT_LABEL, DEFAULT_MESSAGE_ID_SUFFIX } from '../../shared/constants';
+import {
+	DEFAULT_ID,
+	DEFAULT_LABEL,
+	DEFAULT_MESSAGE_ID_SUFFIX,
+	DEFAULT_PLACEHOLDER_ID_SUFFIX
+} from '../../shared/constants';
 import { DBInfotext } from '../infotext';
 
 useMetadata({
@@ -26,6 +31,7 @@ export default function DBSelect(props: DBSelectProps) {
 	const state = useStore<DBSelectState>({
 		_id: DEFAULT_ID,
 		_messageId: DEFAULT_ID + DEFAULT_MESSAGE_ID_SUFFIX,
+		_placeholderId: DEFAULT_ID + DEFAULT_PLACEHOLDER_ID_SUFFIX,
 		_isValid: undefined,
 		_value: undefined,
 		handleClick: (event: any) => {
@@ -85,6 +91,7 @@ export default function DBSelect(props: DBSelectProps) {
 	onMount(() => {
 		state._id = props.id || 'select-' + uuid();
 		state._messageId = state._id + DEFAULT_MESSAGE_ID_SUFFIX;
+		state._placeholderId = state._id + DEFAULT_PLACEHOLDER_ID_SUFFIX;
 
 		if (props.value) {
 			state._value = props.value;
@@ -106,15 +113,14 @@ export default function DBSelect(props: DBSelectProps) {
 		<div
 			class={cls('db-select', props.className)}
 			data-variant={props.variant}
+			data-label-variant={props.labelVariant}
 			data-icon={props.icon}>
 			<Show when={state.stylePath}>
 				<link rel="stylesheet" href={state.stylePath} />
 			</Show>
-			{/* Required has to be true to use floating label */}
-			{/* data-value is used in css to check if value is set */}
+			<label htmlFor={state._id}>{props.label ?? DEFAULT_LABEL}</label>
 			<select
 				ref={component}
-				data-value={props.value || state._value}
 				aria-invalid={props.invalid}
 				required={props.required}
 				disabled={props.disabled}
@@ -171,7 +177,9 @@ export default function DBSelect(props: DBSelectProps) {
 				</Show>
 				{props.children}
 			</select>
-			<label htmlFor={state._id}>{props.label ?? DEFAULT_LABEL}</label>
+			<span id={state._placeholderId}>
+				{props.placeholder ?? props.label}
+			</span>
 			<Show when={props.message}>
 				<DBInfotext
 					size="small"

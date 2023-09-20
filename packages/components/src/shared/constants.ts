@@ -1,13 +1,14 @@
-export const DEFAULT_ID = 'OVERWRITE_DEFAULT_ID';
-export const DEFAULT_LABEL = 'LABEL SHOULD BE SET';
+export const DEFAULT_ID: string = 'OVERWRITE_DEFAULT_ID';
+export const DEFAULT_LABEL: string = 'LABEL SHOULD BE SET';
 
-export const DEFAULT_MESSAGE_ID_SUFFIX = '-message';
+export const DEFAULT_MESSAGE_ID_SUFFIX: string = '-message';
+export const DEFAULT_PLACEHOLDER_ID_SUFFIX: string = '-placeholder';
 
-export const DEFAULT_BACK = 'Back';
+export const DEFAULT_BACK: string = 'Back';
 
-export const DEFAULT_CLOSE_BUTTON = 'Close Button';
-export const TONALITY_CONST = 'tonality';
-export const COLOR_CONST = 'color';
+export const DEFAULT_CLOSE_BUTTON: string = 'Close Button';
+export const TONALITY_CONST: string = 'tonality';
+export const COLOR_CONST: string = 'color';
 
 export enum TONALITY {
 	'FUNCTIONAL' = 'functional',

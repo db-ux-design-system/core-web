@@ -26,6 +26,24 @@
 		]
 	},
 	{
+		"name": "Variant Label",
+		"examples": [
+			{
+				"name": "Label Above (Default)",
+				"props": {
+					"label": "Label Above"
+				}
+			},
+			{
+				"name": "Floating Label",
+				"props": {
+					"label": "Floating Label",
+					"labelVariant": "floating"
+				}
+			}
+		]
+	},
+	{
 		"name": "Variant",
 		"examples": [
 			{

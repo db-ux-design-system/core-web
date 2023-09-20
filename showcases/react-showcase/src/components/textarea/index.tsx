@@ -21,13 +21,15 @@ const getTextarea = ({
 	readOnly,
 	required,
 	children,
-	invalid
+	invalid,
+	labelVariant
 }: DBTextareaProps) => (
 	<DBTextarea
 		cols={cols}
 		disabled={disabled}
 		message={message}
 		label={label}
+		labelVariant={labelVariant}
 		readOnly={readOnly}
 		onChange={handleChange}
 		required={required}

@@ -2,7 +2,11 @@ import { onMount, Show, useMetadata, useStore } from '@builder.io/mitosis';
 import { DBTextareaProps, DBTextareaState } from './model';
 import { DBInfotext } from '../infotext';
 import { cls, getMessageIcon, uuid } from '../../utils';
-import { DEFAULT_ID, DEFAULT_LABEL, DEFAULT_MESSAGE_ID_SUFFIX } from '../../shared/constants';
+import {
+	DEFAULT_ID,
+	DEFAULT_LABEL,
+	DEFAULT_MESSAGE_ID_SUFFIX
+} from '../../shared/constants';
 
 useMetadata({
 	isAttachedToShadowDom: true,
@@ -102,14 +106,13 @@ export default function DBTextarea(props: DBTextareaProps) {
 		<div
 			ref={component}
 			class={cls('db-textarea', props.className)}
+			data-label-variant={props.labelVariant}
 			data-variant={props.variant}>
 			<Show when={state.stylePath}>
 				<link rel="stylesheet" href={state.stylePath} />
 			</Show>
 
-			<label
-				htmlFor={state._id}
-				data-overflow={props.overflow}>
+			<label htmlFor={state._id} data-overflow={props.overflow}>
 				{props.label ?? state.defaultValues.label}
 			</label>
 

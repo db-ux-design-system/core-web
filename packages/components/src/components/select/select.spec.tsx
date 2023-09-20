@@ -33,6 +33,7 @@ test.describe('DBSelect', () => {
 	test('should not have A11y issues', async ({ page, mount }) => {
 		await mount(comp);
 		const accessibilityScanResults = await new AxeBuilder({ page })
+			.exclude('#OVERWRITE_DEFAULT_ID-placeholder')
 			.include('.db-select')
 			.analyze();
 

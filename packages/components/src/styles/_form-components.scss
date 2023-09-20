@@ -8,6 +8,15 @@
 $dropdown-icon-transition: transform variables.$db-transition-emotional-straight;
 $dropdown-icon-transform: rotate(-180deg);
 
+$font-size-height: calc(var(--db-base-font-size) * var(--db-base-line-height));
+$icon-size-sm: var(--db-base-icon-font-size-sm);
+$label-size-height-xs: calc(
+	var(--db-type-body-font-size-xs) * var(--db-type-body-line-height-xs)
+);
+$label-size-height-2xs: calc(
+	var(--db-type-body-font-size-2xs) * var(--db-type-body-line-height-2xs)
+);
+
 %dropdown-icon {
 	@include icon-helpers.icon("expand_more", "after");
 
@@ -16,20 +25,23 @@ $dropdown-icon-transform: rotate(-180deg);
 	}
 }
 
-%default-form-message {
-	& .db-infotext {
-		margin-block-start: variables.$db-spacing-fixed-2xs;
+@mixin placeholder-content() {
+	&::placeholder,
+	& + [id$="-placeholder"] {
+		@content;
 	}
 }
 
-%default-form-label {
+@mixin set-default-form-label($selector) {
 	label {
 		@extend %db-overwrite-font-size-xs;
 		display: flex;
 		align-items: center;
 		padding-block-end: variables.$db-spacing-fixed-xs;
-
+		pointer-events: none;
 		cursor: text;
+
+		transition: font-size variables.$db-transition-emotional-straight;
 
 		&[data-overflow="true"] {
 			max-inline-size: 25ch;
@@ -38,109 +50,231 @@ $dropdown-icon-transform: rotate(-180deg);
 			overflow: hidden;
 		}
 	}
-}
 
-%disabled-form-element {
-	&:has(input:disabled),
-	&:has(textarea:disabled),
-	&:has(select:disabled) {
-		& {
-			// Decided against cursor: not-allowed, compare to e.g. https://phabricator.wikimedia.org/T121960
-			opacity: component.$default-disabled-opacity;
-			pointer-events: none;
-		}
-	}
-}
-
-%required-form-element {
-	&:has(+ :required) {
-		&::after {
-			content: "*";
-			padding-inline-start: var.$db-spacing-fixed-2xs;
-		}
-	}
-}
-%required-form-element-check {
-	:required + & {
-		&::after {
-			content: "*";
-			padding-inline-start: variables.$db-spacing-fixed-2xs;
-		}
-	}
-}
-
-@mixin get-input-color-variants() {
-	@each $name, $colors in color-variants.$component-variants {
-		&[data-variant="#{$name}"] {
-			--db-current-border-color: #{map.get($colors, "border")};
+	&[data-label-variant="floating"] {
+		label {
+			@extend %db-overwrite-font-size-md;
+			position: absolute;
+			inset-block-start: calc(
+				(#{variables.$db-sizing-md} - #{$font-size-height}) / 2
+			);
+			inset-inline-start: #{variables.$db-spacing-fixed-sm};
+			opacity: component.$default-floating-opacity;
 		}
 
-		&[data-variant="#{$name}"] {
-			--db-current-color: #{map.get($colors, "on-bg")};
-			color: map.get($colors, "on-bg");
+		// icons
+		&::after,
+		&::before {
+			inset-block-start: calc(50% - 0.5em);
 		}
 
-		&[data-variant="#{$name}"] select {
-			--db-current-color: #{map.get($colors, "on-bg")};
-			color: map.get($colors, "on-bg");
+		[id$="-placeholder"] {
+			inset-block-start: calc(
+				50% - 0.5em + #{variables.$db-spacing-fixed-3xs}
+			);
 		}
 
-		&[data-variant="#{$name}"] input,
-		&[data-variant="#{$name}"] textarea,
-		&[data-variant="#{$name}"] select {
-			@if ($name == "critical") {
-				@extend %adaptive-critical-component;
-			} @else if ($name == "informational") {
-				@extend %adaptive-informational-component;
-			} @else if ($name == "warning") {
-				@extend %adaptive-warning-component;
-			} @else if ($name == "successful") {
-				@extend %adaptive-successful-component;
+		#{$selector} {
+			@include placeholder-content() {
+				transition: none;
+				opacity: 0;
+			}
+
+			@if ($selector == textarea) {
+				padding-block-start: calc(
+					#{variables.$db-spacing-fixed-xs} +
+						#{variables.$db-spacing-fixed-3xs}
+				);
+			} @else {
+				// font-size label which is 2xs + smallest spacing
+				padding-block-start: calc(
+					var(--db-type-body-font-size-2xs) +
+						#{variables.$db-spacing-fixed-3xs}
+				);
+			}
+		}
+
+		&:has(#{$selector}:focus-within),
+		&:has(#{$selector}:is(input, textarea):not(:placeholder-shown)),
+		&:has(> select option:checked:not([hidden])) {
+			label {
+				@extend %db-overwrite-font-size-2xs;
+				inset-block-start: variables.$db-spacing-fixed-3xs;
+			}
+
+			#{$selector} {
+				@include placeholder-content() {
+					transition: opacity
+						variables.$db-transition-emotional-straight;
+					opacity: component.$default-placeholder-opacity;
+				}
 			}
 		}
 	}
 }
 
-%validity {
-	// Valid
-	// Programmatic valid status, most likely set via JavaScript
-	&[aria-invalid="false"], // programmatically set validity
-	&:is(:user-valid):not([aria-invalid]) {
-		@extend %adaptive-successful-component;
+@mixin set-current-colors($color-variant) {
+	--db-current-color: #{map.get($color-variant, "on-bg")};
+	--db-current-border-weak-color: #{map.get($color-variant, "border")};
+	--db-current-element-color: #{map.get($color-variant, "element")};
+	--db-current-base-color: #{map.get($color-variant, "primary")};
+}
 
-		// label:has(+ &) {
-		// 	color: $db-colors-successful-element;
-		// }
+@mixin get-validity-color($key: "valid") {
+	$variant: "successful";
+
+	@if ($key != "valid") {
+		$variant: "critical";
 	}
-	// :user-valid workaround
-	@supports not selector(:user-valid) {
-		&:required:valid:not(:placeholder-shown) {
-			@extend %adaptive-successful-component;
 
-			// label:has(+ &) {
-			// 	color: $db-colors-successful-element;
-			// }
+	$color-variant: map.get(color-variants.$component-variants, $variant);
+
+	& {
+		@include set-current-colors($color-variant);
+	}
+
+	textarea,
+	input,
+	select,
+	[id$="-placeholder"] {
+		color: map.get($color-variant, "on-bg");
+	}
+}
+
+@mixin get-validity($key: "valid") {
+
+	$boolean: "true";
+	&:has(input:user-#{$key}),
+	&:has(textarea:user-#{$key}),
+	&:has(select:user-#{$key}) {
+		@include get-validity-color($key);
+	}
+
+	&:has(input[aria-invalid="#{$boolean}"]),
+	&:has(textarea[aria-invalid="#{$boolean}"]),
+	&:has(select[aria-invalid="#{$boolean}"]) {
+		@include get-validity-color($key);
+	}
+
+	// :user-valid workaround
+	@supports not selector(:user-#{$key}) {
+		&:has(input:required:#{$key}),
+		&:has(textarea:required:#{$key}),
+		&:has(select:required:#{$key}) {
+			@include get-validity-color($key);
+		}
+	}
+	@if ($key == "valid") {
+		$boolean: "false";
+	}
+}
+
+@mixin set-default-form-component($selector) {
+	--db-form-has-before: 0;
+	@extend %db-overwrite-font-size-sm;
+
+	@include set-default-form-label($selector);
+	@include get-validity();
+	@include get-validity("invalid");
+
+	// we use absolute icons
+	position: relative;
+	display: flex;
+	flex-direction: column;
+
+	#{$selector} {
+		@extend %db-overwrite-font-size-md;
+		@extend %default-interactive-component;
+		@extend %component-border;
+
+		@include color-variants.bg-transparent-hover();
+		@include color-variants.get-variant-bg-color(0.08);
+
+		appearance: none;
+		max-inline-size: 100%;
+		inline-size: 100%;
+		padding-inline: var(
+				--db-form-component-padding-inline-start,
+				#{variables.$db-spacing-fixed-sm}
+			)
+			var(
+				--db-form-component-padding-inline-end,
+				#{variables.$db-spacing-fixed-sm}
+			);
+
+		@include placeholder-content() {
+			opacity: component.$default-placeholder-opacity;
+		}
+
+		&:required {
+			&::after {
+				content: "*";
+				padding-inline-start: variables.$db-spacing-fixed-2xs;
+			}
 		}
 	}
 
-	// Invalid
-	// Programmatic invalid status, most likely set via JavaScript
-	&[aria-invalid="true"],
-	&:is(:user-invalid) {
-		@extend %db-bg-critical-transparent-semi;
-
-		// label:has(+ &) {
-		// 	color: $db-colors-critical-element;
-		// }
+	@if ($selector == input or $selector == select) {
+		#{$selector} {
+			block-size: variables.$db-sizing-md;
+			text-overflow: ellipsis;
+		}
 	}
-	// :user-invalid workaround
-	@supports not selector(:user-invalid) {
-		&:required:invalid:not(:placeholder-shown) {
-			@extend %db-bg-critical-transparent-semi;
 
-			// label:has(+ &) {
-			// 	color: $db-colors-critical-element;
-			// }
+	// colors
+
+	@each $name, $colors in color-variants.$component-variants {
+		&[data-variant="#{$name}"] {
+			@include set-current-colors($colors);
+		}
+
+		&[data-variant="#{$name}"] #{$selector},
+		&[data-variant="#{$name}"] [id$="-placeholder"] {
+			color: map.get($colors, "on-bg");
+		}
+	}
+
+	// Helper message
+	& .db-infotext {
+		margin-block-start: variables.$db-spacing-fixed-2xs;
+	}
+
+	// disabled
+	&:has(#{$selector}:disabled) {
+		// Decided against cursor: not-allowed, compare to e.g. https://phabricator.wikimedia.org/T121960
+		opacity: component.$default-disabled-opacity;
+		pointer-events: none;
+	}
+
+	// icons
+	&::after,
+	&::before {
+		position: absolute;
+		pointer-events: none;
+		// 1px for border
+		inset-block-start: calc(
+			#{variables.$db-sizing-md} / 2 + #{$label-size-height-xs} - 1px
+		);
+	}
+
+	&::before {
+		margin-inline-end: variables.$db-spacing-fixed-sm;
+		inset-inline-start: variables.$db-spacing-fixed-sm;
+	}
+
+	&::after {
+		margin-inline-start: variables.$db-spacing-fixed-sm;
+		inset-inline-end: variables.$db-spacing-fixed-sm;
+	}
+}
+
+// CHECKBOX & RADIO
+
+%required-form-element-check {
+	:required + & {
+		&::after {
+			content: "*";
+			padding-inline-start: variables.$db-spacing-fixed-2xs;
 		}
 	}
 }

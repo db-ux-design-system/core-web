@@ -14,12 +14,14 @@ const getInput = ({
 	disabled,
 	iconAfter,
 	icon,
-	children
+	children,
+	labelVariant
 }: DBInputProps) => (
 	<DBInput
 		label={label}
 		message={children}
 		placeholder={children}
+		labelVariant={labelVariant}
 		variant={variant}
 		value={value}
 		type={type}

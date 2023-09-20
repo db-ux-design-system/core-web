@@ -2,7 +2,11 @@ import { For, onMount, Show, useMetadata, useStore } from '@builder.io/mitosis';
 import { DBIcon } from '../icon';
 import { cls, getMessageIcon, uuid } from '../../utils';
 import { DBInputProps, DBInputState } from './model';
-import { DEFAULT_ID, DEFAULT_LABEL, DEFAULT_MESSAGE_ID_SUFFIX } from '../../shared/constants';
+import {
+	DEFAULT_ID,
+	DEFAULT_LABEL,
+	DEFAULT_MESSAGE_ID_SUFFIX
+} from '../../shared/constants';
 import { KeyValueType } from '../../shared/model';
 import { DBInfotext } from '../infotext';
 
@@ -54,9 +58,6 @@ export default function DBInput(props: DBInputProps) {
 		defaultValues: {
 			label: DEFAULT_LABEL,
 			placeholder: ' '
-		},
-		iconVisible: (icon?: string) => {
-			return Boolean(icon && icon !== '_' && icon !== 'none');
 		},
 		handleChange: (event: any) => {
 			if (props.onChange) {
@@ -115,17 +116,15 @@ export default function DBInput(props: DBInputProps) {
 	return (
 		<div
 			class={cls('db-input', props.className)}
-			data-variant={props.variant}>
+			data-variant={props.variant}
+			data-label-variant={props.labelVariant}
+			data-icon={props.icon}
+			data-icon-after={props.iconAfter}>
 			<Show when={state.stylePath}>
 				<link rel="stylesheet" href={state.stylePath} />
 			</Show>
-			{/* TODO: move this icon to [data-icon] */}
-			<Show when={state.iconVisible(props.icon)}>
-				<DBIcon icon={props.icon} class="icon-before" />
-			</Show>
-			<label
-				htmlFor={state._id}>
-				<span>{props.label ?? state.defaultValues.label}</span>
+			<label htmlFor={state._id}>
+				{props.label ?? state.defaultValues.label}
 			</label>
 			<input
 				ref={component}
@@ -156,9 +155,6 @@ export default function DBInput(props: DBInputProps) {
 				list={props.dataList && state._dataListId}
 				aria-describedby={props.message && state._messageId}
 			/>
-			<Show when={state.iconVisible(props.iconAfter)}>
-				<DBIcon icon={props.iconAfter} class="icon-after" />
-			</Show>
 			<Show when={props.dataList}>
 				<datalist id={state._dataListId}>
 					<For each={props.dataList}>

@@ -12,7 +12,6 @@ import {
 	FormTextProps,
 	IconAfterProps,
 	IconProps,
-	IconVisibleState,
 	KeyValueType,
 	ValidEventProps
 } from '../../shared/model';
@@ -77,5 +76,4 @@ export type DBInputState = DBInputDefaultState &
 	GlobalState &
 	ChangeEventState &
 	FocusEventState &
-	FormState &
-	IconVisibleState;
+	FormState ;
