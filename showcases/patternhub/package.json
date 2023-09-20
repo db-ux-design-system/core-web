@@ -24,7 +24,7 @@
   },
   "dependencies": {
     "@code-hike/mdx": "^0.9.0",
-    "next": "13.4.19",
+    "next": "13.5.1",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "remark-gfm": "3.0.1"
