@@ -89,9 +89,10 @@ export default function DBSelect(props: DBSelectProps) {
 	});
 
 	onMount(() => {
-		state._id = props.id || 'select-' + uuid();
-		state._messageId = state._id + DEFAULT_MESSAGE_ID_SUFFIX;
-		state._placeholderId = state._id + DEFAULT_PLACEHOLDER_ID_SUFFIX;
+		const id = props.id || 'select-' + uuid();
+		state._id = id;
+		state._messageId = id + DEFAULT_MESSAGE_ID_SUFFIX;
+		state._placeholderId = id + DEFAULT_PLACEHOLDER_ID_SUFFIX;
 
 		if (props.value) {
 			state._value = props.value;
@@ -131,7 +132,9 @@ export default function DBSelect(props: DBSelectProps) {
 				onChange={(event) => state.handleChange(event)}
 				onBlur={(event) => state.handleBlur(event)}
 				onFocus={(event) => state.handleFocus(event)}
-				aria-describedby={props.message && state._messageId}>
+				aria-describedby={
+					(props.message && state._messageId) || state._placeholderId
+				}>
 				{/* Empty option for floating label */}
 				<option hidden></option>
 				<Show when={props.options}>
