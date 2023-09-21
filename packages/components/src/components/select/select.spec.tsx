@@ -6,7 +6,7 @@ import { DBSelect } from './index';
 import { DEFAULT_VIEWPORT } from '../../shared/constants.ts';
 
 const comp = (
-	<DBSelect label="Label" message="Description">
+	<DBSelect id="test" label="Label" message="Description">
 		<option value="test1">Test1</option>
 		<option value="test2">Test2</option>
 	</DBSelect>
@@ -33,7 +33,7 @@ test.describe('DBSelect', () => {
 	test('should not have A11y issues', async ({ page, mount }) => {
 		await mount(comp);
 		const accessibilityScanResults = await new AxeBuilder({ page })
-			.exclude('#OVERWRITE_DEFAULT_ID-placeholder')
+			.exclude('test-placeholder')
 			.include('.db-select')
 			.analyze();
 
