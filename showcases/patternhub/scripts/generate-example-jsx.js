@@ -1,5 +1,5 @@
 import FS from 'node:fs';
-import { getCodeByFramework } from './utils.js';
+import { getCodeByFramework, getComponentName } from './utils.js';
 
 const sharedPath = '../shared';
 
@@ -10,8 +10,7 @@ const generateExampleJSX = () => {
 	const imports = [];
 	const examples = [];
 	for (const key of Object.keys(docs)) {
-		let componentName = key.split('/').at(-1);
-		componentName = componentName.replace('.tsx', '');
+		const componentName = getComponentName(key);
 		const componentValue = docs[key].at(0);
 		if (componentValue) {
 			imports.push(componentValue.displayName);

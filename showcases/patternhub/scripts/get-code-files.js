@@ -80,7 +80,10 @@ const writeCodeFiles = async (componentPath, componentName) => {
 	const path = `${sharedPath}/${componentName}.json`;
 	let variants;
 	if (FS.existsSync(path)) {
-		variants = JSON.parse(FS.readFileSync(path, 'utf8'));
+		variants = JSON.parse(FS.readFileSync(path, 'utf8')).map((variant) => ({
+			...variant,
+			name: variant.name.replace(/\s/g, '')
+		}));
 		for (const variant of variants) {
 			if (!FS.existsSync(codePath)) {
 				FS.mkdirSync(codePath);
