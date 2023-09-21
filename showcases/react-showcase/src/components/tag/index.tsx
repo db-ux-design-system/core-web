@@ -43,7 +43,11 @@ const getTag = ({
 				alert(children.toString());
 			}}>
 			{component === 'button' && <DBButton>{children}</DBButton>}
-			{component === 'link' && <DBLink href="#">{children}</DBLink>}
+			{component === 'link' && (
+				<DBLink href="#">
+					<DBButton>{children}</DBButton>
+				</DBLink>
+			)}
 			{component === 'checkbox' && (
 				<DBCheckbox
 					checked={checkedState}
@@ -58,7 +62,9 @@ const getTag = ({
 					{children}
 				</DBRadio>
 			)}
-			{!component && <>{children}</>}
+
+			{!component && !overflow && <>{children}</>}
+			{!component && overflow && <span>{children}</span>}
 		</DBTag>
 	);
 };

@@ -15,8 +15,7 @@
 		@include icon-helpers.is-icon-text-replace();
 		padding: 0;
 
-		label,
-		span {
+		label {
 			@include icon-helpers.is-icon-text-replace();
 		}
 	}
@@ -41,6 +40,7 @@
 %db-tag {
 	--db-icon-margin-end: #{variables.$db-spacing-fixed-2xs};
 	@extend %default-interactive-component;
+	@extend %component-border;
 	@extend %db-overwrite-font-size-sm;
 	@extend %default-button;
 	@extend %no-text;
@@ -51,15 +51,8 @@
 	inline-size: fit-content;
 	position: relative;
 
-	&:not([data-emphasis="strong"]) {
-		@extend %component-border;
-	}
-
-	&:has(input) {
-		@extend %component-border;
-	}
-
-	&:not(:has(#{tag-components.$interactive-selectors})) {
+	&:not(:has(#{tag-components.$interactive-selectors})),
+	&:has(.db-tab-remove-button) {
 		@include tag-components.get-tag-colors();
 	}
 
@@ -87,6 +80,14 @@
 		border-radius: component.$default-border-radius;
 		position: absolute;
 
+		&:not(:checked) {
+			--db-current-base-color: #{variables.$db-colors-neutral-bg};
+
+			&:not(:hover) {
+				--db-current-base-color-alpha: 0%;
+			}
+		}
+
 		&:checked {
 			&[type="checkbox"] {
 				// overwrite for checkbox
@@ -100,29 +101,30 @@
 		}
 	}
 
-	label,
-	span {
-		@extend %db-overwrite-font-size-sm;
-		margin-inline-start: 0;
-	}
-
-	button,
 	a {
-		@extend %db-overwrite-font-size-sm;
-		border: transparent;
-		block-size: 100%;
-		padding: 0 variables.$db-spacing-fixed-2xs;
-		border-radius: component.$default-border-radius;
-	}
-
-	a {
-		display: inline-flex;
-		text-decoration: none;
+		block-size: inherit;
 
 		&::after {
-			--db-icon-margin-start: 0;
-			content: "" !important;
+			display: none !important;
 		}
+	}
+
+	label {
+		@extend %db-overwrite-font-size-sm;
+		margin-inline-start: 0;
+		z-index: 1;
+	}
+
+	&:has(button:not(.db-tab-remove-button)) {
+		border: none;
+	}
+
+	button {
+		@extend %db-overwrite-font-size-sm;
+		@extend %component-border;
+		block-size: inherit;
+		padding: 0 variables.$db-spacing-fixed-2xs;
+		border-radius: component.$default-border-radius;
 	}
 
 	&[data-disabled="true"] {
@@ -130,16 +132,15 @@
 		pointer-events: none;
 	}
 
-	.db-button[data-size="small"] {
-		border-radius: functions.to-rem(3);
-		block-size: 100%;
-	}
-
 	&[data-overflow="true"] {
 		max-inline-size: variables.$db-sizing-2xl;
-		flex-wrap: wrap;
-		flex-direction: column-reverse;
-		overflow: hidden;
+
+		& > * {
+			inline-size: 100%;
+			overflow: hidden;
+			text-overflow: ellipsis;
+			white-space: nowrap;
+		}
 	}
 
 	.db-tab-remove-button {

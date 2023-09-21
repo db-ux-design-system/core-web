@@ -12,9 +12,16 @@ import { DBTag } from "@db-ui/v-components";
 
 <template>
 	<DBTag><DBButton>Tag as Button</DBButton></DBTag>
-	<DBTag><DBLink>Tag as Link</DBLink></DBTag>
+	<DBTag>
+		<DBLink>
+			<DBButton>Tag as Link</DBButton>
+		</DBLink>
+	</DBTag>
 	<DBTag><DBCheckbox>Tag as Checkbox</DBCheckbox></DBTag>
 	<DBTag><DBRadio>Tag as Radio</DBRadio></DBTag>
 	<DBTag>Static Tag</DBTag>
+	<DBTag :overflow="true">
+		<span>Static Tag with overflow</span>
+	</DBTag>
 </template>
 ```

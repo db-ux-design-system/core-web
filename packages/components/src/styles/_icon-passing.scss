@@ -8,19 +8,12 @@
 			inset-block-start: calc(50% - 0.5em);
 			inset-inline-start: $inline-start;
 			pointer-events: none;
+			z-index: 1;
 		}
 
-		> a,
-		> dblink > a,
-		> db-link > a,
-		> button,
-		> dbbutton > button,
-		> db-button > button,
-		> label,
-		> dbradio > label,
-		> db-radio > label,
-		> db-checkbox > label,
-		> dbcheckbox > label {
+		a:not(:has(button)),
+		button,
+		label {
 			padding-inline-start: calc(
 				#{$inline-start} + #{icon-helpers.$default-icon-margin-end} +
 					var(--db-base-font-size) * var(--db-base-line-height)

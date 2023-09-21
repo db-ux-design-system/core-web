@@ -3,7 +3,7 @@
 @use "@db-ui/foundations/build/scss/helpers/component";
 @use "@db-ui/foundations/build/scss/variables";
 
-$interactive-selectors: "input, a, button";
+$interactive-selectors: "input, button:not(.db-tab-remove-button)";
 
 @mixin overwrite-strong() {
 	--db-current-color: #{variables.$db-colors-neutral-bg};
@@ -65,7 +65,6 @@ $interactive-selectors: "input, a, button";
 	&:not(:has(dbbutton)) button:not(.db-tab-remove-button),
 	dbbutton:not(.db-tab-remove-button) > button,
 	db-button > button,
-	a,
 	&:has(input:checked),
 	&:has(input:checked) {
 		@content;
@@ -89,8 +88,6 @@ $interactive-selectors: "input, a, button";
 				} @else if ($name == "successful") {
 					@extend %db-bg-successful-ia;
 				}
-
-				--db-current-border-color: #{map.get($colors, "border")};
 			}
 		}
 	}
@@ -116,10 +113,13 @@ $interactive-selectors: "input, a, button";
 			}
 		}
 
-		&:has(button),
-		&:has(a),
+		&:has(button:not(.db-tab-remove-button)),
 		&:has(input:checked) {
 			@include overwrite-strong();
+
+			button:not(.db-tab-remove-button) {
+				@include overwrite-strong();
+			}
 		}
 	}
 }
