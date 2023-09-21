@@ -46,7 +46,7 @@ const generateBGVariants = (value, variant) => {
  */
 exports.generateColorUtilitityClasses = (colorToken) => {
 	let output = `
-	@use "color-placeholder" as *;
+	@use "color-placeholder";
 	`;
 
 	for (const [, value] of Object.keys(colorToken).entries()) {

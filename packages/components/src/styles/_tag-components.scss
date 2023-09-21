@@ -3,7 +3,7 @@
 @use "@db-ui/foundations/build/scss/helpers/component";
 @use "@db-ui/foundations/build/scss/variables";
 
-$interactive-selectors: "input, button:not(.db-tab-remove-button)";
+$interactive-selectors: "input, button:not(.db-tab-remove-button), a";
 
 @mixin overwrite-strong() {
 	--db-current-color: #{variables.$db-colors-neutral-bg};
@@ -65,28 +65,32 @@ $interactive-selectors: "input, button:not(.db-tab-remove-button)";
 	&:not(:has(dbbutton)) button:not(.db-tab-remove-button),
 	dbbutton:not(.db-tab-remove-button) > button,
 	db-button > button,
-	&:has(input:checked),
-	&:has(input:checked) {
+	a,
+	input[type="checkbox"]:checked {
 		@content;
 	}
 }
 
 @mixin get-tag-colors-interactive() {
 	@include interactive-selectors() {
-		@extend %db-bg-neutral-strong-ia;
+		@extend %db-bg-neutral-strong-variables;
+	}
+
+	input[type="radio"]:checked {
+		@extend %db-bg-neutral-strong-variables;
 	}
 
 	@each $name, $colors in color-variants.$component-variants {
 		&[data-variant="#{$name}"] {
 			@include interactive-selectors() {
 				@if ($name == "critical") {
-					@extend %db-bg-critical-ia;
+					@extend %db-bg-critical-variables;
 				} @else if ($name == "informational") {
-					@extend %db-bg-informational-ia;
+					@extend %db-bg-informational-variables;
 				} @else if ($name == "warning") {
-					@extend %db-bg-warning-ia;
+					@extend %db-bg-warning-variables;
 				} @else if ($name == "successful") {
-					@extend %db-bg-successful-ia;
+					@extend %db-bg-successful-variables;
 				}
 			}
 		}
@@ -94,6 +98,10 @@ $interactive-selectors: "input, button:not(.db-tab-remove-button)";
 
 	&[data-emphasis="strong"] {
 		@include interactive-selectors() {
+			@extend %db-neutral-component-ia;
+		}
+
+		input[type="radio"]:checked {
 			@extend %db-neutral-component-ia;
 		}
 
@@ -114,6 +122,7 @@ $interactive-selectors: "input, button:not(.db-tab-remove-button)";
 		}
 
 		&:has(button:not(.db-tab-remove-button)),
+		&:has(a),
 		&:has(input:checked) {
 			@include overwrite-strong();
 

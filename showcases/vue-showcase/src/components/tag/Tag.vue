@@ -35,7 +35,7 @@ const showAlert = (exampleName: string) => {
 					exampleName
 				}}</DBButton>
 				<DBLink v-if="exampleProps.component === 'link'" href="#">
-					<DBButton>{{ exampleName }}</DBButton>
+					{{ exampleName }}
 				</DBLink>
 				<DBCheckbox
 					v-if="exampleProps.component === 'checkbox'"

@@ -10,6 +10,17 @@ const fileHeader = `
 // Do not edit directly
 // Generated on
 // ${new Date().toString()}
+
+$interactive-elements: 'input:not([type="radio"]), button, select, textarea';
+
+%interactive-states {
+	&:hover {
+		--db-bg-transparent: 84%;
+	}
+	&:active {
+		--db-bg-transparent: 68%;
+	}
+}
 `;
 
 /**
@@ -113,13 +124,14 @@ const generateBGVariants = (
 
     &-ia, &[data-variant="interactive"] {
 		@extend %${placeholderName};
-		&:enabled{
-			&:hover{
-				--${prefix}-bg-transparent: 84%;
+		&:is(#{$interactive-elements}) {
+			&:enabled{
+				@extend %interactive-states;
 			}
-			&:active{
-				--${prefix}-bg-transparent: 68%;
-			}
+		}
+
+		&:is(a) {
+			@extend %interactive-states;
 		}
     }
 `;
@@ -159,21 +171,31 @@ exports.generateColorUtilitityPlaceholder = (colorToken) => {
 			if (colorToken[value].enabled) {
 				// Text & elements & border
 				output += `
+%${prefix}-${value}-component-interactive-state {
+	&:hover{
+		background-color: var(--${prefix}-${value}-hover,
+		#{$${prefix}-${colorToken[value].hover.name}});
+	}
+	&:active{
+		background-color: var(--${prefix}-${value}-pressed,
+		#{$${prefix}-${colorToken[value].pressed.name}});
+	}
+}
+
 %${prefix}-${value}-component-ia {
 	--db-current-color: var(--${prefix}-${value}-on-enabled,
 	#{$${prefix}-${colorToken[value].on.enabled.name}});
     color: var(--${prefix}-current-color);
 	background-color: var(--${prefix}-${value}-enabled,
 	#{$${prefix}-${colorToken[value].enabled.name}});
-	&:enabled {
-		&:hover{
-			background-color: var(--${prefix}-${value}-hover,
-			#{$${prefix}-${colorToken[value].hover.name}});
+	&:is(#{$interactive-elements}) {
+		&:enabled{
+			@extend %${prefix}-${value}-component-interactive-state;
 		}
-		&:active{
-			background-color: var(--${prefix}-${value}-pressed,
-			#{$${prefix}-${colorToken[value].pressed.name}});
-		}
+	}
+
+	&:is(a) {
+		@extend %${prefix}-${value}-component-interactive-state;
 	}
 }
 
