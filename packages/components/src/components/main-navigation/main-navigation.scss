@@ -30,7 +30,7 @@
 				@include component.screen("md") {
 					&::after {
 						--db-icon-margin-start: #{variables.$db-spacing-fixed-sm};
-						--db-icon: "expand_more";
+						--db-icon-after: "expand_more";
 						transition: form-components.$dropdown-icon-transition;
 					}
 
@@ -52,7 +52,7 @@
 				.db-navigation-item-expand-button > button {
 					@include component.screen("md") {
 						&::after {
-							--db-icon: "chevron_right";
+							--db-icon-after: "chevron_right";
 							--db-icon-margin-start: auto;
 						}
 
