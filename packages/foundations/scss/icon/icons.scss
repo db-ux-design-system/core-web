@@ -67,6 +67,7 @@
 [data-icon-after] {
 	&::after {
 		@extend %icon !optional;
+		content: icon-helpers.$default-icon-content-after;
 		margin-inline-start: icon-helpers.$default-icon-margin-start;
 	}
 }
