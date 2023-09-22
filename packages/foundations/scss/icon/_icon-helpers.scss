@@ -9,6 +9,7 @@ $default-icon-size-rem: #{functions.to-rem($default-icon-size)};
 $default-icon-variants: "default", "inverted", "solid";
 
 $default-icon-content: var(--db-icon, attr(data-icon));
+$default-icon-content-after: var(--db-icon-after, attr(data-icon-after));
 
 $default-icon-margin-end: var(
 	--db-icon-margin-end,
@@ -51,17 +52,18 @@ $default-icon-font-size: var(--db-icon-font-size, #{$default-icon-size-rem});
 @mixin icon($icon: "", $position: "before") {
 	&::#{$position} {
 		@if $icon != "" {
-			--db-icon: "#{$icon}";
-		}
+			@extend %icon;
 
-		@if $position == "before" {
-			margin-inline-end: $default-icon-margin-end;
+			@if $position == "before" {
+				--db-icon: "#{$icon}";
+				margin-inline-end: $default-icon-margin-end;
+			}
+			@if $position == "after" {
+				--db-icon-after: "#{$icon}";
+				content: $default-icon-content-after;
+				margin-inline-start: $default-icon-margin-start;
+			}
 		}
-		@if $position == "after" {
-			margin-inline-start: $default-icon-margin-start;
-		}
-
-		@extend %icon;
 	}
 }
 
@@ -107,7 +109,7 @@ $default-icon-font-size: var(--db-icon-font-size, #{$default-icon-size-rem});
 	-webkit-alt: "";
 	alt: "";
 
-	content: $default-icon-content;
+	content: $default-icon-content; // TODO: ONLY FOR data-icon
 	color: var(--db-current-icon-color, inherit);
 
 	display: inline-block;
