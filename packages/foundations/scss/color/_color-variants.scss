@@ -105,28 +105,39 @@ $color-variants: "neutral", "neutral-strong", "primary", "critical",
 }
 
 $component-variants: (
+	"neutral": (
+		"border": variables.$db-colors-neutral-border-weak,
+		"element": variables.$db-colors-neutral-element,
+		"on-bg": variables.$db-colors-neutral-on-bg,
+		"bg": variables.$db-colors-neutral-bg,
+		"primary": variables.$db-colors-neutral
+	),
 	"critical": (
 		"border": variables.$db-colors-critical-border-weak,
 		"element": variables.$db-colors-critical-element,
 		"on-bg": variables.$db-colors-critical-on-bg,
+		"bg": variables.$db-colors-critical-bg,
 		"primary": variables.$db-colors-critical
 	),
 	"informational": (
 		"border": variables.$db-colors-informational-border-weak,
 		"element": variables.$db-colors-informational-element,
 		"on-bg": variables.$db-colors-informational-on-bg,
+		"bg": variables.$db-colors-informational-bg,
 		"primary": variables.$db-colors-informational
 	),
 	"warning": (
 		"border": variables.$db-colors-warning-border-weak,
 		"element": variables.$db-colors-warning-element,
 		"on-bg": variables.$db-colors-warning-on-bg,
+		"bg": variables.$db-colors-warning-bg,
 		"primary": variables.$db-colors-warning
 	),
 	"successful": (
 		"border": variables.$db-colors-successful-border-weak,
 		"element": variables.$db-colors-successful-element,
 		"on-bg": variables.$db-colors-successful-on-bg,
+		"bg": variables.$db-colors-successful-bg,
 		"primary": variables.$db-colors-successful
 	)
 );

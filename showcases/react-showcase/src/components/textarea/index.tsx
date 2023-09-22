@@ -1,13 +1,9 @@
+import { useState } from 'react';
 import { DBTextarea } from '../../../../../output/react/src';
 import DefaultComponent from '../index';
 import defaultComponentVariants from '../../../../shared/textarea.json';
 import type { DBTextareaProps } from '../../../../../output/react/src/components/textarea/model';
 import { getVariants } from '../data';
-
-const handleChange = (evt) => {
-	const { debug } = console;
-	debug(evt);
-};
 
 const getTextarea = ({
 	cols,
@@ -23,22 +19,27 @@ const getTextarea = ({
 	children,
 	invalid,
 	labelVariant
-}: DBTextareaProps) => (
-	<DBTextarea
-		cols={cols}
-		disabled={disabled}
-		message={message}
-		label={label}
-		labelVariant={labelVariant}
-		readOnly={readOnly}
-		onChange={handleChange}
-		required={required}
-		placeholder={placeholder ?? children}
-		rows={rows}
-		defaultValue={value}
-		variant={variant}
-		invalid={invalid}></DBTextarea>
-);
+}: DBTextareaProps) => {
+	const [dynamicValue, setDynamicValue] = useState<string>(value);
+	return (
+		<DBTextarea
+			cols={cols}
+			disabled={disabled}
+			message={message}
+			label={label}
+			labelVariant={labelVariant}
+			readOnly={readOnly}
+			onChange={(event) => {
+				setDynamicValue(event.target.value);
+			}}
+			required={required}
+			placeholder={placeholder ?? children}
+			rows={rows}
+			value={dynamicValue}
+			variant={variant}
+			invalid={invalid}></DBTextarea>
+	);
+};
 
 const TextareaComponent = () => {
 	return (

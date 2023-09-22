@@ -60,7 +60,14 @@ $db-transition-functional-straight: #{$db-transition-duration-fast} #{$db-transi
 
 // Variants for adaptive components like input, select, alert, ...
 
+$db-current-color: var(--db-current-color);
+$db-current-bg-color: var(--db-current-bg-color);
+
 // neutral
+$db-colors-neutral: var(
+	--db-neutral-enabled,
+	default-variables.$db-colors-neutral-enabled
+);
 $db-colors-neutral-bg: var(
 	--db-neutral-bg-enabled,
 	default-variables.$db-colors-neutral-bg-0-enabled
@@ -80,6 +87,11 @@ $db-colors-neutral-border-weak: var(
 		--db-neutral-border-weak-enabled,
 		default-variables.$db-colors-neutral-border-weak-enabled
 	)
+);
+
+$db-colors-neutral-element: var(
+	--db-neutral-element-enabled,
+	default-variables.$db-colors-neutral-element-enabled
 );
 
 $db-colors-neutral-border: var(
@@ -127,6 +139,12 @@ $db-colors-critical-on-bg: var(
 	--db-critical-on-bg-enabled,
 	default-variables.$db-colors-critical-on-bg-enabled
 );
+
+$db-colors-critical-bg: var(
+	--db-critical-bg-enabled,
+	default-variables.$db-colors-critical-bg-enabled
+);
+
 $db-colors-critical: var(
 	--db-critical-enabled,
 	default-variables.$db-colors-critical-enabled
@@ -146,6 +164,12 @@ $db-colors-informational-on-bg: var(
 	--db-informational-on-bg-enabled,
 	default-variables.$db-colors-informational-on-bg-enabled
 );
+
+$db-colors-informational-bg: var(
+	--db-informational-bg-enabled,
+	default-variables.$db-colors-informational-bg-enabled
+);
+
 $db-colors-informational: var(
 	--db-informational-enabled,
 	default-variables.$db-colors-informational-enabled
@@ -164,6 +188,10 @@ $db-colors-warning-on-bg: var(
 	--db-warning-on-bg-enabled,
 	default-variables.$db-colors-warning-on-bg-enabled
 );
+$db-colors-warning-bg: var(
+	--db-warning-bg-enabled,
+	default-variables.$db-colors-warning-bg-enabled
+);
 $db-colors-warning: var(
 	--db-warning-enabled,
 	default-variables.$db-colors-warning-enabled
@@ -181,6 +209,10 @@ $db-colors-successful-element: var(
 $db-colors-successful-on-bg: var(
 	--db-successful-on-bg-enabled,
 	default-variables.$db-colors-successful-on-bg-enabled
+);
+$db-colors-successful-bg: var(
+	--db-successful-bg-enabled,
+	default-variables.$db-colors-successful-bg-enabled
 );
 $db-colors-successful: var(
 	--db-successful-enabled,

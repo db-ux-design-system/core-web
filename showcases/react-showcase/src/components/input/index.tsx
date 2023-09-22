@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { DBInput } from '../../../../../output/react/src';
 import DefaultComponent from '../index';
 import defaultComponentVariants from '../../../../shared/input.json';
@@ -15,23 +16,34 @@ const getInput = ({
 	iconAfter,
 	icon,
 	children,
-	labelVariant
-}: DBInputProps) => (
-	<DBInput
-		label={label}
-		message={children}
-		placeholder={children}
-		labelVariant={labelVariant}
-		variant={variant}
-		value={value}
-		type={type}
-		minLength={minLength}
-		required={required}
-		disabled={disabled}
-		iconAfter={iconAfter}
-		icon={icon}
-	/>
-);
+	message,
+	labelVariant,
+	readOnly,
+	invalid
+}: DBInputProps) => {
+	const [dynamicValue, setDynamicValue] = useState<string>(value);
+	return (
+		<DBInput
+			label={label}
+			message={message}
+			placeholder={children}
+			labelVariant={labelVariant}
+			variant={variant}
+			value={dynamicValue}
+			type={type}
+			minLength={minLength}
+			required={required}
+			disabled={disabled}
+			readOnly={readOnly}
+			iconAfter={iconAfter}
+			invalid={invalid}
+			icon={icon}
+			onChange={(event) => {
+				setDynamicValue(event.target.value);
+			}}
+		/>
+	);
+};
 
 const InputComponent = () => {
 	return (

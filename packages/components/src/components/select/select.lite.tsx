@@ -33,7 +33,6 @@ export default function DBSelect(props: DBSelectProps) {
 		_messageId: DEFAULT_ID + DEFAULT_MESSAGE_ID_SUFFIX,
 		_placeholderId: DEFAULT_ID + DEFAULT_PLACEHOLDER_ID_SUFFIX,
 		_isValid: undefined,
-		_value: undefined,
 		handleClick: (event: any) => {
 			if (props.onClick) {
 				props.onClick(event);
@@ -47,9 +46,6 @@ export default function DBSelect(props: DBSelectProps) {
 			if (props.change) {
 				props.change(event);
 			}
-
-			// using controlled components for react forces us to using state for value
-			state._value = event.target.value;
 
 			if (event.target?.validity?.valid != state._isValid) {
 				state._isValid = event.target?.validity?.valid;
@@ -94,20 +90,10 @@ export default function DBSelect(props: DBSelectProps) {
 		state._messageId = id + DEFAULT_MESSAGE_ID_SUFFIX;
 		state._placeholderId = id + DEFAULT_PLACEHOLDER_ID_SUFFIX;
 
-		if (props.value) {
-			state._value = props.value;
-		}
-
 		if (props.stylePath) {
 			state.stylePath = props.stylePath;
 		}
 	});
-
-	onUpdate(() => {
-		if (props.value) {
-			state._value = props.value;
-		}
-	}, [props.value]);
 	// jscpd:ignore-end
 
 	return (
@@ -119,7 +105,9 @@ export default function DBSelect(props: DBSelectProps) {
 			<Show when={state.stylePath}>
 				<link rel="stylesheet" href={state.stylePath} />
 			</Show>
-			<label htmlFor={state._id}>{props.label ?? DEFAULT_LABEL}</label>
+			<label htmlFor={state._id}>
+				{props.label ?? DEFAULT_LABEL}
+			</label>
 			<select
 				ref={component}
 				aria-invalid={props.invalid}
@@ -127,7 +115,7 @@ export default function DBSelect(props: DBSelectProps) {
 				disabled={props.disabled}
 				id={state._id}
 				name={props.name}
-				value={props.value || state._value}
+				value={props.value}
 				onClick={(event) => state.handleClick(event)}
 				onChange={(event) => state.handleChange(event)}
 				onBlur={(event) => state.handleBlur(event)}

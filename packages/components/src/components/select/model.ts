@@ -12,6 +12,7 @@ import {
 	GlobalProps,
 	GlobalState,
 	IconProps,
+	OverflowProps,
 	ValidEventProps
 } from '../../shared/model';
 
@@ -64,7 +65,6 @@ export type DBSelectProps = DBSelectDefaultProps &
 export interface DBSelectDefaultState {
 	_placeholderId: string;
 	getOptionLabel: (option: DBSelectOptionType) => string;
-	_value?: any;
 }
 
 export type DBSelectState = DBSelectDefaultState &

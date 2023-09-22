@@ -3,212 +3,12 @@
 		"name": "Tonality",
 		"examples": [
 			{
-				"name": "functional",
+				"name": "Functional",
 				"className": "db-ui-functional",
+				"style": {
+					"width": "300px"
+				},
 				"props": {
-					"label": "Label",
-					"message": "functional",
-					"options": [
-						{
-							"value": "Option 1"
-						},
-						{
-							"value": "Option 2"
-						}
-					]
-				}
-			},
-			{
-				"name": "regular (Default)",
-				"className": "db-ui-regular",
-				"props": {
-					"label": "Label",
-					"message": "regular (Default)",
-					"options": [
-						{
-							"value": "Option 1"
-						},
-						{
-							"value": "Option 2"
-						}
-					]
-				}
-			},
-			{
-				"name": "expressive",
-				"className": "db-ui-expressive",
-				"props": {
-					"label": "Label",
-					"message": "expressive",
-					"options": [
-						{
-							"value": "Option 1"
-						},
-						{
-							"value": "Option 2"
-						}
-					]
-				}
-			}
-		]
-	},
-	{
-		"name": "Variant Label",
-		"examples": [
-			{
-				"name": "Label Above (Default)",
-				"props": {
-					"label": "Label Above",
-					"options": [
-						{
-							"value": "Option 1"
-						},
-						{
-							"value": "Option 2"
-						}
-					]
-				}
-			},
-			{
-				"name": "Floating Label",
-				"props": {
-					"label": "Floating Label",
-					"labelVariant": "floating",
-					"options": [
-						{
-							"value": "Option 1"
-						},
-						{
-							"value": "Option 2"
-						}
-					]
-				}
-			}
-		]
-	},
-	{
-		"name": "Variant",
-		"examples": [
-			{
-				"name": "(Default) Adaptive",
-				"props": {
-					"label": "Label",
-					"message": "(Default) Adaptive",
-					"options": [
-						{
-							"value": "Option 1"
-						},
-						{
-							"value": "Option 2"
-						}
-					]
-				}
-			},
-			{
-				"name": "Informational",
-				"props": {
-					"label": "Label",
-					"message": "Informational",
-					"variant": "informational",
-					"options": [
-						{
-							"value": "Option 1"
-						},
-						{
-							"value": "Option 2"
-						}
-					]
-				}
-			},
-			{
-				"name": "Warning",
-				"props": {
-					"label": "Label",
-					"message": "Warning",
-					"variant": "warning",
-					"options": [
-						{
-							"value": "Option 1"
-						},
-						{
-							"value": "Option 2"
-						}
-					]
-				}
-			},
-			{
-				"name": "Critical",
-				"props": {
-					"label": "Label",
-					"message": "Critical",
-					"variant": "critical",
-					"options": [
-						{
-							"value": "Option 1"
-						},
-						{
-							"value": "Option 2"
-						}
-					]
-				}
-			},
-			{
-				"name": "Successful",
-				"props": {
-					"label": "Label",
-					"message": "Successful",
-					"variant": "successful",
-					"options": [
-						{
-							"value": "Option 1"
-						},
-						{
-							"value": "Option 2"
-						}
-					]
-				}
-			}
-		]
-	},
-	{
-		"name": "States",
-		"examples": [
-			{
-				"name": "Default",
-				"props": {
-					"label": "Label",
-					"message": "Default",
-					"options": [
-						{
-							"value": "Option 1"
-						},
-						{
-							"value": "Option 2"
-						}
-					]
-				}
-			},
-			{
-				"name": "With value",
-				"props": {
-					"label": "Label",
-					"message": "With value",
-					"value": "Option 2",
-					"options": [
-						{
-							"value": "Option 1"
-						},
-						{
-							"value": "Option 2"
-						}
-					]
-				}
-			},
-			{
-				"name": "Required",
-				"props": {
-					"label": "Label",
-					"message": "Required",
 					"options": [
 						{
 							"value": "Option 1"
@@ -217,15 +17,309 @@
 							"value": "Option 2"
 						}
 					],
+					"label": "Label"
+				}
+			},
+			{
+				"name": "(Default) Regular",
+				"className": "db-ui-regular",
+				"style": {
+					"width": "300px"
+				},
+				"props": {
+					"options": [
+						{
+							"value": "Option 1"
+						},
+						{
+							"value": "Option 2"
+						}
+					],
+					"label": "Label"
+				}
+			},
+			{
+				"name": "Expressive",
+				"className": "db-ui-expressive",
+				"style": {
+					"width": "300px"
+				},
+				"props": {
+					"options": [
+						{
+							"value": "Option 1"
+						},
+						{
+							"value": "Option 2"
+						}
+					],
+					"label": "Label"
+				}
+			}
+		]
+	},
+	{
+		"name": "Variant Label",
+		"examples": [
+			{
+				"name": "(Default) Label Above",
+				"style": {
+					"width": "300px"
+				},
+				"props": {
+					"options": [
+						{
+							"value": "Option 1"
+						},
+						{
+							"value": "Option 2"
+						}
+					],
+					"label": "Label"
+				}
+			},
+			{
+				"name": "Floating Label",
+				"style": {
+					"width": "300px"
+				},
+				"props": {
+					"options": [
+						{
+							"value": "Floating Label"
+						},
+						{
+							"value": "Option 2"
+						}
+					],
+					"label": "Label",
+					"labelVariant": "floating",
+					"value": "Floating Label"
+				}
+			}
+		]
+	},
+	{
+		"name": "Variant Helper Message",
+		"examples": [
+			{
+				"name": "(Default) Basic",
+				"style": {
+					"width": "300px"
+				},
+				"props": {
+					"options": [
+						{
+							"value": "Option 1"
+						},
+						{
+							"value": "Option 2"
+						}
+					],
+					"label": "Label"
+				}
+			},
+			{
+				"name": "Helper Message",
+				"style": {
+					"width": "300px"
+				},
+				"props": {
+					"options": [
+						{
+							"value": "Option 1"
+						},
+						{
+							"value": "Option 2"
+						}
+					],
+					"label": "Label",
+					"message": "Helper Message"
+				}
+			}
+		]
+	},
+	{
+		"name": "Semantic",
+		"examples": [
+			{
+				"name": "(Default) Adaptive",
+				"style": {
+					"width": "300px"
+				},
+				"props": {
+					"options": [
+						{
+							"value": "Option 1"
+						},
+						{
+							"value": "Option 2"
+						}
+					],
+					"label": "Label",
+					"message": "Helper Message"
+				}
+			},
+			{
+				"name": "Critical",
+				"style": {
+					"width": "300px"
+				},
+				"props": {
+					"options": [
+						{
+							"value": "Option 1"
+						},
+						{
+							"value": "Option 2"
+						}
+					],
+					"label": "Label",
+					"variant": "critical",
+					"message": "Critical Message"
+				}
+			},
+			{
+				"name": "Informational",
+				"style": {
+					"width": "300px"
+				},
+				"props": {
+					"options": [
+						{
+							"value": "Option 1"
+						},
+						{
+							"value": "Option 2"
+						}
+					],
+					"label": "Label",
+					"variant": "informational",
+					"message": "Informational Message"
+				}
+			},
+			{
+				"name": "Successful",
+				"style": {
+					"width": "300px"
+				},
+				"props": {
+					"options": [
+						{
+							"value": "Option 1"
+						},
+						{
+							"value": "Option 2"
+						}
+					],
+					"label": "Label",
+					"variant": "successful",
+					"message": "Successful Message"
+				}
+			},
+			{
+				"name": "Warning",
+				"style": {
+					"width": "300px"
+				},
+				"props": {
+					"options": [
+						{
+							"value": "Option 1"
+						},
+						{
+							"value": "Option 2"
+						}
+					],
+					"label": "Label",
+					"variant": "warning",
+					"message": "Warning Message"
+				}
+			}
+		]
+	},
+	{
+		"name": "States Label Above",
+		"examples": [
+			{
+				"name": "(Default) Empty",
+				"style": {
+					"width": "300px"
+				},
+				"props": {
+					"options": [
+						{
+							"value": "Option 1"
+						},
+						{
+							"value": "Option 2"
+						}
+					],
+					"label": "Label"
+				}
+			},
+			{
+				"name": "Filled",
+				"style": {
+					"width": "300px"
+				},
+				"props": {
+					"options": [
+						{
+							"value": "Filled"
+						},
+						{
+							"value": "Option 2"
+						}
+					],
+					"label": "Label",
+					"value": "Filled"
+				}
+			},
+			{
+				"name": "Filled - Invalid",
+				"style": {
+					"width": "300px"
+				},
+				"props": {
+					"options": [
+						{
+							"value": "Filled - Invalid"
+						},
+						{
+							"value": "Option 2"
+						}
+					],
+					"label": "Label",
+					"value": "Filled - Invalid",
+					"invalid": true
+				}
+			},
+			{
+				"name": "Filled - Valid",
+				"style": {
+					"width": "300px"
+				},
+				"props": {
+					"options": [
+						{
+							"value": "Filled - Valid"
+						},
+						{
+							"value": "Option 2"
+						}
+					],
+					"label": "Label",
+					"value": "Filled - Valid",
 					"required": true
 				}
 			},
 			{
 				"name": "Disabled",
+				"style": {
+					"width": "300px"
+				},
 				"props": {
-					"label": "Label",
-					"message": "Disabled",
-					"disabled": true,
 					"options": [
 						{
 							"value": "Option 1"
@@ -233,16 +327,22 @@
 						{
 							"value": "Option 2"
 						}
-					]
-				}
-			},
-			{
-				"name": "Disabled + value",
-				"props": {
+					],
 					"label": "Label",
-					"message": "Disabled + value",
-					"disabled": true,
-					"value": "Option 2",
+					"disabled": true
+				}
+			}
+		]
+	},
+	{
+		"name": "States Floating Label",
+		"examples": [
+			{
+				"name": "(Default) Empty",
+				"style": {
+					"width": "300px"
+				},
+				"props": {
 					"options": [
 						{
 							"value": "Option 1"
@@ -250,30 +350,88 @@
 						{
 							"value": "Option 2"
 						}
-					]
+					],
+					"label": "Label",
+					"labelVariant": "floating"
 				}
 			},
 			{
-				"name": "Optgroup",
+				"name": "Filled",
+				"style": {
+					"width": "300px"
+				},
 				"props": {
-					"label": "Label",
-					"message": "Optgroup",
 					"options": [
 						{
-							"value": "Optgroup 1",
-							"options": [
-								{
-									"value": "Option 1"
-								},
-								{
-									"value": "Option 2"
-								}
-							]
+							"value": "Filled"
 						},
 						{
 							"value": "Option 2"
 						}
-					]
+					],
+					"label": "Label",
+					"value": "Filled",
+					"labelVariant": "floating"
+				}
+			},
+			{
+				"name": "Filled - Invalid",
+				"style": {
+					"width": "300px"
+				},
+				"props": {
+					"options": [
+						{
+							"value": "Filled - Invalid"
+						},
+						{
+							"value": "Option 2"
+						}
+					],
+					"label": "Label",
+					"invalid": true,
+					"value": "Filled - Invalid",
+					"labelVariant": "floating"
+				}
+			},
+			{
+				"name": "Filled - Valid",
+				"style": {
+					"width": "300px"
+				},
+				"props": {
+					"options": [
+						{
+							"value": "Filled - Valid"
+						},
+						{
+							"value": "Option 2"
+						}
+					],
+					"label": "Label",
+					"value": "Filled - Valid",
+					"required": true,
+					"labelVariant": "floating"
+				}
+			},
+			{
+				"name": "Disabled",
+				"style": {
+					"width": "300px"
+				},
+				"props": {
+					"options": [
+						{
+							"value": "Disabled"
+						},
+						{
+							"value": "Option 2"
+						}
+					],
+					"label": "Label",
+					"disabled": true,
+					"labelVariant": "floating",
+					"value": "Disabled"
 				}
 			}
 		]
@@ -282,10 +440,11 @@
 		"name": "Content",
 		"examples": [
 			{
-				"name": "Default",
+				"name": "(Default) Text",
+				"style": {
+					"width": "300px"
+				},
 				"props": {
-					"label": "Label",
-					"message": "Default",
 					"options": [
 						{
 							"value": "Option 1"
@@ -293,15 +452,16 @@
 						{
 							"value": "Option 2"
 						}
-					]
+					],
+					"label": "Label"
 				}
 			},
 			{
-				"name": "With Icon",
+				"name": "Text - Leading Icon",
+				"style": {
+					"width": "300px"
+				},
 				"props": {
-					"label": "Label",
-					"message": "With Icon",
-					"icon": "edit",
 					"options": [
 						{
 							"value": "Option 1"
@@ -309,16 +469,39 @@
 						{
 							"value": "Option 2"
 						}
-					]
+					],
+					"label": "Label",
+					"icon": "x_placeholder"
+				}
+			}
+		]
+	},
+	{
+		"name": "Requirement",
+		"examples": [
+			{
+				"name": "(Default) Optional",
+				"style": {
+					"width": "300px"
+				},
+				"props": {
+					"options": [
+						{
+							"value": "Option 1"
+						},
+						{
+							"value": "Option 2"
+						}
+					],
+					"label": "Label"
 				}
 			},
 			{
-				"name": "With Icon + Variant",
+				"name": "Required",
+				"style": {
+					"width": "300px"
+				},
 				"props": {
-					"label": "Label",
-					"message": "With Icon + Variant",
-					"icon": "edit",
-					"variant": "successful",
 					"options": [
 						{
 							"value": "Option 1"
@@ -326,7 +509,28 @@
 						{
 							"value": "Option 2"
 						}
-					]
+					],
+					"label": "Label",
+					"required": true
+				}
+			},
+			{
+				"name": "Required - Filled",
+				"style": {
+					"width": "300px"
+				},
+				"props": {
+					"options": [
+						{
+							"value": "Required - Filled"
+						},
+						{
+							"value": "Option 2"
+						}
+					],
+					"label": "Label",
+					"value": "Required - Filled",
+					"required": true
 				}
 			}
 		]

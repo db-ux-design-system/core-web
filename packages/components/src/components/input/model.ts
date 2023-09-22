@@ -13,7 +13,8 @@ import {
 	IconAfterProps,
 	IconProps,
 	KeyValueType,
-	ValidEventProps
+	ValidEventProps,
+	OverflowProps
 } from '../../shared/model';
 
 export type DBInputDefaultProps = {
@@ -76,4 +77,4 @@ export type DBInputState = DBInputDefaultState &
 	GlobalState &
 	ChangeEventState &
 	FocusEventState &
-	FormState ;
+	FormState;

@@ -10,11 +10,18 @@ $dropdown-icon-transform: rotate(-180deg);
 
 $font-size-height: calc(var(--db-base-font-size) * var(--db-base-line-height));
 $icon-size-sm: var(--db-base-icon-font-size-sm);
+$label-size-height-sm: calc(
+	var(--db-type-body-font-size-sm) * var(--db-type-body-line-height-sm)
+);
 $label-size-height-xs: calc(
 	var(--db-type-body-font-size-xs) * var(--db-type-body-line-height-xs)
 );
 $label-size-height-2xs: calc(
 	var(--db-type-body-font-size-2xs) * var(--db-type-body-line-height-2xs)
+);
+
+$floating-label-size: calc(
+	#{variables.$db-spacing-fixed-3xs} + #{variables.$db-spacing-fixed-2xs} + #{$label-size-height-2xs}
 );
 
 %dropdown-icon {
@@ -32,59 +39,42 @@ $label-size-height-2xs: calc(
 	}
 }
 
-@mixin set-default-form-label($selector) {
-	label {
-		@extend %db-overwrite-font-size-xs;
-		display: flex;
-		align-items: center;
-		padding-block-end: variables.$db-spacing-fixed-xs;
-		pointer-events: none;
-		cursor: text;
-
-		transition: font-size variables.$db-transition-emotional-straight;
-
-		&[data-overflow="true"] {
-			max-inline-size: 25ch;
-			text-overflow: ellipsis;
-			white-space: nowrap;
-			overflow: hidden;
-		}
-	}
-
+@mixin set-floating-label-overwrites($selector) {
 	&[data-label-variant="floating"] {
 		label {
 			@extend %db-overwrite-font-size-md;
 			position: absolute;
+			z-index: 2;
 			inset-block-start: calc(
 				(#{variables.$db-sizing-md} - #{$font-size-height}) / 2
 			);
-			inset-inline-start: #{variables.$db-spacing-fixed-sm};
-			opacity: component.$default-floating-opacity;
+			inset-inline: #{variables.$db-spacing-fixed-sm};
 		}
 
 		// icons
 		&::after,
 		&::before {
-			inset-block-start: calc(50% - 0.5em);
+			inset-block-start: calc(
+				#{variables.$db-sizing-md} / 2 - #{$font-size-height} / 2
+			);
 		}
 
 		[id$="-placeholder"] {
+			@extend %db-overwrite-font-size-sm;
 			inset-block-start: calc(
 				50% - 0.5em + #{variables.$db-spacing-fixed-3xs}
 			);
 		}
 
 		#{$selector} {
+			@extend %db-overwrite-font-size-sm;
 			@include placeholder-content() {
 				transition: none;
 				opacity: 0;
 			}
 
 			@if ($selector == textarea) {
-				padding-block-start: calc(
-					#{variables.$db-spacing-fixed-xs} +
-						#{variables.$db-spacing-fixed-3xs}
-				);
+				padding-block-start: $floating-label-size;
 			} @else {
 				// font-size label which is 2xs + smallest spacing
 				padding-block-start: calc(
@@ -99,7 +89,7 @@ $label-size-height-2xs: calc(
 		&:has(> select option:checked:not([hidden])) {
 			label {
 				@extend %db-overwrite-font-size-2xs;
-				inset-block-start: variables.$db-spacing-fixed-3xs;
+				inset-block-start: variables.$db-spacing-fixed-2xs;
 			}
 
 			#{$selector} {
@@ -118,6 +108,7 @@ $label-size-height-2xs: calc(
 	--db-current-border-weak-color: #{map.get($color-variant, "border")};
 	--db-current-element-color: #{map.get($color-variant, "element")};
 	--db-current-base-color: #{map.get($color-variant, "primary")};
+	--db-current-bg-color: #{map.get($color-variant, "bg")};
 }
 
 @mixin get-validity-color($key: "valid") {
@@ -142,7 +133,6 @@ $label-size-height-2xs: calc(
 }
 
 @mixin get-validity($key: "valid") {
-
 	$boolean: "true";
 	&:has(input:user-#{$key}),
 	&:has(textarea:user-#{$key}),
@@ -173,9 +163,21 @@ $label-size-height-2xs: calc(
 	--db-form-has-before: 0;
 	@extend %db-overwrite-font-size-sm;
 
-	@include set-default-form-label($selector);
+	@include set-floating-label-overwrites($selector);
 	@include get-validity();
 	@include get-validity("invalid");
+
+	// colors
+	@each $name, $colors in color-variants.$component-variants {
+		&[data-variant="#{$name}"] {
+			@include set-current-colors($colors);
+		}
+
+		&[data-variant="#{$name}"] #{$selector},
+		&[data-variant="#{$name}"] [id$="-placeholder"] {
+			color: map.get($colors, "on-bg");
+		}
+	}
 
 	// we use absolute icons
 	position: relative;
@@ -206,11 +208,8 @@ $label-size-height-2xs: calc(
 			opacity: component.$default-placeholder-opacity;
 		}
 
-		&:required {
-			&::after {
-				content: "*";
-				padding-inline-start: variables.$db-spacing-fixed-2xs;
-			}
+		&:is(input, textarea):read-only {
+			background-color: variables.$db-colors-neutral-bg !important;
 		}
 	}
 
@@ -221,17 +220,19 @@ $label-size-height-2xs: calc(
 		}
 	}
 
-	// colors
+	// label
+	label {
+		@extend %db-overwrite-font-size-xs;
+		padding-block-end: variables.$db-spacing-fixed-xs;
+		pointer-events: none;
+		cursor: text;
+		opacity: component.$default-label-opacity;
 
-	@each $name, $colors in color-variants.$component-variants {
-		&[data-variant="#{$name}"] {
-			@include set-current-colors($colors);
-		}
-
-		&[data-variant="#{$name}"] #{$selector},
-		&[data-variant="#{$name}"] [id$="-placeholder"] {
-			color: map.get($colors, "on-bg");
-		}
+		transition: font-size variables.$db-transition-emotional-straight;
+		max-inline-size: 25ch;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+		overflow: hidden;
 	}
 
 	// Helper message
@@ -244,6 +245,17 @@ $label-size-height-2xs: calc(
 		// Decided against cursor: not-allowed, compare to e.g. https://phabricator.wikimedia.org/T121960
 		opacity: component.$default-disabled-opacity;
 		pointer-events: none;
+	}
+
+	// required label
+
+	&:has(#{$selector}:required) {
+		label {
+			&::after {
+				content: "*";
+				padding-inline-start: variables.$db-spacing-fixed-2xs;
+			}
+		}
 	}
 
 	// icons

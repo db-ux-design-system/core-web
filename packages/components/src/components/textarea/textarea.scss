@@ -3,6 +3,7 @@
 @use "@db-ui/foundations/build/scss/helpers/font";
 @use "@db-ui/foundations/build/scss/color/color-variants";
 @use "@db-ui/foundations/build/scss/helpers/component";
+@use "@db-ui/foundations/build/scss/icon/icon-helpers";
 @use "../../styles/form-components";
 
 %resize-textarea {
@@ -22,12 +23,87 @@
 		resize: vertical;
 	}
 }
+$scrollbar-width: 12px;
+
+@mixin get-scrolling-workaround() {
+	border-radius: component.$default-border-radius 0 0 0;
+	position: absolute;
+	content: "";
+	inset-block-start: 0;
+	block-size: form-components.$floating-label-size;
+	margin-inline: 0;
+	inline-size: calc(100% - #{$scrollbar-width} - 1px);
+	inset-inline: 0;
+}
+
+%custom-scrollbar {
+	&::-webkit-scrollbar {
+		@extend %default-transition;
+		z-index: 3;
+		inline-size: $scrollbar-width;
+		background-color: variables.$db-current-bg-color;
+		border-start-end-radius: component.$default-border-radius;
+	}
+
+	&::-webkit-scrollbar-track {
+		@include color-variants.get-variant-bg-color(0);
+		border-end-end-radius: component.$default-border-radius;
+	}
+
+	&::-webkit-scrollbar-thumb {
+		@include color-variants.bg-transparent-interactive(false);
+		@include color-variants.get-variant-bg-color(0.24);
+
+		&:hover {
+			@include color-variants.get-variant-bg-color(0.32);
+		}
+
+		&:active {
+			@include color-variants.get-variant-bg-color(0.4);
+		}
+	}
+
+	/* Buttons */
+	&::-webkit-scrollbar-button:single-button {
+		@include color-variants.bg-transparent-interactive(false);
+		background-size: $scrollbar-width;
+		background-repeat: no-repeat;
+		background-position: center;
+		block-size: form-components.$floating-label-size;
+	}
+	/* Up */
+	&::-webkit-scrollbar-button:single-button:vertical:decrement {
+		background-image: url("data:image/svg+xml;base64,PHN2ZyBpZD0iaWNvbiIgaGVpZ2h0PSIxNiIgdmlld0JveD0iMCAwIDE2IDE2IiB3aWR0aD0iMTYiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHBhdGggZD0ibTEwLjQ3MiA4LjY5Ni0zLjUzMiAzLjUzNGEuOTk4Ljk5OCAwIDEgMSAtMS40MTMtMS40MTNsMi44MjUtMi44MjUtMi44MjUtMi44MjVhLjk5OC45OTggMCAxIDEgMS40MTMtMS40MTNsMy41MzIgMy41MzJhLjk5OS45OTkgMCAwIDEgMCAxLjQxMnoiIGZpbGw9InZhcigtLWRiLWljb24tY29sb3IsIGN1cnJlbnRDb2xvcikiIGZpbGwtcnVsZT0iZXZlbm9kZCIgdHJhbnNmb3JtPSJtYXRyaXgoMCAtMSAtMSAwIDE1Ljk5IDE1Ljk5KSIvPjwvc3ZnPg0K");
+	}
+
+	/* Down */
+	&::-webkit-scrollbar-button:single-button:vertical:increment {
+		background-image: url("data:image/svg+xml;base64,PHN2ZyBpZD0iaWNvbiIgaGVpZ2h0PSIxNiIgdmlld0JveD0iMCAwIDE2IDE2IiB3aWR0aD0iMTYiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHBhdGggZD0ibTEwLjQ3MiA4LjY5Ni0zLjUzMiAzLjUzNGEuOTk4Ljk5OCAwIDEgMSAtMS40MTMtMS40MTNsMi44MjUtMi44MjUtMi44MjUtMi44MjVhLjk5OC45OTggMCAxIDEgMS40MTMtMS40MTNsMy41MzIgMy41MzJhLjk5OS45OTkgMCAwIDEgMCAxLjQxMnoiIGZpbGw9InZhcigtLWRiLWljb24tY29sb3IsIGN1cnJlbnRDb2xvcikiIGZpbGwtcnVsZT0iZXZlbm9kZCIgdHJhbnNmb3JtPSJtYXRyaXgoMCAxIC0xIDAgMTUuOTkxIC0uMDA5KSIvPjwvc3ZnPg0K");
+	}
+
+	&::-webkit-resizer {
+		@include color-variants.get-variant-bg-color(0);
+		background-size: $scrollbar-width;
+		background-repeat: no-repeat;
+		background-position: center;
+		background-image: url("data:image/svg+xml;base64,PHN2ZyBpZD0iaWNvbiIgaGVpZ2h0PSIyMCIgdmlld0JveD0iMCAwIDIwIDIwIiB3aWR0aD0iMjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHBhdGggZD0ibTcgMTJjLjUxMjgzNTg0IDAgMSAuNDIxNjY1NyAxIDF2NGMwIC41MTI4MzU4LS40MDc3MzY0OCAxLTEgMWgtNGMtLjQ5MTg3ODUxIDAtMS0uMzkzNTA1Ni0xLTF2LTRjMC0uNTEyODM1OC40MTk1NTA5LTEgMS0xem05LTEwYzEuMDU0MzYxOCAwIDIgLjg2MzcwOTk2IDIgMnYxMGMwIDEuMDU0MzYxOC0uODY5Mjg3MyAyLTIgMmgtNS41Yy0uNTUyMjg0NzUgMC0xLS40NDc3MTUzLTEtMSAwLS41MTI4MzU4LjQxMTE0NTUtMSAxLTFoNS41di0xMGgtMTB2NS41YzAgLjU1MjI4NDctLjQ0NzcxNTI1IDEtMSAxLS41MTI4MzU4NCAwLTEtLjQyNzUyOTYtMS0xdi01LjVjMC0xLjA1NDM2MTguODM1MjM3ODctMiAyLTJ6bS0xMCAxMmgtMnYyaDJ6IiBmaWxsPSJ2YXIoLS1kYi1pY29uLWNvbG9yLCBjdXJyZW50Q29sb3IpIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiLz48L3N2Zz4NCg==");
+		border-end-end-radius: calc(#{component.$default-border-radius});
+	}
+
+	&::-webkit-scrollbar-corner {
+		@extend %default-transition;
+		background-color: variables.$db-current-bg-color;
+		border-end-end-radius: calc(#{component.$default-border-radius});
+	}
+}
 
 .db-textarea {
 	@include form-components.set-default-form-component(textarea);
 
 	textarea {
 		@extend %resize-textarea;
+		@extend %custom-scrollbar;
+		cursor: auto;
 
 		// we don't have icons in textarea so we can overwrite it here
 		padding-block: variables.$db-spacing-fixed-xs
@@ -35,6 +111,25 @@
 	}
 
 	&[data-label-variant="floating"] {
-		// TODO: If we have floating + scrolling the text will scroll over the label, we need to discuss this
+		&:has(textarea:focus-within),
+		&:has(textarea:not(:placeholder-shown)) {
+			textarea {
+				overflow-y: scroll;
+			}
+
+			&::before {
+				@extend %default-transition;
+				@include get-scrolling-workaround();
+				background-color: variables.$db-current-bg-color;
+			}
+
+			&::after {
+				@extend %component-border;
+				@include get-scrolling-workaround();
+				z-index: 1;
+				border-block-end: none;
+				border-inline-end: none;
+			}
+		}
 	}
 }
