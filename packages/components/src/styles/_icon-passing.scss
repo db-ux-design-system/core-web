@@ -11,7 +11,7 @@
 			z-index: 1;
 		}
 
-		a:not(:has(button)),
+		a,
 		button,
 		label {
 			padding-inline-start: calc(
