@@ -1,15 +1,17 @@
 @use "@db-ui/foundations/build/scss/variables";
-@use "@db-ui/foundations/build/scss/helpers/component";
-@use "@db-ui/foundations/build/scss/color/color-variants";
+@use "../../styles/component";
+@use "@db-ui/foundations/build/scss/color/variants";
+@use "@db-ui/foundations/build/scss/screen-sizes";
 @use "@db-ui/foundations/build/scss/helpers/functions";
 @use "@db-ui/foundations/build/scss/animation/animations";
 @use "@db-ui/foundations/build/scss/icon/icon-helpers";
+@use "@db-ui/foundations/build/scss/color/colors";
 @use "../../styles/db-puls";
 @use "../../styles/icon-passing";
 
 %sub-navi-handler-desktop {
 	// show sub-navigation on hover
-	@include component.screen("md") {
+	@include screen-sizes.screen("md") {
 		&:hover,
 		&:focus-visible {
 			& ~ .db-sub-navigation {
@@ -45,7 +47,7 @@
 	@extend %default-interactive-component;
 	@extend %transparent-border;
 
-	@include color-variants.get-variant-bg-color(0);
+	@include variants.get-variant-bg-color(0);
 	cursor: pointer;
 	inline-size: 100%;
 	display: inline-flex;
@@ -61,11 +63,11 @@
 	&:has(~ .db-sub-navigation:hover),
 	&:has(~ .db-sub-navigation:focus-visible),
 	&:has(~ .db-sub-navigation:focus-within) {
-		@include color-variants.get-variant-bg-color(0.16);
+		@include variants.get-variant-bg-color(0.16);
 	}
 
 	&:active {
-		@include color-variants.get-variant-bg-color(0.24);
+		@include variants.get-variant-bg-color(0.24);
 	}
 
 	&::after {
@@ -89,7 +91,7 @@
 	}
 
 	.db-navigation-item-expand-button {
-		@include component.screen("md", "max") {
+		@include screen-sizes.screen("md", "max") {
 			@include sub-navi-handler-mobile();
 		}
 
@@ -148,21 +150,21 @@
 	flex-direction: column;
 	z-index: 70;
 	inset-inline-start: 0;
-	background-color: variables.$db-colors-neutral-bg;
+	background-color: colors.$db-neutral-bg;
 
 	visibility: hidden;
 
-	@include component.screen("md", "max") {
+	@include screen-sizes.screen("md", "max") {
 		@include sub-navigation-mobile();
 	}
 
-	@include component.screen("md") {
+	@include screen-sizes.screen("md") {
 		.db-mobile-navigation-back {
 			display: none;
 		}
 	}
 
-	@include component.screen("md") {
+	@include screen-sizes.screen("md") {
 		border-radius: component.$default-card-border-radius;
 		box-shadow: variables.$db-elevation-4;
 		padding: variables.$db-spacing-fixed-sm;
@@ -231,7 +233,7 @@
 	@include functions.divider("bottom");
 	display: flex;
 	font-weight: normal;
-	background-color: variables.$db-colors-neutral-bg;
+	background-color: colors.$db-neutral-bg;
 	padding-block-end: variables.$db-spacing-fixed-md;
 	margin-block-end: variables.$db-spacing-fixed-md;
 }

@@ -1,10 +1,10 @@
 @use "sass:map";
 @use "@db-ui/foundations/build/scss/variables";
-@use "@db-ui/foundations/build/scss/helpers/component";
-@use "@db-ui/foundations/build/scss/helpers/font";
+@use "../../styles/component";
+@use "@db-ui/foundations/build/scss/tonality/font";
 @use "@db-ui/foundations/build/scss/icon/icon-helpers";
 @use "@db-ui/foundations/build/scss/helpers/functions";
-@use "@db-ui/foundations/build/scss/color/color-variants";
+@use "@db-ui/foundations/build/scss/color/variants";
 @use "../../styles/button-components";
 @use "../../styles/tag-components";
 @use "../../styles/icon-passing";
@@ -90,7 +90,7 @@
 		&:checked {
 			&[type="checkbox"] {
 				// overwrite for checkbox
-				@include color-variants.bg-transparent-interactive();
+				@include variants.bg-transparent-interactive();
 				color: var(--db-current-color);
 			}
 

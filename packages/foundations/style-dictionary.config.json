@@ -7,7 +7,7 @@
 			"prefix": "db",
 			"files": [
 				{
-					"destination": "default-variables.css",
+					"destination": "default-theme.css",
 					"format": "css/variables"
 				}
 			]
@@ -18,7 +18,7 @@
 			"prefix": "db",
 			"files": [
 				{
-					"destination": "_default-variables.scss",
+					"destination": "_default-theme.scss",
 					"format": "scss/variables"
 				}
 			]
@@ -38,38 +38,8 @@
 			"buildPath": "build/scss/",
 			"files": [
 				{
-					"destination": "_typography-placeholder.scss",
+					"destination": "tonality/_icon-typography-placeholder.scss",
 					"format": "db-core-typography-placeholder"
-				}
-			]
-		},
-		"db-core-scaling-placeholder": {
-			"transformGroup": "scss",
-			"buildPath": "build/scss/",
-			"files": [
-				{
-					"destination": "_scaling-placeholder.scss",
-					"format": "db-core-scaling-placeholder"
-				}
-			]
-		},
-		"db-core-color-placeholder": {
-			"transformGroup": "scss",
-			"buildPath": "build/scss/",
-			"files": [
-				{
-					"destination": "_color-placeholder.scss",
-					"format": "db-core-color-placeholder"
-				}
-			]
-		},
-		"db-core-color-classes": {
-			"transformGroup": "scss",
-			"buildPath": "build/scss/",
-			"files": [
-				{
-					"destination": "color-classes.scss",
-					"format": "db-core-color-classes"
 				}
 			]
 		},

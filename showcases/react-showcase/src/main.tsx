@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { HashRouter, Navigate, Route, Routes } from 'react-router-dom';
 import '@db-ui/components/build/styles/db-ui-42-rollup.css';
-import '@db-ui/foundations/build/css/color-classes.css';
+import '@db-ui/foundations/build/css/color/classes.css';
 import '../../showcase-styles.css';
 import App from './app';
 import { NAVIGATION_ITEMS } from './utils/navigation-item';

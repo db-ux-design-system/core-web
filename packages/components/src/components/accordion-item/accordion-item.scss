@@ -1,7 +1,7 @@
 @use "@db-ui/foundations/build/scss/variables";
 @use "@db-ui/foundations/build/scss/helpers/functions";
-@use "@db-ui/foundations/build/scss/helpers/component";
-@use "@db-ui/foundations/build/scss/color/color-variants";
+@use "../../styles/component";
+@use "@db-ui/foundations/build/scss/color/variants";
 @use "@db-ui/foundations/build/scss/animation/animations";
 @use "../../styles/form-components";
 
@@ -34,7 +34,7 @@
 
 	summary {
 		@extend %dropdown-icon;
-		@include color-variants.bg-transparent-interactive(false);
+		@include variants.bg-transparent-interactive(false);
 
 		list-style: none;
 		display: flex;

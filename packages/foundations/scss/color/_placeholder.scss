@@ -1,0 +1,130 @@
+@use "sass:string";
+@use "sass:color";
+@use "colors";
+
+// TODO: we can remove string.unquote when we include theme-builder output correctly
+
+@each $variant in colors.$variants {
+	@if ($variant!= "neutral-strong") {
+		%db-#{$variant}-component {
+			--db-current-color: #{string.unquote(
+					"var(--db-#{$variant}-on-enabled, var(--db-colors-#{$variant}-on-enabled))"
+				)};
+			color: var(--db-current-color);
+			background-color: #{string.unquote(
+					"var(--db-#{$variant}-enabled, var(--db-colors-#{$variant}-enabled))"
+				)};
+		}
+
+		%db-#{$variant}-component-ia {
+			@extend %db-#{$variant}-component;
+
+			&:enabled {
+				&:hover {
+					background-color: #{string.unquote(
+							"var(--db-#{$variant}-hover, var(--db-colors-#{$variant}-hover))"
+						)};
+				}
+
+				&:active {
+					background-color: #{string.unquote(
+							"var(--db-#{$variant}-pressed, var(--db-colors-#{$variant}-pressed))"
+						)};
+				}
+			}
+		}
+	}
+
+	$temp-workaround: "";
+	@if ($variant == "neutral") {
+		$temp-workaround: "-0";
+	}
+	@if ($variant == "neutral-strong") {
+		$temp-workaround: "-4";
+	}
+
+	%db-bg-#{$variant}-variables {
+		--db-current-base-color: #{string.unquote(
+				"var(--db-#{$variant}-enabled, var(--db-colors-#{$variant}-enabled))"
+			)};
+		--db-current-color: #{string.unquote(
+				"var(--db-#{$variant}-on-bg-enabled, var(--db-colors-#{$variant}-on-bg-enabled))"
+			)};
+		--db-current-bg-color: color-mix(
+			in srgb,
+			transparent var(--db-bg-transparent, 0%),
+			#{string.unquote(
+					"var(--db-#{$variant}-bg-enabled, var(--db-colors-#{$variant}-bg#{$temp-workaround}-enabled))"
+				)}
+		);
+		--db-current-element-color: #{string.unquote(
+				"var(--db-#{$variant}-element-enabled, var(--db-colors-#{$variant}-element-enabled))"
+			)};
+		--db-current-border-color: #{string.unquote(
+				"var(--db-#{$variant}-border-enabled, var(--db-colors-#{$variant}-border-enabled))"
+			)};
+		--db-current-border-weak-color: #{string.unquote(
+				"var(--db-#{$variant}-border-weak-enabled, var(--db-colors-#{$variant}-border-weak-enabled))"
+			)};
+	}
+
+	%db-bg-#{$variant} {
+		@extend %db-bg-#{$variant}-variables;
+
+		@if ($variant == "neutral-strong") {
+			--db-current-bg-color: color-mix(
+				in srgb,
+				transparent var(--db-bg-transparent, 0%),
+				#{string.unquote(
+						"var(--db-#{$variant}-bg-strong-enabled, var(--db-colors-#{$variant}-bg-4-enabled))"
+					)}
+			);
+		}
+
+		background-color: var(--db-current-bg-color);
+		color: var(--db-current-color);
+
+		&-transparent {
+			&-full,
+			&-semi {
+				color: #{string.unquote(
+						"var(--db-#{$variant}-on-bg-enabled, var(--db-colors-#{$variant}-on-bg-enabled))"
+					)};
+				@extend %db-bg-#{$variant}-variables;
+				background-color: color-mix(
+					in srgb,
+					transparent var(--db-bg-transparent, 100%),
+					var(--db-current-base-color)
+				);
+			}
+
+			&-semi {
+				background-color: color-mix(
+					in srgb,
+					transparent var(--db-bg-transparent, 92%),
+					var(--db-current-base-color)
+				);
+			}
+		}
+
+		&-ia,
+		&[data-variant="interactive"] {
+			@extend %db-bg-#{$variant};
+			&:enabled {
+				&:hover {
+					--db-bg-transparent: 84%;
+				}
+				&:active {
+					--db-bg-transparent: 68%;
+				}
+			}
+		}
+
+		%weak {
+			--db-current-color: #{string.unquote(
+					"var(--db-#{$variant}-on-bg-weak-enabled, var(--db-colors-#{$variant}-on-bg-weak-enabled))"
+				)};
+			color: var(--db-current-color);
+		}
+	}
+}

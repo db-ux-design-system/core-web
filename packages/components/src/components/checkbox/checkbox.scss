@@ -1,14 +1,14 @@
 @use "@db-ui/foundations/build/scss/variables";
 @use "@db-ui/foundations/build/scss/icon/icon-helpers";
-@use "@db-ui/foundations/build/scss/tonality";
-@use "@db-ui/foundations/build/scss/helpers/component";
-@use "@db-ui/foundations/build/scss/color/color-variants";
+@use "@db-ui/foundations/build/scss/tonality/font";
+@use "../../styles/component";
+@use "@db-ui/foundations/build/scss/color/variants";
 
 // TODO: Move this to shared style
 $font-size-height: calc(var(--db-base-font-size) * var(--db-base-line-height));
 
 .db-checkbox {
-	@include color-variants.bg-transparent-interactive();
+	@include variants.bg-transparent-interactive();
 
 	align-content: center;
 

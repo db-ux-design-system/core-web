@@ -1,5 +1,7 @@
 @use "@db-ui/foundations/build/scss/variables";
-@use "@db-ui/foundations/build/scss/helpers/component";
+@use "@db-ui/foundations/build/scss/screen-sizes";
+@use "@db-ui/foundations/build/scss/color/colors";
+@use "../../styles/component";
 @use "../../styles/db-puls";
 @use "../../styles/form-components";
 
@@ -7,7 +9,7 @@
 	-webkit-tap-highlight-color: transparent; /* for removing the highlight */
 	inline-size: 100%;
 
-	@include component.screen("md") {
+	@include screen-sizes.screen("md") {
 		-webkit-tap-highlight-color: inherit;
 		inline-size: auto;
 	}
@@ -19,7 +21,7 @@
 		margin: 0;
 		gap: variables.$db-spacing-fixed-sm;
 
-		@include component.screen("md") {
+		@include screen-sizes.screen("md") {
 			flex-direction: row;
 		}
 
@@ -27,7 +29,7 @@
 			.db-navigation-item-expand-button:is(button),
 			.db-navigation-item-expand-button > button {
 				// overwrite for main-navigation items
-				@include component.screen("md") {
+				@include screen-sizes.screen("md") {
 					&::after {
 						--db-icon-margin-start: #{variables.$db-spacing-fixed-sm};
 						--db-icon-after: "expand_more";
@@ -50,7 +52,7 @@
 			& > menu {
 				.db-navigation-item-expand-button:is(button),
 				.db-navigation-item-expand-button > button {
-					@include component.screen("md") {
+					@include screen-sizes.screen("md") {
 						&::after {
 							--db-icon-after: "chevron_right";
 							--db-icon-margin-start: auto;

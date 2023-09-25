@@ -1,9 +1,10 @@
 @use "sass:map";
 @use "@db-ui/foundations/build/scss/variables";
-@use "@db-ui/foundations/build/scss/color-placeholder";
-@use "@db-ui/foundations/build/scss/helpers/component";
-@use "@db-ui/foundations/build/scss/color/color-variants";
+@use "@db-ui/foundations/build/scss/color/placeholder";
+@use "../../styles/component";
+@use "@db-ui/foundations/build/scss/color/variants";
 @use "@db-ui/foundations/build/scss/icon/icon-helpers";
+@use "@db-ui/foundations/build/scss/screen-sizes";
 
 %grid-layout {
 	grid-template-areas: "icon content close";
@@ -13,7 +14,7 @@
 		grid-template-areas: "icon content link close";
 		grid-template-columns: min-content 1fr min-content min-content;
 
-		@include component.screen("sm", "max") {
+		@include screen-sizes.screen("sm", "max") {
 			grid-template-columns: min-content 1fr min-content;
 			grid-template-areas:
 				"icon content close"
@@ -27,7 +28,7 @@
 			"icon head head close"
 			"icon content content content";
 
-		@include component.screen("sm", "max") {
+		@include screen-sizes.screen("sm", "max") {
 			grid-template-columns: min-content 1fr min-content;
 			grid-template-areas:
 				"icon head close"
@@ -40,7 +41,7 @@
 				"icon head head link close"
 				"icon content content content content";
 
-			@include component.screen("sm", "max") {
+			@include screen-sizes.screen("sm", "max") {
 				grid-template-columns: min-content 1fr min-content;
 				grid-template-areas:
 					"icon head close"
@@ -103,7 +104,7 @@
 		}
 	}
 
-	@each $name, $colors in color-variants.$component-variants {
+	@each $name, $colors in variants.$component-variants {
 		&[data-variant="#{$name}"] {
 			@if ($name == "critical") {
 				@extend %db-bg-critical;

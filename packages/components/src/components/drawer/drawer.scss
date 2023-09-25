@@ -2,8 +2,9 @@
 @use "./../../styles/dialog-init";
 @use "@db-ui/foundations/build/scss/variables";
 @use "@db-ui/foundations/build/scss/helpers/functions";
-@use "@db-ui/foundations/build/scss/helpers/component";
+@use "../../styles/component";
 @use "@db-ui/foundations/build/scss/animation/animations";
+@use "@db-ui/foundations/build/scss/color/colors";
 
 %direction-right {
 	inset-inline: auto 0;
@@ -110,7 +111,7 @@ $spacings: (
 		@extend %spacing-drawer;
 		display: flex;
 		flex-direction: column;
-		background-color: variables.$db-colors-neutral-bg;
+		background-color: colors.$db-neutral-bg;
 		block-size: 100%;
 		inline-size: 100%;
 		position: fixed;

@@ -1,11 +1,12 @@
 @use "@db-ui/foundations/build/scss/variables";
 @use "@db-ui/foundations/build/scss/screen-sizes";
 @use "@db-ui/foundations/build/scss/helpers/functions";
-@use "@db-ui/foundations/build/scss/helpers/component";
-@use "@db-ui/foundations/build/scss/tonality";
+@use "../../styles/component";
+@use "@db-ui/foundations/build/scss/tonality/tonalities";
+@use "@db-ui/foundations/build/scss/color/colors";
 
 .db-header {
-	background-color: variables.$db-colors-neutral-bg;
+	background-color: colors.$db-neutral-bg;
 	box-shadow: variables.$db-elevation-4;
 	display: flex;
 	flex-direction: column;
@@ -14,7 +15,7 @@
 
 	min-block-size: component.$default-mobile-header-height;
 
-	@include component.screen("md") {
+	@include screen-sizes.screen("md") {
 		--db-drawer-max-width: #{screen-sizes.$db-screen-sm};
 	}
 
@@ -39,7 +40,7 @@
 	inline-size: 100%;
 	align-items: center;
 
-	@include component.screen("md") {
+	@include screen-sizes.screen("md") {
 		padding: variables.$db-spacing-fixed-md;
 	}
 }
@@ -55,7 +56,7 @@
 
 	padding: variables.$db-spacing-fixed-md;
 
-	@include component.screen("md") {
+	@include screen-sizes.screen("md") {
 		padding: variables.$db-spacing-fixed-xs variables.$db-spacing-fixed-md;
 		margin: 0;
 		flex-direction: row;
@@ -87,14 +88,14 @@
 }
 
 .db-header-action-container:has(> .db-header-action-bar:empty) {
-	@include component.screen("md") {
+	@include screen-sizes.screen("md") {
 		display: none;
 	}
 }
 
 .db-header-brand-container {
 	min-block-size: variables.$db-sizing-md;
-	@include component.screen("md") {
+	@include screen-sizes.screen("md") {
 		@include functions.divider("left", "after");
 
 		&::after {
@@ -112,7 +113,7 @@
 		position: inherit;
 		block-size: 100%;
 
-		@include component.screen("md") {
+		@include screen-sizes.screen("md") {
 			margin-inline-end: variables.$db-spacing-fixed-sm;
 		}
 	}
@@ -136,7 +137,7 @@
 	flex-shrink: 0;
 	padding-block-start: variables.$db-spacing-fixed-xs;
 
-	@include component.screen("md") {
+	@include screen-sizes.screen("md") {
 		&::before {
 			display: none;
 		}
@@ -162,7 +163,7 @@
 	gap: variables.$db-spacing-fixed-sm;
 	padding-inline: variables.$db-spacing-fixed-md;
 
-	@include component.screen("md") {
+	@include screen-sizes.screen("md") {
 		gap: variables.$db-spacing-fixed-xs;
 		padding: 0;
 	}
@@ -187,13 +188,13 @@
 [data-hide-on="mobile"] {
 	display: none;
 
-	@include component.screen("md") {
+	@include screen-sizes.screen("md") {
 		display: inherit;
 	}
 }
 
 [data-hide-on="desktop"] {
-	@include component.screen("md") {
+	@include screen-sizes.screen("md") {
 		display: none;
 	}
 }

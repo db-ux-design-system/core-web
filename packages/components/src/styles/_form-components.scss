@@ -1,9 +1,9 @@
 @use "sass:map";
 @use "@db-ui/foundations/build/scss/icon/icon-helpers";
-@use "@db-ui/foundations/build/scss/helpers/font";
+@use "@db-ui/foundations/build/scss/tonality/font";
 @use "@db-ui/foundations/build/scss/variables";
-@use "@db-ui/foundations/build/scss/helpers/component";
-@use "@db-ui/foundations/build/scss/color/color-variants";
+@use "component";
+@use "@db-ui/foundations/build/scss/color/variants";
 
 $dropdown-icon-transition: transform variables.$db-transition-emotional-straight;
 $dropdown-icon-transform: rotate(-180deg);
@@ -65,8 +65,8 @@ $dropdown-icon-transform: rotate(-180deg);
 	}
 }
 
-@mixin get-input-color-variants() {
-	@each $name, $colors in color-variants.$component-variants {
+@mixin get-input-variants() {
+	@each $name, $colors in variants.$component-variants {
 		&[data-variant="#{$name}"] {
 			--db-current-border-color: #{map.get($colors, "border")};
 		}

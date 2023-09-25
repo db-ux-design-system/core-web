@@ -1,11 +1,11 @@
 @use "@db-ui/foundations/build/scss/variables";
 @use "@db-ui/foundations/build/scss/screen-sizes";
-@use "@db-ui/foundations/build/scss/helpers/component";
+@use "../../styles/component";
 
 .db-section {
 	padding-inline: variables.$db-spacing-fixed-md;
 
-	@include component.screen("md") {
+	@include screen-sizes.screen("md") {
 		padding-inline: variables.$db-spacing-fixed-md;
 	}
 

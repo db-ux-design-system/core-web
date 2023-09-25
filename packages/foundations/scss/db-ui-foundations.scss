@@ -1,7 +1,6 @@
-@use "color-placeholder";
-@use "helpers/component";
-@use "tonality";
-
+@use "color/placeholder";
+@use "animation/transitions";
+@use "tonality/tonalities";
 @forward "@csstools/normalize.css/normalize";
 @forward "init";
 

@@ -1,12 +1,13 @@
 @use "sass:map";
-@use "@db-ui/foundations/build/scss/color/color-variants";
-@use "@db-ui/foundations/build/scss/helpers/component";
+@use "@db-ui/foundations/build/scss/color/variants";
+@use "component";
 @use "@db-ui/foundations/build/scss/variables";
+@use "@db-ui/foundations/build/scss/color/colors";
 
 $interactive-selectors: "input, a, button";
 
 @mixin overwrite-strong() {
-	--db-current-color: #{variables.$db-colors-neutral-bg};
+	--db-current-color: #{colors.$db-neutral-bg};
 	color: var(--db-current-color);
 }
 
@@ -18,7 +19,7 @@ $interactive-selectors: "input, a, button";
 		@include overwrite-strong();
 	}
 
-	@each $name, $colors in color-variants.$component-variants {
+	@each $name, $colors in variants.$component-variants {
 		&[data-variant="#{$name}"] {
 			@if ($name == "critical") {
 				@extend %db-bg-critical;
@@ -77,7 +78,7 @@ $interactive-selectors: "input, a, button";
 		@extend %db-bg-neutral-strong-ia;
 	}
 
-	@each $name, $colors in color-variants.$component-variants {
+	@each $name, $colors in variants.$component-variants {
 		&[data-variant="#{$name}"] {
 			@include interactive-selectors() {
 				@if ($name == "critical") {
@@ -100,7 +101,7 @@ $interactive-selectors: "input, a, button";
 			@extend %db-neutral-component-ia;
 		}
 
-		@each $name, $colors in color-variants.$component-variants {
+		@each $name, $colors in variants.$component-variants {
 			&[data-variant="#{$name}"] {
 				@include interactive-selectors() {
 					@if ($name == "critical") {

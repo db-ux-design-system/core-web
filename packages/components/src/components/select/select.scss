@@ -1,10 +1,10 @@
 @use "sass:map";
 @use "@db-ui/foundations/build/scss/variables";
-@use "@db-ui/foundations/build/scss/color-placeholder";
-@use "@db-ui/foundations/build/scss/helpers/component";
-@use "@db-ui/foundations/build/scss/color/color-variants";
+@use "@db-ui/foundations/build/scss/color/placeholder";
+@use "../../styles/component";
+@use "@db-ui/foundations/build/scss/color/variants";
 @use "@db-ui/foundations/build/scss/icon/icon-helpers";
-@use "@db-ui/foundations/build/scss/helpers/font";
+@use "@db-ui/foundations/build/scss/tonality/font";
 @use "../../styles/form-components";
 
 %select-icon {
@@ -39,7 +39,7 @@
 	@extend %disabled-form-element;
 	@extend %required-form-element;
 
-	@include form-components.get-input-color-variants();
+	@include form-components.get-input-variants();
 
 	position: relative;
 	min-inline-size: calc(
@@ -54,7 +54,7 @@
 	&[data-variant="adaptive"],
 	&:not([data-variant]) {
 		select {
-			@include color-variants.get-variant-bg-color(0.08);
+			@include variants.get-variant-bg-color(0.08);
 		}
 	}
 
@@ -62,7 +62,7 @@
 		@extend %default-interactive-component;
 		@extend %component-border;
 
-		@include color-variants.bg-transparent-hover();
+		@include variants.bg-transparent-hover();
 
 		border-radius: component.$default-border-radius;
 

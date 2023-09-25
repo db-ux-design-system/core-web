@@ -1,12 +1,13 @@
 @use "@db-ui/foundations/build/scss/variables";
-@use "@db-ui/foundations/build/scss/color/color-variants";
-@use "@db-ui/foundations/build/scss/helpers/component";
+@use "@db-ui/foundations/build/scss/color/variants";
+@use "@db-ui/foundations/build/scss/color/colors";
+@use "../../styles/component";
 
 .db-card {
 	@extend %color-variants;
 	@extend %default-card;
 
-	background-color: variables.$db-colors-neutral-bg;
+	background-color: colors.$db-neutral-bg;
 
 	display: flex;
 	flex-direction: column;

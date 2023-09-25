@@ -1,10 +1,12 @@
 @charset "utf-8";
 
-@use "@db-ui/foundations/build/scss/helpers/font";
+@use "@db-ui/foundations/build/scss/tonality/font";
 @use "@db-ui/foundations/build/scss/variables";
+@use "@db-ui/foundations/build/scss/animation/transitions";
 @use "@db-ui/foundations/build/scss/helpers/functions";
 @use "@db-ui/foundations/build/scss/icon/icon-helpers";
-@use "@db-ui/foundations/build/scss/helpers/component";
+@use "@db-ui/foundations/build/scss/color/colors";
+@use "../../styles/component";
 
 %db-link-height {
 	display: inline-block;
@@ -28,7 +30,7 @@
 		color: color-mix(
 			in srgb,
 			transparent 25%,
-			variables.$db-colors-neutral-on-bg
+			colors.$db-neutral-on-bg
 		);
 	}
 
@@ -36,7 +38,7 @@
 		color: color-mix(
 			in srgb,
 			transparent 50%,
-			variables.$db-colors-neutral-on-bg
+			colors.$db-neutral-on-bg
 		);
 	}
 
@@ -81,15 +83,15 @@
 
 	// We couldn't extend any existing SCSS placeholders, as this is a special construct
 	&[data-variant="primary"] {
-		--db-current-color: #{variables.$db-colors-primary-text};
+		--db-current-color: #{colors.$db-primary-text};
 		color: var(--db-current-color);
 
 		&:hover {
-			--db-current-color: #{variables.$db-colors-primary-text-hover};
+			--db-current-color: #{colors.$db-primary-text-hover};
 		}
 
 		&:active {
-			--db-current-color: #{variables.$db-colors-primary-text-pressed};
+			--db-current-color: #{colors.$db-primary-text-pressed};
 		}
 	}
 

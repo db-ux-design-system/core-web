@@ -1,0 +1,150 @@
+@use "../placeholder";
+
+// TODO: use @each here
+
+.db-bg-informational {
+	@extend %db-bg-informational;
+
+	&-transparent-full {
+		@extend %db-bg-informational-transparent-full;
+	}
+
+	&-transparent-semi {
+		@extend %db-bg-informational-transparent-semi;
+	}
+
+	&-ia,
+	&[data-variant="interactive"] {
+		@extend %db-bg-informational-ia;
+	}
+
+	.db-weak {
+		@extend %weak;
+	}
+}
+
+.db-bg-primary {
+	@extend %db-bg-primary;
+
+	&-transparent-full {
+		@extend %db-bg-primary-transparent-full;
+	}
+
+	&-transparent-semi {
+		@extend %db-bg-primary-transparent-semi;
+	}
+
+	&-ia,
+	&[data-variant="interactive"] {
+		@extend %db-bg-primary-ia;
+	}
+
+	.db-weak {
+		@extend %weak;
+	}
+}
+
+.db-bg-warning {
+	@extend %db-bg-warning;
+
+	&-transparent-full {
+		@extend %db-bg-warning-transparent-full;
+	}
+
+	&-transparent-semi {
+		@extend %db-bg-warning-transparent-semi;
+	}
+
+	&-ia,
+	&[data-variant="interactive"] {
+		@extend %db-bg-warning-ia;
+	}
+
+	.db-weak {
+		@extend %weak;
+	}
+}
+
+.db-bg-successful {
+	@extend %db-bg-successful;
+
+	&-transparent-full {
+		@extend %db-bg-successful-transparent-full;
+	}
+
+	&-transparent-semi {
+		@extend %db-bg-successful-transparent-semi;
+	}
+
+	&-ia,
+	&[data-variant="interactive"] {
+		@extend %db-bg-successful-ia;
+	}
+
+	.db-weak {
+		@extend %weak;
+	}
+}
+
+.db-bg-neutral {
+	@extend %db-bg-neutral;
+
+	&-transparent-full {
+		@extend %db-bg-neutral-transparent-full;
+	}
+
+	&-transparent-semi {
+		@extend %db-bg-neutral-transparent-semi;
+	}
+
+	&-ia,
+	&[data-variant="interactive"] {
+		@extend %db-bg-neutral-ia;
+	}
+
+	.db-weak {
+		@extend %weak;
+	}
+}
+
+.db-bg-neutral-strong {
+	@extend %db-bg-neutral-strong;
+
+	&-transparent-full {
+		@extend %db-bg-neutral-strong-transparent-full;
+	}
+
+	&-transparent-semi {
+		@extend %db-bg-neutral-strong-transparent-semi;
+	}
+
+	&-ia,
+	&[data-variant="interactive"] {
+		@extend %db-bg-neutral-strong-ia;
+	}
+
+	.db-weak {
+		@extend %weak;
+	}
+}
+
+.db-bg-critical {
+	@extend %db-bg-critical;
+
+	&-transparent-full {
+		@extend %db-bg-critical-transparent-full;
+	}
+
+	&-transparent-semi {
+		@extend %db-bg-critical-transparent-semi;
+	}
+
+	&-ia,
+	&[data-variant="interactive"] {
+		@extend %db-bg-critical-ia;
+	}
+
+	.db-weak {
+		@extend %weak;
+	}
+}

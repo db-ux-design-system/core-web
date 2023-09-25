@@ -1,10 +1,10 @@
 const prefix = 'db';
 
 const fileHeader = `
-@use "default-variables";
-@use "icon/icon-helpers";
-@use "helpers/functions";
-@use "helpers/component";
+@use "../default-theme";
+@use "../icon/icon-helpers";
+@use "../helpers/functions";
+@use "../screen-sizes";
 // Do not edit directly
 // Generated on
 // ${new Date().toString()}
@@ -52,35 +52,25 @@ const getShortSize = (size) => {
 
 /**
  *
- * @param properties {{scale: string, textType:string, size:string, sSize:string, isHeadline:boolean, mQuery: string}}
+ * @param properties {{scale: string, textType:string, size:string, sSize:string,  mQuery: string}}
  */
 const getMediaQueryProperties = (properties) => {
-	const { textType, sSize, scale, size, isHeadline, mQuery } = properties;
-	let result = `--db-type-${textType}-font-size-${sSize}: #{default-variables.$${prefix}-typography-${scale}-${mQuery}-${textType}-${size}-font-size};
-	--db-type-${textType}-line-height-${sSize}: #{default-variables.$${prefix}-typography-${scale}-${mQuery}-${textType}-${size}-line-height};
-	`;
-
-	if (!isHeadline) {
-		result += `
-	--db-base-icon-weight-${sSize}: #{icon-helpers.get-icon-size(icon-helpers.get-icon-font-size(default-variables.$${prefix}-typography-${scale}-${mQuery}-${textType}-${size}-font-size,
-	default-variables.$${prefix}-typography-${scale}-${mQuery}-${textType}-${size}-line-height))};
-	--db-base-icon-font-size-${sSize}: #{functions.to-rem(icon-helpers.get-icon-font-size(default-variables.$${prefix}-typography-${scale}-${mQuery}-${textType}-${size}-font-size,
-	default-variables.$${prefix}-typography-${scale}-${mQuery}-${textType}-${size}-line-height))};
+	const { textType, sSize, scale, size, mQuery } = properties;
+	return `
+	--db-base-icon-weight-${scale}-${mQuery}-${sSize}: #{icon-helpers.get-icon-size(icon-helpers.get-icon-font-size(default-theme.$${prefix}-typography-${scale}-${mQuery}-${textType}-${size}-font-size,
+	default-theme.$${prefix}-typography-${scale}-${mQuery}-${textType}-${size}-line-height))};
+	--db-base-icon-font-size-${scale}-${mQuery}-${sSize}: #{functions.to-rem(icon-helpers.get-icon-font-size(default-theme.$${prefix}-typography-${scale}-${mQuery}-${textType}-${size}-font-size,
+	default-theme.$${prefix}-typography-${scale}-${mQuery}-${textType}-${size}-line-height))};
 		`;
-	}
-
-	return result;
 };
 
 const getSizeProperties = (scale, textType, size, mQuery) => {
-	const isHeadline = textType === 'headline';
 	const sSize = getShortSize(size);
 	return getMediaQueryProperties({
 		scale,
 		size,
 		textType,
 		sSize,
-		isHeadline,
 		mQuery
 	});
 };
@@ -97,15 +87,17 @@ const generateTypography = (typography) => {
 			const firstMediaQueryKey = mediaQueryKeys[0];
 			const firstMediaQueryObject = scaleObject[firstMediaQueryKey];
 			// TextTypeKey = [headline, body]
-			for (const textTypeKey of Object.keys(firstMediaQueryObject)) {
+			for (const textTypeKey of Object.keys(firstMediaQueryObject).filter(
+				(key) => key !== 'headline'
+			)) {
 				const textTypeObject = firstMediaQueryObject[textTypeKey];
 				// SizeKey = [3xlarge - 3xsmall]
 				allClasses += `
-%${prefix}-typography-${textTypeKey}-${scaleTypeKey}{
+%${prefix}-typography-icons-${scaleTypeKey}{
 	`;
 				for (const mQuery of ['mobile', 'tablet', 'desktop']) {
 					if (mQuery !== 'mobile') {
-						allClasses += `@include component.screen(${
+						allClasses += `@include screen-sizes.screen(${
 							mQuery === 'tablet' ? '"sm"' : '"md"'
 						}) {
 	`;

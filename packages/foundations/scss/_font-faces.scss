@@ -1,66 +1,66 @@
-@use "default-variables";
+@use "default-theme";
 @use "default.assets-paths" as *;
 
 @font-face {
-	font-family: default-variables.$db-font-db-screenhead-light-font-family;
+	font-family: default-theme.$db-font-db-screenhead-light-font-family;
 	font-style: normal;
-	font-weight: default-variables.$db-font-db-screenhead-light-font-weight;
+	font-weight: default-theme.$db-font-db-screenhead-light-font-weight;
 	src:
-		local(default-variables.$db-font-db-screenhead-light-name),
-		local(default-variables.$db-font-db-screenhead-light-local-name),
-		local(default-variables.$db-font-db-screenhead-light-local-name-short),
-		url($fonts-path + default-variables.$db-font-db-screenhead-light-woff2)
+		local(default-theme.$db-font-db-screenhead-light-name),
+		local(default-theme.$db-font-db-screenhead-light-local-name),
+		local(default-theme.$db-font-db-screenhead-light-local-name-short),
+		url($fonts-path + default-theme.$db-font-db-screenhead-light-woff2)
 			format("woff2");
 }
 
 @font-face {
-	font-family: default-variables.$db-font-db-screenhead-black-font-family;
+	font-family: default-theme.$db-font-db-screenhead-black-font-family;
 	font-style: normal;
-	font-weight: default-variables.$db-font-db-screenhead-black-font-weight;
+	font-weight: default-theme.$db-font-db-screenhead-black-font-weight;
 	src:
-		local(default-variables.$db-font-db-screenhead-black-local-name),
-		local(default-variables.$db-font-db-screenhead-black-local-name-short),
-		url($fonts-path + default-variables.$db-font-db-screenhead-black-woff2)
+		local(default-theme.$db-font-db-screenhead-black-local-name),
+		local(default-theme.$db-font-db-screenhead-black-local-name-short),
+		url($fonts-path + default-theme.$db-font-db-screenhead-black-woff2)
 			format("woff2");
 }
 
 @font-face {
-	font-family: default-variables.$db-font-db-screensans-regular-font-family;
+	font-family: default-theme.$db-font-db-screensans-regular-font-family;
 	font-style: normal;
-	font-weight: default-variables.$db-font-db-screensans-regular-font-weight;
+	font-weight: default-theme.$db-font-db-screensans-regular-font-weight;
 	src:
-		local(default-variables.$db-font-db-screensans-regular-name),
-		local(default-variables.$db-font-db-screensans-regular-local-name),
+		local(default-theme.$db-font-db-screensans-regular-name),
+		local(default-theme.$db-font-db-screensans-regular-local-name),
 		local(
-			default-variables.$db-font-db-screensans-regular-local-name-short
+			default-theme.$db-font-db-screensans-regular-local-name-short
 		),
-		url($fonts-path + default-variables.$db-font-db-screensans-regular-woff2)
+		url($fonts-path + default-theme.$db-font-db-screensans-regular-woff2)
 			format("woff2");
 }
 
 @font-face {
-	font-family: default-variables.$db-font-db-screensans-bold-font-family;
+	font-family: default-theme.$db-font-db-screensans-bold-font-family;
 	font-style: normal;
-	font-weight: default-variables.$db-font-db-screensans-bold-font-weight;
+	font-weight: default-theme.$db-font-db-screensans-bold-font-weight;
 	src:
-		local(default-variables.$db-font-db-screensans-bold-local-name),
-		local(default-variables.$db-font-db-screensans-bold-local-name-short),
-		url($fonts-path + default-variables.$db-font-db-screensans-bold-woff2)
+		local(default-theme.$db-font-db-screensans-bold-local-name),
+		local(default-theme.$db-font-db-screensans-bold-local-name-short),
+		url($fonts-path + default-theme.$db-font-db-screensans-bold-woff2)
 			format("woff2");
 }
 
 @font-face {
-	font-family: default-variables.$db-font-db-screensans-digital-regular-font-family;
+	font-family: default-theme.$db-font-db-screensans-digital-regular-font-family;
 	font-style: normal;
-	font-weight: default-variables.$db-font-db-screensans-digital-regular-font-weight;
+	font-weight: default-theme.$db-font-db-screensans-digital-regular-font-weight;
 	src:
-		local(default-variables.$db-font-db-screensans-digital-regular-name),
+		local(default-theme.$db-font-db-screensans-digital-regular-name),
 		local(
-			default-variables.$db-font-db-screensans-digital-regular-local-name
+			default-theme.$db-font-db-screensans-digital-regular-local-name
 		),
 		local(
-			default-variables.$db-font-db-screensans-digital-regular-local-name-short
+			default-theme.$db-font-db-screensans-digital-regular-local-name-short
 		),
-		url($fonts-path + default-variables.$db-font-db-screensans-digital-regular-woff2)
+		url($fonts-path + default-theme.$db-font-db-screensans-digital-regular-woff2)
 			format("woff2");
 }

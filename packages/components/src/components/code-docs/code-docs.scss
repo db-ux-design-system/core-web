@@ -1,7 +1,8 @@
 @use "@db-ui/foundations/build/scss/variables";
-@use "@db-ui/foundations/build/scss/color-placeholder";
-@use "@db-ui/foundations/build/scss/color/color-variants";
-@use "@db-ui/foundations/build/scss/helpers/component";
+@use "@db-ui/foundations/build/scss/screen-sizes";
+@use "@db-ui/foundations/build/scss/color/placeholder";
+@use "@db-ui/foundations/build/scss/color/variants";
+@use "../../styles/component";
 
 %code-docs {
 	@extend %db-bg-neutral-transparent-semi;
@@ -45,7 +46,7 @@
 			inset-block: 0;
 			padding-block-end: variables.$db-spacing-fixed-md;
 
-			@include component.screen() {
+			@include screen-sizes.screen() {
 				inline-size: 50%;
 			}
 		}

@@ -1,0 +1,148 @@
+$variants: "neutral", "neutral-strong", "primary", "critical",
+	"successful", "warning", "informational";
+
+// Variants for adaptive components like input, select, alert, ...
+
+// neutral
+$db-neutral-bg: var(
+	--db-neutral-bg-enabled,
+	var(--db-colors-neutral-bg-0-enabled)
+		// TODO remove this after theme-builder
+);
+
+$db-neutral-on-bg: var(
+	--db-current-color,
+	var(
+		--db-neutral-on-bg-enabled,
+		var(--db-colors-neutral-on-bg-enabled)
+			// TODO remove this after theme-builder
+	)
+);
+
+$db-neutral-border-weak: var(
+	--db-current-border-weak-color,
+	var(
+		--db-neutral-border-weak-enabled,
+		var(--db-colors-neutral-border-weak-enabled)
+			// TODO remove this after theme-builder
+	)
+);
+
+$db-neutral-border: var(
+	--db-current-border-color,
+	var(
+		--db-neutral-border-enabled,
+		var(--db-colors-neutral-border-enabled)
+			// TODO remove this after theme-builder
+	)
+);
+
+// primary
+
+$db-primary: var(
+	--db-primary-enabled,
+	var(--db-colors-primary-enabled) // TODO remove this after theme-builder
+);
+
+$db-primary-text: var(
+	--db-primary-text-enabled,
+	var(--db-colors-primary-enabled) // TODO remove this after theme-builder
+);
+
+$db-primary-text-hover: var(
+	--db-primary-text-hover,
+	var(--db-colors-primary-hover) // TODO remove this after theme-builder
+);
+
+$db-primary-text-pressed: var(
+	--db-primary-text-pressed,
+	var(--db-colors-primary-pressed) // TODO remove this after theme-builder
+);
+
+// critical
+$db-critical-border-weak: var(
+	--db-critical-border-weak-enabled,
+	var(--db-colors-critical-border-weak-enabled)
+		// TODO remove this after theme-builder
+);
+
+$db-critical-element: var(
+	--db-critical-element-enabled,
+	var(--db-colors-critical-element-enabled)
+		// TODO remove this after theme-builder
+);
+
+$db-critical-on-bg: var(
+	--db-critical-on-bg-enabled,
+	var(--db-colors-critical-on-bg-enabled)
+		// TODO remove this after theme-builder
+);
+$db-critical: var(
+	--db-critical-enabled,
+	var(--db-colors-critical-enabled) // TODO remove this after theme-builder
+);
+
+// informational
+$db-informational-border-weak: var(
+	--db-informational-border-weak-enabled,
+	var(--db-colors-informational-border-weak-enabled)
+		// TODO remove this after theme-builder
+);
+$db-informational-element: var(
+	--db-informational-element-enabled,
+	var(--db-colors-informational-element-enabled)
+		// TODO remove this after theme-builder
+);
+
+$db-informational-on-bg: var(
+	--db-informational-on-bg-enabled,
+	var(--db-colors-informational-on-bg-enabled)
+		// TODO remove this after theme-builder
+);
+$db-informational: var(
+	--db-informational-enabled,
+	var(--db-colors-informational-enabled)
+		// TODO remove this after theme-builder
+);
+
+// warning
+$db-warning-border-weak: var(
+	--db-warning-border-weak-enabled,
+	var(--db-colors-warning-border-weak-enabled)
+		// TODO remove this after theme-builder
+);
+$db-warning-element: var(
+	--db-warning-element-enabled,
+	var(--db-colors-warning-element-enabled)
+		// TODO remove this after theme-builder
+);
+$db-warning-on-bg: var(
+	--db-warning-on-bg-enabled,
+	var(--db-colors-warning-on-bg-enabled)
+		// TODO remove this after theme-builder
+);
+$db-warning: var(
+	--db-warning-enabled,
+	var(--db-colors-warning-enabled) // TODO remove this after theme-builder
+);
+
+// successful
+$db-successful-border-weak: var(
+	--db-successful-border-weak-enabled,
+	var(--db-colors-successful-border-weak-enabled)
+		// TODO remove this after theme-builder
+);
+$db-successful-element: var(
+	--db-successful-element-enabled,
+	var(--db-colors-successful-element-enabled)
+		// TODO remove this after theme-builder
+);
+$db-successful-on-bg: var(
+	--db-successful-on-bg-enabled,
+	var(--db-colors-successful-on-bg-enabled)
+		// TODO remove this after theme-builder
+);
+$db-successful: var(
+	--db-successful-enabled,
+	var(--db-colors-successful-enabled) // TODO remove this after theme-builder
+);

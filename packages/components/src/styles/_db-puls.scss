@@ -1,12 +1,14 @@
 @use "@db-ui/foundations/build/scss/variables";
-@use "@db-ui/foundations/build/scss/helpers/component";
+@use "@db-ui/foundations/build/scss/screen-sizes";
+@use "@db-ui/foundations/build/scss/color/colors";
+@use "component";
 
 %db-puls {
-	@include component.screen("md") {
+	@include screen-sizes.screen("md") {
 		&::after {
 			border-inline-start: none;
 			border-block-end: component.$default-border-radius solid
-				variables.$db-colors-primary;
+				colors.$db-primary;
 			inset-block-end: calc(-1 * #{variables.$db-spacing-fixed-xs});
 			inline-size: 0;
 			block-size: auto;
@@ -28,12 +30,12 @@
 		inset-block-start: 50%;
 		inset-inline-start: calc(-1 * #{variables.$db-spacing-fixed-xs});
 		border-inline-start: component.$default-border-radius solid
-			variables.$db-colors-primary;
+			colors.$db-primary;
 	}
 }
 
 %show-db-puls {
-	@include component.screen("md") {
+	@include screen-sizes.screen("md") {
 		&::after {
 			block-size: auto;
 			inline-size: 100%;

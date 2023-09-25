@@ -1,10 +1,11 @@
 @use "variables";
+@use "color/colors";
 @use "color/code-colors";
 
 :root {
 	// TODO: probably move these to the tokens as well
 	--db-focus-outline-offset: 1px;
-	--db-focus-outline-color: #{variables.$db-colors-informational};
+	--db-focus-outline-color: #{colors.$db-informational};
 	--db-focus-outline-size: max(2px, 0.08em);
 	--db-disabled-text-opacity: 0.5;
 }
@@ -81,7 +82,7 @@ iframe {
 	list-style-type: "\2022"+ "   ";
 
 	li::marker {
-		color: var (--db-primary-enabled, #{variables.$db-colors-primary});
+		color: #{colors.$db-primary};
 	}
 }
 

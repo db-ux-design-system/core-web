@@ -2,3 +2,5 @@
 
 @use "@db-ui/foundations/build/scss/icon/icons" as *;
 @use "./db-ui-components" as *;
+
+@forward "@db-ui/foundations/build/css/default-theme.css";

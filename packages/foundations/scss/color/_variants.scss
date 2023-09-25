@@ -1,12 +1,10 @@
 @use "sass:string";
-@use "../color-placeholder";
-@use "../variables";
+@use "placeholder";
+@use "colors";
 
-$color-variants: "neutral", "neutral-strong", "primary", "critical",
-	"successful", "warning", "informational";
 
 @mixin color-variants($ia) {
-	@each $variant in $color-variants {
+	@each $variant in colors.$variants {
 		&[data-color-variant="#{$variant}"] {
 			@extend %db-bg-#{$variant};
 		}
@@ -106,27 +104,27 @@ $color-variants: "neutral", "neutral-strong", "primary", "critical",
 
 $component-variants: (
 	"critical": (
-		"border": variables.$db-colors-critical-border-weak,
-		"element": variables.$db-colors-critical-element,
-		"on-bg": variables.$db-colors-critical-on-bg,
-		"primary": variables.$db-colors-critical
+		"border": colors.$db-critical-border-weak,
+		"element": colors.$db-critical-element,
+		"on-bg": colors.$db-critical-on-bg,
+		"primary": colors.$db-critical
 	),
 	"informational": (
-		"border": variables.$db-colors-informational-border-weak,
-		"element": variables.$db-colors-informational-element,
-		"on-bg": variables.$db-colors-informational-on-bg,
-		"primary": variables.$db-colors-informational
+		"border": colors.$db-informational-border-weak,
+		"element": colors.$db-informational-element,
+		"on-bg": colors.$db-informational-on-bg,
+		"primary": colors.$db-informational
 	),
 	"warning": (
-		"border": variables.$db-colors-warning-border-weak,
-		"element": variables.$db-colors-warning-element,
-		"on-bg": variables.$db-colors-warning-on-bg,
-		"primary": variables.$db-colors-warning
+		"border": colors.$db-warning-border-weak,
+		"element": colors.$db-warning-element,
+		"on-bg": colors.$db-warning-on-bg,
+		"primary": colors.$db-warning
 	),
 	"successful": (
-		"border": variables.$db-colors-successful-border-weak,
-		"element": variables.$db-colors-successful-element,
-		"on-bg": variables.$db-colors-successful-on-bg,
-		"primary": variables.$db-colors-successful
+		"border": colors.$db-successful-border-weak,
+		"element": colors.$db-successful-element,
+		"on-bg": colors.$db-successful-on-bg,
+		"primary": colors.$db-successful
 	)
 );
