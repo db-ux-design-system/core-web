@@ -125,8 +125,9 @@
 		z-index: 1;
 	}
 
-	&:not(:has(dbbutton)):has(button:not(.db-tab-remove-button)),
+	&:not(:has(dbbutton):has(db-button)):has(button:not(.db-tab-remove-button)),
 	&:has(dbbutton):has(dbbutton:not(.db-tab-remove-button)),
+	&:has(db-button):has(db-button:not(.db-tab-remove-button)),
 	&:has(a),
 	&:has(input) {
 		border: none;
