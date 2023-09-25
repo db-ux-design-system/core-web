@@ -1,0 +1,54 @@
+@use "@db-ui/foundations/build/scss/variables";
+@use "@db-ui/foundations/build/scss/screen-sizes";
+@use "@db-ui/foundations/build/scss/color/placeholder";
+@use "@db-ui/foundations/build/scss/color/colors";
+@use "@db-ui/foundations/build/scss/helpers/functions";
+
+/* TODO: We should get the variables from UX, and probably want to make those global variables */
+$checkbox-border-radius: functions.to-rem(2.5);
+$default-border-radius: functions.to-rem(4);
+$default-card-border-radius: var(
+	--default-card-border-radius,
+	functions.to-rem(8)
+);
+$default-disabled-opacity: 0.25;
+$default-placeholder-opacity: 0.25;
+
+$default-mobile-header-height: functions.to-rem(56);
+
+%default-adaptive-border {
+	border: solid 1px colors.$db-neutral-on-bg;
+}
+
+%transparent-border {
+	border: solid 1px transparent;
+}
+
+%component-border {
+	border: solid 1px colors.$db-neutral-border-weak;
+}
+%default-interactive-component {
+	@extend %default-adaptive-border;
+	border-radius: $default-border-radius;
+}
+
+%default-card {
+	border-radius: $default-card-border-radius;
+	box-shadow: variables.$db-elevation-4;
+}
+
+%adaptive-critical-component {
+	@extend %db-bg-critical-transparent-semi;
+}
+
+%adaptive-warning-component {
+	@extend %db-bg-warning-transparent-semi;
+}
+
+%adaptive-informational-component {
+	@extend %db-bg-informational-transparent-semi;
+}
+
+%adaptive-successful-component {
+	@extend %db-bg-successful-transparent-semi;
+}

@@ -1,0 +1,43 @@
+/**
+Overwrite screen-sizes like this in a global stylesheet.
+
+@use "screen-sizes" with (
+	$db-screen-xs: 123px;
+);
+ */
+
+@use "default-theme";
+$db-screen-xs: default-theme.$db-screens-xs;
+$db-screen-sm: default-theme.$db-screens-s;
+$db-screen-md: default-theme.$db-screens-m;
+$db-screen-lg: default-theme.$db-screens-l;
+$db-screen-xl: default-theme.$db-screens-xl;
+
+@mixin screen($size: "sm", $width: "min") {
+	$screen: $db-screen-sm;
+	@if ($size == "xs") {
+		$screen: $db-screen-xs;
+	} @else if ($size == "md") {
+		$screen: $db-screen-md;
+	} @else if ($size == "lg") {
+		$screen: $db-screen-lg;
+	} @else if ($size == "xl") {
+		$screen: $db-screen-xl;
+	}
+
+	@if ($width == "min") {
+		@media screen and (min-width: $screen) {
+			&:not([force-mobile]) {
+				@content;
+			}
+		}
+	} @else {
+		&[force-mobile] {
+			@content;
+		}
+
+		@media screen and (max-width: $screen) {
+			@content;
+		}
+	}
+}
