@@ -101,7 +101,10 @@ export const getColorVariants = () => [
 
 export const getComponentName = (filePath) => {
 	let componentName = filePath.split('/').at(-1);
-	componentName = componentName.replace('.tsx', '').replace(/\s/g, '');
+	componentName = componentName
+		.replace('.tsx', '')
+		.replace(/\s/g, '')
+		.replace(/\W/g, ' ');
 	return componentName;
 };
 
