@@ -21,6 +21,7 @@ import { DBInput } from "../../../../../output/vue/vue3/src";
 				:disabled="exampleProps.disabled"
 				:value="exampleProps.value"
 				:icon="exampleProps.icon"
+				:invalid="exampleProps.invalid"
 				:iconAfter="exampleProps.iconAfter"
 			></DBInput>
 		</template>
