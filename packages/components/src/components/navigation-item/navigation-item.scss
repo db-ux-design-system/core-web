@@ -25,7 +25,7 @@
 		& ~ .db-sub-navigation {
 			visibility: visible;
 			transition: visibility 0ms linear 0ms;
-			animation: show-right-to-left animations.$animation-show-timing;
+			animation: show-right-to-left variables.$db-transition-show-straight;
 
 			.db-sub-navigation {
 				inset-block: 0;
@@ -36,7 +36,7 @@
 	&:not(&[aria-expanded="true"]) {
 		& ~ .db-sub-navigation {
 			transition: visibility 0ms linear 410ms; // hide animation is 0.4s
-			animation: hide-right-to-left animations.$animation-hide-timing;
+			animation: hide-right-to-left variables.$db-transition-hide-straight;
 		}
 	}
 }

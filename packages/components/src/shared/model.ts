@@ -176,6 +176,11 @@ export type FormCheckProps = {
 	 * cf. https://react.carbondesignsystem.com/?path=/docs/components-checkbox--overview#component-api vs. https://vue.carbondesignsystem.com/?path=/story/components-cvcheckbox--default
 	 */
 	defaultChecked?: boolean;
+
+	/**
+	 * Hide the label of a radio/checkbox.
+	 */
+	labelHidden?: boolean;
 };
 
 export type FormMessageProps = {

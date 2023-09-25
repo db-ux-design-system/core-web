@@ -134,28 +134,42 @@ $floating-label-size: calc(
 
 @mixin get-validity($key: "valid") {
 	$boolean: "true";
-	&:has(input:user-#{$key}),
-	&:has(textarea:user-#{$key}),
-	&:has(select:user-#{$key}) {
-		@include get-validity-color($key);
+	@if ($key == "valid") {
+		$boolean: "false";
 	}
 
-	&:has(input[aria-invalid="#{$boolean}"]),
-	&:has(textarea[aria-invalid="#{$boolean}"]),
-	&:has(select[aria-invalid="#{$boolean}"]) {
-		@include get-validity-color($key);
+	&:has(input:not([aria-invalid]):user-#{$key}),
+	&:has(textarea:not([aria-invalid]):user-#{$key}),
+	&:has(select:not([aria-invalid]):user-#{$key}) {
+		@content;
 	}
 
 	// :user-valid workaround
 	@supports not selector(:user-#{$key}) {
-		&:has(input:required:#{$key}),
-		&:has(textarea:required:#{$key}),
-		&:has(select:required:#{$key}) {
-			@include get-validity-color($key);
+		&:has(input:not([aria-invalid]):required:#{$key}),
+		&:has(textarea:not([aria-invalid]):required:#{$key}),
+		&:has(select:not([aria-invalid]):required:#{$key}) {
+			@content;
 		}
 	}
-	@if ($key == "valid") {
-		$boolean: "false";
+
+	// If aria-invalid is set we overwrite the selectors above
+	&:has(input[aria-invalid="#{$boolean}"]),
+	&:has(textarea[aria-invalid="#{$boolean}"]),
+	&:has(select[aria-invalid="#{$boolean}"]) {
+		@content;
+	}
+}
+
+@mixin set-required-label($selector) {
+	&:has(#{$selector}:required) {
+		&:is(label),
+		label {
+			&::after {
+				content: "*";
+				padding-inline-start: variables.$db-spacing-fixed-2xs;
+			}
+		}
 	}
 }
 
@@ -164,25 +178,18 @@ $floating-label-size: calc(
 	@extend %db-overwrite-font-size-sm;
 
 	@include set-floating-label-overwrites($selector);
-	@include get-validity();
-	@include get-validity("invalid");
-
-	// colors
-	@each $name, $colors in color-variants.$component-variants {
-		&[data-variant="#{$name}"] {
-			@include set-current-colors($colors);
-		}
-
-		&[data-variant="#{$name}"] #{$selector},
-		&[data-variant="#{$name}"] [id$="-placeholder"] {
-			color: map.get($colors, "on-bg");
-		}
-	}
+	@include set-required-label($selector);
 
 	// we use absolute icons
 	position: relative;
 	display: flex;
 	flex-direction: column;
+	@include get-validity() {
+		@include get-validity-color("valid");
+	}
+	@include get-validity("invalid") {
+		@include get-validity-color("invalid");
+	}
 
 	#{$selector} {
 		@extend %db-overwrite-font-size-md;
@@ -213,13 +220,6 @@ $floating-label-size: calc(
 		}
 	}
 
-	@if ($selector == input or $selector == select) {
-		#{$selector} {
-			block-size: variables.$db-sizing-md;
-			text-overflow: ellipsis;
-		}
-	}
-
 	// label
 	label {
 		@extend %db-overwrite-font-size-xs;
@@ -247,17 +247,6 @@ $floating-label-size: calc(
 		pointer-events: none;
 	}
 
-	// required label
-
-	&:has(#{$selector}:required) {
-		label {
-			&::after {
-				content: "*";
-				padding-inline-start: variables.$db-spacing-fixed-2xs;
-			}
-		}
-	}
-
 	// icons
 	&::after,
 	&::before {
@@ -278,15 +267,112 @@ $floating-label-size: calc(
 		margin-inline-start: variables.$db-spacing-fixed-sm;
 		inset-inline-end: variables.$db-spacing-fixed-sm;
 	}
+
+	// colors
+	@each $name, $colors in color-variants.$component-variants {
+		&[data-variant="#{$name}"] {
+			@include set-current-colors($colors);
+		}
+
+		&[data-variant="#{$name}"] #{$selector},
+		&[data-variant="#{$name}"] [id$="-placeholder"] {
+			color: map.get($colors, "on-bg");
+		}
+	}
+
+	@if ($selector == input or $selector == select) {
+		#{$selector} {
+			block-size: variables.$db-sizing-md;
+			text-overflow: ellipsis;
+		}
+	}
 }
 
 // CHECKBOX & RADIO
 
-%required-form-element-check {
-	:required + & {
-		&::after {
-			content: "*";
-			padding-inline-start: variables.$db-spacing-fixed-2xs;
+@mixin get-validity-color-check($key: "valid") {
+	$variant: "successful";
+
+	@if ($key != "valid") {
+		$variant: "critical";
+	}
+
+	$color-variant: map.get(color-variants.$component-variants, $variant);
+
+	input {
+		--db-current-bg-color: #{map.get($color-variant, "bg")};
+		--db-current-base-color: #{map.get($color-variant, "primary")};
+		--db-current-color: #{map.get($color-variant, "primary")};
+		border-color: var(--db-current-color);
+	}
+
+	&:is(label),
+	label {
+		color: #{map.get($color-variant, "primary")};
+	}
+}
+
+%check-element {
+	@include set-required-label(input);
+
+	@include get-validity() {
+		@include get-validity-color-check("valid");
+	}
+	@include get-validity("invalid") {
+		@include get-validity-color-check("invalid");
+	}
+
+	&:has(input:disabled) {
+		opacity: component.$default-placeholder-opacity;
+	}
+
+	&:is(label),
+	label {
+		display: flex;
+		align-content: center;
+		position: relative;
+	}
+
+	input {
+		@include color-variants.bg-transparent-interactive();
+
+		align-content: center;
+
+		appearance: none;
+		aspect-ratio: 1;
+
+		margin-inline-end: variables.$db-spacing-fixed-xs;
+
+		border: min(calc(#{$font-size-height} / 16 + 0.5px), 2px) solid
+			currentColor;
+
+		block-size: $font-size-height;
+		justify-content: center;
+
+		// TODO: probably extract this to an overwrite or external file
+		// workarounds for power apps
+		inline-size: auto;
+		padding: 0;
+	}
+
+	&[data-size="small"] {
+		@extend %db-overwrite-font-size-sm;
+
+		input {
+			margin-inline-end: variables.$db-spacing-fixed-2xs;
 		}
+	}
+
+	&[data-label-hidden="true"] {
+		font-size: 0;
+
+		input {
+			margin-inline-end: 0;
+		}
+	}
+
+	// Adopted by https://www.heise.de/developer/artikel/a11y-Reduced-Motion-4356171.html
+	@media (prefers-reduced-motion: reduce) {
+		transition-duration: 0.01s !important;
 	}
 }

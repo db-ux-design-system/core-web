@@ -5,6 +5,7 @@
 
 /* TODO: We should get the variables from UX, and probably want to make those global variables */
 $checkbox-border-radius: functions.to-rem(2.5);
+$full-border-radius: 42px;
 $default-border-radius: functions.to-rem(4);
 $default-card-border-radius: var(
 	--default-card-border-radius,
@@ -37,7 +38,7 @@ $default-mobile-header-height: functions.to-rem(56);
 		outline
 			var(
 				--db-transition-duration-ultra-fast,
-				#{variables.$db-transition-duration-ultra-fast}
+				#{variables.$db-transition-duration-x-fast}
 			),
 		background-color
 			var(
@@ -51,7 +52,7 @@ $default-mobile-header-height: functions.to-rem(56);
 		outline
 			var(
 				--db-transition-duration-ultra-fast,
-				#{variables.$db-transition-duration-ultra-fast}
+				#{variables.$db-transition-duration-x-fast}
 			),
 		color
 			var(

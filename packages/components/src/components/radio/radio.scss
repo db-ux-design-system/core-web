@@ -1,85 +1,23 @@
 @use "@db-ui/foundations/build/scss/variables";
-@use "@db-ui/foundations/build/scss/helpers/functions";
-@use "@db-ui/foundations/build/scss/color-placeholder";
-@use "@db-ui/foundations/build/scss/helpers/font";
 @use "@db-ui/foundations/build/scss/helpers/component";
-@use "@db-ui/foundations/build/scss/color/color-variants";
-@use "../../styles/form-components" as form;
-
-$font-size-height: calc(var(--db-base-font-size) * var(--db-base-line-height));
+@use "../../styles/form-components";
 
 .db-radio {
-	@include color-variants.bg-transparent-interactive();
+	@extend %check-element;
 
-	appearance: none;
+	input {
+		border-color: #{variables.$db-colors-neutral-on-bg};
+		border-radius: component.$full-border-radius;
+		transition: border-width variables.$db-transition-duration-fast
+			variables.$db-transition-functional-timing;
 
-	aspect-ratio: 1;
+		&:checked {
+			border-width: calc(#{form-components.$font-size-height} * 0.3);
 
-	border: min(calc(#{$font-size-height} / 16 + 0.5px), 2px) solid #{variables.$db-colors-neutral-on-bg};
-	// Full rounded
-	border-radius: 100px;
-
-	// * the basic, unchecked style
-	display: inline-block;
-
-	block-size: $font-size-height;
-
-	// TODO: Extract those transition durations as variables #645
-	transition: border-width 0.15s variables.$db-transition-functional-timing;
-
-	// TODO: probably extract this to an overwrite or external file
-	// workarounds for power apps
-	inline-size: auto;
-	padding: 0;
-
-	&:checked {
-		border-width: calc(#{$font-size-height} * 0.3);
-
-		// The radio element still has the default background for the dot on :hover when in checked state
-		&:enabled:hover {
-			@extend %bg-transparent;
+			// The radio element still has the default background for the dot on :hover when in checked state
+			&:enabled:hover {
+				@extend %bg-transparent;
+			}
 		}
-	}
-
-	// * The invalid style using the :user-invalid pseudo class (and [aria-invalid="true"] equivalent)
-	// TODO: We need to set the correct styling / color here after alignment
-	&:is(:user-invalid),
-	&[aria-invalid="true"] {
-		@extend %db-bg-critical-transparent-semi;
-		border-color: variables.$db-colors-critical-border-weak;
-
-		& + label {
-			color: variables.$db-colors-critical;
-		}
-	}
-
-	& + label {
-		@extend %required-form-element-check;
-
-		margin-inline-start: variables.$db-spacing-fixed-xs;
-
-		vertical-align: top;
-	}
-
-	&:disabled {
-		&,
-		& + label {
-			opacity: component.$default-disabled-opacity;
-		}
-	}
-
-	// Sizes
-	&[data-size="small"] {
-		@extend %db-overwrite-font-size-sm;
-
-		& + label {
-			@extend %db-overwrite-font-size-sm;
-			margin-inline-start: variables.$db-spacing-fixed-2xs;
-		}
-	}
-
-	// Adopted by https://www.heise.de/developer/artikel/a11y-Reduced-Motion-4356171.html
-	@media (prefers-reduced-motion: reduce) {
-		transition-duration: 0.01s !important;
 	}
 }

@@ -37,13 +37,25 @@ $db-elevation-24: var(--db-elevation-24, default-variables.$db-elevation-24);
 
 /* Transitions */
 
+$db-transition-duration-x-slow: var(
+	--db-transition-duration-x-slow,
+	default-variables.$db-transition-duration-x-slow
+);
+$db-transition-duration-slow: var(
+	--db-transition-duration-slow,
+	default-variables.$db-transition-duration-slow
+);
+$db-transition-duration-medium: var(
+	--db-transition-duration-medium,
+	default-variables.$db-transition-duration-medium
+);
 $db-transition-duration-fast: var(
 	--db-transition-duration-fast,
 	default-variables.$db-transition-duration-fast
 );
-$db-transition-duration-ultra-fast: var(
-	--db-transition-duration-ultra-fast,
-	default-variables.$db-transition-duration-ultra-fast
+$db-transition-duration-x-fast: var(
+	--db-transition-duration-x-fast,
+	default-variables.$db-transition-duration-x-fast
 );
 
 $db-transition-emotional-timing: var(
@@ -54,9 +66,15 @@ $db-transition-functional-timing: var(
 	--db-transition-functional-timing,
 	default-variables.$db-transition-functional-timing
 );
+$db-transition-show-timing: var(
+	--db-transition-show-timing,
+	default-variables.$db-transition-show-timing
+);
 
-$db-transition-emotional-straight: #{$db-transition-duration-fast} #{$db-transition-emotional-timing};
-$db-transition-functional-straight: #{$db-transition-duration-fast} #{$db-transition-functional-timing};
+$db-transition-emotional-straight: #{$db-transition-duration-medium} #{$db-transition-emotional-timing};
+$db-transition-functional-straight: #{$db-transition-duration-medium} #{$db-transition-functional-timing};
+$db-transition-show-straight: #{$db-transition-duration-x-slow} #{$db-transition-show-timing};
+$db-transition-hide-straight: #{$db-transition-duration-slow} #{$db-transition-show-timing};
 
 // Variants for adaptive components like input, select, alert, ...
 

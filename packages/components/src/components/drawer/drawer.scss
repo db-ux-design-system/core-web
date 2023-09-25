@@ -168,41 +168,45 @@ $spacings: (
 		.db-drawer-container {
 			&:not([data-direction]),
 			&[data-direction="right"] {
-				animation: show-right-to-left animations.$animation-show-timing;
+				animation: show-right-to-left
+					variables.$db-transition-show-straight;
 			}
 
 			&[data-direction="left"] {
-				animation: show-left-to-right animations.$animation-show-timing;
+				animation: show-left-to-right
+					variables.$db-transition-show-straight;
 			}
 
 			&[data-direction="up"] {
-				animation: show-bottom-to-top animations.$animation-show-timing;
+				animation: show-bottom-to-top
+					variables.$db-transition-show-straight;
 			}
 
 			&[data-direction="down"] {
-				animation: show-top-to-bottom animations.$animation-show-timing;
+				animation: show-top-to-bottom
+					variables.$db-transition-show-straight;
 			}
 
 			&[hidden] {
 				&:not([data-direction]),
 				&[data-direction="right"] {
 					animation: hide-right-to-left
-						animations.$animation-hide-timing;
+						variables.$db-transition-hide-straight;
 				}
 
 				&[data-direction="left"] {
 					animation: hide-left-to-right
-						animations.$animation-hide-timing;
+						variables.$db-transition-hide-straight;
 				}
 
 				&[data-direction="up"] {
 					animation: hide-bottom-to-top
-						animations.$animation-hide-timing;
+						variables.$db-transition-hide-straight;
 				}
 
 				&[data-direction="down"] {
 					animation: hide-top-to-bottom
-						animations.$animation-hide-timing;
+						variables.$db-transition-hide-straight;
 				}
 			}
 		}
