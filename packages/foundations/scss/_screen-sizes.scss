@@ -1,28 +1,29 @@
-/**
-Overwrite screen-sizes like this in a global stylesheet.
+@use "helpers/functions";
 
-@use "screen-sizes" with (
-	$db-screen-xs: 123px;
-);
- */
+$db-breakpoint-xs: functions.to-rem(360);
+$db-breakpoint-sm: functions.to-rem(720);
+$db-breakpoint-md: functions.to-rem(1024);
+$db-breakpoint-lg: functions.to-rem(1440);
+$db-breakpoint-xl: functions.to-rem(1920);
 
-@use "default-theme";
-$db-screen-xs: default-theme.$db-screens-xs;
-$db-screen-sm: default-theme.$db-screens-s;
-$db-screen-md: default-theme.$db-screens-m;
-$db-screen-lg: default-theme.$db-screens-l;
-$db-screen-xl: default-theme.$db-screens-xl;
+:root {
+	--db-breakpoint-xs: #{$db-breakpoint-xs};
+	--db-breakpoint-sm: #{$db-breakpoint-sm};
+	--db-breakpoint-md: #{$db-breakpoint-md};
+	--db-breakpoint-lg: #{$db-breakpoint-lg};
+	--db-breakpoint-xl: #{$db-breakpoint-xl};
+}
 
 @mixin screen($size: "sm", $width: "min") {
-	$screen: $db-screen-sm;
+	$screen: $db-breakpoint-sm;
 	@if ($size == "xs") {
-		$screen: $db-screen-xs;
+		$screen: $db-breakpoint-xs;
 	} @else if ($size == "md") {
-		$screen: $db-screen-md;
+		$screen: $db-breakpoint-md;
 	} @else if ($size == "lg") {
-		$screen: $db-screen-lg;
+		$screen: $db-breakpoint-lg;
 	} @else if ($size == "xl") {
-		$screen: $db-screen-xl;
+		$screen: $db-breakpoint-xl;
 	}
 
 	@if ($width == "min") {

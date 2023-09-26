@@ -4,3 +4,4 @@
 @use "./db-ui-components" as *;
 
 @forward "@db-ui/foundations/build/css/default-theme.css";
+@forward "@db-ui/foundations/build/css/internals.css";

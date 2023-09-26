@@ -6,7 +6,7 @@
 @use "@db-ui/foundations/build/scss/color/colors";
 
 .db-header {
-	background-color: colors.$db-neutral-bg;
+	background-color: colors.$db-base-bg;
 	box-shadow: variables.$db-elevation-4;
 	display: flex;
 	flex-direction: column;
@@ -16,7 +16,7 @@
 	min-block-size: component.$default-mobile-header-height;
 
 	@include screen-sizes.screen("md") {
-		--db-drawer-max-width: #{screen-sizes.$db-screen-sm};
+		--db-drawer-max-width: #{screen-sizes.$db-breakpoint-sm};
 	}
 
 	.db-link {

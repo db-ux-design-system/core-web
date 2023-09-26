@@ -14,7 +14,7 @@
 
 	@include variants.bg-transparent-interactive();
 
-	color: colors.$db-neutral-on-bg;
+	color: colors.$db-base-on-bg;
 
 	block-size: variables.$db-sizing-md;
 	inline-size: fit-content;
@@ -51,8 +51,17 @@
 	}
 
 	&[data-variant="primary"] {
-		@extend %db-primary-component-ia;
+		@extend %db-brand-component-interactive;
 		@extend %transparent-border;
+		background-color: colors.$db-brand;
+
+		&:hover {
+			background-color: colors.$db-brand-hover;
+		}
+
+		&:active {
+			background-color: colors.$db-brand-pressed;
+		}
 	}
 
 	&[data-variant="solid"] {

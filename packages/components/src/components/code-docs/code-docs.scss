@@ -5,7 +5,6 @@
 @use "../../styles/component";
 
 %code-docs {
-	@extend %db-bg-neutral-transparent-semi;
 	min-block-size: variables.$db-sizing-3xl;
 	align-items: center;
 	justify-content: center;
@@ -39,7 +38,7 @@
 		}
 
 		.code {
-			@extend %db-bg-inverted;
+			@extend %db-base-component;
 			overflow: auto;
 			position: absolute;
 			inset-inline-end: 0;

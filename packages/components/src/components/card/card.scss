@@ -7,7 +7,7 @@
 	@extend %color-variants;
 	@extend %default-card;
 
-	background-color: colors.$db-neutral-bg;
+	background-color: colors.$db-base-bg;
 
 	display: flex;
 	flex-direction: column;

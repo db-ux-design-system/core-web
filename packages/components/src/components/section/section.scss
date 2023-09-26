@@ -37,11 +37,11 @@
 		}
 
 		&[data-variant="medium"] {
-			max-inline-size: screen-sizes.$db-screen-md;
+			max-inline-size: screen-sizes.$db-breakpoint-md;
 		}
 
 		&[data-variant="large"] {
-			max-inline-size: screen-sizes.$db-screen-lg;
+			max-inline-size: screen-sizes.$db-breakpoint-lg;
 		}
 	}
 }

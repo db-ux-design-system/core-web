@@ -17,7 +17,7 @@ $default-placeholder-opacity: 0.25;
 $default-mobile-header-height: functions.to-rem(56);
 
 %default-adaptive-border {
-	border: solid 1px colors.$db-neutral-on-bg;
+	border: solid 1px colors.$db-base-on-bg;
 }
 
 %transparent-border {
@@ -25,7 +25,7 @@ $default-mobile-header-height: functions.to-rem(56);
 }
 
 %component-border {
-	border: solid 1px colors.$db-neutral-border-weak;
+	border: solid 1px colors.$db-base-border-weak;
 }
 %default-interactive-component {
 	@extend %default-adaptive-border;

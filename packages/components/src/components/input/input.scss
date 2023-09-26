@@ -222,7 +222,7 @@
 		@include variants.bg-transparent-hover();
 		@include variants.get-variant-bg-color(0.08);
 
-		color: colors.$db-neutral-on-bg;
+		color: colors.$db-base-on-bg;
 
 		block-size: variables.$db-sizing-md;
 		max-inline-size: 100%;

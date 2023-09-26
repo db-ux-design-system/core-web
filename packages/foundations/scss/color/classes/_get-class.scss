@@ -2,6 +2,10 @@
 	.db-bg-#{$variant} {
 		@extend %db-bg-#{$variant};
 
+		&-strong {
+			@extend %db-bg-#{$variant}-strong;
+		}
+
 		&-transparent-full {
 			@extend %db-bg-#{$variant}-transparent-full;
 		}
@@ -10,13 +14,8 @@
 			@extend %db-bg-#{$variant}-transparent-semi;
 		}
 
-		&-ia,
-		&[data-variant="interactive"] {
-			@extend %db-bg-#{$variant}-ia;
-		}
-
-		&.db-weak {
-			@extend %weak;
+		&-interactive {
+			@extend %db-bg-#{$variant}-interactive;
 		}
 	}
 }

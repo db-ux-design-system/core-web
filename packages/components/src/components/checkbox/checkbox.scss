@@ -39,7 +39,7 @@ $font-size-height: calc(var(--db-base-font-size) * var(--db-base-line-height));
 	}
 
 	&:checked {
-		@extend %db-bg-inverted-ia;
+		@extend %db-base-component-interactive;
 
 		// Check icon
 		@include icon-helpers.icon("done");

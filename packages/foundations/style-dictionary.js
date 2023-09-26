@@ -3,8 +3,6 @@ const StyleDictionary = require('style-dictionary').extend(
 );
 const minifyDictionary = require('style-dictionary/lib/common/formatHelpers/minifyDictionary');
 const transforms = require('style-dictionary/lib/common/transforms');
-const generateTypography = require('./scripts/scss-icon-typography-generator.js');
-
 const modifyTailwind = (dictionary) => {
 	for (const token of [
 		'colors',
@@ -36,14 +34,6 @@ StyleDictionary.registerFormat({
 		const minifiedDic = minifyDictionary(dictionary.tokens);
 		modifyTailwind(minifiedDic);
 		return JSON.stringify(minifiedDic, null, 2);
-	}
-});
-
-StyleDictionary.registerFormat({
-	name: 'db-core-typography-placeholder',
-	formatter({ dictionary }) {
-		const typography = dictionary.tokens.typography;
-		return generateTypography(typography);
 	}
 });
 

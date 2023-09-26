@@ -2,7 +2,6 @@
 @use "placeholder";
 @use "colors";
 
-
 @mixin color-variants($ia) {
 	@each $variant in colors.$variants {
 		&[data-color-variant="#{$variant}"] {
@@ -10,7 +9,7 @@
 		}
 		@if ($ia == true) {
 			&[data-color-variant="#{$variant}-ia"] {
-				@extend %db-bg-#{$variant}-ia;
+				@extend %db-bg-#{$variant}-interactive;
 			}
 		}
 	}
@@ -71,38 +70,13 @@
 	}
 }
 
-%db-bg-inverted {
-	color: var(--db-current-bg-color);
-	background-color: var(--db-current-color);
-}
-
-%db-bg-inverted-ia {
-	@extend %db-bg-inverted;
-
-	&::before {
-		color: var(--db-current-bg-color);
-	}
-
-	&:enabled {
-		&:hover {
-			background-color: color-mix(
-				in srgb,
-				transparent 16%,
-				var(--db-current-color)
-			);
-		}
-
-		&:active {
-			background-color: color-mix(
-				in srgb,
-				transparent 24%,
-				var(--db-current-color)
-			);
-		}
-	}
-}
-
 $component-variants: (
+	"neutral": (
+		"border": colors.$db-neutral-border-weak,
+		"element": colors.$db-neutral-element,
+		"on-bg": colors.$db-neutral-on-bg,
+		"primary": colors.$db-neutral
+	),
 	"critical": (
 		"border": colors.$db-critical-border-weak,
 		"element": colors.$db-critical-element,

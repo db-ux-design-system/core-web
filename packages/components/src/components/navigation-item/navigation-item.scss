@@ -150,7 +150,7 @@
 	flex-direction: column;
 	z-index: 70;
 	inset-inline-start: 0;
-	background-color: colors.$db-neutral-bg;
+	background-color: colors.$db-base-bg;
 
 	visibility: hidden;
 
@@ -233,7 +233,7 @@
 	@include functions.divider("bottom");
 	display: flex;
 	font-weight: normal;
-	background-color: colors.$db-neutral-bg;
+	background-color: colors.$db-base-bg;
 	padding-block-end: variables.$db-spacing-fixed-md;
 	margin-block-end: variables.$db-spacing-fixed-md;
 }

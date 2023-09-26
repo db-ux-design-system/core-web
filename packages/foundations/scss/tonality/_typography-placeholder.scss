@@ -2,50 +2,6 @@
 @use "variables";
 @use "../screen-sizes";
 
-// TODO: This should be calculated in theme-builder
-@use "icon-typography-placeholder";
-
-@function get-size($size) {
-	// TODO: Generate correct variables in theme-builder
-	@if ($size == "3xl") {
-		@return "3xlarge";
-	}
-
-	@if ($size == "2xl") {
-		@return "2xlarge";
-	}
-
-	@if ($size == "xl") {
-		@return "xlarge";
-	}
-
-	@if ($size == "lg") {
-		@return "large";
-	}
-
-	@if ($size == "md") {
-		@return "medium";
-	}
-
-	@if ($size == "sm") {
-		@return "small";
-	}
-
-	@if ($size == "xs") {
-		@return "xsmall";
-	}
-
-	@if ($size == "2xs") {
-		@return "2xsmall";
-	}
-
-	@if ($size == "3xs") {
-		@return "3xsmall";
-	}
-
-	@return $size;
-}
-
 @function get-typography(
 	$tonality,
 	$device,
@@ -56,9 +12,6 @@
 	@return var(
 		string.unquote(
 			"--db-typography-#{$tonality}-#{$device}-#{$type}-#{$size}-#{$attribute}"
-		),
-		string.unquote(
-			"var(--db-typography-#{$tonality}-#{$device}-#{$type}-#{get-size($size)}-#{$attribute})"
 		)
 	);
 }
@@ -81,11 +34,11 @@
 
 @mixin get-icons($tonality, $device, $size) {
 	--db-base-icon-weight-#{$size}: #{string.unquote(
-		"var(--db-base-icon-weight-#{$tonality}-#{$device}-#{$size})"
-	)};
+			"var(--db-base-icon-weight-#{$tonality}-#{$device}-#{$size})"
+		)};
 	--db-base-icon-font-size-#{$size}: #{string.unquote(
-		"var(--db-base-icon-font-size-#{$tonality}-#{$device}-#{$size})"
-	)};
+			"var(--db-base-icon-font-size-#{$tonality}-#{$device}-#{$size})"
+		)};
 }
 
 @each $tonality in variables.$tonalities {
@@ -108,8 +61,6 @@
 	}
 
 	%db-typography-body-#{$tonality} {
-		@extend %db-typography-icons-#{$tonality};
-
 		@each $size in variables.$body {
 			@include get-font($tonality, "mobile", $size);
 			@include get-icons($tonality, "mobile", $size);

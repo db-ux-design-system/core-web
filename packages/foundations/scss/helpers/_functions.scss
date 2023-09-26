@@ -42,11 +42,11 @@
 // https://bugs.chromium.org/p/chromium/issues/detail?id=1274133
 // https://github.com/WebKit/WebKit/commit/1890bfb551da24735804cb1a3d5f14b210f7c7b8
 @mixin divider($position: "top", $slot: "before") {
-	--db-divider-bg-color: #{colors.$db-neutral-border-weak};
+	--db-divider-bg-color: #{colors.$db-base-border-weak};
 	position: relative;
 
 	&[data-emphasis="strong"] {
-		--db-divider-bg-color: #{colors.$db-neutral-border};
+		--db-divider-bg-color: #{colors.$db-base-border};
 	}
 
 	&::#{$slot} {

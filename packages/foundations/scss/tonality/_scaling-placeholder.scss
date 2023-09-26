@@ -2,15 +2,6 @@
 @use "../screen-sizes";
 
 @function getVariable($key, $tonality, $size, $device: "") {
-	// TODO: Generate correct variables in theme-builder
-	@if ($size == "sm") {
-		$size: "s";
-	} @else if($size == "md") {
-		$size: "m";
-	} @else if($size == "lg") {
-		$size: "l";
-	}
-
 	@return var(--db-#{$key}-#{$tonality}-#{$device}#{$size});
 }
 

@@ -1,63 +1,35 @@
-$variants: "neutral", "neutral-strong", "brand", "critical", "successful",
-	"warning", "informational";
+$variants: "base", "neutral", "brand", "critical", "successful", "warning",
+	"informational";
 
 // Variants for adaptive components like input, select, alert, ...
 
-// neutral
-$db-neutral-bg: var(
-	--db-neutral-bg-enabled,
-	var(--db-colors-neutral-bg-0-enabled)
-		// TODO remove this after theme-builder
-);
+// base
+$db-base-bg: var(--db-base-bg-enabled);
 
-$db-neutral-on-bg: var(
-	--db-current-color,
-	var(
-		--db-neutral-on-bg-enabled,
-		var(--db-colors-neutral-on-bg-enabled)
-			// TODO remove this after theme-builder
-	)
-);
+$db-base-on-bg: var(--db-current-color, var(--db-base-on-bg-enabled));
 
-$db-neutral-border-weak: var(
+$db-base-border-weak: var(
 	--db-current-border-weak-color,
-	var(
-		--db-neutral-border-weak-enabled,
-		var(--db-colors-neutral-border-weak-enabled)
-			// TODO remove this after theme-builder
-	)
+	var(--db-base-border-weak-enabled)
 );
 
-$db-neutral-border: var(
-	--db-current-border-color,
-	var(
-		--db-neutral-border-enabled,
-		var(--db-colors-neutral-border-enabled)
-			// TODO remove this after theme-builder
-	)
-);
+$db-base-border: var(--db-current-border-color, var(--db-base-border-enabled));
 
 // brand
 
-$db-brand: var(
-	--db-brand-enabled,
-	var(--db-colors-primary-enabled) // TODO remove this after theme-builder
-);
+$db-brand: var(--db-brand-origin-enabled);
 
-$db-brand-text: var(
-	--db-brand-text-enabled,
-	var(--db-colors-primary-enabled) // TODO remove this after theme-builder
-);
+$db-brand-hover: var(--db-brand-origin-hover);
 
-$db-brand-text-hover: var(
-	--db-brand-text-hover,
-	var(--db-colors-primary-hover) // TODO remove this after theme-builder
-);
+$db-brand-pressed: var(--db-brand-origin-pressed);
 
-$db-brand-text-pressed: var(
-	--db-brand-text-pressed,
-	var(--db-colors-primary-pressed) // TODO remove this after theme-builder
-);
+// neutral
+$db-neutral-border-weak: var(--db-neutral-border-weak-enabled);
+
+$db-neutral-element: var(--db-neutral-element-enabled);
+
+$db-neutral-on-bg: var(--db-neutral-on-bg-enabled);
+$db-neutral: var(--db-neutral-enabled);
 
 // critical
 $db-critical-border-weak: var(
