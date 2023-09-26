@@ -8,7 +8,7 @@
 		&::after {
 			border-inline-start: none;
 			border-block-end: component.$default-border-radius solid
-				colors.$db-primary;
+				colors.$db-brand;
 			inset-block-end: calc(-1 * #{variables.$db-spacing-fixed-xs});
 			inline-size: 0;
 			block-size: auto;
@@ -30,7 +30,7 @@
 		inset-block-start: 50%;
 		inset-inline-start: calc(-1 * #{variables.$db-spacing-fixed-xs});
 		border-inline-start: component.$default-border-radius solid
-			colors.$db-primary;
+			colors.$db-brand;
 	}
 }
 

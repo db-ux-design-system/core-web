@@ -1,0 +1,6 @@
+@use "../placeholder";
+@use "get-class";
+
+$variant: "warning";
+
+@include get-class.init($variant);

@@ -1,0 +1,22 @@
+@mixin init($variant) {
+	.db-bg-#{$variant} {
+		@extend %db-bg-#{$variant};
+
+		&-transparent-full {
+			@extend %db-bg-#{$variant}-transparent-full;
+		}
+
+		&-transparent-semi {
+			@extend %db-bg-#{$variant}-transparent-semi;
+		}
+
+		&-ia,
+		&[data-variant="interactive"] {
+			@extend %db-bg-#{$variant}-ia;
+		}
+
+		&.db-weak {
+			@extend %weak;
+		}
+	}
+}

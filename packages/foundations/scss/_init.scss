@@ -82,7 +82,7 @@ iframe {
 	list-style-type: "\2022"+ "   ";
 
 	li::marker {
-		color: #{colors.$db-primary};
+		color: #{colors.$db-brand};
 	}
 }
 

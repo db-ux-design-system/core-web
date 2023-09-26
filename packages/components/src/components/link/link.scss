@@ -27,19 +27,11 @@
 	white-space: nowrap;
 
 	&:hover {
-		color: color-mix(
-			in srgb,
-			transparent 25%,
-			colors.$db-neutral-on-bg
-		);
+		color: color-mix(in srgb, transparent 25%, colors.$db-neutral-on-bg);
 	}
 
 	&:active {
-		color: color-mix(
-			in srgb,
-			transparent 50%,
-			colors.$db-neutral-on-bg
-		);
+		color: color-mix(in srgb, transparent 50%, colors.$db-neutral-on-bg);
 	}
 
 	a {
@@ -83,15 +75,15 @@
 
 	// We couldn't extend any existing SCSS placeholders, as this is a special construct
 	&[data-variant="primary"] {
-		--db-current-color: #{colors.$db-primary-text};
+		--db-current-color: #{colors.$db-brand-text};
 		color: var(--db-current-color);
 
 		&:hover {
-			--db-current-color: #{colors.$db-primary-text-hover};
+			--db-current-color: #{colors.$db-brand-text-hover};
 		}
 
 		&:active {
-			--db-current-color: #{colors.$db-primary-text-pressed};
+			--db-current-color: #{colors.$db-brand-text-pressed};
 		}
 	}
 

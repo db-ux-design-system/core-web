@@ -1,5 +1,5 @@
-$variants: "neutral", "neutral-strong", "primary", "critical",
-	"successful", "warning", "informational";
+$variants: "neutral", "neutral-strong", "brand", "critical", "successful",
+	"warning", "informational";
 
 // Variants for adaptive components like input, select, alert, ...
 
@@ -37,25 +37,25 @@ $db-neutral-border: var(
 	)
 );
 
-// primary
+// brand
 
-$db-primary: var(
-	--db-primary-enabled,
+$db-brand: var(
+	--db-brand-enabled,
 	var(--db-colors-primary-enabled) // TODO remove this after theme-builder
 );
 
-$db-primary-text: var(
-	--db-primary-text-enabled,
+$db-brand-text: var(
+	--db-brand-text-enabled,
 	var(--db-colors-primary-enabled) // TODO remove this after theme-builder
 );
 
-$db-primary-text-hover: var(
-	--db-primary-text-hover,
+$db-brand-text-hover: var(
+	--db-brand-text-hover,
 	var(--db-colors-primary-hover) // TODO remove this after theme-builder
 );
 
-$db-primary-text-pressed: var(
-	--db-primary-text-pressed,
+$db-brand-text-pressed: var(
+	--db-brand-text-pressed,
 	var(--db-colors-primary-pressed) // TODO remove this after theme-builder
 );
 
