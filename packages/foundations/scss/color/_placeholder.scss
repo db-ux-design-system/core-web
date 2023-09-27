@@ -61,8 +61,8 @@
 		&-transparent {
 			&-full,
 			&-semi {
-				color: var(--db-#{$variant}-on-bg-enabled);
 				@extend %db-bg-#{$variant}-variables;
+				color: var(--db-#{$variant}-on-bg-enabled);
 				background-color: color-mix(
 					in srgb,
 					transparent var(--db-bg-transparent, 100%),
@@ -81,10 +81,12 @@
 
 		&-interactive {
 			@extend %db-bg-#{$variant};
+
 			&:enabled {
 				&:hover {
 					--db-bg-transparent: 84%;
 				}
+
 				&:active {
 					--db-bg-transparent: 68%;
 				}

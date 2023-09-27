@@ -3,6 +3,7 @@ const StyleDictionary = require('style-dictionary').extend(
 );
 const minifyDictionary = require('style-dictionary/lib/common/formatHelpers/minifyDictionary');
 const transforms = require('style-dictionary/lib/common/transforms');
+
 const modifyTailwind = (dictionary) => {
 	for (const token of [
 		'colors',
