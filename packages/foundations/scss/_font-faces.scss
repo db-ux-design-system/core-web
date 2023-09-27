@@ -1,5 +1,20 @@
 @use "internals";
-@use "default.assets-paths" as *;
+@use "default.assets-paths" as assets-paths;
+
+$db-screenhead-light: assets-paths.$fonts-path +
+	internals.$db-font-db-screenhead-light-woff2;
+
+$db-screenhead-black: assets-paths.$fonts-path +
+	internals.$db-font-db-screenhead-black-woff2;
+
+$db-screensans-regular: assets-paths.$fonts-path +
+	internals.$db-font-db-screensans-regular-woff2;
+
+$db-screensans-bold: assets-paths.$fonts-path +
+	internals.$db-font-db-screensans-bold-woff2;
+
+$db-screensans-digital-regular: assets-paths.$fonts-path +
+	internals.$db-font-db-screensans-digital-regular-woff2;
 
 @font-face {
 	font-family: internals.$db-font-db-screenhead-light-font-family;
@@ -9,8 +24,7 @@
 		local(internals.$db-font-db-screenhead-light-name),
 		local(internals.$db-font-db-screenhead-light-local-name),
 		local(internals.$db-font-db-screenhead-light-local-name-short),
-		url($fonts-path + internals.$db-font-db-screenhead-light-woff2)
-			format("woff2");
+		url($db-screenhead-light) format("woff2");
 }
 
 @font-face {
@@ -20,8 +34,7 @@
 	src:
 		local(internals.$db-font-db-screenhead-black-local-name),
 		local(internals.$db-font-db-screenhead-black-local-name-short),
-		url($fonts-path + internals.$db-font-db-screenhead-black-woff2)
-			format("woff2");
+		url($db-screenhead-black) format("woff2");
 }
 
 @font-face {
@@ -31,11 +44,8 @@
 	src:
 		local(internals.$db-font-db-screensans-regular-name),
 		local(internals.$db-font-db-screensans-regular-local-name),
-		local(
-			internals.$db-font-db-screensans-regular-local-name-short
-		),
-		url($fonts-path + internals.$db-font-db-screensans-regular-woff2)
-			format("woff2");
+		local(internals.$db-font-db-screensans-regular-local-name-short),
+		url($db-screensans-regular) format("woff2");
 }
 
 @font-face {
@@ -45,8 +55,7 @@
 	src:
 		local(internals.$db-font-db-screensans-bold-local-name),
 		local(internals.$db-font-db-screensans-bold-local-name-short),
-		url($fonts-path + internals.$db-font-db-screensans-bold-woff2)
-			format("woff2");
+		url($db-screensans-bold) format("woff2");
 }
 
 @font-face {
@@ -55,12 +64,9 @@
 	font-weight: internals.$db-font-db-screensans-digital-regular-font-weight;
 	src:
 		local(internals.$db-font-db-screensans-digital-regular-name),
-		local(
-			internals.$db-font-db-screensans-digital-regular-local-name
-		),
+		local(internals.$db-font-db-screensans-digital-regular-local-name),
 		local(
 			internals.$db-font-db-screensans-digital-regular-local-name-short
 		),
-		url($fonts-path + internals.$db-font-db-screensans-digital-regular-woff2)
-			format("woff2");
+		url($db-screensans-digital-regular) format("woff2");
 }
