@@ -75,30 +75,30 @@ $component-variants: (
 		"border": colors.$db-neutral-border-weak,
 		"element": colors.$db-neutral-element,
 		"on-bg": colors.$db-neutral-on-bg,
-		"primary": colors.$db-neutral
+		"text": colors.$db-neutral-text
 	),
 	"critical": (
 		"border": colors.$db-critical-border-weak,
 		"element": colors.$db-critical-element,
 		"on-bg": colors.$db-critical-on-bg,
-		"primary": colors.$db-critical
+		"text": colors.$db-critical-text
 	),
 	"informational": (
 		"border": colors.$db-informational-border-weak,
 		"element": colors.$db-informational-element,
 		"on-bg": colors.$db-informational-on-bg,
-		"primary": colors.$db-informational
+		"text": colors.$db-informational-text
 	),
 	"warning": (
 		"border": colors.$db-warning-border-weak,
 		"element": colors.$db-warning-element,
 		"on-bg": colors.$db-warning-on-bg,
-		"primary": colors.$db-warning
+		"text": colors.$db-warning-text
 	),
 	"successful": (
 		"border": colors.$db-successful-border-weak,
 		"element": colors.$db-successful-element,
 		"on-bg": colors.$db-successful-on-bg,
-		"primary": colors.$db-successful
+		"text": colors.$db-successful-text
 	)
 );

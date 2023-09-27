@@ -49,7 +49,7 @@ $font-size-height: calc(var(--db-base-font-size) * var(--db-base-line-height));
 		border-color: colors.$db-critical-border-weak;
 
 		& + label {
-			color: colors.$db-critical;
+			color: colors.$db-critical-text;
 		}
 	}
 
