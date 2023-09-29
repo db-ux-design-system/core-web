@@ -114,9 +114,11 @@
 		}
 	}
 
-	.db-link:hover,
-	.db-link:active {
-		color: inherit;
+	.db-link {
+		&:hover,
+		&:active {
+			color: inherit;
+		}
 	}
 
 	label {
