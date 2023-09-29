@@ -11,7 +11,7 @@ const fileHeader = `
 // Generated on
 // ${new Date().toString()}
 
-$interactive-elements: 'input:not([type="radio"]), button, select, textarea';
+$interactive-elements: 'input:not([type="radio"]), button, select, textarea'; // TODO: Evaluate regarding [tabindex]:not([tabindex="-1"]) in the future, but probably it's too generic
 
 %interactive-states {
 	&:hover {
