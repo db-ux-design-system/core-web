@@ -188,13 +188,7 @@ exports.generateColorUtilitityPlaceholder = (colorToken) => {
     color: var(--${prefix}-current-color);
 	background-color: var(--${prefix}-${value}-enabled,
 	#{$${prefix}-${colorToken[value].enabled.name}});
-	&:is(#{$interactive-elements}) {
-		&:enabled{
-			@extend %${prefix}-${value}-component-interactive-state;
-		}
-	}
-
-	&:is(a) {
+	&:is(a),:is(#{$interactive-elements}):enabled{
 		@extend %${prefix}-${value}-component-interactive-state;
 	}
 }
