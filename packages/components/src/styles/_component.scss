@@ -37,6 +37,10 @@ $default-mobile-header-height: functions.to-rem(56);
 	box-shadow: variables.$db-elevation-4;
 }
 
+%adaptive-neutral-component {
+	@extend %db-bg-neutral-transparent-semi;
+}
+
 %adaptive-critical-component {
 	@extend %db-bg-critical-transparent-semi;
 }

@@ -6,17 +6,11 @@
 
 $interactive-selectors: "input, a, button";
 
-@mixin overwrite-strong() {
-	--db-current-color: #{colors.$db-base-bg};
-	color: var(--db-current-color);
-}
-
 @mixin get-tag-colors() {
 	@extend %db-bg-base-strong;
 
 	&[data-emphasis="strong"] {
 		@extend %db-base-component;
-		@include overwrite-strong();
 	}
 
 	@each $name, $colors in variants.$component-variants {
@@ -26,40 +20,30 @@ $interactive-selectors: "input, a, button";
 
 				&[data-emphasis="strong"] {
 					@extend %db-neutral-component;
-
-					@include overwrite-strong();
 				}
 			} @else if ($name == "critical") {
 				@extend %db-bg-critical;
 
 				&[data-emphasis="strong"] {
 					@extend %db-critical-component;
-
-					@include overwrite-strong();
 				}
 			} @else if ($name == "informational") {
 				@extend %db-bg-informational;
 
 				&[data-emphasis="strong"] {
 					@extend %db-informational-component;
-
-					@include overwrite-strong();
 				}
 			} @else if ($name == "warning") {
 				@extend %db-bg-warning;
 
 				&[data-emphasis="strong"] {
 					@extend %db-warning-component;
-
-					@include overwrite-strong();
 				}
 			} @else if ($name == "successful") {
 				@extend %db-bg-successful;
 
 				&[data-emphasis="strong"] {
 					@extend %db-successful-component;
-
-					@include overwrite-strong();
 				}
 			}
 
@@ -107,8 +91,15 @@ $interactive-selectors: "input, a, button";
 	}
 
 	&[data-emphasis="strong"] {
+
 		@include interactive-selectors() {
 			@extend %db-base-component-interactive;
+		}
+
+		&:has(input:checked),
+		&:has(a),
+		&:has(button) {
+			--db-current-icon-color: var(--db-base-on-enabled);
 		}
 
 		@each $name, $colors in variants.$component-variants {
@@ -127,12 +118,6 @@ $interactive-selectors: "input, a, button";
 					}
 				}
 			}
-		}
-
-		&:has(button),
-		&:has(a),
-		&:has(input:checked) {
-			@include overwrite-strong();
 		}
 	}
 }

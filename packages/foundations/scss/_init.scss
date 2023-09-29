@@ -1,6 +1,6 @@
 @use "variables";
 @use "color/colors";
-@use "color/code-colors";
+@use "color/placeholder";
 
 :root {
 	// TODO: probably move these to the tokens as well
@@ -107,12 +107,12 @@ fieldset {
 // Code
 
 pre:has(code) {
-	@extend %code-style;
+	@extend %db-neutral-component;
 	padding: variables.$db-spacing-fixed-xs;
 }
 
 code {
-	@extend %code-style;
+	@extend %db-neutral-component;
 	padding-block: variables.$db-spacing-fixed-2xs;
 	padding-inline: variables.$db-spacing-fixed-xs;
 }

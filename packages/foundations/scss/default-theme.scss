@@ -16,7 +16,7 @@
 	--db-base-element-enabled: #777e88;
 	--db-base-border-enabled: #5f656da3;
 	--db-base-border-weak-enabled: #43474d52;
-	--db-neutral-on-enabled: #0000;
+	--db-neutral-on-enabled: #fff;
 	--db-neutral-origin-enabled: #646973;
 	--db-neutral-origin-hover: #5c6069;
 	--db-neutral-origin-pressed: #52575f;
@@ -48,7 +48,7 @@
 	--db-brand-element-enabled: #ff0016;
 	--db-brand-border-enabled: #cc0012a3;
 	--db-brand-border-weak-enabled: #90000c52;
-	--db-informational-on-enabled: #0000;
+	--db-informational-on-enabled: #fff;
 	--db-informational-origin-enabled: #309fd1;
 	--db-informational-origin-hover: #2c92c0;
 	--db-informational-origin-pressed: #2883ac;
@@ -64,7 +64,7 @@
 	--db-informational-element-enabled: #0099d1;
 	--db-informational-border-enabled: #007aa7a3;
 	--db-informational-border-weak-enabled: #00577652;
-	--db-warning-on-enabled: #0000;
+	--db-warning-on-enabled: #fff;
 	--db-warning-origin-enabled: #f39200;
 	--db-warning-origin-hover: #df8600;
 	--db-warning-origin-pressed: #c87800;
@@ -80,7 +80,7 @@
 	--db-warning-element-enabled: #db7300;
 	--db-warning-border-enabled: #af5c00a3;
 	--db-warning-border-weak-enabled: #7c410052;
-	--db-successful-on-enabled: #0000;
+	--db-successful-on-enabled: #fff;
 	--db-successful-origin-enabled: #63a615;
 	--db-successful-origin-hover: #5b9813;
 	--db-successful-origin-pressed: #528911;
@@ -96,7 +96,7 @@
 	--db-successful-element-enabled: #48a300;
 	--db-successful-border-enabled: #3a8200a3;
 	--db-successful-border-weak-enabled: #295c0052;
-	--db-critical-on-enabled: #0000;
+	--db-critical-on-enabled: #fff;
 	--db-critical-origin-enabled: #ec0016;
 	--db-critical-origin-hover: #d80014;
 	--db-critical-origin-pressed: #c30012;
@@ -114,7 +114,7 @@
 	--db-critical-border-weak-enabled: #90000c52;
 
 	@media (prefers-color-scheme: dark) {
-		--db-base-on-enabled: #242629;
+		--db-base-on-enabled: #000000bf;
 		--db-base-origin-enabled: #fff;
 		--db-base-origin-hover: #fff;
 		--db-base-origin-pressed: #fff;
@@ -130,7 +130,7 @@
 		--db-base-element-enabled: #8a8a8a;
 		--db-base-border-enabled: #787878bf;
 		--db-base-border-weak-enabled: #62626280;
-		--db-neutral-on-enabled: #00000040;
+		--db-neutral-on-enabled: #000000bf;
 		--db-neutral-origin-enabled: #646973;
 		--db-neutral-origin-hover: #898c93;
 		--db-neutral-origin-pressed: #a6a8ad;
@@ -162,7 +162,7 @@
 		--db-brand-element-enabled: #ff4214;
 		--db-brand-border-enabled: #dd3911bf;
 		--db-brand-border-weak-enabled: #b42f0e80;
-		--db-informational-on-enabled: #00000040;
+		--db-informational-on-enabled: #000000bf;
 		--db-informational-origin-enabled: #309fd1;
 		--db-informational-origin-hover: #6fb2d9;
 		--db-informational-origin-pressed: #96c3e1;
@@ -178,7 +178,7 @@
 		--db-informational-element-enabled: #1a93d6;
 		--db-informational-border-enabled: #177fb9bf;
 		--db-informational-border-weak-enabled: #12689780;
-		--db-warning-on-enabled: #00000040;
+		--db-warning-on-enabled: #000000bf;
 		--db-warning-origin-enabled: #f39200;
 		--db-warning-origin-hover: #f5a866;
 		--db-warning-origin-pressed: #f7bc90;
@@ -194,7 +194,7 @@
 		--db-warning-element-enabled: #fc9703;
 		--db-warning-border-enabled: #da8303bf;
 		--db-warning-border-weak-enabled: #b26b0280;
-		--db-successful-on-enabled: #00000040;
+		--db-successful-on-enabled: #000000bf;
 		--db-successful-origin-enabled: #63a615;
 		--db-successful-origin-hover: #89b768;
 		--db-successful-origin-pressed: #a6c791;
@@ -210,7 +210,7 @@
 		--db-successful-element-enabled: #87c837;
 		--db-successful-border-enabled: #75ad30bf;
 		--db-successful-border-weak-enabled: #5f8d2780;
-		--db-critical-on-enabled: #00000040;
+		--db-critical-on-enabled: #000000bf;
 		--db-critical-origin-enabled: #ec0016;
 		--db-critical-origin-hover: #ef6668;
 		--db-critical-origin-pressed: #f29091;

@@ -71,20 +71,12 @@ $dropdown-icon-transform: rotate(-180deg);
 			--db-current-border-color: #{map.get($colors, "border")};
 		}
 
-		&[data-variant="#{$name}"] {
-			--db-current-color: #{map.get($colors, "on-bg")};
-			color: map.get($colors, "on-bg");
-		}
-
-		&[data-variant="#{$name}"] select {
-			--db-current-color: #{map.get($colors, "on-bg")};
-			color: map.get($colors, "on-bg");
-		}
-
 		&[data-variant="#{$name}"] input,
 		&[data-variant="#{$name}"] textarea,
 		&[data-variant="#{$name}"] select {
-			@if ($name == "critical") {
+			@if ($name == "neutral") {
+				@extend %adaptive-neutral-component;
+			} @else if ($name == "critical") {
 				@extend %adaptive-critical-component;
 			} @else if ($name == "informational") {
 				@extend %adaptive-informational-component;
