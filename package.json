@@ -41,6 +41,7 @@
     "clean": "git clean -dfx --exclude=.env",
     "clean:incrementally": "npm-run-all -p clean:incrementally:*",
     "clean:incrementally:components-build": "rimraf packages/components/build",
+    "clean:incrementally:foundations-build": "rimraf packages/foundations/build",
     "clean:incrementally:outputs": "rimraf -g output/**/src",
     "clean:incrementally:patternhub-pages": "rimraf -g showcases/patternhub/pages/components/*/*",
     "clean:incrementally:patternhub-src-ts": "rimraf -g showcases/patternhub/components/src/**/*.ts",
