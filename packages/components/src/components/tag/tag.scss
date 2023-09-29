@@ -127,7 +127,7 @@
 		z-index: 1;
 	}
 
-	&:not(:has(dbbutton)):not(:has(db-button)):has(
+	&:not(:has(dbbutton,db-button)):has(
 			button:not(.db-tab-remove-button)
 		),
 	&:has(dbbutton:not(.db-tab-remove-button)),
