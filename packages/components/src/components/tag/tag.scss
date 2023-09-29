@@ -130,10 +130,7 @@
 	&:not(:has(dbbutton,db-button)):has(
 			button:not(.db-tab-remove-button)
 		),
-	&:has(dbbutton:not(.db-tab-remove-button)),
-	&:has(db-button:not(.db-tab-remove-button)),
-	&:has(a),
-	&:has(input) {
+	&:has(:is(dbbutton,db-button):not(.db-tab-remove-button), a, input) {
 		border: none;
 	}
 
