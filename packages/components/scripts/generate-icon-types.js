@@ -8,6 +8,7 @@ const foundationAssetsPath = '../foundations/assets/icons/functional/images';
 
 const generateIconTypes = () => {
 	try {
+		const allIcons = [];
 		const icons = FS.readdirSync(foundationAssetsPath)
 			.reduce((previousValue, currentValue) => {
 				if (currentValue.includes('svg')) {
@@ -58,13 +59,19 @@ const generateIconTypes = () => {
 					return icon;
 				}
 
+				allIcons.push(icon);
+
 				return `| '${icon}'`;
 			});
 
 		const iconTypes = `export type IconTypes = string \n ${icons.join(
 			'\n'
 		)}`;
+		const allIconsFile = `export const ALL_ICONS: string[] = ${JSON.stringify(
+			allIcons
+		)};`;
 		FS.writeFileSync('./src/shared/icon-types.ts', iconTypes);
+		FS.writeFileSync('./src/shared/all-icons.ts', allIconsFile);
 	} catch (e) {
 		console.log(e);
 	}
