@@ -106,7 +106,9 @@
 
 	@each $name, $colors in variants.$component-variants {
 		&[data-variant="#{$name}"] {
-			@if ($name == "critical") {
+			@if ($name == "neutral") {
+				@extend %db-bg-neutral;
+			} @else if ($name == "critical") {
 				@extend %db-bg-critical;
 			} @else if ($name == "informational") {
 				@extend %db-bg-informational;
