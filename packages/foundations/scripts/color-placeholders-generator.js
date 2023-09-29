@@ -124,13 +124,7 @@ const generateBGVariants = (
 
     &-ia, &[data-variant="interactive"] {
 		@extend %${placeholderName};
-		&:is(#{$interactive-elements}) {
-			&:enabled{
-				@extend %interactive-states;
-			}
-		}
-
-		&:is(a) {
+		&:is(a),:is(#{$interactive-elements}):enabled{
 			@extend %interactive-states;
 		}
     }
