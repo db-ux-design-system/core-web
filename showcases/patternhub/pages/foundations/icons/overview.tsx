@@ -10,7 +10,7 @@ import {
 import { ALL_ICONS } from '../../../components/src/shared/all-icons';
 
 const IconOverview = () => {
-	const [weight, setWeight] = useState<number>('24');
+	const [weight, setWeight] = useState<string>('24');
 	const [family, setFamily] = useState<string>('default');
 	// TODO: we should add a better search for this
 	const [search, setSearch] = useState<string>('');
