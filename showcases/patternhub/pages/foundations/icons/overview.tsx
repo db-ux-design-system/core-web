@@ -51,11 +51,13 @@ const IconOverview = () => {
 			</div>
 			<div
 				className="icons-overview-container"
-				style={{
-					'--db-icon-font-family': `db-ux-${family}`,
-					'--db-icon-font-weight': weight,
-					'--db-icon-font-size': `${weight}px`
-				}}>
+				style={
+					{
+						'--db-icon-font-family': `db-ux-${family}`,
+						'--db-icon-font-weight': weight,
+						'--db-icon-font-size': `${weight}px`
+					} as any
+				}>
 				{ALL_ICONS.filter((icon) => icon.includes(search)).map(
 					(icon) => (
 						<DBCard spacing="small">
