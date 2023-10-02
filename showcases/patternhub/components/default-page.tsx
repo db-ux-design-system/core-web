@@ -9,6 +9,7 @@ import {
 } from '../../../output/react/src';
 import StaticContent from './static-content';
 import Navigation from './navigation';
+import VersionSwitcher from './version-switcher';
 
 const DefaultPage = ({ children }: any) => {
 	const [fullscreen, setFullscreen] = useState<boolean>(false);
@@ -52,14 +53,7 @@ const DefaultPage = ({ children }: any) => {
 									{process.env.NEXT_PUBLIC_APP_NAME}
 								</DBBrand>
 							}
-							slotMetaNavigation={
-								<>
-									/* TODO: Add github version switcher */
-									<a href="#">Link1</a>
-									<a href="#">Link2</a>
-									<a href="#">Link3</a>
-								</>
-							}
+							slotMetaNavigation={<VersionSwitcher />}
 							slotCallToAction={
 								/* TODO: Use DBSearchBar in future */
 								<DBButton icon="search" variant="text" noText>

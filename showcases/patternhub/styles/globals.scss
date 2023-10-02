@@ -98,6 +98,10 @@ table th {
 	padding-inline: variables.$db-spacing-fixed-md;
 }
 
+.version-switcher {
+	max-width: variables.$db-sizing-3xl;
+}
+
 /* Workaround for current db-page from db-ui-elements */
 div[class^="ch-"] {
 	div,
