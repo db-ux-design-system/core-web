@@ -23,6 +23,9 @@ const App = () => (
 			<DBRadio>Tag as Radio</DBRadio>
 		</DBTag>
 		<DBTag>Static Tag</DBTag>
+		<DBTag overflow={true}>
+			<span>Static Tag with overflow</span>
+		</DBTag>
 	</>
 );
 

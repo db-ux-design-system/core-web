@@ -86,6 +86,7 @@ $db-colors-neutral: var(
 	--db-neutral-enabled,
 	default-variables.$db-colors-neutral-enabled
 );
+
 $db-colors-neutral-bg: var(
 	--db-neutral-bg-enabled,
 	default-variables.$db-colors-neutral-bg-0-enabled
@@ -117,6 +118,14 @@ $db-colors-neutral-border: var(
 	var(
 		--db-neutral-border-enabled,
 		default-variables.$db-colors-neutral-border-enabled
+	)
+);
+
+$db-colors-neutral-element: var(
+	--db-current-element-color,
+	var(
+		--db-neutral-element-enabled,
+		default-variables.$db-colors-neutral-element-enabled
 	)
 );
 

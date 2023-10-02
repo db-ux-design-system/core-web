@@ -34,9 +34,9 @@ const showAlert = (exampleName: string) => {
 				<DBButton v-if="exampleProps.component === 'button'">{{
 					exampleName
 				}}</DBButton>
-				<DBLink v-if="exampleProps.component === 'link'" href="#">{{
-					exampleName
-				}}</DBLink>
+				<DBLink v-if="exampleProps.component === 'link'" href="#">
+					{{ exampleName }}
+				</DBLink>
 				<DBCheckbox
 					v-if="exampleProps.component === 'checkbox'"
 					:checked="exampleProps.checked"
@@ -53,10 +53,22 @@ const showAlert = (exampleName: string) => {
 						exampleProps.component !== 'button' &&
 						exampleProps.component !== 'link' &&
 						exampleProps.component !== 'checkbox' &&
-						exampleProps.component !== 'radio'
+						exampleProps.component !== 'radio' &&
+						!exampleProps.overflow
 					"
 				>
 					{{ exampleName }}
+				</template>
+				<template
+					v-if="
+						exampleProps.component !== 'button' &&
+						exampleProps.component !== 'link' &&
+						exampleProps.component !== 'checkbox' &&
+						exampleProps.component !== 'radio' &&
+						exampleProps.overflow
+					"
+				>
+					<span>{{ exampleName }}</span>
 				</template>
 			</DBTag>
 		</template>

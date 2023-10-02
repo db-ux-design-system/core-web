@@ -17,16 +17,19 @@ $default-placeholder-opacity: 0.5;
 
 $default-mobile-header-height: functions.to-rem(56);
 
+$default-border-height: 1px;
+
 %default-adaptive-border {
-	border: solid 1px variables.$db-colors-neutral-on-bg;
+	border: solid $default-border-height variables.$db-colors-neutral-on-bg;
 }
 
 %transparent-border {
-	border: solid 1px transparent;
+	border: solid $default-border-height transparent;
 }
 
 %component-border {
-	border: solid 1px variables.$db-colors-neutral-border-weak;
+	border: solid $default-border-height
+		variables.$db-colors-neutral-border-weak;
 }
 %default-interactive-component {
 	@extend %default-adaptive-border;
