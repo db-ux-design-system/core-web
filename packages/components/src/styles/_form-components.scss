@@ -329,7 +329,7 @@ $floating-label-size: calc(
 	&:is(label),
 	label {
 		display: flex;
-		align-content: center;
+		align-items: center;
 		position: relative;
 	}
 
