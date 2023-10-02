@@ -2,6 +2,7 @@
 @use "typography-placeholder";
 @use "scaling-placeholder";
 @use "helpers/font";
+@use "variables";
 
 @forward "font-faces";
 
@@ -42,31 +43,41 @@ h6 {
 h1 {
 	line-height: var(--db-type-headline-line-height-xl);
 	font-size: var(--db-type-headline-font-size-xl);
+	margin-block: variables.$db-spacing-fixed-xl;
 }
 
 h2 {
 	line-height: var(--db-type-headline-line-height-lg);
 	font-size: var(--db-type-headline-font-size-lg);
+	margin-block: variables.$db-spacing-fixed-lg;
 }
 
 h3 {
 	line-height: var(--db-type-headline-line-height-md);
 	font-size: var(--db-type-headline-font-size-md);
+	margin-block: variables.$db-spacing-fixed-md;
 }
 
 h4 {
 	line-height: var(--db-type-headline-line-height-sm);
 	font-size: var(--db-type-headline-font-size-sm);
+	margin-block: variables.$db-spacing-fixed-sm;
 }
 
 h5 {
 	line-height: var(--db-type-headline-line-height-xs);
 	font-size: var(--db-type-headline-font-size-xs);
+	margin-block: variables.$db-spacing-fixed-xs;
 }
 
 h6 {
 	line-height: var(--db-type-headline-line-height-2xs);
 	font-size: var(--db-type-headline-font-size-2xs);
+	margin-block: variables.$db-spacing-fixed-2xs;
+}
+
+p {
+	margin-block: variables.$db-spacing-fixed-md;
 }
 
 @mixin tonalities($tonalities...) {
