@@ -9,7 +9,7 @@
 For `CSS` and `Tailwind` you need to use the import `@import "@db-ui/foundations/build/css/color/classes/all.css";` in your root `.css` file.
 Or if you only want a single variant e.g. `informational` you can import `@import "@db-ui/foundations/build/css/color/classes/informational.css";`.
 
-In case that you're either using a bundler or importing the CSS within your JavaScript files, please adapt this `@import` syntax accordingly.
+In case that you're either using a bundler (recommended) or importing the CSS within your JavaScript files, please adapt this `@import` syntax accordingly.
 
 For `SCSS` you need to use this import `@use @db-ui/foundations/build/scss/color/placeholder` in your `.scss` file, where you need the specific variable.
 Then you can use e.g. `informational` by extending this: `@extend %db-bg-informational`.
