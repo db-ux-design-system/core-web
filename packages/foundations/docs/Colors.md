@@ -11,12 +11,12 @@ Or if you only want a single variant e.g. `informational` you can import `@impor
 
 In case that you're either using a bundler (recommended) or importing the CSS within your JavaScript files, please adapt this `@import` syntax accordingly.
 
-For `SCSS` you need to use this import `@use @db-ui/foundations/build/scss/color/placeholder` in your `.scss` file, where you need the specific variable.
-Then you can use e.g. `informational` by extending this: `@extend %db-bg-informational`.
+For `SCSS` you need to use the import `@use @db-ui/foundations/build/scss/color/placeholder` in your `.scss` file, where you need to reference the specific variable.
+Then you can use e.g. `informational` color by extending our SCSS placeholders like this: `@extend %db-bg-informational`.
 
 ### How to use
 
-You can see all possible colors [here](./overview).
+We're providing an [overview for all all possible colors](./overview).
 
 |             Variant              | CSS                                            | SCSS                                            | Tailwind                                       |
 | :------------------------------: | ---------------------------------------------- | ----------------------------------------------- | ---------------------------------------------- |
