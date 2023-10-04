@@ -105,6 +105,12 @@ $color-variants: "neutral", "neutral-strong", "primary", "critical",
 }
 
 $component-variants: (
+	"neutral": (
+		"border": variables.$db-colors-neutral-border-weak,
+		"element": variables.$db-colors-neutral-element,
+		"on-bg": variables.$db-colors-neutral-on-bg,
+		"primary": variables.$db-colors-neutral
+	),
 	"critical": (
 		"border": variables.$db-colors-critical-border-weak,
 		"element": variables.$db-colors-critical-element,

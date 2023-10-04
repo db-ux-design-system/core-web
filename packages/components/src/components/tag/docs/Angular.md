@@ -21,8 +21,11 @@ import { DBTagModule } from '@db-ui/ngx-components';
 ```html app.component.html
 <!-- app.component.html -->
 <db-tag><db-button>Tag as Button</db-button></db-tag>
-<db-tag><db-link>Tag as Link</db-link></db-tag>
+<db-tag>
+	<db-link> Tag as Link </db-link>
+</db-tag>
 <db-tag><db-checkbox>Tag as Checkbox</db-checkbox></db-tag>
 <db-tag><db-radio>Tag as Radio</db-radio></db-tag>
 <db-tag>Static Tag</db-tag>
+<db-tag [overflow]="true"><span>Static Tag with overflow</span></db-tag>
 ```
