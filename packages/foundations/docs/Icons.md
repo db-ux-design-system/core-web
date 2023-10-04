@@ -10,9 +10,9 @@ For `CSS`, `SCSS` and `Tailwind` you don't have to include a specific file, just
 
 ### How to use
 
-You can see an overview of the icons [here](./overview).
+We're providing an [overview for all of our icons](./overview).
 
-You can add an icon before or after a tag, by adding an `data-` attribute to your `html`.
+You can add an icon before or after a tag, by adding an `data-` attribute to your `html`, like for example:
 
 | Variant |                  Data                  |
 | ------- | :------------------------------------: |
@@ -31,7 +31,7 @@ node node_modules/@db-ui/foundations/scripts/generate-icon-fonts/index.js --src 
 
 We search for all `**/*.svg` files inside the `src` directory and create a new icon font with the provided name.
 
-> **_NOTE:_** We use 3 different sizes for components (16,20,24,32) to show more or less details. You can do the same by providing another file with a size postfix for example "icon_file_name_16.svg".
+> **_NOTE:_** We use 3 different sizes for components (16, 20, 24, 32) to show more or less details. You can do the same by providing another file with a size postfix for example "icon_file_name_16.svg".
 
 In your app you need to include some of the generated files:
 
