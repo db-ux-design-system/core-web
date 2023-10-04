@@ -58,7 +58,9 @@ const getTag = ({
 					{children}
 				</DBRadio>
 			)}
-			{!component && <>{children}</>}
+
+			{!component && !overflow && <>{children}</>}
+			{!component && overflow && <span>{children}</span>}
 		</DBTag>
 	);
 };

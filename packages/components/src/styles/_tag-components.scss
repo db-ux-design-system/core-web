@@ -4,7 +4,7 @@
 @use "@db-ui/foundations/build/scss/variables";
 @use "@db-ui/foundations/build/scss/color/colors";
 
-$interactive-selectors: "input, a, button";
+$interactive-selectors: "input, button:not(.db-tab-remove-button), a";
 
 @mixin get-tag-colors() {
 	@extend %db-bg-base-strong;
@@ -59,14 +59,17 @@ $interactive-selectors: "input, a, button";
 	dbbutton:not(.db-tab-remove-button) > button,
 	db-button > button,
 	a,
-	&:has(input:checked),
-	&:has(input:checked) {
+	input[type="checkbox"]:checked {
 		@content;
 	}
 }
 
 @mixin get-tag-colors-interactive() {
 	@include interactive-selectors() {
+		@extend %db-bg-base-strong-interactive;
+	}
+
+	input[type="radio"]:checked {
 		@extend %db-bg-base-strong-interactive;
 	}
 
@@ -84,14 +87,11 @@ $interactive-selectors: "input, a, button";
 				} @else if ($name == "successful") {
 					@extend %db-bg-successful-interactive;
 				}
-
-				--db-current-border-color: #{map.get($colors, "border")};
 			}
 		}
 	}
 
 	&[data-emphasis="strong"] {
-
 		@include interactive-selectors() {
 			@extend %db-base-component-interactive;
 		}
@@ -100,6 +100,10 @@ $interactive-selectors: "input, a, button";
 		&:has(a),
 		&:has(button) {
 			--db-current-icon-color: var(--db-base-on-enabled);
+		}
+
+		input[type="radio"]:checked {
+			@extend %db-neutral-component-ia;
 		}
 
 		@each $name, $colors in variants.$component-variants {

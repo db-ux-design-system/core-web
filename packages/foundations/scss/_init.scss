@@ -113,8 +113,14 @@ pre:has(code) {
 
 code {
 	@extend %db-neutral-component;
-	padding-block: variables.$db-spacing-fixed-2xs;
-	padding-inline: variables.$db-spacing-fixed-xs;
+	padding-block: variables.$db-spacing-fixed-3xs;
+	padding-inline: variables.$db-spacing-fixed-2xs;
+}
+
+blockquote {
+	@extend %db-bg-neutral-transparent-semi;
+	margin: 0;
+	padding: variables.$db-spacing-fixed-sm variables.$db-spacing-fixed-md;
 }
 
 // details/summary box-sizing / https://kittygiraudel.com/2021/08/23/shadow-roots-and-inheritance/
