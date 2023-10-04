@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
+import { sanitize } from 'dompurify';
 import { DBSelect } from '../src';
 import { type BranchGroup, type GithubResponse } from './data';
 
@@ -104,9 +105,11 @@ const VersionSwitcher = () => {
 		const isTag = branch.split('.').length === 3 && branch.startsWith('v');
 		router
 			.push(
-				`https://${owner}.github.io/${repo}${
-					isTag ? '/version' : '/review'
-				}/${branch}${lastPath}`
+				sanitize(
+					`https://${owner}.github.io/${repo}${
+						isTag ? '/version' : '/review'
+					}/${branch}${lastPath}`
+				)
 			)
 			.catch((error) => {
 				console.error(error);
