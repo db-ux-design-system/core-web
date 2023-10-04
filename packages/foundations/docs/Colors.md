@@ -16,7 +16,7 @@ Then you can use e.g. `informational` color by extending our SCSS placeholders l
 
 ### How to use
 
-We're providing an [overview for all all possible colors](./overview).
+We're providing an [overview for all possible colors](./overview).
 
 |             Variant              | CSS                                            | SCSS                                            | Tailwind                                       |
 | :------------------------------: | ---------------------------------------------- | ----------------------------------------------- | ---------------------------------------------- |
