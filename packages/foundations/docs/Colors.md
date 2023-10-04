@@ -2,11 +2,11 @@
 
 -   You use `Colors` to highlight an area with a specific color.
 -   You can also use it to change the text color for components with the `*-transparent-semi` colors.
--   Most classes/placeholders will change color and background-color and will set properties which will be passed down to adaptive components.
+-   Most classes/placeholders will change color and background-color and will set properties, which will be passed down to adaptive components.
 
 ## How to include colors
 
-For `CSS` and `Tailwind` you need to use this import `import "@db-ui/foundations/build/css/color/classes/all.css";` in your root `.css` file.
+For `CSS` and `Tailwind` you need to use the import `import "@db-ui/foundations/build/css/color/classes/all.css";` in your root `.css` file.
 Or if you only want a single variant e.g. `informational` you can import `import "@db-ui/foundations/build/css/color/classes/informational.css";`.
 
 For `SCSS` you need to use this import `@use @db-ui/foundations/build/scss/color/placeholder` in your `.scss` file, where you need the specific variable.
