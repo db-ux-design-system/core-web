@@ -18,26 +18,12 @@ Then you can use e.g. `informational` color by extending our SCSS placeholders l
 
 We're providing an [overview for all possible colors](./overview).
 
-|             Variant              | CSS                                            | SCSS                                            | Tailwind                                       |
-| :------------------------------: | ---------------------------------------------- | ----------------------------------------------- | ---------------------------------------------- |
-|              `base`              | `class="db-bg-base"`                           | `@extend %db-bg-base`                           | `class="db-bg-base"`                           |
-|     `base-transparent-semi`      | `class="db-bg-base-transparent-semi"`          | `@extend %db-bg-base-transparent-semi`          | `class="db-bg-base-transparent-semi"`          |
-|     `base-transparent-full`      | `class="db-bg-base-transparent-full"`          | `@extend %db-bg-base-transparent-full`          | `class="db-bg-base-transparent-full"`          |
-|            `neutral`             | `class="db-bg-neutral"`                        | `@extend %db-bg-neutral`                        | `class="db-bg-neutral"`                        |
-|    `neutral-transparent-semi`    | `class="db-bg-neutral-transparent-semi"`       | `@extend %db-bg-neutral-transparent-semi`       | `class="db-bg-neutral-transparent-semi"`       |
-|    `neutral-transparent-full`    | `class="db-bg-neutral-transparent-full"`       | `@extend %db-bg-neutral-transparent-full`       | `class="db-bg-neutral-transparent-full"`       |
-|             `brand`              | `class="db-bg-brand"`                          | `@extend %db-bg-brand`                          | `class="db-bg-brand"`                          |
-|     `brand-transparent-semi`     | `class="db-bg-brand-transparent-semi"`         | `@extend %db-bg-brand-transparent-semi`         | `class="db-bg-brand-transparent-semi"`         |
-|     `brand-transparent-full`     | `class="db-bg-brand-transparent-full"`         | `@extend %db-bg-brand-transparent-full`         | `class="db-bg-brand-transparent-full"`         |
-|         `informational`          | `class="db-bg-informational"`                  | `@extend %db-bg-informational`                  | `class="db-bg-informational"`                  |
-| `informational-transparent-semi` | `class="db-bg-informational-transparent-semi"` | `@extend %db-bg-informational-transparent-semi` | `class="db-bg-informational-transparent-semi"` |
-| `informational-transparent-full` | `class="db-bg-informational-transparent-full"` | `@extend %db-bg-informational-transparent-full` | `class="db-bg-informational-transparent-full"` |
-|            `critical`            | `class="db-bg-critical"`                       | `@extend %db-bg-critical`                       | `class="db-bg-critical"`                       |
-|   `critical-transparent-semi`    | `class="db-bg-critical-transparent-semi"`      | `@extend %db-bg-critical-transparent-semi`      | `class="db-bg-critical-transparent-semi"`      |
-|   `critical-transparent-full`    | `class="db-bg-critical-transparent-full"`      | `@extend %db-bg-critical-transparent-full`      | `class="db-bg-critical-transparent-full"`      |
-|            `warning`             | `class="db-bg-warning"`                        | `@extend %db-bg-warning`                        | `class="db-bg-warning"`                        |
-|    `warning-transparent-semi`    | `class="db-bg-warning-transparent-semi"`       | `@extend %db-bg-warning-transparent-semi`       | `class="db-bg-warning-transparent-semi"`       |
-|    `warning-transparent-full`    | `class="db-bg-warning-transparent-full"`       | `@extend %db-bg-warning-transparent-full`       | `class="db-bg-warning-transparent-full"`       |
-|           `successful`           | `class="db-bg-successful"`                     | `@extend %db-bg-successful`                     | `class="db-bg-successful"`                     |
-|  `successful-transparent-semi`   | `class="db-bg-successful-transparent-semi"`    | `@extend %db-bg-successful-transparent-semi`    | `class="db-bg-successful-transparent-semi"`    |
-|  `successful-transparent-full`   | `class="db-bg-successful-transparent-full"`    | `@extend %db-bg-successful-transparent-full`    | `class="db-bg-successful-transparent-full"`    |
+There are several variants: `base`, `brand`, `neutral`, `critical`, `informational`, `successful`, `warning`.
+
+**We use `XXX` here you should replace it with a variant from above.**
+
+|        Variant         | CSS                                  | SCSS                                  | Tailwind                             |
+| :--------------------: | ------------------------------------ | ------------------------------------- | ------------------------------------ |
+|         `XXX`          | `class="db-bg-XXX"`                  | `@extend %db-bg-XXX`                  | `class="db-bg-XXX"`                  |
+| `XXX-transparent-semi` | `class="db-bg-XXX-transparent-semi"` | `@extend %db-bg-XXX-transparent-semi` | `class="db-bg-XXX-transparent-semi"` |
+| `XXX-transparent-full` | `class="db-bg-XXX-transparent-full"` | `@extend %db-bg-XXX-transparent-full` | `class="db-bg-XXX-transparent-full"` |
