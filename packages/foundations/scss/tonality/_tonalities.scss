@@ -1,8 +1,8 @@
-@use "variables";
+@use "variables-tonality";
 @use "typography-placeholder";
 @use "scaling-placeholder";
 @use "font";
-@use "variables";
+@use "../variables";
 
 @forward "../font-faces";
 
@@ -93,4 +93,4 @@ p {
 	}
 }
 
-@include tonalities(variables.$tonalities);
+@include tonalities(variables-tonality.$tonalities);

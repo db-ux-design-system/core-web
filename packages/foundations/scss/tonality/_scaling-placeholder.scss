@@ -1,4 +1,4 @@
-@use "variables";
+@use "variables-tonality";
 @use "../screen-sizes";
 
 @function get-variable($key, $tonality, $size, $device: "") {
@@ -7,7 +7,7 @@
 
 /* stylelint-disable */
 // TODO: remove this after https://github.com/db-ui/mono/pull/1545
-@mixin get-temp-label-variables($tonality) {
+@mixin get-temp-label-variables-tonality($tonality) {
 	$label-scale: 0.65;
 	$focusOpacity: 1;
 	@if ($tonality== "functional") {
@@ -27,11 +27,11 @@
 }
 /* stylelint-enable */
 
-@each $tonality in variables.$tonalities {
+@each $tonality in variables-tonality.$tonalities {
 	%db-scaling-#{$tonality} {
-		@include get-temp-label-variables($tonality);
+		@include get-temp-label-variables-tonality($tonality);
 
-		@each $sizing in variables.$sizings {
+		@each $sizing in variables-tonality.$sizings {
 			--db-sizing-#{$sizing}: #{get-variable(
 					"sizing",
 					$tonality,
@@ -39,7 +39,7 @@
 				)};
 		}
 
-		@each $fix in variables.$fixed {
+		@each $fix in variables-tonality.$fixed {
 			--db-spacing-fixed-#{$fix}: #{get-variable(
 					"spacing-fixed",
 					$tonality,
@@ -47,7 +47,7 @@
 				)};
 		}
 
-		@each $res in variables.$responsive {
+		@each $res in variables-tonality.$responsive {
 			--db-spacing-responsive-#{$res}: #{get-variable(
 					"spacing-responsive",
 					$tonality,
@@ -57,7 +57,7 @@
 		}
 
 		@include screen-sizes.screen() {
-			@each $res in variables.$responsive {
+			@each $res in variables-tonality.$responsive {
 				--db-spacing-responsive-#{$res}: #{get-variable(
 						"spacing-responsive",
 						$tonality,
@@ -68,7 +68,7 @@
 		}
 
 		@include screen-sizes.screen("md") {
-			@each $res in variables.$responsive {
+			@each $res in variables-tonality.$responsive {
 				--db-spacing-responsive-#{$res}: #{get-variable(
 						"spacing-responsive",
 						$tonality,

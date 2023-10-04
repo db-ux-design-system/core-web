@@ -96,14 +96,16 @@ $interactive-selectors: "input, button:not(.db-tab-remove-button), a";
 			@extend %db-base-component-interactive;
 		}
 
+		input[type="radio"]:checked {
+			@extend %db-base-component;
+		}
+
 		&:has(input:checked),
 		&:has(a),
 		&:has(button) {
 			--db-current-icon-color: var(--db-base-on-enabled);
-		}
-
-		input[type="radio"]:checked {
-			@extend %db-neutral-component-ia;
+			--db-current-color: var(--db-base-on-enabled);
+			color: var(--db-current-color);
 		}
 
 		@each $name, $colors in variants.$component-variants {
