@@ -1,5 +1,7 @@
 {
 	"spacing": {
+		"0": 0,
+
 		"fix-3xs": "var(--db-spacing-fixed-3xs)",
 		"fix-2xs": "var(--db-spacing-fixed-2xs)",
 		"fix-xs": "var(--db-spacing-fixed-xs)",
