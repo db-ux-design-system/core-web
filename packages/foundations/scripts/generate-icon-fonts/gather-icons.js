@@ -8,6 +8,72 @@ const componentSizes = [24, 20, 16];
 
 const allTemporaryDir = 'all';
 
+const initTemporaryIconFiles = (globPaths, prefix, temporaryDirectory) => {
+	const foundIconFiles = [];
+
+	for (const svgPath of globPaths) {
+		const paths = svgPath.split('/');
+		let filename = paths.at(-1);
+		let iconName;
+		if (prefix) {
+			filename = filename.replace(prefix, '');
+		}
+
+		iconName = filename.replace('.svg', '');
+		for (const size of availableSizes) {
+			iconName = iconName.replace(`_${size}`, '');
+		}
+
+		FSE.copyFileSync(
+			svgPath,
+			`${temporaryDirectory}/${allTemporaryDir}/${generalPrefix}${filename}`
+		);
+
+		if (iconName && !foundIconFiles.includes(iconName)) {
+			foundIconFiles.push(iconName);
+		}
+	}
+
+	return foundIconFiles;
+};
+
+const initDefaultFile = (temporaryDirectory, iconFileName) => {
+	const defaultFileExists = FSE.existsSync(
+		`${temporaryDirectory}/${allTemporaryDir}/${generalPrefix}${iconFileName}.svg`
+	);
+
+	if (!defaultFileExists) {
+		for (const size of componentSizes) {
+			const sizeFileName = `${temporaryDirectory}/${allTemporaryDir}/${generalPrefix}${iconFileName}_${size}.svg`;
+			if (FSE.existsSync(sizeFileName)) {
+				FSE.copyFileSync(
+					sizeFileName,
+					`${temporaryDirectory}/${allTemporaryDir}/${generalPrefix}${iconFileName}.svg`
+				);
+				break;
+			}
+		}
+	}
+};
+
+const initComponentSizes = (temporaryDirectory, iconFileName) => {
+	for (const size of componentSizes) {
+		// Generate all component sizes inside /all directory
+		const requiredFilePath = `${temporaryDirectory}/${allTemporaryDir}/${generalPrefix}${iconFileName}_${size}.svg`;
+		if (!FSE.existsSync(requiredFilePath)) {
+			const nextBestSizeArray =
+				size === 16 ? [20, 24] : size === 20 ? [24, 16] : [20, 16];
+			for (const nextSize of nextBestSizeArray) {
+				const nextSizeFilePath = `${temporaryDirectory}/${allTemporaryDir}/${generalPrefix}${iconFileName}_${nextSize}.svg`;
+				if (FSE.existsSync(nextSizeFilePath)) {
+					FSE.copyFileSync(nextSizeFilePath, requiredFilePath);
+					break;
+				}
+			}
+		}
+	}
+};
+
 /**
  * @param temporaryDirectory {string}
  * @param values {{ src: string, prefix: string, ignoreGlobs:string|string[], variants:string[], dryRun:boolean, withSizes: boolean }}
@@ -38,101 +104,56 @@ const gatherIcons = (temporaryDirectory, values) => {
 		FSE.mkdirSync(`${temporaryDirectory}/${allTemporaryDir}`);
 	}
 
-	const foundIconFiles = [];
+	const foundIconFiles = initTemporaryIconFiles(
+		globPaths,
+		prefix,
+		temporaryDirectory
+	);
 
-	for (const svgPath of globPaths) {
-		const paths = svgPath.split('/');
-		let filename = paths.at(-1);
-		let iconName;
-		if (prefix) {
-			filename = filename.replace(prefix, '');
-		}
+	for (const variant of splitVariantsArray) {
+		for (const iconFileName of foundIconFiles.filter(
+			(fileName) => !variants.some((va) => fileName.endsWith(`_${va}`))
+		)) {
+			const fileName =
+				variant === '' ? iconFileName : `${iconFileName}_${variant}`;
+			initDefaultFile(temporaryDirectory, fileName);
+			initComponentSizes(temporaryDirectory, fileName);
 
-		iconName = filename.replace('.svg', '');
-		for (const size of availableSizes) {
-			iconName = iconName.replace(`_${size}`, '');
-		}
+			for (const size of splitSizesArray) {
+				// Generate new directories based on size and variant
+				const sizeFileEnding = `${size === '' ? '' : `_${size}`}`;
+				const directory = `${
+					variant === '' ? 'default' : variant
+				}${sizeFileEnding}`;
+				const defaultFilePath = `${temporaryDirectory}/${allTemporaryDir}/${generalPrefix}${fileName}.svg`;
+				const sizeFilePath = `${temporaryDirectory}/${allTemporaryDir}/${generalPrefix}${fileName}${sizeFileEnding}.svg`;
+				const fallbackFilePath = `${temporaryDirectory}/${allTemporaryDir}/${generalPrefix}${iconFileName}.svg`;
+				const fallbackSizeFilePath = `${temporaryDirectory}/${allTemporaryDir}/${generalPrefix}${iconFileName}${sizeFileEnding}.svg`;
 
-		FSE.copyFileSync(
-			svgPath,
-			`${temporaryDirectory}/${allTemporaryDir}/${generalPrefix}${filename}`
-		);
+				if (!FSE.existsSync(`${temporaryDirectory}/${directory}`)) {
+					FSE.mkdirSync(`${temporaryDirectory}/${directory}`);
+				}
 
-		if (iconName && !foundIconFiles.includes(iconName)) {
-			foundIconFiles.push(iconName);
-		}
-	}
-
-	for (const iconFileName of foundIconFiles) {
-		const defaultFileExists = FSE.existsSync(
-			`${temporaryDirectory}/${allTemporaryDir}/${generalPrefix}${iconFileName}.svg`
-		);
-
-		if (!defaultFileExists) {
-			for (const size of componentSizes) {
-				const sizeFileName = `${temporaryDirectory}/${allTemporaryDir}/${generalPrefix}${iconFileName}_${size}.svg`;
-				if (FSE.existsSync(sizeFileName)) {
+				if (FSE.existsSync(sizeFilePath)) {
 					FSE.copyFileSync(
-						sizeFileName,
-						`${temporaryDirectory}/${allTemporaryDir}/${generalPrefix}${iconFileName}.svg`
+						sizeFilePath,
+						`${temporaryDirectory}/${directory}/${generalPrefix}${iconFileName}.svg`
 					);
-					break;
-				}
-			}
-		}
-
-		for (const size of componentSizes) {
-			// Generate all component sizes inside /all directory
-			const requiredFilePath = `${temporaryDirectory}/${allTemporaryDir}/${generalPrefix}${iconFileName}_${size}.svg`;
-			if (!FSE.existsSync(requiredFilePath)) {
-				const nextBestSizeArray =
-					size === 16 ? [20, 24] : size === 20 ? [24, 16] : [20, 16];
-				for (const nextSize of nextBestSizeArray) {
-					const nextSizeFilePath = `${temporaryDirectory}/${allTemporaryDir}/${generalPrefix}${iconFileName}_${nextSize}.svg`;
-					if (FSE.existsSync(nextSizeFilePath)) {
-						FSE.copyFileSync(nextSizeFilePath, requiredFilePath);
-						break;
-					}
-				}
-			}
-		}
-
-		for (const size of splitSizesArray) {
-			// Generate new directories based on size and variant
-			for (const variant of splitVariantsArray) {
-				if (
-					variant === ''
-						? !variants.some((va) =>
-								iconFileName.endsWith(`_${va}`)
-						  )
-						: iconFileName.endsWith(`_${variant}`)
-				) {
-					const fileName =
-						variant === ''
-							? iconFileName
-							: iconFileName.replace(`_${variant}`, '');
-					const sizeFileEnding = `${size === '' ? '' : `_${size}`}`;
-					const directory = `${
-						variant === '' ? 'default' : variant
-					}${sizeFileEnding}`;
-					const defaultFilePath = `${temporaryDirectory}/${allTemporaryDir}/${generalPrefix}${iconFileName}.svg`;
-					const sizeFilePath = `${temporaryDirectory}/${allTemporaryDir}/${generalPrefix}${iconFileName}${sizeFileEnding}.svg`;
-
-					if (!FSE.existsSync(`${temporaryDirectory}/${directory}`)) {
-						FSE.mkdirSync(`${temporaryDirectory}/${directory}`);
-					}
-
-					if (FSE.existsSync(sizeFilePath)) {
-						FSE.copyFileSync(
-							sizeFilePath,
-							`${temporaryDirectory}/${directory}/${generalPrefix}${fileName}.svg`
-						);
-					} else {
-						FSE.copyFileSync(
-							defaultFilePath,
-							`${temporaryDirectory}/${directory}/${generalPrefix}${fileName}.svg`
-						);
-					}
+				} else if (FSE.existsSync(defaultFilePath)) {
+					FSE.copyFileSync(
+						defaultFilePath,
+						`${temporaryDirectory}/${directory}/${generalPrefix}${iconFileName}.svg`
+					);
+				} else if (FSE.existsSync(fallbackSizeFilePath)) {
+					FSE.copyFileSync(
+						fallbackSizeFilePath,
+						`${temporaryDirectory}/${directory}/${generalPrefix}${iconFileName}.svg`
+					);
+				} else {
+					FSE.copyFileSync(
+						fallbackFilePath,
+						`${temporaryDirectory}/${directory}/${generalPrefix}${iconFileName}.svg`
+					);
 				}
 			}
 		}
