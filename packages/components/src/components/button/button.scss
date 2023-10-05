@@ -54,6 +54,7 @@
 		@extend %db-brand-component-interactive;
 		@extend %transparent-border;
 		background-color: colors.$db-brand;
+		color: colors.$db-brand-on;
 
 		&:hover {
 			background-color: colors.$db-brand-hover;
