@@ -28,14 +28,16 @@
 @use "../components/accordion-item/accordion-item" as *;
 @use "../components/main-navigation/main-navigation" as *;
 
+@use "../components/popover/popover" as *;
 @forward "dialog-init";
+
 // angular-workaround
+dbpopover,
+db-popover,
 dbtextarea,
 db-textarea,
-// angular-workaround
 dbmain-navigation,
 db-main-navigation,
-// angular-workaround
 dbaccordion-item,
 db-accordion-item,
 dbaccordion,
@@ -94,6 +96,18 @@ dbalert {
 
 // for db-badge
 
-:has(.db-badge[data-placement^="corner"]) {
+:has(.db-badge[data-placement^="corner"]),
+:has(> db-popover),
+:has(> dbpopover),
+:has(> .db-popover) {
 	position: relative;
+}
+
+:has(> db-popover > .db-popover:not([data-open])):hover,
+:has(> dbpopover > .db-popover:not([data-open])):hover,
+:has(> .db-popover:not([data-open])):hover {
+	/* TODO: We need to disable hover and active effects if popover is visible */
+	.db-popover:first-of-type {
+		@extend %show-popover;
+	}
 }

@@ -20,6 +20,10 @@
  * }]}
  */
 const getComponents = () => [
+  {
+    name: "popover"
+  },
+
 	{
 		name: 'accordion-item'
 	},

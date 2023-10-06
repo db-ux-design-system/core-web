@@ -1,0 +1,155 @@
+[
+	{
+		"name": "Tonality",
+		"examples": [
+			{
+				"name": "functional",
+				"className": "db-ui-functional",
+				"props": {
+					"content": "Popover"
+				}
+			},
+			{
+				"name": "regular (Default)",
+				"className": "db-ui-regular",
+				"props": {
+					"content": "Popover"
+				}
+			},
+			{
+				"name": "expressive",
+				"className": "db-ui-expressive",
+				"props": {
+					"content": "Popover"
+				}
+			}
+		]
+	},
+	{
+		"name": "Spacing",
+		"examples": [
+			{
+				"name": "Small (Default)",
+				"props": {
+					"content": "Popover",
+					"spacing": "small"
+				}
+			},
+			{
+				"name": "Medium",
+				"props": {
+					"content": "Popover",
+					"spacing": "medium"
+				}
+			},
+			{
+				"name": "None",
+				"props": {
+					"content": "Popover",
+					"spacing": "none"
+				}
+			}
+		]
+	},
+	{
+		"name": "Placement",
+		"examples": [
+			{
+				"name": "bottom (Default)",
+				"props": {
+					"content": "Popover",
+					"placement": "bottom"
+				}
+			},
+			{
+				"name": "top",
+				"props": {
+					"content": "Popover",
+					"placement": "top"
+				}
+			},
+			{
+				"name": "left",
+				"props": {
+					"content": "Popover",
+					"placement": "left"
+				}
+			},
+			{
+				"name": "right",
+				"props": {
+					"content": "Popover",
+					"placement": "right"
+				}
+			}
+		]
+	},
+	{
+		"name": "Gap",
+		"examples": [
+			{
+				"name": "No gap (Default)",
+				"props": {
+					"content": "Popover"
+				}
+			},
+			{
+				"name": "With gap",
+				"props": {
+					"content": "Popover",
+					"gap": true
+				}
+			}
+		]
+	},
+	{
+		"name": "Animations",
+		"examples": [
+			{
+				"name": "Animation no delay (Default)",
+				"props": {
+					"content": "Popover"
+				}
+			},
+			{
+				"name": "Delay slow",
+				"props": {
+					"content": "Popover",
+					"delay": "slow"
+				}
+			},
+			{
+				"name": "Delay fast",
+				"props": {
+					"content": "Popover",
+					"delay": "fast"
+				}
+			},
+			{
+				"name": "No animation",
+				"props": {
+					"content": "Popover",
+					"behaviour": "plain"
+				}
+			}
+		]
+	},
+	{
+		"name": "Width",
+		"examples": [
+			{
+				"name": "Auto (Default)",
+				"props": {
+					"content": "Max width, lorem ipsum dolor sit amet, consetetur sadipscing"
+				}
+			},
+			{
+				"name": "Fixed",
+				"props": {
+					"content": "Max width, lorem ipsum dolor sit amet, consetetur sadipscing",
+					"width": "fixed"
+				}
+			}
+		]
+	}
+]

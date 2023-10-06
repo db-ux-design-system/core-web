@@ -79,6 +79,27 @@ export type IconVisibleState = {
 	iconVisible: (icon?: string) => boolean;
 };
 
+export type SpacingProps = {
+	/**
+	 * The spacing attribute changes the padding of the card.
+	 */
+	spacing?: 'none' | 'medium' | 'small';
+};
+
+export type PlacementProps = {
+	/**
+	 * The `placement` attributes values change the position to absolute and adds a transform based on the placement.
+	 */
+	placement?: 'left' | 'right' | 'top' | 'bottom';
+};
+
+export type GapProps = {
+	/**
+	 * If the absolute element should have a gap between the parent element.
+	 */
+	gap?: boolean;
+};
+
 export type OverflowProps = {
 	/**
 	 * The overflow attribute sets a max-width and longer text will be dotted.

@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<title>DBPopover</title>
+		<link rel="stylesheet" href="/styles/db-ui-42.css" />
+	</head>
+	<body style="padding: var(--db-spacing-fixed-md)">
+		<h2>Default</h2>
+		<button class="db-button">
+			Popover bottom
+			<div class="db-popover">Test</div>
+		</button>
+		<button class="db-button">
+			Popover top
+			<div class="db-popover" data-placement="top">Test</div>
+		</button>
+		<button class="db-button">
+			Popover left
+			<div class="db-popover" data-placement="left">Test</div>
+		</button>
+		<button class="db-button">
+			Popover right
+			<div class="db-popover" data-placement="right">Test</div>
+		</button>
+
+		<h2>Gap</h2>
+		<button class="db-button">
+			Popover bottom gap
+			<div class="db-popover" data-gap="true">Test</div>
+		</button>
+		<button class="db-button">
+			Popover top gap
+			<div class="db-popover" data-placement="top" data-gap="true">
+				Test
+			</div>
+		</button>
+		<button class="db-button">
+			Popover left gap
+			<div class="db-popover" data-placement="left" data-gap="true">
+				Test
+			</div>
+		</button>
+		<button class="db-button">
+			Popover right gap
+			<div class="db-popover" data-placement="right" data-gap="true">
+				Test
+			</div>
+		</button>
+
+		<h2>Animation/delay</h2>
+
+		<button class="db-button">
+			Popover delay slow
+			<div class="db-popover" data-delay="slow">Test</div>
+		</button>
+
+		<button class="db-button">
+			Popover delay fast
+			<div class="db-popover" data-delay="fast">Test</div>
+		</button>
+
+		<button class="db-button">
+			Popover plain
+			<div class="db-popover" data-behaviour="plain">Test</div>
+		</button>
+
+		<h2>Width</h2>
+
+		<button class="db-button">
+			Popover auto width
+			<div class="db-popover">
+				Max width, lorem ipsum dolor sit amet, consetetur sadipscing
+			</div>
+		</button>
+
+		<button class="db-button">
+			Popover fixed width
+			<div class="db-popover" data-width="fixed">
+				Max width, lorem ipsum dolor sit amet, consetetur sadipscing
+			</div>
+		</button>
+
+		<button class="db-button">
+			Popover test
+			<div class="db-popover" data-placement="top">
+				<h4>Title</h4>
+				<p>Paragraph</p>
+				<a href="#">Link</a>
+			</div>
+		</button>
+
+		<button class="db-button">
+			Popover open
+			<div class="db-popover" data-open="true">
+				<h4>Title</h4>
+				<p>Paragraph</p>
+				<a href="#">Link</a>
+			</div>
+		</button>
+	</body>
+</html>

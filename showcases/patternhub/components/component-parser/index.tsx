@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import DBPopover from '../src/components/popover/popover';
 import {
 	DBAlert,
 	DBBrand,
@@ -264,6 +265,14 @@ const ComponentSwitch = ({
 			<DBBadge className={className} {...props}>
 				{resolvedContent}
 			</DBBadge>
+		);
+	}
+
+	if (type === 'popover') {
+		return (
+			<DBPopover className={className} {...props}>
+				{resolvedContent}
+			</DBPopover>
 		);
 	}
 

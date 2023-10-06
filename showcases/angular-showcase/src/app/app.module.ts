@@ -25,12 +25,14 @@ import {
 	DBAccordionItemModule,
 	DBTextareaModule,
 	DBMainNavigationModule,
-	DBBadgeModule
+	DBBadgeModule,
+	DBPopoverModule
 } from '../../../../output/angular/src';
 import { ActionBarDirective } from '../../../../output/angular/src/components/header/ActionBar.directive';
 import { NavigationDirective } from '../../../../output/angular/src/components/header/Navigation.directive';
 import { MetaNavigationDirective } from '../../../../output/angular/src/components/header/MetaNavigation.directive';
 import { NavigationContentDirective } from '../../../../output/angular/src/components/navigation-item/NavigationContent.directive';
+import { PopoverComponent } from './components/popover/popover.component';
 import { BadgeComponent } from './components/badge/badge.component';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app.routing.module';
@@ -58,6 +60,8 @@ import { TextareaComponent } from './components/textarea/textarea.component';
 
 @NgModule({
 	declarations: [
+		PopoverComponent,
+
 		AccordionItemComponent,
 		AccordionComponent,
 		AlertComponent,
@@ -93,6 +97,8 @@ import { TextareaComponent } from './components/textarea/textarea.component';
 		TextareaComponent
 	],
 	imports: [
+		DBPopoverModule,
+
 		DBAccordionItemModule,
 		DBAccordionModule,
 		DBBadgeModule,

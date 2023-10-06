@@ -133,6 +133,16 @@ const componentChildren: NavigationItem[] = [
 				name: 'navigation-item'
 			}
 		]
+	},
+	{
+		label: 'Utilities',
+		path: '/components/utilities',
+		subNavigation: [
+			{
+				label: 'DBPopover',
+				name: 'popover'
+			}
+		]
 	}
 ];
 export const ROUTES: NavigationItem[] = [

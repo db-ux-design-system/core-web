@@ -1,3 +1,4 @@
+import PopoverComponent from '../components/popover';
 import AccordionItemComponent from '../components/accordion-item';
 import AccordionComponent from '../components/accordion';
 import MainNavigationComponent from '../components/main-navigation';
@@ -135,6 +136,11 @@ export const NAVIGATION_ITEMS: NavigationItem[] = [
 				path: 'section',
 				label: 'Section',
 				component: <SectionComponent />
+			},
+			{
+				path: 'popover',
+				label: 'Popover',
+				component: <PopoverComponent />
 			}
 		])
 	},
