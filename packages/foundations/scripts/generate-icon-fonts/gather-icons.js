@@ -129,6 +129,8 @@ const gatherIcons = (temporaryDirectory, values) => {
 				const sizeFilePath = `${temporaryDirectory}/${allTemporaryDir}/${generalPrefix}${fileName}${sizeFileEnding}.svg`;
 				const fallbackFilePath = `${temporaryDirectory}/${allTemporaryDir}/${generalPrefix}${iconFileName}.svg`;
 				const fallbackSizeFilePath = `${temporaryDirectory}/${allTemporaryDir}/${generalPrefix}${iconFileName}${sizeFileEnding}.svg`;
+				const placeholderFilePath = `${temporaryDirectory}/${allTemporaryDir}/${generalPrefix}x_placeholder.svg`;
+				const placeholderSizeFilePath = `${temporaryDirectory}/${allTemporaryDir}/${generalPrefix}x_placeholder${sizeFileEnding}.svg`;
 
 				if (!FSE.existsSync(`${temporaryDirectory}/${directory}`)) {
 					FSE.mkdirSync(`${temporaryDirectory}/${directory}`);
@@ -142,6 +144,16 @@ const gatherIcons = (temporaryDirectory, values) => {
 				} else if (FSE.existsSync(defaultFilePath)) {
 					FSE.copyFileSync(
 						defaultFilePath,
+						`${temporaryDirectory}/${directory}/${generalPrefix}${iconFileName}.svg`
+					);
+				} else if (FSE.existsSync(placeholderSizeFilePath)) {
+					FSE.copyFileSync(
+						placeholderSizeFilePath,
+						`${temporaryDirectory}/${directory}/${generalPrefix}${iconFileName}.svg`
+					);
+				} else if (FSE.existsSync(placeholderFilePath)) {
+					FSE.copyFileSync(
+						placeholderFilePath,
 						`${temporaryDirectory}/${directory}/${generalPrefix}${iconFileName}.svg`
 					);
 				} else if (FSE.existsSync(fallbackSizeFilePath)) {
