@@ -31,7 +31,11 @@
 @use "../components/popover/popover" as *;
 @forward "dialog-init";
 
+@use "../components/tooltip/tooltip" as *;
+
 // angular-workaround
+dbtooltip,
+db-tooltip,
 dbpopover,
 db-popover,
 dbtextarea,
@@ -99,7 +103,10 @@ dbalert {
 :has(.db-badge[data-placement^="corner"]),
 :has(> db-popover),
 :has(> dbpopover),
-:has(> .db-popover) {
+:has(> .db-popover),
+:has(> db-tooltip),
+:has(> dbtooltip),
+:has(> .db-tooltip) {
 	position: relative;
 }
 
@@ -108,6 +115,15 @@ dbalert {
 :has(> .db-popover:not([data-open])):hover {
 	/* TODO: We need to disable hover and active effects if popover is visible */
 	.db-popover:first-of-type {
+		@extend %show-popover;
+	}
+}
+
+:has(> db-tooltip > .db-tooltip):hover,
+:has(> dbtooltip > .db-tooltip):hover,
+:has(> .db-tooltip):hover {
+	/* TODO: We need to disable hover and active effects if tooltip is visible */
+	.db-tooltip:first-of-type {
 		@extend %show-popover;
 	}
 }

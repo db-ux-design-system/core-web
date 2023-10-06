@@ -1,0 +1,72 @@
+@use "@db-ui/foundations/build/scss/helpers/font";
+@use "@db-ui/foundations/build/scss/helpers/functions";
+@use "@db-ui/foundations/build/scss/variables";
+@use "@db-ui/foundations/build/scss/color-placeholder";
+@use "../../styles/popover-component";
+
+$tooltip-arrow-shadow-size: 8px;
+
+.db-tooltip {
+	@extend %db-overwrite-font-size-sm;
+	@extend %default-popover;
+
+	padding: variables.$db-spacing-fixed-2xs variables.$db-spacing-fixed-xs;
+
+	&::after {
+		content: "";
+		box-shadow: variables.$db-elevation-4;
+		position: absolute;
+		background-color: variables.$db-colors-neutral-bg;
+		inline-size: variables.$db-spacing-fixed-xs;
+		block-size: variables.$db-spacing-fixed-xs;
+		clip-path: polygon(
+			calc(#{$tooltip-arrow-shadow-size} * -1)
+				calc(#{$tooltip-arrow-shadow-size} * -1),
+			calc(100% + #{$tooltip-arrow-shadow-size})
+				calc(#{$tooltip-arrow-shadow-size} * -1),
+			calc(100% + #{$tooltip-arrow-shadow-size})
+				calc(100% + #{$tooltip-arrow-shadow-size})
+		);
+	}
+
+	&:not([data-placement]),
+	&[data-placement="bottom"] {
+		&::after {
+			inset-inline-start: 50%;
+			inset-block-start: 0;
+			transform: translate(-50%, -50%) rotate(315deg);
+		}
+	}
+
+	&[data-placement="top"] {
+		&::after {
+			inset-inline-start: 50%;
+			inset-block-end: 0;
+			transform: translate(-50%, 50%) rotate(135deg);
+		}
+	}
+
+	&[data-placement="right"] {
+		&::after {
+			inset-block-start: 50%;
+			inset-inline-start: 0;
+			transform: translate(-50%, -50%) rotate(225deg);
+		}
+	}
+
+	&[data-placement="left"] {
+		&::after {
+			inset-block-start: 50%;
+			inset-inline-end: 0;
+			transform: translate(50%, -50%) rotate(45deg);
+		}
+	}
+
+	&[data-emphasis="strong"] {
+		@extend %db-neutral-component;
+
+		&::after {
+			background-color: variables.$db-colors-neutral;
+		}
+	}
+}

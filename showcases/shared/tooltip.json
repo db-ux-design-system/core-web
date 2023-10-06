@@ -1,0 +1,129 @@
+[
+	{
+		"name": "Tonality",
+		"examples": [
+			{
+				"name": "functional",
+				"className": "db-ui-functional",
+				"props": {
+					"content": "Tooltip"
+				}
+			},
+			{
+				"name": "regular (Default)",
+				"className": "db-ui-regular",
+				"props": {
+					"content": "Tooltip"
+				}
+			},
+			{
+				"name": "expressive",
+				"className": "db-ui-expressive",
+				"props": {
+					"content": "Tooltip"
+				}
+			}
+		]
+	},
+	{
+		"name": "Emphasis",
+		"examples": [
+			{
+				"name": "Weak (Default)",
+				"props": {
+					"content": "Tooltip"
+				}
+			},
+			{
+				"name": "Strong",
+				"props": {
+					"content": "Tooltip",
+					"emphasis": "strong"
+				}
+			}
+		]
+	},
+	{
+		"name": "Placement",
+		"examples": [
+			{
+				"name": "bottom (Default)",
+				"props": {
+					"content": "Tooltip",
+					"placement": "bottom"
+				}
+			},
+			{
+				"name": "top",
+				"props": {
+					"content": "Tooltip",
+					"placement": "top"
+				}
+			},
+			{
+				"name": "left",
+				"props": {
+					"content": "Tooltip",
+					"placement": "left"
+				}
+			},
+			{
+				"name": "right",
+				"props": {
+					"content": "Tooltip",
+					"placement": "right"
+				}
+			}
+		]
+	},
+	{
+		"name": "Animations",
+		"examples": [
+			{
+				"name": "Animation no delay (Default)",
+				"props": {
+					"content": "Tooltip"
+				}
+			},
+			{
+				"name": "Delay slow",
+				"props": {
+					"content": "Tooltip",
+					"delay": "slow"
+				}
+			},
+			{
+				"name": "Delay fast",
+				"props": {
+					"content": "Tooltip",
+					"delay": "fast"
+				}
+			},
+			{
+				"name": "No animation",
+				"props": {
+					"content": "Tooltip",
+					"behaviour": "plain"
+				}
+			}
+		]
+	},
+	{
+		"name": "Width",
+		"examples": [
+			{
+				"name": "Auto (Default)",
+				"props": {
+					"content": "Max width, lorem ipsum dolor sit amet, consetetur sadipscing"
+				}
+			},
+			{
+				"name": "Fixed",
+				"props": {
+					"content": "Max width, lorem ipsum dolor sit amet, consetetur sadipscing",
+					"width": "fixed"
+				}
+			}
+		]
+	}
+]

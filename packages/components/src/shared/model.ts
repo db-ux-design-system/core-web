@@ -114,6 +114,21 @@ export type WidthProps = {
 	width?: 'full' | 'auto';
 };
 
+export type PopoverProps = {
+	/**
+	 * Add a delay before showing the tooltip
+	 */
+	delay?: 'none' | 'slow' | 'fast';
+	/**
+	 * Disable animation with 'plain' behaviour
+	 */
+	behaviour?: 'animated' | 'plain';
+	/**
+	 * Use fixed with for default max-width
+	 */
+	width?: 'auto' | 'fixed';
+};
+
 export type SizeProps = {
 	/**
 	 * The size attribute changes the font-size and other related sizes of the component.

@@ -21,6 +21,10 @@
  */
 const getComponents = () => [
   {
+    name: "tooltip"
+  },
+
+  {
     name: "popover"
   },
 

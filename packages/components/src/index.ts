@@ -30,3 +30,5 @@ export * from './components/main-navigation';
 export * from './components/badge';
 export * from "./components/popover";
 
+export * from "./components/tooltip";
+
