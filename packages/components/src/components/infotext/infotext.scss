@@ -8,11 +8,10 @@
 	--db-icon-margin-end: #{variables.$db-spacing-fixed-2xs};
 	@extend %db-overwrite-font-size-sm;
 
-	@include icon-helpers.to-solid-icon();
-
 	display: flex;
 
 	@include icon-helpers.has-no-icon() {
+		@include icon-helpers.to-solid-icon();
 		@include icon-helpers.icon("info");
 	}
 

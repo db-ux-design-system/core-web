@@ -24,9 +24,7 @@
 		"examples": [
 			{
 				"name": "(Default) Adaptive",
-				"props": {
-					"icon": "account"
-				}
+				"props": {}
 			},
 			{
 				"name": "Critical",
