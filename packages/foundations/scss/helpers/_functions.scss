@@ -1,7 +1,7 @@
 @use "sass:math";
 @use "a11y";
 @use "clearfix";
-@use "../color/colors";
+@use "../colors";
 
 @function to-rem($pxValue) {
 	@return #{$pxValue * 0.0625}rem;

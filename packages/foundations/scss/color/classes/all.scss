@@ -1,9 +1,0 @@
-@use "../placeholder";
-@use "../colors";
-@use "get-class";
-
-// TODO: use @each here
-
-@each $variant in colors.$variants {
-	@include get-class.init($variant);
-}

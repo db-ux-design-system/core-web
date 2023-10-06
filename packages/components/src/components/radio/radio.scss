@@ -1,15 +1,13 @@
 @use "@db-ui/foundations/build/scss/variables";
-@use "@db-ui/foundations/build/scss/helpers/functions";
-@use "@db-ui/foundations/build/scss/color/placeholder";
-@use "@db-ui/foundations/build/scss/tonality/font";
+@use "@db-ui/foundations/build/scss/helpers";
+@use "@db-ui/foundations/build/scss/tonality";
+@use "@db-ui/foundations/build/scss/colors";
 @use "../../styles/component";
-@use "@db-ui/foundations/build/scss/color/variants";
-@use "@db-ui/foundations/build/scss/color/colors";
 
 $font-size-height: calc(var(--db-base-font-size) * var(--db-base-line-height));
 
 .db-radio {
-	@include variants.bg-transparent-interactive();
+	@include colors.bg-transparent-interactive();
 
 	appearance: none;
 

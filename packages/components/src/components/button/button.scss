@@ -1,10 +1,8 @@
 @charset "utf-8";
-@use "@db-ui/foundations/build/scss/tonality/font";
+@use "@db-ui/foundations/build/scss/tonality";
 @use "@db-ui/foundations/build/scss/variables";
-@use "@db-ui/foundations/build/scss/color/placeholder";
-@use "@db-ui/foundations/build/scss/color/variants";
-@use "@db-ui/foundations/build/scss/color/colors";
-@use "@db-ui/foundations/build/scss/icon/icon-helpers";
+@use "@db-ui/foundations/build/scss/colors";
+@use "@db-ui/foundations/build/scss/icons";
 @use "../../styles/component";
 @use "../../styles/button-components";
 
@@ -12,7 +10,7 @@
 	@extend %default-interactive-component;
 	@extend %default-button;
 
-	@include variants.bg-transparent-interactive();
+	@include colors.bg-transparent-interactive();
 
 	color: colors.$db-base-on-bg;
 
@@ -67,7 +65,7 @@
 
 	&[data-variant="solid"] {
 		@extend %transparent-border;
-		@include variants.get-variant-bg-color(0.08);
+		@include colors.get-variant-bg-color(0.08);
 	}
 
 	&[data-variant="text"] {
@@ -80,7 +78,7 @@
 
 	// States (currently only "loading")
 	&[data-state="loading"] {
-		@include icon-helpers.is-icon-text-replace();
+		@include icons.is-icon-text-replace();
 
 		&::before {
 			content: "";

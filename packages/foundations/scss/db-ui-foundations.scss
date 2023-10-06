@@ -1,25 +1,4 @@
-@use "color/placeholder";
-@use "animation/transitions";
-@use "tonality/tonalities";
+@forward "tonality/tonalities";
+@forward "font-faces";
 @forward "@csstools/normalize.css/normalize";
 @forward "init";
-
-:root {
-	@extend %db-bg-base;
-
-	/* This is a MS power apps specific class name */
-	.app-canvas,
-	&:not(:has(.app-canvas)) {
-		@extend %db-ui-regular;
-	}
-}
-
-[class^="db-"],
-[class^="db-"] * {
-	@extend %default-transition;
-
-	::before,
-	::after {
-		@extend %default-transition;
-	}
-}

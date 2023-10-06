@@ -1,14 +1,14 @@
 @use "@db-ui/foundations/build/scss/variables";
-@use "@db-ui/foundations/build/scss/icon/icon-helpers";
-@use "@db-ui/foundations/build/scss/tonality/font";
+@use "@db-ui/foundations/build/scss/icons";
+@use "@db-ui/foundations/build/scss/tonality";
+@use "@db-ui/foundations/build/scss/colors";
 @use "../../styles/component";
-@use "@db-ui/foundations/build/scss/color/variants";
 
 // TODO: Move this to shared style
 $font-size-height: calc(var(--db-base-font-size) * var(--db-base-line-height));
 
 .db-checkbox {
-	@include variants.bg-transparent-interactive();
+	@include colors.bg-transparent-interactive();
 
 	align-content: center;
 
@@ -42,7 +42,7 @@ $font-size-height: calc(var(--db-base-font-size) * var(--db-base-line-height));
 		@extend %db-base-component-interactive;
 
 		// Check icon
-		@include icon-helpers.icon("done");
+		@include icons.set-icon("done");
 
 		// The icon within the checkbox has the same dimensions as the checkbox itself and that for there can't be any border
 		border-width: 0;
@@ -55,7 +55,7 @@ $font-size-height: calc(var(--db-base-font-size) * var(--db-base-line-height));
 	// }
 
 	&:indeterminate {
-		@include icon-helpers.icon("minus");
+		@include icons.set-icon("minus");
 
 		&::before {
 			line-height: 20px;

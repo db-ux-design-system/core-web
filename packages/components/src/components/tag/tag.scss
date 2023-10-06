@@ -1,24 +1,23 @@
 @use "sass:map";
-@use "@db-ui/foundations/build/scss/animation/transitions";
+@use "@db-ui/foundations/build/scss/animation";
 @use "@db-ui/foundations/build/scss/variables";
-@use "../../styles/component";
-@use "@db-ui/foundations/build/scss/tonality/font";
-@use "@db-ui/foundations/build/scss/icon/icon-helpers";
-@use "@db-ui/foundations/build/scss/helpers/functions";
-@use "@db-ui/foundations/build/scss/color/variants";
-@use "@db-ui/foundations/build/scss/color/colors";
+@use "@db-ui/foundations/build/scss/tonality";
+@use "@db-ui/foundations/build/scss/icons";
+@use "@db-ui/foundations/build/scss/helpers";
+@use "@db-ui/foundations/build/scss/colors";
 @use "../../styles/button-components";
 @use "../../styles/tag-components";
 @use "../../styles/icon-passing";
+@use "../../styles/component";
 
 %no-text {
 	&[data-no-text="true"] {
 		--icon-margin-after: 0;
-		@include icon-helpers.is-icon-text-replace();
+		@include icons.is-icon-text-replace();
 		padding: 0;
 
 		label {
-			@include icon-helpers.is-icon-text-replace();
+			@include icons.is-icon-text-replace();
 		}
 	}
 
@@ -98,7 +97,7 @@
 
 	a {
 		@extend %default-transition;
-		@include variants.bg-transparent-interactive(false);
+		@include colors.bg-transparent-interactive(false);
 		display: inline-flex;
 		text-decoration: none;
 
@@ -127,17 +126,17 @@
 	}
 
 	input:checked {
-		@include variants.bg-transparent-hover();
+		@include colors.bg-transparent-hover();
 	}
 
 	button {
-		@include variants.bg-transparent-interactive();
+		@include colors.bg-transparent-interactive();
 	}
 
 	button,
 	input:checked,
 	a {
-		@include variants.get-variant-bg-color(0.08);
+		@include colors.get-variant-bg-color(0.08);
 	}
 
 	button,
@@ -180,7 +179,7 @@
 	.db-tab-remove-button {
 		&:is(button),
 		button {
-			@include variants.get-variant-bg-color(0);
+			@include colors.get-variant-bg-color(0);
 			margin-inline-start: variables.$db-spacing-fixed-2xs;
 			block-size: 100%;
 		}

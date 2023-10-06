@@ -1,6 +1,6 @@
-@use "../placeholder";
+@use "../index";
 @use "get-class";
 
-$variant: "critical";
+$variant: "neutral";
 
 @include get-class.init($variant);

@@ -1,10 +1,10 @@
 @use "sass:map";
-@use "./../../styles/dialog-init";
 @use "@db-ui/foundations/build/scss/variables";
-@use "@db-ui/foundations/build/scss/helpers/functions";
+@use "@db-ui/foundations/build/scss/helpers";
+@use "@db-ui/foundations/build/scss/animation";
+@use "@db-ui/foundations/build/scss/colors";
 @use "../../styles/component";
-@use "@db-ui/foundations/build/scss/animation/animations";
-@use "@db-ui/foundations/build/scss/color/colors";
+@use "./../../styles/dialog-init";
 
 %direction-right {
 	inset-inline: auto 0;
@@ -141,7 +141,7 @@ $spacings: (
 		}
 
 		.db-drawer-header {
-			@include functions.divider("bottom");
+			@include helpers.divider("bottom");
 			display: none;
 
 			.db-drawer-header-text {
@@ -169,41 +169,41 @@ $spacings: (
 		.db-drawer-container {
 			&:not([data-direction]),
 			&[data-direction="right"] {
-				animation: show-right-to-left animations.$animation-show-timing;
+				animation: show-right-to-left animation.$animation-show-timing;
 			}
 
 			&[data-direction="left"] {
-				animation: show-left-to-right animations.$animation-show-timing;
+				animation: show-left-to-right animation.$animation-show-timing;
 			}
 
 			&[data-direction="up"] {
-				animation: show-bottom-to-top animations.$animation-show-timing;
+				animation: show-bottom-to-top animation.$animation-show-timing;
 			}
 
 			&[data-direction="down"] {
-				animation: show-top-to-bottom animations.$animation-show-timing;
+				animation: show-top-to-bottom animation.$animation-show-timing;
 			}
 
 			&[hidden] {
 				&:not([data-direction]),
 				&[data-direction="right"] {
 					animation: hide-right-to-left
-						animations.$animation-hide-timing;
+						animation.$animation-hide-timing;
 				}
 
 				&[data-direction="left"] {
 					animation: hide-left-to-right
-						animations.$animation-hide-timing;
+						animation.$animation-hide-timing;
 				}
 
 				&[data-direction="up"] {
 					animation: hide-bottom-to-top
-						animations.$animation-hide-timing;
+						animation.$animation-hide-timing;
 				}
 
 				&[data-direction="down"] {
 					animation: hide-top-to-bottom
-						animations.$animation-hide-timing;
+						animation.$animation-hide-timing;
 				}
 			}
 		}

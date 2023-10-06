@@ -1,9 +1,9 @@
 @use "@db-ui/foundations/build/scss/variables";
-@use "@db-ui/foundations/build/scss/helpers/functions";
-@use "../../styles/component";
-@use "@db-ui/foundations/build/scss/color/variants";
-@use "@db-ui/foundations/build/scss/animation/animations";
+@use "@db-ui/foundations/build/scss/helpers";
+@use "@db-ui/foundations/build/scss/colors";
+@use "@db-ui/foundations/build/scss/animation";
 @use "../../styles/form-components";
+@use "../../styles/component";
 
 @mixin accordion-item-content() {
 	:not(summary):not(link) {
@@ -13,7 +13,7 @@
 
 .db-accordion-item {
 	@extend %bg-transparent;
-	@include functions.divider($position: "top");
+	@include helpers.divider($position: "top");
 
 	position: relative;
 	inline-size: 100%;
@@ -24,7 +24,7 @@
 	}
 
 	&:last-of-type {
-		@include functions.divider($position: "bottom", $slot: "after");
+		@include helpers.divider($position: "bottom", $slot: "after");
 	}
 
 	&[aria-disabled="true"] {
@@ -34,7 +34,7 @@
 
 	summary {
 		@extend %dropdown-icon;
-		@include variants.bg-transparent-interactive(false);
+		@include colors.bg-transparent-interactive(false);
 
 		list-style: none;
 		display: flex;

@@ -1,8 +1,7 @@
 @use "sass:map";
-@use "@db-ui/foundations/build/scss/color/variants";
 @use "component";
 @use "@db-ui/foundations/build/scss/variables";
-@use "@db-ui/foundations/build/scss/color/colors";
+@use "@db-ui/foundations/build/scss/colors";
 
 $interactive-selectors: "input, button:not(.db-tab-remove-button), a";
 
@@ -13,7 +12,7 @@ $interactive-selectors: "input, button:not(.db-tab-remove-button), a";
 		@extend %db-base-component;
 	}
 
-	@each $name, $colors in variants.$component-variants {
+	@each $name, $colors in colors.$component-variants {
 		&[data-variant="#{$name}"] {
 			@if ($name == "neutral") {
 				@extend %db-bg-neutral;
@@ -73,7 +72,7 @@ $interactive-selectors: "input, button:not(.db-tab-remove-button), a";
 		@extend %db-bg-base-strong-interactive;
 	}
 
-	@each $name, $colors in variants.$component-variants {
+	@each $name, $colors in colors.$component-variants {
 		&[data-variant="#{$name}"] {
 			@include interactive-selectors() {
 				@if ($name == "neutral") {
@@ -108,7 +107,7 @@ $interactive-selectors: "input, button:not(.db-tab-remove-button), a";
 			color: var(--db-current-color);
 		}
 
-		@each $name, $colors in variants.$component-variants {
+		@each $name, $colors in colors.$component-variants {
 			&[data-variant="#{$name}"] {
 				@include interactive-selectors() {
 					@if ($name == "neutral") {

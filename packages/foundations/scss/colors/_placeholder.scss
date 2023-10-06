@@ -1,8 +1,8 @@
 @use "sass:string";
 @use "sass:color";
-@use "colors";
+@use "variables";
 
-@each $variant in colors.$variants {
+@each $variant in variables.$variants {
 	%db-#{$variant}-component {
 		--db-current-color: var(--db-#{$variant}-on-enabled);
 		color: var(--db-current-color);

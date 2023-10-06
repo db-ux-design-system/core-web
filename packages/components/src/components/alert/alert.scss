@@ -1,10 +1,9 @@
 @use "sass:map";
 @use "@db-ui/foundations/build/scss/variables";
-@use "@db-ui/foundations/build/scss/color/placeholder";
-@use "../../styles/component";
-@use "@db-ui/foundations/build/scss/color/variants";
-@use "@db-ui/foundations/build/scss/icon/icon-helpers";
+@use "@db-ui/foundations/build/scss/colors";
+@use "@db-ui/foundations/build/scss/icons";
 @use "@db-ui/foundations/build/scss/screen-sizes";
+@use "../../styles/component";
 
 %grid-layout {
 	grid-template-areas: "icon content close";
@@ -63,8 +62,8 @@
 	// TODO: probably extract this to an overwrite or external file
 	text-align: start; // workaround for power apps
 
-	@include icon-helpers.has-no-icon() {
-		@include icon-helpers.icon("info");
+	@include icons.has-no-icon() {
+		@include icons.set-icon("info");
 	}
 
 	dblink,
@@ -104,7 +103,7 @@
 		}
 	}
 
-	@each $name, $colors in variants.$component-variants {
+	@each $name, $colors in colors.$component-variants {
 		&[data-variant="#{$name}"] {
 			@if ($name == "neutral") {
 				@extend %db-bg-neutral;
@@ -118,7 +117,7 @@
 				@extend %db-bg-successful;
 			}
 
-			@include icon-helpers.variant-icons($name);
+			@include icons.variant-icons($name);
 
 			&::before {
 				--db-current-icon-color: #{map.get($colors, "element")};

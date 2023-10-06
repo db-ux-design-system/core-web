@@ -1,7 +1,7 @@
 @use "sass:map";
 @use "@db-ui/foundations/build/scss/variables";
-@use "@db-ui/foundations/build/scss/tonality/font";
-@use "@db-ui/foundations/build/scss/color/variants";
+@use "@db-ui/foundations/build/scss/tonality";
+@use "@db-ui/foundations/build/scss/colors";
 @use "../../styles/component";
 @use "../../styles/form-components";
 
@@ -44,8 +44,8 @@
 		@extend %db-overwrite-font-size-md;
 		@extend %resize-textarea;
 
-		@include variants.bg-transparent-hover();
-		@include variants.get-variant-bg-color(0.08);
+		@include colors.bg-transparent-hover();
+		@include colors.get-variant-bg-color(0.08);
 
 		max-inline-size: 100%;
 		inline-size: 100%;

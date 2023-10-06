@@ -2,11 +2,9 @@
 @use "@db-ui/foundations/build/scss/default.assets-paths" as *;
 
 @use "@db-ui/foundations/build/scss/variables";
-@use "@db-ui/foundations/build/scss/icon/icon-helpers";
-@use "@db-ui/foundations/build/scss/tonality/font";
-@use "@db-ui/foundations/build/scss/color/placeholder";
-@use "@db-ui/foundations/build/scss/color/variants";
-@use "@db-ui/foundations/build/scss/color/colors";
+@use "@db-ui/foundations/build/scss/icons";
+@use "@db-ui/foundations/build/scss/tonality";
+@use "@db-ui/foundations/build/scss/colors";
 @use "../../styles/component";
 @use "../../styles/form-components";
 
@@ -58,8 +56,8 @@
 			margin-block-start: -0.75em;
 			background-image: none;
 			padding: 0 variables.$db-spacing-fixed-sm 0 0;
-			inline-size: icon-helpers.$default-icon-font-size;
-			block-size: icon-helpers.$default-icon-font-size;
+			inline-size: icons.$default-icon-font-size;
+			block-size: icons.$default-icon-font-size;
 		}
 	}
 }
@@ -132,7 +130,7 @@
 	}
 
 	&:has(> [type="search"]) {
-		@include icon-helpers.icon("search");
+		@include icons.set-icon("search");
 
 		&::before {
 			@extend %absolute-icon;
@@ -144,12 +142,12 @@
 	&:has(> [type="datetime-local"]),
 	&:has(> [type="month"]) {
 		@extend %date-icon;
-		@include icon-helpers.icon("calendar", "after");
+		@include icons.set-icon("calendar", "after");
 	}
 
 	&:has(> [type="time"]) {
 		@extend %date-icon;
-		@include icon-helpers.icon("schedule", "after");
+		@include icons.set-icon("schedule", "after");
 	}
 
 	.db-icon,
@@ -219,8 +217,8 @@
 		@extend %default-interactive-component;
 		@extend %component-border;
 
-		@include variants.bg-transparent-hover();
-		@include variants.get-variant-bg-color(0.08);
+		@include colors.bg-transparent-hover();
+		@include colors.get-variant-bg-color(0.08);
 
 		color: colors.$db-base-on-bg;
 

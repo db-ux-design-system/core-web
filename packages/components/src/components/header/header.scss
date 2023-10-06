@@ -1,9 +1,9 @@
 @use "@db-ui/foundations/build/scss/variables";
 @use "@db-ui/foundations/build/scss/screen-sizes";
-@use "@db-ui/foundations/build/scss/helpers/functions";
+@use "@db-ui/foundations/build/scss/helpers";
+@use "@db-ui/foundations/build/scss/tonality";
+@use "@db-ui/foundations/build/scss/colors";
 @use "../../styles/component";
-@use "@db-ui/foundations/build/scss/tonality/tonalities";
-@use "@db-ui/foundations/build/scss/color/colors";
 
 .db-header {
 	background-color: colors.$db-base-bg;
@@ -47,7 +47,7 @@
 .db-header-meta-navigation {
 	@extend %db-bg-neutral-transparent-semi;
 	@extend %db-ui-functional;
-	@include functions.divider("top");
+	@include helpers.divider("top");
 	display: flex;
 	flex-direction: column;
 	gap: variables.$db-spacing-fixed-sm;
@@ -95,7 +95,7 @@
 .db-header-brand-container {
 	min-block-size: variables.$db-sizing-md;
 	@include screen-sizes.screen("md") {
-		@include functions.divider("left", "after");
+		@include helpers.divider("left", "after");
 
 		&::after {
 			position: inherit;
@@ -106,7 +106,7 @@
 }
 
 .db-header-action-container {
-	@include functions.divider("left");
+	@include helpers.divider("left");
 
 	&::before {
 		position: inherit;
@@ -130,7 +130,7 @@
 }
 
 .db-header-action-bar {
-	@include functions.divider("top");
+	@include helpers.divider("top");
 	flex: 0 1 auto;
 	flex-grow: 0;
 	flex-shrink: 0;

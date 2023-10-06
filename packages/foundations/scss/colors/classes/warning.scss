@@ -1,6 +1,6 @@
-@use "../placeholder";
+@use "../index";
 @use "get-class";
 
-$variant: "informational";
+$variant: "warning";
 
 @include get-class.init($variant);

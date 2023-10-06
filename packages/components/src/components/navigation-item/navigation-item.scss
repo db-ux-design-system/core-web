@@ -1,13 +1,12 @@
 @use "@db-ui/foundations/build/scss/variables";
-@use "../../styles/component";
-@use "@db-ui/foundations/build/scss/color/variants";
+@use "@db-ui/foundations/build/scss/colors";
 @use "@db-ui/foundations/build/scss/screen-sizes";
-@use "@db-ui/foundations/build/scss/helpers/functions";
-@use "@db-ui/foundations/build/scss/animation/animations";
-@use "@db-ui/foundations/build/scss/icon/icon-helpers";
-@use "@db-ui/foundations/build/scss/color/colors";
+@use "@db-ui/foundations/build/scss/helpers";
+@use "@db-ui/foundations/build/scss/animation";
+@use "@db-ui/foundations/build/scss/icons";
 @use "../../styles/db-puls";
 @use "../../styles/icon-passing";
+@use "../../styles/component";
 
 %sub-navi-handler-desktop {
 	// show sub-navigation on hover
@@ -27,7 +26,7 @@
 		& ~ .db-sub-navigation {
 			visibility: visible;
 			transition: visibility 0ms linear 0ms;
-			animation: show-right-to-left animations.$animation-show-timing;
+			animation: show-right-to-left animation.$animation-show-timing;
 
 			.db-sub-navigation {
 				inset-block: 0;
@@ -38,7 +37,7 @@
 	&:not(&[aria-expanded="true"]) {
 		& ~ .db-sub-navigation {
 			transition: visibility 0ms linear 410ms; // hide animation is 0.4s
-			animation: hide-right-to-left animations.$animation-hide-timing;
+			animation: hide-right-to-left animation.$animation-hide-timing;
 		}
 	}
 }
@@ -47,7 +46,7 @@
 	@extend %default-interactive-component;
 	@extend %transparent-border;
 
-	@include variants.get-variant-bg-color(0);
+	@include colors.get-variant-bg-color(0);
 	cursor: pointer;
 	inline-size: 100%;
 	display: inline-flex;
@@ -63,11 +62,11 @@
 	&:has(~ .db-sub-navigation:hover),
 	&:has(~ .db-sub-navigation:focus-visible),
 	&:has(~ .db-sub-navigation:focus-within) {
-		@include variants.get-variant-bg-color(0.16);
+		@include colors.get-variant-bg-color(0.16);
 	}
 
 	&:active {
-		@include variants.get-variant-bg-color(0.24);
+		@include colors.get-variant-bg-color(0.24);
 	}
 
 	&::after {
@@ -101,7 +100,7 @@
 			@extend %navigation-item;
 
 			// default icon for navigation
-			@include icon-helpers.icon("chevron_right", "after");
+			@include icons.set-icon("chevron_right", "after");
 
 			font-weight: inherit;
 		}
@@ -230,7 +229,7 @@
 }
 
 .db-mobile-navigation-back {
-	@include functions.divider("bottom");
+	@include helpers.divider("bottom");
 	display: flex;
 	font-weight: normal;
 	background-color: colors.$db-base-bg;

@@ -1,12 +1,11 @@
 @charset "utf-8";
 
-@use "@db-ui/foundations/build/scss/tonality/font";
+@use "@db-ui/foundations/build/scss/tonality";
 @use "@db-ui/foundations/build/scss/variables";
-@use "@db-ui/foundations/build/scss/animation/transitions";
-@use "@db-ui/foundations/build/scss/helpers/functions";
-@use "@db-ui/foundations/build/scss/icon/icon-helpers";
-@use "@db-ui/foundations/build/scss/color/colors";
-@use "@db-ui/foundations/build/scss/color/placeholder";
+@use "@db-ui/foundations/build/scss/animation";
+@use "@db-ui/foundations/build/scss/helpers";
+@use "@db-ui/foundations/build/scss/icons";
+@use "@db-ui/foundations/build/scss/colors";
 @use "../../styles/component";
 
 %db-link-height {
@@ -23,7 +22,7 @@
 	// Link underline
 	// TODO: We should evaluate whether we could move this declaration to the @font-face declarations even already
 	text-underline-position: from-font;
-	text-decoration-thickness: functions.to-rem($pxValue: 1);
+	text-decoration-thickness: helpers.to-rem($pxValue: 1);
 
 	white-space: nowrap;
 
@@ -49,11 +48,11 @@
 
 	&:not([data-variant="inline"]) {
 		&[data-content="internal"] {
-			@include icon-helpers.icon("arrow_forward", "after");
+			@include icons.set-icon("arrow_forward", "after");
 		}
 
 		&[data-content="external"] {
-			@include icon-helpers.icon("link_external", "after");
+			@include icons.set-icon("link_external", "after");
 		}
 	}
 

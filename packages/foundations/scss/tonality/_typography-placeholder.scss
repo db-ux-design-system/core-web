@@ -1,5 +1,5 @@
 @use "sass:string";
-@use "variables-tonality";
+@use "variables";
 @use "../screen-sizes";
 
 @function get-typography(
@@ -41,40 +41,40 @@
 		)};
 }
 
-@each $tonality in variables-tonality.$tonalities {
+@each $tonality in variables.$tonalities {
 	%db-typography-headline-#{$tonality} {
-		@each $size in variables-tonality.$headline {
+		@each $size in variables.$headline {
 			@include get-font($tonality, "mobile", $size, "headline");
 		}
 
 		@include screen-sizes.screen() {
-			@each $size in variables-tonality.$headline {
+			@each $size in variables.$headline {
 				@include get-font($tonality, "tablet", $size, "headline");
 			}
 		}
 
 		@include screen-sizes.screen("md") {
-			@each $size in variables-tonality.$headline {
+			@each $size in variables.$headline {
 				@include get-font($tonality, "desktop", $size, "headline");
 			}
 		}
 	}
 
 	%db-typography-body-#{$tonality} {
-		@each $size in variables-tonality.$body {
+		@each $size in variables.$body {
 			@include get-font($tonality, "mobile", $size);
 			@include get-icons($tonality, "mobile", $size);
 		}
 
 		@include screen-sizes.screen() {
-			@each $size in variables-tonality.$body {
+			@each $size in variables.$body {
 				@include get-font($tonality, "tablet", $size);
 				@include get-icons($tonality, "mobile", $size);
 			}
 		}
 
 		@include screen-sizes.screen("md") {
-			@each $size in variables-tonality.$body {
+			@each $size in variables.$body {
 				@include get-font($tonality, "desktop", $size);
 				@include get-icons($tonality, "mobile", $size);
 			}

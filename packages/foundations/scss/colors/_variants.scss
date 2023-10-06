@@ -1,9 +1,9 @@
 @use "sass:string";
 @use "placeholder";
-@use "colors";
+@use "variables";
 
 @mixin color-variants($ia) {
-	@each $variant in colors.$variants {
+	@each $variant in variables.$variants {
 		&[data-color-variant="#{$variant}"] {
 			@extend %db-bg-#{$variant};
 		}
@@ -72,33 +72,33 @@
 
 $component-variants: (
 	"neutral": (
-		"border": colors.$db-neutral-border-weak,
-		"element": colors.$db-neutral-element,
-		"on-bg": colors.$db-neutral-on-bg,
-		"text": colors.$db-neutral-text
+		"border": variables.$db-neutral-border-weak,
+		"element": variables.$db-neutral-element,
+		"on-bg": variables.$db-neutral-on-bg,
+		"text": variables.$db-neutral-text
 	),
 	"critical": (
-		"border": colors.$db-critical-border-weak,
-		"element": colors.$db-critical-element,
-		"on-bg": colors.$db-critical-on-bg,
-		"text": colors.$db-critical-text
+		"border": variables.$db-critical-border-weak,
+		"element": variables.$db-critical-element,
+		"on-bg": variables.$db-critical-on-bg,
+		"text": variables.$db-critical-text
 	),
 	"informational": (
-		"border": colors.$db-informational-border-weak,
-		"element": colors.$db-informational-element,
-		"on-bg": colors.$db-informational-on-bg,
-		"text": colors.$db-informational-text
+		"border": variables.$db-informational-border-weak,
+		"element": variables.$db-informational-element,
+		"on-bg": variables.$db-informational-on-bg,
+		"text": variables.$db-informational-text
 	),
 	"warning": (
-		"border": colors.$db-warning-border-weak,
-		"element": colors.$db-warning-element,
-		"on-bg": colors.$db-warning-on-bg,
-		"text": colors.$db-warning-text
+		"border": variables.$db-warning-border-weak,
+		"element": variables.$db-warning-element,
+		"on-bg": variables.$db-warning-on-bg,
+		"text": variables.$db-warning-text
 	),
 	"successful": (
-		"border": colors.$db-successful-border-weak,
-		"element": colors.$db-successful-element,
-		"on-bg": colors.$db-successful-on-bg,
-		"text": colors.$db-successful-text
+		"border": variables.$db-successful-border-weak,
+		"element": variables.$db-successful-element,
+		"on-bg": variables.$db-successful-on-bg,
+		"text": variables.$db-successful-text
 	)
 );
