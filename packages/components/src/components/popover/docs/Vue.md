@@ -7,10 +7,13 @@ For general installation and configuration take a look at the [v-components](htt
 ```vue App.vue
 <!-- App.vue -->
 <script>
-import { DBPopover } from "@db-ui/v-components";
+import { DBPopover, DBButton } from "@db-ui/v-components";
 </script>
 
 <template>
-	<DBPopover>Popover</DBPopover>
+	<DBButton>
+		Hover on me to open Popover
+		<DBPopover>Popover</DBPopover>
+	</DBButton>
 </template>
 ```

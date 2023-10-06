@@ -8,6 +8,9 @@ For general installation and configuration take a look at the [components](https
 <!-- index.html -->
 ...
 <body>
-	<div class="db-popover">Popover</div>
+	<button class="db-button">
+		Hover on me to open Popover
+		<div class="db-popover">Popover</div>
+	</button>
 </body>
 ```

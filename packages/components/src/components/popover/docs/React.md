@@ -6,9 +6,14 @@ For general installation and configuration take a look at the [react-components]
 
 ```tsx App.tsx
 // App.tsx
-import { DBPopover } from "@db-ui/react-components";
+import { DBPopover, DBButton } from "@db-ui/react-components";
 
-const App = () => <DBPopover>Popover</DBPopover>;
+const App = () => (
+	<DBButton>
+		Hover on me to open Popover
+		<DBPopover>Popover</DBPopover>
+	</DBButton>
+);
 
 export default App;
 ```
