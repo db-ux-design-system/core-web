@@ -1,0 +1,61 @@
+$variants: "base", "neutral", "brand", "critical", "successful", "warning",
+	"informational";
+
+// Variants for adaptive components like input, select, alert, ...
+
+// base
+$db-base-bg: var(--db-base-bg-enabled);
+
+$db-base-on-bg: var(--db-current-color, var(--db-base-on-bg-enabled));
+
+$db-base-border-weak: var(
+	--db-current-border-weak-color,
+	var(--db-base-border-weak-enabled)
+);
+
+$db-base-border: var(--db-current-border-color, var(--db-base-border-enabled));
+
+// brand
+
+$db-brand: var(--db-brand-origin-enabled);
+
+$db-brand-on: var(--db-brand-on-enabled);
+
+$db-brand-hover: var(--db-brand-origin-hover);
+
+$db-brand-pressed: var(--db-brand-origin-pressed);
+
+// neutral
+$db-neutral-border-weak: var(--db-neutral-border-weak-enabled);
+
+$db-neutral-element: var(--db-neutral-element-enabled);
+
+$db-neutral-on-bg: var(--db-neutral-on-bg-enabled);
+$db-neutral-text: var(--db-neutral-text-enabled);
+
+// critical
+$db-critical-border-weak: var(--db-critical-border-weak-enabled);
+
+$db-critical-element: var(--db-critical-element-enabled);
+
+$db-critical-on-bg: var(--db-critical-on-bg-enabled);
+$db-critical-text: var(--db-critical-text-enabled);
+
+// informational
+$db-informational-border-weak: var(--db-informational-border-weak-enabled);
+$db-informational-element: var(--db-informational-element-enabled);
+
+$db-informational-on-bg: var(--db-informational-on-bg-enabled);
+$db-informational-text: var(--db-informational-text-enabled);
+
+// warning
+$db-warning-border-weak: var(--db-warning-border-weak-enabled);
+$db-warning-element: var(--db-warning-element-enabled);
+$db-warning-on-bg: var(--db-warning-on-bg-enabled);
+$db-warning-text: var(--db-warning-text-enabled);
+
+// successful
+$db-successful-border-weak: var(--db-successful-border-weak-enabled);
+$db-successful-element: var(--db-successful-element-enabled);
+$db-successful-on-bg: var(--db-successful-on-bg-enabled);
+$db-successful-text: var(--db-successful-text-enabled);

@@ -26,7 +26,7 @@ export class AppComponent implements OnInit {
 	colors = COLORS;
 
 	tonality = TONALITY.REGULAR;
-	color = COLOR.NEUTRAL;
+	color = COLOR.BASE;
 
 	page: string;
 	fullscreen: boolean;

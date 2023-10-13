@@ -13,7 +13,7 @@ const useQuery = (): any => {
 		searchParameters.get(TONALITY_CONST) ?? TONALITY.REGULAR
 	);
 	const [color, setColor] = useState<string>(
-		searchParameters.get(COLOR_CONST) ?? COLOR.NEUTRAL
+		searchParameters.get(COLOR_CONST) ?? COLOR.BASE
 	);
 	const [page, setPage] = useState<string | undefined>(undefined);
 	const [fullscreen, setFullscreen] = useState<boolean>(false);

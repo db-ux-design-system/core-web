@@ -1,19 +1,18 @@
 @charset "utf-8";
-@use "@db-ui/foundations/build/scss/helpers/font";
+@use "@db-ui/foundations/build/scss/tonality";
 @use "@db-ui/foundations/build/scss/variables";
-@use "@db-ui/foundations/build/scss/color-placeholder";
-@use "@db-ui/foundations/build/scss/color/color-variants";
-@use "@db-ui/foundations/build/scss/icon/icon-helpers";
-@use "@db-ui/foundations/build/scss/helpers/component";
+@use "@db-ui/foundations/build/scss/colors";
+@use "@db-ui/foundations/build/scss/icons";
+@use "../../styles/component";
 @use "../../styles/button-components";
 
 .db-button {
 	@extend %default-interactive-component;
 	@extend %default-button;
 
-	@include color-variants.bg-transparent-interactive();
+	@include colors.bg-transparent-interactive();
 
-	color: variables.$db-colors-neutral-on-bg;
+	color: colors.$db-base-on-bg;
 
 	block-size: variables.$db-sizing-md;
 	inline-size: fit-content;
@@ -50,13 +49,23 @@
 	}
 
 	&[data-variant="primary"] {
-		@extend %db-primary-component-ia;
+		@extend %db-brand-component-interactive;
 		@extend %transparent-border;
+		background-color: colors.$db-brand;
+		color: colors.$db-brand-on;
+
+		&:hover {
+			background-color: colors.$db-brand-hover;
+		}
+
+		&:active {
+			background-color: colors.$db-brand-pressed;
+		}
 	}
 
 	&[data-variant="solid"] {
 		@extend %transparent-border;
-		@include color-variants.get-variant-bg-color(0.08);
+		@include colors.get-variant-bg-color(0.08);
 	}
 
 	&[data-variant="text"] {
@@ -69,7 +78,7 @@
 
 	// States (currently only "loading")
 	&[data-state="loading"] {
-		@include icon-helpers.is-icon-text-replace();
+		@include icons.is-icon-text-replace();
 
 		&::before {
 			content: "";

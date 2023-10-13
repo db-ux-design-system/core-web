@@ -9,7 +9,7 @@ force: true
 	$fonts-path: "https://ppassets.azureedge.net/assets/fonts/"
 );
 <% if(typeof includeIcon !== 'undefined' && includeIcon){   -%>
-@use "@db-ui/foundations/build/scss/icon/icons" as *;
+@use "@db-ui/foundations/build/scss/icons/include" as *;
 <% } -%>
 
 @forward "@db-ui/foundations/build/scss/db-ui-foundations";

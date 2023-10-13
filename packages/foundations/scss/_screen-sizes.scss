@@ -1,0 +1,44 @@
+@use "helpers/functions";
+
+$db-breakpoint-xs: functions.to-rem(360);
+$db-breakpoint-sm: functions.to-rem(720);
+$db-breakpoint-md: functions.to-rem(1024);
+$db-breakpoint-lg: functions.to-rem(1440);
+$db-breakpoint-xl: functions.to-rem(1920);
+
+:root {
+	--db-breakpoint-xs: #{$db-breakpoint-xs};
+	--db-breakpoint-sm: #{$db-breakpoint-sm};
+	--db-breakpoint-md: #{$db-breakpoint-md};
+	--db-breakpoint-lg: #{$db-breakpoint-lg};
+	--db-breakpoint-xl: #{$db-breakpoint-xl};
+}
+
+@mixin screen($size: "sm", $width: "min") {
+	$screen: $db-breakpoint-sm;
+	@if ($size == "xs") {
+		$screen: $db-breakpoint-xs;
+	} @else if ($size == "md") {
+		$screen: $db-breakpoint-md;
+	} @else if ($size == "lg") {
+		$screen: $db-breakpoint-lg;
+	} @else if ($size == "xl") {
+		$screen: $db-breakpoint-xl;
+	}
+
+	@if ($width == "min") {
+		@media screen and (min-width: $screen) {
+			&:not([force-mobile]) {
+				@content;
+			}
+		}
+	} @else {
+		&[force-mobile] {
+			@content;
+		}
+
+		@media screen and (max-width: $screen) {
+			@content;
+		}
+	}
+}
