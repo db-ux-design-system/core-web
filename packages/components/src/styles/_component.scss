@@ -3,6 +3,8 @@
 @use "@db-ui/foundations/build/scss/colors";
 @use "@db-ui/foundations/build/scss/helpers";
 
+/* TODO: We need to somehow document these as well */
+
 /* TODO: We should get the variables from UX, and probably want to make those global variables */
 $checkbox-border-radius: helpers.to-rem(2.5);
 $default-border-radius: helpers.to-rem(4);
