@@ -84,7 +84,7 @@
     "@commitlint/cli": "17.7.2",
     "@commitlint/config-conventional": "17.7.0",
     "@playwright/test": "1.35.1",
-    "commander": "^11.0.0",
+    "commander": "^11.1.0",
     "cpr": "3.0.1",
     "cross-env": "^7.0.3",
     "cssnano": "^6.0.1",
