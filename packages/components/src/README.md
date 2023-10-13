@@ -2,7 +2,7 @@
 
 ## Styles
 
-There are some important files where we include `mixins` and `placeholders` for better development:
+There are some important files where we include `SCSS mixins` and `SCSS placeholders` for easier development:
 
 ### Variables - Spacings/Elevation/etc
 
