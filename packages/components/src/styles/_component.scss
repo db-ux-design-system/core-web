@@ -18,15 +18,15 @@ $default-mobile-header-height: helpers.to-rem(56);
 $default-border-height: 1px;
 
 %default-adaptive-border {
-	border: solid $default-border-height colors.$db-base-on-bg;
+	border: $default-border-height solid colors.$db-base-on-bg;
 }
 
 %transparent-border {
-	border: solid $default-border-height transparent;
+	border: $default-border-height solid transparent;
 }
 
 %component-border {
-	border: solid $default-border-height colors.$db-base-border-weak;
+	border: $default-border-height solid colors.$db-base-border-weak;
 }
 
 %default-interactive-component {
