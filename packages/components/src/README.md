@@ -93,7 +93,7 @@ Main use-case for media query. Example:
 
 ### Helpers
 
-Main use-case for converting px values or divider. Example:
+Main use-case for converting `px` values or inserting UI styling like e.g. a divider. Example:
 
 ```scss
 @use "@db-ui/foundations/build/scss/helpers";
