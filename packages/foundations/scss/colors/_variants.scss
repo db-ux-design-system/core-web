@@ -2,12 +2,12 @@
 @use "placeholder";
 @use "variables";
 
-@mixin color-variants($ia) {
+@mixin color-variants($interactive) {
 	@each $variant in variables.$variants {
 		&[data-color-variant="#{$variant}"] {
 			@extend %db-bg-#{$variant};
 		}
-		@if ($ia == true) {
+		@if ($interactive == true) {
 			&[data-color-variant="#{$variant}-ia"] {
 				@extend %db-bg-#{$variant}-interactive;
 			}
