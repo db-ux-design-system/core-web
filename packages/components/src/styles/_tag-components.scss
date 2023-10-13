@@ -99,9 +99,7 @@ $interactive-selectors: "input, button:not(.db-tab-remove-button), a";
 			@extend %db-base-component;
 		}
 
-		&:has(input:checked),
-		&:has(a),
-		&:has(button) {
+		&:has(input:checked, a, button) {
 			--db-current-icon-color: var(--db-base-on-enabled);
 			--db-current-color: var(--db-base-on-enabled);
 			color: var(--db-current-color);
