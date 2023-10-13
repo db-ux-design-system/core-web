@@ -50,6 +50,7 @@ export type GlobalState = {
 
 export type DefaultVariantType =
 	| 'adaptive'
+	| 'neutral'
 	| 'critical'
 	| 'informational'
 	| 'warning'

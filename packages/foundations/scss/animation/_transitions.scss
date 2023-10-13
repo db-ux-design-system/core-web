@@ -1,0 +1,29 @@
+@use "../variables";
+
+%default-transition {
+	transition:
+		outline
+			var(
+				--db-transition-duration-ultra-fast,
+				#{variables.$db-transition-duration-ultra-fast}
+			),
+		background-color
+			var(
+				--db-transition-color,
+				#{variables.$db-transition-emotional-straight}
+			);
+}
+
+%default-fg-transition {
+	transition:
+		outline
+			var(
+				--db-transition-duration-ultra-fast,
+				#{variables.$db-transition-duration-ultra-fast}
+			),
+		color
+			var(
+				--db-transition-color,
+				#{variables.$db-transition-emotional-straight}
+			);
+}

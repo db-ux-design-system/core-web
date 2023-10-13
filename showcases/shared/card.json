@@ -29,7 +29,15 @@
 		"name": "ColorVariant",
 		"examples": [
 			{
-				"name": "(Default) neutral",
+				"name": "(Default) adaptive",
+				"props": {
+					"variant": "interactive",
+					"spacing": "small",
+					"colorVariant": "adaptive"
+				}
+			},
+			{
+				"name": "neutral",
 				"props": {
 					"colorVariant": "neutral",
 					"variant": "interactive",
@@ -37,17 +45,9 @@
 				}
 			},
 			{
-				"name": "neutral-strong",
+				"name": "brand",
 				"props": {
-					"colorVariant": "neutral-strong",
-					"variant": "interactive",
-					"spacing": "small"
-				}
-			},
-			{
-				"name": "primary",
-				"props": {
-					"colorVariant": "primary",
+					"colorVariant": "brand",
 					"variant": "interactive",
 					"spacing": "small"
 				}

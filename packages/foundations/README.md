@@ -32,7 +32,7 @@ Default assets path for `db-ui-foundations.css` is `../assets`. Make sure to cop
 // main.ts / main.js
 import "@db-ui/foundations/build/css/db-ui-foundations.css";
 // optional: to use classes like e.g. db-ui-bg-success
-import "@db-ui/foundations/build/css/color-classes.css";
+import "@db-ui/foundations/build/css/colors/classes/all.css";
 ```
 
 ```css

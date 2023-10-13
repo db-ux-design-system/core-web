@@ -1,0 +1,83 @@
+@use "sass:string";
+@use "variables";
+@use "../screen-sizes";
+
+@function get-typography(
+	$tonality,
+	$device,
+	$size,
+	$type,
+	$attribute: "font-size"
+) {
+	@return var(
+		string.unquote(
+			"--db-typography-#{$tonality}-#{$device}-#{$type}-#{$size}-#{$attribute}"
+		)
+	);
+}
+
+@mixin get-font($tonality, $device, $size, $type: "body") {
+	--db-type-#{$type}-font-size-#{$size}: #{get-typography(
+			$tonality,
+			$device,
+			$size,
+			$type
+		)};
+	--db-type-#{$type}-line-height-#{$size}: #{get-typography(
+			$tonality,
+			$device,
+			$size,
+			$type,
+			"line-height"
+		)};
+}
+
+@mixin get-icons($tonality, $device, $size) {
+	--db-base-icon-weight-#{$size}: #{string.unquote(
+			"var(--db-base-icon-weight-#{$tonality}-#{$device}-#{$size})"
+		)};
+	--db-base-icon-font-size-#{$size}: #{string.unquote(
+			"var(--db-base-icon-font-size-#{$tonality}-#{$device}-#{$size})"
+		)};
+}
+
+@each $tonality in variables.$tonalities {
+	%db-typography-headline-#{$tonality} {
+		@each $size in variables.$headline {
+			@include get-font($tonality, "mobile", $size, "headline");
+		}
+
+		@include screen-sizes.screen() {
+			@each $size in variables.$headline {
+				@include get-font($tonality, "tablet", $size, "headline");
+			}
+		}
+
+		@include screen-sizes.screen("md") {
+			@each $size in variables.$headline {
+				@include get-font($tonality, "desktop", $size, "headline");
+			}
+		}
+	}
+
+	%db-typography-body-#{$tonality} {
+		@each $size in variables.$body {
+			@include get-font($tonality, "mobile", $size);
+			@include get-icons($tonality, "mobile", $size);
+		}
+
+		@include screen-sizes.screen() {
+			@each $size in variables.$body {
+				@include get-font($tonality, "tablet", $size);
+				@include get-icons($tonality, "mobile", $size);
+			}
+		}
+
+		@include screen-sizes.screen("md") {
+			@each $size in variables.$body {
+				@include get-font($tonality, "desktop", $size);
+				@include get-icons($tonality, "mobile", $size);
+			}
+		}
+	}
+}
