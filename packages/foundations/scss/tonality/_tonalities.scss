@@ -1,0 +1,13 @@
+@use "variables";
+@use "typography-placeholder";
+@use "scaling-placeholder";
+@use "font";
+
+@each $tonality in variables.$tonalities {
+	%db-ui-#{$tonality} {
+		@extend %db-scaling-#{$tonality};
+		@extend %db-typography-headline-#{$tonality};
+		@extend %db-typography-body-#{$tonality};
+		@extend %db-component-variables-md;
+	}
+}

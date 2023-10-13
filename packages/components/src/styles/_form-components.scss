@@ -1,15 +1,15 @@
 @use "sass:map";
-@use "@db-ui/foundations/build/scss/icon/icon-helpers";
-@use "@db-ui/foundations/build/scss/helpers/font";
+@use "@db-ui/foundations/build/scss/icons";
+@use "@db-ui/foundations/build/scss/tonality";
 @use "@db-ui/foundations/build/scss/variables";
-@use "@db-ui/foundations/build/scss/helpers/component";
-@use "@db-ui/foundations/build/scss/color/color-variants";
+@use "@db-ui/foundations/build/scss/colors";
+@use "component";
 
 $dropdown-icon-transition: transform variables.$db-transition-emotional-straight;
 $dropdown-icon-transform: rotate(-180deg);
 
 %dropdown-icon {
-	@include icon-helpers.icon("expand_more", "after");
+	@include icons.set-icon("expand_more", "after");
 
 	&::after {
 		transition: $dropdown-icon-transition;
@@ -65,26 +65,18 @@ $dropdown-icon-transform: rotate(-180deg);
 	}
 }
 
-@mixin get-input-color-variants() {
-	@each $name, $colors in color-variants.$component-variants {
+@mixin get-input-variants() {
+	@each $name, $colors in colors.$component-variants {
 		&[data-variant="#{$name}"] {
 			--db-current-border-color: #{map.get($colors, "border")};
-		}
-
-		&[data-variant="#{$name}"] {
-			--db-current-color: #{map.get($colors, "on-bg")};
-			color: map.get($colors, "on-bg");
-		}
-
-		&[data-variant="#{$name}"] select {
-			--db-current-color: #{map.get($colors, "on-bg")};
-			color: map.get($colors, "on-bg");
 		}
 
 		&[data-variant="#{$name}"] input,
 		&[data-variant="#{$name}"] textarea,
 		&[data-variant="#{$name}"] select {
-			@if ($name == "critical") {
+			@if ($name == "neutral") {
+				@extend %adaptive-neutral-component;
+			} @else if ($name == "critical") {
 				@extend %adaptive-critical-component;
 			} @else if ($name == "informational") {
 				@extend %adaptive-informational-component;

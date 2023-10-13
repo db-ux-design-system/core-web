@@ -3,10 +3,6 @@ const StyleDictionary = require('style-dictionary').extend(
 );
 const minifyDictionary = require('style-dictionary/lib/common/formatHelpers/minifyDictionary');
 const transforms = require('style-dictionary/lib/common/transforms');
-const SCSSPlaceholders = require('./scripts/color-placeholders-generator.js');
-const SCSSClasses = require('./scripts/color-classes-generator.js');
-const generateTypography = require('./scripts/scss-typography-generator.js');
-const generateScaling = require('./scripts/scss-scaling-generator.js');
 
 const modifyTailwind = (dictionary) => {
 	for (const token of [
@@ -39,37 +35,6 @@ StyleDictionary.registerFormat({
 		const minifiedDic = minifyDictionary(dictionary.tokens);
 		modifyTailwind(minifiedDic);
 		return JSON.stringify(minifiedDic, null, 2);
-	}
-});
-
-StyleDictionary.registerFormat({
-	name: 'db-core-typography-placeholder',
-	formatter({ dictionary }) {
-		const typography = dictionary.tokens.typography;
-		return generateTypography(typography);
-	}
-});
-
-StyleDictionary.registerFormat({
-	name: 'db-core-scaling-placeholder',
-	formatter() {
-		return generateScaling();
-	}
-});
-
-StyleDictionary.registerFormat({
-	name: 'db-core-color-placeholder',
-	formatter({ dictionary }) {
-		const colors = dictionary.tokens.colors;
-		return SCSSPlaceholders.generateColorUtilitityPlaceholder(colors);
-	}
-});
-
-StyleDictionary.registerFormat({
-	name: 'db-core-color-classes',
-	formatter({ dictionary }) {
-		const colors = dictionary.tokens.colors;
-		return SCSSClasses.generateColorUtilitityClasses(colors);
 	}
 });
 

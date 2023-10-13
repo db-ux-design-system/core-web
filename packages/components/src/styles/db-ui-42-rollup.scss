@@ -1,4 +1,4 @@
 /* This is a predefined beginner friendly bundle for rollup apps */
 
 @use "@db-ui/foundations/build/scss/rollup.assets-paths" as *;
-@use "./db-ui-42" as *;
+@forward "./db-ui-42";

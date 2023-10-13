@@ -1,0 +1,104 @@
+@use "sass:string";
+@use "placeholder";
+@use "variables";
+
+@mixin color-variants($interactive) {
+	@each $variant in variables.$variants {
+		&[data-color-variant="#{$variant}"] {
+			@extend %db-bg-#{$variant};
+		}
+		@if ($interactive == true) {
+			&[data-color-variant="#{$variant}-ia"] {
+				@extend %db-bg-#{$variant}-interactive;
+			}
+		}
+	}
+}
+
+%color-variants {
+	@include color-variants(false);
+}
+%color-variants-ia {
+	@include color-variants(true);
+}
+
+@mixin get-variant-bg-color($alpha) {
+	background-color: color-mix(
+		in srgb,
+		transparent
+			var(
+				--db-current-base-color-alpha,
+				string.unquote(calc((1 - $alpha) * 100) + "%")
+			),
+		var(--db-current-base-color, #fff)
+	);
+}
+
+%bg-transparent {
+	@include get-variant-bg-color(0);
+}
+
+@mixin bg-transparent-hover($with-enabled: true) {
+	@extend %bg-transparent;
+
+	@if ($with-enabled) {
+		&:enabled {
+			&:hover {
+				@include get-variant-bg-color(0.16);
+			}
+		}
+	} @else {
+		&:hover {
+			@include get-variant-bg-color(0.16);
+		}
+	}
+}
+
+@mixin bg-transparent-interactive($with-enabled: true) {
+	@include bg-transparent-hover($with-enabled);
+
+	@if ($with-enabled) {
+		&:enabled {
+			&:active {
+				@include get-variant-bg-color(0.24);
+			}
+		}
+	} @else {
+		&:active {
+			@include get-variant-bg-color(0.24);
+		}
+	}
+}
+
+$component-variants: (
+	"neutral": (
+		"border": variables.$db-neutral-border-weak,
+		"element": variables.$db-neutral-element,
+		"on-bg": variables.$db-neutral-on-bg,
+		"text": variables.$db-neutral-text
+	),
+	"critical": (
+		"border": variables.$db-critical-border-weak,
+		"element": variables.$db-critical-element,
+		"on-bg": variables.$db-critical-on-bg,
+		"text": variables.$db-critical-text
+	),
+	"informational": (
+		"border": variables.$db-informational-border-weak,
+		"element": variables.$db-informational-element,
+		"on-bg": variables.$db-informational-on-bg,
+		"text": variables.$db-informational-text
+	),
+	"warning": (
+		"border": variables.$db-warning-border-weak,
+		"element": variables.$db-warning-element,
+		"on-bg": variables.$db-warning-on-bg,
+		"text": variables.$db-warning-text
+	),
+	"successful": (
+		"border": variables.$db-successful-border-weak,
+		"element": variables.$db-successful-element,
+		"on-bg": variables.$db-successful-on-bg,
+		"text": variables.$db-successful-text
+	)
+);

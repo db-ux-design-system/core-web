@@ -1,22 +1,23 @@
 @use "sass:map";
+@use "@db-ui/foundations/build/scss/animation";
 @use "@db-ui/foundations/build/scss/variables";
-@use "@db-ui/foundations/build/scss/helpers/component";
-@use "@db-ui/foundations/build/scss/helpers/font";
-@use "@db-ui/foundations/build/scss/icon/icon-helpers";
-@use "@db-ui/foundations/build/scss/helpers/functions";
-@use "@db-ui/foundations/build/scss/color/color-variants";
+@use "@db-ui/foundations/build/scss/tonality";
+@use "@db-ui/foundations/build/scss/icons";
+@use "@db-ui/foundations/build/scss/helpers";
+@use "@db-ui/foundations/build/scss/colors";
 @use "../../styles/button-components";
 @use "../../styles/tag-components";
 @use "../../styles/icon-passing";
+@use "../../styles/component";
 
 %no-text {
 	&[data-no-text="true"] {
 		--icon-margin-after: 0;
-		@include icon-helpers.is-icon-text-replace();
+		@include icons.is-icon-text-replace();
 		padding: 0;
 
 		label {
-			@include icon-helpers.is-icon-text-replace();
+			@include icons.is-icon-text-replace();
 		}
 	}
 
@@ -82,19 +83,11 @@
 		position: absolute;
 
 		&:not(:checked) {
-			--db-current-base-color: #{variables.$db-colors-neutral-bg};
-
-			&:not(:hover) {
-				--db-current-base-color-alpha: 0%;
-			}
+			--db-current-base-color-alpha: 100%;
 		}
 
 		&:checked {
 			border-width: component.$default-border-height;
-
-			&[type="checkbox"] {
-				color: var(--db-current-color);
-			}
 
 			&::before {
 				content: none;
@@ -104,7 +97,7 @@
 
 	a {
 		@extend %default-transition;
-		@include color-variants.bg-transparent-interactive(false);
+		@include colors.bg-transparent-interactive(false);
 		display: inline-flex;
 		text-decoration: none;
 
@@ -127,35 +120,29 @@
 		z-index: 1;
 	}
 
-	&:not(:has(dbbutton,db-button)):has(
-			button:not(.db-tab-remove-button)
-		),
-	&:has(:is(dbbutton,db-button):not(.db-tab-remove-button), a, input) {
+	&:not(:has(dbbutton, db-button)):has(button:not(.db-tab-remove-button)),
+	&:has(:is(dbbutton, db-button):not(.db-tab-remove-button), a, input) {
 		border: none;
 	}
 
-	button,
 	input:checked {
-		@include color-variants.bg-transparent-interactive();
-		@include color-variants.get-variant-bg-color(0.08);
+		@include colors.bg-transparent-hover();
 	}
 
-	&:not([data-emphasis="strong"]) {
-		input[type="radio"]:checked {
-			&:enabled {
-				&:hover,
-				&:active {
-					--db-current-base-color-alpha: 92%;
-				}
-			}
-		}
+	button {
+		@include colors.bg-transparent-interactive();
+	}
+
+	button,
+	input:checked,
+	a {
+		@include colors.get-variant-bg-color(0.08);
 	}
 
 	button,
 	a {
 		@extend %db-overwrite-font-size-sm;
 		@extend %component-border;
-		@include color-variants.get-variant-bg-color(0.08);
 		block-size: inherit;
 		padding: 0 variables.$db-spacing-fixed-2xs;
 		border-radius: component.$default-border-radius;
@@ -192,7 +179,7 @@
 	.db-tab-remove-button {
 		&:is(button),
 		button {
-			@include color-variants.get-variant-bg-color(0);
+			@include colors.get-variant-bg-color(0);
 			margin-inline-start: variables.$db-spacing-fixed-2xs;
 			block-size: 100%;
 		}
