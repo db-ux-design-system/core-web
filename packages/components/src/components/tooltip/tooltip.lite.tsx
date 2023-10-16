@@ -33,7 +33,7 @@ export default function DBTooltip(props: DBTooltipProps) {
 
 	// TODO: Shall we check if only <span>, <p> or direct text was passed as children?
 	return (
-		<div
+		<i role="tooltip"
 			ref={component}
 			className={cls('db-tooltip', props.className)}
 			id={state._id}
@@ -48,6 +48,6 @@ export default function DBTooltip(props: DBTooltipProps) {
 				<link rel="stylesheet" href={state.stylePath} />
 			</Show>
 			{props.children}
-		</div>
+		</i>
 	);
 }
