@@ -10,7 +10,7 @@ For general installation and configuration take a look at the [components](https
 <body>
 	<button class="db-button">
 		Hover on me to open Tooltip
-		<div class="db-tooltip">Tooltip</div>
+		<i class="db-tooltip">Tooltip</i>
 	</button>
 </body>
 ```
