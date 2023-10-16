@@ -62,7 +62,7 @@
 		]
 	},
 	{
-		"name": "Placement",
+		"name": "Placement arrow",
 		"examples": [
 			{
 				"name": "bottom (Default)",
@@ -95,6 +95,24 @@
 		]
 	},
 	{
+		"name": "Width",
+		"examples": [
+			{
+				"name": "Auto (Default)",
+				"props": {
+					"content": "Max width, lorem ipsum dolor sit amet, consetetur sadipscing"
+				}
+			},
+			{
+				"name": "Fixed",
+				"props": {
+					"content": "Max width, lorem ipsum dolor sit amet, consetetur sadipscing",
+					"width": "fixed"
+				}
+			}
+		]
+	},
+	{
 		"name": "Animations",
 		"examples": [
 			{
@@ -122,24 +140,6 @@
 				"props": {
 					"content": "Tooltip",
 					"behaviour": "plain"
-				}
-			}
-		]
-	},
-	{
-		"name": "Width",
-		"examples": [
-			{
-				"name": "Auto (Default)",
-				"props": {
-					"content": "Max width, lorem ipsum dolor sit amet, consetetur sadipscing"
-				}
-			},
-			{
-				"name": "Fixed",
-				"props": {
-					"content": "Max width, lorem ipsum dolor sit amet, consetetur sadipscing",
-					"width": "fixed"
 				}
 			}
 		]
