@@ -1,6 +1,6 @@
 @use "@db-ui/foundations/build/scss/variables";
 @use "@db-ui/foundations/build/scss/animation/animations";
-@use "@db-ui/foundations/build/scss/helpers/component";
+@use "component";
 
 @mixin get-popover-placements($placement) {
 	--db-popover-distance: #{variables.$db-spacing-fixed-md};
