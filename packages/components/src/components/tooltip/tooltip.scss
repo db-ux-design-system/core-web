@@ -10,6 +10,9 @@ $tooltip-arrow-shadow-size: 8px;
 	@extend %db-overwrite-font-size-sm;
 	@extend %default-popover;
 
+	// i HTML tags browsers default styling reset
+	font-style: initial;
+
 	padding: variables.$db-spacing-fixed-2xs variables.$db-spacing-fixed-xs;
 
 	&::after {
