@@ -4,9 +4,11 @@
 @use "@db-ui/foundations/build/scss/tonality/font";
 @use "../../styles/popover-component";
 
-$tooltip-arrow-shadow-size: 8px;
+$tooltip-arrow-shadow-size: variables.$db-spacing-fixed-2xs;
 
 .db-tooltip {
+
+	--default-card-border-radius: 0.25rem;
 	@extend %db-overwrite-font-size-sm;
 	@extend %default-popover;
 
@@ -35,6 +37,7 @@ $tooltip-arrow-shadow-size: 8px;
 					calc(100% + #{$tooltip-arrow-shadow-size})
 			);
 			border-radius: 1px;
+			transform: skew(-12deg, -12deg);
 		}
 	}
 
@@ -43,7 +46,8 @@ $tooltip-arrow-shadow-size: 8px;
 		&::after {
 			inset-inline-start: 50%;
 			inset-block-start: 0;
-			transform: translate(-50%, -50%) rotate(315deg);
+			translate: -50% -50%;
+			rotate: 315deg;
 		}
 	}
 
@@ -51,7 +55,8 @@ $tooltip-arrow-shadow-size: 8px;
 		&::after {
 			inset-inline-start: 50%;
 			inset-block-end: 0;
-			transform: translate(-50%, 50%) rotate(135deg);
+			translate: -50% 50%;
+			rotate: 135deg;
 		}
 	}
 
@@ -59,7 +64,8 @@ $tooltip-arrow-shadow-size: 8px;
 		&::after {
 			inset-block-start: 50%;
 			inset-inline-start: 0;
-			transform: translate(-50%, -50%) rotate(225deg);
+			translate: -50% -50%;
+			rotate: 225deg;
 		}
 	}
 
@@ -67,7 +73,8 @@ $tooltip-arrow-shadow-size: 8px;
 		&::after {
 			inset-block-start: 50%;
 			inset-inline-end: 0;
-			transform: translate(50%, -50%) rotate(45deg);
+			translate: 50% -50%;
+			rotate: 45deg;
 		}
 	}
 
