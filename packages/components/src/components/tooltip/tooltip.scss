@@ -7,7 +7,6 @@
 $tooltip-arrow-shadow-size: variables.$db-spacing-fixed-2xs;
 
 .db-tooltip {
-
 	--default-card-border-radius: 0.25rem;
 	@extend %db-overwrite-font-size-sm;
 	@extend %default-popover;
@@ -37,7 +36,7 @@ $tooltip-arrow-shadow-size: variables.$db-spacing-fixed-2xs;
 					calc(100% + #{$tooltip-arrow-shadow-size})
 			);
 			border-radius: 1px;
-			transform: skew(-12deg, -12deg);
+			transform: skew(-8deg, -8deg);
 		}
 	}
 
