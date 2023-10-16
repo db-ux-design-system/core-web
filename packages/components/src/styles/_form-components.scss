@@ -29,6 +29,7 @@ $floating-label-size: calc(
 
 	&::after {
 		transition: $dropdown-icon-transition;
+		pointer-events: none;
 	}
 }
 
