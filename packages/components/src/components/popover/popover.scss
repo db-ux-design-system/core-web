@@ -1,5 +1,5 @@
 @use "@db-ui/foundations/build/scss/variables";
-@use "@db-ui/foundations/build/scss/helpers/component";
+@use "../../styles/component";
 @use "@db-ui/foundations/build/scss/animation/animations";
 
 @mixin get-popover-show($placement: bottom) {
