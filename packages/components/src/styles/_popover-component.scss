@@ -1,4 +1,5 @@
 @use "@db-ui/foundations/build/scss/variables";
+@use "@db-ui/foundations/build/scss/colors";
 @use "@db-ui/foundations/build/scss/animation/animations";
 @use "component";
 
@@ -108,7 +109,7 @@
 	@extend %popover-placement;
 
 	position: absolute;
-	background-color: variables.$db-colors-neutral-bg;
+	background-color: colors.$db-base-on-bg;
 	visibility: hidden;
 	z-index: 1;
 

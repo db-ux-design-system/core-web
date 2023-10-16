@@ -1,6 +1,7 @@
 @use "@db-ui/foundations/build/scss/helpers/font";
 @use "@db-ui/foundations/build/scss/helpers/functions";
 @use "@db-ui/foundations/build/scss/variables";
+@use "@db-ui/foundations/build/scss/colors";
 @use "@db-ui/foundations/build/scss/color-placeholder";
 @use "../../styles/popover-component";
 
@@ -16,7 +17,7 @@ $tooltip-arrow-shadow-size: 8px;
 		content: "";
 		box-shadow: variables.$db-elevation-4;
 		position: absolute;
-		background-color: variables.$db-colors-neutral-bg;
+		background-color: colors.$db-base-on-bg;
 		inline-size: variables.$db-spacing-fixed-xs;
 		block-size: variables.$db-spacing-fixed-xs;
 		clip-path: polygon(
