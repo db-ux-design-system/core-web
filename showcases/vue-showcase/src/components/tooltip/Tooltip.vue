@@ -17,6 +17,7 @@ import { DBButton, DBTooltip } from "../../../../../output/vue/vue3/src";
 					:placement="exampleProps.placement"
 					:behaviour="exampleProps.behaviour"
 					:delay="exampleProps.delay"
+					:variant="exampleProps.variant"
 				>
 					{{ exampleProps.content }}
 				</DBTooltip>

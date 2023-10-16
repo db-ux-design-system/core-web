@@ -8,6 +8,7 @@ import {
 } from '../../shared/model';
 
 export interface DBTooltipDefaultProps {
+	variant?: 'with arrow' | 'basic';
 }
 
 export type DBTooltipProps = DBTooltipDefaultProps &

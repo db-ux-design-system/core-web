@@ -41,6 +41,7 @@ export default function DBTooltip(props: DBTooltipProps) {
 			data-behaviour={props.behaviour}
 			data-delay={props.delay}
 			data-width={props.width}
+			data-variant={props.variant}
 			data-placement={props.placement}
 			data-gap="true"
 			onClick={(event) => state.handleClick(event)}>

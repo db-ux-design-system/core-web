@@ -26,6 +26,24 @@
 		]
 	},
 	{
+		"name": "Variant",
+		"examples": [
+			{
+				"name": "With arrow (Default)",
+				"props": {
+					"content": "Tooltip"
+				}
+			},
+			{
+				"name": "Basic",
+				"props": {
+					"content": "Tooltip",
+					"variant": "basic"
+				}
+			}
+		]
+	},
+	{
 		"name": "Emphasis",
 		"examples": [
 			{

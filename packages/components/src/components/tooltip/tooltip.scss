@@ -17,21 +17,24 @@ $tooltip-arrow-shadow-size: 8px;
 
 	padding: variables.$db-spacing-fixed-2xs variables.$db-spacing-fixed-xs;
 
-	&::after {
-		content: "";
-		box-shadow: variables.$db-elevation-4;
-		position: absolute;
-		background-color: colors.$db-base-bg;
-		inline-size: variables.$db-spacing-fixed-xs;
-		block-size: variables.$db-spacing-fixed-xs;
-		clip-path: polygon(
-			calc(#{$tooltip-arrow-shadow-size} * -1)
-				calc(#{$tooltip-arrow-shadow-size} * -1),
-			calc(100% + #{$tooltip-arrow-shadow-size})
-				calc(#{$tooltip-arrow-shadow-size} * -1),
-			calc(100% + #{$tooltip-arrow-shadow-size})
+	// Arrow
+	&:not([data-variant="basic"]) {
+		&::after {
+			content: "";
+			box-shadow: variables.$db-elevation-4;
+			position: absolute;
+			background-color: colors.$db-base-bg;
+			inline-size: variables.$db-spacing-fixed-xs;
+			block-size: variables.$db-spacing-fixed-xs;
+			clip-path: polygon(
+				calc(#{$tooltip-arrow-shadow-size} * -1)
+					calc(#{$tooltip-arrow-shadow-size} * -1),
 				calc(100% + #{$tooltip-arrow-shadow-size})
-		);
+					calc(#{$tooltip-arrow-shadow-size} * -1),
+				calc(100% + #{$tooltip-arrow-shadow-size})
+					calc(100% + #{$tooltip-arrow-shadow-size})
+			);
+		}
 	}
 
 	&:not([data-placement]),
