@@ -32,7 +32,7 @@ export default function DBPopover(props: DBPopoverProps) {
 	// jscpd:ignore-end
 
 	return (
-		<div
+		<i
 			ref={component}
 			id={state._id}
 			class={cls('db-popover', props.className)}
@@ -48,6 +48,6 @@ export default function DBPopover(props: DBPopoverProps) {
 				<link rel="stylesheet" href={state.stylePath} />
 			</Show>
 			{props.children}
-		</div>
+		</i>
 	);
 }
