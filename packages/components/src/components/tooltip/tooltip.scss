@@ -16,7 +16,7 @@ $tooltip-arrow-shadow-size: 8px;
 		content: "";
 		box-shadow: variables.$db-elevation-4;
 		position: absolute;
-		background-color: colors.$db-base-on-bg;
+		background-color: colors.$db-base-bg;
 		inline-size: variables.$db-spacing-fixed-xs;
 		block-size: variables.$db-spacing-fixed-xs;
 		clip-path: polygon(
