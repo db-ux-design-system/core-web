@@ -79,7 +79,7 @@
 	@extend %default-card;
 
 	position: absolute;
-	background-color: colors.$db-base-on-bg;
+	background-color: colors.$db-base-bg;
 	visibility: hidden;
 	z-index: 1;
 
