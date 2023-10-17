@@ -108,6 +108,8 @@
 	@extend %default-card;
 	@extend %popover-placement;
 
+	@extend %component-border;
+
 	position: absolute;
 	background-color: colors.$db-base-bg;
 	visibility: hidden;
