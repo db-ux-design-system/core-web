@@ -12,9 +12,10 @@ const getTooltip = ({
 	delay,
 	content,
 	behaviour,
-	variant
+	variant,
+	id
 }: DBTooltipProps & { content: string }) => (
-	<DBButton>
+	<DBButton describedbyid={id}>
 		{children}
 		<DBTooltip
 			width={width}
@@ -22,7 +23,8 @@ const getTooltip = ({
 			placement={placement}
 			behaviour={behaviour}
 			delay={delay}
-			variant={variant}>
+			variant={variant}
+			id={id}>
 			{content}
 		</DBTooltip>
 	</DBButton>

@@ -6,21 +6,24 @@
 				"name": "functional",
 				"className": "db-ui-functional",
 				"props": {
-					"content": "Tooltip"
+					"content": "Tooltip",
+					"id": "tooltip-01"
 				}
 			},
 			{
 				"name": "regular (Default)",
 				"className": "db-ui-regular",
 				"props": {
-					"content": "Tooltip"
+					"content": "Tooltip",
+					"id": "tooltip-02"
 				}
 			},
 			{
 				"name": "expressive",
 				"className": "db-ui-expressive",
 				"props": {
-					"content": "Tooltip"
+					"content": "Tooltip",
+					"id": "tooltip-03"
 				}
 			}
 		]
@@ -31,14 +34,16 @@
 			{
 				"name": "With arrow (Default)",
 				"props": {
-					"content": "Tooltip"
+					"content": "Tooltip",
+					"id": "tooltip-04"
 				}
 			},
 			{
 				"name": "Basic",
 				"props": {
 					"content": "Tooltip",
-					"variant": "basic"
+					"variant": "basic",
+					"id": "tooltip-05"
 				}
 			}
 		]
@@ -49,14 +54,16 @@
 			{
 				"name": "Weak (Default)",
 				"props": {
-					"content": "Tooltip"
+					"content": "Tooltip",
+					"id": "tooltip-06"
 				}
 			},
 			{
 				"name": "Strong",
 				"props": {
 					"content": "Tooltip",
-					"emphasis": "strong"
+					"emphasis": "strong",
+					"id": "tooltip-07"
 				}
 			}
 		]
@@ -68,28 +75,32 @@
 				"name": "bottom (Default)",
 				"props": {
 					"content": "Tooltip",
-					"placement": "bottom"
+					"placement": "bottom",
+					"id": "tooltip-08"
 				}
 			},
 			{
 				"name": "top",
 				"props": {
 					"content": "Tooltip",
-					"placement": "top"
+					"placement": "top",
+					"id": "tooltip-09"
 				}
 			},
 			{
 				"name": "left",
 				"props": {
 					"content": "Tooltip",
-					"placement": "left"
+					"placement": "left",
+					"id": "tooltip-10"
 				}
 			},
 			{
 				"name": "right",
 				"props": {
 					"content": "Tooltip",
-					"placement": "right"
+					"placement": "right",
+					"id": "tooltip-11"
 				}
 			}
 		]
@@ -100,14 +111,16 @@
 			{
 				"name": "Auto (Default)",
 				"props": {
-					"content": "Max width, lorem ipsum dolor sit amet, consetetur sadipscing"
+					"content": "Max width, lorem ipsum dolor sit amet, consetetur sadipscing",
+					"id": "tooltip-12"
 				}
 			},
 			{
 				"name": "Fixed",
 				"props": {
 					"content": "Max width, lorem ipsum dolor sit amet, consetetur sadipscing",
-					"width": "fixed"
+					"width": "fixed",
+					"id": "tooltip-13"
 				}
 			}
 		]
@@ -118,28 +131,32 @@
 			{
 				"name": "Animation no delay (Default)",
 				"props": {
-					"content": "Tooltip"
+					"content": "Tooltip",
+					"id": "tooltip-14"
 				}
 			},
 			{
 				"name": "Delay slow",
 				"props": {
 					"content": "Tooltip",
-					"delay": "slow"
+					"delay": "slow",
+					"id": "tooltip-15"
 				}
 			},
 			{
 				"name": "Delay fast",
 				"props": {
 					"content": "Tooltip",
-					"delay": "fast"
+					"delay": "fast",
+					"id": "tooltip-16"
 				}
 			},
 			{
 				"name": "No animation",
 				"props": {
 					"content": "Tooltip",
-					"behaviour": "plain"
+					"behaviour": "plain",
+					"id": "tooltip-17"
 				}
 			}
 		]

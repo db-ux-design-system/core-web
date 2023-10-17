@@ -10,7 +10,7 @@
 		let-exampleIndex="exampleIndex"
 		let-variantIndex="variantIndex"
 	>
-		<db-button>
+		<db-button [describedbyid]="exampleProps.id">
 			{{ exampleName }}
 			<db-tooltip
 				[width]="exampleProps.width"
@@ -19,6 +19,7 @@
 				[behaviour]="exampleProps.behaviour"
 				[delay]="exampleProps.delay"
 				[variant]="exampleProps.variant"
+				[id]="exampleProps.id"
 				>{{ exampleProps.content }}</db-tooltip
 			>
 		</db-button>
