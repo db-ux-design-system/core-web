@@ -20,8 +20,8 @@ import { DBTooltipModule } from '@db-ui/ngx-components';
 
 ```html app.component.html
 <!-- app.component.html -->
-<db-button>
+<db-button describedbyid="tooltip-01">
 	Hover on me to open Tooltip
-	<db-tooltip>Tooltip</db-tooltip>
+	<db-tooltip id="tooltip-01">Tooltip</db-tooltip>
 </db-button>
 ```

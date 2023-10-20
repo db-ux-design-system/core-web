@@ -8,9 +8,9 @@ For general installation and configuration take a look at the [components](https
 <!-- index.html -->
 ...
 <body>
-	<button class="db-button">
+	<button class="db-button" aria-describedby="tooltip-01">
 		Hover on me to open Tooltip
-		<i class="db-tooltip">Tooltip</i>
+		<i class="db-tooltip" id="tooltip-01">Tooltip</i>
 	</button>
 </body>
 ```
