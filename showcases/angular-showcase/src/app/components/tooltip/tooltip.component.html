@@ -1,0 +1,27 @@
+<app-default-component
+	title="DBTooltip"
+	[variants]="variants"
+	[exampleTemplate]="exampleTemplate"
+>
+	<ng-template
+		#exampleTemplate
+		let-exampleProps="exampleProps"
+		let-exampleName="exampleName"
+		let-exampleIndex="exampleIndex"
+		let-variantIndex="variantIndex"
+	>
+		<db-button [describedbyid]="exampleProps.id">
+			{{ exampleName }}
+			<db-tooltip
+				[width]="exampleProps.width"
+				[emphasis]="exampleProps.emphasis"
+				[placement]="exampleProps.placement"
+				[behaviour]="exampleProps.behaviour"
+				[delay]="exampleProps.delay"
+				[variant]="exampleProps.variant"
+				[id]="exampleProps.id"
+				>{{ exampleProps.content }}</db-tooltip
+			>
+		</db-button>
+	</ng-template>
+</app-default-component>

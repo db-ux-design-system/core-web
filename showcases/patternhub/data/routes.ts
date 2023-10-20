@@ -33,6 +33,10 @@ const componentChildren: NavigationItem[] = [
 				name: 'icon'
 			},
 			{
+				label: 'DBTooltip',
+				name: 'tooltip'
+			},
+			{
 				label: 'DBInfotext',
 				name: 'infotext'
 			},

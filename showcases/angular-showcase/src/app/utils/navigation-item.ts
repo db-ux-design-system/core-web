@@ -1,4 +1,5 @@
 import { Routes } from '@angular/router';
+import { TooltipComponent } from '../components/tooltip/tooltip.component';
 import { PopoverComponent } from '../components/popover/popover.component';
 import { AccordionItemComponent } from '../components/accordion-item/accordion-item.component';
 import { AccordionComponent } from '../components/accordion/accordion.component';
@@ -64,6 +65,11 @@ export const NAVIGATION_ITEMS: NavItem[] = [
 		path: '04',
 		label: '04 Data-Display',
 		subNavigation: getSortedNavigationItems([
+			{
+				path: '04/tooltip',
+				label: 'Tooltip',
+				component: TooltipComponent
+			},
 			{
 				path: '04/infotext',
 				label: 'Infotext',

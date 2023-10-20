@@ -1,87 +1,8 @@
 @use "@db-ui/foundations/build/scss/variables";
-@use "@db-ui/foundations/build/scss/colors";
-@use "@db-ui/foundations/build/scss/animation/animations";
-@use "../../styles/component";
-
-@mixin get-popover-show($placement: bottom) {
-	&[data-behaviour="plain"] {
-		opacity: 1;
-	}
-
-	&:not([data-behaviour="plain"]) {
-		animation: popover-to-#{$placement} variables.$db-transition-emotional-straight
-			normal both;
-
-		&[data-delay="slow"] {
-			animation-delay: variables.$db-transition-duration-fast;
-		}
-
-		&[data-delay="fast"] {
-			animation-delay: calc(
-				#{variables.$db-transition-duration-fast} / 2
-			);
-		}
-	}
-}
-
-%show-popover {
-	visibility: visible;
-
-	&:not([data-placement]),
-	&[data-placement="bottom"] {
-		@include get-popover-show("bottom");
-	}
-
-	&[data-placement="right"] {
-		@include get-popover-show("right");
-	}
-
-	&[data-placement="left"] {
-		@include get-popover-show("left");
-	}
-
-	&[data-placement="top"] {
-		@include get-popover-show("top");
-	}
-}
-
-@mixin get-popover-placements($placement) {
-	$direction: start;
-	$primary: block;
-	$secondary: inline;
-	@if ($placement == "top" or $placement == "left") {
-		$direction: end;
-	}
-	@if ($placement == "left" or $placement == "right") {
-		$primary: inline;
-		$secondary: block;
-	}
-
-	// 2px for shadows
-	inset-#{$primary}-#{$direction}: calc(
-		100% + 2px + #{variables.$db-spacing-fixed-md} * var(--db-popover-gap)
-	);
-
-	&[data-gap="true"] {
-		&::before {
-			inset-#{$secondary}-#{$direction}: 0;
-			#{$secondary}-size: 100%;
-			#{$primary}-size: calc(2px + #{variables.$db-spacing-fixed-md});
-			inset-#{$primary}-#{$direction}: calc(
-				-1 * #{variables.$db-spacing-fixed-md} - 2px
-			);
-		}
-	}
-}
+@use "../../styles/popover-component";
 
 .db-popover {
-	--db-popover-gap: 0;
-	@extend %default-card;
-
-	position: absolute;
-	background-color: colors.$db-base-bg;
-	visibility: hidden;
-	z-index: 1;
+	@extend %default-popover;
 
 	&,
 	&[data-spacing="small"] {
@@ -98,39 +19,5 @@
 
 	&[data-open="true"] {
 		@extend %show-popover;
-	}
-
-	&[data-gap="true"] {
-		--db-popover-gap: 1;
-
-		&::before {
-			content: "";
-			position: absolute;
-		}
-	}
-
-	&[data-width="fixed"] {
-		inline-size: max-content;
-		max-inline-size: variables.$db-sizing-3xl;
-		// revert this if popover is included in button
-		white-space: normal;
-		text-align: initial;
-	}
-
-	&:not([data-placement]),
-	&[data-placement="bottom"] {
-		@include get-popover-placements("bottom");
-	}
-
-	&[data-placement="right"] {
-		@include get-popover-placements("right");
-	}
-
-	&[data-placement="left"] {
-		@include get-popover-placements("left");
-	}
-
-	&[data-placement="top"] {
-		@include get-popover-placements("top");
 	}
 }

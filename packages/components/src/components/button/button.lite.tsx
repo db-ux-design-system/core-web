@@ -94,6 +94,7 @@ export default function DBButton(props: DBButtonProps) {
 			data-variant={props.variant}
 			name={props.name}
 			value={props.value}
+			aria-describedby={props.describedbyid}
 			aria-expanded={props.ariaexpanded}
 			aria-pressed={props.ariapressed}
 			onClick={(event) => state.handleClick(event)}>

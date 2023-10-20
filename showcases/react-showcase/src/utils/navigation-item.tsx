@@ -1,3 +1,4 @@
+import TooltipComponent from '../components/tooltip';
 import PopoverComponent from '../components/popover';
 import AccordionItemComponent from '../components/accordion-item';
 import AccordionComponent from '../components/accordion';
@@ -80,6 +81,11 @@ export const NAVIGATION_ITEMS: NavigationItem[] = [
 				path: 'infotext',
 				label: 'Infotext',
 				component: <InfotextComponent />
+			},
+			{
+				path: 'tooltip',
+				label: 'Tooltip',
+				component: <TooltipComponent />
 			},
 			{ path: 'tag', label: 'Tag', component: <TagComponent /> },
 			{
