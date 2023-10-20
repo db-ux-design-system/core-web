@@ -43,6 +43,7 @@ export default function DBTooltip(props: DBTooltipProps) {
 			data-width={props.width}
 			data-variant={props.variant}
 			data-placement={props.placement}
+			// TODO: clarify this attribute and we need to set it statically
 			data-gap="true"
 			onClick={(event) => state.handleClick(event)}>
 			<Show when={state.stylePath}>
