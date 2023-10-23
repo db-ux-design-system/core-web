@@ -9,9 +9,9 @@ For general installation and configuration take a look at the [react-components]
 import { DBPopover, DBButton } from "@db-ui/react-components";
 
 const App = () => (
-	<DBButton>
+	<DBButton describedbyid="popover-01">
 		Hover on me to open Popover
-		<DBPopover>Popover</DBPopover>
+		<DBPopover id="popover-01">Popover</DBPopover>
 	</DBButton>
 );
 
