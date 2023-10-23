@@ -1,6 +1,6 @@
 @use "@db-ui/foundations/build/scss/variables";
 @use "@db-ui/foundations/build/scss/colors";
-@use "@db-ui/components/build/styles/component";
+@use "@db-ui/foundations/build/scss/screen-sizes";
 
 @forward "@db-ui/components/build/styles/db-ui-42-webpack";
 
@@ -122,7 +122,7 @@ div[class^="ch-"] {
 	grid-template-columns: repeat(var(--columns), minmax(0, 1fr));
 	gap: variables.$db-spacing-fixed-md;
 
-	@include component.screen() {
+	@include screen-sizes.screen() {
 		--columns: 3;
 	}
 }
@@ -137,7 +137,7 @@ div[class^="ch-"] {
 	@extend %grid-container;
 	--columns: 2;
 
-	@include component.screen() {
+	@include screen-sizes.screen() {
 		--columns: 7;
 	}
 
@@ -197,7 +197,7 @@ div[class^="ch-"] {
 			border: 1px solid black;
 			> div {
 				display: flex;
-				border: 1px solid variables.$db-colors-informational;
+				border: 1px solid colors.$db-informational-text;
 				position: relative;
 			}
 		}
