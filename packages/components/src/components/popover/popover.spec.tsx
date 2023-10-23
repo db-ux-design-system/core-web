@@ -7,9 +7,9 @@ import { DEFAULT_VIEWPORT } from '../../shared/constants.ts';
 import { DBButton } from '../button';
 
 const comp = (
-	<DBButton>
+	<DBButton describedbyid="popover-01">
 		Button
-		<DBPopover open={true} behaviour="plain">
+		<DBPopover open={true} behaviour="plain" id="popover-01">
 			Test
 		</DBPopover>
 	</DBButton>
