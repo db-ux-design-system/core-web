@@ -48,8 +48,7 @@ $scrollbar-width: 12px;
 
 	&:hover {
 		&::-webkit-scrollbar-track,
-		&::-webkit-scrollbar-button:single-button,
-		&::-webkit-resizer {
+		&::-webkit-scrollbar-button:single-button {
 			@include colors.get-variant-bg-color(0.16);
 		}
 	}
@@ -91,8 +90,18 @@ $scrollbar-width: 12px;
 		background-image: url("data:image/svg+xml;base64,PHN2ZyBpZD0iaWNvbiIgaGVpZ2h0PSIxNiIgdmlld0JveD0iMCAwIDE2IDE2IiB3aWR0aD0iMTYiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHBhdGggZD0ibTEwLjQ3MiA4LjY5Ni0zLjUzMiAzLjUzNGEuOTk4Ljk5OCAwIDEgMSAtMS40MTMtMS40MTNsMi44MjUtMi44MjUtMi44MjUtMi44MjVhLjk5OC45OTggMCAxIDEgMS40MTMtMS40MTNsMy41MzIgMy41MzJhLjk5OS45OTkgMCAwIDEgMCAxLjQxMnoiIGZpbGw9InZhcigtLWRiLWljb24tY29sb3IsIGN1cnJlbnRDb2xvcikiIGZpbGwtcnVsZT0iZXZlbm9kZCIgdHJhbnNmb3JtPSJtYXRyaXgoMCAxIC0xIDAgMTUuOTkxIC0uMDA5KSIvPjwvc3ZnPg0K");
 	}
 
+	&[data-label-variant="floating"] {
+		&::-webkit-resizer {
+			@include colors.get-variant-bg-color(0.08);
+		}
+
+		&::-webkit-scrollbar-corner {
+			background-color: colors.$db-base-bg;
+		}
+	}
+
 	&::-webkit-resizer {
-		@include colors.get-variant-bg-color(0.08);
+		@include colors.get-variant-bg-color(0);
 		background-size: $scrollbar-width;
 		background-repeat: no-repeat;
 		background-position: center;
@@ -102,7 +111,6 @@ $scrollbar-width: 12px;
 
 	&::-webkit-scrollbar-corner {
 		@extend %default-transition;
-		background-color: colors.$db-base-bg;
 		border-end-end-radius: calc(#{component.$default-border-radius});
 	}
 }

@@ -20,6 +20,7 @@ import { DBTextarea } from "../../../../../output/vue/vue3/src";
 				:placeholder="exampleProps.placeholder || exampleName"
 				:rows="exampleProps.rows"
 				:value="exampleProps.value"
+				:invalid="exampleProps.invalid"
 				:variant="exampleProps.variant"
 			></DBTextarea>
 		</template>
