@@ -1,22 +1,23 @@
 @use "sass:map";
+@use "@db-ui/foundations/build/scss/animation";
 @use "@db-ui/foundations/build/scss/variables";
-@use "@db-ui/foundations/build/scss/helpers/component";
-@use "@db-ui/foundations/build/scss/helpers/font";
-@use "@db-ui/foundations/build/scss/icon/icon-helpers";
-@use "@db-ui/foundations/build/scss/helpers/functions";
-@use "@db-ui/foundations/build/scss/color/color-variants";
+@use "@db-ui/foundations/build/scss/tonality";
+@use "@db-ui/foundations/build/scss/icons";
+@use "@db-ui/foundations/build/scss/helpers";
+@use "@db-ui/foundations/build/scss/colors";
 @use "../../styles/button-components";
 @use "../../styles/tag-components";
 @use "../../styles/icon-passing";
+@use "../../styles/component";
 
 %no-text {
 	&[data-no-text="true"] {
 		--icon-margin-after: 0;
-		@include icon-helpers.is-icon-text-replace();
+		@include icons.is-icon-text-replace();
 		padding: 0;
 
 		label {
-			@include icon-helpers.is-icon-text-replace();
+			@include icons.is-icon-text-replace();
 		}
 	}
 
@@ -79,19 +80,11 @@
 		margin-inline-start: 0;
 
 		&:has(input:not(:checked)) {
-			--db-current-base-color: #{variables.$db-colors-neutral-bg};
-
-			&:not(:hover) {
-				--db-current-base-color-alpha: 0%;
-			}
+			--db-current-base-color-alpha: 100%;
 		}
 
 		&:has(input:checked) {
 			border-width: component.$default-border-height;
-
-			&[type="checkbox"] {
-				color: var(--db-current-color);
-			}
 
 			&::before {
 				content: none;
@@ -105,7 +98,7 @@
 
 	a {
 		@extend %default-transition;
-		@include color-variants.bg-transparent-interactive(false);
+		@include colors.bg-transparent-interactive(false);
 		display: inline-flex;
 		text-decoration: none;
 
@@ -127,10 +120,18 @@
 		border: none;
 	}
 
+	input:checked {
+		@include colors.bg-transparent-hover();
+	}
+
+	button {
+		@include colors.bg-transparent-interactive();
+	}
+
 	button,
 	label:has(input:checked) {
-		@include color-variants.bg-transparent-interactive();
-		@include color-variants.get-variant-bg-color(0.08);
+		@include colors.bg-transparent-interactive();
+		@include colors.get-variant-bg-color(0.08);
 	}
 
 	&:not([data-emphasis="strong"]) {
@@ -156,7 +157,7 @@
 
 	button,
 	a {
-		@include color-variants.get-variant-bg-color(0.08);
+		@include colors.get-variant-bg-color(0.08);
 	}
 
 	db-button,
@@ -190,7 +191,7 @@
 	.db-tab-remove-button {
 		&:is(button),
 		button {
-			@include color-variants.get-variant-bg-color(0);
+			@include colors.get-variant-bg-color(0);
 			margin-inline-start: variables.$db-spacing-fixed-2xs;
 			block-size: 100%;
 		}

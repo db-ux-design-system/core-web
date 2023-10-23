@@ -24,13 +24,17 @@ export enum COLOR_SIMPLE {
 }
 
 export enum COLOR {
+	'BASE' = 'base',
+	'BASE_STRONG' = 'base-strong',
+	'BASE_TRANSPARENT_FULL' = 'base-transparent-full',
+	'BASE_TRANSPARENT_SEMI' = 'base-transparent-semi',
 	'NEUTRAL' = 'neutral',
 	'NEUTRAL_STRONG' = 'neutral-strong',
 	'NEUTRAL_TRANSPARENT_FULL' = 'neutral-transparent-full',
 	'NEUTRAL_TRANSPARENT_SEMI' = 'neutral-transparent-semi',
-	'PRIMARY' = 'primary',
-	'PRIMARY_TRANSPARENT_FULL' = 'primary-transparent-full',
-	'PRIMARY_TRANSPARENT_SEMI' = 'primary-transparent-semi',
+	'BRAND' = 'brand',
+	'BRAND_TRANSPARENT_FULL' = 'brand-transparent-full',
+	'BRAND_TRANSPARENT_SEMI' = 'brand-transparent-semi',
 	'SUCCESSFUL' = 'successful',
 	'SUCCESSFUL_TRANSPARENT_FULL' = 'successful-transparent-full',
 	'SUCCESSFUL_TRANSPARENT_SEMI' = 'successful-transparent-semi',

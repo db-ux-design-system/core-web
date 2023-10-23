@@ -2,11 +2,10 @@
 @use "@db-ui/foundations/build/scss/default.assets-paths" as *;
 
 @use "@db-ui/foundations/build/scss/variables";
-@use "@db-ui/foundations/build/scss/icon/icon-helpers";
-@use "@db-ui/foundations/build/scss/helpers/font";
-@use "@db-ui/foundations/build/scss/color-placeholder";
-@use "@db-ui/foundations/build/scss/color/color-variants";
-@use "@db-ui/foundations/build/scss/helpers/component";
+@use "@db-ui/foundations/build/scss/icons";
+@use "@db-ui/foundations/build/scss/tonality";
+@use "@db-ui/foundations/build/scss/colors";
+@use "../../styles/component";
 @use "../../styles/form-components";
 
 // 1px for border
@@ -31,8 +30,8 @@ $icon-padding: calc(
 	}
 
 	&:has(input[type="search"]) {
-		@include icon-helpers.icon("search");
-		@include icon-helpers.icon("cancel", "after");
+		@include icons.set-icon("search");
+		@include icons.set-icon("cancel", "after");
 
 		&::after {
 			opacity: 0;
@@ -53,11 +52,11 @@ $icon-padding: calc(
 	&:has(input[type="week"]),
 	&:has(input[type="datetime-local"]),
 	&:has(input[type="month"]) {
-		@include icon-helpers.icon("calendar", "after");
+		@include icons.set-icon("calendar", "after");
 	}
 
 	&:has(input[type="time"]) {
-		@include icon-helpers.icon("schedule", "after");
+		@include icons.set-icon("schedule", "after");
 	}
 
 	input {
@@ -66,8 +65,8 @@ $icon-padding: calc(
 		&::-webkit-calendar-picker-indicator,
 		&::-webkit-search-cancel-button {
 			background-image: none;
-			inline-size: icon-helpers.$default-icon-font-size;
-			block-size: icon-helpers.$default-icon-font-size;
+			inline-size: icons.$default-icon-font-size;
+			block-size: icons.$default-icon-font-size;
 			padding: 0;
 			cursor: pointer;
 		}

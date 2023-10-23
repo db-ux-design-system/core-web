@@ -2,7 +2,6 @@
 	/* Those variables are only for components to calculate heights and change icons */
 	--db-icon-font-weight: var(--db-base-icon-weight-#{$size});
 	--db-icon-font-size: var(--db-base-icon-font-size-#{$size});
-	/* prettier-ignore */
 	--db-base-line-height: var(--db-type-body-line-height-#{$size});
 	--db-base-font-size: var(--db-type-body-font-size-#{$size});
 }
@@ -18,26 +17,26 @@
 	- %db-font-size-md
 	- %db-overwrite-font-size-md
  */
-@mixin styles($styles...) {
-	@for $i from 0 to length($styles) {
-		%db-component-variables-#{nth($styles, $i + 1)} {
-			@include set-component-variables(nth($styles, $i + 1));
+@mixin generate-font-sizes($font-sizes) {
+	@each $font-size in $font-sizes {
+		%db-component-variables-#{$font-size} {
+			@include set-component-variables($font-size);
 		}
 
-		%db-font-size-#{nth($styles, $i + 1)} {
-			@include set-font-size(nth($styles, $i + 1));
+		%db-font-size-#{$font-size} {
+			@include set-font-size($font-size);
 		}
 
-		%db-overwrite-font-size-#{nth($styles, $i + 1)} {
-			@include set-component-variables(nth($styles, $i + 1));
-			@include set-font-size(nth($styles, $i + 1));
+		%db-overwrite-font-size-#{$font-size} {
+			@include set-component-variables($font-size);
+			@include set-font-size($font-size);
 
 			& > * {
-				@include set-component-variables(nth($styles, $i + 1));
-				@include set-font-size(nth($styles, $i + 1));
+				@include set-component-variables($font-size);
+				@include set-font-size($font-size);
 			}
 		}
 	}
 }
 
-@include styles("2xl", "xl", "lg", "md", "sm", "xs", "2xs");
+@include generate-font-sizes(("2xl", "xl", "lg", "md", "sm", "xs", "2xs"));

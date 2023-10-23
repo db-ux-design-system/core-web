@@ -1,9 +1,9 @@
 @use "sass:map";
-@use "@db-ui/foundations/build/scss/icon/icon-helpers";
-@use "@db-ui/foundations/build/scss/helpers/font";
+@use "@db-ui/foundations/build/scss/icons";
+@use "@db-ui/foundations/build/scss/tonality";
 @use "@db-ui/foundations/build/scss/variables";
-@use "@db-ui/foundations/build/scss/helpers/component";
-@use "@db-ui/foundations/build/scss/color/color-variants";
+@use "@db-ui/foundations/build/scss/colors";
+@use "component";
 
 $dropdown-icon-transition: transform variables.$db-transition-emotional-straight;
 $dropdown-icon-transform: rotate(-180deg);
@@ -25,7 +25,7 @@ $floating-label-size: calc(
 );
 
 %dropdown-icon {
-	@include icon-helpers.icon("expand_more", "after");
+	@include icons.set-icon("expand_more", "after");
 
 	&::after {
 		transition: $dropdown-icon-transition;
@@ -108,7 +108,7 @@ $floating-label-size: calc(
 	--db-current-color: #{map.get($color-variant, "on-bg")};
 	--db-current-border-weak-color: #{map.get($color-variant, "border")};
 	--db-current-element-color: #{map.get($color-variant, "element")};
-	--db-current-base-color: #{map.get($color-variant, "primary")};
+	--db-current-base-color: #{map.get($color-variant, "text")};
 	--db-current-bg-color: #{map.get($color-variant, "bg")};
 }
 
@@ -119,7 +119,7 @@ $floating-label-size: calc(
 		$variant: "critical";
 	}
 
-	$color-variant: map.get(color-variants.$component-variants, $variant);
+	$color-variant: map.get(colors.$component-variants, $variant);
 
 	& {
 		@include set-current-colors($color-variant);
@@ -197,8 +197,8 @@ $floating-label-size: calc(
 		@extend %default-interactive-component;
 		@extend %component-border;
 
-		@include color-variants.bg-transparent-hover();
-		@include color-variants.get-variant-bg-color(0.08);
+		@include colors.bg-transparent-hover();
+		@include colors.get-variant-bg-color(0.08);
 
 		appearance: none;
 		max-inline-size: 100%;
@@ -217,7 +217,7 @@ $floating-label-size: calc(
 		}
 
 		&:is(input, textarea):read-only {
-			background-color: variables.$db-colors-neutral-bg !important;
+			background-color: colors.$db-neutral-bg !important;
 		}
 	}
 
@@ -270,7 +270,7 @@ $floating-label-size: calc(
 	}
 
 	// colors
-	@each $name, $colors in color-variants.$component-variants {
+	@each $name, $colors in colors.$component-variants {
 		&[data-variant="#{$name}"] {
 			@include set-current-colors($colors);
 		}
@@ -292,24 +292,34 @@ $floating-label-size: calc(
 // CHECKBOX & RADIO
 
 @mixin get-validity-color-check($key: "valid") {
-	$variant: "successful";
+	$text-color: colors.$db-successful-text;
+	$bg-color: colors.$db-successful-bg;
 
 	@if ($key != "valid") {
-		$variant: "critical";
+		$text-color: colors.$db-critical-text;
+		$bg-color: colors.$db-critical-bg;
 	}
 
-	$color-variant: map.get(color-variants.$component-variants, $variant);
-
 	input {
-		--db-current-bg-color: #{map.get($color-variant, "bg")};
-		--db-current-base-color: #{map.get($color-variant, "primary")};
-		--db-current-color: #{map.get($color-variant, "primary")};
+		--db-current-bg-color: #{$bg-color};
+		--db-current-base-color: #{$text-color};
 		border-color: var(--db-current-color);
+
+		&:not(:checked),
+		&:is([type="radio"]) {
+			--db-current-color: #{$text-color};
+		}
+
+		&:checked {
+			--db-base-text-enabled: #{$text-color};
+			--db-base-text-hover: #{colors.$db-successful-text-hover};
+			--db-base-text-pressed: #{colors.$db-successful-text-pressed};
+		}
 	}
 
 	&:is(label),
 	label {
-		color: #{map.get($color-variant, "primary")};
+		color: #{$text-color};
 	}
 }
 
@@ -335,7 +345,7 @@ $floating-label-size: calc(
 	}
 
 	input {
-		@include color-variants.bg-transparent-interactive();
+		@include colors.bg-transparent-interactive();
 
 		align-content: center;
 

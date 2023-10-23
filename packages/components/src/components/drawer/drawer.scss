@@ -1,9 +1,10 @@
 @use "sass:map";
-@use "./../../styles/dialog-init";
 @use "@db-ui/foundations/build/scss/variables";
-@use "@db-ui/foundations/build/scss/helpers/functions";
-@use "@db-ui/foundations/build/scss/helpers/component";
-@use "@db-ui/foundations/build/scss/animation/animations";
+@use "@db-ui/foundations/build/scss/helpers";
+@use "@db-ui/foundations/build/scss/animation";
+@use "@db-ui/foundations/build/scss/colors";
+@use "../../styles/component";
+@use "./../../styles/dialog-init";
 
 %direction-right {
 	inset-inline: auto 0;
@@ -110,7 +111,7 @@ $spacings: (
 		@extend %spacing-drawer;
 		display: flex;
 		flex-direction: column;
-		background-color: variables.$db-colors-neutral-bg;
+		background-color: colors.$db-base-bg;
 		block-size: 100%;
 		inline-size: 100%;
 		position: fixed;
@@ -140,7 +141,7 @@ $spacings: (
 		}
 
 		.db-drawer-header {
-			@include functions.divider("bottom");
+			@include helpers.divider("bottom");
 			display: none;
 
 			.db-drawer-header-text {

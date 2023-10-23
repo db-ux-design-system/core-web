@@ -1,9 +1,10 @@
 @use "sass:map";
 @use "@db-ui/foundations/build/scss/variables";
-@use "@db-ui/foundations/build/scss/helpers/font";
-@use "@db-ui/foundations/build/scss/color/color-variants";
-@use "@db-ui/foundations/build/scss/helpers/component";
-@use "@db-ui/foundations/build/scss/icon/icon-helpers";
+@use "@db-ui/foundations/build/scss/tonality";
+@use "@db-ui/foundations/build/scss/colors";
+@use "@db-ui/foundations/build/scss/icons";
+@use "@db-ui/foundations/build/scss/animation";
+@use "../../styles/component";
 @use "../../styles/form-components";
 
 %resize-textarea {
@@ -41,31 +42,31 @@ $scrollbar-width: 12px;
 		@extend %default-transition;
 		z-index: 3;
 		inline-size: $scrollbar-width;
-		background-color: variables.$db-current-bg-color;
+		background-color: colors.$db-current-bg-color;
 		border-start-end-radius: component.$default-border-radius;
 	}
 
 	&::-webkit-scrollbar-track {
-		@include color-variants.get-variant-bg-color(0);
+		@include colors.get-variant-bg-color(0);
 		border-end-end-radius: component.$default-border-radius;
 	}
 
 	&::-webkit-scrollbar-thumb {
-		@include color-variants.bg-transparent-interactive(false);
-		@include color-variants.get-variant-bg-color(0.24);
+		@include colors.bg-transparent-interactive(false);
+		@include colors.get-variant-bg-color(0.24);
 
 		&:hover {
-			@include color-variants.get-variant-bg-color(0.32);
+			@include colors.get-variant-bg-color(0.32);
 		}
 
 		&:active {
-			@include color-variants.get-variant-bg-color(0.4);
+			@include colors.get-variant-bg-color(0.4);
 		}
 	}
 
 	/* Buttons */
 	&::-webkit-scrollbar-button:single-button {
-		@include color-variants.bg-transparent-interactive(false);
+		@include colors.bg-transparent-interactive(false);
 		background-size: $scrollbar-width;
 		background-repeat: no-repeat;
 		background-position: center;
@@ -82,7 +83,7 @@ $scrollbar-width: 12px;
 	}
 
 	&::-webkit-resizer {
-		@include color-variants.get-variant-bg-color(0);
+		@include colors.get-variant-bg-color(0);
 		background-size: $scrollbar-width;
 		background-repeat: no-repeat;
 		background-position: center;
@@ -92,7 +93,7 @@ $scrollbar-width: 12px;
 
 	&::-webkit-scrollbar-corner {
 		@extend %default-transition;
-		background-color: variables.$db-current-bg-color;
+		background-color: colors.$db-current-bg-color;
 		border-end-end-radius: calc(#{component.$default-border-radius});
 	}
 }
@@ -120,7 +121,7 @@ $scrollbar-width: 12px;
 			&::before {
 				@extend %default-transition;
 				@include get-scrolling-workaround();
-				background-color: variables.$db-current-bg-color;
+				background-color: colors.$db-current-bg-color;
 			}
 
 			&::after {

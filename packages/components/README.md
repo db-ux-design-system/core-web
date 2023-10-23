@@ -38,7 +38,7 @@ Import the styles in `scss` or `css`. Based on your technology the file names co
 
 ```scss
 // index.scss
-@use "@db-ui/components/build/styles/db-ui-42-rollup" as *;
+@forward "@db-ui/components/build/styles/db-ui-42-rollup";
 ```
 
 **CSS**
