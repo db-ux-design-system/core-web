@@ -177,7 +177,7 @@ div[class^="ch-"] {
 	}
 
 	%spacing {
-		@extend %db-warning-component;
+		@extend %db-successful-component;
 		height: 100%;
 		display: flex;
 		justify-content: center;
@@ -254,6 +254,7 @@ div[class^="ch-"] {
 
 			.sizing {
 				@extend %spacing;
+				@extend %db-warning-component;
 				position: unset;
 				block-size: variables.$db-sizing-md;
 				inline-size: variables.$db-sizing-md;

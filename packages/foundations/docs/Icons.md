@@ -4,7 +4,7 @@
 -   We auto generate these files out of `.svg` files.
 -   A lot of our [components](../../components/readme) have an `icon` property you can pass in.
 
-## How to include colors
+## How to include icons
 
 For `CSS`, `SCSS` and `Tailwind` you don't have to include a specific file, just follow the documentation for [foundations](../../foundations/readme).
 
