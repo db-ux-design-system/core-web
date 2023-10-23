@@ -1,0 +1,81 @@
+@use "variables";
+@use "../screen-sizes";
+
+@function get-variable($key, $tonality, $size, $device: "") {
+	@return var(--db-#{$key}-#{$tonality}-#{$device}#{$size});
+}
+
+/* stylelint-disable */
+// TODO: remove this after https://github.com/db-ui/mono/pull/1545
+@mixin get-temp-label-variables-tonality($tonality) {
+	$label-scale: 0.65;
+	$focusOpacity: 1;
+	@if ($tonality== "functional") {
+		$label-scale: 1;
+		$focusOpacity: 0;
+	}
+	@if ($tonality== "expressive") {
+		$label-scale: 0.55;
+		$focusOpacity: 1;
+	}
+
+	--db-input-label-scale: #{$label-scale};
+	--db-input-focus-opacity: #{$focusOpacity};
+
+	--db-textarea-label-scale: #{$label-scale};
+	--db-textarea-focus-opacity: #{$focusOpacity};
+}
+/* stylelint-enable */
+
+@each $tonality in variables.$tonalities {
+	%db-scaling-#{$tonality} {
+		@include get-temp-label-variables-tonality($tonality);
+
+		@each $sizing in variables.$sizings {
+			--db-sizing-#{$sizing}: #{get-variable(
+					"sizing",
+					$tonality,
+					$sizing
+				)};
+		}
+
+		@each $fix in variables.$fixed {
+			--db-spacing-fixed-#{$fix}: #{get-variable(
+					"spacing-fixed",
+					$tonality,
+					$fix
+				)};
+		}
+
+		@each $res in variables.$responsive {
+			--db-spacing-responsive-#{$res}: #{get-variable(
+					"spacing-responsive",
+					$tonality,
+					$res,
+					"mobile-"
+				)};
+		}
+
+		@include screen-sizes.screen() {
+			@each $res in variables.$responsive {
+				--db-spacing-responsive-#{$res}: #{get-variable(
+						"spacing-responsive",
+						$tonality,
+						$res,
+						"tablet-"
+					)};
+			}
+		}
+
+		@include screen-sizes.screen("md") {
+			@each $res in variables.$responsive {
+				--db-spacing-responsive-#{$res}: #{get-variable(
+						"spacing-responsive",
+						$tonality,
+						$res,
+						"desktop-"
+					)};
+			}
+		}
+	}
+}

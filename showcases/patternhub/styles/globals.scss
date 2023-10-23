@@ -1,9 +1,8 @@
-@use "@db-ui/components/build/styles/db-ui-42-webpack" as *;
-@use "@db-ui/foundations/build/scss/color-classes" as *;
 @use "@db-ui/foundations/build/scss/variables";
 @use "@db-ui/foundations/build/scss/helpers/component";
-@use "@db-ui/foundations/build/scss/tonality" as *;
-@use "@db-ui/foundations/build/scss/color-placeholder" as *;
+@use "@db-ui/foundations/build/scss/colors";
+
+@forward "@db-ui/components/build/styles/db-ui-42-webpack";
 
 #__next {
 	height: inherit;
@@ -85,7 +84,7 @@ table {
 
 table td,
 table th {
-	border: 1px solid variables.$db-colors-neutral-border-weak;
+	border: 1px solid colors.$db-neutral-border-weak;
 	padding: variables.$db-spacing-fixed-md;
 	max-width: 33vw;
 }
@@ -104,7 +103,7 @@ div[class^="ch-"] {
 	div,
 	span {
 		@extend %db-overwrite-font-size-sm;
-		color: variables.$db-colors-neutral-bg;
+		color: colors.$db-base-on-bg;
 	}
 }
 

@@ -1,0 +1,110 @@
+@use "sass:string";
+@use "sass:color";
+@use "variables";
+
+@each $variant in variables.$variants {
+	%db-#{$variant}-component {
+		--db-current-color: var(--db-#{$variant}-on-enabled);
+		color: var(--db-current-color);
+		background-color: var(--db-#{$variant}-text-enabled);
+	}
+
+	%db-#{$variant}-component-interactive {
+		@extend %db-#{$variant}-component;
+
+		&:enabled {
+			&:hover {
+				background-color: var(--db-#{$variant}-text-hover);
+			}
+
+			&:active {
+				background-color: var(--db-#{$variant}-text-pressed);
+			}
+		}
+	}
+
+	%db-#{$variant}-text-interactive {
+		--db-current-color: var(--db-#{$variant}-text-enabled);
+		color: var(--db-current-color);
+
+		&:enabled {
+			&:hover {
+				--db-current-color: var(--db-#{$variant}-text-hover);
+			}
+
+			&:active {
+				--db-current-color: var(--db-#{$variant}-text-pressed);
+			}
+		}
+	}
+
+	%db-bg-#{$variant}-variables {
+		--db-current-base-color: var(--db-#{$variant}-text-enabled);
+		--db-current-color: var(--db-#{$variant}-on-bg-enabled);
+		--db-current-bg-color: color-mix(
+			in srgb,
+			transparent var(--db-bg-transparent, 0%),
+			var(--db-#{$variant}-bg-enabled)
+		);
+		--db-current-element-color: var(--db-#{$variant}-element-enabled);
+		--db-current-border-color: var(--db-#{$variant}-border-enabled);
+		--db-current-border-weak-color: var(
+			--db-#{$variant}-border-weak-enabled
+		);
+	}
+
+	%db-bg-#{$variant} {
+		@extend %db-bg-#{$variant}-variables;
+		background-color: var(--db-current-bg-color);
+		color: var(--db-current-color);
+
+		&-transparent {
+			&-full,
+			&-semi {
+				@extend %db-bg-#{$variant}-variables;
+				color: var(--db-#{$variant}-on-bg-enabled);
+				background-color: color-mix(
+					in srgb,
+					transparent var(--db-bg-transparent, 100%),
+					var(--db-current-base-color)
+				);
+			}
+
+			&-semi {
+				background-color: color-mix(
+					in srgb,
+					transparent var(--db-bg-transparent, 92%),
+					var(--db-current-base-color)
+				);
+			}
+		}
+
+		&-interactive {
+			@extend %db-bg-#{$variant};
+
+			&:enabled {
+				&:hover {
+					--db-bg-transparent: 84%;
+				}
+
+				&:active {
+					--db-bg-transparent: 68%;
+				}
+			}
+		}
+
+		&[data-emphasis="weak"] {
+			--db-current-color: var(--db-#{$variant}-on-bg-weak-enabled);
+			color: var(--db-current-color);
+		}
+
+		&-strong,
+		&-strong-interactive {
+			--db-current-bg-color: color-mix(
+				in srgb,
+				transparent var(--db-bg-transparent, 0%),
+				var(--db-#{$variant}-bg-strong-enabled)
+			);
+		}
+	}
+}

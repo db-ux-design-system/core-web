@@ -86,6 +86,19 @@
 				}
 			},
 			{
+				"name": "Neutral",
+				"style": { "width": "300px" },
+				"props": {
+					"type": "alert",
+					"variant": "neutral",
+					"headline": "Headline",
+					"link": {
+						"href": "#",
+						"text": "Link"
+					}
+				}
+			},
+			{
 				"name": "Critical",
 				"style": { "width": "300px" },
 				"props": {

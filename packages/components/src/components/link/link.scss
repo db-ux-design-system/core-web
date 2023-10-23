@@ -1,10 +1,12 @@
 @charset "utf-8";
 
-@use "@db-ui/foundations/build/scss/helpers/font";
+@use "@db-ui/foundations/build/scss/tonality";
 @use "@db-ui/foundations/build/scss/variables";
-@use "@db-ui/foundations/build/scss/helpers/functions";
-@use "@db-ui/foundations/build/scss/icon/icon-helpers";
-@use "@db-ui/foundations/build/scss/helpers/component";
+@use "@db-ui/foundations/build/scss/animation";
+@use "@db-ui/foundations/build/scss/helpers";
+@use "@db-ui/foundations/build/scss/icons";
+@use "@db-ui/foundations/build/scss/colors";
+@use "../../styles/component";
 
 %db-link-height {
 	display: inline-block;
@@ -20,24 +22,16 @@
 	// Link underline
 	// TODO: We should evaluate whether we could move this declaration to the @font-face declarations even already
 	text-underline-position: from-font;
-	text-decoration-thickness: functions.to-rem($pxValue: 1);
+	text-decoration-thickness: helpers.to-rem($pxValue: 1);
 
 	white-space: nowrap;
 
 	&:hover {
-		color: color-mix(
-			in srgb,
-			transparent 25%,
-			variables.$db-colors-neutral-on-bg
-		);
+		color: color-mix(in srgb, transparent 25%, colors.$db-base-on-bg);
 	}
 
 	&:active {
-		color: color-mix(
-			in srgb,
-			transparent 50%,
-			variables.$db-colors-neutral-on-bg
-		);
+		color: color-mix(in srgb, transparent 50%, colors.$db-base-on-bg);
 	}
 
 	a {
@@ -54,11 +48,11 @@
 
 	&:not([data-variant="inline"]) {
 		&[data-content="internal"] {
-			@include icon-helpers.icon("arrow_forward", "after");
+			@include icons.set-icon("arrow_forward", "after");
 		}
 
 		&[data-content="external"] {
-			@include icon-helpers.icon("link_external", "after");
+			@include icons.set-icon("link_external", "after");
 		}
 	}
 
@@ -81,16 +75,7 @@
 
 	// We couldn't extend any existing SCSS placeholders, as this is a special construct
 	&[data-variant="primary"] {
-		--db-current-color: #{variables.$db-colors-primary-text};
-		color: var(--db-current-color);
-
-		&:hover {
-			--db-current-color: #{variables.$db-colors-primary-text-hover};
-		}
-
-		&:active {
-			--db-current-color: #{variables.$db-colors-primary-text-pressed};
-		}
+		@extend %db-brand-text-interactive;
 	}
 
 	&[data-size="small"] {
