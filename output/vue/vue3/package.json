@@ -40,7 +40,7 @@
     "sass": "^1.69.4",
     "typescript": "^4.9.5",
     "vite": "^4.5.0",
-    "vue-tsc": "^1.8.19"
+    "vue-tsc": "^1.8.20"
   },
   "publishConfig": {
     "registry": "https://registry.npmjs.org/",
