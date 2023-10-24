@@ -46,7 +46,7 @@ You can see a visual preview [spacings fixed examples page](./examples).
 -   We use `spacing responsive` to add spacings which should change based on the users' device.
 -   We don't use them for `width` or `height`.
 -   Best example would be the padding for your `main` region which should be larger on a desktop device than mobile.
--   We recommend using `DBSection` from our [components library](../../components/readme).
+-   We recommend using `DBSection` from our [components library](../../components/readme). The component handles the responsive Layout for your app, you don't have to struggle which spacing would be the correct one.
 
 ### How to use
 
