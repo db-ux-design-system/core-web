@@ -3,7 +3,7 @@
 @use "@db-ui/foundations/build/scss/variables";
 @use "@db-ui/foundations/build/scss/colors";
 
-$interactive-selectors: "input, button:not(.db-tab-remove-button), a";
+$interactive-selectors: "label, button:not(.db-tab-remove-button), a";
 
 @mixin get-tag-colors() {
 	@extend %db-bg-base-strong;
@@ -58,7 +58,7 @@ $interactive-selectors: "input, button:not(.db-tab-remove-button), a";
 	dbbutton:not(.db-tab-remove-button) > button,
 	db-button > button,
 	a,
-	input[type="checkbox"]:checked {
+	label:has(input[type="checkbox"]:checked) {
 		@content;
 	}
 }
@@ -68,7 +68,7 @@ $interactive-selectors: "input, button:not(.db-tab-remove-button), a";
 		@extend %db-bg-base-strong-interactive;
 	}
 
-	input[type="radio"]:checked {
+	label:has(input[type="radio"]:checked) {
 		@extend %db-bg-base-strong-interactive;
 	}
 
@@ -95,7 +95,7 @@ $interactive-selectors: "input, button:not(.db-tab-remove-button), a";
 			@extend %db-base-component-interactive;
 		}
 
-		input[type="radio"]:checked {
+		label:has(input[type="radio"]:checked) {
 			@extend %db-base-component;
 		}
 

@@ -164,10 +164,35 @@ export const ROUTES: NavigationItem[] = [
 				path: '/foundations/colors',
 				subNavigation: [
 					{ label: 'Readme', path: '/foundations/colors/readme' },
-					{ label: 'Examples', path: '/foundations/colors/examples' }
+					{ label: 'Overview', path: '/foundations/colors/overview' }
 				]
 			},
-			{ label: 'Icons', path: '/foundations/icons' }
+			{
+				label: 'Icons',
+				path: '/foundations/icons',
+				subNavigation: [
+					{ label: 'Readme', path: '/foundations/icons/readme' },
+					{ label: 'Overview', path: '/foundations/icons/overview' }
+				]
+			},
+			{
+				label: 'Tonalities',
+				path: '/foundations/tonalities',
+				subNavigation: [
+					{ label: 'Readme', path: '/foundations/tonalities/readme' }
+				]
+			},
+			{
+				label: 'Variables',
+				path: '/foundations/variables',
+				subNavigation: [
+					{ label: 'Readme', path: '/foundations/variables/readme' },
+					{
+						label: 'Examples',
+						path: '/foundations/variables/examples'
+					}
+				]
+			}
 		]
 	},
 	{

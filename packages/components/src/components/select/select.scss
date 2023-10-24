@@ -9,8 +9,8 @@
 %select-icon {
 	@extend %dropdown-icon;
 
-	&::after {
-		inset-inline-end: variables.$db-spacing-fixed-sm;
+	&[data-icon] {
+		--db-form-has-before: 1;
 	}
 
 	&:has(select:focus-within) {
@@ -20,111 +20,57 @@
 	}
 }
 
-%select-label {
-	@extend %db-overwrite-font-size-md;
-	inset-block-start: calc(
-		(
-				#{variables.$db-sizing-md} - var(--db-base-font-size) * var(--db-base-line-height)
-			) / 2
-	);
-}
+$has-before-padding: calc(
+	var(--db-form-has-before) *
+		(#{form-components.$icon-size-sm} + #{variables.$db-spacing-fixed-sm})
+);
 
 .db-select {
-	--db-has-before: 0;
-	--db-has-status: 0;
-	@extend %db-overwrite-font-size-sm;
+	--db-form-component-padding-inline-end: calc(
+		#{form-components.$font-size-height} + #{variables.$db-spacing-fixed-sm}
+	);
+	// shared from form-components
 	@extend %select-icon;
-	@extend %default-form-message;
-	@extend %disabled-form-element;
-	@extend %required-form-element;
+	@include form-components.set-default-form-component(select);
 
-	@include form-components.get-input-variants();
-
-	position: relative;
 	min-inline-size: calc(
-		var(--db-select-min-width, calc(3 * #{variables.$db-sizing-md})) +
-			var(--db-has-before) * #{variables.$db-sizing-md}
+		4 * #{variables.$db-sizing-md} + var(--db-form-has-before) * #{variables.$db-sizing-md}
 	);
 
-	&[data-icon] {
-		--db-has-before: 1;
-	}
-
-	&[data-variant="adaptive"],
-	&:not([data-variant]) {
-		select {
-			@include colors.get-variant-bg-color(0.08);
-		}
-	}
-
 	select {
-		@extend %default-interactive-component;
-		@extend %component-border;
-
-		@include colors.bg-transparent-hover();
-
-		border-radius: component.$default-border-radius;
-
-		appearance: none;
-		background-color: transparent;
-		block-size: variables.$db-sizing-md;
-		text-overflow: ellipsis;
-		text-indent: calc(
-			var(--db-has-before) *
-				(#{variables.$db-sizing-md} - #{variables.$db-spacing-fixed-sm})
-		);
-		inline-size: 100%;
-		padding-block-start: variables.$db-spacing-fixed-sm;
-		padding-inline-start: variables.$db-spacing-fixed-sm;
-		padding-inline-end: variables.$db-sizing-md;
-
-		&:not([data-value]) {
-			& ~ label {
-				@extend %select-label;
-			}
-		}
-	}
-
-	&::after,
-	&::before,
-	label {
-		position: absolute;
-		pointer-events: none;
-	}
-
-	&:has(select:disabled) {
-		// Decided against cursor: not-allowed, compare to e.g. https://phabricator.wikimedia.org/T121960
-		opacity: 0.25;
-		pointer-events: none;
-	}
-
-	label {
-		@extend %db-overwrite-font-size-2xs;
-		inset-block-start: variables.$db-spacing-fixed-2xs;
-		transition:
-			left,
-			top,
-			font-size 0.2s variables.$db-transition-functional-timing;
-		inset-inline-start: calc(
-			var(--db-has-before) *
-				(#{variables.$db-sizing-md} - #{variables.$db-spacing-fixed-sm}) +
-				#{variables.$db-spacing-fixed-sm}
-		);
-	}
-
-	&::after,
-	&::before {
-		inset-block-start: calc(
-			var(--db-base-font-size) * var(--db-base-line-height) / 2
-		);
-	}
-
-	&::before {
-		inset-inline-start: variables.$db-spacing-fixed-sm;
+		text-indent: $has-before-padding;
 	}
 
 	// Most likely this wouldn't work on MacOS, but we're still progressively enhancing Windows by this
 	option {
 		background-color: var(--db-current-bg-color);
+	}
+
+	[id$="-placeholder"] {
+		@extend %db-overwrite-font-size-md;
+		position: absolute;
+		pointer-events: none;
+		// we use the top of the element, the size of the label+label-margin-bottom and the font-size of the select/2
+		// for functional we have some rounding issues for rem, so we need 1px less
+		inset-block-start: calc(
+			0% + #{form-components.$label-size-height-xs} + #{variables.$db-spacing-fixed-xs} +
+				var(--db-base-font-size) / 2 - var(--db-ui-functional, 0) * 1px
+		);
+		inset-inline: $has-before-padding;
+		margin-inline-start: variables.$db-spacing-fixed-sm;
+
+		overflow: hidden;
+		white-space: nowrap;
+		text-overflow: ellipsis;
+		inline-size: calc(
+			100% - var(--db-form-component-padding-inline-end) - #{$has-before-padding} -
+				#{variables.$db-spacing-fixed-sm}
+		);
+	}
+
+	&:has(> select option:checked:not([hidden])) {
+		[id$="-placeholder"] {
+			display: none;
+		}
 	}
 }

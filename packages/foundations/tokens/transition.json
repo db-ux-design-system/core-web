@@ -1,16 +1,54 @@
 {
 	"transition": {
 		"duration": {
-			"fast": {
-				"value": "0.3s",
-				"comment": "Consider this as beta for the moment",
+			"x-slow": {
+				"value": "0.5s",
 				"attributes": {
 					"target": "web"
 				}
 			},
-			"ultra-fast": {
-				"value": "0.06s",
-				"comment": "Consider this as beta for the moment",
+			"slow": {
+				"value": "0.4s",
+				"attributes": {
+					"target": "web"
+				}
+			},
+			"medium": {
+				"value": "0.3s",
+				"attributes": {
+					"target": "web"
+				}
+			},
+			"fast": {
+				"value": "0.15s",
+				"attributes": {
+					"target": "web"
+				}
+			},
+			"x-fast": {
+				"value": "0.075s",
+				"attributes": {
+					"target": "web"
+				}
+			}
+		},
+		"show": {
+			"timing": {
+				"value": "cubic-bezier(0.49, 0.1, 0.16, 1) normal both",
+				"attributes": {
+					"target": "web"
+				}
+			},
+			"straight": {
+				"value": "{transition.duration.x-slow.value} {transition.show.timing.value}",
+				"attributes": {
+					"target": "web"
+				}
+			}
+		},
+		"hide": {
+			"straight": {
+				"value": "{transition.duration.slow.value} {transition.show.timing.value}",
 				"attributes": {
 					"target": "web"
 				}
@@ -19,14 +57,12 @@
 		"emotional": {
 			"timing": {
 				"value": "cubic-bezier(0.27, 0.05, 0.4, 0.95)",
-				"comment": "Consider this as beta for the moment",
 				"attributes": {
 					"target": "web"
 				}
 			},
 			"straight": {
-				"value": "{transition.duration.fast.value} {transition.emotional.timing.value}",
-				"comment": "Consider this as beta for the moment",
+				"value": "{transition.duration.medium.value} {transition.emotional.timing.value}",
 				"attributes": {
 					"target": "web"
 				}
@@ -35,14 +71,12 @@
 		"functional": {
 			"timing": {
 				"value": "cubic-bezier(0.15, 0, 0.45, 1)",
-				"comment": "Consider this as beta for the moment",
 				"attributes": {
 					"target": "web"
 				}
 			},
 			"straight": {
-				"value": "{transition.duration.fast.value} {transition.functional.timing.value}",
-				"comment": "Consider this as beta for the moment",
+				"value": "{transition.duration.medium.value} {transition.functional.timing.value}",
 				"attributes": {
 					"target": "web"
 				}

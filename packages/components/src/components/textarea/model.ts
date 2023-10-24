@@ -46,8 +46,7 @@ export type DBTextareaProps = DBTextareaDefaultProps &
 	FormProps &
 	GlobalProps &
 	FormTextProps &
-	FormMessageProps &
-	OverflowProps;
+	FormMessageProps;
 
 export interface DBTextareaDefaultState {}
 

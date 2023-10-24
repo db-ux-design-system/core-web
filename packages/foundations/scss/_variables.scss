@@ -43,3 +43,6 @@ $db-transition-functional-timing: var(--db-transition-functional-timing);
 
 $db-transition-emotional-straight: #{$db-transition-duration-fast} #{$db-transition-emotional-timing};
 $db-transition-functional-straight: #{$db-transition-duration-fast} #{$db-transition-functional-timing};
+
+$db-transition-show-straight: var(--db-transition-show-straight);
+$db-transition-hide-straight: var(--db-transition-hide-straight);

@@ -34,49 +34,48 @@
 			{
 				"name": "Default",
 				"props": {
-					"name": "States",
-					"value": "default"
-				}
-			},
-			{
-				"name": "Disabled",
-				"props": {
-					"name": "States",
-					"disabled": true,
-					"value": "disabled"
-				}
-			},
-			{
-				"name": "Disabled checked",
-				"props": {
-					"name": "SpecialState",
-					"disabled": true,
-					"checked": true,
-					"value": "disabled-checked"
-				}
-			},
-			{
-				"name": "Required",
-				"props": {
-					"name": "States",
-					"required": true,
-					"value": "required"
+					"name": "States"
 				}
 			},
 			{
 				"name": "Checked",
 				"props": {
 					"name": "States",
-					"checked": true,
-					"value": "checked"
+					"checked": true
 				}
 			},
 			{
-				"name": "Invalid",
+				"name": "Disabled",
 				"props": {
 					"name": "States",
-					"invalid": true,
-					"value": "invalid"
+					"disabled": true
+				}
+			}
+		]
+	},
+	{
+		"name": "Requirement",
+		"examples": [
+			{
+				"name": "(Default) Optional",
+				"props": {
+					"name": "Requirement"
+				}
+			},
+			{
+				"name": "Required",
+				"props": {
+					"name": "Requirement",
+					"required": true,
+					"invalid": true
+				}
+			},
+			{
+				"name": "Required - Checked",
+				"props": {
+					"name": "Requirement",
+					"required": true,
+					"checked": true
 				}
 			}
 		]
@@ -87,16 +86,32 @@
 			{
 				"name": "Default",
 				"props": {
-					"name": "Size",
-					"value": "default"
+					"name": "Size"
 				}
 			},
 			{
 				"name": "Small",
 				"props": {
 					"name": "Size",
-					"size": "small",
-					"value": "small"
+					"size": "small"
+				}
+			}
+		]
+	},
+	{
+		"name": "Content",
+		"examples": [
+			{
+				"name": "(Default) Radio Label",
+				"props": {
+					"name": "Content"
+				}
+			},
+			{
+				"name": "No Label",
+				"props": {
+					"name": "Content",
+					"labelHidden": true
 				}
 			}
 		]
