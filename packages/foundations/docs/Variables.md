@@ -29,7 +29,7 @@ For `SCSS` you need to `@use` the import `@use @db-ui/foundations/build/scss/var
 
 We use `padding` as an example for this variable.
 
-You can see a visual preview [here](./examples).
+You can see a visual preview [spacings fixed examples page](./examples).
 
 | T-Shirt 👕 | CSS                                    | SCSS                                       | Tailwind    |
 | :--------: | -------------------------------------- | ------------------------------------------ | ----------- |
@@ -52,7 +52,7 @@ You can see a visual preview [here](./examples).
 
 We use `padding` as an example for this variable.
 
-You can see a visual preview [here](./examples).
+You can see a visual preview [spacings responsive examples page](./examples).
 
 | T-Shirt 👕 | CSS                                        | SCSS                                           | Tailwind   |
 | :--------: | ------------------------------------------ | ---------------------------------------------- | ---------- |
@@ -72,7 +72,7 @@ You can see a visual preview [here](./examples).
 
 We use `height` as an example for this variable.
 
-You can see a visual preview [here](./examples).
+You can see a visual preview [sizings examples page](./examples).
 
 | T-Shirt 👕 | CSS                            | SCSS                               | Tailwind    |
 | :--------: | ------------------------------ | ---------------------------------- | ----------- |
