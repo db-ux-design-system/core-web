@@ -21,33 +21,35 @@ const IconOverview = () => {
 				We don't provide all icons with family <code>solid</code>
 			</p>
 			<div className="icons-filter-container">
-				<DBInput
-					label="Search"
-					type="search"
-					onChange={(event) => {
-						setSearch(event.target.value);
-					}}
-				/>
-				<DBSelect
-					label="Icon weight"
-					value={weight}
-					onChange={(event) => {
-						setWeight(event.target.value);
-					}}>
-					{[16, 20, 24, 32].map((fw) => (
-						<option value={fw}>{fw}</option>
-					))}
-				</DBSelect>
-				<DBSelect
-					label="Icon family"
-					value={family}
-					onChange={(event) => {
-						setFamily(event.target.value);
-					}}>
-					{['default', 'solid'].map((fam) => (
-						<option value={fam}>{fam}</option>
-					))}
-				</DBSelect>
+				<search>
+					<DBInput
+						label="Search"
+						type="search"
+						onChange={(event) => {
+							setSearch(event.target.value);
+						}}
+					/>
+					<DBSelect
+						label="Icon weight"
+						value={weight}
+						onChange={(event) => {
+							setWeight(event.target.value);
+						}}>
+						{[16, 20, 24, 32].map((fw) => (
+							<option value={fw}>{fw}</option>
+						))}
+					</DBSelect>
+					<DBSelect
+						label="Icon family"
+						value={family}
+						onChange={(event) => {
+							setFamily(event.target.value);
+						}}>
+						{['default', 'solid'].map((fam) => (
+							<option value={fam}>{fam}</option>
+						))}
+					</DBSelect>
+				</search>
 			</div>
 			<div
 				className="icons-overview-container"
