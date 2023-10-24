@@ -8,83 +8,382 @@
 $dropdown-icon-transition: transform variables.$db-transition-emotional-straight;
 $dropdown-icon-transform: rotate(-180deg);
 
+$font-size-height: calc(var(--db-base-font-size) * var(--db-base-line-height));
+$icon-size-sm: var(--db-base-icon-font-size-sm);
+$label-size-height-sm: calc(
+	var(--db-type-body-font-size-sm) * var(--db-type-body-line-height-sm)
+);
+$label-size-height-xs: calc(
+	var(--db-type-body-font-size-xs) * var(--db-type-body-line-height-xs)
+);
+$label-size-height-2xs: calc(
+	var(--db-type-body-font-size-2xs) * var(--db-type-body-line-height-2xs)
+);
+
+$floating-label-size: calc(
+	#{variables.$db-spacing-fixed-3xs} + #{variables.$db-spacing-fixed-2xs} + #{$label-size-height-2xs}
+);
+
 %dropdown-icon {
 	@include icons.set-icon("expand_more", "after");
 
 	&::after {
 		transition: $dropdown-icon-transition;
+		pointer-events: none;
 	}
 }
 
-%default-form-message {
-	& .db-infotext {
-		margin-block-start: variables.$db-spacing-fixed-2xs;
+@mixin placeholder-content() {
+	&::placeholder,
+	& + [id$="-placeholder"] {
+		@content;
 	}
 }
 
-%default-form-label {
-	label {
-		@extend %db-overwrite-font-size-xs;
-		display: flex;
-		align-items: center;
-		padding-block-end: variables.$db-spacing-fixed-xs;
+@mixin set-floating-label-overwrites($selector) {
+	&[data-label-variant="floating"] {
+		label {
+			@extend %db-overwrite-font-size-md;
+			position: absolute;
+			z-index: 2;
+			inset-block-start: calc(
+				(#{variables.$db-sizing-md} - #{$font-size-height}) / 2
+			);
+			inset-inline: #{variables.$db-spacing-fixed-sm};
+		}
 
-		cursor: text;
+		// icons
+		&::after,
+		&::before {
+			inset-block-start: calc(
+				#{variables.$db-sizing-md} / 2 - #{$font-size-height} / 2
+			);
+		}
 
-		&[data-overflow="true"] {
-			max-inline-size: 25ch;
-			text-overflow: ellipsis;
-			white-space: nowrap;
-			overflow: hidden;
+		[id$="-placeholder"] {
+			@extend %db-overwrite-font-size-sm;
+			inset-block-start: calc(
+				50% - 0.5em + #{variables.$db-spacing-fixed-3xs}
+			);
+		}
+
+		#{$selector} {
+			@extend %db-overwrite-font-size-sm;
+			@include placeholder-content() {
+				transition: none;
+				opacity: 0;
+			}
+
+			@if ($selector == textarea) {
+				padding-block-start: $floating-label-size;
+			} @else {
+				// font-size label which is 2xs + smallest spacing
+				padding-block-start: calc(
+					var(--db-type-body-font-size-2xs) +
+						#{variables.$db-spacing-fixed-3xs}
+				);
+			}
+		}
+
+		&:has(#{$selector}:focus-within),
+		&:has(#{$selector}:is(input, textarea):not(:placeholder-shown)),
+		&:has(> select option:checked:not([hidden])) {
+			label {
+				@extend %db-overwrite-font-size-2xs;
+				inset-block-start: variables.$db-spacing-fixed-2xs;
+			}
+
+			#{$selector} {
+				@include placeholder-content() {
+					transition: opacity
+						variables.$db-transition-emotional-straight;
+					opacity: component.$default-placeholder-opacity;
+				}
+			}
 		}
 	}
 }
 
-%disabled-form-element {
-	&:has(input:disabled),
-	&:has(textarea:disabled),
-	&:has(select:disabled) {
-		& {
-			// Decided against cursor: not-allowed, compare to e.g. https://phabricator.wikimedia.org/T121960
-			opacity: component.$default-disabled-opacity;
-			pointer-events: none;
-		}
+@mixin set-current-colors($color-variant) {
+	--db-current-color: #{map.get($color-variant, "on-bg")};
+	--db-current-border-weak-color: #{map.get($color-variant, "border")};
+	--db-current-element-color: #{map.get($color-variant, "element")};
+	--db-current-base-color: #{map.get($color-variant, "text")};
+	--db-current-bg-color: #{map.get($color-variant, "bg")};
+}
+
+@mixin get-validity-color($key: "valid") {
+	$variant: "successful";
+
+	@if ($key != "valid") {
+		$variant: "critical";
+	}
+
+	$color-variant: map.get(colors.$component-variants, $variant);
+
+	& {
+		@include set-current-colors($color-variant);
+	}
+
+	textarea,
+	input,
+	select,
+	[id$="-placeholder"] {
+		color: map.get($color-variant, "on-bg");
 	}
 }
 
-%required-form-element {
-	&:has(input:required),
-	&:has(textarea:required),
-	&:has(select:required) {
-		& label {
+@mixin get-validity($key: "valid") {
+	$boolean: "true";
+	@if ($key == "valid") {
+		$boolean: "false";
+	}
+
+	&:has(input:not([aria-invalid]):user-#{$key}),
+	&:has(textarea:not([aria-invalid]):user-#{$key}),
+	&:has(select:not([aria-invalid]):user-#{$key}) {
+		@content;
+	}
+
+	// :user-valid workaround
+	@supports not selector(:user-#{$key}) {
+		&:has(input:not([aria-invalid]):required:#{$key}),
+		&:has(textarea:not([aria-invalid]):required:#{$key}),
+		&:has(select:not([aria-invalid]):required:#{$key}) {
+			@content;
+		}
+	}
+
+	// If aria-invalid is set we overwrite the selectors above
+	&:has(input[aria-invalid="#{$boolean}"]),
+	&:has(textarea[aria-invalid="#{$boolean}"]),
+	&:has(select[aria-invalid="#{$boolean}"]) {
+		@content;
+	}
+}
+
+@mixin set-required-label($selector) {
+	&:has(#{$selector}:required) {
+		&:is(label),
+		label {
 			&::after {
-				content: " *";
+				content: "*";
 				padding-inline-start: variables.$db-spacing-fixed-2xs;
 			}
 		}
 	}
 }
 
-@mixin get-input-variants() {
-	@each $name, $colors in colors.$component-variants {
-		&[data-variant="#{$name}"] {
-			--db-current-border-color: #{map.get($colors, "border")};
+@mixin set-default-form-component($selector) {
+	--db-form-has-before: 0;
+	@extend %db-overwrite-font-size-sm;
+
+	@include set-floating-label-overwrites($selector);
+	@include set-required-label($selector);
+
+	// we use absolute icons
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	@include get-validity() {
+		@include get-validity-color("valid");
+	}
+	@include get-validity("invalid") {
+		@include get-validity-color("invalid");
+	}
+
+	#{$selector} {
+		@extend %db-overwrite-font-size-md;
+		@extend %default-interactive-component;
+		@extend %component-border;
+
+		@include colors.bg-transparent-hover();
+		@include colors.get-variant-bg-color(0.08);
+
+		appearance: none;
+		max-inline-size: 100%;
+		inline-size: 100%;
+		padding-inline: var(
+				--db-form-component-padding-inline-start,
+				#{variables.$db-spacing-fixed-sm}
+			)
+			var(
+				--db-form-component-padding-inline-end,
+				#{variables.$db-spacing-fixed-sm}
+			);
+
+		@include placeholder-content() {
+			opacity: component.$default-placeholder-opacity;
 		}
 
-		&[data-variant="#{$name}"] input,
-		&[data-variant="#{$name}"] textarea,
-		&[data-variant="#{$name}"] select {
-			@if ($name == "neutral") {
-				@extend %adaptive-neutral-component;
-			} @else if ($name == "critical") {
-				@extend %adaptive-critical-component;
-			} @else if ($name == "informational") {
-				@extend %adaptive-informational-component;
-			} @else if ($name == "warning") {
-				@extend %adaptive-warning-component;
-			} @else if ($name == "successful") {
-				@extend %adaptive-successful-component;
-			}
+		&:is(input, textarea):read-only {
+			background-color: colors.$db-base-bg !important;
 		}
+	}
+
+	// label
+	label {
+		@extend %db-overwrite-font-size-xs;
+		padding-block-end: variables.$db-spacing-fixed-xs;
+		pointer-events: none;
+		cursor: text;
+		opacity: component.$default-label-opacity;
+
+		transition: font-size variables.$db-transition-emotional-straight;
+		max-inline-size: 25ch;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+		overflow: hidden;
+	}
+
+	// Helper message
+	& .db-infotext {
+		margin-block-start: variables.$db-spacing-fixed-2xs;
+	}
+
+	// disabled
+	&:has(#{$selector}:disabled) {
+		// Decided against cursor: not-allowed, compare to e.g. https://phabricator.wikimedia.org/T121960
+		opacity: component.$default-disabled-opacity;
+		pointer-events: none;
+	}
+
+	// icons
+	&::after,
+	&::before {
+		position: absolute;
+		pointer-events: none;
+		// 1px for border
+		inset-block-start: calc(
+			#{variables.$db-sizing-md} / 2 + #{$label-size-height-xs} - 1px
+		);
+	}
+
+	&::before {
+		margin-inline-end: variables.$db-spacing-fixed-sm;
+		inset-inline-start: variables.$db-spacing-fixed-sm;
+	}
+
+	&::after {
+		margin-inline-start: variables.$db-spacing-fixed-sm;
+		inset-inline-end: variables.$db-spacing-fixed-sm;
+	}
+
+	// colors
+	@each $name, $colors in colors.$component-variants {
+		&[data-variant="#{$name}"] {
+			@include set-current-colors($colors);
+		}
+
+		&[data-variant="#{$name}"] #{$selector},
+		&[data-variant="#{$name}"] [id$="-placeholder"] {
+			color: map.get($colors, "on-bg");
+		}
+	}
+
+	@if ($selector == input or $selector == select) {
+		#{$selector} {
+			block-size: variables.$db-sizing-md;
+			text-overflow: ellipsis;
+		}
+	}
+}
+
+// CHECKBOX & RADIO
+
+@mixin get-validity-color-check($key: "valid") {
+	$text-color: colors.$db-successful-text;
+	$bg-color: colors.$db-successful-bg;
+
+	@if ($key != "valid") {
+		$text-color: colors.$db-critical-text;
+		$bg-color: colors.$db-critical-bg;
+	}
+
+	input {
+		--db-current-bg-color: #{$bg-color};
+		--db-current-base-color: #{$text-color};
+		border-color: var(--db-current-color);
+
+		&:not(:checked),
+		&:is([type="radio"]) {
+			--db-current-color: #{$text-color};
+		}
+
+		&:checked {
+			--db-base-text-enabled: #{$text-color};
+			--db-base-text-hover: #{colors.$db-successful-text-hover};
+			--db-base-text-pressed: #{colors.$db-successful-text-pressed};
+		}
+	}
+
+	&:is(label),
+	label {
+		color: #{$text-color};
+	}
+}
+
+%check-element {
+	@include set-required-label(input);
+
+	@include get-validity() {
+		@include get-validity-color-check("valid");
+	}
+	@include get-validity("invalid") {
+		@include get-validity-color-check("invalid");
+	}
+
+	&:has(input:disabled) {
+		opacity: component.$default-placeholder-opacity;
+	}
+
+	&:is(label),
+	label {
+		display: flex;
+		align-items: center;
+		position: relative;
+	}
+
+	input {
+		@include colors.bg-transparent-interactive();
+
+		align-content: center;
+
+		appearance: none;
+		aspect-ratio: 1;
+
+		margin-inline-end: variables.$db-spacing-fixed-xs;
+
+		border: min(calc(#{$font-size-height} / 16 + 0.5px), 2px) solid
+			currentColor;
+
+		block-size: $font-size-height;
+		justify-content: center;
+
+		// TODO: probably extract this to an overwrite or external file
+		// workarounds for power apps
+		inline-size: auto;
+		padding: 0;
+	}
+
+	&[data-size="small"] {
+		@extend %db-overwrite-font-size-sm;
+
+		input {
+			margin-inline-end: variables.$db-spacing-fixed-2xs;
+		}
+	}
+
+	&[data-label-hidden="true"] {
+		font-size: 0;
+
+		input {
+			margin-inline-end: 0;
+		}
+	}
+
+	// Adopted by https://www.heise.de/developer/artikel/a11y-Reduced-Motion-4356171.html
+	@media (prefers-reduced-motion: reduce) {
+		transition-duration: 0.01s !important;
 	}
 }

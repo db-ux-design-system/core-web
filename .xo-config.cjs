@@ -29,7 +29,7 @@ module.exports = {
 			}
 		},
 		{
-			files: ['./showcases/**', './examples/**'],
+			files: ['./showcases/**'],
 			rules: {
 				// In TS we don't need extension
 				'import/extensions': 0,
@@ -40,6 +40,7 @@ module.exports = {
 				'@typescript-eslint/restrict-template-expressions': 0, // Legit in react
 				'@typescript-eslint/no-redundant-type-constituents': 0, // only happens in cicd
 				'@typescript-eslint/no-unsafe-argument': 0, // valid for app
+				'@typescript-eslint/no-unsafe-return': 0, // valid for app
 				'import/no-extraneous-dependencies': 0 // foundation and component.css are inside this repo
 			}
 		}

@@ -41,8 +41,7 @@
 
 	// "disabled" links
 	&[aria-disabled="true"] {
-		// TODO: probably move these to the tokens as well
-		opacity: var(--db-disabled-text-opacity, 0.5);
+		opacity: component.$default-placeholder-opacity;
 		pointer-events: none;
 	}
 
@@ -75,7 +74,16 @@
 
 	// We couldn't extend any existing SCSS placeholders, as this is a special construct
 	&[data-variant="primary"] {
-		@extend %db-brand-text-interactive;
+		--db-current-color: #{colors.$db-brand-text};
+		color: colors.$db-current-color;
+
+		&:hover {
+			--db-current-color: #{colors.$db-brand-text-hover};
+		}
+
+		&:active {
+			--db-current-color: #{colors.$db-brand-text-pressed};
+		}
 	}
 
 	&[data-size="small"] {
