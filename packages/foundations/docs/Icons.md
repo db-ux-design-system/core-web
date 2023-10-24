@@ -12,7 +12,7 @@ For `CSS`, `SCSS` and `Tailwind` you don't have to include a specific file, just
 
 We're providing an [overview for all of our icons](./overview).
 
-You can add an icon before or after a tag, by adding an `data-` attribute to your `html`, like for example:
+You can add an icon before or after a tag, by adding an `data-` attribute to your HTML code, like for example:
 
 | Variant |                  Data                  |
 | ------- | :------------------------------------: |
