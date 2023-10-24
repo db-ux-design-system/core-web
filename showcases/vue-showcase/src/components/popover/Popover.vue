@@ -16,7 +16,7 @@ import { DBButton, DBPopover } from "../../../../../output/vue/vue3/src";
 					:gap="exampleProps.gap"
 					:spacing="exampleProps.spacing"
 					:placement="exampleProps.placement"
-					:behaviour="exampleProps.behaviour"
+					:animation="exampleProps.animation"
 					:delay="exampleProps.delay"
 				>
 					{{ exampleProps.content }}

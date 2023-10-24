@@ -33,12 +33,13 @@ export default function DBTooltip(props: DBTooltipProps) {
 
 	// TODO: Shall we check if only <span>, <p> or direct text was passed as children?
 	return (
-		<i role="tooltip"
+		<i
+			role="tooltip"
 			ref={component}
 			className={cls('db-tooltip', props.className)}
 			id={state._id}
 			data-emphasis={props.emphasis}
-			data-behaviour={props.behaviour}
+			data-animation={props.animation}
 			data-delay={props.delay}
 			data-width={props.width}
 			data-variant={props.variant}

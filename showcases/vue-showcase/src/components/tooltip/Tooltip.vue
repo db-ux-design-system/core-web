@@ -15,7 +15,7 @@ import { DBButton, DBTooltip } from "../../../../../output/vue/vue3/src";
 					:width="exampleProps.width"
 					:emphasis="exampleProps.emphasis"
 					:placement="exampleProps.placement"
-					:behaviour="exampleProps.behaviour"
+					:animation="exampleProps.animation"
 					:delay="exampleProps.delay"
 					:variant="exampleProps.variant"
 					:id="exampleProps.id"

@@ -155,7 +155,7 @@
 				"name": "No animation",
 				"props": {
 					"content": "Tooltip",
-					"behaviour": "plain",
+					"animation": "disabled",
 					"id": "tooltip-17"
 				}
 			}

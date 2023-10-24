@@ -38,7 +38,7 @@ export default function DBPopover(props: DBPopoverProps) {
 			class={cls('db-popover', props.className)}
 			data-spacing={props.spacing}
 			data-gap={props.gap}
-			data-behaviour={props.behaviour}
+			data-animation={props.animation}
 			data-open={props.open}
 			data-delay={props.delay}
 			data-width={props.width}

@@ -29,9 +29,8 @@
 @use "../components/main-navigation/main-navigation" as *;
 
 @use "../components/popover/popover" as *;
-@forward "dialog-init";
-
 @use "../components/tooltip/tooltip" as *;
+@forward "dialog-init";
 
 // angular-workaround
 dbtooltip,
@@ -100,30 +99,32 @@ dbalert {
 
 // for db-badge
 
-:has(.db-badge[data-placement^="corner"]),
-:has(> db-popover),
-:has(> dbpopover),
-:has(> .db-popover),
-:has(> db-tooltip),
-:has(> dbtooltip),
-:has(> .db-tooltip) {
+:has(.db-badge[data-placement^="corner"]) {
 	position: relative;
 }
 
-:has(> db-popover > .db-popover:not([data-open])):hover,
-:has(> dbpopover > .db-popover:not([data-open])):hover,
-:has(> .db-popover:not([data-open])):hover {
-	/* TODO: We need to disable hover and active effects if popover is visible */
-	.db-popover:first-of-type {
-		@extend %show-popover;
+$popover-components: "popover", "tooltip";
+$popover-states: "hover", "focus";
+
+@mixin show-popover($component, $state) {
+	:has(> db-#{$component} > .db-#{$component}:not([data-open])):#{$state},
+	:has(> db#{$component} > .db-#{$component}:not([data-open])):#{$state},
+	:has(> .db-#{$component}:not([data-open])):#{$state} {
+		/* TODO: We need to disable hover and active effects if popover is visible */
+		.db-#{$component}:first-of-type {
+			@extend %show-popover;
+		}
 	}
 }
 
-:has(> db-tooltip > .db-tooltip):hover,
-:has(> dbtooltip > .db-tooltip):hover,
-:has(> .db-tooltip):hover {
-	/* TODO: We need to disable hover and active effects if tooltip is visible */
-	.db-tooltip:first-of-type {
-		@extend %show-popover;
+@each $component in $popover-components {
+	:has(> db-#{$component}),
+	:has(> db#{$component}),
+	:has(> .db-#{$component}) {
+		position: relative;
+	}
+
+	@each $state in $popover-states {
+		@include show-popover($component, $state);
 	}
 }

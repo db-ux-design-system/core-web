@@ -117,9 +117,9 @@ export type PopoverProps = {
 	 */
 	delay?: 'none' | 'slow' | 'fast';
 	/**
-	 * Disable animation with 'plain' behaviour
+	 * Disable animation
 	 */
-	behaviour?: 'animated' | 'plain';
+	animation?: 'enabled' | 'disabled';
 	/**
 	 * Use fixed with for default max-width
 	 */

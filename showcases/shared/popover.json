@@ -129,7 +129,7 @@
 				"name": "No animation",
 				"props": {
 					"content": "Popover",
-					"behaviour": "plain"
+					"animation": "disabled"
 				}
 			}
 		]

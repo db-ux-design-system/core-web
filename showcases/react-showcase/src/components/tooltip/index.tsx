@@ -11,7 +11,7 @@ const getTooltip = ({
 	placement,
 	delay,
 	content,
-	behaviour,
+	animation,
 	variant,
 	id
 }: DBTooltipProps & { content: string }) => (
@@ -21,7 +21,7 @@ const getTooltip = ({
 			width={width}
 			emphasis={emphasis}
 			placement={placement}
-			behaviour={behaviour}
+			animation={animation}
 			delay={delay}
 			variant={variant}
 			id={id}>

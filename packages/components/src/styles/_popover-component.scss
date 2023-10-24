@@ -1,6 +1,6 @@
 @use "@db-ui/foundations/build/scss/variables";
 @use "@db-ui/foundations/build/scss/colors";
-@use "@db-ui/foundations/build/scss/animation/animations";
+@use "@db-ui/foundations/build/scss/animation";
 @use "component";
 
 @mixin get-popover-placements($placement) {
@@ -63,11 +63,11 @@
 }
 
 @mixin get-popover-show($placement: bottom) {
-	&[data-behaviour="plain"] {
+	&[data-animation="disabled"] {
 		opacity: 1;
 	}
 
-	&:not([data-behaviour="plain"]) {
+	&:not([data-animation="disabled"]) {
 		animation: popover-to-#{$placement} variables.$db-transition-emotional-straight
 			normal both;
 
