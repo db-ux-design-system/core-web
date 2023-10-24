@@ -217,7 +217,7 @@ $floating-label-size: calc(
 		}
 
 		&:is(input, textarea):read-only {
-			background-color: colors.$db-neutral-bg !important;
+			background-color: colors.$db-base-bg !important;
 		}
 	}
 

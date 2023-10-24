@@ -4,6 +4,7 @@
 @use "@db-ui/foundations/build/scss/colors";
 @use "@db-ui/foundations/build/scss/icons";
 @use "@db-ui/foundations/build/scss/animation";
+@use "@db-ui/foundations/build/scss/helpers";
 @use "../../styles/component";
 @use "../../styles/form-components";
 
@@ -24,7 +25,8 @@
 		resize: vertical;
 	}
 }
-$scrollbar-width: 12px;
+
+$scrollbar-width: helpers.to-rem(12);
 
 @mixin get-scrolling-workaround() {
 	border-radius: component.$default-border-radius 0 0 0;
@@ -53,9 +55,15 @@ $scrollbar-width: 12px;
 		}
 	}
 
+	&:read-only {
+		&::-webkit-scrollbar-track,
+		&::-webkit-scrollbar-button:single-button {
+			background-color: colors.$db-base-bg !important;
+		}
+	}
+
 	&::-webkit-scrollbar-track {
 		@include colors.get-variant-bg-color(0.08);
-		border-end-end-radius: component.$default-border-radius;
 	}
 
 	&::-webkit-scrollbar-thumb {
@@ -122,6 +130,7 @@ $scrollbar-width: 12px;
 		@extend %resize-textarea;
 		@extend %custom-scrollbar;
 		cursor: auto;
+		overflow-y: scroll;
 
 		// we don't have icons in textarea so we can overwrite it here
 		padding-block: variables.$db-spacing-fixed-xs
@@ -131,10 +140,6 @@ $scrollbar-width: 12px;
 	&[data-label-variant="floating"] {
 		&:has(textarea:focus-within),
 		&:has(textarea:not(:placeholder-shown)) {
-			textarea {
-				overflow-y: scroll;
-			}
-
 			&::before {
 				@extend %default-transition;
 				@include get-scrolling-workaround();
@@ -153,6 +158,12 @@ $scrollbar-width: 12px;
 			&:has(textarea:enabled:hover) {
 				&::after {
 					@include colors.get-variant-bg-color(0.16);
+				}
+			}
+
+			&:has(textarea:read-only) {
+				&::after {
+					background-color: colors.$db-base-bg !important;
 				}
 			}
 		}
