@@ -1,15 +1,15 @@
 # Variables
 
 -   You use Variables to style your pages and custom components.
--   The Variables are primarily for paddings, margins and all kind of sizes.
--   All variables are automatically filled with the right variable based on the [tonality](../tonalities/readme).
+-   The Variables are primarily for paddings, margins and all kinds of sizes.
+-   All variables are automatically predefined with the correct variable based on the [tonality](../tonalities/readme).
 -   Based on the tonality and the selected theme, the "real" value behind the variable can change.
 
 ## How to include variables
 
 For `CSS` and `Tailwind` you don't have to include a specific file, just follow the documentation for [foundations](../../foundations/readme).
 
-For `SCSS` you need to use this import `@use @db-ui/foundations/build/scss/variables` in your `.scss` file, where you need the specific variable.
+For `SCSS` you need to `@use` the import `@use @db-ui/foundations/build/scss/variables` in your `.scss` file, where you want to reference the specific variable.
 
 ## Simple overview for advanced
 
@@ -45,7 +45,7 @@ You can see a visual preview [here](./examples).
 
 -   We use `spacing responsive` to add spacings which should change based on the users' device.
 -   We don't use them for `width` or `height`.
--   Best example would be the padding for your `main` which should be larger on a desktop device then mobile.
+-   Best example would be the padding for your `main` region which should be larger on a desktop device than mobile.
 -   We recommend using `DBSection` from our [components library](../../components/readme).
 
 ### How to use
@@ -64,7 +64,7 @@ You can see a visual preview [here](./examples).
 
 ## Sizing
 
--   We use `sizing` to set a fix height to components (Button, Input, ...).
+-   We use `sizing` to set a fixed height to components (Button, Input, ...).
 -   We don't use them for `padding` or `margin` except for absolute elements inside a component with a fixed height.
 -   You should use a sizing variable if you want to align a custom component with another component, which has a fixed height.
 
