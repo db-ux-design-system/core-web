@@ -8,13 +8,15 @@ const ColorOverview = () => {
 	return (
 		<DefaultPage>
 			<h1>Color Overview</h1>
-			<DBInput
-				label="Search"
-				type="search"
-				onChange={(event) => {
-					setSearch(event.target.value);
-				}}
-			/>
+			<search>
+				<DBInput
+					label="Search"
+					type="search"
+					onChange={(event) => {
+						setSearch(event.target.value);
+					}}
+				/>
+			</search>
 			<h2>Overview</h2>
 			<div className="color-overview-container">
 				{COLORS.filter(
