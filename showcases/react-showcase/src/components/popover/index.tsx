@@ -5,6 +5,7 @@ import type { DBPopoverProps } from '../../../../../output/react/src/components/
 import { getVariants } from '../data';
 
 const getPopover = ({
+	id,
 	children,
 	width,
 	gap,
