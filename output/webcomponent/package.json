@@ -20,7 +20,7 @@
     "postbuild": "npm-run-all -p mv:*"
   },
   "devDependencies": {
-    "parcel": "2.10.0"
+    "parcel": "2.10.1"
   },
   "publishConfig": {
     "registry": "https://registry.npmjs.org/",
