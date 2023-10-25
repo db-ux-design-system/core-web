@@ -28,14 +28,19 @@
 @use "../components/accordion-item/accordion-item" as *;
 @use "../components/main-navigation/main-navigation" as *;
 
+@use "../components/popover/popover" as *;
+@use "../components/tooltip/tooltip" as *;
 @forward "dialog-init";
+
 // angular-workaround
+dbtooltip,
+db-tooltip,
+dbpopover,
+db-popover,
 dbtextarea,
 db-textarea,
-// angular-workaround
 dbmain-navigation,
 db-main-navigation,
-// angular-workaround
 dbaccordion-item,
 db-accordion-item,
 dbaccordion,
@@ -96,4 +101,30 @@ dbalert {
 
 :has(.db-badge[data-placement^="corner"]) {
 	position: relative;
+}
+
+$popover-components: "popover", "tooltip";
+$popover-states: "hover", "focus";
+
+@mixin show-popover($component, $state) {
+	:has(> db-#{$component} > .db-#{$component}:not([data-open])):#{$state},
+	:has(> db#{$component} > .db-#{$component}:not([data-open])):#{$state},
+	:has(> .db-#{$component}:not([data-open])):#{$state} {
+		/* TODO: We need to disable hover and active effects if popover is visible */
+		.db-#{$component}:first-of-type {
+			@extend %show-popover;
+		}
+	}
+}
+
+@each $component in $popover-components {
+	:has(> db-#{$component}),
+	:has(> db#{$component}),
+	:has(> .db-#{$component}) {
+		position: relative;
+	}
+
+	@each $state in $popover-states {
+		@include show-popover($component, $state);
+	}
 }

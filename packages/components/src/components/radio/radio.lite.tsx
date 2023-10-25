@@ -101,40 +101,46 @@ export default function DBRadio(props: DBRadioProps) {
 				state._id
 			) as HTMLInputElement;
 			if (radioElement) {
-				radioElement.checked = true;
-				state.initialized = false;
+				if (props.checked != undefined) {
+					radioElement.checked = true;
+				}
+
+				if (props.defaultChecked !== undefined) {
+					// only set by JS: https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement#instance_properties_that_apply_only_to_elements_of_type_checkbox_or_radio
+					radioElement.defaultChecked = props.defaultChecked;
+				}
 			}
 		}
 	}, [state.initialized]);
 
 	return (
-		<>
+		<label
+			data-size={props.size}
+			data-label-hidden={props.labelHidden}
+			class={cls('db-radio', props.className)}
+			htmlFor={state._id}>
 			<Show when={state.stylePath}>
 				<link rel="stylesheet" href={state.stylePath} />
 			</Show>
 			<input
 				ref={component}
 				type="radio"
-				class={cls('db-radio', props.className)}
 				id={state._id}
 				name={props.name}
 				checked={props.checked}
 				disabled={props.disabled}
 				aria-describedby={props.describedbyid}
 				aria-invalid={props.invalid}
-				data-size={props.size}
 				value={props.value}
 				required={props.required}
 				onChange={(event) => state.handleChange(event)}
 				onBlur={(event) => state.handleBlur(event)}
 				onFocus={(event) => state.handleFocus(event)}
 			/>
-			<label htmlFor={state._id}>
-				<Show when={props.label}>
-					<span>{props.label}</span>
-				</Show>
-				{props.children}
-			</label>
-		</>
+			<Show when={props.label}>
+				<span>{props.label}</span>
+			</Show>
+			{props.children}
+		</label>
 	);
 }

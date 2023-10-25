@@ -1,8 +1,11 @@
 @use "sass:map";
 @use "@db-ui/foundations/build/scss/variables";
-@use "@db-ui/foundations/build/scss/helpers/font";
-@use "@db-ui/foundations/build/scss/color/color-variants";
-@use "@db-ui/foundations/build/scss/helpers/component";
+@use "@db-ui/foundations/build/scss/tonality";
+@use "@db-ui/foundations/build/scss/colors";
+@use "@db-ui/foundations/build/scss/icons";
+@use "@db-ui/foundations/build/scss/animation";
+@use "@db-ui/foundations/build/scss/helpers";
+@use "../../styles/component";
 @use "../../styles/form-components";
 
 %resize-textarea {
@@ -23,41 +26,146 @@
 	}
 }
 
-.db-textarea {
-	--db-textarea-label-max-width: 80%;
+$scrollbar-width: helpers.to-rem(12);
 
-	@extend %default-form-message;
-	@extend %default-form-label;
+@mixin get-scrolling-workaround() {
+	border-radius: component.$default-border-radius 0 0 0;
+	position: absolute;
+	content: "";
+	inset-block-start: 0;
+	block-size: form-components.$floating-label-size;
+	margin-inline: 0;
+	inline-size: calc(100% - #{$scrollbar-width} - 1px);
+	inset-inline: 0;
+}
 
-	@extend %disabled-form-element;
-	@extend %required-form-element;
+%custom-scrollbar {
+	&::-webkit-scrollbar {
+		@extend %default-transition;
+		z-index: 3;
+		inline-size: $scrollbar-width;
+		background-color: colors.$db-base-bg;
+		border-start-end-radius: component.$default-border-radius;
+	}
 
-	@include form-components.get-input-color-variants();
-
-	position: relative;
-	display: flex;
-	flex-direction: column;
-
-	textarea {
-		@extend %default-interactive-component;
-		@extend %component-border;
-		@extend %db-overwrite-font-size-md;
-		@extend %resize-textarea;
-
-		@include color-variants.bg-transparent-hover();
-		@include color-variants.get-variant-bg-color(0.08);
-
-		max-inline-size: 100%;
-		inline-size: 100%;
-		padding: variables.$db-spacing-fixed-xs variables.$db-spacing-fixed-sm;
-
-		&::placeholder {
-			opacity: component.$default-placeholder-opacity;
+	&:hover {
+		&::-webkit-scrollbar-track,
+		&::-webkit-scrollbar-button:single-button {
+			@include colors.get-variant-bg-color(0.16);
 		}
 	}
 
-	textarea:required:invalid:not(:placeholder-shown),
-	textarea[aria-invalid="true"] {
-		@extend %adaptive-critical-component;
+	&:read-only {
+		&::-webkit-scrollbar-track,
+		&::-webkit-scrollbar-button:single-button {
+			background-color: colors.$db-base-bg !important;
+		}
+	}
+
+	&::-webkit-scrollbar-track {
+		@include colors.get-variant-bg-color(0.08);
+	}
+
+	&::-webkit-scrollbar-thumb {
+		@include colors.bg-transparent-interactive(false);
+		@include colors.get-variant-bg-color(0.24);
+
+		&:hover {
+			@include colors.get-variant-bg-color(0.32);
+		}
+
+		&:active {
+			@include colors.get-variant-bg-color(0.4);
+		}
+	}
+
+	/* Buttons */
+	&::-webkit-scrollbar-button:single-button {
+		@include colors.bg-transparent-interactive(false);
+		@include colors.get-variant-bg-color(0.08);
+		background-size: $scrollbar-width;
+		background-repeat: no-repeat;
+		background-position: center;
+		block-size: form-components.$floating-label-size;
+	}
+	/* Up */
+	&::-webkit-scrollbar-button:single-button:vertical:decrement {
+		background-image: url("data:image/svg+xml;base64,PHN2ZyBpZD0iaWNvbiIgaGVpZ2h0PSIxNiIgdmlld0JveD0iMCAwIDE2IDE2IiB3aWR0aD0iMTYiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHBhdGggZD0ibTEwLjQ3MiA4LjY5Ni0zLjUzMiAzLjUzNGEuOTk4Ljk5OCAwIDEgMSAtMS40MTMtMS40MTNsMi44MjUtMi44MjUtMi44MjUtMi44MjVhLjk5OC45OTggMCAxIDEgMS40MTMtMS40MTNsMy41MzIgMy41MzJhLjk5OS45OTkgMCAwIDEgMCAxLjQxMnoiIGZpbGw9InZhcigtLWRiLWljb24tY29sb3IsIGN1cnJlbnRDb2xvcikiIGZpbGwtcnVsZT0iZXZlbm9kZCIgdHJhbnNmb3JtPSJtYXRyaXgoMCAtMSAtMSAwIDE1Ljk5IDE1Ljk5KSIvPjwvc3ZnPg0K");
+	}
+
+	/* Down */
+	&::-webkit-scrollbar-button:single-button:vertical:increment {
+		background-image: url("data:image/svg+xml;base64,PHN2ZyBpZD0iaWNvbiIgaGVpZ2h0PSIxNiIgdmlld0JveD0iMCAwIDE2IDE2IiB3aWR0aD0iMTYiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHBhdGggZD0ibTEwLjQ3MiA4LjY5Ni0zLjUzMiAzLjUzNGEuOTk4Ljk5OCAwIDEgMSAtMS40MTMtMS40MTNsMi44MjUtMi44MjUtMi44MjUtMi44MjVhLjk5OC45OTggMCAxIDEgMS40MTMtMS40MTNsMy41MzIgMy41MzJhLjk5OS45OTkgMCAwIDEgMCAxLjQxMnoiIGZpbGw9InZhcigtLWRiLWljb24tY29sb3IsIGN1cnJlbnRDb2xvcikiIGZpbGwtcnVsZT0iZXZlbm9kZCIgdHJhbnNmb3JtPSJtYXRyaXgoMCAxIC0xIDAgMTUuOTkxIC0uMDA5KSIvPjwvc3ZnPg0K");
+	}
+
+	&[data-label-variant="floating"] {
+		&::-webkit-resizer {
+			@include colors.get-variant-bg-color(0.08);
+		}
+
+		&::-webkit-scrollbar-corner {
+			background-color: colors.$db-base-bg;
+		}
+	}
+
+	&::-webkit-resizer {
+		@include colors.get-variant-bg-color(0);
+		background-size: $scrollbar-width;
+		background-repeat: no-repeat;
+		background-position: center;
+		background-image: url("data:image/svg+xml;base64,PHN2ZyBpZD0iaWNvbiIgaGVpZ2h0PSIyMCIgdmlld0JveD0iMCAwIDIwIDIwIiB3aWR0aD0iMjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHBhdGggZD0ibTcgMTJjLjUxMjgzNTg0IDAgMSAuNDIxNjY1NyAxIDF2NGMwIC41MTI4MzU4LS40MDc3MzY0OCAxLTEgMWgtNGMtLjQ5MTg3ODUxIDAtMS0uMzkzNTA1Ni0xLTF2LTRjMC0uNTEyODM1OC40MTk1NTA5LTEgMS0xem05LTEwYzEuMDU0MzYxOCAwIDIgLjg2MzcwOTk2IDIgMnYxMGMwIDEuMDU0MzYxOC0uODY5Mjg3MyAyLTIgMmgtNS41Yy0uNTUyMjg0NzUgMC0xLS40NDc3MTUzLTEtMSAwLS41MTI4MzU4LjQxMTE0NTUtMSAxLTFoNS41di0xMGgtMTB2NS41YzAgLjU1MjI4NDctLjQ0NzcxNTI1IDEtMSAxLS41MTI4MzU4NCAwLTEtLjQyNzUyOTYtMS0xdi01LjVjMC0xLjA1NDM2MTguODM1MjM3ODctMiAyLTJ6bS0xMCAxMmgtMnYyaDJ6IiBmaWxsPSJ2YXIoLS1kYi1pY29uLWNvbG9yLCBjdXJyZW50Q29sb3IpIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiLz48L3N2Zz4NCg==");
+		border-end-end-radius: calc(#{component.$default-border-radius});
+	}
+
+	&::-webkit-scrollbar-corner {
+		@extend %default-transition;
+		border-end-end-radius: calc(#{component.$default-border-radius});
+	}
+}
+
+.db-textarea {
+	@include form-components.set-default-form-component(textarea);
+
+	textarea {
+		@extend %resize-textarea;
+		@extend %custom-scrollbar;
+		cursor: auto;
+		overflow-y: scroll;
+
+		// we don't have icons in textarea so we can overwrite it here
+		padding-block: variables.$db-spacing-fixed-xs
+			variables.$db-spacing-fixed-xs;
+	}
+
+	&[data-label-variant="floating"] {
+		&:has(textarea:focus-within),
+		&:has(textarea:not(:placeholder-shown)) {
+			&::before {
+				@extend %default-transition;
+				@include get-scrolling-workaround();
+				background-color: colors.$db-base-bg;
+			}
+
+			&::after {
+				@extend %component-border;
+				@include get-scrolling-workaround();
+				@include colors.get-variant-bg-color(0.08);
+				z-index: 1;
+				border-block-end: none;
+				border-inline-end: none;
+			}
+
+			&:has(textarea:enabled:hover) {
+				&::after {
+					@include colors.get-variant-bg-color(0.16);
+				}
+			}
+
+			&:has(textarea:read-only) {
+				&::after {
+					background-color: colors.$db-base-bg !important;
+				}
+			}
+		}
 	}
 }

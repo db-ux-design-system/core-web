@@ -20,8 +20,8 @@ export default function DB<%= h.changeCase.pascal(name) %>(props: DB<%= h.change
   let component: any;
   // jscpd:ignore-start
   const state = useStore<DB<%= h.changeCase.pascal(name) %>State>({
-      <% if(formValue!=="no"){   -%>
 		_id: DEFAULT_ID,
+      <% if(formValue!=="no"){   -%>
     	_isValid: undefined,
 		handleChange: (event: any) => {
 			if (props.onChange) {

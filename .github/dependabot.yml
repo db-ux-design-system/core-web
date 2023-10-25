@@ -63,6 +63,10 @@ updates:
       separator: "-"
     # https://github.com/dependabot/dependabot-core/issues/5226#issuecomment-1179434437
     versioning-strategy: increase
+    groups:
+      commitlint:
+        patterns:
+          - "@commitlint*"
 
   - package-ecosystem: "npm"
     directory: "/examples/react-example"

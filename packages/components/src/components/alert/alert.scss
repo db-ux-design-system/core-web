@@ -1,9 +1,9 @@
 @use "sass:map";
 @use "@db-ui/foundations/build/scss/variables";
-@use "@db-ui/foundations/build/scss/color-placeholder";
-@use "@db-ui/foundations/build/scss/helpers/component";
-@use "@db-ui/foundations/build/scss/color/color-variants";
-@use "@db-ui/foundations/build/scss/icon/icon-helpers";
+@use "@db-ui/foundations/build/scss/colors";
+@use "@db-ui/foundations/build/scss/icons";
+@use "@db-ui/foundations/build/scss/screen-sizes";
+@use "../../styles/component";
 
 %grid-layout {
 	grid-template-areas: "icon content close";
@@ -13,7 +13,7 @@
 		grid-template-areas: "icon content link close";
 		grid-template-columns: min-content 1fr min-content min-content;
 
-		@include component.screen("sm", "max") {
+		@include screen-sizes.screen("sm", "max") {
 			grid-template-columns: min-content 1fr min-content;
 			grid-template-areas:
 				"icon content close"
@@ -27,7 +27,7 @@
 			"icon head head close"
 			"icon content content content";
 
-		@include component.screen("sm", "max") {
+		@include screen-sizes.screen("sm", "max") {
 			grid-template-columns: min-content 1fr min-content;
 			grid-template-areas:
 				"icon head close"
@@ -40,7 +40,7 @@
 				"icon head head link close"
 				"icon content content content content";
 
-			@include component.screen("sm", "max") {
+			@include screen-sizes.screen("sm", "max") {
 				grid-template-columns: min-content 1fr min-content;
 				grid-template-areas:
 					"icon head close"
@@ -62,8 +62,8 @@
 	// TODO: probably extract this to an overwrite or external file
 	text-align: start; // workaround for power apps
 
-	@include icon-helpers.has-no-icon() {
-		@include icon-helpers.icon("info");
+	@include icons.has-no-icon() {
+		@include icons.set-icon("info");
 	}
 
 	dblink,
@@ -103,9 +103,11 @@
 		}
 	}
 
-	@each $name, $colors in color-variants.$component-variants {
+	@each $name, $colors in colors.$component-variants {
 		&[data-variant="#{$name}"] {
-			@if ($name == "critical") {
+			@if ($name == "neutral") {
+				@extend %db-bg-neutral;
+			} @else if ($name == "critical") {
 				@extend %db-bg-critical;
 			} @else if ($name == "informational") {
 				@extend %db-bg-informational;
@@ -115,7 +117,7 @@
 				@extend %db-bg-successful;
 			}
 
-			@include icon-helpers.variant-icons($name);
+			@include icons.variant-icons($name);
 
 			&::before {
 				--db-current-icon-color: #{map.get($colors, "element")};

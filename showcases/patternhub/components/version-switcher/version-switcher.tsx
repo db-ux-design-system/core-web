@@ -100,7 +100,9 @@ const VersionSwitcher = () => {
 
 	const handleChange = (branch: string) => {
 		const currentUrl = router.pathname;
-		const urlPaths = currentUrl.split(branch);
+		const urlPaths = currentBranch
+			? currentUrl.split(currentBranch)
+			: [currentUrl];
 		const lastPath = urlPaths[urlPaths.length - 1];
 		const isTag = branch.split('.').length === 3 && branch.startsWith('v');
 		router
@@ -124,6 +126,7 @@ const VersionSwitcher = () => {
 		<DBSelect
 			className="version-switcher"
 			label="Version switcher"
+			labelVariant="floating"
 			value={currentBranch}
 			onChange={(event) => {
 				handleChange(event.target.value);

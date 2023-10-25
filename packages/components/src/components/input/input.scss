@@ -2,122 +2,87 @@
 @use "@db-ui/foundations/build/scss/default.assets-paths" as *;
 
 @use "@db-ui/foundations/build/scss/variables";
-@use "@db-ui/foundations/build/scss/icon/icon-helpers";
-@use "@db-ui/foundations/build/scss/helpers/font";
-@use "@db-ui/foundations/build/scss/color-placeholder";
-@use "@db-ui/foundations/build/scss/color/color-variants";
-@use "@db-ui/foundations/build/scss/helpers/component";
+@use "@db-ui/foundations/build/scss/icons";
+@use "@db-ui/foundations/build/scss/tonality";
+@use "@db-ui/foundations/build/scss/colors";
+@use "../../styles/component";
 @use "../../styles/form-components";
 
-:root,
-.db-ui-regular,
-.db-ui-expressive {
-	--db-input-disabled-label-opacity: 0.25;
-}
+// 1px for border
+$icon-padding: calc(
+	#{form-components.$font-size-height} + 2 * #{variables.$db-spacing-fixed-sm} -
+		1px
+);
 
-.db-ui-functional {
-	--db-input-disabled-label-opacity: 0;
-}
+.db-input {
+	@include form-components.set-default-form-component(input);
 
-@mixin label-focus-animation(
-	$translationX: var(--db-input-padding-inline-start)
-) {
-	$transformScale: -1.25;
+	// padding-inline-end according to current amount of icons
+	&[data-icon],
+	&:has(input[type="search"]) {
+		--db-form-component-padding-inline-start: #{$icon-padding};
+	}
 
-	transition:
-		opacity 0.08s,
-		transform 0.15s;
-	opacity: var(--db-input-focus-opacity);
+	&[data-icon-after],
+	&:has(input[type="search"]),
+	&:has(datalist) {
+		--db-form-component-padding-inline-end: #{$icon-padding};
+	}
 
-	// add 0.1em to adjust label with input padding-inline-start
-	transform: translate(
-			calc(#{$translationX} + 0.1em),
-			calc(#{variables.$db-sizing-md} * #{$transformScale})
-		)
-		scale(var(--db-input-label-scale));
-}
+	&:has(input[type="search"]) {
+		@include icons.set-icon("search");
+		@include icons.set-icon("cancel", "after");
 
-%absolute-icon {
-	block-size: variables.$db-sizing-md;
-	display: flex;
-	align-items: center;
-	position: absolute;
-	inset-block-start: 0;
-	margin-inline: variables.$db-spacing-fixed-sm;
-}
+		&::after {
+			opacity: 0;
+			transition: opacity variables.$db-transition-duration-fast;
+		}
 
-%date-icon {
-	&::after {
-		@extend %absolute-icon;
-		pointer-events: none;
+		&:has(input:not(:placeholder-shown)):has(
+				input:hover,
+				input:focus-visible
+			) {
+			&::after {
+				opacity: 1;
+			}
+		}
+	}
+
+	&:has(input[type="date"]),
+	&:has(input[type="week"]),
+	&:has(input[type="datetime-local"]),
+	&:has(input[type="month"]) {
+		@include icons.set-icon("calendar", "after");
+	}
+
+	&:has(input[type="time"]) {
+		@include icons.set-icon("schedule", "after");
 	}
 
 	input {
-		&::-webkit-calendar-picker-indicator {
-			margin-block-start: -0.75em;
+		position: relative;
+
+		&::-webkit-calendar-picker-indicator,
+		&::-webkit-search-cancel-button {
 			background-image: none;
-			padding: 0 variables.$db-spacing-fixed-sm 0 0;
-			inline-size: icon-helpers.$default-icon-font-size;
-			block-size: icon-helpers.$default-icon-font-size;
+			inline-size: icons.$default-icon-font-size;
+			block-size: icons.$default-icon-font-size;
+			padding: 0;
+			cursor: pointer;
 		}
-	}
-}
 
-.db-input {
-	--db-input-padding-inline-start: #{variables.$db-spacing-fixed-sm};
-	--db-input-padding-end-icon-after: 0;
-	--db-input-padding-end-data-variant: 0;
-	--db-input-padding-end-datalist: 0;
-	--db-icon-margin-end: 0;
-	--db-input-label-max-width: 80%;
-
-	@extend %default-form-message;
-	@extend %disabled-form-element;
-	@extend %required-form-element;
-	@extend %db-overwrite-font-size-sm;
-
-	@include form-components.get-input-color-variants();
-
-	position: relative;
-
-	// padding-inline-end according to current amount of icons
-	&:has(> .icon-before, > [type="search"]) {
-		--db-input-padding-inline-start: #{calc(#{variables.$db-sizing-md})};
-		--db-input-label-max-width: 70%;
-
-		input {
-			padding-inline-start: var(--db-input-padding-inline-start);
+		&::-webkit-search-cancel-button {
+			appearance: none;
+			position: absolute;
+			// 1px for border
+			inset-inline-end: calc(#{variables.$db-spacing-fixed-sm} + 1px);
 		}
 	}
 
-	&:has(> .icon-after) {
-		--db-input-padding-end-icon-after: 1;
-	}
-
-	&[data-variant] {
-		--db-input-padding-end-data-variant: 1;
-	}
-
-	// two trailing icons
-	&[data-variant]:has(> .icon-after) {
-		--db-input-label-max-width: 61%;
-	}
-
-	&:has(> datalist):has(> .icon-after) {
-		.icon-after {
-			padding-inline-start: variables.$db-spacing-fixed-xs;
-		}
-	}
-
-	&:has(> datalist) {
-		--db-input-padding-end-datalist: 1;
+	&:has(datalist) {
 		@extend %dropdown-icon;
 
-		&::after {
-			@extend %absolute-icon;
-		}
-
-		&:has(input:is(:focus, :not(:placeholder-shown))) {
+		&:has(input:focus) {
 			&::after {
 				transform: form-components.$dropdown-icon-transform;
 			}
@@ -128,210 +93,5 @@
 				display: none !important;
 			}
 		}
-	}
-
-	&:has(> [type="search"]) {
-		@include icon-helpers.icon("search");
-
-		&::before {
-			@extend %absolute-icon;
-		}
-	}
-
-	&:has(> [type="date"]),
-	&:has(> [type="week"]),
-	&:has(> [type="datetime-local"]),
-	&:has(> [type="month"]) {
-		@extend %date-icon;
-		@include icon-helpers.icon("calendar", "after");
-	}
-
-	&:has(> [type="time"]) {
-		@extend %date-icon;
-		@include icon-helpers.icon("schedule", "after");
-	}
-
-	.db-icon,
-	db-icon {
-		@extend %absolute-icon;
-	}
-
-	.icon-after,
-	// angular specific nesting
-	dbicon.icon-after > .db-icon,
-	&::after, {
-		inset-inline-end: 0;
-	}
-
-	.icon-after {
-		margin-inline-end: calc(
-			#{variables.$db-spacing-fixed-sm} + var(
-					--db-input-padding-end-datalist
-				) * #{variables.$db-sizing-md} - var(
-					--db-input-padding-end-datalist
-				) * #{variables.$db-spacing-fixed-sm}
-		);
-	}
-
-	// currently not supported by firefox
-	&:has(> input:disabled) {
-		.db-icon,
-		&:has(> datalist)::after {
-			opacity: 0.5;
-		}
-	}
-
-	label {
-		position: absolute;
-		display: flex;
-		align-items: center;
-		font-size: var(--db-type-body-font-size-md);
-
-		transform-origin: left;
-		transform: translate(
-			var(--db-input-padding-inline-start),
-			calc(-1 * #{variables.$db-sizing-md})
-		);
-		transition: transform 0.2s variables.$db-transition-functional-timing;
-		will-change: transform;
-		block-size: variables.$db-sizing-md;
-		cursor: text;
-		// setting max-width to prevent users from too long labels by displaying text-overflow: ellipsis
-		max-inline-size: var(--db-input-label-max-width, 80%);
-
-		span:first-child {
-			text-overflow: ellipsis;
-			white-space: nowrap;
-			overflow: hidden;
-		}
-	}
-
-	input {
-		--db-input-padding-inline-end: calc(
-			(
-					var(--db-input-padding-end-icon-after) +
-						var(--db-input-padding-end-data-variant) +
-						var(--db-input-padding-end-datalist)
-				) * #{variables.$db-sizing-md}
-		);
-
-		@extend %default-interactive-component;
-		@extend %component-border;
-
-		@include color-variants.bg-transparent-hover();
-		@include color-variants.get-variant-bg-color(0.08);
-
-		color: variables.$db-colors-neutral-on-bg;
-
-		block-size: variables.$db-sizing-md;
-		max-inline-size: 100%;
-		inline-size: 100%;
-		padding: variables.$db-spacing-fixed-xs
-			var(--db-input-padding-inline-end) variables.$db-spacing-fixed-xs
-			var(--db-input-padding-inline-start);
-
-		// TODO: Evaluate whether those could get moved to ../_form-elements.scss
-		&:focus,
-		&:not(:placeholder-shown) {
-			// move filled text for expressive and regular to center with focused label
-			padding-block: calc(
-					var(--db-spacing-fixed-xs) + 0.25em *
-						var(--db-input-focus-opacity)
-				)
-				calc(
-					#{variables.$db-spacing-fixed-xs} - var(
-							--db-input-focus-opacity
-						) * #{variables.$db-spacing-fixed-xs}
-				);
-
-			+ label {
-				@include label-focus-animation();
-			}
-		}
-
-		// disabled and prefilled value – different in tonalities
-		&:disabled:not(:placeholder-shown) {
-			+ label {
-				opacity: var(--db-input-disabled-label-opacity);
-			}
-		}
-
-		&[type="color"],
-		&[type="date"],
-		&[type="datetime-local"],
-		&[type="email"],
-		&[type="month"],
-		&[type="number"],
-		&[type="password"],
-		&[type="search"],
-		&[type="tel"],
-		&[type="text"],
-		&[type="time"],
-		&[type="url"],
-		&[type="week"] {
-			@extend %db-overwrite-font-size-sm;
-
-			&:not([type="date"]):not([type="datetime-local"]):not(
-					[type="month"]
-				):not([type="time"]):not([type="week"])
-				+ label {
-				// Adopted by https://www.heise.de/developer/artikel/a11y-Reduced-Motion-4356171.html
-				@media (prefers-reduced-motion: reduce) {
-					transition-duration: 0.01s !important;
-				}
-			}
-
-			// Hiding inputs placeholder for floating label
-			&::placeholder {
-				opacity: 0;
-			}
-
-			&:focus {
-				&::placeholder {
-					opacity: 0.5;
-				}
-			}
-		}
-
-		&[type="search"] {
-			padding-inline-start: var(--db-input-padding-inline-start);
-
-			&,
-			& + label {
-				--db-input-padding-inline-start: #{calc(
-						#{variables.$db-spacing-fixed-sm} * 2 + #{variables.$db-spacing-fixed-md}
-					)};
-			}
-
-			&:focus,
-			&:not(:placeholder-shown) {
-				&:enabled {
-					+ label {
-						padding-inline-start: 0;
-					}
-				}
-			}
-
-			// https://stackoverflow.com/questions/20804016/editing-input-type-search-pseudo-element-button-x
-			&::-webkit-search-cancel-button {
-				appearance: none;
-				position: absolute;
-				inset-inline-end: variables.$db-spacing-fixed-sm;
-				inset-block-start: 0;
-				block-size: variables.$db-sizing-md;
-				inline-size: 1em;
-				// TODO: find a better solution for this
-				background: url(#{$icons-path}functional/images/navigation/db_ic_cancel_24.svg)
-					no-repeat 50% 50%;
-				background-size: contain;
-				cursor: pointer;
-				transition: opacity 0.12s;
-			}
-		}
-	}
-
-	input:required:invalid:not(:placeholder-shown),
-	input[aria-invalid="true"] {
-		@extend %adaptive-critical-component;
 	}
 }

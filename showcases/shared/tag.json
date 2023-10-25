@@ -38,8 +38,14 @@
 		"name": "Variant",
 		"examples": [
 			{
-				"name": "Neutral (Default)",
+				"name": "Adaptive (Default)",
 				"props": {}
+			},
+			{
+				"name": "Neutral Strong",
+				"props": {
+					"variant": "neutral"
+				}
 			},
 			{
 				"name": "Critical",
@@ -66,8 +72,15 @@
 				}
 			},
 			{
+				"name": "Adaptive Strong",
+				"props": {
+					"emphasis": "strong"
+				}
+			},
+			{
 				"name": "Neutral Strong",
 				"props": {
+					"variant": "neutral",
 					"emphasis": "strong"
 				}
 			},

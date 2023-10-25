@@ -1,100 +1,35 @@
 @use "@db-ui/foundations/build/scss/variables";
-@use "@db-ui/foundations/build/scss/icon/icon-helpers";
+@use "@db-ui/foundations/build/scss/icons";
 @use "@db-ui/foundations/build/scss/tonality";
-@use "@db-ui/foundations/build/scss/helpers/component";
-@use "@db-ui/foundations/build/scss/color/color-variants";
-
-// TODO: Move this to shared style
-$font-size-height: calc(var(--db-base-font-size) * var(--db-base-line-height));
+@use "@db-ui/foundations/build/scss/colors";
+@use "../../styles/component";
+@use "../../styles/form-components";
 
 .db-checkbox {
-	@include color-variants.bg-transparent-interactive();
+	@extend %check-element;
 
-	align-content: center;
-
-	appearance: none;
-	aspect-ratio: 1;
-	position: relative;
-
-	border: max(calc(#{$font-size-height} / 16 + 0.5px), 2px) solid currentColor;
-	border-radius: component.$checkbox-border-radius;
-
-	display: inline-flex;
-	block-size: $font-size-height;
-	justify-content: center;
-
-	// TODO: probably extract this to an overwrite or external file
-	// workarounds for power apps
-	inline-size: auto;
-	padding: 0;
-
-	// We need to reset the general icons margin, as we want to use it in a tiny space
-	&:checked,
-	&:indeterminate {
-		--db-icon-margin-end: 0;
+	input {
+		border-radius: component.$checkbox-border-radius;
 
 		&::before {
+			--db-icon-margin-end: 0;
 			position: absolute;
+			inset-inline: 0;
+			inset-block: 0;
 		}
-	}
 
-	&:checked {
-		@extend %db-bg-inverted-ia;
+		&:checked {
+			@extend %db-base-component-interactive;
 
-		// Check icon
-		@include icon-helpers.icon("done");
+			// Check icon
+			@include icons.set-icon("done");
 
-		// The icon within the checkbox has the same dimensions as the checkbox itself and that for there can't be any border
-		border-width: 0;
-	}
-
-	// TODO: We need to set the correct styling / color for invalid
-	// &:is(:user-invalid),
-	// &[aria-invalid="true"] {
-
-	// }
-
-	&:indeterminate {
-		@include icon-helpers.icon("minus");
-
-		&::before {
-			line-height: 20px;
+			// The icon within the checkbox has the same dimensions as the checkbox itself and that for there can't be any border
+			border-width: 0;
 		}
-	}
 
-	&:disabled {
-		&,
-		& + label {
-			opacity: 0.5;
-		}
-	}
-
-	& + label {
-		margin-inline-start: variables.$db-spacing-fixed-xs;
-
-		vertical-align: top;
-	}
-
-	// Sizes
-	&%size-Small {
-		@extend %db-overwrite-font-size-sm;
-
-		// TODO: we still need to scale this
-		& + label {
-			@extend %db-overwrite-font-size-sm;
-			margin-inline-start: variables.$db-spacing-fixed-2xs;
-		}
-	}
-
-	&[data-size="small"] {
-		@extend %size-Small;
-	}
-
-	&:required {
-		& + label {
-			&::after {
-				content: " *";
-			}
+		&:indeterminate {
+			@include icons.set-icon("minus");
 		}
 	}
 }

@@ -51,6 +51,7 @@ const MetaNavigation = ({
 		<>
 			<DBSelect
 				label="Tonality"
+				labelVariant="floating"
 				value={tonality}
 				onChange={(event) => {
 					setTonality(event?.target?.value);
@@ -63,6 +64,7 @@ const MetaNavigation = ({
 			</DBSelect>
 			<DBSelect
 				label="Color"
+				labelVariant="floating"
 				value={color}
 				onChange={(event) => {
 					setColor(event?.target?.value);

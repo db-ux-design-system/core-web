@@ -99,4 +99,15 @@ export const getColorVariants = () => [
 	'informational-transparent-semi'
 ];
 
-export default { getUnionElements, getCodeByFramework, getColorVariants };
+export const getComponentName = (filePath) => {
+	let componentName = filePath.split('/').at(-1);
+	componentName = componentName.replace('.tsx', '').replace(/\s/g, '');
+	return componentName;
+};
+
+export default {
+	getUnionElements,
+	getCodeByFramework,
+	getColorVariants,
+	getComponentName
+};

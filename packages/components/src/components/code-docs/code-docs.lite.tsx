@@ -44,8 +44,7 @@ export default function DBCodeDocs(props: DBCodeDocsProps) {
 	return (
 		<DBCard
 			ref={component}
-			className={cls('db-code-docs', props.className)}
-			elevation="none">
+			className={cls('db-code-docs', props.className)}>
 			<Show when={state.stylePath}>
 				<link rel="stylesheet" href={state.stylePath} />
 			</Show>

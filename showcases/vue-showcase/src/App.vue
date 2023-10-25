@@ -28,7 +28,7 @@ const router = useRouter();
 const route = useRoute();
 
 const tonality = ref(TONALITY.REGULAR);
-const color = ref(COLOR.NEUTRAL);
+const color = ref(COLOR.BASE);
 const page = ref();
 const fullscreen = ref();
 
@@ -114,6 +114,7 @@ const sortedNavigation = getSortedNavigationItems(navigationItems);
 				<template v-slot:meta-navigation>
 					<DBSelect
 						label="Tonality"
+						labelVariant="floating"
 						v-model:value="tonality"
 						@change="onChange($event)"
 					>
@@ -123,6 +124,7 @@ const sortedNavigation = getSortedNavigationItems(navigationItems);
 					</DBSelect>
 					<DBSelect
 						label="Color"
+						labelVariant="floating"
 						v-model:value="color"
 						@change="onChange($event)"
 					>

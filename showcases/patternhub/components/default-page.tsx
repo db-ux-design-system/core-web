@@ -82,7 +82,9 @@ const DefaultPage = ({ children }: any) => {
 							<Navigation />
 						</DBHeader>
 					}>
-					<DBSection size="none">{children}</DBSection>
+					<DBSection size="none" variant="large">
+						{children}
+					</DBSection>
 				</DBPage>
 			)}
 		</StaticContent>

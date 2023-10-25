@@ -25,6 +25,23 @@
 	gap: var(--db-spacing-fixed-md);
 }
 
+.variants-list .db-select {
+	inline-size: 100%;
+}
+
+.variants-list .db-select,
+.variants-list .db-input,
+.variants-list .db-textarea {
+	margin-block-start: auto;
+}
+
+.variants-list .db-select:has([placeholder="(Default) Basic"]),
+.variants-list .db-input:has([placeholder="(Default) Basic"]),
+.variants-list .db-textarea:has([placeholder="(Default) Basic"]) {
+	margin-block-start: 0;
+	margin-block-end: auto;
+}
+
 .html-code-container {
 	display: flex;
 	flex-direction: column;

@@ -1,5 +1,5 @@
 @use "@db-ui/foundations/build/scss/variables";
-@use "@db-ui/foundations/build/scss/icon/icon-helpers";
+@use "@db-ui/foundations/build/scss/icons";
 
 @mixin icon-passing($inline-start: variables.$db-spacing-fixed-sm) {
 	&[data-icon] {
@@ -15,7 +15,7 @@
 		button,
 		label {
 			padding-inline-start: calc(
-				#{$inline-start} + #{icon-helpers.$default-icon-margin-end} +
+				#{$inline-start} + #{icons.$default-icon-margin-end} +
 					var(--db-base-font-size) * var(--db-base-line-height)
 			);
 		}
