@@ -63,12 +63,25 @@
 }
 
 @mixin get-popover-show($placement: bottom) {
+	@if ($placement == bottom) {
+		--db-popover-translate-y: -25%;
+	}
+	@if ($placement == top) {
+		--db-popover-translate-y: 25%;
+	}
+	@if ($placement == right) {
+		--db-popover-translate-x: -25%;
+	}
+	@if ($placement == left) {
+		--db-popover-translate-x: 25%;
+	}
+
 	&[data-animation="disabled"] {
 		opacity: 1;
 	}
 
 	&:not([data-animation="disabled"]) {
-		animation: popover-to-#{$placement} variables.$db-transition-emotional-straight
+		animation: popover-animation variables.$db-transition-emotional-straight
 			normal both;
 
 		&[data-delay="slow"] {
