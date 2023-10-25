@@ -24,7 +24,7 @@ const VersionSwitcher = () => {
 	const [currentBranch, setBranch] = useState<string>();
 
 	const setCurrentBranch = (branchNames: string[]) => {
-		const currentUrl = router.pathname;
+		const currentUrl = router.basePath;
 		const foundBranch = branchNames.find((branch) =>
 			currentUrl.includes(branch)
 		);
@@ -99,11 +99,7 @@ const VersionSwitcher = () => {
 	}, []);
 
 	const handleChange = (branch: string) => {
-		const currentUrl = router.pathname;
-		const urlPaths = currentBranch
-			? currentUrl.split(currentBranch)
-			: [currentUrl];
-		const lastPath = urlPaths[urlPaths.length - 1];
+		const lastPath = router.pathname;
 		const isTag = branch.split('.').length === 3 && branch.startsWith('v');
 		router
 			.push(
