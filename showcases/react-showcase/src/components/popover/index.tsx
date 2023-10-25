@@ -14,7 +14,7 @@ const getPopover = ({
 	content,
 	animation
 }: DBPopoverProps & { content: string }) => (
-	<DBButton>
+	<DBButton describedbyid={id}>
 		{children}
 		<DBPopover
 			width={width}
@@ -22,7 +22,8 @@ const getPopover = ({
 			spacing={spacing}
 			placement={placement}
 			animation={animation}
-			delay={delay}>
+			delay={delay}
+			id={id}>
 			{content}
 		</DBPopover>
 	</DBButton>
