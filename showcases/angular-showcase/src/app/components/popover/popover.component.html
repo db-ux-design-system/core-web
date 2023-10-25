@@ -10,7 +10,7 @@
 		let-exampleIndex="exampleIndex"
 		let-variantIndex="variantIndex"
 	>
-		<db-button>
+		<db-button [describedbyid]="exampleProps.id">
 			{{ exampleName }}
 			<db-popover
 				[width]="exampleProps.width"
@@ -19,6 +19,7 @@
 				[placement]="exampleProps.placement"
 				[animation]="exampleProps.animation"
 				[delay]="exampleProps.delay"
+				[id]="exampleProps.id"
 			>
 				{{ exampleProps.content }}
 			</db-popover>

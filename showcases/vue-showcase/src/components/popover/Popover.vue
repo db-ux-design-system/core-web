@@ -9,7 +9,7 @@ import { DBButton, DBPopover } from "../../../../../output/vue/vue3/src";
 		<template
 			#example="{ exampleIndex, variantIndex, exampleName, exampleProps }"
 		>
-			<DBButton>
+			<DBButton :describedbyid="exampleProps.id">
 				{{ exampleName }}
 				<DBPopover
 					:width="exampleProps.width"
@@ -18,6 +18,7 @@ import { DBButton, DBPopover } from "../../../../../output/vue/vue3/src";
 					:placement="exampleProps.placement"
 					:animation="exampleProps.animation"
 					:delay="exampleProps.delay"
+					:id="exampleProps.id"
 				>
 					{{ exampleProps.content }}
 				</DBPopover>
