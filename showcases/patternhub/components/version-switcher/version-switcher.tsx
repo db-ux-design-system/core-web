@@ -101,17 +101,13 @@ const VersionSwitcher = () => {
 	const handleChange = (branch: string) => {
 		const lastPath = router.pathname;
 		const isTag = branch.split('.').length === 3 && branch.startsWith('v');
-		router
-			.push(
-				sanitize(
-					`https://${owner}.github.io/${repo}${
-						isTag ? '/version' : '/review'
-					}/${branch}${lastPath}`
-				)
+		window.location.replace(
+			sanitize(
+				`https://${owner}.github.io/${repo}${
+					isTag ? '/version' : '/review'
+				}/${branch}${lastPath}`
 			)
-			.catch((error) => {
-				console.error(error);
-			});
+		);
 	};
 
 	if (!group) {
