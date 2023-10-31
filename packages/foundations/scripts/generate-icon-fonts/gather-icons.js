@@ -1,5 +1,3 @@
-/* eslint-disable no-console */
-
 const FSE = require('fs-extra');
 const { globSync } = require('glob');
 
