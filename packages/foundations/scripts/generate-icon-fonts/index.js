@@ -82,6 +82,7 @@ const action = async (string_, options) => {
 	);
 
 	if (dryRun) {
+		// eslint-disable-next-line no-console
 		console.log('values:', values);
 		gatherIcons(temporaryDirectory, values);
 	} else {
