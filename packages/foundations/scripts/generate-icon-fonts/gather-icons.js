@@ -26,6 +26,7 @@ const gatherIcons = (temporaryDirectory, values) => {
 	);
 
 	if (dryRun) {
+		// eslint-disable-next-line no-console
 		console.log('files:', globPaths);
 		return;
 	}
