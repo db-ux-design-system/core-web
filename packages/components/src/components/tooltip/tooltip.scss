@@ -21,14 +21,13 @@ $tooltip-arrow-shadow-size: variables.$db-spacing-fixed-2xs;
 	// Arrow
 	&:not([data-variant="basic"]) {
 		&::after {
-
 			@extend %component-border;
 			content: "";
 			box-shadow: variables.$db-elevation-4;
 			position: absolute;
 			background-color: colors.$db-base-bg;
-			inline-size: variables.$db-spacing-fixed-xs;
-			block-size: variables.$db-spacing-fixed-xs;
+			inline-size: variables.$db-sizing-2xs;
+			block-size: variables.$db-sizing-2xs;
 			clip-path: polygon(
 				calc(#{$tooltip-arrow-shadow-size} * -1)
 					calc(#{$tooltip-arrow-shadow-size} * -1),

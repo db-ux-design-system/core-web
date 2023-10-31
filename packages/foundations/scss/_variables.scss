@@ -1,4 +1,6 @@
 /* Use sizing's for fixed heights/widths e.g. the db-button has always a fixed height*/
+$db-sizing-3xs: var(--db-sizing-3xs);
+$db-sizing-2xs: var(--db-sizing-2xs);
 $db-sizing-xs: var(--db-sizing-xs);
 $db-sizing-sm: var(--db-sizing-sm);
 $db-sizing-md: var(--db-sizing-md);
@@ -15,14 +17,20 @@ $db-spacing-fixed-sm: var(--db-spacing-fixed-sm);
 $db-spacing-fixed-md: var(--db-spacing-fixed-md);
 $db-spacing-fixed-lg: var(--db-spacing-fixed-lg);
 $db-spacing-fixed-xl: var(--db-spacing-fixed-xl);
+$db-spacing-fixed-2xl: var(--db-spacing-fixed-2xl);
+$db-spacing-fixed-3xl: var(--db-spacing-fixed-3xl);
 
 /* The primary use-case for responsive spacings are
 paddings/gaps in an application e.g. the <main> should have a responsive padding. */
+$db-spacing-responsive-3xs: var(--db-spacing-responsive-3xs);
+$db-spacing-responsive-2xs: var(--db-spacing-responsive-2xs);
 $db-spacing-responsive-xs: var(--db-spacing-responsive-xs);
 $db-spacing-responsive-sm: var(--db-spacing-responsive-sm);
 $db-spacing-responsive-md: var(--db-spacing-responsive-md);
 $db-spacing-responsive-lg: var(--db-spacing-responsive-lg);
 $db-spacing-responsive-xl: var(--db-spacing-responsive-xl);
+$db-spacing-responsive-2xl: var(--db-spacing-responsive-2xl);
+$db-spacing-responsive-3xl: var(--db-spacing-responsive-3xl);
 
 /* Elevation */
 
