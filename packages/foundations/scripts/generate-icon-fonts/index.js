@@ -77,7 +77,7 @@ const action = async (string_, options) => {
 	const { src, fontName, dryRun, cleanIgnoreVariants, debug } = values;
 	const dist = `${src}/fonts`;
 	const temporaryDirectory = `${src}/tmp`;
-	const ignoreVariants = [...cleanIgnoreVariants, 'all'].map(
+	const ignoreVariants = [...cleanIgnoreVariants].map(
 		(igVar) => `**/${igVar}*/**`
 	);
 
@@ -97,7 +97,7 @@ const action = async (string_, options) => {
 		gatherIcons(temporaryDirectory, values);
 
 		debugLog(debug, '---Start cleaning icon---');
-		await cleanIcons(`${temporaryDirectory}/*`, ignoreVariants);
+		await cleanIcons(`${temporaryDirectory}/*`, ignoreVariants, debug);
 
 		debugLog(debug, '---Start svg to font ---');
 		const allTemporaryDirectories = FSE.readdirSync(temporaryDirectory);
