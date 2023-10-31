@@ -28,7 +28,7 @@ In your app you need to include some of the generated files:
 ./my-path-to/icons/fonts/my-name.woff2 ./my-path-to/icons/fonts/font-face.css
 ```
 
-> **_NOTE:_** In case you put the files in an separate folder of your `public` directory be aware to adopt the path in your generated \*.css file: `url("/{YOUR_FOLDER}}/my-name.woff2?t=1698750286189") format("woff2");`
+> **_NOTE:_** In case you put the files in a separate folder of your `public` directory be aware to adopt the path in your generated `font-face.css` file: `url("/{YOUR_FOLDER}}/my-name.woff2?t=1698750286189") format("woff2");`
 
 Now you can use your icons with your `font-family: my-name`, e.g.:
 
@@ -42,7 +42,7 @@ Now you can use your icons with your `font-family: my-name`, e.g.:
 When using `scss` you can also use `@forward` to include the generated files:
 
 ```scss
-@forward "public/icon-font/font-face";
+@forward "public/font-face";
 ```
 
 ### data-icon
