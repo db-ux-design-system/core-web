@@ -24,9 +24,11 @@ npx -p @db-ui/foundations generate-icon-fonts --help
 
 In your app you need to include some of the generated files:
 
-`./my-path-to/icons/fonts/my-name.woff2`
+```html
+./my-path-to/icons/fonts/my-name.woff2 ./my-path-to/icons/fonts/font-face.css
+```
 
-`./my-path-to/icons/fonts/font-face.css`
+> **_NOTE:_** In case you put the files in an separate folder of your `public` directory be aware to adopt the path in your generated \*.css file: `url("/{YOUR_FOLDER}}/my-name.woff2?t=1698750286189") format("woff2");`
 
 Now you can use your icons with your `font-family: my-name`, e.g.:
 
@@ -35,14 +37,22 @@ Now you can use your icons with your `font-family: my-name`, e.g.:
 <i class="my-name">icon_file_name</i>
 ```
 
+### SCSS
+
+When using `scss` you can also use `@forward` to include the generated files:
+
+```scss
+@forward "public/icon-font/font-face";
+```
+
 ### data-icon
 
 If you like to use a custom icon in one of our components you can do it by overwriting the default font-family like this:
 
 ```html
 <!--example.html-->
-
 <p class="icon-family-my-name" data-icon="icon_file_name">Test</p>
+
 <!-- or -->
 <p data-icon-family="my-name" data-icon="icon_file_name">Test</p>
 ```
