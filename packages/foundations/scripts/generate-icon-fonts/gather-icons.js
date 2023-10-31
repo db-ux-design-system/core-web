@@ -64,6 +64,7 @@ const gatherIcons = (temporaryDirectory, values) => {
 	}
 
 	if (debug) {
+		// eslint-disable-next-line no-console
 		console.log(`Found ${foundIconFiles.length} icons`);
 	}
 
