@@ -1,4 +1,4 @@
-/* eslint-disable no-await-in-loop,no-console */
+/* eslint-disable no-await-in-loop */
 
 const FSE = require('fs-extra');
 const { startProgram } = require('../program.js');
