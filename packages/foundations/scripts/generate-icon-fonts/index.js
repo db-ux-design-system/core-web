@@ -1,4 +1,4 @@
-/* eslint-disable no-await-in-loop */
+/* eslint-disable no-await-in-loop,no-console */
 
 const FSE = require('fs-extra');
 const { startProgram } = require('../program.js');
@@ -9,14 +9,22 @@ const { svgToFont } = require('./svg-to-font.js');
 const options = [
 	{
 		name: 'ignoreGlobs',
-		short: 'ig',
 		description: 'Path icon glob to exclude from the fonts',
 		array: true
 	},
 	{
 		name: 'variants',
-		description: 'Font variants e.g. solid, inverted, etc.',
-		array: true
+		description:
+			'Font variants e.g. solid, inverted, etc. We always add a "default" variant for icons.',
+		array: true,
+		defaultValue: []
+	},
+	{
+		name: 'cleanIgnoreVariants',
+		description:
+			'Ignore variants which should not be cleaned automatically',
+		array: true,
+		defaultValue: []
 	},
 	{
 		name: 'withSizes',
@@ -58,15 +66,22 @@ const fileEndingsToDelete = [
 	'woff'
 ];
 
+const debugLog = (debug, message) => {
+	if (debug) {
+		console.log(message);
+	}
+};
+
 const action = async (string_, options) => {
 	const values = options._optionValues;
-	const dist = `${values.src}/fonts`;
-	const fontName = values.fontName;
-	const temporaryDirectory = `${values.src}/tmp`;
-	const variants = values.variants;
+	const { src, fontName, dryRun, cleanIgnoreVariants, debug } = values;
+	const dist = `${src}/fonts`;
+	const temporaryDirectory = `${src}/tmp`;
+	const ignoreVariants = [...cleanIgnoreVariants, 'all'].map(
+		(igVar) => `**/${igVar}*/**`
+	);
 
-	if (values.dryRun) {
-		// eslint-disable-next-line no-console
+	if (dryRun) {
 		console.log('values:', values);
 		gatherIcons(temporaryDirectory, values);
 	} else {
@@ -78,16 +93,18 @@ const action = async (string_, options) => {
 			FSE.removeSync(dist);
 		}
 
+		debugLog(debug, '---Start gathering icon---');
 		gatherIcons(temporaryDirectory, values);
 
-		for (const variant of variants) {
-			await cleanIcons(`${temporaryDirectory}/${variant}*`);
-		}
+		debugLog(debug, '---Start cleaning icon---');
+		await cleanIcons(`${temporaryDirectory}/*`, ignoreVariants);
 
+		debugLog(debug, '---Start svg to font ---');
 		const allTemporaryDirectories = FSE.readdirSync(temporaryDirectory);
 		for (const directory of allTemporaryDirectories) {
 			const subDist = `${dist}/${directory}`;
 			const subTemporaryDir = `${temporaryDirectory}/${directory}`;
+			debugLog(debug, `svgToFont for ${subTemporaryDir}`);
 			await svgToFont(subTemporaryDir, subDist, values);
 			for (const ending of fileEndingsToDelete) {
 				FSE.removeSync(`${subDist}/${fontName}.${ending}`);
@@ -97,7 +114,7 @@ const action = async (string_, options) => {
 			FSE.removeSync(`${subDist}/unicode.html`);
 		}
 
-		if (!values.debug) {
+		if (!debug) {
 			FSE.removeSync(temporaryDirectory);
 		}
 	}

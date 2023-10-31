@@ -172,6 +172,10 @@ export const ROUTES: NavigationItem[] = [
 				path: '/foundations/icons',
 				subNavigation: [
 					{ label: 'Readme', path: '/foundations/icons/readme' },
+					{
+						label: 'Custom Icons',
+						path: '/foundations/icons/custom-icons'
+					},
 					{ label: 'Overview', path: '/foundations/icons/overview' }
 				]
 			},

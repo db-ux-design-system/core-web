@@ -1,3 +1,5 @@
+/* eslint-disable no-console */
+
 const FSE = require('fs-extra');
 const { globSync } = require('glob');
 
@@ -13,7 +15,8 @@ const allTemporaryDir = 'all';
  * @param values {{ src: string, prefix: string, ignoreGlobs:string|string[], variants:string[], dryRun:boolean, withSizes: boolean }}
  */
 const gatherIcons = (temporaryDirectory, values) => {
-	const { src, ignoreGlobs, prefix, dryRun, variants, withSizes } = values;
+	const { src, ignoreGlobs, prefix, dryRun, variants, withSizes, debug } =
+		values;
 	const paths = `${src}/**/*.svg`;
 
 	// We use this to generate all combinations of variants and sizes as fonts
@@ -25,7 +28,6 @@ const gatherIcons = (temporaryDirectory, values) => {
 	);
 
 	if (dryRun) {
-		// eslint-disable-next-line no-console
 		console.log('files:', globPaths);
 		return;
 	}
@@ -61,6 +63,10 @@ const gatherIcons = (temporaryDirectory, values) => {
 		if (iconName && !foundIconFiles.includes(iconName)) {
 			foundIconFiles.push(iconName);
 		}
+	}
+
+	if (debug) {
+		console.log(`Found ${foundIconFiles.length} icons`);
 	}
 
 	for (const iconFileName of foundIconFiles) {
