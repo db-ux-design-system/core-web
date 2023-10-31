@@ -68,6 +68,7 @@ const fileEndingsToDelete = [
 
 const debugLog = (debug, message) => {
 	if (debug) {
+		// eslint-disable-next-line no-console
 		console.log(message);
 	}
 };
