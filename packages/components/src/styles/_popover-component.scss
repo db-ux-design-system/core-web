@@ -127,6 +127,7 @@
 	background-color: colors.$db-base-bg;
 	visibility: hidden;
 	z-index: 1;
+	// i HTML tags browsers default styling reset
 	font-style: normal;
 
 	&[data-width="fixed"] {
