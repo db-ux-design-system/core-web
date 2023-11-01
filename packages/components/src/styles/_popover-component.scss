@@ -127,6 +127,7 @@
 	background-color: colors.$db-base-bg;
 	visibility: hidden;
 	z-index: 1;
+	font-style: normal;
 
 	&[data-width="fixed"] {
 		inline-size: max-content;
