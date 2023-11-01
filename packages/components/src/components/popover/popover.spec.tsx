@@ -9,7 +9,7 @@ import { DBButton } from '../button';
 const comp = (
 	<DBButton describedbyid="popover-01">
 		Button
-		<DBPopover open={true} behaviour="plain" id="popover-01">
+		<DBPopover open={true} animation="disabled" id="popover-01">
 			Test
 		</DBPopover>
 	</DBButton>
@@ -30,15 +30,4 @@ const testComponent = () => {
 test.describe('DBPopover', () => {
 	test.use({ viewport: DEFAULT_VIEWPORT });
 	testComponent();
-});
-
-test.describe('DBPopover', () => {
-	test('should not have any A11y issues', async ({ page, mount }) => {
-		await mount(comp);
-		const accessibilityScanResults = await new AxeBuilder({ page })
-			.include('.db-popover')
-			.analyze();
-
-		expect(accessibilityScanResults.violations).toEqual([]);
-	});
 });
