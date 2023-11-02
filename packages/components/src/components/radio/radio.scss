@@ -7,7 +7,7 @@
 	@extend %check-element;
 
 	input {
-		border-color: #{colors.$db-neutral-on-bg};
+		border-color: currentColor;
 		border-radius: component.$full-border-radius;
 		transition: border-width variables.$db-transition-duration-fast
 			variables.$db-transition-functional-timing;
