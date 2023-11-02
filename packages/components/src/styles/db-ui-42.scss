@@ -1,6 +1,7 @@
-/* This is a predefined beginner friendly bundle with default asset-paths (../assets) */
+/*
+This is a predefined beginner friendly bundle with default asset-paths (../assets)
+Contains dark-theme as well.
+ */
 
-@forward "./db-ui-components";
-@forward "@db-ui/foundations/build/css/default-theme";
-@forward "@db-ui/foundations/build/css/internals";
-@forward "@db-ui/foundations/build/scss/icons/include";
+@forward "./db-ui-42-light";
+@forward "@db-ui/foundations/build/css/default-dark-theme";

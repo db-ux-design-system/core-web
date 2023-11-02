@@ -1,0 +1,4 @@
+/* This is a predefined beginner friendly bundle for webpack apps */
+
+@use "@db-ui/foundations/build/scss/webpack.assets-paths" as *;
+@forward "./db-ui-42-light";
