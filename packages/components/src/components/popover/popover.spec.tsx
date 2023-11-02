@@ -31,3 +31,14 @@ test.describe('DBPopover', () => {
 	test.use({ viewport: DEFAULT_VIEWPORT });
 	testComponent();
 });
+
+test.describe('DBPopover', () => {
+	test('should not have any A11y issues', async ({ page, mount }) => {
+		await mount(comp);
+		const accessibilityScanResults = await new AxeBuilder({ page })
+			.include('.db-popover')
+			.analyze();
+
+		expect(accessibilityScanResults.violations).toEqual([]);
+	});
+});
