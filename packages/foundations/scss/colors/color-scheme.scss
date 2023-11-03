@@ -1,0 +1,11 @@
+@use "./default-color-scheme";
+
+.db-color-scheme-light,
+[data-color-scheme="light"] {
+	@include default-color-scheme.get-color-scheme-light;
+}
+
+.db-color-scheme-dark,
+[data-color-scheme="dark"] {
+	@include default-color-scheme.get-color-scheme-dark;
+}
