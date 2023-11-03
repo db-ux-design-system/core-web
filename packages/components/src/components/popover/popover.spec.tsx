@@ -9,7 +9,7 @@ import { DBButton } from '../button';
 const comp = (
 	<DBButton describedbyid="popover-01">
 		Button
-		<DBPopover open={true} behaviour="plain" id="popover-01">
+		<DBPopover open={true} animation="disabled" id="popover-01">
 			Test
 		</DBPopover>
 	</DBButton>
