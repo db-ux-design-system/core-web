@@ -5,12 +5,6 @@
 @use "../../styles/form-components";
 @use "../../styles/component";
 
-@mixin accordion-item-content() {
-	:not(summary):not(link) {
-		@content;
-	}
-}
-
 .db-accordion-item {
 	@extend %bg-transparent;
 	@include helpers.divider($position: "top");
@@ -18,7 +12,7 @@
 	position: relative;
 	inline-size: 100%;
 
-	@include accordion-item-content() {
+	summary + div {
 		padding: variables.$db-spacing-fixed-md;
 		padding-block-end: variables.$db-spacing-fixed-lg;
 	}
@@ -57,7 +51,7 @@
 	}
 
 	&[open] {
-		@include accordion-item-content() {
+		summary + div {
 			animation: accordion-open
 				variables.$db-transition-emotional-straight normal both;
 		}
