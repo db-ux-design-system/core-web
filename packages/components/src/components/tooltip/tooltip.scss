@@ -3,11 +3,13 @@
 @use "@db-ui/foundations/build/scss/colors";
 @use "@db-ui/foundations/build/scss/tonality/font";
 @use "../../styles/popover-component";
+@use "../../styles/component";
 
 $tooltip-arrow-shadow-size: variables.$db-spacing-fixed-2xs;
 
 .db-tooltip {
-	--default-card-border-radius: 0.25rem;
+	--default-card-elevation: #{variables.$db-elevation-2};
+	--default-card-border-radius: #{component.$default-border-radius};
 	@extend %db-overwrite-font-size-sm;
 	@extend %default-popover;
 
