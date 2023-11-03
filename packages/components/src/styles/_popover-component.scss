@@ -9,10 +9,36 @@
 	$direction: start;
 	$primary: block;
 	$secondary: inline;
-	@if ($placement == "top" or $placement == "left") {
+	@if (
+		$placement ==
+			"top" or
+			$placement ==
+			"top-start" or
+			$placement ==
+			"top-end" or
+			$placement ==
+			"left" or
+			$placement ==
+			"left-start" or
+			$placement ==
+			"left-end"
+	) {
 		$direction: end;
 	}
-	@if ($placement == "left" or $placement == "right") {
+	@if (
+		$placement ==
+			"left" or
+			$placement ==
+			"left-start" or
+			$placement ==
+			"left-end" or
+			$placement ==
+			"right" or
+			$placement ==
+			"right-start" or
+			$placement ==
+			"right-end"
+	) {
 		$primary: inline;
 		$secondary: block;
 	}
@@ -25,6 +51,14 @@
 	inset-#{$primary}-#{$direction}: calc(
 		100% + 2px + var(--db-popover-distance) * var(--db-popover-gap, 0)
 	);
+
+	&[data-placement$="end"] {
+		inset-#{$secondary}-end: 0;
+	}
+
+	&[data-placement$="start"] {
+		inset-#{$secondary}-start: 0;
+	}
 
 	&[data-gap="true"],
 	&:is(.db-tooltip) {
@@ -45,19 +79,19 @@
 
 %popover-placement {
 	&:not([data-placement]),
-	&[data-placement="bottom"] {
+	&[data-placement^="bottom"] {
 		@include get-popover-placements("bottom");
 	}
 
-	&[data-placement="right"] {
+	&[data-placement^="right"] {
 		@include get-popover-placements("right");
 	}
 
-	&[data-placement="left"] {
+	&[data-placement^="left"] {
 		@include get-popover-placements("left");
 	}
 
-	&[data-placement="top"] {
+	&[data-placement^="top"] {
 		@include get-popover-placements("top");
 	}
 }
@@ -100,19 +134,19 @@
 	visibility: visible;
 
 	&:not([data-placement]),
-	&[data-placement="bottom"] {
+	&[data-placement^="bottom"] {
 		@include get-popover-show("bottom");
 	}
 
-	&[data-placement="right"] {
+	&[data-placement^="right"] {
 		@include get-popover-show("right");
 	}
 
-	&[data-placement="left"] {
+	&[data-placement^="left"] {
 		@include get-popover-show("left");
 	}
 
-	&[data-placement="top"] {
+	&[data-placement^="top"] {
 		@include get-popover-show("top");
 	}
 }

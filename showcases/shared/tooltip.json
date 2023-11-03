@@ -72,6 +72,14 @@
 		"name": "Placement",
 		"examples": [
 			{
+				"name": "bottom-start",
+				"props": {
+					"content": "Tooltip",
+					"placement": "bottom-start",
+					"id": "tooltip-08-start"
+				}
+			},
+			{
 				"name": "bottom (Default)",
 				"props": {
 					"content": "Tooltip",
@@ -80,11 +88,19 @@
 				}
 			},
 			{
-				"name": "top",
+				"name": "bottom-end",
 				"props": {
 					"content": "Tooltip",
-					"placement": "top",
-					"id": "tooltip-09"
+					"placement": "bottom-end",
+					"id": "tooltip-08-end"
+				}
+			},
+			{
+				"name": "left-start",
+				"props": {
+					"content": "Tooltip",
+					"placement": "left-start",
+					"id": "tooltip-10-start"
 				}
 			},
 			{
@@ -96,11 +112,59 @@
 				}
 			},
 			{
+				"name": "left-end",
+				"props": {
+					"content": "Tooltip",
+					"placement": "left-end",
+					"id": "tooltip-10-end"
+				}
+			},
+			{
+				"name": "right-start",
+				"props": {
+					"content": "Tooltip",
+					"placement": "right-start",
+					"id": "tooltip-11-start"
+				}
+			},
+			{
 				"name": "right",
 				"props": {
 					"content": "Tooltip",
 					"placement": "right",
 					"id": "tooltip-11"
+				}
+			},
+			{
+				"name": "right-end",
+				"props": {
+					"content": "Tooltip",
+					"placement": "right-end",
+					"id": "tooltip-11-end"
+				}
+			},
+			{
+				"name": "top-start",
+				"props": {
+					"content": "Tooltip",
+					"placement": "top-start",
+					"id": "tooltip-09-start"
+				}
+			},
+			{
+				"name": "top",
+				"props": {
+					"content": "Tooltip",
+					"placement": "top",
+					"id": "tooltip-09"
+				}
+			},
+			{
+				"name": "top-end",
+				"props": {
+					"content": "Tooltip",
+					"placement": "top-end",
+					"id": "tooltip-09-end"
 				}
 			}
 		]

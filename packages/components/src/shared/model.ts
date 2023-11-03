@@ -87,7 +87,19 @@ export type PlacementProps = {
 	/**
 	 * The `placement` attributes values change the position to absolute and adds a transform based on the placement.
 	 */
-	placement?: 'left' | 'right' | 'top' | 'bottom';
+	placement?:
+		| 'left'
+		| 'right'
+		| 'top'
+		| 'bottom'
+		| 'left-start'
+		| 'left-end'
+		| 'right-start'
+		| 'right-end'
+		| 'top-start'
+		| 'top-end'
+		| 'bottom-start'
+		| 'bottom-end';
 };
 
 export type GapProps = {

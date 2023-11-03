@@ -9,7 +9,7 @@ import { DBButton } from '../button';
 const comp = (
 	<DBButton describedbyid="tooltip-01">
 		Button
-		<DBTooltip behaviour="plain" id="tooltip-01">Test</DBTooltip>
+		<DBTooltip animation="disabled" id="tooltip-01">Test</DBTooltip>
 	</DBButton>
 );
 

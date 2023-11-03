@@ -40,7 +40,7 @@ $tooltip-arrow-shadow-size: variables.$db-spacing-fixed-2xs;
 	}
 
 	&:not([data-placement]),
-	&[data-placement="bottom"] {
+	&[data-placement^="bottom"] {
 		&::after {
 			inset-inline-start: 50%;
 			inset-block-start: 0;
@@ -49,7 +49,7 @@ $tooltip-arrow-shadow-size: variables.$db-spacing-fixed-2xs;
 		}
 	}
 
-	&[data-placement="top"] {
+	&[data-placement^="top"] {
 		&::after {
 			inset-inline-start: 50%;
 			inset-block-end: 0;
@@ -58,7 +58,7 @@ $tooltip-arrow-shadow-size: variables.$db-spacing-fixed-2xs;
 		}
 	}
 
-	&[data-placement="right"] {
+	&[data-placement^="right"] {
 		&::after {
 			inset-block-start: 50%;
 			inset-inline-start: 0;
@@ -67,7 +67,7 @@ $tooltip-arrow-shadow-size: variables.$db-spacing-fixed-2xs;
 		}
 	}
 
-	&[data-placement="left"] {
+	&[data-placement^="left"] {
 		&::after {
 			inset-block-start: 50%;
 			inset-inline-end: 0;
