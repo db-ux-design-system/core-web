@@ -5,7 +5,7 @@
 @use "../../styles/popover-component";
 @use "../../styles/component";
 
-$tooltip-arrow-shadow-size: variables.$db-spacing-fixed-2xs;
+$tooltip-arrow-shadow-size: variables.$db-sizing-2xs;
 
 .db-tooltip {
 	--default-card-elevation: #{variables.$db-elevation-2};
@@ -26,8 +26,8 @@ $tooltip-arrow-shadow-size: variables.$db-spacing-fixed-2xs;
 			box-shadow: variables.$db-elevation-4;
 			position: absolute;
 			background-color: colors.$db-base-bg;
-			inline-size: variables.$db-sizing-2xs;
-			block-size: variables.$db-sizing-2xs;
+			inline-size: $tooltip-arrow-shadow-size;
+			block-size: $tooltip-arrow-shadow-size;
 			clip-path: polygon(
 				calc(#{$tooltip-arrow-shadow-size} * -1)
 					calc(#{$tooltip-arrow-shadow-size} * -1),
