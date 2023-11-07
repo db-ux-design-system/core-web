@@ -152,7 +152,7 @@
 		@extend %component-border;
 		block-size: inherit;
 		padding: 0 variables.$db-spacing-fixed-2xs;
-		border-radius: component.$default-border-radius;
+		border-radius: variables.$db-border-radius-md;
 	}
 
 	button,
@@ -173,7 +173,7 @@
 	}
 
 	&[data-disabled="true"] {
-		opacity: component.$default-disabled-opacity;
+		opacity: variables.$db-opacity-sm;
 		pointer-events: none;
 	}
 

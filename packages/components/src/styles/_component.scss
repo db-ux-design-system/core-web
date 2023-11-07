@@ -3,23 +3,11 @@
 @use "@db-ui/foundations/build/scss/colors";
 @use "@db-ui/foundations/build/scss/helpers";
 
-/* TODO: We need to somehow document these as well */
-
-/* TODO: We should get the variables from UX, and probably want to make those global variables */
-$checkbox-border-radius: helpers.to-rem(2.5);
-$default-border-radius: helpers.to-rem(4);
-$full-border-radius: 42px;
-$default-card-border-radius: var(
-	--default-card-border-radius,
-	helpers.to-rem(8)
+$default-mobile-header-height: var(
+	--db-sizing-fixed-mobile-header,
+	#{helpers.to-rem(56)}
 );
-$default-label-opacity: 0.75;
-$default-disabled-opacity: 0.25;
-$default-placeholder-opacity: 0.5;
-
-$default-mobile-header-height: helpers.to-rem(56);
-
-$default-border-height: 1px;
+$default-border-height: var(--db-border-height, 1px);
 
 %default-adaptive-border {
 	border: $default-border-height solid colors.$db-base-on-bg;
@@ -35,11 +23,14 @@ $default-border-height: 1px;
 
 %default-interactive-component {
 	@extend %default-adaptive-border;
-	border-radius: $default-border-radius;
+	border-radius: variables.$db-border-radius-md;
 }
 
 %default-card {
-	border-radius: $default-card-border-radius;
+	border-radius: var(
+		--default-card-border-radius,
+		#{variables.$db-border-radius-lg}
+	);
 	box-shadow: variables.$db-elevation-4;
 }
 

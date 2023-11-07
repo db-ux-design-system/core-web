@@ -9,7 +9,7 @@
 	@extend %check-element;
 
 	input {
-		border-radius: component.$checkbox-border-radius;
+		border-radius: variables.$db-border-radius-sm;
 
 		&::before {
 			--db-icon-margin-end: 0;

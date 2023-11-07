@@ -9,7 +9,7 @@ $tooltip-arrow-shadow-size: variables.$db-sizing-2xs;
 
 .db-tooltip {
 	--default-card-elevation: #{variables.$db-elevation-2};
-	--default-card-border-radius: #{component.$default-border-radius};
+	--default-card-border-radius: #{variables.$db-border-radius-md};
 	@extend %db-overwrite-font-size-sm;
 	@extend %default-popover;
 

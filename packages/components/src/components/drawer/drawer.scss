@@ -10,8 +10,8 @@
 	inset-inline: auto 0;
 
 	&[data-rounded="true"] {
-		border-start-start-radius: component.$default-card-border-radius;
-		border-end-start-radius: component.$default-card-border-radius;
+		border-start-start-radius: variables.$db-border-radius-lg;
+		border-end-start-radius: variables.$db-border-radius-lg;
 	}
 }
 
@@ -19,8 +19,8 @@
 	inset-inline: 0 auto;
 
 	&[data-rounded="true"] {
-		border-start-end-radius: component.$default-card-border-radius;
-		border-end-end-radius: component.$default-card-border-radius;
+		border-start-end-radius: variables.$db-border-radius-lg;
+		border-end-end-radius: variables.$db-border-radius-lg;
 	}
 }
 
@@ -39,8 +39,8 @@
 	inset: auto 0 0;
 
 	&[data-rounded="true"] {
-		border-start-end-radius: component.$default-card-border-radius;
-		border-start-start-radius: component.$default-card-border-radius;
+		border-start-end-radius: variables.$db-border-radius-lg;
+		border-start-start-radius: variables.$db-border-radius-lg;
 	}
 }
 %direction-down {
@@ -48,8 +48,8 @@
 	inset: 0 0 auto;
 
 	&[data-rounded="true"] {
-		border-end-end-radius: component.$default-card-border-radius;
-		border-end-start-radius: component.$default-card-border-radius;
+		border-end-end-radius: variables.$db-border-radius-lg;
+		border-end-start-radius: variables.$db-border-radius-lg;
 	}
 }
 

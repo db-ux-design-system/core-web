@@ -1,7 +1,6 @@
 @use "./colors/default-color-scheme";
 
 :root {
-
 	/* REST */
 	--db-spacing-responsive-regular-desktop-3xl: 40rem;
 	--db-spacing-responsive-regular-desktop-2xl: 30rem;
@@ -111,6 +110,7 @@
 	--db-spacing-fixed-expressive-xl: 3rem;
 	--db-spacing-fixed-expressive-2xl: 5rem;
 	--db-spacing-fixed-expressive-3xl: 7.5rem;
+	--db-sizing-fixed-mobile-header: 3.5rem;
 	--db-sizing-regular-3xl: 15rem;
 	--db-sizing-regular-2xl: 10rem;
 	--db-sizing-regular-xl: 6rem;
@@ -552,6 +552,27 @@
 	--db-typography-expressive-mobile-headline-3xl-font-size: 2.5rem;
 	--db-typography-expressive-mobile-headline-3xs-line-height: 1.25;
 	--db-typography-expressive-mobile-headline-3xs-font-size: 1rem;
+	--db-border-height: 0.0625rem;
+	--db-border-radius-sm: 0.15625rem;
+	--db-border-radius-md: 0.25rem;
+	--db-border-radius-lg: 0.5rem;
+	--db-border-radius-3xl: 2.625rem;
+	--db-opacity-sm: 0.25;
+	--db-opacity-md: 0.5;
+	--db-opacity-lg: 0.75;
+	--db-elevation-1: 0 0 1px 0 rgba(0, 0, 0, 0.2),
+		0 0 2px 0 rgba(0, 0, 0, 0.12), 0 0 1px 0 rgba(0, 0, 0, 0.14);
+	--db-elevation-2: 0 0 1px -1px rgba(0, 0, 0, 0.2),
+		0 0 4px 1px rgba(0, 0, 0, 0.12), 0 0 2px 0 rgba(0, 0, 0, 0.14);
+	--db-elevation-4: 0 0 2px -1px rgba(0, 0, 0, 0.2),
+		0 0 8px 1px rgba(0, 0, 0, 0.12), 0 0 4px 0 rgba(0, 0, 0, 0.14);
+	--db-elevation-8: 0 0 4px -3px rgba(0, 0, 0, 0.2),
+		0 0 16px 3px rgba(0, 0, 0, 0.12), 0 0 8px 1px rgba(0, 0, 0, 0.14);
+	--db-elevation-12: 0 0 6px -4px rgba(0, 0, 0, 0.2),
+		0 0 24px 4px rgba(0, 0, 0, 0.12), 0 0 12px 2px rgba(0, 0, 0, 0.14);
+	--db-elevation-24: 0 0 12px -8px rgba(0, 0, 0, 0.2),
+		0 0 48px 8px rgba(0, 0, 0, 0.12), 0 0 24px 3px rgba(0, 0, 0, 0.14);
+
 	/* COLORS */
 	@include default-color-scheme.get-color-scheme-light;
 

@@ -23,7 +23,7 @@
 
 	&[aria-disabled="true"] {
 		pointer-events: none;
-		opacity: component.$default-disabled-opacity;
+		opacity: variables.$db-opacity-sm;
 	}
 
 	summary {
@@ -45,8 +45,7 @@
 		}
 
 		&:focus-visible {
-			// TODO: Evaluate whether this number is intended
-			border-radius: component.$default-border-radius + 2;
+			border-radius: variables.$db-border-radius-md;
 		}
 	}
 

@@ -1,13 +1,12 @@
 @use "@db-ui/foundations/build/scss/variables";
 @use "@db-ui/foundations/build/scss/screen-sizes";
 @use "@db-ui/foundations/build/scss/colors";
-@use "component";
 
 %db-puls {
 	@include screen-sizes.screen("md") {
 		&::after {
 			border-inline-start: none;
-			border-block-end: component.$default-border-radius solid
+			border-block-end: variables.$db-border-radius-md solid
 				colors.$db-brand;
 			inset-block-end: calc(-1 * #{variables.$db-spacing-fixed-xs});
 			inline-size: 0;
@@ -21,7 +20,7 @@
 	&::after {
 		content: "";
 		position: absolute;
-		border-radius: component.$default-border-radius;
+		border-radius: variables.$db-border-radius-md;
 		transition:
 			height 0.15s variables.$db-transition-emotional-timing,
 			width 0.15s variables.$db-transition-emotional-timing;
@@ -29,7 +28,7 @@
 		transform: translate(0, -50%);
 		inset-block-start: 50%;
 		inset-inline-start: calc(-1 * #{variables.$db-spacing-fixed-xs});
-		border-inline-start: component.$default-border-radius solid
+		border-inline-start: variables.$db-border-radius-md solid
 			colors.$db-brand;
 	}
 }

@@ -41,7 +41,7 @@
 
 	// "disabled" links
 	&[aria-disabled="true"] {
-		opacity: component.$default-placeholder-opacity;
+		opacity: variables.$db-opacity-md;
 		pointer-events: none;
 	}
 
@@ -56,7 +56,7 @@
 	}
 
 	&:focus-visible {
-		border-radius: component.$default-border-radius;
+		border-radius: variables.$db-border-radius-md;
 	}
 
 	&[data-content="internal"],
