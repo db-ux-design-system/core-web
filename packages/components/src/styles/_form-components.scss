@@ -139,9 +139,9 @@ $floating-label-size: calc(
 		$boolean: "false";
 	}
 
-	&:has(input:not([aria-invalid]):user-#{$key}),
-	&:has(textarea:not([aria-invalid]):user-#{$key}),
-	&:has(select:not([aria-invalid]):user-#{$key}) {
+	&:has(input:not([aria-invalid]):required:user-#{$key}),
+	&:has(textarea:not([aria-invalid]):required:user-#{$key}),
+	&:has(select:not([aria-invalid]):required:user-#{$key}) {
 		@content;
 	}
 
