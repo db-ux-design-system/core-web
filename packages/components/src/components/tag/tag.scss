@@ -84,7 +84,7 @@
 		}
 
 		&:has(input:checked) {
-			border-width: component.$default-border-height;
+			border-width: variables.$default-border-height-sm;
 
 			&::before {
 				content: none;
