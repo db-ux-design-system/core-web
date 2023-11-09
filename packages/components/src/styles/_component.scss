@@ -9,16 +9,15 @@ $default-mobile-header-height: var(
 );
 
 %default-adaptive-border {
-	border: variables.$default-border-height-sm solid colors.$db-base-on-bg;
+	border: variables.$db-border-height-sm solid colors.$db-base-on-bg;
 }
 
 %transparent-border {
-	border: variables.$default-border-height-sm solid transparent;
+	border: variables.$db-border-height-sm solid transparent;
 }
 
 %component-border {
-	border: variables.$default-border-height-sm solid
-		colors.$db-base-border-weak;
+	border: variables.$db-border-height-sm solid colors.$db-base-border-weak;
 }
 
 %default-interactive-component {

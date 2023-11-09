@@ -84,7 +84,7 @@
 		}
 
 		&:has(input:checked) {
-			border-width: variables.$default-border-height-sm;
+			border-width: variables.$db-border-height-sm;
 
 			&::before {
 				content: none;
