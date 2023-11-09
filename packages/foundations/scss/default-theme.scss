@@ -560,18 +560,12 @@
 	--db-opacity-sm: 0.25;
 	--db-opacity-md: 0.5;
 	--db-opacity-lg: 0.75;
-	--db-elevation-1: 0 0 1px 0 rgba(0, 0, 0, 0.2),
-		0 0 2px 0 rgba(0, 0, 0, 0.12), 0 0 1px 0 rgba(0, 0, 0, 0.14);
-	--db-elevation-2: 0 0 1px -1px rgba(0, 0, 0, 0.2),
+	--db-elevation-sm: 0 0 1px -1px rgba(0, 0, 0, 0.2),
 		0 0 4px 1px rgba(0, 0, 0, 0.12), 0 0 2px 0 rgba(0, 0, 0, 0.14);
-	--db-elevation-4: 0 0 2px -1px rgba(0, 0, 0, 0.2),
+	--db-elevation-md: 0 0 2px -1px rgba(0, 0, 0, 0.2),
 		0 0 8px 1px rgba(0, 0, 0, 0.12), 0 0 4px 0 rgba(0, 0, 0, 0.14);
-	--db-elevation-8: 0 0 4px -3px rgba(0, 0, 0, 0.2),
+	--db-elevation-lg: 0 0 4px -3px rgba(0, 0, 0, 0.2),
 		0 0 16px 3px rgba(0, 0, 0, 0.12), 0 0 8px 1px rgba(0, 0, 0, 0.14);
-	--db-elevation-12: 0 0 6px -4px rgba(0, 0, 0, 0.2),
-		0 0 24px 4px rgba(0, 0, 0, 0.12), 0 0 12px 2px rgba(0, 0, 0, 0.14);
-	--db-elevation-24: 0 0 12px -8px rgba(0, 0, 0, 0.2),
-		0 0 48px 8px rgba(0, 0, 0, 0.12), 0 0 24px 3px rgba(0, 0, 0, 0.14);
 
 	/* COLORS */
 	@include default-color-scheme.get-color-scheme-light;

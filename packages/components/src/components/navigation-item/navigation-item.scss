@@ -170,7 +170,7 @@
 
 	@include screen-sizes.screen("md") {
 		border-radius: variables.$db-border-radius-lg;
-		box-shadow: variables.$db-elevation-4;
+		box-shadow: variables.$db-elevation-md;
 		padding: variables.$db-spacing-fixed-sm;
 
 		position: absolute;
