@@ -79,9 +79,12 @@ export default function DBAccordion(props: DBAccordionProps) {
 			if (childDetails) {
 				let initOpenItems: string[] = [];
 				Array.from<HTMLDetailsElement>(childDetails).forEach(
-					(details: HTMLDetailsElement) => {
+					(details: HTMLDetailsElement, index: number) => {
 						const id = details.id;
-						if (details.open) {
+						if (
+							details.open ||
+							props.initOpenIndex.includes(index)
+						) {
 							initOpenItems.push(id);
 						}
 						const summaries =
