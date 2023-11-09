@@ -140,6 +140,10 @@ $floating-label-size: calc(
 
 	@if ($selector == select or $selector == check) {
 		$user: "";
+	} @else {
+		// TODO: add validations for input & textarea as well
+		//  https://developer.mozilla.org/en-US/docs/Learn/Forms/Form_validation#using_built-in_form_validation
+		$validations: "required";
 	}
 
 	@if ($selector == check) {
