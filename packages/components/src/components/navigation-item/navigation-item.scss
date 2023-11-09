@@ -87,6 +87,11 @@
 	a {
 		@extend %navigation-item;
 		text-decoration: none;
+
+		&:focus-visible {
+			// We need to increase the z-index on focus-visible for the outline and box-shadow to appear above the pulse
+			z-index: 1;
+		}
 	}
 
 	.db-navigation-item-expand-button {

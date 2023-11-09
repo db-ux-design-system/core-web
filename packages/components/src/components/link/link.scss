@@ -63,10 +63,6 @@
 	&[data-content="external"] {
 		--db-icon-margin-start: #{variables.$db-spacing-fixed-2xs};
 
-		&:focus-visible {
-			outline-offset: var(--db-focus-outline-offset, 1px);
-		}
-
 		&::after {
 			margin-inline-start: var(--db-icon-margin-start);
 		}
