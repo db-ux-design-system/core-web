@@ -83,7 +83,7 @@ export default function DBAccordion(props: DBAccordionProps) {
 						const id = details.id;
 						if (
 							details.open ||
-							props.initOpenIndex.includes(index)
+							props.initOpenIndex?.includes(index)
 						) {
 							initOpenItems.push(id);
 						}
