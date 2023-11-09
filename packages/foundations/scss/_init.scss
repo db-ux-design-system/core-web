@@ -8,7 +8,6 @@
 	--db-focus-outline-offset: 1px;
 	--db-focus-outline-color: #{colors.$db-informational-text};
 	--db-focus-outline-size: max(2px, 0.08em);
-	--db-disabled-text-opacity: 0.5;
 
 	@extend %db-component-variables-md;
 	@extend %db-bg-base;
