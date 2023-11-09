@@ -135,7 +135,7 @@
 				"props": {
 					"label": "Label",
 					"value": "Filled - Valid",
-					"required": true
+					"invalid": false
 				}
 			},
 			{
@@ -187,7 +187,7 @@
 				"props": {
 					"label": "Label",
 					"value": "Filled - Valid",
-					"required": true,
+					"invalid": false,
 					"labelVariant": "floating"
 				}
 			},

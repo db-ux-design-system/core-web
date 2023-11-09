@@ -1,4 +1,5 @@
 @use "sass:map";
+@use "sass:string";
 @use "@db-ui/foundations/build/scss/icons";
 @use "@db-ui/foundations/build/scss/tonality";
 @use "@db-ui/foundations/build/scss/variables";
@@ -112,7 +113,7 @@ $floating-label-size: calc(
 	--db-current-bg-color: #{map.get($color-variant, "bg")};
 }
 
-@mixin get-validity-color($key: "valid") {
+@mixin get-validity-color($selector, $key: "valid") {
 	$variant: "successful";
 
 	@if ($key != "valid") {
@@ -125,39 +126,50 @@ $floating-label-size: calc(
 		@include set-current-colors($color-variant);
 	}
 
-	textarea,
-	input,
-	select,
+	#{$selector},
 	[id$="-placeholder"] {
 		color: map.get($color-variant, "on-bg");
 	}
 }
 
-@mixin get-validity($key: "valid") {
+@function get-validations($selector, $key) {
+	$has-selectors: "";
+
+	$validations: "required";
+	$user: "user-";
+
+	@if ($selector == select or $selector == check) {
+		$user: "";
+	}
+
+	@if ($selector == check) {
+		$selector: input;
+	}
+
+	@each $validation in $validations {
+		$has-selectors: $has-selectors +
+			"&:has(#{$selector}:not([aria-invalid]):#{$validation}:#{$user}#{$key}),";
+	}
+
+	@return string.unquote(string.slice($has-selectors, 1, -2));
+}
+
+@mixin get-validity($selector, $key: "valid") {
 	$boolean: "true";
 	@if ($key == "valid") {
 		$boolean: "false";
 	}
 
-	&:has(input:not([aria-invalid]):required:user-#{$key}),
-	&:has(textarea:not([aria-invalid]):required:user-#{$key}),
-	&:has(select:not([aria-invalid]):required:user-#{$key}) {
+	#{get-validations($selector,$key)} {
 		@content;
 	}
 
-	// :user-valid workaround
-	@supports not selector(:user-#{$key}) {
-		&:has(input:not([aria-invalid]):required:#{$key}),
-		&:has(textarea:not([aria-invalid]):required:#{$key}),
-		&:has(select:not([aria-invalid]):required:#{$key}) {
-			@content;
-		}
+	@if ($selector == check) {
+		$selector: input;
 	}
 
 	// If aria-invalid is set we overwrite the selectors above
-	&:has(input[aria-invalid="#{$boolean}"]),
-	&:has(textarea[aria-invalid="#{$boolean}"]),
-	&:has(select[aria-invalid="#{$boolean}"]) {
+	&:has(#{$selector}[aria-invalid="#{$boolean}"]) {
 		@content;
 	}
 }
@@ -185,11 +197,11 @@ $floating-label-size: calc(
 	position: relative;
 	display: flex;
 	flex-direction: column;
-	@include get-validity() {
-		@include get-validity-color("valid");
+	@include get-validity($selector) {
+		@include get-validity-color($selector, "valid");
 	}
-	@include get-validity("invalid") {
-		@include get-validity-color("invalid");
+	@include get-validity($selector, "invalid") {
+		@include get-validity-color($selector, "invalid");
 	}
 
 	#{$selector} {
@@ -326,10 +338,10 @@ $floating-label-size: calc(
 %check-element {
 	@include set-required-label(input);
 
-	@include get-validity() {
+	@include get-validity(check) {
 		@include get-validity-color-check("valid");
 	}
-	@include get-validity("invalid") {
+	@include get-validity(check, "invalid") {
 		@include get-validity-color-check("invalid");
 	}
 
