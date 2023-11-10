@@ -115,7 +115,7 @@ $spacings: (
 		block-size: 100%;
 		inline-size: 100%;
 		position: fixed;
-		box-shadow: variables.$db-elevation-4;
+		box-shadow: variables.$db-elevation-md;
 
 		&:not([data-width="full"]) {
 			max-inline-size: var(
@@ -125,7 +125,7 @@ $spacings: (
 		}
 
 		&[data-rounded="true"] {
-			box-shadow: variables.$db-elevation-4;
+			box-shadow: variables.$db-elevation-md;
 		}
 
 		&[data-direction="left"] {
