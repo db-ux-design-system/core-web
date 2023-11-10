@@ -249,6 +249,13 @@
 					"label": "Label",
 					"iconAfter": "x_placeholder"
 				}
+			},
+			{
+				"name": "Hidden Label",
+				"props": {
+					"label": "Label",
+					"labelVariant": "hidden"
+				}
 			}
 		]
 	},
@@ -274,25 +281,6 @@
 					"label": "Label",
 					"value": "Required - Filled",
 					"required": true
-				}
-			}
-		]
-	},
-	{
-		"name": "Content",
-		"examples": [
-			{
-				"name": "(Default) Visible Label",
-				"props": {
-					"label": "Label",
-					"name": "Content"
-				}
-			},
-			{
-				"name": "Hidden Label",
-				"props": {
-					"label": "Label",
-					"labelVariant": "hidden"
 				}
 			}
 		]
