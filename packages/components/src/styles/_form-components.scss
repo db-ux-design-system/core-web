@@ -3,6 +3,7 @@
 @use "@db-ui/foundations/build/scss/tonality";
 @use "@db-ui/foundations/build/scss/variables";
 @use "@db-ui/foundations/build/scss/colors";
+@use "@db-ui/foundations/build/scss/helpers";
 @use "component";
 
 $dropdown-icon-transition: transform variables.$db-transition-emotional-straight;
@@ -238,7 +239,7 @@ $floating-label-size: calc(
 
 	&[data-label-variant="hidden"] {
 		label {
-			font-size: 0;
+			@extend %a11y-visually-hidden;
 			padding: 0;
 		}
 	}
