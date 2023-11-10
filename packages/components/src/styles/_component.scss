@@ -30,7 +30,7 @@ $default-mobile-header-height: var(
 		--default-card-border-radius,
 		#{variables.$db-border-radius-lg}
 	);
-	box-shadow: variables.$db-elevation-4;
+	box-shadow: variables.$db-elevation-md;
 }
 
 %adaptive-neutral-component {
