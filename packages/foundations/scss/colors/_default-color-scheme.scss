@@ -111,6 +111,8 @@
 	--db-critical-element-enabled: #ff0016;
 	--db-critical-border-enabled: #cc0012a3;
 	--db-critical-border-weak-enabled: #90000c52;
+
+	color-scheme: light;
 }
 
 @mixin get-color-scheme-dark {
@@ -226,4 +228,6 @@
 	--db-critical-element-enabled: #ff4214;
 	--db-critical-border-enabled: #dd3911bf;
 	--db-critical-border-weak-enabled: #b42f0e80;
+
+	color-scheme: dark;
 }
