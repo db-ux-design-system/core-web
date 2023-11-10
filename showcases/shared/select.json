@@ -532,6 +532,24 @@
 					"value": "Required - Filled",
 					"required": true
 				}
+			},
+			{
+				"name": "Hidden Label",
+				"style": {
+					"width": "300px"
+				},
+				"props": {
+					"options": [
+						{
+							"value": "Option 1"
+						},
+						{
+							"value": "Option 2"
+						}
+					],
+					"label": "Label",
+					"labelVariant": "hidden"
+				}
 			}
 		]
 	}
