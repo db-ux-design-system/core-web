@@ -1,3 +1,4 @@
+#!/usr/bin/env node
 /* eslint-disable no-await-in-loop */
 
 const FSE = require('fs-extra');
