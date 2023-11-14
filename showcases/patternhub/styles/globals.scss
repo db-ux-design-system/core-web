@@ -1,6 +1,7 @@
 @use "@db-ui/foundations/build/scss/variables";
 @use "@db-ui/foundations/build/scss/colors";
 @use "@db-ui/foundations/build/scss/screen-sizes";
+@use "@db-ui/foundations/build/scss/tonality";
 
 @forward "@db-ui/components/build/styles/db-ui-42-webpack";
 
@@ -96,6 +97,10 @@ table tr:nth-child(even) {
 table th {
 	@extend %db-bg-neutral-transparent-semi;
 	padding-inline: variables.$db-spacing-fixed-md;
+}
+
+.version-switcher {
+	max-width: variables.$db-sizing-3xl;
 }
 
 /* Workaround for current db-page from db-ui-elements */
