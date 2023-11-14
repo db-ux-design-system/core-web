@@ -17,7 +17,7 @@ Import the styles in scss or css. Based on your technology the file names could 
 -   Default (db-ui-42): points to `../assets`
 -   Webpack (db-ui-42-webpack): points to `~@db-ui/foundations/assets`
 -   Rollup (db-ui-42-rollup): points to `@db-ui/foundations/assets`
--
+
 <details>
   <summary><strong>SCSS</strong></summary>
 
@@ -46,14 +46,14 @@ import "@db-ui/v-components/dist/style.css";
 
 ## Usage
 
-```ts
+```vue
 <script setup lang="ts">
 	import { DBButton } from "@db-ui/v-components";
 </script>
 
-...
-<DBButton icon="account">Test</DBButton>
-...
+<template>
+    <DBButton icon="account">Test</DBButton>
+</template>
 ```
 
 ## Custom Events
@@ -79,7 +79,7 @@ onMounted(() => {
 </script>
 
 <template>
-	<DBButton ref="buttonRef">Test</DBButton>
+    <DBButton ref="buttonRef">Test</DBButton>
 </template>
 ```
 

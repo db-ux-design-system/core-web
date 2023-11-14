@@ -4,11 +4,9 @@
 @use "tonality";
 
 :root {
-	// TODO: probably move these to the tokens as well
-	--db-focus-outline-offset: 1px;
 	--db-focus-outline-color: #{colors.$db-informational-text};
-	--db-focus-outline-size: max(2px, 0.08em);
-	--db-disabled-text-opacity: 0.5;
+	--db-focus-box-shadow-bg-color: #{colors.$db-base-bg};
+	--db-focus-box-shadow-on-bg-color: #{colors.$db-base-on-bg};
 
 	@extend %db-component-variables-md;
 	@extend %db-bg-base;
@@ -87,15 +85,47 @@ iframe {
 
 // Focus styles
 %focus-placeholder,
-:is(a, button, input, textarea, summary, select) {
+:is(
+		a,
+		button,
+		input,
+		textarea,
+		summary,
+		select,
+		[tabindex]:not([tabindex="-1"])
+	) {
 	&:focus-visible {
-		outline: var(--db-focus-outline-size)
-			var(--db-focus-outline-style, solid)
-			var(--db-focus-outline-color, currentColor);
-		outline-offset: var(
-			--db-focus-outline-offset,
-			var(--db-focus-outline-size)
+		outline: #{variables.$db-border-height-md} var(
+				--db-focus-outline-style,
+				solid
+			) var(--db-focus-outline-color, currentColor);
+		outline-offset: calc(
+			#{variables.$db-border-height-lg} + #{variables.$db-border-height-md}
 		);
+		box-shadow:
+			0 0 0 #{variables.$db-border-height-lg} var(--db-focus-box-shadow-bg-color),
+			0 0 0
+				calc(
+					#{variables.$db-border-height-lg} + #{variables.$db-border-height-md}
+				)
+				var(--db-focus-box-shadow-on-bg-color);
+
+		// TODO: The fallback currently only includes the same CSS Custom Property, which doesn't make any sense
+		transition:
+			outline
+				var(
+					--db-transition-duration-ultra-fast,
+					#{variables.$db-transition-duration-ultra-fast}
+				),
+			box-shadow
+				var(
+					--db-transition-duration-ultra-fast,
+					#{variables.$db-transition-duration-ultra-fast}
+				);
+
+		&:not([type="radio"]) {
+			border-radius: variables.$db-border-radius-md;
+		}
 	}
 }
 

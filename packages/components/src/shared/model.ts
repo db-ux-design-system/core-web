@@ -87,7 +87,19 @@ export type PlacementProps = {
 	/**
 	 * The `placement` attributes values change the position to absolute and adds a transform based on the placement.
 	 */
-	placement?: 'left' | 'right' | 'top' | 'bottom';
+	placement?:
+		| 'left'
+		| 'right'
+		| 'top'
+		| 'bottom'
+		| 'left-start'
+		| 'left-end'
+		| 'right-start'
+		| 'right-end'
+		| 'top-start'
+		| 'top-end'
+		| 'bottom-start'
+		| 'bottom-end';
 };
 
 export type GapProps = {
@@ -217,14 +229,14 @@ export type FormCheckProps = {
 	/**
 	 * Hide the label of a radio/checkbox.
 	 */
-	labelHidden?: boolean;
+	labelVariant?: 'hidden';
 };
 
 export type FormMessageProps = {
 	/**
 	 * Change the variant of the label to float
 	 */
-	labelVariant?: 'above' | 'floating';
+	labelVariant?: 'above' | 'floating' | 'hidden';
 	/**
 	 * Text that appears in the form control when it has no value set
 	 */

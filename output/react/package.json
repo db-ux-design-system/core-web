@@ -27,10 +27,10 @@
   "devDependencies": {
     "@axe-core/playwright": "^4.8.1",
     "@playwright/experimental-ct-react": "1.35.1",
-    "@types/react": "^18.2.31",
+    "@types/react": "^18.2.37",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "sass": "^1.69.4"
+    "sass": "^1.69.5"
   },
   "publishConfig": {
     "registry": "https://registry.npmjs.org/",

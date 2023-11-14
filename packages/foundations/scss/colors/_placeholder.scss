@@ -51,6 +51,12 @@
 		--db-current-border-weak-color: var(
 			--db-#{$variant}-border-weak-enabled
 		);
+
+		--db-focus-box-shadow-bg-color: color-mix(
+			in srgb,
+			transparent var(--db-bg-transparent, 0%),
+			var(--db-#{$variant}-bg-enabled)
+		);
 	}
 
 	%db-bg-#{$variant} {

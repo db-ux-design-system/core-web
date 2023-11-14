@@ -3,16 +3,16 @@
 @use "@db-ui/foundations/build/scss/colors";
 @use "@db-ui/foundations/build/scss/tonality/font";
 @use "../../styles/popover-component";
+@use "../../styles/component";
 
-$tooltip-arrow-shadow-size: variables.$db-spacing-fixed-2xs;
+$tooltip-arrow-shadow-size: variables.$db-sizing-2xs;
 
 .db-tooltip {
-	--default-card-border-radius: 0.25rem;
+	--default-card-elevation: #{variables.$db-elevation-sm};
+	--default-card-border-radius: #{variables.$db-border-radius-md};
 	@extend %db-overwrite-font-size-sm;
 	@extend %default-popover;
 
-	// i HTML tags browsers default styling reset
-	font-style: initial;
 	// surrounding tags styling reset
 	font-weight: initial;
 
@@ -21,14 +21,13 @@ $tooltip-arrow-shadow-size: variables.$db-spacing-fixed-2xs;
 	// Arrow
 	&:not([data-variant="basic"]) {
 		&::after {
-
 			@extend %component-border;
 			content: "";
-			box-shadow: variables.$db-elevation-4;
+			box-shadow: variables.$db-elevation-md;
 			position: absolute;
 			background-color: colors.$db-base-bg;
-			inline-size: variables.$db-spacing-fixed-xs;
-			block-size: variables.$db-spacing-fixed-xs;
+			inline-size: $tooltip-arrow-shadow-size;
+			block-size: $tooltip-arrow-shadow-size;
 			clip-path: polygon(
 				calc(#{$tooltip-arrow-shadow-size} * -1)
 					calc(#{$tooltip-arrow-shadow-size} * -1),
@@ -43,7 +42,7 @@ $tooltip-arrow-shadow-size: variables.$db-spacing-fixed-2xs;
 	}
 
 	&:not([data-placement]),
-	&[data-placement="bottom"] {
+	&[data-placement^="bottom"] {
 		&::after {
 			inset-inline-start: 50%;
 			inset-block-start: 0;
@@ -52,7 +51,7 @@ $tooltip-arrow-shadow-size: variables.$db-spacing-fixed-2xs;
 		}
 	}
 
-	&[data-placement="top"] {
+	&[data-placement^="top"] {
 		&::after {
 			inset-inline-start: 50%;
 			inset-block-end: 0;
@@ -61,7 +60,7 @@ $tooltip-arrow-shadow-size: variables.$db-spacing-fixed-2xs;
 		}
 	}
 
-	&[data-placement="right"] {
+	&[data-placement^="right"] {
 		&::after {
 			inset-block-start: 50%;
 			inset-inline-start: 0;
@@ -70,7 +69,7 @@ $tooltip-arrow-shadow-size: variables.$db-spacing-fixed-2xs;
 		}
 	}
 
-	&[data-placement="left"] {
+	&[data-placement^="left"] {
 		&::after {
 			inset-block-start: 50%;
 			inset-inline-end: 0;

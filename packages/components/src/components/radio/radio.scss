@@ -1,14 +1,13 @@
 @use "@db-ui/foundations/build/scss/variables";
 @use "@db-ui/foundations/build/scss/colors";
 @use "../../styles/form-components";
-@use "../../styles/component";
 
 .db-radio {
 	@extend %check-element;
 
 	input {
-		border-color: #{colors.$db-neutral-on-bg};
-		border-radius: component.$full-border-radius;
+		border-color: currentColor;
+		border-radius: variables.$db-border-radius-3xl;
 		transition: border-width variables.$db-transition-duration-fast
 			variables.$db-transition-functional-timing;
 

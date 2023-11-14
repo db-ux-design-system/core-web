@@ -14,7 +14,7 @@ const getRadio = ({
 	children,
 	disabled,
 	value,
-	labelHidden
+	labelVariant
 }: DBRadioProps) => (
 	<DBRadio
 		label={label}
@@ -24,7 +24,7 @@ const getRadio = ({
 		invalid={invalid}
 		required={required}
 		disabled={disabled}
-		labelHidden={labelHidden}
+		labelVariant={labelVariant}
 		value={value}>
 		{children}
 	</DBRadio>

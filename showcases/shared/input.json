@@ -249,6 +249,13 @@
 					"label": "Label",
 					"iconAfter": "x_placeholder"
 				}
+			},
+			{
+				"name": "Hidden Label",
+				"props": {
+					"label": "Label",
+					"labelVariant": "hidden"
+				}
 			}
 		]
 	},

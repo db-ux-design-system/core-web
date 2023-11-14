@@ -61,6 +61,14 @@
 		"name": "Placement",
 		"examples": [
 			{
+				"name": "bottom-start",
+				"props": {
+					"content": "Popover",
+					"placement": "bottom-start",
+					"id": "popover-07-start"
+				}
+			},
+			{
 				"name": "bottom (Default)",
 				"props": {
 					"content": "Popover",
@@ -69,11 +77,19 @@
 				}
 			},
 			{
-				"name": "top",
+				"name": "bottom-end",
 				"props": {
 					"content": "Popover",
-					"placement": "top",
-					"id": "popover-08"
+					"placement": "bottom-end",
+					"id": "popover-07-end"
+				}
+			},
+			{
+				"name": "left-start",
+				"props": {
+					"content": "Popover",
+					"placement": "left-start",
+					"id": "popover-09-start"
 				}
 			},
 			{
@@ -85,11 +101,59 @@
 				}
 			},
 			{
+				"name": "left-end",
+				"props": {
+					"content": "Popover",
+					"placement": "left-end",
+					"id": "popover-09-end"
+				}
+			},
+			{
+				"name": "right-start",
+				"props": {
+					"content": "Popover",
+					"placement": "right-start",
+					"id": "popover-10-start"
+				}
+			},
+			{
 				"name": "right",
 				"props": {
 					"content": "Popover",
 					"placement": "right",
 					"id": "popover-10"
+				}
+			},
+			{
+				"name": "right-end",
+				"props": {
+					"content": "Popover",
+					"placement": "right-end",
+					"id": "popover-10-end"
+				}
+			},
+			{
+				"name": "top-start",
+				"props": {
+					"content": "Popover",
+					"placement": "top-start",
+					"id": "popover-08-start"
+				}
+			},
+			{
+				"name": "top",
+				"props": {
+					"content": "Popover",
+					"placement": "top",
+					"id": "popover-08"
+				}
+			},
+			{
+				"name": "top-end",
+				"props": {
+					"content": "Popover",
+					"placement": "top-end",
+					"id": "popover-08-end"
 				}
 			}
 		]

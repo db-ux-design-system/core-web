@@ -3,6 +3,7 @@
 @use "@db-ui/foundations/build/scss/tonality";
 @use "@db-ui/foundations/build/scss/variables";
 @use "@db-ui/foundations/build/scss/colors";
+@use "@db-ui/foundations/build/scss/helpers";
 @use "component";
 
 $dropdown-icon-transition: transform variables.$db-transition-emotional-straight;
@@ -97,7 +98,7 @@ $floating-label-size: calc(
 				@include placeholder-content() {
 					transition: opacity
 						variables.$db-transition-emotional-straight;
-					opacity: component.$default-placeholder-opacity;
+					opacity: variables.$db-opacity-md;
 				}
 			}
 		}
@@ -213,7 +214,7 @@ $floating-label-size: calc(
 			);
 
 		@include placeholder-content() {
-			opacity: component.$default-placeholder-opacity;
+			opacity: variables.$db-opacity-md;
 		}
 
 		&:is(input, textarea):read-only {
@@ -227,13 +228,20 @@ $floating-label-size: calc(
 		padding-block-end: variables.$db-spacing-fixed-xs;
 		pointer-events: none;
 		cursor: text;
-		opacity: component.$default-label-opacity;
+		opacity: variables.$db-opacity-lg;
 
 		transition: font-size variables.$db-transition-emotional-straight;
 		max-inline-size: 25ch;
 		text-overflow: ellipsis;
 		white-space: nowrap;
 		overflow: hidden;
+	}
+
+	&[data-label-variant="hidden"] {
+		label {
+			@extend %a11y-visually-hidden;
+			padding: 0;
+		}
 	}
 
 	// Helper message
@@ -244,7 +252,7 @@ $floating-label-size: calc(
 	// disabled
 	&:has(#{$selector}:disabled) {
 		// Decided against cursor: not-allowed, compare to e.g. https://phabricator.wikimedia.org/T121960
-		opacity: component.$default-disabled-opacity;
+		opacity: variables.$db-opacity-sm;
 		pointer-events: none;
 	}
 
@@ -255,7 +263,11 @@ $floating-label-size: calc(
 		pointer-events: none;
 		// 1px for border
 		inset-block-start: calc(
-			#{variables.$db-sizing-md} / 2 + #{$label-size-height-xs} - 1px
+			#{variables.$db-sizing-md} / 2 - #{variables.$db-spacing-fixed-xs} *
+				var(--db-label-visible-spacing, 0) + #{$label-size-height-xs} * var(
+					--db-label-visible-height,
+					1
+				) - 1px
 		);
 	}
 
@@ -334,7 +346,7 @@ $floating-label-size: calc(
 	}
 
 	&:has(input:disabled) {
-		opacity: component.$default-placeholder-opacity;
+		opacity: variables.$db-opacity-md;
 	}
 
 	&:is(label),
@@ -374,7 +386,7 @@ $floating-label-size: calc(
 		}
 	}
 
-	&[data-label-hidden="true"] {
+	&[data-label-variant="hidden"] {
 		font-size: 0;
 
 		input {
