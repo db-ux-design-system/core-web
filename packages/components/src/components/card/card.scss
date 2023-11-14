@@ -29,11 +29,11 @@
 
 		&:hover:not([data-elevation="none"]) {
 			cursor: pointer;
-			box-shadow: variables.$db-elevation-8;
+			box-shadow: variables.$db-elevation-lg;
 		}
 
 		&:active:not([data-elevation="none"]) {
-			box-shadow: variables.$db-elevation-2;
+			box-shadow: variables.$db-elevation-sm;
 		}
 	}
 

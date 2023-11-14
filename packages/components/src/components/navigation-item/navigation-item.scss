@@ -26,7 +26,7 @@
 		& ~ .db-sub-navigation {
 			visibility: visible;
 			transition: visibility 0ms linear 0ms;
-			animation: show-right-to-left animation.$animation-show-timing;
+			animation: show-right-to-left variables.$db-transition-show-straight;
 
 			.db-sub-navigation {
 				inset-block: 0;
@@ -37,7 +37,7 @@
 	&:not(&[aria-expanded="true"]) {
 		& ~ .db-sub-navigation {
 			transition: visibility 0ms linear 410ms; // hide animation is 0.4s
-			animation: hide-right-to-left animation.$animation-hide-timing;
+			animation: hide-right-to-left variables.$db-transition-hide-straight;
 		}
 	}
 }
@@ -51,17 +51,14 @@
 	inline-size: 100%;
 	display: inline-flex;
 
-	border-radius: component.$default-card-border-radius;
+	border-radius: variables.$db-border-radius-lg;
 	padding: variables.$db-spacing-fixed-xs variables.$db-spacing-fixed-sm;
 	white-space: nowrap; // we don't want to break
 	text-align: center;
 	align-items: center; // Centering the content vertically and horizontally
 
 	&:hover,
-	&:focus-visible,
-	&:has(~ .db-sub-navigation:hover),
-	&:has(~ .db-sub-navigation:focus-visible),
-	&:has(~ .db-sub-navigation:focus-within) {
+	&:has(~ .db-sub-navigation:hover) {
 		@include colors.get-variant-bg-color(0.16);
 	}
 
@@ -87,6 +84,11 @@
 	a {
 		@extend %navigation-item;
 		text-decoration: none;
+
+		&:focus-visible {
+			// We need to increase the z-index on focus-visible for the outline and box-shadow to appear above the pulse
+			z-index: 1;
+		}
 	}
 
 	.db-navigation-item-expand-button {
@@ -124,7 +126,7 @@
 	}
 
 	&[aria-disabled="true"] {
-		opacity: component.$default-disabled-opacity;
+		opacity: variables.$db-opacity-sm;
 		pointer-events: none;
 	}
 }
@@ -164,8 +166,8 @@
 	}
 
 	@include screen-sizes.screen("md") {
-		border-radius: component.$default-card-border-radius;
-		box-shadow: variables.$db-elevation-4;
+		border-radius: variables.$db-border-radius-lg;
+		box-shadow: variables.$db-elevation-md;
 		padding: variables.$db-spacing-fixed-sm;
 
 		position: absolute;

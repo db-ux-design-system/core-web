@@ -73,7 +73,7 @@
 	}
 
 	&:disabled {
-		opacity: component.$default-disabled-opacity;
+		opacity: variables.$db-opacity-sm;
 	}
 
 	// States (currently only "loading")

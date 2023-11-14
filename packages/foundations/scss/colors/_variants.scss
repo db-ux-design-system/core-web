@@ -75,30 +75,35 @@ $component-variants: (
 		"border": variables.$db-neutral-border-weak,
 		"element": variables.$db-neutral-element,
 		"on-bg": variables.$db-neutral-on-bg,
+		"bg": variables.$db-neutral-bg,
 		"text": variables.$db-neutral-text
 	),
 	"critical": (
 		"border": variables.$db-critical-border-weak,
 		"element": variables.$db-critical-element,
 		"on-bg": variables.$db-critical-on-bg,
+		"bg": variables.$db-critical-bg,
 		"text": variables.$db-critical-text
 	),
 	"informational": (
 		"border": variables.$db-informational-border-weak,
 		"element": variables.$db-informational-element,
 		"on-bg": variables.$db-informational-on-bg,
+		"bg": variables.$db-informational-bg,
 		"text": variables.$db-informational-text
 	),
 	"warning": (
 		"border": variables.$db-warning-border-weak,
 		"element": variables.$db-warning-element,
 		"on-bg": variables.$db-warning-on-bg,
+		"bg": variables.$db-warning-bg,
 		"text": variables.$db-warning-text
 	),
 	"successful": (
 		"border": variables.$db-successful-border-weak,
 		"element": variables.$db-successful-element,
 		"on-bg": variables.$db-successful-on-bg,
+		"bg": variables.$db-successful-bg,
 		"text": variables.$db-successful-text
 	)
 );

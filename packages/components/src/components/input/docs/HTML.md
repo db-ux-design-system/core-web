@@ -10,7 +10,7 @@ Use it:
 
 ```html
 <div class="db-input">
-	<input type="text" name="username" aria-labelledby="username-label" />
-	<label for="username" id="username-label" aria-hidden="true">Label</label>
+	<label for="username">Label</label>
+	<input type="text" name="username" id="username" />
 </div>
 ```

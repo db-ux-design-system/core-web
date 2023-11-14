@@ -1,4 +1,6 @@
 import type { RouteRecordRaw } from 'vue-router';
+import Tooltip from '../components/tooltip/Tooltip.vue';
+import Popover from '../components/popover/Popover.vue';
 import AccordionItem from '../components/accordion-item/AccordionItem.vue';
 import Accordion from '../components/accordion/Accordion.vue';
 import Badge from '../components/badge/Badge.vue';
@@ -74,7 +76,8 @@ export const navigationItems: NavItem[] = [
 				path: '/04/accordion-item',
 				label: 'AccordionItem',
 				component: AccordionItem
-			}
+			},
+			{ path: '/04/tooltip', label: 'Tooltip', component: Tooltip }
 		])
 	},
 	{
@@ -111,6 +114,7 @@ export const navigationItems: NavItem[] = [
 				label: 'Divider',
 				component: Divider
 			},
+			{ path: '/01/popover', label: 'Popover', component: Popover },
 			{
 				path: '/01/section',
 				label: 'Section',

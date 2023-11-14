@@ -24,25 +24,25 @@
   },
   "dependencies": {
     "@code-hike/mdx": "^0.9.0",
-    "next": "13.5.4",
+    "next": "14.0.2",
     "react": "18.2.0",
     "react-dom": "18.2.0",
-    "remark-gfm": "3.0.1"
+    "remark-gfm": "4.0.0"
   },
   "devDependencies": {
     "@babel/cli": "7.23.0",
-    "@babel/preset-react": "7.22.15",
-    "@mdx-js/loader": "^2.3.0",
-    "@mdx-js/react": "^2.3.0",
-    "@next/mdx": "^13.5.4",
-    "@types/node": "20.8.5",
-    "@types/react": "18.2.28",
-    "@types/react-dom": "18.2.13",
-    "eslint": "8.51.0",
-    "eslint-config-next": "13.5.4",
-    "iframe-resizer": "^4.3.7",
+    "@babel/preset-react": "7.23.3",
+    "@mdx-js/loader": "^3.0.0",
+    "@mdx-js/react": "^3.0.0",
+    "@next/mdx": "^14.0.2",
+    "@types/node": "20.9.0",
+    "@types/react": "18.2.37",
+    "@types/react-dom": "18.2.15",
+    "eslint": "8.53.0",
+    "eslint-config-next": "14.0.2",
+    "iframe-resizer": "^4.3.9",
     "open-cli": "^7.2.0",
-    "sass": "^1.69.3",
+    "sass": "^1.69.5",
     "typescript": "4.9.5"
   }
 }

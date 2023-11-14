@@ -1,4 +1,6 @@
 import { Routes } from '@angular/router';
+import { TooltipComponent } from '../components/tooltip/tooltip.component';
+import { PopoverComponent } from '../components/popover/popover.component';
 import { AccordionItemComponent } from '../components/accordion-item/accordion-item.component';
 import { AccordionComponent } from '../components/accordion/accordion.component';
 import { TextareaComponent } from '../components/textarea/textarea.component';
@@ -64,6 +66,11 @@ export const NAVIGATION_ITEMS: NavItem[] = [
 		label: '04 Data-Display',
 		subNavigation: getSortedNavigationItems([
 			{
+				path: '04/tooltip',
+				label: 'Tooltip',
+				component: TooltipComponent
+			},
+			{
 				path: '04/infotext',
 				label: 'Infotext',
 				component: InfotextComponent
@@ -118,6 +125,11 @@ export const NAVIGATION_ITEMS: NavItem[] = [
 				path: '01/divider',
 				label: 'Divider',
 				component: DividerComponent
+			},
+			{
+				path: '01/popover',
+				label: 'Popover',
+				component: PopoverComponent
 			},
 			{
 				path: '01/section',

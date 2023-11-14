@@ -1,12 +1,9 @@
 import {
-	ChangeEventState,
 	DefaultVariantProps,
 	EmphasisProps,
-	FormState,
 	GlobalProps,
 	GlobalState,
 	IconProps,
-	InitializedState,
 	OverflowProps
 } from '../../shared/model';
 
@@ -56,5 +53,4 @@ export interface DBTagDefaultState {
 	handleRemove?: () => void;
 }
 
-export type DBTagState = DBTagDefaultState &
-	GlobalState ;
+export type DBTagState = DBTagDefaultState & GlobalState;

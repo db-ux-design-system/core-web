@@ -1,0 +1,89 @@
+@use "@db-ui/foundations/build/scss/helpers/functions";
+@use "@db-ui/foundations/build/scss/variables";
+@use "@db-ui/foundations/build/scss/colors";
+@use "@db-ui/foundations/build/scss/tonality/font";
+@use "../../styles/popover-component";
+@use "../../styles/component";
+
+$tooltip-arrow-shadow-size: variables.$db-sizing-2xs;
+
+.db-tooltip {
+	--default-card-elevation: #{variables.$db-elevation-sm};
+	--default-card-border-radius: #{variables.$db-border-radius-md};
+	@extend %db-overwrite-font-size-sm;
+	@extend %default-popover;
+
+	// surrounding tags styling reset
+	font-weight: initial;
+
+	padding: variables.$db-spacing-fixed-2xs variables.$db-spacing-fixed-xs;
+
+	// Arrow
+	&:not([data-variant="basic"]) {
+		&::after {
+			@extend %component-border;
+			content: "";
+			box-shadow: variables.$db-elevation-md;
+			position: absolute;
+			background-color: colors.$db-base-bg;
+			inline-size: $tooltip-arrow-shadow-size;
+			block-size: $tooltip-arrow-shadow-size;
+			clip-path: polygon(
+				calc(#{$tooltip-arrow-shadow-size} * -1)
+					calc(#{$tooltip-arrow-shadow-size} * -1),
+				calc(100% + #{$tooltip-arrow-shadow-size})
+					calc(#{$tooltip-arrow-shadow-size} * -1),
+				calc(100% + #{$tooltip-arrow-shadow-size})
+					calc(100% + #{$tooltip-arrow-shadow-size})
+			);
+			border-radius: 0 2px;
+			transform: skew(-8deg, -8deg);
+		}
+	}
+
+	&:not([data-placement]),
+	&[data-placement^="bottom"] {
+		&::after {
+			inset-inline-start: 50%;
+			inset-block-start: 0;
+			translate: -50% -50%;
+			rotate: 315deg;
+		}
+	}
+
+	&[data-placement^="top"] {
+		&::after {
+			inset-inline-start: 50%;
+			inset-block-end: 0;
+			translate: -50% 50%;
+			rotate: 135deg;
+		}
+	}
+
+	&[data-placement^="right"] {
+		&::after {
+			inset-block-start: 50%;
+			inset-inline-start: 0;
+			translate: -50% -50%;
+			rotate: 225deg;
+		}
+	}
+
+	&[data-placement^="left"] {
+		&::after {
+			inset-block-start: 50%;
+			inset-inline-end: 0;
+			translate: 50% -50%;
+			rotate: 45deg;
+		}
+	}
+
+	&[data-emphasis="strong"] {
+		@extend %db-neutral-component;
+
+		&::after {
+			// TODO: Check whether this is the correct reference
+			background-color: colors.$db-neutral-text;
+		}
+	}
+}

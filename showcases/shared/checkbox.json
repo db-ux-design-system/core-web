@@ -35,28 +35,6 @@
 				}
 			},
 			{
-				"name": "Disabled",
-				"props": {
-					"name": "States",
-					"disabled": true
-				}
-			},
-			{
-				"name": "Disabled checked",
-				"props": {
-					"name": "States",
-					"disabled": true,
-					"checked": true
-				}
-			},
-			{
-				"name": "Required",
-				"props": {
-					"name": "States",
-					"required": true
-				}
-			},
-			{
 				"name": "Checked",
 				"props": {
 					"name": "States",
@@ -68,6 +46,39 @@
 				"props": {
 					"name": "States",
 					"indeterminate": true
+				}
+			},
+			{
+				"name": "Disabled",
+				"props": {
+					"name": "States",
+					"disabled": true
+				}
+			}
+		]
+	},
+	{
+		"name": "Requirement",
+		"examples": [
+			{
+				"name": "(Default) Optional",
+				"props": {
+					"name": "Requirement"
+				}
+			},
+			{
+				"name": "Required",
+				"props": {
+					"name": "Requirement",
+					"required": true
+				}
+			},
+			{
+				"name": "Required - Checked",
+				"props": {
+					"name": "Requirement",
+					"required": true,
+					"checked": true
 				}
 			}
 		]
@@ -86,6 +97,24 @@
 				"props": {
 					"name": "Size",
 					"size": "small"
+				}
+			}
+		]
+	},
+	{
+		"name": "Content",
+		"examples": [
+			{
+				"name": "(Default) Checkbox Label",
+				"props": {
+					"name": "Content"
+				}
+			},
+			{
+				"name": "No Label",
+				"props": {
+					"name": "Content",
+					"labelVariant": "hidden"
 				}
 			}
 		]

@@ -3,21 +3,21 @@
 		"name": "Tonality",
 		"examples": [
 			{
-				"name": "functional",
+				"name": "Functional",
 				"className": "db-ui-functional",
 				"props": {
 					"label": "Label"
 				}
 			},
 			{
-				"name": "regular (Default)",
+				"name": "(Default) Regular",
 				"className": "db-ui-regular",
 				"props": {
 					"label": "Label"
 				}
 			},
 			{
-				"name": "expressive",
+				"name": "Expressive",
 				"className": "db-ui-expressive",
 				"props": {
 					"label": "Label"
@@ -26,50 +26,91 @@
 		]
 	},
 	{
-		"name": "Variant",
+		"name": "Variant Label",
+		"examples": [
+			{
+				"name": "(Default) Label Above",
+				"props": {
+					"label": "Label"
+				}
+			},
+			{
+				"name": "Floating Label",
+				"props": {
+					"label": "Label",
+					"labelVariant": "floating",
+					"value": "Floating Label"
+				}
+			}
+		]
+	},
+	{
+		"name": "Variant Helper Message",
 		"examples": [
 			{
 				"name": "(Default) Basic",
 				"props": {
-					"label": "Label",
-					"placeholder": "I am a placeholder"
+					"label": "Label"
 				}
 			},
 			{
-				"name": "Informational",
+				"name": "Helper Message",
 				"props": {
 					"label": "Label",
-					"variant": "informational"
+					"message": "Helper Message"
 				}
-			},
+			}
+		]
+	},
+	{
+		"name": "Semantic",
+		"examples": [
 			{
-				"name": "Warning",
+				"name": "(Default) Adaptive",
 				"props": {
 					"label": "Label",
-					"variant": "warning"
+					"message": "Helper Message"
 				}
 			},
 			{
 				"name": "Critical",
 				"props": {
 					"label": "Label",
-					"variant": "critical"
+					"variant": "critical",
+					"message": "Critical Message"
+				}
+			},
+			{
+				"name": "Informational",
+				"props": {
+					"label": "Label",
+					"variant": "informational",
+					"message": "Informational Message"
 				}
 			},
 			{
 				"name": "Successful",
 				"props": {
 					"label": "Label",
-					"variant": "successful"
+					"variant": "successful",
+					"message": "Successful Message"
+				}
+			},
+			{
+				"name": "Warning",
+				"props": {
+					"label": "Label",
+					"variant": "warning",
+					"message": "Warning Message"
 				}
 			}
 		]
 	},
 	{
-		"name": "States",
+		"name": "States Label Above",
 		"examples": [
 			{
-				"name": "Default",
+				"name": "(Default) Empty",
 				"props": {
 					"label": "Label"
 				}
@@ -78,23 +119,23 @@
 				"name": "Filled",
 				"props": {
 					"label": "Label",
-					"value": "Input Text"
+					"value": "Filled"
 				}
 			},
 			{
-				"name": "Filled Number",
+				"name": "Filled - Invalid",
 				"props": {
 					"label": "Label",
-					"value": "123456",
-					"type": "number"
+					"value": "Filled - Invalid",
+					"invalid": true
 				}
 			},
 			{
-				"name": "Invalid",
+				"name": "Filled - Valid",
 				"props": {
 					"label": "Label",
-					"required": true,
-					"minLength": 5
+					"value": "Filled - Valid",
+					"required": true
 				}
 			},
 			{
@@ -105,19 +146,66 @@
 				}
 			},
 			{
-				"name": "Disabled filled",
+				"name": "Readonly - Filled",
 				"props": {
 					"label": "Label",
-					"value": "Input Text",
-					"disabled": true
+					"value": "Readonly - Filled",
+					"readOnly": true
+				}
+			}
+		]
+	},
+	{
+		"name": "States Floating Label",
+		"examples": [
+			{
+				"name": "(Default) Empty",
+				"props": {
+					"label": "Label",
+					"labelVariant": "floating"
 				}
 			},
 			{
-				"name": "Required",
+				"name": "Filled",
 				"props": {
 					"label": "Label",
-					"value": "Input Text",
-					"required": true
+					"value": "Filled",
+					"labelVariant": "floating"
+				}
+			},
+			{
+				"name": "Filled - Invalid",
+				"props": {
+					"label": "Label",
+					"invalid": true,
+					"value": "Filled - Invalid",
+					"labelVariant": "floating"
+				}
+			},
+			{
+				"name": "Filled - Valid",
+				"props": {
+					"label": "Label",
+					"value": "Filled - Valid",
+					"required": true,
+					"labelVariant": "floating"
+				}
+			},
+			{
+				"name": "Disabled",
+				"props": {
+					"label": "Label",
+					"disabled": true,
+					"labelVariant": "floating"
+				}
+			},
+			{
+				"name": "Readonly - Filled",
+				"props": {
+					"label": "Label",
+					"value": "Readonly - Filled",
+					"readOnly": true,
+					"labelVariant": "floating"
 				}
 			}
 		]
@@ -128,43 +216,77 @@
 			{
 				"name": "(Default) Text",
 				"props": {
-					"label": "Label"
+					"label": "Label",
+					"value": "(Default) Text"
 				}
 			},
 			{
-				"name": "Leading Icon + Text",
+				"name": "Filled Number",
 				"props": {
-					"label": "Label",
-					"icon": "account"
+					"label": "Number",
+					"value": "123456",
+					"type": "number"
 				}
 			},
 			{
-				"name": "Leading Icon + Text + Trailing Icon",
+				"name": "Text - Leading Icon",
 				"props": {
 					"label": "Label",
-					"icon": "account",
-					"iconAfter": "edit"
+					"icon": "x_placeholder"
 				}
 			},
 			{
-				"name": "Text + Trailing Icon",
+				"name": "Text - Leading Icon - Trailing Icon",
 				"props": {
 					"label": "Label",
-					"iconAfter": "edit"
+					"icon": "x_placeholder",
+					"iconAfter": "x_placeholder"
 				}
 			},
 			{
-				"name": "Text + Trailing Icon + Variant:Successful",
+				"name": "Text - Trailing Icon",
 				"props": {
 					"label": "Label",
-					"variant": "successful",
-					"iconAfter": "edit"
+					"iconAfter": "x_placeholder"
+				}
+			},
+			{
+				"name": "Hidden Label",
+				"props": {
+					"label": "Label",
+					"labelVariant": "hidden"
 				}
 			}
 		]
 	},
 	{
-		"name": "Types",
+		"name": "Requirement",
+		"examples": [
+			{
+				"name": "(Default) Optional",
+				"props": {
+					"label": "Label"
+				}
+			},
+			{
+				"name": "Required",
+				"props": {
+					"label": "Label",
+					"required": true
+				}
+			},
+			{
+				"name": "Required - Filled",
+				"props": {
+					"label": "Label",
+					"value": "Required - Filled",
+					"required": true
+				}
+			}
+		]
+	},
+	{
+		"name": "Example - Types",
 		"examples": [
 			{
 				"name": "(Default) Text",

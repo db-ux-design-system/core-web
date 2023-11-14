@@ -5,12 +5,6 @@
 @use "../../styles/form-components";
 @use "../../styles/component";
 
-@mixin accordion-item-content() {
-	:not(summary):not(link) {
-		@content;
-	}
-}
-
 .db-accordion-item {
 	@extend %bg-transparent;
 	@include helpers.divider($position: "top");
@@ -18,7 +12,7 @@
 	position: relative;
 	inline-size: 100%;
 
-	@include accordion-item-content() {
+	summary + div {
 		padding: variables.$db-spacing-fixed-md;
 		padding-block-end: variables.$db-spacing-fixed-lg;
 	}
@@ -29,7 +23,7 @@
 
 	&[aria-disabled="true"] {
 		pointer-events: none;
-		opacity: component.$default-disabled-opacity;
+		opacity: variables.$db-opacity-sm;
 	}
 
 	summary {
@@ -51,13 +45,12 @@
 		}
 
 		&:focus-visible {
-			// TODO: Evaluate whether this number is intended
-			border-radius: component.$default-border-radius + 2;
+			border-radius: variables.$db-border-radius-md;
 		}
 	}
 
 	&[open] {
-		@include accordion-item-content() {
+		summary + div {
 			animation: accordion-open
 				variables.$db-transition-emotional-straight normal both;
 		}

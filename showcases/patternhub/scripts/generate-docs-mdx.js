@@ -7,6 +7,7 @@ import getPropertiesFile from './get-properties-file.js';
 import getHowToFile from './get-how-to-file.js';
 import writeCodeFiles from './get-code-files.js';
 import getMigrationFile from './get-migration-file.js';
+import { getComponentName } from './utils.js';
 
 const componentsPath = './pages/components';
 
@@ -15,8 +16,7 @@ const generateDocsMdx = async () => {
 		FS.readFileSync('./../../output/docs.json', 'utf8').toString()
 	);
 	for (const key of Object.keys(docs)) {
-		let componentName = key.split('/').at(-1);
-		componentName = componentName.replace('.tsx', '');
+		const componentName = getComponentName(key);
 
 		const componentValue = docs[key].at(0);
 		if (componentValue) {

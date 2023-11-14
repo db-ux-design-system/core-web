@@ -1,4 +1,6 @@
 /* Use sizing's for fixed heights/widths e.g. the db-button has always a fixed height*/
+$db-sizing-3xs: var(--db-sizing-3xs);
+$db-sizing-2xs: var(--db-sizing-2xs);
 $db-sizing-xs: var(--db-sizing-xs);
 $db-sizing-sm: var(--db-sizing-sm);
 $db-sizing-md: var(--db-sizing-md);
@@ -15,31 +17,57 @@ $db-spacing-fixed-sm: var(--db-spacing-fixed-sm);
 $db-spacing-fixed-md: var(--db-spacing-fixed-md);
 $db-spacing-fixed-lg: var(--db-spacing-fixed-lg);
 $db-spacing-fixed-xl: var(--db-spacing-fixed-xl);
+$db-spacing-fixed-2xl: var(--db-spacing-fixed-2xl);
+$db-spacing-fixed-3xl: var(--db-spacing-fixed-3xl);
 
 /* The primary use-case for responsive spacings are
 paddings/gaps in an application e.g. the <main> should have a responsive padding. */
+$db-spacing-responsive-3xs: var(--db-spacing-responsive-3xs);
+$db-spacing-responsive-2xs: var(--db-spacing-responsive-2xs);
 $db-spacing-responsive-xs: var(--db-spacing-responsive-xs);
 $db-spacing-responsive-sm: var(--db-spacing-responsive-sm);
 $db-spacing-responsive-md: var(--db-spacing-responsive-md);
 $db-spacing-responsive-lg: var(--db-spacing-responsive-lg);
 $db-spacing-responsive-xl: var(--db-spacing-responsive-xl);
+$db-spacing-responsive-2xl: var(--db-spacing-responsive-2xl);
+$db-spacing-responsive-3xl: var(--db-spacing-responsive-3xl);
 
 /* Elevation */
 
-$db-elevation-1: var(--db-elevation-1);
-$db-elevation-2: var(--db-elevation-2);
-$db-elevation-4: var(--db-elevation-4);
-$db-elevation-8: var(--db-elevation-8);
-$db-elevation-12: var(--db-elevation-12);
-$db-elevation-24: var(--db-elevation-24);
+$db-elevation-sm: var(--db-elevation-sm);
+$db-elevation-md: var(--db-elevation-md);
+$db-elevation-lg: var(--db-elevation-lg);
+
+/* Opacity */
+
+$db-opacity-sm: var(--db-opacity-sm);
+$db-opacity-md: var(--db-opacity-md);
+$db-opacity-lg: var(--db-opacity-lg);
+
+/* Border */
+
+$db-border-height-sm: var(--db-border-height-sm);
+$db-border-height-md: var(--db-border-height-md);
+$db-border-height-lg: var(--db-border-height-lg);
+
+$db-border-radius-sm: var(--db-border-radius-sm);
+$db-border-radius-md: var(--db-border-radius-md);
+$db-border-radius-lg: var(--db-border-radius-lg);
+$db-border-radius-3xl: var(--db-border-radius-3xl);
 
 /* Transitions */
 
+$db-transition-duration-x-slow: var(--db-transition-duration-x-slow);
+$db-transition-duration-slow: var(--db-transition-duration-slow);
+$db-transition-duration-medium: var(--db-transition-duration-medium);
 $db-transition-duration-fast: var(--db-transition-duration-fast);
 $db-transition-duration-ultra-fast: var(--db-transition-duration-ultra-fast);
 
 $db-transition-emotional-timing: var(--db-transition-emotional-timing);
 $db-transition-functional-timing: var(--db-transition-functional-timing);
 
-$db-transition-emotional-straight: #{$db-transition-duration-fast} #{$db-transition-emotional-timing};
-$db-transition-functional-straight: #{$db-transition-duration-fast} #{$db-transition-functional-timing};
+$db-transition-emotional-straight: #{$db-transition-duration-medium} #{$db-transition-emotional-timing};
+$db-transition-functional-straight: #{$db-transition-duration-medium} #{$db-transition-functional-timing};
+
+$db-transition-show-straight: var(--db-transition-show-straight);
+$db-transition-hide-straight: var(--db-transition-hide-straight);

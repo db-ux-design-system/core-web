@@ -4,6 +4,7 @@
 		"henrynguyen5-vsc.vsc-nvm",
 		"streetsidesoftware.code-spell-checker",
 		"html-validate.vscode-html-validate",
-		"deque-systems.vscode-axe-linter"
+		"deque-systems.vscode-axe-linter",
+		"samverschueren.linter-xo"
 	]
 }

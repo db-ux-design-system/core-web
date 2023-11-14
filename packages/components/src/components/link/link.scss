@@ -41,8 +41,7 @@
 
 	// "disabled" links
 	&[aria-disabled="true"] {
-		// TODO: probably move these to the tokens as well
-		opacity: var(--db-disabled-text-opacity, 0.5);
+		opacity: variables.$db-opacity-md;
 		pointer-events: none;
 	}
 
@@ -57,16 +56,12 @@
 	}
 
 	&:focus-visible {
-		border-radius: component.$default-border-radius;
+		border-radius: variables.$db-border-radius-md;
 	}
 
 	&[data-content="internal"],
 	&[data-content="external"] {
 		--db-icon-margin-start: #{variables.$db-spacing-fixed-2xs};
-
-		&:focus-visible {
-			outline-offset: var(--db-focus-outline-offset, 1px);
-		}
 
 		&::after {
 			margin-inline-start: var(--db-icon-margin-start);
@@ -75,7 +70,16 @@
 
 	// We couldn't extend any existing SCSS placeholders, as this is a special construct
 	&[data-variant="primary"] {
-		@extend %db-brand-text-interactive;
+		--db-current-color: #{colors.$db-brand-text};
+		color: colors.$db-current-color;
+
+		&:hover {
+			--db-current-color: #{colors.$db-brand-text-hover};
+		}
+
+		&:active {
+			--db-current-color: #{colors.$db-brand-text-pressed};
+		}
 	}
 
 	&[data-size="small"] {

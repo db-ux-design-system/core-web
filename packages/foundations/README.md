@@ -5,7 +5,7 @@
 [![Conventional Commits](https://img.shields.io/badge/Conventional%20Commits-1.0.0-yellow.svg)](https://conventionalcommits.org)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](https://makeapullrequest.com)
 
-A library containing all tokens of [DB UX Design System (technical components)](https://github.com/db-ui/mono).
+A library containing all tokens (colors, icons, variables) of [DB UX Design System (technical components)](https://github.com/db-ui/mono).
 
 We currently support:
 
@@ -22,7 +22,7 @@ We currently support:
 The defaults for `db-ui-foundations.css` are:
 
 -   [Tonality](https://marketingportal.extranet.deutschebahn.com/marketingportal/Design-Anwendungen/db-ux-design-system-v3/principles/tonalities): `regular`
--   [Adaptive Coloring](https://marketingportal.extranet.deutschebahn.com/marketingportal/Design-Anwendungen/db-ux-design-system-v3/principles/adaptive-styles): `neutral-0`
+-   [Adaptive Coloring](https://marketingportal.extranet.deutschebahn.com/marketingportal/Design-Anwendungen/db-ux-design-system-v3/principles/adaptive-styles): `base`
 
 ### CSS
 
@@ -99,62 +99,6 @@ module.exports = {
 ```html
 <div class="p-fix-md"></div>
 ```
-
-## Icons
-
-We use icon fonts as `woff2` files for all our icons.
-We auto generate these files out of `.svg` files.
-
-### Custom Icons
-
-If you have custom icons and want to use them for foundations and/or in components, you need to generate a `woff2` file.
-
-For this run:
-
-```shell
-node node_modules/@db-ui/foundations/scripts/generate-icon-fonts/index.js --src ./my-path-to/icons --fontName my-name
-```
-
-We search for all `**/*.svg` files inside the `src` directory and create a new icon font with the provided name.
-
-> **_NOTE:_** We use 3 different sizes for components (16,20,24) to show more or less details. You can do the same by providing another file with a size postfix for example "icon_file_name_16.svg".
-
-In your app you need to include some of the generated files:
-
-`./my-path-to/icons/fonts/my-name.woff2`
-
-`./my-path-to/icons/fonts/font-face.css`
-
-Now you can use your icons with your `font-family: my-name`, e.g.:
-
-```html
-<!--example.html-->
-<i class="my-name">icon_file_name</i>
-```
-
-### data-icon
-
-If you like to use a custom icon in one of our components you can do it by overwriting the default font-family like this:
-
-```html
-<!--example.html-->
-
-<p class="icon-family-my-name" data-icon="icon_file_name">Test</p>
-<!-- or -->
-<p data-icon-family="my-name" data-icon="icon_file_name">Test</p>
-```
-
-### Foundation Developer
-
-If you update a `svg` inside `assets/icons/functional/images` you need to recreate the `woff2` file.
-
-For this you just need to run
-
-```shell
-npm run generate:icon-fonts
-```
-
-Your new icon should be inside `assets/icons/functional/fonts/info.json` and you should see it inside `assets/icons/functional/fonts/index.html` in the browser.
 
 ## Deutsche Bahn brand
 

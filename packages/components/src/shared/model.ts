@@ -76,8 +76,37 @@ export type IconAfterProps = {
 	iconAfter?: IconTypes;
 };
 
-export type IconVisibleState = {
-	iconVisible: (icon?: string) => boolean;
+export type SpacingProps = {
+	/**
+	 * The spacing attribute changes the padding of the card.
+	 */
+	spacing?: 'none' | 'medium' | 'small';
+};
+
+export type PlacementProps = {
+	/**
+	 * The `placement` attributes values change the position to absolute and adds a transform based on the placement.
+	 */
+	placement?:
+		| 'left'
+		| 'right'
+		| 'top'
+		| 'bottom'
+		| 'left-start'
+		| 'left-end'
+		| 'right-start'
+		| 'right-end'
+		| 'top-start'
+		| 'top-end'
+		| 'bottom-start'
+		| 'bottom-end';
+};
+
+export type GapProps = {
+	/**
+	 * If the absolute element should have a gap between the parent element.
+	 */
+	gap?: boolean;
 };
 
 export type OverflowProps = {
@@ -92,6 +121,21 @@ export type WidthProps = {
 	 * Width of the component. Auto width based on children size, full width based on parent elements width.
 	 */
 	width?: 'full' | 'auto';
+};
+
+export type PopoverProps = {
+	/**
+	 * Add a delay before showing the tooltip
+	 */
+	delay?: 'none' | 'slow' | 'fast';
+	/**
+	 * Disable animation
+	 */
+	animation?: 'enabled' | 'disabled';
+	/**
+	 * Use fixed with for default max-width
+	 */
+	width?: 'auto' | 'fixed';
 };
 
 export type SizeProps = {
@@ -164,10 +208,6 @@ export type FormTextProps = {
 	 */
 	minLength?: number;
 	/**
-	 * Text that appears in the form control when it has no value set
-	 */
-	placeholder?: string;
-	/**
 	 * The disabled attribute can be set to keep a user from edit on the form element
 	 */
 	readOnly?: boolean;
@@ -185,9 +225,22 @@ export type FormCheckProps = {
 	 * cf. https://react.carbondesignsystem.com/?path=/docs/components-checkbox--overview#component-api vs. https://vue.carbondesignsystem.com/?path=/story/components-cvcheckbox--default
 	 */
 	defaultChecked?: boolean;
+
+	/**
+	 * Hide the label of a radio/checkbox.
+	 */
+	labelVariant?: 'hidden';
 };
 
 export type FormMessageProps = {
+	/**
+	 * Change the variant of the label to float
+	 */
+	labelVariant?: 'above' | 'floating' | 'hidden';
+	/**
+	 * Text that appears in the form control when it has no value set
+	 */
+	placeholder?: string;
 	/**
 	 * Optional helper message for form components
 	 */
