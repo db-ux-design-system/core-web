@@ -119,17 +119,25 @@ export default function DBCheckbox(props: DBCheckboxProps) {
 				}
 			}
 		}
-	}, [state.initialized, props.indeterminate, props.checked, props.defaultChecked]);
+	}, [
+		state.initialized,
+		props.indeterminate,
+		props.checked,
+		props.defaultChecked
+	]);
 
 	return (
-		<>
+		<label
+			data-size={props.size}
+			data-label-variant={props.labelVariant}
+			className={cls('db-checkbox', props.className)}
+			htmlFor={state._id}>
 			<Show when={state.stylePath}>
 				<link rel="stylesheet" href={state.stylePath} />
 			</Show>
 			<input
 				ref={component}
 				type="checkbox"
-				class={cls('db-checkbox', props.className)}
 				id={state._id}
 				name={props.name}
 				checked={props.checked}
@@ -137,18 +145,15 @@ export default function DBCheckbox(props: DBCheckboxProps) {
 				value={props.value}
 				aria-describedby={props.describedbyid}
 				aria-invalid={props.invalid}
-				data-size={props.size}
 				required={props.required}
 				onChange={(event) => state.handleChange(event)}
 				onBlur={(event) => state.handleBlur(event)}
 				onFocus={(event) => state.handleFocus(event)}
 			/>
-			<label htmlFor={state._id}>
-				<Show when={props.label}>
-					<span>{props.label}</span>
-				</Show>
-				{props.children}
-			</label>
-		</>
+			<Show when={props.label}>
+				<span>{props.label}</span>
+			</Show>
+			{props.children}
+		</label>
 	);
 }

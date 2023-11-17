@@ -1,6 +1,6 @@
 export default {
 	'packages/foundations/assets/icons/functional/**/*.svg': () =>
-		'update:icon-fonts',
+		'npm run update:icon-fonts',
 	'*.md': 'markdownlint -c .markdown-lint.yml',
 	'*.{css,scss}': 'stylelint --fix',
 	'*.{js,ts,tsx}': 'xo --fix',

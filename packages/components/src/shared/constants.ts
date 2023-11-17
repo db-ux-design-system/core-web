@@ -1,13 +1,14 @@
-export const DEFAULT_ID = 'OVERWRITE_DEFAULT_ID';
-export const DEFAULT_LABEL = 'LABEL SHOULD BE SET';
+export const DEFAULT_ID: string = 'OVERWRITE_DEFAULT_ID';
+export const DEFAULT_LABEL: string = 'LABEL SHOULD BE SET';
 
-export const DEFAULT_MESSAGE_ID_SUFFIX = '-message';
+export const DEFAULT_MESSAGE_ID_SUFFIX: string = '-message';
+export const DEFAULT_PLACEHOLDER_ID_SUFFIX: string = '-placeholder';
 
-export const DEFAULT_BACK = 'Back';
+export const DEFAULT_BACK: string = 'Back';
 
-export const DEFAULT_CLOSE_BUTTON = 'Close Button';
-export const TONALITY_CONST = 'tonality';
-export const COLOR_CONST = 'color';
+export const DEFAULT_CLOSE_BUTTON: string = 'Close Button';
+export const TONALITY_CONST: string = 'tonality';
+export const COLOR_CONST: string = 'color';
 
 export enum TONALITY {
 	'FUNCTIONAL' = 'functional',
@@ -23,13 +24,17 @@ export enum COLOR_SIMPLE {
 }
 
 export enum COLOR {
+	'BASE' = 'base',
+	'BASE_STRONG' = 'base-strong',
+	'BASE_TRANSPARENT_FULL' = 'base-transparent-full',
+	'BASE_TRANSPARENT_SEMI' = 'base-transparent-semi',
 	'NEUTRAL' = 'neutral',
 	'NEUTRAL_STRONG' = 'neutral-strong',
 	'NEUTRAL_TRANSPARENT_FULL' = 'neutral-transparent-full',
 	'NEUTRAL_TRANSPARENT_SEMI' = 'neutral-transparent-semi',
-	'PRIMARY' = 'primary',
-	'PRIMARY_TRANSPARENT_FULL' = 'primary-transparent-full',
-	'PRIMARY_TRANSPARENT_SEMI' = 'primary-transparent-semi',
+	'BRAND' = 'brand',
+	'BRAND_TRANSPARENT_FULL' = 'brand-transparent-full',
+	'BRAND_TRANSPARENT_SEMI' = 'brand-transparent-semi',
 	'SUCCESSFUL' = 'successful',
 	'SUCCESSFUL_TRANSPARENT_FULL' = 'successful-transparent-full',
 	'SUCCESSFUL_TRANSPARENT_SEMI' = 'successful-transparent-semi',

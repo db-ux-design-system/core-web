@@ -35,7 +35,10 @@ const svgToFont = async (temporaryDirectory, dist, values) => {
 			},
 			website: {
 				index: 'font-class',
-				template: path.resolve(generateIconFontsDir, 'template.ejs')
+				template: path.resolve(
+					generateIconFontsDir,
+					'templates/template.ejs'
+				)
 			},
 			styleTemplates: path.resolve(generateIconFontsDir, 'styles')
 		});

@@ -16,7 +16,7 @@ jobs:
 
       - name: ⌚ Update PRs
         id: cleanup
-        uses: actions/github-script@v6
+        uses: actions/github-script@v7
         with:
           script: |
             // TODO: we need to wait for some results on https://github.com/orgs/community/discussions/43427 for this one

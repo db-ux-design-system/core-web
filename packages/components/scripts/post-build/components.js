@@ -20,6 +20,14 @@
  * }]}
  */
 const getComponents = () => [
+  {
+    name: "tooltip"
+  },
+
+  {
+    name: "popover"
+  },
+
 	{
 		name: 'accordion-item'
 	},

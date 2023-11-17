@@ -24,25 +24,27 @@
   },
   "dependencies": {
     "@code-hike/mdx": "^0.9.0",
-    "next": "13.5.4",
+    "dompurify": "3.0.6",
+    "next": "14.0.3",
     "react": "18.2.0",
     "react-dom": "18.2.0",
-    "remark-gfm": "3.0.1"
+    "remark-gfm": "4.0.0"
   },
   "devDependencies": {
     "@babel/cli": "7.23.0",
-    "@babel/preset-react": "7.22.15",
-    "@mdx-js/loader": "^2.3.0",
-    "@mdx-js/react": "^2.3.0",
-    "@next/mdx": "^13.5.4",
-    "@types/node": "20.8.2",
-    "@types/react": "18.2.25",
-    "@types/react-dom": "18.2.10",
-    "eslint": "8.50.0",
-    "eslint-config-next": "13.5.4",
-    "iframe-resizer": "^4.3.7",
+    "@babel/preset-react": "7.23.3",
+    "@mdx-js/loader": "^3.0.0",
+    "@mdx-js/react": "^3.0.0",
+    "@next/mdx": "^14.0.3",
+    "@types/dompurify": "3.0.5",
+    "@types/node": "20.9.1",
+    "@types/react": "18.2.37",
+    "@types/react-dom": "18.2.15",
+    "eslint": "8.53.0",
+    "eslint-config-next": "14.0.3",
+    "iframe-resizer": "^4.3.9",
     "open-cli": "^7.2.0",
-    "sass": "^1.69.0",
+    "sass": "^1.69.5",
     "typescript": "4.9.5"
   }
 }

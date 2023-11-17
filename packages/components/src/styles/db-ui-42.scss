@@ -1,4 +1,6 @@
 /* This is a predefined beginner friendly bundle with default asset-paths (../assets) */
 
-@use "@db-ui/foundations/build/scss/icon/icons" as *;
-@use "./db-ui-components" as *;
+@forward "./db-ui-components";
+@forward "@db-ui/foundations/build/css/default-theme";
+@forward "@db-ui/foundations/build/css/internals";
+@forward "@db-ui/foundations/build/scss/icons/include";

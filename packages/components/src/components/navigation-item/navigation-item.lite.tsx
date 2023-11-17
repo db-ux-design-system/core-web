@@ -105,6 +105,7 @@ export default function DBNavigationItem(props: DBNavigationItemProps) {
 					{props.children}
 				</button>
 
+				{/* TODO: Consider using popover here */}
 				<menu className="db-sub-navigation" id={state.subNavigationId}>
 					<Show when={state.hasAreaPopup}>
 						<div class="db-mobile-navigation-back">

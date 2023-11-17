@@ -1,0 +1,54 @@
+@use "@db-ui/foundations/build/scss/variables";
+@use "@db-ui/foundations/build/scss/screen-sizes";
+@use "@db-ui/foundations/build/scss/colors";
+@use "@db-ui/foundations/build/scss/helpers";
+
+$default-mobile-header-height: var(
+	--db-sizing-fixed-mobile-header,
+	#{helpers.to-rem(56)}
+);
+
+%default-adaptive-border {
+	border: variables.$db-border-height-sm solid colors.$db-base-on-bg;
+}
+
+%transparent-border {
+	border: variables.$db-border-height-sm solid transparent;
+}
+
+%component-border {
+	border: variables.$db-border-height-sm solid colors.$db-base-border-weak;
+}
+
+%default-interactive-component {
+	@extend %default-adaptive-border;
+	border-radius: variables.$db-border-radius-md;
+}
+
+%default-card {
+	border-radius: var(
+		--default-card-border-radius,
+		#{variables.$db-border-radius-lg}
+	);
+	box-shadow: variables.$db-elevation-md;
+}
+
+%adaptive-neutral-component {
+	@extend %db-bg-neutral-transparent-semi;
+}
+
+%adaptive-critical-component {
+	@extend %db-bg-critical-transparent-semi;
+}
+
+%adaptive-warning-component {
+	@extend %db-bg-warning-transparent-semi;
+}
+
+%adaptive-informational-component {
+	@extend %db-bg-informational-transparent-semi;
+}
+
+%adaptive-successful-component {
+	@extend %db-bg-successful-transparent-semi;
+}

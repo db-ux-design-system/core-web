@@ -1,15 +1,16 @@
 @use "@db-ui/foundations/build/scss/variables";
-@use "@db-ui/foundations/build/scss/helpers/component";
-@use "@db-ui/foundations/build/scss/color/color-variants";
-@use "@db-ui/foundations/build/scss/helpers/functions";
-@use "@db-ui/foundations/build/scss/animation/animations";
-@use "@db-ui/foundations/build/scss/icon/icon-helpers";
+@use "@db-ui/foundations/build/scss/colors";
+@use "@db-ui/foundations/build/scss/screen-sizes";
+@use "@db-ui/foundations/build/scss/helpers";
+@use "@db-ui/foundations/build/scss/animation";
+@use "@db-ui/foundations/build/scss/icons";
 @use "../../styles/db-puls";
 @use "../../styles/icon-passing";
+@use "../../styles/component";
 
 %sub-navi-handler-desktop {
 	// show sub-navigation on hover
-	@include component.screen("md") {
+	@include screen-sizes.screen("md") {
 		&:hover,
 		&:focus-visible {
 			& ~ .db-sub-navigation {
@@ -25,7 +26,7 @@
 		& ~ .db-sub-navigation {
 			visibility: visible;
 			transition: visibility 0ms linear 0ms;
-			animation: show-right-to-left animations.$animation-show-timing;
+			animation: show-right-to-left variables.$db-transition-show-straight;
 
 			.db-sub-navigation {
 				inset-block: 0;
@@ -36,7 +37,7 @@
 	&:not(&[aria-expanded="true"]) {
 		& ~ .db-sub-navigation {
 			transition: visibility 0ms linear 410ms; // hide animation is 0.4s
-			animation: hide-right-to-left animations.$animation-hide-timing;
+			animation: hide-right-to-left variables.$db-transition-hide-straight;
 		}
 	}
 }
@@ -45,27 +46,24 @@
 	@extend %default-interactive-component;
 	@extend %transparent-border;
 
-	@include color-variants.get-variant-bg-color(0);
+	@include colors.get-variant-bg-color(0);
 	cursor: pointer;
 	inline-size: 100%;
 	display: inline-flex;
 
-	border-radius: component.$default-card-border-radius;
+	border-radius: variables.$db-border-radius-lg;
 	padding: variables.$db-spacing-fixed-xs variables.$db-spacing-fixed-sm;
 	white-space: nowrap; // we don't want to break
 	text-align: center;
 	align-items: center; // Centering the content vertically and horizontally
 
 	&:hover,
-	&:focus-visible,
-	&:has(~ .db-sub-navigation:hover),
-	&:has(~ .db-sub-navigation:focus-visible),
-	&:has(~ .db-sub-navigation:focus-within) {
-		@include color-variants.get-variant-bg-color(0.16);
+	&:has(~ .db-sub-navigation:hover) {
+		@include colors.get-variant-bg-color(0.16);
 	}
 
 	&:active {
-		@include color-variants.get-variant-bg-color(0.24);
+		@include colors.get-variant-bg-color(0.24);
 	}
 
 	&::after {
@@ -86,10 +84,15 @@
 	a {
 		@extend %navigation-item;
 		text-decoration: none;
+
+		&:focus-visible {
+			// We need to increase the z-index on focus-visible for the outline and box-shadow to appear above the pulse
+			z-index: 1;
+		}
 	}
 
 	.db-navigation-item-expand-button {
-		@include component.screen("md", "max") {
+		@include screen-sizes.screen("md", "max") {
 			@include sub-navi-handler-mobile();
 		}
 
@@ -99,7 +102,7 @@
 			@extend %navigation-item;
 
 			// default icon for navigation
-			@include icon-helpers.icon("chevron_right", "after");
+			@include icons.set-icon("chevron_right", "after");
 
 			font-weight: inherit;
 		}
@@ -123,7 +126,7 @@
 	}
 
 	&[aria-disabled="true"] {
-		opacity: component.$default-disabled-opacity;
+		opacity: variables.$db-opacity-sm;
 		pointer-events: none;
 	}
 }
@@ -148,23 +151,23 @@
 	flex-direction: column;
 	z-index: 70;
 	inset-inline-start: 0;
-	background-color: variables.$db-colors-neutral-bg;
+	background-color: colors.$db-base-bg;
 
 	visibility: hidden;
 
-	@include component.screen("md", "max") {
+	@include screen-sizes.screen("md", "max") {
 		@include sub-navigation-mobile();
 	}
 
-	@include component.screen("md") {
+	@include screen-sizes.screen("md") {
 		.db-mobile-navigation-back {
 			display: none;
 		}
 	}
 
-	@include component.screen("md") {
-		border-radius: component.$default-card-border-radius;
-		box-shadow: variables.$db-elevation-4;
+	@include screen-sizes.screen("md") {
+		border-radius: variables.$db-border-radius-lg;
+		box-shadow: variables.$db-elevation-md;
 		padding: variables.$db-spacing-fixed-sm;
 
 		position: absolute;
@@ -228,10 +231,10 @@
 }
 
 .db-mobile-navigation-back {
-	@include functions.divider("bottom");
+	@include helpers.divider("bottom");
 	display: flex;
 	font-weight: normal;
-	background-color: variables.$db-colors-neutral-bg;
+	background-color: colors.$db-base-bg;
 	padding-block-end: variables.$db-spacing-fixed-md;
 	margin-block-end: variables.$db-spacing-fixed-md;
 }
