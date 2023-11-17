@@ -27,6 +27,6 @@
   "devDependencies": {
     "@angular-devkit/build-angular": "14.2.13",
     "@angular/cli": "14.2.13",
-    "@angular/compiler-cli": "14.3.0"
+    "@angular/compiler-cli": "17.0.3"
   }
 }
