@@ -10,8 +10,7 @@
 
 // 1px for border
 $icon-padding: calc(
-	#{form-components.$font-size-height} + 2 * #{variables.$db-spacing-fixed-sm} -
-		1px
+	#{form-components.$font-size-height} + #{variables.$db-spacing-fixed-sm} + #{variables.$db-spacing-fixed-xs}
 );
 
 .db-input {

@@ -50,7 +50,10 @@ $floating-label-size: calc(
 			inset-block-start: calc(
 				(#{variables.$db-sizing-md} - #{$font-size-height}) / 2
 			);
-			inset-inline: #{variables.$db-spacing-fixed-sm};
+			inset-inline: var(
+				--db-form-component-padding-inline-start,
+				#{variables.$db-spacing-fixed-sm}
+			);
 		}
 
 		// icons
