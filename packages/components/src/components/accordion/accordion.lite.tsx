@@ -100,9 +100,8 @@ export default function DBAccordion(props: DBAccordionProps) {
 					initOpenItems = [initOpenItems[0]];
 				}
 				state.openItems = initOpenItems;
+				state.initialized = false;
 			}
-			/* Just set the click listener once */
-			state.initialized = false;
 		}
 	}, [ref, state.initialized]);
 
