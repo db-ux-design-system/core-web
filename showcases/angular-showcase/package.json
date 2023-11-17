@@ -18,7 +18,7 @@
     "@angular/core": "14.3.0",
     "@angular/forms": "14.3.0",
     "@angular/platform-browser": "14.3.0",
-    "@angular/platform-browser-dynamic": "14.3.0",
+    "@angular/platform-browser-dynamic": "17.0.3",
     "@angular/router": "14.3.0",
     "rxjs": "~7.8.1",
     "tslib": "^2.6.2",
