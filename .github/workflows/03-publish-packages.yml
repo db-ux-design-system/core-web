@@ -33,12 +33,6 @@ jobs:
           name: db-ui-outputs
           path: build-outputs
 
-      - name: ⬇ Download Power Apps zip
-        uses: ./.github/actions/download-tar-artifact
-        with:
-          name: db-ui-powerapps
-          path: build-power-apps/DBUI
-
       - name: 📰 Publish to NPM Registries
         run: |
           chmod +rx ./.github/scripts/publish-npm.sh
@@ -49,18 +43,6 @@ jobs:
           VALID_SEMVER_VERSION: ${{ inputs.version }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
           GPR_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: ⬆ Upload Power Apps Release Asset
-        id: upload-release-asset
-        uses: actions/github-script@v7
-        with:
-          result-encoding: json
-          script: |
-            const { default: uploadAsset } = await import('${{ github.workspace }}/.github/scripts/upload-asset.js');
-            const release_id = context.payload.release.id;
-            const assetName = 'DBUI.zip';
-            const assetPath = '${{ github.workspace }}/build-power-apps/DBUI/bin/Release/DBUI.zip';
-            return await uploadAsset({github, context, release_id, assetName, assetPath});
 
       - name: 💀 Killing me softly
         uses: ./.github/actions/cancel-workflow
