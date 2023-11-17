@@ -60,7 +60,6 @@
     "lint:markdownlint": "markdownlint -c .markdown-lint.yml **/*.md",
     "lint:stylelint": "stylelint **/*.scss",
     "lint:xo": "cross-env TIMING=1 NODE_OPTIONS=\"--max-old-space-size=4096\" xo",
-    "postbuild:02_components": "cpr output/power-apps build-power-apps -o",
     "prepare": "node -e \"try { require('husky').install() } catch (e) {}\"",
     "regenerate:screenshots": "npm run build && npm run build-showcases:react && docker-compose -f ./e2e/docker-compose.regenerate.yml up",
     "regenerate:screenshots:rebuild": "npm run clean && npm i && npm run regenerate:screenshots -- --build",
