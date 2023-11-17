@@ -1,6 +1,5 @@
 import DefaultPage from '../../../components/default-page';
 import { DBButton, DBInput, DBCard } from '../../../components/src';
-import { Fragment } from 'react';
 
 const tonalities = ['functional', 'regular', 'expressive'];
 const Example = () => {
