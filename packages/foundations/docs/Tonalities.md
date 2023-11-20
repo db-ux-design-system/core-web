@@ -2,7 +2,7 @@
 
 -   You could use `Tonalities` to create visual "volume levels"
 -   You could change the appearance of a container rather than a component
--   Best example is the navigation our [main page](https://db-ui.github.io/mono/review/main/). Above the navigation is a smaller meta-navigation and even the component inside is smaller as well as all the spacings. The meta-navigation is above the real navigation, but focus of the user is on the real navigation, because the meta-navigation has less "volume"
+-   Best example is the navigation on our [main page](https://db-ui.github.io/mono/review/main/). Above the navigation is a smaller meta-navigation and even the component inside is smaller as well as all the spacings. The meta-navigation is above the real navigation, but focus of the user is on the real navigation, because the meta-navigation has less "volume"
 
 There are three different `Tonalities`, you can use them to change the volume of a specific container or even the entire page based on the use-case, so change the default `tonality` when:
 
