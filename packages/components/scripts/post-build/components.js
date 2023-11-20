@@ -20,13 +20,13 @@
  * }]}
  */
 const getComponents = () => [
-  {
-    name: "tooltip"
-  },
+	{
+		name: 'tooltip'
+	},
 
-  {
-    name: "popover"
-  },
+	{
+		name: 'popover'
+	},
 
 	{
 		name: 'accordion-item'
@@ -191,6 +191,7 @@ const getComponents = () => [
 					to: '() => toggle()'
 				}
 			],
+			angular: [{ from: '(close)', to: '(onClose)' }],
 			webComponents: [
 				{
 					from: '<slot></slot>',
