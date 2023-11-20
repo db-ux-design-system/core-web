@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import {
 	DBButton,
 	DBInput,
@@ -7,7 +7,8 @@ import {
 	DBCheckbox,
 	DBTag,
 	DBTextarea,
-	DBLink
+	DBAccordion,
+	DBAccordionItem
 } from '../../../../../output/react/src';
 import type { KeyValueType } from '../../../../../output/react/src/shared/model';
 
@@ -20,6 +21,18 @@ const FormComponent = () => {
 	const [select, setSelect] = useState('');
 	const [tags, setTags] = useState<string[]>([]);
 	const [checked, setChecked] = useState<boolean[]>([true, false]);
+
+	const [accordionItems, setAccordionItems] = useState<KeyValueType[]>();
+
+	useEffect(() => {
+		setTimeout(() => {
+			setAccordionItems([
+				{ key: 'test1', value: 'Test1' },
+				{ key: 'test2', value: 'Test2' },
+				{ key: 'test3', value: 'Test3' }
+			]);
+		}, 2000);
+	}, []);
 
 	const dataList: KeyValueType[] = [
 		{ key: 'test', value: 'Test' },
@@ -213,6 +226,14 @@ const FormComponent = () => {
 					<dt>tags value</dt>
 					<dd>{JSON.stringify(tags)}</dd>
 				</dl>
+
+				<DBAccordion>
+					{accordionItems?.map((item) => (
+						<DBAccordionItem key={item.key} title={item.key}>
+							{item.value}
+						</DBAccordionItem>
+					))}
+				</DBAccordion>
 			</div>
 		</div>
 	);

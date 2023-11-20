@@ -11,13 +11,16 @@ const generateIconTypes = () => {
 		const allIcons = [];
 		const icons = FS.readdirSync(foundationAssetsPath)
 			.reduce((previousValue, currentValue) => {
-				if (currentValue.includes('svg')) {
+				const path_string = `${foundationAssetsPath}/${currentValue}`;
+
+				if (
+					currentValue.includes('.svg') ||
+					!FS.lstatSync(path_string).isDirectory()
+				) {
 					return previousValue;
 				}
 
-				let iconPaths = FS.readdirSync(
-					`${foundationAssetsPath}/${currentValue}`
-				);
+				let iconPaths = FS.readdirSync(path_string);
 
 				if (
 					iconPaths.filter(
