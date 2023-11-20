@@ -36,13 +36,6 @@ jobs:
     uses: ./.github/workflows/02-e2e.yml
     needs: [build-packages]
 
-  build-power-apps:
-    uses: ./.github/workflows/01-build-power-apps.yml
-    needs: [get-publish-version, build-packages]
-    secrets: inherit
-    with:
-      version: ${{ needs.get-publish-version.outputs.version }}
-
   test-showcases:
     uses: ./.github/workflows/02-e2e-showcases.yml
     needs: [build-showcases]
@@ -57,14 +50,7 @@ jobs:
     steps:
       - name: 🎉 Checks done
         run: echo "🎉 All builds were successful."
-    needs:
-      [
-        test-components,
-        build-outputs,
-        build-showcases,
-        test-showcases,
-        build-power-apps
-      ]
+    needs: [test-components, build-outputs, build-showcases, test-showcases]
 
   deploy:
     uses: ./.github/workflows/03-deploy-gh-pages.yml
