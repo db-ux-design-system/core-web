@@ -43,7 +43,7 @@
     "@zeplin/sdk": "^1.18.0",
     "cpr": "3.0.1",
     "dotenv": "^16.3.1",
-    "esbuild": "0.19.6",
+    "esbuild": "0.19.7",
     "glob": "^10.3.10",
     "nodemon": "3.0.1",
     "oslllo-svg-fixer": "^3.0.0",
