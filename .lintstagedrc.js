@@ -3,6 +3,6 @@ export default {
 		'npm run update:icon-fonts',
 	'*.md': 'markdownlint -c .markdown-lint.yml',
 	'*.{css,scss}': 'stylelint --fix',
-	'*.{js,ts,tsx}': 'xo --fix',
-	'!*.{js,ts,tsx}': 'prettier --write --ignore-unknown'
+	'*.{js,ts,tsx,jsx,mjs,cjs}': ['prettier --write', 'xo --fix'],
+	'!*.{js,ts,tsx,jsx,mjs,cjs}': 'prettier --write --ignore-unknown'
 };

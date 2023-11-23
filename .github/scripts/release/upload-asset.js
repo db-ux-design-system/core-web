@@ -1,7 +1,7 @@
 /*
  * Uploads a file to a release
  */
-import FS from 'fs';
+import FS from 'node:fs';
 
 const uploadAsset = async ({
 	github,

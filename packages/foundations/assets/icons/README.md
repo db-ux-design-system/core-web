@@ -1,4 +1,6 @@
-# How to create and provide the technical icon files
+# Icons
+
+## Modifications for SVGs
 
 We're getting these icons by the [DB Design System colleagues](https://dbsw.sharepoint.com/:f:/r/teams/CXM.Teams-DDSTeam/Shared%20Documents/DDS%20Team/01--Design-System/04--Foundations/07--Icons/04--Exchange-Icons?csf=1&web=1&e=hzdDGu) and process the following changes:
 
@@ -10,3 +12,7 @@ We're getting these icons by the [DB Design System colleagues](https://dbsw.shar
         -   replace `fill="#EC0016"` by `fill="var(--db-icon-pulse-color, #EC0016)"`
         -   replace `fill="#78be14"` by `fill="var(--db-icon-pulse-color, #78be14)"`
     -   `id`-Attribute (generic `icon` id within all SVG files)
+
+## Icon font generation
+
+We've documented those necessary steps within our [docs folder](../../packages/foundations/docs/Icons.md).

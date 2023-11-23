@@ -8,9 +8,14 @@ if [[ $RELEASE == "true" ]]; then
 	fi
 	echo "$SEMVER_VERSION"
 elif [[ $PRE_RELEASE == "true" ]]; then
-	GITHUB_SHA_SHORT=$(echo "$GITHUB_SHA" | cut -c1-7)
-	VALID_SEMVER_VERSION=$(echo "$SEMVER_VERSION"-"$GITHUB_SHA_SHORT")
-	echo "$VALID_SEMVER_VERSION"
+	if [[ $SEMVER_VERSION == *-* ]]; then
+		GITHUB_SHA_SHORT=$(echo "$GITHUB_SHA" | cut -c1-7)
+		VALID_SEMVER_VERSION=$(echo "$SEMVER_VERSION"-"$GITHUB_SHA_SHORT")
+		echo "$VALID_SEMVER_VERSION"
+	else
+		echo "Version $SEMVER_VERSION doesn't contain a hyphen. A prerelease should have a hyphen!"
+        exit 1
+	fi
 else
 	echo "nothing found in environment for REALEASE or PRE_RELEASE"
 	exit 1

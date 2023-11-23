@@ -183,7 +183,11 @@ export const ROUTES: NavigationItem[] = [
 				label: 'Tonalities',
 				path: '/foundations/tonalities',
 				subNavigation: [
-					{ label: 'Readme', path: '/foundations/tonalities/readme' }
+					{ label: 'Readme', path: '/foundations/tonalities/readme' },
+					{
+						label: 'Examples',
+						path: '/foundations/tonalities/examples'
+					}
 				]
 			},
 			{
