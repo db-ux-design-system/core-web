@@ -139,7 +139,7 @@ $floating-label-size: calc(
 @function get-validations($selector, $key) {
 	$has-selectors: "";
 
-	$validations: "required";
+	$validations: ":required";
 	$user: "user-";
 
 	// Differentiating form elements
@@ -148,12 +148,12 @@ $floating-label-size: calc(
 	} @else {
 		// TODO: add validations for input & textarea as well
 		//  https://developer.mozilla.org/en-US/docs/Learn/Forms/Form_validation#using_built-in_form_validation
-		$validations: "required";
+		$validations: ":required";
 	}
 
 	// We need to do a more complicated check for non-typed-input-elements
 	@if ($selector == input) {
-		$validations: 'is(:not([type="text"], [type="password"], [type="search"]),:is([type="text"], [type="password"], [type="search"]):required)';
+		$validations: ':not([type="text"], [type="password"], [type="search"]),:is([type="text"], [type="password"], [type="search"]):required';
 	}
 
 	// Check elements (radio and checkbox) should get selected by their native HTML tag `input`
@@ -162,14 +162,7 @@ $floating-label-size: calc(
 	}
 
 	$has-selectors: $has-selectors +
-		"&:has(#{$selector}:not([aria-invalid]):is(";
-	@each $validation in $validations {
-		@if (index($validations, $validation) > 1) {
-			$has-selectors: $has-selectors + ",";
-		}
-		$has-selectors: $has-selectors + ":#{$validation}";
-	}
-	$has-selectors: $has-selectors + "):#{$user}#{$key}),";
+		"&:has(#{$selector}:not([aria-invalid]):is(#{$validations}):#{$user}#{$key}),";
 
 	@return string.unquote(string.slice($has-selectors, 1, -2));
 }
