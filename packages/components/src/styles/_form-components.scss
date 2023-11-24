@@ -142,6 +142,7 @@ $floating-label-size: calc(
 	$validations: "required";
 	$user: "user-";
 
+	// Differentiating form elements
 	@if ($selector == select or $selector == check) {
 		$user: "";
 	} @else {
@@ -150,6 +151,12 @@ $floating-label-size: calc(
 		$validations: "required";
 	}
 
+	// We need to do a more complicated check for non-typed-input-elements
+	@if ($selector == input) {
+		$validations: 'is(:not([type="text"], [type="password"], [type="search"]),:is([type="text"], [type="password"], [type="search"]):required)';
+	}
+
+	// Check elements (radio and checkbox) should get selected by their native HTML tag `input`
 	@if ($selector == check) {
 		$selector: input;
 	}
