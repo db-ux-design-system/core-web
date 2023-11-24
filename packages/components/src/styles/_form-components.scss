@@ -162,6 +162,7 @@ $floating-label-size: calc(
 	}
 
 	@each $validation in $validations {
+		// TODO: We might simplify this iteration through an :is on the :#{$validation} part
 		$has-selectors: $has-selectors +
 			"&:has(#{$selector}:not([aria-invalid]):#{$validation}:#{$user}#{$key}),";
 	}
