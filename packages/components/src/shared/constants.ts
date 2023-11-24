@@ -26,27 +26,27 @@ export enum COLOR_SIMPLE {
 export enum COLOR {
 	'BASE' = 'base',
 	'BASE_STRONG' = 'base-strong',
-	'BASE_TRANSPARENT_FULL' = 'base-transparent-full',
 	'BASE_TRANSPARENT_SEMI' = 'base-transparent-semi',
+	'BASE_TRANSPARENT_FULL' = 'base-transparent-full',
 	'NEUTRAL' = 'neutral',
 	'NEUTRAL_STRONG' = 'neutral-strong',
-	'NEUTRAL_TRANSPARENT_FULL' = 'neutral-transparent-full',
 	'NEUTRAL_TRANSPARENT_SEMI' = 'neutral-transparent-semi',
+	'NEUTRAL_TRANSPARENT_FULL' = 'neutral-transparent-full',
 	'BRAND' = 'brand',
-	'BRAND_TRANSPARENT_FULL' = 'brand-transparent-full',
 	'BRAND_TRANSPARENT_SEMI' = 'brand-transparent-semi',
+	'BRAND_TRANSPARENT_FULL' = 'brand-transparent-full',
 	'SUCCESSFUL' = 'successful',
-	'SUCCESSFUL_TRANSPARENT_FULL' = 'successful-transparent-full',
 	'SUCCESSFUL_TRANSPARENT_SEMI' = 'successful-transparent-semi',
+	'SUCCESSFUL_TRANSPARENT_FULL' = 'successful-transparent-full',
 	'CRITICAL' = 'critical',
-	'CRITICAL_TRANSPARENT_Full' = 'critical-transparent-full',
 	'CRITICAL_TRANSPARENT_SEMI' = 'critical-transparent-semi',
+	'CRITICAL_TRANSPARENT_Full' = 'critical-transparent-full',
 	'WARNING' = 'warning',
-	'WARNING_TRANSPARENT_FULL' = 'warning-transparent-full',
 	'WARNING_TRANSPARENT_SEMI' = 'warning-transparent-semi',
+	'WARNING_TRANSPARENT_FULL' = 'warning-transparent-full',
 	'INFORMATIONAL' = 'informational',
-	'INFORMATIONAL_TRANSPARENT_FULL' = 'informational-transparent-full',
-	'INFORMATIONAL_TRANSPARENT_SEMI' = 'informational-transparent-semi'
+	'INFORMATIONAL_TRANSPARENT_SEMI' = 'informational-transparent-semi',
+	'INFORMATIONAL_TRANSPARENT_FULL' = 'informational-transparent-full'
 }
 
 export const COLORS: COLOR[] = Object.entries(COLOR).map(([, value]) => value);

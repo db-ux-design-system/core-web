@@ -4,6 +4,7 @@
 @use "@db-ui/foundations/build/scss/tonality";
 @use "@db-ui/foundations/build/scss/variables";
 @use "@db-ui/foundations/build/scss/colors";
+@use "@db-ui/foundations/build/scss/helpers";
 @use "component";
 
 $dropdown-icon-transition: transform variables.$db-transition-emotional-straight;
@@ -50,7 +51,10 @@ $floating-label-size: calc(
 			inset-block-start: calc(
 				(#{variables.$db-sizing-md} - #{$font-size-height}) / 2
 			);
-			inset-inline: #{variables.$db-spacing-fixed-sm};
+			inset-inline: var(
+				--db-form-component-padding-inline-start,
+				#{variables.$db-spacing-fixed-sm}
+			);
 		}
 
 		// icons
@@ -252,6 +256,13 @@ $floating-label-size: calc(
 		overflow: hidden;
 	}
 
+	&[data-label-variant="hidden"] {
+		label {
+			@extend %a11y-visually-hidden;
+			padding: 0;
+		}
+	}
+
 	// Helper message
 	& .db-infotext {
 		margin-block-start: variables.$db-spacing-fixed-2xs;
@@ -271,7 +282,11 @@ $floating-label-size: calc(
 		pointer-events: none;
 		// 1px for border
 		inset-block-start: calc(
-			#{variables.$db-sizing-md} / 2 + #{$label-size-height-xs} - 1px
+			#{variables.$db-sizing-md} / 2 - #{variables.$db-spacing-fixed-xs} *
+				var(--db-label-visible-spacing, 0) + #{$label-size-height-xs} * var(
+					--db-label-visible-height,
+					1
+				) - 1px
 		);
 	}
 
@@ -390,7 +405,7 @@ $floating-label-size: calc(
 		}
 	}
 
-	&[data-label-hidden="true"] {
+	&[data-label-variant="hidden"] {
 		font-size: 0;
 
 		input {

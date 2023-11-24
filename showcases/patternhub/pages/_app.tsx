@@ -2,6 +2,7 @@ import { MDXProvider } from '@mdx-js/react';
 import Script from 'next/script';
 import type { AppProps } from 'next/app';
 import '@code-hike/mdx/dist/index.css';
+import '@db-ui/foundations/build/css/colors/classes/all.css';
 import '../styles/globals.scss';
 import '../../showcase-styles.css';
 

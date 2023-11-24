@@ -62,7 +62,7 @@ jobs:
         id: extract
 
       - name: 🛤 Get base path
-        uses: actions/github-script@v6
+        uses: actions/github-script@v7
         env:
           NAME: ${{ steps.extract.outputs.name }}
           RELEASE: ${{ inputs.release }}

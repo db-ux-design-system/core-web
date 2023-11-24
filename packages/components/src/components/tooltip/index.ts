@@ -1,1 +1,1 @@
-export { default as DBTooltip } from "./tooltip";
+export { default as DBTooltip } from './tooltip';

@@ -116,7 +116,7 @@ export default function DBRadio(props: DBRadioProps) {
 	return (
 		<label
 			data-size={props.size}
-			data-label-hidden={props.labelHidden}
+			data-label-variant={props.labelVariant}
 			class={cls('db-radio', props.className)}
 			htmlFor={state._id}>
 			<Show when={state.stylePath}>

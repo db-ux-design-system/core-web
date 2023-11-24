@@ -105,9 +105,7 @@ export default function DBSelect(props: DBSelectProps) {
 			<Show when={state.stylePath}>
 				<link rel="stylesheet" href={state.stylePath} />
 			</Show>
-			<label htmlFor={state._id}>
-				{props.label ?? DEFAULT_LABEL}
-			</label>
+			<label htmlFor={state._id}>{props.label ?? DEFAULT_LABEL}</label>
 			<select
 				ref={component}
 				aria-invalid={props.invalid}

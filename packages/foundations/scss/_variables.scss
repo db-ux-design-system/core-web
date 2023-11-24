@@ -34,12 +34,9 @@ $db-spacing-responsive-3xl: var(--db-spacing-responsive-3xl);
 
 /* Elevation */
 
-$db-elevation-1: var(--db-elevation-1);
-$db-elevation-2: var(--db-elevation-2);
-$db-elevation-4: var(--db-elevation-4);
-$db-elevation-8: var(--db-elevation-8);
-$db-elevation-12: var(--db-elevation-12);
-$db-elevation-24: var(--db-elevation-24);
+$db-elevation-sm: var(--db-elevation-sm);
+$db-elevation-md: var(--db-elevation-md);
+$db-elevation-lg: var(--db-elevation-lg);
 
 /* Opacity */
 
@@ -47,7 +44,11 @@ $db-opacity-sm: var(--db-opacity-sm);
 $db-opacity-md: var(--db-opacity-md);
 $db-opacity-lg: var(--db-opacity-lg);
 
-/* Border radius */
+/* Border */
+
+$db-border-height-sm: var(--db-border-height-sm);
+$db-border-height-md: var(--db-border-height-md);
+$db-border-height-lg: var(--db-border-height-lg);
 
 $db-border-radius-sm: var(--db-border-radius-sm);
 $db-border-radius-md: var(--db-border-radius-md);

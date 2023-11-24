@@ -46,6 +46,11 @@ $has-before-padding: calc(
 		background-color: var(--db-current-bg-color);
 	}
 
+	&[data-label-variant="hidden"] {
+		--db-label-visible-height: 0;
+		--db-label-visible-spacing: 1;
+	}
+
 	[id$="-placeholder"] {
 		@extend %db-overwrite-font-size-md;
 		position: absolute;
@@ -53,8 +58,11 @@ $has-before-padding: calc(
 		// we use the top of the element, the size of the label+label-margin-bottom and the font-size of the select/2
 		// for functional we have some rounding issues for rem, so we need 1px less
 		inset-block-start: calc(
-			0% + #{form-components.$label-size-height-xs} + #{variables.$db-spacing-fixed-xs} +
-				var(--db-base-font-size) / 2 - var(--db-ui-functional, 0) * 1px
+			0% +
+				(
+					#{form-components.$label-size-height-xs} + #{variables.$db-spacing-fixed-xs}
+				) * var(--db-label-visible-height, 1) + var(--db-base-font-size) /
+				2 - var(--db-ui-functional, 0) * 1px
 		);
 		inset-inline: $has-before-padding;
 		margin-inline-start: variables.$db-spacing-fixed-sm;

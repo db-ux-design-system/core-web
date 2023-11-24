@@ -8,7 +8,7 @@
 $tooltip-arrow-shadow-size: variables.$db-sizing-2xs;
 
 .db-tooltip {
-	--default-card-elevation: #{variables.$db-elevation-2};
+	--default-card-elevation: #{variables.$db-elevation-sm};
 	--default-card-border-radius: #{variables.$db-border-radius-md};
 	@extend %db-overwrite-font-size-sm;
 	@extend %default-popover;
@@ -23,7 +23,7 @@ $tooltip-arrow-shadow-size: variables.$db-sizing-2xs;
 		&::after {
 			@extend %component-border;
 			content: "";
-			box-shadow: variables.$db-elevation-4;
+			box-shadow: variables.$db-elevation-md;
 			position: absolute;
 			background-color: colors.$db-base-bg;
 			inline-size: $tooltip-arrow-shadow-size;

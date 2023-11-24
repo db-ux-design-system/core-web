@@ -66,8 +66,10 @@ export default function DBBrand(props: DBBrandProps) {
 	// jscpd:ignore-end
 
 	return (
-		<div ref={component}
-			 id={props.id} class={cls('db-brand', props.className)}>
+		<div
+			ref={component}
+			id={props.id}
+			class={cls('db-brand', props.className)}>
 			<Show when={state.stylePath}>
 				<link rel="stylesheet" href={state.stylePath} />
 			</Show>

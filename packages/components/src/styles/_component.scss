@@ -7,18 +7,17 @@ $default-mobile-header-height: var(
 	--db-sizing-fixed-mobile-header,
 	#{helpers.to-rem(56)}
 );
-$default-border-height: var(--db-border-height, 1px);
 
 %default-adaptive-border {
-	border: $default-border-height solid colors.$db-base-on-bg;
+	border: variables.$db-border-height-sm solid colors.$db-base-on-bg;
 }
 
 %transparent-border {
-	border: $default-border-height solid transparent;
+	border: variables.$db-border-height-sm solid transparent;
 }
 
 %component-border {
-	border: $default-border-height solid colors.$db-base-border-weak;
+	border: variables.$db-border-height-sm solid colors.$db-base-border-weak;
 }
 
 %default-interactive-component {
@@ -31,7 +30,7 @@ $default-border-height: var(--db-border-height, 1px);
 		--default-card-border-radius,
 		#{variables.$db-border-radius-lg}
 	);
-	box-shadow: variables.$db-elevation-4;
+	box-shadow: variables.$db-elevation-md;
 }
 
 %adaptive-neutral-component {

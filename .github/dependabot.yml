@@ -19,14 +19,7 @@ updates:
       time: "02:00"
       timezone: "Europe/Berlin"
     ignore:
-      # disable playwright auto update for now, because we need to update them manually anyways
-      - dependency-name: "@playwright/experimental-ct-react"
-      - dependency-name: "@playwright/experimental-ct-vue"
-      - dependency-name: "@playwright/test"
-      - dependency-name: "typescript"
-        update-types: ["version-update:semver-major"]
-      - dependency-name: "ng-packagr"
-        update-types: ["version-update:semver-major"]
+      # angular: we update the major version manually
       - dependency-name: "@angular/cli"
         update-types: ["version-update:semver-major"]
       - dependency-name: "@angular/core"
@@ -49,9 +42,15 @@ updates:
         update-types: ["version-update:semver-major"]
       - dependency-name: "@angular/platform-browser-dynamic"
         update-types: ["version-update:semver-major"]
+        # react: we update the major version manually
       - dependency-name: "react"
         update-types: ["version-update:semver-major"]
       - dependency-name: "react-dom"
+        update-types: ["version-update:semver-major"]
+
+      - dependency-name: "typescript"
+        update-types: ["version-update:semver-major"]
+      - dependency-name: "ng-packagr"
         update-types: ["version-update:semver-major"]
       # We currently need to ignore this until we migrate to TypeScript 5
       - dependency-name: "xo"
@@ -67,25 +66,20 @@ updates:
       commitlint:
         patterns:
           - "@commitlint*"
-
-  - package-ecosystem: "npm"
-    directory: "/examples/react-example"
-    open-pull-requests-limit: 10
-    schedule:
-      interval: "daily"
-      time: "02:00"
-      timezone: "Europe/Berlin"
-    pull-request-branch-name:
-      separator: "-"
-    versioning-strategy: increase
-
-  - package-ecosystem: "npm"
-    directory: "/examples/vue-example"
-    open-pull-requests-limit: 10
-    schedule:
-      interval: "daily"
-      time: "02:00"
-      timezone: "Europe/Berlin"
-    pull-request-branch-name:
-      separator: "-"
-    versioning-strategy: increase
+      playwright:
+        patterns:
+          - "@playwright*"
+      angular:
+        patterns:
+          - "@angular*"
+          - "@angular-devkit*"
+        update-types:
+          - "minor"
+          - "patch"
+      react:
+        patterns:
+          - "react"
+          - "react-dom"
+        update-types:
+          - "minor"
+          - "patch"

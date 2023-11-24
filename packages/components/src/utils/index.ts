@@ -56,6 +56,6 @@ export const getMessageIcon = (
 	return messageIcon
 		? messageIcon
 		: !variant || variant === 'adaptive'
-		? 'none'
-		: undefined;
+		  ? 'none'
+		  : undefined;
 };

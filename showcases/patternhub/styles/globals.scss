@@ -1,6 +1,7 @@
 @use "@db-ui/foundations/build/scss/variables";
 @use "@db-ui/foundations/build/scss/colors";
 @use "@db-ui/foundations/build/scss/screen-sizes";
+@use "@db-ui/foundations/build/scss/tonality";
 
 @forward "@db-ui/components/build/styles/db-ui-42-webpack";
 
@@ -98,6 +99,10 @@ table th {
 	padding-inline: variables.$db-spacing-fixed-md;
 }
 
+.version-switcher {
+	max-width: variables.$db-sizing-3xl;
+}
+
 /* Workaround for current db-page from db-ui-elements */
 div[class^="ch-"] {
 	div,
@@ -165,6 +170,36 @@ div[class^="ch-"] {
 		align-items: center;
 		border: 1px solid black;
 		padding: variables.$db-spacing-fixed-md;
+	}
+}
+
+// tonality examples
+
+.tonality-example-grid {
+	display: grid;
+	grid-template-columns: repeat(3, minmax(0, 1fr));
+	gap: variables.$db-spacing-fixed-md;
+
+	.db-card {
+		gap: variables.$db-spacing-fixed-sm;
+	}
+}
+
+.tonality-example-page {
+	display: flex;
+	flex-direction: column;
+	gap: variables.$db-spacing-fixed-md;
+
+	.tonality-example-page-regular {
+		display: grid;
+		grid-template-columns: repeat(3, minmax(0, 1fr));
+		gap: variables.$db-spacing-fixed-md;
+	}
+
+	.tonality-example-page-functional {
+		display: grid;
+		grid-template-columns: repeat(5, minmax(0, 1fr));
+		gap: variables.$db-spacing-fixed-md;
 	}
 }
 

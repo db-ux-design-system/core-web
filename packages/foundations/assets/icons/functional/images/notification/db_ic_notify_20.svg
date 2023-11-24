@@ -1,1 +1,1 @@
-<svg id="icon" height="20" viewBox="0 0 20 20" width="20" xmlns="http://www.w3.org/2000/svg"><path d="m17.5 0c1.375 0 2.5 1.125 2.5 2.5s-1.125 2.5-2.5 2.5-2.5-1.125-2.5-2.5 1.125-2.5 2.5-2.5z" fill="var(--db-icon-color, currentColor)" fill-rule="evenodd"/></svg>
+<svg id="icon" height="20" viewBox="0 0 20 20" width="20" xmlns="http://www.w3.org/2000/svg"><path d="m17.5 0c1.375 0 2.5 1.125 2.5 2.5s-1.125 2.5-2.5 2.5a2.507 2.507 0 0 1 -2.5-2.5c0-1.375 1.125-2.5 2.5-2.5z" fill="var(--db-icon-color, currentColor)" fill-rule="evenodd"/></svg>

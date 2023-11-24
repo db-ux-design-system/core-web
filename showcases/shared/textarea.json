@@ -257,5 +257,24 @@
 				}
 			}
 		]
+	},
+	{
+		"name": "Content",
+		"examples": [
+			{
+				"name": "(Default) Visible Label",
+				"props": {
+					"label": "Label",
+					"name": "Content"
+				}
+			},
+			{
+				"name": "Hidden Label",
+				"props": {
+					"label": "Label",
+					"labelVariant": "hidden"
+				}
+			}
+		]
 	}
 ]

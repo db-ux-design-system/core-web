@@ -10,6 +10,10 @@ const getOption = (optionName, tsType) => {
 			return `${optionName}={[{key:'test1', value:'Test1'},{key:'test2', value:'Test2'}]}`;
 		}
 
+		if (optionName === 'initOpenIndex') {
+			return `${optionName}={[0,1]}`;
+		}
+
 		if (tsType?.raw.includes('DBSelect')) {
 			return `${optionName}={[{"value":"Test1"},{"value":"Test2"}]}`;
 		}

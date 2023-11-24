@@ -249,6 +249,13 @@
 					"label": "Label",
 					"iconAfter": "x_placeholder"
 				}
+			},
+			{
+				"name": "Hidden Label",
+				"props": {
+					"label": "Label",
+					"labelVariant": "hidden"
+				}
 			}
 		]
 	},
@@ -362,6 +369,106 @@
 				"props": {
 					"label": "Label",
 					"type": "week"
+				}
+			}
+		]
+	},
+	{
+		"name": "Example - Types - Floating Label",
+		"examples": [
+			{
+				"name": "(Default) Text",
+				"props": {
+					"label": "Label",
+					"labelVariant": "floating"
+				}
+			},
+			{
+				"name": "Password",
+				"props": {
+					"label": "Label",
+					"type": "password",
+					"labelVariant": "floating"
+				}
+			},
+			{
+				"name": "Search",
+				"props": {
+					"label": "Label",
+					"type": "search",
+					"labelVariant": "floating"
+				}
+			},
+			{
+				"name": "E-Mail",
+				"props": {
+					"label": "Label",
+					"type": "email",
+					"labelVariant": "floating"
+				}
+			},
+			{
+				"name": "Number",
+				"props": {
+					"label": "Label",
+					"type": "number",
+					"labelVariant": "floating"
+				}
+			},
+			{
+				"name": "Tel",
+				"props": {
+					"label": "Label",
+					"type": "tel",
+					"labelVariant": "floating"
+				}
+			},
+			{
+				"name": "URL",
+				"props": {
+					"label": "Label",
+					"type": "url",
+					"labelVariant": "floating"
+				}
+			},
+			{
+				"name": "Date",
+				"props": {
+					"label": "Label",
+					"type": "date",
+					"labelVariant": "floating"
+				}
+			},
+			{
+				"name": "Datetime Local",
+				"props": {
+					"label": "Label",
+					"type": "datetime-local",
+					"labelVariant": "floating"
+				}
+			},
+			{
+				"name": "Month",
+				"props": {
+					"label": "Label",
+					"type": "month",
+					"labelVariant": "floating"
+				}
+			},
+			{
+				"name": "Time",
+				"props": {
+					"label": "Label",
+					"type": "time",
+					"labelVariant": "floating"
+				}
+			},
+			{
+				"name": "Week",
+				"props": {
+					"label": "Label",
+					"type": "week",
+					"labelVariant": "floating"
 				}
 			}
 		]
