@@ -181,6 +181,13 @@ $floating-label-size: calc(
 		$selector: input;
 	}
 
+	// :user-valid or :user-invalid workaround
+	@supports not selector(:user-#{$key}) {
+		&:has(#{$selector}:not([aria-invalid]):required:#{$key}) {
+			@content;
+		}
+	}
+
 	// If aria-invalid is set we overwrite the selectors above
 	&:has(#{$selector}[aria-invalid="#{$boolean}"]) {
 		@content;
