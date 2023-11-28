@@ -1,15 +1,3 @@
-@use "@db-ui/foundations/build/scss/helpers";
-
 .db-accordion {
-	/* This is a workaround for angular */
-	&:has(db-accordion-item) {
-
-		@include helpers.divider($position: "bottom", $slot: "after");
-
-		.db-accordion-item {
-			&::after {
-				display: none;
-			}
-		}
-	}
+	// No styling for now only JS code for this component
 }
