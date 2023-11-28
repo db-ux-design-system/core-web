@@ -57,13 +57,11 @@ jobs:
           HOME: /root
         run: npm run test:${{ matrix.framework }}-showcase -- -- --shard=${{ matrix.shard }}
 
-      - name: 🆙 Upload blob report to GitHub Actions Artifacts
-        if: always()
-        uses: actions/upload-artifact@v3
-        with:
-          name: all-blob-reports
-          path: ./showcases/blob-report
-          retention-days: 1
+      - name: 🔣 Print GitHub Report
+        if: failure()
+        shell: bash
+        run: |
+          npx playwright merge-reports --reporter github ./blob-report
 
       - name: 🆙 Upload test results
         if: failure()
