@@ -17,7 +17,7 @@ jobs:
       fail-fast: false
       matrix:
         framework: [react, vue]
-        shard: [1/4, 2/4, 3/4, 4/4]
+        shard: [1/3, 2/3, 3/3]
     steps:
       - name: ⏬ Checkout repo
         uses: actions/checkout@v4
@@ -61,14 +61,6 @@ jobs:
         env:
           HOME: /root
         run: npx playwright test --shard=${{ matrix.shard }}
-
-      - name: 🆙 Upload blob report to GitHub Actions Artifacts
-        if: always()
-        uses: actions/upload-artifact@v3
-        with:
-          name: all-blob-reports
-          path: ./output/${{ steps.workingDirectory.outputs.dir }}/blob-report
-          retention-days: 1
 
       - name: 🆙 Upload test results
         if: failure()
