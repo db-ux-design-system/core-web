@@ -46,7 +46,7 @@ For a detailed overview look at our [examples](https://github.com/db-ui/examples
 
 ## Components
 
-Here is an overview of all components you can use:
+We both maintain a [public backlog](https://github.com/orgs/db-ui/projects/4/views/1), as well as an overview of all components you can use:
 
 <details>
   <summary><strong>Table of Components</strong></summary>
