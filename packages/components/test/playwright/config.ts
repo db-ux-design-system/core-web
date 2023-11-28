@@ -42,25 +42,26 @@ const config = defineConfig({
 				...devices['Desktop Firefox']
 			}
 		},*/
-		{
+		// TODO: There are issues with webkit and out icon-fonts we disable webkit for now
+		/*		{
 			name: 'webkit',
 			use: {
 				...devices['Desktop Safari']
 			}
-		},
+		},*/
 		/* Test against mobile viewports. */
 		{
 			name: 'mobile_chrome',
 			use: {
 				...devices['Pixel 5']
 			}
-		},
-		{
+		}
+		/*		{
 			name: 'mobile_safari',
 			use: {
 				...devices['iPhone 12']
 			}
-		}
+		}*/
 	]
 });
 

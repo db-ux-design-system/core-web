@@ -33,7 +33,7 @@ export default function App({ Component, pageProps }: AppProps) {
 			<Script
 				src={
 					(process.env.NEXT_PUBLIC_BASE_PATH ?? '') +
-					'/iframe-resizer/iframeResizer.contentWindow.min.js'
+					'/iframe-resizer/iframeResizer.contentWindow.js'
 				}
 			/>
 			<Component {...pageProps} />

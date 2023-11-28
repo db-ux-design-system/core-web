@@ -20,6 +20,12 @@
 	&:last-of-type {
 		@include helpers.divider($position: "bottom", $slot: "after");
 	}
+	// Angular workaround
+	db-accordion-item:not(:last-of-type) &:last-of-type {
+		&::after {
+			content: none;
+		}
+	}
 
 	&[aria-disabled="true"] {
 		pointer-events: none;
