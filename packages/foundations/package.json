@@ -43,13 +43,13 @@
     "@zeplin/sdk": "^1.18.0",
     "cpr": "3.0.1",
     "dotenv": "^16.3.1",
-    "esbuild": "0.19.7",
+    "esbuild": "0.19.8",
     "glob": "^10.3.10",
     "nodemon": "3.0.1",
     "oslllo-svg-fixer": "^3.0.0",
     "sass": "^1.69.5",
     "style-dictionary": "3.9.0",
-    "svgtofont": "^4.0.0"
+    "svgtofont": "^4.0.1"
   },
   "publishConfig": {
     "registry": "https://registry.npmjs.org/",
