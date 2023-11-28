@@ -62,6 +62,13 @@ jobs:
           HOME: /root
         run: npx playwright test --shard=${{ matrix.shard }}
 
+      - name: 🔣 Print GitHub Report
+        if: failure()
+        working-directory: ./output/${{ steps.workingDirectory.outputs.dir }}
+        shell: bash
+        run: |
+          npx playwright merge-reports --reporter github ./blob-report
+
       - name: 🆙 Upload test results
         if: failure()
         uses: actions/upload-artifact@v3
