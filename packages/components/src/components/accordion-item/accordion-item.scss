@@ -17,8 +17,7 @@
 		padding-block-end: variables.$db-spacing-fixed-lg;
 	}
 
-	&:last-of-type,
-	db-accordion-item:last-of-type & {
+	&:last-of-type {
 		@include helpers.divider($position: "bottom", $slot: "after");
 	}
 	// Angular workaround
