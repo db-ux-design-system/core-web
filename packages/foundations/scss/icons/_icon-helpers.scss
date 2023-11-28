@@ -133,15 +133,8 @@ $default-icon-font-size: var(--db-icon-font-size, #{$default-icon-size-rem});
 
 	vertical-align: middle;
 
-	/* Safari hack */
-	@supports (-webkit-hyphens: none) {
-		block-size: calc(
-			var(
-					--db-icon-font-size,
-					var(--db-base-icon-font-size, #{$default-icon-size-rem})
-				) - 6px
-		);
-	}
+	block-size: $default-icon-font-size;
+	inline-size: $default-icon-font-size;
 
 	// Hiding icon from screenreaders
 	@media aural {
