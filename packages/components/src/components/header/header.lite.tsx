@@ -3,7 +3,8 @@ import {
 	onUpdate,
 	Show,
 	Slot,
-	useMetadata, useRef,
+	useMetadata,
+	useRef,
 	useStore
 } from '@builder.io/mitosis';
 import { DBHeaderState, DBHeaderProps } from './model';
@@ -50,8 +51,8 @@ export default function DBHeader(props: DBHeaderProps) {
 				// Adds this attribute to the header to enable all styling which would have
 				// @media screen and (min-width: $db-screens-m) to show mobile navigation on a desktop device
 				addAttributeToChildren(headerElement, {
-					key: 'force-mobile',
-					value: ''
+					key: 'data-force-mobile',
+					value: 'true'
 				});
 			}
 			state.forcedToMobile = true;

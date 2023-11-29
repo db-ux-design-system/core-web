@@ -28,12 +28,13 @@ $db-breakpoint-xl: functions.to-rem(1920);
 
 	@if ($width == "min") {
 		@media screen and (min-width: $screen) {
-			&:not([force-mobile]) {
+			&:not([data-force-mobile]),
+			&[data-force-mobile="false"] {
 				@content;
 			}
 		}
 	} @else {
-		&[force-mobile] {
+		&[data-force-mobile="true"] {
 			@content;
 		}
 
