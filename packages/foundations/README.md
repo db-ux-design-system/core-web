@@ -55,13 +55,13 @@ Based on your technology/setup you need to change the paths of the assets folder
 
 ```scss
 // index.scss
-@use "@db-ui/foundations/build/scss/rollup.assets-paths" as *;
-@use "@db-ui/foundations/build/scss/icon/icons" as *;
-@use "@db-ui/foundations/build/scss/db-ui-foundations" as *;
+@use "@db-ui/foundations/build/scss/rollup.assets-paths";
+@use "@db-ui/foundations/build/scss/icons";
+@use "@db-ui/foundations/build/scss/db-ui-foundations";
 // optional: to use db-ui-bg-success
-@import "@db-ui/foundations/build/scss/color-classes" as *;
+@import "@db-ui/foundations/build/scss/colors/classes/all";
 // optional: to use use $db-spacing-fixed-md
-@use "@db-ui/foundations/build/scss/variables.global" as *;
+@use "@db-ui/foundations/build/scss/variables";
 
 .my-container {
 	padding: $db-spacing-fixed-md;

@@ -168,6 +168,7 @@ const getComponents = () => [
 					to: '() => toggle()'
 				}
 			],
+			angular: [{ from: '(close)', to: '(onClose)' }],
 			webComponents: [
 				{
 					from: '<slot></slot>',
