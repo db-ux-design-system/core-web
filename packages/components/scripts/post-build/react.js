@@ -13,7 +13,7 @@ const overwriteEvents = (tmp) => {
 		'export type ClickEvent<T> = React.MouseEvent<T, MouseEvent>;'
 	);
 	modelFileContent = modelFileContent.replace(
-		'export type ChangeEvent<T> = Event &;',
+		'export type ChangeEvent<T> = Event;',
 		'export type ChangeEvent<T> = React.ChangeEvent<T>;'
 	);
 	modelFileContent = modelFileContent.replace(
