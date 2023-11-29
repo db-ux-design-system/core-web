@@ -36,4 +36,4 @@ export interface DBAccordionItemDefaultState {}
 
 export type DBAccordionItemState = DBAccordionItemDefaultState &
 	GlobalState &
-	ToggleEventState;
+	ToggleEventState<HTMLElement>;

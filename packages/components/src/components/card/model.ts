@@ -22,11 +22,13 @@ export type DBCardDefaultProps = {
 
 export type DBCardProps = DBCardDefaultProps &
 	GlobalProps &
-	ClickEventProps &
+	ClickEventProps<HTMLElement> &
 	ImageProps &
 	CardProps &
 	SpacingProps;
 
 export type DBCardDefaultState = {};
 
-export type DBCardState = DBCardDefaultState & GlobalState & ClickEventState;
+export type DBCardState = DBCardDefaultState &
+	GlobalState &
+	ClickEventState<HTMLElement>;

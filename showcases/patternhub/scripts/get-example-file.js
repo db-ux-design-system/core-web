@@ -49,7 +49,7 @@ const getOption = (optionName, tsType) => {
 		return `${optionName}="primary"`;
 	}
 
-	if (tsType.name === 'signature' && tsType.raw === '(event: any) => void') {
+	if (tsType.name === 'signature' && tsType.raw.startsWith('(event')) {
 		return `${optionName}={(event) => console.log(event)}`;
 	}
 

@@ -26,4 +26,4 @@ export interface DBPopoverDefaultState {}
 
 export type DBPopoverState = DBPopoverDefaultState &
 	GlobalState &
-	ClickEventState;
+	ClickEventState<HTMLElement>;
