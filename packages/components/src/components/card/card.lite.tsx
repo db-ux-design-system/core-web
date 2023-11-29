@@ -1,39 +1,23 @@
-import { onMount, Show, useMetadata, useStore } from '@builder.io/mitosis';
+import {
+	onMount,
+	Show,
+	useMetadata,
+	useRef,
+	useStore
+} from '@builder.io/mitosis';
 import type { DBCardState, DBCardProps } from './model';
 import { cls } from '../../utils';
+import { ClickEvent } from '../../shared/model';
 
 useMetadata({
-	isAttachedToShadowDom: true,
-	component: {
-		// MS Power Apps
-		includeIcon: false,
-		properties: [
-			{
-				name: 'variant',
-				type: 'Enum',
-				values: [
-					{
-						key: 'Default',
-						name: 'Default',
-						value: 'default'
-					},
-					{
-						key: 'Interactive',
-						name: 'Interactive',
-						value: 'interactive'
-					}
-				]
-			}
-		]
-	}
+	isAttachedToShadowDom: true
 });
 
 export default function DBCard(props: DBCardProps) {
-	// This is used as forwardRef
-	let component: any;
+	const ref = useRef<HTMLDivElement>(null);
 	// jscpd:ignore-start
 	const state = useStore<DBCardState>({
-		handleClick: (event: any) => {
+		handleClick: (event: ClickEvent<HTMLElement>) => {
 			if (props.onClick) {
 				props.onClick(event);
 			}
@@ -49,14 +33,16 @@ export default function DBCard(props: DBCardProps) {
 
 	return (
 		<div
-			ref={component}
+			ref={ref}
 			id={props.id}
 			class={cls('db-card', props.className)}
 			data-variant={props.variant}
 			data-color-variant={props.colorVariant}
 			data-elevation={props.elevation}
 			data-spacing={props.spacing}
-			onClick={(event) => state.handleClick(event)}>
+			onClick={(event: ClickEvent<HTMLElement>) =>
+				state.handleClick(event)
+			}>
 			<Show when={state.stylePath}>
 				<link rel="stylesheet" href={state.stylePath} />
 			</Show>

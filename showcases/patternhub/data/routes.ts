@@ -33,6 +33,10 @@ const componentChildren: NavigationItem[] = [
 				name: 'icon'
 			},
 			{
+				label: 'DBTooltip',
+				name: 'tooltip'
+			},
+			{
 				label: 'DBInfotext',
 				name: 'infotext'
 			},
@@ -133,6 +137,16 @@ const componentChildren: NavigationItem[] = [
 				name: 'navigation-item'
 			}
 		]
+	},
+	{
+		label: 'Utilities',
+		path: '/components/utilities',
+		subNavigation: [
+			{
+				label: 'DBPopover',
+				name: 'popover'
+			}
+		]
 	}
 ];
 export const ROUTES: NavigationItem[] = [
@@ -150,10 +164,43 @@ export const ROUTES: NavigationItem[] = [
 				path: '/foundations/colors',
 				subNavigation: [
 					{ label: 'Readme', path: '/foundations/colors/readme' },
-					{ label: 'Examples', path: '/foundations/colors/examples' }
+					{ label: 'Overview', path: '/foundations/colors/overview' }
 				]
 			},
-			{ label: 'Icons', path: '/foundations/icons' }
+			{
+				label: 'Icons',
+				path: '/foundations/icons',
+				subNavigation: [
+					{ label: 'Readme', path: '/foundations/icons/readme' },
+					{
+						label: 'Custom Icons',
+						path: '/foundations/icons/custom-icons'
+					},
+					{ label: 'Overview', path: '/foundations/icons/overview' }
+				]
+			},
+			{
+				label: 'Tonalities',
+				path: '/foundations/tonalities',
+				subNavigation: [
+					{ label: 'Readme', path: '/foundations/tonalities/readme' },
+					{
+						label: 'Examples',
+						path: '/foundations/tonalities/examples'
+					}
+				]
+			},
+			{
+				label: 'Variables',
+				path: '/foundations/variables',
+				subNavigation: [
+					{ label: 'Readme', path: '/foundations/variables/readme' },
+					{
+						label: 'Examples',
+						path: '/foundations/variables/examples'
+					}
+				]
+			}
 		]
 	},
 	{

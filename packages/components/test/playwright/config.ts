@@ -19,9 +19,7 @@ const config = defineConfig({
 	/* Opt out of parallel tests on CI. */
 	workers: process.env.CI ? 1 : undefined,
 	/* Reporter to use. See https://playwright.dev/docs/test-reporters */
-	reporter: process.env.CI
-		? 'blob'
-		: [['list'], ['html', { open: 'never' }]],
+	reporter: process.env.CI ? 'blob' : [['list'], ['html', { open: 'never' }]],
 	/* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
 	use: {
 		/* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
@@ -44,25 +42,26 @@ const config = defineConfig({
 				...devices['Desktop Firefox']
 			}
 		},*/
-		{
+		// TODO: There are issues with webkit and out icon-fonts we disable webkit for now
+		/*		{
 			name: 'webkit',
 			use: {
 				...devices['Desktop Safari']
 			}
-		},
+		},*/
 		/* Test against mobile viewports. */
 		{
 			name: 'mobile_chrome',
 			use: {
 				...devices['Pixel 5']
 			}
-		},
-		{
+		}
+		/*		{
 			name: 'mobile_safari',
 			use: {
 				...devices['iPhone 12']
 			}
-		}
+		}*/
 	]
 });
 

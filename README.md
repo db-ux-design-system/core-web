@@ -29,89 +29,89 @@ designers, and content authors build, maintain, and scale best of class digital 
 
 ## Packages
 
-| Package                             | Content                             | Version                                                                                                                                                                                                                                                                                  |
-| ----------------------------------- | ----------------------------------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| [foundations](packages/foundations) | CSS/SCSS/Tailwind styles and assets | [![@db-ui/foundations on Npmjs](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fapi.github.com%2Frepos%2Fdb-ui%2Fmono%2Freleases%2Flatest&query=%24.tag_name&label=npm&color=ed1c24 "npm version")](https://npmjs.com/package/@db-ui/foundations "DB UI – on NPM")           |
-| [components](packages/components)   | CSS/SCSS styles for components      | [![@db-ui/components on Npmjs](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fapi.github.com%2Frepos%2Fdb-ui%2Fmono%2Freleases%2Flatest&query=%24.tag_name&label=npm&color=ed1c24 "npm version")](https://npmjs.com/package/@db-ui/components "DB UI – on NPM")             |
-| [ngx-components](output/angular)    | Native Angular components           | [![@db-ui/ngx-components on Npmjs](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fapi.github.com%2Frepos%2Fdb-ui%2Fmono%2Freleases%2Flatest&query=%24.tag_name&label=npm&color=ed1c24 "npm version")](https://npmjs.com/package/@db-ui/ngx-components "DB UI – on NPM")     |
-| [react-components](output/react)    | Native React components             | [![@db-ui/react-components on Npmjs](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fapi.github.com%2Frepos%2Fdb-ui%2Fmono%2Freleases%2Flatest&query=%24.tag_name&label=npm&color=ed1c24 "npm version")](https://npmjs.com/package/@db-ui/react-components "DB UI – on NPM") |
-| [v-components](output/vue/vue3)     | Native Vue components               | [![@db-ui/v-components on Npmjs](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fapi.github.com%2Frepos%2Fdb-ui%2Fmono%2Freleases%2Flatest&query=%24.tag_name&label=npm&color=ed1c24 "npm version")](https://npmjs.com/package/@db-ui/v-components "DB UI – on NPM")         |
+| Package                                                                     | Content                             | Version                                                                                                                                                                                                                                                                                  |
+| --------------------------------------------------------------------------- | ----------------------------------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| [foundations](https://github.com/db-ui/mono/tree/main/packages/foundations) | CSS/SCSS/Tailwind styles and assets | [![@db-ui/foundations on Npmjs](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fapi.github.com%2Frepos%2Fdb-ui%2Fmono%2Freleases%2Flatest&query=%24.tag_name&label=npm&color=ed1c24 "npm version")](https://npmjs.com/package/@db-ui/foundations "DB UI – on NPM")           |
+| [components](https://github.com/db-ui/mono/tree/main/packages/components)   | CSS/SCSS styles for components      | [![@db-ui/components on Npmjs](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fapi.github.com%2Frepos%2Fdb-ui%2Fmono%2Freleases%2Flatest&query=%24.tag_name&label=npm&color=ed1c24 "npm version")](https://npmjs.com/package/@db-ui/components "DB UI – on NPM")             |
+| [ngx-components](https://github.com/db-ui/mono/tree/main/output/angular)    | Native Angular components           | [![@db-ui/ngx-components on Npmjs](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fapi.github.com%2Frepos%2Fdb-ui%2Fmono%2Freleases%2Flatest&query=%24.tag_name&label=npm&color=ed1c24 "npm version")](https://npmjs.com/package/@db-ui/ngx-components "DB UI – on NPM")     |
+| [react-components](https://github.com/db-ui/mono/tree/main/output/react)    | Native React components             | [![@db-ui/react-components on Npmjs](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fapi.github.com%2Frepos%2Fdb-ui%2Fmono%2Freleases%2Flatest&query=%24.tag_name&label=npm&color=ed1c24 "npm version")](https://npmjs.com/package/@db-ui/react-components "DB UI – on NPM") |
+| [v-components](https://github.com/db-ui/mono/tree/main/output/vue/vue3)     | Native Vue components               | [![@db-ui/v-components on Npmjs](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fapi.github.com%2Frepos%2Fdb-ui%2Fmono%2Freleases%2Flatest&query=%24.tag_name&label=npm&color=ed1c24 "npm version")](https://npmjs.com/package/@db-ui/v-components "DB UI – on NPM")         |
 
 ## How to use
 
 Install your preferred package via npm or yarn e.g. `npm i @db-ui/react-components`.
 
 Afterwards you need to add the specific CSS or SCSS files to provide the styles of DB UX Design System.
-For a detailed overview look at our [examples](examples).
+For a detailed overview look at our [examples](https://github.com/db-ui/examples).
 
 ## Components
 
-Here is an overview of all components you can use:
+We both maintain a [public backlog](https://github.com/orgs/db-ui/projects/4/views/1), as well as an overview of all components you can use:
 
 <details>
   <summary><strong>Table of Components</strong></summary>
 
-| Name                                                                | Category          | Status | Planned for beta |
-| ------------------------------------------------------------------- | ----------------- | :----: | :--------------: |
-| Accordion                                                           | 04 - Data-Display |   ❌   |        ✅        |
-| [Alert](packages/components/src/components/alert)                   | 05 - Feedback     |  Beta  |        ✅        |
-| Avatar                                                              | 04 - Data-Display |   ❌   |        ❌        |
-| Backdrop                                                            | 06 - Utility      |   ❌   |        ✅        |
-| Badge                                                               | 05 - Feedback     |   ❌   |        ✅        |
-| Bottom-Navigation                                                   | 02 - Action       |   ❌   |        ❌        |
-| Breadcrumbs                                                         | 02 - Action       |   ❌   |        ✅        |
-| [Brand](packages/components/src/components/brand)                   | 04 - Data-Display |  Beta  |        ✅        |
-| [Button](packages/components/src/components/button)                 | 02 - Action       | Alpha  |        ✅        |
-| Button-Group                                                        | 02 - Action       |   ❌   |        ❌        |
-| [Card](packages/components/src/components/card)                     | 01 - Layout       | Alpha  |        ✅        |
-| Carousel                                                            | 06 - Utility      |   ❌   |        ❌        |
-| [Checkbox](packages/components/src/components/checkbox)             | 03 - Data-Input   | Alpha  |        ✅        |
-| Combobox                                                            | 03 - Data-Input   |   ❌   |        ❌        |
-| Container                                                           | 01 - Layout       |   ❌   |        ❌        |
-| Date-Picker                                                         | 03 - Data-Input   |   ❌   |        ❌        |
-| [Divider](packages/components/src/components/divider)               | 01 - Layout       | Alpha  |        ✅        |
-| [Drawer](packages/components/src/components/drawer)                 | 01 - Layout       |  Beta  |        ✅        |
-| Dropdown                                                            | 06 - Utility      |   ❌   |        ✅        |
-| Floating-Button                                                     | 02 - Action       |   ❌   |        ❌        |
-| Footer                                                              | 01 - Layout       |   ❌   |        ✅        |
-| Grid                                                                | 01 - Layout       |   ❌   |        ✅        |
-| Header                                                              | 01 - Layout       |  Beta  |        ✅        |
-| [Icons](packages/components/src/components/icon)                    | 04 - Data-Display |  Beta  |        ✅        |
-| Image                                                               | 04 - Data-Display |   ❌   |        ✅        |
-| Indicator                                                           | 04 - Data-Display |   ❌   |        ❌        |
-| [Infotext](packages/components/src/components/infotext)             | 04 - Data-Display | Alpha  |        ✅        |
-| [Input](packages/components/src/components/input)                   | 03 - Data-Input   | Alpha  |        ✅        |
-| [Link](packages/components/src/components/link)                     | 02 - Action       | Alpha  |        ✅        |
-| List-Item                                                           | 04 - Data-Display |   ❌   |        ✅        |
-| Menu                                                                | 02 - Action       |   ❌   |        ✅        |
-| Modal                                                               | 06 - Utility      |   ❌   |        ✅        |
-| [NavigationItem](packages/components/src/components/navigationitem) | 05 - Navigation   |  Beta  |        ✅        |
-| Notification                                                        | 05 - Feedback     |   ❌   |        ✅        |
-| Numbers-Field                                                       | 03 - Data-Input   |   ❌   |        ❌        |
-| Pagination                                                          | 02 - Action       |   ❌   |        ❌        |
-| Popover                                                             | 06 - Utility      |   ❌   |        ❌        |
-| Progress                                                            | 05 - Feedback     |   ❌   |        ❌        |
-| [Radio](packages/components/src/components/radio)                   | 03 - Data-Input   | Alpha  |        ✅        |
-| Rating                                                              | 03 - Data-Input   |   ❌   |        ❌        |
-| [Section](packages/components/src/components/section)               | 01 - Layout       |  Beta  |        ✅        |
-| [Select](packages/components/src/components/select)                 | 03 - Data-Input   |  Beta  |        ✅        |
-| Skeleton                                                            | 05 - Feedback     |   ❌   |        ❌        |
-| Slider                                                              | 03 - Data-Input   |   ❌   |        ❌        |
-| Spinner                                                             | 05 - Feedback     |   ❌   |        ❌        |
-| Stack/List                                                          | 06 - Utility      |   ❌   |        ✅        |
-| Stepper                                                             | 02 - Action       |   ❌   |        ❌        |
-| Switch                                                              | 02 - Action       |   ❌   |        ❌        |
-| Table                                                               | 04 - Data-Display |   ❌   |        ❌        |
-| [Tabs](packages/components/src/components/tabs)                     | 04 - Data-Display | Alpha  |        ❌        |
-| [Tag](packages/components/src/components/tag)                       | 04 - Data-Display | Alpha  |        ✅        |
-| Text                                                                | 04 - Data-Display |   ❌   |        ✅        |
-| Textarea                                                            | 03 - Data-Input   |   ❌   |        ✅        |
-| Timeline                                                            | 04 - Data-Display |   ❌   |        ❌        |
-| Time-Picker                                                         | 03 - Data-Input   |   ❌   |        ❌        |
-| Toggle-Button                                                       | 02 - Action       |   ❌   |        ❌        |
-| Tooltip                                                             | 04 - Data-Display |   ❌   |        ❌        |
-| Tree                                                                | 04 - Data-Display |   ❌   |        ❌        |
-| Upload                                                              | 03 - Data-Input   |   ❌   |        ❌        |
+| Name                                                                                           | Category          | Status | Planned for beta |
+| ---------------------------------------------------------------------------------------------- | ----------------- | :----: | :--------------: |
+| [Accordion](https://db-ui.github.io/mono/review/main/components/accordion/overview)            | 04 - Data-Display | Alpha  |        ✅        |
+| [Alert](https://db-ui.github.io/mono/review/main/components/alert/overview)                    | 05 - Feedback     |  Beta  |        ✅        |
+| Avatar                                                                                         | 04 - Data-Display |   ❌   |        ❌        |
+| Backdrop                                                                                       | 06 - Utility      |   ❌   |        ✅        |
+| [Badge](https://db-ui.github.io/mono/review/main/components/badge/overview)                    | 05 - Feedback     | Alpha  |        ✅        |
+| Bottom-Navigation                                                                              | 02 - Action       |   ❌   |        ❌        |
+| Breadcrumbs                                                                                    | 02 - Action       |   ❌   |        ✅        |
+| [Brand](https://db-ui.github.io/mono/review/main/components/brand/overview)                    | 04 - Data-Display |  Beta  |        ✅        |
+| [Button](https://db-ui.github.io/mono/review/main/components/button/overview)                  | 02 - Action       | Alpha  |        ✅        |
+| Button-Group                                                                                   | 02 - Action       |   ❌   |        ❌        |
+| [Card](https://db-ui.github.io/mono/review/main/components/card/overview)                      | 01 - Layout       | Alpha  |        ✅        |
+| Carousel                                                                                       | 06 - Utility      |   ❌   |        ❌        |
+| [Checkbox](https://db-ui.github.io/mono/review/main/components/checkbox/overview)              | 03 - Data-Input   | Alpha  |        ✅        |
+| Combobox                                                                                       | 03 - Data-Input   |   ❌   |        ❌        |
+| Container                                                                                      | 01 - Layout       |   ❌   |        ❌        |
+| Date-Picker                                                                                    | 03 - Data-Input   |   ❌   |        ❌        |
+| [Divider](https://db-ui.github.io/mono/review/main/components/divider/overview)                | 01 - Layout       | Alpha  |        ✅        |
+| [Drawer](https://db-ui.github.io/mono/review/main/components/drawer/overview)                  | 01 - Layout       |  Beta  |        ✅        |
+| Dropdown                                                                                       | 06 - Utility      |   ❌   |        ✅        |
+| Floating-Button                                                                                | 02 - Action       |   ❌   |        ❌        |
+| Footer                                                                                         | 01 - Layout       |   ❌   |        ✅        |
+| Grid                                                                                           | 01 - Layout       |   ❌   |        ✅        |
+| Header                                                                                         | 01 - Layout       |  Beta  |        ✅        |
+| [Icons](https://db-ui.github.io/mono/review/main/components/icon/overview)                     | 04 - Data-Display |  Beta  |        ✅        |
+| Image                                                                                          | 04 - Data-Display |   ❌   |        ✅        |
+| Indicator                                                                                      | 04 - Data-Display |   ❌   |        ❌        |
+| [Infotext](https://db-ui.github.io/mono/review/main/components/infotext/overview)              | 04 - Data-Display | Alpha  |        ✅        |
+| [Input](https://db-ui.github.io/mono/review/main/components/input/overview)                    | 03 - Data-Input   | Alpha  |        ✅        |
+| [Link](https://db-ui.github.io/mono/review/main/components/link/overview)                      | 02 - Action       | Alpha  |        ✅        |
+| List-Item                                                                                      | 04 - Data-Display |   ❌   |        ✅        |
+| Menu                                                                                           | 02 - Action       |   ❌   |        ✅        |
+| Modal                                                                                          | 06 - Utility      |   ❌   |        ✅        |
+| [NavigationItem](https://db-ui.github.io/mono/review/main/components/navigation-item/overview) | 05 - Navigation   |  Beta  |        ✅        |
+| Notification                                                                                   | 05 - Feedback     |   ❌   |        ✅        |
+| Numbers-Field                                                                                  | 03 - Data-Input   |   ❌   |        ❌        |
+| Pagination                                                                                     | 02 - Action       |   ❌   |        ❌        |
+| Popover                                                                                        | 06 - Utility      |   ❌   |        ❌        |
+| Progress                                                                                       | 05 - Feedback     |   ❌   |        ❌        |
+| [Radio](https://db-ui.github.io/mono/review/main/components/radio/overview)                    | 03 - Data-Input   | Alpha  |        ✅        |
+| Rating                                                                                         | 03 - Data-Input   |   ❌   |        ❌        |
+| [Section](https://db-ui.github.io/mono/review/main/components/section/overview)                | 01 - Layout       |  Beta  |        ✅        |
+| [Select](https://db-ui.github.io/mono/review/main/components/select/overview)                  | 03 - Data-Input   |  Beta  |        ✅        |
+| Skeleton                                                                                       | 05 - Feedback     |   ❌   |        ❌        |
+| Slider                                                                                         | 03 - Data-Input   |   ❌   |        ❌        |
+| Spinner                                                                                        | 05 - Feedback     |   ❌   |        ❌        |
+| Stack/List                                                                                     | 06 - Utility      |   ❌   |        ✅        |
+| Stepper                                                                                        | 02 - Action       |   ❌   |        ❌        |
+| Switch                                                                                         | 02 - Action       |   ❌   |        ❌        |
+| Table                                                                                          | 04 - Data-Display |   ❌   |        ❌        |
+| Tabs                                                                                           | 04 - Data-Display | Alpha  |        ❌        |
+| [Tag](https://db-ui.github.io/mono/review/main/components/tag/overview)                        | 04 - Data-Display | Alpha  |        ✅        |
+| Text                                                                                           | 04 - Data-Display |   ❌   |        ✅        |
+| [Textarea](https://db-ui.github.io/mono/review/main/components/textarea/overview)              | 03 - Data-Input   | Alpha  |        ✅        |
+| Timeline                                                                                       | 04 - Data-Display |   ❌   |        ❌        |
+| Time-Picker                                                                                    | 03 - Data-Input   |   ❌   |        ❌        |
+| Toggle-Button                                                                                  | 02 - Action       |   ❌   |        ❌        |
+| Tooltip                                                                                        | 04 - Data-Display |   ❌   |        ❌        |
+| Tree                                                                                           | 04 - Data-Display |   ❌   |        ❌        |
+| Upload                                                                                         | 03 - Data-Input   |   ❌   |        ❌        |
 
 </details>
 
@@ -165,17 +165,6 @@ As [DB UX Design System](https://marketingportal.extranet.deutschebahn.com/marke
 Mono, meaning apps only need to keep their DB UI Mono package updated to ensure the latest look and feel.
 
 </details>
-
-## More information
-
-Additionally we'll provide some more information over time regrading the whole ecosystem:
-
--   [DB UX Design System documentation within the DB Marketingportal (german)](https://marketingportal.extranet.deutschebahn.com/marketingportal/Design-Anwendungen/DB-UX-Design-System/Design-fuer-Apps-Web/UI-Komponenten)
--   [Confluence / Base Wiki - "Technische Umsetzung des Enterprise UI Design Systems" (german, only available internally)](https://db.de/pu8moh)
--   [Confluence - Web UI Component Library (only available internally)](https://db.de/1tyr73)
--   [Changelog](https://github.com/db-ui/core/blob/main/CHANGELOG.md)
--   [Architectural Decision Records](https://github.com/db-ui/core/tree/main/docs/adr)
--   [DB UI Mono 1.x Gitlab repository (only accessible internally)](https://db.de/4cwtyn/)
 
 ## Things to keep in mind
 
@@ -275,13 +264,13 @@ You can also use `docker-compose` to test or regenerate screenshots.
 
 ## Contributions
 
-Contributions are very welcome, please refer to the [contribution guide](CONTRIBUTING.md).
+Contributions are very welcome, please refer to the [contribution guide](https://github.com/db-ui/mono/blob/main/CONTRIBUTING.md).
 
 ## Code of conduct
 
 We as members, contributors, and leaders pledge to make participation in our
 community a harassment-free experience for everyone – have a look at
-our [Contributor Covenant Code of Conduct](CODE-OF-CONDUCT.md).
+our [Contributor Covenant Code of Conduct](https://github.com/db-ui/mono/blob/main/CODE-OF-CONDUCT.md).
 
 ## License
 

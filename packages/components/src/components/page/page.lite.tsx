@@ -2,24 +2,18 @@ import {
 	onMount,
 	Show,
 	Slot,
-	useMetadata,
+	useMetadata, useRef,
 	useStore
 } from '@builder.io/mitosis';
 import { DBPageProps, DBPageState } from './model';
 import { cls } from '../../utils';
 
 useMetadata({
-	isAttachedToShadowDom: true,
-	component: {
-		// MS Power Apps
-		includeIcon: false,
-		properties: []
-	}
+	isAttachedToShadowDom: true
 });
 
 export default function DBPage(props: DBPageProps) {
-	// This is used as forwardRef
-	let component: any;
+	const ref = useRef<HTMLDivElement>(null);
 	// jscpd:ignore-start
 	const state = useStore<DBPageState>({
 		fontsLoaded: false
@@ -43,7 +37,7 @@ export default function DBPage(props: DBPageProps) {
 
 	return (
 		<div
-			ref={component}
+			ref={ref}
 			id={props.id}
 			class={cls('db-page', props.className, {
 				'fixed-header-footer': props.type === 'fixedHeaderFooter'

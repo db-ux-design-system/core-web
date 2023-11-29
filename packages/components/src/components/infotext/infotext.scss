@@ -1,29 +1,28 @@
 @use "sass:map";
-@use "@db-ui/foundations/build/scss/helpers/font";
+@use "@db-ui/foundations/build/scss/tonality";
 @use "@db-ui/foundations/build/scss/variables";
-@use "@db-ui/foundations/build/scss/color/color-variants";
-@use "@db-ui/foundations/build/scss/icon/icon-helpers";
+@use "@db-ui/foundations/build/scss/colors";
+@use "@db-ui/foundations/build/scss/icons";
 
 .db-infotext {
 	--db-icon-margin-end: #{variables.$db-spacing-fixed-2xs};
 	@extend %db-overwrite-font-size-sm;
 
-	@include icon-helpers.to-solid-icon();
-
 	display: flex;
 
-	@include icon-helpers.has-no-icon() {
-		@include icon-helpers.icon("info");
+	@include icons.has-no-icon() {
+		@include icons.to-solid-icon();
+		@include icons.set-icon("info");
 	}
 
 	&[data-size="small"] {
 		@extend %db-overwrite-font-size-xs;
 	}
 
-	@each $name, $colors in color-variants.$component-variants {
+	@each $name, $colors in colors.$component-variants {
 		&[data-variant="#{$name}"] {
-			@include icon-helpers.variant-icons($name);
-			color: map.get($colors, "primary");
+			@include icons.variant-icons($name);
+			color: map.get($colors, "text");
 
 			&::before {
 				--db-current-icon-color: #{map.get($colors, "element")};

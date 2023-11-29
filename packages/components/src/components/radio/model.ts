@@ -1,7 +1,6 @@
 import {
 	FocusEventProps,
 	FocusEventState,
-	ValidEventProps,
 	ChangeEventState,
 	ChangeEventProps,
 	GlobalProps,
@@ -19,9 +18,8 @@ export interface DBRadioDefaultProps {
 
 export type DBRadioProps = DBRadioDefaultProps &
 	GlobalProps &
-	ChangeEventProps &
-	FocusEventProps &
-	ValidEventProps &
+	ChangeEventProps<HTMLInputElement> &
+	FocusEventProps<HTMLInputElement> &
 	FormProps &
 	FormCheckProps;
 
@@ -29,7 +27,7 @@ export type DBRadioDefaultState = {};
 
 export type DBRadioState = DBRadioDefaultState &
 	GlobalState &
-	ChangeEventState &
-	FocusEventState &
+	ChangeEventState<HTMLInputElement> &
+	FocusEventState<HTMLInputElement> &
 	FormState &
 	InitializedState;

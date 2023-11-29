@@ -9,7 +9,7 @@
     "build:02_generate": "node scripts/generate-routes.js",
     "build:03_copy": "cpr dist ../../build-showcases/vanilla-showcase -o",
     "copy:assets": "cpr ../../packages/foundations/assets ./public/assets  -o",
-    "copy:colors": "cpr ../../packages/foundations/build/css/color-classes.css ./public/styles/color-classes.css  -o",
+    "copy:colors": "cpr ../../packages/foundations/build/css/colors/classes/all.css ./public/styles/colors/classes/all.css  -o",
     "copy:components": "cpr ../../packages/components/build/components ./public/components  -o",
     "copy:styles": "cpr ../../packages/components/build/styles/db-ui-42.css ./public/styles/db-ui-42.css  -o",
     "dev": "vite --open",
@@ -20,6 +20,6 @@
   "devDependencies": {
     "cpr": "3.0.1",
     "npm-run-all": "4.1.5",
-    "vite": "^4.4.10"
+    "vite": "^5.0.3"
   }
 }

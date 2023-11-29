@@ -1,0 +1,6 @@
+@use "../index";
+@use "get-class";
+
+@each $variant in index.$variants {
+	@include get-class.init($variant);
+}

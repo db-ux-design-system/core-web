@@ -3,7 +3,7 @@ import {
 	onUpdate,
 	Show,
 	Slot,
-	useMetadata,
+	useMetadata, useRef,
 	useStore
 } from '@builder.io/mitosis';
 import { DBHeaderState, DBHeaderProps } from './model';
@@ -13,17 +13,11 @@ import { DBDrawer } from '../drawer';
 import { DEFAULT_ID } from '../../shared/constants';
 
 useMetadata({
-	isAttachedToShadowDom: true,
-	component: {
-		// MS Power Apps
-		includeIcon: false,
-		properties: [{ name: 'drawerOpen', type: 'TwoOptions' }]
-	}
+	isAttachedToShadowDom: true
 });
 
 export default function DBHeader(props: DBHeaderProps) {
-	// This is used as forwardRef
-	let component: any;
+	const ref = useRef<HTMLDivElement>(null);
 	// jscpd:ignore-start
 	const state = useStore<DBHeaderState>({
 		_id: DEFAULT_ID,
@@ -68,7 +62,7 @@ export default function DBHeader(props: DBHeaderProps) {
 
 	return (
 		<header
-			ref={component}
+			ref={ref}
 			class={cls('db-header', props.className)}
 			id={state._id}
 			data-on-forcing-mobile={props.forceMobile && !state.forcedToMobile}>

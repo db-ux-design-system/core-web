@@ -1,8 +1,9 @@
-@use "@db-ui/components/build/styles/db-ui-42-webpack" as *;
-@use "@db-ui/foundations/build/scss/color-classes" as *;
 @use "@db-ui/foundations/build/scss/variables";
-@use "@db-ui/foundations/build/scss/tonality" as *;
-@use "@db-ui/foundations/build/scss/color-placeholder" as *;
+@use "@db-ui/foundations/build/scss/colors";
+@use "@db-ui/foundations/build/scss/screen-sizes";
+@use "@db-ui/foundations/build/scss/tonality";
+
+@forward "@db-ui/components/build/styles/db-ui-42-webpack";
 
 #__next {
 	height: inherit;
@@ -84,7 +85,7 @@ table {
 
 table td,
 table th {
-	border: 1px solid variables.$db-colors-neutral-border-weak;
+	border: 1px solid colors.$db-neutral-border-weak;
 	padding: variables.$db-spacing-fixed-md;
 	max-width: 33vw;
 }
@@ -98,16 +99,201 @@ table th {
 	padding-inline: variables.$db-spacing-fixed-md;
 }
 
+.version-switcher {
+	max-width: variables.$db-sizing-3xl;
+}
+
 /* Workaround for current db-page from db-ui-elements */
 div[class^="ch-"] {
 	div,
 	span {
 		@extend %db-overwrite-font-size-sm;
-		color: variables.$db-colors-neutral-bg;
+		color: colors.$db-base-on-bg;
 	}
 }
 
 // Code Hike (https://github.com/code-hike/codehike) styles
 .ch-frame-buttons {
 	display: none !important;
+}
+
+.db-section[data-size="none"] {
+	padding-block-end: variables.$db-spacing-fixed-xl;
+}
+
+%grid-container {
+	--columns: 1;
+	display: grid;
+	grid-template-columns: repeat(var(--columns), minmax(0, 1fr));
+	gap: variables.$db-spacing-fixed-md;
+
+	@include screen-sizes.screen() {
+		--columns: 3;
+	}
+}
+
+// icons overview
+
+.icons-filter-container {
+	@extend %grid-container;
+}
+
+.icons-overview-container {
+	@extend %grid-container;
+	--columns: 2;
+
+	@include screen-sizes.screen() {
+		--columns: 7;
+	}
+
+	padding: variables.$db-spacing-fixed-md;
+
+	> .db-card {
+		justify-content: center;
+		align-items: center;
+
+		.db-infotext {
+			word-break: break-word;
+		}
+	}
+}
+
+// colors overview
+
+.color-overview-container {
+	@extend %grid-container;
+	padding: variables.$db-spacing-fixed-md;
+
+	> div {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		border: 1px solid black;
+		padding: variables.$db-spacing-fixed-md;
+	}
+}
+
+// tonality examples
+
+.tonality-example-grid {
+	display: grid;
+	grid-template-columns: repeat(3, minmax(0, 1fr));
+	gap: variables.$db-spacing-fixed-md;
+
+	.db-card {
+		gap: variables.$db-spacing-fixed-sm;
+	}
+}
+
+.tonality-example-page {
+	display: flex;
+	flex-direction: column;
+	gap: variables.$db-spacing-fixed-md;
+
+	.tonality-example-page-regular {
+		display: grid;
+		grid-template-columns: repeat(3, minmax(0, 1fr));
+		gap: variables.$db-spacing-fixed-md;
+	}
+
+	.tonality-example-page-functional {
+		display: grid;
+		grid-template-columns: repeat(5, minmax(0, 1fr));
+		gap: variables.$db-spacing-fixed-md;
+	}
+}
+
+// variables examples
+.example-container {
+	@extend %grid-container;
+
+	p {
+		margin: 0;
+	}
+
+	%spacing {
+		@extend %db-successful-component;
+		height: 100%;
+		display: flex;
+		justify-content: center;
+		position: absolute;
+		align-items: center;
+	}
+
+	.example-item {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		gap: variables.$db-spacing-fixed-md;
+
+		.example-spacing-fixed,
+		.example-spacing-responsive {
+			border: 1px solid black;
+			> div {
+				display: flex;
+				border: 1px solid colors.$db-informational-text;
+				position: relative;
+			}
+		}
+
+		.example-spacing-fixed {
+			> div {
+				gap: variables.$db-spacing-fixed-xl;
+			}
+
+			.gap1,
+			.gap2 {
+				@extend %spacing;
+				width: variables.$db-spacing-fixed-xl;
+			}
+
+			$icon-width: calc(
+				var(--db-base-line-height) * var(--db-base-font-size)
+			);
+
+			.gap1 {
+				left: $icon-width;
+			}
+
+			.gap2 {
+				right: $icon-width;
+			}
+		}
+
+		.example-spacing-responsive {
+			> div {
+				margin-inline: variables.$db-spacing-responsive-sm;
+			}
+
+			.margin1,
+			.margin2 {
+				@extend %spacing;
+				width: variables.$db-spacing-responsive-sm;
+			}
+
+			.margin1 {
+				left: calc(-1 * #{variables.$db-spacing-responsive-sm});
+			}
+
+			.margin2 {
+				right: calc(-1 * #{variables.$db-spacing-responsive-sm});
+			}
+		}
+
+		.example-sizing {
+			> div {
+				display: flex;
+				gap: variables.$db-spacing-fixed-md;
+			}
+
+			.sizing {
+				@extend %spacing;
+				@extend %db-warning-component;
+				position: unset;
+				block-size: variables.$db-sizing-md;
+				inline-size: variables.$db-sizing-md;
+			}
+		}
+	}
 }

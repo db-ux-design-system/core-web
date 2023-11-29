@@ -1,0 +1,91 @@
+@use "icon-helpers";
+@use "../default.assets-paths" as *;
+
+@each $variant in icon-helpers.$default-icon-variants {
+	@font-face {
+		font-display: block;
+		font-family: "db-ux-#{$variant}";
+		font-style: normal;
+		font-weight: normal;
+		src: url("#{$icons-path}functional/fonts/#{$variant}/db-ux.woff2")
+			format("woff2");
+	}
+
+	@each $size in (16, 20, 24, 32, 48, 64) {
+		@font-face {
+			font-display: block;
+			font-family: "db-ux-#{$variant}";
+			font-style: normal;
+			font-weight: $size;
+			src: url("#{$icons-path}functional/fonts/#{$variant}_#{$size}/db-ux.woff2")
+				format("woff2");
+		}
+
+		[data-icon-weight="#{$size}"],
+		[data-icon-weight-before="#{$size}"] {
+			&::before {
+				--db-icon-font-weight: #{$size};
+			}
+		}
+
+		[data-icon-weight-after="#{$size}"] {
+			&::after {
+				--db-icon-font-weight: #{$size};
+			}
+		}
+	}
+
+	[data-icon-variant="#{$variant}"],
+	[data-icon-variant-before="#{$variant}"] {
+		&::before {
+			--db-icon-font-family: "db-ux-#{$variant}";
+		}
+	}
+
+	[data-icon-variant-after="#{$variant}"] {
+		&::after {
+			--db-icon-font-family: "db-ux-#{$variant}";
+		}
+	}
+}
+
+[data-icon],
+[data-icon-before] {
+	&::before {
+		@extend %icon !optional;
+		margin-inline-end: icon-helpers.$default-icon-margin-end;
+	}
+}
+
+[data-icon="none"],
+[data-icon-before="none"] {
+	&::before {
+		content: none;
+	}
+}
+
+[data-icon-after] {
+	&::after {
+		@extend %icon !optional;
+		content: icon-helpers.$default-icon-content-after;
+		margin-inline-start: icon-helpers.$default-icon-margin-start;
+	}
+}
+
+[data-icon-after="none"] {
+	&::after {
+		content: none;
+	}
+}
+
+// Providing a mechanism for text replacements
+.is-icon-text-replace {
+	&[data-icon],
+	&[data-icon-before] {
+		@include icon-helpers.is-icon-text-replace();
+	}
+
+	&[data-icon-after] {
+		@include icon-helpers.is-icon-text-replace("after");
+	}
+}

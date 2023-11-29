@@ -1,12 +1,12 @@
 @use "@db-ui/foundations/build/scss/variables";
-@use "@db-ui/foundations/build/scss/color/color-variants";
-@use "@db-ui/foundations/build/scss/helpers/component";
+@use "@db-ui/foundations/build/scss/colors";
+@use "../../styles/component";
 
 .db-card {
 	@extend %color-variants;
 	@extend %default-card;
 
-	background-color: variables.$db-colors-neutral-bg;
+	background-color: colors.$db-base-bg;
 
 	display: flex;
 	flex-direction: column;
@@ -29,11 +29,11 @@
 
 		&:hover:not([data-elevation="none"]) {
 			cursor: pointer;
-			box-shadow: variables.$db-elevation-8;
+			box-shadow: variables.$db-elevation-lg;
 		}
 
 		&:active:not([data-elevation="none"]) {
-			box-shadow: variables.$db-elevation-2;
+			box-shadow: variables.$db-elevation-sm;
 		}
 	}
 

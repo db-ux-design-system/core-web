@@ -16,11 +16,11 @@
   ],
   "scripts": {
     "build": "npm-run-all -p build-components build-assets -s build-style:*",
+    "build-assets": "cpr src build -o -f \"(.ts|.tsx|.md|.html)$\"",
     "build-components": "npm-run-all build:mitosis -p build-components:*",
     "build-components:directives": "cpr overrides/angular ../../output/angular -o",
     "build-components:docs": "react-docgen ../../output/react/src/components/**/*.tsx -o ../../output/docs.json -i *.spec.tsx",
     "build-components:post": "node scripts/post-build/index.js",
-    "build-assets": "cpr src build -o -f \"(.ts|.tsx|.md|.html)$\"",
     "build-style:01_sass": "sass src:build --no-source-map --load-path=node_modules/ --load-path=../../node_modules/ --future-deprecation=import",
     "build-style:02_postcss": "postcss build/**/*.css --replace",
     "build:mitosis": "mitosis build",
@@ -45,16 +45,16 @@
     "@db-ui/foundations": "*"
   },
   "devDependencies": {
-    "@builder.io/eslint-plugin-mitosis": "^0.0.14",
-    "@builder.io/mitosis": "^0.0.119",
-    "@builder.io/mitosis-cli": "^0.0.77",
-    "@react-docgen/cli": "^1.0.4",
+    "@builder.io/eslint-plugin-mitosis": "^0.0.15",
+    "@builder.io/mitosis": "^0.0.135",
+    "@builder.io/mitosis-cli": "^0.0.94",
+    "@react-docgen/cli": "^2.0.1",
     "cpr": "3.0.1",
-    "eslint": "^8.50.0",
+    "eslint": "^8.54.0",
     "hygen": "^6.2.11",
-    "lit": "^2.8.0",
+    "lit": "^3.1.0",
     "nodemon": "3.0.1",
-    "sass": "^1.68.0"
+    "sass": "^1.69.5"
   },
   "publishConfig": {
     "registry": "https://registry.npmjs.org/",

@@ -16,7 +16,7 @@
     "start": "ng serve"
   },
   "devDependencies": {
-    "@angular-devkit/build-angular": "14.2.12",
+    "@angular-devkit/build-angular": "14.2.13",
     "@angular/common": "14.3.0",
     "ng-packagr": "14.2.2"
   },
