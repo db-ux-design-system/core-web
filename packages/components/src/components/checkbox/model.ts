@@ -1,7 +1,6 @@
 import {
 	FocusEventProps,
 	FocusEventState,
-	ValidEventProps,
 	ChangeEventState,
 	ChangeEventProps,
 	GlobalProps,
@@ -26,9 +25,8 @@ export interface DBCheckboxDefaultProps {
 
 export type DBCheckboxProps = DBCheckboxDefaultProps &
 	GlobalProps &
-	ChangeEventProps &
-	FocusEventProps &
-	ValidEventProps &
+	ChangeEventProps<HTMLInputElement> &
+	FocusEventProps<HTMLInputElement> &
 	FormProps &
 	FormCheckProps;
 
@@ -36,7 +34,7 @@ export type DBCheckboxDefaultState = {};
 
 export type DBCheckboxState = DBCheckboxDefaultState &
 	GlobalState &
-	ChangeEventState &
-	FocusEventState &
+	ChangeEventState<HTMLInputElement> &
+	FocusEventState<HTMLInputElement> &
 	FormState &
 	InitializedState;

@@ -233,7 +233,6 @@ export type FormMessageProps = {
 };
 
 export type FormState = {
-	_isValid?: boolean | undefined;
 	_messageId?: string;
 };
 
@@ -273,7 +272,6 @@ export type LinkProps = {
 		| undefined;
 	disabled?: boolean;
 	href?: string;
-	hreflang?: string;
 	label?: string;
 	target?: '_self' | '_blank' | '_parent' | '_top';
 	rel?: string;
@@ -298,23 +296,29 @@ export type CardProps = {
 	elevation?: 'default' | 'none';
 };
 
-export type ClickEventProps = {
+export type Target<T> = {
+	currentTarget: T;
+	target: T;
+};
+
+export type ClickEvent<T> = MouseEvent & Target<T>;
+export type ClickEventProps<T> = {
 	/**
 	 * React specific onClick to pass to forward ref.
 	 */
-	onClick?: (event: any) => void;
+	onClick?: (event: ClickEvent<T>) => void;
 };
 
-export type ClickEventState = {
-	handleClick: (event: any) => void;
+export type ClickEventState<T> = {
+	handleClick: (event: ClickEvent<T>) => void;
 };
 
 export type ToggleEventProps = {
 	onToggle?: (open: boolean) => void;
 };
 
-export type ToggleEventState = {
-	toggle?: (event?: any) => void;
+export type ToggleEventState<T> = {
+	toggle?: (event: ClickEvent<T>) => void;
 };
 
 export type CloseEventProps = {
@@ -328,32 +332,29 @@ export type CloseEventState = {
 	handleClose?: (event: any) => void;
 };
 
-export type ChangeEventProps = {
-	change?: (event: any) => void;
-	onChange?: (event: any) => void;
+export type ChangeEvent<T> = Event & Target<T>;
+export type ChangeEventProps<T> = {
+	change?: (event: ChangeEvent<T>) => void;
+	onChange?: (event: ChangeEvent<T>) => void;
 };
 
-export type ChangeEventState = {
-	handleChange: (event: any) => void;
+export type ChangeEventState<T> = {
+	handleChange: (event: ChangeEvent<T>) => void;
 };
 
-export type FocusEventProps = {
-	blur?: (event: any) => void;
-	onBlur?: (event: any) => void;
-	focus?: (event: any) => void;
-	onFocus?: (event: any) => void;
+export type InteractionEvent<T> = FocusEvent & Target<T>;
+
+export type FocusEventProps<T> = {
+	blur?: (event: InteractionEvent<T>) => void;
+	onBlur?: (event: InteractionEvent<T>) => void;
+	focus?: (event: InteractionEvent<T>) => void;
+	onFocus?: (event: InteractionEvent<T>) => void;
 };
 
-export type FocusEventState = {
-	handleBlur: (event: any) => void;
-	handleFocus: (event: any) => void;
+export type FocusEventState<T> = {
+	handleBlur: (event: InteractionEvent<T>) => void;
+	handleFocus: (event: InteractionEvent<T>) => void;
 };
-
-export type ValidEventProps = {
-	validityChange?: (valid: boolean) => void;
-};
-
-export type NestedRefComponentType = { getFormRef?: () => { current?: any } };
 
 export type InnerCloseButtonProps = {
 	/**

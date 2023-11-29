@@ -37,5 +37,5 @@ export interface DBHeaderDefaultState {
 
 export type DBHeaderState = DBHeaderDefaultState &
 	GlobalState &
-	ToggleEventState &
+	ToggleEventState<HTMLElement> &
 	InitializedState;

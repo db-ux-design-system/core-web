@@ -1,15 +1,17 @@
 import { useState } from 'react';
 import {
 	DBButton,
+	DBCheckbox,
 	DBInput,
 	DBRadio,
 	DBSelect,
-	DBCheckbox,
 	DBTag,
-	DBTextarea,
-	DBLink
+	DBTextarea
 } from '../../../../../output/react/src';
-import type { KeyValueType } from '../../../../../output/react/src/shared/model';
+import type {
+	ChangeEvent,
+	KeyValueType
+} from '../../../../../output/react/src/shared/model';
 
 const FormComponent = () => {
 	const [input, setInput] = useState('');
@@ -26,15 +28,15 @@ const FormComponent = () => {
 		{ key: 'test2' }
 	];
 
-	const handleChange1 = (event: React.ChangeEvent<HTMLInputElement>) => {
+	const handleChange1 = (event: ChangeEvent<HTMLInputElement>) => {
 		setChecked([event.target.checked, event.target.checked]);
 	};
 
-	const handleChange2 = (event: React.ChangeEvent<HTMLInputElement>) => {
+	const handleChange2 = (event: ChangeEvent<HTMLInputElement>) => {
 		setChecked([event.target.checked, checked[1]]);
 	};
 
-	const handleChange3 = (event: React.ChangeEvent<HTMLInputElement>) => {
+	const handleChange3 = (event: ChangeEvent<HTMLInputElement>) => {
 		setChecked([checked[0], event.target.checked]);
 	};
 
@@ -179,7 +181,7 @@ const FormComponent = () => {
 						<DBButton
 							type="button"
 							variant="primary"
-							onClick={(_) => {
+							onClick={(clickEvent) => {
 								// eslint-disable-next-line no-alert
 								alert(
 									JSON.stringify({

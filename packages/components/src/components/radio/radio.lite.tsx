@@ -2,13 +2,15 @@ import {
 	onMount,
 	onUpdate,
 	Show,
-	useMetadata, useRef,
+	useMetadata,
+	useRef,
 	useStore
 } from '@builder.io/mitosis';
 import { DBRadioProps, DBRadioState } from './model';
 import { uuid } from '../../utils';
 import { DEFAULT_ID } from '../../shared/constants';
 import { cls } from '../../utils';
+import { ChangeEvent, InteractionEvent } from '../../shared/model';
 
 useMetadata({
 	isAttachedToShadowDom: true
@@ -20,9 +22,7 @@ export default function DBRadio(props: DBRadioProps) {
 	const state = useStore<DBRadioState>({
 		initialized: false,
 		_id: DEFAULT_ID,
-		_isValid: undefined,
-
-		handleChange: (event: any) => {
+		handleChange: (event: ChangeEvent<HTMLInputElement>) => {
 			if (props.onChange) {
 				props.onChange(event);
 			}
@@ -31,20 +31,16 @@ export default function DBRadio(props: DBRadioProps) {
 				props.change(event);
 			}
 
-			if (event.target?.validity?.valid != state._isValid) {
-				state._isValid = event.target?.validity?.valid;
-				if (props.validityChange) {
-					props.validityChange(!!event.target?.validity?.valid);
-				}
-			}
+			const target = event.target as HTMLInputElement;
+
 			// TODO: Replace this with the solution out of https://github.com/BuilderIO/mitosis/issues/833 after this has been "solved"
-			// VUE:this.$emit("update:checked", event.target.checked);
+			// VUE:this.$emit("update:checked", target.checked);
 
 			// Change event to work with reactive and template driven forms
-			// ANGULAR: this.propagateChange(event.target.checked);
-			// ANGULAR: this.writeValue(event.target.checked);
+			// ANGULAR: this.propagateChange(target.checked);
+			// ANGULAR: this.writeValue(target.checked);
 		},
-		handleBlur: (event: any) => {
+		handleBlur: (event: InteractionEvent<HTMLInputElement>) => {
 			if (props.onBlur) {
 				props.onBlur(event);
 			}
@@ -53,7 +49,7 @@ export default function DBRadio(props: DBRadioProps) {
 				props.blur(event);
 			}
 		},
-		handleFocus: (event: any) => {
+		handleFocus: (event: InteractionEvent<HTMLInputElement>) => {
 			if (props.onFocus) {
 				props.onFocus(event);
 			}
@@ -107,9 +103,15 @@ export default function DBRadio(props: DBRadioProps) {
 				aria-invalid={props.invalid}
 				value={props.value}
 				required={props.required}
-				onChange={(event) => state.handleChange(event)}
-				onBlur={(event) => state.handleBlur(event)}
-				onFocus={(event) => state.handleFocus(event)}
+				onChange={(event: ChangeEvent<HTMLInputElement>) =>
+					state.handleChange(event)
+				}
+				onBlur={(event: InteractionEvent<HTMLInputElement>) =>
+					state.handleBlur(event)
+				}
+				onFocus={(event: InteractionEvent<HTMLInputElement>) =>
+					state.handleFocus(event)
+				}
 			/>
 			<Show when={props.label}>
 				<span>{props.label}</span>

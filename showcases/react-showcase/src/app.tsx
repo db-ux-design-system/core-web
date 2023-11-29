@@ -21,7 +21,6 @@ const App = () => {
 
 	return (
 		<DBPage
-			className="db-bg-neutral-0"
 			type="fixedHeaderFooter"
 			fadeIn
 			slotHeader={

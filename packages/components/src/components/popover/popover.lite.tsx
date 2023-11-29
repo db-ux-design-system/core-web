@@ -1,7 +1,14 @@
-import {onMount, Show, useMetadata, useRef, useStore} from '@builder.io/mitosis';
+import {
+	onMount,
+	Show,
+	useMetadata,
+	useRef,
+	useStore
+} from '@builder.io/mitosis';
 import { DBPopoverState, DBPopoverProps } from './model';
 import { cls, uuid } from '../../utils';
 import { DEFAULT_ID } from '../../shared/constants';
+import { ClickEvent } from '../../shared/model';
 
 useMetadata({
 	isAttachedToShadowDom: true
@@ -12,7 +19,7 @@ export default function DBPopover(props: DBPopoverProps) {
 	// jscpd:ignore-start
 	const state = useStore<DBPopoverState>({
 		_id: DEFAULT_ID,
-		handleClick: (event: any) => {
+		handleClick: (event: ClickEvent<HTMLElement>) => {
 			event.stopPropagation();
 		}
 	});
@@ -37,7 +44,9 @@ export default function DBPopover(props: DBPopoverProps) {
 			data-delay={props.delay}
 			data-width={props.width}
 			data-placement={props.placement}
-			onClick={(event) => state.handleClick(event)}>
+			onClick={(event: ClickEvent<HTMLElement>) =>
+				state.handleClick(event)
+			}>
 			<Show when={state.stylePath}>
 				<link rel="stylesheet" href={state.stylePath} />
 			</Show>

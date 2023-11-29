@@ -1,6 +1,13 @@
-import {onMount, Show, useMetadata, useRef, useStore} from '@builder.io/mitosis';
+import {
+	onMount,
+	Show,
+	useMetadata,
+	useRef,
+	useStore
+} from '@builder.io/mitosis';
 import type { DBButtonProps, DBButtonState } from './model';
 import { cls } from '../../utils';
+import { ClickEvent } from '../../shared/model';
 
 useMetadata({
 	isAttachedToShadowDom: true
@@ -8,11 +15,9 @@ useMetadata({
 
 export default function DBButton(props: DBButtonProps) {
 	const ref = useRef<HTMLButtonElement>(null);
-	// This is used as forwardRef
-	let component: any;
 	// jscpd:ignore-start
 	const state = useStore<DBButtonState>({
-		handleClick: (event: any) => {
+		handleClick: (event: ClickEvent<HTMLButtonElement>) => {
 			if (props.onClick) {
 				props.onClick(event);
 			}
@@ -47,7 +52,9 @@ export default function DBButton(props: DBButtonProps) {
 			aria-describedby={props.describedbyid}
 			aria-expanded={props.ariaexpanded}
 			aria-pressed={props.ariapressed}
-			onClick={(event) => state.handleClick(event)}>
+			onClick={(event: ClickEvent<HTMLButtonElement>) =>
+				state.handleClick(event)
+			}>
 			<Show when={state.stylePath}>
 				<link rel="stylesheet" href={state.stylePath} />
 			</Show>

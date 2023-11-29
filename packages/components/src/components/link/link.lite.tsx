@@ -1,6 +1,13 @@
-import {onMount, Show, useMetadata, useRef, useStore} from '@builder.io/mitosis';
+import {
+	onMount,
+	Show,
+	useMetadata,
+	useRef,
+	useStore
+} from '@builder.io/mitosis';
 import { DBLinkState, DBLinkProps } from './model';
 import { cls } from '../../utils';
+import { ClickEvent } from '../../shared/model';
 
 useMetadata({
 	isAttachedToShadowDom: false
@@ -10,7 +17,7 @@ export default function DBLink(props: DBLinkProps) {
 	const ref = useRef<HTMLAnchorElement>(null);
 	// jscpd:ignore-start
 	const state = useStore<DBLinkState>({
-		handleClick: (event: any) => {
+		handleClick: (event: ClickEvent<HTMLAnchorElement>) => {
 			if (props.onClick) {
 				props.onClick(event);
 			}
@@ -38,12 +45,13 @@ export default function DBLink(props: DBLinkProps) {
 			tabIndex={props.disabled ? -1 : 0}
 			aria-selected={props.selected}
 			aria-label={props.label}
-			hrefLang={props.hreflang}
 			aria-current={props.current}
 			data-size={props.size}
 			data-variant={props.variant}
 			data-content={props.content || 'internal'}
-			onClick={(event) => state.handleClick(event)}>
+			onClick={(event: ClickEvent<HTMLAnchorElement>) =>
+				state.handleClick(event)
+			}>
 			<Show when={state.stylePath}>
 				<link rel="stylesheet" href={state.stylePath} />
 			</Show>

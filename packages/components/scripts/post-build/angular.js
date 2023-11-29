@@ -173,43 +173,57 @@ export class ${directive.name}Directive {}
 	});
 };
 
+const overwriteEvents = (tmp) => {
+	const modelFilePath = `../../${
+		tmp ? 'output/tmp' : 'output'
+	}/angular/src/shared/model.ts`;
+	const option = {
+		files: modelFilePath,
+		from: /& Target<T>/g,
+		to: ''
+	};
+	Replace.replaceInFileSync(option);
+};
+
 module.exports = (tmp) => {
-	for (const component of components) {
-		const componentName = component.name;
-		const upperComponentName = `DB${getComponentName(component.name)}`;
-		const file = `../../${
-			tmp ? 'output/tmp' : 'output'
-		}/angular/src/components/${componentName}/${componentName}.ts`;
-		const options = {
-			files: file,
-			processor: (input) => changeFile(component, input)
-		};
+	try {
+		overwriteEvents(tmp);
 
-		const replacements = [];
+		for (const component of components) {
+			const componentName = component.name;
+			const upperComponentName = `DB${getComponentName(component.name)}`;
+			const file = `../../${
+				tmp ? 'output/tmp' : 'output'
+			}/angular/src/components/${componentName}/${componentName}.ts`;
+			const options = {
+				files: file,
+				processor: (input) => changeFile(component, input)
+			};
 
-		if (component.config?.angular?.controlValueAccessor) {
-			setControlValueAccessorReplacements(
-				replacements,
-				componentName,
-				upperComponentName,
-				component.config.angular.controlValueAccessor // value / checked / ...
-			);
-		}
+			const replacements = [];
 
-		if (component.config?.angular?.directives?.length > 0) {
-			setDirectiveReplacements(
-				replacements,
-				componentName,
-				upperComponentName,
-				component.config.angular.directives
-			);
-		}
+			if (component.config?.angular?.controlValueAccessor) {
+				setControlValueAccessorReplacements(
+					replacements,
+					componentName,
+					upperComponentName,
+					component.config.angular.controlValueAccessor // value / checked / ...
+				);
+			}
 
-		try {
+			if (component.config?.angular?.directives?.length > 0) {
+				setDirectiveReplacements(
+					replacements,
+					componentName,
+					upperComponentName,
+					component.config.angular.directives
+				);
+			}
+
 			Replace.sync(options);
 			runReplacements(replacements, component, 'angular', file);
-		} catch (error) {
-			console.error('Error occurred:', error);
 		}
+	} catch (error) {
+		console.error('Error occurred:', error);
 	}
 };

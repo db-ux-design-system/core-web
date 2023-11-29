@@ -1,6 +1,13 @@
-import {onMount, Show, useMetadata, useRef, useStore} from '@builder.io/mitosis';
+import {
+	onMount,
+	Show,
+	useMetadata,
+	useRef,
+	useStore
+} from '@builder.io/mitosis';
 import type { DBCardState, DBCardProps } from './model';
 import { cls } from '../../utils';
+import { ClickEvent } from '../../shared/model';
 
 useMetadata({
 	isAttachedToShadowDom: true
@@ -10,7 +17,7 @@ export default function DBCard(props: DBCardProps) {
 	const ref = useRef<HTMLDivElement>(null);
 	// jscpd:ignore-start
 	const state = useStore<DBCardState>({
-		handleClick: (event: any) => {
+		handleClick: (event: ClickEvent<HTMLElement>) => {
 			if (props.onClick) {
 				props.onClick(event);
 			}
@@ -33,7 +40,9 @@ export default function DBCard(props: DBCardProps) {
 			data-color-variant={props.colorVariant}
 			data-elevation={props.elevation}
 			data-spacing={props.spacing}
-			onClick={(event) => state.handleClick(event)}>
+			onClick={(event: ClickEvent<HTMLElement>) =>
+				state.handleClick(event)
+			}>
 			<Show when={state.stylePath}>
 				<link rel="stylesheet" href={state.stylePath} />
 			</Show>

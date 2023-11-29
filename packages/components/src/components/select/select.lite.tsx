@@ -3,7 +3,8 @@ import {
 	onMount,
 	onUpdate,
 	Show,
-	useMetadata, useRef,
+	useMetadata,
+	useRef,
 	useStore
 } from '@builder.io/mitosis';
 import { DBSelectOptionType, DBSelectProps, DBSelectState } from './model';
@@ -15,6 +16,7 @@ import {
 	DEFAULT_PLACEHOLDER_ID_SUFFIX
 } from '../../shared/constants';
 import { DBInfotext } from '../infotext';
+import { ChangeEvent, ClickEvent, InteractionEvent } from '../../shared/model';
 
 useMetadata({
 	isAttachedToShadowDom: true
@@ -27,13 +29,12 @@ export default function DBSelect(props: DBSelectProps) {
 		_id: DEFAULT_ID,
 		_messageId: DEFAULT_ID + DEFAULT_MESSAGE_ID_SUFFIX,
 		_placeholderId: DEFAULT_ID + DEFAULT_PLACEHOLDER_ID_SUFFIX,
-		_isValid: undefined,
-		handleClick: (event: any) => {
+		handleClick: (event: ClickEvent<HTMLSelectElement>) => {
 			if (props.onClick) {
 				props.onClick(event);
 			}
 		},
-		handleChange: (event: any) => {
+		handleChange: (event: ChangeEvent<HTMLSelectElement>) => {
 			if (props.onChange) {
 				props.onChange(event);
 			}
@@ -41,22 +42,16 @@ export default function DBSelect(props: DBSelectProps) {
 			if (props.change) {
 				props.change(event);
 			}
-
-			if (event.target?.validity?.valid != state._isValid) {
-				state._isValid = event.target?.validity?.valid;
-				if (props.validityChange) {
-					props.validityChange(!!event.target?.validity?.valid);
-				}
-			}
+			const target = event.target as HTMLSelectElement;
 
 			// TODO: Replace this with the solution out of https://github.com/BuilderIO/mitosis/issues/833 after this has been "solved"
-			// VUE:this.$emit("update:value", event.target.value);
+			// VUE:this.$emit("update:value", target.value);
 
 			// Change event to work with reactive and template driven forms
-			// ANGULAR: this.propagateChange(event.target.checked);
-			// ANGULAR: this.writeValue(event.target.checked);
+			// ANGULAR: this.propagateChange(target.value);
+			// ANGULAR: this.writeValue(target.value);
 		},
-		handleBlur: (event: any) => {
+		handleBlur: (event: InteractionEvent<HTMLSelectElement>) => {
 			if (props.onBlur) {
 				props.onBlur(event);
 			}
@@ -65,7 +60,7 @@ export default function DBSelect(props: DBSelectProps) {
 				props.blur(event);
 			}
 		},
-		handleFocus: (event: any) => {
+		handleFocus: (event: InteractionEvent<HTMLSelectElement>) => {
 			if (props.onFocus) {
 				props.onFocus(event);
 			}
@@ -100,9 +95,7 @@ export default function DBSelect(props: DBSelectProps) {
 			<Show when={state.stylePath}>
 				<link rel="stylesheet" href={state.stylePath} />
 			</Show>
-			<label htmlFor={state._id}>
-				{props.label ?? DEFAULT_LABEL}
-			</label>
+			<label htmlFor={state._id}>{props.label ?? DEFAULT_LABEL}</label>
 			<select
 				ref={ref}
 				aria-invalid={props.invalid}
@@ -111,10 +104,18 @@ export default function DBSelect(props: DBSelectProps) {
 				id={state._id}
 				name={props.name}
 				value={props.value}
-				onClick={(event) => state.handleClick(event)}
-				onChange={(event) => state.handleChange(event)}
-				onBlur={(event) => state.handleBlur(event)}
-				onFocus={(event) => state.handleFocus(event)}
+				onClick={(event: ClickEvent<HTMLSelectElement>) =>
+					state.handleClick(event)
+				}
+				onChange={(event: ChangeEvent<HTMLSelectElement>) =>
+					state.handleChange(event)
+				}
+				onBlur={(event: InteractionEvent<HTMLSelectElement>) =>
+					state.handleBlur(event)
+				}
+				onFocus={(event: InteractionEvent<HTMLSelectElement>) =>
+					state.handleFocus(event)
+				}
 				aria-describedby={
 					(props.message && state._messageId) || state._placeholderId
 				}>

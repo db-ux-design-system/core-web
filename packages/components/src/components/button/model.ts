@@ -76,7 +76,7 @@ export type DBButtonDefaultProps = {
 
 export type DBButtonProps = DBButtonDefaultProps &
 	GlobalProps &
-	ClickEventProps &
+	ClickEventProps<HTMLButtonElement> &
 	IconProps &
 	WidthProps;
 
@@ -84,4 +84,4 @@ export type DBButtonDefaultState = {};
 
 export type DBButtonState = DBButtonDefaultState &
 	GlobalState &
-	ClickEventState;
+	ClickEventState<HTMLButtonElement>;

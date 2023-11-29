@@ -3,13 +3,15 @@ import {
 	onUpdate,
 	Show,
 	Slot,
-	useMetadata, useRef,
+	useMetadata,
+	useRef,
 	useStore
 } from '@builder.io/mitosis';
 import { DBNavigationItemState, DBNavigationItemProps } from './model';
 import { DBButton } from '../button';
 import { cls, uuid } from '../../utils';
 import { DEFAULT_BACK } from '../../shared/constants';
+import { ClickEvent } from '../../shared/model';
 
 useMetadata({
 	isAttachedToShadowDom: true
@@ -25,7 +27,7 @@ export default function DBNavigationItem(props: DBNavigationItemProps) {
 		hasSubNavigation: true,
 		isSubNavigationExpanded: false,
 		subNavigationId: 'sub-navigation-' + uuid(),
-		handleClick: (event: any) => {
+		handleClick: (event: ClickEvent<HTMLButtonElement>) => {
 			if (props.onClick) {
 				props.onClick(event);
 			}
@@ -95,7 +97,9 @@ export default function DBNavigationItem(props: DBNavigationItemProps) {
 					aria-expanded={state.isSubNavigationExpanded}
 					className="db-navigation-item-expand-button"
 					disabled={props.disabled}
-					onClick={(event) => state.handleClick(event)}>
+					onClick={(event: ClickEvent<HTMLButtonElement>) =>
+						state.handleClick(event)
+					}>
 					{props.children}
 				</button>
 

@@ -2,9 +2,32 @@ const { components } = require('./components');
 const FS = require('node:fs');
 const { getComponentName, runReplacements } = require('../utils');
 
+const overwriteEvents = (tmp) => {
+	const modelFilePath = `../../${
+		tmp ? 'output/tmp' : 'output'
+	}/react/src/shared/model.ts`;
+	let modelFileContent = FS.readFileSync(modelFilePath).toString('utf-8');
+	modelFileContent = 'import * as React from "react";\n' + modelFileContent;
+	modelFileContent = modelFileContent.replace(
+		'export type ClickEvent<T> = MouseEvent & Target<T>;',
+		'export type ClickEvent<T> = React.MouseEvent<T, MouseEvent>;'
+	);
+	modelFileContent = modelFileContent.replace(
+		'export type ChangeEvent<T> = Event & Target<T>;',
+		'export type ChangeEvent<T> = React.ChangeEvent<T>;'
+	);
+	modelFileContent = modelFileContent.replace(
+		'export type InteractionEvent<T> = FocusEvent & Target<T>;',
+		'export type InteractionEvent<T> = React.FocusEvent<T>;'
+	);
+	FS.writeFileSync(modelFilePath, modelFileContent);
+};
+
 module.exports = (tmp) => {
-	for (const component of components) {
-		try {
+	try {
+		overwriteEvents(tmp);
+
+		for (const component of components) {
 			const upperComponentName = getComponentName(component.name);
 
 			const tsxFile = `../../${
@@ -62,8 +85,8 @@ module.exports = (tmp) => {
 			];
 
 			runReplacements(replacements, component, 'react', tsxFile);
-		} catch (error) {
-			console.error('Error occurred:', error);
 		}
+	} catch (error) {
+		console.error('Error occurred:', error);
 	}
 };

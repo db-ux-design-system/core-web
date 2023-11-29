@@ -10,6 +10,7 @@ import { DBButton } from '../button';
 import { DBLink } from '../link';
 import { DEFAULT_CLOSE_BUTTON } from '../../shared/constants';
 import { cls } from '../../utils';
+import { ClickEvent } from '../../shared/model';
 
 useMetadata({
 	isAttachedToShadowDom: true
@@ -19,7 +20,7 @@ export default function DBAlert(props: DBAlertProps) {
 	const ref = useRef<HTMLDivElement>(null);
 	// jscpd:ignore-start
 	const state = useStore<DBAlertState>({
-		handleClick: (event: any) => {
+		handleClick: (event: ClickEvent<HTMLButtonElement>) => {
 			if (props.onClick) {
 				props.onClick(event);
 			}
@@ -63,7 +64,6 @@ export default function DBAlert(props: DBAlertProps) {
 					disabled={props.link.disabled}
 					selected={props.link.selected}
 					label={props.link.label}
-					hreflang={props.link.hreflang}
 					current={props.link.current}
 					text={props.link.text}
 				/>
@@ -76,7 +76,9 @@ export default function DBAlert(props: DBAlertProps) {
 					variant="text"
 					size="small"
 					noText
-					onClick={(event) => state.handleClick(event)}>
+					onClick={(event: ClickEvent<HTMLButtonElement>) =>
+						state.handleClick(event)
+					}>
 					{props.closeButtonText ?? DEFAULT_CLOSE_BUTTON}
 				</DBButton>
 			</Show>

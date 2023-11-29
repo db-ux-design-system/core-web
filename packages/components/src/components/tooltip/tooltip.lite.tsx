@@ -8,6 +8,7 @@ import {
 import { DBTooltipProps, DBTooltipState } from './model';
 import { cls, uuid } from '../../utils';
 import { DEFAULT_ID } from '../../shared/constants';
+import { ClickEvent } from '../../shared/model';
 
 useMetadata({
 	isAttachedToShadowDom: true
@@ -18,7 +19,7 @@ export default function DBTooltip(props: DBTooltipProps) {
 	// jscpd:ignore-start
 	const state = useStore<DBTooltipState>({
 		_id: DEFAULT_ID,
-		handleClick: (event: any) => {
+		handleClick: (event: ClickEvent<HTMLElement>) => {
 			event.stopPropagation();
 		}
 	});
@@ -46,7 +47,9 @@ export default function DBTooltip(props: DBTooltipProps) {
 			data-placement={props.placement}
 			// TODO: clarify this attribute and we need to set it statically
 			data-gap="true"
-			onClick={(event) => state.handleClick(event)}>
+			onClick={(event: ClickEvent<HTMLElement>) =>
+				state.handleClick(event)
+			}>
 			<Show when={state.stylePath}>
 				<link rel="stylesheet" href={state.stylePath} />
 			</Show>
