@@ -49,7 +49,8 @@ export default function DBAccordionItem(props: DBAccordionItemProps) {
 			id={state._id}
 			class={cls('db-accordion-item', props.className)}
 			aria-disabled={props.disabled}
-			open={props.open}>
+			open={props.open}
+			name={props.name}>
 			<Show when={state.stylePath}>
 				<link rel="stylesheet" href={state.stylePath} />
 			</Show>
