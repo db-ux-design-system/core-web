@@ -98,11 +98,13 @@ const gatherIcons = (temporaryDirectory, values) => {
 	}
 
 	if (!FSE.existsSync(temporaryDirectory)) {
-		FSE.mkdirSync(temporaryDirectory);
+		FSE.mkdirSync(temporaryDirectory, { recursive: true });
 	}
 
 	if (!FSE.existsSync(`${temporaryDirectory}/${allTemporaryDir}`)) {
-		FSE.mkdirSync(`${temporaryDirectory}/${allTemporaryDir}`);
+		FSE.mkdirSync(`${temporaryDirectory}/${allTemporaryDir}`, {
+			recursive: true
+		});
 	}
 
 	const foundIconFiles = initTemporaryIconFiles(
@@ -139,7 +141,9 @@ const gatherIcons = (temporaryDirectory, values) => {
 				const placeholderSizeFilePath = `${temporaryDirectory}/${allTemporaryDir}/${generalPrefix}x_placeholder${sizeFileEnding}.svg`;
 
 				if (!FSE.existsSync(`${temporaryDirectory}/${directory}`)) {
-					FSE.mkdirSync(`${temporaryDirectory}/${directory}`);
+					FSE.mkdirSync(`${temporaryDirectory}/${directory}`, {
+						recursive: true
+					});
 				}
 
 				if (FSE.existsSync(sizeFilePath)) {
