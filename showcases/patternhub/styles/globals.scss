@@ -173,6 +173,36 @@ div[class^="ch-"] {
 	}
 }
 
+// tonality examples
+
+.tonality-example-grid {
+	display: grid;
+	grid-template-columns: repeat(3, minmax(0, 1fr));
+	gap: variables.$db-spacing-fixed-md;
+
+	.db-card {
+		gap: variables.$db-spacing-fixed-sm;
+	}
+}
+
+.tonality-example-page {
+	display: flex;
+	flex-direction: column;
+	gap: variables.$db-spacing-fixed-md;
+
+	.tonality-example-page-regular {
+		display: grid;
+		grid-template-columns: repeat(3, minmax(0, 1fr));
+		gap: variables.$db-spacing-fixed-md;
+	}
+
+	.tonality-example-page-functional {
+		display: grid;
+		grid-template-columns: repeat(5, minmax(0, 1fr));
+		gap: variables.$db-spacing-fixed-md;
+	}
+}
+
 // variables examples
 .example-container {
 	@extend %grid-container;

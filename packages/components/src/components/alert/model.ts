@@ -22,10 +22,6 @@ export interface DBAlertDefaultProps {
 	 */
 	behaviour?: 'closable' | 'permanent';
 	/**
-	 * The closeButtonText attribute changes the text inside the close button (only visible with behaviour="closeable").
-	 */
-	closeButtonText?: string;
-	/**
 	 * The headline attribute changes the text of the bold headline.
 	 */
 	headline?: string;
@@ -43,7 +39,7 @@ export interface DBAlertDefaultProps {
 
 export type DBAlertProps = DBAlertDefaultProps &
 	GlobalProps &
-	ClickEventProps &
+	ClickEventProps<HTMLButtonElement> &
 	IconProps &
 	CardProps &
 	DefaultVariantProps &
@@ -51,4 +47,6 @@ export type DBAlertProps = DBAlertDefaultProps &
 
 export interface DBAlertDefaultState {}
 
-export type DBAlertState = DBAlertDefaultState & GlobalState & ClickEventState;
+export type DBAlertState = DBAlertDefaultState &
+	GlobalState &
+	ClickEventState<HTMLButtonElement>;

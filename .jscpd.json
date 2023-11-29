@@ -10,7 +10,6 @@
 		"**/public/**",
 		"**/dist/**",
 		"**/build-outputs/**",
-		"**/build-power-apps/**",
 		"**/build-showcases/**",
 		"**/output/**",
 		"**/node_modules/**",

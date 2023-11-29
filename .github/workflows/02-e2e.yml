@@ -12,12 +12,12 @@ jobs:
     name: 🧪🎭 - ${{ matrix.framework }}:${{ matrix.shard }}
     runs-on: ubuntu-latest
     container:
-      image: mcr.microsoft.com/playwright:v1.35.1-focal
+      image: mcr.microsoft.com/playwright:v1.40.0
     strategy:
       fail-fast: false
       matrix:
         framework: [react, vue]
-        shard: [1/4, 2/4, 3/4, 4/4]
+        shard: [1/3, 2/3, 3/3]
     steps:
       - name: ⏬ Checkout repo
         uses: actions/checkout@v4
@@ -62,13 +62,12 @@ jobs:
           HOME: /root
         run: npx playwright test --shard=${{ matrix.shard }}
 
-      - name: 🆙 Upload blob report to GitHub Actions Artifacts
-        if: always()
-        uses: actions/upload-artifact@v3
-        with:
-          name: all-blob-reports
-          path: ./output/${{ steps.workingDirectory.outputs.dir }}/blob-report
-          retention-days: 1
+      - name: 🔣 Print GitHub Report
+        if: failure()
+        working-directory: ./output/${{ steps.workingDirectory.outputs.dir }}
+        shell: bash
+        run: |
+          npx playwright merge-reports --reporter github ./blob-report
 
       - name: 🆙 Upload test results
         if: failure()

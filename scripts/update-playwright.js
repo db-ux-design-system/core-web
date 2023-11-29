@@ -3,7 +3,7 @@ import childProcess from 'node:child_process';
 import Replace from 'replace-in-file';
 import inquirer from 'inquirer';
 
-const oldPlaywrightVersion = '1.35.1';
+const oldPlaywrightVersion = '1.40.0';
 
 inquirer
 	.prompt([

@@ -20,13 +20,13 @@
  * }]}
  */
 const getComponents = () => [
-  {
-    name: "tooltip"
-  },
+	{
+		name: 'tooltip'
+	},
 
-  {
-    name: "popover"
-  },
+	{
+		name: 'popover'
+	},
 
 	{
 		name: 'accordion-item'
@@ -37,12 +37,6 @@ const getComponents = () => [
 		overwrites: {
 			angular: [
 				{ from: 'openItems = []', to: 'openItems: string[] = []' }
-			],
-			react: [
-				{
-					from: 'const ref = useRef<HTMLDivElement>(null);',
-					to: 'const ref = useRef<HTMLDivElement>(component);'
-				}
 			]
 		}
 	},
@@ -56,22 +50,11 @@ const getComponents = () => [
 			angular: {
 				controlValueAccessor: 'value'
 			}
-		},
-		overwrites: {
+		},overwrites: {
 			angular: [
 				{
-					from: '[attr.defaultValue]="defaultValue ?? children"',
-					to: ''
-				},
-				{
 					from: '</textarea>',
-					to: '{{value || defaultValue}}</textarea>'
-				}
-			],
-			vue: [
-				{
-					from: ':defaultValue="defaultValue || $slots.default"',
-					to: ''
+					to: '{{value}}</textarea>'
 				}
 			]
 		}
@@ -106,12 +89,6 @@ const getComponents = () => [
 	{
 		name: 'drawer',
 		overwrites: {
-			react: [
-				{
-					from: 'const dialogRef = useRef<HTMLDialogElement>(null);',
-					to: 'const dialogRef = useRef<HTMLDialogElement>(component);'
-				}
-			],
 			webComponents: [{ from: '__prev.find', to: '!!__prev.find' }]
 		}
 	},
@@ -142,7 +119,7 @@ const getComponents = () => [
 				vModel: [{ modelValue: 'checked', binding: ':checked' }]
 			},
 			angular: {
-				controlValueAccessor: false
+				controlValueAccessor: 'checked'
 			}
 		}
 	},
@@ -191,6 +168,7 @@ const getComponents = () => [
 					to: '() => toggle()'
 				}
 			],
+			angular: [{ from: '(close)', to: '(onClose)' }],
 			webComponents: [
 				{
 					from: '<slot></slot>',

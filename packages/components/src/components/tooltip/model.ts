@@ -21,4 +21,4 @@ export interface DBTooltipDefaultState {}
 
 export type DBTooltipState = DBTooltipDefaultState &
 	GlobalState &
-	ClickEventState;
+	ClickEventState<HTMLElement>;
