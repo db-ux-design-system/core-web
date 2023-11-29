@@ -297,12 +297,7 @@ export type CardProps = {
 	elevation?: 'default' | 'none';
 };
 
-export type Target<T> = {
-	currentTarget: T;
-	target: T;
-};
-
-export type ClickEvent<T> = MouseEvent & Target<T>;
+export type ClickEvent<T> = MouseEvent;
 export type ClickEventProps<T> = {
 	/**
 	 * React specific onClick to pass to forward ref.
@@ -333,7 +328,7 @@ export type CloseEventState = {
 	handleClose?: (event: any) => void;
 };
 
-export type ChangeEvent<T> = Event & Target<T>;
+export type ChangeEvent<T> = Event;
 export type ChangeEventProps<T> = {
 	change?: (event: ChangeEvent<T>) => void;
 	onChange?: (event: ChangeEvent<T>) => void;
@@ -343,7 +338,7 @@ export type ChangeEventState<T> = {
 	handleChange: (event: ChangeEvent<T>) => void;
 };
 
-export type InteractionEvent<T> = FocusEvent & Target<T>;
+export type InteractionEvent<T> = FocusEvent;
 
 export type FocusEventProps<T> = {
 	blur?: (event: InteractionEvent<T>) => void;

@@ -9,15 +9,15 @@ const overwriteEvents = (tmp) => {
 	let modelFileContent = FS.readFileSync(modelFilePath).toString('utf-8');
 	modelFileContent = 'import * as React from "react";\n' + modelFileContent;
 	modelFileContent = modelFileContent.replace(
-		'export type ClickEvent<T> = MouseEvent & Target<T>;',
+		'export type ClickEvent<T> = MouseEvent;',
 		'export type ClickEvent<T> = React.MouseEvent<T, MouseEvent>;'
 	);
 	modelFileContent = modelFileContent.replace(
-		'export type ChangeEvent<T> = Event & Target<T>;',
+		'export type ChangeEvent<T> = Event &;',
 		'export type ChangeEvent<T> = React.ChangeEvent<T>;'
 	);
 	modelFileContent = modelFileContent.replace(
-		'export type InteractionEvent<T> = FocusEvent & Target<T>;',
+		'export type InteractionEvent<T> = FocusEvent;',
 		'export type InteractionEvent<T> = React.FocusEvent<T>;'
 	);
 	FS.writeFileSync(modelFilePath, modelFileContent);

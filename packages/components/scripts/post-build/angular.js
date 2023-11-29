@@ -173,22 +173,8 @@ export class ${directive.name}Directive {}
 	});
 };
 
-const overwriteEvents = (tmp) => {
-	const modelFilePath = `../../${
-		tmp ? 'output/tmp' : 'output'
-	}/angular/src/shared/model.ts`;
-	const option = {
-		files: modelFilePath,
-		from: /& Target<T>/g,
-		to: ''
-	};
-	Replace.replaceInFileSync(option);
-};
-
 module.exports = (tmp) => {
 	try {
-		overwriteEvents(tmp);
-
 		for (const component of components) {
 			const componentName = component.name;
 			const upperComponentName = `DB${getComponentName(component.name)}`;
