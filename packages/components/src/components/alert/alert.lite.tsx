@@ -58,6 +58,7 @@ export default function DBAlert(props: DBAlertProps) {
 					className="db-alert-link"
 					variant="inline"
 					href={props.link.href}
+					hreflang={props.link.hreflang}
 					target={props.link.target}
 					rel={props.link.rel}
 					role={props.link.role}

@@ -90,7 +90,6 @@ const FormComponent = () => {
 							type="date"
 						/>
 						<DBTextarea
-							aria-atomic
 							label="Textarea Default value"
 							defaultValue="text area default value"
 							onChange={(event) => {
