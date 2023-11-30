@@ -22,9 +22,6 @@
     "build:03_css": "sass --no-source-map --load-path=node_modules/ --load-path=../../node_modules/ build/scss/:build/css/ --future-deprecation=import",
     "build:04_tailwind": "node scripts/tailwind-config-generator.mjs false true && cpr scripts/tailwind-config-generator.mjs build/tailwind/tailwind-config-generator.mjs -o",
     "build:05_postcss": "postcss build/css/**/*.css --replace",
-    "build:06_icon_fonts_common": "esbuild scripts/generate-icon-fonts/index.js --bundle --outdir=build/scripts/generate-icon-fonts --platform=node --packages=external",
-    "build:07_icon_fonts_styles": "cpr scripts/generate-icon-fonts/styles build/scripts/generate-icon-fonts/styles -o",
-    "build:08_icon_fonts_templates": "cpr scripts/generate-icon-fonts/templates build/scripts/generate-icon-fonts/templates -o",
     "clean": "rm -rf build",
     "copy-build": "npm-run-all copy-build:*",
     "copy-build:assets": "cpr assets ../../build-outputs/foundations/assets -o",
@@ -32,7 +29,7 @@
     "copy-build:readme": "cpr README.md ../../build-outputs/foundations/README.md -o",
     "copy-build:web": "cpr build ../../build-outputs/foundations/build -o -f \"(compose|ios-swift)\"",
     "copy:scss": "cpr scss build/scss -o",
-    "generate:icon-fonts": "node scripts/generate-icon-fonts/index.js --src ./assets/icons/functional --variants solid inverted --cleanIgnoreVariants default,all --prefix db_ic_ --fontName db-ux --withSizes true --debug true",
+    "generate:icon-fonts": "npx @db-ui/gif --src ./assets/icons/functional --variants solid inverted --cleanIgnoreVariants default,all --prefix db_ic_ --fontName db-ux --withSizes true --debug true",
     "start": "nodemon --watch tokens/ --watch scss --watch scripts -e json,scss,js -x \"npm run build:01_style-dictionary\"",
     "zeplin:tokens": "node scripts/zeplin-styleguide.js"
   },
@@ -43,13 +40,9 @@
     "@zeplin/sdk": "^1.18.0",
     "cpr": "3.0.1",
     "dotenv": "^16.3.1",
-    "esbuild": "0.19.8",
-    "glob": "^10.3.10",
     "nodemon": "3.0.1",
-    "oslllo-svg-fixer": "^3.0.0",
     "sass": "^1.69.5",
-    "style-dictionary": "3.9.0",
-    "svgtofont": "^4.0.1"
+    "style-dictionary": "3.9.0"
   },
   "publishConfig": {
     "registry": "https://registry.npmjs.org/",
