@@ -314,7 +314,7 @@ export type ToggleEventProps = {
 };
 
 export type ToggleEventState<T> = {
-	toggle?: (event: ClickEvent<T>) => void;
+	toggle?: (event?: ClickEvent<T>) => void;
 };
 
 export type CloseEventProps = {
