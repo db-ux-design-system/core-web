@@ -27,11 +27,7 @@ const App = () => {
 				<DBHeader
 					drawerOpen={drawerOpen}
 					onToggle={setDrawerOpen}
-					slotBrand={
-						<DBBrand title="React Showcase" anchorChildren>
-							Showcase
-						</DBBrand>
-					}
+					slotBrand={<DBBrand>Showcase</DBBrand>}
 					slotMetaNavigation={
 						<MetaNavigation
 							onColorChange={setColor}

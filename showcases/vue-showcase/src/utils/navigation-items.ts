@@ -21,6 +21,7 @@ import Infotext from '../components/infotext/Infotext.vue';
 import Radio from '../components/radio/Radio.vue';
 import Section from '../components/section/Section.vue';
 import Textarea from '../components/textarea/Textarea.vue';
+import Brand from '../components/brand/Brand.vue';
 
 export type NavItem = {
 	path: string;
@@ -65,6 +66,11 @@ export const navigationItems: NavItem[] = [
 		path: '/04',
 		label: '04 Data-Display',
 		subNavigation: getSortedNavigationItems([
+			{
+				path: '/04/brand',
+				label: 'Brand',
+				component: Brand
+			},
 			{
 				path: '/04/infotext',
 				label: 'Infotext',

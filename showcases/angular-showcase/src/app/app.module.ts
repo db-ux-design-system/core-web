@@ -59,10 +59,12 @@ import { NavigationItemComponent } from './components/navigation-item/navigation
 import { NavItemComponent } from './nav-item/nav-item.component';
 import { MainNavigationComponent } from './components/main-navigation/main-navigation.component';
 import { TextareaComponent } from './components/textarea/textarea.component';
+import { BrandComponent } from './components/brand/brand.component';
 
 @NgModule({
 	declarations: [
 		TooltipComponent,
+		BrandComponent,
 
 		PopoverComponent,
 

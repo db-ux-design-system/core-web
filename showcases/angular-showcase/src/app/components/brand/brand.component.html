@@ -1,0 +1,21 @@
+<app-default-component
+	title="DBBrand"
+	[variants]="variants"
+	[exampleTemplate]="exampleTemplate"
+>
+	<ng-template
+		#exampleTemplate
+		let-exampleProps="exampleProps"
+		let-exampleName="exampleName"
+		let-exampleIndex="exampleIndex"
+		let-variantIndex="variantIndex"
+	>
+		<db-brand [hideLogo]="exampleProps.hideLogo">
+			<img
+				*ngIf="exampleProps.customLogo"
+				src="./assets/images/db_logo.svg"
+			/>
+			{{ exampleName }}
+		</db-brand>
+	</ng-template>
+</app-default-component>

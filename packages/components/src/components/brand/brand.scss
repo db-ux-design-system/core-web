@@ -1,25 +1,23 @@
 @use "@db-ui/foundations/build/scss/variables";
+@use "@db-ui/foundations/build/scss/colors";
 
-%brand-display {
+.db-brand {
 	display: flex;
 	gap: variables.$db-spacing-fixed-md;
 	align-items: center;
-}
-
-.db-brand {
-	@extend %brand-display;
-
 	font-weight: 700;
 
-	a {
-		@extend %brand-display;
-		color: inherit;
-		// Deactivate underline on site name being made clickable by added to the link as well
-		text-decoration: none;
+	&::before {
+		--db-icon-font-size: #{variables.$db-sizing-md};
+		--db-icon-margin-end: 0;
+		--db-current-icon-color: #{colors.$db-brand};
 	}
-}
 
-.db-logo {
-	max-inline-size: none;
-	block-size: variables.$db-sizing-sm;
+	img {
+		$logo-size: calc(
+			#{variables.$db-sizing-md} - #{variables.$db-sizing-3xs}
+		);
+		inline-size: $logo-size;
+		max-block-size: $logo-size;
+	}
 }
