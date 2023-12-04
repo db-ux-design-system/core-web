@@ -27,3 +27,18 @@ There are several variants: `base`, `brand`, `neutral`, `critical`, `information
 |         `XXX`          | `class="db-bg-XXX"`                  | `@extend %db-bg-XXX`                  | `class="db-bg-XXX"`                  |
 | `XXX-transparent-semi` | `class="db-bg-XXX-transparent-semi"` | `@extend %db-bg-XXX-transparent-semi` | `class="db-bg-XXX-transparent-semi"` |
 | `XXX-transparent-full` | `class="db-bg-XXX-transparent-full"` | `@extend %db-bg-XXX-transparent-full` | `class="db-bg-XXX-transparent-full"` |
+
+### Dark- & Light-Mode
+
+We provide tokens for dark- and light-mode. If you include the `db-ui-42` style you get a media query `@media (prefers-color-scheme: dark)` with the right tokens. You can [emulate](https://developer.chrome.com/docs/devtools/rendering/emulate-css/) the modes inside the devtools.
+We recommend using the default media query based on the user preference, but if you want to force a mode for you page or a container you can do it with `data-color-scheme="dark/light"`:
+
+#### HTML
+
+```html
+<div data-color-scheme="dark">...</div>
+```
+
+We're providing an example [here](./color-schemes).
+
+We need to set the `base` background to the element with `[data-color-scheme]` so if you want to change the background to another color, make sure to use a wrapping tag like `div` with the `[data-color-scheme]` to avoid issues.

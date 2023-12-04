@@ -297,3 +297,23 @@ div[class^="ch-"] {
 		}
 	}
 }
+
+.color-schemes-container {
+	padding: variables.$db-spacing-fixed-md;
+	border: 1px dashed var(--db-current-color);
+	display: grid;
+	gap: variables.$db-spacing-fixed-md;
+	grid-template-columns: repeat(2, minmax(0, 1fr));
+
+	.db-button {
+		grid-column: span 2 / span 2;
+	}
+
+	.db-tag {
+		margin-inline-start: auto;
+	}
+
+	div {
+		padding: variables.$db-spacing-fixed-md;
+	}
+}
