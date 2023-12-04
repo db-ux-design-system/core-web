@@ -46,10 +46,7 @@ const DefaultPage = ({ children }: any) => {
 							drawerOpen={drawerOpen}
 							onToggle={setDrawerOpen}
 							slotBrand={
-								<DBBrand
-									imgSrc="https://db-ui.github.io/images/db_logo.svg"
-									title={process.env.NEXT_PUBLIC_APP_NAME}
-									anchorChildren>
+								<DBBrand>
 									{process.env.NEXT_PUBLIC_APP_NAME}
 								</DBBrand>
 							}
