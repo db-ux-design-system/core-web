@@ -7,14 +7,7 @@
 		[drawerOpen]="drawerOpen"
 		(onToggle)="toggleDrawer($event)"
 	>
-		<db-brand
-			brand
-			title="Angular Showcase"
-			src="./assets/db_logo.svg"
-			href="/angular-showcase"
-		>
-			Showcase
-		</db-brand>
+		<db-brand brand>Showcase</db-brand>
 		<db-main-navigation *dbNavigation>
 			<ng-container *ngFor="let item of navigationItems">
 				<app-nav-item [navItem]="item"> </app-nav-item>

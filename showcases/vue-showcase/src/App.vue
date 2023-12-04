@@ -82,13 +82,7 @@ const sortedNavigation = getSortedNavigationItems(navigationItems);
 		<template v-slot:header>
 			<DBHeader :drawerOpen="drawerOpen" :onToggle="toggleDrawer">
 				<template v-slot:brand>
-					<DBBrand
-						title="Showcase"
-						src="db_logo.svg"
-						href="/vue-showcase/"
-					>
-						Showcase
-					</DBBrand>
+					<DBBrand>Showcase</DBBrand>
 				</template>
 				<DBMainNavigation>
 					<template v-for="item of sortedNavigation">
