@@ -18,9 +18,7 @@ const uploadAsset = async ({
 		release_id
 	});
 
-	const {
-		assets: []
-	} = uploadRelease.data;
+	const { assets = [] } = uploadRelease.data;
 
 	const foundAsset = assets?.find((asset) => asset.name === assetName);
 
