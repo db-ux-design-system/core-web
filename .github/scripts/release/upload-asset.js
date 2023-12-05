@@ -21,8 +21,8 @@ const uploadAsset = async ({
 	console.log(
 		'uploadAsset',
 		'foundRelease',
-		uploadRelease?.assets,
-		JSON.stringify(uploadRelease?.assets)
+		uploadRelease,
+		JSON.stringify(uploadRelease.assets)
 	);
 
 	const foundAsset = uploadRelease?.assets?.find(
