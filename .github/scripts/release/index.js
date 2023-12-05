@@ -22,16 +22,16 @@ const release = async ({ github, context, workspace, iconReleaseId }) => {
 		assetPath: `${iconsPath}/${iconsName}`
 	});
 
-	if (!context.payload.release.prerelease) {
-		// 3.2 Upload to iconRelease -> will overwrite "latest" icons
-		await uploadAsset({
-			github,
-			context,
-			release_id: iconReleaseId,
-			assetName: iconsName,
-			assetPath: `${iconsPath}/${iconsName}`
-		});
-	}
+	//if (!context.payload.release.prerelease) {
+	// 3.2 Upload to iconRelease -> will overwrite "latest" icons
+	await uploadAsset({
+		github,
+		context,
+		release_id: iconReleaseId,
+		assetName: iconsName,
+		assetPath: `${iconsPath}/${iconsName}`
+	});
+	//}
 };
 
 export default release;
