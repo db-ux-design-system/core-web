@@ -18,18 +18,19 @@ const uploadAsset = async ({
 		release_id
 	});
 
+	const {
+		assets: []
+	} = uploadRelease.data;
+
+	const foundAsset = assets?.find((asset) => asset.name === assetName);
+
 	console.log(
 		'uploadAsset',
-		'foundRelease',
-		uploadRelease,
-		JSON.stringify(uploadRelease.assets)
+		'foundAsset',
+		uploadRelease.data,
+		assets,
+		foundAsset
 	);
-
-	const foundAsset = uploadRelease?.assets?.find(
-		(asset) => asset.name === assetName
-	);
-
-	console.log('uploadAsset', 'foundAsset', foundAsset);
 
 	if (foundAsset) {
 		await github.rest.repos.deleteReleaseAsset({
