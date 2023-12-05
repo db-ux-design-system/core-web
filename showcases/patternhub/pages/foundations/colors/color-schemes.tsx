@@ -10,7 +10,7 @@ const ColorOverview = () => {
 			<div
 				className="color-schemes-container"
 				data-color-scheme={colorScheme}>
-				<span>This container changes based on the state.</span>
+				<p>This container changes based on the state.</p>
 				<DBTag variant="informational" emphasis="strong">
 					{colorScheme}
 				</DBTag>
@@ -26,11 +26,11 @@ const ColorOverview = () => {
 				</DBButton>
 
 				<section data-color-scheme="light">
-					<h2>Always Light</h2>
+					<h2>Permanent Light</h2>
 					<p>I'll be always light independent from parent</p>
 				</section>
 				<section data-color-scheme="dark">
-					<h2>Always Dark</h2>
+					<h2>Permanent Dark</h2>
 					<p>I'll be always dark independent from parent</p>
 				</section>
 			</div>
