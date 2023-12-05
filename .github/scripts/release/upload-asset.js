@@ -22,14 +22,6 @@ const uploadAsset = async ({
 
 	const foundAsset = assets?.find((asset) => asset.name === assetName);
 
-	console.log(
-		'uploadAsset',
-		'foundAsset',
-		uploadRelease.data,
-		assets,
-		foundAsset
-	);
-
 	if (foundAsset) {
 		await github.rest.repos.deleteReleaseAsset({
 			owner,
