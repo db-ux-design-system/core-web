@@ -30,7 +30,7 @@ There are several variants: `base`, `brand`, `neutral`, `critical`, `information
 
 ### Dark- & Light-Mode
 
-We provide tokens for dark- and light-mode. If you include the `db-ui-42` style you get a media query `@media (prefers-color-scheme: dark)` with the right tokens. You can [emulate](https://developer.chrome.com/docs/devtools/rendering/emulate-css/) the modes inside the devtools.
+We provide tokens for both dark- and light-mode. If you include the `db-ui-42` style you get a media query `@media (prefers-color-scheme: dark)` with the right tokens. You can [emulate](https://developer.chrome.com/docs/devtools/rendering/emulate-css/) the modes inside the devtools.
 We recommend using the default media query based on the user preference, but if you want to force a mode for you page or a container you can do it with `data-color-scheme="dark/light"`:
 
 #### HTML
