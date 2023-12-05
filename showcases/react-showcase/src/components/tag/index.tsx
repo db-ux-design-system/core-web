@@ -22,10 +22,12 @@ const getTag = ({
 	emphasis,
 	removeButton,
 	checked,
-	component
+	component,
+	identifier
 }: DBTagProps & {
 	checked?: boolean;
 	component?: 'button' | 'link' | 'radio' | 'checkbox';
+	identifier?: string;
 }) => {
 	const [checkedState, setCheckedState] = useState<boolean>(checked ?? false);
 	return (
@@ -54,7 +56,7 @@ const getTag = ({
 				</DBCheckbox>
 			)}
 			{component === 'radio' && (
-				<DBRadio checked={checked} name="radio">
+				<DBRadio checked={checked} name={identifier}>
 					{children}
 				</DBRadio>
 			)}

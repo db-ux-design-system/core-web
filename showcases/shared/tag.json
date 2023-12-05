@@ -160,24 +160,26 @@
 			{
 				"name": "Interactive Radio 1",
 				"props": {
-					"component": "radio"
+					"component": "radio",
+					"identifier": "radio01"
 				},
 				"code": {
-					"angular": "<db-tab><db-radio>Interactive Radio 1</db-radio></db-tag>",
-					"html": "<div class=\"db-tab\"><input type=\"radio\" class=\"db-checkbox\" id=\"checkbox-element\" /><label for=\"checkbox-element\">Interactive Radio 1</label></div>",
-					"react": "<DBTag><DBRadio>Interactive Radio 1</DBRadio></DBTag>",
-					"vue": "<DBTag><DBRadio>Interactive Radio 1</DBRadio></DBTag>"
+					"angular": "<db-tab><db-radio name=\"radio02\">Interactive Radio 1</db-radio></db-tag>",
+					"html": "<div class=\"db-tab\"><input type=\"radio\" class=\"db-checkbox\" id=\"checkbox-element\" name=\"radio02\" /><label for=\"checkbox-element\">Interactive Radio 1</label></div>",
+					"react": "<DBTag><DBRadio name=\"radio02\">Interactive Radio 1</DBRadio></DBTag>",
+					"vue": "<DBTag><DBRadio name=\"radio02\">Interactive Radio 1</DBRadio></DBTag>"
 				}
 			},
 			{
 				"name": "Interactive Radio 2",
 				"props": {
 					"component": "radio",
+					"identifier": "radio01",
 					"code": {
-						"angular": "<db-tab><db-radio>Interactive Radio 2</db-radio></db-tag>",
-						"html": "<div class=\"db-tab\"><input type=\"radio\" class=\"db-checkbox\" id=\"checkbox-element\" /><label for=\"checkbox-element\">Interactive Radio 2</label></div>",
-						"react": "<DBTag><DBRadio>Interactive Radio 2</DBRadio></DBTag>",
-						"vue": "<DBTag><DBRadio>Interactive Radio 2</DBRadio></DBTag>"
+						"angular": "<db-tab><db-radio name=\"radio02\">Interactive Radio 2</db-radio></db-tag>",
+						"html": "<div class=\"db-tab\"><input type=\"radio\" class=\"db-checkbox\" id=\"checkbox-element\" name=\"radio02\" /><label for=\"checkbox-element\">Interactive Radio 2</label></div>",
+						"react": "<DBTag><DBRadio name=\"radio02\">Interactive Radio 2</DBRadio></DBTag>",
+						"vue": "<DBTag><DBRadio name=\"radio02\">Interactive Radio 2</DBRadio></DBTag>"
 					}
 				}
 			},
@@ -321,13 +323,14 @@
 				"props": {
 					"component": "radio",
 					"emphasis": "strong",
-					"icon": "account"
+					"icon": "account",
+					"identifier": "radio02"
 				},
 				"code": {
-					"angular": "<db-tab><db-radio>Interactive Radio 1</db-radio></db-tag>",
-					"html": "<div class=\"db-tab\"><input type=\"radio\" class=\"db-checkbox\" id=\"checkbox-element\" /><label for=\"checkbox-element\">Interactive Radio 1</label></div>",
-					"react": "<DBTag><DBRadio>Interactive Radio 1</DBRadio></DBTag>",
-					"vue": "<DBTag><DBRadio>Interactive Radio 1</DBRadio></DBTag>"
+					"angular": "<db-tab><db-radio name=\"radio02\">Interactive Radio 1</db-radio></db-tag>",
+					"html": "<div class=\"db-tab\"><input type=\"radio\" class=\"db-checkbox\" id=\"checkbox-element\" name=\"radio02\" /><label for=\"checkbox-element\">Interactive Radio 1</label></div>",
+					"react": "<DBTag><DBRadio name=\"radio02\">Interactive Radio 1</DBRadio></DBTag>",
+					"vue": "<DBTag><DBRadio name=\"radio02\">Interactive Radio 1</DBRadio></DBTag>"
 				}
 			},
 			{
@@ -336,11 +339,12 @@
 					"component": "radio",
 					"emphasis": "strong",
 					"icon": "account",
+					"identifier": "radio02",
 					"code": {
-						"angular": "<db-tab><db-radio>Interactive Radio 2</db-radio></db-tag>",
-						"html": "<div class=\"db-tab\"><input type=\"radio\" class=\"db-checkbox\" id=\"checkbox-element\" /><label for=\"checkbox-element\">Interactive Radio 2</label></div>",
-						"react": "<DBTag><DBRadio>Interactive Radio 2</DBRadio></DBTag>",
-						"vue": "<DBTag><DBRadio>Interactive Radio 2</DBRadio></DBTag>"
+						"angular": "<db-tab><db-radio name=\"radio02\">Interactive Radio 2</db-radio></db-tag>",
+						"html": "<div class=\"db-tab\"><input type=\"radio\" class=\"db-checkbox\" id=\"checkbox-element\" name=\"radio02\" /><label for=\"checkbox-element\">Interactive Radio 2</label></div>",
+						"react": "<DBTag><DBRadio name=\"radio02\">Interactive Radio 2</DBRadio></DBTag>",
+						"vue": "<DBTag><DBRadio name=\"radio02\">Interactive Radio 2</DBRadio></DBTag>"
 					}
 				}
 			}
