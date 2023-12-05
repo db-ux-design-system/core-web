@@ -25,14 +25,14 @@ const ColorOverview = () => {
 					-mode
 				</DBButton>
 
-				<div data-color-scheme="light">
+				<section data-color-scheme="light">
 					<h2>Always Light</h2>
 					<p>I'll be always light independent from parent</p>
-				</div>
-				<div data-color-scheme="dark">
+				</section>
+				<section data-color-scheme="dark">
 					<h2>Always Dark</h2>
 					<p>I'll be always dark independent from parent</p>
-				</div>
+				</section>
 			</div>
 		</DefaultPage>
 	);
