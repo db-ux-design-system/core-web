@@ -22,7 +22,8 @@
 	}
 
 	&:not([data-no-text="true"]) {
-		padding-inline: variables.$db-spacing-fixed-2xs;
+		--db-padding-inline-start: #{variables.$db-spacing-fixed-2xs};
+		padding-inline: var(--db-padding-inline-start) #{variables.$db-spacing-fixed-2xs};
 
 		&:has(.db-tab-remove-button) {
 			padding-inline-start: variables.$db-spacing-fixed-2xs;
@@ -103,7 +104,10 @@
 			transform: translateX(
 				calc(
 					(
-							#{variables.$db-spacing-fixed-2xs} + #{variables.$db-border-height-sm}
+							var(
+									--db-padding-inline-start,
+									#{variables.$db-spacing-fixed-2xs}
+								) + #{variables.$db-border-height-sm}
 						) * -1
 				)
 			);
