@@ -1,4 +1,5 @@
 @use "./colors/default-color-scheme";
+@use "./colors/placeholder";
 
 :root {
 	/* REST */
@@ -575,4 +576,14 @@
 	@media (prefers-color-scheme: dark) {
 		@include default-color-scheme.get-color-scheme-dark;
 	}
+}
+
+[data-color-scheme="light"] {
+	@extend %db-bg-base;
+	@include default-color-scheme.get-color-scheme-light;
+}
+
+[data-color-scheme="dark"] {
+	@extend %db-bg-base;
+	@include default-color-scheme.get-color-scheme-dark;
 }
