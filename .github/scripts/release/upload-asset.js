@@ -18,7 +18,12 @@ const uploadAsset = async ({
 		release_id
 	});
 
-	console.log('uploadAsset', 'foundRelease', uploadRelease);
+	console.log(
+		'uploadAsset',
+		'foundRelease',
+		uploadRelease?.assets,
+		JSON.stringify(uploadRelease?.assets)
+	);
 
 	const foundAsset = uploadRelease?.assets?.find(
 		(asset) => asset.name === assetName
