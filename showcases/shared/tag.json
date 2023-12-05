@@ -164,10 +164,10 @@
 					"identifier": "radio01"
 				},
 				"code": {
-					"angular": "<db-tab><db-radio name=\"radio02\">Interactive Radio 1</db-radio></db-tag>",
-					"html": "<div class=\"db-tab\"><input type=\"radio\" class=\"db-checkbox\" id=\"checkbox-element\" name=\"radio02\" /><label for=\"checkbox-element\">Interactive Radio 1</label></div>",
-					"react": "<DBTag><DBRadio name=\"radio02\">Interactive Radio 1</DBRadio></DBTag>",
-					"vue": "<DBTag><DBRadio name=\"radio02\">Interactive Radio 1</DBRadio></DBTag>"
+					"angular": "<db-tab><db-radio name=\"radio01\">Interactive Radio 1</db-radio></db-tag>",
+					"html": "<div class=\"db-tab\"><input type=\"radio\" class=\"db-checkbox\" id=\"checkbox-element\" name=\"radio01\" /><label for=\"checkbox-element\">Interactive Radio 1</label></div>",
+					"react": "<DBTag><DBRadio name=\"radio01\">Interactive Radio 1</DBRadio></DBTag>",
+					"vue": "<DBTag><DBRadio name=\"radio01\">Interactive Radio 1</DBRadio></DBTag>"
 				}
 			},
 			{
@@ -176,10 +176,10 @@
 					"component": "radio",
 					"identifier": "radio01",
 					"code": {
-						"angular": "<db-tab><db-radio name=\"radio02\">Interactive Radio 2</db-radio></db-tag>",
-						"html": "<div class=\"db-tab\"><input type=\"radio\" class=\"db-checkbox\" id=\"checkbox-element\" name=\"radio02\" /><label for=\"checkbox-element\">Interactive Radio 2</label></div>",
-						"react": "<DBTag><DBRadio name=\"radio02\">Interactive Radio 2</DBRadio></DBTag>",
-						"vue": "<DBTag><DBRadio name=\"radio02\">Interactive Radio 2</DBRadio></DBTag>"
+						"angular": "<db-tab><db-radio name=\"radio01\">Interactive Radio 2</db-radio></db-tag>",
+						"html": "<div class=\"db-tab\"><input type=\"radio\" class=\"db-checkbox\" id=\"checkbox-element\" name=\"radio01\" /><label for=\"checkbox-element\">Interactive Radio 2</label></div>",
+						"react": "<DBTag><DBRadio name=\"radio01\">Interactive Radio 2</DBRadio></DBTag>",
+						"vue": "<DBTag><DBRadio name=\"radio01\">Interactive Radio 2</DBRadio></DBTag>"
 					}
 				}
 			},
