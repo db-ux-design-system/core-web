@@ -99,16 +99,16 @@
 		]
 	},
 	{
-		"name": "Content",
+		"name": "Variant Label",
 		"examples": [
 			{
-				"name": "(Default) Radio Label",
+				"name": "(Default) Label",
 				"props": {
 					"name": "Content"
 				}
 			},
 			{
-				"name": "No Label",
+				"name": "Hidden Label",
 				"props": {
 					"name": "Content",
 					"labelVariant": "hidden"

@@ -23,7 +23,7 @@ useMetadata({
 });
 
 export default function DBDrawer(props: DBDrawerProps) {
-	const dialogRef = useRef<HTMLDialogElement>(null);
+	const ref = useRef<HTMLDialogElement>(null);
 	const dialogContainerRef = useRef<HTMLDivElement>(null);
 	const state = useStore<DBDrawerState>({
 		_id: DEFAULT_ID,
@@ -44,18 +44,18 @@ export default function DBDrawer(props: DBDrawerProps) {
 			}
 		},
 		handleDialogOpen: () => {
-			if (dialogRef) {
-				if (props.open && !dialogRef.open) {
+			if (ref) {
+				if (props.open && !ref.open) {
 					if (dialogContainerRef) {
 						dialogContainerRef.hidden = false;
 					}
 					if (props.backdrop === 'none') {
-						dialogRef.show();
+						ref.show();
 					} else {
-						dialogRef.showModal();
+						ref.showModal();
 					}
 				}
-				if (!props.open && dialogRef.open) {
+				if (!props.open && ref.open) {
 					if (dialogContainerRef) {
 						dialogContainerRef.hidden = true;
 					}
@@ -63,7 +63,7 @@ export default function DBDrawer(props: DBDrawerProps) {
 						if (dialogContainerRef) {
 							dialogContainerRef.hidden = false;
 						}
-						dialogRef?.close();
+						ref?.close();
 					}, 401);
 				}
 			}
@@ -85,7 +85,7 @@ export default function DBDrawer(props: DBDrawerProps) {
 	return (
 		<dialog
 			id={state._id}
-			ref={dialogRef}
+			ref={ref}
 			class="db-drawer"
 			onClick={(event) => {
 				state.handleClose(event);

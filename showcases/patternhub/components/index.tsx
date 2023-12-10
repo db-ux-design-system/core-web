@@ -53,7 +53,7 @@ const DefaultComponent = ({ title, variants }: DefaultComponentProps) => {
 			)}
 			{!foundVariant && (
 				<DefaultPage>
-					<div className="default-container db-bg-neutral-0">
+					<div className="default-container">
 						<h1>{title}</h1>
 						{variants?.map((variant, index) => (
 							<div key={`${variant.name}-${index}`}>

@@ -5,25 +5,22 @@ import { onMount, Show, useMetadata, useStore } from "@builder.io/mitosis";
 import { DB<%= h.changeCase.pascal(name) %>State, DB<%= h.changeCase.pascal(name) %>Props } from "./model";
 import { cls, uuid } from "../../utils";
 import {DEFAULT_ID} from "../../shared/constants";
+<% if(formValue!=="no"){   -%>
+import {ChangeEvent, InteractionEvent} from "../../shared/model";
+<% } -%>
 
 useMetadata({
-  isAttachedToShadowDom: true,
-  component: {
-	// MS Power Apps
-    includeIcon: false,
-    properties: [],
-  },
+  isAttachedToShadowDom: true
 });
 
 export default function DB<%= h.changeCase.pascal(name) %>(props: DB<%= h.changeCase.pascal(name) %>Props) {
   // This is used as forwardRef
-  let component: any;
+  const ref = useRef<HTMLDivElement>(null);
   // jscpd:ignore-start
   const state = useStore<DB<%= h.changeCase.pascal(name) %>State>({
 		_id: DEFAULT_ID,
       <% if(formValue!=="no"){   -%>
-    	_isValid: undefined,
-		handleChange: (event: any) => {
+		handleChange: (event: ChangeEvent<HTMLInputElement>) => {
 			if (props.onChange) {
 				props.onChange(event);
 			}
@@ -32,21 +29,16 @@ export default function DB<%= h.changeCase.pascal(name) %>(props: DB<%= h.change
 				props.change(event);
 			}
 
-			if (event.target?.validity?.valid != state._isValid) {
-				state._isValid = event.target?.validity?.valid;
-				if (props.validityChange) {
-					props.validityChange(!!event.target?.validity?.valid);
-				}
-			}
+			const target = event.target as HTMLInputElement;
 
 			// TODO: Replace this with the solution out of https://github.com/BuilderIO/mitosis/issues/833 after this has been "solved"
-			// VUE:this.$emit("update:<%= formValue %>", event.target.<%= formValue %>);
+			// VUE:this.$emit("update:<%= formValue %>", target.<%= formValue %>);
 
 			// Change event to work with reactive and template driven forms
-			// ANGULAR: this.propagateChange(event.target.<%= formValue %>);
-			// ANGULAR: this.writeValue(event.target.<%= formValue %>);
+			// ANGULAR: this.propagateChange(target.<%= formValue %>);
+			// ANGULAR: this.writeValue(target.<%= formValue %>);
 		},
-		handleBlur: (event: any) => {
+		handleBlur: (event: InteractionEvent<HTMLInputElement>) => {
 			if (props.onBlur) {
 				props.onBlur(event);
 			}
@@ -55,7 +47,7 @@ export default function DB<%= h.changeCase.pascal(name) %>(props: DB<%= h.change
 				props.blur(event);
 			}
 		},
-		handleFocus: (event: any) => {
+		handleFocus: (event: InteractionEvent<HTMLInputElement>) => {
 			if (props.onFocus) {
 				props.onFocus(event);
 			}
@@ -77,13 +69,13 @@ export default function DB<%= h.changeCase.pascal(name) %>(props: DB<%= h.change
 
   return (
     <div
-    	ref={component}
+    	ref={ref}
     	id={state._id}
     	class={cls('db-<%= name %>', props.className)}
 <% if(formValue!=="no"){   -%>
-		onChange={(event) => state.handleChange(event)}
-		onBlur={(event) => state.handleBlur(event)}
-		onFocus={(event) => state.handleFocus(event)}
+		onChange={(event: ChangeEvent<HTMLInputElement>) => state.handleChange(event)}
+		onBlur={(event: InteractionEvent<HTMLInputElement>) => state.handleBlur(event)}
+		onFocus={(event: InteractionEvent<HTMLInputElement>) => state.handleFocus(event)}
 <% } -%>
     	>
       <Show when={state.stylePath}>

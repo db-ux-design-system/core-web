@@ -32,8 +32,8 @@ For general installation and configuration look at the [components](https://www.
 
 							<li class="db-navigation-item">
 								<a href="#">Sub-Sub-Navi-Item 2</a>
-							</li></menu
-						>
+							</li>
+						</menu>
 					</li>
 
 					<li class="db-navigation-item">

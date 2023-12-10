@@ -89,8 +89,8 @@ const setControlValueAccessorReplacements = (
 		writeValue(value: any) {
 		  this.${valueAccessor} = value;
 
-		  if (this.component?.nativeElement) {
-			 this.renderer.setProperty(this.component?.nativeElement, '${valueAccessor}', value);
+		  if (this.ref?.nativeElement) {
+			 this.renderer.setProperty(this.ref?.nativeElement, '${valueAccessor}', value);
 		  }
 		}
 

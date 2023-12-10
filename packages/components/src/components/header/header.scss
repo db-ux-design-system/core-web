@@ -24,7 +24,7 @@
 
 	&[data-on-forcing-mobile="true"] {
 		/*
-		We make the header invisible for a short time if the user passes in force-mobile property.
+		We make the header invisible for a short time if the user passes in data-force-mobile property.
 		We do it because otherwise we see the default desktop-navigation for some mil. sec.
 		*/
 		visibility: hidden;

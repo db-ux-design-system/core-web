@@ -1,13 +1,13 @@
 # Custom Icons
 
-If you have custom icons and want to use them for foundations and/or in components, you need to generate a `woff2` file.
+If you have custom icons and want to use them for [foundations](https://www.npmjs.com/package/@db-ui/foundations) and/or in [components](https://www.npmjs.com/package/@db-ui/components), you need to generate a `woff2` file.
 
 ## Generate
 
 For this run:
 
 ```shell
-npx -p @db-ui/foundations generate-icon-fonts --src ./my-path-to/icons --fontName my-name
+npx @db-ui/gif --src ./my-path-to/icons --fontName my-name
 ```
 
 We search for all `**/*.svg` files inside the `src` directory and create a new icon font with the provided name. You can preview all generated icons here: `./my-path-to/icons/fonts/all/index.html`.
@@ -17,7 +17,7 @@ We search for all `**/*.svg` files inside the `src` directory and create a new i
 For more information run:
 
 ```shell
-npx -p @db-ui/foundations generate-icon-fonts --help
+npx @db-ui/gif --help
 ```
 
 ## How to use

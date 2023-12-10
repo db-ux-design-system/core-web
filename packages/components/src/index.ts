@@ -28,7 +28,6 @@ export * from './components/accordion';
 export * from './components/accordion-item';
 export * from './components/main-navigation';
 export * from './components/badge';
-export * from "./components/popover";
+export * from './components/popover';
 
-export * from "./components/tooltip";
-
+export * from './components/tooltip';

@@ -1,24 +1,25 @@
-import { onMount, Show, useMetadata, useStore } from '@builder.io/mitosis';
+import {
+	onMount,
+	Show,
+	useMetadata,
+	useRef,
+	useStore
+} from '@builder.io/mitosis';
 import { DBTooltipProps, DBTooltipState } from './model';
 import { cls, uuid } from '../../utils';
 import { DEFAULT_ID } from '../../shared/constants';
+import { ClickEvent } from '../../shared/model';
 
 useMetadata({
-	isAttachedToShadowDom: true,
-	component: {
-		// MS Power Apps
-		includeIcon: false,
-		properties: []
-	}
+	isAttachedToShadowDom: true
 });
 
 export default function DBTooltip(props: DBTooltipProps) {
-	// This is used as forwardRef
-	let component: any;
+	const ref = useRef<HTMLDivElement>(null);
 	// jscpd:ignore-start
 	const state = useStore<DBTooltipState>({
 		_id: DEFAULT_ID,
-		handleClick: (event: any) => {
+		handleClick: (event: ClickEvent<HTMLElement>) => {
 			event.stopPropagation();
 		}
 	});
@@ -35,7 +36,7 @@ export default function DBTooltip(props: DBTooltipProps) {
 	return (
 		<i
 			role="tooltip"
-			ref={component}
+			ref={ref}
 			className={cls('db-tooltip', props.className)}
 			id={state._id}
 			data-emphasis={props.emphasis}
@@ -46,7 +47,9 @@ export default function DBTooltip(props: DBTooltipProps) {
 			data-placement={props.placement}
 			// TODO: clarify this attribute and we need to set it statically
 			data-gap="true"
-			onClick={(event) => state.handleClick(event)}>
+			onClick={(event: ClickEvent<HTMLElement>) =>
+				state.handleClick(event)
+			}>
 			<Show when={state.stylePath}>
 				<link rel="stylesheet" href={state.stylePath} />
 			</Show>

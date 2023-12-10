@@ -96,6 +96,24 @@
 					"labelVariant": "floating",
 					"value": "Floating Label"
 				}
+			},
+			{
+				"name": "Hidden Label",
+				"style": {
+					"width": "300px"
+				},
+				"props": {
+					"options": [
+						{
+							"value": "Option 1"
+						},
+						{
+							"value": "Option 2"
+						}
+					],
+					"label": "Label",
+					"labelVariant": "hidden"
+				}
 			}
 		]
 	},
@@ -311,7 +329,7 @@
 					],
 					"label": "Label",
 					"value": "Filled - Valid",
-					"required": true
+					"invalid": false
 				}
 			},
 			{
@@ -410,7 +428,7 @@
 					],
 					"label": "Label",
 					"value": "Filled - Valid",
-					"required": true,
+					"invalid": false,
 					"labelVariant": "floating"
 				}
 			},
@@ -472,24 +490,6 @@
 					],
 					"label": "Label",
 					"icon": "x_placeholder"
-				}
-			},
-			{
-				"name": "Hidden Label",
-				"style": {
-					"width": "300px"
-				},
-				"props": {
-					"options": [
-						{
-							"value": "Option 1"
-						},
-						{
-							"value": "Option 2"
-						}
-					],
-					"label": "Label",
-					"labelVariant": "hidden"
 				}
 			}
 		]

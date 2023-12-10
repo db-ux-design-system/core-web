@@ -4,6 +4,7 @@ import {
 	Show,
 	Slot,
 	useMetadata,
+	useRef,
 	useStore
 } from '@builder.io/mitosis';
 import { DBHeaderState, DBHeaderProps } from './model';
@@ -13,17 +14,11 @@ import { DBDrawer } from '../drawer';
 import { DEFAULT_ID } from '../../shared/constants';
 
 useMetadata({
-	isAttachedToShadowDom: true,
-	component: {
-		// MS Power Apps
-		includeIcon: false,
-		properties: [{ name: 'drawerOpen', type: 'TwoOptions' }]
-	}
+	isAttachedToShadowDom: true
 });
 
 export default function DBHeader(props: DBHeaderProps) {
-	// This is used as forwardRef
-	let component: any;
+	const ref = useRef<HTMLDivElement>(null);
 	// jscpd:ignore-start
 	const state = useStore<DBHeaderState>({
 		_id: DEFAULT_ID,
@@ -56,8 +51,8 @@ export default function DBHeader(props: DBHeaderProps) {
 				// Adds this attribute to the header to enable all styling which would have
 				// @media screen and (min-width: $db-screens-m) to show mobile navigation on a desktop device
 				addAttributeToChildren(headerElement, {
-					key: 'force-mobile',
-					value: ''
+					key: 'data-force-mobile',
+					value: 'true'
 				});
 			}
 			state.forcedToMobile = true;
@@ -68,7 +63,7 @@ export default function DBHeader(props: DBHeaderProps) {
 
 	return (
 		<header
-			ref={component}
+			ref={ref}
 			class={cls('db-header', props.className)}
 			id={state._id}
 			data-on-forcing-mobile={props.forceMobile && !state.forcedToMobile}>
