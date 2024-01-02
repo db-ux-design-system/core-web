@@ -24,7 +24,7 @@ jobs:
       preRelease: ${{ steps.releaseCheck.outputs.preRelease }}
       version: ${{ steps.getVersion.outputs.version }}
     steps:
-      - name: ⬇ Checkout repo
+      - name: ⏬ Checkout repo
         uses: actions/checkout@v4
 
       - name: 🔄 Init Cache

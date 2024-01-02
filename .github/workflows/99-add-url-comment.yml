@@ -8,7 +8,7 @@ jobs:
     name: 💬 Add url for gh-page as issue comment to PR
     runs-on: ubuntu-latest
     steps:
-      - name: ⬇ Checkout repo
+      - name: ⏬ Checkout repo
         uses: actions/checkout@v4
 
       - name: 📡 Add comment
