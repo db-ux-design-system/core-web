@@ -25,7 +25,7 @@
   "dependencies": {
     "@code-hike/mdx": "^0.9.0",
     "dompurify": "3.0.6",
-    "next": "14.0.3",
+    "next": "14.0.4",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "remark-gfm": "4.0.0"
@@ -35,16 +35,16 @@
     "@babel/preset-react": "7.23.3",
     "@mdx-js/loader": "^3.0.0",
     "@mdx-js/react": "^3.0.0",
-    "@next/mdx": "^14.0.3",
+    "@next/mdx": "^14.0.4",
     "@types/dompurify": "3.0.5",
-    "@types/node": "20.10.3",
-    "@types/react": "18.2.41",
-    "@types/react-dom": "18.2.17",
-    "eslint": "8.55.0",
-    "eslint-config-next": "14.0.3",
+    "@types/node": "20.10.6",
+    "@types/react": "18.2.46",
+    "@types/react-dom": "18.2.18",
+    "eslint": "8.56.0",
+    "eslint-config-next": "14.0.4",
     "iframe-resizer": "^4.3.9",
-    "open-cli": "^7.2.0",
-    "sass": "^1.69.5",
+    "open-cli": "^8.0.0",
+    "sass": "^1.69.6",
     "typescript": "4.9.5"
   }
 }
