@@ -52,32 +52,12 @@ const DefaultPage = ({ children }: any) => {
 									{process.env.NEXT_PUBLIC_APP_NAME}
 								</DBBrand>
 							}
-							slotMetaNavigation={<VersionSwitcher />}
 							slotCallToAction={
-								/* TODO: Use DBSearchBar in future */
 								<DBButton icon="search" variant="text" noText>
 									Search
 								</DBButton>
 							}
-							slotActionBar={
-								<>
-									<DBButton
-										icon="account"
-										variant="text"
-										noText>
-										Profile
-									</DBButton>
-									<DBButton
-										icon="alert"
-										variant="text"
-										noText>
-										Notification
-									</DBButton>
-									<DBButton icon="help" variant="text" noText>
-										Help
-									</DBButton>
-								</>
-							}>
+							slotActionBar={<VersionSwitcher />}>
 							<Navigation />
 						</DBHeader>
 					}>

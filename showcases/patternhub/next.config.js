@@ -1,6 +1,7 @@
 import { remarkCodeHike } from '@code-hike/mdx';
 import remarkGfm from 'remark-gfm';
 import generated from '@next/mdx';
+import rehypeSlug from 'rehype-slug';
 import { getTheme } from './code-theme.js';
 
 const withMDX = generated({
@@ -17,7 +18,7 @@ const withMDX = generated({
 				}
 			]
 		],
-		rehypePlugins: [],
+		rehypePlugins: [rehypeSlug],
 		providerImportSource: '@mdx-js/react'
 	}
 });

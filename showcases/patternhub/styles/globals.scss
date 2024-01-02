@@ -317,3 +317,32 @@ div[class^="ch-"] {
 		padding: variables.$db-spacing-fixed-md;
 	}
 }
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	a {
+		display: inline-block;
+		margin-block: auto;
+		margin-inline-start: variables.$db-spacing-fixed-xs;
+		visibility: hidden;
+	}
+
+	&:hover {
+		a {
+			visibility: visible;
+		}
+	}
+}
+
+.db-header {
+	&[data-rerender="true"] {
+		display: none;
+	}
+	&[data-rerender="false"] {
+		display: inherit;
+	}
+}

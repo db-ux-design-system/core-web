@@ -1,3 +1,4 @@
+import { useRouter } from 'next/router';
 import { createElement, useRef, useState, useEffect } from 'react';
 
 const useStaticContent = () => {
@@ -18,6 +19,17 @@ const useStaticContent = () => {
 
 const StaticContent = ({ children, element = 'div', ...props }: any) => {
 	const [render, ref] = useStaticContent();
+	const [lastScroll, setLastScroll] = useState<string>();
+
+	const router = useRouter();
+
+	useEffect(() => {
+		if (router?.asPath?.includes('#') && lastScroll !== router.asPath) {
+			setLastScroll(router.asPath);
+			// eslint-disable-next-line @typescript-eslint/no-floating-promises
+			router.push(router.asPath);
+		}
+	}, [router]);
 
 	// If we're in the server or a spa navigation, just render it
 	if (render) {
