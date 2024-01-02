@@ -18,14 +18,14 @@ jobs:
     name: Deploy
     runs-on: ubuntu-latest
     steps:
-      - name: ⬇ Checkout repo
+      - name: ⏬ Checkout repo
         uses: actions/checkout@v4
 
       - name: 🔄 Init Cache
         uses: ./.github/actions/npm-cache
 
-      - name: ⬇ Download showcases
-        uses: ./.github/actions/download-tar-artifact
+      - name: ⏬ Download showcases
+        uses: actions/download-artifact@v4
         with:
           name: db-ui-showcases
           path: build-showcases

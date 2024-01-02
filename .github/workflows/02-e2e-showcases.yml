@@ -29,25 +29,25 @@ jobs:
         run: npm i -D esbuild-linux-64
 
       - name: ⏬ Download foundations build
-        uses: ./.github/actions/download-tar-artifact
+        uses: actions/download-artifact@v4
         with:
           name: db-ui-foundations-build
           path: packages/foundations/build
 
       - name: ⏬ Download output
-        uses: ./.github/actions/download-tar-artifact
+        uses: actions/download-artifact@v4
         with:
           name: db-ui-output
           path: output
 
       - name: ⏬ Download components styles build
-        uses: ./.github/actions/download-tar-artifact
+        uses: actions/download-artifact@v4
         with:
           name: db-ui-components-build
           path: packages/components/build
 
       - name: ⏬ Download showcases
-        uses: ./.github/actions/download-tar-artifact
+        uses: actions/download-artifact@v4
         with:
           name: db-ui-showcases
           path: build-showcases
@@ -65,7 +65,7 @@ jobs:
 
       - name: 🆙 Upload test results
         if: failure()
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: ${{ matrix.framework }}-showcase-playwright-results
           path: ./showcases/${{ matrix.framework }}-showcase/test-results
