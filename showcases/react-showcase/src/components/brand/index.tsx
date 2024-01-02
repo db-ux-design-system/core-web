@@ -10,7 +10,13 @@ const getButton = ({
 	customLogo
 }: DBBrandProps & { customLogo: boolean }) => (
 	<DBBrand hideLogo={hideLogo}>
-		{customLogo && <img src="./assets/images/db_logo.svg" />}
+		{customLogo && (
+			<img
+				src={`${
+					process?.env?.NEXT_PUBLIC_BASE_PATH ?? '/react-showcase'
+				}/assets/images/db_logo.svg`}
+			/>
+		)}
 		{children}
 	</DBBrand>
 );

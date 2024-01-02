@@ -1,11 +1,11 @@
-import { GlobalProps, GlobalState, ImageProps } from '../../shared/model';
+import { GlobalProps, GlobalState } from '../../shared/model';
 
 export interface DBBrandDefaultProps {
 	/* Disabled the default logo svg to pass in a custom img */
 	hideLogo?: boolean;
 }
 
-export type DBBrandProps = DBBrandDefaultProps & GlobalProps & ImageProps;
+export type DBBrandProps = DBBrandDefaultProps & GlobalProps;
 
 export interface DBBrandDefaultState {}
 

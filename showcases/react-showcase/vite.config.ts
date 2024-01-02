@@ -7,5 +7,8 @@ export default defineConfig({
 	build: {
 		outDir: '../../build-showcases/react-showcase',
 		emptyOutDir: true
+	},
+	define: {
+		process
 	}
 });
