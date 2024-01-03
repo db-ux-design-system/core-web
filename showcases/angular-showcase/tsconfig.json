@@ -19,12 +19,13 @@
 		"importHelpers": true,
 		"resolveJsonModule": true,
 		"esModuleInterop": true,
-		"target": "es2020",
+		"target": "ES2022",
 		"module": "es2020",
 		"lib": ["es2020", "dom"],
 		"paths": {
 			"@angular/*": ["../../node_modules/@angular/*"]
-		}
+		},
+		"useDefineForClassFields": false
 	},
 	"angularCompilerOptions": {
 		"enableI18nLegacyMessageIdFormat": false,
