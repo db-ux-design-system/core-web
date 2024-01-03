@@ -40,19 +40,13 @@ const DefaultComponent = ({ title, variants }: DefaultComponentProps) => {
 	}, [router]);
 
 	const getHref = (variant: DefaultComponentVariants) => {
-		if (
-			typeof window !== 'undefined' &&
+		return typeof window !== 'undefined' &&
 			window.location.origin &&
-			window?.location?.href
-		) {
-			const url = window.location.href.includes('?')
-				? window.location.href.split('?')[0]
-				: window.location.href;
-
-			return `${url}?page=${variant.name.toLowerCase()}`;
-		}
-
-		return '';
+			window.location.href
+			? `${
+					window.location.href.split('?')[0]
+			  }?page=${variant.name.toLowerCase()}`
+			: '';
 	};
 
 	return (
