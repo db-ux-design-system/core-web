@@ -104,6 +104,7 @@ export default function DBSelect(props: DBSelectProps) {
 				id={state._id}
 				name={props.name}
 				value={props.value}
+				autocomplete={props.autocomplete}
 				onClick={(event: ClickEvent<HTMLSelectElement>) =>
 					state.handleClick(event)
 				}

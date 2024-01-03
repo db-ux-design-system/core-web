@@ -321,6 +321,7 @@ $floating-label-size: calc(
 		&[data-variant="#{$name}"] #{$selector},
 		&[data-variant="#{$name}"] [id$="-placeholder"] {
 			color: map.get($colors, "on-bg");
+			caret-color: map.get($colors, "element");
 		}
 	}
 
