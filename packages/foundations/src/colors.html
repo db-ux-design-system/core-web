@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<title>(Web) Fonts</title>
+		<link rel="stylesheet" href="/build/css/db-ui-foundations.css" />
+		<link rel="stylesheet" href="/build/css/default-theme.css" />
+		<link rel="stylesheet" href="/build/css/internals.css" />
+		<link rel="stylesheet" href="/build/css/icons/include.css" />
+		<link rel="stylesheet" href="/build/css/colors/classes/all.css" />
+		<style>
+			body {
+				font-family: "DB Screen Sans";
+				font-weight: 400;
+			}
+
+			h2 {
+				font-family: "DB Screen Head";
+				font-weight: 300;
+
+				& + h2 {
+					font-weight: 900;
+				}
+			}
+
+			small {
+				/* TODO: define "DB Screen Sans" as a fallback */
+				font-family: "DB Screen Sans Digital";
+			}
+
+			p strong {
+				font-weight: 700;
+			}
+		</style>
+	</head>
+
+	<body style="padding: var(--db-spacing-fixed-md)">
+		<div>
+			<div class="db-bg-base">base</div>
+			<div class="db-bg-base-strong">base-strong</div>
+			<div class="db-bg-base" data-emphasis="weak">base-weak</div>
+			<div class="db-bg-base-transparent-semi">base-transparent-semi</div>
+			<div class="db-bg-base-transparent-full">base-transparent-full</div>
+			<div class="db-bg-neutral">neutral</div>
+			<div class="db-bg-neutral-strong">neutral-strong</div>
+			<div class="db-bg-neutral" data-emphasis="weak">neutral-weak</div>
+			<div class="db-bg-neutral-transparent-semi">
+				neutral-transparent-semi
+			</div>
+			<div class="db-bg-neutral-transparent-full">
+				neutral-transparent-full
+			</div>
+			<div class="db-bg-brand">brand</div>
+			<div class="db-bg-brand-strong">brand-strong</div>
+			<div class="db-bg-brand" data-emphasis="weak">brand-weak</div>
+			<div class="db-bg-brand-transparent-semi">
+				brand-transparent-semi
+			</div>
+			<div class="db-bg-brand-transparent-full">
+				brand-transparent-full
+			</div>
+			<div class="db-bg-successful">successful</div>
+			<div class="db-bg-successful-strong">successful-strong</div>
+			<div class="db-bg-successful" data-emphasis="weak">
+				successful-weak
+			</div>
+			<div class="db-bg-successful-transparent-semi">
+				successful-transparent-semi
+			</div>
+			<div class="db-bg-successful-transparent-full">
+				successful-transparent-full
+			</div>
+			<div class="db-bg-critical">critical</div>
+			<div class="db-bg-critical-strong">critical-strong</div>
+			<div class="db-bg-critical" data-emphasis="weak">critical-weak</div>
+			<div class="db-bg-critical-transparent-semi">
+				critical-transparent-semi
+			</div>
+			<div class="db-bg-critical-transparent-full">
+				critical-transparent-full
+			</div>
+			<div class="db-bg-warning">warning</div>
+			<div class="db-bg-warning-strong">warning-strong</div>
+			<div class="db-bg-warning" data-emphasis="weak">warning-weak</div>
+			<div class="db-bg-warning-transparent-semi">
+				warning-transparent-semi
+			</div>
+			<div class="db-bg-warning-transparent-full">
+				warning-transparent-full
+			</div>
+			<div class="db-bg-informational">informational</div>
+			<div class="db-bg-informational-strong">informational-strong</div>
+			<div class="db-bg-informational" data-emphasis="weak">
+				informational-weak
+			</div>
+			<div class="db-bg-informational-transparent-semi">
+				informational-transparent-semi
+			</div>
+			<div class="db-bg-informational-transparent-full">
+				informational-transparent-full
+			</div>
+		</div>
+	</body>
+</html>

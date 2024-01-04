@@ -12,10 +12,12 @@
   "scripts": {
     "regenerate": "npm-run-all -p regenerate:*",
     "regenerate:components": "npm run regenerate:screenshots --workspace=@db-ui/react-components",
+    "regenerate:foundations": "npm run regenerate:screenshots --workspace=@db-ui/foundations",
     "regenerate:showcases": "npm run regenerate:screenshots --workspace=react-showcase",
     "start": "npx http-server build-showcases",
     "test": "npm-run-all -p test:*",
     "test:angular-showcase": "npm run test:e2e --workspace=angular-showcase",
+    "test:foundations": "npm run test:e2e --workspace=@db-ui/foundations",
     "test:react": "npm run test:components --workspace=@db-ui/react-components",
     "test:react-showcase": "npm run test:e2e --workspace=react-showcase",
     "test:vue": "npm run test:components --workspace=@db-ui/v-components",

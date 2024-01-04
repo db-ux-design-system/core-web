@@ -42,7 +42,7 @@ packages/components/src/**/*.css.map
 /output/docs.json
 showcases/patternhub/public/iframe-resizer/*
 
-/showcases/**/test-results/
+**/test-results/
 
 /__snapshots__/**/*-win32.png
 /packages/foundations/assets/icons/functional/tmp/

@@ -46,7 +46,9 @@
 		"**/**config.ts",
 		"**/navigation-items.ts",
 		"showcases/angular-showcase/.angular/cache",
-		"packages/foundations/assets/icons/functional/fonts/**"
+		"packages/foundations/assets/icons/functional/fonts/**",
+		"**/playwright-report/**",
+		"packages/foundations/src"
 	],
 	"absolute": true
 }
