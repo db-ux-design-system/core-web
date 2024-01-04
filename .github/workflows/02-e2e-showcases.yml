@@ -55,7 +55,8 @@ jobs:
       - name: 👩‍🔬 Test showcase with Playwright 🎭
         env:
           HOME: /root
-        run: npm run test:${{ matrix.framework }}-showcase -- -- --shard=${{ matrix.shard }}
+        run: |
+          npm run test:e2e --workspace=${{ matrix.framework }}-showcase -- --shard=${{ matrix.shard }}
 
       - name: 🔣 Print GitHub Report
         if: failure()
