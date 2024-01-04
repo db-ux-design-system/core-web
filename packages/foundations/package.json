@@ -33,9 +33,6 @@
     "start": "nodemon --watch tokens/ --watch scss --watch scripts -e json,scss,js -x \"npm run build:01_style-dictionary\"",
     "zeplin:tokens": "node scripts/zeplin-styleguide.js"
   },
-  "dependencies": {
-    "@csstools/normalize.css": "^12.1.1"
-  },
   "devDependencies": {
     "@zeplin/sdk": "^1.18.0",
     "cpr": "3.0.1",
