@@ -19,6 +19,10 @@ updates:
       time: "02:00"
       timezone: "Europe/Berlin"
     ignore:
+      # disable playwright auto update for now, because we need to update them manually anyways
+      - dependency-name: "@playwright/experimental-ct-react"
+      - dependency-name: "@playwright/experimental-ct-vue"
+      - dependency-name: "@playwright/test"
       # angular: we update the major version manually
       - dependency-name: "@angular/cli"
         update-types: ["version-update:semver-major"]
@@ -66,9 +70,6 @@ updates:
       commitlint:
         patterns:
           - "@commitlint*"
-      playwright:
-        patterns:
-          - "@playwright*"
       angular:
         patterns:
           - "@angular*"
