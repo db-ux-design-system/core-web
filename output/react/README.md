@@ -43,7 +43,7 @@ import "@db-ui/components/build/styles/db-ui-42-rollup.css";
 ```tsx
 import { DBButton } from '@db-ui/react-components';
 ...
-<DBButton icon="account" onClick={()=>{console.log("Test")}}>Test</DBButton>
+<DBButton icon="account" onClick={()=>{console.log("Test")}} type="button">Test</DBButton>
 ...
 ```
 
@@ -70,7 +70,7 @@ const MyComponent = () => {
 		}
 	}, [buttonRef]);
 
-	return <DBButton ref={buttonRef}>Test</DBButton>;
+	return <DBButton ref={buttonRef} type="button">Test</DBButton>;
 };
 ```
 

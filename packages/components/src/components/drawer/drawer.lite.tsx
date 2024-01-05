@@ -113,7 +113,8 @@ export default function DBDrawer(props: DBDrawerProps) {
 							icon="close"
 							variant="text"
 							noText
-							onClick={() => state.handleClose('close')}>
+							onClick={() => state.handleClose('close')}
+							type="button">
 							{props.closeButtonText ?? DEFAULT_CLOSE_BUTTON}
 						</DBButton>
 					</Show>

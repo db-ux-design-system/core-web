@@ -63,7 +63,11 @@ Third party controls require a `ControlValueAccessor` to function with angular f
 <!-- form.component.html -->
 <form>
 	<DBRadio ngDefaultControl [(ngModel)]="radio">Label</DBRadio>
-	<DBButton type="button" variant="primary" (click)="showValues()"
+	<DBButton
+		type="button"
+		variant="primary"
+		(click)="showValues()"
+		type="button"
 		>Get radio value</DBButton
 	>
 </form>

@@ -113,7 +113,8 @@ export default function DBNavigationItem(props: DBNavigationItemProps) {
 								variant="text"
 								onClick={(event) =>
 									state.handleBackClick(event)
-								}>
+								}
+								type="button">
 								{props.backButtonText ?? DEFAULT_BACK}
 							</DBButton>
 						</div>

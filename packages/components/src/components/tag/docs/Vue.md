@@ -11,7 +11,7 @@ import { DBTag } from "@db-ui/v-components";
 </script>
 
 <template>
-	<DBTag><DBButton>Tag as Button</DBButton></DBTag>
+	<DBTag><DBButton type="button">Tag as Button</DBButton></DBTag>
 	<DBTag>
 		<DBLink> Tag as Link </DBLink>
 	</DBTag>

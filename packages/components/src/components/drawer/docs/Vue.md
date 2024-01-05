@@ -25,6 +25,6 @@ const toggleDrawer = (open: boolean) => {
 	<DBDrawer :open="openDrawer" @close="toggleDrawer(false)">
 		My Drawer content
 	</DBDrawer>
-	<DBButton @click="toggleDrawer(true)">Open me</DBButton>
+	<DBButton @click="toggleDrawer(true)" type="button">Open me</DBButton>
 </template>
 ```

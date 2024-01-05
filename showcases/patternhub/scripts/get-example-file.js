@@ -143,7 +143,7 @@ const getExampleFile = (componentName, { displayName, props }) => {
 		.entries()) {
 		variants += `<dt>${optionArray.join(', ')}:</dt> ${
 			isDialog
-				? `<DBButton onClick={()=>{setDialog(${index})}}>Open Dialog</DBButton>`
+				? `<DBButton onClick={()=>{setDialog(${index})}} type="button">Open Dialog</DBButton>`
 				: ''
 		}<dd> <${displayName} ${
 			isDialog

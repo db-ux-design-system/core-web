@@ -40,18 +40,28 @@ const toggleDrawer = (open: boolean) => {
 			<DBBrand> My Awesome App </DBBrand>
 		</template>
 		<template v-slot:call-to-action>
-			<DBButton icon="search" variant="text" :no-text="true">
+			<DBButton
+				icon="search"
+				variant="text"
+				:no-text="true"
+				type="button"
+			>
 				Search
 			</DBButton>
 		</template>
 		<template v-slot:action-bar>
-			<DBButton icon="account" variant="text" :no-text="true">
+			<DBButton
+				icon="account"
+				variant="text"
+				:no-text="true"
+				type="button"
+			>
 				Profile
 			</DBButton>
-			<DBButton icon="alert" variant="text" :no-text="true">
+			<DBButton icon="alert" variant="text" :no-text="true" type="button">
 				Notification
 			</DBButton>
-			<DBButton icon="help" variant="text" :no-text="true">
+			<DBButton icon="help" variant="text" :no-text="true" type="button">
 				Help
 			</DBButton>
 		</template>
@@ -61,7 +71,8 @@ const toggleDrawer = (open: boolean) => {
 		</template>
 
 		<DBMainNavigation>
-			// https://github.com/db-ui/mono/blob/main/packages/components/src/components/main-navigation/docs/Vue.md
+			//
+			https://github.com/db-ui/mono/blob/main/packages/components/src/components/main-navigation/docs/Vue.md
 		</DBMainNavigation>
 	</DBHeader>
 </template>

@@ -9,7 +9,7 @@ For general installation and configuration take a look at the [react-components]
 import { DBTooltip, DBButton } from "@db-ui/react-components";
 
 const App = () => (
-	<DBButton describedbyid="tooltip-01">
+	<DBButton describedbyid="tooltip-01" type="button">
 		Hover on me to open Tooltip
 		<DBTooltip id="tooltip-01">Tooltip</DBTooltip>
 	</DBButton>

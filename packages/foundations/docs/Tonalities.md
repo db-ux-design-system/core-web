@@ -23,7 +23,7 @@ We set the `data-tonality` on a container like a `div`:
 ```html
 <div data-tonality="functional">
 	<!-- Everything inside here will be smaller -->
-	<DBButton>Test</DBButton>
+	<DBButton type="button">Test</DBButton>
 	<DBInput label="Test" />
 </div>
 ```

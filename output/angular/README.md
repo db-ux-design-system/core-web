@@ -65,7 +65,7 @@ As a workaround you can use refs:
 ### Ref on component
 
 ```html
-<DBButton #buttonRef>Test</DBButton>
+<DBButton #buttonRef type="button">Test</DBButton>
 ```
 
 ```ts

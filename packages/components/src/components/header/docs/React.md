@@ -36,26 +36,33 @@ const App = () => (
 			</>
 		}
 		slotCallToAction={
-			<DBButton icon="search" variant="text" noText>
+			<DBButton icon="search" variant="text" noText type="button">
 				Search
 			</DBButton>
 		}
 		slotActionBar={
 			<>
-				<DBButton icon="account" variant="text" noText>
+				<DBButton icon="account" variant="text" noText type="button">
 					Profile
 				</DBButton>
-				<DBButton icon="alert" variant="text" noText>
+				<DBButton icon="alert" variant="text" noText type="button">
 					Notification
 				</DBButton>
-				<DBButton icon="help" variant="text" noText>
+				<DBButton
+					icon="help"
+					variant="text"
+					noText
+					type="button"
+					type="button"
+				>
 					Help
 				</DBButton>
 			</>
 		}
 	>
 		<DBMainNavigation>
-			// https://github.com/db-ui/mono/blob/main/packages/components/src/components/main-navigation/docs/React.md
+			//
+			https://github.com/db-ui/mono/blob/main/packages/components/src/components/main-navigation/docs/React.md
 		</DBMainNavigation>
 	</DBHeader>
 );

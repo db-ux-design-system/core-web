@@ -11,7 +11,7 @@ import { DBPopover, DBButton } from "@db-ui/v-components";
 </script>
 
 <template>
-	<DBButton describedbyid="popover-01">
+	<DBButton describedbyid="popover-01" type="button">
 		Hover on me to open Popover
 		<DBPopover id="popover-01">Popover</DBPopover>
 	</DBButton>

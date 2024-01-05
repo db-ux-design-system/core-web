@@ -52,7 +52,7 @@ import "@db-ui/v-components/dist/style.css";
 </script>
 
 <template>
-    <DBButton icon="account">Test</DBButton>
+    <DBButton icon="account" type="button">Test</DBButton>
 </template>
 ```
 
@@ -79,7 +79,7 @@ onMounted(() => {
 </script>
 
 <template>
-    <DBButton ref="buttonRef">Test</DBButton>
+    <DBButton ref="buttonRef" type="button">Test</DBButton>
 </template>
 ```
 

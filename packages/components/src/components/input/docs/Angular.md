@@ -98,7 +98,11 @@ Our input component implements this interface so you can use it like any other n
 		placeholder="Placeholder"
 		description="Description"
 	></DBInput>
-	<DBButton type="button" variant="primary" (click)="showValues()"
+	<DBButton
+		type="button"
+		variant="primary"
+		(click)="showValues()"
+		type="button"
 		>Get input value</DBButton
 	>
 </form>

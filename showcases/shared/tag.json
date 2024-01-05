@@ -129,8 +129,8 @@
 				"code": {
 					"angular": "<db-tab><db-button>Interactive Button</db-button></db-tag>",
 					"html": "<div class=\"db-tab\"><button class=\"db-button\">Interactive Button</button></div>",
-					"react": "<DBTag><DBButton>Interactive Button</DBButton></DBTag>",
-					"vue": "<DBTag><DBButton>Interactive Button</DBButton></DBTag>"
+					"react": "<DBTag><DBButton type=\"button\">Interactive Button</DBButton></DBTag>",
+					"vue": "<DBTag><DBButton type=\"button\">Interactive Button</DBButton></DBTag>"
 				}
 			},
 			{
@@ -284,8 +284,8 @@
 				"code": {
 					"angular": "<db-tab><db-button>Interactive Button</db-button></db-tag>",
 					"html": "<div class=\"db-tab\"><button class=\"db-button\">Interactive Button</button></div>",
-					"react": "<DBTag><DBButton>Interactive Button</DBButton></DBTag>",
-					"vue": "<DBTag><DBButton>Interactive Button</DBButton></DBTag>"
+					"react": "<DBTag><DBButton type=\"button\">Interactive Button</DBButton></DBTag>",
+					"vue": "<DBTag><DBButton type=\"button\">Interactive Button</DBButton></DBTag>"
 				}
 			},
 			{

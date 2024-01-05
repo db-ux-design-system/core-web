@@ -11,7 +11,7 @@ import { DBTag } from "@db-ui/react-components";
 const App = () => (
 	<>
 		<DBTag>
-			<DBButton>Tag as Button</DBButton>
+			<DBButton type="button">Tag as Button</DBButton>
 		</DBTag>
 		<DBTag>
 			<DBLink>Tag as Link</DBLink>

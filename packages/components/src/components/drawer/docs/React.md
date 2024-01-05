@@ -29,6 +29,7 @@ const App = () => {
 				onClick={() => {
 					setOpen(true);
 				}}
+				type="button"
 			>
 				Open Me
 			</DBButton>

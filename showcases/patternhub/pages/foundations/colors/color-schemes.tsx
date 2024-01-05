@@ -20,7 +20,8 @@ const ColorOverview = () => {
 						setColorScheme(
 							colorScheme === 'light' ? 'dark' : 'light'
 						);
-					}}>
+					}}
+					type="button">
 					Click me for {colorScheme === 'light' ? 'dark' : 'light'}
 					-mode
 				</DBButton>

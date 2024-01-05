@@ -22,6 +22,7 @@ const log = (exampleName: string) => {
 				:disabled="exampleProps.disabled"
 				:width="exampleProps.width"
 				@click="log(exampleName)"
+				type="button"
 			>
 				{{ exampleName }}
 			</DBButton>

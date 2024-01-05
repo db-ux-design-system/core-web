@@ -42,7 +42,9 @@ const getTag = ({
 				// eslint-disable-next-line no-alert
 				alert(children.toString());
 			}}>
-			{component === 'button' && <DBButton>{children}</DBButton>}
+			{component === 'button' && (
+				<DBButton type="button">{children}</DBButton>
+			)}
 			{component === 'link' && <DBLink href="#">{children}</DBLink>}
 			{component === 'checkbox' && (
 				<DBCheckbox

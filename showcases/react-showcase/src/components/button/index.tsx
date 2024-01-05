@@ -12,7 +12,8 @@ const getButton = ({
 	icon,
 	width,
 	disabled,
-	children
+	children,
+	type
 }: DBButtonProps) => (
 	<DBButton
 		variant={variant}
@@ -25,7 +26,8 @@ const getButton = ({
 		onClick={() => {
 			// eslint-disable-next-line no-alert
 			alert(children.toString());
-		}}>
+		}}
+		type={type}>
 		{children}
 	</DBButton>
 );
