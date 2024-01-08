@@ -185,7 +185,12 @@ module.exports = (tmp) => {
 			processor: (input) => changeFile(component, input)
 		};
 
-		const replacements = [];
+		const replacements = [
+			{
+				from: 'attr.disabled',
+				to: 'disabled'
+			}
+		];
 
 		if (component.config?.angular?.controlValueAccessor) {
 			setControlValueAccessorReplacements(
