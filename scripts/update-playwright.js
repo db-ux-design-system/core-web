@@ -26,11 +26,12 @@ inquirer
 		const version = answer.version;
 		const replacements = [
 			{
-				from: `playwright:v${oldPlaywrightVersion}-focal`,
-				to: `playwright:v${version}-focal`,
+				from: `playwright:v${oldPlaywrightVersion}`,
+				to: `playwright:v${version}`,
 				files: [
 					'.github/workflows/02-e2e.yml',
 					'.github/workflows/02-e2e-showcases.yml',
+					'.github/workflows/02-e2e-foundations.yml',
 					'e2e/Dockerfile'
 				]
 			},
