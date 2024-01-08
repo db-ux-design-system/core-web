@@ -16,7 +16,6 @@ export class FormComponent {
 	// Fieldset checkbox state
 	checked = [true, false];
 
-	select = '';
 	model = {
 		input: 'Anna',
 		dateinput: '2023-05-04',
@@ -97,7 +96,6 @@ export class FormComponent {
 				input: this.input,
 				textarea: this.textarea,
 				radio: this.radio,
-				select: this.select,
 				checkbox: this.model.checkbox,
 				checkbox2: this.model.checkbox2,
 				tags: this.tags
