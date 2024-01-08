@@ -24,7 +24,7 @@
 
 	&[data-on-forcing-mobile="true"] {
 		/*
-		We make the header invisible for a short time if the user passes in force-mobile property.
+		We make the header invisible for a short time if the user passes in data-force-mobile property.
 		We do it because otherwise we see the default desktop-navigation for some mil. sec.
 		*/
 		visibility: hidden;
@@ -184,7 +184,10 @@
 	}
 }
 
-[data-hide-on="mobile"] {
+/* Only for Desktop */
+.db-header-meta-navigation,
+.db-header-navigation-container > .db-header-navigation,
+.db-header-action-container > .db-header-action-bar {
 	display: none;
 
 	@include screen-sizes.screen("md") {
@@ -192,7 +195,13 @@
 	}
 }
 
-[data-hide-on="desktop"] {
+/* Only for Mobile */
+.db-header-drawer-navigation > .db-header-meta-navigation {
+	display: inherit;
+}
+
+.db-header-drawer,
+.db-header-burger-menu-container {
 	@include screen-sizes.screen("md") {
 		display: none;
 	}

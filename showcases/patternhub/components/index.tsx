@@ -39,10 +39,15 @@ const DefaultComponent = ({ title, variants }: DefaultComponentProps) => {
 		}
 	}, [router]);
 
-	const getHref = (variant: DefaultComponentVariants) =>
-		typeof window !== 'undefined' && window.location.origin
-			? `${window?.location?.href}?page=${variant.name.toLowerCase()}`
+	const getHref = (variant: DefaultComponentVariants) => {
+		return typeof window !== 'undefined' &&
+			window.location.origin &&
+			window.location.href
+			? `${
+					window.location.href.split('?')[0]
+			  }?page=${variant.name.toLowerCase()}`
 			: '';
+	};
 
 	return (
 		<>
@@ -53,7 +58,7 @@ const DefaultComponent = ({ title, variants }: DefaultComponentProps) => {
 			)}
 			{!foundVariant && (
 				<DefaultPage>
-					<div className="default-container db-bg-neutral-0">
+					<div className="default-container">
 						<h1>{title}</h1>
 						{variants?.map((variant, index) => (
 							<div key={`${variant.name}-${index}`}>

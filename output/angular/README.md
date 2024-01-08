@@ -23,7 +23,7 @@ Import the styles in scss or css. Based on your technology the file names could 
 
 ```scss styles.scss
 // styles.scss
-@use "@db-ui/components/build/styles/db-ui-42-webpack" as *;
+@forward "@db-ui/components/build/styles/db-ui-42-webpack";
 ```
 
 </details>

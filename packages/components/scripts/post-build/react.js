@@ -80,7 +80,11 @@ module.exports = (tmp) => {
 				},
 				{
 					from: 'ref={ref}',
-					to: 'ref={ref}\n' + '{...filterPassingProps(props)}'
+					to:
+						'ref={ref}\n' +
+						`{...filterPassingProps(props,${JSON.stringify(
+							component?.config?.react?.propsPassingFilter ?? []
+						)})}`
 				}
 			];
 

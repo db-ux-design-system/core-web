@@ -60,15 +60,19 @@ export const getMessageIcon = (
 		  : undefined;
 };
 
-export const filterPassingProps = (props: any): any =>
+export const filterPassingProps = (
+	props: any,
+	propsPassingFilter: string[]
+): any =>
 	Object.keys(props)
 		.filter(
 			(key) =>
-				key.startsWith('data-') ||
-				key.startsWith('aria-') ||
-				key.startsWith('default') ||
-				key.startsWith('auto') ||
-				key.startsWith('on')
+				(key.startsWith('data-') ||
+					key.startsWith('aria-') ||
+					key.startsWith('default') ||
+					key.startsWith('auto') ||
+					key.startsWith('on')) &&
+				!propsPassingFilter.includes(key)
 		)
 		.reduce((obj: any, key: string) => {
 			obj[key] = props[key];

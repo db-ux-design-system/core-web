@@ -22,7 +22,7 @@
     "test:vue-showcase": "npm run test:e2e --workspace=vue-showcase"
   },
   "devDependencies": {
-    "@playwright/test": "1.40.0",
+    "@playwright/test": "1.39.0",
     "cpr": "3.0.1",
     "cross-env": "^7.0.3",
     "dotenv": "^16.0.3",
