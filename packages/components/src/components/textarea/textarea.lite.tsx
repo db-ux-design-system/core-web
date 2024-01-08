@@ -104,6 +104,7 @@ export default function DBTextarea(props: DBTextareaProps) {
 				name={props.name}
 				wrap={props.wrap}
 				spellcheck={props.spellCheck}
+				autocomplete={props.autocomplete}
 				onChange={(event: ChangeEvent<HTMLTextAreaElement>) =>
 					state.handleChange(event)
 				}
