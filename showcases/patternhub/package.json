@@ -11,7 +11,7 @@
     "compile:01_jsx": "node scripts/generate-example-jsx.js",
     "compile:02_copy-components": "cpr ../../output/react/src ./components/src -o",
     "compile:03_copy-docs": "cpr ../../docs ./public/docs -o",
-    "compile:04_components": "esbuild scripts/generate-docs-mdx.js --bundle --loader:.js=jsx --platform=browser --format=esm --external:fs --outfile=generated.js",
+    "compile:04_components": "esbuild scripts/generate-docs-mdx.js --bundle --loader:.js=jsx --platform=node --format=esm --external:fs --outfile=generated.js",
     "compile:05_run": "node generated.js",
     "dev": "cross-env NEXT_PUBLIC_BASE_PATH=/mono/sub npm-run-all compile -p open next:dev",
     "lint": "next lint",
