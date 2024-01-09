@@ -1,4 +1,10 @@
-import {onMount, Show, useMetadata, useRef, useStore} from '@builder.io/mitosis';
+import {
+	onMount,
+	Show,
+	useMetadata,
+	useRef,
+	useStore
+} from '@builder.io/mitosis';
 import type { DBIconState, DBIconProps } from './model';
 import { cls } from '../../utils';
 
@@ -24,6 +30,8 @@ export default function DBIcon(props: DBIconProps) {
 			id={props.id}
 			class={cls('db-icon', props.className)}
 			data-icon={props.icon}
+			data-icon-weight={props.weight}
+			data-icon-variant={props.variant}
 			aria-hidden="true"
 			title={props.title}>
 			<Show when={state.stylePath}>
