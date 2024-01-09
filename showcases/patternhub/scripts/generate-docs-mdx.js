@@ -1,6 +1,6 @@
-/* eslint-disable unicorn/prefer-top-level-await, unicorn/prefer-node-protocol, no-await-in-loop */
+/* eslint-disable unicorn/prefer-top-level-await, no-await-in-loop */
 
-import FS from 'fs';
+import FS from 'node:fs';
 import getExampleFile from './get-example-file.js';
 import getPropertiesFile from './get-properties-file.js';
 import getHowToFile from './get-how-to-file.js';

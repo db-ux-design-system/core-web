@@ -1,5 +1,5 @@
-/* eslint-disable unicorn/prefer-node-protocol, no-await-in-loop */
-import FS from 'fs';
+/* eslint-disable no-await-in-loop */
+import FS from 'node:fs';
 import prettier from 'prettier';
 import prettier0 from 'prettier/parser-babel.js';
 import { allExamples } from './generated/index.jsx';
