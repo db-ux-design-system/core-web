@@ -1,4 +1,6 @@
-import FS from 'node:fs';
+/* eslint-disable unicorn/prefer-node-protocol */
+
+import FS from 'fs';
 import { getCodeByFramework, getComponentName } from './utils.js';
 
 const sharedPath = '../shared';

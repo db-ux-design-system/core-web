@@ -1,4 +1,5 @@
-import FS from 'node:fs';
+/* eslint-disable unicorn/prefer-node-protocol */
+import FS from 'fs';
 
 const componentPath = '../../packages/components/src/components';
 
