@@ -32,7 +32,17 @@
 @forward "../components/tooltip/tooltip";
 @forward "dialog-init";
 
+@forward "../components/tab-bar/tab-bar";
+
+@forward "../components/tab/tab";
+
 // angular-workaround
+dbtab,
+db-tab,
+
+dbtab-bar,
+db-tab-bar,
+
 dbtooltip,
 db-tooltip,
 dbpopover,

@@ -1,0 +1,35 @@
+@use "@db-ui/foundations/build/scss/variables";
+@use "@db-ui/foundations/build/scss/colors";
+@use "../../styles/component";
+
+.db-tab {
+	@extend %default-interactive-component;
+	@extend %transparent-border;
+	@include colors.bg-transparent-interactive(false);
+
+	padding: variables.$db-spacing-fixed-xs variables.$db-spacing-fixed-sm;
+
+	&:has(input:focus-visibles) {
+		@extend %focus-placeholder;
+	}
+	&:has(input:checked) {
+		font-weight: 700;
+	}
+
+	input {
+		&[type="radio"] {
+			position: absolute;
+			inline-size: 0;
+			block-size: 0;
+			margin-inline-end: initial;
+			border: none;
+			border-radius: inherit;
+
+			&:focus-within,
+			&:focus-visible {
+				outline: none;
+				box-shadow: none;
+			}
+		}
+	}
+}

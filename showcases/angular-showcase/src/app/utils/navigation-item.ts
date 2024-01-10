@@ -1,3 +1,7 @@
+import { TabComponent } from '../components/tab/tab.component';
+
+import { TabBarComponent } from '../components/tab-bar/tab-bar.component';
+
 import { Routes } from '@angular/router';
 import { TooltipComponent } from '../components/tooltip/tooltip.component';
 import { PopoverComponent } from '../components/popover/popover.component';
@@ -35,6 +39,10 @@ export const getSortedNavigationItems = (navigationItems: NavItem[]): any[] =>
 	);
 
 export const NAVIGATION_ITEMS: NavItem[] = [
+{ path: 'tab', label: 'Tab', component: TabComponent },
+
+{ path: 'tab-bar', label: 'TabBar', component: TabBarComponent },
+
 	{
 		path: '06',
 		label: '06 Feedback',

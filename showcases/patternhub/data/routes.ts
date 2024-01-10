@@ -1,3 +1,13 @@
+			{
+				label: 'TODO: Add to specific category; DBTab',
+				name: 'tab',
+			},
+
+			{
+				label: 'TODO: Add to specific category; DBTabBar',
+				name: 'tab-bar',
+			},
+
 export type NavigationItem = {
 	label: string;
 	name?: string;

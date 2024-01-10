@@ -31,3 +31,7 @@ export * from './components/badge';
 export * from './components/popover';
 
 export * from './components/tooltip';
+export * from "./components/tab-bar";
+
+export * from "./components/tab";
+

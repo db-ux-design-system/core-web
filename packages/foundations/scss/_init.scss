@@ -84,7 +84,6 @@ iframe {
 }
 
 // Focus styles
-%focus-placeholder,
 :is(
 		a,
 		button,
@@ -95,37 +94,7 @@ iframe {
 		[tabindex]:not([tabindex="-1"])
 	) {
 	&:focus-visible {
-		outline: #{variables.$db-border-height-md} var(
-				--db-focus-outline-style,
-				solid
-			) var(--db-focus-outline-color, currentColor);
-		outline-offset: calc(
-			#{variables.$db-border-height-lg} + #{variables.$db-border-height-md}
-		);
-		box-shadow:
-			0 0 0 #{variables.$db-border-height-lg} var(--db-focus-box-shadow-bg-color),
-			0 0 0
-				calc(
-					#{variables.$db-border-height-lg} + #{variables.$db-border-height-md}
-				)
-				var(--db-focus-box-shadow-on-bg-color);
-
-		// TODO: The fallback currently only includes the same CSS Custom Property, which doesn't make any sense
-		transition:
-			outline
-				var(
-					--db-transition-duration-ultra-fast,
-					#{variables.$db-transition-duration-ultra-fast}
-				),
-			box-shadow
-				var(
-					--db-transition-duration-ultra-fast,
-					#{variables.$db-transition-duration-ultra-fast}
-				);
-
-		&:not([type="radio"]) {
-			border-radius: variables.$db-border-radius-md;
-		}
+		@extend %focus-placeholder;
 	}
 }
 

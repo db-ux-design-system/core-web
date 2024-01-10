@@ -1,3 +1,7 @@
+import Tab from '../components/tab/Tab.vue';
+
+import TabBar from '../components/tab-bar/TabBar.vue';
+
 import type { RouteRecordRaw } from 'vue-router';
 import Tooltip from '../components/tooltip/Tooltip.vue';
 import Popover from '../components/popover/Popover.vue';
@@ -30,6 +34,10 @@ export type NavItem = {
 };
 
 export const getSortedNavigationItems = (navigationItems: NavItem[]): any[] =>
+{ path: '/tab', label: 'Tab', component: Tab },
+
+{ path: '/tab-bar', label: 'TabBar', component: TabBar },
+
 	navigationItems.sort((a: NavItem, b: NavItem) =>
 		a.path.localeCompare(b.path)
 	);

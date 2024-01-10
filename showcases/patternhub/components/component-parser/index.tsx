@@ -1,4 +1,8 @@
 import { useEffect, useState } from 'react';
+import DBTab from '../src/components/tab/tab';
+
+import DBTabBar from '../src/components/tab-bar/tab-bar';
+
 import DBTooltip from '../src/components/tooltip/tooltip';
 import DBPopover from '../src/components/popover/popover';
 import {
@@ -282,6 +286,22 @@ const ComponentSwitch = ({
 			<DBTooltip className={className} {...props}>
 				{resolvedContent}
 			</DBTooltip>
+		);
+	}
+
+	if (type === 'tab-bar') {
+		return (
+			<DBTabBar className={className} {...props}>
+				{resolvedContent}
+			</DBTabBar>
+		);
+	}
+
+	if (type === 'tab') {
+		return (
+			<DBTab className={className} {...props}>
+				{resolvedContent}
+			</DBTab>
 		);
 	}
 
