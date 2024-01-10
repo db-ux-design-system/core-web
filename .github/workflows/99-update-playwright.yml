@@ -1,0 +1,41 @@
+---
+name: Automate playwright updates
+on:
+  workflow_call:
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  dependabot:
+    runs-on: ubuntu-latest
+    if: ${{ github.actor == 'dependabot[bot]' && contains(github.event.pull_request.title, 'playwright') }}
+    steps:
+      - name: ⏬ Checkout repo
+        uses: actions/checkout@v4
+
+      - name: 🔄 Init Cache Default
+        uses: ./.github/actions/npm-cache
+
+      - name: 🪁 Update Playwright
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const { default: updatePlaywright } = await import('${{ github.workspace }}/.github/scripts/update-playwright.js');
+            console.log(await updatePlaywright());
+
+      - name: 🎹 Update package-lock.json in e2e dir
+        run: |
+          cd e2e
+          npm i
+
+      - name: 🐱‍👤 Commit and push all changed files
+        env:
+          CI_COMMIT_MESSAGE: "chore: update playwright"
+          CI_COMMIT_AUTHOR: github-actions[bot]
+        run: |
+          git config --global user.name "${{ env.CI_COMMIT_AUTHOR }}"
+          git config --global user.email "support@github.com"
+          git commit -a -m "${{ env.CI_COMMIT_MESSAGE }}"
+          git push
