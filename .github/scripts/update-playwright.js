@@ -19,6 +19,7 @@ const updatePlaywright = () => {
 			to: `playwright:v${version}`,
 			files: [
 				'.github/workflows/02-e2e.yml',
+				'.github/workflows/02-e2e-foundations.yml',
 				'.github/workflows/02-e2e-showcases.yml',
 				'e2e/Dockerfile'
 			]
