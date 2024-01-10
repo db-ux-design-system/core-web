@@ -31,7 +31,7 @@
     "test:components": "playwright test -c playwright.config.ts"
   },
   "dependencies": {
-    "vue": "^3.4.6"
+    "vue": "^3.4.7"
   },
   "devDependencies": {
     "@axe-core/playwright": "^4.8.2",
