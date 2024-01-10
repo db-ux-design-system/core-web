@@ -82,7 +82,7 @@
   "devDependencies": {
     "@commitlint/cli": "18.4.4",
     "@commitlint/config-conventional": "18.4.4",
-    "@playwright/test": "1.39.0",
+    "@playwright/test": "1.40.1",
     "adm-zip": "0.5.10",
     "commander": "^11.1.0",
     "cpr": "3.0.1",

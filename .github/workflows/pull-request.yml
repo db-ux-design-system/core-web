@@ -15,6 +15,9 @@ jobs:
   dependabot:
     uses: ./.github/workflows/99-auto-merge.yml
 
+  dependabot-playwright:
+    uses: ./.github/workflows/99-update-playwright.yml
+
   codeql:
     uses: ./.github/workflows/99-codeql-analysis.yml
 
