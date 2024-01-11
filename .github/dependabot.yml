@@ -20,27 +20,9 @@ updates:
       timezone: "Europe/Berlin"
     ignore:
       # angular: we update the major version manually
-      - dependency-name: "@angular/cli"
+      - dependency-name: "@angular*"
         update-types: ["version-update:semver-major"]
-      - dependency-name: "@angular/core"
-        update-types: ["version-update:semver-major"]
-      - dependency-name: "@angular/compiler"
-        update-types: ["version-update:semver-major"]
-      - dependency-name: "@angular/forms"
-        update-types: ["version-update:semver-major"]
-      - dependency-name: "@angular-devkit/build-angular"
-        update-types: ["version-update:semver-major"]
-      - dependency-name: "@angular/compiler-cli"
-        update-types: ["version-update:semver-major"]
-      - dependency-name: "@angular/common"
-        update-types: ["version-update:semver-major"]
-      - dependency-name: "@angular/router"
-        update-types: ["version-update:semver-major"]
-      - dependency-name: "@angular/animations"
-        update-types: ["version-update:semver-major"]
-      - dependency-name: "@angular/platform-browser"
-        update-types: ["version-update:semver-major"]
-      - dependency-name: "@angular/platform-browser-dynamic"
+      - dependency-name: "@angular-devkit*"
         update-types: ["version-update:semver-major"]
         # react: we update the major version manually
       - dependency-name: "react"

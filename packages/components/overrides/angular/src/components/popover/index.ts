@@ -1,1 +1,1 @@
-export { DBPopover, DBPopoverModule } from "./popover";
+export { DBPopover, DBPopoverModule } from './popover';

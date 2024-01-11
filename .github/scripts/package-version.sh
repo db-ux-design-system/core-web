@@ -14,7 +14,7 @@ elif [[ $PRE_RELEASE == "true" ]]; then
 		echo "$VALID_SEMVER_VERSION"
 	else
 		echo "Version $SEMVER_VERSION doesn't contain a hyphen. A prerelease should have a hyphen!"
-        exit 1
+		exit 1
 	fi
 else
 	echo "nothing found in environment for REALEASE or PRE_RELEASE"

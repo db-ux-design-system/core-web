@@ -23,7 +23,8 @@
 		"module": "es2020",
 		"lib": ["es2020", "dom"],
 		"declarationMap": false,
-		"allowSyntheticDefaultImports": true
+		"allowSyntheticDefaultImports": true,
+		"useDefineForClassFields": false
 	},
 	"angularCompilerOptions": {
 		"enableI18nLegacyMessageIdFormat": false,

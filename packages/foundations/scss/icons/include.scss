@@ -60,7 +60,7 @@
 [data-icon="none"],
 [data-icon-before="none"] {
 	&::before {
-		margin-inline-end: 0;
+		content: none;
 	}
 }
 
@@ -74,7 +74,7 @@
 
 [data-icon-after="none"] {
 	&::after {
-		margin-inline-start: 0;
+		content: none;
 	}
 }
 

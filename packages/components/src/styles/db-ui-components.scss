@@ -1,35 +1,35 @@
-@use "@db-ui/foundations/build/scss/db-ui-foundations" as *;
-@use "../components/button/button" as *;
-@use "../components/icon/icon" as *;
-@use "../components/tab/tab" as *;
-@use "../components/tab-bar/tab-bar" as *;
-@use "../components/divider/divider" as *;
-@use "../components/card/card" as *;
-@use "../components/input/input" as *;
-@use "../components/brand/brand" as *;
-@use "../components/header/header" as *;
-@use "../components/page/page" as *;
-@use "../components/link/link" as *;
-@use "../components/section/section" as *;
-@use "../components/infotext/infotext" as *;
-@use "../components/alert/alert" as *;
-@use "../components/checkbox/checkbox" as *;
-@use "../components/radio/radio" as *;
-@use "../components/code-docs/code-docs" as *;
-@use "../components/tag/tag" as *;
-@use "../components/drawer/drawer" as *;
-@use "../components/select/select" as *;
-@use "../components/navigation-item/navigation-item" as *;
-@use "../components/textarea/textarea" as *;
-@use "../components/badge/badge" as *;
+@forward "@db-ui/foundations/build/scss/db-ui-foundations";
+@forward "../components/button/button";
+@forward "../components/icon/icon";
+@forward "../components/tab/tab";
+@forward "../components/tab-bar/tab-bar";
+@forward "../components/divider/divider";
+@forward "../components/card/card";
+@forward "../components/input/input";
+@forward "../components/brand/brand";
+@forward "../components/header/header";
+@forward "../components/page/page";
+@forward "../components/link/link";
+@forward "../components/section/section";
+@forward "../components/infotext/infotext";
+@forward "../components/alert/alert";
+@forward "../components/checkbox/checkbox";
+@forward "../components/radio/radio";
+@forward "../components/code-docs/code-docs";
+@forward "../components/tag/tag";
+@forward "../components/drawer/drawer";
+@forward "../components/select/select";
+@forward "../components/navigation-item/navigation-item";
+@forward "../components/textarea/textarea";
+@forward "../components/badge/badge";
 
-@use "../components/accordion/accordion" as *;
+@forward "../components/accordion/accordion";
 
-@use "../components/accordion-item/accordion-item" as *;
-@use "../components/main-navigation/main-navigation" as *;
+@forward "../components/accordion-item/accordion-item";
+@forward "../components/main-navigation/main-navigation";
 
-@use "../components/popover/popover" as *;
-@use "../components/tooltip/tooltip" as *;
+@forward "../components/popover/popover";
+@forward "../components/tooltip/tooltip";
 @forward "dialog-init";
 
 // angular-workaround

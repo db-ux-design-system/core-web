@@ -3,46 +3,27 @@ import {
 	onUpdate,
 	Show,
 	useMetadata,
+	useRef,
 	useStore
 } from '@builder.io/mitosis';
 import { DBCheckboxProps, DBCheckboxState } from './model';
 import { uuid } from '../../utils';
 import { DEFAULT_ID } from '../../shared/constants';
 import { cls } from '../../utils';
+import { ChangeEvent, InteractionEvent } from '../../shared/model';
 
 useMetadata({
-	isAttachedToShadowDom: true,
-	component: {
-		// MS Power Apps
-		includeIcon: true,
-		hasDisabledProp: true,
-		properties: [
-			// jscpd:ignore-start
-			{
-				name: 'children',
-				type: 'SingleLine.Text',
-				defaultValue: 'Checkbox'
-			},
-			{ name: 'name', type: 'SingleLine.Text' },
-			// { name: 'checked', type: 'TwoOptions' },
-			{ name: 'value', type: 'SingleLine.Text', onChange: 'value' }, // $event.target["value"|"checked"|...]
-			// { name: 'disabled', type: 'TwoOptions' },
-			{ name: 'id', type: 'SingleLine.Text' }
-			// jscpd:ignore-end
-		]
-	}
+	isAttachedToShadowDom: true
 });
 
 export default function DBCheckbox(props: DBCheckboxProps) {
-	// This is used as forwardRef
-	let component: any;
+	const ref = useRef<HTMLInputElement>(null);
 	// jscpd:ignore-start
 	const state = useStore<DBCheckboxState>({
 		initialized: false,
 		_id: DEFAULT_ID,
-		_isValid: undefined,
 
-		handleChange: (event: any) => {
+		handleChange: (event: ChangeEvent<HTMLInputElement>) => {
 			if (props.onChange) {
 				props.onChange(event);
 			}
@@ -51,21 +32,16 @@ export default function DBCheckbox(props: DBCheckboxProps) {
 				props.change(event);
 			}
 
-			if (event.target?.validity?.valid != state._isValid) {
-				state._isValid = event.target?.validity?.valid;
-				if (props.validityChange) {
-					props.validityChange(!!event.target?.validity?.valid);
-				}
-			}
+			const target = event.target as HTMLInputElement;
 
 			// TODO: Replace this with the solution out of https://github.com/BuilderIO/mitosis/issues/833 after this has been "solved"
-			// VUE:this.$emit("update:checked", event.target.checked);
+			// VUE:this.$emit("update:checked", target.checked);
 
 			// Change event to work with reactive and template driven forms
-			// ANGULAR: this.propagateChange(event.target.checked);
-			// ANGULAR: this.writeValue(event.target.checked);
+			// ANGULAR: this.propagateChange(target.checked);
+			// ANGULAR: this.writeValue(target.checked);
 		},
-		handleBlur: (event: any) => {
+		handleBlur: (event: InteractionEvent<HTMLInputElement>) => {
 			if (props.onBlur) {
 				props.onBlur(event);
 			}
@@ -74,7 +50,7 @@ export default function DBCheckbox(props: DBCheckboxProps) {
 				props.blur(event);
 			}
 		},
-		handleFocus: (event: any) => {
+		handleFocus: (event: InteractionEvent<HTMLInputElement>) => {
 			if (props.onFocus) {
 				props.onFocus(event);
 			}
@@ -112,19 +88,9 @@ export default function DBCheckbox(props: DBCheckboxProps) {
 					// It has no accessibility or UX implications. (https://mui.com/material-ui/react-checkbox/)
 					checkboxElement.indeterminate = props.indeterminate;
 				}
-
-				if (props.defaultChecked !== undefined) {
-					// only set by JS: https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement#instance_properties_that_apply_only_to_elements_of_type_checkbox_or_radio
-					checkboxElement.defaultChecked = props.defaultChecked;
-				}
 			}
 		}
-	}, [
-		state.initialized,
-		props.indeterminate,
-		props.checked,
-		props.defaultChecked
-	]);
+	}, [state.initialized, props.indeterminate, props.checked]);
 
 	return (
 		<label
@@ -136,7 +102,7 @@ export default function DBCheckbox(props: DBCheckboxProps) {
 				<link rel="stylesheet" href={state.stylePath} />
 			</Show>
 			<input
-				ref={component}
+				ref={ref}
 				type="checkbox"
 				id={state._id}
 				name={props.name}
@@ -146,9 +112,15 @@ export default function DBCheckbox(props: DBCheckboxProps) {
 				aria-describedby={props.describedbyid}
 				aria-invalid={props.invalid}
 				required={props.required}
-				onChange={(event) => state.handleChange(event)}
-				onBlur={(event) => state.handleBlur(event)}
-				onFocus={(event) => state.handleFocus(event)}
+				onChange={(event: ChangeEvent<HTMLInputElement>) =>
+					state.handleChange(event)
+				}
+				onBlur={(event: InteractionEvent<HTMLInputElement>) =>
+					state.handleBlur(event)
+				}
+				onFocus={(event: InteractionEvent<HTMLInputElement>) =>
+					state.handleFocus(event)
+				}
 			/>
 			<Show when={props.label}>
 				<span>{props.label}</span>

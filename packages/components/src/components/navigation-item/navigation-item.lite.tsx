@@ -4,25 +4,21 @@ import {
 	Show,
 	Slot,
 	useMetadata,
+	useRef,
 	useStore
 } from '@builder.io/mitosis';
 import { DBNavigationItemState, DBNavigationItemProps } from './model';
 import { DBButton } from '../button';
 import { cls, uuid } from '../../utils';
 import { DEFAULT_BACK } from '../../shared/constants';
+import { ClickEvent } from '../../shared/model';
 
 useMetadata({
-	isAttachedToShadowDom: true,
-	component: {
-		// MS Power Apps
-		includeIcon: false,
-		properties: []
-	}
+	isAttachedToShadowDom: true
 });
 
 export default function DBNavigationItem(props: DBNavigationItemProps) {
-	// This is used as forwardRef
-	let component: any;
+	const ref = useRef<HTMLLIElement>(null);
 
 	// jscpd:ignore-start
 	const state = useStore<DBNavigationItemState>({
@@ -31,7 +27,7 @@ export default function DBNavigationItem(props: DBNavigationItemProps) {
 		hasSubNavigation: true,
 		isSubNavigationExpanded: false,
 		subNavigationId: 'sub-navigation-' + uuid(),
-		handleClick: (event: any) => {
+		handleClick: (event: ClickEvent<HTMLButtonElement>) => {
 			if (props.onClick) {
 				props.onClick(event);
 			}
@@ -82,7 +78,7 @@ export default function DBNavigationItem(props: DBNavigationItemProps) {
 
 	return (
 		<li
-			ref={component}
+			ref={ref}
 			id={props.id}
 			class={cls('db-navigation-item', props.className)}
 			data-width={props.width}
@@ -101,7 +97,9 @@ export default function DBNavigationItem(props: DBNavigationItemProps) {
 					aria-expanded={state.isSubNavigationExpanded}
 					className="db-navigation-item-expand-button"
 					disabled={props.disabled}
-					onClick={(event) => state.handleClick(event)}>
+					onClick={(event: ClickEvent<HTMLButtonElement>) =>
+						state.handleClick(event)
+					}>
 					{props.children}
 				</button>
 

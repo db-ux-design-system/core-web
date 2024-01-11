@@ -1,1 +1,1 @@
-export { default as DBPopover } from "./popover";
+export { default as DBPopover } from './popover';

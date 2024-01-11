@@ -1,26 +1,19 @@
-import { onMount, Show, useMetadata, useStore } from '@builder.io/mitosis';
+import {
+	onMount,
+	Show,
+	useMetadata,
+	useRef,
+	useStore
+} from '@builder.io/mitosis';
 import type { DBIconState, DBIconProps } from './model';
 import { cls } from '../../utils';
 
 useMetadata({
-	isAttachedToShadowDom: true,
-	component: {
-		// MS Power Apps
-		includeIcon: true,
-		properties: [
-			{
-				name: 'icon',
-				type: 'Icon',
-				defaultValue: 'None'
-			},
-			{ name: 'title', type: 'SingleLine.Text' }
-		]
-	}
+	isAttachedToShadowDom: true
 });
 
 export default function DBIcon(props: DBIconProps) {
-	// This is used as forwardRef
-	let component: any;
+	const ref = useRef<HTMLSpanElement>(null);
 	// jscpd:ignore-start
 	const state = useStore<DBIconState>({});
 
@@ -33,10 +26,12 @@ export default function DBIcon(props: DBIconProps) {
 
 	return (
 		<span
-			ref={component}
+			ref={ref}
 			id={props.id}
 			class={cls('db-icon', props.className)}
 			data-icon={props.icon}
+			data-icon-weight={props.weight}
+			data-icon-variant={props.variant}
 			aria-hidden="true"
 			title={props.title}>
 			<Show when={state.stylePath}>
