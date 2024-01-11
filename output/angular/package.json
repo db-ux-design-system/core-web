@@ -19,7 +19,7 @@
     "@angular-devkit/build-angular": "17.0.10",
     "@angular/common": "17.0.9",
     "ng-packagr": "17.0.3",
-    "typescript": "^5.2.2"
+    "typescript": "^5.3.3"
   },
   "publishConfig": {
     "registry": "https://registry.npmjs.org/",
