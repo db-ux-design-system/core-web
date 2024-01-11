@@ -73,6 +73,6 @@ jobs:
         if: failure()
         uses: actions/upload-artifact@v4
         with:
-          name: ${{ matrix.framework }}-playwright-results
+          name: ${{ matrix.framework }}-components-playwright-results-${{ matrix.shard }}
           path: ./output/${{ steps.workingDirectory.outputs.dir }}/test-results
           retention-days: 30

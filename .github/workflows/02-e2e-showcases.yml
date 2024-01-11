@@ -67,6 +67,6 @@ jobs:
         if: failure()
         uses: actions/upload-artifact@v4
         with:
-          name: ${{ matrix.framework }}-showcase-playwright-results
+          name: ${{ matrix.framework }}-showcase-playwright-results-${{ matrix.shard }}
           path: ./showcases/${{ matrix.framework }}-showcase/test-results
           retention-days: 30
