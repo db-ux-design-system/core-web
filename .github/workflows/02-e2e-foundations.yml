@@ -12,7 +12,7 @@ jobs:
     name: 🧪🎭 - ${{ matrix.framework }}:${{ matrix.shard }}
     runs-on: ubuntu-latest
     container:
-      image: mcr.microsoft.com/playwright:v1.39.0
+      image: mcr.microsoft.com/playwright:v1.41.0
     steps:
       - name: ⏬ Checkout repo
         uses: actions/checkout@v4
