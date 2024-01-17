@@ -105,6 +105,10 @@
 			@include icons.set-icon("chevron_right", "after");
 
 			font-weight: inherit;
+
+			&::after {
+				margin-inline-start: variables.$db-spacing-fixed-sm;
+			}
 		}
 	}
 
