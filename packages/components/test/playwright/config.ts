@@ -36,7 +36,7 @@ const config = defineConfig({
 			}
 		},
 		{
-			name: 'firefox-beta',
+			name: 'firefox',
 			use: {
 				...devices['Desktop Firefox']
 			}
