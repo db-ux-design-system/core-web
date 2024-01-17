@@ -12,7 +12,7 @@ jobs:
     name: 🧪🎭 - ${{ matrix.framework }}:${{ matrix.shard }}
     runs-on: ubuntu-latest
     container:
-      image: mcr.microsoft.com/playwright:v1.39.0
+      image: mcr.microsoft.com/playwright:v1.41.0
     strategy:
       fail-fast: false
       matrix:
@@ -67,6 +67,6 @@ jobs:
         if: failure()
         uses: actions/upload-artifact@v4
         with:
-          name: ${{ matrix.framework }}-showcase-playwright-results
+          name: ${{ matrix.framework }}-showcase-playwright-results-${{ matrix.shard }}
           path: ./showcases/${{ matrix.framework }}-showcase/test-results
           retention-days: 30

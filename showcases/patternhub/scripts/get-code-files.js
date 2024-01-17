@@ -2,7 +2,7 @@
 import FS from 'node:fs';
 import prettier from 'prettier';
 import prettier0 from 'prettier/parser-babel.js';
-import { allExamples } from './generated';
+import { allExamples } from './generated/index.jsx';
 import { getCodeByFramework } from './utils.js';
 
 const sharedPath = '../shared';

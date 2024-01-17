@@ -4,6 +4,11 @@
  */
 export const designSystems = [
 	{
+		name: 'W3C APG Patterns',
+		url: 'https://www.w3.org/WAI/ARIA/apg/',
+		componentUrl: 'https://www.w3.org/WAI/ARIA/apg/patterns/'
+	},
+	{
 		name: 'Telekom Scale',
 		url: 'https://github.com/telekom/scale',
 		componentUrl: 'https://telekom.github.io/scale/?path=/docs/components'

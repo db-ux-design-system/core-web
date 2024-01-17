@@ -4,23 +4,22 @@
   "type": "module",
   "private": true,
   "scripts": {
-    "build": "npm-run-all generate copy build:*",
+    "build": "npm-run-all compile build:*",
     "build:app": "next build",
     "build:copy": "cpr out ../../build-showcases/patternhub -o",
-    "copy": "npm-run-all copy:*",
-    "copy:components": "cpr ../../output/react/src ./components/src -o",
-    "copy:docs": "cpr ../../docs ./public/docs -o",
-    "dev": "cross-env NEXT_PUBLIC_BASE_PATH=/mono/sub npm-run-all generate copy -p open next:dev",
-    "generate": "npm-run-all generate:*",
-    "generate:jsx": "node --experimental-specifier-resolution=node scripts/generate-example-jsx.js",
-    "generate:parse-jsx": "babel  scripts/generated --out-dir scripts/generated --extensions \".jsx\" --presets=@babel/preset-react",
+    "compile": "npm-run-all compile:*",
+    "compile:01_jsx": "node scripts/generate-example-jsx.js",
+    "compile:02_copy-components": "cpr ../../output/react/src ./components/src -o",
+    "compile:03_copy-docs": "cpr ../../docs ./public/docs -o",
+    "compile:04_components": "node scripts/esbuild-generate.mjs",
+    "compile:05_run": "node generated.js",
+    "dev": "cross-env NEXT_PUBLIC_BASE_PATH=/mono/sub npm-run-all compile -p open next:dev",
     "lint": "next lint",
     "next:dev": "next dev",
     "next:start": "next start",
     "open": "open-cli http://localhost:3000/mono/sub",
-    "postcopy:components": "tsc -p ./components/src --sourceMap false && node --experimental-specifier-resolution=node scripts/generate-docs-mdx.js",
     "prebuild:app": "cpr ../../node_modules/iframe-resizer/js/ public/iframe-resizer -o",
-    "start": "cross-env NEXT_PUBLIC_BASE_PATH=/mono/sub npm-run-all generate copy next:start"
+    "start": "cross-env NEXT_PUBLIC_BASE_PATH=/mono/sub npm-run-all compile next:start"
   },
   "dependencies": {
     "@code-hike/mdx": "^0.9.0",
@@ -31,20 +30,19 @@
     "remark-gfm": "4.0.0"
   },
   "devDependencies": {
-    "@babel/cli": "7.23.4",
-    "@babel/preset-react": "7.23.3",
     "@mdx-js/loader": "^3.0.0",
     "@mdx-js/react": "^3.0.0",
     "@next/mdx": "^14.0.4",
     "@types/dompurify": "3.0.5",
-    "@types/node": "20.10.7",
-    "@types/react": "18.2.47",
+    "@types/node": "20.11.4",
+    "@types/react": "18.2.48",
     "@types/react-dom": "18.2.18",
+    "esbuild": "0.19.11",
     "eslint": "8.56.0",
     "eslint-config-next": "14.0.4",
     "iframe-resizer": "^4.3.9",
     "open-cli": "^8.0.0",
     "sass": "^1.69.7",
-    "typescript": "4.9.5"
+    "typescript": "5.3.3"
   }
 }
