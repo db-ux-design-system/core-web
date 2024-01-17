@@ -17,7 +17,6 @@
 	@extend %default-fg-transition;
 	@extend %db-link-height;
 	inline-size: fit-content;
-	align-items: center;
 
 	// Link underline
 	// TODO: We should evaluate whether we could move this declaration to the @font-face declarations even already
@@ -65,6 +64,7 @@
 
 		&::after {
 			margin-inline-start: var(--db-icon-margin-start);
+			vertical-align: top !important;
 		}
 	}
 
