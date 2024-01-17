@@ -59,9 +59,11 @@ import { NavigationItemComponent } from './components/navigation-item/navigation
 import { NavItemComponent } from './nav-item/nav-item.component';
 import { MainNavigationComponent } from './components/main-navigation/main-navigation.component';
 import { TextareaComponent } from './components/textarea/textarea.component';
+import { IconComponent } from './components/icon/icon.component';
 
 @NgModule({
 	declarations: [
+		IconComponent,
 		TooltipComponent,
 
 		PopoverComponent,
