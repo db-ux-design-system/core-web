@@ -38,7 +38,7 @@ const config = defineConfig({
 		{
 			name: 'firefox-beta',
 			use: {
-				...devices['Desktop Firefox Beta']
+				...devices['Desktop Firefox']
 			}
 		},
 		// TODO: There are issues with webkit and out icon-fonts we disable webkit for now
