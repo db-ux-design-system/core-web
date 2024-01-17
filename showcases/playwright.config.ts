@@ -57,7 +57,7 @@ const config: PlaywrightTestConfig = {
 		{
 			name: 'firefox-beta',
 			use: {
-				...devices['Desktop Firefox Beta']
+				...devices['Desktop Firefox']
 			}
 		},
 
