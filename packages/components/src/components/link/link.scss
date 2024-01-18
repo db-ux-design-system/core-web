@@ -47,6 +47,10 @@
 	&:not([data-variant="inline"]) {
 		&[data-content="internal"] {
 			@include icons.set-icon("arrow_forward", "after");
+
+			&::after {
+				vertical-align: top;
+			}
 		}
 
 		&[data-content="external"] {
@@ -64,7 +68,6 @@
 
 		&::after {
 			margin-inline-start: var(--db-icon-margin-start);
-			vertical-align: top !important;
 		}
 	}
 
