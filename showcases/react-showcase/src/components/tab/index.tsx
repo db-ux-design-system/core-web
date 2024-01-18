@@ -4,8 +4,20 @@ import defaultComponentVariants from '../../../../shared/tab.json';
 import type { DBTabProps } from '../../../../../output/react/src/components/tab/model';
 import { getVariants } from '../data';
 
-const getTab = ({ children }: DBTabProps) => (
-	<DBTab>
+const getTab = ({
+	children,
+	active,
+	label,
+	noText,
+	icon,
+	iconAfter
+}: DBTabProps) => (
+	<DBTab
+		active={active}
+		label={label}
+		noText={noText}
+		icon={icon}
+		iconAfter={iconAfter}>
 		{children}
 	</DBTab>
 );
@@ -15,9 +27,9 @@ const TabComponent = () => {
 		<DefaultComponent
 			title="DBTab"
 			variants={getVariants(
-                     				defaultComponentVariants,
-                     				getTab
-                     			)}></DefaultComponent>
+				defaultComponentVariants,
+				getTab
+			)}></DefaultComponent>
 	);
 };
 

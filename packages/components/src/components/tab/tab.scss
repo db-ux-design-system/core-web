@@ -9,11 +9,25 @@
 
 	padding: variables.$db-spacing-fixed-xs variables.$db-spacing-fixed-sm;
 
+	&.is-icon-text-replace {
+		font-size: 0;
+		margin-inline-end: 0;
+	}
+
 	&:has(input:focus-visibles) {
 		@extend %focus-placeholder;
 	}
+
 	&:has(input:checked) {
 		font-weight: 700;
+	}
+
+	&[data-icon]::before {
+		margin-inline-end: variables.$db-spacing-fixed-sm;
+	}
+
+	&[data-icon-after]::after {
+		margin-inline-start: variables.$db-spacing-fixed-sm;
 	}
 
 	input {

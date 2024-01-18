@@ -1,7 +1,5 @@
 import TabComponent from '../components/tab';
-
 import TabBarComponent from '../components/tab-bar';
-
 import TooltipComponent from '../components/tooltip';
 import PopoverComponent from '../components/popover';
 import AccordionItemComponent from '../components/accordion-item';
@@ -39,10 +37,6 @@ export const getSortedNavigationItems = (
 		a.path.localeCompare(b.path)
 	);
 export const NAVIGATION_ITEMS: NavigationItem[] = [
-{ path: 'tab', label: 'Tab', component: <TabComponent /> },
-
-{ path: 'tab-bar', label: 'TabBar', component: <TabBarComponent /> },
-
 	{
 		path: '06',
 		label: '06 Feedback',
@@ -105,6 +99,17 @@ export const NAVIGATION_ITEMS: NavigationItem[] = [
 				path: 'accordion-item',
 				label: 'AccordionItem',
 				component: <AccordionItemComponent />
+			},
+			{
+				path: 'tab',
+				label: 'Tab',
+				component: <TabComponent />
+			},
+
+			{
+				path: 'tab-bar',
+				label: 'TabBar',
+				component: <TabBarComponent />
 			}
 		])
 	},

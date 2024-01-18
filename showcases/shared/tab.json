@@ -6,18 +6,71 @@
 				"name": "functional",
 				"className": "db-ui-functional",
 				"props": {
+					"label": "functional"
 				}
 			},
 			{
 				"name": "regular (Default)",
 				"className": "db-ui-regular",
 				"props": {
+					"label": "regular (Default)"
 				}
 			},
 			{
 				"name": "expressive",
 				"className": "db-ui-expressive",
 				"props": {
+					"label": "expressive"
+				}
+			}
+		]
+	},
+	{
+		"name": "States",
+		"examples": [
+			{
+				"name": "(Default) Enabled",
+				"props": {
+					"label": "(Default) Enabled"
+				}
+			},
+			{
+				"name": "active",
+				"props": {
+					"label": "active",
+					"active": true
+				}
+			}
+		]
+	},
+	{
+		"name": "Content",
+		"examples": [
+			{
+				"name": "(Default) Text",
+				"props": {
+					"label": "(Default) Text"
+				}
+			},
+			{
+				"name": "Text - Icon (Leading)",
+				"props": {
+					"label": "Text - Icon (Leading)",
+					"icon": "account"
+				}
+			},
+			{
+				"name": "Text - Icon (Trailing)",
+				"props": {
+					"label": "Text - Icon (Trailing)",
+					"iconAfter": "account"
+				}
+			},
+			{
+				"name": "Icon",
+				"props": {
+					"icon": "account",
+					"noText": true
 				}
 			}
 		]

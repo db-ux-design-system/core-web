@@ -23,14 +23,6 @@
  * }]}
  */
 const getComponents = () => [
-  {
-    name: "tab"
-  },
-
-  {
-    name: "tab-bar"
-  },
-
 	{
 		name: 'tooltip'
 	},
