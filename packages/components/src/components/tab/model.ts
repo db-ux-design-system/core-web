@@ -2,7 +2,8 @@ import {
 	GlobalProps,
 	GlobalState,
 	IconAfterProps,
-	IconProps
+	IconProps,
+	WidthProps
 } from '../../shared/model';
 
 export type DBTabDefaultProps = {
@@ -31,12 +32,18 @@ export type DBTabDefaultProps = {
 	 * Define the text next to the icon specified via the icon Property to get hidden.
 	 */
 	noText?: boolean;
+
+	/**
+	 * Define the content alignment in full width
+	 */
+	alignment?: string;
 };
 
 export type DBTabProps = DBTabDefaultProps &
 	GlobalProps &
 	IconProps &
-	IconAfterProps;
+	IconAfterProps &
+	WidthProps;
 
 export type DBTabDefaultState = {};
 

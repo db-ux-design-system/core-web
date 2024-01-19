@@ -10,14 +10,18 @@ const getTab = ({
 	label,
 	noText,
 	icon,
-	iconAfter
+	iconAfter,
+	width,
+	alignment
 }: DBTabProps) => (
 	<DBTab
 		active={active}
 		label={label}
 		noText={noText}
 		icon={icon}
-		iconAfter={iconAfter}>
+		iconAfter={iconAfter}
+		width={width}
+		alignment={alignment}>
 		{children}
 	</DBTab>
 );

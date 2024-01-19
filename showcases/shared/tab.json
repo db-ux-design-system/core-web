@@ -74,5 +74,46 @@
 				}
 			}
 		]
+	},
+	{
+		"name": "Behaviour",
+		"examples": [
+			{
+				"name": "Auto Width (Default)",
+				"props": {
+					"label": "Auto Width (Default)"
+				}
+			},
+			{
+				"name": "Width full",
+				"style": { "width": "500px" },
+				"props": {
+					"label": "Width full",
+					"width": "full"
+				}
+			}
+		]
+	},
+	{
+		"name": "Content Alignment Full Width",
+		"examples": [
+			{
+				"name": "Left",
+				"style": { "width": "500px" },
+				"props": {
+					"label": "Left",
+					"width": "full"
+				}
+			},
+			{
+				"name": "Centered",
+				"style": { "width": "500px" },
+				"props": {
+					"label": "Centered",
+					"width": "full",
+					"alignment": "center"
+				}
+			}
+		]
 	}
 ]

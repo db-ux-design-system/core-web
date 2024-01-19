@@ -43,7 +43,9 @@ export default function DBTab(props: DBTabProps) {
 					'is-icon-text-replace': props.noText
 				})}
 				data-icon={props.icon}
-				data-icon-after={props.iconAfter}>
+				data-icon-after={props.iconAfter}
+				data-width={props.width}
+				data-alignment={props.alignment}>
 				<Show when={state.stylePath}>
 					<link rel="stylesheet" href={state.stylePath} />
 				</Show>

@@ -8,9 +8,26 @@
 	@include colors.bg-transparent-interactive(false);
 
 	padding: variables.$db-spacing-fixed-xs variables.$db-spacing-fixed-sm;
+	display: block;
 
-	&.is-icon-text-replace {
-		font-size: 0;
+	input {
+		&[type="radio"] {
+			position: absolute;
+			inline-size: 0;
+			block-size: 0;
+			margin-inline-end: initial;
+			border: none;
+			border-radius: inherit;
+
+			&:focus-within,
+			&:focus-visible {
+				outline: none;
+				box-shadow: none;
+			}
+		}
+	}
+
+	&.is-icon-text-replace[data-icon]::before {
 		margin-inline-end: 0;
 	}
 
@@ -30,20 +47,11 @@
 		margin-inline-start: variables.$db-spacing-fixed-sm;
 	}
 
-	input {
-		&[type="radio"] {
-			position: absolute;
-			inline-size: 0;
-			block-size: 0;
-			margin-inline-end: initial;
-			border: none;
-			border-radius: inherit;
+	&[data-width="full"] {
+		inline-size: 100%;
 
-			&:focus-within,
-			&:focus-visible {
-				outline: none;
-				box-shadow: none;
-			}
+		&[data-alignment="center"] {
+			text-align: center;
 		}
 	}
 }
