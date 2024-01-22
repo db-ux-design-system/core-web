@@ -29,6 +29,10 @@
 
 	&.is-icon-text-replace[data-icon]::before {
 		margin-inline-end: 0;
+		size: variables.$db-sizing-md;
+		/*&:has(input:checked) {
+			font-weight: 700;
+		}*/
 	}
 
 	&:has(input:focus-visibles) {

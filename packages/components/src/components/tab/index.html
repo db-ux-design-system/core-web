@@ -7,19 +7,55 @@
 	</head>
 	<body style="padding: var(--db-spacing-fixed-md)">
 		<label class="db-tab" htmlFor="test1" role="tab">
-			<input type="radio" name="test" id="test1" checked />
-			label1
+			<input type="radio" name="test" id="test1" />
+			label 1
 		</label>
 		<article id="content-test1" role="tabpanel">test1</article>
+
 		<label class="db-tab" htmlFor="test2" role="tab">
-			<input type="radio" name="test" id="test2" />
-			label2
+			<input type="radio" name="test" id="test2" checked />
+			active
 		</label>
 		<article id="content-test2" role="tabpanel">test2</article>
-		<label class="db-tab" htmlFor="test3" role="tab">
-			<input type="radio" name="test" id="test3" data-icon="account" />
-			label3
+
+		<label class="db-tab" htmlFor="test3" role="tab" data-icon="account">
+			<input type="radio" name="test" id="test3" />
+			icon - text (leading)
 		</label>
-		<article id="content-test3" role="tabpanel">test2</article>
+		<article id="content-test3" role="tabpanel">test3</article>
+
+		<label
+			class="db-tab"
+			htmlFor="test4"
+			role="tab"
+			data-icon-after="account"
+		>
+			<input type="radio" name="test" id="test4" />
+			text - icon (trailing)
+		</label>
+		<article id="content-test4" role="tabpanel">test4</article>
+
+		<label class="db-tab" htmlFor="test5" role="tab" data-icon="account">
+			<input type="radio" name="test" id="test5" />
+		</label>
+		<article id="content-test5" role="tabpanel">test5</article>
+
+		<label class="db-tab" htmlFor="test6" role="tab" width="full">
+			<input type="radio" name="test" id="test6" />
+			width (full)
+		</label>
+		<article id="content-test6" role="tabpanel">test6</article>
+
+		<label
+			class="db-tab"
+			htmlFor="test7"
+			role="tab"
+			width="full"
+			alignment="center"
+		>
+			<input type="radio" name="test" id="test7" />
+			width full (centered)
+		</label>
+		<article id="content-test7" role="tabpanel">test7</article>
 	</body>
 </html>
