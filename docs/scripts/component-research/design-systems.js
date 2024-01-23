@@ -9,6 +9,11 @@ export const designSystems = [
 		componentUrl: 'https://www.w3.org/WAI/ARIA/apg/patterns/'
 	},
 	{
+		name: 'Inclusive components by Heydon Pickering',
+		url: 'https://inclusive-components.design/',
+		componentUrl: 'https://inclusive-components.design/#components'
+	},
+	{
 		name: 'Telekom Scale',
 		url: 'https://github.com/telekom/scale',
 		componentUrl: 'https://telekom.github.io/scale/?path=/docs/components'

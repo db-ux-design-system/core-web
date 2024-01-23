@@ -53,4 +53,5 @@ We'd like to maintain a list of other design systems that might be interesting f
 
 ## Further inspirational websites
 
--   <https://www.w3.org/WAI/ARIA/apg/patterns/tabs/>
+-   <https://www.w3.org/WAI/ARIA/apg/patterns/>
+-   <https://inclusive-components.design/#components>
