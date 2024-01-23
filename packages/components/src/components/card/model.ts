@@ -4,7 +4,8 @@ import {
 	ClickEventState,
 	GlobalProps,
 	GlobalState,
-	ImageProps
+	ImageProps,
+	SpacingProps
 } from '../../shared/model';
 import { COLOR } from '../../shared/constants';
 
@@ -14,10 +15,6 @@ export type DBCardDefaultProps = {
 	 */
 	colorVariant?: COLOR | string;
 	/**
-	 * The spacing attribute changes the padding of the card.
-	 */
-	spacing?: 'none' | 'medium' | 'small';
-	/**
 	 * Makes the card interactive (clickable).
 	 */
 	variant?: 'default' | 'interactive';
@@ -25,10 +22,13 @@ export type DBCardDefaultProps = {
 
 export type DBCardProps = DBCardDefaultProps &
 	GlobalProps &
-	ClickEventProps &
+	ClickEventProps<HTMLElement> &
 	ImageProps &
-	CardProps;
+	CardProps &
+	SpacingProps;
 
 export type DBCardDefaultState = {};
 
-export type DBCardState = DBCardDefaultState & GlobalState & ClickEventState;
+export type DBCardState = DBCardDefaultState &
+	GlobalState &
+	ClickEventState<HTMLElement>;

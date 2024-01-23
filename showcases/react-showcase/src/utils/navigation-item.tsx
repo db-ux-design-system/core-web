@@ -1,3 +1,5 @@
+import TooltipComponent from '../components/tooltip';
+import PopoverComponent from '../components/popover';
 import AccordionItemComponent from '../components/accordion-item';
 import AccordionComponent from '../components/accordion';
 import MainNavigationComponent from '../components/main-navigation';
@@ -18,6 +20,7 @@ import InputComponent from '../components/input';
 import LinkComponent from '../components/link';
 import SectionComponent from '../components/section';
 import TextareaComponent from '../components/textarea';
+import IconComponent from '../components/icon';
 
 export type NavigationItem = {
 	path: string;
@@ -80,6 +83,16 @@ export const NAVIGATION_ITEMS: NavigationItem[] = [
 				label: 'Infotext',
 				component: <InfotextComponent />
 			},
+			{
+				path: 'icon',
+				label: 'Icon',
+				component: <IconComponent />
+			},
+			{
+				path: 'tooltip',
+				label: 'Tooltip',
+				component: <TooltipComponent />
+			},
 			{ path: 'tag', label: 'Tag', component: <TagComponent /> },
 			{
 				path: 'accordion',
@@ -135,6 +148,11 @@ export const NAVIGATION_ITEMS: NavigationItem[] = [
 				path: 'section',
 				label: 'Section',
 				component: <SectionComponent />
+			},
+			{
+				path: 'popover',
+				label: 'Popover',
+				component: <PopoverComponent />
 			}
 		])
 	},

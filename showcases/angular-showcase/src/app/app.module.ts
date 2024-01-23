@@ -25,12 +25,16 @@ import {
 	DBAccordionItemModule,
 	DBTextareaModule,
 	DBMainNavigationModule,
-	DBBadgeModule
+	DBBadgeModule,
+	DBPopoverModule,
+	DBTooltipModule
 } from '../../../../output/angular/src';
 import { ActionBarDirective } from '../../../../output/angular/src/components/header/ActionBar.directive';
 import { NavigationDirective } from '../../../../output/angular/src/components/header/Navigation.directive';
 import { MetaNavigationDirective } from '../../../../output/angular/src/components/header/MetaNavigation.directive';
 import { NavigationContentDirective } from '../../../../output/angular/src/components/navigation-item/NavigationContent.directive';
+import { TooltipComponent } from './components/tooltip/tooltip.component';
+import { PopoverComponent } from './components/popover/popover.component';
 import { BadgeComponent } from './components/badge/badge.component';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app.routing.module';
@@ -55,9 +59,15 @@ import { NavigationItemComponent } from './components/navigation-item/navigation
 import { NavItemComponent } from './nav-item/nav-item.component';
 import { MainNavigationComponent } from './components/main-navigation/main-navigation.component';
 import { TextareaComponent } from './components/textarea/textarea.component';
+import { IconComponent } from './components/icon/icon.component';
 
 @NgModule({
 	declarations: [
+		IconComponent,
+		TooltipComponent,
+
+		PopoverComponent,
+
 		AccordionItemComponent,
 		AccordionComponent,
 		AlertComponent,
@@ -93,6 +103,10 @@ import { TextareaComponent } from './components/textarea/textarea.component';
 		TextareaComponent
 	],
 	imports: [
+		DBTooltipModule,
+
+		DBPopoverModule,
+
 		DBAccordionItemModule,
 		DBAccordionModule,
 		DBBadgeModule,

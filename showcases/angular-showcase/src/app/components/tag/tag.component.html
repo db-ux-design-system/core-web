@@ -22,9 +22,9 @@
 			<db-button *ngIf="exampleProps.component === 'button'">{{
 				exampleName
 			}}</db-button>
-			<db-link *ngIf="exampleProps.component === 'link'" href="#">{{
-				exampleName
-			}}</db-link>
+			<db-link *ngIf="exampleProps.component === 'link'" href="#">
+				{{ exampleName }}
+			</db-link>
 			<db-checkbox
 				*ngIf="exampleProps.component === 'checkbox'"
 				[checked]="exampleProps.checked"
@@ -36,9 +36,15 @@
 				[checked]="exampleProps.checked"
 				>{{ exampleName }}</db-radio
 			>
-			<ng-container *ngIf="!exampleProps.component">{{
-				exampleName
-			}}</ng-container>
+			<ng-container
+				*ngIf="!exampleProps.component && !exampleProps.overflow"
+				>{{ exampleName }}</ng-container
+			>
+			<ng-container
+				*ngIf="!exampleProps.component && exampleProps.overflow"
+			>
+				<span>{{ exampleName }}</span>
+			</ng-container>
 		</db-tag>
 	</ng-template>
 </app-default-component>

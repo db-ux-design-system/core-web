@@ -79,9 +79,12 @@ export default function DBAccordion(props: DBAccordionProps) {
 			if (childDetails) {
 				let initOpenItems: string[] = [];
 				Array.from<HTMLDetailsElement>(childDetails).forEach(
-					(details: HTMLDetailsElement) => {
+					(details: HTMLDetailsElement, index: number) => {
 						const id = details.id;
-						if (details.open) {
+						if (
+							details.open ||
+							props.initOpenIndex?.includes(index)
+						) {
 							initOpenItems.push(id);
 						}
 						const summaries =
@@ -97,9 +100,8 @@ export default function DBAccordion(props: DBAccordionProps) {
 					initOpenItems = [initOpenItems[0]];
 				}
 				state.openItems = initOpenItems;
+				state.initialized = false;
 			}
-			/* Just set the click listener once */
-			state.initialized = false;
 		}
 	}, [ref, state.initialized]);
 

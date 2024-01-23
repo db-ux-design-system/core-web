@@ -61,7 +61,10 @@ const getPropertiesFile = ({ displayName, description, props }) => {
 		propTable += `| ${prop.tsType.type ?? prop.tsType.name} `;
 		propTable += `| ${
 			options
-				? `<pre><code className="code-pre-wrap">${options}</code></pre>`
+				? `<pre><code className="code-pre-wrap">${options.replace(
+						/<T>/g,
+						''
+				  )}</code></pre>`
 				: ''
 		} |\n`;
 	}

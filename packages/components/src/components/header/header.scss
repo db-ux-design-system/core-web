@@ -1,21 +1,21 @@
 @use "@db-ui/foundations/build/scss/variables";
 @use "@db-ui/foundations/build/scss/screen-sizes";
-@use "@db-ui/foundations/build/scss/helpers/functions";
-@use "@db-ui/foundations/build/scss/helpers/component";
+@use "@db-ui/foundations/build/scss/helpers";
 @use "@db-ui/foundations/build/scss/tonality";
+@use "@db-ui/foundations/build/scss/colors";
+@use "../../styles/component";
 
 .db-header {
-	background-color: variables.$db-colors-neutral-bg;
-	box-shadow: variables.$db-elevation-4;
+	background-color: colors.$db-base-bg;
+	box-shadow: variables.$db-elevation-md;
 	display: flex;
 	flex-direction: column;
-	margin-block-end: variables.$db-spacing-fixed-2xs;
 	position: relative;
 
 	min-block-size: component.$default-mobile-header-height;
 
-	@include component.screen("md") {
-		--db-drawer-max-width: #{screen-sizes.$db-screen-sm};
+	@include screen-sizes.screen("md") {
+		--db-drawer-max-width: #{screen-sizes.$db-breakpoint-sm};
 	}
 
 	.db-link {
@@ -24,7 +24,7 @@
 
 	&[data-on-forcing-mobile="true"] {
 		/*
-		We make the header invisible for a short time if the user passes in force-mobile property.
+		We make the header invisible for a short time if the user passes in data-force-mobile property.
 		We do it because otherwise we see the default desktop-navigation for some mil. sec.
 		*/
 		visibility: hidden;
@@ -39,7 +39,7 @@
 	inline-size: 100%;
 	align-items: center;
 
-	@include component.screen("md") {
+	@include screen-sizes.screen("md") {
 		padding: variables.$db-spacing-fixed-md;
 	}
 }
@@ -47,7 +47,7 @@
 .db-header-meta-navigation {
 	@extend %db-bg-neutral-transparent-semi;
 	@extend %db-ui-functional;
-	@include functions.divider("top");
+	@include helpers.divider("top");
 	display: flex;
 	flex-direction: column;
 	gap: variables.$db-spacing-fixed-sm;
@@ -55,7 +55,7 @@
 
 	padding: variables.$db-spacing-fixed-md;
 
-	@include component.screen("md") {
+	@include screen-sizes.screen("md") {
 		padding: variables.$db-spacing-fixed-xs variables.$db-spacing-fixed-md;
 		margin: 0;
 		flex-direction: row;
@@ -87,15 +87,15 @@
 }
 
 .db-header-action-container:has(> .db-header-action-bar:empty) {
-	@include component.screen("md") {
+	@include screen-sizes.screen("md") {
 		display: none;
 	}
 }
 
 .db-header-brand-container {
 	min-block-size: variables.$db-sizing-md;
-	@include component.screen("md") {
-		@include functions.divider("left", "after");
+	@include screen-sizes.screen("md") {
+		@include helpers.divider("left", "after");
 
 		&::after {
 			position: inherit;
@@ -106,13 +106,13 @@
 }
 
 .db-header-action-container {
-	@include functions.divider("left");
+	@include helpers.divider("left");
 
 	&::before {
 		position: inherit;
 		block-size: 100%;
 
-		@include component.screen("md") {
+		@include screen-sizes.screen("md") {
 			margin-inline-end: variables.$db-spacing-fixed-sm;
 		}
 	}
@@ -130,13 +130,13 @@
 }
 
 .db-header-action-bar {
-	@include functions.divider("top");
+	@include helpers.divider("top");
 	flex: 0 1 auto;
 	flex-grow: 0;
 	flex-shrink: 0;
 	padding-block-start: variables.$db-spacing-fixed-xs;
 
-	@include component.screen("md") {
+	@include screen-sizes.screen("md") {
 		&::before {
 			display: none;
 		}
@@ -162,7 +162,7 @@
 	gap: variables.$db-spacing-fixed-sm;
 	padding-inline: variables.$db-spacing-fixed-md;
 
-	@include component.screen("md") {
+	@include screen-sizes.screen("md") {
 		gap: variables.$db-spacing-fixed-xs;
 		padding: 0;
 	}
@@ -184,16 +184,25 @@
 	}
 }
 
-[data-hide-on="mobile"] {
+/* Only for Desktop */
+.db-header-meta-navigation,
+.db-header-navigation-container > .db-header-navigation,
+.db-header-action-container > .db-header-action-bar {
 	display: none;
 
-	@include component.screen("md") {
+	@include screen-sizes.screen("md") {
 		display: inherit;
 	}
 }
 
-[data-hide-on="desktop"] {
-	@include component.screen("md") {
+/* Only for Mobile */
+.db-header-drawer-navigation > .db-header-meta-navigation {
+	display: inherit;
+}
+
+.db-header-drawer,
+.db-header-burger-menu-container {
+	@include screen-sizes.screen("md") {
 		display: none;
 	}
 }

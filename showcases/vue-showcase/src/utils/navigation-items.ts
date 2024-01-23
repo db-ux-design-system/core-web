@@ -1,4 +1,6 @@
 import type { RouteRecordRaw } from 'vue-router';
+import Tooltip from '../components/tooltip/Tooltip.vue';
+import Popover from '../components/popover/Popover.vue';
 import AccordionItem from '../components/accordion-item/AccordionItem.vue';
 import Accordion from '../components/accordion/Accordion.vue';
 import Badge from '../components/badge/Badge.vue';
@@ -19,6 +21,7 @@ import Infotext from '../components/infotext/Infotext.vue';
 import Radio from '../components/radio/Radio.vue';
 import Section from '../components/section/Section.vue';
 import Textarea from '../components/textarea/Textarea.vue';
+import Icon from '../components/icon/Icon.vue';
 
 export type NavItem = {
 	path: string;
@@ -68,13 +71,19 @@ export const navigationItems: NavItem[] = [
 				label: 'Infotext',
 				component: Infotext
 			},
+			{
+				path: '/04/icon',
+				label: 'Icon',
+				component: Icon
+			},
 			{ path: '/04/tag', label: 'Tag', component: Tag },
 			{ path: '/04/accordion', label: 'Accordion', component: Accordion },
 			{
 				path: '/04/accordion-item',
 				label: 'AccordionItem',
 				component: AccordionItem
-			}
+			},
+			{ path: '/04/tooltip', label: 'Tooltip', component: Tooltip }
 		])
 	},
 	{
@@ -111,6 +120,7 @@ export const navigationItems: NavItem[] = [
 				label: 'Divider',
 				component: Divider
 			},
+			{ path: '/01/popover', label: 'Popover', component: Popover },
 			{
 				path: '/01/section',
 				label: 'Section',

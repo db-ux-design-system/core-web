@@ -1,19 +1,13 @@
-import { onMount, Show, useMetadata, useStore } from '@builder.io/mitosis';
+import {onMount, Show, useMetadata, useRef, useStore} from '@builder.io/mitosis';
 import { DBSectionState, DBSectionProps } from './model';
 import { cls } from '../../utils';
 
 useMetadata({
-	isAttachedToShadowDom: true,
-	component: {
-		// MS Power Apps
-		includeIcon: false,
-		properties: []
-	}
+	isAttachedToShadowDom: true
 });
 
 export default function DBSection(props: DBSectionProps) {
-	// This is used as forwardRef
-	let component: any;
+	const ref = useRef<HTMLDivElement>(null);
 	// jscpd:ignore-start
 	const state = useStore<DBSectionState>({});
 
@@ -26,7 +20,7 @@ export default function DBSection(props: DBSectionProps) {
 
 	return (
 		<section
-			ref={component}
+			ref={ref}
 			id={props.id}
 			className={cls('db-section', props.className)}
 			data-size={props.size || 'medium'}>

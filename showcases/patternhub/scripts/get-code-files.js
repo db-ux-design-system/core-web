@@ -2,7 +2,7 @@
 import FS from 'node:fs';
 import prettier from 'prettier';
 import prettier0 from 'prettier/parser-babel.js';
-import { allExamples } from './generated';
+import { allExamples } from './generated/index.jsx';
 import { getCodeByFramework } from './utils.js';
 
 const sharedPath = '../shared';
@@ -80,7 +80,10 @@ const writeCodeFiles = async (componentPath, componentName) => {
 	const path = `${sharedPath}/${componentName}.json`;
 	let variants;
 	if (FS.existsSync(path)) {
-		variants = JSON.parse(FS.readFileSync(path, 'utf8'));
+		variants = JSON.parse(FS.readFileSync(path, 'utf8')).map((variant) => ({
+			...variant,
+			name: variant.name.replace(/\s/g, '').replace(/\W/g, '')
+		}));
 		for (const variant of variants) {
 			if (!FS.existsSync(codePath)) {
 				FS.mkdirSync(codePath);

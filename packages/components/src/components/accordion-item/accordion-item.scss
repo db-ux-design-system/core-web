@@ -1,40 +1,41 @@
 @use "@db-ui/foundations/build/scss/variables";
-@use "@db-ui/foundations/build/scss/helpers/functions";
-@use "@db-ui/foundations/build/scss/helpers/component";
-@use "@db-ui/foundations/build/scss/color/color-variants";
-@use "@db-ui/foundations/build/scss/animation/animations";
+@use "@db-ui/foundations/build/scss/helpers";
+@use "@db-ui/foundations/build/scss/colors";
+@use "@db-ui/foundations/build/scss/animation";
 @use "../../styles/form-components";
-
-@mixin accordion-item-content() {
-	:not(summary):not(link) {
-		@content;
-	}
-}
+@use "../../styles/component";
 
 .db-accordion-item {
 	@extend %bg-transparent;
-	@include functions.divider($position: "top");
+	@include helpers.divider($position: "top");
 
 	position: relative;
 	inline-size: 100%;
 
-	@include accordion-item-content() {
+	summary + div {
 		padding: variables.$db-spacing-fixed-md;
 		padding-block-end: variables.$db-spacing-fixed-lg;
 	}
 
 	&:last-of-type {
-		@include functions.divider($position: "bottom", $slot: "after");
+		@include helpers.divider($position: "bottom", $slot: "after");
+
+		// Angular workaround
+		db-accordion-item:not(:last-of-type) & {
+			&::after {
+				content: none;
+			}
+		}
 	}
 
 	&[aria-disabled="true"] {
 		pointer-events: none;
-		opacity: component.$default-disabled-opacity;
+		opacity: variables.$db-opacity-sm;
 	}
 
 	summary {
 		@extend %dropdown-icon;
-		@include color-variants.bg-transparent-interactive(false);
+		@include colors.bg-transparent-interactive(false);
 
 		list-style: none;
 		display: flex;
@@ -51,13 +52,12 @@
 		}
 
 		&:focus-visible {
-			// TODO: Evaluate whether this number is intended
-			border-radius: component.$default-border-radius + 2;
+			border-radius: variables.$db-border-radius-md;
 		}
 	}
 
 	&[open] {
-		@include accordion-item-content() {
+		summary + div {
 			animation: accordion-open
 				variables.$db-transition-emotional-straight normal both;
 		}

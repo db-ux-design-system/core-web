@@ -1,43 +1,41 @@
 <!doctype html>
 <html lang="en">
-
-<head>
-	<meta charset="UTF-8" />
-	<title>(Web) Fonts</title>
-	<link rel="stylesheet" href="/styles/db-ui-42.css" />
-	<style>
-		body {
-			font-family: 'DB Screen Sans';
-			font-weight: 400;
-		}
-
-		h2 {
-			font-family: 'DB Screen Head';
-			font-weight: 300;
-
-			&+h2 {
-				font-weight: 900;
+	<head>
+		<meta charset="UTF-8" />
+		<title>(Web) Fonts</title>
+		<link rel="stylesheet" href="/styles/db-ui-42.css" />
+		<style>
+			body {
+				font-family: "DB Screen Sans";
+				font-weight: 400;
 			}
-		}
 
-		small {
-			/* TODO: define "DB Screen Sans" as a fallback */
-			font-family: "DB Screen Sans Digital";
-		}
+			h2 {
+				font-family: "DB Screen Head";
+				font-weight: 300;
 
-		p strong {
-			font-weight: 700;
-		}
-	</style>
-</head>
+				& + h2 {
+					font-weight: 900;
+				}
+			}
 
-<body style="padding: var(--db-spacing-fixed-md);">
-	<h1>(Web) Fonts examples</h1>
-	<h2>DB Screen Head Light</h2>
-	<h2>DB Screen Head Black</h2>
-	<p>DB Screen Sans Regular</p>
-	<p>DB Screen Sans <strong>Bold</strong></p>
-	<small>DB Screen Sans Digital Regular</small>
-</body>
+			small {
+				/* TODO: define "DB Screen Sans" as a fallback */
+				font-family: "DB Screen Sans Digital";
+			}
 
+			p strong {
+				font-weight: 700;
+			}
+		</style>
+	</head>
+
+	<body style="padding: var(--db-spacing-fixed-md)">
+		<h1>(Web) Fonts examples</h1>
+		<h2>DB Screen Head Light</h2>
+		<h2>DB Screen Head Black</h2>
+		<p>DB Screen Sans Regular</p>
+		<p>DB Screen Sans <strong>Bold</strong></p>
+		<small>DB Screen Sans Digital Regular</small>
+	</body>
 </html>

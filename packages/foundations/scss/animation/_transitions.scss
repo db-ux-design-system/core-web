@@ -1,0 +1,13 @@
+@use "../variables";
+
+%default-transition {
+	transition:
+		outline #{variables.$db-transition-duration-ultra-fast},
+		background-color #{variables.$db-transition-emotional-straight};
+}
+
+%default-fg-transition {
+	transition:
+		outline #{variables.$db-transition-duration-ultra-fast},
+		color #{variables.$db-transition-emotional-straight};
+}

@@ -18,26 +18,26 @@ jobs:
     name: Build Showcases
     runs-on: ubuntu-latest
     steps:
-      - name: ⬇ Checkout repo
+      - name: ⏬ Checkout repo
         uses: actions/checkout@v4
 
       - name: 🔄 Init Cache
         uses: ./.github/actions/npm-cache
 
-      - name: ⬇ Download foundations build
-        uses: ./.github/actions/download-tar-artifact
+      - name: ⏬ Download foundations build
+        uses: actions/download-artifact@v4
         with:
           name: db-ui-foundations-build
           path: packages/foundations/build
 
-      - name: ⬇ Download output
-        uses: ./.github/actions/download-tar-artifact
+      - name: ⏬ Download output
+        uses: actions/download-artifact@v4
         with:
           name: db-ui-output
           path: output
 
-      - name: ⬇ Download components build
-        uses: ./.github/actions/download-tar-artifact
+      - name: ⏬ Download components build
+        uses: actions/download-artifact@v4
         with:
           name: db-ui-components-build
           path: packages/components/build
@@ -62,7 +62,7 @@ jobs:
         id: extract
 
       - name: 🛤 Get base path
-        uses: actions/github-script@v6
+        uses: actions/github-script@v7
         env:
           NAME: ${{ steps.extract.outputs.name }}
           RELEASE: ${{ inputs.release }}
@@ -84,8 +84,8 @@ jobs:
           npm run scripts:md-resolve-svg
           npm run build-showcases
 
-      - name: ⬆ Upload Showcases
-        uses: ./.github/actions/upload-tar-artifact
+      - name: ⏫ Upload Showcases
+        uses: actions/upload-artifact@v4
         with:
           name: db-ui-showcases
           path: build-showcases

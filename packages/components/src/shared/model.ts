@@ -50,6 +50,7 @@ export type GlobalState = {
 
 export type DefaultVariantType =
 	| 'adaptive'
+	| 'neutral'
 	| 'critical'
 	| 'informational'
 	| 'warning'
@@ -75,8 +76,37 @@ export type IconAfterProps = {
 	iconAfter?: IconTypes;
 };
 
-export type IconVisibleState = {
-	iconVisible: (icon?: string) => boolean;
+export type SpacingProps = {
+	/**
+	 * The spacing attribute changes the padding of the card.
+	 */
+	spacing?: 'none' | 'medium' | 'small';
+};
+
+export type PlacementProps = {
+	/**
+	 * The `placement` attributes values change the position to absolute and adds a transform based on the placement.
+	 */
+	placement?:
+		| 'left'
+		| 'right'
+		| 'top'
+		| 'bottom'
+		| 'left-start'
+		| 'left-end'
+		| 'right-start'
+		| 'right-end'
+		| 'top-start'
+		| 'top-end'
+		| 'bottom-start'
+		| 'bottom-end';
+};
+
+export type GapProps = {
+	/**
+	 * If the absolute element should have a gap between the parent element.
+	 */
+	gap?: boolean;
 };
 
 export type OverflowProps = {
@@ -91,6 +121,21 @@ export type WidthProps = {
 	 * Width of the component. Auto width based on children size, full width based on parent elements width.
 	 */
 	width?: 'full' | 'auto';
+};
+
+export type PopoverProps = {
+	/**
+	 * Add a delay before showing the tooltip
+	 */
+	delay?: 'none' | 'slow' | 'fast';
+	/**
+	 * Disable animation
+	 */
+	animation?: 'enabled' | 'disabled';
+	/**
+	 * Use fixed with for default max-width
+	 */
+	width?: 'auto' | 'fixed';
 };
 
 export type SizeProps = {
@@ -108,11 +153,6 @@ export type EmphasisProps = {
 };
 
 export type FormProps = {
-	/**
-	 * React specific attribute to set default value.
-	 */
-	defaultValue?: any;
-
 	/**
 	 * The disabled attribute can be set to keep a user from clicking on the form element.
 	 */
@@ -147,14 +187,6 @@ export type FormProps = {
 
 export type FormTextProps = {
 	/**
-	 * This attribute indicates whether the value of the control can be automatically completed by the browser.
-	 */
-	autoComplete?: 'on' | 'off';
-	/**
-	 * This Boolean attribute lets you specify that a form control should have input focus when the page loads. Only one form-associated element in a document can have this attribute specified.
-	 */
-	autoFocus?: boolean;
-	/**
 	 * Maximum length (number of characters) of value
 	 */
 	maxLength?: number;
@@ -162,10 +194,6 @@ export type FormTextProps = {
 	 * Minimum length (number of characters) of value
 	 */
 	minLength?: number;
-	/**
-	 * Text that appears in the form control when it has no value set
-	 */
-	placeholder?: string;
 	/**
 	 * The disabled attribute can be set to keep a user from edit on the form element
 	 */
@@ -179,14 +207,20 @@ export type FormCheckProps = {
 	checked?: boolean;
 
 	/**
-	 * Returns / Sets the default state of a radio button or checkbox as originally specified in HTML that created this object.
-	 * Vue: according to our research this property should not be used. Please refer to v-model instead.
-	 * cf. https://react.carbondesignsystem.com/?path=/docs/components-checkbox--overview#component-api vs. https://vue.carbondesignsystem.com/?path=/story/components-cvcheckbox--default
+	 * Hide the label of a radio/checkbox.
 	 */
-	defaultChecked?: boolean;
+	labelVariant?: 'hidden';
 };
 
 export type FormMessageProps = {
+	/**
+	 * Change the variant of the label to float
+	 */
+	labelVariant?: 'above' | 'floating' | 'hidden';
+	/**
+	 * Text that appears in the form control when it has no value set
+	 */
+	placeholder?: string;
 	/**
 	 * Optional helper message for form components
 	 */
@@ -196,10 +230,72 @@ export type FormMessageProps = {
 	 * Set/overwrite icon for helper message for form components
 	 */
 	messageIcon?: IconTypes;
+
+	/**
+	 * See https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/autocomplete
+	 */
+	autocomplete?:
+		| string
+		| 'off'
+		| 'on'
+		| 'name'
+		| 'honorific-prefix'
+		| 'given-name'
+		| 'additional-name'
+		| 'family-name'
+		| 'honorific-suffix'
+		| 'nickname'
+		| 'email'
+		| 'username'
+		| 'new-password'
+		| 'current-password'
+		| 'one-time-code'
+		| 'organization-title'
+		| 'organization'
+		| 'street-address'
+		| 'shipping'
+		| 'billing'
+		| 'address-line1'
+		| 'address-line2'
+		| 'address-line3'
+		| 'address-level4'
+		| 'address-level3'
+		| 'address-level2'
+		| 'address-level1'
+		| 'country'
+		| 'country-name'
+		| 'postal-code'
+		| 'cc-name'
+		| 'cc-given-name'
+		| 'cc-additional-name'
+		| 'cc-family-name'
+		| 'cc-number'
+		| 'cc-exp'
+		| 'cc-exp-month'
+		| 'cc-exp-year'
+		| 'cc-csc'
+		| 'cc-type'
+		| 'transaction-currency'
+		| 'transaction-amount'
+		| 'language'
+		| 'bday'
+		| 'bday-day'
+		| 'bday-month'
+		| 'bday-year'
+		| 'sex'
+		| 'tel'
+		| 'tel-country-code'
+		| 'tel-national'
+		| 'tel-area-code'
+		| 'tel-local'
+		| 'tel-extension'
+		| 'impp'
+		| 'url'
+		| 'photo'
+		| 'webauthn';
 };
 
 export type FormState = {
-	_isValid?: boolean | undefined;
 	_messageId?: string;
 };
 
@@ -264,23 +360,24 @@ export type CardProps = {
 	elevation?: 'default' | 'none';
 };
 
-export type ClickEventProps = {
+export type ClickEvent<T> = MouseEvent;
+export type ClickEventProps<T> = {
 	/**
 	 * React specific onClick to pass to forward ref.
 	 */
-	onClick?: (event: any) => void;
+	onClick?: (event: ClickEvent<T>) => void;
 };
 
-export type ClickEventState = {
-	handleClick: (event: any) => void;
+export type ClickEventState<T> = {
+	handleClick: (event: ClickEvent<T>) => void;
 };
 
 export type ToggleEventProps = {
 	onToggle?: (open: boolean) => void;
 };
 
-export type ToggleEventState = {
-	toggle?: (event?: any) => void;
+export type ToggleEventState<T> = {
+	toggle?: (event?: ClickEvent<T>) => void;
 };
 
 export type CloseEventProps = {
@@ -294,32 +391,29 @@ export type CloseEventState = {
 	handleClose?: (event: any) => void;
 };
 
-export type ChangeEventProps = {
-	change?: (event: any) => void;
-	onChange?: (event: any) => void;
+export type ChangeEvent<T> = Event;
+export type ChangeEventProps<T> = {
+	change?: (event: ChangeEvent<T>) => void;
+	onChange?: (event: ChangeEvent<T>) => void;
 };
 
-export type ChangeEventState = {
-	handleChange: (event: any) => void;
+export type ChangeEventState<T> = {
+	handleChange: (event: ChangeEvent<T>) => void;
 };
 
-export type FocusEventProps = {
-	blur?: (event: any) => void;
-	onBlur?: (event: any) => void;
-	focus?: (event: any) => void;
-	onFocus?: (event: any) => void;
+export type InteractionEvent<T> = FocusEvent;
+
+export type FocusEventProps<T> = {
+	blur?: (event: InteractionEvent<T>) => void;
+	onBlur?: (event: InteractionEvent<T>) => void;
+	focus?: (event: InteractionEvent<T>) => void;
+	onFocus?: (event: InteractionEvent<T>) => void;
 };
 
-export type FocusEventState = {
-	handleBlur: (event: any) => void;
-	handleFocus: (event: any) => void;
+export type FocusEventState<T> = {
+	handleBlur: (event: InteractionEvent<T>) => void;
+	handleFocus: (event: InteractionEvent<T>) => void;
 };
-
-export type ValidEventProps = {
-	validityChange?: (valid: boolean) => void;
-};
-
-export type NestedRefComponentType = { getFormRef?: () => { current?: any } };
 
 export type InnerCloseButtonProps = {
 	/**

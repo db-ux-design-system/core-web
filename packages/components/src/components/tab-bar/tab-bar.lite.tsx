@@ -1,28 +1,15 @@
-import { For, onMount, Show, useMetadata, useStore } from '@builder.io/mitosis';
+import {For, onMount, Show, useMetadata, useRef, useStore} from '@builder.io/mitosis';
 import { DBTab } from '../tab';
 import type { DBTabProps } from '../tab/model';
 import type { DBTabBarState, DBTabBarProps } from './model';
 import { cls } from '../../utils';
 
 useMetadata({
-	isAttachedToShadowDom: true,
-	component: {
-		// MS Power Apps
-		includeIcon: false,
-		properties: [
-			{ name: 'name', type: 'SingleLine.Text' },
-			{
-				name: 'tabs',
-				type: 'Enum',
-				values: [{ key: 'TODO', name: 'TODO', value: 'TODO' }]
-			}
-		]
-	}
+	isAttachedToShadowDom: true
 });
 
 export default function DBTabBar(props: DBTabBarProps) {
-	// This is used as forwardRef
-	let component: any;
+	const ref = useRef<HTMLDivElement>(null);
 	// jscpd:ignore-start
 	const state = useStore<DBTabBarState>({
 		convertTabs(tabs: any[] | string | undefined) {
@@ -49,7 +36,7 @@ export default function DBTabBar(props: DBTabBarProps) {
 
 	return (
 		<div
-			ref={component}
+			ref={ref}
 			id={props.id}
 			class={cls('cmp-tab-bar', props.className)}
 			role="tablist">

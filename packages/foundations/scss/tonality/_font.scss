@@ -1,0 +1,42 @@
+@mixin set-component-variables($size) {
+	/* Those variables are only for components to calculate heights and change icons */
+	--db-icon-font-weight: var(--db-base-icon-weight-#{$size});
+	--db-icon-font-size: var(--db-base-icon-font-size-#{$size});
+	--db-base-line-height: var(--db-type-body-line-height-#{$size});
+	--db-base-font-size: var(--db-type-body-font-size-#{$size});
+}
+
+@mixin set-font-size($size) {
+	line-height: var(--db-type-body-line-height-#{$size});
+	font-size: var(--db-type-body-font-size-#{$size});
+}
+
+/**
+	Generates 3 types of placeholders, e.g:
+	- %db-component-variables-md
+	- %db-font-size-md
+	- %db-overwrite-font-size-md
+ */
+@mixin generate-font-sizes($font-sizes) {
+	@each $font-size in $font-sizes {
+		%db-component-variables-#{$font-size} {
+			@include set-component-variables($font-size);
+		}
+
+		%db-font-size-#{$font-size} {
+			@include set-font-size($font-size);
+		}
+
+		%db-overwrite-font-size-#{$font-size} {
+			@include set-component-variables($font-size);
+			@include set-font-size($font-size);
+
+			& > * {
+				@include set-component-variables($font-size);
+				@include set-font-size($font-size);
+			}
+		}
+	}
+}
+
+@include generate-font-sizes(("2xl", "xl", "lg", "md", "sm", "xs", "2xs"));

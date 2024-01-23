@@ -10,6 +10,11 @@ export interface DBAccordionDefaultProps {
 	behaviour?: 'multiple' | 'single';
 
 	/**
+	 * The index of items which should be open when loading the accordion
+	 */
+	initOpenIndex?: number[];
+
+	/**
 	 * Alternative to pass in a simple representation of accordion items
 	 */
 	items?: DBAccordionItemInterface[] | string;

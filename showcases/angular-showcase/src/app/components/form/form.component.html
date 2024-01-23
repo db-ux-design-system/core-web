@@ -244,8 +244,10 @@
 			</dd>
 			<dt>checkbox value indeterminate</dt>
 			<dd>checkbox {{ checked[0] && checked[1] ? "" : "un" }}checked</dd>
+			<dt>select with ngmodel</dt>
+			<dd>{{ model.select ? model.select : "No select set" }}</dd>
 			<dt>select value</dt>
-			<dd>{{ select ? select : "No select set" }}</dd>
+			<dd>{{ form.get("select")?.value || "No select set" }}</dd>
 			<dt>tags value</dt>
 			<dd>{{ getTags() }}</dd>
 		</dl>

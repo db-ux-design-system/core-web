@@ -8,11 +8,11 @@ jobs:
     name: 💬 Add url for gh-page as issue comment to PR
     runs-on: ubuntu-latest
     steps:
-      - name: ⬇ Checkout repo
+      - name: ⏬ Checkout repo
         uses: actions/checkout@v4
 
       - name: 📡 Add comment
-        uses: actions/github-script@v6
+        uses: actions/github-script@v7
         with:
           script: |
             const body = `🔭🐙🐈 Test this branch here: https://${context.repo.owner}.github.io/${context.repo.repo}/review/${context.payload.pull_request.head.ref}`;

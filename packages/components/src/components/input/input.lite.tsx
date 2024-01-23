@@ -1,64 +1,41 @@
-import { For, onMount, Show, useMetadata, useStore } from '@builder.io/mitosis';
-import { DBIcon } from '../icon';
+import {
+	For,
+	onMount,
+	Show,
+	useMetadata,
+	useRef,
+	useStore
+} from '@builder.io/mitosis';
 import { cls, getMessageIcon, uuid } from '../../utils';
 import { DBInputProps, DBInputState } from './model';
-import { DEFAULT_ID, DEFAULT_LABEL, DEFAULT_MESSAGE_ID_SUFFIX } from '../../shared/constants';
-import { KeyValueType } from '../../shared/model';
+import {
+	DEFAULT_ID,
+	DEFAULT_LABEL,
+	DEFAULT_MESSAGE_ID_SUFFIX
+} from '../../shared/constants';
+import {
+	ChangeEvent,
+	InteractionEvent,
+	KeyValueType
+} from '../../shared/model';
 import { DBInfotext } from '../infotext';
 
 useMetadata({
-	isAttachedToShadowDom: true,
-	component: {
-		// MS Power Apps
-		includeIcon: true,
-		hasDisabledProp: true,
-		canvasSize: {
-			height: 'fixed', // 'fixed', 'controlled'
-			width: 'controlled' // 'fixed', 'dynamic' (requires width property), 'controlled'
-		},
-		properties: [
-			{
-				name: 'label',
-				type: 'SingleLine.Text',
-				required: true,
-				defaultValue: 'Input'
-			},
-			{ name: 'placeholder', type: 'SingleLine.Text' },
-			{ name: 'value', type: 'SingleLine.Text', onChange: 'value' }, // $event.target["value"|"checked"|...]
-			{
-				name: 'icon',
-				type: 'Icon' // this is a custom type not provided by ms
-			},
-			{
-				name: 'iconAfter',
-				type: 'Icon'
-			},
-			{
-				name: 'variant',
-				type: 'DefaultVariant', // this is a custom type not provided by ms
-				defaultValue: 'adaptive'
-			}
-		]
-	}
+	isAttachedToShadowDom: true
 });
 
 export default function DBInput(props: DBInputProps) {
-	// This is used as forwardRef
-	let component: any;
+	const ref = useRef<HTMLInputElement>(null);
 	// jscpd:ignore-start
 	const state = useStore<DBInputState>({
 		_id: DEFAULT_ID,
 		_messageId: DEFAULT_ID + DEFAULT_MESSAGE_ID_SUFFIX,
-		_isValid: undefined,
 		_dataListId: DEFAULT_ID,
 		defaultValues: {
 			label: DEFAULT_LABEL,
 			placeholder: ' '
 		},
-		iconVisible: (icon?: string) => {
-			return Boolean(icon && icon !== '_' && icon !== 'none');
-		},
-		handleChange: (event: any) => {
+		handleChange: (event: ChangeEvent<HTMLInputElement>) => {
 			if (props.onChange) {
 				props.onChange(event);
 			}
@@ -67,21 +44,16 @@ export default function DBInput(props: DBInputProps) {
 				props.change(event);
 			}
 
-			if (event.target?.validity?.valid != state._isValid) {
-				state._isValid = event.target?.validity?.valid;
-				if (props.validityChange) {
-					props.validityChange(!!event.target?.validity?.valid);
-				}
-			}
+			const target = event.target as HTMLInputElement;
 
 			// TODO: Replace this with the solution out of https://github.com/BuilderIO/mitosis/issues/833 after this has been "solved"
-			// VUE:this.$emit("update:value", event.target.value);
+			// VUE:this.$emit("update:value", target.value);
 
 			// Change event to work with reactive and template driven forms
-			// ANGULAR: this.propagateChange(event.target.value);
-			// ANGULAR: this.writeValue(event.target.value);
+			// ANGULAR: this.propagateChange(target.value);
+			// ANGULAR: this.writeValue(target.value);
 		},
-		handleBlur: (event: any) => {
+		handleBlur: (event: InteractionEvent<HTMLInputElement>) => {
 			if (props.onBlur) {
 				props.onBlur(event);
 			}
@@ -90,7 +62,7 @@ export default function DBInput(props: DBInputProps) {
 				props.blur(event);
 			}
 		},
-		handleFocus: (event: any) => {
+		handleFocus: (event: InteractionEvent<HTMLInputElement>) => {
 			if (props.onFocus) {
 				props.onFocus(event);
 			}
@@ -115,26 +87,26 @@ export default function DBInput(props: DBInputProps) {
 	return (
 		<div
 			class={cls('db-input', props.className)}
-			data-variant={props.variant}>
+			data-variant={props.variant}
+			data-label-variant={props.labelVariant}
+			data-icon={props.icon}
+			data-icon-after={props.iconAfter}>
 			<Show when={state.stylePath}>
 				<link rel="stylesheet" href={state.stylePath} />
 			</Show>
-			{/* TODO: move this icon to [data-icon] */}
-			<Show when={state.iconVisible(props.icon)}>
-				<DBIcon icon={props.icon} class="icon-before" />
-			</Show>
+			<label htmlFor={state._id}>
+				{props.label ?? state.defaultValues.label}
+			</label>
 			<input
-				ref={component}
+				ref={ref}
 				id={state._id}
 				name={props.name}
 				type={props.type || 'text'}
 				placeholder={
 					props.placeholder ?? state.defaultValues.placeholder
 				}
-				aria-labelledby={state._id + '-label'}
 				disabled={props.disabled}
 				required={props.required}
-				defaultValue={props.defaultValue}
 				step={props.step}
 				value={props.value}
 				aria-invalid={props.invalid}
@@ -144,24 +116,20 @@ export default function DBInput(props: DBInputProps) {
 				min={props.min}
 				readOnly={props.readOnly}
 				form={props.form}
-				autoComplete={props.autoComplete}
-				autoFocus={props.autoFocus}
 				pattern={props.pattern}
-				onChange={(event) => state.handleChange(event)}
-				onBlur={(event) => state.handleBlur(event)}
-				onFocus={(event) => state.handleFocus(event)}
+				autocomplete={props.autocomplete}
+				onChange={(event: ChangeEvent<HTMLInputElement>) =>
+					state.handleChange(event)
+				}
+				onBlur={(event: InteractionEvent<HTMLInputElement>) =>
+					state.handleBlur(event)
+				}
+				onFocus={(event: InteractionEvent<HTMLInputElement>) =>
+					state.handleFocus(event)
+				}
 				list={props.dataList && state._dataListId}
 				aria-describedby={props.message && state._messageId}
 			/>
-			<label
-				htmlFor={state._id}
-				aria-hidden="true"
-				id={state._id + '-label'}>
-				<span>{props.label ?? state.defaultValues.label}</span>
-			</label>
-			<Show when={state.iconVisible(props.iconAfter)}>
-				<DBIcon icon={props.iconAfter} class="icon-after" />
-			</Show>
 			<Show when={props.dataList}>
 				<datalist id={state._dataListId}>
 					<For each={props.dataList}>

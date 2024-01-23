@@ -1,41 +1,46 @@
-@use "@db-ui/foundations/build/scss/db-ui-foundations" as *;
-@use "../components/button/button" as *;
-@use "../components/icon/icon" as *;
-@use "../components/tab/tab" as *;
-@use "../components/tab-bar/tab-bar" as *;
-@use "../components/divider/divider" as *;
-@use "../components/card/card" as *;
-@use "../components/input/input" as *;
-@use "../components/brand/brand" as *;
-@use "../components/header/header" as *;
-@use "../components/page/page" as *;
-@use "../components/link/link" as *;
-@use "../components/section/section" as *;
-@use "../components/infotext/infotext" as *;
-@use "../components/alert/alert" as *;
-@use "../components/checkbox/checkbox" as *;
-@use "../components/radio/radio" as *;
-@use "../components/code-docs/code-docs" as *;
-@use "../components/tag/tag" as *;
-@use "../components/drawer/drawer" as *;
-@use "../components/select/select" as *;
-@use "../components/navigation-item/navigation-item" as *;
-@use "../components/textarea/textarea" as *;
-@use "../components/badge/badge" as *;
+@forward "@db-ui/foundations/build/scss/db-ui-foundations";
+@forward "../components/button/button";
+@forward "../components/icon/icon";
+@forward "../components/tab/tab";
+@forward "../components/tab-bar/tab-bar";
+@forward "../components/divider/divider";
+@forward "../components/card/card";
+@forward "../components/input/input";
+@forward "../components/brand/brand";
+@forward "../components/header/header";
+@forward "../components/page/page";
+@forward "../components/link/link";
+@forward "../components/section/section";
+@forward "../components/infotext/infotext";
+@forward "../components/alert/alert";
+@forward "../components/checkbox/checkbox";
+@forward "../components/radio/radio";
+@forward "../components/code-docs/code-docs";
+@forward "../components/tag/tag";
+@forward "../components/drawer/drawer";
+@forward "../components/select/select";
+@forward "../components/navigation-item/navigation-item";
+@forward "../components/textarea/textarea";
+@forward "../components/badge/badge";
 
-@use "../components/accordion/accordion" as *;
+@forward "../components/accordion/accordion";
 
-@use "../components/accordion-item/accordion-item" as *;
-@use "../components/main-navigation/main-navigation" as *;
+@forward "../components/accordion-item/accordion-item";
+@forward "../components/main-navigation/main-navigation";
 
+@forward "../components/popover/popover";
+@forward "../components/tooltip/tooltip";
 @forward "dialog-init";
+
 // angular-workaround
+dbtooltip,
+db-tooltip,
+dbpopover,
+db-popover,
 dbtextarea,
 db-textarea,
-// angular-workaround
 dbmain-navigation,
 db-main-navigation,
-// angular-workaround
 dbaccordion-item,
 db-accordion-item,
 dbaccordion,
@@ -96,4 +101,30 @@ dbalert {
 
 :has(.db-badge[data-placement^="corner"]) {
 	position: relative;
+}
+
+$popover-components: "popover", "tooltip";
+$popover-states: "hover", "focus";
+
+@mixin show-popover($component, $state) {
+	:has(> db-#{$component} > .db-#{$component}:not([data-open])):#{$state},
+	:has(> db#{$component} > .db-#{$component}:not([data-open])):#{$state},
+	:has(> .db-#{$component}:not([data-open])):#{$state} {
+		/* TODO: We need to disable hover and active effects if popover is visible */
+		.db-#{$component}:first-of-type {
+			@extend %show-popover;
+		}
+	}
+}
+
+@each $component in $popover-components {
+	:has(> db-#{$component}),
+	:has(> db#{$component}),
+	:has(> .db-#{$component}) {
+		position: relative;
+	}
+
+	@each $state in $popover-states {
+		@include show-popover($component, $state);
+	}
 }
