@@ -18,7 +18,7 @@ import { DBAccordionItemModule } from '@db-ui/ngx-components';
 
 ### Use component
 
-#### With Slots
+#### With Content Projection
 
 ```html app.component.html
 <!-- app.component.html -->
