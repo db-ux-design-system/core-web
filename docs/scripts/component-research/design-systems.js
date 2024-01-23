@@ -100,9 +100,9 @@ export const designSystems = [
 	},
 	{
 		name: 'Audi Design System',
-		url: 'https://www.audi.com/ci/en/guides/user-interface/components/buttons.html',
+		url: 'https://www.audi.com/ci/en/guides/user-interface.html',
 		componentUrl:
-			'https://www.audi.com/ci/en/guides/user-interface/components/buttons.html'
+			'https://www.audi.com/ci/en/guides/user-interface/components.html'
 	},
 	{
 		name: 'DHL Design System',
