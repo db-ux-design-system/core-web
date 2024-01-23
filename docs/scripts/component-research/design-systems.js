@@ -14,6 +14,17 @@ export const designSystems = [
 		componentUrl: 'https://inclusive-components.design/#components'
 	},
 	{
+		name: 'Barrierefreie Gestaltung von User Interface-Elementen',
+		url: 'https://handreichungen.bfit-bund.de/barrierefreie-uie/',
+		componentUrl:
+			'https://handreichungen.bfit-bund.de/barrierefreie-uie/0.4/zusammengesetzte_bedienelemente.html'
+	},
+	{
+		name: 'Open UI',
+		url: 'https://open-ui.org/',
+		componentUrl: 'https://open-ui.org/'
+	},
+	{
 		name: 'Telekom Scale',
 		url: 'https://github.com/telekom/scale',
 		componentUrl: 'https://telekom.github.io/scale/?path=/docs/components'
@@ -86,6 +97,17 @@ export const designSystems = [
 		url: 'https://github.com/Telefonica/mistica-web',
 		componentUrl:
 			'https://brandfactory.telefonica.com/d/iSp7b1DkYygv/n-a#/components/overview'
+	},
+	{
+		name: 'Audi Design System',
+		url: 'https://www.audi.com/ci/en/guides/user-interface/components/buttons.html',
+		componentUrl:
+			'https://www.audi.com/ci/en/guides/user-interface/components/buttons.html'
+	},
+	{
+		name: 'DHL Design System',
+		url: 'https://www.dpdhl-brands.com/en/dhl/buttons',
+		componentUrl: 'https://www.dpdhl-brands.com/en/dhl/buttons'
 	},
 	{
 		name: 'Bootstrap',
