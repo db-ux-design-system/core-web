@@ -1,6 +1,7 @@
 @use "@db-ui/foundations/build/scss/variables";
 @use "@db-ui/foundations/build/scss/colors";
 @use "../../styles/component";
+//@use "../../styles/form-components";
 
 .db-tab {
 	@extend %default-interactive-component;
@@ -29,10 +30,6 @@
 
 	&.is-icon-text-replace[data-icon]::before {
 		margin-inline-end: 0;
-		size: variables.$db-sizing-md;
-		/*&:has(input:checked) {
-			font-weight: 700;
-		}*/
 	}
 
 	&:has(input:focus-visibles) {
@@ -41,6 +38,14 @@
 
 	&:has(input:checked) {
 		font-weight: 700;
+	}
+
+	&:not(input:checked) ~ article {
+		display: none;
+	}
+
+	&:has(input:checked) ~ article {
+		display: block;
 	}
 
 	&[data-icon]::before {
