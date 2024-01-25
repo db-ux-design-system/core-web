@@ -8,8 +8,9 @@
 	@extend %transparent-border;
 	@include colors.bg-transparent-interactive(false);
 
+	display: inline-flex;
 	padding: variables.$db-spacing-fixed-xs variables.$db-spacing-fixed-sm;
-	display: block;
+	align-items: center;
 
 	input {
 		&[type="radio"] {
@@ -61,6 +62,7 @@
 
 		&[data-alignment="center"] {
 			text-align: center;
+			justify-content: center;
 		}
 	}
 }

@@ -18,7 +18,12 @@
 		</label>
 		<article id="content-test2" role="tabpanel">test2</article>
 
-		<label class="db-tab" htmlFor="test3" role="tab" data-icon="account">
+		<label
+			class="db-tab"
+			htmlFor="test3"
+			role="tab"
+			data-icon="x_placeholder"
+		>
 			<input type="radio" name="test" id="test3" />
 			icon - text (leading)
 		</label>
@@ -28,19 +33,25 @@
 			class="db-tab"
 			htmlFor="test4"
 			role="tab"
-			data-icon-after="account"
+			data-icon-after="x_placeholder"
 		>
 			<input type="radio" name="test" id="test4" />
 			text - icon (trailing)
 		</label>
 		<article id="content-test4" role="tabpanel">test4</article>
 
-		<label class="db-tab" htmlFor="test5" role="tab" data-icon="account">
+		<label
+			class="db-tab"
+			htmlFor="test5"
+			role="tab"
+			data-icon="x_placeholder"
+			data-no-text="true"
+		>
 			<input type="radio" name="test" id="test5" />
 		</label>
 		<article id="content-test5" role="tabpanel">test5</article>
 
-		<label class="db-tab" htmlFor="test6" role="tab" width="full">
+		<label class="db-tab" htmlFor="test6" role="tab" data-width="full">
 			<input type="radio" name="test" id="test6" />
 			width (full)
 		</label>
@@ -50,8 +61,8 @@
 			class="db-tab"
 			htmlFor="test7"
 			role="tab"
-			width="full"
-			alignment="center"
+			data-width="full"
+			data-alignment="center"
 		>
 			<input type="radio" name="test" id="test7" />
 			width full (centered)
