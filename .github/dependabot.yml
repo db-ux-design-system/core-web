@@ -55,6 +55,7 @@ updates:
         patterns:
           - "@angular*"
           - "@angular-devkit*"
+          - "ng-packagr"
         update-types:
           - "minor"
           - "patch"

@@ -32,7 +32,7 @@ const updatePlaywright = () => {
 		{
 			from: `oldPlaywrightVersion = '${oldPlaywrightVersion}'`,
 			to: `oldPlaywrightVersion = '${version}'`,
-			files: ['scripts/update-playwright.js']
+			files: ['.github/scripts/update-playwright.js']
 		}
 	];
 
@@ -42,5 +42,4 @@ const updatePlaywright = () => {
 
 	return 'Success';
 };
-
-updatePlaywright();
+export default updatePlaywright;

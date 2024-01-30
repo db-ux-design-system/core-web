@@ -7,7 +7,7 @@ We'd like to maintain a list of other design systems that might be interesting f
     -   Storybook
 -   [SBB / Lyne Components](https://github.com/lyne-design-system/lyne-components), Tech Stack:
     -   Web Components / ~StencilJS~ Lit
-    -   [Storybook](https://lyne-components-storybook.netlify.app/)
+    -   [Storybook](https://lyne-storybook.app.sbb.ch/)
 -   [SBB / Websites](https://digital.sbb.ch/de/websites) & [SBB / Webapps](https://digital.sbb.ch/de/webapps)
     -   [SBB Angular](https://angular.app.sbb.ch/angular/introduction/getting-started)
     -   [SBB Angular GitHub](https://github.com/sbb-design-systems/sbb-angular)
