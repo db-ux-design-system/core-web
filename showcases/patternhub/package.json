@@ -34,15 +34,15 @@
     "@mdx-js/react": "^3.0.0",
     "@next/mdx": "^14.0.4",
     "@types/dompurify": "3.0.5",
-    "@types/node": "20.11.0",
-    "@types/react": "18.2.47",
+    "@types/node": "20.11.10",
+    "@types/react": "18.2.48",
     "@types/react-dom": "18.2.18",
-    "esbuild": "0.19.11",
+    "esbuild": "0.20.0",
     "eslint": "8.56.0",
     "eslint-config-next": "14.0.4",
     "iframe-resizer": "^4.3.9",
     "open-cli": "^8.0.0",
-    "sass": "^1.69.7",
+    "sass": "^1.70.0",
     "typescript": "5.3.3"
   }
 }

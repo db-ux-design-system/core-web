@@ -29,6 +29,10 @@ We'd like to maintain a list of other design systems that might be interesting f
     -   [Storybook](https://barmer-puls-react.entw.bconnect.barmer.de/?path=/story/surfaces-accordion--base)
 -   [SAP UI5 Web Components](https://sap.github.io/ui5-webcomponents/)
     -   [Web Components](https://github.com/SAP/ui5-webcomponents)
+-   [Audi Design System](https://www.audi.com/ci/en/guides/user-interface/components/buttons.html)
+    -   React
+-   [DHL Design System](https://www.dpdhl-brands.com/en/dhl/buttons)
+    -   React
 -   [Netherlands government](https://nldesignsystem.nl/), Tech Stack (among others):
     -   Web Components / StencilJS
     -   Storybook
@@ -49,4 +53,5 @@ We'd like to maintain a list of other design systems that might be interesting f
 
 ## Further inspirational websites
 
--   <https://www.w3.org/WAI/ARIA/apg/patterns/tabs/>
+-   <https://www.w3.org/WAI/ARIA/apg/patterns/>
+-   <https://inclusive-components.design/#components>
