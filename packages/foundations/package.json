@@ -39,7 +39,7 @@
   "devDependencies": {
     "@zeplin/sdk": "^1.18.0",
     "cpr": "3.0.1",
-    "dotenv": "^16.3.2",
+    "dotenv": "^16.4.1",
     "nodemon": "3.0.3",
     "sass": "^1.70.0",
     "style-dictionary": "3.9.2"
