@@ -26,7 +26,7 @@ export interface DBAlertDefaultProps {
 	 */
 	headline?: string;
 	/**
-	 * The link attribute changes the props of the link (only available when using slotLink).
+	 * The link attribute changes the props of the link.
 	 */
 	link?: LinkProps;
 

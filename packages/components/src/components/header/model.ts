@@ -7,10 +7,10 @@ import {
 } from '../../shared/model';
 
 export interface DBHeaderDefaultProps {
-	slotBrand?: any;
-	slotMetaNavigation?: any;
-	slotCallToAction?: any;
-	slotActionBar?: any;
+	brand?: any;
+	metaNavigation?: any;
+	callToAction?: any;
+	actionBar?: any;
 	drawerOpen?: boolean;
 
 	/**

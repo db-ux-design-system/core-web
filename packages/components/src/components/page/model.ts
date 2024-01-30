@@ -2,8 +2,8 @@ import { GlobalProps, GlobalState } from '../../shared/model';
 
 export interface DBPageDefaultProps {
 	type?: 'fixedHeaderFooter';
-	slotHeader?: any;
-	slotFooter?: any;
+	header?: any;
+	footer?: any;
 
 	/**
 	 * Set this to have a transition with opacity to avoid layout-shifts https://simonhearne.com/2021/layout-shifts-webfonts/

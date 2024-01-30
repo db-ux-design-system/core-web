@@ -4,7 +4,7 @@ export interface DBCodeDocsDefaultProps {
 	showCodeLabel?: string;
 	hideCodeLabel?: string;
 
-	slotCode?: any;
+	code?: any;
 }
 
 export type DBCodeDocsProps = DBCodeDocsDefaultProps & GlobalProps;

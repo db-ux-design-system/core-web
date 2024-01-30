@@ -30,7 +30,7 @@ export interface DBNavigationItemDefaultProps {
 	 * React-specific property to pass in a slot for sub-navigation
 	 */
 
-	slotSubNavigation?: any;
+	subNavigation?: any;
 
 	/**
 	 * This is for mobile navigation only, if it is set the sub-navigation is a static overlay

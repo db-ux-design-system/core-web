@@ -13,11 +13,10 @@
 
 ### props
 
-| Before     | Status | After       | Description                                                 |
-| ---------- | :----: | ----------- | ----------------------------------------------------------- |
-| `summary`  |   🔁   | `title`     | The title/summary of the details element.                   |
-| `emphasis` |   ❌   | ❌          | There is no emphasis anymore.                               |
-| `size`     |   ❌   | ❌          | Controlled by the tonality.                                 |
-|            |   🆕   | `disabled`  | Disable the component.                                      |
-|            |   🆕   | `content`   | Pass in a simple string as fallback to normal children/slot |
-|            |   🆕   | `slotTitle` | Pass in a custom title (only required for React)            |
+| Before     | Status | After      | Description                                                 |
+| ---------- | :----: | ---------- | ----------------------------------------------------------- |
+| `summary`  |   🔁   | `title`    | The title/summary of the details element.                   |
+| `emphasis` |   ❌   | ❌         | There is no emphasis anymore.                               |
+| `size`     |   ❌   | ❌         | Controlled by the tonality.                                 |
+|            |   🆕   | `disabled` | Disable the component.                                      |
+|            |   🆕   | `content`  | Pass in a simple string as fallback to normal children/slot |

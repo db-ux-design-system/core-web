@@ -23,28 +23,28 @@ const App = () => {
 		<DBPage
 			type="fixedHeaderFooter"
 			fadeIn
-			slotHeader={
+			header={
 				<DBHeader
 					drawerOpen={drawerOpen}
 					onToggle={setDrawerOpen}
-					slotBrand={
+					brand={
 						<DBBrand title="React Showcase" anchorChildren>
 							Showcase
 						</DBBrand>
 					}
-					slotMetaNavigation={
+					metaNavigation={
 						<MetaNavigation
 							onColorChange={setColor}
 							onTonalityChange={setTonality}
 						/>
 					}
-					slotCallToAction={
+					callToAction={
 						/* TODO: Use DBSearchBar in future */
 						<DBButton icon="search" variant="text" noText>
 							Search
 						</DBButton>
 					}
-					slotActionBar={
+					actionBar={
 						<>
 							<DBButton icon="account" variant="text" noText>
 								Profile

@@ -19,13 +19,9 @@ export interface DBAccordionItemDefaultProps {
 	 */
 	open?: boolean;
 	/**
-	 * For react only to pass any title element to the specific slot
+	 * Title of the accordion-item
 	 */
-	slotTitle?: any;
-	/**
-	 * Alternative for passing only a string instead of a slot
-	 */
-	title?: string;
+	title?: any;
 	/**
 	 * Set details name for exclusive accordions, see https://chromestatus.com/feature/6710427028815872
 	 */

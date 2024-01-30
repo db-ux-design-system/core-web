@@ -95,12 +95,12 @@ const sortedNavigation = getSortedNavigationItems(navigationItems);
 						<NavItemComponent :navItem="item"></NavItemComponent>
 					</template>
 				</DBMainNavigation>
-				<template v-slot:call-to-action>
+				<template v-slot:calltoaction>
 					<DBButton icon="search" variant="text" :no-text="true">
 						Search
 					</DBButton>
 				</template>
-				<template v-slot:action-bar>
+				<template v-slot:actionbar>
 					<DBButton icon="account" variant="text" :no-text="true">
 						Profile
 					</DBButton>
@@ -111,7 +111,7 @@ const sortedNavigation = getSortedNavigationItems(navigationItems);
 						Help
 					</DBButton>
 				</template>
-				<template v-slot:meta-navigation>
+				<template v-slot:metanavigation>
 					<DBSelect
 						label="Tonality"
 						labelVariant="floating"
