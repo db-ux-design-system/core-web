@@ -4,21 +4,21 @@
 		"examples": [
 			{
 				"name": "functional",
-				"className": "db-ui-functional",
+				"className": "db-ui-functional tab-hide-article",
 				"props": {
 					"label": "functional"
 				}
 			},
 			{
 				"name": "regular (Default)",
-				"className": "db-ui-regular",
+				"className": "db-ui-regular tab-hide-article",
 				"props": {
 					"label": "regular (Default)"
 				}
 			},
 			{
 				"name": "expressive",
-				"className": "db-ui-expressive",
+				"className": "db-ui-expressive tab-hide-article",
 				"props": {
 					"label": "expressive"
 				}
@@ -30,12 +30,14 @@
 		"examples": [
 			{
 				"name": "(Default) Enabled",
+				"className": "tab-hide-article",
 				"props": {
 					"label": "(Default) Enabled"
 				}
 			},
 			{
 				"name": "active",
+				"className": "tab-hide-article",
 				"props": {
 					"label": "active",
 					"active": true
@@ -48,12 +50,14 @@
 		"examples": [
 			{
 				"name": "(Default) Text",
+				"className": "tab-hide-article",
 				"props": {
 					"label": "(Default) Text"
 				}
 			},
 			{
 				"name": "Text - Icon (Leading)",
+				"className": "tab-hide-article",
 				"props": {
 					"label": "Text - Icon (Leading)",
 					"icon": "x_placeholder"
@@ -61,6 +65,7 @@
 			},
 			{
 				"name": "Text - Icon (Trailing)",
+				"className": "tab-hide-article",
 				"props": {
 					"label": "Text - Icon (Trailing)",
 					"iconAfter": "x_placeholder"
@@ -68,6 +73,7 @@
 			},
 			{
 				"name": "Icon",
+				"className": "tab-hide-article",
 				"props": {
 					"icon": "x_placeholder",
 					"noText": true
@@ -80,12 +86,14 @@
 		"examples": [
 			{
 				"name": "Auto Width (Default)",
+				"className": "tab-hide-article",
 				"props": {
 					"label": "Auto Width (Default)"
 				}
 			},
 			{
 				"name": "Width full",
+				"className": "tab-hide-article",
 				"style": { "width": "500px" },
 				"props": {
 					"label": "Width full",
@@ -99,6 +107,7 @@
 		"examples": [
 			{
 				"name": "Left",
+				"className": "tab-hide-article",
 				"style": { "width": "500px" },
 				"props": {
 					"label": "Left",
@@ -107,6 +116,7 @@
 			},
 			{
 				"name": "Centered",
+				"className": "tab-hide-article",
 				"style": { "width": "500px" },
 				"props": {
 					"label": "Centered",

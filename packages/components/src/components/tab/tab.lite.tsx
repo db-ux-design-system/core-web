@@ -45,7 +45,9 @@ export default function DBTab(props: DBTabProps) {
 				data-icon={props.icon}
 				data-icon-after={props.iconAfter}
 				data-width={props.width}
-				data-alignment={props.alignment}>
+				data-alignment={props.alignment}
+				aria-selected={props.active}
+				aria-controls={'content-' + state._id}>
 				<Show when={state.stylePath}>
 					<link rel="stylesheet" href={state.stylePath} />
 				</Show>
@@ -61,7 +63,10 @@ export default function DBTab(props: DBTabProps) {
 					<Slot name="label" />
 				</Show>
 			</label>
-			<article id={'content-' + state._id} role="tabpanel">
+			<article
+				id={'content-' + state._id}
+				role="tabpanel"
+				aria-labelledby={state._id}>
 				<Show when={props.content}> {props.content}</Show>
 				{props.children}
 			</article>

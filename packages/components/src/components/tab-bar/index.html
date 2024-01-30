@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 	<head>
 		<meta charset="UTF-8" />
@@ -6,6 +6,29 @@
 		<link rel="stylesheet" href="/styles/db-ui-42.css" />
 	</head>
 	<body style="padding: var(--db-spacing-fixed-md)">
-		<div class="db-tab-bar">Test</div>
+		<div class="db-tab-bar" role="tablist">
+			<label class="db-tab" htmlFor="test1" role="tab">
+				<input type="radio" name="test" id="test1" />
+				label 1
+			</label>
+			<article id="content-test1" role="tabpanel">test1</article>
+
+			<label class="db-tab" htmlFor="test2" role="tab">
+				<input type="radio" name="test" id="test2" checked />
+				active
+			</label>
+			<article id="content-test2" role="tabpanel">test2</article>
+
+			<label
+				class="db-tab"
+				htmlFor="test3"
+				role="tab"
+				data-icon="x_placeholder"
+			>
+				<input type="radio" name="test" id="test3" />
+				icon - text (leading)
+			</label>
+			<article id="content-test3" role="tabpanel">test3</article>
+		</div>
 	</body>
 </html>

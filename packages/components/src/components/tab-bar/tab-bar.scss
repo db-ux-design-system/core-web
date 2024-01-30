@@ -1,0 +1,32 @@
+@use "@db-ui/foundations/build/scss/variables";
+@use "@db-ui/foundations/build/scss/colors";
+
+.db-tab-bar {
+	display: flex;
+	flex-wrap: wrap;
+	position: relative;
+
+	label[role="tab"] {
+		margin-inline-end: variables.$db-spacing-fixed-sm;
+	}
+
+	label[role="tab"]:last-of-type {
+		margin-inline-end: 0;
+	}
+
+	article[role="tabpanel"] {
+		display: none;
+		flex-basis: 100%;
+		order: 1;
+	}
+
+	::after {
+		content: "";
+		position: absolute;
+		inset-block-end: 0;
+		inset-inline-start: 0;
+		inline-size: 100%;
+		block-size: 3px;
+		background-color: rgb(183, 183, 183); //TODO use right color variable
+	}
+}
