@@ -32,7 +32,7 @@
   "devDependencies": {
     "@mdx-js/loader": "^3.0.0",
     "@mdx-js/react": "^3.0.0",
-    "@next/mdx": "^14.0.4",
+    "@next/mdx": "^14.1.0",
     "@types/dompurify": "3.0.5",
     "@types/node": "20.11.10",
     "@types/react": "18.2.48",
