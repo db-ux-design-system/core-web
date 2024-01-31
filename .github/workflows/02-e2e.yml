@@ -9,7 +9,7 @@ permissions:
 
 jobs:
   playwright-ct:
-    name: 🧪🎭 - ${{ matrix.framework }}:${{ matrix.shard }}
+    name: 🧪🎭 - ${{ matrix.framework }}:${{ matrix.shardIndex }}/${{ matrix.shardTotal }}
     runs-on: ubuntu-latest
     container:
       image: mcr.microsoft.com/playwright:v1.41.0
@@ -17,7 +17,8 @@ jobs:
       fail-fast: false
       matrix:
         framework: [react, vue]
-        shard: [1of3, 2of3, 3of3]
+        shardIndex: [1, 2, 3]
+        shardTotal: [3]
     steps:
       - name: ⏬ Checkout repo
         uses: actions/checkout@v4
@@ -60,7 +61,7 @@ jobs:
         working-directory: ./output/${{ steps.workingDirectory.outputs.dir }}
         env:
           HOME: /root
-        run: npx playwright test --shard=${{ matrix.shard }}
+        run: npx playwright test --shard=${{ matrix.shardIndex }}/${{ matrix.shardTotal }}
 
       - name: 🔣 Print GitHub Report
         if: failure()
@@ -73,6 +74,6 @@ jobs:
         if: failure()
         uses: actions/upload-artifact@v4
         with:
-          name: ${{ matrix.framework }}-components-playwright-results-${{ matrix.shard }}
+          name: ${{ matrix.framework }}-components-playwright-results-${{ matrix.shardIndex }}
           path: ./output/${{ steps.workingDirectory.outputs.dir }}/test-results
           retention-days: 30
