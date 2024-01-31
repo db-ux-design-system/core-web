@@ -338,20 +338,12 @@ h6 {
 		margin-block: auto;
 		margin-inline-start: variables.$db-spacing-fixed-xs;
 		visibility: hidden;
+		text-decoration: none;
 	}
 
 	&:hover {
 		a {
 			visibility: visible;
 		}
-	}
-}
-
-.db-header {
-	&[data-rerender="true"] {
-		display: none;
-	}
-	&[data-rerender="false"] {
-		display: inherit;
 	}
 }
