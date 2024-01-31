@@ -1,0 +1,18 @@
+<app-default-component
+	title="DBIcon"
+	[variants]="variants"
+	[exampleTemplate]="exampleTemplate"
+>
+	<ng-template
+		#exampleTemplate
+		let-exampleProps="exampleProps"
+		let-exampleName="exampleName"
+		let-exampleIndex="exampleIndex"
+		let-variantIndex="variantIndex"
+	>
+		<db-infotext icon="none" size="small" variant="informational">
+			{{ exampleName }}
+		</db-infotext>
+		<db-icon icon="account">{{ exampleName }}</db-icon>
+	</ng-template>
+</app-default-component>

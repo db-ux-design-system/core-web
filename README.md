@@ -274,4 +274,4 @@ our [Contributor Covenant Code of Conduct](https://github.com/db-ui/mono/blob/ma
 
 ## License
 
-This project is licensed under [Apache-2.0](LICENSE), Copyright 2023 by DB Systel GmbH.
+This project is licensed under [Apache-2.0](LICENSE), Copyright 2024 by DB Systel GmbH.

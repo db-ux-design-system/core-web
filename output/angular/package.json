@@ -16,9 +16,10 @@
     "start": "ng serve"
   },
   "devDependencies": {
-    "@angular-devkit/build-angular": "17.0.8",
-    "@angular/common": "17.0.8",
-    "ng-packagr": "17.0.3"
+    "@angular-devkit/build-angular": "17.1.1",
+    "@angular/common": "17.1.1",
+    "ng-packagr": "17.1.2",
+    "typescript": "^5.2.2"
   },
   "publishConfig": {
     "registry": "https://registry.npmjs.org/",
