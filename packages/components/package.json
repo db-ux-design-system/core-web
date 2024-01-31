@@ -27,18 +27,20 @@
     "compile:angular": "mitosis build -c mitosis-angular.config.js && node -e \"require('./scripts/post-build/angular.js')(true)\" && npm run build-components:directives && cpr ../../output/tmp/angular/src ../../output/angular/src -o",
     "compile:react": "mitosis build -c mitosis-react.config.js && node -e \"require('./scripts/post-build/react.js')(true)\" && cpr ../../output/tmp/react/src ../../output/react/src -o",
     "compile:vue": "mitosis build -c mitosis-vue.config.js && node -e \"require('./scripts/post-build/vue.js')(true)\" && cpr ../../output/tmp/vue/vue3/src ../../output/vue/vue3/src -o",
+    "copy-assets": "cpr ../foundations/assets build/assets -o",
     "copy-output": "npm-run-all copy:*",
     "copy:outputs": "cpr build ../../build-outputs/components/build -o",
     "copy:package.json": "cpr package.json ../../build-outputs/components/package.json -o",
     "copy:readme": "cpr README.md ../../build-outputs/components/README.md -o",
     "dev:angular": "nodemon --watch src --watch overrides -e tsx,ts -x \"npm run compile:angular\"",
-    "dev:html": "cpr ../foundations/assets build/assets -o && npm run build-assets && npm run build-style:01_sass && vite --open",
+    "dev:html": "npm run copy-assets && npm run build-assets && npm run build-style:01_sass && vite --open",
     "dev:react": "nodemon --watch src --watch overrides -e tsx,ts -x \"npm run compile:react\"",
     "dev:scss": "npm run build-style:01_sass -- --watch",
     "dev:vue": "nodemon --watch src --watch overrides -e tsx,ts -x \"npm run compile:vue\"",
     "generate:component": "hygen mitosis new",
     "generate:docs": "hygen update-docs new",
     "generate:icon-types": "node scripts/generate-icon-types.js",
+    "prepack": "npm run copy-assets",
     "start": "nodemon --watch src --watch scripts --watch overrides -e js,tsx,ts,scss,json -x \"npm run build\""
   },
   "dependencies": {
@@ -46,15 +48,15 @@
   },
   "devDependencies": {
     "@builder.io/eslint-plugin-mitosis": "^0.0.15",
-    "@builder.io/mitosis": "^0.0.137",
-    "@builder.io/mitosis-cli": "^0.0.96",
-    "@react-docgen/cli": "^2.0.1",
+    "@builder.io/mitosis": "^0.0.142",
+    "@builder.io/mitosis-cli": "^0.0.100",
+    "@react-docgen/cli": "^2.0.3",
     "cpr": "3.0.1",
     "eslint": "^8.56.0",
     "hygen": "^6.2.11",
-    "lit": "^3.1.0",
-    "nodemon": "3.0.2",
-    "sass": "^1.69.7"
+    "lit": "^3.1.1",
+    "nodemon": "3.0.3",
+    "sass": "^1.70.0"
   },
   "publishConfig": {
     "registry": "https://registry.npmjs.org/",

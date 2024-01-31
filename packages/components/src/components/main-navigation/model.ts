@@ -1,4 +1,4 @@
-import { GlobalProps, GlobalState, InitializedState } from '../../shared/model';
+import { GlobalProps, GlobalState } from '../../shared/model';
 
 export interface DBMainNavigationDefaultProps {}
 

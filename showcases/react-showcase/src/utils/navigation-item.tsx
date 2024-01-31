@@ -20,6 +20,7 @@ import InputComponent from '../components/input';
 import LinkComponent from '../components/link';
 import SectionComponent from '../components/section';
 import TextareaComponent from '../components/textarea';
+import IconComponent from '../components/icon';
 import BrandComponent from '../components/brand';
 
 export type NavigationItem = {
@@ -75,6 +76,11 @@ export const NAVIGATION_ITEMS: NavigationItem[] = [
 				path: 'infotext',
 				label: 'Infotext',
 				component: <InfotextComponent />
+			},
+			{
+				path: 'icon',
+				label: 'Icon',
+				component: <IconComponent />
 			},
 			{
 				path: 'tooltip',
