@@ -12,7 +12,7 @@ jobs:
     name: 🧪🎭 - ${{ matrix.framework }}:${{ matrix.shardIndex }}/${{ matrix.shardTotal }}
     runs-on: ubuntu-latest
     container:
-      image: mcr.microsoft.com/playwright:v1.41.0
+      image: mcr.microsoft.com/playwright:v1.41.1
     strategy:
       fail-fast: false
       matrix:
