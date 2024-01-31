@@ -54,13 +54,12 @@ const config: PlaywrightTestConfig = {
 			}
 		},
 
-		// TODO: Enable this again when Mozilla introduces :has selector
-		/* {
+		{
 			name: 'firefox',
 			use: {
 				...devices['Desktop Firefox']
 			}
-		}, */
+		},
 
 		{
 			name: 'webkit',
