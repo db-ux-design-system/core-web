@@ -108,3 +108,7 @@
 	margin-inline-start: var(--db-spacing-responsive-md);
 	margin-block: auto;
 }
+
+.fixed-header-footer {
+	overflow: hidden;
+}
