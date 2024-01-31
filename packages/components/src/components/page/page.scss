@@ -33,8 +33,6 @@
 	&.fixed-header-footer {
 		block-size: 100%;
 		min-block-size: 100%;
-		// TODO: We most likely need to refactor all of our overflow-declarations
-		overflow: hidden;
 		display: flex;
 		flex-direction: column;
 

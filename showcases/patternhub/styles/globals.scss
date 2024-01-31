@@ -5,6 +5,15 @@
 
 @forward "@db-ui/components/build/styles/db-ui-42-webpack";
 
+html {
+	position: fixed;
+	inset: 0;
+}
+
+.db-main {
+	scroll-behavior: smooth;
+}
+
 #__next {
 	height: inherit;
 }
