@@ -1,7 +1,3 @@
-import { TabBarComponent } from './components/tab-bar/tab-bar.component';
-
-import { TabComponent } from './components/tab/tab.component';
-
 import { NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
@@ -31,16 +27,16 @@ import {
 	DBMainNavigationModule,
 	DBBadgeModule,
 	DBPopoverModule,
-	DBTooltipModule
-,DBTabBarModule
-
-,DBTabModule
-
+	DBTooltipModule,
+	DBTabBarModule,
+	DBTabModule
 } from '../../../../output/angular/src';
 import { ActionBarDirective } from '../../../../output/angular/src/components/header/ActionBar.directive';
 import { NavigationDirective } from '../../../../output/angular/src/components/header/Navigation.directive';
 import { MetaNavigationDirective } from '../../../../output/angular/src/components/header/MetaNavigation.directive';
 import { NavigationContentDirective } from '../../../../output/angular/src/components/navigation-item/NavigationContent.directive';
+import { TabComponent } from './components/tab/tab.component';
+import { TabBarComponent } from './components/tab-bar/tab-bar.component';
 import { TooltipComponent } from './components/tooltip/tooltip.component';
 import { PopoverComponent } from './components/popover/popover.component';
 import { BadgeComponent } from './components/badge/badge.component';
@@ -67,13 +63,15 @@ import { NavigationItemComponent } from './components/navigation-item/navigation
 import { NavItemComponent } from './nav-item/nav-item.component';
 import { MainNavigationComponent } from './components/main-navigation/main-navigation.component';
 import { TextareaComponent } from './components/textarea/textarea.component';
+import { IconComponent } from './components/icon/icon.component';
 
 @NgModule({
 	declarations: [
-TabComponent,
+		TabComponent,
 
-TabBarComponent,
+		TabBarComponent,
 
+		IconComponent,
 		TooltipComponent,
 
 		PopoverComponent,
@@ -113,9 +111,9 @@ TabBarComponent,
 		TextareaComponent
 	],
 	imports: [
-DBTabModule,
+		DBTabModule,
 
-DBTabBarModule,
+		DBTabBarModule,
 
 		DBTooltipModule,
 

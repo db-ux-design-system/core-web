@@ -1,8 +1,5 @@
-import Tab from '../components/tab/Tab.vue';
-
-import TabBar from '../components/tab-bar/TabBar.vue';
-
 import type { RouteRecordRaw } from 'vue-router';
+import Tab from '../components/tab/Tab.vue';
 import Tooltip from '../components/tooltip/Tooltip.vue';
 import Popover from '../components/popover/Popover.vue';
 import AccordionItem from '../components/accordion-item/AccordionItem.vue';
@@ -25,6 +22,8 @@ import Infotext from '../components/infotext/Infotext.vue';
 import Radio from '../components/radio/Radio.vue';
 import Section from '../components/section/Section.vue';
 import Textarea from '../components/textarea/Textarea.vue';
+import Icon from '../components/icon/Icon.vue';
+import TabBar from '../components/tab-bar/TabBar.vue';
 
 export type NavItem = {
 	path: string;
@@ -34,10 +33,6 @@ export type NavItem = {
 };
 
 export const getSortedNavigationItems = (navigationItems: NavItem[]): any[] =>
-{ path: '/tab', label: 'Tab', component: Tab },
-
-{ path: '/tab-bar', label: 'TabBar', component: TabBar },
-
 	navigationItems.sort((a: NavItem, b: NavItem) =>
 		a.path.localeCompare(b.path)
 	);
@@ -78,6 +73,11 @@ export const navigationItems: NavItem[] = [
 				label: 'Infotext',
 				component: Infotext
 			},
+			{
+				path: '/04/icon',
+				label: 'Icon',
+				component: Icon
+			},
 			{ path: '/04/tag', label: 'Tag', component: Tag },
 			{ path: '/04/accordion', label: 'Accordion', component: Accordion },
 			{
@@ -85,7 +85,10 @@ export const navigationItems: NavItem[] = [
 				label: 'AccordionItem',
 				component: AccordionItem
 			},
-			{ path: '/04/tooltip', label: 'Tooltip', component: Tooltip }
+			{ path: '/04/tooltip', label: 'Tooltip', component: Tooltip },
+			{ path: '/04/tab', label: 'Tab', component: Tab },
+
+			{ path: '/04/tab-bar', label: 'TabBar', component: TabBar }
 		])
 	},
 	{

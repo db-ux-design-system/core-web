@@ -107,14 +107,15 @@
 
 .db-header-action-container {
 	@include helpers.divider("left");
+	@include screen-sizes.screen("md") {
+		&::before {
+			margin-inline-end: variables.$db-spacing-fixed-sm;
+		}
+	}
 
 	&::before {
 		position: inherit;
 		block-size: 100%;
-
-		@include screen-sizes.screen("md") {
-			margin-inline-end: variables.$db-spacing-fixed-sm;
-		}
 	}
 }
 

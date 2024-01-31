@@ -5,8 +5,6 @@
 
 :root {
 	--db-focus-outline-color: #{colors.$db-informational-text};
-	--db-focus-box-shadow-bg-color: #{colors.$db-base-bg};
-	--db-focus-box-shadow-on-bg-color: #{colors.$db-base-on-bg};
 
 	@extend %db-component-variables-md;
 	@extend %db-bg-base;

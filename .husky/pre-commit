@@ -1,8 +1,3 @@
-#!/usr/bin/env sh
-# shellcheck disable=SC1091
-# shellcheck source=./_/husky.sh
-. "$(dirname -- "$0")/_/husky.sh"
-
 npx validate-branch-name
 npm run scripts:check-commit-mail
 npx --no -- lint-staged --config ./.lintstagedrc.js

@@ -9,15 +9,16 @@ permissions:
 
 jobs:
   playwright-showcases:
-    name: 🧪🎭 - ${{ matrix.framework }}:${{ matrix.shard }}
+    name: 🧪🎭 - ${{ matrix.framework }}:${{ matrix.shardIndex }}/${{ matrix.shardTotal }}
     runs-on: ubuntu-latest
     container:
-      image: mcr.microsoft.com/playwright:v1.40.1
+      image: mcr.microsoft.com/playwright:v1.41.1
     strategy:
       fail-fast: false
       matrix:
         framework: [angular, react, vue]
-        shard: [1/2, 2/2]
+        shardIndex: [1, 2]
+        shardTotal: [2]
     steps:
       - name: ⏬ Checkout repo
         uses: actions/checkout@v4
@@ -55,7 +56,7 @@ jobs:
       - name: 👩‍🔬 Test showcase with Playwright 🎭
         env:
           HOME: /root
-        run: npm run test:${{ matrix.framework }}-showcase -- -- --shard=${{ matrix.shard }}
+        run: npm run test:${{ matrix.framework }}-showcase -- -- --shard=${{ matrix.shardIndex }}/${{ matrix.shardTotal }}
 
       - name: 🔣 Print GitHub Report
         if: failure()
@@ -67,6 +68,6 @@ jobs:
         if: failure()
         uses: actions/upload-artifact@v4
         with:
-          name: ${{ matrix.framework }}-showcase-playwright-results
+          name: ${{ matrix.framework }}-showcase-playwright-results-${{ matrix.shardIndex }}
           path: ./showcases/${{ matrix.framework }}-showcase/test-results
           retention-days: 30
