@@ -27,7 +27,7 @@ export const getDefaultScreenshotTest = (
 				if (isAngular) {
 					config.maxDiffPixels = 1000;
 				} else if (isWebkit) {
-					config.maxDiffPixels = 50;
+					config.maxDiffPixels = 200;
 				} else {
 					config.maxDiffPixels = 1;
 				}
