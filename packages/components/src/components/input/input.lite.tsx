@@ -117,6 +117,7 @@ export default function DBInput(props: DBInputProps) {
 				readOnly={props.readOnly}
 				form={props.form}
 				pattern={props.pattern}
+				autocomplete={props.autocomplete}
 				onChange={(event: ChangeEvent<HTMLInputElement>) =>
 					state.handleChange(event)
 				}
