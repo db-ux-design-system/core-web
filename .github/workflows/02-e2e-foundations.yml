@@ -9,7 +9,7 @@ permissions:
 
 jobs:
   playwright-foundations:
-    name: 🧪🎭 - ${{ matrix.framework }}:${{ matrix.shard }}
+    name: 🧪🎭 - foundations
     runs-on: ubuntu-latest
     container:
       image: mcr.microsoft.com/playwright:v1.41.0
