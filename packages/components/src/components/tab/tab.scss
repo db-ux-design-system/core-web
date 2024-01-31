@@ -40,12 +40,12 @@
 		font-weight: 700;
 	}
 
-	&:not(input:checked) ~ article {
-		display: none;
+	&:has(input:checked) + article[role="tabpanel"] {
+		display: block;
 	}
 
-	&:has(input:checked) ~ article {
-		display: block;
+	&:has:not(input:checked) + article[role="tabpanel"] {
+		display: none;
 	}
 
 	&[data-icon]::before {

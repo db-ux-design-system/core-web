@@ -1,13 +1,15 @@
 @use "@db-ui/foundations/build/scss/variables";
 @use "@db-ui/foundations/build/scss/colors";
+@use "../../styles/db-puls";
 
 .db-tab-bar {
 	display: flex;
 	flex-wrap: wrap;
 	position: relative;
 
-	label[role="tab"] {
+	.db-tab {
 		margin-inline-end: variables.$db-spacing-fixed-sm;
+		margin-block-end: variables.$db-spacing-fixed-2xs;
 	}
 
 	label[role="tab"]:last-of-type {
@@ -18,15 +20,6 @@
 		display: none;
 		flex-basis: 100%;
 		order: 1;
-	}
-
-	::after {
-		content: "";
-		position: absolute;
-		inset-block-end: 0;
-		inset-inline-start: 0;
-		inline-size: 100%;
-		block-size: 3px;
-		background-color: rgb(183, 183, 183); //TODO use right color variable
+		border-block-start: 3px solid rgb(183, 183, 183); //TODO richtige variable
 	}
 }
