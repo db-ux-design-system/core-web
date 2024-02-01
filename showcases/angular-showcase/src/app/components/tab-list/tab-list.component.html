@@ -1,0 +1,18 @@
+<app-default-component
+	title="DBTabList"
+	[variants]="variants"
+	[exampleTemplate]="exampleTemplate"
+>
+	<ng-template
+		#exampleTemplate
+		let-exampleProps="exampleProps"
+		let-exampleName="exampleName"
+		let-exampleIndex="exampleIndex"
+		let-variantIndex="variantIndex"
+	>
+		<db-tab-list>{{exampleName}}</db-tab-list>
+	</ng-template>
+</app-default-component>
+
+
+

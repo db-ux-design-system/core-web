@@ -2,7 +2,6 @@
 @forward "../components/button/button";
 @forward "../components/icon/icon";
 @forward "../components/tab/tab";
-@forward "../components/tab-bar/tab-bar";
 @forward "../components/divider/divider";
 @forward "../components/card/card";
 @forward "../components/input/input";
@@ -32,17 +31,25 @@
 @forward "../components/tooltip/tooltip";
 @forward "dialog-init";
 
-@forward "../components/tab-bar/tab-bar";
-
 @forward "../components/tab/tab";
 
+@forward "../components/tab-list/tab-list";
+
+@forward "../components/tabs/tabs";
+
+@forward "../components/tab-panel/tab-panel";
+
 // angular-workaround
+dbtab-panel,
+db-tab-panel,
+dbtabs,
+db-tabs,
+dbtab-list,
+db-tab-list,
 dbtab,
 db-tab,
-
 dbtab-bar,
 db-tab-bar,
-
 dbtooltip,
 db-tooltip,
 dbpopover,

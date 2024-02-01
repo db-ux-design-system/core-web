@@ -1,0 +1,96 @@
+[
+	{
+		"name": "Tonality",
+		"examples": [
+			{
+				"name": "functional",
+				"className": "db-ui-functional",
+				"props": {}
+			},
+			{
+				"name": "regular (Default)",
+				"className": "db-ui-regular",
+				"props": {}
+			},
+			{
+				"name": "expressive",
+				"className": "db-ui-expressive",
+				"props": {}
+			}
+		]
+	},
+	{
+		"name": "Orientation",
+		"examples": [
+			{
+				"name": "horizontal",
+				"props": {
+					"orientation": "horizontal"
+				}
+			},
+			{
+				"name": "vertical",
+				"props": {
+					"orientation": "vertical"
+				}
+			}
+		]
+	},
+	{
+		"name": "Width",
+		"examples": [
+			{
+				"name": "auto",
+				"style": { "width": "300px" },
+				"className": "db-bg-informational",
+				"props": {
+					"width": "auto"
+				}
+			},
+			{
+				"name": "full - alignment: start",
+				"style": { "width": "300px" },
+				"className": "db-bg-informational",
+				"props": {
+					"width": "full"
+				}
+			},
+			{
+				"name": "full - alignment: center",
+				"style": { "width": "300px" },
+				"className": "db-bg-informational",
+				"props": {
+					"width": "full",
+					"alignment": "center"
+				}
+			}
+		]
+	},
+	{
+		"name": "Overflow",
+		"examples": [
+			{
+				"name": "no overflow",
+				"style": { "width": "300px" },
+				"props": {
+					"width": "auto"
+				}
+			},
+			{
+				"name": "with overflow - behaviour: scrollbar",
+				"style": { "width": "300px" },
+				"props": {
+					"overflow": true
+				}
+			},
+			{
+				"name": "with overflow - behaviour: arrows",
+				"style": { "width": "300px" },
+				"props": {
+					"overflow": true,
+					"behaviour": "arrows"
+				}
+			}
+		]
+	}
+]

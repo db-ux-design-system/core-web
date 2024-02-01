@@ -1,3 +1,9 @@
+import { TabPanelComponent } from '../components/tab-panel/tab-panel.component';
+
+import { TabsComponent } from '../components/tabs/tabs.component';
+
+import { TabListComponent } from '../components/tab-list/tab-list.component';
+
 import { Routes } from '@angular/router';
 import { TabComponent } from '../components/tab/tab.component';
 import { TabBarComponent } from '../components/tab-bar/tab-bar.component';
@@ -38,6 +44,12 @@ export const getSortedNavigationItems = (navigationItems: NavItem[]): any[] =>
 	);
 
 export const NAVIGATION_ITEMS: NavItem[] = [
+{ path: 'tab-panel', label: 'TabPanel', component: TabPanelComponent },
+
+{ path: 'tabs', label: 'Tabs', component: TabsComponent },
+
+{ path: 'tab-list', label: 'TabList', component: TabListComponent },
+
 	{
 		path: '06',
 		label: '06 Feedback',

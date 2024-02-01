@@ -1,3 +1,9 @@
+import { TabListComponent } from './components/tab-list/tab-list.component';
+
+import { TabsComponent } from './components/tabs/tabs.component';
+
+import { TabPanelComponent } from './components/tab-panel/tab-panel.component';
+
 import { NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
@@ -30,6 +36,12 @@ import {
 	DBTooltipModule,
 	DBTabBarModule,
 	DBTabModule
+,DBTabListModule
+
+,DBTabsModule
+
+,DBTabPanelModule
+
 } from '../../../../output/angular/src';
 import { ActionBarDirective } from '../../../../output/angular/src/components/header/ActionBar.directive';
 import { NavigationDirective } from '../../../../output/angular/src/components/header/Navigation.directive';
@@ -67,6 +79,12 @@ import { IconComponent } from './components/icon/icon.component';
 
 @NgModule({
 	declarations: [
+TabPanelComponent,
+
+TabsComponent,
+
+TabListComponent,
+
 		TabComponent,
 
 		TabBarComponent,
@@ -111,6 +129,12 @@ import { IconComponent } from './components/icon/icon.component';
 		TextareaComponent
 	],
 	imports: [
+DBTabPanelModule,
+
+DBTabsModule,
+
+DBTabListModule,
+
 		DBTabModule,
 
 		DBTabBarModule,

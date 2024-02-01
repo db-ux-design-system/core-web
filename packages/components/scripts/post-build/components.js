@@ -24,6 +24,18 @@
  */
 const getComponents = () => [
 	{
+		name: 'tab-panel'
+	},
+
+	{
+		name: 'tabs'
+	},
+
+	{
+		name: 'tab-list'
+	},
+
+	{
 		name: 'tooltip'
 	},
 
@@ -227,9 +239,6 @@ const getComponents = () => [
 	},
 	{
 		name: 'card'
-	},
-	{
-		name: 'tab-bar'
 	},
 	{
 		name: 'tab'

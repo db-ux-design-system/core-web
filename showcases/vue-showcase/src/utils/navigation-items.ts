@@ -1,3 +1,9 @@
+import TabPanel from '../components/tab-panel/TabPanel.vue';
+
+import Tabs from '../components/tabs/Tabs.vue';
+
+import TabList from '../components/tab-list/TabList.vue';
+
 import type { RouteRecordRaw } from 'vue-router';
 import Tab from '../components/tab/Tab.vue';
 import Tooltip from '../components/tooltip/Tooltip.vue';
@@ -33,6 +39,12 @@ export type NavItem = {
 };
 
 export const getSortedNavigationItems = (navigationItems: NavItem[]): any[] =>
+{ path: '/tab-panel', label: 'TabPanel', component: TabPanel },
+
+{ path: '/tabs', label: 'Tabs', component: Tabs },
+
+{ path: '/tab-list', label: 'TabList', component: TabList },
+
 	navigationItems.sort((a: NavItem, b: NavItem) =>
 		a.path.localeCompare(b.path)
 	);

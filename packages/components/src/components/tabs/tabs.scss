@@ -1,0 +1,86 @@
+@use "@db-ui/foundations/build/scss/variables";
+@use "@db-ui/foundations/build/scss/colors";
+
+$max-tabs: [0, 1, 2, 3, 4, 5, 6, 7, 8];
+
+.db-tabs {
+	display: flex;
+	flex-direction: column;
+	inline-size: 100%;
+	position: relative;
+
+	&[data-orientation="vertical"] {
+		flex-direction: row;
+	}
+
+	.db-tab-list {
+		@each $index in $max-tabs {
+			&:has([id$="-tab-#{$index}"]:checked)
+				~ [id$="-tab-panel-#{$index}"] {
+				display: block;
+			}
+		}
+	}
+
+	&[data-scroll-behaviour="arrows"] {
+		.db-tab-list {
+			&::-webkit-scrollbar {
+				display: none;
+			}
+		}
+
+		&:has(.tabs-scroll-left) {
+			.db-tab-list {
+				padding-inline-start: variables.$db-sizing-md;
+			}
+
+			&::before {
+				content: "";
+			}
+		}
+
+		&:has(.tabs-scroll-right) {
+			.db-tab-list {
+				padding-inline-end: variables.$db-sizing-md;
+			}
+
+			&::after {
+				content: "";
+			}
+		}
+
+		&:has(.db-button) {
+			&::before,
+			&::after {
+				position: absolute;
+				z-index: 1;
+				background-color: colors.$db-current-bg-color;
+				inline-size: variables.$db-sizing-md;
+				block-size: calc(
+					#{variables.$db-spacing-fixed-sm} + #{variables.$db-sizing-md}
+				);
+				flex: 0 0 auto;
+			}
+
+			&::before {
+				inset-inline-start: 0;
+			}
+
+			&::after {
+				inset-inline-end: 0;
+			}
+		}
+
+		.db-button {
+			position: absolute;
+			z-index: 2;
+
+			&:is(.tabs-scroll-left) {
+				inset-inline-start: 0;
+			}
+			&:is(.tabs-scroll-right) {
+				inset-inline-end: 0;
+			}
+		}
+	}
+}

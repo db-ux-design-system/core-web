@@ -35,3 +35,9 @@ export * from "./components/tab-bar";
 
 export * from "./components/tab";
 
+export * from "./components/tab-list";
+
+export * from "./components/tabs";
+
+export * from "./components/tab-panel";
+

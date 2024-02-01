@@ -2,21 +2,34 @@
 @use "@db-ui/foundations/build/scss/screen-sizes";
 @use "@db-ui/foundations/build/scss/colors";
 
-%db-puls {
-	@include screen-sizes.screen("md") {
-		&::after {
-			border-inline-start: none;
-			border-block-end: variables.$db-border-height-lg solid
-				colors.$db-brand;
-			inset-block-end: calc(-1 * #{variables.$db-spacing-fixed-xs});
-			inline-size: 0;
-			block-size: auto;
-			inset-inline-start: 50%;
-			inset-block-start: auto;
-			transform: translate(-50%, 0);
-		}
+@mixin set-db-puls-horizontal() {
+	&::after {
+		block-size: auto;
+		transform: translate(-50%, 0);
+		inset-block-start: auto;
+		inset-inline-start: 50%;
+		border-inline-start: none;
+		border-block-end: variables.$db-border-height-lg solid colors.$db-brand;
+		inset-block-end: calc(-1 * #{variables.$db-spacing-fixed-xs});
+		inline-size: 0;
 	}
+}
 
+@mixin set-db-puls-vertical() {
+	&::after {
+		block-size: 0;
+		transform: translate(0, -50%);
+		inset-block-start: 50%;
+		inset-inline-start: calc(-1 * #{variables.$db-spacing-fixed-xs});
+		border-inline-start: variables.$db-border-height-lg solid
+			colors.$db-brand;
+		border-block-end: none;
+		inset-block-end: auto;
+		inline-size: auto;
+	}
+}
+
+%db-puls {
 	&::after {
 		content: "";
 		position: absolute;
@@ -24,24 +37,36 @@
 		transition:
 			height 0.15s variables.$db-transition-emotional-timing,
 			width 0.15s variables.$db-transition-emotional-timing;
-		block-size: 0;
-		transform: translate(0, -50%);
-		inset-block-start: 50%;
-		inset-inline-start: calc(-1 * #{variables.$db-spacing-fixed-xs});
-		border-inline-start: variables.$db-border-height-lg solid
-			colors.$db-brand;
 	}
 }
 
-%show-db-puls {
+%db-puls-auto {
+	@extend %db-puls;
+
 	@include screen-sizes.screen("md") {
-		&::after {
-			block-size: auto;
-			inline-size: 100%;
-		}
+		@include set-db-puls-horizontal();
 	}
 
+	@include set-db-puls-vertical();
+}
+
+@mixin show-db-puls-horizontal() {
+	&::after {
+		block-size: auto;
+		inline-size: 100%;
+	}
+}
+
+@mixin show-db-puls-vertical() {
 	&::after {
 		block-size: 100%;
 	}
+}
+
+%show-db-puls-auto {
+	@include screen-sizes.screen("md") {
+		@include show-db-puls-horizontal;
+	}
+
+	@include show-db-puls-vertical;
 }

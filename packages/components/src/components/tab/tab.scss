@@ -10,6 +10,7 @@
 	display: inline-flex;
 	padding: variables.$db-spacing-fixed-xs variables.$db-spacing-fixed-sm;
 	align-items: center;
+	white-space: nowrap;
 
 	input {
 		&[type="radio"] {
@@ -32,20 +33,12 @@
 		margin-inline-end: 0;
 	}
 
-	&:has(input:focus-visibles) {
+	&:has(input:focus-visible) {
 		@extend %focus-placeholder;
 	}
 
 	&:has(input:checked) {
 		font-weight: 700;
-	}
-
-	&:has(input:checked) + article[role="tabpanel"] {
-		display: block;
-	}
-
-	&:has:not(input:checked) + article[role="tabpanel"] {
-		display: none;
 	}
 
 	&[data-icon]::before {

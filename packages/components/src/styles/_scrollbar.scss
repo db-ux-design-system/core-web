@@ -1,0 +1,94 @@
+@use "@db-ui/foundations/build/scss/variables";
+@use "@db-ui/foundations/build/scss/colors";
+@use "@db-ui/foundations/build/scss/helpers";
+@use "@db-ui/foundations/build/scss/animation";
+@use "./form-components";
+
+$scrollbar-width: helpers.to-rem(8);
+
+%scrollbar {
+	&::-webkit-scrollbar {
+		@extend %default-transition;
+		z-index: 3;
+		inline-size: $scrollbar-width;
+		block-size: $scrollbar-width;
+		background-color: colors.$db-base-bg;
+		border-start-end-radius: variables.$db-border-radius-md;
+	}
+
+	&:hover {
+		&::-webkit-scrollbar-track,
+		&::-webkit-scrollbar-button:single-button {
+			@include colors.get-variant-bg-color(0.16);
+		}
+	}
+
+	&:read-only {
+		&::-webkit-scrollbar-track,
+		&::-webkit-scrollbar-button:single-button {
+			background-color: colors.$db-base-bg !important;
+		}
+	}
+
+	&::-webkit-scrollbar-track {
+		@include colors.get-variant-bg-color(0.08);
+	}
+
+	&::-webkit-scrollbar-thumb {
+		@include colors.bg-transparent-interactive(false);
+		@include colors.get-variant-bg-color(0.24);
+
+		&:hover {
+			@include colors.get-variant-bg-color(0.32);
+		}
+
+		&:active {
+			@include colors.get-variant-bg-color(0.4);
+		}
+	}
+
+	&[data-label-variant="floating"] {
+		&::-webkit-resizer {
+			@include colors.get-variant-bg-color(0.08);
+		}
+
+		&::-webkit-scrollbar-corner {
+			background-color: colors.$db-base-bg;
+		}
+	}
+
+	&::-webkit-resizer {
+		@include colors.get-variant-bg-color(0);
+		background-size: $scrollbar-width;
+		background-repeat: no-repeat;
+		background-position: center;
+		background-image: url("data:image/svg+xml;base64,PHN2ZyBpZD0iaWNvbiIgaGVpZ2h0PSIyMCIgdmlld0JveD0iMCAwIDIwIDIwIiB3aWR0aD0iMjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHBhdGggZD0ibTcgMTJjLjUxMjgzNTg0IDAgMSAuNDIxNjY1NyAxIDF2NGMwIC41MTI4MzU4LS40MDc3MzY0OCAxLTEgMWgtNGMtLjQ5MTg3ODUxIDAtMS0uMzkzNTA1Ni0xLTF2LTRjMC0uNTEyODM1OC40MTk1NTA5LTEgMS0xem05LTEwYzEuMDU0MzYxOCAwIDIgLjg2MzcwOTk2IDIgMnYxMGMwIDEuMDU0MzYxOC0uODY5Mjg3MyAyLTIgMmgtNS41Yy0uNTUyMjg0NzUgMC0xLS40NDc3MTUzLTEtMSAwLS41MTI4MzU4LjQxMTE0NTUtMSAxLTFoNS41di0xMGgtMTB2NS41YzAgLjU1MjI4NDctLjQ0NzcxNTI1IDEtMSAxLS41MTI4MzU4NCAwLTEtLjQyNzUyOTYtMS0xdi01LjVjMC0xLjA1NDM2MTguODM1MjM3ODctMiAyLTJ6bS0xMCAxMmgtMnYyaDJ6IiBmaWxsPSJ2YXIoLS1kYi1pY29uLWNvbG9yLCBjdXJyZW50Q29sb3IpIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiLz48L3N2Zz4NCg==");
+		border-end-end-radius: variables.$db-border-radius-md;
+	}
+
+	&::-webkit-scrollbar-corner {
+		@extend %default-transition;
+		border-end-end-radius: variables.$db-border-radius-md;
+	}
+
+	/* Buttons */
+	&::-webkit-scrollbar-button:single-button {
+		@include colors.bg-transparent-interactive(false);
+		@include colors.get-variant-bg-color(0.08);
+		background-size: $scrollbar-width;
+		background-repeat: no-repeat;
+		background-position: center;
+		block-size: form-components.$floating-label-size;
+		inline-size: 0;
+	}
+
+	/* Up */
+	&::-webkit-scrollbar-button:single-button:vertical:decrement {
+		background-image: url("data:image/svg+xml;base64,PHN2ZyBpZD0iaWNvbiIgaGVpZ2h0PSIxNiIgdmlld0JveD0iMCAwIDE2IDE2IiB3aWR0aD0iMTYiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHBhdGggZD0ibTEwLjQ3MiA4LjY5Ni0zLjUzMiAzLjUzNGEuOTk4Ljk5OCAwIDEgMSAtMS40MTMtMS40MTNsMi44MjUtMi44MjUtMi44MjUtMi44MjVhLjk5OC45OTggMCAxIDEgMS40MTMtMS40MTNsMy41MzIgMy41MzJhLjk5OS45OTkgMCAwIDEgMCAxLjQxMnoiIGZpbGw9InZhcigtLWRiLWljb24tY29sb3IsIGN1cnJlbnRDb2xvcikiIGZpbGwtcnVsZT0iZXZlbm9kZCIgdHJhbnNmb3JtPSJtYXRyaXgoMCAtMSAtMSAwIDE1Ljk5IDE1Ljk5KSIvPjwvc3ZnPg0K");
+	}
+
+	/* Down */
+	&::-webkit-scrollbar-button:single-button:vertical:increment {
+		background-image: url("data:image/svg+xml;base64,PHN2ZyBpZD0iaWNvbiIgaGVpZ2h0PSIxNiIgdmlld0JveD0iMCAwIDE2IDE2IiB3aWR0aD0iMTYiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHBhdGggZD0ibTEwLjQ3MiA4LjY5Ni0zLjUzMiAzLjUzNGEuOTk4Ljk5OCAwIDEgMSAtMS40MTMtMS40MTNsMi44MjUtMi44MjUtMi44MjUtMi44MjVhLjk5OC45OTggMCAxIDEgMS40MTMtMS40MTNsMy41MzIgMy41MzJhLjk5OS45OTkgMCAwIDEgMCAxLjQxMnoiIGZpbGw9InZhcigtLWRiLWljb24tY29sb3IsIGN1cnJlbnRDb2xvcikiIGZpbGwtcnVsZT0iZXZlbm9kZCIgdHJhbnNmb3JtPSJtYXRyaXgoMCAxIC0xIDAgMTUuOTkxIC0uMDA5KSIvPjwvc3ZnPg0K");
+	}
+}

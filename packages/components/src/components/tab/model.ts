@@ -1,50 +1,38 @@
 import {
+	ActiveProps,
+	AlignmentProps,
+	ClickEventProps,
+	ClickEventState,
 	GlobalProps,
 	GlobalState,
 	IconAfterProps,
-	IconProps,
+	IconProps, InitializedState,
+	TabProps,
 	WidthProps
-} from '../../shared/model';
+} from "../../shared/model";
 
 export type DBTabDefaultProps = {
 	/**
-	 * If the tab is checked/active.
-	 */
-	active?: boolean;
-
-	/**
-	 * The label of the tab, shown in the tab-bar.
+	 * The label of the tab, if you don't want to use children.
 	 */
 	label?: string;
-	slotLabel?: any;
-
-	/**
-	 * The name of the tab bar, is required for grouping multiple tabs together. Otherwise content won't switch by clicking the tabs.
-	 */
-	name?: string;
-
-	/**
-	 * The content if you don't want to use children.
-	 */
-	content?: string;
 
 	/**
 	 * Define the text next to the icon specified via the icon Property to get hidden.
 	 */
 	noText?: boolean;
-
-	/**
-	 * Define the content alignment in full width
-	 */
-	alignment?: string;
 };
 
-export type DBTabProps = DBTabDefaultProps &
-	GlobalProps &
+export type DBTabProps = GlobalProps &
+	DBTabDefaultProps &
 	IconProps &
 	IconAfterProps &
-	WidthProps;
+	WidthProps &
+	ActiveProps &
+	AlignmentProps &
+	TabProps;
 
 export type DBTabDefaultState = {};
 
-export type DBTabState = DBTabDefaultState & GlobalState;
+export type DBTabState = DBTabDefaultState & GlobalState &
+	InitializedState;

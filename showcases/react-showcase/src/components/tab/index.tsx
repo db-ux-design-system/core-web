@@ -7,16 +7,17 @@ import { getVariants } from '../data';
 const getTab = ({
 	children,
 	active,
-	label,
 	noText,
 	icon,
 	iconAfter,
 	width,
-	alignment
+	alignment,
+	index
 }: DBTabProps) => (
 	<DBTab
+		name={children}
+		index={index}
 		active={active}
-		label={label}
 		noText={noText}
 		icon={icon}
 		iconAfter={iconAfter}

@@ -73,7 +73,7 @@
 
 .db-navigation-item {
 	--db-has-before: 0;
-	@extend %db-puls;
+	@extend %db-puls-auto;
 
 	@include icon-passing.icon-passing();
 

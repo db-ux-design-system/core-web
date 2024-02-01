@@ -1,4 +1,19 @@
 			{
+				label: 'TODO: Add to specific category; DBTabPanel',
+				name: 'tab-panel',
+			},
+
+			{
+				label: 'TODO: Add to specific category; DBTabs',
+				name: 'tabs',
+			},
+
+			{
+				label: 'TODO: Add to specific category; DBTabList',
+				name: 'tab-list',
+			},
+
+			{
 				label: 'TODO: Add to specific category; DBTab',
 				name: 'tab',
 			},

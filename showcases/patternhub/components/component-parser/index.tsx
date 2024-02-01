@@ -1,4 +1,10 @@
 import { useEffect, useState } from 'react';
+import DBTabPanel from '../src/components/tab-panel/tab-panel';
+
+import DBTabs from '../src/components/tabs/tabs';
+
+import DBTabList from '../src/components/tab-list/tab-list';
+
 import DBTab from '../src/components/tab/tab';
 
 import DBTabBar from '../src/components/tab-bar/tab-bar';
@@ -302,6 +308,30 @@ const ComponentSwitch = ({
 			<DBTab className={className} {...props}>
 				{resolvedContent}
 			</DBTab>
+		);
+	}
+
+	if (type === 'tab-list') {
+		return (
+			<DBTabList className={className} {...props}>
+				{resolvedContent}
+			</DBTabList>
+		);
+	}
+
+	if (type === 'tabs') {
+		return (
+			<DBTabs className={className} {...props}>
+				{resolvedContent}
+			</DBTabs>
+		);
+	}
+
+	if (type === 'tab-panel') {
+		return (
+			<DBTabPanel className={className} {...props}>
+				{resolvedContent}
+			</DBTabPanel>
 		);
 	}
 

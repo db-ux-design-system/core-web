@@ -1,0 +1,62 @@
+@use "@db-ui/foundations/build/scss/variables";
+@use "../../styles/db-puls";
+@use "../../styles/scrollbar";
+
+%horizontal-puls {
+	.db-tab input {
+		@include db-puls.set-db-puls-horizontal;
+		block-size: 0;
+		inline-size: 100%;
+		inset-block: 100%;
+		inset-inline: 0;
+
+		&:checked {
+			@include db-puls.show-db-puls-horizontal;
+		}
+	}
+}
+
+%vertical-puls {
+	.db-tab input {
+		@include db-puls.set-db-puls-vertical;
+		block-size: 100%;
+		inline-size: 0;
+		inset-block: 0;
+		inset-inline: 0;
+
+		&:checked {
+			@include db-puls.show-db-puls-vertical;
+		}
+	}
+}
+
+.db-tab-list {
+	@extend %scrollbar;
+	display: flex;
+	gap: variables.$db-spacing-fixed-sm;
+	scroll-behavior: smooth;
+
+	.db-tab {
+		position: relative;
+		& input {
+			@extend %db-puls;
+		}
+	}
+
+	&:not([aria-orientation="vertical"]) {
+		@extend %horizontal-puls;
+		overflow-x: auto;
+		overflow-y: hidden;
+		padding-block-end: variables.$db-spacing-fixed-sm;
+		inline-size: 100%;
+	}
+
+	&[aria-orientation="vertical"] {
+		@extend %vertical-puls;
+		flex-direction: column;
+		overflow-x: hidden;
+		overflow-y: auto;
+		padding-inline-start: variables.$db-spacing-fixed-sm;
+		block-size: 100%;
+	}
+}
