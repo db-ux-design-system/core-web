@@ -28,7 +28,15 @@ const getComponents = () => [
 	},
 
 	{
-		name: 'tabs'
+		name: 'tabs',
+		overwrites: {
+			angular: [
+				{
+					from: 'tabList = null;',
+					to: 'tabList: Element | null = null;'
+				}
+			]
+		}
 	},
 
 	{

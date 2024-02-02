@@ -1,28 +1,3 @@
-			{
-				label: 'TODO: Add to specific category; DBTabPanel',
-				name: 'tab-panel',
-			},
-
-			{
-				label: 'TODO: Add to specific category; DBTabs',
-				name: 'tabs',
-			},
-
-			{
-				label: 'TODO: Add to specific category; DBTabList',
-				name: 'tab-list',
-			},
-
-			{
-				label: 'TODO: Add to specific category; DBTab',
-				name: 'tab',
-			},
-
-			{
-				label: 'TODO: Add to specific category; DBTabBar',
-				name: 'tab-bar',
-			},
-
 export type NavigationItem = {
 	label: string;
 	name?: string;
@@ -76,6 +51,15 @@ const componentChildren: NavigationItem[] = [
 			{
 				label: 'DBAccordionItem',
 				name: 'accordion-item'
+			},
+			{
+				label: 'DBTabs',
+				name: 'tabs'
+			},
+
+			{
+				label: 'DBTab',
+				name: 'tab'
 			}
 		]
 	},

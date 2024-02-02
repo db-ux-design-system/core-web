@@ -6,130 +6,108 @@
 		<link rel="stylesheet" href="/styles/db-ui-42.css" />
 	</head>
 	<body style="padding: var(--db-spacing-fixed-md)">
-		<h1>Horizontal</h1>
-		<div class="db-tabs" data-orientation="horizontal">
-			<div class="db-tab-list" data-orientation="horizontal" aria-orientation="horizontal">
-				<label
-					class="db-tab"
-					htmlFor="test1"
-					role="tab"
-					aria-controls="tab-panel-test1"
-				>
-					<input type="radio" name="test" id="test1" />
-					label 1
-				</label>
-
-				<label
-					class="db-tab"
-					htmlFor="test2"
-					role="tab"
-					aria-controls="tab-panel-test2"
-				>
-					<input type="radio" name="test" id="test2" checked />
-					active
-				</label>
-
-				<label
-					class="db-tab"
-					htmlFor="test3"
-					role="tab"
-					data-icon="x_placeholder"
-					aria-controls="tab-panel-test3"
-				>
-					<input type="radio" name="test" id="test3" />
-					icon - text (leading)
-				</label>
-
-				<label
-					class="db-tab"
-					htmlFor="test4"
-					role="tab"
-					data-icon-after="x_placeholder"
-					aria-controls="tab-panel-test4"
-				>
-					<input type="radio" name="test" id="test4" />
-					text - icon (trailing)
-				</label>
+		<h2>Angular Example</h2>
+		<db-tabs ng-reflect-arrow-scroll-distance="75">
+			<div class="db-tabs">
+				<db-tab-list>
+					<div
+						role="tablist"
+						class="db-tab-list"
+						id="tab-list-d1abe676-4c30-4219-b957-f1a397d54a0b"
+						aria-orientation="horizontal"
+					>
+						<db-tab
+							ng-reflect-name="functional"
+							ng-reflect-index="0"
+						>
+							<label
+								role="tab"
+								class="db-tab"
+								for="functional-tab-0"
+								aria-controls="functional-tab-panel-0"
+								data-width="auto"
+								data-alignment="start"
+							>
+								<input
+									type="radio"
+									name="functional"
+									id="functional-tab-0"
+								/>Test 1</label
+							>
+						</db-tab>
+						<db-tab
+							ng-reflect-name="functional"
+							ng-reflect-index="1"
+						>
+							<label
+								role="tab"
+								class="db-tab"
+								for="functional-tab-1"
+								aria-controls="functional-tab-panel-1"
+								data-width="auto"
+								data-alignment="start"
+							>
+								<input
+									type="radio"
+									name="functional"
+									id="functional-tab-1"
+								/>
+								Test 2
+							</label>
+						</db-tab>
+						<db-tab
+							ng-reflect-name="functional"
+							ng-reflect-index="2"
+						>
+							<label
+								role="tab"
+								class="db-tab"
+								for="functional-tab-2"
+								aria-controls="functional-tab-panel-2"
+								data-width="auto"
+								data-alignment="start"
+							>
+								<input
+									type="radio"
+									name="functional"
+									id="functional-tab-2"
+								/>
+								Test 3
+							</label>
+						</db-tab>
+					</div>
+				</db-tab-list>
+				<db-tab-panel ng-reflect-name="functional" ng-reflect-index="0">
+					<article
+						role="tabpanel"
+						class="db-tab-panel"
+						id="functional-tab-panel-0"
+						aria-labelledby="functional-tab-0"
+					>
+						Tab Panel 1
+					</article>
+				</db-tab-panel>
+				<db-tab-panel ng-reflect-name="functional" ng-reflect-index="1">
+					<article
+						role="tabpanel"
+						class="db-tab-panel"
+						id="functional-tab-panel-1"
+						aria-labelledby="functional-tab-1"
+					>
+						Tab Panel 2
+					</article>
+				</db-tab-panel>
+				<db-tab-panel ng-reflect-name="functional" ng-reflect-index="2">
+					<article
+						role="tabpanel"
+						class="db-tab-panel"
+						id="functional-tab-panel-2"
+						aria-labelledby="functional-tab-2"
+					>
+						Tab Panel 3
+					</article>
+				</db-tab-panel>
 			</div>
-
-			<article class="db-tab-panel" role="tabpanel" id="tab-panel-test1">
-				Test 1
-			</article>
-
-			<article class="db-tab-panel" role="tabpanel" id="tab-panel-test2">
-				Test 2
-			</article>
-
-			<article class="db-tab-panel" role="tabpanel" id="tab-panel-test3">
-				Test 3
-			</article>
-
-			<article class="db-tab-panel" role="tabpanel" id="tab-panel-test4">
-				Test 4
-			</article>
-		</div>
-
-		<h1>Vertical</h1>
-		<div class="db-tabs" data-orientation="vertical">
-			<div class="db-tab-list" data-orientation="vertical" aria-orientation="vertical">
-				<label
-					class="db-tab"
-					htmlFor="test1v"
-					role="tab"
-					aria-controls="tab-panel-test1v"
-				>
-					<input type="radio" name="testv" id="test1v" />
-					label 1
-				</label>
-
-				<label
-					class="db-tab"
-					htmlFor="test2v"
-					role="tab"
-					aria-controls="tab-panel-test2v"
-				>
-					<input type="radio" name="testv" id="test2v" checked />
-					active
-				</label>
-
-				<label
-					class="db-tab"
-					htmlFor="test3v"
-					role="tab"
-					data-icon="x_placeholder"
-					aria-controls="tab-panel-test3v"
-				>
-					<input type="radio" name="testv" id="test3v" />
-					icon - text (leading)
-				</label>
-
-				<label
-					class="db-tab"
-					htmlFor="test4v"
-					role="tab"
-					data-icon-after="x_placeholder"
-					aria-controls="tab-panel-test4v"
-				>
-					<input type="radio" name="testv" id="test4v" />
-					text - icon (trailing)
-				</label>
-			</div>
-
-			<article class="db-tab-panel" role="tabpanel" id="tab-panel-test1v">
-				Test 1
-			</article>
-
-			<article class="db-tab-panel" role="tabpanel" id="tab-panel-test2v">
-				Test 2
-			</article>
-
-			<article class="db-tab-panel" role="tabpanel" id="tab-panel-test3v">
-				Test 3
-			</article>
-
-			<article class="db-tab-panel" role="tabpanel" id="tab-panel-test4v">
-				Test 4
-			</article>
-		</div>
+		</db-tabs>
 	</body>
 </html>

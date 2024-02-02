@@ -18,26 +18,17 @@ export * from './components/radio';
 export * from './components/section';
 export * from './components/select';
 export * from './components/tab';
-export * from './components/tab-bar';
 export * from './components/tag';
 export * from './components/tag';
 export * from './components/textarea';
 export * from './components/navigation-item';
 export * from './components/accordion';
-
 export * from './components/accordion-item';
 export * from './components/main-navigation';
 export * from './components/badge';
 export * from './components/popover';
-
 export * from './components/tooltip';
-export * from "./components/tab-bar";
-
-export * from "./components/tab";
-
-export * from "./components/tab-list";
-
-export * from "./components/tabs";
-
-export * from "./components/tab-panel";
-
+export * from './components/tab';
+export * from './components/tab-list';
+export * from './components/tabs';
+export * from './components/tab-panel';

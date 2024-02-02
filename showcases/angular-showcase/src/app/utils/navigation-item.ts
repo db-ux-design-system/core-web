@@ -1,12 +1,6 @@
-import { TabPanelComponent } from '../components/tab-panel/tab-panel.component';
-
-import { TabsComponent } from '../components/tabs/tabs.component';
-
-import { TabListComponent } from '../components/tab-list/tab-list.component';
-
 import { Routes } from '@angular/router';
+import { TabsComponent } from '../components/tabs/tabs.component';
 import { TabComponent } from '../components/tab/tab.component';
-import { TabBarComponent } from '../components/tab-bar/tab-bar.component';
 import { TooltipComponent } from '../components/tooltip/tooltip.component';
 import { PopoverComponent } from '../components/popover/popover.component';
 import { AccordionItemComponent } from '../components/accordion-item/accordion-item.component';
@@ -44,12 +38,6 @@ export const getSortedNavigationItems = (navigationItems: NavItem[]): any[] =>
 	);
 
 export const NAVIGATION_ITEMS: NavItem[] = [
-{ path: 'tab-panel', label: 'TabPanel', component: TabPanelComponent },
-
-{ path: 'tabs', label: 'Tabs', component: TabsComponent },
-
-{ path: 'tab-list', label: 'TabList', component: TabListComponent },
-
 	{
 		path: '06',
 		label: '06 Feedback',
@@ -104,7 +92,7 @@ export const NAVIGATION_ITEMS: NavItem[] = [
 			},
 			{ path: '04/tab', label: 'Tab', component: TabComponent },
 
-			{ path: '04/tab-bar', label: 'TabBar', component: TabBarComponent }
+			{ path: '04/tabs', label: 'Tabs', component: TabsComponent }
 		])
 	},
 	{

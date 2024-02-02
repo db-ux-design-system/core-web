@@ -1,9 +1,3 @@
-import { TabListComponent } from './components/tab-list/tab-list.component';
-
-import { TabsComponent } from './components/tabs/tabs.component';
-
-import { TabPanelComponent } from './components/tab-panel/tab-panel.component';
-
 import { NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
@@ -34,21 +28,17 @@ import {
 	DBBadgeModule,
 	DBPopoverModule,
 	DBTooltipModule,
-	DBTabBarModule,
-	DBTabModule
-,DBTabListModule
-
-,DBTabsModule
-
-,DBTabPanelModule
-
+	DBTabModule,
+	DBTabsModule,
+	DBTabListModule,
+	DBTabPanelModule
 } from '../../../../output/angular/src';
 import { ActionBarDirective } from '../../../../output/angular/src/components/header/ActionBar.directive';
 import { NavigationDirective } from '../../../../output/angular/src/components/header/Navigation.directive';
 import { MetaNavigationDirective } from '../../../../output/angular/src/components/header/MetaNavigation.directive';
 import { NavigationContentDirective } from '../../../../output/angular/src/components/navigation-item/NavigationContent.directive';
 import { TabComponent } from './components/tab/tab.component';
-import { TabBarComponent } from './components/tab-bar/tab-bar.component';
+import { TabsComponent } from './components/tabs/tabs.component';
 import { TooltipComponent } from './components/tooltip/tooltip.component';
 import { PopoverComponent } from './components/popover/popover.component';
 import { BadgeComponent } from './components/badge/badge.component';
@@ -79,21 +69,11 @@ import { IconComponent } from './components/icon/icon.component';
 
 @NgModule({
 	declarations: [
-TabPanelComponent,
-
-TabsComponent,
-
-TabListComponent,
-
+		TabsComponent,
 		TabComponent,
-
-		TabBarComponent,
-
 		IconComponent,
 		TooltipComponent,
-
 		PopoverComponent,
-
 		AccordionItemComponent,
 		AccordionComponent,
 		AlertComponent,
@@ -129,20 +109,12 @@ TabListComponent,
 		TextareaComponent
 	],
 	imports: [
-DBTabPanelModule,
-
-DBTabsModule,
-
-DBTabListModule,
-
+		DBTabPanelModule,
+		DBTabListModule,
+		DBTabsModule,
 		DBTabModule,
-
-		DBTabBarModule,
-
 		DBTooltipModule,
-
 		DBPopoverModule,
-
 		DBAccordionItemModule,
 		DBAccordionModule,
 		DBBadgeModule,

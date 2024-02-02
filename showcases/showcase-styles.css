@@ -25,7 +25,8 @@
 	gap: var(--db-spacing-fixed-md);
 }
 
-.variants-list .db-select {
+.variants-list .db-select,
+.w-full {
 	inline-size: 100%;
 }
 

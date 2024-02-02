@@ -92,5 +92,22 @@
 				}
 			}
 		]
+	},
+	{
+		"name": "Examples",
+		"examples": [
+			{
+				"name": "2 tab selected",
+				"props": {
+					"initialSelectedIndex": 1
+				}
+			},
+			{
+				"name": "nothing selected",
+				"props": {
+					"initialSelectedMode": "manually"
+				}
+			}
+		]
 	}
 ]

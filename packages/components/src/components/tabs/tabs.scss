@@ -3,7 +3,29 @@
 
 $max-tabs: [0, 1, 2, 3, 4, 5, 6, 7, 8];
 
+%angular-workaround {
+	db-tab-list,
+	dbtablist {
+		@each $index in $max-tabs {
+			&:has([id$="-tab-#{$index}"]:checked) {
+				& ~ dbtabpanel > [id$="-tab-panel-#{$index}"],
+				& ~ db-tab-panel > [id$="-tab-panel-#{$index}"] {
+					display: block;
+				}
+			}
+		}
+	}
+}
+
+@mixin angular-button-workaround() {
+	& > .db-button,
+	&:is(.db-button) {
+		@content;
+	}
+}
+
 .db-tabs {
+	@extend %angular-workaround;
 	display: flex;
 	flex-direction: column;
 	inline-size: 100%;
@@ -30,20 +52,12 @@ $max-tabs: [0, 1, 2, 3, 4, 5, 6, 7, 8];
 		}
 
 		&:has(.tabs-scroll-left) {
-			.db-tab-list {
-				padding-inline-start: variables.$db-sizing-md;
-			}
-
 			&::before {
 				content: "";
 			}
 		}
 
 		&:has(.tabs-scroll-right) {
-			.db-tab-list {
-				padding-inline-end: variables.$db-sizing-md;
-			}
-
 			&::after {
 				content: "";
 			}
@@ -71,15 +85,23 @@ $max-tabs: [0, 1, 2, 3, 4, 5, 6, 7, 8];
 			}
 		}
 
-		.db-button {
-			position: absolute;
-			z-index: 2;
-
-			&:is(.tabs-scroll-left) {
+		.tabs-scroll-left {
+			@include angular-button-workaround() {
 				inset-inline-start: 0;
 			}
-			&:is(.tabs-scroll-right) {
+		}
+
+		.tabs-scroll-right {
+			@include angular-button-workaround() {
 				inset-inline-end: 0;
+			}
+		}
+
+		.tabs-scroll-left,
+		.tabs-scroll-right {
+			@include angular-button-workaround() {
+				position: absolute;
+				z-index: 2;
 			}
 		}
 	}

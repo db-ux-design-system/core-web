@@ -36,6 +36,7 @@ export default function DBTab(props: DBTabProps) {
 	onUpdate(() => {
 		if (props.active && state.initialized) {
 			ref.click();
+			state.initialized = false;
 		}
 	}, [ref, state.initialized]);
 

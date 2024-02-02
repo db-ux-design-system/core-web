@@ -1,4 +1,5 @@
 import {
+	For,
 	onMount,
 	onUpdate,
 	Show,
@@ -7,10 +8,12 @@ import {
 	useRef,
 	useStore
 } from '@builder.io/mitosis';
-import { DBTabsProps, DBTabsState } from './model';
+import { DBSimpleTabProps, DBTabsProps, DBTabsState } from './model';
 import { cls } from '../../utils';
 import { DBButton } from '../button';
-import tabList from '../../../../../output/tmp/react/src/components/tab-list/tab-list';
+import { DBTabList } from '../tab-list';
+import { DBTab } from '../tab';
+import { DBTabPanel } from '../tab-panel';
 
 useMetadata({
 	isAttachedToShadowDom: true
@@ -46,11 +49,11 @@ export default function DBTabs(props: DBTabsProps) {
 				tList.scrollLeft < tList.scrollWidth - tList.clientWidth;
 		},
 		scroll(left?: boolean) {
-			let step = 100;
+			let step = props.arrowScrollDistance || 100;
 			if (left) {
 				step *= -1;
 			}
-			state.tabList.scrollBy({
+			state.tabList?.scrollBy({
 				top: 0,
 				left: step,
 				behavior: 'smooth'
@@ -99,23 +102,26 @@ export default function DBTabs(props: DBTabsProps) {
 								props.alignment || 'start'
 							);
 
-							if (!state.tabList) {
-								const input = tab.getElementsByTagName('input');
-								if (input?.length > 0) {
-									if (
-										(props.initialSelectedId ===
-											undefined &&
-											index === 0) ||
-										props.initialSelectedId === input[0].id
-									) {
-										input[0].click();
-									}
+							const input = tab.getElementsByTagName('input');
+							if (
+								input?.length > 0 &&
+								(!props.initialSelectedMode ||
+									props.initialSelectedMode === 'auto')
+							) {
+								if (
+									(props.initialSelectedIndex === undefined &&
+										index === 0) ||
+									props.initialSelectedIndex === index
+								) {
+									input[0].click();
 								}
 							}
 						}
 					);
 				}
 			}
+
+			state.initialized = false;
 		}
 	}, [ref, state.initialized]);
 
@@ -130,21 +136,6 @@ export default function DBTabs(props: DBTabsProps) {
 				<link rel="stylesheet" href={state.stylePath} />
 			</Show>
 
-			{/*			<Show when={props.tabs}>
-				<For each={state.convertTabs(props.tabs)}>
-					{(tab: DBTabProps) => (
-						<DBTab
-							key={tab.name}
-							name={tab.name}
-							active={tab.active}
-							label={tab.label}
-							content={tab.content}>
-							{tab.children}
-						</DBTab>
-					)}
-				</For>
-			</Show>*/}
-
 			<Show when={state.showScrollLeft}>
 				<DBButton
 					className="tabs-scroll-left"
@@ -154,6 +145,37 @@ export default function DBTabs(props: DBTabsProps) {
 					onClick={() => state.scroll(true)}>
 					Scroll left
 				</DBButton>
+			</Show>
+			<Show when={props.tabs}>
+				<DBTabList>
+					<For each={state.convertTabs(props.tabs)}>
+						{(tab: DBSimpleTabProps) => (
+							<DBTab
+								key={tab.name + 'tab' + tab.index}
+								index={tab.index}
+								name={tab.name}
+								active={tab.active}
+								label={tab.label}
+								alignment={tab.alignment}
+								width={tab.width}
+								iconAfter={tab.iconAfter}
+								icon={tab.icon}
+								noText={tab.noText}
+							/>
+						)}
+					</For>
+				</DBTabList>
+				<For each={state.convertTabs(props.tabs)}>
+					{(tab: DBSimpleTabProps) => (
+						<DBTabPanel
+							key={tab.name + 'tab' + tab.index}
+							index={tab.index}
+							name={tab.name}
+							content={tab.content}>
+							{tab.children}
+						</DBTabPanel>
+					)}
+				</For>
 			</Show>
 			<Slot name="tab-list" />
 			<Show when={state.showScrollRight}>

@@ -10,9 +10,17 @@
 		let-exampleIndex="exampleIndex"
 		let-variantIndex="variantIndex"
 	>
-		<db-tab>{{exampleName}}</db-tab>
+		<db-tab
+			[name]="exampleName"
+			[index]="exampleProps.index"
+			[active]="exampleProps.active"
+			[noText]="exampleProps.noText"
+			[icon]="exampleProps.icon"
+			[iconAfter]="exampleProps.iconAfter"
+			[width]="exampleProps.width"
+			[alignment]="exampleProps.alignment"
+		>
+			{{ exampleName }}
+		</db-tab>
 	</ng-template>
 </app-default-component>
-
-
-

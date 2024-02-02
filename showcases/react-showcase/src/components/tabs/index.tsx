@@ -2,7 +2,8 @@ import {
 	DBTabs,
 	DBTabList,
 	DBTab,
-	DBTabPanel
+	DBTabPanel,
+	DBInfotext
 } from '../../../../../output/react/src';
 import DefaultComponent from '../index';
 import defaultComponentVariants from '../../../../shared/tabs.json';
@@ -15,54 +16,64 @@ const getTabs = ({
 	width,
 	alignment,
 	overflow,
-	behaviour
+	behaviour,
+	initialSelectedMode,
+	initialSelectedIndex
 }: DBTabsProps & { overflow: boolean }) => (
-	<DBTabs
-		orientation={orientation}
-		width={width}
-		alignment={alignment}
-		behaviour={behaviour}>
-		<DBTabList>
-			<DBTab name={children} index={0}>
-				Test 1
-			</DBTab>
-			<DBTab name={children} index={1}>
-				Test 2
-			</DBTab>
-			<DBTab name={children} index={2}>
-				Test 3
-			</DBTab>
+	<div className="w-full">
+		<DBInfotext icon="none" size="small" variant="informational">
+			{children}:
+		</DBInfotext>
+		<DBTabs
+			orientation={orientation}
+			width={width}
+			alignment={alignment}
+			behaviour={behaviour}
+			initialSelectedIndex={initialSelectedIndex}
+			initialSelectedMode={initialSelectedMode}
+			arrowScrollDistance={75}>
+			<DBTabList>
+				<DBTab name={children} index={0}>
+					Test 1
+				</DBTab>
+				<DBTab name={children} index={1}>
+					Test 2
+				</DBTab>
+				<DBTab name={children} index={2}>
+					Test 3
+				</DBTab>
+				{overflow && (
+					<>
+						<DBTab name={children} index={3}>
+							Test 4
+						</DBTab>
+						<DBTab name={children} index={4}>
+							Test 5
+						</DBTab>
+					</>
+				)}
+			</DBTabList>
+			<DBTabPanel name={children} index={0}>
+				Tab Panel 1
+			</DBTabPanel>
+			<DBTabPanel name={children} index={1}>
+				Tab Panel 2
+			</DBTabPanel>
+			<DBTabPanel name={children} index={2}>
+				Tab Panel 3
+			</DBTabPanel>
 			{overflow && (
 				<>
-					<DBTab name={children} index={3}>
-						Test 4
-					</DBTab>
-					<DBTab name={children} index={4}>
-						Test 5
-					</DBTab>
+					<DBTabPanel name={children} index={3}>
+						Tab Panel 4
+					</DBTabPanel>
+					<DBTabPanel name={children} index={4}>
+						Tab Panel 5
+					</DBTabPanel>
 				</>
 			)}
-		</DBTabList>
-		<DBTabPanel name={children} index={0}>
-			{children} Tab Panel 1
-		</DBTabPanel>
-		<DBTabPanel name={children} index={1}>
-			{children} Tab Panel 2
-		</DBTabPanel>
-		<DBTabPanel name={children} index={2}>
-			{children} Tab Panel 3
-		</DBTabPanel>
-		{overflow && (
-			<>
-				<DBTabPanel name={children} index={3}>
-					{children} Tab Panel 4
-				</DBTabPanel>
-				<DBTabPanel name={children} index={4}>
-					{children} Tab Panel 5
-				</DBTabPanel>
-			</>
-		)}
-	</DBTabs>
+		</DBTabs>
+	</div>
 );
 
 const TabsComponent = () => {
