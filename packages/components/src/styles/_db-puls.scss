@@ -43,11 +43,11 @@
 %db-puls-auto {
 	@extend %db-puls;
 
+	@include set-db-puls-vertical();
+
 	@include screen-sizes.screen("md") {
 		@include set-db-puls-horizontal();
 	}
-
-	@include set-db-puls-vertical();
 }
 
 @mixin show-db-puls-horizontal() {
@@ -64,9 +64,8 @@
 }
 
 %show-db-puls-auto {
+	@include show-db-puls-vertical;
 	@include screen-sizes.screen("md") {
 		@include show-db-puls-horizontal;
 	}
-
-	@include show-db-puls-vertical;
 }

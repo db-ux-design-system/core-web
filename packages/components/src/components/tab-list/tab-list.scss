@@ -38,6 +38,7 @@
 
 	.db-tab {
 		position: relative;
+
 		& input {
 			@extend %db-puls;
 		}
