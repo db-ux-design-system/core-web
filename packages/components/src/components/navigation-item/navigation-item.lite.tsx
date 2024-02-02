@@ -9,7 +9,7 @@ import {
 } from '@builder.io/mitosis';
 import { DBNavigationItemState, DBNavigationItemProps } from './model';
 import { DBButton } from '../button';
-import { cls, uuid } from '../../utils';
+import { cls, uuid, visibleInVX, visibleInVY } from '../../utils';
 import { DEFAULT_BACK } from '../../shared/constants';
 import { ClickEvent } from '../../shared/model';
 
@@ -63,10 +63,23 @@ export default function DBNavigationItem(props: DBNavigationItemProps) {
 			const subNavigationSlot = document?.getElementById(
 				state.subNavigationId
 			) as HTMLMenuElement;
+
 			if (subNavigationSlot) {
 				const children = subNavigationSlot.children;
 				if (children?.length > 0) {
 					state.hasAreaPopup = true;
+					if (!visibleInVX(subNavigationSlot)) {
+						subNavigationSlot.setAttribute(
+							'data-outside-vx',
+							'true'
+						);
+					}
+					if (!visibleInVY(subNavigationSlot)) {
+						subNavigationSlot.setAttribute(
+							'data-outside-vy',
+							'true'
+						);
+					}
 				} else {
 					state.hasSubNavigation = false;
 				}
