@@ -3,6 +3,5 @@ import { test } from '@playwright/test';
 import { getDefaultScreenshotTest } from '../default.ts';
 
 test.describe('DBTabs', () => {
-	getDefaultScreenshotTest('tabs');
+	getDefaultScreenshotTest('04/tabs');
 });
-
