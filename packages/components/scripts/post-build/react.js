@@ -70,6 +70,7 @@ module.exports = (tmp) => {
 					from: '>(null);',
 					to: '>(component);'
 				},
+				{ from: 'useRef<', to: 'component ? component : useRef<' },
 				{
 					from: '={true}',
 					to: ''
