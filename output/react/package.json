@@ -26,8 +26,8 @@
   },
   "devDependencies": {
     "@axe-core/playwright": "^4.8.4",
-    "@playwright/experimental-ct-react": "1.41.1",
-    "@types/react": "^18.2.48",
+    "@playwright/experimental-ct-react": "1.41.2",
+    "@types/react": "^18.2.53",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "sass": "^1.70.0"
