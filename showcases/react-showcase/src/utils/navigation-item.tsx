@@ -1,5 +1,4 @@
 import TabsComponent from '../components/tabs';
-
 import TabComponent from '../components/tab';
 import TooltipComponent from '../components/tooltip';
 import PopoverComponent from '../components/popover';

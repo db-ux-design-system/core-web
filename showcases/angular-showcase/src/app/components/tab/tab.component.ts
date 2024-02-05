@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-
 import defaultComponentVariants from '../../../../../shared/tab.json';
 
 @Component({
@@ -9,5 +8,3 @@ import defaultComponentVariants from '../../../../../shared/tab.json';
 export class TabComponent {
 	variants = defaultComponentVariants;
 }
-
-

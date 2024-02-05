@@ -1,14 +1,8 @@
 import { useEffect, useState } from 'react';
 import DBTabPanel from '../src/components/tab-panel/tab-panel';
-
 import DBTabs from '../src/components/tabs/tabs';
-
 import DBTabList from '../src/components/tab-list/tab-list';
-
 import DBTab from '../src/components/tab/tab';
-
-import DBTabBar from '../src/components/tab-bar/tab-bar';
-
 import DBTooltip from '../src/components/tooltip/tooltip';
 import DBPopover from '../src/components/popover/popover';
 import {
