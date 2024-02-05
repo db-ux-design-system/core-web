@@ -84,7 +84,7 @@
     "@commitlint/config-conventional": "18.6.0",
     "@playwright/test": "1.41.2",
     "adm-zip": "0.5.10",
-    "commander": "^11.1.0",
+    "commander": "^12.0.0",
     "cpr": "3.0.1",
     "cross-env": "^7.0.3",
     "cssnano": "^6.0.3",
