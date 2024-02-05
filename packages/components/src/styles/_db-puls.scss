@@ -4,28 +4,25 @@
 
 @mixin set-db-puls-horizontal() {
 	&::after {
-		block-size: auto;
-		transform: translate(-50%, 0);
-		inset-block-start: auto;
-		inset-inline-start: 50%;
-		border-inline-start: none;
-		border-block-end: variables.$db-border-height-lg solid colors.$db-brand;
-		inset-block-end: calc(-1 * #{variables.$db-spacing-fixed-xs});
+		block-size: variables.$db-border-height-lg;
 		inline-size: 0;
+		transform: translate(-50%, 0);
+		inset-inline-start: 50%;
+		background-color: colors.$db-brand;
+		inset-block-start: auto;
+		inset-block-end: calc(-1 * #{variables.$db-spacing-fixed-xs});
 	}
 }
 
 @mixin set-db-puls-vertical() {
 	&::after {
 		block-size: 0;
+		inline-size: variables.$db-border-height-lg;
 		transform: translate(0, -50%);
 		inset-block-start: 50%;
+		background-color: colors.$db-brand;
 		inset-inline-start: calc(-1 * #{variables.$db-spacing-fixed-xs});
-		border-inline-start: variables.$db-border-height-lg solid
-			colors.$db-brand;
-		border-block-end: none;
 		inset-block-end: auto;
-		inline-size: auto;
 	}
 }
 
@@ -52,7 +49,7 @@
 
 @mixin show-db-puls-horizontal() {
 	&::after {
-		block-size: auto;
+		block-size: variables.$db-border-height-lg;
 		inline-size: 100%;
 	}
 }
@@ -60,6 +57,7 @@
 @mixin show-db-puls-vertical() {
 	&::after {
 		block-size: 100%;
+		inline-size: variables.$db-border-height-lg;
 	}
 }
 

@@ -1,14 +1,11 @@
 @use "@db-ui/foundations/build/scss/variables";
+@use "@db-ui/foundations/build/scss/colors";
 @use "../../styles/db-puls";
 @use "../../styles/scrollbar";
 
 %horizontal-puls {
 	.db-tab input {
 		@include db-puls.set-db-puls-horizontal;
-		block-size: 0;
-		inline-size: 100%;
-		inset-block: 100%;
-		inset-inline: 0;
 
 		&:checked {
 			@include db-puls.show-db-puls-horizontal;
@@ -19,10 +16,6 @@
 %vertical-puls {
 	.db-tab input {
 		@include db-puls.set-db-puls-vertical;
-		block-size: 100%;
-		inline-size: 0;
-		inset-block: 0;
-		inset-inline: 0;
 
 		&:checked {
 			@include db-puls.show-db-puls-vertical;
@@ -35,6 +28,7 @@
 	display: flex;
 	gap: variables.$db-spacing-fixed-sm;
 	scroll-behavior: smooth;
+	position: relative;
 
 	.db-tab {
 		position: relative;
@@ -50,6 +44,19 @@
 		overflow-y: hidden;
 		padding-block-end: variables.$db-spacing-fixed-sm;
 		inline-size: 100%;
+
+		&::before {
+			@extend %adaptive-neutral-component;
+			content: "";
+			border-radius: variables.$db-border-radius-md;
+			inline-size: 100%;
+			block-size: variables.$db-border-height-lg;
+			position: absolute;
+
+			inset-block-end: calc(
+				-1 * #{variables.$db-spacing-fixed-xs} + #{variables.$db-spacing-fixed-sm}
+			);
+		}
 	}
 
 	&[aria-orientation="vertical"] {
@@ -59,5 +66,19 @@
 		overflow-y: auto;
 		padding-inline-start: variables.$db-spacing-fixed-sm;
 		block-size: 100%;
+
+		&::before {
+			@extend %adaptive-neutral-component;
+			content: "";
+			border-radius: variables.$db-border-radius-md;
+			inline-size: variables.$db-border-height-lg;
+			block-size: 100%;
+			position: absolute;
+
+			inset-inline-start: calc(
+				-1 * #{variables.$db-spacing-fixed-xs} + #{variables.$db-spacing-fixed-sm} +
+					#{variables.$db-border-height-sm}
+			);
+		}
 	}
 }

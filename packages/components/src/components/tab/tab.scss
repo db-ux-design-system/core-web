@@ -15,11 +15,11 @@
 	input {
 		&[type="radio"] {
 			position: absolute;
-			inline-size: 0;
-			block-size: 0;
+			appearance: none;
+			inline-size: 100%;
+			block-size: calc(100% + #{variables.$db-border-height-sm});
 			margin-inline-end: initial;
-			border: none;
-			border-radius: inherit;
+			inset: 0;
 
 			&:focus-within,
 			&:focus-visible {
