@@ -3,7 +3,6 @@ import {
 	GlobalProps,
 	GlobalState,
 	InitializedState,
-	ItemClickState,
 	OrientationProps,
 	WidthProps
 } from '../../shared/model';

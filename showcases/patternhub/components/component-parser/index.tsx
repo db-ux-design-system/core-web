@@ -289,14 +289,6 @@ const ComponentSwitch = ({
 		);
 	}
 
-	if (type === 'tab-bar') {
-		return (
-			<DBTabBar className={className} {...props}>
-				{resolvedContent}
-			</DBTabBar>
-		);
-	}
-
 	if (type === 'tab') {
 		return (
 			<DBTab className={className} {...props}>

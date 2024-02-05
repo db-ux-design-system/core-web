@@ -76,48 +76,51 @@ export default function DBTabs(props: DBTabsProps) {
 
 			if (childTabLists?.length > 0) {
 				const firstTabList = childTabLists.item(0);
-				state.tabList = firstTabList;
-				firstTabList.setAttribute(
-					'aria-orientation',
-					props.orientation || 'horizontal'
-				);
+				if (firstTabList) {
+					state.tabList = firstTabList;
+					firstTabList.setAttribute(
+						'aria-orientation',
+						props.orientation || 'horizontal'
+					);
 
-				if (props.behaviour === 'arrows') {
-					state.evaluateScrollButtons(firstTabList);
-					firstTabList.addEventListener('scroll', () => {
+					if (props.behaviour === 'arrows') {
 						state.evaluateScrollButtons(firstTabList);
-					});
-				}
+						firstTabList.addEventListener('scroll', () => {
+							state.evaluateScrollButtons(firstTabList);
+						});
+					}
 
-				const tabs = firstTabList.getElementsByClassName('db-tab');
-				if (tabs?.length > 0) {
-					Array.from<Element>(tabs).forEach(
-						(tab: Element, index: number) => {
-							tab.setAttribute(
-								'data-width',
-								props.width || 'auto'
-							);
-							tab.setAttribute(
-								'data-alignment',
-								props.alignment || 'start'
-							);
+					const tabs = firstTabList.getElementsByClassName('db-tab');
+					if (tabs?.length > 0) {
+						Array.from<Element>(tabs).forEach(
+							(tab: Element, index: number) => {
+								tab.setAttribute(
+									'data-width',
+									props.width || 'auto'
+								);
+								tab.setAttribute(
+									'data-alignment',
+									props.alignment || 'start'
+								);
 
-							const input = tab.getElementsByTagName('input');
-							if (
-								input?.length > 0 &&
-								(!props.initialSelectedMode ||
-									props.initialSelectedMode === 'auto')
-							) {
+								const input = tab.getElementsByTagName('input');
 								if (
-									(props.initialSelectedIndex === undefined &&
-										index === 0) ||
-									props.initialSelectedIndex === index
+									input?.length > 0 &&
+									(!props.initialSelectedMode ||
+										props.initialSelectedMode === 'auto')
 								) {
-									input[0].click();
+									if (
+										(props.initialSelectedIndex ===
+											undefined &&
+											index === 0) ||
+										props.initialSelectedIndex === index
+									) {
+										input[0].click();
+									}
 								}
 							}
-						}
-					);
+						);
+					}
 				}
 			}
 
@@ -177,7 +180,6 @@ export default function DBTabs(props: DBTabsProps) {
 					)}
 				</For>
 			</Show>
-			<Slot name="tab-list" />
 			<Show when={state.showScrollRight}>
 				<DBButton
 					className="tabs-scroll-right"
