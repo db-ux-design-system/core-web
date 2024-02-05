@@ -109,22 +109,6 @@ We both maintain a [public backlog](https://github.com/orgs/db-ui/projects/4/vie
 
 </details>
 
-‼ Some components are missing and some are not migrated to the new styling, be aware that non-completed components may change in the future. You can enable automated warnings with ESLint if you like.
-
-### Warnings with ESLint
-
-Install ESLint plugin: `npm i @db-ui/eslint-plugin`.
-
-Add the plugin and rule to your configuration:
-
-```js
-...
-"plugins": ["@db-ui"],
-"rules": {
-	"@db-ui/v2-component-used": "warn",
-...
-```
-
 ## Core principals
 
 <details>

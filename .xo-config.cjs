@@ -1,6 +1,5 @@
 module.exports = {
 	prettier: true,
-	plugins: ['@db-ui'],
 	overrides: [
 		{
 			files: ['./showcases/angular-showcase/**'],
@@ -46,7 +45,6 @@ module.exports = {
 		}
 	],
 	rules: {
-		'@db-ui/v2-component-used': 'warn',
 		'no-console': ['error', { allow: ['warn', 'error'] }],
 		'unicorn/prefer-module': 0, // TODO: we need to change every package to "type":"module"
 		'n/prefer-global/process': 0, // We use process.env in config files so don't use require("process")

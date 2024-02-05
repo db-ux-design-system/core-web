@@ -236,10 +236,6 @@ export const ROUTES: NavigationItem[] = [
 							path: `/components/${component.name}/properties`
 						},
 						{
-							label: 'Examples',
-							path: `/components/${component.name}/examples`
-						},
-						{
 							label: 'How to use',
 							path: `/components/${component.name}/how-to-use`
 						},
