@@ -14,7 +14,8 @@
  *     },
  *     angular?: {
  * 			controlValueAccessor?: string,
- * 			directives?: {name:string, ngContentName?:string}[]
+ * 			directives?: {name:string, ngContentName?:string}[],
+ * 			initValues?: {key:string, value:any}[]
  * 		},
  *     react?: {
  * 			propsPassingFilter?: string[];
@@ -24,7 +25,26 @@
  */
 const getComponents = () => [
 	{
-		name: 'tab-panel'
+		name: 'tab-panel',
+		config: {
+			angular: {
+				initValues: [
+					{ key: 'name', value: '' },
+					{ key: 'index', value: 0 }
+				]
+			}
+		}
+	},
+	{
+		name: 'tab',
+		config: {
+			angular: {
+				initValues: [
+					{ key: 'name', value: '' },
+					{ key: 'index', value: 0 }
+				]
+			}
+		}
 	},
 
 	{
@@ -247,9 +267,6 @@ const getComponents = () => [
 	},
 	{
 		name: 'card'
-	},
-	{
-		name: 'tab'
 	},
 	{
 		name: 'button'

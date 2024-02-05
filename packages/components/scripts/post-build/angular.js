@@ -192,6 +192,15 @@ module.exports = (tmp) => {
 			}
 		];
 
+		if (component.config?.angular?.initValues) {
+			component.config?.angular?.initValues.forEach((init) => {
+				replacements.push({
+					from: `["${init.key}"];`,
+					to: `["${init.key}"] = ${init.value === '' ? '""' : init.value};`
+				});
+			});
+		}
+
 		if (component.config?.angular?.controlValueAccessor) {
 			setControlValueAccessorReplacements(
 				replacements,
