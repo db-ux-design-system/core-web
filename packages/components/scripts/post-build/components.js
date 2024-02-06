@@ -52,8 +52,8 @@ const getComponents = () => [
 		overwrites: {
 			angular: [
 				{
-					from: 'tabList = null;',
-					to: 'tabList: Element | null = null;'
+					from: 'scrollContainer = null;',
+					to: 'scrollContainer: Element | null = null;'
 				}
 			]
 		}
