@@ -65,10 +65,6 @@
 	&:active {
 		@include colors.get-variant-bg-color(0.24);
 	}
-
-	&::after {
-		--db-icon-margin-start: auto;
-	}
 }
 
 .db-navigation-item {
@@ -105,10 +101,6 @@
 			@include icons.set-icon("chevron_right", "after");
 
 			font-weight: inherit;
-
-			&::after {
-				margin-inline-start: variables.$db-spacing-fixed-sm;
-			}
 		}
 	}
 
@@ -121,11 +113,21 @@
 		font-weight: normal;
 	}
 
+	&:not([data-width="full"]) {
+		.db-navigation-item-expand-button {
+			&::after {
+				--db-icon-margin-start: #{variables.$db-spacing-fixed-sm};
+			}
+		}
+	}
+
 	&[data-width="full"] {
 		inline-size: 100%;
 
-		&::after {
-			--db-icon-margin-start: auto;
+		.db-navigation-item-expand-button {
+			&::after {
+				--db-icon-margin-start: auto;
+			}
 		}
 	}
 
