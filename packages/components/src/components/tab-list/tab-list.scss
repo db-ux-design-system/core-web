@@ -59,13 +59,31 @@
 
 			.db-tab {
 				margin-block: variables.$db-spacing-fixed-sm;
+			}
 
+			db-tab {
 				&:first-of-type {
-					margin-inline-start: variables.$db-spacing-fixed-sm;
+					.db-tab {
+						margin-inline-start: variables.$db-spacing-fixed-sm;
+					}
 				}
 
 				&:last-of-type {
-					margin-inline-end: variables.$db-spacing-fixed-sm;
+					.db-tab {
+						margin-inline-end: variables.$db-spacing-fixed-sm;
+					}
+				}
+			}
+
+			&:not(:has(db-tab)) {
+				.db-tab {
+					&:first-of-type {
+						margin-inline-start: variables.$db-spacing-fixed-sm;
+					}
+
+					&:last-of-type {
+						margin-inline-end: variables.$db-spacing-fixed-sm;
+					}
 				}
 			}
 		}
@@ -98,13 +116,31 @@
 
 			.db-tab {
 				margin-inline: variables.$db-spacing-fixed-sm;
+			}
 
+			db-tab {
 				&:first-of-type {
-					margin-block-start: variables.$db-spacing-fixed-sm;
+					.db-tab {
+						margin-block-start: variables.$db-spacing-fixed-sm;
+					}
 				}
 
 				&:last-of-type {
-					margin-block-end: variables.$db-spacing-fixed-sm;
+					.db-tab {
+						margin-block-end: variables.$db-spacing-fixed-sm;
+					}
+				}
+			}
+
+			&:not(:has(db-tab)) {
+				.db-tab {
+					&:first-of-type {
+						margin-block-start: variables.$db-spacing-fixed-sm;
+					}
+
+					&:last-of-type {
+						margin-block-end: variables.$db-spacing-fixed-sm;
+					}
 				}
 			}
 		}
