@@ -38,7 +38,7 @@ export default function DBTabList(props: DBTabListProps) {
 			<Show when={state.stylePath}>
 				<link rel="stylesheet" href={state.stylePath} />
 			</Show>
-			{props.children}
+			<div class="db-tab-list-scroll-container">{props.children}</div>
 		</div>
 	);
 }

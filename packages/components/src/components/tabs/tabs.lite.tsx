@@ -26,7 +26,7 @@ export default function DBTabs(props: DBTabsProps) {
 		initialized: false,
 		showScrollLeft: false,
 		showScrollRight: false,
-		tabList: null,
+		scrollContainer: null,
 		convertTabs(tabs: any[] | string | undefined) {
 			try {
 				if (typeof tabs === 'string') {
@@ -53,7 +53,7 @@ export default function DBTabs(props: DBTabsProps) {
 			if (left) {
 				step *= -1;
 			}
-			state.tabList?.scrollBy({
+			state.scrollContainer?.scrollBy({
 				top: 0,
 				left: step,
 				behavior: 'smooth'
@@ -77,17 +77,25 @@ export default function DBTabs(props: DBTabsProps) {
 			if (childTabLists?.length > 0) {
 				const firstTabList = childTabLists.item(0);
 				if (firstTabList) {
-					state.tabList = firstTabList;
 					firstTabList.setAttribute(
 						'aria-orientation',
 						props.orientation || 'horizontal'
 					);
 
 					if (props.behaviour === 'arrows') {
-						state.evaluateScrollButtons(firstTabList);
-						firstTabList.addEventListener('scroll', () => {
-							state.evaluateScrollButtons(firstTabList);
-						});
+						const scrollContainers =
+							firstTabList.getElementsByClassName(
+								'db-tab-list-scroll-container'
+							);
+
+						if (scrollContainers?.length > 0) {
+							const container = scrollContainers.item(0);
+							state.scrollContainer = container;
+							state.evaluateScrollButtons(container);
+							container.addEventListener('scroll', () => {
+								state.evaluateScrollButtons(container);
+							});
+						}
 					}
 
 					const tabs = firstTabList.getElementsByClassName('db-tab');
