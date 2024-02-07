@@ -4,16 +4,16 @@ For general installation and configuration look at the [ngx-components](https://
 
 ### Load component
 
-```ts app.module.ts
-//app.module.ts
+```ts app.component.ts
+// app.component.ts
 import { DBMainNavigationModule } from '@db-ui/ngx-components';
 
-@NgModule({
-  ...
+@Component({
+  // ...
+  standalone: true,
   imports: [..., DBMainNavigationModule],
-  ...
+  // ...
 })
-
 ```
 
 ### Use component

@@ -4,16 +4,16 @@ For general installation and configuration take a look at the [ngx-components](h
 
 ### Load component
 
-```ts app.module.ts
-//app.module.ts
+```ts app.component.ts
+// app.component.ts
 import { DBCheckboxModule } from '@db-ui/ngx-components';
 
-@NgModule({
-  ...
+@Component({
+  // ...
+  standalone: true,
   imports: [..., DBCheckboxModule],
-  ...
+  // ...
 })
-
 ```
 
 ### Use component
