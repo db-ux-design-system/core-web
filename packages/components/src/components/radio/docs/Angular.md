@@ -21,7 +21,8 @@ import { DBRadio } from '@db-ui/ngx-components';
 ```html app.component.html
 <!-- app.component.html -->
 <ul>
-	<li *ngFor="let radioName of radioNames">
+	@for (radioName of radioNames; track radioName) {
+	<li>
 		<db-radio
 			(change)="radio = radioName"
 			[label]="'Radio ' + radioName"
@@ -29,6 +30,7 @@ import { DBRadio } from '@db-ui/ngx-components';
 			name="RadioGroup"
 		></db-radio>
 	</li>
+	}
 </ul>
 ```
 

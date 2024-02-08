@@ -21,7 +21,8 @@ import { DBCheckbox } from '@db-ui/ngx-components';
 ```html app.component.html
 <!-- app.component.html -->
 <ul>
-	<li *ngFor="let checkboxName of checkboxNames">
+	@for (checkboxName of checkboxNames; track checkboxName) {
+	<li>
 		<db-checkbox
 			(change)="checkbox = checkboxName"
 			[label]="'Checkbox ' + checkboxName"
@@ -29,6 +30,7 @@ import { DBCheckbox } from '@db-ui/ngx-components';
 			name="CheckboxGroup"
 		></db-checkbox>
 	</li>
+	}
 </ul>
 ```
 
