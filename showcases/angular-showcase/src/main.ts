@@ -1,6 +1,6 @@
 import { enableProdMode } from '@angular/core';
 import { bootstrapApplication } from '@angular/platform-browser';
-import { provideRouter } from '@angular/router';
+import { provideRouter, withHashLocation } from '@angular/router';
 import { environment } from './environments/environment';
 import { AppComponent } from './app/app.component';
 import { getRoutes } from './app/utils/navigation-item';
@@ -11,5 +11,5 @@ if (environment.production) {
 
 // eslint-disable-next-line @typescript-eslint/no-floating-promises
 bootstrapApplication(AppComponent, {
-	providers: [provideRouter(getRoutes())]
+	providers: [provideRouter(getRoutes(), withHashLocation())]
 });
