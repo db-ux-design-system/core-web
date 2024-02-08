@@ -6,12 +6,12 @@ For general installation and configuration take a look at the [ngx-components](h
 
 ```ts app.component.ts
 // app.component.ts
-import { DBButtonModule } from '@db-ui/ngx-components';
+import { DBButton } from '@db-ui/ngx-components';
 
 @Component({
   // ...
   standalone: true,
-  imports: [..., DBButtonModule],
+  imports: [..., DBButton],
   // ...
 })
 ```

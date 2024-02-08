@@ -6,12 +6,12 @@ For general installation and configuration take a look at the [ngx-components](h
 
 ```ts app.component.ts
 // app.component.ts
-import { DBCheckboxModule } from '@db-ui/ngx-components';
+import { DBCheckbox } from '@db-ui/ngx-components';
 
 @Component({
   // ...
   standalone: true,
-  imports: [..., DBCheckboxModule],
+  imports: [..., DBCheckbox],
   // ...
 })
 ```
@@ -51,11 +51,17 @@ export class AppComponent {
 Third party controls require a `ControlValueAccessor` to function with angular forms. Adding an `ngDefaultControl` attribute will allow them to use that directive.
 [Further information](https://stackoverflow.com/a/46465959)
 
-```ts app.module.ts
-// app.module.ts
-@NgModule({
-  …
-  imports: [ FormsModule, …]
+```ts app.component.ts
+//app.component.ts
+import { FormsModule } from '@angular/forms';
+
+@Component({
+	// ...
+	imports: [
+		// ...,
+		FormsModule
+    ],
+	// ...
 })
 ```
 

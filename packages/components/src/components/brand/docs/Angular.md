@@ -6,12 +6,12 @@ For general installation and configuration take a look at the [ngx-components](h
 
 ```ts app.component.ts
 // app.component.ts
-import { DBBrandModule } from '@db-ui/ngx-components';
+import { DBBrand } from '@db-ui/ngx-components';
 
 @Component({
   // ...
   standalone: true,
-  imports: [..., DBBrandModule],
+  imports: [..., DBBrand],
   // ...
 })
 ```

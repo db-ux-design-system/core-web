@@ -1,9 +1,13 @@
 import { Component } from '@angular/core';
 import defaultComponentVariants from '../../../../../shared/navigation-item.json';
+import { DefaultComponent } from '../default.component';
+import { DBNavigationItem } from '../../../../../../output/angular/src/components/navigation-item/navigation-item';
 
 @Component({
 	selector: 'app-navigation-item',
-	templateUrl: './navigation-item.component.html'
+	templateUrl: './navigation-item.component.html',
+	imports: [DefaultComponent, DBNavigationItem],
+	standalone: true
 })
 export class NavigationItemComponent {
 	variants = defaultComponentVariants;

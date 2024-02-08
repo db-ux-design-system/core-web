@@ -1,1 +1,1 @@
-export { DBTabBar, DBTabBarModule } from './tab-bar';
+export { DBTabBar } from './tab-bar';

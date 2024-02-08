@@ -4,15 +4,14 @@ For general installation and configuration take a look at the [ngx-components](h
 
 ### Load component
 
-```ts app.module.ts
-//app.module.ts
-import { DBNavigationItemModule } from '@db-ui/ngx-components';
+```ts app.component.ts
+//app.component.ts
+import { DBNavigationItem, NavigationContentDirective } from '@db-ui/ngx-components';
 
-@NgModule({
-  ...
-  declarations: [...,NavigationContentDirective],
-  imports: [..., DBNavigationItemModule],
-  ...
+@Component({
+  // ...
+  imports: [..., DBNavigationItem, NavigationContentDirective],
+  // ...
 })
 
 ```

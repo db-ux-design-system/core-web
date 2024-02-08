@@ -6,12 +6,12 @@ For general installation and configuration take a look at the [ngx-components](h
 
 ```ts app.component.ts
 // app.component.ts
-import { DBPopoverModule } from '@db-ui/ngx-components';
+import { DBPopover } from '@db-ui/ngx-components';
 
 @Component({
   // ...
   standalone: true,
-  imports: [..., DBPopoverModule],
+  imports: [..., DBPopover],
   // ...
 })
 ```

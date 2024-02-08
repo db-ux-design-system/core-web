@@ -1,9 +1,38 @@
-import { Component } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { Component, NO_ERRORS_SCHEMA } from '@angular/core';
+import {
+	FormControl,
+	FormGroup,
+	FormsModule,
+	ReactiveFormsModule
+} from '@angular/forms';
+import { DBTag } from '../../../../../../output/angular/src/components/tag/tag';
+import { DBRadio } from '../../../../../../output/angular/src/components/radio/radio';
+import { DBTextarea } from '../../../../../../output/angular/src/components/textarea/textarea';
+import { DBInput } from '../../../../../../output/angular/src/components/input/input';
+import { DefaultComponent } from '../default.component';
+import { DBSelect } from '../../../../../../output/angular/src/components/select/select';
+import { DBCheckbox } from '../../../../../../output/angular/src/components/checkbox/checkbox';
+import { DBDivider } from '../../../../../../output/angular/src/components/divider/divider';
+import { DBButton } from '../../../../../../output/angular/src/components/button';
 
 @Component({
 	selector: 'app-form',
-	templateUrl: './form.component.html'
+	templateUrl: './form.component.html',
+	imports: [
+		FormsModule,
+		ReactiveFormsModule,
+		DefaultComponent,
+		DBInput,
+		DBTextarea,
+		DBSelect,
+		DBRadio,
+		DBTag,
+		DBCheckbox,
+		DBDivider,
+		DBButton
+	],
+	standalone: true,
+	schemas: [NO_ERRORS_SCHEMA]
 })
 export class FormComponent {
 	array = ['X', 'Y', 'Z'];

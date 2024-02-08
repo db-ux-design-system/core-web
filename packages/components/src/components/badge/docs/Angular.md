@@ -6,12 +6,12 @@ For general installation and configuration take a look at the [ngx-components](h
 
 ```ts app.component.ts
 // app.component.ts
-import { DBBadgeModule } from '@db-ui/ngx-components';
+import { DBBadge } from '@db-ui/ngx-components';
 
 @Component({
   // ...
   standalone: true,
-  imports: [..., DBBadgeModule],
+  imports: [..., DBBadge],
   // ...
 })
 ```

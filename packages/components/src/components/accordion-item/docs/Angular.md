@@ -6,12 +6,12 @@ For general installation and configuration look at the [ngx-components](https://
 
 ```ts app.component.ts
 // app.component.ts
-import { DBAccordionItemModule } from '@db-ui/ngx-components';
+import { DBAccordionItem } from '@db-ui/ngx-components';
 
 @Component({
   // ...
   standalone: true,
-  imports: [..., DBAccordionItemModule],
+  imports: [..., DBAccordionItem],
   // ...
 })
 ```
