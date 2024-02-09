@@ -4,21 +4,21 @@ For general installation and configuration look at the [ngx-components](https://
 
 ### Load component
 
-```ts app.module.ts
-//app.module.ts
-import { DBAccordionItemModule } from '@db-ui/ngx-components';
+```ts app.component.ts
+// app.component.ts
+import { DBAccordionItem } from '@db-ui/ngx-components';
 
-@NgModule({
-  ...
-  imports: [..., DBAccordionItemModule],
-  ...
+@Component({
+  // ...
+  standalone: true,
+  imports: [..., DBAccordionItem],
+  // ...
 })
-
 ```
 
 ### Use component
 
-#### With Slots
+#### With Content Projection
 
 ```html app.component.html
 <!-- app.component.html -->

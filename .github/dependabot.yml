@@ -55,6 +55,7 @@ updates:
         patterns:
           - "@angular*"
           - "@angular-devkit*"
+          - "ng-packagr"
         update-types:
           - "minor"
           - "patch"
@@ -65,3 +66,11 @@ updates:
         update-types:
           - "minor"
           - "patch"
+      next:
+        patterns:
+          - "@next*"
+          - "eslint-config-next"
+          - "next"
+      builder.io:
+        patterns:
+          - "@builder.io/mitosis"

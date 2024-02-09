@@ -1,1 +1,1 @@
-export { DBNavigationItem, DBNavigationItemModule } from './navigation-item';
+export { DBNavigationItem } from './navigation-item';

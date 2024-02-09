@@ -21,6 +21,7 @@ import Infotext from '../components/infotext/Infotext.vue';
 import Radio from '../components/radio/Radio.vue';
 import Section from '../components/section/Section.vue';
 import Textarea from '../components/textarea/Textarea.vue';
+import Icon from '../components/icon/Icon.vue';
 
 export type NavItem = {
 	path: string;
@@ -69,6 +70,11 @@ export const navigationItems: NavItem[] = [
 				path: '/04/infotext',
 				label: 'Infotext',
 				component: Infotext
+			},
+			{
+				path: '/04/icon',
+				label: 'Icon',
+				component: Icon
 			},
 			{ path: '/04/tag', label: 'Tag', component: Tag },
 			{ path: '/04/accordion', label: 'Accordion', component: Accordion },

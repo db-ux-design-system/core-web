@@ -1,15 +1,15 @@
 import { enableProdMode } from '@angular/core';
-import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
-import { AppModule } from './app/app.module';
+import { bootstrapApplication } from '@angular/platform-browser';
+import { provideRouter, withHashLocation } from '@angular/router';
 import { environment } from './environments/environment';
+import { AppComponent } from './app/app.component';
+import { getRoutes } from './app/utils/navigation-item';
 
 if (environment.production) {
 	enableProdMode();
 }
 
-platformBrowserDynamic()
-	.bootstrapModule(AppModule)
-
-	.catch((error) => {
-		console.error(error);
-	});
+// eslint-disable-next-line @typescript-eslint/no-floating-promises
+bootstrapApplication(AppComponent, {
+	providers: [provideRouter(getRoutes(), withHashLocation())]
+});
