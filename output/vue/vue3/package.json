@@ -31,7 +31,7 @@
     "test:components": "playwright test -c playwright.config.ts"
   },
   "dependencies": {
-    "vue": "^3.4.15"
+    "vue": "^3.4.17"
   },
   "devDependencies": {
     "@axe-core/playwright": "^4.8.4",
@@ -39,7 +39,7 @@
     "@vitejs/plugin-vue": "^5.0.3",
     "sass": "^1.70.0",
     "typescript": "^5.3.3",
-    "vite": "^5.0.12",
+    "vite": "^5.1.0",
     "vue-tsc": "^1.8.27"
   },
   "publishConfig": {
