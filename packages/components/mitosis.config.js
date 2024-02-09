@@ -7,7 +7,8 @@ module.exports = {
 			typescript: true
 		},
 		angular: {
-			typescript: true
+			typescript: true,
+			standalone: true
 		},
 		vue3: {
 			typescript: true

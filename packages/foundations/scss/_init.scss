@@ -5,8 +5,6 @@
 
 :root {
 	--db-focus-outline-color: #{colors.$db-informational-text};
-	--db-focus-box-shadow-bg-color: #{colors.$db-base-bg};
-	--db-focus-box-shadow-on-bg-color: #{colors.$db-base-on-bg};
 
 	@extend %db-component-variables-md;
 	@extend %db-bg-base;
@@ -99,16 +97,7 @@ iframe {
 				--db-focus-outline-style,
 				solid
 			) var(--db-focus-outline-color, currentColor);
-		outline-offset: calc(
-			#{variables.$db-border-height-lg} + #{variables.$db-border-height-md}
-		);
-		box-shadow:
-			0 0 0 #{variables.$db-border-height-lg} var(--db-focus-box-shadow-bg-color),
-			0 0 0
-				calc(
-					#{variables.$db-border-height-lg} + #{variables.$db-border-height-md}
-				)
-				var(--db-focus-box-shadow-on-bg-color);
+		outline-offset: variables.$db-border-height-lg;
 
 		// TODO: The fallback currently only includes the same CSS Custom Property, which doesn't make any sense
 		transition:

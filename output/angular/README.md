@@ -39,16 +39,18 @@ Import the styles in scss or css. Based on your technology the file names could 
 
 ## Usage
 
-```ts app.module.ts
-//app.module.ts
-import { DBButtonModule } from '@db-ui/ngx-components';
+```ts app.component.ts
+//app.component.ts
+import { DBButton } from '@db-ui/ngx-components';
 
-@NgModule({
-	...
-		imports: [..., DBButtonModule],
-...
+@Component({
+	// ...
+	imports: [
+		// ...,
+		DBButton
+    ],
+	// ...
 })
-
 ```
 
 ```html app.component.html

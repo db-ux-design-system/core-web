@@ -2,9 +2,9 @@
 
 |                |            |     |
 | -------------- | ---------- | --- |
-| **Datum**      | 2022-11-01 |
-| **Status**     |            |
-| **Beteiligte** |            |
+| **Datum**      | 2022-11-01 |     |
+| **Status**     |            |     |
+| **Beteiligte** |            |     |
 
 ## Entscheidung und Begründung
 

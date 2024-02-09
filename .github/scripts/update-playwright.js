@@ -1,7 +1,7 @@
 import Replace from 'replace-in-file';
 import packageJson from '../../package.json' assert { type: 'json' };
 
-const oldPlaywrightVersion = '1.41.0';
+const oldPlaywrightVersion = '1.41.2';
 
 const updatePlaywright = () => {
 	const version = packageJson.devDependencies['@playwright/test'];
@@ -31,7 +31,7 @@ const updatePlaywright = () => {
 		{
 			from: `oldPlaywrightVersion = '${oldPlaywrightVersion}'`,
 			to: `oldPlaywrightVersion = '${version}'`,
-			files: ['scripts/update-playwright.js']
+			files: ['.github/scripts/update-playwright.js']
 		}
 	];
 
@@ -41,5 +41,4 @@ const updatePlaywright = () => {
 
 	return 'Success';
 };
-
-updatePlaywright();
+export default updatePlaywright;

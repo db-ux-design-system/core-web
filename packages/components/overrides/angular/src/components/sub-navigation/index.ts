@@ -1,1 +1,1 @@
-export { DBSubNavigation, DBSubNavigationModule } from './sub-navigation';
+export { DBSubNavigation } from './sub-navigation';
