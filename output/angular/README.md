@@ -23,7 +23,7 @@ Import the styles in scss or css. Based on your technology the file names could 
 
 ```scss styles.scss
 // styles.scss
-@forward "@db-ui/components/build/styles/db-ui-42-webpack";
+@forward "@db-ui/components/build/styles/db-ui-42-rollup";
 ```
 
 </details>
@@ -32,7 +32,7 @@ Import the styles in scss or css. Based on your technology the file names could 
 
 ```css styles.css
 /* styles.css */
-@import "@db-ui/components/build/styles/db-ui-42-webpack";
+@import "@db-ui/components/build/styles/db-ui-42-rollup";
 ```
 
 </details>
