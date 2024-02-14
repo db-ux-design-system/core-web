@@ -121,6 +121,7 @@
 		@extend %default-transition;
 		@include colors.bg-transparent-interactive(false);
 		display: inline-flex;
+		align-items: center;
 		text-decoration: none;
 
 		&::after {
