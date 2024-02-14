@@ -39,7 +39,7 @@
 }
 
 @mixin bg-transparent-hover() {
-	@extend %bg-transparent;
+	@include get-variant-bg-color(0);
 
 	&:not(:disabled) {
 		&:hover {
