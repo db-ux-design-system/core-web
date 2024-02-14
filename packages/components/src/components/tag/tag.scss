@@ -119,7 +119,7 @@
 
 	a {
 		@extend %default-transition;
-		@include colors.bg-transparent-interactive(false);
+		@include colors.bg-transparent-interactive();
 		display: inline-flex;
 		align-items: center;
 		text-decoration: none;

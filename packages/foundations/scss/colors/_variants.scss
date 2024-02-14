@@ -39,32 +39,20 @@
 	@include get-variant-bg-color(0);
 }
 
-@mixin bg-transparent-hover($with-enabled: true) {
-	@extend %bg-transparent;
+@mixin bg-transparent-hover() {
+	@include get-variant-bg-color(0);
 
-	@if ($with-enabled) {
-		&:enabled {
-			&:hover {
-				@include get-variant-bg-color(0.16);
-			}
-		}
-	} @else {
+	&:not(:disabled) {
 		&:hover {
 			@include get-variant-bg-color(0.16);
 		}
 	}
 }
 
-@mixin bg-transparent-interactive($with-enabled: true) {
-	@include bg-transparent-hover($with-enabled);
+@mixin bg-transparent-interactive() {
+	@include bg-transparent-hover();
 
-	@if ($with-enabled) {
-		&:enabled {
-			&:active {
-				@include get-variant-bg-color(0.24);
-			}
-		}
-	} @else {
+	&:not(:disabled) {
 		&:active {
 			@include get-variant-bg-color(0.24);
 		}
