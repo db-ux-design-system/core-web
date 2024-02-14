@@ -21,12 +21,6 @@ designers, and content authors build, maintain, and scale best of class digital 
 	<figcaption><a href="https://bradfrost.com/blog/post/bdconf-stephen-hay-presents-responsive-design-workflow/" target="_blank" rel="noopener noreferrer">Stephen Hay</a>. <a href="https://vimeo.com/67476280" title="Brad Frosts at beyond tellerrand conference regarding Atomic Design" target="_blank" rel="noopener noreferrer">Cited in a talk by Brad Frost at beyond tellerrand conference.</a></figcaption>
 </figure>
 
-> **Warning**
-> We currently don't fully support Mozilla Firefox until it adds the following functionalities, that are expected to get integrated later this year:
->
-> -   [CSS: `:has`](https://caniuse.com/css-has)
-> -   [`popover`-attribute](https://caniuse.com/mdn-api_htmlinputelement_popovertargetaction)(not in use by us currently, but planned)
-
 ## Packages
 
 | Package                                                                     | Content                             | Version                                                                                                                                                                                                                                                                                  |
@@ -114,22 +108,6 @@ We both maintain a [public backlog](https://github.com/orgs/db-ui/projects/4/vie
 | Upload                                                                                         | 03 - Data-Input   |   ❌   |        ❌        |
 
 </details>
-
-‼ Some components are missing and some are not migrated to the new styling, be aware that non-completed components may change in the future. You can enable automated warnings with ESLint if you like.
-
-### Warnings with ESLint
-
-Install ESLint plugin: `npm i @db-ui/eslint-plugin`.
-
-Add the plugin and rule to your configuration:
-
-```js
-...
-"plugins": ["@db-ui"],
-"rules": {
-	"@db-ui/v2-component-used": "warn",
-...
-```
 
 ## Core principals
 

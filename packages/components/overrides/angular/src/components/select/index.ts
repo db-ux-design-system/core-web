@@ -1,1 +1,1 @@
-export { DBSelect, DBSelectModule } from './select';
+export { DBSelect } from './select';
