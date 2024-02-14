@@ -4,16 +4,16 @@ For general installation and configuration take a look at the [ngx-components](h
 
 ### Load component
 
-```ts app.module.ts
-//app.module.ts
-import { DBLinkModule } from '@db-ui/ngx-components';
+```ts app.component.ts
+// app.component.ts
+import { DBLink } from '@db-ui/ngx-components';
 
-@NgModule({
-  ...
-  imports: [..., DBLinkModule],
-  ...
+@Component({
+  // ...
+  standalone: true,
+  imports: [..., DBLink],
+  // ...
 })
-
 ```
 
 ### Use component

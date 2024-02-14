@@ -197,12 +197,17 @@ const getComponents = () => [
 		config: {
 			angular: {
 				directives: [
-					{ name: 'ActionBar', ngContentName: 'action-bar' },
+					{
+						name: 'ActionBar',
+						ngContentName: 'action-bar'
+					},
 					{
 						name: 'MetaNavigation',
 						ngContentName: 'meta-navigation'
 					},
-					{ name: 'Navigation' }
+					{
+						name: 'Navigation'
+					}
 				]
 			}
 		},

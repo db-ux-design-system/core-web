@@ -38,4 +38,4 @@ jobs:
           git config --global user.name "${{ env.CI_COMMIT_AUTHOR }}"
           git config --global user.email "support@github.com"
           git commit -a -m "${{ env.CI_COMMIT_MESSAGE }}"
-          git push
+          git push origin HEAD:${{github.event.pull_request.head.ref}}

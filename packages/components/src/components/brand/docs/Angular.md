@@ -4,16 +4,16 @@ For general installation and configuration take a look at the [ngx-components](h
 
 ### Load component
 
-```ts app.module.ts
-//app.module.ts
-import { DBBrandModule } from '@db-ui/ngx-components';
+```ts app.component.ts
+// app.component.ts
+import { DBBrand } from '@db-ui/ngx-components';
 
-@NgModule({
-  ...
-  imports: [..., DBBrandModule],
-  ...
+@Component({
+  // ...
+  standalone: true,
+  imports: [..., DBBrand],
+  // ...
 })
-
 ```
 
 ### Use component

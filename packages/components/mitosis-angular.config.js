@@ -4,7 +4,8 @@ module.exports = {
 	dest: '../../output/tmp',
 	options: {
 		angular: {
-			typescript: true
+			typescript: true,
+			standalone: true
 		}
 	}
 };

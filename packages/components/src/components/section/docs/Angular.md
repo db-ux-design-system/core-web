@@ -4,16 +4,16 @@ For general installation and configuration take a look at the [ngx-components](h
 
 ### Load component
 
-```ts app.module.ts
-//app.module.ts
-import { DBSectionModule } from '@db-ui/ngx-components';
+```ts app.component.ts
+// app.component.ts
+import { DBSection } from '@db-ui/ngx-components';
 
-@NgModule({
-  ...
-  imports: [..., DBSectionModule],
-  ...
+@Component({
+  // ...
+  standalone: true,
+  imports: [..., DBSection],
+  // ...
 })
-
 ```
 
 ### Use component

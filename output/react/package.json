@@ -25,9 +25,9 @@
     "tsc": "tsc -p . --sourceMap false"
   },
   "devDependencies": {
-    "@axe-core/playwright": "^4.8.4",
+    "@axe-core/playwright": "^4.8.5",
     "@playwright/experimental-ct-react": "1.41.2",
-    "@types/react": "^18.2.53",
+    "@types/react": "^18.2.55",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "sass": "^1.70.0"
