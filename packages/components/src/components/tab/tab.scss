@@ -5,7 +5,7 @@
 .db-tab {
 	@extend %default-interactive-component;
 	@extend %transparent-border;
-	@include colors.bg-transparent-interactive(false);
+	@include colors.bg-transparent-interactive();
 
 	display: inline-flex;
 	padding: variables.$db-spacing-fixed-xs variables.$db-spacing-fixed-sm;
