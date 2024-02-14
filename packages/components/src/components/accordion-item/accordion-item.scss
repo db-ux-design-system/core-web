@@ -35,7 +35,7 @@
 
 	summary {
 		@extend %dropdown-icon;
-		@include colors.bg-transparent-interactive(false);
+		@include colors.bg-transparent-interactive();
 
 		list-style: none;
 		display: flex;

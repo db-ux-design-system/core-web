@@ -67,7 +67,7 @@ $scrollbar-width: helpers.to-rem(12);
 	}
 
 	&::-webkit-scrollbar-thumb {
-		@include colors.bg-transparent-interactive(false);
+		@include colors.bg-transparent-interactive();
 		@include colors.get-variant-bg-color(0.24);
 
 		&:hover {
@@ -81,7 +81,7 @@ $scrollbar-width: helpers.to-rem(12);
 
 	/* Buttons */
 	&::-webkit-scrollbar-button:single-button {
-		@include colors.bg-transparent-interactive(false);
+		@include colors.bg-transparent-interactive();
 		@include colors.get-variant-bg-color(0.08);
 		background-size: $scrollbar-width;
 		background-repeat: no-repeat;
