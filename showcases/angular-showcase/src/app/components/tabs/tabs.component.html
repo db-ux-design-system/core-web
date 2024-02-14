@@ -27,10 +27,10 @@
 					<db-tab [name]="exampleName" [index]="0">Test 1</db-tab>
 					<db-tab [name]="exampleName" [index]="1">Test 2</db-tab>
 					<db-tab [name]="exampleName" [index]="2">Test 3</db-tab>
-					<ng-container *ngIf="exampleProps.overflow">
+					@if (exampleProps.overflow) {
 						<db-tab [name]="exampleName" [index]="3">Test 4</db-tab>
 						<db-tab [name]="exampleName" [index]="4">Test 5</db-tab>
-					</ng-container>
+					}
 				</db-tab-list>
 				<db-tab-panel [name]="exampleName" [index]="0">
 					Tab Panel 1
@@ -41,14 +41,15 @@
 				<db-tab-panel [name]="exampleName" [index]="2">
 					Tab Panel 3
 				</db-tab-panel>
-				<ng-container *ngIf="exampleProps.overflow">
+
+				@if (exampleProps.overflow) {
 					<db-tab-panel [name]="exampleName" [index]="3">
 						Tab Panel 4
 					</db-tab-panel>
 					<db-tab-panel [name]="exampleName" [index]="4">
 						Tab Panel 5
 					</db-tab-panel>
-				</ng-container>
+				}
 			</db-tabs>
 		</div>
 	</ng-template>

@@ -1,1 +1,1 @@
-export { DBTabPanel, DBTabPanelModule } from "./tab-panel";
+export { DBTabPanel } from './tab-panel';

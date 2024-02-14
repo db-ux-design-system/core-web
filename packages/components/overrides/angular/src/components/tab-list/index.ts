@@ -1,1 +1,1 @@
-export { DBTabList, DBTabListModule } from "./tab-list";
+export { DBTabList } from './tab-list';
