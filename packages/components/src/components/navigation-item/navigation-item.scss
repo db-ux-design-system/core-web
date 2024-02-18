@@ -62,7 +62,8 @@
 		@include colors.get-variant-bg-color(0.16);
 	}
 
-	&:active {
+	&:active,
+	:has([aria-current="page"]) {
 		@include colors.get-variant-bg-color(0.24);
 	}
 }
@@ -104,7 +105,8 @@
 		}
 	}
 
-	&[aria-current="page"] {
+	&[aria-current="page"],
+	[aria-current="page"] {
 		font-weight: 700;
 	}
 
