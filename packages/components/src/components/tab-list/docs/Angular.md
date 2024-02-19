@@ -4,13 +4,16 @@ For general installation and configuration take a look at the [ngx-components](h
 
 ### Load component
 
+You can't use the component standalone!
+
 ```ts app.module.ts
 //app.module.ts
-import { DBTabListModule } from '@db-ui/ngx-components';
+import { DBTab, DBTabList, DBTabPanel, DBTabs } from '@db-ui/ngx-components';
 
 @NgModule({
   ...
-  imports: [..., DBTabListModule],
+  standalone: true,
+  imports: [..., DBTab,DBTabList,DBTabPanel,DBTabs],
   ...
 })
 
@@ -20,7 +23,14 @@ import { DBTabListModule } from '@db-ui/ngx-components';
 
 ```html app.component.html
 <!-- app.component.html -->
-<db-tab-list>TabList</db-tab-list>
+<db-tabs>
+	<db-tab-list>
+		<db-tab>Tab 1</db-tab>
+		<db-tab>Tab 2</db-tab>
+		<db-tab>Tab 3</db-tab>
+	</db-tab-list>
+	<db-tab-panel>Tab Panel 1</db-tab-panel>
+	<db-tab-panel>Tab Panel 2</db-tab-panel>
+	<db-tab-panel>Tab Panel 3</db-tab-panel>
+</db-tabs>
 ```
-
-
