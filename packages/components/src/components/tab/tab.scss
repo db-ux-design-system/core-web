@@ -11,6 +11,7 @@
 	padding: variables.$db-spacing-fixed-xs variables.$db-spacing-fixed-sm;
 	align-items: center;
 	white-space: nowrap;
+	position: relative;
 
 	input {
 		&[type="radio"] {

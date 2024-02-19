@@ -26,7 +26,6 @@ export default function DBTab(props: DBTabProps) {
 
 	onMount(() => {
 		state.initialized = true;
-		state._id = `${props.name}-tab-${props.index}`;
 		if (props.stylePath) {
 			state.stylePath = props.stylePath;
 		}
@@ -50,12 +49,11 @@ export default function DBTab(props: DBTabProps) {
 			data-icon={props.icon}
 			data-icon-after={props.iconAfter}
 			data-width={props.width}
-			data-alignment={props.alignment}
-			aria-controls={props.name + '-tab-panel-' + props.index}>
+			data-alignment={props.alignment}>
 			<Show when={state.stylePath}>
 				<link rel="stylesheet" href={state.stylePath} />
 			</Show>
-			<input ref={ref} type="radio" name={props.name} id={state._id} />
+			<input ref={ref} type="radio" id={state._id} />
 
 			<Show when={props.label}>{props.label}</Show>
 			{props.children}

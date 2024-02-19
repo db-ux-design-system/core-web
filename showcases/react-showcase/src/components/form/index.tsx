@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { DBTabList, DBTabPanel, DBTabs } from '@db-ui/react-components/src';
 import {
 	DBButton,
 	DBCheckbox,
@@ -8,7 +9,8 @@ import {
 	DBTag,
 	DBTextarea,
 	DBAccordion,
-	DBAccordionItem
+	DBAccordionItem,
+	DBTab
 } from '../../../../../output/react/src';
 import type {
 	ChangeEvent,
@@ -237,6 +239,17 @@ const FormComponent = () => {
 						</DBAccordionItem>
 					))}
 				</DBAccordion>
+
+				<DBTabs>
+					<DBTabList>
+						<DBTab>Test 1</DBTab>
+						<DBTab>Test 2</DBTab>
+						<DBTab>Test 3</DBTab>
+					</DBTabList>
+					<DBTabPanel>Tab Panel 1</DBTabPanel>
+					<DBTabPanel>Tab Panel 2</DBTabPanel>
+					<DBTabPanel>Tab Panel 3</DBTabPanel>
+				</DBTabs>
 			</div>
 		</div>
 	);

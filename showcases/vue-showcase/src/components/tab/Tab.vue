@@ -10,8 +10,6 @@ import { DBTab } from "../../../../../output/vue/vue3/src";
 			#example="{ exampleIndex, variantIndex, exampleName, exampleProps }"
 		>
 			<DBTab
-				:name="exampleName"
-				:index="exampleProps.index"
 				:active="exampleProps.active"
 				:noText="exampleProps.noText"
 				:icon="exampleProps.icon"

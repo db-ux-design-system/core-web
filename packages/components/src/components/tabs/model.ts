@@ -49,6 +49,7 @@ export type DBTabsProps = DBTabsDefaultProps &
 	AlignmentProps;
 
 export interface DBTabsDefaultState {
+	_name: string;
 	scrollContainer?: Element;
 	scroll: (left?: boolean) => void;
 	showScrollLeft?: boolean;

@@ -29,34 +29,20 @@ import {
 					:arrowScrollDistance="75"
 				>
 					<DBTabList>
-						<DBTab :name="exampleName" :index="0"> Test 1 </DBTab>
-						<DBTab :name="exampleName" :index="1"> Test 2 </DBTab>
-						<DBTab :name="exampleName" :index="2"> Test 3 </DBTab>
+						<DBTab> Test 1 </DBTab>
+						<DBTab> Test 2 </DBTab>
+						<DBTab> Test 3 </DBTab>
 						<template v-if="exampleProps.overflow">
-							<DBTab :name="exampleName" :index="3">
-								Test 4
-							</DBTab>
-							<DBTab :name="exampleName" :index="4">
-								Test 5
-							</DBTab></template
-						>
+							<DBTab> Test 4 </DBTab>
+							<DBTab> Test 5 </DBTab>
+						</template>
 					</DBTabList>
-					<DBTabPanel :name="exampleName" :index="0">
-						Tab Panel 1
-					</DBTabPanel>
-					<DBTabPanel :name="exampleName" :index="1">
-						Tab Panel 2
-					</DBTabPanel>
-					<DBTabPanel :name="exampleName" :index="2">
-						Tab Panel 3
-					</DBTabPanel>
+					<DBTabPanel> Tab Panel 1 </DBTabPanel>
+					<DBTabPanel> Tab Panel 2 </DBTabPanel>
+					<DBTabPanel> Tab Panel 3 </DBTabPanel>
 					<template v-if="exampleProps.overflow">
-						<DBTabPanel :name="exampleName" :index="3">
-							Tab Panel 4
-						</DBTabPanel>
-						<DBTabPanel :name="exampleName" :index="4">
-							Tab Panel 5
-						</DBTabPanel>
+						<DBTabPanel> Tab Panel 4 </DBTabPanel>
+						<DBTabPanel> Tab Panel 5 </DBTabPanel>
 					</template>
 				</DBTabs>
 			</div>

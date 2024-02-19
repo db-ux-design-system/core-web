@@ -1,15 +1,13 @@
 import {
 	ActiveProps,
 	AlignmentProps,
-	ClickEventProps,
-	ClickEventState,
 	GlobalProps,
 	GlobalState,
 	IconAfterProps,
-	IconProps, InitializedState,
-	TabProps,
+	IconProps,
+	InitializedState,
 	WidthProps
-} from "../../shared/model";
+} from '../../shared/model';
 
 export type DBTabDefaultProps = {
 	/**
@@ -29,10 +27,8 @@ export type DBTabProps = GlobalProps &
 	IconAfterProps &
 	WidthProps &
 	ActiveProps &
-	AlignmentProps &
-	TabProps;
+	AlignmentProps;
 
 export type DBTabDefaultState = {};
 
-export type DBTabState = DBTabDefaultState & GlobalState &
-	InitializedState;
+export type DBTabState = DBTabDefaultState & GlobalState & InitializedState;

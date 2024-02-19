@@ -6,24 +6,21 @@
 				"name": "functional",
 				"className": "db-ui-functional tab-hide-article",
 				"props": {
-					"label": "functional",
-					"index": 0
+					"label": "functional"
 				}
 			},
 			{
 				"name": "regular (Default)",
 				"className": "db-ui-regular tab-hide-article",
 				"props": {
-					"label": "regular (Default)",
-					"index": 1
+					"label": "regular (Default)"
 				}
 			},
 			{
 				"name": "expressive",
 				"className": "db-ui-expressive tab-hide-article",
 				"props": {
-					"label": "expressive",
-					"index": 2
+					"label": "expressive"
 				}
 			}
 		]
@@ -35,8 +32,7 @@
 				"name": "(Default) Enabled",
 				"className": "tab-hide-article",
 				"props": {
-					"label": "(Default) Enabled",
-					"index": 0
+					"label": "(Default) Enabled"
 				}
 			},
 			{
@@ -44,8 +40,7 @@
 				"className": "tab-hide-article",
 				"props": {
 					"label": "active",
-					"active": true,
-					"index": 1
+					"active": true
 				}
 			}
 		]
@@ -57,8 +52,7 @@
 				"name": "(Default) Text",
 				"className": "tab-hide-article",
 				"props": {
-					"label": "(Default) Text",
-					"index": 0
+					"label": "(Default) Text"
 				}
 			},
 			{
@@ -66,8 +60,7 @@
 				"className": "tab-hide-article",
 				"props": {
 					"label": "Text - Icon (Leading)",
-					"icon": "x_placeholder",
-					"index": 1
+					"icon": "x_placeholder"
 				}
 			},
 			{
@@ -75,8 +68,7 @@
 				"className": "tab-hide-article",
 				"props": {
 					"label": "Text - Icon (Trailing)",
-					"iconAfter": "x_placeholder",
-					"index": 2
+					"iconAfter": "x_placeholder"
 				}
 			},
 			{
@@ -84,8 +76,7 @@
 				"className": "tab-hide-article",
 				"props": {
 					"icon": "x_placeholder",
-					"noText": true,
-					"index": 3
+					"noText": true
 				}
 			}
 		]
@@ -97,8 +88,7 @@
 				"name": "Auto Width (Default)",
 				"className": "tab-hide-article",
 				"props": {
-					"label": "Auto Width (Default)",
-					"index": 0
+					"label": "Auto Width (Default)"
 				}
 			},
 			{
@@ -107,8 +97,7 @@
 				"style": { "width": "500px" },
 				"props": {
 					"label": "Width full",
-					"width": "full",
-					"index": 1
+					"width": "full"
 				}
 			}
 		]
@@ -122,8 +111,7 @@
 				"style": { "width": "500px" },
 				"props": {
 					"label": "Left",
-					"width": "full",
-					"index": 0
+					"width": "full"
 				}
 			},
 			{
@@ -133,8 +121,7 @@
 				"props": {
 					"label": "Centered",
 					"width": "full",
-					"alignment": "center",
-					"index": 1
+					"alignment": "center"
 				}
 			}
 		]

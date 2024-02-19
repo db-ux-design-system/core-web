@@ -22,7 +22,6 @@ export default function DBTabPanel(props: DBTabPanelProps) {
 	});
 
 	onMount(() => {
-		state._id = `${props.name}-tab-panel-${props.index}`;
 		if (props.stylePath) {
 			state.stylePath = props.stylePath;
 		}
@@ -34,8 +33,7 @@ export default function DBTabPanel(props: DBTabPanelProps) {
 			ref={ref}
 			class={cls('db-tab-panel', props.className)}
 			id={state._id}
-			role="tabpanel"
-			aria-labelledby={props.name + '-tab-' + props.index}>
+			role="tabpanel">
 			<Show when={props.content}> {props.content}</Show>
 			{props.children}
 		</article>

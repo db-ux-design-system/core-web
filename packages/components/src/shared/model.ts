@@ -402,18 +402,6 @@ export type AlignmentProps = {
 	alignment?: 'start' | 'center';
 };
 
-export type TabProps = {
-	/**
-	 * The name of the tab list, is required for grouping multiple tabs together. Otherwise, content won't switch by clicking the tabs.
-	 */
-	name: string;
-
-	/**
-	 * The index of the tab, is required for grouping multiple tabs together. Otherwise, content won't switch by clicking the tabs.
-	 */
-	index: number;
-};
-
 export type ActiveProps = {
 	/**
 	 * If the tab is checked/active.
