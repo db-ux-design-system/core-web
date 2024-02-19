@@ -41,7 +41,7 @@
     "cpr": "3.0.1",
     "dotenv": "^16.4.4",
     "nodemon": "3.0.3",
-    "sass": "^1.70.0",
+    "sass": "^1.71.0",
     "style-dictionary": "3.9.2"
   },
   "publishConfig": {
