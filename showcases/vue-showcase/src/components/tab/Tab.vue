@@ -16,6 +16,7 @@ import { DBTab } from "../../../../../output/vue/vue3/src";
 				:iconAfter="exampleProps.iconAfter"
 				:width="exampleProps.width"
 				:alignment="exampleProps.alignment"
+				:disabled="exampleProps.disabled"
 			>
 				{{ exampleName }}
 			</DBTab>

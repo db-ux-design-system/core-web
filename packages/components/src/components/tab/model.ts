@@ -19,6 +19,10 @@ export type DBTabDefaultProps = {
 	 * Define the text next to the icon specified via the icon Property to get hidden.
 	 */
 	noText?: boolean;
+	/**
+	 * The disabled attribute can be set to keep a user from clicking on the tab.
+	 */
+	disabled?: boolean;
 };
 
 export type DBTabProps = GlobalProps &

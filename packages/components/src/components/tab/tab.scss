@@ -13,6 +13,10 @@
 	white-space: nowrap;
 	position: relative;
 
+	&:has(input:disabled) {
+		opacity: variables.$db-opacity-sm;
+	}
+
 	input {
 		&[type="radio"] {
 			position: absolute;
