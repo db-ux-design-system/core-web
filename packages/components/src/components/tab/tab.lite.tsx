@@ -53,7 +53,12 @@ export default function DBTab(props: DBTabProps) {
 			<Show when={state.stylePath}>
 				<link rel="stylesheet" href={state.stylePath} />
 			</Show>
-			<input ref={ref} type="radio" id={state._id} />
+			<input
+				disabled={props.disabled}
+				ref={ref}
+				type="radio"
+				id={state._id}
+			/>
 
 			<Show when={props.label}>{props.label}</Show>
 			{props.children}

@@ -80,10 +80,16 @@ export default function DBTabs(props: DBTabsProps) {
 			if (childTabLists?.length > 0) {
 				const firstTabList = childTabLists.item(0);
 				if (firstTabList) {
-					firstTabList.setAttribute(
-						'aria-orientation',
-						props.orientation || 'horizontal'
-					);
+					if (
+						!firstTabList
+							.getAttributeNames()
+							.includes('aria-orientation')
+					) {
+						firstTabList.setAttribute(
+							'aria-orientation',
+							props.orientation || 'horizontal'
+						);
+					}
 
 					if (props.behaviour === 'arrows') {
 						const scrollContainers =
@@ -105,14 +111,19 @@ export default function DBTabs(props: DBTabsProps) {
 					if (tabs?.length > 0) {
 						Array.from<Element>(tabs).forEach(
 							(tab: Element, index: number) => {
-								tab.setAttribute(
-									'data-width',
-									props.width || 'auto'
-								);
-								tab.setAttribute(
-									'data-alignment',
-									props.alignment || 'start'
-								);
+								const attributes = tab.getAttributeNames();
+								if (!attributes.includes('data-width')) {
+									tab.setAttribute(
+										'data-width',
+										props.width || 'auto'
+									);
+								}
+								if (!attributes.includes('data-alignment')) {
+									tab.setAttribute(
+										'data-alignment',
+										props.alignment || 'start'
+									);
+								}
 
 								const input = tab.getElementsByTagName('input');
 								if (input.length > 0) {
