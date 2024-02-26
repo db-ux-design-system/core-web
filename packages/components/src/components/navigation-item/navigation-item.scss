@@ -77,6 +77,16 @@
 	position: relative;
 	inline-size: 100%;
 
+	@include screen-sizes.screen("md", "max") {
+		&:not([data-width="full"]) {
+			.db-navigation-item-expand-button {
+				&::after {
+					--db-icon-margin-start: auto;
+				}
+			}
+		}
+	}
+
 	a {
 		@extend %navigation-item;
 		text-decoration: none;
@@ -104,13 +114,17 @@
 		}
 	}
 
-	&[aria-current="page"] {
-		font-weight: 700;
-	}
-
+	&:not(:has([aria-current="page"])),
 	&:not([aria-current="page"]) {
 		// revert for sub-navigation
 		font-weight: normal;
+	}
+
+	&:has([aria-current="page"]),
+	&[aria-current="page"] {
+		// add puls for main-navigation items
+		@extend %show-db-puls-auto;
+		font-weight: 700;
 	}
 
 	&:not([data-width="full"]) {
@@ -255,6 +269,13 @@
 				block-size: 100%;
 				inline-size: variables.$db-spacing-fixed-xs;
 			}
+		}
+	}
+
+	.db-navigation-item:has([aria-current="page"]) {
+		// Hide puls for sub-navigation
+		&::after {
+			content: none;
 		}
 	}
 

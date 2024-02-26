@@ -71,9 +71,6 @@
 			}
 
 			&[aria-current="page"] {
-				// add puls for main-navigation items
-				@extend %show-db-puls-auto;
-
 				menu {
 					// hide puls for non main-navigation items
 					[aria-current="page"] {
