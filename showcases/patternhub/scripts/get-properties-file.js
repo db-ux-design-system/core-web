@@ -65,7 +65,7 @@ const getPropertiesFile = ({ displayName, description, props }) => {
 				? `<pre><code className="code-pre-wrap">${options.replaceAll(
 						'<T>',
 						''
-				  )}</code></pre>`
+					)}</code></pre>`
 				: ''
 		} |\n`;
 	}
