@@ -9,8 +9,8 @@ const updatePlaywright = () => {
 		console.error('Playwright version is missing');
 		process.exit(1);
 	} else if (version === oldPlaywrightVersion) {
-		console.error('Playwright version is up to date');
-		process.exit(1);
+		console.warn('Playwright version is up to date');
+		return false;
 	}
 
 	const replacements = [
@@ -39,6 +39,6 @@ const updatePlaywright = () => {
 		Replace.sync(replacement);
 	}
 
-	return 'Success';
+	return true;
 };
 export default updatePlaywright;

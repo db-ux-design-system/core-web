@@ -20,17 +20,21 @@ jobs:
 
       - name: 🪁 Update Playwright
         uses: actions/github-script@v7
+        id: update-playwright
         with:
+          result-encoding: string
           script: |
             const { default: updatePlaywright } = await import('${{ github.workspace }}/.github/scripts/update-playwright.js');
-            console.log(await updatePlaywright());
+            return await updatePlaywright();
 
       - name: 🎹 Update package-lock.json in e2e dir
+        if: ${{ steps.update-playwright.outputs.result == "true" }}
         run: |
           cd e2e
           npm i
 
       - name: 🐱‍👤 Commit and push all changed files
+        if: ${{ steps.update-playwright.outputs.result == "true" }}
         env:
           CI_COMMIT_MESSAGE: "chore: update playwright"
           CI_COMMIT_AUTHOR: github-actions[bot]
@@ -38,4 +42,4 @@ jobs:
           git config --global user.name "${{ env.CI_COMMIT_AUTHOR }}"
           git config --global user.email "support@github.com"
           git commit -a -m "${{ env.CI_COMMIT_MESSAGE }}"
-          git push origin HEAD:${{github.event.pull_request.head.ref}}
+          git push origin head:${{github.event.pull_request.head.ref}}
