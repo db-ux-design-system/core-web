@@ -1,1 +1,1 @@
-export { default as DBTabList } from "./tab-list";
+export { default as DBTabList } from './tab-list';

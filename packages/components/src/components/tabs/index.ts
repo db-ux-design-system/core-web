@@ -1,1 +1,1 @@
-export { default as DBTabs } from "./tabs";
+export { default as DBTabs } from './tabs';

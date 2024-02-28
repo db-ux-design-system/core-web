@@ -46,18 +46,22 @@ const App = ({ Component, pageProps }: AppProps) => (
 					<LinkHeader id={props.id} />
 				</h6>
 			),
-			a: (props) => (
-				<a target="_blank" referrerPolicy="no-referrer" {...props} />
+			a: (properties) => (
+				<a
+					target="_blank"
+					referrerPolicy="no-referrer"
+					{...properties}
+				/>
 			),
-			img: (props) => (
+			img: (properties) => (
 				<img
-					{...props}
+					{...properties}
 					src={
-						props.src?.startsWith('http')
-							? props.src
+						properties.src?.startsWith('http')
+							? properties.src
 							: `${process.env.NEXT_PUBLIC_BASE_PATH ?? ''}${
-									props.src
-							  }`
+									properties.src
+								}`
 					}
 				/>
 			)

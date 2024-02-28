@@ -1,10 +1,12 @@
 # Icons
 
 This icon package contains all functional and illustrative icons that are provided in the DB UX Design System. The icons can also be found individually in the icon libraries of the marketing portal:
-- [Functional Icons](https://marketingportal.extranet.deutschebahn.com/marketingportal/Marke-und-Design/Basiselemente/Icons/Icon-Bibliotheken/Bibliothek-Funktionale-Icons)
-- [Illustrative Icons](https://marketingportal.extranet.deutschebahn.com/marketingportal/Marke-und-Design/Basiselemente/Icons/Icon-Bibliotheken/Bibliothek-Illustrative-Icons)
+
+-   [Functional Icons](https://marketingportal.extranet.deutschebahn.com/marketingportal/Marke-und-Design/Basiselemente/Icons/Icon-Bibliotheken/Bibliothek-Funktionale-Icons)
+-   [Illustrative Icons](https://marketingportal.extranet.deutschebahn.com/marketingportal/Marke-und-Design/Basiselemente/Icons/Icon-Bibliotheken/Bibliothek-Illustrative-Icons)
 
 ## Dev related: How to provide these icons
+
 ### Modifications for SVGs
 
 We process the following changes:

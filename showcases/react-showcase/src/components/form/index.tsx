@@ -70,8 +70,8 @@ const FormComponent = () => {
 							name="input-name"
 							value={input}
 							dataList={dataList}
-							onChange={(evt) => {
-								setInput(evt.target.value);
+							onChange={(event) => {
+								setInput(event.target.value);
 							}}
 						/>
 						<p>Textarea:</p>
