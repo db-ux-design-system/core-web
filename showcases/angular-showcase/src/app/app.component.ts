@@ -1,5 +1,11 @@
-import { Component, type OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { ActivatedRoute, Router, RouterOutlet } from '@angular/router';
+import { DBSelect } from '../../../../output/angular/src/components/select/select';
+import { DBMainNavigation } from '../../../../output/angular/src/components/main-navigation/main-navigation';
+import { DBBrand } from '../../../../output/angular/src/components/brand/brand';
+import { DBHeader } from '../../../../output/angular/src/components/header/header';
+import { DBPage } from '../../../../output/angular/src/components/page/page';
 import {
 	COLOR,
 	COLORS,
@@ -8,6 +14,12 @@ import {
 	COLOR_CONST,
 	TONALITY_CONST
 } from '../../../../packages/components/src/shared/constants';
+import { DBButton } from '../../../../output/angular/src/components/button';
+import { ActionBarDirective } from '../../../../output/angular/src/components/header/ActionBar.directive';
+import { NavigationDirective } from '../../../../output/angular/src/components/header/Navigation.directive';
+import { MetaNavigationDirective } from '../../../../output/angular/src/components/header/MetaNavigation.directive';
+import { NavigationContentDirective } from '../../../../output/angular/src/components/navigation-item/NavigationContent.directive';
+import { NavItemComponent } from './nav-item/nav-item.component';
 import {
 	getSortedNavigationItems,
 	NAVIGATION_ITEMS,
@@ -16,6 +28,22 @@ import {
 
 @Component({
 	selector: 'app-root',
+	standalone: true,
+	imports: [
+		FormsModule,
+		RouterOutlet,
+		NavItemComponent,
+		DBPage,
+		DBHeader,
+		DBBrand,
+		DBMainNavigation,
+		DBSelect,
+		DBButton,
+		ActionBarDirective,
+		NavigationDirective,
+		MetaNavigationDirective,
+		NavigationContentDirective
+	],
 	templateUrl: './app.component.html'
 })
 export class AppComponent implements OnInit {
@@ -28,8 +56,8 @@ export class AppComponent implements OnInit {
 	tonality = TONALITY.REGULAR;
 	color = COLOR.BASE;
 
-	page: string;
-	fullscreen: boolean;
+	page?: string;
+	fullscreen = false;
 
 	constructor(
 		private readonly router: Router,

@@ -1,1 +1,1 @@
-export { DBTag, DBTagModule } from './tag';
+export { DBTag } from './tag';

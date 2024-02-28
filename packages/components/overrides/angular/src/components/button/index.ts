@@ -1,1 +1,1 @@
-export { DBButton, DBButtonModule } from './button';
+export { DBButton } from './button';

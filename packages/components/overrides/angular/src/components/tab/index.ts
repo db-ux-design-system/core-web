@@ -1,1 +1,1 @@
-export { DBTab, DBTabModule } from './tab';
+export { DBTab } from './tab';

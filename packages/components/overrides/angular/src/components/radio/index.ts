@@ -1,1 +1,1 @@
-export { DBRadio, DBRadioModule } from './radio';
+export { DBRadio } from './radio';

@@ -5,7 +5,12 @@ export type ComponentParserType = {
 export type ComponentType = {
 	index?: string | number;
 	type?: /* Template hygen type */
-	| 'tooltip'
+	| 'tab-panel'
+		| 'tabs'
+		| 'tab-list'
+		| 'tab'
+		| 'tab-bar'
+		| 'tooltip'
 		| 'popover'
 		| 'main-navigation'
 		| 'accordion-item'

@@ -1,0 +1,1 @@
+export { DBTabs } from './tabs';

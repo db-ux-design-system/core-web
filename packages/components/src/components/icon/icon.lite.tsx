@@ -6,7 +6,8 @@ import {
 	useStore
 } from '@builder.io/mitosis';
 import type { DBIconState, DBIconProps } from './model';
-import { cls } from '../../utils';
+import { cls, uuid } from '../../utils';
+import { DEFAULT_ID } from '../../shared/constants';
 
 useMetadata({
 	isAttachedToShadowDom: true
@@ -15,9 +16,12 @@ useMetadata({
 export default function DBIcon(props: DBIconProps) {
 	const ref = useRef<HTMLSpanElement>(null);
 	// jscpd:ignore-start
-	const state = useStore<DBIconState>({});
+	const state = useStore<DBIconState>({
+		_id: DEFAULT_ID
+	});
 
 	onMount(() => {
+		state._id = props.id || 'icon-' + uuid();
 		if (props.stylePath) {
 			state.stylePath = props.stylePath;
 		}
@@ -27,7 +31,7 @@ export default function DBIcon(props: DBIconProps) {
 	return (
 		<span
 			ref={ref}
-			id={props.id}
+			id={state._id}
 			class={cls('db-icon', props.className)}
 			data-icon={props.icon}
 			data-icon-weight={props.weight}

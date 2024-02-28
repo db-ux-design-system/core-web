@@ -1,1 +1,1 @@
-export { DBSection, DBSectionModule } from './section';
+export { DBSection } from './section';
