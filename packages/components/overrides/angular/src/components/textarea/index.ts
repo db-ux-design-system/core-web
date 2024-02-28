@@ -1,1 +1,1 @@
-export { DBTextarea, DBTextareaModule } from './textarea';
+export { DBTextarea } from './textarea';

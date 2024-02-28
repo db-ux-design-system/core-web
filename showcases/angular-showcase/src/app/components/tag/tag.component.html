@@ -19,32 +19,30 @@
 			[removeButton]="exampleProps.removeButton"
 			(onRemove)="showAlert(exampleName)"
 		>
-			<db-button *ngIf="exampleProps.component === 'button'">{{
-				exampleName
-			}}</db-button>
-			<db-link *ngIf="exampleProps.component === 'link'" href="#">
+			@if (exampleProps.component === "button") {
+				<db-button>{{ exampleName }}</db-button>
+			}
+			@if (exampleProps.component === "link") {
+				<db-link href="#">
+					{{ exampleName }}
+				</db-link>
+			}
+			@if (exampleProps.component === "checkbox") {
+				<db-checkbox [checked]="exampleProps.checked">{{
+					exampleName
+				}}</db-checkbox>
+			}
+			@if (exampleProps.component === "radio") {
+				<db-radio name="radio" [checked]="exampleProps.checked">{{
+					exampleName
+				}}</db-radio>
+			}
+			@if (!exampleProps.component && !exampleProps.overflow) {
 				{{ exampleName }}
-			</db-link>
-			<db-checkbox
-				*ngIf="exampleProps.component === 'checkbox'"
-				[checked]="exampleProps.checked"
-				>{{ exampleName }}</db-checkbox
-			>
-			<db-radio
-				name="radio"
-				*ngIf="exampleProps.component === 'radio'"
-				[checked]="exampleProps.checked"
-				>{{ exampleName }}</db-radio
-			>
-			<ng-container
-				*ngIf="!exampleProps.component && !exampleProps.overflow"
-				>{{ exampleName }}</ng-container
-			>
-			<ng-container
-				*ngIf="!exampleProps.component && exampleProps.overflow"
-			>
+			}
+			@if (!exampleProps.component && exampleProps.overflow) {
 				<span>{{ exampleName }}</span>
-			</ng-container>
+			}
 		</db-tag>
 	</ng-template>
 </app-default-component>

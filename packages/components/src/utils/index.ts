@@ -56,8 +56,8 @@ export const getMessageIcon = (
 	return messageIcon
 		? messageIcon
 		: !variant || variant === 'adaptive'
-		  ? 'none'
-		  : undefined;
+			? 'none'
+			: undefined;
 };
 
 export const filterPassingProps = (
@@ -79,10 +79,23 @@ export const filterPassingProps = (
 			return obj;
 		}, {});
 
+export const visibleInVX = (el: Element) => {
+	const { left, right } = el.getBoundingClientRect();
+	const { innerWidth } = window;
+	return left >= 0 && right <= innerWidth;
+};
+export const visibleInVY = (el: Element) => {
+	const { top, bottom } = el.getBoundingClientRect();
+	const { innerHeight } = window;
+	return top >= 0 && bottom <= innerHeight;
+};
+
 export default {
 	filterPassingProps,
 	getMessageIcon,
 	cls,
 	addAttributeToChildren,
-	uuid
+	uuid,
+	visibleInVX,
+	visibleInVY
 };

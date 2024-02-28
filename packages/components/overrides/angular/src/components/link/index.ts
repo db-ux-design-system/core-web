@@ -1,1 +1,1 @@
-export { DBLink, DBLinkModule } from './link';
+export { DBLink } from './link';

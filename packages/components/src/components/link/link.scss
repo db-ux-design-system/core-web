@@ -17,7 +17,6 @@
 	@extend %default-fg-transition;
 	@extend %db-link-height;
 	inline-size: fit-content;
-	align-items: center;
 
 	// Link underline
 	// TODO: We should evaluate whether we could move this declaration to the @font-face declarations even already
@@ -48,6 +47,10 @@
 	&:not([data-variant="inline"]) {
 		&[data-content="internal"] {
 			@include icons.set-icon("arrow_forward", "after");
+
+			&::after {
+				vertical-align: top;
+			}
 		}
 
 		&[data-content="external"] {

@@ -6,8 +6,9 @@ import {
 	useStore
 } from '@builder.io/mitosis';
 import type { DBButtonProps, DBButtonState } from './model';
-import { cls } from '../../utils';
+import { cls, uuid } from '../../utils';
 import { ClickEvent } from '../../shared/model';
+import { DEFAULT_ID } from '../../shared/constants';
 
 useMetadata({
 	isAttachedToShadowDom: true
@@ -17,6 +18,7 @@ export default function DBButton(props: DBButtonProps) {
 	const ref = useRef<HTMLButtonElement>(null);
 	// jscpd:ignore-start
 	const state = useStore<DBButtonState>({
+		_id: DEFAULT_ID,
 		handleClick: (event: ClickEvent<HTMLButtonElement>) => {
 			if (props.onClick) {
 				props.onClick(event);
@@ -25,6 +27,7 @@ export default function DBButton(props: DBButtonProps) {
 	});
 
 	onMount(() => {
+		state._id = props.id || 'button-' + uuid();
 		if (props.stylePath) {
 			state.stylePath = props.stylePath;
 		}
@@ -34,7 +37,7 @@ export default function DBButton(props: DBButtonProps) {
 	return (
 		<button
 			ref={ref}
-			id={props.id}
+			id={state._id}
 			class={cls('db-button', props.className, {
 				'is-icon-text-replace': props.noText
 			})}
