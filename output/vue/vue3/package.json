@@ -31,11 +31,11 @@
     "test:components": "playwright test -c playwright.config.ts"
   },
   "dependencies": {
-    "vue": "^3.4.20"
+    "vue": "^3.4.21"
   },
   "devDependencies": {
     "@axe-core/playwright": "^4.8.5",
-    "@playwright/experimental-ct-vue": "1.41.2",
+    "@playwright/experimental-ct-vue": "1.42.0",
     "@vitejs/plugin-vue": "^5.0.4",
     "sass": "^1.71.1",
     "typescript": "^5.3.3",

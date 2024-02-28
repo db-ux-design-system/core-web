@@ -110,6 +110,10 @@
 	margin-block: auto;
 }
 
+.fixed-header-footer {
+	overflow: hidden;
+}
+
 .tab-hide-article article {
 	display: none !important;
 }

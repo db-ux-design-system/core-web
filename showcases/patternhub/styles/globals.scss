@@ -5,6 +5,10 @@
 
 @forward "@db-ui/components/build/styles/db-ui-42-webpack";
 
+.db-main {
+	scroll-behavior: smooth;
+}
+
 #__next {
 	height: inherit;
 }
@@ -315,5 +319,27 @@ div[class^="ch-"] {
 
 	section {
 		padding: variables.$db-spacing-fixed-md;
+	}
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	a:is(.header-link) {
+		display: inline-block;
+		margin-block: auto;
+		margin-inline-start: variables.$db-spacing-fixed-xs;
+		visibility: hidden;
+		text-decoration: none;
+		font-size: 0;
+	}
+
+	&:hover {
+		a:is(.header-link) {
+			visibility: visible;
+		}
 	}
 }
