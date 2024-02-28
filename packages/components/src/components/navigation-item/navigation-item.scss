@@ -114,17 +114,13 @@
 		}
 	}
 
-	&:not(:has([aria-current="page"])),
-	&:not([aria-current="page"]) {
-		// revert for sub-navigation
-		font-weight: normal;
-	}
-
 	&:has([aria-current="page"]),
 	&[aria-current="page"] {
 		// add puls for main-navigation items
 		@extend %show-db-puls-auto;
-		font-weight: 700;
+		& > :is(a, button) {
+			font-weight: 700;
+		}
 	}
 
 	&:not([data-width="full"]) {
