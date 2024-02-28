@@ -5,11 +5,6 @@
 
 @forward "@db-ui/components/build/styles/db-ui-42-webpack";
 
-html {
-	position: fixed;
-	inset: 0;
-}
-
 .db-main {
 	scroll-behavior: smooth;
 }
@@ -333,16 +328,17 @@ h3,
 h4,
 h5,
 h6 {
-	a {
+	a:is(.header-link) {
 		display: inline-block;
 		margin-block: auto;
 		margin-inline-start: variables.$db-spacing-fixed-xs;
 		visibility: hidden;
 		text-decoration: none;
+		font-size: 0;
 	}
 
 	&:hover {
-		a {
+		a:is(.header-link) {
 			visibility: visible;
 		}
 	}

@@ -4,8 +4,9 @@ import { DBIcon } from '../src';
 const LinkHeader = ({ id }) => {
 	if (id) {
 		return (
-			<Link href={`#${id}`} scroll={false}>
-				<DBIcon icon="add_link">{id}</DBIcon>
+			<Link className="header-link" href={`?current=${id}`}>
+				<DBIcon icon="add_link" />
+				{id}
 			</Link>
 		);
 	}
