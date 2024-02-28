@@ -118,6 +118,7 @@
 	&[aria-current="page"] {
 		// add puls for main-navigation items
 		@extend %show-db-puls-auto;
+
 		& > :is(a, button) {
 			font-weight: 700;
 		}
