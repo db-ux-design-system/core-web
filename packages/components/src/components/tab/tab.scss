@@ -1,0 +1,65 @@
+@use "@db-ui/foundations/build/scss/variables";
+@use "@db-ui/foundations/build/scss/colors";
+@use "../../styles/component";
+
+.db-tab {
+	@extend %default-interactive-component;
+	@extend %transparent-border;
+	@include colors.bg-transparent-interactive();
+
+	display: inline-flex;
+	padding: variables.$db-spacing-fixed-xs variables.$db-spacing-fixed-sm;
+	align-items: center;
+	white-space: nowrap;
+	position: relative;
+
+	&:has(input:disabled) {
+		opacity: variables.$db-opacity-sm;
+	}
+
+	input {
+		&[type="radio"] {
+			position: absolute;
+			appearance: none;
+			inline-size: 100%;
+			block-size: calc(100% + #{variables.$db-border-height-sm});
+			margin-inline-end: initial;
+			inset: 0;
+
+			&:focus-within,
+			&:focus-visible {
+				outline: none;
+				box-shadow: none;
+			}
+		}
+	}
+
+	&.is-icon-text-replace[data-icon]::before {
+		margin-inline-end: 0;
+	}
+
+	&:has(input:focus-visible) {
+		@extend %focus-placeholder;
+	}
+
+	&:has(input:checked) {
+		font-weight: 700;
+	}
+
+	&[data-icon]::before {
+		margin-inline-end: variables.$db-spacing-fixed-sm;
+	}
+
+	&[data-icon-after]::after {
+		margin-inline-start: variables.$db-spacing-fixed-sm;
+	}
+
+	&[data-width="full"] {
+		inline-size: 100%;
+
+		&[data-alignment="center"] {
+			text-align: center;
+			justify-content: center;
+		}
+	}
+}

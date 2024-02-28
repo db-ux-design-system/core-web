@@ -1,1 +1,1 @@
-export { DBCheckbox, DBCheckboxModule } from './checkbox';
+export { DBCheckbox } from './checkbox';

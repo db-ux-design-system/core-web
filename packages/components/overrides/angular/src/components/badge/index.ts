@@ -1,1 +1,1 @@
-export { DBBadge, DBBadgeModule } from './badge';
+export { DBBadge } from './badge';

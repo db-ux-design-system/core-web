@@ -4,16 +4,16 @@ For general installation and configuration take a look at the [ngx-components](h
 
 ### Load component
 
-```ts app.module.ts
-//app.module.ts
-import { DBRadioModule } from '@db-ui/ngx-components';
+```ts app.component.ts
+// app.component.ts
+import { DBRadio } from '@db-ui/ngx-components';
 
-@NgModule({
-  ...
-  imports: [..., DBRadioModule],
-  ...
+@Component({
+  // ...
+  standalone: true,
+  imports: [..., DBRadio],
+  // ...
 })
-
 ```
 
 ### Use component
@@ -21,7 +21,8 @@ import { DBRadioModule } from '@db-ui/ngx-components';
 ```html app.component.html
 <!-- app.component.html -->
 <ul>
-	<li *ngFor="let radioName of radioNames">
+	@for (radioName of radioNames; track radioName) {
+	<li>
 		<db-radio
 			(change)="radio = radioName"
 			[label]="'Radio ' + radioName"
@@ -29,6 +30,7 @@ import { DBRadioModule } from '@db-ui/ngx-components';
 			name="RadioGroup"
 		></db-radio>
 	</li>
+	}
 </ul>
 ```
 
@@ -51,11 +53,17 @@ export class AppComponent {
 Third party controls require a `ControlValueAccessor` to function with angular forms. Adding an `ngDefaultControl` attribute will allow them to use that directive.
 [Further information](https://stackoverflow.com/a/46465959)
 
-```ts app.module.ts
-// app.module.ts
-@NgModule({
-  …
-  imports: [ FormsModule, …]
+```ts app.component.ts
+//app.component.ts
+import { FormsModule } from '@angular/forms';
+
+@Component({
+	// ...
+	imports: [
+		// ...,
+		FormsModule
+    ],
+	// ...
 })
 ```
 

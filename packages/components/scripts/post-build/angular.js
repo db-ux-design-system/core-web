@@ -13,14 +13,6 @@ const changeFile = (component, input) => {
 				!line.includes(`[key]=`)
 		)
 		.map((line) => {
-			if (
-				line.includes(`import { DB`) &&
-				line.includes(`../`) &&
-				!line.includes(`Module`)
-			) {
-				return line.replace(` } from "../`, `Module } from "../`);
-			}
-
 			if (line.includes(': ElementRef')) {
 				return line.replace(': ElementRef', ': ElementRef | undefined');
 			}
@@ -59,7 +51,7 @@ const setControlValueAccessorReplacements = (
 	replacements.push({
 		from: '} from "@angular/core";',
 		to:
-			`, Renderer2 } from "@angular/core";\n` +
+			`Renderer2 } from "@angular/core";\n` +
 			`import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';\n`
 	});
 
@@ -148,10 +140,10 @@ const setDirectiveReplacements = (
 		});
 
 		replacements.push({
-			from: 'import { NgModule } from "@angular/core";',
+			from: '@Component({',
 			to:
-				'import { NgModule } from "@angular/core";\n' +
-				`import { ${directive.name}Directive } from './${directive.name}.directive';\n`
+				`import { ${directive.name}Directive } from './${directive.name}.directive';\n\n` +
+				'@Component({'
 		});
 
 		FS.writeFileSync(
@@ -160,7 +152,8 @@ const setDirectiveReplacements = (
 				"import { Directive } from '@angular/core';" +
 				`
 @Directive({
-\tselector: '[db${directive.name}]'
+\tselector: '[db${directive.name}]',
+\tstandalone: true
 })
 export class ${directive.name}Directive {}
 `
@@ -168,8 +161,8 @@ export class ${directive.name}Directive {}
 	}
 
 	replacements.push({
-		from: 'import { NgModule } from "@angular/core";',
-		to: "import { NgModule, ContentChild, TemplateRef } from '@angular/core';"
+		from: '} from "@angular/core";',
+		to: 'ContentChild, TemplateRef } from  "@angular/core";'
 	});
 };
 
@@ -191,6 +184,15 @@ module.exports = (tmp) => {
 				to: 'disabled'
 			}
 		];
+
+		if (component.config?.angular?.initValues) {
+			component.config?.angular?.initValues.forEach((init) => {
+				replacements.push({
+					from: `["${init.key}"];`,
+					to: `["${init.key}"] = ${init.value === '' ? '""' : init.value};`
+				});
+			});
+		}
 
 		if (component.config?.angular?.controlValueAccessor) {
 			setControlValueAccessorReplacements(

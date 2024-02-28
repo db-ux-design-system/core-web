@@ -1,1 +1,1 @@
-export { DBCodeDocs, DBCodeDocsModule } from './code-docs';
+export { DBCodeDocs } from './code-docs';

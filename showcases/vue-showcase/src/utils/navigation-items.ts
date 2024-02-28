@@ -1,4 +1,6 @@
 import type { RouteRecordRaw } from 'vue-router';
+import Tabs from '../components/tabs/Tabs.vue';
+import Tab from '../components/tab/Tab.vue';
 import Tooltip from '../components/tooltip/Tooltip.vue';
 import Popover from '../components/popover/Popover.vue';
 import AccordionItem from '../components/accordion-item/AccordionItem.vue';
@@ -83,7 +85,10 @@ export const navigationItems: NavItem[] = [
 				label: 'AccordionItem',
 				component: AccordionItem
 			},
-			{ path: '/04/tooltip', label: 'Tooltip', component: Tooltip }
+			{ path: '/04/tooltip', label: 'Tooltip', component: Tooltip },
+			{ path: '/04/tab', label: 'Tab', component: Tab },
+
+			{ path: '/04/tabs', label: 'Tabs', component: Tabs }
 		])
 	},
 	{
