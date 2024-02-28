@@ -10,8 +10,7 @@ import {
 import { DBDrawerState, DBDrawerProps } from './model';
 import { DBButton } from '../button';
 import { DEFAULT_CLOSE_BUTTON, DEFAULT_ID } from '../../shared/constants';
-import { cls } from '../../utils';
-import { uuid } from '../../utils';
+import { cls, uuid } from '../../utils';
 
 useMetadata({
 	isAttachedToShadowDom: true,

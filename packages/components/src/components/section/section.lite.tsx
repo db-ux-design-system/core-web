@@ -1,6 +1,13 @@
-import {onMount, Show, useMetadata, useRef, useStore} from '@builder.io/mitosis';
+import {
+	onMount,
+	Show,
+	useMetadata,
+	useRef,
+	useStore
+} from '@builder.io/mitosis';
 import { DBSectionState, DBSectionProps } from './model';
-import { cls } from '../../utils';
+import { cls, uuid } from '../../utils';
+import { DEFAULT_ID } from '../../shared/constants';
 
 useMetadata({
 	isAttachedToShadowDom: true
@@ -9,9 +16,12 @@ useMetadata({
 export default function DBSection(props: DBSectionProps) {
 	const ref = useRef<HTMLDivElement>(null);
 	// jscpd:ignore-start
-	const state = useStore<DBSectionState>({});
+	const state = useStore<DBSectionState>({
+		_id: DEFAULT_ID
+	});
 
 	onMount(() => {
+		state._id = props.id || 'section-' + uuid();
 		if (props.stylePath) {
 			state.stylePath = props.stylePath;
 		}
@@ -21,7 +31,7 @@ export default function DBSection(props: DBSectionProps) {
 	return (
 		<section
 			ref={ref}
-			id={props.id}
+			id={state._id}
 			className={cls('db-section', props.className)}
 			data-size={props.size || 'medium'}>
 			<Show when={state.stylePath}>

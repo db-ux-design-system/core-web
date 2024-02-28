@@ -2,14 +2,12 @@ import {
 	onMount,
 	onUpdate,
 	Show,
-	Slot,
 	useMetadata,
 	useRef,
 	useStore
 } from '@builder.io/mitosis';
 import type { DBTabProps, DBTabState } from './model';
 import { cls } from '../../utils';
-import { ClickEvent } from '../../shared/model';
 import { DEFAULT_ID } from '../../shared/constants';
 
 useMetadata({

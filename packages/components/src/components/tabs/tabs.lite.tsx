@@ -23,6 +23,7 @@ export default function DBTabs(props: DBTabsProps) {
 	const ref = useRef<HTMLDivElement>(null);
 	// jscpd:ignore-start
 	const state = useStore<DBTabsState>({
+		_id: DEFAULT_ID,
 		_name: '',
 		initialized: false,
 		showScrollLeft: false,
@@ -63,6 +64,7 @@ export default function DBTabs(props: DBTabsProps) {
 	});
 
 	onMount(() => {
+		state._id = props.id || 'tabs-' + uuid();
 		if (props.stylePath) {
 			state.stylePath = props.stylePath;
 		}
@@ -183,7 +185,7 @@ export default function DBTabs(props: DBTabsProps) {
 	return (
 		<div
 			ref={ref}
-			id={props.id}
+			id={state._id}
 			class={cls('db-tabs', props.className)}
 			data-orientation={props.orientation}
 			data-scroll-behaviour={props.behaviour}>

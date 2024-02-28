@@ -6,7 +6,7 @@ import {
 	useStore
 } from '@builder.io/mitosis';
 import { DBTabListProps, DBTabListState } from './model';
-import { cls, uuid } from '../../utils';
+import { cls } from '../../utils';
 import { DEFAULT_ID } from '../../shared/constants';
 
 useMetadata({
@@ -22,7 +22,6 @@ export default function DBTabList(props: DBTabListProps) {
 	});
 
 	onMount(() => {
-		state._id = props.id || 'tab-list-' + uuid();
 		if (props.stylePath) {
 			state.stylePath = props.stylePath;
 		}

@@ -10,7 +10,7 @@ import {
 import { DBNavigationItemProps, DBNavigationItemState } from './model';
 import { DBButton } from '../button';
 import { cls, uuid, visibleInVX, visibleInVY } from '../../utils';
-import { DEFAULT_BACK } from '../../shared/constants';
+import { DEFAULT_BACK, DEFAULT_ID } from '../../shared/constants';
 import { ClickEvent } from '../../shared/model';
 
 useMetadata({
@@ -22,6 +22,7 @@ export default function DBNavigationItem(props: DBNavigationItemProps) {
 
 	// jscpd:ignore-start
 	const state = useStore<DBNavigationItemState>({
+		_id: DEFAULT_ID,
 		initialized: false,
 		hasAreaPopup: false,
 		hasSubNavigation: true,
@@ -43,6 +44,7 @@ export default function DBNavigationItem(props: DBNavigationItemProps) {
 	});
 
 	onMount(() => {
+		state._id = props.id || 'navigation-item-' + uuid();
 		state.initialized = true;
 		if (props.stylePath) {
 			state.stylePath = props.stylePath;
@@ -92,7 +94,7 @@ export default function DBNavigationItem(props: DBNavigationItemProps) {
 	return (
 		<li
 			ref={ref}
-			id={props.id}
+			id={state._id}
 			class={cls('db-navigation-item', props.className)}
 			data-width={props.width}
 			data-icon={props.icon}
