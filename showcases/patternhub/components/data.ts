@@ -6,7 +6,7 @@ import type {
 
 export const getVariants = (
 	defaultComponentVariants: DefaultComponentVariants[],
-	getExample: (props: any) => ReactElement,
+	getExample: (properties: any) => ReactElement,
 	codeSlots: any[]
 ): DefaultComponentVariants[] => {
 	return defaultComponentVariants.map((variant, index) => ({

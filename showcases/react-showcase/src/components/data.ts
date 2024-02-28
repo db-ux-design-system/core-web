@@ -3,7 +3,7 @@ import type { DefaultComponentVariants } from '../../../shared/default-component
 
 export const getVariants = (
 	defaultComponentVariants: DefaultComponentVariants[],
-	getExample: (props: any) => ReactElement
+	getExample: (properties: any) => ReactElement
 ): DefaultComponentVariants[] =>
 	defaultComponentVariants.map((variant, variantIndex) => ({
 		...variant,

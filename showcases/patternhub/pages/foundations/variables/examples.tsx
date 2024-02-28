@@ -43,7 +43,7 @@ const Example = () => {
 										<div
 											className={`example-${example
 												.toLowerCase()
-												.replace(/ /g, '-')}`}>
+												.replaceAll(' ', '-')}`}>
 											{example === 'Spacing fixed' && (
 												<div>
 													<DBIcon icon="account">

@@ -1,1 +1,1 @@
-export { default as DBTabPanel } from "./tab-panel";
+export { default as DBTabPanel } from './tab-panel';
