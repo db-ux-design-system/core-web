@@ -28,13 +28,13 @@ jobs:
             return await updatePlaywright();
 
       - name: 🎹 Update package-lock.json in e2e dir
-        if: ${{ steps.update-playwright.outputs.result == "true" }}
+        if: ${{ steps.update-playwright.outputs.result == 'true' }}
         run: |
           cd e2e
           npm i
 
       - name: 🐱‍👤 Commit and push all changed files
-        if: ${{ steps.update-playwright.outputs.result == "true" }}
+        if: ${{ steps.update-playwright.outputs.result == 'true' }}
         env:
           CI_COMMIT_MESSAGE: "chore: update playwright"
           CI_COMMIT_AUTHOR: github-actions[bot]
