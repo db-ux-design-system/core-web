@@ -80,8 +80,8 @@
     "update:icon-fonts": "npm-run-all generate:icon-fonts generate:icon-types"
   },
   "devDependencies": {
-    "@commitlint/cli": "19.0.1",
-    "@commitlint/config-conventional": "19.0.0",
+    "@commitlint/cli": "19.0.3",
+    "@commitlint/config-conventional": "19.0.3",
     "@playwright/test": "1.42.0",
     "adm-zip": "0.5.10",
     "commander": "^12.0.0",
