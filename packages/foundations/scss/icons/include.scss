@@ -1,13 +1,6 @@
 @use "icon-helpers";
 @use "../default.assets-paths" as *;
 
-%icon-alignment {
-	&:is(span) {
-		display: inline-flex;
-		vertical-align: baseline;
-	}
-}
-
 @each $variant in icon-helpers.$default-icon-variants {
 	@font-face {
 		font-display: block;
@@ -57,9 +50,16 @@
 }
 
 [data-icon],
-[data-icon-before] {
-	@extend %icon-alignment;
+[data-icon-before],
+[data-icon-after] {
+	&:is(span) {
+		display: inline-flex;
+		vertical-align: baseline;
+	}
+}
 
+[data-icon],
+[data-icon-before] {
 	&::before {
 		@extend %icon !optional;
 		margin-inline-end: icon-helpers.$default-icon-margin-end;
@@ -74,8 +74,6 @@
 }
 
 [data-icon-after] {
-	@extend %icon-alignment;
-
 	&::after {
 		@extend %icon !optional;
 		content: icon-helpers.$default-icon-content-after;
