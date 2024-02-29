@@ -58,6 +58,13 @@ const config = {
 			use: {
 				...devices['Desktop Safari']
 			}
+		},
+
+		{
+			name: 'firefox',
+			use: {
+				...devices['Desktop Firefox']
+			}
 		}
 	],
 
