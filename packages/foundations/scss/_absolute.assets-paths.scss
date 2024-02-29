@@ -1,0 +1,5 @@
+@use "default.assets-paths" as assets-paths with (
+	$icons-path: "/assets/icons/",
+	$images-path: "/assets/images/",
+	$fonts-path: "/assets/fonts/"
+);
