@@ -55,7 +55,7 @@ jobs:
         build-outputs,
         build-showcases,
         test-showcases,
-        test-foundation
+        test-foundations
       ]
 
   deploy:
