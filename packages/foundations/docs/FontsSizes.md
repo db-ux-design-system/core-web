@@ -1,6 +1,6 @@
 # Font-Sizes
 
--   You use `Font-Sizes` to change the size of text elements like `<p>` etc.
+-   You should use our provided `Font-Sizes` to change the size of text elements like `<p>` etc.
 
 > **_NOTE:_** Some sizes may stay the same because of screen-width or density.
 
@@ -11,7 +11,7 @@ For `CSS` and `Tailwind` you need to use the import `@import "@db-ui/foundations
 For `SCSS` you can use the `css` file, or you can use a placeholder by importing `@use @db-ui/foundations/build/scss/fonts` in your `.scss` file, where you need to reference the specific font size.
 Then you can use e.g. `sm` font-size by extending our SCSS placeholders like this: `@extend %db-overwrite-font-size-sm`.
 
-> **_NOTE:_** Make sure that you import the file after all other `foundation` css files, otherwise you could overwrite a specific font-size with the global selector
+> **_NOTE:_** Make sure that you import the file after all other `foundation` css files, otherwise you might overwrite a specific font-size with the global selector
 
 ```css
 /* Global selector */
