@@ -38,6 +38,10 @@ html {
 
 // global
 * {
+	/*
+		we overwrite this for all elements to pass the correct sizes even for elements
+		which have a default font-size/line-height set
+	*/
 	font-size: inherit;
 	line-height: inherit;
 }
