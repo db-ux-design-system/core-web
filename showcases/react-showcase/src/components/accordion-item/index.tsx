@@ -10,16 +10,9 @@ const getAccordionItem = ({
 	disabled,
 	open,
 	title
-}: DBAccordionItemProps) => {
-	const [openAccumulator, setOpenAccumulator] = useState<boolean>(
-		open ?? false
-	);
+}: DBAccordionItemProps & { open: boolean }) => {
 	return (
-		<DBAccordionItem
-			title={title}
-			disabled={disabled}
-			open={openAccumulator}
-			onToggle={setOpenAccumulator}>
+		<DBAccordionItem title={title} disabled={disabled} defaultOpen={open}>
 			{children}
 		</DBAccordionItem>
 	);
