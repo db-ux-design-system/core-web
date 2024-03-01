@@ -36,6 +36,10 @@ jobs:
     uses: ./.github/workflows/02-e2e.yml
     needs: [build-packages]
 
+  test-foundations:
+    uses: ./.github/workflows/02-e2e-foundations.yml
+    needs: [build-packages]
+
   test-showcases:
     uses: ./.github/workflows/02-e2e-showcases.yml
     needs: [build-showcases]
@@ -45,7 +49,14 @@ jobs:
     steps:
       - name: 🎉 Checks done
         run: echo "🎉 All builds were successful."
-    needs: [test-components, build-outputs, build-showcases, test-showcases]
+    needs:
+      [
+        test-components,
+        build-outputs,
+        build-showcases,
+        test-showcases,
+        test-foundation
+      ]
 
   deploy:
     uses: ./.github/workflows/03-deploy-gh-pages.yml

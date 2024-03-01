@@ -110,6 +110,7 @@
 				transparent var(--db-bg-transparent, 0%),
 				var(--db-#{$variant}-bg-strong-enabled)
 			);
+			@extend %db-bg-#{$variant};
 		}
 	}
 }

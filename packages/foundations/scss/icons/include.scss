@@ -50,11 +50,16 @@
 }
 
 [data-icon],
-[data-icon-before] {
+[data-icon-before],
+[data-icon-after] {
 	&:is(span) {
 		display: inline-flex;
+		vertical-align: baseline;
 	}
+}
 
+[data-icon],
+[data-icon-before] {
 	&::before {
 		@extend %icon !optional;
 		margin-inline-end: icon-helpers.$default-icon-margin-end;
@@ -69,10 +74,6 @@
 }
 
 [data-icon-after] {
-	&:is(span) {
-		display: inline-flex;
-	}
-
 	&::after {
 		@extend %icon !optional;
 		content: icon-helpers.$default-icon-content-after;
