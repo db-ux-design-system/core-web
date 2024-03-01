@@ -72,7 +72,11 @@ const getComponents = () => [
 	},
 
 	{
-		name: 'accordion-item'
+		name: 'accordion-item',
+		overwrites: {
+			// this is an issue from mitosis always adding `attr`
+			angular: [{ from: 'attr.open', to: 'open' }]
+		}
 	},
 
 	{
