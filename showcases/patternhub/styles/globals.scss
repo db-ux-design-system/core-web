@@ -4,6 +4,8 @@
 @use "@db-ui/foundations/build/scss/tonality";
 
 @forward "@db-ui/components/build/styles/db-ui-42-webpack";
+@forward "@db-ui/foundations/build/css/colors/classes/all";
+@forward "@db-ui/foundations/build/css/fonts/classes/all";
 
 .db-main {
 	scroll-behavior: smooth;
