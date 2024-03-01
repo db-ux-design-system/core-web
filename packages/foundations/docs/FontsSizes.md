@@ -29,6 +29,6 @@ There are several variants: `3xl`, `2xl`, `xl`, `lg`, `md`, `sm`, `xs`, `2xs`, `
 
 **We use `XXX` here you should replace it with a variant from above.**
 
-| Variant | CSS                        | SCSS                                  | Tailwind                   |
-| :-----: | -------------------------- | ------------------------------------- | -------------------------- |
-|  `XXX`  | `class="db-font-size-XXX"` | `@extend %db-overwrite-font-size-XXX` | `class="db-font-size-XXX"` |
+| Variant | CSS                       | SCSS                                 | Tailwind                  |
+| :-----: | ------------------------- | ------------------------------------ | ------------------------- |
+|  `XX`   | `class="db-font-size-XX"` | `@extend %db-overwrite-font-size-XX` | `class="db-font-size-XX"` |
