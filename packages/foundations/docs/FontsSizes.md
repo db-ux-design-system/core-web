@@ -27,7 +27,7 @@ We're providing an [overview for all possible font-sizes](./overview).
 
 There are several variants: `3xl`, `2xl`, `xl`, `lg`, `md`, `sm`, `xs`, `2xs`, `3xs`.
 
-**We use `XXX` here you should replace it with a variant from above.**
+**We use `XX` here you should replace it with a variant from above.**
 
 | Variant | CSS                       | SCSS                                 | Tailwind                  |
 | :-----: | ------------------------- | ------------------------------------ | ------------------------- |
