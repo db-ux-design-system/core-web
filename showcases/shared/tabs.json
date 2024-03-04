@@ -71,8 +71,7 @@
 		"examples": [
 			{
 				"name": "auto",
-				"style": { "width": "300px" },
-				"className": "db-bg-informational",
+				"style": { "width": "100%" },
 				"props": {
 					"width": "auto"
 				},
@@ -85,8 +84,7 @@
 			},
 			{
 				"name": "full - alignment: start",
-				"style": { "width": "300px" },
-				"className": "db-bg-informational",
+				"style": { "width": "100%" },
 				"props": {
 					"width": "full"
 				},
@@ -99,8 +97,7 @@
 			},
 			{
 				"name": "full - alignment: center",
-				"style": { "width": "300px" },
-				"className": "db-bg-informational",
+				"style": { "width": "100%" },
 				"props": {
 					"width": "full",
 					"alignment": "center"
@@ -131,19 +128,6 @@
 				}
 			},
 			{
-				"name": "with overflow - behaviour: scrollbar",
-				"style": { "width": "300px" },
-				"props": {
-					"overflow": true
-				},
-				"code": {
-					"html": "<div class=\"db-tabs\">\n\t\t<div role=\"tablist\" class=\"db-tab-list\" aria-orientation=\"horizontal\">\n\t\t\t<div class=\"db-tab-list-scroll-container\">\n\t\t\t\t<label\n\t\t\t\t\trole=\"tab\"\n\t\t\t\t\tfor=\"my-tabs-tab-0\"\n\t\t\t\t\tclass=\"db-tab\"\n\t\t\t\t\tdata-width=\"auto\"\n\t\t\t\t\tdata-alignment=\"start\"\n\t\t\t\t\taria-controls=\"my-tabs-tab-panel-0\"\n\t\t\t\t\t><input\n\t\t\t\t\t\ttype=\"radio\"\n\t\t\t\t\t\tid=\"my-tabs-tab-0\"\n\t\t\t\t\t\tname=\"my-tabs\"\n\t\t\t\t\t/>Test 1</label\n\t\t\t\t><label\n\t\t\t\t\trole=\"tab\"\n\t\t\t\t\tfor=\"my-tabs-tab-1\"\n\t\t\t\t\tclass=\"db-tab\"\n\t\t\t\t\tdata-width=\"auto\"\n\t\t\t\t\tdata-alignment=\"start\"\n\t\t\t\t\taria-controls=\"my-tabs-tab-panel-1\"\n\t\t\t\t\t><input\n\t\t\t\t\t\ttype=\"radio\"\n\t\t\t\t\t\tid=\"my-tabs-tab-1\"\n\t\t\t\t\t\tname=\"my-tabs\"\n\t\t\t\t\t/>Test 2</label\n\t\t\t\t><label\n\t\t\t\t\trole=\"tab\"\n\t\t\t\t\tfor=\"my-tabs-tab-2\"\n\t\t\t\t\tclass=\"db-tab\"\n\t\t\t\t\tdata-width=\"auto\"\n\t\t\t\t\tdata-alignment=\"start\"\n\t\t\t\t\taria-controls=\"my-tabs-tab-panel-2\"\n\t\t\t\t\t><input\n\t\t\t\t\t\ttype=\"radio\"\n\t\t\t\t\t\tid=\"my-tabs-tab-2\"\n\t\t\t\t\t\tname=\"my-tabs\"\n\t\t\t\t\t/>Test 3</label\n\t\t\t\t>\n\t\t\t</div>\n\t\t</div>\n\t\t<article\n\t\t\trole=\"tabpanel\"\n\t\t\tclass=\"db-tab-panel\"\n\t\t\tid=\"my-tabs-tab-panel-0\"\n\t\t\taria-labelledby=\"my-tabs-tab-0\"\n\t\t>\n\t\t\tTab Panel 1\n\t\t</article>\n\t\t<article\n\t\t\trole=\"tabpanel\"\n\t\t\tclass=\"db-tab-panel\"\n\t\t\tid=\"my-tabs-tab-panel-1\"\n\t\t\taria-labelledby=\"my-tabs-tab-1\"\n\t\t>\n\t\t\tTab Panel 2\n\t\t</article>\n\t\t<article\n\t\t\trole=\"tabpanel\"\n\t\t\tclass=\"db-tab-panel\"\n\t\t\tid=\"my-tabs-tab-panel-2\"\n\t\t\taria-labelledby=\"my-tabs-tab-2\"\n\t\t>\n\t\t\tTab Panel 3\n\t\t</article>\n\t</div>",
-					"angular": "<db-tabs>\n\t<db-tab-list>\n\t\t<db-tab>Tab 1</db-tab>\n\t\t<db-tab>Tab 2</db-tab>\n\t\t<db-tab>Tab 3</db-tab>\n\t</db-tab-list>\n\t<db-tab-panel>Tab Panel 1</db-tab-panel>\n\t<db-tab-panel>Tab Panel 2</db-tab-panel>\n\t<db-tab-panel>Tab Panel 3</db-tab-panel>\n</db-tabs>",
-					"react": "<DBTabs>\n\t\t<DBTabList>\n\t\t\t<DBTab>Tab 1</DBTab>\n\t\t\t<DBTab>Tab 2</DBTab>\n\t\t\t<DBTab>Tab 3</DBTab>\n\t\t</DBTabList>\n\t\t<DBTabPanel>Tab Panel 1</DBTabPanel>\n\t\t<DBTabPanel>Tab Panel 2</DBTabPanel>\n\t\t<DBTabPanel>Tab Panel 3</DBTabPanel>\n\t</DBTabs>",
-					"vue": "<DBTabs>\n\t\t<DBTabList>\n\t\t\t<DBTab>Tab 1</DBTab>\n\t\t\t<DBTab>Tab 2</DBTab>\n\t\t\t<DBTab>Tab 3</DBTab>\n\t\t</DBTabList>\n\t\t<DBTabPanel>Tab Panel 1</DBTabPanel>\n\t\t<DBTabPanel>Tab Panel 2</DBTabPanel>\n\t\t<DBTabPanel>Tab Panel 3</DBTabPanel>\n\t</DBTabs>"
-				}
-			},
-			{
 				"name": "with overflow - behaviour: arrows",
 				"style": { "width": "300px" },
 				"props": {
@@ -155,6 +139,19 @@
 					"angular": "<db-tabs behaviour=\"arrows\">\n\t<db-tab-list>\n\t\t<db-tab>Tab 1</db-tab>\n\t\t<db-tab>Tab 2</db-tab>\n\t\t<db-tab>Tab 3</db-tab>\n\t</db-tab-list>\n\t<db-tab-panel>Tab Panel 1</db-tab-panel>\n\t<db-tab-panel>Tab Panel 2</db-tab-panel>\n\t<db-tab-panel>Tab Panel 3</db-tab-panel>\n</db-tabs>",
 					"react": "<DBTabs behaviour=\"arrows\">\n\t\t<DBTabList>\n\t\t\t<DBTab>Tab 1</DBTab>\n\t\t\t<DBTab>Tab 2</DBTab>\n\t\t\t<DBTab>Tab 3</DBTab>\n\t\t</DBTabList>\n\t\t<DBTabPanel>Tab Panel 1</DBTabPanel>\n\t\t<DBTabPanel>Tab Panel 2</DBTabPanel>\n\t\t<DBTabPanel>Tab Panel 3</DBTabPanel>\n\t</DBTabs>",
 					"vue": "<DBTabs behaviour=\"arrows\">\n\t\t<DBTabList>\n\t\t\t<DBTab>Tab 1</DBTab>\n\t\t\t<DBTab>Tab 2</DBTab>\n\t\t\t<DBTab>Tab 3</DBTab>\n\t\t</DBTabList>\n\t\t<DBTabPanel>Tab Panel 1</DBTabPanel>\n\t\t<DBTabPanel>Tab Panel 2</DBTabPanel>\n\t\t<DBTabPanel>Tab Panel 3</DBTabPanel>\n\t</DBTabs>"
+				}
+			},
+			{
+				"name": "with overflow - behaviour: scrollbar",
+				"style": { "width": "300px" },
+				"props": {
+					"overflow": true
+				},
+				"code": {
+					"html": "<div class=\"db-tabs\">\n\t\t<div role=\"tablist\" class=\"db-tab-list\" aria-orientation=\"horizontal\">\n\t\t\t<div class=\"db-tab-list-scroll-container\">\n\t\t\t\t<label\n\t\t\t\t\trole=\"tab\"\n\t\t\t\t\tfor=\"my-tabs-tab-0\"\n\t\t\t\t\tclass=\"db-tab\"\n\t\t\t\t\tdata-width=\"auto\"\n\t\t\t\t\tdata-alignment=\"start\"\n\t\t\t\t\taria-controls=\"my-tabs-tab-panel-0\"\n\t\t\t\t\t><input\n\t\t\t\t\t\ttype=\"radio\"\n\t\t\t\t\t\tid=\"my-tabs-tab-0\"\n\t\t\t\t\t\tname=\"my-tabs\"\n\t\t\t\t\t/>Test 1</label\n\t\t\t\t><label\n\t\t\t\t\trole=\"tab\"\n\t\t\t\t\tfor=\"my-tabs-tab-1\"\n\t\t\t\t\tclass=\"db-tab\"\n\t\t\t\t\tdata-width=\"auto\"\n\t\t\t\t\tdata-alignment=\"start\"\n\t\t\t\t\taria-controls=\"my-tabs-tab-panel-1\"\n\t\t\t\t\t><input\n\t\t\t\t\t\ttype=\"radio\"\n\t\t\t\t\t\tid=\"my-tabs-tab-1\"\n\t\t\t\t\t\tname=\"my-tabs\"\n\t\t\t\t\t/>Test 2</label\n\t\t\t\t><label\n\t\t\t\t\trole=\"tab\"\n\t\t\t\t\tfor=\"my-tabs-tab-2\"\n\t\t\t\t\tclass=\"db-tab\"\n\t\t\t\t\tdata-width=\"auto\"\n\t\t\t\t\tdata-alignment=\"start\"\n\t\t\t\t\taria-controls=\"my-tabs-tab-panel-2\"\n\t\t\t\t\t><input\n\t\t\t\t\t\ttype=\"radio\"\n\t\t\t\t\t\tid=\"my-tabs-tab-2\"\n\t\t\t\t\t\tname=\"my-tabs\"\n\t\t\t\t\t/>Test 3</label\n\t\t\t\t>\n\t\t\t</div>\n\t\t</div>\n\t\t<article\n\t\t\trole=\"tabpanel\"\n\t\t\tclass=\"db-tab-panel\"\n\t\t\tid=\"my-tabs-tab-panel-0\"\n\t\t\taria-labelledby=\"my-tabs-tab-0\"\n\t\t>\n\t\t\tTab Panel 1\n\t\t</article>\n\t\t<article\n\t\t\trole=\"tabpanel\"\n\t\t\tclass=\"db-tab-panel\"\n\t\t\tid=\"my-tabs-tab-panel-1\"\n\t\t\taria-labelledby=\"my-tabs-tab-1\"\n\t\t>\n\t\t\tTab Panel 2\n\t\t</article>\n\t\t<article\n\t\t\trole=\"tabpanel\"\n\t\t\tclass=\"db-tab-panel\"\n\t\t\tid=\"my-tabs-tab-panel-2\"\n\t\t\taria-labelledby=\"my-tabs-tab-2\"\n\t\t>\n\t\t\tTab Panel 3\n\t\t</article>\n\t</div>",
+					"angular": "<db-tabs>\n\t<db-tab-list>\n\t\t<db-tab>Tab 1</db-tab>\n\t\t<db-tab>Tab 2</db-tab>\n\t\t<db-tab>Tab 3</db-tab>\n\t</db-tab-list>\n\t<db-tab-panel>Tab Panel 1</db-tab-panel>\n\t<db-tab-panel>Tab Panel 2</db-tab-panel>\n\t<db-tab-panel>Tab Panel 3</db-tab-panel>\n</db-tabs>",
+					"react": "<DBTabs>\n\t\t<DBTabList>\n\t\t\t<DBTab>Tab 1</DBTab>\n\t\t\t<DBTab>Tab 2</DBTab>\n\t\t\t<DBTab>Tab 3</DBTab>\n\t\t</DBTabList>\n\t\t<DBTabPanel>Tab Panel 1</DBTabPanel>\n\t\t<DBTabPanel>Tab Panel 2</DBTabPanel>\n\t\t<DBTabPanel>Tab Panel 3</DBTabPanel>\n\t</DBTabs>",
+					"vue": "<DBTabs>\n\t\t<DBTabList>\n\t\t\t<DBTab>Tab 1</DBTab>\n\t\t\t<DBTab>Tab 2</DBTab>\n\t\t\t<DBTab>Tab 3</DBTab>\n\t\t</DBTabList>\n\t\t<DBTabPanel>Tab Panel 1</DBTabPanel>\n\t\t<DBTabPanel>Tab Panel 2</DBTabPanel>\n\t\t<DBTabPanel>Tab Panel 3</DBTabPanel>\n\t</DBTabs>"
 				}
 			}
 		]

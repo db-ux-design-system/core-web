@@ -181,6 +181,17 @@ export const ROUTES: NavigationItem[] = [
 				]
 			},
 			{
+				label: 'Font Sizes',
+				path: '/foundations/font-sizes',
+				subNavigation: [
+					{ label: 'Readme', path: '/foundations/font-sizes/readme' },
+					{
+						label: 'Overview',
+						path: '/foundations/font-sizes/overview'
+					}
+				]
+			},
+			{
 				label: 'Icons',
 				path: '/foundations/icons',
 				subNavigation: [

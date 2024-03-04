@@ -8,6 +8,7 @@
 
 	@extend %db-component-variables-md;
 	@extend %db-bg-base;
+	@extend %db-font-size-md;
 
 	/* This is a MS power apps specific class name */
 	.app-canvas,
@@ -37,6 +38,16 @@ html {
 
 // global
 * {
+	/*
+		we overwrite this for all elements to pass the correct sizes even for elements
+		which have a default font-size/line-height set
+	*/
+	font-size: inherit;
+	line-height: inherit;
+}
+
+[class^="db-"] {
+	// set default size for db-components
 	@extend %db-font-size-md;
 }
 

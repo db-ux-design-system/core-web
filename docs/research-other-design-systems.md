@@ -44,6 +44,7 @@ We'd like to maintain a list of other design systems that might be interesting f
     -   Web Components / StencilJS
 -   [Washington Post Design System (WPDS)](https://build.washingtonpost.com/)
     -   React
+-   [GOV.UK Design System](https://design-system.service.gov.uk/)
 
 ## Design System "registries" / overviews
 
