@@ -28,7 +28,7 @@
     "@angular-devkit/build-angular": "17.2.2",
     "@angular/cli": "17.2.2",
     "@angular/compiler-cli": "17.2.3",
-    "ng-packagr": "17.2.0",
+    "ng-packagr": "17.2.1",
     "typescript": "^5.2.2"
   }
 }

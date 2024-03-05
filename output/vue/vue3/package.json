@@ -35,12 +35,12 @@
   },
   "devDependencies": {
     "@axe-core/playwright": "^4.8.5",
-    "@playwright/experimental-ct-vue": "1.42.0",
+    "@playwright/experimental-ct-vue": "1.42.1",
     "@vitejs/plugin-vue": "^5.0.4",
     "sass": "^1.71.1",
     "typescript": "^5.3.3",
-    "vite": "^5.1.4",
-    "vue-tsc": "^1.8.27"
+    "vite": "^5.1.5",
+    "vue-tsc": "^2.0.4"
   },
   "publishConfig": {
     "registry": "https://registry.npmjs.org/",

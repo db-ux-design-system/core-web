@@ -35,7 +35,7 @@
     "test:e2e": "npx playwright test --config=test/playwright.config.mjs"
   },
   "dependencies": {
-    "@csstools/normalize.css": "^12.1.1"
+    "@csstools/normalize.css": "12.1.1"
   },
   "devDependencies": {
     "cpr": "3.0.1",
