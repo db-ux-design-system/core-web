@@ -80,6 +80,7 @@ export default function DBSwitch(props: DBSwitchProps) {
 				id={state._id}
 				type="checkbox"
 				role="switch"
+				switch
 				checked={props.checked}
 				disabled={props.disabled}
 				aria-describedby={props.describedbyid}
