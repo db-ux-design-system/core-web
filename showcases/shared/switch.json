@@ -1,0 +1,155 @@
+[
+	{
+		"name": "Density",
+		"examples": [
+			{
+				"name": "functional",
+				"className": "db-density-functional",
+				"props": {}
+			},
+			{
+				"name": "regular (Default)",
+				"className": "db-density-regular",
+				"props": {}
+			},
+			{
+				"name": "expressive",
+				"className": "db-density-expressive",
+				"props": {}
+			}
+		]
+	},
+	{
+		"name": "States",
+		"examples": [
+			{
+				"name": "(Def) Enabled",
+				"props": {}
+			},
+			{
+				"name": "Checked",
+				"props": {
+					"checked": true
+				}
+			},
+			{
+				"name": "Disabled",
+				"props": {
+					"disabled": true
+				}
+			}
+		]
+	},
+	{
+		"name": "Emphasis",
+		"examples": [
+			{
+				"name": "(Def) Weak",
+				"props": {
+					"emphasis": "weak"
+				}
+			},
+			{
+				"name": "Strong",
+				"props": {
+					"emphasis": "strong"
+				}
+			},
+			{
+				"name": "(Def) Weak + checked",
+				"props": {
+					"emphasis": "weak",
+					"checked": true
+				}
+			},
+			{
+				"name": "Strong + checked",
+				"props": {
+					"emphasis": "strong",
+					"checked": true
+				}
+			}
+		]
+	},
+	{
+		"name": "Visual Aid",
+		"examples": [
+			{
+				"name": "(Def) No Visual Aid",
+				"props": {
+					"visualAid": false
+				}
+			},
+			{
+				"name": "Visual Aid",
+				"props": {
+					"visualAid": true
+				}
+			},
+			{
+				"name": "(Def) No Visual Aid + checked",
+				"props": {
+					"visualAid": false,
+					"checked": true
+				}
+			},
+			{
+				"name": "Visual Aid + checked",
+				"props": {
+					"visualAid": true,
+					"checked": true
+				}
+			}
+		]
+	},
+	{
+		"name": "Size",
+		"examples": [
+			{
+				"name": "(Def) Medium",
+				"props": {}
+			},
+			{
+				"name": "Small",
+				"props": {
+					"size": "small"
+				}
+			}
+		]
+	},
+	{
+		"name": "Content",
+		"examples": [
+			{
+				"name": "(Def) Label",
+				"props": {}
+			},
+			{
+				"name": "No Label",
+				"props": {
+					"variant": "hidden"
+				}
+			}
+		]
+	},
+	{
+		"name": "Examples",
+		"examples": [
+			{
+				"name": "Custom Icons",
+				"props": {
+					"visualAid": true,
+					"icon": "night",
+					"iconAfter": "day"
+				}
+			},
+			{
+				"name": "Visual Aid + Emphasis",
+				"props": {
+					"visualAid": true,
+					"emphasis": "strong"
+				}
+			}
+		]
+	}
+]

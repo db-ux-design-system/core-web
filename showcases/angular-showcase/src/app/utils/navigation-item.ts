@@ -1,4 +1,5 @@
 import { Routes } from '@angular/router';
+import { SwitchComponent } from '../components/switch/switch.component';
 import { TabsComponent } from '../components/tabs/tabs.component';
 import { TabComponent } from '../components/tab/tab.component';
 import { TooltipComponent } from '../components/tooltip/tooltip.component';
@@ -115,6 +116,7 @@ export const NAVIGATION_ITEMS: NavItem[] = [
 				label: 'Checkbox',
 				component: CheckboxComponent
 			},
+			{ path: '03/switch', label: 'Switch', component: SwitchComponent },
 			{ path: '03/select', label: 'Select', component: SelectComponent }
 		])
 	},

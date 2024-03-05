@@ -28,6 +28,10 @@
 		--db-current-color-bg-enabled: var(
 			--db-#{$variant}-contrast-high-enabled
 		);
+		--db-current-color-bg-hover: var(--db-#{$variant}-contrast-high-hover);
+		--db-current-color-bg-pressed: var(
+			--db-#{$variant}-contrast-high-pressed
+		);
 		--db-current-color-border: var(--db-#{$variant}-contrast-high-enabled);
 		@extend %set-current-colors;
 

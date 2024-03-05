@@ -8,15 +8,11 @@ import {
 	FormProps,
 	FormState,
 	FormCheckProps,
-	InitializedState
+	InitializedState,
+	SizeProps
 } from '../../shared/model';
 
 export interface DBCheckboxDefaultProps {
-	/**
-	 * Decide for a size (either regular, which is the default, or small)
-	 */
-	size?: 'small';
-
 	/**
 	 * Define an [indeterminate](https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement#indeterminate) state of a checkbox
 	 */
@@ -28,7 +24,8 @@ export type DBCheckboxProps = DBCheckboxDefaultProps &
 	ChangeEventProps<HTMLInputElement> &
 	FocusEventProps<HTMLInputElement> &
 	FormProps &
-	FormCheckProps;
+	FormCheckProps &
+	SizeProps;
 
 export type DBCheckboxDefaultState = {};
 

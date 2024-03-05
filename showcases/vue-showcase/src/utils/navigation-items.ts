@@ -1,4 +1,5 @@
 import type { RouteRecordRaw } from 'vue-router';
+import Switch from '../components/switch/Switch.vue';
 import Tabs from '../components/tabs/Tabs.vue';
 import Tab from '../components/tab/Tab.vue';
 import Tooltip from '../components/tooltip/Tooltip.vue';
@@ -107,6 +108,7 @@ export const navigationItems: NavItem[] = [
 				label: 'Checkbox',
 				component: Checkbox
 			},
+			{ path: '/03/switch', label: 'Switch', component: Switch },
 			{ path: '/03/select', label: 'Select', component: Select }
 		])
 	},

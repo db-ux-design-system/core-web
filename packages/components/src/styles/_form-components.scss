@@ -398,6 +398,8 @@ $floating-label-size: calc(
 		align-items: center;
 		position: relative;
 
+		gap: variables.$db-spacing-fixed-xs;
+
 		&:not(:has(input:disabled)) {
 			@include helpers.hover;
 			@include helpers.active;
@@ -412,10 +414,8 @@ $floating-label-size: calc(
 		appearance: none;
 		aspect-ratio: 1;
 
-		margin-inline-end: variables.$db-spacing-fixed-xs;
-
-		border: min(calc(#{$font-size-height} / 16 + 0.5px), 2px) solid
-			currentColor;
+		border: min(#{variables.$db-border-height-2xs}, 2px) solid
+			var(--db-check-element-border-color, currentColor);
 
 		block-size: $font-size-height;
 		justify-content: center;

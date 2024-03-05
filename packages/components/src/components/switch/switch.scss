@@ -1,0 +1,170 @@
+@use "@db-ui/foundations/build/scss/variables";
+@use "@db-ui/foundations/build/scss/colors";
+@use "@db-ui/foundations/build/scss/fonts";
+@use "@db-ui/foundations/build/scss/helpers";
+@use "@db-ui/foundations/build/scss/icons";
+@use "../../styles/form-components";
+
+$switch-fixed-padding: helpers.to-rem(2);
+
+.db-switch {
+	@extend %check-element;
+	justify-content: space-between;
+	user-select: none;
+
+	& > input {
+		--db-icon-margin-start: 0;
+		--thumb-position: calc(0% + #{$switch-fixed-padding});
+
+		@include icons.set-icon("close", "after");
+		appearance: none;
+
+		inline-size: calc(#{form-components.$font-size-height} * 2);
+		block-size: form-components.$font-size-height;
+
+		flex-shrink: 0;
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+
+		background: colors.$db-current-color-bg-enabled;
+		border-radius: variables.$db-border-radius-full;
+
+		&::after,
+		&::before {
+			@extend %db-overwrite-font-size-sm;
+		}
+
+		&::after {
+			visibility: hidden;
+			align-self: center;
+			transform: translateX(calc(0% - #{$switch-fixed-padding}));
+		}
+
+		// thumb
+		&::before {
+			content: "";
+			grid-area: track;
+			inline-size: calc(
+				#{form-components.$font-size-height} - #{$switch-fixed-padding}
+			);
+			block-size: calc(
+				#{form-components.$font-size-height} - #{$switch-fixed-padding}
+			);
+			background: colors.$db-current-color-enabled;
+			border-radius: variables.$db-border-radius-full;
+			transform: translateX(var(--thumb-position));
+
+			transition:
+				inline-size variables.$db-transition-duration-fast
+					variables.$db-transition-timing-emotional,
+				block-size variables.$db-transition-duration-fast
+					variables.$db-transition-timing-emotional,
+				transform variables.$db-transition-duration-fast
+					variables.$db-transition-timing-emotional;
+		}
+
+		/* positioned at the end of the track: track length - 100% (thumb width) */
+		&:checked {
+			--db-current-icon-color: #{colors.$db-current-color-bg-enabled};
+			--thumb-position: calc(
+				calc(#{form-components.$font-size-height} * 2) - 100% - #{variables.$db-border-height-2xs} *
+					2
+			);
+
+			background: colors.$db-current-color-enabled;
+
+			&:not(:disabled) {
+				@include helpers.hover {
+					background-color: colors.$db-current-color-hover;
+				}
+
+				@include helpers.active {
+					background-color: colors.$db-current-color-pressed;
+				}
+			}
+
+			&::before {
+				inline-size: form-components.$font-size-height;
+				block-size: form-components.$font-size-height;
+				background: colors.$db-current-color-bg-enabled;
+			}
+		}
+	}
+
+	&[data-variant="hidden"] {
+		gap: 0;
+	}
+
+	&[data-size="small"] {
+		gap: variables.$db-spacing-fixed-2xs;
+
+		& > input {
+			&::after,
+			&::before {
+				@extend %db-overwrite-font-size-xs;
+			}
+		}
+	}
+
+	&[data-emphasis="strong"] {
+		& > input {
+			--db-check-element-border-color: #{colors.$db-current-color-bg-enabled};
+			@extend %db-critical-component;
+
+			&:not(:disabled) {
+				@include helpers.hover {
+					background-color: colors.$db-current-color-bg-hover;
+				}
+
+				@include helpers.active {
+					background-color: colors.$db-current-color-bg-pressed;
+				}
+			}
+
+			&:checked {
+				@extend %db-successful-component;
+
+				&::before {
+					background: colors.$db-current-color-enabled;
+				}
+			}
+		}
+	}
+
+	&[data-visual-aid="true"] {
+		& > input {
+			&::after {
+				visibility: visible;
+			}
+
+			&:checked {
+				@include icons.set-icon("done", "after");
+
+				&::after {
+					transform: translateX(
+						calc(-100% - #{$switch-fixed-padding} * 2)
+					);
+				}
+			}
+		}
+	}
+
+	& > input {
+		&[data-aid-icon] {
+			&:not(:checked) {
+				&::after {
+					content: attr(data-aid-icon);
+				}
+			}
+		}
+
+		&[data-aid-icon-after] {
+			&:checked {
+				&::after {
+					content: attr(data-aid-icon-after);
+				}
+			}
+		}
+	}
+}
