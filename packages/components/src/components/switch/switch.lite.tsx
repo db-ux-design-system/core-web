@@ -85,6 +85,7 @@ export default function DBSwitch(props: DBSwitchProps) {
 				disabled={props.disabled}
 				aria-describedby={props.describedbyid}
 				aria-invalid={props.invalid}
+				name={props.name}
 				required={props.required}
 				data-aid-icon={props.icon}
 				data-aid-icon-after={props.iconAfter}

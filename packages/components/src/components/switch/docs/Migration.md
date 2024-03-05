@@ -5,4 +5,14 @@
 
 ## DB UI Core ➡ DB UI Components
 
-New Component 🥳
+### class
+
+| Before       | Status | After       | Description |
+| ------------ | :----: | ----------- | ----------- |
+| `elm-toggle` |   🔁   | `db-switch` |             |
+
+### id
+
+| Before   | Status | After | Description |
+| -------- | :----: | :---: | ----------- |
+| `htmlid` |   🔁   | `id`  |             |
