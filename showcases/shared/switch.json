@@ -44,13 +44,13 @@
 		"name": "Emphasis",
 		"examples": [
 			{
-				"name": "(Def) Weak",
+				"name": "(Def) Weak + unchecked",
 				"props": {
 					"emphasis": "weak"
 				}
 			},
 			{
-				"name": "Strong",
+				"name": "Strong + unchecked",
 				"props": {
 					"emphasis": "strong"
 				}
@@ -75,13 +75,13 @@
 		"name": "Visual Aid",
 		"examples": [
 			{
-				"name": "(Def) No Visual Aid",
+				"name": "(Def) No Visual Aid + unchecked",
 				"props": {
 					"visualAid": false
 				}
 			},
 			{
-				"name": "Visual Aid",
+				"name": "Visual Aid + unchecked",
 				"props": {
 					"visualAid": true
 				}
@@ -144,9 +144,11 @@
 				}
 			},
 			{
-				"name": "Visual Aid + Emphasis",
+				"name": "Custom Icons+ Emphasis",
 				"props": {
 					"visualAid": true,
+					"icon": "lock_close",
+					"iconAfter": "lock_open",
 					"emphasis": "strong"
 				}
 			}

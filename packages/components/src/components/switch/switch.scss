@@ -7,10 +7,32 @@
 
 $switch-fixed-padding: helpers.to-rem(2);
 
+%active-transition {
+	&::before {
+		inline-size: calc(
+			#{form-components.$font-size-height} - #{$switch-fixed-padding} + #{variables.$db-spacing-fixed-2xs}
+		);
+	}
+
+	&:checked {
+		&::before {
+			inline-size: calc(
+				#{form-components.$font-size-height} + #{variables.$db-spacing-fixed-2xs}
+			);
+		}
+	}
+}
+
 .db-switch {
 	@extend %check-element;
 	justify-content: space-between;
 	user-select: none;
+
+	@include helpers.active {
+		& > input {
+			@extend %active-transition;
+		}
+	}
 
 	& > input {
 		--db-icon-margin-start: 0;
@@ -22,13 +44,16 @@ $switch-fixed-padding: helpers.to-rem(2);
 		inline-size: calc(#{form-components.$font-size-height} * 2);
 		block-size: form-components.$font-size-height;
 
-		flex-shrink: 0;
 		display: flex;
 		align-items: center;
 		justify-content: space-between;
 
 		background: colors.$db-current-color-bg-enabled;
 		border-radius: variables.$db-border-radius-full;
+
+		@include helpers.active {
+			@extend %active-transition;
+		}
 
 		&::after,
 		&::before {
@@ -44,7 +69,6 @@ $switch-fixed-padding: helpers.to-rem(2);
 		// thumb
 		&::before {
 			content: "";
-			grid-area: track;
 			inline-size: calc(
 				#{form-components.$font-size-height} - #{$switch-fixed-padding}
 			);
@@ -62,6 +86,11 @@ $switch-fixed-padding: helpers.to-rem(2);
 					variables.$db-transition-timing-emotional,
 				transform variables.$db-transition-duration-fast
 					variables.$db-transition-timing-emotional;
+
+			// Adopted by https://www.heise.de/developer/artikel/a11y-Reduced-Motion-4356171.html
+			@media (prefers-reduced-motion: reduce) {
+				transition-duration: 0.01s !important;
+			}
 		}
 
 		/* positioned at the end of the track: track length - 100% (thumb width) */
@@ -74,14 +103,12 @@ $switch-fixed-padding: helpers.to-rem(2);
 
 			background: colors.$db-current-color-enabled;
 
-			&:not(:disabled) {
-				@include helpers.hover {
-					background-color: colors.$db-current-color-hover;
-				}
+			@include helpers.hover {
+				background-color: colors.$db-current-color-hover;
+			}
 
-				@include helpers.active {
-					background-color: colors.$db-current-color-pressed;
-				}
+			@include helpers.active {
+				background-color: colors.$db-current-color-pressed;
 			}
 
 			&::before {
@@ -112,14 +139,12 @@ $switch-fixed-padding: helpers.to-rem(2);
 			--db-check-element-border-color: #{colors.$db-current-color-bg-enabled};
 			@extend %db-critical-component;
 
-			&:not(:disabled) {
-				@include helpers.hover {
-					background-color: colors.$db-current-color-bg-hover;
-				}
+			@include helpers.hover {
+				background-color: colors.$db-current-color-bg-hover;
+			}
 
-				@include helpers.active {
-					background-color: colors.$db-current-color-bg-pressed;
-				}
+			@include helpers.active {
+				background-color: colors.$db-current-color-bg-pressed;
 			}
 
 			&:checked {
@@ -129,9 +154,15 @@ $switch-fixed-padding: helpers.to-rem(2);
 					background: colors.$db-current-color-enabled;
 				}
 			}
+
+			&::before {
+				inline-size: form-components.$font-size-height;
+				block-size: form-components.$font-size-height;
+			}
 		}
 	}
 
+	&[data-emphasis="strong"],
 	&[data-visual-aid="true"] {
 		& > input {
 			&::after {

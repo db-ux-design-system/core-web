@@ -24,4 +24,9 @@
 	&:not([role="switch"]) {
 		border-radius: variables.$db-border-radius-xs;
 	}
+
+	// Adopted by https://www.heise.de/developer/artikel/a11y-Reduced-Motion-4356171.html
+	@media (prefers-reduced-motion: reduce) {
+		transition-duration: 0.01s !important;
+	}
 }

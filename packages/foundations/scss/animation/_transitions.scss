@@ -4,10 +4,18 @@
 	transition:
 		outline #{variables.$db-transition-duration-ultra-fast},
 		background-color #{variables.$db-transition-straight-emotional};
+	// Adopted by https://www.heise.de/developer/artikel/a11y-Reduced-Motion-4356171.html
+	@media (prefers-reduced-motion: reduce) {
+		transition-duration: 0.01s !important;
+	}
 }
 
 %default-fg-transition {
 	transition:
 		outline #{variables.$db-transition-duration-ultra-fast},
 		color #{variables.$db-transition-straight-emotional};
+	// Adopted by https://www.heise.de/developer/artikel/a11y-Reduced-Motion-4356171.html
+	@media (prefers-reduced-motion: reduce) {
+		transition-duration: 0.01s !important;
+	}
 }
