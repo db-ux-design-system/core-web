@@ -3,5 +3,5 @@ import { test } from '@playwright/test';
 import { getDefaultScreenshotTest } from '../default.ts';
 
 test.describe('DBSwitch', () => {
-	getDefaultScreenshotTest('switch');
+	getDefaultScreenshotTest('03/switch');
 });
