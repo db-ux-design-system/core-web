@@ -23,7 +23,7 @@ Import the styles in scss or css. Based on your technology the file names could 
 
 ```scss styles.scss
 // styles.scss
-@forward "@db-ui/components/build/styles/db-ui-42-webpack";
+@forward "@db-ui/components/build/styles/db-ui-42-rollup";
 ```
 
 </details>
@@ -32,23 +32,25 @@ Import the styles in scss or css. Based on your technology the file names could 
 
 ```css styles.css
 /* styles.css */
-@import "@db-ui/components/build/styles/db-ui-42-webpack";
+@import "@db-ui/components/build/styles/db-ui-42-rollup";
 ```
 
 </details>
 
 ## Usage
 
-```ts app.module.ts
-//app.module.ts
-import { DBButtonModule } from '@db-ui/ngx-components';
+```ts app.component.ts
+//app.component.ts
+import { DBButton } from '@db-ui/ngx-components';
 
-@NgModule({
-	...
-		imports: [..., DBButtonModule],
-...
+@Component({
+	// ...
+	imports: [
+		// ...,
+		DBButton
+    ],
+	// ...
 })
-
 ```
 
 ```html app.component.html

@@ -7,9 +7,8 @@ import {
 	useStore
 } from '@builder.io/mitosis';
 import { DBCheckboxProps, DBCheckboxState } from './model';
-import { uuid } from '../../utils';
+import { cls, uuid } from '../../utils';
 import { DEFAULT_ID } from '../../shared/constants';
-import { cls } from '../../utils';
 import { ChangeEvent, InteractionEvent } from '../../shared/model';
 
 useMetadata({

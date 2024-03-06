@@ -4,22 +4,26 @@ For general installation and configuration take a look at the [ngx-components](h
 
 ### Load component
 
-```ts app.module.ts
-//app.module.ts
-import { DBHeaderModule } from '@db-ui/ngx-components';
+```ts app.component.ts
+//app.component.ts
+import {
+	DBHeader,
+	NavigationDirective,
+	ActionBarDirective,
+	MetaNavigationDirective
+} from '@db-ui/ngx-components';
 
-@NgModule({
-  ...
-  declarations: [
-        ...,
-	NavigationDirective, // Optional: If you want to use a Navigation
+@Component({
+  // ...
+  imports: [
+	// ...,
+	DBHeader
+    NavigationDirective, // Optional: If you want to use a Navigation
 	ActionBarDirective, // Optional: If you want to use ActionBar
 	MetaNavigationDirective, // Optional: If you want to use MetaNavigation
   ],
-  imports: [..., DBHeaderModule],
-  ...
+  // ...
 })
-
 ```
 
 ### Use component

@@ -1,7 +1,7 @@
 @use "sass:map";
 @use "@db-ui/foundations/build/scss/animation";
 @use "@db-ui/foundations/build/scss/variables";
-@use "@db-ui/foundations/build/scss/tonality";
+@use "@db-ui/foundations/build/scss/fonts";
 @use "@db-ui/foundations/build/scss/icons";
 @use "@db-ui/foundations/build/scss/helpers";
 @use "@db-ui/foundations/build/scss/colors";
@@ -22,7 +22,8 @@
 	}
 
 	&:not([data-no-text="true"]) {
-		padding-inline: variables.$db-spacing-fixed-2xs;
+		--db-padding-inline-start: #{variables.$db-spacing-fixed-2xs};
+		padding-inline: var(--db-padding-inline-start) #{variables.$db-spacing-fixed-2xs};
 
 		&:has(.db-tab-remove-button) {
 			padding-inline-end: 0;
@@ -90,19 +91,42 @@
 			}
 		}
 
+		// Handle native radio and checkbox input elements, especially regarding focus-visible indicator
+		// TODO: Reevaluate whether we could use the standard HTML elements instead of our components
 		input {
-			display: none;
+			inline-size: calc(100% + 2px);
+			block-size: calc(100% + 2px);
+			position: absolute;
+			margin-inline-end: initial;
+			border: none;
+			border-radius: inherit;
+			transform: translateX(
+				calc(
+					(
+							var(
+									--db-padding-inline-start,
+									#{variables.$db-spacing-fixed-2xs}
+								) + #{variables.$db-border-height-sm}
+						) * -1
+				)
+			);
+
+			&:checked::before {
+				--db-icon: "";
+			}
 		}
 	}
 
 	a {
 		@extend %default-transition;
-		@include colors.bg-transparent-interactive(false);
+		@include colors.bg-transparent-interactive();
 		display: inline-flex;
+		align-items: center;
 		text-decoration: none;
 
 		&::after {
 			--db-icon-margin-start: 0;
+			--db-icon-font-size: 0;
 			content: "" !important;
 		}
 	}

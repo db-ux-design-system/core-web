@@ -3,20 +3,23 @@
 Load SCSS globally within `styles.scss` in your app:
 
 ```scss
-@forward "@db-ui/components/build/styles/db-ui-42-webpack";
+@forward "@db-ui/components/build/styles/db-ui-42-rollup";
 ```
 
-Load component within `app.module.ts`:
+Load component within `app.component.ts`:
 
-```typescript
-import { DBInputModule } from '@db-ui/ngx-components';
+```ts app.component.ts
+//app.component.ts
+import { DBInput } from '@db-ui/ngx-components';
 
-@NgModule({
-  ...
-  imports: [..., DBInputModule],
-  ...
+@Component({
+	// ...
+	imports: [
+		// ...,
+		DBInput
+    ],
+	// ...
 })
-
 ```
 
 Use component in template:
@@ -37,11 +40,17 @@ Our input component implements this interface so you can use it like any other n
 
 > Currently we do not support onTouch/touched and native validation via FormControl. If your interested in contributing, you're very welcome ;)
 
-```typescript
-// app.module.ts
-@NgModule({
-  …
-  imports: [ ReactiveFormsModule, …]
+```ts app.component.ts
+//app.component.ts
+import { ReactiveFormsModule } from '@angular/forms';
+
+@Component({
+	// ...
+	imports: [
+		// ...,
+		ReactiveFormsModule
+    ],
+	// ...
 })
 ```
 
@@ -80,11 +89,17 @@ export class FormComponent {
 Third party controls require a ControlValueAccessor to function with angular forms.
 Our input component implements this interface so you can use it like any other native element with ngModel:
 
-```typescript
-// app.module.ts
-@NgModule({
-  …
-  imports: [ FormsModule, …]
+```ts app.component.ts
+//app.component.ts
+import { FormsModule } from '@angular/forms';
+
+@Component({
+	// ...
+	imports: [
+		// ...,
+		FormsModule
+    ],
+	// ...
 })
 ```
 

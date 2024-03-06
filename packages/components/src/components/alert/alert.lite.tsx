@@ -8,8 +8,8 @@ import {
 import { DBAlertProps, DBAlertState } from './model';
 import { DBButton } from '../button';
 import { DBLink } from '../link';
-import { DEFAULT_CLOSE_BUTTON } from '../../shared/constants';
-import { cls } from '../../utils';
+import { DEFAULT_CLOSE_BUTTON, DEFAULT_ID } from '../../shared/constants';
+import { cls, uuid } from '../../utils';
 import { ClickEvent } from '../../shared/model';
 
 useMetadata({
@@ -20,6 +20,7 @@ export default function DBAlert(props: DBAlertProps) {
 	const ref = useRef<HTMLDivElement>(null);
 	// jscpd:ignore-start
 	const state = useStore<DBAlertState>({
+		_id: DEFAULT_ID,
 		handleClick: (event: ClickEvent<HTMLButtonElement>) => {
 			if (props.onClick) {
 				props.onClick(event);
@@ -28,6 +29,7 @@ export default function DBAlert(props: DBAlertProps) {
 	});
 
 	onMount(() => {
+		state._id = props.id || 'alert-' + uuid();
 		if (props.stylePath) {
 			state.stylePath = props.stylePath;
 		}
@@ -37,7 +39,7 @@ export default function DBAlert(props: DBAlertProps) {
 	return (
 		<div
 			ref={ref}
-			id={props.id}
+			id={state._id}
 			class={cls('db-alert', props.className)}
 			aria-live={props.ariaLive}
 			data-variant={props.variant}

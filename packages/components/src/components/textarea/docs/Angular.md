@@ -4,16 +4,16 @@ For general installation and configuration look at the [ngx-components](https://
 
 ### Load component
 
-```ts app.module.ts
-//app.module.ts
-import { DBTextareaModule } from '@db-ui/ngx-components';
+```ts app.component.ts
+// app.component.ts
+import { DBTextarea } from '@db-ui/ngx-components';
 
-@NgModule({
-  ...
-  imports: [..., DBTextareaModule],
-  ...
+@Component({
+  // ...
+  standalone: true,
+  imports: [..., DBTextarea],
+  // ...
 })
-
 ```
 
 ### Use component

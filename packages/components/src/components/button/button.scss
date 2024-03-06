@@ -1,5 +1,5 @@
 @charset "utf-8";
-@use "@db-ui/foundations/build/scss/tonality";
+@use "@db-ui/foundations/build/scss/fonts";
 @use "@db-ui/foundations/build/scss/variables";
 @use "@db-ui/foundations/build/scss/colors";
 @use "@db-ui/foundations/build/scss/icons";
@@ -17,6 +17,9 @@
 	block-size: variables.$db-sizing-md;
 	inline-size: fit-content;
 	padding: variables.$db-spacing-fixed-xs variables.$db-spacing-fixed-md;
+
+	// disable text-decoration if someone wants to use the button for an <a> tag
+	text-decoration: none;
 
 	// Square icon only buttons
 	&.is-icon-text-replace {

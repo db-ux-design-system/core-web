@@ -1,1 +1,1 @@
-export { DBPage, DBPageModule } from './page';
+export { DBPage } from './page';

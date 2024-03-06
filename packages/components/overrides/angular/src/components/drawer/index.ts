@@ -1,1 +1,1 @@
-export { DBDrawer, DBDrawerModule } from './drawer';
+export { DBDrawer } from './drawer';
