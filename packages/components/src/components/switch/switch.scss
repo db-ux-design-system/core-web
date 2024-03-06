@@ -6,19 +6,27 @@
 @use "../../styles/form-components";
 
 $switch-fixed-padding: helpers.to-rem(2);
+$switch-border-workaround: calc(
+	#{variables.$db-border-height-2xs} / 2 * var(--device-pixel-ratio, 0)
+);
+$switch-active-thumb-size: calc(
+	#{form-components.$font-size-height} - #{$switch-border-workaround}
+);
+
+$checked-active-transition-width: calc(
+	#{$switch-active-thumb-size} + #{variables.$db-spacing-fixed-2xs}
+);
 
 %active-transition {
 	&::before {
 		inline-size: calc(
-			#{form-components.$font-size-height} - #{$switch-fixed-padding} + #{variables.$db-spacing-fixed-2xs}
+			#{$switch-active-thumb-size} - #{$switch-fixed-padding} * 2 + #{variables.$db-spacing-fixed-2xs}
 		);
 	}
 
 	&:checked {
 		&::before {
-			inline-size: calc(
-				#{form-components.$font-size-height} + #{variables.$db-spacing-fixed-2xs}
-			);
+			inline-size: #{$checked-active-transition-width};
 		}
 	}
 }
@@ -36,7 +44,9 @@ $switch-fixed-padding: helpers.to-rem(2);
 
 	& > input {
 		--db-icon-margin-start: 0;
-		--thumb-position: calc(0% + #{$switch-fixed-padding});
+		--thumb-position: calc(
+			0% + #{$switch-fixed-padding} - #{$switch-border-workaround}
+		);
 
 		@include icons.set-icon("close", "after");
 		appearance: none;
@@ -70,10 +80,12 @@ $switch-fixed-padding: helpers.to-rem(2);
 		&::before {
 			content: "";
 			inline-size: calc(
-				#{form-components.$font-size-height} - #{$switch-fixed-padding}
+				#{form-components.$font-size-height} - #{$switch-fixed-padding} *
+					2
 			);
 			block-size: calc(
-				#{form-components.$font-size-height} - #{$switch-fixed-padding}
+				#{form-components.$font-size-height} - #{$switch-fixed-padding} *
+					2
 			);
 			background: colors.$db-current-color-enabled;
 			border-radius: variables.$db-border-radius-full;
@@ -97,8 +109,8 @@ $switch-fixed-padding: helpers.to-rem(2);
 		&:checked {
 			--db-current-icon-color: #{colors.$db-current-color-bg-enabled};
 			--thumb-position: calc(
-				calc(#{form-components.$font-size-height} * 2) - 100% - #{variables.$db-border-height-2xs} *
-					2
+				calc(#{$switch-active-thumb-size} * 2) - 100% - #{variables.$db-border-height-2xs} *
+					2 + #{$switch-border-workaround}
 			);
 
 			background: colors.$db-current-color-enabled;
@@ -112,8 +124,8 @@ $switch-fixed-padding: helpers.to-rem(2);
 			}
 
 			&::before {
-				inline-size: form-components.$font-size-height;
-				block-size: form-components.$font-size-height;
+				inline-size: $switch-active-thumb-size;
+				block-size: $switch-active-thumb-size;
 				background: colors.$db-current-color-bg-enabled;
 			}
 		}
@@ -135,6 +147,15 @@ $switch-fixed-padding: helpers.to-rem(2);
 	}
 
 	&[data-emphasis="strong"] {
+
+		@include helpers.active {
+			& > input {
+				&::before {
+					inline-size: #{$checked-active-transition-width};
+				}
+			}
+		}
+
 		& > input {
 			--db-check-element-border-color: #{colors.$db-current-color-bg-enabled};
 			@extend %db-critical-component;
@@ -145,6 +166,10 @@ $switch-fixed-padding: helpers.to-rem(2);
 
 			@include helpers.active {
 				background-color: colors.$db-current-color-bg-pressed;
+
+				&::before {
+					inline-size: #{$checked-active-transition-width};
+				}
 			}
 
 			&:checked {
@@ -156,8 +181,8 @@ $switch-fixed-padding: helpers.to-rem(2);
 			}
 
 			&::before {
-				inline-size: form-components.$font-size-height;
-				block-size: form-components.$font-size-height;
+				inline-size: $switch-active-thumb-size;
+				block-size: $switch-active-thumb-size;
 			}
 		}
 	}
@@ -167,6 +192,8 @@ $switch-fixed-padding: helpers.to-rem(2);
 		& > input {
 			&::after {
 				visibility: visible;
+				inline-size: $switch-active-thumb-size;
+				block-size: $switch-active-thumb-size;
 			}
 
 			&:checked {
@@ -176,6 +203,8 @@ $switch-fixed-padding: helpers.to-rem(2);
 					transform: translateX(
 						calc(-100% - #{$switch-fixed-padding} * 2)
 					);
+					inline-size: $switch-active-thumb-size;
+					block-size: $switch-active-thumb-size;
 				}
 			}
 		}

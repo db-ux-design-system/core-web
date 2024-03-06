@@ -20,9 +20,11 @@
 				#{variables.$db-transition-duration-ultra-fast}
 			);
 
-	&:not([type="radio"]),
-	&:not([role="switch"]) {
-		border-radius: variables.$db-border-radius-xs;
+	border-radius: variables.$db-border-radius-xs;
+
+	&[type="radio"],
+	&[role="switch"] {
+		border-radius: variables.$db-border-radius-full;
 	}
 
 	// Adopted by https://www.heise.de/developer/artikel/a11y-Reduced-Motion-4356171.html

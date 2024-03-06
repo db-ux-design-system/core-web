@@ -1,11 +1,5 @@
-import {
-	onMount,
-	Show,
-	useMetadata,
-	useRef,
-	useStore
-} from '@builder.io/mitosis';
-import { DBSwitchState, DBSwitchProps } from './model';
+import { onMount, useMetadata, useRef, useStore } from '@builder.io/mitosis';
+import { DBSwitchProps, DBSwitchState } from './model';
 import { cls, uuid } from '../../utils';
 import { DEFAULT_ID } from '../../shared/constants';
 import { ChangeEvent, InteractionEvent } from '../../shared/model';
@@ -80,7 +74,6 @@ export default function DBSwitch(props: DBSwitchProps) {
 				id={state._id}
 				type="checkbox"
 				role="switch"
-				switch
 				checked={props.checked}
 				disabled={props.disabled}
 				aria-describedby={props.describedbyid}
