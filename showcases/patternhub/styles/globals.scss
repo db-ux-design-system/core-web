@@ -114,7 +114,7 @@ div[class^="ch-"] {
 	div,
 	span {
 		@extend %db-overwrite-font-size-sm;
-		color: colors.$db-base-on-bg;
+		color: white;
 	}
 }
 
@@ -342,6 +342,59 @@ h6 {
 	&:hover {
 		a:is(.header-link) {
 			visibility: visible;
+		}
+	}
+}
+
+.db-code-docs {
+	min-block-size: variables.$db-sizing-3xl;
+	align-items: center;
+	justify-content: center;
+	padding: variables.$db-spacing-fixed-xl;
+	padding-block-end: calc(
+		#{variables.$db-spacing-fixed-xl} + #{variables.$db-sizing-sm}
+	);
+	position: relative;
+
+	.code-details {
+		position: absolute;
+		inset-block-end: 0;
+		inset-inline-end: 0;
+		inline-size: 100%;
+		display: flex;
+
+		&[open] {
+			inset-inline-start: 0;
+			inset-block-start: 0;
+		}
+
+		.code-button {
+			position: absolute;
+			inset-block-end: 0;
+			inset-inline-end: 0;
+			z-index: 1;
+			cursor: pointer;
+
+			&::-webkit-details-marker {
+				display: none;
+			}
+		}
+
+		.no-code {
+			margin: auto;
+		}
+
+		.code {
+			@extend %db-base-component;
+			overflow: auto;
+			position: absolute;
+			inset-inline-end: 0;
+			inset-block: 0;
+			padding-block-end: variables.$db-spacing-fixed-md;
+
+			@include screen-sizes.screen() {
+				inline-size: 50%;
+			}
 		}
 	}
 }

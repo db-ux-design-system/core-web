@@ -150,10 +150,6 @@ const getComponents = () => [
 		name: 'tag'
 	},
 	{
-		name: 'code-docs'
-	},
-
-	{
 		name: 'checkbox',
 		config: {
 			vue: {
