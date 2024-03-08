@@ -94,7 +94,7 @@ We both maintain a [public backlog](https://github.com/orgs/db-ui/projects/4/vie
 | Spinner                                                                                        | 05 - Feedback     |   ❌   |        ❌        |
 | Stack/List                                                                                     | 06 - Utility      |   ❌   |        ✅        |
 | Stepper                                                                                        | 02 - Action       |   ❌   |        ❌        |
-| Switch                                                                                         | 02 - Action       |   ❌   |        ❌        |
+| [Switch](https://db-ui.github.io/mono/review/main/components/switch/overview)                  | 03 - Data-Input   |  Beta  |        ✅        |
 | Table                                                                                          | 04 - Data-Display |   ❌   |        ❌        |
 | Tabs                                                                                           | 04 - Data-Display | Alpha  |        ❌        |
 | [Tag](https://db-ui.github.io/mono/review/main/components/tag/overview)                        | 04 - Data-Display | Alpha  |        ✅        |
