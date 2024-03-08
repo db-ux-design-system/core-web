@@ -74,8 +74,9 @@ export default function DBInput(props: DBInputProps) {
 	});
 
 	onMount(() => {
-		state._id = props.id || 'input-' + uuid();
-		state._messageId = state._id + DEFAULT_MESSAGE_ID_SUFFIX;
+		const mId = props.id || 'input-' + uuid();
+		state._id = mId;
+		state._messageId = mId + DEFAULT_MESSAGE_ID_SUFFIX;
 		state._dataListId = props.dataListId || `datalist-${uuid()}`;
 
 		if (props.stylePath) {

@@ -55,7 +55,9 @@ export interface DBTabsDefaultState {
 	showScrollLeft?: boolean;
 	showScrollRight?: boolean;
 	evaluateScrollButtons: (tabList: Element) => void;
-	convertTabs: (tabs?: any[] | string | undefined) => DBSimpleTabProps[];
+	convertTabs: (tabs?: unknown[] | string | undefined) => DBSimpleTabProps[];
+	initTabList: () => void;
+	initTabs: () => void;
 }
 
 export type DBTabsState = DBTabsDefaultState & GlobalState & InitializedState;

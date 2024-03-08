@@ -29,7 +29,7 @@ export default function DBTabs(props: DBTabsProps) {
 		showScrollLeft: false,
 		showScrollRight: false,
 		scrollContainer: null,
-		convertTabs(tabs: any[] | string | undefined) {
+		convertTabs(tabs: unknown[] | string | undefined) {
 			try {
 				if (typeof tabs === 'string') {
 					return JSON.parse(tabs);
@@ -60,25 +60,9 @@ export default function DBTabs(props: DBTabsProps) {
 				left: step,
 				behavior: 'smooth'
 			});
-		}
-	});
-
-	onMount(() => {
-		state._id = props.id || 'tabs-' + uuid();
-		if (props.stylePath) {
-			state.stylePath = props.stylePath;
-		}
-
-		state._name = props.name || uuid();
-
-		state.initialized = true;
-	});
-	// jscpd:ignore-end
-
-	onUpdate(() => {
-		if (ref && state.initialized) {
+		},
+		initTabList() {
 			const childTabLists = ref.getElementsByClassName('db-tab-list');
-
 			if (childTabLists?.length > 0) {
 				const firstTabList = childTabLists.item(0);
 				if (firstTabList) {
@@ -108,65 +92,62 @@ export default function DBTabs(props: DBTabsProps) {
 							});
 						}
 					}
-
-					const tabs = firstTabList.getElementsByClassName('db-tab');
-					if (tabs?.length > 0) {
-						Array.from<Element>(tabs).forEach(
-							(tab: Element, index: number) => {
-								const attributes = tab.getAttributeNames();
-								if (!attributes.includes('data-width')) {
-									tab.setAttribute(
-										'data-width',
-										props.width || 'auto'
-									);
-								}
-								if (!attributes.includes('data-alignment')) {
-									tab.setAttribute(
-										'data-alignment',
-										props.alignment || 'start'
-									);
-								}
-								if (!attributes.includes('data-orientation')) {
-									tab.setAttribute(
-										'data-orientation',
-										props.orientation || 'horizontal'
-									);
-								}
-
-								const input = tab.getElementsByTagName('input');
-								if (input.length > 0) {
-									const firstInput = input[0];
-									if (firstInput.id === DEFAULT_ID) {
-										const tabId = `${state._name}-tab-${index}`;
-										tab.setAttribute('for', tabId);
-										tab.setAttribute(
-											'aria-controls',
-											`${state._name}-tab-panel-${index}`
-										);
-										firstInput.id = tabId;
-										firstInput.setAttribute(
-											'name',
-											state._name
-										);
-									}
-
-									// Auto select
-									const autoSelect =
-										!props.initialSelectedMode ||
-										props.initialSelectedMode === 'auto';
-									const shouldAutoSelect =
-										(props.initialSelectedIndex ===
-											undefined &&
-											index === 0) ||
-										props.initialSelectedIndex === index;
-									if (autoSelect && shouldAutoSelect) {
-										firstInput.click();
-									}
-								}
-							}
-						);
-					}
 				}
+			}
+		},
+		initTabs() {
+			const tabs = ref.getElementsByClassName('db-tab');
+			if (tabs?.length > 0) {
+				Array.from<Element>(tabs).forEach(
+					(tab: Element, index: number) => {
+						const attributes = tab.getAttributeNames();
+						if (!attributes.includes('data-width')) {
+							tab.setAttribute(
+								'data-width',
+								props.width || 'auto'
+							);
+						}
+						if (!attributes.includes('data-alignment')) {
+							tab.setAttribute(
+								'data-alignment',
+								props.alignment || 'start'
+							);
+						}
+						if (!attributes.includes('data-orientation')) {
+							tab.setAttribute(
+								'data-orientation',
+								props.orientation || 'horizontal'
+							);
+						}
+
+						const input = tab.getElementsByTagName('input');
+						if (input.length > 0) {
+							const firstInput = input[0];
+							if (firstInput.id === DEFAULT_ID) {
+								const tabId = `${state._name}-tab-${index}`;
+								tab.setAttribute('for', tabId);
+								tab.setAttribute(
+									'aria-controls',
+									`${state._name}-tab-panel-${index}`
+								);
+								firstInput.id = tabId;
+								firstInput.setAttribute('name', state._name);
+							}
+
+							// Auto select
+							const autoSelect =
+								!props.initialSelectedMode ||
+								props.initialSelectedMode === 'auto';
+							const shouldAutoSelect =
+								(props.initialSelectedIndex === undefined &&
+									index === 0) ||
+								props.initialSelectedIndex === index;
+							if (autoSelect && shouldAutoSelect) {
+								firstInput.click();
+							}
+						}
+					}
+				);
 			}
 
 			const tabPanels = ref.getElementsByClassName('db-tab-panel');
@@ -183,6 +164,42 @@ export default function DBTabs(props: DBTabsProps) {
 					}
 				);
 			}
+		}
+	});
+
+	onMount(() => {
+		state._id = props.id || 'tabs-' + uuid();
+		if (props.stylePath) {
+			state.stylePath = props.stylePath;
+		}
+
+		state._name = props.name || uuid();
+
+		state.initialized = true;
+	});
+	// jscpd:ignore-end
+
+	onUpdate(() => {
+		if (ref && state.initialized) {
+			state.initTabList();
+			state.initTabs();
+
+			const observer = new MutationObserver((mutations) => {
+				mutations.forEach((mutation) => {
+					if (
+						mutation.removedNodes.length ||
+						mutation.addedNodes.length
+					) {
+						state.initTabList();
+						state.initTabs();
+					}
+				});
+			});
+
+			observer.observe(ref, {
+				childList: true,
+				subtree: true
+			});
 
 			state.initialized = false;
 		}
