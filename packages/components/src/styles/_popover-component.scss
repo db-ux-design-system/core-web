@@ -52,6 +52,7 @@
 		100% + 2px + var(--db-popover-distance) * var(--db-popover-gap, 0)
 	);
 
+	&:not([data-placement]),
 	&[data-placement="bottom"],
 	&[data-placement="top"] {
 		--db-popover-center-x: -50%;

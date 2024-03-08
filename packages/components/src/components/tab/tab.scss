@@ -19,11 +19,23 @@
 	background-color: colors.$db-current-color-bg-transparent-full-enabled;
 
 	@include helpers.hover {
-		background-color: colors.$db-current-color-bg-transparent-hover;
+		&:has(:not(input:disabled)) {
+			background-color: colors.$db-current-color-bg-transparent-hover;
+		}
+
+		&:has(input:disabled) {
+			cursor: initial;
+		}
 	}
 
 	@include helpers.active {
-		background-color: colors.$db-current-color-bg-transparent-pressed;
+		&:has(:not(input:disabled)) {
+			background-color: colors.$db-current-color-bg-transparent-pressed;
+		}
+
+		&:has(input:disabled) {
+			cursor: initial;
+		}
 	}
 
 	&:has(input:disabled) {

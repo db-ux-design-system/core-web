@@ -45,6 +45,8 @@
 	--db-neutral-contrast-low-pressed: var(--db-neutral-5);
 	--db-neutral-border: var(--db-neutral-10);
 	--db-brand-on-enabled: var(--db-brand-on-light);
+	--db-brand-on-hover: var(--db-brand-on-hover-light);
+	--db-brand-on-pressed: var(--db-brand-on-pressed-light);
 	--db-brand-origin-enabled: var(--db-brand-origin-light);
 	--db-brand-origin-hover: var(--db-brand-hover-light);
 	--db-brand-origin-pressed: var(--db-brand-pressed-light);
@@ -328,6 +330,8 @@
 	--db-neutral-contrast-low-pressed: var(--db-neutral-6);
 	--db-neutral-border: var(--db-neutral-6);
 	--db-brand-on-enabled: var(--db-brand-on-dark);
+	--db-brand-on-hover: var(--db-brand-on-hover-dark);
+	--db-brand-on-pressed: var(--db-brand-on-pressed-dark);
 	--db-brand-origin-enabled: var(--db-brand-origin-dark);
 	--db-brand-origin-hover: var(--db-brand-hover-dark);
 	--db-brand-origin-pressed: var(--db-brand-pressed-dark);

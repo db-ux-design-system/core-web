@@ -140,7 +140,9 @@
 			{
 				"name": "(Default) Permanent",
 				"style": { "width": "300px" },
-				"props": {}
+				"props": {
+					"behaviour": "permanent"
+				}
 			},
 			{
 				"name": "Closeable",

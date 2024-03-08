@@ -19,8 +19,8 @@
     "react-router-dom": "6.22.2"
   },
   "devDependencies": {
-    "@types/react": "^18.2.62",
-    "@types/react-dom": "^18.2.19",
+    "@types/react": "^18.2.64",
+    "@types/react-dom": "^18.2.21",
     "@vitejs/plugin-react": "^4.2.1",
     "cross-env": "^7.0.3",
     "typescript": "^5.3.3",
