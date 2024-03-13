@@ -3,33 +3,33 @@
 		"name": "Tonality",
 		"examples": [
 			{
-				"name": "functional",
+				"name": "Functional",
 				"className": "db-ui-functional",
 				"props": {
-					"title": "functional"
+					"title": "Functional"
 				}
 			},
 			{
-				"name": "regular (Default)",
+				"name": "Regular (Default)",
 				"className": "db-ui-regular",
 				"props": {
-					"title": "regular (Default)"
+					"title": "Regular (Default)"
 				}
 			},
 			{
-				"name": "expressive",
+				"name": "Expressive",
 				"className": "db-ui-expressive",
 				"props": {
-					"title": "expressive"
+					"title": "Expressive"
 				}
 			}
 		]
 	},
 	{
-		"name": "States",
+		"name": "Interaction States",
 		"examples": [
 			{
-				"name": "Enabled (Default)",
+				"name": "Enabled (Default)/Hover/Pressed",
 				"props": {
 					"title": "Enabled (Default)"
 				}
@@ -40,18 +40,29 @@
 					"title": "Disabled",
 					"disabled": true
 				}
+			}
+		]
+	},
+	{
+		"name": "Content States",
+		"examples": [
+			{
+				"name": "Collapsed (Default)",
+				"props": {
+					"title": "Collapsed (Default)"
+				}
 			},
 			{
-				"name": "Open",
+				"name": "Expanded",
 				"props": {
-					"title": "Open",
+					"title": "Expanded",
 					"open": true
 				}
 			},
 			{
-				"name": "Open Disabled",
+				"name": "Expanded Disabled",
 				"props": {
-					"title": "Open Disabled",
+					"title": "Expanded Disabled",
 					"open": true,
 					"disabled": true
 				}

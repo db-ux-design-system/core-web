@@ -3,21 +3,21 @@
 		"name": "Tonality",
 		"examples": [
 			{
-				"name": "functional",
+				"name": "Functional",
 				"className": "db-ui-functional",
 				"props": {
 					"areaPopup": true
 				}
 			},
 			{
-				"name": "regular (Default)",
+				"name": "Regular (Default)",
 				"className": "db-ui-regular",
 				"props": {
 					"areaPopup": true
 				}
 			},
 			{
-				"name": "expressive",
+				"name": "Expressive",
 				"className": "db-ui-expressive",
 				"props": {
 					"areaPopup": true
@@ -26,10 +26,10 @@
 		]
 	},
 	{
-		"name": "States",
+		"name": "Interaction-States",
 		"examples": [
 			{
-				"name": "Enabled (Default)",
+				"name": "Enabled (Default)/Hover/Pressed",
 				"props": {
 					"areaPopup": true
 				}
@@ -54,21 +54,27 @@
 		"name": "Content",
 		"examples": [
 			{
-				"name": "Leading Icon - Text",
+				"name": "Text (Default)",
+				"props": {
+					"areaPopup": false
+				}
+			},
+			{
+				"name": "Text - Icon (Leading)",
 				"props": {
 					"icon": "account",
 					"areaPopup": false
 				}
 			},
 			{
-				"name": "Leading Icon - Text - Trailing Icon",
+				"name": "Text - Icons (Leading, Chevron)",
 				"props": {
 					"icon": "account",
 					"areaPopup": true
 				}
 			},
 			{
-				"name": "Text - Trailing Icon",
+				"name": "Text - Icon",
 				"props": {
 					"areaPopup": true
 				}

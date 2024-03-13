@@ -3,17 +3,17 @@
 		"name": "Tonality",
 		"examples": [
 			{
-				"name": "functional",
+				"name": "Functional",
 				"className": "db-ui-functional",
 				"props": {}
 			},
 			{
-				"name": "regular (Default)",
+				"name": "Regular (Default)",
 				"className": "db-ui-regular",
 				"props": {}
 			},
 			{
-				"name": "expressive",
+				"name": "Expressive",
 				"className": "db-ui-expressive",
 				"props": {}
 			}
@@ -35,7 +35,7 @@
 		]
 	},
 	{
-		"name": "Variant",
+		"name": "Semantic",
 		"examples": [
 			{
 				"name": "Adaptive (Default)",
@@ -72,9 +72,9 @@
 				}
 			},
 			{
-				"name": "Adaptive Strong",
+				"name": "Brand",
 				"props": {
-					"emphasis": "strong"
+					"variant": "brand"
 				}
 			},
 			{
@@ -111,6 +111,13 @@
 					"variant": "warning",
 					"emphasis": "strong"
 				}
+			},
+			{
+				"name": "Brand Strong",
+				"props": {
+					"variant": "brand",
+					"emphasis": "strong"
+				}
 			}
 		]
 	},
@@ -118,14 +125,14 @@
 		"name": "Size",
 		"examples": [
 			{
-				"name": "Medium (Default)",
-				"props": {}
-			},
-			{
-				"name": "Small",
+				"name": "Small (Default)",
 				"props": {
 					"size": "small"
 				}
+			},
+			{
+				"name": "Medium",
+				"props": {}
 			}
 		]
 	},
@@ -133,7 +140,11 @@
 		"name": "Content",
 		"examples": [
 			{
-				"name": "Dot (Default)",
+				"name": "Text (Default)",
+				"props": {}
+			},
+			{
+				"name": "Dot",
 				"props": {
 					"noContent": true
 				}
@@ -144,10 +155,6 @@
 					"noContent": true,
 					"size": "small"
 				}
-			},
-			{
-				"name": "Text",
-				"props": {}
 			},
 			{
 				"name": "Icon",
