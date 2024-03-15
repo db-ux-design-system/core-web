@@ -1,5 +1,3 @@
-import { SemanticType } from '../shared/model';
-
 export const uuid = () => {
 	if (typeof window !== 'undefined') {
 		if (window.crypto?.randomUUID) {

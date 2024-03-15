@@ -148,12 +148,12 @@ fieldset {
 // Code
 
 pre:has(code) {
-	@extend %db-neutral-component;
+	@extend %db-neutral-contrast-high;
 	padding: variables.$db-spacing-fixed-xs;
 }
 
 code {
-	@extend %db-neutral-component;
+	@extend %db-neutral-contrast-high;
 	padding-block: variables.$db-spacing-fixed-3xs;
 	padding-inline: variables.$db-spacing-fixed-2xs;
 }

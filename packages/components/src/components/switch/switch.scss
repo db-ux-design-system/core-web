@@ -9,12 +9,13 @@ $switch-fixed-padding: helpers.to-rem(2);
 $switch-border-workaround: calc(
 	#{variables.$db-border-height-2xs} / 2 * var(--device-pixel-ratio, 0)
 );
+
 $switch-active-thumb-size: calc(
 	#{form-components.$font-size-height} - #{$switch-border-workaround}
 );
 
-$checked-active-transition-width: calc(
-	#{$switch-active-thumb-size} + #{variables.$db-spacing-fixed-2xs}
+$checked-active-transition-size: calc(
+	#{form-components.$font-size-height} - #{$switch-fixed-padding} * 2
 );
 
 %active-transition {
@@ -26,7 +27,7 @@ $checked-active-transition-width: calc(
 
 	&:checked {
 		&::before {
-			inline-size: #{$checked-active-transition-width};
+			block-size: $checked-active-transition-size;
 		}
 	}
 }
@@ -44,19 +45,21 @@ $checked-active-transition-width: calc(
 
 	& > input {
 		--db-icon-margin-start: 0;
-		--thumb-position: calc(
-			0% + #{$switch-fixed-padding} - #{$switch-border-workaround}
-		);
+		--thumb-position: calc(0% - #{$switch-border-workaround});
+		@extend %db-overwrite-font-size-sm;
 
 		@include icons.set-icon("close", "after");
 		appearance: none;
 
-		inline-size: calc(#{form-components.$font-size-height} * 2);
+		inline-size: calc(
+			#{form-components.$font-size-height} * 2 + #{$switch-fixed-padding}
+		);
 		block-size: form-components.$font-size-height;
+		box-sizing: content-box;
 
 		display: flex;
 		align-items: center;
-		justify-content: space-between;
+		gap: $switch-fixed-padding;
 
 		background: colors.$db-current-color-bg-enabled;
 		border-radius: variables.$db-border-radius-full;
@@ -65,15 +68,9 @@ $checked-active-transition-width: calc(
 			@extend %active-transition;
 		}
 
-		&::after,
-		&::before {
-			@extend %db-overwrite-font-size-sm;
-		}
-
 		&::after {
 			visibility: hidden;
 			align-self: center;
-			transform: translateX(calc(0% - #{$switch-fixed-padding}));
 		}
 
 		// thumb
@@ -108,19 +105,18 @@ $checked-active-transition-width: calc(
 		/* positioned at the end of the track: track length - 100% (thumb width) */
 		&:checked {
 			--db-current-icon-color: #{colors.$db-current-color-bg-enabled};
-			--thumb-position: calc(
-				calc(#{$switch-active-thumb-size} * 2) - 100% - #{variables.$db-border-height-2xs} *
-					2 + #{$switch-border-workaround}
-			);
+			--thumb-position: calc(100% + #{$switch-fixed-padding});
 
 			background: colors.$db-current-color-enabled;
 
 			@include helpers.hover {
 				background-color: colors.$db-current-color-hover;
+				border-color: colors.$db-current-color-hover;
 			}
 
 			@include helpers.active {
 				background-color: colors.$db-current-color-pressed;
+				border-color: colors.$db-current-color-pressed;
 			}
 
 			&::before {
@@ -139,41 +135,43 @@ $checked-active-transition-width: calc(
 		gap: variables.$db-spacing-fixed-2xs;
 
 		& > input {
-			&::after,
-			&::before {
-				@extend %db-overwrite-font-size-xs;
-			}
+			@extend %db-overwrite-font-size-xs;
 		}
 	}
 
 	&[data-emphasis="strong"] {
-
 		@include helpers.active {
 			& > input {
 				&::before {
-					inline-size: #{$checked-active-transition-width};
+					block-size: $checked-active-transition-size;
 				}
 			}
 		}
 
 		& > input {
 			--db-check-element-border-color: #{colors.$db-current-color-bg-enabled};
-			@extend %db-critical-component;
+			@extend %db-critical-contrast-low;
 
 			@include helpers.hover {
 				background-color: colors.$db-current-color-bg-hover;
+				border-color: colors.$db-current-color-bg-hover;
 			}
 
 			@include helpers.active {
 				background-color: colors.$db-current-color-bg-pressed;
+				border-color: colors.$db-current-color-bg-pressed;
 
 				&::before {
-					inline-size: #{$checked-active-transition-width};
+					block-size: $checked-active-transition-size;
 				}
 			}
 
+			&:not(:checked) {
+				--thumb-position: calc(0% - #{$switch-border-workaround});
+			}
+
 			&:checked {
-				@extend %db-successful-component;
+				@extend %db-successful-contrast-low;
 
 				&::before {
 					background: colors.$db-current-color-enabled;
@@ -201,7 +199,7 @@ $checked-active-transition-width: calc(
 
 				&::after {
 					transform: translateX(
-						calc(-100% - #{$switch-fixed-padding} * 2)
+						calc(-100% - #{$switch-fixed-padding})
 					);
 					inline-size: $switch-active-thumb-size;
 					block-size: $switch-active-thumb-size;
