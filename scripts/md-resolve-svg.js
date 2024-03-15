@@ -25,8 +25,8 @@ const findReplacements = (file, filesToReplace) => {
 		svgName = decodeURI(svgName)
 			.replace('https://img.shields.io/badge/', '')
 			.replace('.svg', '')
-			.replace(/[^a-zA-Z\d\s]/g, '')
-			.replace(/ /g, '_');
+			.replaceAll(/[^a-zA-Z\d\s]/g, '')
+			.replaceAll(' ', '_');
 		const pathname = `${docsPath}/${svgName}`;
 		const pathNameSvg = `${pathname}.svg`;
 
@@ -103,7 +103,7 @@ const convertImages = async () => {
 	// Windows has double backslash for paths
 	filesToReplace = filesToReplace.map((file) => ({
 		...file,
-		files: file.files.map((fileName) => fileName.replace(/\\/g, '/'))
+		files: file.files.map((fileName) => fileName.replaceAll('\\', '/'))
 	}));
 
 	startReplacement(filesToReplace);

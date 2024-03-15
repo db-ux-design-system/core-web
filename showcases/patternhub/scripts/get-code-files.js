@@ -82,7 +82,7 @@ const writeCodeFiles = async (componentPath, componentName) => {
 	if (FS.existsSync(path)) {
 		variants = JSON.parse(FS.readFileSync(path, 'utf8')).map((variant) => ({
 			...variant,
-			name: variant.name.replace(/\s/g, '').replace(/\W/g, '')
+			name: variant.name.replaceAll(/\s/g, '').replaceAll(/\W/g, '')
 		}));
 		for (const variant of variants) {
 			if (!FS.existsSync(codePath)) {

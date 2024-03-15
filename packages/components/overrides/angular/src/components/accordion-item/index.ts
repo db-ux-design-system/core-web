@@ -1,1 +1,1 @@
-export { DBAccordionItem, DBAccordionItemModule } from './accordion-item';
+export { DBAccordionItem } from './accordion-item';

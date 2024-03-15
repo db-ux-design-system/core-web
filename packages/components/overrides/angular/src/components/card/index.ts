@@ -1,1 +1,1 @@
-export { DBCard, DBCardModule } from './card';
+export { DBCard } from './card';

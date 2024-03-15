@@ -1,1 +1,1 @@
-export { DBTooltip, DBTooltipModule } from './tooltip';
+export { DBTooltip } from './tooltip';

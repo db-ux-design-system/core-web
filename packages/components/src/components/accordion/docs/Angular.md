@@ -4,16 +4,16 @@ For general installation and configuration look at the [ngx-components](https://
 
 ### Load component
 
-```ts app.module.ts
-//app.module.ts
-import { DBAccordionModule } from '@db-ui/ngx-components';
+```ts app.component.ts
+// app.component.ts
+import { DBAccordion } from '@db-ui/ngx-components';
 
-@NgModule({
-  ...
-  imports: [..., DBAccordionModule],
-  ...
+@Component({
+  // ...
+  standalone: true,
+  imports: [..., DBAccordion],
+  // ...
 })
-
 ```
 
 ### Use component

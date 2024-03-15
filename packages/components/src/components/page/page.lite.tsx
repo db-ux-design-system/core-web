@@ -2,11 +2,13 @@ import {
 	onMount,
 	Show,
 	Slot,
-	useMetadata, useRef,
+	useMetadata,
+	useRef,
 	useStore
 } from '@builder.io/mitosis';
 import { DBPageProps, DBPageState } from './model';
-import { cls } from '../../utils';
+import { cls, uuid } from '../../utils';
+import { DEFAULT_ID } from '../../shared/constants';
 
 useMetadata({
 	isAttachedToShadowDom: true
@@ -16,10 +18,12 @@ export default function DBPage(props: DBPageProps) {
 	const ref = useRef<HTMLDivElement>(null);
 	// jscpd:ignore-start
 	const state = useStore<DBPageState>({
+		_id: DEFAULT_ID,
 		fontsLoaded: false
 	});
 
 	onMount(() => {
+		state._id = props.id || 'page-' + uuid();
 		state.fontsLoaded = !props.fadeIn;
 		if (props.stylePath) {
 			state.stylePath = props.stylePath;
@@ -38,7 +42,7 @@ export default function DBPage(props: DBPageProps) {
 	return (
 		<div
 			ref={ref}
-			id={props.id}
+			id={state._id}
 			class={cls('db-page', props.className, {
 				'fixed-header-footer': props.type === 'fixedHeaderFooter'
 			})}

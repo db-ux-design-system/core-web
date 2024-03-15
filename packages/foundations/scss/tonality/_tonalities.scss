@@ -1,7 +1,7 @@
 @use "variables";
 @use "typography-placeholder";
 @use "scaling-placeholder";
-@use "font";
+@use "../fonts";
 
 @each $tonality in variables.$tonalities {
 	%db-ui-#{$tonality} {

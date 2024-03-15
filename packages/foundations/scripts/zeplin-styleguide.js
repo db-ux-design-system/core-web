@@ -53,9 +53,7 @@ const mergeData = (data) => {
 			if (index === splitKeys.length - 1) {
 				temporaryData[sKey] = data[key];
 			} else {
-				if (!temporaryData[sKey]) {
-					temporaryData[sKey] = {};
-				}
+				temporaryData[sKey] ||= {};
 
 				temporaryData = temporaryData[sKey];
 			}

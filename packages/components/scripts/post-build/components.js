@@ -14,7 +14,8 @@
  *     },
  *     angular?: {
  * 			controlValueAccessor?: string,
- * 			directives?: {name:string, ngContentName?:string}[]
+ * 			directives?: {name:string, ngContentName?:string}[],
+ * 			initValues?: {key:string, value:any}[]
  * 		},
  *     react?: {
  * 			propsPassingFilter?: string[];
@@ -24,6 +25,45 @@
  */
 const getComponents = () => [
 	{
+		name: 'tab-panel',
+		config: {
+			angular: {
+				initValues: [
+					{ key: 'name', value: '' },
+					{ key: 'index', value: 0 }
+				]
+			}
+		}
+	},
+	{
+		name: 'tab',
+		config: {
+			angular: {
+				initValues: [
+					{ key: 'name', value: '' },
+					{ key: 'index', value: 0 }
+				]
+			}
+		}
+	},
+
+	{
+		name: 'tabs',
+		overwrites: {
+			angular: [
+				{
+					from: 'scrollContainer = null;',
+					to: 'scrollContainer: Element | null = null;'
+				}
+			]
+		}
+	},
+
+	{
+		name: 'tab-list'
+	},
+
+	{
 		name: 'tooltip'
 	},
 
@@ -32,7 +72,11 @@ const getComponents = () => [
 	},
 
 	{
-		name: 'accordion-item'
+		name: 'accordion-item',
+		overwrites: {
+			// this is an issue from mitosis always adding `attr`
+			angular: [{ from: 'attr.open', to: 'open' }]
+		}
 	},
 
 	{
@@ -157,12 +201,17 @@ const getComponents = () => [
 		config: {
 			angular: {
 				directives: [
-					{ name: 'ActionBar', ngContentName: 'action-bar' },
+					{
+						name: 'ActionBar',
+						ngContentName: 'action-bar'
+					},
 					{
 						name: 'MetaNavigation',
 						ngContentName: 'meta-navigation'
 					},
-					{ name: 'Navigation' }
+					{
+						name: 'Navigation'
+					}
 				]
 			}
 		},
@@ -227,12 +276,6 @@ const getComponents = () => [
 	},
 	{
 		name: 'card'
-	},
-	{
-		name: 'tab-bar'
-	},
-	{
-		name: 'tab'
 	},
 	{
 		name: 'button'

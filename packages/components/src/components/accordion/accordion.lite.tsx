@@ -12,8 +12,9 @@ import {
 	DBAccordionProps,
 	DBAccordionItemInterface
 } from './model';
-import { cls } from '../../utils';
+import { cls, uuid } from '../../utils';
 import { DBAccordionItem } from '../accordion-item';
+import { DEFAULT_ID } from '../../shared/constants';
 
 useMetadata({
 	isAttachedToShadowDom: true,
@@ -28,6 +29,7 @@ export default function DBAccordion(props: DBAccordionProps) {
 	const ref = useRef<HTMLDivElement>(null);
 	// jscpd:ignore-start
 	const state = useStore<DBAccordionState>({
+		_id: DEFAULT_ID,
 		openItems: [],
 		clickedId: '',
 		initialized: false,
@@ -66,6 +68,8 @@ export default function DBAccordion(props: DBAccordionProps) {
 	});
 
 	onMount(() => {
+		state._id = props.id || 'accordion-' + uuid();
+
 		if (props.stylePath) {
 			state.stylePath = props.stylePath;
 		}
@@ -128,7 +132,7 @@ export default function DBAccordion(props: DBAccordionProps) {
 	return (
 		<div
 			ref={ref}
-			id={props.id}
+			id={state._id}
 			class={cls('db-accordion', props.className)}>
 			<Show when={state.stylePath}>
 				<link rel="stylesheet" href={state.stylePath} />
