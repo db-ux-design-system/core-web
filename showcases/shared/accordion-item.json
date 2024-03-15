@@ -31,7 +31,7 @@
 			{
 				"name": "Enabled (Default)/Hover/Pressed",
 				"props": {
-					"title": "Enabled (Default)"
+					"title": "Enabled (Default)/Hover/Pressed"
 				}
 			},
 			{
@@ -53,18 +53,10 @@
 				}
 			},
 			{
-				"name": "Expanded",
+				"name": "Open",
 				"props": {
-					"title": "Expanded",
+					"title": "Open",
 					"open": true
-				}
-			},
-			{
-				"name": "Expanded Disabled",
-				"props": {
-					"title": "Expanded Disabled",
-					"open": true,
-					"disabled": true
 				}
 			}
 		]

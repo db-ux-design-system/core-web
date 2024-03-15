@@ -72,12 +72,6 @@
 				}
 			},
 			{
-				"name": "Brand",
-				"props": {
-					"variant": "brand"
-				}
-			},
-			{
 				"name": "Neutral Strong",
 				"props": {
 					"variant": "neutral",
@@ -109,13 +103,6 @@
 				"name": "Warning Strong",
 				"props": {
 					"variant": "warning",
-					"emphasis": "strong"
-				}
-			},
-			{
-				"name": "Brand Strong",
-				"props": {
-					"variant": "brand",
 					"emphasis": "strong"
 				}
 			}

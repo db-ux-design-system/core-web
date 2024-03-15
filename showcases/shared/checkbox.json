@@ -26,46 +26,10 @@
 		]
 	},
 	{
-		"name": "Interaction-States",
-		"examples": [
-			{
-				"name": "Enabled (Default)",
-				"props": {
-					"name": "States"
-				}
-			},
-			{
-				"name": "Hovered",
-				"props": {
-					"name": "States"
-				}
-			},
-			{
-				"name": "Pressed",
-				"props": {
-					"name": "States"
-				}
-			},
-			{
-				"name": "Focused",
-				"props": {
-					"name": "States"
-				}
-			},
-			{
-				"name": "Disabled",
-				"props": {
-					"name": "States",
-					"disabled": true
-				}
-			}
-		]
-	},
-	{
 		"name": "States",
 		"examples": [
 			{
-				"name": "Unchecked (Default)",
+				"name": "Default",
 				"props": {
 					"name": "States"
 				}
@@ -85,34 +49,10 @@
 				}
 			},
 			{
-				"name": "Unchecked - Invalid",
+				"name": "Disabled",
 				"props": {
 					"name": "States",
-					"invalid": true
-				}
-			},
-			{
-				"name": "Checked - Valid",
-				"props": {
-					"name": "States",
-					"invalid": false,
-					"checked": true
-				}
-			},
-			{
-				"name": "Indeterminate - Invalid",
-				"props": {
-					"name": "States",
-					"indeterminate": true,
-					"invalid": true
-				}
-			},
-			{
-				"name": "Indeterminate - Valid",
-				"props": {
-					"name": "States",
-					"indeterminate": true,
-					"invalid": false
+					"disabled": true
 				}
 			}
 		]
@@ -147,7 +87,7 @@
 		"name": "Size",
 		"examples": [
 			{
-				"name": "Medium (Default)",
+				"name": "Default",
 				"props": {
 					"name": "Size"
 				}
@@ -162,10 +102,10 @@
 		]
 	},
 	{
-		"name": "Content",
+		"name": "Variant Label",
 		"examples": [
 			{
-				"name": "Label (Default)",
+				"name": "(Default) Label",
 				"props": {
 					"name": "Content"
 				}

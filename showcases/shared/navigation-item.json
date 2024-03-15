@@ -74,15 +74,9 @@
 				}
 			},
 			{
-				"name": "Text - Icon",
+				"name": "Text - Icon (Chevron)",
 				"props": {
 					"areaPopup": true
-				}
-			},
-			{
-				"name": "Text",
-				"props": {
-					"areaPopup": false
 				}
 			}
 		]
