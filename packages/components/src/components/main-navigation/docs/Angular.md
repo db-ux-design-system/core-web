@@ -68,7 +68,7 @@ import { DBMainNavigation } from '@db-ui/ngx-components';
 ### Angular Router and active state handling
 
 You can set the property `active` to a boolean value as in the example above.
-It will cause the navigation item to displayed in active style and implicitly
+It will cause the navigation item to render in active style and implicitly
 set `aria-current="page"` to the list element.
 
 The component will also check for child element set to `aria-current="page"`.
