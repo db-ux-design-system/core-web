@@ -8,9 +8,9 @@ import { DBAccordionItem } from '../accordion-item';
 
 const comp = (
 	<DBAccordion>
-		<DBAccordionItem title="Test" content="Content 1" />
-		<DBAccordionItem title="Test 2" content="Content 2" />
-		<DBAccordionItem title="Test 3" content="Content 3" />
+		<DBAccordionItem headline="Test" content="Content 1" />
+		<DBAccordionItem headline="Test 2" content="Content 2" />
+		<DBAccordionItem headline="Test 3" content="Content 3" />
 	</DBAccordion>
 );
 
