@@ -118,7 +118,7 @@
 	&[aria-current="page"] {
 		// add pulse for main-navigation items
 		menu:not(.db-sub-navigation) & {
-				@extend %show-db-puls-auto;
+			@extend %show-db-puls-auto;
 		}
 
 		& > :is(a, button) {
