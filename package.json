@@ -36,7 +36,7 @@
     "lint:xo": "cross-env TIMING=1 NODE_OPTIONS=\"--max-old-space-size=4096\" xo",
     "prepare": "husky",
     "regenerate:screenshots": "npm run build && npm run build --workspace=react-showcase && docker-compose -f ./e2e/docker-compose.regenerate.yml up",
-    "regenerate:screenshots:rebuild": "npm run clean && npm i && npm run regenerate:screenshots -- --build",
+    "regenerate:screenshots:rebuild": "npm run rm:builds && npm run regenerate:screenshots -- --build",
     "rm:builds": "npm run rm:builds --workspace=scripts",
     "start": "npm run start --workspace=patternhub",
     "update:dependency:playwright": "node .github/scripts/update-playwright.js",
