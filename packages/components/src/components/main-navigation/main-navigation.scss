@@ -85,4 +85,12 @@
 			}
 		}
 	}
+
+	&[data-force-close="true"] {
+		& > menu menu {
+			@include screen-sizes.screen("md") {
+				display: none;
+			}
+		}
+	}
 }

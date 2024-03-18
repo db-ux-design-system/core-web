@@ -23,7 +23,7 @@ const getMainNavigation = ({ children }: DBMainNavigationProps) => (
 										<a href="#">Sub-Sub-Navi-Item 1</a>
 									</DBNavigationItem>
 									<DBNavigationItem>
-										<a href="#">Sub-Sub-Navi-Item 2</a>
+										<a>Sub-Sub-Navi-Item 2</a>
 									</DBNavigationItem>
 								</>
 							}>

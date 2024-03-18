@@ -7,11 +7,12 @@ import {
 	useRef,
 	useStore
 } from '@builder.io/mitosis';
-import { DBHeaderState, DBHeaderProps } from './model';
+import { DBHeaderProps, DBHeaderState } from './model';
 import { addAttributeToChildren, cls, uuid } from '../../utils';
 import { DBButton } from '../button';
 import { DBDrawer } from '../drawer';
 import { DEFAULT_ID } from '../../shared/constants';
+import { isEventTargetNavigationItem } from '../../utils/navigation';
 
 useMetadata({
 	isAttachedToShadowDom: true
@@ -79,7 +80,20 @@ export default function DBHeader(props: DBHeaderProps) {
 				open={props.drawerOpen}
 				onClose={() => state.toggle()}>
 				<div class="db-header-drawer-navigation">
-					<div class="db-header-navigation">{props.children}</div>
+					<div
+						class="db-header-navigation"
+						onClick={(
+							event: MouseEvent & {
+								currentTarget: HTMLElement;
+								target: HTMLElement;
+							}
+						) => {
+							if (isEventTargetNavigationItem(event)) {
+								state.toggle();
+							}
+						}}>
+						{props.children}
+					</div>
 					<div class="db-header-meta-navigation">
 						<Slot name="meta-navigation" />
 					</div>

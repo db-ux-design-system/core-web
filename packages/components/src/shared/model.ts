@@ -102,6 +102,13 @@ export type PlacementProps = {
 		| 'bottom-end';
 };
 
+export type NavigationBehaviourProps = {
+	/**
+	 * The behaviour property changes the open/close functionality after clicking a navigation-item.
+	 */
+	behaviour?: 'default' | 'persist';
+};
+
 export type GapProps = {
 	/**
 	 * If the absolute element should have a gap between the parent element.
