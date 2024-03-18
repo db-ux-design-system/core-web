@@ -38,7 +38,7 @@ $db-breakpoint-xl: 1920px;
 			@content;
 		}
 
-		@media screen and (max-width: $screen - 1) {
+		@media screen and (width < $screen) {
 			@content;
 		}
 	}
