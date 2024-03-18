@@ -17,9 +17,9 @@ import {
 				{{ exampleName }}
 			</DBInfotext>
 			<DBAccordion :behaviour="exampleProps.behaviour">
-				<DBAccordionItem title="Item 1" content="Content 1" />
-				<DBAccordionItem title="Item 2" content="Content 2" />
-				<DBAccordionItem title="Item 3" content="Content 3" />
+				<DBAccordionItem summary="Item 1" content="Content 1" />
+				<DBAccordionItem summary="Item 2" content="Content 2" />
+				<DBAccordionItem summary="Item 3" content="Content 3" />
 			</DBAccordion>
 		</template>
 	</DefaultComponent>

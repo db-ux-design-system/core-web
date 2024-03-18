@@ -34,7 +34,6 @@ export default function DBInfotext(props: DBInfotextProps) {
 			ref={ref}
 			id={state._id}
 			class={cls('db-infotext', props.className)}
-			title={props.title}
 			data-icon={props.icon}
 			data-variant={props.variant}
 			data-size={props.size}>

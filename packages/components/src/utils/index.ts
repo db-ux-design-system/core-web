@@ -1,4 +1,5 @@
 import { DefaultVariantType } from '../shared/model';
+import { AriaRole, CSSProperties } from 'react';
 
 export const uuid = () => {
 	if (typeof window !== 'undefined') {
@@ -60,6 +61,44 @@ export const getMessageIcon = (
 			: undefined;
 };
 
+const reactHtmlAttributes = [
+	'suppressHydrationWarning',
+	'suppressContentEditableWarning',
+	'translate',
+	'title',
+	'tabIndex',
+	'style',
+	'spellCheck',
+	'slot',
+	'nonce',
+	'lang',
+	'hidden',
+	'draggable',
+	'dir',
+	'contextMenu',
+	'contentEditable',
+	'autoFocus',
+	'accessKey',
+	'is',
+	'inputMode',
+	'unselectable',
+	'security',
+	'results',
+	'vocab',
+	'typeof',
+	'rev',
+	'resource',
+	'rel',
+	'property',
+	'inlist',
+	'datatype',
+	'content',
+	'about',
+	'role',
+	'radioGroup',
+	'color'
+];
+
 export const filterPassingProps = (
 	props: any,
 	propsPassingFilter: string[]
@@ -71,7 +110,9 @@ export const filterPassingProps = (
 					key.startsWith('aria-') ||
 					key.startsWith('default') ||
 					key.startsWith('auto') ||
-					key.startsWith('on')) &&
+					key.startsWith('item') ||
+					key.startsWith('on') ||
+					reactHtmlAttributes.includes(key)) &&
 				!propsPassingFilter.includes(key)
 		)
 		.reduce((obj: any, key: string) => {

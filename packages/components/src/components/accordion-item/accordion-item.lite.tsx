@@ -61,9 +61,9 @@ export default function DBAccordionItem(props: DBAccordionItemProps) {
 				<link rel="stylesheet" href={state.stylePath} />
 			</Show>
 			<summary onClick={(event) => state.toggle(event)}>
-				<Show when={props.title}>{props.title}</Show>
-				<Show when={!props.title}>
-					<Slot name="title" />
+				<Show when={props.summary}>{props.summary}</Show>
+				<Show when={!props.summary}>
+					<Slot name="summary" />
 				</Show>
 			</summary>
 			<div>

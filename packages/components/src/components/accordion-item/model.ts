@@ -25,7 +25,7 @@ export interface DBAccordionItemDefaultProps {
 	/**
 	 * Alternative for passing only a string instead of a slot
 	 */
-	title?: string;
+	summary?: string;
 	/**
 	 * Set details name for exclusive accordions, see https://chromestatus.com/feature/6710427028815872
 	 */
