@@ -45,7 +45,7 @@
     "cssnano": "^6.1.0",
     "dotenv": "^16.4.5",
     "nodemon": "3.1.0",
-    "sass": "^1.71.1",
+    "sass": "^1.72.0",
     "style-dictionary": "3.9.2"
   },
   "publishConfig": {
