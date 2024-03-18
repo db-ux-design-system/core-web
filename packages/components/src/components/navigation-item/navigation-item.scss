@@ -270,7 +270,7 @@
 	}
 
 	.db-navigation-item:has([aria-current="page"]) {
-		// Hide puls for sub-navigation
+		// Hide pulse for sub-navigation
 		&::after {
 			content: none;
 		}
