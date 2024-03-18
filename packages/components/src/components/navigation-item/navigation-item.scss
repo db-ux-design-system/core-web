@@ -271,13 +271,6 @@
 		}
 	}
 
-	.db-navigation-item:has([aria-current="page"]) {
-		// Hide pulse for sub-navigation
-		&::after {
-			content: none;
-		}
-	}
-
 	&:empty {
 		display: none;
 	}
