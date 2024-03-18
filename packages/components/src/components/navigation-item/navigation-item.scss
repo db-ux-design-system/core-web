@@ -117,7 +117,9 @@
 	&:has([aria-current="page"]),
 	&[aria-current="page"] {
 		// add pulse for main-navigation items
-		@extend %show-db-puls-auto;
+		menu:not(.db-sub-navigation) & {
+				@extend %show-db-puls-auto;
+		}
 
 		& > :is(a, button) {
 			font-weight: 700;
