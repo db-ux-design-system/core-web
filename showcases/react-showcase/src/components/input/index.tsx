@@ -21,7 +21,6 @@ const getInput = ({
 	readOnly,
 	invalid
 }: DBInputProps) => {
-	const [dynamicValue, setDynamicValue] = useState<string>(value);
 	return (
 		<DBInput
 			label={label}
@@ -29,7 +28,7 @@ const getInput = ({
 			placeholder={children}
 			labelVariant={labelVariant}
 			variant={variant}
-			value={dynamicValue}
+			defaultValue={value}
 			type={type}
 			minLength={minLength}
 			required={required}
@@ -38,9 +37,6 @@ const getInput = ({
 			iconAfter={iconAfter}
 			invalid={invalid}
 			icon={icon}
-			onChange={(event) => {
-				setDynamicValue(event.target.value);
-			}}
 		/>
 	);
 };
