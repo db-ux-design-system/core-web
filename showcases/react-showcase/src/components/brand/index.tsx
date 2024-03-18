@@ -19,9 +19,7 @@ const getBrand = ({
 	describedbyid,
 	id,
 	key,
-	stylePath,
-	tabIndex,
-	title
+	stylePath
 }: DBBrandProps) => (
 	<DBBrand
 		imgAlt={imgAlt}
@@ -37,9 +35,7 @@ const getBrand = ({
 		describedbyid={describedbyid}
 		id={id}
 		key={key}
-		stylePath={stylePath}
-		tabIndex={tabIndex}
-		title={title}>
+		stylePath={stylePath}>
 		{children}
 	</DBBrand>
 );

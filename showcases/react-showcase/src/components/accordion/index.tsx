@@ -14,9 +14,9 @@ const getAccordion = ({ behaviour, children }: DBAccordionProps) => (
 			{children}
 		</DBInfotext>
 		<DBAccordion behaviour={behaviour}>
-			<DBAccordionItem summary="Item 1" content="Content 1" />
-			<DBAccordionItem summary="Item 2" content="Content 2" />
-			<DBAccordionItem summary="Item 3" content="Content 3" />
+			<DBAccordionItem headline="Item 1" content="Content 1" />
+			<DBAccordionItem headline="Item 2" content="Content 2" />
+			<DBAccordionItem headline="Item 3" content="Content 3" />
 		</DBAccordion>
 	</>
 );

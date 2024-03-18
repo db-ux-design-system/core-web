@@ -69,7 +69,6 @@ const reactHtmlAttributes = [
 	'tabIndex',
 	'style',
 	'spellCheck',
-	'slot',
 	'nonce',
 	'lang',
 	'hidden',

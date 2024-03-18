@@ -20,9 +20,7 @@ const getPage = ({
 	describedbyid,
 	id,
 	key,
-	stylePath,
-	tabIndex,
-	title
+	stylePath
 }: DBPageProps) => (
 	<DBPage
 		type={type}
@@ -32,7 +30,6 @@ const getPage = ({
 		id={id}
 		key={key}
 		stylePath={stylePath}
-		tabIndex={tabIndex}
 		slotHeader={
 			<DBHeader
 				slotBrand={
@@ -65,8 +62,7 @@ const getPage = ({
 							Help
 						</DBButton>
 					</>
-				}
-				title={title}>
+				}>
 				<DBMainNavigation>
 					<DBNavigationItem icon="account">
 						<a href="#">{children}</a>

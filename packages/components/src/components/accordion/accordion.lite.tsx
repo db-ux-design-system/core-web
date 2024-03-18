@@ -142,8 +142,8 @@ export default function DBAccordion(props: DBAccordionProps) {
 				<For each={state.convertItems(props.items)}>
 					{(item: DBAccordionItemInterface, index: number) => (
 						<DBAccordionItem
-							key={`accordion-item-${item.title}-${index}`}
-							title={item.title}
+							key={`accordion-item-${item.headline}-${index}`}
+							title={item.headline}
 							disabled={item.disabled}
 							content={item.content}
 						/>
