@@ -1,7 +1,7 @@
 import Replace from 'replace-in-file';
 import packageJson from '../../package.json' assert { type: 'json' };
 
-const oldPlaywrightVersion = 'v1.42.0';
+const oldPlaywrightVersion = 'v1.42.1';
 
 const updatePlaywright = () => {
 	const version = packageJson.devDependencies['@playwright/test'];
