@@ -1,10 +1,10 @@
-@use "helpers/functions";
+@use "helpers";
 
-$db-breakpoint-xs: 360px;
-$db-breakpoint-sm: 720px;
-$db-breakpoint-md: 1024px;
-$db-breakpoint-lg: 1440px;
-$db-breakpoint-xl: 1920px;
+$db-breakpoint-xs: helpers.to-em(360);
+$db-breakpoint-sm: helpers.to-em(720);
+$db-breakpoint-md: helpers.to-em(1024);
+$db-breakpoint-lg: helpers.to-em(1440);
+$db-breakpoint-xl: helpers.to-em(1920);
 
 :root {
 	--db-breakpoint-xs: #{$db-breakpoint-xs};
@@ -27,7 +27,7 @@ $db-breakpoint-xl: 1920px;
 	}
 
 	@if ($width == "min") {
-		@media screen and (min-width: $screen) {
+		@media screen and (width >= $screen) {
 			&:not([data-force-mobile]),
 			&[data-force-mobile="false"] {
 				@content;
