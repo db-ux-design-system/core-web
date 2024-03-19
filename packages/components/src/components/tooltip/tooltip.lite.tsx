@@ -35,7 +35,6 @@ export default function DBTooltip(props: DBTooltipProps) {
 			onClick={(event: ClickEvent<HTMLElement>) =>
 				state.handleClick(event)
 			}>
-			{' '}
 			{props.children}
 		</i>
 	);

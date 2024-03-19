@@ -33,7 +33,6 @@ export default function DBPopover(props: DBPopoverProps) {
 			onClick={(event: ClickEvent<HTMLElement>) =>
 				state.handleClick(event)
 			}>
-			{' '}
 			{props.children}
 		</i>
 	);
