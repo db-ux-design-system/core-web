@@ -7,14 +7,11 @@ import {
 	useRef,
 	useStore
 } from '@builder.io/mitosis';
-import {
-	DBAccordionState,
-	DBAccordionProps,
-	DBAccordionItemInterface
-} from './model';
+import { DBAccordionState, DBAccordionProps } from './model';
 import { cls, uuid } from '../../utils';
 import { DBAccordionItem } from '../accordion-item';
 import { DEFAULT_ID } from '../../shared/constants';
+import { DBAccordionItemDefaultProps } from '../accordion-item/model';
 
 useMetadata({
 	isAttachedToShadowDom: true,
@@ -140,9 +137,9 @@ export default function DBAccordion(props: DBAccordionProps) {
 			<Show when={!props.items}>{props.children}</Show>
 			<Show when={props.items}>
 				<For each={state.convertItems(props.items)}>
-					{(item: DBAccordionItemInterface, index: number) => (
+					{(item: DBAccordionItemDefaultProps, index: number) => (
 						<DBAccordionItem
-							key={`accordion-item-${item.title}-${index}`}
+							key={`accordion-item-${index}`}
 							title={item.title}
 							disabled={item.disabled}
 							content={item.content}
