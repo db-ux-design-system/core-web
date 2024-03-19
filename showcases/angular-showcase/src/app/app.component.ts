@@ -8,17 +8,13 @@ import { DBHeader } from '../../../../output/angular/src/components/header/heade
 import { DBPage } from '../../../../output/angular/src/components/page/page';
 import {
 	COLOR,
+	COLOR_CONST,
 	COLORS,
 	TONALITIES,
 	TONALITY,
-	COLOR_CONST,
 	TONALITY_CONST
 } from '../../../../packages/components/src/shared/constants';
 import { DBButton } from '../../../../output/angular/src/components/button';
-import { ActionBarDirective } from '../../../../output/angular/src/components/header/ActionBar.directive';
-import { NavigationDirective } from '../../../../output/angular/src/components/header/Navigation.directive';
-import { MetaNavigationDirective } from '../../../../output/angular/src/components/header/MetaNavigation.directive';
-import { NavigationContentDirective } from '../../../../output/angular/src/components/navigation-item/NavigationContent.directive';
 import { NavItemComponent } from './nav-item/nav-item.component';
 import {
 	getSortedNavigationItems,
@@ -38,11 +34,7 @@ import {
 		DBBrand,
 		DBMainNavigation,
 		DBSelect,
-		DBButton,
-		ActionBarDirective,
-		NavigationDirective,
-		MetaNavigationDirective,
-		NavigationContentDirective
+		DBButton
 	],
 	templateUrl: './app.component.html'
 })

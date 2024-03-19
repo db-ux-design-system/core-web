@@ -120,6 +120,7 @@ const setDirectiveReplacements = (
 	directives
 ) => {
 	for (const directive of directives) {
+		const className = `${directive.name}Directive`;
 		// Add ng-content multiple times to overwrite all
 		for (let i = 0; i < 4; i++) {
 			replacements.push({
@@ -136,14 +137,19 @@ const setDirectiveReplacements = (
 			from: `export class ${upperComponentName} {\n`,
 			to:
 				`export class ${upperComponentName} {\n` +
-				`\t@ContentChild(${directive.name}Directive, { read: TemplateRef }) db${directive.name}: any;\n`
+				`\t@ContentChild(${className}, { read: TemplateRef }) db${directive.name}: any;\n`
 		});
 
 		replacements.push({
 			from: '@Component({',
 			to:
-				`import { ${directive.name}Directive } from './${directive.name}.directive';\n\n` +
+				`import { ${className} } from './${directive.name}.directive';\n\n` +
 				'@Component({'
+		});
+
+		replacements.push({
+			from: 'imports: [',
+			to: `imports: [${className}, `
 		});
 
 		FS.writeFileSync(
@@ -155,7 +161,7 @@ const setDirectiveReplacements = (
 \tselector: '[db${directive.name}]',
 \tstandalone: true
 })
-export class ${directive.name}Directive {}
+export class ${className} {}
 `
 		);
 	}

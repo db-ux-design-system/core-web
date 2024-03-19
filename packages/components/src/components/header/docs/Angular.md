@@ -7,10 +7,7 @@ For general installation and configuration take a look at the [ngx-components](h
 ```ts app.component.ts
 //app.component.ts
 import {
-	DBHeader,
-	NavigationDirective,
-	ActionBarDirective,
-	MetaNavigationDirective
+	DBHeader
 } from '@db-ui/ngx-components';
 
 @Component({
@@ -18,9 +15,6 @@ import {
   imports: [
 	// ...,
 	DBHeader
-    NavigationDirective, // Optional: If you want to use a Navigation
-	ActionBarDirective, // Optional: If you want to use ActionBar
-	MetaNavigationDirective, // Optional: If you want to use MetaNavigation
   ],
   // ...
 })
