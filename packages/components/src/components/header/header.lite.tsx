@@ -37,9 +37,6 @@ export default function DBHeader(props: DBHeaderProps) {
 	onMount(() => {
 		state.initialized = true;
 		state._id = props.id || 'header-' + uuid();
-		if (props.stylePath) {
-			state.stylePath = props.stylePath;
-		}
 	});
 
 	onUpdate(() => {
@@ -67,10 +64,6 @@ export default function DBHeader(props: DBHeaderProps) {
 			class={cls('db-header', props.className)}
 			id={state._id}
 			data-on-forcing-mobile={props.forceMobile && !state.forcedToMobile}>
-			<Show when={state.stylePath}>
-				<link rel="stylesheet" href={state.stylePath} />
-			</Show>
-
 			<DBDrawer
 				className="db-header-drawer"
 				rounded

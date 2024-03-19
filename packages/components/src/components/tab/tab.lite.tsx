@@ -24,9 +24,6 @@ export default function DBTab(props: DBTabProps) {
 
 	onMount(() => {
 		state.initialized = true;
-		if (props.stylePath) {
-			state.stylePath = props.stylePath;
-		}
 	});
 	// jscpd:ignore-end
 
@@ -47,9 +44,6 @@ export default function DBTab(props: DBTabProps) {
 			data-width={props.width}
 			data-no-text={props.noText}
 			data-alignment={props.alignment}>
-			<Show when={state.stylePath}>
-				<link rel="stylesheet" href={state.stylePath} />
-			</Show>
 			<input
 				disabled={props.disabled}
 				ref={ref}

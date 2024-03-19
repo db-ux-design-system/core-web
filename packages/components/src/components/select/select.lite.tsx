@@ -93,10 +93,6 @@ export default function DBSelect(props: DBSelectProps) {
 		].join(' ');
 
 		state._placeholderId = state._id + DEFAULT_PLACEHOLDER_ID_SUFFIX;
-
-		if (props.stylePath) {
-			state.stylePath = props.stylePath;
-		}
 	});
 
 	return (
@@ -104,9 +100,6 @@ export default function DBSelect(props: DBSelectProps) {
 			class={cls('db-select', props.className)}
 			data-variant={props.variant}
 			data-icon={props.icon}>
-			<Show when={state.stylePath}>
-				<link rel="stylesheet" href={state.stylePath} />
-			</Show>
 			<label htmlFor={state._id}>{props.label ?? DEFAULT_LABEL}</label>
 			<select
 				ref={ref}
@@ -146,6 +139,7 @@ export default function DBSelect(props: DBSelectProps) {
 												optgroupOption: DBSelectOptionType
 											) => (
 												<option
+													key={optgroupOption.value.toString()}
 													value={optgroupOption.value}
 													disabled={
 														optgroupOption.disabled

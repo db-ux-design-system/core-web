@@ -20,7 +20,6 @@ const getPage = ({
 	describedbyid,
 	id,
 	key,
-	stylePath,
 	tabIndex,
 	title
 }: DBPageProps) => (
@@ -31,7 +30,6 @@ const getPage = ({
 		describedbyid={describedbyid}
 		id={id}
 		key={key}
-		stylePath={stylePath}
 		tabIndex={tabIndex}
 		header={
 			<DBHeader

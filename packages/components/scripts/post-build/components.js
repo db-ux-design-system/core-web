@@ -19,6 +19,7 @@
  * 		},
  *     react?: {
  * 			propsPassingFilter?: string[];
+ * 			containsFragmentMap?: boolean;
  * 		}
  * }
  * }]}
@@ -131,6 +132,9 @@ const getComponents = () => [
 			},
 			angular: {
 				controlValueAccessor: 'value'
+			},
+			react: {
+				containsFragmentMap: true
 			}
 		}
 	},

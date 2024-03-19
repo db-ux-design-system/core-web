@@ -7,7 +7,7 @@ import {
 	useStore
 } from '@builder.io/mitosis';
 import { DBAccordionItemProps, DBAccordionItemState } from './model';
-import { cls, uuid } from '../../utils';
+import { cls } from '../../utils';
 import { ClickEvent } from '../../shared/model';
 
 useMetadata({
@@ -23,7 +23,6 @@ export default function DBAccordionItem(props: DBAccordionItemProps) {
 	const ref = useRef<HTMLDetailsElement>(null);
 	// jscpd:ignore-start
 	const state = useStore<DBAccordionItemState>({
-		_id: 'accordion-item-' + uuid(),
 		_open: false,
 		toggle: (event: ClickEvent<HTMLElement>) => {
 			// We need this for react https://github.com/facebook/react/issues/15486#issuecomment-488028431
@@ -37,12 +36,6 @@ export default function DBAccordionItem(props: DBAccordionItemProps) {
 	});
 
 	onMount(() => {
-		if (props.id) {
-			state._id = props.id;
-		}
-		if (props.stylePath) {
-			state.stylePath = props.stylePath;
-		}
 		if (props.defaultOpen) {
 			state._open = props.defaultOpen;
 		}
@@ -52,14 +45,11 @@ export default function DBAccordionItem(props: DBAccordionItemProps) {
 	return (
 		<details
 			ref={ref}
-			id={state._id}
+			id={props.id}
 			class={cls('db-accordion-item', props.className)}
 			aria-disabled={props.disabled}
 			open={state._open}
 			name={props.name}>
-			<Show when={state.stylePath}>
-				<link rel="stylesheet" href={state.stylePath} />
-			</Show>
 			<summary onClick={(event) => state.toggle(event)}>
 				<Slot name="title" />
 			</summary>

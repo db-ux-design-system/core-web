@@ -93,10 +93,6 @@ export default function DBInput(props: DBInputProps) {
 		].join(' ');
 
 		state._dataListId = props.dataListId || `datalist-${uuid()}`;
-
-		if (props.stylePath) {
-			state.stylePath = props.stylePath;
-		}
 	});
 
 	return (
@@ -105,9 +101,6 @@ export default function DBInput(props: DBInputProps) {
 			data-variant={props.variant}
 			data-icon={props.icon}
 			data-icon-after={props.iconAfter}>
-			<Show when={state.stylePath}>
-				<link rel="stylesheet" href={state.stylePath} />
-			</Show>
 			<label htmlFor={state._id}>
 				{props.label ?? state.defaultValues.label}
 			</label>
@@ -159,9 +152,7 @@ export default function DBInput(props: DBInputProps) {
 					</For>
 				</datalist>
 			</Show>
-
 			{props.children}
-
 			<Show when={props.message}>
 				<DBInfotext
 					size="small"

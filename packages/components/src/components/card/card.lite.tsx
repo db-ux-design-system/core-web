@@ -1,15 +1,7 @@
-import {
-	Fragment,
-	onMount,
-	Show,
-	useMetadata,
-	useRef,
-	useStore
-} from '@builder.io/mitosis';
-import type { DBCardState, DBCardProps } from './model';
-import { cls, uuid } from '../../utils';
+import { useMetadata, useRef, useStore } from '@builder.io/mitosis';
+import type { DBCardProps, DBCardState } from './model';
+import { cls } from '../../utils';
 import { ClickEvent } from '../../shared/model';
-import { DEFAULT_ID } from '../../shared/constants';
 
 useMetadata({
 	isAttachedToShadowDom: true
@@ -19,7 +11,6 @@ export default function DBCard(props: DBCardProps) {
 	const ref = useRef<HTMLDivElement>(null);
 	// jscpd:ignore-start
 	const state = useStore<DBCardState>({
-		_id: DEFAULT_ID,
 		handleClick: (event: ClickEvent<HTMLElement>) => {
 			if (props.onClick) {
 				props.onClick(event);
@@ -27,18 +18,12 @@ export default function DBCard(props: DBCardProps) {
 		}
 	});
 
-	onMount(() => {
-		state._id = props.id || 'card-' + uuid();
-		if (props.stylePath) {
-			state.stylePath = props.stylePath;
-		}
-	});
 	// jscpd:ignore-end
 
 	return (
 		<div
 			ref={ref}
-			id={state._id}
+			id={props.id}
 			className={cls('db-card', props.className)}
 			data-behaviour={props.behaviour}
 			data-elevation-level={props.elevationLevel}
@@ -48,9 +33,6 @@ export default function DBCard(props: DBCardProps) {
 			onClick={(event: ClickEvent<HTMLElement>) =>
 				state.handleClick(event)
 			}>
-			<Show when={state.stylePath}>
-				<link rel="stylesheet" href={state.stylePath} />
-			</Show>
 			{props.children}
 		</div>
 	);

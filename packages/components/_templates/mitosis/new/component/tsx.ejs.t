@@ -1,10 +1,9 @@
 ---
 to: src/components/<%= name %>/<%= name %>.lite.tsx
 ---
-import { onMount, Show, useMetadata, useStore } from "@builder.io/mitosis";
+import { Show, useMetadata, useStore } from "@builder.io/mitosis";
 import { DB<%= h.changeCase.pascal(name) %>State, DB<%= h.changeCase.pascal(name) %>Props } from "./model";
-import { cls, uuid } from "../../utils";
-import {DEFAULT_ID} from "../../shared/constants";
+import { cls } from "../../utils";
 <% if(formValue!=="no"){   -%>
 import {ChangeEvent, InteractionEvent} from "../../shared/model";
 <% } -%>
@@ -18,7 +17,6 @@ export default function DB<%= h.changeCase.pascal(name) %>(props: DB<%= h.change
   const ref = useRef<HTMLDivElement>(null);
   // jscpd:ignore-start
   const state = useStore<DB<%= h.changeCase.pascal(name) %>State>({
-		_id: DEFAULT_ID,
       <% if(formValue!=="no"){   -%>
 		handleChange: (event: ChangeEvent<HTMLInputElement>) => {
 			if (props.onChange) {
@@ -58,19 +56,12 @@ export default function DB<%= h.changeCase.pascal(name) %>(props: DB<%= h.change
 		}
       <% } -%>
   });
-
-  onMount(() => {
-  	state._id = props.id || '<%= name %>-' + uuid();
-    if (props.stylePath) {
-      state.stylePath = props.stylePath;
-    }
-  });
   // jscpd:ignore-end
 
   return (
     <div
     	ref={ref}
-    	id={state._id}
+    	id={props.id}
     	class={cls('db-<%= name %>', props.className)}
 <% if(formValue!=="no"){   -%>
 		onChange={(event: ChangeEvent<HTMLInputElement>) => state.handleChange(event)}
@@ -78,9 +69,6 @@ export default function DB<%= h.changeCase.pascal(name) %>(props: DB<%= h.change
 		onFocus={(event: InteractionEvent<HTMLInputElement>) => state.handleFocus(event)}
 <% } -%>
     	>
-      <Show when={state.stylePath}>
-        <link rel="stylesheet" href={state.stylePath} />
-      </Show>
       {props.children}
     </div>
   );

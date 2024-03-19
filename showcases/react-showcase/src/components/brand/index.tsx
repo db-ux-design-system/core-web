@@ -19,7 +19,6 @@ const getBrand = ({
 	describedbyid,
 	id,
 	key,
-	stylePath,
 	tabIndex,
 	title
 }: DBBrandProps) => (
@@ -37,7 +36,6 @@ const getBrand = ({
 		describedbyid={describedbyid}
 		id={id}
 		key={key}
-		stylePath={stylePath}
 		tabIndex={tabIndex}
 		title={title}>
 		{children}

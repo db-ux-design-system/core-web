@@ -266,6 +266,19 @@ const FormComponent = () => {
 						</DBAccordionItem>
 					))}
 				</DBAccordion>
+
+				<DBSelect
+					id="select-test"
+					value={select}
+					label="Label"
+					onChange={(event) => {
+						setSelect(event.target.value);
+					}}
+					options={[
+						{ label: 'Test1', value: 'Test1' },
+						{ label: 'Test2', value: 'Test2' }
+					]}
+				/>
 			</div>
 		</div>
 	);

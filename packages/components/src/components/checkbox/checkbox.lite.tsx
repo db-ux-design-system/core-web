@@ -63,10 +63,6 @@ export default function DBCheckbox(props: DBCheckboxProps) {
 	onMount(() => {
 		state.initialized = true;
 		state._id = props.id || 'checkbox-' + uuid();
-
-		if (props.stylePath) {
-			state.stylePath = props.stylePath;
-		}
 	});
 	// jscpd:ignore-end
 
@@ -97,9 +93,6 @@ export default function DBCheckbox(props: DBCheckboxProps) {
 			data-variant={props.variant}
 			className={cls('db-checkbox', props.className)}
 			htmlFor={state._id}>
-			<Show when={state.stylePath}>
-				<link rel="stylesheet" href={state.stylePath} />
-			</Show>
 			<input
 				ref={ref}
 				type="checkbox"
