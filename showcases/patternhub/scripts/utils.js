@@ -99,12 +99,6 @@ export const getColorVariants = () => [
 	'informational-transparent-semi'
 ];
 
-export const getSpacesReplacedString = (string) => {
-	return string.replaceAll(/\s[a-z\d]/gi, (match) =>
-		match.trim().toUpperCase()
-	);
-};
-
 export const getComponentName = (filePath) => {
 	let componentName = filePath.split('/').at(-1);
 	componentName = componentName.replace('.tsx', '').replaceAll(/\s/g, '');
@@ -115,6 +109,5 @@ export default {
 	getUnionElements,
 	getCodeByFramework,
 	getColorVariants,
-	getSpacesReplacedString,
 	getComponentName
 };
