@@ -3,7 +3,7 @@ import FS from 'node:fs';
 import prettier from 'prettier';
 import prettier0 from 'prettier/parser-babel.js';
 import { allExamples } from './generated/index.jsx';
-import { getCodeByFramework, getSpacesReplacedString } from './utils.js';
+import { getCodeByFramework } from './utils.js';
 
 const sharedPath = '../shared';
 const reactPath = '../react-showcase/src/components';
@@ -104,14 +104,10 @@ const writeCodeFiles = async (componentPath, componentName) => {
 			pre = variants
 				.map(
 					(variant) =>
-						`import ${getSpacesReplacedString(
-							variant.name
-						)} from './code/${variant.name}.mdx'`
+						`import ${variant.name} from './code/${variant.name}.mdx'`
 				)
 				.join('\n');
-			tags = variants
-				.map((variant) => `<${getSpacesReplacedString(variant.name)}/>`)
-				.join(',');
+			tags = variants.map((variant) => `<${variant.name}/>`).join(',');
 		}
 
 		const readFile = FS.readFileSync(reactComponentPath, 'utf8')
