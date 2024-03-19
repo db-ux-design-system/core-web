@@ -8,7 +8,7 @@ import DefaultPage from './default-page';
 import { DBCodeDocs, DBDivider, DBLink } from './src';
 
 const VariantList = ({ examples, slotCode }: DefaultComponentVariants) => (
-	<DBCodeDocs className="variants-card" slotCode={slotCode}>
+	<DBCodeDocs className="variants-card" code={slotCode}>
 		<div className="variants-list">
 			{examples.map((example, exampleIndex) => (
 				<div
