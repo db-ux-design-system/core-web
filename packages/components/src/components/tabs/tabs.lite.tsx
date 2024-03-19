@@ -65,9 +65,6 @@ export default function DBTabs(props: DBTabsProps) {
 
 	onMount(() => {
 		state._id = props.id || 'tabs-' + uuid();
-		if (props.stylePath) {
-			state.stylePath = props.stylePath;
-		}
 
 		state._name = props.name || uuid();
 
@@ -189,10 +186,6 @@ export default function DBTabs(props: DBTabsProps) {
 			class={cls('db-tabs', props.className)}
 			data-orientation={props.orientation}
 			data-scroll-behaviour={props.behaviour}>
-			<Show when={state.stylePath}>
-				<link rel="stylesheet" href={state.stylePath} />
-			</Show>
-
 			<Show when={state.showScrollLeft}>
 				<DBButton
 					className="tabs-scroll-left"

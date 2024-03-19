@@ -1,13 +1,6 @@
-import {
-	onMount,
-	Show,
-	useMetadata,
-	useRef,
-	useStore
-} from '@builder.io/mitosis';
+import { useMetadata, useRef, useStore } from '@builder.io/mitosis';
 import { DBTooltipProps, DBTooltipState } from './model';
-import { cls, uuid } from '../../utils';
-import { DEFAULT_ID } from '../../shared/constants';
+import { cls } from '../../utils';
 import { ClickEvent } from '../../shared/model';
 
 useMetadata({
@@ -18,16 +11,8 @@ export default function DBTooltip(props: DBTooltipProps) {
 	const ref = useRef<HTMLDivElement>(null);
 	// jscpd:ignore-start
 	const state = useStore<DBTooltipState>({
-		_id: DEFAULT_ID,
 		handleClick: (event: ClickEvent<HTMLElement>) => {
 			event.stopPropagation();
-		}
-	});
-
-	onMount(() => {
-		state._id = props.id || 'tooltip-' + uuid();
-		if (props.stylePath) {
-			state.stylePath = props.stylePath;
 		}
 	});
 	// jscpd:ignore-end
@@ -38,7 +23,7 @@ export default function DBTooltip(props: DBTooltipProps) {
 			role="tooltip"
 			ref={ref}
 			className={cls('db-tooltip', props.className)}
-			id={state._id}
+			id={props.id}
 			data-emphasis={props.emphasis}
 			data-animation={props.animation}
 			data-delay={props.delay}
@@ -50,9 +35,7 @@ export default function DBTooltip(props: DBTooltipProps) {
 			onClick={(event: ClickEvent<HTMLElement>) =>
 				state.handleClick(event)
 			}>
-			<Show when={state.stylePath}>
-				<link rel="stylesheet" href={state.stylePath} />
-			</Show>
+			{' '}
 			{props.children}
 		</i>
 	);

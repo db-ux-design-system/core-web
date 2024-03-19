@@ -22,9 +22,6 @@ export default function DBSection(props: DBSectionProps) {
 
 	onMount(() => {
 		state._id = props.id || 'section-' + uuid();
-		if (props.stylePath) {
-			state.stylePath = props.stylePath;
-		}
 	});
 	// jscpd:ignore-end
 
@@ -34,9 +31,7 @@ export default function DBSection(props: DBSectionProps) {
 			id={state._id}
 			className={cls('db-section', props.className)}
 			data-size={props.size || 'medium'}>
-			<Show when={state.stylePath}>
-				<link rel="stylesheet" href={state.stylePath} />
-			</Show>
+			{' '}
 			{/* TODO: We need to reevaluate whether we could get rid of this tag */}
 			<div data-variant={props.variant}>{props.children}</div>
 		</section>
