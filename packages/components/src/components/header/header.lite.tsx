@@ -32,6 +32,11 @@ export default function DBHeader(props: DBHeaderProps) {
 			if (props.onToggle) {
 				props.onToggle(!props.drawerOpen);
 			}
+		},
+		handleNavigationItemClick: (event: unknown) => {
+			if (isEventTargetNavigationItem(event)) {
+				state.toggle();
+			}
 		}
 	});
 
@@ -82,16 +87,9 @@ export default function DBHeader(props: DBHeaderProps) {
 				<div class="db-header-drawer-navigation">
 					<div
 						class="db-header-navigation"
-						onClick={(
-							event: MouseEvent & {
-								currentTarget: HTMLElement;
-								target: HTMLElement;
-							}
-						) => {
-							if (isEventTargetNavigationItem(event)) {
-								state.toggle();
-							}
-						}}>
+						onClick={(event) =>
+							state.handleNavigationItemClick(event)
+						}>
 						{props.children}
 					</div>
 					<div class="db-header-meta-navigation">

@@ -21,7 +21,12 @@ export default function DBMainNavigation(props: DBMainNavigationProps) {
 	const state = useStore<DBMainNavigationState>({
 		_id: DEFAULT_ID,
 		initialized: false,
-		forceClose: false
+		forceClose: false,
+		handleNavigationItemClick: (event: unknown) => {
+			if (isEventTargetNavigationItem(event)) {
+				state.forceClose = true;
+			}
+		}
 	});
 
 	onMount(() => {
@@ -53,16 +58,7 @@ export default function DBMainNavigation(props: DBMainNavigationProps) {
 			ref={ref}
 			id={state._id}
 			class={cls('db-main-navigation', props.className)}
-			onClick={(
-				event: MouseEvent & {
-					currentTarget: HTMLElement;
-					target: HTMLElement;
-				}
-			) => {
-				if (isEventTargetNavigationItem(event)) {
-					state.forceClose = true;
-				}
-			}}
+			onClick={(event) => state.handleNavigationItemClick(event)}
 			data-force-close={state.forceClose}>
 			<Show when={state.stylePath}>
 				<link rel="stylesheet" href={state.stylePath} />

@@ -1,8 +1,10 @@
-export const isEventTargetNavigationItem = (
-	event: MouseEvent & { currentTarget: HTMLElement; target: HTMLElement }
-): boolean =>
-	!event.target.classList.contains('db-navigation-item-expand-button') &&
-	event.target.parentElement.classList.contains('db-navigation-item');
+export const isEventTargetNavigationItem = (event: unknown): boolean => {
+	const { target } = event as { target: HTMLElement };
+	return Boolean(
+		!target?.classList?.contains('db-navigation-item-expand-button') &&
+			target?.parentElement?.classList.contains('db-navigation-item')
+	);
+};
 
 export default {
 	isEventTargetNavigationItem

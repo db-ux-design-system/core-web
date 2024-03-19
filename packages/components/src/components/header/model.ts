@@ -3,6 +3,7 @@ import {
 	GlobalState,
 	InitializedState,
 	NavigationBehaviourProps,
+	NavigationBehaviourState,
 	ToggleEventProps,
 	ToggleEventState
 } from '../../shared/model';
@@ -40,4 +41,5 @@ export interface DBHeaderDefaultState {
 export type DBHeaderState = DBHeaderDefaultState &
 	GlobalState &
 	ToggleEventState<HTMLElement> &
-	InitializedState;
+	InitializedState &
+	NavigationBehaviourState;
