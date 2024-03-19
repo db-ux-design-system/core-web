@@ -1,1 +1,1 @@
-export { DBBrand, DBBrandModule } from './brand';
+export { DBBrand } from './brand';

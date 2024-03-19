@@ -96,15 +96,17 @@
 
 				<p>Radio:</p>
 				<ul>
-					<li *ngFor="let radioName of array">
-						<db-radio
-							label="Label"
-							name="RadioGroup"
-							[value]="radioName"
-							(change)="model.radio = radioName"
-							[label]="getRadioName(radioName)"
-						></db-radio>
-					</li>
+					@for (radioName of array; track radioName) {
+						<li>
+							<db-radio
+								label="Label"
+								name="RadioGroup"
+								[value]="radioName"
+								(change)="model.radio = radioName"
+								[label]="getRadioName(radioName)"
+							></db-radio>
+						</li>
+					}
 				</ul>
 
 				<p>Textarea:</p>
@@ -121,15 +123,17 @@
 
 				<p>Tags:</p>
 				<ul>
-					<li *ngFor="let tag of array; let i = index">
-						<db-tag
-							[variant]="i === 0 ? undefined : 'successful'"
-							[emphasis]="i === 2 ? 'strong' : 'weak'"
-							><db-checkbox (onChange)="changeTags(tag)">{{
-								getTagName(tag)
-							}}</db-checkbox></db-tag
-						>
-					</li>
+					@for (tag of array; track tag; let i = $index) {
+						<li>
+							<db-tag
+								[variant]="i === 0 ? undefined : 'successful'"
+								[emphasis]="i === 2 ? 'strong' : 'weak'"
+								><db-checkbox (onChange)="changeTags(tag)">{{
+									getTagName(tag)
+								}}</db-checkbox></db-tag
+							>
+						</li>
+					}
 				</ul>
 				<p>Checkbox:</p>
 				<db-checkbox
@@ -180,13 +184,13 @@
 					<option value="test2">Test2</option>
 				</db-select>
 				<!-- <db-select
-					[value]="select"
-					label="Label"
-					(change)="select = $event.target.value"
-				>
-					<option value="test1">Test1</option>
-					<option value="test2">Test2</option>
-				</db-select> -->
+        [value]="select"
+        label="Label"
+        (change)="select = $event.target.value"
+        >
+        <option value="test1">Test1</option>
+        <option value="test2">Test2</option>
+      </db-select> -->
 				<p>Button:</p>
 				<db-button type="button" (click)="resetValues()">
 					Reset
@@ -244,8 +248,10 @@
 			</dd>
 			<dt>checkbox value indeterminate</dt>
 			<dd>checkbox {{ checked[0] && checked[1] ? "" : "un" }}checked</dd>
+			<dt>select with ngmodel</dt>
+			<dd>{{ model.select ? model.select : "No select set" }}</dd>
 			<dt>select value</dt>
-			<dd>{{ select ? select : "No select set" }}</dd>
+			<dd>{{ form.get("select")?.value || "No select set" }}</dd>
 			<dt>tags value</dt>
 			<dd>{{ getTags() }}</dd>
 		</dl>

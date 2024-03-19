@@ -4,6 +4,16 @@
  */
 export const designSystems = [
 	{
+		name: 'W3C APG Patterns',
+		url: 'https://www.w3.org/WAI/ARIA/apg/',
+		componentUrl: 'https://www.w3.org/WAI/ARIA/apg/patterns/'
+	},
+	{
+		name: 'Inclusive components by Heydon Pickering',
+		url: 'https://inclusive-components.design/',
+		componentUrl: 'https://inclusive-components.design/#components'
+	},
+	{
 		name: 'Telekom Scale',
 		url: 'https://github.com/telekom/scale',
 		componentUrl: 'https://telekom.github.io/scale/?path=/docs/components'
@@ -40,6 +50,11 @@ export const designSystems = [
 		name: 'Washington Post Design System',
 		url: 'https://build.washingtonpost.com/',
 		componentUrl: 'https://build.washingtonpost.com/components/accordion'
+	},
+	{
+		name: 'GOV.UK Design System',
+		url: 'https://design-system.service.gov.uk/',
+		componentUrl: 'https://design-system.service.gov.uk/components/'
 	},
 	{
 		name: 'HP Enterprise Grommet',

@@ -3,11 +3,13 @@ import {
 	Show,
 	Slot,
 	useMetadata,
+	useRef,
 	useStore
 } from '@builder.io/mitosis';
 import { DBCodeDocsProps, DBCodeDocsState } from './model';
 import { DBCard } from '../card';
-import { cls } from '../../utils';
+import { cls, uuid } from '../../utils';
+import { DEFAULT_ID } from '../../shared/constants';
 
 useMetadata({
 	isAttachedToShadowDom: true,
@@ -19,10 +21,10 @@ useMetadata({
 });
 
 export default function DBCodeDocs(props: DBCodeDocsProps) {
-	// This is used as forwardRef
-	let component: any;
+	const ref = useRef<HTMLDivElement>(null);
 	// jscpd:ignore-start
 	const state = useStore<DBCodeDocsState>({
+		_id: DEFAULT_ID,
 		open: false,
 		toggleCode: () => {
 			state.open = !state.open;
@@ -35,6 +37,7 @@ export default function DBCodeDocs(props: DBCodeDocsProps) {
 	});
 
 	onMount(() => {
+		state._id = props.id || 'code-docs-' + uuid();
 		if (props.stylePath) {
 			state.stylePath = props.stylePath;
 		}
@@ -43,7 +46,8 @@ export default function DBCodeDocs(props: DBCodeDocsProps) {
 
 	return (
 		<DBCard
-			ref={component}
+			ref={ref}
+			id={state._id}
 			className={cls('db-code-docs', props.className)}>
 			<Show when={state.stylePath}>
 				<link rel="stylesheet" href={state.stylePath} />

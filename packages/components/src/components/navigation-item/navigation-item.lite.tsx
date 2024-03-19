@@ -4,34 +4,31 @@ import {
 	Show,
 	Slot,
 	useMetadata,
+	useRef,
 	useStore
 } from '@builder.io/mitosis';
-import { DBNavigationItemState, DBNavigationItemProps } from './model';
+import { DBNavigationItemProps, DBNavigationItemState } from './model';
 import { DBButton } from '../button';
-import { cls, uuid } from '../../utils';
-import { DEFAULT_BACK } from '../../shared/constants';
+import { cls, uuid, visibleInVX, visibleInVY } from '../../utils';
+import { DEFAULT_BACK, DEFAULT_ID } from '../../shared/constants';
+import { ClickEvent } from '../../shared/model';
 
 useMetadata({
-	isAttachedToShadowDom: true,
-	component: {
-		// MS Power Apps
-		includeIcon: false,
-		properties: []
-	}
+	isAttachedToShadowDom: true
 });
 
 export default function DBNavigationItem(props: DBNavigationItemProps) {
-	// This is used as forwardRef
-	let component: any;
+	const ref = useRef<HTMLLIElement>(null);
 
 	// jscpd:ignore-start
 	const state = useStore<DBNavigationItemState>({
+		_id: DEFAULT_ID,
 		initialized: false,
 		hasAreaPopup: false,
 		hasSubNavigation: true,
 		isSubNavigationExpanded: false,
 		subNavigationId: 'sub-navigation-' + uuid(),
-		handleClick: (event: any) => {
+		handleClick: (event: ClickEvent<HTMLButtonElement>) => {
 			if (props.onClick) {
 				props.onClick(event);
 			}
@@ -47,6 +44,7 @@ export default function DBNavigationItem(props: DBNavigationItemProps) {
 	});
 
 	onMount(() => {
+		state._id = props.id || 'navigation-item-' + uuid();
 		state.initialized = true;
 		if (props.stylePath) {
 			state.stylePath = props.stylePath;
@@ -67,10 +65,23 @@ export default function DBNavigationItem(props: DBNavigationItemProps) {
 			const subNavigationSlot = document?.getElementById(
 				state.subNavigationId
 			) as HTMLMenuElement;
+
 			if (subNavigationSlot) {
 				const children = subNavigationSlot.children;
 				if (children?.length > 0) {
 					state.hasAreaPopup = true;
+					if (!visibleInVX(subNavigationSlot)) {
+						subNavigationSlot.setAttribute(
+							'data-outside-vx',
+							'true'
+						);
+					}
+					if (!visibleInVY(subNavigationSlot)) {
+						subNavigationSlot.setAttribute(
+							'data-outside-vy',
+							'true'
+						);
+					}
 				} else {
 					state.hasSubNavigation = false;
 				}
@@ -82,8 +93,8 @@ export default function DBNavigationItem(props: DBNavigationItemProps) {
 
 	return (
 		<li
-			ref={component}
-			id={props.id}
+			ref={ref}
+			id={state._id}
 			class={cls('db-navigation-item', props.className)}
 			data-width={props.width}
 			data-icon={props.icon}
@@ -101,10 +112,13 @@ export default function DBNavigationItem(props: DBNavigationItemProps) {
 					aria-expanded={state.isSubNavigationExpanded}
 					className="db-navigation-item-expand-button"
 					disabled={props.disabled}
-					onClick={(event) => state.handleClick(event)}>
+					onClick={(event: ClickEvent<HTMLButtonElement>) =>
+						state.handleClick(event)
+					}>
 					{props.children}
 				</button>
 
+				{/* TODO: Consider using popover here */}
 				<menu className="db-sub-navigation" id={state.subNavigationId}>
 					<Show when={state.hasAreaPopup}>
 						<div class="db-mobile-navigation-back">

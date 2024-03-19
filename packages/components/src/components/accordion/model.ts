@@ -1,4 +1,9 @@
-import { GlobalProps, GlobalState, InitializedState } from '../../shared/model';
+import {
+	GlobalProps,
+	GlobalState,
+	InitializedState,
+	ItemClickState
+} from '../../shared/model';
 import { DBAccordionItemDefaultProps } from '../accordion-item/model';
 
 export interface DBAccordionItemInterface
@@ -8,6 +13,11 @@ export interface DBAccordionDefaultProps {
 	 * To allow multiple items open at the same time or only 1 item
 	 */
 	behaviour?: 'multiple' | 'single';
+
+	/**
+	 * The index of items which should be open when loading the accordion
+	 */
+	initOpenIndex?: number[];
 
 	/**
 	 * Alternative to pass in a simple representation of accordion items
@@ -23,12 +33,11 @@ export interface DBAccordionDefaultProps {
 export type DBAccordionProps = DBAccordionDefaultProps & GlobalProps;
 
 export interface DBAccordionDefaultState {
-	clickedId: string;
 	openItems: string[];
-	handleItemClick: (id: string) => void;
 	convertItems: (items?: any[] | string) => DBAccordionItemInterface[];
 }
 
 export type DBAccordionState = DBAccordionDefaultState &
 	GlobalState &
-	InitializedState;
+	InitializedState &
+	ItemClickState;

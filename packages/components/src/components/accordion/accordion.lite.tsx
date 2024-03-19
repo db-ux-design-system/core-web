@@ -12,8 +12,9 @@ import {
 	DBAccordionProps,
 	DBAccordionItemInterface
 } from './model';
-import { cls } from '../../utils';
+import { cls, uuid } from '../../utils';
 import { DBAccordionItem } from '../accordion-item';
+import { DEFAULT_ID } from '../../shared/constants';
 
 useMetadata({
 	isAttachedToShadowDom: true,
@@ -28,6 +29,7 @@ export default function DBAccordion(props: DBAccordionProps) {
 	const ref = useRef<HTMLDivElement>(null);
 	// jscpd:ignore-start
 	const state = useStore<DBAccordionState>({
+		_id: DEFAULT_ID,
 		openItems: [],
 		clickedId: '',
 		initialized: false,
@@ -66,6 +68,8 @@ export default function DBAccordion(props: DBAccordionProps) {
 	});
 
 	onMount(() => {
+		state._id = props.id || 'accordion-' + uuid();
+
 		if (props.stylePath) {
 			state.stylePath = props.stylePath;
 		}
@@ -79,9 +83,12 @@ export default function DBAccordion(props: DBAccordionProps) {
 			if (childDetails) {
 				let initOpenItems: string[] = [];
 				Array.from<HTMLDetailsElement>(childDetails).forEach(
-					(details: HTMLDetailsElement) => {
+					(details: HTMLDetailsElement, index: number) => {
 						const id = details.id;
-						if (details.open) {
+						if (
+							details.open ||
+							props.initOpenIndex?.includes(index)
+						) {
 							initOpenItems.push(id);
 						}
 						const summaries =
@@ -97,9 +104,8 @@ export default function DBAccordion(props: DBAccordionProps) {
 					initOpenItems = [initOpenItems[0]];
 				}
 				state.openItems = initOpenItems;
+				state.initialized = false;
 			}
-			/* Just set the click listener once */
-			state.initialized = false;
 		}
 	}, [ref, state.initialized]);
 
@@ -126,7 +132,7 @@ export default function DBAccordion(props: DBAccordionProps) {
 	return (
 		<div
 			ref={ref}
-			id={props.id}
+			id={state._id}
 			class={cls('db-accordion', props.className)}>
 			<Show when={state.stylePath}>
 				<link rel="stylesheet" href={state.stylePath} />

@@ -1,65 +1,28 @@
-import { onMount, Show, useMetadata, useStore } from '@builder.io/mitosis';
+import {
+	onMount,
+	Show,
+	useMetadata,
+	useRef,
+	useStore
+} from '@builder.io/mitosis';
 import { DBInfotextProps, DBInfotextState } from './model';
-import { cls } from '../../utils';
+import { cls, uuid } from '../../utils';
+import { DEFAULT_ID } from '../../shared/constants';
 
 useMetadata({
-	isAttachedToShadowDom: true,
-	component: {
-		// MS Power Apps
-		includeIcon: true,
-		canvasSize: {
-			height: 'fixed', // 'fixed', 'controlled'
-			width: 'controlled' // 'fixed', 'dynamic' (requires width property), 'controlled'
-		},
-		properties: [
-			// jscpd:ignore-start
-			{
-				name: 'children',
-				type: 'SingleLine.Text',
-				defaultValue: 'Infotext'
-			},
-			{
-				name: 'variant',
-				type: 'Enum',
-				values: [
-					{ key: 'Adaptive', name: 'Adaptive', value: 'adaptive' },
-					{ key: 'Critical', name: 'Critical', value: 'critical' },
-					{
-						key: 'Informational',
-						name: 'Informational',
-						value: 'informational'
-					},
-					{ key: 'Warning', name: 'Warning', value: 'warning' },
-					{
-						key: 'Successful',
-						name: 'Successful',
-						value: 'successful'
-					}
-				],
-				defaultValue: 'adaptive'
-			},
-			{
-				name: 'size',
-				type: 'Enum',
-				values: [
-					{ key: 'Medium', name: 'Medium', value: 'medium' },
-					{ key: 'Small', name: 'Small', value: 'small' }
-				],
-				defaultValue: 'medium'
-			}
-			// jscpd:ignore-end
-		]
-	}
+	isAttachedToShadowDom: true
 });
 
 export default function DBInfotext(props: DBInfotextProps) {
-	// This is used as forwardRef
-	let component: any;
+	const ref = useRef<HTMLSpanElement>(null);
 	// jscpd:ignore-start
-	const state = useStore<DBInfotextState>({});
+	const state = useStore<DBInfotextState>({
+		_id: DEFAULT_ID
+	});
 	// jscpd:ignore-end
 
 	onMount(() => {
+		state._id = props.id || 'infotext-' + uuid();
 		if (props.stylePath) {
 			state.stylePath = props.stylePath;
 		}
@@ -68,8 +31,8 @@ export default function DBInfotext(props: DBInfotextProps) {
 	// TODO: Check if this should be a div or a span
 	return (
 		<span
-			ref={component}
-			id={props.id}
+			ref={ref}
+			id={state._id}
 			class={cls('db-infotext', props.className)}
 			title={props.title}
 			data-icon={props.icon}

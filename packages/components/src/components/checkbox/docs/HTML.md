@@ -8,12 +8,9 @@ For general installation and configuration take a look at the [components](https
 <!-- index.html -->
 ...
 <body>
-	<input
-		type="checkbox"
-		class="db-checkbox"
-		id="checkbox-element"
-		name="States"
-	/>
-	<label for="checkbox-element">Label</label>
+	<label class="db-checkbox" for="checkbox-element">
+		<input type="checkbox" id="checkbox-element" name="States" />
+		Label
+	</label>
 </body>
 ```

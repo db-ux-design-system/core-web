@@ -1,46 +1,27 @@
-import { onMount, Show, useMetadata, useStore } from '@builder.io/mitosis';
+import {
+	onMount,
+	Show,
+	useMetadata,
+	useRef,
+	useStore
+} from '@builder.io/mitosis';
 import { DBDividerState, DBDividerProps } from './model';
-import { cls } from '../../utils';
+import { cls, uuid } from '../../utils';
+import { DEFAULT_ID } from '../../shared/constants';
 
 useMetadata({
-	isAttachedToShadowDom: true,
-	component: {
-		// MS Power Apps
-		includeIcon: false,
-		properties: [
-			{
-				name: 'variant',
-				type: 'Enum',
-				values: [
-					{
-						key: 'Horizontal',
-						name: 'Horizontal',
-						value: 'horizontal'
-					},
-					{ key: 'Vertical', name: 'Vertical', value: 'vertical' }
-				],
-				defaultValue: 'horizontal'
-			},
-			{
-				name: 'margin',
-				type: 'Enum',
-				values: [
-					{ key: 'Default', name: 'Default', value: '_' },
-					{ key: 'None', name: 'None', value: 'none' }
-				],
-				defaultValue: '_'
-			}
-		]
-	}
+	isAttachedToShadowDom: true
 });
 
 export default function DBDivider(props: DBDividerProps) {
-	// This is used as forwardRef
-	let component: any;
+	const ref = useRef<HTMLDivElement>(null);
 	// jscpd:ignore-start
-	const state = useStore<DBDividerState>({});
+	const state = useStore<DBDividerState>({
+		_id: DEFAULT_ID
+	});
 
 	onMount(() => {
+		state._id = props.id || 'divider-' + uuid();
 		if (props.stylePath) {
 			state.stylePath = props.stylePath;
 		}
@@ -49,8 +30,8 @@ export default function DBDivider(props: DBDividerProps) {
 
 	return (
 		<div
-			ref={component}
-			id={props.id}
+			ref={ref}
+			id={state._id}
 			data-margin={props.margin}
 			data-variant={props.variant}
 			data-emphasis={props.emphasis}

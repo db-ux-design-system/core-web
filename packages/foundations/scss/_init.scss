@@ -4,14 +4,11 @@
 @use "tonality";
 
 :root {
-	// TODO: probably move these to the tokens as well
-	--db-focus-outline-offset: 1px;
 	--db-focus-outline-color: #{colors.$db-informational-text};
-	--db-focus-outline-size: max(2px, 0.08em);
-	--db-disabled-text-opacity: 0.5;
 
 	@extend %db-component-variables-md;
 	@extend %db-bg-base;
+	@extend %db-font-size-md;
 
 	/* This is a MS power apps specific class name */
 	.app-canvas,
@@ -41,6 +38,16 @@ html {
 
 // global
 * {
+	/*
+		we overwrite this for all elements to pass the correct sizes even for elements
+		which have a default font-size/line-height set
+	*/
+	font-size: inherit;
+	line-height: inherit;
+}
+
+[class^="db-"] {
+	// set default size for db-components
 	@extend %db-font-size-md;
 }
 
@@ -86,16 +93,17 @@ iframe {
 }
 
 // Focus styles
-%focus-placeholder,
-:is(a, button, input, textarea, summary, select) {
+:is(
+		a,
+		button,
+		input,
+		textarea,
+		summary,
+		select,
+		[tabindex]:not([tabindex="-1"])
+	) {
 	&:focus-visible {
-		outline: var(--db-focus-outline-size)
-			var(--db-focus-outline-style, solid)
-			var(--db-focus-outline-color, currentColor);
-		outline-offset: var(
-			--db-focus-outline-offset,
-			var(--db-focus-outline-size)
-		);
+		@extend %focus-placeholder;
 	}
 }
 

@@ -1,0 +1,28 @@
+<app-default-component
+	title="DBPopover"
+	[variants]="variants"
+	[exampleTemplate]="exampleTemplate"
+>
+	<ng-template
+		#exampleTemplate
+		let-exampleProps="exampleProps"
+		let-exampleName="exampleName"
+		let-exampleIndex="exampleIndex"
+		let-variantIndex="variantIndex"
+	>
+		<db-button [describedbyid]="exampleProps.id">
+			{{ exampleName }}
+			<db-popover
+				[width]="exampleProps.width"
+				[gap]="exampleProps.gap"
+				[spacing]="exampleProps.spacing"
+				[placement]="exampleProps.placement"
+				[animation]="exampleProps.animation"
+				[delay]="exampleProps.delay"
+				[id]="exampleProps.id"
+			>
+				{{ exampleProps.content }}
+			</db-popover>
+		</db-button>
+	</ng-template>
+</app-default-component>

@@ -24,7 +24,7 @@ const MetaNavigation = ({
 		searchParameters.get(TONALITY_CONST) ?? TONALITY.REGULAR
 	);
 	const [color, setColor] = useState<string>(
-		searchParameters.get(COLOR_CONST) ?? COLOR.NEUTRAL
+		searchParameters.get(COLOR_CONST) ?? COLOR.BASE
 	);
 
 	useEffect(() => {
@@ -51,6 +51,7 @@ const MetaNavigation = ({
 		<>
 			<DBSelect
 				label="Tonality"
+				labelVariant="floating"
 				value={tonality}
 				onChange={(event) => {
 					setTonality(event?.target?.value);
@@ -63,6 +64,7 @@ const MetaNavigation = ({
 			</DBSelect>
 			<DBSelect
 				label="Color"
+				labelVariant="floating"
 				value={color}
 				onChange={(event) => {
 					setColor(event?.target?.value);

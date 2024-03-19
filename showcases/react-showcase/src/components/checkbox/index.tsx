@@ -13,16 +13,18 @@ const getCheckbox = ({
 	required,
 	children,
 	disabled,
-	indeterminate
+	indeterminate,
+	labelVariant
 }: DBCheckboxProps) => (
 	<DBCheckbox
 		label={label}
 		size={size}
 		name={name}
-		checked={checked}
+		defaultChecked={checked}
 		invalid={invalid}
 		required={required}
 		disabled={disabled}
+		labelVariant={labelVariant}
 		indeterminate={indeterminate}>
 		{children}
 	</DBCheckbox>

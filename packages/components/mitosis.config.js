@@ -1,16 +1,14 @@
-const PowerAppsPlugin = require('./plugins/power-apps');
-
 module.exports = {
 	files: 'src/**',
 	targets: ['angular', 'vue3', 'webcomponent', 'react'],
 	dest: '../../output',
 	options: {
 		react: {
-			typescript: true,
-			plugins: [PowerAppsPlugin]
+			typescript: true
 		},
 		angular: {
-			typescript: true
+			typescript: true,
+			standalone: true
 		},
 		vue3: {
 			typescript: true

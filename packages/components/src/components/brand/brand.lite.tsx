@@ -1,55 +1,23 @@
-import { onMount, Show, useMetadata, useStore } from '@builder.io/mitosis';
-import { cls } from '../../utils';
+import {
+	onMount,
+	Show,
+	useMetadata,
+	useRef,
+	useStore
+} from '@builder.io/mitosis';
+import { cls, uuid } from '../../utils';
 import { DBBrandState, DBBrandProps } from './model';
+import { DEFAULT_ID } from '../../shared/constants';
 
 useMetadata({
-	isAttachedToShadowDom: true,
-	component: {
-		// MS Power Apps
-		includeIcon: false,
-		properties: [
-			{
-				name: 'anchorRef',
-				type: 'SingleLine.URL'
-			},
-			{
-				name: 'title',
-				type: 'SingleLine.Text'
-			},
-			{
-				name: 'children',
-				type: 'SingleLine.Text',
-				defaultValue: 'Anwendungsname'
-			},
-			{
-				name: 'imgSrc',
-				type: 'SingleLine.URL',
-				defaultValue:
-					'https://ppassets.azureedge.net/assets/images/db_logo.svg'
-			},
-			{
-				name: 'imgAlt',
-				type: 'SingleLine.Text'
-			},
-			{
-				name: 'imgWidth',
-				type: 'Decimal',
-				defaultValue: 34
-			},
-			{
-				name: 'imgHeight',
-				type: 'Decimal',
-				defaultValue: 24
-			}
-		]
-	}
+	isAttachedToShadowDom: true
 });
 
 export default function DBBrand(props: DBBrandProps) {
-	// This is used as forwardRef
-	let component: any;
+	const ref = useRef<HTMLDivElement>(null);
 	// jscpd:ignore-start
 	const state = useStore<DBBrandState>({
+		_id: DEFAULT_ID,
 		defaultValues: {
 			anchorRef: '/',
 			src: './assets/images/db_logo.svg',
@@ -59,6 +27,8 @@ export default function DBBrand(props: DBBrandProps) {
 	});
 
 	onMount(() => {
+		state._id = props.id || 'brand-' + uuid();
+
 		if (props.stylePath) {
 			state.stylePath = props.stylePath;
 		}
@@ -66,8 +36,7 @@ export default function DBBrand(props: DBBrandProps) {
 	// jscpd:ignore-end
 
 	return (
-		<div ref={component}
-			 id={props.id} class={cls('db-brand', props.className)}>
+		<div ref={ref} id={state._id} class={cls('db-brand', props.className)}>
 			<Show when={state.stylePath}>
 				<link rel="stylesheet" href={state.stylePath} />
 			</Show>

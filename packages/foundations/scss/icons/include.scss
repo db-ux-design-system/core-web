@@ -50,6 +50,15 @@
 }
 
 [data-icon],
+[data-icon-before],
+[data-icon-after] {
+	&:is(span) {
+		display: inline-flex;
+		vertical-align: baseline;
+	}
+}
+
+[data-icon],
 [data-icon-before] {
 	&::before {
 		@extend %icon !optional;
@@ -60,7 +69,7 @@
 [data-icon="none"],
 [data-icon-before="none"] {
 	&::before {
-		margin-inline-end: 0;
+		content: none;
 	}
 }
 
@@ -74,7 +83,7 @@
 
 [data-icon-after="none"] {
 	&::after {
-		margin-inline-start: 0;
+		content: none;
 	}
 }
 

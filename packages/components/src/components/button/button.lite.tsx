@@ -1,68 +1,25 @@
-import { onMount, Show, useMetadata, useStore } from '@builder.io/mitosis';
+import {
+	onMount,
+	Show,
+	useMetadata,
+	useRef,
+	useStore
+} from '@builder.io/mitosis';
 import type { DBButtonProps, DBButtonState } from './model';
-import { cls } from '../../utils';
+import { cls, uuid } from '../../utils';
+import { ClickEvent } from '../../shared/model';
+import { DEFAULT_ID } from '../../shared/constants';
 
 useMetadata({
-	isAttachedToShadowDom: true,
-	component: {
-		// MS Power Apps
-		includeIcon: true,
-		hasDisabledProp: true,
-		hasOnClick: true,
-		canvasSize: {
-			height: 'fixed', // 'fixed', 'controlled'
-			width: 'dynamic' // 'fixed', 'dynamic' (requires width property), 'controlled'
-		},
-		properties: [
-			{
-				name: 'children',
-				type: 'SingleLine.Text',
-				defaultValue: 'Button'
-			},
-			{
-				name: 'variant',
-				type: 'Enum',
-				values: [
-					{ key: 'Primary', name: 'Primary', value: 'primary' },
-					{ key: 'Outlined', name: 'Outlined', value: 'outlined' },
-					{
-						key: 'Text',
-						name: 'Text',
-						value: 'text'
-					},
-					{
-						key: 'Solid',
-						name: 'Solid',
-						value: 'solid'
-					}
-				],
-				defaultValue: 'primary'
-			},
-			{
-				name: 'icon',
-				type: 'Icon'
-			},
-			{ name: 'noText', type: 'TwoOptions' },
-			{
-				name: 'width',
-				powerAppsName: 'autoWidth', // width property is reserved in power apps
-				type: 'Enum',
-				defaultValue: 'auto',
-				values: [
-					{ key: 'Full', name: 'Full', value: 'full' },
-					{ key: 'Auto', name: 'Auto', value: 'auto' }
-				]
-			}
-		]
-	}
+	isAttachedToShadowDom: true
 });
 
 export default function DBButton(props: DBButtonProps) {
-	// This is used as forwardRef
-	let component: any;
+	const ref = useRef<HTMLButtonElement>(null);
 	// jscpd:ignore-start
 	const state = useStore<DBButtonState>({
-		handleClick: (event: any) => {
+		_id: DEFAULT_ID,
+		handleClick: (event: ClickEvent<HTMLButtonElement>) => {
 			if (props.onClick) {
 				props.onClick(event);
 			}
@@ -70,6 +27,7 @@ export default function DBButton(props: DBButtonProps) {
 	});
 
 	onMount(() => {
+		state._id = props.id || 'button-' + uuid();
 		if (props.stylePath) {
 			state.stylePath = props.stylePath;
 		}
@@ -78,8 +36,8 @@ export default function DBButton(props: DBButtonProps) {
 
 	return (
 		<button
-			id={props.id}
-			ref={component}
+			ref={ref}
+			id={state._id}
 			class={cls('db-button', props.className, {
 				'is-icon-text-replace': props.noText
 			})}
@@ -94,9 +52,12 @@ export default function DBButton(props: DBButtonProps) {
 			data-variant={props.variant}
 			name={props.name}
 			value={props.value}
+			aria-describedby={props.describedbyid}
 			aria-expanded={props.ariaexpanded}
 			aria-pressed={props.ariapressed}
-			onClick={(event) => state.handleClick(event)}>
+			onClick={(event: ClickEvent<HTMLButtonElement>) =>
+				state.handleClick(event)
+			}>
 			<Show when={state.stylePath}>
 				<link rel="stylesheet" href={state.stylePath} />
 			</Show>

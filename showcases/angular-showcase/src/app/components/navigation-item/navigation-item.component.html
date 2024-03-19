@@ -19,31 +19,33 @@
 			(click)="showAlert(exampleName)"
 		>
 			<ng-container *dbNavigationContent>
-				<ng-container *ngIf="exampleProps.areaPopup">{{
-					exampleName
-				}}</ng-container>
-				<a href="#" *ngIf="!exampleProps.areaPopup">{{
-					exampleName
-				}}</a>
+				@if (exampleProps.areaPopup) {
+					{{ exampleName }}
+				}
+				@if (!exampleProps.areaPopup) {
+					<a href="#">{{ exampleName }}</a>
+				}
 			</ng-container>
 
-			<ng-container *ngIf="exampleProps.areaPopup" sub-navigation>
-				<db-navigation-item [areaPopup]="false">
-					<ng-container *dbNavigationContent>
-						<a href="#">Test1</a>
-					</ng-container>
-				</db-navigation-item>
-				<db-navigation-item [areaPopup]="false">
-					<ng-container *dbNavigationContent>
-						<a href="#">Test2</a>
-					</ng-container>
-				</db-navigation-item>
-				<db-navigation-item [areaPopup]="false">
-					<ng-container *dbNavigationContent>
-						<a href="#">Test3</a>
-					</ng-container>
-				</db-navigation-item>
-			</ng-container>
+			@if (exampleProps.areaPopup) {
+				<ng-container sub-navigation>
+					<db-navigation-item [areaPopup]="false">
+						<ng-container *dbNavigationContent>
+							<a href="#">Test1</a>
+						</ng-container>
+					</db-navigation-item>
+					<db-navigation-item [areaPopup]="false">
+						<ng-container *dbNavigationContent>
+							<a href="#">Test2</a>
+						</ng-container>
+					</db-navigation-item>
+					<db-navigation-item [areaPopup]="false">
+						<ng-container *dbNavigationContent>
+							<a href="#">Test3</a>
+						</ng-container>
+					</db-navigation-item>
+				</ng-container>
+			}
 		</db-navigation-item>
 	</ng-template>
 </app-default-component>

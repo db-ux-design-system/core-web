@@ -36,21 +36,13 @@ jobs:
     uses: ./.github/workflows/02-e2e.yml
     needs: [build-packages]
 
-  build-power-apps:
-    uses: ./.github/workflows/01-build-power-apps.yml
-    needs: [get-publish-version, build-packages]
-    secrets: inherit
-    with:
-      version: ${{ needs.get-publish-version.outputs.version }}
+  test-foundations:
+    uses: ./.github/workflows/02-e2e-foundations.yml
+    needs: [build-packages]
 
   test-showcases:
     uses: ./.github/workflows/02-e2e-showcases.yml
     needs: [build-showcases]
-
-  merge-reports:
-    if: ${{ always() }}
-    uses: ./.github/workflows/03-e2e-merge-reports.yml
-    needs: [test-components, test-showcases]
 
   checks-done:
     runs-on: ubuntu-latest
@@ -63,7 +55,7 @@ jobs:
         build-outputs,
         build-showcases,
         test-showcases,
-        build-power-apps
+        test-foundations
       ]
 
   deploy:

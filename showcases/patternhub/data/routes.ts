@@ -33,6 +33,10 @@ const componentChildren: NavigationItem[] = [
 				name: 'icon'
 			},
 			{
+				label: 'DBTooltip',
+				name: 'tooltip'
+			},
+			{
 				label: 'DBInfotext',
 				name: 'infotext'
 			},
@@ -47,6 +51,15 @@ const componentChildren: NavigationItem[] = [
 			{
 				label: 'DBAccordionItem',
 				name: 'accordion-item'
+			},
+			{
+				label: 'DBTabs',
+				name: 'tabs'
+			},
+
+			{
+				label: 'DBTab',
+				name: 'tab'
 			}
 		]
 	},
@@ -133,6 +146,16 @@ const componentChildren: NavigationItem[] = [
 				name: 'navigation-item'
 			}
 		]
+	},
+	{
+		label: 'Utilities',
+		path: '/components/utilities',
+		subNavigation: [
+			{
+				label: 'DBPopover',
+				name: 'popover'
+			}
+		]
 	}
 ];
 export const ROUTES: NavigationItem[] = [
@@ -150,10 +173,58 @@ export const ROUTES: NavigationItem[] = [
 				path: '/foundations/colors',
 				subNavigation: [
 					{ label: 'Readme', path: '/foundations/colors/readme' },
-					{ label: 'Examples', path: '/foundations/colors/examples' }
+					{ label: 'Overview', path: '/foundations/colors/overview' },
+					{
+						label: 'Color Schemes',
+						path: '/foundations/colors/color-schemes'
+					}
 				]
 			},
-			{ label: 'Icons', path: '/foundations/icons' }
+			{
+				label: 'Font Sizes',
+				path: '/foundations/font-sizes',
+				subNavigation: [
+					{ label: 'Readme', path: '/foundations/font-sizes/readme' },
+					{
+						label: 'Overview',
+						path: '/foundations/font-sizes/overview'
+					}
+				]
+			},
+			{
+				label: 'Icons',
+				path: '/foundations/icons',
+				subNavigation: [
+					{ label: 'Readme', path: '/foundations/icons/readme' },
+					{
+						label: 'Custom Icons',
+						path: '/foundations/icons/custom-icons'
+					},
+					{ label: 'Overview', path: '/foundations/icons/overview' }
+				]
+			},
+			{
+				label: 'Tonalities',
+				path: '/foundations/tonalities',
+				subNavigation: [
+					{ label: 'Readme', path: '/foundations/tonalities/readme' },
+					{
+						label: 'Examples',
+						path: '/foundations/tonalities/examples'
+					}
+				]
+			},
+			{
+				label: 'Variables',
+				path: '/foundations/variables',
+				subNavigation: [
+					{ label: 'Readme', path: '/foundations/variables/readme' },
+					{
+						label: 'Examples',
+						path: '/foundations/variables/examples'
+					}
+				]
+			}
 		]
 	},
 	{
@@ -174,10 +245,6 @@ export const ROUTES: NavigationItem[] = [
 						{
 							label: 'Properties',
 							path: `/components/${component.name}/properties`
-						},
-						{
-							label: 'Examples',
-							path: `/components/${component.name}/examples`
 						},
 						{
 							label: 'How to use',

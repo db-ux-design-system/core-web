@@ -13,8 +13,7 @@
 		<db-accordion-item
 			[title]="exampleProps.title"
 			[disabled]="exampleProps.disabled"
-			[open]="isOpen(exampleIndex, variantIndex, exampleProps.open)"
-			(onToggle)="toggle(exampleIndex, variantIndex)"
+			[defaultOpen]="exampleProps.open"
 		>
 			{{ exampleName }}
 		</db-accordion-item>

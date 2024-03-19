@@ -39,7 +39,7 @@
 				)};
 		}
 
-		@each $fix in variables.$fixed {
+		@each $fix in variables.$sizings {
 			--db-spacing-fixed-#{$fix}: #{get-variable(
 					"spacing-fixed",
 					$tonality,
@@ -47,7 +47,7 @@
 				)};
 		}
 
-		@each $res in variables.$responsive {
+		@each $res in variables.$sizings {
 			--db-spacing-responsive-#{$res}: #{get-variable(
 					"spacing-responsive",
 					$tonality,
@@ -57,7 +57,7 @@
 		}
 
 		@include screen-sizes.screen() {
-			@each $res in variables.$responsive {
+			@each $res in variables.$sizings {
 				--db-spacing-responsive-#{$res}: #{get-variable(
 						"spacing-responsive",
 						$tonality,
@@ -68,7 +68,7 @@
 		}
 
 		@include screen-sizes.screen("md") {
-			@each $res in variables.$responsive {
+			@each $res in variables.$sizings {
 				--db-spacing-responsive-#{$res}: #{get-variable(
 						"spacing-responsive",
 						$tonality,

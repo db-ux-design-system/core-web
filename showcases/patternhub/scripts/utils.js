@@ -23,7 +23,7 @@ export const getUnionElements = (options, elements) => {
  * @returns {string}
  */
 export const getCodeByFramework = (componentName, framework, example) => {
-	const props = example.props;
+	const properties = example.props;
 	let tag = `DB${componentName
 		.split('-')
 		.map((part) => part.charAt(0).toUpperCase() + part.slice(1))
@@ -34,28 +34,28 @@ export const getCodeByFramework = (componentName, framework, example) => {
 
 	const attributes = [];
 
-	const propKeys = props
-		? Object.keys(props).filter((key) => key !== 'children')
+	const propertyKeys = properties
+		? Object.keys(properties).filter((key) => key !== 'children')
 		: [];
 
-	for (const key of propKeys) {
-		let value = props[key];
+	for (const key of propertyKeys) {
+		let value = properties[key];
 
 		if (value instanceof Object) {
 			value = JSON.stringify(value);
 		}
 
 		if (
-			typeof props[key] === 'boolean' ||
-			typeof props[key] === 'number' ||
-			props[key] instanceof Object ||
+			typeof properties[key] === 'boolean' ||
+			typeof properties[key] === 'number' ||
+			properties[key] instanceof Object ||
 			key === 'click'
 		) {
 			if (
 				framework !== 'react' &&
-				(props[key] instanceof Object || key === 'click')
+				(properties[key] instanceof Object || key === 'click')
 			) {
-				value = value.replace(/"/g, "'");
+				value = value.replaceAll('"', "'");
 			}
 
 			if (framework === 'angular') {
@@ -64,7 +64,7 @@ export const getCodeByFramework = (componentName, framework, example) => {
 				attributes.push(`:${key}="${value}"`);
 			} else if (framework === 'react' && key === 'click') {
 				attributes.push(`onClick={${value}}`);
-			} else if (typeof props[key] === 'boolean') {
+			} else if (typeof properties[key] === 'boolean') {
 				attributes.push(key);
 			} else {
 				attributes.push(`${key}={${value}}`);
@@ -99,19 +99,22 @@ export const getColorVariants = () => [
 	'informational-transparent-semi'
 ];
 
-/**
- * @param string {string}
- * @returns {string}
- */
 export const getSpacesReplacedString = (string) => {
 	return string.replaceAll(/\s[a-z\d]/gi, (match) =>
 		match.trim().toUpperCase()
 	);
 };
 
+export const getComponentName = (filePath) => {
+	let componentName = filePath.split('/').at(-1);
+	componentName = componentName.replace('.tsx', '').replaceAll(/\s/g, '');
+	return componentName;
+};
+
 export default {
 	getUnionElements,
 	getCodeByFramework,
 	getColorVariants,
-	getSpacesReplacedString
+	getSpacesReplacedString,
+	getComponentName
 };

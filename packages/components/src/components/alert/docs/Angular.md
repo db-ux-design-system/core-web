@@ -4,16 +4,16 @@ For general installation and configuration take a look at the [ngx-components](h
 
 ### Load component
 
-```ts app.module.ts
-//app.module.ts
-import { DBAlertModule } from '@db-ui/ngx-components';
+```ts app.component.ts
+// app.component.ts
+import { DBAlert } from '@db-ui/ngx-components';
 
-@NgModule({
-  ...
-  imports: [..., DBAlertModule],
-  ...
+@Component({
+  // ...
+  standalone: true,
+  imports: [..., DBAlert],
+  // ...
 })
-
 ```
 
 ### Use component

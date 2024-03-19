@@ -1,23 +1,27 @@
-import { onMount, Show, useMetadata, useStore } from '@builder.io/mitosis';
+import {
+	onMount,
+	Show,
+	useMetadata,
+	useRef,
+	useStore
+} from '@builder.io/mitosis';
 import { DBBadgeState, DBBadgeProps } from './model';
-import { cls } from '../../utils';
+import { cls, uuid } from '../../utils';
+import { DEFAULT_ID } from '../../shared/constants';
 
 useMetadata({
-	isAttachedToShadowDom: true,
-	component: {
-		// MS Power Apps
-		includeIcon: false,
-		properties: []
-	}
+	isAttachedToShadowDom: true
 });
 
 export default function DBBadge(props: DBBadgeProps) {
-	// This is used as forwardRef
-	let component: any;
+	const ref = useRef<HTMLSpanElement>(null);
 	// jscpd:ignore-start
-	const state = useStore<DBBadgeState>({});
+	const state = useStore<DBBadgeState>({
+		_id: DEFAULT_ID
+	});
 
 	onMount(() => {
+		state._id = props.id || 'badge-' + uuid();
 		if (props.stylePath) {
 			state.stylePath = props.stylePath;
 		}
@@ -26,8 +30,8 @@ export default function DBBadge(props: DBBadgeProps) {
 
 	return (
 		<span
-			ref={component}
-			id={props.id}
+			ref={ref}
+			id={state._id}
 			class={cls('db-badge', props.className)}
 			data-variant={props.variant}
 			data-size={props.size}

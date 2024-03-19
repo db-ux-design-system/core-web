@@ -1,7 +1,6 @@
 assets/fonts/**/sources
 build/
 build-outputs/
-build-power-apps/
 build-showcases/
 dist/
 out/

@@ -1,61 +1,74 @@
 $variants: "base", "neutral", "brand", "critical", "successful", "warning",
 	"informational";
 
+// current
+$db-current-color: var(--db-current-color);
+$db-current-bg-color: var(--db-current-bg-color);
+
 // Variants for adaptive components like input, select, alert, ...
 
 // base
 $db-base-bg: var(--db-base-bg-enabled);
-
 $db-base-on-bg: var(--db-current-color, var(--db-base-on-bg-enabled));
-
 $db-base-border-weak: var(
 	--db-current-border-weak-color,
 	var(--db-base-border-weak-enabled)
 );
-
 $db-base-border: var(--db-current-border-color, var(--db-base-border-enabled));
 
 // brand
 
-$db-brand: var(--db-brand-origin-enabled);
-
 $db-brand-on: var(--db-brand-on-enabled);
-
+// just for db-button
+$db-brand: var(--db-brand-origin-enabled);
 $db-brand-hover: var(--db-brand-origin-hover);
-
 $db-brand-pressed: var(--db-brand-origin-pressed);
+// just for db-link
+$db-brand-text: var(--db-brand-text-enabled);
+$db-brand-text-hover: var(--db-brand-text-hover);
+$db-brand-text-pressed: var(--db-brand-text-pressed);
 
 // neutral
 $db-neutral-border-weak: var(--db-neutral-border-weak-enabled);
-
 $db-neutral-element: var(--db-neutral-element-enabled);
-
 $db-neutral-on-bg: var(--db-neutral-on-bg-enabled);
+$db-neutral-bg: var(--db-neutral-bg-enabled);
 $db-neutral-text: var(--db-neutral-text-enabled);
+$db-neutral-text-hover: var(--db-neutral-text-hover);
+$db-neutral-text-pressed: var(--db-neutral-text-pressed);
 
 // critical
 $db-critical-border-weak: var(--db-critical-border-weak-enabled);
-
 $db-critical-element: var(--db-critical-element-enabled);
-
 $db-critical-on-bg: var(--db-critical-on-bg-enabled);
+$db-critical-bg: var(--db-critical-bg-enabled);
 $db-critical-text: var(--db-critical-text-enabled);
+$db-critical-text-hover: var(--db-critical-text-hover);
+$db-critical-text-pressed: var(--db-critical-text-pressed);
 
 // informational
 $db-informational-border-weak: var(--db-informational-border-weak-enabled);
 $db-informational-element: var(--db-informational-element-enabled);
-
 $db-informational-on-bg: var(--db-informational-on-bg-enabled);
+$db-informational-bg: var(--db-informational-bg-enabled);
 $db-informational-text: var(--db-informational-text-enabled);
+$db-informational-text-hover: var(--db-informational-text-hover);
+$db-informational-text-pressed: var(--db-informational-text-pressed);
 
 // warning
 $db-warning-border-weak: var(--db-warning-border-weak-enabled);
 $db-warning-element: var(--db-warning-element-enabled);
 $db-warning-on-bg: var(--db-warning-on-bg-enabled);
+$db-warning-bg: var(--db-warning-bg-enabled);
 $db-warning-text: var(--db-warning-text-enabled);
+$db-warning-text-hover: var(--db-warning-text-hover);
+$db-warning-text-pressed: var(--db-warning-text-pressed);
 
 // successful
 $db-successful-border-weak: var(--db-successful-border-weak-enabled);
 $db-successful-element: var(--db-successful-element-enabled);
 $db-successful-on-bg: var(--db-successful-on-bg-enabled);
+$db-successful-bg: var(--db-successful-bg-enabled);
 $db-successful-text: var(--db-successful-text-enabled);
+$db-successful-text-hover: var(--db-successful-text-hover);
+$db-successful-text-pressed: var(--db-successful-text-pressed);
