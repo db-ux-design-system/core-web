@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import DefaultComponent from "../DefaultComponent.vue";
 import defaultComponentVariants from "../../../../shared/notification.json";
-import { DBNotification, DBLink } from "../../../../../output/vue/vue3/src";
+import { DBNotification, DBLink } from "../../../../../output/vue/src";
 
 const log = (exampleName: string) => {
 	// eslint-disable-next-line no-notification

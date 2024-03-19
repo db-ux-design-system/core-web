@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import DefaultComponent from "../DefaultComponent.vue";
 import defaultComponentVariants from "../../../../shared/infotext.json";
-import { DBInfotext } from "../../../../../output/vue/vue3/src";
+import { DBInfotext } from "../../../../../output/vue/src";
 </script>
 
 <template>

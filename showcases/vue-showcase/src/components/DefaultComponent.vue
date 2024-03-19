@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { DBCodeDocs, DBDivider, DBLink } from "../../../../output/vue/vue3/src";
+import { DBCodeDocs, DBDivider, DBLink } from "../../../../output/vue/src";
 import type {
 	DefaultComponentExample,
 	DefaultComponentProps,

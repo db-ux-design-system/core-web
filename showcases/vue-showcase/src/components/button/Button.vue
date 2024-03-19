@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import DefaultComponent from "../DefaultComponent.vue";
 import defaultComponentVariants from "../../../../shared/button.json";
-import { DBButton } from "../../../../../output/vue/vue3/src";
+import { DBButton } from "../../../../../output/vue/src";
 
 const log = (exampleName: string) => {
 	// eslint-disable-next-line no-alert

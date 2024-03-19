@@ -19,7 +19,6 @@ export default function DBBrand(props: DBBrandProps) {
 	const state = useStore<DBBrandState>({
 		_id: DEFAULT_ID,
 		defaultValues: {
-			anchorRef: '/',
 			src: './assets/images/db_logo.svg',
 			width: '34',
 			height: '24'
@@ -42,7 +41,7 @@ export default function DBBrand(props: DBBrandProps) {
 			</Show>
 
 			<a
-				href={props.anchorRef ?? state.defaultValues.anchorRef}
+				href={props.anchorRef}
 				title={props.anchorTitle}
 				rel={props.anchorRelation}>
 				<Show when={!props.hideDefaultAsset}>
@@ -54,13 +53,8 @@ export default function DBBrand(props: DBBrandProps) {
 						className="db-logo"
 					/>
 				</Show>
-				<Show when={props.anchorChildren}>
-					<>{props.children}</>
-				</Show>
+				{props.children}
 			</a>
-			<Show when={!props.anchorChildren}>
-				<>{props.children}</>
-			</Show>
 		</div>
 	);
 }

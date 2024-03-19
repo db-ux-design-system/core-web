@@ -1,13 +1,10 @@
 <script setup lang="ts">
-import {
-	DBNavigationItem,
-	DBSubNavigation
-} from "../../../output/vue/vue3/src";
+import { DBNavigationItem } from "../../../output/vue/src";
 import { NavItem } from "./utils/navigation-items";
 import { useRoute } from "vue-router";
 
 defineProps<{
-	navItem?: NavItem;
+	navItem: NavItem;
 }>();
 
 const route = useRoute();

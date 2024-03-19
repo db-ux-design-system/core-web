@@ -38,3 +38,17 @@
 | 🔄 changed `db-card` elevation             | We replaced the box-shadow elevation with bg-level                            | 1. `props.elevation` ➡ `props.elevationLevel` (1,2,3) <br/>2. `props.variant` ➡ `props.behaviour` <br/>3. Removed card-image                                                                             |
 | 🆕 valid/invalid message form-components   | We add additional messages for `required` form-components like `DBInput` etc. | Use `validMessage="XXX"` and `invalidMessage="XXX"` to display the required information for form-components. Otherwise you will see a default message with a `TODO: ...`                                   |
 | 🔄 changed `db-link` variant               | We renamed the variants for the link                                          | `primary` ➡ `brand`                                                                                                                                                                                       |
+
+### React
+
+`slot` prefix was removed for all components containing another child element, for example:
+
+```tsx
+<DBHeader slotBrand={...
+```
+
+becomes
+
+```tsx
+<DBHeader brand={...
+```

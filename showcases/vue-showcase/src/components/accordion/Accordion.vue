@@ -5,7 +5,7 @@ import {
 	DBAccordion,
 	DBAccordionItem,
 	DBInfotext
-} from "../../../../../output/vue/vue3/src";
+} from "../../../../../output/vue/src";
 </script>
 
 <template>

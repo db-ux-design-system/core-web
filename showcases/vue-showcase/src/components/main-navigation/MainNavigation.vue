@@ -4,7 +4,7 @@ import defaultComponentVariants from "../../../../shared/main-navigation.json";
 import {
 	DBMainNavigation,
 	DBNavigationItem
-} from "../../../../../output/vue/vue3/src";
+} from "../../../../../output/vue/src";
 </script>
 
 <template>

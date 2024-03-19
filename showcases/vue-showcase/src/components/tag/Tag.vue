@@ -7,11 +7,11 @@ import {
 	DBLink,
 	DBCheckbox,
 	DBRadio
-} from "../../../../../output/vue/vue3/src";
+} from "../../../../../output/vue/src";
 
-const showAlert = (exampleName: string) => {
+const showAlert = (exampleName?: string) => {
 	// eslint-disable-next-line no-alert
-	alert(exampleName);
+	alert(exampleName || "");
 };
 </script>
 

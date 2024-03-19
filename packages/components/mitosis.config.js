@@ -1,6 +1,6 @@
 module.exports = {
 	files: 'src/**',
-	targets: ['angular', 'vue3', 'webcomponent', 'react'],
+	targets: ['angular', 'vue', 'webcomponent', 'react'],
 	dest: '../../output',
 	options: {
 		react: {
@@ -10,7 +10,7 @@ module.exports = {
 			typescript: true,
 			standalone: true
 		},
-		vue3: {
+		vue: {
 			typescript: true
 		},
 		webcomponent: {

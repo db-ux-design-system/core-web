@@ -6,7 +6,7 @@ import {
 	DBSelect,
 	DBMainNavigation,
 	DBButton
-} from "../../../output/vue/vue3/src";
+} from "../../../output/vue/src";
 import {
 	COLOR,
 	COLORS,

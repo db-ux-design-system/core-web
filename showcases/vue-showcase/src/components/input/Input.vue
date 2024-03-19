@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import DefaultComponent from "../DefaultComponent.vue";
 import defaultComponentVariants from "../../../../shared/input.json";
-import { DBInput } from "../../../../../output/vue/vue3/src";
+import { DBInput } from "../../../../../output/vue/src";
 </script>
 
 <template>
