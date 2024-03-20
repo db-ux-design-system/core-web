@@ -1,8 +1,8 @@
 @use "@db-ui/foundations/build/scss/variables";
 @use "@db-ui/foundations/build/scss/screen-sizes";
 @use "../../styles/component";
-@use "../../styles/db-puls";
 @use "../../styles/form-components";
+@use "../../styles/db-puls";
 
 .db-main-navigation {
 	-webkit-tap-highlight-color: transparent; /* for removing the highlight */
@@ -25,6 +25,8 @@
 		}
 
 		.db-navigation-item {
+			@extend %db-puls-auto;
+
 			.db-navigation-item-expand-button:is(button),
 			.db-navigation-item-expand-button > button {
 				// overwrite for main-navigation items
@@ -70,9 +72,14 @@
 				}
 			}
 
+			&:has([aria-current="page"]),
 			&[aria-current="page"] {
+				// add puls for main-navigation items
+				@extend %show-db-puls-auto;
+
 				menu {
 					// hide puls for non main-navigation items
+					:has([aria-current="page"]),
 					[aria-current="page"] {
 						&::after {
 							display: none;
