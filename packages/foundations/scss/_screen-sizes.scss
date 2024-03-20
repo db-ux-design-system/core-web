@@ -1,10 +1,16 @@
-@use "helpers/functions";
+@use "helpers";
 
-$db-breakpoint-xs: functions.to-rem(360);
-$db-breakpoint-sm: functions.to-rem(720);
-$db-breakpoint-md: functions.to-rem(1024);
-$db-breakpoint-lg: functions.to-rem(1440);
-$db-breakpoint-xl: functions.to-rem(1920);
+$db-screen-size-xs: 360;
+$db-screen-size-sm: 720;
+$db-screen-size-md: 1024;
+$db-screen-size-lg: 1440;
+$db-screen-size-xl: 1920;
+
+$db-breakpoint-xs: helpers.to-em($db-screen-size-xs);
+$db-breakpoint-sm: helpers.to-em($db-screen-size-sm);
+$db-breakpoint-md: helpers.to-em($db-screen-size-md);
+$db-breakpoint-lg: helpers.to-em($db-screen-size-lg);
+$db-breakpoint-xl: helpers.to-em($db-screen-size-xl);
 
 :root {
 	--db-breakpoint-xs: #{$db-breakpoint-xs};
@@ -15,19 +21,19 @@ $db-breakpoint-xl: functions.to-rem(1920);
 }
 
 @mixin screen($size: "sm", $width: "min") {
-	$screen: $db-breakpoint-sm;
+	$screen: $db-screen-size-sm;
 	@if ($size == "xs") {
-		$screen: $db-breakpoint-xs;
+		$screen: $db-screen-size-xs;
 	} @else if ($size == "md") {
-		$screen: $db-breakpoint-md;
+		$screen: $db-screen-size-md;
 	} @else if ($size == "lg") {
-		$screen: $db-breakpoint-lg;
+		$screen: $db-screen-size-lg;
 	} @else if ($size == "xl") {
-		$screen: $db-breakpoint-xl;
+		$screen: $db-screen-size-xl;
 	}
 
 	@if ($width == "min") {
-		@media screen and (min-width: $screen) {
+		@media screen and (min-width: helpers.to-em($screen)) {
 			&:not([data-force-mobile]),
 			&[data-force-mobile="false"] {
 				@content;
@@ -38,7 +44,7 @@ $db-breakpoint-xl: functions.to-rem(1920);
 			@content;
 		}
 
-		@media screen and (max-width: $screen) {
+		@media screen and (max-width: helpers.to-em($screen - 1)) {
 			@content;
 		}
 	}
