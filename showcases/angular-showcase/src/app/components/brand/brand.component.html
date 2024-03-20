@@ -11,10 +11,9 @@
 		let-variantIndex="variantIndex"
 	>
 		<db-brand [hideLogo]="exampleProps.hideLogo">
-			<img
-				*ngIf="exampleProps.customLogo"
-				src="./assets/images/db_logo.svg"
-			/>
+			@if (exampleProps.customLogo) {
+				<img src="./assets/images/db_logo.svg" alt="logo" />
+			}
 			{{ exampleName }}
 		</db-brand>
 	</ng-template>
