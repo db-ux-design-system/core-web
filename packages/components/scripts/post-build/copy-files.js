@@ -28,14 +28,6 @@ module.exports = () => {
 					`../../output/${framework}/playwright.config.ts`,
 					{ overwrite: true }
 				);
-
-				if (framework === 'vue') {
-					Replace({
-						files: `../../output/${framework}/playwright.config.ts`,
-						from: './../../__snapshots__',
-						to: './../../../__snapshots__'
-					});
-				}
 			}
 		}
 	}
