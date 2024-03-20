@@ -37,9 +37,9 @@
     "@axe-core/playwright": "^4.8.5",
     "@playwright/experimental-ct-vue": "1.42.1",
     "@vitejs/plugin-vue": "^5.0.4",
-    "sass": "^1.71.1",
-    "typescript": "^5.3.3",
-    "vite": "^5.1.5",
+    "sass": "^1.72.0",
+    "typescript": "^5.4.2",
+    "vite": "^5.1.6",
     "vue-tsc": "^2.0.6"
   },
   "publishConfig": {

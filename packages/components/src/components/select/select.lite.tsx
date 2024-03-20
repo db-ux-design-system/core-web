@@ -78,10 +78,6 @@ export default function DBSelect(props: DBSelectProps) {
 		state._id = id;
 		state._messageId = id + DEFAULT_MESSAGE_ID_SUFFIX;
 		state._placeholderId = id + DEFAULT_PLACEHOLDER_ID_SUFFIX;
-
-		if (props.stylePath) {
-			state.stylePath = props.stylePath;
-		}
 	});
 	// jscpd:ignore-end
 
@@ -91,9 +87,6 @@ export default function DBSelect(props: DBSelectProps) {
 			data-variant={props.variant}
 			data-label-variant={props.labelVariant}
 			data-icon={props.icon}>
-			<Show when={state.stylePath}>
-				<link rel="stylesheet" href={state.stylePath} />
-			</Show>
 			<label htmlFor={state._id}>{props.label ?? DEFAULT_LABEL}</label>
 			<select
 				ref={ref}
@@ -133,6 +126,7 @@ export default function DBSelect(props: DBSelectProps) {
 												optgroupOption: DBSelectOptionType
 											) => (
 												<option
+													key={optgroupOption.value.toString()}
 													value={optgroupOption.value}
 													disabled={
 														optgroupOption.disabled

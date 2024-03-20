@@ -27,11 +27,6 @@ export type GlobalProps = {
 	key?: string;
 
 	/**
-	 * Web Component specific: Adds a link tag with the path to show css inside Shadow DOM.
-	 */
-	stylePath?: string;
-
-	/**
 	 * The default tabindex (https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/tabindex?retiredLocale=de).
 	 */
 	tabIndex?: number;
@@ -44,7 +39,6 @@ export type GlobalProps = {
 
 export type GlobalState = {
 	_id?: string;
-	stylePath?: string;
 	defaultValues?: { [key: string]: string };
 };
 
