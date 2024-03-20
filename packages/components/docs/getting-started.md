@@ -76,15 +76,3 @@ Please keep in mind, that you would need to set your `include path` also known a
 	}
 }
 ```
-
----
-
-#### [`node-sass` Compiler](https://npmjs.com/node-sass)
-
-```json
-{
-	"scripts": {
-		"css-compile": "node-sass --include-path node_modules style.scss -o assets/css/"
-	}
-}
-```
