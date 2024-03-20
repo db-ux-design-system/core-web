@@ -1,17 +1,17 @@
 @use "helpers";
 
-$db-breakpoint-xs: helpers.to-em(360);
-$db-breakpoint-sm: helpers.to-em(720);
-$db-breakpoint-md: helpers.to-em(1024);
-$db-breakpoint-lg: helpers.to-em(1440);
-$db-breakpoint-xl: helpers.to-em(1920);
+$db-breakpoint-xs: 360;
+$db-breakpoint-sm: 720;
+$db-breakpoint-md: 1024;
+$db-breakpoint-lg: 1440;
+$db-breakpoint-xl: 1920;
 
 :root {
-	--db-breakpoint-xs: #{$db-breakpoint-xs};
-	--db-breakpoint-sm: #{$db-breakpoint-sm};
-	--db-breakpoint-md: #{$db-breakpoint-md};
-	--db-breakpoint-lg: #{$db-breakpoint-lg};
-	--db-breakpoint-xl: #{$db-breakpoint-xl};
+	--db-breakpoint-xs: #{helpers.to-em($db-breakpoint-xs)};
+	--db-breakpoint-sm: #{helpers.to-em($db-breakpoint-sm)};
+	--db-breakpoint-md: #{helpers.to-em($db-breakpoint-md)};
+	--db-breakpoint-lg: #{helpers.to-em($db-breakpoint-lg)};
+	--db-breakpoint-xl: #{helpers.to-em($db-breakpoint-xl)};
 }
 
 @mixin screen($size: "sm", $width: "min") {
@@ -27,7 +27,7 @@ $db-breakpoint-xl: helpers.to-em(1920);
 	}
 
 	@if ($width == "min") {
-		@media screen and (width >= $screen) {
+		@media screen and (min-width: helpers.to-em($screen)) {
 			&:not([data-force-mobile]),
 			&[data-force-mobile="false"] {
 				@content;
@@ -38,7 +38,7 @@ $db-breakpoint-xl: helpers.to-em(1920);
 			@content;
 		}
 
-		@media screen and (width < $screen) {
+		@media screen and (max-width: helpers.to-em($screen - 1)) {
 			@content;
 		}
 	}
