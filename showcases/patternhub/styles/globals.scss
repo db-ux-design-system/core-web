@@ -351,16 +351,13 @@ h6 {
 	align-items: center;
 	justify-content: center;
 	padding: variables.$db-spacing-fixed-xl;
-	padding-block-end: calc(
+	margin-block-end: calc(
 		#{variables.$db-spacing-fixed-xl} + #{variables.$db-sizing-sm}
 	);
 	position: relative;
 
 	.code-details {
-		position: absolute;
-		inset-block-end: 0;
-		inset-inline-end: 0;
-		inline-size: 100%;
+		cursor: pointer;
 		display: flex;
 
 		&[open] {
@@ -370,8 +367,10 @@ h6 {
 
 		.code-button {
 			position: absolute;
-			inset-block-end: 0;
-			inset-inline-end: 0;
+			inset-block-end: calc(
+				-1 * (#{variables.$db-spacing-fixed-sm} + #{variables.$db-sizing-sm})
+			);
+			inset-inline-end: variables.$db-spacing-fixed-sm;
 			z-index: 1;
 			cursor: pointer;
 

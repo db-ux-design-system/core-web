@@ -19,7 +19,7 @@
     "next:start": "next start",
     "open": "open-cli http://localhost:3000/mono/sub",
     "prebuild:app": "cpr ../../node_modules/iframe-resizer/js/ public/iframe-resizer -o",
-    "start": "cross-env NEXT_PUBLIC_BASE_PATH=/mono/sub npm-run-all compile next:start"
+    "start": "cross-env NEXT_PUBLIC_BASE_PATH=/mono/sub npm-run-all compile next:dev"
   },
   "dependencies": {
     "@code-hike/mdx": "^0.9.0",

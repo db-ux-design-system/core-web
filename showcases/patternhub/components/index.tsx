@@ -30,7 +30,7 @@ const VariantList = ({ examples, slotCode }: DefaultComponentVariants) => {
 				<summary
 					className="db-button code-button"
 					data-size="small"
-					data-variant="primary">
+					data-variant="solid">
 					{open ? 'Hide code' : 'Show code'}
 				</summary>
 				<div className="db-ui-functional code">{slotCode}</div>
