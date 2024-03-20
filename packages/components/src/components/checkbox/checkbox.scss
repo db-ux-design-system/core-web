@@ -8,6 +8,7 @@
 
 .db-checkbox {
 	@extend %check-element;
+	@extend %helper-message;
 
 	input {
 		border-radius: variables.$db-border-radius-2xs;

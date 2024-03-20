@@ -1,6 +1,7 @@
 import {
 	For,
 	onMount,
+	onUpdate,
 	Show,
 	useMetadata,
 	useRef,
@@ -82,18 +83,23 @@ export default function DBInput(props: DBInputProps) {
 
 	onMount(() => {
 		state._id = props.id || 'input-' + uuid();
-		state._messageId = state._id + DEFAULT_MESSAGE_ID_SUFFIX;
-		state._validMessageId = state._id + DEFAULT_VALID_MESSAGE_ID_SUFFIX;
-		state._invalidMessageId = state._id + DEFAULT_INVALID_MESSAGE_ID_SUFFIX;
-
-		state._descByIds = [
-			state._messageId,
-			state._validMessageId,
-			state._invalidMessageId
-		].join(' ');
-
 		state._dataListId = props.dataListId || `datalist-${uuid()}`;
 	});
+
+	onUpdate(() => {
+		if (state._id) {
+			state._messageId = state._id + DEFAULT_MESSAGE_ID_SUFFIX;
+			state._validMessageId = state._id + DEFAULT_VALID_MESSAGE_ID_SUFFIX;
+			state._invalidMessageId =
+				state._id + DEFAULT_INVALID_MESSAGE_ID_SUFFIX;
+
+			state._descByIds = [
+				state._messageId,
+				state._validMessageId,
+				state._invalidMessageId
+			].join(' ');
+		}
+	}, [state._id]);
 
 	return (
 		<div

@@ -1,5 +1,6 @@
 import {
 	onMount,
+	onUpdate,
 	Show,
 	useMetadata,
 	useRef,
@@ -14,6 +15,7 @@ import {
 	DEFAULT_INVALID_MESSAGE_ID_SUFFIX,
 	DEFAULT_LABEL,
 	DEFAULT_MESSAGE_ID_SUFFIX,
+	DEFAULT_PLACEHOLDER_ID_SUFFIX,
 	DEFAULT_VALID_MESSAGE,
 	DEFAULT_VALID_MESSAGE_ID_SUFFIX
 } from '../../shared/constants';
@@ -76,16 +78,22 @@ export default function DBTextarea(props: DBTextareaProps) {
 
 	onMount(() => {
 		state._id = props.id || 'textarea-' + uuid();
-		state._messageId = state._id + DEFAULT_MESSAGE_ID_SUFFIX;
-		state._validMessageId = state._id + DEFAULT_VALID_MESSAGE_ID_SUFFIX;
-		state._invalidMessageId = state._id + DEFAULT_INVALID_MESSAGE_ID_SUFFIX;
-
-		state._descByIds = [
-			state._messageId,
-			state._validMessageId,
-			state._invalidMessageId
-		].join(' ');
 	});
+
+	onUpdate(() => {
+		if (state._id) {
+			state._messageId = state._id + DEFAULT_MESSAGE_ID_SUFFIX;
+			state._validMessageId = state._id + DEFAULT_VALID_MESSAGE_ID_SUFFIX;
+			state._invalidMessageId =
+				state._id + DEFAULT_INVALID_MESSAGE_ID_SUFFIX;
+
+			state._descByIds = [
+				state._messageId,
+				state._validMessageId,
+				state._invalidMessageId
+			].join(' ');
+		}
+	}, [state._id]);
 
 	return (
 		<div
