@@ -11,21 +11,25 @@ export interface DBAccordionItemDefaultProps {
 	 */
 	content?: string;
 	/**
-	 * The disabled attribute can be set to keep a user from clicking on the element.
-	 */
-	disabled?: boolean;
-	/**
 	 * Initial state for the accordion item
 	 */
 	defaultOpen?: boolean;
 	/**
-	 * Title of the accordion-item
+	 * The disabled attribute can be set to keep a user from clicking on the element.
 	 */
-	title?: any;
+	disabled?: boolean;
+	/**
+	 * Title of the accordion-item as slot
+	 */
+	headline?: any;
 	/**
 	 * Set details name for exclusive accordions, see https://chromestatus.com/feature/6710427028815872
 	 */
 	name?: string;
+	/**
+	 * Title of the accordion-item as plain text
+	 */
+	title?: any;
 }
 
 export type DBAccordionItemProps = DBAccordionItemDefaultProps &
