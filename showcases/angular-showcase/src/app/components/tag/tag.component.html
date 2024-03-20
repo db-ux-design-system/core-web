@@ -33,9 +33,12 @@
 				}}</db-checkbox>
 			}
 			@if (exampleProps.component === "radio") {
-				<db-radio name="radio" [checked]="exampleProps.checked">{{
-					exampleName
-				}}</db-radio>
+				<db-radio
+					name="radio"
+					[name]="exampleProps.identifier"
+					[checked]="exampleProps.checked"
+					>{{ exampleName }}</db-radio
+				>
 			}
 			@if (!exampleProps.component && !exampleProps.overflow) {
 				{{ exampleName }}
