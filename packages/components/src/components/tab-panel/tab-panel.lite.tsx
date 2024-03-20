@@ -21,11 +21,7 @@ export default function DBTabPanel(props: DBTabPanelProps) {
 		_id: DEFAULT_ID
 	});
 
-	onMount(() => {
-		if (props.stylePath) {
-			state.stylePath = props.stylePath;
-		}
-	});
+	onMount(() => {});
 	// jscpd:ignore-end
 
 	return (

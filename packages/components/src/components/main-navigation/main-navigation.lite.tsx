@@ -22,9 +22,6 @@ export default function DBMainNavigation(props: DBMainNavigationProps) {
 
 	onMount(() => {
 		state._id = props.id || 'main-navigation-' + uuid();
-		if (props.stylePath) {
-			state.stylePath = props.stylePath;
-		}
 	});
 
 	// jscpd:ignore-end
@@ -34,9 +31,6 @@ export default function DBMainNavigation(props: DBMainNavigationProps) {
 			ref={ref}
 			id={state._id}
 			class={cls('db-main-navigation', props.className)}>
-			<Show when={state.stylePath}>
-				<link rel="stylesheet" href={state.stylePath} />
-			</Show>
 			<menu>{props.children}</menu>
 		</nav>
 	);

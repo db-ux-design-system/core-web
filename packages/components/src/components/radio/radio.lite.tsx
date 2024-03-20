@@ -62,10 +62,6 @@ export default function DBRadio(props: DBRadioProps) {
 	onMount(() => {
 		state.initialized = true;
 		state._id = props.id || 'radio-' + uuid();
-
-		if (props.stylePath) {
-			state.stylePath = props.stylePath;
-		}
 	});
 	// jscpd:ignore-end
 
@@ -88,9 +84,6 @@ export default function DBRadio(props: DBRadioProps) {
 			data-label-variant={props.labelVariant}
 			class={cls('db-radio', props.className)}
 			htmlFor={state._id}>
-			<Show when={state.stylePath}>
-				<link rel="stylesheet" href={state.stylePath} />
-			</Show>
 			<input
 				ref={ref}
 				type="radio"
