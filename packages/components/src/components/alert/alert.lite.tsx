@@ -1,10 +1,4 @@
-import {
-	onMount,
-	Show,
-	useMetadata,
-	useRef,
-	useStore
-} from '@builder.io/mitosis';
+import { Show, useMetadata, useRef, useStore } from '@builder.io/mitosis';
 import { DBAlertProps, DBAlertState } from './model';
 import { DBButton } from '../button';
 import { DBLink } from '../link';
@@ -26,12 +20,6 @@ export default function DBAlert(props: DBAlertProps) {
 			}
 		}
 	});
-
-	onMount(() => {
-		if (props.stylePath) {
-			state.stylePath = props.stylePath;
-		}
-	});
 	// jscpd:ignore-end
 
 	return (
@@ -44,10 +32,6 @@ export default function DBAlert(props: DBAlertProps) {
 			data-type={props.type}
 			data-icon={props.icon}
 			data-elevation={props.elevation}>
-			<Show when={state.stylePath}>
-				<link rel="stylesheet" href={state.stylePath} />
-			</Show>
-
 			<Show when={props.headline}>
 				<strong class="db-alert-headline">{props.headline}</strong>
 			</Show>

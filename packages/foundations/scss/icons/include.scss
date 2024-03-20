@@ -50,6 +50,15 @@
 }
 
 [data-icon],
+[data-icon-before],
+[data-icon-after] {
+	&:is(span) {
+		display: inline-flex;
+		vertical-align: baseline;
+	}
+}
+
+[data-icon],
 [data-icon-before] {
 	&::before {
 		@extend %icon !optional;

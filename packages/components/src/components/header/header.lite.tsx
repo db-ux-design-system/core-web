@@ -37,9 +37,6 @@ export default function DBHeader(props: DBHeaderProps) {
 	onMount(() => {
 		state.initialized = true;
 		state._id = props.id || 'header-' + uuid();
-		if (props.stylePath) {
-			state.stylePath = props.stylePath;
-		}
 	});
 
 	onUpdate(() => {
@@ -67,12 +64,7 @@ export default function DBHeader(props: DBHeaderProps) {
 			class={cls('db-header', props.className)}
 			id={state._id}
 			data-on-forcing-mobile={props.forceMobile && !state.forcedToMobile}>
-			<Show when={state.stylePath}>
-				<link rel="stylesheet" href={state.stylePath} />
-			</Show>
-
 			<DBDrawer
-				data-hide-on="desktop"
 				className="db-header-drawer"
 				rounded
 				withCloseButton
@@ -90,7 +82,7 @@ export default function DBHeader(props: DBHeaderProps) {
 				</div>
 			</DBDrawer>
 
-			<div class="db-header-meta-navigation" data-hide-on="mobile">
+			<div class="db-header-meta-navigation">
 				<Slot name="meta-navigation" />
 			</div>
 			<div class="db-header-navigation-bar">
@@ -98,15 +90,13 @@ export default function DBHeader(props: DBHeaderProps) {
 					<Slot name="brand" />
 				</div>
 				<div class="db-header-navigation-container">
-					<div class="db-header-navigation" data-hide-on="mobile">
-						{props.children}
-					</div>
+					<div class="db-header-navigation">{props.children}</div>
 					<div class="db-header-call-to-action">
 						<Slot name="call-to-action" />
 					</div>
 				</div>
 				<div class="db-header-action-container">
-					<div data-hide-on="desktop">
+					<div class="db-header-burger-menu-container">
 						<DBButton
 							id="button-burger-menu"
 							icon="menu"
@@ -117,7 +107,7 @@ export default function DBHeader(props: DBHeaderProps) {
 								state.defaultValues.burgerMenuLabel}
 						</DBButton>
 					</div>
-					<div class="db-header-action-bar" data-hide-on="mobile">
+					<div class="db-header-action-bar">
 						<Slot name="action-bar" />
 					</div>
 				</div>

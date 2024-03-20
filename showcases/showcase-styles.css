@@ -25,7 +25,8 @@
 	gap: var(--db-spacing-fixed-md);
 }
 
-.variants-list .db-select {
+.variants-list .db-select,
+.w-full {
 	inline-size: 100%;
 }
 
@@ -107,4 +108,12 @@
 .badge-inline-container .db-badge {
 	margin-inline-start: var(--db-spacing-responsive-md);
 	margin-block: auto;
+}
+
+.fixed-header-footer {
+	overflow: hidden;
+}
+
+.tab-hide-article article {
+	display: none !important;
 }

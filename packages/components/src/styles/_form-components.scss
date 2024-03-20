@@ -1,7 +1,7 @@
 @use "sass:map";
 @use "sass:string";
 @use "@db-ui/foundations/build/scss/icons";
-@use "@db-ui/foundations/build/scss/tonality";
+@use "@db-ui/foundations/build/scss/fonts";
 @use "@db-ui/foundations/build/scss/variables";
 @use "@db-ui/foundations/build/scss/colors";
 @use "@db-ui/foundations/build/scss/helpers";
@@ -321,6 +321,7 @@ $floating-label-size: calc(
 		&[data-variant="#{$name}"] #{$selector},
 		&[data-variant="#{$name}"] [id$="-placeholder"] {
 			color: map.get($colors, "on-bg");
+			caret-color: map.get($colors, "on-bg");
 		}
 	}
 

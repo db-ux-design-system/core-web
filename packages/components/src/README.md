@@ -33,7 +33,7 @@ Main use-case to set/overwrite an icon inside a component. Example:
 Main use-case to overwrite a default font-size/line-height. Example:
 
 ```scss
-@use "@db-ui/foundations/build/scss/tonality";
+@use "@db-ui/foundations/build/scss/fonts";
 
 .db-xxx {
 	label {

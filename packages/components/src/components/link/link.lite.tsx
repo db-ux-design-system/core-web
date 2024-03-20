@@ -1,13 +1,8 @@
-import {
-	onMount,
-	Show,
-	useMetadata,
-	useRef,
-	useStore
-} from '@builder.io/mitosis';
-import { DBLinkState, DBLinkProps } from './model';
+import { Show, useMetadata, useRef, useStore } from '@builder.io/mitosis';
+import { DBLinkProps, DBLinkState } from './model';
 import { cls } from '../../utils';
 import { ClickEvent } from '../../shared/model';
+import { DEFAULT_ID } from '../../shared/constants';
 
 useMetadata({
 	isAttachedToShadowDom: false
@@ -17,6 +12,7 @@ export default function DBLink(props: DBLinkProps) {
 	const ref = useRef<HTMLAnchorElement>(null);
 	// jscpd:ignore-start
 	const state = useStore<DBLinkState>({
+		_id: DEFAULT_ID,
 		handleClick: (event: ClickEvent<HTMLAnchorElement>) => {
 			if (props.onClick) {
 				props.onClick(event);
@@ -24,11 +20,6 @@ export default function DBLink(props: DBLinkProps) {
 		}
 	});
 
-	onMount(() => {
-		if (props.stylePath) {
-			state.stylePath = props.stylePath;
-		}
-	});
 	// jscpd:ignore-end
 
 	return (
@@ -53,9 +44,6 @@ export default function DBLink(props: DBLinkProps) {
 			onClick={(event: ClickEvent<HTMLAnchorElement>) =>
 				state.handleClick(event)
 			}>
-			<Show when={state.stylePath}>
-				<link rel="stylesheet" href={state.stylePath} />
-			</Show>
 			<Show when={props.text}>
 				<span>{props.text}</span>
 			</Show>

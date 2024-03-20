@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { DBTabList, DBTabPanel, DBTabs } from '@db-ui/react-components/src';
 import {
 	DBButton,
 	DBCheckbox,
@@ -8,7 +9,8 @@ import {
 	DBTag,
 	DBTextarea,
 	DBAccordion,
-	DBAccordionItem
+	DBAccordionItem,
+	DBTab
 } from '../../../../../output/react/src';
 import type {
 	ChangeEvent,
@@ -68,8 +70,8 @@ const FormComponent = () => {
 							name="input-name"
 							value={input}
 							dataList={dataList}
-							onChange={(evt) => {
-								setInput(evt.target.value);
+							onChange={(event) => {
+								setInput(event.target.value);
 							}}
 						/>
 						<p>Textarea:</p>
@@ -237,6 +239,30 @@ const FormComponent = () => {
 						</DBAccordionItem>
 					))}
 				</DBAccordion>
+
+				<DBTabs>
+					<DBTabList>
+						<DBTab>Test 1</DBTab>
+						<DBTab>Test 2</DBTab>
+						<DBTab>Test 3</DBTab>
+					</DBTabList>
+					<DBTabPanel>Tab Panel 1</DBTabPanel>
+					<DBTabPanel>Tab Panel 2</DBTabPanel>
+					<DBTabPanel>Tab Panel 3</DBTabPanel>
+				</DBTabs>
+
+				<DBSelect
+					id="select-test"
+					value={select}
+					label="Label"
+					onChange={(event) => {
+						setSelect(event.target.value);
+					}}
+					options={[
+						{ label: 'Test1', value: 'Test1' },
+						{ label: 'Test2', value: 'Test2' }
+					]}
+				/>
 			</div>
 		</div>
 	);

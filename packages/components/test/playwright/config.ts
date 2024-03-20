@@ -35,13 +35,12 @@ const config = defineConfig({
 				...devices['Desktop Chrome']
 			}
 		},
-		// TODO: Enable this again when Mozilla introduces :has selector
-		/*		{
+		{
 			name: 'firefox',
 			use: {
 				...devices['Desktop Firefox']
 			}
-		},*/
+		},
 		// TODO: There are issues with webkit and out icon-fonts we disable webkit for now
 		/*		{
 			name: 'webkit',

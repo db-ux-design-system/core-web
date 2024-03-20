@@ -7,9 +7,9 @@ import {
 	useRef,
 	useStore
 } from '@builder.io/mitosis';
-import { DBNavigationItemState, DBNavigationItemProps } from './model';
+import { DBNavigationItemProps, DBNavigationItemState } from './model';
 import { DBButton } from '../button';
-import { cls, uuid } from '../../utils';
+import { cls, uuid, visibleInVX, visibleInVY } from '../../utils';
 import { DEFAULT_BACK } from '../../shared/constants';
 import { ClickEvent } from '../../shared/model';
 
@@ -44,9 +44,6 @@ export default function DBNavigationItem(props: DBNavigationItemProps) {
 
 	onMount(() => {
 		state.initialized = true;
-		if (props.stylePath) {
-			state.stylePath = props.stylePath;
-		}
 	});
 
 	onUpdate(() => {
@@ -63,10 +60,23 @@ export default function DBNavigationItem(props: DBNavigationItemProps) {
 			const subNavigationSlot = document?.getElementById(
 				state.subNavigationId
 			) as HTMLMenuElement;
+
 			if (subNavigationSlot) {
 				const children = subNavigationSlot.children;
 				if (children?.length > 0) {
 					state.hasAreaPopup = true;
+					if (!visibleInVX(subNavigationSlot)) {
+						subNavigationSlot.setAttribute(
+							'data-outside-vx',
+							'true'
+						);
+					}
+					if (!visibleInVY(subNavigationSlot)) {
+						subNavigationSlot.setAttribute(
+							'data-outside-vy',
+							'true'
+						);
+					}
 				} else {
 					state.hasSubNavigation = false;
 				}
@@ -85,10 +95,6 @@ export default function DBNavigationItem(props: DBNavigationItemProps) {
 			data-icon={props.icon}
 			aria-current={props.active ? 'page' : undefined}
 			aria-disabled={props.disabled}>
-			<Show when={state.stylePath}>
-				<link rel="stylesheet" href={state.stylePath} />
-			</Show>
-
 			<Show when={!state.hasSubNavigation}>{props.children}</Show>
 
 			<Show when={state.hasSubNavigation}>

@@ -1,3 +1,5 @@
+import TabsComponent from '../components/tabs';
+import TabComponent from '../components/tab';
 import TooltipComponent from '../components/tooltip';
 import PopoverComponent from '../components/popover';
 import AccordionItemComponent from '../components/accordion-item';
@@ -20,6 +22,7 @@ import InputComponent from '../components/input';
 import LinkComponent from '../components/link';
 import SectionComponent from '../components/section';
 import TextareaComponent from '../components/textarea';
+import IconComponent from '../components/icon';
 
 export type NavigationItem = {
 	path: string;
@@ -83,6 +86,11 @@ export const NAVIGATION_ITEMS: NavigationItem[] = [
 				component: <InfotextComponent />
 			},
 			{
+				path: 'icon',
+				label: 'Icon',
+				component: <IconComponent />
+			},
+			{
 				path: 'tooltip',
 				label: 'Tooltip',
 				component: <TooltipComponent />
@@ -97,7 +105,13 @@ export const NAVIGATION_ITEMS: NavigationItem[] = [
 				path: 'accordion-item',
 				label: 'AccordionItem',
 				component: <AccordionItemComponent />
-			}
+			},
+			{
+				path: 'tab',
+				label: 'Tab',
+				component: <TabComponent />
+			},
+			{ path: 'tabs', label: 'Tabs', component: <TabsComponent /> }
 		])
 	},
 	{

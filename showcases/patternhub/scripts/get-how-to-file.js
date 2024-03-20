@@ -13,11 +13,11 @@ const getHowToFile = (componentName, displayName) => {
 	let imports = '';
 	let components = '';
 
-	for (const doc of docs) {
-		const path = `${componentPath}/${componentName}/docs/${doc}.md`;
+	for (const document of docs) {
+		const path = `${componentPath}/${componentName}/docs/${document}.md`;
 		if (FS.existsSync(path)) {
-			imports += `import ${doc} from './docs/${doc}.md';\n`;
-			components += `<${doc}/>\n`;
+			imports += `import ${document} from './docs/${document}.md';\n`;
+			components += `<${document}/>\n`;
 		}
 	}
 

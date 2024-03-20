@@ -1,4 +1,6 @@
 import { Routes } from '@angular/router';
+import { TabsComponent } from '../components/tabs/tabs.component';
+import { TabComponent } from '../components/tab/tab.component';
 import { TooltipComponent } from '../components/tooltip/tooltip.component';
 import { PopoverComponent } from '../components/popover/popover.component';
 import { AccordionItemComponent } from '../components/accordion-item/accordion-item.component';
@@ -21,6 +23,7 @@ import { SectionComponent } from '../components/section/section.component';
 import { CardComponent } from '../components/card/card.component';
 import { DividerComponent } from '../components/divider/divider.component';
 import { DrawerComponent } from '../components/drawer/drawer.component';
+import { IconComponent } from '../components/icon/icon.component';
 
 export type NavItem = {
 	path: string;
@@ -65,6 +68,7 @@ export const NAVIGATION_ITEMS: NavItem[] = [
 		path: '04',
 		label: '04 Data-Display',
 		subNavigation: getSortedNavigationItems([
+			{ path: '04/icon', label: 'Icon', component: IconComponent },
 			{
 				path: '04/tooltip',
 				label: 'Tooltip',
@@ -85,7 +89,10 @@ export const NAVIGATION_ITEMS: NavItem[] = [
 				path: '04/accordion-item',
 				label: 'AccordionItem',
 				component: AccordionItemComponent
-			}
+			},
+			{ path: '04/tab', label: 'Tab', component: TabComponent },
+
+			{ path: '04/tabs', label: 'Tabs', component: TabsComponent }
 		])
 	},
 	{

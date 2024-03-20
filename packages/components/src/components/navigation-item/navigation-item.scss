@@ -65,15 +65,11 @@
 	&:active {
 		@include colors.get-variant-bg-color(0.24);
 	}
-
-	&::after {
-		--db-icon-margin-start: auto;
-	}
 }
 
 .db-navigation-item {
 	--db-has-before: 0;
-	@extend %db-puls;
+	@extend %db-puls-auto;
 
 	@include icon-passing.icon-passing();
 
@@ -117,11 +113,21 @@
 		font-weight: normal;
 	}
 
+	&:not([data-width="full"]) {
+		.db-navigation-item-expand-button {
+			&::after {
+				--db-icon-margin-start: #{variables.$db-spacing-fixed-sm};
+			}
+		}
+	}
+
 	&[data-width="full"] {
 		inline-size: 100%;
 
-		&::after {
-			--db-icon-margin-start: auto;
+		.db-navigation-item-expand-button {
+			&::after {
+				--db-icon-margin-start: auto;
+			}
 		}
 	}
 
@@ -135,6 +141,7 @@
 	padding: variables.$db-spacing-fixed-md;
 	inline-size: 100%;
 	position: fixed;
+	overflow-y: auto;
 	// additional #{$db-spacing-fixed-3xs} for border
 	inset-block: calc(
 			#{component.$default-mobile-header-height} + #{variables.$db-spacing-fixed-3xs}
@@ -177,6 +184,11 @@
 
 		transition: visibility 1ms linear; // workaround to enable focus with keyboard
 
+		&[data-outside-vx="true"] {
+			transform: translateX(-100%);
+			inset-inline-start: 100%;
+		}
+
 		&:hover,
 		&:focus-within {
 			visibility: visible;
@@ -203,14 +215,44 @@
 			);
 			inset-inline-start: calc(100% + #{variables.$db-spacing-fixed-xs});
 
+			&[data-outside-vy="true"] {
+				inset-block-start: calc(
+					100% + #{variables.$db-spacing-fixed-md}
+				);
+				transform: translateY(-100%);
+			}
+
+			&[data-outside-vx="true"] {
+				transform: translateX(-100%);
+				inset-inline-start: calc(
+					-1 * #{variables.$db-spacing-fixed-xs}
+				);
+
+				&[data-outside-vy="true"] {
+					transform: translate(-100%, -100%);
+				}
+			}
+
 			&::before {
 				content: "";
+				position: absolute;
 				padding: variables.$db-spacing-fixed-xs;
 				// #{$db-spacing-fixed-3xs} for box shadow
 				inset-block-start: #{variables.$db-spacing-fixed-3xs};
 				inset-inline-start: calc(
 					-1 * #{variables.$db-spacing-fixed-xs}
 				);
+				block-size: 100%;
+				inline-size: variables.$db-spacing-fixed-xs;
+			}
+
+			&::after {
+				content: "";
+				position: absolute;
+				padding: variables.$db-spacing-fixed-xs;
+				// #{$db-spacing-fixed-3xs} for box shadow
+				inset-block-start: #{variables.$db-spacing-fixed-3xs};
+				inset-inline-end: calc(-1 *#{variables.$db-spacing-fixed-xs});
 				block-size: 100%;
 				inline-size: variables.$db-spacing-fixed-xs;
 			}

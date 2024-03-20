@@ -107,14 +107,15 @@
 
 .db-header-action-container {
 	@include helpers.divider("left");
+	@include screen-sizes.screen("md") {
+		&::before {
+			margin-inline-end: variables.$db-spacing-fixed-sm;
+		}
+	}
 
 	&::before {
 		position: inherit;
 		block-size: 100%;
-
-		@include screen-sizes.screen("md") {
-			margin-inline-end: variables.$db-spacing-fixed-sm;
-		}
 	}
 }
 
@@ -184,7 +185,10 @@
 	}
 }
 
-[data-hide-on="mobile"] {
+/* Only for Desktop */
+.db-header-meta-navigation,
+.db-header-navigation-container > .db-header-navigation,
+.db-header-action-container > .db-header-action-bar {
 	display: none;
 
 	@include screen-sizes.screen("md") {
@@ -192,7 +196,13 @@
 	}
 }
 
-[data-hide-on="desktop"] {
+/* Only for Mobile */
+.db-header-drawer-navigation > .db-header-meta-navigation {
+	display: inherit;
+}
+
+.db-header-drawer,
+.db-header-burger-menu-container {
 	@include screen-sizes.screen("md") {
 		display: none;
 	}

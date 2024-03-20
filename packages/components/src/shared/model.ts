@@ -27,11 +27,6 @@ export type GlobalProps = {
 	key?: string;
 
 	/**
-	 * Web Component specific: Adds a link tag with the path to show css inside Shadow DOM.
-	 */
-	stylePath?: string;
-
-	/**
 	 * The default tabindex (https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/tabindex?retiredLocale=de).
 	 */
 	tabIndex?: number;
@@ -44,7 +39,6 @@ export type GlobalProps = {
 
 export type GlobalState = {
 	_id?: string;
-	stylePath?: string;
 	defaultValues?: { [key: string]: string };
 };
 
@@ -114,6 +108,10 @@ export type OverflowProps = {
 	 * The overflow attribute sets a max-width and longer text will be dotted.
 	 */
 	overflow?: boolean;
+};
+
+export type OrientationProps = {
+	orientation?: 'horizontal' | 'vertical';
 };
 
 export type WidthProps = {
@@ -230,6 +228,69 @@ export type FormMessageProps = {
 	 * Set/overwrite icon for helper message for form components
 	 */
 	messageIcon?: IconTypes;
+
+	/**
+	 * See https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/autocomplete
+	 */
+	autocomplete?:
+		| string
+		| 'off'
+		| 'on'
+		| 'name'
+		| 'honorific-prefix'
+		| 'given-name'
+		| 'additional-name'
+		| 'family-name'
+		| 'honorific-suffix'
+		| 'nickname'
+		| 'email'
+		| 'username'
+		| 'new-password'
+		| 'current-password'
+		| 'one-time-code'
+		| 'organization-title'
+		| 'organization'
+		| 'street-address'
+		| 'shipping'
+		| 'billing'
+		| 'address-line1'
+		| 'address-line2'
+		| 'address-line3'
+		| 'address-level4'
+		| 'address-level3'
+		| 'address-level2'
+		| 'address-level1'
+		| 'country'
+		| 'country-name'
+		| 'postal-code'
+		| 'cc-name'
+		| 'cc-given-name'
+		| 'cc-additional-name'
+		| 'cc-family-name'
+		| 'cc-number'
+		| 'cc-exp'
+		| 'cc-exp-month'
+		| 'cc-exp-year'
+		| 'cc-csc'
+		| 'cc-type'
+		| 'transaction-currency'
+		| 'transaction-amount'
+		| 'language'
+		| 'bday'
+		| 'bday-day'
+		| 'bday-month'
+		| 'bday-year'
+		| 'sex'
+		| 'tel'
+		| 'tel-country-code'
+		| 'tel-national'
+		| 'tel-area-code'
+		| 'tel-local'
+		| 'tel-extension'
+		| 'impp'
+		| 'url'
+		| 'photo'
+		| 'webauthn';
 };
 
 export type FormState = {
@@ -326,6 +387,25 @@ export type CloseEventProps = {
 
 export type CloseEventState = {
 	handleClose?: (event: any) => void;
+};
+
+export type AlignmentProps = {
+	/**
+	 * Define the content alignment in full width
+	 */
+	alignment?: 'start' | 'center';
+};
+
+export type ActiveProps = {
+	/**
+	 * If the tab is checked/active.
+	 */
+	active?: boolean;
+};
+
+export type ItemClickState = {
+	clickedId: string;
+	handleItemClick: (id: string) => void;
 };
 
 export type ChangeEvent<T> = Event;
