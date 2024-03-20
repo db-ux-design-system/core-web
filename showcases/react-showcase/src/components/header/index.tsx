@@ -25,13 +25,7 @@ const getHeader = ({
 	onToggle
 }: DBHeaderProps) => (
 	<DBHeader
-		slotBrand={
-			<DBBrand
-				title="DBHeader"
-				imgSrc="https://db-ui.github.io/images/db_logo.svg">
-				DBHeader
-			</DBBrand>
-		}
+		slotBrand={<DBBrand title="DBHeader">DBHeader</DBBrand>}
 		slotMetaNavigation={
 			<>
 				<DBLink href="#">Imprint</DBLink>
