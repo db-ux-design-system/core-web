@@ -17,7 +17,7 @@ export interface DBAccordionItemDefaultProps {
 	/**
 	 * Initial state for the accordion item
 	 */
-	open?: boolean;
+	defaultOpen?: boolean;
 	/**
 	 * For react only to pass any title element to the specific slot
 	 */
@@ -36,7 +36,9 @@ export type DBAccordionItemProps = DBAccordionItemDefaultProps &
 	GlobalProps &
 	ToggleEventProps;
 
-export interface DBAccordionItemDefaultState {}
+export interface DBAccordionItemDefaultState {
+	_open: boolean;
+}
 
 export type DBAccordionItemState = DBAccordionItemDefaultState &
 	GlobalState &

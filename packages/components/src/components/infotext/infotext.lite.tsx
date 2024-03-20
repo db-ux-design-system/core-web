@@ -1,4 +1,4 @@
-import {onMount, Show, useMetadata, useRef, useStore} from '@builder.io/mitosis';
+import { useMetadata, useRef, useStore } from '@builder.io/mitosis';
 import { DBInfotextProps, DBInfotextState } from './model';
 import { cls } from '../../utils';
 
@@ -12,12 +12,6 @@ export default function DBInfotext(props: DBInfotextProps) {
 	const state = useStore<DBInfotextState>({});
 	// jscpd:ignore-end
 
-	onMount(() => {
-		if (props.stylePath) {
-			state.stylePath = props.stylePath;
-		}
-	});
-
 	// TODO: Check if this should be a div or a span
 	return (
 		<span
@@ -28,9 +22,6 @@ export default function DBInfotext(props: DBInfotextProps) {
 			data-icon={props.icon}
 			data-variant={props.variant}
 			data-size={props.size}>
-			<Show when={state.stylePath}>
-				<link rel="stylesheet" href={state.stylePath} />
-			</Show>
 			{props.children}
 		</span>
 	);

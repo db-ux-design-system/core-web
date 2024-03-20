@@ -1,1 +1,1 @@
-export { DBInput, DBInputModule } from './input';
+export { DBInput } from './input';

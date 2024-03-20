@@ -1,8 +1,8 @@
 import {
 	onMount,
-	Show,
 	Slot,
-	useMetadata, useRef,
+	useMetadata,
+	useRef,
 	useStore
 } from '@builder.io/mitosis';
 import { DBPageProps, DBPageState } from './model';
@@ -21,9 +21,6 @@ export default function DBPage(props: DBPageProps) {
 
 	onMount(() => {
 		state.fontsLoaded = !props.fadeIn;
-		if (props.stylePath) {
-			state.stylePath = props.stylePath;
-		}
 
 		if (document && props.fadeIn) {
 			document.fonts.ready.then(() => {
@@ -44,9 +41,6 @@ export default function DBPage(props: DBPageProps) {
 			})}
 			data-fade-in={props.fadeIn}
 			data-fonts-loaded={state.fontsLoaded}>
-			<Show when={state.stylePath}>
-				<link rel="stylesheet" href={state.stylePath} />
-			</Show>
 			<Slot name="header" />
 			<main class="db-main">{props.children}</main>
 			<Slot name="footer" />

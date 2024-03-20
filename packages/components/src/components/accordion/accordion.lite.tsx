@@ -8,9 +8,9 @@ import {
 	useStore
 } from '@builder.io/mitosis';
 import {
-	DBAccordionState,
+	DBAccordionItemInterface,
 	DBAccordionProps,
-	DBAccordionItemInterface
+	DBAccordionState
 } from './model';
 import { cls } from '../../utils';
 import { DBAccordionItem } from '../accordion-item';
@@ -66,9 +66,6 @@ export default function DBAccordion(props: DBAccordionProps) {
 	});
 
 	onMount(() => {
-		if (props.stylePath) {
-			state.stylePath = props.stylePath;
-		}
 		state.initialized = true;
 	});
 	// jscpd:ignore-end
@@ -130,9 +127,6 @@ export default function DBAccordion(props: DBAccordionProps) {
 			ref={ref}
 			id={props.id}
 			class={cls('db-accordion', props.className)}>
-			<Show when={state.stylePath}>
-				<link rel="stylesheet" href={state.stylePath} />
-			</Show>
 			<Show when={!props.items}>{props.children}</Show>
 			<Show when={props.items}>
 				<For each={state.convertItems(props.items)}>

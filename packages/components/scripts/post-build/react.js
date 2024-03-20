@@ -70,6 +70,7 @@ module.exports = (tmp) => {
 					from: '>(null);',
 					to: '>(component);'
 				},
+				{ from: 'useRef<', to: 'component || useRef<' },
 				{
 					from: '={true}',
 					to: ''
@@ -87,6 +88,30 @@ module.exports = (tmp) => {
 						)})}`
 				}
 			];
+
+			/**
+			 * Mitosis generates Fragments for each mapping function.
+			 * The following overwrites will prevent react from throwing duplicate key warnings.
+			 */
+			if (component.config?.react?.containsFragmentMap) {
+				if (!tsxFileContent.includes('uuid')) {
+					replacements.push({
+						from: '{ cls',
+						to: '{ cls, uuid'
+					});
+				}
+
+				replacements.push(
+					{
+						from: /<>/g,
+						to: '<React.Fragment key={uuid()}>'
+					},
+					{
+						from: /<\/>/g,
+						to: '</React.Fragment>'
+					}
+				);
+			}
 
 			runReplacements(replacements, component, 'react', tsxFile);
 		}

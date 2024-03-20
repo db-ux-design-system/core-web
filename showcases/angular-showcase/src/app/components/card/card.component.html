@@ -16,9 +16,9 @@
 			[spacing]="exampleProps.spacing"
 		>
 			<strong>{{ exampleName }}</strong>
-			<span *ngIf="exampleProps.colorVariant">{{
-				exampleProps.colorVariant
-			}}</span>
+			@if (exampleProps.colorVariant) {
+				<span>{{ exampleProps.colorVariant }}</span>
+			}
 		</db-card>
 	</ng-template>
 </app-default-component>

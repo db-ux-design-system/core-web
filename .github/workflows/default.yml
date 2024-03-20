@@ -31,6 +31,10 @@ jobs:
     uses: ./.github/workflows/02-e2e.yml
     needs: [build-packages]
 
+  test-foundations:
+    uses: ./.github/workflows/02-e2e-foundations.yml
+    needs: [build-packages]
+
   build-showcases:
     uses: ./.github/workflows/01-build-showcases.yml
     needs: [build-packages]
@@ -49,14 +53,22 @@ jobs:
           resultBuildOutputs="${{ needs.build-outputs.result }}"
           resultTestPackages="${{ needs.test-components.result }}"
           resultTestShowcases="${{ needs.test-showcases.result }}"
-          if [[ $resultTestShowcases == "success" && $resultBuildShowcases == "success" && $resultBuildOutputs == "success" && $resultTestPackages == "success" ]]; then
+          resultTestFoundations="${{ needs.test-foundations.result }}"
+          if [[ $resultTestFoundations == "success" && $resultTestShowcases == "success" && $resultBuildShowcases == "success" && $resultBuildOutputs == "success" && $resultTestPackages == "success" ]]; then
              echo "🎉 All tests were successful."
             exit 0
           else
              echo "Some tests were failing."
             exit 1
           fi
-    needs: [build-showcases, build-outputs, test-components, test-showcases]
+    needs:
+      [
+        build-showcases,
+        build-outputs,
+        test-components,
+        test-showcases,
+        test-foundations
+      ]
 
   deploy:
     uses: ./.github/workflows/03-deploy-gh-pages.yml

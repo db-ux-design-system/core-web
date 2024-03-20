@@ -1,6 +1,6 @@
-import {onMount, Show, useMetadata, useRef, useStore} from '@builder.io/mitosis';
+import { Show, useMetadata, useRef, useStore } from '@builder.io/mitosis';
 import { cls } from '../../utils';
-import { DBBrandState, DBBrandProps } from './model';
+import { DBBrandProps, DBBrandState } from './model';
 
 useMetadata({
 	isAttachedToShadowDom: true
@@ -17,23 +17,10 @@ export default function DBBrand(props: DBBrandProps) {
 			height: '24'
 		}
 	});
-
-	onMount(() => {
-		if (props.stylePath) {
-			state.stylePath = props.stylePath;
-		}
-	});
 	// jscpd:ignore-end
 
 	return (
-		<div
-			ref={ref}
-			id={props.id}
-			class={cls('db-brand', props.className)}>
-			<Show when={state.stylePath}>
-				<link rel="stylesheet" href={state.stylePath} />
-			</Show>
-
+		<div ref={ref} id={props.id} class={cls('db-brand', props.className)}>
 			<a
 				href={props.anchorRef ?? state.defaultValues.anchorRef}
 				title={props.anchorTitle}

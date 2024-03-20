@@ -1,10 +1,4 @@
-import {
-	onMount,
-	Show,
-	useMetadata,
-	useRef,
-	useStore
-} from '@builder.io/mitosis';
+import { useMetadata, useRef, useStore } from '@builder.io/mitosis';
 import type { DBButtonProps, DBButtonState } from './model';
 import { cls } from '../../utils';
 import { ClickEvent } from '../../shared/model';
@@ -24,11 +18,6 @@ export default function DBButton(props: DBButtonProps) {
 		}
 	});
 
-	onMount(() => {
-		if (props.stylePath) {
-			state.stylePath = props.stylePath;
-		}
-	});
 	// jscpd:ignore-end
 
 	return (
@@ -55,9 +44,6 @@ export default function DBButton(props: DBButtonProps) {
 			onClick={(event: ClickEvent<HTMLButtonElement>) =>
 				state.handleClick(event)
 			}>
-			<Show when={state.stylePath}>
-				<link rel="stylesheet" href={state.stylePath} />
-			</Show>
 			{props.children}
 		</button>
 	);

@@ -28,6 +28,11 @@ export interface DBSelectDefaultProps {
 
 export type DBSelectOptionType = {
 	/**
+	 * Identifier for option
+	 */
+	id?: string;
+
+	/**
 	 * Disables this option
 	 */
 	// Disables this option

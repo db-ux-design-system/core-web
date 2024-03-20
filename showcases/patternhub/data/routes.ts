@@ -51,6 +51,15 @@ const componentChildren: NavigationItem[] = [
 			{
 				label: 'DBAccordionItem',
 				name: 'accordion-item'
+			},
+			{
+				label: 'DBTabs',
+				name: 'tabs'
+			},
+
+			{
+				label: 'DBTab',
+				name: 'tab'
 			}
 		]
 	},
@@ -172,6 +181,17 @@ export const ROUTES: NavigationItem[] = [
 				]
 			},
 			{
+				label: 'Font Sizes',
+				path: '/foundations/font-sizes',
+				subNavigation: [
+					{ label: 'Readme', path: '/foundations/font-sizes/readme' },
+					{
+						label: 'Overview',
+						path: '/foundations/font-sizes/overview'
+					}
+				]
+			},
+			{
 				label: 'Icons',
 				path: '/foundations/icons',
 				subNavigation: [
@@ -225,10 +245,6 @@ export const ROUTES: NavigationItem[] = [
 						{
 							label: 'Properties',
 							path: `/components/${component.name}/properties`
-						},
-						{
-							label: 'Examples',
-							path: `/components/${component.name}/examples`
 						},
 						{
 							label: 'How to use',
