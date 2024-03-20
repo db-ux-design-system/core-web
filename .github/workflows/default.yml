@@ -31,25 +31,17 @@ jobs:
     uses: ./.github/workflows/02-e2e.yml
     needs: [build-packages]
 
+  test-foundations:
+    uses: ./.github/workflows/02-e2e-foundations.yml
+    needs: [build-packages]
+
   build-showcases:
     uses: ./.github/workflows/01-build-showcases.yml
     needs: [build-packages]
 
-  build-power-apps:
-    uses: ./.github/workflows/01-build-power-apps.yml
-    needs: [build-packages]
-    secrets: inherit
-    with:
-      version: 0.0.0-test
-
   test-showcases:
     uses: ./.github/workflows/02-e2e-showcases.yml
     needs: [build-showcases]
-
-  merge-reports:
-    if: ${{ always() }}
-    uses: ./.github/workflows/03-e2e-merge-reports.yml
-    needs: [test-components, test-showcases]
 
   checks-done:
     if: ${{ always() }}
@@ -61,8 +53,8 @@ jobs:
           resultBuildOutputs="${{ needs.build-outputs.result }}"
           resultTestPackages="${{ needs.test-components.result }}"
           resultTestShowcases="${{ needs.test-showcases.result }}"
-          resultBuildPowerApps="${{ needs.build-power-apps.result }}"
-          if [[ $resultTestShowcases == "success" && $resultBuildShowcases == "success" && $resultBuildOutputs == "success" && $resultTestPackages == "success" && $resultBuildPowerApps == "success" ]]; then
+          resultTestFoundations="${{ needs.test-foundations.result }}"
+          if [[ $resultTestFoundations == "success" && $resultTestShowcases == "success" && $resultBuildShowcases == "success" && $resultBuildOutputs == "success" && $resultTestPackages == "success" ]]; then
              echo "🎉 All tests were successful."
             exit 0
           else
@@ -75,7 +67,7 @@ jobs:
         build-outputs,
         test-components,
         test-showcases,
-        build-power-apps
+        test-foundations
       ]
 
   deploy:

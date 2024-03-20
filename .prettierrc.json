@@ -9,11 +9,12 @@
 			}
 		},
 		{
-			"files": ["*.sh", ".env"],
+			"files": [".env"],
 			"options": {
 				"parser": "sh"
 			}
 		}
 	],
-	"endOfLine": "auto"
+	"endOfLine": "auto",
+	"plugins": ["prettier-plugin-sh", "prettier-plugin-pkg"]
 }

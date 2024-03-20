@@ -1,1 +1,1 @@
-export { DBAlert, DBAlertModule } from './alert';
+export { DBAlert } from './alert';

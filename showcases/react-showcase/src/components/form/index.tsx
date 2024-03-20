@@ -1,15 +1,21 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { DBTabList, DBTabPanel, DBTabs } from '@db-ui/react-components/src';
 import {
 	DBButton,
+	DBCheckbox,
 	DBInput,
 	DBRadio,
 	DBSelect,
-	DBCheckbox,
 	DBTag,
 	DBTextarea,
-	DBLink
+	DBAccordion,
+	DBAccordionItem,
+	DBTab
 } from '../../../../../output/react/src';
-import type { KeyValueType } from '../../../../../output/react/src/shared/model';
+import type {
+	ChangeEvent,
+	KeyValueType
+} from '../../../../../output/react/src/shared/model';
 
 const FormComponent = () => {
 	const [input, setInput] = useState('');
@@ -21,20 +27,32 @@ const FormComponent = () => {
 	const [tags, setTags] = useState<string[]>([]);
 	const [checked, setChecked] = useState<boolean[]>([true, false]);
 
+	const [accordionItems, setAccordionItems] = useState<KeyValueType[]>();
+
+	useEffect(() => {
+		setTimeout(() => {
+			setAccordionItems([
+				{ key: 'test1', value: 'Test1' },
+				{ key: 'test2', value: 'Test2' },
+				{ key: 'test3', value: 'Test3' }
+			]);
+		}, 2000);
+	}, []);
+
 	const dataList: KeyValueType[] = [
 		{ key: 'test', value: 'Test' },
 		{ key: 'test2' }
 	];
 
-	const handleChange1 = (event: React.ChangeEvent<HTMLInputElement>) => {
+	const handleChange1 = (event: ChangeEvent<HTMLInputElement>) => {
 		setChecked([event.target.checked, event.target.checked]);
 	};
 
-	const handleChange2 = (event: React.ChangeEvent<HTMLInputElement>) => {
+	const handleChange2 = (event: ChangeEvent<HTMLInputElement>) => {
 		setChecked([event.target.checked, checked[1]]);
 	};
 
-	const handleChange3 = (event: React.ChangeEvent<HTMLInputElement>) => {
+	const handleChange3 = (event: ChangeEvent<HTMLInputElement>) => {
 		setChecked([checked[0], event.target.checked]);
 	};
 
@@ -52,8 +70,8 @@ const FormComponent = () => {
 							name="input-name"
 							value={input}
 							dataList={dataList}
-							onChange={(evt) => {
-								setInput(evt.target.value);
+							onChange={(event) => {
+								setInput(event.target.value);
 							}}
 						/>
 						<p>Textarea:</p>
@@ -75,11 +93,11 @@ const FormComponent = () => {
 						/>
 						<DBTextarea
 							label="Textarea Default value"
+							defaultValue="text area default value"
 							onChange={(event) => {
 								setTextareaChildren(event.target.value);
-							}}>
-							text area default value
-						</DBTextarea>
+							}}
+						/>
 						<p>Radio:</p>
 						<ul>
 							{['X', 'Y', 'Z'].map((radioName) => (
@@ -178,7 +196,7 @@ const FormComponent = () => {
 						<DBButton
 							type="button"
 							variant="primary"
-							onClick={(_) => {
+							onClick={(clickEvent) => {
 								// eslint-disable-next-line no-alert
 								alert(
 									JSON.stringify({
@@ -213,6 +231,38 @@ const FormComponent = () => {
 					<dt>tags value</dt>
 					<dd>{JSON.stringify(tags)}</dd>
 				</dl>
+
+				<DBAccordion>
+					{accordionItems?.map((item) => (
+						<DBAccordionItem key={item.key} title={item.key}>
+							{item.value}
+						</DBAccordionItem>
+					))}
+				</DBAccordion>
+
+				<DBTabs>
+					<DBTabList>
+						<DBTab>Test 1</DBTab>
+						<DBTab>Test 2</DBTab>
+						<DBTab>Test 3</DBTab>
+					</DBTabList>
+					<DBTabPanel>Tab Panel 1</DBTabPanel>
+					<DBTabPanel>Tab Panel 2</DBTabPanel>
+					<DBTabPanel>Tab Panel 3</DBTabPanel>
+				</DBTabs>
+
+				<DBSelect
+					id="select-test"
+					value={select}
+					label="Label"
+					onChange={(event) => {
+						setSelect(event.target.value);
+					}}
+					options={[
+						{ label: 'Test1', value: 'Test1' },
+						{ label: 'Test2', value: 'Test2' }
+					]}
+				/>
 			</div>
 		</div>
 	);

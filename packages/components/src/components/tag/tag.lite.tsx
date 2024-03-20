@@ -1,48 +1,14 @@
-import { onMount, Show, useMetadata, useStore } from '@builder.io/mitosis';
+import { Show, useMetadata, useRef, useStore } from '@builder.io/mitosis';
 import { DBButton } from '../button';
 import { DBTagProps, DBTagState } from './model';
 import { cls } from '../../utils';
 
 useMetadata({
-	isAttachedToShadowDom: true,
-	component: {
-		includeIcon: true,
-		isFormComponent: true,
-		properties: [
-			{
-				name: 'children',
-				type: 'SingleLine.Text',
-				defaultValue: 'Tag'
-			},
-			// { name: 'disabled', type: 'TwoOptions' },
-			{
-				name: 'variant',
-				type: 'Enum',
-				values: [
-					{ key: 'Adaptive', name: 'Adaptive', value: 'adaptive' },
-					{ key: 'Critical', name: 'Critical', value: 'critical' },
-					{
-						key: 'Informational',
-						name: 'Informational',
-						value: 'informational'
-					},
-					{ key: 'Warning', name: 'Warning', value: 'warning' },
-					{
-						key: 'Successful',
-						name: 'Successful',
-						value: 'successful'
-					}
-				],
-				defaultValue: 'adaptive'
-			}
-			// type
-		]
-	}
+	isAttachedToShadowDom: true
 });
 
 export default function DBTag(props: DBTagProps) {
-	// This is used as forwardRef
-	let component: any;
+	const ref = useRef<HTMLDivElement>(null);
 	const state = useStore<DBTagState>({
 		handleRemove: () => {
 			if (props.onRemove) {
@@ -59,15 +25,9 @@ export default function DBTag(props: DBTagProps) {
 		}
 	});
 
-	onMount(() => {
-		if (props.stylePath) {
-			state.stylePath = props.stylePath;
-		}
-	});
-
 	return (
 		<div
-			ref={component}
+			ref={ref}
 			id={props.id}
 			class={cls('db-tag', props.className)}
 			data-disabled={props.disabled}
@@ -76,10 +36,6 @@ export default function DBTag(props: DBTagProps) {
 			data-icon={props.icon}
 			data-no-text={props.noText}
 			data-overflow={props.overflow}>
-			<Show when={state.stylePath}>
-				<link rel="stylesheet" href={state.stylePath} />
-			</Show>
-
 			{props.children}
 
 			<Show when={props.text}>{props.text}</Show>

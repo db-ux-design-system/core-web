@@ -8,16 +8,16 @@ If you use `width !== full` you are able to overwrite the `max-width` with `--db
 
 ### Load component
 
-```ts app.module.ts
-//app.module.ts
-import { DBDrawerModule } from '@db-ui/ngx-components';
+```ts app.component.ts
+// app.component.ts
+import { DBDrawer } from '@db-ui/ngx-components';
 
-@NgModule({
-  ...
-  imports: [..., DBDrawerModule],
-  ...
+@Component({
+  // ...
+  standalone: true,
+  imports: [..., DBDrawer],
+  // ...
 })
-
 ```
 
 ### Use component

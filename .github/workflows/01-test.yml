@@ -8,7 +8,7 @@ jobs:
     name: Test
     runs-on: ubuntu-latest
     steps:
-      - name: ⬇️ Checkout repo
+      - name: ⏬️ Checkout repo
         uses: actions/checkout@v4
 
       - name: 🔄 Init Cache

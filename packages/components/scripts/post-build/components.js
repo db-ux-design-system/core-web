@@ -14,14 +14,70 @@
  *     },
  *     angular?: {
  * 			controlValueAccessor?: string,
- * 			directives?: {name:string, ngContentName?:string}[]
+ * 			directives?: {name:string, ngContentName?:string}[],
+ * 			initValues?: {key:string, value:any}[]
+ * 		},
+ *     react?: {
+ * 			propsPassingFilter?: string[];
+ * 			containsFragmentMap?: boolean;
  * 		}
  * }
  * }]}
  */
 const getComponents = () => [
 	{
-		name: 'accordion-item'
+		name: 'tab-panel',
+		config: {
+			angular: {
+				initValues: [
+					{ key: 'name', value: '' },
+					{ key: 'index', value: 0 }
+				]
+			}
+		}
+	},
+	{
+		name: 'tab',
+		config: {
+			angular: {
+				initValues: [
+					{ key: 'name', value: '' },
+					{ key: 'index', value: 0 }
+				]
+			}
+		}
+	},
+
+	{
+		name: 'tabs',
+		overwrites: {
+			angular: [
+				{
+					from: 'scrollContainer = null;',
+					to: 'scrollContainer: Element | null = null;'
+				}
+			]
+		}
+	},
+
+	{
+		name: 'tab-list'
+	},
+
+	{
+		name: 'tooltip'
+	},
+
+	{
+		name: 'popover'
+	},
+
+	{
+		name: 'accordion-item',
+		overwrites: {
+			// this is an issue from mitosis always adding `attr`
+			angular: [{ from: 'attr.open', to: 'open' }]
+		}
 	},
 
 	{
@@ -29,12 +85,6 @@ const getComponents = () => [
 		overwrites: {
 			angular: [
 				{ from: 'openItems = []', to: 'openItems: string[] = []' }
-			],
-			react: [
-				{
-					from: 'const ref = useRef<HTMLDivElement>(null);',
-					to: 'const ref = useRef<HTMLDivElement>(component);'
-				}
 			]
 		}
 	},
@@ -52,18 +102,8 @@ const getComponents = () => [
 		overwrites: {
 			angular: [
 				{
-					from: '[attr.defaultValue]="defaultValue ?? children"',
-					to: ''
-				},
-				{
 					from: '</textarea>',
-					to: '{{value || defaultValue}}</textarea>'
-				}
-			],
-			vue: [
-				{
-					from: ':defaultValue="defaultValue || $slots.default"',
-					to: ''
+					to: '{{value}}</textarea>'
 				}
 			]
 		}
@@ -92,19 +132,21 @@ const getComponents = () => [
 			},
 			angular: {
 				controlValueAccessor: 'value'
+			},
+			react: {
+				containsFragmentMap: true
 			}
 		}
 	},
 	{
 		name: 'drawer',
 		overwrites: {
-			react: [
-				{
-					from: 'const dialogRef = useRef<HTMLDialogElement>(null);',
-					to: 'const dialogRef = useRef<HTMLDialogElement>(component);'
-				}
-			],
 			webComponents: [{ from: '__prev.find', to: '!!__prev.find' }]
+		},
+		config: {
+			react: {
+				propsPassingFilter: ['onClose']
+			}
 		}
 	},
 
@@ -134,7 +176,7 @@ const getComponents = () => [
 				vModel: [{ modelValue: 'checked', binding: ':checked' }]
 			},
 			angular: {
-				controlValueAccessor: false
+				controlValueAccessor: 'checked'
 			}
 		}
 	},
@@ -163,12 +205,17 @@ const getComponents = () => [
 		config: {
 			angular: {
 				directives: [
-					{ name: 'ActionBar', ngContentName: 'action-bar' },
+					{
+						name: 'ActionBar',
+						ngContentName: 'action-bar'
+					},
 					{
 						name: 'MetaNavigation',
 						ngContentName: 'meta-navigation'
 					},
-					{ name: 'Navigation' }
+					{
+						name: 'Navigation'
+					}
 				]
 			}
 		},
@@ -183,6 +230,7 @@ const getComponents = () => [
 					to: '() => toggle()'
 				}
 			],
+			angular: [{ from: '(close)', to: '(onClose)' }],
 			webComponents: [
 				{
 					from: '<slot></slot>',
@@ -232,12 +280,6 @@ const getComponents = () => [
 	},
 	{
 		name: 'card'
-	},
-	{
-		name: 'tab-bar'
-	},
-	{
-		name: 'tab'
 	},
 	{
 		name: 'button'

@@ -40,7 +40,7 @@ export interface DBNavigationItemDefaultProps {
 
 export type DBNavigationItemProps = DBNavigationItemDefaultProps &
 	GlobalProps &
-	ClickEventProps &
+	ClickEventProps<HTMLButtonElement> &
 	IconProps &
 	WidthProps &
 	NavigationBackButtonProps;
@@ -58,6 +58,6 @@ export interface DBNavigationItemDefaultState {
 }
 
 export type DBNavigationItemState = DBNavigationItemDefaultState &
-	ClickEventState &
+	ClickEventState<HTMLButtonElement> &
 	GlobalState &
 	InitializedState;

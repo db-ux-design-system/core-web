@@ -7,11 +7,10 @@ import {
 	useRef,
 	useStore
 } from '@builder.io/mitosis';
-import { DBDrawerState, DBDrawerProps } from './model';
+import { DBDrawerProps, DBDrawerState } from './model';
 import { DBButton } from '../button';
-import { DEFAULT_CLOSE_BUTTON, DEFAULT_ID } from '../../shared/constants';
+import { DEFAULT_CLOSE_BUTTON } from '../../shared/constants';
 import { cls } from '../../utils';
-import { uuid } from '../../utils';
 
 useMetadata({
 	isAttachedToShadowDom: true,
@@ -23,10 +22,9 @@ useMetadata({
 });
 
 export default function DBDrawer(props: DBDrawerProps) {
-	const dialogRef = useRef<HTMLDialogElement>(null);
+	const ref = useRef<HTMLDialogElement>(null);
 	const dialogContainerRef = useRef<HTMLDivElement>(null);
 	const state = useStore<DBDrawerState>({
-		_id: DEFAULT_ID,
 		handleClose: (event: any) => {
 			if (event.key === 'Escape') {
 				event.preventDefault();
@@ -44,18 +42,18 @@ export default function DBDrawer(props: DBDrawerProps) {
 			}
 		},
 		handleDialogOpen: () => {
-			if (dialogRef) {
-				if (props.open && !dialogRef.open) {
+			if (ref) {
+				if (props.open && !ref.open) {
 					if (dialogContainerRef) {
 						dialogContainerRef.hidden = false;
 					}
 					if (props.backdrop === 'none') {
-						dialogRef.show();
+						ref.show();
 					} else {
-						dialogRef.showModal();
+						ref.showModal();
 					}
 				}
-				if (!props.open && dialogRef.open) {
+				if (!props.open && ref.open) {
 					if (dialogContainerRef) {
 						dialogContainerRef.hidden = true;
 					}
@@ -63,7 +61,7 @@ export default function DBDrawer(props: DBDrawerProps) {
 						if (dialogContainerRef) {
 							dialogContainerRef.hidden = false;
 						}
-						dialogRef?.close();
+						ref?.close();
 					}, 401);
 				}
 			}
@@ -71,10 +69,6 @@ export default function DBDrawer(props: DBDrawerProps) {
 	});
 
 	onMount(() => {
-		state._id = props.id || 'drawer-' + uuid();
-		if (props.stylePath) {
-			state.stylePath = props.stylePath;
-		}
 		state.handleDialogOpen();
 	});
 
@@ -84,17 +78,14 @@ export default function DBDrawer(props: DBDrawerProps) {
 
 	return (
 		<dialog
-			id={state._id}
-			ref={dialogRef}
+			id={props.id}
+			ref={ref}
 			class="db-drawer"
 			onClick={(event) => {
 				state.handleClose(event);
 			}}
 			onKeyDown={(event) => state.handleClose(event)}
 			data-backdrop={props.backdrop}>
-			<Show when={state.stylePath}>
-				<link rel="stylesheet" href={state.stylePath} />
-			</Show>
 			<article
 				ref={dialogContainerRef}
 				class={cls('db-drawer-container', props.className)}

@@ -15,7 +15,7 @@ enum buttonVariants {
 	'text' = 'text'
 }
 export const buttonVariantsList = Object.values(buttonVariants);
-type ButtonVariantsType = 'outlined' | 'primary' | 'solid' | 'text';
+export type ButtonVariantsType = 'outlined' | 'primary' | 'solid' | 'text';
 
 export type DBButtonDefaultProps = {
 	/**
@@ -71,12 +71,12 @@ export type DBButtonDefaultProps = {
 	/**
 	 * Variant of the button. Use only 1 primary button on a page as CTA otherwise use one of the adaptive buttons.
 	 */
-	variant?: ButtonVariantsType;
+	variant?: ButtonVariantsType | string;
 };
 
 export type DBButtonProps = DBButtonDefaultProps &
 	GlobalProps &
-	ClickEventProps &
+	ClickEventProps<HTMLButtonElement> &
 	IconProps &
 	WidthProps;
 
@@ -84,4 +84,4 @@ export type DBButtonDefaultState = {};
 
 export type DBButtonState = DBButtonDefaultState &
 	GlobalState &
-	ClickEventState;
+	ClickEventState<HTMLButtonElement>;

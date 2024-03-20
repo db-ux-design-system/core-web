@@ -1,1 +1,1 @@
-export { DBHeader, DBHeaderModule } from './header';
+export { DBHeader } from './header';

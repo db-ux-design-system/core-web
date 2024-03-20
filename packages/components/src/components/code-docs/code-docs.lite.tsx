@@ -1,10 +1,4 @@
-import {
-	onMount,
-	Show,
-	Slot,
-	useMetadata,
-	useStore
-} from '@builder.io/mitosis';
+import { Slot, useMetadata, useRef, useStore } from '@builder.io/mitosis';
 import { DBCodeDocsProps, DBCodeDocsState } from './model';
 import { DBCard } from '../card';
 import { cls } from '../../utils';
@@ -19,8 +13,7 @@ useMetadata({
 });
 
 export default function DBCodeDocs(props: DBCodeDocsProps) {
-	// This is used as forwardRef
-	let component: any;
+	const ref = useRef<HTMLDivElement>(null);
 	// jscpd:ignore-start
 	const state = useStore<DBCodeDocsState>({
 		open: false,
@@ -34,20 +27,13 @@ export default function DBCodeDocs(props: DBCodeDocsProps) {
 		}
 	});
 
-	onMount(() => {
-		if (props.stylePath) {
-			state.stylePath = props.stylePath;
-		}
-	});
 	// jscpd:ignore-end
 
 	return (
 		<DBCard
-			ref={component}
+			ref={ref}
+			id={props.id}
 			className={cls('db-code-docs', props.className)}>
-			<Show when={state.stylePath}>
-				<link rel="stylesheet" href={state.stylePath} />
-			</Show>
 			{props.children}
 			<details class="code-details" onToggle={() => state.toggleCode()}>
 				<summary

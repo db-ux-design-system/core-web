@@ -13,16 +13,21 @@ const getSelect = ({
 	message,
 	disabled,
 	value,
-	required
+	required,
+	labelVariant,
+	invalid
 }: DBSelectProps) => (
 	<DBSelect
 		label={label}
+		placeholder={children}
 		variant={variant}
 		options={options}
 		disabled={disabled}
+		labelVariant={labelVariant}
 		icon={icon}
 		value={value}
 		message={message}
+		invalid={invalid}
 		required={required}>
 		{children}
 	</DBSelect>

@@ -1,0 +1,174 @@
+@use "@db-ui/foundations/build/scss/variables";
+@use "@db-ui/foundations/build/scss/colors";
+@use "@db-ui/foundations/build/scss/animation";
+@use "component";
+
+@mixin get-popover-placements($placement) {
+	--db-popover-distance: #{variables.$db-spacing-fixed-md};
+
+	$direction: start;
+	$primary: block;
+	$secondary: inline;
+	@if (
+		$placement ==
+			"top" or
+			$placement ==
+			"top-start" or
+			$placement ==
+			"top-end" or
+			$placement ==
+			"left" or
+			$placement ==
+			"left-start" or
+			$placement ==
+			"left-end"
+	) {
+		$direction: end;
+	}
+	@if (
+		$placement ==
+			"left" or
+			$placement ==
+			"left-start" or
+			$placement ==
+			"left-end" or
+			$placement ==
+			"right" or
+			$placement ==
+			"right-start" or
+			$placement ==
+			"right-end"
+	) {
+		$primary: inline;
+		$secondary: block;
+	}
+
+	&:is(.db-tooltip) {
+		--db-popover-distance: #{variables.$db-spacing-fixed-xs};
+	}
+
+	// 2px for shadows
+	inset-#{$primary}-#{$direction}: calc(
+		100% + 2px + var(--db-popover-distance) * var(--db-popover-gap, 0)
+	);
+
+	&[data-placement$="end"] {
+		inset-#{$secondary}-end: 0;
+	}
+
+	&[data-placement$="start"] {
+		inset-#{$secondary}-start: 0;
+	}
+
+	&[data-gap="true"],
+	&:is(.db-tooltip) {
+		--db-popover-gap: 1;
+
+		&::before {
+			content: "";
+			position: absolute;
+			inset-#{$secondary}-#{$direction}: 0;
+			#{$secondary}-size: 100%;
+			#{$primary}-size: calc(2px + var(--db-popover-distance));
+			inset-#{$primary}-#{$direction}: calc(
+				-1 * var(--db-popover-distance) - 2px
+			);
+		}
+	}
+}
+
+%popover-placement {
+	&:not([data-placement]),
+	&[data-placement^="bottom"] {
+		@include get-popover-placements("bottom");
+	}
+
+	&[data-placement^="right"] {
+		@include get-popover-placements("right");
+	}
+
+	&[data-placement^="left"] {
+		@include get-popover-placements("left");
+	}
+
+	&[data-placement^="top"] {
+		@include get-popover-placements("top");
+	}
+}
+
+@mixin get-popover-show($placement: bottom) {
+	@if ($placement == bottom) {
+		--db-popover-translate-y: -25%;
+	}
+	@if ($placement == top) {
+		--db-popover-translate-y: 25%;
+	}
+	@if ($placement == right) {
+		--db-popover-translate-x: -25%;
+	}
+	@if ($placement == left) {
+		--db-popover-translate-x: 25%;
+	}
+
+	&[data-animation="disabled"] {
+		opacity: 1;
+	}
+
+	&:not([data-animation="disabled"]) {
+		animation: popover-animation variables.$db-transition-emotional-straight
+			normal both;
+
+		&[data-delay="slow"] {
+			animation-delay: variables.$db-transition-duration-fast;
+		}
+
+		&[data-delay="fast"] {
+			animation-delay: calc(
+				#{variables.$db-transition-duration-fast} / 2
+			);
+		}
+	}
+}
+
+%show-popover {
+	visibility: visible;
+
+	&:not([data-placement]),
+	&[data-placement^="bottom"] {
+		@include get-popover-show("bottom");
+	}
+
+	&[data-placement^="right"] {
+		@include get-popover-show("right");
+	}
+
+	&[data-placement^="left"] {
+		@include get-popover-show("left");
+	}
+
+	&[data-placement^="top"] {
+		@include get-popover-show("top");
+	}
+}
+
+%default-popover {
+	@extend %default-card;
+	@extend %popover-placement;
+
+	@extend %component-border;
+
+	position: absolute;
+	background-color: colors.$db-base-bg;
+	visibility: hidden;
+	z-index: 1;
+	// i HTML tags browsers default styling reset
+	font-style: normal;
+
+	&[data-width="fixed"] {
+		inline-size: max-content;
+		max-inline-size: variables.$db-sizing-3xl;
+		// revert this if popover is included in button
+		white-space: normal;
+		text-align: initial;
+	}
+}

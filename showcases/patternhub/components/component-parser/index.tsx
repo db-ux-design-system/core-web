@@ -1,4 +1,10 @@
 import { useEffect, useState } from 'react';
+import DBTabPanel from '../src/components/tab-panel/tab-panel';
+import DBTabs from '../src/components/tabs/tabs';
+import DBTabList from '../src/components/tab-list/tab-list';
+import DBTab from '../src/components/tab/tab';
+import DBTooltip from '../src/components/tooltip/tooltip';
+import DBPopover from '../src/components/popover/popover';
 import {
 	DBAlert,
 	DBBrand,
@@ -43,7 +49,7 @@ const ComponentSwitch = ({
 					props={innerComponent.props}
 					className={innerComponent.className}
 				/>
-		  ))
+			))
 		: content;
 
 	if (type === 'h1') {
@@ -264,6 +270,54 @@ const ComponentSwitch = ({
 			<DBBadge className={className} {...props}>
 				{resolvedContent}
 			</DBBadge>
+		);
+	}
+
+	if (type === 'popover') {
+		return (
+			<DBPopover className={className} {...props}>
+				{resolvedContent}
+			</DBPopover>
+		);
+	}
+
+	if (type === 'tooltip') {
+		return (
+			<DBTooltip className={className} {...props}>
+				{resolvedContent}
+			</DBTooltip>
+		);
+	}
+
+	if (type === 'tab') {
+		return (
+			<DBTab className={className} {...props}>
+				{resolvedContent}
+			</DBTab>
+		);
+	}
+
+	if (type === 'tab-list') {
+		return (
+			<DBTabList className={className} {...props}>
+				{resolvedContent}
+			</DBTabList>
+		);
+	}
+
+	if (type === 'tabs') {
+		return (
+			<DBTabs className={className} {...props}>
+				{resolvedContent}
+			</DBTabs>
+		);
+	}
+
+	if (type === 'tab-panel') {
+		return (
+			<DBTabPanel className={className} {...props}>
+				{resolvedContent}
+			</DBTabPanel>
 		);
 	}
 

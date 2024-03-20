@@ -21,115 +21,26 @@ designers, and content authors build, maintain, and scale best of class digital 
 	<figcaption><a href="https://bradfrost.com/blog/post/bdconf-stephen-hay-presents-responsive-design-workflow/" target="_blank" rel="noopener noreferrer">Stephen Hay</a>. <a href="https://vimeo.com/67476280" title="Brad Frosts at beyond tellerrand conference regarding Atomic Design" target="_blank" rel="noopener noreferrer">Cited in a talk by Brad Frost at beyond tellerrand conference.</a></figcaption>
 </figure>
 
-> **Warning**
-> We currently don't fully support Mozilla Firefox until it adds the following functionalities, that are expected to get integrated later this year:
->
-> -   [CSS: `:has`](https://caniuse.com/css-has)
-> -   [`popover`-attribute](https://caniuse.com/mdn-api_htmlinputelement_popovertargetaction)(not in use by us currently, but planned)
-
 ## Packages
 
-| Package                             | Content                             | Version                                                                                                                                                                                                                                                                                  |
-| ----------------------------------- | ----------------------------------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| [foundations](packages/foundations) | CSS/SCSS/Tailwind styles and assets | [![@db-ui/foundations on Npmjs](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fapi.github.com%2Frepos%2Fdb-ui%2Fmono%2Freleases%2Flatest&query=%24.tag_name&label=npm&color=ed1c24 "npm version")](https://npmjs.com/package/@db-ui/foundations "DB UI – on NPM")           |
-| [components](packages/components)   | CSS/SCSS styles for components      | [![@db-ui/components on Npmjs](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fapi.github.com%2Frepos%2Fdb-ui%2Fmono%2Freleases%2Flatest&query=%24.tag_name&label=npm&color=ed1c24 "npm version")](https://npmjs.com/package/@db-ui/components "DB UI – on NPM")             |
-| [ngx-components](output/angular)    | Native Angular components           | [![@db-ui/ngx-components on Npmjs](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fapi.github.com%2Frepos%2Fdb-ui%2Fmono%2Freleases%2Flatest&query=%24.tag_name&label=npm&color=ed1c24 "npm version")](https://npmjs.com/package/@db-ui/ngx-components "DB UI – on NPM")     |
-| [react-components](output/react)    | Native React components             | [![@db-ui/react-components on Npmjs](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fapi.github.com%2Frepos%2Fdb-ui%2Fmono%2Freleases%2Flatest&query=%24.tag_name&label=npm&color=ed1c24 "npm version")](https://npmjs.com/package/@db-ui/react-components "DB UI – on NPM") |
-| [v-components](output/vue/vue3)     | Native Vue components               | [![@db-ui/v-components on Npmjs](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fapi.github.com%2Frepos%2Fdb-ui%2Fmono%2Freleases%2Flatest&query=%24.tag_name&label=npm&color=ed1c24 "npm version")](https://npmjs.com/package/@db-ui/v-components "DB UI – on NPM")         |
+| Package                                                                     | Content                             | Version                                                                                                                                                                                                                                                                                  |
+| --------------------------------------------------------------------------- | ----------------------------------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| [foundations](https://github.com/db-ui/mono/tree/main/packages/foundations) | CSS/SCSS/Tailwind styles and assets | [![@db-ui/foundations on Npmjs](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fapi.github.com%2Frepos%2Fdb-ui%2Fmono%2Freleases%2Flatest&query=%24.tag_name&label=npm&color=ed1c24 "npm version")](https://npmjs.com/package/@db-ui/foundations "DB UI – on NPM")           |
+| [components](https://github.com/db-ui/mono/tree/main/packages/components)   | CSS/SCSS styles for components      | [![@db-ui/components on Npmjs](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fapi.github.com%2Frepos%2Fdb-ui%2Fmono%2Freleases%2Flatest&query=%24.tag_name&label=npm&color=ed1c24 "npm version")](https://npmjs.com/package/@db-ui/components "DB UI – on NPM")             |
+| [ngx-components](https://github.com/db-ui/mono/tree/main/output/angular)    | Native Angular components           | [![@db-ui/ngx-components on Npmjs](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fapi.github.com%2Frepos%2Fdb-ui%2Fmono%2Freleases%2Flatest&query=%24.tag_name&label=npm&color=ed1c24 "npm version")](https://npmjs.com/package/@db-ui/ngx-components "DB UI – on NPM")     |
+| [react-components](https://github.com/db-ui/mono/tree/main/output/react)    | Native React components             | [![@db-ui/react-components on Npmjs](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fapi.github.com%2Frepos%2Fdb-ui%2Fmono%2Freleases%2Flatest&query=%24.tag_name&label=npm&color=ed1c24 "npm version")](https://npmjs.com/package/@db-ui/react-components "DB UI – on NPM") |
+| [v-components](https://github.com/db-ui/mono/tree/main/output/vue/vue3)     | Native Vue components               | [![@db-ui/v-components on Npmjs](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fapi.github.com%2Frepos%2Fdb-ui%2Fmono%2Freleases%2Flatest&query=%24.tag_name&label=npm&color=ed1c24 "npm version")](https://npmjs.com/package/@db-ui/v-components "DB UI – on NPM")         |
 
 ## How to use
 
 Install your preferred package via npm or yarn e.g. `npm i @db-ui/react-components`.
 
 Afterwards you need to add the specific CSS or SCSS files to provide the styles of DB UX Design System.
-For a detailed overview look at our [examples](examples).
+For a detailed overview look at our [examples](https://github.com/db-ui/examples).
 
 ## Components
 
-Here is an overview of all components you can use:
-
-<details>
-  <summary><strong>Table of Components</strong></summary>
-
-| Name                                                                | Category          | Status | Planned for beta |
-| ------------------------------------------------------------------- | ----------------- | :----: | :--------------: |
-| Accordion                                                           | 04 - Data-Display |   ❌   |        ✅        |
-| [Alert](packages/components/src/components/alert)                   | 05 - Feedback     |  Beta  |        ✅        |
-| Avatar                                                              | 04 - Data-Display |   ❌   |        ❌        |
-| Backdrop                                                            | 06 - Utility      |   ❌   |        ✅        |
-| Badge                                                               | 05 - Feedback     |   ❌   |        ✅        |
-| Bottom-Navigation                                                   | 02 - Action       |   ❌   |        ❌        |
-| Breadcrumbs                                                         | 02 - Action       |   ❌   |        ✅        |
-| [Brand](packages/components/src/components/brand)                   | 04 - Data-Display |  Beta  |        ✅        |
-| [Button](packages/components/src/components/button)                 | 02 - Action       | Alpha  |        ✅        |
-| Button-Group                                                        | 02 - Action       |   ❌   |        ❌        |
-| [Card](packages/components/src/components/card)                     | 01 - Layout       | Alpha  |        ✅        |
-| Carousel                                                            | 06 - Utility      |   ❌   |        ❌        |
-| [Checkbox](packages/components/src/components/checkbox)             | 03 - Data-Input   | Alpha  |        ✅        |
-| Combobox                                                            | 03 - Data-Input   |   ❌   |        ❌        |
-| Container                                                           | 01 - Layout       |   ❌   |        ❌        |
-| Date-Picker                                                         | 03 - Data-Input   |   ❌   |        ❌        |
-| [Divider](packages/components/src/components/divider)               | 01 - Layout       | Alpha  |        ✅        |
-| [Drawer](packages/components/src/components/drawer)                 | 01 - Layout       |  Beta  |        ✅        |
-| Dropdown                                                            | 06 - Utility      |   ❌   |        ✅        |
-| Floating-Button                                                     | 02 - Action       |   ❌   |        ❌        |
-| Footer                                                              | 01 - Layout       |   ❌   |        ✅        |
-| Grid                                                                | 01 - Layout       |   ❌   |        ✅        |
-| Header                                                              | 01 - Layout       |  Beta  |        ✅        |
-| [Icons](packages/components/src/components/icon)                    | 04 - Data-Display |  Beta  |        ✅        |
-| Image                                                               | 04 - Data-Display |   ❌   |        ✅        |
-| Indicator                                                           | 04 - Data-Display |   ❌   |        ❌        |
-| [Infotext](packages/components/src/components/infotext)             | 04 - Data-Display | Alpha  |        ✅        |
-| [Input](packages/components/src/components/input)                   | 03 - Data-Input   | Alpha  |        ✅        |
-| [Link](packages/components/src/components/link)                     | 02 - Action       | Alpha  |        ✅        |
-| List-Item                                                           | 04 - Data-Display |   ❌   |        ✅        |
-| Menu                                                                | 02 - Action       |   ❌   |        ✅        |
-| Modal                                                               | 06 - Utility      |   ❌   |        ✅        |
-| [NavigationItem](packages/components/src/components/navigationitem) | 05 - Navigation   |  Beta  |        ✅        |
-| Notification                                                        | 05 - Feedback     |   ❌   |        ✅        |
-| Numbers-Field                                                       | 03 - Data-Input   |   ❌   |        ❌        |
-| Pagination                                                          | 02 - Action       |   ❌   |        ❌        |
-| Popover                                                             | 06 - Utility      |   ❌   |        ❌        |
-| Progress                                                            | 05 - Feedback     |   ❌   |        ❌        |
-| [Radio](packages/components/src/components/radio)                   | 03 - Data-Input   | Alpha  |        ✅        |
-| Rating                                                              | 03 - Data-Input   |   ❌   |        ❌        |
-| [Section](packages/components/src/components/section)               | 01 - Layout       |  Beta  |        ✅        |
-| [Select](packages/components/src/components/select)                 | 03 - Data-Input   |  Beta  |        ✅        |
-| Skeleton                                                            | 05 - Feedback     |   ❌   |        ❌        |
-| Slider                                                              | 03 - Data-Input   |   ❌   |        ❌        |
-| Spinner                                                             | 05 - Feedback     |   ❌   |        ❌        |
-| Stack/List                                                          | 06 - Utility      |   ❌   |        ✅        |
-| Stepper                                                             | 02 - Action       |   ❌   |        ❌        |
-| Switch                                                              | 02 - Action       |   ❌   |        ❌        |
-| Table                                                               | 04 - Data-Display |   ❌   |        ❌        |
-| [Tabs](packages/components/src/components/tabs)                     | 04 - Data-Display | Alpha  |        ❌        |
-| [Tag](packages/components/src/components/tag)                       | 04 - Data-Display | Alpha  |        ✅        |
-| Text                                                                | 04 - Data-Display |   ❌   |        ✅        |
-| Textarea                                                            | 03 - Data-Input   |   ❌   |        ✅        |
-| Timeline                                                            | 04 - Data-Display |   ❌   |        ❌        |
-| Time-Picker                                                         | 03 - Data-Input   |   ❌   |        ❌        |
-| Toggle-Button                                                       | 02 - Action       |   ❌   |        ❌        |
-| Tooltip                                                             | 04 - Data-Display |   ❌   |        ❌        |
-| Tree                                                                | 04 - Data-Display |   ❌   |        ❌        |
-| Upload                                                              | 03 - Data-Input   |   ❌   |        ❌        |
-
-</details>
-
-‼ Some components are missing and some are not migrated to the new styling, be aware that non-completed components may change in the future. You can enable automated warnings with ESLint if you like.
-
-### Warnings with ESLint
-
-Install ESLint plugin: `npm i @db-ui/eslint-plugin`.
-
-Add the plugin and rule to your configuration:
-
-```js
-...
-"plugins": ["@db-ui"],
-"rules": {
-	"@db-ui/v2-component-used": "warn",
-...
-```
+We maintain a [status overview](https://github.com/orgs/db-ui/projects/4/views/3) for all components.
 
 ## Core principals
 
@@ -165,17 +76,6 @@ As [DB UX Design System](https://marketingportal.extranet.deutschebahn.com/marke
 Mono, meaning apps only need to keep their DB UI Mono package updated to ensure the latest look and feel.
 
 </details>
-
-## More information
-
-Additionally we'll provide some more information over time regrading the whole ecosystem:
-
--   [DB UX Design System documentation within the DB Marketingportal (german)](https://marketingportal.extranet.deutschebahn.com/marketingportal/Design-Anwendungen/DB-UX-Design-System/Design-fuer-Apps-Web/UI-Komponenten)
--   [Confluence / Base Wiki - "Technische Umsetzung des Enterprise UI Design Systems" (german, only available internally)](https://db.de/pu8moh)
--   [Confluence - Web UI Component Library (only available internally)](https://db.de/1tyr73)
--   [Changelog](https://github.com/db-ui/core/blob/main/CHANGELOG.md)
--   [Architectural Decision Records](https://github.com/db-ui/core/tree/main/docs/adr)
--   [DB UI Mono 1.x Gitlab repository (only accessible internally)](https://db.de/4cwtyn/)
 
 ## Things to keep in mind
 
@@ -275,14 +175,14 @@ You can also use `docker-compose` to test or regenerate screenshots.
 
 ## Contributions
 
-Contributions are very welcome, please refer to the [contribution guide](CONTRIBUTING.md).
+Contributions are very welcome, please refer to the [contribution guide](https://github.com/db-ui/mono/blob/main/CONTRIBUTING.md).
 
 ## Code of conduct
 
 We as members, contributors, and leaders pledge to make participation in our
 community a harassment-free experience for everyone – have a look at
-our [Contributor Covenant Code of Conduct](CODE-OF-CONDUCT.md).
+our [Contributor Covenant Code of Conduct](https://github.com/db-ui/mono/blob/main/CODE-OF-CONDUCT.md).
 
 ## License
 
-This project is licensed under [Apache-2.0](LICENSE), Copyright 2023 by DB Systel GmbH.
+This project is licensed under [Apache-2.0](LICENSE), Copyright 2024 by DB Systel GmbH.

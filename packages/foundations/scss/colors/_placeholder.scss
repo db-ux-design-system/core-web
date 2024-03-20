@@ -1,5 +1,4 @@
 @use "sass:string";
-@use "sass:color";
 @use "variables";
 
 @each $variant in variables.$variants {
@@ -50,6 +49,12 @@
 		--db-current-border-color: var(--db-#{$variant}-border-enabled);
 		--db-current-border-weak-color: var(
 			--db-#{$variant}-border-weak-enabled
+		);
+
+		--db-focus-box-shadow-bg-color: color-mix(
+			in srgb,
+			transparent var(--db-bg-transparent, 0%),
+			var(--db-#{$variant}-bg-enabled)
 		);
 	}
 
@@ -105,6 +110,7 @@
 				transparent var(--db-bg-transparent, 0%),
 				var(--db-#{$variant}-bg-strong-enabled)
 			);
+			@extend %db-bg-#{$variant};
 		}
 	}
 }

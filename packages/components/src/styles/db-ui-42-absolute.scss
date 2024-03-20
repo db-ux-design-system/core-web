@@ -1,0 +1,4 @@
+/* This is a predefined beginner friendly bundle with absolute asset paths (/assets/xxx) */
+
+@use "@db-ui/foundations/build/scss/absolute.assets-paths";
+@forward "./db-ui-42";

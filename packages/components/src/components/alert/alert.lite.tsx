@@ -1,63 +1,30 @@
-import { onMount, Show, useMetadata, useStore } from '@builder.io/mitosis';
+import { Show, useMetadata, useRef, useStore } from '@builder.io/mitosis';
 import { DBAlertProps, DBAlertState } from './model';
 import { DBButton } from '../button';
 import { DBLink } from '../link';
 import { DEFAULT_CLOSE_BUTTON } from '../../shared/constants';
 import { cls } from '../../utils';
+import { ClickEvent } from '../../shared/model';
 
 useMetadata({
-	isAttachedToShadowDom: true,
-	component: {
-		// MS Power Apps
-		includeIcon: true,
-		hasOnClick: true,
-		canvasSize: {
-			height: 'fixed', // 'fixed', 'controlled'
-			width: 'controlled' // 'fixed', 'dynamic' (requires width property), 'controlled'
-		},
-		properties: [
-			{ name: 'headline', type: 'SingleLine.Text' },
-			{
-				name: 'children',
-				type: 'SingleLine.Text',
-				defaultValue: 'Alert'
-			},
-			{
-				name: 'icon',
-				type: 'Icon', // this is a custom type not provided by ms
-				defaultValue: 'info'
-			},
-			{
-				name: 'variant',
-				type: 'DefaultVariant', // this is a custom type not provided by ms
-				defaultValue: 'adaptive'
-			}
-		]
-	}
+	isAttachedToShadowDom: true
 });
 
 export default function DBAlert(props: DBAlertProps) {
-	// This is used as forwardRef
-	let component: any;
+	const ref = useRef<HTMLDivElement>(null);
 	// jscpd:ignore-start
 	const state = useStore<DBAlertState>({
-		handleClick: (event: any) => {
+		handleClick: (event: ClickEvent<HTMLButtonElement>) => {
 			if (props.onClick) {
 				props.onClick(event);
 			}
-		}
-	});
-
-	onMount(() => {
-		if (props.stylePath) {
-			state.stylePath = props.stylePath;
 		}
 	});
 	// jscpd:ignore-end
 
 	return (
 		<div
-			ref={component}
+			ref={ref}
 			id={props.id}
 			class={cls('db-alert', props.className)}
 			aria-live={props.ariaLive}
@@ -65,10 +32,6 @@ export default function DBAlert(props: DBAlertProps) {
 			data-type={props.type}
 			data-icon={props.icon}
 			data-elevation={props.elevation}>
-			<Show when={state.stylePath}>
-				<link rel="stylesheet" href={state.stylePath} />
-			</Show>
-
 			<Show when={props.headline}>
 				<strong class="db-alert-headline">{props.headline}</strong>
 			</Show>
@@ -79,13 +42,13 @@ export default function DBAlert(props: DBAlertProps) {
 					className="db-alert-link"
 					variant="inline"
 					href={props.link.href}
+					hreflang={props.link.hreflang}
 					target={props.link.target}
 					rel={props.link.rel}
 					role={props.link.role}
 					disabled={props.link.disabled}
 					selected={props.link.selected}
 					label={props.link.label}
-					hreflang={props.link.hreflang}
 					current={props.link.current}
 					text={props.link.text}
 				/>
@@ -98,7 +61,9 @@ export default function DBAlert(props: DBAlertProps) {
 					variant="text"
 					size="small"
 					noText
-					onClick={(event) => state.handleClick(event)}>
+					onClick={(event: ClickEvent<HTMLButtonElement>) =>
+						state.handleClick(event)
+					}>
 					{props.closeButtonText ?? DEFAULT_CLOSE_BUTTON}
 				</DBButton>
 			</Show>

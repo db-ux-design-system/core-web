@@ -20,7 +20,7 @@ import {
 	navigationItems
 } from "./utils/navigation-items";
 
-import { ref, watch } from "vue";
+import { ref, watch, computed } from "vue";
 import { useRouter, useRoute } from "vue-router";
 import NavItemComponent from "./NavItemComponent.vue";
 
@@ -38,9 +38,9 @@ const toggleDrawer = (open: boolean) => {
 	drawerOpen.value = open;
 };
 
-const getClassNames = () => {
-	return `db-ui-${tonality.value} db-bg-${color.value}`;
-};
+const classNames = computed(
+	() => `db-ui-${tonality.value} db-bg-${color.value}`
+);
 
 const onChange = (event: any) => {
 	router.push({
@@ -75,7 +75,7 @@ const sortedNavigation = getSortedNavigationItems(navigationItems);
 </script>
 
 <template>
-	<div v-if="page || fullscreen" :class="getClassNames()">
+	<div v-if="page || fullscreen" :class="classNames">
 		<router-view></router-view>
 	</div>
 	<DBPage v-if="!page && !fullscreen" type="fixedHeaderFooter" :fadeIn="true">
@@ -114,6 +114,7 @@ const sortedNavigation = getSortedNavigationItems(navigationItems);
 				<template v-slot:meta-navigation>
 					<DBSelect
 						label="Tonality"
+						labelVariant="floating"
 						v-model:value="tonality"
 						@change="onChange($event)"
 					>
@@ -123,6 +124,7 @@ const sortedNavigation = getSortedNavigationItems(navigationItems);
 					</DBSelect>
 					<DBSelect
 						label="Color"
+						labelVariant="floating"
 						v-model:value="color"
 						@change="onChange($event)"
 					>
@@ -133,7 +135,7 @@ const sortedNavigation = getSortedNavigationItems(navigationItems);
 				</template>
 			</DBHeader>
 		</template>
-		<div :class="getClassNames()">
+		<div :class="classNames">
 			<router-view></router-view>
 		</div>
 	</DBPage>

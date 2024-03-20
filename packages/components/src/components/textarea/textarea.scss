@@ -1,9 +1,11 @@
 @use "sass:map";
 @use "@db-ui/foundations/build/scss/variables";
-@use "@db-ui/foundations/build/scss/tonality";
+@use "@db-ui/foundations/build/scss/fonts";
 @use "@db-ui/foundations/build/scss/colors";
+@use "@db-ui/foundations/build/scss/icons";
 @use "../../styles/component";
 @use "../../styles/form-components";
+@use "../../styles/scrollbar";
 
 %resize-textarea {
 	&[data-resize="none"] {
@@ -23,41 +25,60 @@
 	}
 }
 
+@mixin get-scrolling-workaround() {
+	border-radius: variables.$db-border-radius-md 0 0 0;
+	position: absolute;
+	content: "";
+	inset-block-start: 0;
+	block-size: form-components.$floating-label-size;
+	margin-inline: 0;
+	inline-size: calc(100% - #{scrollbar.$scrollbar-width} - 1px);
+	inset-inline: 0;
+}
+
 .db-textarea {
-	--db-textarea-label-max-width: 80%;
-
-	@extend %default-form-message;
-	@extend %default-form-label;
-
-	@extend %disabled-form-element;
-	@extend %required-form-element;
-
-	@include form-components.get-input-variants();
-
-	position: relative;
-	display: flex;
-	flex-direction: column;
+	@include form-components.set-default-form-component(textarea);
 
 	textarea {
-		@extend %default-interactive-component;
-		@extend %component-border;
-		@extend %db-overwrite-font-size-md;
 		@extend %resize-textarea;
+		@extend %scrollbar;
+		cursor: auto;
+		overflow-y: scroll;
 
-		@include colors.bg-transparent-hover();
-		@include colors.get-variant-bg-color(0.08);
-
-		max-inline-size: 100%;
-		inline-size: 100%;
-		padding: variables.$db-spacing-fixed-xs variables.$db-spacing-fixed-sm;
-
-		&::placeholder {
-			opacity: component.$default-placeholder-opacity;
-		}
+		// we don't have icons in textarea so we can overwrite it here
+		padding-block: variables.$db-spacing-fixed-xs
+			variables.$db-spacing-fixed-xs;
 	}
 
-	textarea:required:invalid:not(:placeholder-shown),
-	textarea[aria-invalid="true"] {
-		@extend %adaptive-critical-component;
+	&[data-label-variant="floating"] {
+		&:has(textarea:focus-within),
+		&:has(textarea:not(:placeholder-shown)) {
+			&::before {
+				@extend %default-transition;
+				@include get-scrolling-workaround();
+				background-color: colors.$db-base-bg;
+			}
+
+			&::after {
+				@extend %component-border;
+				@include get-scrolling-workaround();
+				@include colors.get-variant-bg-color(0.08);
+				z-index: 1;
+				border-block-end: none;
+				border-inline-end: none;
+			}
+
+			&:has(textarea:enabled:hover) {
+				&::after {
+					@include colors.get-variant-bg-color(0.16);
+				}
+			}
+
+			&:has(textarea:read-only) {
+				&::after {
+					background-color: colors.$db-base-bg !important;
+				}
+			}
+		}
 	}
 }

@@ -4,16 +4,16 @@ For general installation and configuration take a look at the [ngx-components](h
 
 ### Load component
 
-```ts app.module.ts
-//app.module.ts
-import { DBBadgeModule } from '@db-ui/ngx-components';
+```ts app.component.ts
+// app.component.ts
+import { DBBadge } from '@db-ui/ngx-components';
 
-@NgModule({
-  ...
-  imports: [..., DBBadgeModule],
-  ...
+@Component({
+  // ...
+  standalone: true,
+  imports: [..., DBBadge],
+  // ...
 })
-
 ```
 
 ### Use component
