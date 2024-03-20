@@ -20,7 +20,6 @@ const getHeader = ({
 	describedbyid,
 	id,
 	key,
-	stylePath,
 	tabIndex,
 	title,
 	onToggle
@@ -64,7 +63,6 @@ const getHeader = ({
 		describedbyid={describedbyid}
 		id={id}
 		key={key}
-		stylePath={stylePath}
 		tabIndex={tabIndex}
 		title={title}
 		onToggle={onToggle}>
