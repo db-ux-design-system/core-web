@@ -1,0 +1,117 @@
+@use "@db-ui/foundations/build/scss/variables";
+@use "@db-ui/foundations/build/scss/colors";
+
+$max-tabs: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+
+%angular-workaround {
+	db-tab-list,
+	dbtablist {
+		@each $index in $max-tabs {
+			&:has([id$="-tab-#{$index}"]:checked) {
+				& ~ dbtabpanel > [id$="-tab-panel-#{$index}"],
+				& ~ db-tab-panel > [id$="-tab-panel-#{$index}"] {
+					display: block;
+				}
+			}
+		}
+	}
+}
+
+@mixin angular-button-workaround() {
+	& > .db-button,
+	&:is(.db-button) {
+		@content;
+	}
+}
+
+.db-tabs {
+	@extend %angular-workaround;
+	display: flex;
+	flex-direction: column;
+	inline-size: 100%;
+	position: relative;
+
+	.db-tab-panel {
+		padding: 0 variables.$db-spacing-fixed-sm;
+	}
+
+	&[data-orientation="vertical"] {
+		flex-direction: row;
+
+		.db-tab-panel {
+			padding: variables.$db-spacing-fixed-sm 0;
+		}
+	}
+
+	.db-tab-list {
+		@each $index in $max-tabs {
+			&:has([id$="-tab-#{$index}"]:checked)
+				~ [id$="-tab-panel-#{$index}"] {
+				display: block;
+			}
+		}
+	}
+
+	&[data-scroll-behaviour="arrows"] {
+		.db-tab-list-scroll-container {
+			&::-webkit-scrollbar {
+				display: none;
+			}
+		}
+
+		&:has(.tabs-scroll-left) {
+			&::before {
+				content: "";
+			}
+		}
+
+		&:has(.tabs-scroll-right) {
+			&::after {
+				content: "";
+			}
+		}
+
+		&:has(.db-button) {
+			&::before,
+			&::after {
+				position: absolute;
+				z-index: 1;
+				background-color: colors.$db-current-bg-color;
+				inline-size: variables.$db-sizing-md;
+				block-size: calc(
+					#{variables.$db-spacing-fixed-sm} + #{variables.$db-sizing-md}
+				);
+				flex: 0 0 auto;
+			}
+
+			&::before {
+				inset-inline-start: 0;
+			}
+
+			&::after {
+				inset-inline-end: 0;
+			}
+		}
+
+		.tabs-scroll-left {
+			@include angular-button-workaround() {
+				inset-inline-start: 0;
+			}
+		}
+
+		.tabs-scroll-right {
+			@include angular-button-workaround() {
+				inset-inline-end: 0;
+			}
+		}
+
+		.tabs-scroll-left,
+		.tabs-scroll-right {
+			@include angular-button-workaround() {
+				position: absolute;
+				z-index: 2;
+				inset-block: variables.$db-spacing-fixed-sm;
+			}
+		}
+	}
+}

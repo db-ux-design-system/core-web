@@ -24,7 +24,7 @@ ReactDOM.createRoot(document.querySelector('#root')!).render(
 											path={subItem.path}
 											element={subItem.component}
 										/>
-								  ))
+									))
 								: null}
 						</Route>
 					))}

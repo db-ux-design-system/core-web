@@ -4,7 +4,7 @@ import defaultComponentVariants from '../../../../shared/brand.json';
 import { type DBBrandProps } from '../../../../../output/react/src/components/brand/model';
 import { getVariants } from '../data';
 
-const getButton = ({
+const getBrand = ({
 	children,
 	hideLogo,
 	customLogo
@@ -27,7 +27,7 @@ const BrandComponent = () => {
 			title="DBBrand"
 			variants={getVariants(
 				defaultComponentVariants,
-				getButton
+				getBrand
 			)}></DefaultComponent>
 	);
 };

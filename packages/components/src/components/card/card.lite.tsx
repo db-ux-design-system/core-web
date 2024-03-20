@@ -1,11 +1,5 @@
-import {
-	onMount,
-	Show,
-	useMetadata,
-	useRef,
-	useStore
-} from '@builder.io/mitosis';
-import type { DBCardState, DBCardProps } from './model';
+import { Show, useMetadata, useRef, useStore } from '@builder.io/mitosis';
+import type { DBCardProps, DBCardState } from './model';
 import { cls } from '../../utils';
 import { ClickEvent } from '../../shared/model';
 
@@ -24,11 +18,6 @@ export default function DBCard(props: DBCardProps) {
 		}
 	});
 
-	onMount(() => {
-		if (props.stylePath) {
-			state.stylePath = props.stylePath;
-		}
-	});
 	// jscpd:ignore-end
 
 	return (
@@ -43,9 +32,6 @@ export default function DBCard(props: DBCardProps) {
 			onClick={(event: ClickEvent<HTMLElement>) =>
 				state.handleClick(event)
 			}>
-			<Show when={state.stylePath}>
-				<link rel="stylesheet" href={state.stylePath} />
-			</Show>
 			<Show when={props.imgSrc}>
 				<img
 					class="db-card-image"

@@ -1,7 +1,6 @@
 import {
 	For,
 	onMount,
-	onUpdate,
 	Show,
 	useMetadata,
 	useRef,
@@ -79,10 +78,6 @@ export default function DBSelect(props: DBSelectProps) {
 		state._id = id;
 		state._messageId = id + DEFAULT_MESSAGE_ID_SUFFIX;
 		state._placeholderId = id + DEFAULT_PLACEHOLDER_ID_SUFFIX;
-
-		if (props.stylePath) {
-			state.stylePath = props.stylePath;
-		}
 	});
 	// jscpd:ignore-end
 
@@ -92,9 +87,6 @@ export default function DBSelect(props: DBSelectProps) {
 			data-variant={props.variant}
 			data-label-variant={props.labelVariant}
 			data-icon={props.icon}>
-			<Show when={state.stylePath}>
-				<link rel="stylesheet" href={state.stylePath} />
-			</Show>
 			<label htmlFor={state._id}>{props.label ?? DEFAULT_LABEL}</label>
 			<select
 				ref={ref}
@@ -128,17 +120,13 @@ export default function DBSelect(props: DBSelectProps) {
 							<>
 								<Show when={option.options}>
 									<optgroup
-										key={'optgroup-' + option.value}
 										label={state.getOptionLabel(option)}>
 										<For each={option.options}>
 											{(
 												optgroupOption: DBSelectOptionType
 											) => (
 												<option
-													key={
-														'option-' +
-														optgroupOption.value
-													}
+													key={optgroupOption.value.toString()}
 													value={optgroupOption.value}
 													disabled={
 														optgroupOption.disabled
@@ -153,7 +141,6 @@ export default function DBSelect(props: DBSelectProps) {
 								</Show>
 								<Show when={!option.options}>
 									<option
-										key={'option-' + option.value}
 										value={option.value}
 										disabled={option.disabled}>
 										{state.getOptionLabel(option)}

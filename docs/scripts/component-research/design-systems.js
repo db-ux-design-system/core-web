@@ -52,6 +52,11 @@ export const designSystems = [
 		componentUrl: 'https://build.washingtonpost.com/components/accordion'
 	},
 	{
+		name: 'GOV.UK Design System',
+		url: 'https://design-system.service.gov.uk/',
+		componentUrl: 'https://design-system.service.gov.uk/components/'
+	},
+	{
 		name: 'HP Enterprise Grommet',
 		url: 'https://github.com/grommet/grommet',
 		componentUrl: 'https://v2.grommet.io/components'

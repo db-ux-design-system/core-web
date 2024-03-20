@@ -1,7 +1,10 @@
-<div *ngIf="page" [class]="getChangeableClasses()">
-	<router-outlet></router-outlet>
-</div>
-<db-page *ngIf="!page" type="fixedHeaderFooter" [fadeIn]="true">
+@if (page) {
+	<div [class]="getChangeableClasses()">
+		<router-outlet></router-outlet>
+	</div>
+}
+@if (!page) {
+	<db-page type="fixedHeaderFooter" [fadeIn]="true">
 	<db-header
 		header
 		[drawerOpen]="drawerOpen"
@@ -9,50 +12,55 @@
 	>
 		<db-brand brand>Showcase</db-brand>
 		<db-main-navigation *dbNavigation>
-			<ng-container *ngFor="let item of navigationItems">
-				<app-nav-item [navItem]="item"> </app-nav-item>
+			@for (item of navigationItems; track item.label) {
+					<app-nav-item [navItem]="item"> </app-nav-item>
+				}
+			</db-main-navigation>
+			<ng-container *dbMetaNavigation>
+				<db-select
+					labelVariant="floating"
+					label="Tonality"
+					[(ngModel)]="tonality"
+					(change)="onChange($event)"
+				>
+					@for (t of tonalities; track t) {
+						<option>
+							{{ t }}
+						</option>
+					}
+				</db-select>
+				<db-select
+					labelVariant="floating"
+					label="Color"
+					[(ngModel)]="color"
+					(change)="onChange($event)"
+				>
+					@for (c of colors; track c) {
+						<option>
+							{{ c }}
+						</option>
+					}
+				</db-select>
 			</ng-container>
-		</db-main-navigation>
-		<ng-container *dbMetaNavigation>
-			<db-select
-				labelVariant="floating"
-				label="Tonality"
-				[(ngModel)]="tonality"
-				(change)="onChange($event)"
-			>
-				<option *ngFor="let t of tonalities">
-					{{ t }}
-				</option>
-			</db-select>
-			<db-select
-				labelVariant="floating"
-				label="Color"
-				[(ngModel)]="color"
-				(change)="onChange($event)"
-			>
-				<option *ngFor="let c of colors">
-					{{ c }}
-				</option>
-			</db-select>
-		</ng-container>
-		<ng-container call-to-action>
-			<DBButton icon="search" variant="text" [noText]="true"
-				>Search</DBButton
-			>
-		</ng-container>
-		<ng-container *dbActionBar>
-			<DBButton icon="account" variant="text" [noText]="true">
-				Profile
-			</DBButton>
-			<DBButton icon="alert" variant="text" [noText]="true">
-				Notification
-			</DBButton>
-			<DBButton icon="help" variant="text" [noText]="true">
-				Help
-			</DBButton>
-		</ng-container>
-	</db-header>
-	<div [class]="getChangeableClasses()">
-		<router-outlet></router-outlet>
-	</div>
-</db-page>
+			<ng-container call-to-action>
+				<DBButton icon="search" variant="text" [noText]="true"
+					>Search</DBButton
+				>
+			</ng-container>
+			<ng-container *dbActionBar>
+				<DBButton icon="account" variant="text" [noText]="true">
+					Profile
+				</DBButton>
+				<DBButton icon="alert" variant="text" [noText]="true">
+					Notification
+				</DBButton>
+				<DBButton icon="help" variant="text" [noText]="true">
+					Help
+				</DBButton>
+			</ng-container>
+		</db-header>
+		<div [class]="getChangeableClasses()">
+			<router-outlet></router-outlet>
+		</div>
+	</db-page>
+}

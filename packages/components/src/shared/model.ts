@@ -27,11 +27,6 @@ export type GlobalProps = {
 	key?: string;
 
 	/**
-	 * Web Component specific: Adds a link tag with the path to show css inside Shadow DOM.
-	 */
-	stylePath?: string;
-
-	/**
 	 * The default tabindex (https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/tabindex?retiredLocale=de).
 	 */
 	tabIndex?: number;
@@ -44,7 +39,6 @@ export type GlobalProps = {
 
 export type GlobalState = {
 	_id?: string;
-	stylePath?: string;
 	defaultValues?: { [key: string]: string };
 };
 
@@ -114,6 +108,10 @@ export type OverflowProps = {
 	 * The overflow attribute sets a max-width and longer text will be dotted.
 	 */
 	overflow?: boolean;
+};
+
+export type OrientationProps = {
+	orientation?: 'horizontal' | 'vertical';
 };
 
 export type WidthProps = {
@@ -389,6 +387,25 @@ export type CloseEventProps = {
 
 export type CloseEventState = {
 	handleClose?: (event: any) => void;
+};
+
+export type AlignmentProps = {
+	/**
+	 * Define the content alignment in full width
+	 */
+	alignment?: 'start' | 'center';
+};
+
+export type ActiveProps = {
+	/**
+	 * If the tab is checked/active.
+	 */
+	active?: boolean;
+};
+
+export type ItemClickState = {
+	clickedId: string;
+	handleItemClick: (id: string) => void;
 };
 
 export type ChangeEvent<T> = Event;

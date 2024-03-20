@@ -14,15 +14,15 @@ const getOptions = (tsType) => {
 
 		case 'signature': {
 			return `${tsType.raw
-				.replace(/\/\*\*\n\t/g, '')
-				.replace(/\*\/\n\t/g, '')
-				.replace(/\*/g, '//')
-				.replace(/{/g, '&#123;')
-				.replace(/}/g, '&#125;')
-				.replace(/\r\n\t\t/g, ' ')
-				.replace(/\t/g, '&ensp;')
-				.replace(/\r\n|\r|\n/g, '<br/>')
-				.replace(/\|/g, '&#124;')}`;
+				.replaceAll('/**\n\t', '')
+				.replaceAll('*/\n\t', '')
+				.replaceAll('*', '//')
+				.replaceAll('{', '&#123;')
+				.replaceAll('}', '&#125;')
+				.replaceAll('\r\n\t\t', ' ')
+				.replaceAll('\t', '&ensp;')
+				.replaceAll(/\r\n|\r|\n/g, '<br/>')
+				.replaceAll('|', '&#124;')}`;
 		}
 
 		case 'union': {
@@ -47,24 +47,25 @@ const getOptions = (tsType) => {
  * @returns {string}
  */
 const getPropertiesFile = ({ displayName, description, props }) => {
-	const propKeys = Object.keys(props);
+	const propertyKeys = Object.keys(props);
 
-	let propTable = '';
+	let propertyTable = '';
 
-	for (const propKey of propKeys) {
-		const prop = props[propKey];
-		const options = getOptions(prop.tsType);
-		propTable += `| ${propKey} `;
-		propTable += `| ${
-			prop.description.replace(/\r\n|\r|\n/g, '<br/>') || 'No description'
+	for (const propertyKey of propertyKeys) {
+		const property = props[propertyKey];
+		const options = getOptions(property.tsType);
+		propertyTable += `| ${propertyKey} `;
+		propertyTable += `| ${
+			property.description.replaceAll(/\r\n|\r|\n/g, '<br/>') ||
+			'No description'
 		} `;
-		propTable += `| ${prop.tsType.type ?? prop.tsType.name} `;
-		propTable += `| ${
+		propertyTable += `| ${property.tsType.type ?? property.tsType.name} `;
+		propertyTable += `| ${
 			options
-				? `<pre><code className="code-pre-wrap">${options.replace(
-						/<T>/g,
+				? `<pre><code className="code-pre-wrap">${options.replaceAll(
+						'<T>',
 						''
-				  )}</code></pre>`
+					)}</code></pre>`
 				: ''
 		} |\n`;
 	}
@@ -78,7 +79,7 @@ ${description}
 
 | Name | Description | Type | Options |
 | ---- | ----------- | ---- | ------- |
-${propTable}
+${propertyTable}
 
 export default ({ children }) => <DefaultPage>{children}</DefaultPage>;`;
 };

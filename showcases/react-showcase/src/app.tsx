@@ -11,7 +11,7 @@ const App = () => {
 
 	const [drawerOpen, setDrawerOpen] = useState<boolean>(false);
 
-	if (pageName || fullscreen) {
+	if (pageName ?? fullscreen) {
 		return (
 			<div className={`db-ui-${tonality} db-bg-${color}`}>
 				<Outlet />

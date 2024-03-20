@@ -6,6 +6,7 @@
 		"html-validate.vscode-html-validate",
 		"deque-systems.vscode-axe-linter",
 		"samverschueren.linter-xo",
-		"esbenp.prettier-vscode"
+		"esbenp.prettier-vscode",
+		"stylelint.vscode-stylelint"
 	]
 }

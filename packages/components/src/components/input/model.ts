@@ -12,7 +12,7 @@ import {
 	GlobalState,
 	IconAfterProps,
 	IconProps,
-	KeyValueType,
+	KeyValueType
 } from '../../shared/model';
 
 export type DBInputDefaultProps = {
