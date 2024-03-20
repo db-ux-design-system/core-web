@@ -250,6 +250,19 @@ const FormComponent = () => {
 					<DBTabPanel>Tab Panel 2</DBTabPanel>
 					<DBTabPanel>Tab Panel 3</DBTabPanel>
 				</DBTabs>
+
+				<DBSelect
+					id="select-test"
+					value={select}
+					label="Label"
+					onChange={(event) => {
+						setSelect(event.target.value);
+					}}
+					options={[
+						{ label: 'Test1', value: 'Test1' },
+						{ label: 'Test2', value: 'Test2' }
+					]}
+				/>
 			</div>
 		</div>
 	);
