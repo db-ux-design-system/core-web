@@ -35,7 +35,7 @@ const getExamplesAsMDX = async (componentName, variant) => {
 		'DBTabList,\n' +
 		'DBTabPanel,\n' +
 		'DBTabs\n' +
-		"} from '@db-ui/react-components';\n" +
+		"} from '../../../../../../output/react/src';\n" +
 		`const ${variant.name} = () => {
 			const [copied, setCopied] = useState<boolean>();
 
