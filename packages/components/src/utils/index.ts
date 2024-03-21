@@ -90,6 +90,18 @@ export const visibleInVY = (el: Element) => {
 	return top >= 0 && bottom <= innerHeight;
 };
 
+export const isInView = (el: Element) => {
+	const { top, bottom, left, right } = el.getBoundingClientRect();
+	const { innerHeight, innerWidth } = window;
+	console.log(el, el.getBoundingClientRect(), innerHeight, innerWidth);
+	return {
+		top: top < 0,
+		bottom: bottom > innerHeight,
+		left: left < 0,
+		right: right > innerWidth
+	};
+};
+
 export default {
 	filterPassingProps,
 	getMessageIcon,
@@ -97,5 +109,6 @@ export default {
 	addAttributeToChildren,
 	uuid,
 	visibleInVX,
-	visibleInVY
+	visibleInVY,
+	isInView
 };

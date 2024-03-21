@@ -1,6 +1,12 @@
-import { useMetadata, useRef, useStore } from '@builder.io/mitosis';
+import {
+	onMount,
+	onUpdate,
+	useMetadata,
+	useRef,
+	useStore
+} from '@builder.io/mitosis';
 import { DBTooltipProps, DBTooltipState } from './model';
-import { cls } from '../../utils';
+import { cls, isInView } from '../../utils';
 import { ClickEvent } from '../../shared/model';
 
 useMetadata({
@@ -11,10 +17,42 @@ export default function DBTooltip(props: DBTooltipProps) {
 	const ref = useRef<HTMLDivElement>(null);
 	// jscpd:ignore-start
 	const state = useStore<DBTooltipState>({
+		initialized: false,
 		handleClick: (event: ClickEvent<HTMLElement>) => {
 			event.stopPropagation();
+		},
+		handleAutoPlacement: () => {
+			if (ref) {
+				const inView = isInView(ref);
+				Object.entries(inView).forEach(([pos, value]) => {
+					if (value) {
+						ref.setAttribute(
+							`data-outside-${pos === 'left' || pos === 'right' ? 'vx' : 'vy'}`,
+							pos
+						);
+					}
+				});
+			}
 		}
 	});
+
+	onMount(() => {
+		state.initialized = true;
+	});
+
+	onUpdate(() => {
+		if (ref && state.initialized) {
+			ref.parentElement.addEventListener('mouseenter', () =>
+				state.handleAutoPlacement()
+			);
+			ref.parentElement.addEventListener('focus', () =>
+				state.handleAutoPlacement()
+			);
+
+			state.initialized = false;
+		}
+	}, [ref, state.initialized]);
+
 	// jscpd:ignore-end
 
 	// TODO: Shall we check if only <span>, <p> or direct text was passed as children?

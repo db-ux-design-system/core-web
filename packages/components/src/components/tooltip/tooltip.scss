@@ -41,6 +41,8 @@ $tooltip-arrow-shadow-size: variables.$db-sizing-2xs;
 		}
 	}
 
+	/* TODO: Handle Arrow for auto placement */
+
 	&:not([data-placement]),
 	&[data-placement^="bottom"] {
 		&::after {

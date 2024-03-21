@@ -1,3 +1,4 @@
+/* eslint-disable unicorn/prefer-logical-operator-over-ternary */
 import { DBPopover, DBButton } from '../../../../../output/react/src';
 import DefaultComponent from '../index';
 import defaultComponentVariants from '../../../../shared/popover.json';
@@ -15,19 +16,27 @@ const getPopover = ({
 	content,
 	animation
 }: DBPopoverProps & { content: string }) => (
-	<DBButton describedbyid={id}>
-		{children}
-		<DBPopover
-			width={width}
-			gap={gap}
-			spacing={spacing}
-			placement={placement}
-			animation={animation}
-			delay={delay}
-			id={id}>
-			{content}
-		</DBPopover>
-	</DBButton>
+	<DBPopover
+		slotTrigger={<DBButton describedbyid={id}>{children}</DBButton>}
+		width={width}
+		gap={gap}
+		spacing={spacing}
+		placement={placement}
+		animation={animation}
+		delay={delay}
+		id={id}>
+		{content ? (
+			content
+		) : (
+			<ul className="popover-list">
+				<li>Popover Custom Item 1</li>
+				<li>Popover Custom Item 2</li>
+				<li>
+					<DBButton>Popover Custom Item 3</DBButton>
+				</li>
+			</ul>
+		)}
+	</DBPopover>
 );
 
 const PopoverComponent = () => {

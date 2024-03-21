@@ -2,22 +2,33 @@
 @use "../../styles/popover-component";
 
 .db-popover {
-	@extend %default-popover;
+	position: relative;
 
-	&,
-	&[data-spacing="small"] {
-		padding: variables.$db-spacing-fixed-sm;
+	&:hover,
+	&:focus-within {
+		& > article {
+			@extend %show-popover;
+		}
 	}
 
-	&[data-spacing="medium"] {
-		padding: variables.$db-spacing-fixed-md;
-	}
+	& > article {
+		@extend %default-popover;
 
-	&[data-spacing="none"] {
-		padding: 0;
-	}
+		&,
+		&[data-spacing="small"] {
+			padding: variables.$db-spacing-fixed-sm;
+		}
 
-	&[data-open="true"] {
-		@extend %show-popover;
+		&[data-spacing="medium"] {
+			padding: variables.$db-spacing-fixed-md;
+		}
+
+		&[data-spacing="none"] {
+			padding: 0;
+		}
+
+		&[data-open="true"] {
+			@extend %show-popover;
+		}
 	}
 }

@@ -117,3 +117,7 @@
 .tab-hide-article article {
 	display: none !important;
 }
+
+.db-page.fixed-header-footer main {
+	overflow-x: hidden;
+}
