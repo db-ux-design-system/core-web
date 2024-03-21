@@ -3,6 +3,8 @@
 @use "@db-ui/foundations/build/scss/screen-sizes";
 @use "@db-ui/foundations/build/scss/tonality";
 
+@use "@db-ui/components/build/styles/_dialog-init";
+
 @forward "@db-ui/components/build/styles/db-ui-42-webpack";
 @forward "@db-ui/foundations/build/css/colors/classes/all";
 @forward "@db-ui/foundations/build/css/fonts/classes/all";
@@ -357,7 +359,6 @@ h6 {
 	position: relative;
 
 	.code-details {
-		cursor: pointer;
 		display: flex;
 
 		&[open] {
@@ -383,16 +384,31 @@ h6 {
 			margin: auto;
 		}
 
+		.backdrop {
+			border-radius: variables.$db-border-radius-lg;
+			@extend %backdrop;
+			position: absolute;
+			inset: 0;
+		}
+
 		.code {
-			@extend %db-base-component;
 			overflow: auto;
 			position: absolute;
-			inset-inline-end: 0;
-			inset-block: 0;
-			padding-block-end: variables.$db-spacing-fixed-md;
+			inset: 0;
+			z-index: 1;
+			margin: variables.$db-spacing-fixed-md;
+			display: flex;
+			flex-direction: column;
+			gap: variables.$db-spacing-fixed-sm;
 
-			@include screen-sizes.screen() {
-				inline-size: 50%;
+			.tab-container {
+				position: relative;
+
+				.copy-button {
+					position: absolute;
+					inset-inline-end: variables.$db-spacing-fixed-sm;
+					inset-block-start: variables.$db-spacing-fixed-sm;
+				}
 			}
 		}
 	}
