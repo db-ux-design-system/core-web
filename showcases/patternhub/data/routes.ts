@@ -7,6 +7,10 @@ export type NavigationItem = {
 
 const componentChildren: NavigationItem[] = [
 	{
+		label: 'Router usage',
+		path: '/components/router-usage'
+	},
+	{
 		label: 'Action',
 		path: '/components/action',
 		subNavigation: [
