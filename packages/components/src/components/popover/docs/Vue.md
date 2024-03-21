@@ -11,9 +11,13 @@ import { DBPopover, DBButton } from "@db-ui/v-components";
 </script>
 
 <template>
-	<DBButton describedbyid="popover-01">
-		Hover on me to open Popover
-		<DBPopover id="popover-01">Popover</DBPopover>
-	</DBButton>
+	<DBPopover id="popover-01">
+		<template v-slot:trigger>
+			<DBButton describedbyid="popover-01">
+				Hover on me to open Popover
+			</DBButton>
+		</template>
+		Popover
+	</DBPopover>
 </template>
 ```

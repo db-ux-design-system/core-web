@@ -41,10 +41,9 @@ $tooltip-arrow-shadow-size: variables.$db-sizing-2xs;
 		}
 	}
 
-	/* TODO: Handle Arrow for auto placement */
-
-	&:not([data-placement]),
-	&[data-placement^="bottom"] {
+	&:not([data-placement]):not([data-outside-vy]),
+	&[data-placement^="bottom"]:not([data-outside-vy]),
+	&[data-outside-vy="top"]:not([data-outside-vx]) {
 		&::after {
 			inset-inline-start: 50%;
 			inset-block-start: 0;
@@ -53,7 +52,8 @@ $tooltip-arrow-shadow-size: variables.$db-sizing-2xs;
 		}
 	}
 
-	&[data-placement^="top"] {
+	&[data-placement^="top"]:not([data-outside-vy]),
+	&[data-outside-vy="bottom"]:not([data-outside-vx]) {
 		&::after {
 			inset-inline-start: 50%;
 			inset-block-end: 0;
@@ -62,7 +62,8 @@ $tooltip-arrow-shadow-size: variables.$db-sizing-2xs;
 		}
 	}
 
-	&[data-placement^="right"] {
+	&[data-placement^="right"]:not([data-outside-vx]),
+	&[data-outside-vx="left"] {
 		&::after {
 			inset-block-start: 50%;
 			inset-inline-start: 0;
@@ -71,7 +72,8 @@ $tooltip-arrow-shadow-size: variables.$db-sizing-2xs;
 		}
 	}
 
-	&[data-placement^="left"] {
+	&[data-placement^="left"]:not([data-outside-vx]),
+	&[data-outside-vx="right"] {
 		&::after {
 			inset-block-start: 50%;
 			inset-inline-end: 0;

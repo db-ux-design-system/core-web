@@ -8,9 +8,11 @@ For general installation and configuration take a look at the [components](https
 <!-- index.html -->
 ...
 <body>
-	<button class="db-button" aria-describedby="popover-01">
-		Hover on me to open Popover
-		<i class="db-popover" id="popover-01">Popover</i>
-	</button>
+	<div aria-haspopup="true" class="db-popover">
+		<button class="db-button" aria-describedby="popover-01">
+			Hover on me to open Popover
+		</button>
+		<article id="popover-01" class="db-popover-content">functional</article>
+	</div>
 </body>
 ```

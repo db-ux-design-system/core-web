@@ -10,19 +10,29 @@
 		let-exampleIndex="exampleIndex"
 		let-variantIndex="variantIndex"
 	>
-		<db-button [describedbyid]="exampleProps.id">
-			{{ exampleName }}
-			<db-popover
-				[width]="exampleProps.width"
-				[gap]="exampleProps.gap"
-				[spacing]="exampleProps.spacing"
-				[placement]="exampleProps.placement"
-				[animation]="exampleProps.animation"
-				[delay]="exampleProps.delay"
-				[id]="exampleProps.id"
-			>
+		<db-popover
+			[width]="exampleProps.width"
+			[gap]="exampleProps.gap"
+			[spacing]="exampleProps.spacing"
+			[placement]="exampleProps.placement"
+			[animation]="exampleProps.animation"
+			[delay]="exampleProps.delay"
+			[id]="exampleProps.id"
+		>
+			<db-button trigger [describedbyid]="exampleProps.id">
+				{{ exampleName }}
+			</db-button>
+			@if (exampleProps.content) {
 				{{ exampleProps.content }}
-			</db-popover>
-		</db-button>
+			} @else {
+				<ul class="popover-list">
+					<li>Popover Custom Item 1</li>
+					<li>Popover Custom Item 2</li>
+					<li>
+						<db-button>Popover Custom Item 3</db-button>
+					</li>
+				</ul>
+			}
+		</db-popover>
 	</ng-template>
 </app-default-component>
