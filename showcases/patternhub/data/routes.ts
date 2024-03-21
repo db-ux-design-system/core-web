@@ -31,11 +31,11 @@ const componentChildren: NavigationItem[] = [
 			{
 				label: 'DBBrand',
 				name: 'brand'
-			},
+			} /* TODO: Uncomment this if dev and design is aligned
 			{
 				label: 'DBIcon',
 				name: 'icon'
-			},
+			}, */,
 			{
 				label: 'DBTooltip',
 				name: 'tooltip'
@@ -126,11 +126,11 @@ const componentChildren: NavigationItem[] = [
 			{
 				label: 'DBHeader',
 				name: 'header'
-			},
+			} /* TODO: Uncomment this if dev and design is aligned
 			{
 				label: 'DBPage',
 				name: 'page'
-			},
+			}, */,
 			{
 				label: 'DBSection',
 				name: 'section'

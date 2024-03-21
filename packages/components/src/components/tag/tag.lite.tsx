@@ -1,14 +1,7 @@
-import {
-	onMount,
-	Show,
-	useMetadata,
-	useRef,
-	useStore
-} from '@builder.io/mitosis';
+import { Show, useMetadata, useRef, useStore } from '@builder.io/mitosis';
 import { DBButton } from '../button';
 import { DBTagProps, DBTagState } from './model';
-import { cls, uuid } from '../../utils';
-import { DEFAULT_ID } from '../../shared/constants';
+import { cls } from '../../utils';
 
 useMetadata({
 	isAttachedToShadowDom: true
@@ -17,7 +10,6 @@ useMetadata({
 export default function DBTag(props: DBTagProps) {
 	const ref = useRef<HTMLDivElement>(null);
 	const state = useStore<DBTagState>({
-		_id: DEFAULT_ID,
 		handleRemove: () => {
 			if (props.onRemove) {
 				props.onRemove();
@@ -33,18 +25,10 @@ export default function DBTag(props: DBTagProps) {
 		}
 	});
 
-	onMount(() => {
-		state._id = props.id || 'tag-' + uuid();
-
-		if (props.stylePath) {
-			state.stylePath = props.stylePath;
-		}
-	});
-
 	return (
 		<div
 			ref={ref}
-			id={state._id}
+			id={props.id}
 			class={cls('db-tag', props.className)}
 			data-disabled={props.disabled}
 			data-variant={props.variant}
@@ -52,10 +36,6 @@ export default function DBTag(props: DBTagProps) {
 			data-icon={props.icon}
 			data-no-text={props.noText}
 			data-overflow={props.overflow}>
-			<Show when={state.stylePath}>
-				<link rel="stylesheet" href={state.stylePath} />
-			</Show>
-
 			{props.children}
 
 			<Show when={props.text}>{props.text}</Show>
