@@ -2,19 +2,6 @@ name: 🎭 Playwright E2E
 
 on:
   workflow_call:
-    inputs:
-      components:
-        required: true
-        default: false
-        type: boolean
-      foundations:
-        required: true
-        default: false
-        type: boolean
-      showcases:
-        required: true
-        default: false
-        type: boolean
 
 permissions:
   actions: write
@@ -23,7 +10,6 @@ permissions:
 jobs:
   regenerate-snapshots:
     name: 🧪🎭 - Regenerate snapshots
-    if: ${{ !inputs.components || !inputs.foundations || !inputs.showcases  }}
     runs-on: ubuntu-latest
     container:
       image: mcr.microsoft.com/playwright:v1.42.1
