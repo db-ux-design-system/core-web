@@ -1,0 +1,77 @@
+name: 🎭 Playwright E2E
+
+on:
+  workflow_call:
+    inputs:
+      components:
+        required: true
+        default: false
+        type: boolean
+      foundations:
+        required: true
+        default: false
+        type: boolean
+      showcases:
+        required: true
+        default: false
+        type: boolean
+
+permissions:
+  actions: write
+  contents: write
+
+jobs:
+  regenerate-snapshots:
+    name: 🧪🎭 - Regenerate snapshots
+    if: ${{ !inputs.components || !inputs.foundations || !inputs.showcases  }}
+    runs-on: ubuntu-latest
+    container:
+      image: mcr.microsoft.com/playwright:v1.42.1
+    steps:
+      - name: ⏬ Checkout repo
+        uses: actions/checkout@v4
+
+      - name: 🔄 Init Cache
+        uses: ./.github/actions/npm-cache
+
+      - name: 📲 Install esbuild (binary workaround)
+        run: npm i -D esbuild-linux-64
+
+      - name: ⏬ Download foundations build
+        uses: actions/download-artifact@v4
+        with:
+          name: db-ui-foundations-build
+          path: packages/foundations/build
+
+      - name: ⏬ Download output
+        uses: actions/download-artifact@v4
+        with:
+          name: db-ui-output
+          path: output
+
+      - name: ⏬ Download components styles build
+        uses: actions/download-artifact@v4
+        with:
+          name: db-ui-components-build
+          path: packages/components/build
+
+      - name: ⏬ Download showcases
+        uses: actions/download-artifact@v4
+        with:
+          name: db-ui-showcases
+          path: build-showcases
+
+      - name: 👩‍🔬 Generate snapshots 🎭
+        env:
+          HOME: /root
+        run: |
+          npm run regenerate:screenshots --workspace=@db-ui/react-components
+          npm run regenerate:screenshots --workspace=@db-ui/foundations
+          npm run regenerate:screenshots --workspace=react-showcase
+
+      - name: 🆙 Upload snapshots
+        uses: actions/upload-artifact@v4
+        with:
+          name: __snapshots__
+          path: ./__snapshots__
+          retention-days: 30
