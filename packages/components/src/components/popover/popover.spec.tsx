@@ -12,6 +12,9 @@ const comp: any = (
 			animation="disabled"
 			data-testid="popover"
 			slotTrigger={<DBButton data-testid="button">Button</DBButton>}>
+			{/*<template v-slot:trigger>
+				<DBButton data-testid="button">Button</DBButton>
+			</template>*/}
 			Test
 		</DBPopover>
 	</div>
