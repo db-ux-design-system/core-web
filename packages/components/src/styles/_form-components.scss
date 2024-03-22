@@ -43,10 +43,8 @@ $input-types: "button", "checkbox", "color", "date", "datetime-local", "email",
 	.db-infotext {
 		margin-block-start: variables.$db-spacing-fixed-2xs;
 
-		&:not([data-semantic]) {
-			&:not(:empty) {
-				display: flex;
-			}
+		&:is([data-semantic], :empty) {
+			display: none;
 		}
 	}
 }
