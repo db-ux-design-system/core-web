@@ -5,7 +5,7 @@ import { DBCard } from './index';
 // @ts-ignore - vue can only find it with .ts as file ending
 import { DEFAULT_VIEWPORT } from '../../shared/constants.ts';
 
-const defaultComp = <DBCard>Test</DBCard>;
+const defaultComp: any = <DBCard>Test</DBCard>;
 
 // TODO: Get variants from https://github.com/db-ui/mono/blob/feat-unify-showcases/packages/components/src/shared/constants.ts when feat-unify branch is merged
 const colorVariants = [
@@ -37,9 +37,10 @@ const testCardColorVariants = () => {
 		test(`should match screenshot for color variant ${colorVariant}`, async ({
 			mount
 		}) => {
-			const component = await mount(
+			const variantComp: any = (
 				<DBCard colorVariant={colorVariant}>Test</DBCard>
 			);
+			const component = await mount(variantComp);
 			await expect(component).toHaveScreenshot();
 		});
 	}
@@ -50,24 +51,17 @@ const testCardVariants = () => {
 		test(`should match screenshot for variant ${variant}`, async ({
 			mount
 		}) => {
-			const component = await mount(
+			const variantComp: any = (
 				<div>
 					<DBCard variant={variant}>Test</DBCard>
 				</div>
 			);
+			const component = await mount(variantComp);
 			await expect(component).toHaveScreenshot();
 		});
 	}
 };
-
-test.describe('DBCard', () => {
-	test.use({ viewport: DEFAULT_VIEWPORT });
-	testDefaultCard();
-	testCardColorVariants();
-	testCardVariants();
-});
-
-test.describe('DBCard', () => {
+const testA11y = () => {
 	test('should not have A11y issues', async ({ page, mount }) => {
 		await mount(defaultComp);
 		const accessibilityScanResults = await new AxeBuilder({ page })
@@ -76,4 +70,12 @@ test.describe('DBCard', () => {
 
 		expect(accessibilityScanResults.violations).toEqual([]);
 	});
+};
+
+test.describe('DBCard', () => {
+	test.use({ viewport: DEFAULT_VIEWPORT });
+	testDefaultCard();
+	testCardColorVariants();
+	testCardVariants();
+	testA11y();
 });

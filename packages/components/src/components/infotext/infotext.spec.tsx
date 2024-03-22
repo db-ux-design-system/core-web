@@ -5,7 +5,7 @@ import { DBInfotext } from './index';
 // @ts-ignore - vue can only find it with .ts as file ending
 import { DEFAULT_VIEWPORT, VARIANTS } from '../../shared/constants.ts';
 
-const comp = <DBInfotext>Test</DBInfotext>;
+const comp: any = <DBInfotext>Test</DBInfotext>;
 
 const testComponent = () => {
 	test('should contain text', async ({ mount }) => {
@@ -24,21 +24,15 @@ const testVariants = () => {
 		test(`should match screenshot for variant ${variant}`, async ({
 			mount
 		}) => {
-			const component = await mount(
+			const variantComp: any = (
 				<DBInfotext variant={variant}>Test</DBInfotext>
 			);
+			const component = await mount(variantComp);
 			await expect(component).toHaveScreenshot();
 		});
 	}
 };
-
-test.describe('DBInfotext', () => {
-	test.use({ viewport: DEFAULT_VIEWPORT });
-	testComponent();
-	testVariants();
-});
-
-test.describe('DBInfotext', () => {
+const testA11y = () => {
 	test('should not have A11y issues', async ({ page, mount }) => {
 		await mount(comp);
 		const accessibilityScanResults = await new AxeBuilder({ page })
@@ -47,4 +41,11 @@ test.describe('DBInfotext', () => {
 
 		expect(accessibilityScanResults.violations).toEqual([]);
 	});
+};
+
+test.describe('DBInfotext', () => {
+	test.use({ viewport: DEFAULT_VIEWPORT });
+	testComponent();
+	testVariants();
+	testA11y();
 });

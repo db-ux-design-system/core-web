@@ -5,7 +5,7 @@ import { DBSelect } from './index';
 // @ts-ignore - vue can only find it with .ts as file ending
 import { DEFAULT_VIEWPORT } from '../../shared/constants.ts';
 
-const comp = (
+const comp: any = (
 	<DBSelect id="test" label="Label" message="Description">
 		<option value="test1">Test1</option>
 		<option value="test2">Test2</option>
@@ -23,13 +23,7 @@ const testComponent = () => {
 		await expect(component).toHaveScreenshot();
 	});
 };
-
-test.describe('DBSelect', () => {
-	test.use({ viewport: DEFAULT_VIEWPORT });
-	testComponent();
-});
-
-test.describe('DBSelect', () => {
+const testA11y = () => {
 	test('should not have A11y issues', async ({ page, mount }) => {
 		await mount(comp);
 		const accessibilityScanResults = await new AxeBuilder({ page })
@@ -40,4 +34,10 @@ test.describe('DBSelect', () => {
 
 		expect(accessibilityScanResults.violations).toEqual([]);
 	});
+};
+
+test.describe('DBSelect', () => {
+	test.use({ viewport: DEFAULT_VIEWPORT });
+	testComponent();
+	testA11y();
 });

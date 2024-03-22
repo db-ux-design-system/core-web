@@ -5,7 +5,7 @@ import { DBRadio } from './index';
 // @ts-ignore - vue can only find it with .ts as file ending
 import { DEFAULT_VIEWPORT } from '../../shared/constants.ts';
 
-const comp = <DBRadio label="Test"></DBRadio>;
+const comp: any = <DBRadio label="Test"></DBRadio>;
 
 const testComponent = () => {
 	test('should contain text', async ({ mount }) => {
@@ -18,13 +18,7 @@ const testComponent = () => {
 		await expect(component).toHaveScreenshot();
 	});
 };
-
-test.describe('DBRadio', () => {
-	test.use({ viewport: DEFAULT_VIEWPORT });
-	testComponent();
-});
-
-test.describe('DBRadio', () => {
+const testA11y = () => {
 	test('should not have A11y issues', async ({ page, mount }) => {
 		await mount(comp);
 		const accessibilityScanResults = await new AxeBuilder({ page })
@@ -33,4 +27,10 @@ test.describe('DBRadio', () => {
 
 		expect(accessibilityScanResults.violations).toEqual([]);
 	});
+};
+
+test.describe('DBRadio', () => {
+	test.use({ viewport: DEFAULT_VIEWPORT });
+	testComponent();
+	testA11y();
 });

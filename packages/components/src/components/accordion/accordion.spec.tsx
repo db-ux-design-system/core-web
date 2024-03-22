@@ -90,7 +90,7 @@ const testAction = () => {
 	test('textarea inside item works', async ({ mount }) => {
 		const component = await mount(actionAccordion);
 		await component.getByTestId('item2').click();
-		const textArea = component.getByTestId('textarea').getByRole('textbox');
+		const textArea = component.getByRole('textbox');
 		await expect(textArea).toBeVisible();
 		await textArea.fill('Test');
 		await expect(textArea).toHaveValue('Test');

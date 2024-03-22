@@ -5,7 +5,7 @@ import { DBAccordionItem } from './index';
 // @ts-ignore - vue can only find it with .ts as file ending
 import { DEFAULT_VIEWPORT } from '../../shared/constants.ts';
 
-const comp = <DBAccordionItem title="Test">Test</DBAccordionItem>;
+const comp: any = <DBAccordionItem title="Test">Test</DBAccordionItem>;
 
 const testComponent = () => {
 	test('should contain text', async ({ mount }) => {
@@ -19,12 +19,7 @@ const testComponent = () => {
 	});
 };
 
-test.describe('DBAccordionItem', () => {
-	test.use({ viewport: DEFAULT_VIEWPORT });
-	testComponent();
-});
-
-test.describe('DBAccordionItem', () => {
+const testA11y = () => {
 	test('should not have any A11y issues', async ({ page, mount }) => {
 		await mount(comp);
 		const accessibilityScanResults = await new AxeBuilder({ page })
@@ -33,4 +28,10 @@ test.describe('DBAccordionItem', () => {
 
 		expect(accessibilityScanResults.violations).toEqual([]);
 	});
+};
+
+test.describe('DBAccordionItem', () => {
+	test.use({ viewport: DEFAULT_VIEWPORT });
+	testComponent();
+	testA11y();
 });

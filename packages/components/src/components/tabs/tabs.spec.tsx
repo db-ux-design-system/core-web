@@ -8,7 +8,7 @@ import { DBTabList } from '../tab-list';
 import { DBTab } from '../tab';
 import { DBTabPanel } from '../tab-panel';
 
-const comp = (
+const comp: any = (
 	<DBTabs>
 		<DBTabList>
 			<DBTab name="test" index={0}>

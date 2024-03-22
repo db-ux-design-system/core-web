@@ -6,7 +6,7 @@ import { DBPopover } from './index';
 import { DEFAULT_VIEWPORT } from '../../shared/constants.ts';
 import { DBButton } from '../button';
 
-const comp = (
+const comp: any = (
 	<DBButton describedbyid="popover-01">
 		Button
 		<DBPopover open={true} animation="disabled" id="popover-01">
@@ -26,13 +26,7 @@ const testComponent = () => {
 		await expect(component).toHaveScreenshot();
 	});
 };
-
-test.describe('DBPopover', () => {
-	test.use({ viewport: DEFAULT_VIEWPORT });
-	testComponent();
-});
-
-test.describe('DBPopover', () => {
+const testA11y = () => {
 	test('should not have any A11y issues', async ({ page, mount }) => {
 		await mount(comp);
 		const accessibilityScanResults = await new AxeBuilder({ page })
@@ -41,4 +35,10 @@ test.describe('DBPopover', () => {
 
 		expect(accessibilityScanResults.violations).toEqual([]);
 	});
+};
+
+test.describe('DBPopover', () => {
+	test.use({ viewport: DEFAULT_VIEWPORT });
+	testComponent();
+	testA11y();
 });

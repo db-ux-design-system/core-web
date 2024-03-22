@@ -9,7 +9,7 @@ import {
 	// @ts-ignore - vue can only find it with .ts as file ending
 } from '../../shared/constants.ts';
 
-const comp = <DBAlert>Test</DBAlert>;
+const comp: any = <DBAlert>Test</DBAlert>;
 
 const testComponent = () => {
 	test(`should contain text`, async ({ mount }) => {
@@ -28,24 +28,28 @@ const testVariants = () => {
 		test(`should match screenshot for variant ${variant}`, async ({
 			mount
 		}) => {
-			const component = await mount(
-				<DBAlert variant={variant}>Test</DBAlert>
-			);
+			const variantComp: any = <DBAlert variant={variant}>Test</DBAlert>;
+			const component = await mount(variantComp);
 			await expect(component).toHaveScreenshot();
 		});
 	}
 };
 
-test.describe('DBAlert', () => {
-	test.use({ viewport: DEFAULT_VIEWPORT });
-	testComponent();
-});
-test.describe('DBAlert', () => {
-	test.use({ viewport: DEFAULT_VIEWPORT });
-	testVariants();
-});
+const testAction = () => {
+	test(`should be closeable`, async ({ mount }) => {
+		let close = '';
+		const closeable: any = (
+			<DBAlert onClick={() => (close = 'test')} behaviour="closable">
+				Test
+			</DBAlert>
+		);
+		const component = await mount(closeable);
+		await component.getByRole('button').click();
+		expect(close).toEqual('test');
+	});
+};
 
-test.describe('DBAlert', () => {
+const testA11y = () => {
 	test('should not have any accessibility issues', async ({
 		page,
 		mount
@@ -57,4 +61,12 @@ test.describe('DBAlert', () => {
 
 		expect(accessibilityScanResults.violations).toEqual([]);
 	});
+};
+
+test.describe('DBAlert', () => {
+	test.use({ viewport: DEFAULT_VIEWPORT });
+	testComponent();
+	testVariants();
+	testA11y();
+	testAction();
 });

@@ -6,7 +6,7 @@ import { DBTooltip } from './index';
 import { DEFAULT_VIEWPORT } from '../../shared/constants.ts';
 import { DBButton } from '../button';
 
-const comp = (
+const comp: any = (
 	<DBButton describedbyid="tooltip-01">
 		Button
 		<DBTooltip animation="disabled" id="tooltip-01">
