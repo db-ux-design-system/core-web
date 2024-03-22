@@ -99,9 +99,7 @@ $component-variants: (
 
 %focus-placeholder {
 	outline: #{vars.$db-border-height-md} var(--db-focus-outline-style, solid) var(--db-focus-outline-color, currentColor);
-	outline-offset: calc(
-		#{vars.$db-border-height-lg} + #{vars.$db-border-height-md}
-	);
+	outline-offset: vars.$db-border-height-lg;
 
 	// TODO: The fallback currently only includes the same CSS Custom Property, which doesn't make any sense
 	transition:
