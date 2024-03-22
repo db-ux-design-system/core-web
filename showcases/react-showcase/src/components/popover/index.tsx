@@ -17,7 +17,7 @@ const getPopover = ({
 	animation
 }: DBPopoverProps & { content: string }) => (
 	<DBPopover
-		slotTrigger={<DBButton describedbyid={id}>{children}</DBButton>}
+		slotTrigger={<DBButton>{children}</DBButton>}
 		width={width}
 		gap={gap}
 		spacing={spacing}

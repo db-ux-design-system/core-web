@@ -11,11 +11,7 @@ import { DBPopover, DBButton } from "@db-ui/react-components";
 const App = () => (
 	<DBPopover
 		id="popover-01"
-		slotTrigger={
-			<DBButton describedbyid="popover-01">
-				Hover on me to open Popover
-			</DBButton>
-		}
+		slotTrigger={<DBButton>Hover on me to open Popover</DBButton>}
 	>
 		Popover
 	</DBPopover>

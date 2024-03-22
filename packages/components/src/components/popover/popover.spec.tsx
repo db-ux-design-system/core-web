@@ -6,13 +6,15 @@ import { DBPopover } from './index';
 import { DEFAULT_VIEWPORT } from '../../shared/constants.ts';
 import { DBButton } from '../button';
 
-const comp = (
-	<DBButton describedbyid="popover-01">
-		Button
-		<DBPopover open={true} animation="disabled" id="popover-01">
+const comp: any = (
+	<div className="padding-box">
+		<DBPopover
+			animation="disabled"
+			data-testid="popover"
+			slotTrigger={<DBButton data-testid="button">Button</DBButton>}>
 			Test
 		</DBPopover>
-	</DBButton>
+	</div>
 );
 
 const testComponent = () => {
@@ -23,6 +25,18 @@ const testComponent = () => {
 
 	test('should match screenshot', async ({ mount }) => {
 		const component = await mount(comp);
+		await expect(component).toHaveScreenshot();
+	});
+
+	test('should open', async ({ mount }) => {
+		const component = await mount(comp);
+		await component.getByTestId('button').focus();
+		await expect(component.getByTestId('popover')).toBeVisible();
+	});
+
+	test('after open should match screenshot', async ({ mount }) => {
+		const component = await mount(comp);
+		await component.getByTestId('button').focus();
 		await expect(component).toHaveScreenshot();
 	});
 };

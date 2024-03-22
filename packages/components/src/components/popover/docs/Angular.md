@@ -21,9 +21,7 @@ import { DBPopover } from '@db-ui/ngx-components';
 ```html app.component.html
 <!-- app.component.html -->
 <db-popover id="popover-01">
-	<db-button trigger describedbyid="popover-01">
-		Hover on me to open Popover
-	</db-button>
+	<db-button trigger> Hover on me to open Popover </db-button>
 	Popover
 </db-popover>
 ```

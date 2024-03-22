@@ -19,7 +19,7 @@ import { DBButton, DBPopover } from "../../../../../output/vue/vue3/src";
 				:id="exampleProps.id"
 			>
 				<template v-slot:trigger>
-					<DBButton :describedbyid="exampleProps.id">
+					<DBButton>
 						{{ exampleName }}
 					</DBButton>
 				</template>

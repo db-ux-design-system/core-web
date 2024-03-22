@@ -13,9 +13,7 @@ import { DBPopover, DBButton } from "@db-ui/v-components";
 <template>
 	<DBPopover id="popover-01">
 		<template v-slot:trigger>
-			<DBButton describedbyid="popover-01">
-				Hover on me to open Popover
-			</DBButton>
+			<DBButton> Hover on me to open Popover </DBButton>
 		</template>
 		Popover
 	</DBPopover>
