@@ -96,13 +96,6 @@ export type PlacementProps = {
 		| 'bottom-end';
 };
 
-export type NavigationBehaviourProps = {
-	/**
-	 * The behaviour property changes the open/close functionality after clicking a navigation-item.
-	 */
-	behaviour?: 'default' | 'persist';
-};
-
 export type NavigationBehaviourState = {
 	handleNavigationItemClick: (event: unknown) => void;
 };

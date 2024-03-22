@@ -2,7 +2,6 @@ import {
 	GlobalProps,
 	GlobalState,
 	InitializedState,
-	NavigationBehaviourProps,
 	NavigationBehaviourState,
 	ToggleEventProps,
 	ToggleEventState
@@ -31,8 +30,7 @@ export interface DBHeaderDefaultProps {
 
 export type DBHeaderProps = DBHeaderDefaultProps &
 	GlobalProps &
-	ToggleEventProps &
-	NavigationBehaviourProps;
+	ToggleEventProps;
 
 export interface DBHeaderDefaultState {
 	forcedToMobile?: boolean;

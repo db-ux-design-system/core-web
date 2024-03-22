@@ -2,15 +2,12 @@ import {
 	GlobalProps,
 	GlobalState,
 	InitializedState,
-	NavigationBehaviourProps,
 	NavigationBehaviourState
 } from '../../shared/model';
 
 export interface DBMainNavigationDefaultProps {}
 
-export type DBMainNavigationProps = DBMainNavigationDefaultProps &
-	GlobalProps &
-	NavigationBehaviourProps;
+export type DBMainNavigationProps = DBMainNavigationDefaultProps & GlobalProps;
 
 export interface DBMainNavigationDefaultState {
 	forceClose: boolean;
