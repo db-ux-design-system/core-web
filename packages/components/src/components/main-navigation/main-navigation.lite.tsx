@@ -31,9 +31,6 @@ export default function DBMainNavigation(props: DBMainNavigationProps) {
 
 	onMount(() => {
 		state._id = props.id || 'main-navigation-' + uuid();
-		if (props.stylePath) {
-			state.stylePath = props.stylePath;
-		}
 		state.initialized = true;
 	});
 
@@ -60,9 +57,6 @@ export default function DBMainNavigation(props: DBMainNavigationProps) {
 			class={cls('db-main-navigation', props.className)}
 			onClick={(event) => state.handleNavigationItemClick(event)}
 			data-force-close={state.forceClose}>
-			<Show when={state.stylePath}>
-				<link rel="stylesheet" href={state.stylePath} />
-			</Show>
 			<menu>{props.children}</menu>
 		</nav>
 	);

@@ -68,10 +68,6 @@ export default function DBTextarea(props: DBTextareaProps) {
 	});
 
 	onMount(() => {
-		if (props.stylePath) {
-			state.stylePath = props.stylePath;
-		}
-
 		state._id = props.id || 'textarea-' + uuid();
 		state._messageId = state._id + DEFAULT_MESSAGE_ID_SUFFIX;
 	});
@@ -82,10 +78,6 @@ export default function DBTextarea(props: DBTextareaProps) {
 			class={cls('db-textarea', props.className)}
 			data-label-variant={props.labelVariant}
 			data-variant={props.variant}>
-			<Show when={state.stylePath}>
-				<link rel="stylesheet" href={state.stylePath} />
-			</Show>
-
 			<label htmlFor={state._id}>
 				{props.label ?? state.defaultValues.label}
 			</label>

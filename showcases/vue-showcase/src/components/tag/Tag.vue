@@ -44,7 +44,7 @@ const showAlert = (exampleName: string) => {
 				>
 				<DBRadio
 					v-if="exampleProps.component === 'radio'"
-					name="radio"
+					:name="exampleProps.identifier"
 					:checked="exampleProps.checked"
 					>{{ exampleName }}</DBRadio
 				>
