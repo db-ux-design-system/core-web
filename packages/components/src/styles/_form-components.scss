@@ -41,7 +41,6 @@ $input-types: "button", "checkbox", "color", "date", "datetime-local", "email",
 
 %helper-message {
 	.db-infotext {
-		display: none;
 		margin-block-start: variables.$db-spacing-fixed-2xs;
 
 		&:not([data-semantic]) {
