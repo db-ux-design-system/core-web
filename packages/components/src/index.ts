@@ -4,7 +4,6 @@ export * from './components/brand';
 export * from './components/button';
 export * from './components/card';
 export * from './components/checkbox';
-export * from './components/code-docs';
 export * from './components/divider';
 export * from './components/drawer';
 export * from './components/header';
