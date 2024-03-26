@@ -7,25 +7,14 @@
 
 .db-accordion-item {
 	@extend %bg-transparent;
-	@include helpers.divider($position: "top");
 
 	position: relative;
 	inline-size: 100%;
+	border-radius: variables.$db-border-radius-lg;
 
 	summary + div {
 		padding: variables.$db-spacing-fixed-md;
 		padding-block-end: variables.$db-spacing-fixed-lg;
-	}
-
-	&:last-of-type {
-		@include helpers.divider($position: "bottom", $slot: "after");
-
-		// Angular workaround
-		db-accordion-item:not(:last-of-type) & {
-			&::after {
-				content: none;
-			}
-		}
 	}
 
 	&[aria-disabled="true"] {
@@ -42,6 +31,7 @@
 		justify-content: space-between;
 		padding: variables.$db-spacing-fixed-md;
 		gap: variables.$db-spacing-fixed-md;
+		border-radius: variables.$db-border-radius-lg;
 
 		&::-webkit-details-marker {
 			display: none;
@@ -64,6 +54,26 @@
 
 		summary::after {
 			transform: form-components.$dropdown-icon-transform;
+		}
+	}
+}
+
+/*
+The variant card can be implicitly set by the surrounding accordion component.
+ */
+.db-accordion[data-variant="card"] {
+	.db-accordion-item {
+		&::after {
+			@extend %component-border;
+
+			content: "";
+			position: absolute;
+			inset-inline-start: 0;
+			inset-block-start: 0;
+			inline-size: 100%;
+			block-size: 100%;
+			border-radius: variables.$db-border-radius-lg;
+			pointer-events: none;
 		}
 	}
 }
