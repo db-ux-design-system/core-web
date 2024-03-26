@@ -4,7 +4,6 @@
 @use "@db-ui/foundations/build/scss/helpers";
 @use "@db-ui/foundations/build/scss/animation";
 @use "@db-ui/foundations/build/scss/icons";
-@use "../../styles/db-puls";
 @use "../../styles/icon-passing";
 @use "../../styles/component";
 
@@ -69,13 +68,22 @@
 
 .db-navigation-item {
 	--db-has-before: 0;
-	@extend %db-puls-auto;
 
 	@include icon-passing.icon-passing();
 
 	display: inline-flex;
 	position: relative;
 	inline-size: 100%;
+
+	@include screen-sizes.screen("md", "max") {
+		&:not([data-width="full"]) {
+			.db-navigation-item-expand-button {
+				&::after {
+					--db-icon-margin-start: auto;
+				}
+			}
+		}
+	}
 
 	a {
 		@extend %navigation-item;
@@ -104,13 +112,11 @@
 		}
 	}
 
+	&:has([aria-current="page"]),
 	&[aria-current="page"] {
-		font-weight: 700;
-	}
-
-	&:not([aria-current="page"]) {
-		// revert for sub-navigation
-		font-weight: normal;
+		& > :is(a, button) {
+			font-weight: 700;
+		}
 	}
 
 	&:not([data-width="full"]) {
