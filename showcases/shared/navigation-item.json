@@ -3,49 +3,39 @@
 		"name": "Density",
 		"examples": [
 			{
-				"name": "functional",
+				"name": "Functional",
 				"className": "db-density-functional",
-				"props": {
-					"areaPopup": true
-				}
+				"props": {}
 			},
 			{
-				"name": "regular (Default)",
+				"name": "Regular (Default)",
 				"className": "db-density-regular",
-				"props": {
-					"areaPopup": true
-				}
+				"props": {}
 			},
 			{
-				"name": "expressive",
+				"name": "Expressive",
 				"className": "db-density-expressive",
-				"props": {
-					"areaPopup": true
-				}
+				"props": {}
 			}
 		]
 	},
 	{
-		"name": "States",
+		"name": "Interaction-States",
 		"examples": [
 			{
-				"name": "Enabled (Default)",
-				"props": {
-					"areaPopup": true
-				}
+				"name": "Enabled (Default)/Hover/Pressed",
+				"props": {}
 			},
 			{
 				"name": "Active",
 				"props": {
-					"active": true,
-					"areaPopup": true
+					"active": true
 				}
 			},
 			{
 				"name": "Disabled",
 				"props": {
-					"disabled": true,
-					"areaPopup": true
+					"disabled": true
 				}
 			}
 		]
@@ -54,29 +44,27 @@
 		"name": "Content",
 		"examples": [
 			{
-				"name": "Leading Icon - Text",
-				"props": {
-					"icon": "account",
-					"areaPopup": false
-				}
-			},
-			{
-				"name": "Leading Icon - Text - Trailing Icon",
-				"props": {
-					"icon": "account",
-					"areaPopup": true
-				}
-			},
-			{
-				"name": "Text - Trailing Icon",
-				"props": {
-					"areaPopup": true
-				}
-			},
-			{
-				"name": "Text",
+				"name": "Text (Default)",
 				"props": {
 					"areaPopup": false
+				}
+			},
+			{
+				"name": "Text - Icon (Leading)",
+				"props": {
+					"icon": "account"
+				}
+			},
+			{
+				"name": "Text - Icons (Leading, Chevron)",
+				"props": {
+					"icon": "account"
+				}
+			},
+			{
+				"name": "Text - Icon (Chevron)",
+				"props": {
+					"areaPopup": true
 				}
 			}
 		]
@@ -87,16 +75,13 @@
 			{
 				"name": "Auto (Default)",
 				"style": { "width": "400px" },
-				"props": {
-					"areaPopup": true
-				}
+				"props": {}
 			},
 			{
 				"name": "Full",
 				"style": { "width": "400px" },
 				"props": {
-					"width": "full",
-					"areaPopup": true
+					"width": "full"
 				}
 			}
 		]

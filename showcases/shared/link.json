@@ -3,22 +3,22 @@
 		"name": "Density",
 		"examples": [
 			{
-				"name": "(Default) regular",
+				"name": "Functional",
+				"className": "db-density-functional",
+				"props": {
+					"href": "#"
+				}
+			},
+			{
+				"name": "Regular (Default)",
 				"className": "db-density-regular",
 				"props": {
 					"href": "#"
 				}
 			},
 			{
-				"name": "expressive",
+				"name": "Expressive",
 				"className": "db-density-expressive",
-				"props": {
-					"href": "#"
-				}
-			},
-			{
-				"name": "functional",
-				"className": "db-density-functional",
 				"props": {
 					"href": "#"
 				}
@@ -26,10 +26,10 @@
 		]
 	},
 	{
-		"name": "Variant",
+		"name": "Semantic",
 		"examples": [
 			{
-				"name": "(Default) Adaptive",
+				"name": "Adaptive (Default)",
 				"props": {
 					"href": "#"
 				}
@@ -44,10 +44,10 @@
 		]
 	},
 	{
-		"name": "State",
+		"name": "Interaction-States",
 		"examples": [
 			{
-				"name": "(Default) Enabled",
+				"name": "Enabled (Default)/Hover/Pressed",
 				"props": {
 					"href": "#"
 				}
@@ -65,7 +65,7 @@
 		"name": "Size",
 		"examples": [
 			{
-				"name": "(Default) Medium",
+				"name": "Medium (Default)",
 				"props": {
 					"href": "#"
 				}
@@ -83,7 +83,7 @@
 		"name": "Content",
 		"examples": [
 			{
-				"name": "(Default) Internal",
+				"name": "Internal (Default)",
 				"props": {
 					"href": "#"
 				}

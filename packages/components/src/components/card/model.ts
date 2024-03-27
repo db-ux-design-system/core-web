@@ -3,7 +3,6 @@ import {
 	ClickEventState,
 	GlobalProps,
 	GlobalState,
-	ImageProps,
 	SpacingProps
 } from '../../shared/model';
 

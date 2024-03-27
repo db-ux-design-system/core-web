@@ -31,7 +31,7 @@ export interface DBDrawerDefaultProps {
 	/**
 	 * React specific to change the header of the drawer.
 	 */
-	slotDrawerHeader?: any;
+	drawerHeader?: any;
 	/**
 	 * The @dependabot recreate attribute changes the padding inside the drawer.
 	 */

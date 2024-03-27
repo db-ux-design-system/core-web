@@ -20,31 +20,30 @@ const getHeader = ({
 	describedbyid,
 	id,
 	key,
-	stylePath,
 	tabIndex,
 	title,
 	onToggle
 }: DBHeaderProps) => (
 	<DBHeader
-		slotBrand={
+		brand={
 			<DBBrand
 				title="DBHeader"
 				imgSrc="https://db-ui.github.io/images/db_logo.svg">
 				DBHeader
 			</DBBrand>
 		}
-		slotMetaNavigation={
+		metaNavigation={
 			<>
 				<DBLink href="#">Imprint</DBLink>
 				<DBLink href="#">Help</DBLink>
 			</>
 		}
-		slotCallToAction={
+		callToAction={
 			<DBButton icon="search" variant="text" noText>
 				Search
 			</DBButton>
 		}
-		slotActionBar={
+		actionBar={
 			<>
 				<DBButton icon="account" variant="text" noText>
 					Profile
@@ -64,7 +63,6 @@ const getHeader = ({
 		describedbyid={describedbyid}
 		id={id}
 		key={key}
-		stylePath={stylePath}
 		tabIndex={tabIndex}
 		title={title}
 		onToggle={onToggle}>

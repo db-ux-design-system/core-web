@@ -2,7 +2,12 @@ export const DEFAULT_ID: string = 'OVERWRITE_DEFAULT_ID';
 export const DEFAULT_LABEL: string = 'LABEL SHOULD BE SET';
 
 export const DEFAULT_MESSAGE_ID_SUFFIX: string = '-message';
+export const DEFAULT_VALID_MESSAGE_ID_SUFFIX: string = '-valid-message';
+export const DEFAULT_INVALID_MESSAGE_ID_SUFFIX: string = '-invalid-message';
 export const DEFAULT_PLACEHOLDER_ID_SUFFIX: string = '-placeholder';
+
+export const DEFAULT_VALID_MESSAGE: string = 'TODO: Add a validMessage';
+export const DEFAULT_INVALID_MESSAGE: string = 'TODO: Add a invalidMessage';
 
 export const DEFAULT_BACK: string = 'Back';
 

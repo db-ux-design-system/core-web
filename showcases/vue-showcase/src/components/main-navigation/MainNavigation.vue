@@ -4,7 +4,7 @@ import defaultComponentVariants from "../../../../shared/main-navigation.json";
 import {
 	DBMainNavigation,
 	DBNavigationItem
-} from "../../../../../output/vue/vue3/src";
+} from "../../../../../output/vue/src";
 </script>
 
 <template>
@@ -20,11 +20,11 @@ import {
 				<DBMainNavigation>
 					<DBNavigationItem :active="true">
 						Navi-Item 1
-						<template v-slot:sub-navigation>
+						<template v-slot:subnavigation>
 							<DBNavigationItem :active="true">
 								Sub-Navi-Item 1
 
-								<template v-slot:sub-navigation>
+								<template v-slot:subnavigation>
 									<DBNavigationItem :active="true">
 										<a href="#">Sub-Sub-Navi-Item 1</a>
 									</DBNavigationItem>

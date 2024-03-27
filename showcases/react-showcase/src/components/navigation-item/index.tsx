@@ -22,7 +22,7 @@ const getNavigationItem = ({
 			// eslint-disable-next-line no-alert
 			alert(children.toString());
 		}}
-		slotSubNavigation={
+		subNavigation={
 			areaPopup && (
 				<>
 					<DBNavigationItem>

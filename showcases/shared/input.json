@@ -86,22 +86,6 @@
 				}
 			},
 			{
-				"name": "Filled - Invalid",
-				"props": {
-					"label": "Label",
-					"value": "Filled - Invalid",
-					"invalid": true
-				}
-			},
-			{
-				"name": "Filled - Valid",
-				"props": {
-					"label": "Label",
-					"value": "Filled - Valid",
-					"invalid": false
-				}
-			},
-			{
 				"name": "Disabled",
 				"props": {
 					"label": "Label",
@@ -133,24 +117,6 @@
 				"props": {
 					"label": "Label",
 					"value": "Filled",
-					"variant": "floating"
-				}
-			},
-			{
-				"name": "Filled - Invalid",
-				"props": {
-					"label": "Label",
-					"invalid": true,
-					"value": "Filled - Invalid",
-					"variant": "floating"
-				}
-			},
-			{
-				"name": "Filled - Valid",
-				"props": {
-					"label": "Label",
-					"value": "Filled - Valid",
-					"invalid": false,
 					"variant": "floating"
 				}
 			},
@@ -228,14 +194,6 @@
 				"name": "Required",
 				"props": {
 					"label": "Label",
-					"required": true
-				}
-			},
-			{
-				"name": "Required - Filled",
-				"props": {
-					"label": "Label",
-					"value": "Required - Filled",
 					"required": true
 				}
 			}

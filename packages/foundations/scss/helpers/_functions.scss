@@ -58,7 +58,7 @@
 	}
 
 	&:is(input[type="checkbox"]),
-	&:is(input[type="radio"]) {
+	&:is(input[type="radio"]:not(:checked)) {
 		cursor: pointer;
 	}
 

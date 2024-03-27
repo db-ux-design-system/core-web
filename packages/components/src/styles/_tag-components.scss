@@ -67,7 +67,35 @@ $interactive-selectors: "label, button:not(.db-tab-remove-button), a";
 	}
 }
 
+@mixin revert-db-components() {
+	input:checked {
+		background-color: transparent;
+
+		@include helpers.hover {
+			background-color: transparent;
+		}
+
+		@include helpers.active {
+			background-color: transparent;
+		}
+	}
+
+	a {
+		color: currentColor;
+
+		@include helpers.hover {
+			color: currentColor;
+		}
+
+		@include helpers.active {
+			color: currentColor;
+		}
+	}
+}
+
 @mixin get-tag-colors-interactive() {
+	@include revert-db-components;
+
 	// overwrite current variables for semantic color
 	@each $name in colors.$variant-colors {
 		&[data-semantic="#{$name}"] {
@@ -116,6 +144,16 @@ $interactive-selectors: "label, button:not(.db-tab-remove-button), a";
 
 		label:has(input[type="radio"]:checked) {
 			@extend %set-adaptive-strong-tag;
+
+			/* Revert this for checked radio button (it's not clickable again) */
+			@include helpers.hover {
+				background-color: colors.$db-current-color-contrast-high-enabled;
+			}
+
+			@include helpers.active {
+				cursor: default;
+				background-color: colors.$db-current-color-contrast-high-enabled;
+			}
 		}
 
 		label:has(input[type="checkbox"]:checked) {

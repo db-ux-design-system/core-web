@@ -69,14 +69,6 @@
 					"required": true,
 					"invalid": true
 				}
-			},
-			{
-				"name": "Required - Checked",
-				"props": {
-					"name": "Requirement",
-					"required": true,
-					"checked": true
-				}
 			}
 		]
 	},

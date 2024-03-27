@@ -10,7 +10,7 @@ import {
 import { DBNavigationItemProps, DBNavigationItemState } from './model';
 import { DBButton } from '../button';
 import { cls, uuid, visibleInVX, visibleInVY } from '../../utils';
-import { DEFAULT_BACK, DEFAULT_ID } from '../../shared/constants';
+import { DEFAULT_BACK } from '../../shared/constants';
 import { ClickEvent } from '../../shared/model';
 
 useMetadata({
@@ -22,7 +22,6 @@ export default function DBNavigationItem(props: DBNavigationItemProps) {
 
 	// jscpd:ignore-start
 	const state = useStore<DBNavigationItemState>({
-		_id: DEFAULT_ID,
 		initialized: false,
 		hasAreaPopup: false,
 		hasSubNavigation: true,
@@ -44,11 +43,7 @@ export default function DBNavigationItem(props: DBNavigationItemProps) {
 	});
 
 	onMount(() => {
-		state._id = props.id || 'navigation-item-' + uuid();
 		state.initialized = true;
-		if (props.stylePath) {
-			state.stylePath = props.stylePath;
-		}
 	});
 
 	onUpdate(() => {
@@ -94,16 +89,12 @@ export default function DBNavigationItem(props: DBNavigationItemProps) {
 	return (
 		<li
 			ref={ref}
-			id={state._id}
+			id={props.id}
 			class={cls('db-navigation-item', props.className)}
 			data-width={props.width}
 			data-icon={props.icon}
 			aria-current={props.active ? 'page' : undefined}
 			aria-disabled={props.disabled}>
-			<Show when={state.stylePath}>
-				<link rel="stylesheet" href={state.stylePath} />
-			</Show>
-
 			<Show when={!state.hasSubNavigation}>{props.children}</Show>
 
 			<Show when={state.hasSubNavigation}>
@@ -133,7 +124,7 @@ export default function DBNavigationItem(props: DBNavigationItemProps) {
 							</DBButton>
 						</div>
 					</Show>
-					<Slot name="sub-navigation"></Slot>
+					<Slot name="subNavigation"></Slot>
 				</menu>
 			</Show>
 		</li>

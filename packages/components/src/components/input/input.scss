@@ -78,12 +78,6 @@ $icon-padding: calc(
 	&:has(datalist) {
 		@extend %dropdown-icon;
 
-		&:has(input:focus) {
-			&::after {
-				transform: form-components.$dropdown-icon-transform;
-			}
-		}
-
 		input {
 			&::-webkit-calendar-picker-indicator {
 				display: none !important;

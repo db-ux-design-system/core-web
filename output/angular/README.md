@@ -58,6 +58,36 @@ import { DBButton } from '@db-ui/ngx-components';
 <db-button variant="primary">Button</db-button>
 ```
 
+### Events
+
+There are 3 ways to use Events in Angular:
+
+**[ngModel](https://angular.io/api/forms/NgModel)**
+
+```html
+<DBInput label="Inputfield" name="input-name" [(ngModel)]="input"></DBInput>
+```
+
+**[FormControl](https://angular.io/api/forms/FormControl)**
+
+```html
+<DBInput
+	label="Inputfield"
+	name="input-name"
+	[formControl]="inputControl"
+></DBInput>
+```
+
+**[change](https://developer.mozilla.org/de/docs/Web/API/HTMLElement/change_event)**
+
+```html
+<DBInput
+	label="Inputfield"
+	name="input-name"
+	(change)="input = $event.target.value"
+></DBInput>
+```
+
 ## Custom Events
 
 We do not provide every event on every component. If you are missing an event please [add an issue](https://github.com/db-ui/mono/issues).

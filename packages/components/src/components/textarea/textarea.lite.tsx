@@ -1,5 +1,6 @@
 import {
 	onMount,
+	onUpdate,
 	Show,
 	useMetadata,
 	useRef,
@@ -10,8 +11,13 @@ import { DBInfotext } from '../infotext';
 import { cls, uuid } from '../../utils';
 import {
 	DEFAULT_ID,
+	DEFAULT_INVALID_MESSAGE,
+	DEFAULT_INVALID_MESSAGE_ID_SUFFIX,
 	DEFAULT_LABEL,
-	DEFAULT_MESSAGE_ID_SUFFIX
+	DEFAULT_MESSAGE_ID_SUFFIX,
+	DEFAULT_PLACEHOLDER_ID_SUFFIX,
+	DEFAULT_VALID_MESSAGE,
+	DEFAULT_VALID_MESSAGE_ID_SUFFIX
 } from '../../shared/constants';
 import { ChangeEvent, InteractionEvent } from '../../shared/model';
 
@@ -25,6 +31,9 @@ export default function DBTextarea(props: DBTextareaProps) {
 	const state = useStore<DBTextareaState>({
 		_id: DEFAULT_ID,
 		_messageId: DEFAULT_ID + DEFAULT_MESSAGE_ID_SUFFIX,
+		_validMessageId: DEFAULT_ID + DEFAULT_VALID_MESSAGE_ID_SUFFIX,
+		_invalidMessageId: DEFAULT_ID + DEFAULT_INVALID_MESSAGE_ID_SUFFIX,
+		_descByIds: '',
 		defaultValues: {
 			label: DEFAULT_LABEL,
 			placeholder: ' ',
@@ -68,23 +77,28 @@ export default function DBTextarea(props: DBTextareaProps) {
 	});
 
 	onMount(() => {
-		if (props.stylePath) {
-			state.stylePath = props.stylePath;
-		}
-
 		state._id = props.id || 'textarea-' + uuid();
-		state._messageId = state._id + DEFAULT_MESSAGE_ID_SUFFIX;
 	});
-	// jscpd:ignore-end
+
+	onUpdate(() => {
+		if (state._id) {
+			state._messageId = state._id + DEFAULT_MESSAGE_ID_SUFFIX;
+			state._validMessageId = state._id + DEFAULT_VALID_MESSAGE_ID_SUFFIX;
+			state._invalidMessageId =
+				state._id + DEFAULT_INVALID_MESSAGE_ID_SUFFIX;
+
+			state._descByIds = [
+				state._messageId,
+				state._validMessageId,
+				state._invalidMessageId
+			].join(' ');
+		}
+	}, [state._id]);
 
 	return (
 		<div
 			class={cls('db-textarea', props.className)}
 			data-variant={props.variant}>
-			<Show when={state.stylePath}>
-				<link rel="stylesheet" href={state.stylePath} />
-			</Show>
-
 			<label htmlFor={state._id}>
 				{props.label ?? state.defaultValues.label}
 			</label>
@@ -130,6 +144,21 @@ export default function DBTextarea(props: DBTextareaProps) {
 					{props.message}
 				</DBInfotext>
 			</Show>
+
+			<DBInfotext
+				id={state._validMessageId}
+				size="small"
+				semantic="successful">
+				{props.validMessage || DEFAULT_VALID_MESSAGE}
+			</DBInfotext>
+
+			<DBInfotext
+				id={state._invalidMessageId}
+				size="small"
+				semantic="critical">
+				{props.invalidMessage || DEFAULT_INVALID_MESSAGE}
+			</DBInfotext>
 		</div>
 	);
+	// jscpd:ignore-end
 }

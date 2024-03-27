@@ -3,35 +3,35 @@
 		"name": "Density",
 		"examples": [
 			{
-				"name": "functional",
+				"name": "Functional",
 				"className": "db-density-functional",
 				"props": {
-					"title": "functional"
+					"title": "Functional"
 				}
 			},
 			{
-				"name": "regular (Default)",
+				"name": "Regular (Default)",
 				"className": "db-density-regular",
 				"props": {
-					"title": "regular (Default)"
+					"title": "Regular (Default)"
 				}
 			},
 			{
-				"name": "expressive",
+				"name": "Expressive",
 				"className": "db-density-expressive",
 				"props": {
-					"title": "expressive"
+					"title": "Expressive"
 				}
 			}
 		]
 	},
 	{
-		"name": "States",
+		"name": "Interaction States",
 		"examples": [
 			{
-				"name": "Enabled (Default)",
+				"name": "Enabled (Default)/Hover/Pressed",
 				"props": {
-					"title": "Enabled (Default)"
+					"title": "Enabled (Default)/Hover/Pressed"
 				}
 			},
 			{
@@ -40,20 +40,23 @@
 					"title": "Disabled",
 					"disabled": true
 				}
+			}
+		]
+	},
+	{
+		"name": "Content States",
+		"examples": [
+			{
+				"name": "Collapsed (Default)",
+				"props": {
+					"title": "Collapsed (Default)"
+				}
 			},
 			{
 				"name": "Open",
 				"props": {
 					"title": "Open",
 					"open": true
-				}
-			},
-			{
-				"name": "Open Disabled",
-				"props": {
-					"title": "Open Disabled",
-					"open": true,
-					"disabled": true
 				}
 			}
 		]

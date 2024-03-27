@@ -30,19 +30,19 @@
     "copy:scss": "cpr scss build/scss -o",
     "dev": "vite --open",
     "generate:icon-fonts": "npx @db-ui/gif --src ./assets/icons/functional --variants solid inverted --cleanIgnoreVariants default,all --prefix db_ic_ --fontName db-ux --withSizes true --debug true",
-    "regenerate:screenshots": "npx playwright test -c test/playwright.config.mjs --update-snapshots",
+    "regenerate:screenshots": "npx playwright test -c ./test/playwright.config.mjs --update-snapshots",
     "start": "nodemon --watch tokens/ --watch scss --watch scripts -e json,scss,js -x \"npm run build\"",
-    "test:e2e": "npx playwright test --config=test/playwright.config.mjs"
+    "test:e2e": "npx playwright test --config=./test/playwright.config.mjs"
   },
   "dependencies": {
     "@csstools/normalize.css": "12.1.1"
   },
   "devDependencies": {
     "cpr": "3.0.1",
-    "cssnano": "^6.1.0",
+    "cssnano": "^6.1.2",
     "dotenv": "^16.4.5",
     "nodemon": "3.1.0",
-    "sass": "^1.71.1"
+    "sass": "^1.72.0"
   },
   "publishConfig": {
     "registry": "https://registry.npmjs.org/",

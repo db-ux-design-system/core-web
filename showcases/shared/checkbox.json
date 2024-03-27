@@ -3,21 +3,21 @@
 		"name": "Density",
 		"examples": [
 			{
-				"name": "functional",
+				"name": "Functional",
 				"className": "db-density-functional",
 				"props": {
 					"name": "Density"
 				}
 			},
 			{
-				"name": "regular (Default)",
+				"name": "Regular (Default)",
 				"className": "db-density-regular",
 				"props": {
 					"name": "Density"
 				}
 			},
 			{
-				"name": "expressive",
+				"name": "Expressive",
 				"className": "db-density-expressive",
 				"props": {
 					"name": "Density"
@@ -74,11 +74,10 @@
 				}
 			},
 			{
-				"name": "Required - Checked",
+				"name": "Required - Indeterminate",
 				"props": {
 					"name": "Requirement",
-					"required": true,
-					"checked": true
+					"indeterminate": true
 				}
 			}
 		]

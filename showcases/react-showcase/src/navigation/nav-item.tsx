@@ -14,7 +14,7 @@ const NavItem = ({ navItem }: { navItem: NavigationItem }) => {
 		<DBNavigationItem
 			active={isActive}
 			backButtonText={`Back to ${navItem.label}`}
-			slotSubNavigation={
+			subNavigation={
 				navItem.subNavigation && (
 					<>
 						{navItem.subNavigation

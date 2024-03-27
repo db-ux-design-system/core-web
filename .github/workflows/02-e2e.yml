@@ -12,7 +12,7 @@ jobs:
     name: 🧪🎭 - ${{ matrix.framework }}:${{ matrix.shardIndex }}/${{ matrix.shardTotal }}
     runs-on: ubuntu-latest
     container:
-      image: mcr.microsoft.com/playwright:v1.42.0
+      image: mcr.microsoft.com/playwright:v1.42.1
     strategy:
       fail-fast: false
       matrix:
@@ -50,12 +50,7 @@ jobs:
       - name: 🚋 Get working directory
         id: workingDirectory
         shell: bash
-        run: |
-          if [[ ${{ matrix.framework }} == "vue" ]]; then
-            echo "dir=vue/vue3" >> $GITHUB_OUTPUT
-          else
-            echo "dir=${{ matrix.framework }}" >> $GITHUB_OUTPUT
-          fi
+        run: echo "dir=${{ matrix.framework }}" >> $GITHUB_OUTPUT
 
       - name: 👩‍🔬 Test with Playwright 🎭
         working-directory: ./output/${{ steps.workingDirectory.outputs.dir }}

@@ -12,12 +12,6 @@
 	&[data-icon] {
 		--db-form-has-before: 1;
 	}
-
-	&:has(select:focus-within) {
-		&::after {
-			transform: form-components.$dropdown-icon-transform;
-		}
-	}
 }
 
 $has-before-padding: calc(

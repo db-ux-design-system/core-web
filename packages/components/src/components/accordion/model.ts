@@ -6,8 +6,6 @@ import {
 } from '../../shared/model';
 import { DBAccordionItemDefaultProps } from '../accordion-item/model';
 
-export interface DBAccordionItemInterface
-	extends Omit<DBAccordionItemDefaultProps, 'slotTitle'> {}
 export interface DBAccordionDefaultProps {
 	/**
 	 * To allow multiple items open at the same time or only 1 item
@@ -22,7 +20,7 @@ export interface DBAccordionDefaultProps {
 	/**
 	 * Alternative to pass in a simple representation of accordion items
 	 */
-	items?: DBAccordionItemInterface[] | string;
+	items?: DBAccordionItemDefaultProps[] | string;
 
 	/**
 	 * Informs about the changes in the internal state, which item is open
@@ -34,7 +32,7 @@ export type DBAccordionProps = DBAccordionDefaultProps & GlobalProps;
 
 export interface DBAccordionDefaultState {
 	openItems: string[];
-	convertItems: (items?: any[] | string) => DBAccordionItemInterface[];
+	convertItems: (items?: any[] | string) => DBAccordionItemDefaultProps[];
 }
 
 export type DBAccordionState = DBAccordionDefaultState &

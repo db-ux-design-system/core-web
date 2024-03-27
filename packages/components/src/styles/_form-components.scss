@@ -26,12 +26,26 @@ $floating-label-size: calc(
 	#{variables.$db-spacing-fixed-3xs} + #{variables.$db-spacing-fixed-2xs} + #{$label-size-height-2xs}
 );
 
+$input-types: "button", "checkbox", "color", "date", "datetime-local", "email",
+	"file", "hidden", "image", "month", "number", "password", "radio", "range",
+	"reset", "search", "submit", "tel", "text", "time", "url", "week";
+
 %dropdown-icon {
 	@include icons.set-icon("expand_more", "after");
 
 	&::after {
 		transition: $dropdown-icon-transition;
 		pointer-events: none;
+	}
+}
+
+%helper-message {
+	.db-infotext {
+		margin-block-start: variables.$db-spacing-fixed-2xs;
+
+		&:is([data-semantic], :empty) {
+			display: none;
+		}
 	}
 }
 
@@ -109,8 +123,34 @@ $floating-label-size: calc(
 	}
 }
 
+@mixin get-validity-message($key: "valid") {
+	.db-infotext {
+		@if ($key == "valid") {
+			&[data-semantic="successful"] {
+				display: flex;
+			}
+		} @else {
+			&[data-semantic="critical"] {
+				display: flex;
+			}
+		}
+
+		&:not([data-semantic]) {
+			display: none;
+		}
+	}
+}
+
 @mixin get-validity-color($selector, $key: "valid") {
 	$variant: "successful";
+
+	@include get-validity-message($key);
+
+	#{$selector},
+	[id$="-placeholder"] {
+		color: var(--db-#{$variant}-on-bg-enabled);
+		caret-color: var(--db-#{$variant}-on-bg-enabled);
+	}
 
 	@if ($key != "valid") {
 		$variant: "critical";
@@ -140,38 +180,19 @@ $floating-label-size: calc(
 			--db-current-color-border: var(--db-#{$variant}-border);
 		}
 	}
-
-	#{$selector},
-	[id$="-placeholder"] {
-		color: var(--db-#{$variant}-on-bg-enabled);
-		caret-color: var(--db-#{$variant}-on-bg-enabled);
-	}
 }
 
 @function get-validations($selector, $key) {
+	// TODO: add validations for input & textarea as well
+	//  https://developer.mozilla.org/en-US/docs/Learn/Forms/Form_validation#using_built-in_form_validation
 	$validations: ":required";
-	$user: "user-";
-
-	// Differentiating form elements
-	@if ($selector == select or $selector == check) {
-		$user: "";
-	} @else {
-		// TODO: add validations for input & textarea as well
-		//  https://developer.mozilla.org/en-US/docs/Learn/Forms/Form_validation#using_built-in_form_validation
-		$validations: ":required";
-	}
 
 	// We need to do a more complicated check for non-typed-input-elements
 	@if ($selector == input) {
 		$validations: ':not([type="text"], [type="password"], [type="search"]),:is([type="text"], [type="password"], [type="search"]):required';
 	}
 
-	// Check elements (radio and checkbox) should get selected by their native HTML tag `input`
-	@if ($selector == check) {
-		$selector: input;
-	}
-
-	$has-selectors: "&:has(#{$selector}:not([aria-invalid]):is(#{$validations}):#{$user}#{$key}),";
+	$has-selectors: "&:has(#{$selector}:not([aria-invalid]):is(#{$validations}):user-#{$key}),";
 
 	@return string.unquote(string.slice($has-selectors, 1, -2));
 }
@@ -182,17 +203,13 @@ $floating-label-size: calc(
 		$boolean: "false";
 	}
 
-	#{get-validations($selector,$key)} {
-		@content;
-	}
-
 	@if ($selector == check) {
 		$selector: input;
-	}
-
-	// :user-valid or :user-invalid workaround
-	@supports not selector(:user-#{$key}) {
 		&:has(#{$selector}:not([aria-invalid]):required:#{$key}) {
+			@content;
+		}
+	} @else {
+		#{get-validations($selector,$key)} {
 			@content;
 		}
 	}
@@ -219,6 +236,7 @@ $floating-label-size: calc(
 	--db-form-has-before: 0;
 	--db-current-icon-color: #{colors.$db-current-color-enabled};
 	@extend %db-overwrite-font-size-sm;
+	@extend %helper-message;
 
 	@include set-floating-label-overwrites($selector);
 	@include set-required-label($selector);
@@ -292,11 +310,6 @@ $floating-label-size: calc(
 		}
 	}
 
-	// Helper message
-	& .db-infotext {
-		margin-block-start: variables.$db-spacing-fixed-2xs;
-	}
-
 	// disabled
 	&:has(#{$selector}:disabled) {
 		// Decided against cursor: not-allowed, compare to e.g. https://phabricator.wikimedia.org/T121960
@@ -345,6 +358,8 @@ $floating-label-size: calc(
 	@if ($key != "valid") {
 		$variant: critical;
 	}
+
+	@include get-validity-message($key);
 
 	input {
 		--db-current-color-bg-transparent-semi: var(

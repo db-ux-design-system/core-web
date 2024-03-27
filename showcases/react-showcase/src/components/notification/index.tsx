@@ -20,8 +20,8 @@ const getNotification = ({
 		semantic={semantic}
 		icon={icon}
 		headline={headline}
-		slotLink={link ? <DBLink href="#">Textlink</DBLink> : undefined}
-		slotImage={
+		link={link ? <DBLink href="#">Textlink</DBLink> : undefined}
+		image={
 			img ? (
 				<img
 					src={`${

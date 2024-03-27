@@ -27,11 +27,11 @@ const componentChildren: NavigationItem[] = [
 			{
 				label: 'DBBrand',
 				name: 'brand'
-			},
+			} /* TODO: Uncomment this if dev and design is aligned
 			{
 				label: 'DBIcon',
 				name: 'icon'
-			},
+			}, */,
 			{
 				label: 'DBTooltip',
 				name: 'tooltip'
@@ -126,11 +126,11 @@ const componentChildren: NavigationItem[] = [
 			{
 				label: 'DBHeader',
 				name: 'header'
-			},
+			} /* TODO: Uncomment this if dev and design is aligned
 			{
 				label: 'DBPage',
 				name: 'page'
-			},
+			}, */,
 			{
 				label: 'DBSection',
 				name: 'section'
@@ -236,6 +236,7 @@ export const ROUTES: NavigationItem[] = [
 		path: '/components',
 		subNavigation: [
 			{ label: 'Readme', path: '/components/readme' },
+			{ label: 'Validation', path: '/components/validation' },
 			...componentChildren.map((category) => ({
 				...category,
 				subNavigation: category?.subNavigation?.map((component) => ({

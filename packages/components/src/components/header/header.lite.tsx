@@ -37,9 +37,6 @@ export default function DBHeader(props: DBHeaderProps) {
 	onMount(() => {
 		state.initialized = true;
 		state._id = props.id || 'header-' + uuid();
-		if (props.stylePath) {
-			state.stylePath = props.stylePath;
-		}
 	});
 
 	onUpdate(() => {
@@ -67,10 +64,6 @@ export default function DBHeader(props: DBHeaderProps) {
 			class={cls('db-header', props.className)}
 			id={state._id}
 			data-on-forcing-mobile={props.forceMobile && !state.forcedToMobile}>
-			<Show when={state.stylePath}>
-				<link rel="stylesheet" href={state.stylePath} />
-			</Show>
-
 			<DBDrawer
 				className="db-header-drawer"
 				rounded
@@ -81,16 +74,16 @@ export default function DBHeader(props: DBHeaderProps) {
 				<div class="db-header-drawer-navigation">
 					<div class="db-header-navigation">{props.children}</div>
 					<div class="db-header-meta-navigation">
-						<Slot name="meta-navigation" />
+						<Slot name="metaNavigation" />
 					</div>
 				</div>
 				<div class="db-header-action-bar">
-					<Slot name="action-bar" />
+					<Slot name="actionBar" />
 				</div>
 			</DBDrawer>
 
 			<div class="db-header-meta-navigation">
-				<Slot name="meta-navigation" />
+				<Slot name="metaNavigation" />
 			</div>
 			<div class="db-header-navigation-bar">
 				<div class="db-header-brand-container">
@@ -99,7 +92,7 @@ export default function DBHeader(props: DBHeaderProps) {
 				<div class="db-header-navigation-container">
 					<div class="db-header-navigation">{props.children}</div>
 					<div class="db-header-call-to-action">
-						<Slot name="call-to-action" />
+						<Slot name="callToAction" />
 					</div>
 				</div>
 				<div class="db-header-action-container">
@@ -115,7 +108,7 @@ export default function DBHeader(props: DBHeaderProps) {
 						</DBButton>
 					</div>
 					<div class="db-header-action-bar">
-						<Slot name="action-bar" />
+						<Slot name="actionBar" />
 					</div>
 				</div>
 			</div>

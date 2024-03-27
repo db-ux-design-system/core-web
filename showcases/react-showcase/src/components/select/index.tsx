@@ -26,7 +26,13 @@ const getSelect = ({
 		value={value}
 		message={message}
 		invalid={invalid}
-		required={required}>
+		required={required}
+		invalidMessage={
+			invalid !== undefined || required ? 'Invalid Message' : undefined
+		}
+		validMessage={
+			invalid !== undefined || required ? 'Valid Message' : undefined
+		}>
 		{children}
 	</DBSelect>
 );

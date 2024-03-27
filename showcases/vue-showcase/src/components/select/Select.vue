@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import DefaultComponent from "../DefaultComponent.vue";
 import defaultComponentVariants from "../../../../shared/select.json";
-import { DBInput, DBSelect } from "../../../../../output/vue/vue3/src";
+import { DBInput, DBSelect } from "../../../../../output/vue/src";
 </script>
 
 <template>
@@ -19,8 +19,19 @@ import { DBInput, DBSelect } from "../../../../../output/vue/vue3/src";
 				:value="exampleProps.value"
 				:message="exampleProps.message"
 				:required="exampleProps.required"
-				>{{ exampleName }}</DBSelect
+				:invalidMessage="
+					exampleProps.invalid !== undefined || exampleProps.required
+						? 'Invalid Message'
+						: undefined
+				"
+				:validMessage="
+					exampleProps.invalid !== undefined || exampleProps.required
+						? 'Valid Message'
+						: undefined
+				"
 			>
+				{{ exampleName }}
+			</DBSelect>
 		</template>
 	</DefaultComponent>
 </template>

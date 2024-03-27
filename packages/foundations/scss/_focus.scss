@@ -3,9 +3,7 @@
 
 %focus-placeholder {
 	outline: #{variables.$db-border-height-2xs} solid #{colors.$db-informational-contrast-high-enabled};
-	outline-offset: calc(
-		#{variables.$db-border-height-xs} + #{variables.$db-border-height-2xs}
-	);
+	outline-offset: variables.$db-border-height-xs;
 
 	// TODO: The fallback currently only includes the same CSS Custom Property, which doesn't make any sense
 	transition:

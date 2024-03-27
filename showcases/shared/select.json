@@ -196,44 +196,6 @@
 				}
 			},
 			{
-				"name": "Filled - Invalid",
-				"style": {
-					"width": "300px"
-				},
-				"props": {
-					"options": [
-						{
-							"value": "Filled - Invalid"
-						},
-						{
-							"value": "Option 2"
-						}
-					],
-					"label": "Label",
-					"value": "Filled - Invalid",
-					"invalid": true
-				}
-			},
-			{
-				"name": "Filled - Valid",
-				"style": {
-					"width": "300px"
-				},
-				"props": {
-					"options": [
-						{
-							"value": "Filled - Valid"
-						},
-						{
-							"value": "Option 2"
-						}
-					],
-					"label": "Label",
-					"value": "Filled - Valid",
-					"invalid": false
-				}
-			},
-			{
 				"name": "Disabled",
 				"style": {
 					"width": "300px"
@@ -290,46 +252,6 @@
 					],
 					"label": "Label",
 					"value": "Filled",
-					"variant": "floating"
-				}
-			},
-			{
-				"name": "Filled - Invalid",
-				"style": {
-					"width": "300px"
-				},
-				"props": {
-					"options": [
-						{
-							"value": "Filled - Invalid"
-						},
-						{
-							"value": "Option 2"
-						}
-					],
-					"label": "Label",
-					"invalid": true,
-					"value": "Filled - Invalid",
-					"variant": "floating"
-				}
-			},
-			{
-				"name": "Filled - Valid",
-				"style": {
-					"width": "300px"
-				},
-				"props": {
-					"options": [
-						{
-							"value": "Filled - Valid"
-						},
-						{
-							"value": "Option 2"
-						}
-					],
-					"label": "Label",
-					"value": "Filled - Valid",
-					"invalid": false,
 					"variant": "floating"
 				}
 			},
@@ -430,25 +352,6 @@
 						}
 					],
 					"label": "Label",
-					"required": true
-				}
-			},
-			{
-				"name": "Required - Filled",
-				"style": {
-					"width": "300px"
-				},
-				"props": {
-					"options": [
-						{
-							"value": "Required - Filled"
-						},
-						{
-							"value": "Option 2"
-						}
-					],
-					"label": "Label",
-					"value": "Required - Filled",
 					"required": true
 				}
 			}

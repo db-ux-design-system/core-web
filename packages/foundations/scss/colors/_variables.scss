@@ -176,6 +176,7 @@ $db-brand-on-bg-pressed: var(--db-brand-on-bg-pressed);
 $db-brand-on-bg-weak-enabled: var(--db-brand-on-bg-weak-enabled);
 $db-brand-on-bg-weak-hover: var(--db-brand-on-bg-weak-hover);
 $db-brand-on-bg-weak-pressed: var(--db-brand-on-bg-weak-pressed);
+$db-brand-on-contrast-enabled: var(--db-brand-on-contrast-enabled);
 $db-brand-contrast-high-enabled: var(--db-brand-contrast-high-enabled);
 $db-brand-contrast-high-hover: var(--db-brand-contrast-high-hover);
 $db-brand-contrast-high-pressed: var(--db-brand-contrast-high-pressed);
@@ -207,6 +208,7 @@ $db-neutral-on-bg-pressed: var(--db-neutral-on-bg-pressed);
 $db-neutral-on-bg-weak-enabled: var(--db-neutral-on-bg-weak-enabled);
 $db-neutral-on-bg-weak-hover: var(--db-neutral-on-bg-weak-hover);
 $db-neutral-on-bg-weak-pressed: var(--db-neutral-on-bg-weak-pressed);
+$db-neutral-on-contrast-enabled: var(--db-neutral-on-contrast-enabled);
 $db-neutral-contrast-high-enabled: var(--db-neutral-contrast-high-enabled);
 $db-neutral-contrast-high-hover: var(--db-neutral-contrast-high-hover);
 $db-neutral-contrast-high-pressed: var(--db-neutral-contrast-high-pressed);
@@ -245,6 +247,9 @@ $db-informational-on-bg-weak-enabled: var(
 $db-informational-on-bg-weak-hover: var(--db-informational-on-bg-weak-hover);
 $db-informational-on-bg-weak-pressed: var(
 	--db-informational-on-bg-weak-pressed
+);
+$db-informational-on-contrast-enabled: var(
+	--db-informational-on-contrast-enabled
 );
 $db-informational-contrast-high-enabled: var(
 	--db-informational-contrast-high-enabled
@@ -289,6 +294,7 @@ $db-warning-on-bg-pressed: var(--db-warning-on-bg-pressed);
 $db-warning-on-bg-weak-enabled: var(--db-warning-on-bg-weak-enabled);
 $db-warning-on-bg-weak-hover: var(--db-warning-on-bg-weak-hover);
 $db-warning-on-bg-weak-pressed: var(--db-warning-on-bg-weak-pressed);
+$db-warning-on-contrast-enabled: var(--db-warning-on-contrast-enabled);
 $db-warning-contrast-high-enabled: var(--db-warning-contrast-high-enabled);
 $db-warning-contrast-high-hover: var(--db-warning-contrast-high-hover);
 $db-warning-contrast-high-pressed: var(--db-warning-contrast-high-pressed);
@@ -322,6 +328,7 @@ $db-successful-on-bg-pressed: var(--db-successful-on-bg-pressed);
 $db-successful-on-bg-weak-enabled: var(--db-successful-on-bg-weak-enabled);
 $db-successful-on-bg-weak-hover: var(--db-successful-on-bg-weak-hover);
 $db-successful-on-bg-weak-pressed: var(--db-successful-on-bg-weak-pressed);
+$db-successful-on-contrast-enabled: var(--db-successful-on-contrast-enabled);
 $db-successful-contrast-high-enabled: var(
 	--db-successful-contrast-high-enabled
 );
@@ -357,6 +364,7 @@ $db-critical-on-bg-pressed: var(--db-critical-on-bg-pressed);
 $db-critical-on-bg-weak-enabled: var(--db-critical-on-bg-weak-enabled);
 $db-critical-on-bg-weak-hover: var(--db-critical-on-bg-weak-hover);
 $db-critical-on-bg-weak-pressed: var(--db-critical-on-bg-weak-pressed);
+$db-critical-on-contrast-enabled: var(--db-critical-on-contrast-enabled);
 $db-critical-contrast-high-enabled: var(--db-critical-contrast-high-enabled);
 $db-critical-contrast-high-hover: var(--db-critical-contrast-high-hover);
 $db-critical-contrast-high-pressed: var(--db-critical-contrast-high-pressed);

@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import DefaultComponent from "../DefaultComponent.vue";
 import defaultComponentVariants from "../../../../shared/divider.json";
-import { DBDivider, DBInfotext } from "../../../../../output/vue/vue3/src";
+import { DBDivider, DBInfotext } from "../../../../../output/vue/src";
 </script>
 
 <template>

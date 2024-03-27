@@ -35,7 +35,16 @@ const getTextarea = ({
 			placeholder={placeholder ?? children}
 			rows={rows}
 			value={dynamicValue}
-			invalid={invalid}></DBTextarea>
+			invalid={invalid}
+			invalidMessage={
+				invalid !== undefined || required
+					? 'Invalid Message'
+					: undefined
+			}
+			validMessage={
+				invalid !== undefined || required ? 'Valid Message' : undefined
+			}
+		/>
 	);
 };
 

@@ -57,7 +57,7 @@ export interface DBTabsDefaultState {
 	evaluateScrollButtons: (tabList: Element) => void;
 	convertTabs: (tabs?: unknown[] | string | undefined) => DBSimpleTabProps[];
 	initTabList: () => void;
-	initTabs: () => void;
+	initTabs: (init?: boolean) => void;
 }
 
 export type DBTabsState = DBTabsDefaultState & GlobalState & InitializedState;

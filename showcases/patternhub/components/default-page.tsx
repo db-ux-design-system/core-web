@@ -1,6 +1,7 @@
 import { useRouter } from 'next/router';
 import dynamic from 'next/dynamic';
 import { useEffect, useState } from 'react';
+import hljs from 'highlight.js';
 import {
 	DBBrand,
 	DBButton,
@@ -18,6 +19,10 @@ const DefaultPage = ({ children }: any) => {
 	const [drawerOpen, setDrawerOpen] = useState<boolean>(false);
 	const [lastScroll, setLastScroll] = useState<string>();
 	const router = useRouter();
+
+	useEffect(() => {
+		hljs.highlightAll();
+	}, []);
 
 	useEffect(() => {
 		if (router.query) {
@@ -61,11 +66,11 @@ const DefaultPage = ({ children }: any) => {
 				<DBPage
 					fadeIn
 					type="fixedHeaderFooter"
-					slotHeader={
+					header={
 						<DBHeader
 							drawerOpen={drawerOpen}
 							onToggle={setDrawerOpen}
-							slotBrand={
+							brand={
 								<DBBrand
 									imgSrc={`${
 										process.env.NEXT_PUBLIC_BASE_PATH ?? ''
@@ -75,12 +80,12 @@ const DefaultPage = ({ children }: any) => {
 									{process.env.NEXT_PUBLIC_APP_NAME}
 								</DBBrand>
 							}
-							slotCallToAction={
+							callToAction={
 								<DBButton icon="search" variant="ghost" noText>
 									Search
 								</DBButton>
 							}
-							slotActionBar={<VersionSwitcher />}>
+							actionBar={<VersionSwitcher />}>
 							<Navigation />
 						</DBHeader>
 					}>
