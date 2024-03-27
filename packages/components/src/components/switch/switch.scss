@@ -122,7 +122,7 @@ $checked-active-transition-size: calc(
 			&::before {
 				inline-size: $switch-active-thumb-size;
 				block-size: $switch-active-thumb-size;
-				background: colors.$db-current-color-bg-enabled;
+				background-color: colors.$db-current-color-bg-enabled;
 			}
 		}
 	}
