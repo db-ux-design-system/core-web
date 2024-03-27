@@ -1,21 +1,16 @@
 import { test, expect } from '@playwright/experimental-ct-react';
 import AxeBuilder from '@axe-core/playwright';
 
-import { DBSelect } from './index';
+import { DBInput } from './index';
 // @ts-ignore - vue can only find it with .ts as file ending
 import { DEFAULT_VIEWPORT } from '../../shared/constants.ts';
 
-const comp: any = (
-	<DBSelect id="test" label="Label" message="Description">
-		<option value="test1">Test1</option>
-		<option value="test2">Test2</option>
-	</DBSelect>
-);
+const comp: any = <DBInput value="Test" label="Label"></DBInput>;
 
 const testComponent = () => {
-	test('should contain text', async ({ mount }) => {
+	test('Label should have Text', async ({ mount }) => {
 		const component = await mount(comp);
-		await expect(component).toContainText('Test');
+		await expect(component).toContainText('Label');
 	});
 
 	test('should match screenshot', async ({ mount }) => {
@@ -24,12 +19,10 @@ const testComponent = () => {
 	});
 };
 const testA11y = () => {
-	test('should not have A11y issues', async ({ page, mount }) => {
+	test('should not have any A11y issues', async ({ page, mount }) => {
 		await mount(comp);
 		const accessibilityScanResults = await new AxeBuilder({ page })
-			.include('.db-select')
-			.exclude('test-placeholder')
-			.disableRules('color-contrast')
+			.include('.db-input')
 			.analyze();
 
 		expect(accessibilityScanResults.violations).toEqual([]);
@@ -37,29 +30,23 @@ const testA11y = () => {
 };
 
 const testAction = () => {
-	test('should change on select', async ({ page, mount }) => {
+	test('should change on input', async ({ page, mount }) => {
 		let test: string = '';
 		const comp: any = (
-			<DBSelect
+			<DBInput
 				label="Label"
-				data-testid="select"
 				onChange={() => {
-					test = 'test1';
-				}}>
-				<option data-testid="option1" value="test1">
-					Test1
-				</option>
-				<option value="test2">Test2</option>
-			</DBSelect>
+					test = 'test';
+				}}
+			/>
 		);
 		const component = await mount(comp);
-		const select = component.getByTestId('select');
-		const selected = await select.selectOption({ label: 'Test1' });
-		expect(selected).toContain(test);
+		await component.getByRole('textbox').fill('test');
+		expect(test).toEqual('test');
 	});
 };
 
-test.describe('DBSelect', () => {
+test.describe('DBInput', () => {
 	test.use({ viewport: DEFAULT_VIEWPORT });
 	testComponent();
 	testA11y();

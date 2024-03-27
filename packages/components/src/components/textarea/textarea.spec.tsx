@@ -19,8 +19,7 @@ const testComponent = () => {
 	});
 };
 const testA11y = () => {
-	// TODO
-	test.skip('should not have any A11y issues', async ({ page, mount }) => {
+	test('should not have any A11y issues', async ({ page, mount }) => {
 		await mount(comp);
 		const accessibilityScanResults = await new AxeBuilder({ page })
 			.include('.db-textarea')
@@ -30,8 +29,26 @@ const testA11y = () => {
 	});
 };
 
+const testAction = () => {
+	test('should change on input', async ({ page, mount }) => {
+		let test: string = '';
+		const comp: any = (
+			<DBTextarea
+				label="Label"
+				onChange={() => {
+					test = 'test';
+				}}
+			/>
+		);
+		const component = await mount(comp);
+		await component.getByRole('textbox').fill('test');
+		expect(test).toEqual('test');
+	});
+};
+
 test.describe('DBTextarea', () => {
 	test.use({ viewport: DEFAULT_VIEWPORT });
 	testComponent();
 	testA11y();
+	testAction();
 });
