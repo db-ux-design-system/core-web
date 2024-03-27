@@ -31,4 +31,7 @@ export type DBPopoverProps = DBPopoverDefaultProps &
 
 export interface DBPopoverDefaultState {}
 
-export type DBPopoverState = DBPopoverDefaultState & GlobalState & PopoverState;
+export type DBPopoverState = DBPopoverDefaultState &
+	GlobalState &
+	PopoverState &
+	InitializedState;

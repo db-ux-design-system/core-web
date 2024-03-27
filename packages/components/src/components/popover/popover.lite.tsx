@@ -1,4 +1,11 @@
-import { Slot, useMetadata, useRef, useStore } from '@builder.io/mitosis';
+import {
+	onMount,
+	onUpdate,
+	Slot,
+	useMetadata,
+	useRef,
+	useStore
+} from '@builder.io/mitosis';
 import { DBPopoverProps, DBPopoverState } from './model';
 import { cls, isInView } from '../../utils';
 
@@ -10,6 +17,7 @@ export default function DBPopover(props: DBPopoverProps) {
 	const ref = useRef<HTMLDivElement>(null);
 	// jscpd:ignore-start
 	const state = useStore<DBPopoverState>({
+		initialized: false,
 		handleAutoPlacement: () => {
 			if (ref) {
 				const articles = ref.getElementsByTagName('article');
@@ -29,6 +37,22 @@ export default function DBPopover(props: DBPopoverProps) {
 		}
 	});
 
+	onMount(() => {
+		state.initialized = true;
+	});
+
+	onUpdate(() => {
+		if (ref && state.initialized) {
+			const children = Array.from(ref.children);
+			if (children.length < 2) {
+				// TODO: Shall we add a console.warn here? Either trigger or content is missing in this case
+			} else {
+				children[0].setAttribute('aria-haspopup', 'true');
+			}
+			state.initialized = false;
+		}
+	}, [ref, state.initialized]);
+
 	// jscpd:ignore-end
 
 	return (
@@ -36,7 +60,6 @@ export default function DBPopover(props: DBPopoverProps) {
 			ref={ref}
 			id={props.id}
 			class={cls('db-popover', props.className)}
-			aria-haspopup="true"
 			onFocus={() => state.handleAutoPlacement()}
 			onMouseEnter={() => state.handleAutoPlacement()}>
 			<Slot name="trigger" />

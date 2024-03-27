@@ -9,11 +9,9 @@ For general installation and configuration take a look at the [react-components]
 import { DBPopover, DBButton } from "@db-ui/react-components";
 
 const App = () => (
-	<DBPopover
-		id="popover-01"
-		slotTrigger={<DBButton>Hover on me to open Popover</DBButton>}
-	>
-		Popover
+	<DBPopover slotTrigger={<DBButton>Hover on me to open Popover</DBButton>}>
+		Use any html here like a button:
+		<button>Test</button>
 	</DBPopover>
 );
 

@@ -1,4 +1,3 @@
-/* eslint-disable unicorn/prefer-logical-operator-over-ternary */
 import { DBPopover, DBButton } from '../../../../../output/react/src';
 import DefaultComponent from '../index';
 import defaultComponentVariants from '../../../../shared/popover.json';
@@ -25,9 +24,7 @@ const getPopover = ({
 		animation={animation}
 		delay={delay}
 		id={id}>
-		{content ? (
-			content
-		) : (
+		{content ?? (
 			<ul className="popover-list">
 				<li>Popover Custom Item 1</li>
 				<li>Popover Custom Item 2</li>
