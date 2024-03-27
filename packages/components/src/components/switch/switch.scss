@@ -174,7 +174,7 @@ $checked-active-transition-size: calc(
 				@extend %db-successful-contrast-low;
 
 				&::before {
-					background: colors.$db-current-color-enabled;
+					background-color: colors.$db-current-color-enabled;
 				}
 			}
 
