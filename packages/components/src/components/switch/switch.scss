@@ -66,7 +66,7 @@ $checked-active-transition-size: calc(
 		align-items: center;
 		gap: $switch-fixed-padding;
 
-		background: colors.$db-current-color-bg-enabled;
+		background-color: colors.$db-current-color-bg-enabled;
 		border-radius: variables.$db-border-radius-full;
 
 		@include helpers.active {
@@ -113,7 +113,7 @@ $checked-active-transition-size: calc(
 			--db-current-icon-color: #{colors.$db-current-color-bg-enabled};
 			--thumb-position: calc(100% + #{$switch-fixed-padding});
 
-			background: colors.$db-current-color-enabled;
+			background-color: colors.$db-current-color-enabled;
 
 			@include helpers.hover {
 				background-color: colors.$db-current-color-hover;
@@ -127,7 +127,7 @@ $checked-active-transition-size: calc(
 
 			&::before {
 				block-size: $switch-active-thumb-size;
-				background: colors.$db-current-color-bg-enabled;
+				background-color: colors.$db-current-color-bg-enabled;
 				margin: 0;
 			}
 		}
@@ -180,7 +180,7 @@ $checked-active-transition-size: calc(
 				@extend %db-successful-contrast-low;
 
 				&::before {
-					background: colors.$db-current-color-enabled;
+					background-color: colors.$db-current-color-enabled;
 				}
 			}
 
