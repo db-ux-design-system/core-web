@@ -43,7 +43,7 @@ export default function DBPopover(props: DBPopoverProps) {
 
 	onUpdate(() => {
 		if (ref && state.initialized) {
-			const children = Array.from(ref.children);
+			const children: Element[] = Array.from(ref.children);
 			if (children.length < 2) {
 				// TODO: Shall we add a console.warn here? Either trigger or content is missing in this case
 			} else {
