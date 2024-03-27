@@ -8,10 +8,12 @@
 	@include colors.bg-transparent-interactive();
 
 	display: inline-flex;
-	padding: variables.$db-spacing-fixed-xs variables.$db-spacing-fixed-sm;
+	padding: variables.$db-spacing-fixed-xs;
 	align-items: center;
 	white-space: nowrap;
 	position: relative;
+
+	border: none;
 
 	&:has(input:disabled) {
 		opacity: variables.$db-opacity-sm;
@@ -22,7 +24,6 @@
 			position: absolute;
 			appearance: none;
 			inline-size: 100%;
-			block-size: calc(100% + #{variables.$db-border-height-sm});
 			margin-inline-end: initial;
 			inset: 0;
 
@@ -32,14 +33,26 @@
 				box-shadow: none;
 			}
 		}
+
+		&:focus-visible {
+			&::before {
+				@extend %focus-placeholder;
+
+				content: "";
+				position: absolute;
+				inset-block-start: 0;
+				inset-inline-start: 0;
+				inline-size: 100%;
+				block-size: 100%;
+				outline-offset: variables.$db-spacing-fixed-2xs;
+				border-radius: variables.$db-border-radius-md;
+				z-index: 1;
+			}
+		}
 	}
 
 	&.is-icon-text-replace[data-icon]::before {
 		margin-inline-end: 0;
-	}
-
-	&:has(input:focus-visible) {
-		@extend %focus-placeholder;
 	}
 
 	&:has(input:checked) {

@@ -9,11 +9,9 @@
 		@include db-puls.set-db-puls-horizontal;
 
 		&::after {
-			inset-block-start: calc(
-				#{variables.$db-spacing-fixed-xs} * 2 + #{form-components.$font-size-height} +
-					#{variables.$db-border-height-sm} * 2
+			inset-block-end: calc(
+				-1 * (#{variables.$db-spacing-fixed-2xs} + #{variables.$db-border-height-lg})
 			);
-			inset-block-end: auto;
 		}
 
 		&:checked {
@@ -58,19 +56,22 @@
 			inline-size: 100%;
 
 			.db-tab {
-				margin-block: variables.$db-spacing-fixed-sm;
+				margin-block-start: variables.$db-spacing-fixed-xs;
+				margin-block-end: calc(
+					2 * #{variables.$db-spacing-fixed-2xs} + #{variables.$db-border-height-lg}
+				);
 			}
 
 			db-tab {
 				&:first-of-type {
 					.db-tab {
-						margin-inline-start: variables.$db-spacing-fixed-sm;
+						margin-inline-start: variables.$db-spacing-fixed-xs;
 					}
 				}
 
 				&:last-of-type {
 					.db-tab {
-						margin-inline-end: variables.$db-spacing-fixed-sm;
+						margin-inline-end: variables.$db-spacing-fixed-xs;
 					}
 				}
 			}
@@ -78,11 +79,11 @@
 			&:not(:has(db-tab)) {
 				.db-tab {
 					&:first-of-type {
-						margin-inline-start: variables.$db-spacing-fixed-sm;
+						margin-inline-start: variables.$db-spacing-fixed-xs;
 					}
 
 					&:last-of-type {
-						margin-inline-end: variables.$db-spacing-fixed-sm;
+						margin-inline-end: variables.$db-spacing-fixed-xs;
 					}
 				}
 			}
@@ -94,40 +95,45 @@
 			border-radius: variables.$db-border-radius-md;
 			block-size: variables.$db-border-height-lg;
 			position: absolute;
+			inset-inline: variables.$db-spacing-fixed-xs;
 
-			inset-inline: variables.$db-spacing-fixed-sm;
-
+			// todo
 			/* 2x padding + 1x margin + text + 3x border  */
 			inset-block-start: calc(
-				2 * #{variables.$db-spacing-fixed-xs} + #{variables.$db-spacing-fixed-sm} +
-					#{form-components.$font-size-height} + #{variables.$db-border-height-sm} *
-					3
+				3 * #{variables.$db-spacing-fixed-xs} + #{variables.$db-spacing-fixed-2xs} +
+					#{form-components.$font-size-height}
 			);
 		}
 	}
 
 	&[aria-orientation="vertical"] {
+		inline-size: var(
+			--db-tab-list-vertical-default-width,
+			#{variables.$db-spacing-fixed-3xl}
+		);
+		padding-inline-end: variables.$db-spacing-fixed-xs;
+
 		.db-tab-list-scroll-container {
 			@extend %vertical-puls;
 			flex-direction: column;
-			overflow-x: hidden;
-			overflow-y: auto;
 			block-size: 100%;
 
 			.db-tab {
-				margin-inline: variables.$db-spacing-fixed-sm;
+				margin-inline-start: calc(
+					#{variables.$db-border-height-lg} + #{variables.$db-spacing-fixed-2xs}
+				);
 			}
 
 			db-tab {
 				&:first-of-type {
 					.db-tab {
-						margin-block-start: variables.$db-spacing-fixed-sm;
+						margin-block-start: variables.$db-spacing-fixed-xs;
 					}
 				}
 
 				&:last-of-type {
 					.db-tab {
-						margin-block-end: variables.$db-spacing-fixed-sm;
+						margin-block-end: variables.$db-spacing-fixed-xs;
 					}
 				}
 			}
@@ -135,11 +141,11 @@
 			&:not(:has(db-tab)) {
 				.db-tab {
 					&:first-of-type {
-						margin-block-start: variables.$db-spacing-fixed-sm;
+						margin-block-start: variables.$db-spacing-fixed-xs;
 					}
 
 					&:last-of-type {
-						margin-block-end: variables.$db-spacing-fixed-sm;
+						margin-block-end: variables.$db-spacing-fixed-xs;
 					}
 				}
 			}
@@ -150,13 +156,9 @@
 			content: "";
 			border-radius: variables.$db-border-radius-md;
 			inline-size: variables.$db-border-height-lg;
-			inset-block: variables.$db-spacing-fixed-sm;
+			inset-block: variables.$db-spacing-fixed-xs;
 			position: absolute;
-
-			inset-inline-start: calc(
-				-1 * #{variables.$db-spacing-fixed-xs} + #{variables.$db-spacing-fixed-sm} +
-					#{variables.$db-border-height-sm}
-			);
+			inset-inline-start: 0;
 		}
 	}
 }

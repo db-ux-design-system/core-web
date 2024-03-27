@@ -240,6 +240,17 @@ const FormComponent = () => {
 					))}
 				</DBAccordion>
 
+				<br />
+				<br />
+				<br />
+
+				<DBTab>Test 1</DBTab>
+
+				<br />
+				<br />
+				<br />
+				<br />
+
 				<DBTabs>
 					<DBTabList>
 						<DBTab>Test 1</DBTab>
@@ -250,6 +261,25 @@ const FormComponent = () => {
 					<DBTabPanel>Tab Panel 2</DBTabPanel>
 					<DBTabPanel>Tab Panel 3</DBTabPanel>
 				</DBTabs>
+
+				<br />
+				<br />
+				<br />
+
+				<DBTabs orientation="vertical">
+					<DBTabList>
+						<DBTab icon="airplane">Airplane Button</DBTab>
+						<DBTab iconAfter="cancel">Cancel Button</DBTab>
+						<DBTab>Long Button Label</DBTab>
+					</DBTabList>
+					<DBTabPanel>Tab Panel 1</DBTabPanel>
+					<DBTabPanel>Tab Panel 2</DBTabPanel>
+					<DBTabPanel>Tab Panel 3</DBTabPanel>
+				</DBTabs>
+
+				<br />
+				<br />
+				<br />
 
 				<DBSelect
 					id="select-test"

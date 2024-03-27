@@ -32,14 +32,14 @@ $max-tabs: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 	position: relative;
 
 	.db-tab-panel {
-		padding: 0 variables.$db-spacing-fixed-sm;
+		padding: 0 variables.$db-spacing-fixed-xs;
 	}
 
 	&[data-orientation="vertical"] {
 		flex-direction: row;
 
 		.db-tab-panel {
-			padding: variables.$db-spacing-fixed-sm 0;
+			padding: variables.$db-spacing-fixed-xs 0;
 		}
 	}
 
@@ -110,7 +110,7 @@ $max-tabs: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 			@include angular-button-workaround() {
 				position: absolute;
 				z-index: 2;
-				inset-block: variables.$db-spacing-fixed-sm;
+				inset-block: variables.$db-spacing-fixed-xs;
 			}
 		}
 	}
