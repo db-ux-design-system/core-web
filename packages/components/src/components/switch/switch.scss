@@ -61,7 +61,7 @@ $checked-active-transition-size: calc(
 		align-items: center;
 		gap: $switch-fixed-padding;
 
-		background: colors.$db-current-color-bg-enabled;
+		background-color: colors.$db-current-color-bg-enabled;
 		border-radius: variables.$db-border-radius-full;
 
 		@include helpers.active {
