@@ -107,7 +107,7 @@ $checked-active-transition-size: calc(
 			--db-current-icon-color: #{colors.$db-current-color-bg-enabled};
 			--thumb-position: calc(100% + #{$switch-fixed-padding});
 
-			background: colors.$db-current-color-enabled;
+			background-color: colors.$db-current-color-enabled;
 
 			@include helpers.hover {
 				background-color: colors.$db-current-color-hover;
