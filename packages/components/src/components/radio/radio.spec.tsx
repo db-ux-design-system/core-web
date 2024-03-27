@@ -29,8 +29,42 @@ const testA11y = () => {
 	});
 };
 
+const testAction = () => {
+	test(`should handle change`, async ({ mount, page }) => {
+		let test = '';
+		const actionComp: any = (
+			<div>
+				<DBRadio
+					data-testid="test"
+					onChange={() => {
+						test = 'test';
+					}}
+					name="test"
+					label="Test"
+				/>
+				<DBRadio
+					data-testid="test2"
+					onChange={() => {
+						test = 'test2';
+					}}
+					name="test"
+					label="Test2"
+				/>
+			</div>
+		);
+		const component = await mount(actionComp);
+		await component.getByTestId('test').check();
+		expect(test).toEqual('test');
+		await component.getByTestId('test2').check();
+		expect(test).toEqual('test2');
+		const radio1Unchecked = await component.getByTestId('test').isChecked();
+		expect(!radio1Unchecked).toBeTruthy();
+	});
+};
+
 test.describe('DBRadio', () => {
 	test.use({ viewport: DEFAULT_VIEWPORT });
 	testComponent();
 	testA11y();
+	testAction();
 });

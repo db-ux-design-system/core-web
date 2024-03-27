@@ -11,10 +11,10 @@ import { DBTabPanel } from '../tab-panel';
 const comp: any = (
 	<DBTabs>
 		<DBTabList>
-			<DBTab name="test" index={0}>
+			<DBTab data-testid="test" name="test" index={0}>
 				Test 1
 			</DBTab>
-			<DBTab name="test" index={1}>
+			<DBTab data-testid="test2" name="test" index={1}>
 				Test 2
 			</DBTab>
 			<DBTab name="test" index={2}>
@@ -48,9 +48,19 @@ const testComponent = () => {
 	});
 };
 
+const testActions = () => {
+	test('should be clickable', async ({ mount }) => {
+		const component = await mount(comp);
+		await component.getByTestId('test2').check();
+		const tabChecked = await component.getByTestId('test').isChecked();
+		expect(!tabChecked).toBeTruthy();
+	});
+};
+
 test.describe('DBTabs', () => {
 	test.use({ viewport: DEFAULT_VIEWPORT });
 	testComponent();
+	testActions();
 });
 
 // TODO: AXE has problems with tabs...
