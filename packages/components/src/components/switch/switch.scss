@@ -10,6 +10,10 @@ $switch-border-workaround: calc(
 	#{variables.$db-border-height-2xs} / 2 * var(--device-pixel-ratio, 0)
 );
 
+$switch-inactive-thumb-size: calc(
+	#{form-components.$font-size-height} - #{$switch-fixed-padding} * 2
+);
+
 $switch-active-thumb-size: calc(
 	#{form-components.$font-size-height} - #{$switch-border-workaround}
 );
@@ -23,6 +27,7 @@ $checked-active-transition-size: calc(
 		inline-size: calc(
 			#{$switch-active-thumb-size} - #{$switch-fixed-padding} * 2 + #{variables.$db-spacing-fixed-2xs}
 		);
+		margin: 0;
 	}
 
 	&:checked {
@@ -45,7 +50,7 @@ $checked-active-transition-size: calc(
 
 	& > input {
 		--db-icon-margin-start: 0;
-		--thumb-position: calc(0% - #{$switch-border-workaround});
+		--thumb-position: calc(0% + #{$switch-fixed-padding});
 		@extend %db-overwrite-font-size-sm;
 
 		@include icons.set-icon("close", "after");
@@ -71,24 +76,25 @@ $checked-active-transition-size: calc(
 		&::after {
 			visibility: hidden;
 			align-self: center;
+			aspect-ratio: 1;
 		}
 
 		// thumb
 		&::before {
 			content: "";
-			inline-size: calc(
-				#{form-components.$font-size-height} - #{$switch-fixed-padding} *
-					2
-			);
-			block-size: calc(
-				#{form-components.$font-size-height} - #{$switch-fixed-padding} *
-					2
-			);
+			aspect-ratio: 1;
+			block-size: $switch-inactive-thumb-size;
 			background: colors.$db-current-color-enabled;
 			border-radius: variables.$db-border-radius-full;
 			transform: translateX(var(--thumb-position));
 
+			margin-inline-end: calc(
+				#{$switch-active-thumb-size} - #{$switch-inactive-thumb-size}
+			);
+
 			transition:
+				margin variables.$db-transition-duration-fast
+					variables.$db-transition-timing-emotional,
 				inline-size variables.$db-transition-duration-fast
 					variables.$db-transition-timing-emotional,
 				block-size variables.$db-transition-duration-fast
@@ -120,9 +126,9 @@ $checked-active-transition-size: calc(
 			}
 
 			&::before {
-				inline-size: $switch-active-thumb-size;
 				block-size: $switch-active-thumb-size;
 				background: colors.$db-current-color-bg-enabled;
+				margin: 0;
 			}
 		}
 	}
@@ -179,8 +185,8 @@ $checked-active-transition-size: calc(
 			}
 
 			&::before {
-				inline-size: $switch-active-thumb-size;
 				block-size: $switch-active-thumb-size;
+				margin: 0;
 			}
 		}
 	}
@@ -190,7 +196,6 @@ $checked-active-transition-size: calc(
 		& > input {
 			&::after {
 				visibility: visible;
-				inline-size: $switch-active-thumb-size;
 				block-size: $switch-active-thumb-size;
 			}
 
@@ -201,7 +206,6 @@ $checked-active-transition-size: calc(
 					transform: translateX(
 						calc(-100% - #{$switch-fixed-padding})
 					);
-					inline-size: $switch-active-thumb-size;
 					block-size: $switch-active-thumb-size;
 				}
 			}

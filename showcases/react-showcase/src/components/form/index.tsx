@@ -1,6 +1,4 @@
 import { useEffect, useState } from 'react';
-import { DBTabList, DBTabPanel, DBTabs } from '@db-ui/react-components/src';
-import { DBDivider } from '@db-ui/react-components';
 import {
 	DBButton,
 	DBCheckbox,
@@ -11,7 +9,11 @@ import {
 	DBTextarea,
 	DBAccordion,
 	DBAccordionItem,
-	DBTab
+	DBTab,
+	DBDivider,
+	DBTabList,
+	DBTabPanel,
+	DBTabs
 } from '../../../../../output/react/src';
 import type {
 	ChangeEvent,
