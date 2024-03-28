@@ -13,7 +13,7 @@ For general installation and configuration take a look at the [components](https
 			Hover on me to open Popover
 		</button>
 		<article class="db-popover-content">
-			Use any html here like a button:
+			Use any html here like e.g. a button:
 			<button>Test</button>
 		</article>
 	</div>
