@@ -41,7 +41,7 @@ export interface DBTextareaDefaultProps {
 export type DBTextareaProps = DBTextareaDefaultProps &
 	ChangeEventProps<HTMLTextAreaElement> &
 	DefaultVariantProps &
-	InputEventProps<HTMLInputElement> &
+	InputEventProps<HTMLTextAreaElement> &
 	FocusEventProps<HTMLTextAreaElement> &
 	FormProps &
 	GlobalProps &
@@ -52,7 +52,7 @@ export interface DBTextareaDefaultState {}
 
 export type DBTextareaState = DBTextareaDefaultState &
 	ChangeEventState<HTMLTextAreaElement> &
-	InputEventState<HTMLInputElement> &
+	InputEventState<HTMLTextAreaElement> &
 	FocusEventState<HTMLTextAreaElement> &
 	FormState &
 	GlobalState;

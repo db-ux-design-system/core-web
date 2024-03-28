@@ -408,16 +408,17 @@ export type ItemClickState = {
 	handleItemClick: (id: string) => void;
 };
 
-export type ChangeEvent<T> = Event;
+export type InputEvent<T> = Event;
 export type InputEventProps<T> = {
-	input?: (event: ChangeEvent<T>) => void;
-	onInput?: (event: ChangeEvent<T>) => void;
+	input?: (event: InputEvent<T>) => void;
+	onInput?: (event: InputEvent<T>) => void;
 };
 
 export type InputEventState<T> = {
-	handleInput: (event: ChangeEvent<T>) => void;
+	handleInput: (event: InputEvent<T>) => void;
 };
 
+export type ChangeEvent<T> = Event;
 export type ChangeEventProps<T> = {
 	change?: (event: ChangeEvent<T>) => void;
 	onChange?: (event: ChangeEvent<T>) => void;

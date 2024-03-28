@@ -17,6 +17,10 @@ const overwriteEvents = (tmp) => {
 		'export type ChangeEvent<T> = React.ChangeEvent<T>;'
 	);
 	modelFileContent = modelFileContent.replace(
+		'export type InputEvent<T> = Event;',
+		'export type InputEvent<T> = React.FormEvent<T>;'
+	);
+	modelFileContent = modelFileContent.replace(
 		'export type InteractionEvent<T> = FocusEvent;',
 		'export type InteractionEvent<T> = React.FocusEvent<T>;'
 	);
@@ -45,6 +49,10 @@ module.exports = (tmp) => {
 				{
 					from: /= useState/g,
 					to: '= useState<any>'
+				},
+				{
+					from: `handleFrameworkEvent(this`,
+					to: `// handleFrameworkEvent(this`
 				},
 				{
 					from: ` } from "react"`,

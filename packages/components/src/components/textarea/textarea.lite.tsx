@@ -13,7 +13,7 @@ import {
 	DEFAULT_LABEL,
 	DEFAULT_MESSAGE_ID_SUFFIX
 } from '../../shared/constants';
-import { ChangeEvent, InteractionEvent } from '../../shared/model';
+import { ChangeEvent, InputEvent, InteractionEvent } from '../../shared/model';
 import { handleFrameworkEvent } from '../../utils/form-components';
 
 useMetadata({
@@ -31,7 +31,7 @@ export default function DBTextarea(props: DBTextareaProps) {
 			placeholder: ' ',
 			rows: '4'
 		},
-		handleInput: (event: ChangeEvent<HTMLInputElement>) => {
+		handleInput: (event: InputEvent<HTMLTextAreaElement>) => {
 			if (props.onInput) {
 				props.onInput(event);
 			}
@@ -40,7 +40,7 @@ export default function DBTextarea(props: DBTextareaProps) {
 				props.input(event);
 			}
 		},
-		handleChange: (event: ChangeEvent<HTMLInputElement>) => {
+		handleChange: (event: ChangeEvent<HTMLTextAreaElement>) => {
 			if (props.onChange) {
 				props.onChange(event);
 			}

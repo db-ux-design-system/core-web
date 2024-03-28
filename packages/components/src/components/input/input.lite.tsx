@@ -14,6 +14,7 @@ import {
 	DEFAULT_MESSAGE_ID_SUFFIX
 } from '../../shared/constants';
 import {
+	InputEvent,
 	ChangeEvent,
 	InteractionEvent,
 	KeyValueType
@@ -36,7 +37,7 @@ export default function DBInput(props: DBInputProps) {
 			label: DEFAULT_LABEL,
 			placeholder: ' '
 		},
-		handleInput: (event: ChangeEvent<HTMLInputElement>) => {
+		handleInput: (event: InputEvent<HTMLInputElement>) => {
 			if (props.onInput) {
 				props.onInput(event);
 			}
