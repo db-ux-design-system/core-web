@@ -10,7 +10,7 @@ import { DBPopover, DBButton } from "@db-ui/react-components";
 
 const App = () => (
 	<DBPopover slotTrigger={<DBButton>Hover on me to open Popover</DBButton>}>
-		Use any html here like a button:
+		Use any html here like e.g. a button:
 		<button>Test</button>
 	</DBPopover>
 );
