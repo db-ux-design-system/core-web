@@ -4,8 +4,8 @@
 @use "../../styles/scrollbar";
 @use "../../styles/form-components";
 
-%horizontal-puls {
-	.db-tab input {
+%horizontal-pulse {
+	.db-tab {
 		@include db-puls.set-db-puls-horizontal;
 
 		&::after {
@@ -14,17 +14,17 @@
 			);
 		}
 
-		&:checked {
+		&:has(input:checked) {
 			@include db-puls.show-db-puls-horizontal;
 		}
 	}
 }
 
-%vertical-puls {
-	.db-tab input {
+%vertical-pulse {
+	.db-tab {
 		@include db-puls.set-db-puls-vertical;
 
-		&:checked {
+		&:has(input:checked) {
 			@include db-puls.show-db-puls-vertical;
 		}
 	}
@@ -32,25 +32,29 @@
 
 .db-tab-list {
 	position: relative;
+	z-index: 20;
 
 	.db-tab-list-scroll-container {
 		@extend %scrollbar;
 		display: flex;
 		gap: variables.$db-spacing-fixed-sm;
 		scroll-behavior: smooth;
+		padding: 0;
+		margin: 0;
 
 		.db-tab {
+			@extend %db-puls;
 			position: relative;
 
-			& input {
-				@extend %db-puls;
-			}
+			//& input {
+			//	@extend %db-puls;
+			//}
 		}
 	}
 
 	&:not([aria-orientation="vertical"]) {
 		.db-tab-list-scroll-container {
-			@extend %horizontal-puls;
+			@extend %horizontal-pulse;
 			overflow-x: auto;
 			overflow-y: hidden;
 			inline-size: 100%;
@@ -107,36 +111,45 @@
 	}
 
 	&[aria-orientation="vertical"] {
-		inline-size: var(
-			--db-tab-list-vertical-default-width,
-			#{variables.$db-spacing-fixed-3xl}
-		);
+		inline-size: var(--db-tab-list-vertical-default-width, auto);
 		padding-inline-end: variables.$db-spacing-fixed-xs;
 
+		.db-tab {
+			margin-inline-start: calc(
+				#{variables.$db-border-height-lg} + #{variables.$db-spacing-fixed-2xs}
+			);
+		}
+
+		db-tab {
+			&:first-of-type {
+				.db-tab {
+					margin-block-start: variables.$db-spacing-fixed-xs;
+				}
+			}
+
+			&:last-of-type {
+				.db-tab {
+					margin-block-end: variables.$db-spacing-fixed-xs;
+				}
+			}
+		}
+
+		label {
+			display: inline-block;
+			overflow: hidden;
+			white-space: nowrap;
+			text-overflow: ellipsis;
+
+			&:hover {
+				inline-size: auto;
+				overflow: visible;
+			}
+		}
+
 		.db-tab-list-scroll-container {
-			@extend %vertical-puls;
+			@extend %vertical-pulse;
 			flex-direction: column;
 			block-size: 100%;
-
-			.db-tab {
-				margin-inline-start: calc(
-					#{variables.$db-border-height-lg} + #{variables.$db-spacing-fixed-2xs}
-				);
-			}
-
-			db-tab {
-				&:first-of-type {
-					.db-tab {
-						margin-block-start: variables.$db-spacing-fixed-xs;
-					}
-				}
-
-				&:last-of-type {
-					.db-tab {
-						margin-block-end: variables.$db-spacing-fixed-xs;
-					}
-				}
-			}
 
 			&:not(:has(db-tab)) {
 				.db-tab {
@@ -151,6 +164,7 @@
 			}
 		}
 
+		// track for pulse
 		&::before {
 			@extend %adaptive-neutral-component;
 			content: "";

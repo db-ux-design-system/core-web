@@ -3,20 +3,43 @@
 @use "../../styles/component";
 
 .db-tab {
-	@extend %default-interactive-component;
-	@extend %transparent-border;
-	@include colors.bg-transparent-interactive();
-
 	display: inline-flex;
-	padding: variables.$db-spacing-fixed-xs;
-	align-items: center;
-	white-space: nowrap;
 	position: relative;
-
-	border: none;
 
 	&:has(input:disabled) {
 		opacity: variables.$db-opacity-sm;
+	}
+
+	&:has(input:focus-visible) {
+		&::before {
+			@extend %focus-placeholder;
+
+			content: "";
+			position: absolute;
+			inset-block-start: 0;
+			inset-inline-start: 0;
+			inline-size: 100%;
+			block-size: 100%;
+			outline-offset: variables.$db-spacing-fixed-2xs;
+			border-radius: variables.$db-border-radius-md;
+			z-index: 1;
+			pointer-events: none;
+		}
+	}
+
+	label {
+		@extend %default-interactive-component;
+		// @extend %transparent-border;
+		@include colors.bg-transparent-interactive();
+		position: relative;
+		padding: variables.$db-spacing-fixed-xs;
+		align-items: center;
+		white-space: nowrap;
+		border: none;
+
+		&:has(input:checked) {
+			font-weight: 700;
+		}
 	}
 
 	input {
@@ -26,6 +49,9 @@
 			inline-size: 100%;
 			margin-inline-end: initial;
 			inset: 0;
+			background: var(--db-current-bg-color, #{colors.$db-base-bg});
+			border-radius: variables.$db-border-radius-md;
+			z-index: -1;
 
 			&:focus-within,
 			&:focus-visible {
@@ -33,30 +59,10 @@
 				box-shadow: none;
 			}
 		}
-
-		&:focus-visible {
-			&::before {
-				@extend %focus-placeholder;
-
-				content: "";
-				position: absolute;
-				inset-block-start: 0;
-				inset-inline-start: 0;
-				inline-size: 100%;
-				block-size: 100%;
-				outline-offset: variables.$db-spacing-fixed-2xs;
-				border-radius: variables.$db-border-radius-md;
-				z-index: 1;
-			}
-		}
 	}
 
 	&.is-icon-text-replace[data-icon]::before {
 		margin-inline-end: 0;
-	}
-
-	&:has(input:checked) {
-		font-weight: 700;
 	}
 
 	&[data-icon]::before {

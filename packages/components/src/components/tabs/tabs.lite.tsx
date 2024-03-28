@@ -111,34 +111,38 @@ export default function DBTabs(props: DBTabsProps) {
 						Array.from<Element>(tabs).forEach(
 							(tab: Element, index: number) => {
 								const attributes = tab.getAttributeNames();
-								if (!attributes.includes('data-width')) {
-									tab.setAttribute(
-										'data-width',
-										props.width || 'auto'
-									);
-								}
-								if (!attributes.includes('data-alignment')) {
-									tab.setAttribute(
-										'data-alignment',
-										props.alignment || 'start'
-									);
-								}
 
-								const input = tab.getElementsByTagName('input');
-								if (input.length > 0) {
-									const firstInput = input[0];
-									if (firstInput.id === DEFAULT_ID) {
+								// todo remove
+								// if (!attributes.includes('data-width')) {
+								// 	tab.setAttribute(
+								// 		'data-width',
+								// 		props.width || 'auto'
+								// 	);
+								// }
+								// if (!attributes.includes('data-alignment')) {
+								// 	tab.setAttribute(
+								// 		'data-alignment',
+								// 		props.alignment || 'start'
+								// 	);
+								// }
+
+								// const label = tab.getElementsByTagName('label');
+								// const input = tab.getElementsByTagName('input');
+
+								const label = tab.querySelector('label');
+								const input = tab.querySelector('input');
+
+								if (input && label) {
+									// const firstInput = input[0];
+									if (input.id === DEFAULT_ID) {
 										const tabId = `${state._name}-tab-${index}`;
-										tab.setAttribute('for', tabId);
-										tab.setAttribute(
+										label.setAttribute('for', tabId);
+										label.setAttribute(
 											'aria-controls',
 											`${state._name}-tab-panel-${index}`
 										);
-										firstInput.id = tabId;
-										firstInput.setAttribute(
-											'name',
-											state._name
-										);
+										input.id = tabId;
+										input.setAttribute('name', state._name);
 									}
 
 									// Auto select
@@ -151,7 +155,7 @@ export default function DBTabs(props: DBTabsProps) {
 											index === 0) ||
 										props.initialSelectedIndex === index;
 									if (autoSelect && shouldAutoSelect) {
-										firstInput.click();
+										input.click();
 									}
 								}
 							}
@@ -185,7 +189,9 @@ export default function DBTabs(props: DBTabsProps) {
 			id={state._id}
 			class={cls('db-tabs', props.className)}
 			data-orientation={props.orientation}
-			data-scroll-behaviour={props.behaviour}>
+			data-scroll-behaviour={props.behaviour}
+			data-alignment={props.alignment ?? 'start'}
+			data-width={props.width ?? 'auto'}>
 			<Show when={state.showScrollLeft}>
 				<DBButton
 					className="tabs-scroll-left"
@@ -204,8 +210,6 @@ export default function DBTabs(props: DBTabsProps) {
 								key={props.name + 'tab' + index}
 								active={tab.active}
 								label={tab.label}
-								alignment={tab.alignment}
-								width={tab.width}
 								iconAfter={tab.iconAfter}
 								icon={tab.icon}
 								noText={tab.noText}
