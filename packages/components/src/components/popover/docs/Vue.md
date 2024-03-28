@@ -15,7 +15,7 @@ import { DBPopover, DBButton } from "@db-ui/v-components";
 		<template v-slot:trigger>
 			<DBButton> Hover on me to open Popover </DBButton>
 		</template>
-		Use any html here like a button:
+		Use any html here like e.g. a button:
 		<button>Test</button>
 	</DBPopover>
 </template>
