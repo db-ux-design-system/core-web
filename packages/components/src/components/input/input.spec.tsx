@@ -35,7 +35,7 @@ const testAction = () => {
 		const comp: any = (
 			<DBInput
 				label="Label"
-				onChange={() => {
+				onInput={() => {
 					test = 'test';
 				}}
 			/>

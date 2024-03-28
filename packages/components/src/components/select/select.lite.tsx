@@ -16,6 +16,7 @@ import {
 } from '../../shared/constants';
 import { DBInfotext } from '../infotext';
 import { ChangeEvent, ClickEvent, InteractionEvent } from '../../shared/model';
+import { handleFrameworkEvent } from '../../utils/form-components';
 
 useMetadata({
 	isAttachedToShadowDom: true
@@ -41,14 +42,8 @@ export default function DBSelect(props: DBSelectProps) {
 			if (props.change) {
 				props.change(event);
 			}
-			const target = event.target as HTMLSelectElement;
 
-			// TODO: Replace this with the solution out of https://github.com/BuilderIO/mitosis/issues/833 after this has been "solved"
-			// VUE:this.$emit("update:value", target.value);
-
-			// Change event to work with reactive and template driven forms
-			// ANGULAR: this.propagateChange(target.value);
-			// ANGULAR: this.writeValue(target.value);
+			handleFrameworkEvent(this, event);
 		},
 		handleBlur: (event: InteractionEvent<HTMLSelectElement>) => {
 			if (props.onBlur) {

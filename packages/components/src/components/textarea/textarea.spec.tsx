@@ -35,7 +35,7 @@ const testAction = () => {
 		const comp: any = (
 			<DBTextarea
 				label="Label"
-				onChange={() => {
+				onInput={() => {
 					test = 'test';
 				}}
 			/>

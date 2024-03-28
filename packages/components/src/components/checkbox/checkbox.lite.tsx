@@ -10,6 +10,7 @@ import { DBCheckboxProps, DBCheckboxState } from './model';
 import { cls, uuid } from '../../utils';
 import { DEFAULT_ID } from '../../shared/constants';
 import { ChangeEvent, InteractionEvent } from '../../shared/model';
+import { handleFrameworkEvent } from '../../utils/form-components';
 
 useMetadata({
 	isAttachedToShadowDom: true
@@ -31,14 +32,7 @@ export default function DBCheckbox(props: DBCheckboxProps) {
 				props.change(event);
 			}
 
-			const target = event.target as HTMLInputElement;
-
-			// TODO: Replace this with the solution out of https://github.com/BuilderIO/mitosis/issues/833 after this has been "solved"
-			// VUE:this.$emit("update:checked", target.checked);
-
-			// Change event to work with reactive and template driven forms
-			// ANGULAR: this.propagateChange(target.checked);
-			// ANGULAR: this.writeValue(target.checked);
+			handleFrameworkEvent(this, event, 'checked');
 		},
 		handleBlur: (event: InteractionEvent<HTMLInputElement>) => {
 			if (props.onBlur) {

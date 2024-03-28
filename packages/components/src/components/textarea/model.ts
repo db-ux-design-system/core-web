@@ -9,7 +9,9 @@ import {
 	FormState,
 	GlobalProps,
 	GlobalState,
-	FormTextProps
+	FormTextProps,
+	InputEventProps,
+	InputEventState
 } from '../../shared/model';
 
 export interface DBTextareaDefaultProps {
@@ -39,6 +41,7 @@ export interface DBTextareaDefaultProps {
 export type DBTextareaProps = DBTextareaDefaultProps &
 	ChangeEventProps<HTMLTextAreaElement> &
 	DefaultVariantProps &
+	InputEventProps<HTMLInputElement> &
 	FocusEventProps<HTMLTextAreaElement> &
 	FormProps &
 	GlobalProps &
@@ -49,6 +52,7 @@ export interface DBTextareaDefaultState {}
 
 export type DBTextareaState = DBTextareaDefaultState &
 	ChangeEventState<HTMLTextAreaElement> &
+	InputEventState<HTMLInputElement> &
 	FocusEventState<HTMLTextAreaElement> &
 	FormState &
 	GlobalState;

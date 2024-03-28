@@ -42,8 +42,7 @@ const testAction = () => {
 		const comp: any = (
 			<DBSelect
 				label="Label"
-				data-testid="select"
-				onChange={() => {
+				onInput={() => {
 					test = 'test1';
 				}}>
 				<option data-testid="option1" value="test1">
@@ -53,7 +52,7 @@ const testAction = () => {
 			</DBSelect>
 		);
 		const component = await mount(comp);
-		const select = component.getByTestId('select');
+		const select = component.getByRole('combobox');
 		const selected = await select.selectOption({ label: 'Test1' });
 		expect(selected).toContain(test);
 	});
