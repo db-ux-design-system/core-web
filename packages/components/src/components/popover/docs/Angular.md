@@ -22,7 +22,7 @@ import { DBPopover } from '@db-ui/ngx-components';
 <!-- app.component.html -->
 <db-popover>
 	<db-button trigger> Hover on me to open Popover </db-button>
-	Use any html here like e.g. a button:
-	<button>Test</button>
+	Use any html code here like e.g. a <code>button</code>:
+	<button type="button">Test</button>
 </db-popover>
 ```
