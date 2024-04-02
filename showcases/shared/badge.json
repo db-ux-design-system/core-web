@@ -72,6 +72,12 @@
 				}
 			},
 			{
+				"name": "Adaptive Strong",
+				"props": {
+					"emphasis": "strong"
+				}
+			},
+			{
 				"name": "Neutral Strong",
 				"props": {
 					"variant": "neutral",
@@ -113,13 +119,13 @@
 		"examples": [
 			{
 				"name": "Small (Default)",
-				"props": {
-					"size": "small"
-				}
+				"props": {}
 			},
 			{
 				"name": "Medium",
-				"props": {}
+				"props": {
+					"size": "medium"
+				}
 			}
 		]
 	},
@@ -131,29 +137,35 @@
 				"props": {}
 			},
 			{
-				"name": "Dot",
+				"name": "Text (Default) - Medium",
 				"props": {
-					"noContent": true
+					"size": "medium"
 				}
 			},
 			{
 				"name": "Dot - Small",
 				"props": {
-					"noContent": true,
-					"size": "small"
+					"noContent": true
 				}
 			},
 			{
-				"name": "Icon",
+				"name": "Dot - Medium",
 				"props": {
-					"example": "icon"
+					"noContent": true,
+					"size": "medium"
 				}
 			},
 			{
 				"name": "Icon - Small",
 				"props": {
+					"example": "icon"
+				}
+			},
+			{
+				"name": "Icon - Medium",
+				"props": {
 					"example": "icon",
-					"size": "small"
+					"size": "medium"
 				}
 			}
 		]
