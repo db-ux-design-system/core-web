@@ -32,7 +32,6 @@
 
 .db-tab-list {
 	position: relative;
-	z-index: 20;
 
 	.db-tab-list-scroll-container {
 		@extend %scrollbar;
@@ -111,13 +110,14 @@
 	}
 
 	&[aria-orientation="vertical"] {
-		inline-size: var(--db-tab-list-vertical-default-width, auto);
+		inline-size: var(--db-tab-list-vertical-width, auto);
 		padding-inline-end: variables.$db-spacing-fixed-xs;
 
 		.db-tab {
 			margin-inline-start: calc(
 				#{variables.$db-border-height-lg} + #{variables.$db-spacing-fixed-2xs}
 			);
+			// margin-inline-end: auto;
 		}
 
 		db-tab {
@@ -140,11 +140,18 @@
 			white-space: nowrap;
 			text-overflow: ellipsis;
 
+			&:has(input:focus-visible),
 			&:hover {
 				inline-size: auto;
 				overflow: visible;
 			}
 		}
+
+		//.db-tab:has(input:checked) {
+		//	&::before {
+		//		display: none;
+		//	}
+		//}
 
 		.db-tab-list-scroll-container {
 			@extend %vertical-pulse;

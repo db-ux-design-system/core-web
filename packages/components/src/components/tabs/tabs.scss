@@ -25,14 +25,26 @@ $max-tabs: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 }
 
 .db-tabs {
+	$db-tabs-z-index-tab-list: 20;
+	$db-tabs-z-index-button-background: 21;
+	$db-tabs-z-index-button: 22;
+
 	@extend %angular-workaround;
 	display: flex;
 	flex-direction: column;
+	flex-direction: row;
+	flex-wrap: wrap;
 	inline-size: 100%;
 	position: relative;
 
 	.db-tab-panel {
 		padding: 0 variables.$db-spacing-fixed-xs;
+	}
+
+	&:not([data-orientation="vertical"]) {
+		.db-tab-panel {
+			inline-size: 100%;
+		}
 	}
 
 	&[data-orientation="vertical"] {
@@ -44,10 +56,31 @@ $max-tabs: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 	}
 
 	.db-tab-list {
+		max-inline-size: 100%;
+		z-index: $db-tabs-z-index-tab-list;
+
 		@each $index in $max-tabs {
 			&:has([id$="-tab-#{$index}"]:checked)
 				~ [id$="-tab-panel-#{$index}"] {
 				display: block;
+			}
+		}
+	}
+
+	&[data-width="full"] {
+		.db-tab-list {
+			inline-size: 100%;
+		}
+
+		.db-tab,
+		.db-tab label {
+			inline-size: 100%;
+		}
+
+		&[data-alignment="center"] {
+			.db-tab label {
+				text-align: center;
+				justify-content: center;
 			}
 		}
 	}
@@ -59,6 +92,10 @@ $max-tabs: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 			}
 		}
 
+		/*
+		 * pseudo elements cover tab-list when needed
+		 * todo describe better
+		 */
 		&:has(.tabs-scroll-left) {
 			&::before {
 				content: "";
@@ -75,7 +112,7 @@ $max-tabs: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 			&::before,
 			&::after {
 				position: absolute;
-				z-index: 1;
+				z-index: $db-tabs-z-index-button-background;
 				background-color: colors.$db-current-bg-color;
 				inline-size: variables.$db-sizing-md;
 				block-size: calc(
@@ -93,6 +130,9 @@ $max-tabs: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 			}
 		}
 
+		/*
+		 * Scroll left / right buttons
+		 */
 		.tabs-scroll-left {
 			@include angular-button-workaround() {
 				inset-inline-start: 0;
@@ -109,7 +149,7 @@ $max-tabs: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 		.tabs-scroll-right {
 			@include angular-button-workaround() {
 				position: absolute;
-				z-index: 2;
+				z-index: $db-tabs-z-index-button;
 				inset-block: variables.$db-spacing-fixed-xs;
 			}
 		}
