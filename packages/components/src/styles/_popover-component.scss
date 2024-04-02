@@ -14,6 +14,7 @@ $popover-gap-inset: calc(-1 * var(--db-popover-distance) - 2px);
 %popover-placement {
 	--db-popover-distance: #{variables.$db-spacing-fixed-2xs};
 
+	// This pseudo-content is used to bridge the visible vertical offset in between the element that it triggering the tooltip and the tooltip itself
 	&::before {
 		content: "";
 		position: absolute;
