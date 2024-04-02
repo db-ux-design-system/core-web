@@ -57,23 +57,3 @@
 		}
 	}
 }
-
-/*
-The variant card can be implicitly set by the surrounding accordion component.
- */
-.db-accordion[data-variant="card"] {
-	.db-accordion-item {
-		&::after {
-			@extend %component-border;
-
-			content: "";
-			position: absolute;
-			inset-inline-start: 0;
-			inset-block-start: 0;
-			inline-size: 100%;
-			block-size: 100%;
-			border-radius: variables.$db-border-radius-lg;
-			pointer-events: none;
-		}
-	}
-}

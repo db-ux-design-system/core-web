@@ -1,5 +1,6 @@
 @use "@db-ui/foundations/build/scss/helpers";
 @use "@db-ui/foundations/build/scss/variables";
+@use "../../styles/component";
 
 @mixin accordion-subsequent-item-selector() {
 	// angular workaround
@@ -14,7 +15,7 @@ The styling for the spacings between the items is defined in the accordion, wher
 The spacings are not part of the styling of the accordion items themselves.
  */
 .db-accordion {
-	&[data-variant="background"] {
+	&:not([data-variant]) {
 		@include accordion-subsequent-item-selector() {
 			@include helpers.divider($position: "top");
 
@@ -29,8 +30,24 @@ The spacings are not part of the styling of the accordion items themselves.
 	}
 
 	&[data-variant="card"] {
+
 		@include accordion-subsequent-item-selector() {
 			margin-block-start: variables.$db-spacing-fixed-sm;
+		}
+
+		.db-accordion-item {
+			&::after {
+				@extend %component-border;
+
+				content: "";
+				position: absolute;
+				inset-inline-start: 0;
+				inset-block-start: 0;
+				inline-size: 100%;
+				block-size: 100%;
+				border-radius: variables.$db-border-radius-lg;
+				pointer-events: none;
+			}
 		}
 	}
 }
