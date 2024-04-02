@@ -13,6 +13,9 @@ $tooltip-arrow-shadow-size: variables.$db-sizing-2xs;
 	@extend %db-overwrite-font-size-sm;
 	@extend %default-popover;
 
+	// i HTML tags browsers default styling reset
+	font-style: normal;
+
 	// surrounding tags styling reset
 	font-weight: initial;
 

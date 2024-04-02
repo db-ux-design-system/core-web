@@ -192,8 +192,6 @@ $popover-gap-inset: calc(-1 * var(--db-popover-distance) - 2px);
 	background-color: colors.$db-base-bg;
 	visibility: hidden;
 	z-index: 1;
-	// i HTML tags browsers default styling reset
-	font-style: normal;
 	white-space: nowrap;
 
 	&[data-width="fixed"] {
