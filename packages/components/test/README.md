@@ -6,7 +6,7 @@
 
 ## React vs. Vue
 
-We write the tests for react, but also use them for vue with jsx. If there are a special case for example a slot, you can add the vue specific part with a comment(will be replaced during build), like this example:
+We write the tests for react, but also use them for vue with jsx. If there are a special case for example a slot, you can add the vue specific part with a comment (will be replaced during build), like this example:
 
 ```tsx
 <DBPopover
