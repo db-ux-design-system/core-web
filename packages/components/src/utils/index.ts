@@ -101,14 +101,11 @@ export const isInView = (el: Element) => {
 	let outRight = right > innerWidth;
 
 	// We need to check if it was already outside
-	const outsideY = el.hasAttribute('data-outside-vy');
-	const outsideX = el.hasAttribute('data-outside-vx');
 	const parentRect = el?.parentElement?.getBoundingClientRect();
 
 	if (parentRect) {
-		if (outsideY) {
-			const position = el.getAttribute('data-outside-vy');
-			if (position === 'top') {
+		if (el.dataset.outsideVy) {
+			if (el.dataset.outsideVy === 'top') {
 				outTop = parentRect.top - (bottom - parentRect.bottom) < 0;
 			} else {
 				outBottom =
@@ -116,9 +113,8 @@ export const isInView = (el: Element) => {
 			}
 		}
 
-		if (outsideX) {
-			const position = el.getAttribute('data-outside-vx');
-			if (position === 'left') {
+		if (el.dataset.outsideVx) {
+			if (el.dataset.outsideVx === 'left') {
 				outLeft = parentRect.left - (right - parentRect.right) < 0;
 			} else {
 				outRight =
@@ -138,14 +134,14 @@ export const isInView = (el: Element) => {
 export const handleDataOutside = (el: Element) => {
 	const { outTop, outBottom, outLeft, outRight } = isInView(el);
 	if (outTop || outBottom) {
-		el.setAttribute('data-outside-vy', outTop ? 'top' : 'bottom');
+		el.dataset.outsideVy = outTop ? 'top' : 'bottom';
 	} else {
-		el.removeAttribute('data-outside-vy');
+		delete el.dataset.outsideVy;
 	}
 	if (outLeft || outRight) {
-		el.setAttribute('data-outside-vx', outRight ? 'right' : 'left');
+		el.dataset.outsideVx = outRight ? 'right' : 'left';
 	} else {
-		el.removeAttribute('data-outside-vx');
+		delete el.dataset.outsideVx;
 	}
 };
 
