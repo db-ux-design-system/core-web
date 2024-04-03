@@ -12,6 +12,7 @@
 	}
 
 	& > article {
+		@extend %popover-center;
 		@extend %default-popover;
 
 		&,

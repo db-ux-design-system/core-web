@@ -6,7 +6,7 @@ import {
 	useStore
 } from '@builder.io/mitosis';
 import { DBTooltipProps, DBTooltipState } from './model';
-import { cls, isInView } from '../../utils';
+import { cls, handleDataOutside } from '../../utils';
 import { ClickEvent } from '../../shared/model';
 
 useMetadata({
@@ -22,17 +22,8 @@ export default function DBTooltip(props: DBTooltipProps) {
 			event.stopPropagation();
 		},
 		handleAutoPlacement: () => {
-			if (ref) {
-				const inView = isInView(ref);
-				Object.entries(inView).forEach(([pos, value]) => {
-					if (value) {
-						ref.setAttribute(
-							`data-outside-${pos === 'left' || pos === 'right' ? 'vx' : 'vy'}`,
-							pos
-						);
-					}
-				});
-			}
+			if (!ref) return;
+			handleDataOutside(ref);
 		}
 	});
 
@@ -42,12 +33,11 @@ export default function DBTooltip(props: DBTooltipProps) {
 
 	onUpdate(() => {
 		if (ref && state.initialized) {
-			ref.parentElement.addEventListener('mouseenter', () =>
-				state.handleAutoPlacement()
-			);
-			ref.parentElement.addEventListener('focus', () =>
-				state.handleAutoPlacement()
-			);
+			['mouseenter', 'focus'].forEach((event) => {
+				ref.parentElement.addEventListener(event, () =>
+					state.handleAutoPlacement()
+				);
+			});
 
 			state.initialized = false;
 		}

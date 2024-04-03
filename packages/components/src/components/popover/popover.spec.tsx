@@ -6,6 +6,7 @@ import { DBPopover } from './index';
 import { DEFAULT_VIEWPORT } from '../../shared/constants.ts';
 import { DBButton } from '../button';
 
+// template v-slot is used for vue component tests
 const comp: any = (
 	<div className="padding-box">
 		<DBPopover

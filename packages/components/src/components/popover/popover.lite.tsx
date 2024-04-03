@@ -7,7 +7,7 @@ import {
 	useStore
 } from '@builder.io/mitosis';
 import { DBPopoverProps, DBPopoverState } from './model';
-import { cls, isInView } from '../../utils';
+import { cls, handleDataOutside } from '../../utils';
 
 useMetadata({
 	isAttachedToShadowDom: true
@@ -19,21 +19,10 @@ export default function DBPopover(props: DBPopoverProps) {
 	const state = useStore<DBPopoverState>({
 		initialized: false,
 		handleAutoPlacement: () => {
-			if (ref) {
-				const articles = ref.getElementsByTagName('article');
-				if (articles?.length > 0) {
-					const article = articles[0];
-					const inView = isInView(article);
-					Object.entries(inView).forEach(([pos, value]) => {
-						if (value) {
-							article.setAttribute(
-								`data-outside-${pos === 'left' || pos === 'right' ? 'vx' : 'vy'}`,
-								pos
-							);
-						}
-					});
-				}
-			}
+			if (!ref) return;
+			const article = ref.querySelector('article');
+			if (!article) return;
+			handleDataOutside(article);
 		}
 	});
 
@@ -44,10 +33,8 @@ export default function DBPopover(props: DBPopoverProps) {
 	onUpdate(() => {
 		if (ref && state.initialized) {
 			const children: Element[] = Array.from(ref.children);
-			if (children.length < 2) {
-				// TODO: Shall we add a console.warn here? Either trigger or content is missing in this case
-			} else {
-				children[0].setAttribute('aria-haspopup', 'true');
+			if (children.length >= 2) {
+				children[0].ariaHasPopup = 'true';
 			}
 			state.initialized = false;
 		}

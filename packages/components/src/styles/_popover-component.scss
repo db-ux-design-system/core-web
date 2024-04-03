@@ -11,6 +11,34 @@ $popover-inset: calc(
 $popover-gap-size: calc(2px + var(--db-popover-distance));
 $popover-gap-inset: calc(-1 * var(--db-popover-distance) - 2px);
 
+// use this for popover but not for tooltip
+%popover-center {
+	&:not([data-placement]),
+	&[data-placement="bottom"]:not([data-outside-vy]),
+	&[data-placement="top"]:not([data-outside-vy]),
+	&[data-outside-vy="bottom"]:not([data-outside-vx]):not(
+			[data-placement$="end"]
+		):not([data-placement$="start"]),
+	&[data-outside-vy="top"]:not([data-outside-vx]):not(
+			[data-placement$="end"]
+		):not([data-placement$="start"]) {
+		--db-popover-center-x: -50%;
+		inset-inline-start: 50%;
+	}
+
+	&[data-placement="left"]:not([data-outside-vx]),
+	&[data-placement="right"]:not([data-outside-vx]),
+	&[data-outside-vx="left"]:not([data-placement$="end"]):not(
+			[data-placement$="start"]
+		),
+	&[data-outside-vx="right"]:not([data-placement$="end"]):not(
+			[data-placement$="start"]
+		) {
+		--db-popover-center-y: -50%;
+		inset-block-start: 50%;
+	}
+}
+
 %popover-placement {
 	--db-popover-distance: #{variables.$db-spacing-fixed-2xs};
 
@@ -27,34 +55,6 @@ $popover-gap-inset: calc(-1 * var(--db-popover-distance) - 2px);
 
 	&:is(.db-tooltip) {
 		--db-popover-distance: #{variables.$db-spacing-fixed-xs};
-	}
-
-	&:not(:is(.db-tooltip)) {
-		// only for popover
-		&:not([data-placement]),
-		&[data-placement="bottom"]:not([data-outside-vy]),
-		&[data-placement="top"]:not([data-outside-vy]),
-		&[data-outside-vy="bottom"]:not([data-outside-vx]):not(
-				[data-placement$="end"]
-			):not([data-placement$="start"]),
-		&[data-outside-vy="top"]:not([data-outside-vx]):not(
-				[data-placement$="end"]
-			):not([data-placement$="start"]) {
-			--db-popover-center-x: -50%;
-			inset-inline-start: 50%;
-		}
-
-		&[data-placement="left"]:not([data-outside-vx]),
-		&[data-placement="right"]:not([data-outside-vx]),
-		&[data-outside-vx="left"]:not([data-placement$="end"]):not(
-				[data-placement$="start"]
-			),
-		&[data-outside-vx="right"]:not([data-placement$="end"]):not(
-				[data-placement$="start"]
-			) {
-			--db-popover-center-y: -50%;
-			inset-block-start: 50%;
-		}
 	}
 
 	&[data-placement^="bottom"]:not([data-outside-vy]),
