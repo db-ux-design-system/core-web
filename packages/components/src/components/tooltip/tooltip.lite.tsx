@@ -22,8 +22,7 @@ export default function DBTooltip(props: DBTooltipProps) {
 			event.stopPropagation();
 		},
 		handleAutoPlacement: () => {
-			if (!ref) return;
-			handleDataOutside(ref);
+			if (ref) handleDataOutside(ref);
 		}
 	});
 
