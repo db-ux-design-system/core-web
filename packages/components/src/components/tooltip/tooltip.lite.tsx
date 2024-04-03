@@ -33,11 +33,13 @@ export default function DBTooltip(props: DBTooltipProps) {
 
 	onUpdate(() => {
 		if (ref && state.initialized) {
-			['mouseenter', 'focus'].forEach((event) => {
-				ref?.parentElement.addEventListener(event, () =>
-					state.handleAutoPlacement()
-				);
-			});
+			if (ref.parentElement) {
+				['mouseenter', 'focus'].forEach((event) => {
+					ref.parentElement.addEventListener(event, () =>
+						state.handleAutoPlacement()
+					);
+				});
+			}
 
 			state.initialized = false;
 		}
