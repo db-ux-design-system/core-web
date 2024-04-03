@@ -17,7 +17,7 @@
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "17.3.2",
-    "@angular/common": "17.3.1",
+    "@angular/common": "17.3.2",
     "ng-packagr": "17.3.0",
     "typescript": "^5.4.3"
   },
