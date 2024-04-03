@@ -103,25 +103,27 @@ export const isInView = (el: Element) => {
 	// We need to check if it was already outside
 	const outsideY = el.hasAttribute('data-outside-vy');
 	const outsideX = el.hasAttribute('data-outside-vx');
+	const parentRect = el?.parentElement?.getBoundingClientRect();
 
-	if (outsideY) {
-		const position = el.getAttribute('data-outside-vy');
-		const parentRect = el.parentElement.getBoundingClientRect();
-		if (position === 'top') {
-			outTop = parentRect.top - (bottom - parentRect.bottom) < 0;
-		} else {
-			outBottom =
-				parentRect.bottom + (parentRect.top - top) > innerHeight;
+	if (parentRect) {
+		if (outsideY) {
+			const position = el.getAttribute('data-outside-vy');
+			if (position === 'top') {
+				outTop = parentRect.top - (bottom - parentRect.bottom) < 0;
+			} else {
+				outBottom =
+					parentRect.bottom + (parentRect.top - top) > innerHeight;
+			}
 		}
-	}
 
-	if (outsideX) {
-		const position = el.getAttribute('data-outside-vx');
-		const parentRect = el.parentElement.getBoundingClientRect();
-		if (position === 'left') {
-			outLeft = parentRect.left - (right - parentRect.right) < 0;
-		} else {
-			outRight = parentRect.right + (parentRect.left - left) > innerWidth;
+		if (outsideX) {
+			const position = el.getAttribute('data-outside-vx');
+			if (position === 'left') {
+				outLeft = parentRect.left - (right - parentRect.right) < 0;
+			} else {
+				outRight =
+					parentRect.right + (parentRect.left - left) > innerWidth;
+			}
 		}
 	}
 
