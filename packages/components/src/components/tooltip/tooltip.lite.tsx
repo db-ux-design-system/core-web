@@ -33,9 +33,10 @@ export default function DBTooltip(props: DBTooltipProps) {
 
 	onUpdate(() => {
 		if (ref && state.initialized) {
-			if (ref.parentElement) {
+			const parent = ref.parentElement;
+			if (parent) {
 				['mouseenter', 'focus'].forEach((event) => {
-					ref.parentElement.addEventListener(event, () =>
+					parent.addEventListener(event, () =>
 						state.handleAutoPlacement()
 					);
 				});
