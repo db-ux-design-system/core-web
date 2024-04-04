@@ -41,10 +41,8 @@
 		"name": "Variant",
 		"examples": [
 			{
-				"name": "Items Background",
-				"props": {
-					"variant": "background"
-				},
+				"name": "background (default')",
+				"props": {},
 				"code": {
 					"html": "The accordion is a pure JS Component",
 					"angular": "<db-accordion>\n\t\t\t\t<db-accordion-item\n\t\t\t\t\ttitle=\"Item 1\"\n\t\t\t\t\tcontent=\"Content 1\"\n\t\t\t\t></db-accordion-item>\n\t\t\t\t<db-accordion-item\n\t\t\t\t\ttitle=\"Item 2\"\n\t\t\t\t\tcontent=\"Content 2\"\n\t\t\t\t></db-accordion-item>\n\t\t\t\t<db-accordion-item\n\t\t\t\t\ttitle=\"Item 3\"\n\t\t\t\t\tcontent=\"Content 3\"\n\t\t\t\t></db-accordion-item>\n\t\t\t</db-accordion>",
@@ -53,7 +51,7 @@
 				}
 			},
 			{
-				"name": "Items Card",
+				"name": "card",
 				"props": {
 					"variant": "card"
 				},

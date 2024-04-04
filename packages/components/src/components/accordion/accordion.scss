@@ -15,7 +15,7 @@ The styling for the spacings between the items is defined in the accordion, wher
 The spacings are not part of the styling of the accordion items themselves.
  */
 .db-accordion {
-	&:not([data-variant="card"]) {
+	&:not([data-variant]) {
 		@include accordion-subsequent-item-selector() {
 			@include helpers.divider($position: "top");
 

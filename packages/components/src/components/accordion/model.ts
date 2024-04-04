@@ -11,10 +11,10 @@ export interface DBAccordionItemInterface
 export interface DBAccordionDefaultProps {
 	/**
 	 * Defines the display of the accordion and the items:
-	 * "background": with a dividing line between the items
+	 * "default": with a dividing line between the items
 	 * "card": w/o dividing line, but items are shown in the card variant
 	 */
-	variant?: 'background' | 'card';
+	variant?: 'card';
 	/**
 	 * To allow multiple items open at the same time or only 1 item
 	 */
