@@ -30,12 +30,16 @@ The spacings are not part of the styling of the accordion items themselves.
 	}
 
 	&[data-variant="card"] {
-
 		@include accordion-subsequent-item-selector() {
 			margin-block-start: variables.$db-spacing-fixed-sm;
 		}
 
 		.db-accordion-item {
+			/*
+			Adding the component-border to the item itself leads to a render error (tested in Chrome and Safari):
+			On mouseover, a small white gap appears between the rounded border and the rounded gray area.
+			If the border is added to the after element, the error does not occur.
+			 */
 			&::after {
 				@extend %component-border;
 
