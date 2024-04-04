@@ -16,7 +16,7 @@ The spacings are not part of the styling of the accordion items themselves.
  */
 .db-accordion {
 	/*
-	default variant: prop variant was not set
+	default variant: prop variant is not set
 	*/
 	&:not([data-variant]) {
 		@include accordion-subsequent-item-selector() {
