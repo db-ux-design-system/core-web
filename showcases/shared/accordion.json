@@ -41,7 +41,7 @@
 		"name": "Variant",
 		"examples": [
 			{
-				"name": "background (default')",
+				"name": "background (default)",
 				"props": {},
 				"code": {
 					"html": "The accordion is a pure JS Component",
