@@ -120,7 +120,8 @@ iframe {
 
 // List style / https://marketingportal.extranet.deutschebahn.com/marketingportal/Marke-und-Design/Basiselemente/Typografie#Aufzaehlungszeichen-9693110
 :where(ul) {
-	list-style-type: "\2022"+ "   ";
+	padding-inline-start: variables.$db-spacing-fixed-md;
+	list-style-type: "\2022"+ " ";
 
 	li::marker {
 		color: #{colors.$db-brand};
