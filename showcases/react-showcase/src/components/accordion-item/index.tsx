@@ -12,7 +12,10 @@ const getAccordionItem = ({
 	title
 }: DBAccordionItemProps & { open: boolean }) => {
 	return (
-		<DBAccordionItem title={title} disabled={disabled} defaultOpen={open}>
+		<DBAccordionItem
+			headlinePlain={title}
+			disabled={disabled}
+			defaultOpen={open}>
 			{children}
 		</DBAccordionItem>
 	);

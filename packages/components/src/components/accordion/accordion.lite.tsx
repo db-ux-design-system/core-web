@@ -28,7 +28,7 @@ export default function DBAccordion(props: DBAccordionProps) {
 		openItems: [],
 		clickedId: '',
 		initialized: false,
-		convertItems(items: any[] | string | undefined) {
+		convertItems(items: unknown[] | string | undefined) {
 			try {
 				if (typeof items === 'string') {
 					return JSON.parse(items);
@@ -131,7 +131,8 @@ export default function DBAccordion(props: DBAccordionProps) {
 					{(item: DBAccordionItemDefaultProps, index: number) => (
 						<DBAccordionItem
 							key={`accordion-item-${index}`}
-							title={item.title}
+							headlinePlain={item.headlinePlain}
+							headline={item.headline}
 							disabled={item.disabled}
 							content={item.content}
 						/>

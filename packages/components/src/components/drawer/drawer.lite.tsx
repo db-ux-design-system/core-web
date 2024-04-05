@@ -20,6 +20,7 @@ export default function DBDrawer(props: DBDrawerProps) {
 	const ref = useRef<HTMLDialogElement>(null);
 	const dialogContainerRef = useRef<HTMLDivElement>(null);
 	const state = useStore<DBDrawerState>({
+		// eslint-disable-next-line @typescript-eslint/no-explicit-any
 		handleClose: (event: any) => {
 			if (event.key === 'Escape') {
 				event.preventDefault();

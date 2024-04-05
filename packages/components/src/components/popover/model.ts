@@ -1,5 +1,4 @@
 import {
-	ClickEventState,
 	GapProps,
 	GlobalProps,
 	GlobalState,
@@ -19,7 +18,7 @@ export interface DBPopoverDefaultProps {
 	/**
 	 * The trigger to open the popover e.g. a button
 	 */
-	slotTrigger?: any;
+	trigger?: unknown;
 }
 
 export type DBPopoverProps = DBPopoverDefaultProps &

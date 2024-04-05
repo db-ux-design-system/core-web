@@ -65,24 +65,6 @@ $popover-gap-inset: calc(-1 * var(--db-popover-distance) - 2px);
 			inset-inline-end: 0;
 		}
 
-		&:not([data-placement]),
-		&[data-placement="bottom"],
-		&[data-placement="top"] {
-			--db-popover-center-x: -50%;
-		}
-
-		&[data-placement="left"],
-		&[data-placement="right"] {
-			--db-popover-center-y: -50%;
-		}
-
-		&[data-placement="bottom"],
-		&[data-placement="top"],
-		&[data-placement="left"],
-		&[data-placement="right"] {
-			inset-#{$secondary}-start: 50%;
-		}
-
 		&[data-placement$="start"] {
 			inset-inline-start: 0;
 		}
@@ -210,7 +192,6 @@ $popover-gap-inset: calc(-1 * var(--db-popover-distance) - 2px);
 	box-shadow: variables.$db-elevation-md;
 	visibility: hidden;
 	z-index: 1;
-	white-space: nowrap;
 	white-space: nowrap;
 
 	&[data-width="fixed"] {
