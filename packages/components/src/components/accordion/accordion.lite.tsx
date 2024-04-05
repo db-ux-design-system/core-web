@@ -132,7 +132,6 @@ export default function DBAccordion(props: DBAccordionProps) {
 						<DBAccordionItem
 							key={`accordion-item-${index}`}
 							headlinePlain={item.headlinePlain}
-							headline={item.headline}
 							disabled={item.disabled}
 							content={item.content}
 						/>
