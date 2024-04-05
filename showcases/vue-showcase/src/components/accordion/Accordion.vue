@@ -16,7 +16,10 @@ import {
 			<DBInfotext size="small" semantic="informational" icon="none">
 				{{ exampleName }}
 			</DBInfotext>
-			<DBAccordion :behaviour="exampleProps.behaviour">
+			<DBAccordion
+				:behaviour="exampleProps.behaviour"
+				:variant="exampleProps.variant"
+			>
 				<DBAccordionItem title="Item 1" content="Content 1" />
 				<DBAccordionItem title="Item 2" content="Content 2" />
 				<DBAccordionItem title="Item 3" content="Content 3" />

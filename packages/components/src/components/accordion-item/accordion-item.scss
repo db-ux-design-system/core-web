@@ -6,25 +6,13 @@
 @use "../../styles/component";
 
 .db-accordion-item {
-	@include helpers.divider($position: "top");
-
 	position: relative;
 	inline-size: 100%;
+	border-radius: variables.$db-border-radius-lg;
 
 	summary + div {
 		padding: variables.$db-spacing-fixed-md;
 		padding-block-end: variables.$db-spacing-fixed-lg;
-	}
-
-	&:last-of-type {
-		@include helpers.divider($position: "bottom", $slot: "after");
-
-		// Angular workaround
-		db-accordion-item:not(:last-of-type) & {
-			&::after {
-				content: none;
-			}
-		}
 	}
 
 	&[aria-disabled="true"] {
@@ -41,6 +29,7 @@
 		justify-content: space-between;
 		padding: variables.$db-spacing-fixed-md;
 		gap: variables.$db-spacing-fixed-md;
+		border-radius: variables.$db-border-radius-lg;
 
 		@include helpers.hover {
 			background-color: colors.$db-current-color-bg-transparent-hover;

@@ -123,7 +123,8 @@ export default function DBAccordion(props: DBAccordionProps) {
 		<div
 			ref={ref}
 			id={props.id}
-			class={cls('db-accordion', props.className)}>
+			class={cls('db-accordion', props.className)}
+			data-variant={props.variant}>
 			<Show when={!props.items}>{props.children}</Show>
 			<Show when={props.items}>
 				<For each={state.convertItems(props.items)}>
