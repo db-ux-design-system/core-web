@@ -9,7 +9,7 @@ const getIcon = ({ children }: DBIconProps) => (
 		<DBInfotext icon="none" size="small" semantic="informational">
 			{children}
 		</DBInfotext>
-		<DBIcon icon="account">{children}</DBIcon>
+		<DBIcon icon="user">{children}</DBIcon>
 	</>
 );
 

@@ -36,13 +36,13 @@ const App = () => (
 			</>
 		}
 		slotCallToAction={
-			<DBButton icon="search" variant="ghost" noText>
+			<DBButton icon="magnifying_glass" variant="ghost" noText>
 				Search
 			</DBButton>
 		}
 		slotActionBar={
 			<>
-				<DBButton icon="account" variant="ghost" noText>
+				<DBButton icon="user" variant="ghost" noText>
 					Profile
 				</DBButton>
 				<DBButton icon="alert" variant="ghost" noText>

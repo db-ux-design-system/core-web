@@ -22,7 +22,7 @@
 
 		&:checked {
 			// Check icon
-			@include icons.set-icon("done");
+			@include icons.set-icon("check");
 
 			// The icon within the checkbox has the same dimensions as the checkbox itself and that for there can't be any border
 			border-width: 0;

@@ -52,7 +52,7 @@ import "@db-ui/v-components/dist/style.css";
 </script>
 
 <template>
-    <DBButton icon="account">Test</DBButton>
+    <DBButton icon="user">Test</DBButton>
 </template>
 ```
 

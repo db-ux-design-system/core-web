@@ -52,7 +52,7 @@ import { DBMainNavigation } from '@db-ui/ngx-components';
 		</ng-container>
 		<ng-container *dbNavigationContent> Navi-Item 1 </ng-container>
 	</db-navigation-item>
-	<db-navigation-item icon="account">
+	<db-navigation-item icon="user">
 		<ng-container *dbNavigationContent>
 			<a href="#">Navi-Item 2</a>
 		</ng-container>

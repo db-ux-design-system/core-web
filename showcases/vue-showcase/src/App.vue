@@ -96,18 +96,26 @@ const sortedNavigation = getSortedNavigationItems(navigationItems);
 					</template>
 				</DBMainNavigation>
 				<template v-slot:calltoaction>
-					<DBButton icon="search" variant="ghost" :no-text="true">
+					<DBButton
+						icon="magnifying_glass"
+						variant="ghost"
+						:no-text="true"
+					>
 						Search
 					</DBButton>
 				</template>
 				<template v-slot:actionbar>
-					<DBButton icon="account" variant="ghost" :no-text="true">
+					<DBButton icon="user" variant="ghost" :no-text="true">
 						Profile
 					</DBButton>
-					<DBButton icon="alert" variant="ghost" :no-text="true">
+					<DBButton icon="bell" variant="ghost" :no-text="true">
 						Notification
 					</DBButton>
-					<DBButton icon="help" variant="ghost" :no-text="true">
+					<DBButton
+						icon="question_mark_circle"
+						variant="ghost"
+						:no-text="true"
+					>
 						Help
 					</DBButton>
 				</template>

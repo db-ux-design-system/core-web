@@ -245,14 +245,14 @@
 			{
 				"name": "Icon",
 				"props": {
-					"icon": "account",
+					"icon": "user",
 					"noText": true
 				}
 			},
 			{
 				"name": "Icon & Text",
 				"props": {
-					"icon": "account"
+					"icon": "user"
 				}
 			}
 		]
@@ -280,7 +280,7 @@
 				"props": {
 					"component": "button",
 					"emphasis": "strong",
-					"icon": "account",
+					"icon": "user",
 					"behaviour": "removable"
 				},
 				"code": {
@@ -295,7 +295,7 @@
 				"props": {
 					"component": "link",
 					"emphasis": "strong",
-					"icon": "account"
+					"icon": "user"
 				},
 				"code": {
 					"angular": "<db-tag><db-link>Interactive Link</db-link></db-tag>",
@@ -309,7 +309,7 @@
 				"props": {
 					"component": "checkbox",
 					"emphasis": "strong",
-					"icon": "account"
+					"icon": "user"
 				},
 				"code": {
 					"angular": "<db-tag><db-checkbox>Interactive Checkbox</db-checkbox></db-tag>",
@@ -323,7 +323,7 @@
 				"props": {
 					"component": "radio",
 					"emphasis": "strong",
-					"icon": "account",
+					"icon": "user",
 					"identifier": "radio02"
 				},
 				"code": {
@@ -338,7 +338,7 @@
 				"props": {
 					"component": "radio",
 					"emphasis": "strong",
-					"icon": "account",
+					"icon": "user",
 					"identifier": "radio02",
 					"code": {
 						"angular": "<db-tag><db-radio name=\"radio02\">Interactive Radio 2</db-radio></db-tag>",

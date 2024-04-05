@@ -39,19 +39,19 @@ const getHeader = ({
 			</>
 		}
 		callToAction={
-			<DBButton icon="search" variant="text" noText>
+			<DBButton icon="magnifying_glass" variant="text" noText>
 				Search
 			</DBButton>
 		}
 		actionBar={
 			<>
-				<DBButton icon="account" variant="text" noText>
+				<DBButton icon="user" variant="text" noText>
 					Profile
 				</DBButton>
-				<DBButton icon="alert" variant="text" noText>
+				<DBButton icon="bell" variant="text" noText>
 					Notification
 				</DBButton>
-				<DBButton icon="help" variant="text" noText>
+				<DBButton icon="question_mark_circle" variant="text" noText>
 					Help
 				</DBButton>
 			</>
@@ -67,7 +67,7 @@ const getHeader = ({
 		title={title}
 		onToggle={onToggle}>
 		<DBMainNavigation>
-			<DBNavigationItem icon="account">
+			<DBNavigationItem icon="user">
 				<a href="#">{children}</a>
 			</DBNavigationItem>
 			<DBNavigationItem disabled>

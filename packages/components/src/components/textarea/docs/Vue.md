@@ -23,7 +23,7 @@ const textarea = ref("default value");
 		label="Textarea value"
 		placeholder="Placeholder"
 		description="Description"
-		icon="account"
+		icon="user"
 		name="textarevalue-name"
 		v-model:value="textarea"
 	/>

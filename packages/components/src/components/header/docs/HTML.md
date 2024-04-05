@@ -23,7 +23,7 @@ For general installation and configuration take a look at the [components](https
 					<button
 						id="button-9c38e111-6ef8-4322-9da4-b72cf8223e48"
 						class="db-button button-close-drawer is-icon-text-replace"
-						data-icon="close"
+						data-icon="cross"
 						data-variant="text"
 					>
 						Close Button
@@ -40,7 +40,7 @@ For general installation and configuration take a look at the [components](https
 									<li
 										id="navigation-item-60f3835c-adb0-4267-832a-d8324162d3f6"
 										class="db-navigation-item"
-										data-icon="account"
+										data-icon="user"
 									>
 										<a href="#">regular (Default)</a>
 									</li>
@@ -78,7 +78,7 @@ For general installation and configuration take a look at the [components](https
 						<button
 							id="button-65ba5268-2f08-47e3-9884-283c7f3e0be8"
 							class="db-button is-icon-text-replace"
-							data-icon="account"
+							data-icon="user"
 							data-variant="text"
 						>
 							Profile</button
@@ -144,7 +144,7 @@ For general installation and configuration take a look at the [components](https
 							<li
 								id="navigation-item-7191fbb8-5319-4480-94d5-c2813fd8b029"
 								class="db-navigation-item"
-								data-icon="account"
+								data-icon="user"
 							>
 								<a href="#">regular (Default)</a>
 							</li>
@@ -162,7 +162,7 @@ For general installation and configuration take a look at the [components](https
 					<button
 						id="button-46f070bc-adb3-4729-97ae-bfa41e62e51b"
 						class="db-button is-icon-text-replace"
-						data-icon="search"
+						data-icon="magnifying_glass"
 						data-variant="text"
 					>
 						Search
@@ -184,7 +184,7 @@ For general installation and configuration take a look at the [components](https
 					<button
 						id="button-cad51b9a-a428-42ea-91e7-ec52539f8f37"
 						class="db-button is-icon-text-replace"
-						data-icon="account"
+						data-icon="user"
 						data-variant="text"
 					>
 						Profile</button

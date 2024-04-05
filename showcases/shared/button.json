@@ -87,13 +87,13 @@
 			{
 				"name": "Icon & Text",
 				"props": {
-					"icon": "account"
+					"icon": "user"
 				}
 			},
 			{
 				"name": "Icon",
 				"props": {
-					"icon": "account",
+					"icon": "user",
 					"noText": true
 				}
 			}

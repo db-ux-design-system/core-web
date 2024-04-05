@@ -96,7 +96,7 @@ export default function DBDrawer(props: DBDrawerProps) {
 						<DBButton
 							className="button-close-drawer"
 							id={props.closeButtonId}
-							icon="close"
+							icon="cross"
 							variant="ghost"
 							noText
 							onClick={() => state.handleClose('close')}>

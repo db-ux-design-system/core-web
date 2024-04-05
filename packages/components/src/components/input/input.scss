@@ -25,8 +25,8 @@ $icon-padding: calc(
 	}
 
 	&:has(input[type="search"]) {
-		@include icons.set-icon("search");
-		@include icons.set-icon("cancel", "after");
+		@include icons.set-icon("magnifying_glass");
+		@include icons.set-icon("cross_circle", "after");
 
 		&::after {
 			opacity: 0;

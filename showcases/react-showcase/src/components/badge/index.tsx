@@ -40,7 +40,7 @@ const getBadge = ({
 
 		{placement && placement !== 'inline' && !example && (
 			<>
-				<DBButton icon="account" variant="outlined" noText>
+				<DBButton icon="user" variant="outlined" noText>
 					<DBBadge
 						size="small"
 						emphasis="strong"
@@ -57,7 +57,7 @@ const getBadge = ({
 		{placement === 'inline' && (
 			<>
 				<div className="badge-inline-container">
-					<DBIcon icon="account" />
+					<DBIcon icon="user" />
 					<span>{children}</span>
 					<DBBadge size="small" emphasis="strong" semantic="critical">
 						Label
@@ -70,7 +70,7 @@ const getBadge = ({
 		{example === 'icon' && (
 			<>
 				<DBBadge semantic="critical" emphasis="strong" size={size}>
-					<DBIcon icon="account">{children}</DBIcon>
+					<DBIcon icon="user">{children}</DBIcon>
 				</DBBadge>
 				<DBInfotext semantic="informational" size="small" icon="none">
 					{children}

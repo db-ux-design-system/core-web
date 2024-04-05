@@ -22,24 +22,6 @@ const generateIconTypes = () => {
 
 				let iconPaths = FS.readdirSync(path_string);
 
-				if (
-					iconPaths.filter(
-						(path) => path === 'inverted' || path === 'regular'
-					).length === 2
-				) {
-					return [
-						...previousValue,
-						`// Directory: ${currentValue}-inverted`,
-						...FS.readdirSync(
-							`${foundationAssetsPath}/${currentValue}/inverted`
-						),
-						`// Directory: ${currentValue}-regular`,
-						...FS.readdirSync(
-							`${foundationAssetsPath}/${currentValue}/regular`
-						)
-					];
-				}
-
 				return [
 					...previousValue,
 					`// Directory: ${currentValue}`,
@@ -48,7 +30,9 @@ const generateIconTypes = () => {
 			}, [])
 			.filter(
 				(icon) =>
-					(!icon.includes('_solid') && icon.includes('_24')) ||
+					(!icon.includes('_inverted') &&
+						!icon.includes('_filled') &&
+						icon.includes('_24')) ||
 					icon.startsWith('//')
 			)
 			.map((icon) =>

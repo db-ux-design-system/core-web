@@ -31,7 +31,7 @@ $input-types: "button", "checkbox", "color", "date", "datetime-local", "email",
 	"reset", "search", "submit", "tel", "text", "time", "url", "week";
 
 %dropdown-icon {
-	@include icons.set-icon("expand_more", "after");
+	@include icons.set-icon("chevron_down", "after");
 
 	&::after {
 		transition: $dropdown-icon-transition;
