@@ -43,7 +43,7 @@
     "@axe-core/playwright": "^4.8.5",
     "@playwright/experimental-ct-vue": "1.42.1",
     "@vitejs/plugin-vue": "^5.0.4",
-    "sass": "^1.72.0",
+    "sass": "^1.74.1",
     "typescript": "^5.4.4",
     "vite": "^5.2.8",
     "vue-tsc": "^2.0.10"
