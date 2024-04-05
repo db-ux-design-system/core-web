@@ -6,7 +6,6 @@
 				"name": "functional",
 				"className": "db-ui-functional",
 				"props": {
-					"content": "Popover",
 					"id": "popover-01"
 				}
 			},
@@ -14,7 +13,6 @@
 				"name": "regular (Default)",
 				"className": "db-ui-regular",
 				"props": {
-					"content": "Popover",
 					"id": "popover-02"
 				}
 			},
@@ -22,7 +20,6 @@
 				"name": "expressive",
 				"className": "db-ui-expressive",
 				"props": {
-					"content": "Popover",
 					"id": "popover-03"
 				}
 			}
@@ -34,7 +31,6 @@
 			{
 				"name": "Small (Default)",
 				"props": {
-					"content": "Popover",
 					"spacing": "small",
 					"id": "popover-04"
 				}
@@ -42,7 +38,6 @@
 			{
 				"name": "Medium",
 				"props": {
-					"content": "Popover",
 					"spacing": "medium",
 					"id": "popover-05"
 				}
@@ -50,7 +45,6 @@
 			{
 				"name": "None",
 				"props": {
-					"content": "Popover",
 					"spacing": "none",
 					"id": "popover-06"
 				}
@@ -63,7 +57,6 @@
 			{
 				"name": "bottom-start",
 				"props": {
-					"content": "Popover",
 					"placement": "bottom-start",
 					"id": "popover-07-start"
 				}
@@ -71,7 +64,6 @@
 			{
 				"name": "bottom (Default)",
 				"props": {
-					"content": "Popover",
 					"placement": "bottom",
 					"id": "popover-07"
 				}
@@ -79,7 +71,6 @@
 			{
 				"name": "bottom-end",
 				"props": {
-					"content": "Popover",
 					"placement": "bottom-end",
 					"id": "popover-07-end"
 				}
@@ -87,7 +78,6 @@
 			{
 				"name": "left-start",
 				"props": {
-					"content": "Popover",
 					"placement": "left-start",
 					"id": "popover-09-start"
 				}
@@ -95,7 +85,6 @@
 			{
 				"name": "left",
 				"props": {
-					"content": "Popover",
 					"placement": "left",
 					"id": "popover-09"
 				}
@@ -103,7 +92,6 @@
 			{
 				"name": "left-end",
 				"props": {
-					"content": "Popover",
 					"placement": "left-end",
 					"id": "popover-09-end"
 				}
@@ -111,7 +99,6 @@
 			{
 				"name": "right-start",
 				"props": {
-					"content": "Popover",
 					"placement": "right-start",
 					"id": "popover-10-start"
 				}
@@ -119,7 +106,6 @@
 			{
 				"name": "right",
 				"props": {
-					"content": "Popover",
 					"placement": "right",
 					"id": "popover-10"
 				}
@@ -127,7 +113,6 @@
 			{
 				"name": "right-end",
 				"props": {
-					"content": "Popover",
 					"placement": "right-end",
 					"id": "popover-10-end"
 				}
@@ -135,7 +120,6 @@
 			{
 				"name": "top-start",
 				"props": {
-					"content": "Popover",
 					"placement": "top-start",
 					"id": "popover-08-start"
 				}
@@ -143,7 +127,6 @@
 			{
 				"name": "top",
 				"props": {
-					"content": "Popover",
 					"placement": "top",
 					"id": "popover-08"
 				}
@@ -151,7 +134,6 @@
 			{
 				"name": "top-end",
 				"props": {
-					"content": "Popover",
 					"placement": "top-end",
 					"id": "popover-08-end"
 				}
@@ -164,14 +146,12 @@
 			{
 				"name": "No gap (Default)",
 				"props": {
-					"content": "Popover",
 					"id": "popover-11"
 				}
 			},
 			{
 				"name": "With gap",
 				"props": {
-					"content": "Popover",
 					"gap": true,
 					"id": "popover-12"
 				}
@@ -184,14 +164,12 @@
 			{
 				"name": "Animation no delay (Default)",
 				"props": {
-					"content": "Popover",
 					"id": "popover-13"
 				}
 			},
 			{
 				"name": "Delay slow",
 				"props": {
-					"content": "Popover",
 					"delay": "slow",
 					"id": "popover-14"
 				}
@@ -199,7 +177,6 @@
 			{
 				"name": "Delay fast",
 				"props": {
-					"content": "Popover",
 					"delay": "fast",
 					"id": "popover-15"
 				}
@@ -207,7 +184,6 @@
 			{
 				"name": "No animation",
 				"props": {
-					"content": "Popover",
 					"animation": "disabled",
 					"id": "popover-16"
 				}
