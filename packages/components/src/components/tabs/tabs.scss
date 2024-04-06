@@ -1,5 +1,7 @@
 @use "@db-ui/foundations/build/scss/variables";
 @use "@db-ui/foundations/build/scss/colors";
+@use "../../styles/form-components";
+@use "../../styles/db-puls";
 
 $max-tabs: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
@@ -13,6 +15,32 @@ $max-tabs: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 					display: block;
 				}
 			}
+		}
+	}
+}
+
+%horizontal-pulse {
+	input {
+		@include db-puls.set-db-puls-horizontal;
+
+		&::after {
+			inset-block-end: calc(
+				-1 * (#{variables.$db-spacing-fixed-2xs} + #{variables.$db-border-height-lg})
+			);
+		}
+
+		&:checked {
+			@include db-puls.show-db-puls-horizontal;
+		}
+	}
+}
+
+%vertical-pulse {
+	input {
+		@include db-puls.set-db-puls-vertical;
+
+		&:checked {
+			@include db-puls.show-db-puls-vertical;
 		}
 	}
 }
@@ -31,28 +59,11 @@ $max-tabs: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
 	@extend %angular-workaround;
 	display: flex;
-	flex-direction: column;
-	flex-direction: row;
-	flex-wrap: wrap;
 	inline-size: 100%;
 	position: relative;
 
 	.db-tab-panel {
 		padding: 0 variables.$db-spacing-fixed-xs;
-	}
-
-	&:not([data-orientation="vertical"]) {
-		.db-tab-panel {
-			inline-size: 100%;
-		}
-	}
-
-	&[data-orientation="vertical"] {
-		flex-direction: row;
-
-		.db-tab-panel {
-			padding: variables.$db-spacing-fixed-xs 0;
-		}
 	}
 
 	.db-tab-list {
@@ -63,6 +74,192 @@ $max-tabs: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 			&:has([id$="-tab-#{$index}"]:checked)
 				~ [id$="-tab-panel-#{$index}"] {
 				display: block;
+			}
+		}
+	}
+
+	.db-tab {
+		input {
+			@extend %db-puls;
+		}
+	}
+
+	/*
+	Variant Orientation HORIZONTAL
+ 	*/
+	&:not([data-orientation="vertical"]) {
+		flex-direction: column;
+		flex-wrap: wrap;
+
+		.db-tab-panel {
+			inline-size: 100%;
+		}
+
+		.db-tab-list-scroll-container {
+			@extend %horizontal-pulse;
+			overflow-x: auto;
+			overflow-y: hidden;
+			inline-size: 100%;
+
+			.db-tab {
+				margin-block-start: variables.$db-spacing-fixed-xs;
+				margin-block-end: calc(
+					2 * #{variables.$db-spacing-fixed-2xs} + #{variables.$db-border-height-lg}
+				);
+			}
+
+			db-tab {
+				&:first-of-type {
+					.db-tab {
+						margin-inline-start: variables.$db-spacing-fixed-xs;
+					}
+				}
+
+				&:last-of-type {
+					.db-tab {
+						margin-inline-end: variables.$db-spacing-fixed-xs;
+					}
+				}
+			}
+
+			&:not(:has(db-tab)) {
+				.db-tab {
+					&:first-of-type {
+						margin-inline-start: variables.$db-spacing-fixed-xs;
+					}
+
+					&:last-of-type {
+						margin-inline-end: variables.$db-spacing-fixed-xs;
+					}
+				}
+			}
+		}
+
+		/* horizontal track for pulse */
+		.db-tab-list {
+			&::before {
+				@extend %adaptive-neutral-component;
+				content: "";
+				border-radius: variables.$db-border-radius-md;
+				block-size: variables.$db-border-height-lg;
+				position: absolute;
+				inset-inline: variables.$db-spacing-fixed-xs;
+
+				/* top position equals sum of: margin xs + padding xs + line-height + padding xs + margin 2xs */
+				inset-block-start: calc(
+					3 * #{variables.$db-spacing-fixed-xs} + #{variables.$db-spacing-fixed-2xs} +
+						#{form-components.$font-size-height}
+				);
+			}
+		}
+	}
+
+	/*
+	Variant Orientation VERTICAL
+	 */
+	&[data-orientation="vertical"] {
+		flex-direction: row;
+
+		.db-tab-panel {
+			padding: variables.$db-spacing-fixed-xs 0;
+		}
+
+		.db-tab-list {
+			$width: var(
+				--db-tab-list-vertical-width,
+				calc(3 * #{variables.$db-spacing-fixed-3xl})
+			);
+
+			/*
+			min and nominal size must both be set to ensure
+			- min-inline-size: tab-list is not displayed narrower than defined
+			- max-inline-size: tab-list is not displayed wider than defined
+			 */
+			min-inline-size: $width;
+			max-inline-size: $width;
+
+			/* horizontal space to the tab panels */
+			padding-inline-end: variables.$db-spacing-fixed-xs;
+
+			/* ensures that tab-list (track) is only as high as all the tab-items together if open tab-panel is higher */
+			margin-block-end: auto;
+
+			.db-tab {
+				inline-size: 100%;
+				overflow: hidden;
+
+				&:has(input:focus-visible),
+				&:hover {
+					overflow: visible;
+
+					label {
+						inline-size: auto;
+					}
+				}
+			}
+
+			label {
+				display: flex;
+				inline-size: 100%;
+				white-space: nowrap;
+
+				/*
+				Label text MUST be wrapped by an additional span
+				to enable truncate and "align-items center" at the same time
+				 */
+				span {
+					overflow: hidden;
+					text-overflow: ellipsis;
+				}
+			}
+
+			/* vertical track for pulse */
+			&::before {
+				@extend %adaptive-neutral-component;
+				content: "";
+				border-radius: variables.$db-border-radius-md;
+				inline-size: variables.$db-border-height-lg;
+				inset-block: variables.$db-spacing-fixed-xs;
+				position: absolute;
+				inset-inline-start: 0;
+			}
+		}
+
+		.db-tab {
+			padding-inline-start: calc(
+				#{variables.$db-border-height-lg} + #{variables.$db-spacing-fixed-2xs}
+			);
+		}
+
+		db-tab {
+			&:first-of-type {
+				.db-tab {
+					margin-block-start: variables.$db-spacing-fixed-xs;
+				}
+			}
+
+			&:last-of-type {
+				.db-tab {
+					margin-block-end: variables.$db-spacing-fixed-xs;
+				}
+			}
+		}
+
+		.db-tab-list-scroll-container {
+			@extend %vertical-pulse;
+			flex-direction: column;
+			block-size: 100%;
+
+			&:not(:has(db-tab)) {
+				.db-tab {
+					&:first-of-type {
+						margin-block-start: variables.$db-spacing-fixed-xs;
+					}
+
+					&:last-of-type {
+						margin-block-end: variables.$db-spacing-fixed-xs;
+					}
+				}
 			}
 		}
 	}
@@ -92,10 +289,6 @@ $max-tabs: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 			}
 		}
 
-		/*
-		 * pseudo elements cover tab-list when needed
-		 * todo describe better
-		 */
 		&:has(.tabs-scroll-left) {
 			&::before {
 				content: "";

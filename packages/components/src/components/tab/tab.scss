@@ -3,34 +3,18 @@
 @use "../../styles/component";
 
 .db-tab {
-	display: inline-flex;
 	position: relative;
+	display: flex;
+	list-style-type: none;
 
 	&:has(input:disabled) {
 		opacity: variables.$db-opacity-sm;
 	}
 
-	//&:has(input:focus-visible) {
-	//	&::before {
-	//		@extend %focus-placeholder;
-	//
-	//		content: "";
-	//		position: absolute;
-	//		inset-block-start: 0;
-	//		inset-inline-start: 0;
-	//		inline-size: 100%;
-	//		block-size: 100%;
-	//		outline-offset: variables.$db-spacing-fixed-2xs;
-	//		border-radius: variables.$db-border-radius-md;
-	//		z-index: 1;
-	//		pointer-events: none;
-	//	}
-	//}
-
 	label {
 		@extend %default-interactive-component;
-		// @extend %transparent-border;
 		@include colors.bg-transparent-interactive();
+		display: inline-flex;
 		position: relative;
 		padding: variables.$db-spacing-fixed-xs;
 		align-items: center;
@@ -43,23 +27,26 @@
 	}
 
 	input {
-		&[type="radio"] {
-			position: absolute;
-			appearance: none;
-			inline-size: 100%;
-			margin-inline-end: initial;
-			inset: 0;
-			background: colors.$db-current-bg-color; // var(--db-current-bg-color, #{colors.$db-base-bg});
-			border-radius: variables.$db-border-radius-md;
-			z-index: -1;
+		position: absolute;
+		appearance: none;
+		inline-size: 100%;
+		margin-inline-end: initial;
+		inset: 0;
+		background: colors.$db-current-bg-color;
+		border-radius: variables.$db-border-radius-md;
+		z-index: -1;
 
-			&:focus-within,
-			&:focus-visible {
-				outline: none;
-				box-shadow: none;
-			}
+		&:focus-within,
+		&:focus-visible {
+			outline: none;
+			box-shadow: none;
 		}
 
+		/*
+		focus must be set on input:
+		- parent label tag may use before AND after for displaying icons
+		- placed on li.db-tab focus would get cut off partially by by overflow hidden (orientation vertical)
+		 */
 		&:focus-visible {
 			&::before {
 				@extend %focus-placeholder;
@@ -78,24 +65,15 @@
 		}
 	}
 
-	&.is-icon-text-replace[data-icon]::before {
+	.is-icon-text-replace[data-icon]::before {
 		margin-inline-end: 0;
 	}
 
-	&[data-icon]::before {
+	label[data-icon]::before {
 		margin-inline-end: variables.$db-spacing-fixed-sm;
 	}
 
-	&[data-icon-after]::after {
+	label[data-icon-after]::after {
 		margin-inline-start: variables.$db-spacing-fixed-sm;
 	}
-
-	//&[data-width="full"] {
-	//	// inline-size: 100%;
-	//
-	//	&[data-alignment="center"] {
-	//		text-align: center;
-	//		justify-content: center;
-	//	}
-	//}
 }

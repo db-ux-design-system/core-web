@@ -35,15 +35,13 @@ export default function DBTab(props: DBTabProps) {
 	}, [ref, state.initialized]);
 
 	return (
-		<li
-			className={cls('db-tab', props.className, {
-				'is-icon-text-replace': props.noText
-			})}>
+		<li className={cls('db-tab', props.className)}>
 			<label
 				htmlFor={state._id}
 				role="tab"
 				data-icon={props.icon}
-				data-icon-after={props.iconAfter}>
+				data-icon-after={props.iconAfter}
+				className={cls({ 'is-icon-text-replace': props.noText })}>
 				<input
 					disabled={props.disabled}
 					ref={ref}
@@ -51,8 +49,10 @@ export default function DBTab(props: DBTabProps) {
 					id={state._id}
 				/>
 
-				<Show when={props.label}>{props.label}</Show>
-				{props.children}
+				<span>
+					<Show when={props.label}>{props.label}</Show>
+					{props.children}
+				</span>
 			</label>
 		</li>
 	);
