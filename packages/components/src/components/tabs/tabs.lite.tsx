@@ -80,19 +80,13 @@ export default function DBTabs(props: DBTabsProps) {
 				const firstTabList = childTabLists.item(0);
 				if (firstTabList) {
 					if (props.behaviour === 'arrows') {
-						const scrollContainers =
-							firstTabList.getElementsByClassName(
-								'db-tab-list-scroll-container'
-							);
+						const container = firstTabList.querySelector('ul');
 
-						if (scrollContainers?.length > 0) {
-							const container = scrollContainers.item(0);
-							state.scrollContainer = container;
+						state.scrollContainer = container;
+						state.evaluateScrollButtons(container);
+						container.addEventListener('scroll', () => {
 							state.evaluateScrollButtons(container);
-							container.addEventListener('scroll', () => {
-								state.evaluateScrollButtons(container);
-							});
-						}
+						});
 					}
 
 					const tabs = firstTabList.getElementsByClassName('db-tab');

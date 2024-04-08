@@ -95,46 +95,6 @@ $max-tabs: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 			inline-size: 100%;
 		}
 
-		.db-tab-list-scroll-container {
-			@extend %horizontal-pulse;
-			overflow-x: auto;
-			overflow-y: hidden;
-			inline-size: 100%;
-
-			.db-tab {
-				margin-block-start: variables.$db-spacing-fixed-xs;
-				margin-block-end: calc(
-					2 * #{variables.$db-spacing-fixed-2xs} + #{variables.$db-border-height-lg}
-				);
-			}
-
-			db-tab {
-				&:first-of-type {
-					.db-tab {
-						margin-inline-start: variables.$db-spacing-fixed-xs;
-					}
-				}
-
-				&:last-of-type {
-					.db-tab {
-						margin-inline-end: variables.$db-spacing-fixed-xs;
-					}
-				}
-			}
-
-			&:not(:has(db-tab)) {
-				.db-tab {
-					&:first-of-type {
-						margin-inline-start: variables.$db-spacing-fixed-xs;
-					}
-
-					&:last-of-type {
-						margin-inline-end: variables.$db-spacing-fixed-xs;
-					}
-				}
-			}
-		}
-
 		/* horizontal track for pulse */
 		.db-tab-list {
 			&::before {
@@ -150,6 +110,46 @@ $max-tabs: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 					3 * #{variables.$db-spacing-fixed-xs} + #{variables.$db-spacing-fixed-2xs} +
 						#{form-components.$font-size-height}
 				);
+			}
+
+			> ul {
+				@extend %horizontal-pulse;
+				overflow-x: auto;
+				overflow-y: hidden;
+				inline-size: 100%;
+
+				.db-tab {
+					margin-block-start: variables.$db-spacing-fixed-xs;
+					margin-block-end: calc(
+						2 * #{variables.$db-spacing-fixed-2xs} + #{variables.$db-border-height-lg}
+					);
+				}
+
+				db-tab {
+					&:first-of-type {
+						.db-tab {
+							margin-inline-start: variables.$db-spacing-fixed-xs;
+						}
+					}
+
+					&:last-of-type {
+						.db-tab {
+							margin-inline-end: variables.$db-spacing-fixed-xs;
+						}
+					}
+				}
+
+				&:not(:has(db-tab)) {
+					.db-tab {
+						&:first-of-type {
+							margin-inline-start: variables.$db-spacing-fixed-xs;
+						}
+
+						&:last-of-type {
+							margin-inline-end: variables.$db-spacing-fixed-xs;
+						}
+					}
+				}
 			}
 		}
 	}
@@ -205,6 +205,28 @@ $max-tabs: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 				position: absolute;
 				inset-inline-start: 0;
 			}
+
+			> ul {
+				@extend %vertical-pulse;
+				flex-direction: column;
+				block-size: 100%;
+
+				input::after {
+					inset-inline-start: 0;
+				}
+
+				&:not(:has(db-tab)) {
+					.db-tab {
+						&:first-of-type {
+							margin-block-start: variables.$db-spacing-fixed-xs;
+						}
+
+						&:last-of-type {
+							margin-block-end: variables.$db-spacing-fixed-xs;
+						}
+					}
+				}
+			}
 		}
 
 		.db-tab {
@@ -235,28 +257,6 @@ $max-tabs: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 				}
 			}
 		}
-
-		.db-tab-list-scroll-container {
-			@extend %vertical-pulse;
-			flex-direction: column;
-			block-size: 100%;
-
-			input::after {
-				inset-inline-start: 0;
-			}
-
-			&:not(:has(db-tab)) {
-				.db-tab {
-					&:first-of-type {
-						margin-block-start: variables.$db-spacing-fixed-xs;
-					}
-
-					&:last-of-type {
-						margin-block-end: variables.$db-spacing-fixed-xs;
-					}
-				}
-			}
-		}
 	}
 
 	&[data-width="full"] {
@@ -278,9 +278,11 @@ $max-tabs: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 	}
 
 	&[data-scroll-behaviour="arrows"] {
-		.db-tab-list-scroll-container {
-			&::-webkit-scrollbar {
-				display: none;
+		.db-tab-list {
+			> ul {
+				&::-webkit-scrollbar {
+					display: none;
+				}
 			}
 		}
 

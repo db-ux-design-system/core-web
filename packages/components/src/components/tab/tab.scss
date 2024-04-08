@@ -37,20 +37,16 @@
 		border-radius: variables.$db-border-radius-md;
 		z-index: -1;
 
-		&:focus-within,
-		&:focus-visible {
-			outline: none;
-			box-shadow: none;
-		}
-
 		/*
 		focus must be set on input:
 		- parent label tag may use before AND after for displaying icons
 		- placed on li.db-tab focus would get cut off partially by by overflow hidden (orientation vertical)
 		 */
+		&:focus-within,
 		&:focus-visible {
 			&:is(input[type="radio"]) {
 				outline: none;
+				box-shadow: none;
 			}
 
 			&::before {
