@@ -185,31 +185,13 @@ $max-tabs: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 			margin-block-end: auto;
 
 			.db-tab {
-				inline-size: 100%;
-				overflow: hidden;
-
 				&:has(input:focus-visible),
 				&:hover {
-					overflow: visible;
+					inline-size: fit-content;
 
 					label {
-						inline-size: auto;
+						overflow: visible;
 					}
-				}
-			}
-
-			label {
-				display: flex;
-				inline-size: 100%;
-				white-space: nowrap;
-
-				/*
-				Label text MUST be wrapped by an additional span
-				to enable truncate and "align-items center" at the same time
-				 */
-				span {
-					overflow: hidden;
-					text-overflow: ellipsis;
 				}
 			}
 
@@ -226,9 +208,18 @@ $max-tabs: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 		}
 
 		.db-tab {
-			padding-inline-start: calc(
+			$padding-start: calc(
 				#{variables.$db-border-height-lg} + #{variables.$db-spacing-fixed-2xs}
 			);
+			padding-inline-start: $padding-start;
+
+			input {
+				padding-inline-start: $padding-start;
+			}
+
+			input::before {
+				inset-inline-start: $padding-start;
+			}
 		}
 
 		db-tab {
@@ -249,6 +240,10 @@ $max-tabs: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 			@extend %vertical-pulse;
 			flex-direction: column;
 			block-size: 100%;
+
+			input::after {
+				inset-inline-start: 0;
+			}
 
 			&:not(:has(db-tab)) {
 				.db-tab {
