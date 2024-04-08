@@ -171,10 +171,11 @@ const writeCodeFiles = async (componentPath, componentName) => {
 				`../../../../../output/react/src/components/${componentName}/model`,
 				`./../../../components//src/components/${componentName}/model`
 			)
-			.replace(
+			.replaceAll(
 				')}></DefaultComponent>',
 				`,[${tags}])}></DefaultComponent>`
-			);
+			)
+			.replaceAll('// placeholder_tags', `,[${tags}]`);
 
 		return `${pre}\n${readFile}`;
 	}

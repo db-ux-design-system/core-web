@@ -1,3 +1,4 @@
+import type { DBAccordionItemProps } from '@db-ui/react-components/src/components/accordion-item/model';
 import {
 	DBAccordion,
 	DBAccordionItem,
@@ -5,6 +6,7 @@ import {
 } from '../../../../../output/react/src';
 import DefaultComponent from '../index';
 import defaultComponentVariants from '../../../../shared/accordion.json';
+import defaultComponentVariantsItem from '../../../../shared/accordion-item.json';
 import type { DBAccordionProps } from '../../../../../output/react/src/components/accordion/model';
 import { getVariants } from '../data';
 
@@ -21,14 +23,54 @@ const getAccordion = ({ behaviour, children, variant }: DBAccordionProps) => (
 	</>
 );
 
+const getAccordionItem = ({
+	children,
+	disabled,
+	open,
+	title
+}: DBAccordionItemProps & { open: boolean }) => {
+	return (
+		<DBAccordionItem title={title} disabled={disabled} defaultOpen={open}>
+			{children}
+		</DBAccordionItem>
+	);
+};
+
+// Const getMergedVariants = () => {
+// 	return [
+// 		...getVariants(defaultComponentVariants, getAccordion),
+// 		...getVariants(defaultComponentVariantsItem, getAccordionItem)
+// 	];
+// };
+
 const AccordionComponent = () => {
 	return (
-		<DefaultComponent
-			title="DBAccordion"
-			variants={getVariants(
-				defaultComponentVariants,
-				getAccordion
-			)}></DefaultComponent>
+		<div>
+			<DefaultComponent
+				title="DBAccordion"
+				variants={[
+					...getVariants(
+						defaultComponentVariants,
+						getAccordion
+						// Placeholder_tags
+					),
+					<div>
+						<h2>efewfew</h2>
+					</div>,
+					...getVariants(
+						defaultComponentVariantsItem,
+						getAccordionItem
+						// Placeholder_tags
+					)
+				]}></DefaultComponent>
+
+			{/* <DefaultComponent */}
+			{/*	title="DBAccordionItem" */}
+			{/*	variants={getVariants( */}
+			{/*		defaultComponentVariantsItem, */}
+			{/*		getAccordionItem */}
+			{/*	)}></DefaultComponent> */}
+		</div>
 	);
 };
 

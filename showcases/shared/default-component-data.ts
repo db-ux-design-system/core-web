@@ -24,5 +24,5 @@ export type DefaultComponentVariants = {
 
 export type DefaultComponentProps = {
 	title: string;
-	variants: DefaultComponentVariants[];
+	variants: Array<DefaultComponentVariants | React.ReactNode>;
 };
