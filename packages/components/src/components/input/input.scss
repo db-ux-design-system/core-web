@@ -51,7 +51,7 @@ $icon-padding: calc(
 	}
 
 	&:has(input[type="time"]) {
-		@include icons.set-icon("schedule", "after");
+		@include icons.set-icon("clock", "after");
 	}
 
 	input {
