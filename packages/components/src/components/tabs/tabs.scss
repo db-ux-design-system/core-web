@@ -20,27 +20,33 @@ $max-tabs: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 }
 
 %horizontal-pulse {
-	input {
+	.db-tab {
 		@include db-puls.set-db-puls-horizontal;
 
-		&::after {
-			inset-block-end: calc(
-				-1 * (#{variables.$db-spacing-fixed-2xs} + #{variables.$db-border-height-lg})
-			);
-		}
-
-		&:checked {
+		&:has(input:checked) {
 			@include db-puls.show-db-puls-horizontal;
+
+			&::after {
+				inset-block-end: calc(
+					-1 * (#{variables.$db-spacing-fixed-2xs} + #{variables.$db-border-height-lg})
+				);
+				z-index: -2;
+			}
 		}
 	}
 }
 
 %vertical-pulse {
-	input {
+	.db-tab {
 		@include db-puls.set-db-puls-vertical;
 
-		&:checked {
+		&:has(input:checked) {
 			@include db-puls.show-db-puls-vertical;
+
+			&::after {
+				inset-inline-start: 0;
+				z-index: -2;
+			}
 		}
 	}
 }
@@ -79,9 +85,7 @@ $max-tabs: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 	}
 
 	.db-tab {
-		input {
-			@extend %db-puls;
-		}
+		@extend %db-puls;
 	}
 
 	/*
@@ -185,6 +189,10 @@ $max-tabs: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 			margin-block-end: auto;
 
 			.db-tab {
+				label {
+					position: relative;
+				}
+
 				&:has(input:focus-visible),
 				&:hover {
 					inline-size: fit-content;
@@ -211,10 +219,6 @@ $max-tabs: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 				flex-direction: column;
 				block-size: 100%;
 
-				input::after {
-					inset-inline-start: 0;
-				}
-
 				&:not(:has(db-tab)) {
 					.db-tab {
 						&:first-of-type {
@@ -237,10 +241,6 @@ $max-tabs: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
 			input {
 				padding-inline-start: $padding-start;
-			}
-
-			input::before {
-				inset-inline-start: $padding-start;
 			}
 		}
 
