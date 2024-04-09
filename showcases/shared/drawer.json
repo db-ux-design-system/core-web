@@ -3,7 +3,7 @@
 		"name": "Tonality",
 		"examples": [
 			{
-				"name": "functional",
+				"name": "Functional",
 				"className": "db-ui-functional",
 				"props": {},
 				"code": {
@@ -14,18 +14,18 @@
 				}
 			},
 			{
-				"name": "regular (Default)",
+				"name": "(Default) Regular",
 				"className": "db-ui-regular",
 				"props": {},
 				"code": {
-					"html": "<dialog class=\"db-drawer\" data-backdrop=\"strong\" open>\n\t\t<article class=\"db-drawer-container\">\n\t\t\t<header class=\"db-drawer-header\">\n\t\t\t\t<button\n\t\t\t\t\tclass=\"db-button button-close-drawer is-icon-text-replace\"\n\t\t\t\t\tdata-icon=\"close\"\n\t\t\t\t\tdata-variant=\"text\"\n\t\t\t\t>\n\t\t\t\t\tClose Button\n\t\t\t\t</button>\n\t\t\t</header>\n\t\t\t<div class=\"db-drawer-content\">regular (Default)</div>\n\t\t</article>\n\t</dialog>",
-					"angular": "<db-drawer [open]=\"openDrawer\" (onClose)=\"toggleDrawer(false)\">\n\tregular (Default)\n</db-drawer>",
-					"react": "<DBDrawer\n\t\t\t\topen={open}\n\t\t\t\tonClose={() => {\n\t\t\t\t\tsetOpen(false);\n\t\t\t\t}}\n\t\t\t>\n\t\t\t\tregular (Default)\n\t\t\t</DBDrawer>",
-					"vue": "<DBDrawer :open=\"openDrawer\" @close=\"toggleDrawer(false)\">\n\t\tregular (Default)\n\t</DBDrawer>"
+					"html": "<dialog class=\"db-drawer\" data-backdrop=\"strong\" open>\n\t\t<article class=\"db-drawer-container\">\n\t\t\t<header class=\"db-drawer-header\">\n\t\t\t\t<button\n\t\t\t\t\tclass=\"db-button button-close-drawer is-icon-text-replace\"\n\t\t\t\t\tdata-icon=\"close\"\n\t\t\t\t\tdata-variant=\"text\"\n\t\t\t\t>\n\t\t\t\t\tClose Button\n\t\t\t\t</button>\n\t\t\t</header>\n\t\t\t<div class=\"db-drawer-content\">Regular (Default)</div>\n\t\t</article>\n\t</dialog>",
+					"angular": "<db-drawer [open]=\"openDrawer\" (onClose)=\"toggleDrawer(false)\">\n\tRegular (Default)\n</db-drawer>",
+					"react": "<DBDrawer\n\t\t\t\topen={open}\n\t\t\t\tonClose={() => {\n\t\t\t\t\tsetOpen(false);\n\t\t\t\t}}\n\t\t\t>\n\t\t\t\tRegular (Default)\n\t\t\t</DBDrawer>",
+					"vue": "<DBDrawer :open=\"openDrawer\" @close=\"toggleDrawer(false)\">\n\t\tRegular (Default)\n\t</DBDrawer>"
 				}
 			},
 			{
-				"name": "expressive",
+				"name": "Expressive",
 				"className": "db-ui-expressive",
 				"props": {},
 				"code": {
@@ -41,7 +41,7 @@
 		"name": "Size",
 		"examples": [
 			{
-				"name": "Medium (Default)",
+				"name": "(Default) Medium",
 				"props": {
 					"withCloseButton": true
 				},
@@ -71,7 +71,7 @@
 		"name": "Rounded",
 		"examples": [
 			{
-				"name": "No rounding (Default)",
+				"name": "(Default) No rounding",
 				"props": {
 					"withCloseButton": true
 				},
@@ -101,7 +101,7 @@
 		"name": "Spacing",
 		"examples": [
 			{
-				"name": "Medium (Default)",
+				"name": "(Default) Medium",
 				"props": {
 					"withCloseButton": true
 				},
@@ -157,7 +157,7 @@
 		"name": "Backdrop",
 		"examples": [
 			{
-				"name": "With Backdrop (Default)",
+				"name": "(Default) With Backdrop",
 				"props": {
 					"withCloseButton": true
 				},
@@ -200,7 +200,7 @@
 		"name": "Directions",
 		"examples": [
 			{
-				"name": "Right (Default)",
+				"name": "(Default) Right",
 				"props": {
 					"withCloseButton": true
 				},

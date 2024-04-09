@@ -10,7 +10,7 @@
 				}
 			},
 			{
-				"name": "Regular (Default)",
+				"name": "(Default) Regular",
 				"className": "db-ui-regular",
 				"props": {
 					"href": "#"
@@ -29,7 +29,7 @@
 		"name": "Semantic",
 		"examples": [
 			{
-				"name": "Adaptive (Default)",
+				"name": "(Default) Adaptive",
 				"props": {
 					"href": "#"
 				}
@@ -65,7 +65,7 @@
 		"name": "Size",
 		"examples": [
 			{
-				"name": "Medium (Default)",
+				"name": "(Default) Medium",
 				"props": {
 					"href": "#"
 				}
@@ -83,7 +83,7 @@
 		"name": "Content",
 		"examples": [
 			{
-				"name": "Internal (Default)",
+				"name": "(Default) Internal",
 				"props": {
 					"href": "#"
 				}

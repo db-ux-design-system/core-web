@@ -42,7 +42,7 @@ For general installation and configuration take a look at the [components](https
 										class="db-navigation-item"
 										data-icon="account"
 									>
-										<a href="#">regular (Default)</a>
+										<a href="#">Regular (Default)</a>
 									</li>
 									<li
 										id="navigation-item-3281f02e-bbc3-4b43-a0dd-b79813fd94f7"
@@ -50,7 +50,7 @@ For general installation and configuration take a look at the [components](https
 										aria-disabled="true"
 									>
 										<a href="#"
-											>regular (Default) disabled</a
+											>Regular (Default) disabled</a
 										>
 									</li>
 								</menu>
@@ -146,14 +146,14 @@ For general installation and configuration take a look at the [components](https
 								class="db-navigation-item"
 								data-icon="account"
 							>
-								<a href="#">regular (Default)</a>
+								<a href="#">Regular (Default)</a>
 							</li>
 							<li
 								id="navigation-item-9da396bf-2a41-402e-a9d8-cf54a219919b"
 								class="db-navigation-item"
 								aria-disabled="true"
 							>
-								<a href="#">regular (Default) disabled</a>
+								<a href="#">Regular (Default) disabled</a>
 							</li>
 						</menu>
 					</nav>
