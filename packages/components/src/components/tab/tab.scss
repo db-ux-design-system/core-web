@@ -46,7 +46,9 @@ $with-icon-padding: calc(
 
 			&:is(.is-icon-text-replace) {
 				padding: 0;
-				inline-size: $with-icon-padding;
+				inline-size: calc(
+					#{$with-icon-padding} - #{variables.$db-spacing-fixed-2xs}
+				);
 				block-size: calc(
 					#{form-components.$font-size-height} + #{variables.$db-spacing-fixed-xs}
 				);
