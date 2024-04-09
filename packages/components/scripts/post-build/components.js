@@ -113,7 +113,7 @@ const getComponents = () => [
 	},
 
 	{
-		name: 'main-navigation'
+		name: 'navigation'
 	},
 	{
 		name: 'navigation-item',

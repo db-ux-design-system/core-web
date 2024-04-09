@@ -6,12 +6,12 @@ For general installation and configuration look at the [ngx-components](https://
 
 ```ts app.component.ts
 // app.component.ts
-import { DBMainNavigation } from '@db-ui/ngx-components';
+import { DBNavigation } from '@db-ui/ngx-components';
 
 @Component({
   // ...
   standalone: true,
-  imports: [..., DBMainNavigation],
+  imports: [..., DBNavigation],
   // ...
 })
 ```
@@ -21,7 +21,7 @@ import { DBMainNavigation } from '@db-ui/ngx-components';
 ```html app.component.html
 <!-- app.component.html -->
 
-<db-main-navigation>
+<db-navigation>
 	<db-navigation-item [active]="true">
 		<ng-container sub-navigation>
 			<db-navigation-item [active]="true">
@@ -59,5 +59,5 @@ import { DBMainNavigation } from '@db-ui/ngx-components';
 			<a href="#">Navi-Item 3</a>
 		</ng-container>
 	</db-navigation-item>
-</db-main-navigation>
+</db-navigation>
 ```

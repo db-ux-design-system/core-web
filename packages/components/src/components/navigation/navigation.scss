@@ -4,7 +4,7 @@
 @use "../../styles/db-puls";
 @use "../../styles/form-components";
 
-.db-main-navigation {
+.db-navigation {
 	-webkit-tap-highlight-color: transparent; /* for removing the highlight */
 	inline-size: 100%;
 
@@ -27,7 +27,7 @@
 		.db-navigation-item {
 			.db-navigation-item-expand-button:is(button),
 			.db-navigation-item-expand-button > button {
-				// overwrite for main-navigation items
+				// overwrite for navigation items
 				@include screen-sizes.screen("md") {
 					&::after {
 						--db-icon-margin-start: #{variables.$db-spacing-fixed-sm};
@@ -47,7 +47,7 @@
 				}
 			}
 
-			// re overwrite for non main-navigation items
+			// re overwrite for non navigation items
 			& > menu {
 				.db-navigation-item-expand-button:is(button),
 				.db-navigation-item-expand-button > button {
@@ -72,7 +72,7 @@
 
 			&[aria-current="page"] {
 				menu {
-					// hide puls for non main-navigation items
+					// hide puls for non navigation items
 					[aria-current="page"] {
 						&::after {
 							display: none;

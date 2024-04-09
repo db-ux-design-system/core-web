@@ -7,7 +7,7 @@ import AccordionItem from '../components/accordion-item/AccordionItem.vue';
 import Accordion from '../components/accordion/Accordion.vue';
 import Badge from '../components/badge/Badge.vue';
 import NavigationItem from '../components/navigation-item/NavigationItem.vue';
-import MainNavigation from '../components/main-navigation/MainNavigation.vue';
+import Navigation from '../components/navigation/Navigation.vue';
 import Select from '../components/select/Select.vue';
 import Tag from '../components/tag/Tag.vue';
 import Form from '../components/form/Form.vue';
@@ -61,9 +61,9 @@ export const navigationItems: NavItem[] = [
 				component: NavigationItem
 			},
 			{
-				path: '/05/main-navigation',
-				label: 'MainNavigation',
-				component: MainNavigation
+				path: '/05/navigation',
+				label: 'Navigation',
+				component: Navigation
 			}
 		])
 	},

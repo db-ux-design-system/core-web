@@ -54,10 +54,10 @@ const App = () => (
 			</>
 		}
 	>
-		<DBMainNavigation>
+		<DBNavigation>
 			//
-			https://github.com/db-ui/mono/blob/main/packages/components/src/components/main-navigation/docs/React.md
-		</DBMainNavigation>
+			https://github.com/db-ui/mono/blob/main/packages/components/src/components/navigation/docs/React.md
+		</DBNavigation>
 	</DBHeader>
 );
 

@@ -4,7 +4,7 @@ import {
 	DBButton,
 	DBHeader,
 	DBLink,
-	DBMainNavigation,
+	DBNavigation,
 	DBNavigationItem
 } from '../../../../../output/react/src';
 import { type DBPageProps } from '../../../../../output/react/src/components/page/model';
@@ -65,14 +65,14 @@ const getPage = ({
 					</>
 				}
 				title={title}>
-				<DBMainNavigation>
+				<DBNavigation>
 					<DBNavigationItem icon="account">
 						<a href="#">{children}</a>
 					</DBNavigationItem>
 					<DBNavigationItem disabled>
 						<a href="#">{children} disabled</a>
 					</DBNavigationItem>
-				</DBMainNavigation>
+				</DBNavigation>
 			</DBHeader>
 		}
 		footer={<>Footer Content</>}>

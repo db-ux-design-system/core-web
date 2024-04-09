@@ -119,7 +119,7 @@
 
 	&:has([aria-current="page"]),
 	&[aria-current="page"] {
-		// add puls for main-navigation items
+		// add puls for navigation items
 		@extend %show-db-puls-auto;
 		font-weight: 700;
 	}
