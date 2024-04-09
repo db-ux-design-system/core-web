@@ -1,13 +1,12 @@
 import {
 	onMount,
-	Show,
+	onUpdate,
 	useMetadata,
 	useRef,
 	useStore
 } from '@builder.io/mitosis';
 import { DBTooltipProps, DBTooltipState } from './model';
-import { cls, uuid } from '../../utils';
-import { DEFAULT_ID } from '../../shared/constants';
+import { cls, handleDataOutside } from '../../utils';
 import { ClickEvent } from '../../shared/model';
 
 useMetadata({
@@ -18,18 +17,34 @@ export default function DBTooltip(props: DBTooltipProps) {
 	const ref = useRef<HTMLDivElement>(null);
 	// jscpd:ignore-start
 	const state = useStore<DBTooltipState>({
-		_id: DEFAULT_ID,
+		initialized: false,
 		handleClick: (event: ClickEvent<HTMLElement>) => {
 			event.stopPropagation();
+		},
+		handleAutoPlacement: () => {
+			if (ref) handleDataOutside(ref);
 		}
 	});
 
 	onMount(() => {
-		state._id = props.id || 'tooltip-' + uuid();
-		if (props.stylePath) {
-			state.stylePath = props.stylePath;
-		}
+		state.initialized = true;
 	});
+
+	onUpdate(() => {
+		if (ref && state.initialized) {
+			const parent = ref.parentElement;
+			if (parent) {
+				['mouseenter', 'focus'].forEach((event) => {
+					parent.addEventListener(event, () =>
+						state.handleAutoPlacement()
+					);
+				});
+			}
+
+			state.initialized = false;
+		}
+	}, [ref, state.initialized]);
+
 	// jscpd:ignore-end
 
 	// TODO: Shall we check if only <span>, <p> or direct text was passed as children?
@@ -38,7 +53,7 @@ export default function DBTooltip(props: DBTooltipProps) {
 			role="tooltip"
 			ref={ref}
 			className={cls('db-tooltip', props.className)}
-			id={state._id}
+			id={props.id}
 			data-emphasis={props.emphasis}
 			data-animation={props.animation}
 			data-delay={props.delay}
@@ -50,9 +65,6 @@ export default function DBTooltip(props: DBTooltipProps) {
 			onClick={(event: ClickEvent<HTMLElement>) =>
 				state.handleClick(event)
 			}>
-			<Show when={state.stylePath}>
-				<link rel="stylesheet" href={state.stylePath} />
-			</Show>
 			{props.children}
 		</i>
 	);

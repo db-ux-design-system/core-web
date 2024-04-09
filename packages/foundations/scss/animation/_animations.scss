@@ -94,13 +94,16 @@
 	0% {
 		opacity: 0;
 		transform: translate(
-			var(--db-popover-translate-x, 0%),
-			var(--db-popover-translate-y, 0%)
+			var(--db-popover-center-x, var(--db-popover-translate-x, 0%)),
+			var(--db-popover-center-y, var(--db-popover-translate-y, 0%))
 		);
 	}
 
 	100% {
 		opacity: 1;
-		transform: translate(0%, 0%);
+		transform: translate(
+			var(--db-popover-center-x, 0%),
+			var(--db-popover-center-y, 0%)
+		);
 	}
 }

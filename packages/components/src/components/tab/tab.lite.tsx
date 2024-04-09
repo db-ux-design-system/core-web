@@ -24,9 +24,6 @@ export default function DBTab(props: DBTabProps) {
 
 	onMount(() => {
 		state.initialized = true;
-		if (props.stylePath) {
-			state.stylePath = props.stylePath;
-		}
 	});
 	// jscpd:ignore-end
 
@@ -38,28 +35,21 @@ export default function DBTab(props: DBTabProps) {
 	}, [ref, state.initialized]);
 
 	return (
-		<label
-			htmlFor={state._id}
-			role="tab"
-			className={cls('db-tab', props.className, {
-				'is-icon-text-replace': props.noText
-			})}
-			data-icon={props.icon}
-			data-icon-after={props.iconAfter}
-			data-width={props.width}
-			data-alignment={props.alignment}>
-			<Show when={state.stylePath}>
-				<link rel="stylesheet" href={state.stylePath} />
-			</Show>
-			<input
-				disabled={props.disabled}
-				ref={ref}
-				type="radio"
-				id={state._id}
-			/>
-
-			<Show when={props.label}>{props.label}</Show>
-			{props.children}
-		</label>
+		<li className={cls('db-tab', props.className)} role="tab">
+			<label
+				htmlFor={state._id}
+				data-icon={props.icon}
+				data-icon-after={props.iconAfter}
+				className={cls({ 'is-icon-text-replace': props.noText })}>
+				<input
+					disabled={props.disabled}
+					ref={ref}
+					type="radio"
+					id={state._id}
+				/>
+				<Show when={props.label}>{props.label}</Show>
+				{props.children}
+			</label>
+		</li>
 	);
 }

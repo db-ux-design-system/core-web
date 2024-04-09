@@ -3,21 +3,21 @@
 		"name": "Tonality",
 		"examples": [
 			{
-				"name": "functional",
+				"name": "Functional",
 				"className": "db-ui-functional",
 				"props": {
 					"href": "#"
 				}
 			},
 			{
-				"name": "regular (Default)",
+				"name": "(Default) Regular",
 				"className": "db-ui-regular",
 				"props": {
 					"href": "#"
 				}
 			},
 			{
-				"name": "expressive",
+				"name": "Expressive",
 				"className": "db-ui-expressive",
 				"props": {
 					"href": "#"
@@ -26,7 +26,7 @@
 		]
 	},
 	{
-		"name": "Variant",
+		"name": "Semantic",
 		"examples": [
 			{
 				"name": "(Default) Adaptive",
@@ -35,7 +35,7 @@
 				}
 			},
 			{
-				"name": "Primary",
+				"name": "Brand",
 				"props": {
 					"href": "#",
 					"variant": "primary"
@@ -44,10 +44,10 @@
 		]
 	},
 	{
-		"name": "State",
+		"name": "Interaction-States",
 		"examples": [
 			{
-				"name": "Default: (Enabled, Hover, Pressed)",
+				"name": "Enabled (Default)/Hover/Pressed",
 				"props": {
 					"href": "#"
 				}

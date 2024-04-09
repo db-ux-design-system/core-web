@@ -19,6 +19,7 @@
  * 		},
  *     react?: {
  * 			propsPassingFilter?: string[];
+ * 			containsFragmentMap?: boolean;
  * 		}
  * }
  * }]}
@@ -68,7 +69,8 @@ const getComponents = () => [
 	},
 
 	{
-		name: 'popover'
+		name: 'popover',
+		overwrites: { angular: [{ from: 'mouseEnter', to: 'mouseenter' }] }
 	},
 
 	{
@@ -131,6 +133,9 @@ const getComponents = () => [
 			},
 			angular: {
 				controlValueAccessor: 'value'
+			},
+			react: {
+				containsFragmentMap: true
 			}
 		}
 	},
@@ -149,10 +154,6 @@ const getComponents = () => [
 	{
 		name: 'tag'
 	},
-	{
-		name: 'code-docs'
-	},
-
 	{
 		name: 'checkbox',
 		config: {

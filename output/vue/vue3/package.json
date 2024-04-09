@@ -12,8 +12,14 @@
   "module": "./dist/db-ui.es.js",
   "exports": {
     ".": {
-      "import": "./dist/db-ui.es.js",
-      "require": "./dist/db-ui.umd.js"
+      "import": {
+        "default": "./dist/db-ui.es.js",
+        "types": "./dist/index.d.ts"
+      },
+      "require": {
+        "default": "./dist/db-ui.umd.js",
+        "types": "./dist/index.d.ts"
+      }
     }
   },
   "types": "./dist/index.d.ts",
@@ -37,10 +43,10 @@
     "@axe-core/playwright": "^4.8.5",
     "@playwright/experimental-ct-vue": "1.42.1",
     "@vitejs/plugin-vue": "^5.0.4",
-    "sass": "^1.72.0",
-    "typescript": "^5.4.2",
-    "vite": "^5.1.6",
-    "vue-tsc": "^2.0.6"
+    "sass": "^1.74.1",
+    "typescript": "^5.4.4",
+    "vite": "^5.2.8",
+    "vue-tsc": "^2.0.11"
   },
   "publishConfig": {
     "registry": "https://registry.npmjs.org/",

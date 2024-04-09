@@ -1,9 +1,6 @@
 <!-- TODO: Content Projection not working for nested components? -> Had to copy paste variant-cards... -->
 @if (variantRef) {
-	<db-code-docs
-		class="variants-card"
-		[codeSnippets]="getCodeSnippets(variantRef.examples)"
-	>
+	<db-card class="variants-card">
 		<div class="variants-list">
 			@for (
 				example of variantRef.examples;
@@ -26,7 +23,7 @@
 				</div>
 			}
 		</div>
-	</db-code-docs>
+	</db-card>
 }
 
 @if (!variantRef) {
@@ -43,10 +40,7 @@
 				>
 					<span>{{ variant.name }}</span>
 				</db-link>
-				<db-code-docs
-					class="variants-card"
-					[codeSnippets]="getCodeSnippets(variant.examples)"
-				>
+				<db-card class="variants-card">
 					<div class="variants-list">
 						@for (
 							example of variant.examples;
@@ -72,7 +66,7 @@
 							</div>
 						}
 					</div>
-				</db-code-docs>
+				</db-card>
 			</div>
 		}
 	</div>

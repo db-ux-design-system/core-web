@@ -7,10 +7,10 @@ import {
 	useRef,
 	useStore
 } from '@builder.io/mitosis';
-import { DBDrawerState, DBDrawerProps } from './model';
+import { DBDrawerProps, DBDrawerState } from './model';
 import { DBButton } from '../button';
-import { DEFAULT_CLOSE_BUTTON, DEFAULT_ID } from '../../shared/constants';
-import { cls, uuid } from '../../utils';
+import { DEFAULT_CLOSE_BUTTON } from '../../shared/constants';
+import { cls } from '../../utils';
 
 useMetadata({
 	isAttachedToShadowDom: true,
@@ -25,7 +25,6 @@ export default function DBDrawer(props: DBDrawerProps) {
 	const ref = useRef<HTMLDialogElement>(null);
 	const dialogContainerRef = useRef<HTMLDivElement>(null);
 	const state = useStore<DBDrawerState>({
-		_id: DEFAULT_ID,
 		handleClose: (event: any) => {
 			if (event.key === 'Escape') {
 				event.preventDefault();
@@ -70,10 +69,6 @@ export default function DBDrawer(props: DBDrawerProps) {
 	});
 
 	onMount(() => {
-		state._id = props.id || 'drawer-' + uuid();
-		if (props.stylePath) {
-			state.stylePath = props.stylePath;
-		}
 		state.handleDialogOpen();
 	});
 
@@ -83,7 +78,7 @@ export default function DBDrawer(props: DBDrawerProps) {
 
 	return (
 		<dialog
-			id={state._id}
+			id={props.id}
 			ref={ref}
 			class="db-drawer"
 			onClick={(event) => {
@@ -91,9 +86,6 @@ export default function DBDrawer(props: DBDrawerProps) {
 			}}
 			onKeyDown={(event) => state.handleClose(event)}
 			data-backdrop={props.backdrop}>
-			<Show when={state.stylePath}>
-				<link rel="stylesheet" href={state.stylePath} />
-			</Show>
 			<article
 				ref={dialogContainerRef}
 				class={cls('db-drawer-container', props.className)}

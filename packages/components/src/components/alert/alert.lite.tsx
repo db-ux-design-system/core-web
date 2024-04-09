@@ -1,15 +1,9 @@
-import {
-	onMount,
-	Show,
-	useMetadata,
-	useRef,
-	useStore
-} from '@builder.io/mitosis';
+import { Show, useMetadata, useRef, useStore } from '@builder.io/mitosis';
 import { DBAlertProps, DBAlertState } from './model';
 import { DBButton } from '../button';
 import { DBLink } from '../link';
-import { DEFAULT_CLOSE_BUTTON, DEFAULT_ID } from '../../shared/constants';
-import { cls, uuid } from '../../utils';
+import { DEFAULT_CLOSE_BUTTON } from '../../shared/constants';
+import { cls } from '../../utils';
 import { ClickEvent } from '../../shared/model';
 
 useMetadata({
@@ -20,18 +14,10 @@ export default function DBAlert(props: DBAlertProps) {
 	const ref = useRef<HTMLDivElement>(null);
 	// jscpd:ignore-start
 	const state = useStore<DBAlertState>({
-		_id: DEFAULT_ID,
 		handleClick: (event: ClickEvent<HTMLButtonElement>) => {
 			if (props.onClick) {
 				props.onClick(event);
 			}
-		}
-	});
-
-	onMount(() => {
-		state._id = props.id || 'alert-' + uuid();
-		if (props.stylePath) {
-			state.stylePath = props.stylePath;
 		}
 	});
 	// jscpd:ignore-end
@@ -39,17 +25,13 @@ export default function DBAlert(props: DBAlertProps) {
 	return (
 		<div
 			ref={ref}
-			id={state._id}
+			id={props.id}
 			class={cls('db-alert', props.className)}
 			aria-live={props.ariaLive}
 			data-variant={props.variant}
 			data-type={props.type}
 			data-icon={props.icon}
 			data-elevation={props.elevation}>
-			<Show when={state.stylePath}>
-				<link rel="stylesheet" href={state.stylePath} />
-			</Show>
-
 			<Show when={props.headline}>
 				<strong class="db-alert-headline">{props.headline}</strong>
 			</Show>

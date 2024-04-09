@@ -11,6 +11,16 @@
 	padding: var(--db-spacing-fixed-md);
 }
 
+.variants-card,
+.variants-card > .db-card {
+	min-block-size: var(--db-sizing-3xl);
+	align-items: center;
+	justify-content: center;
+	padding: var(--db-spacing-fixed-xl);
+	padding-block-end: calc(var(--db-spacing-fixed-xl) + var(--db-sizing-sm));
+	position: relative;
+}
+
 .variants-list {
 	display: flex;
 	flex-wrap: wrap;
@@ -116,4 +126,8 @@
 
 .tab-hide-article article {
 	display: none !important;
+}
+
+.db-page.fixed-header-footer main {
+	overflow-x: hidden;
 }

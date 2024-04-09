@@ -77,10 +77,6 @@ export default function DBInput(props: DBInputProps) {
 		state._id = props.id || 'input-' + uuid();
 		state._messageId = state._id + DEFAULT_MESSAGE_ID_SUFFIX;
 		state._dataListId = props.dataListId || `datalist-${uuid()}`;
-
-		if (props.stylePath) {
-			state.stylePath = props.stylePath;
-		}
 	});
 	// jscpd:ignore-end
 
@@ -91,9 +87,6 @@ export default function DBInput(props: DBInputProps) {
 			data-label-variant={props.labelVariant}
 			data-icon={props.icon}
 			data-icon-after={props.iconAfter}>
-			<Show when={state.stylePath}>
-				<link rel="stylesheet" href={state.stylePath} />
-			</Show>
 			<label htmlFor={state._id}>
 				{props.label ?? state.defaultValues.label}
 			</label>
@@ -145,9 +138,7 @@ export default function DBInput(props: DBInputProps) {
 					</For>
 				</datalist>
 			</Show>
-
 			{props.children}
-
 			<Show when={props.message}>
 				<DBInfotext
 					size="small"
