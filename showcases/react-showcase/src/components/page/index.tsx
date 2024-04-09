@@ -19,8 +19,7 @@ const getPage = ({
 	className,
 	describedbyid,
 	id,
-	key,
-	tabIndex
+	key
 }: DBPageProps) => (
 	<DBPage
 		type={type}
@@ -29,7 +28,6 @@ const getPage = ({
 		describedbyid={describedbyid}
 		id={id}
 		key={key}
-		tabIndex={tabIndex}
 		slotHeader={
 			<DBHeader
 				slotBrand={
