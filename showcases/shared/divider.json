@@ -9,7 +9,7 @@
 				"props": {}
 			},
 			{
-				"name": "regular (Default)",
+				"name": "(Default) regular",
 				"style": { "width": "200px" },
 				"className": "db-ui-regular",
 				"props": {}
@@ -26,7 +26,7 @@
 		"name": "Variant",
 		"examples": [
 			{
-				"name": "Adaptive - Horizontal (Default)",
+				"name": "(Default) Adaptive - Horizontal",
 				"style": { "width": "200px" },
 				"props": {}
 			},
@@ -43,7 +43,7 @@
 		"name": "Emphasis",
 		"examples": [
 			{
-				"name": "Weak (Default)",
+				"name": "(Default) Weak",
 				"style": { "width": "200px" },
 				"props": {}
 			},

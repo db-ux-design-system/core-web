@@ -15,7 +15,7 @@
 				}
 			},
 			{
-				"name": "regular (Default)",
+				"name": "(Default) regular",
 				"style": { "width": "300px" },
 				"className": "db-ui-regular",
 				"props": {

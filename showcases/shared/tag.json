@@ -8,7 +8,7 @@
 				"props": {}
 			},
 			{
-				"name": "regular (Default)",
+				"name": "(Default) regular",
 				"className": "db-ui-regular",
 				"props": {}
 			},
@@ -23,7 +23,7 @@
 		"name": "Emphasis",
 		"examples": [
 			{
-				"name": "Weak (Default)",
+				"name": "(Default) Weak",
 				"props": {}
 			},
 			{
@@ -38,7 +38,7 @@
 		"name": "Variant",
 		"examples": [
 			{
-				"name": "Adaptive (Default)",
+				"name": "(Default) Adaptive",
 				"props": {}
 			},
 			{
@@ -118,7 +118,7 @@
 		"name": "Behaviour",
 		"examples": [
 			{
-				"name": "Static (Default)",
+				"name": "(Default) Static",
 				"props": {}
 			},
 			{
@@ -195,7 +195,7 @@
 		"name": "State",
 		"examples": [
 			{
-				"name": "Unchecked (Default)",
+				"name": "(Default) Unchecked",
 				"props": {
 					"component": "checkbox"
 				},
@@ -239,7 +239,7 @@
 		"name": "Content",
 		"examples": [
 			{
-				"name": "Text (Default)",
+				"name": "(Default) Text",
 				"props": {}
 			},
 			{
@@ -261,7 +261,7 @@
 		"name": "Overflow",
 		"examples": [
 			{
-				"name": "No Overflow (Default)",
+				"name": "(Default) No Overflow",
 				"props": {}
 			},
 			{

@@ -10,10 +10,10 @@
 				}
 			},
 			{
-				"name": "regular (Default)",
+				"name": "(Default) regular",
 				"className": "db-ui-regular tab-hide-article",
 				"props": {
-					"label": "regular (Default)"
+					"label": "(Default) regular"
 				}
 			},
 			{
@@ -86,9 +86,9 @@
 		"name": "Behaviour",
 		"examples": [
 			{
-				"name": "Auto Width (Default)",
+				"name": "(Default) Auto Width",
 				"props": {
-					"label": "Auto Width (Default)"
+					"label": "(Default) Auto Width"
 				}
 			},
 			{

@@ -10,7 +10,7 @@
 				}
 			},
 			{
-				"name": "regular (Default)",
+				"name": "(Default) regular",
 				"className": "db-ui-regular",
 				"props": {
 					"spacing": "small"

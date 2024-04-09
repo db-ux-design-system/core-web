@@ -14,7 +14,7 @@
 				}
 			},
 			{
-				"name": "regular (Default)",
+				"name": "(Default) regular",
 				"className": "db-ui-regular",
 				"props": {},
 				"code": {
@@ -41,7 +41,7 @@
 		"name": "Size",
 		"examples": [
 			{
-				"name": "Medium (Default)",
+				"name": "(Default) Medium",
 				"props": {
 					"withCloseButton": true
 				},
@@ -71,7 +71,7 @@
 		"name": "Rounded",
 		"examples": [
 			{
-				"name": "No rounding (Default)",
+				"name": "(Default) No rounding",
 				"props": {
 					"withCloseButton": true
 				},
@@ -101,7 +101,7 @@
 		"name": "Spacing",
 		"examples": [
 			{
-				"name": "Medium (Default)",
+				"name": "(Default) Medium",
 				"props": {
 					"withCloseButton": true
 				},
@@ -157,7 +157,7 @@
 		"name": "Backdrop",
 		"examples": [
 			{
-				"name": "With Backdrop (Default)",
+				"name": "(Default) With Backdrop",
 				"props": {
 					"withCloseButton": true
 				},
@@ -200,7 +200,7 @@
 		"name": "Directions",
 		"examples": [
 			{
-				"name": "Right (Default)",
+				"name": "(Default) Right",
 				"props": {
 					"withCloseButton": true
 				},

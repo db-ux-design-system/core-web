@@ -8,7 +8,7 @@
 				"props": {}
 			},
 			{
-				"name": "Regular (Default)",
+				"name": "(Default) Regular",
 				"className": "db-ui-regular",
 				"props": {}
 			},
@@ -23,7 +23,7 @@
 		"name": "Emphasis",
 		"examples": [
 			{
-				"name": "Weak (Default)",
+				"name": "(Default) Weak",
 				"props": {}
 			},
 			{
@@ -38,7 +38,7 @@
 		"name": "Semantic",
 		"examples": [
 			{
-				"name": "Adaptive (Default)",
+				"name": "(Default) Adaptive",
 				"props": {}
 			},
 			{
@@ -118,7 +118,7 @@
 		"name": "Size",
 		"examples": [
 			{
-				"name": "Small (Default)",
+				"name": "(Default) Small",
 				"props": {}
 			},
 			{
@@ -133,11 +133,11 @@
 		"name": "Content",
 		"examples": [
 			{
-				"name": "Text (Default)",
+				"name": "(Default) Text",
 				"props": {}
 			},
 			{
-				"name": "Text (Default) - Medium",
+				"name": "(Default) Text - Medium",
 				"props": {
 					"size": "medium"
 				}
@@ -174,7 +174,7 @@
 		"name": "Placement",
 		"examples": [
 			{
-				"name": "Inline (Default)",
+				"name": "(Default) Inline",
 				"props": {
 					"placement": "inline"
 				}

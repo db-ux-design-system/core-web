@@ -8,7 +8,7 @@
 				"props": {}
 			},
 			{
-				"name": "regular (Default)",
+				"name": "(Default) regular",
 				"className": "db-ui-regular",
 				"props": {}
 			},
@@ -23,7 +23,7 @@
 		"name": "Variant",
 		"examples": [
 			{
-				"name": "Full (Default)",
+				"name": "(Default) Full",
 				"style": {
 					"width": "100%",
 					"display": "block"
@@ -50,7 +50,7 @@
 		"name": "Size",
 		"examples": [
 			{
-				"name": "Medium (Default)",
+				"name": "(Default) Medium",
 				"props": {}
 			},
 			{
