@@ -39,8 +39,14 @@ const testComponent = () => {
 const testActions = () => {
 	test('should be clickable', async ({ mount }) => {
 		const component = await mount(comp);
-		await component.getByTestId('test2').check({ force: true });
-		const tabChecked = await component.getByTestId('test').isChecked();
+		await component
+			.getByTestId('test2')
+			// VUE: .getByRole('radio')
+			.check({ force: true });
+		const tabChecked = await component
+			.getByTestId('test')
+			// VUE: .getByRole('radio')
+			.isChecked();
 		expect(!tabChecked).toBeTruthy();
 	});
 };
