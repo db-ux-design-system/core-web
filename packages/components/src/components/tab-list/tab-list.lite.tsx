@@ -1,10 +1,4 @@
-import {
-	onMount,
-	Show,
-	useMetadata,
-	useRef,
-	useStore
-} from '@builder.io/mitosis';
+import { useMetadata, useRef, useStore } from '@builder.io/mitosis';
 import { DBTabListProps, DBTabListState } from './model';
 import { cls } from '../../utils';
 import { DEFAULT_ID } from '../../shared/constants';
@@ -21,11 +15,6 @@ export default function DBTabList(props: DBTabListProps) {
 		_id: DEFAULT_ID
 	});
 
-	onMount(() => {
-		if (props.stylePath) {
-			state.stylePath = props.stylePath;
-		}
-	});
 	// jscpd:ignore-end
 
 	return (
@@ -34,10 +23,7 @@ export default function DBTabList(props: DBTabListProps) {
 			id={state._id}
 			class={cls('db-tab-list', props.className)}
 			role="tablist">
-			<Show when={state.stylePath}>
-				<link rel="stylesheet" href={state.stylePath} />
-			</Show>
-			<div class="db-tab-list-scroll-container">{props.children}</div>
+			<ul>{props.children}</ul>
 		</div>
 	);
 }

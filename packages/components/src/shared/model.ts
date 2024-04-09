@@ -25,16 +25,10 @@ export type GlobalProps = {
 	 * React specific for render process.
 	 */
 	key?: string;
-
-	/**
-	 * Web Component specific: Adds a link tag with the path to show css inside Shadow DOM.
-	 */
-	stylePath?: string;
 };
 
 export type GlobalState = {
 	_id?: string;
-	stylePath?: string;
 	defaultValues?: { [key: string]: string };
 };
 
@@ -130,6 +124,10 @@ export type PopoverProps = {
 	 * Use fixed with for default max-width
 	 */
 	width?: 'auto' | 'fixed';
+};
+
+export type PopoverState = {
+	handleAutoPlacement: () => void;
 };
 
 export type SizeProps = {

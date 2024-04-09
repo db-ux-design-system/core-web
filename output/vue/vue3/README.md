@@ -56,6 +56,30 @@ import "@db-ui/v-components/dist/style.css";
 </template>
 ```
 
+### Events
+
+We add `v-model` support which fires on every change.
+But you can use normal `@` events as well.
+
+Both Inputs in this example do the same:
+
+```html
+<script setup lang="ts">
+	import { DbInput } from "@db-ui/v-components";
+	import { ref } from "vue";
+	const input = ref("");
+</script>
+<template>
+	<DBInput label="Inputfield" name="input-name" v-model="input"></DBInput>
+	<DBInput
+		label="Inputfield"
+		name="input-name"
+		:value="input"
+		@change="e => input = e.target.value"
+	></DBInput>
+</template>
+```
+
 ## Custom Events
 
 We do not provide every event on every component. If you are missing an event please [add an issue](https://github.com/db-ui/mono/issues).

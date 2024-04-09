@@ -130,6 +130,65 @@ export const visibleInVY = (el: Element) => {
 	return top >= 0 && bottom <= innerHeight;
 };
 
+export const isInView = (el: Element) => {
+	const { top, bottom, left, right, height, width } =
+		el.getBoundingClientRect();
+	const { innerHeight, innerWidth } = window;
+
+	let outTop = top < 0;
+	let outBottom = bottom > innerHeight;
+	let outLeft = left < 0;
+	let outRight = right > innerWidth;
+
+	// We need to check if it was already outside
+	const outsideY = el.hasAttribute('data-outside-vy');
+	const outsideX = el.hasAttribute('data-outside-vx');
+	const parentRect = el?.parentElement?.getBoundingClientRect();
+
+	if (parentRect) {
+		if (outsideY) {
+			const position = el.getAttribute('data-outside-vy');
+			if (position === 'top') {
+				outTop = parentRect.top - (bottom - parentRect.bottom) < 0;
+			} else {
+				outBottom =
+					parentRect.bottom + (parentRect.top - top) > innerHeight;
+			}
+		}
+
+		if (outsideX) {
+			const position = el.getAttribute('data-outside-vx');
+			if (position === 'left') {
+				outLeft = parentRect.left - (right - parentRect.right) < 0;
+			} else {
+				outRight =
+					parentRect.right + (parentRect.left - left) > innerWidth;
+			}
+		}
+	}
+
+	return {
+		outTop,
+		outBottom,
+		outLeft,
+		outRight
+	};
+};
+
+export const handleDataOutside = (el: Element) => {
+	const { outTop, outBottom, outLeft, outRight } = isInView(el);
+	if (outTop || outBottom) {
+		el.setAttribute('data-outside-vy', outTop ? 'top' : 'bottom');
+	} else {
+		el.removeAttribute('data-outside-vy');
+	}
+	if (outLeft || outRight) {
+		el.setAttribute('data-outside-vx', outRight ? 'right' : 'left');
+	} else {
+		el.removeAttribute('data-outside-vx');
+	}
+};
+
 export default {
 	filterPassingProps,
 	getMessageIcon,
@@ -137,5 +196,7 @@ export default {
 	addAttributeToChildren,
 	uuid,
 	visibleInVX,
-	visibleInVY
+	visibleInVY,
+	isInView,
+	handleDataOutside
 };

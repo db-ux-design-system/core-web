@@ -3,21 +3,21 @@
 		"name": "Tonality",
 		"examples": [
 			{
-				"name": "functional",
+				"name": "Functional",
 				"className": "db-ui-functional",
 				"props": {
 					"name": "Tonality"
 				}
 			},
 			{
-				"name": "regular (Default)",
+				"name": "(Default) Regular",
 				"className": "db-ui-regular",
 				"props": {
 					"name": "Tonality"
 				}
 			},
 			{
-				"name": "expressive",
+				"name": "Expressive",
 				"className": "db-ui-expressive",
 				"props": {
 					"name": "Tonality"
@@ -29,7 +29,7 @@
 		"name": "States",
 		"examples": [
 			{
-				"name": "Default",
+				"name": "(Default) Unchecked",
 				"props": {
 					"name": "States"
 				}
@@ -87,7 +87,7 @@
 		"name": "Size",
 		"examples": [
 			{
-				"name": "Default",
+				"name": "(Default) Medium",
 				"props": {
 					"name": "Size"
 				}

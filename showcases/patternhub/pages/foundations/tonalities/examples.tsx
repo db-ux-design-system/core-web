@@ -16,7 +16,9 @@ const Example = () => {
 
 			<div className="tonality-example-grid">
 				{tonalities.map((tonality) => (
-					<h3 key={`grid-headline-${tonality}`}>{tonality}</h3>
+					<h3 key={`grid-headline-${tonality}`}>
+						{tonality.charAt(0).toUpperCase() + tonality.slice(1)}
+					</h3>
 				))}
 				{tonalities.map((tonality) => (
 					<article

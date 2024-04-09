@@ -8,12 +8,12 @@ import defaultComponentVariants from '../../../../shared/accordion.json';
 import type { DBAccordionProps } from '../../../../../output/react/src/components/accordion/model';
 import { getVariants } from '../data';
 
-const getAccordion = ({ behaviour, children }: DBAccordionProps) => (
+const getAccordion = ({ behaviour, children, variant }: DBAccordionProps) => (
 	<>
 		<DBInfotext size="small" variant="informational" icon="none">
 			{children}
 		</DBInfotext>
-		<DBAccordion behaviour={behaviour}>
+		<DBAccordion behaviour={behaviour} variant={variant}>
 			<DBAccordionItem headline="Item 1" content="Content 1" />
 			<DBAccordionItem headline="Item 2" content="Content 2" />
 			<DBAccordionItem headline="Item 3" content="Content 3" />

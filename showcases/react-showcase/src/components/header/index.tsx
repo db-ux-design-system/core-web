@@ -20,7 +20,6 @@ const getHeader = ({
 	describedbyid,
 	id,
 	key,
-	stylePath,
 	onToggle
 }: DBHeaderProps) => (
 	<DBHeader
@@ -62,7 +61,6 @@ const getHeader = ({
 		describedbyid={describedbyid}
 		id={id}
 		key={key}
-		stylePath={stylePath}
 		onToggle={onToggle}>
 		<DBMainNavigation>
 			<DBNavigationItem icon="account">
