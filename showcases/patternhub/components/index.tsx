@@ -1,5 +1,6 @@
 import { useRouter } from 'next/router';
-import { useEffect, useState } from 'react';
+import { Outlet } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
 import type {
 	DefaultComponentProps,
 	DefaultComponentVariants
@@ -94,6 +95,8 @@ const DefaultComponent = ({ title, variants }: DefaultComponentProps) => {
 							</div>
 						))}
 					</div>
+
+					<Outlet />
 				</DefaultPage>
 			)}
 		</>

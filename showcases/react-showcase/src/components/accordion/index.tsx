@@ -36,13 +36,6 @@ const getAccordionItem = ({
 	);
 };
 
-// Const getMergedVariants = () => {
-// 	return [
-// 		...getVariants(defaultComponentVariants, getAccordion),
-// 		...getVariants(defaultComponentVariantsItem, getAccordionItem)
-// 	];
-// };
-
 const AccordionComponent = () => {
 	return (
 		<div>
@@ -54,22 +47,12 @@ const AccordionComponent = () => {
 						getAccordion
 						// Placeholder_tags
 					),
-					<div>
-						<h2>efewfew</h2>
-					</div>,
 					...getVariants(
 						defaultComponentVariantsItem,
 						getAccordionItem
 						// Placeholder_tags
 					)
 				]}></DefaultComponent>
-
-			{/* <DefaultComponent */}
-			{/*	title="DBAccordionItem" */}
-			{/*	variants={getVariants( */}
-			{/*		defaultComponentVariantsItem, */}
-			{/*		getAccordionItem */}
-			{/*	)}></DefaultComponent> */}
 		</div>
 	);
 };
