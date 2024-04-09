@@ -11,28 +11,16 @@ import { DBTabPanel } from '../tab-panel';
 const comp: any = (
 	<DBTabs>
 		<DBTabList>
-			<DBTab data-testid="test" name="test" index={0}>
-				Test 1
-			</DBTab>
-			<DBTab data-testid="test2" name="test" index={1}>
-				Test 2
-			</DBTab>
-			<DBTab name="test" index={2}>
-				Test 3
-			</DBTab>
+			<DBTab data-testid="test">Test 1</DBTab>
+			<DBTab data-testid="test2">Test 2</DBTab>
+			<DBTab>Test 3</DBTab>
 		</DBTabList>
 
-		<DBTabPanel name="test" index={0}>
-			TestPanel 1
-		</DBTabPanel>
+		<DBTabPanel>TestPanel 1</DBTabPanel>
 
-		<DBTabPanel name="test" index={1}>
-			TestPanel 2
-		</DBTabPanel>
+		<DBTabPanel>TestPanel 2</DBTabPanel>
 
-		<DBTabPanel name="test" index={2}>
-			TestPanel 3
-		</DBTabPanel>
+		<DBTabPanel>TestPanel 3</DBTabPanel>
 	</DBTabs>
 );
 
@@ -51,7 +39,7 @@ const testComponent = () => {
 const testActions = () => {
 	test('should be clickable', async ({ mount }) => {
 		const component = await mount(comp);
-		await component.getByTestId('test2').check();
+		await component.getByTestId('test2').check({ force: true });
 		const tabChecked = await component.getByTestId('test').isChecked();
 		expect(!tabChecked).toBeTruthy();
 	});
