@@ -4,7 +4,6 @@
 @use "@db-ui/foundations/build/scss/helpers";
 @use "@db-ui/foundations/build/scss/animation";
 @use "@db-ui/foundations/build/scss/icons";
-@use "../../styles/db-puls";
 @use "../../styles/icon-passing";
 @use "../../styles/component";
 
@@ -72,7 +71,6 @@
 
 .db-navigation-item {
 	--db-has-before: 0;
-	@extend %db-puls-auto;
 
 	@include icon-passing.icon-passing();
 
@@ -119,14 +117,9 @@
 
 	&:has([aria-current="page"]),
 	&[aria-current="page"] {
-		// add puls for navigation items
-		@extend %show-db-puls-auto;
-		font-weight: 700;
-	}
-
-	&:not([aria-current="page"]) {
-		// revert for sub-navigation
-		font-weight: normal;
+		& > :is(a, button) {
+			font-weight: 700;
+		}
 	}
 
 	&:not([data-width="full"]) {

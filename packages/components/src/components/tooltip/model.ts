@@ -3,8 +3,10 @@ import {
 	EmphasisProps,
 	GlobalProps,
 	GlobalState,
+	InitializedState,
 	PlacementProps,
-	PopoverProps
+	PopoverProps,
+	PopoverState
 } from '../../shared/model';
 
 export interface DBTooltipDefaultProps {
@@ -21,4 +23,6 @@ export interface DBTooltipDefaultState {}
 
 export type DBTooltipState = DBTooltipDefaultState &
 	GlobalState &
-	ClickEventState<HTMLElement>;
+	ClickEventState<HTMLElement> &
+	PopoverState &
+	InitializedState;

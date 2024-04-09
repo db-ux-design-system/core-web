@@ -52,12 +52,12 @@
     "@builder.io/mitosis-cli": "^0.1.7",
     "@react-docgen/cli": "^2.0.3",
     "cpr": "3.0.1",
-    "cssnano": "^6.1.0",
-    "eslint": "^8.57.0",
+    "cssnano": "^6.1.2",
+    "eslint": "^9.0.0",
     "hygen": "^6.2.11",
     "lit": "^3.1.2",
     "nodemon": "3.1.0",
-    "sass": "^1.72.0"
+    "sass": "^1.74.1"
   },
   "publishConfig": {
     "registry": "https://registry.npmjs.org/",

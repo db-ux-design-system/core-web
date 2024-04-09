@@ -9,7 +9,7 @@ import { NgTemplateOutlet } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
 import { DBLink } from '../../../../../output/angular/src/components/link/link';
 import { DBDivider } from '../../../../../output/angular/src/components/divider/divider';
-import { DBCodeDocs } from '../../../../../output/angular/src/components/code-docs/code-docs';
+import { DBCard } from '../../../../../output/angular/src/components/card/card';
 import type {
 	DefaultComponentProps,
 	DefaultComponentVariants,
@@ -25,7 +25,7 @@ import {
 @Component({
 	selector: 'app-default-component',
 	templateUrl: './default.component.html',
-	imports: [DBCodeDocs, DBDivider, DBLink, NgTemplateOutlet],
+	imports: [DBCard, DBDivider, DBLink, NgTemplateOutlet],
 	standalone: true,
 	schemas: [NO_ERRORS_SCHEMA]
 })
@@ -83,11 +83,5 @@ export class DefaultComponent implements OnInit {
 		}
 
 		return `${currentUrl}&page=${variantName.toLowerCase()}`;
-	};
-
-	getCodeSnippets = (examples: DefaultComponentExample[]) => {
-		return examples
-			.filter((example) => example.code)
-			.map((example) => `/* ${example.name} */\n${example.code}`);
 	};
 }

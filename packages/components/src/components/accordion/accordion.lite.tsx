@@ -28,7 +28,7 @@ export default function DBAccordion(props: DBAccordionProps) {
 		openItems: [],
 		clickedId: '',
 		initialized: false,
-		convertItems(items: any[] | string | undefined) {
+		convertItems(items: unknown[] | string | undefined) {
 			try {
 				if (typeof items === 'string') {
 					return JSON.parse(items);
@@ -123,14 +123,15 @@ export default function DBAccordion(props: DBAccordionProps) {
 		<div
 			ref={ref}
 			id={props.id}
-			class={cls('db-accordion', props.className)}>
+			class={cls('db-accordion', props.className)}
+			data-variant={props.variant}>
 			<Show when={!props.items}>{props.children}</Show>
 			<Show when={props.items}>
 				<For each={state.convertItems(props.items)}>
 					{(item: DBAccordionItemDefaultProps, index: number) => (
 						<DBAccordionItem
 							key={`accordion-item-${index}`}
-							title={item.title}
+							headlinePlain={item.headlinePlain}
 							disabled={item.disabled}
 							content={item.content}
 						/>

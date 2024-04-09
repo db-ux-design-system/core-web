@@ -1,6 +1,7 @@
 import {
 	For,
 	onMount,
+	onUpdate,
 	Show,
 	useMetadata,
 	useRef,
@@ -82,18 +83,23 @@ export default function DBSelect(props: DBSelectProps) {
 
 	onMount(() => {
 		state._id = props.id || 'select-' + uuid();
-		state._messageId = state._id + DEFAULT_MESSAGE_ID_SUFFIX;
-		state._validMessageId = state._id + DEFAULT_VALID_MESSAGE_ID_SUFFIX;
-		state._invalidMessageId = state._id + DEFAULT_INVALID_MESSAGE_ID_SUFFIX;
-
-		state._descByIds = [
-			state._messageId,
-			state._validMessageId,
-			state._invalidMessageId
-		].join(' ');
-
-		state._placeholderId = state._id + DEFAULT_PLACEHOLDER_ID_SUFFIX;
 	});
+
+	onUpdate(() => {
+		if (state._id) {
+			state._placeholderId = state._id + DEFAULT_PLACEHOLDER_ID_SUFFIX;
+			state._messageId = state._id + DEFAULT_MESSAGE_ID_SUFFIX;
+			state._validMessageId = state._id + DEFAULT_VALID_MESSAGE_ID_SUFFIX;
+			state._invalidMessageId =
+				state._id + DEFAULT_INVALID_MESSAGE_ID_SUFFIX;
+
+			state._descByIds = [
+				state._messageId,
+				state._validMessageId,
+				state._invalidMessageId
+			].join(' ');
+		}
+	}, [state._id]);
 
 	return (
 		<div

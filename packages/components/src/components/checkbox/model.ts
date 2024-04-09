@@ -8,7 +8,8 @@ import {
 	FormProps,
 	FormState,
 	FormCheckProps,
-	InitializedState
+	InitializedState,
+	FormMessageProps
 } from '../../shared/model';
 
 export interface DBCheckboxDefaultProps {
@@ -28,7 +29,8 @@ export type DBCheckboxProps = DBCheckboxDefaultProps &
 	ChangeEventProps<HTMLInputElement> &
 	FocusEventProps<HTMLInputElement> &
 	FormProps &
-	FormCheckProps;
+	FormCheckProps &
+	FormMessageProps;
 
 export type DBCheckboxDefaultState = {};
 

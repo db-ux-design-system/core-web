@@ -15,19 +15,25 @@ const getPopover = ({
 	content,
 	animation
 }: DBPopoverProps & { content: string }) => (
-	<DBButton describedbyid={id}>
-		{children}
-		<DBPopover
-			width={width}
-			gap={gap}
-			spacing={spacing}
-			placement={placement}
-			animation={animation}
-			delay={delay}
-			id={id}>
-			{content}
-		</DBPopover>
-	</DBButton>
+	<DBPopover
+		trigger={<DBButton>{children}</DBButton>}
+		width={width}
+		gap={gap}
+		spacing={spacing}
+		placement={placement}
+		animation={animation}
+		delay={delay}
+		id={id}>
+		{content ?? (
+			<>
+				<ul className="popover-list">
+					<li>Popover Custom Item 1</li>
+					<li>Popover Custom Item 2</li>
+				</ul>
+				<DBButton>Popover Custom Item 3</DBButton>
+			</>
+		)}
+	</DBPopover>
 );
 
 const PopoverComponent = () => {

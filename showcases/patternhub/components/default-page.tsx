@@ -1,6 +1,7 @@
 import { useRouter } from 'next/router';
 import dynamic from 'next/dynamic';
 import { useEffect, useState } from 'react';
+import hljs from 'highlight.js';
 import {
 	DBBrand,
 	DBButton,
@@ -18,6 +19,10 @@ const DefaultPage = ({ children }: any) => {
 	const [drawerOpen, setDrawerOpen] = useState<boolean>(false);
 	const [lastScroll, setLastScroll] = useState<string>();
 	const router = useRouter();
+
+	useEffect(() => {
+		hljs.highlightAll();
+	}, []);
 
 	useEffect(() => {
 		if (router.query) {

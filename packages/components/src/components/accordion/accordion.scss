@@ -1,13 +1,59 @@
 @use "@db-ui/foundations/build/scss/helpers";
+@use "@db-ui/foundations/build/scss/variables";
+@use "../../styles/component";
 
+@mixin accordion-subsequent-item-selector() {
+	// angular workaround
+	db-accordion-item + db-accordion-item .db-accordion-item,
+	.db-accordion-item + .db-accordion-item {
+		@content;
+	}
+}
+
+/*
+The styling for the spacings between the items is defined in the accordion, where they meet.
+The spacings are not part of the styling of the accordion items themselves.
+ */
 .db-accordion {
-	/* This is a workaround for angular */
-	&:has(db-accordion-item) {
-		@include helpers.divider($position: "bottom", $slot: "after");
+	/*
+	default variant: prop variant is not set
+	*/
+	&:not([data-variant]) {
+		@include accordion-subsequent-item-selector() {
+			@include helpers.divider($position: "top");
+
+			// One space each before and after the divider results in a double spacing
+			margin-block-start: calc(2 * #{variables.$db-spacing-fixed-sm});
+
+			// Moves the divider to the vertical center of the double spacing
+			&::before {
+				inset-block-start: calc(-1 * #{variables.$db-spacing-fixed-sm});
+			}
+		}
+	}
+
+	&[data-variant="card"] {
+		@include accordion-subsequent-item-selector() {
+			margin-block-start: variables.$db-spacing-fixed-sm;
+		}
 
 		.db-accordion-item {
+			/*
+			Adding the component-border to the item itself leads to a render error (tested in Chrome and Safari):
+			On mouseover, a small white gap appears between the rounded border and the rounded gray area.
+			If the border is added to the after element, the error does not occur.
+			 */
 			&::after {
-				display: none;
+				@extend %component-border;
+
+				content: "";
+				position: absolute;
+				inset-inline-start: 0;
+				inset-block-start: 0;
+				inline-size: 100%;
+				block-size: 100%;
+				border-radius: variables.$db-border-radius-lg;
+				pointer-events: none;
 			}
 		}
 	}

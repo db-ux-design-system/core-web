@@ -21,15 +21,15 @@ export interface DBAccordionItemDefaultProps {
 	/**
 	 * Title of the accordion-item as slot
 	 */
-	headline?: any;
+	headline?: unknown;
+	/**
+	 * Title of the accordion-item as plain text
+	 */
+	headlinePlain?: string;
 	/**
 	 * Set details name for exclusive accordions, see https://chromestatus.com/feature/6710427028815872
 	 */
 	name?: string;
-	/**
-	 * Title of the accordion-item as plain text
-	 */
-	title?: any;
 }
 
 export type DBAccordionItemProps = DBAccordionItemDefaultProps &

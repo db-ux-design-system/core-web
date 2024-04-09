@@ -6,16 +6,16 @@ import {
 	DBDivider
 } from '@db-ui/react-components/src';
 import {
+	DBAccordion,
+	DBAccordionItem,
 	DBButton,
 	DBCheckbox,
 	DBInput,
 	DBRadio,
 	DBSelect,
+	DBTab,
 	DBTag,
-	DBTextarea,
-	DBAccordion,
-	DBAccordionItem,
-	DBTab
+	DBTextarea
 } from '../../../../../output/react/src';
 import type {
 	ChangeEvent,

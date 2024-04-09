@@ -43,6 +43,11 @@ jobs:
     uses: ./.github/workflows/02-e2e-showcases.yml
     needs: [build-showcases]
 
+  regenerate-snapshots:
+    if: always() && (needs.test-components.result == 'failure' || needs.test-foundations.result == 'failure' || needs.test-showcases.result == 'failure')
+    uses: ./.github/workflows/02-e2e-regenerate.yml
+    needs: [test-components, test-showcases, test-foundations]
+
   checks-done:
     if: ${{ always() }}
     runs-on: ubuntu-latest

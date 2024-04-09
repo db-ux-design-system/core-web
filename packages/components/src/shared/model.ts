@@ -1,9 +1,12 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+
 import { IconTypes } from './icon-types';
 
 export type GlobalProps = {
 	/**
 	 * default slot
 	 */
+
 	children?: any;
 
 	/**
@@ -134,6 +137,10 @@ export type PopoverProps = {
 	 * Use fixed with for default max-width
 	 */
 	width?: 'auto' | 'fixed';
+};
+
+export type PopoverState = {
+	handleAutoPlacement: () => void;
 };
 
 export type SizeProps = {
@@ -364,6 +371,7 @@ export type LinkProps = {
 	text?: string;
 };
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 export type ClickEvent<T> = MouseEvent;
 export type ClickEventProps<T> = {
 	/**
@@ -414,6 +422,7 @@ export type ItemClickState = {
 	handleItemClick: (id: string) => void;
 };
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 export type ChangeEvent<T> = Event;
 export type ChangeEventProps<T> = {
 	change?: (event: ChangeEvent<T>) => void;
@@ -424,6 +433,7 @@ export type ChangeEventState<T> = {
 	handleChange: (event: ChangeEvent<T>) => void;
 };
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 export type InteractionEvent<T> = FocusEvent;
 
 export type FocusEventProps<T> = {

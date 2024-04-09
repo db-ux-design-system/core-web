@@ -39,10 +39,10 @@
   },
   "devDependencies": {
     "cpr": "3.0.1",
-    "cssnano": "^6.1.0",
+    "cssnano": "^6.1.2",
     "dotenv": "^16.4.5",
     "nodemon": "3.1.0",
-    "sass": "^1.72.0"
+    "sass": "^1.74.1"
   },
   "publishConfig": {
     "registry": "https://registry.npmjs.org/",
