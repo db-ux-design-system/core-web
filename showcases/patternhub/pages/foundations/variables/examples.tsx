@@ -38,7 +38,8 @@ const Example = () => {
 										<DBInfotext
 											icon="none"
 											variant="informational">
-											{tonality}
+											{tonality.charAt(0).toUpperCase() +
+												tonality.slice(1)}
 										</DBInfotext>
 										<div
 											className={`example-${example

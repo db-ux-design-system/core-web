@@ -6,13 +6,19 @@ import { DBPopover } from './index';
 import { DEFAULT_VIEWPORT } from '../../shared/constants.ts';
 import { DBButton } from '../button';
 
+// template v-slot is used for vue component tests
 const comp: any = (
-	<DBButton describedbyid="popover-01">
-		Button
-		<DBPopover open={true} animation="disabled" id="popover-01">
+	<div className="padding-box">
+		<DBPopover
+			animation="disabled"
+			data-testid="popover"
+			slotTrigger={<DBButton data-testid="button">Button</DBButton>}>
+			{/*<template v-slot:trigger>
+				<DBButton data-testid="button">Button</DBButton>
+			</template>*/}
 			Test
 		</DBPopover>
-	</DBButton>
+	</div>
 );
 
 const testComponent = () => {
@@ -23,6 +29,18 @@ const testComponent = () => {
 
 	test('should match screenshot', async ({ mount }) => {
 		const component = await mount(comp);
+		await expect(component).toHaveScreenshot();
+	});
+
+	test('should open', async ({ mount }) => {
+		const component = await mount(comp);
+		await component.getByTestId('button').focus();
+		await expect(component.getByTestId('popover')).toBeVisible();
+	});
+
+	test('after open should match screenshot', async ({ mount }) => {
+		const component = await mount(comp);
+		await component.getByTestId('button').focus();
 		await expect(component).toHaveScreenshot();
 	});
 };

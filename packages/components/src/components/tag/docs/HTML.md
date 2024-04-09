@@ -9,7 +9,7 @@ For general installation and configuration take a look at the [components](https
 ...
 <body>
 	<div class="db-tag">
-		<span class="tag-label">regular (Default)</span>
+		<span class="tag-label">Regular (Default)</span>
 	</div>
 </body>
 ```

@@ -1,12 +1,10 @@
 import {
 	ActiveProps,
-	AlignmentProps,
 	GlobalProps,
 	GlobalState,
 	IconAfterProps,
 	IconProps,
-	InitializedState,
-	WidthProps
+	InitializedState
 } from '../../shared/model';
 
 export type DBTabDefaultProps = {
@@ -29,9 +27,7 @@ export type DBTabProps = GlobalProps &
 	DBTabDefaultProps &
 	IconProps &
 	IconAfterProps &
-	WidthProps &
-	ActiveProps &
-	AlignmentProps;
+	ActiveProps;
 
 export type DBTabDefaultState = {};
 

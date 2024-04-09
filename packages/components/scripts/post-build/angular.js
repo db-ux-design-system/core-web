@@ -104,12 +104,14 @@ const setControlValueAccessorReplacements = (
  * In Angular, you have to use a directive for this...
  * This is a workaround to replace it in the file.
  * @param replacements
+ * @param outputFolder {string}
  * @param componentName {string}
  * @param upperComponentName {string}
  * @param directives {{name:string, ngContentName?:string}[]}
  */
 const setDirectiveReplacements = (
 	replacements,
+	outputFolder,
 	componentName,
 	upperComponentName,
 	directives
@@ -159,6 +161,18 @@ export class ${directive.name}Directive {}
 		from: '} from "@angular/core";',
 		to: 'ContentChild, TemplateRef } from  "@angular/core";'
 	});
+
+	const directiveExports = directives
+		.map(
+			(directive) =>
+				`export * from './components/${componentName}/${directive.name}.directive';`
+		)
+		.join('\n');
+	Replace.sync({
+		files: `../../${outputFolder}/angular/src/index.ts`,
+		from: `export * from './components/${componentName}';`,
+		to: `export * from './components/${componentName}';\n${directiveExports}`
+	});
 };
 
 module.exports = (tmp) => {
@@ -206,6 +220,7 @@ module.exports = (tmp) => {
 		if (component.config?.angular?.directives?.length > 0) {
 			setDirectiveReplacements(
 				replacements,
+				outputFolder,
 				componentName,
 				upperComponentName,
 				component.config.angular.directives
