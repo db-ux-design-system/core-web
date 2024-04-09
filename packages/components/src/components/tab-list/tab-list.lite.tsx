@@ -23,7 +23,7 @@ export default function DBTabList(props: DBTabListProps) {
 			id={state._id}
 			class={cls('db-tab-list', props.className)}
 			role="tablist">
-			<ul class="db-tab-list-scroll-container">{props.children}</ul>
+			<ul>{props.children}</ul>
 		</div>
 	);
 }

@@ -1,10 +1,15 @@
 @use "@db-ui/foundations/build/scss/variables";
 @use "@db-ui/foundations/build/scss/colors";
 @use "../../styles/component";
+@use "../../styles/form-components";
+
+$with-icon-padding: calc(
+	#{variables.$db-spacing-fixed-xs} + #{variables.$db-spacing-fixed-sm} + #{form-components.$font-size-height}
+);
 
 .db-tab {
 	position: relative;
-	display: flex;
+	display: inline-flex;
 	list-style-type: none;
 
 	&:has(input:disabled) {
@@ -14,15 +19,53 @@
 	label {
 		@extend %default-interactive-component;
 		@include colors.bg-transparent-interactive();
-		display: inline-flex;
-		position: relative;
 		padding: variables.$db-spacing-fixed-xs;
 		align-items: center;
+		display: inline-block;
 		white-space: nowrap;
 		border: none;
 
+		overflow: hidden;
+		text-overflow: ellipsis;
+
 		&:has(input:checked) {
 			font-weight: 700;
+		}
+
+		&[data-icon] {
+			padding-inline-start: $with-icon-padding;
+
+			&::before {
+				position: absolute;
+				transform: translateY(-50%);
+				inset-block-start: 50%;
+				inset-inline-start: calc(
+					0% + #{variables.$db-spacing-fixed-xs}
+				);
+			}
+
+			&:is(.is-icon-text-replace) {
+				padding: 0;
+				inline-size: $with-icon-padding;
+				block-size: calc(
+					#{form-components.$font-size-height} + #{variables.$db-spacing-fixed-xs}
+				);
+
+				&::before {
+					margin-inline-end: 0;
+				}
+			}
+		}
+
+		&[data-icon-after] {
+			padding-inline-end: $with-icon-padding;
+
+			&::after {
+				position: absolute;
+				transform: translateY(-50%);
+				inset-block-start: 50%;
+				inset-inline-end: calc(0% + #{variables.$db-spacing-fixed-xs});
+			}
 		}
 	}
 
@@ -36,44 +79,27 @@
 		border-radius: variables.$db-border-radius-md;
 		z-index: -1;
 
-		&:focus-within,
-		&:focus-visible {
-			outline: none;
-			box-shadow: none;
-		}
-
 		/*
 		focus must be set on input:
 		- parent label tag may use before AND after for displaying icons
 		- placed on li.db-tab focus would get cut off partially by by overflow hidden (orientation vertical)
 		 */
 		&:focus-visible {
+			&:is(input[type="radio"]) {
+				outline: none;
+				box-shadow: none;
+			}
+
 			&::before {
 				@extend %focus-placeholder;
 
 				content: "";
 				position: absolute;
-				inset-block-start: 0;
-				inset-inline-start: 0;
-				inline-size: 100%;
-				block-size: 100%;
-				outline-offset: variables.$db-spacing-fixed-2xs;
+				inset: 0;
 				border-radius: variables.$db-border-radius-md;
 				z-index: 10;
 				pointer-events: none;
 			}
 		}
-	}
-
-	.is-icon-text-replace[data-icon]::before {
-		margin-inline-end: 0;
-	}
-
-	label[data-icon]::before {
-		margin-inline-end: variables.$db-spacing-fixed-sm;
-	}
-
-	label[data-icon-after]::after {
-		margin-inline-start: variables.$db-spacing-fixed-sm;
 	}
 }

@@ -3,13 +3,13 @@
 
 .db-tab-list {
 	position: relative;
-}
 
-.db-tab-list-scroll-container {
-	@extend %scrollbar;
-	display: flex;
-	gap: variables.$db-spacing-fixed-sm;
-	scroll-behavior: smooth;
-	padding: 0;
-	margin: 0;
+	> ul {
+		@extend %scrollbar;
+		display: flex;
+		gap: variables.$db-spacing-fixed-sm;
+		scroll-behavior: smooth;
+		padding: 0;
+		margin: 0;
+	}
 }
