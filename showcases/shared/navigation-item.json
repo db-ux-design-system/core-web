@@ -10,7 +10,7 @@
 				}
 			},
 			{
-				"name": "Regular (Default)",
+				"name": "(Default) Regular",
 				"className": "db-ui-regular",
 				"props": {
 					"areaPopup": true
@@ -54,7 +54,7 @@
 		"name": "Content",
 		"examples": [
 			{
-				"name": "Text (Default)",
+				"name": "(Default) Text",
 				"props": {
 					"areaPopup": false
 				}
@@ -85,7 +85,7 @@
 		"name": "Width",
 		"examples": [
 			{
-				"name": "Auto (Default)",
+				"name": "(Default) Auto",
 				"style": { "width": "400px" },
 				"props": {
 					"areaPopup": true

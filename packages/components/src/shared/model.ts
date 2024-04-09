@@ -140,6 +140,10 @@ export type PopoverProps = {
 	width?: 'auto' | 'fixed';
 };
 
+export type PopoverState = {
+	handleAutoPlacement: () => void;
+};
+
 export type SizeProps = {
 	/**
 	 * The size attribute changes the font-size and other related sizes of the component.

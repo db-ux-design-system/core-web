@@ -10,10 +10,10 @@
 				}
 			},
 			{
-				"name": "Regular (Default)",
+				"name": "(Default) Regular",
 				"className": "db-ui-regular",
 				"props": {
-					"title": "Regular (Default)"
+					"title": "(Default) Regular"
 				}
 			},
 			{
@@ -47,9 +47,9 @@
 		"name": "Content States",
 		"examples": [
 			{
-				"name": "Collapsed (Default)",
+				"name": "(Default) Collapsed",
 				"props": {
-					"title": "Collapsed (Default)"
+					"title": "(Default) Collapsed"
 				}
 			},
 			{
