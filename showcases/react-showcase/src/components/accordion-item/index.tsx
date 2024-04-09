@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import { DBAccordionItem } from '../../../../../output/react/src';
 import DefaultComponent from '../index';
 import defaultComponentVariants from '../../../../shared/accordion-item.json';
@@ -18,10 +17,15 @@ const getAccordionItem = ({
 	);
 };
 
-const AccordionItemComponent = () => {
+const AccordionItemComponent = (props: {
+	isSubComponent?: boolean;
+	componentName?: string;
+}) => {
 	return (
 		<DefaultComponent
 			title="DBAccordionItem"
+			// Patternhub:isSubComponent={props.isSubComponent}
+			// patternhub:componentName={props.componentName}
 			variants={getVariants(
 				defaultComponentVariants,
 				getAccordionItem

@@ -1,3 +1,5 @@
+import type React from 'react';
+
 export type DefaultComponentExample = {
 	name?: string;
 	example?: any;
@@ -25,4 +27,7 @@ export type DefaultComponentVariants = {
 export type DefaultComponentProps = {
 	title: string;
 	variants: DefaultComponentVariants[];
+	subComponent?: React.ReactNode;
+	isSubComponent?: boolean;
+	componentName?: string;
 };

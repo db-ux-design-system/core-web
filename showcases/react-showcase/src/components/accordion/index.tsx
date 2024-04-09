@@ -1,4 +1,3 @@
-import type { DBAccordionItemProps } from '@db-ui/react-components/src/components/accordion-item/model';
 import {
 	DBAccordion,
 	DBAccordionItem,
@@ -9,6 +8,7 @@ import defaultComponentVariants from '../../../../shared/accordion.json';
 import defaultComponentVariantsItem from '../../../../shared/accordion-item.json';
 import type { DBAccordionProps } from '../../../../../output/react/src/components/accordion/model';
 import { getVariants } from '../data';
+// Patternhub:import AccordionItemComponent from '../accordion-item';
 
 const getAccordion = ({ behaviour, children, variant }: DBAccordionProps) => (
 	<>
@@ -23,36 +23,21 @@ const getAccordion = ({ behaviour, children, variant }: DBAccordionProps) => (
 	</>
 );
 
-const getAccordionItem = ({
-	children,
-	disabled,
-	open,
-	title
-}: DBAccordionItemProps & { open: boolean }) => {
-	return (
-		<DBAccordionItem title={title} disabled={disabled} defaultOpen={open}>
-			{children}
-		</DBAccordionItem>
-	);
-};
-
 const AccordionComponent = () => {
 	return (
 		<div>
 			<DefaultComponent
 				title="DBAccordion"
-				variants={[
-					...getVariants(
-						defaultComponentVariants,
-						getAccordion
-						// Placeholder_tags
-					),
-					...getVariants(
-						defaultComponentVariantsItem,
-						getAccordionItem
-						// Placeholder_tags
-					)
-				]}></DefaultComponent>
+				// Patternhub:subComponent={
+				// patternhub:	<AccordionItemComponent
+				// patternhub:		isSubComponent={true}
+				// patternhub:		componentName="accordion-item"
+				// patternhub:	/>
+				// patternhub:}
+				variants={getVariants(
+					defaultComponentVariants,
+					getAccordion
+				)}></DefaultComponent>
 		</div>
 	);
 };
