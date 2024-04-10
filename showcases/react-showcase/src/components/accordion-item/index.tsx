@@ -3,6 +3,7 @@ import DefaultComponent from '../index';
 import defaultComponentVariants from '../../../../shared/accordion-item.json';
 import type { DBAccordionItemProps } from '../../../../../output/react/src/components/accordion-item/model';
 import { getVariants } from '../data';
+import { type PatternhubComponentProps } from '../../../../shared/default-component-data';
 
 const getAccordionItem = ({
 	children,
@@ -17,15 +18,12 @@ const getAccordionItem = ({
 	);
 };
 
-const AccordionItemComponent = (props: {
-	isSubComponent?: boolean;
-	componentName?: string;
-}) => {
+const AccordionItemComponent = (props: PatternhubComponentProps) => {
 	return (
 		<DefaultComponent
 			title="DBAccordionItem"
 			// Patternhub:isSubComponent={props.isSubComponent}
-			// patternhub:componentName={props.componentName}
+			// Patternhub:componentName={props.componentName}
 			variants={getVariants(
 				defaultComponentVariants,
 				getAccordionItem

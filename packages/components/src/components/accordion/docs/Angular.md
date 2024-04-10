@@ -11,7 +11,7 @@ import { DBAccordion } from '@db-ui/ngx-components';
 @Component({
   // ...
   standalone: true,
-  imports: [..., DBAccordion],
+  imports: [..., DBAccordion, DBAccordionItem],
   // ...
 })
 ```

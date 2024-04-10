@@ -1,9 +1,9 @@
 import { useRouter } from 'next/router';
-import { Outlet } from 'react-router-dom';
 import React, { useEffect, useState } from 'react';
-import type {
-	DefaultComponentProps,
-	DefaultComponentVariants
+import {
+	type DefaultComponentProps,
+	type DefaultComponentVariants,
+	type PatternhubComponentProps
 } from '../../shared/default-component-data';
 import DefaultPage from './default-page';
 import { DBCard, DBDivider, DBLink } from './src';
@@ -100,7 +100,7 @@ const DefaultComponent = ({
 	subComponent,
 	isSubComponent,
 	componentName
-}: DefaultComponentProps) => {
+}: DefaultComponentProps & PatternhubComponentProps) => {
 	const [foundVariant, setFoundVariant] =
 		useState<DefaultComponentVariants>();
 	const router = useRouter();

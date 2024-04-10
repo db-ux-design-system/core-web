@@ -46,13 +46,14 @@ const componentChildren: NavigationItem[] = [
 			},
 			{
 				label: 'DBAccordion',
-				name: 'accordion'
+				name: 'accordion',
+				subNavigation: [
+					{
+						label: 'DBAccordionItem Properties',
+						path: `/components/accordion-item/properties`
+					}
+				]
 			},
-			// Todo
-			// {
-			// 	label: 'DBAccordionItem',
-			// 	name: 'accordion-item'
-			// },
 			{
 				label: 'DBTabs',
 				name: 'tabs'
@@ -255,7 +256,8 @@ export const ROUTES: NavigationItem[] = [
 						{
 							label: 'Migration',
 							path: `/components/${component.name}/migration`
-						}
+						},
+						...(component.subNavigation ?? [])
 					]
 				}))
 			}))

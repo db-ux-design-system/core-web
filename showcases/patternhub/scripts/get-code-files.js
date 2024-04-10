@@ -175,7 +175,7 @@ const writeCodeFiles = async (componentPath, componentName) => {
 				')}></DefaultComponent>',
 				`,[${tags}])}></DefaultComponent>`
 			)
-			.replaceAll('// patternhub:', '');
+			.replaceAll('// Patternhub:', '');
 
 		return `${pre}\n${readFile}`;
 	}

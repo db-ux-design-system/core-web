@@ -5,7 +5,6 @@ import {
 } from '../../../../../output/react/src';
 import DefaultComponent from '../index';
 import defaultComponentVariants from '../../../../shared/accordion.json';
-import defaultComponentVariantsItem from '../../../../shared/accordion-item.json';
 import type { DBAccordionProps } from '../../../../../output/react/src/components/accordion/model';
 import { getVariants } from '../data';
 // Patternhub:import AccordionItemComponent from '../accordion-item';
@@ -28,12 +27,8 @@ const AccordionComponent = () => {
 		<div>
 			<DefaultComponent
 				title="DBAccordion"
-				// Patternhub:subComponent={
-				// patternhub:	<AccordionItemComponent
-				// patternhub:		isSubComponent={true}
-				// patternhub:		componentName="accordion-item"
-				// patternhub:	/>
-				// patternhub:}
+				// We use this only for patternhub to include an item inside the parent
+				// Patternhub:subComponent={<AccordionItemComponent	isSubComponent componentName="accordion-item"/>}
 				variants={getVariants(
 					defaultComponentVariants,
 					getAccordion
