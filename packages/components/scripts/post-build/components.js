@@ -37,7 +37,7 @@ const getComponents = () => [
 		}
 	},
 	{
-		name: 'tab',
+		name: 'tab-item',
 		config: {
 			angular: {
 				initValues: [

@@ -7,15 +7,15 @@ For general installation and configuration take a look at the [v-components](htt
 ```vue App.vue
 <!-- App.vue -->
 <script>
-import { DBTabPanel, DBTabs, DBTabList, DBTab } from "@db-ui/v-components";
+import { DBTabPanel, DBTabs, DBTabList, DBTabItem } from "@db-ui/v-components";
 </script>
 
 <template>
 	<DBTabs>
 		<DBTabList>
-			<DBTab>Tab 1</DBTab>
-			<DBTab>Tab 2</DBTab>
-			<DBTab>Tab 3</DBTab>
+			<DBTabItem>Tab 1</DBTabItem>
+			<DBTabItem>Tab 2</DBTabItem>
+			<DBTabItem>Tab 3</DBTabItem>
 		</DBTabList>
 		<DBTabPanel>Tab Panel 1</DBTabPanel>
 		<DBTabPanel>Tab Panel 2</DBTabPanel>

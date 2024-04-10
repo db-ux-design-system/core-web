@@ -60,8 +60,8 @@ const componentChildren: NavigationItem[] = [
 			},
 
 			{
-				label: 'DBTab',
-				name: 'tab'
+				label: 'DBTabItem',
+				name: 'tab-item'
 			}
 		]
 	},

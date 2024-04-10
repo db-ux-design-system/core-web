@@ -1,5 +1,5 @@
 <app-default-component
-	title="DBTab"
+	title="DBTabItem"
 	[variants]="variants"
 	[exampleTemplate]="exampleTemplate"
 >
@@ -10,7 +10,7 @@
 		let-exampleIndex="exampleIndex"
 		let-variantIndex="variantIndex"
 	>
-		<db-tab
+		<db-tab-item
 			[active]="exampleProps.active"
 			[noText]="exampleProps.noText"
 			[icon]="exampleProps.icon"
@@ -18,6 +18,6 @@
 			[disabled]="exampleProps.disabled"
 		>
 			{{ exampleName }}
-		</db-tab>
+		</db-tab-item>
 	</ng-template>
 </app-default-component>

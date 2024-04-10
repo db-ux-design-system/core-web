@@ -16,7 +16,7 @@ import { DBDivider } from '../../../../../../output/angular/src/components/divid
 import { DBButton } from '../../../../../../output/angular/src/components/button';
 import { DBTabs } from '../../../../../../output/angular/src/components/tabs';
 import { DBTabList } from '../../../../../../output/angular/src/components/tab-list';
-import { DBTab } from '../../../../../../output/angular/src/components/tab';
+import { DBTabItem } from '../../../../../../output/angular/src/components/tab-item';
 import { DBTabPanel } from '../../../../../../output/angular/src/components/tab-panel';
 
 @Component({
@@ -36,7 +36,7 @@ import { DBTabPanel } from '../../../../../../output/angular/src/components/tab-
 		DBButton,
 		DBTabs,
 		DBTabList,
-		DBTab,
+		DBTabItem,
 		DBTabPanel
 	],
 	standalone: true,

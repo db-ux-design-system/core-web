@@ -5,7 +5,7 @@ import {
 	DBTabs,
 	DBInfotext,
 	DBTabList,
-	DBTab,
+	DBTabItem,
 	DBTabPanel
 } from "../../../../../output/vue/vue3/src";
 </script>
@@ -29,12 +29,12 @@ import {
 					:arrowScrollDistance="75"
 				>
 					<DBTabList>
-						<DBTab> Test 1 </DBTab>
-						<DBTab> Test 2 </DBTab>
-						<DBTab> Test 3 </DBTab>
+						<DBTabItem> Test 1 </DBTabItem>
+						<DBTabItem> Test 2 </DBTabItem>
+						<DBTabItem> Test 3 </DBTabItem>
 						<template v-if="exampleProps.overflow">
-							<DBTab> Test 4 </DBTab>
-							<DBTab> Test 5 </DBTab>
+							<DBTabItem> Test 4 </DBTabItem>
+							<DBTabItem> Test 5 </DBTabItem>
 						</template>
 					</DBTabList>
 					<DBTabPanel> Tab Panel 1 </DBTabPanel>

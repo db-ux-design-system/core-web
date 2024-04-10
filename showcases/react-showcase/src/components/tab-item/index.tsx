@@ -1,7 +1,7 @@
-import { DBTab } from '../../../../../output/react/src';
+import { DBTabItem } from '../../../../../output/react/src';
 import DefaultComponent from '../index';
-import defaultComponentVariants from '../../../../shared/tab.json';
-import type { DBTabProps } from '../../../../../output/react/src/components/tab/model';
+import defaultComponentVariants from '../../../../shared/tab-item.json';
+import type { DBTabItemProps } from '../../../../../output/react/src/components/tab-item/model';
 import { getVariants } from '../data';
 
 const getTab = ({
@@ -11,21 +11,21 @@ const getTab = ({
 	icon,
 	iconAfter,
 	disabled
-}: DBTabProps) => (
-	<DBTab
+}: DBTabItemProps) => (
+	<DBTabItem
 		active={active}
 		noText={noText}
 		icon={icon}
 		iconAfter={iconAfter}
 		disabled={disabled}>
 		{children}
-	</DBTab>
+	</DBTabItem>
 );
 
-const TabComponent = () => {
+const TabItemComponent = () => {
 	return (
 		<DefaultComponent
-			title="DBTab"
+			title="DBTabItem"
 			variants={getVariants(
 				defaultComponentVariants,
 				getTab
@@ -33,4 +33,4 @@ const TabComponent = () => {
 	);
 };
 
-export default TabComponent;
+export default TabItemComponent;

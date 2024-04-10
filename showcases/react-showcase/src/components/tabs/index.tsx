@@ -1,7 +1,7 @@
 import {
 	DBTabs,
 	DBTabList,
-	DBTab,
+	DBTabItem,
 	DBTabPanel,
 	DBInfotext
 } from '../../../../../output/react/src';
@@ -33,13 +33,13 @@ const getTabs = ({
 			initialSelectedMode={initialSelectedMode}
 			arrowScrollDistance={75}>
 			<DBTabList>
-				<DBTab>Test 1</DBTab>
-				<DBTab>Test 2</DBTab>
-				<DBTab>Test 3</DBTab>
+				<DBTabItem>Test 1</DBTabItem>
+				<DBTabItem>Test 2</DBTabItem>
+				<DBTabItem>Test 3</DBTabItem>
 				{overflow && (
 					<>
-						<DBTab>Test 4</DBTab>
-						<DBTab>Test 5</DBTab>
+						<DBTabItem>Test 4</DBTabItem>
+						<DBTabItem>Test 5</DBTabItem>
 					</>
 				)}
 			</DBTabList>

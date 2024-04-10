@@ -11,7 +11,7 @@ import { DBSimpleTabProps, DBTabsProps, DBTabsState } from './model';
 import { cls, uuid } from '../../utils';
 import { DBButton } from '../button';
 import { DBTabList } from '../tab-list';
-import { DBTab } from '../tab';
+import { DBTabItem } from '../tab-item';
 import { DBTabPanel } from '../tab-panel';
 import { DEFAULT_ID } from '../../shared/constants';
 
@@ -89,12 +89,13 @@ export default function DBTabs(props: DBTabsProps) {
 						});
 					}
 
-					const tabs = firstTabList.getElementsByClassName('db-tab');
-					if (tabs?.length > 0) {
-						Array.from<Element>(tabs).forEach(
-							(tab: Element, index: number) => {
-								const label = tab.querySelector('label');
-								const input = tab.querySelector('input');
+					const tabItems =
+						firstTabList.getElementsByClassName('db-tab-item');
+					if (tabItems?.length > 0) {
+						Array.from<Element>(tabItems).forEach(
+							(tabItem: Element, index: number) => {
+								const label = tabItem.querySelector('label');
+								const input = tabItem.querySelector('input');
 
 								if (input && label) {
 									if (input.id === DEFAULT_ID) {
@@ -169,8 +170,8 @@ export default function DBTabs(props: DBTabsProps) {
 				<DBTabList>
 					<For each={state.convertTabs(props.tabs)}>
 						{(tab: DBSimpleTabProps, index: number) => (
-							<DBTab
-								key={props.name + 'tab' + index}
+							<DBTabItem
+								key={props.name + 'tab-item' + index}
 								active={tab.active}
 								label={tab.label}
 								iconAfter={tab.iconAfter}

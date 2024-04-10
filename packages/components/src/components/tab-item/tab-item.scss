@@ -7,7 +7,7 @@ $with-icon-padding: calc(
 	#{variables.$db-spacing-fixed-xs} + #{variables.$db-spacing-fixed-sm} + #{form-components.$font-size-height}
 );
 
-.db-tab {
+.db-tab-item {
 	position: relative;
 	display: inline-flex;
 	list-style-type: none;
@@ -84,7 +84,7 @@ $with-icon-padding: calc(
 		/*
 		focus must be set on input:
 		- parent label tag may use before AND after for displaying icons
-		- placed on li.db-tab focus would get cut off partially by by overflow hidden (orientation vertical)
+		- placed on li.db-tab-item focus would get cut off partially by by overflow hidden (orientation vertical)
 		 */
 		&:focus-visible {
 			&:is(input[type="radio"]) {

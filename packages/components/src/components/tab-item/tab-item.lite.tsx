@@ -6,7 +6,7 @@ import {
 	useRef,
 	useStore
 } from '@builder.io/mitosis';
-import type { DBTabProps, DBTabState } from './model';
+import type { DBTabItemProps, DBTabItemState } from './model';
 import { cls } from '../../utils';
 import { DEFAULT_ID } from '../../shared/constants';
 
@@ -14,10 +14,10 @@ useMetadata({
 	isAttachedToShadowDom: true
 });
 
-export default function DBTab(props: DBTabProps) {
+export default function DBTabItem(props: DBTabItemProps) {
 	const ref = useRef<HTMLInputElement>(null);
 	// jscpd:ignore-start
-	const state = useStore<DBTabState>({
+	const state = useStore<DBTabItemState>({
 		_id: DEFAULT_ID,
 		initialized: false
 	});
@@ -35,7 +35,7 @@ export default function DBTab(props: DBTabProps) {
 	}, [ref, state.initialized]);
 
 	return (
-		<li className={cls('db-tab', props.className)} role="tab">
+		<li className={cls('db-tab-item', props.className)} role="tab">
 			<label
 				htmlFor={state._id}
 				data-icon={props.icon}

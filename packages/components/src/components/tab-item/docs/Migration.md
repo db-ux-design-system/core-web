@@ -7,9 +7,9 @@
 
 ### class
 
-| Before       | Status | After    | Description |
-| ------------ | :----: | -------- | ----------- |
-| `cmp-db-tab` |   🔁   | `db-tab` |             |
+| Before       | Status | After         | Description |
+| ------------ | :----: | ------------- | ----------- |
+| `cmp-db-tab` |   🔁   | `db-tab-item` |             |
 
 ### name
 
