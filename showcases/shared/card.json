@@ -3,12 +3,19 @@
 		"name": "Density",
 		"examples": [
 			{
-				"name": "regular (Default)",
-				"className": "db-density-regular",
-				"props": {}
+				"name": "Functional",
+				"className": "db-density-functional",
+				"props": {
+				}
 			},
 			{
-				"name": "expressive",
+				"name": "(Default) Regular",
+				"className": "db-density-regular",
+				"props": {
+				}
+			},
+			{
+				"name": "Expressive",
 				"className": "db-density-expressive",
 				"props": {}
 			},
