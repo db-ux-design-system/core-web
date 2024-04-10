@@ -26,3 +26,9 @@ export type DefaultComponentProps = {
 	title: string;
 	variants: DefaultComponentVariants[];
 };
+
+export type PatternhubComponentProps = {
+	subComponent?: unknown;
+	isSubComponent?: boolean;
+	componentName?: string;
+};
