@@ -6,10 +6,10 @@ For general installation and configuration look at the [react-components](https:
 
 ```tsx App.tsx
 // App.tsx
-import { DBMainNavigation } from "@db-ui/react-components";
+import { DBNavigation } from "@db-ui/react-components";
 
 const App = () => (
-	<DBMainNavigation>
+	<DBNavigation>
 		<DBNavigationItem
 			active
 			slotSubNavigation={
@@ -43,7 +43,7 @@ const App = () => (
 		<DBNavigationItem disabled>
 			<a href="#">Navi-Item 3</a>
 		</DBNavigationItem>
-	</DBMainNavigation>
+	</DBNavigation>
 );
 
 export default App;

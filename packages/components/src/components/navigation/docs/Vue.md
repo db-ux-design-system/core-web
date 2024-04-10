@@ -7,11 +7,11 @@ For general installation and configuration look at the [v-components](https://ww
 ```vue App.vue
 <!-- App.vue -->
 <script>
-import { DBMainNavigation, DBNavigationItem } from "@db-ui/v-components";
+import { DBNavigation, DBNavigationItem } from "@db-ui/v-components";
 </script>
 
 <template>
-	<DBMainNavigation>
+	<DBNavigation>
 		<DBNavigationItem :active="true">
 			Navi-Item 1
 			<template v-slot:subnavigation>
@@ -38,7 +38,7 @@ import { DBMainNavigation, DBNavigationItem } from "@db-ui/v-components";
 		<DBNavigationItem :disabled="true">
 			<a href="#">Navi-Item 3</a>
 		</DBNavigationItem>
-	</DBMainNavigation>
+	</DBNavigation>
 </template>
 ```
 

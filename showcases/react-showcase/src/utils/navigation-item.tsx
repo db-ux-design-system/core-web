@@ -4,7 +4,7 @@ import TooltipComponent from '../components/tooltip';
 import PopoverComponent from '../components/popover';
 import AccordionItemComponent from '../components/accordion-item';
 import AccordionComponent from '../components/accordion';
-import MainNavigationComponent from '../components/main-navigation';
+import NavigationComponent from '../components/navigation';
 import BadgeComponent from '../components/badge';
 import NavigationItemComponent from '../components/navigation-item';
 import CheckboxComponent from '../components/checkbox';
@@ -61,9 +61,9 @@ export const NAVIGATION_ITEMS: NavigationItem[] = [
 				component: <NavigationItemComponent />
 			},
 			{
-				path: 'main-navigation',
-				label: 'MainNavigation',
-				component: <MainNavigationComponent />
+				path: 'navigation',
+				label: 'Navigation',
+				component: <NavigationComponent />
 			},
 
 			{

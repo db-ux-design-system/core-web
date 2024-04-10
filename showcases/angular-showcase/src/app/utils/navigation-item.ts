@@ -8,7 +8,7 @@ import { AccordionComponent } from '../components/accordion/accordion.component'
 import { TextareaComponent } from '../components/textarea/textarea.component';
 import { BadgeComponent } from '../components/badge/badge.component';
 import { NavigationItemComponent } from '../components/navigation-item/navigation-item.component';
-import { MainNavigationComponent } from '../components/main-navigation/main-navigation.component';
+import { NavigationComponent } from '../components/navigation/navigation.component';
 import { SelectComponent } from '../components/select/select.component';
 import { TagComponent } from '../components/tag/tag.component';
 import { InputComponent } from '../components/input/input.component';
@@ -61,9 +61,9 @@ export const NAVIGATION_ITEMS: NavItem[] = [
 				component: NavigationItemComponent
 			},
 			{
-				path: '05/main-navigation',
-				label: 'MainNavigation',
-				component: MainNavigationComponent
+				path: '05/navigation',
+				label: 'Navigation',
+				component: NavigationComponent
 			}
 		])
 	},

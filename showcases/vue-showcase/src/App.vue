@@ -4,7 +4,7 @@ import {
 	DBHeader,
 	DBBrand,
 	DBSelect,
-	DBMainNavigation,
+	DBNavigation,
 	DBButton
 } from "../../../output/vue/src";
 import {
@@ -90,11 +90,11 @@ const sortedNavigation = getSortedNavigationItems(navigationItems);
 						Showcase
 					</DBBrand>
 				</template>
-				<DBMainNavigation>
+				<DBNavigation>
 					<template v-for="item of sortedNavigation">
 						<NavItemComponent :navItem="item"></NavItemComponent>
 					</template>
-				</DBMainNavigation>
+				</DBNavigation>
 				<template v-slot:calltoaction>
 					<DBButton icon="search" variant="ghost" :no-text="true">
 						Search

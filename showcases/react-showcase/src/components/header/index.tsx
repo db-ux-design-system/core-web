@@ -3,7 +3,7 @@ import {
 	DBButton,
 	DBHeader,
 	DBLink,
-	DBMainNavigation,
+	DBNavigation,
 	DBNavigationItem
 } from '../../../../../output/react/src';
 import { type DBHeaderProps } from '../../../../../output/react/src/components/header/model';
@@ -66,14 +66,14 @@ const getHeader = ({
 		tabIndex={tabIndex}
 		title={title}
 		onToggle={onToggle}>
-		<DBMainNavigation>
+		<DBNavigation>
 			<DBNavigationItem icon="account">
 				<a href="#">{children}</a>
 			</DBNavigationItem>
 			<DBNavigationItem disabled>
 				<a href="#">{children} disabled</a>
 			</DBNavigationItem>
-		</DBMainNavigation>
+		</DBNavigation>
 	</DBHeader>
 );
 

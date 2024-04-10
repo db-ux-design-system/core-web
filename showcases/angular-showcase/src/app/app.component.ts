@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ActivatedRoute, Router, RouterOutlet } from '@angular/router';
 import { DBSelect } from '../../../../output/angular/src/components/select/select';
-import { DBMainNavigation } from '../../../../output/angular/src/components/main-navigation/main-navigation';
+import { DBNavigation } from '../../../../output/angular/src/components/navigation/navigation';
 import { DBBrand } from '../../../../output/angular/src/components/brand/brand';
 import { DBHeader } from '../../../../output/angular/src/components/header/header';
 import { DBPage } from '../../../../output/angular/src/components/page/page';
@@ -36,7 +36,7 @@ import {
 		DBPage,
 		DBHeader,
 		DBBrand,
-		DBMainNavigation,
+		DBNavigation,
 		DBSelect,
 		DBButton,
 		ActionBarDirective,

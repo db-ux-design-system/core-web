@@ -8,7 +8,7 @@ For general installation and configuration look at the [components](https://www.
 <!-- index.html -->
 ...
 <body>
-	<nav class="db-main-navigation">
+	<nav class="db-navigation">
 		<menu>
 			<li class="db-navigation-item" aria-current="page">
 				<button

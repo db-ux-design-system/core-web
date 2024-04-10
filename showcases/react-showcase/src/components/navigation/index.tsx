@@ -1,16 +1,16 @@
 import {
-	DBMainNavigation,
+	DBNavigation,
 	DBNavigationItem
 } from '../../../../../output/react/src';
 import DefaultComponent from '../index';
-import defaultComponentVariants from '../../../../shared/main-navigation.json';
-import type { DBMainNavigationProps } from '../../../../../output/react/src/components/main-navigation/model';
+import defaultComponentVariants from '../../../../shared/navigation.json';
+import type { DBNavigationProps } from '../../../../../output/react/src/components/navigation/model';
 import { getVariants } from '../data';
 
-const getMainNavigation = ({ children }: DBMainNavigationProps) => (
+const getNavigation = ({ children }: DBNavigationProps) => (
 	<div>
 		<h6>{children}:</h6>
-		<DBMainNavigation>
+		<DBNavigation>
 			<DBNavigationItem
 				active
 				subNavigation={
@@ -42,19 +42,19 @@ const getMainNavigation = ({ children }: DBMainNavigationProps) => (
 			<DBNavigationItem disabled>
 				<a href="#">Navi-Item 3</a>
 			</DBNavigationItem>
-		</DBMainNavigation>
+		</DBNavigation>
 	</div>
 );
 
-const MainNavigationComponent = () => {
+const NavigationComponent = () => {
 	return (
 		<DefaultComponent
-			title="DBMainNavigation"
+			title="DBNavigation"
 			variants={getVariants(
 				defaultComponentVariants,
-				getMainNavigation
+				getNavigation
 			)}></DefaultComponent>
 	);
 };
 
-export default MainNavigationComponent;
+export default NavigationComponent;
