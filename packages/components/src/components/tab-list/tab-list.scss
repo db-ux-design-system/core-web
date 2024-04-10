@@ -1,123 +1,15 @@
 @use "@db-ui/foundations/build/scss/variables";
-@use "@db-ui/foundations/build/scss/colors";
 @use "../../styles/scrollbar";
-@use "../../styles/form-components";
 
 .db-tab-list {
 	position: relative;
 
-	.db-tab-list-scroll-container {
+	> ul {
 		@extend %scrollbar;
 		display: flex;
 		gap: variables.$db-spacing-fixed-sm;
 		scroll-behavior: smooth;
-	}
-
-	&:not([aria-orientation="vertical"]) {
-		.db-tab-list-scroll-container {
-			overflow-x: auto;
-			overflow-y: hidden;
-			inline-size: 100%;
-
-			.db-tab {
-				margin-block: variables.$db-spacing-fixed-sm;
-			}
-
-			db-tab {
-				&:first-of-type {
-					.db-tab {
-						margin-inline-start: variables.$db-spacing-fixed-sm;
-					}
-				}
-
-				&:last-of-type {
-					.db-tab {
-						margin-inline-end: variables.$db-spacing-fixed-sm;
-					}
-				}
-			}
-
-			&:not(:has(db-tab)) {
-				.db-tab {
-					&:first-of-type {
-						margin-inline-start: variables.$db-spacing-fixed-sm;
-					}
-
-					&:last-of-type {
-						margin-inline-end: variables.$db-spacing-fixed-sm;
-					}
-				}
-			}
-		}
-
-		&::before {
-			background-color: colors.$db-current-color-bg-transparent-semi-enabled;
-			content: "";
-			border-radius: variables.$db-border-radius-xs;
-			block-size: variables.$db-border-height-xs;
-			position: absolute;
-
-			inset-inline: variables.$db-spacing-fixed-sm;
-
-			/* 2x padding + 1x margin + text + 3x border  */
-			inset-block-start: calc(
-				2 * #{variables.$db-spacing-fixed-xs} + #{variables.$db-spacing-fixed-sm} +
-					#{form-components.$font-size-height} + #{variables.$db-border-height-3xs} *
-					3
-			);
-		}
-	}
-
-	&[aria-orientation="vertical"] {
-		.db-tab-list-scroll-container {
-			flex-direction: column;
-			overflow-x: hidden;
-			overflow-y: auto;
-			block-size: 100%;
-
-			.db-tab {
-				margin-inline: variables.$db-spacing-fixed-sm;
-			}
-
-			db-tab {
-				&:first-of-type {
-					.db-tab {
-						margin-block-start: variables.$db-spacing-fixed-sm;
-					}
-				}
-
-				&:last-of-type {
-					.db-tab {
-						margin-block-end: variables.$db-spacing-fixed-sm;
-					}
-				}
-			}
-
-			&:not(:has(db-tab)) {
-				.db-tab {
-					&:first-of-type {
-						margin-block-start: variables.$db-spacing-fixed-sm;
-					}
-
-					&:last-of-type {
-						margin-block-end: variables.$db-spacing-fixed-sm;
-					}
-				}
-			}
-		}
-
-		&::before {
-			background-color: colors.$db-current-color-bg-transparent-semi-enabled;
-			content: "";
-			border-radius: variables.$db-border-radius-xs;
-			inline-size: variables.$db-border-height-xs;
-			inset-block: variables.$db-spacing-fixed-sm;
-			position: absolute;
-
-			inset-inline-start: calc(
-				-1 * #{variables.$db-spacing-fixed-xs} + #{variables.$db-spacing-fixed-sm} +
-					#{variables.$db-border-height-3xs}
-			);
-		}
+		padding: 0;
+		margin: 0;
 	}
 }

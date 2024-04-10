@@ -5,14 +5,12 @@
 			{
 				"name": "Functional",
 				"className": "db-density-functional",
-				"props": {
-				}
+				"props": {}
 			},
 			{
 				"name": "(Default) Regular",
 				"className": "db-density-regular",
-				"props": {
-				}
+				"props": {}
 			},
 			{
 				"name": "Expressive",
