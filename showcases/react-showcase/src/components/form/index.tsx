@@ -311,7 +311,9 @@ const FormComponent = () => {
 
 				<DBAccordion>
 					{accordionItems?.map((item) => (
-						<DBAccordionItem key={item.key} title={item.key}>
+						<DBAccordionItem
+							key={item.key}
+							headlinePlain={item.key}>
 							{item.value}
 						</DBAccordionItem>
 					))}
@@ -328,6 +330,44 @@ const FormComponent = () => {
 						{ label: 'Test1', value: 'Test1' },
 						{ label: 'Test2', value: 'Test2' }
 					]}
+				/>
+
+				<h4>Validations</h4>
+
+				<DBInput
+					label="Input minlength validation"
+					placeholder="Placeholder"
+					invalidMessage="Min. 3"
+					validMessage="😎"
+					minLength={3}
+				/>
+				<DBInput
+					label="Input pattern validation"
+					placeholder="Placeholder"
+					pattern="\w{3,16}"
+					invalidMessage="Pattern \w{3,16}"
+					validMessage="😎"
+				/>
+				<DBInput
+					label="Input number"
+					placeholder="Placeholder"
+					invalidMessage="Type=number"
+					validMessage="😎"
+					type="number"
+				/>
+				<DBInput
+					label="Input number min"
+					placeholder="Placeholder"
+					invalidMessage="Type=number min 3"
+					validMessage="😎"
+					type="number"
+					min={3}
+				/>
+				<DBTextarea
+					label="Textarea min 10"
+					invalidMessage="Min 10"
+					validMessage="😎"
+					minLength={10}
 				/>
 			</div>
 		</div>
