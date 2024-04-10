@@ -21,6 +21,18 @@ const DefaultPage = ({ children }: any) => {
 	const router = useRouter();
 
 	useEffect(() => {
+		hljs.configure({
+			languages: [
+				'js',
+				'ts',
+				'jsx',
+				'tsx',
+				'css',
+				'scss',
+				'html',
+				'shell'
+			]
+		});
 		hljs.highlightAll();
 	}, []);
 
