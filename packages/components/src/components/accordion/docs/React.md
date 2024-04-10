@@ -6,7 +6,7 @@ For general installation and configuration look at the [react-components](https:
 
 ```tsx App.tsx
 // App.tsx
-import { DBAccordion } from "@db-ui/react-components";
+import { DBAccordion, DBAccordionItem } from "@db-ui/react-components";
 
 const App = () => (
 	<DBAccordion>

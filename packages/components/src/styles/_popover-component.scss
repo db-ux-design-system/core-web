@@ -50,7 +50,7 @@ $popover-gap-inset: calc(-1 * #{$popover-gap-size});
 	}
 
 	&:is(.db-tooltip) {
-		--db-popover-distance: #{variables.$db-spacing-fixed-xs};
+		--db-popover-distance: #{variables.$db-spacing-fixed-sm};
 	}
 
 	&[data-placement^="bottom"]:not([data-outside-vy]),
