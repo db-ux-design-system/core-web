@@ -7,10 +7,10 @@ import {
 } from '../../shared/model';
 
 export interface DBHeaderDefaultProps {
-	brand?: any;
-	metaNavigation?: any;
-	callToAction?: any;
-	actionBar?: any;
+	brand?: unknown;
+	metaNavigation?: unknown;
+	callToAction?: unknown;
+	actionBar?: unknown;
 	drawerOpen?: boolean;
 
 	/**

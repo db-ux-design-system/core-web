@@ -182,14 +182,21 @@ $input-types: "button", "checkbox", "color", "date", "datetime-local", "email",
 	}
 }
 
+// This doesn't contain text, search and password, because they don't have an auto-validation
+$input-valid-types: "color", "date", "datetime-local", "email", "file", "hidden",
+	"month", "number", "range", "tel", "time", "url", "week";
+
 @function get-validations($selector, $key) {
-	// TODO: add validations for input & textarea as well
-	//  https://developer.mozilla.org/en-US/docs/Learn/Forms/Form_validation#using_built-in_form_validation
 	$validations: ":required";
 
-	// We need to do a more complicated check for non-typed-input-elements
 	@if ($selector == input) {
-		$validations: ':not([type="text"], [type="password"], [type="search"]),:is([type="text"], [type="password"], [type="search"]):required';
+		// https://developer.mozilla.org/en-US/docs/Learn/Forms/Form_validation#using_built-in_form_validation
+		$validations: ":required, [minlength], [maxlength], [pattern]";
+		@each $type in $input-valid-types {
+			$validations: $validations + ", [type=#{$type}]";
+		}
+	} @else if($selector == textarea) {
+		$validations: ":required, [minlength], [maxlength]";
 	}
 
 	$has-selectors: "&:has(#{$selector}:not([aria-invalid]):is(#{$validations}):user-#{$key}),";

@@ -12,6 +12,7 @@ An Angular library containing all styles & components of [DB UX Design System (t
 `npm i @db-ui/ngx-components`
 
 ## Styling Dependencies
+
 Import the styles in scss or css. Based on your technology the file names could be different.
 
 -   Default (db-ui-42): points to `../assets`
@@ -23,7 +24,7 @@ Import the styles in scss or css. Based on your technology the file names could 
 
 ```scss styles.scss
 // styles.scss
-@forward "@db-ui/components/build/styles/db-ui-42-rollup";
+@forward "@db-ui/components/build/styles/db-ui-42-webpack";
 ```
 
 </details>
@@ -36,6 +37,13 @@ Import the styles in scss or css. Based on your technology the file names could 
 ```
 
 </details>
+
+### Resolve assets
+
+The current default development config in `angular.json` doesn't use output hashing. This may cause an issue loading the fonts. Look at [this](https://github.com/angular/angular-cli/issues/26347) for more information.
+
+As a solution add `
+"outputHashing": "media"` to `configurations/development` in`angular.json`.
 
 ## Usage
 

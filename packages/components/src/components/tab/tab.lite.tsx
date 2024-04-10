@@ -35,24 +35,23 @@ export default function DBTab(props: DBTabProps) {
 	}, [ref, state.initialized]);
 
 	return (
-		<label
-			htmlFor={state._id}
-			role="tab"
-			className={cls('db-tab', props.className)}
-			data-icon={props.icon}
-			data-icon-after={props.iconAfter}
-			data-width={props.width}
-			data-no-text={props.noText}
-			data-alignment={props.alignment}>
-			<input
-				disabled={props.disabled}
-				ref={ref}
-				type="radio"
-				id={state._id}
-			/>
+		<li className={cls('db-tab', props.className)} role="tab">
+			<label
+				htmlFor={state._id}
+				data-icon={props.icon}
+				data-icon-after={props.iconAfter}
+				data-no-text={props.noText}>
+				<input
+					disabled={props.disabled}
+					ref={ref}
+					type="radio"
+					role="tab"
+					id={state._id}
+				/>
 
-			<Show when={props.label}>{props.label}</Show>
-			{props.children}
-		</label>
+				<Show when={props.label}>{props.label}</Show>
+				{props.children}
+			</label>
+		</li>
 	);
 }

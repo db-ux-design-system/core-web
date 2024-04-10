@@ -38,7 +38,8 @@ const Example = () => {
 										<DBInfotext
 											icon="none"
 											semantic="informational">
-											{density}
+											{density.charAt(0).toUpperCase() +
+												density.slice(1)}
 										</DBInfotext>
 										<div
 											className={`example-${example
