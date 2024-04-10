@@ -3,7 +3,7 @@
 		"name": "Tonality",
 		"examples": [
 			{
-				"name": "functional",
+				"name": "Functional",
 				"className": "db-ui-functional",
 				"props": {},
 				"code": {
@@ -14,7 +14,7 @@
 				}
 			},
 			{
-				"name": "regular (Default)",
+				"name": "(Default) Regular",
 				"className": "db-ui-regular",
 				"props": {},
 				"code": {
@@ -25,7 +25,7 @@
 				}
 			},
 			{
-				"name": "expressive",
+				"name": "Expressive",
 				"className": "db-ui-expressive",
 				"props": {},
 				"code": {
@@ -68,7 +68,7 @@
 		"name": "Behaviour",
 		"examples": [
 			{
-				"name": "Multiple (Default)",
+				"name": "(Default) Multiple",
 				"props": {
 					"behaviour": "multiple"
 				},

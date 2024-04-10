@@ -233,6 +233,7 @@ export const ROUTES: NavigationItem[] = [
 		path: '/components',
 		subNavigation: [
 			{ label: 'Readme', path: '/components/readme' },
+			{ label: 'Router usage', path: '/components/router-usage' },
 			...componentChildren.map((category) => ({
 				...category,
 				subNavigation: category?.subNavigation?.map((component) => ({

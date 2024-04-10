@@ -3,7 +3,7 @@
 		"name": "Tonality",
 		"examples": [
 			{
-				"name": "functional",
+				"name": "Functional",
 				"className": "db-ui-functional",
 				"props": {
 					"content": "Tooltip",
@@ -11,7 +11,7 @@
 				}
 			},
 			{
-				"name": "regular (Default)",
+				"name": "(Default) Regular",
 				"className": "db-ui-regular",
 				"props": {
 					"content": "Tooltip",
@@ -19,7 +19,7 @@
 				}
 			},
 			{
-				"name": "expressive",
+				"name": "Expressive",
 				"className": "db-ui-expressive",
 				"props": {
 					"content": "Tooltip",
@@ -32,7 +32,7 @@
 		"name": "Variant",
 		"examples": [
 			{
-				"name": "With arrow (Default)",
+				"name": "(Default) With arrow",
 				"props": {
 					"content": "Tooltip",
 					"id": "tooltip-04"
@@ -52,7 +52,7 @@
 		"name": "Emphasis",
 		"examples": [
 			{
-				"name": "Weak (Default)",
+				"name": "(Default) Weak",
 				"props": {
 					"content": "Tooltip",
 					"id": "tooltip-06"
@@ -80,7 +80,7 @@
 				}
 			},
 			{
-				"name": "bottom (Default)",
+				"name": "(Default) bottom",
 				"props": {
 					"content": "Tooltip",
 					"placement": "bottom",
@@ -173,7 +173,7 @@
 		"name": "Width",
 		"examples": [
 			{
-				"name": "Auto (Default)",
+				"name": "(Default) Auto",
 				"props": {
 					"content": "Max width, lorem ipsum dolor sit amet, consetetur sadipscing",
 					"id": "tooltip-12"
@@ -193,7 +193,7 @@
 		"name": "Animations",
 		"examples": [
 			{
-				"name": "Animation no delay (Default)",
+				"name": "(Default) Animation no delay",
 				"props": {
 					"content": "Tooltip",
 					"id": "tooltip-14"
