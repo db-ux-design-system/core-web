@@ -14,11 +14,11 @@ import { DBNavigation, DBNavigationItem } from "@db-ui/v-components";
 	<DBNavigation>
 		<DBNavigationItem :active="true">
 			Navi-Item 1
-			<template v-slot:sub-navigation>
+			<template v-slot:subnavigation>
 				<DBNavigationItem :active="true">
 					Sub-Navi-Item 1
 
-					<template v-slot:sub-navigation>
+					<template v-slot:subnavigation>
 						<DBNavigationItem :active="true">
 							<a href="#">Sub-Sub-Navi-Item 1</a>
 						</DBNavigationItem>
@@ -69,7 +69,7 @@ import { DBMainNavigation, DBNavigationItem } from "@db-ui/v-components";
 		</DBNavigationItem>
 		<DBNavigationItem>
 			<template> Demo Pages </template>
-			<template #sub-navigation>
+			<template #subnavigation>
 				<DBNavigationItem>
 					<RouterLink to="/demo/1" ariaCurrentValue="page">
 						Demo Page 1
