@@ -167,7 +167,7 @@ export type FormProps = {
 	 */
 	form?: string;
 	/**
-	 * Marks an input element as invalid.
+	 * Marks an input element as invalid. Overwrites the :user-valid selector.
 	 */
 	invalid?: boolean;
 	/**

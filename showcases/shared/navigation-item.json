@@ -8,7 +8,7 @@
 				"props": {}
 			},
 			{
-				"name": "Regular (Default)",
+				"name": "(Default) Regular",
 				"className": "db-density-regular",
 				"props": {}
 			},
@@ -44,7 +44,7 @@
 		"name": "Content",
 		"examples": [
 			{
-				"name": "Text (Default)",
+				"name": "(Default) Text",
 				"props": {
 					"areaPopup": false
 				}
@@ -73,7 +73,7 @@
 		"name": "Width",
 		"examples": [
 			{
-				"name": "Auto (Default)",
+				"name": "(Default) Auto",
 				"style": { "width": "400px" },
 				"props": {}
 			},

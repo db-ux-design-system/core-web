@@ -10,8 +10,6 @@ const getTab = ({
 	noText,
 	icon,
 	iconAfter,
-	width,
-	alignment,
 	disabled
 }: DBTabProps) => (
 	<DBTab
@@ -19,9 +17,7 @@ const getTab = ({
 		noText={noText}
 		icon={icon}
 		iconAfter={iconAfter}
-		width={width}
-		disabled={disabled}
-		alignment={alignment}>
+		disabled={disabled}>
 		{children}
 	</DBTab>
 );

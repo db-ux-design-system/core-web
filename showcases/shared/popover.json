@@ -3,21 +3,21 @@
 		"name": "Density",
 		"examples": [
 			{
-				"name": "functional",
+				"name": "Functional",
 				"className": "db-density-functional",
 				"props": {
 					"id": "popover-01"
 				}
 			},
 			{
-				"name": "regular (Default)",
+				"name": "(Default) Regular",
 				"className": "db-density-regular",
 				"props": {
 					"id": "popover-02"
 				}
 			},
 			{
-				"name": "expressive",
+				"name": "Expressive",
 				"className": "db-density-expressive",
 				"props": {
 					"id": "popover-03"
@@ -29,7 +29,7 @@
 		"name": "Spacing",
 		"examples": [
 			{
-				"name": "Small (Default)",
+				"name": "(Default) Small",
 				"props": {
 					"spacing": "small",
 					"id": "popover-04"
@@ -62,7 +62,7 @@
 				}
 			},
 			{
-				"name": "bottom (Default)",
+				"name": "(Default) bottom",
 				"props": {
 					"placement": "bottom",
 					"id": "popover-07"
@@ -144,7 +144,7 @@
 		"name": "Gap",
 		"examples": [
 			{
-				"name": "No gap (Default)",
+				"name": "(Default) No gap",
 				"props": {
 					"id": "popover-11"
 				}
@@ -162,7 +162,7 @@
 		"name": "Animations",
 		"examples": [
 			{
-				"name": "Animation no delay (Default)",
+				"name": "(Default) Animation no delay",
 				"props": {
 					"id": "popover-13"
 				}
@@ -194,7 +194,7 @@
 		"name": "Width",
 		"examples": [
 			{
-				"name": "Auto (Default)",
+				"name": "(Default) Auto",
 				"props": {
 					"content": "Max width, lorem ipsum dolor sit amet, consetetur sadipscing",
 					"id": "popover-17"
