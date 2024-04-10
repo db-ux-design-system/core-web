@@ -10,7 +10,9 @@ export const getUnionElements = (options, elements) => {
 			options.push(
 				element.name === 'literal'
 					? element.value
-					: getUnionElements(options, element.elements)
+					: element.elements
+						? getUnionElements(options, element.elements)
+						: element.name
 			);
 		}
 	}
