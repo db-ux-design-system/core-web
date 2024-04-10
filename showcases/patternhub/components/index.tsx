@@ -5,22 +5,44 @@ import type {
 	DefaultComponentVariants
 } from '../../shared/default-component-data';
 import DefaultPage from './default-page';
-import { DBCodeDocs, DBDivider, DBLink } from './src';
+import { DBCard, DBDivider, DBLink } from './src';
 
-const VariantList = ({ examples, slotCode }: DefaultComponentVariants) => (
-	<DBCodeDocs className="variants-card" slotCode={slotCode}>
-		<div className="variants-list">
-			{examples.map((example, exampleIndex) => (
-				<div
-					key={`${example.name}-${exampleIndex}`}
-					style={example.style}
-					className={example.className}>
-					{example.example}
+const VariantList = ({ examples, slotCode }: DefaultComponentVariants) => {
+	const [open, setOpen] = useState<boolean>();
+	return (
+		<DBCard className="variants-card db-code-docs">
+			<div className="variants-list">
+				{examples.map((example, exampleIndex) => (
+					<div
+						key={`${example.name}-${exampleIndex}`}
+						style={example.style}
+						className={example.className}>
+						{example.example}
+					</div>
+				))}
+			</div>
+
+			<details
+				className="code-details"
+				onToggle={() => {
+					setOpen(!open);
+				}}>
+				<summary
+					className="db-button code-button"
+					data-size="small"
+					data-variant="solid">
+					{open ? 'Hide code' : 'Show code'}
+				</summary>
+				<div className="db-ui-functional">
+					<div className="backdrop" />
+					<DBCard className="code" spacing="small">
+						{slotCode}
+					</DBCard>
 				</div>
-			))}
-		</div>
-	</DBCodeDocs>
-);
+			</details>
+		</DBCard>
+	);
+};
 
 const DefaultComponent = ({ title, variants }: DefaultComponentProps) => {
 	const [foundVariant, setFoundVariant] =

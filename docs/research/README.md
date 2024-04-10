@@ -18,7 +18,7 @@ You can find more design systems here:
 
 Further inspirational links:
 
-- <https://handreichungen.bfit-bund.de/barrierefreie-uie/>
-- <https://open-ui.org/>
+-   <https://handreichungen.bfit-bund.de/barrierefreie-uie/>
+-   <https://open-ui.org/>
 
 5. Additionally it might be beneficial to even also already save your HTML explorations within the related components file, like e.g. for `buttons`: `packages/components/src/components/button/index.html`

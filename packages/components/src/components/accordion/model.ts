@@ -10,6 +10,12 @@ export interface DBAccordionItemInterface
 	extends Omit<DBAccordionItemDefaultProps, 'slotTitle'> {}
 export interface DBAccordionDefaultProps {
 	/**
+	 * Defines the display of the accordion and the items:
+	 * "default": with a dividing line between the items
+	 * "card": w/o dividing line, but items are shown in the card variant
+	 */
+	variant?: 'card';
+	/**
 	 * To allow multiple items open at the same time or only 1 item
 	 */
 	behaviour?: 'multiple' | 'single';

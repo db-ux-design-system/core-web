@@ -37,14 +37,14 @@
 }
 
 .db-badge {
-	--badge-size: #{variables.$db-spacing-fixed-sm};
+	--badge-size: #{variables.$db-spacing-fixed-xs};
 	@extend %component-border;
-	@extend %db-overwrite-font-size-sm;
+	@extend %db-overwrite-font-size-2xs;
 	@extend %default-button;
 
 	@include tag-components.get-tag-colors();
 	border-radius: 42px; // extreme radius
-	padding-inline: variables.$db-spacing-fixed-xs;
+	padding-inline: variables.$db-spacing-fixed-2xs;
 	block-size: fit-content;
 	inline-size: fit-content;
 
@@ -56,18 +56,18 @@
 	}
 
 	&:has(.db-icon) {
-		padding: variables.$db-spacing-fixed-2xs;
+		padding: variables.$db-spacing-fixed-3xs;
 	}
 
 	& > *,
 	.db-icon {
-		@extend %db-overwrite-font-size-sm;
+		@extend %db-overwrite-font-size-2xs;
 	}
 
-	&[data-size="small"] {
-		--badge-size: #{variables.$db-spacing-fixed-xs};
-		@extend %db-overwrite-font-size-2xs;
-		padding-inline: variables.$db-spacing-fixed-2xs;
+	&[data-size="medium"] {
+		--badge-size: #{variables.$db-spacing-fixed-sm};
+		@extend %db-overwrite-font-size-sm;
+		padding-inline: variables.$db-spacing-fixed-xs;
 
 		&:empty,
 		> span:empty {
@@ -75,12 +75,12 @@
 		}
 
 		&:has(.db-icon) {
-			padding: variables.$db-spacing-fixed-3xs;
+			padding: variables.$db-spacing-fixed-2xs;
 		}
 
 		& > *,
 		.db-icon {
-			@extend %db-overwrite-font-size-2xs;
+			@extend %db-overwrite-font-size-sm;
 		}
 	}
 

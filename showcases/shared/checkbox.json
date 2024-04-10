@@ -10,7 +10,7 @@
 				}
 			},
 			{
-				"name": "Regular (Default)",
+				"name": "(Default) Regular",
 				"className": "db-ui-regular",
 				"props": {
 					"name": "Tonality"
@@ -29,7 +29,7 @@
 		"name": "States",
 		"examples": [
 			{
-				"name": "Default",
+				"name": "(Default) Unchecked",
 				"props": {
 					"name": "States"
 				}
@@ -87,7 +87,7 @@
 		"name": "Size",
 		"examples": [
 			{
-				"name": "Default",
+				"name": "(Default) Medium",
 				"props": {
 					"name": "Size"
 				}

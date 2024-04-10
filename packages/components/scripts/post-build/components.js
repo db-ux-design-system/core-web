@@ -69,7 +69,8 @@ const getComponents = () => [
 	},
 
 	{
-		name: 'popover'
+		name: 'popover',
+		overwrites: { angular: [{ from: 'mouseEnter', to: 'mouseenter' }] }
 	},
 
 	{
@@ -153,10 +154,6 @@ const getComponents = () => [
 	{
 		name: 'tag'
 	},
-	{
-		name: 'code-docs'
-	},
-
 	{
 		name: 'checkbox',
 		config: {
