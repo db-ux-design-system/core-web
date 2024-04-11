@@ -13,10 +13,10 @@
     "compile:03_copy-docs": "cpr ../../docs ./public/docs -o",
     "compile:04_components": "node scripts/esbuild-generate.mjs",
     "compile:05_run": "node generated.js",
+    "compile:06_replace_base": "node scripts/fix-base-path.js",
     "dev": "cross-env NEXT_PUBLIC_BASE_PATH=/mono/sub npm-run-all compile -p open next:dev",
     "lint": "next lint",
     "next:dev": "next dev",
-    "next:start": "next start",
     "open": "open-cli http://localhost:3000/mono/sub",
     "prebuild:app": "cpr ../../node_modules/iframe-resizer/js/ public/iframe-resizer -o",
     "start": "cross-env NEXT_PUBLIC_BASE_PATH=/mono/sub npm-run-all compile next:dev"
@@ -44,6 +44,6 @@
     "iframe-resizer": "^4.3.9",
     "open-cli": "^8.0.0",
     "sass": "^1.74.1",
-    "typescript": "5.4.4"
+    "typescript": "5.4.5"
   }
 }
