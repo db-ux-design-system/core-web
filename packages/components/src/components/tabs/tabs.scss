@@ -107,8 +107,6 @@ $max-tabs: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 		}
 
 		.db-tab-list {
-			margin-inline-end: auto;
-
 			/* horizontal track for pulse */
 			&::before {
 				@extend %pulse-track;
@@ -179,7 +177,7 @@ $max-tabs: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 		.db-tab-list {
 			$width: var(
 				--db-tab-list-vertical-width,
-				calc(3 * #{variables.$db-spacing-fixed-3xl})
+				#{variables.$db-sizing-3xl}
 			);
 
 			/*
