@@ -14,7 +14,7 @@ import { ref } from "vue";
 			#example="{ exampleIndex, variantIndex, exampleName, exampleProps }"
 		>
 			<DBAccordionItem
-				:title="exampleProps.title"
+				:headline="exampleProps.headline"
 				:disabled="exampleProps.disabled"
 				:default-open="exampleProps.open"
 			>

@@ -25,16 +25,6 @@ export type GlobalProps = {
 	 * React specific for render process.
 	 */
 	key?: string;
-
-	/**
-	 * The default tabindex (https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/tabindex?retiredLocale=de).
-	 */
-	tabIndex?: number;
-
-	/**
-	 * The [title attribute](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/title) specifies the tooltip of the component.
-	 */
-	title?: string;
 };
 
 export type GlobalState = {
@@ -58,14 +48,14 @@ export type DefaultVariantProps = {
 
 export type IconProps = {
 	/**
-	 * Define an icon by it's identifier (like e.g. _account_, compare to [Icons](https://db-ui.github.io/mono/review/main/foundations/icons) to get displayed in front of the elements content.
+	 * Define an icon by its identifier (like e.g. _account_, compare to [Icons](https://db-ui.github.io/mono/review/main/foundations/icons/overview)) to get displayed in front of the elements content.
 	 */
 	icon?: IconTypes;
 };
 
 export type IconAfterProps = {
 	/**
-	 * Define an icon by it's identifier (like e.g. _account_, compare to [Icons](https://db-ui.github.io/mono/review/main/foundations/icons) to get displayed in front of the elements content.
+	 * Define an icon by its identifier (like e.g. _account_, compare to [Icons](https://db-ui.github.io/mono/review/main/foundations/icons/overview)) to get displayed in front of the elements content.
 	 */
 	iconAfter?: IconTypes;
 };

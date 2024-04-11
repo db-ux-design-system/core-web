@@ -20,9 +20,9 @@ import {
 				:behaviour="exampleProps.behaviour"
 				:variant="exampleProps.variant"
 			>
-				<DBAccordionItem title="Item 1" content="Content 1" />
-				<DBAccordionItem title="Item 2" content="Content 2" />
-				<DBAccordionItem title="Item 3" content="Content 3" />
+				<DBAccordionItem headline="Item 1" content="Content 1" />
+				<DBAccordionItem headline="Item 2" content="Content 2" />
+				<DBAccordionItem headline="Item 3" content="Content 3" />
 			</DBAccordion>
 		</template>
 	</DefaultComponent>

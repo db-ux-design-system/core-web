@@ -29,51 +29,50 @@
 		]
 	},
 	{
-		"name": "States",
+		"name": "Interaction States",
 		"examples": [
 			{
-				"name": "(Default) Unchecked",
+				"name": "(Default) Enabled",
 				"props": {
-					"name": "States"
-				}
-			},
-			{
-				"name": "Checked",
-				"props": {
-					"name": "States",
-					"checked": true
+					"name": "Interaction States"
 				}
 			},
 			{
 				"name": "Disabled",
 				"props": {
-					"name": "States",
+					"name": "Interaction States",
 					"disabled": true
 				}
 			}
 		]
 	},
 	{
-		"name": "Requirement",
+		"name": "States",
 		"examples": [
 			{
-				"name": "(Default) Optional",
+				"name": "(Default) Unselected",
 				"props": {
-					"name": "Requirement"
+					"name": "States"
 				}
 			},
 			{
-				"name": "Required",
+				"name": "Unselected - Invalid",
 				"props": {
-					"name": "Requirement",
-					"required": true,
-					"invalid": true
+					"name": "States Required",
+					"required": true
 				}
 			},
 			{
-				"name": "Required - Checked",
+				"name": "Selected",
 				"props": {
-					"name": "Requirement",
+					"name": "States",
+					"checked": true
+				}
+			},
+			{
+				"name": "Selected - Valid",
+				"props": {
+					"name": "States Required",
 					"required": true,
 					"checked": true
 				}
@@ -99,7 +98,25 @@
 		]
 	},
 	{
-		"name": "Variant Label",
+		"name": "Requirement",
+		"examples": [
+			{
+				"name": "(Default) Optional",
+				"props": {
+					"name": "Requirement"
+				}
+			},
+			{
+				"name": "Required",
+				"props": {
+					"name": "Requirement",
+					"required": true
+				}
+			}
+		]
+	},
+	{
+		"name": "Content",
 		"examples": [
 			{
 				"name": "(Default) Label",
