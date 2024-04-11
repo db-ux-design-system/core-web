@@ -3,7 +3,7 @@
 	"name": "",
 	"icons": [
 		{
-			"src": "/images/db_logo.svg",
+			"src": "/assets/images/db_logo.svg",
 			"type": "image/svg",
 			"sizes": "192x192"
 		}
