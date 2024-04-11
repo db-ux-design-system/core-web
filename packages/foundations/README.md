@@ -9,9 +9,9 @@ A library containing all tokens (colors, icons, variables) of [DB UX Design Syst
 
 We currently support:
 
--   [CSS](#css)
--   [SCSS](#scss)
--   [Tailwind](#tailwind)
+-   [CSS](https://db-ui.github.io/mono/review/main/foundations/readme?current=css)
+-   [SCSS](https://db-ui.github.io/mono/review/main/foundations/readme?current=scss)
+-   [Tailwind](https://db-ui.github.io/mono/review/main/foundations/readme?current=tailwind)
 
 ## Install
 

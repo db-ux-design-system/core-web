@@ -1,8 +1,9 @@
 import { useRouter } from 'next/router';
-import { useEffect, useState } from 'react';
-import type {
-	DefaultComponentProps,
-	DefaultComponentVariants
+import React, { useEffect, useState } from 'react';
+import {
+	type DefaultComponentProps,
+	type DefaultComponentVariants,
+	type PatternhubComponentProps
 } from '../../shared/default-component-data';
 import DefaultPage from './default-page';
 import { DBCard, DBDivider, DBLink } from './src';
@@ -44,7 +45,62 @@ const VariantList = ({ examples, slotCode }: DefaultComponentVariants) => {
 	);
 };
 
-const DefaultComponent = ({ title, variants }: DefaultComponentProps) => {
+const VariantsWrapper = ({
+	variants,
+	componentName
+}: {
+	variants: DefaultComponentVariants[];
+	componentName?: string;
+}) => {
+	const getHref = (
+		variant: DefaultComponentVariants,
+		componentName?: string
+	) => {
+		if (
+			typeof window === 'undefined' ||
+			!window.location.origin ||
+			!window.location.href
+		) {
+			return '';
+		}
+
+		const currentUrlWithoutQuery = window.location.href.split('?')[0];
+		const variantQuery = `?page=${variant.name.toLowerCase()}`;
+
+		if (componentName) {
+			return `${currentUrlWithoutQuery.split('components')[0]}/components/${componentName}${variantQuery}`;
+		}
+
+		return `${currentUrlWithoutQuery}${variantQuery}`;
+	};
+
+	return (
+		<>
+			{variants?.map((variant, index) => (
+				<div key={`${variant.name}-${index}`}>
+					<DBDivider></DBDivider>
+					<h2>
+						<DBLink
+							content="external"
+							target="_blank"
+							href={getHref(variant, componentName)}>
+							{variant.name}
+						</DBLink>
+					</h2>
+					<VariantList {...variant} />
+				</div>
+			))}
+		</>
+	);
+};
+
+const DefaultComponent = ({
+	title,
+	variants,
+	subComponent,
+	isSubComponent,
+	componentName
+}: DefaultComponentProps & PatternhubComponentProps) => {
 	const [foundVariant, setFoundVariant] =
 		useState<DefaultComponentVariants>();
 	const router = useRouter();
@@ -61,13 +117,6 @@ const DefaultComponent = ({ title, variants }: DefaultComponentProps) => {
 		}
 	}, [router]);
 
-	const getHref = (variant: DefaultComponentVariants) =>
-		typeof window !== 'undefined' &&
-		window.location.origin &&
-		window.location.href
-			? `${window.location.href.split('?')[0]}?page=${variant.name.toLowerCase()}`
-			: '';
-
 	return (
 		<>
 			{foundVariant && (
@@ -75,26 +124,26 @@ const DefaultComponent = ({ title, variants }: DefaultComponentProps) => {
 					<VariantList {...foundVariant} />
 				</div>
 			)}
-			{!foundVariant && (
+			{!foundVariant && !isSubComponent && (
 				<DefaultPage>
 					<div className="default-container">
 						<h1>{title}</h1>
-						{variants?.map((variant, index) => (
-							<div key={`${variant.name}-${index}`}>
-								<DBDivider></DBDivider>
-								<h2>
-									<DBLink
-										content="external"
-										target="_blank"
-										href={getHref(variant)}>
-										{variant.name}
-									</DBLink>
-								</h2>
-								<VariantList {...variant} />
-							</div>
-						))}
+						<VariantsWrapper
+							variants={variants}
+							componentName={componentName}
+						/>
 					</div>
+					{subComponent}
 				</DefaultPage>
+			)}
+			{!foundVariant && isSubComponent && (
+				<div className="default-container">
+					<h2>{title}</h2>
+					<VariantsWrapper
+						variants={variants}
+						componentName={componentName}
+					/>
+				</div>
 			)}
 		</>
 	);
