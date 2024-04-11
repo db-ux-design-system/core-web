@@ -145,7 +145,7 @@ $input-valid-types: "color", "date", "datetime-local", "email", "file", "hidden"
 
 	@if ($selector == input) {
 		// https://developer.mozilla.org/en-US/docs/Learn/Forms/Form_validation#using_built-in_form_validation
-		$validations: ":required, [minlength], [maxlength], [pattern]";
+		$validations: $validations + ", [minlength], [maxlength], [pattern]";
 		@each $type in $input-valid-types {
 			$validations: $validations + ", [type=#{$type}]";
 		}
