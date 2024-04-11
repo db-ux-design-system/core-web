@@ -9,7 +9,7 @@ const getAccordionItem = ({
 	children,
 	disabled,
 	open,
-	title
+	headline
 }: DBAccordionItemProps & { open: boolean }) => {
 	return (
 		<DBAccordionItem

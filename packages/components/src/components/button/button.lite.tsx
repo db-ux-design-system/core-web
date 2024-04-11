@@ -26,7 +26,6 @@ export default function DBButton(props: DBButtonProps) {
 			id={props.id}
 			class={cls('db-button', props.className)}
 			type={props.type}
-			title={props.title}
 			disabled={props.disabled}
 			aria-label={props.label}
 			data-icon={props.icon}

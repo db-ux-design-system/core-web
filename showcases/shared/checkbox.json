@@ -26,6 +26,24 @@
 		]
 	},
 	{
+		"name": "Interaction States",
+		"examples": [
+			{
+				"name": "(Default) Enabled",
+				"props": {
+					"name": "Interaction States"
+				}
+			},
+			{
+				"name": "Disabled",
+				"props": {
+					"name": "Interaction States",
+					"disabled": true
+				}
+			}
+		]
+	},
+	{
 		"name": "States",
 		"examples": [
 			{
@@ -35,9 +53,24 @@
 				}
 			},
 			{
+				"name": "Unchecked - Invalid",
+				"props": {
+					"name": "States",
+					"required": true
+				}
+			},
+			{
 				"name": "Checked",
 				"props": {
 					"name": "States",
+					"checked": true
+				}
+			},
+			{
+				"name": "Checked - Valid",
+				"props": {
+					"name": "States",
+					"required": true,
 					"checked": true
 				}
 			},
@@ -49,10 +82,38 @@
 				}
 			},
 			{
-				"name": "Disabled",
+				"name": "Indeterminate - Invalid",
 				"props": {
 					"name": "States",
-					"disabled": true
+					"indeterminate": true,
+					"required": true
+				}
+			},
+			{
+				"name": "Indeterminate - Valid",
+				"props": {
+					"name": "States",
+					"indeterminate": true,
+					"required": true,
+					"checked": true
+				}
+			}
+		]
+	},
+	{
+		"name": "Size",
+		"examples": [
+			{
+				"name": "(Default) Medium",
+				"props": {
+					"name": "Size"
+				}
+			},
+			{
+				"name": "Small",
+				"props": {
+					"name": "Size",
+					"size": "small"
 				}
 			}
 		]
@@ -83,25 +144,7 @@
 		]
 	},
 	{
-		"name": "Size",
-		"examples": [
-			{
-				"name": "(Default) Medium",
-				"props": {
-					"name": "Size"
-				}
-			},
-			{
-				"name": "Small",
-				"props": {
-					"name": "Size",
-					"size": "small"
-				}
-			}
-		]
-	},
-	{
-		"name": "Variant Label",
+		"name": "Content",
 		"examples": [
 			{
 				"name": "(Default) Label",
@@ -110,7 +153,7 @@
 				}
 			},
 			{
-				"name": "Hidden Label",
+				"name": "No Label",
 				"props": {
 					"name": "Content",
 					"variant": "hidden"
