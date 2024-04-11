@@ -25,7 +25,6 @@ export * from './components/navigation';
 export * from './components/badge';
 export * from './components/popover';
 export * from './components/tooltip';
-export * from './components/tab-item';
 export * from './components/tab-list';
 export * from './components/tabs';
 export * from './components/tab-panel';
