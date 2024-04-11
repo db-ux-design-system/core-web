@@ -210,9 +210,15 @@ $input-valid-types: "color", "date", "datetime-local", "email", "file", "hidden"
 		$boolean: "false";
 	}
 
+	$user: "";
 	@if ($selector == check) {
+		$user: "user-";
+	}
+
+	@if ($selector == check or $selector == radio) {
 		$selector: input;
-		&:has(#{$selector}:not([aria-invalid]):required:#{$key}) {
+
+		&:has(#{$selector}:not([aria-invalid]):required:#{$user}#{$key}) {
 			@content;
 		}
 	} @else {
@@ -400,13 +406,13 @@ $input-valid-types: "color", "date", "datetime-local", "email", "file", "hidden"
 	}
 }
 
-%check-element {
+@mixin set-default-check-element($selector) {
 	@include set-required-label(input);
 
-	@include get-validity(check) {
+	@include get-validity($selector) {
 		@include get-validity-color-check("valid");
 	}
-	@include get-validity(check, "invalid") {
+	@include get-validity($selector, "invalid") {
 		@include get-validity-color-check("invalid");
 	}
 

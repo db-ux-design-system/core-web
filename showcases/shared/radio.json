@@ -66,8 +66,7 @@
 				"name": "Required",
 				"props": {
 					"name": "Requirement",
-					"required": true,
-					"invalid": true
+					"required": true
 				}
 			}
 		]
