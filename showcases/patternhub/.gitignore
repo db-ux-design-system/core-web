@@ -42,7 +42,7 @@ pages/components/
 components/src
 !pages/components/readme.mdx
 !pages/components/validation.mdx
-!pages/components/router-usage
+!pages/components/router-usage.mdx
 !components/src/tsconfig.json
 !components/component-parser
 !components/default-page.tsx

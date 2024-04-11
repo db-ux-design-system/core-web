@@ -15,7 +15,6 @@ import {
 	DEFAULT_INVALID_MESSAGE_ID_SUFFIX,
 	DEFAULT_LABEL,
 	DEFAULT_MESSAGE_ID_SUFFIX,
-	DEFAULT_PLACEHOLDER_ID_SUFFIX,
 	DEFAULT_VALID_MESSAGE,
 	DEFAULT_VALID_MESSAGE_ID_SUFFIX
 } from '../../shared/constants';
@@ -104,13 +103,14 @@ export default function DBTextarea(props: DBTextareaProps) {
 			</label>
 
 			<textarea
+				aria-invalid={props.customValidity === 'invalid'}
+				data-custom-validity={props.customValidity}
 				ref={ref}
 				id={state._id}
 				data-resize={props.resize}
 				disabled={props.disabled}
 				required={props.required}
 				readOnly={props.readOnly}
-				aria-invalid={props.invalid}
 				form={props.form}
 				maxLength={props.maxLength}
 				minLength={props.minLength}

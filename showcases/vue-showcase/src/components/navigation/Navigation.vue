@@ -1,23 +1,17 @@
 <script setup lang="ts">
 import DefaultComponent from "../DefaultComponent.vue";
-import defaultComponentVariants from "../../../../shared/main-navigation.json";
-import {
-	DBMainNavigation,
-	DBNavigationItem
-} from "../../../../../output/vue/src";
+import defaultComponentVariants from "../../../../shared/navigation.json";
+import { DBNavigation, DBNavigationItem } from "../../../../../output/vue/src";
 </script>
 
 <template>
-	<DefaultComponent
-		title="DBMainNavigation"
-		:variants="defaultComponentVariants"
-	>
+	<DefaultComponent title="DBNavigation" :variants="defaultComponentVariants">
 		<template
 			#example="{ exampleIndex, variantIndex, exampleName, exampleProps }"
 		>
 			<div>
 				<h6>{{ exampleName }}</h6>
-				<DBMainNavigation>
+				<DBNavigation>
 					<DBNavigationItem :active="true">
 						Navi-Item 1
 						<template v-slot:subnavigation>
@@ -44,7 +38,7 @@ import {
 					<DBNavigationItem :disabled="true">
 						<a href="#">Navi-Item 3</a>
 					</DBNavigationItem>
-				</DBMainNavigation>
+				</DBNavigation>
 			</div>
 		</template>
 	</DefaultComponent>

@@ -7,8 +7,8 @@
 @use "../../styles/form-components";
 
 .db-checkbox {
-	@extend %check-element;
 	@extend %helper-message;
+	@include form-components.set-default-check-element(check);
 
 	input {
 		border-radius: variables.$db-border-radius-2xs;

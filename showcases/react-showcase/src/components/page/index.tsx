@@ -4,7 +4,7 @@ import {
 	DBButton,
 	DBHeader,
 	DBLink,
-	DBMainNavigation,
+	DBNavigation,
 	DBNavigationItem
 } from '../../../../../output/react/src';
 import { type DBPageProps } from '../../../../../output/react/src/components/page/model';
@@ -19,9 +19,7 @@ const getPage = ({
 	className,
 	describedbyid,
 	id,
-	key,
-	tabIndex,
-	title
+	key
 }: DBPageProps) => (
 	<DBPage
 		type={type}
@@ -30,7 +28,6 @@ const getPage = ({
 		describedbyid={describedbyid}
 		id={id}
 		key={key}
-		tabIndex={tabIndex}
 		header={
 			<DBHeader
 				brand={
@@ -66,16 +63,15 @@ const getPage = ({
 							Help
 						</DBButton>
 					</>
-				}
-				title={title}>
-				<DBMainNavigation>
+				}>
+				<DBNavigation>
 					<DBNavigationItem icon="user">
 						<a href="#">{children}</a>
 					</DBNavigationItem>
 					<DBNavigationItem disabled>
 						<a href="#">{children} disabled</a>
 					</DBNavigationItem>
-				</DBMainNavigation>
+				</DBNavigation>
 			</DBHeader>
 		}
 		footer={<>Footer Content</>}>

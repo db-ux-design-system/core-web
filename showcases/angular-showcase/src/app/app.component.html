@@ -18,11 +18,11 @@
 			>
 				Showcase
 			</db-brand>
-			<db-main-navigation *dbNavigation>
+			<db-navigation *dbNavigation>
 				@for (item of navigationItems; track item.label) {
 					<app-nav-item [navItem]="item"> </app-nav-item>
 				}
-			</db-main-navigation>
+			</db-navigation>
 			<ng-container *dbMetaNavigation>
 				<db-select
 					variant="floating"

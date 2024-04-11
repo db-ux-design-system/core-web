@@ -3,7 +3,7 @@
 @use "../../styles/form-components";
 
 .db-radio {
-	@extend %check-element;
+	@include form-components.set-default-check-element(radio);
 
 	input {
 		border-color: currentColor;

@@ -18,7 +18,7 @@ import {
 	DBInput,
 	DBLink,
 	DBBadge,
-	DBMainNavigation,
+	DBNavigation,
 	DBNavigationItem,
 	DBRadio,
 	DBSection,
@@ -257,11 +257,11 @@ const ComponentSwitch = ({
 		);
 	}
 
-	if (type === 'main-navigation') {
+	if (type === 'navigation') {
 		return (
-			<DBMainNavigation className={className} {...props}>
+			<DBNavigation className={className} {...props}>
 				{resolvedContent}
-			</DBMainNavigation>
+			</DBNavigation>
 		);
 	}
 
