@@ -44,6 +44,6 @@
     "iframe-resizer": "^4.3.9",
     "open-cli": "^8.0.0",
     "sass": "^1.74.1",
-    "typescript": "5.4.4"
+    "typescript": "5.4.5"
   }
 }
