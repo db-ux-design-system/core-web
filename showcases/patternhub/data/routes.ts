@@ -56,12 +56,13 @@ const componentChildren: NavigationItem[] = [
 			},
 			{
 				label: 'DBTabs',
-				name: 'tabs'
-			},
-
-			{
-				label: 'DBTabItem',
-				name: 'tab-item'
+				name: 'tabs',
+				subNavigation: [
+					{
+						label: 'DBTabItem Properties',
+						path: `/components/tab-item/properties`
+					}
+				]
 			}
 		]
 	},

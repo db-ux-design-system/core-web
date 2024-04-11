@@ -9,6 +9,7 @@ import DefaultComponent from '../index';
 import defaultComponentVariants from '../../../../shared/tabs.json';
 import type { DBTabsProps } from '../../../../../output/react/src/components/tabs/model';
 import { getVariants } from '../data';
+// Patternhub:import TabItemComponent from '../tab-item';
 
 const getTabs = ({
 	children,
@@ -60,6 +61,8 @@ const TabsComponent = () => {
 	return (
 		<DefaultComponent
 			title="DBTabs"
+			// We use this only for patternhub to include an item inside the parent
+			// Patternhub:subComponent={<TabItemComponent	isSubComponent componentName="tab-item"/>}
 			variants={getVariants(
 				defaultComponentVariants,
 				getTabs
