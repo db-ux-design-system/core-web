@@ -60,14 +60,19 @@ const getPropertiesFile = ({ displayName, description, props }) => {
 			'No description'
 		} `;
 		propertyTable += `| ${property.tsType.type ?? property.tsType.name} `;
-		propertyTable += `| ${
-			options
-				? `<pre><code className="code-pre-wrap">${options.replaceAll(
-						'<T>',
-						''
-					)}</code></pre>`
-				: ''
-		} |\n`;
+
+		if (['icon', 'iconAfter', 'messageIcon'].includes(propertyKey)) {
+			propertyTable += `| [IconTypes](https://db-ui.github.io/mono/review/main/foundations/icons/overview) |\n`;
+		} else {
+			propertyTable += `| ${
+				options
+					? `<pre><code className="code-pre-wrap">${options.replaceAll(
+							'<T>',
+							''
+						)}</code></pre>`
+					: ''
+			} |\n`;
+		}
 	}
 
 	return `
