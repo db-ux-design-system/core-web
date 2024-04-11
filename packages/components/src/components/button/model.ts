@@ -10,12 +10,12 @@ import {
 // TODO: 👇 Find a way to make react-docgen work without duplicating the types below
 enum buttonVariants {
 	'outlined' = 'outlined',
-	'primary' = 'primary',
-	'solid' = 'solid',
-	'text' = 'text'
+	'brand' = 'brand',
+	'filled' = 'filled',
+	'ghost' = 'ghost'
 }
 export const buttonVariantsList = Object.values(buttonVariants);
-export type ButtonVariantsType = 'outlined' | 'primary' | 'solid' | 'text';
+export type ButtonVariantsType = 'outlined' | 'brand' | 'filled' | 'ghost';
 
 export type DBButtonDefaultProps = {
 	/**

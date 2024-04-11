@@ -17,7 +17,6 @@
   "workspaces": [
     "packages/*",
     "output/*",
-    "output/vue/vue3",
     "showcases/*",
     "docs",
     "scripts"

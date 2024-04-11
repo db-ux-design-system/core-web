@@ -11,13 +11,13 @@ import { getVariants } from '../data';
 
 const getAccordion = ({ behaviour, children, variant }: DBAccordionProps) => (
 	<>
-		<DBInfotext size="small" variant="informational" icon="none">
+		<DBInfotext size="small" semantic="informational" icon="none">
 			{children}
 		</DBInfotext>
 		<DBAccordion behaviour={behaviour} variant={variant}>
-			<DBAccordionItem title="Item 1" content="Content 1" />
-			<DBAccordionItem title="Item 2" content="Content 2" />
-			<DBAccordionItem title="Item 3" content="Content 3" />
+			<DBAccordionItem headlinePlain="Item 1" content="Content 1" />
+			<DBAccordionItem headlinePlain="Item 2" content="Content 2" />
+			<DBAccordionItem headlinePlain="Item 3" content="Content 3" />
 		</DBAccordion>
 	</>
 );

@@ -37,7 +37,7 @@ const getContent = () => {
 			 label="Start train station"
 			 placeholder="some text"
 			 icon="edit"
-			 variant="critical"
+			 semantic="critical"
 			 value="hello"
 			 name="testInput"
 			></db-input>
@@ -48,7 +48,7 @@ const getContent = () => {
 			 placeholder="some text"
 			 icon="edit"
 			 iconAfter="heart"
-			 variant="warning"
+			 semantic="warning"
 			 id="input-expr-warning"
 			 required="true"
 			></db-input>
@@ -83,7 +83,7 @@ const getContent = () => {
 			 id="db-input-functional-2"
 			 label="Textinput disabled"
 			 placeholder="some text"
-			 variant="informational"
+			 semantic="informational"
 			 disabled="true"
 			></db-input>
 

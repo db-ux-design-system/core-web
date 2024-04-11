@@ -7,12 +7,13 @@ import { DEFAULT_VIEWPORT } from '../../shared/constants.ts';
 import { DBButton } from '../button';
 
 // template v-slot is used for vue component tests
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 const comp: any = (
 	<div className="padding-box">
 		<DBPopover
 			animation="disabled"
 			data-testid="popover"
-			slotTrigger={<DBButton data-testid="button">Button</DBButton>}>
+			trigger={<DBButton data-testid="button">Button</DBButton>}>
 			{/*<template v-slot:trigger>
 				<DBButton data-testid="button">Button</DBButton>
 			</template>*/}

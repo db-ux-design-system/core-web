@@ -76,12 +76,12 @@ export default function DBRadio(props: DBRadioProps) {
 				}
 			}
 		}
-	}, [state.initialized]);
+	}, [state.initialized, props.checked]);
 
 	return (
 		<label
 			data-size={props.size}
-			data-label-variant={props.labelVariant}
+			data-variant={props.variant}
 			class={cls('db-radio', props.className)}
 			htmlFor={state._id}>
 			<input

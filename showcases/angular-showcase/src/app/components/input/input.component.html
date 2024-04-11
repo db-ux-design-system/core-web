@@ -13,7 +13,6 @@
 		<db-input
 			[variant]="exampleProps.variant"
 			[label]="exampleProps.label"
-			[labelVariant]="exampleProps.labelVariant"
 			[message]="exampleProps.message"
 			[placeholder]="exampleName"
 			[minLength]="exampleProps.minLength"
@@ -24,6 +23,16 @@
 			[icon]="exampleProps.icon"
 			[invalid]="exampleProps.invalid"
 			[iconAfter]="exampleProps.iconAfter"
+			[invalidMessage]="
+				exampleProps.invalid !== undefined || exampleProps.required
+					? 'Invalid Message'
+					: undefined
+			"
+			[validMessage]="
+				exampleProps.invalid !== undefined || exampleProps.required
+					? 'Valid Message'
+					: undefined
+			"
 		></db-input>
 	</ng-template>
 </app-default-component>

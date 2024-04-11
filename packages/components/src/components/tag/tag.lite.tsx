@@ -31,7 +31,7 @@ export default function DBTag(props: DBTagProps) {
 			id={props.id}
 			class={cls('db-tag', props.className)}
 			data-disabled={props.disabled}
-			data-variant={props.variant}
+			data-semantic={props.semantic}
 			data-emphasis={props.emphasis}
 			data-icon={props.icon}
 			data-no-text={props.noText}
@@ -47,7 +47,7 @@ export default function DBTag(props: DBTagProps) {
 					icon="close"
 					size="small"
 					noText
-					variant="text"
+					variant="ghost"
 					title={state.getRemoveButtonText()}>
 					{state.getRemoveButtonText()}
 				</DBButton>

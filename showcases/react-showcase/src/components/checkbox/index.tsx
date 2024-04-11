@@ -14,7 +14,7 @@ const getCheckbox = ({
 	children,
 	disabled,
 	indeterminate,
-	labelVariant
+	variant
 }: DBCheckboxProps) => (
 	<DBCheckbox
 		label={label}
@@ -24,7 +24,7 @@ const getCheckbox = ({
 		invalid={invalid}
 		required={required}
 		disabled={disabled}
-		labelVariant={labelVariant}
+		variant={variant}
 		indeterminate={indeterminate}>
 		{children}
 	</DBCheckbox>

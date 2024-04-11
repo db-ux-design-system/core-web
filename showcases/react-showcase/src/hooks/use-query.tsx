@@ -3,17 +3,17 @@ import { useEffect, useState } from 'react';
 import {
 	COLOR,
 	COLOR_CONST,
-	TONALITY,
-	TONALITY_CONST
+	DENSITY,
+	DENSITY_CONST
 } from '../../../../packages/components/src/shared/constants';
 
 const useQuery = (): any => {
 	const [searchParameters, setSearchParameters] = useSearchParams();
-	const [tonality, setTonality] = useState<string>(
-		searchParameters.get(TONALITY_CONST) ?? TONALITY.REGULAR
+	const [density, setDensity] = useState<string>(
+		searchParameters.get(DENSITY_CONST) ?? DENSITY.REGULAR
 	);
 	const [color, setColor] = useState<string>(
-		searchParameters.get(COLOR_CONST) ?? COLOR.BASE
+		searchParameters.get(COLOR_CONST) ?? COLOR.NEUTRAL_BG_LEVEL_1
 	);
 	const [page, setPage] = useState<string | undefined>(undefined);
 	const [fullscreen, setFullscreen] = useState<boolean>(false);
@@ -22,8 +22,8 @@ const useQuery = (): any => {
 	useEffect(() => {
 		for (const [key, value] of searchParameters.entries()) {
 			if (value) {
-				if (key === TONALITY_CONST && tonality !== value) {
-					setTonality(value);
+				if (key === DENSITY_CONST && density !== value) {
+					setDensity(value);
 				}
 
 				if (key === COLOR_CONST && color !== value) {
@@ -45,7 +45,7 @@ const useQuery = (): any => {
 
 	useEffect(() => {
 		if (searchRead) {
-			const nextQuery: any = { tonality, color };
+			const nextQuery: any = { density, color };
 			if (page) {
 				nextQuery.page = page;
 			}
@@ -56,9 +56,9 @@ const useQuery = (): any => {
 
 			setSearchParameters(nextQuery);
 		}
-	}, [color, tonality, page, fullscreen, searchRead]);
+	}, [color, density, page, fullscreen, searchRead]);
 
-	return [tonality, setTonality, color, setColor, page, fullscreen];
+	return [density, setDensity, color, setColor, page, fullscreen];
 };
 
 export default useQuery;

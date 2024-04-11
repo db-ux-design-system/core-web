@@ -61,26 +61,26 @@ export class AppComponent {
 <!-- app.component.html -->
 <db-header [drawerOpen]="drawerOpen" (onToggle)="toggleDrawer($event)">
 	<db-brand brand>My Awesome App</db-brand>
-	<db-main-navigation *dbNavigation>
-		<!-- https://github.com/db-ui/mono/blob/main/packages/components/src/components/main-navigation/docs/Angular.md -->
-	</db-main-navigation>
+	<db-navigation *dbNavigation>
+		<!-- https://github.com/db-ui/mono/blob/main/packages/components/src/components/navigation/docs/Angular.md -->
+	</db-navigation>
 	<ng-container *dbMetaNavigation>
 		<DBLink href="#">Imprint</DBLink>
 		<DBLink href="#">Help</DBLink>
 	</ng-container>
 	<ng-container call-to-action>
-		<DBButton icon="search" variant="text" [noText]="true">
+		<DBButton icon="search" variant="ghost" [noText]="true">
 			Search
 		</DBButton>
 	</ng-container>
 	<ng-container *dbActionBar>
-		<DBButton icon="account" variant="text" [noText]="true">
+		<DBButton icon="account" variant="ghost" [noText]="true">
 			Profile
 		</DBButton>
-		<DBButton icon="alert" variant="text" [noText]="true">
+		<DBButton icon="alert" variant="ghost" [noText]="true">
 			Notification
 		</DBButton>
-		<DBButton icon="help" variant="text" [noText]="true"> Help </DBButton>
+		<DBButton icon="help" variant="ghost" [noText]="true"> Help </DBButton>
 	</ng-container>
 </db-header>
 ```

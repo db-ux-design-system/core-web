@@ -2,8 +2,8 @@
 
 -   You use Variables to style your pages and custom components.
 -   The Variables are primarily for paddings, margins and all kinds of sizes.
--   All variables are automatically predefined with the correct variable based on the [tonality](../tonalities/readme).
--   Based on the tonality and the selected theme, the "real" value behind the variable can change.
+-   All variables are automatically predefined with the correct variable based on the [density](../densities/readme).
+-   Based on the density and the selected theme, the "real" value behind the variable can change.
 
 ## How to include variables
 

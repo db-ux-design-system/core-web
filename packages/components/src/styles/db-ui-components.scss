@@ -11,7 +11,7 @@
 @forward "../components/link/link";
 @forward "../components/section/section";
 @forward "../components/infotext/infotext";
-@forward "../components/alert/alert";
+@forward "../components/notification/notification";
 @forward "../components/checkbox/checkbox";
 @forward "../components/radio/radio";
 @forward "../components/tag/tag";
@@ -24,7 +24,7 @@
 @forward "../components/accordion/accordion";
 
 @forward "../components/accordion-item/accordion-item";
-@forward "../components/main-navigation/main-navigation";
+@forward "../components/navigation/navigation";
 
 @forward "../components/popover/popover";
 @forward "../components/tooltip/tooltip";
@@ -55,8 +55,8 @@ dbpopover,
 db-popover,
 dbtextarea,
 db-textarea,
-dbmain-navigation,
-db-main-navigation,
+dbnavigation,
+db-navigation,
 dbaccordion-item,
 db-accordion-item,
 dbaccordion,
@@ -72,7 +72,7 @@ db-radio,
 dbselect,
 db-select,
 dbalert,
-db-alert,
+db-notification,
 dbcodedocs,
 db-codedocs,
 dbbrand,
@@ -108,7 +108,7 @@ db-tabbar {
 	display: contents;
 }
 
-db-alert,
+db-notification,
 dbalert {
 	inline-size: inherit;
 }

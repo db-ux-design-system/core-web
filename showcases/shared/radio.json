@@ -1,28 +1,28 @@
 [
 	{
-		"name": "Tonality",
+		"name": "Density",
 		"examples": [
 			{
 				"name": "Functional",
-				"className": "db-ui-functional",
+				"className": "db-density-functional",
 				"props": {
-					"name": "Tonality",
+					"name": "Density",
 					"value": "functional"
 				}
 			},
 			{
 				"name": "(Default) Regular",
-				"className": "db-ui-regular",
+				"className": "db-density-regular",
 				"props": {
-					"name": "Tonality",
+					"name": "Density",
 					"value": "regular"
 				}
 			},
 			{
 				"name": "Expressive",
-				"className": "db-ui-expressive",
+				"className": "db-density-expressive",
 				"props": {
-					"name": "Tonality",
+					"name": "Density",
 					"value": "expressive"
 				}
 			}
@@ -66,16 +66,7 @@
 				"name": "Required",
 				"props": {
 					"name": "Requirement",
-					"required": true,
-					"invalid": true
-				}
-			},
-			{
-				"name": "Required - Checked",
-				"props": {
-					"name": "Requirement",
-					"required": true,
-					"checked": true
+					"required": true
 				}
 			}
 		]
@@ -111,7 +102,7 @@
 				"name": "Hidden Label",
 				"props": {
 					"name": "Content",
-					"labelVariant": "hidden"
+					"variant": "hidden"
 				}
 			}
 		]

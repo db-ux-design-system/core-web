@@ -1,7 +1,7 @@
 @use "@db-ui/foundations/build/scss/variables";
 @use "@db-ui/foundations/build/scss/colors";
 @use "@db-ui/foundations/build/scss/screen-sizes";
-@use "@db-ui/foundations/build/scss/tonality";
+@use "@db-ui/foundations/build/scss/density";
 
 @use "@db-ui/components/build/styles/_dialog-init";
 
@@ -90,24 +90,24 @@ iframe {
 
 /* TODO: Use real table css in future */
 table {
-	@extend %db-ui-functional;
+	@extend %db-density-functional;
 	width: 100%;
 	border-collapse: collapse;
 }
 
 table td,
 table th {
-	border: 1px solid colors.$db-neutral-border-weak;
+	border: 1px solid colors.$db-current-color-border;
 	padding: variables.$db-spacing-fixed-md;
 	max-width: 33vw;
 }
 
 table tr:nth-child(even) {
-	@extend %db-bg-neutral-transparent-semi;
+	@extend %db-neutral-bg-transparent-semi;
 }
 
 table th {
-	@extend %db-bg-neutral-transparent-semi;
+	@extend %db-neutral-bg-transparent-semi;
 	padding-inline: variables.$db-spacing-fixed-md;
 }
 
@@ -120,7 +120,7 @@ div[class^="ch-"] {
 	div,
 	span {
 		@extend %db-overwrite-font-size-sm;
-		color: white;
+		color: colors.$db-current-color-enabled;
 	}
 }
 
@@ -185,9 +185,9 @@ div[class^="ch-"] {
 	}
 }
 
-// tonality examples
+// density examples
 
-.tonality-example-grid {
+.density-example-grid {
 	display: grid;
 	grid-template-columns: repeat(3, minmax(0, 1fr));
 	gap: variables.$db-spacing-fixed-md;
@@ -197,18 +197,18 @@ div[class^="ch-"] {
 	}
 }
 
-.tonality-example-page {
+.density-example-page {
 	display: flex;
 	flex-direction: column;
 	gap: variables.$db-spacing-fixed-md;
 
-	.tonality-example-page-regular {
+	.density-example-page-regular {
 		display: grid;
 		grid-template-columns: repeat(3, minmax(0, 1fr));
 		gap: variables.$db-spacing-fixed-md;
 	}
 
-	.tonality-example-page-functional {
+	.density-example-page-functional {
 		display: grid;
 		grid-template-columns: repeat(5, minmax(0, 1fr));
 		gap: variables.$db-spacing-fixed-md;
@@ -244,7 +244,7 @@ div[class^="ch-"] {
 			border: 1px solid black;
 			> div {
 				display: flex;
-				border: 1px solid colors.$db-informational-text;
+				border: 1px solid colors.$db-informational-4;
 				position: relative;
 			}
 		}
@@ -312,7 +312,7 @@ div[class^="ch-"] {
 
 .color-schemes-container {
 	padding: variables.$db-spacing-fixed-md;
-	border: 1px dashed var(--db-current-color);
+	border: 1px dashed colors.$db-current-color-enabled;
 	display: grid;
 	gap: variables.$db-spacing-fixed-md;
 	grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -327,6 +327,13 @@ div[class^="ch-"] {
 
 	section {
 		padding: variables.$db-spacing-fixed-md;
+	}
+
+	.color-cards {
+		grid-column: span 2 / span 2;
+		display: grid;
+		gap: variables.$db-spacing-fixed-md;
+		grid-template-columns: repeat(5, minmax(0, 1fr));
 	}
 }
 
@@ -389,7 +396,7 @@ h6 {
 		}
 
 		.backdrop {
-			border-radius: variables.$db-border-radius-lg;
+			border-radius: variables.$db-border-radius-sm;
 			@extend %backdrop;
 			position: absolute;
 			inset: 0;

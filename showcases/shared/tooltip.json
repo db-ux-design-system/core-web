@@ -1,10 +1,10 @@
 [
 	{
-		"name": "Tonality",
+		"name": "Density",
 		"examples": [
 			{
 				"name": "Functional",
-				"className": "db-ui-functional",
+				"className": "db-density-functional",
 				"props": {
 					"content": "Tooltip",
 					"id": "tooltip-01"
@@ -12,7 +12,7 @@
 			},
 			{
 				"name": "(Default) Regular",
-				"className": "db-ui-regular",
+				"className": "db-density-regular",
 				"props": {
 					"content": "Tooltip",
 					"id": "tooltip-02"
@@ -20,7 +20,7 @@
 			},
 			{
 				"name": "Expressive",
-				"className": "db-ui-expressive",
+				"className": "db-density-expressive",
 				"props": {
 					"content": "Tooltip",
 					"id": "tooltip-03"

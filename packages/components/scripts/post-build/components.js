@@ -114,7 +114,7 @@ const getComponents = () => [
 	},
 
 	{
-		name: 'main-navigation'
+		name: 'navigation'
 	},
 	{
 		name: 'navigation-item',
@@ -179,7 +179,7 @@ const getComponents = () => [
 	},
 
 	{
-		name: 'alert'
+		name: 'notification'
 	},
 
 	{

@@ -18,26 +18,26 @@
 			>
 				Showcase
 			</db-brand>
-			<db-main-navigation *dbNavigation>
+			<db-navigation *dbNavigation>
 				@for (item of navigationItems; track item.label) {
 					<app-nav-item [navItem]="item"> </app-nav-item>
 				}
-			</db-main-navigation>
+			</db-navigation>
 			<ng-container *dbMetaNavigation>
 				<db-select
-					labelVariant="floating"
-					label="Tonality"
-					[(ngModel)]="tonality"
+					variant="floating"
+					label="Density"
+					[(ngModel)]="density"
 					(change)="onChange($event)"
 				>
-					@for (t of tonalities; track t) {
+					@for (t of densities; track t) {
 						<option>
 							{{ t }}
 						</option>
 					}
 				</db-select>
 				<db-select
-					labelVariant="floating"
+					variant="floating"
 					label="Color"
 					[(ngModel)]="color"
 					(change)="onChange($event)"
@@ -50,18 +50,18 @@
 				</db-select>
 			</ng-container>
 			<ng-container call-to-action>
-				<DBButton icon="search" variant="text" [noText]="true"
+				<DBButton icon="search" variant="ghost" [noText]="true"
 					>Search</DBButton
 				>
 			</ng-container>
 			<ng-container *dbActionBar>
-				<DBButton icon="account" variant="text" [noText]="true">
+				<DBButton icon="account" variant="ghost" [noText]="true">
 					Profile
 				</DBButton>
-				<DBButton icon="alert" variant="text" [noText]="true">
+				<DBButton icon="alert" variant="ghost" [noText]="true">
 					Notification
 				</DBButton>
-				<DBButton icon="help" variant="text" [noText]="true">
+				<DBButton icon="help" variant="ghost" [noText]="true">
 					Help
 				</DBButton>
 			</ng-container>

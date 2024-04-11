@@ -20,7 +20,7 @@ import { DBNavigationItem } from "@db-ui/v-components";
 
 	<!-- With Sub-Navigation -->
 	<DBNavigationItem>
-		<template #sub-navigation>
+		<template #subnavigation>
 			<DBNavigationItem>
 				<router-link to="mypath">Sub-Navi-Item 1</router-link>
 			</DBNavigationItem>

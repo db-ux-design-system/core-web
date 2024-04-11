@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { DBCard, DBDivider, DBLink } from "../../../../output/vue/vue3/src";
+import { DBCard, DBDivider, DBLink } from "../../../../output/vue/src";
 import type {
 	DefaultComponentExample,
 	DefaultComponentProps,
@@ -8,8 +8,8 @@ import type {
 import {
 	COLOR,
 	COLOR_CONST,
-	TONALITY,
-	TONALITY_CONST
+	DENSITY,
+	DENSITY_CONST
 } from "../../../../packages/components/src/shared/constants";
 import { useRoute } from "vue-router";
 import { Ref, ref } from "vue";
@@ -65,11 +65,11 @@ const getLink = (variantName: string) => {
 		currentUrl += "?";
 	}
 	if (!currentUrl.includes("color=")) {
-		currentUrl += `&color=${route.query[COLOR_CONST] || COLOR.NEUTRAL}`;
+		currentUrl += `&color=${route.query[COLOR_CONST] || COLOR.NEUTRAL_BG_LEVEL_1}`;
 	}
-	if (!currentUrl.includes("tonality=")) {
-		currentUrl += `&tonality=${
-			route.query[TONALITY_CONST] || TONALITY.REGULAR
+	if (!currentUrl.includes("density=")) {
+		currentUrl += `&density=${
+			route.query[DENSITY_CONST] || DENSITY.REGULAR
 		}`;
 	}
 	return `${currentUrl}&page=${variantName.toLowerCase()}`;

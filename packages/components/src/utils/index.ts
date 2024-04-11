@@ -1,4 +1,4 @@
-import { DefaultVariantType } from '../shared/model';
+import { SemanticType } from '../shared/model';
 
 export const uuid = () => {
 	if (typeof window !== 'undefined') {
@@ -47,17 +47,6 @@ export const cls = (...args: ClassNameArg[]) => {
 	});
 
 	return result.trim();
-};
-
-export const getMessageIcon = (
-	variant?: DefaultVariantType,
-	messageIcon?: string
-): string | undefined => {
-	return messageIcon
-		? messageIcon
-		: !variant || variant === 'adaptive'
-			? 'none'
-			: undefined;
 };
 
 export const filterPassingProps = (
@@ -151,7 +140,6 @@ export const handleDataOutside = (el: Element) => {
 
 export default {
 	filterPassingProps,
-	getMessageIcon,
 	cls,
 	addAttributeToChildren,
 	uuid,

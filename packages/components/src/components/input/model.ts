@@ -1,7 +1,6 @@
 import {
 	ChangeEventProps,
 	ChangeEventState,
-	DefaultVariantProps,
 	FocusEventProps,
 	FocusEventState,
 	FormMessageProps,
@@ -63,7 +62,6 @@ export type DBInputProps = DBInputDefaultProps &
 	FormProps &
 	IconProps &
 	IconAfterProps &
-	DefaultVariantProps &
 	FormMessageProps;
 
 export type DBInputDefaultState = {

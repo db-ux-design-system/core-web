@@ -4,11 +4,11 @@
 
 @mixin set-db-puls-horizontal() {
 	&::after {
-		block-size: variables.$db-border-height-lg;
+		block-size: variables.$db-border-height-xs;
 		inline-size: 0;
 		transform: translate(-50%, 0);
 		inset-inline-start: 50%;
-		background-color: colors.$db-brand;
+		background-color: colors.$db-brand-origin-enabled;
 		inset-block-start: auto;
 		inset-block-end: calc(-1 * #{variables.$db-spacing-fixed-xs});
 	}
@@ -17,10 +17,10 @@
 @mixin set-db-puls-vertical() {
 	&::after {
 		block-size: 0;
-		inline-size: variables.$db-border-height-lg;
+		inline-size: variables.$db-border-height-xs;
 		transform: translate(0, -50%);
 		inset-block-start: 50%;
-		background-color: colors.$db-brand;
+		background-color: colors.$db-brand-origin-enabled;
 		inset-inline-start: calc(-1 * #{variables.$db-spacing-fixed-xs});
 		inset-block-end: auto;
 	}
@@ -30,10 +30,12 @@
 	&::after {
 		content: "";
 		position: absolute;
-		border-radius: variables.$db-border-radius-md;
+		border-radius: variables.$db-border-radius-xs;
 		transition:
-			height 0.15s variables.$db-transition-emotional-timing,
-			width 0.15s variables.$db-transition-emotional-timing;
+			height variables.$db-transition-duration-fast
+				variables.$db-transition-timing-emotional,
+			width variables.$db-transition-duration-fast
+				variables.$db-transition-timing-emotional;
 	}
 }
 
@@ -49,7 +51,7 @@
 
 @mixin show-db-puls-horizontal() {
 	&::after {
-		block-size: variables.$db-border-height-lg;
+		block-size: variables.$db-border-height-xs;
 		inline-size: 100%;
 	}
 }
@@ -57,7 +59,7 @@
 @mixin show-db-puls-vertical() {
 	&::after {
 		block-size: 100%;
-		inline-size: variables.$db-border-height-lg;
+		inline-size: variables.$db-border-height-xs;
 	}
 }
 

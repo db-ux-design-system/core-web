@@ -7,7 +7,6 @@ import { getVariants } from '../data';
 
 const getInput = ({
 	label,
-	variant,
 	value,
 	type,
 	minLength,
@@ -17,7 +16,7 @@ const getInput = ({
 	icon,
 	children,
 	message,
-	labelVariant,
+	variant,
 	readOnly,
 	invalid
 }: DBInputProps) => {
@@ -26,7 +25,6 @@ const getInput = ({
 			label={label}
 			message={message}
 			placeholder={children}
-			labelVariant={labelVariant}
 			variant={variant}
 			defaultValue={value}
 			type={type}

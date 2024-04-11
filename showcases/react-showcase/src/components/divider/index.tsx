@@ -6,7 +6,7 @@ import { getVariants } from '../data';
 
 const getDivider = ({ variant, emphasis, children }: DBDividerProps) => (
 	<>
-		<DBInfotext size="small" variant="informational">
+		<DBInfotext size="small" semantic="informational">
 			{children}
 		</DBInfotext>
 		<DBDivider variant={variant} emphasis={emphasis} />

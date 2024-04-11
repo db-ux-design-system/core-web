@@ -21,7 +21,7 @@ const getTabs = ({
 	initialSelectedIndex
 }: DBTabsProps & { overflow: boolean }) => (
 	<div className="w-full">
-		<DBInfotext icon="none" size="small" variant="informational">
+		<DBInfotext icon="none" size="small" semantic="informational">
 			{children}:
 		</DBInfotext>
 		<DBTabs

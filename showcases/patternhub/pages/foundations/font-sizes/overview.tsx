@@ -6,7 +6,7 @@ const ColorOverview = () => {
 		<DefaultPage>
 			<h1>FontsSizes Overview</h1>
 			<h2>Body</h2>
-			<DBInfotext variant="warning">
+			<DBInfotext semantic="warning">
 				Some font-sizes are the same for a specific device type. For
 				example in mobile all `xl` sizes are the same.
 			</DBInfotext>

@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import DefaultComponent from "../DefaultComponent.vue";
 import defaultComponentVariants from "../../../../shared/popover.json";
-import { DBButton, DBPopover } from "../../../../../output/vue/vue3/src";
+import { DBButton, DBPopover } from "../../../../../output/vue/src";
 </script>
 
 <template>

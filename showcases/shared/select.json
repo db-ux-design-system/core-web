@@ -1,10 +1,10 @@
 [
 	{
-		"name": "Tonality",
+		"name": "Density",
 		"examples": [
 			{
 				"name": "Functional",
-				"className": "db-ui-functional",
+				"className": "db-density-functional",
 				"style": {
 					"width": "300px"
 				},
@@ -22,7 +22,7 @@
 			},
 			{
 				"name": "(Default) Regular",
-				"className": "db-ui-regular",
+				"className": "db-density-regular",
 				"style": {
 					"width": "300px"
 				},
@@ -40,7 +40,7 @@
 			},
 			{
 				"name": "Expressive",
-				"className": "db-ui-expressive",
+				"className": "db-density-expressive",
 				"style": {
 					"width": "300px"
 				},
@@ -93,7 +93,7 @@
 						}
 					],
 					"label": "Label",
-					"labelVariant": "floating",
+					"variant": "floating",
 					"value": "Floating Label"
 				}
 			},
@@ -112,7 +112,7 @@
 						}
 					],
 					"label": "Label",
-					"labelVariant": "hidden"
+					"variant": "hidden"
 				}
 			}
 		]
@@ -158,105 +158,6 @@
 		]
 	},
 	{
-		"name": "Semantic",
-		"examples": [
-			{
-				"name": "(Default) Adaptive",
-				"style": {
-					"width": "300px"
-				},
-				"props": {
-					"options": [
-						{
-							"value": "Option 1"
-						},
-						{
-							"value": "Option 2"
-						}
-					],
-					"label": "Label",
-					"message": "Helper Message"
-				}
-			},
-			{
-				"name": "Critical",
-				"style": {
-					"width": "300px"
-				},
-				"props": {
-					"options": [
-						{
-							"value": "Option 1"
-						},
-						{
-							"value": "Option 2"
-						}
-					],
-					"label": "Label",
-					"variant": "critical",
-					"message": "Critical Message"
-				}
-			},
-			{
-				"name": "Informational",
-				"style": {
-					"width": "300px"
-				},
-				"props": {
-					"options": [
-						{
-							"value": "Option 1"
-						},
-						{
-							"value": "Option 2"
-						}
-					],
-					"label": "Label",
-					"variant": "informational",
-					"message": "Informational Message"
-				}
-			},
-			{
-				"name": "Successful",
-				"style": {
-					"width": "300px"
-				},
-				"props": {
-					"options": [
-						{
-							"value": "Option 1"
-						},
-						{
-							"value": "Option 2"
-						}
-					],
-					"label": "Label",
-					"variant": "successful",
-					"message": "Successful Message"
-				}
-			},
-			{
-				"name": "Warning",
-				"style": {
-					"width": "300px"
-				},
-				"props": {
-					"options": [
-						{
-							"value": "Option 1"
-						},
-						{
-							"value": "Option 2"
-						}
-					],
-					"label": "Label",
-					"variant": "warning",
-					"message": "Warning Message"
-				}
-			}
-		]
-	},
-	{
 		"name": "States Label Above",
 		"examples": [
 			{
@@ -292,44 +193,6 @@
 					],
 					"label": "Label",
 					"value": "Filled"
-				}
-			},
-			{
-				"name": "Filled - Invalid",
-				"style": {
-					"width": "300px"
-				},
-				"props": {
-					"options": [
-						{
-							"value": "Filled - Invalid"
-						},
-						{
-							"value": "Option 2"
-						}
-					],
-					"label": "Label",
-					"value": "Filled - Invalid",
-					"invalid": true
-				}
-			},
-			{
-				"name": "Filled - Valid",
-				"style": {
-					"width": "300px"
-				},
-				"props": {
-					"options": [
-						{
-							"value": "Filled - Valid"
-						},
-						{
-							"value": "Option 2"
-						}
-					],
-					"label": "Label",
-					"value": "Filled - Valid",
-					"invalid": false
 				}
 			},
 			{
@@ -370,7 +233,7 @@
 						}
 					],
 					"label": "Label",
-					"labelVariant": "floating"
+					"variant": "floating"
 				}
 			},
 			{
@@ -389,47 +252,7 @@
 					],
 					"label": "Label",
 					"value": "Filled",
-					"labelVariant": "floating"
-				}
-			},
-			{
-				"name": "Filled - Invalid",
-				"style": {
-					"width": "300px"
-				},
-				"props": {
-					"options": [
-						{
-							"value": "Filled - Invalid"
-						},
-						{
-							"value": "Option 2"
-						}
-					],
-					"label": "Label",
-					"invalid": true,
-					"value": "Filled - Invalid",
-					"labelVariant": "floating"
-				}
-			},
-			{
-				"name": "Filled - Valid",
-				"style": {
-					"width": "300px"
-				},
-				"props": {
-					"options": [
-						{
-							"value": "Filled - Valid"
-						},
-						{
-							"value": "Option 2"
-						}
-					],
-					"label": "Label",
-					"value": "Filled - Valid",
-					"invalid": false,
-					"labelVariant": "floating"
+					"variant": "floating"
 				}
 			},
 			{
@@ -448,7 +271,7 @@
 					],
 					"label": "Label",
 					"disabled": true,
-					"labelVariant": "floating",
+					"variant": "floating",
 					"value": "Disabled"
 				}
 			}
@@ -529,25 +352,6 @@
 						}
 					],
 					"label": "Label",
-					"required": true
-				}
-			},
-			{
-				"name": "Required - Filled",
-				"style": {
-					"width": "300px"
-				},
-				"props": {
-					"options": [
-						{
-							"value": "Required - Filled"
-						},
-						{
-							"value": "Option 2"
-						}
-					],
-					"label": "Label",
-					"value": "Required - Filled",
 					"required": true
 				}
 			}

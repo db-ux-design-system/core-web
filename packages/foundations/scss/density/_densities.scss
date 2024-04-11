@@ -1,0 +1,13 @@
+@use "variables";
+@use "typography-placeholder";
+@use "scaling-placeholder";
+@use "../fonts";
+
+@each $density in variables.$densities {
+	%db-density-#{$density} {
+		@extend %db-scaling-#{$density};
+		@extend %db-typography-headline-#{$density};
+		@extend %db-typography-body-#{$density};
+		@extend %db-component-variables-md;
+	}
+}
