@@ -6,21 +6,21 @@
 				"name": "Functional",
 				"className": "db-density-functional",
 				"props": {
-					"headline": "Functional"
+					"headlinePlain": "Functional"
 				}
 			},
 			{
 				"name": "(Default) Regular",
 				"className": "db-density-regular",
 				"props": {
-					"headline": "(Default) Regular"
+					"headlinePlain": "(Default) Regular"
 				}
 			},
 			{
 				"name": "Expressive",
 				"className": "db-density-expressive",
 				"props": {
-					"headline": "Expressive"
+					"headlinePlain": "Expressive"
 				}
 			}
 		]
@@ -31,13 +31,13 @@
 			{
 				"name": "Enabled (Default)/Hover/Pressed",
 				"props": {
-					"headline": "Enabled (Default)/Hover/Pressed"
+					"headlinePlain": "Enabled (Default)/Hover/Pressed"
 				}
 			},
 			{
 				"name": "Disabled",
 				"props": {
-					"headline": "Disabled",
+					"headlinePlain": "Disabled",
 					"disabled": true
 				}
 			}
@@ -49,13 +49,13 @@
 			{
 				"name": "(Default) Collapsed",
 				"props": {
-					"headline": "(Default) Collapsed"
+					"headlinePlain": "(Default) Collapsed"
 				}
 			},
 			{
 				"name": "Open",
 				"props": {
-					"headline": "Open",
+					"headlinePlain": "Open",
 					"open": true
 				}
 			}

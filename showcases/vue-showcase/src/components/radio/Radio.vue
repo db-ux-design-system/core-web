@@ -14,7 +14,6 @@ import { DBRadio } from "../../../../../output/vue/src";
 				:size="exampleProps.size"
 				:name="exampleProps.name"
 				:checked="exampleProps.checked"
-				:invalid="exampleProps.invalid"
 				:value="exampleProps.value"
 				:required="exampleProps.required"
 				:variant="exampleProps.variant"

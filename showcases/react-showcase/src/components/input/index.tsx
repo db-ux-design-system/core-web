@@ -17,8 +17,7 @@ const getInput = ({
 	children,
 	message,
 	variant,
-	readOnly,
-	invalid
+	readOnly
 }: DBInputProps) => {
 	return (
 		<DBInput
@@ -33,7 +32,6 @@ const getInput = ({
 			disabled={disabled}
 			readOnly={readOnly}
 			iconAfter={iconAfter}
-			invalid={invalid}
 			icon={icon}
 		/>
 	);
