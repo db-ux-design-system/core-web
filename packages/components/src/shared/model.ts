@@ -25,16 +25,6 @@ export type GlobalProps = {
 	 * React specific for render process.
 	 */
 	key?: string;
-
-	/**
-	 * The default tabindex (https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/tabindex?retiredLocale=de).
-	 */
-	tabIndex?: number;
-
-	/**
-	 * The [title attribute](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/title) specifies the tooltip of the component.
-	 */
-	title?: string;
 };
 
 export type GlobalState = {
@@ -94,6 +84,10 @@ export type PlacementProps = {
 		| 'top-end'
 		| 'bottom-start'
 		| 'bottom-end';
+};
+
+export type NavigationBehaviourState = {
+	handleNavigationItemClick: (event: unknown) => void;
 };
 
 export type GapProps = {

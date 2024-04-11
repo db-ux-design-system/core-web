@@ -28,7 +28,6 @@ export default function DBLink(props: DBLinkProps) {
 			id={props.id}
 			class={cls('db-link', props.className)}
 			href={props.href}
-			title={props.title}
 			target={props.target}
 			rel={props.rel}
 			role={props.role}

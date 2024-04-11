@@ -56,15 +56,15 @@ module.exports = (tmp) => {
 				},
 				{
 					from: ` } from "react"`,
-					to: `, forwardRef, HTMLProps } from "react"`
+					to: `, forwardRef, HTMLAttributes } from "react"`
 				},
 				{
 					from: `function DB${upperComponentName}(props: DB${upperComponentName}Props) {`,
-					to: `function DB${upperComponentName}Fn(props: Omit<HTMLProps<${htmlElement}>, keyof DB${upperComponentName}Props> & DB${upperComponentName}Props, component: any) {`
+					to: `function DB${upperComponentName}Fn(props: Omit<HTMLAttributes<${htmlElement}>, keyof DB${upperComponentName}Props> & DB${upperComponentName}Props, component: any) {`
 				},
 				{
 					from: `export default DB${upperComponentName};`,
-					to: `const DB${upperComponentName} = forwardRef<${htmlElement}, Omit<HTMLProps<${htmlElement}>, keyof DB${upperComponentName}Props> & DB${upperComponentName}Props>(DB${upperComponentName}Fn);\nexport default DB${upperComponentName};`
+					to: `const DB${upperComponentName} = forwardRef<${htmlElement}, Omit<HTMLAttributes<${htmlElement}>, keyof DB${upperComponentName}Props> & DB${upperComponentName}Props>(DB${upperComponentName}Fn);\nexport default DB${upperComponentName};`
 				},
 				{
 					from: 'if (ref.current)',
