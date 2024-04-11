@@ -61,9 +61,7 @@ const getPropertiesFile = ({ displayName, description, props }) => {
 		} `;
 		propertyTable += `| ${property.tsType.type ?? property.tsType.name} `;
 
-		if (
-			['icon', 'iconAfter', 'messageIcon'].includes(propertyKey)
-		) {
+		if (['icon', 'iconAfter', 'messageIcon'].includes(propertyKey)) {
 			propertyTable += `| [IconTypes](https://db-ui.github.io/mono/review/main/foundations/icons/overview) |\n`;
 		} else {
 			propertyTable += `| ${
