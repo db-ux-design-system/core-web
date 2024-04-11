@@ -21,6 +21,18 @@ const DefaultPage = ({ children }: any) => {
 	const router = useRouter();
 
 	useEffect(() => {
+		hljs.configure({
+			languages: [
+				'js',
+				'ts',
+				'jsx',
+				'tsx',
+				'css',
+				'scss',
+				'html',
+				'shell'
+			]
+		});
 		hljs.highlightAll();
 	}, []);
 
@@ -72,7 +84,9 @@ const DefaultPage = ({ children }: any) => {
 							onToggle={setDrawerOpen}
 							slotBrand={
 								<DBBrand
-									imgSrc="https://db-ui.github.io/images/db_logo.svg"
+									imgSrc={`${
+										process.env.NEXT_PUBLIC_BASE_PATH ?? ''
+									}/assets/images/db_logo.svg`}
 									title={process.env.NEXT_PUBLIC_APP_NAME}
 									anchorChildren>
 									{process.env.NEXT_PUBLIC_APP_NAME}
