@@ -21,8 +21,7 @@ export default function DBIcon(props: DBIconProps) {
 			data-icon={props.icon}
 			data-icon-weight={props.weight}
 			data-icon-variant={props.variant}
-			aria-hidden="true"
-			title={props.title}>
+			aria-hidden="true">
 			{props.children}
 		</span>
 	);

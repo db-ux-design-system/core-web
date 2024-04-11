@@ -6,21 +6,21 @@
 				"name": "Functional",
 				"className": "db-ui-functional",
 				"props": {
-					"title": "Functional"
+					"headline": "Functional"
 				}
 			},
 			{
 				"name": "(Default) Regular",
 				"className": "db-ui-regular",
 				"props": {
-					"title": "(Default) Regular"
+					"headline": "(Default) Regular"
 				}
 			},
 			{
 				"name": "Expressive",
 				"className": "db-ui-expressive",
 				"props": {
-					"title": "Expressive"
+					"headline": "Expressive"
 				}
 			}
 		]
@@ -31,13 +31,13 @@
 			{
 				"name": "Enabled (Default)/Hover/Pressed",
 				"props": {
-					"title": "Enabled (Default)/Hover/Pressed"
+					"headline": "Enabled (Default)/Hover/Pressed"
 				}
 			},
 			{
 				"name": "Disabled",
 				"props": {
-					"title": "Disabled",
+					"headline": "Disabled",
 					"disabled": true
 				}
 			}
@@ -49,13 +49,13 @@
 			{
 				"name": "(Default) Collapsed",
 				"props": {
-					"title": "(Default) Collapsed"
+					"headline": "(Default) Collapsed"
 				}
 			},
 			{
 				"name": "Open",
 				"props": {
-					"title": "Open",
+					"headline": "Open",
 					"open": true
 				}
 			}
