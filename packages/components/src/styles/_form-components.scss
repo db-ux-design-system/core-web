@@ -150,7 +150,7 @@ $input-valid-types: "color", "date", "datetime-local", "email", "file", "hidden"
 			$validations: $validations + ", [type=#{$type}]";
 		}
 	} @else if($selector == textarea) {
-		$validations: ":required, [minlength], [maxlength]";
+		$validations: $validations + ", [minlength], [maxlength]";
 	}
 
 	$has-selectors: "&:has(#{$selector}:not([aria-invalid]):is(#{$validations}):user-#{$key}),";
