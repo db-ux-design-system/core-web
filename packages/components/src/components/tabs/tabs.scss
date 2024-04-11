@@ -129,7 +129,8 @@ $max-tabs: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 					);
 				}
 
-				db-tab-item {
+				db-tab-item,
+				dbtabitem {
 					&:first-of-type {
 						.db-tab-item {
 							margin-inline-start: variables.$db-spacing-fixed-xs;
@@ -143,7 +144,8 @@ $max-tabs: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 					}
 				}
 
-				&:not(:has(db-tab-item)) {
+				&:not(:has(db-tab-item)),
+				&:not(:has(dbtabitem)) {
 					.db-tab-item {
 						&:first-of-type {
 							margin-inline-start: variables.$db-spacing-fixed-xs;
@@ -219,7 +221,8 @@ $max-tabs: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 				flex-direction: column;
 				block-size: 100%;
 
-				&:not(:has(db-tab-item)) {
+				&:not(:has(db-tab-item)),
+				&:not(:has(dbtabitem)) {
 					.db-tab-item {
 						&:first-of-type {
 							margin-block-start: variables.$db-spacing-fixed-xs;
@@ -244,7 +247,8 @@ $max-tabs: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 			}
 		}
 
-		db-tab-item {
+		db-tab-item,
+		dbtabitem {
 			&:first-of-type {
 				.db-tab-item {
 					margin-block-start: variables.$db-spacing-fixed-xs;
