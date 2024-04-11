@@ -18,11 +18,11 @@ const comp: any = (
 
 const openAccordion: any = (
 	<DBAccordion initOpenIndex={[1, 2]}>
-		<DBAccordionItem title="Test" content="Content 1" />
-		<DBAccordionItem title="Test 2">
+		<DBAccordionItem headline="Test" content="Content 1" />
+		<DBAccordionItem headline="Test 2">
 			<span data-testid="item2">Test2</span>
 		</DBAccordionItem>
-		<DBAccordionItem title="Test 3">
+		<DBAccordionItem headline="Test 3">
 			<span data-testid="item3">Test3</span>
 		</DBAccordionItem>
 	</DBAccordion>
@@ -30,13 +30,13 @@ const openAccordion: any = (
 
 const actionAccordion: any = (
 	<DBAccordion behaviour="single">
-		<DBAccordionItem data-testid="item1" title="Test">
+		<DBAccordionItem data-testid="item1" headline="Test">
 			<DBButton data-testid="button">Click me</DBButton>
 		</DBAccordionItem>
-		<DBAccordionItem data-testid="item2" title="Test 2">
+		<DBAccordionItem data-testid="item2" headline="Test 2">
 			<DBTextarea data-testid="textarea" />
 		</DBAccordionItem>
-		<DBAccordionItem disabled={true} data-testid="item3" title="Test 3">
+		<DBAccordionItem disabled={true} data-testid="item3" headline="Test 3">
 			<DBButton data-testid="button2">Click me</DBButton>
 		</DBAccordionItem>
 	</DBAccordion>
