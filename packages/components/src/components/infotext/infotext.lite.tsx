@@ -18,7 +18,6 @@ export default function DBInfotext(props: DBInfotextProps) {
 			ref={ref}
 			id={props.id}
 			class={cls('db-infotext', props.className)}
-			title={props.title}
 			data-icon={props.icon}
 			data-semantic={props.semantic}
 			data-size={props.size}>

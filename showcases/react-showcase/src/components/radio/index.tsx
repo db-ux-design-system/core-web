@@ -9,7 +9,6 @@ const getRadio = ({
 	size,
 	name,
 	checked,
-	invalid,
 	required,
 	children,
 	disabled,
@@ -21,7 +20,6 @@ const getRadio = ({
 		size={size}
 		name={name}
 		defaultChecked={checked}
-		invalid={invalid}
 		required={required}
 		disabled={disabled}
 		variant={variant}

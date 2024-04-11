@@ -10,7 +10,7 @@ For general installation and configuration look at the [react-components](https:
 // App.tsx
 import { DBAccordionItem } from "@db-ui/react-components";
 
-const App = () => <DBAccordionItem slotTitle="Title">Content</DBAccordionItem>;
+const App = () => <DBAccordionItem headline="Title">Content</DBAccordionItem>;
 export default App;
 ```
 
@@ -20,6 +20,6 @@ export default App;
 // App.tsx
 import { DBAccordionItem } from "@db-ui/react-components";
 
-const App = () => <DBAccordionItem title="Title" content="Content" />;
+const App = () => <DBAccordionItem headline="Title" content="Content" />;
 export default App;
 ```

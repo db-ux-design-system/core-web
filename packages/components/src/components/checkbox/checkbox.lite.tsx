@@ -121,6 +121,8 @@ export default function DBCheckbox(props: DBCheckboxProps) {
 			data-variant={props.variant}>
 			<label htmlFor={state._id}>
 				<input
+					aria-invalid={props.customValidity === 'invalid'}
+					data-custom-validity={props.customValidity}
 					ref={ref}
 					type="checkbox"
 					id={state._id}
@@ -128,7 +130,6 @@ export default function DBCheckbox(props: DBCheckboxProps) {
 					checked={props.checked}
 					disabled={props.disabled}
 					value={props.value}
-					aria-invalid={props.invalid}
 					required={props.required}
 					onChange={(event: ChangeEvent<HTMLInputElement>) =>
 						state.handleChange(event)

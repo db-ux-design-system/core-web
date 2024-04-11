@@ -28,16 +28,6 @@ export type GlobalProps = {
 	 * React specific for render process.
 	 */
 	key?: string;
-
-	/**
-	 * The default tabindex (https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/tabindex?retiredLocale=de).
-	 */
-	tabIndex?: number;
-
-	/**
-	 * The [title attribute](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/title) specifies the tooltip of the component.
-	 */
-	title?: string;
 };
 
 export type GlobalState = {
@@ -97,6 +87,10 @@ export type PlacementProps = {
 		| 'top-end'
 		| 'bottom-start'
 		| 'bottom-end';
+};
+
+export type NavigationBehaviourState = {
+	handleNavigationItemClick: (event: unknown) => void;
 };
 
 export type GapProps = {
@@ -159,6 +153,10 @@ export type EmphasisProps = {
 
 export type FormProps = {
 	/**
+	 * Marks an input element as invalid (red) | valid(green) | no-validation(grey). Overwrites the :user-valid selector.
+	 */
+	customValidity?: 'invalid' | 'valid' | 'no-validation';
+	/**
 	 * The disabled attribute can be set to keep a user from clicking on the form element.
 	 */
 	disabled?: boolean;
@@ -166,10 +164,7 @@ export type FormProps = {
 	 * 	Associates the control with a form element
 	 */
 	form?: string;
-	/**
-	 * Marks an input element as invalid. Overwrites the :user-valid selector.
-	 */
-	invalid?: boolean;
+
 	/**
 	 * The label attribute specifies the caption of the form element.
 	 */
