@@ -159,6 +159,10 @@ export type EmphasisProps = {
 
 export type FormProps = {
 	/**
+	 * Marks an input element as invalid (red) | valid(green) | no-validation(grey). Overwrites the :user-valid selector.
+	 */
+	customValidity?: 'invalid' | 'valid' | 'no-validation';
+	/**
 	 * The disabled attribute can be set to keep a user from clicking on the form element.
 	 */
 	disabled?: boolean;
@@ -166,10 +170,7 @@ export type FormProps = {
 	 * 	Associates the control with a form element
 	 */
 	form?: string;
-	/**
-	 * Marks an input element as invalid. Overwrites the :user-valid selector.
-	 */
-	invalid?: boolean;
+
 	/**
 	 * The label attribute specifies the caption of the form element.
 	 */

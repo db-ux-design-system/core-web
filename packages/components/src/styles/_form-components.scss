@@ -199,13 +199,12 @@ $input-valid-types: "color", "date", "datetime-local", "email", "file", "hidden"
 		$validations: ":required, [minlength], [maxlength]";
 	}
 
-	$has-selectors: "&:has(#{$selector}:not([aria-invalid]):is(#{$validations}):user-#{$key}),";
+	$has-selectors: "&:has(#{$selector}:not([data-custom-validity]):is(#{$validations}):user-#{$key}),";
 
 	@return string.unquote(string.slice($has-selectors, 1, -2));
 }
 
 @mixin get-validity($selector, $key: "valid") {
-	$boolean: "true";
 	@if ($key == "valid") {
 		$boolean: "false";
 	}
@@ -218,7 +217,11 @@ $input-valid-types: "color", "date", "datetime-local", "email", "file", "hidden"
 	@if ($selector == check or $selector == radio) {
 		$selector: input;
 
-		&:has(#{$selector}:not([aria-invalid]):required:#{$user}#{$key}) {
+		&:has(
+				#{$selector}:not(
+						[data-custom-validity]
+					):required:#{$user}#{$key}
+			) {
 			@content;
 		}
 	} @else {
@@ -227,8 +230,8 @@ $input-valid-types: "color", "date", "datetime-local", "email", "file", "hidden"
 		}
 	}
 
-	// If aria-invalid is set we overwrite the selectors above
-	&:has(#{$selector}[aria-invalid="#{$boolean}"]) {
+	// If data-custom-validity is set we overwrite the selectors above
+	&:has(#{$selector}[data-custom-validity="#{$key}"]) {
 		@content;
 	}
 }

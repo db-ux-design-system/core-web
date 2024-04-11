@@ -108,8 +108,9 @@ export default function DBSelect(props: DBSelectProps) {
 			data-icon={props.icon}>
 			<label htmlFor={state._id}>{props.label ?? DEFAULT_LABEL}</label>
 			<select
+				aria-invalid={props.customValidity === 'invalid'}
+				data-custom-validity={props.customValidity}
 				ref={ref}
-				aria-invalid={props.invalid}
 				required={props.required}
 				disabled={props.disabled}
 				id={state._id}

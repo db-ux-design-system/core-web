@@ -111,6 +111,8 @@ export default function DBInput(props: DBInputProps) {
 				{props.label ?? state.defaultValues.label}
 			</label>
 			<input
+				aria-invalid={props.customValidity === 'invalid'}
+				data-custom-validity={props.customValidity}
 				ref={ref}
 				id={state._id}
 				name={props.name}
@@ -122,7 +124,6 @@ export default function DBInput(props: DBInputProps) {
 				required={props.required}
 				step={props.step}
 				value={props.value}
-				aria-invalid={props.invalid}
 				maxLength={props.maxLength}
 				minLength={props.minLength}
 				max={props.max}
