@@ -11,7 +11,7 @@
 
 If you use some framework you can pass the props `invalidMessage` and `validMessage` to the component. If you use plain html you need to add 2 `.db-infotext` with `[data-semantic="successful"]` &`[data-semantic="critical"]` inside your form-element.
 
-## Handle validation by yourself
+## Programmatically set / handle validation by yourself
 
 You can use `data-custom-validity|customValidity="'invalid' | 'valid' | 'no-validation'"` to disable [`:user-valid`](https://developer.mozilla.org/en-US/docs/Web/CSS/:user-valid).
 
