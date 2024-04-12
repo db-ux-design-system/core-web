@@ -27,7 +27,7 @@
 >
 > We removed the default elevation (box-shadow) for card and some card-like components.
 >
-> The prop variant like `variant="informational"` has been renamed to `semantic`.
+> The prop variant(`variant="informational"`,`variant="successful"`,`variant="warning"`,`variant="critical"`) has been renamed to `semantic`.
 >
 > The prop labelVariant for form-components (input, checkbox, ...) has been renamed to `variant`.
 
@@ -40,6 +40,7 @@
 | 🆕 valid/invalid message form-components                                                                       | We add additional messages for `required` form-components like `DBInput` etc.                                                           | Use `validMessage="XXX"` and `invalidMessage="XXX"` to display the required information for form-components. Otherwise you will see a default message with a `TODO: ...`                                   |
 | 🔄 changed `db-link` variant                                                                                   | We renamed the variants for the link                                                                                                    | `primary` ➡ `brand`                                                                                                                                                                                       |
 | ❌ removed `data-variant="information/critical/..."` for form-components like `input`, `select` and `textarea` | We don't support the colors changes anymore. Use `required`, `pattern`, `min` etc. to trigger `user-valid` for green and red components | `data-variant` changes the label variant now                                                                                                                                                               |
+| 🔄 changed `db-accordion` title                                                                                | We replaced `title` with `headlinePlain` because there is already a html default `title`, which caused trouble                          | Rename `title` to `headlinePlain` or use the slot `headline`                                                                                                                                               |
 
 ### React
 
@@ -56,11 +57,12 @@ becomes
 ```
 
 This is related to the following properties:
-- `slotHeader`
-- `slotBrand`
-- `slotMetaNavigation`
-- `slotCallToAction`
-- `slotActionBar`
-- `slotHeadline`
-- `slotDrawerHeader`
-- `slotSubNavigation`
+
+-   `slotHeader`
+-   `slotBrand`
+-   `slotMetaNavigation`
+-   `slotCallToAction`
+-   `slotActionBar`
+-   `slotHeadline`
+-   `slotDrawerHeader`
+-   `slotSubNavigation`
