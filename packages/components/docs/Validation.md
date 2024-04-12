@@ -5,7 +5,7 @@
 -   If you use `required` on `input`, `textarea` or `select` you will see invalid/valid states only on submitting or `onchange`
 -   There are some other attributes for `input` (`type`,`minlength`,`maxlength`,`pattern`) and `textarea`(`minlength`,`maxlength`) which can be used for [validation](https://developer.mozilla.org/en-US/docs/Learn/Forms/Form_validation#using_built-in_form_validation).
 
-> **Note:** When you use some validation like `required` for `input`, `textarea` or `select` you need to provide a `invalidMessage` and a `validMessage`. Otherwise, you will see a TODO message to inform you that an additional property should be provided.
+> **Note:** When you use some validation like `required` for `input`, `textarea` or `select` you need to provide a `invalidMessage` (if needed, elsewhere we use the localized browser defaults, which might be fine on most cases) and a `validMessage`. Otherwise, you will see a `TODO` message to inform you that an additional property should be provided.
 
 ## Valid/Invalid Messages
 
