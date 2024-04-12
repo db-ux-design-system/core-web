@@ -22,14 +22,14 @@
 ## Components
 
 > **Note**: All components have different colors and opacities based on the changes in foundations.
->
-> Some components may have different dimensions based on changes of spacing tokens.
->
-> We removed the default elevation (box-shadow) for card and some card-like components.
->
-> The prop variant (`variant="informational"`,`variant="successful"`,`variant="warning"`,`variant="critical"`) has been renamed to `semantic`.
->
-> The prop labelVariant for form-components (input, checkbox, ...) has been renamed to `variant`.
+
+Some components may have different dimensions based on changes of spacing tokens.
+
+We removed the default elevation (box-shadow) for card and some card-like components.
+
+The prop variant (`variant="informational"`,`variant="successful"`,`variant="warning"`,`variant="critical"`) has been renamed to `semantic`.
+
+The prop labelVariant for form-components (input, checkbox, ...) has been renamed to `variant`.
 
 | Name                                                                                                           | Description                                                                                                                             | Action                                                                                                                                                                                                     |
 | -------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
