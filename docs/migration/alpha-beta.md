@@ -61,3 +61,5 @@ This is related to the following properties:
 - `slotMetaNavigation`
 - `slotCallToAction`
 - `slotActionBar`
+- `slotHeadline`
+- `slotDrawerHeader`
