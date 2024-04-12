@@ -54,3 +54,10 @@ becomes
 ```tsx
 <DBHeader brand={...
 ```
+
+This is related to the following properties:
+- `slotHeader`
+- `slotBrand`
+- `slotMetaNavigation`
+- `slotCallToAction`
+- `slotActionBar`
