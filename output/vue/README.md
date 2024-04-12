@@ -7,11 +7,18 @@
 
 A Vue library containing all styles & components of [DB UX Design System (technical components)](https://github.com/db-ui/mono).
 
+> **Note:** Find more information about specific components [here](https://db-ui.github.io/mono/review/main)
+
 ## Install
 
-`npm i @db-ui/v-components`
+```shell
+npm i @db-ui/v-components
+```
+
+> **Note:** This will install `@db-ui/foundations` and `@db-ui/components` as well which contains the `css`/`scss` files
 
 ## Styling Dependencies
+
 Import the styles in scss or css. Based on your technology the file names could be different.
 
 -   Default (db-ui-42): points to `../assets`
@@ -48,11 +55,11 @@ import "@db-ui/v-components/dist/style.css";
 
 ```vue
 <script setup lang="ts">
-	import { DBButton } from "@db-ui/v-components";
+import { DBButton } from "@db-ui/v-components";
 </script>
 
 <template>
-    <DBButton icon="account">Test</DBButton>
+	<DBButton icon="account">Test</DBButton>
 </template>
 ```
 
@@ -70,7 +77,11 @@ Both Inputs in this example do the same:
 	const input = ref("");
 </script>
 <template>
-	<DBInput label="Inputfield" name="input-name" v-model="input"></DBInput>
+	<DBInput
+		label="Inputfield"
+		name="input-name"
+		v-model:value="input"
+	></DBInput>
 	<DBInput
 		label="Inputfield"
 		name="input-name"

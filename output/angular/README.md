@@ -7,9 +7,15 @@
 
 An Angular library containing all styles & components of [DB UX Design System (technical components)](https://github.com/db-ui/mono).
 
+> **Note:** Find more information about specific components [here](https://db-ui.github.io/mono/review/main)
+
 ## Install
 
-`npm i @db-ui/ngx-components`
+```shell
+npm i @db-ui/ngx-components
+```
+
+> **Note:** This will install `@db-ui/foundations` and `@db-ui/components` as well which contains the `css`/`scss` files
 
 ## Styling Dependencies
 
@@ -74,7 +80,11 @@ There are 3 ways to use Events in Angular:
 **[ngModel](https://angular.io/api/forms/NgModel)**
 
 ```html
-<db-input label="Inputfield" name="input-name" [(ngModel)]="input"></db-input>
+<db-input
+	label="Inputfield"
+	name="input-name"
+	[(ngModel)]="inputModel"
+></db-input>
 ```
 
 **[FormControl](https://angular.io/api/forms/FormControl)**
@@ -93,7 +103,7 @@ There are 3 ways to use Events in Angular:
 <db-input
 	label="Inputfield"
 	name="input-name"
-	(change)="input = $event.target.value"
+	(change)="inputModel = $event.target.value"
 ></db-input>
 ```
 

@@ -7,9 +7,15 @@
 
 A React library containing all styles & components of [DB UX Design System (technical components)](https://github.com/db-ui/mono).
 
+> **Note:** Find more information about specific components [here](https://db-ui.github.io/mono/review/main)
+
 ## Install
 
-`npm i @db-ui/react-components`
+```shell
+npm i @db-ui/react-components
+```
+
+> **Note:** This will install `@db-ui/foundations` and `@db-ui/components` as well which contains the `css`/`scss` files
 
 ## Styling Dependencies
 
