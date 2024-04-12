@@ -41,7 +41,7 @@
   },
   "devDependencies": {
     "@axe-core/playwright": "^4.8.5",
-    "@playwright/experimental-ct-vue": "1.42.1",
+    "@playwright/experimental-ct-vue": "1.43.0",
     "@vitejs/plugin-vue": "^5.0.4",
     "sass": "^1.75.0",
     "typescript": "^5.4.5",
