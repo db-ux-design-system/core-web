@@ -7,11 +7,18 @@
 
 A Vue library containing all styles & components of [DB UX Design System (technical components)](https://github.com/db-ui/mono).
 
+> **Note:** Find more information about specific components [here](https://db-ui.github.io/mono/review/main)
+
 ## Install
 
-`npm i @db-ui/v-components`
+```shell
+npm i @db-ui/v-components
+```
+
+> **Note:** This will install `@db-ui/foundations` and `@db-ui/components` as well which contains the `css`/`scss` files
 
 ## Styling Dependencies
+
 Import the styles in scss or css. Based on your technology the file names could be different.
 
 -   Default (db-ui-42): points to `../assets`
@@ -48,11 +55,11 @@ import "@db-ui/v-components/dist/style.css";
 
 ```vue
 <script setup lang="ts">
-	import { DBButton } from "@db-ui/v-components";
+import { DBButton } from "@db-ui/v-components";
 </script>
 
 <template>
-    <DBButton icon="user">Test</DBButton>
+	<DBButton icon="user">Test</DBButton>
 </template>
 ```
 
@@ -70,40 +77,17 @@ Both Inputs in this example do the same:
 	const input = ref("");
 </script>
 <template>
-	<DBInput label="Inputfield" name="input-name" v-model="input"></DBInput>
+	<DBInput
+		label="Inputfield"
+		name="input-name"
+		v-model:value="input"
+	></DBInput>
 	<DBInput
 		label="Inputfield"
 		name="input-name"
 		:value="input"
 		@change="e => input = e.target.value"
 	></DBInput>
-</template>
-```
-
-## Custom Events
-
-We do not provide every event on every component. If you are missing an event please [add an issue](https://github.com/db-ui/mono/issues).
-
-As a workaround you can use refs:
-
-### Ref on component
-
-```vue
-<script setup lang="ts">
-import { DBButton } from "@db-ui/v-components";
-
-import { ref, onMounted } from "vue";
-const buttonRef: any = ref(null);
-
-onMounted(() => {
-	buttonRef.value.$refs.component.addEventListener("mouseenter", (ev) => {
-		console.log(ev);
-	});
-});
-</script>
-
-<template>
-    <DBButton ref="buttonRef">Test</DBButton>
 </template>
 ```
 

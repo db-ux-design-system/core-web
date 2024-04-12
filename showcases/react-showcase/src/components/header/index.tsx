@@ -37,19 +37,19 @@ const getHeader = ({
 			</>
 		}
 		callToAction={
-			<DBButton icon="magnifying_glass" variant="text" noText>
+			<DBButton icon="magnifying_glass" variant="ghost" noText>
 				Search
 			</DBButton>
 		}
 		actionBar={
 			<>
-				<DBButton icon="user" variant="text" noText>
+				<DBButton icon="user" variant="ghost" noText>
 					Profile
 				</DBButton>
-				<DBButton icon="bell" variant="text" noText>
+				<DBButton icon="bell" variant="ghost" noText>
 					Notification
 				</DBButton>
-				<DBButton icon="question_mark_circle" variant="text" noText>
+				<DBButton icon="question_mark_circle" variant="ghost" noText>
 					Help
 				</DBButton>
 			</>

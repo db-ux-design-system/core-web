@@ -6,7 +6,7 @@ import { DBButton } from './index';
 import { DEFAULT_VIEWPORT } from '../../shared/constants.ts';
 
 const testButton = () => {
-	for (const variant of ['outlined', 'primary', 'solid', 'text']) {
+	for (const variant of ['outlined', 'brand', 'filled', 'ghost']) {
 		test(`should contain text for variant ${variant}`, async ({
 			mount
 		}) => {
