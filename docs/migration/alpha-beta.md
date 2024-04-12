@@ -27,7 +27,7 @@
 >
 > We removed the default elevation (box-shadow) for card and some card-like components.
 >
-> The prop variant(`variant="informational"`,`variant="successful"`,`variant="warning"`,`variant="critical"`) has been renamed to `semantic`.
+> The prop variant (`variant="informational"`,`variant="successful"`,`variant="warning"`,`variant="critical"`) has been renamed to `semantic`.
 >
 > The prop labelVariant for form-components (input, checkbox, ...) has been renamed to `variant`.
 
