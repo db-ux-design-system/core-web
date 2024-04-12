@@ -6,7 +6,7 @@ For general installation and configuration look at the [react-components](https:
 
 ```tsx App.tsx
 // App.tsx
-import { DBNavigation } from "@db-ui/react-components";
+import { DBNavigation, DBNavigationItem } from "@db-ui/react-components";
 
 const App = () => (
 	<DBNavigation>
