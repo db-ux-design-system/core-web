@@ -63,3 +63,4 @@ This is related to the following properties:
 - `slotActionBar`
 - `slotHeadline`
 - `slotDrawerHeader`
+- `slotSubNavigation`
