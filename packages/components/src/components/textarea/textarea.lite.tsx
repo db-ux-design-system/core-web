@@ -72,6 +72,16 @@ export default function DBTextarea(props: DBTextareaProps) {
 			if (props.focus) {
 				props.focus(event);
 			}
+		},
+		getValidMessage: () => {
+			return props.validMessage || DEFAULT_VALID_MESSAGE;
+		},
+		getInvalidMessage: () => {
+			return (
+				props.invalidMessage ||
+				ref?.validationMessage ||
+				DEFAULT_INVALID_MESSAGE
+			);
 		}
 	});
 
@@ -149,16 +159,14 @@ export default function DBTextarea(props: DBTextareaProps) {
 				id={state._validMessageId}
 				size="small"
 				semantic="successful">
-				{props.validMessage || DEFAULT_VALID_MESSAGE}
+				{state.getValidMessage()}
 			</DBInfotext>
 
 			<DBInfotext
 				id={state._invalidMessageId}
 				size="small"
 				semantic="critical">
-				{props.invalidMessage ||
-					ref?.validationMessage ||
-					DEFAULT_INVALID_MESSAGE}
+				{state.getInvalidMessage()}
 			</DBInfotext>
 		</div>
 	);
