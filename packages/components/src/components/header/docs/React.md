@@ -10,7 +10,7 @@ For general installation and configuration take a look at the [react-components]
 // App.tsx
 import { DBHeader, DBBrand } from "@db-ui/react-components";
 
-const App = () => <DBHeader slotBrand={<DBBrand>Header</DBBrand>} />;
+const App = () => <DBHeader brand={<DBBrand>Header</DBBrand>} />;
 
 export default App;
 ```
@@ -28,19 +28,19 @@ const App = () => (
 	<DBHeader
 		drawerOpen={drawerOpen}
 		onToggle={setDrawerOpen}
-		slotBrand={<DBBrand>My Awesome App</DBBrand>}
-		slotMetaNavigation={
+		brand={<DBBrand>My Awesome App</DBBrand>}
+		metaNavigation={
 			<>
 				<DBLink href="#">Imprint</DBLink>
 				<DBLink href="#">Help</DBLink>
 			</>
 		}
-		slotCallToAction={
+		callToAction={
 			<DBButton icon="search" variant="ghost" noText>
 				Search
 			</DBButton>
 		}
-		slotActionBar={
+		actionBar={
 			<>
 				<DBButton icon="account" variant="ghost" noText>
 					Profile
