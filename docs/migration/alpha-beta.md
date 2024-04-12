@@ -2,13 +2,6 @@
 
 ## Foundations
 
-### Internal
-
-| Name                              | Description                                                                                | Action |
-| --------------------------------- | ------------------------------------------------------------------------------------------ | ------ |
-| ❌ removed `style-dictonary`      | all variables will be generated in [theme-builder](https://github.com/db-ui/theme-builder) | ---    |
-| ❌ removed `zeplin-styleguide.js` | we use `Figma` in the future                                                               | ---    |
-
 ### Breaking Changes
 
 | Name                               | Description                                                                                                                                                                                                                                               | Action                                                                                                                                                                                                        |
@@ -19,17 +12,24 @@
 | 🔄 moved `_font-sizes.scss`        | We moved the file to another folder to align the same structure as icons or colors. We add `css` classes, you can use them by importing `@db-ui/foundations/scss/fonts/classes/all.css`                                                                   | If you use some placeholder like `%db-overwrite-font-size-sm` you might need to import the `_font-sizes.scss` like this: `@use "@db-ui/foundations/build/scss/fonts";`                                        |
 | 🔄 ❗ refactored `colors`          | All colors changed. We use color-palettes to generate speaking-names (check `@db-ui/foundations/scss/colors/_variables.scss` to see a list of available tokens). We removed `base` color, it was the same like `neutral`. Add different background level. | 1. Replace all `base` colors with `neutral`<br/>2. If you use the color class replace `db-bg-x` with `db-x-bg-lvl-1`<br/>3. Replace `border-strong`/ `border-weak` tokens with `contrast-high`/`contrast-low` |
 
+### Internal
+
+| Name                              | Description                                                                                | Action |
+| --------------------------------- | ------------------------------------------------------------------------------------------ | ------ |
+| ❌ removed `style-dictonary`      | all variables will be generated in [theme-builder](https://github.com/db-ui/theme-builder) | ---    |
+| ❌ removed `zeplin-styleguide.js` | we use `Figma` in the future                                                               | ---    |
+
 ## Components
 
 > **Note**: All components have different colors and opacities based on the changes in foundations.
->
-> Some components may have different dimensions based on changes of spacing tokens.
->
-> We removed the default elevation (box-shadow) for card and some card-like components.
->
-> The prop variant (`variant="informational"`,`variant="successful"`,`variant="warning"`,`variant="critical"`) has been renamed to `semantic`.
->
-> The prop labelVariant for form-components (input, checkbox, ...) has been renamed to `variant`.
+
+Some components may have different dimensions based on changes of spacing tokens.
+
+We removed the default elevation (box-shadow) for card and some card-like components.
+
+The prop variant (`variant="informational"`,`variant="successful"`,`variant="warning"`,`variant="critical"`) has been renamed to `semantic`.
+
+The prop labelVariant for form-components (input, checkbox, ...) has been renamed to `variant`.
 
 | Name                                                                                                           | Description                                                                                                                             | Action                                                                                                                                                                                                     |
 | -------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
