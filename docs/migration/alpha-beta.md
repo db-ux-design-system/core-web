@@ -2,13 +2,6 @@
 
 ## Foundations
 
-### Internal
-
-| Name                              | Description                                                                                | Action |
-| --------------------------------- | ------------------------------------------------------------------------------------------ | ------ |
-| ❌ removed `style-dictonary`      | all variables will be generated in [theme-builder](https://github.com/db-ui/theme-builder) | ---    |
-| ❌ removed `zeplin-styleguide.js` | we use `Figma` in the future                                                               | ---    |
-
 ### Breaking Changes
 
 | Name                               | Description                                                                                                                                                                                                                                               | Action                                                                                                                                                                                                        |
@@ -18,6 +11,13 @@
 | 🔄 updated `border` tokens         | we add all shirt-sizes `3xs`-`3xl` as tokens                                                                                                                                                                                                              | If you use some of the tokens like `db-border-height-sm` you might run into issues with your layout, because the values behind it changed                                                                     |
 | 🔄 moved `_font-sizes.scss`        | We moved the file to another folder to align the same structure as icons or colors. We add `css` classes, you can use them by importing `@db-ui/foundations/scss/fonts/classes/all.css`                                                                   | If you use some placeholder like `%db-overwrite-font-size-sm` you might need to import the `_font-sizes.scss` like this: `@use "@db-ui/foundations/build/scss/fonts";`                                        |
 | 🔄 ❗ refactored `colors`          | All colors changed. We use color-palettes to generate speaking-names (check `@db-ui/foundations/scss/colors/_variables.scss` to see a list of available tokens). We removed `base` color, it was the same like `neutral`. Add different background level. | 1. Replace all `base` colors with `neutral`<br/>2. If you use the color class replace `db-bg-x` with `db-x-bg-lvl-1`<br/>3. Replace `border-strong`/ `border-weak` tokens with `contrast-high`/`contrast-low` |
+
+### Internal
+
+| Name                              | Description                                                                                | Action |
+| --------------------------------- | ------------------------------------------------------------------------------------------ | ------ |
+| ❌ removed `style-dictonary`      | all variables will be generated in [theme-builder](https://github.com/db-ui/theme-builder) | ---    |
+| ❌ removed `zeplin-styleguide.js` | we use `Figma` in the future                                                               | ---    |
 
 ## Components
 
