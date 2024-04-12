@@ -57,13 +57,14 @@ import { DBButton } from '@db-ui/ngx-components';
 		// ...,
 		DBButton
     ],
+	standalone: true
 	// ...
 })
 ```
 
 ```html app.component.html
 <!-- app.component.html -->
-<db-button variant="primary">Button</db-button>
+<db-button variant="brand">Button</db-button>
 ```
 
 ### Events
@@ -73,27 +74,27 @@ There are 3 ways to use Events in Angular:
 **[ngModel](https://angular.io/api/forms/NgModel)**
 
 ```html
-<DBInput label="Inputfield" name="input-name" [(ngModel)]="input"></DBInput>
+<db-input label="Inputfield" name="input-name" [(ngModel)]="input"></db-input>
 ```
 
 **[FormControl](https://angular.io/api/forms/FormControl)**
 
 ```html
-<DBInput
+<db-input
 	label="Inputfield"
 	name="input-name"
 	[formControl]="inputControl"
-></DBInput>
+></db-input>
 ```
 
 **[change](https://developer.mozilla.org/de/docs/Web/API/HTMLElement/change_event)**
 
 ```html
-<DBInput
+<db-input
 	label="Inputfield"
 	name="input-name"
 	(change)="input = $event.target.value"
-></DBInput>
+></db-input>
 ```
 
 ## Deutsche Bahn brand
