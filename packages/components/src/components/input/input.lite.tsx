@@ -180,7 +180,9 @@ export default function DBInput(props: DBInputProps) {
 				id={state._invalidMessageId}
 				size="small"
 				semantic="critical">
-				{props.invalidMessage || DEFAULT_INVALID_MESSAGE}
+				{props.invalidMessage ||
+					ref?.validationMessage ||
+					DEFAULT_INVALID_MESSAGE}
 			</DBInfotext>
 		</div>
 	);

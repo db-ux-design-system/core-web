@@ -58,7 +58,8 @@
 			{
 				"name": "Text - Icons (Leading, Chevron)",
 				"props": {
-					"icon": "account"
+					"icon": "account",
+					"areaPopup": true
 				}
 			},
 			{
