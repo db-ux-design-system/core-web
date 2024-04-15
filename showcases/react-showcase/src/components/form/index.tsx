@@ -72,7 +72,7 @@ const FormComponent = () => {
 							label="Textinput"
 							placeholder="Placeholder"
 							message="Description"
-							icon="account"
+							icon="user"
 							name="input-name"
 							value={input}
 							dataList={dataList}

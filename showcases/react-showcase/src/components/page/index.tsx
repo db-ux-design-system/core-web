@@ -38,25 +38,28 @@ const getPage = ({
 					</>
 				}
 				callToAction={
-					<DBButton icon="search" variant="ghost" noText>
+					<DBButton icon="magnifying_glass" variant="ghost" noText>
 						Search
 					</DBButton>
 				}
 				actionBar={
 					<>
-						<DBButton icon="account" variant="ghost" noText>
+						<DBButton icon="user" variant="ghost" noText>
 							Profile
 						</DBButton>
-						<DBButton icon="alert" variant="ghost" noText>
+						<DBButton icon="bell" variant="ghost" noText>
 							Notification
 						</DBButton>
-						<DBButton icon="help" variant="ghost" noText>
+						<DBButton
+							icon="question_mark_circle"
+							variant="ghost"
+							noText>
 							Help
 						</DBButton>
 					</>
 				}>
 				<DBNavigation>
-					<DBNavigationItem icon="account">
+					<DBNavigationItem icon="user">
 						<a href="#">{children}</a>
 					</DBNavigationItem>
 					<DBNavigationItem disabled>

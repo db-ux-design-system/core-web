@@ -24,7 +24,7 @@ Main use-case to set/overwrite an icon inside a component. Example:
 @use "@db-ui/foundations/build/scss/icons";
 
 .db-xxx {
-	@include icons.set-icon("expand_more", "after");
+	@include icons.set-icon("chevron_down", "after");
 }
 ```
 

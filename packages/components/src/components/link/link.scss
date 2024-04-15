@@ -18,7 +18,7 @@
 
 	&:not([data-variant="inline"]) {
 		&[data-content="internal"] {
-			@include icons.set-icon("arrow_forward", "after");
+			@include icons.set-icon("arrow_right", "after");
 
 			&::after {
 				vertical-align: top;
@@ -26,7 +26,7 @@
 		}
 
 		&[data-content="external"] {
-			@include icons.set-icon("link_external", "after");
+			@include icons.set-icon("arrow_up_right", "after");
 		}
 	}
 
