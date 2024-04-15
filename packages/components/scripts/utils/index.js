@@ -1,10 +1,9 @@
 const Replace = require('replace-in-file');
-const getComponentName = (componentName) => {
-	return componentName
+const getComponentName = (componentName) =>
+	componentName
 		.split('-')
 		.map((part) => `${part[0].toUpperCase()}${part.slice(1)}`)
 		.join('');
-};
 
 const runReplacements = (replacements, component, framework, file) => {
 	if (component?.overwrites?.[framework]) {
