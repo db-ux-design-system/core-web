@@ -2,7 +2,7 @@
 import DefaultComponent from "../DefaultComponent.vue";
 import defaultComponentVariants from "../../../../shared/brand.json";
 import { DBBrand } from "../../../../../output/vue/src";
-import imageUrl from "/assets/images/db_logo.svg";
+import imageUrl from "/assets/images/placeholder.jpg";
 
 const log = (exampleName: string) => {
 	// eslint-disable-next-line no-alert
@@ -16,7 +16,11 @@ const log = (exampleName: string) => {
 			#example="{ exampleIndex, variantIndex, exampleName, exampleProps }"
 		>
 			<DBBrand :hideLogo="exampleProps.hideLogo">
-				<img v-if="exampleProps.customLogo" :src="imageUrl" />
+				<img
+					v-if="exampleProps.customLogo"
+					:src="imageUrl"
+					alt="logo"
+				/>
 				{{ exampleName }}
 			</DBBrand>
 		</template>

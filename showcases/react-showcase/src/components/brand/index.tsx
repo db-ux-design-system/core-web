@@ -14,7 +14,8 @@ const getBrand = ({
 			<img
 				src={`${
 					process?.env?.NEXT_PUBLIC_BASE_PATH ?? '/react-showcase'
-				}/assets/images/db_logo.svg`}
+				}/assets/images/placeholder.jpg`}
+				alt="logo"
 			/>
 		)}
 		{children}
