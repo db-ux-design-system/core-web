@@ -2,13 +2,6 @@
 
 ## Foundations
 
-### Internal
-
-| Name                              | Description                                                                                | Action |
-| --------------------------------- | ------------------------------------------------------------------------------------------ | ------ |
-| ❌ removed `style-dictonary`      | all variables will be generated in [theme-builder](https://github.com/db-ui/theme-builder) | ---    |
-| ❌ removed `zeplin-styleguide.js` | we use `Figma` in the future                                                               | ---    |
-
 ### Breaking Changes
 
 | Name                               | Description                                                                                                                                                                                                                                               | Action                                                                                                                                                                                                        |
@@ -27,16 +20,6 @@
 | ❌ removed `zeplin-styleguide.js` | we use `Figma` in the future                                                               | ---    |
 
 ## Components
-
-> **Note**: All components have different colors and opacities based on the changes in foundations.
->
-> Some components may have different dimensions based on changes of spacing tokens.
->
-> We removed the default elevation (box-shadow) for card and some card-like components.
->
-> The prop variant like `variant="informational"` has been renamed to `semantic`.
->
-> The prop labelVariant for form-components (input, checkbox, ...) has been renamed to `variant`.
 
 Some components may have different dimensions based on changes of spacing tokens.
 
