@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import DefaultComponent from "../DefaultComponent.vue";
 import defaultComponentVariants from "../../../../shared/brand.json";
-import { DBBrand } from "../../../../../output/vue/vue3/src";
+import { DBBrand } from "../../../../../output/vue/src";
 import imageUrl from "/assets/images/db_logo.svg";
 
 const log = (exampleName: string) => {
