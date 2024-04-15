@@ -28,7 +28,6 @@ $medium: assets-paths.$fonts-path + "dbscreensans-medium.woff2";
 	font-weight: 500;
 	src:
 		local("DB Screen Sans Medium"),
-		local("DB Screen Sans Medium"),
 		local("DB Sans Medium"),
 		url($medium) format("woff2");
 }
@@ -38,7 +37,6 @@ $semibold: assets-paths.$fonts-path + "dbscreensans-semibold.woff2";
 	font-style: normal;
 	font-weight: 600;
 	src:
-		local("DB Screen Sans SemiBold"),
 		local("DB Screen Sans SemiBold"),
 		local("DB Sans SemiBold"),
 		url($semibold) format("woff2");
@@ -50,7 +48,6 @@ $bold: assets-paths.$fonts-path + "dbscreensans-bold.woff2";
 	font-weight: 700;
 	src:
 		local("DB Screen Sans Bold"),
-		local("DB Screen Sans Bold"),
 		local("DB Sans Bold"),
 		url($bold) format("woff2");
 }
@@ -60,7 +57,6 @@ $light: assets-paths.$fonts-path + "dbscreenhead-light.woff2";
 	font-style: normal;
 	font-weight: 300;
 	src:
-		local("DB Screen Head Light"),
 		local("DB Screen Head Light"),
 		local("DB Head Light"),
 		url($light) format("woff2");
@@ -72,7 +68,6 @@ $regular: assets-paths.$fonts-path + "dbscreenhead-regular.woff2";
 	font-weight: 400;
 	src:
 		local("DB Screen Head"),
-		local("DB Screen Head"),
 		local("DB Head"),
 		url($regular) format("woff2");
 }
@@ -82,7 +77,6 @@ $black: assets-paths.$fonts-path + "dbscreenhead-black.woff2";
 	font-style: normal;
 	font-weight: 900;
 	src:
-		local("DB Screen Head Black"),
 		local("DB Screen Head Black"),
 		local("DB Head Black"),
 		url($black) format("woff2");
