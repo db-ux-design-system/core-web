@@ -5,21 +5,21 @@ import { DBTabs } from './index';
 // @ts-ignore - vue can only find it with .ts as file ending
 import { DEFAULT_VIEWPORT } from '../../shared/constants.ts';
 import { DBTabList } from '../tab-list';
-import { DBTab } from '../tab';
+import { DBTabItem } from '../tab-item';
 import { DBTabPanel } from '../tab-panel';
 
 const comp = (
 	<DBTabs>
 		<DBTabList>
-			<DBTab name="test" index={0}>
+			<DBTabItem name="test" index={0}>
 				Test 1
-			</DBTab>
-			<DBTab name="test" index={1}>
+			</DBTabItem>
+			<DBTabItem name="test" index={1}>
 				Test 2
-			</DBTab>
-			<DBTab name="test" index={2}>
+			</DBTabItem>
+			<DBTabItem name="test" index={2}>
 				Test 3
-			</DBTab>
+			</DBTabItem>
 		</DBTabList>
 
 		<DBTabPanel name="test" index={0}>

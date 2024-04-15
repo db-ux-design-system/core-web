@@ -6,10 +6,10 @@ import {
 	OrientationProps,
 	WidthProps
 } from '../../shared/model';
-import { DBTabProps } from '../tab/model';
+import { DBTabItemProps } from '../tab-item/model';
 import { DBTabPanelProps } from '../tab-panel/model';
 
-export type DBSimpleTabProps = DBTabProps & DBTabPanelProps;
+export type DBSimpleTabProps = DBTabItemProps & DBTabPanelProps;
 export interface DBTabsDefaultProps {
 	/**
 	 * Change amount of distance if you click on an arrow, only available with behaviour="arrows"
