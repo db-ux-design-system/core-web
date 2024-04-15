@@ -3,6 +3,7 @@ import DefaultComponent from '../index';
 import defaultComponentVariants from '../../../../shared/navigation-item.json';
 import type { DBNavigationItemProps } from '../../../../../output/react/src/components/navigation-item/model';
 import { getVariants } from '../data';
+import type { PatternhubComponentProps } from '../../../../shared/default-component-data';
 
 const getNavigationItem = ({
 	children,
@@ -38,10 +39,12 @@ const getNavigationItem = ({
 	</DBNavigationItem>
 );
 
-const NavigationItemComponent = () => {
+const NavigationItemComponent = (props: PatternhubComponentProps) => {
 	return (
 		<DefaultComponent
 			title="DBNavigationItem"
+			// Patternhub:isSubComponent={props.isSubComponent}
+			// Patternhub:componentName={props.componentName}
 			variants={getVariants(
 				defaultComponentVariants,
 				getNavigationItem
