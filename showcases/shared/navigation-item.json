@@ -1,27 +1,21 @@
 [
 	{
-		"name": "Tonality",
+		"name": "Density",
 		"examples": [
 			{
 				"name": "Functional",
-				"className": "db-ui-functional",
-				"props": {
-					"areaPopup": true
-				}
+				"className": "db-density-functional",
+				"props": {}
 			},
 			{
-				"name": "Regular (Default)",
-				"className": "db-ui-regular",
-				"props": {
-					"areaPopup": true
-				}
+				"name": "(Default) Regular",
+				"className": "db-density-regular",
+				"props": {}
 			},
 			{
 				"name": "Expressive",
-				"className": "db-ui-expressive",
-				"props": {
-					"areaPopup": true
-				}
+				"className": "db-density-expressive",
+				"props": {}
 			}
 		]
 	},
@@ -30,22 +24,18 @@
 		"examples": [
 			{
 				"name": "Enabled (Default)/Hover/Pressed",
-				"props": {
-					"areaPopup": true
-				}
+				"props": {}
 			},
 			{
 				"name": "Active",
 				"props": {
-					"active": true,
-					"areaPopup": true
+					"active": true
 				}
 			},
 			{
 				"name": "Disabled",
 				"props": {
-					"disabled": true,
-					"areaPopup": true
+					"disabled": true
 				}
 			}
 		]
@@ -54,7 +44,7 @@
 		"name": "Content",
 		"examples": [
 			{
-				"name": "Text (Default)",
+				"name": "(Default) Text",
 				"props": {
 					"areaPopup": false
 				}
@@ -62,8 +52,7 @@
 			{
 				"name": "Text - Icon (Leading)",
 				"props": {
-					"icon": "account",
-					"areaPopup": false
+					"icon": "account"
 				}
 			},
 			{
@@ -85,18 +74,15 @@
 		"name": "Width",
 		"examples": [
 			{
-				"name": "Auto (Default)",
+				"name": "(Default) Auto",
 				"style": { "width": "400px" },
-				"props": {
-					"areaPopup": true
-				}
+				"props": {}
 			},
 			{
 				"name": "Full",
 				"style": { "width": "400px" },
 				"props": {
-					"width": "full",
-					"areaPopup": true
+					"width": "full"
 				}
 			}
 		]

@@ -6,8 +6,8 @@ import getQueryParams from './utils/get-query-params.js';
 import getActionBar from './action-bar.js';
 import getNavigation from './navigation.js';
 
-const getClassName = (tonality, color) => {
-	return `db-ui-${tonality} db-bg-${color}`;
+const getClassName = (density, color) => {
+	return `db-density-${density} db-${color}`;
 };
 
 const insertParameter = (queryParameters, key, value) => {
@@ -24,27 +24,23 @@ const insertParameter = (queryParameters, key, value) => {
 };
 
 onload = () => {
-	const selectTonalities = Array.from(
-		document.querySelectorAll('#select-tonality')
+	const selectDensities = Array.from(
+		document.querySelectorAll('#select-density')
 	);
 	const selectColors = Array.from(document.querySelectorAll('#select-color'));
 	const content = document.querySelector('#content');
 	const header = document.querySelector('#db-header');
 	const queryParameters = getQueryParams();
 
-	const tonality = queryParameters.tonality ?? 'regular';
-	const color = queryParameters.color ?? 'neutral-0';
-	content.className = getClassName(tonality, color);
+	const density = queryParameters.density ?? 'regular';
+	const color = queryParameters.color ?? 'neutral-bg-lvl-1';
+	content.className = getClassName(density, color);
 
-	if (selectTonalities.length > 0) {
-		for (const selectTonality of selectTonalities) {
-			selectTonality.value = tonality;
-			selectTonality.addEventListener('change', (event) => {
-				insertParameter(
-					queryParameters,
-					'tonality',
-					event.target.value
-				);
+	if (selectDensities.length > 0) {
+		for (const selectDensity of selectDensities) {
+			selectDensity.value = density;
+			selectDensity.addEventListener('change', (event) => {
+				insertParameter(queryParameters, 'density', event.target.value);
 			});
 		}
 	}
@@ -68,7 +64,7 @@ onload = () => {
 const getMetaNavigation = (mobile) => {
 	return `
 			<div slot="meta-navigation${mobile ? '-mobile' : ''}">
-				<select id="select-tonality">
+				<select id="select-density">
 					<option>functional</option>
 					<option>regular</option>
 					<option>expressive</option>

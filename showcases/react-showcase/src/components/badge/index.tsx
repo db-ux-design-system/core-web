@@ -11,7 +11,7 @@ import { getVariants } from '../data';
 
 const getBadge = ({
 	children,
-	variant,
+	semantic,
 	emphasis,
 	noContent,
 	size,
@@ -24,12 +24,12 @@ const getBadge = ({
 	<>
 		{!placement && !example && (
 			<>
-				<DBBadge variant={variant} emphasis={emphasis} size={size}>
+				<DBBadge semantic={semantic} emphasis={emphasis} size={size}>
 					{noContent ? '' : children}
 				</DBBadge>
 				{noContent && (
 					<DBInfotext
-						variant="informational"
+						semantic="informational"
 						size="small"
 						icon="none">
 						{children}
@@ -44,11 +44,11 @@ const getBadge = ({
 					<DBBadge
 						size="small"
 						emphasis="strong"
-						variant="critical"
+						semantic="critical"
 						placement={placement}></DBBadge>
 					{children}
 				</DBButton>
-				<DBInfotext variant="informational" size="small" icon="none">
+				<DBInfotext semantic="informational" size="small" icon="none">
 					{children}
 				</DBInfotext>
 			</>
@@ -59,7 +59,7 @@ const getBadge = ({
 				<div className="badge-inline-container">
 					<DBIcon icon="account" />
 					<span>{children}</span>
-					<DBBadge size="small" emphasis="strong" variant="critical">
+					<DBBadge size="small" emphasis="strong" semantic="critical">
 						Label
 					</DBBadge>
 					<DBIcon icon="error" />
@@ -69,10 +69,10 @@ const getBadge = ({
 
 		{example === 'icon' && (
 			<>
-				<DBBadge variant="critical" emphasis="strong" size={size}>
+				<DBBadge semantic="critical" emphasis="strong" size={size}>
 					<DBIcon icon="account">{children}</DBIcon>
 				</DBBadge>
-				<DBInfotext variant="informational" size="small" icon="none">
+				<DBInfotext semantic="informational" size="small" icon="none">
 					{children}
 				</DBInfotext>
 			</>
@@ -80,19 +80,22 @@ const getBadge = ({
 
 		{example === 'number' && (
 			<>
-				<DBBadge variant="successful">9</DBBadge>
-				<DBBadge variant="informational">12</DBBadge>
-				<DBBadge variant="warning">123</DBBadge>
-				<DBBadge size="small" emphasis="strong" variant="successful">
+				<DBBadge semantic="successful">9</DBBadge>
+				<DBBadge semantic="informational">12</DBBadge>
+				<DBBadge semantic="warning">123</DBBadge>
+				<DBBadge size="small" emphasis="strong" semantic="successful">
 					9
 				</DBBadge>
-				<DBBadge size="small" emphasis="strong" variant="informational">
+				<DBBadge
+					size="small"
+					emphasis="strong"
+					semantic="informational">
 					12
 				</DBBadge>
-				<DBBadge size="small" emphasis="strong" variant="warning">
+				<DBBadge size="small" emphasis="strong" semantic="warning">
 					123
 				</DBBadge>
-				<DBInfotext variant="informational" size="small" icon="none">
+				<DBInfotext semantic="informational" size="small" icon="none">
 					{children}
 				</DBInfotext>
 			</>

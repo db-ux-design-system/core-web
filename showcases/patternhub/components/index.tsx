@@ -1,28 +1,106 @@
 import { useRouter } from 'next/router';
-import { useEffect, useState } from 'react';
-import type {
-	DefaultComponentProps,
-	DefaultComponentVariants
+import React, { useEffect, useState } from 'react';
+import {
+	type DefaultComponentProps,
+	type DefaultComponentVariants,
+	type PatternhubComponentProps
 } from '../../shared/default-component-data';
 import DefaultPage from './default-page';
-import { DBCodeDocs, DBDivider, DBLink } from './src';
+import { DBCard, DBDivider, DBLink } from './src';
 
-const VariantList = ({ examples, slotCode }: DefaultComponentVariants) => (
-	<DBCodeDocs className="variants-card" slotCode={slotCode}>
-		<div className="variants-list">
-			{examples.map((example, exampleIndex) => (
-				<div
-					key={`${example.name}-${exampleIndex}`}
-					style={example.style}
-					className={example.className}>
-					{example.example}
+const VariantList = ({ examples, slotCode }: DefaultComponentVariants) => {
+	const [open, setOpen] = useState<boolean>();
+	return (
+		<DBCard className="variants-card db-code-docs">
+			<div className="variants-list">
+				{examples.map((example, exampleIndex) => (
+					<div
+						key={`${example.name}-${exampleIndex}`}
+						style={example.style}
+						className={example.className}>
+						{example.example}
+					</div>
+				))}
+			</div>
+
+			<details
+				className="code-details"
+				onToggle={() => {
+					setOpen(!open);
+				}}>
+				<summary
+					className="db-button code-button"
+					data-size="small"
+					data-variant="filled">
+					{open ? 'Hide code' : 'Show code'}
+				</summary>
+				<div className="db-density-functional">
+					<div className="backdrop" />
+					<DBCard className="code" spacing="small">
+						{slotCode}
+					</DBCard>
+				</div>
+			</details>
+		</DBCard>
+	);
+};
+
+const VariantsWrapper = ({
+	variants,
+	componentName
+}: {
+	variants: DefaultComponentVariants[];
+	componentName?: string;
+}) => {
+	const getHref = (
+		variant: DefaultComponentVariants,
+		componentName?: string
+	) => {
+		if (
+			typeof window === 'undefined' ||
+			!window.location.origin ||
+			!window.location.href
+		) {
+			return '';
+		}
+
+		const currentUrlWithoutQuery = window.location.href.split('?')[0];
+		const variantQuery = `?page=${variant.name.toLowerCase()}`;
+
+		if (componentName) {
+			return `${currentUrlWithoutQuery.split('components')[0]}/components/${componentName}${variantQuery}`;
+		}
+
+		return `${currentUrlWithoutQuery}${variantQuery}`;
+	};
+
+	return (
+		<>
+			{variants?.map((variant, index) => (
+				<div key={`${variant.name}-${index}`}>
+					<DBDivider></DBDivider>
+					<h2>
+						<DBLink
+							content="external"
+							target="_blank"
+							href={getHref(variant, componentName)}>
+							{variant.name}
+						</DBLink>
+					</h2>
+					<VariantList {...variant} />
 				</div>
 			))}
-		</div>
-	</DBCodeDocs>
-);
+		</>
+	);
+};
 
-const DefaultComponent = ({ title, variants }: DefaultComponentProps) => {
+const DefaultComponent = ({
+	title,
+	variants,
+	subComponent,
+	isSubComponent,
+	componentName
+}: DefaultComponentProps & PatternhubComponentProps) => {
 	const [foundVariant, setFoundVariant] =
 		useState<DefaultComponentVariants>();
 	const router = useRouter();
@@ -39,13 +117,6 @@ const DefaultComponent = ({ title, variants }: DefaultComponentProps) => {
 		}
 	}, [router]);
 
-	const getHref = (variant: DefaultComponentVariants) =>
-		typeof window !== 'undefined' &&
-		window.location.origin &&
-		window.location.href
-			? `${window.location.href.split('?')[0]}?page=${variant.name.toLowerCase()}`
-			: '';
-
 	return (
 		<>
 			{foundVariant && (
@@ -53,26 +124,26 @@ const DefaultComponent = ({ title, variants }: DefaultComponentProps) => {
 					<VariantList {...foundVariant} />
 				</div>
 			)}
-			{!foundVariant && (
+			{!foundVariant && !isSubComponent && (
 				<DefaultPage>
 					<div className="default-container">
 						<h1>{title}</h1>
-						{variants?.map((variant, index) => (
-							<div key={`${variant.name}-${index}`}>
-								<DBDivider></DBDivider>
-								<h2>
-									<DBLink
-										content="external"
-										target="_blank"
-										href={getHref(variant)}>
-										{variant.name}
-									</DBLink>
-								</h2>
-								<VariantList {...variant} />
-							</div>
-						))}
+						<VariantsWrapper
+							variants={variants}
+							componentName={componentName}
+						/>
 					</div>
+					{subComponent}
 				</DefaultPage>
+			)}
+			{!foundVariant && isSubComponent && (
+				<div className="default-container">
+					<h2>{title}</h2>
+					<VariantsWrapper
+						variants={variants}
+						componentName={componentName}
+					/>
+				</div>
 			)}
 		</>
 	);

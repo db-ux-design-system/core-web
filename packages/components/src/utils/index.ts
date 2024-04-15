@@ -1,4 +1,5 @@
-import { DefaultVariantType } from '../shared/model';
+import { SemanticType } from '../shared/model';
+import { AriaRole, CSSProperties } from 'react';
 
 export const uuid = () => {
 	if (typeof window !== 'undefined') {
@@ -49,16 +50,42 @@ export const cls = (...args: ClassNameArg[]) => {
 	return result.trim();
 };
 
-export const getMessageIcon = (
-	variant?: DefaultVariantType,
-	messageIcon?: string
-): string | undefined => {
-	return messageIcon
-		? messageIcon
-		: !variant || variant === 'adaptive'
-			? 'none'
-			: undefined;
-};
+const reactHtmlAttributes = [
+	'suppressHydrationWarning',
+	'suppressContentEditableWarning',
+	'translate',
+	'title',
+	'tabIndex',
+	'style',
+	'spellCheck',
+	'nonce',
+	'lang',
+	'hidden',
+	'draggable',
+	'dir',
+	'contextMenu',
+	'contentEditable',
+	'autoFocus',
+	'accessKey',
+	'is',
+	'inputMode',
+	'unselectable',
+	'security',
+	'results',
+	'vocab',
+	'typeof',
+	'rev',
+	'resource',
+	'rel',
+	'property',
+	'inlist',
+	'datatype',
+	'content',
+	'about',
+	'role',
+	'radioGroup',
+	'color'
+];
 
 export const filterPassingProps = (
 	props: any,
@@ -71,7 +98,9 @@ export const filterPassingProps = (
 					key.startsWith('aria-') ||
 					key.startsWith('default') ||
 					key.startsWith('auto') ||
-					key.startsWith('on')) &&
+					key.startsWith('item') ||
+					key.startsWith('on') ||
+					reactHtmlAttributes.includes(key)) &&
 				!propsPassingFilter.includes(key)
 		)
 		.reduce((obj: any, key: string) => {
@@ -90,12 +119,72 @@ export const visibleInVY = (el: Element) => {
 	return top >= 0 && bottom <= innerHeight;
 };
 
+export const isInView = (el: Element) => {
+	const { top, bottom, left, right, height, width } =
+		el.getBoundingClientRect();
+	const { innerHeight, innerWidth } = window;
+
+	let outTop = top < 0;
+	let outBottom = bottom > innerHeight;
+	let outLeft = left < 0;
+	let outRight = right > innerWidth;
+
+	// We need to check if it was already outside
+	const outsideY = el.hasAttribute('data-outside-vy');
+	const outsideX = el.hasAttribute('data-outside-vx');
+	const parentRect = el?.parentElement?.getBoundingClientRect();
+
+	if (parentRect) {
+		if (outsideY) {
+			const position = el.getAttribute('data-outside-vy');
+			if (position === 'top') {
+				outTop = parentRect.top - (bottom - parentRect.bottom) < 0;
+			} else {
+				outBottom =
+					parentRect.bottom + (parentRect.top - top) > innerHeight;
+			}
+		}
+
+		if (outsideX) {
+			const position = el.getAttribute('data-outside-vx');
+			if (position === 'left') {
+				outLeft = parentRect.left - (right - parentRect.right) < 0;
+			} else {
+				outRight =
+					parentRect.right + (parentRect.left - left) > innerWidth;
+			}
+		}
+	}
+
+	return {
+		outTop,
+		outBottom,
+		outLeft,
+		outRight
+	};
+};
+
+export const handleDataOutside = (el: Element) => {
+	const { outTop, outBottom, outLeft, outRight } = isInView(el);
+	if (outTop || outBottom) {
+		el.setAttribute('data-outside-vy', outTop ? 'top' : 'bottom');
+	} else {
+		el.removeAttribute('data-outside-vy');
+	}
+	if (outLeft || outRight) {
+		el.setAttribute('data-outside-vx', outRight ? 'right' : 'left');
+	} else {
+		el.removeAttribute('data-outside-vx');
+	}
+};
+
 export default {
 	filterPassingProps,
-	getMessageIcon,
 	cls,
 	addAttributeToChildren,
 	uuid,
 	visibleInVX,
-	visibleInVY
+	visibleInVY,
+	isInView,
+	handleDataOutside
 };

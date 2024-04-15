@@ -69,7 +69,8 @@ const getComponents = () => [
 	},
 
 	{
-		name: 'popover'
+		name: 'popover',
+		overwrites: { angular: [{ from: 'mouseEnter', to: 'mouseenter' }] }
 	},
 
 	{
@@ -113,7 +114,7 @@ const getComponents = () => [
 	},
 
 	{
-		name: 'main-navigation'
+		name: 'navigation'
 	},
 	{
 		name: 'navigation-item',
@@ -154,10 +155,6 @@ const getComponents = () => [
 		name: 'tag'
 	},
 	{
-		name: 'code-docs'
-	},
-
-	{
 		name: 'checkbox',
 		config: {
 			vue: {
@@ -182,7 +179,7 @@ const getComponents = () => [
 	},
 
 	{
-		name: 'alert'
+		name: 'notification'
 	},
 
 	{

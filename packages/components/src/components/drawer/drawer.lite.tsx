@@ -13,18 +13,14 @@ import { DEFAULT_CLOSE_BUTTON } from '../../shared/constants';
 import { cls } from '../../utils';
 
 useMetadata({
-	isAttachedToShadowDom: true,
-	component: {
-		// MS Power Apps
-		includeIcon: false,
-		properties: [{ name: 'open', type: 'TwoOptions' }]
-	}
+	isAttachedToShadowDom: true
 });
 
 export default function DBDrawer(props: DBDrawerProps) {
 	const ref = useRef<HTMLDialogElement>(null);
 	const dialogContainerRef = useRef<HTMLDivElement>(null);
 	const state = useStore<DBDrawerState>({
+		// eslint-disable-next-line @typescript-eslint/no-explicit-any
 		handleClose: (event: any) => {
 			if (event.key === 'Escape') {
 				event.preventDefault();
@@ -95,14 +91,14 @@ export default function DBDrawer(props: DBDrawerProps) {
 				data-rounded={props.rounded}>
 				<header class="db-drawer-header">
 					<div class="db-drawer-header-text">
-						<Slot name="drawer-header" />
+						<Slot name="drawerHeader" />
 					</div>
 					<Show when={props.withCloseButton}>
 						<DBButton
 							className="button-close-drawer"
 							id={props.closeButtonId}
 							icon="close"
-							variant="text"
+							variant="ghost"
 							noText
 							onClick={() => state.handleClose('close')}>
 							{props.closeButtonText ?? DEFAULT_CLOSE_BUTTON}

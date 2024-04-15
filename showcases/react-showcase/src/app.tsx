@@ -6,14 +6,14 @@ import MetaNavigation from './meta-navigation';
 import Navigation from './navigation';
 
 const App = () => {
-	const [tonality, setTonality, color, setColor, pageName, fullscreen] =
+	const [density, setDensity, color, setColor, pageName, fullscreen] =
 		useQuery();
 
 	const [drawerOpen, setDrawerOpen] = useState<boolean>(false);
 
 	if (pageName ?? fullscreen) {
 		return (
-			<div className={`db-ui-${tonality} db-bg-${color}`}>
+			<div className={`db-density-${density} db-${color}`}>
 				<Outlet />
 			</div>
 		);
@@ -23,32 +23,32 @@ const App = () => {
 		<DBPage
 			type="fixedHeaderFooter"
 			fadeIn
-			slotHeader={
+			header={
 				<DBHeader
 					drawerOpen={drawerOpen}
 					onToggle={setDrawerOpen}
-					slotBrand={<DBBrand>Showcase</DBBrand>}
-					slotMetaNavigation={
+					brand={<DBBrand>Showcase</DBBrand>}
+					metaNavigation={
 						<MetaNavigation
 							onColorChange={setColor}
-							onTonalityChange={setTonality}
+							onDensityChange={setDensity}
 						/>
 					}
-					slotCallToAction={
+					callToAction={
 						/* TODO: Use DBSearchBar in future */
-						<DBButton icon="search" variant="text" noText>
+						<DBButton icon="search" variant="ghost" noText>
 							Search
 						</DBButton>
 					}
-					slotActionBar={
+					actionBar={
 						<>
-							<DBButton icon="account" variant="text" noText>
+							<DBButton icon="account" variant="ghost" noText>
 								Profile
 							</DBButton>
-							<DBButton icon="alert" variant="text" noText>
+							<DBButton icon="alert" variant="ghost" noText>
 								Notification
 							</DBButton>
-							<DBButton icon="help" variant="text" noText>
+							<DBButton icon="help" variant="ghost" noText>
 								Help
 							</DBButton>
 						</>
@@ -56,7 +56,7 @@ const App = () => {
 					<Navigation />
 				</DBHeader>
 			}>
-			<div className={`db-ui-${tonality} db-bg-${color}`}>
+			<div className={`db-density-${density} db-${color}`}>
 				<Outlet />
 			</div>
 		</DBPage>

@@ -1,4 +1,5 @@
 import {
+	ClickEvent,
 	ClickEventProps,
 	ClickEventState,
 	GlobalProps,
@@ -30,7 +31,7 @@ export interface DBNavigationItemDefaultProps {
 	 * React-specific property to pass in a slot for sub-navigation
 	 */
 
-	slotSubNavigation?: any;
+	subNavigation?: unknown;
 
 	/**
 	 * This is for mobile navigation only, if it is set the sub-navigation is a static overlay
@@ -46,7 +47,7 @@ export type DBNavigationItemProps = DBNavigationItemDefaultProps &
 	NavigationBackButtonProps;
 
 export interface DBNavigationItemDefaultState {
-	handleBackClick: (event: any) => void;
+	handleBackClick: (event: ClickEvent<HTMLButtonElement>) => void;
 	hasAreaPopup: boolean;
 	isSubNavigationExpanded: boolean;
 	subNavigationId: string;

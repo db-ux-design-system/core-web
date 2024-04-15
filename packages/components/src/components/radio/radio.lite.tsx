@@ -76,15 +76,17 @@ export default function DBRadio(props: DBRadioProps) {
 				}
 			}
 		}
-	}, [state.initialized]);
+	}, [state.initialized, props.checked]);
 
 	return (
 		<label
 			data-size={props.size}
-			data-label-variant={props.labelVariant}
+			data-variant={props.variant}
 			class={cls('db-radio', props.className)}
 			htmlFor={state._id}>
 			<input
+				aria-invalid={props.customValidity === 'invalid'}
+				data-custom-validity={props.customValidity}
 				ref={ref}
 				type="radio"
 				id={state._id}
@@ -92,7 +94,6 @@ export default function DBRadio(props: DBRadioProps) {
 				checked={props.checked}
 				disabled={props.disabled}
 				aria-describedby={props.describedbyid}
-				aria-invalid={props.invalid}
 				value={props.value}
 				required={props.required}
 				onChange={(event: ChangeEvent<HTMLInputElement>) =>

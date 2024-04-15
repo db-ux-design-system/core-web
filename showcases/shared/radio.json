@@ -1,29 +1,47 @@
 [
 	{
-		"name": "Tonality",
+		"name": "Density",
 		"examples": [
 			{
-				"name": "functional",
-				"className": "db-ui-functional",
+				"name": "Functional",
+				"className": "db-density-functional",
 				"props": {
-					"name": "Tonality",
+					"name": "Density",
 					"value": "functional"
 				}
 			},
 			{
-				"name": "regular (Default)",
-				"className": "db-ui-regular",
+				"name": "(Default) Regular",
+				"className": "db-density-regular",
 				"props": {
-					"name": "Tonality",
+					"name": "Density",
 					"value": "regular"
 				}
 			},
 			{
-				"name": "expressive",
-				"className": "db-ui-expressive",
+				"name": "Expressive",
+				"className": "db-density-expressive",
 				"props": {
-					"name": "Tonality",
+					"name": "Density",
 					"value": "expressive"
+				}
+			}
+		]
+	},
+	{
+		"name": "Interaction States",
+		"examples": [
+			{
+				"name": "(Default) Enabled",
+				"props": {
+					"name": "Interaction States"
+				}
+			},
+			{
+				"name": "Disabled",
+				"props": {
+					"name": "Interaction States",
+					"disabled": true
 				}
 			}
 		]
@@ -32,23 +50,49 @@
 		"name": "States",
 		"examples": [
 			{
-				"name": "Default",
+				"name": "(Default) Unselected",
 				"props": {
 					"name": "States"
 				}
 			},
 			{
-				"name": "Checked",
+				"name": "Unselected - Invalid",
+				"props": {
+					"name": "States Required",
+					"required": true
+				}
+			},
+			{
+				"name": "Selected",
 				"props": {
 					"name": "States",
 					"checked": true
 				}
 			},
 			{
-				"name": "Disabled",
+				"name": "Selected - Valid",
 				"props": {
-					"name": "States",
-					"disabled": true
+					"name": "States Required",
+					"required": true,
+					"checked": true
+				}
+			}
+		]
+	},
+	{
+		"name": "Size",
+		"examples": [
+			{
+				"name": "(Default) Medium",
+				"props": {
+					"name": "Size"
+				}
+			},
+			{
+				"name": "Small",
+				"props": {
+					"name": "Size",
+					"size": "small"
 				}
 			}
 		]
@@ -66,40 +110,13 @@
 				"name": "Required",
 				"props": {
 					"name": "Requirement",
-					"required": true,
-					"invalid": true
-				}
-			},
-			{
-				"name": "Required - Checked",
-				"props": {
-					"name": "Requirement",
-					"required": true,
-					"checked": true
+					"required": true
 				}
 			}
 		]
 	},
 	{
-		"name": "Size",
-		"examples": [
-			{
-				"name": "Default",
-				"props": {
-					"name": "Size"
-				}
-			},
-			{
-				"name": "Small",
-				"props": {
-					"name": "Size",
-					"size": "small"
-				}
-			}
-		]
-	},
-	{
-		"name": "Variant Label",
+		"name": "Content",
 		"examples": [
 			{
 				"name": "(Default) Label",
@@ -111,7 +128,7 @@
 				"name": "Hidden Label",
 				"props": {
 					"name": "Content",
-					"labelVariant": "hidden"
+					"variant": "hidden"
 				}
 			}
 		]

@@ -36,7 +36,7 @@ export default function DBNavigationItem(props: DBNavigationItemProps) {
 				state.isSubNavigationExpanded = true;
 			}
 		},
-		handleBackClick: (event: any) => {
+		handleBackClick: (event: ClickEvent<HTMLButtonElement>) => {
 			event.stopPropagation();
 			state.isSubNavigationExpanded = false;
 		}
@@ -116,15 +116,15 @@ export default function DBNavigationItem(props: DBNavigationItemProps) {
 							<DBButton
 								id={props.backButtonId}
 								icon="arrow_back"
-								variant="text"
-								onClick={(event) =>
-									state.handleBackClick(event)
-								}>
+								variant="ghost"
+								onClick={(
+									event: ClickEvent<HTMLButtonElement>
+								) => state.handleBackClick(event)}>
 								{props.backButtonText ?? DEFAULT_BACK}
 							</DBButton>
 						</div>
 					</Show>
-					<Slot name="sub-navigation"></Slot>
+					<Slot name="subNavigation"></Slot>
 				</menu>
 			</Show>
 		</li>

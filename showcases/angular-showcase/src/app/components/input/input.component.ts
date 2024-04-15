@@ -11,11 +11,4 @@ import { DBInput } from '../../../../../../output/angular/src/components/input/i
 })
 export class InputComponent {
 	variants = defaultComponentVariants;
-
-	variantColors: any[] = [
-		'informational',
-		'warning',
-		'critical',
-		'successful'
-	];
 }

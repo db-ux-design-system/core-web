@@ -22,7 +22,7 @@
 	opacity: 0;
 
 	&[data-fade-in="true"] {
-		transition: opacity variables.$db-transition-emotional-straight;
+		transition: opacity variables.$db-transition-straight-emotional;
 	}
 
 	&:not([data-fonts-loaded]),

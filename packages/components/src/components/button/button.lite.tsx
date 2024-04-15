@@ -24,11 +24,8 @@ export default function DBButton(props: DBButtonProps) {
 		<button
 			ref={ref}
 			id={props.id}
-			class={cls('db-button', props.className, {
-				'is-icon-text-replace': props.noText
-			})}
+			class={cls('db-button', props.className)}
 			type={props.type}
-			title={props.title}
 			disabled={props.disabled}
 			aria-label={props.label}
 			data-icon={props.icon}
@@ -36,6 +33,7 @@ export default function DBButton(props: DBButtonProps) {
 			data-state={props.state}
 			data-width={props.width}
 			data-variant={props.variant}
+			data-no-text={props.noText}
 			name={props.name}
 			value={props.value}
 			aria-describedby={props.describedbyid}

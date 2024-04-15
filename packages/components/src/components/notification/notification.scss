@@ -1,0 +1,133 @@
+@use "sass:map";
+@use "@db-ui/foundations/build/scss/density";
+@use "@db-ui/foundations/build/scss/variables";
+@use "@db-ui/foundations/build/scss/colors";
+@use "@db-ui/foundations/build/scss/icons";
+@use "@db-ui/foundations/build/scss/screen-sizes";
+@use "../../styles/component";
+@use "../../styles/link-components";
+@use "./notification-grid-default";
+@use "./notification-grid-overlay";
+@use "./notification-grid-non-overlay";
+
+%ugly-line-height-workarounds {
+	// resets line-height to smaller height based on timestamp
+	&:has(span) {
+		h6,
+		p,
+		&::before,
+		.db-button {
+			margin-block-start: -2px;
+		}
+	}
+}
+
+.db-notification {
+	@extend %component-border;
+	@extend %grid-layout-default;
+	@extend %ugly-line-height-workarounds;
+	display: grid;
+	padding: variables.$db-spacing-fixed-md;
+	gap: variables.$db-spacing-fixed-xs variables.$db-spacing-fixed-md;
+	inline-size: inherit;
+	background-color: colors.$db-current-color-bg-lvl-2-enabled;
+
+	&::before {
+		--db-current-icon-color: #{colors.$db-current-color-contrast-low-enabled};
+	}
+
+	a {
+		@extend %db-default-link;
+
+		grid-area: link;
+		white-space: nowrap;
+
+		// Overwrite settings for db-link ALWAYS
+		&::before,
+		&::after {
+			content: none !important;
+			margin: 0 !important;
+		}
+
+		&[data-variant="brand"] {
+			@extend %db-link-default-color;
+		}
+
+		&[data-size="small"] {
+			@extend %db-overwrite-font-size-md;
+		}
+	}
+
+	// headline
+	h6 {
+		font-family: var(--db-font-family-sans);
+		grid-area: head;
+		margin: 0;
+	}
+
+	// content
+	p {
+		grid-area: content;
+		margin: 0;
+	}
+
+	img {
+		min-block-size: variables.$db-sizing-md;
+		min-inline-size: variables.$db-sizing-md;
+		max-block-size: variables.$db-sizing-md;
+		max-inline-size: variables.$db-sizing-md;
+		border-radius: variables.$db-border-radius-xs;
+	}
+
+	// timestamp
+	span {
+		@extend %db-overwrite-font-size-sm;
+		grid-area: timestamp;
+		white-space: nowrap;
+	}
+
+	.db-button {
+		grid-area: close;
+	}
+
+	&:has(img) {
+		// we don't show a icon if we have an image
+		::before {
+			content: none !important;
+		}
+	}
+
+	&[data-icon]::before,
+	&::before,
+	img {
+		--db-icon-font-family: "db-ux-solid";
+		--db-icon-margin-end: 0;
+		grid-area: icon;
+	}
+
+	&[data-variant="overlay"] {
+		@extend %grid-layout-variant-overlay;
+		box-shadow: variables.$db-elevation-md;
+	}
+
+	&:not([data-variant="overlay"]) {
+		@extend %grid-layout-variant-not-overlay;
+	}
+
+	&[data-variant="overlay"],
+	&[data-variant="standalone"] {
+		@extend %default-card;
+	}
+
+	@each $name in colors.$variant-colors {
+		&[data-semantic="#{$name}"] {
+			@extend %db-#{$name}-variables;
+
+			@include icons.variant-icons($name);
+
+			&::before {
+				@extend %icon;
+			}
+		}
+	}
+}

@@ -1,19 +1,19 @@
 @use "variables";
 @use "colors";
 @use "animation";
-@use "tonality";
+@use "density";
+@use "focus";
+@use "helpers";
 
 :root {
-	--db-focus-outline-color: #{colors.$db-informational-text};
-
 	@extend %db-component-variables-md;
-	@extend %db-bg-base;
+	@extend %db-neutral-bg-lvl-1;
 	@extend %db-font-size-md;
 
 	/* This is a MS power apps specific class name */
 	.app-canvas,
 	&:not(:has(.app-canvas)) {
-		@extend %db-ui-regular;
+		@extend %db-density-regular;
 	}
 }
 
@@ -120,10 +120,11 @@ iframe {
 
 // List style / https://marketingportal.extranet.deutschebahn.com/marketingportal/Marke-und-Design/Basiselemente/Typografie#Aufzaehlungszeichen-9693110
 :where(ul) {
-	list-style-type: "\2022"+ "   ";
+	padding-inline-start: variables.$db-spacing-fixed-md;
+	list-style-type: "\2022"+ " ";
 
 	li::marker {
-		color: #{colors.$db-brand};
+		color: #{colors.$db-brand-origin-enabled};
 	}
 }
 
@@ -159,7 +160,7 @@ code {
 }
 
 blockquote {
-	@extend %db-bg-neutral-transparent-semi;
+	@extend %db-neutral-bg-transparent-semi;
 	margin: 0;
 	padding: variables.$db-spacing-fixed-sm variables.$db-spacing-fixed-md;
 }
@@ -192,57 +193,138 @@ h6 {
 	&[data-variant="light"] {
 		font-weight: 300;
 	}
+
+	&[data-variant="regular"] {
+		font-weight: 400;
+	}
 }
 
 h1 {
 	line-height: var(--db-type-headline-line-height-xl);
 	font-size: var(--db-type-headline-font-size-xl);
 	margin-block: variables.$db-spacing-fixed-xl;
+
+	&::before,
+	&::after {
+		--db-icon-font-size: var(--db-base-headline-icon-font-size-xl);
+		--db-icon-font-weight: var(--db-base-headline-icon-weight-xl);
+	}
 }
 
 h2 {
 	line-height: var(--db-type-headline-line-height-lg);
 	font-size: var(--db-type-headline-font-size-lg);
 	margin-block: variables.$db-spacing-fixed-lg;
+
+	&::before,
+	&::after {
+		--db-icon-font-size: var(--db-base-headline-icon-font-size-lg);
+		--db-icon-font-weight: var(--db-base-headline-icon-weight-lg);
+	}
 }
 
 h3 {
 	line-height: var(--db-type-headline-line-height-md);
 	font-size: var(--db-type-headline-font-size-md);
 	margin-block: variables.$db-spacing-fixed-md;
+
+	&::before,
+	&::after {
+		--db-icon-font-size: var(--db-base-headline-icon-font-size-md);
+		--db-icon-font-weight: var(--db-base-headline-icon-weight-md);
+	}
 }
 
 h4 {
 	line-height: var(--db-type-headline-line-height-sm);
 	font-size: var(--db-type-headline-font-size-sm);
 	margin-block: variables.$db-spacing-fixed-sm;
+
+	&::before,
+	&::after {
+		--db-icon-font-size: var(--db-base-headline-icon-font-size-sm);
+		--db-icon-font-weight: var(--db-base-headline-icon-weight-sm);
+	}
 }
 
 h5 {
 	line-height: var(--db-type-headline-line-height-xs);
 	font-size: var(--db-type-headline-font-size-xs);
 	margin-block: variables.$db-spacing-fixed-xs;
+
+	&::before,
+	&::after {
+		--db-icon-font-size: var(--db-base-headline-icon-font-size-xs);
+		--db-icon-font-weight: var(--db-base-headline-icon-weight-xs);
+	}
 }
 
 h6 {
 	line-height: var(--db-type-headline-line-height-2xs);
 	font-size: var(--db-type-headline-font-size-2xs);
 	margin-block: variables.$db-spacing-fixed-2xs;
+
+	&::before,
+	&::after {
+		--db-icon-font-size: var(--db-base-headline-icon-font-size-2xs);
+		--db-icon-font-weight: var(--db-base-headline-icon-weight-2xs);
+	}
 }
 
 p {
 	margin-block: variables.$db-spacing-fixed-md;
 }
 
-// tonalities
+strong {
+	font-weight: 700;
+}
 
-@mixin tonalities($tonalities) {
-	@each $tonality in $tonalities {
-		.db-ui-#{$tonality},
-		[data-tonality="#{$tonality}"] {
-			@extend %db-ui-#{$tonality};
+[data-font="digital"] {
+	font-weight: 300;
+}
+
+[data-font="regular"] {
+	font-weight: 400;
+}
+
+[data-font="medium"] {
+	font-weight: 500;
+}
+
+[data-font="semibold"] {
+	font-weight: 600;
+}
+
+[data-font="bold"] {
+	font-weight: 700;
+}
+
+// densities
+
+@mixin densities($densities) {
+	@each $density in $densities {
+		.db-density-#{$density},
+		[data-density="#{$density}"] {
+			@extend %db-density-#{$density};
 		}
 	}
 }
 
-@include tonalities(tonality.$tonalities);
+@include densities(density.$densities);
+
+// interactive elevation
+
+[data-interactive="elevation"] {
+	cursor: pointer;
+	transition: box-shadow variables.$db-transition-duration-fast
+		variables.$db-transition-timing-functional;
+	box-shadow: variables.$db-elevation-md;
+
+	@include helpers.hover {
+		box-shadow: variables.$db-elevation-lg;
+	}
+
+	@include helpers.active {
+		box-shadow: variables.$db-elevation-sm;
+	}
+}

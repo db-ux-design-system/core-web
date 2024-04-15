@@ -14,6 +14,10 @@ import { DBSelect } from '../../../../../../output/angular/src/components/select
 import { DBCheckbox } from '../../../../../../output/angular/src/components/checkbox/checkbox';
 import { DBDivider } from '../../../../../../output/angular/src/components/divider/divider';
 import { DBButton } from '../../../../../../output/angular/src/components/button';
+import { DBTabs } from '../../../../../../output/angular/src/components/tabs';
+import { DBTabList } from '../../../../../../output/angular/src/components/tab-list';
+import { DBTab } from '../../../../../../output/angular/src/components/tab';
+import { DBTabPanel } from '../../../../../../output/angular/src/components/tab-panel';
 
 @Component({
 	selector: 'app-form',
@@ -29,7 +33,11 @@ import { DBButton } from '../../../../../../output/angular/src/components/button
 		DBTag,
 		DBCheckbox,
 		DBDivider,
-		DBButton
+		DBButton,
+		DBTabs,
+		DBTabList,
+		DBTab,
+		DBTabPanel
 	],
 	standalone: true,
 	schemas: [NO_ERRORS_SCHEMA]

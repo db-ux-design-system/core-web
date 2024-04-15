@@ -8,14 +8,14 @@ import { AccordionComponent } from '../components/accordion/accordion.component'
 import { TextareaComponent } from '../components/textarea/textarea.component';
 import { BadgeComponent } from '../components/badge/badge.component';
 import { NavigationItemComponent } from '../components/navigation-item/navigation-item.component';
-import { MainNavigationComponent } from '../components/main-navigation/main-navigation.component';
+import { NavigationComponent } from '../components/navigation/navigation.component';
 import { SelectComponent } from '../components/select/select.component';
 import { TagComponent } from '../components/tag/tag.component';
 import { InputComponent } from '../components/input/input.component';
 import { ButtonComponent } from '../components/button/button.component';
 import { FormComponent } from '../components/form/form.component';
 import { LinkComponent } from '../components/link/link.component';
-import { AlertComponent } from '../components/alert/alert.component';
+import { NotificationComponent } from '../components/notification/notification.component';
 import { RadioComponent } from '../components/radio/radio.component';
 import { CheckboxComponent } from '../components/checkbox/checkbox.component';
 import { InfotextComponent } from '../components/infotext/infotext.component';
@@ -43,7 +43,11 @@ export const NAVIGATION_ITEMS: NavItem[] = [
 		path: '06',
 		label: '06 Feedback',
 		subNavigation: getSortedNavigationItems([
-			{ path: '06/alert', label: 'Alert', component: AlertComponent },
+			{
+				path: '06/notification',
+				label: 'Notification',
+				component: NotificationComponent
+			},
 			{ path: '06/badge', label: 'Badge', component: BadgeComponent }
 		])
 	},
@@ -58,9 +62,9 @@ export const NAVIGATION_ITEMS: NavItem[] = [
 				component: NavigationItemComponent
 			},
 			{
-				path: '05/main-navigation',
-				label: 'MainNavigation',
-				component: MainNavigationComponent
+				path: '05/navigation',
+				label: 'Navigation',
+				component: NavigationComponent
 			}
 		])
 	},

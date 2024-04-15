@@ -1,20 +1,20 @@
 [
 	{
-		"name": "Tonality",
+		"name": "Density",
 		"examples": [
 			{
 				"name": "Functional",
-				"className": "db-ui-functional",
+				"className": "db-density-functional",
 				"props": {}
 			},
 			{
-				"name": "Regular (Default)",
-				"className": "db-ui-regular",
+				"name": "(Default) Regular",
+				"className": "db-density-regular",
 				"props": {}
 			},
 			{
 				"name": "Expressive",
-				"className": "db-ui-expressive",
+				"className": "db-density-expressive",
 				"props": {}
 			}
 		]
@@ -23,31 +23,37 @@
 		"name": "Semantic",
 		"examples": [
 			{
-				"name": "Adaptive (Default)",
+				"name": "(Default) Adaptive",
 				"props": {}
+			},
+			{
+				"name": "Neutral",
+				"props": {
+					"semantic": "neutral"
+				}
 			},
 			{
 				"name": "Critical",
 				"props": {
-					"variant": "critical"
+					"semantic": "critical"
 				}
 			},
 			{
 				"name": "Informational",
 				"props": {
-					"variant": "informational"
+					"semantic": "informational"
 				}
 			},
 			{
 				"name": "Successful",
 				"props": {
-					"variant": "successful"
+					"semantic": "successful"
 				}
 			},
 			{
 				"name": "Warning",
 				"props": {
-					"variant": "warning"
+					"semantic": "warning"
 				}
 			}
 		]
@@ -56,7 +62,7 @@
 		"name": "Size",
 		"examples": [
 			{
-				"name": "Medium (Default)",
+				"name": "(Default) Medium",
 				"props": {}
 			},
 			{

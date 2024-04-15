@@ -6,7 +6,7 @@ import { getVariants } from '../data';
 
 const getIcon = ({ children }: DBIconProps) => (
 	<>
-		<DBInfotext icon="none" size="small" variant="informational">
+		<DBInfotext icon="none" size="small" semantic="informational">
 			{children}
 		</DBInfotext>
 		<DBIcon icon="account">{children}</DBIcon>

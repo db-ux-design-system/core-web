@@ -8,7 +8,7 @@ import { getCodeByFramework } from './utils.js';
 const sharedPath = '../shared';
 const reactPath = '../react-showcase/src/components';
 
-const codeFrameworks = ['angular', 'react', 'vue', 'html'];
+const codeFrameworks = ['angular', 'html', 'react', 'vue'];
 const plugins = [prettier0];
 
 const getFileTypeByFramework = (framework) => {
@@ -26,10 +26,37 @@ const getFileTypeByFramework = (framework) => {
 const getExamplesAsMDX = async (componentName, variant) => {
 	const examples = variant.examples;
 
-	let result = '';
+	let result =
+		"import { useEffect, useState } from 'react';\n" +
+		'import {\n' +
+		'DBButton,\n' +
+		'DBCard,\n' +
+		'DBTab,\n' +
+		'DBTabList,\n' +
+		'DBTabPanel,\n' +
+		'DBTabs\n' +
+		"} from '../../../../../../output/react/src';\n" +
+		`const ${variant.name} = () => {
+			const [copied, setCopied] = useState<string>();
+
+			useEffect(() => {
+			if (copied) {
+			setTimeout(() => setCopied(""), 1500);
+			}
+			}, [copied]);
+			return (
+			<>`;
 
 	for (const example of examples) {
-		result += '<CH.Code>\n\n';
+		result += `
+			<DBCard className="tab-container">
+			<DBTabs>
+			<DBTabList>
+			<DBTab>Angular</DBTab>
+			<DBTab>HTML</DBTab>
+			<DBTab>React</DBTab>
+			<DBTab>Vue</DBTab>
+			</DBTabList>`;
 		for (const framework of codeFrameworks) {
 			let exampleCode;
 
@@ -57,15 +84,38 @@ const getExamplesAsMDX = async (componentName, variant) => {
 				// We do not care about errors here
 			}
 
-			result += `\`\`\`${getFileTypeByFramework(
-				framework
-			)} ${framework}\n`;
-			result += `${exampleCode?.replace(/;/g, '')}\n`;
-			result += '```\n\n';
+			exampleCode = exampleCode?.replace(/;/g, '').trim();
+
+			result += `
+				<DBTabPanel>
+				<pre>
+				<code className="hljs language-${getFileTypeByFramework(framework)}">{\`${exampleCode}\`}</code>
+				</pre>
+
+				<DBButton
+				className="copy-button"
+				noText
+				icon={copied === \`${exampleCode}\` ? 'done' : 'copy'}
+				variant="ghost"
+				onClick={()=>{
+				setCopied(\`${exampleCode}\`);
+				navigator.clipboard.writeText(\`${exampleCode}\`);
+				}}>
+				Copy
+				</DBButton>
+				</DBTabPanel>`;
 		}
 
-		result += '</CH.Code>\n\n';
+		result += `
+			</DBTabs>
+			</DBCard>`;
 	}
+
+	result += `</>
+);
+};
+
+export default ${variant.name};`;
 
 	return result;
 };
@@ -90,7 +140,7 @@ const writeCodeFiles = async (componentPath, componentName) => {
 			}
 
 			FS.writeFileSync(
-				`${codePath}/${variant.name}.mdx`,
+				`${codePath}/${variant.name}.tsx`,
 				await getExamplesAsMDX(componentName, variant)
 			);
 		}
@@ -104,7 +154,7 @@ const writeCodeFiles = async (componentPath, componentName) => {
 			pre = variants
 				.map(
 					(variant) =>
-						`import ${variant.name} from './code/${variant.name}.mdx'`
+						`import ${variant.name} from './code/${variant.name}'`
 				)
 				.join('\n');
 			tags = variants.map((variant) => `<${variant.name}/>`).join(',');
@@ -124,7 +174,8 @@ const writeCodeFiles = async (componentPath, componentName) => {
 			.replace(
 				')}></DefaultComponent>',
 				`,[${tags}])}></DefaultComponent>`
-			);
+			)
+			.replaceAll('// Patternhub:', '');
 
 		return `${pre}\n${readFile}`;
 	}

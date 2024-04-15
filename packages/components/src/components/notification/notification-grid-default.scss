@@ -1,0 +1,52 @@
+%grid-layout-default {
+	// 1. only content (min. requirement)
+	grid-template-areas: "content";
+	grid-template-columns: 1fr;
+
+	&:has(.db-button) {
+		grid-template-columns: 1fr min-content;
+		grid-template-areas: "content close";
+	}
+
+	// 2. headline
+	&:has(h6) {
+		grid-template-columns: 1fr;
+		grid-template-areas:
+			"head"
+			"content";
+
+		&:has(.db-button) {
+			grid-template-columns: 1fr min-content;
+			grid-template-areas:
+				"head close"
+				"content content";
+		}
+	}
+
+	// 3. icon or img
+	&[data-icon],
+	&[data-semantic]:not([data-semantic="adaptive"]),
+	&:has(img) {
+		grid-template-areas: "icon content";
+		grid-template-columns: min-content 1fr;
+
+		&:has(.db-button) {
+			grid-template-columns: min-content 1fr min-content;
+			grid-template-areas: "icon content close";
+		}
+
+		&:has(h6) {
+			grid-template-columns: min-content 1fr;
+			grid-template-areas:
+				"icon head"
+				"icon content";
+
+			&:has(.db-button) {
+				grid-template-columns: min-content 1fr min-content;
+				grid-template-areas:
+					"icon head close"
+					"icon content content";
+			}
+		}
+	}
+}

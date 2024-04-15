@@ -1,24 +1,24 @@
 [
 	{
-		"name": "Tonality",
+		"name": "Density",
 		"examples": [
 			{
-				"name": "functional",
-				"className": "db-ui-functional tab-hide-article",
+				"name": "Functional",
+				"className": "db-density-functional tab-hide-article",
 				"props": {
 					"label": "functional"
 				}
 			},
 			{
-				"name": "regular (Default)",
-				"className": "db-ui-regular tab-hide-article",
+				"name": "(Default) Regular",
+				"className": "db-density-regular tab-hide-article",
 				"props": {
-					"label": "regular (Default)"
+					"label": "(Default) Regular"
 				}
 			},
 			{
-				"name": "expressive",
-				"className": "db-ui-expressive tab-hide-article",
+				"name": "Expressive",
+				"className": "db-density-expressive tab-hide-article",
 				"props": {
 					"label": "expressive"
 				}
@@ -86,9 +86,9 @@
 		"name": "Behaviour",
 		"examples": [
 			{
-				"name": "Auto Width (Default)",
+				"name": "(Default) Auto Width",
 				"props": {
-					"label": "Auto Width (Default)"
+					"label": "(Default) Auto Width"
 				}
 			},
 			{

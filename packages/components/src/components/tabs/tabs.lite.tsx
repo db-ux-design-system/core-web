@@ -29,7 +29,7 @@ export default function DBTabs(props: DBTabsProps) {
 		showScrollLeft: false,
 		showScrollRight: false,
 		scrollContainer: null,
-		convertTabs(tabs: any[] | string | undefined) {
+		convertTabs(tabs: unknown[] | string | undefined) {
 			try {
 				if (typeof tabs === 'string') {
 					return JSON.parse(tabs);
@@ -60,6 +60,91 @@ export default function DBTabs(props: DBTabsProps) {
 				left: step,
 				behavior: 'smooth'
 			});
+		},
+		initTabList() {
+			if (ref) {
+				const childTabLists = ref.getElementsByClassName('db-tab-list');
+				if (childTabLists?.length > 0) {
+					const firstTabList = childTabLists.item(0);
+					if (firstTabList) {
+						if (
+							!firstTabList
+								.getAttributeNames()
+								.includes('aria-orientation')
+						) {
+							firstTabList.setAttribute(
+								'aria-orientation',
+								props.orientation || 'horizontal'
+							);
+						}
+
+						if (props.behaviour === 'arrows') {
+							const container = firstTabList.querySelector('ul');
+							state.scrollContainer = container;
+							state.evaluateScrollButtons(container);
+							container.addEventListener('scroll', () => {
+								state.evaluateScrollButtons(container);
+							});
+						}
+					}
+				}
+			}
+		},
+		initTabs(init?: boolean) {
+			if (ref) {
+				const tabs = ref.getElementsByClassName('db-tab');
+				if (tabs?.length > 0) {
+					Array.from<Element>(tabs).forEach(
+						(tab: Element, index: number) => {
+							const label = tab.querySelector('label');
+							const input = tab.querySelector('input');
+
+							if (input && label) {
+								if (input.id === DEFAULT_ID) {
+									const tabId = `${state._name}-tab-${index}`;
+									label.setAttribute('for', tabId);
+									label.setAttribute(
+										'aria-controls',
+										`${state._name}-tab-panel-${index}`
+									);
+									input.id = tabId;
+									input.setAttribute('name', state._name);
+								}
+
+								if (init) {
+									// Auto select
+									const autoSelect =
+										!props.initialSelectedMode ||
+										props.initialSelectedMode === 'auto';
+									const shouldAutoSelect =
+										(props.initialSelectedIndex ===
+											undefined &&
+											index === 0) ||
+										props.initialSelectedIndex === index;
+									if (autoSelect && shouldAutoSelect) {
+										input.click();
+									}
+								}
+							}
+						}
+					);
+				}
+
+				const tabPanels = ref.getElementsByClassName('db-tab-panel');
+				if (tabPanels?.length > 0) {
+					Array.from<Element>(tabPanels).forEach(
+						(panel: Element, index: number) => {
+							if (panel.id === DEFAULT_ID) {
+								panel.id = `${state._name}-tab-panel-${index}`;
+								panel.setAttribute(
+									'aria-labelledby',
+									`${state._name}-tab-${index}`
+								);
+							}
+						}
+					);
+				}
+			}
 		}
 	});
 
@@ -74,105 +159,27 @@ export default function DBTabs(props: DBTabsProps) {
 
 	onUpdate(() => {
 		if (ref && state.initialized) {
+			state.initTabList();
+			state.initTabs(true);
+
 			const childTabLists = ref.getElementsByClassName('db-tab-list');
-
 			if (childTabLists?.length > 0) {
-				const firstTabList = childTabLists.item(0);
-				if (firstTabList) {
-					if (
-						!firstTabList
-							.getAttributeNames()
-							.includes('aria-orientation')
-					) {
-						firstTabList.setAttribute(
-							'aria-orientation',
-							props.orientation || 'horizontal'
-						);
-					}
-
-					if (props.behaviour === 'arrows') {
-						const scrollContainers =
-							firstTabList.getElementsByClassName(
-								'db-tab-list-scroll-container'
-							);
-
-						if (scrollContainers?.length > 0) {
-							const container = scrollContainers.item(0);
-							state.scrollContainer = container;
-							state.evaluateScrollButtons(container);
-							container.addEventListener('scroll', () => {
-								state.evaluateScrollButtons(container);
-							});
+				const observer = new MutationObserver((mutations) => {
+					mutations.forEach((mutation) => {
+						if (
+							mutation.removedNodes.length ||
+							mutation.addedNodes.length
+						) {
+							state.initTabList();
+							state.initTabs();
 						}
-					}
+					});
+				});
 
-					const tabs = firstTabList.getElementsByClassName('db-tab');
-					if (tabs?.length > 0) {
-						Array.from<Element>(tabs).forEach(
-							(tab: Element, index: number) => {
-								const attributes = tab.getAttributeNames();
-								if (!attributes.includes('data-width')) {
-									tab.setAttribute(
-										'data-width',
-										props.width || 'auto'
-									);
-								}
-								if (!attributes.includes('data-alignment')) {
-									tab.setAttribute(
-										'data-alignment',
-										props.alignment || 'start'
-									);
-								}
-
-								const input = tab.getElementsByTagName('input');
-								if (input.length > 0) {
-									const firstInput = input[0];
-									if (firstInput.id === DEFAULT_ID) {
-										const tabId = `${state._name}-tab-${index}`;
-										tab.setAttribute('for', tabId);
-										tab.setAttribute(
-											'aria-controls',
-											`${state._name}-tab-panel-${index}`
-										);
-										firstInput.id = tabId;
-										firstInput.setAttribute(
-											'name',
-											state._name
-										);
-									}
-
-									// Auto select
-									const autoSelect =
-										!props.initialSelectedMode ||
-										props.initialSelectedMode === 'auto';
-									const shouldAutoSelect =
-										(props.initialSelectedIndex ===
-											undefined &&
-											index === 0) ||
-										props.initialSelectedIndex === index;
-									if (autoSelect && shouldAutoSelect) {
-										firstInput.click();
-									}
-								}
-							}
-						);
-					}
-				}
-			}
-
-			const tabPanels = ref.getElementsByClassName('db-tab-panel');
-			if (tabPanels?.length > 0) {
-				Array.from<Element>(tabPanels).forEach(
-					(panel: Element, index: number) => {
-						if (panel.id === DEFAULT_ID) {
-							panel.id = `${state._name}-tab-panel-${index}`;
-							panel.setAttribute(
-								'aria-labelledby',
-								`${state._name}-tab-${index}`
-							);
-						}
-					}
-				);
+				observer.observe(childTabLists[0], {
+					childList: true,
+					subtree: true
+				});
 			}
 
 			state.initialized = false;
@@ -185,11 +192,13 @@ export default function DBTabs(props: DBTabsProps) {
 			id={state._id}
 			class={cls('db-tabs', props.className)}
 			data-orientation={props.orientation}
-			data-scroll-behaviour={props.behaviour}>
+			data-scroll-behaviour={props.behaviour}
+			data-alignment={props.alignment ?? 'start'}
+			data-width={props.width ?? 'auto'}>
 			<Show when={state.showScrollLeft}>
 				<DBButton
 					className="tabs-scroll-left"
-					variant="text"
+					variant="ghost"
 					icon="chevron_left"
 					noText
 					onClick={() => state.scroll(true)}>
@@ -204,8 +213,6 @@ export default function DBTabs(props: DBTabsProps) {
 								key={props.name + 'tab' + index}
 								active={tab.active}
 								label={tab.label}
-								alignment={tab.alignment}
-								width={tab.width}
 								iconAfter={tab.iconAfter}
 								icon={tab.icon}
 								noText={tab.noText}
@@ -226,7 +233,7 @@ export default function DBTabs(props: DBTabsProps) {
 			<Show when={state.showScrollRight}>
 				<DBButton
 					className="tabs-scroll-right"
-					variant="text"
+					variant="ghost"
 					icon="chevron_right"
 					noText
 					onClick={() => state.scroll()}>

@@ -11,6 +11,6 @@ import { DBLink } from "@db-ui/v-components";
 </script>
 
 <template>
-	<DBLink href="#" variant="primary">Link</DBLink>
+	<DBLink href="#" variant="brand">Link</DBLink>
 </template>
 ```

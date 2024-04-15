@@ -4,7 +4,7 @@ import {
 	DBButton,
 	DBHeader,
 	DBLink,
-	DBMainNavigation,
+	DBNavigation,
 	DBNavigationItem
 } from '../../../../../output/react/src';
 import { type DBPageProps } from '../../../../../output/react/src/components/page/model';
@@ -19,9 +19,7 @@ const getPage = ({
 	className,
 	describedbyid,
 	id,
-	key,
-	tabIndex,
-	title
+	key
 }: DBPageProps) => (
 	<DBPage
 		type={type}
@@ -30,46 +28,50 @@ const getPage = ({
 		describedbyid={describedbyid}
 		id={id}
 		key={key}
-		tabIndex={tabIndex}
-		slotHeader={
+		header={
 			<DBHeader
-				slotBrand={<DBBrand title="DBHeader">DBHeader</DBBrand>}
-				slotMetaNavigation={
+				brand={
+					<DBBrand
+						title="DBHeader"
+						imgSrc="https://db-ui.github.io/images/db_logo.svg">
+						DBHeader
+					</DBBrand>
+				}
+				metaNavigation={
 					<>
 						<DBLink href="#">Imprint</DBLink>
 						<DBLink href="#">Help</DBLink>
 					</>
 				}
-				slotCallToAction={
-					<DBButton icon="search" variant="text" noText>
+				callToAction={
+					<DBButton icon="search" variant="ghost" noText>
 						Search
 					</DBButton>
 				}
-				slotActionBar={
+				actionBar={
 					<>
-						<DBButton icon="account" variant="text" noText>
+						<DBButton icon="account" variant="ghost" noText>
 							Profile
 						</DBButton>
-						<DBButton icon="alert" variant="text" noText>
+						<DBButton icon="alert" variant="ghost" noText>
 							Notification
 						</DBButton>
-						<DBButton icon="help" variant="text" noText>
+						<DBButton icon="help" variant="ghost" noText>
 							Help
 						</DBButton>
 					</>
-				}
-				title={title}>
-				<DBMainNavigation>
+				}>
+				<DBNavigation>
 					<DBNavigationItem icon="account">
 						<a href="#">{children}</a>
 					</DBNavigationItem>
 					<DBNavigationItem disabled>
 						<a href="#">{children} disabled</a>
 					</DBNavigationItem>
-				</DBMainNavigation>
+				</DBNavigation>
 			</DBHeader>
 		}
-		slotFooter={<>Footer Content</>}>
+		footer={<>Footer Content</>}>
 		My Page Content
 	</DBPage>
 );

@@ -23,7 +23,7 @@ import { DBAccordionItem } from '@db-ui/ngx-components';
 ```html app.component.html
 <!-- app.component.html -->
 <db-accordion-item>
-	<ng-container *title>Title</ng-container>
+	<ng-container *headline>Title</ng-container>
 	Content
 </db-accordion-item>
 ```
@@ -32,5 +32,5 @@ import { DBAccordionItem } from '@db-ui/ngx-components';
 
 ```html app.component.html
 <!-- app.component.html -->
-<db-accordion-item title="Title" content="Content"></db-accordion-item>
+<db-accordion-item headlinePlain="Title" content="Content"></db-accordion-item>
 ```

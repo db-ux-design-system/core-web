@@ -1,24 +1,24 @@
 [
 	{
-		"name": "Tonality",
+		"name": "Density",
 		"examples": [
 			{
 				"name": "Functional",
-				"className": "db-ui-functional",
+				"className": "db-density-functional",
 				"props": {
 					"href": "#"
 				}
 			},
 			{
-				"name": "Regular (Default)",
-				"className": "db-ui-regular",
+				"name": "(Default) Regular",
+				"className": "db-density-regular",
 				"props": {
 					"href": "#"
 				}
 			},
 			{
 				"name": "Expressive",
-				"className": "db-ui-expressive",
+				"className": "db-density-expressive",
 				"props": {
 					"href": "#"
 				}
@@ -29,7 +29,7 @@
 		"name": "Semantic",
 		"examples": [
 			{
-				"name": "Adaptive (Default)",
+				"name": "(Default) Adaptive",
 				"props": {
 					"href": "#"
 				}
@@ -38,7 +38,7 @@
 				"name": "Brand",
 				"props": {
 					"href": "#",
-					"variant": "primary"
+					"variant": "brand"
 				}
 			}
 		]
@@ -65,7 +65,7 @@
 		"name": "Size",
 		"examples": [
 			{
-				"name": "Medium (Default)",
+				"name": "(Default) Medium",
 				"props": {
 					"href": "#"
 				}
@@ -83,7 +83,7 @@
 		"name": "Content",
 		"examples": [
 			{
-				"name": "Internal (Default)",
+				"name": "(Default) Internal",
 				"props": {
 					"href": "#"
 				}

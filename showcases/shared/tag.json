@@ -1,20 +1,20 @@
 [
 	{
-		"name": "Tonality",
+		"name": "Density",
 		"examples": [
 			{
-				"name": "functional",
-				"className": "db-ui-functional",
+				"name": "Functional",
+				"className": "db-density-functional",
 				"props": {}
 			},
 			{
-				"name": "regular (Default)",
-				"className": "db-ui-regular",
+				"name": "(Default) Regular",
+				"className": "db-density-regular",
 				"props": {}
 			},
 			{
-				"name": "expressive",
-				"className": "db-ui-expressive",
+				"name": "Expressive",
+				"className": "db-density-expressive",
 				"props": {}
 			}
 		]
@@ -23,7 +23,7 @@
 		"name": "Emphasis",
 		"examples": [
 			{
-				"name": "Weak (Default)",
+				"name": "(Default) Weak",
 				"props": {}
 			},
 			{
@@ -35,40 +35,40 @@
 		]
 	},
 	{
-		"name": "Variant",
+		"name": "Semantic",
 		"examples": [
 			{
-				"name": "Adaptive (Default)",
+				"name": "(Default) Adaptive",
 				"props": {}
 			},
 			{
 				"name": "Neutral",
 				"props": {
-					"variant": "neutral"
+					"semantic": "neutral"
 				}
 			},
 			{
 				"name": "Critical",
 				"props": {
-					"variant": "critical"
+					"semantic": "critical"
 				}
 			},
 			{
 				"name": "Informational",
 				"props": {
-					"variant": "informational"
+					"semantic": "informational"
 				}
 			},
 			{
 				"name": "Successful",
 				"props": {
-					"variant": "successful"
+					"semantic": "successful"
 				}
 			},
 			{
 				"name": "Warning",
 				"props": {
-					"variant": "warning"
+					"semantic": "warning"
 				}
 			},
 			{
@@ -80,35 +80,35 @@
 			{
 				"name": "Neutral Strong",
 				"props": {
-					"variant": "neutral",
+					"semantic": "neutral",
 					"emphasis": "strong"
 				}
 			},
 			{
 				"name": "Critical Strong",
 				"props": {
-					"variant": "critical",
+					"semantic": "critical",
 					"emphasis": "strong"
 				}
 			},
 			{
 				"name": "Informational Strong",
 				"props": {
-					"variant": "informational",
+					"semantic": "informational",
 					"emphasis": "strong"
 				}
 			},
 			{
 				"name": "Successful Strong",
 				"props": {
-					"variant": "successful",
+					"semantic": "successful",
 					"emphasis": "strong"
 				}
 			},
 			{
 				"name": "Warning Strong",
 				"props": {
-					"variant": "warning",
+					"semantic": "warning",
 					"emphasis": "strong"
 				}
 			}
@@ -118,7 +118,7 @@
 		"name": "Behaviour",
 		"examples": [
 			{
-				"name": "Static (Default)",
+				"name": "(Default) Static",
 				"props": {}
 			},
 			{
@@ -195,7 +195,7 @@
 		"name": "State",
 		"examples": [
 			{
-				"name": "Unchecked (Default)",
+				"name": "(Default) Unchecked",
 				"props": {
 					"component": "checkbox"
 				},
@@ -239,7 +239,7 @@
 		"name": "Content",
 		"examples": [
 			{
-				"name": "Text (Default)",
+				"name": "(Default) Text",
 				"props": {}
 			},
 			{
@@ -261,7 +261,7 @@
 		"name": "Overflow",
 		"examples": [
 			{
-				"name": "No Overflow (Default)",
+				"name": "(Default) No Overflow",
 				"props": {}
 			},
 			{

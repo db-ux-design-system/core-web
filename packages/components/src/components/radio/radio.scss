@@ -3,20 +3,34 @@
 @use "../../styles/form-components";
 
 .db-radio {
-	@extend %check-element;
+	@include form-components.set-default-check-element(radio);
 
 	input {
 		border-color: currentColor;
-		border-radius: variables.$db-border-radius-3xl;
+		border-radius: variables.$db-border-radius-full;
 		transition: border-width variables.$db-transition-duration-fast
-			variables.$db-transition-functional-timing;
+			variables.$db-transition-timing-functional;
 
 		&:checked {
-			border-width: calc(#{form-components.$font-size-height} * 0.3);
-
 			// The radio element still has the default background for the dot on :hover when in checked state
-			&:enabled:hover {
-				@extend %bg-transparent;
+			&:not(:disabled):hover {
+				background-color: colors.$db-current-color-bg-enabled;
+			}
+
+			&:not([data-size="small"]) {
+				border-width: calc(
+					(
+							#{form-components.$font-size-height} - #{variables.$db-sizing-2xs}
+						) / 2
+				);
+			}
+
+			&[data-size="small"] {
+				border-width: calc(
+					(
+							#{form-components.$font-size-height} - #{variables.$db-sizing-3xs}
+						) / 2
+				);
 			}
 		}
 	}

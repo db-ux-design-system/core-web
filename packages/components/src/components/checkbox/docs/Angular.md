@@ -75,7 +75,7 @@ import { FormsModule } from '@angular/forms';
 		name="checkbox"
 		label="Checkbox"
 	></db-checkbox>
-	<db-button type="button" variant="primary" (click)="showValues()"
+	<db-button type="button" variant="brand" (click)="showValues()"
 		>Get checkbox value</db-button
 	>
 </form>

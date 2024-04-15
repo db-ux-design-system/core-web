@@ -1,5 +1,5 @@
 import {
-	DefaultVariantProps,
+	SemanticProps,
 	EmphasisProps,
 	GlobalProps,
 	GlobalState,
@@ -22,7 +22,7 @@ export interface DBBadgeDefaultProps {
 
 export type DBBadgeProps = DBBadgeDefaultProps &
 	GlobalProps &
-	DefaultVariantProps &
+	SemanticProps &
 	SizeProps &
 	EmphasisProps;
 

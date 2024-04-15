@@ -79,12 +79,8 @@
 		inline-size: 100%;
 		margin-inline-start: 0;
 
-		&:has(input:not(:checked)) {
-			--db-current-base-color-alpha: 100%;
-		}
-
 		&:has(input:checked) {
-			border-width: variables.$db-border-height-sm;
+			border-width: variables.$db-border-height-3xs;
 
 			&::before {
 				content: none;
@@ -106,20 +102,27 @@
 							var(
 									--db-padding-inline-start,
 									#{variables.$db-spacing-fixed-2xs}
-								) + #{variables.$db-border-height-sm}
+								) + #{variables.$db-border-height-3xs}
 						) * -1
 				)
 			);
 
-			&:checked::before {
-				--db-icon: "";
+			&:checked {
+				&,
+				&:not(:disabled):hover,
+				&:not(:disabled):active {
+					background-color: colors.$db-brand-bg-transparent-full-enabled;
+				}
+
+				&::before {
+					--db-icon: "";
+				}
 			}
 		}
 	}
 
 	a {
 		@extend %default-transition;
-		@include colors.bg-transparent-interactive();
 		display: inline-flex;
 		align-items: center;
 		text-decoration: none;
@@ -127,7 +130,7 @@
 		&::after {
 			--db-icon-margin-start: 0;
 			--db-icon-font-size: 0;
-			content: "" !important;
+			content: none !important;
 		}
 	}
 
@@ -143,31 +146,6 @@
 		border: none;
 	}
 
-	input:checked {
-		@include colors.bg-transparent-hover();
-	}
-
-	button {
-		@include colors.bg-transparent-interactive();
-	}
-
-	button,
-	label:has(input:checked) {
-		@include colors.bg-transparent-interactive();
-		@include colors.get-variant-bg-color(0.08);
-	}
-
-	&:not([data-emphasis="strong"]) {
-		label:has(input[type="radio"]:checked) {
-			&:enabled {
-				&:hover,
-				&:active {
-					--db-current-base-color-alpha: 92%;
-				}
-			}
-		}
-	}
-
 	button,
 	a,
 	label {
@@ -175,12 +153,7 @@
 		@extend %component-border;
 		block-size: inherit;
 		padding: 0 variables.$db-spacing-fixed-2xs;
-		border-radius: variables.$db-border-radius-md;
-	}
-
-	button,
-	a {
-		@include colors.get-variant-bg-color(0.08);
+		border-radius: variables.$db-border-radius-xs;
 	}
 
 	db-button,
@@ -196,7 +169,7 @@
 	}
 
 	&[data-disabled="true"] {
-		opacity: variables.$db-opacity-sm;
+		opacity: component.$default-disabled;
 		pointer-events: none;
 	}
 
@@ -214,7 +187,8 @@
 	.db-tab-remove-button {
 		&:is(button),
 		button {
-			@include colors.get-variant-bg-color(0);
+			// overwrite to transparent
+			background-color: colors.$db-current-color-bg-transparent-full-enabled;
 			margin-inline-start: variables.$db-spacing-fixed-2xs;
 			block-size: 100%;
 		}

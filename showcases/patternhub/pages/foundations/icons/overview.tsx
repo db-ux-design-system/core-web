@@ -65,7 +65,7 @@ const IconOverview = () => {
 						<DBCard spacing="small">
 							{/* TODO: Make this interactive to copy the icon name */}
 							<DBIcon icon={icon}>{icon}</DBIcon>
-							<DBInfotext variant="informational" icon="none">
+							<DBInfotext semantic="informational" icon="none">
 								{icon}
 							</DBInfotext>
 						</DBCard>

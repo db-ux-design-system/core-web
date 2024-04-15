@@ -21,6 +21,7 @@ const updatePlaywright = () => {
 				'.github/workflows/02-e2e.yml',
 				'.github/workflows/02-e2e-foundations.yml',
 				'.github/workflows/02-e2e-showcases.yml',
+				'.github/workflows/02-e2e-regenerate.yml',
 				'e2e/Dockerfile'
 			]
 		},

@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import DefaultComponent from "../DefaultComponent.vue";
 import defaultComponentVariants from "../../../../shared/tab.json";
-import { DBTab } from "../../../../../output/vue/vue3/src";
+import { DBTab } from "../../../../../output/vue/src";
 </script>
 
 <template>
@@ -14,8 +14,6 @@ import { DBTab } from "../../../../../output/vue/vue3/src";
 				:noText="exampleProps.noText"
 				:icon="exampleProps.icon"
 				:iconAfter="exampleProps.iconAfter"
-				:width="exampleProps.width"
-				:alignment="exampleProps.alignment"
 				:disabled="exampleProps.disabled"
 			>
 				{{ exampleName }}

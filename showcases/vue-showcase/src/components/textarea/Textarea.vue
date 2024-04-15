@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import DefaultComponent from "../DefaultComponent.vue";
 import defaultComponentVariants from "../../../../shared/textarea.json";
-import { DBTextarea } from "../../../../../output/vue/vue3/src";
+import { DBInput, DBTextarea } from "../../../../../output/vue/src";
 </script>
 
 <template>
@@ -16,11 +16,9 @@ import { DBTextarea } from "../../../../../output/vue/vue3/src";
 				:required="exampleProps.required"
 				:readOnly="exampleProps.readOnly"
 				:label="exampleProps.label"
-				:labelVariant="exampleProps.labelVariant"
 				:placeholder="exampleProps.placeholder || exampleName"
 				:rows="exampleProps.rows"
 				:value="exampleProps.value"
-				:invalid="exampleProps.invalid"
 				:variant="exampleProps.variant"
 			></DBTextarea>
 		</template>

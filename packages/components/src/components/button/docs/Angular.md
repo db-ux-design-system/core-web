@@ -20,5 +20,5 @@ import { DBButton } from '@db-ui/ngx-components';
 
 ```html app.component.html
 <!-- app.component.html -->
-<db-button variant="primary">Button</db-button>
+<db-button variant="brand">Button</db-button>
 ```

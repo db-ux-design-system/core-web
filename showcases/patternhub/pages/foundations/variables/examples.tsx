@@ -31,14 +31,15 @@ const Example = () => {
 						<h2>{example}</h2>
 						<div className="example-container">
 							{['functional', 'regular', 'expressive'].map(
-								(tonality) => (
+								(density) => (
 									<DBCard
-										className={`example-item db-ui-${tonality}`}
+										className={`example-item db-density-${density}`}
 										spacing="small">
 										<DBInfotext
 											icon="none"
-											variant="informational">
-											{tonality}
+											semantic="informational">
+											{density.charAt(0).toUpperCase() +
+												density.slice(1)}
 										</DBInfotext>
 										<div
 											className={`example-${example

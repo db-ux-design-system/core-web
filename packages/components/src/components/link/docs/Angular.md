@@ -20,5 +20,5 @@ import { DBLink } from '@db-ui/ngx-components';
 
 ```html app.component.html
 <!-- app.component.html -->
-<db-link href="#" variant="primary">Link</db-link>
+<db-link href="#" variant="brand">Link</db-link>
 ```

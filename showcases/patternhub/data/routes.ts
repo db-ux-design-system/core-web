@@ -27,11 +27,11 @@ const componentChildren: NavigationItem[] = [
 			{
 				label: 'DBBrand',
 				name: 'brand'
-			},
+			} /* TODO: Uncomment this if dev and design is aligned
 			{
 				label: 'DBIcon',
 				name: 'icon'
-			},
+			}, */,
 			{
 				label: 'DBTooltip',
 				name: 'tooltip'
@@ -46,11 +46,13 @@ const componentChildren: NavigationItem[] = [
 			},
 			{
 				label: 'DBAccordion',
-				name: 'accordion'
-			},
-			{
-				label: 'DBAccordionItem',
-				name: 'accordion-item'
+				name: 'accordion',
+				subNavigation: [
+					{
+						label: 'DBAccordionItem Properties',
+						path: `/components/accordion-item/properties`
+					}
+				]
 			},
 			{
 				label: 'DBTabs',
@@ -94,8 +96,8 @@ const componentChildren: NavigationItem[] = [
 		path: '/components/feedback',
 		subNavigation: [
 			{
-				label: 'DBAlert',
-				name: 'alert'
+				label: 'DBNotification',
+				name: 'notification'
 			},
 			{
 				label: 'DBBadge',
@@ -122,11 +124,11 @@ const componentChildren: NavigationItem[] = [
 			{
 				label: 'DBHeader',
 				name: 'header'
-			},
+			} /* TODO: Uncomment this if dev and design is aligned
 			{
 				label: 'DBPage',
 				name: 'page'
-			},
+			}, */,
 			{
 				label: 'DBSection',
 				name: 'section'
@@ -138,12 +140,14 @@ const componentChildren: NavigationItem[] = [
 		path: '/components/navigation',
 		subNavigation: [
 			{
-				label: 'DBMainNavigation',
-				name: 'main-navigation'
-			},
-			{
-				label: 'DBNavigationItem',
-				name: 'navigation-item'
+				label: 'DBNavigation',
+				name: 'navigation',
+				subNavigation: [
+					{
+						label: 'DBNavigationItem Properties',
+						path: `/components/navigation-item/properties`
+					}
+				]
 			}
 		]
 	},
@@ -204,13 +208,13 @@ export const ROUTES: NavigationItem[] = [
 				]
 			},
 			{
-				label: 'Tonalities',
-				path: '/foundations/tonalities',
+				label: 'Densities',
+				path: '/foundations/densities',
 				subNavigation: [
-					{ label: 'Readme', path: '/foundations/tonalities/readme' },
+					{ label: 'Readme', path: '/foundations/densities/readme' },
 					{
 						label: 'Examples',
-						path: '/foundations/tonalities/examples'
+						path: '/foundations/densities/examples'
 					}
 				]
 			},
@@ -232,6 +236,8 @@ export const ROUTES: NavigationItem[] = [
 		path: '/components',
 		subNavigation: [
 			{ label: 'Readme', path: '/components/readme' },
+			{ label: 'Router usage', path: '/components/router-usage' },
+			{ label: 'Validation', path: '/components/validation' },
 			...componentChildren.map((category) => ({
 				...category,
 				subNavigation: category?.subNavigation?.map((component) => ({
@@ -253,7 +259,8 @@ export const ROUTES: NavigationItem[] = [
 						{
 							label: 'Migration',
 							path: `/components/${component.name}/migration`
-						}
+						},
+						...(component.subNavigation ?? [])
 					]
 				}))
 			}))

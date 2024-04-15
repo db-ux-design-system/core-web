@@ -7,11 +7,18 @@
 
 An Angular library containing all styles & components of [DB UX Design System (technical components)](https://github.com/db-ui/mono).
 
+> **Note:** Find more information about specific components [here](https://db-ui.github.io/mono/review/main)
+
 ## Install
 
-`npm i @db-ui/ngx-components`
+```shell
+npm i @db-ui/ngx-components
+```
+
+> **Note:** This will install `@db-ui/foundations` and `@db-ui/components` as well which contains the `css`/`scss` files
 
 ## Styling Dependencies
+
 Import the styles in scss or css. Based on your technology the file names could be different.
 
 -   Default (db-ui-42): points to `../assets`
@@ -23,7 +30,7 @@ Import the styles in scss or css. Based on your technology the file names could 
 
 ```scss styles.scss
 // styles.scss
-@forward "@db-ui/components/build/styles/db-ui-42-rollup";
+@forward "@db-ui/components/build/styles/db-ui-42-webpack";
 ```
 
 </details>
@@ -37,6 +44,13 @@ Import the styles in scss or css. Based on your technology the file names could 
 
 </details>
 
+### Resolve assets
+
+The current default development config in `angular.json` doesn't use output hashing. This may cause an issue loading the fonts. Look at [this](https://github.com/angular/angular-cli/issues/26347) for more information.
+
+As a solution add `
+"outputHashing": "media"` to `configurations/development` in`angular.json`.
+
 ## Usage
 
 ```ts app.component.ts
@@ -49,13 +63,14 @@ import { DBButton } from '@db-ui/ngx-components';
 		// ...,
 		DBButton
     ],
+	standalone: true
 	// ...
 })
 ```
 
 ```html app.component.html
 <!-- app.component.html -->
-<db-button variant="primary">Button</db-button>
+<db-button variant="brand">Button</db-button>
 ```
 
 ### Events
@@ -65,60 +80,31 @@ There are 3 ways to use Events in Angular:
 **[ngModel](https://angular.io/api/forms/NgModel)**
 
 ```html
-<DBInput label="Inputfield" name="input-name" [(ngModel)]="input"></DBInput>
+<db-input
+	label="Inputfield"
+	name="input-name"
+	[(ngModel)]="inputModel"
+></db-input>
 ```
 
 **[FormControl](https://angular.io/api/forms/FormControl)**
 
 ```html
-<DBInput
+<db-input
 	label="Inputfield"
 	name="input-name"
 	[formControl]="inputControl"
-></DBInput>
+></db-input>
 ```
 
 **[change](https://developer.mozilla.org/de/docs/Web/API/HTMLElement/change_event)**
 
 ```html
-<DBInput
+<db-input
 	label="Inputfield"
 	name="input-name"
-	(change)="input = $event.target.value"
-></DBInput>
-```
-
-## Custom Events
-
-We do not provide every event on every component. If you are missing an event please [add an issue](https://github.com/db-ui/mono/issues).
-
-As a workaround you can use refs:
-
-### Ref on component
-
-```html
-<DBButton #buttonRef>Test</DBButton>
-```
-
-```ts
-import { Component, ViewChild, AfterViewInit } from "@angular/core";
-
-@Component({
-	selector: "app-my-component",
-	templateUrl: "./my-component.component.html"
-})
-export class MyComponent implements AfterViewInit {
-	@ViewChild("buttonRef") buttonRef: any;
-
-	ngAfterViewInit(): void {
-		this.buttonRef?.component?.nativeElement?.addEventListener(
-			"mouseenter",
-			(ev: any) => {
-				console.log(ev);
-			}
-		);
-	}
-}
+	(change)="inputModel = $event.target.value"
+></db-input>
 ```
 
 ## Deutsche Bahn brand

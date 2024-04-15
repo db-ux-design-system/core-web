@@ -71,7 +71,7 @@ import { FormsModule } from '@angular/forms';
 <!-- form.component.html -->
 <form>
 	<DBRadio ngDefaultControl [(ngModel)]="radio">Label</DBRadio>
-	<DBButton type="button" variant="primary" (click)="showValues()"
+	<DBButton type="button" variant="brand" (click)="showValues()"
 		>Get radio value</DBButton
 	>
 </form>

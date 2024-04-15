@@ -4,8 +4,8 @@ import defaultComponentVariants from '../../../../shared/infotext.json';
 import { type DBInfotextProps } from '../../../../../output/react/src/components/infotext/model';
 import { getVariants } from '../data';
 
-const getInfotext = ({ variant, size, icon, children }: DBInfotextProps) => (
-	<DBInfotext variant={variant} size={size} icon={icon}>
+const getInfotext = ({ semantic, size, icon, children }: DBInfotextProps) => (
+	<DBInfotext semantic={semantic} size={size} icon={icon}>
 		{children}
 	</DBInfotext>
 );

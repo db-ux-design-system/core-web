@@ -1,9 +1,12 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+
 import { IconTypes } from './icon-types';
 
 export type GlobalProps = {
 	/**
 	 * default slot
 	 */
+
 	children?: any;
 
 	/**
@@ -25,16 +28,6 @@ export type GlobalProps = {
 	 * React specific for render process.
 	 */
 	key?: string;
-
-	/**
-	 * The default tabindex (https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/tabindex?retiredLocale=de).
-	 */
-	tabIndex?: number;
-
-	/**
-	 * The [title attribute](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/title) specifies the tooltip of the component.
-	 */
-	title?: string;
 };
 
 export type GlobalState = {
@@ -42,30 +35,30 @@ export type GlobalState = {
 	defaultValues?: { [key: string]: string };
 };
 
-export type DefaultVariantType =
+export type SemanticType =
 	| 'adaptive'
 	| 'neutral'
 	| 'critical'
 	| 'informational'
 	| 'warning'
 	| 'successful';
-export type DefaultVariantProps = {
+export type SemanticProps = {
 	/**
-	 * The variant defines the default variants for most components.
+	 * The semantic defines the default variants for most components.
 	 */
-	variant?: DefaultVariantType;
+	semantic?: SemanticType;
 };
 
 export type IconProps = {
 	/**
-	 * Define an icon by it's identifier (like e.g. _account_, compare to [Icons](https://db-ui.github.io/mono/review/main/foundations/icons) to get displayed in front of the elements content.
+	 * Define an icon by its identifier (like e.g. _account_, compare to [Icons](https://db-ui.github.io/mono/review/main/foundations/icons/overview)) to get displayed in front of the elements content.
 	 */
 	icon?: IconTypes;
 };
 
 export type IconAfterProps = {
 	/**
-	 * Define an icon by it's identifier (like e.g. _account_, compare to [Icons](https://db-ui.github.io/mono/review/main/foundations/icons) to get displayed in front of the elements content.
+	 * Define an icon by its identifier (like e.g. _account_, compare to [Icons](https://db-ui.github.io/mono/review/main/foundations/icons/overview)) to get displayed in front of the elements content.
 	 */
 	iconAfter?: IconTypes;
 };
@@ -94,6 +87,10 @@ export type PlacementProps = {
 		| 'top-end'
 		| 'bottom-start'
 		| 'bottom-end';
+};
+
+export type NavigationBehaviourState = {
+	handleNavigationItemClick: (event: unknown) => void;
 };
 
 export type GapProps = {
@@ -136,6 +133,10 @@ export type PopoverProps = {
 	width?: 'auto' | 'fixed';
 };
 
+export type PopoverState = {
+	handleAutoPlacement: () => void;
+};
+
 export type SizeProps = {
 	/**
 	 * The size attribute changes the font-size and other related sizes of the component.
@@ -152,6 +153,10 @@ export type EmphasisProps = {
 
 export type FormProps = {
 	/**
+	 * Marks an input element as invalid (red) | valid(green) | no-validation(grey). Overwrites the :user-valid selector.
+	 */
+	customValidity?: 'invalid' | 'valid' | 'no-validation';
+	/**
 	 * The disabled attribute can be set to keep a user from clicking on the form element.
 	 */
 	disabled?: boolean;
@@ -159,10 +164,7 @@ export type FormProps = {
 	 * 	Associates the control with a form element
 	 */
 	form?: string;
-	/**
-	 * Marks an input element as invalid.
-	 */
-	invalid?: boolean;
+
 	/**
 	 * The label attribute specifies the caption of the form element.
 	 */
@@ -207,14 +209,19 @@ export type FormCheckProps = {
 	/**
 	 * Hide the label of a radio/checkbox.
 	 */
-	labelVariant?: 'hidden';
+	variant?: 'hidden';
+};
+
+export type FormMessageState = {
+	getValidMessage: () => string;
+	getInvalidMessage: () => string;
 };
 
 export type FormMessageProps = {
 	/**
-	 * Change the variant of the label to float
+	 * Change the variant of the label to float or hidden
 	 */
-	labelVariant?: 'above' | 'floating' | 'hidden';
+	variant?: 'above' | 'floating' | 'hidden';
 	/**
 	 * Text that appears in the form control when it has no value set
 	 */
@@ -223,6 +230,16 @@ export type FormMessageProps = {
 	 * Optional helper message for form components
 	 */
 	message?: string;
+
+	/**
+	 * Helper message for valid form components
+	 */
+	validMessage?: string;
+
+	/**
+	 * Helper message for invalid form components
+	 */
+	invalidMessage?: string;
 
 	/**
 	 * Set/overwrite icon for helper message for form components
@@ -295,6 +312,9 @@ export type FormMessageProps = {
 
 export type FormState = {
 	_messageId?: string;
+	_validMessageId?: string;
+	_invalidMessageId?: string;
+	_descByIds?: string;
 };
 
 export type InitializedState = {
@@ -351,13 +371,7 @@ export type LinkProps = {
 	text?: string;
 };
 
-export type CardProps = {
-	/**
-	 * The elevation attribute changes the style of the card (box-shadow).
-	 */
-	elevation?: 'default' | 'none';
-};
-
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 export type ClickEvent<T> = MouseEvent;
 export type ClickEventProps<T> = {
 	/**
@@ -408,6 +422,7 @@ export type ItemClickState = {
 	handleItemClick: (id: string) => void;
 };
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 export type ChangeEvent<T> = Event;
 export type ChangeEventProps<T> = {
 	change?: (event: ChangeEvent<T>) => void;
@@ -418,6 +433,7 @@ export type ChangeEventState<T> = {
 	handleChange: (event: ChangeEvent<T>) => void;
 };
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 export type InteractionEvent<T> = FocusEvent;
 
 export type FocusEventProps<T> = {

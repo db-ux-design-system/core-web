@@ -26,7 +26,6 @@ export default function DBBrand(props: DBBrandProps) {
 		<div ref={ref} data-icon={props.hideLogo ? 'none' : state.defaultValues.icon}
 			id={props.id}
 			class={cls('db-brand', props.className)}>
-
 			{props.children}
 		</div>
 	);

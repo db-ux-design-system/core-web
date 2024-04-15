@@ -113,7 +113,7 @@ import { FormsModule } from '@angular/forms';
 		placeholder="Placeholder"
 		description="Description"
 	></DBInput>
-	<DBButton type="button" variant="primary" (click)="showValues()"
+	<DBButton type="button" variant="brand" (click)="showValues()"
 		>Get input value</DBButton
 	>
 </form>

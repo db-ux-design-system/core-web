@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import DefaultComponent from "../DefaultComponent.vue";
 import defaultComponentVariants from "../../../../shared/checkbox.json";
-import { DBCheckbox } from "../../../../../output/vue/vue3/src";
+import { DBCheckbox } from "../../../../../output/vue/src";
 </script>
 
 <template>
@@ -18,8 +18,6 @@ import { DBCheckbox } from "../../../../../output/vue/vue3/src";
 				:value="exampleProps.value"
 				:required="exampleProps.required"
 				:indeterminate="exampleProps.indeterminate"
-				:invalid="exampleProps.invalid"
-				:labelVariant="exampleProps.labelVariant"
 				:size="exampleProps.size"
 				>{{ exampleName }}</DBCheckbox
 			>
