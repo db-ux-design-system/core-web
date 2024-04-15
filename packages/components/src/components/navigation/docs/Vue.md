@@ -74,7 +74,8 @@ import { DBMainNavigation, DBNavigationItem } from "@db-ui/v-components";
 					<RouterLink to="/demo/1" ariaCurrentValue="page">
 						Demo Page 1
 					</RouterLink>
-
+				</DBNavigationItem>
+				<DBNavigationItem>
 					<RouterLink to="/demo/2" ariaCurrentValue="page">
 						Demo Page 2
 					</RouterLink>

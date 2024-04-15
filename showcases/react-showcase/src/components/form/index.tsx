@@ -13,7 +13,7 @@ import {
 	DBInput,
 	DBRadio,
 	DBSelect,
-	DBTab,
+	DBTabItem,
 	DBTag,
 	DBTextarea
 } from '../../../../../output/react/src';
@@ -248,9 +248,9 @@ const FormComponent = () => {
 				</DBButton>
 				<DBTabs>
 					<DBTabList>
-						<DBTab>Test 1</DBTab>
-						<DBTab>Test 2</DBTab>
-						{tabsTest && <DBTab>Test 3</DBTab>}
+						<DBTabItem>Test 1</DBTabItem>
+						<DBTabItem>Test 2</DBTabItem>
+						{tabsTest && <DBTabItem>Test 3</DBTabItem>}
 					</DBTabList>
 					<DBTabPanel>Tab Panel 1</DBTabPanel>
 					<DBTabPanel>Tab Panel 2</DBTabPanel>
@@ -259,15 +259,15 @@ const FormComponent = () => {
 
 				<DBTabs orientation="vertical">
 					<DBTabList>
-						<DBTab icon="airplane">Airplane Button</DBTab>
-						<DBTab iconAfter="cancel">Cancel Button</DBTab>
-						<DBTab iconAfter="cancel">
+						<DBTabItem icon="airplane">Airplane Button</DBTabItem>
+						<DBTabItem iconAfter="cancel">Cancel Button</DBTabItem>
+						<DBTabItem iconAfter="cancel">
 							Long Button Label with a lot of text
-						</DBTab>
-						<DBTab icon="airplane" iconAfter="cancel">
+						</DBTabItem>
+						<DBTabItem icon="airplane" iconAfter="cancel">
 							Another Button Label with a lot of text
-						</DBTab>
-						<DBTab icon="airplane" noText={true}></DBTab>
+						</DBTabItem>
+						<DBTabItem icon="airplane" noText={true}></DBTabItem>
 					</DBTabList>
 					<DBTabPanel>
 						Lorem ipsum dolor sit amet, consetetur sadipscing elitr,
