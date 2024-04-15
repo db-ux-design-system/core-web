@@ -78,6 +78,16 @@ export default function DBSelect(props: DBSelectProps) {
 		},
 		getOptionLabel: (option: DBSelectOptionType) => {
 			return option.label ?? option.value.toString();
+		},
+		getValidMessage: () => {
+			return props.validMessage || DEFAULT_VALID_MESSAGE;
+		},
+		getInvalidMessage: () => {
+			return (
+				props.invalidMessage ||
+				ref?.validationMessage ||
+				DEFAULT_INVALID_MESSAGE
+			);
 		}
 	});
 
@@ -188,14 +198,14 @@ export default function DBSelect(props: DBSelectProps) {
 				id={state._validMessageId}
 				size="small"
 				semantic="successful">
-				{props.validMessage || DEFAULT_VALID_MESSAGE}
+				{state.getValidMessage()}
 			</DBInfotext>
 
 			<DBInfotext
 				id={state._invalidMessageId}
 				size="small"
 				semantic="critical">
-				{props.invalidMessage || DEFAULT_INVALID_MESSAGE}
+				{state.getInvalidMessage()}
 			</DBInfotext>
 		</div>
 	);

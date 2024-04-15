@@ -30,7 +30,6 @@ $max-tabs: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 				inset-block-end: calc(
 					-1 * (#{variables.$db-spacing-fixed-2xs} + #{variables.$db-border-height-xs})
 				);
-				z-index: -2;
 			}
 		}
 	}

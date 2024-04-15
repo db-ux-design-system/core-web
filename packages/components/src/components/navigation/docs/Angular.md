@@ -11,7 +11,7 @@ import { DBNavigation } from '@db-ui/ngx-components';
 @Component({
   // ...
   standalone: true,
-  imports: [..., DBNavigation],
+  imports: [..., DBNavigation, DBNavigationItem, NavigationContentDirective],
   // ...
 })
 ```

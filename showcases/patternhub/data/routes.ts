@@ -142,11 +142,13 @@ const componentChildren: NavigationItem[] = [
 		subNavigation: [
 			{
 				label: 'DBNavigation',
-				name: 'navigation'
-			},
-			{
-				label: 'DBNavigationItem',
-				name: 'navigation-item'
+				name: 'navigation',
+				subNavigation: [
+					{
+						label: 'DBNavigationItem Properties',
+						path: `/components/navigation-item/properties`
+					}
+				]
 			}
 		]
 	},
