@@ -24,7 +24,7 @@ module.exports = () => {
 							to: ''
 						});
 						Replace({
-							files: `../../output/${resolvedFramework}/src/components/${name}/${name}.spec.tsx`,
+							files: `../../output/${framework}/src/components/${name}/${name}.spec.tsx`,
 							from: /\/\/ VUE:/g,
 							to: ''
 						});
