@@ -14,7 +14,7 @@ For general installation and configuration take a look at the [components](https
 				<label
 					role="tab"
 					for="my-tabs-tab-0"
-					class="db-tab"
+					class="db-tab-item"
 					data-width="auto"
 					data-alignment="start"
 					aria-controls="my-tabs-tab-panel-0"
@@ -26,7 +26,7 @@ For general installation and configuration take a look at the [components](https
 				><label
 					role="tab"
 					for="my-tabs-tab-1"
-					class="db-tab"
+					class="db-tab-item"
 					data-width="auto"
 					data-alignment="start"
 					aria-controls="my-tabs-tab-panel-1"
@@ -38,7 +38,7 @@ For general installation and configuration take a look at the [components](https
 				><label
 					role="tab"
 					for="my-tabs-tab-2"
-					class="db-tab"
+					class="db-tab-item"
 					data-width="auto"
 					data-alignment="start"
 					aria-controls="my-tabs-tab-panel-2"

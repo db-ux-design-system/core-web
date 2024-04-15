@@ -8,12 +8,12 @@ You can't use the component standalone!
 
 ```ts app.module.ts
 //app.module.ts
-import { DBTab, DBTabList, DBTabPanel, DBTabs } from '@db-ui/ngx-components';
+import { DBTabItem, DBTabList, DBTabPanel, DBTabs } from '@db-ui/ngx-components';
 
 @NgModule({
   ...
   standalone: true,
-  imports: [..., DBTab,DBTabList,DBTabPanel,DBTabs],
+  imports: [..., DBTabItem,DBTabList,DBTabPanel,DBTabs],
   ...
 })
 
@@ -25,9 +25,9 @@ import { DBTab, DBTabList, DBTabPanel, DBTabs } from '@db-ui/ngx-components';
 <!-- app.component.html -->
 <db-tabs>
 	<db-tab-list>
-		<db-tab>Tab 1</db-tab>
-		<db-tab>Tab 2</db-tab>
-		<db-tab>Tab 3</db-tab>
+		<db-tab-item>Tab 1</db-tab-item>
+		<db-tab-item>Tab 2</db-tab-item>
+		<db-tab-item>Tab 3</db-tab-item>
 	</db-tab-list>
 	<db-tab-panel>Tab Panel 1</db-tab-panel>
 	<db-tab-panel>Tab Panel 2</db-tab-panel>

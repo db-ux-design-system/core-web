@@ -31,7 +31,7 @@ const getExamplesAsMDX = async (componentName, variant) => {
 		'import {\n' +
 		'DBButton,\n' +
 		'DBCard,\n' +
-		'DBTab,\n' +
+		'DBTabItem,\n' +
 		'DBTabList,\n' +
 		'DBTabPanel,\n' +
 		'DBTabs\n' +
@@ -52,10 +52,10 @@ const getExamplesAsMDX = async (componentName, variant) => {
 			<DBCard className="tab-container">
 			<DBTabs>
 			<DBTabList>
-			<DBTab>Angular</DBTab>
-			<DBTab>HTML</DBTab>
-			<DBTab>React</DBTab>
-			<DBTab>Vue</DBTab>
+			<DBTabItem>Angular</DBTabItem>
+			<DBTabItem>HTML</DBTabItem>
+			<DBTabItem>React</DBTabItem>
+			<DBTabItem>Vue</DBTabItem>
 			</DBTabList>`;
 		for (const framework of codeFrameworks) {
 			let exampleCode;
