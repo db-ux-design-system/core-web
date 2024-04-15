@@ -1,0 +1,23 @@
+<app-default-component
+	title="DBTabItem"
+	[variants]="variants"
+	[exampleTemplate]="exampleTemplate"
+>
+	<ng-template
+		#exampleTemplate
+		let-exampleProps="exampleProps"
+		let-exampleName="exampleName"
+		let-exampleIndex="exampleIndex"
+		let-variantIndex="variantIndex"
+	>
+		<db-tab-item
+			[active]="exampleProps.active"
+			[noText]="exampleProps.noText"
+			[icon]="exampleProps.icon"
+			[iconAfter]="exampleProps.iconAfter"
+			[disabled]="exampleProps.disabled"
+		>
+			{{ exampleName }}
+		</db-tab-item>
+	</ng-template>
+</app-default-component>

@@ -20,7 +20,7 @@ $max-tabs: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 }
 
 %horizontal-pulse {
-	.db-tab {
+	.db-tab-item {
 		@include db-puls.set-db-puls-horizontal;
 
 		&:has(input:checked) {
@@ -36,16 +36,16 @@ $max-tabs: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 }
 
 %vertical-pulse {
-	.db-tab {
+	.db-tab-item {
 		@include db-puls.set-db-puls-vertical;
+
+		&::after {
+			inset-inline-start: 0;
+			z-index: -2;
+		}
 
 		&:has(input:checked) {
 			@include db-puls.show-db-puls-vertical;
-
-			&::after {
-				inset-inline-start: 0;
-				z-index: -2;
-			}
 		}
 	}
 }
@@ -90,7 +90,7 @@ $max-tabs: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 		}
 	}
 
-	.db-tab {
+	.db-tab-item {
 		@extend %db-puls;
 	}
 
@@ -105,8 +105,8 @@ $max-tabs: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 			inline-size: 100%;
 		}
 
-		/* horizontal track for pulse */
 		.db-tab-list {
+			/* horizontal track for pulse */
 			&::before {
 				@extend %pulse-track;
 				block-size: variables.$db-border-height-xs;
@@ -125,29 +125,30 @@ $max-tabs: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 				overflow-y: hidden;
 				inline-size: 100%;
 
-				.db-tab {
+				.db-tab-item {
 					margin-block-start: variables.$db-spacing-fixed-xs;
 					margin-block-end: calc(
-						2 * #{variables.$db-spacing-fixed-2xs} + #{variables.$db-border-height-lg}
+						2 * #{variables.$db-spacing-fixed-2xs} + #{variables.$db-border-height-xs}
 					);
 				}
 
-				db-tab {
+				db-tab-item,
+				dbtabitem {
 					&:first-of-type {
-						.db-tab {
+						.db-tab-item {
 							margin-inline-start: variables.$db-spacing-fixed-xs;
 						}
 					}
 
 					&:last-of-type {
-						.db-tab {
+						.db-tab-item {
 							margin-inline-end: variables.$db-spacing-fixed-xs;
 						}
 					}
 				}
 
-				&:not(:has(db-tab)) {
-					.db-tab {
+				&:not(:has(db-tab-item, dbtabitem)) {
+					.db-tab-item {
 						&:first-of-type {
 							margin-inline-start: variables.$db-spacing-fixed-xs;
 						}
@@ -174,7 +175,7 @@ $max-tabs: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 		.db-tab-list {
 			$width: var(
 				--db-tab-list-vertical-width,
-				calc(3 * #{variables.$db-spacing-fixed-3xl})
+				#{variables.$db-sizing-3xl}
 			);
 
 			/*
@@ -191,7 +192,7 @@ $max-tabs: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 			/* ensures that tab-list (track) is only as high as all the tab-items together if open tab-panel is higher */
 			margin-block-end: auto;
 
-			.db-tab {
+			.db-tab-item {
 				label {
 					position: relative;
 				}
@@ -219,8 +220,8 @@ $max-tabs: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 				flex-direction: column;
 				block-size: 100%;
 
-				&:not(:has(db-tab)) {
-					.db-tab {
+				&:not(:has(db-tab-item, dbtabitem)) {
+					.db-tab-item {
 						&:first-of-type {
 							margin-block-start: variables.$db-spacing-fixed-xs;
 						}
@@ -233,9 +234,9 @@ $max-tabs: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 			}
 		}
 
-		.db-tab {
+		.db-tab-item {
 			$padding-start: calc(
-				#{variables.$db-border-height-lg} + #{variables.$db-spacing-fixed-2xs}
+				#{variables.$db-border-height-xs} + #{variables.$db-spacing-fixed-2xs}
 			);
 			padding-inline-start: $padding-start;
 
@@ -244,15 +245,16 @@ $max-tabs: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 			}
 		}
 
-		db-tab {
+		db-tab-item,
+		dbtabitem {
 			&:first-of-type {
-				.db-tab {
+				.db-tab-item {
 					margin-block-start: variables.$db-spacing-fixed-xs;
 				}
 			}
 
 			&:last-of-type {
-				.db-tab {
+				.db-tab-item {
 					margin-block-end: variables.$db-spacing-fixed-xs;
 				}
 			}
@@ -264,13 +266,13 @@ $max-tabs: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 			inline-size: 100%;
 		}
 
-		.db-tab,
-		.db-tab label {
+		.db-tab-item,
+		.db-tab-item label {
 			inline-size: 100%;
 		}
 
 		&[data-alignment="center"] {
-			.db-tab label {
+			.db-tab-item label {
 				text-align: center;
 				justify-content: center;
 			}
