@@ -42,7 +42,7 @@
     "cssnano": "^6.1.2",
     "dotenv": "^16.4.5",
     "nodemon": "3.1.0",
-    "sass": "^1.74.1"
+    "sass": "^1.75.0"
   },
   "publishConfig": {
     "registry": "https://registry.npmjs.org/",
