@@ -21,6 +21,8 @@
 
 ## Components
 
+> **Note**: All components have different colors and opacities based on the changes in foundations.
+
 Some components may have different dimensions based on changes of spacing tokens.
 
 We removed the default elevation (box-shadow) for card and some card-like components.
