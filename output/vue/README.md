@@ -80,33 +80,6 @@ Both Inputs in this example do the same:
 </template>
 ```
 
-## Custom Events
-
-We do not provide every event on every component. If you are missing an event please [add an issue](https://github.com/db-ui/mono/issues).
-
-As a workaround you can use refs:
-
-### Ref on component
-
-```vue
-<script setup lang="ts">
-import { DBButton } from "@db-ui/v-components";
-
-import { ref, onMounted } from "vue";
-const buttonRef: any = ref(null);
-
-onMounted(() => {
-	buttonRef.value.$refs.component.addEventListener("mouseenter", (ev) => {
-		console.log(ev);
-	});
-});
-</script>
-
-<template>
-    <DBButton ref="buttonRef">Test</DBButton>
-</template>
-```
-
 ## Deutsche Bahn brand
 
 As we'd like to perfectly support our users and customers on their digital journey, the usage of Deutsche Bahn brand and trademarks are bound of clear guidelines and restrictions even when being used with the code that we're provide with this product; Deutsche Bahn fully reserves all rights regarding the Deutsche Bahn brand, even though that we're providing the code of DB UI products free to use and release it under the Apache 2.0 license.
