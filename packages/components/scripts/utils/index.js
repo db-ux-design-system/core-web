@@ -1,5 +1,5 @@
 const Replace = require('replace-in-file');
-const getComponentName = (componentName) =>
+const transformToUpperComponentName = (componentName) =>
 	componentName
 		.split('-')
 		.map((part) => `${part[0].toUpperCase()}${part.slice(1)}`)
@@ -24,4 +24,4 @@ const runReplacements = (replacements, component, framework, file) => {
 	}
 };
 
-module.exports = { getComponentName, runReplacements };
+module.exports = { transformToUpperComponentName, runReplacements };

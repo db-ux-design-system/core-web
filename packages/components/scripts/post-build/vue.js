@@ -1,6 +1,6 @@
 const Replace = require('replace-in-file');
 const { components } = require('./components');
-const { getComponentName, runReplacements } = require('../utils');
+const { transformToUpperComponentName, runReplacements } = require('../utils');
 
 const updateNestedComponents = (input, rootComponentName) => {
 	let fileContent = input;
@@ -8,7 +8,9 @@ const updateNestedComponents = (input, rootComponentName) => {
 	for (const nestedComponent of components.filter(
 		(nComp) => nComp.name !== rootComponentName
 	)) {
-		const nCompUpperCase = getComponentName(nestedComponent.name);
+		const nCompUpperCase = transformToUpperComponentName(
+			nestedComponent.name
+		);
 		while (fileContent.includes(`db${nestedComponent.name}`)) {
 			fileContent = fileContent.replace(
 				`db${nestedComponent.name}`,

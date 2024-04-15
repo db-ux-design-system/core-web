@@ -1,13 +1,8 @@
 import { readdirSync } from 'node:fs';
 import Replace from 'replace-in-file';
+import { transformToUpperComponentName } from '@db-ui/components/scripts/utils/index.js';
 
 const distDir = './dist/components';
-
-const getComponentName = (componentName) =>
-	componentName
-		.split('-')
-		.map((part) => `${part[0].toUpperCase()}${part.slice(1)}`)
-		.join('');
 
 /**
  * Props are generated like this: `readonly id?: any;`
@@ -15,8 +10,8 @@ const getComponentName = (componentName) =>
  * @param input {string}
  * @param component {string}
  */
-const replaceAnyType = (input, component) => {
-	const propModel = `DB${getComponentName(component)}Props`;
+const replaceAnyTypes = (input, component) => {
+	const propModel = `DB${transformToUpperComponentName(component)}Props`;
 	let fileContent = input;
 
 	const propLines = fileContent.match(/readonly (.*);/g);
@@ -34,17 +29,17 @@ const replaceAnyType = (input, component) => {
 	return `import { ${propModel} } from "./model";\n\n${fileContent}`;
 };
 
-const addTypescript = () => {
+const fixAnyTypes = () => {
 	const components = readdirSync(distDir);
 
 	for (const component of components) {
 		Replace.sync({
 			files: `${distDir}/${component}/${component}.vue.d.ts`,
 			processor(input) {
-				return replaceAnyType(input, component);
+				return replaceAnyTypes(input, component);
 			}
 		});
 	}
 };
 
-addTypescript();
+fixAnyTypes();

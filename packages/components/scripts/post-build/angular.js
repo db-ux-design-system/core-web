@@ -1,7 +1,7 @@
 const Replace = require('replace-in-file');
 const FS = require('node:fs');
 const { components } = require('./components');
-const { runReplacements, getComponentName } = require('../utils');
+const { runReplacements, transformToUpperComponentName } = require('../utils');
 
 const changeFile = (component, input) => {
 	return input
@@ -184,7 +184,7 @@ module.exports = (tmp) => {
 	const outputFolder = `${tmp ? 'output/tmp' : 'output'}`;
 	for (const component of components) {
 		const componentName = component.name;
-		const upperComponentName = `DB${getComponentName(component.name)}`;
+		const upperComponentName = `DB${transformToUpperComponentName(component.name)}`;
 		const file = `../../${outputFolder}/angular/src/components/${componentName}/${componentName}.ts`;
 		const options = {
 			files: file,
