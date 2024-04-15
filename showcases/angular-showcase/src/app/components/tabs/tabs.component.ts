@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import defaultComponentVariants from '../../../../../shared/tabs.json';
 import { DefaultComponent } from '../default.component';
 import { DBTabs } from '../../../../../../output/angular/src/components/tabs';
-import { DBTab } from '../../../../../../output/angular/src/components/tab';
+import { DBTabItem } from '../../../../../../output/angular/src/components/tab-item';
 import { DBTabPanel } from '../../../../../../output/angular/src/components/tab-panel';
 import { DBTabList } from '../../../../../../output/angular/src/components/tab-list';
 import { DBInfotext } from '../../../../../../output/angular/src/components/infotext';
@@ -13,7 +13,7 @@ import { DBInfotext } from '../../../../../../output/angular/src/components/info
 	imports: [
 		DefaultComponent,
 		DBTabs,
-		DBTab,
+		DBTabItem,
 		DBTabList,
 		DBTabPanel,
 		DBInfotext
