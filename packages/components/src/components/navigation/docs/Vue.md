@@ -32,7 +32,7 @@ import { DBNavigation, DBNavigationItem } from "@db-ui/v-components";
 				</DBNavigationItem>
 			</template>
 		</DBNavigationItem>
-		<DBNavigationItem icon="account">
+		<DBNavigationItem icon="user">
 			<a href="#">Navi-Item 2</a>
 		</DBNavigationItem>
 		<DBNavigationItem :disabled="true">

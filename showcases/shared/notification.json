@@ -8,7 +8,7 @@
 				"className": "db-density-functional",
 				"props": {
 					"headline": "Headline",
-					"icon": "information",
+					"icon": "information_circle",
 					"behaviour": "closable"
 				}
 			},
@@ -18,7 +18,7 @@
 				"className": "db-density-regular",
 				"props": {
 					"headline": "Headline",
-					"icon": "information",
+					"icon": "information_circle",
 					"behaviour": "closable"
 				}
 			},
@@ -28,7 +28,7 @@
 				"className": "db-density-expressive",
 				"props": {
 					"headline": "Headline",
-					"icon": "information",
+					"icon": "information_circle",
 					"behaviour": "closable"
 				}
 			}
@@ -43,7 +43,7 @@
 				"props": {
 					"variant": "docked",
 					"headline": "Headline",
-					"icon": "information",
+					"icon": "information_circle",
 					"behaviour": "closable"
 				}
 			},
@@ -53,7 +53,7 @@
 				"props": {
 					"variant": "standalone",
 					"headline": "Headline",
-					"icon": "information",
+					"icon": "information_circle",
 					"behaviour": "closable"
 				}
 			},
@@ -63,7 +63,7 @@
 				"props": {
 					"variant": "overlay",
 					"headline": "Headline",
-					"icon": "information",
+					"icon": "information_circle",
 					"behaviour": "closable",
 					"timestamp": "10 min ago"
 				}
@@ -107,7 +107,7 @@
 				"style": { "width": "300px" },
 				"props": {
 					"type": "alert",
-					"semantic": "informational",
+					"semantic": "information_circleal",
 					"headline": "Headline",
 					"behaviour": "closable"
 				}
@@ -167,7 +167,7 @@
 				"name": "Text & Icon",
 				"style": { "width": "300px" },
 				"props": {
-					"icon": "information",
+					"icon": "information_circle",
 					"behaviour": "permanent"
 				}
 			},
@@ -217,7 +217,7 @@
 				"name": "Text & Icon & Headline & Textlink Inline & Cloaseable",
 				"style": { "width": "300px" },
 				"props": {
-					"icon": "information",
+					"icon": "information_circle",
 					"headline": "Headline",
 					"link": true,
 					"linkVariant": "inline"
@@ -240,7 +240,7 @@
 				"name": "Text & Icon",
 				"style": { "width": "300px" },
 				"props": {
-					"icon": "information",
+					"icon": "information_circle",
 					"variant": "standalone",
 					"behaviour": "permanent"
 				}
@@ -296,7 +296,7 @@
 				"name": "Text & Icon & Headline & Textlink Inline & Cloaseable",
 				"style": { "width": "300px" },
 				"props": {
-					"icon": "information",
+					"icon": "information_circle",
 					"headline": "Headline",
 					"link": true,
 					"linkVariant": "inline",
@@ -320,7 +320,7 @@
 				"name": "Text & Icon",
 				"style": { "width": "300px" },
 				"props": {
-					"icon": "information",
+					"icon": "information_circle",
 					"variant": "overlay",
 					"behaviour": "permanent"
 				}
@@ -373,7 +373,7 @@
 				"name": "Text & Icon & Headline & Timed & Cloaseable",
 				"style": { "width": "300px" },
 				"props": {
-					"icon": "information",
+					"icon": "information_circle",
 					"headline": "Headline",
 					"timestamp": "10 min ago",
 					"variant": "overlay"

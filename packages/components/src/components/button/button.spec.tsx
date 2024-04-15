@@ -29,7 +29,7 @@ const testButton = () => {
 			mount
 		}) => {
 			const component = await mount(
-				<DBButton icon="account" noText={true} variant={variant}>
+				<DBButton icon="user" noText={true} variant={variant}>
 					Account
 				</DBButton>
 			);
@@ -58,7 +58,7 @@ test.describe('DBButton', () => {
 		mount
 	}) => {
 		await mount(
-			<DBButton icon="account" noText={true}>
+			<DBButton icon="user" noText={true}>
 				lorem ipsum
 			</DBButton>
 		);
