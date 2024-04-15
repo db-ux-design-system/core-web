@@ -41,6 +41,14 @@ $db-accordion-item-border-radius: variables.$db-border-radius-sm;
 			background-color: colors.$db-current-color-bg-transparent-pressed;
 		}
 
+		@include helpers.hover {
+			background-color: colors.$db-current-color-bg-transparent-hover;
+		}
+
+		@include helpers.active {
+			background-color: colors.$db-current-color-bg-transparent-pressed;
+		}
+
 		&::-webkit-details-marker {
 			display: none;
 		}
