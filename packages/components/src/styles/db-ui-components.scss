@@ -1,7 +1,7 @@
 @forward "@db-ui/foundations/build/scss/db-ui-foundations";
 @forward "../components/button/button";
 @forward "../components/icon/icon";
-@forward "../components/tab/tab";
+@forward "../components/tab-item/tab-item";
 @forward "../components/divider/divider";
 @forward "../components/card/card";
 @forward "../components/input/input";
@@ -30,7 +30,7 @@
 @forward "../components/tooltip/tooltip";
 @forward "dialog-init";
 
-@forward "../components/tab/tab";
+@forward "../components/tab-item/tab-item";
 
 @forward "../components/tab-list/tab-list";
 
@@ -45,8 +45,8 @@ dbtabs,
 db-tabs,
 dbtab-list,
 db-tab-list,
-dbtab,
-db-tab,
+dbtabitem,
+db-tab-item,
 dbtab-bar,
 db-tab-bar,
 dbtooltip,

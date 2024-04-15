@@ -1,5 +1,5 @@
 import TabsComponent from '../components/tabs';
-import TabComponent from '../components/tab';
+import TabItemComponent from '../components/tab-item';
 import TooltipComponent from '../components/tooltip';
 import PopoverComponent from '../components/popover';
 import AccordionItemComponent from '../components/accordion-item';
@@ -105,9 +105,9 @@ export const NAVIGATION_ITEMS: NavigationItem[] = [
 				component: <AccordionItemComponent />
 			},
 			{
-				path: 'tab',
-				label: 'Tab',
-				component: <TabComponent />
+				path: 'tab-item',
+				label: 'TabItem',
+				component: <TabItemComponent />
 			},
 			{ path: 'tabs', label: 'Tabs', component: <TabsComponent /> }
 		])

@@ -1,1 +1,0 @@
-export { DBTab } from './tab';

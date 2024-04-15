@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import DBTabPanel from '../src/components/tab-panel/tab-panel';
 import DBTabs from '../src/components/tabs/tabs';
 import DBTabList from '../src/components/tab-list/tab-list';
-import DBTab from '../src/components/tab/tab';
+import DBTabItem from '../src/components/tab-item/tab-item';
 import DBTooltip from '../src/components/tooltip/tooltip';
 import DBPopover from '../src/components/popover/popover';
 import {
@@ -289,11 +289,11 @@ const ComponentSwitch = ({
 		);
 	}
 
-	if (type === 'tab') {
+	if (type === 'tab-item') {
 		return (
-			<DBTab className={className} {...props}>
+			<DBTabItem className={className} {...props}>
 				{resolvedContent}
-			</DBTab>
+			</DBTabItem>
 		);
 	}
 

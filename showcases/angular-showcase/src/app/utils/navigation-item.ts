@@ -1,6 +1,6 @@
 import { Routes } from '@angular/router';
 import { TabsComponent } from '../components/tabs/tabs.component';
-import { TabComponent } from '../components/tab/tab.component';
+import { TabItemComponent } from '../components/tab-item/tab-item.component';
 import { TooltipComponent } from '../components/tooltip/tooltip.component';
 import { PopoverComponent } from '../components/popover/popover.component';
 import { AccordionItemComponent } from '../components/accordion-item/accordion-item.component';
@@ -100,7 +100,11 @@ export const NAVIGATION_ITEMS: NavItem[] = [
 				label: 'AccordionItem',
 				component: AccordionItemComponent
 			},
-			{ path: '04/tab', label: 'Tab', component: TabComponent },
+			{
+				path: '04/tab-item',
+				label: 'TabItem',
+				component: TabItemComponent
+			},
 
 			{ path: '04/tabs', label: 'Tabs', component: TabsComponent }
 		])

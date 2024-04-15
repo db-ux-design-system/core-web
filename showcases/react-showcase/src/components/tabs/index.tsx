@@ -1,7 +1,7 @@
 import {
 	DBTabs,
 	DBTabList,
-	DBTab,
+	DBTabItem,
 	DBTabPanel,
 	DBInfotext
 } from '../../../../../output/react/src';
@@ -9,6 +9,7 @@ import DefaultComponent from '../index';
 import defaultComponentVariants from '../../../../shared/tabs.json';
 import type { DBTabsProps } from '../../../../../output/react/src/components/tabs/model';
 import { getVariants } from '../data';
+// Patternhub:import TabItemComponent from '../tab-item';
 
 const getTabs = ({
 	children,
@@ -33,13 +34,13 @@ const getTabs = ({
 			initialSelectedMode={initialSelectedMode}
 			arrowScrollDistance={75}>
 			<DBTabList>
-				<DBTab>Test 1</DBTab>
-				<DBTab>Test 2</DBTab>
-				<DBTab>Test 3</DBTab>
+				<DBTabItem>Test 1</DBTabItem>
+				<DBTabItem>Test 2</DBTabItem>
+				<DBTabItem>Test 3</DBTabItem>
 				{overflow && (
 					<>
-						<DBTab>Test 4</DBTab>
-						<DBTab>Test 5</DBTab>
+						<DBTabItem>Test 4</DBTabItem>
+						<DBTabItem>Test 5</DBTabItem>
 					</>
 				)}
 			</DBTabList>
@@ -60,6 +61,8 @@ const TabsComponent = () => {
 	return (
 		<DefaultComponent
 			title="DBTabs"
+			// We use this only for patternhub to include an item inside the parent
+			// Patternhub:subComponent={<TabItemComponent	isSubComponent componentName="tab-item"/>}
 			variants={getVariants(
 				defaultComponentVariants,
 				getTabs

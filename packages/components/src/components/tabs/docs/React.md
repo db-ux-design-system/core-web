@@ -6,14 +6,19 @@ For general installation and configuration take a look at the [react-components]
 
 ```tsx App.tsx
 // App.tsx
-import { DBTab, DBTabList, DBTabs, DBTabPanel } from "@db-ui/react-components";
+import {
+	DBTabItem,
+	DBTabList,
+	DBTabs,
+	DBTabPanel
+} from "@db-ui/react-components";
 
 const App = () => (
 	<DBTabs>
 		<DBTabList>
-			<DBTab>Tab 1</DBTab>
-			<DBTab>Tab 2</DBTab>
-			<DBTab>Tab 3</DBTab>
+			<DBTabItem>Tab 1</DBTabItem>
+			<DBTabItem>Tab 2</DBTabItem>
+			<DBTabItem>Tab 3</DBTabItem>
 		</DBTabList>
 		<DBTabPanel>Tab Panel 1</DBTabPanel>
 		<DBTabPanel>Tab Panel 2</DBTabPanel>
