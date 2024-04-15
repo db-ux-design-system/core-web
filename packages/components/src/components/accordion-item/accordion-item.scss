@@ -5,10 +5,12 @@
 @use "../../styles/form-components";
 @use "../../styles/component";
 
+$db-accordion-item-border-radius: variables.$db-border-radius-sm;
+
 .db-accordion-item {
 	position: relative;
 	inline-size: 100%;
-	border-radius: variables.$db-border-radius-lg;
+	border-radius: $db-accordion-item-border-radius;
 
 	summary + div {
 		padding: variables.$db-spacing-fixed-md;
@@ -29,7 +31,15 @@
 		justify-content: space-between;
 		padding: variables.$db-spacing-fixed-md;
 		gap: variables.$db-spacing-fixed-md;
-		border-radius: variables.$db-border-radius-lg;
+		border-radius: $db-accordion-item-border-radius;
+
+		@include helpers.hover {
+			background-color: colors.$db-current-color-bg-transparent-hover;
+		}
+
+		@include helpers.active {
+			background-color: colors.$db-current-color-bg-transparent-pressed;
+		}
 
 		@include helpers.hover {
 			background-color: colors.$db-current-color-bg-transparent-hover;
