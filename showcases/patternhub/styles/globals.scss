@@ -419,6 +419,7 @@ h6 {
 					position: absolute;
 					inset-inline-end: variables.$db-spacing-fixed-sm;
 					inset-block-start: variables.$db-spacing-fixed-sm;
+					z-index: 20;
 				}
 			}
 		}
