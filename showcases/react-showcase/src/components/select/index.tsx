@@ -7,27 +7,23 @@ import { getVariants } from '../data';
 const getSelect = ({
 	children,
 	label,
-	variant,
 	options,
 	icon,
 	message,
 	disabled,
 	value,
 	required,
-	labelVariant,
-	invalid
+	variant
 }: DBSelectProps) => (
 	<DBSelect
 		label={label}
 		placeholder={children}
-		variant={variant}
 		options={options}
 		disabled={disabled}
-		labelVariant={labelVariant}
+		variant={variant}
 		icon={icon}
 		value={value}
 		message={message}
-		invalid={invalid}
 		required={required}>
 		{children}
 	</DBSelect>

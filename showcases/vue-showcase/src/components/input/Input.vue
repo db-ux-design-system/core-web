@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import DefaultComponent from "../DefaultComponent.vue";
 import defaultComponentVariants from "../../../../shared/input.json";
-import { DBInput } from "../../../../../output/vue/vue3/src";
+import { DBInput } from "../../../../../output/vue/src";
 </script>
 
 <template>
@@ -12,16 +12,15 @@ import { DBInput } from "../../../../../output/vue/vue3/src";
 			<DBInput
 				:variant="exampleProps.variant"
 				:label="exampleProps.label"
-				:labelVariant="exampleProps.labelVariant"
 				:message="exampleProps.message"
 				:placeholder="exampleName"
 				:minLength="exampleProps.minLength"
 				:required="exampleProps.required"
 				:type="exampleProps.type"
 				:disabled="exampleProps.disabled"
+				:readOnly="exampleProps.readOnly"
 				:value="exampleProps.value"
 				:icon="exampleProps.icon"
-				:invalid="exampleProps.invalid"
 				:iconAfter="exampleProps.iconAfter"
 			></DBInput>
 		</template>

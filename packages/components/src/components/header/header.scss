@@ -1,18 +1,19 @@
 @use "@db-ui/foundations/build/scss/variables";
 @use "@db-ui/foundations/build/scss/screen-sizes";
 @use "@db-ui/foundations/build/scss/helpers";
-@use "@db-ui/foundations/build/scss/tonality";
+@use "@db-ui/foundations/build/scss/density";
 @use "@db-ui/foundations/build/scss/colors";
 @use "../../styles/component";
 
 .db-header {
-	background-color: colors.$db-base-bg;
-	box-shadow: variables.$db-elevation-md;
+	background-color: colors.$db-current-color-bg-lvl-1-enabled;
 	display: flex;
 	flex-direction: column;
 	position: relative;
 
 	min-block-size: component.$default-mobile-header-height;
+	border-block-end: variables.$db-border-height-3xs solid
+		colors.$db-current-color-border;
 
 	@include screen-sizes.screen("md") {
 		--db-drawer-max-width: #{screen-sizes.$db-breakpoint-sm};
@@ -45,13 +46,13 @@
 }
 
 .db-header-meta-navigation {
-	@extend %db-bg-neutral-transparent-semi;
-	@extend %db-ui-functional;
+	@extend %db-density-functional;
 	@include helpers.divider("top");
 	display: flex;
 	flex-direction: column;
 	gap: variables.$db-spacing-fixed-sm;
 	justify-content: flex-end;
+	background-color: colors.$db-current-color-bg-lvl-2-enabled;
 
 	padding: variables.$db-spacing-fixed-md;
 
@@ -76,6 +77,17 @@
 	inline-size: 100%;
 	gap: inherit;
 	align-items: center;
+	block-size: 100%;
+
+	@include screen-sizes.screen("md") {
+		@include helpers.divider("left");
+
+		&::before {
+			position: inherit;
+			block-size: 100%;
+			margin-inline-start: variables.$db-spacing-fixed-sm;
+		}
+	}
 }
 
 .db-header-call-to-action {
@@ -94,15 +106,6 @@
 
 .db-header-brand-container {
 	min-block-size: variables.$db-sizing-md;
-	@include screen-sizes.screen("md") {
-		@include helpers.divider("left", "after");
-
-		&::after {
-			position: inherit;
-			block-size: 100%;
-			margin-inline: variables.$db-spacing-fixed-sm;
-		}
-	}
 }
 
 .db-header-action-container {

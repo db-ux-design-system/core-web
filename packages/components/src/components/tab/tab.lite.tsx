@@ -28,7 +28,7 @@ export default function DBTab(props: DBTabProps) {
 	// jscpd:ignore-end
 
 	onUpdate(() => {
-		if (props.active && state.initialized) {
+		if (props.active && state.initialized && ref) {
 			ref.click();
 			state.initialized = false;
 		}
@@ -40,13 +40,15 @@ export default function DBTab(props: DBTabProps) {
 				htmlFor={state._id}
 				data-icon={props.icon}
 				data-icon-after={props.iconAfter}
-				className={cls({ 'is-icon-text-replace': props.noText })}>
+				data-no-text={props.noText}>
 				<input
 					disabled={props.disabled}
 					ref={ref}
 					type="radio"
+					role="tab"
 					id={state._id}
 				/>
+
 				<Show when={props.label}>{props.label}</Show>
 				{props.children}
 			</label>

@@ -1,6 +1,9 @@
 @use "@db-ui/foundations/build/scss/colors";
 
-$backdrop-color: var(--db-current-color, var(--db-base-on-bg-enabled, #242629));
+$backdrop-color: var(
+	--db-current-color-enabled,
+	var(--db-neutral-on-bg-enabled, #242629)
+);
 
 %backdrop {
 	background-color: $backdrop-color;

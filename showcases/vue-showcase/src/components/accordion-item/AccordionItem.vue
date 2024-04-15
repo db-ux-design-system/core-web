@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import DefaultComponent from "../DefaultComponent.vue";
 import defaultComponentVariants from "../../../../shared/accordion-item.json";
-import { DBAccordionItem } from "../../../../../output/vue/vue3/src";
+import { DBAccordionItem } from "../../../../../output/vue/src";
 import { ref } from "vue";
 </script>
 
@@ -14,7 +14,7 @@ import { ref } from "vue";
 			#example="{ exampleIndex, variantIndex, exampleName, exampleProps }"
 		>
 			<DBAccordionItem
-				:headline="exampleProps.headline"
+				:headlinePlain="exampleProps.headlinePlain"
 				:disabled="exampleProps.disabled"
 				:default-open="exampleProps.open"
 			>

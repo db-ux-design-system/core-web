@@ -1,4 +1,4 @@
-import { DefaultVariantType } from '../shared/model';
+import { SemanticType } from '../shared/model';
 import { AriaRole, CSSProperties } from 'react';
 
 export const uuid = () => {
@@ -48,17 +48,6 @@ export const cls = (...args: ClassNameArg[]) => {
 	});
 
 	return result.trim();
-};
-
-export const getMessageIcon = (
-	variant?: DefaultVariantType,
-	messageIcon?: string
-): string | undefined => {
-	return messageIcon
-		? messageIcon
-		: !variant || variant === 'adaptive'
-			? 'none'
-			: undefined;
 };
 
 const reactHtmlAttributes = [
@@ -191,7 +180,6 @@ export const handleDataOutside = (el: Element) => {
 
 export default {
 	filterPassingProps,
-	getMessageIcon,
 	cls,
 	addAttributeToChildren,
 	uuid,

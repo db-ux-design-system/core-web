@@ -3,23 +3,23 @@ to: "<%= showcases ? `../../showcases/shared/${name}.json` : null %>"
 ---
 [
 	{
-		"name": "Tonality",
+		"name": "Density",
 		"examples": [
 			{
 				"name": "Functional",
-				"className": "db-ui-functional",
+				"className": "db-density-functional",
 				"props": {
 				}
 			},
 			{
 				"name": "(Default) Regular",
-				"className": "db-ui-regular",
+				"className": "db-density-regular",
 				"props": {
 				}
 			},
 			{
 				"name": "Expressive",
-				"className": "db-ui-expressive",
+				"className": "db-density-expressive",
 				"props": {
 				}
 			}

@@ -7,7 +7,7 @@ import {
 	DBSelect,
 	DBTag,
 	DBTextarea
-} from "../../../../../output/vue/vue3/src";
+} from "../../../../../output/vue/src";
 
 import { ref } from "vue";
 const input = ref("");
@@ -114,7 +114,7 @@ const reset = () => {
 					<ul>
 						<li v-for="(tag, index) in array">
 							<DBTag
-								:variant="
+								:semantic="
 									index === 0 ? undefined : 'successful'
 								"
 								:emphasis="index === 2 ? 'strong' : 'weak'"
@@ -172,7 +172,7 @@ const reset = () => {
 					<DBButton type="button" @click="reset()">
 						Reset Form
 					</DBButton>
-					<DBButton type="button" variant="primary" @click="logAll()">
+					<DBButton type="button" variant="brand" @click="logAll()">
 						Hi from Showcase!
 					</DBButton>
 				</fieldset>

@@ -2,7 +2,7 @@
 import { ref } from "vue";
 import DefaultComponent from "../DefaultComponent.vue";
 import defaultComponentVariants from "../../../../shared/drawer.json";
-import { DBDrawer, DBButton } from "../../../../../output/vue/vue3/src";
+import { DBDrawer, DBButton } from "../../../../../output/vue/src";
 
 const openDrawer = ref<string | undefined>(undefined);
 

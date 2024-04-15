@@ -2,14 +2,16 @@
 @use "@db-ui/foundations/build/scss/icons";
 @use "@db-ui/foundations/build/scss/fonts";
 @use "@db-ui/foundations/build/scss/colors";
+@use "@db-ui/foundations/build/scss/helpers";
 @use "../../styles/component";
 @use "../../styles/form-components";
 
 .db-checkbox {
+	@extend %helper-message;
 	@include form-components.set-default-check-element(check);
 
 	input {
-		border-radius: variables.$db-border-radius-sm;
+		border-radius: variables.$db-border-radius-2xs;
 
 		&::before {
 			--db-icon-margin-end: 0;
@@ -19,13 +21,26 @@
 		}
 
 		&:checked {
-			@extend %db-base-component-interactive;
-
 			// Check icon
 			@include icons.set-icon("done");
 
 			// The icon within the checkbox has the same dimensions as the checkbox itself and that for there can't be any border
 			border-width: 0;
+
+			color: colors.$db-current-color-bg-enabled;
+			background-color: colors.$db-current-color-enabled;
+
+			@include helpers.hover {
+				background-color: colors.$db-current-color-hover;
+			}
+
+			@include helpers.active {
+				background-color: colors.$db-current-color-pressed;
+			}
+
+			&::before {
+				color: colors.$db-current-color-bg-enabled;
+			}
 		}
 
 		&:indeterminate {

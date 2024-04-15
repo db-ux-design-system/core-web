@@ -3,7 +3,7 @@ import {
 	DBButton,
 	DBHeader,
 	DBLink,
-	DBMainNavigation,
+	DBNavigation,
 	DBNavigationItem
 } from '../../../../../output/react/src';
 import { type DBHeaderProps } from '../../../../../output/react/src/components/header/model';
@@ -23,33 +23,33 @@ const getHeader = ({
 	onToggle
 }: DBHeaderProps) => (
 	<DBHeader
-		slotBrand={
+		brand={
 			<DBBrand
 				title="DBHeader"
 				imgSrc="https://db-ui.github.io/images/db_logo.svg">
 				DBHeader
 			</DBBrand>
 		}
-		slotMetaNavigation={
+		metaNavigation={
 			<>
 				<DBLink href="#">Imprint</DBLink>
 				<DBLink href="#">Help</DBLink>
 			</>
 		}
-		slotCallToAction={
-			<DBButton icon="search" variant="text" noText>
+		callToAction={
+			<DBButton icon="search" variant="ghost" noText>
 				Search
 			</DBButton>
 		}
-		slotActionBar={
+		actionBar={
 			<>
-				<DBButton icon="account" variant="text" noText>
+				<DBButton icon="account" variant="ghost" noText>
 					Profile
 				</DBButton>
-				<DBButton icon="alert" variant="text" noText>
+				<DBButton icon="alert" variant="ghost" noText>
 					Notification
 				</DBButton>
-				<DBButton icon="help" variant="text" noText>
+				<DBButton icon="help" variant="ghost" noText>
 					Help
 				</DBButton>
 			</>
@@ -62,14 +62,14 @@ const getHeader = ({
 		id={id}
 		key={key}
 		onToggle={onToggle}>
-		<DBMainNavigation>
+		<DBNavigation>
 			<DBNavigationItem icon="account">
 				<a href="#">{children}</a>
 			</DBNavigationItem>
 			<DBNavigationItem disabled>
 				<a href="#">{children} disabled</a>
 			</DBNavigationItem>
-		</DBMainNavigation>
+		</DBNavigation>
 	</DBHeader>
 );
 

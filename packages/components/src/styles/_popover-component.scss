@@ -135,7 +135,7 @@ $popover-gap-inset: calc(-1 * #{$popover-gap-size});
 	}
 
 	&:not([data-animation="disabled"]) {
-		animation: popover-animation variables.$db-transition-emotional-straight
+		animation: popover-animation variables.$db-transition-straight-emotional
 			normal both;
 
 		&[data-delay="slow"] {
@@ -183,10 +183,9 @@ $popover-gap-inset: calc(-1 * #{$popover-gap-size});
 	@extend %default-card;
 	@extend %popover-placement;
 
-	@extend %component-border;
-
 	position: absolute;
-	background-color: colors.$db-base-bg;
+	background-color: colors.$db-current-color-bg-lvl-1-enabled;
+	box-shadow: variables.$db-elevation-md;
 	visibility: hidden;
 	z-index: 1;
 	white-space: nowrap;

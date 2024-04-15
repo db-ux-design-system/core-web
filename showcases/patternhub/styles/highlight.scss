@@ -2,10 +2,10 @@
 @use "@db-ui/foundations/build/scss/colors";
 
 pre:has(.hljs):not(:has(.language-shell)) {
-	@extend %db-bg-neutral-transparent-full;
+	@extend %db-neutral-bg-transparent-full;
 
 	.hljs {
-		@extend %db-bg-neutral-transparent-full;
+		@extend %db-neutral-bg-transparent-full;
 	}
 }
 
@@ -17,7 +17,7 @@ pre:has(.hljs):not(:has(.language-shell)) {
 .hljs-type,
 .hljs-variable.language_ {
 	/* prettylights-syntax-keyword */
-	color: colors.$db-successful-text;
+	color: colors.$db-successful-on-bg-weak-enabled;
 }
 
 .hljs-title,
@@ -25,7 +25,7 @@ pre:has(.hljs):not(:has(.language-shell)) {
 .hljs-title.class_.inherited__,
 .hljs-title.function_ {
 	/* prettylights-syntax-entity */
-	color: colors.$db-successful-text;
+	color: colors.$db-successful-on-bg-weak-enabled;
 }
 .hljs-attribute,
 .hljs-literal,
@@ -36,73 +36,73 @@ pre:has(.hljs):not(:has(.language-shell)) {
 .hljs-selector-class,
 .hljs-selector-id {
 	/* prettylights-syntax-constant */
-	color: colors.$db-successful-text;
+	color: colors.$db-successful-on-bg-weak-enabled;
 }
 .hljs-regexp,
 .hljs-string,
 .hljs-meta .hljs-string {
 	/* prettylights-syntax-string */
-	color: colors.$db-successful-text;
+	color: colors.$db-successful-on-bg-weak-enabled;
 }
 .hljs-built_in,
 .hljs-symbol {
 	/* prettylights-syntax-variable */
-	color: colors.$db-warning-text;
+	color: colors.$db-warning-on-bg-weak-enabled;
 }
 .hljs-attr {
-	color: colors.$db-informational-text;
+	color: colors.$db-informational-on-bg-weak-enabled;
 }
 .hljs-meta,
 .hljs-comment,
 .hljs-code,
 .hljs-formula {
 	/* prettylights-syntax-comment */
-	color: colors.$db-current-color;
+	color: colors.$db-current-color-enabled;
 }
 
 .hljs-tag,
 .hljs-name {
-	color: colors.$db-warning-text;
+	color: colors.$db-warning-on-bg-weak-enabled;
 }
 
 .hljs-quote,
 .hljs-selector-tag,
 .hljs-selector-pseudo {
 	/* prettylights-syntax-entity-tag */
-	color: colors.$db-successful-text;
+	color: colors.$db-successful-on-bg-weak-enabled;
 }
 .hljs-subst {
 	/* prettylights-syntax-storage-modifier-import */
-	color: colors.$db-neutral-bg;
+	color: colors.$db-neutral-bg-lvl-1-enabled;
 }
 .hljs-section {
 	/* prettylights-syntax-markup-heading */
-	color: colors.$db-informational-text;
+	color: colors.$db-informational-on-bg-weak-enabled;
 	font-weight: bold;
 }
 .hljs-bullet {
 	/* prettylights-syntax-markup-list */
-	color: colors.$db-warning-text;
+	color: colors.$db-warning-on-bg-weak-enabled;
 }
 .hljs-emphasis {
 	/* prettylights-syntax-markup-italic */
-	color: colors.$db-current-color;
+	color: colors.$db-current-color-enabled;
 	font-style: italic;
 }
 .hljs-strong {
 	/* prettylights-syntax-markup-bold */
-	color: colors.$db-current-color;
+	color: colors.$db-current-color-enabled;
 	font-weight: bold;
 }
 .hljs-addition {
 	/* prettylights-syntax-markup-inserted */
-	color: colors.$db-successful-text;
-	background-color: colors.$db-neutral-text;
+	color: colors.$db-successful-on-bg-weak-enabled;
+	background-color: colors.$db-neutral-on-bg-weak-enabled;
 }
 .hljs-deletion {
 	/* prettylights-syntax-markup-deleted */
-	color: colors.$db-critical-text;
-	background-color: colors.$db-neutral-text;
+	color: colors.$db-critical-on-bg-weak-enabled;
+	background-color: colors.$db-neutral-on-bg-weak-enabled;
 }
 .hljs-char.escape_,
 .hljs-link,

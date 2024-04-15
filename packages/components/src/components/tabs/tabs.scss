@@ -28,9 +28,8 @@ $max-tabs: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
 			&::after {
 				inset-block-end: calc(
-					-1 * (#{variables.$db-spacing-fixed-2xs} + #{variables.$db-border-height-lg})
+					-1 * (#{variables.$db-spacing-fixed-2xs} + #{variables.$db-border-height-xs})
 				);
-				z-index: -2;
 			}
 		}
 	}
@@ -49,6 +48,13 @@ $max-tabs: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 			}
 		}
 	}
+}
+
+%pulse-track {
+	background-color: colors.$db-current-color-bg-transparent-semi-enabled;
+	content: "";
+	border-radius: variables.$db-border-radius-xs;
+	position: absolute;
 }
 
 @mixin angular-button-workaround() {
@@ -102,11 +108,8 @@ $max-tabs: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 		/* horizontal track for pulse */
 		.db-tab-list {
 			&::before {
-				@extend %adaptive-neutral-component;
-				content: "";
-				border-radius: variables.$db-border-radius-md;
-				block-size: variables.$db-border-height-lg;
-				position: absolute;
+				@extend %pulse-track;
+				block-size: variables.$db-border-height-xs;
 				inset-inline: variables.$db-spacing-fixed-xs;
 
 				/* top position equals sum of: margin xs + padding xs + line-height + padding xs + margin 2xs */
@@ -205,12 +208,9 @@ $max-tabs: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
 			/* vertical track for pulse */
 			&::before {
-				@extend %adaptive-neutral-component;
-				content: "";
-				border-radius: variables.$db-border-radius-md;
-				inline-size: variables.$db-border-height-lg;
+				@extend %pulse-track;
+				inline-size: variables.$db-border-height-xs;
 				inset-block: variables.$db-spacing-fixed-xs;
-				position: absolute;
 				inset-inline-start: 0;
 			}
 
@@ -303,7 +303,7 @@ $max-tabs: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 			&::after {
 				position: absolute;
 				z-index: $db-tabs-z-index-button-background;
-				background-color: colors.$db-current-bg-color;
+				background-color: colors.$db-current-color-bg-enabled;
 				inline-size: variables.$db-sizing-md;
 				block-size: calc(
 					#{variables.$db-spacing-fixed-sm} + #{variables.$db-sizing-md}

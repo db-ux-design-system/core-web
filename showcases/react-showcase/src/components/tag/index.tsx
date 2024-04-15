@@ -12,7 +12,7 @@ import { type DBTagProps } from '../../../../../output/react/src/components/tag/
 import { getVariants } from '../data';
 
 const getTag = ({
-	variant,
+	semantic,
 	disabled,
 	children,
 	icon,
@@ -32,7 +32,7 @@ const getTag = ({
 	const [checkedState, setCheckedState] = useState<boolean>(checked ?? false);
 	return (
 		<DBTag
-			variant={variant}
+			semantic={semantic}
 			disabled={disabled}
 			icon={icon}
 			noText={noText}

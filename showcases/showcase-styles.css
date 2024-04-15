@@ -21,6 +21,10 @@
 	position: relative;
 }
 
+db-card:is(.variants-card) > .db-card {
+	padding: var(--db-spacing-fixed-sm);
+}
+
 .variants-list {
 	display: flex;
 	flex-wrap: wrap;
@@ -113,6 +117,7 @@
 	display: flex;
 	gap: var(--db-spacing-fixed-sm);
 	padding: var(--db-spacing-fixed-xs) var(--db-spacing-fixed-sm);
+	background-color: var(--db-base-bg-lvl-2);
 }
 
 .badge-inline-container .db-badge {

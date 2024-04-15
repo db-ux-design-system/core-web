@@ -1,9 +1,12 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+
 import { IconTypes } from './icon-types';
 
 export type GlobalProps = {
 	/**
 	 * default slot
 	 */
+
 	children?: any;
 
 	/**
@@ -32,18 +35,18 @@ export type GlobalState = {
 	defaultValues?: { [key: string]: string };
 };
 
-export type DefaultVariantType =
+export type SemanticType =
 	| 'adaptive'
 	| 'neutral'
 	| 'critical'
 	| 'informational'
 	| 'warning'
 	| 'successful';
-export type DefaultVariantProps = {
+export type SemanticProps = {
 	/**
-	 * The variant defines the default variants for most components.
+	 * The semantic defines the default variants for most components.
 	 */
-	variant?: DefaultVariantType;
+	semantic?: SemanticType;
 };
 
 export type IconProps = {
@@ -150,6 +153,10 @@ export type EmphasisProps = {
 
 export type FormProps = {
 	/**
+	 * Marks an input element as invalid (red) | valid(green) | no-validation(grey). Overwrites the :user-valid selector.
+	 */
+	customValidity?: 'invalid' | 'valid' | 'no-validation';
+	/**
 	 * The disabled attribute can be set to keep a user from clicking on the form element.
 	 */
 	disabled?: boolean;
@@ -157,10 +164,7 @@ export type FormProps = {
 	 * 	Associates the control with a form element
 	 */
 	form?: string;
-	/**
-	 * Marks an input element as invalid.
-	 */
-	invalid?: boolean;
+
 	/**
 	 * The label attribute specifies the caption of the form element.
 	 */
@@ -205,14 +209,19 @@ export type FormCheckProps = {
 	/**
 	 * Hide the label of a radio/checkbox.
 	 */
-	labelVariant?: 'hidden';
+	variant?: 'hidden';
+};
+
+export type FormMessageState = {
+	getValidMessage: () => string;
+	getInvalidMessage: () => string;
 };
 
 export type FormMessageProps = {
 	/**
-	 * Change the variant of the label to float
+	 * Change the variant of the label to float or hidden
 	 */
-	labelVariant?: 'above' | 'floating' | 'hidden';
+	variant?: 'above' | 'floating' | 'hidden';
 	/**
 	 * Text that appears in the form control when it has no value set
 	 */
@@ -221,6 +230,16 @@ export type FormMessageProps = {
 	 * Optional helper message for form components
 	 */
 	message?: string;
+
+	/**
+	 * Helper message for valid form components
+	 */
+	validMessage?: string;
+
+	/**
+	 * Helper message for invalid form components
+	 */
+	invalidMessage?: string;
 
 	/**
 	 * Set/overwrite icon for helper message for form components
@@ -293,6 +312,9 @@ export type FormMessageProps = {
 
 export type FormState = {
 	_messageId?: string;
+	_validMessageId?: string;
+	_invalidMessageId?: string;
+	_descByIds?: string;
 };
 
 export type InitializedState = {
@@ -349,13 +371,7 @@ export type LinkProps = {
 	text?: string;
 };
 
-export type CardProps = {
-	/**
-	 * The elevation attribute changes the style of the card (box-shadow).
-	 */
-	elevation?: 'default' | 'none';
-};
-
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 export type ClickEvent<T> = MouseEvent;
 export type ClickEventProps<T> = {
 	/**
@@ -426,6 +442,7 @@ export type ChangeEventState<T> = {
 	handleChange: (event: ChangeEvent<T>) => void;
 };
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 export type InteractionEvent<T> = FocusEvent;
 
 export type FocusEventProps<T> = {

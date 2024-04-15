@@ -19,11 +19,8 @@ const ColorOverview = () => {
 			</search>
 			<h2>Overview</h2>
 			<div className="color-overview-container">
-				{COLORS.filter(
-					(color) =>
-						color.includes(search) && !color.includes('-strong')
-				).map((color) => (
-					<div className={`db-bg-${color}`}>{color}</div>
+				{COLORS.map((color) => (
+					<div className={`db-${color}`}>{color}</div>
 				))}
 			</div>
 		</DefaultPage>

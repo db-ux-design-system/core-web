@@ -1,10 +1,10 @@
 [
 	{
-		"name": "Tonality",
+		"name": "Density",
 		"examples": [
 			{
 				"name": "Functional",
-				"className": "db-ui-functional",
+				"className": "db-density-functional",
 				"props": {},
 				"code": {
 					"html": "<dialog class=\"db-drawer\" data-backdrop=\"strong\" open>\n\t\t<article class=\"db-drawer-container\">\n\t\t\t<header class=\"db-drawer-header\">\n\t\t\t\t<button\n\t\t\t\t\tclass=\"db-button button-close-drawer is-icon-text-replace\"\n\t\t\t\t\tdata-icon=\"close\"\n\t\t\t\t\tdata-variant=\"text\"\n\t\t\t\t>\n\t\t\t\t\tClose Button\n\t\t\t\t</button>\n\t\t\t</header>\n\t\t\t<div class=\"db-drawer-content\">functional</div>\n\t\t</article>\n\t</dialog>",
@@ -15,7 +15,7 @@
 			},
 			{
 				"name": "(Default) Regular",
-				"className": "db-ui-regular",
+				"className": "db-density-regular",
 				"props": {},
 				"code": {
 					"html": "<dialog class=\"db-drawer\" data-backdrop=\"strong\" open>\n\t\t<article class=\"db-drawer-container\">\n\t\t\t<header class=\"db-drawer-header\">\n\t\t\t\t<button\n\t\t\t\t\tclass=\"db-button button-close-drawer is-icon-text-replace\"\n\t\t\t\t\tdata-icon=\"close\"\n\t\t\t\t\tdata-variant=\"text\"\n\t\t\t\t>\n\t\t\t\t\tClose Button\n\t\t\t\t</button>\n\t\t\t</header>\n\t\t\t<div class=\"db-drawer-content\">Regular (Default)</div>\n\t\t</article>\n\t</dialog>",
@@ -26,7 +26,7 @@
 			},
 			{
 				"name": "Expressive",
-				"className": "db-ui-expressive",
+				"className": "db-density-expressive",
 				"props": {},
 				"code": {
 					"html": "<dialog class=\"db-drawer\" data-backdrop=\"strong\" open>\n\t\t<article class=\"db-drawer-container\">\n\t\t\t<header class=\"db-drawer-header\">\n\t\t\t\t<button\n\t\t\t\t\tclass=\"db-button button-close-drawer is-icon-text-replace\"\n\t\t\t\t\tdata-icon=\"close\"\n\t\t\t\t\tdata-variant=\"text\"\n\t\t\t\t>\n\t\t\t\t\tClose Button\n\t\t\t\t</button>\n\t\t\t</header>\n\t\t\t<div class=\"db-drawer-content\">expressive</div>\n\t\t</article>\n\t</dialog>",

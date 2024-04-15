@@ -1,4 +1,4 @@
-import { Show, useMetadata, useRef, useStore } from '@builder.io/mitosis';
+import { useMetadata, useRef, useStore } from '@builder.io/mitosis';
 import type { DBCardProps, DBCardState } from './model';
 import { cls } from '../../utils';
 import { ClickEvent } from '../../shared/model';
@@ -24,23 +24,15 @@ export default function DBCard(props: DBCardProps) {
 		<div
 			ref={ref}
 			id={props.id}
-			class={cls('db-card', props.className)}
-			data-variant={props.variant}
-			data-color-variant={props.colorVariant}
-			data-elevation={props.elevation}
+			className={cls('db-card', props.className)}
+			data-behaviour={props.behaviour}
+			data-elevation-level={props.elevationLevel}
 			data-spacing={props.spacing}
+			role={props.behaviour === 'interactive' ? 'button' : undefined}
+			tabIndex={props.behaviour === 'interactive' ? 0 : undefined}
 			onClick={(event: ClickEvent<HTMLElement>) =>
 				state.handleClick(event)
 			}>
-			<Show when={props.imgSrc}>
-				<img
-					class="db-card-image"
-					src={props.imgSrc}
-					alt={props.imgAlt}
-					height={props.imgHeight}
-					width={props.imgWidth}
-				/>
-			</Show>
 			{props.children}
 		</div>
 	);

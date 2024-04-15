@@ -1,0 +1,97 @@
+@use "@db-ui/foundations/build/scss/variables";
+@use "@db-ui/foundations/build/scss/screen-sizes";
+@use "../../styles/component";
+@use "../../styles/form-components";
+@use "../../styles/db-puls";
+
+.db-navigation {
+	-webkit-tap-highlight-color: transparent; /* for removing the highlight */
+	inline-size: 100%;
+
+	@include screen-sizes.screen("md") {
+		-webkit-tap-highlight-color: inherit;
+		inline-size: auto;
+	}
+
+	& > menu {
+		display: flex;
+		flex-direction: column;
+		padding: 0;
+		margin: 0;
+		gap: variables.$db-spacing-fixed-sm;
+
+		@include screen-sizes.screen("md") {
+			flex-direction: row;
+		}
+
+		.db-navigation-item {
+			@extend %db-puls-auto;
+
+			.db-navigation-item-expand-button:is(button),
+			.db-navigation-item-expand-button > button {
+				// overwrite for navigation items
+				@include screen-sizes.screen("md") {
+					&::after {
+						--db-icon-margin-start: #{variables.$db-spacing-fixed-sm};
+						--db-icon-after: "expand_more";
+						transition: form-components.$dropdown-icon-transition;
+					}
+
+					&:hover,
+					&:focus-visible,
+					&:has(~ .db-sub-navigation:hover),
+					&:has(~ .db-sub-navigation:focus-visible),
+					&:has(~ .db-sub-navigation:focus-within) {
+						&::after {
+							transform: form-components.$dropdown-icon-transform;
+						}
+					}
+				}
+			}
+
+			// re overwrite for non navigation items
+			& > menu {
+				.db-navigation-item-expand-button:is(button),
+				.db-navigation-item-expand-button > button {
+					@include screen-sizes.screen("md") {
+						&::after {
+							--db-icon-after: "chevron_right";
+							--db-icon-margin-start: auto;
+						}
+
+						&:hover,
+						&:focus-visible,
+						&:has(~ .db-sub-navigation:hover),
+						&:has(~ .db-sub-navigation:focus-visible),
+						&:has(~ .db-sub-navigation:focus-within) {
+							&::after {
+								transform: none;
+							}
+						}
+					}
+				}
+			}
+
+			&:has([aria-current="page"]),
+			&[aria-current="page"] {
+				menu {
+					// hide puls for non navigation items
+					:has([aria-current="page"]),
+					[aria-current="page"] {
+						&::after {
+							display: none;
+						}
+					}
+				}
+			}
+		}
+	}
+
+	&[data-force-close="true"] {
+		& > menu menu {
+			@include screen-sizes.screen("md") {
+				display: none;
+			}
+		}
+	}
+}

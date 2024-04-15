@@ -15,7 +15,7 @@ const defaultIconButton: any = (
 );
 
 const testButton = () => {
-	for (const variant of ['outlined', 'primary', 'solid', 'text']) {
+	for (const variant of ['outlined', 'brand', 'filled', 'ghost']) {
 		const variantButton: any = <DBButton variant={variant}>Test</DBButton>;
 		const variantIconButton: any = (
 			<DBButton icon="account" noText={true} variant={variant}>

@@ -3,36 +3,36 @@ import { useSearchParams } from 'react-router-dom';
 import {
 	COLOR,
 	COLORS,
-	TONALITIES,
-	TONALITY,
+	DENSITIES,
+	DENSITY,
 	COLOR_CONST,
-	TONALITY_CONST
+	DENSITY_CONST
 } from '../../../../packages/components/src/shared/constants';
 import { DBSelect } from '../../../../output/react/src';
 
 export type MetaNavigationProps = {
-	onTonalityChange: (tonality: string) => void;
+	onDensityChange: (density: string) => void;
 	onColorChange: (color: string) => void;
 };
 
 const MetaNavigation = ({
-	onTonalityChange,
+	onDensityChange,
 	onColorChange
 }: MetaNavigationProps) => {
 	const [searchParameters, setSearchParameters] = useSearchParams();
-	const [tonality, setTonality] = useState<string>(
-		searchParameters.get(TONALITY_CONST) ?? TONALITY.REGULAR
+	const [density, setDensity] = useState<string>(
+		searchParameters.get(DENSITY_CONST) ?? DENSITY.REGULAR
 	);
 	const [color, setColor] = useState<string>(
-		searchParameters.get(COLOR_CONST) ?? COLOR.BASE
+		searchParameters.get(COLOR_CONST) ?? COLOR.NEUTRAL_BG_LEVEL_1
 	);
 
 	useEffect(() => {
 		for (const [key, value] of searchParameters.entries()) {
 			if (value) {
-				if (key === TONALITY_CONST && tonality !== value) {
-					setTonality(value);
-					onTonalityChange(value);
+				if (key === DENSITY_CONST && density !== value) {
+					setDensity(value);
+					onDensityChange(value);
 				}
 
 				if (key === COLOR_CONST && color !== value) {
@@ -44,27 +44,27 @@ const MetaNavigation = ({
 	}, [searchParameters]);
 
 	useEffect(() => {
-		setSearchParameters({ tonality, color });
-	}, [color, tonality]);
+		setSearchParameters({ density, color });
+	}, [color, density]);
 
 	return (
 		<>
 			<DBSelect
-				label="Tonality"
-				labelVariant="floating"
-				value={tonality}
+				label="Density"
+				variant="floating"
+				value={density}
 				onChange={(event) => {
-					setTonality(event?.target?.value);
+					setDensity(event?.target?.value);
 				}}>
-				{TONALITIES.map((ton) => (
-					<option key={`tonality-option-${ton}`} value={ton}>
+				{DENSITIES.map((ton) => (
+					<option key={`density-option-${ton}`} value={ton}>
 						{ton}
 					</option>
 				))}
 			</DBSelect>
 			<DBSelect
 				label="Color"
-				labelVariant="floating"
+				variant="floating"
 				value={color}
 				onChange={(event) => {
 					setColor(event?.target?.value);

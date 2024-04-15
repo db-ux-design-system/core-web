@@ -31,10 +31,10 @@ const VariantList = ({ examples, slotCode }: DefaultComponentVariants) => {
 				<summary
 					className="db-button code-button"
 					data-size="small"
-					data-variant="solid">
+					data-variant="filled">
 					{open ? 'Hide code' : 'Show code'}
 				</summary>
-				<div className="db-ui-functional">
+				<div className="db-density-functional">
 					<div className="backdrop" />
 					<DBCard className="code" spacing="small">
 						{slotCode}

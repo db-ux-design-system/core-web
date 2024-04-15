@@ -5,7 +5,6 @@
 @use "../../styles/component";
 @use "../../styles/form-components";
 
-// 1px for border
 $icon-padding: calc(
 	#{form-components.$font-size-height} + #{variables.$db-spacing-fixed-sm} + #{variables.$db-spacing-fixed-xs}
 );
@@ -70,19 +69,14 @@ $icon-padding: calc(
 		&::-webkit-search-cancel-button {
 			appearance: none;
 			position: absolute;
-			// 1px for border
-			inset-inline-end: calc(#{variables.$db-spacing-fixed-sm} + 1px);
+			inset-inline-end: calc(
+				#{variables.$db-spacing-fixed-sm} + #{variables.$db-border-height-3xs}
+			);
 		}
 	}
 
 	&:has(datalist) {
 		@extend %dropdown-icon;
-
-		&:has(input:focus) {
-			&::after {
-				transform: form-components.$dropdown-icon-transform;
-			}
-		}
 
 		input {
 			&::-webkit-calendar-picker-indicator {

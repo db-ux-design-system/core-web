@@ -1,5 +1,10 @@
 import { useEffect, useState } from 'react';
-import { DBTabList, DBTabPanel, DBTabs } from '@db-ui/react-components/src';
+import {
+	DBTabList,
+	DBTabPanel,
+	DBTabs,
+	DBDivider
+} from '@db-ui/react-components/src';
 import {
 	DBAccordion,
 	DBAccordionItem,
@@ -28,6 +33,7 @@ const FormComponent = () => {
 	const [checked, setChecked] = useState<boolean[]>([true, false]);
 
 	const [accordionItems, setAccordionItems] = useState<KeyValueType[]>();
+	const [tabsTest, setTabsTest] = useState<boolean>(false);
 
 	useEffect(() => {
 		setTimeout(() => {
@@ -118,7 +124,7 @@ const FormComponent = () => {
 							{['X', 'Y', 'Z'].map((tag, index) => (
 								<li key={`tag-${tag}`}>
 									<DBTag
-										variant={
+										semantic={
 											index === 0
 												? undefined
 												: 'successful'
@@ -195,7 +201,7 @@ const FormComponent = () => {
 						</DBButton>
 						<DBButton
 							type="button"
-							variant="primary"
+							variant="brand"
 							onClick={(clickEvent) => {
 								// eslint-disable-next-line no-alert
 								alert(
@@ -232,23 +238,23 @@ const FormComponent = () => {
 					<dd>{JSON.stringify(tags)}</dd>
 				</dl>
 
-				<DBAccordion>
-					{accordionItems?.map((item) => (
-						<DBAccordionItem key={item.key} title={item.key}>
-							{item.value}
-						</DBAccordionItem>
-					))}
-				</DBAccordion>
+				<DBDivider />
 
+				<DBButton
+					onClick={() => {
+						setTabsTest(!tabsTest);
+					}}>
+					TabsTest
+				</DBButton>
 				<DBTabs>
 					<DBTabList>
 						<DBTab>Test 1</DBTab>
 						<DBTab>Test 2</DBTab>
-						<DBTab>Test 3</DBTab>
+						{tabsTest && <DBTab>Test 3</DBTab>}
 					</DBTabList>
 					<DBTabPanel>Tab Panel 1</DBTabPanel>
 					<DBTabPanel>Tab Panel 2</DBTabPanel>
-					<DBTabPanel>Tab Panel 3</DBTabPanel>
+					{tabsTest && <DBTabPanel>Tab Panel 3</DBTabPanel>}
 				</DBTabs>
 
 				<DBTabs orientation="vertical">
@@ -301,9 +307,17 @@ const FormComponent = () => {
 					<DBTabPanel>Tab Panel 5</DBTabPanel>
 				</DBTabs>
 
-				<br />
-				<br />
-				<br />
+				<DBDivider />
+
+				<DBAccordion>
+					{accordionItems?.map((item) => (
+						<DBAccordionItem
+							key={item.key}
+							headlinePlain={item.key}>
+							{item.value}
+						</DBAccordionItem>
+					))}
+				</DBAccordion>
 
 				<DBSelect
 					id="select-test"
@@ -316,6 +330,44 @@ const FormComponent = () => {
 						{ label: 'Test1', value: 'Test1' },
 						{ label: 'Test2', value: 'Test2' }
 					]}
+				/>
+
+				<h4>Validations</h4>
+
+				<DBInput
+					label="Input minlength validation"
+					placeholder="Placeholder"
+					invalidMessage="Min. 3"
+					validMessage="😎"
+					minLength={3}
+				/>
+				<DBInput
+					label="Input pattern validation"
+					placeholder="Placeholder"
+					pattern="\w{3,16}"
+					invalidMessage="Pattern \w{3,16}"
+					validMessage="😎"
+				/>
+				<DBInput
+					label="Input number"
+					placeholder="Placeholder"
+					invalidMessage="Type=number"
+					validMessage="😎"
+					type="number"
+				/>
+				<DBInput
+					label="Input number min"
+					placeholder="Placeholder"
+					invalidMessage="Type=number min 3"
+					validMessage="😎"
+					type="number"
+					min={3}
+				/>
+				<DBTextarea
+					label="Textarea min 10"
+					invalidMessage="Min 10"
+					validMessage="😎"
+					minLength={10}
 				/>
 			</div>
 		</div>

@@ -27,9 +27,9 @@ You can use different types of tags by adding another component into it:
 
 ### sizes
 
-| Before  | Status | After | Description                                                                                                                              |
-| ------- | :----: | :---: | ---------------------------------------------------------------------------------------------------------------------------------------- |
-| `small` |   ❌   |  ❌   | We removed small tags because of tonality. But you can use `type` property with value `strong` to emphasize a tag for a differentiation. |
+| Before  | Status | After | Description                                                                                                                             |
+| ------- | :----: | :---: | --------------------------------------------------------------------------------------------------------------------------------------- |
+| `small` |   ❌   |  ❌   | We removed small tags because of density. But you can use `type` property with value `strong` to emphasize a tag for a differentiation. |
 
 ### variants
 

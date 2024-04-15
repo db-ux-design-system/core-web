@@ -10,9 +10,9 @@ import { DBTextarea } from '../textarea';
 
 const comp: any = (
 	<DBAccordion>
-		<DBAccordionItem headline="Test" content="Content 1" />
-		<DBAccordionItem headline="Test 2" content="Content 2" />
-		<DBAccordionItem headline="Test 3" content="Content 3" />
+		<DBAccordionItem headlinePlain="Test" content="Content 1" />
+		<DBAccordionItem headlinePlain="Test 2" content="Content 2" />
+		<DBAccordionItem headlinePlain="Test 3" content="Content 3" />
 	</DBAccordion>
 );
 

@@ -21,7 +21,7 @@ We currently support:
 
 The defaults for `db-ui-foundations.css` are:
 
--   [Tonality](https://marketingportal.extranet.deutschebahn.com/marketingportal/Design-Anwendungen/db-ux-design-system-v3/principles/tonalities): `regular`
+-   [Density](https://marketingportal.extranet.deutschebahn.com/marketingportal/Design-Anwendungen/db-ux-design-system-v3/principles/densities): `regular`
 -   [Adaptive Coloring](https://marketingportal.extranet.deutschebahn.com/marketingportal/Design-Anwendungen/db-ux-design-system-v3/principles/adaptive-styles): `base`
 
 ### CSS

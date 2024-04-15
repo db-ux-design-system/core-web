@@ -1,32 +1,59 @@
 @use "@db-ui/foundations/build/scss/variables";
 @use "@db-ui/foundations/build/scss/colors";
+@use "@db-ui/foundations/build/scss/focus";
+@use "@db-ui/foundations/build/scss/icons";
+@use "@db-ui/foundations/build/scss/helpers";
 @use "../../styles/component";
+@use "../../styles/db-puls";
 @use "../../styles/form-components";
 
 $with-icon-padding: calc(
 	#{variables.$db-spacing-fixed-xs} + #{variables.$db-spacing-fixed-sm} + #{form-components.$font-size-height}
 );
 
+$tab-border-radius: variables.$db-border-radius-sm;
+
 .db-tab {
 	position: relative;
 	display: inline-flex;
 	list-style-type: none;
+	border-radius: $tab-border-radius;
 
 	&:has(input:disabled) {
-		opacity: variables.$db-opacity-sm;
+		opacity: component.$default-disabled;
 	}
 
 	label {
-		@extend %default-interactive-component;
-		@include colors.bg-transparent-interactive();
+		background-color: colors.$db-current-color-bg-transparent-full-enabled;
 		padding: variables.$db-spacing-fixed-xs;
 		align-items: center;
 		display: inline-block;
 		white-space: nowrap;
 		border: none;
+		border-radius: $tab-border-radius;
 
 		overflow: hidden;
 		text-overflow: ellipsis;
+
+		@include helpers.hover {
+			&:has(:not(input:disabled)) {
+				background-color: colors.$db-current-color-bg-transparent-hover;
+			}
+
+			&:has(input:disabled) {
+				cursor: initial;
+			}
+		}
+
+		@include helpers.hover {
+			&:has(:not(input:disabled)) {
+				background-color: colors.$db-current-color-bg-transparent-hover;
+			}
+
+			&:has(input:disabled) {
+				cursor: initial;
+			}
+		}
 
 		&:has(input:checked) {
 			font-weight: 700;
@@ -43,20 +70,6 @@ $with-icon-padding: calc(
 					0% + #{variables.$db-spacing-fixed-xs}
 				);
 			}
-
-			&:is(.is-icon-text-replace) {
-				padding: 0;
-				inline-size: calc(
-					#{$with-icon-padding} - #{variables.$db-spacing-fixed-2xs}
-				);
-				block-size: calc(
-					#{form-components.$font-size-height} + #{variables.$db-spacing-fixed-xs}
-				);
-
-				&::before {
-					margin-inline-end: 0;
-				}
-			}
 		}
 
 		&[data-icon-after] {
@@ -69,6 +82,22 @@ $with-icon-padding: calc(
 				inset-inline-end: calc(0% + #{variables.$db-spacing-fixed-xs});
 			}
 		}
+
+		&[data-no-text="true"] {
+			@include icons.is-icon-text-replace();
+
+			padding: 0;
+			inline-size: calc(
+				#{$with-icon-padding} - #{variables.$db-spacing-fixed-2xs}
+			);
+			block-size: calc(
+				#{form-components.$font-size-height} + #{variables.$db-spacing-fixed-xs}
+			);
+
+			&::before {
+				margin-inline-end: 0;
+			}
+		}
 	}
 
 	input {
@@ -77,8 +106,8 @@ $with-icon-padding: calc(
 		inline-size: 100%;
 		margin-inline-end: initial;
 		inset: 0;
-		background: colors.$db-current-bg-color;
-		border-radius: variables.$db-border-radius-md;
+		background: colors.$db-current-color-bg-enabled;
+		border-radius: $tab-border-radius;
 		z-index: -1;
 
 		/*
@@ -98,7 +127,7 @@ $with-icon-padding: calc(
 				content: "";
 				position: absolute;
 				inset: 0;
-				border-radius: variables.$db-border-radius-md;
+				border-radius: $tab-border-radius;
 				z-index: 10;
 				pointer-events: none;
 			}

@@ -37,11 +37,11 @@ const getExamplesAsMDX = async (componentName, variant) => {
 		'DBTabs\n' +
 		"} from '../../../../../../output/react/src';\n" +
 		`const ${variant.name} = () => {
-			const [copied, setCopied] = useState<boolean>();
+			const [copied, setCopied] = useState<string>();
 
 			useEffect(() => {
 			if (copied) {
-			setTimeout(() => setCopied(false), 1500);
+			setTimeout(() => setCopied(""), 1500);
 			}
 			}, [copied]);
 			return (
@@ -95,10 +95,10 @@ const getExamplesAsMDX = async (componentName, variant) => {
 				<DBButton
 				className="copy-button"
 				noText
-				icon={copied ? 'done' : 'copy'}
-				variant="text"
+				icon={copied === \`${exampleCode}\` ? 'done' : 'copy'}
+				variant="ghost"
 				onClick={()=>{
-				setCopied(true);
+				setCopied(\`${exampleCode}\`);
 				navigator.clipboard.writeText(\`${exampleCode}\`);
 				}}>
 				Copy

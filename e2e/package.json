@@ -6,8 +6,7 @@
   "workspaces": [
     "showcases/*",
     "packages/*",
-    "output/*",
-    "output/vue/vue3"
+    "output/*"
   ],
   "scripts": {
     "regenerate": "npm-run-all -p regenerate:*",

@@ -2,12 +2,13 @@
 import { Buffer } from 'buffer';
 import { useRouter } from 'next/router';
 import ComponentParser from '../../components/component-parser';
+import { COLOR } from '../../components/src/shared/constants';
 
 const IframeComponent = () => {
 	const router = useRouter();
 
-	const tonality = router.query.tonality ?? 'regular';
-	const color = router.query.color ?? 'neutral-0';
+	const density = router.query.density ?? 'regular';
+	const color = router.query.color ?? COLOR.NEUTRAL_BG_LEVEL_1;
 
 	const componentsString: string = (router.query.components as string) ?? '';
 	const componentsBuffer = Buffer.from(componentsString, 'base64');
@@ -15,7 +16,7 @@ const IframeComponent = () => {
 
 	return (
 		<div
-			className={`iframe-component-container db-ui-${tonality} db-bg-${color}`}>
+			className={`iframe-component-container db-density-${density} db-${color}`}>
 			<ComponentParser componentsString={components} />
 		</div>
 	);

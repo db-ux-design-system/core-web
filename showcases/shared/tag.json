@@ -1,20 +1,20 @@
 [
 	{
-		"name": "Tonality",
+		"name": "Density",
 		"examples": [
 			{
 				"name": "Functional",
-				"className": "db-ui-functional",
+				"className": "db-density-functional",
 				"props": {}
 			},
 			{
 				"name": "(Default) Regular",
-				"className": "db-ui-regular",
+				"className": "db-density-regular",
 				"props": {}
 			},
 			{
 				"name": "Expressive",
-				"className": "db-ui-expressive",
+				"className": "db-density-expressive",
 				"props": {}
 			}
 		]
@@ -35,7 +35,7 @@
 		]
 	},
 	{
-		"name": "Variant",
+		"name": "Semantic",
 		"examples": [
 			{
 				"name": "(Default) Adaptive",
@@ -44,31 +44,31 @@
 			{
 				"name": "Neutral",
 				"props": {
-					"variant": "neutral"
+					"semantic": "neutral"
 				}
 			},
 			{
 				"name": "Critical",
 				"props": {
-					"variant": "critical"
+					"semantic": "critical"
 				}
 			},
 			{
 				"name": "Informational",
 				"props": {
-					"variant": "informational"
+					"semantic": "informational"
 				}
 			},
 			{
 				"name": "Successful",
 				"props": {
-					"variant": "successful"
+					"semantic": "successful"
 				}
 			},
 			{
 				"name": "Warning",
 				"props": {
-					"variant": "warning"
+					"semantic": "warning"
 				}
 			},
 			{
@@ -80,35 +80,35 @@
 			{
 				"name": "Neutral Strong",
 				"props": {
-					"variant": "neutral",
+					"semantic": "neutral",
 					"emphasis": "strong"
 				}
 			},
 			{
 				"name": "Critical Strong",
 				"props": {
-					"variant": "critical",
+					"semantic": "critical",
 					"emphasis": "strong"
 				}
 			},
 			{
 				"name": "Informational Strong",
 				"props": {
-					"variant": "informational",
+					"semantic": "informational",
 					"emphasis": "strong"
 				}
 			},
 			{
 				"name": "Successful Strong",
 				"props": {
-					"variant": "successful",
+					"semantic": "successful",
 					"emphasis": "strong"
 				}
 			},
 			{
 				"name": "Warning Strong",
 				"props": {
-					"variant": "warning",
+					"semantic": "warning",
 					"emphasis": "strong"
 				}
 			}
