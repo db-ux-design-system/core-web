@@ -18,6 +18,7 @@ import { DBInput } from "../../../../../output/vue/src";
 				:required="exampleProps.required"
 				:type="exampleProps.type"
 				:disabled="exampleProps.disabled"
+				:readOnly="exampleProps.readOnly"
 				:value="exampleProps.value"
 				:icon="exampleProps.icon"
 				:iconAfter="exampleProps.iconAfter"
