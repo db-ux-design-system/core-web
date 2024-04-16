@@ -45,9 +45,13 @@ const testAction = () => {
 			/>
 		);
 		const component = await mount(actionComp);
-		await component.check();
+		await component
+			// VUE: .getByRole('checkbox')
+			.check();
 		expect(test).toEqual('test');
-		await component.uncheck();
+		await component
+			// VUE: .getByRole('checkbox')
+			.uncheck();
 		expect(test).toEqual('test2');
 	});
 };

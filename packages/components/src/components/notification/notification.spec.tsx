@@ -41,9 +41,11 @@ const testAction = () => {
 	test(`should be closeable`, async ({ mount }) => {
 		let close = '';
 		const closeable: any = (
-			<DBAlert onClick={() => (close = 'test')} behaviour="closable">
+			<DBNotification
+				onClose={() => (close = 'test')}
+				behaviour="closable">
 				Test
-			</DBAlert>
+			</DBNotification>
 		);
 		const component = await mount(closeable);
 		await component.getByRole('button').click();

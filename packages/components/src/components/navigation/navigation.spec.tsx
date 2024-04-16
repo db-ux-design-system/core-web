@@ -10,12 +10,12 @@ const comp: any = (
 	<DBNavigation>
 		<DBNavigationItem
 			data-testid="test1"
-			slotSubNavigation={
+			subNavigation={
 				<DBNavigationItem data-testid="sub1">
 					<a href="#">Sub1</a>
 				</DBNavigationItem>
 			}>
-			{/*<template v-slot:sub-navigation>
+			{/*<template v-slot:subnavigation>
 					<DBNavigationItem data-testid="sub1">
 					<a href="#">Sub1</a>
 				</DBNavigationItem>
