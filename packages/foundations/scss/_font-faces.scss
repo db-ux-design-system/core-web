@@ -70,5 +70,7 @@ $black: assets-paths.$fonts-path + "dbscreenhead-black.woff2";
 	font-family: "DB Screen Head";
 	font-style: normal;
 	font-weight: 900;
-	src: url($black) format("woff2");
+	src: /* local("DB Screen Head Black"),
+		local("DB Head Black"),*/
+		url($black) format("woff2");
 }
