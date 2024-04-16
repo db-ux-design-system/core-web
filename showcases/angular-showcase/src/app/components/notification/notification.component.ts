@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
-import { DBNotification } from '../../../../../../output/angular/src/components/notification/notification';
-import { DBLink } from '../../../../../../output/angular/src/components/link/link';
+import { DBLink, DBNotification } from '../../../../../../output/angular/src';
 import defaultComponentVariants from '../../../../../shared/notification.json';
 import { DefaultComponent } from '../default.component';
 

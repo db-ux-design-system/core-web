@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import defaultComponentVariants from '../../../../../shared/accordion-item.json';
-import { DBAccordionItem } from '../../../../../../output/angular/src/components/accordion-item';
+import { DBAccordionItem } from '../../../../../../output/angular/src';
 import { DefaultComponent } from '../default.component';
 
 @Component({

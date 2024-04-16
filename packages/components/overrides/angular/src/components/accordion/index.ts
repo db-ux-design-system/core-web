@@ -1,1 +1,0 @@
-export { DBAccordion } from './accordion';
