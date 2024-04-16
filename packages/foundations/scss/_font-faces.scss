@@ -25,7 +25,9 @@ $medium: assets-paths.$fonts-path + "dbscreensans-medium.woff2";
 	font-family: "DB Screen Sans";
 	font-style: normal;
 	font-weight: 500;
-	src: url($medium) format("woff2");
+	src: /* local("DB Screen Sans Medium"),
+		local("DB Sans Medium"),*/
+		url($medium) format("woff2");
 }
 $semibold: assets-paths.$fonts-path + "dbscreensans-semibold.woff2";
 @font-face {
