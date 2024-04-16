@@ -1,10 +1,9 @@
 @use "@db-ui/foundations/build/scss/variables";
 @use "@db-ui/foundations/build/scss/colors";
 
-a > :has(.db-brand) {
+a:has(.db-brand) {
 	// Deactivate underline on site name being made clickable by added to the link as well
 	text-decoration: none;
-}
 }
 
 .db-brand {
