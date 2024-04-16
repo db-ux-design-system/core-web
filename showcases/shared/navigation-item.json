@@ -52,13 +52,13 @@
 			{
 				"name": "Text - Icon (Leading)",
 				"props": {
-					"icon": "account"
+					"icon": "user"
 				}
 			},
 			{
 				"name": "Text - Icons (Leading, Chevron)",
 				"props": {
-					"icon": "account",
+					"icon": "user",
 					"areaPopup": true
 				}
 			},

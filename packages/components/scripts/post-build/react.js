@@ -1,6 +1,6 @@
 const { components } = require('./components');
 const FS = require('node:fs');
-const { getComponentName, runReplacements } = require('../utils');
+const { transformToUpperComponentName, runReplacements } = require('../utils');
 
 const overwriteEvents = (tmp) => {
 	const modelFilePath = `../../${
@@ -32,7 +32,9 @@ module.exports = (tmp) => {
 		overwriteEvents(tmp);
 
 		for (const component of components) {
-			const upperComponentName = getComponentName(component.name);
+			const upperComponentName = transformToUpperComponentName(
+				component.name
+			);
 
 			const tsxFile = `../../${
 				tmp ? 'output/tmp' : 'output'

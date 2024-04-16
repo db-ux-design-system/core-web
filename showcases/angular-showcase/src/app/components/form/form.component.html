@@ -7,7 +7,7 @@
 			label="Input with ngModel"
 			placeholder="Placeholder"
 			message="Description"
-			icon="account"
+			icon="user"
 		>
 		</db-input>
 
@@ -16,7 +16,7 @@
 			label="Textarea Controlled"
 			placeholder="Placeholder"
 			message="Description"
-			icon="account"
+			icon="user"
 			[value]="textarea"
 			(change)="textarea = $event.target.value"
 		></db-textarea>
@@ -26,7 +26,7 @@
 			label="Textarea with defaultValue"
 			placeholder="Placeholder"
 			message="Description"
-			icon="account"
+			icon="user"
 			defaultValue="default value"
 			(change)="textareaDefaultValue = $event.target.value"
 		></db-textarea>
@@ -37,7 +37,7 @@
 			label="Textarea with ngModel"
 			placeholder="Placeholder"
 			message="Description"
-			icon="account"
+			icon="user"
 			value="Textarea"
 		></db-textarea>
 
@@ -69,7 +69,7 @@
 					label="Textinput"
 					placeholder="Placeholder"
 					message="Description"
-					icon="account"
+					icon="user"
 					formControlName="input"
 				>
 				</db-input>
@@ -81,7 +81,7 @@
 					placeholder="Placeholder"
 					message="Description"
 					[dataList]="dataList"
-					icon="account"
+					icon="user"
 				>
 				</db-input>
 
@@ -117,7 +117,7 @@
 					label="Textarea"
 					placeholder="Placeholder"
 					message="Description"
-					icon="account"
+					icon="user"
 					formControlName="textarea"
 				></db-textarea>
 
@@ -176,7 +176,7 @@
 					label="Select"
 					placeholder="Placeholder"
 					message="Description"
-					icon="account"
+					icon="user"
 					formControlName="select"
 					(change)="handleChange4($event)"
 				>
@@ -259,15 +259,15 @@
 
 			<DBTabs orientation="vertical">
 				<DBTabList>
-					<DBTab icon="airplane">Airplane Button</DBTab>
-					<DBTab iconAfter="cancel">Cancel Button</DBTab>
-					<DBTab iconAfter="cancel">
+					<DBTabItem icon="airplane">Airplane Button</DBTabItem>
+					<DBTabItem iconAfter="cancel">Cancel Button</DBTabItem>
+					<DBTabItem iconAfter="cancel">
 						Long Button Label with a lot of text
-					</DBTab>
-					<DBTab icon="airplane" iconAfter="cancel">
+					</DBTabItem>
+					<DBTabItem icon="airplane" iconAfter="cancel">
 						Another Button Label with a lot of text
-					</DBTab>
-					<DBTab icon="airplane" [noText]="true"></DBTab>
+					</DBTabItem>
+					<DBTabItem icon="airplane" [noText]="true"></DBTabItem>
 				</DBTabList>
 				<DBTabPanel>
 					It is a long established fact that a reader will be

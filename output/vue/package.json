@@ -30,6 +30,7 @@
     "build": "npm-run-all build:*",
     "build:01_vite": "vite build",
     "build:02_types": "vue-tsc --declaration --emitDeclarationOnly",
+    "build:03_ts_workaround": "node scripts/fix-any-types.js",
     "mv:dist": "cpr dist ../../build-outputs/vue/dist -o",
     "mv:package.json": "cpr package.json ../../build-outputs/vue/package.json -o",
     "mv:readme": "cpr README.md ../../build-outputs/vue/README.md -o",
@@ -37,7 +38,7 @@
     "test:components": "playwright test -c playwright.config.ts"
   },
   "dependencies": {
-    "vue": "^3.4.21"
+    "vue": "^3.4.22"
   },
   "devDependencies": {
     "@axe-core/playwright": "^4.8.5",
@@ -45,7 +46,7 @@
     "@vitejs/plugin-vue": "^5.0.4",
     "sass": "^1.75.0",
     "typescript": "^5.4.5",
-    "vite": "^5.2.8",
+    "vite": "^5.2.9",
     "vue-tsc": "^2.0.13"
   },
   "publishConfig": {

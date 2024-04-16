@@ -44,7 +44,7 @@ export default function DBTag(props: DBTagProps) {
 				<DBButton
 					className="db-tab-remove-button"
 					onClick={() => state.handleRemove()}
-					icon="close"
+					icon="cross"
 					size="small"
 					noText
 					variant="ghost"

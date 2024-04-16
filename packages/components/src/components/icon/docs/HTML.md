@@ -10,6 +10,6 @@ You could use the `data-icon` or `data-icon-after` attributes on any HTML tag:
 <!-- index.html -->
 ...
 <body>
-	<span data-icon="account"> Icon </span>
+	<span data-icon="user"> Icon </span>
 </body>
 ```

@@ -11,8 +11,8 @@
 	display: flex;
 
 	@include icons.has-no-icon() {
-		@include icons.to-solid-icon();
-		@include icons.set-icon("info");
+		@include icons.to-filled-icon();
+		@include icons.set-icon("information_circle");
 	}
 
 	&[data-size="small"] {

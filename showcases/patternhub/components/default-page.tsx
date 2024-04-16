@@ -93,7 +93,10 @@ const DefaultPage = ({ children }: any) => {
 								</DBBrand>
 							}
 							callToAction={
-								<DBButton icon="search" variant="ghost" noText>
+								<DBButton
+									icon="magnifying_glass"
+									variant="ghost"
+									noText>
 									Search
 								</DBButton>
 							}

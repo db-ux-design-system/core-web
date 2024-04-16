@@ -70,4 +70,4 @@ updates:
           - "next"
       builder.io:
         patterns:
-          - "@builder.io/mitosis"
+          - "@builder.io/mitosis*"

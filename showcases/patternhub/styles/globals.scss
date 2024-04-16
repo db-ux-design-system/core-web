@@ -405,20 +405,31 @@ h6 {
 		.code {
 			overflow: auto;
 			position: absolute;
+			z-index: 20;
 			inset: 0;
-			z-index: 1;
 			margin: variables.$db-spacing-fixed-md;
 			display: flex;
 			flex-direction: column;
 			gap: variables.$db-spacing-fixed-sm;
+
+			code {
+				display: block;
+				white-space: pre-wrap;
+			}
 
 			.tab-container {
 				position: relative;
 
 				.copy-button {
 					position: absolute;
+					z-index: 20;
 					inset-inline-end: variables.$db-spacing-fixed-sm;
-					inset-block-start: variables.$db-spacing-fixed-sm;
+					inset-block-end: variables.$db-spacing-fixed-sm;
+
+					@include screen-sizes.screen("md") {
+						inset-block-end: auto;
+						inset-block-start: variables.$db-spacing-fixed-sm;
+					}
 				}
 			}
 		}
