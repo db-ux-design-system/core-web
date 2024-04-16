@@ -34,7 +34,9 @@ $semibold: assets-paths.$fonts-path + "dbscreensans-semibold.woff2";
 	font-family: "DB Screen Sans";
 	font-style: normal;
 	font-weight: 600;
-	src: url($semibold) format("woff2");
+	src: /* local("DB Screen Sans SemiBold"),
+		local("DB Sans SemiBold"),*/
+		url($semibold) format("woff2");
 }
 $bold: assets-paths.$fonts-path + "dbscreensans-bold.woff2";
 @font-face {
