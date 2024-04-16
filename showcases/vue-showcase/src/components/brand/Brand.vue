@@ -3,11 +3,6 @@ import DefaultComponent from "../DefaultComponent.vue";
 import defaultComponentVariants from "../../../../shared/brand.json";
 import { DBBrand } from "../../../../../output/vue/src";
 import imageUrl from "/assets/images/placeholder.jpg";
-
-const log = (exampleName: string) => {
-	// eslint-disable-next-line no-alert
-	alert(exampleName);
-};
 </script>
 
 <template>
