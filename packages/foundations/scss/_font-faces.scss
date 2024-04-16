@@ -15,7 +15,10 @@ $regular: assets-paths.$fonts-path + "dbscreensans-regular.woff2";
 	font-family: "DB Screen Sans";
 	font-style: normal;
 	font-weight: 400;
-	src: url($regular) format("woff2");
+	src: /* local("DB Screen Sans Regular"),
+		local("DB Screen Sans"),
+		local("DB Sans"),*/
+		url($regular) format("woff2");
 }
 $medium: assets-paths.$fonts-path + "dbscreensans-medium.woff2";
 @font-face {
