@@ -4,7 +4,11 @@ $digitalregular: assets-paths.$fonts-path + "dbscreensans-digitalregular.woff2";
 	font-family: "DB Screen Sans";
 	font-style: normal;
 	font-weight: 300;
-	src: url($digitalregular) format("woff2");
+	src: /* TODO: add those again as soon as the local files got fixed
+		local("DB Screen Sans Digital Regular"),
+		local("DB Screen Sans Digital"),
+		local("DB Sans Digital"),*/
+		url($digitalregular) format("woff2");
 }
 $regular: assets-paths.$fonts-path + "dbscreensans-regular.woff2";
 @font-face {
