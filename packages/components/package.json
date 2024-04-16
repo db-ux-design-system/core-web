@@ -18,7 +18,6 @@
     "build": "npm-run-all -p build-components build-assets -s build-style:*",
     "build-assets": "cpr src build -o -f \"(.ts|.tsx|.md|.html)$\"",
     "build-components": "npm-run-all build:mitosis -p build-components:*",
-    "build-components:directives": "cpr overrides/angular ../../output/angular -o",
     "build-components:docs": "react-docgen ../../output/react/src/components/**/*.tsx -o ../../output/docs.json -i *.spec.tsx",
     "build-components:post": "node scripts/post-build/index.js",
     "build-style:01_sass": "sass src:build --no-source-map --load-path=node_modules/ --load-path=../../node_modules/ --future-deprecation=import",
@@ -49,7 +48,7 @@
   "devDependencies": {
     "@builder.io/eslint-plugin-mitosis": "^0.0.15",
     "@builder.io/mitosis": "^0.2.1",
-    "@builder.io/mitosis-cli": "^0.1.7",
+    "@builder.io/mitosis-cli": "^0.2.1",
     "@react-docgen/cli": "^2.0.3",
     "cpr": "3.0.1",
     "cssnano": "^6.1.2",

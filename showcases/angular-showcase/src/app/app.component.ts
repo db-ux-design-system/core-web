@@ -1,24 +1,24 @@
 import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ActivatedRoute, Router, RouterOutlet } from '@angular/router';
-import { DBSelect } from '../../../../output/angular/src/components/select/select';
-import { DBNavigation } from '../../../../output/angular/src/components/navigation/navigation';
-import { DBBrand } from '../../../../output/angular/src/components/brand/brand';
-import { DBHeader } from '../../../../output/angular/src/components/header/header';
-import { DBPage } from '../../../../output/angular/src/components/page/page';
 import {
+	ActionBarDirective,
+	NavigationDirective,
+	MetaNavigationDirective,
+	NavigationContentDirective,
+	DBBrand,
+	DBButton,
+	DBHeader,
+	DBNavigation,
+	DBPage,
+	DBSelect,
 	COLOR,
+	COLOR_CONST,
 	COLORS,
 	DENSITIES,
 	DENSITY,
-	COLOR_CONST,
 	DENSITY_CONST
-} from '../../../../packages/components/src/shared/constants';
-import { DBButton } from '../../../../output/angular/src/components/button';
-import { ActionBarDirective } from '../../../../output/angular/src/components/header/ActionBar.directive';
-import { NavigationDirective } from '../../../../output/angular/src/components/header/Navigation.directive';
-import { MetaNavigationDirective } from '../../../../output/angular/src/components/header/MetaNavigation.directive';
-import { NavigationContentDirective } from '../../../../output/angular/src/components/navigation-item/NavigationContent.directive';
+} from '../../../../output/angular/src';
 import { NavItemComponent } from './nav-item/nav-item.component';
 import {
 	getSortedNavigationItems,

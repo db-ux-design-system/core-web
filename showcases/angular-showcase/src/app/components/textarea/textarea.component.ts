@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import defaultComponentVariants from '../../../../../shared/textarea.json';
 import { DefaultComponent } from '../default.component';
-import { DBTextarea } from '../../../../../../output/angular/src/components/textarea/textarea';
+import { DBTextarea } from '../../../../../../output/angular/src';
 
 @Component({
 	selector: 'app-textarea',
