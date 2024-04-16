@@ -1,1 +1,0 @@
-export { DBIcon } from './icon';

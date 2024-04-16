@@ -1,39 +1,23 @@
 import { DBBrand } from '../../../../../output/react/src';
-import { type DBBrandProps } from '../../../../../output/react/src/components/brand/model';
-import defaultComponentVariants from '../../../../shared/brand.json';
-import { getVariants } from '../data';
 import DefaultComponent from '../index';
+import defaultComponentVariants from '../../../../shared/brand.json';
+import { type DBBrandProps } from '../../../../../output/react/src/components/brand/model';
+import { getVariants } from '../data';
 
 const getBrand = ({
-	imgAlt,
-	imgHeight,
-	imgSrc,
-	imgWidth,
-	anchorChildren,
-	anchorRef,
-	anchorTitle,
-	anchorRelation,
-	hideDefaultAsset,
 	children,
-	className,
-	describedbyid,
-	id,
-	key
-}: DBBrandProps) => (
-	<DBBrand
-		imgAlt={imgAlt}
-		imgHeight={imgHeight}
-		imgSrc="https://db-ui.github.io/images/db_logo.svg"
-		imgWidth={imgWidth}
-		anchorChildren={anchorChildren}
-		anchorRef={anchorRef}
-		anchorTitle={anchorTitle}
-		anchorRelation={anchorRelation}
-		hideDefaultAsset={hideDefaultAsset}
-		className={className}
-		describedbyid={describedbyid}
-		id={id}
-		key={key}>
+	hideLogo,
+	customLogo
+}: DBBrandProps & { customLogo: boolean }) => (
+	<DBBrand hideLogo={hideLogo}>
+		{customLogo && (
+			<img
+				src={`${
+					process?.env?.NEXT_PUBLIC_BASE_PATH ?? '/react-showcase'
+				}/assets/images/placeholder.jpg`}
+				alt="logo"
+			/>
+		)}
 		{children}
 	</DBBrand>
 );

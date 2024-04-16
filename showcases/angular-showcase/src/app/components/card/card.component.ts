@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import defaultComponentVariants from '../../../../../shared/card.json';
 import { DefaultComponent } from '../default.component';
-import { DBCard } from '../../../../../../output/angular/src/components/card';
+import { DBCard } from '../../../../../../output/angular/src';
 
 @Component({
 	selector: 'app-card',

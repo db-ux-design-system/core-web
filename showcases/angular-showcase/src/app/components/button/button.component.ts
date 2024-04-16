@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import defaultComponentVariants from '../../../../../shared/button.json';
 import { DefaultComponent } from '../default.component';
-import { DBButton } from '../../../../../../output/angular/src/components/button';
+import { DBButton } from '../../../../../../output/angular/src';
 
 @Component({
 	selector: 'app-button',

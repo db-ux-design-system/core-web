@@ -30,13 +30,7 @@ const getPage = ({
 		key={key}
 		header={
 			<DBHeader
-				brand={
-					<DBBrand
-						title="DBHeader"
-						imgSrc="https://db-ui.github.io/images/db_logo.svg">
-						DBHeader
-					</DBBrand>
-				}
+				brand={<DBBrand title="DBHeader">DBHeader</DBBrand>}
 				metaNavigation={
 					<>
 						<DBLink href="#">Imprint</DBLink>

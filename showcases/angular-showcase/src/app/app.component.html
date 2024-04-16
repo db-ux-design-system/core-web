@@ -10,14 +10,7 @@
 			[drawerOpen]="drawerOpen"
 			(onToggle)="toggleDrawer($event)"
 		>
-			<db-brand
-				brand
-				title="Angular Showcase"
-				src="./assets/db_logo.svg"
-				href="/angular-showcase"
-			>
-				Showcase
-			</db-brand>
+			<db-brand brand>Showcase</db-brand>
 			<db-navigation *dbNavigation>
 				@for (item of navigationItems; track item.label) {
 					<app-nav-item [navItem]="item"> </app-nav-item>

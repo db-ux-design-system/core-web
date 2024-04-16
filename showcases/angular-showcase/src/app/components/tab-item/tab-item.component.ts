@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import defaultComponentVariants from '../../../../../shared/tab-item.json';
 import { DefaultComponent } from '../default.component';
-import { DBTabItem } from '../../../../../../output/angular/src/components/tab-item';
+import { DBTabItem } from '../../../../../../output/angular/src';
 
 @Component({
 	selector: 'app-tab',

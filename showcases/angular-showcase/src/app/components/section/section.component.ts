@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import defaultComponentVariants from '../../../../../shared/section.json';
 import { DefaultComponent } from '../default.component';
-import { DBSection } from '../../../../../../output/angular/src/components/section/section';
+import { DBSection } from '../../../../../../output/angular/src';
 
 @Component({
 	selector: 'app-section',

@@ -24,6 +24,7 @@ import { CardComponent } from '../components/card/card.component';
 import { DividerComponent } from '../components/divider/divider.component';
 import { DrawerComponent } from '../components/drawer/drawer.component';
 import { IconComponent } from '../components/icon/icon.component';
+import { BrandComponent } from '../components/brand/brand.component';
 
 export type NavItem = {
 	path: string;
@@ -73,6 +74,11 @@ export const NAVIGATION_ITEMS: NavItem[] = [
 		label: '04 Data-Display',
 		subNavigation: getSortedNavigationItems([
 			{ path: '04/icon', label: 'Icon', component: IconComponent },
+			{
+				path: '04/brand',
+				label: 'Brand',
+				component: BrandComponent
+			},
 			{
 				path: '04/tooltip',
 				label: 'Tooltip',

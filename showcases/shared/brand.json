@@ -18,5 +18,27 @@
 				"props": {}
 			}
 		]
+	},
+	{
+		"name": "Variants",
+		"examples": [
+			{
+				"name": "(Default) With Logo",
+				"props": {}
+			},
+			{
+				"name": "No Logo",
+				"props": {
+					"hideLogo": true
+				}
+			},
+			{
+				"name": "Custom Logo",
+				"props": {
+					"hideLogo": true,
+					"customLogo": true
+				}
+			}
+		]
 	}
 ]
