@@ -50,7 +50,9 @@ $light: assets-paths.$fonts-path + "dbscreenhead-light.woff2";
 	font-family: "DB Screen Head";
 	font-style: normal;
 	font-weight: 300;
-	src: url($light) format("woff2");
+	src: /* local("DB Screen Head Light"),
+		local("DB Head Light"),*/
+		url($light) format("woff2");
 }
 $regular: assets-paths.$fonts-path + "dbscreenhead-regular.woff2";
 @font-face {
