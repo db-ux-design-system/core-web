@@ -7,9 +7,6 @@
 	align-items: center;
 	font-weight: 700;
 
-	// Deactivate underline on site name being made clickable by added to the link as well
-	text-decoration: none;
-
 	&::before {
 		--db-icon-font-size: #{variables.$db-sizing-md};
 		--db-icon-margin-end: 0;
@@ -25,7 +22,8 @@
 	}
 
 	// Deactivate underline on site name being made clickable by added to the link as well
-	a:has(&) {	
+	a:has(&),
+	& a {	
 		text-decoration: none;
 	}
 }
