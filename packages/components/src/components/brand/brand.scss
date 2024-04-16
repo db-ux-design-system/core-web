@@ -1,11 +1,6 @@
 @use "@db-ui/foundations/build/scss/variables";
 @use "@db-ui/foundations/build/scss/colors";
 
-a:has(.db-brand) {
-	// Deactivate underline on site name being made clickable by added to the link as well
-	text-decoration: none;
-}
-
 .db-brand {
 	display: flex;
 	gap: variables.$db-spacing-fixed-md;
@@ -27,5 +22,10 @@ a:has(.db-brand) {
 		);
 		inline-size: $logo-size;
 		max-block-size: $logo-size;
+	}
+
+	// Deactivate underline on site name being made clickable by added to the link as well
+	a:has(&) {	
+		text-decoration: none;
 	}
 }
