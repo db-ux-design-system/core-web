@@ -41,7 +41,9 @@ $bold: assets-paths.$fonts-path + "dbscreensans-bold.woff2";
 	font-family: "DB Screen Sans";
 	font-style: normal;
 	font-weight: 700;
-	src: url($bold) format("woff2");
+	src: /* local("DB Screen Sans Bold"),
+		local("DB Sans Bold"),*/
+		url($bold) format("woff2");
 }
 $light: assets-paths.$fonts-path + "dbscreenhead-light.woff2";
 @font-face {
