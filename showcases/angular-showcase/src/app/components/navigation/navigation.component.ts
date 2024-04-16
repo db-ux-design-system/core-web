@@ -1,9 +1,11 @@
 import { Component } from '@angular/core';
 import defaultComponentVariants from '../../../../../shared/navigation.json';
 import { DefaultComponent } from '../default.component';
-import { DBNavigation } from '../../../../../../output/angular/src/components/navigation/navigation';
-import { DBNavigationItem } from '../../../../../../output/angular/src/components/navigation-item/navigation-item';
-import { NavigationContentDirective } from '../../../../../../output/angular/src/components/navigation-item/NavigationContent.directive';
+import {
+	DBNavigation,
+	DBNavigationItem,
+	NavigationContentDirective
+} from '../../../../../../output/angular/src';
 
 @Component({
 	selector: 'app-navigation',

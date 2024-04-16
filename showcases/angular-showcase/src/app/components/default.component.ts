@@ -1,26 +1,25 @@
 import {
 	Component,
-	OnInit,
 	Input,
-	TemplateRef,
-	NO_ERRORS_SCHEMA
+	NO_ERRORS_SCHEMA,
+	OnInit,
+	TemplateRef
 } from '@angular/core';
 import { NgTemplateOutlet } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
-import { DBLink } from '../../../../../output/angular/src/components/link/link';
-import { DBDivider } from '../../../../../output/angular/src/components/divider/divider';
-import { DBCard } from '../../../../../output/angular/src/components/card/card';
-import type {
-	DefaultComponentProps,
-	DefaultComponentVariants,
-	DefaultComponentExample
-} from '../../../../shared/default-component-data';
 import {
 	COLOR,
 	COLOR_CONST,
+	DBCard,
+	DBDivider,
+	DBLink,
 	DENSITY,
 	DENSITY_CONST
-} from '../../../../../packages/components/src/shared/constants';
+} from '../../../../../output/angular/src';
+import type {
+	DefaultComponentProps,
+	DefaultComponentVariants
+} from '../../../../shared/default-component-data';
 
 @Component({
 	selector: 'app-default-component',

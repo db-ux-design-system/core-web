@@ -63,8 +63,8 @@ const setControlValueAccessorReplacements = (
 
 	// implementing interface and constructor
 	replacements.push({
-		from: `export class ${upperComponentName} {`,
-		to: `export class ${upperComponentName} implements ControlValueAccessor {
+		from: `export default class ${upperComponentName} {`,
+		to: `export default class ${upperComponentName} implements ControlValueAccessor {
 		constructor(private renderer: Renderer2) { }`
 	});
 
@@ -130,9 +130,9 @@ const setDirectiveReplacements = (
 		}
 
 		replacements.push({
-			from: `export class ${upperComponentName} {\n`,
+			from: `export default class ${upperComponentName} {\n`,
 			to:
-				`export class ${upperComponentName} {\n` +
+				`export default class ${upperComponentName} {\n` +
 				`\t@ContentChild(${directive.name}Directive, { read: TemplateRef }) db${directive.name}: any;\n`
 		});
 

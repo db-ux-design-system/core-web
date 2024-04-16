@@ -1,1 +1,0 @@
-export { DBInfotext } from './infotext';

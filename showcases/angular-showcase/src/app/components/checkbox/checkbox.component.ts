@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { DBCheckbox } from '../../../../../../output/angular/src/components/checkbox/checkbox';
+import { DBCheckbox } from '../../../../../../output/angular/src';
 import defaultComponentVariants from '../../../../../shared/checkbox.json';
 import { DefaultComponent } from '../default.component';
 
