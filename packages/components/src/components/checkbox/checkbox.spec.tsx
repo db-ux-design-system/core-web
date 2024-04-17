@@ -5,7 +5,7 @@ import { DBCheckbox } from './index';
 // @ts-ignore - vue can only find it with .ts as file ending
 import { DEFAULT_VIEWPORT } from '../../shared/constants.ts';
 
-const comp = <DBCheckbox label="Test"></DBCheckbox>;
+const comp: any = <DBCheckbox label="Test" />;
 
 const testComponent = () => {
 	test('should contain text', async ({ mount }) => {
@@ -18,13 +18,7 @@ const testComponent = () => {
 		await expect(component).toHaveScreenshot();
 	});
 };
-
-test.describe('DBCheckbox', () => {
-	test.use({ viewport: DEFAULT_VIEWPORT });
-	testComponent();
-});
-
-test.describe('DBCheckbox', () => {
+const testA11y = () => {
 	test('should not have A11y issues', async ({ page, mount }) => {
 		await mount(comp);
 		const accessibilityScanResults = await new AxeBuilder({ page })
@@ -33,4 +27,34 @@ test.describe('DBCheckbox', () => {
 
 		expect(accessibilityScanResults.violations).toEqual([]);
 	});
+};
+
+const testAction = () => {
+	test(`should handle change`, async ({ mount, page }) => {
+		let test = '';
+		const actionComp: any = (
+			<DBCheckbox
+				onChange={() => {
+					if (test === 'test') {
+						test = 'test2';
+					} else {
+						test = 'test';
+					}
+				}}
+				label="Test"
+			/>
+		);
+		const component = await mount(actionComp);
+		await component.getByRole('checkbox').check();
+		expect(test).toEqual('test');
+		await component.getByRole('checkbox').uncheck();
+		expect(test).toEqual('test2');
+	});
+};
+
+test.describe('DBCheckbox', () => {
+	test.use({ viewport: DEFAULT_VIEWPORT });
+	testComponent();
+	testA11y();
+	testAction();
 });

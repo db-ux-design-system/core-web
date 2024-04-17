@@ -5,7 +5,7 @@ import { DBCard } from './index';
 // @ts-ignore - vue can only find it with .ts as file ending
 import { DEFAULT_VIEWPORT } from '../../shared/constants.ts';
 
-const defaultComp = <DBCard>Test</DBCard>;
+const defaultComp: any = <DBCard>Test</DBCard>;
 
 const testDefaultCard = () => {
 	test('should contain text', async ({ mount }) => {
@@ -19,12 +19,22 @@ const testDefaultCard = () => {
 	});
 };
 
-test.describe('DBCard', () => {
-	test.use({ viewport: DEFAULT_VIEWPORT });
-	testDefaultCard();
-});
-
-test.describe('DBCard', () => {
+const testCardVariants = () => {
+	for (const behaviour of ['default', 'interactive']) {
+		test(`should match screenshot for behaviour ${behaviour}`, async ({
+			mount
+		}) => {
+			const variantComp: any = (
+				<div>
+					<DBCard behaviour={behaviour}>Test</DBCard>
+				</div>
+			);
+			const component = await mount(variantComp);
+			await expect(component).toHaveScreenshot();
+		});
+	}
+};
+const testA11y = () => {
 	test('should not have A11y issues', async ({ page, mount }) => {
 		await mount(defaultComp);
 		const accessibilityScanResults = await new AxeBuilder({ page })
@@ -33,4 +43,11 @@ test.describe('DBCard', () => {
 
 		expect(accessibilityScanResults.violations).toEqual([]);
 	});
+};
+
+test.describe('DBCard', () => {
+	test.use({ viewport: DEFAULT_VIEWPORT });
+	testDefaultCard();
+	testCardVariants();
+	testA11y();
 });

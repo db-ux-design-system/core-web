@@ -19,11 +19,13 @@ import {
 	DEFAULT_VALID_MESSAGE_ID_SUFFIX
 } from '../../shared/constants';
 import {
+	InputEvent,
 	ChangeEvent,
 	InteractionEvent,
 	KeyValueType
 } from '../../shared/model';
 import { DBInfotext } from '../infotext';
+import { handleFrameworkEvent } from '../../utils/form-components';
 
 useMetadata({
 	isAttachedToShadowDom: true
@@ -43,6 +45,15 @@ export default function DBInput(props: DBInputProps) {
 			label: DEFAULT_LABEL,
 			placeholder: ' '
 		},
+		handleInput: (event: InputEvent<HTMLInputElement>) => {
+			if (props.onInput) {
+				props.onInput(event);
+			}
+
+			if (props.input) {
+				props.input(event);
+			}
+		},
 		handleChange: (event: ChangeEvent<HTMLInputElement>) => {
 			if (props.onChange) {
 				props.onChange(event);
@@ -52,14 +63,7 @@ export default function DBInput(props: DBInputProps) {
 				props.change(event);
 			}
 
-			const target = event.target as HTMLInputElement;
-
-			// TODO: Replace this with the solution out of https://github.com/BuilderIO/mitosis/issues/833 after this has been "solved"
-			// VUE:this.$emit("update:value", target.value);
-
-			// Change event to work with reactive and template driven forms
-			// ANGULAR: this.propagateChange(target.value);
-			// ANGULAR: this.writeValue(target.value);
+			handleFrameworkEvent(this, event);
 		},
 		handleBlur: (event: InteractionEvent<HTMLInputElement>) => {
 			if (props.onBlur) {
@@ -142,6 +146,9 @@ export default function DBInput(props: DBInputProps) {
 				form={props.form}
 				pattern={props.pattern}
 				autocomplete={props.autocomplete}
+				onInput={(event: ChangeEvent<HTMLInputElement>) =>
+					state.handleInput(event)
+				}
 				onChange={(event: ChangeEvent<HTMLInputElement>) =>
 					state.handleChange(event)
 				}

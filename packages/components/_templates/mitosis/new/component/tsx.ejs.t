@@ -6,6 +6,7 @@ import { DB<%= h.changeCase.pascal(name) %>State, DB<%= h.changeCase.pascal(name
 import { cls } from "../../utils";
 <% if(formValue!=="no"){   -%>
 import {ChangeEvent, InteractionEvent} from "../../shared/model";
+import { handleFrameworkEvent } from "../../utils/form-components";
 <% } -%>
 
 useMetadata({
@@ -27,14 +28,7 @@ export default function DB<%= h.changeCase.pascal(name) %>(props: DB<%= h.change
 				props.change(event);
 			}
 
-			const target = event.target as HTMLInputElement;
-
-			// TODO: Replace this with the solution out of https://github.com/BuilderIO/mitosis/issues/833 after this has been "solved"
-			// VUE:this.$emit("update:<%= formValue %>", target.<%= formValue %>);
-
-			// Change event to work with reactive and template driven forms
-			// ANGULAR: this.propagateChange(target.<%= formValue %>);
-			// ANGULAR: this.writeValue(target.<%= formValue %>);
+			handleFrameworkEvent(this, event, <%= formValue %>);
 		},
 		handleBlur: (event: InteractionEvent<HTMLInputElement>) => {
 			if (props.onBlur) {

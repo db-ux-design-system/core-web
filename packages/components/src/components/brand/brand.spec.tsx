@@ -5,7 +5,7 @@ import { DBBrand } from './index';
 // @ts-ignore - vue can only find it with .ts as file ending
 import { DEFAULT_VIEWPORT, TESTING_VIEWPORTS } from '../../shared/constants.ts';
 
-const comp = <DBBrand>Test</DBBrand>;
+const comp: any = <DBBrand>Test</DBBrand>;
 const testBrand = () => {
 	test(`should contain text`, async ({ mount }) => {
 		const component = await mount(comp);
@@ -17,13 +17,7 @@ const testBrand = () => {
 		await expect(component).toHaveScreenshot();
 	});
 };
-
-test.describe('DBBrand', () => {
-	test.use({ viewport: DEFAULT_VIEWPORT });
-	testBrand();
-});
-
-test.describe('DBBrand', () => {
+const testA11y = () => {
 	test('should not have A11y issues', async ({ page, mount }) => {
 		await mount(comp);
 		const accessibilityScanResults = await new AxeBuilder({ page })
@@ -32,4 +26,10 @@ test.describe('DBBrand', () => {
 
 		expect(accessibilityScanResults.violations).toEqual([]);
 	});
+};
+
+test.describe('DBBrand', () => {
+	test.use({ viewport: DEFAULT_VIEWPORT });
+	testBrand();
+	testA11y();
 });
