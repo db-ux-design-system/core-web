@@ -16,7 +16,7 @@ But we've encountered a number of problems with this approach:
 -   No auto-complete in IDE: Without `.d.ts` files you aren't able to use Typescript properly
 -   No specific framework solutions, for example Angulars [Reactive Forms](https://angular.io/guide/reactive-forms)
 -   Wrapping Components for React: Because of the virtual DOM Events need some wrapping, even [Lit](https://lit.dev/docs/frameworks/react/) needs this
--   Composition of nested Components (Accordion & AccordionItem etc.): Writing a components with shadow-dom and nesting is complex and time-consuming
+-   Composition of nested Components (Accordion & AccordionItem etc.): Writing a components with Shadow DOM and nesting is complex and time-consuming
 
 ## General conditions and decision criteria
 
