@@ -8,7 +8,7 @@ import { devices, type PlaywrightTestConfig } from '@playwright/test';
 
 const config: PlaywrightTestConfig = {
 	testDir: './e2e',
-	// Example: __snapshots__/alert/showcase/chromium/functional/neutral-0/DBAlert-should-match-screenshot.png
+	// Example: __snapshots__/notification/showcase/chromium/functional/neutral-0/DBNotification-should-match-screenshot.png
 	snapshotPathTemplate:
 		'{snapshotDir}/{testFileDir}/showcase/{projectName}/{arg}/{testName}{ext}',
 	snapshotDir: './../__snapshots__',
