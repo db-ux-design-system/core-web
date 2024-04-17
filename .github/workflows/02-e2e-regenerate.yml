@@ -2,6 +2,10 @@ name: 🎭 Playwright E2E
 
 on:
   workflow_call:
+    inputs:
+      version:
+        required: true
+        type: string
 
 permissions:
   actions: write
@@ -12,7 +16,7 @@ jobs:
     name: 🧪🎭 - Regenerate snapshots
     runs-on: ubuntu-latest
     container:
-      image: mcr.microsoft.com/playwright:v1.42.1
+      image: mcr.microsoft.com/playwright:v${{ inputs.version }}
     steps:
       - name: ⏬ Checkout repo
         uses: actions/checkout@v4
