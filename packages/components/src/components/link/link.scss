@@ -1,62 +1,33 @@
 @charset "utf-8";
 
-@use "@db-ui/foundations/build/scss/tonality";
+@use "@db-ui/foundations/build/scss/fonts";
 @use "@db-ui/foundations/build/scss/variables";
 @use "@db-ui/foundations/build/scss/animation";
 @use "@db-ui/foundations/build/scss/helpers";
 @use "@db-ui/foundations/build/scss/icons";
 @use "@db-ui/foundations/build/scss/colors";
-@use "../../styles/component";
-
-%db-link-height {
-	display: inline-block;
-	block-size: variables.$db-sizing-sm;
-}
+@use "../../styles/link-components";
 
 .db-link {
-	@extend %default-fg-transition;
-	@extend %db-link-height;
-	inline-size: fit-content;
-	align-items: center;
-
-	// Link underline
-	// TODO: We should evaluate whether we could move this declaration to the @font-face declarations even already
-	text-underline-position: from-font;
-	text-decoration-thickness: helpers.to-rem($pxValue: 1);
-
-	white-space: nowrap;
-
-	&:hover {
-		color: color-mix(in srgb, transparent 25%, colors.$db-base-on-bg);
-	}
-
-	&:active {
-		color: color-mix(in srgb, transparent 50%, colors.$db-base-on-bg);
-	}
+	@extend %db-default-link;
 
 	a {
 		// Workaround for angular
 		@extend %db-link-height;
 	}
 
-	// "disabled" links
-	&[aria-disabled="true"] {
-		opacity: variables.$db-opacity-md;
-		pointer-events: none;
-	}
-
 	&:not([data-variant="inline"]) {
 		&[data-content="internal"] {
-			@include icons.set-icon("arrow_forward", "after");
+			@include icons.set-icon("arrow_right", "after");
+
+			&::after {
+				vertical-align: top;
+			}
 		}
 
 		&[data-content="external"] {
-			@include icons.set-icon("link_external", "after");
+			@include icons.set-icon("arrow_up_right", "after");
 		}
-	}
-
-	&:focus-visible {
-		border-radius: variables.$db-border-radius-md;
 	}
 
 	&[data-content="internal"],
@@ -69,16 +40,17 @@
 	}
 
 	// We couldn't extend any existing SCSS placeholders, as this is a special construct
-	&[data-variant="primary"] {
-		--db-current-color: #{colors.$db-brand-text};
-		color: colors.$db-current-color;
+	&[data-variant="brand"] {
+		--db-current-color-enabled: #{colors.$db-brand-contrast-high-enabled};
+		--db-current-icon-color: #{colors.$db-brand-contrast-high-enabled};
+		color: colors.$db-current-color-enabled;
 
-		&:hover {
-			--db-current-color: #{colors.$db-brand-text-hover};
+		@include helpers.hover {
+			--db-current-color-enabled: #{colors.$db-brand-contrast-high-hover};
 		}
 
-		&:active {
-			--db-current-color: #{colors.$db-brand-text-pressed};
+		@include helpers.active {
+			--db-current-color-enabled: #{colors.$db-brand-contrast-high-pressed};
 		}
 	}
 

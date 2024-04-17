@@ -14,10 +14,11 @@
 		a,
 		button,
 		label {
-			padding-inline-start: calc(
+			--db-padding-inline-start: calc(
 				#{$inline-start} + #{icons.$default-icon-margin-end} +
 					var(--db-base-font-size) * var(--db-base-line-height)
 			);
+			padding-inline-start: var(--db-padding-inline-start);
 		}
 	}
 }

@@ -18,7 +18,7 @@ const IconOverview = () => {
 		<DefaultPage>
 			<h1>Color Overview</h1>
 			<p>
-				We don't provide all icons with family <code>solid</code>
+				We don't provide all icons with family <code>filled</code>
 			</p>
 			<div className="icons-filter-container">
 				<search>
@@ -45,7 +45,7 @@ const IconOverview = () => {
 						onChange={(event) => {
 							setFamily(event.target.value);
 						}}>
-						{['default', 'solid'].map((fam) => (
+						{['default', 'filled'].map((fam) => (
 							<option value={fam}>{fam}</option>
 						))}
 					</DBSelect>
@@ -65,7 +65,7 @@ const IconOverview = () => {
 						<DBCard spacing="small">
 							{/* TODO: Make this interactive to copy the icon name */}
 							<DBIcon icon={icon}>{icon}</DBIcon>
-							<DBInfotext variant="informational" icon="none">
+							<DBInfotext semantic="informational" icon="none">
 								{icon}
 							</DBInfotext>
 						</DBCard>

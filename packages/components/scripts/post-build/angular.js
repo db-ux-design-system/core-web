@@ -1,7 +1,7 @@
 const Replace = require('replace-in-file');
 const FS = require('node:fs');
 const { components } = require('./components');
-const { runReplacements, getComponentName } = require('../utils');
+const { runReplacements, transformToUpperComponentName } = require('../utils');
 
 const changeFile = (component, input) => {
 	return input
@@ -13,14 +13,6 @@ const changeFile = (component, input) => {
 				!line.includes(`[key]=`)
 		)
 		.map((line) => {
-			if (
-				line.includes(`import { DB`) &&
-				line.includes(`../`) &&
-				!line.includes(`Module`)
-			) {
-				return line.replace(` } from "../`, `Module } from "../`);
-			}
-
 			if (line.includes(': ElementRef')) {
 				return line.replace(': ElementRef', ': ElementRef | undefined');
 			}
@@ -59,7 +51,7 @@ const setControlValueAccessorReplacements = (
 	replacements.push({
 		from: '} from "@angular/core";',
 		to:
-			`, Renderer2 } from "@angular/core";\n` +
+			`Renderer2 } from "@angular/core";\n` +
 			`import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';\n`
 	});
 
@@ -76,8 +68,8 @@ const setControlValueAccessorReplacements = (
 
 	// implementing interface and constructor
 	replacements.push({
-		from: `export class ${upperComponentName} {`,
-		to: `export class ${upperComponentName} implements ControlValueAccessor {
+		from: `export default class ${upperComponentName} {`,
+		to: `export default class ${upperComponentName} implements ControlValueAccessor {
 		constructor(private renderer: Renderer2) { }`
 	});
 
@@ -117,12 +109,14 @@ const setControlValueAccessorReplacements = (
  * In Angular, you have to use a directive for this...
  * This is a workaround to replace it in the file.
  * @param replacements
+ * @param outputFolder {string}
  * @param componentName {string}
  * @param upperComponentName {string}
  * @param directives {{name:string, ngContentName?:string}[]}
  */
 const setDirectiveReplacements = (
 	replacements,
+	outputFolder,
 	componentName,
 	upperComponentName,
 	directives
@@ -141,17 +135,17 @@ const setDirectiveReplacements = (
 		}
 
 		replacements.push({
-			from: `export class ${upperComponentName} {\n`,
+			from: `export default class ${upperComponentName} {\n`,
 			to:
-				`export class ${upperComponentName} {\n` +
+				`export default class ${upperComponentName} {\n` +
 				`\t@ContentChild(${directive.name}Directive, { read: TemplateRef }) db${directive.name}: any;\n`
 		});
 
 		replacements.push({
-			from: 'import { NgModule } from "@angular/core";',
+			from: '@Component({',
 			to:
-				'import { NgModule } from "@angular/core";\n' +
-				`import { ${directive.name}Directive } from './${directive.name}.directive';\n`
+				`import { ${directive.name}Directive } from './${directive.name}.directive';\n\n` +
+				'@Component({'
 		});
 
 		FS.writeFileSync(
@@ -160,7 +154,8 @@ const setDirectiveReplacements = (
 				"import { Directive } from '@angular/core';" +
 				`
 @Directive({
-\tselector: '[db${directive.name}]'
+\tselector: '[db${directive.name}]',
+\tstandalone: true
 })
 export class ${directive.name}Directive {}
 `
@@ -168,24 +163,49 @@ export class ${directive.name}Directive {}
 	}
 
 	replacements.push({
-		from: 'import { NgModule } from "@angular/core";',
-		to: "import { NgModule, ContentChild, TemplateRef } from '@angular/core';"
+		from: '} from "@angular/core";',
+		to: 'ContentChild, TemplateRef } from  "@angular/core";'
+	});
+
+	const directiveExports = directives
+		.map(
+			(directive) =>
+				`export * from './components/${componentName}/${directive.name}.directive';`
+		)
+		.join('\n');
+	Replace.sync({
+		files: `../../${outputFolder}/angular/src/index.ts`,
+		from: `export * from './components/${componentName}';`,
+		to: `export * from './components/${componentName}';\n${directiveExports}`
 	});
 };
 
 module.exports = (tmp) => {
+	const outputFolder = `${tmp ? 'output/tmp' : 'output'}`;
 	for (const component of components) {
 		const componentName = component.name;
-		const upperComponentName = `DB${getComponentName(component.name)}`;
-		const file = `../../${
-			tmp ? 'output/tmp' : 'output'
-		}/angular/src/components/${componentName}/${componentName}.ts`;
+		const upperComponentName = `DB${transformToUpperComponentName(component.name)}`;
+		const file = `../../${outputFolder}/angular/src/components/${componentName}/${componentName}.ts`;
 		const options = {
 			files: file,
 			processor: (input) => changeFile(component, input)
 		};
 
-		const replacements = [];
+		const replacements = [
+			{
+				from: 'attr.disabled',
+				to: 'disabled'
+			}
+		];
+
+		if (component.config?.angular?.initValues) {
+			component.config?.angular?.initValues.forEach((init) => {
+				replacements.push({
+					from: `["${init.key}"];`,
+					to: `["${init.key}"] = ${init.value === '' ? '""' : init.value};`
+				});
+			});
+		}
 
 		if (component.config?.angular?.controlValueAccessor) {
 			setControlValueAccessorReplacements(
@@ -199,6 +219,7 @@ module.exports = (tmp) => {
 		if (component.config?.angular?.directives?.length > 0) {
 			setDirectiveReplacements(
 				replacements,
+				outputFolder,
 				componentName,
 				upperComponentName,
 				component.config.angular.directives

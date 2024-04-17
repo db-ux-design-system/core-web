@@ -24,16 +24,16 @@ Main use-case to set/overwrite an icon inside a component. Example:
 @use "@db-ui/foundations/build/scss/icons";
 
 .db-xxx {
-	@include icons.set-icon("expand_more", "after");
+	@include icons.set-icon("chevron_down", "after");
 }
 ```
 
-### Tonality/ Fonts
+### Density/ Fonts
 
 Main use-case to overwrite a default font-size/line-height. Example:
 
 ```scss
-@use "@db-ui/foundations/build/scss/tonality";
+@use "@db-ui/foundations/build/scss/fonts";
 
 .db-xxx {
 	label {
@@ -48,14 +48,20 @@ Main use-case to overwrite a color or change colors by `data-variant`. Example:
 
 ```scss
 @use "@db-ui/foundations/build/scss/colors";
+@use "@db-ui/foundations/build/scss/helpers";
 
 .db-xxx {
-	@include colors.bg-transparent-hover();
-	@include colors.get-variant-bg-color(0.08);
+	@include helpers.hover {
+		background-color: colors.$db-current-color-bg-transparent-hover;
+	}
 
-	@each $name, $colors in colors.$component-variants {
+	@include helpers.active {
+		background-color: colors.$db-current-color-bg-transparent-pressed;
+	}
+
+	@each $name in colors.$variant-colors {
 		&[data-variant="#{$name}"] {
-			--db-current-border-color: #{map.get($colors, "border")};
+			--db-current-color-border: var(--db-#{$name}-contrast-low-enabled);
 		}
 	}
 }

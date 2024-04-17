@@ -36,7 +36,7 @@ A web-component library containing all components of [DB UX Design System (techn
 import "node_modules/@db-ui/web-components/components/button/button.js";
 
 ...
-<db-button variant="primary" icon="account">Test</db-button>
+<db-button variant="brand" icon="user">Test</db-button>
 ...
 
 ```

@@ -1,5 +1,5 @@
 import {
-	DefaultVariantProps,
+	SemanticProps,
 	EmphasisProps,
 	GlobalProps,
 	GlobalState,
@@ -44,7 +44,7 @@ export interface DBTagDefaultProps {
 export type DBTagProps = DBTagDefaultProps &
 	GlobalProps &
 	IconProps &
-	DefaultVariantProps &
+	SemanticProps &
 	OverflowProps &
 	EmphasisProps;
 

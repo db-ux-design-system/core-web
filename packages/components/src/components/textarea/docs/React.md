@@ -14,6 +14,7 @@ const App = () => {
 	return (
 		<DBTextarea
 			label="Textarea Controlled"
+			message="Message"
 			value={textarea}
 			onChange={(event) => {
 				setTextarea(event.target.value);

@@ -12,7 +12,7 @@ Or if you only want a single variant e.g. `informational` you can import `@impor
 In case that you're either using a bundler (recommended) or importing the CSS within your JavaScript files, please adapt this `@import` syntax accordingly.
 
 For `SCSS` you need to use the import `@use @db-ui/foundations/build/scss/color/placeholder` in your `.scss` file, where you need to reference the specific variable.
-Then you can use e.g. `informational` color by extending our SCSS placeholders like this: `@extend %db-bg-informational`.
+Then you can use e.g. `informational` color by extending our SCSS placeholders like this: `@extend %db-informational-bg-1`.
 
 ### How to use
 
@@ -24,9 +24,11 @@ There are several variants: `base`, `brand`, `neutral`, `critical`, `information
 
 |        Variant         | CSS                                  | SCSS                                  | Tailwind                             |
 | :--------------------: | ------------------------------------ | ------------------------------------- | ------------------------------------ |
-|         `XXX`          | `class="db-bg-XXX"`                  | `@extend %db-bg-XXX`                  | `class="db-bg-XXX"`                  |
-| `XXX-transparent-semi` | `class="db-bg-XXX-transparent-semi"` | `@extend %db-bg-XXX-transparent-semi` | `class="db-bg-XXX-transparent-semi"` |
-| `XXX-transparent-full` | `class="db-bg-XXX-transparent-full"` | `@extend %db-bg-XXX-transparent-full` | `class="db-bg-XXX-transparent-full"` |
+|       `XXX-bg-1`       | `class="db-XXX-bg-1"`                | `@extend %db-XXX-bg-1`                | `class="db-XXX-bg-1"`                |
+|       `XXX-bg-2`       | `class="db-XXX-bg-2"`                | `@extend %db-XXX-bg-2`                | `class="db-XXX-bg-2"`                |
+|       `XXX-bg-3`       | `class="db-XXX-bg-3"`                | `@extend %db-XXX-bg-3`                | `class="db-XXX-bg-3"`                |
+| `XXX-transparent-semi` | `class="db-XXX-bg-transparent-semi"` | `@extend %db-XXX-bg-transparent-semi` | `class="db-XXX-bg-transparent-semi"` |
+| `XXX-transparent-full` | `class="db-XXX-bg-transparent-full"` | `@extend %db-XXX-bg-transparent-full` | `class="db-XXX-bg-transparent-full"` |
 
 ### Dark- & Light-Mode
 

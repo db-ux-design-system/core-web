@@ -28,11 +28,11 @@ const getContent = () => {
 
 			<db-button>Test</db-button>
 			<db-button disabled="true">Test</db-button>
-			<db-button icon="account">Test</db-button>
-			<db-button icon="account" disabled="true">Test</db-button>
-			<db-button icon="account" noText="true">Test</db-button>
+			<db-button icon="user">Test</db-button>
+			<db-button icon="user" disabled="true">Test</db-button>
+			<db-button icon="user" noText="true">Test</db-button>
 			<db-button
-			icon="account"
+			icon="user"
 			disabled="true"
 			noText="true"
 			>Test</db-button>

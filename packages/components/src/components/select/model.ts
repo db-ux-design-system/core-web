@@ -3,10 +3,10 @@ import {
 	ChangeEventState,
 	ClickEventProps,
 	ClickEventState,
-	DefaultVariantProps,
 	FocusEventProps,
 	FocusEventState,
 	FormMessageProps,
+	FormMessageState,
 	FormProps,
 	FormState,
 	GlobalProps,
@@ -27,6 +27,11 @@ export interface DBSelectDefaultProps {
 }
 
 export type DBSelectOptionType = {
+	/**
+	 * Identifier for option
+	 */
+	id?: string;
+
 	/**
 	 * Disables this option
 	 */
@@ -55,7 +60,6 @@ export type DBSelectProps = DBSelectDefaultProps &
 	ChangeEventProps<HTMLSelectElement> &
 	FocusEventProps<HTMLSelectElement> &
 	FormProps &
-	DefaultVariantProps &
 	IconProps &
 	FormMessageProps;
 
@@ -69,4 +73,5 @@ export type DBSelectState = DBSelectDefaultState &
 	ClickEventState<HTMLSelectElement> &
 	ChangeEventState<HTMLSelectElement> &
 	FocusEventState<HTMLSelectElement> &
-	FormState;
+	FormState &
+	FormMessageState;

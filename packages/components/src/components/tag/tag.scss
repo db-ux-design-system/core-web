@@ -1,7 +1,7 @@
 @use "sass:map";
 @use "@db-ui/foundations/build/scss/animation";
 @use "@db-ui/foundations/build/scss/variables";
-@use "@db-ui/foundations/build/scss/tonality";
+@use "@db-ui/foundations/build/scss/fonts";
 @use "@db-ui/foundations/build/scss/icons";
 @use "@db-ui/foundations/build/scss/helpers";
 @use "@db-ui/foundations/build/scss/colors";
@@ -22,7 +22,8 @@
 	}
 
 	&:not([data-no-text="true"]) {
-		padding-inline: variables.$db-spacing-fixed-2xs;
+		--db-padding-inline-start: #{variables.$db-spacing-fixed-2xs};
+		padding-inline: var(--db-padding-inline-start) #{variables.$db-spacing-fixed-2xs};
 
 		&:has(.db-tab-remove-button) {
 			padding-inline-end: 0;
@@ -78,32 +79,58 @@
 		inline-size: 100%;
 		margin-inline-start: 0;
 
-		&:has(input:not(:checked)) {
-			--db-current-base-color-alpha: 100%;
-		}
-
 		&:has(input:checked) {
-			border-width: variables.$db-border-height-sm;
+			border-width: variables.$db-border-height-3xs;
 
 			&::before {
 				content: none;
 			}
 		}
 
+		// Handle native radio and checkbox input elements, especially regarding focus-visible indicator
+		// TODO: Reevaluate whether we could use the standard HTML elements instead of our components
 		input {
-			display: none;
+			inline-size: calc(100% + 2px);
+			block-size: calc(100% + 2px);
+			position: absolute;
+			margin-inline-end: initial;
+			border: none;
+			border-radius: inherit;
+			transform: translateX(
+				calc(
+					(
+							var(
+									--db-padding-inline-start,
+									#{variables.$db-spacing-fixed-2xs}
+								) + #{variables.$db-border-height-3xs}
+						) * -1
+				)
+			);
+
+			&:checked {
+				&,
+				&:not(:disabled):hover,
+				&:not(:disabled):active {
+					background-color: colors.$db-brand-bg-transparent-full-enabled;
+				}
+
+				&::before {
+					--db-icon: "";
+				}
+			}
 		}
 	}
 
 	a {
 		@extend %default-transition;
-		@include colors.bg-transparent-interactive(false);
 		display: inline-flex;
+		align-items: center;
 		text-decoration: none;
 
 		&::after {
 			--db-icon-margin-start: 0;
-			content: "" !important;
+			--db-icon-font-size: 0;
+			content: none !important;
 		}
 	}
 
@@ -119,31 +146,6 @@
 		border: none;
 	}
 
-	input:checked {
-		@include colors.bg-transparent-hover();
-	}
-
-	button {
-		@include colors.bg-transparent-interactive();
-	}
-
-	button,
-	label:has(input:checked) {
-		@include colors.bg-transparent-interactive();
-		@include colors.get-variant-bg-color(0.08);
-	}
-
-	&:not([data-emphasis="strong"]) {
-		label:has(input[type="radio"]:checked) {
-			&:enabled {
-				&:hover,
-				&:active {
-					--db-current-base-color-alpha: 92%;
-				}
-			}
-		}
-	}
-
 	button,
 	a,
 	label {
@@ -151,12 +153,7 @@
 		@extend %component-border;
 		block-size: inherit;
 		padding: 0 variables.$db-spacing-fixed-2xs;
-		border-radius: variables.$db-border-radius-md;
-	}
-
-	button,
-	a {
-		@include colors.get-variant-bg-color(0.08);
+		border-radius: variables.$db-border-radius-xs;
 	}
 
 	db-button,
@@ -172,7 +169,7 @@
 	}
 
 	&[data-disabled="true"] {
-		opacity: variables.$db-opacity-sm;
+		opacity: component.$default-disabled;
 		pointer-events: none;
 	}
 
@@ -190,7 +187,8 @@
 	.db-tab-remove-button {
 		&:is(button),
 		button {
-			@include colors.get-variant-bg-color(0);
+			// overwrite to transparent
+			background-color: colors.$db-current-color-bg-transparent-full-enabled;
 			margin-inline-start: variables.$db-spacing-fixed-2xs;
 			block-size: 100%;
 		}

@@ -17,8 +17,8 @@ If you use `width !== full` you are able to overwrite the `max-width` with `--db
 			<header class="db-drawer-header">
 				<button
 					class="db-button button-close-drawer is-icon-text-replace"
-					data-icon="close"
-					data-variant="text"
+					data-icon="cross"
+					data-variant="ghost"
 				>
 					Close Button
 				</button>

@@ -7,7 +7,6 @@ import { getVariants } from '../data';
 
 const getInput = ({
 	label,
-	variant,
 	value,
 	type,
 	minLength,
@@ -17,30 +16,23 @@ const getInput = ({
 	icon,
 	children,
 	message,
-	labelVariant,
-	readOnly,
-	invalid
+	variant,
+	readOnly
 }: DBInputProps) => {
-	const [dynamicValue, setDynamicValue] = useState<string>(value);
 	return (
 		<DBInput
 			label={label}
 			message={message}
 			placeholder={children}
-			labelVariant={labelVariant}
 			variant={variant}
-			value={dynamicValue}
+			defaultValue={value}
 			type={type}
 			minLength={minLength}
 			required={required}
 			disabled={disabled}
 			readOnly={readOnly}
 			iconAfter={iconAfter}
-			invalid={invalid}
 			icon={icon}
-			onChange={(event) => {
-				setDynamicValue(event.target.value);
-			}}
 		/>
 	);
 };

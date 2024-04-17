@@ -7,9 +7,8 @@ import {
 	useStore
 } from '@builder.io/mitosis';
 import { DBRadioProps, DBRadioState } from './model';
-import { uuid } from '../../utils';
 import { DEFAULT_ID } from '../../shared/constants';
-import { cls } from '../../utils';
+import { cls, uuid } from '../../utils';
 import { ChangeEvent, InteractionEvent } from '../../shared/model';
 
 useMetadata({
@@ -63,10 +62,6 @@ export default function DBRadio(props: DBRadioProps) {
 	onMount(() => {
 		state.initialized = true;
 		state._id = props.id || 'radio-' + uuid();
-
-		if (props.stylePath) {
-			state.stylePath = props.stylePath;
-		}
 	});
 	// jscpd:ignore-end
 
@@ -81,18 +76,17 @@ export default function DBRadio(props: DBRadioProps) {
 				}
 			}
 		}
-	}, [state.initialized]);
+	}, [state.initialized, props.checked]);
 
 	return (
 		<label
 			data-size={props.size}
-			data-label-variant={props.labelVariant}
+			data-variant={props.variant}
 			class={cls('db-radio', props.className)}
 			htmlFor={state._id}>
-			<Show when={state.stylePath}>
-				<link rel="stylesheet" href={state.stylePath} />
-			</Show>
 			<input
+				aria-invalid={props.customValidity === 'invalid'}
+				data-custom-validity={props.customValidity}
 				ref={ref}
 				type="radio"
 				id={state._id}
@@ -100,7 +94,6 @@ export default function DBRadio(props: DBRadioProps) {
 				checked={props.checked}
 				disabled={props.disabled}
 				aria-describedby={props.describedbyid}
-				aria-invalid={props.invalid}
 				value={props.value}
 				required={props.required}
 				onChange={(event: ChangeEvent<HTMLInputElement>) =>

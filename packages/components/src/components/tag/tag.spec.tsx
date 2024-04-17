@@ -3,7 +3,7 @@ import AxeBuilder from '@axe-core/playwright';
 
 import { DBTag } from './index';
 // @ts-ignore - vue can only find it with .ts as file ending
-import { VARIANTS } from '../../shared/constants.ts';
+import { SEMANTICS } from '../../shared/constants.ts';
 
 const comp = <DBTag>Test</DBTag>;
 
@@ -20,12 +20,12 @@ const testComponent = () => {
 };
 
 const testVariants = () => {
-	for (const variant of VARIANTS) {
-		test(`should match screenshot for variant ${variant}`, async ({
+	for (const semantic of SEMANTICS) {
+		test(`should match screenshot for semantic ${semantic}`, async ({
 			mount
 		}) => {
 			const component = await mount(
-				<DBTag variant={variant}>Test</DBTag>
+				<DBTag semantic={semantic}>Test</DBTag>
 			);
 			await expect(component).toHaveScreenshot();
 		});

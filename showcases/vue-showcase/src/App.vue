@@ -4,16 +4,16 @@ import {
 	DBHeader,
 	DBBrand,
 	DBSelect,
-	DBMainNavigation,
+	DBNavigation,
 	DBButton
-} from "../../../output/vue/vue3/src";
+} from "../../../output/vue/src";
 import {
 	COLOR,
 	COLORS,
-	TONALITIES,
-	TONALITY,
+	DENSITIES,
+	DENSITY,
 	COLOR_CONST,
-	TONALITY_CONST
+	DENSITY_CONST
 } from "../../../packages/components/src/shared/constants";
 import {
 	getSortedNavigationItems,
@@ -27,8 +27,8 @@ import NavItemComponent from "./NavItemComponent.vue";
 const router = useRouter();
 const route = useRoute();
 
-const tonality = ref(TONALITY.REGULAR);
-const color = ref(COLOR.BASE);
+const density = ref(DENSITY.REGULAR);
+const color = ref(COLOR.NEUTRAL_BG_LEVEL_1);
 const page = ref();
 const fullscreen = ref();
 
@@ -39,7 +39,7 @@ const toggleDrawer = (open: boolean) => {
 };
 
 const classNames = computed(
-	() => `db-ui-${tonality.value} db-bg-${color.value}`
+	() => `db-density-${density.value} db-${color.value}`
 );
 
 const onChange = (event: any) => {
@@ -47,7 +47,7 @@ const onChange = (event: any) => {
 		path: route.path,
 		query: {
 			...route.query,
-			[TONALITY_CONST]: tonality.value,
+			[DENSITY_CONST]: density.value,
 			[COLOR_CONST]: color.value
 		}
 	});
@@ -59,8 +59,8 @@ watch(
 		if (query[COLOR_CONST] && query[COLOR_CONST] !== color.value) {
 			color.value = query[COLOR_CONST];
 		}
-		if (query[TONALITY_CONST] && query[TONALITY_CONST] !== tonality.value) {
-			tonality.value = query[TONALITY_CONST];
+		if (query[DENSITY_CONST] && query[DENSITY_CONST] !== density.value) {
+			density.value = query[DENSITY_CONST];
 		}
 		if (query.page) {
 			page.value = query.page;
@@ -82,49 +82,51 @@ const sortedNavigation = getSortedNavigationItems(navigationItems);
 		<template v-slot:header>
 			<DBHeader :drawerOpen="drawerOpen" :onToggle="toggleDrawer">
 				<template v-slot:brand>
-					<DBBrand
-						title="Showcase"
-						src="db_logo.svg"
-						href="/vue-showcase/"
-					>
-						Showcase
-					</DBBrand>
+					<DBBrand>Showcase</DBBrand>
 				</template>
-				<DBMainNavigation>
+				<DBNavigation>
 					<template v-for="item of sortedNavigation">
 						<NavItemComponent :navItem="item"></NavItemComponent>
 					</template>
-				</DBMainNavigation>
-				<template v-slot:call-to-action>
-					<DBButton icon="search" variant="text" :no-text="true">
+				</DBNavigation>
+				<template v-slot:calltoaction>
+					<DBButton
+						icon="magnifying_glass"
+						variant="ghost"
+						:no-text="true"
+					>
 						Search
 					</DBButton>
 				</template>
-				<template v-slot:action-bar>
-					<DBButton icon="account" variant="text" :no-text="true">
+				<template v-slot:actionbar>
+					<DBButton icon="user" variant="ghost" :no-text="true">
 						Profile
 					</DBButton>
-					<DBButton icon="alert" variant="text" :no-text="true">
+					<DBButton icon="bell" variant="ghost" :no-text="true">
 						Notification
 					</DBButton>
-					<DBButton icon="help" variant="text" :no-text="true">
+					<DBButton
+						icon="question_mark_circle"
+						variant="ghost"
+						:no-text="true"
+					>
 						Help
 					</DBButton>
 				</template>
-				<template v-slot:meta-navigation>
+				<template v-slot:metanavigation>
 					<DBSelect
-						label="Tonality"
-						labelVariant="floating"
-						v-model:value="tonality"
+						label="Density"
+						variant="floating"
+						v-model:value="density"
 						@change="onChange($event)"
 					>
-						<option v-for="ton of TONALITIES" :value="ton">
+						<option v-for="ton of DENSITIES" :value="ton">
 							{{ ton }}
 						</option>
 					</DBSelect>
 					<DBSelect
 						label="Color"
-						labelVariant="floating"
+						variant="floating"
 						v-model:value="color"
 						@change="onChange($event)"
 					>

@@ -1,53 +1,59 @@
 [
 	{
-		"name": "Tonality",
+		"name": "Density",
 		"examples": [
 			{
-				"name": "functional",
-				"className": "db-ui-functional",
+				"name": "Functional",
+				"className": "db-density-functional",
 				"props": {}
 			},
 			{
-				"name": "regular (Default)",
-				"className": "db-ui-regular",
+				"name": "(Default) Regular",
+				"className": "db-density-regular",
 				"props": {}
 			},
 			{
-				"name": "expressive",
-				"className": "db-ui-expressive",
+				"name": "Expressive",
+				"className": "db-density-expressive",
 				"props": {}
 			}
 		]
 	},
 	{
-		"name": "Variant",
+		"name": "Semantic",
 		"examples": [
 			{
 				"name": "(Default) Adaptive",
 				"props": {}
 			},
 			{
+				"name": "Neutral",
+				"props": {
+					"semantic": "neutral"
+				}
+			},
+			{
 				"name": "Critical",
 				"props": {
-					"variant": "critical"
+					"semantic": "critical"
 				}
 			},
 			{
 				"name": "Informational",
 				"props": {
-					"variant": "informational"
+					"semantic": "informational"
 				}
 			},
 			{
 				"name": "Successful",
 				"props": {
-					"variant": "successful"
+					"semantic": "successful"
 				}
 			},
 			{
 				"name": "Warning",
 				"props": {
-					"variant": "warning"
+					"semantic": "warning"
 				}
 			}
 		]

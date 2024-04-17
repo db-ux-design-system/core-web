@@ -1,8 +1,6 @@
 /* eslint-disable unicorn/prefer-top-level-await, no-await-in-loop */
 
 import FS from 'node:fs';
-import FSE from 'fs-extra';
-import getExampleFile from './get-example-file.js';
 import getPropertiesFile from './get-properties-file.js';
 import getHowToFile from './get-how-to-file.js';
 import writeCodeFiles from './get-code-files.js';
@@ -29,18 +27,14 @@ const generateDocsMdx = async () => {
 				`${componentPath}/properties.mdx`,
 				getPropertiesFile(componentValue)
 			);
-			FS.writeFileSync(
-				`${componentPath}/examples.tsx`,
-				getExampleFile(componentName, componentValue)
-			);
 
 			const docsPath = `./../../packages/components/src/components/${componentName}/docs`;
 			if (FS.existsSync(docsPath)) {
-				FSE.copySync(
+				FS.cpSync(
 					docsPath,
 					`./${componentsPath}/${componentName}/docs`,
 					{
-						overwrite: true
+						recursive: true
 					}
 				);
 			}

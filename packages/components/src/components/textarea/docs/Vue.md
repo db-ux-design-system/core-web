@@ -22,8 +22,8 @@ const textarea = ref("default value");
 	<DBTextarea
 		label="Textarea value"
 		placeholder="Placeholder"
-		description="Description"
-		icon="account"
+		message="Message"
+		icon="user"
 		name="textarevalue-name"
 		v-model:value="textarea"
 	/>

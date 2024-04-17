@@ -9,9 +9,9 @@ A library containing all tokens (colors, icons, variables) of [DB UX Design Syst
 
 We currently support:
 
--   [CSS](#css)
--   [SCSS](#scss)
--   [Tailwind](#tailwind)
+-   [CSS](https://db-ui.github.io/mono/review/main/foundations/readme?current=css)
+-   [SCSS](https://db-ui.github.io/mono/review/main/foundations/readme?current=scss)
+-   [Tailwind](https://db-ui.github.io/mono/review/main/foundations/readme?current=tailwind)
 
 ## Install
 
@@ -21,7 +21,7 @@ We currently support:
 
 The defaults for `db-ui-foundations.css` are:
 
--   [Tonality](https://marketingportal.extranet.deutschebahn.com/marketingportal/Design-Anwendungen/db-ux-design-system-v3/principles/tonalities): `regular`
+-   [Density](https://marketingportal.extranet.deutschebahn.com/marketingportal/Design-Anwendungen/db-ux-design-system-v3/principles/densities): `regular`
 -   [Adaptive Coloring](https://marketingportal.extranet.deutschebahn.com/marketingportal/Design-Anwendungen/db-ux-design-system-v3/principles/adaptive-styles): `base`
 
 ### CSS

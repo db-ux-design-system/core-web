@@ -1,10 +1,10 @@
 import {
 	ChangeEventProps,
 	ChangeEventState,
-	DefaultVariantProps,
 	FocusEventProps,
 	FocusEventState,
 	FormMessageProps,
+	FormMessageState,
 	FormProps,
 	FormState,
 	FormTextProps,
@@ -12,7 +12,7 @@ import {
 	GlobalState,
 	IconAfterProps,
 	IconProps,
-	KeyValueType,
+	KeyValueType
 } from '../../shared/model';
 
 export type DBInputDefaultProps = {
@@ -63,7 +63,6 @@ export type DBInputProps = DBInputDefaultProps &
 	FormProps &
 	IconProps &
 	IconAfterProps &
-	DefaultVariantProps &
 	FormMessageProps;
 
 export type DBInputDefaultState = {
@@ -74,4 +73,5 @@ export type DBInputState = DBInputDefaultState &
 	GlobalState &
 	ChangeEventState<HTMLInputElement> &
 	FocusEventState<HTMLInputElement> &
-	FormState;
+	FormState &
+	FormMessageState;

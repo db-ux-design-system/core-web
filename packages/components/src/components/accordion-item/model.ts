@@ -11,21 +11,21 @@ export interface DBAccordionItemDefaultProps {
 	 */
 	content?: string;
 	/**
+	 * Initial state for the accordion item
+	 */
+	defaultOpen?: boolean;
+	/**
 	 * The disabled attribute can be set to keep a user from clicking on the element.
 	 */
 	disabled?: boolean;
 	/**
-	 * Initial state for the accordion item
+	 * Title of the accordion-item as slot
 	 */
-	open?: boolean;
+	headline?: unknown;
 	/**
-	 * For react only to pass any title element to the specific slot
+	 * Title of the accordion-item as plain text
 	 */
-	slotTitle?: any;
-	/**
-	 * Alternative for passing only a string instead of a slot
-	 */
-	title?: string;
+	headlinePlain?: string;
 	/**
 	 * Set details name for exclusive accordions, see https://chromestatus.com/feature/6710427028815872
 	 */
@@ -36,7 +36,9 @@ export type DBAccordionItemProps = DBAccordionItemDefaultProps &
 	GlobalProps &
 	ToggleEventProps;
 
-export interface DBAccordionItemDefaultState {}
+export interface DBAccordionItemDefaultState {
+	_open: boolean;
+}
 
 export type DBAccordionItemState = DBAccordionItemDefaultState &
 	GlobalState &

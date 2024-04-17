@@ -1,26 +1,26 @@
 [
 	{
-		"name": "Tonality",
+		"name": "Density",
 		"examples": [
 			{
-				"name": "functional",
-				"className": "db-ui-functional",
+				"name": "Functional",
+				"className": "db-density-functional",
 				"props": {
 					"content": "Tooltip",
 					"id": "tooltip-01"
 				}
 			},
 			{
-				"name": "regular (Default)",
-				"className": "db-ui-regular",
+				"name": "(Default) Regular",
+				"className": "db-density-regular",
 				"props": {
 					"content": "Tooltip",
 					"id": "tooltip-02"
 				}
 			},
 			{
-				"name": "expressive",
-				"className": "db-ui-expressive",
+				"name": "Expressive",
+				"className": "db-density-expressive",
 				"props": {
 					"content": "Tooltip",
 					"id": "tooltip-03"
@@ -32,7 +32,7 @@
 		"name": "Variant",
 		"examples": [
 			{
-				"name": "With arrow (Default)",
+				"name": "(Default) With arrow",
 				"props": {
 					"content": "Tooltip",
 					"id": "tooltip-04"
@@ -52,7 +52,7 @@
 		"name": "Emphasis",
 		"examples": [
 			{
-				"name": "Weak (Default)",
+				"name": "(Default) Weak",
 				"props": {
 					"content": "Tooltip",
 					"id": "tooltip-06"
@@ -80,7 +80,7 @@
 				}
 			},
 			{
-				"name": "bottom (Default)",
+				"name": "(Default) bottom",
 				"props": {
 					"content": "Tooltip",
 					"placement": "bottom",
@@ -173,7 +173,7 @@
 		"name": "Width",
 		"examples": [
 			{
-				"name": "Auto (Default)",
+				"name": "(Default) Auto",
 				"props": {
 					"content": "Max width, lorem ipsum dolor sit amet, consetetur sadipscing",
 					"id": "tooltip-12"
@@ -193,7 +193,7 @@
 		"name": "Animations",
 		"examples": [
 			{
-				"name": "Animation no delay (Default)",
+				"name": "(Default) Animation no delay",
 				"props": {
 					"content": "Tooltip",
 					"id": "tooltip-14"

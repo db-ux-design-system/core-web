@@ -1,9 +1,21 @@
 @use "@db-ui/foundations/build/scss/variables";
 @use "@db-ui/foundations/build/scss/colors";
 @use "@db-ui/foundations/build/scss/screen-sizes";
-@use "@db-ui/foundations/build/scss/tonality";
+@use "@db-ui/foundations/build/scss/density";
+
+@use "@db-ui/components/build/styles/_dialog-init";
 
 @forward "@db-ui/components/build/styles/db-ui-42-webpack";
+@forward "@db-ui/foundations/build/css/colors/classes/all";
+@forward "@db-ui/foundations/build/css/fonts/classes/all";
+
+body {
+	padding-block-end: variables.$db-spacing-fixed-lg;
+}
+
+.db-main {
+	scroll-behavior: smooth;
+}
 
 #__next {
 	height: inherit;
@@ -78,24 +90,24 @@ iframe {
 
 /* TODO: Use real table css in future */
 table {
-	@extend %db-ui-functional;
+	@extend %db-density-functional;
 	width: 100%;
 	border-collapse: collapse;
 }
 
 table td,
 table th {
-	border: 1px solid colors.$db-neutral-border-weak;
+	border: 1px solid colors.$db-current-color-border;
 	padding: variables.$db-spacing-fixed-md;
 	max-width: 33vw;
 }
 
 table tr:nth-child(even) {
-	@extend %db-bg-neutral-transparent-semi;
+	@extend %db-neutral-bg-transparent-semi;
 }
 
 table th {
-	@extend %db-bg-neutral-transparent-semi;
+	@extend %db-neutral-bg-transparent-semi;
 	padding-inline: variables.$db-spacing-fixed-md;
 }
 
@@ -108,7 +120,7 @@ div[class^="ch-"] {
 	div,
 	span {
 		@extend %db-overwrite-font-size-sm;
-		color: colors.$db-base-on-bg;
+		color: colors.$db-current-color-enabled;
 	}
 }
 
@@ -173,9 +185,9 @@ div[class^="ch-"] {
 	}
 }
 
-// tonality examples
+// density examples
 
-.tonality-example-grid {
+.density-example-grid {
 	display: grid;
 	grid-template-columns: repeat(3, minmax(0, 1fr));
 	gap: variables.$db-spacing-fixed-md;
@@ -185,18 +197,18 @@ div[class^="ch-"] {
 	}
 }
 
-.tonality-example-page {
+.density-example-page {
 	display: flex;
 	flex-direction: column;
 	gap: variables.$db-spacing-fixed-md;
 
-	.tonality-example-page-regular {
+	.density-example-page-regular {
 		display: grid;
 		grid-template-columns: repeat(3, minmax(0, 1fr));
 		gap: variables.$db-spacing-fixed-md;
 	}
 
-	.tonality-example-page-functional {
+	.density-example-page-functional {
 		display: grid;
 		grid-template-columns: repeat(5, minmax(0, 1fr));
 		gap: variables.$db-spacing-fixed-md;
@@ -232,7 +244,7 @@ div[class^="ch-"] {
 			border: 1px solid black;
 			> div {
 				display: flex;
-				border: 1px solid colors.$db-informational-text;
+				border: 1px solid colors.$db-informational-4;
 				position: relative;
 			}
 		}
@@ -300,7 +312,7 @@ div[class^="ch-"] {
 
 .color-schemes-container {
 	padding: variables.$db-spacing-fixed-md;
-	border: 1px dashed var(--db-current-color);
+	border: 1px dashed colors.$db-current-color-enabled;
 	display: grid;
 	gap: variables.$db-spacing-fixed-md;
 	grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -315,5 +327,123 @@ div[class^="ch-"] {
 
 	section {
 		padding: variables.$db-spacing-fixed-md;
+	}
+
+	.color-cards {
+		grid-column: span 2 / span 2;
+		display: grid;
+		gap: variables.$db-spacing-fixed-md;
+		grid-template-columns: repeat(5, minmax(0, 1fr));
+	}
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	a:is(.header-link) {
+		display: inline-block;
+		margin-block: auto;
+		margin-inline-start: variables.$db-spacing-fixed-xs;
+		visibility: hidden;
+		text-decoration: none;
+		font-size: 0;
+	}
+
+	&:hover {
+		a:is(.header-link) {
+			visibility: visible;
+		}
+	}
+}
+
+.db-code-docs {
+	min-block-size: variables.$db-sizing-3xl;
+	align-items: center;
+	justify-content: center;
+	padding: variables.$db-spacing-fixed-xl;
+	margin-block-end: calc(
+		#{variables.$db-spacing-fixed-xl} + #{variables.$db-sizing-sm}
+	);
+	position: relative;
+
+	.code-details {
+		display: flex;
+
+		&[open] {
+			inset-inline-start: 0;
+			inset-block-start: 0;
+		}
+
+		.code-button {
+			position: absolute;
+			inset-block-end: calc(
+				-1 * (#{variables.$db-spacing-fixed-sm} + #{variables.$db-sizing-sm})
+			);
+			inset-inline-end: variables.$db-spacing-fixed-sm;
+			z-index: 1;
+			cursor: pointer;
+
+			&::-webkit-details-marker {
+				display: none;
+			}
+		}
+
+		.no-code {
+			margin: auto;
+		}
+
+		.backdrop {
+			border-radius: variables.$db-border-radius-sm;
+			@extend %backdrop;
+			position: absolute;
+			inset: 0;
+		}
+
+		.code {
+			overflow: auto;
+			position: absolute;
+			z-index: 20;
+			inset: 0;
+			margin: variables.$db-spacing-fixed-md;
+			display: flex;
+			flex-direction: column;
+			gap: variables.$db-spacing-fixed-sm;
+
+			code {
+				display: block;
+				white-space: pre-wrap;
+			}
+
+			.tab-container {
+				position: relative;
+
+				.copy-button {
+					position: absolute;
+					z-index: 20;
+					inset-inline-end: variables.$db-spacing-fixed-sm;
+					inset-block-end: variables.$db-spacing-fixed-sm;
+
+					@include screen-sizes.screen("md") {
+						inset-block-end: auto;
+						inset-block-start: variables.$db-spacing-fixed-sm;
+					}
+				}
+			}
+		}
+	}
+}
+
+.validity-container {
+	display: grid;
+	grid-template-columns: repeat(2, minmax(0, 1fr));
+	gap: variables.$db-spacing-fixed-sm;
+
+	form {
+		display: flex;
+		flex-direction: column;
+		gap: variables.$db-spacing-fixed-sm;
 	}
 }

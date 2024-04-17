@@ -1,20 +1,20 @@
 [
 	{
-		"name": "Tonality",
+		"name": "Density",
 		"examples": [
 			{
-				"name": "functional",
-				"className": "db-ui-functional",
+				"name": "Functional",
+				"className": "db-density-functional",
 				"props": {}
 			},
 			{
-				"name": "regular (Default)",
-				"className": "db-ui-regular",
+				"name": "(Default) Regular",
+				"className": "db-density-regular",
 				"props": {}
 			},
 			{
-				"name": "expressive",
-				"className": "db-ui-expressive",
+				"name": "Expressive",
+				"className": "db-density-expressive",
 				"props": {}
 			}
 		]
@@ -24,25 +24,25 @@
 		"name": "Variant",
 		"examples": [
 			{
-				"name": "Primary",
-				"props": {
-					"variant": "primary"
-				}
-			},
-			{
-				"name": "Outlined (Adaptive)",
+				"name": "(Default) Outlined - Adaptive",
 				"props": {}
 			},
 			{
-				"name": "Solid (Adaptive)",
+				"name": "Filled - Adaptive",
 				"props": {
-					"variant": "solid"
+					"variant": "filled"
 				}
 			},
 			{
-				"name": "Text (Adaptive)",
+				"name": "Ghost - Adaptive",
 				"props": {
-					"variant": "text"
+					"variant": "ghost"
+				}
+			},
+			{
+				"name": "Brand",
+				"props": {
+					"variant": "brand"
 				}
 			}
 		]
@@ -51,7 +51,7 @@
 		"name": "State",
 		"examples": [
 			{
-				"name": "Enabled (Default)",
+				"name": "(Default) Enabled",
 				"props": {}
 			},
 			{
@@ -66,7 +66,7 @@
 		"name": "Size",
 		"examples": [
 			{
-				"name": "Medium (Default)",
+				"name": "(Default) Medium",
 				"props": {}
 			},
 			{
@@ -81,19 +81,19 @@
 		"name": "Content",
 		"examples": [
 			{
-				"name": "Text (Default)",
+				"name": "(Default) Text",
 				"props": {}
 			},
 			{
 				"name": "Icon & Text",
 				"props": {
-					"icon": "account"
+					"icon": "user"
 				}
 			},
 			{
 				"name": "Icon",
 				"props": {
-					"icon": "account",
+					"icon": "user",
 					"noText": true
 				}
 			}
@@ -103,7 +103,7 @@
 		"name": "Behaviour",
 		"examples": [
 			{
-				"name": "Auto Width (Default)",
+				"name": "(Default) Auto Width",
 				"props": {}
 			},
 			{

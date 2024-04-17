@@ -1,0 +1,27 @@
+import { Component } from '@angular/core';
+import defaultComponentVariants from '../../../../../shared/tabs.json';
+import { DefaultComponent } from '../default.component';
+import {
+	DBInfotext,
+	DBTabItem,
+	DBTabList,
+	DBTabPanel,
+	DBTabs
+} from '../../../../../../output/angular/src';
+
+@Component({
+	selector: 'app-tabs',
+	templateUrl: './tabs.component.html',
+	imports: [
+		DefaultComponent,
+		DBTabs,
+		DBTabItem,
+		DBTabList,
+		DBTabPanel,
+		DBInfotext
+	],
+	standalone: true
+})
+export class TabsComponent {
+	variants = defaultComponentVariants;
+}

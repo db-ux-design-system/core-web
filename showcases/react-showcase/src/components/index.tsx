@@ -1,4 +1,4 @@
-import { DBCodeDocs, DBDivider, DBLink } from '../../../../output/react/src';
+import { DBCard, DBDivider, DBLink } from '../../../../output/react/src';
 import useQuery from '../hooks/use-query';
 import type {
 	DefaultComponentProps,
@@ -6,7 +6,7 @@ import type {
 } from '../../../shared/default-component-data';
 
 const VariantList = ({ examples }: DefaultComponentVariants) => (
-	<DBCodeDocs className="variants-card">
+	<DBCard className="variants-card">
 		<div className="variants-list">
 			{examples.map((example, exampleIndex) => (
 				<div
@@ -17,7 +17,7 @@ const VariantList = ({ examples }: DefaultComponentVariants) => (
 				</div>
 			))}
 		</div>
-	</DBCodeDocs>
+	</DBCard>
 );
 
 const DefaultComponent = ({ title, variants }: DefaultComponentProps) => {

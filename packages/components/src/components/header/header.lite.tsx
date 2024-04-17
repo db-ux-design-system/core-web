@@ -1,17 +1,17 @@
 import {
 	onMount,
 	onUpdate,
-	Show,
 	Slot,
 	useMetadata,
 	useRef,
 	useStore
 } from '@builder.io/mitosis';
-import { DBHeaderState, DBHeaderProps } from './model';
+import { DBHeaderProps, DBHeaderState } from './model';
 import { addAttributeToChildren, cls, uuid } from '../../utils';
 import { DBButton } from '../button';
 import { DBDrawer } from '../drawer';
 import { DEFAULT_ID } from '../../shared/constants';
+import { isEventTargetNavigationItem } from '../../utils/navigation';
 
 useMetadata({
 	isAttachedToShadowDom: true
@@ -31,15 +31,17 @@ export default function DBHeader(props: DBHeaderProps) {
 			if (props.onToggle) {
 				props.onToggle(!props.drawerOpen);
 			}
+		},
+		handleNavigationItemClick: (event: unknown) => {
+			if (isEventTargetNavigationItem(event)) {
+				state.toggle();
+			}
 		}
 	});
 
 	onMount(() => {
 		state.initialized = true;
 		state._id = props.id || 'header-' + uuid();
-		if (props.stylePath) {
-			state.stylePath = props.stylePath;
-		}
 	});
 
 	onUpdate(() => {
@@ -67,12 +69,7 @@ export default function DBHeader(props: DBHeaderProps) {
 			class={cls('db-header', props.className)}
 			id={state._id}
 			data-on-forcing-mobile={props.forceMobile && !state.forcedToMobile}>
-			<Show when={state.stylePath}>
-				<link rel="stylesheet" href={state.stylePath} />
-			</Show>
-
 			<DBDrawer
-				data-hide-on="desktop"
 				className="db-header-drawer"
 				rounded
 				withCloseButton
@@ -80,45 +77,49 @@ export default function DBHeader(props: DBHeaderProps) {
 				open={props.drawerOpen}
 				onClose={() => state.toggle()}>
 				<div class="db-header-drawer-navigation">
-					<div class="db-header-navigation">{props.children}</div>
+					<div
+						class="db-header-navigation"
+						onClick={(event) =>
+							state.handleNavigationItemClick(event)
+						}>
+						{props.children}
+					</div>
 					<div class="db-header-meta-navigation">
-						<Slot name="meta-navigation" />
+						<Slot name="metaNavigation" />
 					</div>
 				</div>
 				<div class="db-header-action-bar">
-					<Slot name="action-bar" />
+					<Slot name="actionBar" />
 				</div>
 			</DBDrawer>
 
-			<div class="db-header-meta-navigation" data-hide-on="mobile">
-				<Slot name="meta-navigation" />
+			<div class="db-header-meta-navigation">
+				<Slot name="metaNavigation" />
 			</div>
 			<div class="db-header-navigation-bar">
 				<div class="db-header-brand-container">
 					<Slot name="brand" />
 				</div>
 				<div class="db-header-navigation-container">
-					<div class="db-header-navigation" data-hide-on="mobile">
-						{props.children}
-					</div>
+					<div class="db-header-navigation">{props.children}</div>
 					<div class="db-header-call-to-action">
-						<Slot name="call-to-action" />
+						<Slot name="callToAction" />
 					</div>
 				</div>
 				<div class="db-header-action-container">
-					<div data-hide-on="desktop">
+					<div class="db-header-burger-menu-container">
 						<DBButton
 							id="button-burger-menu"
 							icon="menu"
 							noText
-							variant="text"
+							variant="ghost"
 							onClick={() => state.toggle()}>
 							{props.burgerMenuLabel ??
 								state.defaultValues.burgerMenuLabel}
 						</DBButton>
 					</div>
-					<div class="db-header-action-bar" data-hide-on="mobile">
-						<Slot name="action-bar" />
+					<div class="db-header-action-bar">
+						<Slot name="actionBar" />
 					</div>
 				</div>
 			</div>

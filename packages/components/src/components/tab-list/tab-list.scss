@@ -1,0 +1,15 @@
+@use "@db-ui/foundations/build/scss/variables";
+@use "../../styles/scrollbar";
+
+.db-tab-list {
+	position: relative;
+
+	> ul {
+		@extend %scrollbar;
+		display: flex;
+		gap: variables.$db-spacing-fixed-sm;
+		scroll-behavior: smooth;
+		padding: 0;
+		margin: 0;
+	}
+}

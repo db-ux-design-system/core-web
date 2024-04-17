@@ -2,15 +2,16 @@ import {
 	GlobalProps,
 	GlobalState,
 	InitializedState,
+	NavigationBehaviourState,
 	ToggleEventProps,
 	ToggleEventState
 } from '../../shared/model';
 
 export interface DBHeaderDefaultProps {
-	slotBrand?: any;
-	slotMetaNavigation?: any;
-	slotCallToAction?: any;
-	slotActionBar?: any;
+	brand?: unknown;
+	metaNavigation?: unknown;
+	callToAction?: unknown;
+	actionBar?: unknown;
 	drawerOpen?: boolean;
 
 	/**
@@ -38,4 +39,5 @@ export interface DBHeaderDefaultState {
 export type DBHeaderState = DBHeaderDefaultState &
 	GlobalState &
 	ToggleEventState<HTMLElement> &
-	InitializedState;
+	InitializedState &
+	NavigationBehaviourState;

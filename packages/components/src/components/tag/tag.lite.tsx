@@ -1,4 +1,4 @@
-import {onMount, Show, useMetadata, useRef, useStore} from '@builder.io/mitosis';
+import { Show, useMetadata, useRef, useStore } from '@builder.io/mitosis';
 import { DBButton } from '../button';
 import { DBTagProps, DBTagState } from './model';
 import { cls } from '../../utils';
@@ -25,27 +25,17 @@ export default function DBTag(props: DBTagProps) {
 		}
 	});
 
-	onMount(() => {
-		if (props.stylePath) {
-			state.stylePath = props.stylePath;
-		}
-	});
-
 	return (
 		<div
 			ref={ref}
 			id={props.id}
 			class={cls('db-tag', props.className)}
 			data-disabled={props.disabled}
-			data-variant={props.variant}
+			data-semantic={props.semantic}
 			data-emphasis={props.emphasis}
 			data-icon={props.icon}
 			data-no-text={props.noText}
 			data-overflow={props.overflow}>
-			<Show when={state.stylePath}>
-				<link rel="stylesheet" href={state.stylePath} />
-			</Show>
-
 			{props.children}
 
 			<Show when={props.text}>{props.text}</Show>
@@ -54,10 +44,10 @@ export default function DBTag(props: DBTagProps) {
 				<DBButton
 					className="db-tab-remove-button"
 					onClick={() => state.handleRemove()}
-					icon="close"
+					icon="cross"
 					size="small"
 					noText
-					variant="text"
+					variant="ghost"
 					title={state.getRemoveButtonText()}>
 					{state.getRemoveButtonText()}
 				</DBButton>

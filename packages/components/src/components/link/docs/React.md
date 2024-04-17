@@ -9,7 +9,7 @@ For general installation and configuration take a look at the [react-components]
 import { DBLink } from "@db-ui/react-components";
 
 const App = () => (
-	<DBLink href="#" variant="primary">
+	<DBLink href="#" variant="brand">
 		Link
 	</DBLink>
 );

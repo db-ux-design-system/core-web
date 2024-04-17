@@ -118,7 +118,7 @@ const VersionSwitcher = () => {
 		<DBSelect
 			className="version-switcher"
 			label="Version switcher"
-			labelVariant="floating"
+			variant="floating"
 			value={currentBranch}
 			onChange={(event) => {
 				handleChange(event.target.value);

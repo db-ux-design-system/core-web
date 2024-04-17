@@ -41,6 +41,8 @@ scripts/generated
 pages/components/
 components/src
 !pages/components/readme.mdx
+!pages/components/validation.mdx
+!pages/components/router-usage.mdx
 !components/src/tsconfig.json
 !components/component-parser
 !components/default-page.tsx
@@ -54,3 +56,4 @@ components/src
 !components/04-data-display.mdx
 !components/06-feedback.mdx
 !.env
+/generated.js

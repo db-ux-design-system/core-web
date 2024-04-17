@@ -1,17 +1,17 @@
 @use "sass:map";
 @use "sass:string";
 @use "@db-ui/foundations/build/scss/icons";
-@use "@db-ui/foundations/build/scss/tonality";
+@use "@db-ui/foundations/build/scss/fonts";
 @use "@db-ui/foundations/build/scss/variables";
 @use "@db-ui/foundations/build/scss/colors";
 @use "@db-ui/foundations/build/scss/helpers";
 @use "component";
 
-$dropdown-icon-transition: transform variables.$db-transition-emotional-straight;
+$dropdown-icon-transition: transform variables.$db-transition-straight-emotional;
 $dropdown-icon-transform: rotate(-180deg);
 
 $font-size-height: calc(var(--db-base-font-size) * var(--db-base-line-height));
-$icon-size-sm: var(--db-base-icon-font-size-sm);
+$icon-size-sm: var(--db-base-body-icon-font-size-sm);
 $label-size-height-sm: calc(
 	var(--db-type-body-font-size-sm) * var(--db-type-body-line-height-sm)
 );
@@ -26,12 +26,26 @@ $floating-label-size: calc(
 	#{variables.$db-spacing-fixed-3xs} + #{variables.$db-spacing-fixed-2xs} + #{$label-size-height-2xs}
 );
 
+$input-types: "button", "checkbox", "color", "date", "datetime-local", "email",
+	"file", "hidden", "image", "month", "number", "password", "radio", "range",
+	"reset", "search", "submit", "tel", "text", "time", "url", "week";
+
 %dropdown-icon {
-	@include icons.set-icon("expand_more", "after");
+	@include icons.set-icon("chevron_down", "after");
 
 	&::after {
 		transition: $dropdown-icon-transition;
 		pointer-events: none;
+	}
+}
+
+%helper-message {
+	.db-infotext {
+		margin-block-start: variables.$db-spacing-fixed-2xs;
+
+		&:is([data-semantic], :empty) {
+			display: none;
+		}
 	}
 }
 
@@ -43,9 +57,10 @@ $floating-label-size: calc(
 }
 
 @mixin set-floating-label-overwrites($selector) {
-	&[data-label-variant="floating"] {
+	&[data-variant="floating"] {
 		label {
 			@extend %db-overwrite-font-size-md;
+			opacity: component.$default-disabled;
 			position: absolute;
 			z-index: 2;
 			inset-block-start: calc(
@@ -96,100 +111,129 @@ $floating-label-size: calc(
 			label {
 				@extend %db-overwrite-font-size-2xs;
 				inset-block-start: variables.$db-spacing-fixed-2xs;
+				opacity: 1;
 			}
 
 			#{$selector} {
 				@include placeholder-content() {
 					transition: opacity
-						variables.$db-transition-emotional-straight;
-					opacity: variables.$db-opacity-md;
+						variables.$db-transition-straight-emotional;
+					opacity: component.$default-disabled;
 				}
 			}
 		}
 	}
 }
 
-@mixin set-current-colors($color-variant) {
-	--db-current-color: #{map.get($color-variant, "on-bg")};
-	--db-current-border-weak-color: #{map.get($color-variant, "border")};
-	--db-current-element-color: #{map.get($color-variant, "element")};
-	--db-current-base-color: #{map.get($color-variant, "text")};
-	--db-current-bg-color: #{map.get($color-variant, "bg")};
+@mixin get-validity-message($key: "valid") {
+	.db-infotext {
+		@if ($key == "valid") {
+			&[data-semantic="successful"] {
+				display: flex;
+			}
+		} @else {
+			&[data-semantic="critical"] {
+				display: flex;
+			}
+		}
+
+		&:not([data-semantic]) {
+			display: none;
+		}
+	}
 }
 
 @mixin get-validity-color($selector, $key: "valid") {
 	$variant: "successful";
 
+	@include get-validity-message($key);
+
+	#{$selector},
+	[id$="-placeholder"] {
+		color: var(--db-#{$variant}-on-bg-enabled);
+		caret-color: var(--db-#{$variant}-on-bg-enabled);
+	}
+
 	@if ($key != "valid") {
 		$variant: "critical";
 	}
 
-	$color-variant: map.get(colors.$component-variants, $variant);
-
-	& {
-		@include set-current-colors($color-variant);
-	}
-
-	#{$selector},
-	[id$="-placeholder"] {
-		color: map.get($color-variant, "on-bg");
+	@if ($selector != textarea) {
+		& {
+			@extend %db-#{$variant}-variables;
+		}
+	} @else {
+		// this is a workaround for the textarea scrollbar
+		& {
+			--db-textarea-read-only: var(--db-#{$variant}-bg-lvl-1-enabled);
+			--db-current-color-bg-transparent-full-enabled: var(
+				--db-#{$variant}-bg-transparent-full-enabled
+			);
+			--db-current-color-bg-transparent-semi-enabled: var(
+				--db-#{$variant}-bg-transparent-semi-enabled
+			);
+			--db-current-color-bg-transparent-hover: var(
+				--db-#{$variant}-bg-transparent-hover
+			);
+			--db-current-color-bg-transparent-pressed: var(
+				--db-#{$variant}-bg-transparent-pressed
+			);
+			--db-current-color-enabled: var(--db-#{$variant}-on-bg-enabled);
+			--db-current-color-border: var(--db-#{$variant}-border);
+		}
 	}
 }
 
+// This doesn't contain text, search and password, because they don't have an auto-validation
+$input-valid-types: "color", "date", "datetime-local", "email", "file", "hidden",
+	"month", "number", "range", "tel", "time", "url", "week";
+
 @function get-validations($selector, $key) {
-	$has-selectors: "";
-
 	$validations: ":required";
-	$user: "user-";
 
-	// Differentiating form elements
-	@if ($selector == select or $selector == check) {
-		$user: "";
-	} @else {
-		// TODO: add validations for input & textarea as well
-		//  https://developer.mozilla.org/en-US/docs/Learn/Forms/Form_validation#using_built-in_form_validation
-		$validations: ":required";
-	}
-
-	// We need to do a more complicated check for non-typed-input-elements
 	@if ($selector == input) {
-		$validations: ':not([type="text"], [type="password"], [type="search"]),:is([type="text"], [type="password"], [type="search"]):required';
+		// https://developer.mozilla.org/en-US/docs/Learn/Forms/Form_validation#using_built-in_form_validation
+		$validations: ":required, [minlength], [maxlength], [pattern]";
+		@each $type in $input-valid-types {
+			$validations: $validations + ", [type=#{$type}]";
+		}
+	} @else if($selector == textarea) {
+		$validations: ":required, [minlength], [maxlength]";
 	}
 
-	// Check elements (radio and checkbox) should get selected by their native HTML tag `input`
-	@if ($selector == check) {
-		$selector: input;
-	}
-
-	$has-selectors: $has-selectors +
-		"&:has(#{$selector}:not([aria-invalid]):is(#{$validations}):#{$user}#{$key}),";
+	$has-selectors: "&:has(#{$selector}:not([data-custom-validity]):is(#{$validations}):user-#{$key}),";
 
 	@return string.unquote(string.slice($has-selectors, 1, -2));
 }
 
 @mixin get-validity($selector, $key: "valid") {
-	$boolean: "true";
 	@if ($key == "valid") {
 		$boolean: "false";
 	}
 
-	#{get-validations($selector,$key)} {
-		@content;
-	}
-
+	$user: "";
 	@if ($selector == check) {
-		$selector: input;
+		$user: "user-";
 	}
 
-	// :user-valid or :user-invalid workaround
-	@supports not selector(:user-#{$key}) {
-		&:has(#{$selector}:not([aria-invalid]):required:#{$key}) {
+	@if ($selector == check or $selector == radio) {
+		$selector: input;
+
+		&:has(
+				#{$selector}:not(
+						[data-custom-validity]
+					):required:#{$user}#{$key}
+			) {
+			@content;
+		}
+	} @else {
+		#{get-validations($selector,$key)} {
 			@content;
 		}
 	}
 
-	// If aria-invalid is set we overwrite the selectors above
-	&:has(#{$selector}[aria-invalid="#{$boolean}"]) {
+	// If data-custom-validity is set we overwrite the selectors above
+	&:has(#{$selector}[data-custom-validity="#{$key}"]) {
 		@content;
 	}
 }
@@ -208,7 +252,9 @@ $floating-label-size: calc(
 
 @mixin set-default-form-component($selector) {
 	--db-form-has-before: 0;
+	--db-current-icon-color: #{colors.$db-current-color-enabled};
 	@extend %db-overwrite-font-size-sm;
+	@extend %helper-message;
 
 	@include set-floating-label-overwrites($selector);
 	@include set-required-label($selector);
@@ -229,8 +275,8 @@ $floating-label-size: calc(
 		@extend %default-interactive-component;
 		@extend %component-border;
 
-		@include colors.bg-transparent-hover();
-		@include colors.get-variant-bg-color(0.08);
+		background-color: colors.$db-current-color-bg-transparent-semi-enabled;
+		caret-color: colors.$db-current-color-enabled;
 
 		appearance: none;
 		max-inline-size: 100%;
@@ -245,11 +291,18 @@ $floating-label-size: calc(
 			);
 
 		@include placeholder-content() {
-			opacity: variables.$db-opacity-md;
+			opacity: component.$default-disabled;
 		}
 
-		&:is(input, textarea):read-only {
-			background-color: colors.$db-base-bg !important;
+		@include helpers.hover {
+			background-color: colors.$db-current-color-bg-transparent-hover;
+		}
+
+		&:is(input, textarea):not(:disabled):read-only {
+			background-color: var(
+				--db-textarea-read-only,
+				#{colors.$db-current-color-bg-lvl-1-enabled}
+			) !important;
 		}
 	}
 
@@ -259,31 +312,25 @@ $floating-label-size: calc(
 		padding-block-end: variables.$db-spacing-fixed-xs;
 		pointer-events: none;
 		cursor: text;
-		opacity: variables.$db-opacity-lg;
 
-		transition: font-size variables.$db-transition-emotional-straight;
+		transition: font-size variables.$db-transition-straight-emotional;
 		max-inline-size: 25ch;
 		text-overflow: ellipsis;
 		white-space: nowrap;
 		overflow: hidden;
 	}
 
-	&[data-label-variant="hidden"] {
+	&[data-variant="hidden"] {
 		label {
 			@extend %a11y-visually-hidden;
 			padding: 0;
 		}
 	}
 
-	// Helper message
-	& .db-infotext {
-		margin-block-start: variables.$db-spacing-fixed-2xs;
-	}
-
 	// disabled
 	&:has(#{$selector}:disabled) {
 		// Decided against cursor: not-allowed, compare to e.g. https://phabricator.wikimedia.org/T121960
-		opacity: variables.$db-opacity-sm;
+		opacity: component.$default-disabled;
 		pointer-events: none;
 	}
 
@@ -312,19 +359,6 @@ $floating-label-size: calc(
 		inset-inline-end: variables.$db-spacing-fixed-sm;
 	}
 
-	// colors
-	@each $name, $colors in colors.$component-variants {
-		&[data-variant="#{$name}"] {
-			@include set-current-colors($colors);
-		}
-
-		&[data-variant="#{$name}"] #{$selector},
-		&[data-variant="#{$name}"] [id$="-placeholder"] {
-			color: map.get($colors, "on-bg");
-			caret-color: map.get($colors, "on-bg");
-		}
-	}
-
 	@if ($selector == input or $selector == select) {
 		#{$selector} {
 			block-size: variables.$db-sizing-md;
@@ -336,49 +370,58 @@ $floating-label-size: calc(
 // CHECKBOX & RADIO
 
 @mixin get-validity-color-check($key: "valid") {
-	$text-color: colors.$db-successful-text;
-	$bg-color: colors.$db-successful-bg;
+	$variant: successful;
 
 	@if ($key != "valid") {
-		$text-color: colors.$db-critical-text;
-		$bg-color: colors.$db-critical-bg;
+		$variant: critical;
 	}
 
+	@include get-validity-message($key);
+
 	input {
-		--db-current-bg-color: #{$bg-color};
-		--db-current-base-color: #{$text-color};
-		border-color: var(--db-current-color);
+		--db-current-color-bg-transparent-semi: var(
+			--db-#{$variant}-bg-transparent-semi-enabled
+		);
+		--db-current-color-bg-transparent-hover: var(
+			--db-#{$variant}-bg-transparent-hover
+		);
+		--db-current-color-bg-transparent-pressed: var(
+			--db-#{$variant}-bg-transparent-pressed
+		);
+		border-color: colors.$db-current-color-enabled;
 
 		&:not(:checked),
 		&:is([type="radio"]) {
-			--db-current-color: #{$text-color};
+			--db-current-color-enabled: var(
+				--db-#{$variant}-contrast-high-enabled
+			);
 		}
 
 		&:checked {
-			--db-base-text-enabled: #{$text-color};
-			--db-base-text-hover: #{colors.$db-successful-text-hover};
-			--db-base-text-pressed: #{colors.$db-successful-text-pressed};
+			--db-current-color-enabled: #{colors.$db-successful-contrast-high-enabled};
+			--db-current-color-hover: #{colors.$db-successful-contrast-high-hover};
+			--db-current-color-pressed: #{colors.$db-successful-contrast-high-pressed};
 		}
 	}
 
 	&:is(label),
 	label {
-		color: #{$text-color};
+		color: var(--db-#{$variant}-contrast-high-enabled);
 	}
 }
 
-%check-element {
+@mixin set-default-check-element($selector) {
 	@include set-required-label(input);
 
-	@include get-validity(check) {
+	@include get-validity($selector) {
 		@include get-validity-color-check("valid");
 	}
-	@include get-validity(check, "invalid") {
+	@include get-validity($selector, "invalid") {
 		@include get-validity-color-check("invalid");
 	}
 
 	&:has(input:disabled) {
-		opacity: variables.$db-opacity-md;
+		opacity: component.$default-disabled;
 	}
 
 	&:is(label),
@@ -386,20 +429,25 @@ $floating-label-size: calc(
 		display: flex;
 		align-items: center;
 		position: relative;
+
+		gap: variables.$db-spacing-fixed-xs;
+
+		&:not(:has(input:disabled)) {
+			@include helpers.hover;
+			@include helpers.active;
+		}
 	}
 
 	input {
-		@include colors.bg-transparent-interactive();
+		background-color: colors.$db-current-color-bg-transparent-full-enabled;
 
 		align-content: center;
 
 		appearance: none;
 		aspect-ratio: 1;
 
-		margin-inline-end: variables.$db-spacing-fixed-xs;
-
-		border: min(calc(#{$font-size-height} / 16 + 0.5px), 2px) solid
-			currentColor;
+		border: min(#{variables.$db-border-height-2xs}, 2px) solid
+			var(--db-check-element-border-color, currentColor);
 
 		block-size: $font-size-height;
 		justify-content: center;
@@ -408,6 +456,14 @@ $floating-label-size: calc(
 		// workarounds for power apps
 		inline-size: auto;
 		padding: 0;
+
+		@include helpers.hover {
+			background-color: colors.$db-current-color-bg-transparent-hover;
+		}
+
+		@include helpers.active {
+			background-color: colors.$db-current-color-bg-transparent-pressed;
+		}
 	}
 
 	&[data-size="small"] {
@@ -418,7 +474,7 @@ $floating-label-size: calc(
 		}
 	}
 
-	&[data-label-variant="hidden"] {
+	&[data-variant="hidden"] {
 		font-size: 0;
 
 		input {

@@ -1,0 +1,90 @@
+@use "@db-ui/foundations/build/scss/variables";
+@use "@db-ui/foundations/build/scss/colors";
+@use "@db-ui/foundations/build/scss/helpers";
+@use "@db-ui/foundations/build/scss/animation";
+@use "./form-components";
+
+$scrollbar-width: helpers.to-rem(8);
+
+%scrollbar {
+	&::-webkit-scrollbar {
+		@extend %default-transition;
+		z-index: 3;
+		inline-size: $scrollbar-width;
+		block-size: $scrollbar-width;
+		background-color: colors.$db-current-color-bg-lvl-1-enabled;
+		border-start-end-radius: variables.$db-border-radius-xs;
+	}
+
+	&:hover {
+		&::-webkit-scrollbar-track,
+		&::-webkit-scrollbar-button:single-button {
+			background-color: colors.$db-current-color-bg-transparent-hover;
+		}
+	}
+
+	&:read-only {
+		&::-webkit-scrollbar-track,
+		&::-webkit-scrollbar-button:single-button {
+			background-color: colors.$db-current-color-bg-lvl-1-enabled !important;
+		}
+	}
+
+	&::-webkit-scrollbar-track {
+		background-color: colors.$db-current-color-bg-transparent-semi-enabled;
+	}
+
+	&::-webkit-scrollbar-thumb {
+		background-color: colors.$db-current-color-bg-transparent-pressed;
+	}
+
+	/* Buttons */
+	&::-webkit-scrollbar-button:single-button {
+		background-color: colors.$db-current-color-bg-transparent-semi-enabled;
+		background-size: $scrollbar-width;
+		background-repeat: no-repeat;
+		background-position: center;
+		block-size: form-components.$floating-label-size;
+
+		&:hover {
+			background-color: colors.$db-current-color-bg-transparent-hover;
+		}
+
+		&:active {
+			background-color: colors.$db-current-color-bg-transparent-pressed;
+		}
+	}
+	/* Up */
+	&::-webkit-scrollbar-button:single-button:vertical:decrement {
+		background-image: var(--db-textarea-scrollbar-button-decrement);
+	}
+
+	/* Down */
+	&::-webkit-scrollbar-button:single-button:vertical:increment {
+		background-image: var(--db-textarea-scrollbar-button-increment);
+	}
+
+	&[data-variant="floating"] {
+		&::-webkit-resizer {
+			background-color: colors.$db-current-color-bg-transparent-semi-enabled;
+		}
+
+		&::-webkit-scrollbar-corner {
+			background-color: colors.$db-current-color-bg-lvl-1-enabled;
+		}
+	}
+
+	&::-webkit-resizer {
+		background-color: colors.$db-current-color-bg-transparent-full-enabled;
+		background-size: $scrollbar-width;
+		background-repeat: no-repeat;
+		background-position: center;
+		background-image: var(--db-textarea-resizer-image);
+		border-end-end-radius: variables.$db-border-radius-xs;
+	}
+
+	&::-webkit-scrollbar-corner {
+		@extend %default-transition;
+		border-end-end-radius: variables.$db-border-radius-xs;
+	}
+}

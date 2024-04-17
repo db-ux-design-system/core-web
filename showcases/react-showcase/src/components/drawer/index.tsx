@@ -5,7 +5,7 @@ import type { DBDrawerProps } from '../../../../../output/react/src/components/d
 import DefaultComponent from '../index';
 import { getVariants } from '../data';
 
-type AdditionalDrawerProps = {
+type AdditionalDrawerProperties = {
 	openDrawer: string;
 	setOpenDrawer: (id?: string) => void;
 };
@@ -20,7 +20,7 @@ const getDrawer = ({
 	direction,
 	children,
 	backdrop
-}: DBDrawerProps & AdditionalDrawerProps) => (
+}: DBDrawerProps & AdditionalDrawerProperties) => (
 	<div>
 		<DBDrawer
 			withCloseButton={withCloseButton}
@@ -49,9 +49,9 @@ const DrawerComponent = () => {
 	return (
 		<DefaultComponent
 			title="DBDrawer"
-			variants={getVariants(defaultComponentVariants, (props: any) =>
+			variants={getVariants(defaultComponentVariants, (properties: any) =>
 				getDrawer({
-					...props,
+					...properties,
 					openDrawer,
 					setOpenDrawer
 				})

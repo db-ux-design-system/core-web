@@ -10,7 +10,7 @@ export interface DBLinkDefaultProps {
 	content?: 'external' | 'internal';
 	id?: string;
 	size?: 'medium' | 'small';
-	variant?: 'adaptive' | 'primary' | 'inline';
+	variant?: 'adaptive' | 'brand' | 'inline';
 }
 
 export type DBLinkProps = DBLinkDefaultProps &

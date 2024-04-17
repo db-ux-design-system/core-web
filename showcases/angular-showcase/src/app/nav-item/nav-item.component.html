@@ -1,23 +1,27 @@
-<db-navigation-item
-	*ngIf="navItem"
-	[backButtonText]="getBackButtonText()"
-	[active]="isActive()"
->
-	<ng-container *ngIf="navItem.subNavigation" sub-navigation>
-		<ng-container *ngFor="let item of navItem.subNavigation">
-			<app-nav-item [navItem]="item"> </app-nav-item>
+@if (navItem) {
+	<db-navigation-item [backButtonText]="getBackButtonText()">
+		@if (navItem.subNavigation) {
+			<ng-container sub-navigation>
+				@for (item of navItem.subNavigation; track item.label) {
+					<app-nav-item [navItem]="item" />
+				}
+			</ng-container>
+		}
+		<ng-container *dbNavigationContent>
+			@if (navItem.component) {
+				<a
+					[routerLink]="navItem.path"
+					[routerLinkActiveOptions]="{ exact: true }"
+					ariaCurrentWhenActive="page"
+					routerLinkActive="active"
+					queryParamsHandling="merge"
+				>
+					{{ navItem.label }}
+				</a>
+			}
+			@if (!navItem.component) {
+				{{ navItem.label }}
+			}
 		</ng-container>
-	</ng-container>
-	<ng-container *dbNavigationContent>
-		<a
-			*ngIf="navItem.component"
-			[routerLink]="navItem.path"
-			queryParamsHandling="merge"
-		>
-			{{ navItem.label }}
-		</a>
-		<ng-container *ngIf="!navItem.component">{{
-			navItem.label
-		}}</ng-container>
-	</ng-container>
-</db-navigation-item>
+	</db-navigation-item>
+}

@@ -1,6 +1,6 @@
 const { components } = require('./components');
 const FS = require('node:fs');
-const { getComponentName, runReplacements } = require('../utils');
+const { transformToUpperComponentName, runReplacements } = require('../utils');
 
 const overwriteEvents = (tmp) => {
 	const modelFilePath = `../../${
@@ -28,7 +28,9 @@ module.exports = (tmp) => {
 		overwriteEvents(tmp);
 
 		for (const component of components) {
-			const upperComponentName = getComponentName(component.name);
+			const upperComponentName = transformToUpperComponentName(
+				component.name
+			);
 
 			const tsxFile = `../../${
 				tmp ? 'output/tmp' : 'output'
@@ -48,15 +50,15 @@ module.exports = (tmp) => {
 				},
 				{
 					from: ` } from "react"`,
-					to: `, forwardRef, HTMLProps } from "react"`
+					to: `, forwardRef, HTMLAttributes } from "react"`
 				},
 				{
 					from: `function DB${upperComponentName}(props: DB${upperComponentName}Props) {`,
-					to: `function DB${upperComponentName}Fn(props: Omit<HTMLProps<${htmlElement}>, keyof DB${upperComponentName}Props> & DB${upperComponentName}Props, component: any) {`
+					to: `function DB${upperComponentName}Fn(props: Omit<HTMLAttributes<${htmlElement}>, keyof DB${upperComponentName}Props> & DB${upperComponentName}Props, component: any) {`
 				},
 				{
 					from: `export default DB${upperComponentName};`,
-					to: `const DB${upperComponentName} = forwardRef<${htmlElement}, Omit<HTMLProps<${htmlElement}>, keyof DB${upperComponentName}Props> & DB${upperComponentName}Props>(DB${upperComponentName}Fn);\nexport default DB${upperComponentName};`
+					to: `const DB${upperComponentName} = forwardRef<${htmlElement}, Omit<HTMLAttributes<${htmlElement}>, keyof DB${upperComponentName}Props> & DB${upperComponentName}Props>(DB${upperComponentName}Fn);\nexport default DB${upperComponentName};`
 				},
 				{
 					from: 'if (ref.current)',
@@ -70,6 +72,7 @@ module.exports = (tmp) => {
 					from: '>(null);',
 					to: '>(component);'
 				},
+				{ from: 'useRef<', to: 'component || useRef<' },
 				{
 					from: '={true}',
 					to: ''
@@ -87,6 +90,30 @@ module.exports = (tmp) => {
 						)})}`
 				}
 			];
+
+			/**
+			 * Mitosis generates Fragments for each mapping function.
+			 * The following overwrites will prevent react from throwing duplicate key warnings.
+			 */
+			if (component.config?.react?.containsFragmentMap) {
+				if (!tsxFileContent.includes('uuid')) {
+					replacements.push({
+						from: '{ cls',
+						to: '{ cls, uuid'
+					});
+				}
+
+				replacements.push(
+					{
+						from: /<>/g,
+						to: '<React.Fragment key={uuid()}>'
+					},
+					{
+						from: /<\/>/g,
+						to: '</React.Fragment>'
+					}
+				);
+			}
 
 			runReplacements(replacements, component, 'react', tsxFile);
 		}
