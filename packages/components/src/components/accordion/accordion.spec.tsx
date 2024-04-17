@@ -18,11 +18,11 @@ const comp: any = (
 
 const openAccordion: any = (
 	<DBAccordion initOpenIndex={[1, 2]}>
-		<DBAccordionItem headline="Test" content="Content 1" />
-		<DBAccordionItem headline="Test 2">
+		<DBAccordionItem headlinePlain="Test" content="Content 1" />
+		<DBAccordionItem headlinePlain="Test 2">
 			<span data-testid="item2">Test2</span>
 		</DBAccordionItem>
-		<DBAccordionItem headline="Test 3">
+		<DBAccordionItem headlinePlain="Test 3">
 			<span data-testid="item3">Test3</span>
 		</DBAccordionItem>
 	</DBAccordion>

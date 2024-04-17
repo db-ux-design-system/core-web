@@ -41,11 +41,11 @@ const testActions = () => {
 		const component = await mount(comp);
 		await component
 			.getByTestId('test2')
-			// VUE: .getByRole('radio')
+			// VUE: .getByRole('tab')
 			.check({ force: true });
 		const tabChecked = await component
 			.getByTestId('test')
-			// VUE: .getByRole('radio')
+			// VUE: .getByRole('tab')
 			.isChecked();
 		expect(!tabChecked).toBeTruthy();
 	});

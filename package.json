@@ -38,6 +38,8 @@
     "regenerate:screenshots:rebuild": "npm run rm:builds && npm run regenerate:screenshots -- --build",
     "rm:builds": "npm run rm:builds --workspace=scripts",
     "start": "npm run start --workspace=patternhub",
+    "test:react-components": "playwright test -c output/react/playwright.config.ts --ui",
+    "test:vue-components": "playwright test -c output/vue/playwright.config.ts --ui",
     "update:dependency:playwright": "node .github/scripts/update-playwright.js",
     "update:icon-fonts": "npm run update:icon-fonts --workspace=scripts"
   },
