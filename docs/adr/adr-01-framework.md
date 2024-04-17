@@ -10,7 +10,13 @@ We chose Mitosis because it is flexible and open source. We took the risk that i
 
 We want to ship our DB UX styles based on `css` and `scss` for common frameworks like [Angular](https://angular.io/), [React](https://reactjs.org/), [Vue](https://vuejs.org/) and so on.
 
-To achieve this we started with [web-components](https://github.com/db-ui/elements) wrapped in "native" components. But we've encountered a number of problems with this approach.
+To achieve this we started with [web-components](https://github.com/db-ui/elements).
+But we've encountered a number of problems with this approach:
+
+-   No auto-complete in IDE: Without `.d.ts` files you aren't able to use Typescript properly
+-   No specific framework solutions, for example Angulars [Reactive Forms](https://angular.io/guide/reactive-forms)
+-   Wrapping Components for React: Because of the virtual DOM Events need some wrapping, even [Lit](https://lit.dev/docs/frameworks/react/) needs this
+-   Composition of nested Components (Accordion & AccordionItem etc.): Writing a components with shadow-dom and nesting is complex and time-consuming
 
 ## General conditions and decision criteria
 
@@ -22,11 +28,22 @@ To achieve this we started with [web-components](https://github.com/db-ui/elemen
 
 ### Decision Criteria
 
--   Mitosis generates `.json` files that are compiled into native components for each framework.
--   The plugin structure helps us to create custom outputs for frameworks like Microsoft Power Apps.
--   It's open source and backed by a company.
+-   Mitosis generates `.json` files that are compiled into native components for each framework
 -   Supports most frameworks and Web Components
--   Issues or pull requests can be created in the Mitosis repo to solve problems.
+-   New frameworks can be adopted very easily
+-   Generates "real" native components for frameworks
+-   Consuming Developer Experience
+-   Out-of-the-box support for SSR/SSG inside popular Frameworks like [Next](https://nextjs.org/)/[Nuxt](https://nuxt.com/)
+
+#### Why did we switch from Stencil to Mitosis?
+
+Because of the developers consuming the components. We discovered that developers don't feel comfortable using web-components inside their framework (Angular, React, Vue) projects.
+
+Even with some wrappers around we don't achieve a good experience. Therefore, the developers started to use our styles and writing custom components in their desired framework.
+
+So we noticed the most important thing is to have a good developer experience, otherwise we don't get the time saving potential and consistency of a design system.
+
+To summarize, we need "real" native components to be successful. So the only remaining option is to write the components in any popular framework or to have the components generated. We see the potential to save time by generating components with mitosis, and we have the option of integrating new frameworks relatively easily.
 
 ## Alternatives
 
