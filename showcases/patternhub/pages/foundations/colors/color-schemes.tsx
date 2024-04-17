@@ -11,6 +11,10 @@ const ColorOverview = () => {
 	return (
 		<DefaultPage>
 			<h1>Color Schemes</h1>
+			<p>
+				You can use <code>data-color-scheme="light/dark"</code> to force
+				a container/component to keep the color-scheme:
+			</p>
 			<div
 				className="color-schemes-container"
 				data-color-scheme={colorScheme}>
@@ -19,7 +23,7 @@ const ColorOverview = () => {
 					{colorScheme}
 				</DBTag>
 				<DBButton
-					icon={colorScheme === 'light' ? 'night' : 'day'}
+					icon={colorScheme === 'light' ? 'moon' : 'sun'}
 					onClick={() => {
 						setColorScheme(
 							colorScheme === 'light' ? 'dark' : 'light'
