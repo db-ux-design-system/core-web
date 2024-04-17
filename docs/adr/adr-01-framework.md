@@ -55,7 +55,7 @@ To summarize, we need "real" native components to be successful. So the only rem
 -   Flexible build system with plugins
 -   Builder.io as maintainer
 -   TypeScript (tsx)
--   No wired wrappers around Web Components
+-   No weird wrappers around Web Components
 
 ### B - Stencil
 
