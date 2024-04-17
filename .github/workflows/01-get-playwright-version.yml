@@ -1,0 +1,37 @@
+---
+name: 🎭 Get playwright version
+
+on:
+  workflow_call:
+    outputs:
+      version:
+        description: "Current playwright version"
+        value: ${{ jobs.playwright-version.outputs.version }}
+
+jobs:
+  playwright-version:
+    name: Get and save publish version
+    runs-on: ubuntu-latest
+    outputs:
+      version: ${{ steps.version.outputs.result }}
+    steps:
+      - name: ⏬ Checkout repo
+        uses: actions/checkout@v4
+
+      - name: 🔄 Init Cache
+        uses: ./.github/actions/npm-cache
+
+      - name: 🪁 Get playwright version
+        uses: actions/github-script@v7
+        id: version
+        with:
+          result-encoding: string
+          script: |
+            const { default: getPlaywrightVersion } = await import('${{ github.workspace }}/.github/scripts/get-playwright-version.js');
+            return await getPlaywrightVersion();
+
+      - name: 💀 Killing me softly
+        uses: ./.github/actions/cancel-workflow
+        if: failure()
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
