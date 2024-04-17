@@ -37,13 +37,15 @@ But we've encountered a number of problems with this approach:
 
 #### Why did we switch from Stencil to Mitosis?
 
-Because of the developers consuming the components. We discovered that developers don't feel comfortable using web-components inside their framework (Angular, React, Vue) projects.
+Because of the developers consuming the components. We discovered that developers don't feel comfortable using Web Components inside their framework (Angular, React, Vue) projects.
 
-Even with some wrappers around we don't achieve a good experience. Therefore, the developers started to use our styles and writing custom components in their desired framework.
+Even with some wrappers around we didn't achieve a good developer experience. Therefore, the developers started to use our styles and writing custom components in their desired framework.
 
 So we noticed the most important thing is to have a good developer experience, otherwise we don't get the time saving potential and consistency of a design system.
 
 To summarize, we need "real" native components to be successful. So the only remaining option is to write the components in any popular framework or to have the components generated. We see the potential to save time by generating components with mitosis, and we have the option of integrating new frameworks relatively easily.
+
+We still expect Web Components to be the perfect solution for the future, but especially as React doesn't support them so far, we're still blocked at the moment for a full buy-in.
 
 ## Alternatives
 
