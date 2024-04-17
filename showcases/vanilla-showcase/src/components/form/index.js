@@ -40,7 +40,7 @@ const getContent = () => {
 								icon="edit"
 							></db-input>
 						<p>db-button:</p>
-						<db-button type="button" id="db-button" variant="primary">
+						<db-button type="button" id="db-button" variant="brand">
 							Hi from Showcase!
 						</db-button>
 

@@ -13,10 +13,10 @@
 
 ### sizes
 
-| Before    | Status | After | Description                                                                                                                                                                                     |
-| --------- | :----: | :---: | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `large`   |   ❌   |  ❌   | it became obsolete mainly due to our [tonality](https://marketingportal.extranet.deutschebahn.com/marketingportal/Design-Anwendungen/db-ux-design-system-v3/principles/tonalities) introduction |
-| `regular` |   ❌   |  ❌   | there is a default (`medium`) now                                                                                                                                                               |
+| Before    | Status | After | Description                                                                                                                                                                                   |
+| --------- | :----: | :---: | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `large`   |   ❌   |  ❌   | it became obsolete mainly due to our [density](https://marketingportal.extranet.deutschebahn.com/marketingportal/Design-Anwendungen/db-ux-design-system-v3/principles/densities) introduction |
+| `regular` |   ❌   |  ❌   | there is a default (`medium`) now                                                                                                                                                             |
 
 ### variants
 

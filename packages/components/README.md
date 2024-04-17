@@ -16,6 +16,8 @@ A library containing all styles for components of [DB UX Design System (technica
 
 Please take a look at your desired framework to retrieve more information.
 
+For additional information besides the frameworks see our [Getting started](https://github.com/db-ui/mono/tree/main/packages/components/docs/getting-stated.md).
+
 ---
 
 If you just need the styling follow this:
@@ -38,7 +40,7 @@ Import the styles in `scss` or `css`. Based on your technology the file names co
 
 ```scss
 // index.scss
-@use "@db-ui/components/build/styles/db-ui-42-rollup" as *;
+@forward "@db-ui/components/build/styles/db-ui-42-rollup";
 ```
 
 **CSS**

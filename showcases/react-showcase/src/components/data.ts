@@ -3,7 +3,7 @@ import type { DefaultComponentVariants } from '../../../shared/default-component
 
 export const getVariants = (
 	defaultComponentVariants: DefaultComponentVariants[],
-	getExample: (props: any) => ReactElement
+	getExample: (properties: any) => ReactElement
 ): DefaultComponentVariants[] =>
 	defaultComponentVariants.map((variant, variantIndex) => ({
 		...variant,
@@ -11,8 +11,8 @@ export const getVariants = (
 			...example,
 			example: getExample({
 				...example.props,
-				id: example.props.id ?? example.name,
-				children: example.props.children ?? example.name
+				id: example.props?.id ?? example.name,
+				children: example.props?.children ?? example.name
 			})
 		}))
 	}));

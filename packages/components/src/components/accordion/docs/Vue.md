@@ -7,14 +7,14 @@ For general installation and configuration look at the [v-components](https://ww
 ```vue App.vue
 <!-- App.vue -->
 <script>
-import { DBAccordion } from "@db-ui/v-components";
+import { DBAccordion, DBAccordionItem } from "@db-ui/v-components";
 </script>
 
 <template>
 	<DBAccordion>
-		<DBAccordionItem title="Item 1" content="Content 1" />
-		<DBAccordionItem title="Item 2" content="Content 2" />
-		<DBAccordionItem title="Item 3" content="Content 3" />
+		<DBAccordionItem headlinePlain="Item 1" content="Content 1" />
+		<DBAccordionItem headlinePlain="Item 2" content="Content 2" />
+		<DBAccordionItem headlinePlain="Item 3" content="Content 3" />
 	</DBAccordion>
 </template>
 ```

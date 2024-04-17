@@ -1,6 +1,6 @@
 import { expect, test } from '@playwright/test';
 // @ts-expect-error - required for playwright
-import { COLORS, TONALITIES } from './fixtures/variants.ts';
+import { COLORS, DENSITIES } from './fixtures/variants.ts';
 // @ts-expect-error - required for playwright
 import { setScrollViewport } from './fixtures/viewport.ts';
 
@@ -8,7 +8,7 @@ export const getDefaultScreenshotTest = (
 	path: string,
 	fixedHeight?: number
 ) => {
-	for (const tonality of TONALITIES) {
+	for (const density of DENSITIES) {
 		for (const color of COLORS) {
 			test(`should match screenshot`, async ({ page }, testInfo) => {
 				const isWebkit =
@@ -27,18 +27,18 @@ export const getDefaultScreenshotTest = (
 				if (isAngular) {
 					config.maxDiffPixels = 1000;
 				} else if (isWebkit) {
-					config.maxDiffPixels = 6;
+					config.maxDiffPixels = 120;
 				} else {
 					config.maxDiffPixels = 1;
 				}
 
 				await page.goto(
-					`./#/${path}?tonality=${tonality}&color=${color}`,
+					`./#/${path}?density=${density}&color=${color}`,
 					{ waitUntil: 'networkidle' }
 				);
 				await setScrollViewport(page, fixedHeight)();
 				await expect(page).toHaveScreenshot(
-					[tonality, `${color}.png`],
+					[density, `${color}.png`],
 					config
 				);
 			});

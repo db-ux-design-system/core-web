@@ -18,14 +18,14 @@ jobs:
     name: Deploy
     runs-on: ubuntu-latest
     steps:
-      - name: ⬇ Checkout repo
+      - name: ⏬ Checkout repo
         uses: actions/checkout@v4
 
       - name: 🔄 Init Cache
         uses: ./.github/actions/npm-cache
 
-      - name: ⬇ Download showcases
-        uses: ./.github/actions/download-tar-artifact
+      - name: ⏬ Download showcases
+        uses: actions/download-artifact@v4
         with:
           name: db-ui-showcases
           path: build-showcases
@@ -55,7 +55,7 @@ jobs:
         id: extract
 
       - name: 📛 Get repo name
-        uses: actions/github-script@v6
+        uses: actions/github-script@v7
         id: repo-name
         with:
           result-encoding: string
@@ -73,7 +73,7 @@ jobs:
           ./.github/scripts/build-gh-page.sh
 
       - name: 🥅 Deploy to GH-Pages
-        uses: peaceiris/actions-gh-pages@v3
+        uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./public

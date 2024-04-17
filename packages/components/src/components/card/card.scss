@@ -1,12 +1,10 @@
 @use "@db-ui/foundations/build/scss/variables";
-@use "@db-ui/foundations/build/scss/color/color-variants";
-@use "@db-ui/foundations/build/scss/helpers/component";
+@use "@db-ui/foundations/build/scss/colors";
+@use "@db-ui/foundations/build/scss/helpers";
+@use "../../styles/component";
 
 .db-card {
-	@extend %color-variants;
 	@extend %default-card;
-
-	background-color: variables.$db-colors-neutral-bg;
 
 	display: flex;
 	flex-direction: column;
@@ -16,28 +14,58 @@
 	}
 
 	&[data-spacing="medium"] {
-		padding: variables.$db-spacing-fixed-lg;
-	}
-
-	&[data-spacing="small"] {
 		padding: variables.$db-spacing-fixed-md;
 	}
 
-	&[data-variant="interactive"] {
-		// TODO use transition duration as variable
-		transition: box-shadow 0.15s variables.$db-transition-functional-timing;
+	&[data-spacing="small"],
+	&:not([data-spacing]) {
+		padding: variables.$db-spacing-fixed-sm;
+	}
 
-		&:hover:not([data-elevation="none"]) {
-			cursor: pointer;
-			box-shadow: variables.$db-elevation-8;
-		}
+	&[data-spacing="none"] {
+		padding: 0;
+	}
 
-		&:active:not([data-elevation="none"]) {
-			box-shadow: variables.$db-elevation-2;
+	&[data-elevation-level="1"],
+	&:not([data-elevation-level]) {
+		background-color: colors.$db-current-color-bg-lvl-1-enabled;
+
+		&[data-behaviour="interactive"] {
+			@include helpers.hover {
+				background-color: colors.$db-current-color-bg-lvl-1-hover;
+			}
+
+			@include helpers.active {
+				background-color: colors.$db-current-color-bg-lvl-1-pressed;
+			}
 		}
 	}
 
-	&[data-elevation="none"] {
-		box-shadow: none;
+	&[data-elevation-level="2"] {
+		background-color: colors.$db-current-color-bg-lvl-2-enabled;
+
+		&[data-behaviour="interactive"] {
+			@include helpers.hover {
+				background-color: colors.$db-current-color-bg-lvl-2-hover;
+			}
+
+			@include helpers.active {
+				background-color: colors.$db-current-color-bg-lvl-2-pressed;
+			}
+		}
+	}
+
+	&[data-elevation-level="3"] {
+		background-color: colors.$db-current-color-bg-lvl-3-enabled;
+
+		&[data-behaviour="interactive"] {
+			@include helpers.hover {
+				background-color: colors.$db-current-color-bg-lvl-3-hover;
+			}
+
+			@include helpers.active {
+				background-color: colors.$db-current-color-bg-lvl-3-pressed;
+			}
+		}
 	}
 }

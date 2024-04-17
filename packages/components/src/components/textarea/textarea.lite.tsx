@@ -1,51 +1,44 @@
-import { onMount, Show, useMetadata, useStore } from '@builder.io/mitosis';
+import {
+	onMount,
+	onUpdate,
+	Show,
+	useMetadata,
+	useRef,
+	useStore
+} from '@builder.io/mitosis';
 import { DBTextareaProps, DBTextareaState } from './model';
 import { DBInfotext } from '../infotext';
-import { cls, getMessageIcon, uuid } from '../../utils';
-import { DEFAULT_ID, DEFAULT_LABEL, DEFAULT_MESSAGE_ID_SUFFIX } from '../../shared/constants';
+import { cls, uuid } from '../../utils';
+import {
+	DEFAULT_ID,
+	DEFAULT_INVALID_MESSAGE,
+	DEFAULT_INVALID_MESSAGE_ID_SUFFIX,
+	DEFAULT_LABEL,
+	DEFAULT_MESSAGE_ID_SUFFIX,
+	DEFAULT_VALID_MESSAGE,
+	DEFAULT_VALID_MESSAGE_ID_SUFFIX
+} from '../../shared/constants';
+import { ChangeEvent, InteractionEvent } from '../../shared/model';
 
 useMetadata({
-	isAttachedToShadowDom: true,
-	component: {
-		// MS Power Apps
-		includeIcon: false,
-		hasDisabledProp: true,
-		canvasSize: {
-			height: 'controlled', // 'fixed', 'controlled'
-			width: 'controlled' // 'fixed', 'dynamic' (requires width property), 'controlled'
-		},
-		properties: [
-			{
-				name: 'label',
-				type: 'SingleLine.Text',
-				defaultValue: 'Textarea',
-				required: true
-			},
-			{ name: 'placeholder', type: 'SingleLine.Text' },
-			{ name: 'value', type: 'SingleLine.Text', onChange: 'value' }, // $event.target["value"|"checked"|...]
-			{
-				name: 'variant',
-				type: 'DefaultVariant', // this is a custom type not provided by ms
-				defaultValue: 'adaptive'
-			}
-		]
-	}
+	isAttachedToShadowDom: true
 });
 
 export default function DBTextarea(props: DBTextareaProps) {
-	// This is used as forwardRef
-	let component: any;
+	const ref = useRef<HTMLTextAreaElement>(null);
 	// jscpd:ignore-start
 	const state = useStore<DBTextareaState>({
 		_id: DEFAULT_ID,
 		_messageId: DEFAULT_ID + DEFAULT_MESSAGE_ID_SUFFIX,
-		_isValid: undefined,
+		_validMessageId: DEFAULT_ID + DEFAULT_VALID_MESSAGE_ID_SUFFIX,
+		_invalidMessageId: DEFAULT_ID + DEFAULT_INVALID_MESSAGE_ID_SUFFIX,
+		_descByIds: '',
 		defaultValues: {
 			label: DEFAULT_LABEL,
 			placeholder: ' ',
 			rows: '4'
 		},
-		handleChange: (event: any) => {
+		handleChange: (event: ChangeEvent<HTMLTextAreaElement>) => {
 			if (props.onChange) {
 				props.onChange(event);
 			}
@@ -53,22 +46,16 @@ export default function DBTextarea(props: DBTextareaProps) {
 			if (props.change) {
 				props.change(event);
 			}
-
-			if (event.target?.validity?.valid != state._isValid) {
-				state._isValid = event.target?.validity?.valid;
-				if (props.validityChange) {
-					props.validityChange(!!event.target?.validity?.valid);
-				}
-			}
+			const target = event.target as HTMLTextAreaElement;
 
 			// TODO: Replace this with the solution out of https://github.com/BuilderIO/mitosis/issues/833 after this has been "solved"
-			// VUE:this.$emit("update:value", event.target.value);
+			// VUE:this.$emit("update:value", target.value);
 
 			// Change event to work with reactive and template driven forms
-			// ANGULAR: this.propagateChange(event.target.value);
-			// ANGULAR: this.writeValue(event.target.value);
+			// ANGULAR: this.propagateChange(target.value);
+			// ANGULAR: this.writeValue(target.value);
 		},
-		handleBlur: (event: any) => {
+		handleBlur: (event: InteractionEvent<HTMLTextAreaElement>) => {
 			if (props.onBlur) {
 				props.onBlur(event);
 			}
@@ -77,7 +64,7 @@ export default function DBTextarea(props: DBTextareaProps) {
 				props.blur(event);
 			}
 		},
-		handleFocus: (event: any) => {
+		handleFocus: (event: InteractionEvent<HTMLTextAreaElement>) => {
 			if (props.onFocus) {
 				props.onFocus(event);
 			}
@@ -85,40 +72,52 @@ export default function DBTextarea(props: DBTextareaProps) {
 			if (props.focus) {
 				props.focus(event);
 			}
+		},
+		getValidMessage: () => {
+			return props.validMessage || DEFAULT_VALID_MESSAGE;
+		},
+		getInvalidMessage: () => {
+			return (
+				props.invalidMessage ||
+				ref?.validationMessage ||
+				DEFAULT_INVALID_MESSAGE
+			);
 		}
 	});
 
 	onMount(() => {
-		if (props.stylePath) {
-			state.stylePath = props.stylePath;
-		}
-
 		state._id = props.id || 'textarea-' + uuid();
-		state._messageId = state._id + DEFAULT_MESSAGE_ID_SUFFIX;
 	});
-	// jscpd:ignore-end
+
+	onUpdate(() => {
+		if (state._id) {
+			state._messageId = state._id + DEFAULT_MESSAGE_ID_SUFFIX;
+			state._validMessageId = state._id + DEFAULT_VALID_MESSAGE_ID_SUFFIX;
+			state._invalidMessageId =
+				state._id + DEFAULT_INVALID_MESSAGE_ID_SUFFIX;
+
+			state._descByIds = [
+				state._messageId,
+				state._validMessageId,
+				state._invalidMessageId
+			].join(' ');
+		}
+	}, [state._id]);
 
 	return (
 		<div
-			ref={component}
 			class={cls('db-textarea', props.className)}
 			data-variant={props.variant}>
-			<Show when={state.stylePath}>
-				<link rel="stylesheet" href={state.stylePath} />
-			</Show>
-
-			<label
-				htmlFor={state._id}
-				data-overflow={props.overflow}
-				id={state._id + '-label'}>
+			<label htmlFor={state._id}>
 				{props.label ?? state.defaultValues.label}
 			</label>
 
 			<textarea
+				aria-invalid={props.customValidity === 'invalid'}
+				data-custom-validity={props.customValidity}
+				ref={ref}
 				id={state._id}
 				data-resize={props.resize}
-				autoComplete={props.autoComplete}
-				autoFocus={props.autoFocus}
 				disabled={props.disabled}
 				required={props.required}
 				readOnly={props.readOnly}
@@ -128,10 +127,16 @@ export default function DBTextarea(props: DBTextareaProps) {
 				name={props.name}
 				wrap={props.wrap}
 				spellcheck={props.spellCheck}
-				onChange={(event) => state.handleChange(event)}
-				onBlur={(event) => state.handleBlur(event)}
-				onFocus={(event) => state.handleFocus(event)}
-				defaultValue={props.defaultValue ?? props.children}
+				autocomplete={props.autocomplete}
+				onChange={(event: ChangeEvent<HTMLTextAreaElement>) =>
+					state.handleChange(event)
+				}
+				onBlur={(event: InteractionEvent<HTMLTextAreaElement>) =>
+					state.handleBlur(event)
+				}
+				onFocus={(event: InteractionEvent<HTMLTextAreaElement>) =>
+					state.handleFocus(event)
+				}
 				value={props.value}
 				aria-describedby={props.message && state._messageId}
 				placeholder={
@@ -144,12 +149,26 @@ export default function DBTextarea(props: DBTextareaProps) {
 			<Show when={props.message}>
 				<DBInfotext
 					size="small"
-					variant={props.variant}
-					icon={getMessageIcon(props.variant, props.messageIcon)}
+					icon={props.messageIcon}
 					id={state._messageId}>
 					{props.message}
 				</DBInfotext>
 			</Show>
+
+			<DBInfotext
+				id={state._validMessageId}
+				size="small"
+				semantic="successful">
+				{state.getValidMessage()}
+			</DBInfotext>
+
+			<DBInfotext
+				id={state._invalidMessageId}
+				size="small"
+				semantic="critical">
+				{state.getInvalidMessage()}
+			</DBInfotext>
 		</div>
 	);
+	// jscpd:ignore-end
 }

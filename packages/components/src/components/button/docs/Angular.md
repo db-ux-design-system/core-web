@@ -4,21 +4,21 @@ For general installation and configuration take a look at the [ngx-components](h
 
 ### Load component
 
-```ts app.module.ts
-//app.module.ts
-import { DBButtonModule } from '@db-ui/ngx-components';
+```ts app.component.ts
+// app.component.ts
+import { DBButton } from '@db-ui/ngx-components';
 
-@NgModule({
-  ...
-  imports: [..., DBButtonModule],
-  ...
+@Component({
+  // ...
+  standalone: true,
+  imports: [..., DBButton],
+  // ...
 })
-
 ```
 
 ### Use component
 
 ```html app.component.html
 <!-- app.component.html -->
-<db-button variant="primary">Button</db-button>
+<db-button variant="brand">Button</db-button>
 ```

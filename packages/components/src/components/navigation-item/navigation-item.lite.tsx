@@ -4,25 +4,21 @@ import {
 	Show,
 	Slot,
 	useMetadata,
+	useRef,
 	useStore
 } from '@builder.io/mitosis';
-import { DBNavigationItemState, DBNavigationItemProps } from './model';
+import { DBNavigationItemProps, DBNavigationItemState } from './model';
 import { DBButton } from '../button';
-import { cls, uuid } from '../../utils';
+import { cls, uuid, visibleInVX, visibleInVY } from '../../utils';
 import { DEFAULT_BACK } from '../../shared/constants';
+import { ClickEvent } from '../../shared/model';
 
 useMetadata({
-	isAttachedToShadowDom: true,
-	component: {
-		// MS Power Apps
-		includeIcon: false,
-		properties: []
-	}
+	isAttachedToShadowDom: true
 });
 
 export default function DBNavigationItem(props: DBNavigationItemProps) {
-	// This is used as forwardRef
-	let component: any;
+	const ref = useRef<HTMLLIElement>(null);
 
 	// jscpd:ignore-start
 	const state = useStore<DBNavigationItemState>({
@@ -31,7 +27,7 @@ export default function DBNavigationItem(props: DBNavigationItemProps) {
 		hasSubNavigation: true,
 		isSubNavigationExpanded: false,
 		subNavigationId: 'sub-navigation-' + uuid(),
-		handleClick: (event: any) => {
+		handleClick: (event: ClickEvent<HTMLButtonElement>) => {
 			if (props.onClick) {
 				props.onClick(event);
 			}
@@ -40,7 +36,7 @@ export default function DBNavigationItem(props: DBNavigationItemProps) {
 				state.isSubNavigationExpanded = true;
 			}
 		},
-		handleBackClick: (event: any) => {
+		handleBackClick: (event: ClickEvent<HTMLButtonElement>) => {
 			event.stopPropagation();
 			state.isSubNavigationExpanded = false;
 		}
@@ -48,9 +44,6 @@ export default function DBNavigationItem(props: DBNavigationItemProps) {
 
 	onMount(() => {
 		state.initialized = true;
-		if (props.stylePath) {
-			state.stylePath = props.stylePath;
-		}
 	});
 
 	onUpdate(() => {
@@ -67,10 +60,23 @@ export default function DBNavigationItem(props: DBNavigationItemProps) {
 			const subNavigationSlot = document?.getElementById(
 				state.subNavigationId
 			) as HTMLMenuElement;
+
 			if (subNavigationSlot) {
 				const children = subNavigationSlot.children;
 				if (children?.length > 0) {
 					state.hasAreaPopup = true;
+					if (!visibleInVX(subNavigationSlot)) {
+						subNavigationSlot.setAttribute(
+							'data-outside-vx',
+							'true'
+						);
+					}
+					if (!visibleInVY(subNavigationSlot)) {
+						subNavigationSlot.setAttribute(
+							'data-outside-vy',
+							'true'
+						);
+					}
 				} else {
 					state.hasSubNavigation = false;
 				}
@@ -82,17 +88,13 @@ export default function DBNavigationItem(props: DBNavigationItemProps) {
 
 	return (
 		<li
-			ref={component}
+			ref={ref}
 			id={props.id}
 			class={cls('db-navigation-item', props.className)}
 			data-width={props.width}
 			data-icon={props.icon}
 			aria-current={props.active ? 'page' : undefined}
 			aria-disabled={props.disabled}>
-			<Show when={state.stylePath}>
-				<link rel="stylesheet" href={state.stylePath} />
-			</Show>
-
 			<Show when={!state.hasSubNavigation}>{props.children}</Show>
 
 			<Show when={state.hasSubNavigation}>
@@ -101,25 +103,28 @@ export default function DBNavigationItem(props: DBNavigationItemProps) {
 					aria-expanded={state.isSubNavigationExpanded}
 					className="db-navigation-item-expand-button"
 					disabled={props.disabled}
-					onClick={(event) => state.handleClick(event)}>
+					onClick={(event: ClickEvent<HTMLButtonElement>) =>
+						state.handleClick(event)
+					}>
 					{props.children}
 				</button>
 
+				{/* TODO: Consider using popover here */}
 				<menu className="db-sub-navigation" id={state.subNavigationId}>
 					<Show when={state.hasAreaPopup}>
 						<div class="db-mobile-navigation-back">
 							<DBButton
 								id={props.backButtonId}
-								icon="arrow_back"
-								variant="text"
-								onClick={(event) =>
-									state.handleBackClick(event)
-								}>
+								icon="arrow_left"
+								variant="ghost"
+								onClick={(
+									event: ClickEvent<HTMLButtonElement>
+								) => state.handleBackClick(event)}>
 								{props.backButtonText ?? DEFAULT_BACK}
 							</DBButton>
 						</div>
 					</Show>
-					<Slot name="sub-navigation"></Slot>
+					<Slot name="subNavigation"></Slot>
 				</menu>
 			</Show>
 		</li>

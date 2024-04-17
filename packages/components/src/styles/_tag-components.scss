@@ -1,125 +1,168 @@
 @use "sass:map";
-@use "@db-ui/foundations/build/scss/color/color-variants";
-@use "@db-ui/foundations/build/scss/helpers/component";
+@use "component";
 @use "@db-ui/foundations/build/scss/variables";
+@use "@db-ui/foundations/build/scss/colors";
+@use "@db-ui/foundations/build/scss/helpers";
 
-$interactive-selectors: "input, a, button";
+$interactive-selectors: "label, button:not(.db-tab-remove-button), a";
 
-@mixin overwrite-strong() {
-	--db-current-color: #{variables.$db-colors-neutral-bg};
-	color: var(--db-current-color);
+%set-adaptive-strong-tag {
+	--db-current-icon-color: #{colors.$db-current-color-on-contrast-enabled};
+	--db-current-color-enabled: #{colors.$db-current-color-on-contrast-enabled};
+	--db-current-color-bg-enabled: #{colors.$db-current-color-contrast-high-enabled};
+	--db-current-color-border: #{colors.$db-current-color-contrast-high-enabled};
+
+	@extend %set-current-colors;
 }
 
 @mixin get-tag-colors() {
-	@extend %db-bg-neutral-strong;
+	background-color: colors.$db-current-color-bg-lvl-1-enabled;
 
 	&[data-emphasis="strong"] {
-		@extend %db-neutral-component;
-		@include overwrite-strong();
+		@extend %set-adaptive-strong-tag;
 	}
 
-	@each $name, $colors in color-variants.$component-variants {
-		&[data-variant="#{$name}"] {
-			@if ($name == "critical") {
-				@extend %db-bg-critical;
+	@each $name in colors.$variant-colors {
+		&[data-semantic="#{$name}"] {
+			@extend %db-#{$name}-bg-lvl-1;
 
-				&[data-emphasis="strong"] {
-					@extend %db-critical-component;
-
-					@include overwrite-strong();
-				}
-			} @else if ($name == "informational") {
-				@extend %db-bg-informational;
-
-				&[data-emphasis="strong"] {
-					@extend %db-informational-component;
-
-					@include overwrite-strong();
-				}
-			} @else if ($name == "warning") {
-				@extend %db-bg-warning;
-
-				&[data-emphasis="strong"] {
-					@extend %db-warning-component;
-
-					@include overwrite-strong();
-				}
-			} @else if ($name == "successful") {
-				@extend %db-bg-successful;
-
-				&[data-emphasis="strong"] {
-					@extend %db-successful-component;
-
-					@include overwrite-strong();
-				}
-			}
-
-			&:not(&[data-emphasis="strong"]) {
-				--db-current-border-color: #{map.get($colors, "border")};
+			&[data-emphasis="strong"] {
+				@extend %db-#{$name}-component;
 			}
 		}
 	}
 }
 
-@mixin interactive-selectors() {
+// get button and link tags
+@mixin get-interactive-selectors() {
 	&:not(:has(dbbutton)) button:not(.db-tab-remove-button),
 	dbbutton:not(.db-tab-remove-button) > button,
 	db-button > button,
-	a,
-	&:has(input:checked),
-	&:has(input:checked) {
+	a {
 		@content;
 	}
 }
 
-@mixin get-tag-colors-interactive() {
-	@include interactive-selectors() {
-		@extend %db-bg-neutral-strong-ia;
+%set-interactive-weak {
+	background-color: colors.$db-current-color-bg-lvl-1-enabled;
+
+	@include helpers.hover {
+		background-color: colors.$db-current-color-bg-lvl-1-hover;
 	}
 
-	@each $name, $colors in color-variants.$component-variants {
-		&[data-variant="#{$name}"] {
-			@include interactive-selectors() {
-				@if ($name == "critical") {
-					@extend %db-bg-critical-ia;
-				} @else if ($name == "informational") {
-					@extend %db-bg-informational-ia;
-				} @else if ($name == "warning") {
-					@extend %db-bg-warning-ia;
-				} @else if ($name == "successful") {
-					@extend %db-bg-successful-ia;
-				}
+	@include helpers.active {
+		background-color: colors.$db-current-color-bg-lvl-1-pressed;
+	}
+}
 
-				--db-current-border-color: #{map.get($colors, "border")};
+%set-interactive-strong {
+	@extend %set-adaptive-strong-tag;
+
+	@include helpers.hover {
+		background-color: colors.$db-current-color-contrast-high-hover;
+	}
+
+	@include helpers.active {
+		background-color: colors.$db-current-color-contrast-high-pressed;
+	}
+}
+
+@mixin revert-db-components() {
+	input:checked {
+		background-color: transparent;
+
+		@include helpers.hover {
+			background-color: transparent;
+		}
+
+		@include helpers.active {
+			background-color: transparent;
+		}
+	}
+
+	a {
+		color: currentColor;
+
+		@include helpers.hover {
+			color: currentColor;
+		}
+
+		@include helpers.active {
+			color: currentColor;
+		}
+	}
+}
+
+@mixin get-tag-colors-interactive() {
+	@include revert-db-components;
+
+	// overwrite current variables for semantic color
+	@each $name in colors.$variant-colors {
+		&[data-semantic="#{$name}"] {
+			@extend %db-#{$name}-variables;
+		}
+	}
+
+	label:has(input) {
+		@extend %set-interactive-weak;
+	}
+
+	&:not([data-emphasis]),
+	&[data-emphasis="weak"] {
+		// buttons and links should have bg-lvl-2
+		@include get-interactive-selectors() {
+			@extend %set-interactive-weak;
+		}
+
+		// checkbox should have bg-lvl-3 (checked)
+		label:has(input[type="checkbox"]:checked) {
+			background-color: colors.$db-current-color-bg-lvl-3-enabled;
+
+			@include helpers.hover {
+				background-color: colors.$db-current-color-bg-lvl-3-hover;
+			}
+
+			@include helpers.active {
+				background-color: colors.$db-current-color-bg-lvl-3-pressed;
+			}
+		}
+
+		// radio should have bg-lvl-3 (checked) without hover/pressed
+		label:has(input[type="radio"]:checked) {
+			&,
+			&:hover,
+			&:active {
+				background-color: colors.$db-current-color-bg-lvl-3-enabled;
 			}
 		}
 	}
 
 	&[data-emphasis="strong"] {
-		@include interactive-selectors() {
-			@extend %db-neutral-component-ia;
+		@include get-interactive-selectors() {
+			@extend %set-interactive-strong;
 		}
 
-		@each $name, $colors in color-variants.$component-variants {
-			&[data-variant="#{$name}"] {
-				@include interactive-selectors() {
-					@if ($name == "critical") {
-						@extend %db-critical-component-ia;
-					} @else if ($name == "informational") {
-						@extend %db-informational-component-ia;
-					} @else if ($name == "warning") {
-						@extend %db-warning-component-ia;
-					} @else if ($name == "successful") {
-						@extend %db-successful-component-ia;
-					}
-				}
+		label:has(input[type="radio"]:checked) {
+			@extend %set-adaptive-strong-tag;
+
+			/* Revert this for checked radio button (it's not clickable again) */
+			@include helpers.hover {
+				background-color: colors.$db-current-color-contrast-high-enabled;
+			}
+
+			@include helpers.active {
+				cursor: default;
+				background-color: colors.$db-current-color-contrast-high-enabled;
 			}
 		}
 
-		&:has(button),
+		label:has(input[type="checkbox"]:checked) {
+			@extend %set-interactive-strong;
+		}
+
 		&:has(a),
 		&:has(input:checked) {
-			@include overwrite-strong();
+			@extend %set-adaptive-strong-tag;
 		}
 	}
 }

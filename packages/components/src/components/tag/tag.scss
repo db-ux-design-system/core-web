@@ -1,38 +1,39 @@
 @use "sass:map";
+@use "@db-ui/foundations/build/scss/animation";
 @use "@db-ui/foundations/build/scss/variables";
-@use "@db-ui/foundations/build/scss/helpers/component";
-@use "@db-ui/foundations/build/scss/helpers/font";
-@use "@db-ui/foundations/build/scss/icon/icon-helpers";
-@use "@db-ui/foundations/build/scss/helpers/functions";
-@use "@db-ui/foundations/build/scss/color/color-variants";
+@use "@db-ui/foundations/build/scss/fonts";
+@use "@db-ui/foundations/build/scss/icons";
+@use "@db-ui/foundations/build/scss/helpers";
+@use "@db-ui/foundations/build/scss/colors";
 @use "../../styles/button-components";
 @use "../../styles/tag-components";
 @use "../../styles/icon-passing";
+@use "../../styles/component";
 
 %no-text {
 	&[data-no-text="true"] {
 		--icon-margin-after: 0;
-		@include icon-helpers.is-icon-text-replace();
+		@include icons.is-icon-text-replace();
 		padding: 0;
 
-		label,
-		span {
-			@include icon-helpers.is-icon-text-replace();
+		label {
+			@include icons.is-icon-text-replace();
 		}
 	}
 
 	&:not([data-no-text="true"]) {
-		padding-inline: variables.$db-spacing-fixed-2xs;
+		--db-padding-inline-start: #{variables.$db-spacing-fixed-2xs};
+		padding-inline: var(--db-padding-inline-start) #{variables.$db-spacing-fixed-2xs};
 
 		&:has(.db-tab-remove-button) {
-			padding-inline-start: variables.$db-spacing-fixed-2xs;
 			padding-inline-end: 0;
 		}
 
 		&:has(dbbutton):has(dbbutton:not(.db-tab-remove-button)),
 		&:has(db-button):has(db-button:not(.db-tab-remove-button)),
 		&:not(:has(dbbutton)):has(button:not(.db-tab-remove-button)),
-		&:has(a) {
+		&:has(a),
+		&:has(label) {
 			padding-inline: 0;
 		}
 	}
@@ -51,15 +52,9 @@
 	inline-size: fit-content;
 	position: relative;
 
-	&:not([data-emphasis="strong"]) {
+	&:not(:has(#{tag-components.$interactive-selectors})),
+	&:has(.db-tab-remove-button) {
 		@extend %component-border;
-	}
-
-	&:has(input) {
-		@extend %component-border;
-	}
-
-	&:not(:has(#{tag-components.$interactive-selectors})) {
 		@include tag-components.get-tag-colors();
 	}
 
@@ -79,72 +74,121 @@
 	@extend %db-tag;
 	position: relative;
 
-	input {
-		appearance: none;
-		border: none;
+	label {
+		@extend %default-transition;
 		inline-size: 100%;
-		block-size: 100%;
-		border-radius: component.$default-border-radius;
-		position: absolute;
+		margin-inline-start: 0;
 
-		&:checked {
-			&[type="checkbox"] {
-				// overwrite for checkbox
-				@include color-variants.bg-transparent-interactive();
-				color: var(--db-current-color);
-			}
+		&:has(input:checked) {
+			border-width: variables.$db-border-height-3xs;
 
 			&::before {
 				content: none;
 			}
 		}
+
+		// Handle native radio and checkbox input elements, especially regarding focus-visible indicator
+		// TODO: Reevaluate whether we could use the standard HTML elements instead of our components
+		input {
+			inline-size: calc(100% + 2px);
+			block-size: calc(100% + 2px);
+			position: absolute;
+			margin-inline-end: initial;
+			border: none;
+			border-radius: inherit;
+			transform: translateX(
+				calc(
+					(
+							var(
+									--db-padding-inline-start,
+									#{variables.$db-spacing-fixed-2xs}
+								) + #{variables.$db-border-height-3xs}
+						) * -1
+				)
+			);
+
+			&:checked {
+				&,
+				&:not(:disabled):hover,
+				&:not(:disabled):active {
+					background-color: colors.$db-brand-bg-transparent-full-enabled;
+				}
+
+				&::before {
+					--db-icon: "";
+				}
+			}
+		}
 	}
 
-	label,
-	span {
-		@extend %db-overwrite-font-size-sm;
-		margin-inline-start: 0;
-	}
-
-	button,
 	a {
-		@extend %db-overwrite-font-size-sm;
-		border: transparent;
-		block-size: 100%;
-		padding: 0 variables.$db-spacing-fixed-2xs;
-		border-radius: component.$default-border-radius;
-	}
-
-	a {
+		@extend %default-transition;
 		display: inline-flex;
+		align-items: center;
 		text-decoration: none;
 
 		&::after {
 			--db-icon-margin-start: 0;
-			content: "" !important;
+			--db-icon-font-size: 0;
+			content: none !important;
 		}
 	}
 
-	&[data-disabled="true"] {
-		opacity: component.$default-disabled-opacity;
-		pointer-events: none;
+	.db-link {
+		&:hover,
+		&:active {
+			color: inherit;
+		}
 	}
 
-	.db-button[data-size="small"] {
-		border-radius: functions.to-rem(3);
-		block-size: 100%;
+	&:not(:has(dbbutton, db-button)):has(button:not(.db-tab-remove-button)),
+	&:has(:is(dbbutton, db-button):not(.db-tab-remove-button), a, label) {
+		border: none;
+	}
+
+	button,
+	a,
+	label {
+		@extend %db-overwrite-font-size-sm;
+		@extend %component-border;
+		block-size: inherit;
+		padding: 0 variables.$db-spacing-fixed-2xs;
+		border-radius: variables.$db-border-radius-xs;
+	}
+
+	db-button,
+	dbbutton,
+	db-checkbox,
+	dbcheckbox,
+	db-radio,
+	dbradio,
+	db-link,
+	dblink {
+		// angular workaround
+		block-size: inherit;
+	}
+
+	&[data-disabled="true"] {
+		opacity: component.$default-disabled;
+		pointer-events: none;
 	}
 
 	&[data-overflow="true"] {
 		max-inline-size: variables.$db-sizing-2xl;
-		flex-wrap: wrap;
-		flex-direction: column-reverse;
-		overflow: hidden;
+
+		& > * {
+			inline-size: 100%;
+			overflow: hidden;
+			text-overflow: ellipsis;
+			white-space: nowrap;
+		}
 	}
 
 	.db-tab-remove-button {
 		&:is(button),
 		button {
+			// overwrite to transparent
+			background-color: colors.$db-current-color-bg-transparent-full-enabled;
 			margin-inline-start: variables.$db-spacing-fixed-2xs;
 			block-size: 100%;
 		}

@@ -4,16 +4,18 @@ For general installation and configuration take a look at the [ngx-components](h
 
 ### Load component
 
-```ts app.module.ts
-//app.module.ts
-import { DBPageModule, DBHeaderModule } from '@db-ui/ngx-components';
+```ts app.component.ts
+//app.component.ts
+import { DBPage, DBHeader } from '@db-ui/ngx-components';
 
-@NgModule({
-	...
-	imports: [..., DBPageModule, DBHeaderModule],
-	...
+@Component({
+	// ...
+	imports: [
+		// ...,
+		DBPage, DBHeader
+    ],
+	// ...
 })
-
 ```
 
 ### Use component

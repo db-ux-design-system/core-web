@@ -1,0 +1,38 @@
+@use "@db-ui/foundations/build/scss/variables";
+@use "@db-ui/foundations/build/scss/screen-sizes";
+@use "@db-ui/foundations/build/scss/colors";
+@use "@db-ui/foundations/build/scss/helpers";
+
+$default-mobile-header-height: var(
+	--db-sizing-fixed-mobile-header,
+	#{helpers.to-rem(56)}
+);
+
+$default-disabled: 0.4;
+
+%default-adaptive-border {
+	border: variables.$db-border-height-3xs solid
+		colors.$db-current-color-enabled;
+}
+
+%transparent-border {
+	border: variables.$db-border-height-3xs solid transparent;
+}
+
+%component-border {
+	border: variables.$db-border-height-3xs solid
+		colors.$db-current-color-border;
+}
+
+%default-interactive-component {
+	@extend %default-adaptive-border;
+	border-radius: variables.$db-border-radius-xs;
+}
+
+%default-card {
+	@extend %component-border;
+	border-radius: var(
+		--default-card-border-radius,
+		#{variables.$db-border-radius-sm}
+	);
+}

@@ -3,46 +3,38 @@ import {
 	onUpdate,
 	Show,
 	useMetadata,
+	useRef,
 	useStore
 } from '@builder.io/mitosis';
 import { DBCheckboxProps, DBCheckboxState } from './model';
-import { uuid } from '../../utils';
-import { DEFAULT_ID } from '../../shared/constants';
-import { cls } from '../../utils';
+import { cls, uuid } from '../../utils';
+import {
+	DEFAULT_ID,
+	DEFAULT_INVALID_MESSAGE,
+	DEFAULT_INVALID_MESSAGE_ID_SUFFIX,
+	DEFAULT_MESSAGE_ID_SUFFIX,
+	DEFAULT_VALID_MESSAGE,
+	DEFAULT_VALID_MESSAGE_ID_SUFFIX
+} from '../../shared/constants';
+import { ChangeEvent, InteractionEvent } from '../../shared/model';
+import { DBInfotext } from '../infotext';
 
 useMetadata({
-	isAttachedToShadowDom: true,
-	component: {
-		// MS Power Apps
-		includeIcon: true,
-		hasDisabledProp: true,
-		properties: [
-			// jscpd:ignore-start
-			{
-				name: 'children',
-				type: 'SingleLine.Text',
-				defaultValue: 'Checkbox'
-			},
-			{ name: 'name', type: 'SingleLine.Text' },
-			// { name: 'checked', type: 'TwoOptions' },
-			{ name: 'value', type: 'SingleLine.Text', onChange: 'value' }, // $event.target["value"|"checked"|...]
-			// { name: 'disabled', type: 'TwoOptions' },
-			{ name: 'id', type: 'SingleLine.Text' }
-			// jscpd:ignore-end
-		]
-	}
+	isAttachedToShadowDom: true
 });
 
 export default function DBCheckbox(props: DBCheckboxProps) {
-	// This is used as forwardRef
-	let component: any;
+	const ref = useRef<HTMLInputElement>(null);
 	// jscpd:ignore-start
 	const state = useStore<DBCheckboxState>({
 		initialized: false,
 		_id: DEFAULT_ID,
-		_isValid: undefined,
+		_messageId: DEFAULT_ID + DEFAULT_MESSAGE_ID_SUFFIX,
+		_validMessageId: DEFAULT_ID + DEFAULT_VALID_MESSAGE_ID_SUFFIX,
+		_invalidMessageId: DEFAULT_ID + DEFAULT_INVALID_MESSAGE_ID_SUFFIX,
+		_descByIds: '',
 
-		handleChange: (event: any) => {
+		handleChange: (event: ChangeEvent<HTMLInputElement>) => {
 			if (props.onChange) {
 				props.onChange(event);
 			}
@@ -51,21 +43,16 @@ export default function DBCheckbox(props: DBCheckboxProps) {
 				props.change(event);
 			}
 
-			if (event.target?.validity?.valid != state._isValid) {
-				state._isValid = event.target?.validity?.valid;
-				if (props.validityChange) {
-					props.validityChange(!!event.target?.validity?.valid);
-				}
-			}
+			const target = event.target as HTMLInputElement;
 
 			// TODO: Replace this with the solution out of https://github.com/BuilderIO/mitosis/issues/833 after this has been "solved"
-			// VUE:this.$emit("update:checked", event.target.checked);
+			// VUE:this.$emit("update:checked", target.checked);
 
 			// Change event to work with reactive and template driven forms
-			// ANGULAR: this.propagateChange(event.target.checked);
-			// ANGULAR: this.writeValue(event.target.checked);
+			// ANGULAR: this.propagateChange(target.checked);
+			// ANGULAR: this.writeValue(target.checked);
 		},
-		handleBlur: (event: any) => {
+		handleBlur: (event: InteractionEvent<HTMLInputElement>) => {
 			if (props.onBlur) {
 				props.onBlur(event);
 			}
@@ -74,7 +61,7 @@ export default function DBCheckbox(props: DBCheckboxProps) {
 				props.blur(event);
 			}
 		},
-		handleFocus: (event: any) => {
+		handleFocus: (event: InteractionEvent<HTMLInputElement>) => {
 			if (props.onFocus) {
 				props.onFocus(event);
 			}
@@ -82,17 +69,38 @@ export default function DBCheckbox(props: DBCheckboxProps) {
 			if (props.focus) {
 				props.focus(event);
 			}
+		},
+		getValidMessage: () => {
+			return props.validMessage || DEFAULT_VALID_MESSAGE;
+		},
+		getInvalidMessage: () => {
+			return (
+				props.invalidMessage ||
+				ref?.validationMessage ||
+				DEFAULT_INVALID_MESSAGE
+			);
 		}
 	});
 
 	onMount(() => {
 		state.initialized = true;
 		state._id = props.id || 'checkbox-' + uuid();
-
-		if (props.stylePath) {
-			state.stylePath = props.stylePath;
-		}
 	});
+
+	onUpdate(() => {
+		if (state.initialized && state._id) {
+			state._messageId = state._id + DEFAULT_MESSAGE_ID_SUFFIX;
+			state._validMessageId = state._id + DEFAULT_VALID_MESSAGE_ID_SUFFIX;
+			state._invalidMessageId =
+				state._id + DEFAULT_INVALID_MESSAGE_ID_SUFFIX;
+
+			state._descByIds = [
+				state._messageId,
+				state._validMessageId,
+				state._invalidMessageId
+			].join(' ');
+		}
+	}, [state._id, state.initialized]);
 	// jscpd:ignore-end
 
 	// TODO we have to check how to update on every change..
@@ -112,43 +120,66 @@ export default function DBCheckbox(props: DBCheckboxProps) {
 					// It has no accessibility or UX implications. (https://mui.com/material-ui/react-checkbox/)
 					checkboxElement.indeterminate = props.indeterminate;
 				}
-
-				if (props.defaultChecked !== undefined) {
-					// only set by JS: https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement#instance_properties_that_apply_only_to_elements_of_type_checkbox_or_radio
-					checkboxElement.defaultChecked = props.defaultChecked;
-				}
 			}
 		}
-	}, [state.initialized, props.indeterminate, props.checked, props.defaultChecked]);
+	}, [state.initialized, props.indeterminate, props.checked]);
 
 	return (
-		<>
-			<Show when={state.stylePath}>
-				<link rel="stylesheet" href={state.stylePath} />
-			</Show>
-			<input
-				ref={component}
-				type="checkbox"
-				class={cls('db-checkbox', props.className)}
-				id={state._id}
-				name={props.name}
-				checked={props.checked}
-				disabled={props.disabled}
-				value={props.value}
-				aria-describedby={props.describedbyid}
-				aria-invalid={props.invalid}
-				data-size={props.size}
-				required={props.required}
-				onChange={(event) => state.handleChange(event)}
-				onBlur={(event) => state.handleBlur(event)}
-				onFocus={(event) => state.handleFocus(event)}
-			/>
+		<div
+			className={cls('db-checkbox', props.className)}
+			data-size={props.size}
+			data-variant={props.variant}>
 			<label htmlFor={state._id}>
+				<input
+					aria-invalid={props.customValidity === 'invalid'}
+					data-custom-validity={props.customValidity}
+					ref={ref}
+					type="checkbox"
+					id={state._id}
+					name={props.name}
+					checked={props.checked}
+					disabled={props.disabled}
+					value={props.value}
+					required={props.required}
+					onChange={(event: ChangeEvent<HTMLInputElement>) =>
+						state.handleChange(event)
+					}
+					onBlur={(event: InteractionEvent<HTMLInputElement>) =>
+						state.handleBlur(event)
+					}
+					onFocus={(event: InteractionEvent<HTMLInputElement>) =>
+						state.handleFocus(event)
+					}
+					aria-describedby={state._descByIds}
+				/>
 				<Show when={props.label}>
 					<span>{props.label}</span>
 				</Show>
 				{props.children}
 			</label>
-		</>
+
+			<Show when={props.message}>
+				<DBInfotext
+					size="small"
+					icon={props.messageIcon}
+					id={state._messageId}>
+					{props.message}
+				</DBInfotext>
+			</Show>
+
+			<DBInfotext
+				id={state._validMessageId}
+				size="small"
+				semantic="successful">
+				{state.getValidMessage()}
+			</DBInfotext>
+
+			<DBInfotext
+				id={state._invalidMessageId}
+				size="small"
+				semantic="critical">
+				{state.getInvalidMessage()}
+			</DBInfotext>
+		</div>
 	);
 }

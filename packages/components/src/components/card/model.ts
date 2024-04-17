@@ -1,34 +1,27 @@
 import {
-	CardProps,
 	ClickEventProps,
 	ClickEventState,
 	GlobalProps,
 	GlobalState,
-	ImageProps
+	SpacingProps
 } from '../../shared/model';
-import { COLOR } from '../../shared/constants';
 
 export type DBCardDefaultProps = {
 	/**
-	 * Valid background [colors](https://marketingportal.extranet.deutschebahn.com/marketingportal/Design-Anwendungen/db-ux-design-system-v3/foundation/colors).
+	 * Makes the card interactive
 	 */
-	colorVariant?: COLOR | string;
-	/**
-	 * The spacing attribute changes the padding of the card.
-	 */
-	spacing?: 'none' | 'medium' | 'small';
-	/**
-	 * Makes the card interactive (clickable).
-	 */
-	variant?: 'default' | 'interactive';
+	behaviour?: 'default' | 'interactive';
+
+	elevationLevel?: '1' | '2' | '3';
 };
 
 export type DBCardProps = DBCardDefaultProps &
 	GlobalProps &
-	ClickEventProps &
-	ImageProps &
-	CardProps;
+	ClickEventProps<HTMLElement> &
+	SpacingProps;
 
 export type DBCardDefaultState = {};
 
-export type DBCardState = DBCardDefaultState & GlobalState & ClickEventState;
+export type DBCardState = DBCardDefaultState &
+	GlobalState &
+	ClickEventState<HTMLElement>;

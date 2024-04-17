@@ -1,9 +1,48 @@
-import { Component } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { Component, NO_ERRORS_SCHEMA } from '@angular/core';
+import {
+	FormControl,
+	FormGroup,
+	FormsModule,
+	ReactiveFormsModule
+} from '@angular/forms';
+import {
+	DBButton,
+	DBCheckbox,
+	DBDivider,
+	DBInput,
+	DBRadio,
+	DBSelect,
+	DBTabItem,
+	DBTabList,
+	DBTabPanel,
+	DBTabs,
+	DBTag,
+	DBTextarea
+} from '../../../../../../output/angular/src';
+import { DefaultComponent } from '../default.component';
 
 @Component({
 	selector: 'app-form',
-	templateUrl: './form.component.html'
+	templateUrl: './form.component.html',
+	imports: [
+		FormsModule,
+		ReactiveFormsModule,
+		DefaultComponent,
+		DBInput,
+		DBTextarea,
+		DBSelect,
+		DBRadio,
+		DBTag,
+		DBCheckbox,
+		DBDivider,
+		DBButton,
+		DBTabs,
+		DBTabList,
+		DBTabItem,
+		DBTabPanel
+	],
+	standalone: true,
+	schemas: [NO_ERRORS_SCHEMA]
 })
 export class FormComponent {
 	array = ['X', 'Y', 'Z'];
@@ -11,13 +50,14 @@ export class FormComponent {
 	input = '';
 	textarea = 'default value';
 	textareaDefaultValue = '';
+	dateinput = '';
 	tags: string[] = [];
 	// Fieldset checkbox state
 	checked = [true, false];
 
-	select = '';
 	model = {
 		input: 'Anna',
+		dateinput: '2024-05-04',
 		textarea: 'default value',
 		radio: 'X',
 		checkbox: true,
@@ -30,6 +70,7 @@ export class FormComponent {
 	// Reference: https://blog.angular-university.io/angular-custom-form-controls/
 	form = new FormGroup({
 		input: new FormControl('Filled with formControl'),
+		dateinput: new FormControl('2024-05-04'),
 		textarea: new FormControl('Filled with formControl as well'),
 		checkbox: new FormControl(true),
 		select: new FormControl('test2')
@@ -54,6 +95,7 @@ export class FormComponent {
 		this.model.checkbox2 = false;
 		this.form.get('input')?.setValue('reset');
 		this.form.get('textarea')?.setValue('reset');
+		this.form.get('dateinput')?.setValue('reset');
 		this.form.get('checkbox')?.setValue(false);
 	}
 
@@ -93,7 +135,6 @@ export class FormComponent {
 				input: this.input,
 				textarea: this.textarea,
 				radio: this.radio,
-				select: this.select,
 				checkbox: this.model.checkbox,
 				checkbox2: this.model.checkbox2,
 				tags: this.tags

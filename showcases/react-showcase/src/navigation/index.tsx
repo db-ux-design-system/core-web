@@ -3,11 +3,11 @@ import {
 	NAVIGATION_ITEMS,
 	type NavigationItem
 } from '../utils/navigation-item';
-import { DBMainNavigation } from '../../../../output/react/src';
+import { DBNavigation } from '../../../../output/react/src';
 import NavItem from './nav-item';
 
 const Navigation = () => (
-	<DBMainNavigation>
+	<DBNavigation>
 		{getSortedNavigationItems(NAVIGATION_ITEMS).map(
 			(navItem: NavigationItem) => (
 				<NavItem
@@ -16,7 +16,7 @@ const Navigation = () => (
 				/>
 			)
 		)}
-	</DBMainNavigation>
+	</DBNavigation>
 );
 
 export default Navigation;

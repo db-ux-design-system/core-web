@@ -9,7 +9,7 @@
 		let-exampleName="exampleName"
 	>
 		<db-tag
-			[variant]="exampleProps.variant"
+			[semantic]="exampleProps.semantic"
 			[disabled]="exampleProps.disabled"
 			[icon]="exampleProps.icon"
 			[noText]="exampleProps.noText"
@@ -19,26 +19,33 @@
 			[removeButton]="exampleProps.removeButton"
 			(onRemove)="showAlert(exampleName)"
 		>
-			<db-button *ngIf="exampleProps.component === 'button'">{{
-				exampleName
-			}}</db-button>
-			<db-link *ngIf="exampleProps.component === 'link'" href="#">{{
-				exampleName
-			}}</db-link>
-			<db-checkbox
-				*ngIf="exampleProps.component === 'checkbox'"
-				[checked]="exampleProps.checked"
-				>{{ exampleName }}</db-checkbox
-			>
-			<db-radio
-				name="radio"
-				*ngIf="exampleProps.component === 'radio'"
-				[checked]="exampleProps.checked"
-				>{{ exampleName }}</db-radio
-			>
-			<ng-container *ngIf="!exampleProps.component">{{
-				exampleName
-			}}</ng-container>
+			@if (exampleProps.component === "button") {
+				<db-button>{{ exampleName }}</db-button>
+			}
+			@if (exampleProps.component === "link") {
+				<db-link href="#">
+					{{ exampleName }}
+				</db-link>
+			}
+			@if (exampleProps.component === "checkbox") {
+				<db-checkbox [checked]="exampleProps.checked">{{
+					exampleName
+				}}</db-checkbox>
+			}
+			@if (exampleProps.component === "radio") {
+				<db-radio
+					name="radio"
+					[name]="exampleProps.identifier"
+					[checked]="exampleProps.checked"
+					>{{ exampleName }}</db-radio
+				>
+			}
+			@if (!exampleProps.component && !exampleProps.overflow) {
+				{{ exampleName }}
+			}
+			@if (!exampleProps.component && exampleProps.overflow) {
+				<span>{{ exampleName }}</span>
+			}
 		</db-tag>
 	</ng-template>
 </app-default-component>

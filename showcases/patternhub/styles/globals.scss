@@ -1,8 +1,21 @@
-@use "@db-ui/components/build/styles/db-ui-42-webpack" as *;
-@use "@db-ui/foundations/build/scss/color-classes" as *;
 @use "@db-ui/foundations/build/scss/variables";
-@use "@db-ui/foundations/build/scss/tonality" as *;
-@use "@db-ui/foundations/build/scss/color-placeholder" as *;
+@use "@db-ui/foundations/build/scss/colors";
+@use "@db-ui/foundations/build/scss/screen-sizes";
+@use "@db-ui/foundations/build/scss/density";
+
+@use "@db-ui/components/build/styles/_dialog-init";
+
+@forward "@db-ui/components/build/styles/db-ui-42-webpack";
+@forward "@db-ui/foundations/build/css/colors/classes/all";
+@forward "@db-ui/foundations/build/css/fonts/classes/all";
+
+body {
+	padding-block-end: variables.$db-spacing-fixed-lg;
+}
+
+.db-main {
+	scroll-behavior: smooth;
+}
 
 #__next {
 	height: inherit;
@@ -77,25 +90,29 @@ iframe {
 
 /* TODO: Use real table css in future */
 table {
-	@extend %db-ui-functional;
+	@extend %db-density-functional;
 	width: 100%;
 	border-collapse: collapse;
 }
 
 table td,
 table th {
-	border: 1px solid variables.$db-colors-neutral-border-weak;
+	border: 1px solid colors.$db-current-color-border;
 	padding: variables.$db-spacing-fixed-md;
 	max-width: 33vw;
 }
 
 table tr:nth-child(even) {
-	@extend %db-bg-neutral-transparent-semi;
+	@extend %db-neutral-bg-transparent-semi;
 }
 
 table th {
-	@extend %db-bg-neutral-transparent-semi;
+	@extend %db-neutral-bg-transparent-semi;
 	padding-inline: variables.$db-spacing-fixed-md;
+}
+
+.version-switcher {
+	max-width: variables.$db-sizing-3xl;
 }
 
 /* Workaround for current db-page from db-ui-elements */
@@ -103,11 +120,330 @@ div[class^="ch-"] {
 	div,
 	span {
 		@extend %db-overwrite-font-size-sm;
-		color: variables.$db-colors-neutral-bg;
+		color: colors.$db-current-color-enabled;
 	}
 }
 
 // Code Hike (https://github.com/code-hike/codehike) styles
 .ch-frame-buttons {
 	display: none !important;
+}
+
+.db-section[data-size="none"] {
+	padding-block-end: variables.$db-spacing-fixed-xl;
+}
+
+%grid-container {
+	--columns: 1;
+	display: grid;
+	grid-template-columns: repeat(var(--columns), minmax(0, 1fr));
+	gap: variables.$db-spacing-fixed-md;
+
+	@include screen-sizes.screen() {
+		--columns: 3;
+	}
+}
+
+// icons overview
+
+.icons-filter-container {
+	@extend %grid-container;
+}
+
+.icons-overview-container {
+	@extend %grid-container;
+	--columns: 2;
+
+	@include screen-sizes.screen() {
+		--columns: 7;
+	}
+
+	padding: variables.$db-spacing-fixed-md;
+
+	> .db-card {
+		justify-content: center;
+		align-items: center;
+
+		.db-infotext {
+			word-break: break-word;
+		}
+	}
+}
+
+// colors overview
+
+.color-overview-container {
+	@extend %grid-container;
+	padding: variables.$db-spacing-fixed-md;
+
+	> div {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		border: 1px solid black;
+		padding: variables.$db-spacing-fixed-md;
+	}
+}
+
+// density examples
+
+.density-example-grid {
+	display: grid;
+	grid-template-columns: repeat(3, minmax(0, 1fr));
+	gap: variables.$db-spacing-fixed-md;
+
+	.db-card {
+		gap: variables.$db-spacing-fixed-sm;
+	}
+}
+
+.density-example-page {
+	display: flex;
+	flex-direction: column;
+	gap: variables.$db-spacing-fixed-md;
+
+	.density-example-page-regular {
+		display: grid;
+		grid-template-columns: repeat(3, minmax(0, 1fr));
+		gap: variables.$db-spacing-fixed-md;
+	}
+
+	.density-example-page-functional {
+		display: grid;
+		grid-template-columns: repeat(5, minmax(0, 1fr));
+		gap: variables.$db-spacing-fixed-md;
+	}
+}
+
+// variables examples
+.example-container {
+	@extend %grid-container;
+
+	p {
+		margin: 0;
+	}
+
+	%spacing {
+		@extend %db-successful-component;
+		height: 100%;
+		display: flex;
+		justify-content: center;
+		position: absolute;
+		align-items: center;
+	}
+
+	.example-item {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		gap: variables.$db-spacing-fixed-md;
+
+		.example-spacing-fixed,
+		.example-spacing-responsive {
+			border: 1px solid black;
+			> div {
+				display: flex;
+				border: 1px solid colors.$db-informational-4;
+				position: relative;
+			}
+		}
+
+		.example-spacing-fixed {
+			> div {
+				gap: variables.$db-spacing-fixed-xl;
+			}
+
+			.gap1,
+			.gap2 {
+				@extend %spacing;
+				width: variables.$db-spacing-fixed-xl;
+			}
+
+			$icon-width: calc(
+				var(--db-base-line-height) * var(--db-base-font-size)
+			);
+
+			.gap1 {
+				left: $icon-width;
+			}
+
+			.gap2 {
+				right: $icon-width;
+			}
+		}
+
+		.example-spacing-responsive {
+			> div {
+				margin-inline: variables.$db-spacing-responsive-sm;
+			}
+
+			.margin1,
+			.margin2 {
+				@extend %spacing;
+				width: variables.$db-spacing-responsive-sm;
+			}
+
+			.margin1 {
+				left: calc(-1 * #{variables.$db-spacing-responsive-sm});
+			}
+
+			.margin2 {
+				right: calc(-1 * #{variables.$db-spacing-responsive-sm});
+			}
+		}
+
+		.example-sizing {
+			> div {
+				display: flex;
+				gap: variables.$db-spacing-fixed-md;
+			}
+
+			.sizing {
+				@extend %spacing;
+				@extend %db-warning-component;
+				position: unset;
+				block-size: variables.$db-sizing-md;
+				inline-size: variables.$db-sizing-md;
+			}
+		}
+	}
+}
+
+.color-schemes-container {
+	padding: variables.$db-spacing-fixed-md;
+	border: 1px dashed colors.$db-current-color-enabled;
+	display: grid;
+	gap: variables.$db-spacing-fixed-md;
+	grid-template-columns: repeat(2, minmax(0, 1fr));
+
+	.db-button {
+		grid-column: span 2 / span 2;
+	}
+
+	.db-tag {
+		margin-inline-start: auto;
+	}
+
+	section {
+		padding: variables.$db-spacing-fixed-md;
+	}
+
+	.color-cards {
+		grid-column: span 2 / span 2;
+		display: grid;
+		gap: variables.$db-spacing-fixed-md;
+		grid-template-columns: repeat(5, minmax(0, 1fr));
+	}
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	a:is(.header-link) {
+		display: inline-block;
+		margin-block: auto;
+		margin-inline-start: variables.$db-spacing-fixed-xs;
+		visibility: hidden;
+		text-decoration: none;
+		font-size: 0;
+	}
+
+	&:hover {
+		a:is(.header-link) {
+			visibility: visible;
+		}
+	}
+}
+
+.db-code-docs {
+	min-block-size: variables.$db-sizing-3xl;
+	align-items: center;
+	justify-content: center;
+	padding: variables.$db-spacing-fixed-xl;
+	margin-block-end: calc(
+		#{variables.$db-spacing-fixed-xl} + #{variables.$db-sizing-sm}
+	);
+	position: relative;
+
+	.code-details {
+		display: flex;
+
+		&[open] {
+			inset-inline-start: 0;
+			inset-block-start: 0;
+		}
+
+		.code-button {
+			position: absolute;
+			inset-block-end: calc(
+				-1 * (#{variables.$db-spacing-fixed-sm} + #{variables.$db-sizing-sm})
+			);
+			inset-inline-end: variables.$db-spacing-fixed-sm;
+			z-index: 1;
+			cursor: pointer;
+
+			&::-webkit-details-marker {
+				display: none;
+			}
+		}
+
+		.no-code {
+			margin: auto;
+		}
+
+		.backdrop {
+			border-radius: variables.$db-border-radius-sm;
+			@extend %backdrop;
+			position: absolute;
+			inset: 0;
+		}
+
+		.code {
+			overflow: auto;
+			position: absolute;
+			z-index: 20;
+			inset: 0;
+			margin: variables.$db-spacing-fixed-md;
+			display: flex;
+			flex-direction: column;
+			gap: variables.$db-spacing-fixed-sm;
+
+			code {
+				display: block;
+				white-space: pre-wrap;
+			}
+
+			.tab-container {
+				position: relative;
+
+				.copy-button {
+					position: absolute;
+					z-index: 20;
+					inset-inline-end: variables.$db-spacing-fixed-sm;
+					inset-block-end: variables.$db-spacing-fixed-sm;
+
+					@include screen-sizes.screen("md") {
+						inset-block-end: auto;
+						inset-block-start: variables.$db-spacing-fixed-sm;
+					}
+				}
+			}
+		}
+	}
+}
+
+.validity-container {
+	display: grid;
+	grid-template-columns: repeat(2, minmax(0, 1fr));
+	gap: variables.$db-spacing-fixed-sm;
+
+	form {
+		display: flex;
+		flex-direction: column;
+		gap: variables.$db-spacing-fixed-sm;
+	}
 }

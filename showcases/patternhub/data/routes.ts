@@ -27,10 +27,14 @@ const componentChildren: NavigationItem[] = [
 			{
 				label: 'DBBrand',
 				name: 'brand'
-			},
+			} /* TODO: Uncomment this if dev and design is aligned
 			{
 				label: 'DBIcon',
 				name: 'icon'
+			}, */,
+			{
+				label: 'DBTooltip',
+				name: 'tooltip'
 			},
 			{
 				label: 'DBInfotext',
@@ -42,11 +46,23 @@ const componentChildren: NavigationItem[] = [
 			},
 			{
 				label: 'DBAccordion',
-				name: 'accordion'
+				name: 'accordion',
+				subNavigation: [
+					{
+						label: 'DBAccordionItem Properties',
+						path: `/components/accordion-item/properties`
+					}
+				]
 			},
 			{
-				label: 'DBAccordionItem',
-				name: 'accordion-item'
+				label: 'DBTabs',
+				name: 'tabs',
+				subNavigation: [
+					{
+						label: 'DBTabItem Properties',
+						path: `/components/tab-item/properties`
+					}
+				]
 			}
 		]
 	},
@@ -81,8 +97,8 @@ const componentChildren: NavigationItem[] = [
 		path: '/components/feedback',
 		subNavigation: [
 			{
-				label: 'DBAlert',
-				name: 'alert'
+				label: 'DBNotification',
+				name: 'notification'
 			},
 			{
 				label: 'DBBadge',
@@ -109,11 +125,11 @@ const componentChildren: NavigationItem[] = [
 			{
 				label: 'DBHeader',
 				name: 'header'
-			},
+			} /* TODO: Uncomment this if dev and design is aligned
 			{
 				label: 'DBPage',
 				name: 'page'
-			},
+			}, */,
 			{
 				label: 'DBSection',
 				name: 'section'
@@ -125,12 +141,24 @@ const componentChildren: NavigationItem[] = [
 		path: '/components/navigation',
 		subNavigation: [
 			{
-				label: 'DBMainNavigation',
-				name: 'main-navigation'
-			},
+				label: 'DBNavigation',
+				name: 'navigation',
+				subNavigation: [
+					{
+						label: 'DBNavigationItem Properties',
+						path: `/components/navigation-item/properties`
+					}
+				]
+			}
+		]
+	},
+	{
+		label: 'Utilities',
+		path: '/components/utilities',
+		subNavigation: [
 			{
-				label: 'DBNavigationItem',
-				name: 'navigation-item'
+				label: 'DBPopover',
+				name: 'popover'
 			}
 		]
 	}
@@ -150,10 +178,58 @@ export const ROUTES: NavigationItem[] = [
 				path: '/foundations/colors',
 				subNavigation: [
 					{ label: 'Readme', path: '/foundations/colors/readme' },
-					{ label: 'Examples', path: '/foundations/colors/examples' }
+					{ label: 'Overview', path: '/foundations/colors/overview' },
+					{
+						label: 'Color Schemes',
+						path: '/foundations/colors/color-schemes'
+					}
 				]
 			},
-			{ label: 'Icons', path: '/foundations/icons' }
+			{
+				label: 'Font Sizes',
+				path: '/foundations/font-sizes',
+				subNavigation: [
+					{ label: 'Readme', path: '/foundations/font-sizes/readme' },
+					{
+						label: 'Overview',
+						path: '/foundations/font-sizes/overview'
+					}
+				]
+			},
+			{
+				label: 'Icons',
+				path: '/foundations/icons',
+				subNavigation: [
+					{ label: 'Readme', path: '/foundations/icons/readme' },
+					{
+						label: 'Custom Icons',
+						path: '/foundations/icons/custom-icons'
+					},
+					{ label: 'Overview', path: '/foundations/icons/overview' }
+				]
+			},
+			{
+				label: 'Densities',
+				path: '/foundations/densities',
+				subNavigation: [
+					{ label: 'Readme', path: '/foundations/densities/readme' },
+					{
+						label: 'Examples',
+						path: '/foundations/densities/examples'
+					}
+				]
+			},
+			{
+				label: 'Variables',
+				path: '/foundations/variables',
+				subNavigation: [
+					{ label: 'Readme', path: '/foundations/variables/readme' },
+					{
+						label: 'Examples',
+						path: '/foundations/variables/examples'
+					}
+				]
+			}
 		]
 	},
 	{
@@ -161,6 +237,8 @@ export const ROUTES: NavigationItem[] = [
 		path: '/components',
 		subNavigation: [
 			{ label: 'Readme', path: '/components/readme' },
+			{ label: 'Router usage', path: '/components/router-usage' },
+			{ label: 'Validation', path: '/components/validation' },
 			...componentChildren.map((category) => ({
 				...category,
 				subNavigation: category?.subNavigation?.map((component) => ({
@@ -176,17 +254,14 @@ export const ROUTES: NavigationItem[] = [
 							path: `/components/${component.name}/properties`
 						},
 						{
-							label: 'Examples',
-							path: `/components/${component.name}/examples`
-						},
-						{
 							label: 'How to use',
 							path: `/components/${component.name}/how-to-use`
 						},
 						{
 							label: 'Migration',
 							path: `/components/${component.name}/migration`
-						}
+						},
+						...(component.subNavigation ?? [])
 					]
 				}))
 			}))

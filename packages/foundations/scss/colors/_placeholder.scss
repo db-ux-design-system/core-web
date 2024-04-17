@@ -1,0 +1,177 @@
+@use "sass:string";
+@use "variables";
+
+%set-current-colors {
+	background: variables.$db-current-color-bg-enabled;
+	color: variables.$db-current-color-enabled;
+
+	&::before,
+	&::after {
+		color: variables.$db-current-icon-color;
+	}
+}
+
+@mixin bg-types() {
+	&-lvl-1,
+	&-lvl-2,
+	&-lvl-3,
+	&-transparent-full,
+	&-transparent-semi {
+		@content;
+	}
+}
+
+@each $variant in variables.$variants {
+	%db-#{$variant}-component {
+		--db-current-icon-color: var(--db-#{$variant}-on-contrast-enabled);
+		--db-current-color-enabled: var(--db-#{$variant}-on-contrast-enabled);
+		--db-current-color-bg-enabled: var(
+			--db-#{$variant}-contrast-high-enabled
+		);
+		--db-current-color-bg-hover: var(--db-#{$variant}-contrast-high-hover);
+		--db-current-color-bg-pressed: var(
+			--db-#{$variant}-contrast-high-pressed
+		);
+		--db-current-color-border: var(--db-#{$variant}-contrast-high-enabled);
+		@extend %set-current-colors;
+
+		&-interactive {
+			@extend %db-#{$variant}-component;
+
+			&:hover {
+				background: var(--db-#{$variant}-contrast-high-hover);
+			}
+
+			&:active {
+				background: var(--db-#{$variant}-contrast-high-pressed);
+			}
+		}
+	}
+
+	%db-#{$variant}-variables {
+		/* used for transparent backgrounds */
+		--db-current-color-bg-transparent-full-enabled: var(
+			--db-#{$variant}-bg-transparent-full-enabled
+		);
+		--db-current-color-bg-transparent-semi-enabled: var(
+			--db-#{$variant}-bg-transparent-semi-enabled
+		);
+		--db-current-color-bg-transparent-hover: var(
+			--db-#{$variant}-bg-transparent-hover
+		);
+		--db-current-color-bg-transparent-pressed: var(
+			--db-#{$variant}-bg-transparent-pressed
+		);
+
+		/* used for text */
+		--db-current-color-enabled: var(--db-#{$variant}-on-bg-enabled);
+		--db-current-color-icon: var(--db-#{$variant}-on-bg-enabled);
+		/* used for checkbox:checked */
+		--db-current-color-hover: var(--db-#{$variant}-on-bg-hover);
+		--db-current-color-pressed: var(--db-#{$variant}-on-bg-pressed);
+
+		/* used for backgrounds */
+		--db-current-color-bg-lvl-1-enabled: var(
+			--db-#{$variant}-bg-lvl-1-enabled
+		);
+		--db-current-color-bg-lvl-2-enabled: var(
+			--db-#{$variant}-bg-lvl-2-enabled
+		);
+		--db-current-color-bg-lvl-3-enabled: var(
+			--db-#{$variant}-bg-lvl-3-enabled
+		);
+
+		/* used for icons and borders */
+		--db-current-color-contrast-low-enabled: var(
+			--db-#{$variant}-contrast-low-enabled
+		);
+		--db-current-color-border: var(--db-#{$variant}-border);
+
+		/* used for adaptive tags (interactive) */
+		--db-current-color-bg-lvl-1-hover: var(--db-#{$variant}-bg-lvl-1-hover);
+		--db-current-color-bg-lvl-1-pressed: var(
+			--db-#{$variant}-bg-lvl-1-pressed
+		);
+		--db-current-color-bg-lvl-2-hover: var(--db-#{$variant}-bg-lvl-2-hover);
+		--db-current-color-bg-lvl-2-pressed: var(
+			--db-#{$variant}-bg-lvl-2-pressed
+		);
+		--db-current-color-bg-lvl-3-hover: var(--db-#{$variant}-bg-lvl-3-hover);
+		--db-current-color-bg-lvl-3-pressed: var(
+			--db-#{$variant}-bg-lvl-3-pressed
+		);
+		/* used for adaptive tags (strong & interactive) */
+		--db-current-color-on-contrast-enabled: var(
+			--db-#{$variant}-on-contrast-enabled
+		);
+
+		--db-current-color-contrast-high-enabled: var(
+			--db-#{$variant}-contrast-high-enabled
+		);
+		--db-current-color-contrast-high-hover: var(
+			--db-#{$variant}-contrast-high-hover
+		);
+		--db-current-color-contrast-high-pressed: var(
+			--db-#{$variant}-contrast-high-pressed
+		);
+	}
+
+	%db-#{$variant}-bg {
+		// 1. set all variables for color variant to every bg type
+		@include bg-types() {
+			@extend %db-#{$variant}-variables;
+		}
+
+		// 3. set current colors
+		@include bg-types() {
+			@extend %set-current-colors;
+
+			&[data-emphasis="weak"] {
+				/* used for text */
+				--db-current-color-enabled: var(
+					--db-#{$variant}-on-bg-weak-enabled
+				);
+				/* used for checkbox:checked */
+				--db-current-color-hover: var(
+					--db-#{$variant}-on-bg-weak-hover
+				);
+				--db-current-color-pressed: var(
+					--db-#{$variant}-on-bg-weak-pressed
+				);
+				color: var(--db-current-color-enabled);
+			}
+		}
+
+		// 2. overwrite current-bg-color based on type
+
+		&-lvl-1 {
+			--db-current-color-bg-enabled: var(
+				--db-current-color-bg-lvl-1-enabled
+			);
+		}
+
+		&-lvl-2 {
+			--db-current-color-bg-enabled: var(
+				--db-current-color-bg-lvl-2-enabled
+			);
+		}
+
+		&-lvl-3 {
+			--db-current-color-bg-enabled: var(
+				--db-current-color-bg-lvl-3-enabled
+			);
+		}
+
+		&-transparent-full {
+			--db-current-color-bg-enabled: var(
+				--db-current-color-bg-transparent-full-enabled
+			);
+		}
+
+		&-transparent-semi {
+			--db-current-color-bg-enabled: var(
+				--db-current-color-bg-transparent-semi-enabled
+			);
+		}
+	}
+}

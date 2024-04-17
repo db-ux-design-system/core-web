@@ -1,29 +1,47 @@
 [
 	{
-		"name": "Tonality",
+		"name": "Density",
 		"examples": [
 			{
-				"name": "functional",
-				"className": "db-ui-functional",
+				"name": "Functional",
+				"className": "db-density-functional",
 				"props": {
-					"name": "Tonality",
+					"name": "Density",
 					"value": "functional"
 				}
 			},
 			{
-				"name": "regular (Default)",
-				"className": "db-ui-regular",
+				"name": "(Default) Regular",
+				"className": "db-density-regular",
 				"props": {
-					"name": "Tonality",
+					"name": "Density",
 					"value": "regular"
 				}
 			},
 			{
-				"name": "expressive",
-				"className": "db-ui-expressive",
+				"name": "Expressive",
+				"className": "db-density-expressive",
 				"props": {
-					"name": "Tonality",
+					"name": "Density",
 					"value": "expressive"
+				}
+			}
+		]
+	},
+	{
+		"name": "Interaction States",
+		"examples": [
+			{
+				"name": "(Default) Enabled",
+				"props": {
+					"name": "Interaction States"
+				}
+			},
+			{
+				"name": "Disabled",
+				"props": {
+					"name": "Interaction States",
+					"disabled": true
 				}
 			}
 		]
@@ -32,51 +50,31 @@
 		"name": "States",
 		"examples": [
 			{
-				"name": "Default",
+				"name": "(Default) Unselected",
 				"props": {
-					"name": "States",
-					"value": "default"
+					"name": "States"
 				}
 			},
 			{
-				"name": "Disabled",
+				"name": "Unselected - Invalid",
 				"props": {
-					"name": "States",
-					"disabled": true,
-					"value": "disabled"
+					"name": "States Required",
+					"required": true
 				}
 			},
 			{
-				"name": "Disabled checked",
+				"name": "Selected",
 				"props": {
-					"name": "SpecialState",
-					"disabled": true,
-					"checked": true,
-					"value": "disabled-checked"
+					"name": "States",
+					"checked": true
 				}
 			},
 			{
-				"name": "Required",
+				"name": "Selected - Valid",
 				"props": {
-					"name": "States",
+					"name": "States Required",
 					"required": true,
-					"value": "required"
-				}
-			},
-			{
-				"name": "Checked",
-				"props": {
-					"name": "States",
-					"checked": true,
-					"value": "checked"
-				}
-			},
-			{
-				"name": "Invalid",
-				"props": {
-					"name": "States",
-					"invalid": true,
-					"value": "invalid"
+					"checked": true
 				}
 			}
 		]
@@ -85,18 +83,52 @@
 		"name": "Size",
 		"examples": [
 			{
-				"name": "Default",
+				"name": "(Default) Medium",
 				"props": {
-					"name": "Size",
-					"value": "default"
+					"name": "Size"
 				}
 			},
 			{
 				"name": "Small",
 				"props": {
 					"name": "Size",
-					"size": "small",
-					"value": "small"
+					"size": "small"
+				}
+			}
+		]
+	},
+	{
+		"name": "Requirement",
+		"examples": [
+			{
+				"name": "(Default) Optional",
+				"props": {
+					"name": "Requirement"
+				}
+			},
+			{
+				"name": "Required",
+				"props": {
+					"name": "Requirement",
+					"required": true
+				}
+			}
+		]
+	},
+	{
+		"name": "Content",
+		"examples": [
+			{
+				"name": "(Default) Label",
+				"props": {
+					"name": "Content"
+				}
+			},
+			{
+				"name": "Hidden Label",
+				"props": {
+					"name": "Content",
+					"variant": "hidden"
 				}
 			}
 		]

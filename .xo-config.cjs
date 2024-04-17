@@ -1,6 +1,5 @@
 module.exports = {
 	prettier: true,
-	plugins: ['@db-ui'],
 	overrides: [
 		{
 			files: ['./showcases/angular-showcase/**'],
@@ -29,7 +28,7 @@ module.exports = {
 			}
 		},
 		{
-			files: ['./showcases/**', './examples/**'],
+			files: ['./showcases/**'],
 			rules: {
 				// In TS we don't need extension
 				'import/extensions': 0,
@@ -40,12 +39,12 @@ module.exports = {
 				'@typescript-eslint/restrict-template-expressions': 0, // Legit in react
 				'@typescript-eslint/no-redundant-type-constituents': 0, // only happens in cicd
 				'@typescript-eslint/no-unsafe-argument': 0, // valid for app
+				'@typescript-eslint/no-unsafe-return': 0, // valid for app
 				'import/no-extraneous-dependencies': 0 // foundation and component.css are inside this repo
 			}
 		}
 	],
 	rules: {
-		'@db-ui/v2-component-used': 'warn',
 		'no-console': ['error', { allow: ['warn', 'error'] }],
 		'unicorn/prefer-module': 0, // TODO: we need to change every package to "type":"module"
 		'n/prefer-global/process': 0, // We use process.env in config files so don't use require("process")
@@ -57,6 +56,7 @@ module.exports = {
 					pascalCase: true
 				}
 			}
-		]
+		],
+		'unicorn/prevent-abbreviations': 0
 	}
 };

@@ -9,15 +9,16 @@ permissions:
 
 jobs:
   playwright-showcases:
-    name: 🧪🎭 - ${{ matrix.framework }}:${{ matrix.shard }}
+    name: 🧪🎭 - ${{ matrix.framework }}:${{ matrix.shardIndex }}/${{ matrix.shardTotal }}
     runs-on: ubuntu-latest
     container:
-      image: mcr.microsoft.com/playwright:v1.35.1-focal
+      image: mcr.microsoft.com/playwright:v1.42.1
     strategy:
       fail-fast: false
       matrix:
         framework: [angular, react, vue]
-        shard: [1/2, 2/2]
+        shardIndex: [1, 2]
+        shardTotal: [2]
     steps:
       - name: ⏬ Checkout repo
         uses: actions/checkout@v4
@@ -29,25 +30,25 @@ jobs:
         run: npm i -D esbuild-linux-64
 
       - name: ⏬ Download foundations build
-        uses: ./.github/actions/download-tar-artifact
+        uses: actions/download-artifact@v4
         with:
           name: db-ui-foundations-build
           path: packages/foundations/build
 
       - name: ⏬ Download output
-        uses: ./.github/actions/download-tar-artifact
+        uses: actions/download-artifact@v4
         with:
           name: db-ui-output
           path: output
 
       - name: ⏬ Download components styles build
-        uses: ./.github/actions/download-tar-artifact
+        uses: actions/download-artifact@v4
         with:
           name: db-ui-components-build
           path: packages/components/build
 
       - name: ⏬ Download showcases
-        uses: ./.github/actions/download-tar-artifact
+        uses: actions/download-artifact@v4
         with:
           name: db-ui-showcases
           path: build-showcases
@@ -55,20 +56,19 @@ jobs:
       - name: 👩‍🔬 Test showcase with Playwright 🎭
         env:
           HOME: /root
-        run: npm run test:${{ matrix.framework }}-showcase -- -- --shard=${{ matrix.shard }}
+        run: |
+          npm run test:e2e --workspace=${{ matrix.framework }}-showcase -- --shard=${{ matrix.shardIndex }}/${{ matrix.shardTotal }}
 
-      - name: 🆙 Upload blob report to GitHub Actions Artifacts
-        if: always()
-        uses: actions/upload-artifact@v3
-        with:
-          name: all-blob-reports
-          path: ./showcases/blob-report
-          retention-days: 1
+      - name: 🔣 Print GitHub Report
+        if: failure()
+        shell: bash
+        run: |
+          npx playwright merge-reports --reporter github ./blob-report
 
       - name: 🆙 Upload test results
         if: failure()
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
-          name: ${{ matrix.framework }}-showcase-playwright-results
+          name: ${{ matrix.framework }}-showcase-playwright-results-${{ matrix.shardIndex }}
           path: ./showcases/${{ matrix.framework }}-showcase/test-results
           retention-days: 30

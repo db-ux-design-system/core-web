@@ -1,112 +1,123 @@
 [
 	{
-		"name": "Tonality",
+		"name": "Density",
 		"examples": [
 			{
-				"name": "functional",
-				"className": "db-ui-functional",
+				"name": "Functional",
+				"className": "db-density-functional",
 				"props": {
-					"label": "Label",
-					"message": "functional"
+					"label": "Label"
 				}
 			},
 			{
-				"name": "regular (Default)",
-				"className": "db-ui-regular",
+				"name": "(Default) Regular",
+				"className": "db-density-regular",
 				"props": {
-					"label": "Label",
-					"message": "regular (Default)"
+					"label": "Label"
 				}
 			},
 			{
-				"name": "expressive",
-				"className": "db-ui-expressive",
+				"name": "Expressive",
+				"className": "db-density-expressive",
 				"props": {
-					"label": "Label",
-					"message": "expressive"
+					"label": "Label"
 				}
 			}
 		]
 	},
 	{
-		"name": "Variant",
+		"name": "Variant Label",
+		"examples": [
+			{
+				"name": "(Default) Label Above",
+				"props": {
+					"label": "Label"
+				}
+			},
+			{
+				"name": "Floating Label",
+				"props": {
+					"label": "Label",
+					"variant": "floating",
+					"value": "Floating Label"
+				}
+			},
+			{
+				"name": "Hidden Label",
+				"props": {
+					"label": "Label",
+					"variant": "hidden"
+				}
+			}
+		]
+	},
+	{
+		"name": "Variant Helper Message",
 		"examples": [
 			{
 				"name": "(Default) Basic",
 				"props": {
-					"label": "Label",
-					"message": "(Default) Basic",
-					"placeholder": "I am a placeholder"
+					"label": "Label"
 				}
 			},
 			{
-				"name": "Informational",
+				"name": "Helper Message",
 				"props": {
 					"label": "Label",
-					"message": "Informational",
-					"variant": "informational"
-				}
-			},
-			{
-				"name": "Warning",
-				"props": {
-					"label": "Label",
-					"message": "Warning",
-					"variant": "warning"
-				}
-			},
-			{
-				"name": "Critical",
-				"props": {
-					"label": "Label",
-					"message": "Critical",
-					"variant": "critical"
-				}
-			},
-			{
-				"name": "Successful",
-				"props": {
-					"label": "Label",
-					"message": "Successful",
-					"variant": "successful"
+					"message": "Helper Message"
 				}
 			}
 		]
 	},
 	{
-		"name": "States",
+		"name": "States Label Above",
 		"examples": [
 			{
-				"name": "Default",
+				"name": "(Default) Empty",
 				"props": {
-					"label": "Label",
-					"message": "Default"
+					"label": "Label"
 				}
 			},
 			{
 				"name": "Filled",
 				"props": {
 					"label": "Label",
-					"value": "Input Text",
-					"message": "Filled"
+					"value": "Filled"
 				}
 			},
 			{
-				"name": "Filled Number",
+				"name": "Disabled",
 				"props": {
 					"label": "Label",
-					"value": "123456",
-					"type": "number",
-					"message": "Filled Number"
+					"disabled": true
 				}
 			},
 			{
-				"name": "Invalid",
+				"name": "Readonly - Filled",
 				"props": {
 					"label": "Label",
-					"message": "Invalid",
-					"required": true,
-					"minLength": 5
+					"value": "Readonly - Filled",
+					"readOnly": true
+				}
+			}
+		]
+	},
+	{
+		"name": "States Floating Label",
+		"examples": [
+			{
+				"name": "(Default) Empty",
+				"props": {
+					"label": "Label",
+					"variant": "floating"
+				}
+			},
+			{
+				"name": "Filled",
+				"props": {
+					"label": "Label",
+					"value": "Filled",
+					"variant": "floating"
 				}
 			},
 			{
@@ -114,25 +125,16 @@
 				"props": {
 					"label": "Label",
 					"disabled": true,
-					"message": "Disabled"
+					"variant": "floating"
 				}
 			},
 			{
-				"name": "Disabled filled",
+				"name": "Readonly - Filled",
 				"props": {
 					"label": "Label",
-					"value": "Input Text",
-					"disabled": true,
-					"message": "Disabled filled"
-				}
-			},
-			{
-				"name": "Required",
-				"props": {
-					"label": "Label",
-					"value": "Input Text",
-					"required": true,
-					"message": "Required"
+					"value": "Readonly - Filled",
+					"readOnly": true,
+					"variant": "floating"
 				}
 			}
 		]
@@ -144,60 +146,72 @@
 				"name": "(Default) Text",
 				"props": {
 					"label": "Label",
-					"message": "(Default) Text"
+					"value": "(Default) Text"
 				}
 			},
 			{
-				"name": "Leading Icon + Text",
+				"name": "Filled Number",
 				"props": {
-					"label": "Label",
-					"icon": "account",
-					"message": "Leading Icon + Text"
+					"label": "Number",
+					"value": "123456",
+					"type": "number"
 				}
 			},
 			{
-				"name": "Leading Icon + Text + Trailing Icon",
+				"name": "Text - Leading Icon",
 				"props": {
 					"label": "Label",
-					"icon": "account",
-					"iconAfter": "edit",
-					"message": "Leading Icon + Text + Trailing Icon"
+					"icon": "x_placeholder"
 				}
 			},
 			{
-				"name": "Text + Trailing Icon",
+				"name": "Text - Leading Icon - Trailing Icon",
 				"props": {
 					"label": "Label",
-					"iconAfter": "edit",
-					"message": "Text + Trailing Icon"
+					"icon": "x_placeholder",
+					"iconAfter": "x_placeholder"
 				}
 			},
 			{
-				"name": "Text + Trailing Icon + Variant:Successful",
+				"name": "Text - Trailing Icon",
 				"props": {
 					"label": "Label",
-					"variant": "successful",
-					"iconAfter": "edit",
-					"message": "Text + Trailing Icon + Variant:Successful"
+					"iconAfter": "x_placeholder"
 				}
 			}
 		]
 	},
 	{
-		"name": "Types",
+		"name": "Requirement",
+		"examples": [
+			{
+				"name": "(Default) Optional",
+				"props": {
+					"label": "Label"
+				}
+			},
+			{
+				"name": "Required",
+				"props": {
+					"label": "Label",
+					"required": true
+				}
+			}
+		]
+	},
+	{
+		"name": "Example - Types",
 		"examples": [
 			{
 				"name": "(Default) Text",
 				"props": {
-					"label": "Label",
-					"message": "(Default) Text"
+					"label": "Label"
 				}
 			},
 			{
 				"name": "Password",
 				"props": {
 					"label": "Label",
-					"message": "Password",
 					"type": "password"
 				}
 			},
@@ -205,7 +219,6 @@
 				"name": "Search",
 				"props": {
 					"label": "Label",
-					"message": "Search",
 					"type": "search"
 				}
 			},
@@ -213,7 +226,6 @@
 				"name": "E-Mail",
 				"props": {
 					"label": "Label",
-					"message": "E-Mail",
 					"type": "email"
 				}
 			},
@@ -221,7 +233,6 @@
 				"name": "Number",
 				"props": {
 					"label": "Label",
-					"message": "Number",
 					"type": "number"
 				}
 			},
@@ -229,7 +240,6 @@
 				"name": "Tel",
 				"props": {
 					"label": "Label",
-					"message": "Tel",
 					"type": "tel"
 				}
 			},
@@ -237,8 +247,142 @@
 				"name": "URL",
 				"props": {
 					"label": "Label",
-					"message": "URL",
 					"type": "url"
+				}
+			},
+			{
+				"name": "Date",
+				"props": {
+					"label": "Label",
+					"type": "date"
+				}
+			},
+			{
+				"name": "Datetime Local",
+				"props": {
+					"label": "Label",
+					"type": "datetime-local"
+				}
+			},
+			{
+				"name": "Month",
+				"props": {
+					"label": "Label",
+					"type": "month"
+				}
+			},
+			{
+				"name": "Time",
+				"props": {
+					"label": "Label",
+					"type": "time"
+				}
+			},
+			{
+				"name": "Week",
+				"props": {
+					"label": "Label",
+					"type": "week"
+				}
+			}
+		]
+	},
+	{
+		"name": "Example - Types - Floating Label",
+		"examples": [
+			{
+				"name": "(Default) Text",
+				"props": {
+					"label": "Label",
+					"variant": "floating"
+				}
+			},
+			{
+				"name": "Password",
+				"props": {
+					"label": "Label",
+					"type": "password",
+					"variant": "floating"
+				}
+			},
+			{
+				"name": "Search",
+				"props": {
+					"label": "Label",
+					"type": "search",
+					"variant": "floating"
+				}
+			},
+			{
+				"name": "E-Mail",
+				"props": {
+					"label": "Label",
+					"type": "email",
+					"variant": "floating"
+				}
+			},
+			{
+				"name": "Number",
+				"props": {
+					"label": "Label",
+					"type": "number",
+					"variant": "floating"
+				}
+			},
+			{
+				"name": "Tel",
+				"props": {
+					"label": "Label",
+					"type": "tel",
+					"variant": "floating"
+				}
+			},
+			{
+				"name": "URL",
+				"props": {
+					"label": "Label",
+					"type": "url",
+					"variant": "floating"
+				}
+			},
+			{
+				"name": "Date",
+				"props": {
+					"label": "Label",
+					"type": "date",
+					"variant": "floating"
+				}
+			},
+			{
+				"name": "Datetime Local",
+				"props": {
+					"label": "Label",
+					"type": "datetime-local",
+					"variant": "floating"
+				}
+			},
+			{
+				"name": "Month",
+				"props": {
+					"label": "Label",
+					"type": "month",
+					"variant": "floating"
+				}
+			},
+			{
+				"name": "Time",
+				"props": {
+					"label": "Label",
+					"type": "time",
+					"variant": "floating"
+				}
+			},
+			{
+				"name": "Week",
+				"props": {
+					"label": "Label",
+					"type": "week",
+					"variant": "floating"
 				}
 			}
 		]

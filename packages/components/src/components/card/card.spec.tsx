@@ -7,19 +7,6 @@ import { DEFAULT_VIEWPORT } from '../../shared/constants.ts';
 
 const defaultComp = <DBCard>Test</DBCard>;
 
-// TODO: Get variants from https://github.com/db-ui/mono/blob/feat-unify-showcases/packages/components/src/shared/constants.ts when feat-unify branch is merged
-const colorVariants = [
-	'neutral',
-	'neutral-strong',
-	'primary',
-	'critical',
-	'successful',
-	'warning',
-	'informational'
-];
-
-const variants = ['interactive'];
-
 const testDefaultCard = () => {
 	test('should contain text', async ({ mount }) => {
 		const component = await mount(defaultComp);
@@ -32,39 +19,9 @@ const testDefaultCard = () => {
 	});
 };
 
-const testCardColorVariants = () => {
-	for (const colorVariant of colorVariants) {
-		test(`should match screenshot for color variant ${colorVariant}`, async ({
-			mount
-		}) => {
-			const component = await mount(
-				<DBCard colorVariant={colorVariant}>Test</DBCard>
-			);
-			await expect(component).toHaveScreenshot();
-		});
-	}
-};
-
-const testCardVariants = () => {
-	for (const variant of variants) {
-		test(`should match screenshot for variant ${variant}`, async ({
-			mount
-		}) => {
-			const component = await mount(
-				<div>
-					<DBCard variant={variant}>Test</DBCard>
-				</div>
-			);
-			await expect(component).toHaveScreenshot();
-		});
-	}
-};
-
 test.describe('DBCard', () => {
 	test.use({ viewport: DEFAULT_VIEWPORT });
 	testDefaultCard();
-	testCardColorVariants();
-	testCardVariants();
 });
 
 test.describe('DBCard', () => {

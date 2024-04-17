@@ -1,100 +1,50 @@
 @use "@db-ui/foundations/build/scss/variables";
-@use "@db-ui/foundations/build/scss/icon/icon-helpers";
-@use "@db-ui/foundations/build/scss/tonality";
-@use "@db-ui/foundations/build/scss/helpers/component";
-@use "@db-ui/foundations/build/scss/color/color-variants";
-
-// TODO: Move this to shared style
-$font-size-height: calc(var(--db-base-font-size) * var(--db-base-line-height));
+@use "@db-ui/foundations/build/scss/icons";
+@use "@db-ui/foundations/build/scss/fonts";
+@use "@db-ui/foundations/build/scss/colors";
+@use "@db-ui/foundations/build/scss/helpers";
+@use "../../styles/component";
+@use "../../styles/form-components";
 
 .db-checkbox {
-	@include color-variants.bg-transparent-interactive();
+	@extend %helper-message;
+	@include form-components.set-default-check-element(check);
 
-	align-content: center;
-
-	appearance: none;
-	aspect-ratio: 1;
-	position: relative;
-
-	border: max(calc(#{$font-size-height} / 16 + 0.5px), 2px) solid currentColor;
-	border-radius: component.$checkbox-border-radius;
-
-	display: inline-flex;
-	block-size: $font-size-height;
-	justify-content: center;
-
-	// TODO: probably extract this to an overwrite or external file
-	// workarounds for power apps
-	inline-size: auto;
-	padding: 0;
-
-	// We need to reset the general icons margin, as we want to use it in a tiny space
-	&:checked,
-	&:indeterminate {
-		--db-icon-margin-end: 0;
+	input {
+		border-radius: variables.$db-border-radius-2xs;
 
 		&::before {
+			--db-icon-margin-end: 0;
 			position: absolute;
+			inset-inline: 0;
+			inset-block: 0;
 		}
-	}
 
-	&:checked {
-		@extend %db-bg-inverted-ia;
+		&:checked {
+			// Check icon
+			@include icons.set-icon("check");
 
-		// Check icon
-		@include icon-helpers.icon("done");
+			// The icon within the checkbox has the same dimensions as the checkbox itself and that for there can't be any border
+			border-width: 0;
 
-		// The icon within the checkbox has the same dimensions as the checkbox itself and that for there can't be any border
-		border-width: 0;
-	}
+			color: colors.$db-current-color-bg-enabled;
+			background-color: colors.$db-current-color-enabled;
 
-	// TODO: We need to set the correct styling / color for invalid
-	// &:is(:user-invalid),
-	// &[aria-invalid="true"] {
-
-	// }
-
-	&:indeterminate {
-		@include icon-helpers.icon("minus");
-
-		&::before {
-			line-height: 20px;
-		}
-	}
-
-	&:disabled {
-		&,
-		& + label {
-			opacity: 0.5;
-		}
-	}
-
-	& + label {
-		margin-inline-start: variables.$db-spacing-fixed-xs;
-
-		vertical-align: top;
-	}
-
-	// Sizes
-	&%size-Small {
-		@extend %db-overwrite-font-size-sm;
-
-		// TODO: we still need to scale this
-		& + label {
-			@extend %db-overwrite-font-size-sm;
-			margin-inline-start: variables.$db-spacing-fixed-2xs;
-		}
-	}
-
-	&[data-size="small"] {
-		@extend %size-Small;
-	}
-
-	&:required {
-		& + label {
-			&::after {
-				content: " *";
+			@include helpers.hover {
+				background-color: colors.$db-current-color-hover;
 			}
+
+			@include helpers.active {
+				background-color: colors.$db-current-color-pressed;
+			}
+
+			&::before {
+				color: colors.$db-current-color-bg-enabled;
+			}
+		}
+
+		&:indeterminate {
+			@include icons.set-icon("minus");
 		}
 	}
 }

@@ -1,17 +1,21 @@
 import { Routes } from '@angular/router';
+import { TabsComponent } from '../components/tabs/tabs.component';
+import { TabItemComponent } from '../components/tab-item/tab-item.component';
+import { TooltipComponent } from '../components/tooltip/tooltip.component';
+import { PopoverComponent } from '../components/popover/popover.component';
 import { AccordionItemComponent } from '../components/accordion-item/accordion-item.component';
 import { AccordionComponent } from '../components/accordion/accordion.component';
 import { TextareaComponent } from '../components/textarea/textarea.component';
 import { BadgeComponent } from '../components/badge/badge.component';
 import { NavigationItemComponent } from '../components/navigation-item/navigation-item.component';
-import { MainNavigationComponent } from '../components/main-navigation/main-navigation.component';
+import { NavigationComponent } from '../components/navigation/navigation.component';
 import { SelectComponent } from '../components/select/select.component';
 import { TagComponent } from '../components/tag/tag.component';
 import { InputComponent } from '../components/input/input.component';
 import { ButtonComponent } from '../components/button/button.component';
 import { FormComponent } from '../components/form/form.component';
 import { LinkComponent } from '../components/link/link.component';
-import { AlertComponent } from '../components/alert/alert.component';
+import { NotificationComponent } from '../components/notification/notification.component';
 import { RadioComponent } from '../components/radio/radio.component';
 import { CheckboxComponent } from '../components/checkbox/checkbox.component';
 import { InfotextComponent } from '../components/infotext/infotext.component';
@@ -19,6 +23,8 @@ import { SectionComponent } from '../components/section/section.component';
 import { CardComponent } from '../components/card/card.component';
 import { DividerComponent } from '../components/divider/divider.component';
 import { DrawerComponent } from '../components/drawer/drawer.component';
+import { IconComponent } from '../components/icon/icon.component';
+import { BrandComponent } from '../components/brand/brand.component';
 
 export type NavItem = {
 	path: string;
@@ -37,7 +43,11 @@ export const NAVIGATION_ITEMS: NavItem[] = [
 		path: '06',
 		label: '06 Feedback',
 		subNavigation: getSortedNavigationItems([
-			{ path: '06/alert', label: 'Alert', component: AlertComponent },
+			{
+				path: '06/notification',
+				label: 'Notification',
+				component: NotificationComponent
+			},
 			{ path: '06/badge', label: 'Badge', component: BadgeComponent }
 		])
 	},
@@ -52,9 +62,9 @@ export const NAVIGATION_ITEMS: NavItem[] = [
 				component: NavigationItemComponent
 			},
 			{
-				path: '05/main-navigation',
-				label: 'MainNavigation',
-				component: MainNavigationComponent
+				path: '05/navigation',
+				label: 'Navigation',
+				component: NavigationComponent
 			}
 		])
 	},
@@ -63,6 +73,17 @@ export const NAVIGATION_ITEMS: NavItem[] = [
 		path: '04',
 		label: '04 Data-Display',
 		subNavigation: getSortedNavigationItems([
+			{ path: '04/icon', label: 'Icon', component: IconComponent },
+			{
+				path: '04/brand',
+				label: 'Brand',
+				component: BrandComponent
+			},
+			{
+				path: '04/tooltip',
+				label: 'Tooltip',
+				component: TooltipComponent
+			},
 			{
 				path: '04/infotext',
 				label: 'Infotext',
@@ -78,7 +99,14 @@ export const NAVIGATION_ITEMS: NavItem[] = [
 				path: '04/accordion-item',
 				label: 'AccordionItem',
 				component: AccordionItemComponent
-			}
+			},
+			{
+				path: '04/tab-item',
+				label: 'TabItem',
+				component: TabItemComponent
+			},
+
+			{ path: '04/tabs', label: 'Tabs', component: TabsComponent }
 		])
 	},
 	{
@@ -118,6 +146,11 @@ export const NAVIGATION_ITEMS: NavItem[] = [
 				path: '01/divider',
 				label: 'Divider',
 				component: DividerComponent
+			},
+			{
+				path: '01/popover',
+				label: 'Popover',
+				component: PopoverComponent
 			},
 			{
 				path: '01/section',

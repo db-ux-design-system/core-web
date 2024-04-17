@@ -8,16 +8,15 @@ For general installation and configuration take a look at the [ngx-components](h
 
 ### Load component
 
-```ts app.module.ts
-//app.module.ts
+```ts app.component.ts
+// app.component.ts
 import { DB<%= h.changeCase.pascal(name) %>Module } from '@db-ui/ngx-components';
 
-@NgModule({
-  ...
+@Component({
+  // ...
   imports: [..., DB<%= h.changeCase.pascal(name) %>Module],
-  ...
+  // ...
 })
-
 ```
 
 ### Use component

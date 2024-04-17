@@ -1,9 +1,12 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+
 import { IconTypes } from './icon-types';
 
 export type GlobalProps = {
 	/**
 	 * default slot
 	 */
+
 	children?: any;
 
 	/**
@@ -25,58 +28,76 @@ export type GlobalProps = {
 	 * React specific for render process.
 	 */
 	key?: string;
-
-	/**
-	 * Web Component specific: Adds a link tag with the path to show css inside Shadow DOM.
-	 */
-	stylePath?: string;
-
-	/**
-	 * The default tabindex (https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/tabindex?retiredLocale=de).
-	 */
-	tabIndex?: number;
-
-	/**
-	 * The [title attribute](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/title) specifies the tooltip of the component.
-	 */
-	title?: string;
 };
 
 export type GlobalState = {
 	_id?: string;
-	stylePath?: string;
 	defaultValues?: { [key: string]: string };
 };
 
-export type DefaultVariantType =
+export type SemanticType =
 	| 'adaptive'
+	| 'neutral'
 	| 'critical'
 	| 'informational'
 	| 'warning'
 	| 'successful';
-export type DefaultVariantProps = {
+export type SemanticProps = {
 	/**
-	 * The variant defines the default variants for most components.
+	 * The semantic defines the default variants for most components.
 	 */
-	variant?: DefaultVariantType;
+	semantic?: SemanticType;
 };
 
 export type IconProps = {
 	/**
-	 * Define an icon by it's identifier (like e.g. _account_, compare to [Icons](https://db-ui.github.io/mono/review/main/foundations/icons) to get displayed in front of the elements content.
+	 * Define an icon by its identifier (like e.g. _account_, compare to [Icons](https://db-ui.github.io/mono/review/main/foundations/icons/overview)) to get displayed in front of the elements content.
 	 */
 	icon?: IconTypes;
 };
 
 export type IconAfterProps = {
 	/**
-	 * Define an icon by it's identifier (like e.g. _account_, compare to [Icons](https://db-ui.github.io/mono/review/main/foundations/icons) to get displayed in front of the elements content.
+	 * Define an icon by its identifier (like e.g. _account_, compare to [Icons](https://db-ui.github.io/mono/review/main/foundations/icons/overview)) to get displayed in front of the elements content.
 	 */
 	iconAfter?: IconTypes;
 };
 
-export type IconVisibleState = {
-	iconVisible: (icon?: string) => boolean;
+export type SpacingProps = {
+	/**
+	 * The spacing attribute changes the padding of the card.
+	 */
+	spacing?: 'none' | 'medium' | 'small';
+};
+
+export type PlacementProps = {
+	/**
+	 * The `placement` attributes values change the position to absolute and adds a transform based on the placement.
+	 */
+	placement?:
+		| 'left'
+		| 'right'
+		| 'top'
+		| 'bottom'
+		| 'left-start'
+		| 'left-end'
+		| 'right-start'
+		| 'right-end'
+		| 'top-start'
+		| 'top-end'
+		| 'bottom-start'
+		| 'bottom-end';
+};
+
+export type NavigationBehaviourState = {
+	handleNavigationItemClick: (event: unknown) => void;
+};
+
+export type GapProps = {
+	/**
+	 * If the absolute element should have a gap between the parent element.
+	 */
+	gap?: boolean;
 };
 
 export type OverflowProps = {
@@ -86,11 +107,34 @@ export type OverflowProps = {
 	overflow?: boolean;
 };
 
+export type OrientationProps = {
+	orientation?: 'horizontal' | 'vertical';
+};
+
 export type WidthProps = {
 	/**
 	 * Width of the component. Auto width based on children size, full width based on parent elements width.
 	 */
 	width?: 'full' | 'auto';
+};
+
+export type PopoverProps = {
+	/**
+	 * Add a delay before showing the tooltip
+	 */
+	delay?: 'none' | 'slow' | 'fast';
+	/**
+	 * Disable animation
+	 */
+	animation?: 'enabled' | 'disabled';
+	/**
+	 * Use fixed with for default max-width
+	 */
+	width?: 'auto' | 'fixed';
+};
+
+export type PopoverState = {
+	handleAutoPlacement: () => void;
 };
 
 export type SizeProps = {
@@ -109,10 +153,9 @@ export type EmphasisProps = {
 
 export type FormProps = {
 	/**
-	 * React specific attribute to set default value.
+	 * Marks an input element as invalid (red) | valid(green) | no-validation(grey). Overwrites the :user-valid selector.
 	 */
-	defaultValue?: any;
-
+	customValidity?: 'invalid' | 'valid' | 'no-validation';
 	/**
 	 * The disabled attribute can be set to keep a user from clicking on the form element.
 	 */
@@ -121,10 +164,7 @@ export type FormProps = {
 	 * 	Associates the control with a form element
 	 */
 	form?: string;
-	/**
-	 * Marks an input element as invalid.
-	 */
-	invalid?: boolean;
+
 	/**
 	 * The label attribute specifies the caption of the form element.
 	 */
@@ -147,14 +187,6 @@ export type FormProps = {
 
 export type FormTextProps = {
 	/**
-	 * This attribute indicates whether the value of the control can be automatically completed by the browser.
-	 */
-	autoComplete?: 'on' | 'off';
-	/**
-	 * This Boolean attribute lets you specify that a form control should have input focus when the page loads. Only one form-associated element in a document can have this attribute specified.
-	 */
-	autoFocus?: boolean;
-	/**
 	 * Maximum length (number of characters) of value
 	 */
 	maxLength?: number;
@@ -162,10 +194,6 @@ export type FormTextProps = {
 	 * Minimum length (number of characters) of value
 	 */
 	minLength?: number;
-	/**
-	 * Text that appears in the form control when it has no value set
-	 */
-	placeholder?: string;
 	/**
 	 * The disabled attribute can be set to keep a user from edit on the form element
 	 */
@@ -179,28 +207,114 @@ export type FormCheckProps = {
 	checked?: boolean;
 
 	/**
-	 * Returns / Sets the default state of a radio button or checkbox as originally specified in HTML that created this object.
-	 * Vue: according to our research this property should not be used. Please refer to v-model instead.
-	 * cf. https://react.carbondesignsystem.com/?path=/docs/components-checkbox--overview#component-api vs. https://vue.carbondesignsystem.com/?path=/story/components-cvcheckbox--default
+	 * Hide the label of a radio/checkbox.
 	 */
-	defaultChecked?: boolean;
+	variant?: 'hidden';
+};
+
+export type FormMessageState = {
+	getValidMessage: () => string;
+	getInvalidMessage: () => string;
 };
 
 export type FormMessageProps = {
+	/**
+	 * Change the variant of the label to float or hidden
+	 */
+	variant?: 'above' | 'floating' | 'hidden';
+	/**
+	 * Text that appears in the form control when it has no value set
+	 */
+	placeholder?: string;
 	/**
 	 * Optional helper message for form components
 	 */
 	message?: string;
 
 	/**
+	 * Helper message for valid form components
+	 */
+	validMessage?: string;
+
+	/**
+	 * Helper message for invalid form components
+	 */
+	invalidMessage?: string;
+
+	/**
 	 * Set/overwrite icon for helper message for form components
 	 */
 	messageIcon?: IconTypes;
+
+	/**
+	 * See https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/autocomplete
+	 */
+	autocomplete?:
+		| string
+		| 'off'
+		| 'on'
+		| 'name'
+		| 'honorific-prefix'
+		| 'given-name'
+		| 'additional-name'
+		| 'family-name'
+		| 'honorific-suffix'
+		| 'nickname'
+		| 'email'
+		| 'username'
+		| 'new-password'
+		| 'current-password'
+		| 'one-time-code'
+		| 'organization-title'
+		| 'organization'
+		| 'street-address'
+		| 'shipping'
+		| 'billing'
+		| 'address-line1'
+		| 'address-line2'
+		| 'address-line3'
+		| 'address-level4'
+		| 'address-level3'
+		| 'address-level2'
+		| 'address-level1'
+		| 'country'
+		| 'country-name'
+		| 'postal-code'
+		| 'cc-name'
+		| 'cc-given-name'
+		| 'cc-additional-name'
+		| 'cc-family-name'
+		| 'cc-number'
+		| 'cc-exp'
+		| 'cc-exp-month'
+		| 'cc-exp-year'
+		| 'cc-csc'
+		| 'cc-type'
+		| 'transaction-currency'
+		| 'transaction-amount'
+		| 'language'
+		| 'bday'
+		| 'bday-day'
+		| 'bday-month'
+		| 'bday-year'
+		| 'sex'
+		| 'tel'
+		| 'tel-country-code'
+		| 'tel-national'
+		| 'tel-area-code'
+		| 'tel-local'
+		| 'tel-extension'
+		| 'impp'
+		| 'url'
+		| 'photo'
+		| 'webauthn';
 };
 
 export type FormState = {
-	_isValid?: boolean | undefined;
 	_messageId?: string;
+	_validMessageId?: string;
+	_invalidMessageId?: string;
+	_descByIds?: string;
 };
 
 export type InitializedState = {
@@ -257,30 +371,25 @@ export type LinkProps = {
 	text?: string;
 };
 
-export type CardProps = {
-	/**
-	 * The elevation attribute changes the style of the card (box-shadow).
-	 */
-	elevation?: 'default' | 'none';
-};
-
-export type ClickEventProps = {
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+export type ClickEvent<T> = MouseEvent;
+export type ClickEventProps<T> = {
 	/**
 	 * React specific onClick to pass to forward ref.
 	 */
-	onClick?: (event: any) => void;
+	onClick?: (event: ClickEvent<T>) => void;
 };
 
-export type ClickEventState = {
-	handleClick: (event: any) => void;
+export type ClickEventState<T> = {
+	handleClick: (event: ClickEvent<T>) => void;
 };
 
 export type ToggleEventProps = {
 	onToggle?: (open: boolean) => void;
 };
 
-export type ToggleEventState = {
-	toggle?: (event?: any) => void;
+export type ToggleEventState<T> = {
+	toggle?: (event?: ClickEvent<T>) => void;
 };
 
 export type CloseEventProps = {
@@ -294,32 +403,50 @@ export type CloseEventState = {
 	handleClose?: (event: any) => void;
 };
 
-export type ChangeEventProps = {
-	change?: (event: any) => void;
-	onChange?: (event: any) => void;
+export type AlignmentProps = {
+	/**
+	 * Define the content alignment in full width
+	 */
+	alignment?: 'start' | 'center';
 };
 
-export type ChangeEventState = {
-	handleChange: (event: any) => void;
+export type ActiveProps = {
+	/**
+	 * If the tab is checked/active.
+	 */
+	active?: boolean;
 };
 
-export type FocusEventProps = {
-	blur?: (event: any) => void;
-	onBlur?: (event: any) => void;
-	focus?: (event: any) => void;
-	onFocus?: (event: any) => void;
+export type ItemClickState = {
+	clickedId: string;
+	handleItemClick: (id: string) => void;
 };
 
-export type FocusEventState = {
-	handleBlur: (event: any) => void;
-	handleFocus: (event: any) => void;
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+export type ChangeEvent<T> = Event;
+export type ChangeEventProps<T> = {
+	change?: (event: ChangeEvent<T>) => void;
+	onChange?: (event: ChangeEvent<T>) => void;
 };
 
-export type ValidEventProps = {
-	validityChange?: (valid: boolean) => void;
+export type ChangeEventState<T> = {
+	handleChange: (event: ChangeEvent<T>) => void;
 };
 
-export type NestedRefComponentType = { getFormRef?: () => { current?: any } };
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+export type InteractionEvent<T> = FocusEvent;
+
+export type FocusEventProps<T> = {
+	blur?: (event: InteractionEvent<T>) => void;
+	onBlur?: (event: InteractionEvent<T>) => void;
+	focus?: (event: InteractionEvent<T>) => void;
+	onFocus?: (event: InteractionEvent<T>) => void;
+};
+
+export type FocusEventState<T> = {
+	handleBlur: (event: InteractionEvent<T>) => void;
+	handleFocus: (event: InteractionEvent<T>) => void;
+};
 
 export type InnerCloseButtonProps = {
 	/**

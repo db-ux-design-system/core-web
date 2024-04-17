@@ -1,0 +1,6 @@
+@use "../index";
+@use "get-class";
+
+$variant: "successful";
+
+@include get-class.init($variant);

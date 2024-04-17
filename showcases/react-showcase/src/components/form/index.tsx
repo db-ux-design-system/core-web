@@ -1,18 +1,30 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import {
+	DBTabList,
+	DBTabPanel,
+	DBTabs,
+	DBDivider
+} from '@db-ui/react-components/src';
+import {
+	DBAccordion,
+	DBAccordionItem,
 	DBButton,
+	DBCheckbox,
 	DBInput,
 	DBRadio,
 	DBSelect,
-	DBCheckbox,
+	DBTabItem,
 	DBTag,
-	DBTextarea,
-	DBLink
+	DBTextarea
 } from '../../../../../output/react/src';
-import type { KeyValueType } from '../../../../../output/react/src/shared/model';
+import type {
+	ChangeEvent,
+	KeyValueType
+} from '../../../../../output/react/src/shared/model';
 
 const FormComponent = () => {
 	const [input, setInput] = useState('');
+	const [dateinput, setDateinput] = useState('');
 	const [textarea, setTextarea] = useState('default textarea');
 	const [textareaChildren, setTextareaChildren] = useState('');
 	const [radio, setRadio] = useState('');
@@ -20,20 +32,33 @@ const FormComponent = () => {
 	const [tags, setTags] = useState<string[]>([]);
 	const [checked, setChecked] = useState<boolean[]>([true, false]);
 
+	const [accordionItems, setAccordionItems] = useState<KeyValueType[]>();
+	const [tabsTest, setTabsTest] = useState<boolean>(false);
+
+	useEffect(() => {
+		setTimeout(() => {
+			setAccordionItems([
+				{ key: 'test1', value: 'Test1' },
+				{ key: 'test2', value: 'Test2' },
+				{ key: 'test3', value: 'Test3' }
+			]);
+		}, 2000);
+	}, []);
+
 	const dataList: KeyValueType[] = [
 		{ key: 'test', value: 'Test' },
 		{ key: 'test2' }
 	];
 
-	const handleChange1 = (event: React.ChangeEvent<HTMLInputElement>) => {
+	const handleChange1 = (event: ChangeEvent<HTMLInputElement>) => {
 		setChecked([event.target.checked, event.target.checked]);
 	};
 
-	const handleChange2 = (event: React.ChangeEvent<HTMLInputElement>) => {
+	const handleChange2 = (event: ChangeEvent<HTMLInputElement>) => {
 		setChecked([event.target.checked, checked[1]]);
 	};
 
-	const handleChange3 = (event: React.ChangeEvent<HTMLInputElement>) => {
+	const handleChange3 = (event: ChangeEvent<HTMLInputElement>) => {
 		setChecked([checked[0], event.target.checked]);
 	};
 
@@ -47,12 +72,12 @@ const FormComponent = () => {
 							label="Textinput"
 							placeholder="Placeholder"
 							message="Description"
-							icon="account"
+							icon="user"
 							name="input-name"
 							value={input}
 							dataList={dataList}
-							onChange={(evt) => {
-								setInput(evt.target.value);
+							onChange={(event) => {
+								setInput(event.target.value);
 							}}
 						/>
 						<p>Textarea:</p>
@@ -63,13 +88,22 @@ const FormComponent = () => {
 								setTextarea(event.target.value);
 							}}
 						/>
+						<DBInput
+							label="Date input"
+							message="Description"
+							name="input-date-name"
+							onChange={(event) => {
+								setDateinput(event.target.value);
+							}}
+							type="date"
+						/>
 						<DBTextarea
 							label="Textarea Default value"
+							defaultValue="text area default value"
 							onChange={(event) => {
 								setTextareaChildren(event.target.value);
-							}}>
-							text area default value
-						</DBTextarea>
+							}}
+						/>
 						<p>Radio:</p>
 						<ul>
 							{['X', 'Y', 'Z'].map((radioName) => (
@@ -90,7 +124,7 @@ const FormComponent = () => {
 							{['X', 'Y', 'Z'].map((tag, index) => (
 								<li key={`tag-${tag}`}>
 									<DBTag
-										variant={
+										semantic={
 											index === 0
 												? undefined
 												: 'successful'
@@ -167,8 +201,8 @@ const FormComponent = () => {
 						</DBButton>
 						<DBButton
 							type="button"
-							variant="primary"
-							onClick={(_) => {
+							variant="brand"
+							onClick={(clickEvent) => {
 								// eslint-disable-next-line no-alert
 								alert(
 									JSON.stringify({
@@ -189,6 +223,8 @@ const FormComponent = () => {
 				<dl>
 					<dt>inputs value</dt>
 					<dd>{input || 'No Input set'}</dd>
+					<dt>date inputs value</dt>
+					<dd>{dateinput || 'No date input set'}</dd>
 					<dt>textarea values</dt>
 					<dd>{textarea || 'No Textrea set'}</dd>
 					<dd>{textareaChildren || 'No Textrea set'}</dd>
@@ -201,6 +237,138 @@ const FormComponent = () => {
 					<dt>tags value</dt>
 					<dd>{JSON.stringify(tags)}</dd>
 				</dl>
+
+				<DBDivider />
+
+				<DBButton
+					onClick={() => {
+						setTabsTest(!tabsTest);
+					}}>
+					TabsTest
+				</DBButton>
+				<DBTabs>
+					<DBTabList>
+						<DBTabItem>Test 1</DBTabItem>
+						<DBTabItem>Test 2</DBTabItem>
+						{tabsTest && <DBTabItem>Test 3</DBTabItem>}
+					</DBTabList>
+					<DBTabPanel>Tab Panel 1</DBTabPanel>
+					<DBTabPanel>Tab Panel 2</DBTabPanel>
+					{tabsTest && <DBTabPanel>Tab Panel 3</DBTabPanel>}
+				</DBTabs>
+
+				<DBTabs orientation="vertical">
+					<DBTabList>
+						<DBTabItem icon="airplane">Airplane Button</DBTabItem>
+						<DBTabItem iconAfter="cancel">Cancel Button</DBTabItem>
+						<DBTabItem iconAfter="cancel">
+							Long Button Label with a lot of text
+						</DBTabItem>
+						<DBTabItem icon="airplane" iconAfter="cancel">
+							Another Button Label with a lot of text
+						</DBTabItem>
+						<DBTabItem icon="airplane" noText={true}></DBTabItem>
+					</DBTabList>
+					<DBTabPanel>
+						Lorem ipsum dolor sit amet, consetetur sadipscing elitr,
+						sed diam nonumy eirmod tempor invidunt ut labore et
+						dolore magna aliquyam erat, sed diam voluptua. At vero
+						eos et accusam et justo duo dolores et ea rebum. Stet
+						clita kasd gubergren, no sea takimata sanctus est Lorem
+						ipsum dolor sit amet. Lorem ipsum dolor sit amet,
+						consetetur sadipscing elitr, sed diam nonumy eirmod
+						tempor invidunt ut labore et dolore magna aliquyam erat,
+						sed diam voluptua. At vero eos et accusam et justo duo
+						dolores et ea rebum. Stet clita kasd gubergren, no sea
+						takimata sanctus est Lorem ipsum dolor sit amet.
+					</DBTabPanel>
+					<DBTabPanel>Tab Panel 2</DBTabPanel>
+					<DBTabPanel>Tab Panel 3</DBTabPanel>
+					<DBTabPanel>
+						But I must explain to you how all this mistaken idea of
+						denouncing pleasure and praising pain was born and I
+						will give you a complete account of the system, and
+						expound the actual teachings of the great explorer of
+						the truth, the master-builder of human happiness. No one
+						rejects, dislikes, or avoids pleasure itself, because it
+						is pleasure, but because those who do not know how to
+						pursue pleasure rationally encounter consequences that
+						are extremely painful. Nor again is there anyone who
+						loves or pursues or desires to obtain pain of itself,
+						because it is pain, but because occasionally
+						circumstances occur in which toil and pain can procure
+						him some great pleasure. To take a trivial example,
+						which of us ever undertakes laborious physical exercise,
+						except to obtain some advantage from it? But who has any
+						right to find fault with a man who chooses to enjoy a
+						pleasure that has no annoying consequences, or one who
+						avoids a pain that produces no resultant pleasure?
+					</DBTabPanel>
+					<DBTabPanel>Tab Panel 5</DBTabPanel>
+				</DBTabs>
+
+				<DBDivider />
+
+				<DBAccordion>
+					{accordionItems?.map((item) => (
+						<DBAccordionItem
+							key={item.key}
+							headlinePlain={item.key}>
+							{item.value}
+						</DBAccordionItem>
+					))}
+				</DBAccordion>
+
+				<DBSelect
+					id="select-test"
+					value={select}
+					label="Label"
+					onChange={(event) => {
+						setSelect(event.target.value);
+					}}
+					options={[
+						{ label: 'Test1', value: 'Test1' },
+						{ label: 'Test2', value: 'Test2' }
+					]}
+				/>
+
+				<h4>Validations</h4>
+
+				<DBInput
+					label="Input minlength validation"
+					placeholder="Placeholder"
+					invalidMessage="Min. 3"
+					validMessage="😎"
+					minLength={3}
+				/>
+				<DBInput
+					label="Input pattern validation"
+					placeholder="Placeholder"
+					pattern="\w{3,16}"
+					invalidMessage="Pattern \w{3,16}"
+					validMessage="😎"
+				/>
+				<DBInput
+					label="Input number"
+					placeholder="Placeholder"
+					invalidMessage="Type=number"
+					validMessage="😎"
+					type="number"
+				/>
+				<DBInput
+					label="Input number min"
+					placeholder="Placeholder"
+					invalidMessage="Type=number min 3"
+					validMessage="😎"
+					type="number"
+					min={3}
+				/>
+				<DBTextarea
+					label="Textarea min 10"
+					invalidMessage="Min 10"
+					validMessage="😎"
+					minLength={10}
+				/>
 			</div>
 		</div>
 	);

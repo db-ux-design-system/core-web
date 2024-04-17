@@ -7,11 +7,11 @@ import {
 	DBLink,
 	DBCheckbox,
 	DBRadio
-} from "../../../../../output/vue/vue3/src";
+} from "../../../../../output/vue/src";
 
-const showAlert = (exampleName: string) => {
+const showAlert = (exampleName?: string) => {
 	// eslint-disable-next-line no-alert
-	alert(exampleName);
+	alert(exampleName || "");
 };
 </script>
 
@@ -21,7 +21,7 @@ const showAlert = (exampleName: string) => {
 			#example="{ exampleIndex, variantIndex, exampleName, exampleProps }"
 		>
 			<DBTag
-				:variant="exampleProps.variant"
+				:semantic="exampleProps.semantic"
 				:disabled="exampleProps.disabled"
 				:icon="exampleProps.icon"
 				:noText="exampleProps.noText"
@@ -34,9 +34,9 @@ const showAlert = (exampleName: string) => {
 				<DBButton v-if="exampleProps.component === 'button'">{{
 					exampleName
 				}}</DBButton>
-				<DBLink v-if="exampleProps.component === 'link'" href="#">{{
-					exampleName
-				}}</DBLink>
+				<DBLink v-if="exampleProps.component === 'link'" href="#">
+					{{ exampleName }}
+				</DBLink>
 				<DBCheckbox
 					v-if="exampleProps.component === 'checkbox'"
 					:checked="exampleProps.checked"
@@ -44,7 +44,7 @@ const showAlert = (exampleName: string) => {
 				>
 				<DBRadio
 					v-if="exampleProps.component === 'radio'"
-					name="radio"
+					:name="exampleProps.identifier"
 					:checked="exampleProps.checked"
 					>{{ exampleName }}</DBRadio
 				>
@@ -53,10 +53,22 @@ const showAlert = (exampleName: string) => {
 						exampleProps.component !== 'button' &&
 						exampleProps.component !== 'link' &&
 						exampleProps.component !== 'checkbox' &&
-						exampleProps.component !== 'radio'
+						exampleProps.component !== 'radio' &&
+						!exampleProps.overflow
 					"
 				>
 					{{ exampleName }}
+				</template>
+				<template
+					v-if="
+						exampleProps.component !== 'button' &&
+						exampleProps.component !== 'link' &&
+						exampleProps.component !== 'checkbox' &&
+						exampleProps.component !== 'radio' &&
+						exampleProps.overflow
+					"
+				>
+					<span>{{ exampleName }}</span>
 				</template>
 			</DBTag>
 		</template>

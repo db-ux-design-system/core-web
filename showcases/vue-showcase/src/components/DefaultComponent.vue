@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { DBCodeDocs, DBDivider, DBLink } from "../../../../output/vue/vue3/src";
+import { DBCard, DBDivider, DBLink } from "../../../../output/vue/src";
 import type {
 	DefaultComponentExample,
 	DefaultComponentProps,
@@ -8,8 +8,8 @@ import type {
 import {
 	COLOR,
 	COLOR_CONST,
-	TONALITY,
-	TONALITY_CONST
+	DENSITY,
+	DENSITY_CONST
 } from "../../../../packages/components/src/shared/constants";
 import { useRoute } from "vue-router";
 import { Ref, ref } from "vue";
@@ -17,7 +17,11 @@ import { Ref, ref } from "vue";
 interface DefaultExample extends DefaultComponentExample {
 	name?: string;
 	example?: any;
-	style?: { display?: string; width?: string; height?: string };
+	style?: {
+		display?: string;
+		width?: string;
+		height?: string;
+	};
 	className?: string;
 	props?: any;
 	code?: {
@@ -61,30 +65,20 @@ const getLink = (variantName: string) => {
 		currentUrl += "?";
 	}
 	if (!currentUrl.includes("color=")) {
-		currentUrl += `&color=${route.query[COLOR_CONST] || COLOR.NEUTRAL}`;
+		currentUrl += `&color=${route.query[COLOR_CONST] || COLOR.NEUTRAL_BG_LEVEL_1}`;
 	}
-	if (!currentUrl.includes("tonality=")) {
-		currentUrl += `&tonality=${
-			route.query[TONALITY_CONST] || TONALITY.REGULAR
+	if (!currentUrl.includes("density=")) {
+		currentUrl += `&density=${
+			route.query[DENSITY_CONST] || DENSITY.REGULAR
 		}`;
 	}
 	return `${currentUrl}&page=${variantName.toLowerCase()}`;
-};
-
-const getCodeSnippets = (examples: DefaultExample[]) => {
-	return examples
-		.filter((example) => example.code)
-		.map((example) => `/* ${example.name} */\n${example.code}`);
 };
 </script>
 
 <template>
 	<!-- TODO: Slots not working for nested components? -> Had to copy paste variant-cards...	-->
-	<DBCodeDocs
-		v-if="variantRef"
-		class="variants-card"
-		:codeSnippets="getCodeSnippets(variantRef.examples)"
-	>
+	<DBCard v-if="variantRef" class="variants-card">
 		<div class="variants-list">
 			<div
 				v-for="(example, exampleIndex) in variantRef.examples"
@@ -100,7 +94,7 @@ const getCodeSnippets = (examples: DefaultExample[]) => {
 				></slot>
 			</div>
 		</div>
-	</DBCodeDocs>
+	</DBCard>
 	<div v-if="!variantRef" class="default-container">
 		<h1>{{ title }}</h1>
 		<div v-for="(variant, variantIndex) in variants">
@@ -113,10 +107,7 @@ const getCodeSnippets = (examples: DefaultExample[]) => {
 			>
 				{{ variant.name }}
 			</DBLink>
-			<DBCodeDocs
-				class="variants-card"
-				:codeSnippets="getCodeSnippets(variant.examples)"
-			>
+			<DBCard class="variants-card">
 				<div class="variants-list">
 					<div
 						v-for="(example, exampleIndex) in variant.examples"
@@ -132,7 +123,7 @@ const getCodeSnippets = (examples: DefaultExample[]) => {
 						></slot>
 					</div>
 				</div>
-			</DBCodeDocs>
+			</DBCard>
 		</div>
 	</div>
 </template>

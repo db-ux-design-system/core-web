@@ -1,87 +1,48 @@
 [
 	{
-		"name": "Tonality",
+		"name": "Density",
 		"examples": [
 			{
+				"name": "Functional",
+				"className": "db-density-functional",
+				"props": {}
+			},
+			{
+				"name": "(Default) Regular",
+				"className": "db-density-regular",
+				"props": {}
+			},
+			{
+				"name": "Expressive",
+				"className": "db-density-expressive",
+				"props": {}
+			},
+			{
 				"name": "functional",
-				"className": "db-ui-functional",
-				"props": {
-					"spacing": "small"
-				}
-			},
-			{
-				"name": "regular (Default)",
-				"className": "db-ui-regular",
-				"props": {
-					"spacing": "small"
-				}
-			},
-			{
-				"name": "expressive",
-				"className": "db-ui-expressive",
-				"props": {
-					"spacing": "small"
-				}
+				"className": "db-density-functional",
+				"props": {}
 			}
 		]
 	},
 	{
-		"name": "ColorVariant",
+		"name": "Elevation Level",
 		"examples": [
 			{
-				"name": "(Default) neutral",
+				"name": "(Default) Level 1 - Adaptive",
 				"props": {
-					"colorVariant": "neutral",
-					"variant": "interactive",
-					"spacing": "small"
+					"elevationLevel": "1"
 				}
 			},
 			{
-				"name": "neutral-strong",
+				"name": "Level 2 - Adaptive",
 				"props": {
-					"colorVariant": "neutral-strong",
-					"variant": "interactive",
-					"spacing": "small"
+					"elevationLevel": "2"
 				}
 			},
 			{
-				"name": "primary",
+				"name": "Level 3 - Adaptive",
 				"props": {
-					"colorVariant": "primary",
-					"variant": "interactive",
-					"spacing": "small"
-				}
-			},
-			{
-				"name": "critical",
-				"props": {
-					"colorVariant": "critical",
-					"variant": "interactive",
-					"spacing": "small"
-				}
-			},
-			{
-				"name": "successful",
-				"props": {
-					"colorVariant": "successful",
-					"variant": "interactive",
-					"spacing": "small"
-				}
-			},
-			{
-				"name": "warning",
-				"props": {
-					"colorVariant": "warning",
-					"variant": "interactive",
-					"spacing": "small"
-				}
-			},
-			{
-				"name": "informational",
-				"props": {
-					"colorVariant": "informational",
-					"variant": "interactive",
-					"spacing": "small"
+					"elevationLevel": "3"
 				}
 			}
 		]
@@ -90,37 +51,62 @@
 		"name": "Spacing",
 		"examples": [
 			{
-				"name": "(Default) No Spacing",
-				"props": {}
+				"name": "(Default) Small",
+				"props": {
+					"spacing": "small"
+				}
+			},
+			{
+				"name": "No Spacing",
+				"props": {
+					"spacing": "none"
+				}
 			},
 			{
 				"name": "Medium",
 				"props": {
 					"spacing": "medium"
 				}
+			}
+		]
+	},
+	{
+		"name": "Behaviour",
+		"examples": [
+			{
+				"name": "(Default) Non interactive",
+				"props": {}
 			},
 			{
-				"name": "Small",
+				"name": "Interactive",
 				"props": {
-					"spacing": "small"
+					"behaviour": "interactive"
 				}
 			}
 		]
 	},
 	{
-		"name": "Variant",
+		"name": "Example",
 		"examples": [
 			{
-				"name": "(Default) Non interactive",
+				"name": "Level 1 - Interactive",
 				"props": {
-					"spacing": "small"
+					"elevationLevel": "1",
+					"behaviour": "interactive"
 				}
 			},
 			{
-				"name": "Interactive",
+				"name": "Level 2 - Interactive",
 				"props": {
-					"spacing": "small",
-					"variant": "interactive"
+					"elevationLevel": "2",
+					"behaviour": "interactive"
+				}
+			},
+			{
+				"name": "Level 3 - Interactive",
+				"props": {
+					"elevationLevel": "3",
+					"behaviour": "interactive"
 				}
 			}
 		]

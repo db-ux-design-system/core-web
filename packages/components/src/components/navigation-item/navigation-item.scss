@@ -1,15 +1,15 @@
 @use "@db-ui/foundations/build/scss/variables";
-@use "@db-ui/foundations/build/scss/helpers/component";
-@use "@db-ui/foundations/build/scss/color/color-variants";
-@use "@db-ui/foundations/build/scss/helpers/functions";
-@use "@db-ui/foundations/build/scss/animation/animations";
-@use "@db-ui/foundations/build/scss/icon/icon-helpers";
-@use "../../styles/db-puls";
+@use "@db-ui/foundations/build/scss/colors";
+@use "@db-ui/foundations/build/scss/screen-sizes";
+@use "@db-ui/foundations/build/scss/helpers";
+@use "@db-ui/foundations/build/scss/animation";
+@use "@db-ui/foundations/build/scss/icons";
 @use "../../styles/icon-passing";
+@use "../../styles/component";
 
 %sub-navi-handler-desktop {
 	// show sub-navigation on hover
-	@include component.screen("md") {
+	@include screen-sizes.screen("md") {
 		&:hover,
 		&:focus-visible {
 			& ~ .db-sub-navigation {
@@ -25,7 +25,7 @@
 		& ~ .db-sub-navigation {
 			visibility: visible;
 			transition: visibility 0ms linear 0ms;
-			animation: show-right-to-left animations.$animation-show-timing;
+			animation: show-right-to-left variables.$db-transition-straight-show;
 
 			.db-sub-navigation {
 				inset-block: 0;
@@ -36,7 +36,7 @@
 	&:not(&[aria-expanded="true"]) {
 		& ~ .db-sub-navigation {
 			transition: visibility 0ms linear 410ms; // hide animation is 0.4s
-			animation: hide-right-to-left animations.$animation-hide-timing;
+			animation: hide-right-to-left variables.$db-transition-straight-hide;
 		}
 	}
 }
@@ -45,37 +45,32 @@
 	@extend %default-interactive-component;
 	@extend %transparent-border;
 
-	@include color-variants.get-variant-bg-color(0);
+	background-color: colors.$db-current-color-bg-transparent-full-enabled;
 	cursor: pointer;
 	inline-size: 100%;
 	display: inline-flex;
 
-	border-radius: component.$default-card-border-radius;
+	border-radius: variables.$db-border-radius-sm;
 	padding: variables.$db-spacing-fixed-xs variables.$db-spacing-fixed-sm;
 	white-space: nowrap; // we don't want to break
 	text-align: center;
 	align-items: center; // Centering the content vertically and horizontally
 
-	&:hover,
-	&:focus-visible,
-	&:has(~ .db-sub-navigation:hover),
-	&:has(~ .db-sub-navigation:focus-visible),
-	&:has(~ .db-sub-navigation:focus-within) {
-		@include color-variants.get-variant-bg-color(0.16);
+	@include helpers.hover {
+		background-color: colors.$db-current-color-bg-transparent-hover;
 	}
 
-	&:active {
-		@include color-variants.get-variant-bg-color(0.24);
+	@include helpers.active {
+		background-color: colors.$db-current-color-bg-transparent-pressed;
 	}
 
-	&::after {
-		--db-icon-margin-start: auto;
+	&:has(~ .db-sub-navigation:hover) {
+		background-color: colors.$db-current-color-bg-transparent-hover;
 	}
 }
 
 .db-navigation-item {
 	--db-has-before: 0;
-	@extend %db-puls;
 
 	@include icon-passing.icon-passing();
 
@@ -83,13 +78,28 @@
 	position: relative;
 	inline-size: 100%;
 
+	@include screen-sizes.screen("md", "max") {
+		&:not([data-width="full"]) {
+			.db-navigation-item-expand-button {
+				&::after {
+					--db-icon-margin-start: auto;
+				}
+			}
+		}
+	}
+
 	a {
 		@extend %navigation-item;
 		text-decoration: none;
+
+		&:focus-visible {
+			// We need to increase the z-index on focus-visible for the outline and box-shadow to appear above the pulse
+			z-index: 1;
+		}
 	}
 
 	.db-navigation-item-expand-button {
-		@include component.screen("md", "max") {
+		@include screen-sizes.screen("md", "max") {
 			@include sub-navi-handler-mobile();
 		}
 
@@ -99,31 +109,39 @@
 			@extend %navigation-item;
 
 			// default icon for navigation
-			@include icon-helpers.icon("chevron_right", "after");
+			@include icons.set-icon("chevron_right", "after");
 
 			font-weight: inherit;
 		}
 	}
 
+	&:has([aria-current="page"]),
 	&[aria-current="page"] {
-		font-weight: 700;
+		& > :is(a, button) {
+			font-weight: 700;
+		}
 	}
 
-	&:not([aria-current="page"]) {
-		// revert for sub-navigation
-		font-weight: normal;
+	&:not([data-width="full"]) {
+		.db-navigation-item-expand-button {
+			&::after {
+				--db-icon-margin-start: #{variables.$db-spacing-fixed-sm};
+			}
+		}
 	}
 
 	&[data-width="full"] {
 		inline-size: 100%;
 
-		&::after {
-			--db-icon-margin-start: auto;
+		.db-navigation-item-expand-button {
+			&::after {
+				--db-icon-margin-start: auto;
+			}
 		}
 	}
 
 	&[aria-disabled="true"] {
-		opacity: component.$default-disabled-opacity;
+		opacity: component.$default-disabled;
 		pointer-events: none;
 	}
 }
@@ -132,6 +150,7 @@
 	padding: variables.$db-spacing-fixed-md;
 	inline-size: 100%;
 	position: fixed;
+	overflow-y: auto;
 	// additional #{$db-spacing-fixed-3xs} for border
 	inset-block: calc(
 			#{component.$default-mobile-header-height} + #{variables.$db-spacing-fixed-3xs}
@@ -148,23 +167,23 @@
 	flex-direction: column;
 	z-index: 70;
 	inset-inline-start: 0;
-	background-color: variables.$db-colors-neutral-bg;
+	background-color: colors.$db-current-color-bg-lvl-1-enabled;
 
 	visibility: hidden;
 
-	@include component.screen("md", "max") {
+	@include screen-sizes.screen("md", "max") {
 		@include sub-navigation-mobile();
 	}
 
-	@include component.screen("md") {
+	@include screen-sizes.screen("md") {
 		.db-mobile-navigation-back {
 			display: none;
 		}
 	}
 
-	@include component.screen("md") {
-		border-radius: component.$default-card-border-radius;
-		box-shadow: variables.$db-elevation-4;
+	@include screen-sizes.screen("md") {
+		border-radius: variables.$db-border-radius-sm;
+		box-shadow: variables.$db-elevation-md;
 		padding: variables.$db-spacing-fixed-sm;
 
 		position: absolute;
@@ -173,6 +192,11 @@
 		inset-block-start: calc(100% + #{variables.$db-spacing-fixed-md});
 
 		transition: visibility 1ms linear; // workaround to enable focus with keyboard
+
+		&[data-outside-vx="true"] {
+			transform: translateX(-100%);
+			inset-inline-start: 100%;
+		}
 
 		&:hover,
 		&:focus-within {
@@ -200,14 +224,44 @@
 			);
 			inset-inline-start: calc(100% + #{variables.$db-spacing-fixed-xs});
 
+			&[data-outside-vy="true"] {
+				inset-block-start: calc(
+					100% + #{variables.$db-spacing-fixed-md}
+				);
+				transform: translateY(-100%);
+			}
+
+			&[data-outside-vx="true"] {
+				transform: translateX(-100%);
+				inset-inline-start: calc(
+					-1 * #{variables.$db-spacing-fixed-xs}
+				);
+
+				&[data-outside-vy="true"] {
+					transform: translate(-100%, -100%);
+				}
+			}
+
 			&::before {
 				content: "";
+				position: absolute;
 				padding: variables.$db-spacing-fixed-xs;
 				// #{$db-spacing-fixed-3xs} for box shadow
 				inset-block-start: #{variables.$db-spacing-fixed-3xs};
 				inset-inline-start: calc(
 					-1 * #{variables.$db-spacing-fixed-xs}
 				);
+				block-size: 100%;
+				inline-size: variables.$db-spacing-fixed-xs;
+			}
+
+			&::after {
+				content: "";
+				position: absolute;
+				padding: variables.$db-spacing-fixed-xs;
+				// #{$db-spacing-fixed-3xs} for box shadow
+				inset-block-start: #{variables.$db-spacing-fixed-3xs};
+				inset-inline-end: calc(-1 *#{variables.$db-spacing-fixed-xs});
 				block-size: 100%;
 				inline-size: variables.$db-spacing-fixed-xs;
 			}
@@ -228,10 +282,10 @@
 }
 
 .db-mobile-navigation-back {
-	@include functions.divider("bottom");
+	@include helpers.divider("bottom");
 	display: flex;
 	font-weight: normal;
-	background-color: variables.$db-colors-neutral-bg;
+	background-color: colors.$db-current-color-bg-lvl-1-enabled;
 	padding-block-end: variables.$db-spacing-fixed-md;
 	margin-block-end: variables.$db-spacing-fixed-md;
 }

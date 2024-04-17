@@ -1,0 +1,119 @@
+{
+	"fontFamily": {
+		"sans": "var(--db-font-family-sans)",
+		"head": "var(--db-font-family-head)"
+	},
+	"fontSize": {
+		"3xs": [
+			"var(--db-type-body-font-size-3xs)",
+			"var(--db-type-body-line-height-3xs)"
+		],
+		"2xs": [
+			"var(--db-type-body-font-size-2xs)",
+			"var(--db-type-body-line-height-2xs)"
+		],
+		"xs": [
+			"var(--db-type-body-font-size-xs)",
+			"var(--db-type-body-line-height-xs)"
+		],
+		"sm": [
+			"var(--db-type-body-font-size-sm)",
+			"var(--db-type-body-line-height-sm)"
+		],
+		"md": [
+			"var(--db-type-body-font-size-md)",
+			"var(--db-type-body-line-height-md)"
+		],
+		"base": [
+			"var(--db-type-body-font-size-md)",
+			"var(--db-type-body-line-height-md)"
+		],
+		"lg": [
+			"var(--db-type-body-font-size-lg)",
+			"var(--db-type-body-line-height-lg)"
+		],
+		"xl": [
+			"var(--db-type-body-font-size-xl)",
+			"var(--db-type-body-line-height-xl)"
+		],
+		"2xl": [
+			"var(--db-type-body-font-size-2xl)",
+			"var(--db-type-body-line-height-2xl)"
+		],
+		"3xl": [
+			"var(--db-type-body-font-size-3xl)",
+			"var(--db-type-body-line-height-3l)"
+		]
+	},
+	"borderRadius": {
+		"DEFAULT": "var(--db-border-radius-xs)",
+		"none": 0,
+		"3xs": "var(--db-border-radius-3xs)",
+		"2xs": "var(--db-border-radius-2xs)",
+		"xs": "var(--db-border-radius-xs)",
+		"sm": "var(--db-border-radius-sm)",
+		"md": "var(--db-border-radius-md)",
+		"lg": "var(--db-border-radius-lg)",
+		"xl": "var(--db-border-radius-xl)",
+		"2xl": "var(--db-border-radius-2xl)",
+		"3xl": "var(--db-border-radius-3xl)",
+		"full": "var(--db-border-radius-full)"
+	},
+	"borderWidth": {
+		"DEFAULT": "var(--db-border-height-3xs)",
+		"none": 0,
+		"3xs": "var(--db-border-height-3xs)",
+		"2xs": "var(--db-border-height-2xs)",
+		"xs": "var(--db-border-height-xs)",
+		"sm": "var(--db-border-height-sm)",
+		"md": "var(--db-border-height-md)",
+		"lg": "var(--db-border-height-lg)",
+		"xl": "var(--db-border-height-xl)",
+		"2xl": "var(--db-border-height-2xl)",
+		"3xl": "var(--db-border-height-3xl)"
+	},
+	"screens": {
+		"xs": "360px",
+		"sm": "720px",
+		"md": "1024px",
+		"lg": "1440px",
+		"xl": "1920px"
+	},
+	"elevation": {
+		"DEFAULT": "var(--db-elevation-md)",
+		"sm": "var(--db-elevation-sm)",
+		"md": "var(--db-elevation-md)",
+		"lg": "var(--db-elevation-lg)"
+	},
+	"spacing": {
+		"none": 0,
+		"0": 0,
+		"fix-3xs": "var(--db-spacing-fixed-3xs)",
+		"fix-2xs": "var(--db-spacing-fixed-2xs)",
+		"fix-xs": "var(--db-spacing-fixed-xs)",
+		"fix-sm": "var(--db-spacing-fixed-sm)",
+		"fix-md": "var(--db-spacing-fixed-md)",
+		"fix-lg": "var(--db-spacing-fixed-lg)",
+		"fix-xl": "var(--db-spacing-fixed-xl)",
+		"fix-2xl": "var(--db-spacing-fixed-2xl)",
+		"fix-3xl": "var(--db-spacing-fixed-3xl)",
+		"res-3xs": "var(--db-spacing-responsive-3xs)",
+		"res-2xs": "var(--db-spacing-responsive-2xs)",
+		"res-xs": "var(--db-spacing-responsive-xs)",
+		"res-sm": "var(--db-spacing-responsive-sm)",
+		"res-md": "var(--db-spacing-responsive-md)",
+		"res-lg": "var(--db-spacing-responsive-lg)",
+		"res-xl": "var(--db-spacing-responsive-xl)",
+		"res-2xl": "var(--db-spacing-responsive-2xl)",
+		"res-3xl": "var(--db-spacing-responsive-3xl)",
+		"siz-3xs": "var(--db-sizing-3xs)",
+		"siz-2xs": "var(--db-sizing-2xs)",
+		"siz-xs": "var(--db-sizing-xs)",
+		"siz-sm": "var(--db-sizing-sm)",
+		"siz-md": "var(--db-sizing-md)",
+		"siz-lg": "var(--db-sizing-lg)",
+		"siz-xl": "var(--db-sizing-xl)",
+		"siz-2xl": "var(--db-sizing-2xl)",
+		"siz-3xl": "var(--db-sizing-3xl)"
+	}
+}

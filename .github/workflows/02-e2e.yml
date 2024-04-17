@@ -9,15 +9,16 @@ permissions:
 
 jobs:
   playwright-ct:
-    name: 🧪🎭 - ${{ matrix.framework }}:${{ matrix.shard }}
+    name: 🧪🎭 - ${{ matrix.framework }}:${{ matrix.shardIndex }}/${{ matrix.shardTotal }}
     runs-on: ubuntu-latest
     container:
-      image: mcr.microsoft.com/playwright:v1.35.1-focal
+      image: mcr.microsoft.com/playwright:v1.42.1
     strategy:
       fail-fast: false
       matrix:
         framework: [react, vue]
-        shard: [1/4, 2/4, 3/4, 4/4]
+        shardIndex: [1, 2, 3]
+        shardTotal: [3]
     steps:
       - name: ⏬ Checkout repo
         uses: actions/checkout@v4
@@ -29,19 +30,19 @@ jobs:
         run: npm i -D esbuild-linux-64
 
       - name: ⏬ Download foundations build
-        uses: ./.github/actions/download-tar-artifact
+        uses: actions/download-artifact@v4
         with:
           name: db-ui-foundations-build
           path: packages/foundations/build
 
       - name: ⏬ Download output
-        uses: ./.github/actions/download-tar-artifact
+        uses: actions/download-artifact@v4
         with:
           name: db-ui-output
           path: output
 
       - name: ⏬ Download components styles build
-        uses: ./.github/actions/download-tar-artifact
+        uses: actions/download-artifact@v4
         with:
           name: db-ui-components-build
           path: packages/components/build
@@ -49,31 +50,25 @@ jobs:
       - name: 🚋 Get working directory
         id: workingDirectory
         shell: bash
-        run: |
-          if [[ ${{ matrix.framework }} == "vue" ]]; then
-            echo "dir=vue/vue3" >> $GITHUB_OUTPUT
-          else
-            echo "dir=${{ matrix.framework }}" >> $GITHUB_OUTPUT
-          fi
+        run: echo "dir=${{ matrix.framework }}" >> $GITHUB_OUTPUT
 
       - name: 👩‍🔬 Test with Playwright 🎭
         working-directory: ./output/${{ steps.workingDirectory.outputs.dir }}
         env:
           HOME: /root
-        run: npx playwright test --shard=${{ matrix.shard }}
+        run: npx playwright test --shard=${{ matrix.shardIndex }}/${{ matrix.shardTotal }}
 
-      - name: 🆙 Upload blob report to GitHub Actions Artifacts
-        if: always()
-        uses: actions/upload-artifact@v3
-        with:
-          name: all-blob-reports
-          path: ./output/${{ steps.workingDirectory.outputs.dir }}/blob-report
-          retention-days: 1
+      - name: 🔣 Print GitHub Report
+        if: failure()
+        working-directory: ./output/${{ steps.workingDirectory.outputs.dir }}
+        shell: bash
+        run: |
+          npx playwright merge-reports --reporter github ./blob-report
 
       - name: 🆙 Upload test results
         if: failure()
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
-          name: ${{ matrix.framework }}-playwright-results
+          name: ${{ matrix.framework }}-components-playwright-results-${{ matrix.shardIndex }}
           path: ./output/${{ steps.workingDirectory.outputs.dir }}/test-results
           retention-days: 30

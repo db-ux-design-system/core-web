@@ -9,26 +9,26 @@ jobs:
     name: Build outputs
     runs-on: ubuntu-latest
     steps:
-      - name: ⬇ Checkout repo
+      - name: ⏬ Checkout repo
         uses: actions/checkout@v4
 
       - name: 🔄 Init Cache
         uses: ./.github/actions/npm-cache
 
-      - name: ⬇ Download foundations build
-        uses: ./.github/actions/download-tar-artifact
+      - name: ⏬ Download foundations build
+        uses: actions/download-artifact@v4
         with:
           name: db-ui-foundations-build
           path: packages/foundations/build
 
-      - name: ⬇ Download components build
-        uses: ./.github/actions/download-tar-artifact
+      - name: ⏬ Download components build
+        uses: actions/download-artifact@v4
         with:
           name: db-ui-components-build
           path: packages/components/build
 
-      - name: ⬇ Download output
-        uses: ./.github/actions/download-tar-artifact
+      - name: ⏬ Download output
+        uses: actions/download-artifact@v4
         with:
           name: db-ui-output
           path: output
@@ -41,8 +41,8 @@ jobs:
       - name: 🔨 Build outputs
         run: npm run build-outputs
 
-      - name: ⬆ Upload outputs
-        uses: ./.github/actions/upload-tar-artifact
+      - name: ⏫ Upload outputs
+        uses: actions/upload-artifact@v4
         with:
           name: db-ui-outputs
           path: build-outputs

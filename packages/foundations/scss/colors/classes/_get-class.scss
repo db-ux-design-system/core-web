@@ -1,0 +1,36 @@
+@mixin init($variant) {
+	.db-#{$variant}-bg {
+		@extend %db-#{$variant}-bg-lvl-1;
+
+		[data-bg-weight="1"],
+		&-lvl-1 {
+			@extend %db-#{$variant}-bg-lvl-1;
+		}
+
+		[data-bg-weight="2"],
+		&-lvl-2 {
+			@extend %db-#{$variant}-bg-lvl-2;
+		}
+
+		[data-bg-weight="3"],
+		&-lvl-3 {
+			@extend %db-#{$variant}-bg-lvl-3;
+		}
+
+		&-transparent-full {
+			@extend %db-#{$variant}-bg-transparent-full;
+		}
+
+		&-transparent-semi {
+			@extend %db-#{$variant}-bg-transparent-semi;
+		}
+	}
+
+	.db-#{$variant}-component {
+		@extend %db-#{$variant}-component;
+
+		&-interactive {
+			@extend %db-#{$variant}-component-interactive;
+		}
+	}
+}

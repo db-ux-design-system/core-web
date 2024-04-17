@@ -10,14 +10,16 @@ export interface DBLinkDefaultProps {
 	content?: 'external' | 'internal';
 	id?: string;
 	size?: 'medium' | 'small';
-	variant?: 'adaptive' | 'primary' | 'inline';
+	variant?: 'adaptive' | 'brand' | 'inline';
 }
 
 export type DBLinkProps = DBLinkDefaultProps &
 	GlobalProps &
-	ClickEventProps &
+	ClickEventProps<HTMLAnchorElement> &
 	LinkProps;
 
 export interface DBLinkDefaultState {}
 
-export type DBLinkState = DBLinkDefaultState & GlobalState & ClickEventState;
+export type DBLinkState = DBLinkDefaultState &
+	GlobalState &
+	ClickEventState<HTMLAnchorElement>;

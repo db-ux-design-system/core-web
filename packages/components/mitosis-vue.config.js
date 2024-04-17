@@ -1,9 +1,9 @@
 module.exports = {
 	files: 'src/**',
-	targets: ['vue3'],
+	targets: ['vue'],
 	dest: '../../output/tmp',
 	options: {
-		vue3: {
+		vue: {
 			typescript: true
 		}
 	}

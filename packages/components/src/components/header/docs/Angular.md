@@ -4,22 +4,26 @@ For general installation and configuration take a look at the [ngx-components](h
 
 ### Load component
 
-```ts app.module.ts
-//app.module.ts
-import { DBHeaderModule } from '@db-ui/ngx-components';
+```ts app.component.ts
+//app.component.ts
+import {
+	DBHeader,
+	NavigationDirective,
+	ActionBarDirective,
+	MetaNavigationDirective
+} from '@db-ui/ngx-components';
 
-@NgModule({
-  ...
-  declarations: [
-        ...,
-	NavigationDirective, // Optional: If you want to use a Navigation
+@Component({
+  // ...
+  imports: [
+	// ...,
+	DBHeader,
+    NavigationDirective, // Optional: If you want to use a Navigation
 	ActionBarDirective, // Optional: If you want to use ActionBar
 	MetaNavigationDirective, // Optional: If you want to use MetaNavigation
   ],
-  imports: [..., DBHeaderModule],
-  ...
+  // ...
 })
-
 ```
 
 ### Use component
@@ -57,26 +61,26 @@ export class AppComponent {
 <!-- app.component.html -->
 <db-header [drawerOpen]="drawerOpen" (onToggle)="toggleDrawer($event)">
 	<db-brand brand>My Awesome App</db-brand>
-	<db-main-navigation *dbNavigation>
-		<!-- https://github.com/db-ui/mono/blob/main/packages/components/src/components/main-navigation/docs/Angular.md -->
-	</db-main-navigation>
+	<db-navigation *dbNavigation>
+		<!-- https://github.com/db-ui/mono/blob/main/packages/components/src/components/navigation/docs/Angular.md -->
+	</db-navigation>
 	<ng-container *dbMetaNavigation>
 		<DBLink href="#">Imprint</DBLink>
 		<DBLink href="#">Help</DBLink>
 	</ng-container>
 	<ng-container call-to-action>
-		<DBButton icon="search" variant="text" [noText]="true">
+		<DBButton icon="magnifying_glass" variant="ghost" [noText]="true">
 			Search
 		</DBButton>
 	</ng-container>
 	<ng-container *dbActionBar>
-		<DBButton icon="account" variant="text" [noText]="true">
+		<DBButton icon="user" variant="ghost" [noText]="true">
 			Profile
 		</DBButton>
-		<DBButton icon="alert" variant="text" [noText]="true">
+		<DBButton icon="alert" variant="ghost" [noText]="true">
 			Notification
 		</DBButton>
-		<DBButton icon="help" variant="text" [noText]="true"> Help </DBButton>
+		<DBButton icon="help" variant="ghost" [noText]="true"> Help </DBButton>
 	</ng-container>
 </db-header>
 ```

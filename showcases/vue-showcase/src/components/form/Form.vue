@@ -7,7 +7,7 @@ import {
 	DBSelect,
 	DBTag,
 	DBTextarea
-} from "../../../../../output/vue/vue3/src";
+} from "../../../../../output/vue/src";
 
 import { ref } from "vue";
 const input = ref("");
@@ -16,6 +16,7 @@ const firstInput = ref("");
 const textareavModel = ref("default value");
 const textarea = ref("default value");
 const textareaDefaultValue = ref("");
+const dateInput = ref("");
 const radio = ref<HTMLInputElement>();
 const checkbox = ref<boolean[]>([true, false]);
 const tags = ref<string[]>([]);
@@ -40,6 +41,7 @@ const logAll = () => {
 			textarea: textarea.value,
 			textareaDefaultValue: textareaDefaultValue.value,
 			textareavModel: textareavModel.value,
+			dateinput: dateInput.value,
 			radio: radio.value,
 			select: select.value,
 			checkbox: checkbox.value,
@@ -53,6 +55,7 @@ const reset = () => {
 	textarea.value = "resetted";
 	textareavModel.value = "resetted";
 	checkbox.value = [true, false];
+	dateInput.value = "";
 };
 </script>
 
@@ -66,25 +69,32 @@ const reset = () => {
 						label="Textinput"
 						placeholder="Placeholder"
 						message="Description"
-						icon="account"
+						icon="user"
 						name="input-name"
 						:dataList="dataList"
 						v-model:value="firstInput"
+					/>
+					<DBInput
+						label="Dateinput"
+						message="Description"
+						name="date-name"
+						v-model:value="dateInput"
+						type="date"
 					/>
 					<p>Textarea:</p>
 					<DBTextarea
 						label="Textarea v-model"
 						placeholder="Placeholder"
-						description="Description"
-						icon="account"
+						message="Description"
+						icon="user"
 						name="textarea-name"
 						v-model:value="textareavModel"
 					/>
 					<DBTextarea
 						label="Textarea value"
 						placeholder="Placeholder"
-						description="Description"
-						icon="account"
+						message="Description"
+						icon="user"
 						name="textarevalue-name"
 						:value="textarea"
 						@change="textarea = $event.target.value"
@@ -104,7 +114,7 @@ const reset = () => {
 					<ul>
 						<li v-for="(tag, index) in array">
 							<DBTag
-								:variant="
+								:semantic="
 									index === 0 ? undefined : 'successful'
 								"
 								:emphasis="index === 2 ? 'strong' : 'weak'"
@@ -162,7 +172,7 @@ const reset = () => {
 					<DBButton type="button" @click="reset()">
 						Reset Form
 					</DBButton>
-					<DBButton type="button" variant="primary" @click="logAll()">
+					<DBButton type="button" variant="brand" @click="logAll()">
 						Hi from Showcase!
 					</DBButton>
 				</fieldset>
@@ -173,6 +183,8 @@ const reset = () => {
 			<dl>
 				<dt>inputs value</dt>
 				<dd>{{ firstInput ? firstInput : "No Input set" }}</dd>
+				<dt>date inputs value</dt>
+				<dd>{{ dateInput ? dateInput : "No Date Input set" }}</dd>
 				<dt>textarea v-model</dt>
 				<dd>{{ textareavModel || "No Input set" }}</dd>
 				<dt>textarea value</dt>

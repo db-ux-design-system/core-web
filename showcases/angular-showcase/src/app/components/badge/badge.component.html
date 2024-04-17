@@ -10,84 +10,79 @@
 		let-exampleIndex="exampleIndex"
 		let-variantIndex="variantIndex"
 	>
-		<ng-container *ngIf="!exampleProps.placement && !exampleProps.example">
+		@if (!exampleProps.placement && !exampleProps.example) {
 			<db-badge
-				[variant]="exampleProps.variant"
+				[semantic]="exampleProps.semantic"
 				[emphasis]="exampleProps.emphasis"
 				[size]="exampleProps.size"
 				>{{ exampleProps.noContent ? "" : exampleName }}</db-badge
 			>
-			<db-infotext
-				*ngIf="exampleProps.noContent"
-				variant="informational"
-				size="small"
-				icon="none"
-			>
-				{{ exampleName }}
-			</db-infotext>
-		</ng-container>
+			@if (exampleProps.noContent) {
+				<db-infotext semantic="informational" size="small" icon="none">
+					{{ exampleName }}
+				</db-infotext>
+			}
+		}
 
-		<ng-container
-			*ngIf="
-				exampleProps.placement &&
-				exampleProps.placement !== 'inline' &&
-				!exampleProps.example
-			"
-		>
-			<db-button icon="account" variant="outlined" [noText]="true">
+		@if (
+			exampleProps.placement &&
+			exampleProps.placement !== "inline" &&
+			!exampleProps.example
+		) {
+			<db-button icon="user" variant="outlined" [noText]="true">
 				<db-badge
 					emphasis="strong"
-					variant="critical"
+					semantic="critical"
 					size="small"
 					[placement]="exampleProps.placement"
 				></db-badge>
 				{{ exampleName }}
 			</db-button>
-			<db-infotext variant="informational" size="small" icon="none">
+			<db-infotext semantic="informational" size="small" icon="none">
 				{{ exampleName }}
 			</db-infotext>
-		</ng-container>
+		}
 
-		<ng-container *ngIf="exampleProps.placement === 'inline'">
+		@if (exampleProps.placement === "inline") {
 			<div class="badge-inline-container">
-				<db-icon icon="account"></db-icon>
+				<db-icon icon="user"></db-icon>
 				<span>{{ exampleName }}</span>
-				<db-badge size="small" emphasis="strong" variant="critical">
+				<db-badge size="small" emphasis="strong" semantic="critical">
 					Label
 				</db-badge>
 				<db-icon icon="error"></db-icon>
 			</div>
-		</ng-container>
+		}
 
-		<ng-container *ngIf="exampleProps.example === 'icon'">
+		@if (exampleProps.example === "icon") {
 			<db-badge
-				variant="critical"
+				semantic="critical"
 				emphasis="strong"
 				[size]="exampleProps.size"
 			>
-				<db-icon icon="account">{{ exampleName }}</db-icon>
+				<db-icon icon="user">{{ exampleName }}</db-icon>
 			</db-badge>
-			<db-infotext variant="informational" size="small" icon="none">
+			<db-infotext semantic="informational" size="small" icon="none">
 				{{ exampleName }}
 			</db-infotext>
-		</ng-container>
+		}
 
-		<ng-container *ngIf="exampleProps.example === 'number'">
-			<db-badge variant="successful">9</db-badge>
-			<db-badge variant="informational">12</db-badge>
-			<db-badge variant="warning">123</db-badge>
-			<db-badge size="small" emphasis="strong" variant="successful">
+		@if (exampleProps.example === "number") {
+			<db-badge semantic="successful">9</db-badge>
+			<db-badge semantic="informational">12</db-badge>
+			<db-badge semantic="warning">123</db-badge>
+			<db-badge size="small" emphasis="strong" semantic="successful">
 				9
 			</db-badge>
-			<db-badge size="small" emphasis="strong" variant="informational">
+			<db-badge size="small" emphasis="strong" semantic="informational">
 				12
 			</db-badge>
-			<db-badge size="small" emphasis="strong" variant="warning">
+			<db-badge size="small" emphasis="strong" semantic="warning">
 				123
 			</db-badge>
-			<db-infotext variant="informational" size="small" icon="none">
+			<db-infotext semantic="informational" size="small" icon="none">
 				{{ exampleName }}
-			</db-infotext></ng-container
-		>
+			</db-infotext>
+		}
 	</ng-template>
 </app-default-component>

@@ -1,24 +1,24 @@
 [
 	{
-		"name": "Tonality",
+		"name": "Density",
 		"examples": [
 			{
-				"name": "functional",
-				"className": "db-ui-functional",
+				"name": "Functional",
+				"className": "db-density-functional",
 				"props": {
 					"href": "#"
 				}
 			},
 			{
-				"name": "regular (Default)",
-				"className": "db-ui-regular",
+				"name": "(Default) Regular",
+				"className": "db-density-regular",
 				"props": {
 					"href": "#"
 				}
 			},
 			{
-				"name": "expressive",
-				"className": "db-ui-expressive",
+				"name": "Expressive",
+				"className": "db-density-expressive",
 				"props": {
 					"href": "#"
 				}
@@ -26,7 +26,7 @@
 		]
 	},
 	{
-		"name": "Variant",
+		"name": "Semantic",
 		"examples": [
 			{
 				"name": "(Default) Adaptive",
@@ -35,19 +35,19 @@
 				}
 			},
 			{
-				"name": "Primary",
+				"name": "Brand",
 				"props": {
 					"href": "#",
-					"variant": "primary"
+					"variant": "brand"
 				}
 			}
 		]
 	},
 	{
-		"name": "State",
+		"name": "Interaction-States",
 		"examples": [
 			{
-				"name": "Default: (Enabled, Hover, Pressed)",
+				"name": "Enabled (Default)/Hover/Pressed",
 				"props": {
 					"href": "#"
 				}

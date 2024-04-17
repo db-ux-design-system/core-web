@@ -1,23 +1,23 @@
 [
 	{
-		"name": "Tonality",
+		"name": "Density",
 		"examples": [
 			{
-				"name": "functional",
+				"name": "Functional",
 				"style": { "width": "200px" },
-				"className": "db-ui-functional",
+				"className": "db-density-functional",
 				"props": {}
 			},
 			{
-				"name": "regular (Default)",
+				"name": "(Default) Regular",
 				"style": { "width": "200px" },
-				"className": "db-ui-regular",
+				"className": "db-density-regular",
 				"props": {}
 			},
 			{
-				"name": "expressive",
+				"name": "Expressive",
 				"style": { "width": "200px" },
-				"className": "db-ui-expressive",
+				"className": "db-density-expressive",
 				"props": {}
 			}
 		]
@@ -26,7 +26,7 @@
 		"name": "Variant",
 		"examples": [
 			{
-				"name": "Adaptive - Horizontal (Default)",
+				"name": "(Default) Adaptive - Horizontal",
 				"style": { "width": "200px" },
 				"props": {}
 			},
@@ -43,7 +43,7 @@
 		"name": "Emphasis",
 		"examples": [
 			{
-				"name": "Weak (Default)",
+				"name": "(Default) Weak",
 				"style": { "width": "200px" },
 				"props": {}
 			},

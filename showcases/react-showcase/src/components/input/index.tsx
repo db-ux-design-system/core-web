@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { DBInput } from '../../../../../output/react/src';
 import DefaultComponent from '../index';
 import defaultComponentVariants from '../../../../shared/input.json';
@@ -6,7 +7,6 @@ import { getVariants } from '../data';
 
 const getInput = ({
 	label,
-	variant,
 	value,
 	type,
 	minLength,
@@ -14,22 +14,28 @@ const getInput = ({
 	disabled,
 	iconAfter,
 	icon,
-	children
-}: DBInputProps) => (
-	<DBInput
-		label={label}
-		message={children}
-		placeholder={children}
-		variant={variant}
-		value={value}
-		type={type}
-		minLength={minLength}
-		required={required}
-		disabled={disabled}
-		iconAfter={iconAfter}
-		icon={icon}
-	/>
-);
+	children,
+	message,
+	variant,
+	readOnly
+}: DBInputProps) => {
+	return (
+		<DBInput
+			label={label}
+			message={message}
+			placeholder={children}
+			variant={variant}
+			defaultValue={value}
+			type={type}
+			minLength={minLength}
+			required={required}
+			disabled={disabled}
+			readOnly={readOnly}
+			iconAfter={iconAfter}
+			icon={icon}
+		/>
+	);
+};
 
 const InputComponent = () => {
 	return (

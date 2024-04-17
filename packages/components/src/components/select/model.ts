@@ -3,16 +3,15 @@ import {
 	ChangeEventState,
 	ClickEventProps,
 	ClickEventState,
-	DefaultVariantProps,
 	FocusEventProps,
 	FocusEventState,
 	FormMessageProps,
+	FormMessageState,
 	FormProps,
 	FormState,
 	GlobalProps,
 	GlobalState,
-	IconProps,
-	ValidEventProps
+	IconProps
 } from '../../shared/model';
 
 export interface DBSelectDefaultProps {
@@ -28,6 +27,11 @@ export interface DBSelectDefaultProps {
 }
 
 export type DBSelectOptionType = {
+	/**
+	 * Identifier for option
+	 */
+	id?: string;
+
 	/**
 	 * Disables this option
 	 */
@@ -52,23 +56,22 @@ export type DBSelectOptionType = {
 
 export type DBSelectProps = DBSelectDefaultProps &
 	GlobalProps &
-	ClickEventProps &
-	ChangeEventProps &
-	FocusEventProps &
-	ValidEventProps &
+	ClickEventProps<HTMLSelectElement> &
+	ChangeEventProps<HTMLSelectElement> &
+	FocusEventProps<HTMLSelectElement> &
 	FormProps &
-	DefaultVariantProps &
 	IconProps &
 	FormMessageProps;
 
 export interface DBSelectDefaultState {
+	_placeholderId: string;
 	getOptionLabel: (option: DBSelectOptionType) => string;
-	_value?: any;
 }
 
 export type DBSelectState = DBSelectDefaultState &
 	GlobalState &
-	ClickEventState &
-	ChangeEventState &
-	FocusEventState &
-	FormState;
+	ClickEventState<HTMLSelectElement> &
+	ChangeEventState<HTMLSelectElement> &
+	FocusEventState<HTMLSelectElement> &
+	FormState &
+	FormMessageState;

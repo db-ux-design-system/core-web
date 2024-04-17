@@ -1,24 +1,24 @@
 [
 	{
-		"name": "Tonality",
+		"name": "Density",
 		"examples": [
 			{
-				"name": "functional",
-				"className": "db-ui-functional",
+				"name": "Functional",
+				"className": "db-density-functional",
 				"props": {
 					"label": "Label"
 				}
 			},
 			{
-				"name": "regular (Default)",
-				"className": "db-ui-regular",
+				"name": "(Default) Regular",
+				"className": "db-density-regular",
 				"props": {
 					"label": "Label"
 				}
 			},
 			{
-				"name": "expressive",
-				"className": "db-ui-expressive",
+				"name": "Expressive",
+				"className": "db-density-expressive",
 				"props": {
 					"label": "Label"
 				}
@@ -26,10 +26,36 @@
 		]
 	},
 	{
-		"name": "Message",
+		"name": "Variant Label",
 		"examples": [
 			{
-				"name": "Basic (Default)",
+				"name": "(Default) Label Above",
+				"props": {
+					"label": "Label"
+				}
+			},
+			{
+				"name": "Floating Label",
+				"props": {
+					"label": "Label",
+					"variant": "floating",
+					"value": "Floating Label"
+				}
+			},
+			{
+				"name": "Hidden Label",
+				"props": {
+					"label": "Label",
+					"variant": "hidden"
+				}
+			}
+		]
+	},
+	{
+		"name": "Variant Helper Message",
+		"examples": [
+			{
+				"name": "(Default) Basic",
 				"props": {
 					"label": "Label"
 				}
@@ -44,62 +70,46 @@
 		]
 	},
 	{
-		"name": "Variant",
+		"name": "States Label Above",
 		"examples": [
 			{
-				"name": "(Default) Basic",
+				"name": "(Default) Empty",
 				"props": {
-					"label": "Label",
-					"description": "(Default) Basic",
-					"message": "Helper Message"
+					"label": "Label"
 				}
 			},
 			{
-				"name": "Informational",
+				"name": "Filled",
 				"props": {
 					"label": "Label",
-					"description": "Informational",
-					"variant": "informational",
-					"message": "Informational Message"
+					"value": "Filled"
 				}
 			},
 			{
-				"name": "Warning",
+				"name": "Disabled",
 				"props": {
 					"label": "Label",
-					"description": "Warning",
-					"variant": "warning",
-					"message": "Warning Message"
+					"disabled": true
 				}
 			},
 			{
-				"name": "Critical",
+				"name": "Readonly - Filled",
 				"props": {
 					"label": "Label",
-					"description": "Critical",
-					"variant": "critical",
-					"message": "Critical Message"
-				}
-			},
-			{
-				"name": "Successful",
-				"props": {
-					"label": "Label",
-					"description": "Successful",
-					"variant": "successful",
-					"message": "Successful Message"
+					"value": "Readonly - Filled",
+					"readOnly": true
 				}
 			}
 		]
 	},
 	{
-		"name": "States",
+		"name": "States Floating Label",
 		"examples": [
 			{
 				"name": "(Default) Empty",
 				"props": {
 					"label": "Label",
-					"message": "Helper Message"
+					"variant": "floating"
 				}
 			},
 			{
@@ -107,25 +117,24 @@
 				"props": {
 					"label": "Label",
 					"value": "Filled",
-					"message": "Helper Message"
+					"variant": "floating"
 				}
 			},
 			{
 				"name": "Disabled",
 				"props": {
 					"label": "Label",
-					"value": "Disabled",
 					"disabled": true,
-					"message": "Helper Message"
+					"variant": "floating"
 				}
 			},
 			{
-				"name": "Readonly",
+				"name": "Readonly - Filled",
 				"props": {
 					"label": "Label",
-					"value": "Readonly",
+					"value": "Readonly - Filled",
 					"readOnly": true,
-					"message": "Helper Message"
+					"variant": "floating"
 				}
 			}
 		]
@@ -143,14 +152,6 @@
 				"name": "Required",
 				"props": {
 					"label": "Label",
-					"required": true
-				}
-			},
-			{
-				"name": "Filled Required",
-				"props": {
-					"label": "Label",
-					"value": "Filled Required",
 					"required": true
 				}
 			}

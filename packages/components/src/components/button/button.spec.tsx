@@ -6,7 +6,7 @@ import { DBButton } from './index';
 import { DEFAULT_VIEWPORT } from '../../shared/constants.ts';
 
 const testButton = () => {
-	for (const variant of ['outlined', 'primary', 'solid', 'text']) {
+	for (const variant of ['outlined', 'brand', 'filled', 'ghost']) {
 		test(`should contain text for variant ${variant}`, async ({
 			mount
 		}) => {
@@ -29,7 +29,7 @@ const testButton = () => {
 			mount
 		}) => {
 			const component = await mount(
-				<DBButton icon="account" noText={true} variant={variant}>
+				<DBButton icon="user" noText={true} variant={variant}>
 					Account
 				</DBButton>
 			);
@@ -58,7 +58,7 @@ test.describe('DBButton', () => {
 		mount
 	}) => {
 		await mount(
-			<DBButton icon="account" noText={true}>
+			<DBButton icon="user" noText={true}>
 				lorem ipsum
 			</DBButton>
 		);
