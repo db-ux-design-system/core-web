@@ -116,7 +116,7 @@ const testInterActions = () => {
 			</DBTag>
 		);
 		const component = await mount(tag);
-		await component.getByTestId('checkbox').check();
+		await component.getByRole('checkbox').check();
 		await expect(component).toHaveScreenshot();
 	});
 };
