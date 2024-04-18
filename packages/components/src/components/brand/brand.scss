@@ -23,7 +23,7 @@
 
 	// Deactivate underline on site name being made clickable by added to the link as well
 	a:has(&),
-	& a {	
+	& a {
 		text-decoration: none;
 	}
 }

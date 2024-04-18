@@ -6,13 +6,15 @@ import { DBTooltip } from './index';
 import { DEFAULT_VIEWPORT } from '../../shared/constants.ts';
 import { DBButton } from '../button';
 
-const comp = (
-	<DBButton describedbyid="tooltip-01">
-		Button
-		<DBTooltip animation="disabled" id="tooltip-01">
-			Test
-		</DBTooltip>
-	</DBButton>
+const comp: any = (
+	<div className="padding-box">
+		<DBButton describedbyid="tooltip" data-testid="button">
+			Button
+			<DBTooltip animation="disabled" id="tooltip" data-testid="tooltip">
+				Test
+			</DBTooltip>
+		</DBButton>
+	</div>
 );
 
 const testComponent = () => {
@@ -23,6 +25,18 @@ const testComponent = () => {
 
 	test('should match screenshot', async ({ mount }) => {
 		const component = await mount(comp);
+		await expect(component).toHaveScreenshot();
+	});
+
+	test('should open', async ({ mount }) => {
+		const component = await mount(comp);
+		await component.getByTestId('button').focus();
+		await expect(component.getByTestId('tooltip')).toBeVisible();
+	});
+
+	test('after open should match screenshot', async ({ mount }) => {
+		const component = await mount(comp);
+		await component.getByTestId('button').focus();
 		await expect(component).toHaveScreenshot();
 	});
 };

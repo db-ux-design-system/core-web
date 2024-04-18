@@ -5,7 +5,7 @@ import { DBBadge } from './index';
 // @ts-ignore - vue can only find it with .ts as file ending
 import { DEFAULT_VIEWPORT } from '../../shared/constants.ts';
 
-const comp = <DBBadge>Test</DBBadge>;
+const comp: any = <DBBadge>Test</DBBadge>;
 
 const testComponent = () => {
 	test('should contain text', async ({ mount }) => {
@@ -18,13 +18,7 @@ const testComponent = () => {
 		await expect(component).toHaveScreenshot();
 	});
 };
-
-test.describe('DBBadge', () => {
-	test.use({ viewport: DEFAULT_VIEWPORT });
-	testComponent();
-});
-
-test.describe('DBBadge', () => {
+const testA11y = () => {
 	test('should not have any A11y issues', async ({ page, mount }) => {
 		await mount(comp);
 		const accessibilityScanResults = await new AxeBuilder({ page })
@@ -33,4 +27,10 @@ test.describe('DBBadge', () => {
 
 		expect(accessibilityScanResults.violations).toEqual([]);
 	});
+};
+
+test.describe('DBBadge', () => {
+	test.use({ viewport: DEFAULT_VIEWPORT });
+	testComponent();
+	testA11y();
 });

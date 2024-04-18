@@ -8,31 +8,19 @@ import { DBTabList } from '../tab-list';
 import { DBTabItem } from '../tab-item';
 import { DBTabPanel } from '../tab-panel';
 
-const comp = (
+const comp: any = (
 	<DBTabs>
 		<DBTabList>
-			<DBTabItem name="test" index={0}>
-				Test 1
-			</DBTabItem>
-			<DBTabItem name="test" index={1}>
-				Test 2
-			</DBTabItem>
-			<DBTabItem name="test" index={2}>
-				Test 3
-			</DBTabItem>
+			<DBTabItem data-testid="test">Test 1</DBTabItem>
+			<DBTabItem data-testid="test2">Test 2</DBTabItem>
+			<DBTabItem>Test 3</DBTabItem>
 		</DBTabList>
 
-		<DBTabPanel name="test" index={0}>
-			TestPanel 1
-		</DBTabPanel>
+		<DBTabPanel>TestPanel 1</DBTabPanel>
 
-		<DBTabPanel name="test" index={1}>
-			TestPanel 2
-		</DBTabPanel>
+		<DBTabPanel>TestPanel 2</DBTabPanel>
 
-		<DBTabPanel name="test" index={2}>
-			TestPanel 3
-		</DBTabPanel>
+		<DBTabPanel>TestPanel 3</DBTabPanel>
 	</DBTabs>
 );
 
@@ -48,9 +36,25 @@ const testComponent = () => {
 	});
 };
 
+const testActions = () => {
+	test('should be clickable', async ({ mount }) => {
+		const component = await mount(comp);
+		await component
+			.getByTestId('test2')
+			// VUE: .getByRole('tab')
+			.check({ force: true });
+		const tabChecked = await component
+			.getByTestId('test')
+			// VUE: .getByRole('tab')
+			.isChecked();
+		expect(!tabChecked).toBeTruthy();
+	});
+};
+
 test.describe('DBTabs', () => {
 	test.use({ viewport: DEFAULT_VIEWPORT });
 	testComponent();
+	testActions();
 });
 
 // TODO: AXE has problems with tabs...

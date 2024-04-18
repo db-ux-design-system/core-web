@@ -15,6 +15,10 @@ jobs:
     if: github.event.pull_request == null || github.event.pull_request.head.repo.owner.login == 'db-ui'
     uses: ./.github/workflows/00-scan-secrets.yml
 
+  get-playwright-version:
+    uses: ./.github/workflows/01-get-playwright-version.yml
+    needs: [init]
+
   lint:
     uses: ./.github/workflows/01-lint.yml
     needs: [init]
@@ -29,11 +33,15 @@ jobs:
 
   test-components:
     uses: ./.github/workflows/02-e2e.yml
-    needs: [build-packages]
+    needs: [build-packages, get-playwright-version]
+    with:
+      version: ${{ needs.get-playwright-version.outputs.version }}
 
   test-foundations:
     uses: ./.github/workflows/02-e2e-foundations.yml
-    needs: [build-packages]
+    needs: [build-packages, get-playwright-version]
+    with:
+      version: ${{ needs.get-playwright-version.outputs.version }}
 
   build-showcases:
     uses: ./.github/workflows/01-build-showcases.yml
@@ -41,12 +49,22 @@ jobs:
 
   test-showcases:
     uses: ./.github/workflows/02-e2e-showcases.yml
-    needs: [build-showcases]
+    needs: [build-showcases, get-playwright-version]
+    with:
+      version: ${{ needs.get-playwright-version.outputs.version }}
 
   regenerate-snapshots:
     if: always() && (needs.test-components.result == 'failure' || needs.test-foundations.result == 'failure' || needs.test-showcases.result == 'failure')
     uses: ./.github/workflows/02-e2e-regenerate.yml
-    needs: [test-components, test-showcases, test-foundations]
+    with:
+      version: ${{ needs.get-playwright-version.outputs.version }}
+    needs:
+      [
+        test-components,
+        test-showcases,
+        test-foundations,
+        get-playwright-version
+      ]
 
   checks-done:
     if: ${{ always() }}

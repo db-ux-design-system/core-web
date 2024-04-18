@@ -422,7 +422,16 @@ export type ItemClickState = {
 	handleItemClick: (id: string) => void;
 };
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
+export type InputEvent<T> = Event;
+export type InputEventProps<T> = {
+	input?: (event: InputEvent<T>) => void;
+	onInput?: (event: InputEvent<T>) => void;
+};
+
+export type InputEventState<T> = {
+	handleInput: (event: InputEvent<T>) => void;
+};
+
 export type ChangeEvent<T> = Event;
 export type ChangeEventProps<T> = {
 	change?: (event: ChangeEvent<T>) => void;

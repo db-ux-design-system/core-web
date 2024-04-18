@@ -8,7 +8,7 @@ import { DB<%= h.changeCase.pascal(name) %> } from "./index";
 // @ts-ignore - vue can only find it with .ts as file ending
 import { DEFAULT_VIEWPORT } from '../../shared/constants.ts';
 
-const comp = <DB<%= h.changeCase.pascal(name) %>>Test</DB<%= h.changeCase.pascal(name) %>>;
+const comp: any = <DB<%= h.changeCase.pascal(name) %>>Test</DB<%= h.changeCase.pascal(name) %>>;
 
 const testComponent = () =>{
 	test('should contain text', async ({ mount }) => {
@@ -22,12 +22,7 @@ const testComponent = () =>{
 	});
 }
 
-test.describe('DB<%= h.changeCase.pascal(name) %>', () => {
-	test.use({ viewport: DEFAULT_VIEWPORT });
-	testComponent();
-});
-
-test.describe('DB<%= h.changeCase.pascal(name) %>', () => {
+const testA11y = () =>{
 	test('should not have any A11y issues', async ({
 		page,
 		mount
@@ -39,5 +34,11 @@ test.describe('DB<%= h.changeCase.pascal(name) %>', () => {
 
 		expect(accessibilityScanResults.violations).toEqual([]);
 	});
+}
 
+test.describe('DB<%= h.changeCase.pascal(name) %>', () => {
+	test.use({ viewport: DEFAULT_VIEWPORT });
+	testComponent();
+	testA11y();
 });
+

@@ -23,6 +23,11 @@ module.exports = () => {
 							from: ['{/*', '*/}'],
 							to: ''
 						});
+						Replace({
+							files: `../../output/${framework}/src/components/${name}/${name}.spec.tsx`,
+							from: /\/\/ VUE:/g,
+							to: ''
+						});
 					}
 				}
 				Fse.copySync(

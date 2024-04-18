@@ -44,11 +44,6 @@ const setControlValueAccessorReplacements = (
 	// the ControlValueAccessor interface with all impacts :/
 
 	replacements.push({
-		from: /\/\/ ANGULAR:/g,
-		to: ''
-	});
-
-	replacements.push({
 		from: '} from "@angular/core";',
 		to:
 			`Renderer2 } from "@angular/core";\n` +
@@ -182,6 +177,12 @@ export class ${directive.name}Directive {}
 
 module.exports = (tmp) => {
 	const outputFolder = `${tmp ? 'output/tmp' : 'output'}`;
+	// Activate vue specific event handling
+	Replace.sync({
+		files: `../../${outputFolder}/angular/src/utils/form-components.ts`,
+		from: /\/\/ ANGULAR:/g,
+		to: ''
+	});
 	for (const component of components) {
 		const componentName = component.name;
 		const upperComponentName = `DB${transformToUpperComponentName(component.name)}`;
