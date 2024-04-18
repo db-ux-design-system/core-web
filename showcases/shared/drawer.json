@@ -182,6 +182,19 @@
 				}
 			},
 			{
+				"name": "Invisible",
+				"props": {
+					"withCloseButton": true,
+					"backdrop": "invisible"
+				},
+				"code": {
+					"html": "<dialog class=\"db-drawer\" data-backdrop=\"invisible\" open>\n\t\t<article class=\"db-drawer-container\">\n\t\t\t<header class=\"db-drawer-header\">\n\t\t\t\t<button\n\t\t\t\t\tclass=\"db-button button-close-drawer is-icon-text-replace\"\n\t\t\t\t\tdata-icon=\"close\"\n\t\t\t\t\tdata-variant=\"text\"\n\t\t\t\t>\n\t\t\t\t\tClose Button\n\t\t\t\t</button>\n\t\t\t</header>\n\t\t\t<div class=\"db-drawer-content\">No Backdrop</div>\n\t\t</article>\n\t</dialog>",
+					"angular": "<db-drawer backdrop=\"invisible\" [withCloseButton]=\"true\" [open]=\"openDrawer\" (onClose)=\"toggleDrawer(false)\">\n\tNo Backdrop\n</db-drawer>",
+					"react": "<DBDrawer\n\t\t\t\tbackdrop=\"invisible\"\n\t\t\t\twithCloseButton\n\t\t\t\topen={open}\n\t\t\t\tonClose={() => {\n\t\t\t\t\tsetOpen(false);\n\t\t\t\t}}\n\t\t\t>\n\t\t\t\tNo Backdrop\n\t\t\t</DBDrawer>",
+					"vue": "<DBDrawer backdrop=\"invisible\" :withCloseButton=\"true\" :open=\"openDrawer\" @close=\"toggleDrawer(false)\">No Backdrop</DBDrawer>"
+				}
+			},
+			{
 				"name": "No Backdrop",
 				"props": {
 					"withCloseButton": true,

@@ -1,20 +1,5 @@
 @use "@db-ui/foundations/build/scss/colors";
 
-$backdrop-color: var(
-	--db-current-color-enabled,
-	var(--db-neutral-on-bg-enabled, #242629)
-);
-
-%backdrop {
-	background-color: $backdrop-color;
-	opacity: 0.64;
-}
-
-%backdrop-weak {
-	background-color: $backdrop-color;
-	opacity: 0.32;
-}
-
 %dialog-container {
 	position: fixed;
 	inset: 0;
@@ -34,13 +19,23 @@ dialog {
 
 	&:not([data-backdrop="none"]) {
 		&::backdrop {
-			@extend %backdrop;
+			background-color: var(
+				--db-current-color-enabled,
+				var(--db-neutral-on-bg-enabled, #242629)
+			);
+			opacity: 0.64;
 		}
-	}
 
-	&[data-backdrop="weak"] {
-		&::backdrop {
-			@extend %backdrop-weak;
+		&[data-backdrop="invisible"] {
+			&::backdrop {
+				opacity: 0;
+			}
+		}
+
+		&[data-backdrop="weak"] {
+			&::backdrop {
+				opacity: 0.32;
+			}
 		}
 	}
 }
