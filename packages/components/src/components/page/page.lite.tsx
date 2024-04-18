@@ -1,5 +1,6 @@
 import {
 	onMount,
+	onUpdate,
 	Slot,
 	useMetadata,
 	useRef,
@@ -16,10 +17,12 @@ export default function DBPage(props: DBPageProps) {
 	const ref = useRef<HTMLDivElement>(null);
 	// jscpd:ignore-start
 	const state = useStore<DBPageState>({
-		fontsLoaded: false
+		fontsLoaded: false,
+		initialized: false
 	});
 
 	onMount(() => {
+		state.initialized = true;
 		state.fontsLoaded = !props.fadeIn;
 
 		if (document && props.fadeIn) {
@@ -30,15 +33,24 @@ export default function DBPage(props: DBPageProps) {
 			state.fontsLoaded = true;
 		}
 	});
+
+	onUpdate(() => {
+		if (props.variant === 'fixed' && state.initialized) {
+			document.documentElement.style.setProperty(
+				'--db-html-block-size',
+				'100%'
+			);
+			state.initialized = false;
+		}
+	}, [props.variant, state.initialized]);
 	// jscpd:ignore-end
 
 	return (
 		<div
 			ref={ref}
 			id={props.id}
-			class={cls('db-page', props.className, {
-				'fixed-header-footer': props.type === 'fixedHeaderFooter'
-			})}
+			class={cls('db-page', props.className)}
+			data-variant={props.variant}
 			data-fade-in={props.fadeIn}
 			data-fonts-loaded={state.fontsLoaded}>
 			<Slot name="header" />

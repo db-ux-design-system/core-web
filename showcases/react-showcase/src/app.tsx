@@ -21,7 +21,7 @@ const App = () => {
 
 	return (
 		<DBPage
-			type="fixedHeaderFooter"
+			variant="fixed"
 			fadeIn
 			header={
 				<DBHeader

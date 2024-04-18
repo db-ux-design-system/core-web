@@ -1,7 +1,10 @@
-import { GlobalProps, GlobalState } from '../../shared/model';
+import { GlobalProps, GlobalState, InitializedState } from '../../shared/model';
 
 export interface DBPageDefaultProps {
-	type?: 'fixedHeaderFooter';
+	/**
+	 * The variant=fixed uses flex-box to make header and footer static
+	 */
+	variant?: 'default' | 'fixed';
 	header?: unknown;
 	footer?: unknown;
 
@@ -17,4 +20,4 @@ export interface DBPageDefaultState {
 	fontsLoaded?: boolean;
 }
 
-export type DBPageState = DBPageDefaultState & GlobalState;
+export type DBPageState = DBPageDefaultState & GlobalState & InitializedState;
