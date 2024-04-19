@@ -20,4 +20,4 @@ export interface DBPageDefaultState {
 	fontsLoaded?: boolean;
 }
 
-export type DBPageState = DBPageDefaultState & GlobalState & InitializedState;
+export type DBPageState = DBPageDefaultState & GlobalState;
