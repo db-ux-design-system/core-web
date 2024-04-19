@@ -47,8 +47,8 @@
   },
   "devDependencies": {
     "@builder.io/eslint-plugin-mitosis": "^0.0.15",
-    "@builder.io/mitosis": "^0.2.2",
-    "@builder.io/mitosis-cli": "^0.2.2",
+    "@builder.io/mitosis": "^0.2.3",
+    "@builder.io/mitosis-cli": "^0.2.3",
     "@react-docgen/cli": "^2.0.3",
     "cpr": "3.0.1",
     "cssnano": "^6.1.2",
