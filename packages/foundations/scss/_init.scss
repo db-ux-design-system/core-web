@@ -18,10 +18,6 @@
 }
 
 // *! this is an opionionated (especially based on "enhancing" normalize.css) version of minireset.css v0.0.4 | MIT License | github.com/jgthms/minireset.css
-html {
-	block-size: var(--db-html-block-size, auto);
-}
-
 html,
 body {
 	margin: 0;

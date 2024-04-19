@@ -36,10 +36,8 @@ export default function DBPage(props: DBPageProps) {
 
 	onUpdate(() => {
 		if (props.variant === 'fixed' && state.initialized) {
-			document.documentElement.style.setProperty(
-				'--db-html-block-size',
-				'100%'
-			);
+			document.documentElement.style.blockSize = '100%';
+			document.documentElement.style.overflow = 'hidden';
 			state.initialized = false;
 		}
 	}, [props.variant, state.initialized]);
