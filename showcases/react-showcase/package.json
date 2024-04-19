@@ -11,7 +11,8 @@
     "preview": "npx http-server ../../build-showcases",
     "regenerate:screenshots": "cross-env showcase=react-showcase npx playwright test -c ../playwright.config.ts --update-snapshots",
     "start": "vite",
-    "test:e2e": "cross-env showcase=react-showcase npx playwright test --config=../playwright.config.ts"
+    "test:e2e": "cross-env showcase=react-showcase npx playwright test --config=../playwright.config.ts",
+    "test:screen-reader:windows": "cross-env showcase=react-showcase npx playwright test --config=../playwright.screen-reader.win.ts"
   },
   "dependencies": {
     "react": "^18.2.0",

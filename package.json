@@ -47,6 +47,7 @@
   "devDependencies": {
     "@commitlint/cli": "19.2.2",
     "@commitlint/config-conventional": "19.2.2",
+    "@guidepup/playwright": "^0.13.2",
     "@playwright/test": "1.43.1",
     "adm-zip": "0.5.12",
     "commander": "^12.0.0",
