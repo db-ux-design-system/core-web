@@ -1,5 +1,10 @@
 @use "@db-ui/foundations/build/scss/colors";
 
+$backdrop-color: var(
+	#{colors.$db-current-color-enabled},
+	var(#{colors.$db-neutral-on-bg-enabled}, #242629)
+);
+
 %dialog-container {
 	position: fixed;
 	inset: 0;
@@ -19,10 +24,7 @@ dialog {
 
 	&:not([data-backdrop="none"]) {
 		&::backdrop {
-			background-color: var(
-				--db-current-color-enabled,
-				var(--db-neutral-on-bg-enabled, #242629)
-			);
+			background-color: $backdrop-color;
 			opacity: 0.64;
 		}
 

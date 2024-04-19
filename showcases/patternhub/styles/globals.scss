@@ -397,7 +397,8 @@ h6 {
 
 		.backdrop {
 			border-radius: variables.$db-border-radius-sm;
-			@extend %backdrop;
+			background-color: dialog-init.$backdrop-color;
+			opacity: 0.64;
 			position: absolute;
 			inset: 0;
 		}
