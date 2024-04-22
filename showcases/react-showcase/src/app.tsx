@@ -22,6 +22,7 @@ const App = () => {
 	return (
 		<DBPage
 			variant="fixed"
+			documentOverflow="auto"
 			fadeIn
 			header={
 				<DBHeader

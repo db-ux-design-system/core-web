@@ -20,13 +20,6 @@ export default function DBPage(props: DBPageProps) {
 		fontsLoaded: false
 	});
 
-	onInit(() => {
-		if (props.variant === 'fixed') {
-			document.documentElement.style.blockSize = '100%';
-			document.documentElement.style.overflow = 'hidden';
-		}
-	});
-
 	onMount(() => {
 		state.fontsLoaded = !props.fadeIn;
 
@@ -36,6 +29,14 @@ export default function DBPage(props: DBPageProps) {
 			});
 		} else {
 			state.fontsLoaded = true;
+		}
+
+		if (
+			props.documentOverflow === 'hidden' ||
+			(props.variant === 'fixed' && props.documentOverflow !== 'auto')
+		) {
+			document.documentElement.style.blockSize = '100%';
+			document.documentElement.style.overflow = 'hidden';
 		}
 	});
 
