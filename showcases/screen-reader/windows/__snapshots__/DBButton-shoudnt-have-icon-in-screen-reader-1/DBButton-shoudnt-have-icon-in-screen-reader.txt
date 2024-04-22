@@ -1,1 +1,0 @@
-["Schalter, (Default) Text. Schalter, user. Schalter, Icon and Text. Schalter, user. Schalter, Icon. "]
