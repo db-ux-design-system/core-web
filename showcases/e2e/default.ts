@@ -19,17 +19,16 @@ export const getDefaultScreenshotTest = (
 				const maxDiffPixelRatio = process.env.ratio;
 				const isAngular = showcase.startsWith('angular');
 
-				const header = await page.locator('header');
+				const config: any = {};
 
-				const config: any = {
-					fullPage: true,
-					mask: [header]
-				};
+				if (maxDiffPixelRatio ?? diffPixel) {
+					if (maxDiffPixelRatio) {
+						config.maxDiffPixelRatio = Number(maxDiffPixelRatio);
+					}
 
-				if (maxDiffPixelRatio) {
-					config.maxDiffPixelRatio = Number(maxDiffPixelRatio);
-				} else if (diffPixel) {
-					config.maxDiffPixels = Number(diffPixel);
+					if (diffPixel) {
+						config.maxDiffPixels = Number(diffPixel);
+					}
 				} else if (isAngular) {
 					config.maxDiffPixels = 1000;
 				} else if (isWebkit) {
@@ -40,13 +39,24 @@ export const getDefaultScreenshotTest = (
 
 				await page.goto(
 					`./#/${path}?density=${density}&color=${color}`,
-					{ waitUntil: 'networkidle' }
+					{ waitUntil: 'domcontentloaded' }
+				);
+
+				const dbPage = page.locator('.db-page');
+				await expect(dbPage).toHaveAttribute(
+					'data-fonts-loaded',
+					'true'
 				);
 				await expect(page.locator('html')).toHaveCSS(
 					'overflow',
 					'hidden'
 				);
 				await setScrollViewport(page, fixedHeight)();
+
+				const header = await page.locator('header');
+
+				config.mask = [header];
+
 				await expect(page).toHaveScreenshot(
 					[density, `${color}.png`],
 					config
