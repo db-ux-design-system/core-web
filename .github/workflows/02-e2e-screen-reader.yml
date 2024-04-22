@@ -1,0 +1,68 @@
+name: 🎭 Playwright Screen Reader
+
+on:
+  workflow_call:
+    inputs:
+      version:
+        required: true
+        type: string
+
+permissions:
+  actions: write
+  contents: write
+
+jobs:
+  playwright-screen-reader:
+    name: 🧪🎭 - screen-reader - ${{ matrix.os }} - ${{ matrix.framework }}
+    runs-on: ${{ matrix.os }}
+    container:
+      image: mcr.microsoft.com/playwright:v${{ inputs.version }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [windows-latest]
+        framework: [react]
+    steps:
+      - name: ⏬ Checkout repo
+        uses: actions/checkout@v4
+
+      - name: 🔄 Init Cache
+        uses: ./.github/actions/npm-cache
+
+      - name: ⏬ Download foundations build
+        uses: actions/download-artifact@v4
+        with:
+          name: db-ui-foundations-build
+          path: packages/foundations/build
+
+      - name: ⏬ Download output
+        uses: actions/download-artifact@v4
+        with:
+          name: db-ui-output
+          path: output
+
+      - name: ⏬ Download components styles build
+        uses: actions/download-artifact@v4
+        with:
+          name: db-ui-components-build
+          path: packages/components/build
+
+      - name: ⏬ Download showcases
+        uses: actions/download-artifact@v4
+        with:
+          name: db-ui-showcases
+          path: build-showcases
+
+      - name: 👩‍🔬 Test showcase with Playwright 🎭
+        env:
+          HOME: /root
+        run: |
+          npm run test:screen-reader:${{ matrix.os }} --workspace=${{ matrix.framework }}-showcase
+
+      - name: 🆙 Upload test results
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ matrix.framework }}-screen-reader-${{ matrix.os }}
+          path: ./showcases/${{ matrix.framework }}-showcase/test-results
+          retention-days: 30
