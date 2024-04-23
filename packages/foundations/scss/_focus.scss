@@ -21,13 +21,14 @@
 	&:not([type="radio"]) {
 		border-radius: variables.$db-border-radius-xs;
 
-	&[type="radio"],
-	&[role="switch"] {
-		border-radius: variables.$db-border-radius-full;
-	}
+		&[type="radio"],
+		&[role="switch"] {
+			border-radius: variables.$db-border-radius-full;
+		}
 
-	// Adopted by https://www.heise.de/developer/artikel/a11y-Reduced-Motion-4356171.html
-	@media (prefers-reduced-motion: reduce) {
-		transition-duration: 0.01s !important;
+		// Adopted by https://www.heise.de/developer/artikel/a11y-Reduced-Motion-4356171.html
+		@media (prefers-reduced-motion: reduce) {
+			transition-duration: 0.01s !important;
+		}
 	}
 }

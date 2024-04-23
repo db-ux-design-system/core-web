@@ -21,17 +21,6 @@
 			[rows]="exampleProps.rows"
 			[placeholder]="exampleProps.placeholder || exampleName"
 			[message]="exampleProps.message"
-			[invalid]="exampleProps.invalid"
-			[invalidMessage]="
-				exampleProps.invalid !== undefined || exampleProps.required
-					? 'Invalid Message'
-					: undefined
-			"
-			[validMessage]="
-				exampleProps.invalid !== undefined || exampleProps.required
-					? 'Valid Message'
-					: undefined
-			"
 		></db-textarea>
 	</ng-template>
 </app-default-component>

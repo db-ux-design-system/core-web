@@ -22,28 +22,40 @@
 }
 
 @each $variant in variables.$variants {
-	%db-#{$variant}-component {
-		--db-current-icon-color: var(--db-#{$variant}-on-contrast-enabled);
-		--db-current-color-enabled: var(--db-#{$variant}-on-contrast-enabled);
-		--db-current-color-bg-enabled: var(
-			--db-#{$variant}-contrast-high-enabled
-		);
-		--db-current-color-bg-hover: var(--db-#{$variant}-contrast-high-hover);
-		--db-current-color-bg-pressed: var(
-			--db-#{$variant}-contrast-high-pressed
-		);
-		--db-current-color-border: var(--db-#{$variant}-contrast-high-enabled);
-		@extend %set-current-colors;
+	@each $contrast in [ "high", "low"] {
+		%db-#{$variant}-contrast-#{$contrast} {
+			--db-current-icon-color: var(--db-#{$variant}-on-contrast-enabled);
+			--db-current-color-enabled: var(
+				--db-#{$variant}-on-contrast-enabled
+			);
+			--db-current-color-bg-enabled: var(
+				--db-#{$variant}-contrast-#{$contrast}-enabled
+			);
+			--db-current-color-bg-hover: var(
+				--db-#{$variant}-contrast-#{$contrast}-hover
+			);
+			--db-current-color-bg-pressed: var(
+				--db-#{$variant}-contrast-#{$contrast}-pressed
+			);
+			--db-current-color-border: var(
+				--db-#{$variant}-contrast-#{$contrast}-enabled
+			);
+			@extend %set-current-colors;
 
-		&-interactive {
-			@extend %db-#{$variant}-component;
+			&-interactive {
+				@extend %db-#{$variant}-contrast-#{$contrast};
 
-			&:hover {
-				background: var(--db-#{$variant}-contrast-high-hover);
-			}
+				&:hover {
+					background: var(
+						--db-#{$variant}-contrast-#{$contrast}-hover
+					);
+				}
 
-			&:active {
-				background: var(--db-#{$variant}-contrast-high-pressed);
+				&:active {
+					background: var(
+						--db-#{$variant}-contrast-#{$contrast}-pressed
+					);
+				}
 			}
 		}
 	}

@@ -36,33 +36,17 @@ export default function DBCheckbox(props: DBCheckboxProps) {
 		_descByIds: '',
 
 		handleChange: (event: ChangeEvent<HTMLInputElement>) => {
-			if (props.onChange) {
-				props.onChange(event);
-			}
-
-			if (props.change) {
-				props.change(event);
-			}
-
+			props?.onChange?.(event);
+			props?.change?.(event);
 			handleFrameworkEvent(this, event, 'checked');
 		},
 		handleBlur: (event: InteractionEvent<HTMLInputElement>) => {
-			if (props.onBlur) {
-				props.onBlur(event);
-			}
-
-			if (props.blur) {
-				props.blur(event);
-			}
+			props?.onBlur?.(event);
+			props?.blur?.(event);
 		},
 		handleFocus: (event: InteractionEvent<HTMLInputElement>) => {
-			if (props.onFocus) {
-				props.onFocus(event);
-			}
-
-			if (props.focus) {
-				props.focus(event);
-			}
+			props?.onFocus?.(event);
+			props?.focus?.(event);
 		},
 		getValidMessage: () => {
 			return props.validMessage || DEFAULT_VALID_MESSAGE;

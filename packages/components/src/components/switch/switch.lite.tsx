@@ -3,6 +3,7 @@ import { DBSwitchProps, DBSwitchState } from './model';
 import { cls, uuid } from '../../utils';
 import { DEFAULT_ID } from '../../shared/constants';
 import { ChangeEvent, InteractionEvent } from '../../shared/model';
+import { handleFrameworkEvent } from '../../utils/form-components';
 
 useMetadata({
 	isAttachedToShadowDom: true
@@ -17,35 +18,21 @@ export default function DBSwitch(props: DBSwitchProps) {
 		initialized: false,
 		handleChange: (event: ChangeEvent<HTMLInputElement>) => {
 			props?.onChange?.(event);
-
 			props?.change?.(event);
-
-			const target = event.target as HTMLInputElement;
-
-			// TODO: Replace this with the solution out of https://github.com/BuilderIO/mitosis/issues/833 after this has been "solved"
-			// VUE:this.$emit("update:checked", target.checked);
-
-			// Change event to work with reactive and template driven forms
-			// ANGULAR: this.propagateChange(target.checked);
-			// ANGULAR: this.writeValue(target.checked);
+			handleFrameworkEvent(this, event, 'checked');
 		},
 		handleBlur: (event: InteractionEvent<HTMLInputElement>) => {
 			props?.onBlur?.(event);
-
 			props?.blur?.(event);
 		},
 		handleFocus: (event: InteractionEvent<HTMLInputElement>) => {
 			props?.onFocus?.(event);
-
 			props?.focus?.(event);
 		}
 	});
 
 	onMount(() => {
 		state._id = props.id || 'switch-' + uuid();
-		if (props.stylePath) {
-			state.stylePath = props.stylePath;
-		}
 	});
 	// jscpd:ignore-end
 
@@ -65,7 +52,8 @@ export default function DBSwitch(props: DBSwitchProps) {
 				checked={props.checked}
 				disabled={props.disabled}
 				aria-describedby={props.describedbyid}
-				aria-invalid={props.invalid}
+				aria-invalid={props.customValidity === 'invalid'}
+				data-custom-validity={props.customValidity}
 				name={props.name}
 				required={props.required}
 				data-aid-icon={props.icon}

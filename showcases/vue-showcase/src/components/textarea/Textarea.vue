@@ -20,16 +20,6 @@ import { DBInput, DBTextarea } from "../../../../../output/vue/src";
 				:rows="exampleProps.rows"
 				:value="exampleProps.value"
 				:variant="exampleProps.variant"
-				:invalidMessage="
-					exampleProps.invalid !== undefined || exampleProps.required
-						? 'Invalid Message'
-						: undefined
-				"
-				:validMessage="
-					exampleProps.invalid !== undefined || exampleProps.required
-						? 'Valid Message'
-						: undefined
-				"
 			></DBTextarea>
 		</template>
 	</DefaultComponent>

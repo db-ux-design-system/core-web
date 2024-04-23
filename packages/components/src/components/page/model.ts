@@ -15,6 +15,9 @@ export type DBPageProps = DBPageDefaultProps & GlobalProps;
 
 export interface DBPageDefaultState {
 	fontsLoaded?: boolean;
+	// We use this to calculate small pixel changes in Windows caused by border-height
+	devicePixelRatio: number;
+	updatePixelRatio: () => void;
 }
 
 export type DBPageState = DBPageDefaultState & GlobalState;

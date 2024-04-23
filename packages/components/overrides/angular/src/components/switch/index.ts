@@ -1,1 +1,0 @@
-export { DBSwitch } from './switch';

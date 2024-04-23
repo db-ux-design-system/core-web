@@ -2,13 +2,6 @@
 
 ## Foundations
 
-### Internal
-
-| Name                              | Description                                                                                | Action |
-| --------------------------------- | ------------------------------------------------------------------------------------------ | ------ |
-| ❌ removed `style-dictonary`      | all variables will be generated in [theme-builder](https://github.com/db-ui/theme-builder) | ---    |
-| ❌ removed `zeplin-styleguide.js` | we use `Figma` in the future                                                               | ---    |
-
 ### Breaking Changes
 
 | Name                               | Description                                                                                                                                                                                                                                               | Action                                                                                                                                                                                                        |
@@ -29,14 +22,6 @@
 ## Components
 
 > **Note**: All components have different colors and opacities based on the changes in foundations.
->
-> Some components may have different dimensions based on changes of spacing tokens.
->
-> We removed the default elevation (box-shadow) for card and some card-like components.
->
-> The prop variant like `variant="informational"` has been renamed to `semantic`.
->
-> The prop labelVariant for form-components (input, checkbox, ...) has been renamed to `variant`.
 
 Some components may have different dimensions based on changes of spacing tokens.
 
@@ -50,8 +35,6 @@ The prop labelVariant for form-components (input, checkbox, ...) has been rename
 | -------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | 🔄 renamed `db-alert` to `db-notification`                                                                     | renamed `alert` to `notification` and add/changed some additional properties                                                            | 1. Replace `DBAlert`, `db-alert` by `DBNotification` / `db-notification`<br/>2. `Link` was removed, add a normal `a` or `DBLink` to the `slotLink`<br/>3. `props.type` has been changed to `props.variant`<br/>4. `onClick` has been changed to `onClose` |
 | 🔄 renamed `db-main-navigation` to `db-navigation`                                                             | renamed `main-navigation` to `navigation`                                                                                               | Replace `DBMainNavigation`, `db-main-navigation` by `DBNavigation` / `db-navigation`                                                                                                                                                                      |
-| ------------------------------------------ | ----------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| 🔄 renamed `db-alert` to `db-notification` | renamed `alert` to `notification` and add/changed some additional properties  | 1. Replace `DBAlert`, `db-alert` by `DBNotification` / `db-notification`<br/>2. `Link` was removed, add a normal `a` or `DBLink` to the `slotLink`<br/>3. `props.type` has been changed to `props.variant` |
 | 🔄 changed `db-button` variants                                                                                | We renamed the variants for the button                                                                                                  | `primary` ➡ `brand`<br/>`solid` ➡ `filled`<br/>`text` ➡ `ghost`                                                                                                                                                                                        |
 | 🔄 changed `db-card` elevation                                                                                 | We replaced the box-shadow elevation with bg-level                                                                                      | 1. `props.elevation` ➡ `props.elevationLevel` (1,2,3) <br/>2. `props.variant` ➡ `props.behaviour` <br/>3. Removed card-image                                                                                                                            |
 | 🆕 valid/invalid message form-components                                                                       | We add additional messages for `required` form-components like `DBInput` etc.                                                           | Use `validMessage="XXX"` and `invalidMessage="XXX"` to display the required information for form-components. Otherwise you will see a default message with a `TODO: ...`                                                                                  |

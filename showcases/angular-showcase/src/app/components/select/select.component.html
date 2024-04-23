@@ -20,16 +20,6 @@
 			[required]="exampleProps.required"
 			[value]="exampleProps.value"
 			[message]="exampleProps.message"
-			[invalidMessage]="
-				exampleProps.invalid !== undefined || exampleProps.required
-					? 'Invalid Message'
-					: undefined
-			"
-			[validMessage]="
-				exampleProps.invalid !== undefined || exampleProps.required
-					? 'Valid Message'
-					: undefined
-			"
 			>{{ exampleName }}</db-select
 		>
 	</ng-template>

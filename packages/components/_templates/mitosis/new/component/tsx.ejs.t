@@ -20,33 +20,17 @@ export default function DB<%= h.changeCase.pascal(name) %>(props: DB<%= h.change
   const state = useStore<DB<%= h.changeCase.pascal(name) %>State>({
       <% if(formValue!=="no"){   -%>
 		handleChange: (event: ChangeEvent<HTMLInputElement>) => {
-			if (props.onChange) {
-				props.onChange(event);
-			}
-
-			if (props.change) {
-				props.change(event);
-			}
-
+			props?.onChange?.(event);
+			props?.change?.(event);
 			handleFrameworkEvent(this, event, <%= formValue %>);
 		},
 		handleBlur: (event: InteractionEvent<HTMLInputElement>) => {
-			if (props.onBlur) {
-				props.onBlur(event);
-			}
-
-			if (props.blur) {
-				props.blur(event);
-			}
+			props?.onBlur?.(event);
+			props?.blur?.(event);
 		},
 		handleFocus: (event: InteractionEvent<HTMLInputElement>) => {
-			if (props.onFocus) {
-				props.onFocus(event);
-			}
-
-			if (props.focus) {
-				props.focus(event);
-			}
+			props?.onFocus?.(event);
+			props?.focus?.(event);
 		}
       <% } -%>
   });

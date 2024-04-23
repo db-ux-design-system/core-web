@@ -38,7 +38,7 @@ $checked-active-transition-size: calc(
 }
 
 .db-switch {
-	@extend %check-element;
+	@include form-components.set-default-check-element(check);
 	justify-content: space-between;
 	user-select: none;
 
@@ -53,7 +53,7 @@ $checked-active-transition-size: calc(
 		--thumb-position: calc(0% + #{$switch-fixed-padding});
 		@extend %db-overwrite-font-size-sm;
 
-		@include icons.set-icon("close", "after");
+		@include icons.set-icon("cross", "after");
 		appearance: none;
 
 		inline-size: calc(
@@ -200,7 +200,7 @@ $checked-active-transition-size: calc(
 			}
 
 			&:checked {
-				@include icons.set-icon("done", "after");
+				@include icons.set-icon("check", "after");
 
 				&::after {
 					transform: translateX(

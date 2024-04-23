@@ -22,16 +22,6 @@ import { DBInput } from "../../../../../output/vue/src";
 				:value="exampleProps.value"
 				:icon="exampleProps.icon"
 				:iconAfter="exampleProps.iconAfter"
-				:invalidMessage="
-					exampleProps.invalid !== undefined || exampleProps.required
-						? 'Invalid Message'
-						: undefined
-				"
-				:validMessage="
-					exampleProps.invalid !== undefined || exampleProps.required
-						? 'Valid Message'
-						: undefined
-				"
 			></DBInput>
 		</template>
 	</DefaultComponent>
