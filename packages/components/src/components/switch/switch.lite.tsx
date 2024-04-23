@@ -37,9 +37,7 @@ export default function DBSwitch(props: DBSwitchProps) {
 			props?.blur?.(event);
 		},
 		handleFocus: (event: InteractionEvent<HTMLInputElement>) => {
-			if (props.onFocus) {
-				props.onFocus(event);
-			}
+			props?.onFocus?.(event);
 
 			if (props.focus) {
 				props.focus(event);
