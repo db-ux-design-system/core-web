@@ -32,9 +32,7 @@ export default function DBSwitch(props: DBSwitchProps) {
 			// ANGULAR: this.writeValue(target.checked);
 		},
 		handleBlur: (event: InteractionEvent<HTMLInputElement>) => {
-			if (props.onBlur) {
-				props.onBlur(event);
-			}
+			props?.onBlur?.(event);
 
 			if (props.blur) {
 				props.blur(event);
