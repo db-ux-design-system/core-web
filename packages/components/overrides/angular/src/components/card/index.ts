@@ -1,1 +1,0 @@
-export { DBCard } from './card';

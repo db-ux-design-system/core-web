@@ -49,7 +49,7 @@ const getComponents = () => [
 		}
 	},
 	{
-		name: 'tab',
+		name: 'tab-item',
 		config: {
 			angular: {
 				initValues: [
@@ -81,7 +81,8 @@ const getComponents = () => [
 	},
 
 	{
-		name: 'popover'
+		name: 'popover',
+		overwrites: { angular: [{ from: 'mouseEnter', to: 'mouseenter' }] }
 	},
 
 	{
@@ -125,7 +126,7 @@ const getComponents = () => [
 	},
 
 	{
-		name: 'main-navigation'
+		name: 'navigation'
 	},
 	{
 		name: 'navigation-item',

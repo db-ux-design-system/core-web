@@ -4,7 +4,7 @@ import {
 	DBHeader,
 	DBBrand,
 	DBSelect,
-	DBMainNavigation,
+	DBNavigation,
 	DBButton
 } from "../../../output/vue/src";
 import {
@@ -82,32 +82,34 @@ const sortedNavigation = getSortedNavigationItems(navigationItems);
 		<template v-slot:header>
 			<DBHeader :drawerOpen="drawerOpen" :onToggle="toggleDrawer">
 				<template v-slot:brand>
-					<DBBrand
-						title="Showcase"
-						src="db_logo.svg"
-						href="/vue-showcase/"
-					>
-						Showcase
-					</DBBrand>
+					<DBBrand>Showcase</DBBrand>
 				</template>
-				<DBMainNavigation>
+				<DBNavigation>
 					<template v-for="item of sortedNavigation">
 						<NavItemComponent :navItem="item"></NavItemComponent>
 					</template>
-				</DBMainNavigation>
+				</DBNavigation>
 				<template v-slot:calltoaction>
-					<DBButton icon="search" variant="ghost" :no-text="true">
+					<DBButton
+						icon="magnifying_glass"
+						variant="ghost"
+						:no-text="true"
+					>
 						Search
 					</DBButton>
 				</template>
 				<template v-slot:actionbar>
-					<DBButton icon="account" variant="ghost" :no-text="true">
+					<DBButton icon="user" variant="ghost" :no-text="true">
 						Profile
 					</DBButton>
-					<DBButton icon="alert" variant="ghost" :no-text="true">
+					<DBButton icon="bell" variant="ghost" :no-text="true">
 						Notification
 					</DBButton>
-					<DBButton icon="help" variant="ghost" :no-text="true">
+					<DBButton
+						icon="question_mark_circle"
+						variant="ghost"
+						:no-text="true"
+					>
 						Help
 					</DBButton>
 				</template>

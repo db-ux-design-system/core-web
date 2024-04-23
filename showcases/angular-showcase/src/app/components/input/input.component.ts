@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import defaultComponentVariants from '../../../../../shared/input.json';
 import { DefaultComponent } from '../default.component';
-import { DBInput } from '../../../../../../output/angular/src/components/input/input';
+import { DBInput } from '../../../../../../output/angular/src';
 
 @Component({
 	selector: 'app-input',

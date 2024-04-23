@@ -6,13 +6,20 @@ import { DBPopover } from './index';
 import { DEFAULT_VIEWPORT } from '../../shared/constants.ts';
 import { DBButton } from '../button';
 
-const comp = (
-	<DBButton describedbyid="popover-01">
-		Button
-		<DBPopover open={true} animation="disabled" id="popover-01">
+// template v-slot is used for vue component tests
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const comp: any = (
+	<div className="padding-box">
+		<DBPopover
+			animation="disabled"
+			data-testid="popover"
+			trigger={<DBButton data-testid="button">Button</DBButton>}>
+			{/*<template v-slot:trigger>
+				<DBButton data-testid="button">Button</DBButton>
+			</template>*/}
 			Test
 		</DBPopover>
-	</DBButton>
+	</div>
 );
 
 const testComponent = () => {
@@ -25,14 +32,20 @@ const testComponent = () => {
 		const component = await mount(comp);
 		await expect(component).toHaveScreenshot();
 	});
+
+	test('should open', async ({ mount }) => {
+		const component = await mount(comp);
+		await component.getByTestId('button').focus();
+		await expect(component.getByTestId('popover')).toBeVisible();
+	});
+
+	test('after open should match screenshot', async ({ mount }) => {
+		const component = await mount(comp);
+		await component.getByTestId('button').focus();
+		await expect(component).toHaveScreenshot();
+	});
 };
-
-test.describe('DBPopover', () => {
-	test.use({ viewport: DEFAULT_VIEWPORT });
-	testComponent();
-});
-
-test.describe('DBPopover', () => {
+const testA11y = () => {
 	test('should not have any A11y issues', async ({ page, mount }) => {
 		await mount(comp);
 		const accessibilityScanResults = await new AxeBuilder({ page })
@@ -41,4 +54,10 @@ test.describe('DBPopover', () => {
 
 		expect(accessibilityScanResults.violations).toEqual([]);
 	});
+};
+
+test.describe('DBPopover', () => {
+	test.use({ viewport: DEFAULT_VIEWPORT });
+	testComponent();
+	testA11y();
 });

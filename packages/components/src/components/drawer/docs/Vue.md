@@ -17,7 +17,7 @@ import { DBDrawer } from "@db-ui/v-components";
 const openDrawer = ref<boolean>(false);
 
 const toggleDrawer = (open: boolean) => {
-	openDrawer = open;
+	openDrawer.value = open;
 };
 </script>
 

@@ -21,6 +21,18 @@ const DefaultPage = ({ children }: any) => {
 	const router = useRouter();
 
 	useEffect(() => {
+		hljs.configure({
+			languages: [
+				'js',
+				'ts',
+				'jsx',
+				'tsx',
+				'css',
+				'scss',
+				'html',
+				'shell'
+			]
+		});
 		hljs.highlightAll();
 	}, []);
 
@@ -71,17 +83,15 @@ const DefaultPage = ({ children }: any) => {
 							drawerOpen={drawerOpen}
 							onToggle={setDrawerOpen}
 							brand={
-								<DBBrand
-									imgSrc={`${
-										process.env.NEXT_PUBLIC_BASE_PATH ?? ''
-									}/assets/images/db_logo.svg`}
-									title={process.env.NEXT_PUBLIC_APP_NAME}
-									anchorChildren>
+								<DBBrand>
 									{process.env.NEXT_PUBLIC_APP_NAME}
 								</DBBrand>
 							}
 							callToAction={
-								<DBButton icon="search" variant="ghost" noText>
+								<DBButton
+									icon="magnifying_glass"
+									variant="ghost"
+									noText>
 									Search
 								</DBButton>
 							}

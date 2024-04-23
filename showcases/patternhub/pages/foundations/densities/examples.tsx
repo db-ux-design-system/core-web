@@ -16,7 +16,9 @@ const Example = () => {
 
 			<div className="density-example-grid">
 				{densities.map((density) => (
-					<h3 key={`grid-headline-${density}`}>{density}</h3>
+					<h3 key={`grid-headline-${density}`}>
+						{density.charAt(0).toUpperCase() + density.slice(1)}
+					</h3>
 				))}
 				{densities.map((density) => (
 					<article

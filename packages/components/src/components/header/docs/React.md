@@ -10,7 +10,7 @@ For general installation and configuration take a look at the [react-components]
 // App.tsx
 import { DBHeader, DBBrand } from "@db-ui/react-components";
 
-const App = () => <DBHeader slotBrand={<DBBrand>Header</DBBrand>} />;
+const App = () => <DBHeader brand={<DBBrand>Header</DBBrand>} />;
 
 export default App;
 ```
@@ -28,21 +28,21 @@ const App = () => (
 	<DBHeader
 		drawerOpen={drawerOpen}
 		onToggle={setDrawerOpen}
-		slotBrand={<DBBrand>My Awesome App</DBBrand>}
-		slotMetaNavigation={
+		brand={<DBBrand>My Awesome App</DBBrand>}
+		metaNavigation={
 			<>
 				<DBLink href="#">Imprint</DBLink>
 				<DBLink href="#">Help</DBLink>
 			</>
 		}
-		slotCallToAction={
-			<DBButton icon="search" variant="ghost" noText>
+		callToAction={
+			<DBButton icon="magnifying_glass" variant="ghost" noText>
 				Search
 			</DBButton>
 		}
-		slotActionBar={
+		actionBar={
 			<>
-				<DBButton icon="account" variant="ghost" noText>
+				<DBButton icon="user" variant="ghost" noText>
 					Profile
 				</DBButton>
 				<DBButton icon="alert" variant="ghost" noText>
@@ -54,10 +54,10 @@ const App = () => (
 			</>
 		}
 	>
-		<DBMainNavigation>
+		<DBNavigation>
 			//
-			https://github.com/db-ui/mono/blob/main/packages/components/src/components/main-navigation/docs/React.md
-		</DBMainNavigation>
+			https://github.com/db-ui/mono/blob/main/packages/components/src/components/navigation/docs/React.md
+		</DBNavigation>
 	</DBHeader>
 );
 

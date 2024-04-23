@@ -1,7 +1,7 @@
 const Replace = require('replace-in-file');
 const FS = require('node:fs');
 const { components } = require('./components');
-const { runReplacements, getComponentName } = require('../utils');
+const { runReplacements, transformToUpperComponentName } = require('../utils');
 
 const changeFile = (component, input) => {
 	return input
@@ -44,11 +44,6 @@ const setControlValueAccessorReplacements = (
 	// the ControlValueAccessor interface with all impacts :/
 
 	replacements.push({
-		from: /\/\/ ANGULAR:/g,
-		to: ''
-	});
-
-	replacements.push({
 		from: '} from "@angular/core";',
 		to:
 			`Renderer2 } from "@angular/core";\n` +
@@ -68,8 +63,8 @@ const setControlValueAccessorReplacements = (
 
 	// implementing interface and constructor
 	replacements.push({
-		from: `export class ${upperComponentName} {`,
-		to: `export class ${upperComponentName} implements ControlValueAccessor {
+		from: `export default class ${upperComponentName} {`,
+		to: `export default class ${upperComponentName} implements ControlValueAccessor {
 		constructor(private renderer: Renderer2) { }`
 	});
 
@@ -135,9 +130,9 @@ const setDirectiveReplacements = (
 		}
 
 		replacements.push({
-			from: `export class ${upperComponentName} {\n`,
+			from: `export default class ${upperComponentName} {\n`,
 			to:
-				`export class ${upperComponentName} {\n` +
+				`export default class ${upperComponentName} {\n` +
 				`\t@ContentChild(${directive.name}Directive, { read: TemplateRef }) db${directive.name}: any;\n`
 		});
 
@@ -182,9 +177,15 @@ export class ${directive.name}Directive {}
 
 module.exports = (tmp) => {
 	const outputFolder = `${tmp ? 'output/tmp' : 'output'}`;
+	// Activate vue specific event handling
+	Replace.sync({
+		files: `../../${outputFolder}/angular/src/utils/form-components.ts`,
+		from: /\/\/ ANGULAR:/g,
+		to: ''
+	});
 	for (const component of components) {
 		const componentName = component.name;
-		const upperComponentName = `DB${getComponentName(component.name)}`;
+		const upperComponentName = `DB${transformToUpperComponentName(component.name)}`;
 		const file = `../../${outputFolder}/angular/src/components/${componentName}/${componentName}.ts`;
 		const options = {
 			files: file,

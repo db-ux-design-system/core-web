@@ -18,7 +18,8 @@
 				#{variables.$db-transition-duration-ultra-fast}
 			);
 
-	border-radius: variables.$db-border-radius-xs;
+	&:not([type="radio"]) {
+		border-radius: variables.$db-border-radius-xs;
 
 	&[type="radio"],
 	&[role="switch"] {

@@ -1,14 +1,14 @@
 import type { RouteRecordRaw } from 'vue-router';
 import Switch from '../components/switch/Switch.vue';
 import Tabs from '../components/tabs/Tabs.vue';
-import Tab from '../components/tab/Tab.vue';
+import TabItem from '../components/tab-item/TabItem.vue';
 import Tooltip from '../components/tooltip/Tooltip.vue';
 import Popover from '../components/popover/Popover.vue';
 import AccordionItem from '../components/accordion-item/AccordionItem.vue';
 import Accordion from '../components/accordion/Accordion.vue';
 import Badge from '../components/badge/Badge.vue';
 import NavigationItem from '../components/navigation-item/NavigationItem.vue';
-import MainNavigation from '../components/main-navigation/MainNavigation.vue';
+import Navigation from '../components/navigation/Navigation.vue';
 import Select from '../components/select/Select.vue';
 import Tag from '../components/tag/Tag.vue';
 import Form from '../components/form/Form.vue';
@@ -24,6 +24,7 @@ import Infotext from '../components/infotext/Infotext.vue';
 import Radio from '../components/radio/Radio.vue';
 import Section from '../components/section/Section.vue';
 import Textarea from '../components/textarea/Textarea.vue';
+import Brand from '../components/brand/Brand.vue';
 import Icon from '../components/icon/Icon.vue';
 
 export type NavItem = {
@@ -62,9 +63,9 @@ export const navigationItems: NavItem[] = [
 				component: NavigationItem
 			},
 			{
-				path: '/05/main-navigation',
-				label: 'MainNavigation',
-				component: MainNavigation
+				path: '/05/navigation',
+				label: 'Navigation',
+				component: Navigation
 			}
 		])
 	},
@@ -73,6 +74,11 @@ export const navigationItems: NavItem[] = [
 		path: '/04',
 		label: '04 Data-Display',
 		subNavigation: getSortedNavigationItems([
+			{
+				path: '/04/brand',
+				label: 'Brand',
+				component: Brand
+			},
 			{
 				path: '/04/infotext',
 				label: 'Infotext',
@@ -91,7 +97,7 @@ export const navigationItems: NavItem[] = [
 				component: AccordionItem
 			},
 			{ path: '/04/tooltip', label: 'Tooltip', component: Tooltip },
-			{ path: '/04/tab', label: 'Tab', component: Tab },
+			{ path: '/04/tab-item', label: 'TabItem', component: TabItem },
 
 			{ path: '/04/tabs', label: 'Tabs', component: Tabs }
 		])

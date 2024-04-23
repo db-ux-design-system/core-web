@@ -21,6 +21,7 @@ import {
 } from '../../shared/constants';
 import { DBInfotext } from '../infotext';
 import { ChangeEvent, ClickEvent, InteractionEvent } from '../../shared/model';
+import { handleFrameworkEvent } from '../../utils/form-components';
 
 useMetadata({
 	isAttachedToShadowDom: true
@@ -49,14 +50,8 @@ export default function DBSelect(props: DBSelectProps) {
 			if (props.change) {
 				props.change(event);
 			}
-			const target = event.target as HTMLSelectElement;
 
-			// TODO: Replace this with the solution out of https://github.com/BuilderIO/mitosis/issues/833 after this has been "solved"
-			// VUE:this.$emit("update:value", target.value);
-
-			// Change event to work with reactive and template driven forms
-			// ANGULAR: this.propagateChange(target.value);
-			// ANGULAR: this.writeValue(target.value);
+			handleFrameworkEvent(this, event);
 		},
 		handleBlur: (event: InteractionEvent<HTMLSelectElement>) => {
 			if (props.onBlur) {
@@ -78,6 +73,16 @@ export default function DBSelect(props: DBSelectProps) {
 		},
 		getOptionLabel: (option: DBSelectOptionType) => {
 			return option.label ?? option.value.toString();
+		},
+		getValidMessage: () => {
+			return props.validMessage || DEFAULT_VALID_MESSAGE;
+		},
+		getInvalidMessage: () => {
+			return (
+				props.invalidMessage ||
+				ref?.validationMessage ||
+				DEFAULT_INVALID_MESSAGE
+			);
 		}
 	});
 
@@ -108,8 +113,9 @@ export default function DBSelect(props: DBSelectProps) {
 			data-icon={props.icon}>
 			<label htmlFor={state._id}>{props.label ?? DEFAULT_LABEL}</label>
 			<select
+				aria-invalid={props.customValidity === 'invalid'}
+				data-custom-validity={props.customValidity}
 				ref={ref}
-				aria-invalid={props.invalid}
 				required={props.required}
 				disabled={props.disabled}
 				id={state._id}
@@ -187,14 +193,14 @@ export default function DBSelect(props: DBSelectProps) {
 				id={state._validMessageId}
 				size="small"
 				semantic="successful">
-				{props.validMessage || DEFAULT_VALID_MESSAGE}
+				{state.getValidMessage()}
 			</DBInfotext>
 
 			<DBInfotext
 				id={state._invalidMessageId}
 				size="small"
 				semantic="critical">
-				{props.invalidMessage || DEFAULT_INVALID_MESSAGE}
+				{state.getInvalidMessage()}
 			</DBInfotext>
 		</div>
 	);

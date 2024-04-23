@@ -9,7 +9,7 @@ import {
 	// @ts-ignore - vue can only find it with .ts as file ending
 } from '../../shared/constants.ts';
 
-const comp = <DBNotification>Test</DBNotification>;
+const comp: any = <DBNotification>Test</DBNotification>;
 
 const testComponent = () => {
 	test(`should contain text`, async ({ mount }) => {
@@ -28,24 +28,32 @@ const testVariants = () => {
 		test(`should match screenshot for semantic ${semantic}`, async ({
 			mount
 		}) => {
-			const component = await mount(
+			const variantComp: any = (
 				<DBNotification semantic={semantic}>Test</DBNotification>
 			);
+			const component = await mount(variantComp);
 			await expect(component).toHaveScreenshot();
 		});
 	}
 };
 
-test.describe('DBNotification', () => {
-	test.use({ viewport: DEFAULT_VIEWPORT });
-	testComponent();
-});
-test.describe('DBNotification', () => {
-	test.use({ viewport: DEFAULT_VIEWPORT });
-	testVariants();
-});
+const testAction = () => {
+	test(`should be closeable`, async ({ mount }) => {
+		let close = '';
+		const closeable: any = (
+			<DBNotification
+				onClose={() => (close = 'test')}
+				behaviour="closable">
+				Test
+			</DBNotification>
+		);
+		const component = await mount(closeable);
+		await component.getByRole('button').click();
+		expect(close).toEqual('test');
+	});
+};
 
-test.describe('DBNotification', () => {
+const testA11y = () => {
 	test('should not have any accessibility issues', async ({
 		page,
 		mount
@@ -57,4 +65,12 @@ test.describe('DBNotification', () => {
 
 		expect(accessibilityScanResults.violations).toEqual([]);
 	});
+};
+
+test.describe('DBNotification', () => {
+	test.use({ viewport: DEFAULT_VIEWPORT });
+	testComponent();
+	testVariants();
+	testA11y();
+	testAction();
 });

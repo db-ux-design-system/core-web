@@ -31,6 +31,8 @@
     "rm-builds:components-build": "rimraf ../packages/components/build",
     "rm-builds:dist": "rimraf -g showcases/**/dist",
     "rm-builds:foundations-build": "rimraf ../packages/foundations/build",
+    "rm-builds:output-dist": "rimraf -g ../output/**/dist",
+    "rm-builds:output-playwright": "rimraf -g ../output/**/playwright",
     "rm-builds:outputs": "rimraf -g ../output/**/src",
     "rm-builds:patternhub-out": "rimraf -g showcases/patternhub/out",
     "rm-builds:patternhub-pages": "rimraf -g ../showcases/patternhub/pages/components/*/*",

@@ -1,1 +1,0 @@
-export { DBPage } from './page';

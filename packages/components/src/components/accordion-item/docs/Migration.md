@@ -15,7 +15,7 @@
 
 | Before     | Status | After      | Description                                                 |
 | ---------- | :----: | ---------- | ----------------------------------------------------------- |
-| `summary`  |   🔁   | `title`    | The title/summary of the details element.                   |
+| `summary`  |   🔁   | `headline` | The title/summary of the details element.                   |
 | `emphasis` |   ❌   | ❌         | There is no emphasis anymore.                               |
 | `size`     |   ❌   | ❌         | Controlled by the density.                                  |
 |            |   🆕   | `disabled` | Disable the component.                                      |

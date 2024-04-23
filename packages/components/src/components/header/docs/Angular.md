@@ -17,7 +17,7 @@ import {
   // ...
   imports: [
 	// ...,
-	DBHeader
+	DBHeader,
     NavigationDirective, // Optional: If you want to use a Navigation
 	ActionBarDirective, // Optional: If you want to use ActionBar
 	MetaNavigationDirective, // Optional: If you want to use MetaNavigation
@@ -61,20 +61,20 @@ export class AppComponent {
 <!-- app.component.html -->
 <db-header [drawerOpen]="drawerOpen" (onToggle)="toggleDrawer($event)">
 	<db-brand brand>My Awesome App</db-brand>
-	<db-main-navigation *dbNavigation>
-		<!-- https://github.com/db-ui/mono/blob/main/packages/components/src/components/main-navigation/docs/Angular.md -->
-	</db-main-navigation>
+	<db-navigation *dbNavigation>
+		<!-- https://github.com/db-ui/mono/blob/main/packages/components/src/components/navigation/docs/Angular.md -->
+	</db-navigation>
 	<ng-container *dbMetaNavigation>
 		<DBLink href="#">Imprint</DBLink>
 		<DBLink href="#">Help</DBLink>
 	</ng-container>
 	<ng-container call-to-action>
-		<DBButton icon="search" variant="ghost" [noText]="true">
+		<DBButton icon="magnifying_glass" variant="ghost" [noText]="true">
 			Search
 		</DBButton>
 	</ng-container>
 	<ng-container *dbActionBar>
-		<DBButton icon="account" variant="ghost" [noText]="true">
+		<DBButton icon="user" variant="ghost" [noText]="true">
 			Profile
 		</DBButton>
 		<DBButton icon="alert" variant="ghost" [noText]="true">

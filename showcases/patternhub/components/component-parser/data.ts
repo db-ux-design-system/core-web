@@ -13,7 +13,7 @@ export type ComponentType = {
 		| 'tab-bar'
 		| 'tooltip'
 		| 'popover'
-		| 'main-navigation'
+		| 'navigation'
 		| 'accordion-item'
 		| 'accordion'
 		| 'textarea'

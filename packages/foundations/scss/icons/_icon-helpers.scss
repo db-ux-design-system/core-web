@@ -6,7 +6,7 @@
 
 $default-icon-size: 24;
 $default-icon-size-rem: #{helpers.to-rem($default-icon-size)};
-$default-icon-variants: "default", "inverted", "solid";
+$default-icon-variants: "default", "inverted", "filled";
 
 $default-icon-content: var(--db-icon, attr(data-icon));
 $default-icon-content-after: var(--db-icon-after, attr(data-icon-after));
@@ -39,12 +39,20 @@ $default-icon-font-size: var(--db-icon-font-size, #{$default-icon-size-rem});
 	@return 32;
 }
 
-@mixin to-solid-icon($position: "before") {
+@mixin icon-content($icon) {
+	content: $icon;
+	// Hiding icon from screenreaders, https://www.w3.org/TR/css-content-3/#alt
+	@supports (content: ""/"") {
+		content: $icon / "";
+	}
+}
+
+@mixin to-filled-icon($position: "before") {
 	@if $position == "before" {
-		--db-icon-font-family: "db-ux-solid";
+		--db-icon-font-family: "db-ux-filled";
 	}
 	@if $position == "after" {
-		--db-icon-font-family: "db-ux-solid";
+		--db-icon-font-family: "db-ux-filled";
 	}
 }
 
@@ -60,7 +68,7 @@ $default-icon-font-size: var(--db-icon-font-size, #{$default-icon-size-rem});
 			}
 			@if $position == "after" {
 				--db-icon-after: "#{$icon}";
-				content: $default-icon-content-after;
+				@include icon-content($default-icon-content-after);
 				margin-inline-start: $default-icon-margin-start;
 			}
 		}
@@ -92,11 +100,11 @@ $default-icon-font-size: var(--db-icon-font-size, #{$default-icon-size-rem});
 	@include has-no-icon() {
 		&::before {
 			@if ($variant == "critical") {
-				--db-icon: "error";
+				--db-icon: "exclamation_mark_circle";
 			} @else if ($variant == "informational" or $variant == "neutral") {
-				--db-icon: "info";
+				--db-icon: "information_circle";
 			} @else if ($variant == "warning") {
-				--db-icon: "warning";
+				--db-icon: "warning_triangle";
 			} @else if ($variant == "successful") {
 				--db-icon: "check_circle";
 			}
@@ -105,11 +113,11 @@ $default-icon-font-size: var(--db-icon-font-size, #{$default-icon-size-rem});
 }
 
 %icon {
+	@include icon-content($default-icon-content); // TODO: ONLY FOR data-icon
 	// Hiding icon from screenreaders
 	-webkit-alt: "";
 	alt: "";
 
-	content: $default-icon-content; // TODO: ONLY FOR data-icon
 	color: var(--db-current-icon-color, inherit);
 
 	display: inline-block;

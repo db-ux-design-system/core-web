@@ -17,6 +17,7 @@
   ],
   "scripts": {
     "build": "npm-run-all build:*",
+    "build:01_normalize": "npm run copy-normalize",
     "build:02_copy": "npm run copy:scss",
     "build:03_css": "sass --no-source-map --load-path=node_modules/ --load-path=../../node_modules/ build/scss/:build/css/ --future-deprecation=import",
     "build:04_tailwind": "cpr tailwind build/tailwind -o",
@@ -27,22 +28,22 @@
     "copy-build:package.json": "cpr package.json ../../build-outputs/foundations/package.json -o",
     "copy-build:readme": "cpr README.md ../../build-outputs/foundations/README.md -o",
     "copy-build:web": "cpr build ../../build-outputs/foundations/build -o",
+    "copy-normalize": "cpr ../../node_modules/@csstools/normalize.css/normalize.css scss/_normalize.scss -o",
     "copy:scss": "cpr scss build/scss -o",
     "dev": "vite --open",
-    "generate:icon-fonts": "npx @db-ui/gif --src ./assets/icons/functional --variants solid inverted --cleanIgnoreVariants default,all --prefix db_ic_ --fontName db-ux --withSizes true --debug true",
+    "generate:icon-fonts": "npx @db-ui/gif --src ./assets/icons/functional --variants filled inverted --fontName db-ux --withSizes true --debug true",
+    "prepare": "npm run copy-normalize",
     "regenerate:screenshots": "npx playwright test -c ./test/playwright.config.mjs --update-snapshots",
     "start": "nodemon --watch tokens/ --watch scss --watch scripts -e json,scss,js -x \"npm run build\"",
     "test:e2e": "npx playwright test --config=./test/playwright.config.mjs"
   },
-  "dependencies": {
-    "@csstools/normalize.css": "12.1.1"
-  },
   "devDependencies": {
+    "@csstools/normalize.css": "12.1.1",
     "cpr": "3.0.1",
     "cssnano": "^6.1.2",
     "dotenv": "^16.4.5",
     "nodemon": "3.1.0",
-    "sass": "^1.72.0"
+    "sass": "^1.75.0"
   },
   "publishConfig": {
     "registry": "https://registry.npmjs.org/",

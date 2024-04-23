@@ -19,6 +19,13 @@
 | 🔄 moved `_font-sizes.scss`        | We moved the file to another folder to align the same structure as icons or colors. We add `css` classes, you can use them by importing `@db-ui/foundations/scss/fonts/classes/all.css`                                                                   | If you use some placeholder like `%db-overwrite-font-size-sm` you might need to import the `_font-sizes.scss` like this: `@use "@db-ui/foundations/build/scss/fonts";`                                        |
 | 🔄 ❗ refactored `colors`          | All colors changed. We use color-palettes to generate speaking-names (check `@db-ui/foundations/scss/colors/_variables.scss` to see a list of available tokens). We removed `base` color, it was the same like `neutral`. Add different background level. | 1. Replace all `base` colors with `neutral`<br/>2. If you use the color class replace `db-bg-x` with `db-x-bg-lvl-1`<br/>3. Replace `border-strong`/ `border-weak` tokens with `contrast-high`/`contrast-low` |
 
+### Internal
+
+| Name                              | Description                                                                                | Action |
+| --------------------------------- | ------------------------------------------------------------------------------------------ | ------ |
+| ❌ removed `style-dictonary`      | all variables will be generated in [theme-builder](https://github.com/db-ui/theme-builder) | ---    |
+| ❌ removed `zeplin-styleguide.js` | we use `Figma` in the future                                                               | ---    |
+
 ## Components
 
 > **Note**: All components have different colors and opacities based on the changes in foundations.
@@ -31,13 +38,26 @@
 >
 > The prop labelVariant for form-components (input, checkbox, ...) has been renamed to `variant`.
 
-| Name                                       | Description                                                                   | Action                                                                                                                                                                                                     |
+Some components may have different dimensions based on changes of spacing tokens.
+
+We removed the default elevation (box-shadow) for card and some card-like components.
+
+The prop variant (`variant="informational"`,`variant="successful"`,`variant="warning"`,`variant="critical"`) has been renamed to `semantic`.
+
+The prop labelVariant for form-components (input, checkbox, ...) has been renamed to `variant`.
+
+| Name                                                                                                           | Description                                                                                                                             | Action                                                                                                                                                                                                                                                    |
+| -------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 🔄 renamed `db-alert` to `db-notification`                                                                     | renamed `alert` to `notification` and add/changed some additional properties                                                            | 1. Replace `DBAlert`, `db-alert` by `DBNotification` / `db-notification`<br/>2. `Link` was removed, add a normal `a` or `DBLink` to the `slotLink`<br/>3. `props.type` has been changed to `props.variant`<br/>4. `onClick` has been changed to `onClose` |
+| 🔄 renamed `db-main-navigation` to `db-navigation`                                                             | renamed `main-navigation` to `navigation`                                                                                               | Replace `DBMainNavigation`, `db-main-navigation` by `DBNavigation` / `db-navigation`                                                                                                                                                                      |
 | ------------------------------------------ | ----------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | 🔄 renamed `db-alert` to `db-notification` | renamed `alert` to `notification` and add/changed some additional properties  | 1. Replace `DBAlert`, `db-alert` by `DBNotification` / `db-notification`<br/>2. `Link` was removed, add a normal `a` or `DBLink` to the `slotLink`<br/>3. `props.type` has been changed to `props.variant` |
-| 🔄 changed `db-button` variants            | We renamed the variants for the button                                        | `primary` ➡ `brand`<br/>`solid` ➡ `filled`<br/>`text` ➡ `ghost`                                                                                                                                         |
-| 🔄 changed `db-card` elevation             | We replaced the box-shadow elevation with bg-level                            | 1. `props.elevation` ➡ `props.elevationLevel` (1,2,3) <br/>2. `props.variant` ➡ `props.behaviour` <br/>3. Removed card-image                                                                             |
-| 🆕 valid/invalid message form-components   | We add additional messages for `required` form-components like `DBInput` etc. | Use `validMessage="XXX"` and `invalidMessage="XXX"` to display the required information for form-components. Otherwise you will see a default message with a `TODO: ...`                                   |
-| 🔄 changed `db-link` variant               | We renamed the variants for the link                                          | `primary` ➡ `brand`                                                                                                                                                                                       |
+| 🔄 changed `db-button` variants                                                                                | We renamed the variants for the button                                                                                                  | `primary` ➡ `brand`<br/>`solid` ➡ `filled`<br/>`text` ➡ `ghost`                                                                                                                                                                                        |
+| 🔄 changed `db-card` elevation                                                                                 | We replaced the box-shadow elevation with bg-level                                                                                      | 1. `props.elevation` ➡ `props.elevationLevel` (1,2,3) <br/>2. `props.variant` ➡ `props.behaviour` <br/>3. Removed card-image                                                                                                                            |
+| 🆕 valid/invalid message form-components                                                                       | We add additional messages for `required` form-components like `DBInput` etc.                                                           | Use `validMessage="XXX"` and `invalidMessage="XXX"` to display the required information for form-components. Otherwise you will see a default message with a `TODO: ...`                                                                                  |
+| 🔄 changed `db-link` variant                                                                                   | We renamed the variants for the link                                                                                                    | `primary` ➡ `brand`                                                                                                                                                                                                                                      |
+| ❌ removed `data-variant="information/critical/..."` for form-components like `input`, `select` and `textarea` | We don't support the colors changes anymore. Use `required`, `pattern`, `min` etc. to trigger `user-valid` for green and red components | `data-variant` changes the label variant now                                                                                                                                                                                                              |
+| 🔄 changed `db-accordion` title                                                                                | We replaced `title` with `headlinePlain` because there is already a html default `title`, which caused trouble                          | Rename `title` to `headlinePlain` or use the slot `headline`                                                                                                                                                                                              |
 
 ### React
 
@@ -52,3 +72,14 @@ becomes
 ```tsx
 <DBHeader brand={...
 ```
+
+This is related to the following properties:
+
+-   `slotHeader`
+-   `slotBrand`
+-   `slotMetaNavigation`
+-   `slotCallToAction`
+-   `slotActionBar`
+-   `slotHeadline`
+-   `slotDrawerHeader`
+-   `slotSubNavigation`

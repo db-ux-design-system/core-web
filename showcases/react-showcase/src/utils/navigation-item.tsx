@@ -1,11 +1,11 @@
 import SwitchComponent from '../components/switch';
 import TabsComponent from '../components/tabs';
-import TabComponent from '../components/tab';
+import TabItemComponent from '../components/tab-item';
 import TooltipComponent from '../components/tooltip';
 import PopoverComponent from '../components/popover';
 import AccordionItemComponent from '../components/accordion-item';
 import AccordionComponent from '../components/accordion';
-import MainNavigationComponent from '../components/main-navigation';
+import NavigationComponent from '../components/navigation';
 import BadgeComponent from '../components/badge';
 import NavigationItemComponent from '../components/navigation-item';
 import CheckboxComponent from '../components/checkbox';
@@ -24,6 +24,7 @@ import LinkComponent from '../components/link';
 import SectionComponent from '../components/section';
 import TextareaComponent from '../components/textarea';
 import IconComponent from '../components/icon';
+import BrandComponent from '../components/brand';
 
 export type NavigationItem = {
 	path: string;
@@ -62,21 +63,9 @@ export const NAVIGATION_ITEMS: NavigationItem[] = [
 				component: <NavigationItemComponent />
 			},
 			{
-				path: 'main-navigation',
-				label: 'MainNavigation',
-				component: <MainNavigationComponent />
-			},
-
-			{
-				path: 'test',
-				label: 'Test',
-				subNavigation: [
-					{
-						path: 'test2',
-						label: 'NavigationItem',
-						component: <NavigationItemComponent />
-					}
-				]
+				path: 'navigation',
+				label: 'Navigation',
+				component: <NavigationComponent />
 			}
 		])
 	},
@@ -85,6 +74,11 @@ export const NAVIGATION_ITEMS: NavigationItem[] = [
 		path: '04',
 		label: '04 Data-Display',
 		subNavigation: getSortedNavigationItems([
+			{
+				path: 'brand',
+				label: 'Brand',
+				component: <BrandComponent />
+			},
 			{
 				path: 'infotext',
 				label: 'Infotext',
@@ -112,9 +106,9 @@ export const NAVIGATION_ITEMS: NavigationItem[] = [
 				component: <AccordionItemComponent />
 			},
 			{
-				path: 'tab',
-				label: 'Tab',
-				component: <TabComponent />
+				path: 'tab-item',
+				label: 'TabItem',
+				component: <TabItemComponent />
 			},
 			{ path: 'tabs', label: 'Tabs', component: <TabsComponent /> }
 		])

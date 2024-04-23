@@ -27,7 +27,7 @@ $interactive-selectors: "label, button:not(.db-tab-remove-button), a";
 			@extend %db-#{$name}-bg-lvl-1;
 
 			&[data-emphasis="strong"] {
-				@extend %db-#{$name}-contrast-high;
+				@extend %db-#{$name}-component;
 			}
 		}
 	}

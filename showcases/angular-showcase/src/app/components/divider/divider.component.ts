@@ -1,8 +1,7 @@
 import { Component } from '@angular/core';
 import defaultComponentVariants from '../../../../../shared/divider.json';
 import { DefaultComponent } from '../default.component';
-import { DBDivider } from '../../../../../../output/angular/src/components/divider/divider';
-import { DBInfotext } from '../../../../../../output/angular/src/components/infotext';
+import { DBDivider, DBInfotext } from '../../../../../../output/angular/src';
 
 @Component({
 	selector: 'app-divider',

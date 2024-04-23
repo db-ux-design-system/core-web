@@ -1,8 +1,7 @@
 import { Component } from '@angular/core';
 import defaultComponentVariants from '../../../../../shared/icon.json';
 import { DefaultComponent } from '../default.component';
-import { DBIcon } from '../../../../../../output/angular/src/components/icon/icon';
-import { DBInfotext } from '../../../../../../output/angular/src/components/infotext';
+import { DBIcon, DBInfotext } from '../../../../../../output/angular/src';
 
 @Component({
 	selector: 'app-icon',

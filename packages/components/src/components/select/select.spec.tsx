@@ -5,7 +5,7 @@ import { DBSelect } from './index';
 // @ts-ignore - vue can only find it with .ts as file ending
 import { DEFAULT_VIEWPORT } from '../../shared/constants.ts';
 
-const comp = (
+const comp: any = (
 	<DBSelect id="test" label="Label" message="Description">
 		<option value="test1">Test1</option>
 		<option value="test2">Test2</option>
@@ -23,13 +23,7 @@ const testComponent = () => {
 		await expect(component).toHaveScreenshot();
 	});
 };
-
-test.describe('DBSelect', () => {
-	test.use({ viewport: DEFAULT_VIEWPORT });
-	testComponent();
-});
-
-test.describe('DBSelect', () => {
+const testA11y = () => {
 	test('should not have A11y issues', async ({ page, mount }) => {
 		await mount(comp);
 		const accessibilityScanResults = await new AxeBuilder({ page })
@@ -40,4 +34,33 @@ test.describe('DBSelect', () => {
 
 		expect(accessibilityScanResults.violations).toEqual([]);
 	});
+};
+
+const testAction = () => {
+	test('should change on select', async ({ page, mount }) => {
+		let test: string = '';
+		const comp: any = (
+			<DBSelect
+				label="Label"
+				onInput={() => {
+					test = 'test1';
+				}}>
+				<option data-testid="option1" value="test1">
+					Test1
+				</option>
+				<option value="test2">Test2</option>
+			</DBSelect>
+		);
+		const component = await mount(comp);
+		const select = component.getByRole('combobox');
+		const selected = await select.selectOption({ label: 'Test1' });
+		expect(selected).toContain(test);
+	});
+};
+
+test.describe('DBSelect', () => {
+	test.use({ viewport: DEFAULT_VIEWPORT });
+	testComponent();
+	testA11y();
+	testAction();
 });

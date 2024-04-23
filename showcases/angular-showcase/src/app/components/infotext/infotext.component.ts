@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import defaultComponentVariants from '../../../../../shared/infotext.json';
 import { DefaultComponent } from '../default.component';
-import { DBInfotext } from '../../../../../../output/angular/src/components/infotext';
+import { DBInfotext } from '../../../../../../output/angular/src';
 
 @Component({
 	selector: 'app-infotext',

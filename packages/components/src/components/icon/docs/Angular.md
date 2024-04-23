@@ -20,5 +20,5 @@ import { DBIcon } from '@db-ui/ngx-components';
 
 ```html app.component.html
 <!-- app.component.html -->
-<db-icon icon="account">Icon</db-icon>
+<db-icon icon="user">Icon</db-icon>
 ```

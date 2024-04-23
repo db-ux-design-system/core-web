@@ -17,6 +17,18 @@ module.exports = () => {
 						`./src/components/${name}/${name}.spec.tsx`,
 						`../../output/${framework}/src/components/${name}/${name}.spec.tsx`
 					);
+					if (framework === 'vue') {
+						Replace({
+							files: `../../output/${framework}/src/components/${name}/${name}.spec.tsx`,
+							from: ['{/*', '*/}'],
+							to: ''
+						});
+						Replace({
+							files: `../../output/${framework}/src/components/${name}/${name}.spec.tsx`,
+							from: /\/\/ VUE:/g,
+							to: ''
+						});
+					}
 				}
 				Fse.copySync(
 					`./test/playwright/boilerplate`,

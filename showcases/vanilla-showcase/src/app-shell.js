@@ -102,7 +102,7 @@ const getAppShell = (content) =>
 			<db-brand slot="brand" anchorChildren="true" insideHeader="true">Vanilla Showcase</db-brand>
 			${getNavigation(true)}
 			${getNavigation(false)}
-			<db-button slot="call-to-action" variant="ghost" icon="search">Search</db-button>
+			<db-button slot="call-to-action" variant="ghost" icon="magnifying_glass">Search</db-button>
 			${getActionBar(true)}
 			${getActionBar(false)}
 			${getMetaNavigation(true)}

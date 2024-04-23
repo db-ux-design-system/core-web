@@ -46,20 +46,23 @@ const componentChildren: NavigationItem[] = [
 			},
 			{
 				label: 'DBAccordion',
-				name: 'accordion'
-			},
-			{
-				label: 'DBAccordionItem',
-				name: 'accordion-item'
+				name: 'accordion',
+				subNavigation: [
+					{
+						label: 'DBAccordionItem Properties',
+						path: `/components/accordion-item/properties`
+					}
+				]
 			},
 			{
 				label: 'DBTabs',
-				name: 'tabs'
-			},
-
-			{
-				label: 'DBTab',
-				name: 'tab'
+				name: 'tabs',
+				subNavigation: [
+					{
+						label: 'DBTabItem Properties',
+						path: `/components/tab-item/properties`
+					}
+				]
 			}
 		]
 	},
@@ -82,10 +85,6 @@ const componentChildren: NavigationItem[] = [
 			{
 				label: 'DBSelect',
 				name: 'select'
-			},
-			{
-				label: 'DBSwitch',
-				name: 'switch'
 			},
 			{
 				label: 'DBTextarea',
@@ -142,12 +141,14 @@ const componentChildren: NavigationItem[] = [
 		path: '/components/navigation',
 		subNavigation: [
 			{
-				label: 'DBMainNavigation',
-				name: 'main-navigation'
-			},
-			{
-				label: 'DBNavigationItem',
-				name: 'navigation-item'
+				label: 'DBNavigation',
+				name: 'navigation',
+				subNavigation: [
+					{
+						label: 'DBNavigationItem Properties',
+						path: `/components/navigation-item/properties`
+					}
+				]
 			}
 		]
 	},
@@ -236,6 +237,7 @@ export const ROUTES: NavigationItem[] = [
 		path: '/components',
 		subNavigation: [
 			{ label: 'Readme', path: '/components/readme' },
+			{ label: 'Router usage', path: '/components/router-usage' },
 			{ label: 'Validation', path: '/components/validation' },
 			...componentChildren.map((category) => ({
 				...category,
@@ -258,7 +260,8 @@ export const ROUTES: NavigationItem[] = [
 						{
 							label: 'Migration',
 							path: `/components/${component.name}/migration`
-						}
+						},
+						...(component.subNavigation ?? [])
 					]
 				}))
 			}))

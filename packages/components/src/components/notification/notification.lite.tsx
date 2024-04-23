@@ -45,7 +45,7 @@ export default function DBNotification(props: DBNotificationProps) {
 			<Show when={props.behaviour !== 'permanent'}>
 				<DBButton
 					id={props.closeButtonId}
-					icon="close"
+					icon="cross"
 					variant="ghost"
 					size="small"
 					noText

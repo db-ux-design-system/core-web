@@ -11,7 +11,7 @@ import { DBSimpleTabProps, DBTabsProps, DBTabsState } from './model';
 import { cls, uuid } from '../../utils';
 import { DBButton } from '../button';
 import { DBTabList } from '../tab-list';
-import { DBTab } from '../tab';
+import { DBTabItem } from '../tab-item';
 import { DBTabPanel } from '../tab-panel';
 import { DEFAULT_ID } from '../../shared/constants';
 
@@ -79,19 +79,12 @@ export default function DBTabs(props: DBTabsProps) {
 						}
 
 						if (props.behaviour === 'arrows') {
-							const scrollContainers =
-								firstTabList.getElementsByClassName(
-									'db-tab-list-scroll-container'
-								);
-
-							if (scrollContainers?.length > 0) {
-								const container = scrollContainers.item(0);
-								state.scrollContainer = container;
+							const container = firstTabList.querySelector('ul');
+							state.scrollContainer = container;
+							state.evaluateScrollButtons(container);
+							container.addEventListener('scroll', () => {
 								state.evaluateScrollButtons(container);
-								container.addEventListener('scroll', () => {
-									state.evaluateScrollButtons(container);
-								});
-							}
+							});
 						}
 					}
 				}
@@ -99,49 +92,27 @@ export default function DBTabs(props: DBTabsProps) {
 		},
 		initTabs(init?: boolean) {
 			if (ref) {
-				const tabs = ref.getElementsByClassName('db-tab');
-				if (tabs?.length > 0) {
-					Array.from<Element>(tabs).forEach(
-						(tab: Element, index: number) => {
-							const attributes = tab.getAttributeNames();
-							if (!attributes.includes('data-width')) {
-								tab.setAttribute(
-									'data-width',
-									props.width || 'auto'
-								);
-							}
-							if (!attributes.includes('data-alignment')) {
-								tab.setAttribute(
-									'data-alignment',
-									props.alignment || 'start'
-								);
-							}
-							if (!attributes.includes('data-orientation')) {
-								tab.setAttribute(
-									'data-orientation',
-									props.orientation || 'horizontal'
-								);
-							}
+				const tabItems = ref.getElementsByClassName('db-tab-item');
+				if (tabItems?.length > 0) {
+					Array.from<Element>(tabItems).forEach(
+						(tabItem: Element, index: number) => {
+							const label = tabItem.querySelector('label');
+							const input = tabItem.querySelector('input');
 
-							const input = tab.getElementsByTagName('input');
-							if (input.length > 0) {
-								const firstInput = input[0];
-								if (firstInput.id === DEFAULT_ID) {
+							if (input && label) {
+								if (input.id === DEFAULT_ID) {
 									const tabId = `${state._name}-tab-${index}`;
-									tab.setAttribute('for', tabId);
-									tab.setAttribute(
+									label.setAttribute('for', tabId);
+									label.setAttribute(
 										'aria-controls',
 										`${state._name}-tab-panel-${index}`
 									);
-									firstInput.id = tabId;
-									firstInput.setAttribute(
-										'name',
-										state._name
-									);
+									input.id = tabId;
+									input.setAttribute('name', state._name);
 								}
 
-								// Auto select
 								if (init) {
+									// Auto select
 									const autoSelect =
 										!props.initialSelectedMode ||
 										props.initialSelectedMode === 'auto';
@@ -151,7 +122,7 @@ export default function DBTabs(props: DBTabsProps) {
 											index === 0) ||
 										props.initialSelectedIndex === index;
 									if (autoSelect && shouldAutoSelect) {
-										firstInput.click();
+										input.click();
 									}
 								}
 							}
@@ -221,7 +192,9 @@ export default function DBTabs(props: DBTabsProps) {
 			id={state._id}
 			class={cls('db-tabs', props.className)}
 			data-orientation={props.orientation}
-			data-scroll-behaviour={props.behaviour}>
+			data-scroll-behaviour={props.behaviour}
+			data-alignment={props.alignment ?? 'start'}
+			data-width={props.width ?? 'auto'}>
 			<Show when={state.showScrollLeft}>
 				<DBButton
 					className="tabs-scroll-left"
@@ -236,12 +209,10 @@ export default function DBTabs(props: DBTabsProps) {
 				<DBTabList>
 					<For each={state.convertTabs(props.tabs)}>
 						{(tab: DBSimpleTabProps, index: number) => (
-							<DBTab
-								key={props.name + 'tab' + index}
+							<DBTabItem
+								key={props.name + 'tab-item' + index}
 								active={tab.active}
 								label={tab.label}
-								alignment={tab.alignment}
-								width={tab.width}
 								iconAfter={tab.iconAfter}
 								icon={tab.icon}
 								noText={tab.noText}

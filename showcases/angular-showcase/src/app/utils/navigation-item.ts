@@ -1,7 +1,7 @@
 import { Routes } from '@angular/router';
 import { SwitchComponent } from '../components/switch/switch.component';
 import { TabsComponent } from '../components/tabs/tabs.component';
-import { TabComponent } from '../components/tab/tab.component';
+import { TabItemComponent } from '../components/tab-item/tab-item.component';
 import { TooltipComponent } from '../components/tooltip/tooltip.component';
 import { PopoverComponent } from '../components/popover/popover.component';
 import { AccordionItemComponent } from '../components/accordion-item/accordion-item.component';
@@ -9,7 +9,7 @@ import { AccordionComponent } from '../components/accordion/accordion.component'
 import { TextareaComponent } from '../components/textarea/textarea.component';
 import { BadgeComponent } from '../components/badge/badge.component';
 import { NavigationItemComponent } from '../components/navigation-item/navigation-item.component';
-import { MainNavigationComponent } from '../components/main-navigation/main-navigation.component';
+import { NavigationComponent } from '../components/navigation/navigation.component';
 import { SelectComponent } from '../components/select/select.component';
 import { TagComponent } from '../components/tag/tag.component';
 import { InputComponent } from '../components/input/input.component';
@@ -25,6 +25,7 @@ import { CardComponent } from '../components/card/card.component';
 import { DividerComponent } from '../components/divider/divider.component';
 import { DrawerComponent } from '../components/drawer/drawer.component';
 import { IconComponent } from '../components/icon/icon.component';
+import { BrandComponent } from '../components/brand/brand.component';
 
 export type NavItem = {
 	path: string;
@@ -62,9 +63,9 @@ export const NAVIGATION_ITEMS: NavItem[] = [
 				component: NavigationItemComponent
 			},
 			{
-				path: '05/main-navigation',
-				label: 'MainNavigation',
-				component: MainNavigationComponent
+				path: '05/navigation',
+				label: 'Navigation',
+				component: NavigationComponent
 			}
 		])
 	},
@@ -74,6 +75,11 @@ export const NAVIGATION_ITEMS: NavItem[] = [
 		label: '04 Data-Display',
 		subNavigation: getSortedNavigationItems([
 			{ path: '04/icon', label: 'Icon', component: IconComponent },
+			{
+				path: '04/brand',
+				label: 'Brand',
+				component: BrandComponent
+			},
 			{
 				path: '04/tooltip',
 				label: 'Tooltip',
@@ -95,7 +101,11 @@ export const NAVIGATION_ITEMS: NavItem[] = [
 				label: 'AccordionItem',
 				component: AccordionItemComponent
 			},
-			{ path: '04/tab', label: 'Tab', component: TabComponent },
+			{
+				path: '04/tab-item',
+				label: 'TabItem',
+				component: TabItemComponent
+			},
 
 			{ path: '04/tabs', label: 'Tabs', component: TabsComponent }
 		])

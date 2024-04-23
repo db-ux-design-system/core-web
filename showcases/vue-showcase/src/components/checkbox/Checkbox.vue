@@ -18,7 +18,6 @@ import { DBCheckbox } from "../../../../../output/vue/src";
 				:value="exampleProps.value"
 				:required="exampleProps.required"
 				:indeterminate="exampleProps.indeterminate"
-				:invalid="exampleProps.invalid"
 				:size="exampleProps.size"
 				>{{ exampleName }}</DBCheckbox
 			>

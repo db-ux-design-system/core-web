@@ -3,7 +3,7 @@ import DBSwitch from '../src/components/switch/switch';
 import DBTabPanel from '../src/components/tab-panel/tab-panel';
 import DBTabs from '../src/components/tabs/tabs';
 import DBTabList from '../src/components/tab-list/tab-list';
-import DBTab from '../src/components/tab/tab';
+import DBTabItem from '../src/components/tab-item/tab-item';
 import DBTooltip from '../src/components/tooltip/tooltip';
 import DBPopover from '../src/components/popover/popover';
 import {
@@ -19,7 +19,7 @@ import {
 	DBInput,
 	DBLink,
 	DBBadge,
-	DBMainNavigation,
+	DBNavigation,
 	DBNavigationItem,
 	DBRadio,
 	DBSection,
@@ -258,11 +258,11 @@ const ComponentSwitch = ({
 		);
 	}
 
-	if (type === 'main-navigation') {
+	if (type === 'navigation') {
 		return (
-			<DBMainNavigation className={className} {...props}>
+			<DBNavigation className={className} {...props}>
 				{resolvedContent}
-			</DBMainNavigation>
+			</DBNavigation>
 		);
 	}
 
@@ -290,11 +290,11 @@ const ComponentSwitch = ({
 		);
 	}
 
-	if (type === 'tab') {
+	if (type === 'tab-item') {
 		return (
-			<DBTab className={className} {...props}>
+			<DBTabItem className={className} {...props}>
 				{resolvedContent}
-			</DBTab>
+			</DBTabItem>
 		);
 	}
 

@@ -11,30 +11,20 @@ export default function DBBrand(props: DBBrandProps) {
 	// jscpd:ignore-start
 	const state = useStore<DBBrandState>({
 		defaultValues: {
-			src: './assets/images/db_logo.svg',
-			width: '34',
-			height: '24'
+			icon: 'db'
 		}
 	});
 	// jscpd:ignore-end
 
 	return (
-		<div ref={ref} id={props.id} class={cls('db-brand', props.className)}>
-			<a
-				href={props.anchorRef}
-				title={props.anchorTitle}
-				rel={props.anchorRelation}>
-				<Show when={!props.hideDefaultAsset}>
-					<img
-						src={props.imgSrc ?? state.defaultValues.src}
-						alt={props.imgAlt ?? ''}
-						height={props.imgHeight ?? state.defaultValues.height}
-						width={props.imgWidth ?? state.defaultValues.width}
-						className="db-logo"
-					/>
-				</Show>
-				{props.children}
-			</a>
+		<div
+			ref={ref}
+			data-icon={
+				props.hideLogo ? 'none' : props.icon ?? state.defaultValues.icon
+			}
+			id={props.id}
+			class={cls('db-brand', props.className)}>
+			{props.children}
 		</div>
 	);
 }

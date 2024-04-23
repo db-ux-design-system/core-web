@@ -14,7 +14,7 @@ import { DBAccordionItem } from "@db-ui/v-components";
 
 <template>
 	<DBAccordionItem>
-		<template v-slot:title>Title</template>
+		<template v-slot:headline>Title</template>
 		Content
 	</DBAccordionItem>
 </template>
@@ -29,6 +29,6 @@ import { DBAccordionItem } from "@db-ui/v-components";
 </script>
 
 <template>
-	<DBAccordionItem title="Title" content="Content"></DBAccordionItem>
+	<DBAccordionItem headline="Title" content="Content"></DBAccordionItem>
 </template>
 ```

@@ -17,6 +17,7 @@ import {
 	DEFAULT_VALID_MESSAGE_ID_SUFFIX
 } from '../../shared/constants';
 import { ChangeEvent, InteractionEvent } from '../../shared/model';
+import { handleFrameworkEvent } from '../../utils/form-components';
 import { DBInfotext } from '../infotext';
 
 useMetadata({
@@ -43,14 +44,7 @@ export default function DBCheckbox(props: DBCheckboxProps) {
 				props.change(event);
 			}
 
-			const target = event.target as HTMLInputElement;
-
-			// TODO: Replace this with the solution out of https://github.com/BuilderIO/mitosis/issues/833 after this has been "solved"
-			// VUE:this.$emit("update:checked", target.checked);
-
-			// Change event to work with reactive and template driven forms
-			// ANGULAR: this.propagateChange(target.checked);
-			// ANGULAR: this.writeValue(target.checked);
+			handleFrameworkEvent(this, event, 'checked');
 		},
 		handleBlur: (event: InteractionEvent<HTMLInputElement>) => {
 			if (props.onBlur) {
@@ -69,6 +63,16 @@ export default function DBCheckbox(props: DBCheckboxProps) {
 			if (props.focus) {
 				props.focus(event);
 			}
+		},
+		getValidMessage: () => {
+			return props.validMessage || DEFAULT_VALID_MESSAGE;
+		},
+		getInvalidMessage: () => {
+			return (
+				props.invalidMessage ||
+				ref?.validationMessage ||
+				DEFAULT_INVALID_MESSAGE
+			);
 		}
 	});
 
@@ -121,6 +125,8 @@ export default function DBCheckbox(props: DBCheckboxProps) {
 			data-variant={props.variant}>
 			<label htmlFor={state._id}>
 				<input
+					aria-invalid={props.customValidity === 'invalid'}
+					data-custom-validity={props.customValidity}
 					ref={ref}
 					type="checkbox"
 					id={state._id}
@@ -128,7 +134,6 @@ export default function DBCheckbox(props: DBCheckboxProps) {
 					checked={props.checked}
 					disabled={props.disabled}
 					value={props.value}
-					aria-invalid={props.invalid}
 					required={props.required}
 					onChange={(event: ChangeEvent<HTMLInputElement>) =>
 						state.handleChange(event)
@@ -160,14 +165,14 @@ export default function DBCheckbox(props: DBCheckboxProps) {
 				id={state._validMessageId}
 				size="small"
 				semantic="successful">
-				{props.validMessage || DEFAULT_VALID_MESSAGE}
+				{state.getValidMessage()}
 			</DBInfotext>
 
 			<DBInfotext
 				id={state._invalidMessageId}
 				size="small"
 				semantic="critical">
-				{props.invalidMessage || DEFAULT_INVALID_MESSAGE}
+				{state.getInvalidMessage()}
 			</DBInfotext>
 		</div>
 	);

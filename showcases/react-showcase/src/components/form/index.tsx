@@ -1,19 +1,21 @@
 import { useEffect, useState } from 'react';
 import {
+	DBTabList,
+	DBTabPanel,
+	DBTabs,
+	DBDivider
+} from '@db-ui/react-components/src';
+import {
+	DBAccordion,
+	DBAccordionItem,
 	DBButton,
 	DBCheckbox,
 	DBInput,
 	DBRadio,
 	DBSelect,
+	DBTabItem,
 	DBTag,
-	DBTextarea,
-	DBAccordion,
-	DBAccordionItem,
-	DBTab,
-	DBDivider,
-	DBTabList,
-	DBTabPanel,
-	DBTabs
+	DBTextarea
 } from '../../../../../output/react/src';
 import type {
 	ChangeEvent,
@@ -70,7 +72,7 @@ const FormComponent = () => {
 							label="Textinput"
 							placeholder="Placeholder"
 							message="Description"
-							icon="account"
+							icon="user"
 							name="input-name"
 							value={input}
 							dataList={dataList}
@@ -246,20 +248,72 @@ const FormComponent = () => {
 				</DBButton>
 				<DBTabs>
 					<DBTabList>
-						<DBTab>Test 1</DBTab>
-						<DBTab>Test 2</DBTab>
-						{tabsTest && <DBTab>Test 3</DBTab>}
+						<DBTabItem>Test 1</DBTabItem>
+						<DBTabItem>Test 2</DBTabItem>
+						{tabsTest && <DBTabItem>Test 3</DBTabItem>}
 					</DBTabList>
 					<DBTabPanel>Tab Panel 1</DBTabPanel>
 					<DBTabPanel>Tab Panel 2</DBTabPanel>
 					{tabsTest && <DBTabPanel>Tab Panel 3</DBTabPanel>}
 				</DBTabs>
 
+				<DBTabs orientation="vertical">
+					<DBTabList>
+						<DBTabItem icon="airplane">Airplane Button</DBTabItem>
+						<DBTabItem iconAfter="cancel">Cancel Button</DBTabItem>
+						<DBTabItem iconAfter="cancel">
+							Long Button Label with a lot of text
+						</DBTabItem>
+						<DBTabItem icon="airplane" iconAfter="cancel">
+							Another Button Label with a lot of text
+						</DBTabItem>
+						<DBTabItem icon="airplane" noText={true}></DBTabItem>
+					</DBTabList>
+					<DBTabPanel>
+						Lorem ipsum dolor sit amet, consetetur sadipscing elitr,
+						sed diam nonumy eirmod tempor invidunt ut labore et
+						dolore magna aliquyam erat, sed diam voluptua. At vero
+						eos et accusam et justo duo dolores et ea rebum. Stet
+						clita kasd gubergren, no sea takimata sanctus est Lorem
+						ipsum dolor sit amet. Lorem ipsum dolor sit amet,
+						consetetur sadipscing elitr, sed diam nonumy eirmod
+						tempor invidunt ut labore et dolore magna aliquyam erat,
+						sed diam voluptua. At vero eos et accusam et justo duo
+						dolores et ea rebum. Stet clita kasd gubergren, no sea
+						takimata sanctus est Lorem ipsum dolor sit amet.
+					</DBTabPanel>
+					<DBTabPanel>Tab Panel 2</DBTabPanel>
+					<DBTabPanel>Tab Panel 3</DBTabPanel>
+					<DBTabPanel>
+						But I must explain to you how all this mistaken idea of
+						denouncing pleasure and praising pain was born and I
+						will give you a complete account of the system, and
+						expound the actual teachings of the great explorer of
+						the truth, the master-builder of human happiness. No one
+						rejects, dislikes, or avoids pleasure itself, because it
+						is pleasure, but because those who do not know how to
+						pursue pleasure rationally encounter consequences that
+						are extremely painful. Nor again is there anyone who
+						loves or pursues or desires to obtain pain of itself,
+						because it is pain, but because occasionally
+						circumstances occur in which toil and pain can procure
+						him some great pleasure. To take a trivial example,
+						which of us ever undertakes laborious physical exercise,
+						except to obtain some advantage from it? But who has any
+						right to find fault with a man who chooses to enjoy a
+						pleasure that has no annoying consequences, or one who
+						avoids a pain that produces no resultant pleasure?
+					</DBTabPanel>
+					<DBTabPanel>Tab Panel 5</DBTabPanel>
+				</DBTabs>
+
 				<DBDivider />
 
 				<DBAccordion>
 					{accordionItems?.map((item) => (
-						<DBAccordionItem key={item.key} title={item.key}>
+						<DBAccordionItem
+							key={item.key}
+							headlinePlain={item.key}>
 							{item.value}
 						</DBAccordionItem>
 					))}
@@ -276,6 +330,44 @@ const FormComponent = () => {
 						{ label: 'Test1', value: 'Test1' },
 						{ label: 'Test2', value: 'Test2' }
 					]}
+				/>
+
+				<h4>Validations</h4>
+
+				<DBInput
+					label="Input minlength validation"
+					placeholder="Placeholder"
+					invalidMessage="Min. 3"
+					validMessage="😎"
+					minLength={3}
+				/>
+				<DBInput
+					label="Input pattern validation"
+					placeholder="Placeholder"
+					pattern="\w{3,16}"
+					invalidMessage="Pattern \w{3,16}"
+					validMessage="😎"
+				/>
+				<DBInput
+					label="Input number"
+					placeholder="Placeholder"
+					invalidMessage="Type=number"
+					validMessage="😎"
+					type="number"
+				/>
+				<DBInput
+					label="Input number min"
+					placeholder="Placeholder"
+					invalidMessage="Type=number min 3"
+					validMessage="😎"
+					type="number"
+					min={3}
+				/>
+				<DBTextarea
+					label="Textarea min 10"
+					invalidMessage="Min 10"
+					validMessage="😎"
+					minLength={10}
 				/>
 			</div>
 		</div>

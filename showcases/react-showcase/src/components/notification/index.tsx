@@ -26,7 +26,7 @@ const getNotification = ({
 				<img
 					src={`${
 						import.meta.env.BASE_URL
-					}/assets/images/placeholder.png`}
+					}/assets/images/placeholder.jpg`}
 					alt="Placeholder"
 				/>
 			) : undefined

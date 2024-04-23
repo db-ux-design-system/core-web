@@ -5,15 +5,21 @@ import {
 	FormsModule,
 	ReactiveFormsModule
 } from '@angular/forms';
-import { DBTag } from '../../../../../../output/angular/src/components/tag/tag';
-import { DBRadio } from '../../../../../../output/angular/src/components/radio/radio';
-import { DBTextarea } from '../../../../../../output/angular/src/components/textarea/textarea';
-import { DBInput } from '../../../../../../output/angular/src/components/input/input';
+import {
+	DBButton,
+	DBCheckbox,
+	DBDivider,
+	DBInput,
+	DBRadio,
+	DBSelect,
+	DBTabItem,
+	DBTabList,
+	DBTabPanel,
+	DBTabs,
+	DBTag,
+	DBTextarea
+} from '../../../../../../output/angular/src';
 import { DefaultComponent } from '../default.component';
-import { DBSelect } from '../../../../../../output/angular/src/components/select/select';
-import { DBCheckbox } from '../../../../../../output/angular/src/components/checkbox/checkbox';
-import { DBDivider } from '../../../../../../output/angular/src/components/divider/divider';
-import { DBButton } from '../../../../../../output/angular/src/components/button';
 
 @Component({
 	selector: 'app-form',
@@ -29,7 +35,11 @@ import { DBButton } from '../../../../../../output/angular/src/components/button
 		DBTag,
 		DBCheckbox,
 		DBDivider,
-		DBButton
+		DBButton,
+		DBTabs,
+		DBTabList,
+		DBTabItem,
+		DBTabPanel
 	],
 	standalone: true,
 	schemas: [NO_ERRORS_SCHEMA]

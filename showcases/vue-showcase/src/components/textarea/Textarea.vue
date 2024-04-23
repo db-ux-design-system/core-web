@@ -19,7 +19,6 @@ import { DBInput, DBTextarea } from "../../../../../output/vue/src";
 				:placeholder="exampleProps.placeholder || exampleName"
 				:rows="exampleProps.rows"
 				:value="exampleProps.value"
-				:invalid="exampleProps.invalid"
 				:variant="exampleProps.variant"
 				:invalidMessage="
 					exampleProps.invalid !== undefined || exampleProps.required

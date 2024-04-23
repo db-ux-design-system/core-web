@@ -31,7 +31,7 @@ $input-types: "button", "checkbox", "color", "date", "datetime-local", "email",
 	"reset", "search", "submit", "tel", "text", "time", "url", "week";
 
 %dropdown-icon {
-	@include icons.set-icon("expand_more", "after");
+	@include icons.set-icon("chevron_down", "after");
 
 	&::after {
 		transition: $dropdown-icon-transition;
@@ -60,6 +60,7 @@ $input-types: "button", "checkbox", "color", "date", "datetime-local", "email",
 	&[data-variant="floating"] {
 		label {
 			@extend %db-overwrite-font-size-md;
+			opacity: component.$default-disabled;
 			position: absolute;
 			z-index: 2;
 			inset-block-start: calc(
@@ -110,6 +111,7 @@ $input-types: "button", "checkbox", "color", "date", "datetime-local", "email",
 			label {
 				@extend %db-overwrite-font-size-2xs;
 				inset-block-start: variables.$db-spacing-fixed-2xs;
+				opacity: 1;
 			}
 
 			#{$selector} {
@@ -182,30 +184,46 @@ $input-types: "button", "checkbox", "color", "date", "datetime-local", "email",
 	}
 }
 
+// This doesn't contain text, search and password, because they don't have an auto-validation
+$input-valid-types: "color", "date", "datetime-local", "email", "file", "hidden",
+	"month", "number", "range", "tel", "time", "url", "week";
+
 @function get-validations($selector, $key) {
-	// TODO: add validations for input & textarea as well
-	//  https://developer.mozilla.org/en-US/docs/Learn/Forms/Form_validation#using_built-in_form_validation
 	$validations: ":required";
 
-	// We need to do a more complicated check for non-typed-input-elements
 	@if ($selector == input) {
-		$validations: ':not([type="text"], [type="password"], [type="search"]),:is([type="text"], [type="password"], [type="search"]):required';
+		// https://developer.mozilla.org/en-US/docs/Learn/Forms/Form_validation#using_built-in_form_validation
+		$validations: ":required, [minlength], [maxlength], [pattern]";
+		@each $type in $input-valid-types {
+			$validations: $validations + ", [type=#{$type}]";
+		}
+	} @else if($selector == textarea) {
+		$validations: ":required, [minlength], [maxlength]";
 	}
 
-	$has-selectors: "&:has(#{$selector}:not([aria-invalid]):is(#{$validations}):user-#{$key}),";
+	$has-selectors: "&:has(#{$selector}:not([data-custom-validity]):is(#{$validations}):user-#{$key}),";
 
 	@return string.unquote(string.slice($has-selectors, 1, -2));
 }
 
 @mixin get-validity($selector, $key: "valid") {
-	$boolean: "true";
 	@if ($key == "valid") {
 		$boolean: "false";
 	}
 
+	$user: "";
 	@if ($selector == check) {
+		$user: "user-";
+	}
+
+	@if ($selector == check or $selector == radio) {
 		$selector: input;
-		&:has(#{$selector}:not([aria-invalid]):required:#{$key}) {
+
+		&:has(
+				#{$selector}:not(
+						[data-custom-validity]
+					):required:#{$user}#{$key}
+			) {
 			@content;
 		}
 	} @else {
@@ -214,8 +232,8 @@ $input-types: "button", "checkbox", "color", "date", "datetime-local", "email",
 		}
 	}
 
-	// If aria-invalid is set we overwrite the selectors above
-	&:has(#{$selector}[aria-invalid="#{$boolean}"]) {
+	// If data-custom-validity is set we overwrite the selectors above
+	&:has(#{$selector}[data-custom-validity="#{$key}"]) {
 		@content;
 	}
 }
@@ -294,7 +312,6 @@ $input-types: "button", "checkbox", "color", "date", "datetime-local", "email",
 		padding-block-end: variables.$db-spacing-fixed-xs;
 		pointer-events: none;
 		cursor: text;
-		opacity: component.$default-disabled;
 
 		transition: font-size variables.$db-transition-straight-emotional;
 		max-inline-size: 25ch;
@@ -393,13 +410,13 @@ $input-types: "button", "checkbox", "color", "date", "datetime-local", "email",
 	}
 }
 
-%check-element {
+@mixin set-default-check-element($selector) {
 	@include set-required-label(input);
 
-	@include get-validity(check) {
+	@include get-validity($selector) {
 		@include get-validity-color-check("valid");
 	}
-	@include get-validity(check, "invalid") {
+	@include get-validity($selector, "invalid") {
 		@include get-validity-color-check("invalid");
 	}
 

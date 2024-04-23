@@ -10,6 +10,7 @@ import { DBRadioProps, DBRadioState } from './model';
 import { DEFAULT_ID } from '../../shared/constants';
 import { cls, uuid } from '../../utils';
 import { ChangeEvent, InteractionEvent } from '../../shared/model';
+import { handleFrameworkEvent } from '../../utils/form-components';
 
 useMetadata({
 	isAttachedToShadowDom: true
@@ -30,14 +31,7 @@ export default function DBRadio(props: DBRadioProps) {
 				props.change(event);
 			}
 
-			const target = event.target as HTMLInputElement;
-
-			// TODO: Replace this with the solution out of https://github.com/BuilderIO/mitosis/issues/833 after this has been "solved"
-			// VUE:this.$emit("update:checked", target.checked);
-
-			// Change event to work with reactive and template driven forms
-			// ANGULAR: this.propagateChange(target.checked);
-			// ANGULAR: this.writeValue(target.checked);
+			handleFrameworkEvent(this, event, 'checked');
 		},
 		handleBlur: (event: InteractionEvent<HTMLInputElement>) => {
 			if (props.onBlur) {
@@ -85,6 +79,8 @@ export default function DBRadio(props: DBRadioProps) {
 			class={cls('db-radio', props.className)}
 			htmlFor={state._id}>
 			<input
+				aria-invalid={props.customValidity === 'invalid'}
+				data-custom-validity={props.customValidity}
 				ref={ref}
 				type="radio"
 				id={state._id}
@@ -92,7 +88,6 @@ export default function DBRadio(props: DBRadioProps) {
 				checked={props.checked}
 				disabled={props.disabled}
 				aria-describedby={props.describedbyid}
-				aria-invalid={props.invalid}
 				value={props.value}
 				required={props.required}
 				onChange={(event: ChangeEvent<HTMLInputElement>) =>

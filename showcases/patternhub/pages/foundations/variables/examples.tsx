@@ -38,7 +38,8 @@ const Example = () => {
 										<DBInfotext
 											icon="none"
 											semantic="informational">
-											{density}
+											{density.charAt(0).toUpperCase() +
+												density.slice(1)}
 										</DBInfotext>
 										<div
 											className={`example-${example
@@ -46,7 +47,7 @@ const Example = () => {
 												.replaceAll(' ', '-')}`}>
 											{example === 'Spacing fixed' && (
 												<div>
-													<DBIcon icon="account">
+													<DBIcon icon="user">
 														Account
 													</DBIcon>
 													<span>

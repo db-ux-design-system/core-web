@@ -1,7 +1,7 @@
 import { GlobalProps, GlobalState, IconProps } from '../../shared/model';
 
 export type DBIconDefaultProps = {
-	variant?: 'default' | 'inverted' | 'solid';
+	variant?: 'default' | 'inverted' | 'filled';
 	weight?: '16' | '20' | '24' | '32' | '48' | '64';
 };
 

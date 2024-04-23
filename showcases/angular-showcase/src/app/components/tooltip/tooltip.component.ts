@@ -1,8 +1,7 @@
 import { Component } from '@angular/core';
 import defaultComponentVariants from '../../../../../shared/tooltip.json';
 import { DefaultComponent } from '../default.component';
-import { DBButton } from '../../../../../../output/angular/src/components/button';
-import { DBTooltip } from '../../../../../../output/angular/src/components/tooltip/tooltip';
+import { DBButton, DBTooltip } from '../../../../../../output/angular/src';
 
 @Component({
 	selector: 'app-tooltip',

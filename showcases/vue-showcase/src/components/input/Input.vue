@@ -18,9 +18,9 @@ import { DBInput } from "../../../../../output/vue/src";
 				:required="exampleProps.required"
 				:type="exampleProps.type"
 				:disabled="exampleProps.disabled"
+				:readOnly="exampleProps.readOnly"
 				:value="exampleProps.value"
 				:icon="exampleProps.icon"
-				:invalid="exampleProps.invalid"
 				:iconAfter="exampleProps.iconAfter"
 				:invalidMessage="
 					exampleProps.invalid !== undefined || exampleProps.required

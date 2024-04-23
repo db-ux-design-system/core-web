@@ -26,13 +26,11 @@
 		}
 	}
 
-	@each $contrast in [ "high", "low"] {
-		.db-#{$variant}-contrast-#{$contrast} {
-			@extend %db-#{$variant}-contrast-#{$contrast};
+	.db-#{$variant}-component {
+		@extend %db-#{$variant}-component;
 
-			&-interactive {
-				@extend %db-#{$variant}-contrast-#{$contrast}-interactive;
-			}
+		&-interactive {
+			@extend %db-#{$variant}-component-interactive;
 		}
 	}
 }

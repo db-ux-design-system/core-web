@@ -3,7 +3,7 @@ import {
 	DBButton,
 	DBHeader,
 	DBLink,
-	DBMainNavigation,
+	DBNavigation,
 	DBNavigationItem
 } from '../../../../../output/react/src';
 import { type DBHeaderProps } from '../../../../../output/react/src/components/header/model';
@@ -20,18 +20,10 @@ const getHeader = ({
 	describedbyid,
 	id,
 	key,
-	tabIndex,
-	title,
 	onToggle
 }: DBHeaderProps) => (
 	<DBHeader
-		brand={
-			<DBBrand
-				title="DBHeader"
-				imgSrc="https://db-ui.github.io/images/db_logo.svg">
-				DBHeader
-			</DBBrand>
-		}
+		brand={<DBBrand title="DBHeader">DBHeader</DBBrand>}
 		metaNavigation={
 			<>
 				<DBLink href="#">Imprint</DBLink>
@@ -39,19 +31,19 @@ const getHeader = ({
 			</>
 		}
 		callToAction={
-			<DBButton icon="search" variant="text" noText>
+			<DBButton icon="magnifying_glass" variant="ghost" noText>
 				Search
 			</DBButton>
 		}
 		actionBar={
 			<>
-				<DBButton icon="account" variant="text" noText>
+				<DBButton icon="user" variant="ghost" noText>
 					Profile
 				</DBButton>
-				<DBButton icon="alert" variant="text" noText>
+				<DBButton icon="bell" variant="ghost" noText>
 					Notification
 				</DBButton>
-				<DBButton icon="help" variant="text" noText>
+				<DBButton icon="question_mark_circle" variant="ghost" noText>
 					Help
 				</DBButton>
 			</>
@@ -63,17 +55,15 @@ const getHeader = ({
 		describedbyid={describedbyid}
 		id={id}
 		key={key}
-		tabIndex={tabIndex}
-		title={title}
 		onToggle={onToggle}>
-		<DBMainNavigation>
-			<DBNavigationItem icon="account">
+		<DBNavigation>
+			<DBNavigationItem icon="user">
 				<a href="#">{children}</a>
 			</DBNavigationItem>
 			<DBNavigationItem disabled>
 				<a href="#">{children} disabled</a>
 			</DBNavigationItem>
-		</DBMainNavigation>
+		</DBNavigation>
 	</DBHeader>
 );
 

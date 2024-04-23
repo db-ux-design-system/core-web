@@ -1,6 +1,6 @@
 const { components } = require('./components');
 const FS = require('node:fs');
-const { getComponentName, runReplacements } = require('../utils');
+const { transformToUpperComponentName, runReplacements } = require('../utils');
 
 const overwriteEvents = (tmp) => {
 	const modelFilePath = `../../${
@@ -17,6 +17,10 @@ const overwriteEvents = (tmp) => {
 		'export type ChangeEvent<T> = React.ChangeEvent<T>;'
 	);
 	modelFileContent = modelFileContent.replace(
+		'export type InputEvent<T> = Event;',
+		'export type InputEvent<T> = React.FormEvent<T>;'
+	);
+	modelFileContent = modelFileContent.replace(
 		'export type InteractionEvent<T> = FocusEvent;',
 		'export type InteractionEvent<T> = React.FocusEvent<T>;'
 	);
@@ -28,7 +32,9 @@ module.exports = (tmp) => {
 		overwriteEvents(tmp);
 
 		for (const component of components) {
-			const upperComponentName = getComponentName(component.name);
+			const upperComponentName = transformToUpperComponentName(
+				component.name
+			);
 
 			const tsxFile = `../../${
 				tmp ? 'output/tmp' : 'output'
@@ -47,16 +53,20 @@ module.exports = (tmp) => {
 					to: '= useState<any>'
 				},
 				{
+					from: `handleFrameworkEvent(this`,
+					to: `// handleFrameworkEvent(this`
+				},
+				{
 					from: ` } from "react"`,
-					to: `, forwardRef, HTMLProps } from "react"`
+					to: `, forwardRef, HTMLAttributes } from "react"`
 				},
 				{
 					from: `function DB${upperComponentName}(props: DB${upperComponentName}Props) {`,
-					to: `function DB${upperComponentName}Fn(props: Omit<HTMLProps<${htmlElement}>, keyof DB${upperComponentName}Props> & DB${upperComponentName}Props, component: any) {`
+					to: `function DB${upperComponentName}Fn(props: Omit<HTMLAttributes<${htmlElement}>, keyof DB${upperComponentName}Props> & DB${upperComponentName}Props, component: any) {`
 				},
 				{
 					from: `export default DB${upperComponentName};`,
-					to: `const DB${upperComponentName} = forwardRef<${htmlElement}, Omit<HTMLProps<${htmlElement}>, keyof DB${upperComponentName}Props> & DB${upperComponentName}Props>(DB${upperComponentName}Fn);\nexport default DB${upperComponentName};`
+					to: `const DB${upperComponentName} = forwardRef<${htmlElement}, Omit<HTMLAttributes<${htmlElement}>, keyof DB${upperComponentName}Props> & DB${upperComponentName}Props>(DB${upperComponentName}Fn);\nexport default DB${upperComponentName};`
 				},
 				{
 					from: 'if (ref.current)',
