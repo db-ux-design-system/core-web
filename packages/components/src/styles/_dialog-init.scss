@@ -2,8 +2,11 @@
 
 $backdrop-color: var(
 	#{colors.$db-current-color-enabled},
-	var(#{colors.$db-neutral-on-bg-enabled}, #242629)
+	#{colors.$db-neutral-on-bg-enabled}
 );
+
+$backdrop-opacity-strong: 0.64;
+$backdrop-opacity-weak: 0.32;
 
 %dialog-container {
 	position: fixed;
@@ -25,7 +28,7 @@ dialog {
 	&:not([data-backdrop="none"]) {
 		&::backdrop {
 			background-color: $backdrop-color;
-			opacity: 0.64;
+			opacity: $backdrop-opacity-strong;
 		}
 
 		&[data-backdrop="invisible"] {
@@ -36,7 +39,7 @@ dialog {
 
 		&[data-backdrop="weak"] {
 			&::backdrop {
-				opacity: 0.32;
+				opacity: $backdrop-opacity-weak;
 			}
 		}
 	}
