@@ -16,9 +16,7 @@ export default function DBSwitch(props: DBSwitchProps) {
 		_id: DEFAULT_ID,
 		initialized: false,
 		handleChange: (event: ChangeEvent<HTMLInputElement>) => {
-			if (props.onChange) {
-				props.onChange(event);
-			}
+			props?.onChange?.(event);
 
 			if (props.change) {
 				props.change(event);
