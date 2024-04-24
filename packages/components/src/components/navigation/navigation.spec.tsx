@@ -15,7 +15,7 @@ const comp: any = (
 					<a href="#">Sub1</a>
 				</DBNavigationItem>
 			}>
-			{/*<template v-slot:subnavigation>
+			{/*<template v-slot:sub-navigation>
 					<DBNavigationItem data-testid="sub1">
 					<a href="#">Sub1</a>
 				</DBNavigationItem>

@@ -3,7 +3,7 @@ import DefaultComponent from "../DefaultComponent.vue";
 import defaultComponentVariants from "../../../../shared/navigation-item.json";
 import { DBNavigationItem } from "../../../../../output/vue/src";
 
-const log = (exampleName: string) => {
+const log = (exampleName?: string) => {
 	// eslint-disable-next-line no-alert
 	alert(exampleName);
 };
