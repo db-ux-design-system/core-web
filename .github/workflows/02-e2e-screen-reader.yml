@@ -2,10 +2,6 @@ name: 🎭 Playwright Screen Reader
 
 on:
   workflow_call:
-    inputs:
-      version:
-        required: true
-        type: string
 
 permissions:
   actions: write
@@ -13,56 +9,39 @@ permissions:
 
 jobs:
   playwright-screen-reader:
-    name: 🧪🎭 - screen-reader - ${{ matrix.os }} - ${{ matrix.framework }}
+    name: 🧪🎭 - screen-reader - ${{ matrix.os }} - ${{ matrix.framework }} - ${{ matrix.shardIndex }}/${{ matrix.shardTotal }}
     runs-on: ${{ matrix.os }}
-    container:
-      image: mcr.microsoft.com/playwright:v${{ inputs.version }}
     strategy:
       fail-fast: false
       matrix:
-        os: [windows-latest]
+        os: [macos-13, windows-2022]
         framework: [react]
+        shardIndex: [1, 2]
+        shardTotal: [2]
     steps:
       - name: ⏬ Checkout repo
         uses: actions/checkout@v4
 
-      - name: 🔄 Init Cache
+      - name: 🦮 Guidepup Setup
+        uses: guidepup/setup-action@0.15.3
+        with:
+          record: true
+
+      - name: 🔄 Init Cache Default
         uses: ./.github/actions/npm-cache
 
-      - name: ⏬ Download foundations build
-        uses: actions/download-artifact@v4
-        with:
-          name: db-ui-foundations-build
-          path: packages/foundations/build
-
-      - name: ⏬ Download output
-        uses: actions/download-artifact@v4
-        with:
-          name: db-ui-output
-          path: output
-
-      - name: ⏬ Download components styles build
-        uses: actions/download-artifact@v4
-        with:
-          name: db-ui-components-build
-          path: packages/components/build
-
-      - name: ⏬ Download showcases
-        uses: actions/download-artifact@v4
-        with:
-          name: db-ui-showcases
-          path: build-showcases
+      - name: 🔄 Init Playwright Cache
+        uses: ./.github/actions/playwright-cache
 
       - name: 👩‍🔬 Test showcase with Playwright 🎭
-        env:
-          HOME: /root
+        working-directory: screen-reader-test
         run: |
-          npm run test:screen-reader:${{ matrix.os }} --workspace=${{ matrix.framework }}-showcase
+          npm run test:screen-reader:${{ env.OS }} --workspace=${{ matrix.framework }}-showcase -- --shard=${{ matrix.shardIndex }}/${{ matrix.shardTotal }}
 
       - name: 🆙 Upload test results
         if: failure()
         uses: actions/upload-artifact@v4
         with:
-          name: ${{ matrix.framework }}-screen-reader-${{ matrix.os }}
-          path: ./showcases/${{ matrix.framework }}-showcase/test-results
+          name: ${{ matrix.framework }}-screen-reader-${{ matrix.os }}-${{ matrix.shardIndex }}
+          path: ./screen-reader-test/${{ matrix.framework }}-showcase/test-results
           retention-days: 30

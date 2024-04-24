@@ -39,6 +39,12 @@ runs:
         restore-keys: |
           ${{ runner.os }}-node-${{ inputs.nodeVersion }}
 
+    - name: 🎄🎸🥊 Log Cache Hit
+      shell: bash
+      env:
+        HIT: ${{ steps.cache.outputs.cache-hit }}
+      run: echo $HIT
+
     - name: ⏬ NPM ci
       shell: bash
       if: steps.cache.outputs.cache-hit != 'true'

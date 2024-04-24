@@ -1,22 +1,20 @@
-import { screenReaderConfig } from '@guidepup/playwright';
 import { devices, type PlaywrightTestConfig } from '@playwright/test';
-import showcaseConfig from './playwright.showcase';
+import defaultScreenReaderConfig from './playwright.screen-reader';
 
 const config: PlaywrightTestConfig = {
-	...screenReaderConfig,
-	reportSlowTests: null,
-	testDir: './screen-reader/windows',
-	snapshotPathTemplate: '{snapshotDir}/{testFileDir}/{arg}/{testName}{ext}',
-	snapshotDir: './screen-reader/windows/__snapshots__',
-	timeout: 3 * 60 * 1000,
-	retries: 2,
+	...defaultScreenReaderConfig,
+	snapshotPathTemplate:
+		'{snapshotDir}/{testFileDir}/windows/{projectName}/{testName}{ext}',
 	projects: [
 		{
 			name: 'chromium',
 			use: { ...devices['Desktop Chrome'], headless: false }
+		},
+		{
+			name: 'firefox',
+			use: { ...devices['Desktop Firefox'], headless: false }
 		}
-	],
-	...showcaseConfig
+	]
 };
 
 export default config;

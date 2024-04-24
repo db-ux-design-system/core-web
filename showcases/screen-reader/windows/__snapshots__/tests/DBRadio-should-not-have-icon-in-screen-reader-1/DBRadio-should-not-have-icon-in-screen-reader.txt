@@ -1,1 +1,0 @@
-["Functional, Auswahlschalter, aktiviert, 1 von 3","(Default) Regular, Auswahlschalter, aktiviert, 2 von 3","Expressive, Auswahlschalter, aktiviert, 3 von 3"]

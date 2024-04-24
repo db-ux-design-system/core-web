@@ -1,0 +1,25 @@
+name: 🎭 Init Playwright
+
+on:
+  workflow_call:
+    inputs:
+      version:
+        required: true
+        type: string
+
+jobs:
+  init-playwright:
+    name: 🎭 Init Playwright - ${{ matrix.os }}
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [macos-13, windows-2022]
+    steps:
+      - name: ⏬ Checkout repo
+        uses: actions/checkout@v4
+
+      - name: 🔄 Init Playwright Cache
+        uses: ./.github/actions/playwright-cache
+        with:
+          version: ${{ inputs.version }}

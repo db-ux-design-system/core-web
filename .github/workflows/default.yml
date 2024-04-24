@@ -27,6 +27,12 @@ jobs:
     uses: ./.github/workflows/01-build-packages.yml
     needs: [init]
 
+  init-playwright:
+    uses: ./.github/workflows/01-init-playwright.yml
+    needs: [get-playwright-version]
+    with:
+      version: ${{ needs.get-playwright-version.outputs.version }}
+
   build-outputs:
     uses: ./.github/workflows/01-build-outputs.yml
     needs: [build-packages]
@@ -55,9 +61,7 @@ jobs:
 
   test-screen-reader:
     uses: ./.github/workflows/02-e2e-screen-reader.yml
-    needs: [build-showcases, get-playwright-version]
-    with:
-      version: ${{ needs.get-playwright-version.outputs.version }}
+    needs: [build-showcases, init-playwright]
 
   regenerate-snapshots:
     if: always() && (needs.test-components.result == 'failure' || needs.test-foundations.result == 'failure' || needs.test-showcases.result == 'failure')
@@ -83,7 +87,8 @@ jobs:
           resultTestPackages="${{ needs.test-components.result }}"
           resultTestShowcases="${{ needs.test-showcases.result }}"
           resultTestFoundations="${{ needs.test-foundations.result }}"
-          if [[ $resultTestFoundations == "success" && $resultTestShowcases == "success" && $resultBuildShowcases == "success" && $resultBuildOutputs == "success" && $resultTestPackages == "success" ]]; then
+          resultTestScreenReaders="${{ needs.test-screen-reader.result }}"
+          if [[ $resultTestScreenReaders == "success" && $resultTestFoundations == "success" && $resultTestShowcases == "success" && $resultBuildShowcases == "success" && $resultBuildOutputs == "success" && $resultTestPackages == "success" ]]; then
              echo "🎉 All tests were successful."
             exit 0
           else
@@ -96,7 +101,8 @@ jobs:
         build-outputs,
         test-components,
         test-showcases,
-        test-foundations
+        test-foundations,
+        test-screen-reader
       ]
 
   deploy:

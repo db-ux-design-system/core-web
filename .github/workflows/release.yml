@@ -25,6 +25,12 @@ jobs:
     uses: ./.github/workflows/01-build-packages.yml
     needs: [init]
 
+  init-playwright:
+    uses: ./.github/workflows/01-init-playwright.yml
+    needs: [get-playwright-version]
+    with:
+      version: ${{ needs.get-playwright-version.outputs.version }}
+
   build-outputs:
     uses: ./.github/workflows/01-build-outputs.yml
     needs: [build-packages]
@@ -54,6 +60,10 @@ jobs:
     with:
       version: ${{ needs.get-playwright-version.outputs.version }}
 
+  test-screen-reader:
+    uses: ./.github/workflows/02-e2e-screen-reader.yml
+    needs: [build-showcases, init-playwright]
+
   checks-done:
     runs-on: ubuntu-latest
     steps:
@@ -65,7 +75,8 @@ jobs:
         build-outputs,
         build-showcases,
         test-showcases,
-        test-foundations
+        test-foundations,
+        test-screen-reader
       ]
 
   deploy:
