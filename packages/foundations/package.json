@@ -34,7 +34,7 @@
     "generate:icon-fonts": "npx @db-ui/gif --src ./assets/icons/functional --variants filled inverted --fontName db-ux --withSizes true --debug true",
     "prepare": "npm run copy-normalize",
     "regenerate:screenshots": "npx playwright test -c ./test/playwright.config.mjs --update-snapshots",
-    "start": "nodemon --watch tokens/ --watch scss --watch scripts -e json,scss,js -x \"npm run build\"",
+    "start": "nodemon --config nodemon.json",
     "test:e2e": "npx playwright test --config=./test/playwright.config.mjs"
   },
   "devDependencies": {

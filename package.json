@@ -45,7 +45,7 @@
     "update:icon-fonts": "npm run update:icon-fonts --workspace=scripts"
   },
   "devDependencies": {
-    "@commitlint/cli": "19.2.2",
+    "@commitlint/cli": "19.3.0",
     "@commitlint/config-conventional": "19.2.2",
     "@guidepup/playwright": "^0.13.2",
     "@playwright/test": "1.43.1",
