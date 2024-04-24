@@ -14,11 +14,11 @@ import { DBNavigation, DBNavigationItem } from "../../../../../output/vue/src";
 				<DBNavigation>
 					<DBNavigationItem :active="true">
 						Navi-Item 1
-						<template v-slot:subnavigation>
+						<template v-slot:sub-navigation>
 							<DBNavigationItem :active="true">
 								Sub-Navi-Item 1
 
-								<template v-slot:subnavigation>
+								<template v-slot:sub-navigation>
 									<DBNavigationItem :active="true">
 										<a href="#">Sub-Sub-Navi-Item 1</a>
 									</DBNavigationItem>
