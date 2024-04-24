@@ -6,17 +6,12 @@
 @use "../../styles/form-components";
 
 $switch-fixed-padding: helpers.to-rem(2);
-$switch-border-workaround: calc(
-	#{variables.$db-border-height-2xs} / 2 * var(--device-pixel-ratio, 0)
-);
 
 $switch-inactive-thumb-size: calc(
 	#{form-components.$font-size-height} - #{$switch-fixed-padding} * 2
 );
 
-$switch-active-thumb-size: calc(
-	#{form-components.$font-size-height} - #{$switch-border-workaround}
-);
+$switch-active-thumb-size: calc(#{form-components.$font-size-height});
 
 $checked-active-transition-size: calc(
 	#{form-components.$font-size-height} - #{$switch-fixed-padding} * 2
@@ -173,7 +168,7 @@ $checked-active-transition-size: calc(
 			}
 
 			&:not(:checked) {
-				--thumb-position: calc(0% - #{$switch-border-workaround});
+				--thumb-position: 0%;
 			}
 
 			&:checked {

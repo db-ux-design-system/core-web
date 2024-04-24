@@ -147,7 +147,7 @@
 				"name": "Custom Icons+ Emphasis",
 				"props": {
 					"visualAid": true,
-					"icon": "lock_close",
+					"icon": "lock_closed",
 					"iconAfter": "lock_open",
 					"emphasis": "strong"
 				}
