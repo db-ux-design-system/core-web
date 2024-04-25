@@ -1,4 +1,4 @@
-import { generateSnapshot, getTest, testDefault } from '../default';
+import { getTest, testDefault } from '../default';
 
 const test = getTest();
 test.describe('DBRadio', () => {
@@ -8,10 +8,10 @@ test.describe('DBRadio', () => {
 		url: './#/03/radio?page=density',
 		async testFn(voiceOver, nvda) {
 			const screenReader = voiceOver ?? nvda;
-			await screenReader.press('Spacebar');
-			await screenReader.press('ArrowLeft');
-			await screenReader.press('ArrowRight');
-			await screenReader.press('ArrowRight');
+			await screenReader.next();
+			await screenReader.previous();
+			await screenReader.next();
+			await screenReader.next();
 		}
 	});
 });

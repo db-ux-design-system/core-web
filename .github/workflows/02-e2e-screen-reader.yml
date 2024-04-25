@@ -16,8 +16,8 @@ jobs:
       matrix:
         os: [macos-13, windows-2022]
         framework: [react]
-        shardIndex: [1, 2]
-        shardTotal: [2]
+        shardIndex: [1, 2, 3]
+        shardTotal: [3]
     steps:
       - name: ⏬ Checkout repo
         uses: actions/checkout@v4
@@ -34,7 +34,6 @@ jobs:
         uses: ./.github/actions/playwright-cache
 
       - name: 👩‍🔬 Test showcase with Playwright 🎭
-        working-directory: screen-reader-test
         run: |
           npm run test:screen-reader:${{ env.OS }} --workspace=${{ matrix.framework }}-showcase -- --shard=${{ matrix.shardIndex }}/${{ matrix.shardTotal }}
 
@@ -43,5 +42,13 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: ${{ matrix.framework }}-screen-reader-${{ matrix.os }}-${{ matrix.shardIndex }}
-          path: ./screen-reader-test/${{ matrix.framework }}-showcase/test-results
+          path: ./${{ matrix.framework }}-showcase/test-results
+          retention-days: 30
+
+      - name: 🆙 Upload test results
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ matrix.framework }}-recordings-${{ matrix.os }}-${{ matrix.shardIndex }}
+          path: ./${{ matrix.framework }}-showcase/recordings
           retention-days: 30

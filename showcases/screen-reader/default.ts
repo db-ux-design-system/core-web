@@ -20,7 +20,9 @@ const translations: Record<string, string[]> = {
 	'radio button': ['Auswahlschalter'],
 	blank: ['Leer'],
 	checked: ['aktiviert'],
-	' of ': [' von ']
+	' of ': [' von '],
+	clickable: ['anklickbar'],
+	'has auto complete': ['mit Auto Vervollständigung']
 };
 
 const cleanSpeakInstructions = (phraseLog: string[]): string[] =>
@@ -34,7 +36,8 @@ const cleanSpeakInstructions = (phraseLog: string[]): string[] =>
 						sPhrase.startsWith('To enter') ||
 						sPhrase.startsWith('To exit') ||
 						sPhrase.startsWith('To click') ||
-						sPhrase.startsWith('To select')
+						sPhrase.startsWith('To select') ||
+						sPhrase.startsWith('To interact')
 					)
 			)
 			.join('. ')
@@ -85,12 +88,13 @@ export const runTest = async ({
 	if (process.env.CI && retry > 0) {
 		const path = `./${
 			process.env.showcase
-		}/test-results/${title}-${Date.now()}.mp4`;
+		}/recordings/${title}-${Date.now()}.mp4`;
 		recorder = isWin() ? windowsRecord(path) : macOSRecord(path);
 	}
 
 	const screenRecorder = nvda ?? voiceOver;
 	if (!screenRecorder) return;
+
 	await screenRecorder.navigateToWebContent();
 	await testFn(voiceOver, nvda);
 	await postTestFn?.(voiceOver, nvda);

@@ -1,4 +1,4 @@
-import { generateSnapshot, getTest, testDefault } from '../default';
+import { getTest, testDefault } from '../default';
 
 const test = getTest();
 
