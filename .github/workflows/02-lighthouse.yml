@@ -10,16 +10,32 @@ jobs:
       - name: ⏬ Checkout repo
         uses: actions/checkout@v4
 
-      - name: ⏬ Download showcases
+      - name: 🔄 Init Cache
+        uses: ./.github/actions/npm-cache
+
+      - name: ⏬ Download foundations build
         uses: actions/download-artifact@v4
         with:
-          name: db-ui-showcases
-          path: build-showcases
+          name: db-ui-foundations-build
+          path: packages/foundations/build
 
-      # Lighthouse only searching for folders like dist/out/... see:
-      # https://github.com/GoogleChrome/lighthouse-ci/blob/main/packages/cli/src/autorun/autorun.js#L68-L87
-      - name: 💡🏠🔨🔁 Lighthouse workaround
-        run: cp -r ./build-showcases/patternhub  ./build-showcases/dist
+      - name: ⏬ Download output
+        uses: actions/download-artifact@v4
+        with:
+          name: db-ui-output
+          path: output
+
+      - name: ⏬ Download components build
+        uses: actions/download-artifact@v4
+        with:
+          name: db-ui-components-build
+          path: packages/components/build
+
+      - name: 🔨 Build patternhub
+        env:
+          NEXT_PUBLIC_BASE_PATH: /showcases/patternhub/out
+        run: |
+          npm run build --workspace=patternhub
 
       - name: 🔍💡🏠 Audit with Lighthouse
         id: audit

@@ -55,7 +55,7 @@ jobs:
 
   lighthouse:
     uses: ./.github/workflows/02-lighthouse.yml
-    needs: [build-showcases]
+    needs: [build-packages]
 
   regenerate-snapshots:
     if: always() && (needs.test-components.result == 'failure' || needs.test-foundations.result == 'failure' || needs.test-showcases.result == 'failure')
