@@ -20,6 +20,11 @@ const config: PlaywrightTestConfig = {
 		 */
 		timeout: 5000
 	},
+	webServer: {
+		command: `cd ${process.env.showcase} && npm run preview`,
+		port: 8080,
+		reuseExistingServer: !process.env.CI
+	},
 	/* Run tests in files in parallel */
 	fullyParallel: true,
 	/* Fail the build on CI if you accidentally left test.only in the source code. */

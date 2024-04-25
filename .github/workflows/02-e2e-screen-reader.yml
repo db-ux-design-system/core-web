@@ -13,13 +13,12 @@ permissions:
 
 jobs:
   playwright-screen-reader:
-    name: 🧪🎭 - screen-reader - ${{ matrix.os }} - ${{ matrix.framework }} - ${{ matrix.shardIndex }}/${{ matrix.shardTotal }}
+    name: 🧪🎭 - screen-reader - ${{ matrix.os }} - ${{ matrix.shardIndex }}/${{ matrix.shardTotal }}
     runs-on: ${{ matrix.os }}
     strategy:
       fail-fast: false
       matrix:
         os: [macos-13, windows-2022]
-        framework: [react]
         shardIndex: [1, 2, 3]
         shardTotal: [3]
     steps:
@@ -39,28 +38,40 @@ jobs:
         with:
           version: ${{ inputs.version }}
 
-      - name: ⏬ Download showcases
+      - name: ⏬ Download foundations build
         uses: actions/download-artifact@v4
         with:
-          name: db-ui-showcases
-          path: build-showcases
+          name: db-ui-foundations-build
+          path: packages/foundations/build
+
+      - name: ⏬ Download output
+        uses: actions/download-artifact@v4
+        with:
+          name: db-ui-output
+          path: output
+
+      - name: ⏬ Download components build
+        uses: actions/download-artifact@v4
+        with:
+          name: db-ui-components-build
+          path: packages/components/build
 
       - name: 👩‍🔬 Test showcase with Playwright 🎭
         run: |
-          npm run test:screen-reader:${{ env.OS }} --workspace=${{ matrix.framework }}-showcase -- --shard=${{ matrix.shardIndex }}/${{ matrix.shardTotal }}
+          npm run test:screen-reader:${{ env.OS }} --workspace=react-showcase -- --shard=${{ matrix.shardIndex }}/${{ matrix.shardTotal }}
 
       - name: 🆙 Upload test results
         if: failure()
         uses: actions/upload-artifact@v4
         with:
-          name: ${{ matrix.framework }}-screen-reader-${{ matrix.os }}-${{ matrix.shardIndex }}
-          path: ./showcases/${{ matrix.framework }}-showcase/test-results
+          name: screen-reader-${{ matrix.os }}-${{ matrix.shardIndex }}
+          path: ./showcases/react-showcase/test-results
           retention-days: 30
 
       - name: 🆙 Upload test results
         if: failure()
         uses: actions/upload-artifact@v4
         with:
-          name: ${{ matrix.framework }}-recordings-${{ matrix.os }}-${{ matrix.shardIndex }}
-          path: ./showcases/${{ matrix.framework }}-showcase/recordings
+          name: screen-reader-recordings-${{ matrix.os }}-${{ matrix.shardIndex }}
+          path: ./showcases/react-showcase/recordings
           retention-days: 30
