@@ -32,12 +32,12 @@ const cleanSpeakInstructions = (phraseLog: string[]): string[] =>
 			.filter(
 				(sPhrase) =>
 					!(
-						sPhrase.startsWith('You are currently') ||
-						sPhrase.startsWith('To enter') ||
-						sPhrase.startsWith('To exit') ||
-						sPhrase.startsWith('To click') ||
-						sPhrase.startsWith('To select') ||
-						sPhrase.startsWith('To interact')
+						sPhrase.includes('You are currently') ||
+						sPhrase.includes('To enter') ||
+						sPhrase.includes('To exit') ||
+						sPhrase.includes('To click') ||
+						sPhrase.includes('To select') ||
+						sPhrase.includes('To interact')
 					)
 			)
 			.join('. ')

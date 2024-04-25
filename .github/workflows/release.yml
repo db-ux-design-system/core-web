@@ -62,7 +62,9 @@ jobs:
 
   test-screen-reader:
     uses: ./.github/workflows/02-e2e-screen-reader.yml
-    needs: [build-showcases, init-playwright]
+    needs: [build-showcases, init-playwright, get-playwright-version]
+    with:
+      version: ${{ needs.get-playwright-version.outputs.version }}
 
   checks-done:
     runs-on: ubuntu-latest
