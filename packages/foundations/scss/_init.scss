@@ -25,6 +25,12 @@ body {
 }
 
 body,
+#root,
+#app {
+	block-size: inherit;
+}
+
+body,
 	// Power Apps related
 .app-canvas,
 .control-pane {

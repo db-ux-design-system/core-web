@@ -101,7 +101,7 @@ const getExamplesAsMDX = async (componentName, variant) => {
 				setCopied(\`${exampleCode}\`);
 				navigator.clipboard.writeText(\`${exampleCode}\`);
 				}}>
-				Copy
+				Copy code
 				</DBButton>
 				</DBTabPanel>`;
 		}

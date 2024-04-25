@@ -16,8 +16,9 @@ export interface DBDrawerDefaultProps {
 
 	/**
 	 * The backdrop attribute changes the opacity of the backdrop.
+	 * The backdrop 'none' will use `dialog.show()` instead of `dialog.showModal()`
 	 */
-	backdrop?: 'strong' | 'weak' | 'none';
+	backdrop?: 'strong' | 'weak' | 'invisible' | 'none';
 
 	/**
 	 * The open attribute opens or closes the drawer based on the state.

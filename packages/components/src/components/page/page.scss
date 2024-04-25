@@ -1,23 +1,5 @@
 @use "@db-ui/foundations/build/scss/variables";
 
-:root {
-	body {
-		margin: 0;
-	}
-}
-
-:root:has(.fixed-header-footer),
-:root:has(db-page[type="fixedHeaderFooter"]) {
-	block-size: 100%;
-	overflow: hidden;
-
-	body,
-	#root,
-	#app {
-		block-size: 100%;
-	}
-}
-
 .db-page {
 	opacity: 0;
 
@@ -30,7 +12,7 @@
 		opacity: 1;
 	}
 
-	&.fixed-header-footer {
+	&[data-variant="fixed"] {
 		block-size: 100%;
 		min-block-size: 100%;
 		display: flex;
