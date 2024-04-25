@@ -10,6 +10,12 @@ jobs:
       - name: ⏬ Checkout repo
         uses: actions/checkout@v4
 
+      - name: ⏬ Download showcases
+        uses: actions/download-artifact@v4
+        with:
+          name: db-ui-showcases
+          path: build-showcases
+
       - name: 🔍💡🏠 Audit with Lighthouse
         id: audit
         uses: treosh/lighthouse-ci-action@v11
