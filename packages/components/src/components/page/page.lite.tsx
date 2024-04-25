@@ -1,4 +1,5 @@
 import {
+	onInit,
 	onMount,
 	Slot,
 	useMetadata,
@@ -19,6 +20,20 @@ export default function DBPage(props: DBPageProps) {
 		fontsLoaded: false
 	});
 
+	onInit(() => {
+		if (
+			document &&
+			(props.documentOverflow === 'hidden' ||
+				(props.variant === 'fixed' &&
+					props.documentOverflow !== 'auto'))
+		) {
+			// We need to set this to `html` element that the flex-box solution works
+			// See https://stackoverflow.com/a/43710216 - Approach 1 - flexbox
+			document.documentElement.style.blockSize = '100%';
+			document.documentElement.style.overflow = 'hidden';
+		}
+	});
+
 	onMount(() => {
 		state.fontsLoaded = !props.fadeIn;
 
@@ -30,15 +45,15 @@ export default function DBPage(props: DBPageProps) {
 			state.fontsLoaded = true;
 		}
 	});
+
 	// jscpd:ignore-end
 
 	return (
 		<div
 			ref={ref}
 			id={props.id}
-			class={cls('db-page', props.className, {
-				'fixed-header-footer': props.type === 'fixedHeaderFooter'
-			})}
+			class={cls('db-page', props.className)}
+			data-variant={props.variant}
 			data-fade-in={props.fadeIn}
 			data-fonts-loaded={state.fontsLoaded}>
 			<Slot name="header" />
