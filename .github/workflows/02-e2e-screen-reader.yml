@@ -33,6 +33,12 @@ jobs:
       - name: 🔄 Init Playwright Cache
         uses: ./.github/actions/playwright-cache
 
+      - name: ⏬ Download showcases
+        uses: actions/download-artifact@v4
+        with:
+          name: db-ui-showcases
+          path: build-showcases
+
       - name: 👩‍🔬 Test showcase with Playwright 🎭
         run: |
           npm run test:screen-reader:${{ env.OS }} --workspace=${{ matrix.framework }}-showcase -- --shard=${{ matrix.shardIndex }}/${{ matrix.shardTotal }}
