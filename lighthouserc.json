@@ -1,7 +1,7 @@
 {
 	"ci": {
 		"collect": {
-			"staticDistDir": "./build-showcases/patternhub"
+			"staticDistDir": "./build-showcases"
 		}
 	}
 }

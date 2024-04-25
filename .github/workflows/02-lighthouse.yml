@@ -16,6 +16,11 @@ jobs:
           name: db-ui-showcases
           path: build-showcases
 
+      # Lighthouse only searching for folders like dist/out/... see:
+      # https://github.com/GoogleChrome/lighthouse-ci/blob/main/packages/cli/src/autorun/autorun.js#L68-L87
+      - name: 💡🏠🔨🔁 Lighthouse workaround
+        run: cp -r ./build-showcases/patternhub  ./build-showcases/dist
+
       - name: 🔍💡🏠 Audit with Lighthouse
         id: audit
         uses: treosh/lighthouse-ci-action@v11
