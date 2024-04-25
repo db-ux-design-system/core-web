@@ -37,7 +37,10 @@ const config: PlaywrightTestConfig = {
 		baseURL: `http://localhost:8080/${process.env.showcase}/`,
 
 		/* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
-		trace: process.env.CI ? 'on-first-retry' : 'on'
+		trace: process.env.CI ? 'on-first-retry' : 'on',
+
+		/* Collect video when retrying the failed test.  */
+		video: process.env.CI ? 'on-first-retry' : 'on'
 	},
 	webServer: {
 		command: `cd ${process.env.showcase} && npm run preview`,
@@ -72,13 +75,16 @@ const config: PlaywrightTestConfig = {
 		{
 			name: 'mobile_chrome',
 			use: {
-				...devices['Pixel 5']
+				...devices['Pixel 5'],
+				isMobile: true
 			}
 		},
 		{
 			name: 'mobile_safari',
 			use: {
-				...devices['iPhone 12']
+				...devices['iPhone 12'],
+				isMobile: true,
+				deviceScaleFactor: 2
 			}
 		}
 	],

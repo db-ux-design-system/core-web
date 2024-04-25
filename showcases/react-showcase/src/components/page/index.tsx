@@ -13,7 +13,7 @@ import { getVariants } from '../data';
 import DefaultComponent from '../index';
 
 const getPage = ({
-	type,
+	variant,
 	fadeIn,
 	children,
 	className,
@@ -22,7 +22,7 @@ const getPage = ({
 	key
 }: DBPageProps) => (
 	<DBPage
-		type={type}
+		variant={variant}
 		fadeIn={fadeIn}
 		className={className}
 		describedbyid={describedbyid}

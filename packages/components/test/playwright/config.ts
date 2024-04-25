@@ -22,10 +22,14 @@ const config = defineConfig({
 	reporter: process.env.CI ? 'blob' : [['list'], ['html', { open: 'never' }]],
 	/* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
 	use: {
-		/* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
-		trace: 'on-first-retry',
 		/* Port to use for Playwright component endpoint. */
-		ctPort: 3100
+		ctPort: 3100,
+
+		/* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
+		trace: process.env.CI ? 'on-first-retry' : 'on',
+
+		/* Collect video when retrying the failed test. */
+		video: process.env.CI ? 'on-first-retry' : 'on'
 	},
 	/* Configure projects for major browsers */
 	projects: [

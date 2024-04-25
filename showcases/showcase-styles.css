@@ -136,3 +136,8 @@ db-card:is(.variants-card) > .db-card {
 .db-page.fixed-header-footer main {
 	overflow-x: hidden;
 }
+
+:root {
+	block-size: 100%;
+	overflow: hidden;
+}
