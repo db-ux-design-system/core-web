@@ -77,7 +77,7 @@ const DefaultPage = ({ children }: any) => {
 			{router.isReady && !fullscreen && (
 				<DBPage
 					fadeIn
-					type="fixedHeaderFooter"
+					variant="fixed"
 					header={
 						<DBHeader
 							drawerOpen={drawerOpen}
