@@ -12,6 +12,11 @@ const showcaseConfig: PlaywrightTestConfig = {
 		/* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
 		trace: process.env.CI ? 'on-first-retry' : 'on'
 	},
+	webServer: {
+		command: `cd ${process.env.showcase} && npm run preview`,
+		port: 8080,
+		reuseExistingServer: !process.env.CI
+	},
 
 	/* Folder for test artifacts such as screenshots, videos, traces, etc. */
 	outputDir: `./${process.env.showcase}/test-results/`

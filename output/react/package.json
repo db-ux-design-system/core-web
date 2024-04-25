@@ -22,6 +22,7 @@
     "postbuild": "npm-run-all -p mv:*",
     "regenerate:screenshots": "playwright test -c playwright.config.ts --update-snapshots",
     "test:components": "playwright test -c playwright.config.ts",
+    "test:windows": "playwright test -c playwright.screen-reader.win.ts",
     "tsc": "tsc -p . --sourceMap false"
   },
   "devDependencies": {

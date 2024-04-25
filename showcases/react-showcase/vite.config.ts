@@ -10,8 +10,5 @@ export default defineConfig({
 	},
 	define: {
 		process
-	},
-	server: {
-		port: 8080
 	}
 });
