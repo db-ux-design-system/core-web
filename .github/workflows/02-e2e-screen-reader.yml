@@ -42,7 +42,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: ${{ matrix.framework }}-screen-reader-${{ matrix.os }}-${{ matrix.shardIndex }}
-          path: ./${{ matrix.framework }}-showcase/test-results
+          path: ./showcases/${{ matrix.framework }}-showcase/test-results
           retention-days: 30
 
       - name: 🆙 Upload test results
@@ -50,5 +50,5 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: ${{ matrix.framework }}-recordings-${{ matrix.os }}-${{ matrix.shardIndex }}
-          path: ./${{ matrix.framework }}-showcase/recordings
+          path: ./showcases/${{ matrix.framework }}-showcase/recordings
           retention-days: 30
