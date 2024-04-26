@@ -31,6 +31,9 @@ jobs:
         with:
           record: true
 
+      - name: 🔄 Init Cache
+        uses: ./.github/actions/npm-cache
+
       - name: 🔄 Init Playwright Cache
         uses: ./.github/actions/playwright-cache
         with:
