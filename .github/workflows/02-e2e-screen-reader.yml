@@ -43,6 +43,8 @@ jobs:
           path: build-showcases
 
       - name: 👩‍🔬 Test showcase with Playwright 🎭
+        env:
+          showcase: ${{ matrix.framework }}-showcase
         run: |
           npm run test:screen-reader:${{ env.OS }} --workspace=${{ matrix.framework }}-showcase -- --shard=${{ matrix.shardIndex }}/${{ matrix.shardTotal }}
 

@@ -12,8 +12,10 @@
     "regenerate:screenshots": "cross-env showcase=react-showcase npx playwright test -c ../playwright.config.ts --update-snapshots",
     "start": "vite",
     "test:e2e": "cross-env showcase=react-showcase npx playwright test --config=../playwright.config.ts",
-    "test:screen-reader:macos": "cross-env showcase=react-showcase npx playwright test --config=../playwright.screen-reader.mac.ts",
-    "test:screen-reader:windows": "cross-env showcase=react-showcase npx playwright test --config=../playwright.screen-reader.win.ts"
+    "test:screen-reader-local:macos": "cross-env showcase=react-showcase npm run test:screen-reader:macos",
+    "test:screen-reader-local:windows": "cross-env showcase=react-showcase npm run test:screen-reader:windows",
+    "test:screen-reader:macos": "npx playwright test --config=../playwright.screen-reader.macos.ts",
+    "test:screen-reader:windows": "npx playwright test --config=../playwright.screen-reader.windows.ts"
   },
   "dependencies": {
     "react": "^18.2.0",
