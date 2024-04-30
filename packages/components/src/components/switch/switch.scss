@@ -65,10 +65,6 @@ $checked-active-transition-size: calc(
 		background-color: colors.$db-current-color-bg-enabled;
 		border-radius: variables.$db-border-radius-full;
 
-		@include helpers.active {
-			@extend %active-transition;
-		}
-
 		&::after {
 			visibility: hidden;
 			align-self: center;
@@ -168,10 +164,6 @@ $checked-active-transition-size: calc(
 			@include helpers.active {
 				background-color: colors.$db-current-color-bg-pressed;
 				border-color: colors.$db-current-color-bg-pressed;
-
-				&::before {
-					block-size: $checked-active-transition-size;
-				}
 			}
 
 			&:not(:checked) {
