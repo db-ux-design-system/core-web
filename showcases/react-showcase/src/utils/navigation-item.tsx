@@ -1,3 +1,4 @@
+import SwitchComponent from '../components/switch';
 import TabsComponent from '../components/tabs';
 import TabItemComponent from '../components/tab-item';
 import TooltipComponent from '../components/tooltip';
@@ -128,6 +129,7 @@ export const NAVIGATION_ITEMS: NavigationItem[] = [
 				label: 'Checkbox',
 				component: <CheckboxComponent />
 			},
+			{ path: 'switch', label: 'Switch', component: <SwitchComponent /> },
 			{ path: 'select', label: 'Select', component: <SelectComponent /> }
 		])
 	},

@@ -26,6 +26,18 @@
  */
 const getComponents = () => [
 	{
+		name: 'switch',
+		config: {
+			vue: {
+				vModel: [{ modelValue: 'checked', binding: ':checked' }]
+			},
+			angular: {
+				controlValueAccessor: 'checked'
+			}
+		}
+	},
+
+	{
 		name: 'tab-panel',
 		config: {
 			angular: {

@@ -27,7 +27,6 @@ export default function DB<%= h.changeCase.pascal(name) %>(props: DB<%= h.change
 			if (props.change) {
 				props.change(event);
 			}
-
 			handleFrameworkEvent(this, event, <%= formValue %>);
 		},
 		handleBlur: (event: InteractionEvent<HTMLInputElement>) => {

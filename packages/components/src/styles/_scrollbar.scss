@@ -4,7 +4,7 @@
 @use "@db-ui/foundations/build/scss/animation";
 @use "./form-components";
 
-$scrollbar-width: helpers.to-rem(8);
+$scrollbar-width: helpers.px-to-rem(8);
 
 %scrollbar {
 	&::-webkit-scrollbar {

@@ -87,6 +87,10 @@ const componentChildren: NavigationItem[] = [
 				name: 'select'
 			},
 			{
+				label: 'DBSwitch',
+				name: 'switch'
+			},
+			{
 				label: 'DBTextarea',
 				name: 'textarea'
 			}

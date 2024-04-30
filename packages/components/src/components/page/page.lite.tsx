@@ -1,6 +1,8 @@
 import {
 	onInit,
 	onMount,
+	onUnMount,
+	onUpdate,
 	Slot,
 	useMetadata,
 	useRef,

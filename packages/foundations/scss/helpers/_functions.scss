@@ -4,11 +4,11 @@
 @use "../colors";
 @use "../variables";
 
-@function to-rem($pxValue) {
+@function px-to-rem($pxValue) {
 	@return #{$pxValue * 0.0625}rem;
 }
 
-@function to-em($pxValue) {
+@function px-to-em($pxValue) {
 	@return #{$pxValue * 0.0625}em;
 }
 

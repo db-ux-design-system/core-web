@@ -33,5 +33,10 @@
 				);
 			}
 		}
+
+		&:focus-visible {
+			// Overwrite default border-radius
+			border-radius: variables.$db-border-radius-full;
+		}
 	}
 }
