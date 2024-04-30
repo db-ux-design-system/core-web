@@ -9,7 +9,8 @@ import {
 } from '@builder.io/mitosis';
 import { DBNavigationItemProps, DBNavigationItemState } from './model';
 import { DBButton } from '../button';
-import { cls, uuid, visibleInVX, visibleInVY } from '../../utils';
+import { cls, uuid } from '../../utils';
+import { NavigationItemSafeTriangle } from '../../utils/navigation';
 import { DEFAULT_BACK } from '../../shared/constants';
 import { ClickEvent } from '../../shared/model';
 
@@ -27,6 +28,8 @@ export default function DBNavigationItem(props: DBNavigationItemProps) {
 		hasSubNavigation: true,
 		isSubNavigationExpanded: false,
 		subNavigationId: 'sub-navigation-' + uuid(),
+		navigationItemSafeTriangle: undefined,
+
 		handleClick: (event: ClickEvent<HTMLButtonElement>) => {
 			if (props.onClick) {
 				props.onClick(event);
@@ -36,9 +39,34 @@ export default function DBNavigationItem(props: DBNavigationItemProps) {
 				state.isSubNavigationExpanded = true;
 			}
 		},
+
 		handleBackClick: (event: ClickEvent<HTMLButtonElement>) => {
 			event.stopPropagation();
 			state.isSubNavigationExpanded = false;
+		},
+
+		updateSubNavigationState: () => {
+			if (state.initialized && document && state.subNavigationId) {
+				const subNavigationSlot = document?.getElementById(
+					state.subNavigationId
+				) as HTMLMenuElement;
+
+				if (subNavigationSlot) {
+					if (subNavigationSlot.children?.length > 0) {
+						state.hasAreaPopup = true;
+
+						if (!state.navigationItemSafeTriangle) {
+							state.navigationItemSafeTriangle =
+								new NavigationItemSafeTriangle(
+									ref,
+									subNavigationSlot
+								);
+						}
+					} else {
+						state.hasSubNavigation = false;
+					}
+				}
+			}
 		}
 	});
 
@@ -53,43 +81,21 @@ export default function DBNavigationItem(props: DBNavigationItemProps) {
 	}, [props.subNavigationExpanded]);
 
 	onUpdate(() => {
-		if (props.areaPopup !== undefined) {
-			state.hasAreaPopup = props.areaPopup;
-			state.hasSubNavigation = state.hasAreaPopup;
-		} else if (state.initialized && document && state.subNavigationId) {
-			const subNavigationSlot = document?.getElementById(
-				state.subNavigationId
-			) as HTMLMenuElement;
-
-			if (subNavigationSlot) {
-				const children = subNavigationSlot.children;
-				if (children?.length > 0) {
-					state.hasAreaPopup = true;
-					if (!visibleInVX(subNavigationSlot)) {
-						subNavigationSlot.setAttribute(
-							'data-outside-vx',
-							'true'
-						);
-					}
-					if (!visibleInVY(subNavigationSlot)) {
-						subNavigationSlot.setAttribute(
-							'data-outside-vy',
-							'true'
-						);
-					}
-				} else {
-					state.hasSubNavigation = false;
-				}
-			}
-		}
-	}, [state.initialized, props.areaPopup]);
-
+		state.updateSubNavigationState();
+	}, [state.initialized]);
 	// jscpd:ignore-end
 
 	return (
 		<li
 			ref={ref}
 			id={props.id}
+			onMouseOver={() => state.navigationItemSafeTriangle?.enableFollow()}
+			onMouseLeave={() =>
+				state.navigationItemSafeTriangle?.disableFollow()
+			}
+			onMouseMove={(event) =>
+				state.navigationItemSafeTriangle?.followByMouseEvent(event)
+			}
 			class={cls('db-navigation-item', props.className)}
 			data-width={props.width}
 			data-icon={props.icon}

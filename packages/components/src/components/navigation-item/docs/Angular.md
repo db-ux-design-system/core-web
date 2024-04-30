@@ -24,7 +24,7 @@ We try to set `areaPopup` (has/hasn't sub-navigation) inside the component, but 
 <!-- app.component.html -->
 
 <!-- Only link -->
-<db-navigation-item [areaPopup]="false">
+<db-navigation-item>
 	<ng-container *dbNavigationContent>
 		<a routerLink="mypath">NavigationItem</a>
 	</ng-container>
@@ -32,16 +32,16 @@ We try to set `areaPopup` (has/hasn't sub-navigation) inside the component, but 
 
 <!-- With Sub-Navigation -->
 
-<db-navigation-item [areaPopup]="true">
+<db-navigation-item>
 	<ng-container *dbNavigationContent>Navi-Item 1</ng-container>
 	<ng-container sub-navigation>
-		<db-navigation-item [areaPopup]="false">
+		<db-navigation-item>
 			<ng-container *dbNavigationContent>
 				<a routerLink="mypath">Sub-Navi-Item 1</a>
 			</ng-container>
 		</db-navigation-item>
 
-		<db-navigation-item [areaPopup]="false">
+		<db-navigation-item>
 			<ng-container *dbNavigationContent>
 				<a routerLink="mypath">Sub-Navi-Item 2</a>
 			</ng-container>
