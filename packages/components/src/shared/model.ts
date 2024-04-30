@@ -396,7 +396,7 @@ export type CloseEventProps = {
 	/**
 	 * Function to handle button click (close).
 	 */
-	onClose?: () => void;
+	onClose?: (event?: any) => void;
 };
 
 export type CloseEventState = {

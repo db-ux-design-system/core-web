@@ -33,7 +33,7 @@ export default function DBDrawer(props: DBDrawerProps) {
 					props.backdrop !== 'none')
 			) {
 				if (props.onClose) {
-					props.onClose();
+					props.onClose(event);
 				}
 			}
 		},
