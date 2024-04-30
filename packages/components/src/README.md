@@ -106,6 +106,6 @@ Main use-case for converting `px` values or inserting UI styling like e.g. a div
 
 .db-xxx {
 	@include helpers.divider("top");
-	text-decoration-thickness: helpers.to-rem($pxValue: 1);
+	text-decoration-thickness: helpers.px-to-rem($pxValue: 1);
 }
 ```

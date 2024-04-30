@@ -5,7 +5,7 @@
 @use "../variables";
 
 $default-icon-size: 24;
-$default-icon-size-rem: #{helpers.to-rem($default-icon-size)};
+$default-icon-size-rem: #{helpers.px-to-rem($default-icon-size)};
 $default-icon-variants: "default", "inverted", "filled";
 
 $default-icon-content: var(--db-icon, attr(data-icon));

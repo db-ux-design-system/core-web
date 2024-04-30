@@ -5,7 +5,7 @@
 @use "@db-ui/foundations/build/scss/icons";
 @use "../../styles/form-components";
 
-$switch-fixed-padding: helpers.to-rem(2);
+$switch-fixed-padding: helpers.px-to-rem(2);
 
 $switch-inactive-thumb-size: calc(
 	#{form-components.$font-size-height} - #{$switch-fixed-padding} * 2
@@ -37,6 +37,7 @@ $checked-active-transition-size: calc(
 	justify-content: space-between;
 	user-select: none;
 
+	// This is needed when clicking on the label instead of the input
 	@include helpers.active {
 		& > input {
 			@extend %active-transition;
@@ -45,7 +46,7 @@ $checked-active-transition-size: calc(
 
 	& > input {
 		--db-icon-margin-start: 0;
-		--thumb-position: calc(0% + #{$switch-fixed-padding});
+		--thumb-offset-x: #{$switch-fixed-padding};
 		@extend %db-overwrite-font-size-sm;
 
 		@include icons.set-icon("cross", "after");
@@ -81,7 +82,7 @@ $checked-active-transition-size: calc(
 			block-size: $switch-inactive-thumb-size;
 			background: colors.$db-current-color-enabled;
 			border-radius: variables.$db-border-radius-full;
-			transform: translateX(var(--thumb-position));
+			transform: translateX(var(--thumb-offset-x));
 
 			margin-inline-end: calc(
 				#{$switch-active-thumb-size} - #{$switch-inactive-thumb-size}
@@ -106,7 +107,7 @@ $checked-active-transition-size: calc(
 		/* positioned at the end of the track: track length - 100% (thumb width) */
 		&:checked {
 			--db-current-icon-color: #{colors.$db-current-color-bg-enabled};
-			--thumb-position: calc(100% + #{$switch-fixed-padding});
+			--thumb-offset-x: calc(100% + #{$switch-fixed-padding});
 
 			background-color: colors.$db-current-color-enabled;
 
@@ -126,6 +127,11 @@ $checked-active-transition-size: calc(
 				margin: 0;
 			}
 		}
+
+		&:focus-visible {
+			// Overwrite default border-radius
+			border-radius: variables.$db-border-radius-full;
+		}
 	}
 
 	&[data-variant="hidden"] {
@@ -141,6 +147,7 @@ $checked-active-transition-size: calc(
 	}
 
 	&[data-emphasis="strong"] {
+		// This is needed when clicking on an active strong switch
 		@include helpers.active {
 			& > input {
 				&::before {
@@ -168,7 +175,7 @@ $checked-active-transition-size: calc(
 			}
 
 			&:not(:checked) {
-				--thumb-position: 0%;
+				--thumb-offset-x: 0;
 			}
 
 			&:checked {
@@ -208,20 +215,12 @@ $checked-active-transition-size: calc(
 	}
 
 	& > input {
-		&[data-aid-icon] {
-			&:not(:checked) {
-				&::after {
-					content: attr(data-aid-icon);
-				}
-			}
+		&[data-aid-icon]:not(:checked)::after {
+			content: attr(data-aid-icon);
 		}
 
-		&[data-aid-icon-after] {
-			&:checked {
-				&::after {
-					content: attr(data-aid-icon-after);
-				}
-			}
+		&[data-aid-icon-after]:checked::after {
+			content: attr(data-aid-icon-after);
 		}
 	}
 }
