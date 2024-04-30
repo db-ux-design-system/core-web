@@ -10,7 +10,6 @@ import {
 import { cls, uuid } from '../../utils';
 import { DBInputProps, DBInputState } from './model';
 import {
-	DEFAULT_ID,
 	DEFAULT_INVALID_MESSAGE,
 	DEFAULT_INVALID_MESSAGE_ID_SUFFIX,
 	DEFAULT_LABEL,
@@ -35,12 +34,17 @@ export default function DBInput(props: DBInputProps) {
 	const ref = useRef<HTMLInputElement>(null);
 	// jscpd:ignore-start
 	const state = useStore<DBInputState>({
-		_id: DEFAULT_ID,
-		_messageId: DEFAULT_ID + DEFAULT_MESSAGE_ID_SUFFIX,
-		_validMessageId: DEFAULT_ID + DEFAULT_VALID_MESSAGE_ID_SUFFIX,
-		_invalidMessageId: DEFAULT_ID + DEFAULT_INVALID_MESSAGE_ID_SUFFIX,
-		_descByIds: '',
-		_dataListId: DEFAULT_ID,
+		_id: 'input-' + uuid(),
+		_messageId: this._id + DEFAULT_MESSAGE_ID_SUFFIX,
+		_validMessageId: this._id + DEFAULT_VALID_MESSAGE_ID_SUFFIX,
+		_invalidMessageId: this._id + DEFAULT_INVALID_MESSAGE_ID_SUFFIX,
+		_descByIds:
+			this._messageId +
+			' ' +
+			this._validMessageId +
+			' ' +
+			this._invalidMessageId,
+		_dataListId: `datalist-` + uuid(),
 		defaultValues: {
 			label: DEFAULT_LABEL,
 			placeholder: ' '
@@ -96,31 +100,27 @@ export default function DBInput(props: DBInputProps) {
 	});
 
 	onMount(() => {
-		state._id = props.id || 'input-' + uuid();
-		state._dataListId = props.dataListId || `datalist-${uuid()}`;
+		state._id = props.id ?? state._id;
+		state._dataListId = props.dataListId ?? state._dataListId;
 	});
 
 	onUpdate(() => {
 		if (state._id) {
-			state._messageId = state._id + DEFAULT_MESSAGE_ID_SUFFIX;
-			state._validMessageId = state._id + DEFAULT_VALID_MESSAGE_ID_SUFFIX;
-			state._invalidMessageId =
+			const messageId = state._id + DEFAULT_MESSAGE_ID_SUFFIX;
+			const validMessageId = state._id + DEFAULT_VALID_MESSAGE_ID_SUFFIX;
+			const invalidMessageId =
 				state._id + DEFAULT_INVALID_MESSAGE_ID_SUFFIX;
+			state._messageId = messageId;
+			state._validMessageId = validMessageId;
+			state._invalidMessageId = invalidMessageId;
+
+			state._descByIds = [
+				messageId,
+				validMessageId,
+				invalidMessageId
+			].join(' ');
 		}
 	}, [state._id]);
-
-	onUpdate(() => {
-		const descByIds = [state._validMessageId, state._invalidMessageId];
-		if (props.message) {
-			descByIds.push(state._messageId);
-		}
-		state._descByIds = descByIds.join(' ');
-	}, [
-		props.message,
-		state._messageId,
-		state._validMessageId,
-		state._invalidMessageId
-	]);
 
 	return (
 		<div

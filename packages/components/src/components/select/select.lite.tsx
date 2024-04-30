@@ -10,7 +10,6 @@ import {
 import { DBSelectOptionType, DBSelectProps, DBSelectState } from './model';
 import { cls, uuid } from '../../utils';
 import {
-	DEFAULT_ID,
 	DEFAULT_INVALID_MESSAGE,
 	DEFAULT_INVALID_MESSAGE_ID_SUFFIX,
 	DEFAULT_LABEL,
@@ -31,12 +30,17 @@ export default function DBSelect(props: DBSelectProps) {
 	const ref = useRef<HTMLSelectElement>(null);
 	// jscpd:ignore-start
 	const state = useStore<DBSelectState>({
-		_id: DEFAULT_ID,
-		_messageId: DEFAULT_ID + DEFAULT_MESSAGE_ID_SUFFIX,
-		_validMessageId: DEFAULT_ID + DEFAULT_VALID_MESSAGE_ID_SUFFIX,
-		_invalidMessageId: DEFAULT_ID + DEFAULT_INVALID_MESSAGE_ID_SUFFIX,
-		_descByIds: '',
-		_placeholderId: DEFAULT_ID + DEFAULT_PLACEHOLDER_ID_SUFFIX,
+		_id: 'select-' + uuid(),
+		_messageId: this._id + DEFAULT_MESSAGE_ID_SUFFIX,
+		_validMessageId: this._id + DEFAULT_VALID_MESSAGE_ID_SUFFIX,
+		_invalidMessageId: this._id + DEFAULT_INVALID_MESSAGE_ID_SUFFIX,
+		_descByIds:
+			this._messageId +
+			' ' +
+			this._validMessageId +
+			' ' +
+			this._invalidMessageId,
+		_placeholderId: this._id + DEFAULT_PLACEHOLDER_ID_SUFFIX,
 		handleClick: (event: ClickEvent<HTMLSelectElement>) => {
 			if (props.onClick) {
 				props.onClick(event);
@@ -87,31 +91,28 @@ export default function DBSelect(props: DBSelectProps) {
 	});
 
 	onMount(() => {
-		state._id = props.id || 'select-' + uuid();
+		state._id = props.id || state._id;
 	});
 
 	onUpdate(() => {
 		if (state._id) {
-			state._placeholderId = state._id + DEFAULT_PLACEHOLDER_ID_SUFFIX;
-			state._messageId = state._id + DEFAULT_MESSAGE_ID_SUFFIX;
-			state._validMessageId = state._id + DEFAULT_VALID_MESSAGE_ID_SUFFIX;
-			state._invalidMessageId =
+			const messageId = state._id + DEFAULT_MESSAGE_ID_SUFFIX;
+			const validMessageId = state._id + DEFAULT_VALID_MESSAGE_ID_SUFFIX;
+			const invalidMessageId =
 				state._id + DEFAULT_INVALID_MESSAGE_ID_SUFFIX;
+			const placeholderId = state._id + DEFAULT_PLACEHOLDER_ID_SUFFIX;
+			state._messageId = messageId;
+			state._validMessageId = validMessageId;
+			state._invalidMessageId = invalidMessageId;
+
+			state._descByIds = [
+				messageId,
+				validMessageId,
+				invalidMessageId,
+				placeholderId
+			].join(' ');
 		}
 	}, [state._id]);
-
-	onUpdate(() => {
-		const descByIds = [state._validMessageId, state._invalidMessageId];
-		if (props.message) {
-			descByIds.push(state._messageId);
-		}
-		state._descByIds = descByIds.join(' ');
-	}, [
-		props.message,
-		state._messageId,
-		state._validMessageId,
-		state._invalidMessageId
-	]);
 
 	return (
 		<div
