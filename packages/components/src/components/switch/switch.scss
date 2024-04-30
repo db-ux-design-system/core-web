@@ -144,8 +144,18 @@ $checked-active-transition-size: calc(
 
 	&[data-emphasis="strong"] {
 		// This is needed when clicking on an active strong switch
+		@include helpers.hover {
+			& > input {
+				background-color: colors.$db-current-color-bg-hover;
+				border-color: colors.$db-current-color-bg-hover;
+			}
+		}
+
 		@include helpers.active {
 			& > input {
+				background-color: colors.$db-current-color-bg-pressed;
+				border-color: colors.$db-current-color-bg-pressed;
+
 				&::before {
 					block-size: $checked-active-transition-size;
 				}
@@ -155,16 +165,6 @@ $checked-active-transition-size: calc(
 		& > input {
 			--db-check-element-border-color: #{colors.$db-current-color-bg-enabled};
 			@extend %db-critical-contrast-low;
-
-			@include helpers.hover {
-				background-color: colors.$db-current-color-bg-hover;
-				border-color: colors.$db-current-color-bg-hover;
-			}
-
-			@include helpers.active {
-				background-color: colors.$db-current-color-bg-pressed;
-				border-color: colors.$db-current-color-bg-pressed;
-			}
 
 			&:not(:checked) {
 				--thumb-offset-x: 0;
