@@ -9,17 +9,21 @@ import {
 
 export interface DBDrawerDefaultProps {
 	/**
-	 * The direction attribute changes the position & animation of the drawer.
-	 * E. g. "left" slides from left screen border to the right.
-	 */
-	direction?: 'left' | 'right' | 'up' | 'down';
-
-	/**
 	 * The backdrop attribute changes the opacity of the backdrop.
 	 * The backdrop 'none' will use `dialog.show()` instead of `dialog.showModal()`
 	 */
 	backdrop?: 'strong' | 'weak' | 'invisible' | 'none';
 
+	/**
+	 * The direction attribute changes the position & animation of the drawer.
+	 * E.g. "left" slides from left screen border to the right.
+	 */
+	direction?: 'left' | 'right' | 'up' | 'down';
+
+	/**
+	 * React specific to change the header of the drawer.
+	 */
+	drawerHeader?: unknown;
 	/**
 	 * The open attribute opens or closes the drawer based on the state.
 	 */
@@ -29,10 +33,6 @@ export interface DBDrawerDefaultProps {
 	 * The "end" depends on which direction you use.
 	 */
 	rounded?: boolean;
-	/**
-	 * React specific to change the header of the drawer.
-	 */
-	drawerHeader?: unknown;
 	/**
 	 * The @dependabot recreate attribute changes the padding inside the drawer.
 	 */
