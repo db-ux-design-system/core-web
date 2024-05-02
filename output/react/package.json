@@ -30,7 +30,7 @@
     "@types/react": "^18.3.1",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
-    "sass": "^1.75.0"
+    "sass": "^1.76.0"
   },
   "publishConfig": {
     "registry": "https://registry.npmjs.org/",
