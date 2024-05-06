@@ -141,3 +141,7 @@ db-card:is(.variants-card) > .db-card {
 	block-size: 100%;
 	overflow: hidden;
 }
+
+main .db-header {
+	block-size: 100%;
+}

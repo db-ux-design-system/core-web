@@ -18,15 +18,15 @@
 		display: flex;
 		flex-direction: column;
 
-		header,
-		footer {
+		header:first-of-type,
+		footer:first-of-type {
 			display: flex;
 			flex: 0 1 auto;
 			flex-grow: 0;
 			flex-shrink: 0;
 		}
 
-		main {
+		main:first-of-type {
 			display: flex;
 			flex-direction: column;
 			overflow: auto;

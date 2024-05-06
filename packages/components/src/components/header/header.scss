@@ -19,6 +19,16 @@
 		--db-drawer-max-width: #{screen-sizes.$db-breakpoint-sm};
 	}
 
+	&[data-width="medium"] {
+		margin-inline: auto;
+		max-inline-size: screen-sizes.$db-breakpoint-md;
+	}
+
+	&[data-width="large"] {
+		margin-inline: auto;
+		max-inline-size: screen-sizes.$db-breakpoint-lg;
+	}
+
 	.db-link {
 		display: inline-block;
 	}
@@ -30,18 +40,25 @@
 		*/
 		visibility: hidden;
 	}
+
+	// All use-cases where we hide the divider
+	&:has(.db-header-navigation:empty),
+	&:has(.db-brand:empty) {
+		.db-header-navigation-container::before {
+			display: none;
+		}
+	}
 }
 
 .db-header-navigation-bar {
 	display: flex;
 	position: relative;
 	padding: variables.$db-spacing-fixed-xs variables.$db-spacing-fixed-md;
-	gap: variables.$db-spacing-fixed-xs;
 	inline-size: 100%;
 	align-items: center;
 
 	@include screen-sizes.screen("md") {
-		padding: variables.$db-spacing-fixed-md;
+		padding: variables.$db-spacing-fixed-md variables.$db-spacing-fixed-lg;
 	}
 }
 
@@ -57,9 +74,14 @@
 	padding: variables.$db-spacing-fixed-md;
 
 	@include screen-sizes.screen("md") {
-		padding: variables.$db-spacing-fixed-xs variables.$db-spacing-fixed-md;
+		padding: variables.$db-spacing-fixed-xs variables.$db-spacing-fixed-lg;
 		margin: 0;
+		gap: variables.$db-spacing-fixed-md;
 		flex-direction: row;
+
+		&::before {
+			display: none;
+		}
 
 		&:empty {
 			display: none;
@@ -75,7 +97,6 @@
 	display: inherit;
 	flex: 1 1 auto;
 	inline-size: 100%;
-	gap: inherit;
 	align-items: center;
 	block-size: 100%;
 
@@ -85,12 +106,12 @@
 		&::before {
 			position: inherit;
 			block-size: 100%;
-			margin-inline-start: variables.$db-spacing-fixed-sm;
+			margin-inline-start: variables.$db-spacing-fixed-lg;
 		}
 	}
 }
 
-.db-header-call-to-action {
+.db-header-primary-action {
 	margin-inline-start: auto;
 }
 
@@ -98,7 +119,7 @@
 	display: none;
 }
 
-.db-header-action-container:has(> .db-header-action-bar:empty) {
+.db-header-action-container:has(> .db-header-secondary-action:empty) {
 	@include screen-sizes.screen("md") {
 		display: none;
 	}
@@ -110,10 +131,15 @@
 
 .db-header-action-container {
 	@include helpers.divider("left");
+
 	@include screen-sizes.screen("md") {
 		&::before {
-			margin-inline-end: variables.$db-spacing-fixed-sm;
+			margin-inline: variables.$db-spacing-fixed-sm;
 		}
+	}
+
+	&::before {
+		margin-inline: variables.$db-spacing-fixed-xs;
 	}
 
 	&::before {
@@ -133,7 +159,7 @@
 	flex-shrink: 0;
 }
 
-.db-header-action-bar {
+.db-header-secondary-action {
 	@include helpers.divider("top");
 	flex: 0 1 auto;
 	flex-grow: 0;
@@ -158,10 +184,14 @@
 
 .db-header-navigation {
 	padding-block: variables.$db-spacing-fixed-md;
+
+	@include screen-sizes.screen("md") {
+		margin-inline: variables.$db-spacing-fixed-lg;
+	}
 }
 
 .db-header-navigation,
-.db-header-action-bar {
+.db-header-secondary-action {
 	display: flex;
 	gap: variables.$db-spacing-fixed-sm;
 	padding-inline: variables.$db-spacing-fixed-md;
@@ -191,7 +221,7 @@
 /* Only for Desktop */
 .db-header-meta-navigation,
 .db-header-navigation-container > .db-header-navigation,
-.db-header-action-container > .db-header-action-bar {
+.db-header-action-container > .db-header-secondary-action {
 	display: none;
 
 	@include screen-sizes.screen("md") {

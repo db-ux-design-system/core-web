@@ -74,7 +74,7 @@ For general installation and configuration take a look at the [components](https
 							>
 						</div>
 					</div>
-					<div class="db-header-action-bar">
+					<div class="db-header-secondary-action">
 						<button
 							id="button-65ba5268-2f08-47e3-9884-283c7f3e0be8"
 							class="db-button is-icon-text-replace"
@@ -158,7 +158,7 @@ For general installation and configuration take a look at the [components](https
 						</menu>
 					</nav>
 				</div>
-				<div class="db-header-call-to-action">
+				<div class="db-header-primary-action">
 					<button
 						id="button-46f070bc-adb3-4729-97ae-bfa41e62e51b"
 						class="db-button is-icon-text-replace"
@@ -180,7 +180,7 @@ For general installation and configuration take a look at the [components](https
 						BurgerMenu
 					</button>
 				</div>
-				<div class="db-header-action-bar">
+				<div class="db-header-secondary-action">
 					<button
 						id="button-cad51b9a-a428-42ea-91e7-ec52539f8f37"
 						class="db-button is-icon-text-replace"

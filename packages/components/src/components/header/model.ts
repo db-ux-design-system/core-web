@@ -10,9 +10,14 @@ import {
 export interface DBHeaderDefaultProps {
 	brand?: unknown;
 	metaNavigation?: unknown;
-	callToAction?: unknown;
-	actionBar?: unknown;
+	primaryAction?: unknown;
+	secondaryAction?: unknown;
 	drawerOpen?: boolean;
+
+	/**
+	 * Set max width for header
+	 */
+	width?: 'full' | 'medium' | 'large';
 
 	/**
 	 * Forces the header to use mobile layout for desktop as well.
