@@ -95,3 +95,28 @@ $tooltip-arrow-shadow-size: variables.$db-sizing-2xs;
 		}
 	}
 }
+
+// Global styles
+
+@mixin show-popover($state) {
+	*:has(
+			> db-tooltip > .db-tooltip:not([data-open]),
+			> dbtooltip > .db-tooltip:not([data-open]),
+			> .db-tooltip:not([data-open])
+		) {
+		&:#{$state} {
+			.db-tooltip:first-of-type {
+				@extend %show-popover;
+			}
+		}
+	}
+}
+
+*:has(> db-tooltip, > dbtooltip, > .db-tooltip) {
+	position: relative;
+}
+
+$popover-states: "hover", "focus";
+@each $state in $popover-states {
+	@include show-popover($state);
+}

@@ -1,0 +1,8 @@
+@use "../densities";
+
+@mixin init($density) {
+	.db-density-#{$density},
+	[data-density="#{$density}"] {
+		@extend %db-density-#{$density};
+	}
+}

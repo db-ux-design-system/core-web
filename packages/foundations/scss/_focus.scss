@@ -9,13 +9,13 @@
 	transition:
 		outline
 			var(
-				--db-transition-duration-ultra-fast,
-				#{variables.$db-transition-duration-ultra-fast}
+				--db-transition-duration-x-fast,
+				#{variables.$db-transition-duration-x-fast}
 			),
 		box-shadow
 			var(
-				--db-transition-duration-ultra-fast,
-				#{variables.$db-transition-duration-ultra-fast}
+				--db-transition-duration-x-fast,
+				#{variables.$db-transition-duration-x-fast}
 			);
 
 	&:not([type="radio"], [role="switch"]) {
