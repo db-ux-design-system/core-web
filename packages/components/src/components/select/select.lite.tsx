@@ -34,13 +34,8 @@ export default function DBSelect(props: DBSelectProps) {
 		_messageId: this._id + DEFAULT_MESSAGE_ID_SUFFIX,
 		_validMessageId: this._id + DEFAULT_VALID_MESSAGE_ID_SUFFIX,
 		_invalidMessageId: this._id + DEFAULT_INVALID_MESSAGE_ID_SUFFIX,
-		_descByIds:
-			this._messageId +
-			' ' +
-			this._validMessageId +
-			' ' +
-			this._invalidMessageId,
 		_placeholderId: this._id + DEFAULT_PLACEHOLDER_ID_SUFFIX,
+		_descByIds: this._placeholderId + ' ' + this._messageId,
 		handleClick: (event: ClickEvent<HTMLSelectElement>) => {
 			if (props.onClick) {
 				props.onClick(event);
@@ -56,6 +51,21 @@ export default function DBSelect(props: DBSelectProps) {
 			}
 
 			handleFrameworkEvent(this, event);
+
+			if (!ref?.validity.valid || props.customValidity === 'invalid') {
+				state._descByIds =
+					this._placeholderId + ' ' + state._invalidMessageId;
+			} else if (
+				props.customValidity === 'valid' ||
+				(ref?.validity.valid && props.required)
+			) {
+				state._descByIds =
+					this._placeholderId + ' ' + state._validMessageId;
+			} else if (props.message) {
+				state._descByIds = this._placeholderId + ' ' + state._messageId;
+			} else {
+				state._descByIds = this._placeholderId;
+			}
 		},
 		handleBlur: (event: InteractionEvent<HTMLSelectElement>) => {
 			if (props.onBlur) {
@@ -104,13 +114,7 @@ export default function DBSelect(props: DBSelectProps) {
 			state._messageId = messageId;
 			state._validMessageId = validMessageId;
 			state._invalidMessageId = invalidMessageId;
-
-			state._descByIds = [
-				messageId,
-				validMessageId,
-				invalidMessageId,
-				placeholderId
-			].join(' ');
+			state._invalidMessageId = placeholderId;
 		}
 	}, [state._id]);
 
@@ -142,9 +146,7 @@ export default function DBSelect(props: DBSelectProps) {
 				onFocus={(event: InteractionEvent<HTMLSelectElement>) =>
 					state.handleFocus(event)
 				}
-				aria-describedby={
-					(props.message && state._messageId) || state._placeholderId
-				}>
+				aria-describedby={state._descByIds}>
 				{/* Empty option for floating label */}
 				<option hidden></option>
 				<Show when={props.options}>

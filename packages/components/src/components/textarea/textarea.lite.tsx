@@ -32,12 +32,7 @@ export default function DBTextarea(props: DBTextareaProps) {
 		_messageId: this._id + DEFAULT_MESSAGE_ID_SUFFIX,
 		_validMessageId: this._id + DEFAULT_VALID_MESSAGE_ID_SUFFIX,
 		_invalidMessageId: this._id + DEFAULT_INVALID_MESSAGE_ID_SUFFIX,
-		_descByIds:
-			this._messageId +
-			' ' +
-			this._validMessageId +
-			' ' +
-			this._invalidMessageId,
+		_descByIds: this._messageId,
 		defaultValues: {
 			label: DEFAULT_LABEL,
 			placeholder: ' ',
@@ -50,6 +45,20 @@ export default function DBTextarea(props: DBTextareaProps) {
 
 			if (props.input) {
 				props.input(event);
+			}
+
+			if (!ref?.validity.valid || props.customValidity === 'invalid') {
+				state._descByIds = state._invalidMessageId;
+			} else if (
+				props.customValidity === 'valid' ||
+				(ref?.validity.valid &&
+					(props.required || props.minLength || props.maxLength))
+			) {
+				state._descByIds = state._validMessageId;
+			} else if (props.message) {
+				state._descByIds = state._messageId;
+			} else {
+				state._descByIds = '';
 			}
 		},
 		handleChange: (event: ChangeEvent<HTMLTextAreaElement>) => {
@@ -106,12 +115,6 @@ export default function DBTextarea(props: DBTextareaProps) {
 			state._messageId = messageId;
 			state._validMessageId = validMessageId;
 			state._invalidMessageId = invalidMessageId;
-
-			state._descByIds = [
-				messageId,
-				validMessageId,
-				invalidMessageId
-			].join(' ');
 		}
 	}, [state._id]);
 
@@ -152,7 +155,7 @@ export default function DBTextarea(props: DBTextareaProps) {
 					state.handleFocus(event)
 				}
 				value={props.value}
-				aria-describedby={props.message && state._messageId}
+				aria-describedby={state._descByIds}
 				placeholder={
 					props.placeholder ?? state.defaultValues.placeholder
 				}

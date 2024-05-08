@@ -38,13 +38,8 @@ export default function DBInput(props: DBInputProps) {
 		_messageId: this._id + DEFAULT_MESSAGE_ID_SUFFIX,
 		_validMessageId: this._id + DEFAULT_VALID_MESSAGE_ID_SUFFIX,
 		_invalidMessageId: this._id + DEFAULT_INVALID_MESSAGE_ID_SUFFIX,
-		_descByIds:
-			this._messageId +
-			' ' +
-			this._validMessageId +
-			' ' +
-			this._invalidMessageId,
 		_dataListId: `datalist-` + uuid(),
+		_descByIds: this._messageId,
 		defaultValues: {
 			label: DEFAULT_LABEL,
 			placeholder: ' '
@@ -56,6 +51,23 @@ export default function DBInput(props: DBInputProps) {
 
 			if (props.input) {
 				props.input(event);
+			}
+
+			if (!ref?.validity.valid || props.customValidity === 'invalid') {
+				state._descByIds = state._invalidMessageId;
+			} else if (
+				props.customValidity === 'valid' ||
+				(ref?.validity.valid &&
+					(props.required ||
+						props.minLength ||
+						props.maxLength ||
+						props.pattern))
+			) {
+				state._descByIds = state._validMessageId;
+			} else if (props.message) {
+				state._descByIds = state._messageId;
+			} else {
+				state._descByIds = '';
 			}
 		},
 		handleChange: (event: ChangeEvent<HTMLInputElement>) => {
@@ -113,12 +125,6 @@ export default function DBInput(props: DBInputProps) {
 			state._messageId = messageId;
 			state._validMessageId = validMessageId;
 			state._invalidMessageId = invalidMessageId;
-
-			state._descByIds = [
-				messageId,
-				validMessageId,
-				invalidMessageId
-			].join(' ');
 		}
 	}, [state._id]);
 
