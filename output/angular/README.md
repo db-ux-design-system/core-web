@@ -44,6 +44,8 @@ Import the styles in scss or css. Based on your technology the file names could 
 
 </details>
 
+> **Note:** The ``db-ui-42`` contains optional and all components styles. If you consider performance issues see [@db-ui/components](https://www.npmjs.com/package/@db-ui/components) for more information.
+
 ### Resolve assets
 
 The current default development config in `angular.json` doesn't use output hashing. This may cause an issue loading the fonts. Look at [this](https://github.com/angular/angular-cli/issues/26347) for more information.

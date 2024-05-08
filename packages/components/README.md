@@ -59,6 +59,29 @@ Or within your JavaScript files, with the related bundler as a prefix (in this c
 import "@db-ui/components/build/styles/db-ui-42-rollup.css";
 ```
 
+### Optimize dependencies
+
+If you only need some of the components or some features from [`@db-ui/foundations`](https://www.npmjs.com/package/@db-ui/foundations), you shouldn't include `db-ui-42`.
+In the case you want to include only some components you can do it like this:
+
+```css
+/* The theme contains all prop required for components like spacings, colors, ... */
+@import "@db-ui/foundations/build/css/default-theme.css";
+/* The font include uses default font families based on your bundling paths (relative, absolute, webpack, rollup) */
+@import "@db-ui/foundations/build/css/fonts/include-rollup.css";
+/* The required styles will normalize css and add focus and default font to body */
+@import "@db-ui/foundations/build/css/init/required.css";
+/* The default root adds a default color space (neutral) and a density (regular) */
+@import "@db-ui/foundations/build/css/init/default-root.css";
+/* Optional: Add animations / transitions for components */
+@import "@db-ui/components/build/styles/component-animations.css";
+/* Optional: Add data-icon/data-icon-after to global attributes to enable icons for components */
+@import "@db-ui/foundations/build/css/icons/include-rollup.css";
+/* Optional: Add components */
+@import "@db-ui/components/build/components/button/button.css";
+@import "@db-ui/components/build/components/input/input.css";
+```
+
 ## Deutsche Bahn brand
 
 As we'd like to perfectly support our users and customers on their digital journey, the usage of Deutsche Bahn brand and trademarks are bound of clear guidelines and restrictions even when being used with the code that we're provide with this product; Deutsche Bahn fully reserves all rights regarding the Deutsche Bahn brand, even though that we're providing the code of DB UI products free to use and release it under the Apache 2.0 license.
