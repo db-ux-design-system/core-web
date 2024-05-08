@@ -17,7 +17,7 @@
 	}
 	[data-color="#{$variant}-bg-transparent-semi"],
 	.db-#{$variant}-bg-transparent-semi {
-		@extend %db-#{$variant}-transparent-semi;
+		@extend %db-#{$variant}-bg-transparent-semi;
 	}
 
 	@each $contrast in [ "high", "low"] {
