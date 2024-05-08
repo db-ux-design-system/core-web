@@ -3,7 +3,7 @@
 @use "@db-ui/foundations/build/scss/screen-sizes";
 @use "@db-ui/foundations/build/scss/density";
 
-@use "@db-ui/components/build/styles/_dialog-init";
+@use "@db-ui/components/build/styles/dialog-init";
 
 @forward "@db-ui/components/build/styles/db-ui-42-webpack";
 @forward "@db-ui/foundations/build/css/colors/classes/all";
