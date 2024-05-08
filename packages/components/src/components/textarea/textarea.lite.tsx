@@ -32,7 +32,7 @@ export default function DBTextarea(props: DBTextareaProps) {
 		_messageId: this._id + DEFAULT_MESSAGE_ID_SUFFIX,
 		_validMessageId: this._id + DEFAULT_VALID_MESSAGE_ID_SUFFIX,
 		_invalidMessageId: this._id + DEFAULT_INVALID_MESSAGE_ID_SUFFIX,
-		_descByIds: this._messageId,
+		_descByIds: `${this._messageId}`,
 		defaultValues: {
 			label: DEFAULT_LABEL,
 			placeholder: ' ',
