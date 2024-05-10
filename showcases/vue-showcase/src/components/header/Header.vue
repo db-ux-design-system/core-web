@@ -1,0 +1,83 @@
+<script setup lang="ts">
+import DefaultComponent from "../DefaultComponent.vue";
+import defaultComponentVariants from "../../../../shared/header.json";
+import {
+	DBBrand,
+	DBButton,
+	DBHeader,
+	DBLink,
+	DBNavigation,
+	DBNavigationItem
+} from "../../../../../output/vue/src";
+</script>
+
+<template>
+	<DefaultComponent title="DBHeader" :variants="defaultComponentVariants">
+		<template
+			#example="{ exampleIndex, variantIndex, exampleName, exampleProps }"
+		>
+			<DBHeader
+				:width="exampleProps.width"
+				:force-mobile="exampleProps.forceMobile"
+			>
+				<template v-slot:brand>
+					<DBBrand>
+						<template
+							v-if="
+								!exampleProps.example || exampleProps.withName
+							"
+						>
+							Showcase
+						</template>
+					</DBBrand>
+				</template>
+				<template
+					v-if="!exampleProps.example || exampleProps.withNavigation"
+				>
+					<DBNavigation>
+						<DBNavigationItem icon="user">
+							<a href="#">{{ exampleName }}</a>
+						</DBNavigationItem>
+						<DBNavigationItem :disabled="true">
+							<a href="#">{{ exampleName }} disabled</a>
+						</DBNavigationItem>
+					</DBNavigation>
+				</template>
+				<template v-slot:primary-action>
+					<template v-if="!exampleProps.example">
+						<DBButton
+							icon="magnifying_glass"
+							variant="ghost"
+							:no-text="true"
+						>
+							Search
+						</DBButton></template
+					>
+				</template>
+				<template v-slot:secondary-action>
+					<template v-if="!exampleProps.example">
+						<DBButton icon="user" variant="ghost" :no-text="true">
+							Profile
+						</DBButton>
+						<DBButton icon="bell" variant="ghost" :no-text="true">
+							Notification
+						</DBButton>
+						<DBButton
+							icon="question_mark_circle"
+							variant="ghost"
+							:no-text="true"
+						>
+							Help
+						</DBButton></template
+					>
+				</template>
+				<template v-slot:meta-navigation>
+					<template v-if="!exampleProps.example">
+						<DBLink href="#">Imprint</DBLink>
+						<DBLink href="#">Help</DBLink></template
+					>
+				</template>
+			</DBHeader>
+		</template>
+	</DefaultComponent>
+</template>

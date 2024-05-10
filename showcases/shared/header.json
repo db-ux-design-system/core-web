@@ -54,6 +54,7 @@
 		"examples": [
 			{
 				"name": "Full",
+				"props": {},
 				"style": {
 					"width": "100%",
 					"display": "block"
@@ -104,6 +105,7 @@
 		"examples": [
 			{
 				"name": "Desktop (full width)",
+				"props": {},
 				"style": {
 					"width": "100%",
 					"display": "block"
