@@ -40,6 +40,7 @@ export default function DBInput(props: DBInputProps) {
 		_validMessageId: this._id + DEFAULT_VALID_MESSAGE_ID_SUFFIX,
 		_invalidMessageId: this._id + DEFAULT_INVALID_MESSAGE_ID_SUFFIX,
 		_dataListId: this._id + DEFAULT_DATALIST_ID_SUFFIX,
+		// Workaround for Vue output: TS for Vue would think that it could be a function, and by this we clarify that it's a string
 		_descByIds: `${this._messageId}`,
 		defaultValues: {
 			label: DEFAULT_LABEL,
