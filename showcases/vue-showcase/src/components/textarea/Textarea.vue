@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import DefaultComponent from "../DefaultComponent.vue";
 import defaultComponentVariants from "../../../../shared/textarea.json";
-import { DBInput, DBTextarea } from "../../../../../output/vue/src";
+import { DBTextarea } from "../../../../../output/vue/src";
 </script>
 
 <template>

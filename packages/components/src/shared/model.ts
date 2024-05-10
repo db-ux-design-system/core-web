@@ -212,11 +212,6 @@ export type FormCheckProps = {
 	variant?: 'hidden';
 };
 
-export type FormMessageState = {
-	getValidMessage: () => string;
-	getInvalidMessage: () => string;
-};
-
 export type FormMessageProps = {
 	/**
 	 * Change the variant of the label to float or hidden
@@ -315,6 +310,7 @@ export type FormState = {
 	_validMessageId?: string;
 	_invalidMessageId?: string;
 	_descByIds?: string;
+	_value?: string;
 };
 
 export type InitializedState = {

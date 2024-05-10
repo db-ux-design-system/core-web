@@ -32,8 +32,7 @@ export default function DBCheckbox(props: DBCheckboxProps) {
 		_messageId: this._id + DEFAULT_MESSAGE_ID_SUFFIX,
 		_validMessageId: this._id + DEFAULT_VALID_MESSAGE_ID_SUFFIX,
 		_invalidMessageId: this._id + DEFAULT_INVALID_MESSAGE_ID_SUFFIX,
-		// Workaround for Vue output: TS for Vue would think that it could be a function, and by this we clarify that it's a string
-		_descByIds: `${this._messageId}`,
+		_descByIds: '',
 		handleChange: (event: ChangeEvent<HTMLInputElement>) => {
 			if (props.onChange) {
 				props.onChange(event);
@@ -78,12 +77,9 @@ export default function DBCheckbox(props: DBCheckboxProps) {
 		getValidMessage: () => {
 			return props.validMessage || DEFAULT_VALID_MESSAGE;
 		},
+
 		getInvalidMessage: () => {
-			return (
-				props.invalidMessage ||
-				ref?.validationMessage ||
-				DEFAULT_INVALID_MESSAGE
-			);
+			return '';
 		}
 	});
 
@@ -101,6 +97,10 @@ export default function DBCheckbox(props: DBCheckboxProps) {
 			state._messageId = messageId;
 			state._validMessageId = validMessageId;
 			state._invalidMessageId = invalidMessageId;
+
+			if (props.message) {
+				state._descByIds = messageId;
+			}
 		}
 	}, [state._id]);
 
@@ -120,6 +120,8 @@ export default function DBCheckbox(props: DBCheckboxProps) {
 					// It has no accessibility or UX implications. (https://mui.com/material-ui/react-checkbox/)
 					checkboxElement.indeterminate = props.indeterminate;
 				}
+
+				state.initialized = false;
 			}
 		}
 	}, [state.initialized, props.indeterminate, props.checked]);
@@ -172,14 +174,16 @@ export default function DBCheckbox(props: DBCheckboxProps) {
 				id={state._validMessageId}
 				size="small"
 				semantic="successful">
-				{state.getValidMessage()}
+				{props.validMessage ?? DEFAULT_VALID_MESSAGE}
 			</DBInfotext>
 
 			<DBInfotext
 				id={state._invalidMessageId}
 				size="small"
 				semantic="critical">
-				{state.getInvalidMessage()}
+				{props.invalidMessage ??
+					ref?.validationMessage ??
+					DEFAULT_INVALID_MESSAGE}
 			</DBInfotext>
 		</div>
 	);

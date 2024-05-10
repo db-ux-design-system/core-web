@@ -33,7 +33,8 @@ export default function DBTextarea(props: DBTextareaProps) {
 		_validMessageId: this._id + DEFAULT_VALID_MESSAGE_ID_SUFFIX,
 		_invalidMessageId: this._id + DEFAULT_INVALID_MESSAGE_ID_SUFFIX,
 		// Workaround for Vue output: TS for Vue would think that it could be a function, and by this we clarify that it's a string
-		_descByIds: `${this._messageId}`,
+		_descByIds: 'none',
+		_value: '',
 		defaultValues: {
 			label: DEFAULT_LABEL,
 			placeholder: ' ',
@@ -47,6 +48,17 @@ export default function DBTextarea(props: DBTextareaProps) {
 			if (props.input) {
 				props.input(event);
 			}
+		},
+		handleChange: (event: ChangeEvent<HTMLTextAreaElement>) => {
+			if (props.onChange) {
+				props.onChange(event);
+			}
+
+			if (props.change) {
+				props.change(event);
+			}
+
+			handleFrameworkEvent(this, event);
 
 			if (!ref?.validity.valid || props.customValidity === 'invalid') {
 				state._descByIds = state._invalidMessageId;
@@ -59,19 +71,8 @@ export default function DBTextarea(props: DBTextareaProps) {
 			} else if (props.message) {
 				state._descByIds = state._messageId;
 			} else {
-				state._descByIds = '';
+				state._descByIds = 'none';
 			}
-		},
-		handleChange: (event: ChangeEvent<HTMLTextAreaElement>) => {
-			if (props.onChange) {
-				props.onChange(event);
-			}
-
-			if (props.change) {
-				props.change(event);
-			}
-
-			handleFrameworkEvent(this, event);
 		},
 		handleBlur: (event: InteractionEvent<HTMLTextAreaElement>) => {
 			if (props.onBlur) {
@@ -90,16 +91,6 @@ export default function DBTextarea(props: DBTextareaProps) {
 			if (props.focus) {
 				props.focus(event);
 			}
-		},
-		getValidMessage: () => {
-			return props.validMessage || DEFAULT_VALID_MESSAGE;
-		},
-		getInvalidMessage: () => {
-			return (
-				props.invalidMessage ||
-				ref?.validationMessage ||
-				DEFAULT_INVALID_MESSAGE
-			);
 		}
 	});
 
@@ -116,8 +107,16 @@ export default function DBTextarea(props: DBTextareaProps) {
 			state._messageId = messageId;
 			state._validMessageId = validMessageId;
 			state._invalidMessageId = invalidMessageId;
+
+			if (props.message) {
+				state._descByIds = messageId;
+			}
 		}
 	}, [state._id]);
+
+	onUpdate(() => {
+		state._value = props.value;
+	}, [props.value]);
 
 	return (
 		<div
@@ -155,7 +154,7 @@ export default function DBTextarea(props: DBTextareaProps) {
 				onFocus={(event: InteractionEvent<HTMLTextAreaElement>) =>
 					state.handleFocus(event)
 				}
-				value={props.value}
+				value={props.value ?? state._value}
 				aria-describedby={state._descByIds}
 				placeholder={
 					props.placeholder ?? state.defaultValues.placeholder
@@ -177,14 +176,16 @@ export default function DBTextarea(props: DBTextareaProps) {
 				id={state._validMessageId}
 				size="small"
 				semantic="successful">
-				{state.getValidMessage()}
+				{props.validMessage ?? DEFAULT_VALID_MESSAGE}
 			</DBInfotext>
 
 			<DBInfotext
 				id={state._invalidMessageId}
 				size="small"
 				semantic="critical">
-				{state.getInvalidMessage()}
+				{props.invalidMessage ??
+					ref?.validationMessage ??
+					DEFAULT_INVALID_MESSAGE}
 			</DBInfotext>
 		</div>
 	);

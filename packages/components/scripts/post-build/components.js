@@ -153,6 +153,13 @@ const getComponents = () => [
 
 	{
 		name: 'select',
+		overwrites: {
+			react: [
+				// React not allowing selected for options
+				{ from: 'selected={option.selected}', to: '' },
+				{ from: 'selected={optgroupOption.selected}', to: '' }
+			]
+		},
 		config: {
 			vue: {
 				vModel: [{ modelValue: 'value', binding: ':value' }]

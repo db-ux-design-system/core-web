@@ -64,6 +64,20 @@ module.exports = (tmp) => {
 				}
 			];
 
+			// This is a workaround for valid/invalidMessages resetting values
+			[
+				'HTMLSelectElement',
+				'HTMLInputElement',
+				'HTMLTextAreaElement'
+			].forEach((element) => {
+				replacements.push({
+					from: `handleInput(event: InputEvent<${element}>) {`,
+					to:
+						`handleInput(event: InputEvent<${element}>) {\n` +
+						'this._value = (event.target as any).value;'
+				});
+			});
+
 			Replace.sync({
 				files: vueFile,
 				processor(input) {
