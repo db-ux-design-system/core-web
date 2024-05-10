@@ -25,7 +25,7 @@
 			flex-shrink: 0;
 		}
 
-		> :is(.db-main) {
+		> .db-main {
 			display: flex;
 			flex-direction: column;
 			overflow: auto;
