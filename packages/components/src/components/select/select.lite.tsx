@@ -114,7 +114,7 @@ export default function DBSelect(props: DBSelectProps) {
 			state._messageId = messageId;
 			state._validMessageId = validMessageId;
 			state._invalidMessageId = invalidMessageId;
-			state._invalidMessageId = placeholderId;
+			state._placeholderId = placeholderId;
 		}
 	}, [state._id]);
 
