@@ -1,8 +1,10 @@
 @use "../densities";
+@use "../../fonts";
 
 @mixin init($density) {
 	.db-density-#{$density},
 	[data-density="#{$density}"] {
 		@extend %db-density-#{$density};
+		@extend %db-font-size-md;
 	}
 }
