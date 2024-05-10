@@ -18,15 +18,14 @@
 		display: flex;
 		flex-direction: column;
 
-		header:first-of-type,
-		footer:first-of-type {
+		> :is(.db-header, .db-footer, header, footer) {
 			display: flex;
 			flex: 0 1 auto;
 			flex-grow: 0;
 			flex-shrink: 0;
 		}
 
-		main:first-of-type {
+		> :is(.db-main) {
 			display: flex;
 			flex-direction: column;
 			overflow: auto;
