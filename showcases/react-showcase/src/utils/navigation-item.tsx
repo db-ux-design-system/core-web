@@ -25,6 +25,7 @@ import SectionComponent from '../components/section';
 import TextareaComponent from '../components/textarea';
 import IconComponent from '../components/icon';
 import BrandComponent from '../components/brand';
+import HeaderComponent from '../components/header';
 
 export type NavigationItem = {
 	path: string;
@@ -161,6 +162,11 @@ export const NAVIGATION_ITEMS: NavigationItem[] = [
 				path: 'popover',
 				label: 'Popover',
 				component: <PopoverComponent />
+			},
+			{
+				path: 'header',
+				label: 'Header',
+				component: <HeaderComponent />
 			}
 		])
 	},

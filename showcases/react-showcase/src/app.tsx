@@ -35,7 +35,7 @@ const App = () => {
 							onDensityChange={setDensity}
 						/>
 					}
-					callToAction={
+					primaryAction={
 						/* TODO: Use DBSearchBar in future */
 						<DBButton
 							icon="magnifying_glass"
@@ -44,7 +44,7 @@ const App = () => {
 							Search
 						</DBButton>
 					}
-					actionBar={
+					secondaryAction={
 						<>
 							<DBButton icon="user" variant="ghost" noText>
 								Profile

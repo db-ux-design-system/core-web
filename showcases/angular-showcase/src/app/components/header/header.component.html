@@ -1,0 +1,75 @@
+<app-default-component
+	title="DBHeader"
+	[variants]="variants"
+	[exampleTemplate]="exampleTemplate"
+>
+	<ng-template
+		#exampleTemplate
+		let-exampleProps="exampleProps"
+		let-exampleName="exampleName"
+		let-exampleIndex="exampleIndex"
+		let-variantIndex="variantIndex"
+	>
+		<db-header
+			[width]="exampleProps?.width"
+			[forceMobile]="exampleProps.forceMobile"
+		>
+			<db-brand brand>
+				@if (!exampleProps.example || exampleProps.withName) {
+					DBHeader
+				}
+			</db-brand>
+			<ng-container *dbNavigation>
+				@if (!exampleProps.example || exampleProps.withNavigation) {
+					<db-navigation>
+						<db-navigation>
+							<db-navigation-item icon="user">
+								<a href="#" *dbNavigationContent
+									>{{ exampleName }}
+								</a>
+							</db-navigation-item>
+							<db-navigation-item [disabled]="true">
+								<a href="#" *dbNavigationContent
+									>{{ exampleName }} disabled
+								</a>
+							</db-navigation-item>
+						</db-navigation>
+					</db-navigation>
+				}
+			</ng-container>
+			<ng-container *dbMetaNavigation>
+				@if (!exampleProps.example) {
+					<db-link href="#">Imprint</db-link>
+					<db-link href="#">Help</db-link>
+				}
+			</ng-container>
+			<ng-container primary-action>
+				@if (!exampleProps.example) {
+					<DBButton
+						icon="magnifying_glass"
+						variant="ghost"
+						[noText]="true"
+						>Search</DBButton
+					>
+				}
+			</ng-container>
+			<ng-container *secondaryAction>
+				@if (!exampleProps.example) {
+					<DBButton icon="user" variant="ghost" [noText]="true">
+						Profile
+					</DBButton>
+					<DBButton icon="bell" variant="ghost" [noText]="true">
+						Notification
+					</DBButton>
+					<DBButton
+						icon="question_mark_circle"
+						variant="ghost"
+						[noText]="true"
+					>
+						Help
+					</DBButton>
+				}
+			</ng-container>
+		</db-header>
+	</ng-template>
+</app-default-component>
