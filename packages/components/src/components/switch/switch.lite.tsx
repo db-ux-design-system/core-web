@@ -1,7 +1,6 @@
 import { onMount, useMetadata, useRef, useStore } from '@builder.io/mitosis';
 import { DBSwitchProps, DBSwitchState } from './model';
 import { cls, uuid } from '../../utils';
-import { DEFAULT_ID } from '../../shared/constants';
 import { ChangeEvent, InteractionEvent } from '../../shared/model';
 import { handleFrameworkEvent } from '../../utils/form-components';
 
