@@ -10,6 +10,7 @@ import {
 import { cls, uuid } from '../../utils';
 import { DBInputProps, DBInputState } from './model';
 import {
+	DEFAULT_DATALIST_ID_SUFFIX,
 	DEFAULT_INVALID_MESSAGE,
 	DEFAULT_INVALID_MESSAGE_ID_SUFFIX,
 	DEFAULT_LABEL,
@@ -38,7 +39,7 @@ export default function DBInput(props: DBInputProps) {
 		_messageId: this._id + DEFAULT_MESSAGE_ID_SUFFIX,
 		_validMessageId: this._id + DEFAULT_VALID_MESSAGE_ID_SUFFIX,
 		_invalidMessageId: this._id + DEFAULT_INVALID_MESSAGE_ID_SUFFIX,
-		_dataListId: `datalist-` + uuid(),
+		_dataListId: this._id + DEFAULT_DATALIST_ID_SUFFIX,
 		_descByIds: `${this._messageId}`,
 		defaultValues: {
 			label: DEFAULT_LABEL,
