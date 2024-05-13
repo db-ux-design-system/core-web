@@ -55,8 +55,8 @@ const testA11y = () => {
 	test('should not have A11y issues', async ({ page, mount }) => {
 		await mount(comp);
 		const accessibilityScanResults = await new AxeBuilder({ page })
-			// TODO: There might be an issue in axe-core: https://github.com/dequelabs/axe-core/issues/4431
-			// So we disabled "aria-allowed-role"
+			// TODO: There might be an issue in our implementation of which elements get which roles
+			// So we disabled "aria-allowed-role" for now
 			.include('.db-tabs')
 			.disableRules(['aria-allowed-role'])
 			.analyze();
