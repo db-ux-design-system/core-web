@@ -3,5 +3,6 @@ import { test } from '@playwright/test';
 import { getDefaultScreenshotTest } from '../default.ts';
 
 test.describe('DBHeader', () => {
-	getDefaultScreenshotTest({ path: '01/header' });
+	const isAngular = process.env.showcase.startsWith('angular');
+	getDefaultScreenshotTest({ path: '01/header', skipA11y: isAngular });
 });

@@ -11,6 +11,7 @@ test.describe('Home', () => {
 	test('should not have any A11y issues', async ({ page }) => {
 		const isAngular = process.env.showcase.startsWith('angular');
 
+		// Angular wraps custom components in own tags this will cause a lot of issues with axe-core
 		if (isAngular) {
 			test.skip();
 		}
