@@ -4,7 +4,7 @@
 .db-popover {
 	position: relative;
 
-	&[data-testing-hover="true"],
+	&[data-e2e-hover="true"],
 	&:hover,
 	&:focus-within {
 		& > article {
