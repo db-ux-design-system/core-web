@@ -91,6 +91,6 @@
 
 // Global styles
 
-*:has(> .db-badge[data-placement^="corner"]) {
+:has(> .db-badge[data-placement^="corner"]) {
 	position: relative;
 }

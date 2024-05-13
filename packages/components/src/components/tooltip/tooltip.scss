@@ -99,7 +99,7 @@ $tooltip-arrow-shadow-size: variables.$db-sizing-2xs;
 // Global styles
 
 @mixin show-popover($state) {
-	*:has(
+	:has(
 			> :is(db-tooltip, dbtooltip) > .db-tooltip:not([data-open]),
 			> .db-tooltip:not([data-open])
 		) {
@@ -111,7 +111,7 @@ $tooltip-arrow-shadow-size: variables.$db-sizing-2xs;
 	}
 }
 
-*:has(> db-tooltip, > dbtooltip, > .db-tooltip) {
+:has(> db-tooltip, > dbtooltip, > .db-tooltip) {
 	position: relative;
 }
 
