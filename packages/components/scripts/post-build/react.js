@@ -96,6 +96,10 @@ module.exports = (tmp) => {
 						`{...filterPassingProps(props,${JSON.stringify(
 							component?.config?.react?.propsPassingFilter ?? []
 						)})}`
+				},
+				{
+					from: 'props.value ?? _value',
+					to: 'props.value'
 				}
 			];
 

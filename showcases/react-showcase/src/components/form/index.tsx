@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react';
 import {
+	DBDivider,
 	DBTabList,
 	DBTabPanel,
-	DBTabs,
-	DBDivider
+	DBTabs
 } from '@db-ui/react-components/src';
 import {
 	DBAccordion,

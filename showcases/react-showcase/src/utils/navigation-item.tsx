@@ -17,7 +17,6 @@ import NotificationComponent from '../components/notification';
 import ButtonComponent from '../components/button';
 import CardComponent from '../components/card';
 import DividerComponent from '../components/divider';
-import FormComponent from '../components/form';
 import InfotextComponent from '../components/infotext';
 import InputComponent from '../components/input';
 import LinkComponent from '../components/link';
@@ -26,6 +25,7 @@ import TextareaComponent from '../components/textarea';
 import IconComponent from '../components/icon';
 import BrandComponent from '../components/brand';
 import HeaderComponent from '../components/header';
+import Home from '../components/home';
 
 export type NavigationItem = {
 	path: string;
@@ -170,5 +170,5 @@ export const NAVIGATION_ITEMS: NavigationItem[] = [
 			}
 		])
 	},
-	{ path: '', label: 'Home', component: <FormComponent /> }
+	{ path: '', label: 'Home', component: <Home /> }
 ];

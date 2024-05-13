@@ -11,7 +11,6 @@ import NavigationItem from '../components/navigation-item/NavigationItem.vue';
 import Navigation from '../components/navigation/Navigation.vue';
 import Select from '../components/select/Select.vue';
 import Tag from '../components/tag/Tag.vue';
-import Form from '../components/form/Form.vue';
 import Button from '../components/button/Button.vue';
 import Input from '../components/input/Input.vue';
 import Link from '../components/link/Link.vue';
@@ -27,6 +26,7 @@ import Textarea from '../components/textarea/Textarea.vue';
 import Brand from '../components/brand/Brand.vue';
 import Icon from '../components/icon/Icon.vue';
 import Header from '../components/header/Header.vue';
+import Home from '../components/home/Home.vue';
 
 export type NavItem = {
 	path: string;
@@ -151,7 +151,7 @@ export const navigationItems: NavItem[] = [
 			}
 		])
 	},
-	{ path: '/', label: 'Home', component: Form }
+	{ path: '/', label: 'Home', component: Home }
 ];
 
 const pushRoute = (routes: RouteRecordRaw[], item: NavItem) => {

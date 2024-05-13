@@ -63,36 +63,34 @@ export default function DBTabs(props: DBTabsProps) {
 		},
 		initTabList() {
 			if (ref) {
-				const childTabLists = ref.getElementsByClassName('db-tab-list');
-				if (childTabLists?.length > 0) {
-					const firstTabList = childTabLists.item(0);
-					if (firstTabList) {
-						if (
-							!firstTabList
-								.getAttributeNames()
-								.includes('aria-orientation')
-						) {
-							firstTabList.setAttribute(
-								'aria-orientation',
-								props.orientation || 'horizontal'
-							);
-						}
+				const tabLists = ref.querySelector('.db-tab-list');
+				if (tabLists) {
+					if (
+						!tabLists
+							.getAttributeNames()
+							.includes('aria-orientation')
+					) {
+						tabLists.setAttribute(
+							'aria-orientation',
+							props.orientation || 'horizontal'
+						);
+					}
 
-						if (props.behaviour === 'arrows') {
-							const container = firstTabList.querySelector('ul');
-							state.scrollContainer = container;
+					if (props.behaviour === 'arrows') {
+						const container = tabLists.querySelector('ul');
+						state.scrollContainer = container;
+						state.evaluateScrollButtons(container);
+						container.addEventListener('scroll', () => {
 							state.evaluateScrollButtons(container);
-							container.addEventListener('scroll', () => {
-								state.evaluateScrollButtons(container);
-							});
-						}
+						});
 					}
 				}
 			}
 		},
 		initTabs(init?: boolean) {
 			if (ref) {
-				const tabItems = ref.getElementsByClassName('db-tab-item');
+				const tabLists = ref.querySelector('.db-tab-list');
+				const tabItems = tabLists.getElementsByClassName('db-tab-item');
 				if (tabItems?.length > 0) {
 					Array.from<Element>(tabItems).forEach(
 						(tabItem: Element, index: number) => {
@@ -130,19 +128,27 @@ export default function DBTabs(props: DBTabsProps) {
 					);
 				}
 
-				const tabPanels = ref.getElementsByClassName('db-tab-panel');
+				const tabPanels = [
+					...Array.from<Element>(
+						ref.querySelectorAll('& > .db-tab-panel')
+					),
+					...Array.from<Element>(
+						ref.querySelectorAll('& > dbtabpanel > .db-tab-panel')
+					),
+					...Array.from<Element>(
+						ref.querySelectorAll('& > db-tab-panel > .db-tab-panel')
+					)
+				];
 				if (tabPanels?.length > 0) {
-					Array.from<Element>(tabPanels).forEach(
-						(panel: Element, index: number) => {
-							if (panel.id === DEFAULT_ID) {
-								panel.id = `${state._name}-tab-panel-${index}`;
-								panel.setAttribute(
-									'aria-labelledby',
-									`${state._name}-tab-${index}`
-								);
-							}
+					tabPanels.forEach((panel: Element, index: number) => {
+						if (panel.id === DEFAULT_ID) {
+							panel.id = `${state._name}-tab-panel-${index}`;
+							panel.setAttribute(
+								'aria-labelledby',
+								`${state._name}-tab-${index}`
+							);
 						}
-					);
+					});
 				}
 			}
 		}
