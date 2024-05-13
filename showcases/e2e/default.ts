@@ -80,7 +80,7 @@ export const getDefaultScreenshotTest = ({
 
 		const header = await page.locator('header').first();
 
-		config.mask = [header];
+		/* Config.mask = [header]; */
 
 		if (preScreenShot) {
 			await preScreenShot(page);
