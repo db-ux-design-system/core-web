@@ -100,8 +100,7 @@ $tooltip-arrow-shadow-size: variables.$db-sizing-2xs;
 
 @mixin show-popover($state) {
 	*:has(
-			> db-tooltip > .db-tooltip:not([data-open]),
-			> dbtooltip > .db-tooltip:not([data-open]),
+			> :is(db-tooltip, dbtooltip) > .db-tooltip:not([data-open]),
 			> .db-tooltip:not([data-open])
 		) {
 		&:#{$state} {
