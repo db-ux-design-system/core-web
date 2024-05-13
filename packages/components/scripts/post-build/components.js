@@ -229,8 +229,8 @@ const getComponents = () => [
 			angular: {
 				directives: [
 					{
-						name: 'ActionBar',
-						ngContentName: 'action-bar'
+						name: 'SecondaryAction',
+						ngContentName: 'secondary-action'
 					},
 					{
 						name: 'MetaNavigation',

@@ -26,6 +26,7 @@ import Section from '../components/section/Section.vue';
 import Textarea from '../components/textarea/Textarea.vue';
 import Brand from '../components/brand/Brand.vue';
 import Icon from '../components/icon/Icon.vue';
+import Header from '../components/header/Header.vue';
 
 export type NavItem = {
 	path: string;
@@ -142,6 +143,11 @@ export const navigationItems: NavItem[] = [
 				path: '/01/section',
 				label: 'Section',
 				component: Section
+			},
+			{
+				path: '/01/header',
+				label: 'Header',
+				component: Header
 			}
 		])
 	},

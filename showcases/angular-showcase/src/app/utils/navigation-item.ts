@@ -26,6 +26,7 @@ import { DividerComponent } from '../components/divider/divider.component';
 import { DrawerComponent } from '../components/drawer/drawer.component';
 import { IconComponent } from '../components/icon/icon.component';
 import { BrandComponent } from '../components/brand/brand.component';
+import { HeaderComponent } from '../components/header/header.component';
 
 export type NavItem = {
 	path: string;
@@ -158,6 +159,11 @@ export const NAVIGATION_ITEMS: NavItem[] = [
 				path: '01/section',
 				label: 'Section',
 				component: SectionComponent
+			},
+			{
+				path: '01/header',
+				label: 'Header',
+				component: HeaderComponent
 			}
 		])
 	},
