@@ -4,11 +4,11 @@ import defaultComponentVariants from '../../../../shared/section.json';
 import { type DBSectionProps } from '../../../../../output/react/src/components/section/model';
 import { getVariants } from '../data';
 
-const getSection = ({ variant, size, children }: DBSectionProps) => (
+const getSection = ({ width, spacing, children }: DBSectionProps) => (
 	<DBSection
 		className="db-informational-bg-lvl-2"
-		size={size}
-		variant={variant}>
+		spacing={spacing}
+		width={width}>
 		{children}
 	</DBSection>
 );

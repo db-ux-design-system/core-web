@@ -35,13 +35,15 @@ export type GlobalState = {
 	defaultValues?: { [key: string]: string };
 };
 
-export type SemanticType =
-	| 'adaptive'
-	| 'neutral'
-	| 'critical'
-	| 'informational'
-	| 'warning'
-	| 'successful';
+export const SemanticList = [
+	'adaptive',
+	'neutral',
+	'critical',
+	'informational',
+	'warning',
+	'successful'
+] as const;
+export type SemanticType = (typeof SemanticList)[number];
 export type SemanticProps = {
 	/**
 	 * The semantic defines the default variants for most components.
@@ -63,30 +65,36 @@ export type IconAfterProps = {
 	iconAfter?: IconTypes;
 };
 
+export const SpacingList = ['medium', 'small', 'large', 'none'] as const;
+export type SpacingType = (typeof SpacingList)[number];
+
 export type SpacingProps = {
 	/**
-	 * The spacing attribute changes the padding of the card.
+	 * The spacing attribute changes the padding of the component.
 	 */
-	spacing?: 'none' | 'medium' | 'small';
+	spacing?: SpacingType;
 };
 
+export const PlacementList = [
+	'left',
+	'right',
+	'top',
+	'bottom',
+	'left-start',
+	'left-end',
+	'right-start',
+	'right-end',
+	'top-start',
+	'top-end',
+	'bottom-start',
+	'bottom-end'
+] as const;
+export type PlacementType = (typeof PlacementList)[number];
 export type PlacementProps = {
 	/**
 	 * The `placement` attributes values change the position to absolute and adds a transform based on the placement.
 	 */
-	placement?:
-		| 'left'
-		| 'right'
-		| 'top'
-		| 'bottom'
-		| 'left-start'
-		| 'left-end'
-		| 'right-start'
-		| 'right-end'
-		| 'top-start'
-		| 'top-end'
-		| 'bottom-start'
-		| 'bottom-end';
+	placement?: PlacementType;
 };
 
 export type NavigationBehaviourState = {
@@ -107,55 +115,85 @@ export type OverflowProps = {
 	overflow?: boolean;
 };
 
+export const OrientationList = ['horizontal', 'vertical'] as const;
+export type OrientationType = (typeof OrientationList)[number];
 export type OrientationProps = {
-	orientation?: 'horizontal' | 'vertical';
+	orientation?: OrientationType;
 };
 
+export const WidthList = ['full', 'auto'] as const;
+export type WidthType = (typeof WidthList)[number];
 export type WidthProps = {
 	/**
 	 * Width of the component. Auto width based on children size, full width based on parent elements width.
 	 */
-	width?: 'full' | 'auto';
+	width?: WidthType;
 };
 
+export const MaxWidthList = ['full', 'medium', 'large'] as const;
+export type MaxWidthType = (typeof MaxWidthList)[number];
+
+export type ContainerWidthProps = {
+	/**
+	 * Set max width for the component
+	 */
+	width?: MaxWidthType;
+};
+
+export const PopoverDelayList = ['none', 'slow', 'fast'] as const;
+export type PopoverDelayType = (typeof PopoverDelayList)[number];
+export const PopoverAnimationList = ['enabled', 'disabled'] as const;
+export type PopoverAnimationType = (typeof PopoverAnimationList)[number];
+export const PopoverWidthList = ['auto', 'fixed'] as const;
+export type PopoverWidthType = (typeof PopoverWidthList)[number];
 export type PopoverProps = {
 	/**
 	 * Add a delay before showing the tooltip
 	 */
-	delay?: 'none' | 'slow' | 'fast';
+	delay?: PopoverDelayType;
 	/**
 	 * Disable animation
 	 */
-	animation?: 'enabled' | 'disabled';
+	animation?: PopoverAnimationType;
 	/**
 	 * Use fixed with for default max-width
 	 */
-	width?: 'auto' | 'fixed';
+	width?: PopoverWidthType;
 };
 
 export type PopoverState = {
 	handleAutoPlacement: () => void;
 };
 
+export const SizeList = ['small', 'medium'] as const;
+export type SizeType = (typeof SizeList)[number];
 export type SizeProps = {
 	/**
 	 * The size attribute changes the font-size and other related sizes of the component.
 	 */
-	size?: 'medium' | 'small';
+	size?: SizeType;
 };
 
+export const EmphasisList = ['weak', 'strong'] as const;
+export type EmphasisType = (typeof EmphasisList)[number];
 export type EmphasisProps = {
 	/**
 	 * The emphasis attribute divides in between a weak or strong importance.
 	 */
-	emphasis?: 'weak' | 'strong';
+	emphasis?: EmphasisType;
 };
 
+export const CustomValidityList = [
+	'invalid',
+	'valid',
+	'no-validation'
+] as const;
+export type CustomValidityType = (typeof CustomValidityList)[number];
 export type FormProps = {
 	/**
 	 * Marks an input element as invalid (red) | valid(green) | no-validation(grey). Overwrites the :user-valid selector.
 	 */
-	customValidity?: 'invalid' | 'valid' | 'no-validation';
+	customValidity?: CustomValidityType;
 	/**
 	 * The disabled attribute can be set to keep a user from clicking on the form element.
 	 */
@@ -200,6 +238,8 @@ export type FormTextProps = {
 	readOnly?: boolean;
 };
 
+export const CheckVariantList = ['hidden'] as const;
+export type CheckVariantType = (typeof CheckVariantList)[number];
 export type FormCheckProps = {
 	/**
 	 * Define the radio or checkbox elements checked state
@@ -209,7 +249,7 @@ export type FormCheckProps = {
 	/**
 	 * Hide the label of a radio/checkbox.
 	 */
-	variant?: 'hidden';
+	variant?: CheckVariantType;
 };
 
 export type FormMessageState = {
@@ -217,11 +257,73 @@ export type FormMessageState = {
 	getInvalidMessage: () => string;
 };
 
+export const LabelVariantList = ['above', 'floating', 'hidden'] as const;
+export type LabelVariantType = (typeof LabelVariantList)[number];
+export const AutoCompleteList = [
+	'off',
+	'on',
+	'name',
+	'honorific-prefix',
+	'given-name',
+	'additional-name',
+	'family-name',
+	'honorific-suffix',
+	'nickname',
+	'email',
+	'username',
+	'new-password',
+	'current-password',
+	'one-time-code',
+	'organization-title',
+	'organization',
+	'street-address',
+	'shipping',
+	'billing',
+	'address-line1',
+	'address-line2',
+	'address-line3',
+	'address-level4',
+	'address-level3',
+	'address-level2',
+	'address-level1',
+	'country',
+	'country-name',
+	'postal-code',
+	'cc-name',
+	'cc-given-name',
+	'cc-additional-name',
+	'cc-family-name',
+	'cc-number',
+	'cc-exp',
+	'cc-exp-month',
+	'cc-exp-year',
+	'cc-csc',
+	'cc-type',
+	'transaction-currency',
+	'transaction-amount',
+	'language',
+	'bday',
+	'bday-day',
+	'bday-month',
+	'bday-year',
+	'sex',
+	'tel',
+	'tel-country-code',
+	'tel-national',
+	'tel-area-code',
+	'tel-local',
+	'tel-extension',
+	'impp',
+	'url',
+	'photo',
+	'webauthn'
+] as const;
+export type AutoCompleteType = (typeof AutoCompleteList)[number];
 export type FormMessageProps = {
 	/**
 	 * Change the variant of the label to float or hidden
 	 */
-	variant?: 'above' | 'floating' | 'hidden';
+	variant?: LabelVariantType;
 	/**
 	 * Text that appears in the form control when it has no value set
 	 */
@@ -249,65 +351,7 @@ export type FormMessageProps = {
 	/**
 	 * See https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/autocomplete
 	 */
-	autocomplete?:
-		| string
-		| 'off'
-		| 'on'
-		| 'name'
-		| 'honorific-prefix'
-		| 'given-name'
-		| 'additional-name'
-		| 'family-name'
-		| 'honorific-suffix'
-		| 'nickname'
-		| 'email'
-		| 'username'
-		| 'new-password'
-		| 'current-password'
-		| 'one-time-code'
-		| 'organization-title'
-		| 'organization'
-		| 'street-address'
-		| 'shipping'
-		| 'billing'
-		| 'address-line1'
-		| 'address-line2'
-		| 'address-line3'
-		| 'address-level4'
-		| 'address-level3'
-		| 'address-level2'
-		| 'address-level1'
-		| 'country'
-		| 'country-name'
-		| 'postal-code'
-		| 'cc-name'
-		| 'cc-given-name'
-		| 'cc-additional-name'
-		| 'cc-family-name'
-		| 'cc-number'
-		| 'cc-exp'
-		| 'cc-exp-month'
-		| 'cc-exp-year'
-		| 'cc-csc'
-		| 'cc-type'
-		| 'transaction-currency'
-		| 'transaction-amount'
-		| 'language'
-		| 'bday'
-		| 'bday-day'
-		| 'bday-month'
-		| 'bday-year'
-		| 'sex'
-		| 'tel'
-		| 'tel-country-code'
-		| 'tel-national'
-		| 'tel-area-code'
-		| 'tel-local'
-		| 'tel-extension'
-		| 'impp'
-		| 'url'
-		| 'photo'
-		| 'webauthn';
+	autocomplete?: string | AutoCompleteType;
 };
 
 export type FormState = {
@@ -321,52 +365,39 @@ export type InitializedState = {
 	initialized: boolean;
 };
 
-export type ImageProps = {
-	/**
-	 * [Alternative text](https://developer.mozilla.org/en-US/docs/Web/API/HTMLImageElement/alt) for an image.
-	 */
-	imgAlt?: string;
-	/**
-	 * The [height attribute](https://developer.mozilla.org/en-US/docs/Web/API/HTMLImageElement/height) for the image.
-	 */
-	imgHeight?: number;
-	/**
-	 * The [source](https://developer.mozilla.org/en-US/docs/Web/API/HTMLImageElement/src) of an image.
-	 */
-	imgSrc?: string;
-	/**
-	 * The [width attribute](https://developer.mozilla.org/en-US/docs/Web/API/HTMLImageElement/width) for the image.
-	 */
-	imgWidth?: number;
-};
-
+export const LinkCurrentList = [
+	'time',
+	'true',
+	'false',
+	'date',
+	'page',
+	'step',
+	'location'
+] as const;
+export type LinkCurrentType = (typeof LinkCurrentList)[number];
+export const LinkTargetList = ['_self', '_blank', '_parent', '_top'] as const;
+export type LinkTargetType = (typeof LinkTargetList)[number];
+export const LinkReferrerPolicyList = [
+	'no-referrer',
+	'no-referrer-when-downgrade',
+	'origin',
+	'origin-when-cross-origin',
+	'same-origin',
+	'strict-origin',
+	'strict-origin-when-cross-origin',
+	'unsafe-url'
+] as const;
+export type LinkReferrerPolicyType = (typeof LinkReferrerPolicyList)[number];
 export type LinkProps = {
-	current?:
-		| boolean
-		| 'time'
-		| 'true'
-		| 'false'
-		| 'date'
-		| 'page'
-		| 'step'
-		| 'location'
-		| undefined;
+	current?: boolean | LinkCurrentType;
 	disabled?: boolean;
 	href?: string;
 	hreflang?: string;
 	label?: string;
-	target?: '_self' | '_blank' | '_parent' | '_top';
+	target?: LinkTargetType;
 	rel?: string;
 	role?: string;
-	referrerpolicy?:
-		| 'no-referrer'
-		| 'no-referrer-when-downgrade'
-		| 'origin'
-		| 'origin-when-cross-origin'
-		| 'same-origin'
-		| 'strict-origin'
-		| 'strict-origin-when-cross-origin'
-		| 'unsafe-url';
+	referrerpolicy?: LinkReferrerPolicyType;
 	selected?: boolean;
 	text?: string;
 };
@@ -403,11 +434,13 @@ export type CloseEventState = {
 	handleClose?: (event: any) => void;
 };
 
+export const AlignmentList = ['start'] as const;
+export type AlignmentType = (typeof AlignmentList)[number];
 export type AlignmentProps = {
 	/**
 	 * Define the content alignment in full width
 	 */
-	alignment?: 'start' | 'center';
+	alignment?: AlignmentType;
 };
 
 export type ActiveProps = {

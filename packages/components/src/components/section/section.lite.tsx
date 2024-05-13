@@ -30,9 +30,9 @@ export default function DBSection(props: DBSectionProps) {
 			ref={ref}
 			id={state._id}
 			className={cls('db-section', props.className)}
-			data-size={props.size || 'medium'}>
+			data-spacing={props.spacing || 'medium'}>
 			{/* TODO: We need to reevaluate whether we could get rid of this tag */}
-			<div data-variant={props.variant}>{props.children}</div>
+			<div data-width={props.width}>{props.children}</div>
 		</section>
 	);
 }
