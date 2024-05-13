@@ -62,7 +62,7 @@ import "@db-ui/components/build/styles/db-ui-42-rollup.css";
 ### Optimize dependencies
 
 If you only need some of the components or some features from [`@db-ui/foundations`](https://www.npmjs.com/package/@db-ui/foundations), you shouldn't include `db-ui-42`.
-In the case you want to include only some components you can do it like this:
+In the case you want to include only some components, and you could do it like this:
 
 ```css
 /* The theme contains all prop required for components like spacings, colors, ... */
