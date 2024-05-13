@@ -73,10 +73,13 @@ In the case you want to include only some components, and you could do it like t
 @import "@db-ui/foundations/build/css/init/required.css";
 /* The default root adds a default color space (neutral) and a density (regular) */
 @import "@db-ui/foundations/build/css/init/default-root.css";
+
 /* Optional: Add animations / transitions for components */
 @import "@db-ui/components/build/styles/component-animations.css";
+
 /* Optional: Add data-icon/data-icon-after to global attributes to enable icons for components */
 @import "@db-ui/foundations/build/css/icons/include-rollup.css";
+
 /* Optional: Add components */
 @import "@db-ui/components/build/components/button/button.css";
 @import "@db-ui/components/build/components/input/input.css";
