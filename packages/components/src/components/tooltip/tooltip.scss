@@ -22,7 +22,7 @@ $tooltip-arrow-shadow-size: variables.$db-sizing-2xs;
 	padding: variables.$db-spacing-fixed-2xs variables.$db-spacing-fixed-xs;
 
 	// Only for testing
-	&[data-testing-hover="true"] {
+	&[data-e2e-hover="true"] {
 		@extend %show-popover;
 	}
 
