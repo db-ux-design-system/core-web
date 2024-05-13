@@ -175,6 +175,26 @@ export class ${directive.name}Directive {}
 	});
 };
 
+const attributePassing = `
+ngAfterViewInit(): void {
+\t\tconst element: HTMLElement | null = this.ref?.nativeElement;
+\t\tconst parent = element?.parentElement;
+\t\tif (element && parent) {
+\t\t\tconst attributes = parent.attributes;
+\t\t\tfor (let i = 0; i < attributes.length; i++) {
+\t\t\t\tconst attr = attributes.item(i);
+\t\t\t\tif (
+\t\t\t\t\tattr &&
+\t\t\t\t\t(attr.name.startsWith('data-') ||
+\t\t\t\t\t\tattr.name.startsWith('aria-'))
+\t\t\t\t) {
+\t\t\t\t\telement.setAttribute(attr.name, attr.value);
+\t\t\t\t\tparent.removeAttribute(attr.name);
+\t\t\t\t}
+\t\t\t}
+\t\t}
+\t}`;
+
 module.exports = (tmp) => {
 	const outputFolder = `${tmp ? 'output/tmp' : 'output'}`;
 	// Activate vue specific event handling
@@ -212,6 +232,12 @@ module.exports = (tmp) => {
 			{
 				from: 'mouseMove',
 				to: 'mousemove'
+			},
+			{
+				from: '@ViewChild("ref") ref!: ElementRef | undefined;',
+				to:
+					'@ViewChild("ref") ref!: ElementRef | undefined;' +
+					attributePassing
 			}
 		];
 
