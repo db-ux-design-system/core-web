@@ -24,7 +24,7 @@ test.describe('Home', () => {
 			page
 		})
 			// TODO: Currently disable till we solved https://github.com/db-ui/mono/issues/2587
-			// TODO: There might be an issue in axe-core: https://github.com/dequelabs/axe-core/issues/4431
+			// TODO: There might be an issue our implementation of which elements get which roles
 			.disableRules(['color-contrast', 'aria-allowed-role'])
 			.analyze();
 
