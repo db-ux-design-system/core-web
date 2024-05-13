@@ -51,7 +51,7 @@ import "@db-ui/v-components/dist/style.css";
 
 </details>
 
-> **Note:** The ``db-ui-42`` contains optional and all components styles. If you consider performance issues see [@db-ui/components](https://www.npmjs.com/package/@db-ui/components) for more information.
+> **Note:** The `db-ui-42` file contains optional and all components styles. If you consider performance issues see [@db-ui/components](https://www.npmjs.com/package/@db-ui/components) for more information.
 
 ## Usage
 
