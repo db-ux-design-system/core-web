@@ -27,7 +27,7 @@ import {
 								!exampleProps.example || exampleProps.withName
 							"
 						>
-							Showcase
+							DBHeader
 						</template>
 					</DBBrand>
 				</template>
