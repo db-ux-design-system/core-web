@@ -3,8 +3,8 @@ import { test } from '@playwright/test';
 import { getDefaultScreenshotTest } from '../default.ts';
 
 test.describe('DBTabItem', () => {
-	// TODO: There might be an issue in axe-core: https://github.com/dequelabs/axe-core/issues/4431
-	// So we disabled "aria-allowed-role"
+	// TODO: There might be an issue in our implementation of which elements get which roles
+	// So we disabled "aria-allowed-role" for now
 	getDefaultScreenshotTest({
 		path: '04/tab-item',
 		disableRules: ['aria-allowed-role']
