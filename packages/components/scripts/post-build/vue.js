@@ -35,7 +35,7 @@ module.exports = (tmp) => {
 	});
 	// Activate vue specific event handling
 	Replace.sync({
-		files: `../../${outputFolder}/vue/vue3/src/utils/form-components.ts`,
+		files: `../../${outputFolder}/vue/src/utils/form-components.ts`,
 		from: `// VUE:`,
 		to: ``
 	});
