@@ -1,0 +1,13 @@
+<div class="form-container">
+	<form>
+		<fieldset><ng-content></ng-content></fieldset>
+	</form>
+	<dl data-testid="data-list">
+		<dt>Plain:</dt>
+		<dd>{{ plain?.toString() }}</dd>
+		<dt>ngModel:</dt>
+		<dd>{{ model?.toString() }}</dd>
+		<dt>formControl:</dt>
+		<dd>{{ control?.toString() }}</dd>
+	</dl>
+</div>

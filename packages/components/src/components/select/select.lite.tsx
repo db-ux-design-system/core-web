@@ -28,7 +28,10 @@ import {
 import { handleFrameworkEvent } from '../../utils/form-components';
 
 useMetadata({
-	isAttachedToShadowDom: true
+	isAttachedToShadowDom: true,
+	angular: {
+		nativeAttributes: ['value']
+	}
 });
 
 export default function DBSelect(props: DBSelectProps) {

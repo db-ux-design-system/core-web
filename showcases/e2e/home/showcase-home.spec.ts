@@ -39,6 +39,9 @@ const testFormComponents = async (
 		}
 	}
 
+	// Move focus out of last component to reflect changes
+	await tab.click({ force: true });
+
 	for (const def of definition) {
 		const index = definition.indexOf(def);
 		const text = await def.textContent();
