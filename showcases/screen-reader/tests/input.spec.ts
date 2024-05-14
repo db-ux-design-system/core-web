@@ -8,9 +8,9 @@ test.describe('DBInput', () => {
 		url: './#/03/input?page=variant helper message',
 		async testFn(voiceOver, nvda) {
 			const screenReader = voiceOver ?? nvda;
-			await screenReader.next();
-			await screenReader.previous();
-			await screenReader.next();
+			await screenReader?.next();
+			await screenReader?.previous();
+			await screenReader?.next();
 		}
 	});
 });

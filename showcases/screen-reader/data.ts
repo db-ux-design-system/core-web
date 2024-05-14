@@ -25,12 +25,12 @@ export type DefaultTestType = {
 	title: string;
 	url: string;
 	testFn: (
-		voiceOver: VoiceOverPlaywright,
-		nvda: NVDAPlaywright
+		voiceOver?: VoiceOverPlaywright,
+		nvda?: NVDAPlaywright
 	) => Promise<void>;
 	postTestFn?: (
-		voiceOver: VoiceOverPlaywright,
-		nvda: NVDAPlaywright
+		voiceOver?: VoiceOverPlaywright,
+		nvda?: NVDAPlaywright
 	) => Promise<void>;
 	additionalParams?: string;
 };

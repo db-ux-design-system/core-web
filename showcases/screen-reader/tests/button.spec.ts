@@ -9,10 +9,10 @@ test.describe('DBButton', () => {
 		url: './#/02/button?page=content',
 		async testFn(voiceOver, nvda) {
 			const screenReader = voiceOver ?? nvda;
-			await screenReader.next();
-			await screenReader.previous();
-			await screenReader.next();
-			await screenReader.next();
+			await screenReader?.next();
+			await screenReader?.previous();
+			await screenReader?.next();
+			await screenReader?.next();
 		}
 	});
 });
