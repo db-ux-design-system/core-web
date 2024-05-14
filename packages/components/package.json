@@ -23,7 +23,7 @@
     "build-style:01_sass": "sass src:build --no-source-map --load-path=node_modules/ --load-path=../../node_modules/ --future-deprecation=import",
     "build-style:02_postcss": "postcss build/**/*.css --replace",
     "build:mitosis": "mitosis build",
-    "compile:angular": "mitosis build -c mitosis-angular.config.js && node -e \"require('./scripts/post-build/angular.js')(true)\" && npm run build-components:directives && cpr ../../output/tmp/angular/src ../../output/angular/src -o",
+    "compile:angular": "mitosis build -c mitosis-angular.config.js && node -e \"require('./scripts/post-build/angular.js')(true)\" && cpr ../../output/tmp/angular/src ../../output/angular/src -o",
     "compile:react": "mitosis build -c mitosis-react.config.js && node -e \"require('./scripts/post-build/react.js')(true)\" && cpr ../../output/tmp/react/src ../../output/react/src -o",
     "compile:vue": "mitosis build -c mitosis-vue.config.js && node -e \"require('./scripts/post-build/vue.js')(true)\" && cpr ../../output/tmp/vue/src ../../output/vue/src -o",
     "copy-assets": "cpr ../foundations/assets build/assets -o",
@@ -47,16 +47,16 @@
   },
   "devDependencies": {
     "@builder.io/eslint-plugin-mitosis": "^0.0.15",
-    "@builder.io/mitosis": "^0.2.6",
-    "@builder.io/mitosis-cli": "^0.2.6",
+    "@builder.io/mitosis": "^0.3.0",
+    "@builder.io/mitosis-cli": "^0.3.0",
     "@react-docgen/cli": "^2.0.3",
     "cpr": "3.0.1",
-    "cssnano": "^7.0.0",
+    "cssnano": "^7.0.1",
     "eslint": "^9.0.0",
     "hygen": "^6.2.11",
     "lit": "^3.1.3",
     "nodemon": "3.1.0",
-    "sass": "^1.75.0"
+    "sass": "^1.77.1"
   },
   "publishConfig": {
     "registry": "https://registry.npmjs.org/",

@@ -43,7 +43,6 @@ export default function DBCheckbox(props: DBCheckboxProps) {
 			if (props.change) {
 				props.change(event);
 			}
-
 			handleFrameworkEvent(this, event, 'checked');
 		},
 		handleBlur: (event: InteractionEvent<HTMLInputElement>) => {

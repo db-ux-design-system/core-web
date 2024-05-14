@@ -87,7 +87,7 @@ const DefaultPage = ({ children }: any) => {
 									{process.env.NEXT_PUBLIC_APP_NAME}
 								</DBBrand>
 							}
-							callToAction={
+							primaryAction={
 								<DBButton
 									icon="magnifying_glass"
 									variant="ghost"
@@ -95,11 +95,11 @@ const DefaultPage = ({ children }: any) => {
 									Search
 								</DBButton>
 							}
-							actionBar={<VersionSwitcher />}>
+							secondaryAction={<VersionSwitcher />}>
 							<Navigation />
 						</DBHeader>
 					}>
-					<DBSection size="none" variant="large">
+					<DBSection spacing="none" width="large">
 						{children}
 					</DBSection>
 				</DBPage>

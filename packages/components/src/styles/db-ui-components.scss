@@ -20,25 +20,21 @@
 @forward "../components/navigation-item/navigation-item";
 @forward "../components/textarea/textarea";
 @forward "../components/badge/badge";
-
 @forward "../components/accordion/accordion";
-
 @forward "../components/accordion-item/accordion-item";
 @forward "../components/navigation/navigation";
-
 @forward "../components/popover/popover";
 @forward "../components/tooltip/tooltip";
 @forward "dialog-init";
-
 @forward "../components/tab-item/tab-item";
-
 @forward "../components/tab-list/tab-list";
-
 @forward "../components/tabs/tabs";
-
 @forward "../components/tab-panel/tab-panel";
+@forward "../components/switch/switch";
 
 // angular-workaround
+dbswitch,
+db-switch,
 dbtab-panel,
 db-tab-panel,
 dbtabs,
@@ -119,8 +115,7 @@ dbnotification {
 
 @mixin show-popover($state) {
 	:has(
-			> db-tooltip > .db-tooltip:not([data-open]),
-			> dbtooltip > .db-tooltip:not([data-open]),
+			> :is(db-tooltip, dbtooltip) > .db-tooltip:not([data-open]),
 			> .db-tooltip:not([data-open])
 		) {
 		&:#{$state} {

@@ -41,6 +41,9 @@ The prop labelVariant for form-components (input, checkbox, ...) has been rename
 | 🔄 changed `db-link` variant                                                                                   | We renamed the variants for the link                                                                                                    | `primary` ➡ `brand`                                                                                                                                                                                                                                      |
 | ❌ removed `data-variant="information/critical/..."` for form-components like `input`, `select` and `textarea` | We don't support the colors changes anymore. Use `required`, `pattern`, `min` etc. to trigger `user-valid` for green and red components | `data-variant` changes the label variant now                                                                                                                                                                                                              |
 | 🔄 changed `db-accordion` title                                                                                | We replaced `title` with `headlinePlain` because there is already a html default `title`, which caused trouble                          | Rename `title` to `headlinePlain` or use the slot `headline`                                                                                                                                                                                              |
+| ❌ removed prop `areaPopup` from `db-navigation-item`                                                          | We no longer support opening sub-navigations from via prop.                                                                             | There is no alternative at the moment.                                                                                                                                                                                                                    |
+| 🔄 changed `db-header` slot names                                                                              | The slot names for "action" containers changed                                                                                          | 1. `callToAction` ➡ `primaryAction` <br/>2. `actionBar` ➡ `secondaryAction`                                                                                                                                                                             |
+| 🔄 renamed `size` & `variant` in `db-section`                                                                  | The properties `size` and `variant` in `db-section` were renamed to `spacing` & `width` to align it with other components               | Search for every `db-section` and replace `size` with `spacing` and `variant` with `width`                                                                                                                                                                |
 
 ### React
 
@@ -61,8 +64,8 @@ This is related to the following properties:
 -   `slotHeader`
 -   `slotBrand`
 -   `slotMetaNavigation`
--   `slotCallToAction`
--   `slotActionBar`
+-   `slotCallToAction` (`primaryAction`)
+-   `slotActionBar` (`secondaryAction`)
 -   `slotHeadline`
 -   `slotDrawerHeader`
 -   `slotSubNavigation`

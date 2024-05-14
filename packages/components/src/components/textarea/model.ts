@@ -14,6 +14,17 @@ import {
 	InputEventState
 } from '../../shared/model';
 
+export const TextareaResizeList = [
+	'none',
+	'both',
+	'horizontal',
+	'vertical'
+] as const;
+export type TextareaResizeType = (typeof TextareaResizeList)[number];
+
+export const TextareaWrapList = ['hard', 'soft', 'off'] as const;
+export type TextareaWrapType = (typeof TextareaWrapList)[number];
+
 export interface DBTextareaDefaultProps {
 	/**
 	 * The visible width of the text control, in average character widths. If it is specified, it must be a positive integer
@@ -22,7 +33,7 @@ export interface DBTextareaDefaultProps {
 	/**
 	 * In most browsers, textareas are resizable — you'll notice the drag handle in the right-hand corner, you can control it with this
 	 */
-	resize?: 'none' | 'both' | 'horizontal' | 'vertical';
+	resize?: TextareaResizeType;
 	/**
 	 * The number of visible text lines for the control. If it is specified, it must be a positive integer
 	 */
@@ -35,7 +46,7 @@ export interface DBTextareaDefaultProps {
 	/**
 	 * Indicates how the control should wrap the value for form submission.
 	 */
-	wrap?: 'hard' | 'soft' | 'off';
+	wrap?: TextareaWrapType;
 }
 
 export type DBTextareaProps = DBTextareaDefaultProps &

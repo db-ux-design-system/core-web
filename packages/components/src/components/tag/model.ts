@@ -7,13 +7,16 @@ import {
 	OverflowProps
 } from '../../shared/model';
 
+export const TagBehaviourList = ['static', 'removable'] as const;
+export type TagBehaviourType = (typeof TagBehaviourList)[number];
+
 export interface DBTagDefaultProps {
 	/**
 	 *	Defines the behaviour of the component:
 	 *	- static: default behaviour without remove button
 	 *  - removable: add a remove button at the end of the tag
 	 */
-	behaviour?: 'static' | 'removable';
+	behaviour?: TagBehaviourType;
 
 	/**
 	 * Disable tag.

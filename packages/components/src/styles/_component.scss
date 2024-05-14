@@ -5,7 +5,7 @@
 
 $default-mobile-header-height: var(
 	--db-sizing-fixed-mobile-header,
-	#{helpers.to-rem(56)}
+	#{helpers.px-to-rem(56)}
 );
 
 $default-disabled: 0.4;

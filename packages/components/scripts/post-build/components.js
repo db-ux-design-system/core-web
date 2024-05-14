@@ -26,6 +26,18 @@
  */
 const getComponents = () => [
 	{
+		name: 'switch',
+		config: {
+			vue: {
+				vModel: [{ modelValue: 'checked', binding: ':checked' }]
+			},
+			angular: {
+				controlValueAccessor: 'checked'
+			}
+		}
+	},
+
+	{
 		name: 'tab-panel',
 		config: {
 			angular: {
@@ -118,6 +130,20 @@ const getComponents = () => [
 	},
 	{
 		name: 'navigation-item',
+		overwrites: {
+			angular: [
+				{
+					from: 'navigationItemSafeTriangle = undefined;',
+					to: 'navigationItemSafeTriangle: undefined | NavigationItemSafeTriangle = undefined;'
+				}
+			],
+			vue: [
+				{
+					from: 'navigationItemSafeTriangle: undefined',
+					to: 'navigationItemSafeTriangle: undefined as undefined | NavigationItemSafeTriangle'
+				}
+			]
+		},
 		config: {
 			angular: {
 				directives: [{ name: 'NavigationContent' }]
@@ -203,8 +229,8 @@ const getComponents = () => [
 			angular: {
 				directives: [
 					{
-						name: 'ActionBar',
-						ngContentName: 'action-bar'
+						name: 'SecondaryAction',
+						ngContentName: 'secondary-action'
 					},
 					{
 						name: 'MetaNavigation',

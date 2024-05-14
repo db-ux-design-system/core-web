@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import DBSwitch from '../src/components/switch/switch';
 import DBTabPanel from '../src/components/tab-panel/tab-panel';
 import DBTabs from '../src/components/tabs/tabs';
 import DBTabList from '../src/components/tab-list/tab-list';
@@ -318,6 +319,14 @@ const ComponentSwitch = ({
 			<DBTabPanel className={className} {...props}>
 				{resolvedContent}
 			</DBTabPanel>
+		);
+	}
+
+	if (type === 'switch') {
+		return (
+			<DBSwitch className={className} {...props}>
+				{resolvedContent}
+			</DBSwitch>
 		);
 	}
 

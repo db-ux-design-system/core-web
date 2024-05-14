@@ -5,7 +5,8 @@ module.exports = {
 	options: {
 		angular: {
 			typescript: true,
-			standalone: true
+			standalone: true,
+			visuallyIgnoreHostElement: false
 		}
 	}
 };

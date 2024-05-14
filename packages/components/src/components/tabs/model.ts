@@ -9,6 +9,13 @@ import {
 import { DBTabItemProps } from '../tab-item/model';
 import { DBTabPanelProps } from '../tab-panel/model';
 
+export const TabsBehaviourList = ['scrollbar', 'arrows'] as const;
+export type TabsBehaviourType = (typeof TabsBehaviourList)[number];
+
+export const TabsInitialSelectedModeList = ['auto', 'manually'] as const;
+export type TabsInitialSelectedModeType =
+	(typeof TabsInitialSelectedModeList)[number];
+
 export type DBSimpleTabProps = DBTabItemProps & DBTabPanelProps;
 export interface DBTabsDefaultProps {
 	/**
@@ -19,7 +26,7 @@ export interface DBTabsDefaultProps {
 	/**
 	 * Show a scrollbar or buttons with arrows to navigate for horizontal tabs with overflow visible
 	 */
-	behaviour?: 'scrollbar' | 'arrows';
+	behaviour?: TabsBehaviourType;
 
 	/**
 	 * Default behaviour is auto selecting the first tab, change selected tab by index
@@ -29,7 +36,7 @@ export interface DBTabsDefaultProps {
 	/**
 	 * Default behaviour is auto selecting the first tab, disable it with 'manually'
 	 */
-	initialSelectedMode?: 'auto' | 'manually';
+	initialSelectedMode?: TabsInitialSelectedModeType;
 
 	/**
 	 * The name of the tab bar, is required for grouping multiple tabs together. Will overwrite names from children.

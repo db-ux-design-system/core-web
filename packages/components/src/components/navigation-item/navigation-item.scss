@@ -224,35 +224,44 @@
 			);
 			inset-inline-start: calc(100% + #{variables.$db-spacing-fixed-xs});
 
-			&[data-outside-vy="true"] {
+			&[data-outside-vy="bottom"] {
 				inset-block-start: calc(
 					100% + #{variables.$db-spacing-fixed-md}
 				);
 				transform: translateY(-100%);
 			}
 
-			&[data-outside-vx="true"] {
+			&[data-outside-vx="right"] {
 				transform: translateX(-100%);
 				inset-inline-start: calc(
 					-1 * #{variables.$db-spacing-fixed-xs}
 				);
 
-				&[data-outside-vy="true"] {
+				&[data-outside-vy="bottom"] {
 					transform: translate(-100%, -100%);
+				}
+
+				&::before {
+					inset-block-start: auto;
+					inset-block-end: 0;
+					// inline-size: calc(var(--db-navigation-item-inline-size, 100%) - #{variables.$db-spacing-fixed-xs} - 2px);
+					transform: translateX(100%) scaleX(-1);
 				}
 			}
 
 			&::before {
 				content: "";
 				position: absolute;
-				padding: variables.$db-spacing-fixed-xs;
-				// #{$db-spacing-fixed-3xs} for box shadow
-				inset-block-start: #{variables.$db-spacing-fixed-3xs};
-				inset-inline-start: calc(
-					-1 * #{variables.$db-spacing-fixed-xs}
-				);
+				inset-block-start: 0;
+				inset-inline-start: 0;
 				block-size: 100%;
-				inline-size: variables.$db-spacing-fixed-xs;
+				inline-size: var(--db-navigation-item-inline-size, 100%);
+				background: transparent;
+				transform: translateX(-100%);
+				clip-path: var(
+					--db-navigation-item-clip-path,
+					polygon(10% 30px, 100% 0, 100% 100%)
+				);
 			}
 
 			&::after {

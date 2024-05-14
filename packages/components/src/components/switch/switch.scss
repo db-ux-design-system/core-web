@@ -1,0 +1,218 @@
+@use "@db-ui/foundations/build/scss/variables";
+@use "@db-ui/foundations/build/scss/colors";
+@use "@db-ui/foundations/build/scss/fonts";
+@use "@db-ui/foundations/build/scss/helpers";
+@use "@db-ui/foundations/build/scss/icons";
+@use "../../styles/form-components";
+
+$switch-fixed-padding: helpers.px-to-rem(2);
+
+$switch-inactive-thumb-size: calc(
+	#{form-components.$font-size-height} - #{$switch-fixed-padding} * 2
+);
+
+$switch-active-thumb-size: calc(#{form-components.$font-size-height});
+
+$checked-active-transition-size: calc(
+	#{form-components.$font-size-height} - #{$switch-fixed-padding} * 2
+);
+
+%active-transition {
+	&::before {
+		inline-size: calc(
+			#{$switch-active-thumb-size} - #{$switch-fixed-padding} * 2 + #{variables.$db-spacing-fixed-2xs}
+		);
+		margin: 0;
+	}
+
+	&:checked {
+		&::before {
+			block-size: $checked-active-transition-size;
+		}
+	}
+}
+
+.db-switch {
+	@include form-components.set-default-check-element(check);
+	justify-content: space-between;
+	user-select: none;
+
+	// This is needed when clicking on the label instead of the input
+	@include helpers.active {
+		& > input {
+			@extend %active-transition;
+		}
+	}
+
+	& > input {
+		--db-icon-margin-start: 0;
+		--thumb-offset-x: #{$switch-fixed-padding};
+		@extend %db-overwrite-font-size-sm;
+
+		@include icons.set-icon("cross", "after");
+		appearance: none;
+
+		inline-size: calc(
+			#{form-components.$font-size-height} * 2 + #{$switch-fixed-padding}
+		);
+		block-size: form-components.$font-size-height;
+		box-sizing: content-box;
+
+		display: flex;
+		align-items: center;
+		gap: $switch-fixed-padding;
+
+		background-color: colors.$db-current-color-bg-enabled;
+		border-radius: variables.$db-border-radius-full;
+
+		&::after {
+			visibility: hidden;
+			align-self: center;
+			aspect-ratio: 1;
+		}
+
+		// thumb
+		&::before {
+			content: "";
+			aspect-ratio: 1;
+			block-size: $switch-inactive-thumb-size;
+			background: colors.$db-current-color-enabled;
+			border-radius: variables.$db-border-radius-full;
+			transform: translateX(var(--thumb-offset-x));
+
+			margin-inline-end: calc(
+				#{$switch-active-thumb-size} - #{$switch-inactive-thumb-size}
+			);
+
+			transition:
+				margin variables.$db-transition-duration-fast
+					variables.$db-transition-timing-emotional,
+				inline-size variables.$db-transition-duration-fast
+					variables.$db-transition-timing-emotional,
+				block-size variables.$db-transition-duration-fast
+					variables.$db-transition-timing-emotional,
+				transform variables.$db-transition-duration-fast
+					variables.$db-transition-timing-emotional;
+
+			// Adopted by https://www.heise.de/developer/artikel/a11y-Reduced-Motion-4356171.html
+			@media (prefers-reduced-motion: reduce) {
+				transition-duration: 0.01s !important;
+			}
+		}
+
+		/* positioned at the end of the track: track length - 100% (thumb width) */
+		&:checked {
+			--db-current-icon-color: #{colors.$db-current-color-bg-enabled};
+			--thumb-offset-x: calc(100% + #{$switch-fixed-padding});
+
+			background-color: colors.$db-current-color-enabled;
+
+			@include helpers.hover {
+				background-color: colors.$db-current-color-hover;
+				border-color: colors.$db-current-color-hover;
+			}
+
+			@include helpers.active {
+				background-color: colors.$db-current-color-pressed;
+				border-color: colors.$db-current-color-pressed;
+			}
+
+			&::before {
+				block-size: $switch-active-thumb-size;
+				background-color: colors.$db-current-color-bg-enabled;
+				margin: 0;
+			}
+		}
+
+		&:focus-visible {
+			// Overwrite default border-radius
+			border-radius: variables.$db-border-radius-full;
+		}
+	}
+
+	&[data-variant="hidden"] {
+		gap: 0;
+	}
+
+	&[data-size="small"] {
+		gap: variables.$db-spacing-fixed-2xs;
+
+		& > input {
+			@extend %db-overwrite-font-size-xs;
+		}
+	}
+
+	&[data-emphasis="strong"] {
+		// This is needed when clicking on an active strong switch
+		@include helpers.hover {
+			& > input {
+				background-color: colors.$db-current-color-bg-hover;
+				border-color: colors.$db-current-color-bg-hover;
+			}
+		}
+
+		@include helpers.active {
+			& > input {
+				background-color: colors.$db-current-color-bg-pressed;
+				border-color: colors.$db-current-color-bg-pressed;
+
+				&::before {
+					block-size: $checked-active-transition-size;
+				}
+			}
+		}
+
+		& > input {
+			--db-check-element-border-color: #{colors.$db-current-color-bg-enabled};
+			@extend %db-critical-contrast-low;
+
+			&:not(:checked) {
+				--thumb-offset-x: 0;
+			}
+
+			&:checked {
+				@extend %db-successful-contrast-low;
+
+				&::before {
+					background-color: colors.$db-current-color-enabled;
+				}
+			}
+
+			&::before {
+				block-size: $switch-active-thumb-size;
+				margin: 0;
+			}
+		}
+	}
+
+	&[data-emphasis="strong"],
+	&[data-visual-aid="true"] {
+		& > input {
+			&::after {
+				visibility: visible;
+				block-size: $switch-active-thumb-size;
+			}
+
+			&:checked {
+				@include icons.set-icon("check", "after");
+
+				&::after {
+					transform: translateX(
+						calc(-100% - #{$switch-fixed-padding})
+					);
+					block-size: $switch-active-thumb-size;
+				}
+			}
+		}
+	}
+
+	& > input {
+		&[data-aid-icon]:not(:checked)::after {
+			content: attr(data-aid-icon);
+		}
+
+		&[data-aid-icon-after]:checked::after {
+			content: attr(data-aid-icon-after);
+		}
+	}
+}

@@ -1,5 +1,14 @@
 @use "@db-ui/foundations/build/scss/variables";
 
+@mixin header-footer-style {
+	> :is(.db-header, .db-footer, header, footer) {
+		display: flex;
+		flex: 0 1 auto;
+		flex-grow: 0;
+		flex-shrink: 0;
+	}
+}
+
 .db-page {
 	opacity: 0;
 
@@ -13,20 +22,17 @@
 	}
 
 	&[data-variant="fixed"] {
+		@include header-footer-style();
 		block-size: 100%;
 		min-block-size: 100%;
 		display: flex;
 		flex-direction: column;
-
-		header,
-		footer {
-			display: flex;
-			flex: 0 1 auto;
-			flex-grow: 0;
-			flex-shrink: 0;
+		/* workaround for angular */
+		> :is(db-header, dbheader, dbfooter, db-footer) {
+			@include header-footer-style();
 		}
 
-		main {
+		> .db-main {
 			display: flex;
 			flex-direction: column;
 			overflow: auto;
