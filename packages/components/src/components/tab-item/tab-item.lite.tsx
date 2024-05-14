@@ -60,6 +60,7 @@ export default function DBTabItem(props: DBTabItemProps) {
 					disabled={props.disabled}
 					aria-selected={state._selected}
 					aria-controls={props.controls}
+					checked={props.checked}
 					ref={ref}
 					type="radio"
 					role="tab"

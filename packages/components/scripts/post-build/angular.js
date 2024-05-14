@@ -175,10 +175,10 @@ export class ${directive.name}Directive {}
 	});
 };
 
-const attributePassing = `
+const getAttributePassing = (componentName) => `
 ngAfterViewInit(): void {
 \t\tconst element: HTMLElement | null = this.ref?.nativeElement;
-\t\tconst parent = element?.parentElement;
+\t\tconst parent = element?.closest('db-${componentName}') ?? element?.closest('db${componentName.replaceAll('-', '')}');
 \t\tif (element && parent) {
 \t\t\tconst attributes = parent.attributes;
 \t\t\tfor (let i = 0; i < attributes.length; i++) {
@@ -237,7 +237,7 @@ module.exports = (tmp) => {
 				from: '@ViewChild("ref") ref!: ElementRef | undefined;',
 				to:
 					'@ViewChild("ref") ref!: ElementRef | undefined;' +
-					attributePassing
+					getAttributePassing(component.name)
 			}
 		];
 
