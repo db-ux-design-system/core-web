@@ -22,7 +22,6 @@
 	}
 
 	&[data-variant="fixed"] {
-
 		@include header-footer-style();
 		block-size: 100%;
 		min-block-size: 100%;

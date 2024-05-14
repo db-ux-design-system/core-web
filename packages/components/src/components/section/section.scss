@@ -9,38 +9,38 @@
 		padding-inline: variables.$db-spacing-fixed-md;
 	}
 
-	&[data-variant="full"] {
+	&[data-width="full"] {
 		padding-inline: 0;
 	}
 
-	&[data-size="none"] {
+	&[data-spacing="none"] {
 		padding-block: 0;
 	}
 
-	&[data-size="small"] {
+	&[data-spacing="small"] {
 		padding-block: variables.$db-spacing-responsive-sm;
 	}
 
-	&[data-size="medium"] {
+	&[data-spacing="medium"] {
 		padding-block: variables.$db-spacing-responsive-md;
 	}
 
-	&[data-size="large"] {
+	&[data-spacing="large"] {
 		padding-block: variables.$db-spacing-responsive-lg;
 	}
 
 	& > div {
 		margin: 0 auto;
 
-		&[data-variant="full"] {
+		&[data-width="full"] {
 			max-inline-size: none;
 		}
 
-		&[data-variant="medium"] {
+		&[data-width="medium"] {
 			max-inline-size: screen-sizes.$db-breakpoint-md;
 		}
 
-		&[data-variant="large"] {
+		&[data-width="large"] {
 			max-inline-size: screen-sizes.$db-breakpoint-lg;
 		}
 	}

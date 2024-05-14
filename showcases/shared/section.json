@@ -20,7 +20,7 @@
 		]
 	},
 	{
-		"name": "Variant",
+		"name": "Width",
 		"examples": [
 			{
 				"name": "(Default) Full",
@@ -34,20 +34,20 @@
 				"name": "Medium",
 				"style": { "width": "100%", "display": "block" },
 				"props": {
-					"variant": "medium"
+					"width": "medium"
 				}
 			},
 			{
 				"name": "Large",
 				"style": { "width": "100%", "display": "block" },
 				"props": {
-					"variant": "large"
+					"width": "large"
 				}
 			}
 		]
 	},
 	{
-		"name": "Size",
+		"name": "Spacing",
 		"examples": [
 			{
 				"name": "(Default) Medium",
@@ -56,13 +56,13 @@
 			{
 				"name": "Large",
 				"props": {
-					"size": "large"
+					"spacing": "large"
 				}
 			},
 			{
 				"name": "Small",
 				"props": {
-					"size": "small"
+					"spacing": "small"
 				}
 			}
 		]

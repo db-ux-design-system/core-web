@@ -3,5 +3,5 @@ import { test } from '@playwright/test';
 import { getDefaultScreenshotTest } from '../default.ts';
 
 test.describe('DBNotification', () => {
-	getDefaultScreenshotTest('06/notification');
+	getDefaultScreenshotTest({ path: '06/notification' });
 });

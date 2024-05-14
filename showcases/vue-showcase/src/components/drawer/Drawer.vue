@@ -12,7 +12,7 @@ const toggleDrawer = (example?: string) => {
 </script>
 
 <template>
-	<DefaultComponent title="Drawer" :variants="defaultComponentVariants">
+	<DefaultComponent title="DBDrawer" :variants="defaultComponentVariants">
 		<template
 			#example="{ exampleIndex, variantIndex, exampleName, exampleProps }"
 		>

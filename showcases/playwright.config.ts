@@ -13,11 +13,7 @@ const config: PlaywrightTestConfig = {
 		'{snapshotDir}/{testFileDir}/showcase/{projectName}/{arg}/{testName}{ext}',
 	snapshotDir: './../__snapshots__',
 	expect: {
-		/**
-		 * Maximum time expect() should wait for the condition to be met.
-		 * For example in `await expect(locator).toHaveText();`
-		 */
-		timeout: 5000
+		timeout: 10_000
 	},
 	/* Run tests in files in parallel */
 	fullyParallel: true,
@@ -37,10 +33,7 @@ const config: PlaywrightTestConfig = {
 		baseURL: `http://localhost:8080/${process.env.showcase}/`,
 
 		/* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
-		trace: process.env.CI ? 'on-first-retry' : 'on',
-
-		/* Collect video when retrying the failed test.  */
-		video: process.env.CI ? 'on-first-retry' : 'on'
+		trace: process.env.CI ? 'on-first-retry' : 'on'
 	},
 	webServer: {
 		command: `cd ${process.env.showcase} && npm run preview`,

@@ -13,7 +13,6 @@ import { DBButton } from '../button';
 import { DBTabList } from '../tab-list';
 import { DBTabItem } from '../tab-item';
 import { DBTabPanel } from '../tab-panel';
-import { DEFAULT_ID } from '../../shared/constants';
 
 useMetadata({
 	isAttachedToShadowDom: true
@@ -23,7 +22,7 @@ export default function DBTabs(props: DBTabsProps) {
 	const ref = useRef<HTMLDivElement>(null);
 	// jscpd:ignore-start
 	const state = useStore<DBTabsState>({
-		_id: DEFAULT_ID,
+		_id: 'tabs-' + uuid(),
 		_name: '',
 		initialized: false,
 		showScrollLeft: false,
@@ -63,21 +62,16 @@ export default function DBTabs(props: DBTabsProps) {
 		},
 		initTabList() {
 			if (ref) {
-				const tabLists = ref.querySelector('.db-tab-list');
-				if (tabLists) {
-					if (
-						!tabLists
-							.getAttributeNames()
-							.includes('aria-orientation')
-					) {
-						tabLists.setAttribute(
-							'aria-orientation',
-							props.orientation || 'horizontal'
-						);
-					}
+				const tabList = ref.querySelector('.db-tab-list');
+				if (tabList) {
+					const container = tabList.querySelector('[role="tablist"]');
+
+					container.setAttribute(
+						'aria-orientation',
+						props.orientation || 'horizontal'
+					);
 
 					if (props.behaviour === 'arrows') {
-						const container = tabLists.querySelector('ul');
 						state.scrollContainer = container;
 						state.evaluateScrollButtons(container);
 						container.addEventListener('scroll', () => {
@@ -98,10 +92,10 @@ export default function DBTabs(props: DBTabsProps) {
 							const input = tabItem.querySelector('input');
 
 							if (input && label) {
-								if (input.id === DEFAULT_ID) {
+								if (!input.id) {
 									const tabId = `${state._name}-tab-${index}`;
 									label.setAttribute('for', tabId);
-									label.setAttribute(
+									input.setAttribute(
 										'aria-controls',
 										`${state._name}-tab-panel-${index}`
 									);
@@ -141,7 +135,7 @@ export default function DBTabs(props: DBTabsProps) {
 				];
 				if (tabPanels?.length > 0) {
 					tabPanels.forEach((panel: Element, index: number) => {
-						if (panel.id === DEFAULT_ID) {
+						if (!panel.id) {
 							panel.id = `${state._name}-tab-panel-${index}`;
 							panel.setAttribute(
 								'aria-labelledby',
@@ -155,7 +149,7 @@ export default function DBTabs(props: DBTabsProps) {
 	});
 
 	onMount(() => {
-		state._id = props.id || 'tabs-' + uuid();
+		state._id = props.id || state._id;
 
 		state._name = props.name || uuid();
 
@@ -168,8 +162,8 @@ export default function DBTabs(props: DBTabsProps) {
 			state.initTabList();
 			state.initTabs(true);
 
-			const childTabLists = ref.getElementsByClassName('db-tab-list');
-			if (childTabLists?.length > 0) {
+			const tabList = ref.querySelector('.db-tab-list');
+			if (tabList) {
 				const observer = new MutationObserver((mutations) => {
 					mutations.forEach((mutation) => {
 						if (
@@ -182,7 +176,7 @@ export default function DBTabs(props: DBTabsProps) {
 					});
 				});
 
-				observer.observe(childTabLists[0], {
+				observer.observe(tabList, {
 					childList: true,
 					subtree: true
 				});

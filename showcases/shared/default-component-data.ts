@@ -20,6 +20,7 @@ export type DefaultComponentVariants = {
 	name: string;
 	examples: DefaultComponentExample[];
 	slotCode?: any;
+	color?: string;
 };
 
 export type DefaultComponentProps = {

@@ -3,5 +3,5 @@ import { test } from '@playwright/test';
 import { getDefaultScreenshotTest } from '../default.ts';
 
 test.describe('DBBrand', () => {
-	getDefaultScreenshotTest('04/brand');
+	getDefaultScreenshotTest({ path: '04/brand' });
 });

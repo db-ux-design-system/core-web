@@ -16,6 +16,26 @@ import {
 	KeyValueType
 } from '../../shared/model';
 
+export const InputTypeList = [
+	'color',
+	'date',
+	'datetime-local',
+	'email',
+	'file', // TODO: move this to own component
+	'hidden',
+	'month',
+	'number',
+	'password',
+	'range', // TODO: move this to own component
+	'search',
+	'tel',
+	'text',
+	'time',
+	'url',
+	'week'
+] as const;
+export type InputTypeType = (typeof InputTypeList)[number];
+
 export type DBInputDefaultProps = {
 	dataList?: KeyValueType[];
 	dataListId?: string;
@@ -35,24 +55,7 @@ export type DBInputDefaultProps = {
 	/**
 	 * 	Type of form control
 	 */
-	type?:
-		| 'color'
-		| 'date'
-		| 'datetime-local'
-		| 'email'
-		| 'file' // TODO: move this to own component
-		| 'hidden'
-		| 'month'
-		| 'number'
-		| 'password'
-		| 'range' // TODO: move this to own component
-		| 'search'
-		| 'tel'
-		| 'text'
-		| 'time'
-		| 'url'
-		| 'week'
-		| string;
+	type?: InputTypeType | string;
 	step?: number | string;
 };
 

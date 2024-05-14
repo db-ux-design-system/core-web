@@ -5,7 +5,7 @@ import { DBInput, DBSelect } from "../../../../../output/vue/src";
 </script>
 
 <template>
-	<DefaultComponent title="Select" :variants="defaultComponentVariants">
+	<DefaultComponent title="DBSelect" :variants="defaultComponentVariants">
 		<template
 			#example="{ exampleIndex, variantIndex, exampleName, exampleProps }"
 		>

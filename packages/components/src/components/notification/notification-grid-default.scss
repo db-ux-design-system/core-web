@@ -9,7 +9,7 @@
 	}
 
 	// 2. headline
-	&:has(h6) {
+	&:has(header) {
 		grid-template-columns: 1fr;
 		grid-template-areas:
 			"head"
@@ -35,7 +35,7 @@
 			grid-template-areas: "icon content close";
 		}
 
-		&:has(h6) {
+		&:has(header) {
 			grid-template-columns: min-content 1fr;
 			grid-template-areas:
 				"icon head"

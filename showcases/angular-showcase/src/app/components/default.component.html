@@ -1,6 +1,6 @@
 <!-- TODO: Content Projection not working for nested components? -> Had to copy paste variant-cards... -->
 @if (variantRef) {
-	<db-card class="variants-card">
+	<db-card class="variants-card" [elevationLevel]="getElevation()">
 		<div class="variants-list">
 			@for (
 				example of variantRef.examples;
@@ -40,7 +40,10 @@
 				>
 					<span>{{ variant.name }}</span>
 				</db-link>
-				<db-card class="variants-card">
+				<db-card
+					class="variants-card"
+					[elevationLevel]="getElevation()"
+				>
 					<div class="variants-list">
 						@for (
 							example of variant.examples;
