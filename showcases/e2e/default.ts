@@ -1,6 +1,7 @@
 import { expect, type Page, test } from '@playwright/test';
 import AxeBuilder from '@axe-core/playwright';
 // @ts-expect-error - required for playwright
+import pa11y from 'pa11y';
 import { COLORS } from './fixtures/variants.ts';
 // @ts-expect-error - required for playwright
 import { setScrollViewport } from './fixtures/viewport.ts';
@@ -56,7 +57,7 @@ export const getDefaultScreenshotTest = ({
 		const showcase = process.env.showcase;
 		const diffPixel = process.env.diff;
 		const maxDiffPixelRatio = process.env.ratio;
-		const isAngular = showcase.startsWith('angular');
+		const isAngular = showcase?.startsWith('angular');
 
 		const config: any = {};
 
@@ -78,7 +79,7 @@ export const getDefaultScreenshotTest = ({
 
 		await gotoPage(page, path, 'neutral-bg-lvl-1', fixedHeight);
 
-		const header = await page.locator('header').first();
+		const header = page.locator('header').first();
 
 		config.mask = [header];
 
@@ -116,4 +117,17 @@ export const getDefaultScreenshotTest = ({
 			expect(accessibilityScanResults.violations).toEqual([]);
 		});
 	}
+
+	test('should not have pa11y issues', async () => {
+		const result = await pa11y(
+			`http://localhost:8080/${process.env.showcase}/#/${path}?density=${density}&color=neutral-bg-lvl-1`,
+			{
+				ignore: [
+					// We need to ignore this because of some showcase routers
+					'WCAG2AA.Principle2.Guideline2_4.2_4_1.G1,G123,G124.NoSuchID'
+				]
+			}
+		);
+		expect(result.issues).toEqual([]);
+	});
 };
