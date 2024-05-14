@@ -73,13 +73,6 @@ export default function DBCheckbox(props: DBCheckboxProps) {
 			if (props.focus) {
 				props.focus(event);
 			}
-		},
-		getValidMessage: () => {
-			return props.validMessage || DEFAULT_VALID_MESSAGE;
-		},
-
-		getInvalidMessage: () => {
-			return '';
 		}
 	});
 
