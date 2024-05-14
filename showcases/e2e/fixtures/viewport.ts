@@ -11,7 +11,7 @@ export const setScrollViewport = (page: Page, fixedHeight?: number) => {
 			Number(node?.scrollHeight ?? 2500)
 		);
 
-		const width = page.viewportSize().width;
+		const width = page.viewportSize()?.width ?? 0;
 		const height = fixedHeight ?? headerHeight + mainHeight;
 
 		await page.setViewportSize({
@@ -19,6 +19,6 @@ export const setScrollViewport = (page: Page, fixedHeight?: number) => {
 			height
 		});
 
-		await expect(page.viewportSize().height).toEqual(height);
+		expect(page.viewportSize()?.height).toEqual(height);
 	};
 };
