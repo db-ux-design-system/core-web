@@ -4,21 +4,33 @@ import {
 	GlobalProps,
 	GlobalState,
 	InnerCloseButtonProps,
+	SpacingProps,
 	WidthProps
 } from '../../shared/model';
+
+export const DrawerBackdropList = [
+	'none',
+	'strong',
+	'weak',
+	'invisible'
+] as const;
+export type DrawerBackdropType = (typeof DrawerBackdropList)[number];
+
+export const DrawerDirectionList = ['left', 'right', 'up', 'down'] as const;
+export type DrawerDirectionType = (typeof DrawerDirectionList)[number];
 
 export interface DBDrawerDefaultProps {
 	/**
 	 * The backdrop attribute changes the opacity of the backdrop.
 	 * The backdrop 'none' will use `dialog.show()` instead of `dialog.showModal()`
 	 */
-	backdrop?: 'strong' | 'weak' | 'invisible' | 'none';
+	backdrop?: DrawerBackdropType;
 
 	/**
 	 * The direction attribute changes the position & animation of the drawer.
 	 * E.g. "left" slides from left screen border to the right.
 	 */
-	direction?: 'left' | 'right' | 'up' | 'down';
+	direction?: DrawerDirectionType;
 
 	/**
 	 * React specific to change the header of the drawer.
@@ -33,10 +45,6 @@ export interface DBDrawerDefaultProps {
 	 * The "end" depends on which direction you use.
 	 */
 	rounded?: boolean;
-	/**
-	 * The @dependabot recreate attribute changes the padding inside the drawer.
-	 */
-	spacing?: 'medium' | 'small' | 'large' | 'none';
 
 	/**
 	 * The withCloseButton attribute shows/hides the default close button.
@@ -48,7 +56,8 @@ export type DBDrawerProps = DBDrawerDefaultProps &
 	GlobalProps &
 	CloseEventProps &
 	InnerCloseButtonProps &
-	WidthProps;
+	WidthProps &
+	SpacingProps;
 
 export interface DBDrawerDefaultState {
 	handleDialogOpen: () => void;

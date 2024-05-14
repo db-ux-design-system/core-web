@@ -8,7 +8,8 @@ module.exports = {
 		},
 		angular: {
 			typescript: true,
-			standalone: true
+			standalone: true,
+			visuallyIgnoreHostElement: false
 		},
 		vue: {
 			typescript: true
