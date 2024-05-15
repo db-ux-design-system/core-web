@@ -13,12 +13,7 @@ import { DBAccordionItem } from '../accordion-item';
 import { DBAccordionItemDefaultProps } from '../accordion-item/model';
 
 useMetadata({
-	isAttachedToShadowDom: true,
-	component: {
-		// MS Power Apps
-		includeIcon: false,
-		properties: []
-	}
+	isAttachedToShadowDom: true
 });
 
 export default function DBAccordion(props: DBAccordionProps) {

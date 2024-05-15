@@ -186,7 +186,7 @@ export class ${directive.name}Directive {}
 const getAttributePassing = (componentName) => `
 ngAfterViewInit(): void {
 \t\tconst element: HTMLElement | null = this.ref?.nativeElement;
-\t\tconst parent = element?.closest('db-${componentName}') ?? element?.closest('db${componentName.replaceAll('-', '')}');
+\t\tconst parent = element?.closest('db-${componentName}');
 \t\tif (element && parent) {
 \t\t\tconst attributes = parent.attributes;
 \t\t\tfor (let i = 0; i < attributes.length; i++) {
