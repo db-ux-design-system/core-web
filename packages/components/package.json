@@ -46,7 +46,7 @@
     "@db-ui/foundations": "*"
   },
   "devDependencies": {
-    "@builder.io/eslint-plugin-mitosis": "^0.0.15",
+    "@builder.io/eslint-plugin-mitosis": "^0.0.16",
     "@builder.io/mitosis": "^0.3.0",
     "@builder.io/mitosis-cli": "^0.3.0",
     "@react-docgen/cli": "^2.0.3",
