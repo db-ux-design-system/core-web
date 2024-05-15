@@ -46,5 +46,21 @@
 		&:indeterminate {
 			@include icons.set-icon("minus");
 		}
+
+		@media (forced-colors: active) {
+			&:indeterminate,
+			&:checked {
+				--db-check-element-border-color: #{colors.$db-current-color-bg-enabled};
+				border-width: form-components.$check-border-size;
+
+				&::before {
+					align-content: center;
+					font-size: calc(
+						var(--db-icon-font-size) - 2 * #{form-components.$check-border-size}
+					);
+					padding: #{form-components.$check-border-size};
+				}
+			}
+		}
 	}
 }

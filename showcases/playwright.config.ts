@@ -49,21 +49,26 @@ const config: PlaywrightTestConfig = {
 				...devices['Desktop Chrome']
 			}
 		},
-
+		{
+			name: 'chromium-highContrast',
+			use: {
+				browserName: 'chromium',
+				colorScheme: 'dark',
+				contextOptions: { forcedColors: 'active' }
+			}
+		},
 		{
 			name: 'firefox',
 			use: {
 				...devices['Desktop Firefox']
 			}
 		},
-
 		{
 			name: 'webkit',
 			use: {
 				...devices['Desktop Safari']
 			}
 		},
-
 		/* Test against mobile viewports. */
 		{
 			name: 'mobile_chrome',

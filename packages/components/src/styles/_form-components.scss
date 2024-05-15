@@ -30,6 +30,8 @@ $input-types: "button", "checkbox", "color", "date", "datetime-local", "email",
 	"file", "hidden", "image", "month", "number", "password", "radio", "range",
 	"reset", "search", "submit", "tel", "text", "time", "url", "week";
 
+$check-border-size: min(#{variables.$db-border-height-2xs}, 2px);
+
 %dropdown-icon {
 	@include icons.set-icon("chevron_down", "after");
 
@@ -446,8 +448,7 @@ $input-valid-types: "color", "date", "datetime-local", "email", "file", "hidden"
 		appearance: none;
 		aspect-ratio: 1;
 
-		border: min(#{variables.$db-border-height-2xs}, 2px) solid
-			var(--db-check-element-border-color, currentColor);
+		border: #{$check-border-size} solid var(--db-check-element-border-color, currentColor);
 
 		block-size: $font-size-height;
 		justify-content: center;
