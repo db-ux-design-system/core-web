@@ -12,6 +12,7 @@
     "test:e2e": "cross-env showcase=vue-showcase npx playwright test --config=../playwright.config.ts"
   },
   "dependencies": {
+    "sa11y": "3.1.5",
     "vue": "^3.4.27",
     "vue-router": "4.3.2"
   },
