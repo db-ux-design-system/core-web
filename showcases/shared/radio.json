@@ -1,6 +1,7 @@
 [
 	{
 		"name": "Density",
+		"role": "radiogroup",
 		"examples": [
 			{
 				"name": "Functional",
@@ -30,6 +31,7 @@
 	},
 	{
 		"name": "Interaction States",
+		"role": "radiogroup",
 		"examples": [
 			{
 				"name": "(Default) Enabled",
@@ -48,6 +50,7 @@
 	},
 	{
 		"name": "States",
+		"role": "radiogroup",
 		"examples": [
 			{
 				"name": "(Default) Unselected",
@@ -81,6 +84,7 @@
 	},
 	{
 		"name": "Size",
+		"role": "radiogroup",
 		"examples": [
 			{
 				"name": "(Default) Medium",
@@ -99,6 +103,7 @@
 	},
 	{
 		"name": "Requirement",
+		"role": "radiogroup",
 		"examples": [
 			{
 				"name": "(Default) Optional",
@@ -117,6 +122,7 @@
 	},
 	{
 		"name": "Content",
+		"role": "radiogroup",
 		"examples": [
 			{
 				"name": "(Default) Label",

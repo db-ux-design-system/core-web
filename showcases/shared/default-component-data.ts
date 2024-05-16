@@ -21,6 +21,7 @@ export type DefaultComponentVariants = {
 	examples: DefaultComponentExample[];
 	slotCode?: any;
 	color?: string;
+	role?: string;
 };
 
 export type DefaultComponentProps = {

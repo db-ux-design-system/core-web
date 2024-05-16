@@ -1,7 +1,11 @@
 <!-- TODO: Content Projection not working for nested components? -> Had to copy paste variant-cards... -->
 @if (variantRef) {
 	<db-card class="variants-card" [elevationLevel]="getElevation()">
-		<div class="variants-list">
+		<div
+			[attr.aria-label]="variantRef.name"
+			[attr.role]="variantRef.role"
+			class="variants-list"
+		>
 			@for (
 				example of variantRef.examples;
 				track example;

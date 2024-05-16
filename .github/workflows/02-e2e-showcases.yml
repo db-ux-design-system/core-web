@@ -76,3 +76,11 @@ jobs:
           name: ${{ matrix.framework }}-showcase-playwright-results-${{ matrix.shardIndex }}
           path: ./showcases/${{ matrix.framework }}-showcase/test-results
           retention-days: 30
+
+      - name: 🆙 Upload aChecker results
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ matrix.framework }}-showcase-achecker-results-${{ matrix.shardIndex }}
+          path: ./showcases/${{ matrix.framework }}-showcase/results
+          retention-days: 30

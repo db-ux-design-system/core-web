@@ -174,7 +174,7 @@
 				"name": "Interactive Radio 2",
 				"props": {
 					"component": "radio",
-					"identifier": "radio01",
+					"identifier": "radio02",
 					"code": {
 						"angular": "<db-tag><db-radio name=\"radio01\">Interactive Radio 2</db-radio></db-tag>",
 						"html": "<div class=\"db-tag\"><input type=\"radio\" class=\"db-checkbox\" id=\"checkbox-element\" name=\"radio01\" /><label for=\"checkbox-element\">Interactive Radio 2</label></div>",
@@ -324,7 +324,7 @@
 					"component": "radio",
 					"emphasis": "strong",
 					"icon": "user",
-					"identifier": "radio02"
+					"identifier": "radio03"
 				},
 				"code": {
 					"angular": "<db-tag><db-radio name=\"radio02\">Interactive Radio 1</db-radio></db-tag>",
@@ -339,7 +339,7 @@
 					"component": "radio",
 					"emphasis": "strong",
 					"icon": "user",
-					"identifier": "radio02",
+					"identifier": "radio04",
 					"code": {
 						"angular": "<db-tag><db-radio name=\"radio02\">Interactive Radio 2</db-radio></db-tag>",
 						"html": "<div class=\"db-tag\"><input type=\"radio\" class=\"db-checkbox\" id=\"checkbox-element\" name=\"radio02\" /><label for=\"checkbox-element\">Interactive Radio 2</label></div>",

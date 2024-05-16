@@ -7,6 +7,6 @@ test.describe('DBTabItem', () => {
 	// So we disabled "aria-allowed-role" for now
 	getDefaultScreenshotTest({
 		path: '04/tab-item',
-		disableRules: ['aria-allowed-role']
+		axeDisableRules: ['aria-allowed-role']
 	});
 });
