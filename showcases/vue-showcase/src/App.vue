@@ -89,7 +89,7 @@ const sortedNavigation = getSortedNavigationItems(navigationItems);
 				<template v-slot:brand>
 					<DBBrand>Showcase</DBBrand>
 				</template>
-				<DBNavigation aria-label="main-navigation">
+				<DBNavigation aria-label="main navigation">
 					<template v-for="item of sortedNavigation">
 						<NavItemComponent :navItem="item"></NavItemComponent>
 					</template>
