@@ -152,6 +152,7 @@ $check-border-size: min(#{variables.$db-border-height-2xs}, 2px);
 
 	#{$selector},
 	[id$="-placeholder"] {
+		--db-current-icon-color: var(--db-#{$variant}-on-bg-enabled);
 		color: var(--db-#{$variant}-on-bg-enabled);
 		caret-color: var(--db-#{$variant}-on-bg-enabled);
 	}
@@ -349,6 +350,7 @@ $input-valid-types: "color", "date", "datetime-local", "email", "file", "hidden"
 					1
 				) - 1px
 		);
+		color: colors.$db-current-color-enabled;
 	}
 
 	&::before {
