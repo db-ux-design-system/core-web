@@ -101,7 +101,7 @@ const getElevation = (): "1" | "2" | "3" =>
 	>
 		<div
 			:role="variantRef.role"
-			:aria-label="variantRef.name"
+			:aria-label="variantRef.role ? variantRef.name : undefined"
 			class="variants-list"
 		>
 			<div
@@ -134,7 +134,7 @@ const getElevation = (): "1" | "2" | "3" =>
 			<DBCard class="variants-card" :elevation-level="getElevation()">
 				<div
 					:role="variant.role"
-					:aria-label="variant.name"
+					:aria-label="variantRef.role ? variantRef.name : undefined"
 					class="variants-list"
 				>
 					<div

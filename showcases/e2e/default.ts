@@ -1,11 +1,9 @@
 import { expect, type Page, test } from '@playwright/test';
 import AxeBuilder from '@axe-core/playwright';
-// @ts-expect-error - required for playwright
 import { close, getCompliance } from 'accessibility-checker';
 import { type ICheckerError } from 'accessibility-checker/lib/api/IChecker';
-import { COLORS } from './fixtures/variants.ts';
-// @ts-expect-error - required for playwright
-import { setScrollViewport } from './fixtures/viewport.ts';
+import { COLORS } from './fixtures/variants';
+import { setScrollViewport } from './fixtures/viewport';
 
 const density = 'regular';
 

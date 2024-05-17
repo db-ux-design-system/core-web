@@ -11,7 +11,7 @@
 			(onToggle)="toggleDrawer($event)"
 		>
 			<db-brand brand>Showcase</db-brand>
-			<db-navigation *dbNavigation>
+			<db-navigation *dbNavigation aria-label="main-navigation">
 				@for (item of navigationItems; track item.label) {
 					<app-nav-item [navItem]="item"> </app-nav-item>
 				}

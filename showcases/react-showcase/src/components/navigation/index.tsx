@@ -10,17 +10,18 @@ import { getVariants } from '../data';
 // Patternhub:import NavigationItemComponent from '../navigation-item';
 
 const getNavigation = ({ children }: DBNavigationProps) => {
-	const label = `${children}`;
+	// TODO: The doesn't have a valid id
+	const labelID = `${children}`;
 	return (
 		<div>
 			<DBInfotext
-				id={label}
+				id={labelID}
 				size="small"
 				semantic="informational"
 				icon="none">
 				{children}
 			</DBInfotext>
-			<DBNavigation labelledBy={label}>
+			<DBNavigation labelledBy={labelID}>
 				<DBNavigationItem
 					active
 					subNavigation={

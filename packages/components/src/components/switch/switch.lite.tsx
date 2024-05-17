@@ -1,4 +1,10 @@
-import { onMount, useMetadata, useRef, useStore } from '@builder.io/mitosis';
+import {
+	onMount,
+	onUpdate,
+	useMetadata,
+	useRef,
+	useStore
+} from '@builder.io/mitosis';
 import { DBSwitchProps, DBSwitchState } from './model';
 import { cls, uuid } from '../../utils';
 import { DEFAULT_ID } from '../../shared/constants';
@@ -15,6 +21,7 @@ export default function DBSwitch(props: DBSwitchProps) {
 	// jscpd:ignore-start
 	const state = useStore<DBSwitchState>({
 		_id: DEFAULT_ID,
+		_checked: false,
 		initialized: false,
 		handleChange: (event: ChangeEvent<HTMLInputElement>) => {
 			if (props.onChange) {
@@ -24,6 +31,10 @@ export default function DBSwitch(props: DBSwitchProps) {
 			if (props.change) {
 				props.change(event);
 			}
+
+			// We have different ts types in different frameworks, so we need to use any here
+			state._checked = (event.target as any)?.['checked'];
+
 			handleFrameworkEvent(this, event, 'checked');
 		},
 		handleBlur: (event: InteractionEvent<HTMLInputElement>) => {
@@ -60,10 +71,11 @@ export default function DBSwitch(props: DBSwitchProps) {
 			htmlFor={state._id}
 			class={cls('db-switch', props.className)}>
 			<input
-				ref={ref}
 				id={state._id}
 				type="checkbox"
 				role="switch"
+				aria-checked={state._checked}
+				ref={ref}
 				checked={props.checked}
 				disabled={props.disabled}
 				aria-describedby={props.describedbyid}
