@@ -95,12 +95,24 @@ export const getDefaultScreenshotTest = ({
 	for (const color of COLORS) {
 		test(`should not have any A11y issues for color ${color}`, async ({
 			page
-		}) => {
+		}, { project }) => {
 			if (skipA11y) {
 				test.skip();
 			}
 
 			await gotoPage(page, path, color, fixedHeight);
+
+			// This is a workaround for axe for browsers using forcedColors
+			// see https://github.com/dequelabs/axe-core-npm/issues/1067
+			await page.evaluate(($project) => {
+				if ($project.use.contextOptions?.forcedColors === 'active') {
+					const style = document.createElement('style');
+					document.head.append(style);
+					const textColor =
+						$project.use.colorScheme === 'dark' ? '#fff' : '#000';
+					style.textContent = `* {-webkit-text-stroke-color:${textColor}!important;-webkit-text-fill-color:${textColor}!important;}`;
+				}
+			}, project);
 
 			if (preA11y) {
 				await preA11y(page);

@@ -42,6 +42,12 @@ module.exports = {
 				'@typescript-eslint/no-unsafe-return': 0, // valid for app
 				'import/no-extraneous-dependencies': 0 // foundation and component.css are inside this repo
 			}
+		},
+		{
+			files: ['./showcases/e2e/**'],
+			rules: {
+				'@typescript-eslint/no-loop-func': 0 // this is fine for playwright testing
+			}
 		}
 	],
 	rules: {
