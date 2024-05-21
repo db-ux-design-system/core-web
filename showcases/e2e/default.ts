@@ -122,10 +122,15 @@ export const getDefaultScreenshotTest = ({
 		});
 	}
 
-	test('test with accessibility checker', async ({ page }) => {
+	test('test with accessibility checker', async ({ page }, { project }) => {
 		await gotoPage(page, path, 'neutral-bg-lvl-1', fixedHeight);
 		let failures: any[] = [];
 		try {
+			if (project.name === 'firefox') {
+				// Checking complete DOM in firefox takes very long for some tests
+				test.setTimeout(60_000); // 1min
+			}
+
 			const { report } = await getCompliance(page, path);
 
 			if (isCheckerError(report)) {
