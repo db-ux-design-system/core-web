@@ -22,7 +22,7 @@ import {
 	InputEvent,
 	ChangeEvent,
 	InteractionEvent,
-	KeyValueType
+	ValueLabelType
 } from '../../shared/model';
 import { DBInfotext } from '../infotext';
 import { handleFrameworkEvent } from '../../utils/form-components';
@@ -93,13 +93,13 @@ export default function DBInput(props: DBInputProps) {
 				DEFAULT_INVALID_MESSAGE
 			);
 		},
-		getDataList: (_list?: string[] | KeyValueType[]) => {
+		getDataList: (_list?: string[] | ValueLabelType[]) => {
 			return !_list
 				? []
 				: isArrayOfStrings(_list)
 					? _list.map((_value: string) => ({
-							key: _value,
-							value: _value
+							value: _value,
+							label: undefined
 						}))
 					: _list;
 		}
@@ -181,13 +181,15 @@ export default function DBInput(props: DBInputProps) {
 			<Show when={props.dataList}>
 				<datalist id={state._dataListId}>
 					<For each={state.getDataList(props.dataList)}>
-						{(option: KeyValueType) => (
+						{(option: ValueLabelType) => (
 							<option
 								key={
-									state._dataListId + '-option-' + option.key
+									state._dataListId +
+									'-option-' +
+									option.value
 								}
-								value={option.key}>
-								{option.value}
+								value={option.value}>
+								{option.label}
 							</option>
 						)}
 					</For>

@@ -1,9 +1,25 @@
-import { useState } from 'react';
-import { DBInput } from '../../../../../output/react/src';
+import {
+	DBInput,
+	type LabelVariantType,
+	type ValueLabelType
+} from '../../../../../output/react/src';
 import DefaultComponent from '../index';
 import defaultComponentVariants from '../../../../shared/input.json';
 import { type DBInputProps } from '../../../../../output/react/src/components/input/model';
 import { getVariants } from '../data';
+
+const getDataList = (
+	variant?: LabelVariantType
+): string[] | ValueLabelType[] => {
+	if (variant === 'floating') {
+		return ['Test 1', 'Test 2'];
+	}
+
+	return [
+		{ value: 'test1', label: 'Test 1' },
+		{ value: 'test2', label: 'Test 2' }
+	];
+};
 
 const getInput = ({
 	label,
@@ -17,8 +33,9 @@ const getInput = ({
 	children,
 	message,
 	variant,
-	readOnly
-}: DBInputProps) => {
+	readOnly,
+	dataList
+}: DBInputProps & { dataList: boolean }) => {
 	return (
 		<DBInput
 			label={label}
@@ -33,6 +50,7 @@ const getInput = ({
 			readOnly={readOnly}
 			iconAfter={iconAfter}
 			icon={icon}
+			dataList={dataList ? getDataList(variant) : undefined}
 		/>
 	);
 };

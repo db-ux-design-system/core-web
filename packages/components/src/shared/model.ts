@@ -526,7 +526,7 @@ export type AriaControlsProps = {
 	controls?: string;
 };
 
-export type KeyValueType = {
-	key: string;
-	value?: string;
+export type ValueLabelType = {
+	value: string;
+	label?: string;
 };
