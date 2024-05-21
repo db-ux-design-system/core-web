@@ -21,6 +21,11 @@ $tooltip-arrow-shadow-size: variables.$db-sizing-2xs;
 
 	padding: variables.$db-spacing-fixed-2xs variables.$db-spacing-fixed-xs;
 
+	// Only for testing
+	&[data-e2e-hover="true"] {
+		@extend %show-popover;
+	}
+
 	// Arrow
 	&:not([data-variant="basic"]) {
 		&::after {

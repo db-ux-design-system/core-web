@@ -5,7 +5,7 @@ import { DBCheckbox } from "../../../../../output/vue/src";
 </script>
 
 <template>
-	<DefaultComponent title="Checkbox" :variants="defaultComponentVariants">
+	<DefaultComponent title="DBCheckbox" :variants="defaultComponentVariants">
 		<template
 			#example="{ exampleIndex, variantIndex, exampleName, exampleProps }"
 		>

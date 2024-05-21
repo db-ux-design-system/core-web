@@ -79,7 +79,7 @@ const getHeader = ({
 		key={key}
 		onToggle={onToggle}>
 		{(!example || withNavigation) && (
-			<DBNavigation>
+			<DBNavigation aria-label={children}>
 				<DBNavigationItem icon="user">
 					<a href="#">{children}</a>
 				</DBNavigationItem>

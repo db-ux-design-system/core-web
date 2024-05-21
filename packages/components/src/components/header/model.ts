@@ -1,4 +1,5 @@
 import {
+	ContainerWidthProps,
 	GlobalProps,
 	GlobalState,
 	InitializedState,
@@ -13,11 +14,6 @@ export interface DBHeaderDefaultProps {
 	primaryAction?: unknown;
 	secondaryAction?: unknown;
 	drawerOpen?: boolean;
-
-	/**
-	 * Set max width for header
-	 */
-	width?: 'full' | 'medium' | 'large';
 
 	/**
 	 * Forces the header to use mobile layout for desktop as well.
@@ -35,7 +31,8 @@ export interface DBHeaderDefaultProps {
 
 export type DBHeaderProps = DBHeaderDefaultProps &
 	GlobalProps &
-	ToggleEventProps;
+	ToggleEventProps &
+	ContainerWidthProps;
 
 export interface DBHeaderDefaultState {
 	forcedToMobile?: boolean;

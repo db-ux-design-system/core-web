@@ -1,3 +1,4 @@
+import { useCallback } from 'react';
 import { DBCard, DBDivider, DBLink } from '../../../../output/react/src';
 import useQuery from '../hooks/use-query';
 import type {
@@ -5,30 +6,38 @@ import type {
 	DefaultComponentVariants
 } from '../../../shared/default-component-data';
 
-const VariantList = ({ examples }: DefaultComponentVariants) => (
-	<DBCard className="variants-card">
-		<div className="variants-list">
-			{examples.map((example, exampleIndex) => (
-				<div
-					key={`${example.name}-${exampleIndex}`}
-					style={example.style}
-					className={example.className}>
-					{example.example}
-				</div>
-			))}
-		</div>
-	</DBCard>
-);
+const VariantList = ({ examples, color }: DefaultComponentVariants) => {
+	const getElevation = useCallback(
+		() => (color?.includes('3') ? '3' : color?.includes('2') ? '2' : '1'),
+		[color]
+	);
+
+	return (
+		<DBCard className="variants-card" elevationLevel={getElevation()}>
+			<div className="variants-list">
+				{examples.map((example, exampleIndex) => (
+					<div
+						key={`${example.name}-${exampleIndex}`}
+						style={example.style}
+						className={example.className}>
+						{example.example}
+					</div>
+				))}
+			</div>
+		</DBCard>
+	);
+};
 
 const DefaultComponent = ({ title, variants }: DefaultComponentProps) => {
 	const pageName = useQuery()[4];
+	const color = useQuery()[2];
 
 	if (pageName) {
 		const foundVariant = variants.find(
 			(variant) => variant.name.toLowerCase() === pageName
 		);
 		if (foundVariant) {
-			return <VariantList {...foundVariant} />;
+			return <VariantList {...foundVariant} color={color} />;
 		}
 	}
 
@@ -47,7 +56,7 @@ const DefaultComponent = ({ title, variants }: DefaultComponentProps) => {
 						}&page=${variant.name.toLowerCase()}`}>
 						{variant.name}
 					</DBLink>
-					<VariantList {...variant} />
+					<VariantList {...variant} color={color} />
 				</div>
 			))}
 		</div>

@@ -26,11 +26,13 @@ import { DBButton, DBPopover } from "../../../../../output/vue/src";
 				<template v-if="exampleProps.content">{{
 					exampleProps.content
 				}}</template>
-				<ul v-if="!exampleProps.content" class="popover-list">
-					<li>Popover Custom Item 1</li>
-					<li>Popover Custom Item 2</li>
-				</ul>
-				<DBButton>Popover Custom Item 3</DBButton>
+				<template v-if="!exampleProps.content">
+					<ul class="popover-list">
+						<li>Popover Custom Item 1</li>
+						<li>Popover Custom Item 2</li>
+					</ul>
+					<DBButton>Popover Custom Item 3</DBButton>
+				</template>
 			</DBPopover>
 		</template>
 	</DefaultComponent>

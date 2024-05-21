@@ -3,5 +3,5 @@ import { test } from '@playwright/test';
 import { getDefaultScreenshotTest } from '../default.ts';
 
 test.describe('DBIcon', () => {
-	getDefaultScreenshotTest('04/icon');
+	getDefaultScreenshotTest({ path: '04/icon' });
 });

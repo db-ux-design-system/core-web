@@ -12,7 +12,7 @@ import {
 	DENSITY_CONST
 } from "../../../../packages/components/src/shared/constants";
 import { useRoute } from "vue-router";
-import { Ref, ref } from "vue";
+import { Ref, ref, watch } from "vue";
 
 interface DefaultExample extends DefaultComponentExample {
 	name?: string;
@@ -47,6 +47,16 @@ const route = useRoute();
 
 const variantRef: Ref<DefaultVariants | undefined> = ref();
 const variantRefIndex: Ref<number> = ref(-1);
+const color = ref(COLOR.NEUTRAL_BG_LEVEL_1);
+
+watch(
+	() => route.query,
+	async (query: any) => {
+		if (query[COLOR_CONST] && query[COLOR_CONST] !== color.value) {
+			color.value = query[COLOR_CONST];
+		}
+	}
+);
 
 if (route.query.page) {
 	const foundVariant = props.variants.find(
@@ -74,11 +84,18 @@ const getLink = (variantName: string) => {
 	}
 	return `${currentUrl}&page=${variantName.toLowerCase()}`;
 };
+
+const getElevation = (): "1" | "2" | "3" =>
+	color.value.includes("3") ? "3" : color.value.includes("2") ? "2" : "1";
 </script>
 
 <template>
 	<!-- TODO: Slots not working for nested components? -> Had to copy paste variant-cards...	-->
-	<DBCard v-if="variantRef" class="variants-card">
+	<DBCard
+		v-if="variantRef"
+		class="variants-card"
+		:elevation-level="getElevation()"
+	>
 		<div class="variants-list">
 			<div
 				v-for="(example, exampleIndex) in variantRef.examples"
@@ -107,7 +124,7 @@ const getLink = (variantName: string) => {
 			>
 				{{ variant.name }}
 			</DBLink>
-			<DBCard class="variants-card">
+			<DBCard class="variants-card" :elevation-level="getElevation()">
 				<div class="variants-list">
 					<div
 						v-for="(example, exampleIndex) in variant.examples"

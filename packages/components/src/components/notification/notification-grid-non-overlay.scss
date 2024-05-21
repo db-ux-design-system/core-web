@@ -20,7 +20,7 @@
 			}
 
 			// 2. headline
-			&:has(h6) {
+			&:has(header) {
 				grid-template-columns: 1fr;
 				grid-template-areas:
 					"head"
@@ -45,7 +45,7 @@
 					"icon link";
 				grid-template-columns: min-content 1fr;
 
-				&:has(h6) {
+				&:has(header) {
 					grid-template-columns: min-content 1fr;
 					grid-template-areas:
 						"icon head"
@@ -74,7 +74,7 @@
 			}
 
 			// 2. headline
-			&:has(h6) {
+			&:has(header) {
 				grid-template-columns: 1fr min-content;
 				grid-template-areas:
 					"head link"
@@ -100,7 +100,7 @@
 					grid-template-areas: "icon content link close";
 				}
 
-				&:has(h6) {
+				&:has(header) {
 					grid-template-columns: min-content 1fr min-content;
 					grid-template-areas:
 						"icon head link"

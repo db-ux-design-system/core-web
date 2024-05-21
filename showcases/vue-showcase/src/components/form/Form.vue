@@ -179,7 +179,7 @@ const reset = () => {
 			</form>
 		</div>
 		<div>
-			<h2>Output</h2>
+			<h1>Output</h1>
 			<dl>
 				<dt>inputs value</dt>
 				<dd>{{ firstInput ? firstInput : "No Input set" }}</dd>
