@@ -73,7 +73,7 @@ export type DBInputProps = DBInputDefaultProps &
 
 export type DBInputDefaultState = {
 	_dataListId?: string;
-	getDataListOption?: (option: string | KeyValueType) => KeyValueType;
+	getDataList?: (_list?: string[] | KeyValueType[]) => KeyValueType[];
 };
 
 export type DBInputState = DBInputDefaultState &

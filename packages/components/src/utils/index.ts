@@ -191,6 +191,9 @@ export const handleDataOutside = (el: Element): DBDataOutsidePair => {
 	return dataOutsidePair;
 };
 
+export const isArrayOfStrings = (value: unknown): value is string[] =>
+	Array.isArray(value) && value.every((item) => typeof item === 'string');
+
 export default {
 	filterPassingProps,
 	cls,
@@ -199,5 +202,6 @@ export default {
 	visibleInVX,
 	visibleInVY,
 	isInView,
-	handleDataOutside
+	handleDataOutside,
+	isArrayOfStrings
 };

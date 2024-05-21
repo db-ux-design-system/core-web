@@ -7,7 +7,7 @@ import {
 	useRef,
 	useStore
 } from '@builder.io/mitosis';
-import { cls, uuid } from '../../utils';
+import { cls, isArrayOfStrings, uuid } from '../../utils';
 import { DBInputProps, DBInputState } from './model';
 import {
 	DEFAULT_ID,
@@ -93,13 +93,15 @@ export default function DBInput(props: DBInputProps) {
 				DEFAULT_INVALID_MESSAGE
 			);
 		},
-		getDataListOption: (option: string | KeyValueType) => {
-			return typeof option === 'string'
-				? {
-						key: option,
-						value: option
-					}
-				: option;
+		getDataList: (_list?: string[] | KeyValueType[]) => {
+			return !_list
+				? []
+				: isArrayOfStrings(_list)
+					? _list.map((_value: string) => ({
+							key: _value,
+							value: _value
+						}))
+					: _list;
 		}
 	});
 
@@ -178,16 +180,14 @@ export default function DBInput(props: DBInputProps) {
 			/>
 			<Show when={props.dataList}>
 				<datalist id={state._dataListId}>
-					<For each={props.dataList}>
-						{(option: string | KeyValueType) => (
+					<For each={state.getDataList(props.dataList)}>
+						{(option: KeyValueType) => (
 							<option
 								key={
-									state._dataListId +
-									'-option-' +
-									state.getDataListOption(option).key
+									state._dataListId + '-option-' + option.key
 								}
-								value={state.getDataListOption(option).key}>
-								{state.getDataListOption(option).value}
+								value={option.key}>
+								{option.value}
 							</option>
 						)}
 					</For>
