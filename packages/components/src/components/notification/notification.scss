@@ -123,6 +123,63 @@
 		grid-area: icon;
 	}
 
+	// has link inline or overlay
+	&:has(a) {
+		&[data-link-variant="inline"],
+		&[data-variant="overlay"] {
+			// 1. only content (min. requirement)
+			grid-template-areas: "content link";
+			grid-template-columns: 1fr min-content;
+
+			&:has(.db-button) {
+				grid-template-columns: 1fr min-content min-content;
+				grid-template-areas: "content link close";
+			}
+
+			// 2. headline
+			&:has(header) {
+				grid-template-columns: 1fr min-content;
+				grid-template-areas:
+					"head link"
+					"content content";
+
+				&:has(.db-button) {
+					grid-template-columns: 1fr min-content min-content;
+					grid-template-areas:
+						"head link close"
+						"content content content";
+				}
+			}
+
+			// 3. icon or img
+			&[data-icon],
+			&[data-semantic]:not([data-semantic="adaptive"]),
+			&:has(img) {
+				grid-template-areas: "icon content link";
+				grid-template-columns: min-content 1fr min-content;
+
+				&:has(.db-button) {
+					grid-template-columns: min-content 1fr min-content min-content;
+					grid-template-areas: "icon content link close";
+				}
+
+				&:has(header) {
+					grid-template-columns: min-content 1fr min-content;
+					grid-template-areas:
+						"icon head link"
+						"icon content content";
+
+					&:has(.db-button) {
+						grid-template-columns: min-content 1fr min-content min-content;
+						grid-template-areas:
+							"icon head link close"
+							"icon content content content";
+					}
+				}
+			}
+		}
+	}
+
 	&[data-variant="overlay"] {
 		@extend %grid-layout-variant-overlay;
 		box-shadow: variables.$db-elevation-md;
