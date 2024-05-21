@@ -45,12 +45,12 @@
     "update:icon-fonts": "npm run update:icon-fonts --workspace=scripts"
   },
   "devDependencies": {
-    "@axe-core/playwright": "^4.9.0",
+    "@axe-core/playwright": "^4.9.1",
     "@commitlint/cli": "19.3.0",
     "@commitlint/config-conventional": "19.2.2",
     "@playwright/test": "1.44.0",
     "adm-zip": "0.5.12",
-    "commander": "^12.0.0",
+    "commander": "^12.1.0",
     "cpr": "3.0.1",
     "cross-env": "^7.0.3",
     "dotenv": "^16.4.5",
@@ -59,7 +59,7 @@
     "glob": "^10.3.15",
     "http-server": "14.1.1",
     "husky": "9.0.11",
-    "inquirer": "^9.2.21",
+    "inquirer": "^9.2.22",
     "jscpd": "^3.5.10",
     "lint-staged": "^15.2.2",
     "markdownlint-cli": "^0.40.0",
