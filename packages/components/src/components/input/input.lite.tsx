@@ -93,15 +93,19 @@ export default function DBInput(props: DBInputProps) {
 				DEFAULT_INVALID_MESSAGE
 			);
 		},
-		getDataList: (_list?: string[] | ValueLabelType[]) => {
-			return !_list
-				? []
-				: isArrayOfStrings(_list)
-					? _list.map((_value: string) => ({
-							value: _value,
-							label: undefined
-						}))
-					: _list;
+		getDataList: (
+			_list?: string[] | ValueLabelType[]
+		): ValueLabelType[] => {
+			return Array.from(
+				!_list
+					? []
+					: isArrayOfStrings(_list)
+						? _list.map((_value: string) => ({
+								value: _value,
+								label: undefined
+							}))
+						: _list
+			);
 		}
 	});
 

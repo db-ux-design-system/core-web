@@ -19,7 +19,7 @@ import {
 } from '../../../../../output/react/src';
 import type {
 	ChangeEvent,
-	KeyValueType
+	ValueLabelType
 } from '../../../../../output/react/src/shared/model';
 
 const FormComponent = () => {
@@ -32,22 +32,22 @@ const FormComponent = () => {
 	const [tags, setTags] = useState<string[]>([]);
 	const [checked, setChecked] = useState<boolean[]>([true, false]);
 
-	const [accordionItems, setAccordionItems] = useState<KeyValueType[]>();
+	const [accordionItems, setAccordionItems] = useState<ValueLabelType[]>();
 	const [tabsTest, setTabsTest] = useState<boolean>(false);
 
 	useEffect(() => {
 		setTimeout(() => {
 			setAccordionItems([
-				{ key: 'test1', value: 'Test1' },
-				{ key: 'test2', value: 'Test2' },
-				{ key: 'test3', value: 'Test3' }
+				{ value: 'test1', label: 'Test1' },
+				{ value: 'test2', label: 'Test2' },
+				{ value: 'test3', label: 'Test3' }
 			]);
 		}, 2000);
 	}, []);
 
-	const dataList: KeyValueType[] = [
-		{ key: 'test', value: 'Test' },
-		{ key: 'test2' }
+	const dataList: ValueLabelType[] = [
+		{ value: 'test', label: 'Test' },
+		{ value: 'test2' }
 	];
 
 	const handleChange1 = (event: ChangeEvent<HTMLInputElement>) => {
@@ -312,8 +312,8 @@ const FormComponent = () => {
 				<DBAccordion>
 					{accordionItems?.map((item) => (
 						<DBAccordionItem
-							key={item.key}
-							headlinePlain={item.key}>
+							key={item.value}
+							headlinePlain={item.value}>
 							{item.value}
 						</DBAccordionItem>
 					))}
