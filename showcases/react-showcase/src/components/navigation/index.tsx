@@ -10,8 +10,7 @@ import { getVariants } from '../data';
 // Patternhub:import NavigationItemComponent from '../navigation-item';
 
 const getNavigation = ({ children }: DBNavigationProps) => {
-	// TODO: The doesn't have a valid id
-	const labelID = `${children}`;
+	const labelID = `${children.replaceAll(/\W/g, '_').toLowerCase()}`;
 	return (
 		<div>
 			<DBInfotext

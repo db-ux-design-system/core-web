@@ -124,10 +124,9 @@ export const getDefaultScreenshotTest = ({
 
 	test('test with accessibility checker', async ({ page }) => {
 		await gotoPage(page, path, 'neutral-bg-lvl-1', fixedHeight);
-		const content = await page.content();
 		let failures: any[] = [];
 		try {
-			const { report } = await getCompliance(content, path);
+			const { report } = await getCompliance(page, path);
 
 			if (isCheckerError(report)) {
 				failures = report.details;
