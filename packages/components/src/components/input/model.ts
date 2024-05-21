@@ -38,7 +38,7 @@ export const InputTypeList = [
 export type InputTypeType = (typeof InputTypeList)[number];
 
 export type DBInputDefaultProps = {
-	dataList?: KeyValueType[];
+	dataList?: string[] | KeyValueType[];
 	dataListId?: string;
 	/**
 	 * Maximum value
@@ -73,6 +73,7 @@ export type DBInputProps = DBInputDefaultProps &
 
 export type DBInputDefaultState = {
 	_dataListId?: string;
+	getDataListOption?: (option: string | KeyValueType) => KeyValueType;
 };
 
 export type DBInputState = DBInputDefaultState &

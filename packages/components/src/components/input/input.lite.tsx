@@ -92,6 +92,14 @@ export default function DBInput(props: DBInputProps) {
 				ref?.validationMessage ||
 				DEFAULT_INVALID_MESSAGE
 			);
+		},
+		getDataListOption: (option: string | KeyValueType) => {
+			return typeof option === 'string'
+				? {
+						key: option,
+						value: option
+					}
+				: option;
 		}
 	});
 
@@ -171,13 +179,15 @@ export default function DBInput(props: DBInputProps) {
 			<Show when={props.dataList}>
 				<datalist id={state._dataListId}>
 					<For each={props.dataList}>
-						{(option: KeyValueType) => (
+						{(option: string | KeyValueType) => (
 							<option
 								key={
-									state._dataListId + '-option-' + option.key
+									state._dataListId +
+									'-option-' +
+									state.getDataListOption(option).key
 								}
-								value={option.key}>
-								{option.value}
+								value={state.getDataListOption(option).key}>
+								{state.getDataListOption(option).value}
 							</option>
 						)}
 					</For>
