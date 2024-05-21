@@ -8,7 +8,6 @@
 @use "../../styles/button-components";
 
 .db-button {
-	--db-current-icon-color: #{colors.$db-current-color-enabled};
 	@extend %default-interactive-component;
 	@extend %default-button;
 

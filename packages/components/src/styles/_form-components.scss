@@ -152,7 +152,6 @@ $check-border-size: min(#{variables.$db-border-height-2xs}, 2px);
 
 	#{$selector},
 	[id$="-placeholder"] {
-		--db-current-icon-color: var(--db-#{$variant}-on-bg-enabled);
 		color: var(--db-#{$variant}-on-bg-enabled);
 		caret-color: var(--db-#{$variant}-on-bg-enabled);
 	}
