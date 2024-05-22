@@ -8,6 +8,11 @@ import getMigrationFile from './get-migration-file.js';
 import { getComponentGroup, getComponentName } from './utils.js';
 
 const componentsPath = './pages/components';
+const getFallBackFile = (
+	importPath
+) => `import CardNavigation from '${importPath}components/card-navigation/card-navigation'
+const FallbackPage = () => <CardNavigation />;
+export default FallbackPage;`;
 
 const generateDocsMdx = async () => {
 	const docs = JSON.parse(
@@ -26,11 +31,6 @@ const generateDocsMdx = async () => {
 			const componentGroupPath = `${componentsPath}/${componentGroup.name}`;
 			const componentPath = `${componentGroupPath}/${componentName}`;
 
-			if (!FS.existsSync(componentOldPath)) {
-				FS.mkdirSync(componentOldPath);
-				FS.mkdirSync(`${componentOldPath}/docs`);
-			}
-
 			if (!FS.existsSync(componentGroupPath)) {
 				FS.mkdirSync(componentGroupPath);
 			}
@@ -38,6 +38,15 @@ const generateDocsMdx = async () => {
 			if (!FS.existsSync(componentPath)) {
 				FS.mkdirSync(componentPath);
 			}
+
+			FS.writeFileSync(
+				`${componentGroupPath}/index.tsx`,
+				getFallBackFile('../../../')
+			);
+			FS.writeFileSync(
+				`${componentsPath}/index.tsx`,
+				getFallBackFile('../../')
+			);
 
 			FS.writeFileSync(
 				`${componentPath}/properties.mdx`,
@@ -61,6 +70,11 @@ const generateDocsMdx = async () => {
 				getMigrationFile(componentName, componentValue.displayName)
 			);
 
+			FS.writeFileSync(
+				`${componentPath}/index.tsx`,
+				getFallBackFile('../../../../')
+			);
+
 			const reactComponent = await writeCodeFiles(
 				componentPath,
 				componentName
@@ -73,6 +87,15 @@ const generateDocsMdx = async () => {
 			}
 
 			// Write old files for Marketingportal
+
+			if (!FS.existsSync(componentOldPath)) {
+				FS.mkdirSync(componentOldPath);
+			}
+
+			if (!FS.existsSync(`${componentOldPath}/docs`)) {
+				FS.mkdirSync(`${componentOldPath}/docs`);
+			}
+
 			const redirectOldFiles = `import OldRoutingFallback from '../../../components/old-routing-fallback';
 const Fallback = () => <OldRoutingFallback />;
 export default Fallback;`;

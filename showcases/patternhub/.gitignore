@@ -46,13 +46,6 @@ pages/components/**/migration.mdx
 pages/components/**/properties.mdx
 pages/components/**/overview.tsx
 pages/components/**/index.tsx
-!pages/components/action/**/index.tsx
-!pages/components/data-display/**/index.tsx
-!pages/components/data-input/**/index.tsx
-!pages/components/feedback/**/index.tsx
-!pages/components/layout/**/index.tsx
-!pages/components/navigation/**/index.tsx
-!pages/components/utilities/**/index.tsx
 !components/src/tsconfig.json
 !components/component-parser
 !components/default-page.tsx

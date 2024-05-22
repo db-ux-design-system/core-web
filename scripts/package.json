@@ -38,6 +38,7 @@
     "rm-builds:patternhub-pages-code": "rimraf -g ../showcases/patternhub/pages/components/**/code",
     "rm-builds:patternhub-pages-docs": "rimraf -g ../showcases/patternhub/pages/components/**/docs",
     "rm-builds:patternhub-pages-htu": "rimraf -g ../showcases/patternhub/pages/components/**/how-to-use.mdx",
+    "rm-builds:patternhub-pages-index": "rimraf -g ../showcases/patternhub/pages/components/**/index.tsx",
     "rm-builds:patternhub-pages-migration": "rimraf -g ../showcases/patternhub/pages/components/**/migration.mdx",
     "rm-builds:patternhub-pages-overview": "rimraf -g ../showcases/patternhub/pages/components/**/overview.tsx",
     "rm-builds:patternhub-pages-properties": "rimraf -g ../showcases/patternhub/pages/components/**/properties.mdx",
