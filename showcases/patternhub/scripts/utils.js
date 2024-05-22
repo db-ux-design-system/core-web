@@ -107,9 +107,16 @@ export const getComponentName = (filePath) => {
 	return componentName;
 };
 
+export const getComponentGroup = (components, componentName) => {
+	return components.find((comp) =>
+		comp.subNavigation.find((sub) => componentName.includes(sub.name))
+	);
+};
+
 export default {
 	getUnionElements,
 	getCodeByFramework,
 	getColorVariants,
-	getComponentName
+	getComponentName,
+	getComponentGroup
 };

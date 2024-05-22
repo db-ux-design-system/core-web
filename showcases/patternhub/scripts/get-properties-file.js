@@ -76,7 +76,7 @@ const getPropertiesFile = ({ displayName, description, props }) => {
 	}
 
 	return `
-import DefaultPage from "../../../components/default-page";
+import DefaultPage from "../../../../components/default-page";
 
 # ${displayName}
 ${description}

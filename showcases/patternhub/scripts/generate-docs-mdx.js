@@ -5,7 +5,7 @@ import getPropertiesFile from './get-properties-file.js';
 import getHowToFile from './get-how-to-file.js';
 import writeCodeFiles from './get-code-files.js';
 import getMigrationFile from './get-migration-file.js';
-import { getComponentName } from './utils.js';
+import { getComponentGroup, getComponentName } from './utils.js';
 
 const componentsPath = './pages/components';
 
@@ -13,12 +13,22 @@ const generateDocsMdx = async () => {
 	const docs = JSON.parse(
 		FS.readFileSync('./../../output/docs.json', 'utf8').toString()
 	);
+	const components = JSON.parse(
+		FS.readFileSync('./data/components.json', 'utf8').toString()
+	);
 	for (const key of Object.keys(docs)) {
 		const componentName = getComponentName(key);
 
 		const componentValue = docs[key].at(0);
-		if (componentValue) {
-			const componentPath = `${componentsPath}/${componentName}`;
+		const componentGroup = getComponentGroup(components, componentName);
+		if (componentValue && componentGroup) {
+			const componentGroupPath = `${componentsPath}/${componentGroup.name}`;
+			const componentPath = `${componentGroupPath}/${componentName}`;
+
+			if (!FS.existsSync(componentGroupPath)) {
+				FS.mkdirSync(componentGroupPath);
+			}
+
 			if (!FS.existsSync(componentPath)) {
 				FS.mkdirSync(componentPath);
 			}
@@ -30,13 +40,9 @@ const generateDocsMdx = async () => {
 
 			const docsPath = `./../../packages/components/src/components/${componentName}/docs`;
 			if (FS.existsSync(docsPath)) {
-				FS.cpSync(
-					docsPath,
-					`./${componentsPath}/${componentName}/docs`,
-					{
-						recursive: true
-					}
-				);
+				FS.cpSync(docsPath, `./${componentPath}/docs`, {
+					recursive: true
+				});
 			}
 
 			FS.writeFileSync(
@@ -58,7 +64,6 @@ const generateDocsMdx = async () => {
 					`${componentPath}/overview.tsx`,
 					reactComponent
 				);
-				FS.writeFileSync(`${componentPath}/index.tsx`, reactComponent);
 			}
 		}
 	}
