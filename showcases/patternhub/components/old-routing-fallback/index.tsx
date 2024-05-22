@@ -1,4 +1,4 @@
-/* eslint-disable @typescript-eslint/no-floating-promises,import/extensions */
+/* eslint-disable @typescript-eslint/no-floating-promises */
 
 import { useRouter } from 'next/router';
 import { useEffect } from 'react';
