@@ -22,8 +22,14 @@ const generateDocsMdx = async () => {
 		const componentValue = docs[key].at(0);
 		const componentGroup = getComponentGroup(components, componentName);
 		if (componentValue && componentGroup) {
+			const componentOldPath = `${componentsPath}/${componentName}`;
 			const componentGroupPath = `${componentsPath}/${componentGroup.name}`;
 			const componentPath = `${componentGroupPath}/${componentName}`;
+
+			if (!FS.existsSync(componentOldPath)) {
+				FS.mkdirSync(componentOldPath);
+				FS.mkdirSync(`${componentOldPath}/docs`);
+			}
 
 			if (!FS.existsSync(componentGroupPath)) {
 				FS.mkdirSync(componentGroupPath);
@@ -63,6 +69,25 @@ const generateDocsMdx = async () => {
 				FS.writeFileSync(
 					`${componentPath}/overview.tsx`,
 					reactComponent
+				);
+			}
+
+			// Write old files for Marketingportal
+			const redirectOldFiles = `import OldRoutingFallback from '../../../components/old-routing-fallback';
+const Fallback = () => <OldRoutingFallback />;
+export default Fallback;`;
+
+			for (const framework of ['Angular', 'HTML', 'React', 'Vue']) {
+				FS.writeFileSync(
+					`${componentOldPath}/docs/${framework}.tsx`,
+					redirectOldFiles
+				);
+			}
+
+			if (!FS.existsSync(`${componentOldPath}/index.tsx`)) {
+				FS.writeFileSync(
+					`${componentOldPath}/index.tsx`,
+					redirectOldFiles
 				);
 			}
 		}
