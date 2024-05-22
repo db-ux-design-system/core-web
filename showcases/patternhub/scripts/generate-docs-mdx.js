@@ -14,6 +14,12 @@ const getFallBackFile = (
 const FallbackPage = () => <CardNavigation />;
 export default FallbackPage;`;
 
+const getRedirectOldFiles = (
+	importPath
+) => `import OldRoutingFallback from '${importPath}components/old-routing-fallback';
+const Fallback = () => <OldRoutingFallback />;
+export default Fallback;`;
+
 const generateDocsMdx = async () => {
 	const docs = JSON.parse(
 		FS.readFileSync('./../../output/docs.json', 'utf8').toString()
@@ -96,21 +102,17 @@ const generateDocsMdx = async () => {
 				FS.mkdirSync(`${componentOldPath}/docs`);
 			}
 
-			const redirectOldFiles = `import OldRoutingFallback from '../../../components/old-routing-fallback';
-const Fallback = () => <OldRoutingFallback />;
-export default Fallback;`;
-
 			for (const framework of ['Angular', 'HTML', 'React', 'Vue']) {
 				FS.writeFileSync(
 					`${componentOldPath}/docs/${framework}.tsx`,
-					redirectOldFiles
+					getRedirectOldFiles('../../../../')
 				);
 			}
 
 			if (!FS.existsSync(`${componentOldPath}/index.tsx`)) {
 				FS.writeFileSync(
 					`${componentOldPath}/index.tsx`,
-					redirectOldFiles
+					getRedirectOldFiles('../../../')
 				);
 			}
 		}
