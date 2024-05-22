@@ -9,10 +9,6 @@
 @forward "@db-ui/foundations/build/css/colors/classes/all";
 @forward "@db-ui/foundations/build/css/fonts/classes/all";
 
-body {
-	padding-block-end: variables.$db-spacing-fixed-lg;
-}
-
 .db-main {
 	scroll-behavior: smooth;
 }
