@@ -109,7 +109,11 @@ export const getComponentName = (filePath) => {
 
 export const getComponentGroup = (components, componentName) => {
 	return components.find((comp) =>
-		comp.subNavigation.find((sub) => componentName.includes(sub.name))
+		comp.subNavigation.find(
+			(sub) =>
+				componentName.includes(sub.name) ||
+				componentName.replace('tab-item', 'tabs').includes(sub.name)
+		)
 	);
 };
 
