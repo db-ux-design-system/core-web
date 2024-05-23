@@ -24,7 +24,7 @@ export type DefaultTestType = {
 	test?: ScreenReaderTestType;
 	title: string;
 	url: string;
-	testFn: (
+	testFn?: (
 		voiceOver?: VoiceOverPlaywright,
 		nvda?: NVDAPlaywright
 	) => Promise<void>;

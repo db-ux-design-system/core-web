@@ -4,7 +4,7 @@ const test = getTest();
 test.describe('DBRadio', () => {
 	testDefault({
 		test,
-		title: 'should label duplicated',
+		title: 'should label duplicated (next)',
 		url: './#/03/radio?page=density',
 		async testFn(voiceOver, nvda) {
 			const screenReader = voiceOver ?? nvda;
@@ -12,6 +12,18 @@ test.describe('DBRadio', () => {
 			await screenReader?.previous();
 			await screenReader?.next();
 			await screenReader?.next();
+		}
+	});
+	testDefault({
+		test,
+		title: 'should label duplicated (arrows)',
+		url: './#/03/radio?page=density',
+		async testFn(voiceOver, nvda) {
+			const screenReader = voiceOver ?? nvda;
+			await screenReader?.press('Left');
+			await screenReader?.press('Left');
+			await screenReader?.press('Right');
+			await screenReader?.press('Right');
 		}
 	});
 });

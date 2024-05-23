@@ -2,11 +2,11 @@ import {
 	Component,
 	Input,
 	NO_ERRORS_SCHEMA,
-	OnInit,
-	TemplateRef
+	type OnInit,
+	type TemplateRef
 } from '@angular/core';
 import { NgTemplateOutlet } from '@angular/common';
-import { ActivatedRoute } from '@angular/router';
+import { type ActivatedRoute } from '@angular/router';
 import {
 	COLOR,
 	COLOR_CONST,

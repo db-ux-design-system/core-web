@@ -97,45 +97,41 @@ export const runTest = async ({
 	if (!screenRecorder) return;
 
 	await screenRecorder.navigateToWebContent();
-	await testFn(voiceOver, nvda);
+	await page.waitForTimeout(500);
+	await testFn?.(voiceOver, nvda);
 	await postTestFn?.(voiceOver, nvda);
 	recorder?.();
 };
 
-export const testDefault = ({
-	test,
-	title,
-	url,
-	testFn,
-	postTestFn = async (voiceOver, nvda) => {
+export const testDefault = (defaultTestType: DefaultTestType) => {
+	const { test, title, additionalParams, postTestFn } = defaultTestType;
+	const fallbackPostFn = async (voiceOver, nvda) => {
 		await generateSnapshot(voiceOver ?? nvda, true);
-	},
-	additionalParams = '&color=neutral-bg-lvl-1&density=regular'
-}: DefaultTestType) => {
+	};
+
+	const testType: DefaultTestType = {
+		...defaultTestType,
+		postTestFn: postTestFn ?? fallbackPostFn,
+		additionalParams:
+			additionalParams ?? '&color=neutral-bg-lvl-1&density=regular'
+	};
+
 	if (isWin()) {
-		test?.(title, async ({ page, nvda }, testInfo) => {
+		test?.(title, async ({ page, nvda }, { retry }) => {
 			await runTest({
-				title,
+				...testType,
 				page,
 				nvda,
-				url,
-				testFn,
-				postTestFn,
-				additionalParams,
-				retry: testInfo.retry
+				retry
 			});
 		});
 	} else {
-		test?.(title, async ({ page, voiceOver }, testInfo) => {
+		test?.(title, async ({ page, voiceOver }, { retry }) => {
 			await runTest({
-				title,
+				...testType,
 				page,
 				voiceOver,
-				url,
-				testFn,
-				postTestFn,
-				additionalParams,
-				retry: testInfo.retry
+				retry
 			});
 		});
 	}
