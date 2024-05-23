@@ -18,7 +18,7 @@ import {
   imports: [
 	// ...,
 	DBHeader,
-    	NavigationDirective, // Optional: If you want to use a Navigation
+    NavigationDirective, // Optional: If you want to use a Navigation
 	SecondaryActionDirective, // Optional: If you want to use ActionBar
 	MetaNavigationDirective, // Optional: If you want to use MetaNavigation
   ],
