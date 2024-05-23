@@ -53,8 +53,8 @@ export default function DBPage(props: DBPageProps) {
 			document.documentElement.style.overflow === 'hidden'
 		) {
 			// remove document styles set by this
-			document.documentElement.style.blockSize = null;
-			document.documentElement.style.overflow = null;
+			document.documentElement.style.blockSize = '';
+			document.documentElement.style.overflow = '';
 		}
 	});
 
