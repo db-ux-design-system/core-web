@@ -115,6 +115,13 @@ const generateDocsMdx = async () => {
 					getRedirectOldFiles('../../../')
 				);
 			}
+
+			if (!FS.existsSync(`${componentOldPath}/properties.tsx`)) {
+				FS.writeFileSync(
+					`${componentOldPath}/properties.tsx`,
+					getRedirectOldFiles('../../../')
+				);
+			}
 		}
 	}
 };

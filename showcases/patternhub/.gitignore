@@ -44,6 +44,7 @@ pages/components/**/docs
 pages/components/**/how-to-use.mdx
 pages/components/**/migration.mdx
 pages/components/**/properties.mdx
+pages/components/**/properties.tsx
 pages/components/**/overview.tsx
 pages/components/**/index.tsx
 !components/src/tsconfig.json

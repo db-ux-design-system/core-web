@@ -25,6 +25,8 @@ const OldRoutingFallback = () => {
 				const path: string[] = [];
 				if (subDirectory && type) {
 					path.push(subDirectory, type);
+				} else if (subDirectory) {
+					path.push(subDirectory);
 				} else {
 					path.push('overview');
 				}

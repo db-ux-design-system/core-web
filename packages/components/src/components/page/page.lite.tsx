@@ -1,6 +1,7 @@
 import {
 	onInit,
 	onMount,
+	onUnMount,
 	Slot,
 	useMetadata,
 	useRef,
@@ -43,6 +44,17 @@ export default function DBPage(props: DBPageProps) {
 			});
 		} else {
 			state.fontsLoaded = true;
+		}
+	});
+
+	onUnMount(() => {
+		if (
+			document.documentElement.style.blockSize === '100%' &&
+			document.documentElement.style.overflow === 'hidden'
+		) {
+			// remove document styles set by this
+			document.documentElement.style.blockSize = null;
+			document.documentElement.style.overflow = null;
 		}
 	});
 
