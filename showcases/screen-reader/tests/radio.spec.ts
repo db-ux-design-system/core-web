@@ -20,6 +20,7 @@ test.describe('DBRadio', () => {
 		url: './#/03/radio?page=density',
 		async testFn(voiceOver, nvda) {
 			const screenReader = voiceOver ?? nvda;
+			await screenReader?.press('Tab');
 			await screenReader?.press('Left');
 			await screenReader?.press('Left');
 			await screenReader?.press('Right');
