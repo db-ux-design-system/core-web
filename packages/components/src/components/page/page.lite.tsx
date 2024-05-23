@@ -30,8 +30,7 @@ export default function DBPage(props: DBPageProps) {
 		) {
 			// We need to set this to `html` element that the flex-box solution works
 			// See https://stackoverflow.com/a/43710216 - Approach 1 - flexbox
-			document.documentElement.style.blockSize = '100%';
-			document.documentElement.style.overflow = 'hidden';
+			document.documentElement.classList.add('db-page-document');
 		}
 	});
 
@@ -48,13 +47,9 @@ export default function DBPage(props: DBPageProps) {
 	});
 
 	onUnMount(() => {
-		if (
-			document.documentElement.style.blockSize === '100%' &&
-			document.documentElement.style.overflow === 'hidden'
-		) {
+		if (document.documentElement.classList.contains('db-page-document')) {
 			// remove document styles set by this
-			document.documentElement.style.blockSize = '';
-			document.documentElement.style.overflow = '';
+			document.documentElement.classList.remove('db-page-document');
 		}
 	});
 
