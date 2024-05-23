@@ -5,23 +5,54 @@ import getPropertiesFile from './get-properties-file.js';
 import getHowToFile from './get-how-to-file.js';
 import writeCodeFiles from './get-code-files.js';
 import getMigrationFile from './get-migration-file.js';
-import { getComponentName } from './utils.js';
+import { getComponentGroup, getComponentName } from './utils.js';
 
 const componentsPath = './pages/components';
+const getFallBackFile = (
+	importPath
+) => `import CardNavigation from '${importPath}components/card-navigation/card-navigation'
+const FallbackPage = () => <CardNavigation />;
+export default FallbackPage;`;
+
+const getRedirectOldFiles = (
+	importPath
+) => `import OldRoutingFallback from '${importPath}components/old-routing-fallback';
+const Fallback = () => <OldRoutingFallback />;
+export default Fallback;`;
 
 const generateDocsMdx = async () => {
 	const docs = JSON.parse(
 		FS.readFileSync('./../../output/docs.json', 'utf8').toString()
 	);
+	const components = JSON.parse(
+		FS.readFileSync('./data/components.json', 'utf8').toString()
+	);
 	for (const key of Object.keys(docs)) {
 		const componentName = getComponentName(key);
 
 		const componentValue = docs[key].at(0);
-		if (componentValue) {
-			const componentPath = `${componentsPath}/${componentName}`;
+		const componentGroup = getComponentGroup(components, componentName);
+		if (componentValue && componentGroup) {
+			const componentOldPath = `${componentsPath}/${componentName}`;
+			const componentGroupPath = `${componentsPath}/${componentGroup.name}`;
+			const componentPath = `${componentGroupPath}/${componentName}`;
+
+			if (!FS.existsSync(componentGroupPath)) {
+				FS.mkdirSync(componentGroupPath);
+			}
+
 			if (!FS.existsSync(componentPath)) {
 				FS.mkdirSync(componentPath);
 			}
+
+			FS.writeFileSync(
+				`${componentGroupPath}/index.tsx`,
+				getFallBackFile('../../../')
+			);
+			FS.writeFileSync(
+				`${componentsPath}/index.tsx`,
+				getFallBackFile('../../')
+			);
 
 			FS.writeFileSync(
 				`${componentPath}/properties.mdx`,
@@ -30,13 +61,9 @@ const generateDocsMdx = async () => {
 
 			const docsPath = `./../../packages/components/src/components/${componentName}/docs`;
 			if (FS.existsSync(docsPath)) {
-				FS.cpSync(
-					docsPath,
-					`./${componentsPath}/${componentName}/docs`,
-					{
-						recursive: true
-					}
-				);
+				FS.cpSync(docsPath, `./${componentPath}/docs`, {
+					recursive: true
+				});
 			}
 
 			FS.writeFileSync(
@@ -49,6 +76,11 @@ const generateDocsMdx = async () => {
 				getMigrationFile(componentName, componentValue.displayName)
 			);
 
+			FS.writeFileSync(
+				`${componentPath}/index.tsx`,
+				getFallBackFile('../../../../')
+			);
+
 			const reactComponent = await writeCodeFiles(
 				componentPath,
 				componentName
@@ -58,7 +90,30 @@ const generateDocsMdx = async () => {
 					`${componentPath}/overview.tsx`,
 					reactComponent
 				);
-				FS.writeFileSync(`${componentPath}/index.tsx`, reactComponent);
+			}
+
+			// Write old files for Marketingportal
+
+			if (!FS.existsSync(componentOldPath)) {
+				FS.mkdirSync(componentOldPath);
+			}
+
+			if (!FS.existsSync(`${componentOldPath}/docs`)) {
+				FS.mkdirSync(`${componentOldPath}/docs`);
+			}
+
+			for (const framework of ['Angular', 'HTML', 'React', 'Vue']) {
+				FS.writeFileSync(
+					`${componentOldPath}/docs/${framework}.tsx`,
+					getRedirectOldFiles('../../../../')
+				);
+			}
+
+			if (!FS.existsSync(`${componentOldPath}/index.tsx`)) {
+				FS.writeFileSync(
+					`${componentOldPath}/index.tsx`,
+					getRedirectOldFiles('../../../')
+				);
 			}
 		}
 	}

@@ -1,7 +1,11 @@
 <script setup lang="ts">
 import DefaultComponent from "../DefaultComponent.vue";
 import defaultComponentVariants from "../../../../shared/navigation.json";
-import { DBNavigation, DBNavigationItem } from "../../../../../output/vue/src";
+import {
+	DBInfotext,
+	DBNavigation,
+	DBNavigationItem
+} from "../../../../../output/vue/src";
 </script>
 
 <template>
@@ -10,8 +14,15 @@ import { DBNavigation, DBNavigationItem } from "../../../../../output/vue/src";
 			#example="{ exampleIndex, variantIndex, exampleName, exampleProps }"
 		>
 			<div>
-				<h6>{{ exampleName }}</h6>
-				<DBNavigation>
+				<DBInfotext
+					:id="exampleName"
+					size="small"
+					semantic="informational"
+					icon="none"
+				>
+					{{ exampleName }}
+				</DBInfotext>
+				<DBNavigation :labelledBy="exampleName">
 					<DBNavigationItem :active="true">
 						Navi-Item 1
 						<template v-slot:sub-navigation>

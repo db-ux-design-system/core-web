@@ -20,6 +20,7 @@ export type DefaultComponentVariants = {
 	name: string;
 	examples: DefaultComponentExample[];
 	slotCode?: any;
+	color?: string;
 };
 
 export type DefaultComponentProps = {
@@ -28,7 +29,7 @@ export type DefaultComponentProps = {
 };
 
 export type PatternhubComponentProps = {
-	subComponent?: unknown;
+	subComponent?: any;
 	isSubComponent?: boolean;
 	componentName?: string;
 };

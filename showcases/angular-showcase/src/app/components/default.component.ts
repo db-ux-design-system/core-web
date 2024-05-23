@@ -83,4 +83,7 @@ export class DefaultComponent implements OnInit {
 
 		return `${currentUrl}&page=${variantName.toLowerCase()}`;
 	};
+
+	getElevation = (): '1' | '2' | '3' =>
+		this.color?.includes('3') ? '3' : this.color?.includes('2') ? '2' : '1';
 }

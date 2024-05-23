@@ -6,6 +6,6 @@ import { test } from '@playwright/test';
 import { getDefaultScreenshotTest } from '../default.ts';
 
 test.describe('DB<%= h.changeCase.pascal(name) %>', () => {
-	getDefaultScreenshotTest('<%= name %>');
+	getDefaultScreenshotTest({ path: '<%= name %>' });
 });
 

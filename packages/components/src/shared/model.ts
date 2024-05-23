@@ -512,6 +512,20 @@ export type NavigationBackButtonProps = {
 	backButtonText?: string;
 };
 
+export type AriaLabelledByProps = {
+	/**
+	 * Pass aria-labelledby to inner element
+	 */
+	labelledBy?: string;
+};
+
+export type AriaControlsProps = {
+	/**
+	 * Pass aria-controls to inner element
+	 */
+	controls?: string;
+};
+
 export type KeyValueType = {
 	key: string;
 	value?: string;

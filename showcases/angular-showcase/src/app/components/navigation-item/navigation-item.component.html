@@ -10,41 +10,45 @@
 		let-exampleIndex="exampleIndex"
 		let-variantIndex="variantIndex"
 	>
-		<db-navigation-item
-			[icon]="exampleProps.icon"
-			[width]="exampleProps.width"
-			[disabled]="exampleProps.disabled"
-			[active]="exampleProps.active"
-			(click)="showAlert(exampleName)"
-		>
-			<ng-container *dbNavigationContent>
-				@if (exampleProps.areaPopup) {
-					{{ exampleName }}
-				}
-				@if (!exampleProps.areaPopup) {
-					<a href="#">{{ exampleName }}</a>
-				}
-			</ng-container>
-
-			@if (exampleProps.areaPopup) {
-				<ng-container sub-navigation>
-					<db-navigation-item>
-						<ng-container *dbNavigationContent>
-							<a href="#">Test1</a>
-						</ng-container>
-					</db-navigation-item>
-					<db-navigation-item>
-						<ng-container *dbNavigationContent>
-							<a href="#">Test2</a>
-						</ng-container>
-					</db-navigation-item>
-					<db-navigation-item>
-						<ng-container *dbNavigationContent>
-							<a href="#">Test3</a>
-						</ng-container>
-					</db-navigation-item>
+		<ul>
+			<db-navigation-item
+				[icon]="exampleProps.icon"
+				[width]="exampleProps.width"
+				[disabled]="exampleProps.disabled"
+				[active]="exampleProps.active"
+				(click)="showAlert(exampleName)"
+			>
+				<ng-container *dbNavigationContent>
+					@if (exampleProps.areaPopup) {
+						{{ exampleName }}
+					}
+					@if (!exampleProps.areaPopup) {
+						<a href="#">{{ exampleName }}</a>
+					}
 				</ng-container>
-			}
-		</db-navigation-item>
+
+				@if (exampleProps.areaPopup) {
+					<ng-container sub-navigation>
+						<ul>
+							<db-navigation-item>
+								<ng-container *dbNavigationContent>
+									<a href="#">Test1</a>
+								</ng-container>
+							</db-navigation-item>
+							<db-navigation-item>
+								<ng-container *dbNavigationContent>
+									<a href="#">Test2</a>
+								</ng-container>
+							</db-navigation-item>
+							<db-navigation-item>
+								<ng-container *dbNavigationContent>
+									<a href="#">Test3</a>
+								</ng-container>
+							</db-navigation-item>
+						</ul>
+					</ng-container>
+				}
+			</db-navigation-item>
+		</ul>
 	</ng-template>
 </app-default-component>

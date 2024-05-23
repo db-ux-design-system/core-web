@@ -24,9 +24,8 @@ export default function DBTabList(props: DBTabListProps) {
 		<div
 			ref={ref}
 			id={state._id}
-			class={cls('db-tab-list', props.className)}
-			role="tablist">
-			<ul>{props.children}</ul>
+			class={cls('db-tab-list', props.className)}>
+			<ul role="tablist">{props.children}</ul>
 		</div>
 	);
 }

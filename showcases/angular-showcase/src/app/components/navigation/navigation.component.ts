@@ -3,6 +3,7 @@ import defaultComponentVariants from '../../../../../shared/navigation.json';
 import { DefaultComponent } from '../default.component';
 import {
 	DBNavigation,
+	DBInfotext,
 	DBNavigationItem,
 	NavigationContentDirective
 } from '../../../../../../output/angular/src';
@@ -14,7 +15,8 @@ import {
 		DefaultComponent,
 		DBNavigation,
 		DBNavigationItem,
-		NavigationContentDirective
+		NavigationContentDirective,
+		DBInfotext
 	],
 	standalone: true
 })

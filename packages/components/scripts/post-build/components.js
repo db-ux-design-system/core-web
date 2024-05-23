@@ -38,24 +38,16 @@ const getComponents = () => [
 	},
 
 	{
-		name: 'tab-panel',
-		config: {
-			angular: {
-				initValues: [
-					{ key: 'name', value: '' },
-					{ key: 'index', value: 0 }
-				]
-			}
-		}
+		name: 'tab-panel'
 	},
 	{
 		name: 'tab-item',
 		config: {
+			vue: {
+				vModel: [{ modelValue: 'checked', binding: ':checked' }]
+			},
 			angular: {
-				initValues: [
-					{ key: 'name', value: '' },
-					{ key: 'index', value: 0 }
-				]
+				controlValueAccessor: 'checked'
 			}
 		}
 	},

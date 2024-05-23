@@ -35,7 +35,7 @@ const getExamplesAsMDX = async (componentName, variant) => {
 		'DBTabList,\n' +
 		'DBTabPanel,\n' +
 		'DBTabs\n' +
-		"} from '../../../../../../output/react/src';\n" +
+		"} from '../../../../../../../output/react/src';\n" +
 		`const ${variant.name} = () => {
 			const [copied, setCopied] = useState<string>();
 
@@ -163,18 +163,20 @@ const writeCodeFiles = async (componentPath, componentName) => {
 		const readFile = FS.readFileSync(reactComponentPath, 'utf8')
 			.replace(
 				'../../../../../output/react/src',
-				'./../../../components/src'
+				'./../../../../components/src'
 			)
-			.replace('../index', './../../../components')
-			.replace('../data', '../../../components/data')
+			.replace('../index', './../../../../components')
+			.replace('../data', '../../../../components/data')
+			.replaceAll('../../../../shared/', '../../../../../shared/')
 			.replace(
 				`../../../../../output/react/src/components/${componentName}/model`,
-				`./../../../components//src/components/${componentName}/model`
+				`./../../../../components//src/components/${componentName}/model`
 			)
 			.replace(
 				')}></DefaultComponent>',
 				`,[${tags}])}></DefaultComponent>`
 			)
+			.replace("-item';", "-item/overview';")
 			.replaceAll('// Patternhub:', '');
 
 		return `${pre}\n${readFile}`;

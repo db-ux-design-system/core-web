@@ -219,7 +219,7 @@ const FormComponent = () => {
 				</form>
 			</div>
 			<div>
-				<h2>Output</h2>
+				<h1>Output</h1>
 				<dl>
 					<dt>inputs value</dt>
 					<dd>{input || 'No Input set'}</dd>
@@ -332,7 +332,7 @@ const FormComponent = () => {
 					]}
 				/>
 
-				<h4>Validations</h4>
+				<h2>Validations</h2>
 
 				<DBInput
 					label="Input minlength validation"

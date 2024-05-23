@@ -113,7 +113,7 @@ dbnotification {
 	position: relative;
 }
 
-@mixin show-popover($state) {
+@mixin show-tooltip($state) {
 	:has(
 			> :is(db-tooltip, dbtooltip) > .db-tooltip:not([data-open]),
 			> .db-tooltip:not([data-open])
@@ -132,5 +132,5 @@ dbnotification {
 
 $popover-states: "hover", "focus";
 @each $state in $popover-states {
-	@include show-popover($state);
+	@include show-tooltip($state);
 }

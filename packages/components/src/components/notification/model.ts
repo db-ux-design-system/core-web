@@ -44,7 +44,7 @@ export interface DBNotificationDefaultProps {
 	/**
 	 * The headline attribute changes the text of the bold headline.
 	 */
-	headline?: string;
+	headline?: string | any;
 
 	/**
 	 * The linkVariant will be used if slotLink is set.
