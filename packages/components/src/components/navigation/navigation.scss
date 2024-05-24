@@ -13,7 +13,7 @@
 		inline-size: auto;
 	}
 
-	& > menu {
+	> menu {
 		display: flex;
 		flex-direction: column;
 		padding: 0;
@@ -31,9 +31,19 @@
 			.db-navigation-item-expand-button > button {
 				// overwrite for navigation items
 				@include screen-sizes.screen("md") {
+					@media screen and (prefers-reduced-motion: reduce) {
+						&::after {
+							--db-icon-margin-start: #{variables.$db-spacing-fixed-sm};
+							--db-icon-after: "chevron_down";
+
+							transition: none;
+						}
+					}
+
 					&::after {
 						--db-icon-margin-start: #{variables.$db-spacing-fixed-sm};
 						--db-icon-after: "chevron_down";
+
 						transition: form-components.$dropdown-icon-transition;
 					}
 
@@ -50,7 +60,7 @@
 			}
 
 			// re overwrite for non navigation items
-			& > menu {
+			> menu {
 				.db-navigation-item-expand-button:is(button),
 				.db-navigation-item-expand-button > button {
 					@include screen-sizes.screen("md") {
@@ -90,7 +100,7 @@
 	}
 
 	&[data-force-close="true"] {
-		& > menu menu {
+		> menu menu {
 			@include screen-sizes.screen("md") {
 				display: none;
 			}

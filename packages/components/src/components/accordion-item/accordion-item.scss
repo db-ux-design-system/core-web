@@ -24,8 +24,8 @@ $db-accordion-item-border-radius: variables.$db-border-radius-sm;
 
 	summary {
 		@extend %dropdown-icon;
-		background-color: colors.$db-current-color-bg-transparent-full-enabled;
 
+		background-color: colors.$db-current-color-bg-transparent-full-enabled;
 		list-style: none;
 		display: flex;
 		justify-content: space-between;
@@ -63,6 +63,12 @@ $db-accordion-item-border-radius: variables.$db-border-radius-sm;
 	}
 
 	&[open] {
+		@media screen and (prefers-reduced-motion: reduce) {
+			summary + div {
+				animation: none;
+			}
+		}
+
 		summary + div {
 			animation: accordion-open
 				variables.$db-transition-straight-emotional normal both;

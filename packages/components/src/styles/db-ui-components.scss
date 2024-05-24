@@ -131,6 +131,7 @@ dbnotification {
 }
 
 $popover-states: "hover", "focus";
+
 @each $state in $popover-states {
 	@include show-tooltip($state);
 }

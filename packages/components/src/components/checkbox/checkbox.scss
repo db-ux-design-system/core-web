@@ -8,6 +8,7 @@
 
 .db-checkbox {
 	@extend %helper-message;
+
 	@include form-components.set-default-check-element(check);
 
 	input {
@@ -15,6 +16,7 @@
 
 		&::before {
 			--db-icon-margin-end: 0;
+
 			position: absolute;
 			inset-inline: 0;
 			inset-block: 0;
@@ -26,7 +28,6 @@
 
 			// The icon within the checkbox has the same dimensions as the checkbox itself and that for there can't be any border
 			border-width: 0;
-
 			color: colors.$db-current-color-bg-enabled;
 			background-color: colors.$db-current-color-enabled;
 

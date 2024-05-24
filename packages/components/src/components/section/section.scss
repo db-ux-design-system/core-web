@@ -29,7 +29,7 @@
 		padding-block: variables.$db-spacing-responsive-lg;
 	}
 
-	& > div {
+	> div {
 		margin: 0 auto;
 
 		&[data-width="full"] {

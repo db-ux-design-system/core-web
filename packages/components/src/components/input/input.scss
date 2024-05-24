@@ -28,6 +28,13 @@ $icon-padding: calc(
 		@include icons.set-icon("magnifying_glass");
 		@include icons.set-icon("cross_circle", "after");
 
+		@media screen and (prefers-reduced-motion: reduce) {
+			&::after {
+				opacity: 0;
+				transition: none;
+			}
+		}
+
 		&::after {
 			opacity: 0;
 			transition: opacity variables.$db-transition-duration-fast;

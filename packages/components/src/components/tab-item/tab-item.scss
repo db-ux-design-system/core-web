@@ -29,7 +29,7 @@ $tab-border-radius: variables.$db-border-radius-sm;
 		align-items: center;
 		display: inline-block;
 		white-space: nowrap;
-		border: none;
+		border: 0;
 		border-radius: $tab-border-radius;
 		overflow: hidden;
 		text-overflow: ellipsis;

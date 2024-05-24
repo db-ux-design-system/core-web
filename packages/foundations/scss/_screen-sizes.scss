@@ -19,9 +19,10 @@ $db-breakpoint-xl: helpers.px-to-em($db-screen-size-xl);
 	--db-breakpoint-lg: #{$db-breakpoint-lg};
 	--db-breakpoint-xl: #{$db-breakpoint-xl};
 }
-
+/* stylelint-disable */
 @mixin screen($size: "sm", $width: "min") {
 	$screen: $db-screen-size-sm;
+
 	@if ($size == "xs") {
 		$screen: $db-screen-size-xs;
 	} @else if ($size == "md") {
@@ -49,3 +50,4 @@ $db-breakpoint-xl: helpers.px-to-em($db-screen-size-xl);
 		}
 	}
 }
+/* stylelint-enable */

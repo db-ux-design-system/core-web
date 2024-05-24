@@ -1,4 +1,5 @@
 @charset "utf-8";
+
 @use "@db-ui/foundations/build/scss/fonts";
 @use "@db-ui/foundations/build/scss/variables";
 @use "@db-ui/foundations/build/scss/colors";
@@ -12,7 +13,6 @@
 	@extend %default-button;
 
 	color: colors.$db-current-color-enabled;
-
 	block-size: variables.$db-sizing-md;
 	inline-size: fit-content;
 	padding: variables.$db-spacing-fixed-xs variables.$db-spacing-fixed-md;
@@ -31,6 +31,7 @@
 	// Square icon only buttons
 	&[data-no-text="true"] {
 		@include icons.is-icon-text-replace();
+
 		padding: 0;
 		inline-size: variables.$db-sizing-md;
 
@@ -41,6 +42,7 @@
 
 	&[data-size="small"] {
 		@extend %db-overwrite-font-size-sm;
+
 		block-size: variables.$db-sizing-sm;
 
 		&:not([data-no-text="true"]) {
@@ -64,7 +66,9 @@
 
 	&[data-variant="brand"] {
 		--db-current-icon-color: #{colors.$db-brand-on-enabled};
+
 		@extend %transparent-border;
+
 		background-color: colors.$db-brand-origin-enabled;
 		color: colors.$db-brand-on-enabled;
 
@@ -100,12 +104,10 @@
 	&[data-state="loading"] {
 		@include icons.is-icon-text-replace();
 
+		font-size: 0;
+
 		&::before {
 			content: "";
 		}
-	}
-
-	&[data-state="loading"] {
-		font-size: 0;
 	}
 }

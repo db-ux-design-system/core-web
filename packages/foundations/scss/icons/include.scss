@@ -62,6 +62,7 @@
 [data-icon-before] {
 	&::before {
 		@extend %icon !optional;
+
 		margin-inline-end: icon-helpers.$default-icon-margin-end;
 	}
 }
@@ -76,9 +77,11 @@
 [data-icon-after] {
 	&::after {
 		@extend %icon !optional;
+
 		@include icon-helpers.icon-content(
 			icon-helpers.$default-icon-content-after
 		);
+
 		margin-inline-start: icon-helpers.$default-icon-margin-start;
 	}
 }

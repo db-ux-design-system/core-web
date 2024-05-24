@@ -26,11 +26,13 @@ $default-disabled: 0.4;
 
 %default-interactive-component {
 	@extend %default-adaptive-border;
+
 	border-radius: variables.$db-border-radius-xs;
 }
 
 %default-card {
 	@extend %component-border;
+
 	border-radius: var(
 		--default-card-border-radius,
 		#{variables.$db-border-radius-sm}

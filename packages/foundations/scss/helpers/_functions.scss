@@ -18,6 +18,7 @@
 // https://github.com/WebKit/WebKit/commit/1890bfb551da24735804cb1a3d5f14b210f7c7b8
 @mixin divider($position: "top", $slot: "before") {
 	--db-divider-bg-color: #{colors.$db-current-color-border};
+
 	position: relative;
 
 	&[data-emphasis="strong"] {
@@ -27,21 +28,27 @@
 	&::#{$slot} {
 		content: "";
 		background-color: var(--db-divider-bg-color);
-
 		position: absolute;
+
 		@if $position == "top" {
 			block-size: variables.$db-border-height-3xs;
 			inset-block-start: 0;
 			inset-inline: 0;
-		} @else if $position == "bottom" {
+		}
+
+ @else if $position == "bottom" {
 			block-size: variables.$db-border-height-3xs;
 			inset-block-end: 0;
 			inset-inline: 0;
-		} @else if $position == "left" {
+		}
+
+ @else if $position == "left" {
 			inline-size: variables.$db-border-height-3xs;
 			inset-inline-start: 0;
 			inset-block: 0;
-		} @else if $position == "right" {
+		}
+
+ @else if $position == "right" {
 			inline-size: variables.$db-border-height-3xs;
 			inset-inline-end: 0;
 			inset-block: 0;
@@ -66,7 +73,8 @@
 }
 
 @mixin hover() {
-	&:hover:not(:disabled):not([aria-disabled="true"]) {
+	&:hover:not(:disabled, [aria-disabled="true"]),
+	&:focus:not(:disabled, [aria-disabled="true"]) {
 		@include cursor-pointer() {
 			@content;
 		}
@@ -74,7 +82,7 @@
 }
 
 @mixin active() {
-	&:active:not(:disabled):not([aria-disabled="true"]) {
+	&:active:not(:disabled, [aria-disabled="true"]) {
 		@include cursor-pointer() {
 			@content;
 		}

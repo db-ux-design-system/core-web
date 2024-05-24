@@ -36,6 +36,7 @@
 
 %direction-up {
 	@extend %full-horizontal;
+
 	inset: auto 0 0;
 
 	&[data-rounded="true"] {
@@ -45,6 +46,7 @@
 }
 %direction-down {
 	@extend %full-horizontal;
+
 	inset: 0 0 auto;
 
 	&[data-rounded="true"] {
@@ -109,6 +111,7 @@ $spacings: (
 	.db-drawer-container {
 		@extend %direction-right;
 		@extend %spacing-drawer;
+
 		display: flex;
 		flex-direction: column;
 		background-color: colors.$db-current-color-bg-lvl-1-enabled;
@@ -142,6 +145,7 @@ $spacings: (
 
 		.db-drawer-header {
 			@include helpers.divider("bottom");
+
 			display: none;
 
 			.db-drawer-header-text {
@@ -167,10 +171,37 @@ $spacings: (
 
 	&[open] {
 		.db-drawer-container {
+			@media screen and (prefers-reduced-motion: reduce) {
+				&:not([data-direction]),
+				&[data-direction="right"] {
+					animation: none;
+				}
+			}
+
+			@media screen and (prefers-reduced-motion: reduce) {
+				&:not([data-direction]),
+				&[data-direction="right"] {
+					animation: none;
+				}
+			}
+
+@media screen and (prefers-reduced-motion: reduce) {
+&:not([data-direction]),
+			&[data-direction="right"] {
+				animation: none;
+}
+}
+
 			&:not([data-direction]),
 			&[data-direction="right"] {
 				animation: show-right-to-left
 					variables.$db-transition-straight-show;
+			}
+
+			@media screen and (prefers-reduced-motion: reduce) {
+				&[data-direction="left"] {
+					animation: none;
+				}
 			}
 
 			&[data-direction="left"] {
@@ -178,9 +209,21 @@ $spacings: (
 					variables.$db-transition-straight-show;
 			}
 
+			@media screen and (prefers-reduced-motion: reduce) {
+				&[data-direction="up"] {
+					animation: none;
+				}
+			}
+
 			&[data-direction="up"] {
 				animation: show-bottom-to-top
 					variables.$db-transition-straight-show;
+			}
+
+			@media screen and (prefers-reduced-motion: reduce) {
+				&[data-direction="down"] {
+					animation: none;
+				}
 			}
 
 			&[data-direction="down"] {
@@ -189,10 +232,37 @@ $spacings: (
 			}
 
 			&[hidden] {
+				@media screen and (prefers-reduced-motion: reduce) {
+					&:not([data-direction]),
+					&[data-direction="right"] {
+						animation: none;
+					}
+				}
+
+				@media screen and (prefers-reduced-motion: reduce) {
+					&:not([data-direction]),
+					&[data-direction="right"] {
+						animation: none;
+					}
+				}
+
+@media screen and (prefers-reduced-motion: reduce) {
+&:not([data-direction]),
+				&[data-direction="right"] {
+					animation: none;
+}
+}
+
 				&:not([data-direction]),
 				&[data-direction="right"] {
 					animation: hide-right-to-left
 						variables.$db-transition-straight-hide;
+				}
+
+				@media screen and (prefers-reduced-motion: reduce) {
+					&[data-direction="left"] {
+						animation: none;
+					}
 				}
 
 				&[data-direction="left"] {
@@ -200,9 +270,21 @@ $spacings: (
 						variables.$db-transition-straight-hide;
 				}
 
+				@media screen and (prefers-reduced-motion: reduce) {
+					&[data-direction="up"] {
+						animation: none;
+					}
+				}
+
 				&[data-direction="up"] {
 					animation: hide-bottom-to-top
 						variables.$db-transition-straight-hide;
+				}
+
+				@media screen and (prefers-reduced-motion: reduce) {
+					&[data-direction="down"] {
+						animation: none;
+					}
 				}
 
 				&[data-direction="down"] {

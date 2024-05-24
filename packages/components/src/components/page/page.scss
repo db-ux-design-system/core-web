@@ -17,6 +17,12 @@
 .db-page {
 	opacity: 0;
 
+	@media screen and (prefers-reduced-motion: reduce) {
+		&[data-fade-in="true"] {
+			transition: none;
+		}
+	}
+
 	&[data-fade-in="true"] {
 		transition: opacity variables.$db-transition-straight-emotional;
 	}
@@ -28,10 +34,12 @@
 
 	&[data-variant="fixed"] {
 		@include header-footer-style();
+
 		block-size: 100%;
 		min-block-size: 100%;
 		display: flex;
 		flex-direction: column;
+
 		/* workaround for angular */
 		> :is(db-header, dbheader, dbfooter, db-footer) {
 			@include header-footer-style();

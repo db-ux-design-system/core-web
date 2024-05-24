@@ -6,6 +6,7 @@
 
 .db-infotext {
 	--db-icon-margin-end: #{variables.$db-spacing-fixed-2xs};
+
 	@extend %db-overwrite-font-size-sm;
 
 	display: flex;
@@ -31,6 +32,7 @@
 	@each $name, $colors in colors.$variant-colors {
 		&[data-semantic="#{$name}"] {
 			@include icons.variant-icons($name);
+
 			color: var(--db-#{$name}-contrast-high-enabled);
 
 			&::before {

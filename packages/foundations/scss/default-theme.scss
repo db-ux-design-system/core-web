@@ -806,12 +806,12 @@
 	--db-border-radius-2xl: 1.75rem;
 	--db-border-radius-3xl: 2rem;
 	--db-border-radius-full: 500rem;
-	--db-elevation-sm: 0 0 1px -1px rgba(0, 0, 0, 0.2),
-		0 0 4px 1px rgba(0, 0, 0, 0.12), 0 0 2px 0 rgba(0, 0, 0, 0.14);
-	--db-elevation-md: 0 0 2px -1px rgba(0, 0, 0, 0.2),
-		0 0 8px 1px rgba(0, 0, 0, 0.12), 0 0 4px 0 rgba(0, 0, 0, 0.14);
-	--db-elevation-lg: 0 0 4px -3px rgba(0, 0, 0, 0.2),
-		0 0 16px 3px rgba(0, 0, 0, 0.12), 0 0 8px 1px rgba(0, 0, 0, 0.14);
+	--db-elevation-sm: 0 0 1px -1px rgb(0 0 0 / 20%),
+		0 0 4px 1px rgb(0 0 0 / 12%), 0 0 2px 0 rgb(0 0 0 / 14%);
+	--db-elevation-md: 0 0 2px -1px rgb(0 0 0 / 20%),
+		0 0 8px 1px rgb(0 0 0 / 12%), 0 0 4px 0 rgb(0 0 0 / 14%);
+	--db-elevation-lg: 0 0 4px -3px rgb(0 0 0 / 20%),
+		0 0 16px 3px rgb(0 0 0 / 12%), 0 0 8px 1px rgb(0 0 0 / 14%);
 	--db-transition-duration-x-slow: 0.5s;
 	--db-transition-duration-slow: 0.4s;
 	--db-transition-duration-medium: 0.3s;
@@ -827,8 +827,8 @@
 		both;
 	--db-transition-straight-emotional: 0.3s cubic-bezier(0.27, 0.05, 0.4, 0.95);
 	--db-transition-straight-functional: 0.3s cubic-bezier(0.15, 0, 0.45, 1);
-	--db-font-family-sans: "DB Screen Sans", Helvetica, Arial, sans-serif;
-	--db-font-family-head: "DB Screen Head", Helvetica, Arial, sans-serif;
+	--db-font-family-sans: "DB Screen Sans", helvetica, arial, sans-serif;
+	--db-font-family-head: "DB Screen Head", helvetica, arial, sans-serif;
 
 	/* COLORS */
 	@include default-palette.get-color-palette;
@@ -841,10 +841,12 @@
 
 [data-color-scheme="light"] {
 	@extend %db-neutral-bg-lvl-1;
+
 	@include default-color-scheme.get-color-scheme-light;
 }
 
 [data-color-scheme="dark"] {
 	@extend %db-neutral-bg-lvl-1;
+
 	@include default-color-scheme.get-color-scheme-dark;
 }
