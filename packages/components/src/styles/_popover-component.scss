@@ -145,16 +145,6 @@ $popover-gap-inset: calc(-1 * #{$popover-gap-size});
 	@media screen and (prefers-reduced-motion: reduce) {
 		&:not([data-animation="disabled"]) {
 			animation: none;
-
-			&[data-delay="slow"] {
-				animation-delay: variables.$db-transition-duration-fast;
-			}
-
-			&[data-delay="fast"] {
-				animation-delay: calc(
-					#{variables.$db-transition-duration-fast} / 2
-				);
-			}
 		}
 	}
 

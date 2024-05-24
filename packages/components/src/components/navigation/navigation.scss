@@ -33,9 +33,6 @@
 				@include screen-sizes.screen("md") {
 					@media screen and (prefers-reduced-motion: reduce) {
 						&::after {
-							--db-icon-margin-start: #{variables.$db-spacing-fixed-sm};
-							--db-icon-after: "chevron_down";
-
 							transition: none;
 						}
 					}

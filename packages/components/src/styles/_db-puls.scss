@@ -27,9 +27,6 @@
 %db-puls {
 	@media screen and (prefers-reduced-motion: reduce) {
 		&::after {
-			content: "";
-			position: absolute;
-			border-radius: variables.$db-border-radius-xs;
 			transition: none;
 		}
 	}

@@ -30,7 +30,6 @@ $icon-padding: calc(
 
 		@media screen and (prefers-reduced-motion: reduce) {
 			&::after {
-				opacity: 0;
 				transition: none;
 			}
 		}

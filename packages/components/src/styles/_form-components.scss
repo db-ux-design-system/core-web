@@ -36,7 +36,6 @@ $input-types: "button", "checkbox", "color", "date", "datetime-local", "email",
 	@media screen and (prefers-reduced-motion: reduce) {
 		&::after {
 			transition: none;
-			pointer-events: none;
 		}
 	}
 

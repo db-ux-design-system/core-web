@@ -6,6 +6,18 @@
 @use "../../styles/component";
 @use "./../../styles/dialog-init";
 
+%disable-animation {
+	@media screen and (prefers-reduced-motion: reduce) {
+		&:not([data-direction]),
+		&[data-direction="right"],
+		&[data-direction="left"],
+		&[data-direction="up"],
+		&[data-direction="down"] {
+			animation: none;
+		}
+	}
+}
+
 %direction-right {
 	inset-inline: auto 0;
 
@@ -170,27 +182,9 @@ $spacings: (
 	}
 
 	&[open] {
+		/* stylelint-disable */
 		.db-drawer-container {
-			@media screen and (prefers-reduced-motion: reduce) {
-				&:not([data-direction]),
-				&[data-direction="right"] {
-					animation: none;
-				}
-			}
-
-			@media screen and (prefers-reduced-motion: reduce) {
-				&:not([data-direction]),
-				&[data-direction="right"] {
-					animation: none;
-				}
-			}
-
-@media screen and (prefers-reduced-motion: reduce) {
-&:not([data-direction]),
-			&[data-direction="right"] {
-				animation: none;
-}
-}
+			@extend %disable-animation;
 
 			&:not([data-direction]),
 			&[data-direction="right"] {
@@ -198,32 +192,14 @@ $spacings: (
 					variables.$db-transition-straight-show;
 			}
 
-			@media screen and (prefers-reduced-motion: reduce) {
-				&[data-direction="left"] {
-					animation: none;
-				}
-			}
-
 			&[data-direction="left"] {
 				animation: show-left-to-right
 					variables.$db-transition-straight-show;
 			}
 
-			@media screen and (prefers-reduced-motion: reduce) {
-				&[data-direction="up"] {
-					animation: none;
-				}
-			}
-
 			&[data-direction="up"] {
 				animation: show-bottom-to-top
 					variables.$db-transition-straight-show;
-			}
-
-			@media screen and (prefers-reduced-motion: reduce) {
-				&[data-direction="down"] {
-					animation: none;
-				}
 			}
 
 			&[data-direction="down"] {
@@ -232,26 +208,7 @@ $spacings: (
 			}
 
 			&[hidden] {
-				@media screen and (prefers-reduced-motion: reduce) {
-					&:not([data-direction]),
-					&[data-direction="right"] {
-						animation: none;
-					}
-				}
-
-				@media screen and (prefers-reduced-motion: reduce) {
-					&:not([data-direction]),
-					&[data-direction="right"] {
-						animation: none;
-					}
-				}
-
-@media screen and (prefers-reduced-motion: reduce) {
-&:not([data-direction]),
-				&[data-direction="right"] {
-					animation: none;
-}
-}
+				@extend %disable-animation;
 
 				&:not([data-direction]),
 				&[data-direction="right"] {
@@ -259,21 +216,9 @@ $spacings: (
 						variables.$db-transition-straight-hide;
 				}
 
-				@media screen and (prefers-reduced-motion: reduce) {
-					&[data-direction="left"] {
-						animation: none;
-					}
-				}
-
 				&[data-direction="left"] {
 					animation: hide-left-to-right
 						variables.$db-transition-straight-hide;
-				}
-
-				@media screen and (prefers-reduced-motion: reduce) {
-					&[data-direction="up"] {
-						animation: none;
-					}
 				}
 
 				&[data-direction="up"] {
@@ -281,17 +226,13 @@ $spacings: (
 						variables.$db-transition-straight-hide;
 				}
 
-				@media screen and (prefers-reduced-motion: reduce) {
-					&[data-direction="down"] {
-						animation: none;
-					}
-				}
-
 				&[data-direction="down"] {
 					animation: hide-top-to-bottom
 						variables.$db-transition-straight-hide;
 				}
 			}
+
+			/* stylelint-enable */
 		}
 	}
 }

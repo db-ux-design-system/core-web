@@ -328,17 +328,7 @@ strong {
 
 @media screen and (prefers-reduced-motion: reduce) {
 	[data-interactive="elevation"] {
-		cursor: pointer;
 		transition: none;
-		box-shadow: variables.$db-elevation-md;
-
-		@include helpers.hover {
-			box-shadow: variables.$db-elevation-lg;
-		}
-
-		@include helpers.active {
-			box-shadow: variables.$db-elevation-sm;
-		}
 	}
 }
 
