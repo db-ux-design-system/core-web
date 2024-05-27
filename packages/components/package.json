@@ -16,7 +16,7 @@
   ],
   "scripts": {
     "build": "npm-run-all -p build-components build-assets -s build-style:*",
-    "build-assets": "cpy \"src/**/*.(ts|tsx|md|html)\" build",
+    "build-assets": "cpy src/**/*.scss build",
     "build-components": "npm-run-all build:mitosis -p build-components:*",
     "build-components:docs": "react-docgen ../../output/react/src/components/**/*.tsx --out ../../output/docs.json --ignore ../../output/react/src/components/*.spec.tsx --pretty",
     "build-components:post": "node scripts/post-build/index.js",
