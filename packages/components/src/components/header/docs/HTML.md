@@ -127,7 +127,7 @@ For general installation and configuration take a look at the [components](https
 						class="db-main-navigation"
 					>
 						<menu>
-							<li-c2813fd8b029"
+							<li
 								class="db-navigation-item"
 								data-icon="user"
 							>
