@@ -78,6 +78,8 @@
 		@extend %default-transition;
 		inline-size: 100%;
 		margin-inline-start: 0;
+		display: inline-flex;
+		align-items: center;
 
 		&:has(input:checked) {
 			border-width: variables.$db-border-height-3xs;
@@ -88,11 +90,10 @@
 		}
 
 		// Handle native radio and checkbox input elements, especially regarding focus-visible indicator
-		// TODO: Reevaluate whether we could use the standard HTML elements instead of our components
 		input {
 			appearance: none;
-			inline-size: calc(100% + 2px);
-			block-size: calc(100% + 2px);
+			inline-size: 100%;
+			block-size: 100%;
 			position: absolute;
 			margin-inline-end: initial;
 			border: none;
