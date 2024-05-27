@@ -40,7 +40,7 @@ For general installation and configuration take a look at the [components](https
 									>
 										<a href="#">Regular (Default)</a>
 									</li>
-									<li-4b43-a0dd-b79813fd94f7"
+									<li
 										class="db-navigation-item"
 										aria-disabled="true"
 									>
