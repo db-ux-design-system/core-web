@@ -18,7 +18,7 @@ jobs:
       - name: 🔨 Build Packages
         run: |
           npm run build --workspace=@db-ui/foundations
-          ls packages/foundations/build
+          ls packages/foundations/build/scss
           npm run build --workspace=@db-ui/components
 
       - name: ⏫ Upload foundations build
