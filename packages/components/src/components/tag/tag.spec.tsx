@@ -4,10 +4,6 @@ import AxeBuilder from '@axe-core/playwright';
 import { DBTag } from './index';
 // @ts-ignore - vue can only find it with .ts as file ending
 import { SEMANTICS } from '../../shared/constants.ts';
-import { DBButton } from '../button';
-import { DBLink } from '../link';
-import { DBRadio } from '../radio';
-import { DBCheckbox } from '../checkbox';
 
 const comp: any = <DBTag>Test</DBTag>;
 
@@ -50,7 +46,7 @@ const testInterActions = () => {
 		let test = '';
 		const buttonTag: any = (
 			<DBTag>
-				<DBButton onClick={() => (test = 'test')}>Test</DBButton>
+				<button onClick={() => (test = 'test')}>Test</button>
 			</DBTag>
 		);
 		const component = await mount(buttonTag);
@@ -61,7 +57,7 @@ const testInterActions = () => {
 	test('should be a button', async ({ mount }) => {
 		const buttonTag: any = (
 			<DBTag>
-				<DBButton>Test</DBButton>
+				<button>Test</button>
 			</DBTag>
 		);
 		const component = await mount(buttonTag);
@@ -71,7 +67,7 @@ const testInterActions = () => {
 	test('should be a link', async ({ mount }) => {
 		const tag: any = (
 			<DBTag>
-				<DBLink>Test</DBLink>
+				<a href="#">Test</a>
 			</DBTag>
 		);
 		const component = await mount(tag);
@@ -81,7 +77,10 @@ const testInterActions = () => {
 	test('should be a radio', async ({ mount }) => {
 		const tag: any = (
 			<DBTag>
-				<DBRadio>Test</DBRadio>
+				<label>
+					<input type="radio" />
+					Test
+				</label>
 			</DBTag>
 		);
 		const component = await mount(tag);
@@ -91,7 +90,10 @@ const testInterActions = () => {
 	test('should be a radio checked', async ({ mount }) => {
 		const tag: any = (
 			<DBTag>
-				<DBRadio data-testid="radio">Test</DBRadio>
+				<label>
+					<input type="radio" data-testid="radio" />
+					Test
+				</label>
 			</DBTag>
 		);
 		const component = await mount(tag);
@@ -102,7 +104,10 @@ const testInterActions = () => {
 	test('should be a checkbox', async ({ mount }) => {
 		const tag: any = (
 			<DBTag>
-				<DBCheckbox>Test</DBCheckbox>
+				<label>
+					<input type="checkbox" data-testid="radio" />
+					Test
+				</label>
 			</DBTag>
 		);
 		const component = await mount(tag);
@@ -112,7 +117,10 @@ const testInterActions = () => {
 	test('should be a checkbox checked', async ({ mount }) => {
 		const tag: any = (
 			<DBTag>
-				<DBCheckbox data-testid="checkbox">Test</DBCheckbox>
+				<label>
+					<input type="checkbox" data-testid="checkbox" />
+					Test
+				</label>
 			</DBTag>
 		);
 		const component = await mount(tag);
