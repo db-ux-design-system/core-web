@@ -133,7 +133,7 @@ For general installation and configuration take a look at the [components](https
 							>
 								<a href="#">Regular (Default)</a>
 							</li>
-							<li-cf54a219919b"
+							<li
 								class="db-navigation-item"
 								aria-disabled="true"
 							>
