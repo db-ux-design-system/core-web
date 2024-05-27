@@ -123,7 +123,7 @@ For general installation and configuration take a look at the [components](https
 			</div>
 			<div class="db-header-navigation-container">
 				<div class="db-header-navigation">
-					<nav-2f9fae857bac"
+					<nav
 						class="db-main-navigation"
 					>
 						<menu>
