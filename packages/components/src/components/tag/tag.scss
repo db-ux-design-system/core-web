@@ -78,7 +78,7 @@
 		@extend %default-transition;
 		inline-size: 100%;
 		margin-inline-start: 0;
-		display: inline-flex;
+		display: flex;
 		align-items: center;
 
 		&:has(input:checked) {
