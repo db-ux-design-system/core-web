@@ -8,7 +8,7 @@ For general installation and configuration look at the [components](https://www.
 <!-- index.html -->
 ...
 <body>
-	<details id="my_id" class="db-accordion-item">
+	<details class="db-accordion-item">
 		<summary>Title</summary>
 		<div>Content</div>
 	</details>
