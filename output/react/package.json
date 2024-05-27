@@ -15,7 +15,7 @@
   ],
   "scripts": {
     "build": "npm-run-all tsc",
-    "mv:dist": "cpy dist/** ../../build-outputs/react/dist",
+    "mv:dist": "cpy dist ../../build-outputs/react",
     "mv:package.json": "cpy package.json ../../build-outputs/react",
     "mv:readme": "cpy README.md ../../build-outputs/react",
     "open:report": "npx playwright show-report",

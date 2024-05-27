@@ -31,7 +31,7 @@
     "build:01_vite": "vite build",
     "build:02_types": "vue-tsc --declaration --emitDeclarationOnly",
     "build:03_ts_workaround": "node scripts/fix-any-types.js",
-    "mv:dist": "cpy dist/** ../../build-outputs/vue/dist",
+    "mv:dist": "cpy dist ../../build-outputs/vue",
     "mv:package.json": "cpy package.json ../../build-outputs/vue",
     "mv:readme": "cpy README.md ../../build-outputs/vue",
     "postbuild": "npm-run-all -p mv:*",

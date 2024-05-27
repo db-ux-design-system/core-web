@@ -14,7 +14,7 @@
   ],
   "scripts": {
     "build": "parcel build",
-    "mv:dist": "cpy dist/** ../../build-outputs/web-components",
+    "mv:dist": "cpy dist ../../build-outputs/web-components",
     "mv:package.json": "cpy package.json ../../build-outputs/web-components",
     "mv:readme": "cpy README.md ../../build-outputs/web-components",
     "postbuild": "npm-run-all -p mv:*"
