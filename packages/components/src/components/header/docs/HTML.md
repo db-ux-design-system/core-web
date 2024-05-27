@@ -30,7 +30,7 @@ For general installation and configuration take a look at the [components](https
 				<div class="db-drawer-content">
 					<div class="db-header-drawer-navigation">
 						<div class="db-header-navigation">
-							<nav-5685004b0705"
+							<nav
 								class="db-main-navigation"
 							>
 								<menu>
