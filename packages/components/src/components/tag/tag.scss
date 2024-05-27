@@ -90,12 +90,14 @@
 		// Handle native radio and checkbox input elements, especially regarding focus-visible indicator
 		// TODO: Reevaluate whether we could use the standard HTML elements instead of our components
 		input {
+			appearance: none;
 			inline-size: calc(100% + 2px);
 			block-size: calc(100% + 2px);
 			position: absolute;
 			margin-inline-end: initial;
 			border: none;
 			border-radius: inherit;
+			cursor: pointer;
 			transform: translateX(
 				calc(
 					(
@@ -154,6 +156,8 @@
 		block-size: inherit;
 		padding: 0 variables.$db-spacing-fixed-2xs;
 		border-radius: variables.$db-border-radius-xs;
+		font-weight: 700;
+		appearance: none;
 	}
 
 	db-button,

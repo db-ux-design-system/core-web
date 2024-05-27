@@ -1,13 +1,7 @@
 <script setup lang="ts">
 import DefaultComponent from "../DefaultComponent.vue";
 import defaultComponentVariants from "../../../../shared/tag.json";
-import {
-	DBTag,
-	DBButton,
-	DBLink,
-	DBCheckbox,
-	DBRadio
-} from "../../../../../output/vue/src";
+import { DBTag } from "../../../../../output/vue/src";
 
 const showAlert = (exampleName?: string) => {
 	// eslint-disable-next-line no-alert
@@ -31,23 +25,25 @@ const showAlert = (exampleName?: string) => {
 				:removeButton="exampleProps.removeButton"
 				@remove="showAlert(exampleName)"
 			>
-				<DBButton v-if="exampleProps.component === 'button'">{{
-					exampleName
-				}}</DBButton>
-				<DBLink v-if="exampleProps.component === 'link'" href="#">
+				<button v-if="exampleProps.component === 'button'">
 					{{ exampleName }}
-				</DBLink>
-				<DBCheckbox
-					v-if="exampleProps.component === 'checkbox'"
-					:checked="exampleProps.checked"
-					>{{ exampleName }}</DBCheckbox
-				>
-				<DBRadio
-					v-if="exampleProps.component === 'radio'"
-					:name="exampleProps.identifier"
-					:checked="exampleProps.checked"
-					>{{ exampleName }}</DBRadio
-				>
+				</button>
+				<a v-if="exampleProps.component === 'link'" href="#">
+					{{ exampleName }}
+				</a>
+				<label v-if="exampleProps.component === 'checkbox'">
+					<input type="checkbox" :checked="exampleProps.checked" />
+					{{ exampleName }}
+				</label>
+
+				<label v-if="exampleProps.component === 'radio'">
+					<input
+						type="radio"
+						:checked="exampleProps.checked"
+						:name="exampleProps.identifier"
+					/>
+					{{ exampleName }}
+				</label>
 				<template
 					v-if="
 						exampleProps.component !== 'button' &&

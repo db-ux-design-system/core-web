@@ -20,25 +20,28 @@
 			(onRemove)="showAlert(exampleName)"
 		>
 			@if (exampleProps.component === "button") {
-				<db-button>{{ exampleName }}</db-button>
+				<button>{{ exampleName }}</button>
 			}
 			@if (exampleProps.component === "link") {
-				<db-link href="#">
+				<a href="#">
 					{{ exampleName }}
-				</db-link>
+				</a>
 			}
 			@if (exampleProps.component === "checkbox") {
-				<db-checkbox [checked]="exampleProps.checked">{{
-					exampleName
-				}}</db-checkbox>
+				<label>
+					<input type="checkbox" [checked]="exampleProps.checked" />
+					{{ exampleName }}
+				</label>
 			}
 			@if (exampleProps.component === "radio") {
-				<db-radio
-					name="radio"
-					[name]="exampleProps.identifier"
-					[checked]="exampleProps.checked"
-					>{{ exampleName }}</db-radio
-				>
+				<label>
+					<input
+						type="radio"
+						[checked]="exampleProps.checked"
+						[name]="exampleProps.identifier"
+					/>
+					{{ exampleName }}
+				</label>
 			}
 			@if (!exampleProps.component && !exampleProps.overflow) {
 				{{ exampleName }}
