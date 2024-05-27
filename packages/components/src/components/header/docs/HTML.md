@@ -34,7 +34,7 @@ For general installation and configuration take a look at the [components](https
 								class="db-main-navigation"
 							>
 								<menu>
-									<li-4267-832a-d8324162d3f6"
+									<li
 										class="db-navigation-item"
 										data-icon="user"
 									>
