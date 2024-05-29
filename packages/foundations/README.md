@@ -113,7 +113,7 @@ In HTML:
 ></div>
 ```
 
-> **Note:** In CSS you might to use the classes or data-attributes even more because you cannot use placeholders like we have it in `scss`. If you use a 3rd party library and cannot apply classes or data-attributes you might want to copy the content of our helper classes to apply it to the 3rd party class.
+> **Note:** In CSS you might to use the classes or data-attributes even more because you cannot use placeholders or mixins like we have it in `scss`. If you use a 3rd party library and cannot apply classes or data-attributes you might want to copy the content of our helper classes to apply it to the 3rd party class.
 
 ### SCSS
 
