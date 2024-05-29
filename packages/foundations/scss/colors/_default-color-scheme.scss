@@ -567,3 +567,927 @@
 
 	color-scheme: dark;
 }
+
+@mixin get-additional-color-scheme-light {
+	--db-yellow-on-enabled: var(--db-yellow-on-light);
+	--db-yellow-on-hover: var(--db-yellow-on-hover-light);
+	--db-yellow-on-pressed: var(--db-yellow-on-pressed-light);
+	--db-yellow-origin-enabled: var(--db-yellow-origin-light);
+	--db-yellow-origin-hover: var(--db-yellow-hover-light);
+	--db-yellow-origin-pressed: var(--db-yellow-pressed-light);
+	--db-yellow-bg-lvl-1-enabled: var(--db-yellow-14);
+	--db-yellow-bg-lvl-1-hover: var(--db-yellow-13);
+	--db-yellow-bg-lvl-1-pressed: var(--db-yellow-12);
+	--db-yellow-bg-lvl-2-enabled: var(--db-yellow-13);
+	--db-yellow-bg-lvl-2-hover: var(--db-yellow-12);
+	--db-yellow-bg-lvl-2-pressed: var(--db-yellow-11);
+	--db-yellow-bg-lvl-3-enabled: var(--db-yellow-12);
+	--db-yellow-bg-lvl-3-hover: var(--db-yellow-11);
+	--db-yellow-bg-lvl-3-pressed: var(--db-yellow-10);
+	--db-yellow-bg-transparent-full-enabled: color-mix(
+		in srgb,
+		transparent 100%,
+		var(--db-yellow-6)
+	);
+	--db-yellow-bg-transparent-semi-enabled: color-mix(
+		in srgb,
+		transparent 92%,
+		var(--db-yellow-6)
+	);
+	--db-yellow-bg-transparent-hover: color-mix(
+		in srgb,
+		transparent 84%,
+		var(--db-yellow-6)
+	);
+	--db-yellow-bg-transparent-pressed: color-mix(
+		in srgb,
+		transparent 76%,
+		var(--db-yellow-6)
+	);
+	--db-yellow-on-bg-enabled: var(--db-yellow-3);
+	--db-yellow-on-bg-hover: var(--db-yellow-4);
+	--db-yellow-on-bg-pressed: var(--db-yellow-5);
+	--db-yellow-on-bg-weak-enabled: var(--db-yellow-5);
+	--db-yellow-on-bg-weak-hover: var(--db-yellow-6);
+	--db-yellow-on-bg-weak-pressed: var(--db-yellow-7);
+	--db-yellow-on-contrast-enabled: var(--db-yellow-14);
+	--db-yellow-on-contrast-hover: var(--db-yellow-13);
+	--db-yellow-on-contrast-pressed: var(--db-yellow-12);
+	--db-yellow-contrast-high-enabled: var(--db-yellow-6);
+	--db-yellow-contrast-high-hover: var(--db-yellow-5);
+	--db-yellow-contrast-high-pressed: var(--db-yellow-4);
+	--db-yellow-contrast-low-enabled: var(--db-yellow-7);
+	--db-yellow-contrast-low-hover: var(--db-yellow-6);
+	--db-yellow-contrast-low-pressed: var(--db-yellow-5);
+	--db-yellow-border: var(--db-yellow-10);
+	--db-orange-on-enabled: var(--db-orange-on-light);
+	--db-orange-on-hover: var(--db-orange-on-hover-light);
+	--db-orange-on-pressed: var(--db-orange-on-pressed-light);
+	--db-orange-origin-enabled: var(--db-orange-origin-light);
+	--db-orange-origin-hover: var(--db-orange-hover-light);
+	--db-orange-origin-pressed: var(--db-orange-pressed-light);
+	--db-orange-bg-lvl-1-enabled: var(--db-orange-14);
+	--db-orange-bg-lvl-1-hover: var(--db-orange-13);
+	--db-orange-bg-lvl-1-pressed: var(--db-orange-12);
+	--db-orange-bg-lvl-2-enabled: var(--db-orange-13);
+	--db-orange-bg-lvl-2-hover: var(--db-orange-12);
+	--db-orange-bg-lvl-2-pressed: var(--db-orange-11);
+	--db-orange-bg-lvl-3-enabled: var(--db-orange-12);
+	--db-orange-bg-lvl-3-hover: var(--db-orange-11);
+	--db-orange-bg-lvl-3-pressed: var(--db-orange-10);
+	--db-orange-bg-transparent-full-enabled: color-mix(
+		in srgb,
+		transparent 100%,
+		var(--db-orange-6)
+	);
+	--db-orange-bg-transparent-semi-enabled: color-mix(
+		in srgb,
+		transparent 92%,
+		var(--db-orange-6)
+	);
+	--db-orange-bg-transparent-hover: color-mix(
+		in srgb,
+		transparent 84%,
+		var(--db-orange-6)
+	);
+	--db-orange-bg-transparent-pressed: color-mix(
+		in srgb,
+		transparent 76%,
+		var(--db-orange-6)
+	);
+	--db-orange-on-bg-enabled: var(--db-orange-3);
+	--db-orange-on-bg-hover: var(--db-orange-4);
+	--db-orange-on-bg-pressed: var(--db-orange-5);
+	--db-orange-on-bg-weak-enabled: var(--db-orange-5);
+	--db-orange-on-bg-weak-hover: var(--db-orange-6);
+	--db-orange-on-bg-weak-pressed: var(--db-orange-7);
+	--db-orange-on-contrast-enabled: var(--db-orange-14);
+	--db-orange-on-contrast-hover: var(--db-orange-13);
+	--db-orange-on-contrast-pressed: var(--db-orange-12);
+	--db-orange-contrast-high-enabled: var(--db-orange-6);
+	--db-orange-contrast-high-hover: var(--db-orange-5);
+	--db-orange-contrast-high-pressed: var(--db-orange-4);
+	--db-orange-contrast-low-enabled: var(--db-orange-7);
+	--db-orange-contrast-low-hover: var(--db-orange-6);
+	--db-orange-contrast-low-pressed: var(--db-orange-5);
+	--db-orange-border: var(--db-orange-10);
+	--db-red-on-enabled: var(--db-red-on-light);
+	--db-red-on-hover: var(--db-red-on-hover-light);
+	--db-red-on-pressed: var(--db-red-on-pressed-light);
+	--db-red-origin-enabled: var(--db-red-origin-light);
+	--db-red-origin-hover: var(--db-red-hover-light);
+	--db-red-origin-pressed: var(--db-red-pressed-light);
+	--db-red-bg-lvl-1-enabled: var(--db-red-14);
+	--db-red-bg-lvl-1-hover: var(--db-red-13);
+	--db-red-bg-lvl-1-pressed: var(--db-red-12);
+	--db-red-bg-lvl-2-enabled: var(--db-red-13);
+	--db-red-bg-lvl-2-hover: var(--db-red-12);
+	--db-red-bg-lvl-2-pressed: var(--db-red-11);
+	--db-red-bg-lvl-3-enabled: var(--db-red-12);
+	--db-red-bg-lvl-3-hover: var(--db-red-11);
+	--db-red-bg-lvl-3-pressed: var(--db-red-10);
+	--db-red-bg-transparent-full-enabled: color-mix(
+		in srgb,
+		transparent 100%,
+		var(--db-red-6)
+	);
+	--db-red-bg-transparent-semi-enabled: color-mix(
+		in srgb,
+		transparent 92%,
+		var(--db-red-6)
+	);
+	--db-red-bg-transparent-hover: color-mix(
+		in srgb,
+		transparent 84%,
+		var(--db-red-6)
+	);
+	--db-red-bg-transparent-pressed: color-mix(
+		in srgb,
+		transparent 76%,
+		var(--db-red-6)
+	);
+	--db-red-on-bg-enabled: var(--db-red-3);
+	--db-red-on-bg-hover: var(--db-red-4);
+	--db-red-on-bg-pressed: var(--db-red-5);
+	--db-red-on-bg-weak-enabled: var(--db-red-5);
+	--db-red-on-bg-weak-hover: var(--db-red-6);
+	--db-red-on-bg-weak-pressed: var(--db-red-7);
+	--db-red-on-contrast-enabled: var(--db-red-14);
+	--db-red-on-contrast-hover: var(--db-red-13);
+	--db-red-on-contrast-pressed: var(--db-red-12);
+	--db-red-contrast-high-enabled: var(--db-red-6);
+	--db-red-contrast-high-hover: var(--db-red-5);
+	--db-red-contrast-high-pressed: var(--db-red-4);
+	--db-red-contrast-low-enabled: var(--db-red-7);
+	--db-red-contrast-low-hover: var(--db-red-6);
+	--db-red-contrast-low-pressed: var(--db-red-5);
+	--db-red-border: var(--db-red-10);
+	--db-pink-on-enabled: var(--db-pink-on-light);
+	--db-pink-on-hover: var(--db-pink-on-hover-light);
+	--db-pink-on-pressed: var(--db-pink-on-pressed-light);
+	--db-pink-origin-enabled: var(--db-pink-origin-light);
+	--db-pink-origin-hover: var(--db-pink-hover-light);
+	--db-pink-origin-pressed: var(--db-pink-pressed-light);
+	--db-pink-bg-lvl-1-enabled: var(--db-pink-14);
+	--db-pink-bg-lvl-1-hover: var(--db-pink-13);
+	--db-pink-bg-lvl-1-pressed: var(--db-pink-12);
+	--db-pink-bg-lvl-2-enabled: var(--db-pink-13);
+	--db-pink-bg-lvl-2-hover: var(--db-pink-12);
+	--db-pink-bg-lvl-2-pressed: var(--db-pink-11);
+	--db-pink-bg-lvl-3-enabled: var(--db-pink-12);
+	--db-pink-bg-lvl-3-hover: var(--db-pink-11);
+	--db-pink-bg-lvl-3-pressed: var(--db-pink-10);
+	--db-pink-bg-transparent-full-enabled: color-mix(
+		in srgb,
+		transparent 100%,
+		var(--db-pink-6)
+	);
+	--db-pink-bg-transparent-semi-enabled: color-mix(
+		in srgb,
+		transparent 92%,
+		var(--db-pink-6)
+	);
+	--db-pink-bg-transparent-hover: color-mix(
+		in srgb,
+		transparent 84%,
+		var(--db-pink-6)
+	);
+	--db-pink-bg-transparent-pressed: color-mix(
+		in srgb,
+		transparent 76%,
+		var(--db-pink-6)
+	);
+	--db-pink-on-bg-enabled: var(--db-pink-3);
+	--db-pink-on-bg-hover: var(--db-pink-4);
+	--db-pink-on-bg-pressed: var(--db-pink-5);
+	--db-pink-on-bg-weak-enabled: var(--db-pink-5);
+	--db-pink-on-bg-weak-hover: var(--db-pink-6);
+	--db-pink-on-bg-weak-pressed: var(--db-pink-7);
+	--db-pink-on-contrast-enabled: var(--db-pink-14);
+	--db-pink-on-contrast-hover: var(--db-pink-13);
+	--db-pink-on-contrast-pressed: var(--db-pink-12);
+	--db-pink-contrast-high-enabled: var(--db-pink-6);
+	--db-pink-contrast-high-hover: var(--db-pink-5);
+	--db-pink-contrast-high-pressed: var(--db-pink-4);
+	--db-pink-contrast-low-enabled: var(--db-pink-7);
+	--db-pink-contrast-low-hover: var(--db-pink-6);
+	--db-pink-contrast-low-pressed: var(--db-pink-5);
+	--db-pink-border: var(--db-pink-10);
+	--db-violet-on-enabled: var(--db-violet-on-light);
+	--db-violet-on-hover: var(--db-violet-on-hover-light);
+	--db-violet-on-pressed: var(--db-violet-on-pressed-light);
+	--db-violet-origin-enabled: var(--db-violet-origin-light);
+	--db-violet-origin-hover: var(--db-violet-hover-light);
+	--db-violet-origin-pressed: var(--db-violet-pressed-light);
+	--db-violet-bg-lvl-1-enabled: var(--db-violet-14);
+	--db-violet-bg-lvl-1-hover: var(--db-violet-13);
+	--db-violet-bg-lvl-1-pressed: var(--db-violet-12);
+	--db-violet-bg-lvl-2-enabled: var(--db-violet-13);
+	--db-violet-bg-lvl-2-hover: var(--db-violet-12);
+	--db-violet-bg-lvl-2-pressed: var(--db-violet-11);
+	--db-violet-bg-lvl-3-enabled: var(--db-violet-12);
+	--db-violet-bg-lvl-3-hover: var(--db-violet-11);
+	--db-violet-bg-lvl-3-pressed: var(--db-violet-10);
+	--db-violet-bg-transparent-full-enabled: color-mix(
+		in srgb,
+		transparent 100%,
+		var(--db-violet-6)
+	);
+	--db-violet-bg-transparent-semi-enabled: color-mix(
+		in srgb,
+		transparent 92%,
+		var(--db-violet-6)
+	);
+	--db-violet-bg-transparent-hover: color-mix(
+		in srgb,
+		transparent 84%,
+		var(--db-violet-6)
+	);
+	--db-violet-bg-transparent-pressed: color-mix(
+		in srgb,
+		transparent 76%,
+		var(--db-violet-6)
+	);
+	--db-violet-on-bg-enabled: var(--db-violet-3);
+	--db-violet-on-bg-hover: var(--db-violet-4);
+	--db-violet-on-bg-pressed: var(--db-violet-5);
+	--db-violet-on-bg-weak-enabled: var(--db-violet-5);
+	--db-violet-on-bg-weak-hover: var(--db-violet-6);
+	--db-violet-on-bg-weak-pressed: var(--db-violet-7);
+	--db-violet-on-contrast-enabled: var(--db-violet-14);
+	--db-violet-on-contrast-hover: var(--db-violet-13);
+	--db-violet-on-contrast-pressed: var(--db-violet-12);
+	--db-violet-contrast-high-enabled: var(--db-violet-6);
+	--db-violet-contrast-high-hover: var(--db-violet-5);
+	--db-violet-contrast-high-pressed: var(--db-violet-4);
+	--db-violet-contrast-low-enabled: var(--db-violet-7);
+	--db-violet-contrast-low-hover: var(--db-violet-6);
+	--db-violet-contrast-low-pressed: var(--db-violet-5);
+	--db-violet-border: var(--db-violet-10);
+	--db-blue-on-enabled: var(--db-blue-on-light);
+	--db-blue-on-hover: var(--db-blue-on-hover-light);
+	--db-blue-on-pressed: var(--db-blue-on-pressed-light);
+	--db-blue-origin-enabled: var(--db-blue-origin-light);
+	--db-blue-origin-hover: var(--db-blue-hover-light);
+	--db-blue-origin-pressed: var(--db-blue-pressed-light);
+	--db-blue-bg-lvl-1-enabled: var(--db-blue-14);
+	--db-blue-bg-lvl-1-hover: var(--db-blue-13);
+	--db-blue-bg-lvl-1-pressed: var(--db-blue-12);
+	--db-blue-bg-lvl-2-enabled: var(--db-blue-13);
+	--db-blue-bg-lvl-2-hover: var(--db-blue-12);
+	--db-blue-bg-lvl-2-pressed: var(--db-blue-11);
+	--db-blue-bg-lvl-3-enabled: var(--db-blue-12);
+	--db-blue-bg-lvl-3-hover: var(--db-blue-11);
+	--db-blue-bg-lvl-3-pressed: var(--db-blue-10);
+	--db-blue-bg-transparent-full-enabled: color-mix(
+		in srgb,
+		transparent 100%,
+		var(--db-blue-6)
+	);
+	--db-blue-bg-transparent-semi-enabled: color-mix(
+		in srgb,
+		transparent 92%,
+		var(--db-blue-6)
+	);
+	--db-blue-bg-transparent-hover: color-mix(
+		in srgb,
+		transparent 84%,
+		var(--db-blue-6)
+	);
+	--db-blue-bg-transparent-pressed: color-mix(
+		in srgb,
+		transparent 76%,
+		var(--db-blue-6)
+	);
+	--db-blue-on-bg-enabled: var(--db-blue-3);
+	--db-blue-on-bg-hover: var(--db-blue-4);
+	--db-blue-on-bg-pressed: var(--db-blue-5);
+	--db-blue-on-bg-weak-enabled: var(--db-blue-5);
+	--db-blue-on-bg-weak-hover: var(--db-blue-6);
+	--db-blue-on-bg-weak-pressed: var(--db-blue-7);
+	--db-blue-on-contrast-enabled: var(--db-blue-14);
+	--db-blue-on-contrast-hover: var(--db-blue-13);
+	--db-blue-on-contrast-pressed: var(--db-blue-12);
+	--db-blue-contrast-high-enabled: var(--db-blue-6);
+	--db-blue-contrast-high-hover: var(--db-blue-5);
+	--db-blue-contrast-high-pressed: var(--db-blue-4);
+	--db-blue-contrast-low-enabled: var(--db-blue-7);
+	--db-blue-contrast-low-hover: var(--db-blue-6);
+	--db-blue-contrast-low-pressed: var(--db-blue-5);
+	--db-blue-border: var(--db-blue-10);
+	--db-cyan-on-enabled: var(--db-cyan-on-light);
+	--db-cyan-on-hover: var(--db-cyan-on-hover-light);
+	--db-cyan-on-pressed: var(--db-cyan-on-pressed-light);
+	--db-cyan-origin-enabled: var(--db-cyan-origin-light);
+	--db-cyan-origin-hover: var(--db-cyan-hover-light);
+	--db-cyan-origin-pressed: var(--db-cyan-pressed-light);
+	--db-cyan-bg-lvl-1-enabled: var(--db-cyan-14);
+	--db-cyan-bg-lvl-1-hover: var(--db-cyan-13);
+	--db-cyan-bg-lvl-1-pressed: var(--db-cyan-12);
+	--db-cyan-bg-lvl-2-enabled: var(--db-cyan-13);
+	--db-cyan-bg-lvl-2-hover: var(--db-cyan-12);
+	--db-cyan-bg-lvl-2-pressed: var(--db-cyan-11);
+	--db-cyan-bg-lvl-3-enabled: var(--db-cyan-12);
+	--db-cyan-bg-lvl-3-hover: var(--db-cyan-11);
+	--db-cyan-bg-lvl-3-pressed: var(--db-cyan-10);
+	--db-cyan-bg-transparent-full-enabled: color-mix(
+		in srgb,
+		transparent 100%,
+		var(--db-cyan-6)
+	);
+	--db-cyan-bg-transparent-semi-enabled: color-mix(
+		in srgb,
+		transparent 92%,
+		var(--db-cyan-6)
+	);
+	--db-cyan-bg-transparent-hover: color-mix(
+		in srgb,
+		transparent 84%,
+		var(--db-cyan-6)
+	);
+	--db-cyan-bg-transparent-pressed: color-mix(
+		in srgb,
+		transparent 76%,
+		var(--db-cyan-6)
+	);
+	--db-cyan-on-bg-enabled: var(--db-cyan-3);
+	--db-cyan-on-bg-hover: var(--db-cyan-4);
+	--db-cyan-on-bg-pressed: var(--db-cyan-5);
+	--db-cyan-on-bg-weak-enabled: var(--db-cyan-5);
+	--db-cyan-on-bg-weak-hover: var(--db-cyan-6);
+	--db-cyan-on-bg-weak-pressed: var(--db-cyan-7);
+	--db-cyan-on-contrast-enabled: var(--db-cyan-14);
+	--db-cyan-on-contrast-hover: var(--db-cyan-13);
+	--db-cyan-on-contrast-pressed: var(--db-cyan-12);
+	--db-cyan-contrast-high-enabled: var(--db-cyan-6);
+	--db-cyan-contrast-high-hover: var(--db-cyan-5);
+	--db-cyan-contrast-high-pressed: var(--db-cyan-4);
+	--db-cyan-contrast-low-enabled: var(--db-cyan-7);
+	--db-cyan-contrast-low-hover: var(--db-cyan-6);
+	--db-cyan-contrast-low-pressed: var(--db-cyan-5);
+	--db-cyan-border: var(--db-cyan-10);
+	--db-turquoise-on-enabled: var(--db-turquoise-on-light);
+	--db-turquoise-on-hover: var(--db-turquoise-on-hover-light);
+	--db-turquoise-on-pressed: var(--db-turquoise-on-pressed-light);
+	--db-turquoise-origin-enabled: var(--db-turquoise-origin-light);
+	--db-turquoise-origin-hover: var(--db-turquoise-hover-light);
+	--db-turquoise-origin-pressed: var(--db-turquoise-pressed-light);
+	--db-turquoise-bg-lvl-1-enabled: var(--db-turquoise-14);
+	--db-turquoise-bg-lvl-1-hover: var(--db-turquoise-13);
+	--db-turquoise-bg-lvl-1-pressed: var(--db-turquoise-12);
+	--db-turquoise-bg-lvl-2-enabled: var(--db-turquoise-13);
+	--db-turquoise-bg-lvl-2-hover: var(--db-turquoise-12);
+	--db-turquoise-bg-lvl-2-pressed: var(--db-turquoise-11);
+	--db-turquoise-bg-lvl-3-enabled: var(--db-turquoise-12);
+	--db-turquoise-bg-lvl-3-hover: var(--db-turquoise-11);
+	--db-turquoise-bg-lvl-3-pressed: var(--db-turquoise-10);
+	--db-turquoise-bg-transparent-full-enabled: color-mix(
+		in srgb,
+		transparent 100%,
+		var(--db-turquoise-6)
+	);
+	--db-turquoise-bg-transparent-semi-enabled: color-mix(
+		in srgb,
+		transparent 92%,
+		var(--db-turquoise-6)
+	);
+	--db-turquoise-bg-transparent-hover: color-mix(
+		in srgb,
+		transparent 84%,
+		var(--db-turquoise-6)
+	);
+	--db-turquoise-bg-transparent-pressed: color-mix(
+		in srgb,
+		transparent 76%,
+		var(--db-turquoise-6)
+	);
+	--db-turquoise-on-bg-enabled: var(--db-turquoise-3);
+	--db-turquoise-on-bg-hover: var(--db-turquoise-4);
+	--db-turquoise-on-bg-pressed: var(--db-turquoise-5);
+	--db-turquoise-on-bg-weak-enabled: var(--db-turquoise-5);
+	--db-turquoise-on-bg-weak-hover: var(--db-turquoise-6);
+	--db-turquoise-on-bg-weak-pressed: var(--db-turquoise-7);
+	--db-turquoise-on-contrast-enabled: var(--db-turquoise-14);
+	--db-turquoise-on-contrast-hover: var(--db-turquoise-13);
+	--db-turquoise-on-contrast-pressed: var(--db-turquoise-12);
+	--db-turquoise-contrast-high-enabled: var(--db-turquoise-6);
+	--db-turquoise-contrast-high-hover: var(--db-turquoise-5);
+	--db-turquoise-contrast-high-pressed: var(--db-turquoise-4);
+	--db-turquoise-contrast-low-enabled: var(--db-turquoise-7);
+	--db-turquoise-contrast-low-hover: var(--db-turquoise-6);
+	--db-turquoise-contrast-low-pressed: var(--db-turquoise-5);
+	--db-turquoise-border: var(--db-turquoise-10);
+	--db-green-on-enabled: var(--db-green-on-light);
+	--db-green-on-hover: var(--db-green-on-hover-light);
+	--db-green-on-pressed: var(--db-green-on-pressed-light);
+	--db-green-origin-enabled: var(--db-green-origin-light);
+	--db-green-origin-hover: var(--db-green-hover-light);
+	--db-green-origin-pressed: var(--db-green-pressed-light);
+	--db-green-bg-lvl-1-enabled: var(--db-green-14);
+	--db-green-bg-lvl-1-hover: var(--db-green-13);
+	--db-green-bg-lvl-1-pressed: var(--db-green-12);
+	--db-green-bg-lvl-2-enabled: var(--db-green-13);
+	--db-green-bg-lvl-2-hover: var(--db-green-12);
+	--db-green-bg-lvl-2-pressed: var(--db-green-11);
+	--db-green-bg-lvl-3-enabled: var(--db-green-12);
+	--db-green-bg-lvl-3-hover: var(--db-green-11);
+	--db-green-bg-lvl-3-pressed: var(--db-green-10);
+	--db-green-bg-transparent-full-enabled: color-mix(
+		in srgb,
+		transparent 100%,
+		var(--db-green-6)
+	);
+	--db-green-bg-transparent-semi-enabled: color-mix(
+		in srgb,
+		transparent 92%,
+		var(--db-green-6)
+	);
+	--db-green-bg-transparent-hover: color-mix(
+		in srgb,
+		transparent 84%,
+		var(--db-green-6)
+	);
+	--db-green-bg-transparent-pressed: color-mix(
+		in srgb,
+		transparent 76%,
+		var(--db-green-6)
+	);
+	--db-green-on-bg-enabled: var(--db-green-3);
+	--db-green-on-bg-hover: var(--db-green-4);
+	--db-green-on-bg-pressed: var(--db-green-5);
+	--db-green-on-bg-weak-enabled: var(--db-green-5);
+	--db-green-on-bg-weak-hover: var(--db-green-6);
+	--db-green-on-bg-weak-pressed: var(--db-green-7);
+	--db-green-on-contrast-enabled: var(--db-green-14);
+	--db-green-on-contrast-hover: var(--db-green-13);
+	--db-green-on-contrast-pressed: var(--db-green-12);
+	--db-green-contrast-high-enabled: var(--db-green-6);
+	--db-green-contrast-high-hover: var(--db-green-5);
+	--db-green-contrast-high-pressed: var(--db-green-4);
+	--db-green-contrast-low-enabled: var(--db-green-7);
+	--db-green-contrast-low-hover: var(--db-green-6);
+	--db-green-contrast-low-pressed: var(--db-green-5);
+	--db-green-border: var(--db-green-10);
+}
+
+@mixin get-additional-color-scheme-dark {
+	--db-yellow-on-enabled: var(--db-yellow-on-dark);
+	--db-yellow-on-hover: var(--db-yellow-on-hover-dark);
+	--db-yellow-on-pressed: var(--db-yellow-on-pressed-dark);
+	--db-yellow-origin-enabled: var(--db-yellow-origin-dark);
+	--db-yellow-origin-hover: var(--db-yellow-hover-dark);
+	--db-yellow-origin-pressed: var(--db-yellow-pressed-dark);
+	--db-yellow-bg-lvl-1-enabled: var(--db-yellow-3);
+	--db-yellow-bg-lvl-1-hover: var(--db-yellow-4);
+	--db-yellow-bg-lvl-1-pressed: var(--db-yellow-5);
+	--db-yellow-bg-lvl-2-enabled: var(--db-yellow-2);
+	--db-yellow-bg-lvl-2-hover: var(--db-yellow-3);
+	--db-yellow-bg-lvl-2-pressed: var(--db-yellow-4);
+	--db-yellow-bg-lvl-3-enabled: var(--db-yellow-1);
+	--db-yellow-bg-lvl-3-hover: var(--db-yellow-2);
+	--db-yellow-bg-lvl-3-pressed: var(--db-yellow-3);
+	--db-yellow-bg-transparent-full-enabled: color-mix(
+		in srgb,
+		transparent 100%,
+		var(--db-yellow-9)
+	);
+	--db-yellow-bg-transparent-semi-enabled: color-mix(
+		in srgb,
+		transparent 84%,
+		var(--db-yellow-9)
+	);
+	--db-yellow-bg-transparent-hover: color-mix(
+		in srgb,
+		transparent 76%,
+		var(--db-yellow-9)
+	);
+	--db-yellow-bg-transparent-pressed: color-mix(
+		in srgb,
+		transparent 68%,
+		var(--db-yellow-9)
+	);
+	--db-yellow-on-bg-enabled: var(--db-yellow-12);
+	--db-yellow-on-bg-hover: var(--db-yellow-11);
+	--db-yellow-on-bg-pressed: var(--db-yellow-10);
+	--db-yellow-on-bg-weak-enabled: var(--db-yellow-10);
+	--db-yellow-on-bg-weak-hover: var(--db-yellow-9);
+	--db-yellow-on-bg-weak-pressed: var(--db-yellow-8);
+	--db-yellow-on-contrast-enabled: var(--db-yellow-3);
+	--db-yellow-on-contrast-hover: var(--db-yellow-4);
+	--db-yellow-on-contrast-pressed: var(--db-yellow-5);
+	--db-yellow-contrast-high-enabled: var(--db-yellow-9);
+	--db-yellow-contrast-high-hover: var(--db-yellow-8);
+	--db-yellow-contrast-high-pressed: var(--db-yellow-7);
+	--db-yellow-contrast-low-enabled: var(--db-yellow-8);
+	--db-yellow-contrast-low-hover: var(--db-yellow-7);
+	--db-yellow-contrast-low-pressed: var(--db-yellow-6);
+	--db-yellow-border: var(--db-yellow-6);
+	--db-orange-on-enabled: var(--db-orange-on-dark);
+	--db-orange-on-hover: var(--db-orange-on-hover-dark);
+	--db-orange-on-pressed: var(--db-orange-on-pressed-dark);
+	--db-orange-origin-enabled: var(--db-orange-origin-dark);
+	--db-orange-origin-hover: var(--db-orange-hover-dark);
+	--db-orange-origin-pressed: var(--db-orange-pressed-dark);
+	--db-orange-bg-lvl-1-enabled: var(--db-orange-3);
+	--db-orange-bg-lvl-1-hover: var(--db-orange-4);
+	--db-orange-bg-lvl-1-pressed: var(--db-orange-5);
+	--db-orange-bg-lvl-2-enabled: var(--db-orange-2);
+	--db-orange-bg-lvl-2-hover: var(--db-orange-3);
+	--db-orange-bg-lvl-2-pressed: var(--db-orange-4);
+	--db-orange-bg-lvl-3-enabled: var(--db-orange-1);
+	--db-orange-bg-lvl-3-hover: var(--db-orange-2);
+	--db-orange-bg-lvl-3-pressed: var(--db-orange-3);
+	--db-orange-bg-transparent-full-enabled: color-mix(
+		in srgb,
+		transparent 100%,
+		var(--db-orange-9)
+	);
+	--db-orange-bg-transparent-semi-enabled: color-mix(
+		in srgb,
+		transparent 84%,
+		var(--db-orange-9)
+	);
+	--db-orange-bg-transparent-hover: color-mix(
+		in srgb,
+		transparent 76%,
+		var(--db-orange-9)
+	);
+	--db-orange-bg-transparent-pressed: color-mix(
+		in srgb,
+		transparent 68%,
+		var(--db-orange-9)
+	);
+	--db-orange-on-bg-enabled: var(--db-orange-12);
+	--db-orange-on-bg-hover: var(--db-orange-11);
+	--db-orange-on-bg-pressed: var(--db-orange-10);
+	--db-orange-on-bg-weak-enabled: var(--db-orange-10);
+	--db-orange-on-bg-weak-hover: var(--db-orange-9);
+	--db-orange-on-bg-weak-pressed: var(--db-orange-8);
+	--db-orange-on-contrast-enabled: var(--db-orange-3);
+	--db-orange-on-contrast-hover: var(--db-orange-4);
+	--db-orange-on-contrast-pressed: var(--db-orange-5);
+	--db-orange-contrast-high-enabled: var(--db-orange-9);
+	--db-orange-contrast-high-hover: var(--db-orange-8);
+	--db-orange-contrast-high-pressed: var(--db-orange-7);
+	--db-orange-contrast-low-enabled: var(--db-orange-8);
+	--db-orange-contrast-low-hover: var(--db-orange-7);
+	--db-orange-contrast-low-pressed: var(--db-orange-6);
+	--db-orange-border: var(--db-orange-6);
+	--db-red-on-enabled: var(--db-red-on-dark);
+	--db-red-on-hover: var(--db-red-on-hover-dark);
+	--db-red-on-pressed: var(--db-red-on-pressed-dark);
+	--db-red-origin-enabled: var(--db-red-origin-dark);
+	--db-red-origin-hover: var(--db-red-hover-dark);
+	--db-red-origin-pressed: var(--db-red-pressed-dark);
+	--db-red-bg-lvl-1-enabled: var(--db-red-3);
+	--db-red-bg-lvl-1-hover: var(--db-red-4);
+	--db-red-bg-lvl-1-pressed: var(--db-red-5);
+	--db-red-bg-lvl-2-enabled: var(--db-red-2);
+	--db-red-bg-lvl-2-hover: var(--db-red-3);
+	--db-red-bg-lvl-2-pressed: var(--db-red-4);
+	--db-red-bg-lvl-3-enabled: var(--db-red-1);
+	--db-red-bg-lvl-3-hover: var(--db-red-2);
+	--db-red-bg-lvl-3-pressed: var(--db-red-3);
+	--db-red-bg-transparent-full-enabled: color-mix(
+		in srgb,
+		transparent 100%,
+		var(--db-red-9)
+	);
+	--db-red-bg-transparent-semi-enabled: color-mix(
+		in srgb,
+		transparent 84%,
+		var(--db-red-9)
+	);
+	--db-red-bg-transparent-hover: color-mix(
+		in srgb,
+		transparent 76%,
+		var(--db-red-9)
+	);
+	--db-red-bg-transparent-pressed: color-mix(
+		in srgb,
+		transparent 68%,
+		var(--db-red-9)
+	);
+	--db-red-on-bg-enabled: var(--db-red-12);
+	--db-red-on-bg-hover: var(--db-red-11);
+	--db-red-on-bg-pressed: var(--db-red-10);
+	--db-red-on-bg-weak-enabled: var(--db-red-10);
+	--db-red-on-bg-weak-hover: var(--db-red-9);
+	--db-red-on-bg-weak-pressed: var(--db-red-8);
+	--db-red-on-contrast-enabled: var(--db-red-3);
+	--db-red-on-contrast-hover: var(--db-red-4);
+	--db-red-on-contrast-pressed: var(--db-red-5);
+	--db-red-contrast-high-enabled: var(--db-red-9);
+	--db-red-contrast-high-hover: var(--db-red-8);
+	--db-red-contrast-high-pressed: var(--db-red-7);
+	--db-red-contrast-low-enabled: var(--db-red-8);
+	--db-red-contrast-low-hover: var(--db-red-7);
+	--db-red-contrast-low-pressed: var(--db-red-6);
+	--db-red-border: var(--db-red-6);
+	--db-pink-on-enabled: var(--db-pink-on-dark);
+	--db-pink-on-hover: var(--db-pink-on-hover-dark);
+	--db-pink-on-pressed: var(--db-pink-on-pressed-dark);
+	--db-pink-origin-enabled: var(--db-pink-origin-dark);
+	--db-pink-origin-hover: var(--db-pink-hover-dark);
+	--db-pink-origin-pressed: var(--db-pink-pressed-dark);
+	--db-pink-bg-lvl-1-enabled: var(--db-pink-3);
+	--db-pink-bg-lvl-1-hover: var(--db-pink-4);
+	--db-pink-bg-lvl-1-pressed: var(--db-pink-5);
+	--db-pink-bg-lvl-2-enabled: var(--db-pink-2);
+	--db-pink-bg-lvl-2-hover: var(--db-pink-3);
+	--db-pink-bg-lvl-2-pressed: var(--db-pink-4);
+	--db-pink-bg-lvl-3-enabled: var(--db-pink-1);
+	--db-pink-bg-lvl-3-hover: var(--db-pink-2);
+	--db-pink-bg-lvl-3-pressed: var(--db-pink-3);
+	--db-pink-bg-transparent-full-enabled: color-mix(
+		in srgb,
+		transparent 100%,
+		var(--db-pink-9)
+	);
+	--db-pink-bg-transparent-semi-enabled: color-mix(
+		in srgb,
+		transparent 84%,
+		var(--db-pink-9)
+	);
+	--db-pink-bg-transparent-hover: color-mix(
+		in srgb,
+		transparent 76%,
+		var(--db-pink-9)
+	);
+	--db-pink-bg-transparent-pressed: color-mix(
+		in srgb,
+		transparent 68%,
+		var(--db-pink-9)
+	);
+	--db-pink-on-bg-enabled: var(--db-pink-12);
+	--db-pink-on-bg-hover: var(--db-pink-11);
+	--db-pink-on-bg-pressed: var(--db-pink-10);
+	--db-pink-on-bg-weak-enabled: var(--db-pink-10);
+	--db-pink-on-bg-weak-hover: var(--db-pink-9);
+	--db-pink-on-bg-weak-pressed: var(--db-pink-8);
+	--db-pink-on-contrast-enabled: var(--db-pink-3);
+	--db-pink-on-contrast-hover: var(--db-pink-4);
+	--db-pink-on-contrast-pressed: var(--db-pink-5);
+	--db-pink-contrast-high-enabled: var(--db-pink-9);
+	--db-pink-contrast-high-hover: var(--db-pink-8);
+	--db-pink-contrast-high-pressed: var(--db-pink-7);
+	--db-pink-contrast-low-enabled: var(--db-pink-8);
+	--db-pink-contrast-low-hover: var(--db-pink-7);
+	--db-pink-contrast-low-pressed: var(--db-pink-6);
+	--db-pink-border: var(--db-pink-6);
+	--db-violet-on-enabled: var(--db-violet-on-dark);
+	--db-violet-on-hover: var(--db-violet-on-hover-dark);
+	--db-violet-on-pressed: var(--db-violet-on-pressed-dark);
+	--db-violet-origin-enabled: var(--db-violet-origin-dark);
+	--db-violet-origin-hover: var(--db-violet-hover-dark);
+	--db-violet-origin-pressed: var(--db-violet-pressed-dark);
+	--db-violet-bg-lvl-1-enabled: var(--db-violet-3);
+	--db-violet-bg-lvl-1-hover: var(--db-violet-4);
+	--db-violet-bg-lvl-1-pressed: var(--db-violet-5);
+	--db-violet-bg-lvl-2-enabled: var(--db-violet-2);
+	--db-violet-bg-lvl-2-hover: var(--db-violet-3);
+	--db-violet-bg-lvl-2-pressed: var(--db-violet-4);
+	--db-violet-bg-lvl-3-enabled: var(--db-violet-1);
+	--db-violet-bg-lvl-3-hover: var(--db-violet-2);
+	--db-violet-bg-lvl-3-pressed: var(--db-violet-3);
+	--db-violet-bg-transparent-full-enabled: color-mix(
+		in srgb,
+		transparent 100%,
+		var(--db-violet-9)
+	);
+	--db-violet-bg-transparent-semi-enabled: color-mix(
+		in srgb,
+		transparent 84%,
+		var(--db-violet-9)
+	);
+	--db-violet-bg-transparent-hover: color-mix(
+		in srgb,
+		transparent 76%,
+		var(--db-violet-9)
+	);
+	--db-violet-bg-transparent-pressed: color-mix(
+		in srgb,
+		transparent 68%,
+		var(--db-violet-9)
+	);
+	--db-violet-on-bg-enabled: var(--db-violet-12);
+	--db-violet-on-bg-hover: var(--db-violet-11);
+	--db-violet-on-bg-pressed: var(--db-violet-10);
+	--db-violet-on-bg-weak-enabled: var(--db-violet-10);
+	--db-violet-on-bg-weak-hover: var(--db-violet-9);
+	--db-violet-on-bg-weak-pressed: var(--db-violet-8);
+	--db-violet-on-contrast-enabled: var(--db-violet-3);
+	--db-violet-on-contrast-hover: var(--db-violet-4);
+	--db-violet-on-contrast-pressed: var(--db-violet-5);
+	--db-violet-contrast-high-enabled: var(--db-violet-9);
+	--db-violet-contrast-high-hover: var(--db-violet-8);
+	--db-violet-contrast-high-pressed: var(--db-violet-7);
+	--db-violet-contrast-low-enabled: var(--db-violet-8);
+	--db-violet-contrast-low-hover: var(--db-violet-7);
+	--db-violet-contrast-low-pressed: var(--db-violet-6);
+	--db-violet-border: var(--db-violet-6);
+	--db-blue-on-enabled: var(--db-blue-on-dark);
+	--db-blue-on-hover: var(--db-blue-on-hover-dark);
+	--db-blue-on-pressed: var(--db-blue-on-pressed-dark);
+	--db-blue-origin-enabled: var(--db-blue-origin-dark);
+	--db-blue-origin-hover: var(--db-blue-hover-dark);
+	--db-blue-origin-pressed: var(--db-blue-pressed-dark);
+	--db-blue-bg-lvl-1-enabled: var(--db-blue-3);
+	--db-blue-bg-lvl-1-hover: var(--db-blue-4);
+	--db-blue-bg-lvl-1-pressed: var(--db-blue-5);
+	--db-blue-bg-lvl-2-enabled: var(--db-blue-2);
+	--db-blue-bg-lvl-2-hover: var(--db-blue-3);
+	--db-blue-bg-lvl-2-pressed: var(--db-blue-4);
+	--db-blue-bg-lvl-3-enabled: var(--db-blue-1);
+	--db-blue-bg-lvl-3-hover: var(--db-blue-2);
+	--db-blue-bg-lvl-3-pressed: var(--db-blue-3);
+	--db-blue-bg-transparent-full-enabled: color-mix(
+		in srgb,
+		transparent 100%,
+		var(--db-blue-9)
+	);
+	--db-blue-bg-transparent-semi-enabled: color-mix(
+		in srgb,
+		transparent 84%,
+		var(--db-blue-9)
+	);
+	--db-blue-bg-transparent-hover: color-mix(
+		in srgb,
+		transparent 76%,
+		var(--db-blue-9)
+	);
+	--db-blue-bg-transparent-pressed: color-mix(
+		in srgb,
+		transparent 68%,
+		var(--db-blue-9)
+	);
+	--db-blue-on-bg-enabled: var(--db-blue-12);
+	--db-blue-on-bg-hover: var(--db-blue-11);
+	--db-blue-on-bg-pressed: var(--db-blue-10);
+	--db-blue-on-bg-weak-enabled: var(--db-blue-10);
+	--db-blue-on-bg-weak-hover: var(--db-blue-9);
+	--db-blue-on-bg-weak-pressed: var(--db-blue-8);
+	--db-blue-on-contrast-enabled: var(--db-blue-3);
+	--db-blue-on-contrast-hover: var(--db-blue-4);
+	--db-blue-on-contrast-pressed: var(--db-blue-5);
+	--db-blue-contrast-high-enabled: var(--db-blue-9);
+	--db-blue-contrast-high-hover: var(--db-blue-8);
+	--db-blue-contrast-high-pressed: var(--db-blue-7);
+	--db-blue-contrast-low-enabled: var(--db-blue-8);
+	--db-blue-contrast-low-hover: var(--db-blue-7);
+	--db-blue-contrast-low-pressed: var(--db-blue-6);
+	--db-blue-border: var(--db-blue-6);
+	--db-cyan-on-enabled: var(--db-cyan-on-dark);
+	--db-cyan-on-hover: var(--db-cyan-on-hover-dark);
+	--db-cyan-on-pressed: var(--db-cyan-on-pressed-dark);
+	--db-cyan-origin-enabled: var(--db-cyan-origin-dark);
+	--db-cyan-origin-hover: var(--db-cyan-hover-dark);
+	--db-cyan-origin-pressed: var(--db-cyan-pressed-dark);
+	--db-cyan-bg-lvl-1-enabled: var(--db-cyan-3);
+	--db-cyan-bg-lvl-1-hover: var(--db-cyan-4);
+	--db-cyan-bg-lvl-1-pressed: var(--db-cyan-5);
+	--db-cyan-bg-lvl-2-enabled: var(--db-cyan-2);
+	--db-cyan-bg-lvl-2-hover: var(--db-cyan-3);
+	--db-cyan-bg-lvl-2-pressed: var(--db-cyan-4);
+	--db-cyan-bg-lvl-3-enabled: var(--db-cyan-1);
+	--db-cyan-bg-lvl-3-hover: var(--db-cyan-2);
+	--db-cyan-bg-lvl-3-pressed: var(--db-cyan-3);
+	--db-cyan-bg-transparent-full-enabled: color-mix(
+		in srgb,
+		transparent 100%,
+		var(--db-cyan-9)
+	);
+	--db-cyan-bg-transparent-semi-enabled: color-mix(
+		in srgb,
+		transparent 84%,
+		var(--db-cyan-9)
+	);
+	--db-cyan-bg-transparent-hover: color-mix(
+		in srgb,
+		transparent 76%,
+		var(--db-cyan-9)
+	);
+	--db-cyan-bg-transparent-pressed: color-mix(
+		in srgb,
+		transparent 68%,
+		var(--db-cyan-9)
+	);
+	--db-cyan-on-bg-enabled: var(--db-cyan-12);
+	--db-cyan-on-bg-hover: var(--db-cyan-11);
+	--db-cyan-on-bg-pressed: var(--db-cyan-10);
+	--db-cyan-on-bg-weak-enabled: var(--db-cyan-10);
+	--db-cyan-on-bg-weak-hover: var(--db-cyan-9);
+	--db-cyan-on-bg-weak-pressed: var(--db-cyan-8);
+	--db-cyan-on-contrast-enabled: var(--db-cyan-3);
+	--db-cyan-on-contrast-hover: var(--db-cyan-4);
+	--db-cyan-on-contrast-pressed: var(--db-cyan-5);
+	--db-cyan-contrast-high-enabled: var(--db-cyan-9);
+	--db-cyan-contrast-high-hover: var(--db-cyan-8);
+	--db-cyan-contrast-high-pressed: var(--db-cyan-7);
+	--db-cyan-contrast-low-enabled: var(--db-cyan-8);
+	--db-cyan-contrast-low-hover: var(--db-cyan-7);
+	--db-cyan-contrast-low-pressed: var(--db-cyan-6);
+	--db-cyan-border: var(--db-cyan-6);
+	--db-turquoise-on-enabled: var(--db-turquoise-on-dark);
+	--db-turquoise-on-hover: var(--db-turquoise-on-hover-dark);
+	--db-turquoise-on-pressed: var(--db-turquoise-on-pressed-dark);
+	--db-turquoise-origin-enabled: var(--db-turquoise-origin-dark);
+	--db-turquoise-origin-hover: var(--db-turquoise-hover-dark);
+	--db-turquoise-origin-pressed: var(--db-turquoise-pressed-dark);
+	--db-turquoise-bg-lvl-1-enabled: var(--db-turquoise-3);
+	--db-turquoise-bg-lvl-1-hover: var(--db-turquoise-4);
+	--db-turquoise-bg-lvl-1-pressed: var(--db-turquoise-5);
+	--db-turquoise-bg-lvl-2-enabled: var(--db-turquoise-2);
+	--db-turquoise-bg-lvl-2-hover: var(--db-turquoise-3);
+	--db-turquoise-bg-lvl-2-pressed: var(--db-turquoise-4);
+	--db-turquoise-bg-lvl-3-enabled: var(--db-turquoise-1);
+	--db-turquoise-bg-lvl-3-hover: var(--db-turquoise-2);
+	--db-turquoise-bg-lvl-3-pressed: var(--db-turquoise-3);
+	--db-turquoise-bg-transparent-full-enabled: color-mix(
+		in srgb,
+		transparent 100%,
+		var(--db-turquoise-9)
+	);
+	--db-turquoise-bg-transparent-semi-enabled: color-mix(
+		in srgb,
+		transparent 84%,
+		var(--db-turquoise-9)
+	);
+	--db-turquoise-bg-transparent-hover: color-mix(
+		in srgb,
+		transparent 76%,
+		var(--db-turquoise-9)
+	);
+	--db-turquoise-bg-transparent-pressed: color-mix(
+		in srgb,
+		transparent 68%,
+		var(--db-turquoise-9)
+	);
+	--db-turquoise-on-bg-enabled: var(--db-turquoise-12);
+	--db-turquoise-on-bg-hover: var(--db-turquoise-11);
+	--db-turquoise-on-bg-pressed: var(--db-turquoise-10);
+	--db-turquoise-on-bg-weak-enabled: var(--db-turquoise-10);
+	--db-turquoise-on-bg-weak-hover: var(--db-turquoise-9);
+	--db-turquoise-on-bg-weak-pressed: var(--db-turquoise-8);
+	--db-turquoise-on-contrast-enabled: var(--db-turquoise-3);
+	--db-turquoise-on-contrast-hover: var(--db-turquoise-4);
+	--db-turquoise-on-contrast-pressed: var(--db-turquoise-5);
+	--db-turquoise-contrast-high-enabled: var(--db-turquoise-9);
+	--db-turquoise-contrast-high-hover: var(--db-turquoise-8);
+	--db-turquoise-contrast-high-pressed: var(--db-turquoise-7);
+	--db-turquoise-contrast-low-enabled: var(--db-turquoise-8);
+	--db-turquoise-contrast-low-hover: var(--db-turquoise-7);
+	--db-turquoise-contrast-low-pressed: var(--db-turquoise-6);
+	--db-turquoise-border: var(--db-turquoise-6);
+	--db-green-on-enabled: var(--db-green-on-dark);
+	--db-green-on-hover: var(--db-green-on-hover-dark);
+	--db-green-on-pressed: var(--db-green-on-pressed-dark);
+	--db-green-origin-enabled: var(--db-green-origin-dark);
+	--db-green-origin-hover: var(--db-green-hover-dark);
+	--db-green-origin-pressed: var(--db-green-pressed-dark);
+	--db-green-bg-lvl-1-enabled: var(--db-green-3);
+	--db-green-bg-lvl-1-hover: var(--db-green-4);
+	--db-green-bg-lvl-1-pressed: var(--db-green-5);
+	--db-green-bg-lvl-2-enabled: var(--db-green-2);
+	--db-green-bg-lvl-2-hover: var(--db-green-3);
+	--db-green-bg-lvl-2-pressed: var(--db-green-4);
+	--db-green-bg-lvl-3-enabled: var(--db-green-1);
+	--db-green-bg-lvl-3-hover: var(--db-green-2);
+	--db-green-bg-lvl-3-pressed: var(--db-green-3);
+	--db-green-bg-transparent-full-enabled: color-mix(
+		in srgb,
+		transparent 100%,
+		var(--db-green-9)
+	);
+	--db-green-bg-transparent-semi-enabled: color-mix(
+		in srgb,
+		transparent 84%,
+		var(--db-green-9)
+	);
+	--db-green-bg-transparent-hover: color-mix(
+		in srgb,
+		transparent 76%,
+		var(--db-green-9)
+	);
+	--db-green-bg-transparent-pressed: color-mix(
+		in srgb,
+		transparent 68%,
+		var(--db-green-9)
+	);
+	--db-green-on-bg-enabled: var(--db-green-12);
+	--db-green-on-bg-hover: var(--db-green-11);
+	--db-green-on-bg-pressed: var(--db-green-10);
+	--db-green-on-bg-weak-enabled: var(--db-green-10);
+	--db-green-on-bg-weak-hover: var(--db-green-9);
+	--db-green-on-bg-weak-pressed: var(--db-green-8);
+	--db-green-on-contrast-enabled: var(--db-green-3);
+	--db-green-on-contrast-hover: var(--db-green-4);
+	--db-green-on-contrast-pressed: var(--db-green-5);
+	--db-green-contrast-high-enabled: var(--db-green-9);
+	--db-green-contrast-high-hover: var(--db-green-8);
+	--db-green-contrast-high-pressed: var(--db-green-7);
+	--db-green-contrast-low-enabled: var(--db-green-8);
+	--db-green-contrast-low-hover: var(--db-green-7);
+	--db-green-contrast-low-pressed: var(--db-green-6);
+	--db-green-border: var(--db-green-6);
+}
