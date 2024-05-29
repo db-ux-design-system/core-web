@@ -29,7 +29,7 @@ export type DefaultComponentProps = {
 };
 
 export type PatternhubComponentProps = {
-	subComponent?: unknown;
+	subComponent?: any;
 	isSubComponent?: boolean;
 	componentName?: string;
 };
