@@ -5,7 +5,7 @@ const LinkHeader = ({ id }) => {
 	if (id) {
 		return (
 			<Link className="header-link" href={`?current=${id}`}>
-				<DBIcon icon="add_link" />
+				<DBIcon icon="paper_clip" />
 				{id} anchor link
 			</Link>
 		);
