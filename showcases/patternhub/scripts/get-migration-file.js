@@ -19,7 +19,7 @@ const getMigrationFile = (componentName, displayName) => {
 	}
 
 	return `
-import DefaultPage from "../../../components/default-page";
+import DefaultPage from "../../../../components/default-page";
 ${imports}
 
 # ${displayName} Migration

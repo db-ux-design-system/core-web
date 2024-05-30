@@ -430,7 +430,7 @@ export type CloseEventState = {
 	handleClose?: (event: any) => void;
 };
 
-export const AlignmentList = ['start'] as const;
+export const AlignmentList = ['start', 'center'] as const;
 export type AlignmentType = (typeof AlignmentList)[number];
 export type AlignmentProps = {
 	/**

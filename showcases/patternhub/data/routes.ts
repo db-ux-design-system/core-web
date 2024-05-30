@@ -1,3 +1,5 @@
+import Components from './components.json';
+
 export type NavigationItem = {
 	label: string;
 	name?: string;
@@ -5,168 +7,7 @@ export type NavigationItem = {
 	subNavigation?: NavigationItem[];
 };
 
-const componentChildren: NavigationItem[] = [
-	{
-		label: 'Action',
-		path: '/components/action',
-		subNavigation: [
-			{
-				label: 'DBButton',
-				name: 'button'
-			},
-			{
-				label: 'DBLink',
-				name: 'link'
-			}
-		]
-	},
-	{
-		label: 'Data-Display',
-		path: '/components/data-display',
-		subNavigation: [
-			{
-				label: 'DBBrand',
-				name: 'brand'
-			} /* TODO: Uncomment this if dev and design is aligned
-			{
-				label: 'DBIcon',
-				name: 'icon'
-			}, */,
-			{
-				label: 'DBTooltip',
-				name: 'tooltip'
-			},
-			{
-				label: 'DBInfotext',
-				name: 'infotext'
-			},
-			{
-				label: 'DBTag',
-				name: 'tag'
-			},
-			{
-				label: 'DBAccordion',
-				name: 'accordion',
-				subNavigation: [
-					{
-						label: 'DBAccordionItem Properties',
-						path: `/components/accordion-item/properties`
-					}
-				]
-			},
-			{
-				label: 'DBTabs',
-				name: 'tabs',
-				subNavigation: [
-					{
-						label: 'DBTabItem Properties',
-						path: `/components/tab-item/properties`
-					}
-				]
-			}
-		]
-	},
-	{
-		label: 'Data-Input',
-		path: '/components/data-input',
-		subNavigation: [
-			{
-				label: 'DBCheckbox',
-				name: 'checkbox'
-			},
-			{
-				label: 'DBInput',
-				name: 'input'
-			},
-			{
-				label: 'DBRadio',
-				name: 'radio'
-			},
-			{
-				label: 'DBSelect',
-				name: 'select'
-			},
-			{
-				label: 'DBSwitch',
-				name: 'switch'
-			},
-			{
-				label: 'DBTextarea',
-				name: 'textarea'
-			}
-		]
-	},
-	{
-		label: 'Feedback',
-		path: '/components/feedback',
-		subNavigation: [
-			{
-				label: 'DBNotification',
-				name: 'notification'
-			},
-			{
-				label: 'DBBadge',
-				name: 'badge'
-			}
-		]
-	},
-	{
-		label: 'Layout',
-		path: '/components/layout',
-		subNavigation: [
-			{
-				label: 'DBCard',
-				name: 'card'
-			},
-			{
-				label: 'DBDivider',
-				name: 'divider'
-			},
-			{
-				label: 'DBDrawer',
-				name: 'drawer'
-			},
-			{
-				label: 'DBHeader',
-				name: 'header'
-			} /* TODO: Uncomment this if dev and design is aligned
-			{
-				label: 'DBPage',
-				name: 'page'
-			}, */,
-			{
-				label: 'DBSection',
-				name: 'section'
-			}
-		]
-	},
-	{
-		label: 'Navigation',
-		path: '/components/navigation',
-		subNavigation: [
-			{
-				label: 'DBNavigation',
-				name: 'navigation',
-				subNavigation: [
-					{
-						label: 'DBNavigationItem Properties',
-						path: `/components/navigation-item/properties`
-					}
-				]
-			}
-		]
-	},
-	{
-		label: 'Utilities',
-		path: '/components/utilities',
-		subNavigation: [
-			{
-				label: 'DBPopover',
-				name: 'popover'
-			}
-		]
-	}
-];
+const componentChildren: NavigationItem[] = Components;
 export const ROUTES: NavigationItem[] = [
 	{
 		label: 'Home',
@@ -247,23 +88,23 @@ export const ROUTES: NavigationItem[] = [
 				...category,
 				subNavigation: category?.subNavigation?.map((component) => ({
 					label: component.label,
-					path: `/components/${component.name}`,
+					path: `/components/${category.name}/${component.name}`,
 					subNavigation: [
 						{
 							label: 'Overview',
-							path: `/components/${component.name}/overview`
+							path: `/components/${category.name}/${component.name}/overview`
 						},
 						{
 							label: 'Properties',
-							path: `/components/${component.name}/properties`
+							path: `/components/${category.name}/${component.name}/properties`
 						},
 						{
 							label: 'How to use',
-							path: `/components/${component.name}/how-to-use`
+							path: `/components/${category.name}/${component.name}/how-to-use`
 						},
 						{
 							label: 'Migration',
-							path: `/components/${component.name}/migration`
+							path: `/components/${category.name}/${component.name}/migration`
 						},
 						...(component.subNavigation ?? [])
 					]
@@ -272,3 +113,54 @@ export const ROUTES: NavigationItem[] = [
 		]
 	}
 ];
+
+const fillNavigationRecursive = (
+	navigationItems: NavigationItem[],
+	tree: NavigationItem[],
+	isBreadcrumb?: boolean,
+	prevLabel?: string
+) => {
+	for (const navItem of navigationItems) {
+		tree.push(
+			isBreadcrumb
+				? navItem
+				: {
+						...navItem,
+						label: prevLabel
+							? `${prevLabel}:${navItem.label}`
+							: navItem.label
+					}
+		);
+
+		if (navItem.subNavigation && navItem.subNavigation?.length > 0) {
+			fillNavigationRecursive(
+				navItem.subNavigation,
+				tree,
+				isBreadcrumb,
+				isBreadcrumb ? undefined : navItem.label
+			);
+		}
+	}
+};
+
+export const getAllNavigationItems = (isBreadcrumb?: boolean) => {
+	const tree: NavigationItem[] = [];
+	fillNavigationRecursive(ROUTES, tree, isBreadcrumb);
+	return tree;
+};
+
+export const getNavigationList = (path: string) => {
+	const tree: NavigationItem[] = getAllNavigationItems().filter(
+		(navItem) => !navItem.subNavigation
+	);
+	const index = tree.findIndex((navItem) => navItem.path === path);
+	return {
+		previous: index === 0 ? undefined : tree[index - 1],
+		next: index + 1 === tree.length ? undefined : tree[index + 1]
+	};
+};
+
+export const getBreadcrumb = (path: string) => {
+	const tree: NavigationItem[] = getAllNavigationItems(true);
+	return tree.filter((navItem) => path.includes(navItem.path ?? ''));
+};
