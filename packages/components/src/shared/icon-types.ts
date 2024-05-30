@@ -73,6 +73,7 @@ export type IconTypes =
 	| 'speech_bubble'
 	| 'speech_bubble_exclamation_mark'
 	| 'speech_bubble_question_mark'
+	| 'translation'
 	// Directory: date & time
 	| 'alarm_clock'
 	| 'alarm_clock_plus'
@@ -94,6 +95,7 @@ export type IconTypes =
 	| 'dots_drag_and_drop'
 	| 'minus'
 	| 'pen'
+	| 'pin'
 	| 'plus'
 	| 'save'
 	// Directory: environment
@@ -149,8 +151,8 @@ export type IconTypes =
 	| 'zoom_out'
 	// Directory: logos
 	| 'db'
-	| 's_bahn'
 	| 'subway'
+	| 's_bahn'
 	// Directory: maps
 	| 'compass'
 	| 'location_arrow'
