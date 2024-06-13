@@ -39,7 +39,7 @@
     "@types/react": "18.3.3",
     "@types/react-dom": "18.3.0",
     "esbuild": "0.21.5",
-    "eslint": "8.57.0",
+    "eslint": "9.4.0",
     "eslint-config-next": "14.2.4",
     "iframe-resizer": "^4.4.2",
     "open-cli": "^8.0.0",
