@@ -25,6 +25,10 @@ $db-current-color-bg-lvl-3-pressed: var(--db-current-color-bg-lvl-3-pressed);
 $db-current-color-on-contrast-enabled: var(
 	--db-current-color-on-contrast-enabled
 );
+$db-current-color-on-contrast-hover: var(--db-current-color-on-contrast-hover);
+$db-current-color-on-contrast-pressed: var(
+	--db-current-color-on-contrast-pressed
+);
 $db-current-color-contrast-high-enabled: var(
 	--db-current-color-contrast-high-enabled
 );
@@ -36,6 +40,12 @@ $db-current-color-contrast-high-pressed: var(
 );
 $db-current-color-contrast-low-enabled: var(
 	--db-current-color-contrast-low-enabled
+);
+$db-current-color-contrast-low-hover: var(
+	--db-current-color-contrast-low-hover
+);
+$db-current-color-contrast-low-pressed: var(
+	--db-current-color-contrast-low-pressed
 );
 $db-current-color-border: var(--db-current-color-border);
 $db-current-color-bg-transparent-full-enabled: var(

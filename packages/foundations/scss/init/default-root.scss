@@ -1,0 +1,14 @@
+/* Use this file if you want the default color and density in your project */
+@use "../colors";
+@use "../density";
+
+// Setup default styles for
+:root {
+	@extend %db-neutral-bg-lvl-1;
+
+	/* This is a MS power apps specific class name */
+	.app-canvas,
+	&:not(:has(.app-canvas)) {
+		@extend %db-density-regular;
+	}
+}
