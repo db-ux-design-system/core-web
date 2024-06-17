@@ -1,22 +1,12 @@
-@use "variables";
-@use "colors";
+@use "../variables";
+@use "../colors";
 
 %focus-placeholder {
 	outline: #{variables.$db-border-height-2xs} solid #{colors.$db-informational-contrast-high-enabled};
 	outline-offset: variables.$db-border-height-xs;
-
-	// TODO: The fallback currently only includes the same CSS Custom Property, which doesn't make any sense
 	transition:
-		outline
-			var(
-				--db-transition-duration-ultra-fast,
-				#{variables.$db-transition-duration-ultra-fast}
-			),
-		box-shadow
-			var(
-				--db-transition-duration-ultra-fast,
-				#{variables.$db-transition-duration-ultra-fast}
-			);
+		outline #{variables.$db-transition-duration-extra-fast},
+		box-shadow #{variables.$db-transition-duration-extra-fast};
 
 	&:not([type="radio"], [role="switch"]) {
 		border-radius: variables.$db-border-radius-xs;
