@@ -19,7 +19,7 @@ npm i @db-ui/ngx-components
 
 ## Styling Dependencies
 
-Import the styles in scss or css. Based on your technology the file names could be different.
+Import the styles in `scss` or `css`. Based on your technology the file names could be different.
 
 -   Default (db-ui-42): points to `../assets`
 -   Webpack (db-ui-42-webpack): points to `~@db-ui/foundations/assets`
@@ -43,6 +43,8 @@ Import the styles in scss or css. Based on your technology the file names could 
 ```
 
 </details>
+
+> **Note:** The `db-ui-42` file contains optional and all components styles. If you consider performance issues see [@db-ui/components](https://www.npmjs.com/package/@db-ui/components) for more information.
 
 ### Resolve assets
 

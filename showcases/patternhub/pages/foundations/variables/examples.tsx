@@ -19,8 +19,8 @@ const Example = () => {
 						variable.
 					</li>
 					<li>
-						Don't use it like this in a real app. 💢For example
-						`width: var(--db-spacing-fixed-md)`💥
+						Don't use it like this in a real app. 💢For example{' '}
+						<code>width: var(--db-spacing-fixed-md)</code> 💥
 					</li>
 				</ul>
 			</blockquote>

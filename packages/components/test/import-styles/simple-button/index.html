@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Vite App</title>
+		<!--<script type="module" src="./main.js"></script>-->
+		<link rel="stylesheet" href="test.css" />
+	</head>
+	<body>
+		<div style="display: flex">
+			<button class="db-button">Button</button>
+			<button class="db-button" data-icon="user">Icon Button</button>
+			<div class="db-input">
+				<label for="OVERWRITE_DEFAULT_ID">Label</label>
+				<input
+					aria-invalid="false"
+					id="OVERWRITE_DEFAULT_ID"
+					type="text"
+					placeholder=" "
+					aria-describedby=""
+				/>
+				(Default) Regular
+				<span
+					id="OVERWRITE_DEFAULT_ID-valid-message"
+					class="db-infotext"
+					data-semantic="successful"
+					data-size="small"
+				>
+					TODO: Add a validMessage
+				</span>
+				<span
+					id="OVERWRITE_DEFAULT_ID-invalid-message"
+					class="db-infotext"
+					data-semantic="critical"
+					data-size="small"
+				>
+					TODO: Add an invalidMessage
+				</span>
+			</div>
+		</div>
+	</body>
+</html>

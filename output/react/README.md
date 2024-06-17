@@ -44,6 +44,8 @@ import "@db-ui/components/build/styles/db-ui-42-rollup.css";
 
 </details>
 
+> **Note:** The `db-ui-42` file contains optional and all components styles. If you consider performance issues see [@db-ui/components](https://www.npmjs.com/package/@db-ui/components) for more information.
+
 ## Usage
 
 ```tsx
