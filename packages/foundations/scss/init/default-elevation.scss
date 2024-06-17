@@ -1,0 +1,19 @@
+/* Use this file if you want the default elevation data attributes in your project */
+@use "../helpers";
+@use "../variables";
+
+.db-interactive-elevation,
+[data-interactive="elevation"] {
+	cursor: pointer;
+	transition: box-shadow variables.$db-transition-duration-fast
+		variables.$db-transition-timing-functional;
+	box-shadow: variables.$db-elevation-md;
+
+	@include helpers.hover {
+		box-shadow: variables.$db-elevation-lg;
+	}
+
+	@include helpers.active {
+		box-shadow: variables.$db-elevation-sm;
+	}
+}
