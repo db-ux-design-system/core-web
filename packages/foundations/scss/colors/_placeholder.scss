@@ -193,6 +193,6 @@
 	@include generate-color-placeholder($variant);
 }
 
-@each $variant in add-colors.$additional-variants {
+@each $variant in additional-colors.$additional-variants {
 	@include generate-color-placeholder($variant);
 }
