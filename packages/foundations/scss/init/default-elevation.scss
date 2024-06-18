@@ -2,29 +2,16 @@
 @use "../helpers";
 @use "../variables";
 
-@media screen and (prefers-reduced-motion: reduce) {
-	.db-interactive-elevation,
-	[data-interactive="elevation"] {
-		cursor: pointer;
-		transition: none;
-		box-shadow: variables.$db-elevation-md;
-
-		@include helpers.hover {
-			box-shadow: variables.$db-elevation-lg;
-		}
-
-		@include helpers.active {
-			box-shadow: variables.$db-elevation-sm;
-		}
-	}
-}
-
 .db-interactive-elevation,
 [data-interactive="elevation"] {
 	cursor: pointer;
 	transition: box-shadow variables.$db-transition-duration-fast
 		variables.$db-transition-timing-functional;
 	box-shadow: variables.$db-elevation-md;
+
+	@media screen and (prefers-reduced-motion: reduce) {
+		transition: none;
+	}
 
 	@include helpers.hover {
 		box-shadow: variables.$db-elevation-lg;
