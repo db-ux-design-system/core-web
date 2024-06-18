@@ -1,9 +1,6 @@
 @use "@db-ui/foundations/build/scss/colors";
 
-$backdrop-color: var(
-	#{colors.$db-current-color-enabled},
-	#{colors.$db-neutral-on-bg-enabled}
-);
+$backdrop-color: #{colors.$db-current-color-enabled};
 
 $backdrop-opacity-strong: 0.64;
 $backdrop-opacity-weak: 0.32;

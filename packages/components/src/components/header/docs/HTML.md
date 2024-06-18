@@ -8,7 +8,7 @@ For general installation and configuration take a look at the [components](https
 <!-- index.html -->
 ...
 <body>
-	<header class="db-header" id="(Default) Regular">
+	<header class="db-header">
 		<dialog class="db-drawer">
 			<article
 				class="db-drawer-container db-header-drawer"
@@ -18,10 +18,9 @@ For general installation and configuration take a look at the [components](https
 				<header class="db-drawer-header">
 					<div class="db-drawer-header-text"></div>
 					<button
-						class="db-button button-close-drawer"
+						class="db-button button-close-drawer is-icon-text-replace"
 						data-icon="cross"
-						data-variant="ghost"
-						data-no-text="true"
+						data-variant="text"
 					>
 						Close Button
 					</button>
@@ -29,24 +28,20 @@ For general installation and configuration take a look at the [components](https
 				<div class="db-drawer-content">
 					<div class="db-header-drawer-navigation">
 						<div class="db-header-navigation">
-							<nav
-								aria-label="(Default) Regular"
-								id="navigation-72e972ba-2aec-4cf2-b07e-4e0105b05cbf"
-								class="db-navigation"
-							>
+							<nav class="db-main-navigation">
 								<menu>
 									<li
 										class="db-navigation-item"
 										data-icon="user"
 									>
-										<a href="#">(Default) Regular</a>
+										<a href="#">Regular (Default)</a>
 									</li>
 									<li
 										class="db-navigation-item"
 										aria-disabled="true"
 									>
 										<a href="#"
-											>(Default) Regular disabled</a
+											>Regular (Default) disabled</a
 										>
 									</li>
 								</menu>
@@ -70,24 +65,21 @@ For general installation and configuration take a look at the [components](https
 					</div>
 					<div class="db-header-secondary-action">
 						<button
-							class="db-button"
+							class="db-button is-icon-text-replace"
 							data-icon="user"
-							data-variant="ghost"
-							data-no-text="true"
+							data-variant="text"
 						>
 							Profile</button
 						><button
-							class="db-button"
-							data-icon="bell"
-							data-variant="ghost"
-							data-no-text="true"
+							class="db-button is-icon-text-replace"
+							data-icon="alert"
+							data-variant="text"
 						>
 							Notification</button
 						><button
-							class="db-button"
-							data-icon="question_mark_circle"
-							data-variant="ghost"
-							data-no-text="true"
+							class="db-button is-icon-text-replace"
+							data-icon="help"
+							data-variant="text"
 						>
 							Help
 						</button>
@@ -104,33 +96,35 @@ For general installation and configuration take a look at the [components](https
 		</div>
 		<div class="db-header-navigation-bar">
 			<div class="db-header-brand-container">
-				<div title="DBHeader" data-icon="db" class="db-brand">
-					DBHeader
+				<div class="db-brand">
+					<a href="/"
+						><img
+							class="db-logo"
+							src="https://db-ui.github.io/images/db_logo.svg"
+							alt=""
+							height="24"
+							width="34" /></a
+					>DBHeader
 				</div>
 			</div>
 			<div class="db-header-navigation-container">
 				<div class="db-header-navigation">
-					<nav
-						aria-label="(Default) Regular"
-						id="navigation-fa95a4b9-ebf5-4869-8c98-bd0634d51684"
-						class="db-navigation"
-					>
+					<nav class="db-navigation">
 						<menu>
 							<li class="db-navigation-item" data-icon="user">
-								<a href="#">(Default) Regular</a>
+								<a href="#">Regular (Default)</a>
 							</li>
 							<li class="db-navigation-item" aria-disabled="true">
-								<a href="#">(Default) Regular disabled</a>
+								<a href="#">Regular (Default) disabled</a>
 							</li>
 						</menu>
 					</nav>
 				</div>
 				<div class="db-header-primary-action">
 					<button
-						class="db-button"
+						class="db-button is-icon-text-replace"
 						data-icon="magnifying_glass"
-						data-variant="ghost"
-						data-no-text="true"
+						data-variant="text"
 					>
 						Search
 					</button>
@@ -139,35 +133,30 @@ For general installation and configuration take a look at the [components](https
 			<div class="db-header-action-container">
 				<div class="db-header-burger-menu-container">
 					<button
-						id="button-burger-menu"
-						class="db-button"
+						class="db-button is-icon-text-replace"
 						data-icon="menu"
-						data-variant="ghost"
-						data-no-text="true"
+						data-variant="text"
 					>
 						BurgerMenu
 					</button>
 				</div>
 				<div class="db-header-secondary-action">
 					<button
-						class="db-button"
+						class="db-button is-icon-text-replace"
 						data-icon="user"
-						data-variant="ghost"
-						data-no-text="true"
+						data-variant="text"
 					>
 						Profile</button
 					><button
-						class="db-button"
-						data-icon="bell"
-						data-variant="ghost"
-						data-no-text="true"
+						class="db-button is-icon-text-replace"
+						data-icon="alert"
+						data-variant="text"
 					>
 						Notification</button
 					><button
-						class="db-button"
-						data-icon="question_mark_circle"
-						data-variant="ghost"
-						data-no-text="true"
+						class="db-button is-icon-text-replace"
+						data-icon="help"
+						data-variant="text"
 					>
 						Help
 					</button>

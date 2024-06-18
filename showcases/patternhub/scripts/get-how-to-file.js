@@ -22,7 +22,7 @@ const getHowToFile = (componentName, displayName) => {
 	}
 
 	return `
-import DefaultPage from "../../../components/default-page";
+import DefaultPage from "../../../../components/default-page";
 ${imports}
 
 # How to use ${displayName}
