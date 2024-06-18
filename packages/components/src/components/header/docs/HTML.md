@@ -9,9 +9,7 @@ For general installation and configuration take a look at the [components](https
 ...
 <body>
 	<header class="db-header">
-		<dialog
-			class="db-drawer"
-		>
+		<dialog class="db-drawer">
 			<article
 				class="db-drawer-container db-header-drawer"
 				data-spacing="small"
@@ -30,9 +28,7 @@ For general installation and configuration take a look at the [components](https
 				<div class="db-drawer-content">
 					<div class="db-header-drawer-navigation">
 						<div class="db-header-navigation">
-							<nav
-								class="db-main-navigation"
-							>
+							<nav class="db-main-navigation">
 								<menu>
 									<li
 										class="db-navigation-item"
@@ -92,25 +88,15 @@ For general installation and configuration take a look at the [components](https
 			</article>
 		</dialog>
 		<div class="db-header-meta-navigation">
-			<a
-				class="db-link"
-				href="#"
-				tabindex="0"
-				data-content="internal"
+			<a class="db-link" href="#" tabindex="0" data-content="internal"
 				>Imprint</a
-			><a
-				class="db-link"
-				href="#"
-				tabindex="0"
-				data-content="internal"
+			><a class="db-link" href="#" tabindex="0" data-content="internal"
 				>Help</a
 			>
 		</div>
 		<div class="db-header-navigation-bar">
 			<div class="db-header-brand-container">
-				<div
-					class="db-brand"
-				>
+				<div class="db-brand">
 					<a href="/"
 						><img
 							class="db-logo"
@@ -123,20 +109,12 @@ For general installation and configuration take a look at the [components](https
 			</div>
 			<div class="db-header-navigation-container">
 				<div class="db-header-navigation">
-					<nav
-						class="db-main-navigation"
-					>
+					<nav class="db-navigation">
 						<menu>
-							<li
-								class="db-navigation-item"
-								data-icon="user"
-							>
+							<li class="db-navigation-item" data-icon="user">
 								<a href="#">Regular (Default)</a>
 							</li>
-							<li
-								class="db-navigation-item"
-								aria-disabled="true"
-							>
+							<li class="db-navigation-item" aria-disabled="true">
 								<a href="#">Regular (Default) disabled</a>
 							</li>
 						</menu>

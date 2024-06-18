@@ -10,7 +10,7 @@ const defaultButton: any = (
 );
 const defaultIconButton: any = (
 	<DBButton icon="user" noText={true}>
-		Account
+		User
 	</DBButton>
 );
 
@@ -19,7 +19,7 @@ const testButton = () => {
 		const variantButton: any = <DBButton variant={variant}>Test</DBButton>;
 		const variantIconButton: any = (
 			<DBButton icon="user" noText={true} variant={variant}>
-				Account
+				User
 			</DBButton>
 		);
 		test(`should contain text for variant ${variant}`, async ({

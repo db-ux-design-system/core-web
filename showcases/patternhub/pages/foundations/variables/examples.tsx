@@ -48,7 +48,7 @@ const Example = () => {
 											{example === 'Spacing fixed' && (
 												<div>
 													<DBIcon icon="user">
-														Account
+														User
 													</DBIcon>
 													<span>
 														gap:db-spacing-fixed-xl

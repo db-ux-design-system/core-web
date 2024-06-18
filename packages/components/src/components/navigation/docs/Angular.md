@@ -99,7 +99,7 @@ The active style is automatically set once an item receives the `aria-current="p
 ```html app.component.html
 <!-- app.component.html -->
 
-<db-main-navigation>
+<db-navigation>
 	<db-navigation-item>
 		<ng-container *dbNavigationContent>
 			<a
@@ -128,5 +128,5 @@ The active style is automatically set once an item receives the `aria-current="p
 			</db-navigation-item>
 		</ng-container>
 	</db-navigation-item>
-</db-main-navigation>
+</db-navigation>
 ```
