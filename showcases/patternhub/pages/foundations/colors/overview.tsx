@@ -49,7 +49,7 @@ const ColorOverview = () => {
 			</search>
 			<h2>Overview</h2>
 			<div className="color-overview-container">
-				{[...COLORS, ...addColors]
+				{[...COLORS, ...additionalColors]
 					.filter((color) => color.includes(search))
 					.map((color) => (
 						<div className={`db-${color}`}>{color}</div>
