@@ -2,12 +2,12 @@
 
 %default-transition {
 	transition:
-		outline #{variables.$db-transition-duration-x-fast},
+		outline #{variables.$db-transition-duration-extra-fast},
 		background-color #{variables.$db-transition-straight-emotional};
 }
 
 %default-fg-transition {
 	transition:
-		outline #{variables.$db-transition-duration-x-fast},
+		outline #{variables.$db-transition-duration-extra-fast},
 		color #{variables.$db-transition-straight-emotional};
 }

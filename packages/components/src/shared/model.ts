@@ -53,14 +53,14 @@ export type SemanticProps = {
 
 export type IconProps = {
 	/**
-	 * Define an icon by its identifier (like e.g. _account_, compare to [Icons](https://db-ui.github.io/mono/review/main/foundations/icons/overview)) to get displayed in front of the elements content.
+	 * Define an icon by its identifier (like e.g. _user_, compare to [Icons](https://db-ui.github.io/mono/review/main/foundations/icons/overview)) to get displayed in front of the elements content.
 	 */
 	icon?: IconTypes;
 };
 
 export type IconAfterProps = {
 	/**
-	 * Define an icon by its identifier (like e.g. _account_, compare to [Icons](https://db-ui.github.io/mono/review/main/foundations/icons/overview)) to get displayed in front of the elements content.
+	 * Define an icon by its identifier (like e.g. _user_, compare to [Icons](https://db-ui.github.io/mono/review/main/foundations/icons/overview)) to get displayed in front of the elements content.
 	 */
 	iconAfter?: IconTypes;
 };
@@ -434,7 +434,7 @@ export type CloseEventState = {
 	handleClose?: (event: any) => void;
 };
 
-export const AlignmentList = ['start'] as const;
+export const AlignmentList = ['start', 'center'] as const;
 export type AlignmentType = (typeof AlignmentList)[number];
 export type AlignmentProps = {
 	/**

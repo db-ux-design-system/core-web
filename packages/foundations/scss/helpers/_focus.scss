@@ -6,8 +6,8 @@
 	outline-offset: variables.$db-border-height-xs;
 
 	transition:
-		outline #{variables.$db-transition-duration-x-fast},
-		box-shadow #{variables.$db-transition-duration-x-fast};
+		outline #{variables.$db-transition-duration-extra-fast},
+		box-shadow #{variables.$db-transition-duration-extra-fast};
 
 	&:not([type="radio"], [role="switch"]) {
 		border-radius: variables.$db-border-radius-xs;

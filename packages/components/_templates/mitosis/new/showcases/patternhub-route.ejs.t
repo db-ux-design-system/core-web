@@ -1,7 +1,7 @@
 ---
 inject: true
-to: "<%= showcases ? `../../showcases/patternhub/data/routes.ts` : null %>"
-after: 	const componentChildren = \[
+to: "<%= showcases ? `../../showcases/patternhub/data/components.json` : null %>"
+before: \[
 ---
 			{
 				label: 'TODO: Add to specific category; DB<%= h.changeCase.pascal(name) %>',

@@ -15,7 +15,7 @@ An Angular library containing all styles & components of [DB UX Design System (t
 npm i @db-ui/ngx-components
 ```
 
-> **Note:** This will install `@db-ui/foundations` and `@db-ui/components` as well which contains the `css`/`scss` files
+> **Note:** This will install [`@db-ui/foundations`](https://www.npmjs.com/package/@db-ui/foundations) and [`@db-ui/components`](https://www.npmjs.com/package/@db-ui/components) as well which contains the `css`/`scss` files
 
 ## Styling Dependencies
 

@@ -31,14 +31,14 @@ First of all you need to import a theme which contains all tokens (css-propertie
 
 Afterward, you may import helper classes / placeholders to easily consume the tokens from your theme. There are some categories:
 
--   `init`: Global styles which apply to all or a large group of selectors. Make sure to import `inits/required.css` to normalize tags like `body` etc. Furthermore, we provide some default styles.
--   `icons`: Icons classes to load `woff2` files and adds `[data-icon]` and `[data-icon-after]` to enable icons for all tags and components.
--   `helpers`: Use dividers or focus border
--   `fonts`:Overwrite default font-size, line-height and icon-size
--   `density`:Overwrite default density to scale adaptive components inside container using density
--   `colors`:Sets an adaptive color to a container, which passes all required css-properties to children
+-   **init**: Global styles which apply to all or a large group of selectors. Make sure to import `inits/required.css` to normalize tags like `body` etc. Furthermore, we provide some default styles.
+-   **icons**: Icons classes to load **woff2** files and adds `[data-icon]` and `[data-icon-after]` to enable icons for all tags and components.
+-   **helpers**: Use dividers or focus border
+-   **fonts**: Overwrite default `font-size`, `line-height` and `icon-size`
+-   **density**: Overwrite default density to scale adaptive components inside container using density
+-   **colors**: Sets an adaptive color to a container, which passes all required css-properties to children
 
-You can import the complete `init` styles with `db-ui-foundations[-absolute|-rollup|-webpack].css` which apply the default:
+You can import the complete **init** styles with `db-ui-foundations[-absolute|-rollup|-webpack].css` which apply the default:
 
 -   [Density](https://marketingportal.extranet.deutschebahn.com/marketingportal/Design-Anwendungen/db-ux-design-system-v3/principles/densities): `regular`
 -   [Adaptive Coloring](https://marketingportal.extranet.deutschebahn.com/marketingportal/Design-Anwendungen/db-ux-design-system-v3/principles/adaptive-styles): `neutral-bg-lvl-1`
@@ -113,7 +113,7 @@ In HTML:
 ></div>
 ```
 
-> **Note:** In CSS you might to use the classes or data-attributes even more because you cannot use placeholders like we have it in `scss`. If you use a 3rd party library and cannot apply classes or data-attributes you might want to copy the content of our helper classes to apply it to the 3rd party class.
+> **Note:** In CSS you might to use the classes or data-attributes even more because you cannot use placeholders or mixins like we have it in **scss**. If you use a 3rd party library and cannot apply classes or data-attributes you might want to copy the content of our helper classes to apply it to the 3rd party class.
 
 ### SCSS
 
@@ -206,6 +206,8 @@ In HTML:
 Check the required imports for [CSS](https://db-ui.github.io/mono/review/main/foundations/readme?current=css) to enable all tokens and defaults.
 After this you can extend your tailwind config like this:
 
+#### Javascript
+
 ```javascript
 //tailwind.config.js
 /** @type {import('tailwindcss').Config} */
@@ -224,6 +226,30 @@ export default {
 		})
 	}
 };
+```
+
+#### Typescript
+
+```typescript
+//tailwind.config.ts
+import type { Config } from "tailwindcss";
+import { CustomThemeConfig } from "tailwindcss/types/config";
+import tokens from "@db-ui/foundations/build/tailwind/tailwind-tokens.json";
+const customThemeConfig: CustomThemeConfig = tokens as any;
+
+export default {
+	content: [],
+	theme: {
+		...customThemeConfig,
+		gap: ({ theme }) => ({
+			...theme("spacing")
+		}),
+		space: ({ theme }) => ({
+			...theme("spacing")
+		})
+	},
+	plugins: []
+} satisfies Config;
 ```
 
 In your `tailwind.css` add this to enable default headlines:
