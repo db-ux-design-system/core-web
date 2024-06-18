@@ -1,6 +1,6 @@
 @use "sass:string";
 @use "variables";
-@use "variables.additonal" as add-colors;
+@use "variables.additional" as additional-colors;
 
 %set-current-colors {
 	background: variables.$db-current-color-bg-enabled;
