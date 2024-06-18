@@ -31,7 +31,7 @@ const getAdditionalColors = () => {
 };
 
 const ColorOverview = () => {
-	const addColors = getAdditionalColors();
+	const additionalColors = getAdditionalColors();
 	const [search, setSearch] = useState<string>('');
 
 	return (
