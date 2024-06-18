@@ -40,7 +40,6 @@ const ColorOverview = () => {
 			<search>
 				<DBInput
 					label="Search for color"
-					variant="floating"
 					placeholder="neutral-bg"
 					type="search"
 					onChange={(event) => {
