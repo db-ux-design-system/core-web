@@ -30,9 +30,11 @@ interface DefaultExample extends DefaultComponentExample {
 		react?: string;
 		vue?: string;
 	};
+	children?: DefaultExample[];
 }
 interface DefaultVariants extends DefaultComponentVariants {
 	name: string;
+	children?: DefaultExample[];
 	examples: DefaultExample[];
 }
 /* Workaround see: https://vuejs.org/guide/typescript/composition-api.html#typing-component-props */
@@ -104,7 +106,7 @@ const getElevation = (): "1" | "2" | "3" =>
 			>
 				<slot
 					name="example"
-					v-bind:exampleProps="example.props"
+					v-bind:exampleProps="example.props ?? {}"
 					v-bind:exampleName="example.name"
 					v-bind:exampleIndex="exampleIndex"
 					v-bind:variantIndex="variantRefIndex"

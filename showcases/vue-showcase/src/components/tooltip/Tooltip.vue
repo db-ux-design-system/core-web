@@ -9,18 +9,18 @@ import { DBButton, DBTooltip } from "../../../../../output/vue/src";
 		<template
 			#example="{ exampleIndex, variantIndex, exampleName, exampleProps }"
 		>
-			<DBButton :describedbyid="exampleProps.id">
+			<DBButton :describedbyid="exampleProps?.id">
 				{{ exampleName }}
 				<DBTooltip
-					:width="exampleProps.width"
-					:emphasis="exampleProps.emphasis"
-					:placement="exampleProps.placement"
-					:animation="exampleProps.animation"
-					:delay="exampleProps.delay"
-					:variant="exampleProps.variant"
-					:id="exampleProps.id"
+					:width="exampleProps?.width"
+					:emphasis="exampleProps?.emphasis"
+					:placement="exampleProps?.placement"
+					:animation="exampleProps?.animation"
+					:delay="exampleProps?.delay"
+					:variant="exampleProps?.variant"
+					:id="exampleProps?.id"
 				>
-					{{ exampleProps.content }}
+					{{ exampleProps?.content }}
 				</DBTooltip>
 			</DBButton>
 		</template>

@@ -10,15 +10,15 @@ import { DBInput, DBSelect } from "../../../../../output/vue/src";
 			#example="{ exampleIndex, variantIndex, exampleName, exampleProps }"
 		>
 			<DBSelect
-				:label="exampleProps.label"
+				:label="exampleProps?.label"
 				:placeholder="exampleName"
-				:variant="exampleProps.variant"
-				:options="exampleProps.options"
-				:disabled="exampleProps.disabled"
-				:icon="exampleProps.icon"
-				:value="exampleProps.value"
-				:message="exampleProps.message"
-				:required="exampleProps.required"
+				:variant="exampleProps?.variant"
+				:options="exampleProps?.options"
+				:disabled="exampleProps?.disabled"
+				:icon="exampleProps?.icon"
+				:value="exampleProps?.value"
+				:message="exampleProps?.message"
+				:required="exampleProps?.required"
 			>
 				{{ exampleName }}
 			</DBSelect>

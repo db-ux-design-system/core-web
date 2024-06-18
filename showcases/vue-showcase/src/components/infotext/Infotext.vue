@@ -10,9 +10,9 @@ import { DBInfotext } from "../../../../../output/vue/src";
 			#example="{ exampleIndex, variantIndex, exampleName, exampleProps }"
 		>
 			<DBInfotext
-				:size="exampleProps.size"
-				:semantic="exampleProps.semantic"
-				:icon="exampleProps.icon"
+				:size="exampleProps?.size"
+				:semantic="exampleProps?.semantic"
+				:icon="exampleProps?.icon"
 			>
 				{{ exampleName }}
 			</DBInfotext>

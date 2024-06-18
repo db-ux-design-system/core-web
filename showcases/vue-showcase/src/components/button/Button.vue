@@ -15,12 +15,12 @@ const log = (exampleName: string) => {
 			#example="{ exampleIndex, variantIndex, exampleName, exampleProps }"
 		>
 			<DBButton
-				:variant="exampleProps.variant"
-				:size="exampleProps.size"
-				:icon="exampleProps.icon"
-				:noText="exampleProps.noText"
-				:disabled="exampleProps.disabled"
-				:width="exampleProps.width"
+				:variant="exampleProps?.variant"
+				:size="exampleProps?.size"
+				:icon="exampleProps?.icon"
+				:noText="exampleProps?.noText"
+				:disabled="exampleProps?.disabled"
+				:width="exampleProps?.width"
 				@click="log(exampleName)"
 			>
 				{{ exampleName }}
