@@ -36,7 +36,6 @@ Import the styles in scss or css. Based on your technology the file names could 
 ```ts
 // main.ts
 import "./style.scss";
-import "@db-ui/v-components/dist/style.css";
 ```
 
 </details>
@@ -46,7 +45,6 @@ import "@db-ui/v-components/dist/style.css";
 ```ts
 // main.ts
 import "@db-ui/components/build/styles/db-ui-42-rollup.css";
-import "@db-ui/v-components/dist/style.css";
 ```
 
 </details>

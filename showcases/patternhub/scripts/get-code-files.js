@@ -1,7 +1,6 @@
 /* eslint-disable no-await-in-loop */
 import FS from 'node:fs';
 import prettier from 'prettier';
-import prettier0 from 'prettier/parser-babel.js';
 import { allExamples } from './generated/index.jsx';
 import { getCodeByFramework } from './utils.js';
 
@@ -9,7 +8,6 @@ const sharedPath = '../shared';
 const reactPath = '../react-showcase/src/components';
 
 const codeFrameworks = ['angular', 'html', 'react', 'vue'];
-const plugins = [prettier0];
 
 const getFileTypeByFramework = (framework) => {
 	if (framework === 'react') {
@@ -25,6 +23,7 @@ const getFileTypeByFramework = (framework) => {
 
 const getExamplesAsMDX = async (componentName, variant) => {
 	const examples = variant.examples;
+	const children = variant.children;
 
 	let result =
 		"import { useEffect, useState } from 'react';\n" +
@@ -71,17 +70,19 @@ const getExamplesAsMDX = async (componentName, variant) => {
 				exampleCode = getCodeByFramework(
 					componentName,
 					framework,
-					example
+					example,
+					false,
+					children
 				);
 			}
 
 			try {
 				exampleCode = await prettier.format(exampleCode, {
-					parser: 'babel',
-					plugins
+					parser: framework === 'react' ? 'babel' : framework
 				});
 			} catch {
 				// We do not care about errors here
+				// console.error(e);
 			}
 
 			exampleCode = exampleCode?.replace(/;/g, '').trim();
