@@ -206,6 +206,8 @@ In HTML:
 Check the required imports for [CSS](https://db-ui.github.io/mono/review/main/foundations/readme?current=css) to enable all tokens and defaults.
 After this you can extend your tailwind config like this:
 
+#### Javascript
+
 ```javascript
 //tailwind.config.js
 /** @type {import('tailwindcss').Config} */
@@ -224,6 +226,30 @@ export default {
 		})
 	}
 };
+```
+
+#### Typescript
+
+```typescript
+//tailwind.config.ts
+import type { Config } from "tailwindcss";
+import { CustomThemeConfig } from "tailwindcss/types/config";
+import tokens from "@db-ui/foundations/build/tailwind/tailwind-tokens.json";
+const customThemeConfig: CustomThemeConfig = tokens as any;
+
+export default {
+	content: [],
+	theme: {
+		...customThemeConfig,
+		gap: ({ theme }) => ({
+			...theme("spacing")
+		}),
+		space: ({ theme }) => ({
+			...theme("spacing")
+		})
+	},
+	plugins: []
+} satisfies Config;
 ```
 
 In your `tailwind.css` add this to enable default headlines:
