@@ -23,6 +23,12 @@ const getFileTypeByFramework = (framework) => {
 	return 'html';
 };
 
+const getCustomCodeCommentByFramework = (componentName, framework) => {
+	return `<DBLink content="external" target="_blank"
+href="https://db-ui.github.io/mono/review/main/components/${componentName}/how-to-use?current=${framework}">
+How to use this in ${framework}</DBLink>`;
+};
+
 const getExamplesAsMDX = async (componentName, variant) => {
 	const examples = variant.examples;
 
@@ -31,6 +37,7 @@ const getExamplesAsMDX = async (componentName, variant) => {
 		'import {\n' +
 		'DBButton,\n' +
 		'DBCard,\n' +
+		'DBLink,\n' +
 		'DBTabItem,\n' +
 		'DBTabList,\n' +
 		'DBTabPanel,\n' +
@@ -88,6 +95,8 @@ const getExamplesAsMDX = async (componentName, variant) => {
 
 			result += `
 				<DBTabPanel>
+				${getCustomCodeCommentByFramework(componentName, framework)}
+
 				<pre>
 				<code className="hljs language-${getFileTypeByFramework(framework)}">{\`${exampleCode}\`}</code>
 				</pre>

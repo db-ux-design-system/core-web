@@ -8,6 +8,6 @@
 		@extend %db-scaling-#{$density};
 		@extend %db-typography-headline-#{$density};
 		@extend %db-typography-body-#{$density};
-		@extend %db-component-variables-md;
+		@extend %db-overwrite-font-size-md;
 	}
 }
