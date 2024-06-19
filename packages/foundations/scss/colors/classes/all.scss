@@ -8,3 +8,15 @@
 @each $variant in index.$additional-variants {
 	@include get-class.init($variant);
 }
+
+@each $variant in index.$variants {
+	@include get-class.init-semantic-colors($variant);
+}
+
+@each $background-color in index.$background-colors {
+	@include get-class.init-background-colors($background-color);
+}
+
+@each $on-background-color in index.$on-background-colors {
+	@include get-class.init-on-background-colors($on-background-color);
+}
