@@ -27,24 +27,15 @@
 		"examples": [
 			{
 				"name": "Functional",
-				"className": "db-density-functional",
-				"code": {
-					"html": "The accordion is a pure JS Component"
-				}
+				"className": "db-density-functional"
 			},
 			{
 				"name": "(Default) Regular",
-				"className": "db-density-regular",
-				"code": {
-					"html": "The accordion is a pure JS Component"
-				}
+				"className": "db-density-regular"
 			},
 			{
 				"name": "Expressive",
-				"className": "db-density-expressive",
-				"code": {
-					"html": "The accordion is a pure JS Component"
-				}
+				"className": "db-density-expressive"
 			}
 		]
 	},
@@ -76,18 +67,12 @@
 		],
 		"examples": [
 			{
-				"name": "background (default)",
-				"code": {
-					"html": "The accordion is a pure JS Component"
-				}
+				"name": "background (default)"
 			},
 			{
 				"name": "card",
 				"props": {
 					"variant": "card"
-				},
-				"code": {
-					"html": "The accordion is a pure JS Component"
 				}
 			}
 		]
@@ -123,18 +108,12 @@
 				"name": "(Default) Multiple",
 				"props": {
 					"behaviour": "multiple"
-				},
-				"code": {
-					"html": "The accordion is a pure JS Component"
 				}
 			},
 			{
 				"name": "Single",
 				"props": {
 					"behaviour": "single"
-				},
-				"code": {
-					"html": "The accordion is a pure JS Component"
 				}
 			}
 		]
