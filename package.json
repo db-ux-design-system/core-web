@@ -51,7 +51,7 @@
     "@playwright/test": "1.44.1",
     "adm-zip": "0.5.14",
     "commander": "^12.1.0",
-    "cpr": "3.0.1",
+    "cpy-cli": "^5.0.0",
     "cross-env": "^7.0.3",
     "dotenv": "^16.4.5",
     "eslint-plugin-prettier": "^5.1.3",

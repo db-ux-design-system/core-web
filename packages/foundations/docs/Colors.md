@@ -18,7 +18,7 @@ Then you can use e.g. **informational** color by extending our SCSS placeholders
 
 We're providing an [overview for all possible colors](./overview).
 
-There are several variants: `base`, `brand`, `neutral`, `critical`, `informational`, `successful`, `warning`.
+There are several variants: `brand`, `neutral`, `critical`, `informational`, `successful`, `warning`.
 
 **We use `XXX` here you should replace it with a variant from above.**
 
@@ -29,6 +29,12 @@ There are several variants: `base`, `brand`, `neutral`, `critical`, `information
 |       `XXX-bg-3`       | `class="db-XXX-bg-3"`                | `@extend %db-XXX-bg-3`                | `class="db-XXX-bg-3"`                |
 | `XXX-transparent-semi` | `class="db-XXX-bg-transparent-semi"` | `@extend %db-XXX-bg-transparent-semi` | `class="db-XXX-bg-transparent-semi"` |
 | `XXX-transparent-full` | `class="db-XXX-bg-transparent-full"` | `@extend %db-XXX-bg-transparent-full` | `class="db-XXX-bg-transparent-full"` |
+
+#### Additional Colors
+
+Besides of the variants above we deliver additional colors which aren't required for the Design System, but you can use them the same way. The additional variants are:
+`yellow`, `orange`, `red`, `pink`, `violet`, `blue`,
+`cyan`, `turquoise`, `green`
 
 ### Dark- & Light-Mode
 
