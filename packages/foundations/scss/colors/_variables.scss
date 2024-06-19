@@ -17,7 +17,13 @@ $db-current-color-pressed: var(--db-current-color-pressed);
 $db-current-color-bg-enabled: var(--db-current-color-bg-enabled);
 $db-current-color-bg-hover: var(--db-current-color-bg-hover);
 $db-current-color-bg-pressed: var(--db-current-color-bg-pressed);
-
+$db-current-color-on-bg-weak-enabled: var(
+	--db-current-color-on-bg-weak-enabled
+);
+$db-current-color-on-bg-weak-hover: var(--db-current-color-on-bg-weak-hover);
+$db-current-color-on-bg-weak-pressed: var(
+	--db-current-color-on-bg-weak-pressed
+);
 $db-current-color-bg-lvl-1-enabled: var(--db-current-color-bg-lvl-1-enabled);
 $db-current-color-bg-lvl-1-hover: var(--db-current-color-bg-lvl-1-hover);
 $db-current-color-bg-lvl-1-pressed: var(--db-current-color-bg-lvl-1-pressed);
