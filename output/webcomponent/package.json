@@ -14,9 +14,9 @@
   ],
   "scripts": {
     "build": "parcel build",
-    "mv:dist": "cpr dist ../../build-outputs/web-components/dist -o",
-    "mv:package.json": "cpr package.json ../../build-outputs/web-components/package.json -o",
-    "mv:readme": "cpr README.md ../../build-outputs/web-components/README.md -o",
+    "mv:dist": "cpy dist ../../build-outputs/web-components",
+    "mv:package.json": "cpy package.json ../../build-outputs/web-components",
+    "mv:readme": "cpy README.md ../../build-outputs/web-components",
     "postbuild": "npm-run-all -p mv:*"
   },
   "devDependencies": {

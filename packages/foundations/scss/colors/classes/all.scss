@@ -4,3 +4,7 @@
 @each $variant in index.$variants {
 	@include get-class.init($variant);
 }
+
+@each $variant in index.$additional-variants {
+	@include get-class.init($variant);
+}
