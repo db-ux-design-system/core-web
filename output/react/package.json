@@ -15,9 +15,9 @@
   ],
   "scripts": {
     "build": "npm-run-all tsc",
-    "mv:dist": "cpr dist ../../build-outputs/react/dist -o",
-    "mv:package.json": "cpr package.json ../../build-outputs/react/package.json -o",
-    "mv:readme": "cpr README.md ../../build-outputs/react/README.md -o",
+    "mv:dist": "cpy dist ../../build-outputs/react",
+    "mv:package.json": "cpy package.json ../../build-outputs/react",
+    "mv:readme": "cpy README.md ../../build-outputs/react",
     "open:report": "npx playwright show-report",
     "postbuild": "npm-run-all -p mv:*",
     "regenerate:screenshots": "playwright test -c playwright.config.ts --update-snapshots",
@@ -29,7 +29,7 @@
     "@types/react": "^18.3.3",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
-    "sass": "^1.77.5"
+    "sass": "^1.77.6"
   },
   "publishConfig": {
     "registry": "https://registry.npmjs.org/",
