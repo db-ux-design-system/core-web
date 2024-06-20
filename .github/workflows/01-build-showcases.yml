@@ -83,6 +83,7 @@ jobs:
         run: |
           node scripts/md-resolve-svg.js
           npm run build-showcases
+          ls build-showcases/patternhub
           mv build-showcases/patternhub/out build-showcases/patternhub
           ls build-showcases/patternhub
 
