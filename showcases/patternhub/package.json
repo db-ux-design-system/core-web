@@ -6,7 +6,7 @@
   "scripts": {
     "build": "npm-run-all compile build:*",
     "build:app": "next build",
-    "build:copy": "cpy out/** ../../build-showcases/patternhub",
+    "build:copy": "cpy out/**/* ../../build-showcases/patternhub",
     "compile": "npm-run-all compile:*",
     "compile:01_jsx": "node scripts/generate-example-jsx.js",
     "compile:02_copy-components": "cpy ../../output/react/src ./components",
