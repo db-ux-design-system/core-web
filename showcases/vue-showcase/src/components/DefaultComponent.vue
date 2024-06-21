@@ -12,7 +12,7 @@ import {
 	DENSITY_CONST
 } from "../../../../packages/components/src/shared/constants";
 import { useRoute } from "vue-router";
-import { Ref, ref, watch } from "vue";
+import { inject, type Ref, ref, watch } from "vue";
 
 interface DefaultExample extends DefaultComponentExample {
 	name?: string;
@@ -47,6 +47,7 @@ const route = useRoute();
 
 const variantRef: Ref<DefaultVariants | undefined> = ref();
 const variantRefIndex: Ref<number> = ref(-1);
+const showcaseVariant = inject("$showcaseVariant");
 const color = ref(COLOR.NEUTRAL_BG_LEVEL_1);
 
 watch(
@@ -69,8 +70,9 @@ if (route.query.page) {
 	}
 }
 
-const getLink = (variantName: string) => {
+const createLinkFromVariantAndUrl = (variantName: string) => {
 	let currentUrl = window.location.href;
+
 	if (!currentUrl.includes("?")) {
 		currentUrl += "?";
 	}
@@ -83,6 +85,19 @@ const getLink = (variantName: string) => {
 		}`;
 	}
 	return `${currentUrl}&page=${variantName.toLowerCase()}`;
+};
+
+const getLink = (variantName: string) => {
+	return window && showcaseVariant === "vue"
+		? createLinkFromVariantAndUrl(variantName)
+		: "";
+};
+
+const openVariantLink = (event: MouseEvent, variantName: string) => {
+	if (window) {
+		event.preventDefault();
+		window.open(createLinkFromVariantAndUrl(variantName), "_blank");
+	}
 };
 
 const getElevation = (): "1" | "2" | "3" =>
@@ -121,6 +136,7 @@ const getElevation = (): "1" | "2" | "3" =>
 				content="external"
 				target="_blank"
 				:href="getLink(variant.name)"
+				@click="(event) => openVariantLink(event, variant.name)"
 			>
 				{{ variant.name }}
 			</DBLink>

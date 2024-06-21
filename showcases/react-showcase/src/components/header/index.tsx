@@ -9,7 +9,8 @@ import {
 import { type DBHeaderProps } from '../../../../../output/react/src/components/header/model';
 import defaultComponentVariants from '../../../../shared/header.json';
 import { getVariants } from '../data';
-import DefaultComponent from '../index';
+import DefaultComponent from '../default-component';
+import { type BaseComponentProps } from '../base-component-data';
 
 const getHeader = ({
 	drawerOpen,
@@ -91,13 +92,14 @@ const getHeader = ({
 	</DBHeader>
 );
 
-const HeaderComponent = () => {
+const HeaderComponent = (props: BaseComponentProps) => {
 	return (
 		<DefaultComponent
 			title="DBHeader"
 			variants={getVariants(
 				defaultComponentVariants,
-				getHeader
+				getHeader,
+				props.slotCode
 			)}></DefaultComponent>
 	);
 };

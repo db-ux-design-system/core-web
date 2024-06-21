@@ -46,6 +46,11 @@
 				]
 			},
 			{
+				"label": "DBAccordionItem",
+				"name": "accordion-item",
+				"isHiddenInMenu": true
+			},
+			{
 				"label": "DBTabs",
 				"name": "tabs",
 				"subNavigation": [
@@ -54,6 +59,11 @@
 						"path": "/components/tab-item/properties"
 					}
 				]
+			},
+			{
+				"label": "DBTabItem",
+				"name": "tab-item",
+				"isHiddenInMenu": true
 			}
 		]
 	},
@@ -144,6 +154,11 @@
 						"path": "/components/navigation-item/properties"
 					}
 				]
+			},
+			{
+				"label": "DBNavigationItem",
+				"name": "navigation-item",
+				"isHiddenInMenu": true
 			}
 		]
 	},

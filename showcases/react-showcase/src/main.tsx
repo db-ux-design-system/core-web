@@ -9,6 +9,13 @@ import '../../showcase-styles.css';
 import App from './app';
 import { NAVIGATION_ITEMS } from './utils/navigation-item';
 
+// Makes env-variable available in the components without using import.meta.
+// as a result, the components are also compatible with next.
+// eslint-disable-next-line @typescript-eslint/dot-notation
+window['env'] = {
+	BASE_URL: import.meta.env.BASE_URL
+};
+
 if (import.meta.env.DEV) {
 	Lang.addI18n(Sa11yLangEn.strings);
 	const sa11y = new Sa11y({

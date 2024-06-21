@@ -1,8 +1,9 @@
 import { DBPopover, DBButton } from '../../../../../output/react/src';
-import DefaultComponent from '../index';
+import DefaultComponent from '../default-component';
 import defaultComponentVariants from '../../../../shared/popover.json';
 import type { DBPopoverProps } from '../../../../../output/react/src/components/popover/model';
 import { getVariants } from '../data';
+import { type BaseComponentProps } from '../base-component-data';
 
 const getPopover = ({
 	id,
@@ -36,13 +37,14 @@ const getPopover = ({
 	</DBPopover>
 );
 
-const PopoverComponent = () => {
+const PopoverComponent = (props: BaseComponentProps) => {
 	return (
 		<DefaultComponent
 			title="DBPopover"
 			variants={getVariants(
 				defaultComponentVariants,
-				getPopover
+				getPopover,
+				props.slotCode
 			)}></DefaultComponent>
 	);
 };

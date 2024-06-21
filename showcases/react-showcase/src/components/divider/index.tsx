@@ -1,8 +1,9 @@
 import { DBDivider, DBInfotext } from '../../../../../output/react/src';
-import DefaultComponent from '../index';
+import DefaultComponent from '../default-component';
 import defaultComponentVariants from '../../../../shared/divider.json';
 import { type DBDividerProps } from '../../../../../output/react/src/components/divider/model';
 import { getVariants } from '../data';
+import { type BaseComponentProps } from '../base-component-data';
 
 const getDivider = ({ variant, emphasis, children }: DBDividerProps) => (
 	<>
@@ -13,13 +14,14 @@ const getDivider = ({ variant, emphasis, children }: DBDividerProps) => (
 	</>
 );
 
-const DividerComponent = () => {
+const DividerComponent = (props: BaseComponentProps) => {
 	return (
 		<DefaultComponent
 			title="DBDivider"
 			variants={getVariants(
 				defaultComponentVariants,
-				getDivider
+				getDivider,
+				props.slotCode
 			)}></DefaultComponent>
 	);
 };
