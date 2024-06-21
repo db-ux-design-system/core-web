@@ -128,6 +128,11 @@
 			--db-#{$variant}-contrast-high-pressed
 		);
 
+		/* on-colors */
+		--db-current-color-on-bg-enabled: var(--db-#{$variant}-on-bg-enabled);
+		--db-current-color-on-bg-hover: var(--db-#{$variant}-on-bg-hover);
+		--db-current-color-on-bg-pressed: var(--db-#{$variant}-on-bg-pressed);
+
 		/* weak colors */
 		--db-current-color-on-bg-weak-enabled: var(
 			--db-#{$variant}-on-bg-weak-enabled
