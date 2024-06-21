@@ -2,6 +2,25 @@
 import childProcess from 'node:child_process';
 import inquirer from 'inquirer';
 
+const answersFrameworkPairs = [
+	{
+		answers: ['plain-html'],
+		framework: 'plain-html'
+	},
+	{
+		answers: ['vue', 'nuxt'],
+		framework: 'vue'
+	},
+	{
+		answers: ['react', 'next', 'patternhub'],
+		framework: 'react'
+	},
+	{
+		answers: ['angular', 'angular-ssr'],
+		framework: 'angular'
+	}
+];
+
 inquirer
 	.prompt([
 		{
@@ -14,13 +33,25 @@ inquirer
 					checked: true
 				},
 				{
+					name: 'patternhub'
+				},
+				{
 					name: 'angular'
+				},
+				{
+					name: 'angular-ssr'
 				},
 				{
 					name: 'react'
 				},
 				{
+					name: 'next'
+				},
+				{
 					name: 'vue'
+				},
+				{
+					name: 'nuxt'
 				}
 			],
 			validate(answer) {
@@ -34,14 +65,28 @@ inquirer
 	])
 
 	.then((answers) => {
-		let startCommand = 'npm-run-all -p start:foundations dev:sass';
-		if (answers?.frameworks)
-			for (const answer of answers.frameworks) {
-				startCommand +=
-					answer === 'plain-html'
-						? ` dev:plain-html`
-						: ` dev:${answer}-components start-showcase:${answer}`;
+		if (!answers?.frameworks) {
+			return;
+		}
+
+		// Let startCommand = 'npm-run-all -p start:foundations dev:sass';
+		let startCommand = 'npm run start:foundations & npm run dev:sass';
+
+		const currentAnswers = answers?.frameworks;
+
+		for (const { framework, answers } of answersFrameworkPairs) {
+			const isAnswerSelected = currentAnswers.some((currentAnswer) =>
+				answers.includes(currentAnswer)
+			);
+
+			if (isAnswerSelected) {
+				startCommand += ` & npm run dev:${framework}-components`;
 			}
+		}
+
+		for (const currentAnswer of currentAnswers) {
+			startCommand += ` & npm run start-showcase:${currentAnswer} --if-present`;
+		}
 
 		// TODO: Handle child process better
 		childProcess.execSync(startCommand, { stdio: 'inherit' });

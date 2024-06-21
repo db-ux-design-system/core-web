@@ -5,11 +5,11 @@ import {
 	DBTabPanel,
 	DBInfotext
 } from '../../../../../output/react/src';
-import DefaultComponent from '../index';
+import DefaultComponent from '../default-component';
 import defaultComponentVariants from '../../../../shared/tabs.json';
 import type { DBTabsProps } from '../../../../../output/react/src/components/tabs/model';
 import { getVariants } from '../data';
-// Patternhub:import TabItemComponent from '../tab-item';
+import { type BaseComponentProps } from '../base-component-data';
 
 const getTabs = ({
 	children,
@@ -57,15 +57,15 @@ const getTabs = ({
 	</div>
 );
 
-const TabsComponent = () => {
+const TabsComponent = (props: BaseComponentProps) => {
 	return (
 		<DefaultComponent
 			title="DBTabs"
-			// We use this only for patternhub to include an item inside the parent
-			// Patternhub:subComponent={<TabItemComponent	isSubComponent componentName="tab-item"/>}
+			subComponent={props.subComponent}
 			variants={getVariants(
 				defaultComponentVariants,
-				getTabs
+				getTabs,
+				props.slotCode
 			)}></DefaultComponent>
 	);
 };
