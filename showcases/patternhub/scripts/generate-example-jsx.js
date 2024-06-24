@@ -46,7 +46,7 @@ const generateExampleJSX = () => {
 		`./scripts/generated/index.jsx`,
 		"import { renderToString } from 'react-dom/server';\n" +
 			"import React from 'react';\n" +
-			`import {${imports.join(',')}} from '../../components/src';\n\n` +
+			`import {${imports.join(',')}} from '../../../../output/react/src';\n\n` +
 			`export const allExamples = {${examples.join(',\n')}}`
 	);
 };

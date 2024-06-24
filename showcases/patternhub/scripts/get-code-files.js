@@ -28,7 +28,7 @@ How to use this in ${framework}</DBLink>`;
 };
 
 const getExamplesAsMDX = async (componentName, variant) => {
-	const examples = variant.examples;
+	const { examples } = variant;
 	const children = variant.children;
 
 	let result =
@@ -41,7 +41,7 @@ const getExamplesAsMDX = async (componentName, variant) => {
 		'DBTabList,\n' +
 		'DBTabPanel,\n' +
 		'DBTabs\n' +
-		"} from '../../../../../../../output/react/src';\n" +
+		"} from '../../../../../output/react/src';\n" +
 		`const ${variant.name} = () => {
 			const [copied, setCopied] = useState<string>();
 
@@ -136,7 +136,7 @@ export default ${variant.name};`;
  * @returns {Promise<string>}
  */
 const writeCodeFiles = async (componentPath, componentName) => {
-	const codePath = `${componentPath}/code`;
+	const codePath = componentPath;
 	const path = `${sharedPath}/${componentName}.json`;
 	let variants;
 	if (FS.existsSync(path)) {
@@ -144,16 +144,23 @@ const writeCodeFiles = async (componentPath, componentName) => {
 			...variant,
 			name: variant.name.replaceAll(/\s/g, '').replaceAll(/\W/g, '')
 		}));
+
+		let indexFile = '';
+
 		for (const variant of variants) {
 			if (!FS.existsSync(codePath)) {
 				FS.mkdirSync(codePath);
 			}
+
+			indexFile += `export { default as ${variant.name} } from './${variant.name}';\n`;
 
 			FS.writeFileSync(
 				`${codePath}/${variant.name}.tsx`,
 				await getExamplesAsMDX(componentName, variant)
 			);
 		}
+
+		FS.writeFileSync(`${codePath}/index.tsx`, indexFile);
 	}
 
 	const reactComponentPath = `${reactPath}/${componentName}/index.tsx`;
@@ -171,22 +178,12 @@ const writeCodeFiles = async (componentPath, componentName) => {
 		}
 
 		const readFile = FS.readFileSync(reactComponentPath, 'utf8')
-			.replace(
-				'../../../../../output/react/src',
-				'./../../../../components/src'
-			)
-			.replace('../index', './../../../../components')
-			.replace('../data', '../../../../components/data')
-			.replaceAll('../../../../shared/', '../../../../../shared/')
-			.replace(
-				`../../../../../output/react/src/components/${componentName}/model`,
-				`./../../../../components//src/components/${componentName}/model`
-			)
+			.replace('../index', './../../../components')
+			.replace('../data', '../../../components/data')
 			.replace(
 				')}></DefaultComponent>',
 				`,[${tags}])}></DefaultComponent>`
 			)
-			.replace("-item';", "-item/overview';")
 			.replaceAll('// Patternhub:', '');
 
 		return `${pre}\n${readFile}`;

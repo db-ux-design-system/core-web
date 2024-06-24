@@ -1,5 +1,5 @@
 import DefaultPage from '../../../components/default-page';
-import { DBButton, DBInput, DBCard } from '../../../components/src';
+import { DBButton, DBInput, DBCard } from '../../../../../output/react/src';
 
 const densities = ['functional', 'regular', 'expressive'];
 const Example = () => {

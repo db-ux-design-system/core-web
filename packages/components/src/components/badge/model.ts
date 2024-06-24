@@ -3,7 +3,8 @@ import {
 	EmphasisProps,
 	GlobalProps,
 	GlobalState,
-	SizeProps
+	SizeProps,
+	InitializedState
 } from '../../shared/model';
 
 export const BadgePlacementList = [
@@ -22,6 +23,11 @@ export interface DBBadgeDefaultProps {
 	 * The `placement` attributes `corner-*` values change the position to absolute and adds a transform based on the placement.
 	 */
 	placement?: BadgePlacementType;
+
+	/**
+	 * Describes the badge for a11y if you use placement attribute with `corner-*`
+	 */
+	label?: string;
 }
 
 export type DBBadgeProps = DBBadgeDefaultProps &
@@ -32,4 +38,4 @@ export type DBBadgeProps = DBBadgeDefaultProps &
 
 export interface DBBadgeDefaultState {}
 
-export type DBBadgeState = DBBadgeDefaultState & GlobalState;
+export type DBBadgeState = DBBadgeDefaultState & GlobalState & InitializedState;

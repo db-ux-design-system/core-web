@@ -9,7 +9,7 @@ import { DBButton, DBTooltip } from "../../../../../output/vue/src";
 		<template
 			#example="{ exampleIndex, variantIndex, exampleName, exampleProps }"
 		>
-			<DBButton :describedbyid="exampleProps?.id">
+			<DBButton>
 				{{ exampleName }}
 				<DBTooltip
 					:width="exampleProps?.width"
@@ -18,7 +18,6 @@ import { DBButton, DBTooltip } from "../../../../../output/vue/src";
 					:animation="exampleProps?.animation"
 					:delay="exampleProps?.delay"
 					:variant="exampleProps?.variant"
-					:id="exampleProps?.id"
 				>
 					{{ exampleProps?.content }}
 				</DBTooltip>
