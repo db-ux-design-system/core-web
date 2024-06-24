@@ -49,17 +49,10 @@
 
 	@include tag-components.get-tag-colors();
 
-	border-radius: 42px; // extreme radius
+	border-radius: variables.$db-border-radius-full;
 	padding-inline: variables.$db-spacing-fixed-2xs;
 	block-size: fit-content;
 	inline-size: fit-content;
-
-	&:empty,
-	> span:empty {
-		block-size: var(--badge-size);
-		inline-size: var(--badge-size);
-		padding: 0;
-	}
 
 	&:has(.db-icon) {
 		padding: variables.$db-spacing-fixed-3xs;
@@ -77,11 +70,6 @@
 
 		padding-inline: variables.$db-spacing-fixed-xs;
 
-		&:empty,
-		> span:empty {
-			padding: 0;
-		}
-
 		&:has(.db-icon) {
 			padding: variables.$db-spacing-fixed-2xs;
 		}
@@ -92,13 +80,28 @@
 		}
 	}
 
+	&:empty,
+	> span:empty {
+		block-size: var(--badge-size);
+		inline-size: var(--badge-size);
+		padding: 0;
+	}
+
 	&[data-placement^="corner"] {
 		@extend %absolute-badge;
+
+		&[data-label] {
+			&::before {
+				content: attr(data-label);
+				position: fixed;
+				font-size: 0;
+			}
+		}
 	}
 }
 
 // Global styles
 
-:has(> .db-badge[data-placement^="corner"]) {
+[data-has-badge="true"] {
 	position: relative;
 }

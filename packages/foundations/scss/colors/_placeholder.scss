@@ -1,5 +1,6 @@
 @use "sass:string";
 @use "variables";
+@use "variables.additional" as additional-colors;
 
 %set-current-colors {
 	background: variables.$db-current-color-bg-enabled;
@@ -21,7 +22,7 @@
 	}
 }
 
-@each $variant in variables.$variants {
+@mixin generate-color-placeholder($variant) {
 	@each $contrast in [ "high", "low"] {
 		%db-#{$variant}-contrast-#{$contrast} {
 			--db-current-icon-color: var(--db-#{$variant}-on-contrast-enabled);
@@ -127,6 +128,22 @@
 		--db-current-color-contrast-high-pressed: var(
 			--db-#{$variant}-contrast-high-pressed
 		);
+
+		/* on-colors */
+		--db-current-color-on-bg-enabled: var(--db-#{$variant}-on-bg-enabled);
+		--db-current-color-on-bg-hover: var(--db-#{$variant}-on-bg-hover);
+		--db-current-color-on-bg-pressed: var(--db-#{$variant}-on-bg-pressed);
+
+		/* weak colors */
+		--db-current-color-on-bg-weak-enabled: var(
+			--db-#{$variant}-on-bg-weak-enabled
+		);
+		--db-current-color-on-bg-weak-hover: var(
+			--db-#{$variant}-on-bg-weak-hover
+		);
+		--db-current-color-on-bg-weak-pressed: var(
+			--db-#{$variant}-on-bg-weak-pressed
+		);
 	}
 
 	%db-#{$variant}-bg {
@@ -192,4 +209,12 @@
 			--db-current-color-bg-transparent-semi-enabled
 		);
 	}
+}
+
+@each $variant in variables.$variants {
+	@include generate-color-placeholder($variant);
+}
+
+@each $variant in additional-colors.$additional-variants {
+	@include generate-color-placeholder($variant);
 }

@@ -1,0 +1,9 @@
+@forward "@db-ui/components/build/styles/db-ui-42-webpack";
+@forward "@db-ui/foundations/build/css/colors/classes/all";
+@forward "@db-ui/foundations/build/css/fonts/classes/all";
+
+/* stylelint-disable */
+#__next {
+	block-size: 100%;
+}
+/* stylelint-enable */

@@ -38,15 +38,13 @@ public/docs
 
 styles/db-ui-components.scss
 scripts/generated
+pages/components/
 components/src
-pages/components/**/code
-pages/components/**/docs
-pages/components/**/how-to-use.mdx
-pages/components/**/migration.mdx
-pages/components/**/properties.mdx
-pages/components/**/properties.tsx
-pages/components/**/overview.tsx
-pages/components/**/index.tsx
+components/code-docs/
+!pages/components/readme.mdx
+!pages/components/validation.mdx
+!pages/components/router-usage.mdx
+!pages/components/[[...slug]].tsx
 !components/src/tsconfig.json
 !components/component-parser
 !components/default-page.tsx

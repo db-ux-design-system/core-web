@@ -1,8 +1,9 @@
 import { DBSection } from '../../../../../output/react/src';
-import DefaultComponent from '../index';
+import DefaultComponent from '../default-component';
 import defaultComponentVariants from '../../../../shared/section.json';
 import { type DBSectionProps } from '../../../../../output/react/src/components/section/model';
 import { getVariants } from '../data';
+import { type BaseComponentProps } from '../base-component-data';
 
 const getSection = ({ width, spacing, children }: DBSectionProps) => (
 	<DBSection
@@ -13,13 +14,14 @@ const getSection = ({ width, spacing, children }: DBSectionProps) => (
 	</DBSection>
 );
 
-const SectionComponent = () => {
+const SectionComponent = (props: BaseComponentProps) => {
 	return (
 		<DefaultComponent
 			title={'DBSection'}
 			variants={getVariants(
 				defaultComponentVariants,
-				getSection
+				getSection,
+				props.slotCode
 			)}></DefaultComponent>
 	);
 };

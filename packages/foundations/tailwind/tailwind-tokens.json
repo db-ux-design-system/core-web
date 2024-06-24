@@ -76,15 +76,23 @@
 			"var(--db-type-body-font-size-md)",
 			"var(--db-type-body-line-height-md)"
 		],
+		"body-3xs": [
+			"var(--db-type-body-font-size-3xs)",
+			"var(--db-type-body-line-height-3xs)"
+		],
+		"body-2xs": [
+			"var(--db-type-body-font-size-2xs)",
+			"var(--db-type-body-line-height-2xs)"
+		],
+		"body-2xl": [
+			"var(--db-type-body-font-size-2xl)",
+			"var(--db-type-body-line-height-2xl)"
+		],
+		"body-3xl": [
+			"var(--db-type-body-font-size-3xl)",
+			"var(--db-type-body-line-height-3xl)"
+		],
 		"body": {
-			"3xs": [
-				"var(--db-type-body-font-size-3xs)",
-				"var(--db-type-body-line-height-3xs)"
-			],
-			"2xs": [
-				"var(--db-type-body-font-size-2xs)",
-				"var(--db-type-body-line-height-2xs)"
-			],
 			"xs": [
 				"var(--db-type-body-font-size-xs)",
 				"var(--db-type-body-line-height-xs)"
@@ -104,25 +112,25 @@
 			"xl": [
 				"var(--db-type-body-font-size-xl)",
 				"var(--db-type-body-line-height-xl)"
-			],
-			"2xl": [
-				"var(--db-type-body-font-size-2xl)",
-				"var(--db-type-body-line-height-2xl)"
-			],
-			"3xl": [
-				"var(--db-type-body-font-size-3xl)",
-				"var(--db-type-body-line-height-3l)"
 			]
 		},
+		"head-3xs": [
+			"var(--db-type-headline-font-size-3xs)",
+			"var(--db-type-headline-line-height-3xs)"
+		],
+		"head-2xs": [
+			"var(--db-type-headline-font-size-2xs)",
+			"var(--db-type-headline-line-height-2xs)"
+		],
+		"head-2xl": [
+			"var(--db-type-headline-font-size-2xl)",
+			"var(--db-type-headline-line-height-2xl)"
+		],
+		"head-3xl": [
+			"var(--db-type-headline-font-size-3xl)",
+			"var(--db-type-headline-line-height-3xl)"
+		],
 		"head": {
-			"3xs": [
-				"var(--db-type-headline-font-size-3xs)",
-				"var(--db-type-headline-line-height-3xs)"
-			],
-			"2xs": [
-				"var(--db-type-headline-font-size-2xs)",
-				"var(--db-type-headline-line-height-2xs)"
-			],
 			"xs": [
 				"var(--db-type-headline-font-size-xs)",
 				"var(--db-type-headline-line-height-xs)"
@@ -142,20 +150,12 @@
 			"xl": [
 				"var(--db-type-headline-font-size-xl)",
 				"var(--db-type-headline-line-height-xl)"
-			],
-			"2xl": [
-				"var(--db-type-headline-font-size-2xl)",
-				"var(--db-type-headline-line-height-2xl)"
-			],
-			"3xl": [
-				"var(--db-type-headline-font-size-3xl)",
-				"var(--db-type-headline-line-height-3l)"
 			]
 		}
 	},
 	"borderRadius": {
 		"DEFAULT": "var(--db-border-radius-xs)",
-		"none": 0,
+		"none": "0px",
 		"3xs": "var(--db-border-radius-3xs)",
 		"2xs": "var(--db-border-radius-2xs)",
 		"xs": "var(--db-border-radius-xs)",
@@ -169,7 +169,7 @@
 	},
 	"borderWidth": {
 		"DEFAULT": "var(--db-border-height-3xs)",
-		"none": 0,
+		"none": "0px",
 		"3xs": "var(--db-border-height-3xs)",
 		"2xs": "var(--db-border-height-2xs)",
 		"xs": "var(--db-border-height-xs)",
@@ -194,8 +194,8 @@
 		"lg": "var(--db-elevation-lg)"
 	},
 	"spacing": {
-		"none": 0,
-		"0": 0,
+		"none": "0px",
+		"0": "0px",
 		"fix-3xs": "var(--db-spacing-fixed-3xs)",
 		"fix-2xs": "var(--db-spacing-fixed-2xs)",
 		"fix-xs": "var(--db-spacing-fixed-xs)",

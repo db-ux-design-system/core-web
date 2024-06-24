@@ -1,5 +1,5 @@
 import FS from 'node:fs';
-import CPR from 'cpr';
+import CPY from 'cpy';
 import { navigationPaths } from '../src/utils/navigation-paths.js';
 
 const generateRoutes = () => {
@@ -13,14 +13,7 @@ const generateRoutes = () => {
 			}
 
 			if (index === splitPath.length - 1) {
-				CPR(
-					`./dist/index.html`,
-					`./dist${lastPath}/index.html`,
-					{
-						deleteFirst: true,
-						overwrite: true,
-						confirm: true
-					},
+				CPY(`./dist/index.html`, `./dist${lastPath}/index.html`).catch(
 					(error) => {
 						if (error) {
 							console.error(error);

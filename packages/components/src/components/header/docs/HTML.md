@@ -109,7 +109,7 @@ For general installation and configuration take a look at the [components](https
 			</div>
 			<div class="db-header-navigation-container">
 				<div class="db-header-navigation">
-					<nav class="db-main-navigation">
+					<nav class="db-navigation">
 						<menu>
 							<li class="db-navigation-item" data-icon="user">
 								<a href="#">Regular (Default)</a>
