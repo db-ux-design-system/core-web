@@ -1,14 +1,29 @@
 import { Link, useLocation } from 'react-router-dom';
+import NextLink from 'next/link';
+import { usePathname } from 'next/navigation';
+import { useEffect, useState } from 'react';
 import { DBNavigationItem } from '../../../../output/react/src';
 import type { NavigationItem } from '../utils/navigation-item';
 
 const NavItem = ({ navItem }: { navItem: NavigationItem }) => {
-	const location = useLocation();
+	const pathname =
+		process.env.NEXT_SHOWCASE_VARIANT === 'next'
+			? usePathname()
+			: useLocation().pathname;
 
-	const isActive =
-		navItem.path === ''
-			? location.pathname === '/'
-			: location.pathname.includes(navItem.path);
+	const [isActive, setIsActive] = useState(false);
+
+	useEffect(() => {
+		if (!pathname) {
+			return;
+		}
+
+		setIsActive(
+			navItem.path === ''
+				? pathname === '/'
+				: pathname.includes(navItem.path)
+		);
+	}, [pathname]);
 
 	return (
 		<DBNavigationItem
@@ -31,9 +46,21 @@ const NavItem = ({ navItem }: { navItem: NavigationItem }) => {
 				)
 			}>
 			{navItem.component ? (
-				<Link key={`router-path-${navItem.path}`} to={navItem.path}>
-					{navItem.label}
-				</Link>
+				<>
+					{process.env.NEXT_SHOWCASE_VARIANT === 'next' ? (
+						<NextLink
+							key={`router-path-${navItem.path}`}
+							href={navItem.path}>
+							{navItem.label}
+						</NextLink>
+					) : (
+						<Link
+							key={`router-path-${navItem.path}`}
+							to={navItem.path}>
+							{navItem.label}
+						</Link>
+					)}
+				</>
 			) : (
 				navItem.label
 			)}

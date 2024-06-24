@@ -1,4 +1,5 @@
 import {
+	ContainerWidthProps,
 	GlobalProps,
 	GlobalState,
 	InitializedState,
@@ -10,8 +11,8 @@ import {
 export interface DBHeaderDefaultProps {
 	brand?: unknown;
 	metaNavigation?: unknown;
-	callToAction?: unknown;
-	actionBar?: unknown;
+	primaryAction?: unknown;
+	secondaryAction?: unknown;
 	drawerOpen?: boolean;
 
 	/**
@@ -30,7 +31,8 @@ export interface DBHeaderDefaultProps {
 
 export type DBHeaderProps = DBHeaderDefaultProps &
 	GlobalProps &
-	ToggleEventProps;
+	ToggleEventProps &
+	ContainerWidthProps;
 
 export interface DBHeaderDefaultState {
 	forcedToMobile?: boolean;

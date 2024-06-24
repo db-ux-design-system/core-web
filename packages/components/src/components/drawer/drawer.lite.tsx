@@ -30,10 +30,11 @@ export default function DBDrawer(props: DBDrawerProps) {
 				event === 'close' ||
 				event.key === 'Escape' ||
 				(event.target.nodeName === 'DIALOG' &&
+					event.type === 'click' &&
 					props.backdrop !== 'none')
 			) {
 				if (props.onClose) {
-					props.onClose();
+					props.onClose(event);
 				}
 			}
 		},

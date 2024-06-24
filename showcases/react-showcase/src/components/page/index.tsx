@@ -10,10 +10,11 @@ import {
 import { type DBPageProps } from '../../../../../output/react/src/components/page/model';
 import defaultComponentVariants from '../../../../shared/page.json';
 import { getVariants } from '../data';
-import DefaultComponent from '../index';
+import DefaultComponent from '../default-component';
+import { type BaseComponentProps } from '../base-component-data';
 
 const getPage = ({
-	type,
+	variant,
 	fadeIn,
 	children,
 	className,
@@ -22,7 +23,7 @@ const getPage = ({
 	key
 }: DBPageProps) => (
 	<DBPage
-		type={type}
+		variant={variant}
 		fadeIn={fadeIn}
 		className={className}
 		describedbyid={describedbyid}
@@ -37,12 +38,12 @@ const getPage = ({
 						<DBLink href="#">Help</DBLink>
 					</>
 				}
-				callToAction={
+				primaryAction={
 					<DBButton icon="magnifying_glass" variant="ghost" noText>
 						Search
 					</DBButton>
 				}
-				actionBar={
+				secondaryAction={
 					<>
 						<DBButton icon="user" variant="ghost" noText>
 							Profile
@@ -73,13 +74,14 @@ const getPage = ({
 	</DBPage>
 );
 
-const PageComponent = () => {
+const PageComponent = (props: BaseComponentProps) => {
 	return (
 		<DefaultComponent
 			title="DBPage"
 			variants={getVariants(
 				defaultComponentVariants,
-				getPage
+				getPage,
+				props.slotCode
 			)}></DefaultComponent>
 	);
 };

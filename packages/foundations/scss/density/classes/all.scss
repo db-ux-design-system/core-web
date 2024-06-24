@@ -1,0 +1,6 @@
+@use "../index";
+@use "get-class";
+
+@each $density in index.$densities {
+	@include get-class.init($density);
+}

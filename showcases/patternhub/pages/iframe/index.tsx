@@ -2,7 +2,7 @@
 import { Buffer } from 'buffer';
 import { useRouter } from 'next/router';
 import ComponentParser from '../../components/component-parser';
-import { COLOR } from '../../components/src/shared/constants';
+import { COLOR } from '../../../../packages/components/src/shared/constants';
 
 const IframeComponent = () => {
 	const router = useRouter();

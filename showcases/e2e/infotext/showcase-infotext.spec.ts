@@ -3,5 +3,5 @@ import { test } from '@playwright/test';
 import { getDefaultScreenshotTest } from '../default.ts';
 
 test.describe('DBInfotext', () => {
-	getDefaultScreenshotTest('04/infotext');
+	getDefaultScreenshotTest({ path: '04/infotext' });
 });

@@ -22,7 +22,7 @@ export default function DBNotification(props: DBNotificationProps) {
 	// jscpd:ignore-end
 
 	return (
-		<div
+		<article
 			ref={ref}
 			id={props.id}
 			class={cls('db-notification', props.className)}
@@ -33,7 +33,7 @@ export default function DBNotification(props: DBNotificationProps) {
 			data-link-variant={props.linkVariant}>
 			<Slot name="image" />
 			<Show when={props.headline}>
-				<h6>{props.headline}</h6>
+				<header>{props.headline}</header>
 			</Show>
 			<p>{props.children}</p>
 			<Show when={props.timestamp}>
@@ -55,6 +55,6 @@ export default function DBNotification(props: DBNotificationProps) {
 					{props.closeButtonText ?? DEFAULT_CLOSE_BUTTON}
 				</DBButton>
 			</Show>
-		</div>
+		</article>
 	);
 }

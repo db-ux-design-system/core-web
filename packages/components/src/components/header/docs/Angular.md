@@ -19,7 +19,7 @@ import {
 	// ...,
 	DBHeader,
     NavigationDirective, // Optional: If you want to use a Navigation
-	ActionBarDirective, // Optional: If you want to use ActionBar
+	SecondaryActionDirective, // Optional: If you want to use ActionBar
 	MetaNavigationDirective, // Optional: If you want to use MetaNavigation
   ],
   // ...
@@ -68,12 +68,12 @@ export class AppComponent {
 		<DBLink href="#">Imprint</DBLink>
 		<DBLink href="#">Help</DBLink>
 	</ng-container>
-	<ng-container call-to-action>
+	<ng-container primary-action>
 		<DBButton icon="magnifying_glass" variant="ghost" [noText]="true">
 			Search
 		</DBButton>
 	</ng-container>
-	<ng-container *dbActionBar>
+	<ng-container *dbSecondaryAction>
 		<DBButton icon="user" variant="ghost" [noText]="true">
 			Profile
 		</DBButton>

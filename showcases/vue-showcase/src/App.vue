@@ -8,77 +8,36 @@ import {
 	DBButton
 } from "../../../output/vue/src";
 import {
-	COLOR,
 	COLORS,
-	DENSITIES,
-	DENSITY,
-	COLOR_CONST,
-	DENSITY_CONST
+	DENSITIES
 } from "../../../packages/components/src/shared/constants";
-import {
-	getSortedNavigationItems,
-	navigationItems
-} from "./utils/navigation-items";
-
-import { ref, watch, computed } from "vue";
-import { useRouter, useRoute } from "vue-router";
 import NavItemComponent from "./NavItemComponent.vue";
 
-const router = useRouter();
-const route = useRoute();
+import { useLayout } from "./composables/use-layout";
 
-const density = ref(DENSITY.REGULAR);
-const color = ref(COLOR.NEUTRAL_BG_LEVEL_1);
-const page = ref();
-const fullscreen = ref();
-
-const drawerOpen = ref(false);
-
-const toggleDrawer = (open: boolean) => {
-	drawerOpen.value = open;
-};
-
-const classNames = computed(
-	() => `db-density-${density.value} db-${color.value}`
-);
-
-const onChange = (event: any) => {
-	router.push({
-		path: route.path,
-		query: {
-			...route.query,
-			[DENSITY_CONST]: density.value,
-			[COLOR_CONST]: color.value
-		}
-	});
-};
-
-watch(
-	() => route.query,
-	async (query: any) => {
-		if (query[COLOR_CONST] && query[COLOR_CONST] !== color.value) {
-			color.value = query[COLOR_CONST];
-		}
-		if (query[DENSITY_CONST] && query[DENSITY_CONST] !== density.value) {
-			density.value = query[DENSITY_CONST];
-		}
-		if (query.page) {
-			page.value = query.page;
-		}
-		if (query.fullscreen) {
-			page.value = query.fullscreen;
-		}
-	}
-);
-
-const sortedNavigation = getSortedNavigationItems(navigationItems);
+const {
+	page,
+	fullscreen,
+	density,
+	color,
+	drawerOpen,
+	classNames,
+	onChange,
+	toggleDrawer,
+	sortedNavigation
+} = useLayout();
 </script>
 
 <template>
 	<div v-if="page || fullscreen" :class="classNames">
 		<router-view></router-view>
 	</div>
-	<DBPage v-if="!page && !fullscreen" type="fixedHeaderFooter" :fadeIn="true">
+	<DBPage
+		v-if="!page && !fullscreen"
+		variant="fixed"
+		documentOverflow="auto"
+		:fadeIn="true"
+	>
 		<template v-slot:header>
 			<DBHeader :drawerOpen="drawerOpen" :onToggle="toggleDrawer">
 				<template v-slot:brand>
@@ -89,7 +48,7 @@ const sortedNavigation = getSortedNavigationItems(navigationItems);
 						<NavItemComponent :navItem="item"></NavItemComponent>
 					</template>
 				</DBNavigation>
-				<template v-slot:calltoaction>
+				<template v-slot:call-to-action>
 					<DBButton
 						icon="magnifying_glass"
 						variant="ghost"
@@ -98,7 +57,7 @@ const sortedNavigation = getSortedNavigationItems(navigationItems);
 						Search
 					</DBButton>
 				</template>
-				<template v-slot:actionbar>
+				<template v-slot:action-bar>
 					<DBButton icon="user" variant="ghost" :no-text="true">
 						Profile
 					</DBButton>
@@ -113,12 +72,12 @@ const sortedNavigation = getSortedNavigationItems(navigationItems);
 						Help
 					</DBButton>
 				</template>
-				<template v-slot:metanavigation>
+				<template v-slot:meta-navigation>
 					<DBSelect
 						label="Density"
 						variant="floating"
-						v-model:value="density"
-						@change="onChange($event)"
+						:value="density"
+						@change="onChange($event, 'density')"
 					>
 						<option v-for="ton of DENSITIES" :value="ton">
 							{{ ton }}
@@ -127,8 +86,8 @@ const sortedNavigation = getSortedNavigationItems(navigationItems);
 					<DBSelect
 						label="Color"
 						variant="floating"
-						v-model:value="color"
-						@change="onChange($event)"
+						:value="color"
+						@change="onChange($event, 'color')"
 					>
 						<option v-for="col of COLORS" :value="col">
 							{{ col }}

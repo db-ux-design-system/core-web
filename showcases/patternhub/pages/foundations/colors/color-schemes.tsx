@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import DefaultPage from '../../../components/default-page';
-import { DBButton, DBTag, DBCard } from '../../../components/src';
-import { SEMANTICS } from '../../../components/src/shared/constants';
+import { DBButton, DBTag, DBCard } from '../../../../../output/react/src';
+import { SEMANTICS } from '../../../../../packages/components/src/shared/constants';
 
 const colors = ['neutral', ...SEMANTICS];
 
@@ -52,7 +52,7 @@ const ColorOverview = () => {
 					{colorScheme2}
 				</DBTag>
 				<DBButton
-					icon={colorScheme2 === 'light' ? 'night' : 'day'}
+					icon={colorScheme === 'light' ? 'moon' : 'sun'}
 					onClick={() => {
 						setColorScheme2(
 							colorScheme2 === 'light' ? 'dark' : 'light'

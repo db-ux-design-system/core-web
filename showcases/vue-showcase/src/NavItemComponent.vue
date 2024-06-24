@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { DBNavigationItem } from "../../../output/vue/src";
-import { NavItem } from "./utils/navigation-items";
+import { type NavItem } from "./utils/navigation-items";
 
 defineProps<{
 	navItem: NavItem;
@@ -9,7 +9,7 @@ defineProps<{
 
 <template>
 	<DBNavigationItem :backButtonText="`Back to ${navItem.label}`">
-		<template v-if="navItem.subNavigation" v-slot:subnavigation>
+		<template v-if="navItem.subNavigation" v-slot:sub-navigation>
 			<template v-for="item of navItem.subNavigation">
 				<NavItemComponent :navItem="item"></NavItemComponent>
 			</template>

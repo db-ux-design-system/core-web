@@ -15,6 +15,7 @@ export * from './components/page';
 export * from './components/radio';
 export * from './components/section';
 export * from './components/select';
+export * from './components/switch';
 export * from './components/tab-item';
 export * from './components/tag';
 export * from './components/textarea';

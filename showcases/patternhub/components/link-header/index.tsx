@@ -1,11 +1,11 @@
 import Link from 'next/link';
-import { DBIcon } from '../src';
+import { DBIcon } from '../../../../output/react/src';
 
 const LinkHeader = ({ id }) => {
 	if (id) {
 		return (
 			<Link className="header-link" href={`?current=${id}`}>
-				<DBIcon icon="add_link" />
+				<DBIcon icon="paper_clip" />
 				{id} anchor link
 			</Link>
 		);

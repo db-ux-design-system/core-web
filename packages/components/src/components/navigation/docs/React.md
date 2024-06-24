@@ -16,7 +16,7 @@ const App = () => (
 				<>
 					<DBNavigationItem
 						active
-						slotSubNavigation={
+						subNavigation={
 							<>
 								<DBNavigationItem active>
 									<a href="#">Sub-Sub-Navi-Item 1</a>

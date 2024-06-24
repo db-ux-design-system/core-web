@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ActivatedRoute, Router, RouterOutlet } from '@angular/router';
 import {
-	ActionBarDirective,
+	SecondaryActionDirective,
 	NavigationDirective,
 	MetaNavigationDirective,
 	NavigationContentDirective,
@@ -39,7 +39,7 @@ import {
 		DBNavigation,
 		DBSelect,
 		DBButton,
-		ActionBarDirective,
+		SecondaryActionDirective,
 		NavigationDirective,
 		MetaNavigationDirective,
 		NavigationContentDirective

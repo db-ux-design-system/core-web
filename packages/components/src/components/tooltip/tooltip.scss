@@ -10,8 +10,12 @@ $tooltip-arrow-shadow-size: variables.$db-sizing-2xs;
 .db-tooltip {
 	--default-card-elevation: #{variables.$db-elevation-sm};
 	--default-card-border-radius: #{variables.$db-border-radius-xs};
+	--db-current-icon-color: #{colors.$db-current-color-on-bg-enabled};
 	@extend %db-overwrite-font-size-sm;
 	@extend %default-popover;
+
+	background-color: colors.$db-current-color-bg-lvl-1-enabled;
+	color: colors.$db-current-color-on-bg-enabled;
 
 	// i HTML tags browsers default styling reset
 	font-style: normal;
@@ -20,6 +24,15 @@ $tooltip-arrow-shadow-size: variables.$db-sizing-2xs;
 	font-weight: initial;
 
 	padding: variables.$db-spacing-fixed-2xs variables.$db-spacing-fixed-xs;
+
+	&::after {
+		background-color: colors.$db-current-color-bg-lvl-1-enabled;
+	}
+
+	// Only for testing
+	&[data-e2e-hover="true"] {
+		@extend %show-popover;
+	}
 
 	// Arrow
 	&:not([data-variant="basic"]) {
@@ -94,4 +107,25 @@ $tooltip-arrow-shadow-size: variables.$db-sizing-2xs;
 			background-color: colors.$db-current-color-contrast-high-enabled;
 		}
 	}
+}
+
+// Global styles
+
+@mixin show-popover($state) {
+	[data-has-tooltip="true"] {
+		&:#{$state} {
+			.db-tooltip:first-of-type {
+				@extend %show-popover;
+			}
+		}
+	}
+}
+
+[data-has-tooltip="true"] {
+	position: relative;
+}
+
+$popover-states: "hover", "focus";
+@each $state in $popover-states {
+	@include show-popover($state);
 }

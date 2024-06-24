@@ -1,3 +1,4 @@
+import SwitchComponent from '../components/switch';
 import TabsComponent from '../components/tabs';
 import TabItemComponent from '../components/tab-item';
 import TooltipComponent from '../components/tooltip';
@@ -24,6 +25,7 @@ import SectionComponent from '../components/section';
 import TextareaComponent from '../components/textarea';
 import IconComponent from '../components/icon';
 import BrandComponent from '../components/brand';
+import HeaderComponent from '../components/header';
 
 export type NavigationItem = {
 	path: string;
@@ -128,6 +130,7 @@ export const NAVIGATION_ITEMS: NavigationItem[] = [
 				label: 'Checkbox',
 				component: <CheckboxComponent />
 			},
+			{ path: 'switch', label: 'Switch', component: <SwitchComponent /> },
 			{ path: 'select', label: 'Select', component: <SelectComponent /> }
 		])
 	},
@@ -159,6 +162,11 @@ export const NAVIGATION_ITEMS: NavigationItem[] = [
 				path: 'popover',
 				label: 'Popover',
 				component: <PopoverComponent />
+			},
+			{
+				path: 'header',
+				label: 'Header',
+				component: <HeaderComponent />
 			}
 		])
 	},

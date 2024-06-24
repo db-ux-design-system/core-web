@@ -3,5 +3,5 @@ import { test } from '@playwright/test';
 import { getDefaultScreenshotTest } from '../default.ts';
 
 test.describe('DBAccordion', () => {
-	getDefaultScreenshotTest('04/accordion');
+	getDefaultScreenshotTest({ path: '04/accordion' });
 });

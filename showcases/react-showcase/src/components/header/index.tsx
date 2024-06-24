@@ -9,7 +9,8 @@ import {
 import { type DBHeaderProps } from '../../../../../output/react/src/components/header/model';
 import defaultComponentVariants from '../../../../shared/header.json';
 import { getVariants } from '../data';
-import DefaultComponent from '../index';
+import DefaultComponent from '../default-component';
+import { type BaseComponentProps } from '../base-component-data';
 
 const getHeader = ({
 	drawerOpen,
@@ -20,33 +21,55 @@ const getHeader = ({
 	describedbyid,
 	id,
 	key,
-	onToggle
-}: DBHeaderProps) => (
+	onToggle,
+	width,
+	example,
+	withNavigation,
+	withName
+}: DBHeaderProps & {
+	example: boolean;
+	withName: boolean;
+	withNavigation: boolean;
+}) => (
 	<DBHeader
-		brand={<DBBrand title="DBHeader">DBHeader</DBBrand>}
+		width={width}
+		brand={
+			<DBBrand title="DBHeader">
+				{(!example || withName) && 'DBHeader'}
+			</DBBrand>
+		}
 		metaNavigation={
-			<>
-				<DBLink href="#">Imprint</DBLink>
-				<DBLink href="#">Help</DBLink>
-			</>
+			!example && (
+				<>
+					<DBLink href="#">Imprint</DBLink>
+					<DBLink href="#">Help</DBLink>
+				</>
+			)
 		}
-		callToAction={
-			<DBButton icon="magnifying_glass" variant="ghost" noText>
-				Search
-			</DBButton>
+		primaryAction={
+			!example && (
+				<DBButton icon="magnifying_glass" variant="ghost" noText>
+					Search
+				</DBButton>
+			)
 		}
-		actionBar={
-			<>
-				<DBButton icon="user" variant="ghost" noText>
-					Profile
-				</DBButton>
-				<DBButton icon="bell" variant="ghost" noText>
-					Notification
-				</DBButton>
-				<DBButton icon="question_mark_circle" variant="ghost" noText>
-					Help
-				</DBButton>
-			</>
+		secondaryAction={
+			!example && (
+				<>
+					<DBButton icon="user" variant="ghost" noText>
+						Profile
+					</DBButton>
+					<DBButton icon="bell" variant="ghost" noText>
+						Notification
+					</DBButton>
+					<DBButton
+						icon="question_mark_circle"
+						variant="ghost"
+						noText>
+						Help
+					</DBButton>
+				</>
+			)
 		}
 		drawerOpen={drawerOpen}
 		forceMobile={forceMobile}
@@ -56,24 +79,27 @@ const getHeader = ({
 		id={id}
 		key={key}
 		onToggle={onToggle}>
-		<DBNavigation>
-			<DBNavigationItem icon="user">
-				<a href="#">{children}</a>
-			</DBNavigationItem>
-			<DBNavigationItem disabled>
-				<a href="#">{children} disabled</a>
-			</DBNavigationItem>
-		</DBNavigation>
+		{(!example || withNavigation) && (
+			<DBNavigation aria-label={children}>
+				<DBNavigationItem icon="user">
+					<a href="#">{children}</a>
+				</DBNavigationItem>
+				<DBNavigationItem disabled>
+					<a href="#">{children} disabled</a>
+				</DBNavigationItem>
+			</DBNavigation>
+		)}
 	</DBHeader>
 );
 
-const HeaderComponent = () => {
+const HeaderComponent = (props: BaseComponentProps) => {
 	return (
 		<DefaultComponent
 			title="DBHeader"
 			variants={getVariants(
 				defaultComponentVariants,
-				getHeader
+				getHeader,
+				props.slotCode
 			)}></DefaultComponent>
 	);
 };

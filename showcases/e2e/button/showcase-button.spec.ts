@@ -3,5 +3,5 @@ import { test } from '@playwright/test';
 import { getDefaultScreenshotTest } from '../default.ts';
 
 test.describe('DBButton', () => {
-	getDefaultScreenshotTest('02/button');
+	getDefaultScreenshotTest({ path: '02/button' });
 });

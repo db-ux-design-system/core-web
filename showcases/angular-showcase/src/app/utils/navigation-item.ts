@@ -1,4 +1,5 @@
 import { Routes } from '@angular/router';
+import { SwitchComponent } from '../components/switch/switch.component';
 import { TabsComponent } from '../components/tabs/tabs.component';
 import { TabItemComponent } from '../components/tab-item/tab-item.component';
 import { TooltipComponent } from '../components/tooltip/tooltip.component';
@@ -25,6 +26,7 @@ import { DividerComponent } from '../components/divider/divider.component';
 import { DrawerComponent } from '../components/drawer/drawer.component';
 import { IconComponent } from '../components/icon/icon.component';
 import { BrandComponent } from '../components/brand/brand.component';
+import { HeaderComponent } from '../components/header/header.component';
 
 export type NavItem = {
 	path: string;
@@ -125,6 +127,7 @@ export const NAVIGATION_ITEMS: NavItem[] = [
 				label: 'Checkbox',
 				component: CheckboxComponent
 			},
+			{ path: '03/switch', label: 'Switch', component: SwitchComponent },
 			{ path: '03/select', label: 'Select', component: SelectComponent }
 		])
 	},
@@ -156,6 +159,11 @@ export const NAVIGATION_ITEMS: NavItem[] = [
 				path: '01/section',
 				label: 'Section',
 				component: SectionComponent
+			},
+			{
+				path: '01/header',
+				label: 'Header',
+				component: HeaderComponent
 			}
 		])
 	},

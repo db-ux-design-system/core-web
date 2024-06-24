@@ -1,0 +1,17 @@
+/*
+	Use this file to add transitions for db-components.
+	Adds color and border transitions for a smooth experience.
+*/
+
+@use "@db-ui/foundations/build/scss/animation";
+
+// transitions
+[class^="db-"],
+[class^="db-"] * {
+	@extend %default-transition;
+
+	::before,
+	::after {
+		@extend %default-transition;
+	}
+}

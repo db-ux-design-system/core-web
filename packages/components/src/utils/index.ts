@@ -164,18 +164,31 @@ export const isInView = (el: Element) => {
 	};
 };
 
-export const handleDataOutside = (el: Element) => {
+export interface DBDataOutsidePair {
+	vx?: 'left' | 'right';
+	vy?: 'top' | 'bottom';
+}
+export const handleDataOutside = (el: Element): DBDataOutsidePair => {
 	const { outTop, outBottom, outLeft, outRight } = isInView(el);
+	let dataOutsidePair: DBDataOutsidePair = {};
+
 	if (outTop || outBottom) {
-		el.setAttribute('data-outside-vy', outTop ? 'top' : 'bottom');
+		dataOutsidePair = { vy: outTop ? 'top' : 'bottom' };
+		el.setAttribute('data-outside-vy', dataOutsidePair.vy!);
 	} else {
 		el.removeAttribute('data-outside-vy');
 	}
 	if (outLeft || outRight) {
-		el.setAttribute('data-outside-vx', outRight ? 'right' : 'left');
+		dataOutsidePair = {
+			...dataOutsidePair,
+			vx: outRight ? 'right' : 'left'
+		};
+		el.setAttribute('data-outside-vx', dataOutsidePair.vx!);
 	} else {
 		el.removeAttribute('data-outside-vx');
 	}
+
+	return dataOutsidePair;
 };
 
 export default {

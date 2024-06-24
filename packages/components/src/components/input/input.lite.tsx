@@ -106,14 +106,21 @@ export default function DBInput(props: DBInputProps) {
 			state._validMessageId = state._id + DEFAULT_VALID_MESSAGE_ID_SUFFIX;
 			state._invalidMessageId =
 				state._id + DEFAULT_INVALID_MESSAGE_ID_SUFFIX;
-
-			state._descByIds = [
-				state._messageId,
-				state._validMessageId,
-				state._invalidMessageId
-			].join(' ');
 		}
 	}, [state._id]);
+
+	onUpdate(() => {
+		const descByIds = [state._validMessageId, state._invalidMessageId];
+		if (props.message) {
+			descByIds.push(state._messageId);
+		}
+		state._descByIds = descByIds.join(' ');
+	}, [
+		props.message,
+		state._messageId,
+		state._validMessageId,
+		state._invalidMessageId
+	]);
 
 	return (
 		<div

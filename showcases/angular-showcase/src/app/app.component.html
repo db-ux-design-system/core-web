@@ -4,7 +4,7 @@
 	</div>
 }
 @if (!page) {
-	<db-page type="fixedHeaderFooter" [fadeIn]="true">
+	<db-page variant="fixed" documentOverflow="auto" [fadeIn]="true">
 		<db-header
 			header
 			[drawerOpen]="drawerOpen"
@@ -42,7 +42,7 @@
 					}
 				</db-select>
 			</ng-container>
-			<ng-container call-to-action>
+			<ng-container primary-action>
 				<DBButton
 					icon="magnifying_glass"
 					variant="ghost"
@@ -50,7 +50,7 @@
 					>Search</DBButton
 				>
 			</ng-container>
-			<ng-container *dbActionBar>
+			<ng-container *dbSecondaryAction>
 				<DBButton icon="user" variant="ghost" [noText]="true">
 					Profile
 				</DBButton>

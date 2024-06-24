@@ -6,5 +6,7 @@
 /packages/components/**
 !/packages/components/scripts
 /showcases/patternhub/pages/components/**
+/showcases/next-showcase/pages/*slug*
+/showcases/nuxt-showcase/**
 build-outputs/
 build-showcases/

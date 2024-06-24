@@ -15,7 +15,7 @@
 		}
 
 		// 2. headline
-		&:has(h6) {
+		&:has(header) {
 			grid-template-columns: 1fr min-content;
 			grid-template-areas:
 				"head timestamp"
@@ -41,7 +41,7 @@
 				grid-template-areas: "icon content timestamp close";
 			}
 
-			&:has(h6) {
+			&:has(header) {
 				grid-template-columns: min-content 1fr min-content;
 				grid-template-areas:
 					"icon head timestamp"

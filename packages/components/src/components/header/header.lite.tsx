@@ -68,6 +68,7 @@ export default function DBHeader(props: DBHeaderProps) {
 			ref={ref}
 			class={cls('db-header', props.className)}
 			id={state._id}
+			data-width={props.width}
 			data-on-forcing-mobile={props.forceMobile && !state.forcedToMobile}>
 			<DBDrawer
 				className="db-header-drawer"
@@ -88,8 +89,8 @@ export default function DBHeader(props: DBHeaderProps) {
 						<Slot name="metaNavigation" />
 					</div>
 				</div>
-				<div class="db-header-action-bar">
-					<Slot name="actionBar" />
+				<div class="db-header-secondary-action">
+					<Slot name="secondaryAction" />
 				</div>
 			</DBDrawer>
 
@@ -102,8 +103,8 @@ export default function DBHeader(props: DBHeaderProps) {
 				</div>
 				<div class="db-header-navigation-container">
 					<div class="db-header-navigation">{props.children}</div>
-					<div class="db-header-call-to-action">
-						<Slot name="callToAction" />
+					<div class="db-header-primary-action">
+						<Slot name="primaryAction" />
 					</div>
 				</div>
 				<div class="db-header-action-container">
@@ -118,8 +119,8 @@ export default function DBHeader(props: DBHeaderProps) {
 								state.defaultValues.burgerMenuLabel}
 						</DBButton>
 					</div>
-					<div class="db-header-action-bar">
-						<Slot name="actionBar" />
+					<div class="db-header-secondary-action">
+						<Slot name="secondaryAction" />
 					</div>
 				</div>
 			</div>

@@ -97,7 +97,7 @@ const getMetaNavigation = (mobile) => {
 
 const getAppShell = (content) =>
 	`
-	<db-page type="fixedHeaderFooter">
+	<db-page data-variant="fixed">
 		<db-header id="db-header" slot="header">
 			<db-brand slot="brand" anchorChildren="true" insideHeader="true">Vanilla Showcase</db-brand>
 			${getNavigation(true)}

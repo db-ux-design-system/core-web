@@ -43,7 +43,6 @@ export default function DBCheckbox(props: DBCheckboxProps) {
 			if (props.change) {
 				props.change(event);
 			}
-
 			handleFrameworkEvent(this, event, 'checked');
 		},
 		handleBlur: (event: InteractionEvent<HTMLInputElement>) => {
@@ -87,14 +86,21 @@ export default function DBCheckbox(props: DBCheckboxProps) {
 			state._validMessageId = state._id + DEFAULT_VALID_MESSAGE_ID_SUFFIX;
 			state._invalidMessageId =
 				state._id + DEFAULT_INVALID_MESSAGE_ID_SUFFIX;
-
-			state._descByIds = [
-				state._messageId,
-				state._validMessageId,
-				state._invalidMessageId
-			].join(' ');
 		}
 	}, [state._id, state.initialized]);
+
+	onUpdate(() => {
+		const descByIds = [state._validMessageId, state._invalidMessageId];
+		if (props.message) {
+			descByIds.push(state._messageId);
+		}
+		state._descByIds = descByIds.join(' ');
+	}, [
+		props.message,
+		state._messageId,
+		state._validMessageId,
+		state._invalidMessageId
+	]);
 	// jscpd:ignore-end
 
 	// TODO we have to check how to update on every change..

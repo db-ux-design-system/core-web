@@ -1,6 +1,6 @@
 # Custom Icons
 
-If you have custom icons and want to use them for [foundations](https://www.npmjs.com/package/@db-ui/foundations) and/or in [components](https://www.npmjs.com/package/@db-ui/components), you need to generate a `woff2` file.
+If you have custom icons and want to use them for [foundations](https://www.npmjs.com/package/@db-ui/foundations) and/or in [components](https://www.npmjs.com/package/@db-ui/components), you need to generate a **woff2** file.
 
 ## Generate
 
@@ -12,7 +12,7 @@ npx @db-ui/gif --src ./my-path-to/icons --fontName my-name
 
 We search for all `**/*.svg` files inside the `src` directory and create a new icon font with the provided name. You can preview all generated icons here: `./my-path-to/icons/fonts/all/index.html`.
 
-> **_NOTE:_** We use four different sizes for components (16, 20, 24, 32) to show more or less details. You can do the same by providing another file with a size suffix for example "icon_file_name_16.svg".
+> **_NOTE:_** We use four different sizes for components (16, 20, 24, 32) to show more or less details. You can do the same by providing another file with a size suffix for example `icon_file_name_16.svg`.
 
 For more information run:
 
@@ -39,7 +39,7 @@ Now you can use your icons with your `font-family: my-name`, e.g.:
 
 ### SCSS
 
-When using `scss` you can also use `@forward` to include the generated files:
+When using **scss** you can also use `@forward` to include the generated files:
 
 ```scss
 @forward "public/font-face";
@@ -69,7 +69,7 @@ You can overwrite custom-icons for our components with CSS as well:
 
 ## Foundation Developer
 
-If you update a `svg` inside `assets/icons/functional/images` you need to recreate the `woff2` file.
+If you update a **svg** inside `assets/icons/functional/images` you need to recreate the **woff2** file.
 
 For this you just need to run
 

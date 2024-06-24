@@ -26,24 +26,28 @@
  */
 const getComponents = () => [
 	{
-		name: 'tab-panel',
+		name: 'switch',
 		config: {
+			vue: {
+				vModel: [{ modelValue: 'checked', binding: ':checked' }]
+			},
 			angular: {
-				initValues: [
-					{ key: 'name', value: '' },
-					{ key: 'index', value: 0 }
-				]
+				controlValueAccessor: 'checked'
 			}
 		}
+	},
+
+	{
+		name: 'tab-panel'
 	},
 	{
 		name: 'tab-item',
 		config: {
+			vue: {
+				vModel: [{ modelValue: 'checked', binding: ':checked' }]
+			},
 			angular: {
-				initValues: [
-					{ key: 'name', value: '' },
-					{ key: 'index', value: 0 }
-				]
+				controlValueAccessor: 'checked'
 			}
 		}
 	},
@@ -118,6 +122,20 @@ const getComponents = () => [
 	},
 	{
 		name: 'navigation-item',
+		overwrites: {
+			angular: [
+				{
+					from: 'navigationItemSafeTriangle = undefined;',
+					to: 'navigationItemSafeTriangle: undefined | NavigationItemSafeTriangle = undefined;'
+				}
+			],
+			vue: [
+				{
+					from: 'navigationItemSafeTriangle: undefined',
+					to: 'navigationItemSafeTriangle: undefined as undefined | NavigationItemSafeTriangle'
+				}
+			]
+		},
 		config: {
 			angular: {
 				directives: [{ name: 'NavigationContent' }]
@@ -203,8 +221,8 @@ const getComponents = () => [
 			angular: {
 				directives: [
 					{
-						name: 'ActionBar',
-						ngContentName: 'action-bar'
+						name: 'SecondaryAction',
+						ngContentName: 'secondary-action'
 					},
 					{
 						name: 'MetaNavigation',

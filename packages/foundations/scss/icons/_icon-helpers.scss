@@ -5,7 +5,7 @@
 @use "../variables";
 
 $default-icon-size: 24;
-$default-icon-size-rem: #{helpers.to-rem($default-icon-size)};
+$default-icon-size-rem: #{helpers.px-to-rem($default-icon-size)};
 $default-icon-variants: "default", "inverted", "filled";
 
 $default-icon-content: var(--db-icon, attr(data-icon));
@@ -39,6 +39,14 @@ $default-icon-font-size: var(--db-icon-font-size, #{$default-icon-size-rem});
 	@return 32;
 }
 
+@mixin icon-content($icon) {
+	content: $icon;
+	// Hiding icon from screenreaders, https://www.w3.org/TR/css-content-3/#alt
+	@supports (content: ""/"") {
+		content: $icon / "";
+	}
+}
+
 @mixin to-filled-icon($position: "before") {
 	@if $position == "before" {
 		--db-icon-font-family: "db-ux-filled";
@@ -60,7 +68,7 @@ $default-icon-font-size: var(--db-icon-font-size, #{$default-icon-size-rem});
 			}
 			@if $position == "after" {
 				--db-icon-after: "#{$icon}";
-				content: $default-icon-content-after;
+				@include icon-content($default-icon-content-after);
 				margin-inline-start: $default-icon-margin-start;
 			}
 		}
@@ -105,11 +113,11 @@ $default-icon-font-size: var(--db-icon-font-size, #{$default-icon-size-rem});
 }
 
 %icon {
+	@include icon-content($default-icon-content); // TODO: ONLY FOR data-icon
 	// Hiding icon from screenreaders
 	-webkit-alt: "";
 	alt: "";
 
-	content: $default-icon-content; // TODO: ONLY FOR data-icon
 	color: var(--db-current-icon-color, inherit);
 
 	display: inline-block;
