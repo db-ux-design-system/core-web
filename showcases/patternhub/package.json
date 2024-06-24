@@ -6,17 +6,17 @@
   "scripts": {
     "build": "npm-run-all compile build:*",
     "build:app": "next build",
-    "build:copy": "cpy out/** ../../build-showcases/patternhub",
+    "build:copy": "cpr out ../../build-showcases/patternhub -o",
     "compile": "npm-run-all compile:*",
     "compile:01_jsx": "node scripts/generate-example-jsx.js",
-    "compile:02_copy-docs": "cpy ../../docs ./public",
+    "compile:02_copy-docs": "cpr ../../docs ./public/docs -o",
     "compile:03_components": "node scripts/esbuild-generate.mjs",
     "compile:04_run": "node generated.js",
     "dev": "cross-env NEXT_PUBLIC_BASE_PATH=/mono/sub NODE_OPTIONS='--inspect' npm-run-all compile:* -p open next:dev",
     "lint": "next lint",
     "next:dev": "next dev",
     "open": "open-cli http://localhost:3000/mono/sub",
-    "prebuild:app": "cpy ../../node_modules/iframe-resizer/js/** public/iframe-resizer",
+    "prebuild:app": "cpr ../../node_modules/iframe-resizer/js/ public/iframe-resizer -o",
     "start": "cross-env NEXT_PUBLIC_BASE_PATH=/mono/sub npm-run-all compile next:dev"
   },
   "dependencies": {
