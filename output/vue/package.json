@@ -41,7 +41,7 @@
     "vue": "^3.4.30"
   },
   "devDependencies": {
-    "@playwright/experimental-ct-vue": "1.44.1",
+    "@playwright/experimental-ct-vue": "1.45.0",
     "@vitejs/plugin-vue": "^5.0.5",
     "typescript": "^5.4.5",
     "vite": "^5.3.1",
