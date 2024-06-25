@@ -1,8 +1,9 @@
 import { DBLink } from '../../../../../output/react/src';
-import DefaultComponent from '../index';
+import DefaultComponent from '../default-component';
 import defaultComponentVariants from '../../../../shared/link.json';
 import { type DBLinkProps } from '../../../../../output/react/src/components/link/model';
 import { getVariants } from '../data';
+import { type BaseComponentProps } from '../base-component-data';
 
 const getLink = ({
 	href,
@@ -22,13 +23,14 @@ const getLink = ({
 	</DBLink>
 );
 
-const LinkComponent = () => {
+const LinkComponent = (props: BaseComponentProps) => {
 	return (
 		<DefaultComponent
 			title={'DBLink'}
 			variants={getVariants(
 				defaultComponentVariants,
-				getLink
+				getLink,
+				props.slotCode
 			)}></DefaultComponent>
 	);
 };

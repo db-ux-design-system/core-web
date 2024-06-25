@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import DefaultPage from '../../../components/default-page';
-import { COLORS } from '../../../components/src/shared/constants';
-import { DBInput, DBIcon } from '../../../components/src';
+import { COLORS } from '../../../../../packages/components/src/shared/constants';
+import { DBInput, DBIcon } from '../../../../../output/react/src';
 
 const additionalColors = [
 	'yellow',

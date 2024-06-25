@@ -1,9 +1,9 @@
 import { DBNavigationItem, DBButton } from '../../../../../output/react/src';
-import DefaultComponent from '../index';
+import DefaultComponent from '../default-component';
 import defaultComponentVariants from '../../../../shared/navigation-item.json';
 import type { DBNavigationItemProps } from '../../../../../output/react/src/components/navigation-item/model';
 import { getVariants } from '../data';
-import type { PatternhubComponentProps } from '../../../../shared/default-component-data';
+import { type BaseComponentProps } from '../base-component-data';
 
 const getNavigationItem = ({
 	children,
@@ -40,15 +40,16 @@ const getNavigationItem = ({
 	</ul>
 );
 
-const NavigationItemComponent = (props: PatternhubComponentProps) => {
+const NavigationItemComponent = (props: BaseComponentProps) => {
 	return (
 		<DefaultComponent
 			title="DBNavigationItem"
-			// Patternhub:isSubComponent={props.isSubComponent}
-			// Patternhub:componentName={props.componentName}
+			isSubComponent={props.isSubComponent}
+			componentName={props.componentName}
 			variants={getVariants(
 				defaultComponentVariants,
-				getNavigationItem
+				getNavigationItem,
+				props.slotCode
 			)}></DefaultComponent>
 	);
 };

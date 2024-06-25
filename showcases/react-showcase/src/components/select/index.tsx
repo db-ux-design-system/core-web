@@ -1,8 +1,9 @@
 import { DBSelect } from '../../../../../output/react/src';
-import DefaultComponent from '../index';
+import DefaultComponent from '../default-component';
 import defaultComponentVariants from '../../../../shared/select.json';
 import type { DBSelectProps } from '../../../../../output/react/src/components/select/model';
 import { getVariants } from '../data';
+import { type BaseComponentProps } from '../base-component-data';
 
 const getSelect = ({
 	children,
@@ -29,13 +30,14 @@ const getSelect = ({
 	</DBSelect>
 );
 
-const SelectComponent = () => {
+const SelectComponent = (props: BaseComponentProps) => {
 	return (
 		<DefaultComponent
 			title="DBSelect"
 			variants={getVariants(
 				defaultComponentVariants,
-				getSelect
+				getSelect,
+				props.slotCode
 			)}></DefaultComponent>
 	);
 };

@@ -31,22 +31,21 @@
     "build:01_vite": "vite build",
     "build:02_types": "vue-tsc --declaration --emitDeclarationOnly",
     "build:03_ts_workaround": "node scripts/fix-any-types.js",
-    "mv:dist": "cpy dist ../../build-outputs/vue",
-    "mv:package.json": "cpy package.json ../../build-outputs/vue",
-    "mv:readme": "cpy README.md ../../build-outputs/vue",
+    "mv:dist": "cpr dist ../../build-outputs/vue/dist -o",
+    "mv:package.json": "cpr package.json ../../build-outputs/vue/package.json -o",
+    "mv:readme": "cpr README.md ../../build-outputs/vue/README.md -o",
     "postbuild": "npm-run-all -p mv:*",
     "test:components": "playwright test -c playwright.config.ts"
   },
   "dependencies": {
-    "vue": "^3.4.29"
+    "vue": "^3.4.30"
   },
   "devDependencies": {
     "@playwright/experimental-ct-vue": "1.44.1",
     "@vitejs/plugin-vue": "^5.0.5",
-    "sass": "^1.77.6",
     "typescript": "^5.4.5",
     "vite": "^5.3.1",
-    "vue-tsc": "^2.0.21"
+    "vue-tsc": "^2.0.22"
   },
   "publishConfig": {
     "registry": "https://registry.npmjs.org/",

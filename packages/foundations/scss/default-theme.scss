@@ -833,23 +833,28 @@
 	/* COLORS */
 	@include default-palette.get-color-palette;
 	@include default-palette.get-additional-color-palette;
+	@include default-color-scheme.get-color-scheme;
 	@include default-color-scheme.get-color-scheme-light;
-	@include default-color-scheme.get-additional-color-scheme-light;
+	@include default-color-scheme.get-additional-color-scheme;
 
 	@media (prefers-color-scheme: dark) {
 		@include default-color-scheme.get-color-scheme-dark;
-		@include default-color-scheme.get-additional-color-scheme-dark;
 	}
 }
 
-[data-color-scheme="light"] {
+// We'll set the color scheme (https://developer.mozilla.org/en-US/docs/Web/CSS/color-scheme) to light and dark if it's not already set as a meta tag in the head, which would be the recommended way.
+html:not(:has(> head > meta[name="color-scheme"])) {
+	color-scheme: light dark;
+}
+
+[data-color-scheme] {
 	@extend %db-neutral-bg-lvl-1;
-	@include default-color-scheme.get-color-scheme-light;
-	@include default-color-scheme.get-additional-color-scheme-light;
+}
+
+[data-color-scheme="light"] {
+	color-scheme: light;
 }
 
 [data-color-scheme="dark"] {
-	@extend %db-neutral-bg-lvl-1;
-	@include default-color-scheme.get-color-scheme-dark;
-	@include default-color-scheme.get-additional-color-scheme-dark;
+	color-scheme: dark;
 }
