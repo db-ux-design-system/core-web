@@ -180,6 +180,7 @@ div[class^="ch-"] {
 		align-items: center;
 		border: 1px solid black;
 		padding: variables.$db-spacing-fixed-md;
+		gap: variables.$db-sizing-xs;
 	}
 }
 
