@@ -28,8 +28,7 @@ How to use this in ${framework}</DBLink>`;
 };
 
 const getExamplesAsMDX = async (componentName, variant) => {
-	const { examples } = variant;
-	const children = variant.children;
+	const { examples, children } = variant;
 
 	let result =
 		"import { useEffect, useState } from 'react';\n" +
