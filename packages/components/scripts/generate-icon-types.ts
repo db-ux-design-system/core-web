@@ -2,25 +2,25 @@
  * This script can be used to update the icon type for all components using icons.
  */
 
-const FS = require('node:fs');
+import { readdirSync, lstatSync, writeFileSync } from 'node:fs';
 
 const foundationAssetsPath = '../foundations/assets/icons/functional/images';
 
 const generateIconTypes = () => {
 	try {
 		const allIcons = [];
-		const icons = FS.readdirSync(foundationAssetsPath)
+		const icons = readdirSync(foundationAssetsPath)
 			.reduce((previousValue, currentValue) => {
 				const path_string = `${foundationAssetsPath}/${currentValue}`;
 
 				if (
 					currentValue.includes('.svg') ||
-					!FS.lstatSync(path_string).isDirectory()
+					!lstatSync(path_string).isDirectory()
 				) {
 					return previousValue;
 				}
 
-				let iconPaths = FS.readdirSync(path_string);
+				let iconPaths = readdirSync(path_string);
 
 				return [
 					...previousValue,
@@ -59,8 +59,8 @@ const generateIconTypes = () => {
 		const allIconsFile = `${generatedDisclaimer}export const ALL_ICONS: string[] = ${JSON.stringify(
 			allIcons
 		)};`;
-		FS.writeFileSync('./src/shared/icon-types.ts', iconTypes);
-		FS.writeFileSync('./src/shared/all-icons.ts', allIconsFile);
+		writeFileSync('./src/shared/icon-types.ts', iconTypes);
+		writeFileSync('./src/shared/all-icons.ts', allIconsFile);
 	} catch (e) {
 		console.log(e);
 	}

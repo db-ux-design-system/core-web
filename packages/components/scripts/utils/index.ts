@@ -1,11 +1,18 @@
-const Replace = require('replace-in-file');
-const transformToUpperComponentName = (componentName) =>
+import { replaceInFileSync } from 'replace-in-file';
+import { Component, Overwrite } from '../post-build/components';
+
+export const transformToUpperComponentName = (componentName: string) =>
 	componentName
 		.split('-')
 		.map((part) => `${part[0].toUpperCase()}${part.slice(1)}`)
 		.join('');
 
-const runReplacements = (replacements, component, framework, file) => {
+export const runReplacements = (
+	replacements: Overwrite[],
+	component: Component,
+	framework: string,
+	file: string
+) => {
 	if (component?.overwrites?.[framework]) {
 		replacements = [...replacements, ...component.overwrites[framework]];
 	}
@@ -20,8 +27,8 @@ const runReplacements = (replacements, component, framework, file) => {
 			from: replacement.from,
 			to: replacement.to
 		};
-		Replace.replaceInFileSync(option);
+		replaceInFileSync(option);
 	}
 };
 
-module.exports = { transformToUpperComponentName, runReplacements };
+export default { transformToUpperComponentName, runReplacements };

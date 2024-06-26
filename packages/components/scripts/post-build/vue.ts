@@ -1,8 +1,10 @@
-const Replace = require('replace-in-file');
-const { components } = require('./components');
-const { transformToUpperComponentName, runReplacements } = require('../utils');
+import { replaceInFileSync } from 'replace-in-file';
 
-const updateNestedComponents = (input, rootComponentName) => {
+import components, { Overwrite } from './components.js';
+
+import { runReplacements, transformToUpperComponentName } from '../utils';
+
+const updateNestedComponents = (input: string, rootComponentName: string) => {
 	let fileContent = input;
 
 	for (const nestedComponent of components.filter(
@@ -25,16 +27,16 @@ const updateNestedComponents = (input, rootComponentName) => {
 		.join('\n');
 };
 
-module.exports = (tmp) => {
+export default (tmp?: boolean) => {
 	const outputFolder = `${tmp ? 'output/tmp' : 'output'}`;
 	// Rewire imports in Playwright config
-	Replace.sync({
+	replaceInFileSync({
 		files: `../../${outputFolder}/vue/playwright.config.ts`,
 		from: /react/g,
 		to: `vue`
 	});
 	// Activate vue specific event handling
-	Replace.sync({
+	replaceInFileSync({
 		files: `../../${outputFolder}/vue/src/utils/form-components.ts`,
 		from: `// VUE:`,
 		to: ``
@@ -45,24 +47,25 @@ module.exports = (tmp) => {
 
 		try {
 			// Rewire imports in Playwright component tests
-			Replace.sync({
+			replaceInFileSync({
 				files: `../../${outputFolder}/vue/src/components/${componentName}/${componentName}.spec.tsx`,
 				from: `react`,
 				to: `vue`
 			});
 
-			Replace.sync({
+			replaceInFileSync({
 				files: `../../${outputFolder}/vue/src/components/${componentName}/index.ts`,
 				from: `./${componentName}`,
 				to: `./${componentName}.vue`
 			});
 
-			const replacements = [
+			const replacements: Overwrite[] = [
 				{
 					from: /immediate: true,/g,
 					to: 'immediate: true,\nflush: "post"'
 				}
 			];
+
 
 			// This is a workaround for valid/invalidMessages resetting values
 			[
@@ -78,7 +81,7 @@ module.exports = (tmp) => {
 				});
 			});
 
-			Replace.sync({
+			replaceInFileSync({
 				files: vueFile,
 				processor(input) {
 					return updateNestedComponents(input, componentName);

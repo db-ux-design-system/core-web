@@ -1,30 +1,34 @@
-/**
- * @returns {[{
- * name:string,
- * overwrites?:{
- * 	global?:{from:string,to:string}[],
- * 	angular?:{from:string,to:string}[],
- * 	react?:{from:string,to:string}[],
- * 	vue?:{from:string,to:string}[],
- * 	webComponents?:{from:string,to:string}[]
- * },
- * config?:{
- *     	vue?:{
- *         vModel?: {modelValue:string, binding:string}[]
- *     },
- *     angular?: {
- * 			controlValueAccessor?: string,
- * 			directives?: {name:string, ngContentName?:string}[],
- * 			initValues?: {key:string, value:any}[]
- * 		},
- *     react?: {
- * 			propsPassingFilter?: string[];
- * 			containsFragmentMap?: boolean;
- * 		}
- * }
- * }]}
- */
-const getComponents = () => [
+export type Overwrite = {
+	from: string | RegExp;
+	to: string;
+};
+
+export type Component = {
+	name: string;
+	overwrites?: {
+		global?: Overwrite[];
+		angular?: Overwrite[];
+		react?: Overwrite[];
+		vue?: Overwrite[];
+		webComponents?: Overwrite[];
+	};
+	config?: {
+		vue?: {
+			vModel?: { modelValue: string; binding: string }[];
+		};
+		angular?: {
+			controlValueAccessor?: string;
+			directives?: { name: string; ngContentName?: string }[];
+			initValues?: { key: string; value: any }[];
+		};
+		react?: {
+			propsPassingFilter?: string[];
+			containsFragmentMap?: boolean;
+		};
+	};
+};
+
+export const getComponents = (): Component[] => [
 	{
 		name: 'switch',
 		config: {
@@ -311,6 +315,4 @@ const getComponents = () => [
 	}
 ];
 
-module.exports = {
-	components: getComponents()
-};
+export default getComponents();
