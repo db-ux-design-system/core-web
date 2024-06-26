@@ -33,7 +33,7 @@ jobs:
       - name: 🦵🦿 I like to move it move it
         shell: bash
         run: |
-          mv build-showcases/patternhub/out out
+          mv build-showcases/patternhub out
 
       - name: ↔ Extract branch name
         uses: ./.github/actions/extract-branch
