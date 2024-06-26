@@ -1,5 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unsafe-call */
-
 import { readdirSync } from 'node:fs';
 import { replaceInFileSync } from 'replace-in-file';
 
