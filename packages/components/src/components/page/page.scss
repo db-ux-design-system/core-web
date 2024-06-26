@@ -1,5 +1,10 @@
 @use "@db-ui/foundations/build/scss/variables";
 
+.db-page-document {
+	block-size: 100%;
+	overflow: hidden;
+}
+
 @mixin header-footer-style {
 	> :is(.db-header, .db-footer, header, footer) {
 		display: flex;

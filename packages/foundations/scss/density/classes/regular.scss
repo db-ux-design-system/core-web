@@ -1,0 +1,6 @@
+@use "../index";
+@use "get-class";
+
+$density: "regular";
+
+@include get-class.init($density);

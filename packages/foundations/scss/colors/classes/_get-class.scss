@@ -1,38 +1,34 @@
 @mixin init($variant) {
-	.db-#{$variant}-bg {
+	[data-color="#{$variant}-bg-lvl-1"],
+	.db-#{$variant}-bg-lvl-1 {
 		@extend %db-#{$variant}-bg-lvl-1;
-
-		[data-bg-weight="1"],
-		&-lvl-1 {
-			@extend %db-#{$variant}-bg-lvl-1;
-		}
-
-		[data-bg-weight="2"],
-		&-lvl-2 {
-			@extend %db-#{$variant}-bg-lvl-2;
-		}
-
-		[data-bg-weight="3"],
-		&-lvl-3 {
-			@extend %db-#{$variant}-bg-lvl-3;
-		}
-
-		&-transparent-full {
-			@extend %db-#{$variant}-bg-transparent-full;
-		}
-
-		&-transparent-semi {
-			@extend %db-#{$variant}-bg-transparent-semi;
-		}
+	}
+	[data-color="#{$variant}-bg-lvl-2"],
+	.db-#{$variant}-bg-lvl-2 {
+		@extend %db-#{$variant}-bg-lvl-2;
+	}
+	[data-color="#{$variant}-bg-lvl-3"],
+	.db-#{$variant}-bg-lvl-3 {
+		@extend %db-#{$variant}-bg-lvl-3;
+	}
+	[data-color="#{$variant}-bg-transparent-full"],
+	.db-#{$variant}-bg-transparent-full {
+		@extend %db-#{$variant}-bg-transparent-full;
+	}
+	[data-color="#{$variant}-bg-transparent-semi"],
+	.db-#{$variant}-bg-transparent-semi {
+		@extend %db-#{$variant}-bg-transparent-semi;
 	}
 
 	@each $contrast in [ "high", "low"] {
+		[data-color="#{$variant}-contrast-#{$contrast}"],
 		.db-#{$variant}-contrast-#{$contrast} {
 			@extend %db-#{$variant}-contrast-#{$contrast};
+		}
 
-			&-interactive {
-				@extend %db-#{$variant}-contrast-#{$contrast}-interactive;
-			}
+		[data-color="#{$variant}-contrast-#{$contrast}-interactive"],
+		.db-#{$variant}-contrast-#{$contrast}-interactive {
+			@extend %db-#{$variant}-contrast-#{$contrast}-interactive;
 		}
 	}
 }

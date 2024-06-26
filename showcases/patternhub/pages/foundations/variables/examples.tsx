@@ -1,8 +1,10 @@
 import DefaultPage from '../../../components/default-page';
-import { DBInfotext } from '../../../components/src/components/infotext';
-import { DBCard } from '../../../components/src/components/card';
-import { DBIcon } from '../../../components/src/components/icon';
-import { DBButton } from '../../../components/src/components/button';
+import {
+	DBInfotext,
+	DBCard,
+	DBIcon,
+	DBButton
+} from '../../../../../output/react/src';
 
 const Example = () => {
 	return (
@@ -19,8 +21,8 @@ const Example = () => {
 						variable.
 					</li>
 					<li>
-						Don't use it like this in a real app. 💢For example
-						`width: var(--db-spacing-fixed-md)`💥
+						Don't use it like this in a real app. 💢For example{' '}
+						<code>width: var(--db-spacing-fixed-md)</code> 💥
 					</li>
 				</ul>
 			</blockquote>
@@ -48,7 +50,7 @@ const Example = () => {
 											{example === 'Spacing fixed' && (
 												<div>
 													<DBIcon icon="user">
-														Account
+														User
 													</DBIcon>
 													<span>
 														gap:db-spacing-fixed-xl

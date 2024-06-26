@@ -35,12 +35,12 @@ const App = () => (
 				<DBLink href="#">Help</DBLink>
 			</>
 		}
-		callToAction={
+		primaryAction={
 			<DBButton icon="magnifying_glass" variant="ghost" noText>
 				Search
 			</DBButton>
 		}
-		actionBar={
+		secondaryAction={
 			<>
 				<DBButton icon="user" variant="ghost" noText>
 					Profile

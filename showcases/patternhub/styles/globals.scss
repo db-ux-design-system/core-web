@@ -3,13 +3,11 @@
 @use "@db-ui/foundations/build/scss/screen-sizes";
 @use "@db-ui/foundations/build/scss/density";
 
-@use "@db-ui/components/build/styles/_dialog-init";
-
 @forward "@db-ui/components/build/styles/db-ui-42-webpack";
 @forward "@db-ui/foundations/build/css/colors/classes/all";
 @forward "@db-ui/foundations/build/css/fonts/classes/all";
 
-body {
+body:not(:has(.db-page)) {
 	padding-block-end: variables.$db-spacing-fixed-lg;
 }
 
@@ -337,6 +335,10 @@ div[class^="ch-"] {
 	}
 }
 
+h1 {
+	margin-block-start: variables.$db-spacing-fixed-sm;
+}
+
 h1,
 h2,
 h3,
@@ -397,8 +399,8 @@ h6 {
 
 		.backdrop {
 			border-radius: variables.$db-border-radius-sm;
-			background-color: dialog-init.$backdrop-color;
-			opacity: dialog-init.$backdrop-opacity-strong;
+			background-color: colors.$db-current-color-enabled;
+			opacity: 0.64;
 			position: absolute;
 			inset: 0;
 		}
@@ -446,5 +448,94 @@ h6 {
 		display: flex;
 		flex-direction: column;
 		gap: variables.$db-spacing-fixed-sm;
+	}
+}
+
+.link-containers {
+	& > div {
+		display: grid;
+		grid-template-areas: "previous next";
+		gap: variables.$db-spacing-fixed-md;
+		justify-content: space-between;
+
+		a {
+			text-decoration: none;
+		}
+	}
+
+	.previous-link-container,
+	.next-link-container {
+		flex-direction: row;
+		min-inline-size: variables.$db-sizing-3xl;
+
+		small {
+			color: colors.$db-informational-contrast-high-enabled;
+		}
+	}
+
+	.previous-link-container {
+		grid-area: previous;
+	}
+
+	.next-link-container {
+		grid-area: next;
+
+		span,
+		small {
+			margin-inline-start: auto;
+		}
+	}
+}
+
+.breadcrumb-container {
+	display: flex;
+	align-content: center;
+	align-items: center;
+	padding-block: variables.$db-spacing-fixed-sm;
+
+	a {
+		font-weight: normal;
+
+		&:first-of-type {
+			margin-inline-end: variables.$db-spacing-fixed-xs;
+		}
+
+		&:last-of-type {
+			font-weight: bold;
+		}
+	}
+}
+
+.card-navigation {
+	display: grid;
+	grid-template-columns: repeat(2, minmax(0, 1fr));
+	gap: variables.$db-spacing-fixed-md;
+
+	@include screen-sizes.screen("md") {
+		grid-template-columns: repeat(4, minmax(0, 1fr));
+	}
+
+	a {
+		text-decoration: none;
+	}
+
+	.db-card {
+		display: grid;
+		grid-template-areas: "index icon" "label icon";
+
+		small {
+			grid-area: index;
+		}
+
+		p {
+			grid-area: label;
+			margin: 0;
+		}
+
+		.db-icon {
+			grid-area: icon;
+			margin-block: auto;
+			margin-inline-start: auto;
+		}
 	}
 }

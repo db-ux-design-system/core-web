@@ -15,7 +15,7 @@ A Vue library containing all styles & components of [DB UX Design System (techni
 npm i @db-ui/v-components
 ```
 
-> **Note:** This will install `@db-ui/foundations` and `@db-ui/components` as well which contains the `css`/`scss` files
+> **Note:** This will install [`@db-ui/foundations`](https://www.npmjs.com/package/@db-ui/foundations) and [`@db-ui/components`](https://www.npmjs.com/package/@db-ui/components) as well which contains the `css`/`scss` files
 
 ## Styling Dependencies
 
@@ -50,6 +50,8 @@ import "@db-ui/v-components/dist/style.css";
 ```
 
 </details>
+
+> **Note:** The `db-ui-42` file contains optional and all components styles. If you consider performance issues see [@db-ui/components](https://www.npmjs.com/package/@db-ui/components) for more information.
 
 ## Usage
 

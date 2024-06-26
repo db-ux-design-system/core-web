@@ -34,7 +34,6 @@ $checked-active-transition-size: calc(
 
 .db-switch {
 	@include form-components.set-default-check-element(check);
-	justify-content: space-between;
 	user-select: none;
 
 	// This is needed when clicking on the label instead of the input

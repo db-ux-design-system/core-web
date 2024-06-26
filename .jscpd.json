@@ -19,7 +19,6 @@
 		"**/.next/**",
 		"**/.github/**",
 		"**/docs/**",
-		"**/next-showcase/components/**",
 		"**/patternhub/**/components/**",
 		"**/*-example/index.html",
 		"**/*-showcase/index.html",
@@ -39,8 +38,10 @@
 		"showcases/react-showcase/src/components/radio/index.tsx",
 		"showcases/react-showcase/src/components/radio/index.tsx",
 		"showcases/react-showcase/src/components/notification/index.tsx",
+		"showcases/next-showcase/pages/_app.tsx",
 		"showcases/vue-showcase/src/components/form/Form.vue",
 		"showcases/angular-showcase/.angular/cache/**",
+		"showcases/angular-ssr-showcase/.angular/cache/**",
 		"packages/components/src/components/**/*.spec.tsx",
 		"packages/components/src/components/tag/tag.spec.tsx",
 		"**/**config.ts",
@@ -48,7 +49,10 @@
 		"showcases/angular-showcase/.angular/cache",
 		"packages/foundations/assets/icons/functional/fonts/**",
 		"**/playwright-report/**",
-		"packages/foundations/src"
+		"packages/foundations/src",
+		"**/.output/**",
+		"**/.nuxt/**",
+		"showcases/nuxt-showcase/**"
 	],
 	"absolute": true
 }

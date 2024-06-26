@@ -26,13 +26,15 @@ const NavItem = ({ navItem }: { navItem: NavigationItem }) => {
 			subNavigation={
 				navItem.subNavigation && (
 					<>
-						{navItem?.subNavigation.map(
-							(subItem: NavigationItem) => (
+						{navItem?.subNavigation
+							.filter(
+								({ isHiddenInMenu }) => isHiddenInMenu !== true
+							)
+							.map((subItem: NavigationItem) => (
 								<NavItem
 									key={`router-path-${subItem.path}`}
 									navItem={subItem}></NavItem>
-							)
-						)}
+							))}
 					</>
 				)
 			}>
