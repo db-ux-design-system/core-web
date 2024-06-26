@@ -1,14 +1,8 @@
 /* eslint-disable @typescript-eslint/prefer-regexp-exec */
 
 import * as https from 'node:https';
+import fs from 'node:fs';
 import { replaceInFileSync } from 'replace-in-file';
-import {
-	createWriteStream,
-	existsSync,
-	mkdirSync,
-	readFileSync,
-	writeFileSync
-} from 'fs-extra';
 import { glob } from 'glob';
 
 // eslint-disable-next-line prefer-regex-literals
@@ -23,7 +17,7 @@ type Replacement = {
 };
 
 const findReplacements = (file: string, filesToReplace: Replacement[]) => {
-	let readFile = readFileSync(file).toString();
+	let readFile = fs.readFileSync(file).toString();
 	let match = readFile.match(shieldRegex);
 
 	while (match && match.length > 0) {
@@ -85,14 +79,14 @@ const startReplacement = (filesToReplace: Replacement[]) => {
 			}
 		});
 
-		if (!existsSync(pathNameSvg)) {
-			const fileStream = createWriteStream(pathNameSvg);
+		if (!fs.existsSync(pathNameSvg)) {
+			const fileStream = fs.createWriteStream(pathNameSvg);
 
 			https.get(svgUrl, (incomingMessage) => {
 				incomingMessage.pipe(fileStream);
 				fileStream.on('finish', () => {
 					fileStream.close();
-					writeFileSync(
+					fs.writeFileSync(
 						`${pathname}.licence`,
 						`retrieved from URL: ${svgUrl}`
 					);
@@ -103,8 +97,8 @@ const startReplacement = (filesToReplace: Replacement[]) => {
 };
 
 const convertImages = async () => {
-	if (!existsSync(docsPath)) {
-		mkdirSync(docsPath);
+	if (!fs.existsSync(docsPath)) {
+		fs.mkdirSync(docsPath);
 	}
 
 	const mdfiles: string[] = await glob('**/*.md', {

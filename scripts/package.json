@@ -63,7 +63,6 @@
     "update:icon-fonts": "npm-run-all generate:icon-fonts generate:icon-types"
   },
   "devDependencies": {
-    "fs-extra": "^11.2.0",
     "glob": "^10.4.2",
     "replace-in-file": "^8.0.1"
   }
