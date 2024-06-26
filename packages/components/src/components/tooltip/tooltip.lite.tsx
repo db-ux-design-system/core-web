@@ -6,8 +6,9 @@ import {
 	useStore
 } from '@builder.io/mitosis';
 import { DBTooltipProps, DBTooltipState } from './model';
-import { cls, handleDataOutside } from '../../utils';
+import { cls, handleDataOutside, uuid } from '../../utils';
 import { ClickEvent } from '../../shared/model';
+import { DEFAULT_ID } from '../../shared/constants';
 
 useMetadata({
 	isAttachedToShadowDom: true
@@ -17,6 +18,7 @@ export default function DBTooltip(props: DBTooltipProps) {
 	const ref = useRef<HTMLDivElement>(null);
 	// jscpd:ignore-start
 	const state = useStore<DBTooltipState>({
+		_id: DEFAULT_ID,
 		initialized: false,
 		handleClick: (event: ClickEvent<HTMLElement>) => {
 			event.stopPropagation();
@@ -27,18 +29,27 @@ export default function DBTooltip(props: DBTooltipProps) {
 	});
 
 	onMount(() => {
+		state._id = props.id || 'tooltip-' + uuid();
 		state.initialized = true;
 	});
 
 	onUpdate(() => {
 		if (ref && state.initialized) {
-			const parent = ref.parentElement;
+			let parent = ref.parentElement;
+
+			if (parent && parent.localName.includes('tooltip')) {
+				// Angular workaround
+				parent = parent.parentElement;
+			}
+
 			if (parent) {
 				['mouseenter', 'focus'].forEach((event) => {
 					parent.addEventListener(event, () =>
 						state.handleAutoPlacement()
 					);
 				});
+				parent.setAttribute('data-has-tooltip', 'true');
+				parent.setAttribute('aria-describedby', state._id);
 			}
 
 			state.initialized = false;
@@ -53,7 +64,7 @@ export default function DBTooltip(props: DBTooltipProps) {
 			role="tooltip"
 			ref={ref}
 			className={cls('db-tooltip', props.className)}
-			id={props.id}
+			id={state._id}
 			data-emphasis={props.emphasis}
 			data-animation={props.animation}
 			data-delay={props.delay}

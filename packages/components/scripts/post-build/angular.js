@@ -226,6 +226,10 @@ module.exports = (tmp) => {
 				to: 'disabled'
 			},
 			{
+				from: 'ngOnChanges',
+				to: 'ngAfterContentChecked'
+			},
+			{
 				from: 'mouseOver',
 				to: 'mouseover'
 			},

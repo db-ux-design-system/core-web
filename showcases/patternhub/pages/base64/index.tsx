@@ -1,13 +1,13 @@
 /* eslint-disable-next-line unicorn/prefer-node-protocol */
 import { Buffer } from 'buffer';
 import { useEffect, useState } from 'react';
-import DBLink from '../../components/src/components/link/link';
+import { DBLink } from '../../../../output/react/src';
 import {
 	COLOR,
 	COLORS,
 	DENSITIES,
 	DENSITY
-} from '../../components/src/shared/constants';
+} from '../../../../packages/components/src/shared/constants';
 
 const Base64 = () => {
 	const [base64, setBase64] = useState<string>('');

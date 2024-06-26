@@ -3,8 +3,6 @@
 @use "@db-ui/foundations/build/scss/screen-sizes";
 @use "@db-ui/foundations/build/scss/density";
 
-@use "@db-ui/components/build/styles/_dialog-init";
-
 @forward "@db-ui/components/build/styles/db-ui-42-webpack";
 @forward "@db-ui/foundations/build/css/colors/classes/all";
 @forward "@db-ui/foundations/build/css/fonts/classes/all";
@@ -401,8 +399,8 @@ h6 {
 
 		.backdrop {
 			border-radius: variables.$db-border-radius-sm;
-			background-color: dialog-init.$backdrop-color;
-			opacity: dialog-init.$backdrop-opacity-strong;
+			background-color: colors.$db-current-color-enabled;
+			opacity: 0.64;
 			position: absolute;
 			inset: 0;
 		}

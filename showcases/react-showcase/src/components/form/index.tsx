@@ -15,7 +15,8 @@ import {
 	DBSelect,
 	DBTabItem,
 	DBTag,
-	DBTextarea
+	DBTextarea,
+	DBTooltip
 } from '../../../../../output/react/src';
 import type {
 	ChangeEvent,
@@ -369,6 +370,28 @@ const FormComponent = () => {
 					validMessage="😎"
 					minLength={10}
 				/>
+
+				<DBTag
+					describedbyid="tooltip-01"
+					semantic="neutral"
+					emphasis="strong">
+					KUZ
+					<DBTooltip
+						id="tooltip-01"
+						placement="right-end"
+						variant="with arrow">
+						Beschreibungstext
+					</DBTooltip>
+				</DBTag>
+				<DBButton describedbyid="tooltip-01">
+					KUZ
+					<DBTooltip
+						id="tooltip-01"
+						placement="right-end"
+						variant="with arrow">
+						Beschreibungstext
+					</DBTooltip>
+				</DBButton>
 			</div>
 		</div>
 	);
