@@ -27,7 +27,7 @@ import Textarea from '../components/textarea/Textarea.vue';
 import Brand from '../components/brand/Brand.vue';
 import Icon from '../components/icon/Icon.vue';
 import Header from '../components/header/Header.vue';
-import Home from '../components/home/Home.vue';
+import Form from '../components/form/Form.vue';
 
 export type NavItem = {
 	path: string;
