@@ -60,7 +60,7 @@ const ColorOverview = () => {
 				<p>
 					These classes define the semantic colour set (only css
 					variables) for a container. Texts, icons, backgrounds and
-					components in it then automatically adapt to the colour set.
+					components in it than automatically adapt to the colour set.
 				</p>
 				<div className="color-overview-container">
 					{semanticColors.map((semanticColor) => (
