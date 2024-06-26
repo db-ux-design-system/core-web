@@ -81,7 +81,7 @@ jobs:
         env:
           NEXT_PUBLIC_BASE_PATH: ${{ steps.base-path.outputs.result }}
         run: |
-          tsx scripts/md-resolve-svg.ts
+          npx tsx scripts/md-resolve-svg.ts
           npm run build-showcases
 
       - name: ⏫ Upload Showcases
