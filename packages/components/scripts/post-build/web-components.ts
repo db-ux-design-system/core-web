@@ -1,13 +1,17 @@
-const Replace = require('replace-in-file');
-const Fse = require('fs-extra');
-const { components } = require('./components');
-const toUpperCase = (component) => {
+import { replaceInFileSync } from 'replace-in-file';
+
+import { pathExistsSync, moveSync } from 'fs-extra';
+
+import components from './components';
+
+const toUpperCase = (component: string) => {
 	return component
 		.split('-')
 		.map((part) => part.charAt(0).toUpperCase() + part.slice(1))
 		.join('');
 };
-const updateNestedComponents = (input, rootComponentName) => {
+
+const updateNestedComponents = (input: string, rootComponentName: string) => {
 	let fileContent = input;
 
 	for (const nestedComponent of components.filter(
@@ -44,7 +48,7 @@ const updateNestedComponents = (input, rootComponentName) => {
 	return fileContent;
 };
 
-const workaroundAttributes = (lines) => {
+const workaroundAttributes = (lines: string[]) => {
 	return lines.map((line) => {
 		if (line.includes('el.setAttribute') && line.includes(', this.props')) {
 			const property = line.substring(
@@ -62,12 +66,12 @@ const workaroundAttributes = (lines) => {
 	});
 };
 
-module.exports = () => {
+export default () => {
 	for (const component of components) {
 		const filePath = `../../output/webcomponent/src/components/${component.name}/${component.name}.ts`;
 		const fixImports = {
 			files: filePath,
-			processor(input) {
+			processor(input: string) {
 				let lines = input
 					.split('\n')
 					.filter(
@@ -95,12 +99,12 @@ module.exports = () => {
 		};
 
 		try {
-			Replace.sync(fixImports);
-			Replace.sync(defaultStyleUrl);
+			replaceInFileSync(fixImports);
+			replaceInFileSync(defaultStyleUrl);
 
 			if (component?.overwrites?.webComponents) {
 				for (const over of component.overwrites.webComponents) {
-					Replace.sync({
+					replaceInFileSync({
 						files: filePath,
 						from: over.from,
 						to: over.to
@@ -108,8 +112,8 @@ module.exports = () => {
 				}
 			}
 
-			if (Fse.pathExistsSync(filePath)) {
-				Fse.moveSync(
+			if (pathExistsSync(filePath)) {
+				moveSync(
 					`../../output/webcomponent/src/components/${component.name}/${component.name}.ts`,
 					`../../output/webcomponent/src/components/${component.name}/${component.name}.js`
 				);

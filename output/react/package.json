@@ -15,9 +15,9 @@
   ],
   "scripts": {
     "build": "npm-run-all tsc",
-    "mv:dist": "cpy dist ../../build-outputs/react",
-    "mv:package.json": "cpy package.json ../../build-outputs/react",
-    "mv:readme": "cpy README.md ../../build-outputs/react",
+    "mv:dist": "cpr dist ../../build-outputs/react/dist -o",
+    "mv:package.json": "cpr package.json ../../build-outputs/react/package.json -o",
+    "mv:readme": "cpr README.md ../../build-outputs/react/README.md -o",
     "open:report": "npx playwright show-report",
     "postbuild": "npm-run-all -p mv:*",
     "regenerate:screenshots": "playwright test -c playwright.config.ts --update-snapshots",
@@ -25,7 +25,7 @@
     "tsc": "tsc -p . --sourceMap false"
   },
   "devDependencies": {
-    "@playwright/experimental-ct-react": "1.44.1",
+    "@playwright/experimental-ct-react": "1.45.0",
     "@types/react": "^18.3.3",
     "react": "^18.3.1",
     "react-dom": "^18.3.1"
