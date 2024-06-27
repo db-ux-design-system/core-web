@@ -1,18 +1,26 @@
-/* eslint-disable unicorn/prefer-top-level-await */
-import FS from 'node:fs';
-import https from 'node:https';
+/* eslint-disable @typescript-eslint/prefer-regexp-exec */
+
+import * as https from 'node:https';
+import fs from 'node:fs';
+import { replaceInFileSync } from 'replace-in-file';
 import { glob } from 'glob';
-import Replace from 'replace-in-file';
 
 // eslint-disable-next-line prefer-regex-literals
 const shieldRegex = new RegExp('https://img\\.shields\\.io/[^)|\\s]*');
 const docsPath = 'docs/images/download';
 
-const findReplacements = (file, filesToReplace) => {
-	let readFile = FS.readFileSync(file).toString();
+type Replacement = {
+	files: string[];
+	svgUrl: string;
+	pathname: string;
+	pathNameSvg: string;
+};
+
+const findReplacements = (file: string, filesToReplace: Replacement[]) => {
+	let readFile = fs.readFileSync(file).toString();
 	let match = readFile.match(shieldRegex);
 
-	while (match?.length > 0) {
+	while (match && match.length > 0) {
 		const svgUrl = match[0];
 		let svgName = svgUrl;
 		if (svgUrl.includes('badge/dynamic/')) {
@@ -47,19 +55,19 @@ const findReplacements = (file, filesToReplace) => {
 			});
 		}
 
-		readFile = readFile.slice(match.index + svgUrl.length);
+		readFile = readFile.slice((match.index ?? 0) + svgUrl.length);
 		match = readFile.match(shieldRegex);
 	}
 };
 
-const startReplacement = (filesToReplace) => {
+const startReplacement = (filesToReplace: Replacement[]) => {
 	for (const downloadFile of filesToReplace) {
 		const { svgUrl, pathNameSvg, pathname, files } = downloadFile;
 
-		Replace.sync({
+		replaceInFileSync({
 			files,
-			processor(input) {
-				let replacedInput = input;
+			processor(input: string) {
+				let replacedInput: string = input;
 				while (replacedInput.includes(svgUrl)) {
 					replacedInput = replacedInput.replace(
 						svgUrl,
@@ -71,14 +79,14 @@ const startReplacement = (filesToReplace) => {
 			}
 		});
 
-		if (!FS.existsSync(pathNameSvg)) {
-			const fileStream = FS.createWriteStream(pathNameSvg);
+		if (!fs.existsSync(pathNameSvg)) {
+			const fileStream = fs.createWriteStream(pathNameSvg);
 
 			https.get(svgUrl, (incomingMessage) => {
 				incomingMessage.pipe(fileStream);
 				fileStream.on('finish', () => {
 					fileStream.close();
-					FS.writeFileSync(
+					fs.writeFileSync(
 						`${pathname}.licence`,
 						`retrieved from URL: ${svgUrl}`
 					);
@@ -89,12 +97,14 @@ const startReplacement = (filesToReplace) => {
 };
 
 const convertImages = async () => {
-	if (!FS.existsSync(docsPath)) {
-		FS.mkdirSync(docsPath);
+	if (!fs.existsSync(docsPath)) {
+		fs.mkdirSync(docsPath);
 	}
 
-	const mdfiles = await glob('**/*.md', { ignore: '**/node_modules/**' });
-	let filesToReplace = [];
+	const mdfiles: string[] = await glob('**/*.md', {
+		ignore: '**/node_modules/**'
+	});
+	let filesToReplace: Replacement[] = [];
 
 	for (const file of mdfiles) {
 		findReplacements(file, filesToReplace);
@@ -103,10 +113,12 @@ const convertImages = async () => {
 	// Windows has double backslash for paths
 	filesToReplace = filesToReplace.map((file) => ({
 		...file,
-		files: file.files.map((fileName) => fileName.replaceAll('\\', '/'))
+		files: file.files.map((fileName: string) =>
+			fileName.replaceAll('\\', '/')
+		)
 	}));
 
 	startReplacement(filesToReplace);
 };
 
-convertImages();
+await convertImages();
