@@ -1,8 +1,9 @@
 import { DBIcon, DBInfotext } from '../../../../../output/react/src';
-import DefaultComponent from '../index';
+import DefaultComponent from '../default-component';
 import defaultComponentVariants from '../../../../shared/icon.json';
 import { type DBIconProps } from '../../../../../output/react/src/components/icon/model';
 import { getVariants } from '../data';
+import { type BaseComponentProps } from '../base-component-data';
 
 const getIcon = ({ children }: DBIconProps) => (
 	<>
@@ -13,13 +14,14 @@ const getIcon = ({ children }: DBIconProps) => (
 	</>
 );
 
-const IconComponent = () => {
+const IconComponent = (props: BaseComponentProps) => {
 	return (
 		<DefaultComponent
 			title={'DBIcon'}
 			variants={getVariants(
 				defaultComponentVariants,
-				getIcon
+				getIcon,
+				props.slotCode
 			)}></DefaultComponent>
 	);
 };

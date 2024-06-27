@@ -39,12 +39,12 @@ const toggleDrawer = (open: boolean) => {
 		<template v-slot:brand>
 			<DBBrand> My Awesome App </DBBrand>
 		</template>
-		<template v-slot:call-to-action>
+		<template v-slot:primary-action>
 			<DBButton icon="magnifying_glass" variant="ghost" :no-text="true">
 				Search
 			</DBButton>
 		</template>
-		<template v-slot:action-bar>
+		<template v-slot:secondary-action>
 			<DBButton icon="user" variant="ghost" :no-text="true">
 				Profile
 			</DBButton>

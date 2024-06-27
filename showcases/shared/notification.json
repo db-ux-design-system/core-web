@@ -107,7 +107,7 @@
 				"style": { "width": "300px" },
 				"props": {
 					"type": "alert",
-					"semantic": "information_circleal",
+					"semantic": "informational",
 					"headline": "Headline",
 					"behaviour": "closable"
 				}

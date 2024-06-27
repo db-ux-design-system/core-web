@@ -37,6 +37,8 @@ updates:
       # We currently need to ignore this for the actual (LTS) Angular version
       - dependency-name: "zone.js"
         update-types: ["version-update:semver-minor"]
+      # There is an issue with sass:1.77.5 and additional colors in foundations we ignore updates for now
+      - dependency-name: "sass"
     pull-request-branch-name:
       separator: "-"
     # https://github.com/dependabot/dependabot-core/issues/5226#issuecomment-1179434437

@@ -8,11 +8,6 @@ import getMigrationFile from './get-migration-file.js';
 import { getComponentGroup, getComponentName } from './utils.js';
 
 const componentsPath = './pages/components';
-const getFallBackFile = (
-	importPath
-) => `import CardNavigation from '${importPath}components/card-navigation/card-navigation'
-const FallbackPage = () => <CardNavigation />;
-export default FallbackPage;`;
 
 const getRedirectOldFiles = (
 	importPath
@@ -32,6 +27,7 @@ const generateDocsMdx = async () => {
 
 		const componentValue = docs[key].at(0);
 		const componentGroup = getComponentGroup(components, componentName);
+
 		if (componentValue && componentGroup) {
 			const componentOldPath = `${componentsPath}/${componentName}`;
 			const componentGroupPath = `${componentsPath}/${componentGroup.name}`;
@@ -44,15 +40,6 @@ const generateDocsMdx = async () => {
 			if (!FS.existsSync(componentPath)) {
 				FS.mkdirSync(componentPath);
 			}
-
-			FS.writeFileSync(
-				`${componentGroupPath}/index.tsx`,
-				getFallBackFile('../../../')
-			);
-			FS.writeFileSync(
-				`${componentsPath}/index.tsx`,
-				getFallBackFile('../../')
-			);
 
 			FS.writeFileSync(
 				`${componentPath}/properties.mdx`,
@@ -76,21 +63,14 @@ const generateDocsMdx = async () => {
 				getMigrationFile(componentName, componentValue.displayName)
 			);
 
-			FS.writeFileSync(
-				`${componentPath}/index.tsx`,
-				getFallBackFile('../../../../')
-			);
+			if (!FS.existsSync('./components/code-docs')) {
+				FS.mkdirSync('./components/code-docs');
+			}
 
-			const reactComponent = await writeCodeFiles(
-				componentPath,
+			await writeCodeFiles(
+				`./components/code-docs/${componentName}`,
 				componentName
 			);
-			if (reactComponent) {
-				FS.writeFileSync(
-					`${componentPath}/overview.tsx`,
-					reactComponent
-				);
-			}
 
 			// Write old files for Marketingportal
 
@@ -109,23 +89,9 @@ const generateDocsMdx = async () => {
 				);
 			}
 
-			if (!FS.existsSync(`${componentOldPath}/index.tsx`)) {
-				FS.writeFileSync(
-					`${componentOldPath}/index.tsx`,
-					getRedirectOldFiles('../../../')
-				);
-			}
-
 			if (!FS.existsSync(`${componentOldPath}/properties.tsx`)) {
 				FS.writeFileSync(
 					`${componentOldPath}/properties.tsx`,
-					getRedirectOldFiles('../../../')
-				);
-			}
-
-			if (!FS.existsSync(`${componentOldPath}/overview.tsx`)) {
-				FS.writeFileSync(
-					`${componentOldPath}/overview.tsx`,
 					getRedirectOldFiles('../../../')
 				);
 			}
