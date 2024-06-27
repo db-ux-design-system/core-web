@@ -1,41 +1,40 @@
-const Fse = require('fs-extra');
-const Frameworks = require('./framworks');
-const { components } = require('./components');
-const Replace = require('replace-in-file');
+import Frameworks from './frameworks';
 
-module.exports = () => {
+import { replaceInFileSync } from 'replace-in-file';
+import components from './components.js';
+import { copySync, pathExistsSync } from 'fs-extra';
+
+export default () => {
 	for (const { name } of components) {
 		for (const framework of Frameworks) {
 			// TODO: Add other frameworks after Playwright supports them in component tests
 			if (framework === 'react' || framework === 'vue') {
 				if (
-					Fse.pathExistsSync(
-						`./src/components/${name}/${name}.spec.tsx`
-					)
+					pathExistsSync(`./src/components/${name}/${name}.spec.tsx`)
 				) {
-					Fse.copySync(
+					copySync(
 						`./src/components/${name}/${name}.spec.tsx`,
 						`../../output/${framework}/src/components/${name}/${name}.spec.tsx`
 					);
 					if (framework === 'vue') {
-						Replace({
+						replaceInFileSync({
 							files: `../../output/${framework}/src/components/${name}/${name}.spec.tsx`,
 							from: ['{/*', '*/}'],
 							to: ''
 						});
-						Replace({
+						replaceInFileSync({
 							files: `../../output/${framework}/src/components/${name}/${name}.spec.tsx`,
 							from: /\/\/ VUE:/g,
 							to: ''
 						});
 					}
 				}
-				Fse.copySync(
+				copySync(
 					`./test/playwright/boilerplate`,
 					`../../output/${framework}/playwright`,
 					{ overwrite: true }
 				);
-				Fse.copySync(
+				copySync(
 					`./test/playwright/config.ts`,
 					`../../output/${framework}/playwright.config.ts`,
 					{ overwrite: true }

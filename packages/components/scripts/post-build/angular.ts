@@ -1,9 +1,12 @@
-const Replace = require('replace-in-file');
-const FS = require('node:fs');
-const { components } = require('./components');
-const { runReplacements, transformToUpperComponentName } = require('../utils');
+import { replaceInFileSync } from 'replace-in-file';
 
-const changeFile = (component, input) => {
+import { writeFileSync } from 'node:fs';
+
+import components, { Overwrite } from './components.js';
+
+import { runReplacements, transformToUpperComponentName } from '../utils';
+
+const changeFile = (input: string) => {
 	return input
 		.split('\n')
 		.filter(
@@ -28,17 +31,11 @@ const changeFile = (component, input) => {
 
 /**
  * This replacement inserts everything used for form elements to work with reactive forms and ngModel in angular
- *
- * @param {*} replacements
- * @param {*} componentName
- * @param {*} upperComponentName
- * @param {*} valueAccessor 	'checked' | 'value' [adopt if needed]
  */
 const setControlValueAccessorReplacements = (
-	replacements,
-	componentName,
-	upperComponentName,
-	valueAccessor
+	replacements: Overwrite[],
+	upperComponentName: string,
+	valueAccessor: 'checked' | 'value' | string
 ) => {
 	// for native angular support (e.g. reactive forms) we have to implement
 	// the ControlValueAccessor interface with all impacts :/
@@ -103,18 +100,13 @@ const setControlValueAccessorReplacements = (
  * It's not possible to use <ng-content> multiple times in a component.
  * In Angular, you have to use a directive for this...
  * This is a workaround to replace it in the file.
- * @param replacements
- * @param outputFolder {string}
- * @param componentName {string}
- * @param upperComponentName {string}
- * @param directives {{name:string, ngContentName?:string}[]}
  */
 const setDirectiveReplacements = (
-	replacements,
-	outputFolder,
-	componentName,
-	upperComponentName,
-	directives
+	replacements: Overwrite[],
+	outputFolder: string,
+	componentName: string,
+	upperComponentName: string,
+	directives: { name: string; ngContentName?: string }[]
 ) => {
 	for (const directive of directives) {
 		// Add ng-content multiple times to overwrite all
@@ -143,7 +135,7 @@ const setDirectiveReplacements = (
 				'@Component({'
 		});
 
-		FS.writeFileSync(
+		writeFileSync(
 			`../../output/angular/src/components/${componentName}/${directive.name}.directive.ts`,
 			'/* Angular cannot handle multiple slots with the same name, we need to use Directives for this. */\n' +
 				"import { Directive } from '@angular/core';" +
@@ -168,17 +160,17 @@ export class ${directive.name}Directive {}
 				`export * from './components/${componentName}/${directive.name}.directive';`
 		)
 		.join('\n');
-	Replace.sync({
+	replaceInFileSync({
 		files: `../../${outputFolder}/angular/src/index.ts`,
 		from: `export * from './components/${componentName}';`,
 		to: `export * from './components/${componentName}';\n${directiveExports}`
 	});
 };
 
-const getAttributePassing = (componentName) => `
+const getAttributePassing = (componentName: string) => `
 ngAfterViewInit(): void {
 \t\tconst element: HTMLElement | null = this.ref?.nativeElement;
-\t\tconst parent = element?.closest('db-${componentName}') ?? element?.closest('db${componentName.replaceAll('-', '')}');
+\t\tconst parent = element?.closest('db-${componentName}') ?? element?.closest('db${componentName.replace(/-/g, '')}');
 \t\tif (element && parent) {
 \t\t\tconst attributes = parent.attributes;
 \t\t\tfor (let i = 0; i < attributes.length; i++) {
@@ -195,10 +187,10 @@ ngAfterViewInit(): void {
 \t\t}
 \t}`;
 
-module.exports = (tmp) => {
+export default (tmp?: boolean) => {
 	const outputFolder = `${tmp ? 'output/tmp' : 'output'}`;
 	// Activate vue specific event handling
-	Replace.sync({
+	replaceInFileSync({
 		files: `../../${outputFolder}/angular/src/utils/form-components.ts`,
 		from: /\/\/ ANGULAR:/g,
 		to: ''
@@ -209,10 +201,10 @@ module.exports = (tmp) => {
 		const file = `../../${outputFolder}/angular/src/components/${componentName}/${componentName}.ts`;
 		const options = {
 			files: file,
-			processor: (input) => changeFile(component, input)
+			processor: (input: string) => changeFile(input)
 		};
 
-		const replacements = [
+		const replacements: Overwrite[] = [
 			{
 				from: 'attr.disabled',
 				to: 'disabled'
@@ -257,7 +249,6 @@ module.exports = (tmp) => {
 		if (component.config?.angular?.controlValueAccessor) {
 			setControlValueAccessorReplacements(
 				replacements,
-				componentName,
 				upperComponentName,
 				component.config.angular.controlValueAccessor // value / checked / ...
 			);
@@ -274,7 +265,7 @@ module.exports = (tmp) => {
 		}
 
 		try {
-			Replace.sync(options);
+			replaceInFileSync(options);
 			runReplacements(replacements, component, 'angular', file);
 		} catch (error) {
 			console.error('Error occurred:', error);

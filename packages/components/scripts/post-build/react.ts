@@ -1,12 +1,14 @@
-const { components } = require('./components');
-const FS = require('node:fs');
-const { transformToUpperComponentName, runReplacements } = require('../utils');
+import components from './components';
 
-const overwriteEvents = (tmp) => {
+import { readFileSync, writeFileSync } from 'node:fs';
+
+import { runReplacements, transformToUpperComponentName } from '../utils';
+
+const overwriteEvents = (tmp: boolean) => {
 	const modelFilePath = `../../${
 		tmp ? 'output/tmp' : 'output'
 	}/react/src/shared/model.ts`;
-	let modelFileContent = FS.readFileSync(modelFilePath).toString('utf-8');
+	let modelFileContent = readFileSync(modelFilePath).toString('utf-8');
 	modelFileContent = 'import * as React from "react";\n' + modelFileContent;
 	modelFileContent = modelFileContent.replace(
 		'export type ClickEvent<T> = MouseEvent;',
@@ -24,10 +26,10 @@ const overwriteEvents = (tmp) => {
 		'export type InteractionEvent<T> = FocusEvent;',
 		'export type InteractionEvent<T> = React.FocusEvent<T>;'
 	);
-	FS.writeFileSync(modelFilePath, modelFileContent);
+	writeFileSync(modelFilePath, modelFileContent);
 };
 
-module.exports = (tmp) => {
+export default (tmp?: boolean) => {
 	try {
 		overwriteEvents(tmp);
 
@@ -40,7 +42,7 @@ module.exports = (tmp) => {
 				tmp ? 'output/tmp' : 'output'
 			}/react/src/components/${component.name}/${component.name}.tsx`;
 
-			const tsxFileContent = FS.readFileSync(tsxFile).toString('utf-8');
+			const tsxFileContent = readFileSync(tsxFile).toString('utf-8');
 			const htmlElements = tsxFileContent.match('(?<=useRef<)(.*?)(?=>)');
 			let htmlElement = 'HTMLDivElement';
 			if (htmlElements.length > 0) {
