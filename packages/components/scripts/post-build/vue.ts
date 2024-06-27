@@ -63,9 +63,12 @@ export default (tmp?: boolean) => {
 				{
 					from: /immediate: true,/g,
 					to: 'immediate: true,\nflush: "post"'
+				},
+				{
+					from: /this.\$refs.ref\?.validationMessage/g,
+					to: 'this?.$refs.ref?.validationMessage'
 				}
 			];
-
 
 			// This is a workaround for valid/invalidMessages resetting values
 			[

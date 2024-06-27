@@ -27,7 +27,7 @@ import Textarea from '../components/textarea/Textarea.vue';
 import Brand from '../components/brand/Brand.vue';
 import Icon from '../components/icon/Icon.vue';
 import Header from '../components/header/Header.vue';
-import Form from '../components/form/Form.vue';
+import Home from '../components/home/Home.vue';
 
 export type NavItem = {
 	path: string;
@@ -172,7 +172,7 @@ export const navigationItems: NavItem[] = [
 			}
 		])
 	},
-	{ path: '/', label: 'Home', component: markRaw(Form) }
+	{ path: '/', label: 'Home', component: markRaw(Home) }
 ];
 
 const pushRoute = (routes: RouteRecordRaw[], item: NavItem) => {
