@@ -1,7 +1,8 @@
 @use "../index";
 
 @each $font-size in index.$font-sizes {
-	.db-font-size-#{$font-size} {
+	.db-font-size-#{$font-size},
+	[data-font-size="#{$font-size}"] {
 		@extend %db-overwrite-font-size-#{$font-size};
 	}
 }

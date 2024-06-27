@@ -8,7 +8,9 @@ import {
 	DBButton,
 	DBHeader,
 	DBPage,
-	DBSection
+	DBSection,
+	DBCard,
+	DBIcon
 } from '../../../output/react/src';
 import {
 	getBreadcrumb,
@@ -17,7 +19,6 @@ import {
 } from '../data/routes';
 import Navigation from './navigation';
 import VersionSwitcher from './version-switcher';
-import { DBCard, DBIcon } from './src';
 
 const DefaultPage = ({
 	children,
@@ -59,6 +60,10 @@ const DefaultPage = ({
 				setFullscreen(router.query.fullscreen === 'true');
 			}
 
+			if (router.query.page) {
+				setFullscreen(true);
+			}
+
 			if (router.query.noh1) {
 				setNoH1(router.query.noh1 === 'true');
 			}
@@ -80,10 +85,13 @@ const DefaultPage = ({
 			}
 		}
 
-		const { previous, next } = getNavigationList(router.pathname);
+		const pathWithoutQuery = router.asPath.split('?')[0];
+
+		const { previous, next } = getNavigationList(pathWithoutQuery);
+
 		setPreviousNavigationItem(previous);
 		setNextNavigationItem(next);
-		setBreadcrumb(getBreadcrumb(router.pathname));
+		setBreadcrumb(getBreadcrumb(pathWithoutQuery));
 	}, [router]);
 
 	return (

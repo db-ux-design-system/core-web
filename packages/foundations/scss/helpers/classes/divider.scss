@@ -1,0 +1,13 @@
+@use "../index";
+
+$positions: "top", "bottom", "left", "right";
+$slots: "before", "after";
+
+@each $position in $positions {
+	@each $slot in $slots {
+		.db-divider-#{$position}-#{$slot},
+		[data-divider="#{$position}-#{$slot}"] {
+			@include index.divider($position, $slot);
+		}
+	}
+}

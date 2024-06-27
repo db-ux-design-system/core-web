@@ -12,14 +12,6 @@ $db-breakpoint-md: helpers.px-to-em($db-screen-size-md);
 $db-breakpoint-lg: helpers.px-to-em($db-screen-size-lg);
 $db-breakpoint-xl: helpers.px-to-em($db-screen-size-xl);
 
-:root {
-	--db-breakpoint-xs: #{$db-breakpoint-xs};
-	--db-breakpoint-sm: #{$db-breakpoint-sm};
-	--db-breakpoint-md: #{$db-breakpoint-md};
-	--db-breakpoint-lg: #{$db-breakpoint-lg};
-	--db-breakpoint-xl: #{$db-breakpoint-xl};
-}
-
 @mixin screen($size: "sm", $width: "min") {
 	$screen: $db-screen-size-sm;
 	@if ($size == "xs") {

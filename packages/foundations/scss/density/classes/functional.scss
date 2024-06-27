@@ -1,0 +1,6 @@
+@use "../index";
+@use "get-class";
+
+$density: "functional";
+
+@include get-class.init($density);

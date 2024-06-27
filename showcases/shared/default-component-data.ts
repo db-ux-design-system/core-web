@@ -19,7 +19,6 @@ export type DefaultComponentExample = {
 export type DefaultComponentVariants = {
 	name: string;
 	examples: DefaultComponentExample[];
-	slotCode?: any;
 	color?: string;
 	role?: string;
 };
@@ -27,10 +26,4 @@ export type DefaultComponentVariants = {
 export type DefaultComponentProps = {
 	title: string;
 	variants: DefaultComponentVariants[];
-};
-
-export type PatternhubComponentProps = {
-	subComponent?: any;
-	isSubComponent?: boolean;
-	componentName?: string;
 };
