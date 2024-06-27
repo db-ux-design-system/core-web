@@ -7,8 +7,10 @@ import type {
 } from '../../../shared/react-default-component-data';
 
 const VariantList = ({
+	name,
 	examples,
 	color,
+	role,
 	SlotCode
 }: ReactDefaultComponentVariants) => {
 	const getElevation = useCallback(
@@ -22,7 +24,7 @@ const VariantList = ({
 		<DBCard
 			className="variants-card db-code-docs"
 			elevationLevel={getElevation()}>
-			<div className="variants-list">
+			<div role={role} aria-label={name} className="variants-list">
 				{examples.map((example, exampleIndex) => (
 					<div
 						key={`${example.name}-${exampleIndex}`}
