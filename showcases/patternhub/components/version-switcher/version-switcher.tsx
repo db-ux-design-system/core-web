@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import { sanitize } from 'dompurify';
-import { DBSelect } from '../src';
+import { DBSelect } from '../../../../output/react/src';
 import { type BranchGroup, type GithubResponse } from './data';
 
 const fetchFromGitHubApi = async (url: string): Promise<GithubResponse[]> => {

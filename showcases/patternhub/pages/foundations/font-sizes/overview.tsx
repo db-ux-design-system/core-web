@@ -1,5 +1,5 @@
 import DefaultPage from '../../../components/default-page';
-import { DBInfotext } from '../../../components/src';
+import { DBInfotext } from '../../../../../output/react/src';
 
 const ColorOverview = () => {
 	return (

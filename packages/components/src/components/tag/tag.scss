@@ -195,7 +195,8 @@
 			// overwrite to transparent
 			background-color: colors.$db-current-color-bg-transparent-full-enabled;
 			margin-inline-start: variables.$db-spacing-fixed-2xs;
-			block-size: 100%;
+			border: none;
+			aspect-ratio: 1 / 1;
 		}
 	}
 }

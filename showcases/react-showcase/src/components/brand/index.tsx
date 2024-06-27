@@ -1,8 +1,9 @@
 import { DBBrand } from '../../../../../output/react/src';
-import DefaultComponent from '../index';
+import DefaultComponent from '../default-component';
 import defaultComponentVariants from '../../../../shared/brand.json';
 import { type DBBrandProps } from '../../../../../output/react/src/components/brand/model';
 import { getVariants } from '../data';
+import { type BaseComponentProps } from '../base-component-data';
 
 const getBrand = ({
 	children,
@@ -22,13 +23,14 @@ const getBrand = ({
 	</DBBrand>
 );
 
-const BrandComponent = () => {
+const BrandComponent = (props: BaseComponentProps) => {
 	return (
 		<DefaultComponent
 			title="DBBrand"
 			variants={getVariants(
 				defaultComponentVariants,
-				getBrand
+				getBrand,
+				props.slotCode
 			)}></DefaultComponent>
 	);
 };

@@ -39,6 +39,13 @@ Besides of the variants above we deliver additional colors which aren't required
 ### Dark- & Light-Mode
 
 We provide tokens for both dark- and light-mode. If you include the **db-ui-42** style you get a media query `@media (prefers-color-scheme: dark)` with the relevant tokens. You can [emulate](https://developer.chrome.com/docs/devtools/rendering/emulate-css/) the modes inside the devtools.
+
+It's [recommended to set a `meta`-HTML-tag](https://web.dev/articles/color-scheme#the_color-scheme_meta_tag) to provide a signal to the browser on your accepted color schemes previous to loading the CSS:
+
+```html
+<meta name="color-scheme" content="dark light" />
+```
+
 We recommend using the default media query based on the user preference, but if you want to force a mode for your page or a container you can do it with adding the attributes `data-color-scheme="dark"` or `data-color-scheme="light"`:
 
 #### HTML

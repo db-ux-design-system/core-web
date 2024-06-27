@@ -1,4 +1,3 @@
-import { useSearchParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import {
 	COLOR,
@@ -6,9 +5,12 @@ import {
 	DENSITY,
 	DENSITY_CONST
 } from '../../../../packages/components/src/shared/constants';
+import useUniversalSearchParameters from './use-universal-search-parameters';
 
-const useQuery = (): any => {
-	const [searchParameters, setSearchParameters] = useSearchParams();
+const useQuery = (redirectURLSearchParams = true): any => {
+	const [searchParameters, setSearchParameters] =
+		useUniversalSearchParameters();
+
 	const [density, setDensity] = useState<string>(
 		searchParameters.get(DENSITY_CONST) ?? DENSITY.REGULAR
 	);
@@ -20,7 +22,7 @@ const useQuery = (): any => {
 	const [searchRead, setSearchRead] = useState<boolean>(false);
 
 	useEffect(() => {
-		for (const [key, value] of searchParameters.entries()) {
+		for (const [key, value] of Array.from(searchParameters.entries())) {
 			if (value) {
 				if (key === DENSITY_CONST && density !== value) {
 					setDensity(value);
@@ -54,7 +56,9 @@ const useQuery = (): any => {
 				nextQuery.fullscreen = true;
 			}
 
-			setSearchParameters(nextQuery);
+			if (redirectURLSearchParams) {
+				setSearchParameters(nextQuery);
+			}
 		}
 	}, [color, density, page, fullscreen, searchRead]);
 

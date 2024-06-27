@@ -1,9 +1,10 @@
 import { useState } from 'react';
 import { DBTag } from '../../../../../output/react/src';
-import DefaultComponent from '../index';
+import DefaultComponent from '../default-component';
 import defaultComponentVariants from '../../../../shared/tag.json';
 import { type DBTagProps } from '../../../../../output/react/src/components/tag/model';
 import { getVariants } from '../data';
+import { type BaseComponentProps } from '../base-component-data';
 
 const getTag = ({
 	semantic,
@@ -65,13 +66,14 @@ const getTag = ({
 	);
 };
 
-const TagComponent = () => {
+const TagComponent = (props: BaseComponentProps) => {
 	return (
 		<DefaultComponent
 			title="DBTag"
 			variants={getVariants(
 				defaultComponentVariants,
-				getTag
+				getTag,
+				props.slotCode
 			)}></DefaultComponent>
 	);
 };
