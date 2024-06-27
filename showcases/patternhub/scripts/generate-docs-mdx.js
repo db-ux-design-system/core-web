@@ -95,6 +95,12 @@ const generateDocsMdx = async () => {
 					getRedirectOldFiles('../../../')
 				);
 			}
+
+			// If (!FS.existsSync(`${componentOldPath}/overview.tsx`)) {
+			// 	FS.writeFileSync(
+			// 		`${componentOldPath}/index.tsx`,
+			// 		getRedirectOldFiles('../../../')
+			// 	);
 		}
 	}
 };
