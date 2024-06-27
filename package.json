@@ -60,7 +60,7 @@
     "glob": "^10.4.2",
     "http-server": "14.1.1",
     "husky": "9.0.11",
-    "inquirer": "^9.2.23",
+    "inquirer": "^9.3.0",
     "jscpd": "^4.0.4",
     "lint-staged": "^15.2.7",
     "markdownlint-cli": "^0.41.0",
