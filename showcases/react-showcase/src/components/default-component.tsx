@@ -24,7 +24,10 @@ const VariantList = ({
 		<DBCard
 			className="variants-card db-code-docs"
 			elevationLevel={getElevation()}>
-			<div role={role} aria-label={name} className="variants-list">
+			<div
+				role={role}
+				aria-label={role ? name : undefined}
+				className="variants-list">
 				{examples.map((example, exampleIndex) => (
 					<div
 						key={`${example.name}-${exampleIndex}`}
