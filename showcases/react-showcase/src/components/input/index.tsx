@@ -3,10 +3,11 @@ import {
 	type LabelVariantType,
 	type ValueLabelType
 } from '../../../../../output/react/src';
-import DefaultComponent from '../index';
+import DefaultComponent from '../default-component';
 import defaultComponentVariants from '../../../../shared/input.json';
 import { type DBInputProps } from '../../../../../output/react/src/components/input/model';
 import { getVariants } from '../data';
+import { type BaseComponentProps } from '../base-component-data';
 
 const getDataList = (
 	variant?: LabelVariantType
@@ -55,13 +56,14 @@ const getInput = ({
 	);
 };
 
-const InputComponent = () => {
+const InputComponent = (props: BaseComponentProps) => {
 	return (
 		<DefaultComponent
 			title={'DBInput'}
 			variants={getVariants(
 				defaultComponentVariants,
-				getInput
+				getInput,
+				props.slotCode
 			)}></DefaultComponent>
 	);
 };

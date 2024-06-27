@@ -2,14 +2,13 @@ import { useRouter } from 'next/router';
 import Link from 'next/link';
 import DefaultPage from '../default-page';
 import { getAllNavigationItems, getBreadcrumb } from '../../data/routes';
-import { DBCard, DBIcon } from '../src';
+import { DBCard, DBIcon } from '../../../../output/react/src';
 
 const CardNavigation = () => {
 	const router = useRouter();
 
 	const navigationItemParent = getAllNavigationItems().find(
-		(navItem) =>
-			navItem.path === router.pathname.replace('/[[...slug]]', '')
+		(navItem) => navItem.path === router.asPath
 	);
 
 	return (
