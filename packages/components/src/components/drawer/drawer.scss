@@ -6,18 +6,6 @@
 @use "../../styles/component";
 @use "./../../styles/dialog-init";
 
-%disable-animation {
-	@media screen and (prefers-reduced-motion: reduce) {
-		&:not([data-direction]),
-		&[data-direction="right"],
-		&[data-direction="left"],
-		&[data-direction="up"],
-		&[data-direction="down"] {
-			animation: none;
-		}
-	}
-}
-
 %direction-right {
 	inset-inline: auto 0;
 
@@ -183,56 +171,54 @@ $spacings: (
 
 	&[open] {
 		/* stylelint-disable */
-		.db-drawer-container {
-			@extend %disable-animation;
-
-			&:not([data-direction]),
-			&[data-direction="right"] {
-				animation: show-right-to-left
-					variables.$db-transition-straight-show;
-			}
-
-			&[data-direction="left"] {
-				animation: show-left-to-right
-					variables.$db-transition-straight-show;
-			}
-
-			&[data-direction="up"] {
-				animation: show-bottom-to-top
-					variables.$db-transition-straight-show;
-			}
-
-			&[data-direction="down"] {
-				animation: show-top-to-bottom
-					variables.$db-transition-straight-show;
-			}
-
-			&[hidden] {
-				@extend %disable-animation;
-
+		@media screen and (prefers-reduced-motion: no-preference) {
+			.db-drawer-container {
 				&:not([data-direction]),
 				&[data-direction="right"] {
-					animation: hide-right-to-left
-						variables.$db-transition-straight-hide;
+					animation: show-right-to-left
+						variables.$db-transition-straight-show;
 				}
 
 				&[data-direction="left"] {
-					animation: hide-left-to-right
-						variables.$db-transition-straight-hide;
+					animation: show-left-to-right
+						variables.$db-transition-straight-show;
 				}
 
 				&[data-direction="up"] {
-					animation: hide-bottom-to-top
-						variables.$db-transition-straight-hide;
+					animation: show-bottom-to-top
+						variables.$db-transition-straight-show;
 				}
 
 				&[data-direction="down"] {
-					animation: hide-top-to-bottom
-						variables.$db-transition-straight-hide;
+					animation: show-top-to-bottom
+						variables.$db-transition-straight-show;
 				}
-			}
 
-			/* stylelint-enable */
+				&[hidden] {
+					&:not([data-direction]),
+					&[data-direction="right"] {
+						animation: hide-right-to-left
+							variables.$db-transition-straight-hide;
+					}
+
+					&[data-direction="left"] {
+						animation: hide-left-to-right
+							variables.$db-transition-straight-hide;
+					}
+
+					&[data-direction="up"] {
+						animation: hide-bottom-to-top
+							variables.$db-transition-straight-hide;
+					}
+
+					&[data-direction="down"] {
+						animation: hide-top-to-bottom
+							variables.$db-transition-straight-hide;
+					}
+				}
+
+				/* stylelint-enable */
+			}
 		}
 	}
 }

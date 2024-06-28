@@ -25,9 +25,13 @@
 }
 
 %db-puls {
-	@media screen and (prefers-reduced-motion: reduce) {
+	@media screen and (prefers-reduced-motion: no-preference) {
 		&::after {
-			transition: none;
+			transition:
+				height variables.$db-transition-duration-fast
+					variables.$db-transition-timing-emotional,
+				width variables.$db-transition-duration-fast
+					variables.$db-transition-timing-emotional;
 		}
 	}
 
@@ -35,11 +39,6 @@
 		content: "";
 		position: absolute;
 		border-radius: variables.$db-border-radius-xs;
-		transition:
-			height variables.$db-transition-duration-fast
-				variables.$db-transition-timing-emotional,
-			width variables.$db-transition-duration-fast
-				variables.$db-transition-timing-emotional;
 	}
 }
 

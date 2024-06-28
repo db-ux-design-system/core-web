@@ -22,17 +22,16 @@
 @mixin sub-navi-handler-mobile() {
 	// show/hide sub-navigation by click
 	&[aria-expanded="true"] {
-		@media screen and (prefers-reduced-motion: reduce) {
+		@media screen and (prefers-reduced-motion: no-preference) {
 			~ .db-sub-navigation {
-				transition: none;
-				animation: none;
+				transition: visibility 0ms linear 0ms;
+				animation: show-right-to-left
+					variables.$db-transition-straight-show;
 			}
 		}
 
 		~ .db-sub-navigation {
 			visibility: visible;
-			transition: visibility 0ms linear 0ms;
-			animation: show-right-to-left variables.$db-transition-straight-show;
 
 			.db-sub-navigation {
 				inset-block: 0;
@@ -41,16 +40,12 @@
 	}
 
 	&:not(&[aria-expanded="true"]) {
-		@media screen and (prefers-reduced-motion: reduce) {
+		@media screen and (prefers-reduced-motion: no-preference) {
 			~ .db-sub-navigation {
-				transition: none; // hide animation is 0.4s
-				animation: none;
+				transition: visibility 0ms linear 410ms; // hide animation is 0.4s
+				animation: hide-right-to-left
+					variables.$db-transition-straight-hide;
 			}
-		}
-
-		~ .db-sub-navigation {
-			transition: visibility 0ms linear 410ms; // hide animation is 0.4s
-			animation: hide-right-to-left variables.$db-transition-straight-hide;
 		}
 	}
 }

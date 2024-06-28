@@ -81,19 +81,17 @@ $checked-active-transition-size: calc(
 			margin-inline-end: calc(
 				#{$switch-active-thumb-size} - #{$switch-inactive-thumb-size}
 			);
-			transition:
-				margin variables.$db-transition-duration-fast
-					variables.$db-transition-timing-emotional,
-				inline-size variables.$db-transition-duration-fast
-					variables.$db-transition-timing-emotional,
-				block-size variables.$db-transition-duration-fast
-					variables.$db-transition-timing-emotional,
-				transform variables.$db-transition-duration-fast
-					variables.$db-transition-timing-emotional;
 
-			// Adopted by https://www.heise.de/developer/artikel/a11y-Reduced-Motion-4356171.html
-			@media (prefers-reduced-motion: reduce) {
-				transition: none;
+			@media screen and (prefers-reduced-motion: no-preference) {
+				transition:
+					margin variables.$db-transition-duration-fast
+						variables.$db-transition-timing-emotional,
+					inline-size variables.$db-transition-duration-fast
+						variables.$db-transition-timing-emotional,
+					block-size variables.$db-transition-duration-fast
+						variables.$db-transition-timing-emotional,
+					transform variables.$db-transition-duration-fast
+						variables.$db-transition-timing-emotional;
 			}
 		}
 

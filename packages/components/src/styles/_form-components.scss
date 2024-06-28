@@ -33,14 +33,13 @@ $input-types: "button", "checkbox", "color", "date", "datetime-local", "email",
 %dropdown-icon {
 	@include icons.set-icon("chevron_down", "after");
 
-	@media screen and (prefers-reduced-motion: reduce) {
+	@media screen and (prefers-reduced-motion: no-preference) {
 		&::after {
-			transition: none;
+			transition: $dropdown-icon-transition;
 		}
 	}
 
 	&::after {
-		transition: $dropdown-icon-transition;
 		pointer-events: none;
 	}
 }
@@ -128,8 +127,11 @@ $input-types: "button", "checkbox", "color", "date", "datetime-local", "email",
 
 			#{$selector} {
 				@include placeholder-content() {
-					transition: opacity
-						variables.$db-transition-straight-emotional;
+					@media screen and (prefers-reduced-motion: no-preference) {
+						transition: opacity
+							variables.$db-transition-straight-emotional;
+					}
+
 					opacity: component.$default-disabled;
 				}
 			}
@@ -333,14 +335,13 @@ $input-valid-types: "color", "date", "datetime-local", "email", "file", "hidden"
 		padding-block-end: variables.$db-spacing-fixed-xs;
 		pointer-events: none;
 		cursor: text;
-		transition: font-size variables.$db-transition-straight-emotional;
 		max-inline-size: 25ch;
 		text-overflow: ellipsis;
 		white-space: nowrap;
 		overflow: hidden;
 
-		@media screen and (prefers-reduced-motion: reduce) {
-			transition: none;
+		@media screen and (prefers-reduced-motion: no-preference) {
+			transition: font-size variables.$db-transition-straight-emotional;
 		}
 	}
 
@@ -501,10 +502,5 @@ $input-valid-types: "color", "date", "datetime-local", "email", "file", "hidden"
 		input {
 			margin-inline-end: 0;
 		}
-	}
-
-	// Adopted by https://www.heise.de/developer/artikel/a11y-Reduced-Motion-4356171.html
-	@media (prefers-reduced-motion: reduce) {
-		transition-duration: 0.01s !important;
 	}
 }

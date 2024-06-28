@@ -142,24 +142,20 @@ $popover-gap-inset: calc(-1 * #{$popover-gap-size});
 		opacity: 1;
 	}
 
-	@media screen and (prefers-reduced-motion: reduce) {
+	@media screen and (prefers-reduced-motion: no-preference) {
 		&:not([data-animation="disabled"]) {
-			animation: none;
-		}
-	}
+			animation: popover-animation
+				variables.$db-transition-straight-emotional normal both;
 
-	&:not([data-animation="disabled"]) {
-		animation: popover-animation variables.$db-transition-straight-emotional
-			normal both;
+			&[data-delay="slow"] {
+				animation-delay: variables.$db-transition-duration-fast;
+			}
 
-		&[data-delay="slow"] {
-			animation-delay: variables.$db-transition-duration-fast;
-		}
-
-		&[data-delay="fast"] {
-			animation-delay: calc(
-				#{variables.$db-transition-duration-fast} / 2
-			);
+			&[data-delay="fast"] {
+				animation-delay: calc(
+					#{variables.$db-transition-duration-fast} / 2
+				);
+			}
 		}
 	}
 }

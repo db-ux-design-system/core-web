@@ -17,14 +17,10 @@
 .db-page {
 	opacity: 0;
 
-	@media screen and (prefers-reduced-motion: reduce) {
+	@media screen and (prefers-reduced-motion: no-preference) {
 		&[data-fade-in="true"] {
-			transition: none;
+			transition: opacity variables.$db-transition-straight-emotional;
 		}
-	}
-
-	&[data-fade-in="true"] {
-		transition: opacity variables.$db-transition-straight-emotional;
 	}
 
 	&:not([data-fonts-loaded]),

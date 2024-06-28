@@ -28,15 +28,14 @@ $icon-padding: calc(
 		@include icons.set-icon("magnifying_glass");
 		@include icons.set-icon("cross_circle", "after");
 
-		@media screen and (prefers-reduced-motion: reduce) {
+		@media screen and (prefers-reduced-motion: no-preference) {
 			&::after {
-				transition: none;
+				transition: opacity variables.$db-transition-duration-fast;
 			}
 		}
 
 		&::after {
 			opacity: 0;
-			transition: opacity variables.$db-transition-duration-fast;
 		}
 
 		&:has(input:not(:placeholder-shown)):has(

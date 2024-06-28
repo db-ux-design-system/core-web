@@ -63,15 +63,11 @@ $db-accordion-item-border-radius: variables.$db-border-radius-sm;
 	}
 
 	&[open] {
-		@media screen and (prefers-reduced-motion: reduce) {
+		@media screen and (prefers-reduced-motion: no-preference) {
 			summary + div {
-				animation: none;
+				animation: accordion-open
+					variables.$db-transition-straight-emotional normal both;
 			}
-		}
-
-		summary + div {
-			animation: accordion-open
-				variables.$db-transition-straight-emotional normal both;
 		}
 
 		summary::after {
