@@ -53,11 +53,11 @@ jobs:
           name: db-ui-components-build
           path: packages/components/build
 
-      - name: ⏬ Download showcases
+      - name: ⏬ Download ${{ inputs.showcase }}
         uses: actions/download-artifact@v4
         with:
-          name: db-ui-showcases
-          path: build-showcases
+          name: db-ui-${{ inputs.showcase }}
+          path: build-showcases/${{ inputs.showcase }}
 
       - name: 👩‍🔬 Test showcase with Playwright 🎭
         env:

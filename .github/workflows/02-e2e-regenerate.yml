@@ -55,6 +55,7 @@ jobs:
           path: build-showcases
 
       - name: 👩‍🔬 Generate snapshots 🎭
+        shell: bash
         env:
           HOME: /root
           TYPE: ${{ inputs.type }}
