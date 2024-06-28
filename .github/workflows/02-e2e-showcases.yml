@@ -20,7 +20,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        framework: [angular, react, vue]
+        framework: [angular-showcase, react-showcase, vue-showcase, patternhub]
         shardIndex: [1, 2, 3, 4, 5]
         shardTotal: [5]
     steps:
@@ -61,7 +61,7 @@ jobs:
         env:
           HOME: /root
         run: |
-          npm run test:e2e --workspace=${{ matrix.framework }}-showcase -- --shard=${{ matrix.shardIndex }}/${{ matrix.shardTotal }}
+          npm run test:e2e --workspace=${{ matrix.framework }} -- --shard=${{ matrix.shardIndex }}/${{ matrix.shardTotal }}
 
       - name: 🔣 Print GitHub Report
         if: failure()
@@ -73,6 +73,6 @@ jobs:
         if: failure()
         uses: actions/upload-artifact@v4
         with:
-          name: ${{ matrix.framework }}-showcase-playwright-results-${{ matrix.shardIndex }}
-          path: ./showcases/${{ matrix.framework }}-showcase/test-results
+          name: ${{ matrix.framework }}-playwright-results-${{ matrix.shardIndex }}
+          path: ./showcases/${{ matrix.framework }}/test-results
           retention-days: 30
