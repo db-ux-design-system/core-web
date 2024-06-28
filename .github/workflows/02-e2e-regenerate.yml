@@ -78,9 +78,34 @@ jobs:
             npm run regenerate:screenshots --workspace=react-showcase
           fi
 
-      - name: 🆙 Upload snapshots
+      - name: 🆙 Upload components
+        if: inputs.type == 'components'
         uses: actions/upload-artifact@v4
         with:
-          name: ${{ inputs.type }}-snapshots
-          path: ./__snapshots__
+          name: snapshots-${{ inputs.type }}
+          path: ./__snapshots__/*/component
+          retention-days: 30
+
+      - name: 🆙 Upload foundations
+        if: inputs.type == 'foundations'
+        uses: actions/upload-artifact@v4
+        with:
+          name: snapshots-${{ inputs.type }}
+          path: ./__snapshots__/foundations
+          retention-days: 30
+
+      - name: 🆙 Upload patternhub
+        if: inputs.type == 'patternhub'
+        uses: actions/upload-artifact@v4
+        with:
+          name: snapshots-${{ inputs.type }}
+          path: ./__snapshots__/*/patternhub
+          retention-days: 30
+
+      - name: 🆙 Upload showcase
+        if: inputs.type == 'showcases'
+        uses: actions/upload-artifact@v4
+        with:
+          name: snapshots-${{ inputs.type }}
+          path: ./__snapshots__/*/showcase
           retention-days: 30
