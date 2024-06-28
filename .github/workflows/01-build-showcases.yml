@@ -38,7 +38,7 @@ jobs:
           path: packages/components/build
 
       - name: 🔨 Build ${{ inputs.showcase }}
-        run: npm run --workspace=${{ inputs.showcase }}
+        run: npm run build --workspace=${{ inputs.showcase }}
 
       - name: ⏫ Upload ${{ inputs.showcase }}
         uses: actions/upload-artifact@v4

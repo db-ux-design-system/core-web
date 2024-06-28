@@ -49,10 +49,18 @@ jobs:
           path: packages/components/build
 
       - name: ⏬ Download showcases
+        if: inputs.type == 'showcases'
         uses: actions/download-artifact@v4
         with:
-          name: db-ui-showcases
-          path: build-showcases
+          name: db-ui-react-showcase
+          path: build-showcases/react-showcase
+
+      - name: ⏬ Download patternhub
+        if: inputs.type == 'patternhub'
+        uses: actions/download-artifact@v4
+        with:
+          name: db-ui-patternhub
+          path: build-showcases/patternhub
 
       - name: 👩‍🔬 Generate snapshots 🎭
         shell: bash
