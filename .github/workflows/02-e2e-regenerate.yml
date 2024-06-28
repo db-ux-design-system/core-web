@@ -6,6 +6,9 @@ on:
       version:
         required: true
         type: string
+      type:
+        required: true
+        type: string
 
 permissions:
   actions: write
@@ -13,7 +16,7 @@ permissions:
 
 jobs:
   regenerate-snapshots:
-    name: 🧪🎭 - Regenerate snapshots
+    name: 🧪🎭 - Regenerate snapshots ${{ inputs.type }}
     runs-on: ubuntu-latest
     container:
       image: mcr.microsoft.com/playwright:v${{ inputs.version }}
@@ -54,14 +57,22 @@ jobs:
       - name: 👩‍🔬 Generate snapshots 🎭
         env:
           HOME: /root
+          TYPE: ${{ inputs.type }}
         run: |
-          npm run regenerate:screenshots --workspace=@db-ui/react-components
-          npm run regenerate:screenshots --workspace=@db-ui/foundations
+          if [[ $TYPE == "components" ]]; then
+            npm run regenerate:screenshots --workspace=@db-ui/react-components
+          fi
+          elif [[ $TYPE == "foundations" ]]; then
+            npm run regenerate:screenshots --workspace=@db-ui/foundations
+          fi
+          else
           npm run regenerate:screenshots --workspace=react-showcase
+          npm run regenerate:screenshots --workspace=patternhub
+          fi
 
       - name: 🆙 Upload snapshots
         uses: actions/upload-artifact@v4
         with:
-          name: __snapshots__
+          name: ${{ inputs.type }}-snapshots
           path: ./__snapshots__
           retention-days: 30

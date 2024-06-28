@@ -53,18 +53,29 @@ jobs:
     with:
       version: ${{ needs.get-playwright-version.outputs.version }}
 
-  regenerate-snapshots:
-    if: always() && (needs.test-components.result == 'failure' || needs.test-foundations.result == 'failure' || needs.test-showcases.result == 'failure')
+  regenerate-snapshots-components:
+    if: always() && needs.test-components.result == 'failure'
     uses: ./.github/workflows/02-e2e-regenerate.yml
     with:
       version: ${{ needs.get-playwright-version.outputs.version }}
-    needs:
-      [
-        test-components,
-        test-showcases,
-        test-foundations,
-        get-playwright-version
-      ]
+      type: components
+    needs: [test-components, get-playwright-version]
+
+  regenerate-snapshots-foundations:
+    if: always() && needs.test-foundations.result == 'failure'
+    uses: ./.github/workflows/02-e2e-regenerate.yml
+    with:
+      version: ${{ needs.get-playwright-version.outputs.version }}
+      type: foundations
+    needs: [test-foundations, get-playwright-version]
+
+  regenerate-snapshots:
+    if: always() && needs.test-showcases.result == 'failure'
+    uses: ./.github/workflows/02-e2e-regenerate.yml
+    with:
+      version: ${{ needs.get-playwright-version.outputs.version }}
+      type: showcases
+    needs: [test-showcases, get-playwright-version]
 
   checks-done:
     if: ${{ always() }}
