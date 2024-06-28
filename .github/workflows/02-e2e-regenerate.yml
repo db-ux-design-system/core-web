@@ -61,13 +61,12 @@ jobs:
         run: |
           if [[ $TYPE == "components" ]]; then
             npm run regenerate:screenshots --workspace=@db-ui/react-components
-          fi
           elif [[ $TYPE == "foundations" ]]; then
             npm run regenerate:screenshots --workspace=@db-ui/foundations
-          fi
+          elif [[ $TYPE == "patternhub" ]]; then
+            npm run regenerate:screenshots --workspace=patternhub
           else
-          npm run regenerate:screenshots --workspace=react-showcase
-          npm run regenerate:screenshots --workspace=patternhub
+            npm run regenerate:screenshots --workspace=react-showcase
           fi
 
       - name: 🆙 Upload snapshots

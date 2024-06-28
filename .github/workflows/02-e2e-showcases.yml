@@ -6,6 +6,9 @@ on:
       version:
         required: true
         type: string
+      showcase:
+        required: true
+        type: string
 
 permissions:
   actions: write
@@ -13,14 +16,13 @@ permissions:
 
 jobs:
   playwright-showcases:
-    name: 🧪🎭 - ${{ matrix.framework }}:${{ matrix.shardIndex }}/${{ matrix.shardTotal }}
+    name: 🧪🎭 - ${{ inputs.showcase }}:${{ matrix.shardIndex }}/${{ matrix.shardTotal }}
     runs-on: ubuntu-latest
     container:
       image: mcr.microsoft.com/playwright:v${{ inputs.version }}
     strategy:
       fail-fast: false
       matrix:
-        framework: [angular-showcase, react-showcase, vue-showcase, patternhub]
         shardIndex: [1, 2, 3, 4, 5]
         shardTotal: [5]
     steps:
@@ -61,7 +63,7 @@ jobs:
         env:
           HOME: /root
         run: |
-          npm run test:e2e --workspace=${{ matrix.framework }} -- --shard=${{ matrix.shardIndex }}/${{ matrix.shardTotal }}
+          npm run test:e2e --workspace=${{ inputs.showcase }} -- --shard=${{ matrix.shardIndex }}/${{ matrix.shardTotal }}
 
       - name: 🔣 Print GitHub Report
         if: failure()
@@ -73,6 +75,6 @@ jobs:
         if: failure()
         uses: actions/upload-artifact@v4
         with:
-          name: ${{ matrix.framework }}-playwright-results-${{ matrix.shardIndex }}
-          path: ./showcases/${{ matrix.framework }}/test-results
+          name: ${{ inputs.showcase }}-playwright-results-${{ matrix.shardIndex }}
+          path: ./showcases/${{ inputs.showcase }}/test-results
           retention-days: 30

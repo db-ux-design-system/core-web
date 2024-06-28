@@ -48,23 +48,71 @@ jobs:
     with:
       version: ${{ needs.get-playwright-version.outputs.version }}
 
-  test-showcases:
+  test-showcase-angular:
     uses: ./.github/workflows/02-e2e-showcases.yml
     needs: [build-showcases, get-playwright-version]
     with:
       version: ${{ needs.get-playwright-version.outputs.version }}
+      showcase: angular-showcase
+
+  test-showcase-react:
+    uses: ./.github/workflows/02-e2e-showcases.yml
+    needs: [build-showcases, get-playwright-version]
+    with:
+      version: ${{ needs.get-playwright-version.outputs.version }}
+      showcase: react-showcase
+
+  test-showcase-vue:
+    uses: ./.github/workflows/02-e2e-showcases.yml
+    needs: [build-showcases, get-playwright-version]
+    with:
+      version: ${{ needs.get-playwright-version.outputs.version }}
+      showcase: vue-showcase
+
+  test-showcase-patternhub:
+    uses: ./.github/workflows/02-e2e-showcases.yml
+    needs: [build-showcases, get-playwright-version]
+    with:
+      version: ${{ needs.get-playwright-version.outputs.version }}
+      showcase: patternhub
 
   checks-done:
+    if: ${{ always() }}
     runs-on: ubuntu-latest
     steps:
       - name: 🎉 Checks done
-        run: echo "🎉 All builds were successful."
+        run: |
+          resultBuildShowcases="${{ needs.build-showcases.result }}"
+          resultBuildOutputs="${{ needs.build-outputs.result }}"
+          resultTestPackages="${{ needs.test-components.result }}"
+          resultTestFoundations="${{ needs.test-foundations.result }}"
+          resultTestShowcaseAngular="${{ needs.test-showcase-angular.result }}"
+          resultTestShowcaseReact="${{ needs.test-showcase-react.result }}"
+          resultTestShowcaseVue="${{ needs.test-showcase-vue.result }}"
+          resultTestShowcasePatternhub="${{ needs.test-showcase-patternhub.result }}"
+          if [[ $resultTestFoundations == "success" ]] && \
+             [[ $resultTestShowcaseAngular == "success" ]] && \
+             [[ $resultTestShowcaseReact == "success" ]] && \
+             [[ $resultTestShowcaseVue == "success" ]] && \
+             [[ $resultTestShowcasePatternhub == "success" ]] && \
+             [[ $resultTestPackages == "success" ]] && \
+             [[ $resultBuildOutputs == "success" ]] && \
+             [[ $resultBuildShowcases == "success" ]]; then
+             echo "🎉 All tests were successful."
+            exit 0
+          else
+             echo "Some tests were failing."
+            exit 1
+          fi
     needs:
       [
-        test-components,
-        build-outputs,
         build-showcases,
-        test-showcases,
+        build-outputs,
+        test-components,
+        test-showcase-angular,
+        test-showcase-react,
+        test-showcase-vue,
+        test-showcase-patternhub,
         test-foundations
       ]
 
