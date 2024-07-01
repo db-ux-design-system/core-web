@@ -61,5 +61,9 @@
     "start-showcase:vue": "npm run dev --workspace=vue-showcase",
     "start:foundations": "npm run start --workspace=@db-ui/foundations",
     "update:icon-fonts": "npm-run-all generate:icon-fonts generate:icon-types"
+  },
+  "devDependencies": {
+    "glob": "^10.4.2",
+    "replace-in-file": "^8.0.1"
   }
 }
