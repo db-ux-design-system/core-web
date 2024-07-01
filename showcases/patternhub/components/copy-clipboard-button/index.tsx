@@ -26,7 +26,7 @@ const CopyClipboardButton = ({
 	};
 
 	useEffect(() => {
-		let timeout: NodeJS.Timeout | undefined;
+		let timeout: ReturnType<typeof setTimeout> | undefined;
 
 		if (justCopied) {
 			timeout = setTimeout(() => {
