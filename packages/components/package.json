@@ -57,7 +57,7 @@
     "lit": "^3.1.4",
     "nodemon": "3.1.4",
     "sass": "1.77.4",
-    "tsx": "^4.15.7"
+    "tsx": "^4.16.0"
   },
   "publishConfig": {
     "registry": "https://registry.npmjs.org/",
