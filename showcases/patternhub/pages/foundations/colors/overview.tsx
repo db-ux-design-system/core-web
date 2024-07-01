@@ -1,5 +1,16 @@
+import { useState } from 'react';
 import DefaultPage from '../../../components/default-page';
-import { DBIcon, DBInfotext } from '../../../../../output/react/src';
+import {
+	DBIcon,
+	DBInfotext,
+	DBTabs,
+	DBTabList,
+	DBTabPanel,
+	DBTabItem,
+	DBSwitch
+} from '../../../../../output/react/src';
+import checkerboard from '../../../assets/images/checkerboard.png';
+import CopyClipboardButton from '../../../components/copy-clipboard-button';
 
 const semanticColors = [
 	'neutral',
@@ -34,9 +45,129 @@ const onBackgroundColors = [
 	{ value: 'default' },
 	{ value: 'weak' },
 	{ value: 'contrast' },
-	{ value: 'contrast-weak', accessible: false },
-	{ value: 'border', accessible: false }
+	{ value: 'contrast-weak', appendix: ' *' },
+	{ value: 'border', appendix: ' *' }
 ];
+
+type ColorValue = string | { value: string; appendix?: string };
+
+const ColorsGrid = ({
+	values,
+	prefixClass,
+	dataAttributeName,
+	showCheckerboard,
+	enableDarkMode,
+	variant
+}: {
+	values: ColorValue[];
+	prefixClass: string;
+	dataAttributeName: string;
+	showCheckerboard: boolean;
+	enableDarkMode: boolean;
+	variant: 'class' | 'dataAttribute';
+}) => {
+	const getText = (value: string) =>
+		variant === 'class'
+			? `${prefixClass}${value}`
+			: `${dataAttributeName}="${value}"`;
+
+	const getAttributes = (value: string) =>
+		variant === 'class'
+			? { className: `${prefixClass}${value}` }
+			: { [dataAttributeName]: value };
+
+	return (
+		<div
+			className="color-overview-container db-font-size-sm"
+			data-color-scheme={enableDarkMode ? 'dark' : 'light'}>
+			<span
+				style={{
+					backgroundImage: showCheckerboard
+						? `url(${checkerboard.src})`
+						: 'none'
+				}}
+			/>{' '}
+			{values.map((value, index) => {
+				const v = typeof value === 'string' ? value : value.value;
+				const appendix =
+					typeof value === 'string' ? undefined : value.appendix;
+				return (
+					<div {...getAttributes(v)}>
+						<span>
+							{getText(v)}
+							{appendix}
+						</span>
+						<CopyClipboardButton
+							name={`copy-button-${index}`}
+							copyText={getText(v)}>
+							Copied to clipboard
+						</CopyClipboardButton>
+					</div>
+				);
+			})}
+		</div>
+	);
+};
+
+const ColorsOverviewTabs = ({
+	values,
+	prefixClass,
+	dataAttributeName
+}: {
+	values: ColorValue[];
+	prefixClass: string;
+	dataAttributeName: string;
+}) => {
+	const [showCheckerboard, setShowCheckerboard] = useState<boolean>(false);
+	const [enableDarkMode, setEnableDarkMode] = useState<boolean>(false);
+
+	return (
+		<>
+			<div className="color-overview-switches">
+				<DBSwitch
+					checked={showCheckerboard}
+					onChange={(event) => {
+						setShowCheckerboard(event.target.checked);
+					}}>
+					Show checkerboard
+				</DBSwitch>
+				<DBSwitch
+					checked={enableDarkMode}
+					onChange={(event) => {
+						setEnableDarkMode(event.target.checked);
+					}}>
+					Preview dark mode
+				</DBSwitch>
+			</div>
+			<DBTabs>
+				<DBTabList>
+					<DBTabItem>Classes</DBTabItem>
+					<DBTabItem>Data Attributes</DBTabItem>
+				</DBTabList>
+				<DBTabPanel>
+					<ColorsGrid
+						variant="class"
+						values={values}
+						prefixClass={prefixClass}
+						dataAttributeName={dataAttributeName}
+						showCheckerboard={showCheckerboard}
+						enableDarkMode={enableDarkMode}
+					/>
+				</DBTabPanel>
+				<DBTabPanel>
+					<ColorsGrid
+						variant="dataAttribute"
+						values={values}
+						prefixClass={prefixClass}
+						dataAttributeName={dataAttributeName}
+						showCheckerboard={showCheckerboard}
+						enableDarkMode={enableDarkMode}
+					/>
+				</DBTabPanel>
+			</DBTabs>
+		</>
+	);
+};
 
 const ColorOverview = () => {
 	return (
@@ -112,19 +243,17 @@ const ColorOverview = () => {
 					corresponding meaning. <b>Neutral</b> stands for the regular
 					colour scheme, which is usually applied to root.
 				</p>
-				<div className="color-overview-container">
-					{semanticColors.map((semanticColor) => (
-						<div
-							className={`db-container-color-${semanticColor}`}>{`db-container-color-${semanticColor}`}</div>
-					))}
-				</div>
+				<ColorsOverviewTabs
+					values={semanticColors}
+					prefixClass="db-container-color-"
+					dataAttributeName="data-container-color"
+				/>
 				<h3>Additional container color</h3>
-				<div className="color-overview-container">
-					{additionalColors.map((additionalColor) => (
-						<div
-							className={`db-container-color-${additionalColor}`}>{`db-container-color-${additionalColor}`}</div>
-					))}
-				</div>
+				<ColorsOverviewTabs
+					values={additionalColors}
+					prefixClass="db-container-color-"
+					dataAttributeName="data-container-color"
+				/>
 				<h2>2. Background color modifier</h2>
 				<p>
 					These classes define the type of background color for a
@@ -133,12 +262,11 @@ const ColorOverview = () => {
 					means that each of these background types exists for each
 					semantic color.
 				</p>
-				<div className="color-overview-container">
-					{backgroundColors.map((backgroundColor) => (
-						<div
-							className={`db-bg-color-${backgroundColor}`}>{`db-bg-color-${backgroundColor}`}</div>
-					))}
-				</div>
+				<ColorsOverviewTabs
+					values={backgroundColors}
+					prefixClass="db-bg-color-"
+					dataAttributeName="data-bg-color"
+				/>
 				<h2>3. On background color modifier</h2>
 				<p>
 					This class is used to define the contrast for <b>texts</b>{' '}
@@ -151,15 +279,11 @@ const ColorOverview = () => {
 						therefore not permitted as text colors.
 					</b>
 				</p>
-				<div className="color-overview-container">
-					{onBackgroundColors.map(({ value, accessible }) => (
-						<div className={`db-on-bg-color-${value}`}>
-							<DBIcon icon="heart" />
-							{`db-on-bg-color-${value}`}
-							{accessible === false ? ' *' : ''}
-						</div>
-					))}
-				</div>
+				<ColorsOverviewTabs
+					values={onBackgroundColors}
+					prefixClass="db-on-bg-color-"
+					dataAttributeName="data-on-bg-color"
+				/>
 			</div>
 		</DefaultPage>
 	);
