@@ -1,7 +1,14 @@
-import { useState } from 'react';
 import DefaultPage from '../../../components/default-page';
-import { COLORS } from '../../../../../packages/components/src/shared/constants';
-import { DBInput, DBIcon } from '../../../../../output/react/src';
+import { DBIcon, DBInfotext } from '../../../../../output/react/src';
+
+const semanticColors = [
+	'neutral',
+	'brand',
+	'critical',
+	'successful',
+	'warning',
+	'informational'
+];
 
 const additionalColors = [
 	'yellow',
@@ -14,29 +21,6 @@ const additionalColors = [
 	'turquoise',
 	'green'
 ];
-const getAdditionalColors = () => {
-	const colors: string[] = [];
-
-	for (const color of additionalColors) {
-		colors.push(
-			`${color}-bg-lvl-1`,
-			`${color}-bg-lvl-2`,
-			`${color}-bg-lvl-3`,
-			`${color}-bg-transparent-semi`,
-			`${color}-bg-transparent-full`
-		);
-	}
-
-	return colors;
-};
-
-const semanticColors = [
-	'neutral',
-	'critical',
-	'successful',
-	'warning',
-	'informational'
-];
 
 const backgroundColors = [
 	'lvl-1',
@@ -46,35 +30,108 @@ const backgroundColors = [
 	'transparent-semi'
 ];
 
-const onBackgroundColors = ['default', 'weak', 'contrast', 'contrast-weak'];
+const onBackgroundColors = [
+	{ value: 'default' },
+	{ value: 'weak' },
+	{ value: 'contrast' },
+	{ value: 'contrast-weak', accessible: false },
+	{ value: 'border', accessible: false }
+];
 
 const ColorOverview = () => {
-	const additionalColors = getAdditionalColors();
-	const [search, setSearch] = useState<string>('');
-
 	return (
 		<DefaultPage>
 			<div>
-				<h1>Color Overview</h1>
-				<h2>Overview semantic color classes</h2>
+				<h1>Color classes</h1>
 				<p>
-					These classes define the semantic colour set (only css
-					variables) for a container. Texts, icons, backgrounds and
-					components in it then automatically adapt to the colour set.
+					These <b>classes</b> (or data-attributes) can be used to{' '}
+					apply a <b>monochromatic adaptive color scheme</b> or a{' '}
+					<b>color modifier</b> (background color, on-background
+					color) to containers and elements.
+				</p>
+				<p>
+					<i>
+						These classes are <u>not</u> intended for individual
+						styling of your own components. The corresponding custom
+						properties should be used for this.
+					</i>
+				</p>
+				<b>How to use:</b>
+				<br />
+				<br />
+				<DBInfotext semantic="informational">
+					Note: All three methods are optional: they can be used
+					individually or in any combination on an element.
+				</DBInfotext>
+				<ol>
+					<li>
+						Should an entire container be given an{' '}
+						<b>adaptive color scheme</b>? Then use a{' '}
+						<code>db-container-color-[ color ]</code> class.
+					</li>
+					<li>
+						The <b>background color</b>, in particular the{' '}
+						<b>elevation level</b>, can be modified with a{' '}
+						<code>db-bg-color-[ color ]</code> class.
+					</li>
+					<li>
+						The contrast of the <b>text</b> and <b>icon color</b>{' '}
+						can be changed with the <b>on-background</b> classes:{' '}
+						<code>db-on-bg-color-[ color ]</code>
+					</li>
+				</ol>
+				<h2>1. Container color</h2>
+				<p>
+					These classes define the{' '}
+					<b>monochromatic adaptive color scheme</b> for a container.
+					Texts, icons and backgrounds in it then automatically adapt
+					to the color set.
+				</p>
+				<p>
+					Each container color class functions as a shorthand and
+					applies the following by default:
+				</p>
+				<ul>
+					<li>
+						A bunch of css custom-properties to apply the{' '}
+						<b>monochromatic adaptive color scheme</b>
+					</li>
+					<li>
+						Background color modifier <b>db-bg-color-lvl-1</b>{' '}
+						(Level 1 background by default)
+					</li>
+					<li>
+						On background color modifier{' '}
+						<b>db-on-bg-color-default</b> (highest text contrast by
+						default)
+					</li>
+				</ul>
+				<h3>Semantic container color</h3>
+				<p>
+					These semantic colours are used to give a container a
+					corresponding meaning. <b>Neutral</b> stands for the regular
+					colour scheme, which is usually applied to root.
 				</p>
 				<div className="color-overview-container">
 					{semanticColors.map((semanticColor) => (
 						<div
-							className={`db-semantic-color-${semanticColor} db-bg-color-lvl-3`}>{`db-semantic-color-${semanticColor}`}</div>
+							className={`db-container-color-${semanticColor}`}>{`db-container-color-${semanticColor}`}</div>
 					))}
 				</div>
-				<h2>Overview background color classes</h2>
+				<h3>Additional container color</h3>
+				<div className="color-overview-container">
+					{additionalColors.map((additionalColor) => (
+						<div
+							className={`db-container-color-${additionalColor}`}>{`db-container-color-${additionalColor}`}</div>
+					))}
+				</div>
+				<h2>2. Background color modifier</h2>
 				<p>
-					These classes define the type of background colour for a
-					container. The exact colour tone then results from the
+					These classes define the type of background color for a
+					container. The exact color tone then results from the
 					current semantics (in root <b>neutral</b> by default). This
 					means that each of these background types exists for each
-					semantic colour.
+					semantic color.
 				</p>
 				<div className="color-overview-container">
 					{backgroundColors.map((backgroundColor) => (
@@ -82,41 +139,26 @@ const ColorOverview = () => {
 							className={`db-bg-color-${backgroundColor}`}>{`db-bg-color-${backgroundColor}`}</div>
 					))}
 				</div>
-				<h2>Overview on background color classes</h2>
+				<h2>3. On background color modifier</h2>
 				<p>
-					This class is used to define the colour for texts and icons.
-					As with the background colours, these are displayed
-					according to the current semantics.
+					This class is used to define the contrast for <b>texts</b>{' '}
+					and <b>icons</b>. As with the background colors, these are
+					displayed according to the current color scheme.
+				</p>
+				<p>
+					<b>
+						* These colors do not have sufficient contrast. They are
+						therefore not permitted as text colors.
+					</b>
 				</p>
 				<div className="color-overview-container">
-					{onBackgroundColors.map((onBackgroundColor) => (
-						<div className={`db-on-bg-color-${onBackgroundColor}`}>
+					{onBackgroundColors.map(({ value, accessible }) => (
+						<div className={`db-on-bg-color-${value}`}>
 							<DBIcon icon="heart" />
-							{`db-on-bg-color-${onBackgroundColor}`}
+							{`db-on-bg-color-${value}`}
+							{accessible === false ? ' *' : ''}
 						</div>
 					))}
-				</div>
-				<h2>Overview combined classes</h2>
-				<p>
-					These shorthand classes combine <b>semantic</b>,{' '}
-					<b>background</b> and <b>on-background</b> classes
-				</p>
-				<search>
-					<DBInput
-						label="Search for color"
-						placeholder="neutral-bg"
-						type="search"
-						onChange={(event) => {
-							setSearch(event.target.value);
-						}}
-					/>
-				</search>
-				<div className="color-overview-container">
-					{[...COLORS, ...additionalColors]
-						.filter((color) => color.includes(search))
-						.map((color) => (
-							<div className={`db-${color}`}>{`db-${color}`}</div>
-						))}
 				</div>
 			</div>
 		</DefaultPage>
