@@ -209,6 +209,12 @@ div[class^="ch-"] {
 	}
 }
 
+.color-overview-switches {
+	display: flex;
+	gap: variables.$db-spacing-fixed-lg;
+	margin-block-end: variables.$db-spacing-fixed-md;
+}
+
 // density examples
 
 .density-example-grid {
@@ -564,10 +570,4 @@ h6 {
 			margin-inline-start: auto;
 		}
 	}
-}
-
-.color-overview-switches {
-	display: flex;
-	gap: variables.$db-spacing-fixed-lg;
-	margin-block-end: variables.$db-spacing-fixed-md;
 }
