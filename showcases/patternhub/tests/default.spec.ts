@@ -9,7 +9,8 @@ const getDefaultScreenshotTest = async (
 ) => {
 	test(`${type} should match screenshot`, async ({ page }) => {
 		await page.goto(`${path}`, {
-			waitUntil: 'domcontentloaded'
+			waitUntil: 'domcontentloaded',
+			timeout: 20_000
 		});
 		await fn(page);
 		await expect(page).toHaveScreenshot([name, 'patternhub.png']);
@@ -25,7 +26,6 @@ for (const group of Components) {
 				`./components/${component.name}/docs/Angular`,
 				async (page) => {
 					expect(await page.locator('h2').isVisible());
-					await page.waitForTimeout(500);
 				}
 			);
 		});
@@ -40,7 +40,6 @@ for (const group of Components) {
 						.first()
 						.isVisible();
 					expect(functionalCount);
-					await page.waitForTimeout(500);
 				}
 			);
 		});
@@ -51,7 +50,6 @@ for (const group of Components) {
 				`./components/${component.name}/properties?fullscreen=true&noh1=true`,
 				async (page) => {
 					expect(await page.locator('h2').isVisible());
-					await page.waitForTimeout(500);
 				}
 			);
 		});
