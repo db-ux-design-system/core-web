@@ -63,6 +63,10 @@ export const getComponents = (): Component[] => [
 				{
 					from: 'scrollContainer = null;',
 					to: 'scrollContainer: Element | null = null;'
+				},
+				{
+					from: '& > .db-tab-panel',
+					to: '& > dbtabpanel > .db-tab-panel, & > db-tab-panel > .db-tab-panel'
 				}
 			]
 		}

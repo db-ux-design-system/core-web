@@ -71,7 +71,9 @@ export default (tmp?: boolean) => {
 				}
 			];
 
-			// This is a workaround for valid/invalidMessages resetting values
+			/* This is a workaround for valid/invalid Messages.
+			 *  If a valid/invalid message appears it will use the old this._value,
+			 *  so we need to overwrite this._value with the current event.target.value.   */
 			[
 				'HTMLSelectElement',
 				'HTMLInputElement',

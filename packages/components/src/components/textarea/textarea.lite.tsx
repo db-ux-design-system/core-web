@@ -60,6 +60,7 @@ export default function DBTextarea(props: DBTextareaProps) {
 
 			handleFrameworkEvent(this, event);
 
+			/* For a11y reasons we need to map the correct message with the textarea */
 			if (!ref?.validity.valid || props.customValidity === 'invalid') {
 				state._descByIds = state._invalidMessageId;
 			} else if (

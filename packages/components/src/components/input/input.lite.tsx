@@ -66,6 +66,7 @@ export default function DBInput(props: DBInputProps) {
 
 			handleFrameworkEvent(this, event);
 
+			/* For a11y reasons we need to map the correct message with the input */
 			if (!ref?.validity.valid || props.customValidity === 'invalid') {
 				state._descByIds = state._invalidMessageId;
 			} else if (

@@ -122,27 +122,19 @@ export default function DBTabs(props: DBTabsProps) {
 					);
 				}
 
-				const tabPanels = [
-					...Array.from<Element>(
-						ref.querySelectorAll('& > .db-tab-panel')
-					),
-					...Array.from<Element>(
-						ref.querySelectorAll('& > dbtabpanel > .db-tab-panel')
-					),
-					...Array.from<Element>(
-						ref.querySelectorAll('& > db-tab-panel > .db-tab-panel')
-					)
-				];
+				const tabPanels = Array.from<Element>(
+					ref.querySelectorAll('& > .db-tab-panel')
+				);
 				if (tabPanels?.length > 0) {
-					tabPanels.forEach((panel: Element, index: number) => {
-						if (!panel.id) {
-							panel.id = `${state._name}-tab-panel-${index}`;
-							panel.setAttribute(
-								'aria-labelledby',
-								`${state._name}-tab-${index}`
-							);
-						}
-					});
+					for (const panel of tabPanels) {
+						if (panel.id) continue;
+						const index: number = tabPanels.indexOf(panel);
+						panel.id = `${state._name}-tab-panel-${index}`;
+						panel.setAttribute(
+							'aria-labelledby',
+							`${state._name}-tab-${index}`
+						);
+					}
 				}
 			}
 		}
