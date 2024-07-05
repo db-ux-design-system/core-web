@@ -169,18 +169,50 @@ div[class^="ch-"] {
 }
 
 // colors overview
-
 .color-overview-container {
 	@extend %grid-container;
-	padding: variables.$db-spacing-fixed-md;
+	position: relative;
+	padding: variables.$db-spacing-fixed-md 0;
+
+	@include screen-sizes.screen() {
+		--columns: 2;
+	}
+
+	@include screen-sizes.screen("md") {
+		--columns: 3;
+	}
+
+	> span {
+		position: absolute;
+		block-size: 100%;
+		inline-size: 100%;
+	}
+
+	&[data-color-scheme="dark"] > span {
+		filter: invert(1) brightness(1.2);
+	}
 
 	> div {
+		position: relative;
 		display: flex;
 		justify-content: center;
 		align-items: center;
-		border: 1px solid black;
+		border: 1px solid colors.$db-current-color-border;
 		padding: variables.$db-spacing-fixed-md;
 	}
+
+	button {
+		position: absolute;
+		inset-inline-end: var(--db-spacing-fixed-md);
+		inset-block-start: 50%;
+		transform: translateY(-50%);
+	}
+}
+
+.color-overview-switches {
+	display: flex;
+	gap: variables.$db-spacing-fixed-lg;
+	margin-block-end: variables.$db-spacing-fixed-md;
 }
 
 // density examples
