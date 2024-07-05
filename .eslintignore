@@ -10,3 +10,4 @@
 /showcases/nuxt-showcase/**
 build-outputs/
 build-showcases/
+/output/vue/scripts/fix-any-types.ts
