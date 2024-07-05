@@ -32,3 +32,51 @@
 		}
 	}
 }
+
+@mixin init-container-colors($variant) {
+	[data-container-color="#{$variant}"],
+	.db-container-color-#{$variant} {
+		@extend %db-#{$variant}-variables;
+
+		color: var(--db-current-color-on-bg-enabled);
+		background-color: var(--db-current-color-bg-lvl-1-enabled);
+	}
+}
+
+@mixin init-on-background-colors($color) {
+	[data-on-bg-color="#{$color}"],
+	.db-on-bg-color-#{$color} {
+		@if $color == "default" {
+			color: var(--db-current-color-on-bg-enabled);
+		}
+
+ @else if $color == "weak" {
+			color: var(--db-current-color-on-bg-weak-enabled);
+		}
+
+ @else if $color == "contrast" {
+			color: var(--db-current-color-contrast-high-enabled);
+		}
+
+ @else if $color == "contrast-weak" {
+			color: var(--db-current-color-contrast-low-enabled);
+		}
+
+ @else if $color == "border" {
+			color: var(--db-current-color-border);
+		}
+
+ @else {
+			@error "Unknown color #{$color}.";
+		}
+	}
+}
+
+@mixin init-background-colors($background-color) {
+	[data-bg-color="#{$background-color}"],
+	.db-bg-color-#{$background-color} {
+		background-color: var(
+			--db-current-color-bg-#{$background-color}-enabled
+		);
+	}
+}

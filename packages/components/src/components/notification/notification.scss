@@ -86,6 +86,8 @@
 
 	// content
 	p {
+		@extend %db-overwrite-font-size-md;
+
 		grid-area: content;
 		margin: 0;
 	}

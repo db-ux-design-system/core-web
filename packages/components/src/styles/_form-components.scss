@@ -438,6 +438,8 @@ $input-valid-types: "color", "date", "datetime-local", "email", "file", "hidden"
 }
 
 @mixin set-default-check-element($selector) {
+	@extend %db-overwrite-font-size-md;
+
 	@include set-required-label(input);
 
 	@include get-validity($selector) {

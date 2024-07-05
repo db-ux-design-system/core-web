@@ -1,5 +1,6 @@
 @use "@db-ui/foundations/build/scss/variables";
 @use "@db-ui/foundations/build/scss/colors";
+@use "@db-ui/foundations/build/scss/fonts";
 @use "@db-ui/foundations/build/scss/screen-sizes";
 @use "@db-ui/foundations/build/scss/helpers";
 @use "@db-ui/foundations/build/scss/animation";
@@ -53,6 +54,7 @@
 %navigation-item {
 	@extend %default-interactive-component;
 	@extend %transparent-border;
+	@extend %db-overwrite-font-size-md;
 
 	background-color: colors.$db-current-color-bg-transparent-full-enabled;
 	cursor: pointer;
@@ -80,6 +82,8 @@
 
 .db-navigation-item {
 	--db-has-before: 0;
+
+	@extend %db-overwrite-font-size-md;
 
 	@include icon-passing.icon-passing();
 
