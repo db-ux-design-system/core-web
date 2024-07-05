@@ -1,4 +1,4 @@
-import checkerboard from '../../../../assets/images/checkerboard.png';
+import checkerboard from '../../../../public/assets/images/checkerboard.png';
 import CopyClipboardButton from '../../../copy-clipboard-button';
 import { type ColorValue } from '../data';
 
