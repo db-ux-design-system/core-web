@@ -64,6 +64,6 @@
   },
   "devDependencies": {
     "glob": "^10.4.2",
-    "replace-in-file": "^8.0.1"
+    "replace-in-file": "^8.1.0"
   }
 }
