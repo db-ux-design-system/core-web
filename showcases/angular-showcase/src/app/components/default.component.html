@@ -2,9 +2,9 @@
 @if (variantRef) {
 	<db-card class="variants-card" [elevationLevel]="getElevation()">
 		<div
+			class="variants-list"
 			[attr.aria-label]="variantRef.role ? variantRef.name : undefined"
 			[attr.role]="variantRef.role"
-			class="variants-list"
 		>
 			@for (
 				example of variantRef.examples;
@@ -49,11 +49,11 @@
 					[elevationLevel]="getElevation()"
 				>
 					<div
+						class="variants-list"
 						[attr.aria-label]="
 							variant.role ? variant.name : undefined
 						"
 						[attr.role]="variant.role"
-						class="variants-list"
 					>
 						@for (
 							example of variant.examples;

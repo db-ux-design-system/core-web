@@ -32,11 +32,8 @@ interface DefaultExample extends DefaultComponentExample {
 	};
 }
 interface DefaultVariants extends DefaultComponentVariants {
-	name: string;
 	examples: DefaultExample[];
 	slotCode?: any;
-	color?: string;
-	role?: string;
 }
 /* Workaround see: https://vuejs.org/guide/typescript/composition-api.html#typing-component-props */
 interface DefaultProps extends DefaultComponentProps {
