@@ -99,6 +99,8 @@ export default (tmp?: boolean) => {
 							component?.config?.react?.propsPassingFilter ?? []
 						)})}`
 				},
+				/* We need to overwrite the internal state._value property just for react to have controlled components.
+				 * It works for Angular & Vue, so we overwrite it only for React.  */
 				{
 					from: 'props.value ?? _value',
 					to: 'props.value'

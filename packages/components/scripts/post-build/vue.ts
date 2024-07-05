@@ -64,6 +64,7 @@ export default (tmp?: boolean) => {
 					from: /immediate: true,/g,
 					to: 'immediate: true,\nflush: "post"'
 				},
+				/* `this` can be undefined for ssr (nuxt) we need to add */
 				{
 					from: /this.\$refs.ref\?.validationMessage/g,
 					to: 'this?.$refs.ref?.validationMessage'
