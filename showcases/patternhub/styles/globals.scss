@@ -197,7 +197,7 @@ div[class^="ch-"] {
 		display: flex;
 		justify-content: center;
 		align-items: center;
-		border: 1px solid black;
+		border: 1px solid colors.$db-current-color-border;
 		padding: variables.$db-spacing-fixed-md;
 	}
 

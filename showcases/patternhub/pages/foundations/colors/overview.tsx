@@ -1,173 +1,12 @@
-import { useState } from 'react';
 import DefaultPage from '../../../components/default-page';
+import { DBInfotext } from '../../../../../output/react/src';
+import ColorsOverviewTabs from '../../../components/foundations/colors/colors-overview-tabs';
 import {
-	DBIcon,
-	DBInfotext,
-	DBTabs,
-	DBTabList,
-	DBTabPanel,
-	DBTabItem,
-	DBSwitch
-} from '../../../../../output/react/src';
-import checkerboard from '../../../assets/images/checkerboard.png';
-import CopyClipboardButton from '../../../components/copy-clipboard-button';
-
-const semanticColors = [
-	'neutral',
-	'brand',
-	'critical',
-	'successful',
-	'warning',
-	'informational'
-];
-
-const additionalColors = [
-	'yellow',
-	'orange',
-	'red',
-	'pink',
-	'violet',
-	'blue',
-	'cyan',
-	'turquoise',
-	'green'
-];
-
-const backgroundColors = [
-	'lvl-1',
-	'lvl-2',
-	'lvl-3',
-	'transparent-full',
-	'transparent-semi'
-];
-
-const onBackgroundColors = [
-	{ value: 'default' },
-	{ value: 'weak' },
-	{ value: 'contrast' },
-	{ value: 'contrast-weak', appendix: ' *' },
-	{ value: 'border', appendix: ' *' }
-];
-
-type ColorValue = string | { value: string; appendix?: string };
-
-const ColorsGrid = ({
-	values,
-	prefixClass,
-	dataAttributeName,
-	showCheckerboard,
-	enableDarkMode,
-	variant
-}: {
-	values: ColorValue[];
-	prefixClass: string;
-	dataAttributeName: string;
-	showCheckerboard: boolean;
-	enableDarkMode: boolean;
-	variant: 'class' | 'dataAttribute';
-}) => {
-	const getText = (value: string) =>
-		variant === 'class'
-			? `${prefixClass}${value}`
-			: `${dataAttributeName}="${value}"`;
-
-	const getAttributes = (value: string) =>
-		variant === 'class'
-			? { className: `${prefixClass}${value}` }
-			: { [dataAttributeName]: value };
-
-	return (
-		<div
-			className="color-overview-container db-font-size-sm"
-			data-color-scheme={enableDarkMode ? 'dark' : 'light'}>
-			<span
-				style={{
-					backgroundImage: showCheckerboard
-						? `url(${checkerboard.src})`
-						: 'none'
-				}}
-			/>{' '}
-			{values.map((value, index) => {
-				const v = typeof value === 'string' ? value : value.value;
-				const appendix =
-					typeof value === 'string' ? undefined : value.appendix;
-				return (
-					<div {...getAttributes(v)}>
-						<span>
-							{getText(v)}
-							{appendix}
-						</span>
-						<CopyClipboardButton
-							name={`copy-button-${index}`}
-							copyText={getText(v)}>
-							Copied to clipboard
-						</CopyClipboardButton>
-					</div>
-				);
-			})}
-		</div>
-	);
-};
-
-const ColorsOverviewTabs = ({
-	values,
-	prefixClass,
-	dataAttributeName
-}: {
-	values: ColorValue[];
-	prefixClass: string;
-	dataAttributeName: string;
-}) => {
-	const [showCheckerboard, setShowCheckerboard] = useState<boolean>(false);
-	const [enableDarkMode, setEnableDarkMode] = useState<boolean>(false);
-
-	return (
-		<>
-			<div className="color-overview-switches">
-				<DBSwitch
-					checked={showCheckerboard}
-					onChange={(event) => {
-						setShowCheckerboard(event.target.checked);
-					}}>
-					Show checkerboard
-				</DBSwitch>
-				<DBSwitch
-					checked={enableDarkMode}
-					onChange={(event) => {
-						setEnableDarkMode(event.target.checked);
-					}}>
-					Preview dark mode
-				</DBSwitch>
-			</div>
-			<DBTabs>
-				<DBTabList>
-					<DBTabItem>Classes</DBTabItem>
-					<DBTabItem>Data Attributes</DBTabItem>
-				</DBTabList>
-				<DBTabPanel>
-					<ColorsGrid
-						variant="class"
-						values={values}
-						prefixClass={prefixClass}
-						dataAttributeName={dataAttributeName}
-						showCheckerboard={showCheckerboard}
-						enableDarkMode={enableDarkMode}
-					/>
-				</DBTabPanel>
-				<DBTabPanel>
-					<ColorsGrid
-						variant="dataAttribute"
-						values={values}
-						prefixClass={prefixClass}
-						dataAttributeName={dataAttributeName}
-						showCheckerboard={showCheckerboard}
-						enableDarkMode={enableDarkMode}
-					/>
-				</DBTabPanel>
-			</DBTabs>
-		</>
-	);
-};
+	additionalColors,
+	backgroundColors,
+	onBackgroundColors,
+	semanticColors
+} from '../../../components/foundations/colors/data';
 
 const ColorOverview = () => {
 	return (
@@ -242,9 +81,9 @@ const ColorOverview = () => {
 				</ul>
 				<h3>Semantic container color</h3>
 				<p>
-					These semantic colours are used to give a container a
+					These semantic colors are used to give a container a
 					corresponding meaning. <strong>Neutral</strong> stands for
-					the regular colour scheme, which is usually applied to root.
+					the regular color scheme, which is usually applied to root.
 				</p>
 				<ColorsOverviewTabs
 					values={semanticColors}

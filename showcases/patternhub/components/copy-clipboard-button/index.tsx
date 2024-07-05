@@ -1,5 +1,5 @@
-import { type ReactNode, useEffect, useState } from 'react';
-import { DBButton, DBTooltip } from '../src';
+import { type MouseEvent, type ReactNode, useEffect, useState } from 'react';
+import { DBButton, DBTooltip } from '../../../../output/react/src/index';
 
 export type CopyClipboardButtonProps = {
 	name: string;
@@ -14,9 +14,7 @@ const CopyClipboardButton = ({
 }: CopyClipboardButtonProps) => {
 	const [justCopied, setJustCopied] = useState<boolean>(false);
 
-	const onCopyButtonClick = async (
-		event: React.MouseEvent<HTMLButtonElement>
-	) => {
+	const onCopyButtonClick = async (event: MouseEvent<HTMLButtonElement>) => {
 		event.stopPropagation();
 
 		if (typeof navigator !== 'undefined') {
