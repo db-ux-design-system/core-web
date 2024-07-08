@@ -25,7 +25,7 @@ for (const group of Components) {
 				`docs`,
 				`./components/${component.name}/docs/Angular`,
 				async (page) => {
-					expect(await page.locator('h2').isVisible());
+					expect(await page.locator('h2').first().isVisible());
 				}
 			);
 		});
@@ -49,7 +49,7 @@ for (const group of Components) {
 				`properties`,
 				`./components/${component.name}/properties?fullscreen=true&noh1=true`,
 				async (page) => {
-					expect(await page.locator('h2').isVisible());
+					expect(await page.locator('h2').first().isVisible());
 				}
 			);
 		});

@@ -11,11 +11,11 @@ import { DBTabItem, DBTabList } from "../../../../../output/vue/src";
 		>
 			<DBTabList
 				><DBTabItem
-					:active="exampleProps.active"
-					:noText="exampleProps.noText"
-					:icon="exampleProps.icon"
-					:iconAfter="exampleProps.iconAfter"
-					:disabled="exampleProps.disabled"
+					:active="exampleProps?.active"
+					:noText="exampleProps?.noText"
+					:icon="exampleProps?.icon"
+					:iconAfter="exampleProps?.iconAfter"
+					:disabled="exampleProps?.disabled"
 				>
 					{{ exampleName }}
 				</DBTabItem>

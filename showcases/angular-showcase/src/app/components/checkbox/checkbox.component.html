@@ -11,13 +11,14 @@
 		let-variantIndex="variantIndex"
 	>
 		<db-checkbox
-			[label]="exampleProps.label"
-			[disabled]="exampleProps.disabled"
-			[checked]="exampleProps.checked"
-			[required]="exampleProps.required"
-			[indeterminate]="exampleProps.indeterminate"
-			[variant]="exampleProps.variant"
-			[size]="exampleProps.size"
+			[label]="exampleProps?.label"
+			[disabled]="exampleProps?.disabled"
+			[checked]="exampleProps?.checked"
+			[value]="exampleProps?.value"
+			[required]="exampleProps?.required"
+			[indeterminate]="exampleProps?.indeterminate"
+			[variant]="exampleProps?.variant"
+			[size]="exampleProps?.size"
 			>{{ exampleName }}</db-checkbox
 		>
 	</ng-template>
