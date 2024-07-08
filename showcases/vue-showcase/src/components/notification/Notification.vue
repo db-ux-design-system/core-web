@@ -18,19 +18,19 @@ const log = (exampleName: string) => {
 			#example="{ exampleIndex, variantIndex, exampleName, exampleProps }"
 		>
 			<DBNotification
-				:semantic="exampleProps.semantic"
-				:headline="exampleProps.headline"
-				:variant="exampleProps.variant"
-				:link-variant="exampleProps.linkVariant"
-				:timestamp="exampleProps.timestamp"
-				:icon="exampleProps.icon"
-				:behaviour="exampleProps.behaviour"
+				:semantic="exampleProps?.semantic"
+				:headline="exampleProps?.headline"
+				:variant="exampleProps?.variant"
+				:link-variant="exampleProps?.linkVariant"
+				:timestamp="exampleProps?.timestamp"
+				:icon="exampleProps?.icon"
+				:behaviour="exampleProps?.behaviour"
 				@onClose="log(exampleName)"
 			>
-				<template v-if="exampleProps.link" v-slot:link>
+				<template v-if="exampleProps?.link" v-slot:link>
 					<DBLink href="#">Textlink</DBLink>
 				</template>
-				<template v-if="exampleProps.img" v-slot:image>
+				<template v-if="exampleProps?.img" v-slot:image>
 					<img
 						src="/assets/images/placeholder.jpg"
 						alt="Placeholder"

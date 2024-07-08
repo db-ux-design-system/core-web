@@ -13,8 +13,8 @@ import { DBDivider, DBInfotext } from "../../../../../output/vue/src";
 				{{ exampleName }}</DBInfotext
 			>
 			<DBDivider
-				:variant="exampleProps.variant"
-				:emphasis="exampleProps.emphasis"
+				:variant="exampleProps?.variant"
+				:emphasis="exampleProps?.emphasis"
 			/>
 		</template>
 	</DefaultComponent>
