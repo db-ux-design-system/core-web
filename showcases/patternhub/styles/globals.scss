@@ -118,7 +118,7 @@ div[class^="ch-"] {
 	div,
 	span {
 		@extend %db-overwrite-font-size-sm;
-		color: colors.$db-current-color-enabled;
+		color: colors.$db-current-color-on-bg-enabled;
 	}
 }
 
@@ -310,7 +310,7 @@ div[class^="ch-"] {
 
 .color-schemes-container {
 	padding: variables.$db-spacing-fixed-md;
-	border: 1px dashed colors.$db-current-color-enabled;
+	border: 1px dashed colors.$db-current-color-on-bg-enabled;
 	display: grid;
 	gap: variables.$db-spacing-fixed-md;
 	grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -399,7 +399,7 @@ h6 {
 
 		.backdrop {
 			border-radius: variables.$db-border-radius-sm;
-			background-color: colors.$db-current-color-enabled;
+			background-color: colors.$db-current-color-on-bg-enabled;
 			opacity: 0.64;
 			position: absolute;
 			inset: 0;

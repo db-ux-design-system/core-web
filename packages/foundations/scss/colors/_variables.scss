@@ -4,14 +4,6 @@ $variants: "neutral", "brand", "critical", "successful", "warning",
 $variant-colors: "neutral", "critical", "successful", "warning", "informational";
 
 // current - for adaptive colors
-$db-current-icon-color: var(--db-current-icon-color, inherit);
-
-$db-current-color-enabled: var(--db-current-color-enabled);
-$db-current-color-hover: var(--db-current-color-hover);
-$db-current-color-pressed: var(--db-current-color-pressed);
-$db-current-color-bg-enabled: var(--db-current-color-bg-enabled);
-$db-current-color-bg-hover: var(--db-current-color-bg-hover);
-$db-current-color-bg-pressed: var(--db-current-color-bg-pressed);
 $db-current-color-on-bg-enabled: var(--db-current-color-on-bg-enabled);
 $db-current-color-on-bg-hover: var(--db-current-color-on-bg-hover);
 $db-current-color-on-bg-pressed: var(--db-current-color-on-bg-pressed);

@@ -33,7 +33,7 @@
 	background-color: colors.$db-current-color-bg-lvl-2-enabled;
 
 	&::before {
-		--db-current-icon-color: #{colors.$db-current-color-contrast-low-enabled};
+		--db-icon-color: #{colors.$db-current-color-contrast-low-enabled};
 	}
 
 	a {

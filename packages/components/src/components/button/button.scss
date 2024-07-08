@@ -11,7 +11,7 @@
 	@extend %default-interactive-component;
 	@extend %default-button;
 
-	color: colors.$db-current-color-enabled;
+	color: colors.$db-current-color-on-bg-enabled;
 
 	block-size: variables.$db-sizing-md;
 	inline-size: fit-content;
@@ -63,7 +63,6 @@
 	}
 
 	&[data-variant="brand"] {
-		--db-current-icon-color: #{colors.$db-brand-on-enabled};
 		@extend %transparent-border;
 		background-color: colors.$db-brand-origin-enabled;
 		color: colors.$db-brand-on-enabled;

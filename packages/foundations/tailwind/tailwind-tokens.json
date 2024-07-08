@@ -1,7 +1,6 @@
 {
 	"colors": {
 		"current": {
-			"icon": "var(--db-current-icon-color, inherit)",
 			"border": "var(--db-current-color-border)",
 			"on": {
 				"enabled": "var(--db-current-color-enabled)",
