@@ -151,7 +151,7 @@ $popover-gap-inset: calc(-1 * #{$popover-gap-size});
 }
 
 %show-popover {
-	display: inherit;
+	display: revert;
 
 	&:not([data-placement]):not([data-outside-vy]),
 	&[data-placement^="bottom"]:not([data-outside-vy]),
