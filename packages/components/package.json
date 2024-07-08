@@ -51,7 +51,7 @@
     "@builder.io/mitosis-cli": "^0.3.9",
     "@react-docgen/cli": "^2.0.3",
     "cpr": "3.0.1",
-    "cssnano": "^7.0.3",
+    "cssnano": "^7.0.4",
     "eslint": "^9.0.0",
     "hygen": "^6.2.11",
     "lit": "^3.1.4",
