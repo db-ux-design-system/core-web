@@ -5,34 +5,28 @@
 			{
 				"name": "Functional",
 				"className": "db-density-functional",
-				"props": {},
-				"code": {
-					"html": "<dialog class=\"db-drawer\" data-backdrop=\"strong\" open>\n\t\t<article class=\"db-drawer-container\">\n\t\t\t<header class=\"db-drawer-header\">\n\t\t\t\t<button\n\t\t\t\t\tclass=\"db-button button-close-drawer is-icon-text-replace\"\n\t\t\t\t\tdata-icon=\"cross\"\n\t\t\t\t\tdata-variant=\"text\"\n\t\t\t\t>\n\t\t\t\t\tClose Button\n\t\t\t\t</button>\n\t\t\t</header>\n\t\t\t<div class=\"db-drawer-content\">functional</div>\n\t\t</article>\n\t</dialog>",
-					"angular": "<db-drawer [open]=\"openDrawer\" (onClose)=\"toggleDrawer(false)\">\n\tfunctional\n</db-drawer>",
-					"react": "<DBDrawer\n\t\t\t\topen={open}\n\t\t\t\tonClose={() => {\n\t\t\t\t\tsetOpen(false);\n\t\t\t\t}}\n\t\t\t>\n\t\t\t\tfunctional\n\t\t\t</DBDrawer>",
-					"vue": "<DBDrawer :open=\"openDrawer\" @close=\"toggleDrawer(false)\">\n\t\tfunctional\n\t</DBDrawer>"
+				"props": {
+					"withCloseButton": true,
+					"open": "open",
+					"onClose": "toggleDrawer(false)"
 				}
 			},
 			{
 				"name": "(Default) Regular",
 				"className": "db-density-regular",
-				"props": {},
-				"code": {
-					"html": "<dialog class=\"db-drawer\" data-backdrop=\"strong\" open>\n\t\t<article class=\"db-drawer-container\">\n\t\t\t<header class=\"db-drawer-header\">\n\t\t\t\t<button\n\t\t\t\t\tclass=\"db-button button-close-drawer is-icon-text-replace\"\n\t\t\t\t\tdata-icon=\"cross\"\n\t\t\t\t\tdata-variant=\"text\"\n\t\t\t\t>\n\t\t\t\t\tClose Button\n\t\t\t\t</button>\n\t\t\t</header>\n\t\t\t<div class=\"db-drawer-content\">Regular (Default)</div>\n\t\t</article>\n\t</dialog>",
-					"angular": "<db-drawer [open]=\"openDrawer\" (onClose)=\"toggleDrawer(false)\">\n\tRegular (Default)\n</db-drawer>",
-					"react": "<DBDrawer\n\t\t\t\topen={open}\n\t\t\t\tonClose={() => {\n\t\t\t\t\tsetOpen(false);\n\t\t\t\t}}\n\t\t\t>\n\t\t\t\tRegular (Default)\n\t\t\t</DBDrawer>",
-					"vue": "<DBDrawer :open=\"openDrawer\" @close=\"toggleDrawer(false)\">\n\t\tRegular (Default)\n\t</DBDrawer>"
+				"props": {
+					"withCloseButton": true,
+					"open": "open",
+					"onClose": "toggleDrawer(false)"
 				}
 			},
 			{
 				"name": "Expressive",
 				"className": "db-density-expressive",
-				"props": {},
-				"code": {
-					"html": "<dialog class=\"db-drawer\" data-backdrop=\"strong\" open>\n\t\t<article class=\"db-drawer-container\">\n\t\t\t<header class=\"db-drawer-header\">\n\t\t\t\t<button\n\t\t\t\t\tclass=\"db-button button-close-drawer is-icon-text-replace\"\n\t\t\t\t\tdata-icon=\"cross\"\n\t\t\t\t\tdata-variant=\"text\"\n\t\t\t\t>\n\t\t\t\t\tClose Button\n\t\t\t\t</button>\n\t\t\t</header>\n\t\t\t<div class=\"db-drawer-content\">expressive</div>\n\t\t</article>\n\t</dialog>",
-					"angular": "<db-drawer [open]=\"openDrawer\" (onClose)=\"toggleDrawer(false)\">\n\texpressive\n</db-drawer>",
-					"react": "<DBDrawer\n\t\t\t\topen={open}\n\t\t\t\tonClose={() => {\n\t\t\t\t\tsetOpen(false);\n\t\t\t\t}}\n\t\t\t>\n\t\t\t\texpressive\n\t\t\t</DBDrawer>",
-					"vue": "<DBDrawer :open=\"openDrawer\" @close=\"toggleDrawer(false)\">\n\t\texpressive\n\t</DBDrawer>"
+				"props": {
+					"withCloseButton": true,
+					"open": "open",
+					"onClose": "toggleDrawer(false)"
 				}
 			}
 		]
@@ -43,26 +37,18 @@
 			{
 				"name": "(Default) Medium",
 				"props": {
-					"withCloseButton": true
-				},
-				"code": {
-					"html": "<dialog class=\"db-drawer\" data-backdrop=\"strong\" open>\n\t\t<article class=\"db-drawer-container\">\n\t\t\t<header class=\"db-drawer-header\">\n\t\t\t\t<button\n\t\t\t\t\tclass=\"db-button button-close-drawer is-icon-text-replace\"\n\t\t\t\t\tdata-icon=\"cross\"\n\t\t\t\t\tdata-variant=\"text\"\n\t\t\t\t>\n\t\t\t\t\tClose Button\n\t\t\t\t</button>\n\t\t\t</header>\n\t\t\t<div class=\"db-drawer-content\">With padding (Default)</div>\n\t\t</article>\n\t</dialog>",
-					"angular": "<db-drawer [withCloseButton]=\"true\" [open]=\"openDrawer\" (onClose)=\"toggleDrawer(false)\">\n\tWith padding (Default)\n</db-drawer>",
-					"react": "<DBDrawer\n\t\t\t\twithCloseButton\n\t\t\t\topen={open}\n\t\t\t\tonClose={() => {\n\t\t\t\t\tsetOpen(false);\n\t\t\t\t}}\n\t\t\t>\n\t\t\t\tWith padding (Default)\n\t\t\t</DBDrawer>",
-					"vue": "<DBDrawer :withCloseButton=\"true\" :open=\"openDrawer\" @close=\"toggleDrawer(false)\">With padding (Default)</DBDrawer>"
+					"withCloseButton": true,
+					"open": "open",
+					"onClose": "toggleDrawer(false)"
 				}
 			},
 			{
 				"name": "Full",
 				"props": {
 					"withCloseButton": true,
-					"width": "full"
-				},
-				"code": {
-					"html": "<dialog class=\"db-drawer\" width=\"full\" data-backdrop=\"strong\" open>\n\t\t<article class=\"db-drawer-container\">\n\t\t\t<header class=\"db-drawer-header\">\n\t\t\t\t<button\n\t\t\t\t\tclass=\"db-button button-close-drawer is-icon-text-replace\"\n\t\t\t\t\tdata-icon=\"cross\"\n\t\t\t\t\tdata-variant=\"text\"\n\t\t\t\t>\n\t\t\t\t\tClose Button\n\t\t\t\t</button>\n\t\t\t</header>\n\t\t\t<div class=\"db-drawer-content\">Full</div>\n\t\t</article>\n\t</dialog>",
-					"angular": "<db-drawer [withCloseButton]=\"true\" width=\"full\" [open]=\"openDrawer\" (onClose)=\"toggleDrawer(false)\">\n\tFull\n</db-drawer>",
-					"react": "\t\t\t<DBDrawer\n\t\t\t\twithCloseButton\n\t\t\t\twidth=\"full\"\n\t\t\t\topen={open}\n\t\t\t\tonClose={() => {\n\t\t\t\t\tsetOpen(false);\n\t\t\t\t}}\n\t\t\t>\n\t\t\t\tFull\n\t\t\t</DBDrawer>",
-					"vue": "\t<DBDrawer :withCloseButton=\"true\" width=\"full\" :open=\"openDrawer\" @close=\"toggleDrawer(false)\">\n\t\tFull\n\t</DBDrawer>"
+					"width": "full",
+					"open": "open",
+					"onClose": "toggleDrawer(false)"
 				}
 			}
 		]
@@ -73,26 +59,18 @@
 			{
 				"name": "(Default) No rounding",
 				"props": {
-					"withCloseButton": true
-				},
-				"code": {
-					"html": "<dialog class=\"db-drawer\" data-backdrop=\"strong\" open>\n\t\t<article class=\"db-drawer-container\">\n\t\t\t<header class=\"db-drawer-header\">\n\t\t\t\t<button\n\t\t\t\t\tclass=\"db-button button-close-drawer is-icon-text-replace\"\n\t\t\t\t\tdata-icon=\"cross\"\n\t\t\t\t\tdata-variant=\"text\"\n\t\t\t\t>\n\t\t\t\t\tClose Button\n\t\t\t\t</button>\n\t\t\t</header>\n\t\t\t<div class=\"db-drawer-content\">No rounding (Default)</div>\n\t\t</article>\n\t</dialog>",
-					"angular": "<db-drawer [withCloseButton]=\"true\" [open]=\"openDrawer\" (onClose)=\"toggleDrawer(false)\">\n\tNo rounding (Default)\n</db-drawer>",
-					"react": "<DBDrawer\n\t\t\t\twithCloseButton\n\t\t\t\topen={open}\n\t\t\t\tonClose={() => {\n\t\t\t\t\tsetOpen(false);\n\t\t\t\t}}\n\t\t\t>\n\t\t\t\tNo rounding (Default)\n\t\t\t</DBDrawer>",
-					"vue": "<DBDrawer :withCloseButton=\"true\" :open=\"openDrawer\" @close=\"toggleDrawer(false)\">No rounding (Default)</DBDrawer>"
+					"withCloseButton": true,
+					"open": "open",
+					"onClose": "toggleDrawer(false)"
 				}
 			},
 			{
 				"name": "Rounded",
 				"props": {
 					"withCloseButton": true,
-					"rounded": true
-				},
-				"code": {
-					"html": "<dialog class=\"db-drawer\" data-backdrop=\"strong\" open>\n\t\t<article class=\"db-drawer-container\" data-rounded=\"true\">\n\t\t\t<header class=\"db-drawer-header\">\n\t\t\t\t<button\n\t\t\t\t\tclass=\"db-button button-close-drawer is-icon-text-replace\"\n\t\t\t\t\tdata-icon=\"cross\"\n\t\t\t\t\tdata-variant=\"text\"\n\t\t\t\t>\n\t\t\t\t\tClose Button\n\t\t\t\t</button>\n\t\t\t</header>\n\t\t\t<div class=\"db-drawer-content\">Rounded</div>\n\t\t</article>\n\t</dialog>",
-					"angular": "<db-drawer [rounded]=\"true\" [withCloseButton]=\"true\" [open]=\"openDrawer\" (onClose)=\"toggleDrawer(false)\">\n\tRounded\n</db-drawer>",
-					"react": "<DBDrawer\n\t\t\t\trounded\n\t\t\t\twithCloseButton\n\t\t\t\topen={open}\n\t\t\t\tonClose={() => {\n\t\t\t\t\tsetOpen(false);\n\t\t\t\t}}\n\t\t\t>\n\t\t\t\tRounded\n\t\t\t</DBDrawer>",
-					"vue": "<DBDrawer :rounded=\"true\" :withCloseButton=\"true\" :open=\"openDrawer\" @close=\"toggleDrawer(false)\">Rounded</DBDrawer>"
+					"rounded": true,
+					"open": "open",
+					"onClose": "toggleDrawer(false)"
 				}
 			}
 		]
@@ -103,52 +81,36 @@
 			{
 				"name": "(Default) Medium",
 				"props": {
-					"withCloseButton": true
-				},
-				"code": {
-					"html": "<dialog class=\"db-drawer\" data-backdrop=\"strong\" open>\n\t\t<article class=\"db-drawer-container\">\n\t\t\t<header class=\"db-drawer-header\">\n\t\t\t\t<button\n\t\t\t\t\tclass=\"db-button button-close-drawer is-icon-text-replace\"\n\t\t\t\t\tdata-icon=\"cross\"\n\t\t\t\t\tdata-variant=\"text\"\n\t\t\t\t>\n\t\t\t\t\tClose Button\n\t\t\t\t</button>\n\t\t\t</header>\n\t\t\t<div class=\"db-drawer-content\">Medium (Default)</div>\n\t\t</article>\n\t</dialog>",
-					"angular": "<db-drawer [withCloseButton]=\"true\" [open]=\"openDrawer\" (onClose)=\"toggleDrawer(false)\">\n\tMedium (Default)\n</db-drawer>",
-					"react": "<DBDrawer\n\t\t\t\twithCloseButton\n\t\t\t\topen={open}\n\t\t\t\tonClose={() => {\n\t\t\t\t\tsetOpen(false);\n\t\t\t\t}}\n\t\t\t>\n\t\t\t\tMedium (Default)\n\t\t\t</DBDrawer>",
-					"vue": "<DBDrawer :withCloseButton=\"true\" :open=\"openDrawer\" @close=\"toggleDrawer(false)\">Medium (Default)</DBDrawer>"
+					"withCloseButton": true,
+					"open": "open",
+					"onClose": "toggleDrawer(false)"
 				}
 			},
 			{
 				"name": "Small",
 				"props": {
 					"withCloseButton": true,
-					"spacing": "small"
-				},
-				"code": {
-					"html": "<dialog class=\"db-drawer\" data-backdrop=\"strong\" open>\n\t\t<article class=\"db-drawer-container\" data-spacing=\"small\">\n\t\t\t<header class=\"db-drawer-header\">\n\t\t\t\t<button\n\t\t\t\t\tclass=\"db-button button-close-drawer is-icon-text-replace\"\n\t\t\t\t\tdata-icon=\"cross\"\n\t\t\t\t\tdata-variant=\"text\"\n\t\t\t\t>\n\t\t\t\t\tClose Button\n\t\t\t\t</button>\n\t\t\t</header>\n\t\t\t<div class=\"db-drawer-content\">Small</div>\n\t\t</article>\n\t</dialog>",
-					"angular": "<db-drawer spacing=\"small\" [withCloseButton]=\"true\" [open]=\"openDrawer\" (onClose)=\"toggleDrawer(false)\">\n\tSmall\n</db-drawer>",
-					"react": "<DBDrawer\n\t\t\t\tspacing=\"small\"\n\t\t\t\twithCloseButton\n\t\t\t\topen={open}\n\t\t\t\tonClose={() => {\n\t\t\t\t\tsetOpen(false);\n\t\t\t\t}}\n\t\t\t>\n\t\t\t\tSmall\n\t\t\t</DBDrawer>",
-					"vue": "<DBDrawer spacing=\"small\" :withCloseButton=\"true\" :open=\"openDrawer\" @close=\"toggleDrawer(false)\">Small</DBDrawer>"
+					"spacing": "small",
+					"open": "open",
+					"onClose": "toggleDrawer(false)"
 				}
 			},
 			{
 				"name": "Large",
 				"props": {
 					"withCloseButton": true,
-					"spacing": "large"
-				},
-				"code": {
-					"html": "<dialog class=\"db-drawer\" data-backdrop=\"strong\" open>\n\t\t<article class=\"db-drawer-container\" data-spacing=\"large\">\n\t\t\t<header class=\"db-drawer-header\">\n\t\t\t\t<button\n\t\t\t\t\tclass=\"db-button button-close-drawer is-icon-text-replace\"\n\t\t\t\t\tdata-icon=\"cross\"\n\t\t\t\t\tdata-variant=\"text\"\n\t\t\t\t>\n\t\t\t\t\tClose Button\n\t\t\t\t</button>\n\t\t\t</header>\n\t\t\t<div class=\"db-drawer-content\">Large</div>\n\t\t</article>\n\t</dialog>",
-					"angular": "<db-drawer spacing=\"large\" [withCloseButton]=\"true\" [open]=\"openDrawer\" (onClose)=\"toggleDrawer(false)\">\n\tLarge\n</db-drawer>",
-					"react": "<DBDrawer\n\t\t\t\tspacing=\"large\"\n\t\t\t\twithCloseButton\n\t\t\t\topen={open}\n\t\t\t\tonClose={() => {\n\t\t\t\t\tsetOpen(false);\n\t\t\t\t}}\n\t\t\t>\n\t\t\t\tLarge\n\t\t\t</DBDrawer>",
-					"vue": "<DBDrawer spacing=\"large\" :withCloseButton=\"true\" :open=\"openDrawer\" @close=\"toggleDrawer(false)\">Large</DBDrawer>"
+					"spacing": "large",
+					"open": "open",
+					"onClose": "toggleDrawer(false)"
 				}
 			},
 			{
 				"name": "No spacing",
 				"props": {
 					"withCloseButton": true,
-					"spacing": "none"
-				},
-				"code": {
-					"html": "<dialog class=\"db-drawer\" data-backdrop=\"strong\" open>\n\t\t<article class=\"db-drawer-container\" data-spacing=\"none\">\n\t\t\t<header class=\"db-drawer-header\">\n\t\t\t\t<button\n\t\t\t\t\tclass=\"db-button button-close-drawer is-icon-text-replace\"\n\t\t\t\t\tdata-icon=\"cross\"\n\t\t\t\t\tdata-variant=\"text\"\n\t\t\t\t>\n\t\t\t\t\tClose Button\n\t\t\t\t</button>\n\t\t\t</header>\n\t\t\t<div class=\"db-drawer-content\">None</div>\n\t\t</article>\n\t</dialog>",
-					"angular": "<db-drawer spacing=\"none\" [withCloseButton]=\"true\" [open]=\"openDrawer\" (onClose)=\"toggleDrawer(false)\">\n\tNone\n</db-drawer>",
-					"react": "<DBDrawer\n\t\t\t\tspacing=\"none\"\n\t\t\t\twithCloseButton\n\t\t\t\topen={open}\n\t\t\t\tonClose={() => {\n\t\t\t\t\tsetOpen(false);\n\t\t\t\t}}\n\t\t\t>\n\t\t\t\tNone\n\t\t\t</DBDrawer>",
-					"vue": "<DBDrawer spacing=\"none\" :withCloseButton=\"true\" :open=\"openDrawer\" @close=\"toggleDrawer(false)\">None</DBDrawer>"
+					"spacing": "none",
+					"open": "open",
+					"onClose": "toggleDrawer(false)"
 				}
 			}
 		]
@@ -159,52 +121,36 @@
 			{
 				"name": "(Default) With Backdrop",
 				"props": {
-					"withCloseButton": true
-				},
-				"code": {
-					"html": "<dialog class=\"db-drawer\" data-backdrop=\"strong\" open>\n\t\t<article class=\"db-drawer-container\">\n\t\t\t<header class=\"db-drawer-header\">\n\t\t\t\t<button\n\t\t\t\t\tclass=\"db-button button-close-drawer is-icon-text-replace\"\n\t\t\t\t\tdata-icon=\"cross\"\n\t\t\t\t\tdata-variant=\"text\"\n\t\t\t\t>\n\t\t\t\t\tClose Button\n\t\t\t\t</button>\n\t\t\t</header>\n\t\t\t<div class=\"db-drawer-content\">With Backdrop (Default)</div>\n\t\t</article>\n\t</dialog>",
-					"angular": "<db-drawer [withCloseButton]=\"true\" [open]=\"openDrawer\" (onClose)=\"toggleDrawer(false)\">\n\tWith Backdrop (Default)\n</db-drawer>",
-					"react": "<DBDrawer\n\t\t\t\twithCloseButton\n\t\t\t\topen={open}\n\t\t\t\tonClose={() => {\n\t\t\t\t\tsetOpen(false);\n\t\t\t\t}}\n\t\t\t>\n\t\t\t\tWith Backdrop (Default)\n\t\t\t</DBDrawer>",
-					"vue": "<DBDrawer :withCloseButton=\"true\" :open=\"openDrawer\" @close=\"toggleDrawer(false)\">With Backdrop (Default)</DBDrawer>"
+					"withCloseButton": true,
+					"open": "open",
+					"onClose": "toggleDrawer(false)"
 				}
 			},
 			{
 				"name": "Backdrop-weak",
 				"props": {
 					"withCloseButton": true,
-					"backdrop": "weak"
-				},
-				"code": {
-					"html": "<dialog class=\"db-drawer\" data-backdrop=\"weak\" open>\n\t\t<article class=\"db-drawer-container\">\n\t\t\t<header class=\"db-drawer-header\">\n\t\t\t\t<button\n\t\t\t\t\tclass=\"db-button button-close-drawer is-icon-text-replace\"\n\t\t\t\t\tdata-icon=\"cross\"\n\t\t\t\t\tdata-variant=\"text\"\n\t\t\t\t>\n\t\t\t\t\tClose Button\n\t\t\t\t</button>\n\t\t\t</header>\n\t\t\t<div class=\"db-drawer-content\">Backdrop-weak</div>\n\t\t</article>\n\t</dialog>",
-					"angular": "<db-drawer backdrop=\"weak\" [withCloseButton]=\"true\" [open]=\"openDrawer\" (onClose)=\"toggleDrawer(false)\">\n\tBackdrop-weak\n</db-drawer>",
-					"react": "<DBDrawer\n\t\t\t\tbackdrop=\"weak\"\n\t\t\t\twithCloseButton\n\t\t\t\topen={open}\n\t\t\t\tonClose={() => {\n\t\t\t\t\tsetOpen(false);\n\t\t\t\t}}\n\t\t\t>\n\t\t\t\tBackdrop-weak\n\t\t\t</DBDrawer>",
-					"vue": "<DBDrawer backdrop=\"weak\" :withCloseButton=\"true\" :open=\"openDrawer\" @close=\"toggleDrawer(false)\">Backdrop-weak</DBDrawer>"
+					"backdrop": "weak",
+					"open": "open",
+					"onClose": "toggleDrawer(false)"
 				}
 			},
 			{
 				"name": "Invisible",
 				"props": {
 					"withCloseButton": true,
-					"backdrop": "invisible"
-				},
-				"code": {
-					"html": "<dialog class=\"db-drawer\" data-backdrop=\"invisible\" open>\n\t\t<article class=\"db-drawer-container\">\n\t\t\t<header class=\"db-drawer-header\">\n\t\t\t\t<button\n\t\t\t\t\tclass=\"db-button button-close-drawer is-icon-text-replace\"\n\t\t\t\t\tdata-icon=\"cross\"\n\t\t\t\t\tdata-variant=\"text\"\n\t\t\t\t>\n\t\t\t\t\tClose Button\n\t\t\t\t</button>\n\t\t\t</header>\n\t\t\t<div class=\"db-drawer-content\">No Backdrop</div>\n\t\t</article>\n\t</dialog>",
-					"angular": "<db-drawer backdrop=\"invisible\" [withCloseButton]=\"true\" [open]=\"openDrawer\" (onClose)=\"toggleDrawer(false)\">\n\tNo Backdrop\n</db-drawer>",
-					"react": "<DBDrawer\n\t\t\t\tbackdrop=\"invisible\"\n\t\t\t\twithCloseButton\n\t\t\t\topen={open}\n\t\t\t\tonClose={() => {\n\t\t\t\t\tsetOpen(false);\n\t\t\t\t}}\n\t\t\t>\n\t\t\t\tNo Backdrop\n\t\t\t</DBDrawer>",
-					"vue": "<DBDrawer backdrop=\"invisible\" :withCloseButton=\"true\" :open=\"openDrawer\" @close=\"toggleDrawer(false)\">No Backdrop</DBDrawer>"
+					"backdrop": "invisible",
+					"open": "open",
+					"onClose": "toggleDrawer(false)"
 				}
 			},
 			{
 				"name": "No Backdrop",
 				"props": {
 					"withCloseButton": true,
-					"backdrop": "none"
-				},
-				"code": {
-					"html": "<dialog class=\"db-drawer\" data-backdrop=\"none\" open>\n\t\t<article class=\"db-drawer-container\">\n\t\t\t<header class=\"db-drawer-header\">\n\t\t\t\t<button\n\t\t\t\t\tclass=\"db-button button-close-drawer is-icon-text-replace\"\n\t\t\t\t\tdata-icon=\"cross\"\n\t\t\t\t\tdata-variant=\"text\"\n\t\t\t\t>\n\t\t\t\t\tClose Button\n\t\t\t\t</button>\n\t\t\t</header>\n\t\t\t<div class=\"db-drawer-content\">No Backdrop</div>\n\t\t</article>\n\t</dialog>",
-					"angular": "<db-drawer backdrop=\"none\" [withCloseButton]=\"true\" [open]=\"openDrawer\" (onClose)=\"toggleDrawer(false)\">\n\tNo Backdrop\n</db-drawer>",
-					"react": "<DBDrawer\n\t\t\t\tbackdrop=\"none\"\n\t\t\t\twithCloseButton\n\t\t\t\topen={open}\n\t\t\t\tonClose={() => {\n\t\t\t\t\tsetOpen(false);\n\t\t\t\t}}\n\t\t\t>\n\t\t\t\tNo Backdrop\n\t\t\t</DBDrawer>",
-					"vue": "<DBDrawer backdrop=\"none\" :withCloseButton=\"true\" :open=\"openDrawer\" @close=\"toggleDrawer(false)\">No Backdrop</DBDrawer>"
+					"backdrop": "none",
+					"open": "open",
+					"onClose": "toggleDrawer(false)"
 				}
 			}
 		]
@@ -215,52 +161,36 @@
 			{
 				"name": "(Default) Right",
 				"props": {
-					"withCloseButton": true
-				},
-				"code": {
-					"html": "<dialog class=\"db-drawer\" data-backdrop=\"strong\" open>\n\t\t<article class=\"db-drawer-container\">\n\t\t\t<header class=\"db-drawer-header\">\n\t\t\t\t<button\n\t\t\t\t\tclass=\"db-button button-close-drawer is-icon-text-replace\"\n\t\t\t\t\tdata-icon=\"cross\"\n\t\t\t\t\tdata-variant=\"text\"\n\t\t\t\t>\n\t\t\t\t\tClose Button\n\t\t\t\t</button>\n\t\t\t</header>\n\t\t\t<div class=\"db-drawer-content\">Right (Default)</div>\n\t\t</article>\n\t</dialog>",
-					"angular": "<db-drawer [withCloseButton]=\"true\" [open]=\"openDrawer\" (onClose)=\"toggleDrawer(false)\">\n\tRight (Default)\n</db-drawer>",
-					"react": "<DBDrawer\n\t\t\t\twithCloseButton\n\t\t\t\topen={open}\n\t\t\t\tonClose={() => {\n\t\t\t\t\tsetOpen(false);\n\t\t\t\t}}\n\t\t\t>\n\t\t\t\tRight (Default)\n\t\t\t</DBDrawer>",
-					"vue": "<DBDrawer :withCloseButton=\"true\" :open=\"openDrawer\" @close=\"toggleDrawer(false)\">Right (Default)</DBDrawer>"
+					"withCloseButton": true,
+					"open": "open",
+					"onClose": "toggleDrawer(false)"
 				}
 			},
 			{
 				"name": "Left",
 				"props": {
 					"withCloseButton": true,
-					"direction": "left"
-				},
-				"code": {
-					"html": "<dialog class=\"db-drawer\" data-backdrop=\"strong\" open>\n\t\t<article class=\"db-drawer-container\" data-direction=\"left\">\n\t\t\t<header class=\"db-drawer-header\">\n\t\t\t\t<button\n\t\t\t\t\tclass=\"db-button button-close-drawer is-icon-text-replace\"\n\t\t\t\t\tdata-icon=\"cross\"\n\t\t\t\t\tdata-variant=\"text\"\n\t\t\t\t>\n\t\t\t\t\tClose Button\n\t\t\t\t</button>\n\t\t\t</header>\n\t\t\t<div class=\"db-drawer-content\">Left</div>\n\t\t</article>\n\t</dialog>",
-					"angular": "<db-drawer direction=\"left\" [withCloseButton]=\"true\" [open]=\"openDrawer\" (onClose)=\"toggleDrawer(false)\">\n\tLeft\n</db-drawer>",
-					"react": "<DBDrawer\n\t\t\t\tdirection=\"left\"\n\t\t\t\twithCloseButton\n\t\t\t\topen={open}\n\t\t\t\tonClose={() => {\n\t\t\t\t\tsetOpen(false);\n\t\t\t\t}}\n\t\t\t>\n\t\t\t\tLeft\n\t\t\t</DBDrawer>",
-					"vue": "<DBDrawer direction=\"left\" :withCloseButton=\"true\" :open=\"openDrawer\" @close=\"toggleDrawer(false)\">Left</DBDrawer>"
+					"direction": "left",
+					"open": "open",
+					"onClose": "toggleDrawer(false)"
 				}
 			},
 			{
 				"name": "Up",
 				"props": {
 					"withCloseButton": true,
-					"direction": "up"
-				},
-				"code": {
-					"html": "<dialog class=\"db-drawer\" data-backdrop=\"strong\" open>\n\t\t<article class=\"db-drawer-container\" data-direction=\"up\">\n\t\t\t<header class=\"db-drawer-header\">\n\t\t\t\t<button\n\t\t\t\t\tclass=\"db-button button-close-drawer is-icon-text-replace\"\n\t\t\t\t\tdata-icon=\"cross\"\n\t\t\t\t\tdata-variant=\"text\"\n\t\t\t\t>\n\t\t\t\t\tClose Button\n\t\t\t\t</button>\n\t\t\t</header>\n\t\t\t<div class=\"db-drawer-content\">Up</div>\n\t\t</article>\n\t</dialog>",
-					"angular": "<db-drawer direction=\"left\" [withCloseButton]=\"true\" [open]=\"openDrawer\" (onClose)=\"toggleDrawer(false)\">\n\tUp\n</db-drawer>",
-					"react": "<DBDrawer\n\t\t\t\tdirection=\"left\"\n\t\t\t\twithCloseButton\n\t\t\t\topen={open}\n\t\t\t\tonClose={() => {\n\t\t\t\t\tsetOpen(false);\n\t\t\t\t}}\n\t\t\t>\n\t\t\t\tUp\n\t\t\t</DBDrawer>",
-					"vue": "<DBDrawer direction=\"left\" :withCloseButton=\"true\" :open=\"openDrawer\" @close=\"toggleDrawer(false)\">Up</DBDrawer>"
+					"direction": "up",
+					"open": "open",
+					"onClose": "toggleDrawer(false)"
 				}
 			},
 			{
 				"name": "Down",
 				"props": {
 					"withCloseButton": true,
-					"direction": "down"
-				},
-				"code": {
-					"html": "<dialog class=\"db-drawer\" data-backdrop=\"strong\" open>\n\t\t<article class=\"db-drawer-container\" data-direction=\"down\">\n\t\t\t<header class=\"db-drawer-header\">\n\t\t\t\t<button\n\t\t\t\t\tclass=\"db-button button-close-drawer is-icon-text-replace\"\n\t\t\t\t\tdata-icon=\"cross\"\n\t\t\t\t\tdata-variant=\"text\"\n\t\t\t\t>\n\t\t\t\t\tClose Button\n\t\t\t\t</button>\n\t\t\t</header>\n\t\t\t<div class=\"db-drawer-content\">Down</div>\n\t\t</article>\n\t</dialog>",
-					"angular": "<db-drawer direction=\"left\" [withCloseButton]=\"true\" [open]=\"openDrawer\" (onClose)=\"toggleDrawer(false)\">\n\tDown\n</db-drawer>",
-					"react": "<DBDrawer\n\t\t\t\tdirection=\"left\"\n\t\t\t\twithCloseButton\n\t\t\t\topen={open}\n\t\t\t\tonClose={() => {\n\t\t\t\t\tsetOpen(false);\n\t\t\t\t}}\n\t\t\t>\n\t\t\t\tDown\n\t\t\t</DBDrawer>",
-					"vue": "<DBDrawer direction=\"left\" :withCloseButton=\"true\" :open=\"openDrawer\" @close=\"toggleDrawer(false)\">Down</DBDrawer>"
+					"direction": "down",
+					"open": "open",
+					"onClose": "toggleDrawer(false)"
 				}
 			}
 		]

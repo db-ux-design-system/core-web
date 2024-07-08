@@ -12,14 +12,14 @@ import { DBButton, DBTooltip } from "../../../../../output/vue/src";
 			<DBButton>
 				{{ exampleName }}
 				<DBTooltip
-					:width="exampleProps.width"
-					:emphasis="exampleProps.emphasis"
-					:placement="exampleProps.placement"
-					:animation="exampleProps.animation"
-					:delay="exampleProps.delay"
-					:variant="exampleProps.variant"
+					:width="exampleProps?.width"
+					:emphasis="exampleProps?.emphasis"
+					:placement="exampleProps?.placement"
+					:animation="exampleProps?.animation"
+					:delay="exampleProps?.delay"
+					:variant="exampleProps?.variant"
 				>
-					{{ exampleProps.content }}
+					{{ exampleProps?.content }}
 				</DBTooltip>
 			</DBButton>
 		</template>

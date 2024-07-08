@@ -108,8 +108,8 @@ export default function DBTabs(props: DBTabsProps) {
 										!props.initialSelectedMode ||
 										props.initialSelectedMode === 'auto';
 									const shouldAutoSelect =
-										(props.initialSelectedIndex ===
-											undefined &&
+										(props.initialSelectedIndex ==
+											null &&
 											index === 0) ||
 										props.initialSelectedIndex === index;
 									if (autoSelect && shouldAutoSelect) {

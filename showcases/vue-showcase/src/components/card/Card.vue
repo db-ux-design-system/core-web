@@ -10,9 +10,9 @@ import { DBCard } from "../../../../../output/vue/src";
 			#example="{ exampleIndex, variantIndex, exampleName, exampleProps }"
 		>
 			<DBCard
-				:behaviour="exampleProps.behaviour"
-				:elevationLevel="exampleProps.elevationLevel"
-				:spacing="exampleProps.spacing"
+				:behaviour="exampleProps?.behaviour"
+				:elevationLevel="exampleProps?.elevationLevel"
+				:spacing="exampleProps?.spacing"
 			>
 				<strong>{{ exampleName }}</strong>
 			</DBCard>
