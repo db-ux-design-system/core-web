@@ -9,7 +9,7 @@ runs:
   using: "composite"
   steps:
     - name: ⏬ Get branch name
-      uses: actions/github-script@v6
+      uses: actions/github-script@v7
       id: get-branch-name
       with:
         result-encoding: string
