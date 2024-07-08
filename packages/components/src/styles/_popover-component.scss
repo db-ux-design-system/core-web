@@ -151,7 +151,7 @@ $popover-gap-inset: calc(-1 * #{$popover-gap-size});
 }
 
 %show-popover {
-	visibility: visible;
+	display: revert;
 
 	&:not([data-placement]):not([data-outside-vy]),
 	&[data-placement^="bottom"]:not([data-outside-vy]),
@@ -186,7 +186,7 @@ $popover-gap-inset: calc(-1 * #{$popover-gap-size});
 	position: absolute;
 	background-color: colors.$db-current-color-bg-lvl-1-enabled;
 	box-shadow: variables.$db-elevation-md;
-	visibility: hidden;
+	display: none;
 	z-index: 1;
 	white-space: nowrap;
 
