@@ -40,7 +40,7 @@
   "devDependencies": {
     "@csstools/normalize.css": "12.1.1",
     "cpr": "3.0.1",
-    "cssnano": "^7.0.3",
+    "cssnano": "^7.0.4",
     "dotenv": "^16.4.5",
     "nodemon": "3.1.4",
     "sass": "1.77.4"
