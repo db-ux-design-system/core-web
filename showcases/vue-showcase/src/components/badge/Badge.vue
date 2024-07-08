@@ -14,16 +14,16 @@ import {
 		<template
 			#example="{ exampleIndex, variantIndex, exampleName, exampleProps }"
 		>
-			<template v-if="!exampleProps.placement && !exampleProps.example">
+			<template v-if="!exampleProps?.placement && !exampleProps?.example">
 				<DBBadge
-					:semantic="exampleProps.semantic"
-					:emphasis="exampleProps.emphasis"
-					:size="exampleProps.size"
+					:semantic="exampleProps?.semantic"
+					:emphasis="exampleProps?.emphasis"
+					:size="exampleProps?.size"
 				>
-					{{ exampleProps.noContent ? "" : exampleName }}
+					{{ exampleProps?.noContent ? "" : exampleName }}
 				</DBBadge>
 				<DBInfotext
-					v-if="exampleProps.noContent"
+					v-if="exampleProps?.noContent"
 					semantic="informational"
 					size="small"
 					icon="none"
@@ -34,9 +34,9 @@ import {
 
 			<template
 				v-if="
-					exampleProps.placement &&
-					exampleProps.placement !== 'inline' &&
-					!exampleProps.example
+					exampleProps?.placement &&
+					exampleProps?.placement !== 'inline' &&
+					!exampleProps?.example
 				"
 			>
 				<DBButton icon="user" variant="outlined" :noText="true">
@@ -44,7 +44,7 @@ import {
 						emphasis="strong"
 						semantic="critical"
 						size="small"
-						:placement="exampleProps.placement"
+						:placement="exampleProps?.placement"
 					>
 					</DBBadge>
 					{{ exampleName }}
@@ -54,7 +54,7 @@ import {
 				</DBInfotext>
 			</template>
 
-			<template v-if="exampleProps.placement === 'inline'">
+			<template v-if="exampleProps?.placement === 'inline'">
 				<div class="badge-inline-container">
 					<DBIcon icon="user"></DBIcon>
 					<span>{{ exampleName }}</span>
@@ -65,11 +65,11 @@ import {
 				</div>
 			</template>
 
-			<template v-if="exampleProps.example === 'icon'">
+			<template v-if="exampleProps?.example === 'icon'">
 				<DBBadge
 					semantic="critical"
 					emphasis="strong"
-					:size="exampleProps.size"
+					:size="exampleProps?.size"
 				>
 					<DBIcon icon="user">{{ exampleName }}</DBIcon>
 				</DBBadge>
@@ -78,7 +78,7 @@ import {
 				</DBInfotext>
 			</template>
 
-			<template v-if="exampleProps.example === 'number'">
+			<template v-if="exampleProps?.example === 'number'">
 				<DBBadge semantic="successful">9</DBBadge>
 				<DBBadge semantic="informational">12</DBBadge>
 				<DBBadge semantic="warning">123</DBBadge>

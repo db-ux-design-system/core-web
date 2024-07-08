@@ -4,18 +4,15 @@
 		"examples": [
 			{
 				"name": "functional",
-				"className": "db-density-functional",
-				"props": {}
+				"className": "db-density-functional"
 			},
 			{
 				"name": "regular (Default)",
-				"className": "db-density-regular",
-				"props": {}
+				"className": "db-density-regular"
 			},
 			{
 				"name": "expressive",
-				"className": "db-density-expressive",
-				"props": {}
+				"className": "db-density-expressive"
 			}
 		]
 	},
@@ -23,8 +20,7 @@
 		"name": "States",
 		"examples": [
 			{
-				"name": "(Def) Enabled",
-				"props": {}
+				"name": "(Def) Enabled"
 			},
 			{
 				"name": "Checked",
@@ -106,8 +102,7 @@
 		"name": "Size",
 		"examples": [
 			{
-				"name": "(Def) Medium",
-				"props": {}
+				"name": "(Def) Medium"
 			},
 			{
 				"name": "Small",
@@ -121,8 +116,7 @@
 		"name": "Content",
 		"examples": [
 			{
-				"name": "(Def) Label",
-				"props": {}
+				"name": "(Def) Label"
 			},
 			{
 				"name": "No Label",

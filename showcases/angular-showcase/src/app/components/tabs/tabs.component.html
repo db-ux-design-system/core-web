@@ -15,19 +15,19 @@
 				{{ exampleName }}:
 			</db-infotext>
 			<db-tabs
-				[orientation]="exampleProps.orientation"
-				[width]="exampleProps.width"
-				[alignment]="exampleProps.alignment"
-				[behaviour]="exampleProps.behaviour"
-				[initialSelectedIndex]="exampleProps.initialSelectedIndex"
-				[initialSelectedMode]="exampleProps.initialSelectedMode"
+				[orientation]="exampleProps?.orientation"
+				[width]="exampleProps?.width"
+				[alignment]="exampleProps?.alignment"
+				[behaviour]="exampleProps?.behaviour"
+				[initialSelectedIndex]="exampleProps?.initialSelectedIndex"
+				[initialSelectedMode]="exampleProps?.initialSelectedMode"
 				[arrowScrollDistance]="75"
 			>
 				<db-tab-list>
 					<db-tab-item>Test 1</db-tab-item>
 					<db-tab-item>Test 2</db-tab-item>
 					<db-tab-item>Test 3</db-tab-item>
-					@if (exampleProps.overflow) {
+					@if (exampleProps?.overflow) {
 						<db-tab-item>Test 4</db-tab-item>
 						<db-tab-item>Test 5</db-tab-item>
 					}
@@ -36,7 +36,7 @@
 				<db-tab-panel> Tab Panel 2 </db-tab-panel>
 				<db-tab-panel> Tab Panel 3 </db-tab-panel>
 
-				@if (exampleProps.overflow) {
+				@if (exampleProps?.overflow) {
 					<db-tab-panel> Tab Panel 4 </db-tab-panel>
 					<db-tab-panel> Tab Panel 5 </db-tab-panel>
 				}

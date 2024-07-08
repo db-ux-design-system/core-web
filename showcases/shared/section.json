@@ -4,18 +4,15 @@
 		"examples": [
 			{
 				"name": "Functional",
-				"className": "db-density-functional",
-				"props": {}
+				"className": "db-density-functional"
 			},
 			{
 				"name": "(Default) Regular",
-				"className": "db-density-regular",
-				"props": {}
+				"className": "db-density-regular"
 			},
 			{
 				"name": "Expressive",
-				"className": "db-density-expressive",
-				"props": {}
+				"className": "db-density-expressive"
 			}
 		]
 	},
@@ -27,8 +24,7 @@
 				"style": {
 					"width": "100%",
 					"display": "block"
-				},
-				"props": {}
+				}
 			},
 			{
 				"name": "Medium",
@@ -50,8 +46,7 @@
 		"name": "Spacing",
 		"examples": [
 			{
-				"name": "(Default) Medium",
-				"props": {}
+				"name": "(Default) Medium"
 			},
 			{
 				"name": "Large",
