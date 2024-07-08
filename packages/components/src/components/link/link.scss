@@ -10,6 +10,7 @@
 
 .db-link {
 	@extend %db-default-link;
+	@extend %db-overwrite-font-size-md;
 
 	a {
 		// Workaround for angular

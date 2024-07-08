@@ -10,19 +10,19 @@ import { DBSwitch, DBInfotext } from "../../../../../output/vue/src";
 			#example="{ exampleIndex, variantIndex, exampleName, exampleProps }"
 		>
 			<DBSwitch
-				:visualAid="exampleProps.visualAid"
-				:checked="exampleProps.checked"
-				:disabled="exampleProps.disabled"
-				:variant="exampleProps.variant"
-				:size="exampleProps.size"
-				:emphasis="exampleProps.emphasis"
-				:icon="exampleProps.icon"
-				:iconAfter="exampleProps.iconAfter"
+				:visualAid="exampleProps?.visualAid"
+				:checked="exampleProps?.checked"
+				:disabled="exampleProps?.disabled"
+				:variant="exampleProps?.variant"
+				:size="exampleProps?.size"
+				:emphasis="exampleProps?.emphasis"
+				:icon="exampleProps?.icon"
+				:iconAfter="exampleProps?.iconAfter"
 			>
 				{{ exampleName }}
 			</DBSwitch>
 			<DBInfotext
-				v-if="exampleProps.variant === 'hidden'"
+				v-if="exampleProps?.variant === 'hidden'"
 				semantic="informational"
 				icon="none"
 			>

@@ -10,6 +10,7 @@
 .db-button {
 	@extend %default-interactive-component;
 	@extend %default-button;
+	@extend %db-overwrite-font-size-md;
 
 	color: colors.$db-current-color-on-bg-enabled;
 

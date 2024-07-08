@@ -17,14 +17,14 @@ import {
 			#example="{ exampleIndex, variantIndex, exampleName, exampleProps }"
 		>
 			<DBHeader
-				:width="exampleProps.width"
-				:force-mobile="exampleProps.forceMobile"
+				:width="exampleProps?.width"
+				:force-mobile="exampleProps?.forceMobile"
 			>
 				<template v-slot:brand>
 					<DBBrand>
 						<template
 							v-if="
-								!exampleProps.example || exampleProps.withName
+								!exampleProps?.example || exampleProps?.withName
 							"
 						>
 							DBHeader
@@ -32,7 +32,9 @@ import {
 					</DBBrand>
 				</template>
 				<template
-					v-if="!exampleProps.example || exampleProps.withNavigation"
+					v-if="
+						!exampleProps?.example || exampleProps?.withNavigation
+					"
 				>
 					<DBNavigation :aria-label="exampleName">
 						<DBNavigationItem icon="user">
@@ -44,7 +46,7 @@ import {
 					</DBNavigation>
 				</template>
 				<template v-slot:primary-action>
-					<template v-if="!exampleProps.example">
+					<template v-if="!exampleProps?.example">
 						<DBButton
 							icon="magnifying_glass"
 							variant="ghost"
@@ -55,7 +57,7 @@ import {
 					>
 				</template>
 				<template v-slot:secondary-action>
-					<template v-if="!exampleProps.example">
+					<template v-if="!exampleProps?.example">
 						<DBButton icon="user" variant="ghost" :no-text="true">
 							Profile
 						</DBButton>
@@ -72,7 +74,7 @@ import {
 					>
 				</template>
 				<template v-slot:meta-navigation>
-					<template v-if="!exampleProps.example">
+					<template v-if="!exampleProps?.example">
 						<DBLink href="#">Imprint</DBLink>
 						<DBLink href="#">Help</DBLink></template
 					>

@@ -24,6 +24,8 @@ $db-accordion-item-border-radius: variables.$db-border-radius-sm;
 
 	summary {
 		@extend %dropdown-icon;
+		@extend %db-overwrite-font-size-md;
+
 		background-color: colors.$db-current-color-bg-transparent-full-enabled;
 
 		list-style: none;

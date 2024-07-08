@@ -4,18 +4,15 @@
 		"examples": [
 			{
 				"name": "Functional",
-				"className": "db-density-functional",
-				"props": {}
+				"className": "db-density-functional"
 			},
 			{
 				"name": "(Default) Regular",
-				"className": "db-density-regular",
-				"props": {}
+				"className": "db-density-regular"
 			},
 			{
 				"name": "Expressive",
-				"className": "db-density-expressive",
-				"props": {}
+				"className": "db-density-expressive"
 			}
 		]
 	},
@@ -23,8 +20,7 @@
 		"name": "Emphasis",
 		"examples": [
 			{
-				"name": "(Default) Weak",
-				"props": {}
+				"name": "(Default) Weak"
 			},
 			{
 				"name": "Strong",
@@ -38,8 +34,7 @@
 		"name": "Semantic",
 		"examples": [
 			{
-				"name": "(Default) Adaptive",
-				"props": {}
+				"name": "(Default) Adaptive"
 			},
 			{
 				"name": "Neutral",
@@ -118,8 +113,7 @@
 		"name": "Size",
 		"examples": [
 			{
-				"name": "(Default) Small",
-				"props": {}
+				"name": "(Default) Small"
 			},
 			{
 				"name": "Medium",
@@ -133,8 +127,7 @@
 		"name": "Content",
 		"examples": [
 			{
-				"name": "(Default) Text",
-				"props": {}
+				"name": "(Default) Text"
 			},
 			{
 				"name": "(Default) Text - Medium",
@@ -144,12 +137,14 @@
 			},
 			{
 				"name": "Dot - Small",
+				"content": "",
 				"props": {
 					"noContent": true
 				}
 			},
 			{
 				"name": "Dot - Medium",
+				"content": "",
 				"props": {
 					"noContent": true,
 					"size": "medium"
@@ -181,36 +176,42 @@
 			},
 			{
 				"name": "Corner - Top - Left",
+				"content": "",
 				"props": {
 					"placement": "corner-top-left"
 				}
 			},
 			{
 				"name": "Corner - Center - Left",
+				"content": "",
 				"props": {
 					"placement": "corner-center-left"
 				}
 			},
 			{
 				"name": "Corner - Bottom- Left",
+				"content": "",
 				"props": {
 					"placement": "corner-bottom-left"
 				}
 			},
 			{
 				"name": "Corner - Top - Right",
+				"content": "",
 				"props": {
 					"placement": "corner-top-right"
 				}
 			},
 			{
 				"name": "Corner - Center - Right",
+				"content": "",
 				"props": {
 					"placement": "corner-center-right"
 				}
 			},
 			{
 				"name": "Corner - Bottom- Right",
+				"content": "",
 				"props": {
 					"placement": "corner-bottom-right"
 				}

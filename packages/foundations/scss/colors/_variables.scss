@@ -3,6 +3,11 @@ $variants: "neutral", "brand", "critical", "successful", "warning",
 
 $variant-colors: "neutral", "critical", "successful", "warning", "informational";
 
+$on-background-colors: "default", "weak", "contrast", "contrast-weak", "border";
+
+$background-colors: "lvl-1", "lvl-2", "lvl-3", "transparent-full",
+	"transparent-semi";
+
 // current - for adaptive colors
 $db-current-color-on-bg-enabled: var(--db-current-color-on-bg-enabled);
 $db-current-color-on-bg-hover: var(--db-current-color-on-bg-hover);
