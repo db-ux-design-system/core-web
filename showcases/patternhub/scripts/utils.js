@@ -49,8 +49,7 @@ const getAttributes = (props, framework, noEvents) => {
 		}
 
 		if (
-			typeof value === 'boolean' ||
-			typeof value === 'number' ||
+			['boolean', 'number'].includes(typeof value) ||
 			value instanceof Object ||
 			value === key ||
 			isEventListener
