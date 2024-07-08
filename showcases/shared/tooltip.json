@@ -1,6 +1,11 @@
 [
 	{
 		"name": "Density",
+		"children": [
+			{
+				"name": "button"
+			}
+		],
 		"examples": [
 			{
 				"name": "Functional",
@@ -30,6 +35,11 @@
 	},
 	{
 		"name": "Variant",
+		"children": [
+			{
+				"name": "button"
+			}
+		],
 		"examples": [
 			{
 				"name": "(Default) With arrow",
@@ -50,6 +60,11 @@
 	},
 	{
 		"name": "Emphasis",
+		"children": [
+			{
+				"name": "button"
+			}
+		],
 		"examples": [
 			{
 				"name": "(Default) Weak",
@@ -70,6 +85,11 @@
 	},
 	{
 		"name": "Placement",
+		"children": [
+			{
+				"name": "button"
+			}
+		],
 		"examples": [
 			{
 				"name": "bottom-start",
@@ -171,6 +191,11 @@
 	},
 	{
 		"name": "Width",
+		"children": [
+			{
+				"name": "button"
+			}
+		],
 		"examples": [
 			{
 				"name": "(Default) Auto",
@@ -191,6 +216,11 @@
 	},
 	{
 		"name": "Animations",
+		"children": [
+			{
+				"name": "button"
+			}
+		],
 		"examples": [
 			{
 				"name": "(Default) Animation no delay",

@@ -20,19 +20,19 @@ import {
 					{{ exampleName }}:
 				</DBInfotext>
 				<DBTabs
-					:orientation="exampleProps.orientation"
-					:width="exampleProps.width"
-					:alignment="exampleProps.alignment"
-					:behaviour="exampleProps.behaviour"
-					:initialSelectedIndex="exampleProps.initialSelectedIndex"
-					:initialSelectedMode="exampleProps.initialSelectedMode"
+					:orientation="exampleProps?.orientation"
+					:width="exampleProps?.width"
+					:alignment="exampleProps?.alignment"
+					:behaviour="exampleProps?.behaviour"
+					:initialSelectedIndex="exampleProps?.initialSelectedIndex"
+					:initialSelectedMode="exampleProps?.initialSelectedMode"
 					:arrowScrollDistance="75"
 				>
 					<DBTabList>
 						<DBTabItem> Test 1 </DBTabItem>
 						<DBTabItem> Test 2 </DBTabItem>
 						<DBTabItem> Test 3 </DBTabItem>
-						<template v-if="exampleProps.overflow">
+						<template v-if="exampleProps?.overflow">
 							<DBTabItem> Test 4 </DBTabItem>
 							<DBTabItem> Test 5 </DBTabItem>
 						</template>
@@ -40,7 +40,7 @@ import {
 					<DBTabPanel> Tab Panel 1 </DBTabPanel>
 					<DBTabPanel> Tab Panel 2 </DBTabPanel>
 					<DBTabPanel> Tab Panel 3 </DBTabPanel>
-					<template v-if="exampleProps.overflow">
+					<template v-if="exampleProps?.overflow">
 						<DBTabPanel> Tab Panel 4 </DBTabPanel>
 						<DBTabPanel> Tab Panel 5 </DBTabPanel>
 					</template>

@@ -11,19 +11,19 @@
 		let-variantIndex="variantIndex"
 	>
 		<db-notification
-			[semantic]="exampleProps.semantic"
-			[headline]="exampleProps.headline"
-			[linkVariant]="exampleProps.linkVariant"
-			[icon]="exampleProps.icon"
-			[behaviour]="exampleProps.behaviour"
-			[variant]="exampleProps.variant"
-			[timestamp]="exampleProps.timestamp"
+			[semantic]="exampleProps?.semantic"
+			[headline]="exampleProps?.headline"
+			[linkVariant]="exampleProps?.linkVariant"
+			[icon]="exampleProps?.icon"
+			[behaviour]="exampleProps?.behaviour"
+			[variant]="exampleProps?.variant"
+			[timestamp]="exampleProps?.timestamp"
 			(onClose)="showNotification(exampleName)"
 		>
-			@if (exampleProps.link) {
+			@if (exampleProps?.link) {
 				<db-link link href="#">Textlink</db-link>
 			}
-			@if (exampleProps.img) {
+			@if (exampleProps?.img) {
 				<img
 					image
 					src="./assets/images/placeholder.jpg"
