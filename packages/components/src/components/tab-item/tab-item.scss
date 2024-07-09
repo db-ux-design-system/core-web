@@ -104,7 +104,7 @@ $tab-border-radius: variables.$db-border-radius-sm;
 		inline-size: 100%;
 		margin-inline-end: initial;
 		inset: 0;
-		background: colors.$db-current-color-bg-transparent-full-enabled;
+		background-color: colors.$db-current-color-bg-transparent-full-enabled;
 		border-radius: $tab-border-radius;
 		z-index: -1;
 
