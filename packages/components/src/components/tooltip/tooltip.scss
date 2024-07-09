@@ -102,7 +102,7 @@ $tooltip-arrow-shadow-size: variables.$db-sizing-2xs;
 		color: colors.$db-current-color-on-contrast-enabled;
 
 		&::before {
-			color: #{colors.$db-current-color-on-contrast-enabled};
+			--db-icon-color: #{colors.$db-current-color-on-contrast-enabled};
 		}
 
 		&::after {
