@@ -13,7 +13,7 @@
 	&::before {
 		--db-icon-font-size: #{variables.$db-sizing-md};
 		--db-icon-margin-end: 0;
-		color: #{colors.$db-brand-origin-enabled};
+		--db-icon-color: #{colors.$db-brand-origin-enabled};
 	}
 
 	img {
