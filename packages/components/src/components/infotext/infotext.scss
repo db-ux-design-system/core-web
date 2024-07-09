@@ -24,7 +24,7 @@
 		color: colors.$db-current-color-contrast-high-enabled;
 
 		&::before {
-			color: #{colors.$db-current-color-contrast-low-enabled};
+			--db-icon-color: #{colors.$db-current-color-contrast-low-enabled};
 		}
 	}
 
