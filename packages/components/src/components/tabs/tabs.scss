@@ -305,7 +305,7 @@ $max-tabs: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 			&::after {
 				position: absolute;
 				z-index: $db-tabs-z-index-button-background;
-				background-color: colors.$db-current-color-bg-enabled;
+				background-color: colors.$db-current-color-bg-lvl-1-enabled;
 				inline-size: variables.$db-sizing-md;
 				block-size: calc(
 					#{variables.$db-spacing-fixed-sm} + #{variables.$db-sizing-md}
