@@ -3,29 +3,32 @@
 	[model]="ngModel"
 	[control]="formControl.value"
 >
-	<db-input
-		label="Plain"
-		placeholder="Placeholder"
-		message="Description"
-		icon="user"
-		name="input-name"
-		[value]="plain"
-		(change)="plain = $event.target.value"
-	/>
-	<db-input
-		label="ngModel"
-		placeholder="Placeholder"
-		message="Description"
-		icon="user"
-		name="input-name"
-		[(ngModel)]="ngModel"
-	/>
-	<db-input
-		label="formControl"
-		placeholder="Placeholder"
-		message="Description"
-		icon="user"
-		name="input-name"
-		[formControl]="formControl"
-	/>
+	<fieldset>
+		<legend>Different form approaches</legend>
+		<db-input
+			label="Plain"
+			placeholder="Placeholder"
+			message="Description"
+			icon="user"
+			name="input-name"
+			[value]="plain"
+			(change)="plain = $event.target.value"
+		/>
+		<db-input
+			label="ngModel"
+			placeholder="Placeholder"
+			message="Description"
+			icon="user"
+			name="input-name"
+			[(ngModel)]="ngModel"
+		/>
+		<db-input
+			label="formControl"
+			placeholder="Placeholder"
+			message="Description"
+			icon="user"
+			name="input-name"
+			[formControl]="formControl"
+		/>
+	</fieldset>
 </app-form-wrapper>
