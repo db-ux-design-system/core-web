@@ -34,7 +34,7 @@
 			color: var(--db-#{$name}-contrast-high-enabled);
 
 			&::before {
-				color: var(--db-#{$name}-contrast-low-enabled);
+				--db-icon-color: var(--db-#{$name}-contrast-low-enabled);
 			}
 		}
 	}
