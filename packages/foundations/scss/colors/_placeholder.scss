@@ -9,7 +9,7 @@
 
 	&::before,
 	&::after {
-		color: $on;
+		--db-icon-color: $on;
 	}
 
 	@if ($hover) {
