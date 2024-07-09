@@ -5,7 +5,7 @@ export const DEFAULT_MESSAGE_ID_SUFFIX: string = '-message';
 export const DEFAULT_VALID_MESSAGE_ID_SUFFIX: string = '-valid-message';
 export const DEFAULT_INVALID_MESSAGE_ID_SUFFIX: string = '-invalid-message';
 export const DEFAULT_PLACEHOLDER_ID_SUFFIX: string = '-placeholder';
-export const DEFAULT_DATALIST_ID_SUFFIX: string = '-placeholder';
+export const DEFAULT_DATALIST_ID_SUFFIX: string = '-datalist';
 
 export const DEFAULT_VALID_MESSAGE: string = 'TODO: Add a validMessage';
 export const DEFAULT_INVALID_MESSAGE: string = 'TODO: Add an invalidMessage';
