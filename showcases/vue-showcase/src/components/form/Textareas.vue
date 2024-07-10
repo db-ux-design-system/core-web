@@ -23,7 +23,7 @@ const vModel = ref("test2");
 			placeholder="Placeholder"
 			message="Description"
 			icon="user"
-			name="input-name"
+			name="textarea-name"
 			v-model:value="vModel"
 		/>
 	</FormWrapper>
