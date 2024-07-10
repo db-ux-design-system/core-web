@@ -57,7 +57,7 @@ pre:has(.hljs):not(:has(.language-shell)) {
 .hljs-code,
 .hljs-formula {
 	/* prettylights-syntax-comment */
-	color: colors.$db-current-color-enabled;
+	color: colors.$db-current-color-on-bg-enabled;
 }
 
 .hljs-tag,
@@ -86,12 +86,12 @@ pre:has(.hljs):not(:has(.language-shell)) {
 }
 .hljs-emphasis {
 	/* prettylights-syntax-markup-italic */
-	color: colors.$db-current-color-enabled;
+	color: colors.$db-current-color-on-bg-enabled;
 	font-style: italic;
 }
 .hljs-strong {
 	/* prettylights-syntax-markup-bold */
-	color: colors.$db-current-color-enabled;
+	color: colors.$db-current-color-on-bg-enabled;
 	font-weight: bold;
 }
 .hljs-addition {

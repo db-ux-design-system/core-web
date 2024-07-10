@@ -36,22 +36,18 @@ onload = () => {
 	const color = queryParameters.color ?? 'neutral-bg-lvl-1';
 	content.className = getClassName(density, color);
 
-	if (selectDensities.length > 0) {
-		for (const selectDensity of selectDensities) {
-			selectDensity.value = density;
-			selectDensity.addEventListener('change', (event) => {
-				insertParameter(queryParameters, 'density', event.target.value);
-			});
-		}
+	for (const selectDensity of selectDensities) {
+		selectDensity.value = density;
+		selectDensity.addEventListener('change', (event) => {
+			insertParameter(queryParameters, 'density', event.target.value);
+		});
 	}
 
-	if (selectColors.length > 0) {
-		for (const selectColor of selectColors) {
-			selectColor.value = color;
-			selectColor.addEventListener('change', (event) => {
-				insertParameter(queryParameters, 'color', event.target.value);
-			});
-		}
+	for (const selectColor of selectColors) {
+		selectColor.value = color;
+		selectColor.addEventListener('change', (event) => {
+			insertParameter(queryParameters, 'color', event.target.value);
+		});
 	}
 
 	if (header) {
