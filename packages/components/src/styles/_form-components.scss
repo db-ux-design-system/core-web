@@ -102,9 +102,8 @@ $input-types: "button", "checkbox", "color", "date", "datetime-local", "email",
 
 			@if ($selector == textarea) {
 				padding-block-start: $floating-label-size;
-				/* stylelint-disable at-rule-empty-line-before */
+				/* stylelint-disable-next-line at-rule-empty-line-before */
 			} @else {
-				/* stylelint-enable at-rule-empty-line-before */
 				// font-size label which is 2xs + smallest spacing
 				padding-block-start: calc(
 					var(--db-type-body-font-size-2xs) +
@@ -143,9 +142,8 @@ $input-types: "button", "checkbox", "color", "date", "datetime-local", "email",
 			&[data-semantic="successful"] {
 				display: flex;
 			}
-			/* stylelint-disable at-rule-empty-line-before */
+			/* stylelint-disable-next-line at-rule-empty-line-before */
 		} @else {
-			/* stylelint-enable at-rule-empty-line-before */
 			&[data-semantic="critical"] {
 				display: flex;
 			}
@@ -174,9 +172,8 @@ $input-types: "button", "checkbox", "color", "date", "datetime-local", "email",
 
 	@if ($selector != textarea) {
 		@extend %db-#{$variant}-variables;
-		/* stylelint-disable at-rule-empty-line-before */
+		/* stylelint-disable-next-line at-rule-empty-line-before */
 	} @else {
-		/* stylelint-enable at-rule-empty-line-before */
 		// this is a workaround for the textarea scrollbar
 		--db-textarea-read-only: var(--db-#{$variant}-bg-lvl-1-enabled);
 		--db-current-color-bg-transparent-full-enabled: var(
@@ -210,9 +207,8 @@ $input-valid-types: "color", "date", "datetime-local", "email", "file", "hidden"
 		@each $type in $input-valid-types {
 			$validations: $validations + ", [type=#{$type}]";
 		}
-		/* stylelint-disable at-rule-empty-line-before */
+		/* stylelint-disable-next-line at-rule-empty-line-before */
 	} @else if($selector == textarea) {
-		/* stylelint-enable at-rule-empty-line-before */
 		$validations: ":required, [minlength], [maxlength]";
 	}
 
@@ -242,9 +238,8 @@ $input-valid-types: "color", "date", "datetime-local", "email", "file", "hidden"
 			) {
 			@content;
 		}
-		/* stylelint-disable at-rule-empty-line-before */
+		/* stylelint-disable-next-line at-rule-empty-line-before */
 	} @else {
-		/* stylelint-enable at-rule-empty-line-before */
 		#{get-validations($selector,$key)} {
 			@content;
 		}
