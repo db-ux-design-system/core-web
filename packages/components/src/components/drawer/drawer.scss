@@ -170,9 +170,8 @@ $spacings: (
 	}
 
 	&[open] {
-		/* stylelint-disable */
-		@media screen and (prefers-reduced-motion: no-preference) {
-			.db-drawer-container {
+		.db-drawer-container {
+			@media screen and (prefers-reduced-motion: no-preference) {
 				&:not([data-direction]),
 				&[data-direction="right"] {
 					animation: show-right-to-left
@@ -193,8 +192,10 @@ $spacings: (
 					animation: show-top-to-bottom
 						variables.$db-transition-straight-show;
 				}
+			}
 
-				&[hidden] {
+			&[hidden] {
+				@media screen and (prefers-reduced-motion: no-preference) {
 					&:not([data-direction]),
 					&[data-direction="right"] {
 						animation: hide-right-to-left
@@ -216,8 +217,6 @@ $spacings: (
 							variables.$db-transition-straight-hide;
 					}
 				}
-
-				/* stylelint-enable */
 			}
 		}
 	}
