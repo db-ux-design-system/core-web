@@ -115,8 +115,8 @@
 			);
 
 			&:checked {
-				&:not(:disabled):hover,
 				&,
+				&:not(:disabled):hover,
 				&:not(:disabled):focus,
 				&:not(:disabled):active {
 					background-color: colors.$db-brand-bg-transparent-full-enabled;
