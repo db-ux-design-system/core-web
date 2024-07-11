@@ -19,6 +19,12 @@
 				"ignore": ["attribute"]
 			}
 		],
-		"number-max-precision": null
+		"number-max-precision": null,
+		"annotation-no-unknown": [
+			true,
+			{
+				"ignoreAnnotations": ["default", "global"]
+			}
+		]
 	}
 }
