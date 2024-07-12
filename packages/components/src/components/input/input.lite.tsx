@@ -40,7 +40,7 @@ export default function DBInput(props: DBInputProps) {
 		_validMessageId: this._id + DEFAULT_VALID_MESSAGE_ID_SUFFIX,
 		_invalidMessageId: this._id + DEFAULT_INVALID_MESSAGE_ID_SUFFIX,
 		_dataListId: this._id + DEFAULT_DATALIST_ID_SUFFIX,
-		_descByIds: 'none',
+		_descByIds: '',
 		_value: '',
 		defaultValues: {
 			label: DEFAULT_LABEL,
@@ -81,7 +81,7 @@ export default function DBInput(props: DBInputProps) {
 			} else if (props.message) {
 				state._descByIds = state._messageId;
 			} else {
-				state._descByIds = 'none';
+				state._descByIds = '';
 			}
 		},
 		handleBlur: (event: InteractionEvent<HTMLInputElement>) => {

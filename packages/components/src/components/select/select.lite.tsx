@@ -44,7 +44,7 @@ export default function DBSelect(props: DBSelectProps) {
 		_invalidMessageId: this._id + DEFAULT_INVALID_MESSAGE_ID_SUFFIX,
 		_placeholderId: this._id + DEFAULT_PLACEHOLDER_ID_SUFFIX,
 		// Workaround for Vue output: TS for Vue would think that it could be a function, and by this we clarify that it's a string
-		_descByIds: 'none',
+		_descByIds: '',
 		_value: '',
 		initialized: false,
 		handleClick: (event: ClickEvent<HTMLSelectElement>) => {
