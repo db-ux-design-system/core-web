@@ -1,8 +1,6 @@
 module.exports = {
 	prettier: true,
-	ignores: [
-		'./showcases/nuxt-showcase/**'
-	],
+	ignores: ['./showcases/nuxt-showcase/**'],
 	overrides: [
 		{
 			files: ['./showcases/angular-showcase/**'],
@@ -50,6 +48,13 @@ module.exports = {
 			files: ['./showcases/e2e/**'],
 			rules: {
 				'@typescript-eslint/no-loop-func': 0 // this is fine for playwright testing
+			}
+		},
+		{
+			files: ['./**/*.spec.ts'],
+			rules: {
+				// Playwright tests are async we shall use loops there
+				'no-await-in-loop': 0
 			}
 		}
 	],

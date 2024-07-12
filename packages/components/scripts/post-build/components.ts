@@ -63,6 +63,10 @@ export const getComponents = (): Component[] => [
 				{
 					from: 'scrollContainer = null;',
 					to: 'scrollContainer: Element | null = null;'
+				},
+				{
+					from: '& > .db-tab-panel',
+					to: '& > dbtabpanel > .db-tab-panel, & > db-tab-panel > .db-tab-panel'
 				}
 			]
 		}
@@ -149,6 +153,13 @@ export const getComponents = (): Component[] => [
 
 	{
 		name: 'select',
+		overwrites: {
+			react: [
+				// React not allowing selected for options
+				{ from: 'selected={option.selected}', to: '' },
+				{ from: 'selected={optgroupOption.selected}', to: '' }
+			]
+		},
 		config: {
 			vue: {
 				vModel: [{ modelValue: 'value', binding: ':value' }]

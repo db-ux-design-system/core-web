@@ -1,7 +1,6 @@
 import { onMount, useMetadata, useRef, useStore } from '@builder.io/mitosis';
 import { DBSwitchProps, DBSwitchState } from './model';
 import { cls, uuid } from '../../utils';
-import { DEFAULT_ID } from '../../shared/constants';
 import { ChangeEvent, InteractionEvent } from '../../shared/model';
 import { handleFrameworkEvent } from '../../utils/form-components';
 
@@ -14,7 +13,7 @@ export default function DBSwitch(props: DBSwitchProps) {
 	const ref = useRef<HTMLInputElement>(null);
 	// jscpd:ignore-start
 	const state = useStore<DBSwitchState>({
-		_id: DEFAULT_ID,
+		_id: 'switch-' + uuid(),
 		initialized: false,
 		handleChange: (event: ChangeEvent<HTMLInputElement>) => {
 			if (props.onChange) {
@@ -47,7 +46,7 @@ export default function DBSwitch(props: DBSwitchProps) {
 	});
 
 	onMount(() => {
-		state._id = props.id || 'switch-' + uuid();
+		state._id = props.id || state._id;
 	});
 	// jscpd:ignore-end
 

@@ -6,6 +6,9 @@ on:
       version:
         required: true
         type: string
+      type:
+        required: true
+        type: string
 
 permissions:
   actions: write
@@ -13,7 +16,7 @@ permissions:
 
 jobs:
   regenerate-snapshots:
-    name: 🧪🎭 - Regenerate snapshots
+    name: 🧪🎭 - Regenerate snapshots ${{ inputs.type }}
     runs-on: ubuntu-latest
     container:
       image: mcr.microsoft.com/playwright:v${{ inputs.version }}
@@ -46,22 +49,63 @@ jobs:
           path: packages/components/build
 
       - name: ⏬ Download showcases
+        if: inputs.type == 'showcases'
         uses: actions/download-artifact@v4
         with:
-          name: db-ui-showcases
-          path: build-showcases
+          name: db-ui-react-showcase
+          path: build-showcases/react-showcase
+
+      - name: ⏬ Download patternhub
+        if: inputs.type == 'patternhub'
+        uses: actions/download-artifact@v4
+        with:
+          name: db-ui-patternhub
+          path: build-showcases/patternhub
 
       - name: 👩‍🔬 Generate snapshots 🎭
+        shell: bash
         env:
           HOME: /root
+          TYPE: ${{ inputs.type }}
         run: |
-          npm run regenerate:screenshots --workspace=@db-ui/react-components
-          npm run regenerate:screenshots --workspace=@db-ui/foundations
-          npm run regenerate:screenshots --workspace=react-showcase
+          if [[ $TYPE == "components" ]]; then
+            npm run regenerate:screenshots --workspace=@db-ui/react-components
+          elif [[ $TYPE == "foundations" ]]; then
+            npm run regenerate:screenshots --workspace=@db-ui/foundations
+          elif [[ $TYPE == "patternhub" ]]; then
+            npm run regenerate:screenshots --workspace=patternhub
+          else
+            npm run regenerate:screenshots --workspace=react-showcase
+          fi
 
-      - name: 🆙 Upload snapshots
+      - name: 🆙 Upload components
+        if: inputs.type == 'components'
         uses: actions/upload-artifact@v4
         with:
-          name: __snapshots__
-          path: ./__snapshots__
+          name: snapshots-${{ inputs.type }}
+          path: ./__snapshots__/*/component
+          retention-days: 30
+
+      - name: 🆙 Upload foundations
+        if: inputs.type == 'foundations'
+        uses: actions/upload-artifact@v4
+        with:
+          name: snapshots-${{ inputs.type }}
+          path: ./__snapshots__/foundations
+          retention-days: 30
+
+      - name: 🆙 Upload patternhub
+        if: inputs.type == 'patternhub'
+        uses: actions/upload-artifact@v4
+        with:
+          name: snapshots-${{ inputs.type }}
+          path: ./__snapshots__/*/patternhub
+          retention-days: 30
+
+      - name: 🆙 Upload showcase
+        if: inputs.type == 'showcases'
+        uses: actions/upload-artifact@v4
+        with:
+          name: snapshots-${{ inputs.type }}
+          path: ./__snapshots__/*/showcase
           retention-days: 30

@@ -9,7 +9,6 @@ import {
 import { DBCheckboxProps, DBCheckboxState } from './model';
 import { cls, uuid } from '../../utils';
 import {
-	DEFAULT_ID,
 	DEFAULT_INVALID_MESSAGE,
 	DEFAULT_INVALID_MESSAGE_ID_SUFFIX,
 	DEFAULT_MESSAGE_ID_SUFFIX,
@@ -29,12 +28,11 @@ export default function DBCheckbox(props: DBCheckboxProps) {
 	// jscpd:ignore-start
 	const state = useStore<DBCheckboxState>({
 		initialized: false,
-		_id: DEFAULT_ID,
-		_messageId: DEFAULT_ID + DEFAULT_MESSAGE_ID_SUFFIX,
-		_validMessageId: DEFAULT_ID + DEFAULT_VALID_MESSAGE_ID_SUFFIX,
-		_invalidMessageId: DEFAULT_ID + DEFAULT_INVALID_MESSAGE_ID_SUFFIX,
+		_id: 'checkbox-' + uuid(),
+		_messageId: this._id + DEFAULT_MESSAGE_ID_SUFFIX,
+		_validMessageId: this._id + DEFAULT_VALID_MESSAGE_ID_SUFFIX,
+		_invalidMessageId: this._id + DEFAULT_INVALID_MESSAGE_ID_SUFFIX,
 		_descByIds: '',
-
 		handleChange: (event: ChangeEvent<HTMLInputElement>) => {
 			if (props.onChange) {
 				props.onChange(event);
@@ -44,6 +42,20 @@ export default function DBCheckbox(props: DBCheckboxProps) {
 				props.change(event);
 			}
 			handleFrameworkEvent(this, event, 'checked');
+
+			/* For a11y reasons we need to map the correct message with the checkbox */
+			if (!ref?.validity.valid || props.customValidity === 'invalid') {
+				state._descByIds = state._invalidMessageId;
+			} else if (
+				props.customValidity === 'valid' ||
+				(ref?.validity.valid && props.required)
+			) {
+				state._descByIds = state._validMessageId;
+			} else if (props.message) {
+				state._descByIds = state._messageId;
+			} else {
+				state._descByIds = '';
+			}
 		},
 		handleBlur: (event: InteractionEvent<HTMLInputElement>) => {
 			if (props.onBlur) {
@@ -62,48 +74,30 @@ export default function DBCheckbox(props: DBCheckboxProps) {
 			if (props.focus) {
 				props.focus(event);
 			}
-		},
-		getValidMessage: () => {
-			return props.validMessage || DEFAULT_VALID_MESSAGE;
-		},
-		getInvalidMessage: () => {
-			return (
-				props.invalidMessage ||
-				ref?.validationMessage ||
-				DEFAULT_INVALID_MESSAGE
-			);
 		}
 	});
 
 	onMount(() => {
 		state.initialized = true;
-		state._id = props.id || 'checkbox-' + uuid();
+		state._id = props.id || state._id;
 	});
 
 	onUpdate(() => {
-		if (state.initialized && state._id) {
-			state._messageId = state._id + DEFAULT_MESSAGE_ID_SUFFIX;
-			state._validMessageId = state._id + DEFAULT_VALID_MESSAGE_ID_SUFFIX;
-			state._invalidMessageId =
+		if (state._id) {
+			const messageId = state._id + DEFAULT_MESSAGE_ID_SUFFIX;
+			const validMessageId = state._id + DEFAULT_VALID_MESSAGE_ID_SUFFIX;
+			const invalidMessageId =
 				state._id + DEFAULT_INVALID_MESSAGE_ID_SUFFIX;
-		}
-	}, [state._id, state.initialized]);
+			state._messageId = messageId;
+			state._validMessageId = validMessageId;
+			state._invalidMessageId = invalidMessageId;
 
-	onUpdate(() => {
-		const descByIds = [state._validMessageId, state._invalidMessageId];
-		if (props.message) {
-			descByIds.push(state._messageId);
+			if (props.message) {
+				state._descByIds = messageId;
+			}
 		}
-		state._descByIds = descByIds.join(' ');
-	}, [
-		props.message,
-		state._messageId,
-		state._validMessageId,
-		state._invalidMessageId
-	]);
-	// jscpd:ignore-end
+	}, [state._id]);
 
-	// TODO we have to check how to update on every change..
 	onUpdate(() => {
 		if (state.initialized && document && state._id) {
 			const checkboxElement = document?.getElementById(
@@ -120,9 +114,12 @@ export default function DBCheckbox(props: DBCheckboxProps) {
 					// It has no accessibility or UX implications. (https://mui.com/material-ui/react-checkbox/)
 					checkboxElement.indeterminate = props.indeterminate;
 				}
+
+				state.initialized = false;
 			}
 		}
 	}, [state.initialized, props.indeterminate, props.checked]);
+	// jscpd:ignore-end
 
 	return (
 		<div
@@ -171,14 +168,16 @@ export default function DBCheckbox(props: DBCheckboxProps) {
 				id={state._validMessageId}
 				size="small"
 				semantic="successful">
-				{state.getValidMessage()}
+				{props.validMessage ?? DEFAULT_VALID_MESSAGE}
 			</DBInfotext>
 
 			<DBInfotext
 				id={state._invalidMessageId}
 				size="small"
 				semantic="critical">
-				{state.getInvalidMessage()}
+				{props.invalidMessage ??
+					ref?.validationMessage ??
+					DEFAULT_INVALID_MESSAGE}
 			</DBInfotext>
 		</div>
 	);
