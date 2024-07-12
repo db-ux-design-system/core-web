@@ -12,12 +12,7 @@ $popover-gap-inset: calc(-1 * #{$popover-gap-size});
 	&:not([data-placement]),
 	&[data-placement="bottom"]:not([data-outside-vy]),
 	&[data-placement="top"]:not([data-outside-vy]),
-	&[data-outside-vy="bottom"]:not(
-			[data-outside-vx],
-			[data-placement$="end"],
-			[data-placement$="start"]
-		),
-	&[data-outside-vy="top"]:not(
+	&:is([data-outside-vy="bottom"], [data-outside-vy="top"]):not(
 			[data-outside-vx],
 			[data-placement$="end"],
 			[data-placement$="start"]
