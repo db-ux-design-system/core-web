@@ -10,7 +10,7 @@
 		"a11y/selector-pseudo-class-focus": true,
 		"csstools/use-logical": ["always", { "except": ["float"] }],
 		"max-nesting-depth": null,
-		"selector-type-no-unknown": null,
+		"selector-type-no-unknown": [true, { "ignoreTypes": ["/^db/"] }],
 		"no-descending-specificity": null,
 		"selector-max-compound-selectors": null,
 		"selector-no-qualifying-type": [
