@@ -129,10 +129,10 @@ $interactive-selectors: "label, button:not(.db-tab-remove-button), a";
 
 		// radio should have bg-lvl-3 (checked) without hover/pressed
 		label:has(input[type="radio"]:checked) {
+			&,
 			&:hover,
 			&:focus,
-			&:active,
-			& {
+			&:active {
 				background-color: colors.$db-current-color-bg-lvl-3-enabled;
 			}
 		}

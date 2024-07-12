@@ -43,16 +43,16 @@ $backgrounds: "lvl-1", "lvl-2", "lvl-3", "transparent-full", "transparent-semi";
 		%db-#{$variant}-contrast-#{$contrast}-interactive {
 			@extend %db-#{$variant}-contrast-#{$contrast};
 
-			/* stylelint-disable */
+			/* stylelint-disable-next-line scss/percent-placeholder-pattern */
 			&:hover,
 			&:focus {
 				background: var(--db-#{$variant}-contrast-#{$contrast}-hover);
 			}
 
+			/* stylelint-disable-next-line scss/percent-placeholder-pattern */
 			&:active {
 				background: var(--db-#{$variant}-contrast-#{$contrast}-pressed);
 			}
-			/* stylelint-enable */
 		}
 	}
 

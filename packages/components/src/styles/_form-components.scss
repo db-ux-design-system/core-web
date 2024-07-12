@@ -33,14 +33,12 @@ $input-types: "button", "checkbox", "color", "date", "datetime-local", "email",
 %dropdown-icon {
 	@include icons.set-icon("chevron_down", "after");
 
-	@media screen and (prefers-reduced-motion: no-preference) {
-		&::after {
-			transition: $dropdown-icon-transition;
-		}
-	}
-
 	&::after {
 		pointer-events: none;
+
+		@media screen and (prefers-reduced-motion: no-preference) {
+			transition: $dropdown-icon-transition;
+		}
 	}
 }
 
@@ -104,9 +102,8 @@ $input-types: "button", "checkbox", "color", "date", "datetime-local", "email",
 
 			@if ($selector == textarea) {
 				padding-block-start: $floating-label-size;
-				/* stylelint-disable */
+				/* stylelint-disable-next-line at-rule-empty-line-before */
 			} @else {
-				/* stylelint-enable */
 				// font-size label which is 2xs + smallest spacing
 				padding-block-start: calc(
 					var(--db-type-body-font-size-2xs) +
@@ -145,9 +142,8 @@ $input-types: "button", "checkbox", "color", "date", "datetime-local", "email",
 			&[data-semantic="successful"] {
 				display: flex;
 			}
-			/* stylelint-disable */
+			/* stylelint-disable-next-line at-rule-empty-line-before */
 		} @else {
-			/* stylelint-enable */
 			&[data-semantic="critical"] {
 				display: flex;
 			}
@@ -176,9 +172,8 @@ $input-types: "button", "checkbox", "color", "date", "datetime-local", "email",
 
 	@if ($selector != textarea) {
 		@extend %db-#{$variant}-variables;
-		/* stylelint-disable */
+		/* stylelint-disable-next-line at-rule-empty-line-before */
 	} @else {
-		/* stylelint-enable */
 		// this is a workaround for the textarea scrollbar
 		--db-textarea-read-only: var(--db-#{$variant}-bg-lvl-1-enabled);
 		--db-current-color-bg-transparent-full-enabled: var(
@@ -212,9 +207,8 @@ $input-valid-types: "color", "date", "datetime-local", "email", "file", "hidden"
 		@each $type in $input-valid-types {
 			$validations: $validations + ", [type=#{$type}]";
 		}
-		/* stylelint-disable */
+		/* stylelint-disable-next-line at-rule-empty-line-before */
 	} @else if($selector == textarea) {
-		/* stylelint-enable */
 		$validations: ":required, [minlength], [maxlength]";
 	}
 
@@ -244,9 +238,8 @@ $input-valid-types: "color", "date", "datetime-local", "email", "file", "hidden"
 			) {
 			@content;
 		}
-		/* stylelint-disable */
+		/* stylelint-disable-next-line at-rule-empty-line-before */
 	} @else {
-		/* stylelint-enable */
 		#{get-validations($selector,$key)} {
 			@content;
 		}
