@@ -4,12 +4,11 @@ import {
 	FocusEventProps,
 	FocusEventState,
 	FormMessageProps,
-	FormMessageState,
 	FormProps,
 	FormState,
+	FormTextProps,
 	GlobalProps,
 	GlobalState,
-	FormTextProps,
 	InputEventProps,
 	InputEventState
 } from '../../shared/model';
@@ -65,5 +64,4 @@ export type DBTextareaState = DBTextareaDefaultState &
 	InputEventState<HTMLTextAreaElement> &
 	FocusEventState<HTMLTextAreaElement> &
 	FormState &
-	GlobalState &
-	FormMessageState;
+	GlobalState;

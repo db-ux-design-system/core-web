@@ -16,7 +16,7 @@
 						*ngTemplateOutlet="
 							exampleTemplate;
 							context: {
-								exampleProps: example.props,
+								exampleProps: example.props ?? {},
 								exampleName: example.name,
 								exampleIndex: exampleIndex,
 								variantIndex: variantRefIndex

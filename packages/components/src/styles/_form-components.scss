@@ -252,7 +252,6 @@ $input-valid-types: "color", "date", "datetime-local", "email", "file", "hidden"
 
 @mixin set-default-form-component($selector) {
 	--db-form-has-before: 0;
-	--db-current-icon-color: #{colors.$db-current-color-enabled};
 	@extend %db-overwrite-font-size-sm;
 	@extend %helper-message;
 
@@ -276,7 +275,7 @@ $input-valid-types: "color", "date", "datetime-local", "email", "file", "hidden"
 		@extend %component-border;
 
 		background-color: colors.$db-current-color-bg-transparent-semi-enabled;
-		caret-color: colors.$db-current-color-enabled;
+		caret-color: colors.$db-current-color-on-bg-enabled;
 
 		appearance: none;
 		max-inline-size: 100%;
@@ -388,19 +387,20 @@ $input-valid-types: "color", "date", "datetime-local", "email", "file", "hidden"
 		--db-current-color-bg-transparent-pressed: var(
 			--db-#{$variant}-bg-transparent-pressed
 		);
-		border-color: colors.$db-current-color-enabled;
+		border-color: colors.$db-current-color-on-bg-enabled;
 
 		&:not(:checked),
 		&:is([type="radio"]) {
-			--db-current-color-enabled: var(
-				--db-#{$variant}-contrast-high-enabled
-			);
+			border-color: var(--db-#{$variant}-contrast-high-enabled);
 		}
 
-		&:checked {
-			--db-current-color-enabled: #{colors.$db-successful-contrast-high-enabled};
-			--db-current-color-hover: #{colors.$db-successful-contrast-high-hover};
-			--db-current-color-pressed: #{colors.$db-successful-contrast-high-pressed};
+		&:not([type="radio"]):checked {
+			@include colors.set-current-colors(
+				colors.$db-successful-contrast-high-enabled,
+				colors.$db-successful-on-contrast-enabled,
+				colors.$db-successful-contrast-high-hover,
+				colors.$db-successful-contrast-high-pressed
+			);
 		}
 	}
 
@@ -411,6 +411,7 @@ $input-valid-types: "color", "date", "datetime-local", "email", "file", "hidden"
 }
 
 @mixin set-default-check-element($selector) {
+	@extend %db-overwrite-font-size-md;
 	@include set-required-label(input);
 
 	@include get-validity($selector) {

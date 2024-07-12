@@ -29,13 +29,6 @@ jobs:
     uses: ./.github/workflows/01-build-outputs.yml
     needs: [build-packages]
 
-  build-showcases:
-    uses: ./.github/workflows/01-build-showcases.yml
-    needs: [build-packages, get-publish-version]
-    with:
-      release: ${{ needs.get-publish-version.outputs.release }}
-      preRelease: ${{ needs.get-publish-version.outputs.preRelease }}
-
   test-components:
     uses: ./.github/workflows/02-e2e.yml
     needs: [build-packages, get-playwright-version]
@@ -48,23 +41,132 @@ jobs:
     with:
       version: ${{ needs.get-playwright-version.outputs.version }}
 
-  test-showcases:
+  build-showcase-angular:
+    uses: ./.github/workflows/01-build-showcases.yml
+    needs: [build-packages]
+    with:
+      showcase: angular-showcase
+
+  build-showcase-angular-ssr:
+    uses: ./.github/workflows/01-build-showcases.yml
+    needs: [build-packages]
+    with:
+      showcase: angular-ssr-showcase
+
+  build-showcase-react:
+    uses: ./.github/workflows/01-build-showcases.yml
+    needs: [build-packages]
+    with:
+      showcase: react-showcase
+
+  build-showcase-next:
+    uses: ./.github/workflows/01-build-showcases.yml
+    needs: [build-packages]
+    with:
+      showcase: next-showcase
+
+  build-showcase-vue:
+    uses: ./.github/workflows/01-build-showcases.yml
+    needs: [build-packages]
+    with:
+      showcase: vue-showcase
+
+  build-showcase-nuxt:
+    uses: ./.github/workflows/01-build-showcases.yml
+    needs: [build-packages]
+    with:
+      showcase: nuxt-showcase
+
+  build-showcase-patternhub:
+    uses: ./.github/workflows/01-build-patternhub.yml
+    needs: [build-packages, get-publish-version]
+    with:
+      release: ${{ needs.get-publish-version.outputs.release }}
+      preRelease: ${{ needs.get-publish-version.outputs.preRelease }}
+
+  test-showcase-angular:
     uses: ./.github/workflows/02-e2e-showcases.yml
-    needs: [build-showcases, get-playwright-version]
+    needs: [build-showcase-angular, get-playwright-version]
     with:
       version: ${{ needs.get-playwright-version.outputs.version }}
+      showcase: angular-showcase
+
+  test-showcase-react:
+    uses: ./.github/workflows/02-e2e-showcases.yml
+    needs: [build-showcase-react, get-playwright-version]
+    with:
+      version: ${{ needs.get-playwright-version.outputs.version }}
+      showcase: react-showcase
+
+  test-showcase-vue:
+    uses: ./.github/workflows/02-e2e-showcases.yml
+    needs: [build-showcase-vue, get-playwright-version]
+    with:
+      version: ${{ needs.get-playwright-version.outputs.version }}
+      showcase: vue-showcase
+
+  test-showcase-patternhub:
+    uses: ./.github/workflows/02-e2e-showcases.yml
+    needs: [build-showcase-patternhub, get-playwright-version]
+    with:
+      version: ${{ needs.get-playwright-version.outputs.version }}
+      showcase: patternhub
 
   checks-done:
+    if: ${{ always() }}
     runs-on: ubuntu-latest
     steps:
       - name: 🎉 Checks done
-        run: echo "🎉 All builds were successful."
+        run: |
+          resultBuildShowcaseAngular="${{ needs.build-showcase-angular.result }}"
+          resultBuildShowcaseAngularSSR="${{ needs.build-showcase-angular-ssr.result }}"
+          resultBuildShowcaseReact="${{ needs.build-showcase-react.result }}"
+          resultBuildShowcaseNext="${{ needs.build-showcase-next.result }}"
+          resultBuildShowcaseVue="${{ needs.build-showcase-vue.result }}"
+          resultBuildShowcaseNuxt="${{ needs.build-showcase-nuxt.result }}"
+          resultBuildShowcasePatternhub="${{ needs.build-showcase-patternhub.result }}"
+          resultBuildOutputs="${{ needs.build-outputs.result }}"
+          resultTestPackages="${{ needs.test-components.result }}"
+          resultTestFoundations="${{ needs.test-foundations.result }}"
+          resultTestShowcaseAngular="${{ needs.test-showcase-angular.result }}"
+          resultTestShowcaseReact="${{ needs.test-showcase-react.result }}"
+          resultTestShowcaseVue="${{ needs.test-showcase-vue.result }}"
+          resultTestShowcasePatternhub="${{ needs.test-showcase-patternhub.result }}"
+          if [[ $resultTestFoundations == "success" ]] && \
+             [[ $resultTestShowcaseAngular == "success" ]] && \
+             [[ $resultTestShowcaseReact == "success" ]] && \
+             [[ $resultTestShowcaseVue == "success" ]] && \
+             [[ $resultTestShowcasePatternhub == "success" ]] && \
+             [[ $resultTestPackages == "success" ]] && \
+             [[ $resultBuildOutputs == "success" ]] && \
+             [[ $resultBuildShowcaseAngular == "success" ]] && \
+             [[ $resultBuildShowcaseAngularSSR == "success" ]] && \
+             [[ $resultBuildShowcaseReact == "success" ]] && \
+             [[ $resultBuildShowcaseNext == "success" ]] && \
+             [[ $resultBuildShowcaseVue == "success" ]] && \
+             [[ $resultBuildShowcaseNuxt == "success" ]] && \
+             [[ $resultBuildShowcasePatternhub == "success" ]]; then
+             echo "🎉 All tests were successful."
+            exit 0
+          else
+             echo "Some tests were failing."
+            exit 1
+          fi
     needs:
       [
-        test-components,
+        build-showcase-angular,
+        build-showcase-angular-ssr,
+        build-showcase-react,
+        build-showcase-next,
+        build-showcase-vue,
+        build-showcase-nuxt,
+        build-showcase-patternhub,
         build-outputs,
-        build-showcases,
-        test-showcases,
+        test-components,
+        test-showcase-angular,
+        test-showcase-react,
+        test-showcase-vue,
+        test-showcase-patternhub,
         test-foundations
       ]
 

@@ -1,8 +1,4 @@
 %grid-layout-variant-overlay {
-	a {
-		display: none;
-	}
-
 	// has timestamp
 	&:has(span) {
 		// 1. only content (min. requirement)

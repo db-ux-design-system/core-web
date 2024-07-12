@@ -1,0 +1,28 @@
+<app-form-wrapper
+	[plain]="plain"
+	[model]="ngModel"
+	[control]="formControl.value"
+>
+	<fieldset>
+		<legend>Different form approaches</legend>
+		<db-select
+			label="Plain"
+			[value]="plain"
+			(change)="plain = $event.target.value"
+		>
+			<option value="combobox-0">combobox-0</option>
+			<option value="combobox-1">combobox-1</option>
+			<option value="combobox-2">combobox-2</option>
+		</db-select>
+		<db-select label="ngModel" [(ngModel)]="ngModel">
+			<option value="combobox-0">combobox-0</option>
+			<option value="combobox-1">combobox-1</option>
+			<option value="combobox-2">combobox-2</option>
+		</db-select>
+		<db-select label="formControl" [formControl]="formControl">
+			<option value="combobox-0">combobox-0</option>
+			<option value="combobox-1">combobox-1</option>
+			<option value="combobox-2">combobox-2</option>
+		</db-select>
+	</fieldset>
+</app-form-wrapper>
