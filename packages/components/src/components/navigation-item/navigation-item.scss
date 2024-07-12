@@ -23,15 +23,12 @@
 @mixin sub-navi-handler-mobile() {
 	// show/hide sub-navigation by click
 	&[aria-expanded="true"] {
-		@media screen and (prefers-reduced-motion: no-preference) {
-			~ .db-sub-navigation {
-				transition: visibility 0ms linear 0ms;
-				animation: show-right-to-left
-					variables.$db-transition-straight-show;
-			}
-		}
-
 		~ .db-sub-navigation {
+		@media screen and (prefers-reduced-motion: no-preference) {
+			transition: visibility 0ms linear 0ms;
+			animation: show-right-to-left
+				variables.$db-transition-straight-show;
+		}
 			visibility: visible;
 
 			.db-sub-navigation {
