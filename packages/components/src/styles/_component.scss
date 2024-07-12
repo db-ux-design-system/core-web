@@ -12,7 +12,7 @@ $default-disabled: 0.4;
 
 %default-adaptive-border {
 	border: variables.$db-border-height-3xs solid
-		colors.$db-current-color-enabled;
+		colors.$db-current-color-on-bg-enabled;
 }
 
 %transparent-border {

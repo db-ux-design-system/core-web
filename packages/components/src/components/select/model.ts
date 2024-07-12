@@ -6,12 +6,14 @@ import {
 	FocusEventProps,
 	FocusEventState,
 	FormMessageProps,
-	FormMessageState,
 	FormProps,
 	FormState,
 	GlobalProps,
 	GlobalState,
-	IconProps
+	IconProps,
+	InitializedState,
+	InputEventProps,
+	InputEventState
 } from '../../shared/model';
 
 export interface DBSelectDefaultProps {
@@ -35,8 +37,12 @@ export type DBSelectOptionType = {
 	/**
 	 * Disables this option
 	 */
-	// Disables this option
 	disabled?: boolean;
+
+	/**
+	 * Selects this option
+	 */
+	selected?: boolean;
 
 	/**
 	 * If the value is different from the label you want to show to the user.
@@ -59,6 +65,7 @@ export type DBSelectProps = DBSelectDefaultProps &
 	ClickEventProps<HTMLSelectElement> &
 	ChangeEventProps<HTMLSelectElement> &
 	FocusEventProps<HTMLSelectElement> &
+	InputEventProps<HTMLSelectElement> &
 	FormProps &
 	IconProps &
 	FormMessageProps;
@@ -73,5 +80,6 @@ export type DBSelectState = DBSelectDefaultState &
 	ClickEventState<HTMLSelectElement> &
 	ChangeEventState<HTMLSelectElement> &
 	FocusEventState<HTMLSelectElement> &
+	InputEventState<HTMLSelectElement> &
 	FormState &
-	FormMessageState;
+	InitializedState;

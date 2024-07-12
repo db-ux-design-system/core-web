@@ -17,7 +17,7 @@ const textareavModel = ref("default value");
 const textarea = ref("default value");
 const textareaDefaultValue = ref("");
 const dateInput = ref("");
-const radio = ref<HTMLInputElement>();
+const radio = ref<string>();
 const checkbox = ref<boolean[]>([true, false]);
 const tags = ref<string[]>([]);
 

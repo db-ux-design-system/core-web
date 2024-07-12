@@ -17,12 +17,12 @@ const toggleDrawer = (example?: string) => {
 			#example="{ exampleIndex, variantIndex, exampleName, exampleProps }"
 		>
 			<DBDrawer
-				:backdrop="exampleProps.backdrop"
-				:withCloseButton="exampleProps.withCloseButton"
-				:rounded="exampleProps.rounded"
-				:width="exampleProps.width"
-				:spacing="exampleProps.spacing"
-				:direction="exampleProps.direction"
+				:backdrop="exampleProps?.backdrop"
+				:withCloseButton="exampleProps?.withCloseButton"
+				:rounded="exampleProps?.rounded"
+				:width="exampleProps?.width"
+				:spacing="exampleProps?.spacing"
+				:direction="exampleProps?.direction"
 				:open="openDrawer && openDrawer === exampleName"
 				@close="toggleDrawer(undefined)"
 			>

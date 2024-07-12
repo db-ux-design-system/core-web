@@ -11,19 +11,19 @@
 		let-variantIndex="variantIndex"
 	>
 		<db-popover
-			[width]="exampleProps.width"
-			[gap]="exampleProps.gap"
-			[spacing]="exampleProps.spacing"
-			[placement]="exampleProps.placement"
-			[animation]="exampleProps.animation"
-			[delay]="exampleProps.delay"
-			[id]="exampleProps.id"
+			[width]="exampleProps?.width"
+			[gap]="exampleProps?.gap"
+			[spacing]="exampleProps?.spacing"
+			[placement]="exampleProps?.placement"
+			[animation]="exampleProps?.animation"
+			[delay]="exampleProps?.delay"
+			[id]="exampleProps?.id"
 		>
 			<db-button trigger>
 				{{ exampleName }}
 			</db-button>
-			@if (exampleProps.content) {
-				{{ exampleProps.content }}
+			@if (exampleProps?.content) {
+				{{ exampleProps?.content }}
 			} @else {
 				<ul class="popover-list">
 					<li>Popover Custom Item 1</li>

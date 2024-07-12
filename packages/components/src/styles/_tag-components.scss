@@ -7,12 +7,12 @@
 $interactive-selectors: "label, button:not(.db-tab-remove-button), a";
 
 %set-adaptive-strong-tag {
-	--db-current-icon-color: #{colors.$db-current-color-on-contrast-enabled};
-	--db-current-color-enabled: #{colors.$db-current-color-on-contrast-enabled};
-	--db-current-color-bg-enabled: #{colors.$db-current-color-contrast-high-enabled};
 	--db-current-color-border: #{colors.$db-current-color-contrast-high-enabled};
 
-	@extend %set-current-colors;
+	@include colors.set-current-colors(
+		colors.$db-current-color-contrast-high-enabled,
+		colors.$db-current-color-on-contrast-enabled
+	);
 }
 
 @mixin get-tag-colors() {

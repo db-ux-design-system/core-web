@@ -7,7 +7,7 @@
 	&[data-e2e-hover="true"],
 	&:hover,
 	&:focus-within {
-		> article {
+		> article:not([data-open="false"]) {
 			@extend %show-popover;
 		}
 	}

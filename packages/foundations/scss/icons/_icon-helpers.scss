@@ -133,7 +133,7 @@ $default-icon-font-size: var(--db-icon-font-size, #{$default-icon-size-rem});
 	// Hiding icon from screenreaders
 	-webkit-alt: "";
 	alt: "";
-	color: var(--db-current-icon-color, inherit);
+	color: var(--db-icon-color, inherit);
 	display: inline-block;
 
 	/*** icon - placeholder ***/

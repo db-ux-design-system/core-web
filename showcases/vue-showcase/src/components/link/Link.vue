@@ -10,11 +10,11 @@ import { DBLink } from "../../../../../output/vue/src";
 			#example="{ exampleIndex, variantIndex, exampleName, exampleProps }"
 		>
 			<DBLink
-				:variant="exampleProps.variant"
-				:href="exampleProps.href"
-				:disabled="exampleProps.disabled"
-				:size="exampleProps.size"
-				:content="exampleProps.content"
+				:variant="exampleProps?.variant"
+				:href="exampleProps?.href"
+				:disabled="exampleProps?.disabled"
+				:size="exampleProps?.size"
+				:content="exampleProps?.content"
 			>
 				{{ exampleName }}
 			</DBLink>

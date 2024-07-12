@@ -10,14 +10,14 @@
 		let-exampleIndex="exampleIndex"
 		let-variantIndex="variantIndex"
 	>
-		@if (!exampleProps.placement && !exampleProps.example) {
+		@if (!exampleProps?.placement && !exampleProps?.example) {
 			<db-badge
-				[semantic]="exampleProps.semantic"
-				[emphasis]="exampleProps.emphasis"
-				[size]="exampleProps.size"
-				>{{ exampleProps.noContent ? "" : exampleName }}</db-badge
+				[semantic]="exampleProps?.semantic"
+				[emphasis]="exampleProps?.emphasis"
+				[size]="exampleProps?.size"
+				>{{ exampleProps?.noContent ? "" : exampleName }}</db-badge
 			>
-			@if (exampleProps.noContent) {
+			@if (exampleProps?.noContent) {
 				<db-infotext semantic="informational" size="small" icon="none">
 					{{ exampleName }}
 				</db-infotext>
@@ -25,16 +25,16 @@
 		}
 
 		@if (
-			exampleProps.placement &&
-			exampleProps.placement !== "inline" &&
-			!exampleProps.example
+			exampleProps?.placement &&
+			exampleProps?.placement !== "inline" &&
+			!exampleProps?.example
 		) {
 			<db-button icon="user" variant="outlined" [noText]="true">
 				<db-badge
 					emphasis="strong"
 					semantic="critical"
 					size="small"
-					[placement]="exampleProps.placement"
+					[placement]="exampleProps?.placement"
 				></db-badge>
 				{{ exampleName }}
 			</db-button>
@@ -43,7 +43,7 @@
 			</db-infotext>
 		}
 
-		@if (exampleProps.placement === "inline") {
+		@if (exampleProps?.placement === "inline") {
 			<div class="badge-inline-container">
 				<db-icon icon="user"></db-icon>
 				<span>{{ exampleName }}</span>
@@ -54,11 +54,11 @@
 			</div>
 		}
 
-		@if (exampleProps.example === "icon") {
+		@if (exampleProps?.example === "icon") {
 			<db-badge
 				semantic="critical"
 				emphasis="strong"
-				[size]="exampleProps.size"
+				[size]="exampleProps?.size"
 			>
 				<db-icon icon="user">{{ exampleName }}</db-icon>
 			</db-badge>
@@ -67,7 +67,7 @@
 			</db-infotext>
 		}
 
-		@if (exampleProps.example === "number") {
+		@if (exampleProps?.example === "number") {
 			<db-badge semantic="successful">9</db-badge>
 			<db-badge semantic="informational">12</db-badge>
 			<db-badge semantic="warning">123</db-badge>

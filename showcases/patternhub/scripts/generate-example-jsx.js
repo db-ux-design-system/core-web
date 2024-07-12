@@ -23,7 +23,9 @@ const generateExampleJSX = () => {
 						const code = getCodeByFramework(
 							componentName,
 							'react',
-							example
+							example,
+							true,
+							variant.children
 						);
 						examples.push(
 							`"${componentName}${variant.name}${
