@@ -25,6 +25,7 @@
 			{
 				"ignoreAnnotations": ["default", "global"]
 			}
-		]
+		],
+		"declaration-property-value-no-unknown": true
 	}
 }

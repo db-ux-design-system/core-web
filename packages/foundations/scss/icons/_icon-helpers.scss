@@ -91,9 +91,7 @@ $default-icon-font-size: var(--db-icon-font-size, #{$default-icon-size-rem});
 		&::before {
 			--db-icon-margin-end: 0;
 		}
-	}
-
- @else {
+	} @else {
 		&::after {
 			--db-icon-margin-start: 0;
 		}
@@ -111,17 +109,11 @@ $default-icon-font-size: var(--db-icon-font-size, #{$default-icon-size-rem});
 		&::before {
 			@if ($variant == "critical") {
 				--db-icon: "exclamation_mark_circle";
-			}
-
- @else if ($variant == "informational" or $variant == "neutral") {
+			} @else if ($variant == "informational" or $variant == "neutral") {
 				--db-icon: "information_circle";
-			}
-
- @else if ($variant == "warning") {
+			} @else if ($variant == "warning") {
 				--db-icon: "warning_triangle";
-			}
-
- @else if ($variant == "successful") {
+			} @else if ($variant == "successful") {
 				--db-icon: "check_circle";
 			}
 		}
@@ -149,6 +141,7 @@ $default-icon-font-size: var(--db-icon-font-size, #{$default-icon-size-rem});
 	font-weight: var(--db-icon-font-weight, normal);
 	line-height: 1;
 	speak: none; // Hiding icon from screenreaders, fallback by older notation
+	/* stylelint-disable-next-line declaration-property-value-no-unknown */
 	speak: never; // Hiding icon from screenreaders
 	text-transform: none;
 	vertical-align: middle;

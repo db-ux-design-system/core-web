@@ -16,7 +16,7 @@
 		color: color-mix(
 			in srgb,
 			transparent 25%,
-			colors.$db-current-color-on-bg-enabled
+			#{colors.$db-current-color-on-bg-enabled}
 		);
 	}
 
@@ -24,7 +24,7 @@
 		color: color-mix(
 			in srgb,
 			transparent 50%,
-			colors.$db-current-color-on-bg-enabled
+			#{colors.$db-current-color-on-bg-enabled}
 		);
 	}
 }
