@@ -42,7 +42,7 @@
 		@media (forced-colors: active) {
 			&:indeterminate,
 			&:checked {
-				--db-check-element-border-color: #{colors.$db-current-color-bg-enabled};
+				--db-check-element-border-color: #{colors.$db-current-color-on-bg-enabled};
 				border-width: form-components.$check-border-size;
 
 				&::before {

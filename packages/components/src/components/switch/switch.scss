@@ -126,7 +126,7 @@ $checked-active-transition-size: calc(
 			&::before {
 				block-size: $switch-active-thumb-size;
 				background-color: colors.$db-current-color-bg-lvl-1-enabled;
-				color: colors.$db-current-color-bg-enabled;
+				color: colors.$db-current-color-bg-lvl-1-enabled;
 				margin: 0;
 			}
 		}
