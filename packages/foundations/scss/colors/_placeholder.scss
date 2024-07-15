@@ -44,8 +44,7 @@ $backgrounds: "lvl-1", "lvl-2", "lvl-3", "transparent-full", "transparent-semi";
 			@extend %db-#{$variant}-contrast-#{$contrast};
 
 			/* stylelint-disable-next-line scss/percent-placeholder-pattern */
-			&:hover,
-			&:focus {
+			&:is(:hover, :focus) {
 				background: var(--db-#{$variant}-contrast-#{$contrast}-hover);
 			}
 
