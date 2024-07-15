@@ -143,7 +143,7 @@ export const getCodeByFramework = (
 						)
 					)
 					.join('\n') + (content ?? '')
-			: content ?? name;
+			: (content ?? name);
 
 	const slots = (children ?? example.children)?.filter((child) =>
 		child.slot
