@@ -2,8 +2,7 @@
 @forward "@db-ui/foundations/build/css/colors/classes/all";
 @forward "@db-ui/foundations/build/css/fonts/classes/all";
 
-/* stylelint-disable */
+/* stylelint-disable-next-line selector-id-pattern, selector-max-id */
 #__next {
 	block-size: 100%;
 }
-/* stylelint-enable */
