@@ -206,7 +206,7 @@ $checked-active-transition-size: calc(
 		}
 	}
 
-	/* stylelint-disable */
+	/* stylelint-disable-next-line no-duplicate-selectors */
 	> input {
 		&[data-aid-icon]:not(:checked)::after {
 			content: attr(data-aid-icon);
@@ -216,6 +216,4 @@ $checked-active-transition-size: calc(
 			content: attr(data-aid-icon-after);
 		}
 	}
-
-	/* stylelint-enable */
 }
