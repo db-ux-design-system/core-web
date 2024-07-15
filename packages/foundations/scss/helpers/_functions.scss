@@ -27,13 +27,12 @@
 }
 
 @mixin hover() {
-	/* stylelint-disable */
+	/* stylelint-disable-next-line a11y/selector-pseudo-class-focus */
 	&:hover:not(:disabled, [aria-disabled="true"]) {
 		@include cursor-pointer() {
 			@content;
 		}
 	}
-	/* stylelint-enable */
 }
 
 @mixin active() {
