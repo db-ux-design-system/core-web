@@ -91,6 +91,7 @@ $default-icon-font-size: var(--db-icon-font-size, #{$default-icon-size-rem});
 		&::before {
 			--db-icon-margin-end: 0;
 		}
+		/* stylelint-disable-next-line at-rule-empty-line-before */
 	} @else {
 		&::after {
 			--db-icon-margin-start: 0;
@@ -109,10 +110,13 @@ $default-icon-font-size: var(--db-icon-font-size, #{$default-icon-size-rem});
 		&::before {
 			@if ($variant == "critical") {
 				--db-icon: "exclamation_mark_circle";
+				/* stylelint-disable-next-line at-rule-empty-line-before */
 			} @else if ($variant == "informational" or $variant == "neutral") {
 				--db-icon: "information_circle";
+				/* stylelint-disable-next-line at-rule-empty-line-before */
 			} @else if ($variant == "warning") {
 				--db-icon: "warning_triangle";
+				/* stylelint-disable-next-line at-rule-empty-line-before */
 			} @else if ($variant == "successful") {
 				--db-icon: "check_circle";
 			}
