@@ -16,8 +16,7 @@
 
 		&:checked {
 			// The radio element still has the default background for the dot on :hover when in checked state
-			&:not(:disabled):hover,
-			&:not(:disabled):focus {
+			&:not(:disabled):is(:hover, :focus) {
 				background-color: colors.$db-current-color-bg-transparent-full-enabled;
 			}
 
