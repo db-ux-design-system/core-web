@@ -70,7 +70,7 @@
 		background-color: colors.$db-current-color-bg-transparent-pressed;
 	}
 
-	&:has(~ .db-sub-navigation:is(:hover, :focus) {
+	&:has(~ .db-sub-navigation:is(:hover, :focus)) {
 		background-color: colors.$db-current-color-bg-transparent-hover;
 	}
 }
