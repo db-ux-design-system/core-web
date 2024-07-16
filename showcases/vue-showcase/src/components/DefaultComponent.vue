@@ -30,10 +30,13 @@ interface DefaultExample extends DefaultComponentExample {
 		react?: string;
 		vue?: string;
 	};
+	children?: DefaultExample[];
 }
 interface DefaultVariants extends DefaultComponentVariants {
 	name: string;
+	children?: DefaultExample[];
 	examples: DefaultExample[];
+	slotCode?: any;
 }
 /* Workaround see: https://vuejs.org/guide/typescript/composition-api.html#typing-component-props */
 interface DefaultProps extends DefaultComponentProps {
@@ -111,7 +114,11 @@ const getElevation = (): "1" | "2" | "3" =>
 		class="variants-card"
 		:elevation-level="getElevation()"
 	>
-		<div class="variants-list">
+		<div
+			:role="variantRef.role"
+			:aria-label="variantRef.role ? variantRef.name : undefined"
+			class="variants-list"
+		>
 			<div
 				v-for="(example, exampleIndex) in variantRef.examples"
 				:style="example.style"
@@ -119,7 +126,7 @@ const getElevation = (): "1" | "2" | "3" =>
 			>
 				<slot
 					name="example"
-					v-bind:exampleProps="example.props"
+					v-bind:exampleProps="example.props ?? {}"
 					v-bind:exampleName="example.name"
 					v-bind:exampleIndex="exampleIndex"
 					v-bind:variantIndex="variantRefIndex"
@@ -141,7 +148,11 @@ const getElevation = (): "1" | "2" | "3" =>
 				{{ variant.name }}
 			</DBLink>
 			<DBCard class="variants-card" :elevation-level="getElevation()">
-				<div class="variants-list">
+				<div
+					:role="variant.role"
+					:aria-label="variant.role ? variant?.name : undefined"
+					class="variants-list"
+				>
 					<div
 						v-for="(example, exampleIndex) in variant.examples"
 						:style="example.style"

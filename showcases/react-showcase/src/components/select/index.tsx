@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { DBSelect } from '../../../../../output/react/src';
 import DefaultComponent from '../default-component';
 import defaultComponentVariants from '../../../../shared/select.json';
@@ -15,20 +16,26 @@ const getSelect = ({
 	value,
 	required,
 	variant
-}: DBSelectProps) => (
-	<DBSelect
-		label={label}
-		placeholder={children}
-		options={options}
-		disabled={disabled}
-		variant={variant}
-		icon={icon}
-		value={value}
-		message={message}
-		required={required}>
-		{children}
-	</DBSelect>
-);
+}: DBSelectProps) => {
+	const [mValue, setValue] = useState<string>(value);
+	return (
+		<DBSelect
+			label={label}
+			placeholder={children}
+			options={options}
+			disabled={disabled}
+			variant={variant}
+			icon={icon}
+			value={mValue}
+			onChange={(event) => {
+				setValue(event.target.value);
+			}}
+			message={message}
+			required={required}>
+			{children}
+		</DBSelect>
+	);
+};
 
 const SelectComponent = (props: BaseComponentProps) => {
 	return (

@@ -20,6 +20,14 @@ const changeFile = (input: string) => {
 				return line.replace(': ElementRef', ': ElementRef | undefined');
 			}
 
+			// We need to remove "nativeElement" in template part, because it only exists in ts
+			if (
+				line.includes('ref.nativeElement') &&
+				(line.includes('{{') || line.includes('}}'))
+			) {
+				return line.replace('.nativeElement', '');
+			}
+
 			if (line.includes('.nativeElement') && !line.includes('=')) {
 				return line.replace('.nativeElement', '?.nativeElement');
 			}

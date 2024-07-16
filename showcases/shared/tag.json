@@ -4,18 +4,15 @@
 		"examples": [
 			{
 				"name": "Functional",
-				"className": "db-density-functional",
-				"props": {}
+				"className": "db-density-functional"
 			},
 			{
 				"name": "(Default) Regular",
-				"className": "db-density-regular",
-				"props": {}
+				"className": "db-density-regular"
 			},
 			{
 				"name": "Expressive",
-				"className": "db-density-expressive",
-				"props": {}
+				"className": "db-density-expressive"
 			}
 		]
 	},
@@ -23,8 +20,7 @@
 		"name": "Emphasis",
 		"examples": [
 			{
-				"name": "(Default) Weak",
-				"props": {}
+				"name": "(Default) Weak"
 			},
 			{
 				"name": "Strong",
@@ -38,8 +34,7 @@
 		"name": "Semantic",
 		"examples": [
 			{
-				"name": "(Default) Adaptive",
-				"props": {}
+				"name": "(Default) Adaptive"
 			},
 			{
 				"name": "Neutral",
@@ -118,32 +113,31 @@
 		"name": "Behaviour",
 		"examples": [
 			{
-				"name": "(Default) Static",
-				"props": {}
+				"name": "(Default) Static"
 			},
 			{
 				"name": "Interactive Button",
 				"props": {
 					"component": "button"
 				},
-				"code": {
-					"angular": "<db-tag><button>Interactive Button</button></db-tag>",
-					"html": "<div class=\"db-tag\"><button>Interactive Button</button></div>",
-					"react": "<DBTag><button>Interactive Button</button></DBTag>",
-					"vue": "<DBTag><button>Interactive Button</button></DBTag>"
-				}
+				"children": [
+					{
+						"name": "button",
+            "content": "Interactive Button"
+					}
+				]
 			},
 			{
 				"name": "Interactive Link",
 				"props": {
 					"component": "link"
 				},
-				"code": {
-					"angular": "<db-tag><a href="#">Interactive Link</a></db-tag>",
-					"html": "<div class=\"db-tag\"><a href="#">Interactive Link</a></div>",
-					"react": "<DBTag><a href="#">Interactive Link</a></DBTag>",
-					"vue": "<DBTag><a href="#">Interactive Link</a></DBTag>"
-				}
+				"children": [
+					{
+						"name": "a",
+            "content": "Interactive Link"
+					}
+				]
 			},
 			{
 				"name": "Interactive Checkbox",
@@ -181,7 +175,7 @@
 						"react": "<DBTag><label><input type=\"radio\" name=\"radio01\" />Interactive Radio 2</label>/DBTag>",
 						"vue": "<DBTag><label><input type=\"radio\" name=\"radio01\" />Interactive Radio 2</label></DBTag>"
 					}
-				}
+				]
 			},
 			{
 				"name": "Removeable",
@@ -239,8 +233,7 @@
 		"name": "Content",
 		"examples": [
 			{
-				"name": "(Default) Text",
-				"props": {}
+				"name": "(Default) Text"
 			},
 			{
 				"name": "Icon",
@@ -261,8 +254,7 @@
 		"name": "Overflow",
 		"examples": [
 			{
-				"name": "(Default) No Overflow",
-				"props": {}
+				"name": "(Default) No Overflow"
 			},
 			{
 				"name": "With Overflow (max-width)",
@@ -297,12 +289,12 @@
 					"emphasis": "strong",
 					"icon": "user"
 				},
-				"code": {
-					"angular": "<db-tag emphasis=\"strong\"><a href="#">Interactive Link</a></db-tag>",
-					"html": "<div class=\"db-tag\" data-emphasis=\"strong\"><a href="#">Interactive Link</a></div>",
-					"react": "<DBTag emphasis=\"strong\"><a href="#">Interactive Link</a></DBTag>",
-					"vue": "<DBTag emphasis=\"strong\"><a href="#">Interactive Link</a></DBTag>"
-				}
+				"children": [
+					{
+						"name": "a",
+            "content": "Interactive Link"
+					}
+				]
 			},
 			{
 				"name": "Interactive Strong Checkbox with Icon",
@@ -324,7 +316,7 @@
 					"component": "radio",
 					"emphasis": "strong",
 					"icon": "user",
-					"identifier": "radio02"
+					"identifier": "radio03"
 				},
 				"code": {
 					"angular": "<db-tag emphasis=\"strong\"><label><input type=\"radio\" name=\"radio02\" />Interactive Radio 1</label></db-tag>",
@@ -346,7 +338,7 @@
 						"react": "<DBTag emphasis=\"strong\"><label><input type=\"radio\" name=\"radio02\" />Interactive Radio 2</label>/DBTag>",
 						"vue": "<DBTag emphasis=\"strong\"><label><input type=\"radio\" name=\"radio02\" />Interactive Radio 2</label></DBTag>"
 					}
-				}
+				]
 			}
 		]
 	}

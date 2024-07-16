@@ -1,8 +1,6 @@
 @use "sass:math";
 @use "a11y";
 @use "clearfix";
-@use "../colors";
-@use "../variables";
 
 @function px-to-rem($pxValue) {
 	@return #{$pxValue * 0.0625}rem;
@@ -10,43 +8,6 @@
 
 @function px-to-em($pxValue) {
 	@return #{$pxValue * 0.0625}em;
-}
-
-// Workaround until we get Relative Color Syntax
-// https://codepen.io/bramus/pen/VwMZOQK
-// https://bugs.chromium.org/p/chromium/issues/detail?id=1274133
-// https://github.com/WebKit/WebKit/commit/1890bfb551da24735804cb1a3d5f14b210f7c7b8
-@mixin divider($position: "top", $slot: "before") {
-	--db-divider-bg-color: #{colors.$db-current-color-border};
-	position: relative;
-
-	&[data-emphasis="strong"] {
-		--db-divider-bg-color: #{colors.$db-current-color-contrast-low-enabled};
-	}
-
-	&::#{$slot} {
-		content: "";
-		background-color: var(--db-divider-bg-color);
-
-		position: absolute;
-		@if $position == "top" {
-			block-size: variables.$db-border-height-3xs;
-			inset-block-start: 0;
-			inset-inline: 0;
-		} @else if $position == "bottom" {
-			block-size: variables.$db-border-height-3xs;
-			inset-block-end: 0;
-			inset-inline: 0;
-		} @else if $position == "left" {
-			inline-size: variables.$db-border-height-3xs;
-			inset-inline-start: 0;
-			inset-block: 0;
-		} @else if $position == "right" {
-			inline-size: variables.$db-border-height-3xs;
-			inset-inline-end: 0;
-			inset-block: 0;
-		}
-	}
 }
 
 @mixin cursor-pointer() {

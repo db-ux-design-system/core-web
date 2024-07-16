@@ -12,14 +12,14 @@
 	>
 		<div>
 			<db-infotext
-				[id]="exampleName"
+				[id]="getId(exampleName)"
 				size="small"
 				semantic="informational"
 				icon="none"
 			>
 				{{ exampleName }}
 			</db-infotext>
-			<db-navigation [labelledBy]="exampleName">
+			<db-navigation [labelledBy]="getId(exampleName)">
 				<db-navigation-item [active]="true">
 					<ng-container *dbNavigationContent>
 						Navi-Item 1

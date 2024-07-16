@@ -7,6 +7,8 @@ test.describe('DBTabs', () => {
 	// So we disabled "aria-allowed-role" for now
 	getDefaultScreenshotTest({
 		path: '04/tabs',
-		disableRules: ['aria-allowed-role']
+		// We need to change tabs anyway, we disable the rules for now
+		axeDisableRules: ['aria-allowed-role'],
+		aCheckerDisableRules: ['input_checkboxes_grouped', 'aria_role_valid']
 	});
 });

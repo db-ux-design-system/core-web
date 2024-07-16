@@ -9,44 +9,44 @@
 		let-exampleName="exampleName"
 	>
 		<db-tag
-			[semantic]="exampleProps.semantic"
-			[disabled]="exampleProps.disabled"
-			[icon]="exampleProps.icon"
-			[noText]="exampleProps.noText"
-			[behaviour]="exampleProps.behaviour"
-			[emphasis]="exampleProps.emphasis"
-			[overflow]="exampleProps.overflow"
-			[removeButton]="exampleProps.removeButton"
+			[semantic]="exampleProps?.semantic"
+			[disabled]="exampleProps?.disabled"
+			[icon]="exampleProps?.icon"
+			[noText]="exampleProps?.noText"
+			[behaviour]="exampleProps?.behaviour"
+			[emphasis]="exampleProps?.emphasis"
+			[overflow]="exampleProps?.overflow"
+			[removeButton]="exampleProps?.removeButton"
 			(onRemove)="showAlert(exampleName)"
 		>
-			@if (exampleProps.component === "button") {
+			@if (exampleProps?.component === "button") {
 				<button>{{ exampleName }}</button>
 			}
-			@if (exampleProps.component === "link") {
+			@if (exampleProps?.component === "link") {
 				<a href="#">
 					{{ exampleName }}
 				</a>
 			}
-			@if (exampleProps.component === "checkbox") {
+			@if (exampleProps?.component === "checkbox") {
 				<label>
-					<input type="checkbox" [checked]="exampleProps.checked" />
+					<input type="checkbox" [checked]="exampleProps?.checked" />
 					{{ exampleName }}
 				</label>
 			}
-			@if (exampleProps.component === "radio") {
+			@if (exampleProps?.component === "radio") {
 				<label>
 					<input
 						type="radio"
-						[checked]="exampleProps.checked"
-						[name]="exampleProps.identifier"
+						[checked]="exampleProps?.checked"
+						[name]="exampleProps?.identifier"
 					/>
 					{{ exampleName }}
 				</label>
 			}
-			@if (!exampleProps.component && !exampleProps.overflow) {
+			@if (!exampleProps?.component && !exampleProps?.overflow) {
 				{{ exampleName }}
 			}
-			@if (!exampleProps.component && exampleProps.overflow) {
+			@if (!exampleProps?.component && exampleProps?.overflow) {
 				<span>{{ exampleName }}</span>
 			}
 		</db-tag>
