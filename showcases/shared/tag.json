@@ -135,7 +135,10 @@
 				"children": [
 					{
 						"name": "a",
-						"content": "Interactive Link"
+						"content": "Interactive Link",
+						"props": {
+							"href": "#"
+						}
 					}
 				]
 			},
@@ -335,7 +338,10 @@
 				"children": [
 					{
 						"name": "a",
-						"content": "Interactive Link"
+						"content": "Interactive Link",
+						"props": {
+							"href": "#"
+						}
 					}
 				]
 			},
