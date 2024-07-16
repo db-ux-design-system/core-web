@@ -150,10 +150,16 @@
 				"children": [
 					{
 						"name": "label",
+						"props": {
+							"for": "checkbox01"
+						},
 						"children": [
 							{
 								"name": "checkbox",
-								"contents": "Interactive Checkbox"
+								"contents": "Interactive Checkbox",
+								"props": {
+									"id": "checkbox01"
+								}
 							}
 						]
 					}
@@ -168,12 +174,16 @@
 				"children": [
 					{
 						"name": "label",
+						"props": {
+							"for": "radio01"
+						},
 						"children": [
 							{
 								"name": "radio",
 								"contents": "Interactive Radio 1",
 								"props": {
-									"name": "radio01"
+									"name": "radio01",
+									"id": "radio01"
 								}
 							}
 						]
@@ -189,12 +199,16 @@
 				"children": [
 					{
 						"name": "label",
+						"props": {
+							"for": "radio02"
+						},
 						"children": [
 							{
 								"name": "radio",
 								"contents": "Interactive Radio 2",
 								"props": {
-									"name": "radio01"
+									"name": "radio02",
+									"id": "radio02"
 								}
 							}
 						]
@@ -220,10 +234,16 @@
 				"children": [
 					{
 						"name": "label",
+						"props": {
+							"for": "checkbox02"
+						},
 						"children": [
 							{
 								"name": "checkbox",
-								"contents": "Interactive Checkbox"
+								"contents": "Interactive Checkbox",
+								"props": {
+									"for": "checkbox02"
+								}
 							}
 						]
 					}
@@ -238,12 +258,16 @@
 				"children": [
 					{
 						"name": "label",
+						"props": {
+							"for": "checkbox03"
+						},
 						"children": [
 							{
 								"name": "checkbox",
 								"contents": "Interactive Checkbox",
 								"props": {
-									"checked": true
+									"checked": true,
+									"id": "checkbox03"
 								}
 							}
 						]
@@ -260,13 +284,17 @@
 				"children": [
 					{
 						"name": "label",
+						"props": {
+							"for": "checkbox04"
+						},
 						"children": [
 							{
 								"name": "checkbox",
 								"contents": "Interactive Checkbox",
 								"props": {
 									"checked": true,
-									"disabled": true
+									"disabled": true,
+									"id": "checkbox04"
 								}
 							}
 						]
@@ -355,10 +383,14 @@
 				"children": [
 					{
 						"name": "label",
+						"props": {
+							"for": "checkbox05"
+						},
 						"children": [
 							{
 								"name": "checkbox",
-								"contents": "Interactive Checkbox"
+								"contents": "Interactive Checkbox",
+								"id": "checkbox05"
 							}
 						]
 					}
@@ -375,12 +407,16 @@
 				"children": [
 					{
 						"name": "label",
+						"props": {
+							"for": "radio03"
+						},
 						"children": [
 							{
 								"name": "radio",
-								"contents": "Interactive Radio 1",
+								"contents": "Interactive Radio 3",
 								"props": {
-									"name": "radio02"
+									"name": "radio03",
+									"id": "radio03"
 								}
 							}
 						]
@@ -398,12 +434,16 @@
 				"children": [
 					{
 						"name": "label",
+						"props": {
+							"for": "radio04"
+						},
 						"children": [
 							{
 								"name": "radio",
-								"contents": "Interactive Radio 2",
+								"contents": "Interactive Radio 4",
 								"props": {
-									"name": "radio02"
+									"name": "radio04",
+									"id": "radio04"
 								}
 							}
 						]
