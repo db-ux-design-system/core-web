@@ -123,7 +123,7 @@
 				"children": [
 					{
 						"name": "button",
-            "content": "Interactive Button"
+						"content": "Interactive Button"
 					}
 				]
 			},
@@ -135,7 +135,7 @@
 				"children": [
 					{
 						"name": "a",
-            "content": "Interactive Link"
+						"content": "Interactive Link"
 					}
 				]
 			},
@@ -168,14 +168,14 @@
 				"name": "Interactive Radio 2",
 				"props": {
 					"component": "radio",
-					"identifier": "radio01",
-					"code": {
-						"angular": "<db-tag><label><input type=\"radio\" name=\"radio01\" />Interactive Radio 2</label></db-tag>",
-						"html": "<div class=\"db-tag\"><label><input type=\"radio\" name=\"radio01\" />Interactive Radio 2</label></div>",
-						"react": "<DBTag><label><input type=\"radio\" name=\"radio01\" />Interactive Radio 2</label>/DBTag>",
-						"vue": "<DBTag><label><input type=\"radio\" name=\"radio01\" />Interactive Radio 2</label></DBTag>"
-					}
-				]
+					"identifier": "radio01"
+				},
+				"code": {
+					"angular": "<db-tag><label><input type=\"radio\" name=\"radio01\" />Interactive Radio 2</label></db-tag>",
+					"html": "<div class=\"db-tag\"><label><input type=\"radio\" name=\"radio01\" />Interactive Radio 2</label></div>",
+					"react": "<DBTag><label><input type=\"radio\" name=\"radio01\" />Interactive Radio 2</label>/DBTag>",
+					"vue": "<DBTag><label><input type=\"radio\" name=\"radio01\" />Interactive Radio 2</label></DBTag>"
+				}
 			},
 			{
 				"name": "Removeable",
@@ -292,7 +292,7 @@
 				"children": [
 					{
 						"name": "a",
-            "content": "Interactive Link"
+						"content": "Interactive Link"
 					}
 				]
 			},
@@ -331,14 +331,14 @@
 					"component": "radio",
 					"emphasis": "strong",
 					"icon": "user",
-					"identifier": "radio02",
-					"code": {
-						"angular": "<db-tag emphasis=\"strong\"><label><input type=\"radio\" name=\"radio02\" />Interactive Radio 2</label></db-tag>",
-						"html": "<div class=\"db-tag\" data-emphasis=\"strong\"><label><input type=\"radio\" name=\"radio02\" />Interactive Radio 2</label></div>",
-						"react": "<DBTag emphasis=\"strong\"><label><input type=\"radio\" name=\"radio02\" />Interactive Radio 2</label>/DBTag>",
-						"vue": "<DBTag emphasis=\"strong\"><label><input type=\"radio\" name=\"radio02\" />Interactive Radio 2</label></DBTag>"
-					}
-				]
+					"identifier": "radio02"
+				},
+				"code": {
+					"angular": "<db-tag emphasis=\"strong\"><label><input type=\"radio\" name=\"radio02\" />Interactive Radio 2</label></db-tag>",
+					"html": "<div class=\"db-tag\" data-emphasis=\"strong\"><label><input type=\"radio\" name=\"radio02\" />Interactive Radio 2</label></div>",
+					"react": "<DBTag emphasis=\"strong\"><label><input type=\"radio\" name=\"radio02\" />Interactive Radio 2</label>/DBTag>",
+					"vue": "<DBTag emphasis=\"strong\"><label><input type=\"radio\" name=\"radio02\" />Interactive Radio 2</label></DBTag>"
+				}
 			}
 		]
 	}
