@@ -6,14 +6,17 @@
 	@include form-components.set-default-check-element(radio);
 
 	input {
-		border-color: currentColor;
+		border-color: currentcolor;
 		border-radius: variables.$db-border-radius-full;
-		transition: border-width variables.$db-transition-duration-fast
-			variables.$db-transition-timing-functional;
+
+		@media screen and (prefers-reduced-motion: no-preference) {
+			transition: border-width variables.$db-transition-duration-fast
+				variables.$db-transition-timing-functional;
+		}
 
 		&:checked {
 			// The radio element still has the default background for the dot on :hover when in checked state
-			&:not(:disabled):hover {
+			&:not(:disabled):is(:hover, :focus) {
 				background-color: colors.$db-current-color-bg-transparent-full-enabled;
 			}
 

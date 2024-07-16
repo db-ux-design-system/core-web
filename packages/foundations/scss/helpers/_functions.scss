@@ -27,7 +27,8 @@
 }
 
 @mixin hover() {
-	&:hover:not(:disabled):not([aria-disabled="true"]) {
+	/* stylelint-disable-next-line a11y/selector-pseudo-class-focus */
+	&:hover:not(:disabled, [aria-disabled="true"]) {
 		@include cursor-pointer() {
 			@content;
 		}
@@ -35,7 +36,7 @@
 }
 
 @mixin active() {
-	&:active:not(:disabled):not([aria-disabled="true"]) {
+	&:active:not(:disabled, [aria-disabled="true"]) {
 		@include cursor-pointer() {
 			@content;
 		}

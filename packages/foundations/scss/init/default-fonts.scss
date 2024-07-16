@@ -32,6 +32,7 @@ $headlines: (
 
 @each $headline, $size in $headlines {
 	#{string.unquote($headline)} {
+		/* stylelint-disable custom-property-pattern */
 		line-height: var(
 			--db-type-headline-line-height-#{string.unquote($size)}
 		);
@@ -47,6 +48,7 @@ $headlines: (
 				--db-base-headline-icon-weight-#{string.unquote($size)}
 			);
 		}
+		/* stylelint-enable custom-property-pattern */
 	}
 }
 
