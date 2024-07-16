@@ -123,6 +123,7 @@
 				"children": [
 					{
 						"name": "button",
+						"native": true,
 						"content": "Interactive Button"
 					}
 				]
@@ -135,6 +136,7 @@
 				"children": [
 					{
 						"name": "a",
+						"native": true,
 						"content": "Interactive Link",
 						"props": {
 							"href": "#"
@@ -150,15 +152,18 @@
 				"children": [
 					{
 						"name": "label",
+						"native": true,
+						"content": "Interactive Checkbox",
 						"props": {
 							"for": "checkbox01"
 						},
 						"children": [
 							{
-								"name": "checkbox",
-								"contents": "Interactive Checkbox",
+								"name": "input",
+								"native": true,
 								"props": {
-									"id": "checkbox01"
+									"id": "checkbox01",
+									"type": "checkbox"
 								}
 							}
 						]
@@ -174,16 +179,19 @@
 				"children": [
 					{
 						"name": "label",
+						"native": true,
+						"content": "Interactive Radio 1",
 						"props": {
 							"for": "radio01"
 						},
 						"children": [
 							{
-								"name": "radio",
-								"contents": "Interactive Radio 1",
+								"name": "input",
+								"native": true,
 								"props": {
 									"name": "radio01",
-									"id": "radio01"
+									"id": "radio01",
+									"type": "radio"
 								}
 							}
 						]
@@ -199,16 +207,19 @@
 				"children": [
 					{
 						"name": "label",
+						"native": true,
+						"content": "Interactive Radio 2",
 						"props": {
 							"for": "radio02"
 						},
 						"children": [
 							{
-								"name": "radio",
-								"contents": "Interactive Radio 2",
+								"name": "input",
+								"native": true,
 								"props": {
 									"name": "radio02",
-									"id": "radio02"
+									"id": "radio02",
+									"type": "radio"
 								}
 							}
 						]
@@ -234,15 +245,18 @@
 				"children": [
 					{
 						"name": "label",
+						"native": true,
+						"content": "Interactive Checkbox",
 						"props": {
 							"for": "checkbox02"
 						},
 						"children": [
 							{
-								"name": "checkbox",
-								"contents": "Interactive Checkbox",
+								"name": "input",
+								"native": true,
 								"props": {
-									"for": "checkbox02"
+									"for": "checkbox02",
+									"type": "checkbox"
 								}
 							}
 						]
@@ -258,16 +272,19 @@
 				"children": [
 					{
 						"name": "label",
+						"native": true,
+						"content": "Interactive Checkbox",
 						"props": {
 							"for": "checkbox03"
 						},
 						"children": [
 							{
-								"name": "checkbox",
-								"contents": "Interactive Checkbox",
+								"name": "input",
+								"native": true,
 								"props": {
 									"checked": true,
-									"id": "checkbox03"
+									"id": "checkbox03",
+									"type": "checkbox"
 								}
 							}
 						]
@@ -284,17 +301,20 @@
 				"children": [
 					{
 						"name": "label",
+						"native": true,
+						"content": "Interactive Checkbox",
 						"props": {
 							"for": "checkbox04"
 						},
 						"children": [
 							{
-								"name": "checkbox",
-								"contents": "Interactive Checkbox",
+								"name": "input",
+								"native": true,
 								"props": {
 									"checked": true,
 									"disabled": true,
-									"id": "checkbox04"
+									"id": "checkbox04",
+									"type": "checkbox"
 								}
 							}
 						]
@@ -352,7 +372,8 @@
 				"children": [
 					{
 						"name": "button",
-						"contents": "Interactive Button"
+						"native": true,
+						"content": "Interactive Button"
 					}
 				]
 			},
@@ -366,6 +387,7 @@
 				"children": [
 					{
 						"name": "a",
+						"native": true,
 						"content": "Interactive Link",
 						"props": {
 							"href": "#"
@@ -383,14 +405,17 @@
 				"children": [
 					{
 						"name": "label",
+						"native": true,
+						"content": "Interactive Checkbox",
 						"props": {
 							"for": "checkbox05"
 						},
 						"children": [
 							{
-								"name": "checkbox",
-								"contents": "Interactive Checkbox",
-								"id": "checkbox05"
+								"name": "input",
+								"native": true,
+								"id": "checkbox05",
+								"type": "checkbox"
 							}
 						]
 					}
@@ -407,16 +432,19 @@
 				"children": [
 					{
 						"name": "label",
+						"native": true,
+						"content": "Interactive Radio 3",
 						"props": {
 							"for": "radio03"
 						},
 						"children": [
 							{
-								"name": "radio",
-								"contents": "Interactive Radio 3",
+								"name": "input",
+								"native": true,
 								"props": {
 									"name": "radio03",
-									"id": "radio03"
+									"id": "radio03",
+									"type": "radio"
 								}
 							}
 						]
@@ -434,16 +462,19 @@
 				"children": [
 					{
 						"name": "label",
+						"native": true,
+						"content": "Interactive Radio 4",
 						"props": {
 							"for": "radio04"
 						},
 						"children": [
 							{
-								"name": "radio",
-								"contents": "Interactive Radio 4",
+								"name": "input",
+								"native": true,
 								"props": {
 									"name": "radio04",
-									"id": "radio04"
+									"id": "radio04",
+									"type": "radio"
 								}
 							}
 						]
