@@ -127,6 +127,14 @@ $checked-active-transition-size: calc(
 			// Overwrite default border-radius
 			border-radius: variables.$db-border-radius-full;
 		}
+
+		&[data-aid-icon]:not(:checked)::after {
+			--db-icon-after: attr(data-aid-icon);
+		}
+
+		&[data-aid-icon-after]:checked::after {
+			--db-icon-after: attr(data-aid-icon-after);
+		}
 	}
 
 	&[data-variant="hidden"] {
@@ -203,18 +211,6 @@ $checked-active-transition-size: calc(
 					block-size: $switch-active-thumb-size;
 				}
 			}
-		}
-	}
-
-	// If we set data-aid-icon or data-aid-icon-after it should overwrite the default icons. Therefore I put it at the end of the file
-	/* stylelint-disable-next-line no-duplicate-selectors */
-	> input {
-		&[data-aid-icon]:not(:checked)::after {
-			content: attr(data-aid-icon);
-		}
-
-		&[data-aid-icon-after]:checked::after {
-			content: attr(data-aid-icon-after);
 		}
 	}
 }
