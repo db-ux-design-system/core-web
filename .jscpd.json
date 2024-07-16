@@ -29,6 +29,7 @@
 		"**/generated/**",
 		"showcases/shared/*.json",
 		"showcases/patternhub/out/**",
+		"showcases/**/results/**",
 		"packages/components/src/components/**/index.html",
 		"packages/components/src/components/notification/notification.lite.tsx",
 		"showcases/react-showcase/src/components/notification/index.tsx",

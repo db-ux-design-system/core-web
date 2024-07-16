@@ -14,6 +14,8 @@ $db-breakpoint-xl: helpers.px-to-em($db-screen-size-xl);
 
 @mixin screen($size: "sm", $width: "min") {
 	$screen: $db-screen-size-sm;
+
+	/* stylelint-disable at-rule-empty-line-before */
 	@if ($size == "xs") {
 		$screen: $db-screen-size-xs;
 	} @else if ($size == "md") {
@@ -23,20 +25,24 @@ $db-breakpoint-xl: helpers.px-to-em($db-screen-size-xl);
 	} @else if ($size == "xl") {
 		$screen: $db-screen-size-xl;
 	}
+	/* stylelint-enable at-rule-empty-line-before */
 
 	@if ($width == "min") {
-		@media screen and (min-width: helpers.px-to-em($screen)) {
+		/* stylelint-disable-next-line media-query-no-invalid */
+		@media screen and (min-width: #{helpers.px-to-em($screen)}) {
 			&:not([data-force-mobile]),
 			&[data-force-mobile="false"] {
 				@content;
 			}
 		}
+		/* stylelint-disable-next-line at-rule-empty-line-before */
 	} @else {
 		&[data-force-mobile="true"] {
 			@content;
 		}
 
-		@media screen and (max-width: helpers.px-to-em($screen - 1)) {
+		/* stylelint-disable-next-line media-query-no-invalid */
+		@media screen and (max-width: #{helpers.px-to-em($screen - 1)}) {
 			@content;
 		}
 	}

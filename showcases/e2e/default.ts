@@ -1,16 +1,17 @@
 import { expect, type Page, test } from '@playwright/test';
 import AxeBuilder from '@axe-core/playwright';
-// @ts-expect-error - required for playwright
-import { COLORS } from './fixtures/variants.ts';
-// @ts-expect-error - required for playwright
-import { setScrollViewport } from './fixtures/viewport.ts';
+import { close, getCompliance } from 'accessibility-checker';
+import { type ICheckerError } from 'accessibility-checker/lib/api/IChecker';
+import { COLORS } from './fixtures/variants';
+import { setScrollViewport } from './fixtures/viewport';
 
 const density = 'regular';
 
 export type DefaultTestType = {
 	path: string;
 	fixedHeight?: number;
-	disableRules?: string[];
+	axeDisableRules?: string[];
+	aCheckerDisableRules?: string[];
 	skipA11y?: boolean;
 	preScreenShot?: (page: Page) => Promise<void>;
 	preA11y?: (page: Page) => Promise<void>;
@@ -41,13 +42,17 @@ const gotoPage = async (
 	await setScrollViewport(page, fixedHeight)();
 };
 
+const isCheckerError = (object: any): object is ICheckerError =>
+	'details' in object;
+
 export const getDefaultScreenshotTest = ({
 	path,
 	fixedHeight,
-	disableRules,
+	axeDisableRules,
 	skipA11y,
 	preScreenShot,
-	preA11y
+	preA11y,
+	aCheckerDisableRules
 }: DefaultTestType) => {
 	test(`should match screenshot`, async ({ page }, testInfo) => {
 		const isWebkit =
@@ -122,10 +127,39 @@ export const getDefaultScreenshotTest = ({
 				page
 			})
 				.include('main')
-				.disableRules(disableRules ?? [])
+				.disableRules(axeDisableRules ?? [])
 				.analyze();
 
 			expect(accessibilityScanResults.violations).toEqual([]);
 		});
 	}
+
+	test('test with accessibility checker', async ({ page }, { project }) => {
+		await gotoPage(page, path, 'neutral-bg-lvl-1', fixedHeight);
+		let failures: any[] = [];
+		try {
+			if (project.name === 'firefox') {
+				// Checking complete DOM in firefox takes very long for some tests
+				test.setTimeout(120_000); // 2min
+			}
+
+			const { report } = await getCompliance(page, path);
+
+			if (isCheckerError(report)) {
+				failures = report.details;
+			} else {
+				failures = report.results
+					.filter((res) => res.level === 'violation')
+					.filter(
+						(res) => !aCheckerDisableRules?.includes(res.ruleId)
+					);
+			}
+		} catch (error) {
+			console.error(error);
+		} finally {
+			await close();
+		}
+
+		expect(failures).toEqual([]);
+	});
 };

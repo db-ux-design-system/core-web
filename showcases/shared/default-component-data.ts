@@ -22,6 +22,7 @@ export type DefaultComponentVariants = {
 	children?: DefaultComponentExample[];
 	examples: DefaultComponentExample[];
 	color?: string;
+	role?: string;
 };
 
 export type DefaultComponentProps = {

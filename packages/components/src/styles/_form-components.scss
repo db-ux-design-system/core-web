@@ -36,8 +36,11 @@ $check-border-size: min(#{variables.$db-border-height-2xs}, 2px);
 	@include icons.set-icon("chevron_down", "after");
 
 	&::after {
-		transition: $dropdown-icon-transition;
 		pointer-events: none;
+
+		@media screen and (prefers-reduced-motion: no-preference) {
+			transition: $dropdown-icon-transition;
+		}
 	}
 }
 
@@ -53,7 +56,7 @@ $check-border-size: min(#{variables.$db-border-height-2xs}, 2px);
 
 @mixin placeholder-content() {
 	&::placeholder,
-	& + [id$="-placeholder"] {
+	+ [id$="-placeholder"] {
 		@content;
 	}
 }
@@ -62,6 +65,7 @@ $check-border-size: min(#{variables.$db-border-height-2xs}, 2px);
 	&[data-variant="floating"] {
 		label {
 			@extend %db-overwrite-font-size-md;
+
 			opacity: component.$default-disabled;
 			position: absolute;
 			z-index: 2;
@@ -84,6 +88,7 @@ $check-border-size: min(#{variables.$db-border-height-2xs}, 2px);
 
 		[id$="-placeholder"] {
 			@extend %db-overwrite-font-size-sm;
+
 			inset-block-start: calc(
 				50% - 0.5em + #{variables.$db-spacing-fixed-3xs}
 			);
@@ -91,6 +96,7 @@ $check-border-size: min(#{variables.$db-border-height-2xs}, 2px);
 
 		#{$selector} {
 			@extend %db-overwrite-font-size-sm;
+
 			@include placeholder-content() {
 				transition: none;
 				opacity: 0;
@@ -98,6 +104,7 @@ $check-border-size: min(#{variables.$db-border-height-2xs}, 2px);
 
 			@if ($selector == textarea) {
 				padding-block-start: $floating-label-size;
+				/* stylelint-disable-next-line at-rule-empty-line-before */
 			} @else {
 				// font-size label which is 2xs + smallest spacing
 				padding-block-start: calc(
@@ -112,14 +119,17 @@ $check-border-size: min(#{variables.$db-border-height-2xs}, 2px);
 		&:has(> select option:checked:not([hidden])) {
 			label {
 				@extend %db-overwrite-font-size-2xs;
+
 				inset-block-start: variables.$db-spacing-fixed-2xs;
 				opacity: 1;
 			}
 
 			#{$selector} {
 				@include placeholder-content() {
-					transition: opacity
-						variables.$db-transition-straight-emotional;
+					@media screen and (prefers-reduced-motion: no-preference) {
+						transition: opacity #{variables.$db-transition-straight-emotional};
+					}
+
 					opacity: component.$default-disabled;
 				}
 			}
@@ -133,6 +143,7 @@ $check-border-size: min(#{variables.$db-border-height-2xs}, 2px);
 			&[data-semantic="successful"] {
 				display: flex;
 			}
+			/* stylelint-disable-next-line at-rule-empty-line-before */
 		} @else {
 			&[data-semantic="critical"] {
 				display: flex;
@@ -161,28 +172,25 @@ $check-border-size: min(#{variables.$db-border-height-2xs}, 2px);
 	}
 
 	@if ($selector != textarea) {
-		& {
-			@extend %db-#{$variant}-variables;
-		}
+		@extend %db-#{$variant}-variables;
+		/* stylelint-disable-next-line at-rule-empty-line-before */
 	} @else {
 		// this is a workaround for the textarea scrollbar
-		& {
-			--db-textarea-read-only: var(--db-#{$variant}-bg-lvl-1-enabled);
-			--db-current-color-bg-transparent-full-enabled: var(
-				--db-#{$variant}-bg-transparent-full-enabled
-			);
-			--db-current-color-bg-transparent-semi-enabled: var(
-				--db-#{$variant}-bg-transparent-semi-enabled
-			);
-			--db-current-color-bg-transparent-hover: var(
-				--db-#{$variant}-bg-transparent-hover
-			);
-			--db-current-color-bg-transparent-pressed: var(
-				--db-#{$variant}-bg-transparent-pressed
-			);
-			--db-current-color-enabled: var(--db-#{$variant}-on-bg-enabled);
-			--db-current-color-border: var(--db-#{$variant}-border);
-		}
+		--db-textarea-read-only: var(--db-#{$variant}-bg-lvl-1-enabled);
+		--db-current-color-bg-transparent-full-enabled: var(
+			--db-#{$variant}-bg-transparent-full-enabled
+		);
+		--db-current-color-bg-transparent-semi-enabled: var(
+			--db-#{$variant}-bg-transparent-semi-enabled
+		);
+		--db-current-color-bg-transparent-hover: var(
+			--db-#{$variant}-bg-transparent-hover
+		);
+		--db-current-color-bg-transparent-pressed: var(
+			--db-#{$variant}-bg-transparent-pressed
+		);
+		--db-current-color-enabled: var(--db-#{$variant}-on-bg-enabled);
+		--db-current-color-border: var(--db-#{$variant}-border);
 	}
 }
 
@@ -196,9 +204,11 @@ $input-valid-types: "color", "date", "datetime-local", "email", "file", "hidden"
 	@if ($selector == input) {
 		// https://developer.mozilla.org/en-US/docs/Learn/Forms/Form_validation#using_built-in_form_validation
 		$validations: ":required, [minlength], [maxlength], [pattern]";
+
 		@each $type in $input-valid-types {
 			$validations: $validations + ", [type=#{$type}]";
 		}
+		/* stylelint-disable-next-line at-rule-empty-line-before */
 	} @else if($selector == textarea) {
 		$validations: ":required, [minlength], [maxlength]";
 	}
@@ -214,6 +224,7 @@ $input-valid-types: "color", "date", "datetime-local", "email", "file", "hidden"
 	}
 
 	$user: "";
+
 	@if ($selector == check) {
 		$user: "user-";
 	}
@@ -228,6 +239,7 @@ $input-valid-types: "color", "date", "datetime-local", "email", "file", "hidden"
 			) {
 			@content;
 		}
+		/* stylelint-disable-next-line at-rule-empty-line-before */
 	} @else {
 		#{get-validations($selector,$key)} {
 			@content;
@@ -254,6 +266,7 @@ $input-valid-types: "color", "date", "datetime-local", "email", "file", "hidden"
 
 @mixin set-default-form-component($selector) {
 	--db-form-has-before: 0;
+
 	@extend %db-overwrite-font-size-sm;
 	@extend %helper-message;
 
@@ -264,9 +277,11 @@ $input-valid-types: "color", "date", "datetime-local", "email", "file", "hidden"
 	position: relative;
 	display: flex;
 	flex-direction: column;
+
 	@include get-validity($selector) {
 		@include get-validity-color($selector, "valid");
 	}
+
 	@include get-validity($selector, "invalid") {
 		@include get-validity-color($selector, "invalid");
 	}
@@ -278,7 +293,6 @@ $input-valid-types: "color", "date", "datetime-local", "email", "file", "hidden"
 
 		background-color: colors.$db-current-color-bg-transparent-semi-enabled;
 		caret-color: colors.$db-current-color-on-bg-enabled;
-
 		appearance: none;
 		max-inline-size: 100%;
 		inline-size: 100%;
@@ -310,20 +324,24 @@ $input-valid-types: "color", "date", "datetime-local", "email", "file", "hidden"
 	// label
 	label {
 		@extend %db-overwrite-font-size-xs;
+
 		padding-block-end: variables.$db-spacing-fixed-xs;
 		pointer-events: none;
 		cursor: text;
-
-		transition: font-size variables.$db-transition-straight-emotional;
 		max-inline-size: 25ch;
 		text-overflow: ellipsis;
 		white-space: nowrap;
 		overflow: hidden;
+
+		@media screen and (prefers-reduced-motion: no-preference) {
+			transition: font-size variables.$db-transition-straight-emotional;
+		}
 	}
 
 	&[data-variant="hidden"] {
 		label {
 			@extend %a11y-visually-hidden;
+
 			padding: 0;
 		}
 	}
@@ -390,6 +408,7 @@ $input-valid-types: "color", "date", "datetime-local", "email", "file", "hidden"
 		--db-current-color-bg-transparent-pressed: var(
 			--db-#{$variant}-bg-transparent-pressed
 		);
+
 		border-color: colors.$db-current-color-on-bg-enabled;
 
 		&:not(:checked),
@@ -415,11 +434,13 @@ $input-valid-types: "color", "date", "datetime-local", "email", "file", "hidden"
 
 @mixin set-default-check-element($selector) {
 	@extend %db-overwrite-font-size-md;
+
 	@include set-required-label(input);
 
 	@include get-validity($selector) {
 		@include get-validity-color-check("valid");
 	}
+
 	@include get-validity($selector, "invalid") {
 		@include get-validity-color-check("invalid");
 	}
@@ -433,7 +454,6 @@ $input-valid-types: "color", "date", "datetime-local", "email", "file", "hidden"
 		display: flex;
 		align-items: center;
 		position: relative;
-
 		gap: variables.$db-spacing-fixed-xs;
 
 		&:not(:has(input:disabled)) {
@@ -444,16 +464,11 @@ $input-valid-types: "color", "date", "datetime-local", "email", "file", "hidden"
 
 	input {
 		background-color: colors.$db-current-color-bg-transparent-full-enabled;
-
-		align-content: center;
-
+		place-content: center center;
 		appearance: none;
 		aspect-ratio: 1;
-
 		border: #{$check-border-size} solid var(--db-check-element-border-color, currentColor);
-
 		block-size: $font-size-height;
-		justify-content: center;
 
 		// TODO: probably extract this to an overwrite or external file
 		// workarounds for power apps
@@ -483,10 +498,5 @@ $input-valid-types: "color", "date", "datetime-local", "email", "file", "hidden"
 		input {
 			margin-inline-end: 0;
 		}
-	}
-
-	// Adopted by https://www.heise.de/developer/artikel/a11y-Reduced-Motion-4356171.html
-	@media (prefers-reduced-motion: reduce) {
-		transition-duration: 0.01s !important;
 	}
 }

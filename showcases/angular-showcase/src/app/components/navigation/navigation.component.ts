@@ -22,4 +22,7 @@ import {
 })
 export class NavigationComponent {
 	variants = defaultComponentVariants;
+
+	getId = (name: string): string =>
+		`${name.replaceAll(/\W/g, '_').toLowerCase()}`;
 }

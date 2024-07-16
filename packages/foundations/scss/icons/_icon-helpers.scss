@@ -30,12 +30,15 @@ $default-icon-font-size: var(--db-icon-font-size, #{$default-icon-size-rem});
 	@if ($icon-font-size<20) {
 		@return 16;
 	}
+
 	@if ($icon-font-size<24) {
 		@return 20;
 	}
+
 	@if ($icon-font-size<32) {
 		@return 24;
 	}
+
 	@return 32;
 }
 
@@ -51,6 +54,7 @@ $default-icon-font-size: var(--db-icon-font-size, #{$default-icon-size-rem});
 	@if $position == "before" {
 		--db-icon-font-family: "db-ux-filled";
 	}
+
 	@if $position == "after" {
 		--db-icon-font-family: "db-ux-filled";
 	}
@@ -64,11 +68,15 @@ $default-icon-font-size: var(--db-icon-font-size, #{$default-icon-size-rem});
 
 			@if $position == "before" {
 				--db-icon: "#{$icon}";
+
 				margin-inline-end: $default-icon-margin-end;
 			}
+
 			@if $position == "after" {
 				--db-icon-after: "#{$icon}";
+
 				@include icon-content($default-icon-content-after);
+
 				margin-inline-start: $default-icon-margin-start;
 			}
 		}
@@ -83,6 +91,7 @@ $default-icon-font-size: var(--db-icon-font-size, #{$default-icon-size-rem});
 		&::before {
 			--db-icon-margin-end: 0;
 		}
+		/* stylelint-disable-next-line at-rule-empty-line-before */
 	} @else {
 		&::after {
 			--db-icon-margin-start: 0;
@@ -101,10 +110,13 @@ $default-icon-font-size: var(--db-icon-font-size, #{$default-icon-size-rem});
 		&::before {
 			@if ($variant == "critical") {
 				--db-icon: "exclamation_mark_circle";
+				/* stylelint-disable-next-line at-rule-empty-line-before */
 			} @else if ($variant == "informational" or $variant == "neutral") {
 				--db-icon: "information_circle";
+				/* stylelint-disable-next-line at-rule-empty-line-before */
 			} @else if ($variant == "warning") {
 				--db-icon: "warning_triangle";
+				/* stylelint-disable-next-line at-rule-empty-line-before */
 			} @else if ($variant == "successful") {
 				--db-icon: "check_circle";
 			}
@@ -117,30 +129,26 @@ $default-icon-font-size: var(--db-icon-font-size, #{$default-icon-size-rem});
 	// Hiding icon from screenreaders
 	-webkit-alt: "";
 	alt: "";
-
 	color: var(--db-icon-color, inherit);
-
 	display: inline-block;
+
 	/*** icon - placeholder ***/
 	// * use !important to prevent issues with browser extensions that change fonts
 	font-family: var(--db-icon-font-family, "db-ux-default") !important;
-
 	font-size: $default-icon-font-size;
 
 	// * Better Font Rendering ===========
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
-
 	font-style: normal;
 	font-variant: normal;
 	font-weight: var(--db-icon-font-weight, normal);
 	line-height: 1;
 	speak: none; // Hiding icon from screenreaders, fallback by older notation
+	/* stylelint-disable-next-line declaration-property-value-no-unknown */
 	speak: never; // Hiding icon from screenreaders
 	text-transform: none;
-
 	vertical-align: middle;
-
 	block-size: $default-icon-font-size;
 	inline-size: $default-icon-font-size;
 
@@ -148,6 +156,7 @@ $default-icon-font-size: var(--db-icon-font-size, #{$default-icon-size-rem});
 	@media aural {
 		content: none;
 	}
+
 	@media speech {
 		content: none;
 	}

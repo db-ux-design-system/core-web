@@ -6,6 +6,9 @@ import {
 	DBNavigation,
 	DBNavigationItem
 } from "../../../../../output/vue/src";
+
+const getId = (name?: string): string =>
+	`${name?.replaceAll(/\W/g, "_").toLowerCase()}`;
 </script>
 
 <template>
@@ -15,14 +18,14 @@ import {
 		>
 			<div>
 				<DBInfotext
-					:id="exampleName"
+					:id="getId(exampleName)"
 					size="small"
 					semantic="informational"
 					icon="none"
 				>
 					{{ exampleName }}
 				</DBInfotext>
-				<DBNavigation :labelledBy="exampleName">
+				<DBNavigation :labelledBy="getId(exampleName)">
 					<DBNavigationItem :active="true">
 						Navi-Item 1
 						<template v-slot:sub-navigation>

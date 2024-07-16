@@ -3,5 +3,7 @@ import { test } from '@playwright/test';
 import { getDefaultScreenshotTest } from '../default.ts';
 
 test.describe('DBTag', () => {
-	getDefaultScreenshotTest({ path: '04/tag' });
+	getDefaultScreenshotTest({
+		path: '04/tag'
+	});
 });
