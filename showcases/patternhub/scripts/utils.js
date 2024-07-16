@@ -113,7 +113,7 @@ export const getCodeByFramework = (
 		tag = `db-${componentName}`;
 	}
 
-	if (['a', 'img'].includes(componentName)) {
+	if (['a', 'img', 'label'].includes(componentName)) {
 		tag = componentName;
 	}
 
