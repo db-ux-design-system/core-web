@@ -46,7 +46,7 @@ export default function DBInput(props: DBInputProps) {
 			label: DEFAULT_LABEL,
 			placeholder: ' '
 		},
-		handleInput: (event: InputEvent) => {
+		handleInput: (event: InputEvent<HTMLInputElement>) => {
 			if (props.onInput) {
 				props.onInput(event);
 			}
@@ -55,7 +55,7 @@ export default function DBInput(props: DBInputProps) {
 				props.input(event);
 			}
 		},
-		handleChange: (event: ChangeEvent) => {
+		handleChange: (event: ChangeEvent<HTMLInputElement>) => {
 			if (props.onChange) {
 				props.onChange(event);
 			}
@@ -84,7 +84,7 @@ export default function DBInput(props: DBInputProps) {
 				state._descByIds = '';
 			}
 		},
-		handleBlur: (event: InteractionEvent) => {
+		handleBlur: (event: InteractionEvent<HTMLInputElement>) => {
 			if (props.onBlur) {
 				props.onBlur(event);
 			}
@@ -93,7 +93,7 @@ export default function DBInput(props: DBInputProps) {
 				props.blur(event);
 			}
 		},
-		handleFocus: (event: InteractionEvent) => {
+		handleFocus: (event: InteractionEvent<HTMLInputElement>) => {
 			if (props.onFocus) {
 				props.onFocus(event);
 			}
