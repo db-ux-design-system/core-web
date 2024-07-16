@@ -107,8 +107,8 @@ export default function DBInput(props: DBInputProps) {
 		): ValueLabelType[] => {
 			return Array.from(
 				(isArrayOfStrings(_list)
-					? _list.map((_value: string) => ({
-							value: _value,
+					? _list.map((val: string) => ({
+							value: val,
 							label: undefined
 						}))
 					: _list) || []
