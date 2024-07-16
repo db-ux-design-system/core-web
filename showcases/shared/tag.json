@@ -111,6 +111,7 @@
 	},
 	{
 		"name": "Behaviour",
+		"role": "group",
 		"examples": [
 			{
 				"name": "(Default) Static"
@@ -236,6 +237,7 @@
 	},
 	{
 		"name": "State",
+		"role": "group",
 		"examples": [
 			{
 				"name": "(Default) Unchecked",
@@ -360,6 +362,7 @@
 	},
 	{
 		"name": "Example",
+		"role": "group",
 		"examples": [
 			{
 				"name": "Interactive Strong Button with Icon",

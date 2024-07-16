@@ -185,6 +185,7 @@
 		block-size: inherit;
 	}
 
+	&:has(:disabled),
 	&[data-disabled="true"] {
 		opacity: component.$default-disabled;
 		pointer-events: none;
