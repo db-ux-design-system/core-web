@@ -7,7 +7,7 @@ import {
 	useRef,
 	useStore
 } from '@builder.io/mitosis';
-import { cls, uuid } from '../../utils';
+import { cls, isArrayOfStrings, uuid } from '../../utils';
 import { DBInputProps, DBInputState } from './model';
 import {
 	DEFAULT_DATALIST_ID_SUFFIX,
@@ -22,7 +22,7 @@ import {
 	InputEvent,
 	ChangeEvent,
 	InteractionEvent,
-	KeyValueType
+	ValueLabelType
 } from '../../shared/model';
 import { DBInfotext } from '../infotext';
 import { handleFrameworkEvent } from '../../utils/form-components';
@@ -101,12 +101,23 @@ export default function DBInput(props: DBInputProps) {
 			if (props.focus) {
 				props.focus(event);
 			}
+		},
+		getDataList: (
+			_list?: string[] | ValueLabelType[]
+		): ValueLabelType[] => {
+			return Array.from(
+				(isArrayOfStrings(_list)
+					? _list.map((val: string) => ({
+							value: val,
+							label: undefined
+						}))
+					: _list) || []
+			);
 		}
 	});
 
 	onMount(() => {
 		state._id = props.id ?? state._id;
-		state._dataListId = props.dataListId ?? state._dataListId;
 	});
 
 	onUpdate(() => {
@@ -118,6 +129,8 @@ export default function DBInput(props: DBInputProps) {
 			state._messageId = messageId;
 			state._validMessageId = validMessageId;
 			state._invalidMessageId = invalidMessageId;
+			state._dataListId =
+				props.dataListId ?? state._id + DEFAULT_DATALIST_ID_SUFFIX;
 
 			if (props.message) {
 				state._descByIds = messageId;
@@ -177,14 +190,16 @@ export default function DBInput(props: DBInputProps) {
 			/>
 			<Show when={props.dataList}>
 				<datalist id={state._dataListId}>
-					<For each={props.dataList}>
-						{(option: KeyValueType) => (
+					<For each={state.getDataList(props.dataList)}>
+						{(option: ValueLabelType) => (
 							<option
 								key={
-									state._dataListId + '-option-' + option.key
+									state._dataListId +
+									'-option-' +
+									option.value
 								}
-								value={option.key}>
-								{option.value}
+								value={option.value}>
+								{option.label}
 							</option>
 						)}
 					</For>
