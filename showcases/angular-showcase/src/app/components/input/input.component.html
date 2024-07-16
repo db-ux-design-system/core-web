@@ -22,6 +22,11 @@
 			[value]="exampleProps?.value"
 			[icon]="exampleProps?.icon"
 			[iconAfter]="exampleProps?.iconAfter"
+			[dataList]="
+				exampleProps?.dataList
+					? getDataList(exampleProps?.variant)
+					: undefined
+			"
 		></db-input>
 	</ng-template>
 </app-default-component>

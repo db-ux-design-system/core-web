@@ -13,7 +13,7 @@ import {
 	IconProps,
 	InputEventProps,
 	InputEventState,
-	KeyValueType
+	ValueLabelType
 } from '../../shared/model';
 
 export const InputTypeList = [
@@ -37,7 +37,7 @@ export const InputTypeList = [
 export type InputTypeType = (typeof InputTypeList)[number];
 
 export type DBInputDefaultProps = {
-	dataList?: KeyValueType[];
+	dataList?: string[] | ValueLabelType[];
 	dataListId?: string;
 	/**
 	 * Maximum value
@@ -72,6 +72,7 @@ export type DBInputProps = DBInputDefaultProps &
 
 export type DBInputDefaultState = {
 	_dataListId?: string;
+	getDataList?: (_list?: string[] | ValueLabelType[]) => ValueLabelType[];
 };
 
 export type DBInputState = DBInputDefaultState &
