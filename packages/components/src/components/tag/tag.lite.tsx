@@ -37,16 +37,14 @@ export default function DBTag(props: DBTagProps) {
 	});
 
 	onUpdate(() => {
-		if (state.initialized) {
-			if (ref && props.disabled !== undefined) {
-				const button: HTMLButtonElement = ref?.querySelector(
-					'button:not(.db-tab-remove-button)'
-				);
-				const input: HTMLInputElement = ref?.querySelector('input');
-				for (const element of [button, input]) {
-					if (element) {
-						element.disabled = props.disabled;
-					}
+		if (state.initialized && ref && props.disabled !== undefined) {
+			const button: HTMLButtonElement = ref?.querySelector(
+				'button:not(.db-tab-remove-button)'
+			);
+			const input: HTMLInputElement = ref?.querySelector('input');
+			for (const element of [button, input]) {
+				if (element) {
+					element.disabled = props.disabled;
 				}
 			}
 		}
