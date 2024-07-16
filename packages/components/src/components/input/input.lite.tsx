@@ -172,18 +172,10 @@ export default function DBInput(props: DBInputProps) {
 				form={props.form}
 				pattern={props.pattern}
 				autocomplete={props.autocomplete}
-				onInput={(event: ChangeEvent<HTMLInputElement>) =>
-					state.handleInput(event)
-				}
-				onChange={(event: ChangeEvent<HTMLInputElement>) =>
-					state.handleChange(event)
-				}
-				onBlur={(event: InteractionEvent<HTMLInputElement>) =>
-					state.handleBlur(event)
-				}
-				onFocus={(event: InteractionEvent<HTMLInputElement>) =>
-					state.handleFocus(event)
-				}
+				onInput={(event: ChangeEvent) => state.handleInput(event)}
+				onChange={(event: ChangeEvent) => state.handleChange(event)}
+				onBlur={(event: InteractionEvent) => state.handleBlur(event)}
+				onFocus={(event: InteractionEvent) => state.handleFocus(event)}
 				list={props.dataList && state._dataListId}
 				aria-describedby={state._descByIds}
 			/>

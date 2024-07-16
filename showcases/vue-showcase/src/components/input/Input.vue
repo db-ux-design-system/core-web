@@ -40,8 +40,8 @@ const getDataList = (
 				:icon="exampleProps?.icon"
 				:iconAfter="exampleProps?.iconAfter"
 				:dataList="
-					exampleProps.dataList
-						? getDataList(exampleProps.variant)
+					exampleProps?.dataList
+						? getDataList(exampleProps?.variant)
 						: undefined
 				"
 			></DBInput>
