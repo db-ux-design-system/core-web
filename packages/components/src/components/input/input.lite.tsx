@@ -118,7 +118,6 @@ export default function DBInput(props: DBInputProps) {
 
 	onMount(() => {
 		state._id = props.id ?? state._id;
-		state._dataListId = props.dataListId ?? state._dataListId;
 	});
 
 	onUpdate(() => {
@@ -130,6 +129,8 @@ export default function DBInput(props: DBInputProps) {
 			state._messageId = messageId;
 			state._validMessageId = validMessageId;
 			state._invalidMessageId = invalidMessageId;
+			state._dataListId =
+				props.dataListId ?? this._id + DEFAULT_DATALIST_ID_SUFFIX;
 
 			if (props.message) {
 				state._descByIds = messageId;
