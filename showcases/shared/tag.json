@@ -167,7 +167,7 @@
 				"name": "Interactive Radio 2",
 				"props": {
 					"component": "radio",
-					"identifier": "radio01"
+					"identifier": "radio02"
 				},
 				"children": [
 					{
@@ -318,7 +318,7 @@
 					"component": "radio",
 					"emphasis": "strong",
 					"icon": "user",
-					"identifier": "radio02"
+					"identifier": "radio03"
 				},
 				"children": [
 					{
@@ -335,7 +335,7 @@
 					"component": "radio",
 					"emphasis": "strong",
 					"icon": "user",
-					"identifier": "radio02"
+					"identifier": "radio04"
 				},
 				"children": [
 					{

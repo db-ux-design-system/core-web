@@ -33,7 +33,7 @@ export default function DBTextarea(props: DBTextareaProps) {
 		_validMessageId: this._id + DEFAULT_VALID_MESSAGE_ID_SUFFIX,
 		_invalidMessageId: this._id + DEFAULT_INVALID_MESSAGE_ID_SUFFIX,
 		// Workaround for Vue output: TS for Vue would think that it could be a function, and by this we clarify that it's a string
-		_descByIds: 'none',
+		_descByIds: '',
 		_value: '',
 		defaultValues: {
 			label: DEFAULT_LABEL,
@@ -72,7 +72,7 @@ export default function DBTextarea(props: DBTextareaProps) {
 			} else if (props.message) {
 				state._descByIds = state._messageId;
 			} else {
-				state._descByIds = 'none';
+				state._descByIds = '';
 			}
 		},
 		handleBlur: (event: InteractionEvent<HTMLTextAreaElement>) => {
