@@ -139,10 +139,10 @@
 					"component": "link"
 				},
 				"code": {
-					"angular": "<db-tag><a>Interactive Link</a></db-tag>",
-					"html": "<div class=\"db-tag\"><a>Interactive Link</a></div>",
-					"react": "<DBTag><a>Interactive Link</a></DBTag>",
-					"vue": "<DBTag><a>Interactive Link</a></DBTag>"
+					"angular": "<db-tag><a href="#">Interactive Link</a></db-tag>",
+					"html": "<div class=\"db-tag\"><a href="#">Interactive Link</a></div>",
+					"react": "<DBTag><a href="#">Interactive Link</a></DBTag>",
+					"vue": "<DBTag><a href="#">Interactive Link</a></DBTag>"
 				}
 			},
 			{
@@ -298,10 +298,10 @@
 					"icon": "user"
 				},
 				"code": {
-					"angular": "<db-tag emphasis=\"strong\"><a>Interactive Link</a></db-tag>",
-					"html": "<div class=\"db-tag\" data-emphasis=\"strong\"><a>Interactive Link</a></div>",
-					"react": "<DBTag emphasis=\"strong\"><a>Interactive Link</a></DBTag>",
-					"vue": "<DBTag emphasis=\"strong\"><a>Interactive Link</a></DBTag>"
+					"angular": "<db-tag emphasis=\"strong\"><a href="#">Interactive Link</a></db-tag>",
+					"html": "<div class=\"db-tag\" data-emphasis=\"strong\"><a href="#">Interactive Link</a></div>",
+					"react": "<DBTag emphasis=\"strong\"><a href="#">Interactive Link</a></DBTag>",
+					"vue": "<DBTag emphasis=\"strong\"><a href="#">Interactive Link</a></DBTag>"
 				}
 			},
 			{
