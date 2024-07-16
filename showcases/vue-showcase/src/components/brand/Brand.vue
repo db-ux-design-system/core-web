@@ -10,9 +10,9 @@ import imageUrl from "/assets/images/placeholder.jpg";
 		<template
 			#example="{ exampleIndex, variantIndex, exampleName, exampleProps }"
 		>
-			<DBBrand :hideLogo="exampleProps.hideLogo">
+			<DBBrand :hideLogo="exampleProps?.hideLogo">
 				<img
-					v-if="exampleProps.customLogo"
+					v-if="exampleProps?.customLogo"
 					:src="imageUrl"
 					alt="logo"
 				/>

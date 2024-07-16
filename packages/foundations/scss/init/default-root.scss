@@ -1,6 +1,6 @@
 /* Use this file if you want the default color and density in your project */
-@use "../colors";
-@use "../density";
+@forward "../colors";
+@forward "../density";
 
 // Setup default styles for
 :root {

@@ -7,7 +7,7 @@ import { DBNavigation } from '../../../../output/react/src';
 import NavItem from './nav-item';
 
 const Navigation = () => (
-	<DBNavigation>
+	<DBNavigation aria-label="main navigation">
 		{getSortedNavigationItems(NAVIGATION_ITEMS).map(
 			(navItem: NavigationItem) => (
 				<NavItem

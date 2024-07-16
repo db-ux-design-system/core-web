@@ -10,15 +10,15 @@ import { DBCheckbox } from "../../../../../output/vue/src";
 			#example="{ exampleIndex, variantIndex, exampleName, exampleProps }"
 		>
 			<DBCheckbox
-				:label="exampleProps.label"
-				:variant="exampleProps.variant"
-				:options="exampleProps.options"
-				:checked="exampleProps.checked"
-				:disabled="exampleProps.disabled"
-				:value="exampleProps.value"
-				:required="exampleProps.required"
-				:indeterminate="exampleProps.indeterminate"
-				:size="exampleProps.size"
+				:label="exampleProps?.label"
+				:variant="exampleProps?.variant"
+				:options="exampleProps?.options"
+				:checked="exampleProps?.checked"
+				:disabled="exampleProps?.disabled"
+				:value="exampleProps?.value"
+				:required="exampleProps?.required"
+				:indeterminate="exampleProps?.indeterminate"
+				:size="exampleProps?.size"
 				>{{ exampleName }}</DBCheckbox
 			>
 		</template>

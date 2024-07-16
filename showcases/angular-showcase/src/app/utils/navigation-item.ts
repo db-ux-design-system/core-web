@@ -14,7 +14,6 @@ import { SelectComponent } from '../components/select/select.component';
 import { TagComponent } from '../components/tag/tag.component';
 import { InputComponent } from '../components/input/input.component';
 import { ButtonComponent } from '../components/button/button.component';
-import { FormComponent } from '../components/form/form.component';
 import { LinkComponent } from '../components/link/link.component';
 import { NotificationComponent } from '../components/notification/notification.component';
 import { RadioComponent } from '../components/radio/radio.component';
@@ -27,6 +26,7 @@ import { DrawerComponent } from '../components/drawer/drawer.component';
 import { IconComponent } from '../components/icon/icon.component';
 import { BrandComponent } from '../components/brand/brand.component';
 import { HeaderComponent } from '../components/header/header.component';
+import { HomeComponent } from '../components/home/home.component';
 
 export type NavItem = {
 	path: string;
@@ -167,7 +167,7 @@ export const NAVIGATION_ITEMS: NavItem[] = [
 			}
 		])
 	},
-	{ path: '', label: 'Home', component: FormComponent }
+	{ path: '', label: 'Home', component: HomeComponent }
 ];
 
 const pushRoute = (routes: Routes, item: NavItem) => {

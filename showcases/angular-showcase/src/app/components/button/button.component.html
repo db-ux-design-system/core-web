@@ -11,12 +11,12 @@
 		let-variantIndex="variantIndex"
 	>
 		<db-button
-			[variant]="exampleProps.variant"
-			[size]="exampleProps.size"
-			[icon]="exampleProps.icon"
-			[noText]="exampleProps.noText"
-			[disabled]="exampleProps.disabled"
-			[width]="exampleProps.width"
+			[variant]="exampleProps?.variant"
+			[size]="exampleProps?.size"
+			[icon]="exampleProps?.icon"
+			[noText]="exampleProps?.noText"
+			[disabled]="exampleProps?.disabled"
+			[width]="exampleProps?.width"
 			(click)="showAlert(exampleName)"
 		>
 			{{ exampleName }}

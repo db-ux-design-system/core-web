@@ -30,7 +30,9 @@ export type DBSwitchProps = DBSwitchDefaultProps &
 	IconProps &
 	IconAfterProps;
 
-export interface DBSwitchDefaultState {}
+export interface DBSwitchDefaultState {
+	_checked: boolean;
+}
 
 export type DBSwitchState = DBSwitchDefaultState &
 	GlobalState &

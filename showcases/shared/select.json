@@ -185,7 +185,8 @@
 				"props": {
 					"options": [
 						{
-							"value": "Filled"
+							"value": "Filled",
+							"selected": true
 						},
 						{
 							"value": "Option 2"
@@ -244,7 +245,8 @@
 				"props": {
 					"options": [
 						{
-							"value": "Filled"
+							"value": "Filled",
+							"selected": true
 						},
 						{
 							"value": "Option 2"

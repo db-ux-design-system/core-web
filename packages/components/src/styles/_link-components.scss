@@ -10,13 +10,13 @@
 }
 
 %db-link-default-color {
-	color: colors.$db-current-color-enabled;
+	color: colors.$db-current-color-on-bg-enabled;
 
 	@include helpers.hover {
 		color: color-mix(
 			in srgb,
 			transparent 25%,
-			colors.$db-current-color-enabled
+			#{colors.$db-current-color-on-bg-enabled}
 		);
 	}
 
@@ -24,7 +24,7 @@
 		color: color-mix(
 			in srgb,
 			transparent 50%,
-			colors.$db-current-color-enabled
+			#{colors.$db-current-color-on-bg-enabled}
 		);
 	}
 }
@@ -33,6 +33,7 @@
 	@extend %default-fg-transition;
 	@extend %db-link-height;
 	@extend %db-link-default-color;
+
 	inline-size: fit-content;
 
 	// Link underline

@@ -10,7 +10,6 @@ import { DBTextareaProps, DBTextareaState } from './model';
 import { DBInfotext } from '../infotext';
 import { cls, uuid } from '../../utils';
 import {
-	DEFAULT_ID,
 	DEFAULT_INVALID_MESSAGE,
 	DEFAULT_INVALID_MESSAGE_ID_SUFFIX,
 	DEFAULT_LABEL,
@@ -29,11 +28,13 @@ export default function DBTextarea(props: DBTextareaProps) {
 	const ref = useRef<HTMLTextAreaElement>(null);
 	// jscpd:ignore-start
 	const state = useStore<DBTextareaState>({
-		_id: DEFAULT_ID,
-		_messageId: DEFAULT_ID + DEFAULT_MESSAGE_ID_SUFFIX,
-		_validMessageId: DEFAULT_ID + DEFAULT_VALID_MESSAGE_ID_SUFFIX,
-		_invalidMessageId: DEFAULT_ID + DEFAULT_INVALID_MESSAGE_ID_SUFFIX,
+		_id: 'textarea-' + uuid(),
+		_messageId: this._id + DEFAULT_MESSAGE_ID_SUFFIX,
+		_validMessageId: this._id + DEFAULT_VALID_MESSAGE_ID_SUFFIX,
+		_invalidMessageId: this._id + DEFAULT_INVALID_MESSAGE_ID_SUFFIX,
+		// Workaround for Vue output: TS for Vue would think that it could be a function, and by this we clarify that it's a string
 		_descByIds: '',
+		_value: '',
 		defaultValues: {
 			label: DEFAULT_LABEL,
 			placeholder: ' ',
@@ -58,6 +59,21 @@ export default function DBTextarea(props: DBTextareaProps) {
 			}
 
 			handleFrameworkEvent(this, event);
+
+			/* For a11y reasons we need to map the correct message with the textarea */
+			if (!ref?.validity.valid || props.customValidity === 'invalid') {
+				state._descByIds = state._invalidMessageId;
+			} else if (
+				props.customValidity === 'valid' ||
+				(ref?.validity.valid &&
+					(props.required || props.minLength || props.maxLength))
+			) {
+				state._descByIds = state._validMessageId;
+			} else if (props.message) {
+				state._descByIds = state._messageId;
+			} else {
+				state._descByIds = '';
+			}
 		},
 		handleBlur: (event: InteractionEvent<HTMLTextAreaElement>) => {
 			if (props.onBlur) {
@@ -76,44 +92,32 @@ export default function DBTextarea(props: DBTextareaProps) {
 			if (props.focus) {
 				props.focus(event);
 			}
-		},
-		getValidMessage: () => {
-			return props.validMessage || DEFAULT_VALID_MESSAGE;
-		},
-		getInvalidMessage: () => {
-			return (
-				props.invalidMessage ||
-				ref?.validationMessage ||
-				DEFAULT_INVALID_MESSAGE
-			);
 		}
 	});
 
 	onMount(() => {
-		state._id = props.id || 'textarea-' + uuid();
+		state._id = props.id || state._id;
 	});
 
 	onUpdate(() => {
 		if (state._id) {
-			state._messageId = state._id + DEFAULT_MESSAGE_ID_SUFFIX;
-			state._validMessageId = state._id + DEFAULT_VALID_MESSAGE_ID_SUFFIX;
-			state._invalidMessageId =
+			const messageId = state._id + DEFAULT_MESSAGE_ID_SUFFIX;
+			const validMessageId = state._id + DEFAULT_VALID_MESSAGE_ID_SUFFIX;
+			const invalidMessageId =
 				state._id + DEFAULT_INVALID_MESSAGE_ID_SUFFIX;
+			state._messageId = messageId;
+			state._validMessageId = validMessageId;
+			state._invalidMessageId = invalidMessageId;
+
+			if (props.message) {
+				state._descByIds = messageId;
+			}
 		}
 	}, [state._id]);
 
 	onUpdate(() => {
-		const descByIds = [state._validMessageId, state._invalidMessageId];
-		if (props.message) {
-			descByIds.push(state._messageId);
-		}
-		state._descByIds = descByIds.join(' ');
-	}, [
-		props.message,
-		state._messageId,
-		state._validMessageId,
-		state._invalidMessageId
-	]);
+		state._value = props.value;
+	}, [props.value]);
 
 	return (
 		<div
@@ -151,8 +155,8 @@ export default function DBTextarea(props: DBTextareaProps) {
 				onFocus={(event: InteractionEvent<HTMLTextAreaElement>) =>
 					state.handleFocus(event)
 				}
-				value={props.value}
-				aria-describedby={props.message && state._messageId}
+				value={props.value ?? state._value}
+				aria-describedby={state._descByIds}
 				placeholder={
 					props.placeholder ?? state.defaultValues.placeholder
 				}
@@ -173,14 +177,16 @@ export default function DBTextarea(props: DBTextareaProps) {
 				id={state._validMessageId}
 				size="small"
 				semantic="successful">
-				{state.getValidMessage()}
+				{props.validMessage ?? DEFAULT_VALID_MESSAGE}
 			</DBInfotext>
 
 			<DBInfotext
 				id={state._invalidMessageId}
 				size="small"
 				semantic="critical">
-				{state.getInvalidMessage()}
+				{props.invalidMessage ??
+					ref?.validationMessage ??
+					DEFAULT_INVALID_MESSAGE}
 			</DBInfotext>
 		</div>
 	);

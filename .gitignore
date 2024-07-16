@@ -31,6 +31,8 @@ packages/components/src/**/*.css.map
 /output/**/playwright*
 /output/**/test-results
 
+/showcases/**/results
+
 /build-showcases/
 /build-outputs/
 !/build-outputs/package.json

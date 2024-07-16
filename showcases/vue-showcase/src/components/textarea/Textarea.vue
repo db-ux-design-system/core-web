@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import DefaultComponent from "../DefaultComponent.vue";
 import defaultComponentVariants from "../../../../shared/textarea.json";
-import { DBInput, DBTextarea } from "../../../../../output/vue/src";
+import { DBTextarea } from "../../../../../output/vue/src";
 </script>
 
 <template>
@@ -10,16 +10,16 @@ import { DBInput, DBTextarea } from "../../../../../output/vue/src";
 			#example="{ exampleIndex, variantIndex, exampleName, exampleProps }"
 		>
 			<DBTextarea
-				:cols="exampleProps.cols"
-				:disabled="exampleProps.disabled"
-				:message="exampleProps.message"
-				:required="exampleProps.required"
-				:readOnly="exampleProps.readOnly"
-				:label="exampleProps.label"
-				:placeholder="exampleProps.placeholder || exampleName"
-				:rows="exampleProps.rows"
-				:value="exampleProps.value"
-				:variant="exampleProps.variant"
+				:cols="exampleProps?.cols"
+				:disabled="exampleProps?.disabled"
+				:message="exampleProps?.message"
+				:required="exampleProps?.required"
+				:readOnly="exampleProps?.readOnly"
+				:label="exampleProps?.label"
+				:placeholder="exampleProps?.placeholder || exampleName"
+				:rows="exampleProps?.rows"
+				:value="exampleProps?.value"
+				:variant="exampleProps?.variant"
 			></DBTextarea>
 		</template>
 	</DefaultComponent>

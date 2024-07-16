@@ -9,6 +9,7 @@ $scrollbar-width: helpers.px-to-rem(8);
 %scrollbar {
 	&::-webkit-scrollbar {
 		@extend %default-transition;
+
 		z-index: 3;
 		inline-size: $scrollbar-width;
 		block-size: $scrollbar-width;
@@ -16,7 +17,8 @@ $scrollbar-width: helpers.px-to-rem(8);
 		border-start-end-radius: variables.$db-border-radius-xs;
 	}
 
-	&:hover {
+	&:hover,
+	&:focus {
 		&::-webkit-scrollbar-track,
 		&::-webkit-scrollbar-button:single-button {
 			background-color: colors.$db-current-color-bg-transparent-hover;
@@ -46,7 +48,8 @@ $scrollbar-width: helpers.px-to-rem(8);
 		background-position: center;
 		block-size: form-components.$floating-label-size;
 
-		&:hover {
+		&:hover,
+		&:focus {
 			background-color: colors.$db-current-color-bg-transparent-hover;
 		}
 
@@ -54,6 +57,7 @@ $scrollbar-width: helpers.px-to-rem(8);
 			background-color: colors.$db-current-color-bg-transparent-pressed;
 		}
 	}
+
 	/* Up */
 	&::-webkit-scrollbar-button:single-button:vertical:decrement {
 		background-image: var(--db-textarea-scrollbar-button-decrement);
@@ -85,6 +89,7 @@ $scrollbar-width: helpers.px-to-rem(8);
 
 	&::-webkit-scrollbar-corner {
 		@extend %default-transition;
+
 		border-end-end-radius: variables.$db-border-radius-xs;
 	}
 }

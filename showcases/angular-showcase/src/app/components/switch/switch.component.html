@@ -11,18 +11,18 @@
 		let-variantIndex="variantIndex"
 	>
 		<db-switch
-			[visualAid]="exampleProps.visualAid"
-			[checked]="exampleProps.checked"
-			[disabled]="exampleProps.disabled"
-			[variant]="exampleProps.variant"
-			[size]="exampleProps.size"
-			[emphasis]="exampleProps.emphasis"
-			[icon]="exampleProps.icon"
-			[iconAfter]="exampleProps.iconAfter"
+			[visualAid]="exampleProps?.visualAid"
+			[checked]="exampleProps?.checked"
+			[disabled]="exampleProps?.disabled"
+			[variant]="exampleProps?.variant"
+			[size]="exampleProps?.size"
+			[emphasis]="exampleProps?.emphasis"
+			[icon]="exampleProps?.icon"
+			[iconAfter]="exampleProps?.iconAfter"
 		>
 			{{ exampleName }}
 		</db-switch>
-		@if (exampleProps.variant === "hidden") {
+		@if (exampleProps?.variant === "hidden") {
 			<DBInfotext semantic="informational" icon="none">
 				{{ exampleName }}
 			</DBInfotext>
