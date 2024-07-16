@@ -106,14 +106,12 @@ export default function DBInput(props: DBInputProps) {
 			_list?: string[] | ValueLabelType[]
 		): ValueLabelType[] => {
 			return Array.from(
-				!_list
-					? []
-					: isArrayOfStrings(_list)
-						? _list.map((_value: string) => ({
-								value: _value,
-								label: undefined
-							}))
-						: _list
+              (isArrayOfStrings(_list)
+                ? _list.map((_value: string) => ({
+                    value: _value,
+                    label: undefined,
+                  }))
+                : _list) || []
 			);
 		}
 	});
