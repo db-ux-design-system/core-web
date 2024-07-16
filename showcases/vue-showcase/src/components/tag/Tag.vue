@@ -21,51 +21,51 @@ const showAlert = (exampleName?: string) => {
 			#example="{ exampleIndex, variantIndex, exampleName, exampleProps }"
 		>
 			<DBTag
-				:semantic="exampleProps.semantic"
-				:disabled="exampleProps.disabled"
-				:icon="exampleProps.icon"
-				:noText="exampleProps.noText"
-				:behaviour="exampleProps.behaviour"
-				:emphasis="exampleProps.emphasis"
-				:overflow="exampleProps.overflow"
-				:removeButton="exampleProps.removeButton"
+				:semantic="exampleProps?.semantic"
+				:disabled="exampleProps?.disabled"
+				:icon="exampleProps?.icon"
+				:noText="exampleProps?.noText"
+				:behaviour="exampleProps?.behaviour"
+				:emphasis="exampleProps?.emphasis"
+				:overflow="exampleProps?.overflow"
+				:removeButton="exampleProps?.removeButton"
 				@remove="showAlert(exampleName)"
 			>
-				<DBButton v-if="exampleProps.component === 'button'">{{
+				<DBButton v-if="exampleProps?.component === 'button'">{{
 					exampleName
 				}}</DBButton>
-				<DBLink v-if="exampleProps.component === 'link'" href="#">
+				<DBLink v-if="exampleProps?.component === 'link'" href="#">
 					{{ exampleName }}
 				</DBLink>
 				<DBCheckbox
-					v-if="exampleProps.component === 'checkbox'"
-					:checked="exampleProps.checked"
+					v-if="exampleProps?.component === 'checkbox'"
+					:checked="exampleProps?.checked"
 					>{{ exampleName }}</DBCheckbox
 				>
 				<DBRadio
-					v-if="exampleProps.component === 'radio'"
-					:name="exampleProps.identifier"
-					:checked="exampleProps.checked"
+					v-if="exampleProps?.component === 'radio'"
+					:name="exampleProps?.identifier"
+					:checked="exampleProps?.checked"
 					>{{ exampleName }}</DBRadio
 				>
 				<template
 					v-if="
-						exampleProps.component !== 'button' &&
-						exampleProps.component !== 'link' &&
-						exampleProps.component !== 'checkbox' &&
-						exampleProps.component !== 'radio' &&
-						!exampleProps.overflow
+						exampleProps?.component !== 'button' &&
+						exampleProps?.component !== 'link' &&
+						exampleProps?.component !== 'checkbox' &&
+						exampleProps?.component !== 'radio' &&
+						!exampleProps?.overflow
 					"
 				>
 					{{ exampleName }}
 				</template>
 				<template
 					v-if="
-						exampleProps.component !== 'button' &&
-						exampleProps.component !== 'link' &&
-						exampleProps.component !== 'checkbox' &&
-						exampleProps.component !== 'radio' &&
-						exampleProps.overflow
+						exampleProps?.component !== 'button' &&
+						exampleProps?.component !== 'link' &&
+						exampleProps?.component !== 'checkbox' &&
+						exampleProps?.component !== 'radio' &&
+						exampleProps?.overflow
 					"
 				>
 					<span>{{ exampleName }}</span>

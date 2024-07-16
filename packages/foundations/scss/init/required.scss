@@ -5,6 +5,7 @@
 @use "../helpers";
 @use "../fonts";
 @use "../screen-sizes";
+
 @forward "../normalize";
 
 :root {
@@ -12,6 +13,7 @@
 	--db-breakpoint-sm: #{screen-sizes.$db-breakpoint-sm};
 	--db-breakpoint-md: #{screen-sizes.$db-breakpoint-md};
 	--db-breakpoint-lg: #{screen-sizes.$db-breakpoint-lg};
+
 	@extend %db-font-size-md;
 }
 
@@ -22,11 +24,13 @@ body {
 	padding: 0;
 }
 
+/* stylelint-disable selector-max-id */
 body,
 #root,
 #app {
 	block-size: inherit;
 }
+/* stylelint-enable selector-max-id */
 
 body,
 	// Power Apps related
@@ -101,6 +105,7 @@ iframe {
 // List style / https://marketingportal.extranet.deutschebahn.com/marketingportal/Marke-und-Design/Basiselemente/Typografie#Aufzaehlungszeichen-9693110
 :where(ul) {
 	padding-inline-start: variables.$db-spacing-fixed-md;
+	/* stylelint-disable-next-line declaration-property-value-no-unknown, no-irregular-whitespace */
 	list-style-type: "\2022"+ " ";
 
 	li::marker {
@@ -115,7 +120,6 @@ nav,
 	ol,
 	ul {
 		list-style: none;
-
 		margin: 0;
 		padding: 0;
 	}
@@ -123,14 +127,14 @@ nav,
 
 // Block
 fieldset {
-	border: none;
+	border: 0;
 }
 
 // details/summary box-sizing / https://kittygiraudel.com/2021/08/23/shadow-roots-and-inheritance/
 details {
-	& > *,
-	& > ::before,
-	& > ::after {
+	> *,
+	> ::before,
+	> ::after {
 		box-sizing: var(--db-box-sizing, border-box);
 	}
 }

@@ -6,6 +6,7 @@
 
 .db-infotext {
 	--db-icon-margin-end: #{variables.$db-spacing-fixed-2xs};
+
 	@extend %db-overwrite-font-size-sm;
 
 	display: flex;
@@ -24,19 +25,18 @@
 		color: colors.$db-current-color-contrast-high-enabled;
 
 		&::before {
-			--db-current-icon-color: #{colors.$db-current-color-contrast-low-enabled};
+			--db-icon-color: #{colors.$db-current-color-contrast-low-enabled};
 		}
 	}
 
 	@each $name, $colors in colors.$variant-colors {
 		&[data-semantic="#{$name}"] {
 			@include icons.variant-icons($name);
+
 			color: var(--db-#{$name}-contrast-high-enabled);
 
 			&::before {
-				--db-current-icon-color: var(
-					--db-#{$name}-contrast-low-enabled
-				);
+				--db-icon-color: var(--db-#{$name}-contrast-low-enabled);
 			}
 		}
 	}

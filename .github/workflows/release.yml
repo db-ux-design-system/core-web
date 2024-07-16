@@ -29,6 +29,18 @@ jobs:
     uses: ./.github/workflows/01-build-outputs.yml
     needs: [build-packages]
 
+  test-components:
+    uses: ./.github/workflows/02-e2e.yml
+    needs: [build-packages, get-playwright-version]
+    with:
+      version: ${{ needs.get-playwright-version.outputs.version }}
+
+  test-foundations:
+    uses: ./.github/workflows/02-e2e-foundations.yml
+    needs: [build-packages, get-playwright-version]
+    with:
+      version: ${{ needs.get-playwright-version.outputs.version }}
+
   build-showcase-angular:
     uses: ./.github/workflows/01-build-showcases.yml
     needs: [build-packages]
@@ -67,7 +79,10 @@ jobs:
 
   build-showcase-patternhub:
     uses: ./.github/workflows/01-build-patternhub.yml
-    needs: [build-packages]
+    needs: [build-packages, get-publish-version]
+    with:
+      release: ${{ needs.get-publish-version.outputs.release }}
+      preRelease: ${{ needs.get-publish-version.outputs.preRelease }}
 
   test-showcase-angular:
     uses: ./.github/workflows/02-e2e-showcases.yml

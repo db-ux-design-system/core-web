@@ -177,7 +177,18 @@
 				"props": {
 					"img": true,
 					"behaviour": "permanent"
-				}
+				},
+				"children": [
+					{
+						"name": "img",
+						"slot": "image",
+						"content": "",
+						"props": {
+							"src": "/assets/images/placeholder.jpg",
+							"alt": ""
+						}
+					}
+				]
 			},
 			{
 				"name": "Text & Headline",
@@ -193,7 +204,17 @@
 				"props": {
 					"link": true,
 					"behaviour": "permanent"
-				}
+				},
+				"children": [
+					{
+						"name": "link",
+						"slot": "link",
+						"content": "Textlink",
+						"props": {
+							"href": "#"
+						}
+					}
+				]
 			},
 			{
 				"name": "Text & Textlink Inline",
@@ -202,7 +223,17 @@
 					"link": true,
 					"linkVariant": "inline",
 					"behaviour": "permanent"
-				}
+				},
+				"children": [
+					{
+						"name": "link",
+						"slot": "link",
+						"content": "Textlink",
+						"props": {
+							"href": "#"
+						}
+					}
+				]
 			},
 			{
 				"name": "Text & Headline & Textlink Inline & Cloaseable",
@@ -211,7 +242,17 @@
 					"headline": "Headline",
 					"link": true,
 					"linkVariant": "inline"
-				}
+				},
+				"children": [
+					{
+						"name": "link",
+						"slot": "link",
+						"content": "Textlink",
+						"props": {
+							"href": "#"
+						}
+					}
+				]
 			},
 			{
 				"name": "Text & Icon & Headline & Textlink Inline & Cloaseable",
@@ -221,7 +262,17 @@
 					"headline": "Headline",
 					"link": true,
 					"linkVariant": "inline"
-				}
+				},
+				"children": [
+					{
+						"name": "link",
+						"slot": "link",
+						"content": "Textlink",
+						"props": {
+							"href": "#"
+						}
+					}
+				]
 			}
 		]
 	},
@@ -252,7 +303,18 @@
 					"img": true,
 					"variant": "standalone",
 					"behaviour": "permanent"
-				}
+				},
+				"children": [
+					{
+						"name": "img",
+						"slot": "image",
+						"content": "",
+						"props": {
+							"src": "/assets/images/placeholder.jpg",
+							"alt": ""
+						}
+					}
+				]
 			},
 			{
 				"name": "Text & Headline",
@@ -270,7 +332,17 @@
 					"link": true,
 					"variant": "standalone",
 					"behaviour": "permanent"
-				}
+				},
+				"children": [
+					{
+						"name": "link",
+						"slot": "link",
+						"content": "Textlink",
+						"props": {
+							"href": "#"
+						}
+					}
+				]
 			},
 			{
 				"name": "Text & Textlink Inline",
@@ -280,7 +352,17 @@
 					"linkVariant": "inline",
 					"variant": "standalone",
 					"behaviour": "permanent"
-				}
+				},
+				"children": [
+					{
+						"name": "link",
+						"slot": "link",
+						"content": "Textlink",
+						"props": {
+							"href": "#"
+						}
+					}
+				]
 			},
 			{
 				"name": "Text & Headline & Textlink Inline & Cloaseable",
@@ -290,7 +372,17 @@
 					"link": true,
 					"linkVariant": "inline",
 					"variant": "standalone"
-				}
+				},
+				"children": [
+					{
+						"name": "link",
+						"slot": "link",
+						"content": "Textlink",
+						"props": {
+							"href": "#"
+						}
+					}
+				]
 			},
 			{
 				"name": "Text & Icon & Headline & Textlink Inline & Cloaseable",
@@ -301,7 +393,17 @@
 					"link": true,
 					"linkVariant": "inline",
 					"variant": "standalone"
-				}
+				},
+				"children": [
+					{
+						"name": "link",
+						"slot": "link",
+						"content": "Textlink",
+						"props": {
+							"href": "#"
+						}
+					}
+				]
 			}
 		]
 	},
@@ -332,7 +434,18 @@
 					"img": true,
 					"variant": "overlay",
 					"behaviour": "permanent"
-				}
+				},
+				"children": [
+					{
+						"name": "img",
+						"slot": "image",
+						"content": "",
+						"props": {
+							"src": "/assets/images/placeholder.jpg",
+							"alt": ""
+						}
+					}
+				]
 			},
 			{
 				"name": "Text & Headline",
@@ -341,6 +454,34 @@
 					"headline": "Headline",
 					"variant": "overlay",
 					"behaviour": "permanent"
+				}
+			},
+			{
+				"name": "Text & Textlink Inline",
+				"style": { "width": "300px" },
+				"props": {
+					"link": true,
+					"variant": "overlay",
+					"behaviour": "permanent"
+				}
+			},
+			{
+				"name": "Text & Headline & Textlink Inline & Cloaseable",
+				"style": { "width": "300px" },
+				"props": {
+					"headline": "Headline",
+					"link": true,
+					"variant": "overlay"
+				}
+			},
+			{
+				"name": "Text & Icon & Headline & Textlink Inline & Cloaseable",
+				"style": { "width": "300px" },
+				"props": {
+					"icon": "information_circle",
+					"headline": "Headline",
+					"link": true,
+					"variant": "overlay"
 				}
 			},
 			{

@@ -62,6 +62,7 @@ export default function DBTooltip(props: DBTooltipProps) {
 	return (
 		<i
 			role="tooltip"
+			aria-hidden="true"
 			ref={ref}
 			className={cls('db-tooltip', props.className)}
 			id={state._id}

@@ -27,21 +27,21 @@ const getDataList = (
 			#example="{ exampleIndex, variantIndex, exampleName, exampleProps }"
 		>
 			<DBInput
-				:variant="exampleProps.variant"
-				:label="exampleProps.label"
-				:message="exampleProps.message"
+				:variant="exampleProps?.variant"
+				:label="exampleProps?.label"
+				:message="exampleProps?.message"
 				:placeholder="exampleName"
-				:minLength="exampleProps.minLength"
-				:required="exampleProps.required"
-				:type="exampleProps.type"
-				:disabled="exampleProps.disabled"
-				:readOnly="exampleProps.readOnly"
-				:value="exampleProps.value"
-				:icon="exampleProps.icon"
-				:iconAfter="exampleProps.iconAfter"
+				:minLength="exampleProps?.minLength"
+				:required="exampleProps?.required"
+				:type="exampleProps?.type"
+				:disabled="exampleProps?.disabled"
+				:readOnly="exampleProps?.readOnly"
+				:value="exampleProps?.value"
+				:icon="exampleProps?.icon"
+				:iconAfter="exampleProps?.iconAfter"
 				:dataList="
-					exampleProps.dataList
-						? getDataList(exampleProps.variant)
+					exampleProps?.dataList
+						? getDataList(exampleProps?.variant)
 						: undefined
 				"
 			></DBInput>

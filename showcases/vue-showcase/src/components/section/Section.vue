@@ -11,8 +11,8 @@ import { DBSection } from "../../../../../output/vue/src";
 		>
 			<DBSection
 				class="db-informational-bg-lvl-2"
-				:spacing="exampleProps.spacing"
-				:width="exampleProps.width"
+				:spacing="exampleProps?.spacing"
+				:width="exampleProps?.width"
 			>
 				{{ exampleName }}
 			</DBSection>

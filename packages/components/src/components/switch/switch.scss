@@ -34,34 +34,34 @@ $checked-active-transition-size: calc(
 
 .db-switch {
 	@include form-components.set-default-check-element(check);
+
 	user-select: none;
 
 	// This is needed when clicking on the label instead of the input
 	@include helpers.active {
-		& > input {
+		> input {
 			@extend %active-transition;
 		}
 	}
 
-	& > input {
+	> input {
 		--db-icon-margin-start: 0;
 		--thumb-offset-x: #{$switch-fixed-padding};
+
 		@extend %db-overwrite-font-size-sm;
 
 		@include icons.set-icon("cross", "after");
-		appearance: none;
 
+		appearance: none;
 		inline-size: calc(
 			#{form-components.$font-size-height} * 2 + #{$switch-fixed-padding}
 		);
 		block-size: form-components.$font-size-height;
 		box-sizing: content-box;
-
 		display: flex;
 		align-items: center;
 		gap: $switch-fixed-padding;
-
-		background-color: colors.$db-current-color-bg-enabled;
+		background-color: colors.$db-current-color-bg-transparent-full-enabled;
 		border-radius: variables.$db-border-radius-full;
 
 		&::after {
@@ -75,50 +75,50 @@ $checked-active-transition-size: calc(
 			content: "";
 			aspect-ratio: 1;
 			block-size: $switch-inactive-thumb-size;
-			background: colors.$db-current-color-enabled;
+			background-color: colors.$db-current-color-on-bg-enabled;
 			border-radius: variables.$db-border-radius-full;
 			transform: translateX(var(--thumb-offset-x));
-
 			margin-inline-end: calc(
 				#{$switch-active-thumb-size} - #{$switch-inactive-thumb-size}
 			);
 
-			transition:
-				margin variables.$db-transition-duration-fast
-					variables.$db-transition-timing-emotional,
-				inline-size variables.$db-transition-duration-fast
-					variables.$db-transition-timing-emotional,
-				block-size variables.$db-transition-duration-fast
-					variables.$db-transition-timing-emotional,
-				transform variables.$db-transition-duration-fast
-					variables.$db-transition-timing-emotional;
-
-			// Adopted by https://www.heise.de/developer/artikel/a11y-Reduced-Motion-4356171.html
-			@media (prefers-reduced-motion: reduce) {
-				transition-duration: 0.01s !important;
+			@media screen and (prefers-reduced-motion: no-preference) {
+				transition:
+					margin variables.$db-transition-duration-fast
+						variables.$db-transition-timing-emotional,
+					inline-size variables.$db-transition-duration-fast
+						variables.$db-transition-timing-emotional,
+					block-size variables.$db-transition-duration-fast
+						variables.$db-transition-timing-emotional,
+					transform variables.$db-transition-duration-fast
+						variables.$db-transition-timing-emotional;
 			}
 		}
 
 		/* positioned at the end of the track: track length - 100% (thumb width) */
 		&:checked {
-			--db-current-icon-color: #{colors.$db-current-color-bg-enabled};
 			--thumb-offset-x: calc(100% + #{$switch-fixed-padding});
 
-			background-color: colors.$db-current-color-enabled;
+			@include colors.set-current-colors(
+				colors.$db-current-color-on-bg-enabled,
+				colors.$db-current-color-bg-lvl-1-enabled,
+				colors.$db-current-color-on-bg-hover,
+				colors.$db-current-color-on-bg-pressed
+			);
+
+			border-color: colors.$db-current-color-on-bg-enabled;
 
 			@include helpers.hover {
-				background-color: colors.$db-current-color-hover;
-				border-color: colors.$db-current-color-hover;
+				border-color: colors.$db-current-color-on-bg-hover;
 			}
 
 			@include helpers.active {
-				background-color: colors.$db-current-color-pressed;
-				border-color: colors.$db-current-color-pressed;
+				border-color: colors.$db-current-color-on-bg-pressed;
 			}
 
 			&::before {
 				block-size: $switch-active-thumb-size;
-				background-color: colors.$db-current-color-bg-enabled;
+				background-color: colors.$db-current-color-bg-lvl-1-enabled;
 				margin: 0;
 			}
 		}
@@ -126,6 +126,14 @@ $checked-active-transition-size: calc(
 		&:focus-visible {
 			// Overwrite default border-radius
 			border-radius: variables.$db-border-radius-full;
+		}
+
+		&[data-aid-icon]:not(:checked)::after {
+			--db-icon-after: attr(data-aid-icon);
+		}
+
+		&[data-aid-icon-after]:checked::after {
+			--db-icon-after: attr(data-aid-icon-after);
 		}
 	}
 
@@ -136,48 +144,49 @@ $checked-active-transition-size: calc(
 	&[data-size="small"] {
 		gap: variables.$db-spacing-fixed-2xs;
 
-		& > input {
+		> input {
 			@extend %db-overwrite-font-size-xs;
 		}
 	}
 
 	&[data-emphasis="strong"] {
-		// This is needed when clicking on an active strong switch
-		@include helpers.hover {
-			& > input {
-				background-color: colors.$db-current-color-bg-hover;
-				border-color: colors.$db-current-color-bg-hover;
-			}
-		}
+		> input {
+			--db-check-element-border-color: #{colors.$db-current-color-bg-transparent-full-enabled};
 
-		@include helpers.active {
-			& > input {
-				background-color: colors.$db-current-color-bg-pressed;
-				border-color: colors.$db-current-color-bg-pressed;
+			@extend %db-critical-variables;
+			@extend %db-critical-contrast-low;
+
+			border-color: colors.$db-current-color-contrast-low-enabled;
+
+			@include helpers.hover {
+				background-color: colors.$db-current-color-contrast-low-hover;
+				border-color: colors.$db-current-color-contrast-low-hover;
+			}
+
+			@include helpers.active {
+				background-color: colors.$db-current-color-contrast-low-pressed;
+				border-color: colors.$db-current-color-contrast-low-pressed;
 
 				&::before {
 					block-size: $checked-active-transition-size;
 				}
 			}
-		}
-
-		& > input {
-			--db-check-element-border-color: #{colors.$db-current-color-bg-enabled};
-			@extend %db-critical-contrast-low;
 
 			&:not(:checked) {
 				--thumb-offset-x: 0;
 			}
 
 			&:checked {
+				@extend %db-successful-variables;
 				@extend %db-successful-contrast-low;
 
 				&::before {
-					background-color: colors.$db-current-color-enabled;
+					background-color: colors.$db-current-color-on-contrast-enabled;
 				}
 			}
 
 			&::before {
+				background-color: colors.$db-current-color-on-contrast-enabled;
 				block-size: $switch-active-thumb-size;
 				margin: 0;
 			}
@@ -186,7 +195,7 @@ $checked-active-transition-size: calc(
 
 	&[data-emphasis="strong"],
 	&[data-visual-aid="true"] {
-		& > input {
+		> input {
 			&::after {
 				visibility: visible;
 				block-size: $switch-active-thumb-size;
@@ -202,16 +211,6 @@ $checked-active-transition-size: calc(
 					block-size: $switch-active-thumb-size;
 				}
 			}
-		}
-	}
-
-	& > input {
-		&[data-aid-icon]:not(:checked)::after {
-			content: attr(data-aid-icon);
-		}
-
-		&[data-aid-icon-after]:checked::after {
-			content: attr(data-aid-icon-after);
 		}
 	}
 }

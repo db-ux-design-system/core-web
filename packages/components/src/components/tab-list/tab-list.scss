@@ -8,6 +8,7 @@
 
 	> ul {
 		@extend %scrollbar;
+
 		display: flex;
 		gap: variables.$db-spacing-fixed-sm;
 		scroll-behavior: smooth;

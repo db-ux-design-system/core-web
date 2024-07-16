@@ -43,7 +43,7 @@ const {
 				<template v-slot:brand>
 					<DBBrand>Showcase</DBBrand>
 				</template>
-				<DBNavigation>
+				<DBNavigation aria-label="main navigation">
 					<template v-for="item of sortedNavigation">
 						<NavItemComponent :navItem="item"></NavItemComponent>
 					</template>

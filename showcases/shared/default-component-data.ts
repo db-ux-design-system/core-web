@@ -14,12 +14,15 @@ export type DefaultComponentExample = {
 		react?: string;
 		vue?: string;
 	};
+	children?: DefaultComponentExample[];
 };
 
 export type DefaultComponentVariants = {
 	name: string;
+	children?: DefaultComponentExample[];
 	examples: DefaultComponentExample[];
 	color?: string;
+	role?: string;
 };
 
 export type DefaultComponentProps = {
