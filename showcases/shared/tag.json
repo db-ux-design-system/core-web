@@ -144,12 +144,17 @@
 				"props": {
 					"component": "checkbox"
 				},
-				"code": {
-					"angular": "<db-tag><label><input type=\"checkbox\"/>Interactive Checkbox</label></db-tag>",
-					"html": "<div class=\"db-tag\"><label><input type=\"checkbox\"/>Interactive Checkbox</label></div>",
-					"react": "<DBTag><label><input type=\"checkbox\"/>Interactive Checkbox</label></DBTag>",
-					"vue": "<DBTag><label><input type=\"checkbox\"/>Interactive Checkbox</label></DBTag>"
-				}
+				"children": [
+					{
+						"name": "label",
+						"children": [
+							{
+								"name": "checkbox",
+								"contents": "Interactive Checkbox"
+							}
+						]
+					}
+				]
 			},
 			{
 				"name": "Interactive Radio 1",
@@ -157,12 +162,20 @@
 					"component": "radio",
 					"identifier": "radio01"
 				},
-				"code": {
-					"angular": "<db-tag><label><input type=\"radio\" name=\"radio01\" />Interactive Radio 1</label></db-tag>",
-					"html": "<div class=\"db-tag\"><label><input type=\"radio\" name=\"radio01\" />Interactive Radio 1</label></div>",
-					"react": "<DBTag><label><input type=\"radio\" name=\"radio01\" />Interactive Radio 1</label></DBTag>",
-					"vue": "<DBTag><label><input type=\"radio\" name=\"radio01\" />Interactive Radio 1</label></DBTag>"
-				}
+				"children": [
+					{
+						"name": "label",
+						"children": [
+							{
+								"name": "radio",
+								"contents": "Interactive Radio 1",
+								"props": {
+									"name": "radio01"
+								}
+							}
+						]
+					}
+				]
 			},
 			{
 				"name": "Interactive Radio 2",
@@ -170,12 +183,20 @@
 					"component": "radio",
 					"identifier": "radio01"
 				},
-				"code": {
-					"angular": "<db-tag><label><input type=\"radio\" name=\"radio01\" />Interactive Radio 2</label></db-tag>",
-					"html": "<div class=\"db-tag\"><label><input type=\"radio\" name=\"radio01\" />Interactive Radio 2</label></div>",
-					"react": "<DBTag><label><input type=\"radio\" name=\"radio01\" />Interactive Radio 2</label>/DBTag>",
-					"vue": "<DBTag><label><input type=\"radio\" name=\"radio01\" />Interactive Radio 2</label></DBTag>"
-				}
+				"children": [
+					{
+						"name": "label",
+						"children": [
+							{
+								"name": "radio",
+								"contents": "Interactive Radio 2",
+								"props": {
+									"name": "radio01"
+								}
+							}
+						]
+					}
+				]
 			},
 			{
 				"name": "Removeable",
@@ -193,12 +214,17 @@
 				"props": {
 					"component": "checkbox"
 				},
-				"code": {
-					"angular": "<db-tag><label><input type=\"checkbox\"/>Interactive Checkbox</label></db-tag>",
-					"html": "<div class=\"db-tag\"><label><input type=\"checkbox\"/>Interactive Checkbox</label></div>",
-					"react": "<DBTag><label><input type=\"checkbox\"/>Interactive Checkbox</label></DBTag>",
-					"vue": "<DBTag><label><input type=\"checkbox\"/>Interactive Checkbox</label></DBTag>"
-				}
+				"children": [
+					{
+						"name": "label",
+						"children": [
+							{
+								"name": "checkbox",
+								"contents": "Interactive Checkbox"
+							}
+						]
+					}
+				]
 			},
 			{
 				"name": "Checked",
@@ -206,12 +232,20 @@
 					"component": "checkbox",
 					"checked": true
 				},
-				"code": {
-					"angular": "<db-tag><label><input type=\"checkbox\" [checked]=\"true\"/>Interactive Checkbox</label></db-tag>",
-					"html": "<div class=\"db-tag\"><label><input type=\"checkbox\" checked=\"true\"/>Interactive Checkbox</label></div>",
-					"react": "<DBTag><label><input type=\"checkbox\" checked/>Interactive Checkbox</label></DBTag>",
-					"vue": "<DBTag><label><input type=\"checkbox\" :checked=\"true\"/>Interactive Checkbox</label></DBTag>"
-				}
+				"children": [
+					{
+						"name": "label",
+						"children": [
+							{
+								"name": "checkbox",
+								"contents": "Interactive Checkbox",
+								"props": {
+									"checked": true
+								}
+							}
+						]
+					}
+				]
 			},
 			{
 				"name": "Disabled",
@@ -220,12 +254,21 @@
 					"checked": true,
 					"disabled": true
 				},
-				"code": {
-					"angular": "<db-tag><label><input type=\"checkbox\" [checked]=\"true\" [disabled]=\"true\"/>Interactive Checkbox</label></db-tag>",
-					"html": "<div class=\"db-tag\"><label><input type=\"checkbox\" checked=\"true\" disabled=\"true\"/>Interactive Checkbox</label></div>",
-					"react": "<DBTag><label><input type=\"checkbox\" checked disabled/>Interactive Checkbox</label></DBTag>",
-					"vue": "<DBTag><label><input type=\"checkbox\" :checked=\"true\" :disabled=\"true\"/>Interactive Checkbox</label></DBTag>"
-				}
+				"children": [
+					{
+						"name": "label",
+						"children": [
+							{
+								"name": "checkbox",
+								"contents": "Interactive Checkbox",
+								"props": {
+									"checked": true,
+									"disabled": true
+								}
+							}
+						]
+					}
+				]
 			}
 		]
 	},
@@ -275,12 +318,12 @@
 					"icon": "user",
 					"behaviour": "removable"
 				},
-				"code": {
-					"angular": "<db-tag emphasis=\"strong\"><button>Interactive Button</button></db-tag>",
-					"html": "<div data-emphasis=\"strong\" class=\"db-tag\"><button Interactive Button</button></div>",
-					"react": "<DBTag emphasis=\"strong\"><button>Interactive Button</button></DBTag>",
-					"vue": "<DBTag emphasis=\"strong\"><button>Interactive Button</button></DBTag>"
-				}
+				"children": [
+					{
+						"name": "button",
+						"contents": "Interactive Button"
+					}
+				]
 			},
 			{
 				"name": "Interactive Strong Link with Icon",
@@ -303,12 +346,17 @@
 					"emphasis": "strong",
 					"icon": "user"
 				},
-				"code": {
-					"angular": "<db-tag emphasis=\"strong\"><label><input type=\"checkbox\"/>Interactive Checkbox</label></db-tag>",
-					"html": "<div class=\"db-tag\" data-emphasis=\"strong\"><label><input type=\"checkbox\"/>Interactive Checkbox</label></div>",
-					"react": "<DBTag emphasis=\"strong\"><label><input type=\"checkbox\"/>Interactive Checkbox</label></DBTag>",
-					"vue": "<DBTag emphasis=\"strong\"><label><input type=\"checkbox\"/>Interactive Checkbox</label></DBTag>"
-				}
+				"children": [
+					{
+						"name": "label",
+						"children": [
+							{
+								"name": "checkbox",
+								"contents": "Interactive Checkbox"
+							}
+						]
+					}
+				]
 			},
 			{
 				"name": "Interactive Strong Radio 1 with Icon",
@@ -318,12 +366,20 @@
 					"icon": "user",
 					"identifier": "radio03"
 				},
-				"code": {
-					"angular": "<db-tag emphasis=\"strong\"><label><input type=\"radio\" name=\"radio02\" />Interactive Radio 1</label></db-tag>",
-					"html": "<div class=\"db-tag\" data-emphasis=\"strong\"><label><input type=\"radio\" name=\"radio02\" />Interactive Radio 1</label></div>",
-					"react": "<DBTag emphasis=\"strong\"><label><input type=\"radio\" name=\"radio02\" />Interactive Radio 1</label>/DBTag>",
-					"vue": "<DBTag emphasis=\"strong\"><label><input type=\"radio\" name=\"radio02\" />Interactive Radio 1</label></DBTag>"
-				}
+				"children": [
+					{
+						"name": "label",
+						"children": [
+							{
+								"name": "radio",
+								"contents": "Interactive Radio 1",
+								"props": {
+									"name": "radio02"
+								}
+							}
+						]
+					}
+				]
 			},
 			{
 				"name": "Interactive Strong Radio 2 with Icon",
@@ -333,12 +389,20 @@
 					"icon": "user",
 					"identifier": "radio02"
 				},
-				"code": {
-					"angular": "<db-tag emphasis=\"strong\"><label><input type=\"radio\" name=\"radio02\" />Interactive Radio 2</label></db-tag>",
-					"html": "<div class=\"db-tag\" data-emphasis=\"strong\"><label><input type=\"radio\" name=\"radio02\" />Interactive Radio 2</label></div>",
-					"react": "<DBTag emphasis=\"strong\"><label><input type=\"radio\" name=\"radio02\" />Interactive Radio 2</label>/DBTag>",
-					"vue": "<DBTag emphasis=\"strong\"><label><input type=\"radio\" name=\"radio02\" />Interactive Radio 2</label></DBTag>"
-				}
+				"children": [
+					{
+						"name": "label",
+						"children": [
+							{
+								"name": "radio",
+								"contents": "Interactive Radio 2",
+								"props": {
+									"name": "radio02"
+								}
+							}
+						]
+					}
+				]
 			}
 		]
 	}
