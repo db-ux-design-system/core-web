@@ -20,13 +20,13 @@
 		$logo-size: calc(
 			#{variables.$db-sizing-md} - #{variables.$db-sizing-3xs}
 		);
+
 		inline-size: $logo-size;
 		max-block-size: $logo-size;
 	}
 
 	// Deactivate underline on site name being made clickable by added to the link as well
-	a:has(&),
-	& a {
+	a {
 		text-decoration: none;
 	}
 }

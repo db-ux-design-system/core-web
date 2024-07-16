@@ -26,6 +26,7 @@
 	@extend %component-border;
 	@extend %grid-layout-default;
 	@extend %ugly-line-height-workarounds;
+
 	display: grid;
 	padding: variables.$db-spacing-fixed-md;
 	gap: variables.$db-spacing-fixed-xs variables.$db-spacing-fixed-md;
@@ -86,6 +87,7 @@
 	// content
 	p {
 		@extend %db-overwrite-font-size-md;
+
 		grid-area: content;
 		margin: 0;
 	}
@@ -101,6 +103,7 @@
 	// timestamp
 	span {
 		@extend %db-overwrite-font-size-sm;
+
 		grid-area: timestamp;
 		white-space: nowrap;
 	}
@@ -121,6 +124,7 @@
 	img {
 		--db-icon-font-family: "db-ux-filled";
 		--db-icon-margin-end: 0;
+
 		grid-area: icon;
 	}
 
@@ -183,6 +187,7 @@
 
 	&[data-variant="overlay"] {
 		@extend %grid-layout-variant-overlay;
+
 		box-shadow: variables.$db-elevation-md;
 	}
 

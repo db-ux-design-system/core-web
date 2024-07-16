@@ -10,6 +10,7 @@ $tooltip-arrow-shadow-size: variables.$db-sizing-2xs;
 .db-tooltip {
 	--default-card-elevation: #{variables.$db-elevation-sm};
 	--default-card-border-radius: #{variables.$db-border-radius-xs};
+
 	@extend %db-overwrite-font-size-sm;
 	@extend %default-popover;
 
@@ -21,7 +22,6 @@ $tooltip-arrow-shadow-size: variables.$db-sizing-2xs;
 
 	// surrounding tags styling reset
 	font-weight: initial;
-
 	padding: variables.$db-spacing-fixed-2xs variables.$db-spacing-fixed-xs;
 
 	&::after {
@@ -37,6 +37,7 @@ $tooltip-arrow-shadow-size: variables.$db-sizing-2xs;
 	&:not([data-variant="basic"]) {
 		&::after {
 			@extend %component-border;
+
 			content: "";
 			box-shadow: variables.$db-elevation-md;
 			position: absolute;
@@ -56,7 +57,7 @@ $tooltip-arrow-shadow-size: variables.$db-sizing-2xs;
 		}
 	}
 
-	&:not([data-placement]):not([data-outside-vy]),
+	&:not([data-placement], [data-outside-vy]),
 	&[data-placement^="bottom"]:not([data-outside-vy]),
 	&[data-outside-vy="top"]:not([data-outside-vx]) {
 		&::after {
@@ -128,6 +129,7 @@ $tooltip-arrow-shadow-size: variables.$db-sizing-2xs;
 }
 
 $popover-states: "hover", "focus";
+
 @each $state in $popover-states {
 	@include show-popover($state);
 }

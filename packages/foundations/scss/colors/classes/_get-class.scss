@@ -37,6 +37,7 @@
 	[data-container-color="#{$variant}"],
 	.db-container-color-#{$variant} {
 		@extend %db-#{$variant}-variables;
+
 		color: var(--db-current-color-on-bg-enabled);
 		background-color: var(--db-current-color-bg-lvl-1-enabled);
 	}
@@ -47,15 +48,25 @@
 	.db-on-bg-color-#{$color} {
 		@if $color == "default" {
 			color: var(--db-current-color-on-bg-enabled);
-		} @else if $color == "weak" {
+		}
+
+ @else if $color == "weak" {
 			color: var(--db-current-color-on-bg-weak-enabled);
-		} @else if $color == "contrast" {
+		}
+
+ @else if $color == "contrast" {
 			color: var(--db-current-color-contrast-high-enabled);
-		} @else if $color == "contrast-weak" {
+		}
+
+ @else if $color == "contrast-weak" {
 			color: var(--db-current-color-contrast-low-enabled);
-		} @else if $color == "border" {
+		}
+
+ @else if $color == "border" {
 			color: var(--db-current-color-border);
-		} @else {
+		}
+
+ @else {
 			@error "Unknown color #{$color}.";
 		}
 	}

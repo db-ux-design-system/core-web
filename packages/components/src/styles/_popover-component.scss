@@ -12,25 +12,28 @@ $popover-gap-inset: calc(-1 * #{$popover-gap-size});
 	&:not([data-placement]),
 	&[data-placement="bottom"]:not([data-outside-vy]),
 	&[data-placement="top"]:not([data-outside-vy]),
-	&[data-outside-vy="bottom"]:not([data-outside-vx]):not(
-			[data-placement$="end"]
-		):not([data-placement$="start"]),
-	&[data-outside-vy="top"]:not([data-outside-vx]):not(
-			[data-placement$="end"]
-		):not([data-placement$="start"]) {
+	&:is([data-outside-vy="bottom"], [data-outside-vy="top"]):not(
+			[data-outside-vx],
+			[data-placement$="end"],
+			[data-placement$="start"]
+		) {
 		--db-popover-center-x: -50%;
+
 		inset-inline-start: 50%;
 	}
 
 	&[data-placement="left"]:not([data-outside-vx]),
 	&[data-placement="right"]:not([data-outside-vx]),
-	&[data-outside-vx="left"]:not([data-placement$="end"]):not(
+	&[data-outside-vx="left"]:not(
+			[data-placement$="end"],
 			[data-placement$="start"]
 		),
-	&[data-outside-vx="right"]:not([data-placement$="end"]):not(
+	&[data-outside-vx="right"]:not(
+			[data-placement$="end"],
 			[data-placement$="start"]
 		) {
 		--db-popover-center-y: -50%;
+
 		inset-block-start: 50%;
 	}
 }
@@ -79,7 +82,7 @@ $popover-gap-inset: calc(-1 * #{$popover-gap-size});
 		}
 	}
 
-	&:not([data-placement]):not([data-outside-vy]),
+	&:not([data-placement], [data-outside-vy]),
 	&[data-placement^="bottom"]:not([data-outside-vy]),
 	&[data-outside-vy="top"]:not([data-outside-vx]) {
 		inset-block-start: $popover-inset;
@@ -134,18 +137,20 @@ $popover-gap-inset: calc(-1 * #{$popover-gap-size});
 		opacity: 1;
 	}
 
-	&:not([data-animation="disabled"]) {
-		animation: popover-animation variables.$db-transition-straight-emotional
-			normal both;
+	@media screen and (prefers-reduced-motion: no-preference) {
+		&:not([data-animation="disabled"]) {
+			animation: popover-animation #{variables.$db-transition-straight-emotional}
+				normal both;
 
-		&[data-delay="slow"] {
-			animation-delay: variables.$db-transition-duration-fast;
-		}
+			&[data-delay="slow"] {
+				animation-delay: variables.$db-transition-duration-fast;
+			}
 
-		&[data-delay="fast"] {
-			animation-delay: calc(
-				#{variables.$db-transition-duration-fast} / 2
-			);
+			&[data-delay="fast"] {
+				animation-delay: calc(
+					#{variables.$db-transition-duration-fast} / 2
+				);
+			}
 		}
 	}
 }
@@ -153,28 +158,32 @@ $popover-gap-inset: calc(-1 * #{$popover-gap-size});
 %show-popover {
 	display: revert;
 
-	&:not([data-placement]):not([data-outside-vy]),
+	&:not([data-placement], [data-outside-vy]),
 	&[data-placement^="bottom"]:not([data-outside-vy]),
 	&[data-outside-vy="top"]:not([data-outside-vx]) {
 		--db-popover-translate-y: -25%;
+
 		@include get-popover-show();
 	}
 
 	&[data-placement^="top"]:not([data-outside-vy]),
 	&[data-outside-vy="bottom"]:not([data-outside-vx]) {
 		--db-popover-translate-y: 25%;
+
 		@include get-popover-show();
 	}
 
 	&[data-placement^="right"]:not([data-outside-vx]),
 	&[data-outside-vx="left"] {
 		--db-popover-translate-x: -25%;
+
 		@include get-popover-show();
 	}
 
 	&[data-placement^="left"]:not([data-outside-vx]),
 	&[data-outside-vx="right"] {
 		--db-popover-translate-x: 25%;
+
 		@include get-popover-show();
 	}
 }

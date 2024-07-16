@@ -27,7 +27,6 @@ $db-accordion-item-border-radius: variables.$db-border-radius-sm;
 		@extend %db-overwrite-font-size-md;
 
 		background-color: colors.$db-current-color-bg-transparent-full-enabled;
-
 		list-style: none;
 		display: flex;
 		justify-content: space-between;
@@ -66,8 +65,10 @@ $db-accordion-item-border-radius: variables.$db-border-radius-sm;
 
 	&[open] {
 		summary + div {
-			animation: accordion-open
-				variables.$db-transition-straight-emotional normal both;
+			@media screen and (prefers-reduced-motion: no-preference) {
+				animation: accordion-open #{variables.$db-transition-straight-emotional}
+					normal both;
+			}
 		}
 
 		summary::after {

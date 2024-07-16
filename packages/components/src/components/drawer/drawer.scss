@@ -36,6 +36,7 @@
 
 %direction-up {
 	@extend %full-horizontal;
+
 	inset: auto 0 0;
 
 	&[data-rounded="true"] {
@@ -45,6 +46,7 @@
 }
 %direction-down {
 	@extend %full-horizontal;
+
 	inset: 0 0 auto;
 
 	&[data-rounded="true"] {
@@ -109,6 +111,7 @@ $spacings: (
 	.db-drawer-container {
 		@extend %direction-right;
 		@extend %spacing-drawer;
+
 		display: flex;
 		flex-direction: column;
 		background-color: colors.$db-current-color-bg-lvl-1-enabled;
@@ -142,6 +145,7 @@ $spacings: (
 
 		.db-drawer-header {
 			@include helpers.divider("bottom");
+
 			display: none;
 
 			.db-drawer-header-text {
@@ -167,47 +171,43 @@ $spacings: (
 
 	&[open] {
 		.db-drawer-container {
-			&:not([data-direction]),
-			&[data-direction="right"] {
-				animation: show-right-to-left
-					variables.$db-transition-straight-show;
-			}
-
-			&[data-direction="left"] {
-				animation: show-left-to-right
-					variables.$db-transition-straight-show;
-			}
-
-			&[data-direction="up"] {
-				animation: show-bottom-to-top
-					variables.$db-transition-straight-show;
-			}
-
-			&[data-direction="down"] {
-				animation: show-top-to-bottom
-					variables.$db-transition-straight-show;
-			}
-
-			&[hidden] {
+			@media screen and (prefers-reduced-motion: no-preference) {
 				&:not([data-direction]),
 				&[data-direction="right"] {
-					animation: hide-right-to-left
-						variables.$db-transition-straight-hide;
+					animation: show-right-to-left #{variables.$db-transition-straight-show};
 				}
 
 				&[data-direction="left"] {
-					animation: hide-left-to-right
-						variables.$db-transition-straight-hide;
+					animation: show-left-to-right #{variables.$db-transition-straight-show};
 				}
 
 				&[data-direction="up"] {
-					animation: hide-bottom-to-top
-						variables.$db-transition-straight-hide;
+					animation: show-bottom-to-top #{variables.$db-transition-straight-show};
 				}
 
 				&[data-direction="down"] {
-					animation: hide-top-to-bottom
-						variables.$db-transition-straight-hide;
+					animation: show-top-to-bottom #{variables.$db-transition-straight-show};
+				}
+			}
+
+			&[hidden] {
+				@media screen and (prefers-reduced-motion: no-preference) {
+					&:not([data-direction]),
+					&[data-direction="right"] {
+						animation: hide-right-to-left #{variables.$db-transition-straight-hide};
+					}
+
+					&[data-direction="left"] {
+						animation: hide-left-to-right #{variables.$db-transition-straight-hide};
+					}
+
+					&[data-direction="up"] {
+						animation: hide-bottom-to-top #{variables.$db-transition-straight-hide};
+					}
+
+					&[data-direction="down"] {
+						animation: hide-top-to-bottom #{variables.$db-transition-straight-hide};
+					}
 				}
 			}
 		}

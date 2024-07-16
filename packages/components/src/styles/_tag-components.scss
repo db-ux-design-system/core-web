@@ -81,14 +81,14 @@ $interactive-selectors: "label, button:not(.db-tab-remove-button), a";
 	}
 
 	a {
-		color: currentColor;
+		color: currentcolor;
 
 		@include helpers.hover {
-			color: currentColor;
+			color: currentcolor;
 		}
 
 		@include helpers.active {
-			color: currentColor;
+			color: currentcolor;
 		}
 	}
 }
@@ -131,6 +131,7 @@ $interactive-selectors: "label, button:not(.db-tab-remove-button), a";
 		label:has(input[type="radio"]:checked) {
 			&,
 			&:hover,
+			&:focus,
 			&:active {
 				background-color: colors.$db-current-color-bg-lvl-3-enabled;
 			}
