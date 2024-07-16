@@ -206,6 +206,7 @@ $checked-active-transition-size: calc(
 		}
 	}
 
+	// If we set data-aid-icon or data-aid-icon-after it should overwrite the default icons. Therefore I put it at the end of the file
 	/* stylelint-disable-next-line no-duplicate-selectors */
 	> input {
 		&[data-aid-icon]:not(:checked)::after {
