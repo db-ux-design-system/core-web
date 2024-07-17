@@ -94,9 +94,9 @@ const getTag = (componentName) =>
 /**
  * @param componentName {string}
  * @param framework {'angular'|'react'|'vue'}
- * @param example {{name:string, props: object, className?:string, content?:string,children?:{name:string, props: object}[]}}
+ * @param example {{name:string, props: object,native?:boolean, className?:string, content?:string,children?:{name:string, props: object,native?:boolean}[]}}
  * @param noEvents {boolean}
- * @param [children] {{name:string, props: object,slot?:string, angularDirective?:boolean, content?:string,children?:{name:string, props: object}[]}[]}
+ * @param [children] {{name:string, props: object,native?:boolean,slot?:string, angularDirective?:boolean, content?:string,children?:{name:string, props: object,native?:boolean}[]}[]}
  * @returns {string}
  */
 export const getCodeByFramework = (
@@ -106,14 +106,14 @@ export const getCodeByFramework = (
 	noEvents,
 	children
 ) => {
-	const { props, name, content } = example;
+	const { props, name, content, native } = example;
 	let className = '';
 	let tag = `DB${getTag(componentName)}`;
 	if (framework === 'angular') {
 		tag = `db-${componentName}`;
 	}
 
-	if (['a', 'img'].includes(componentName)) {
+	if (native) {
 		tag = componentName;
 	}
 
@@ -191,6 +191,10 @@ export const getCodeByFramework = (
 					})
 					.join('\n');
 		}
+	}
+
+	if (native && name === 'input') {
+		return `<${tag}${className} ${attributes.join(' ')}${reactSlots}/>`;
 	}
 
 	return `<${tag}${className} ${attributes.join(' ')}${reactSlots}>

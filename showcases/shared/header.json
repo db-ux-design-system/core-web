@@ -50,6 +50,7 @@
 						"children": [
 							{
 								"name": "a",
+								"native": true,
 								"slot": "NavigationContent",
 								"angularDirective": true,
 								"content": "Link",
@@ -68,6 +69,7 @@
 						"children": [
 							{
 								"name": "a",
+								"native": true,
 								"slot": "NavigationContent",
 								"angularDirective": true,
 								"content": "Link disabled",
@@ -158,6 +160,7 @@
 						"children": [
 							{
 								"name": "a",
+								"native": true,
 								"slot": "NavigationContent",
 								"angularDirective": true,
 								"content": "Link",
@@ -176,6 +179,7 @@
 						"children": [
 							{
 								"name": "a",
+								"native": true,
 								"slot": "NavigationContent",
 								"angularDirective": true,
 								"content": "Link disabled",
@@ -269,6 +273,7 @@
 						"children": [
 							{
 								"name": "a",
+								"native": true,
 								"slot": "NavigationContent",
 								"angularDirective": true,
 								"content": "Link",
@@ -287,6 +292,7 @@
 						"children": [
 							{
 								"name": "a",
+								"native": true,
 								"slot": "NavigationContent",
 								"angularDirective": true,
 								"content": "Link disabled",
@@ -370,6 +376,7 @@
 						"children": [
 							{
 								"name": "a",
+								"native": true,
 								"slot": "NavigationContent",
 								"angularDirective": true,
 								"content": "Link",
@@ -388,6 +395,7 @@
 						"children": [
 							{
 								"name": "a",
+								"native": true,
 								"slot": "NavigationContent",
 								"angularDirective": true,
 								"content": "Link disabled",

@@ -181,6 +181,7 @@
 				"children": [
 					{
 						"name": "img",
+						"native": true,
 						"slot": "image",
 						"content": "",
 						"props": {
@@ -307,6 +308,7 @@
 				"children": [
 					{
 						"name": "img",
+						"native": true,
 						"slot": "image",
 						"content": "",
 						"props": {
@@ -438,6 +440,7 @@
 				"children": [
 					{
 						"name": "img",
+						"native": true,
 						"slot": "image",
 						"content": "",
 						"props": {

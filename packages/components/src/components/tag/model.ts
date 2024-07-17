@@ -4,7 +4,8 @@ import {
 	GlobalProps,
 	GlobalState,
 	IconProps,
-	OverflowProps
+	OverflowProps,
+	InitializedState
 } from '../../shared/model';
 
 export const TagBehaviourList = ['static', 'removable'] as const;
@@ -19,7 +20,7 @@ export interface DBTagDefaultProps {
 	behaviour?: TagBehaviourType;
 
 	/**
-	 * Disable tag.
+	 * Disable tag. (Deprecated)
 	 */
 	disabled?: boolean;
 	/**
@@ -56,4 +57,4 @@ export interface DBTagDefaultState {
 	handleRemove?: () => void;
 }
 
-export type DBTagState = DBTagDefaultState & GlobalState;
+export type DBTagState = DBTagDefaultState & GlobalState & InitializedState;

@@ -41,7 +41,7 @@
     "vue": "^3.4.31"
   },
   "devDependencies": {
-    "@playwright/experimental-ct-vue": "1.45.1",
+    "@playwright/experimental-ct-vue": "1.45.2",
     "@vitejs/plugin-vue": "^5.0.5",
     "replace-in-file": "^8.1.0",
     "tsx": "^4.16.2",

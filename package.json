@@ -49,7 +49,7 @@
     "@commitlint/cli": "19.3.0",
     "@commitlint/config-conventional": "19.2.2",
     "@double-great/stylelint-a11y": "3.0.2",
-    "@playwright/test": "1.45.1",
+    "@playwright/test": "1.45.2",
     "@types/fs-extra": "^11.0.4",
     "accessibility-checker": "^3.1.71",
     "adm-zip": "0.5.14",

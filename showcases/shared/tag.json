@@ -111,6 +111,7 @@
 	},
 	{
 		"name": "Behaviour",
+		"role": "group",
 		"examples": [
 			{
 				"name": "(Default) Static"
@@ -122,7 +123,9 @@
 				},
 				"children": [
 					{
-						"name": "button"
+						"name": "button",
+						"native": true,
+						"content": "Interactive Button"
 					}
 				]
 			},
@@ -133,7 +136,12 @@
 				},
 				"children": [
 					{
-						"name": "link"
+						"name": "a",
+						"native": true,
+						"content": "Interactive Link",
+						"props": {
+							"href": "#"
+						}
 					}
 				]
 			},
@@ -144,7 +152,22 @@
 				},
 				"children": [
 					{
-						"name": "checkbox"
+						"name": "label",
+						"native": true,
+						"content": "Interactive Checkbox",
+						"props": {
+							"for": "checkbox01"
+						},
+						"children": [
+							{
+								"name": "input",
+								"native": true,
+								"props": {
+									"id": "checkbox01",
+									"type": "checkbox"
+								}
+							}
+						]
 					}
 				]
 			},
@@ -156,10 +179,23 @@
 				},
 				"children": [
 					{
-						"name": "radio",
+						"name": "label",
+						"native": true,
+						"content": "Interactive Radio 1",
 						"props": {
-							"name": "radio01"
-						}
+							"for": "radio01"
+						},
+						"children": [
+							{
+								"name": "input",
+								"native": true,
+								"props": {
+									"name": "radio01",
+									"id": "radio01",
+									"type": "radio"
+								}
+							}
+						]
 					}
 				]
 			},
@@ -167,14 +203,27 @@
 				"name": "Interactive Radio 2",
 				"props": {
 					"component": "radio",
-					"identifier": "radio02"
+					"identifier": "radio01"
 				},
 				"children": [
 					{
-						"name": "radio",
+						"name": "label",
+						"native": true,
+						"content": "Interactive Radio 2",
 						"props": {
-							"name": "radio01"
-						}
+							"for": "radio02"
+						},
+						"children": [
+							{
+								"name": "input",
+								"native": true,
+								"props": {
+									"name": "radio02",
+									"id": "radio02",
+									"type": "radio"
+								}
+							}
+						]
 					}
 				]
 			},
@@ -188,6 +237,7 @@
 	},
 	{
 		"name": "State",
+		"role": "group",
 		"examples": [
 			{
 				"name": "(Default) Unchecked",
@@ -196,7 +246,22 @@
 				},
 				"children": [
 					{
-						"name": "checkbox"
+						"name": "label",
+						"native": true,
+						"content": "Interactive Checkbox",
+						"props": {
+							"for": "checkbox02"
+						},
+						"children": [
+							{
+								"name": "input",
+								"native": true,
+								"props": {
+									"for": "checkbox02",
+									"type": "checkbox"
+								}
+							}
+						]
 					}
 				]
 			},
@@ -208,10 +273,23 @@
 				},
 				"children": [
 					{
-						"name": "checkbox",
+						"name": "label",
+						"native": true,
+						"content": "Interactive Checkbox",
 						"props": {
-							"checked": true
-						}
+							"for": "checkbox03"
+						},
+						"children": [
+							{
+								"name": "input",
+								"native": true,
+								"props": {
+									"checked": true,
+									"id": "checkbox03",
+									"type": "checkbox"
+								}
+							}
+						]
 					}
 				]
 			},
@@ -224,11 +302,24 @@
 				},
 				"children": [
 					{
-						"name": "checkbox",
+						"name": "label",
+						"native": true,
+						"content": "Interactive Checkbox",
 						"props": {
-							"checked": true,
-							"disabled": true
-						}
+							"for": "checkbox04"
+						},
+						"children": [
+							{
+								"name": "input",
+								"native": true,
+								"props": {
+									"checked": true,
+									"disabled": true,
+									"id": "checkbox04",
+									"type": "checkbox"
+								}
+							}
+						]
 					}
 				]
 			}
@@ -271,6 +362,7 @@
 	},
 	{
 		"name": "Example",
+		"role": "group",
 		"examples": [
 			{
 				"name": "Interactive Strong Button with Icon",
@@ -282,7 +374,9 @@
 				},
 				"children": [
 					{
-						"name": "button"
+						"name": "button",
+						"native": true,
+						"content": "Interactive Button"
 					}
 				]
 			},
@@ -295,7 +389,12 @@
 				},
 				"children": [
 					{
-						"name": "link"
+						"name": "a",
+						"native": true,
+						"content": "Interactive Link",
+						"props": {
+							"href": "#"
+						}
 					}
 				]
 			},
@@ -308,7 +407,20 @@
 				},
 				"children": [
 					{
-						"name": "checkbox"
+						"name": "label",
+						"native": true,
+						"content": "Interactive Checkbox",
+						"props": {
+							"for": "checkbox05"
+						},
+						"children": [
+							{
+								"name": "input",
+								"native": true,
+								"id": "checkbox05",
+								"type": "checkbox"
+							}
+						]
 					}
 				]
 			},
@@ -322,10 +434,23 @@
 				},
 				"children": [
 					{
-						"name": "radio",
+						"name": "label",
+						"native": true,
+						"content": "Interactive Radio 3",
 						"props": {
-							"name": "radio02"
-						}
+							"for": "radio03"
+						},
+						"children": [
+							{
+								"name": "input",
+								"native": true,
+								"props": {
+									"name": "radio03",
+									"id": "radio03",
+									"type": "radio"
+								}
+							}
+						]
 					}
 				]
 			},
@@ -335,14 +460,27 @@
 					"component": "radio",
 					"emphasis": "strong",
 					"icon": "user",
-					"identifier": "radio04"
+					"identifier": "radio02"
 				},
 				"children": [
 					{
-						"name": "radio",
+						"name": "label",
+						"native": true,
+						"content": "Interactive Radio 4",
 						"props": {
-							"name": "radio02"
-						}
+							"for": "radio04"
+						},
+						"children": [
+							{
+								"name": "input",
+								"native": true,
+								"props": {
+									"name": "radio04",
+									"id": "radio04",
+									"type": "radio"
+								}
+							}
+						]
 					}
 				]
 			}

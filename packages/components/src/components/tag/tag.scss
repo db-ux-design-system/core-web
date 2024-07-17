@@ -85,6 +85,8 @@
 
 		inline-size: 100%;
 		margin-inline-start: 0;
+		display: flex;
+		align-items: center;
 
 		&:has(input:checked) {
 			border-width: variables.$db-border-height-3xs;
@@ -95,14 +97,15 @@
 		}
 
 		// Handle native radio and checkbox input elements, especially regarding focus-visible indicator
-		// TODO: Reevaluate whether we could use the standard HTML elements instead of our components
 		input {
-			inline-size: calc(100% + 2px);
-			block-size: calc(100% + 2px);
+			appearance: none;
+			inline-size: 100%;
+			block-size: 100%;
 			position: absolute;
 			margin-inline-end: initial;
 			border: 0;
 			border-radius: inherit;
+			cursor: pointer;
 			transform: translateX(
 				calc(
 					(
@@ -166,6 +169,8 @@
 		block-size: inherit;
 		padding: 0 variables.$db-spacing-fixed-2xs;
 		border-radius: variables.$db-border-radius-xs;
+		font-weight: 700;
+		appearance: none;
 	}
 
 	db-button,
@@ -180,6 +185,7 @@
 		block-size: inherit;
 	}
 
+	&:has(:disabled),
 	&[data-disabled="true"] {
 		opacity: component.$default-disabled;
 		pointer-events: none;
