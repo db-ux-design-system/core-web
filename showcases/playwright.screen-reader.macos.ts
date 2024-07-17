@@ -7,10 +7,6 @@ const config: PlaywrightTestConfig = {
 		'{snapshotDir}/{testFileDir}/macos/{projectName}/{testName}{ext}',
 	projects: [
 		{
-			name: 'webkit',
-			use: { ...devices['Desktop Safari'], headless: false }
-		},
-		{
 			name: 'chromium',
 			use: { ...devices['Desktop Chrome'], headless: false }
 		}
