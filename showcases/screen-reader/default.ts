@@ -86,7 +86,7 @@ export const runTest = async ({
 
 	let recorder: (() => void) | undefined;
 
-	if (retry > 0) {
+	if (retry > 1) {
 		const path = `./recordings/${title}-${Date.now()}.mp4`;
 		recorder = isWin() ? windowsRecord(path) : macOSRecord(path);
 	}
