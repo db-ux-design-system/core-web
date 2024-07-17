@@ -110,7 +110,7 @@ export default function DBHeader(props: DBHeaderProps) {
 				<div class="db-header-action-container">
 					<div class="db-header-burger-menu-container">
 						<DBButton
-							id="button-burger-menu"
+							id={state._id + '-burger-menu'}
 							icon="menu"
 							noText
 							variant="ghost"

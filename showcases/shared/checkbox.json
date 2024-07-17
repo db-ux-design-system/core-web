@@ -1,6 +1,7 @@
 [
 	{
 		"name": "Density",
+		"role": "group",
 		"examples": [
 			{
 				"name": "Functional",
@@ -27,6 +28,7 @@
 	},
 	{
 		"name": "Interaction States",
+		"role": "group",
 		"examples": [
 			{
 				"name": "(Default) Enabled",
@@ -45,6 +47,7 @@
 	},
 	{
 		"name": "States",
+		"role": "group",
 		"examples": [
 			{
 				"name": "(Default) Unchecked",
@@ -102,6 +105,7 @@
 	},
 	{
 		"name": "Size",
+		"role": "group",
 		"examples": [
 			{
 				"name": "(Default) Medium",
@@ -120,6 +124,7 @@
 	},
 	{
 		"name": "Requirement",
+		"role": "group",
 		"examples": [
 			{
 				"name": "(Default) Optional",
@@ -145,6 +150,7 @@
 	},
 	{
 		"name": "Content",
+		"role": "group",
 		"examples": [
 			{
 				"name": "(Default) Label",

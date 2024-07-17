@@ -9,7 +9,8 @@ const OldRoutingFallback = () => {
 
 	useEffect(() => {
 		if (router) {
-			const splitPath = router.pathname.replace('/', '').split('/');
+			const asPath = router.asPath.split('?');
+			const splitPath = asPath[0].replace('/', '').split('/');
 
 			const isComponent =
 				splitPath.length > 0 && splitPath[0] === 'components';
@@ -18,13 +19,14 @@ const OldRoutingFallback = () => {
 				splitPath.length > 2 ? splitPath[2] : undefined;
 			const type = splitPath.length > 3 ? splitPath[3] : undefined;
 
-			const asPath = router.asPath.split('?');
 			const pathParams = asPath.length === 2 ? `?${asPath[1]}` : '';
 
 			if (isComponent && component) {
 				const path: string[] = [];
 				if (subDirectory && type) {
 					path.push(subDirectory, type);
+				} else if (subDirectory) {
+					path.push(subDirectory);
 				} else {
 					path.push('overview');
 				}

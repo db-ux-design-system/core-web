@@ -9,8 +9,7 @@
 		transform: translate(-50%, 0);
 		inset-inline-start: 50%;
 		background-color: colors.$db-brand-origin-enabled;
-		inset-block-start: auto;
-		inset-block-end: calc(-1 * #{variables.$db-spacing-fixed-xs});
+		inset-block: auto calc(-1 * #{variables.$db-spacing-fixed-xs});
 	}
 }
 
@@ -19,10 +18,9 @@
 		block-size: 0;
 		inline-size: variables.$db-border-height-xs;
 		transform: translate(0, -50%);
-		inset-block-start: 50%;
+		inset-block: 50% auto;
 		background-color: colors.$db-brand-origin-enabled;
 		inset-inline-start: calc(-1 * #{variables.$db-spacing-fixed-xs});
-		inset-block-end: auto;
 	}
 }
 
@@ -31,11 +29,14 @@
 		content: "";
 		position: absolute;
 		border-radius: variables.$db-border-radius-xs;
-		transition:
-			height variables.$db-transition-duration-fast
-				variables.$db-transition-timing-emotional,
-			width variables.$db-transition-duration-fast
-				variables.$db-transition-timing-emotional;
+
+		@media screen and (prefers-reduced-motion: no-preference) {
+			transition:
+				height variables.$db-transition-duration-fast
+					variables.$db-transition-timing-emotional,
+				width variables.$db-transition-duration-fast
+					variables.$db-transition-timing-emotional;
+		}
 	}
 }
 
@@ -65,6 +66,7 @@
 
 %show-db-puls-auto {
 	@include show-db-puls-vertical;
+
 	@include screen-sizes.screen("md") {
 		@include show-db-puls-horizontal;
 	}

@@ -806,17 +806,17 @@
 	--db-border-radius-2xl: 1.75rem;
 	--db-border-radius-3xl: 2rem;
 	--db-border-radius-full: 500rem;
-	--db-elevation-sm: 0 0 1px -1px rgba(0, 0, 0, 0.2),
-		0 0 4px 1px rgba(0, 0, 0, 0.12), 0 0 2px 0 rgba(0, 0, 0, 0.14);
-	--db-elevation-md: 0 0 2px -1px rgba(0, 0, 0, 0.2),
-		0 0 8px 1px rgba(0, 0, 0, 0.12), 0 0 4px 0 rgba(0, 0, 0, 0.14);
-	--db-elevation-lg: 0 0 4px -3px rgba(0, 0, 0, 0.2),
-		0 0 16px 3px rgba(0, 0, 0, 0.12), 0 0 8px 1px rgba(0, 0, 0, 0.14);
-	--db-transition-duration-x-slow: 0.5s;
+	--db-elevation-sm: 0 0 1px -1px rgb(0 0 0 / 20%),
+		0 0 4px 1px rgb(0 0 0 / 12%), 0 0 2px 0 rgb(0 0 0 / 14%);
+	--db-elevation-md: 0 0 2px -1px rgb(0 0 0 / 20%),
+		0 0 8px 1px rgb(0 0 0 / 12%), 0 0 4px 0 rgb(0 0 0 / 14%);
+	--db-elevation-lg: 0 0 4px -3px rgb(0 0 0 / 20%),
+		0 0 16px 3px rgb(0 0 0 / 12%), 0 0 8px 1px rgb(0 0 0 / 14%);
+	--db-transition-duration-extra-slow: 0.5s;
 	--db-transition-duration-slow: 0.4s;
 	--db-transition-duration-medium: 0.3s;
 	--db-transition-duration-fast: 0.15s;
-	--db-transition-duration-x-fast: 0.075s;
+	--db-transition-duration-extra-fast: 0.075s;
 	--db-transition-timing-show: cubic-bezier(0.49, 0.1, 0.16, 1) normal both;
 	--db-transition-timing-hide: cubic-bezier(0.49, 0.1, 0.16, 1) normal both;
 	--db-transition-timing-emotional: cubic-bezier(0.27, 0.05, 0.4, 0.95);
@@ -827,24 +827,34 @@
 		both;
 	--db-transition-straight-emotional: 0.3s cubic-bezier(0.27, 0.05, 0.4, 0.95);
 	--db-transition-straight-functional: 0.3s cubic-bezier(0.15, 0, 0.45, 1);
-	--db-font-family-sans: "DB Screen Sans", Helvetica, Arial, sans-serif;
-	--db-font-family-head: "DB Screen Head", Helvetica, Arial, sans-serif;
+	--db-font-family-sans: "DB Screen Sans", helvetica, arial, sans-serif;
+	--db-font-family-head: "DB Screen Head", helvetica, arial, sans-serif;
 
 	/* COLORS */
 	@include default-palette.get-color-palette;
+	@include default-palette.get-additional-color-palette;
+	@include default-color-scheme.get-color-scheme;
 	@include default-color-scheme.get-color-scheme-light;
+	@include default-color-scheme.get-additional-color-scheme;
 
 	@media (prefers-color-scheme: dark) {
 		@include default-color-scheme.get-color-scheme-dark;
 	}
 }
 
-[data-color-scheme="light"] {
+// We'll set the color scheme (https://developer.mozilla.org/en-US/docs/Web/CSS/color-scheme) to light and dark if it's not already set as a meta tag in the head, which would be the recommended way.
+html:not(:has(> head > meta[name="color-scheme"])) {
+	color-scheme: light dark;
+}
+
+[data-color-scheme] {
 	@extend %db-neutral-bg-lvl-1;
-	@include default-color-scheme.get-color-scheme-light;
+}
+
+[data-color-scheme="light"] {
+	color-scheme: light;
 }
 
 [data-color-scheme="dark"] {
-	@extend %db-neutral-bg-lvl-1;
-	@include default-color-scheme.get-color-scheme-dark;
+	color-scheme: dark;
 }

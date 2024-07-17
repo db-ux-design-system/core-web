@@ -12,22 +12,22 @@
 	>
 		<ul>
 			<db-navigation-item
-				[icon]="exampleProps.icon"
-				[width]="exampleProps.width"
-				[disabled]="exampleProps.disabled"
-				[active]="exampleProps.active"
+				[icon]="exampleProps?.icon"
+				[width]="exampleProps?.width"
+				[disabled]="exampleProps?.disabled"
+				[active]="exampleProps?.active"
 				(click)="showAlert(exampleName)"
 			>
 				<ng-container *dbNavigationContent>
-					@if (exampleProps.areaPopup) {
+					@if (exampleProps?.areaPopup) {
 						{{ exampleName }}
 					}
-					@if (!exampleProps.areaPopup) {
+					@if (!exampleProps?.areaPopup) {
 						<a href="#">{{ exampleName }}</a>
 					}
 				</ng-container>
 
-				@if (exampleProps.areaPopup) {
+				@if (exampleProps?.areaPopup) {
 					<ng-container sub-navigation>
 						<ul>
 							<db-navigation-item>

@@ -14,22 +14,18 @@ export type DefaultComponentExample = {
 		react?: string;
 		vue?: string;
 	};
+	children?: DefaultComponentExample[];
 };
 
 export type DefaultComponentVariants = {
 	name: string;
+	children?: DefaultComponentExample[];
 	examples: DefaultComponentExample[];
-	slotCode?: any;
 	color?: string;
+	role?: string;
 };
 
 export type DefaultComponentProps = {
 	title: string;
 	variants: DefaultComponentVariants[];
-};
-
-export type PatternhubComponentProps = {
-	subComponent?: any;
-	isSubComponent?: boolean;
-	componentName?: string;
 };

@@ -1,6 +1,16 @@
 [
 	{
 		"name": "Density",
+		"children": [
+			{
+				"name": "button",
+				"slot": "trigger"
+			},
+			{
+				"name": "button",
+				"content": "Inside Popover"
+			}
+		],
 		"examples": [
 			{
 				"name": "Functional",
@@ -27,6 +37,16 @@
 	},
 	{
 		"name": "Spacing",
+		"children": [
+			{
+				"name": "button",
+				"slot": "trigger"
+			},
+			{
+				"name": "button",
+				"content": "Inside Popover"
+			}
+		],
 		"examples": [
 			{
 				"name": "(Default) Small",
@@ -53,6 +73,16 @@
 	},
 	{
 		"name": "Placement",
+		"children": [
+			{
+				"name": "button",
+				"slot": "trigger"
+			},
+			{
+				"name": "button",
+				"content": "Inside Popover"
+			}
+		],
 		"examples": [
 			{
 				"name": "bottom-start",
@@ -142,6 +172,16 @@
 	},
 	{
 		"name": "Gap",
+		"children": [
+			{
+				"name": "button",
+				"slot": "trigger"
+			},
+			{
+				"name": "button",
+				"content": "Inside Popover"
+			}
+		],
 		"examples": [
 			{
 				"name": "(Default) No gap",
@@ -160,6 +200,16 @@
 	},
 	{
 		"name": "Animations",
+		"children": [
+			{
+				"name": "button",
+				"slot": "trigger"
+			},
+			{
+				"name": "button",
+				"content": "Inside Popover"
+			}
+		],
 		"examples": [
 			{
 				"name": "(Default) Animation no delay",
@@ -192,6 +242,16 @@
 	},
 	{
 		"name": "Width",
+		"children": [
+			{
+				"name": "button",
+				"slot": "trigger"
+			},
+			{
+				"name": "button",
+				"content": "Inside Popover"
+			}
+		],
 		"examples": [
 			{
 				"name": "(Default) Auto",

@@ -10,16 +10,23 @@ $tooltip-arrow-shadow-size: variables.$db-sizing-2xs;
 .db-tooltip {
 	--default-card-elevation: #{variables.$db-elevation-sm};
 	--default-card-border-radius: #{variables.$db-border-radius-xs};
+
 	@extend %db-overwrite-font-size-sm;
 	@extend %default-popover;
+
+	background-color: colors.$db-current-color-bg-lvl-1-enabled;
+	color: colors.$db-current-color-on-bg-enabled;
 
 	// i HTML tags browsers default styling reset
 	font-style: normal;
 
 	// surrounding tags styling reset
 	font-weight: initial;
-
 	padding: variables.$db-spacing-fixed-2xs variables.$db-spacing-fixed-xs;
+
+	&::after {
+		background-color: colors.$db-current-color-bg-lvl-1-enabled;
+	}
 
 	// Only for testing
 	&[data-e2e-hover="true"] {
@@ -30,6 +37,7 @@ $tooltip-arrow-shadow-size: variables.$db-sizing-2xs;
 	&:not([data-variant="basic"]) {
 		&::after {
 			@extend %component-border;
+
 			content: "";
 			box-shadow: variables.$db-elevation-md;
 			position: absolute;
@@ -49,7 +57,7 @@ $tooltip-arrow-shadow-size: variables.$db-sizing-2xs;
 		}
 	}
 
-	&:not([data-placement]):not([data-outside-vy]),
+	&:not([data-placement], [data-outside-vy]),
 	&[data-placement^="bottom"]:not([data-outside-vy]),
 	&[data-outside-vy="top"]:not([data-outside-vx]) {
 		&::after {
@@ -91,12 +99,37 @@ $tooltip-arrow-shadow-size: variables.$db-sizing-2xs;
 	}
 
 	&[data-emphasis="strong"] {
-		--db-current-icon-color: #{colors.$db-current-color-on-contrast-enabled};
 		background-color: colors.$db-current-color-contrast-high-enabled;
 		color: colors.$db-current-color-on-contrast-enabled;
+
+		&::before {
+			--db-icon-color: #{colors.$db-current-color-on-contrast-enabled};
+		}
 
 		&::after {
 			background-color: colors.$db-current-color-contrast-high-enabled;
 		}
 	}
+}
+
+// Global styles
+
+@mixin show-popover($state) {
+	[data-has-tooltip="true"] {
+		&:#{$state} {
+			.db-tooltip:first-of-type {
+				@extend %show-popover;
+			}
+		}
+	}
+}
+
+[data-has-tooltip="true"] {
+	position: relative;
+}
+
+$popover-states: "hover", "focus";
+
+@each $state in $popover-states {
+	@include show-popover($state);
 }

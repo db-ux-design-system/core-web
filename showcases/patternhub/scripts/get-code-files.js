@@ -1,7 +1,6 @@
 /* eslint-disable no-await-in-loop */
 import FS from 'node:fs';
 import prettier from 'prettier';
-import prettier0 from 'prettier/parser-babel.js';
 import { allExamples } from './generated/index.jsx';
 import { getCodeByFramework } from './utils.js';
 
@@ -9,7 +8,6 @@ const sharedPath = '../shared';
 const reactPath = '../react-showcase/src/components';
 
 const codeFrameworks = ['angular', 'html', 'react', 'vue'];
-const plugins = [prettier0];
 
 const getFileTypeByFramework = (framework) => {
 	if (framework === 'react') {
@@ -23,19 +21,26 @@ const getFileTypeByFramework = (framework) => {
 	return 'html';
 };
 
+const getCustomCodeCommentByFramework = (componentName, framework) => {
+	return `<DBLink content="external" target="_blank"
+href="https://db-ui.github.io/mono/review/main/components/${componentName}/how-to-use?current=${framework}">
+How to use this in ${framework}</DBLink>`;
+};
+
 const getExamplesAsMDX = async (componentName, variant) => {
-	const examples = variant.examples;
+	const { examples, children } = variant;
 
 	let result =
 		"import { useEffect, useState } from 'react';\n" +
 		'import {\n' +
 		'DBButton,\n' +
 		'DBCard,\n' +
+		'DBLink,\n' +
 		'DBTabItem,\n' +
 		'DBTabList,\n' +
 		'DBTabPanel,\n' +
 		'DBTabs\n' +
-		"} from '../../../../../../../output/react/src';\n" +
+		"} from '../../../../../output/react/src';\n" +
 		`const ${variant.name} = () => {
 			const [copied, setCopied] = useState<string>();
 
@@ -71,23 +76,27 @@ const getExamplesAsMDX = async (componentName, variant) => {
 				exampleCode = getCodeByFramework(
 					componentName,
 					framework,
-					example
+					example,
+					false,
+					children
 				);
 			}
 
 			try {
 				exampleCode = await prettier.format(exampleCode, {
-					parser: 'babel',
-					plugins
+					parser: framework === 'react' ? 'babel' : framework
 				});
 			} catch {
 				// We do not care about errors here
+				// console.error(e);
 			}
 
 			exampleCode = exampleCode?.replace(/;/g, '').trim();
 
 			result += `
 				<DBTabPanel>
+				${getCustomCodeCommentByFramework(componentName, framework)}
+
 				<pre>
 				<code className="hljs language-${getFileTypeByFramework(framework)}">{\`${exampleCode}\`}</code>
 				</pre>
@@ -126,7 +135,7 @@ export default ${variant.name};`;
  * @returns {Promise<string>}
  */
 const writeCodeFiles = async (componentPath, componentName) => {
-	const codePath = `${componentPath}/code`;
+	const codePath = componentPath;
 	const path = `${sharedPath}/${componentName}.json`;
 	let variants;
 	if (FS.existsSync(path)) {
@@ -134,16 +143,23 @@ const writeCodeFiles = async (componentPath, componentName) => {
 			...variant,
 			name: variant.name.replaceAll(/\s/g, '').replaceAll(/\W/g, '')
 		}));
+
+		let indexFile = '';
+
 		for (const variant of variants) {
 			if (!FS.existsSync(codePath)) {
 				FS.mkdirSync(codePath);
 			}
+
+			indexFile += `export { default as ${variant.name} } from './${variant.name}';\n`;
 
 			FS.writeFileSync(
 				`${codePath}/${variant.name}.tsx`,
 				await getExamplesAsMDX(componentName, variant)
 			);
 		}
+
+		FS.writeFileSync(`${codePath}/index.tsx`, indexFile);
 	}
 
 	const reactComponentPath = `${reactPath}/${componentName}/index.tsx`;
@@ -161,22 +177,12 @@ const writeCodeFiles = async (componentPath, componentName) => {
 		}
 
 		const readFile = FS.readFileSync(reactComponentPath, 'utf8')
-			.replace(
-				'../../../../../output/react/src',
-				'./../../../../components/src'
-			)
-			.replace('../index', './../../../../components')
-			.replace('../data', '../../../../components/data')
-			.replaceAll('../../../../shared/', '../../../../../shared/')
-			.replace(
-				`../../../../../output/react/src/components/${componentName}/model`,
-				`./../../../../components//src/components/${componentName}/model`
-			)
+			.replace('../index', './../../../components')
+			.replace('../data', '../../../components/data')
 			.replace(
 				')}></DefaultComponent>',
 				`,[${tags}])}></DefaultComponent>`
 			)
-			.replace("-item';", "-item/overview';")
 			.replaceAll('// Patternhub:', '');
 
 		return `${pre}\n${readFile}`;

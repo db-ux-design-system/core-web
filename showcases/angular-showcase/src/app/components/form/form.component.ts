@@ -65,7 +65,7 @@ export class FormComponent {
 		select: 'test2'
 	};
 
-	dataList = [{ key: 'test', value: 'Test' }, { key: 'test2' }];
+	dataList = [{ value: 'test', label: 'Test' }, { value: 'test2' }];
 
 	// Reference: https://blog.angular-university.io/angular-custom-form-controls/
 	form = new FormGroup({

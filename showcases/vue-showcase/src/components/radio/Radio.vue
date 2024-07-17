@@ -10,14 +10,14 @@ import { DBRadio } from "../../../../../output/vue/src";
 			#example="{ exampleIndex, variantIndex, exampleName, exampleProps }"
 		>
 			<DBRadio
-				:label="exampleProps.label"
-				:size="exampleProps.size"
-				:name="exampleProps.name"
-				:checked="exampleProps.checked"
-				:value="exampleProps.value"
-				:required="exampleProps.required"
-				:variant="exampleProps.variant"
-				:disabled="exampleProps.disabled"
+				:label="exampleProps?.label"
+				:size="exampleProps?.size"
+				:name="exampleProps?.name"
+				:checked="exampleProps?.checked"
+				:value="exampleProps?.value"
+				:required="exampleProps?.required"
+				:variant="exampleProps?.variant"
+				:disabled="exampleProps?.disabled"
 			>
 				{{ exampleName }}
 			</DBRadio>

@@ -6,8 +6,8 @@ import {
 	DBSelect,
 	DBIcon,
 	DBInfotext
-} from '../../../components/src';
-import { ALL_ICONS } from '../../../components/src/shared/all-icons';
+} from '../../../../../output/react/src';
+import { ALL_ICONS } from '../../../../../packages/components/src/shared/all-icons';
 
 const IconOverview = () => {
 	const [weight, setWeight] = useState<string>('24');

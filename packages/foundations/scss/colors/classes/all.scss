@@ -3,4 +3,18 @@
 
 @each $variant in index.$variants {
 	@include get-class.init($variant);
+	@include get-class.init-container-colors($variant);
+}
+
+@each $additional-variant in index.$additional-variants {
+	@include get-class.init($additional-variant);
+	@include get-class.init-container-colors($additional-variant);
+}
+
+@each $background-color in index.$background-colors {
+	@include get-class.init-background-colors($background-color);
+}
+
+@each $on-background-color in index.$on-background-colors {
+	@include get-class.init-on-background-colors($on-background-color);
 }

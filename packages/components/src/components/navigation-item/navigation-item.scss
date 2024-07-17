@@ -1,5 +1,6 @@
 @use "@db-ui/foundations/build/scss/variables";
 @use "@db-ui/foundations/build/scss/colors";
+@use "@db-ui/foundations/build/scss/fonts";
 @use "@db-ui/foundations/build/scss/screen-sizes";
 @use "@db-ui/foundations/build/scss/helpers";
 @use "@db-ui/foundations/build/scss/animation";
@@ -12,7 +13,7 @@
 	@include screen-sizes.screen("md") {
 		&:hover,
 		&:focus-visible {
-			& ~ .db-sub-navigation {
+			~ .db-sub-navigation {
 				visibility: visible;
 			}
 		}
@@ -22,10 +23,13 @@
 @mixin sub-navi-handler-mobile() {
 	// show/hide sub-navigation by click
 	&[aria-expanded="true"] {
-		& ~ .db-sub-navigation {
+		~ .db-sub-navigation {
+			@media screen and (prefers-reduced-motion: no-preference) {
+				transition: visibility 0ms linear 0ms;
+				animation: show-right-to-left #{variables.$db-transition-straight-show};
+			}
+
 			visibility: visible;
-			transition: visibility 0ms linear 0ms;
-			animation: show-right-to-left variables.$db-transition-straight-show;
 
 			.db-sub-navigation {
 				inset-block: 0;
@@ -34,9 +38,11 @@
 	}
 
 	&:not(&[aria-expanded="true"]) {
-		& ~ .db-sub-navigation {
-			transition: visibility 0ms linear 410ms; // hide animation is 0.4s
-			animation: hide-right-to-left variables.$db-transition-straight-hide;
+		@media screen and (prefers-reduced-motion: no-preference) {
+			~ .db-sub-navigation {
+				transition: visibility 0ms linear 410ms; // hide animation is 0.4s
+				animation: hide-right-to-left #{variables.$db-transition-straight-hide};
+			}
 		}
 	}
 }
@@ -44,12 +50,12 @@
 %navigation-item {
 	@extend %default-interactive-component;
 	@extend %transparent-border;
+	@extend %db-overwrite-font-size-md;
 
 	background-color: colors.$db-current-color-bg-transparent-full-enabled;
 	cursor: pointer;
 	inline-size: 100%;
 	display: inline-flex;
-
 	border-radius: variables.$db-border-radius-sm;
 	padding: variables.$db-spacing-fixed-xs variables.$db-spacing-fixed-sm;
 	white-space: nowrap; // we don't want to break
@@ -64,13 +70,15 @@
 		background-color: colors.$db-current-color-bg-transparent-pressed;
 	}
 
-	&:has(~ .db-sub-navigation:hover) {
+	&:has(~ .db-sub-navigation:is(:hover, :focus)) {
 		background-color: colors.$db-current-color-bg-transparent-hover;
 	}
 }
 
 .db-navigation-item {
 	--db-has-before: 0;
+
+	@extend %db-overwrite-font-size-md;
 
 	@include icon-passing.icon-passing();
 
@@ -90,6 +98,7 @@
 
 	a {
 		@extend %navigation-item;
+
 		text-decoration: none;
 
 		&:focus-visible {
@@ -104,7 +113,7 @@
 		}
 
 		&:is(button),
-		& > button {
+		> button {
 			@extend %sub-navi-handler-desktop;
 			@extend %navigation-item;
 
@@ -117,7 +126,7 @@
 
 	&:has([aria-current="page"]),
 	&[aria-current="page"] {
-		& > :is(a, button) {
+		> :is(a, button) {
 			font-weight: 700;
 		}
 	}
@@ -168,7 +177,6 @@
 	z-index: 70;
 	inset-inline-start: 0;
 	background-color: colors.$db-current-color-bg-lvl-1-enabled;
-
 	visibility: hidden;
 
 	@include screen-sizes.screen("md", "max") {
@@ -185,12 +193,9 @@
 		border-radius: variables.$db-border-radius-sm;
 		box-shadow: variables.$db-elevation-md;
 		padding: variables.$db-spacing-fixed-sm;
-
 		position: absolute;
 		min-inline-size: 328px; // We should get this value from UX
-
 		inset-block-start: calc(100% + #{variables.$db-spacing-fixed-md});
-
 		transition: visibility 1ms linear; // workaround to enable focus with keyboard
 
 		&[data-outside-vx="true"] {
@@ -242,8 +247,7 @@
 				}
 
 				&::before {
-					inset-block-start: auto;
-					inset-block-end: 0;
+					inset-block: auto 0;
 					// inline-size: calc(var(--db-navigation-item-inline-size, 100%) - #{variables.$db-spacing-fixed-xs} - 2px);
 					transform: translateX(100%) scaleX(-1);
 				}
@@ -270,7 +274,7 @@
 				padding: variables.$db-spacing-fixed-xs;
 				// #{$db-spacing-fixed-3xs} for box shadow
 				inset-block-start: #{variables.$db-spacing-fixed-3xs};
-				inset-inline-end: calc(-1 *#{variables.$db-spacing-fixed-xs});
+				inset-inline-end: calc(-1 * #{variables.$db-spacing-fixed-xs});
 				block-size: 100%;
 				inline-size: variables.$db-spacing-fixed-xs;
 			}
@@ -292,6 +296,7 @@
 
 .db-mobile-navigation-back {
 	@include helpers.divider("bottom");
+
 	display: flex;
 	font-weight: normal;
 	background-color: colors.$db-current-color-bg-lvl-1-enabled;

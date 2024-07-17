@@ -7,12 +7,12 @@
 	&[data-e2e-hover="true"],
 	&:hover,
 	&:focus-within {
-		& > article {
+		> article:not([data-open="false"]) {
 			@extend %show-popover;
 		}
 	}
 
-	& > article {
+	> article {
 		@extend %popover-center;
 		@extend %default-popover;
 

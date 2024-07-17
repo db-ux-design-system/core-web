@@ -1,61 +1,56 @@
 @use "sass:string";
 @use "variables";
+@use "../helpers/functions";
+@use "variables.additional" as additional-colors;
 
-%set-current-colors {
-	background: variables.$db-current-color-bg-enabled;
-	color: variables.$db-current-color-enabled;
+@mixin set-current-colors($bg, $on, $hover: false, $pressed: false) {
+	background-color: $bg;
+	color: $on;
 
 	&::before,
 	&::after {
-		color: variables.$db-current-icon-color;
+		--db-icon-color: $on;
+	}
+
+	@if ($hover) {
+		@include functions.hover {
+			background-color: $hover;
+		}
+	}
+
+	@if ($pressed) {
+		@include functions.active {
+			background-color: $pressed;
+		}
 	}
 }
 
-@mixin bg-types() {
-	&-lvl-1,
-	&-lvl-2,
-	&-lvl-3,
-	&-transparent-full,
-	&-transparent-semi {
-		@content;
-	}
-}
+$backgrounds: "lvl-1", "lvl-2", "lvl-3", "transparent-full", "transparent-semi";
 
-@each $variant in variables.$variants {
+@mixin generate-color-placeholder($variant) {
 	@each $contrast in [ "high", "low"] {
 		%db-#{$variant}-contrast-#{$contrast} {
-			--db-current-icon-color: var(--db-#{$variant}-on-contrast-enabled);
-			--db-current-color-enabled: var(
-				--db-#{$variant}-on-contrast-enabled
-			);
-			--db-current-color-bg-enabled: var(
-				--db-#{$variant}-contrast-#{$contrast}-enabled
-			);
-			--db-current-color-bg-hover: var(
-				--db-#{$variant}-contrast-#{$contrast}-hover
-			);
-			--db-current-color-bg-pressed: var(
-				--db-#{$variant}-contrast-#{$contrast}-pressed
-			);
 			--db-current-color-border: var(
 				--db-#{$variant}-contrast-#{$contrast}-enabled
 			);
-			@extend %set-current-colors;
 
-			&-interactive {
-				@extend %db-#{$variant}-contrast-#{$contrast};
+			@include set-current-colors(
+				var(--db-#{$variant}-contrast-#{$contrast}-enabled),
+				var(--db-#{$variant}-on-contrast-enabled)
+			);
+		}
 
-				&:hover {
-					background: var(
-						--db-#{$variant}-contrast-#{$contrast}-hover
-					);
-				}
+		%db-#{$variant}-contrast-#{$contrast}-interactive {
+			@extend %db-#{$variant}-contrast-#{$contrast};
 
-				&:active {
-					background: var(
-						--db-#{$variant}-contrast-#{$contrast}-pressed
-					);
-				}
+			/* stylelint-disable-next-line scss/percent-placeholder-pattern */
+			&:is(:hover, :focus) {
+				background: var(--db-#{$variant}-contrast-#{$contrast}-hover);
+			}
+
+			/* stylelint-disable-next-line scss/percent-placeholder-pattern */
+			&:active {
+				background: var(--db-#{$variant}-contrast-#{$contrast}-pressed);
 			}
 		}
 	}
@@ -75,13 +70,6 @@
 			--db-#{$variant}-bg-transparent-pressed
 		);
 
-		/* used for text */
-		--db-current-color-enabled: var(--db-#{$variant}-on-bg-enabled);
-		--db-current-color-icon: var(--db-#{$variant}-on-bg-enabled);
-		/* used for checkbox:checked */
-		--db-current-color-hover: var(--db-#{$variant}-on-bg-hover);
-		--db-current-color-pressed: var(--db-#{$variant}-on-bg-pressed);
-
 		/* used for backgrounds */
 		--db-current-color-bg-lvl-1-enabled: var(
 			--db-#{$variant}-bg-lvl-1-enabled
@@ -96,6 +84,12 @@
 		/* used for icons and borders */
 		--db-current-color-contrast-low-enabled: var(
 			--db-#{$variant}-contrast-low-enabled
+		);
+		--db-current-color-contrast-low-hover: var(
+			--db-#{$variant}-contrast-low-hover
+		);
+		--db-current-color-contrast-low-pressed: var(
+			--db-#{$variant}-contrast-low-pressed
 		);
 		--db-current-color-border: var(--db-#{$variant}-border);
 
@@ -112,11 +106,11 @@
 		--db-current-color-bg-lvl-3-pressed: var(
 			--db-#{$variant}-bg-lvl-3-pressed
 		);
+
 		/* used for adaptive tags (strong & interactive) */
 		--db-current-color-on-contrast-enabled: var(
 			--db-#{$variant}-on-contrast-enabled
 		);
-
 		--db-current-color-contrast-high-enabled: var(
 			--db-#{$variant}-contrast-high-enabled
 		);
@@ -126,64 +120,40 @@
 		--db-current-color-contrast-high-pressed: var(
 			--db-#{$variant}-contrast-high-pressed
 		);
+
+		/* on-colors */
+		--db-current-color-on-bg-enabled: var(--db-#{$variant}-on-bg-enabled);
+		--db-current-color-on-bg-hover: var(--db-#{$variant}-on-bg-hover);
+		--db-current-color-on-bg-pressed: var(--db-#{$variant}-on-bg-pressed);
+
+		/* weak colors */
+		--db-current-color-on-bg-weak-enabled: var(
+			--db-#{$variant}-on-bg-weak-enabled
+		);
+		--db-current-color-on-bg-weak-hover: var(
+			--db-#{$variant}-on-bg-weak-hover
+		);
+		--db-current-color-on-bg-weak-pressed: var(
+			--db-#{$variant}-on-bg-weak-pressed
+		);
 	}
 
-	%db-#{$variant}-bg {
-		// 1. set all variables for color variant to every bg type
-		@include bg-types() {
+	@each $bg in $backgrounds {
+		%db-#{$variant}-bg-#{$bg} {
 			@extend %db-#{$variant}-variables;
-		}
 
-		// 3. set current colors
-		@include bg-types() {
-			@extend %set-current-colors;
-
-			&[data-emphasis="weak"] {
-				/* used for text */
-				--db-current-color-enabled: var(
-					--db-#{$variant}-on-bg-weak-enabled
-				);
-				/* used for checkbox:checked */
-				--db-current-color-hover: var(
-					--db-#{$variant}-on-bg-weak-hover
-				);
-				--db-current-color-pressed: var(
-					--db-#{$variant}-on-bg-weak-pressed
-				);
-				color: var(--db-current-color-enabled);
-			}
-		}
-
-		// 2. overwrite current-bg-color based on type
-
-		&-lvl-1 {
-			--db-current-color-bg-enabled: var(
-				--db-current-color-bg-lvl-1-enabled
-			);
-		}
-
-		&-lvl-2 {
-			--db-current-color-bg-enabled: var(
-				--db-current-color-bg-lvl-2-enabled
-			);
-		}
-
-		&-lvl-3 {
-			--db-current-color-bg-enabled: var(
-				--db-current-color-bg-lvl-3-enabled
-			);
-		}
-
-		&-transparent-full {
-			--db-current-color-bg-enabled: var(
-				--db-current-color-bg-transparent-full-enabled
-			);
-		}
-
-		&-transparent-semi {
-			--db-current-color-bg-enabled: var(
-				--db-current-color-bg-transparent-semi-enabled
+			@include set-current-colors(
+				var(--db-#{$variant}-bg-#{$bg}-enabled),
+				var(--db-#{$variant}-on-bg-enabled)
 			);
 		}
 	}
+}
+
+@each $variant in variables.$variants {
+	@include generate-color-placeholder($variant);
+}
+
+@each $variant in additional-colors.$additional-variants {
+	@include generate-color-placeholder($variant);
 }

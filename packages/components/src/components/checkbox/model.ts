@@ -1,16 +1,15 @@
 import {
+	ChangeEventProps,
+	ChangeEventState,
 	FocusEventProps,
 	FocusEventState,
-	ChangeEventState,
-	ChangeEventProps,
-	GlobalProps,
-	GlobalState,
+	FormCheckProps,
+	FormMessageProps,
 	FormProps,
 	FormState,
-	FormCheckProps,
+	GlobalProps,
+	GlobalState,
 	InitializedState,
-	FormMessageProps,
-	FormMessageState,
 	SizeProps
 } from '../../shared/model';
 
@@ -37,5 +36,4 @@ export type DBCheckboxState = DBCheckboxDefaultState &
 	ChangeEventState<HTMLInputElement> &
 	FocusEventState<HTMLInputElement> &
 	FormState &
-	InitializedState &
-	FormMessageState;
+	InitializedState;

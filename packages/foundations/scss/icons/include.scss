@@ -1,5 +1,5 @@
 @use "icon-helpers";
-@use "../default.assets-paths" as *;
+@use "../default.assets-paths" as assets-paths;
 
 @each $variant in icon-helpers.$default-icon-variants {
 	@font-face {
@@ -7,7 +7,7 @@
 		font-family: "db-ux-#{$variant}";
 		font-style: normal;
 		font-weight: normal;
-		src: url("#{$icons-path}functional/fonts/#{$variant}/db-ux.woff2")
+		src: url("#{assets-paths.$icons-path}functional/fonts/#{$variant}/db-ux.woff2")
 			format("woff2");
 	}
 
@@ -17,7 +17,7 @@
 			font-family: "db-ux-#{$variant}";
 			font-style: normal;
 			font-weight: $size;
-			src: url("#{$icons-path}functional/fonts/#{$variant}_#{$size}/db-ux.woff2")
+			src: url("#{assets-paths.$icons-path}functional/fonts/#{$variant}_#{$size}/db-ux.woff2")
 				format("woff2");
 		}
 
@@ -62,6 +62,7 @@
 [data-icon-before] {
 	&::before {
 		@extend %icon !optional;
+
 		margin-inline-end: icon-helpers.$default-icon-margin-end;
 	}
 }
@@ -76,9 +77,11 @@
 [data-icon-after] {
 	&::after {
 		@extend %icon !optional;
+
 		@include icon-helpers.icon-content(
 			icon-helpers.$default-icon-content-after
 		);
+
 		margin-inline-start: icon-helpers.$default-icon-margin-start;
 	}
 }

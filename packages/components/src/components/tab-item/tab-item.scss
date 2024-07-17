@@ -1,6 +1,5 @@
 @use "@db-ui/foundations/build/scss/variables";
 @use "@db-ui/foundations/build/scss/colors";
-@use "@db-ui/foundations/build/scss/focus";
 @use "@db-ui/foundations/build/scss/icons";
 @use "@db-ui/foundations/build/scss/helpers";
 @use "../../styles/component";
@@ -29,7 +28,7 @@ $tab-border-radius: variables.$db-border-radius-sm;
 		align-items: center;
 		display: inline-block;
 		white-space: nowrap;
-		border: none;
+		border: 0;
 		border-radius: $tab-border-radius;
 		overflow: hidden;
 		text-overflow: ellipsis;
@@ -105,7 +104,7 @@ $tab-border-radius: variables.$db-border-radius-sm;
 		inline-size: 100%;
 		margin-inline-end: initial;
 		inset: 0;
-		background: colors.$db-current-color-bg-enabled;
+		background-color: colors.$db-current-color-bg-transparent-full-enabled;
 		border-radius: $tab-border-radius;
 		z-index: -1;
 

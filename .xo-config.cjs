@@ -1,5 +1,6 @@
 module.exports = {
 	prettier: true,
+	ignores: ['./showcases/nuxt-showcase/**'],
 	overrides: [
 		{
 			files: ['./showcases/angular-showcase/**'],
@@ -41,6 +42,13 @@ module.exports = {
 				'@typescript-eslint/no-unsafe-argument': 0, // valid for app
 				'@typescript-eslint/no-unsafe-return': 0, // valid for app
 				'import/no-extraneous-dependencies': 0 // foundation and component.css are inside this repo
+			}
+		},
+		{
+			files: ['./**/*.spec.ts'],
+			rules: {
+				// Playwright tests are async we shall use loops there
+				'no-await-in-loop': 0
 			}
 		}
 	],

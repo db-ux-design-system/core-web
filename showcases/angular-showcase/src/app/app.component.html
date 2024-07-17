@@ -11,7 +11,7 @@
 			(onToggle)="toggleDrawer($event)"
 		>
 			<db-brand brand>Showcase</db-brand>
-			<db-navigation *dbNavigation>
+			<db-navigation *dbNavigation aria-label="main-navigation">
 				@for (item of navigationItems; track item.label) {
 					<app-nav-item [navItem]="item"> </app-nav-item>
 				}
@@ -50,7 +50,7 @@
 					>Search</DBButton
 				>
 			</ng-container>
-			<ng-container secondary-action>
+			<ng-container *dbSecondaryAction>
 				<DBButton icon="user" variant="ghost" [noText]="true">
 					Profile
 				</DBButton>
