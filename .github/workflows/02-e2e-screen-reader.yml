@@ -38,11 +38,11 @@ jobs:
         with:
           version: ${{ inputs.version }}
 
-      - name: ⏬ Download showcases
+      - name: ⏬ Download react-showcase
         uses: actions/download-artifact@v4
         with:
-          name: db-ui-showcases
-          path: build-showcases
+          name: db-ui-react-showcase
+          path: build-showcases/react-showcase
 
       - name: 👩‍🔬 Test showcase with Playwright 🎭
         env:
