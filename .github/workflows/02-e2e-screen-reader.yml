@@ -13,13 +13,12 @@ permissions:
 
 jobs:
   playwright-screen-reader:
-    name: 🧪🎭 - screen-reader - ${{ matrix.os }} - ${{ matrix.framework }} - ${{ matrix.shardIndex }}/${{ matrix.shardTotal }}
+    name: 🧪🎭 - screen-reader - ${{ matrix.os }} - react - ${{ matrix.shardIndex }}/${{ matrix.shardTotal }}
     runs-on: ${{ matrix.os }}
     strategy:
       fail-fast: false
       matrix:
         os: [macos-13, windows-2022]
-        framework: [react]
         shardIndex: [1, 2, 3, 4, 5]
         shardTotal: [5]
     steps:
@@ -47,22 +46,22 @@ jobs:
 
       - name: 👩‍🔬 Test showcase with Playwright 🎭
         env:
-          showcase: ${{ matrix.framework }}-showcase
+          showcase: react-showcase
         run: |
-          npm run test:screen-reader:${{ env.OS }} --workspace=${{ matrix.framework }}-showcase -- --shard=${{ matrix.shardIndex }}/${{ matrix.shardTotal }}
+          npm run test:screen-reader:${{ env.OS }} --workspace=react-showcase -- --shard=${{ matrix.shardIndex }}/${{ matrix.shardTotal }}
 
       - name: 🆙 Upload test results
         if: failure()
         uses: actions/upload-artifact@v4
         with:
-          name: ${{ matrix.framework }}-screen-reader-${{ matrix.os }}-${{ matrix.shardIndex }}
-          path: ./showcases/${{ matrix.framework }}-showcase/test-results
+          name: react-screen-reader-${{ matrix.os }}-${{ matrix.shardIndex }}
+          path: ./showcases/react-showcase/test-results
           retention-days: 30
 
       - name: 🆙 Upload test results
         if: failure()
         uses: actions/upload-artifact@v4
         with:
-          name: ${{ matrix.framework }}-recordings-${{ matrix.os }}-${{ matrix.shardIndex }}
-          path: ./showcases/${{ matrix.framework }}-showcase/recordings
+          name: react-recordings-${{ matrix.os }}-${{ matrix.shardIndex }}
+          path: ./showcases/react-showcase/recordings
           retention-days: 30
