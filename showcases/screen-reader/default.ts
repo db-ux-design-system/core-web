@@ -86,10 +86,8 @@ export const runTest = async ({
 
 	let recorder: (() => void) | undefined;
 
-	if (process.env.CI && retry > 0) {
-		const path = `./${
-			process.env.showcase
-		}/recordings/${title}-${Date.now()}.mp4`;
+	if (retry > 0) {
+		const path = `./recordings/${title}-${Date.now()}.mp4`;
 		recorder = isWin() ? windowsRecord(path) : macOSRecord(path);
 	}
 

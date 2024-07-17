@@ -5,13 +5,13 @@ Test with this:
 ## MacOS
 
 ```shell
-npm run test:screen-reader-local:macos --workspace=react-showcase -- -- --ui
+npm run test:screen-reader:macos --workspace=react-showcase -- -- --ui
 ```
 
 ## Windows
 
 ```shell
-npm run test:screen-reader-local:windows --workspace=react-showcase -- -- --ui
+npm run test:screen-reader:windows --workspace=react-showcase -- -- --ui
 ```
 
 ## Gotchas
