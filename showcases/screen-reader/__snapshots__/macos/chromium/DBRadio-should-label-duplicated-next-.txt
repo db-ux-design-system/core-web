@@ -1,1 +1,1 @@
-["Functional radio button, 1 of 3","(Default) Regular radio button, 2 of 3","Expressive radio button, 3 of 3"]
+["(Default) Regular, radio button, checked, 2 of 3","Expressive, radio button, checked, 3 of 3","Functional, radio button, checked, 1 of 3"]

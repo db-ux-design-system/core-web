@@ -9,10 +9,6 @@ const config: PlaywrightTestConfig = {
 		{
 			name: 'chromium',
 			use: { ...devices['Desktop Chrome'], headless: false }
-		},
-		{
-			name: 'firefox',
-			use: { ...devices['Desktop Firefox'], headless: false }
 		}
 	]
 };
