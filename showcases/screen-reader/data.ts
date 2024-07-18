@@ -30,7 +30,8 @@ export type DefaultTestType = {
 	) => Promise<void>;
 	postTestFn?: (
 		voiceOver?: VoiceOverPlaywright,
-		nvda?: NVDAPlaywright
+		nvda?: NVDAPlaywright,
+		retry?: number
 	) => Promise<void>;
 	additionalParams?: string;
 };

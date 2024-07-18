@@ -46,13 +46,18 @@ const cleanSpeakInstructions = (phraseLog: string[]): string[] =>
 
 export const generateSnapshot = async (
 	screenReader?: VoiceOverPlaywright | NVDAPlaywright,
-	shiftFirst?: boolean
+	shiftFirst?: boolean,
+	retry?: number
 ) => {
 	if (!screenReader) return;
 
 	let phraseLog: string[] = await screenReader.spokenPhraseLog();
 	if (shiftFirst) {
 		phraseLog.shift();
+	}
+
+	if (retry && retry > 1) {
+		process.stdout.write(JSON.stringify(phraseLog));
 	}
 
 	phraseLog = cleanSpeakInstructions(phraseLog);
@@ -91,26 +96,32 @@ export const runTest = async ({
 		recorder = isWin() ? windowsRecord(path) : macOSRecord(path);
 	}
 
-	const screenRecorder = nvda ?? voiceOver;
+	const screenRecorder: VoiceOverPlaywright | NVDAPlaywright | undefined =
+		nvda ?? voiceOver;
 	if (!screenRecorder) return;
 
 	await screenRecorder.navigateToWebContent();
 	await page.waitForTimeout(500);
 
 	if (voiceOver) {
-		// We stop interacting here because screenRecorder.navigateToWebContent() calls voiceOver.interact()
-		await voiceOver.stopInteracting();
+		const lastPhrase = await voiceOver.lastSpokenPhrase();
+		// For debugging
+		process.stdout.write(JSON.stringify(await voiceOver.spokenPhraseLog()));
+		if (lastPhrase.includes('You are currently')) {
+			// We stop interacting here because screenRecorder.navigateToWebContent() calls voiceOver.interact()
+			await voiceOver.stopInteracting();
+		}
 	}
 
 	await testFn?.(voiceOver, nvda);
-	await postTestFn?.(voiceOver, nvda);
+	await postTestFn?.(voiceOver, nvda, retry);
 	recorder?.();
 };
 
 export const testDefault = (defaultTestType: DefaultTestType) => {
 	const { test, title, additionalParams, postTestFn } = defaultTestType;
-	const fallbackPostFn = async (voiceOver, nvda) => {
-		await generateSnapshot(voiceOver ?? nvda, true);
+	const fallbackPostFn = async (voiceOver, nvda, retry) => {
+		await generateSnapshot(voiceOver ?? nvda, true, retry);
 	};
 
 	const testType: DefaultTestType = {
