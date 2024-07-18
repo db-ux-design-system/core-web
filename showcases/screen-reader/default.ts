@@ -56,7 +56,7 @@ export const generateSnapshot = async (
 		phraseLog.shift();
 	}
 
-	if (retry && retry > 1) {
+	if (retry && retry > 0) {
 		process.stdout.write(JSON.stringify(phraseLog));
 	}
 
@@ -91,8 +91,8 @@ export const runTest = async ({
 
 	let recorder: (() => void) | undefined;
 
-	if (retry > 1) {
-		const path = `./recordings/${title}-${Date.now()}.mp4`;
+	if (retry > 0) {
+		const path = `./recordings/${title}-${retry}-${Date.now()}.mp4`;
 		recorder = isWin() ? windowsRecord(path) : macOSRecord(path);
 	}
 
@@ -107,6 +107,10 @@ export const runTest = async ({
 		const lastPhrase = await voiceOver.lastSpokenPhrase();
 		// For debugging
 		process.stdout.write(JSON.stringify(await voiceOver.spokenPhraseLog()));
+		process.stdout.write(JSON.stringify(await voiceOver.itemText()));
+		process.stdout.write(
+			JSON.stringify(await voiceOver.takeCursorScreenshot())
+		);
 		if (lastPhrase.includes('You are currently')) {
 			// We stop interacting here because screenRecorder.navigateToWebContent() calls voiceOver.interact()
 			await voiceOver.stopInteracting();
