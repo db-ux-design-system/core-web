@@ -8,7 +8,6 @@ import {
 } from '@guidepup/playwright';
 import { macOSRecord, windowsRecord } from '@guidepup/guidepup';
 import { expect } from '@playwright/test';
-import { CommanderCommands } from '@guidepup/guidepup/lib/macOS/VoiceOver/CommanderCommands';
 import {
 	type DefaultTestType,
 	type RunTestType,
@@ -116,10 +115,8 @@ export const runTest = async ({
 		);
 		process.stdout.write(JSON.stringify(await voiceOver.itemTextLog()));
 		process.stdout.write('Perform');
-		await voiceOver.perform(
-			CommanderCommands.READ_CONTENTS_OF_VOICEOVER_CURSOR
-		);
-		await voiceOver.perform(CommanderCommands.READ_CONTENTS_OF_WINDOW);
+		await voiceOver.perform('read contents of voiceover cursor' as any);
+		await voiceOver.perform('read contents of window' as any);
 		process.stdout.write(JSON.stringify(await voiceOver.spokenPhraseLog()));
 		if (lastPhrase.includes('You are currently')) {
 			// We stop interacting here because screenRecorder.navigateToWebContent() calls voiceOver.interact()
