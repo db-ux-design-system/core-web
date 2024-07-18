@@ -104,20 +104,9 @@ export const runTest = async ({
 	await page.waitForTimeout(500);
 
 	if (voiceOver) {
-		const lastPhrase = await voiceOver.lastSpokenPhrase();
-		// For debugging
-		process.stdout.write('Debug');
-		process.stdout.write(JSON.stringify(lastPhrase));
-		process.stdout.write(JSON.stringify(await voiceOver.spokenPhraseLog()));
-		process.stdout.write(JSON.stringify(await voiceOver.itemText()));
-		process.stdout.write(
-			JSON.stringify(await voiceOver.takeCursorScreenshot())
-		);
-		process.stdout.write(JSON.stringify(await voiceOver.itemTextLog()));
-		process.stdout.write('Perform');
 		await voiceOver.perform('read contents of voiceover cursor' as any);
-		await voiceOver.perform('read contents of window' as any);
-		process.stdout.write(JSON.stringify(await voiceOver.spokenPhraseLog()));
+		const lastPhrase = await voiceOver.lastSpokenPhrase();
+		await voiceOver.clearSpokenPhraseLog();
 		if (lastPhrase.includes('You are currently')) {
 			// We stop interacting here because screenRecorder.navigateToWebContent() calls voiceOver.interact()
 			await voiceOver.stopInteracting();
