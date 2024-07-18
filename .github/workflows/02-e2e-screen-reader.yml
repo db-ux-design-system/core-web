@@ -19,8 +19,8 @@ jobs:
       fail-fast: false
       matrix:
         os: [macos-13, windows-2022]
-        shardIndex: [1, 2, 3, 4, 5]
-        shardTotal: [5]
+        shardIndex: [1, 2, 3]
+        shardTotal: [3]
     steps:
       - name: ⏬ Checkout repo
         uses: actions/checkout@v4

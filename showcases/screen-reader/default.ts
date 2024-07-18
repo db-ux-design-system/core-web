@@ -96,6 +96,12 @@ export const runTest = async ({
 
 	await screenRecorder.navigateToWebContent();
 	await page.waitForTimeout(500);
+
+	if (voiceOver) {
+		// We stop interacting here because screenRecorder.navigateToWebContent() calls voiceOver.interact()
+		await voiceOver.stopInteracting();
+	}
+
 	await testFn?.(voiceOver, nvda);
 	await postTestFn?.(voiceOver, nvda);
 	recorder?.();
