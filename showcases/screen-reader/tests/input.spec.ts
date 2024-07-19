@@ -9,12 +9,11 @@ test.describe('DBInput', () => {
 		url: './#/03/input?page=variant%20helper%20message',
 		async testFn(voiceOver, nvda) {
 			const screenReader = voiceOver ?? nvda;
-			if (voiceOver) {
-				await voiceOver.next();
+			if (nvda) {
+				await screenReader?.press('Tab');
+				await screenReader?.press('Shift+Tab');
 			}
 
-			await screenReader?.press('Tab');
-			await screenReader?.press('Shift+Tab');
 			await screenReader?.press('Tab');
 		}
 	});

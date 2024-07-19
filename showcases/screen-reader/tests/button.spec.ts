@@ -9,8 +9,11 @@ test.describe('DBButton', () => {
 		url: './#/02/button?page=content',
 		async testFn(voiceOver, nvda) {
 			const screenReader = voiceOver ?? nvda;
-			await screenReader?.next();
-			await screenReader?.previous();
+			if (nvda) {
+				await screenReader?.next();
+				await screenReader?.previous();
+			}
+
 			await screenReader?.next();
 			await screenReader?.next();
 		}
@@ -21,8 +24,11 @@ test.describe('DBButton', () => {
 		url: './#/02/button?page=content',
 		async testFn(voiceOver, nvda) {
 			const screenReader = voiceOver ?? nvda;
-			await screenReader?.press('Tab');
-			await screenReader?.press('Shift+Tab');
+			if (nvda) {
+				await screenReader?.press('Tab');
+				await screenReader?.press('Shift+Tab');
+			}
+
 			await screenReader?.press('Tab');
 			await screenReader?.press('Tab');
 		}

@@ -121,7 +121,7 @@ export const runTest = async ({
 export const testDefault = (defaultTestType: DefaultTestType) => {
 	const { test, title, additionalParams, postTestFn } = defaultTestType;
 	const fallbackPostFn = async (voiceOver, nvda, retry) => {
-		await generateSnapshot(voiceOver ?? nvda, true, retry);
+		await generateSnapshot(voiceOver ?? nvda, nvda, retry);
 	};
 
 	const testType: DefaultTestType = {

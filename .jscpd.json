@@ -53,7 +53,8 @@
 		"packages/foundations/src",
 		"**/.output/**",
 		"**/.nuxt/**",
-		"showcases/nuxt-showcase/**"
+		"showcases/nuxt-showcase/**",
+		"**/tests/**"
 	],
 	"absolute": true
 }

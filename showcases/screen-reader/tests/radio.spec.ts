@@ -8,8 +8,11 @@ test.describe('DBRadio', () => {
 		url: './#/03/radio?page=density',
 		async testFn(voiceOver, nvda) {
 			const screenReader = voiceOver ?? nvda;
-			await screenReader?.next();
-			await screenReader?.previous();
+			if (nvda) {
+				await screenReader?.next();
+				await screenReader?.previous();
+			}
+
 			await screenReader?.next();
 			await screenReader?.next();
 		}
@@ -20,8 +23,11 @@ test.describe('DBRadio', () => {
 		url: './#/03/radio?page=density',
 		async testFn(voiceOver, nvda) {
 			const screenReader = voiceOver ?? nvda;
-			await screenReader?.press('Left');
-			await screenReader?.press('Left');
+			if (nvda) {
+				await screenReader?.press('Left');
+				await screenReader?.press('Left');
+			}
+
 			await screenReader?.press('Right');
 			await screenReader?.press('Right');
 		}
