@@ -31,9 +31,9 @@ test.describe('DBButton', () => {
 			const screenReader = voiceOver ?? nvda;
 			await screenReader?.press('Tab');
 			await screenReader?.clearSpokenPhraseLog();
-			await nvda?.press('Shift+Tab');
-			await nvda?.press('Tab');
-			await nvda?.press('Tab');
+			await screenReader?.press('Shift+Tab');
+			await screenReader?.press('Tab');
+			await screenReader?.press('Tab');
 		}
 	});
 });

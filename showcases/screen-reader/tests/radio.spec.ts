@@ -37,7 +37,8 @@ test.describe('DBRadio', () => {
 				await nvda?.press('Right');
 				await nvda?.press('Right');
 			} else if (voiceOver) {
-				await voiceOver?.press('Down');
+				await voiceOver?.press('Tab');
+				await voiceOver?.press('Right');
 				await voiceOver?.clearSpokenPhraseLog();
 				await voiceOver?.press('Left');
 				await voiceOver?.press('Right');

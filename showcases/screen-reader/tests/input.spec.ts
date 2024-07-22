@@ -8,15 +8,11 @@ test.describe('DBInput', () => {
 		title: 'should have message and label (tab)',
 		url: './#/03/input?page=variant%20helper%20message',
 		async testFn(voiceOver, nvda) {
-			if (voiceOver) {
-				await voiceOver?.stopInteracting();
-			}
-
 			const screenReader = voiceOver ?? nvda;
 			await screenReader?.press('Tab');
 			await screenReader?.clearSpokenPhraseLog();
-			await nvda?.press('Shift+Tab');
-			await nvda?.press('Tab');
+			await screenReader?.press('Shift+Tab');
+			await screenReader?.press('Tab');
 		}
 	});
 });
