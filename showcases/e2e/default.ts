@@ -139,8 +139,8 @@ export const getDefaultScreenshotTest = ({
 		let failures: any[] = [];
 		try {
 			if (project.name === 'firefox') {
-				// Checking complete DOM in firefox takes very long for some tests
-				test.setTimeout(120_000); // 2min
+				// Checking complete DOM in firefox takes very long, we skip this test for firefox
+				test.skip();
 			}
 
 			const { report } = await getCompliance(page, path);
