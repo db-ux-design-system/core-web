@@ -143,7 +143,9 @@ export const getDefaultScreenshotTest = ({
 				test.skip();
 			}
 
-			const { report } = await getCompliance(page, path);
+			const html = await page.content();
+
+			const { report } = await getCompliance(html, path);
 
 			if (isCheckerError(report)) {
 				failures = report.details;
