@@ -46,15 +46,11 @@ const cleanSpeakInstructions = (phraseLog: string[]): string[] =>
 
 export const generateSnapshot = async (
 	screenReader?: VoiceOverPlaywright | NVDAPlaywright,
-	shiftFirst?: boolean,
 	retry?: number
 ) => {
 	if (!screenReader) return;
 
 	let phraseLog: string[] = await screenReader.spokenPhraseLog();
-	if (shiftFirst) {
-		phraseLog.shift();
-	}
 
 	if (retry && retry > 0) {
 		process.stdout.write(JSON.stringify(phraseLog));
@@ -100,18 +96,14 @@ export const runTest = async ({
 		nvda ?? voiceOver;
 	if (!screenRecorder) return;
 
+	/**
+	 * In macOS:Webkit the [automaticallySpeakWebPage](https://github.com/guidepup/guidepup/blob/main/src/macOS/VoiceOver/configureSettings.ts#L58) is acitve.
+	 * Therefore, we need to move back with the cursor to the start and delete the logs before starting.
+	 * In windows:Chrome the cursor is on the middle element.
+	 * Therefore, we need to move back and delete the logs, and then start everything.
+	 */
 	await screenRecorder.navigateToWebContent();
 	await page.waitForTimeout(500);
-
-	if (voiceOver) {
-		await voiceOver.perform('read contents of voiceover cursor' as any);
-		const lastPhrase = await voiceOver.lastSpokenPhrase();
-		await voiceOver.clearSpokenPhraseLog();
-		if (lastPhrase.includes('You are currently')) {
-			// We stop interacting here because screenRecorder.navigateToWebContent() calls voiceOver.interact()
-			await voiceOver.stopInteracting();
-		}
-	}
 
 	await testFn?.(voiceOver, nvda);
 	await postTestFn?.(voiceOver, nvda, retry);
@@ -121,7 +113,7 @@ export const runTest = async ({
 export const testDefault = (defaultTestType: DefaultTestType) => {
 	const { test, title, additionalParams, postTestFn } = defaultTestType;
 	const fallbackPostFn = async (voiceOver, nvda, retry) => {
-		await generateSnapshot(voiceOver ?? nvda, nvda, retry);
+		await generateSnapshot(voiceOver ?? nvda, retry);
 	};
 
 	const testType: DefaultTestType = {

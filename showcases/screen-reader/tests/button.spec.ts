@@ -8,12 +8,15 @@ test.describe('DBButton', () => {
 		title: 'should not have icon in screen reader (next)',
 		url: './#/02/button?page=content',
 		async testFn(voiceOver, nvda) {
-			const screenReader = voiceOver ?? nvda;
 			if (nvda) {
-				await screenReader?.next();
-				await screenReader?.previous();
+				await nvda?.next();
+			} else if (voiceOver) {
+				await voiceOver?.previous();
 			}
 
+			const screenReader = voiceOver ?? nvda;
+			await screenReader?.clearSpokenPhraseLog();
+			await screenReader?.previous();
 			await screenReader?.next();
 			await screenReader?.next();
 		}
@@ -23,14 +26,17 @@ test.describe('DBButton', () => {
 		title: 'should not have icon in screen reader (tab)',
 		url: './#/02/button?page=content',
 		async testFn(voiceOver, nvda) {
-			const screenReader = voiceOver ?? nvda;
 			if (nvda) {
-				await screenReader?.press('Tab');
-				await screenReader?.press('Shift+Tab');
+				await nvda?.press('Tab');
+			} else if (voiceOver) {
+				await voiceOver?.press('Shift+Tab');
 			}
 
-			await screenReader?.press('Tab');
-			await screenReader?.press('Tab');
+			const screenReader = voiceOver ?? nvda;
+			await screenReader?.clearSpokenPhraseLog();
+			await nvda?.press('Shift+Tab');
+			await nvda?.press('Tab');
+			await nvda?.press('Tab');
 		}
 	});
 });

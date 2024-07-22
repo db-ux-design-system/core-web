@@ -7,12 +7,15 @@ test.describe('DBRadio', () => {
 		title: 'should label duplicated (next)',
 		url: './#/03/radio?page=density',
 		async testFn(voiceOver, nvda) {
-			const screenReader = voiceOver ?? nvda;
 			if (nvda) {
-				await screenReader?.next();
-				await screenReader?.previous();
+				await nvda?.next();
+			} else if (voiceOver) {
+				await voiceOver?.previous();
 			}
 
+			const screenReader = voiceOver ?? nvda;
+			await screenReader?.clearSpokenPhraseLog();
+			await screenReader?.previous();
 			await screenReader?.next();
 			await screenReader?.next();
 		}
@@ -22,12 +25,13 @@ test.describe('DBRadio', () => {
 		title: 'should label duplicated (arrows)',
 		url: './#/03/radio?page=density',
 		async testFn(voiceOver, nvda) {
-			const screenReader = voiceOver ?? nvda;
 			if (nvda) {
-				await screenReader?.press('Left');
-				await screenReader?.press('Left');
+				await nvda?.press('Left');
 			}
 
+			const screenReader = voiceOver ?? nvda;
+			await screenReader?.clearSpokenPhraseLog();
+			await screenReader?.press('Left');
 			await screenReader?.press('Right');
 			await screenReader?.press('Right');
 		}
