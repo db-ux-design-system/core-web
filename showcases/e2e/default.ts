@@ -139,7 +139,7 @@ export const getDefaultScreenshotTest = ({
 		let failures: any[] = [];
 		try {
 			if (project.name === 'firefox') {
-				// Checking complete DOM in firefox takes very long, we skip this test for firefox
+				// Checking complete DOM in Firefox takes very long, we skip this test for Firefox
 				test.skip();
 			}
 
