@@ -1,1 +1,1 @@
-["(Default) Text, button","Icon and Text, button","Icon, button"]
+["(Default) Text button","Icon & Text button","Icon button"]

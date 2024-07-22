@@ -10,8 +10,6 @@ test.describe('DBButton', () => {
 		async testFn(voiceOver, nvda) {
 			if (nvda) {
 				await nvda?.next();
-			} else if (voiceOver) {
-				await voiceOver?.previous();
 			}
 
 			const screenReader = voiceOver ?? nvda;
@@ -26,13 +24,8 @@ test.describe('DBButton', () => {
 		title: 'should not have icon in screen reader (tab)',
 		url: './#/02/button?page=content',
 		async testFn(voiceOver, nvda) {
-			if (nvda) {
-				await nvda?.press('Tab');
-			} else if (voiceOver) {
-				await voiceOver?.press('Shift+Tab');
-			}
-
 			const screenReader = voiceOver ?? nvda;
+			await screenReader?.press('Tab');
 			await screenReader?.clearSpokenPhraseLog();
 			await nvda?.press('Shift+Tab');
 			await nvda?.press('Tab');

@@ -9,15 +9,20 @@ test.describe('DBRadio', () => {
 		async testFn(voiceOver, nvda) {
 			if (nvda) {
 				await nvda?.next();
+				await nvda?.clearSpokenPhraseLog();
+				await nvda?.previous();
+				await nvda?.next();
+				await nvda?.next();
 			} else if (voiceOver) {
-				await voiceOver?.previous();
+				// We are on the radio group after loading
+				// Every element (radio, label) will be read as single element
+				await voiceOver?.next();
+				await voiceOver?.next();
+				await voiceOver?.next();
+				await voiceOver?.next();
+				await voiceOver?.next();
+				await voiceOver?.next();
 			}
-
-			const screenReader = voiceOver ?? nvda;
-			await screenReader?.clearSpokenPhraseLog();
-			await screenReader?.previous();
-			await screenReader?.next();
-			await screenReader?.next();
 		}
 	});
 	testDefault({
@@ -27,13 +32,21 @@ test.describe('DBRadio', () => {
 		async testFn(voiceOver, nvda) {
 			if (nvda) {
 				await nvda?.press('Left');
+				await nvda?.clearSpokenPhraseLog();
+				await nvda?.press('Left');
+				await nvda?.press('Right');
+				await nvda?.press('Right');
+			} else if (voiceOver) {
+				// We first go outside the web content
+				await voiceOver?.stopInteracting();
+				await voiceOver?.stopInteracting();
+				// Move to first radio (in the middle)
+				await voiceOver?.press('Down');
+				await voiceOver?.clearSpokenPhraseLog();
+				await voiceOver?.press('Left');
+				await voiceOver?.press('Right');
+				await voiceOver?.press('Right');
 			}
-
-			const screenReader = voiceOver ?? nvda;
-			await screenReader?.clearSpokenPhraseLog();
-			await screenReader?.press('Left');
-			await screenReader?.press('Right');
-			await screenReader?.press('Right');
 		}
 	});
 });
