@@ -9,7 +9,7 @@ test.describe('DBInput', () => {
 		url: './#/03/input?page=variant%20helper%20message',
 		async testFn(voiceOver, nvda) {
 			if (voiceOver) {
-				await voiceOver?.press('Tab');
+				await voiceOver?.stopInteracting();
 			}
 
 			const screenReader = voiceOver ?? nvda;

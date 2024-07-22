@@ -37,10 +37,6 @@ test.describe('DBRadio', () => {
 				await nvda?.press('Right');
 				await nvda?.press('Right');
 			} else if (voiceOver) {
-				// We first go outside the web content
-				await voiceOver?.interact();
-				await voiceOver?.stopInteracting();
-				// Move to first radio (in the middle)
 				await voiceOver?.press('Down');
 				await voiceOver?.clearSpokenPhraseLog();
 				await voiceOver?.press('Left');

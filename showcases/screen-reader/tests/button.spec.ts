@@ -25,7 +25,6 @@ test.describe('DBButton', () => {
 		url: './#/02/button?page=content',
 		async testFn(voiceOver, nvda) {
 			if (voiceOver) {
-				await voiceOver?.interact();
 				await voiceOver?.stopInteracting();
 			}
 
