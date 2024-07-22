@@ -8,6 +8,10 @@ test.describe('DBInput', () => {
 		title: 'should have message and label (tab)',
 		url: './#/03/input?page=variant%20helper%20message',
 		async testFn(voiceOver, nvda) {
+			if (voiceOver) {
+				await voiceOver?.press('Tab');
+			}
+
 			const screenReader = voiceOver ?? nvda;
 			await screenReader?.press('Tab');
 			await screenReader?.clearSpokenPhraseLog();

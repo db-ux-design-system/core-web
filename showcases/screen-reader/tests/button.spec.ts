@@ -24,6 +24,11 @@ test.describe('DBButton', () => {
 		title: 'should not have icon in screen reader (tab)',
 		url: './#/02/button?page=content',
 		async testFn(voiceOver, nvda) {
+			if (voiceOver) {
+				await voiceOver?.interact();
+				await voiceOver?.stopInteracting();
+			}
+
 			const screenReader = voiceOver ?? nvda;
 			await screenReader?.press('Tab');
 			await screenReader?.clearSpokenPhraseLog();
