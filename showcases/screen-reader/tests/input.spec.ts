@@ -19,8 +19,6 @@ test.describe('DBInput', () => {
 			await voiceOver?.next();
 			await voiceOver?.next();
 			await voiceOver?.next();
-			await voiceOver?.next();
-			await voiceOver?.next();
 		}
 	});
 	// We don't test default "next" here because we will be locked inside the textarea
