@@ -30,20 +30,16 @@ test.describe('DBRadio', () => {
 		title: 'should label duplicated (arrows)',
 		url: './#/03/radio?page=density',
 		async testFn(voiceOver, nvda) {
-			if (nvda) {
-				await nvda?.press('Left');
-				await nvda?.clearSpokenPhraseLog();
-				await nvda?.press('Left');
-				await nvda?.press('Right');
-				await nvda?.press('Right');
-			} else if (voiceOver) {
-				await voiceOver?.press('Tab');
-				await voiceOver?.press('Right');
-				await voiceOver?.clearSpokenPhraseLog();
-				await voiceOver?.press('Left');
-				await voiceOver?.press('Right');
-				await voiceOver?.press('Right');
+			if (voiceOver) {
+				// Voiceover isn't working with tab in pipeline
+				test.skip();
 			}
+
+			await nvda?.press('Left');
+			await nvda?.clearSpokenPhraseLog();
+			await nvda?.press('Left');
+			await nvda?.press('Right');
+			await nvda?.press('Right');
 		}
 	});
 });

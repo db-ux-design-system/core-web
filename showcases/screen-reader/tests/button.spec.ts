@@ -25,15 +25,15 @@ test.describe('DBButton', () => {
 		url: './#/02/button?page=content',
 		async testFn(voiceOver, nvda) {
 			if (voiceOver) {
-				await voiceOver?.stopInteracting();
+				// Voiceover isn't working with tab in pipeline
+				test.skip();
 			}
 
-			const screenReader = voiceOver ?? nvda;
-			await screenReader?.press('Tab');
-			await screenReader?.clearSpokenPhraseLog();
-			await screenReader?.press('Shift+Tab');
-			await screenReader?.press('Tab');
-			await screenReader?.press('Tab');
+			await nvda?.press('Tab');
+			await nvda?.clearSpokenPhraseLog();
+			await nvda?.press('Shift+Tab');
+			await nvda?.press('Tab');
+			await nvda?.press('Tab');
 		}
 	});
 });
