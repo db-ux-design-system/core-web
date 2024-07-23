@@ -72,10 +72,13 @@ $checked-active-transition-size: calc(
 
 		// thumb
 		&::before {
-			content: "";
+			content: "O";
+			text-align: center;
+			align-content: center;
 			aspect-ratio: 1;
 			block-size: $switch-inactive-thumb-size;
 			background-color: colors.$db-current-color-on-bg-enabled;
+			color: colors.$db-current-color-on-bg-enabled;
 			border-radius: variables.$db-border-radius-full;
 			transform: translateX(var(--thumb-offset-x));
 			margin-inline-end: calc(
@@ -119,6 +122,7 @@ $checked-active-transition-size: calc(
 			&::before {
 				block-size: $switch-active-thumb-size;
 				background-color: colors.$db-current-color-bg-lvl-1-enabled;
+				color: colors.$db-current-color-bg-lvl-1-enabled;
 				margin: 0;
 			}
 		}
@@ -182,11 +186,13 @@ $checked-active-transition-size: calc(
 
 				&::before {
 					background-color: colors.$db-current-color-on-contrast-enabled;
+					color: colors.$db-current-color-on-contrast-enabled;
 				}
 			}
 
 			&::before {
 				background-color: colors.$db-current-color-on-contrast-enabled;
+				color: colors.$db-current-color-on-contrast-enabled;
 				block-size: $switch-active-thumb-size;
 				margin: 0;
 			}

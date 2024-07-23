@@ -23,24 +23,24 @@
 			block-size: variables.$db-border-height-3xs;
 			inset-block-start: 0;
 			inset-inline: 0;
-		}
-
- @else if $position == "bottom" {
+		} @else if $position == "bottom" {
 			block-size: variables.$db-border-height-3xs;
 			inset-block-end: 0;
 			inset-inline: 0;
-		}
-
- @else if $position == "left" {
+		} @else if $position == "left" {
 			inline-size: variables.$db-border-height-3xs;
 			inset-inline-start: 0;
 			inset-block: 0;
-		}
-
- @else if $position == "right" {
+		} @else if $position == "right" {
 			inline-size: variables.$db-border-height-3xs;
 			inset-inline-end: 0;
 			inset-block: 0;
 		}
+	}
+
+	@media (forced-colors: active) {
+		// border is the better implementation, but border height changes in windows based on pixel density
+		// we use it as a fallback for color contrast
+		border: variables.$db-border-height-3xs solid var(--db-divider-bg-color);
 	}
 }

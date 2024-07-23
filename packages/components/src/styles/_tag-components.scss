@@ -16,7 +16,7 @@ $interactive-selectors: "label, button:not(.db-tab-remove-button), a";
 }
 
 @mixin get-tag-colors() {
-	background-color: colors.$db-current-color-bg-lvl-1-enabled;
+	background-color: colors.$db-current-color-bg-lvl-3-enabled;
 
 	&[data-emphasis="strong"] {
 		@extend %set-adaptive-strong-tag;
@@ -24,7 +24,7 @@ $interactive-selectors: "label, button:not(.db-tab-remove-button), a";
 
 	@each $name in colors.$variant-colors {
 		&[data-semantic="#{$name}"] {
-			@extend %db-#{$name}-bg-lvl-1;
+			@extend %db-#{$name}-bg-lvl-3;
 
 			&[data-emphasis="strong"] {
 				@extend %db-#{$name}-contrast-high;

@@ -24,6 +24,11 @@ $icon-padding: calc(
 		--db-form-component-padding-inline-end: #{$icon-padding};
 	}
 
+	&[data-variant="hidden"] {
+		--db-label-visible-height: 0;
+		--db-label-visible-spacing: 1;
+	}
+
 	&:has(input[type="search"]) {
 		@include icons.set-icon("magnifying_glass");
 		@include icons.set-icon("cross_circle", "after");
