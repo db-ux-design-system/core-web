@@ -48,6 +48,7 @@ const generateDocsMdx = async () => {
 
 			const docsPath = `./../../packages/components/src/components/${componentName}/docs`;
 			if (FS.existsSync(docsPath)) {
+				/* eslint-disable-next-line n/no-unsupported-features/node-builtins */
 				FS.cpSync(docsPath, `./${componentPath}/docs`, {
 					recursive: true
 				});
