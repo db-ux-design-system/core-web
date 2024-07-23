@@ -11,8 +11,7 @@
 %sub-navi-handler-desktop {
 	// show sub-navigation on hover
 	@include screen-sizes.screen("md") {
-		&:hover,
-		&:focus-visible {
+		&:is(:hover, :focus-visible) {
 			~ .db-sub-navigation {
 				visibility: visible;
 			}
@@ -203,8 +202,7 @@
 			inset-inline-start: 100%;
 		}
 
-		&:hover,
-		&:focus-within {
+		&:is(:hover, :focus-within) {
 			visibility: visible;
 		}
 

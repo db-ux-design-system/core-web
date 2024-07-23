@@ -4,9 +4,7 @@
 .db-popover {
 	position: relative;
 
-	&[data-e2e-hover="true"],
-	&:hover,
-	&:focus-within {
+	&:is([data-e2e-hover="true"], :hover, :focus-within) {
 		> article:not([data-open="false"]) {
 			@extend %show-popover;
 		}

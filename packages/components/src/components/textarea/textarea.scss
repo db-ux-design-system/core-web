@@ -52,8 +52,7 @@
 	}
 
 	&[data-variant="floating"] {
-		&:has(textarea:focus-within),
-		&:has(textarea:not(:placeholder-shown)) {
+		&:has(textarea:is(:focus-within, :not(:placeholder-shown))) {
 			&::before {
 				@extend %default-transition;
 
@@ -77,8 +76,7 @@
 				background-color: colors.$db-current-color-bg-lvl-1-enabled !important;
 			}
 
-			&:has(textarea:not(:disabled):hover),
-			&:has(textarea:not(:disabled):focus) {
+			&:has(textarea:not(:disabled):is(:hover, :focus)) {
 				&::after {
 					background-color: colors.$db-current-color-bg-transparent-hover;
 				}

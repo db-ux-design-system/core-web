@@ -40,11 +40,14 @@
 						}
 					}
 
-					&:hover,
-					&:focus-visible,
-					&:has(~ .db-sub-navigation:hover),
-					&:has(~ .db-sub-navigation:focus-visible),
-					&:has(~ .db-sub-navigation:focus-within) {
+					&:is(:hover, :focus-visible),
+					&:has(
+							~ .db-sub-navigation:is(
+									:hover,
+									:focus-visible,
+									:focus-within
+								)
+						) {
 						&::after {
 							transform: form-components.$dropdown-icon-transform;
 						}
@@ -62,11 +65,14 @@
 							--db-icon-margin-start: auto;
 						}
 
-						&:hover,
-						&:focus-visible,
-						&:has(~ .db-sub-navigation:hover),
-						&:has(~ .db-sub-navigation:focus-visible),
-						&:has(~ .db-sub-navigation:focus-within) {
+						&:is(:hover, :focus-visible),
+						:has(
+								~ .db-sub-navigation:is(
+										:hover,
+										:focus-visible,
+										:focus-within
+									)
+							) {
 							&::after {
 								transform: none;
 							}

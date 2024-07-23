@@ -17,8 +17,7 @@ $scrollbar-width: helpers.px-to-rem(8);
 		border-start-end-radius: variables.$db-border-radius-xs;
 	}
 
-	&:hover,
-	&:focus {
+	&:is(:hover, :focus) {
 		&::-webkit-scrollbar-track,
 		&::-webkit-scrollbar-button:single-button {
 			background-color: colors.$db-current-color-bg-transparent-hover;
@@ -48,8 +47,7 @@ $scrollbar-width: helpers.px-to-rem(8);
 		background-position: center;
 		block-size: form-components.$floating-label-size;
 
-		&:hover,
-		&:focus {
+		&:is(:hover, :focus) {
 			background-color: colors.$db-current-color-bg-transparent-hover;
 		}
 

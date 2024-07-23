@@ -119,9 +119,7 @@
 
 			&:checked {
 				&,
-				&:not(:disabled):hover,
-				&:not(:disabled):focus,
-				&:not(:disabled):active {
+				&:not(:disabled):is(:hover, :focus, :active) {
 					background-color: colors.$db-brand-bg-transparent-full-enabled;
 				}
 
@@ -148,9 +146,7 @@
 	}
 
 	.db-link {
-		&:hover,
-		&:focus,
-		&:active {
+		&:is(:hover, :focus, :active) {
 			color: inherit;
 		}
 	}
