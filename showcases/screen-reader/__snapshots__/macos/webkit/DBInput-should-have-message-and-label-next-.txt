@@ -1,1 +1,1 @@
-["Label (Default) Basic edit text","Label","Label Helper Message edit text","Helper Message","Helper Message","Helper Message"]
+["Label (Default) Basic edit text","Label","Label Helper Message edit text","Helper Message"]
