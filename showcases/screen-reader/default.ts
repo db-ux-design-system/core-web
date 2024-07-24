@@ -97,7 +97,7 @@ export const runTest = async ({
 	if (!screenRecorder) return;
 
 	/**
-	 * In macOS:Webkit the [automaticallySpeakWebPage](https://github.com/guidepup/guidepup/blob/main/src/macOS/VoiceOver/configureSettings.ts#L58) is acitve.
+	 * In macOS:Webkit the [automaticallySpeakWebPage](https://github.com/guidepup/guidepup/blob/main/src/macOS/VoiceOver/configureSettings.ts#L58) is active.
 	 * Therefore, we need to move back with the cursor to the start and delete the logs before starting.
 	 * In windows:Chrome the cursor is on the middle element.
 	 * Therefore, we need to move back and delete the logs, and then start everything.
