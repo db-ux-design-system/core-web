@@ -7,10 +7,10 @@ import {
 	useRef,
 	useStore
 } from '@builder.io/mitosis';
-import { cls, uuid } from '../../utils';
+import { cls, isArrayOfStrings, uuid } from '../../utils';
 import { DBInputProps, DBInputState } from './model';
 import {
-	DEFAULT_ID,
+	DEFAULT_DATALIST_ID_SUFFIX,
 	DEFAULT_INVALID_MESSAGE,
 	DEFAULT_INVALID_MESSAGE_ID_SUFFIX,
 	DEFAULT_LABEL,
@@ -22,7 +22,7 @@ import {
 	InputEvent,
 	ChangeEvent,
 	InteractionEvent,
-	KeyValueType
+	ValueLabelType
 } from '../../shared/model';
 import { DBInfotext } from '../infotext';
 import { handleFrameworkEvent } from '../../utils/form-components';
@@ -35,12 +35,13 @@ export default function DBInput(props: DBInputProps) {
 	const ref = useRef<HTMLInputElement>(null);
 	// jscpd:ignore-start
 	const state = useStore<DBInputState>({
-		_id: DEFAULT_ID,
-		_messageId: DEFAULT_ID + DEFAULT_MESSAGE_ID_SUFFIX,
-		_validMessageId: DEFAULT_ID + DEFAULT_VALID_MESSAGE_ID_SUFFIX,
-		_invalidMessageId: DEFAULT_ID + DEFAULT_INVALID_MESSAGE_ID_SUFFIX,
+		_id: 'input-' + uuid(),
+		_messageId: this._id + DEFAULT_MESSAGE_ID_SUFFIX,
+		_validMessageId: this._id + DEFAULT_VALID_MESSAGE_ID_SUFFIX,
+		_invalidMessageId: this._id + DEFAULT_INVALID_MESSAGE_ID_SUFFIX,
+		_dataListId: this._id + DEFAULT_DATALIST_ID_SUFFIX,
 		_descByIds: '',
-		_dataListId: DEFAULT_ID,
+		_value: '',
 		defaultValues: {
 			label: DEFAULT_LABEL,
 			placeholder: ' '
@@ -64,6 +65,24 @@ export default function DBInput(props: DBInputProps) {
 			}
 
 			handleFrameworkEvent(this, event);
+
+			/* For a11y reasons we need to map the correct message with the input */
+			if (!ref?.validity.valid || props.customValidity === 'invalid') {
+				state._descByIds = state._invalidMessageId;
+			} else if (
+				props.customValidity === 'valid' ||
+				(ref?.validity.valid &&
+					(props.required ||
+						props.minLength ||
+						props.maxLength ||
+						props.pattern))
+			) {
+				state._descByIds = state._validMessageId;
+			} else if (props.message) {
+				state._descByIds = state._messageId;
+			} else {
+				state._descByIds = '';
+			}
 		},
 		handleBlur: (event: InteractionEvent<HTMLInputElement>) => {
 			if (props.onBlur) {
@@ -83,44 +102,45 @@ export default function DBInput(props: DBInputProps) {
 				props.focus(event);
 			}
 		},
-		getValidMessage: () => {
-			return props.validMessage || DEFAULT_VALID_MESSAGE;
-		},
-		getInvalidMessage: () => {
-			return (
-				props.invalidMessage ||
-				ref?.validationMessage ||
-				DEFAULT_INVALID_MESSAGE
+		getDataList: (
+			_list?: string[] | ValueLabelType[]
+		): ValueLabelType[] => {
+			return Array.from(
+				(isArrayOfStrings(_list)
+					? _list.map((val: string) => ({
+							value: val,
+							label: undefined
+						}))
+					: _list) || []
 			);
 		}
 	});
 
 	onMount(() => {
-		state._id = props.id || 'input-' + uuid();
-		state._dataListId = props.dataListId || `datalist-${uuid()}`;
+		state._id = props.id ?? state._id;
 	});
 
 	onUpdate(() => {
 		if (state._id) {
-			state._messageId = state._id + DEFAULT_MESSAGE_ID_SUFFIX;
-			state._validMessageId = state._id + DEFAULT_VALID_MESSAGE_ID_SUFFIX;
-			state._invalidMessageId =
+			const messageId = state._id + DEFAULT_MESSAGE_ID_SUFFIX;
+			const validMessageId = state._id + DEFAULT_VALID_MESSAGE_ID_SUFFIX;
+			const invalidMessageId =
 				state._id + DEFAULT_INVALID_MESSAGE_ID_SUFFIX;
+			state._messageId = messageId;
+			state._validMessageId = validMessageId;
+			state._invalidMessageId = invalidMessageId;
+			state._dataListId =
+				props.dataListId ?? state._id + DEFAULT_DATALIST_ID_SUFFIX;
+
+			if (props.message) {
+				state._descByIds = messageId;
+			}
 		}
 	}, [state._id]);
 
 	onUpdate(() => {
-		const descByIds = [state._validMessageId, state._invalidMessageId];
-		if (props.message) {
-			descByIds.push(state._messageId);
-		}
-		state._descByIds = descByIds.join(' ');
-	}, [
-		props.message,
-		state._messageId,
-		state._validMessageId,
-		state._invalidMessageId
-	]);
+		state._value = props.value;
+	}, [props.value]);
 
 	return (
 		<div
@@ -144,7 +164,7 @@ export default function DBInput(props: DBInputProps) {
 				disabled={props.disabled}
 				required={props.required}
 				step={props.step}
-				value={props.value}
+				value={props.value ?? state._value}
 				maxLength={props.maxLength}
 				minLength={props.minLength}
 				max={props.max}
@@ -170,14 +190,16 @@ export default function DBInput(props: DBInputProps) {
 			/>
 			<Show when={props.dataList}>
 				<datalist id={state._dataListId}>
-					<For each={props.dataList}>
-						{(option: KeyValueType) => (
+					<For each={state.getDataList(props.dataList)}>
+						{(option: ValueLabelType) => (
 							<option
 								key={
-									state._dataListId + '-option-' + option.key
+									state._dataListId +
+									'-option-' +
+									option.value
 								}
-								value={option.key}>
-								{option.value}
+								value={option.value}>
+								{option.label}
 							</option>
 						)}
 					</For>
@@ -197,14 +219,16 @@ export default function DBInput(props: DBInputProps) {
 				id={state._validMessageId}
 				size="small"
 				semantic="successful">
-				{state.getValidMessage()}
+				{props.validMessage ?? DEFAULT_VALID_MESSAGE}
 			</DBInfotext>
 
 			<DBInfotext
 				id={state._invalidMessageId}
 				size="small"
 				semantic="critical">
-				{state.getInvalidMessage()}
+				{props.invalidMessage ??
+					ref?.validationMessage ??
+					DEFAULT_INVALID_MESSAGE}
 			</DBInfotext>
 		</div>
 	);

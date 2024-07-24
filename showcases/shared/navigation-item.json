@@ -4,18 +4,15 @@
 		"examples": [
 			{
 				"name": "Functional",
-				"className": "db-density-functional",
-				"props": {}
+				"className": "db-density-functional"
 			},
 			{
 				"name": "(Default) Regular",
-				"className": "db-density-regular",
-				"props": {}
+				"className": "db-density-regular"
 			},
 			{
 				"name": "Expressive",
-				"className": "db-density-expressive",
-				"props": {}
+				"className": "db-density-expressive"
 			}
 		]
 	},
@@ -23,8 +20,7 @@
 		"name": "Interaction-States",
 		"examples": [
 			{
-				"name": "Enabled (Default)/Hover/Pressed",
-				"props": {}
+				"name": "Enabled (Default)/Hover/Pressed"
 			},
 			{
 				"name": "Active",
@@ -75,8 +71,7 @@
 		"examples": [
 			{
 				"name": "(Default) Auto",
-				"style": { "width": "400px" },
-				"props": {}
+				"style": { "width": "400px" }
 			},
 			{
 				"name": "Full",

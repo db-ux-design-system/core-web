@@ -31,6 +31,8 @@ packages/components/src/**/*.css.map
 /output/**/playwright*
 /output/**/test-results
 
+/showcases/**/results
+
 /build-showcases/
 /build-outputs/
 !/build-outputs/package.json
@@ -42,6 +44,7 @@ packages/components/src/**/*.css.map
 showcases/patternhub/public/iframe-resizer/*
 
 **/test-results/
+**/recordings/
 
 /__snapshots__/**/*-win32.png
 /packages/foundations/assets/icons/functional/tmp/

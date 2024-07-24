@@ -1,16 +1,17 @@
 import { expect, type Page, test } from '@playwright/test';
 import AxeBuilder from '@axe-core/playwright';
-// @ts-expect-error - required for playwright
-import { COLORS } from './fixtures/variants.ts';
-// @ts-expect-error - required for playwright
-import { setScrollViewport } from './fixtures/viewport.ts';
+import { close, getCompliance } from 'accessibility-checker';
+import { type ICheckerError } from 'accessibility-checker/lib/api/IChecker';
+import { COLORS } from './fixtures/variants';
+import { setScrollViewport } from './fixtures/viewport';
 
 const density = 'regular';
 
 export type DefaultTestType = {
 	path: string;
 	fixedHeight?: number;
-	disableRules?: string[];
+	axeDisableRules?: string[];
+	aCheckerDisableRules?: string[];
 	skipA11y?: boolean;
 	preScreenShot?: (page: Page) => Promise<void>;
 	preA11y?: (page: Page) => Promise<void>;
@@ -41,13 +42,17 @@ const gotoPage = async (
 	await setScrollViewport(page, fixedHeight)();
 };
 
+const isCheckerError = (object: any): object is ICheckerError =>
+	'details' in object;
+
 export const getDefaultScreenshotTest = ({
 	path,
 	fixedHeight,
-	disableRules,
+	axeDisableRules,
 	skipA11y,
 	preScreenShot,
-	preA11y
+	preA11y,
+	aCheckerDisableRules
 }: DefaultTestType) => {
 	test(`should match screenshot`, async ({ page }, testInfo) => {
 		const isWebkit =
@@ -95,12 +100,24 @@ export const getDefaultScreenshotTest = ({
 	for (const color of COLORS) {
 		test(`should not have any A11y issues for color ${color}`, async ({
 			page
-		}) => {
+		}, { project }) => {
 			if (skipA11y) {
 				test.skip();
 			}
 
 			await gotoPage(page, path, color, fixedHeight);
+
+			// This is a workaround for axe for browsers using forcedColors
+			// see https://github.com/dequelabs/axe-core-npm/issues/1067
+			await page.evaluate(($project) => {
+				if ($project.use.contextOptions?.forcedColors === 'active') {
+					const style = document.createElement('style');
+					document.head.append(style);
+					const textColor =
+						$project.use.colorScheme === 'dark' ? '#fff' : '#000';
+					style.textContent = `* {-webkit-text-stroke-color:${textColor}!important;-webkit-text-fill-color:${textColor}!important;}`;
+				}
+			}, project);
 
 			if (preA11y) {
 				await preA11y(page);
@@ -110,10 +127,39 @@ export const getDefaultScreenshotTest = ({
 				page
 			})
 				.include('main')
-				.disableRules(disableRules ?? [])
+				.disableRules(axeDisableRules ?? [])
 				.analyze();
 
 			expect(accessibilityScanResults.violations).toEqual([]);
 		});
 	}
+
+	test('test with accessibility checker', async ({ page }, { project }) => {
+		await gotoPage(page, path, 'neutral-bg-lvl-1', fixedHeight);
+		let failures: any[] = [];
+		try {
+			if (project.name === 'firefox') {
+				// Checking complete DOM in Firefox takes very long, we skip this test for Firefox
+				test.skip();
+			}
+
+			const { report } = await getCompliance(page, path);
+
+			if (isCheckerError(report)) {
+				failures = report.details;
+			} else {
+				failures = report.results
+					.filter((res) => res.level === 'violation')
+					.filter(
+						(res) => !aCheckerDisableRules?.includes(res.ruleId)
+					);
+			}
+		} catch (error) {
+			console.error(error);
+		} finally {
+			await close();
+		}
+
+		expect(failures).toEqual([]);
+	});
 };

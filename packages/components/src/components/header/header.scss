@@ -10,7 +10,6 @@
 	display: flex;
 	flex-direction: column;
 	position: relative;
-
 	min-block-size: component.$default-mobile-header-height;
 	border-block-end: variables.$db-border-height-3xs solid
 		colors.$db-current-color-border;
@@ -64,13 +63,14 @@
 
 .db-header-meta-navigation {
 	@extend %db-density-functional;
+
 	@include helpers.divider("top");
+
 	display: flex;
 	flex-direction: column;
 	gap: variables.$db-spacing-fixed-sm;
 	justify-content: flex-end;
 	background-color: colors.$db-current-color-bg-lvl-2-enabled;
-
 	padding: variables.$db-spacing-fixed-md;
 
 	@include screen-sizes.screen("md") {
@@ -140,9 +140,6 @@
 
 	&::before {
 		margin-inline: variables.$db-spacing-fixed-xs;
-	}
-
-	&::before {
 		position: inherit;
 		block-size: 100%;
 	}
@@ -161,6 +158,7 @@
 
 .db-header-secondary-action {
 	@include helpers.divider("top");
+
 	flex: 0 1 auto;
 	flex-grow: 0;
 	flex-shrink: 0;
@@ -208,9 +206,10 @@
 	--db-drawer-header-padding-block-end: calc(
 		1px + #{variables.$db-spacing-fixed-xs}
 	);
+
 	padding-block-end: 0;
 
-	& .db-drawer-content {
+	.db-drawer-content {
 		display: flex;
 		flex-direction: column;
 		block-size: 100%;

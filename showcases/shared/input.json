@@ -284,6 +284,13 @@
 					"label": "Label",
 					"type": "week"
 				}
+			},
+			{
+				"name": "Datalist",
+				"props": {
+					"label": "Label",
+					"dataList": true
+				}
 			}
 		]
 	},
@@ -383,6 +390,14 @@
 					"label": "Label",
 					"type": "week",
 					"variant": "floating"
+				}
+			},
+			{
+				"name": "Datalist",
+				"props": {
+					"label": "Label",
+					"variant": "floating",
+					"dataList": true
 				}
 			}
 		]

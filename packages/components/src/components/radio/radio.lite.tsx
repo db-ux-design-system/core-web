@@ -7,7 +7,6 @@ import {
 	useStore
 } from '@builder.io/mitosis';
 import { DBRadioProps, DBRadioState } from './model';
-import { DEFAULT_ID } from '../../shared/constants';
 import { cls, uuid } from '../../utils';
 import { ChangeEvent, InteractionEvent } from '../../shared/model';
 import { handleFrameworkEvent } from '../../utils/form-components';
@@ -21,7 +20,7 @@ export default function DBRadio(props: DBRadioProps) {
 	// jscpd:ignore-start
 	const state = useStore<DBRadioState>({
 		initialized: false,
-		_id: DEFAULT_ID,
+		_id: 'radio-' + uuid(),
 		handleChange: (event: ChangeEvent<HTMLInputElement>) => {
 			if (props.onChange) {
 				props.onChange(event);
@@ -55,7 +54,7 @@ export default function DBRadio(props: DBRadioProps) {
 
 	onMount(() => {
 		state.initialized = true;
-		state._id = props.id || 'radio-' + uuid();
+		state._id = props.id ?? state._id;
 	});
 	// jscpd:ignore-end
 

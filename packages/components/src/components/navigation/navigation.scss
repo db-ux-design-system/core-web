@@ -13,7 +13,7 @@
 		inline-size: auto;
 	}
 
-	& > menu {
+	> menu {
 		display: flex;
 		flex-direction: column;
 		padding: 0;
@@ -34,14 +34,20 @@
 					&::after {
 						--db-icon-margin-start: #{variables.$db-spacing-fixed-sm};
 						--db-icon-after: "chevron_down";
-						transition: form-components.$dropdown-icon-transition;
+
+						@media screen and (prefers-reduced-motion: no-preference) {
+							transition: form-components.$dropdown-icon-transition;
+						}
 					}
 
-					&:hover,
-					&:focus-visible,
-					&:has(~ .db-sub-navigation:hover),
-					&:has(~ .db-sub-navigation:focus-visible),
-					&:has(~ .db-sub-navigation:focus-within) {
+					&:is(:hover, :focus-visible),
+					&:has(
+							~ .db-sub-navigation:is(
+									:hover,
+									:focus-visible,
+									:focus-within
+								)
+						) {
 						&::after {
 							transform: form-components.$dropdown-icon-transform;
 						}
@@ -50,7 +56,7 @@
 			}
 
 			// re overwrite for non navigation items
-			& > menu {
+			> menu {
 				.db-navigation-item-expand-button:is(button),
 				.db-navigation-item-expand-button > button {
 					@include screen-sizes.screen("md") {
@@ -59,11 +65,14 @@
 							--db-icon-margin-start: auto;
 						}
 
-						&:hover,
-						&:focus-visible,
-						&:has(~ .db-sub-navigation:hover),
-						&:has(~ .db-sub-navigation:focus-visible),
-						&:has(~ .db-sub-navigation:focus-within) {
+						&:is(:hover, :focus-visible),
+						:has(
+								~ .db-sub-navigation:is(
+										:hover,
+										:focus-visible,
+										:focus-within
+									)
+							) {
 							&::after {
 								transform: none;
 							}
@@ -90,7 +99,7 @@
 	}
 
 	&[data-force-close="true"] {
-		& > menu menu {
+		> menu menu {
 			@include screen-sizes.screen("md") {
 				display: none;
 			}

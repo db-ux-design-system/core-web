@@ -1,7 +1,10 @@
 @use "@db-ui/foundations/build/scss/variables";
 @use "@db-ui/foundations/build/scss/colors";
+@use "@db-ui/foundations/build/scss/fonts";
 
 .db-brand {
+	@extend %db-overwrite-font-size-md;
+
 	display: flex;
 	gap: variables.$db-spacing-fixed-sm;
 	align-items: center;
@@ -10,20 +13,20 @@
 	&::before {
 		--db-icon-font-size: #{variables.$db-sizing-md};
 		--db-icon-margin-end: 0;
-		--db-current-icon-color: #{colors.$db-brand-origin-enabled};
+		--db-icon-color: #{colors.$db-brand-origin-enabled};
 	}
 
 	img {
 		$logo-size: calc(
 			#{variables.$db-sizing-md} - #{variables.$db-sizing-3xs}
 		);
+
 		inline-size: $logo-size;
 		max-block-size: $logo-size;
 	}
 
 	// Deactivate underline on site name being made clickable by added to the link as well
-	a:has(&),
-	& a {
+	a {
 		text-decoration: none;
 	}
 }

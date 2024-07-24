@@ -1,25 +1,49 @@
 {
 	"extends": [
-		"stylelint-config-sass-guidelines",
-		"stylelint-config-prettier"
+		"stylelint-config-standard",
+		"stylelint-config-sass-guidelines"
 	],
-	"plugins": ["stylelint-use-logical"],
+	"plugins": ["stylelint-use-logical", "@double-great/stylelint-a11y"],
 	"rules": {
+		"a11y/media-prefers-reduced-motion": true,
+		"a11y/no-outline-none": true,
+		"a11y/selector-pseudo-class-focus": true,
 		"csstools/use-logical": ["always", { "except": ["float"] }],
-		"order/properties-alphabetical-order": null,
-		"scss/operator-no-newline-after": null,
-		"declaration-empty-line-before": null,
-		"selector-no-qualifying-type": null,
-		"selector-class-pattern": null,
-		"scss/dollar-variable-pattern": null,
-		"scss/selector-no-redundant-nesting-selector": null,
 		"max-nesting-depth": null,
+		"selector-type-no-unknown": [true, { "ignoreTypes": ["/^db/"] }],
+		"no-descending-specificity": null,
 		"selector-max-compound-selectors": null,
-		"scss/at-extend-no-missing-placeholder": null,
-		"declaration-property-value-disallowed-list": null,
-		"scss/percent-placeholder-pattern": null,
-		"scss/at-mixin-pattern": null,
-		"scss/at-import-partial-extension": null,
-		"selector-max-id": null
+		"selector-no-qualifying-type": [
+			true,
+			{
+				"ignore": ["attribute"]
+			}
+		],
+		"number-max-precision": null,
+		"annotation-no-unknown": [
+			true,
+			{
+				"ignoreAnnotations": ["default", "global"]
+			}
+		],
+		"declaration-property-value-no-unknown": true,
+		"@stylistic/block-opening-brace-space-before": null,
+		"@stylistic/color-hex-case": null,
+		"@stylistic/declaration-bang-space-after": null,
+		"@stylistic/declaration-bang-space-before": null,
+		"@stylistic/declaration-block-semicolon-newline-after": null,
+		"@stylistic/declaration-block-semicolon-space-before": null,
+		"@stylistic/declaration-block-trailing-semicolon": null,
+		"@stylistic/declaration-colon-space-after": null,
+		"@stylistic/declaration-colon-space-before": null,
+		"@stylistic/function-comma-space-after": null,
+		"@stylistic/function-parentheses-space-inside": null,
+		"@stylistic/indentation": null,
+		"@stylistic/media-feature-parentheses-space-inside": null,
+		"@stylistic/no-missing-end-of-source-newline": null,
+		"@stylistic/number-leading-zero": null,
+		"@stylistic/number-no-trailing-zeros": null,
+		"@stylistic/selector-list-comma-newline-after": null,
+		"@stylistic/string-quotes": null
 	}
 }

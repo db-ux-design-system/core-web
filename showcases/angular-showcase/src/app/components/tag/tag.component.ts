@@ -1,18 +1,12 @@
 import { Component } from '@angular/core';
 import defaultComponentVariants from '../../../../../shared/tag.json';
 import { DefaultComponent } from '../default.component';
-import {
-	DBButton,
-	DBCheckbox,
-	DBLink,
-	DBRadio,
-	DBTag
-} from '../../../../../../output/angular/src';
+import { DBTag } from '../../../../../../output/angular/src';
 
 @Component({
 	selector: 'app-tag',
 	templateUrl: './tag.component.html',
-	imports: [DefaultComponent, DBTag, DBButton, DBCheckbox, DBRadio, DBLink],
+	imports: [DefaultComponent, DBTag],
 	standalone: true
 })
 export class TagComponent {

@@ -4,18 +4,15 @@
 		"examples": [
 			{
 				"name": "Functional",
-				"className": "db-density-functional",
-				"props": {}
+				"className": "db-density-functional"
 			},
 			{
 				"name": "(Default) Regular",
-				"className": "db-density-regular",
-				"props": {}
+				"className": "db-density-regular"
 			},
 			{
 				"name": "Expressive",
-				"className": "db-density-expressive",
-				"props": {}
+				"className": "db-density-expressive"
 			}
 		]
 	},
@@ -24,8 +21,7 @@
 		"name": "Variant",
 		"examples": [
 			{
-				"name": "(Default) Outlined - Adaptive",
-				"props": {}
+				"name": "(Default) Outlined - Adaptive"
 			},
 			{
 				"name": "Filled - Adaptive",
@@ -51,8 +47,7 @@
 		"name": "State",
 		"examples": [
 			{
-				"name": "(Default) Enabled",
-				"props": {}
+				"name": "(Default) Enabled"
 			},
 			{
 				"name": "Disabled",
@@ -66,8 +61,7 @@
 		"name": "Size",
 		"examples": [
 			{
-				"name": "(Default) Medium",
-				"props": {}
+				"name": "(Default) Medium"
 			},
 			{
 				"name": "Small",
@@ -81,8 +75,7 @@
 		"name": "Content",
 		"examples": [
 			{
-				"name": "(Default) Text",
-				"props": {}
+				"name": "(Default) Text"
 			},
 			{
 				"name": "Icon & Text",
@@ -103,8 +96,7 @@
 		"name": "Behaviour",
 		"examples": [
 			{
-				"name": "(Default) Auto Width",
-				"props": {}
+				"name": "(Default) Auto Width"
 			},
 			{
 				"name": "Width full",

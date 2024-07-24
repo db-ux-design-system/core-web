@@ -24,16 +24,16 @@ jobs:
       - name: 🔄 Init Cache
         uses: ./.github/actions/npm-cache
 
-      - name: ⏬ Download showcases
+      - name: ⏬ Download patternhub
         uses: actions/download-artifact@v4
         with:
-          name: db-ui-showcases
-          path: build-showcases
+          name: db-ui-patternhub
+          path: build-showcases/patternhub
 
       - name: 🦵🦿 I like to move it move it
         shell: bash
         run: |
-          mv build-showcases/patternhub/out out
+          mv build-showcases/patternhub out
 
       - name: ↔ Extract branch name
         uses: ./.github/actions/extract-branch

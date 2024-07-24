@@ -8,12 +8,14 @@
 
 	&:not([data-variant="vertical"]) {
 		@include helpers.divider();
+
 		block-size: variables.$db-border-height-3xs;
 		inline-size: 100%;
 	}
 
 	&[data-variant="vertical"] {
 		@include helpers.divider("left");
+
 		block-size: 100%;
 		inline-size: variables.$db-border-height-3xs;
 

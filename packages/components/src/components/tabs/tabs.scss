@@ -10,8 +10,8 @@ $max-tabs: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 	dbtablist {
 		@each $index in $max-tabs {
 			&:has([id$="-tab-#{$index}"]:checked) {
-				& ~ dbtabpanel > [id$="-tab-panel-#{$index}"],
-				& ~ db-tab-panel > [id$="-tab-panel-#{$index}"] {
+				~ dbtabpanel > [id$="-tab-panel-#{$index}"],
+				~ db-tab-panel > [id$="-tab-panel-#{$index}"] {
 					display: block;
 				}
 			}
@@ -58,7 +58,7 @@ $max-tabs: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 }
 
 @mixin angular-button-workaround() {
-	& > .db-button,
+	> .db-button,
 	&:is(.db-button) {
 		@content;
 	}
@@ -70,6 +70,7 @@ $max-tabs: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 	$db-tabs-z-index-button: 22;
 
 	@extend %angular-workaround;
+
 	display: flex;
 	inline-size: 100%;
 	position: relative;
@@ -98,8 +99,7 @@ $max-tabs: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 	Variant Orientation HORIZONTAL
  	*/
 	&:not([data-orientation="vertical"]) {
-		flex-direction: column;
-		flex-wrap: wrap;
+		flex-flow: column wrap;
 
 		.db-tab-panel {
 			inline-size: 100%;
@@ -109,6 +109,7 @@ $max-tabs: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 			/* horizontal track for pulse */
 			&::before {
 				@extend %pulse-track;
+
 				block-size: variables.$db-border-height-xs;
 				inset-inline: variables.$db-spacing-fixed-xs;
 
@@ -121,15 +122,15 @@ $max-tabs: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
 			> ul {
 				@extend %horizontal-pulse;
-				overflow-x: auto;
-				overflow-y: hidden;
+
+				overflow: auto hidden;
 				inline-size: 100%;
 
 				.db-tab-item {
-					margin-block-start: variables.$db-spacing-fixed-xs;
-					margin-block-end: calc(
-						2 * #{variables.$db-spacing-fixed-2xs} + #{variables.$db-border-height-xs}
-					);
+					margin-block: variables.$db-spacing-fixed-xs
+						calc(
+							2 * #{variables.$db-spacing-fixed-2xs} + #{variables.$db-border-height-xs}
+						);
 				}
 
 				db-tab-item,
@@ -210,6 +211,7 @@ $max-tabs: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 			/* vertical track for pulse */
 			&::before {
 				@extend %pulse-track;
+
 				inline-size: variables.$db-border-height-xs;
 				inset-block: variables.$db-spacing-fixed-xs;
 				inset-inline-start: 0;
@@ -217,6 +219,7 @@ $max-tabs: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
 			> ul {
 				@extend %vertical-pulse;
+
 				flex-direction: column;
 				block-size: 100%;
 
@@ -238,6 +241,7 @@ $max-tabs: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 			$padding-start: calc(
 				#{variables.$db-border-height-xs} + #{variables.$db-spacing-fixed-2xs}
 			);
+
 			padding-inline-start: $padding-start;
 
 			input {
@@ -305,7 +309,7 @@ $max-tabs: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 			&::after {
 				position: absolute;
 				z-index: $db-tabs-z-index-button-background;
-				background-color: colors.$db-current-color-bg-enabled;
+				background-color: colors.$db-current-color-bg-lvl-1-enabled;
 				inline-size: variables.$db-sizing-md;
 				block-size: calc(
 					#{variables.$db-spacing-fixed-sm} + #{variables.$db-sizing-md}

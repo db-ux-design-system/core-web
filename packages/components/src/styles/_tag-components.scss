@@ -7,16 +7,16 @@
 $interactive-selectors: "label, button:not(.db-tab-remove-button), a";
 
 %set-adaptive-strong-tag {
-	--db-current-icon-color: #{colors.$db-current-color-on-contrast-enabled};
-	--db-current-color-enabled: #{colors.$db-current-color-on-contrast-enabled};
-	--db-current-color-bg-enabled: #{colors.$db-current-color-contrast-high-enabled};
 	--db-current-color-border: #{colors.$db-current-color-contrast-high-enabled};
 
-	@extend %set-current-colors;
+	@include colors.set-current-colors(
+		colors.$db-current-color-contrast-high-enabled,
+		colors.$db-current-color-on-contrast-enabled
+	);
 }
 
 @mixin get-tag-colors() {
-	background-color: colors.$db-current-color-bg-lvl-1-enabled;
+	background-color: colors.$db-current-color-bg-lvl-3-enabled;
 
 	&[data-emphasis="strong"] {
 		@extend %set-adaptive-strong-tag;
@@ -24,7 +24,7 @@ $interactive-selectors: "label, button:not(.db-tab-remove-button), a";
 
 	@each $name in colors.$variant-colors {
 		&[data-semantic="#{$name}"] {
-			@extend %db-#{$name}-bg-lvl-1;
+			@extend %db-#{$name}-bg-lvl-3;
 
 			&[data-emphasis="strong"] {
 				@extend %db-#{$name}-contrast-high;
@@ -81,14 +81,14 @@ $interactive-selectors: "label, button:not(.db-tab-remove-button), a";
 	}
 
 	a {
-		color: currentColor;
+		color: currentcolor;
 
 		@include helpers.hover {
-			color: currentColor;
+			color: currentcolor;
 		}
 
 		@include helpers.active {
-			color: currentColor;
+			color: currentcolor;
 		}
 	}
 }
@@ -130,8 +130,7 @@ $interactive-selectors: "label, button:not(.db-tab-remove-button), a";
 		// radio should have bg-lvl-3 (checked) without hover/pressed
 		label:has(input[type="radio"]:checked) {
 			&,
-			&:hover,
-			&:active {
+			&:is(:hover, :focus, :active) {
 				background-color: colors.$db-current-color-bg-lvl-3-enabled;
 			}
 		}

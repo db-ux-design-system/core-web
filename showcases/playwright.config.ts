@@ -1,4 +1,5 @@
 import { devices, type PlaywrightTestConfig } from '@playwright/test';
+import showcaseConfig from './playwright.showcase';
 
 /**
  * See https://playwright.dev/docs/test-configuration.
@@ -19,28 +20,10 @@ const config: PlaywrightTestConfig = {
 	fullyParallel: true,
 	/* Fail the build on CI if you accidentally left test.only in the source code. */
 	forbidOnly: Boolean(process.env.CI),
-	/* Retry on CI only */
-	retries: process.env.CI ? 1 : 0,
 	/* Opt out of parallel tests on CI. */
 	workers: process.env.CI ? 1 : undefined,
 	/* Reporter to use. See https://playwright.dev/docs/test-reporters */
 	reporter: process.env.CI ? 'blob' : [['list'], ['html', { open: 'never' }]],
-	/* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
-	use: {
-		/* Maximum time each action such as `click()` can take. Defaults to 0 (no limit). */
-		actionTimeout: 0,
-		/* Base URL to use in actions like `await page.goto('/')`. */
-		baseURL: `http://localhost:8080/${process.env.showcase}/`,
-
-		/* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
-		trace: process.env.CI ? 'on-first-retry' : 'on'
-	},
-	webServer: {
-		command: `cd ${process.env.showcase} && npm run preview`,
-		port: 8080,
-		reuseExistingServer: !process.env.CI
-	},
-
 	/* Configure projects for major browsers */
 	projects: [
 		{
@@ -49,21 +32,26 @@ const config: PlaywrightTestConfig = {
 				...devices['Desktop Chrome']
 			}
 		},
-
+		{
+			name: 'chromium-highContrast',
+			use: {
+				browserName: 'chromium',
+				colorScheme: 'dark',
+				contextOptions: { forcedColors: 'active' }
+			}
+		},
 		{
 			name: 'firefox',
 			use: {
 				...devices['Desktop Firefox']
 			}
 		},
-
 		{
 			name: 'webkit',
 			use: {
 				...devices['Desktop Safari']
 			}
 		},
-
 		/* Test against mobile viewports. */
 		{
 			name: 'mobile_chrome',
@@ -81,9 +69,7 @@ const config: PlaywrightTestConfig = {
 			}
 		}
 	],
-
-	/* Folder for test artifacts such as screenshots, videos, traces, etc. */
-	outputDir: `./${process.env.showcase}/test-results/`
+	...showcaseConfig
 };
 
 export default config;

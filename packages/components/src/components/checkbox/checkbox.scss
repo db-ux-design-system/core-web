@@ -8,6 +8,7 @@
 
 .db-checkbox {
 	@extend %helper-message;
+
 	@include form-components.set-default-check-element(check);
 
 	input {
@@ -15,6 +16,7 @@
 
 		&::before {
 			--db-icon-margin-end: 0;
+
 			position: absolute;
 			inset-inline: 0;
 			inset-block: 0;
@@ -23,28 +25,36 @@
 		&:checked {
 			// Check icon
 			@include icons.set-icon("check");
+			@include colors.set-current-colors(
+				colors.$db-current-color-on-bg-enabled,
+				colors.$db-current-color-bg-lvl-1-enabled,
+				colors.$db-current-color-on-bg-hover,
+				colors.$db-current-color-on-bg-pressed
+			);
 
 			// The icon within the checkbox has the same dimensions as the checkbox itself and that for there can't be any border
 			border-width: 0;
-
-			color: colors.$db-current-color-bg-enabled;
-			background-color: colors.$db-current-color-enabled;
-
-			@include helpers.hover {
-				background-color: colors.$db-current-color-hover;
-			}
-
-			@include helpers.active {
-				background-color: colors.$db-current-color-pressed;
-			}
-
-			&::before {
-				color: colors.$db-current-color-bg-enabled;
-			}
 		}
 
 		&:indeterminate {
 			@include icons.set-icon("minus");
+		}
+
+		@media (forced-colors: active) {
+			&:indeterminate,
+			&:checked {
+				--db-check-element-border-color: #{colors.$db-current-color-on-bg-enabled};
+
+				border-width: form-components.$check-border-size;
+
+				&::before {
+					align-content: center;
+					font-size: calc(
+						var(--db-icon-font-size) - 2 * #{form-components.$check-border-size}
+					);
+					padding: #{form-components.$check-border-size};
+				}
+			}
 		}
 	}
 }

@@ -9,10 +9,6 @@
 	display: flex;
 	flex-direction: column;
 
-	& > a {
-		text-decoration: none;
-	}
-
 	&[data-spacing="medium"] {
 		padding: variables.$db-spacing-fixed-md;
 	}

@@ -252,11 +252,6 @@ export type FormCheckProps = {
 	variant?: CheckVariantType;
 };
 
-export type FormMessageState = {
-	getValidMessage: () => string;
-	getInvalidMessage: () => string;
-};
-
 export const LabelVariantList = ['above', 'floating', 'hidden'] as const;
 export type LabelVariantType = (typeof LabelVariantList)[number];
 export const AutoCompleteList = [
@@ -359,6 +354,7 @@ export type FormState = {
 	_validMessageId?: string;
 	_invalidMessageId?: string;
 	_descByIds?: string;
+	_value?: string;
 };
 
 export type InitializedState = {
@@ -526,7 +522,7 @@ export type AriaControlsProps = {
 	controls?: string;
 };
 
-export type KeyValueType = {
-	key: string;
-	value?: string;
+export type ValueLabelType = {
+	value: string;
+	label?: string;
 };

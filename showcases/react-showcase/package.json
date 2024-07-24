@@ -11,13 +11,15 @@
     "preview": "npx http-server ../../build-showcases",
     "regenerate:screenshots": "cross-env showcase=react-showcase npx playwright test -c ../playwright.config.ts --update-snapshots",
     "start": "vite",
-    "test:e2e": "cross-env showcase=react-showcase npx playwright test --config=../playwright.config.ts"
+    "test:e2e": "cross-env showcase=react-showcase npx playwright test --config=../playwright.config.ts",
+    "test:screen-reader:macos": "cross-env showcase=react-showcase npx playwright test --config=../playwright.screen-reader.macos.ts",
+    "test:screen-reader:windows": "cross-env showcase=react-showcase npx playwright test --config=../playwright.screen-reader.windows.ts"
   },
   "dependencies": {
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
-    "react-router-dom": "6.23.1",
-    "sa11y": "3.2.1"
+    "react-router-dom": "6.25.1",
+    "sa11y": "3.2.2"
   },
   "devDependencies": {
     "@types/react": "^18.3.3",
@@ -25,6 +27,6 @@
     "@vitejs/plugin-react": "^4.3.1",
     "cross-env": "^7.0.3",
     "typescript": "^5.4.5",
-    "vite": "^5.3.1"
+    "vite": "^5.3.4"
   }
 }

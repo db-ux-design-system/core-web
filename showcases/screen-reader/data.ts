@@ -1,0 +1,44 @@
+import {
+	type Page,
+	type PlaywrightTestArgs,
+	type PlaywrightTestOptions,
+	type PlaywrightWorkerArgs,
+	type PlaywrightWorkerOptions,
+	type TestType
+} from '@playwright/test';
+import {
+	type NVDAPlaywright,
+	type VoiceOverPlaywright
+} from '@guidepup/playwright';
+
+export type ScreenReaderTestType = TestType<
+	PlaywrightTestArgs &
+		PlaywrightTestOptions & {
+			nvda?: NVDAPlaywright;
+			voiceOver?: VoiceOverPlaywright;
+		},
+	PlaywrightWorkerArgs & PlaywrightWorkerOptions
+>;
+
+export type DefaultTestType = {
+	test?: ScreenReaderTestType;
+	title: string;
+	url: string;
+	testFn?: (
+		voiceOver?: VoiceOverPlaywright,
+		nvda?: NVDAPlaywright
+	) => Promise<void>;
+	postTestFn?: (
+		voiceOver?: VoiceOverPlaywright,
+		nvda?: NVDAPlaywright,
+		retry?: number
+	) => Promise<void>;
+	additionalParams?: string;
+};
+
+export type RunTestType = {
+	page: Page;
+	retry: number;
+	nvda?: NVDAPlaywright;
+	voiceOver?: VoiceOverPlaywright;
+};

@@ -10,17 +10,17 @@ import { getVariants } from '../data';
 import { type BaseComponentProps } from '../base-component-data';
 
 const getNavigation = ({ children }: DBNavigationProps) => {
-	const label = `${children}`;
+	const labelID = `${children.replaceAll(/\W/g, '_').toLowerCase()}`;
 	return (
 		<div>
 			<DBInfotext
-				id={label}
+				id={labelID}
 				size="small"
 				semantic="informational"
 				icon="none">
 				{children}
 			</DBInfotext>
-			<DBNavigation labelledBy={label}>
+			<DBNavigation labelledBy={labelID}>
 				<DBNavigationItem
 					active
 					subNavigation={

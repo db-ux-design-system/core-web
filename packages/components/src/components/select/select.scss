@@ -25,6 +25,7 @@ $has-before-padding: calc(
 	);
 	// shared from form-components
 	@extend %select-icon;
+
 	@include form-components.set-default-form-component(select);
 
 	min-inline-size: calc(
@@ -37,7 +38,7 @@ $has-before-padding: calc(
 
 	// Most likely this wouldn't work on MacOS, but we're still progressively enhancing Windows by this
 	option {
-		background-color: colors.$db-current-color-bg-enabled;
+		background-color: colors.$db-current-color-bg-transparent-semi-enabled;
 	}
 
 	&[data-variant="hidden"] {
@@ -47,6 +48,7 @@ $has-before-padding: calc(
 
 	[id$="-placeholder"] {
 		@extend %db-overwrite-font-size-md;
+
 		position: absolute;
 		pointer-events: none;
 		// we use the top of the element, the size of the label+label-margin-bottom and the font-size of the select/2
@@ -60,7 +62,6 @@ $has-before-padding: calc(
 		);
 		inset-inline: $has-before-padding;
 		margin-inline-start: variables.$db-spacing-fixed-sm;
-
 		overflow: hidden;
 		white-space: nowrap;
 		text-overflow: ellipsis;
