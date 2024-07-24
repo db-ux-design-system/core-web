@@ -5,13 +5,13 @@ Start a test with these commands:
 ## MacOS
 
 ```shell
-npm run test:screen-reader:macos --workspace=react-showcase -- -- --ui
+npm run test:screen-reader:macos --workspace=react-showcase -- --ui
 ```
 
 ## Windows
 
 ```shell
-npm run test:screen-reader:windows --workspace=react-showcase -- -- --ui
+npm run test:screen-reader:windows --workspace=react-showcase -- --ui
 ```
 
 ## Gotchas
