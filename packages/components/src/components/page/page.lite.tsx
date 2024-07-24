@@ -23,6 +23,7 @@ export default function DBPage(props: DBPageProps) {
 
 	onInit(() => {
 		if (
+			typeof window !== 'undefined' &&
 			document &&
 			(props.documentOverflow === 'hidden' ||
 				(props.variant === 'fixed' &&
@@ -47,7 +48,10 @@ export default function DBPage(props: DBPageProps) {
 	});
 
 	onUnMount(() => {
-		if (document.documentElement.classList.contains('db-page-document')) {
+		if (
+			typeof window !== 'undefined' &&
+			document.documentElement.classList.contains('db-page-document')
+		) {
 			// remove document styles set by this
 			document.documentElement.classList.remove('db-page-document');
 		}
