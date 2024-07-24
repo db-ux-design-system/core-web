@@ -14,7 +14,6 @@ const getDrawer = ({
 	id,
 	width,
 	rounded,
-	withCloseButton,
 	spacing,
 	openDrawer,
 	setOpenDrawer,
@@ -24,7 +23,6 @@ const getDrawer = ({
 }: DBDrawerProps & AdditionalDrawerProperties) => (
 	<div>
 		<DBDrawer
-			withCloseButton={withCloseButton}
 			rounded={rounded}
 			width={width}
 			spacing={spacing}

@@ -18,7 +18,6 @@ const toggleDrawer = (example?: string) => {
 		>
 			<DBDrawer
 				:backdrop="exampleProps?.backdrop"
-				:withCloseButton="exampleProps?.withCloseButton"
 				:rounded="exampleProps?.rounded"
 				:width="exampleProps?.width"
 				:spacing="exampleProps?.spacing"

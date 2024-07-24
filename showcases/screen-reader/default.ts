@@ -22,7 +22,10 @@ const translations: Record<string, string[]> = {
 	checked: ['aktiviert'],
 	' of ': [' von '],
 	clickable: ['anklickbar'],
-	'has auto complete': ['mit Auto Vervollständigung']
+	'has auto complete': ['mit Auto Vervollständigung'],
+	unknown: ['Unbekannt'],
+	dialog: ['Dialogfeld'],
+	document: ['Dokument']
 };
 
 const cleanSpeakInstructions = (phraseLog: string[]): string[] =>

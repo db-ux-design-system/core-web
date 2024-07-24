@@ -6,7 +6,6 @@
 				"name": "Functional",
 				"className": "db-density-functional",
 				"props": {
-					"withCloseButton": true,
 					"open": "open",
 					"onClose": "toggleDrawer(false)"
 				}
@@ -15,7 +14,6 @@
 				"name": "(Default) Regular",
 				"className": "db-density-regular",
 				"props": {
-					"withCloseButton": true,
 					"open": "open",
 					"onClose": "toggleDrawer(false)"
 				}
@@ -24,7 +22,6 @@
 				"name": "Expressive",
 				"className": "db-density-expressive",
 				"props": {
-					"withCloseButton": true,
 					"open": "open",
 					"onClose": "toggleDrawer(false)"
 				}
@@ -37,7 +34,6 @@
 			{
 				"name": "(Default) Medium",
 				"props": {
-					"withCloseButton": true,
 					"open": "open",
 					"onClose": "toggleDrawer(false)"
 				}
@@ -45,7 +41,6 @@
 			{
 				"name": "Full",
 				"props": {
-					"withCloseButton": true,
 					"width": "full",
 					"open": "open",
 					"onClose": "toggleDrawer(false)"
@@ -59,7 +54,6 @@
 			{
 				"name": "(Default) No rounding",
 				"props": {
-					"withCloseButton": true,
 					"open": "open",
 					"onClose": "toggleDrawer(false)"
 				}
@@ -67,7 +61,6 @@
 			{
 				"name": "Rounded",
 				"props": {
-					"withCloseButton": true,
 					"rounded": true,
 					"open": "open",
 					"onClose": "toggleDrawer(false)"
@@ -81,7 +74,6 @@
 			{
 				"name": "(Default) Medium",
 				"props": {
-					"withCloseButton": true,
 					"open": "open",
 					"onClose": "toggleDrawer(false)"
 				}
@@ -89,7 +81,6 @@
 			{
 				"name": "Small",
 				"props": {
-					"withCloseButton": true,
 					"spacing": "small",
 					"open": "open",
 					"onClose": "toggleDrawer(false)"
@@ -98,7 +89,6 @@
 			{
 				"name": "Large",
 				"props": {
-					"withCloseButton": true,
 					"spacing": "large",
 					"open": "open",
 					"onClose": "toggleDrawer(false)"
@@ -107,7 +97,6 @@
 			{
 				"name": "No spacing",
 				"props": {
-					"withCloseButton": true,
 					"spacing": "none",
 					"open": "open",
 					"onClose": "toggleDrawer(false)"
@@ -121,7 +110,6 @@
 			{
 				"name": "(Default) With Backdrop",
 				"props": {
-					"withCloseButton": true,
 					"open": "open",
 					"onClose": "toggleDrawer(false)"
 				}
@@ -129,7 +117,6 @@
 			{
 				"name": "Backdrop-weak",
 				"props": {
-					"withCloseButton": true,
 					"backdrop": "weak",
 					"open": "open",
 					"onClose": "toggleDrawer(false)"
@@ -138,7 +125,6 @@
 			{
 				"name": "Invisible",
 				"props": {
-					"withCloseButton": true,
 					"backdrop": "invisible",
 					"open": "open",
 					"onClose": "toggleDrawer(false)"
@@ -147,7 +133,6 @@
 			{
 				"name": "No Backdrop",
 				"props": {
-					"withCloseButton": true,
 					"backdrop": "none",
 					"open": "open",
 					"onClose": "toggleDrawer(false)"
@@ -161,7 +146,6 @@
 			{
 				"name": "(Default) Right",
 				"props": {
-					"withCloseButton": true,
 					"open": "open",
 					"onClose": "toggleDrawer(false)"
 				}
@@ -169,7 +153,6 @@
 			{
 				"name": "Left",
 				"props": {
-					"withCloseButton": true,
 					"direction": "left",
 					"open": "open",
 					"onClose": "toggleDrawer(false)"
@@ -178,7 +161,6 @@
 			{
 				"name": "Up",
 				"props": {
-					"withCloseButton": true,
 					"direction": "up",
 					"open": "open",
 					"onClose": "toggleDrawer(false)"
@@ -187,7 +169,6 @@
 			{
 				"name": "Down",
 				"props": {
-					"withCloseButton": true,
 					"direction": "down",
 					"open": "open",
 					"onClose": "toggleDrawer(false)"

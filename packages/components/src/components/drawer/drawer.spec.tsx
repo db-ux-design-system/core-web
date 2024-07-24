@@ -41,7 +41,7 @@ const testAction = () => {
 	test(`should open and close drawer`, async ({ mount, page }) => {
 		let test: string = '';
 		const drawer: any = (
-			<DBDrawer onClose={() => (test = 'close')} withCloseButton={true}>
+			<DBDrawer onClose={() => (test = 'close')}>
 				<span data-testid="test">Test</span>
 			</DBDrawer>
 		);

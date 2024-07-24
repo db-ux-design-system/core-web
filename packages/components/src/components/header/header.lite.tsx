@@ -73,7 +73,6 @@ export default function DBHeader(props: DBHeaderProps) {
 			<DBDrawer
 				className="db-header-drawer"
 				rounded
-				withCloseButton
 				spacing="small"
 				open={props.drawerOpen}
 				onClose={() => state.toggle()}>

@@ -81,7 +81,6 @@ export default function DBDrawer(props: DBDrawerProps) {
 			onClick={(event) => {
 				state.handleClose(event);
 			}}
-			autofocus=""
 			onKeyDown={(event) => state.handleClose(event)}
 			data-backdrop={props.backdrop}>
 			<article
@@ -95,17 +94,15 @@ export default function DBDrawer(props: DBDrawerProps) {
 					<div class="db-drawer-header-text">
 						<Slot name="drawerHeader" />
 					</div>
-					<Show when={props.withCloseButton}>
-						<DBButton
-							className="button-close-drawer"
-							id={props.closeButtonId}
-							icon="cross"
-							variant="ghost"
-							noText
-							onClick={() => state.handleClose('close')}>
-							{props.closeButtonText ?? DEFAULT_CLOSE_BUTTON}
-						</DBButton>
-					</Show>
+					<DBButton
+						className="button-close-drawer"
+						id={props.closeButtonId}
+						icon="cross"
+						variant="ghost"
+						noText
+						onClick={() => state.handleClose('close')}>
+						{props.closeButtonText ?? DEFAULT_CLOSE_BUTTON}
+					</DBButton>
 				</header>
 				<div class="db-drawer-content">{props.children}</div>
 			</article>
