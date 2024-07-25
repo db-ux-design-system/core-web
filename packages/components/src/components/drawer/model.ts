@@ -45,11 +45,6 @@ export interface DBDrawerDefaultProps {
 	 * The "end" depends on which direction you use.
 	 */
 	rounded?: boolean;
-
-	/**
-	 * The withCloseButton attribute shows/hides the default close button.
-	 */
-	withCloseButton?: boolean;
 }
 
 export type DBDrawerProps = DBDrawerDefaultProps &
