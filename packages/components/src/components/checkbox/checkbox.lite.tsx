@@ -7,7 +7,7 @@ import {
 	useStore
 } from '@builder.io/mitosis';
 import { DBCheckboxProps, DBCheckboxState } from './model';
-import { cls, uuid } from '../../utils';
+import { cls, hasVoiceOver, uuid } from '../../utils';
 import {
 	DEFAULT_INVALID_MESSAGE,
 	DEFAULT_INVALID_MESSAGE_ID_SUFFIX,
@@ -33,6 +33,7 @@ export default function DBCheckbox(props: DBCheckboxProps) {
 		_validMessageId: this._id + DEFAULT_VALID_MESSAGE_ID_SUFFIX,
 		_invalidMessageId: this._id + DEFAULT_INVALID_MESSAGE_ID_SUFFIX,
 		_descByIds: '',
+		_voiceOverFallback: '',
 		handleChange: (event: ChangeEvent<HTMLInputElement>) => {
 			if (props.onChange) {
 				props.onChange(event);
@@ -46,11 +47,21 @@ export default function DBCheckbox(props: DBCheckboxProps) {
 			/* For a11y reasons we need to map the correct message with the checkbox */
 			if (!ref?.validity.valid || props.customValidity === 'invalid') {
 				state._descByIds = state._invalidMessageId;
+				if (hasVoiceOver()) {
+					state._voiceOverFallback =
+						props.invalidMessage ??
+						ref?.validationMessage ??
+						DEFAULT_INVALID_MESSAGE;
+				}
 			} else if (
 				props.customValidity === 'valid' ||
 				(ref?.validity.valid && props.required)
 			) {
 				state._descByIds = state._validMessageId;
+				if (hasVoiceOver()) {
+					state._voiceOverFallback =
+						props.validMessage ?? DEFAULT_VALID_MESSAGE;
+				}
 			} else if (props.message) {
 				state._descByIds = state._messageId;
 			} else {
@@ -179,6 +190,10 @@ export default function DBCheckbox(props: DBCheckboxProps) {
 					ref?.validationMessage ??
 					DEFAULT_INVALID_MESSAGE}
 			</DBInfotext>
+
+			<span className="visually-hidden" role="status">
+				{state._voiceOverFallback}
+			</span>
 		</div>
 	);
 }

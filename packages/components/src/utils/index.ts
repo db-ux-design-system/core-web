@@ -194,6 +194,11 @@ export const handleDataOutside = (el: Element): DBDataOutsidePair => {
 export const isArrayOfStrings = (value: unknown): value is string[] =>
 	Array.isArray(value) && value.every((item) => typeof item === 'string');
 
+const appleOs = ['Mac', 'iPhone', 'iPad', 'iPod'];
+export const hasVoiceOver = (): boolean =>
+	typeof window !== 'undefined' &&
+	appleOs.some((os) => window.navigator.userAgent.includes(os));
+
 export default {
 	filterPassingProps,
 	cls,
@@ -203,5 +208,6 @@ export default {
 	visibleInVY,
 	isInView,
 	handleDataOutside,
-	isArrayOfStrings
+	isArrayOfStrings,
+	hasVoiceOver
 };

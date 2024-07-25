@@ -1,0 +1,21 @@
+%visually-hidden {
+	clip: rect(0, 0, 0, 0) !important;
+	overflow: hidden !important;
+	white-space: nowrap !important;
+	font-size: 0 !important;
+	all: initial;
+	inset-block-start: 0 !important;
+	block-size: 1px !important;
+	position: absolute !important;
+	inline-size: 1px !important;
+	border-width: 0 !important;
+	border-style: initial !important;
+	border-color: initial !important;
+	border-image: initial !important;
+	padding: 0 !important;
+	pointer-events: none !important;
+}
+
+.visually-hidden {
+	@extend %visually-hidden;
+}

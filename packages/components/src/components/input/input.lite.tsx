@@ -7,7 +7,7 @@ import {
 	useRef,
 	useStore
 } from '@builder.io/mitosis';
-import { cls, isArrayOfStrings, uuid } from '../../utils';
+import { cls, hasVoiceOver, isArrayOfStrings, uuid } from '../../utils';
 import { DBInputProps, DBInputState } from './model';
 import {
 	DEFAULT_DATALIST_ID_SUFFIX,
@@ -42,6 +42,7 @@ export default function DBInput(props: DBInputProps) {
 		_dataListId: this._id + DEFAULT_DATALIST_ID_SUFFIX,
 		_descByIds: '',
 		_value: '',
+		_voiceOverFallback: '',
 		defaultValues: {
 			label: DEFAULT_LABEL,
 			placeholder: ' '
@@ -69,6 +70,12 @@ export default function DBInput(props: DBInputProps) {
 			/* For a11y reasons we need to map the correct message with the input */
 			if (!ref?.validity.valid || props.customValidity === 'invalid') {
 				state._descByIds = state._invalidMessageId;
+				if (hasVoiceOver()) {
+					state._voiceOverFallback =
+						props.invalidMessage ??
+						ref?.validationMessage ??
+						DEFAULT_INVALID_MESSAGE;
+				}
 			} else if (
 				props.customValidity === 'valid' ||
 				(ref?.validity.valid &&
@@ -78,6 +85,10 @@ export default function DBInput(props: DBInputProps) {
 						props.pattern))
 			) {
 				state._descByIds = state._validMessageId;
+				if (hasVoiceOver()) {
+					state._voiceOverFallback =
+						props.validMessage ?? DEFAULT_VALID_MESSAGE;
+				}
 			} else if (props.message) {
 				state._descByIds = state._messageId;
 			} else {
@@ -230,6 +241,10 @@ export default function DBInput(props: DBInputProps) {
 					ref?.validationMessage ??
 					DEFAULT_INVALID_MESSAGE}
 			</DBInfotext>
+
+			<span class="visually-hidden" role="status">
+				{state._voiceOverFallback}
+			</span>
 		</div>
 	);
 	// jscpd:ignore-end

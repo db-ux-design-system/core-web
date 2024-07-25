@@ -8,7 +8,7 @@ import {
 } from '@builder.io/mitosis';
 import { DBTextareaProps, DBTextareaState } from './model';
 import { DBInfotext } from '../infotext';
-import { cls, uuid } from '../../utils';
+import { cls, hasVoiceOver, uuid } from '../../utils';
 import {
 	DEFAULT_INVALID_MESSAGE,
 	DEFAULT_INVALID_MESSAGE_ID_SUFFIX,
@@ -40,6 +40,7 @@ export default function DBTextarea(props: DBTextareaProps) {
 			placeholder: ' ',
 			rows: '4'
 		},
+		_voiceOverFallback: '',
 		handleInput: (event: InputEvent<HTMLTextAreaElement>) => {
 			if (props.onInput) {
 				props.onInput(event);
@@ -63,12 +64,22 @@ export default function DBTextarea(props: DBTextareaProps) {
 			/* For a11y reasons we need to map the correct message with the textarea */
 			if (!ref?.validity.valid || props.customValidity === 'invalid') {
 				state._descByIds = state._invalidMessageId;
+				if (hasVoiceOver()) {
+					state._voiceOverFallback =
+						props.invalidMessage ??
+						ref?.validationMessage ??
+						DEFAULT_INVALID_MESSAGE;
+				}
 			} else if (
 				props.customValidity === 'valid' ||
 				(ref?.validity.valid &&
 					(props.required || props.minLength || props.maxLength))
 			) {
 				state._descByIds = state._validMessageId;
+				if (hasVoiceOver()) {
+					state._voiceOverFallback =
+						props.validMessage ?? DEFAULT_VALID_MESSAGE;
+				}
 			} else if (props.message) {
 				state._descByIds = state._messageId;
 			} else {
@@ -188,6 +199,10 @@ export default function DBTextarea(props: DBTextareaProps) {
 					ref?.validationMessage ??
 					DEFAULT_INVALID_MESSAGE}
 			</DBInfotext>
+
+			<span className="visually-hidden" role="status">
+				{state._voiceOverFallback}
+			</span>
 		</div>
 	);
 	// jscpd:ignore-end

@@ -46,8 +46,8 @@ test.describe('DBInput', () => {
 				/* Goto desired input */
 				await voiceOver?.next();
 				await voiceOver?.next();
+				await nvda?.clearSpokenPhraseLog();
 				await voiceOver?.next();
-
 				await voiceOver?.type('Test');
 				await voiceOver?.press('Command+A');
 				await voiceOver?.press('Delete');

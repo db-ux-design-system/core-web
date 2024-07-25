@@ -355,6 +355,13 @@ export type FormState = {
 	_invalidMessageId?: string;
 	_descByIds?: string;
 	_value?: string;
+
+	/**
+	 * https://www.davidmacd.com/blog/test-aria-describedby-errormessage-aria-live.html
+	 * Currently VoiceOver isn't supporting changes from aria-describedby.
+	 * This is an internal Fallback
+	 */
+	_voiceOverFallback?: string;
 };
 
 export type InitializedState = {
