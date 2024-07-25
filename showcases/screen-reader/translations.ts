@@ -12,5 +12,8 @@ export const translations: Record<string, string[]> = {
 	'Please fill out this field..': ['Fülle dieses Feld aus..'],
 	unselected: ['nicht ausgewählt'],
 	selected: ['ausgewählt'],
-	'': ['. Nummernblock eingeschaltet']
+	'': ['. Nummernblock eingeschaltet'],
+	unknown: ['Unbekannt'],
+	dialog: ['Dialogfeld'],
+	document: ['Dokument']
 };
