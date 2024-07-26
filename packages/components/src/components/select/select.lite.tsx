@@ -48,12 +48,12 @@ export default function DBSelect(props: DBSelectProps) {
 		_value: '',
 		initialized: false,
 		_voiceOverFallback: '',
-		handleClick: (event: ClickEvent) => {
+		handleClick: (event: ClickEvent<HTMLSelectElement>) => {
 			if (props.onClick) {
 				props.onClick(event);
 			}
 		},
-		handleInput: (event: InputEvent) => {
+		handleInput: (event: InputEvent<HTMLSelectElement>) => {
 			if (props.onInput) {
 				props.onInput(event);
 			}
@@ -62,7 +62,7 @@ export default function DBSelect(props: DBSelectProps) {
 				props.input(event);
 			}
 		},
-		handleChange: (event: ChangeEvent) => {
+		handleChange: (event: ChangeEvent<HTMLSelectElement>) => {
 			if (props.onChange) {
 				props.onChange(event);
 			}
@@ -97,7 +97,7 @@ export default function DBSelect(props: DBSelectProps) {
 				state._descByIds = state._placeholderId;
 			}
 		},
-		handleBlur: (event: InteractionEvent) => {
+		handleBlur: (event: InteractionEvent<HTMLSelectElement>) => {
 			if (props.onBlur) {
 				props.onBlur(event);
 			}
@@ -108,7 +108,7 @@ export default function DBSelect(props: DBSelectProps) {
 
 			state._voiceOverFallback = '';
 		},
-		handleFocus: (event: InteractionEvent) => {
+		handleFocus: (event: InteractionEvent<HTMLSelectElement>) => {
 			if (props.onFocus) {
 				props.onFocus(event);
 			}

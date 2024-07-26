@@ -34,7 +34,7 @@ export default function DBCheckbox(props: DBCheckboxProps) {
 		_invalidMessageId: this._id + DEFAULT_INVALID_MESSAGE_ID_SUFFIX,
 		_descByIds: '',
 		_voiceOverFallback: '',
-		handleChange: (event: ChangeEvent) => {
+		handleChange: (event: ChangeEvent<HTMLInputElement>) => {
 			if (props.onChange) {
 				props.onChange(event);
 			}
@@ -68,7 +68,7 @@ export default function DBCheckbox(props: DBCheckboxProps) {
 				state._descByIds = '';
 			}
 		},
-		handleBlur: (event: InteractionEvent) => {
+		handleBlur: (event: InteractionEvent<HTMLInputElement>) => {
 			if (props.onBlur) {
 				props.onBlur(event);
 			}
@@ -79,7 +79,7 @@ export default function DBCheckbox(props: DBCheckboxProps) {
 
 			state._voiceOverFallback = '';
 		},
-		handleFocus: (event: InteractionEvent) => {
+		handleFocus: (event: InteractionEvent<HTMLInputElement>) => {
 			if (props.onFocus) {
 				props.onFocus(event);
 			}
@@ -151,11 +151,13 @@ export default function DBCheckbox(props: DBCheckboxProps) {
 					disabled={props.disabled}
 					value={props.value}
 					required={props.required}
-					onChange={(event: ChangeEvent) => state.handleChange(event)}
-					onBlur={(event: InteractionEvent) =>
+					onChange={(event: ChangeEvent<HTMLInputElement>) =>
+						state.handleChange(event)
+					}
+					onBlur={(event: InteractionEvent<HTMLInputElement>) =>
 						state.handleBlur(event)
 					}
-					onFocus={(event: InteractionEvent) =>
+					onFocus={(event: InteractionEvent<HTMLInputElement>) =>
 						state.handleFocus(event)
 					}
 					aria-describedby={state._descByIds}

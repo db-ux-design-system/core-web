@@ -41,7 +41,7 @@ export default function DBTextarea(props: DBTextareaProps) {
 			rows: '4'
 		},
 		_voiceOverFallback: '',
-		handleInput: (event: InputEvent) => {
+		handleInput: (event: InputEvent<HTMLTextAreaElement>) => {
 			if (props.onInput) {
 				props.onInput(event);
 			}
@@ -50,7 +50,7 @@ export default function DBTextarea(props: DBTextareaProps) {
 				props.input(event);
 			}
 		},
-		handleChange: (event: ChangeEvent) => {
+		handleChange: (event: ChangeEvent<HTMLTextAreaElement>) => {
 			if (props.onChange) {
 				props.onChange(event);
 			}
@@ -86,7 +86,7 @@ export default function DBTextarea(props: DBTextareaProps) {
 				state._descByIds = '';
 			}
 		},
-		handleBlur: (event: InteractionEvent) => {
+		handleBlur: (event: InteractionEvent<HTMLTextAreaElement>) => {
 			if (props.onBlur) {
 				props.onBlur(event);
 			}
@@ -97,7 +97,7 @@ export default function DBTextarea(props: DBTextareaProps) {
 
 			state._voiceOverFallback = '';
 		},
-		handleFocus: (event: InteractionEvent) => {
+		handleFocus: (event: InteractionEvent<HTMLTextAreaElement>) => {
 			if (props.onFocus) {
 				props.onFocus(event);
 			}
@@ -156,10 +156,18 @@ export default function DBTextarea(props: DBTextareaProps) {
 				wrap={props.wrap}
 				spellcheck={props.spellCheck}
 				autocomplete={props.autocomplete}
-				onInput={(event: ChangeEvent) => state.handleInput(event)}
-				onChange={(event: ChangeEvent) => state.handleChange(event)}
-				onBlur={(event: InteractionEvent) => state.handleBlur(event)}
-				onFocus={(event: InteractionEvent) => state.handleFocus(event)}
+				onInput={(event: ChangeEvent<HTMLTextAreaElement>) =>
+					state.handleInput(event)
+				}
+				onChange={(event: ChangeEvent<HTMLTextAreaElement>) =>
+					state.handleChange(event)
+				}
+				onBlur={(event: InteractionEvent<HTMLTextAreaElement>) =>
+					state.handleBlur(event)
+				}
+				onFocus={(event: InteractionEvent<HTMLTextAreaElement>) =>
+					state.handleFocus(event)
+				}
 				value={props.value ?? state._value}
 				aria-describedby={state._descByIds}
 				placeholder={

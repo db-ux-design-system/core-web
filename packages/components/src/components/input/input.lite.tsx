@@ -47,7 +47,7 @@ export default function DBInput(props: DBInputProps) {
 			label: DEFAULT_LABEL,
 			placeholder: ' '
 		},
-		handleInput: (event: InputEvent) => {
+		handleInput: (event: InputEvent<HTMLInputElement>) => {
 			if (props.onInput) {
 				props.onInput(event);
 			}
@@ -56,7 +56,7 @@ export default function DBInput(props: DBInputProps) {
 				props.input(event);
 			}
 		},
-		handleChange: (event: ChangeEvent) => {
+		handleChange: (event: ChangeEvent<HTMLInputElement>) => {
 			if (props.onChange) {
 				props.onChange(event);
 			}
@@ -95,7 +95,7 @@ export default function DBInput(props: DBInputProps) {
 				state._descByIds = '';
 			}
 		},
-		handleBlur: (event: InteractionEvent) => {
+		handleBlur: (event: InteractionEvent<HTMLInputElement>) => {
 			if (props.onBlur) {
 				props.onBlur(event);
 			}
@@ -106,7 +106,7 @@ export default function DBInput(props: DBInputProps) {
 
 			state._voiceOverFallback = '';
 		},
-		handleFocus: (event: InteractionEvent) => {
+		handleFocus: (event: InteractionEvent<HTMLInputElement>) => {
 			if (props.onFocus) {
 				props.onFocus(event);
 			}
@@ -186,10 +186,18 @@ export default function DBInput(props: DBInputProps) {
 				form={props.form}
 				pattern={props.pattern}
 				autocomplete={props.autocomplete}
-				onInput={(event: ChangeEvent) => state.handleInput(event)}
-				onChange={(event: ChangeEvent) => state.handleChange(event)}
-				onBlur={(event: InteractionEvent) => state.handleBlur(event)}
-				onFocus={(event: InteractionEvent) => state.handleFocus(event)}
+				onInput={(event: ChangeEvent<HTMLInputElement>) =>
+					state.handleInput(event)
+				}
+				onChange={(event: ChangeEvent<HTMLInputElement>) =>
+					state.handleChange(event)
+				}
+				onBlur={(event: InteractionEvent<HTMLInputElement>) =>
+					state.handleBlur(event)
+				}
+				onFocus={(event: InteractionEvent<HTMLInputElement>) =>
+					state.handleFocus(event)
+				}
 				list={props.dataList && state._dataListId}
 				aria-describedby={state._descByIds}
 			/>
