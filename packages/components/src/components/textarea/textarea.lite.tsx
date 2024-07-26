@@ -200,7 +200,7 @@ export default function DBTextarea(props: DBTextareaProps) {
 					DEFAULT_INVALID_MESSAGE}
 			</DBInfotext>
 
-			<span className="visually-hidden" role="status">
+			<span data-visually-hidden role="status">
 				{state._voiceOverFallback}
 			</span>
 		</div>
