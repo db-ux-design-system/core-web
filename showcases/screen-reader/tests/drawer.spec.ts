@@ -1,4 +1,4 @@
-import { getTest, testDefault } from '../default';
+import { generateSnapshot, getTest, testDefault } from '../default';
 
 const test = getTest();
 
@@ -11,6 +11,23 @@ test.describe('DBDrawer', () => {
 			const screenReader = voiceOver ?? nvda;
 			await screenReader?.act();
 			await screenReader?.next();
+		},
+		async postTestFn(voiceOver, nvda, retry) {
+			if (nvda) {
+				/*
+				 * There is a timing issue for windows which results in different outputs in CICD.
+				 * We avoid this by replacing the generated log files
+				 */
+				await generateSnapshot(nvda, retry, (phraseLog) =>
+					phraseLog.map((log) =>
+						log
+							.replace('Showcase, document. unknown', 'button')
+							.replace('unknown', 'button')
+					)
+				);
+			} else if (voiceOver) {
+				await generateSnapshot(voiceOver, retry);
+			}
 		}
 	});
 });

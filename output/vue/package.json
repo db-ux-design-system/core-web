@@ -46,8 +46,8 @@
     "replace-in-file": "^8.1.0",
     "tsx": "^4.16.2",
     "typescript": "^5.4.5",
-    "vite": "^5.3.4",
-    "vue-tsc": "^2.0.28"
+    "vite": "^5.3.5",
+    "vue-tsc": "^2.0.29"
   },
   "publishConfig": {
     "registry": "https://registry.npmjs.org/",
