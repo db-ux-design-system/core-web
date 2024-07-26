@@ -105,6 +105,8 @@ export default function DBSelect(props: DBSelectProps) {
 			if (props.blur) {
 				props.blur(event);
 			}
+
+			state._voiceOverFallback = '';
 		},
 		handleFocus: (event: InteractionEvent) => {
 			if (props.onFocus) {
@@ -248,7 +250,7 @@ export default function DBSelect(props: DBSelectProps) {
 			{/* * https://www.davidmacd.com/blog/test-aria-describedby-errormessage-aria-live.html
 			 * Currently VoiceOver isn't supporting changes from aria-describedby.
 			 * This is an internal Fallback */}
-			<span data-visually-hidden role="status">
+			<span data-visually-hidden="true" role="status">
 				{state._voiceOverFallback}
 			</span>
 		</div>
