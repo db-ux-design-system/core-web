@@ -34,7 +34,7 @@ export default function DBCheckbox(props: DBCheckboxProps) {
 		_invalidMessageId: this._id + DEFAULT_INVALID_MESSAGE_ID_SUFFIX,
 		_descByIds: '',
 		_voiceOverFallback: '',
-		handleChange: (event: ChangeEvent<HTMLInputElement>) => {
+		handleChange: (event: ChangeEvent) => {
 			if (props.onChange) {
 				props.onChange(event);
 			}
@@ -68,7 +68,7 @@ export default function DBCheckbox(props: DBCheckboxProps) {
 				state._descByIds = '';
 			}
 		},
-		handleBlur: (event: InteractionEvent<HTMLInputElement>) => {
+		handleBlur: (event: InteractionEvent) => {
 			if (props.onBlur) {
 				props.onBlur(event);
 			}
@@ -77,7 +77,7 @@ export default function DBCheckbox(props: DBCheckboxProps) {
 				props.blur(event);
 			}
 		},
-		handleFocus: (event: InteractionEvent<HTMLInputElement>) => {
+		handleFocus: (event: InteractionEvent) => {
 			if (props.onFocus) {
 				props.onFocus(event);
 			}
@@ -149,13 +149,11 @@ export default function DBCheckbox(props: DBCheckboxProps) {
 					disabled={props.disabled}
 					value={props.value}
 					required={props.required}
-					onChange={(event: ChangeEvent<HTMLInputElement>) =>
-						state.handleChange(event)
-					}
-					onBlur={(event: InteractionEvent<HTMLInputElement>) =>
+					onChange={(event: ChangeEvent) => state.handleChange(event)}
+					onBlur={(event: InteractionEvent) =>
 						state.handleBlur(event)
 					}
-					onFocus={(event: InteractionEvent<HTMLInputElement>) =>
+					onFocus={(event: InteractionEvent) =>
 						state.handleFocus(event)
 					}
 					aria-describedby={state._descByIds}
@@ -191,7 +189,7 @@ export default function DBCheckbox(props: DBCheckboxProps) {
 					DEFAULT_INVALID_MESSAGE}
 			</DBInfotext>
 
-			<span className="visually-hidden" role="status">
+			<span data-visually-hidden role="status">
 				{state._voiceOverFallback}
 			</span>
 		</div>

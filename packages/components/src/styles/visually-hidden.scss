@@ -16,6 +16,6 @@
 	pointer-events: none !important;
 }
 
-.visually-hidden {
+[data-visually-hidden] {
 	@extend %visually-hidden;
 }
