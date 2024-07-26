@@ -242,7 +242,7 @@ export default function DBInput(props: DBInputProps) {
 					DEFAULT_INVALID_MESSAGE}
 			</DBInfotext>
 
-			<span class="visually-hidden" role="status">
+			<span data-visually-hidden role="status">
 				{state._voiceOverFallback}
 			</span>
 		</div>
