@@ -36,7 +36,8 @@ const cleanSpeakInstructions = (phraseLog: string[]): string[] =>
 
 export const generateSnapshot = async (
 	screenReader?: VoiceOverPlaywright | NVDAPlaywright,
-	retry?: number
+	retry?: number,
+	phraseLogConvertFn?: (phraseLog: string[]) => string[]
 ) => {
 	if (!screenReader) return;
 
@@ -47,6 +48,10 @@ export const generateSnapshot = async (
 	}
 
 	phraseLog = cleanSpeakInstructions(phraseLog);
+
+	if (phraseLogConvertFn) {
+		phraseLog = phraseLogConvertFn(phraseLog);
+	}
 
 	let snapshot = JSON.stringify(phraseLog);
 
