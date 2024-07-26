@@ -48,12 +48,12 @@ export default function DBSelect(props: DBSelectProps) {
 		_value: '',
 		initialized: false,
 		_voiceOverFallback: '',
-		handleClick: (event: ClickEvent) => {
+		handleClick: (event: ClickEvent<HTMLSelectElement>) => {
 			if (props.onClick) {
 				props.onClick(event);
 			}
 		},
-		handleInput: (event: InputEvent) => {
+		handleInput: (event: InputEvent<HTMLSelectElement>) => {
 			if (props.onInput) {
 				props.onInput(event);
 			}
@@ -62,7 +62,7 @@ export default function DBSelect(props: DBSelectProps) {
 				props.input(event);
 			}
 		},
-		handleChange: (event: ChangeEvent) => {
+		handleChange: (event: ChangeEvent<HTMLSelectElement>) => {
 			if (props.onChange) {
 				props.onChange(event);
 			}
@@ -97,7 +97,7 @@ export default function DBSelect(props: DBSelectProps) {
 				state._descByIds = state._placeholderId;
 			}
 		},
-		handleBlur: (event: InteractionEvent) => {
+		handleBlur: (event: InteractionEvent<HTMLSelectElement>) => {
 			if (props.onBlur) {
 				props.onBlur(event);
 			}
@@ -106,7 +106,7 @@ export default function DBSelect(props: DBSelectProps) {
 				props.blur(event);
 			}
 		},
-		handleFocus: (event: InteractionEvent) => {
+		handleFocus: (event: InteractionEvent<HTMLSelectElement>) => {
 			if (props.onFocus) {
 				props.onFocus(event);
 			}
@@ -167,11 +167,21 @@ export default function DBSelect(props: DBSelectProps) {
 				name={props.name}
 				value={props.value ?? state._value}
 				autocomplete={props.autocomplete}
-				onInput={(event: ChangeEvent) => state.handleInput(event)}
-				onClick={(event: ClickEvent) => state.handleClick(event)}
-				onChange={(event: ChangeEvent) => state.handleChange(event)}
-				onBlur={(event: InteractionEvent) => state.handleBlur(event)}
-				onFocus={(event: InteractionEvent) => state.handleFocus(event)}
+				onInput={(event: ChangeEvent<HTMLInputElement>) =>
+					state.handleInput(event)
+				}
+				onClick={(event: ClickEvent<HTMLSelectElement>) =>
+					state.handleClick(event)
+				}
+				onChange={(event: ChangeEvent<HTMLSelectElement>) =>
+					state.handleChange(event)
+				}
+				onBlur={(event: InteractionEvent<HTMLSelectElement>) =>
+					state.handleBlur(event)
+				}
+				onFocus={(event: InteractionEvent<HTMLSelectElement>) =>
+					state.handleFocus(event)
+				}
 				aria-describedby={state._descByIds}>
 				{/* Empty option for floating label */}
 				<option hidden></option>
@@ -245,7 +255,7 @@ export default function DBSelect(props: DBSelectProps) {
 					DEFAULT_INVALID_MESSAGE}
 			</DBInfotext>
 
-			<span data-visually-hidden role="status">
+			<span className="visually-hidden" role="status">
 				{state._voiceOverFallback}
 			</span>
 		</div>
