@@ -47,7 +47,7 @@ export default function DBInput(props: DBInputProps) {
 			label: DEFAULT_LABEL,
 			placeholder: ' '
 		},
-		handleInput: (event: InputEvent<HTMLInputElement>) => {
+		handleInput: (event: InputEvent) => {
 			if (props.onInput) {
 				props.onInput(event);
 			}
@@ -56,7 +56,7 @@ export default function DBInput(props: DBInputProps) {
 				props.input(event);
 			}
 		},
-		handleChange: (event: ChangeEvent<HTMLInputElement>) => {
+		handleChange: (event: ChangeEvent) => {
 			if (props.onChange) {
 				props.onChange(event);
 			}
@@ -95,7 +95,7 @@ export default function DBInput(props: DBInputProps) {
 				state._descByIds = '';
 			}
 		},
-		handleBlur: (event: InteractionEvent<HTMLInputElement>) => {
+		handleBlur: (event: InteractionEvent) => {
 			if (props.onBlur) {
 				props.onBlur(event);
 			}
@@ -104,7 +104,7 @@ export default function DBInput(props: DBInputProps) {
 				props.blur(event);
 			}
 		},
-		handleFocus: (event: InteractionEvent<HTMLInputElement>) => {
+		handleFocus: (event: InteractionEvent) => {
 			if (props.onFocus) {
 				props.onFocus(event);
 			}
@@ -184,18 +184,10 @@ export default function DBInput(props: DBInputProps) {
 				form={props.form}
 				pattern={props.pattern}
 				autocomplete={props.autocomplete}
-				onInput={(event: ChangeEvent<HTMLInputElement>) =>
-					state.handleInput(event)
-				}
-				onChange={(event: ChangeEvent<HTMLInputElement>) =>
-					state.handleChange(event)
-				}
-				onBlur={(event: InteractionEvent<HTMLInputElement>) =>
-					state.handleBlur(event)
-				}
-				onFocus={(event: InteractionEvent<HTMLInputElement>) =>
-					state.handleFocus(event)
-				}
+				onInput={(event: ChangeEvent) => state.handleInput(event)}
+				onChange={(event: ChangeEvent) => state.handleChange(event)}
+				onBlur={(event: InteractionEvent) => state.handleBlur(event)}
+				onFocus={(event: InteractionEvent) => state.handleFocus(event)}
 				list={props.dataList && state._dataListId}
 				aria-describedby={state._descByIds}
 			/>
@@ -242,11 +234,9 @@ export default function DBInput(props: DBInputProps) {
 					DEFAULT_INVALID_MESSAGE}
 			</DBInfotext>
 
-			<!--
-	 		* https://www.davidmacd.com/blog/test-aria-describedby-errormessage-aria-live.html
-	 		* Currently VoiceOver isn't supporting changes from aria-describedby.
-	 		* This is an internal Fallback
-			//-->
+			{/* * https://www.davidmacd.com/blog/test-aria-describedby-errormessage-aria-live.html
+			 * Currently VoiceOver isn't supporting changes from aria-describedby.
+			 * This is an internal Fallback */}
 			<span data-visually-hidden role="status">
 				{state._voiceOverFallback}
 			</span>

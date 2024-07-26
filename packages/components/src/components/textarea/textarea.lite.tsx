@@ -41,7 +41,7 @@ export default function DBTextarea(props: DBTextareaProps) {
 			rows: '4'
 		},
 		_voiceOverFallback: '',
-		handleInput: (event: InputEvent<HTMLTextAreaElement>) => {
+		handleInput: (event: InputEvent) => {
 			if (props.onInput) {
 				props.onInput(event);
 			}
@@ -50,7 +50,7 @@ export default function DBTextarea(props: DBTextareaProps) {
 				props.input(event);
 			}
 		},
-		handleChange: (event: ChangeEvent<HTMLTextAreaElement>) => {
+		handleChange: (event: ChangeEvent) => {
 			if (props.onChange) {
 				props.onChange(event);
 			}
@@ -86,7 +86,7 @@ export default function DBTextarea(props: DBTextareaProps) {
 				state._descByIds = '';
 			}
 		},
-		handleBlur: (event: InteractionEvent<HTMLTextAreaElement>) => {
+		handleBlur: (event: InteractionEvent) => {
 			if (props.onBlur) {
 				props.onBlur(event);
 			}
@@ -95,7 +95,7 @@ export default function DBTextarea(props: DBTextareaProps) {
 				props.blur(event);
 			}
 		},
-		handleFocus: (event: InteractionEvent<HTMLTextAreaElement>) => {
+		handleFocus: (event: InteractionEvent) => {
 			if (props.onFocus) {
 				props.onFocus(event);
 			}
@@ -154,18 +154,10 @@ export default function DBTextarea(props: DBTextareaProps) {
 				wrap={props.wrap}
 				spellcheck={props.spellCheck}
 				autocomplete={props.autocomplete}
-				onInput={(event: ChangeEvent<HTMLInputElement>) =>
-					state.handleInput(event)
-				}
-				onChange={(event: ChangeEvent<HTMLTextAreaElement>) =>
-					state.handleChange(event)
-				}
-				onBlur={(event: InteractionEvent<HTMLTextAreaElement>) =>
-					state.handleBlur(event)
-				}
-				onFocus={(event: InteractionEvent<HTMLTextAreaElement>) =>
-					state.handleFocus(event)
-				}
+				onInput={(event: ChangeEvent) => state.handleInput(event)}
+				onChange={(event: ChangeEvent) => state.handleChange(event)}
+				onBlur={(event: InteractionEvent) => state.handleBlur(event)}
+				onFocus={(event: InteractionEvent) => state.handleFocus(event)}
 				value={props.value ?? state._value}
 				aria-describedby={state._descByIds}
 				placeholder={
@@ -200,11 +192,9 @@ export default function DBTextarea(props: DBTextareaProps) {
 					DEFAULT_INVALID_MESSAGE}
 			</DBInfotext>
 
-			<!--
-	 		* https://www.davidmacd.com/blog/test-aria-describedby-errormessage-aria-live.html
-	 		* Currently VoiceOver isn't supporting changes from aria-describedby.
-	 		* This is an internal Fallback
-			//-->
+			{/* * https://www.davidmacd.com/blog/test-aria-describedby-errormessage-aria-live.html
+			 * Currently VoiceOver isn't supporting changes from aria-describedby.
+			 * This is an internal Fallback */}
 			<span data-visually-hidden role="status">
 				{state._voiceOverFallback}
 			</span>
