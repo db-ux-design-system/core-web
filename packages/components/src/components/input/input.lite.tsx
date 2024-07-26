@@ -242,6 +242,11 @@ export default function DBInput(props: DBInputProps) {
 					DEFAULT_INVALID_MESSAGE}
 			</DBInfotext>
 
+			<!--
+	 		* https://www.davidmacd.com/blog/test-aria-describedby-errormessage-aria-live.html
+	 		* Currently VoiceOver isn't supporting changes from aria-describedby.
+	 		* This is an internal Fallback
+			//-->
 			<span data-visually-hidden role="status">
 				{state._voiceOverFallback}
 			</span>
