@@ -199,6 +199,9 @@ export const hasVoiceOver = (): boolean =>
 	typeof window !== 'undefined' &&
 	appleOs.some((os) => window.navigator.userAgent.includes(os));
 
+export const delay = (fn: () => void, ms: number) =>
+	new Promise(() => setTimeout(fn, ms));
+
 export default {
 	filterPassingProps,
 	cls,
@@ -209,5 +212,6 @@ export default {
 	isInView,
 	handleDataOutside,
 	isArrayOfStrings,
-	hasVoiceOver
+	hasVoiceOver,
+	delay
 };

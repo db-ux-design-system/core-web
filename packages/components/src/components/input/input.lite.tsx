@@ -7,7 +7,7 @@ import {
 	useRef,
 	useStore
 } from '@builder.io/mitosis';
-import { cls, hasVoiceOver, isArrayOfStrings, uuid } from '../../utils';
+import { cls, delay, hasVoiceOver, isArrayOfStrings, uuid } from '../../utils';
 import { DBInputProps, DBInputState } from './model';
 import {
 	DEFAULT_DATALIST_ID_SUFFIX,
@@ -75,6 +75,7 @@ export default function DBInput(props: DBInputProps) {
 						props.invalidMessage ??
 						ref?.validationMessage ??
 						DEFAULT_INVALID_MESSAGE;
+					delay(() => (state._voiceOverFallback = ''), 1000);
 				}
 			} else if (
 				props.customValidity === 'valid' ||
@@ -88,6 +89,7 @@ export default function DBInput(props: DBInputProps) {
 				if (hasVoiceOver()) {
 					state._voiceOverFallback =
 						props.validMessage ?? DEFAULT_VALID_MESSAGE;
+					delay(() => (state._voiceOverFallback = ''), 1000);
 				}
 			} else if (props.message) {
 				state._descByIds = state._messageId;
@@ -103,8 +105,6 @@ export default function DBInput(props: DBInputProps) {
 			if (props.blur) {
 				props.blur(event);
 			}
-
-			state._voiceOverFallback = '';
 		},
 		handleFocus: (event: InteractionEvent<HTMLInputElement>) => {
 			if (props.onFocus) {

@@ -10,7 +10,7 @@ import {
 import { DBDrawerProps, DBDrawerState } from './model';
 import { DBButton } from '../button';
 import { DEFAULT_CLOSE_BUTTON } from '../../shared/constants';
-import { cls } from '../../utils';
+import { cls, delay } from '../../utils';
 
 useMetadata({
 	isAttachedToShadowDom: true
@@ -54,7 +54,7 @@ export default function DBDrawer(props: DBDrawerProps) {
 					if (dialogContainerRef) {
 						dialogContainerRef.hidden = true;
 					}
-					setTimeout(() => {
+					delay(() => {
 						if (dialogContainerRef) {
 							dialogContainerRef.hidden = false;
 						}
