@@ -161,7 +161,7 @@
 	overflow-y: auto;
 	// additional #{$db-spacing-fixed-3xs} for border
 	inset-block: calc(
-			#{component.$default-mobile-header-height} + #{variables.$db-spacing-fixed-3xs}
+			#{component.$min-mobile-header-height} + #{variables.$db-spacing-fixed-3xs}
 		)
 		calc(
 			#{variables.$db-sizing-md} + #{variables.$db-spacing-fixed-xs} * 2 +
