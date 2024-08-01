@@ -10,7 +10,7 @@
 	display: flex;
 	flex-direction: column;
 	position: relative;
-	min-block-size: component.$default-mobile-header-height;
+	min-block-size: component.$min-mobile-header-height;
 	border-block-end: variables.$db-border-height-3xs solid
 		colors.$db-current-color-border;
 
@@ -105,7 +105,7 @@
 
 		&::before {
 			position: inherit;
-			block-size: 100%;
+			block-size: variables.$db-sizing-md;
 			margin-inline-start: variables.$db-spacing-fixed-lg;
 		}
 	}
@@ -141,7 +141,7 @@
 	&::before {
 		margin-inline: variables.$db-spacing-fixed-xs;
 		position: inherit;
-		block-size: 100%;
+		block-size: variables.$db-sizing-md;
 	}
 }
 
@@ -229,7 +229,7 @@
 }
 
 /* Only for Mobile */
-.db-header-drawer-navigation > .db-header-meta-navigation {
+.db-header-drawer-navigation > .db-header-meta-navigation:not(:empty) {
 	display: inherit;
 }
 
