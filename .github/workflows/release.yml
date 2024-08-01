@@ -146,7 +146,7 @@ jobs:
           resultTestShowcasePatternhub="${{ needs.test-showcase-patternhub.result }}"
           resultTestScreenReader="${{ needs.test-screen-reader.result }}"
           if [[ $resultTestFoundations == "success" ]] && \
-             [[ resultTestScreenReader == "success" ]] && \
+             [[ $resultTestScreenReader == "success" ]] && \
              [[ $resultTestShowcaseAngular == "success" ]] && \
              [[ $resultTestShowcaseReact == "success" ]] && \
              [[ $resultTestShowcaseVue == "success" ]] && \
