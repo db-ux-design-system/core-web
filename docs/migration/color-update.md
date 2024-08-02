@@ -1,6 +1,6 @@
 ## Migration Beta (0.2.x) ➡ Beta (0.3.x)
 
-We refactored our colors which might add some breaking changes to current projects.
+We refactored our colors which might add some breaking changes to current projects: <https://marketingportal.extranet.deutschebahn.com/marketingportal/Design-Anwendungen/db-ux-design-system/support/migration-guides/v0-3-0>
 
 ## Migration table
 
