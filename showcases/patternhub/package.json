@@ -26,6 +26,7 @@
     "highlight.js": "^11.10.0",
     "next": "14.2.5",
     "react": "18.3.1",
+    "react-archer": "^4.4.0",
     "react-dom": "18.3.1",
     "rehype-slug": "6.0.0",
     "remark-gfm": "4.0.0"

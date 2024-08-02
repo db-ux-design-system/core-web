@@ -171,6 +171,10 @@ export const ROUTES: NavigationItem[] = [
 					{
 						label: 'Color Schemes',
 						path: '/foundations/colors/color-schemes'
+					},
+					{
+						label: 'Color Usage Guide',
+						path: '/foundations/colors/color-usage-guide'
 					}
 				]
 			},

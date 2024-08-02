@@ -52,7 +52,7 @@ const ColorOverview = () => {
 						<code>db-on-bg-color-[ color ]</code>
 					</li>
 				</ol>
-				<h2>1. Container color</h2>
+				<h2 id="container-color-classes">1. Container color</h2>
 				<p>
 					These classes define the{' '}
 					<strong>monochromatic adaptive color scheme</strong> for a
@@ -96,7 +96,9 @@ const ColorOverview = () => {
 					prefixClass="db-container-color-"
 					dataAttributeName="data-container-color"
 				/>
-				<h2>2. Background color modifier</h2>
+				<h2 id="background-color-modifier-classes">
+					2. Background color modifier
+				</h2>
 				<p>
 					These classes define the type of background color for a
 					container. The exact color tone then results from the
@@ -109,7 +111,9 @@ const ColorOverview = () => {
 					prefixClass="db-bg-color-"
 					dataAttributeName="data-bg-color"
 				/>
-				<h2>3. On background color modifier</h2>
+				<h2 id="on-background-color-modifier-classes">
+					3. On background color modifier
+				</h2>
 				<p>
 					This class is used to define the contrast for{' '}
 					<strong>texts</strong> and <strong>icons</strong>. As with
