@@ -116,7 +116,7 @@
 			&:checked {
 				&,
 				&:not(:disabled):is(:hover, :focus, :active) {
-					background-color: colors.$db-brand-bg-transparent-full-enabled;
+					background-color: colors.$db-brand-bg-basic-transparent-full-default;
 				}
 
 				&::before {
@@ -198,7 +198,7 @@
 		&:is(button),
 		button {
 			// overwrite to transparent
-			background-color: colors.$db-current-color-bg-transparent-full-enabled;
+			background-color: colors.$db-adaptive-bg-basic-transparent-full-default;
 			margin-inline-start: variables.$db-spacing-fixed-2xs;
 			border: 0;
 			aspect-ratio: 1 / 1;

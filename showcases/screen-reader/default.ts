@@ -128,7 +128,8 @@ export const testDefault = (defaultTestType: DefaultTestType) => {
 		...defaultTestType,
 		postTestFn: postTestFn ?? fallbackPostFn,
 		additionalParams:
-			additionalParams ?? '&color=neutral-bg-lvl-1&density=regular'
+			additionalParams ??
+			'&color=neutral-bg-basic-level-1&density=regular'
 	};
 
 	if (isWin()) {

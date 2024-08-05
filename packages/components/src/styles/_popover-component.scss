@@ -193,7 +193,7 @@ $popover-gap-inset: calc(-1 * #{$popover-gap-size});
 	@extend %popover-placement;
 
 	position: absolute;
-	background-color: colors.$db-current-color-bg-lvl-1-enabled;
+	background-color: colors.$db-adaptive-bg-basic-level-1-default;
 	box-shadow: variables.$db-elevation-md;
 	display: none;
 	z-index: 1;

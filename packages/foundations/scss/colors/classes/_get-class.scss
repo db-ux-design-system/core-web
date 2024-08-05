@@ -1,35 +1,15 @@
 @mixin init($variant) {
-	[data-color="#{$variant}-bg-lvl-1"],
-	.db-#{$variant}-bg-lvl-1 {
-		@extend %db-#{$variant}-bg-lvl-1;
+	[data-color="#{$variant}-bg-basic-level-1"],
+	.db-#{$variant}-bg-basic-level-1 {
+		@extend %db-#{$variant}-bg-basic-level-1;
 	}
-	[data-color="#{$variant}-bg-lvl-2"],
-	.db-#{$variant}-bg-lvl-2 {
-		@extend %db-#{$variant}-bg-lvl-2;
+	[data-color="#{$variant}-bg-basic-level-2"],
+	.db-#{$variant}-bg-basic-level-2 {
+		@extend %db-#{$variant}-bg-basic-level-2;
 	}
-	[data-color="#{$variant}-bg-lvl-3"],
-	.db-#{$variant}-bg-lvl-3 {
-		@extend %db-#{$variant}-bg-lvl-3;
-	}
-	[data-color="#{$variant}-bg-transparent-full"],
-	.db-#{$variant}-bg-transparent-full {
-		@extend %db-#{$variant}-bg-transparent-full;
-	}
-	[data-color="#{$variant}-bg-transparent-semi"],
-	.db-#{$variant}-bg-transparent-semi {
-		@extend %db-#{$variant}-bg-transparent-semi;
-	}
-
-	@each $contrast in [ "high", "low"] {
-		[data-color="#{$variant}-contrast-#{$contrast}"],
-		.db-#{$variant}-contrast-#{$contrast} {
-			@extend %db-#{$variant}-contrast-#{$contrast};
-		}
-
-		[data-color="#{$variant}-contrast-#{$contrast}-interactive"],
-		.db-#{$variant}-contrast-#{$contrast}-interactive {
-			@extend %db-#{$variant}-contrast-#{$contrast}-interactive;
-		}
+	[data-color="#{$variant}-bg-basic-level-3"],
+	.db-#{$variant}-bg-basic-level-3 {
+		@extend %db-#{$variant}-bg-basic-level-3;
 	}
 }
 
@@ -38,45 +18,21 @@
 	.db-container-color-#{$variant} {
 		@extend %db-#{$variant}-variables;
 
-		color: var(--db-current-color-on-bg-enabled);
-		background-color: var(--db-current-color-bg-lvl-1-enabled);
+		color: var(--db-adaptive-on-bg-basic-emphasis-100-default);
+		background-color: var(--db-adaptive-bg-basic-level-1-default);
 	}
 }
 
 @mixin init-on-background-colors($color) {
 	[data-on-bg-color="#{$color}"],
 	.db-on-bg-color-#{$color} {
-		@if $color == "default" {
-			color: var(--db-current-color-on-bg-enabled);
-		}
-
- @else if $color == "weak" {
-			color: var(--db-current-color-on-bg-weak-enabled);
-		}
-
- @else if $color == "contrast" {
-			color: var(--db-current-color-contrast-high-enabled);
-		}
-
- @else if $color == "contrast-weak" {
-			color: var(--db-current-color-contrast-low-enabled);
-		}
-
- @else if $color == "border" {
-			color: var(--db-current-color-border);
-		}
-
- @else {
-			@error "Unknown color #{$color}.";
-		}
+		color: var(-db-adaptive-on-bg-basic-#{$color}-default);
 	}
 }
 
 @mixin init-background-colors($background-color) {
 	[data-bg-color="#{$background-color}"],
 	.db-bg-color-#{$background-color} {
-		background-color: var(
-			--db-current-color-bg-#{$background-color}-enabled
-		);
+		background-color: var(--db-adaptive-bg-#{$background-color}-default);
 	}
 }

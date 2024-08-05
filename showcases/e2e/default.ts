@@ -81,7 +81,7 @@ export const getDefaultScreenshotTest = ({
 			config.maxDiffPixels = 1;
 		}
 
-		await gotoPage(page, path, 'neutral-bg-lvl-1', fixedHeight);
+		await gotoPage(page, path, 'neutral-bg-basic-level-1', fixedHeight);
 
 		const header = await page.locator('header').first();
 
@@ -91,10 +91,7 @@ export const getDefaultScreenshotTest = ({
 			await preScreenShot(page);
 		}
 
-		await expect(page).toHaveScreenshot(
-			[density, `neutral-bg-lvl-1.png`],
-			config
-		);
+		await expect(page).toHaveScreenshot(config);
 	});
 
 	for (const color of COLORS) {
@@ -135,7 +132,7 @@ export const getDefaultScreenshotTest = ({
 	}
 
 	test('test with accessibility checker', async ({ page }, { project }) => {
-		await gotoPage(page, path, 'neutral-bg-lvl-1', fixedHeight);
+		await gotoPage(page, path, 'neutral-bg-basic-level-1', fixedHeight);
 		let failures: any[] = [];
 		try {
 			if (project.name === 'firefox') {

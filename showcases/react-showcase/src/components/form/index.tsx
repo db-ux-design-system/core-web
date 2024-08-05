@@ -150,6 +150,38 @@ const FormComponent = () => {
 									</DBTag>
 								</li>
 							))}
+							{['A', 'B', 'C'].map((tag, index) => (
+								<li key={`tag-${tag}`}>
+									<DBTag
+										semantic={
+											index === 0
+												? undefined
+												: 'informational'
+										}
+										emphasis={
+											index === 2 ? 'strong' : undefined
+										}>
+										<label htmlFor={`checkbox-${tag}`}>
+											<input
+												onChange={() => {
+													if (tags.includes(tag)) {
+														setTags(
+															tags.filter(
+																(t) => t !== tag
+															)
+														);
+													} else {
+														setTags([...tags, tag]);
+													}
+												}}
+												id={`checkbox-${tag}`}
+												type="checkbox"
+											/>
+											Tag {tag}
+										</label>
+									</DBTag>
+								</li>
+							))}
 						</ul>
 						<p>Checkbox:</p>
 						<DBCheckbox

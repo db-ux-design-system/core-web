@@ -33,7 +33,7 @@ onload = () => {
 	const queryParameters = getQueryParams();
 
 	const density = queryParameters.density ?? 'regular';
-	const color = queryParameters.color ?? 'neutral-bg-lvl-1';
+	const color = queryParameters.color ?? 'neutral-bg-basic-level-1';
 	content.className = getClassName(density, color);
 
 	for (const selectDensity of selectDensities) {

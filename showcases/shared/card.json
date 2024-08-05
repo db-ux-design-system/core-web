@@ -13,10 +13,6 @@
 			{
 				"name": "Expressive",
 				"className": "db-density-expressive"
-			},
-			{
-				"name": "functional",
-				"className": "db-density-functional"
 			}
 		]
 	},

@@ -13,46 +13,46 @@ $scrollbar-width: helpers.px-to-rem(8);
 		z-index: 3;
 		inline-size: $scrollbar-width;
 		block-size: $scrollbar-width;
-		background-color: colors.$db-current-color-bg-lvl-1-enabled;
+		background-color: colors.$db-adaptive-bg-basic-level-1-default;
 		border-start-end-radius: variables.$db-border-radius-xs;
 	}
 
 	&:is(:hover, :focus) {
 		&::-webkit-scrollbar-track,
 		&::-webkit-scrollbar-button:single-button {
-			background-color: colors.$db-current-color-bg-transparent-hover;
+			background-color: colors.$db-adaptive-bg-basic-transparent-hovered;
 		}
 	}
 
 	&:read-only {
 		&::-webkit-scrollbar-track,
 		&::-webkit-scrollbar-button:single-button {
-			background-color: colors.$db-current-color-bg-lvl-1-enabled !important;
+			background-color: colors.$db-adaptive-bg-basic-level-1-default !important;
 		}
 	}
 
 	&::-webkit-scrollbar-track {
-		background-color: colors.$db-current-color-bg-transparent-semi-enabled;
+		background-color: colors.$db-adaptive-bg-basic-transparent-semi-default;
 	}
 
 	&::-webkit-scrollbar-thumb {
-		background-color: colors.$db-current-color-bg-transparent-pressed;
+		background-color: colors.$db-adaptive-bg-basic-transparent-pressed;
 	}
 
 	/* Buttons */
 	&::-webkit-scrollbar-button:single-button {
-		background-color: colors.$db-current-color-bg-transparent-semi-enabled;
+		background-color: colors.$db-adaptive-bg-basic-transparent-semi-default;
 		background-size: $scrollbar-width;
 		background-repeat: no-repeat;
 		background-position: center;
 		block-size: form-components.$floating-label-size;
 
 		&:is(:hover, :focus) {
-			background-color: colors.$db-current-color-bg-transparent-hover;
+			background-color: colors.$db-adaptive-bg-basic-transparent-hovered;
 		}
 
 		&:active {
-			background-color: colors.$db-current-color-bg-transparent-pressed;
+			background-color: colors.$db-adaptive-bg-basic-transparent-pressed;
 		}
 	}
 
@@ -68,16 +68,16 @@ $scrollbar-width: helpers.px-to-rem(8);
 
 	&[data-variant="floating"] {
 		&::-webkit-resizer {
-			background-color: colors.$db-current-color-bg-transparent-semi-enabled;
+			background-color: colors.$db-adaptive-bg-basic-transparent-semi-default;
 		}
 
 		&::-webkit-scrollbar-corner {
-			background-color: colors.$db-current-color-bg-lvl-1-enabled;
+			background-color: colors.$db-adaptive-bg-basic-level-1-default;
 		}
 	}
 
 	&::-webkit-resizer {
-		background-color: colors.$db-current-color-bg-transparent-full-enabled;
+		background-color: colors.$db-adaptive-bg-basic-transparent-full-default;
 		background-size: $scrollbar-width;
 		background-repeat: no-repeat;
 		background-position: center;

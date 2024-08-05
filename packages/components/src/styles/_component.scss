@@ -11,7 +11,7 @@ $default-disabled: 0.4;
 
 %default-adaptive-border {
 	border: variables.$db-border-height-3xs solid
-		colors.$db-current-color-on-bg-enabled;
+		colors.$db-adaptive-on-bg-basic-emphasis-100-default;
 }
 
 %transparent-border {
@@ -20,7 +20,7 @@ $default-disabled: 0.4;
 
 %component-border {
 	border: variables.$db-border-height-3xs solid
-		colors.$db-current-color-border;
+		colors.$db-adaptive-on-bg-basic-emphasis-60-default;
 }
 
 %default-interactive-component {
