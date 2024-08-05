@@ -2,11 +2,29 @@
 
 @use "../colors";
 @use "../variables";
+@use "../helpers";
 
 pre:has(code) {
 	background-color: colors.$db-adaptive-bg-inverted-contrast-max-default;
 	color: colors.$db-adaptive-on-bg-inverted-default;
 	padding: variables.$db-spacing-fixed-xs;
+}
+
+a:has(code) {
+	background-color: colors.$db-adaptive-bg-inverted-contrast-max-default;
+	color: colors.$db-adaptive-on-bg-inverted-default;
+
+	@include helpers.hover {
+		color: #{colors.$db-adaptive-on-bg-inverted-hovered};
+	}
+
+	@include helpers.active {
+		color: #{colors.$db-adaptive-on-bg-inverted-pressed};
+	}
+
+	> code {
+		color: inherit;
+	}
 }
 
 code {
