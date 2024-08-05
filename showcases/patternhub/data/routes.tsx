@@ -222,7 +222,8 @@ export const ROUTES: NavigationItem[] = [
 						path: '/foundations/variables/examples'
 					}
 				]
-			}
+			},
+			{ label: 'Testing Overview Table', path: '/foundations/test-table' }
 		]
 	},
 	{
