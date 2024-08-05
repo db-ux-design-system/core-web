@@ -394,7 +394,7 @@ h6 {
 }
 
 .db-code-docs {
-	min-block-size: variables.$db-sizing-3xl;
+	min-block-size: max(#{variables.$db-sizing-3xl}, 50vh);
 	align-items: center;
 	justify-content: center;
 	padding: variables.$db-spacing-fixed-xl;
