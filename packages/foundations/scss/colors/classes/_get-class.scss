@@ -26,23 +26,7 @@
 @mixin init-on-background-colors($color) {
 	[data-on-bg-color="#{$color}"],
 	.db-on-bg-color-#{$color} {
-		/* stylelint-disable at-rule-empty-line-before */
-		@if $color == "emphasis-100" {
-			color: var(--db-adaptive-on-bg-basic-emphasis-100-default);
-		} @else if $color == "emphasis-90" {
-			color: var(--db-adaptive-on-bg-basic-emphasis-90-default);
-		} @else if $color == "emphasis-80" {
-			color: var(--db-adaptive-on-bg-basic-emphasis-80-default);
-		} @else if $color == "emphasis-70" {
-			color: var(--db-adaptive-on-bg-basic-emphasis-70-default);
-		} @else if $color == "emphasis-60" {
-			color: var(--db-adaptive-on-bg-basic-emphasis-60-default);
-		} @else if $color == "emphasis-50" {
-			color: var(--db-adaptive-on-bg-basic-emphasis-50-default);
-		} @else {
-			@error "Unknown color #{$color}.";
-		}
-		/* stylelint-enable at-rule-empty-line-before */
+		color: var(-db-adaptive-on-bg-basic-#{$color}-default);
 	}
 }
 
