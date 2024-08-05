@@ -75,6 +75,8 @@ const startDev = () => {
 	}
 
 	for (const currentAnswer of currentAnswers) {
+		if (currentAnswer === 'plain-html') continue;
+
 		startCommand += ` start-showcase:${currentAnswer}`;
 	}
 
