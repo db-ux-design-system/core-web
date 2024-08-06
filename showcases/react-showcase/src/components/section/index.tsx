@@ -7,7 +7,7 @@ import { type BaseComponentProps } from '../base-component-data';
 
 const getSection = ({ width, spacing, children }: DBSectionProps) => (
 	<DBSection
-		className="db-informational-bg-lvl-2"
+		className="db-informational-bg-basic-level-2"
 		spacing={spacing}
 		width={width}>
 		{children}

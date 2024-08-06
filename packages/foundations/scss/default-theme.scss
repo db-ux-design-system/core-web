@@ -847,7 +847,7 @@ html:not(:has(> head > meta[name="color-scheme"])) {
 }
 
 [data-color-scheme] {
-	@extend %db-neutral-bg-lvl-1;
+	@extend %db-neutral-bg-basic-level-1;
 }
 
 [data-color-scheme="light"] {

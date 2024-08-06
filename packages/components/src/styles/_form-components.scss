@@ -165,8 +165,8 @@ $check-border-size: min(#{variables.$db-border-height-2xs}, 2px);
 
 	#{$selector},
 	[id$="-placeholder"] {
-		color: var(--db-#{$variant}-on-bg-enabled);
-		caret-color: var(--db-#{$variant}-on-bg-enabled);
+		color: var(--db-#{$variant}-on-bg-basic-emphasis-100-default);
+		caret-color: var(--db-#{$variant}-on-bg-basic-emphasis-100-default);
 	}
 
 	@if ($key != "valid") {
@@ -178,21 +178,25 @@ $check-border-size: min(#{variables.$db-border-height-2xs}, 2px);
 		/* stylelint-disable-next-line at-rule-empty-line-before */
 	} @else {
 		// this is a workaround for the textarea scrollbar
-		--db-textarea-read-only: var(--db-#{$variant}-bg-lvl-1-enabled);
-		--db-current-color-bg-transparent-full-enabled: var(
-			--db-#{$variant}-bg-transparent-full-enabled
+		--db-textarea-read-only: var(--db-#{$variant}-bg-basic-level-1-default);
+		--db-adaptive-bg-basic-transparent-full-default: var(
+			--db-#{$variant}-bg-basic-transparent-full-default
 		);
-		--db-current-color-bg-transparent-semi-enabled: var(
-			--db-#{$variant}-bg-transparent-semi-enabled
+		--db-adaptive-bg-basic-transparent-semi-default: var(
+			--db-#{$variant}-bg-basic-transparent-semi-default
 		);
-		--db-current-color-bg-transparent-hover: var(
-			--db-#{$variant}-bg-transparent-hover
+		--db-adaptive-bg-basic-transparent-hovered: var(
+			--db-#{$variant}-bg-basic-transparent-hovered
 		);
-		--db-current-color-bg-transparent-pressed: var(
-			--db-#{$variant}-bg-transparent-pressed
+		--db-adaptive-bg-basic-transparent-pressed: var(
+			--db-#{$variant}-bg-basic-transparent-pressed
 		);
-		--db-current-color-enabled: var(--db-#{$variant}-on-bg-enabled);
-		--db-current-color-border: var(--db-#{$variant}-border);
+		--db-adaptive-default: var(
+			--db-#{$variant}-on-bg-basic-emphasis-100-default
+		);
+		--db-adaptive-on-bg-basic-emphasis-60-default: var(
+			--db-#{$variant}-border
+		);
 	}
 }
 
@@ -293,8 +297,8 @@ $input-valid-types: "color", "date", "datetime-local", "email", "file", "hidden"
 		@extend %default-interactive-component;
 		@extend %component-border;
 
-		background-color: colors.$db-current-color-bg-transparent-semi-enabled;
-		caret-color: colors.$db-current-color-on-bg-enabled;
+		background-color: colors.$db-adaptive-bg-basic-transparent-semi-default;
+		caret-color: colors.$db-adaptive-on-bg-basic-emphasis-100-default;
 		appearance: none;
 		max-inline-size: 100%;
 		inline-size: 100%;
@@ -312,13 +316,13 @@ $input-valid-types: "color", "date", "datetime-local", "email", "file", "hidden"
 		}
 
 		@include helpers.hover {
-			background-color: colors.$db-current-color-bg-transparent-hover;
+			background-color: colors.$db-adaptive-bg-basic-transparent-hovered;
 		}
 
 		&:is(input, textarea):not(:disabled):read-only {
 			background-color: var(
 				--db-textarea-read-only,
-				#{colors.$db-current-color-bg-lvl-1-enabled}
+				#{colors.$db-adaptive-bg-basic-level-1-default}
 			) !important;
 		}
 	}
@@ -368,7 +372,7 @@ $input-valid-types: "color", "date", "datetime-local", "email", "file", "hidden"
 					1
 				) - 1px
 		);
-		color: colors.$db-current-color-on-bg-enabled;
+		color: colors.$db-adaptive-on-bg-basic-emphasis-100-default;
 	}
 
 	&::before {
@@ -401,36 +405,38 @@ $input-valid-types: "color", "date", "datetime-local", "email", "file", "hidden"
 	@include get-validity-message($key);
 
 	input {
-		--db-current-color-bg-transparent-semi: var(
-			--db-#{$variant}-bg-transparent-semi-enabled
+		--db-adaptive-bg-basic-transparent-semi: var(
+			--db-#{$variant}-bg-basic-transparent-semi-default
 		);
-		--db-current-color-bg-transparent-hover: var(
-			--db-#{$variant}-bg-transparent-hover
+		--db-adaptive-bg-basic-transparent-hovered: var(
+			--db-#{$variant}-bg-basic-transparent-hovered
 		);
-		--db-current-color-bg-transparent-pressed: var(
-			--db-#{$variant}-bg-transparent-pressed
+		--db-adaptive-bg-basic-transparent-pressed: var(
+			--db-#{$variant}-bg-basic-transparent-pressed
 		);
 
-		border-color: colors.$db-current-color-on-bg-enabled;
+		border-color: colors.$db-adaptive-on-bg-basic-emphasis-100-default;
 
 		&:not(:checked),
 		&:is([type="radio"]) {
-			border-color: var(--db-#{$variant}-contrast-high-enabled);
+			border-color: var(
+				--db-#{$variant}-bg-inverted-contrast-high-default
+			);
 		}
 
 		&:not([type="radio"]):checked {
 			@include colors.set-current-colors(
-				colors.$db-successful-contrast-high-enabled,
-				colors.$db-successful-on-contrast-enabled,
-				colors.$db-successful-contrast-high-hover,
-				colors.$db-successful-contrast-high-pressed
+				colors.$db-successful-bg-inverted-contrast-high-default,
+				colors.$db-successful-on-bg-inverted-default,
+				colors.$db-successful-bg-inverted-contrast-high-hovered,
+				colors.$db-successful-bg-inverted-contrast-high-pressed
 			);
 		}
 	}
 
 	&:is(label),
 	label {
-		color: var(--db-#{$variant}-contrast-high-enabled);
+		color: var(--db-#{$variant}-bg-inverted-contrast-high-default);
 	}
 }
 
@@ -465,7 +471,7 @@ $input-valid-types: "color", "date", "datetime-local", "email", "file", "hidden"
 	}
 
 	input {
-		background-color: colors.$db-current-color-bg-transparent-full-enabled;
+		background-color: colors.$db-adaptive-bg-basic-transparent-full-default;
 		place-content: center center;
 		appearance: none;
 		aspect-ratio: 1;
@@ -478,11 +484,11 @@ $input-valid-types: "color", "date", "datetime-local", "email", "file", "hidden"
 		padding: 0;
 
 		@include helpers.hover {
-			background-color: colors.$db-current-color-bg-transparent-hover;
+			background-color: colors.$db-adaptive-bg-basic-transparent-hovered;
 		}
 
 		@include helpers.active {
-			background-color: colors.$db-current-color-bg-transparent-pressed;
+			background-color: colors.$db-adaptive-bg-basic-transparent-pressed;
 		}
 	}
 

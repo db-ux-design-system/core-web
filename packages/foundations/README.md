@@ -298,6 +298,14 @@ If you want to optimize the size of the loaded styles, you might skip loading `@
 @import "@db-ui/foundations/build/css/init/default-root.css";
 ```
 
+## Migration
+
+We provide a cli tool to auto migrate your source code. Use this command in your repository:
+
+```shell
+npx @db-ui/foundations migration --src=./src
+```
+
 ## Deutsche Bahn brand
 
 As we'd like to perfectly support our users and customers on their digital journey, the usage of Deutsche Bahn brand and trademarks are bound of clear guidelines and restrictions even when being used with the code that we're provide with this product; Deutsche Bahn fully reserves all rights regarding the Deutsche Bahn brand, even though that we're providing the code of DB UI products free to use and release it under the Apache 2.0 license.

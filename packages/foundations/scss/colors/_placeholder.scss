@@ -3,148 +3,192 @@
 @use "../helpers/functions";
 @use "variables.additional" as additional-colors;
 
-@mixin set-current-colors($bg, $on, $hover: false, $pressed: false) {
-	background-color: $bg;
-	color: $on;
+@mixin set-current-colors($bg, $on, $hovered: false, $pressed: false) {
+	background-color: #{$bg};
+	color: #{$on};
 
 	&::before,
 	&::after {
-		--db-icon-color: $on;
+		--db-icon-color: #{$on};
 	}
 
-	@if ($hover) {
+	@if ($hovered) {
 		@include functions.hover {
-			background-color: $hover;
+			background-color: #{$hovered};
 		}
 	}
 
 	@if ($pressed) {
 		@include functions.active {
-			background-color: $pressed;
+			background-color: #{$pressed};
 		}
 	}
 }
 
-$backgrounds: "lvl-1", "lvl-2", "lvl-3", "transparent-full", "transparent-semi";
-
 @mixin generate-color-placeholder($variant) {
-	@each $contrast in [ "high", "low"] {
-		%db-#{$variant}-contrast-#{$contrast} {
-			--db-current-color-border: var(
-				--db-#{$variant}-contrast-#{$contrast}-enabled
-			);
-
-			@include set-current-colors(
-				var(--db-#{$variant}-contrast-#{$contrast}-enabled),
-				var(--db-#{$variant}-on-contrast-enabled)
-			);
-		}
-
-		%db-#{$variant}-contrast-#{$contrast}-interactive {
-			@extend %db-#{$variant}-contrast-#{$contrast};
-
-			/* stylelint-disable-next-line scss/percent-placeholder-pattern */
-			&:is(:hover, :focus) {
-				background: var(--db-#{$variant}-contrast-#{$contrast}-hover);
-			}
-
-			/* stylelint-disable-next-line scss/percent-placeholder-pattern */
-			&:active {
-				background: var(--db-#{$variant}-contrast-#{$contrast}-pressed);
-			}
-		}
-	}
-
 	%db-#{$variant}-variables {
-		/* used for transparent backgrounds */
-		--db-current-color-bg-transparent-full-enabled: var(
-			--db-#{$variant}-bg-transparent-full-enabled
+		// bg basic
+		--db-adaptive-bg-basic-level-1-default: var(
+			--db-#{$variant}-bg-basic-level-1-default
 		);
-		--db-current-color-bg-transparent-semi-enabled: var(
-			--db-#{$variant}-bg-transparent-semi-enabled
+		--db-adaptive-bg-basic-level-1-hovered: var(
+			--db-#{$variant}-bg-basic-level-1-hovered
 		);
-		--db-current-color-bg-transparent-hover: var(
-			--db-#{$variant}-bg-transparent-hover
+		--db-adaptive-bg-basic-level-1-pressed: var(
+			--db-#{$variant}-bg-basic-level-1-pressed
 		);
-		--db-current-color-bg-transparent-pressed: var(
-			--db-#{$variant}-bg-transparent-pressed
+		--db-adaptive-bg-basic-level-2-default: var(
+			--db-#{$variant}-bg-basic-level-2-default
 		);
-
-		/* used for backgrounds */
-		--db-current-color-bg-lvl-1-enabled: var(
-			--db-#{$variant}-bg-lvl-1-enabled
+		--db-adaptive-bg-basic-level-2-hovered: var(
+			--db-#{$variant}-bg-basic-level-2-hovered
 		);
-		--db-current-color-bg-lvl-2-enabled: var(
-			--db-#{$variant}-bg-lvl-2-enabled
+		--db-adaptive-bg-basic-level-2-pressed: var(
+			--db-#{$variant}-bg-basic-level-2-pressed
 		);
-		--db-current-color-bg-lvl-3-enabled: var(
-			--db-#{$variant}-bg-lvl-3-enabled
+		--db-adaptive-bg-basic-level-3-default: var(
+			--db-#{$variant}-bg-basic-level-3-default
 		);
-
-		/* used for icons and borders */
-		--db-current-color-contrast-low-enabled: var(
-			--db-#{$variant}-contrast-low-enabled
+		--db-adaptive-bg-basic-level-3-hovered: var(
+			--db-#{$variant}-bg-basic-level-3-hovered
 		);
-		--db-current-color-contrast-low-hover: var(
-			--db-#{$variant}-contrast-low-hover
+		--db-adaptive-bg-basic-level-3-pressed: var(
+			--db-#{$variant}-bg-basic-level-3-pressed
 		);
-		--db-current-color-contrast-low-pressed: var(
-			--db-#{$variant}-contrast-low-pressed
+		--db-adaptive-bg-basic-transparent-full-default: var(
+			--db-#{$variant}-bg-basic-transparent-full-default
 		);
-		--db-current-color-border: var(--db-#{$variant}-border);
-
-		/* used for adaptive tags (interactive) */
-		--db-current-color-bg-lvl-1-hover: var(--db-#{$variant}-bg-lvl-1-hover);
-		--db-current-color-bg-lvl-1-pressed: var(
-			--db-#{$variant}-bg-lvl-1-pressed
+		--db-adaptive-bg-basic-transparent-semi-default: var(
+			--db-#{$variant}-bg-basic-transparent-semi-default
 		);
-		--db-current-color-bg-lvl-2-hover: var(--db-#{$variant}-bg-lvl-2-hover);
-		--db-current-color-bg-lvl-2-pressed: var(
-			--db-#{$variant}-bg-lvl-2-pressed
+		--db-adaptive-bg-basic-transparent-hovered: var(
+			--db-#{$variant}-bg-basic-transparent-hovered
 		);
-		--db-current-color-bg-lvl-3-hover: var(--db-#{$variant}-bg-lvl-3-hover);
-		--db-current-color-bg-lvl-3-pressed: var(
-			--db-#{$variant}-bg-lvl-3-pressed
+		--db-adaptive-bg-basic-transparent-pressed: var(
+			--db-#{$variant}-bg-basic-transparent-pressed
 		);
 
-		/* used for adaptive tags (strong & interactive) */
-		--db-current-color-on-contrast-enabled: var(
-			--db-#{$variant}-on-contrast-enabled
+		// on-bg basic
+		--db-adaptive-on-bg-basic-emphasis-100-default: var(
+			--db-#{$variant}-on-bg-basic-emphasis-100-default
 		);
-		--db-current-color-contrast-high-enabled: var(
-			--db-#{$variant}-contrast-high-enabled
+		--db-adaptive-on-bg-basic-emphasis-100-hovered: var(
+			--db-#{$variant}-on-bg-basic-emphasis-100-hovered
 		);
-		--db-current-color-contrast-high-hover: var(
-			--db-#{$variant}-contrast-high-hover
+		--db-adaptive-on-bg-basic-emphasis-100-pressed: var(
+			--db-#{$variant}-on-bg-basic-emphasis-100-pressed
 		);
-		--db-current-color-contrast-high-pressed: var(
-			--db-#{$variant}-contrast-high-pressed
+		--db-adaptive-on-bg-basic-emphasis-90-default: var(
+			--db-#{$variant}-on-bg-basic-emphasis-90-default
+		);
+		--db-adaptive-on-bg-basic-emphasis-90-hovered: var(
+			--db-#{$variant}-on-bg-basic-emphasis-90-hovered
+		);
+		--db-adaptive-on-bg-basic-emphasis-90-pressed: var(
+			--db-#{$variant}-on-bg-basic-emphasis-90-pressed
+		);
+		--db-adaptive-on-bg-basic-emphasis-80-default: var(
+			--db-#{$variant}-on-bg-basic-emphasis-80-default
+		);
+		--db-adaptive-on-bg-basic-emphasis-80-hovered: var(
+			--db-#{$variant}-on-bg-basic-emphasis-80-hovered
+		);
+		--db-adaptive-on-bg-basic-emphasis-80-pressed: var(
+			--db-#{$variant}-on-bg-basic-emphasis-80-pressed
+		);
+		--db-adaptive-on-bg-basic-emphasis-70-default: var(
+			--db-#{$variant}-on-bg-basic-emphasis-70-default
+		);
+		--db-adaptive-on-bg-basic-emphasis-70-hovered: var(
+			--db-#{$variant}-on-bg-basic-emphasis-70-hovered
+		);
+		--db-adaptive-on-bg-basic-emphasis-70-pressed: var(
+			--db-#{$variant}-on-bg-basic-emphasis-70-pressed
+		);
+		--db-adaptive-on-bg-basic-emphasis-60-default: var(
+			--db-#{$variant}-on-bg-basic-emphasis-60-default
+		);
+		--db-adaptive-on-bg-basic-emphasis-60-hovered: var(
+			--db-#{$variant}-on-bg-basic-emphasis-60-hovered
+		);
+		--db-adaptive-on-bg-basic-emphasis-60-pressed: var(
+			--db-#{$variant}-on-bg-basic-emphasis-60-pressed
+		);
+		--db-adaptive-on-bg-basic-emphasis-50-default: var(
+			--db-#{$variant}-on-bg-basic-emphasis-50-default
+		);
+		--db-adaptive-on-bg-basic-emphasis-50-hovered: var(
+			--db-#{$variant}-on-bg-basic-emphasis-50-hovered
+		);
+		--db-adaptive-on-bg-basic-emphasis-50-pressed: var(
+			--db-#{$variant}-on-bg-basic-emphasis-50-pressed
 		);
 
-		/* on-colors */
-		--db-current-color-on-bg-enabled: var(--db-#{$variant}-on-bg-enabled);
-		--db-current-color-on-bg-hover: var(--db-#{$variant}-on-bg-hover);
-		--db-current-color-on-bg-pressed: var(--db-#{$variant}-on-bg-pressed);
+		// inverted
 
-		/* weak colors */
-		--db-current-color-on-bg-weak-enabled: var(
-			--db-#{$variant}-on-bg-weak-enabled
+		--db-adaptive-bg-inverted-contrast-max-default: var(
+			--db-#{$variant}-bg-inverted-contrast-max-default
 		);
-		--db-current-color-on-bg-weak-hover: var(
-			--db-#{$variant}-on-bg-weak-hover
+		--db-adaptive-bg-inverted-contrast-max-hovered: var(
+			--db-#{$variant}-bg-inverted-contrast-max-hovered
 		);
-		--db-current-color-on-bg-weak-pressed: var(
-			--db-#{$variant}-on-bg-weak-pressed
+		--db-adaptive-bg-inverted-contrast-max-pressed: var(
+			--db-#{$variant}-bg-inverted-contrast-max-pressed
+		);
+		--db-adaptive-bg-inverted-contrast-high-default: var(
+			--db-#{$variant}-bg-inverted-contrast-high-default
+		);
+		--db-adaptive-bg-inverted-contrast-high-hovered: var(
+			--db-#{$variant}-bg-inverted-contrast-high-hovered
+		);
+		--db-adaptive-bg-inverted-contrast-high-pressed: var(
+			--db-#{$variant}-bg-inverted-contrast-high-pressed
+		);
+		--db-adaptive-bg-inverted-contrast-low-default: var(
+			--db-#{$variant}-bg-inverted-contrast-low-default
+		);
+		--db-adaptive-bg-inverted-contrast-low-hovered: var(
+			--db-#{$variant}-bg-inverted-contrast-low-hovered
+		);
+		--db-adaptive-bg-inverted-contrast-low-pressed: var(
+			--db-#{$variant}-bg-inverted-contrast-low-pressed
+		);
+
+		// on-bg-inverted
+		--db-adaptive-on-bg-inverted-default: var(
+			--db-#{$variant}-on-bg-inverted-default
+		);
+		--db-adaptive-on-bg-inverted-hovered: var(
+			--db-#{$variant}-on-bg-inverted-hovered
+		);
+		--db-adaptive-on-bg-inverted-pressed: var(
+			--db-#{$variant}-on-bg-inverted-pressed
+		);
+
+		// origin
+		--db-adaptive-origin-default: var(--db-#{$variant}-origin-default);
+		--db-adaptive-origin-hovered: var(--db-#{$variant}-origin-hovered);
+		--db-adaptive-origin-pressed: var(--db-#{$variant}-origin-pressed);
+
+		// on-origin
+		--db-adaptive-on-origin-default: var(
+			--db-#{$variant}-on-origin-default
+		);
+		--db-adaptive-on-origin-hovered: var(
+			--db-#{$variant}-on-origin-hovered
+		);
+		--db-adaptive-on-origin-pressed: var(
+			--db-#{$variant}-on-origin-pressed
 		);
 	}
 
-	@each $bg in $backgrounds {
+	@each $bg in variables.$background-colors {
 		%db-#{$variant}-bg-#{$bg} {
 			@extend %db-#{$variant}-variables;
 
 			@include set-current-colors(
-				var(--db-#{$variant}-bg-#{$bg}-enabled),
-				var(--db-#{$variant}-on-bg-enabled)
+				var(--db-#{$variant}-bg-#{$bg}-default),
+				var(--db-#{$variant}-on-bg-basic-emphasis-100-default)
 			);
 		}
 	}

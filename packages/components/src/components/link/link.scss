@@ -42,14 +42,14 @@
 
 	// We couldn't extend any existing SCSS placeholders, as this is a special construct
 	&[data-variant="brand"] {
-		color: colors.$db-brand-contrast-high-enabled;
+		color: colors.$db-brand-bg-inverted-contrast-high-default;
 
 		@include helpers.hover {
-			color: #{colors.$db-brand-contrast-high-hover};
+			color: #{colors.$db-brand-bg-inverted-contrast-high-hovered};
 		}
 
 		@include helpers.active {
-			color: #{colors.$db-brand-contrast-high-pressed};
+			color: #{colors.$db-brand-bg-inverted-contrast-high-pressed};
 		}
 	}
 
