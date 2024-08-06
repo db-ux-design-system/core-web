@@ -38,7 +38,7 @@ const generateTestTable = () => {
 	}
 
 	FS.writeFileSync(
-		`./pages/foundations/test-table/data.ts`,
+		`./data/testing-table.ts`,
 		'export const testTableData: any[] = ' + JSON.stringify(data)
 	);
 };

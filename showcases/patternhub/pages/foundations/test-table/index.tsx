@@ -1,6 +1,6 @@
 import DefaultPage from '../../../components/default-page';
 import { DBInfotext } from '../../../../../output/react/src';
-import { testTableData } from './data'; // This file will be generated at runtime
+import { testTableData } from '../../../data/testing-table'; // This file will be generated at runtime
 
 const tableHeaders = [
 	{

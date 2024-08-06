@@ -60,4 +60,4 @@ components/code-docs/
 !.env
 /generated.js
 
-pages/foundations/test-table/data.ts
+data/testing-table.ts
