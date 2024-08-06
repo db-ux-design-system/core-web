@@ -5,7 +5,7 @@ const test = getTest();
 test.describe('DBButton', () => {
 	testDefault({
 		test,
-		title: 'should not have icon in screen reader (next)',
+		title: 'should not have icon in screen reader (next())',
 		url: './#/02/button?page=content',
 		async testFn(voiceOver, nvda) {
 			if (nvda) {

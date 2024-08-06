@@ -4,7 +4,7 @@ const test = getTest();
 test.describe('DBRadio', () => {
 	testDefault({
 		test,
-		title: 'should label duplicated (next)',
+		title: 'should label duplicated (next())',
 		url: './#/03/radio?page=density',
 		async testFn(voiceOver, nvda) {
 			if (nvda) {
