@@ -41,7 +41,9 @@ const cleanSpeakInstructions = (phraseLog: string[]): string[] =>
 						sPhrase.includes('To click') ||
 						sPhrase.includes('To select') ||
 						sPhrase.includes('To interact') ||
-						sPhrase.includes('Press Control')
+						sPhrase.includes('Press Control') ||
+						sPhrase.includes('To display a') ||
+						sPhrase.includes('To move between items')
 					)
 			)
 			.join('. ')

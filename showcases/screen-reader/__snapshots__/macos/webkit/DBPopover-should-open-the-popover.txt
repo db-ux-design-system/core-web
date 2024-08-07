@@ -1,0 +1,1 @@
+["article","list 2 items","• Popover Custom Item 1 1 of 2","• Popover Custom Item 2 2 of 2","end of list. To move between items in this list, press Control-Option-Right Arrow or Control-Option-Left Arrow.","Popover Custom Item 3 button","end of article","(Default) Regular menu pop-up button"]
