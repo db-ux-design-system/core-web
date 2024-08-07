@@ -121,28 +121,26 @@
 			"var(--db-type-body-font-size-3xl)",
 			"var(--db-type-body-line-height-3xl)"
 		],
-		"body": {
-			"xs": [
-				"var(--db-type-body-font-size-xs)",
-				"var(--db-type-body-line-height-xs)"
-			],
-			"sm": [
-				"var(--db-type-body-font-size-sm)",
-				"var(--db-type-body-line-height-sm)"
-			],
-			"md": [
-				"var(--db-type-body-font-size-md)",
-				"var(--db-type-body-line-height-md)"
-			],
-			"lg": [
-				"var(--db-type-body-font-size-lg)",
-				"var(--db-type-body-line-height-lg)"
-			],
-			"xl": [
-				"var(--db-type-body-font-size-xl)",
-				"var(--db-type-body-line-height-xl)"
-			]
-		},
+		"body-xs": [
+			"var(--db-type-body-font-size-xs)",
+			"var(--db-type-body-line-height-xs)"
+		],
+		"body-sm": [
+			"var(--db-type-body-font-size-sm)",
+			"var(--db-type-body-line-height-sm)"
+		],
+		"body-md": [
+			"var(--db-type-body-font-size-md)",
+			"var(--db-type-body-line-height-md)"
+		],
+		"body-lg": [
+			"var(--db-type-body-font-size-lg)",
+			"var(--db-type-body-line-height-lg)"
+		],
+		"body-xl": [
+			"var(--db-type-body-font-size-xl)",
+			"var(--db-type-body-line-height-xl)"
+		],
 		"head-3xs": [
 			"var(--db-type-headline-font-size-3xs)",
 			"var(--db-type-headline-line-height-3xs)"
@@ -159,28 +157,26 @@
 			"var(--db-type-headline-font-size-3xl)",
 			"var(--db-type-headline-line-height-3xl)"
 		],
-		"head": {
-			"xs": [
-				"var(--db-type-headline-font-size-xs)",
-				"var(--db-type-headline-line-height-xs)"
-			],
-			"sm": [
-				"var(--db-type-headline-font-size-sm)",
-				"var(--db-type-headline-line-height-sm)"
-			],
-			"md": [
-				"var(--db-type-headline-font-size-md)",
-				"var(--db-type-headline-line-height-md)"
-			],
-			"lg": [
-				"var(--db-type-headline-font-size-lg)",
-				"var(--db-type-headline-line-height-lg)"
-			],
-			"xl": [
-				"var(--db-type-headline-font-size-xl)",
-				"var(--db-type-headline-line-height-xl)"
-			]
-		}
+		"head-xs": [
+			"var(--db-type-headline-font-size-xs)",
+			"var(--db-type-headline-line-height-xs)"
+		],
+		"head-sm": [
+			"var(--db-type-headline-font-size-sm)",
+			"var(--db-type-headline-line-height-sm)"
+		],
+		"head-md": [
+			"var(--db-type-headline-font-size-md)",
+			"var(--db-type-headline-line-height-md)"
+		],
+		"head-lg": [
+			"var(--db-type-headline-font-size-lg)",
+			"var(--db-type-headline-line-height-lg)"
+		],
+		"head-xl": [
+			"var(--db-type-headline-font-size-xl)",
+			"var(--db-type-headline-line-height-xl)"
+		]
 	},
 	"borderRadius": {
 		"DEFAULT": "var(--db-border-radius-xs)",
