@@ -34,15 +34,15 @@ const cleanSpeakInstructions = (phraseLog: string[]): string[] =>
 			.split('. ')
 			.filter(
 				(sPhrase) =>
-					!(
-						sPhrase.includes('You are currently') ||
-						sPhrase.includes('To enter') ||
-						sPhrase.includes('To exit') ||
-						sPhrase.includes('To click') ||
-						sPhrase.includes('To select') ||
-						sPhrase.includes('To interact') ||
-						sPhrase.includes('Press Control')
-					)
+					![
+						'You are currently',
+						'To enter',
+						'To exit',
+						'To click',
+						'To select',
+						'To interact',
+						'Press Control'
+					].some((string) => sPhrase.includes(string))
 			)
 			.join('. ')
 	);
