@@ -13,8 +13,8 @@
   },
   "dependencies": {
     "sa11y": "3.2.2",
-    "vue": "^3.4.35",
-    "vue-router": "4.4.2"
+    "vue": "^3.4.36",
+    "vue-router": "4.4.3"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^5.1.2",

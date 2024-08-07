@@ -26,7 +26,7 @@
 @mixin init-on-background-colors($color) {
 	[data-on-bg-color="#{$color}"],
 	.db-on-bg-color-#{$color} {
-		color: var(-db-adaptive-on-bg-basic-#{$color}-default);
+		color: var(--db-adaptive-on-bg-basic-#{$color}-default);
 	}
 }
 

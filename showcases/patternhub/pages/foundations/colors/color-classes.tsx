@@ -8,7 +8,7 @@ import {
 	semanticColors
 } from '../../../components/foundations/colors/data';
 
-const ColorOverview = () => {
+const ColorClasses = () => {
 	return (
 		<DefaultPage>
 			<div>
@@ -70,13 +70,13 @@ const ColorOverview = () => {
 					</li>
 					<li>
 						Background color modifier{' '}
-						<strong>db-bg-color-lvl-1</strong> (Level 1 background
-						by default)
+						<strong>db-bg-color-basic-level-1</strong> (Level 1
+						background by default)
 					</li>
 					<li>
 						On background color modifier{' '}
-						<strong>db-on-bg-color-default</strong> (highest text
-						contrast by default)
+						<strong>db-on-bg-color-emphasis-100</strong> (highest
+						text contrast by default)
 					</li>
 				</ul>
 				<h3>Semantic container color</h3>
@@ -136,4 +136,4 @@ const ColorOverview = () => {
 	);
 };
 
-export default ColorOverview;
+export default ColorClasses;
