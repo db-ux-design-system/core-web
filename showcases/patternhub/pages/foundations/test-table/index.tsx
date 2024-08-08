@@ -1,6 +1,7 @@
 import DefaultPage from '../../../components/default-page';
 import { DBInfotext } from '../../../../../output/react/src';
-import { testTableData } from '../../../data/testing-table'; // This file will be generated at runtime
+import { testTableData } from '../../../data/testing-table';
+import AccessibilityReviewInfo from '../../../components/accessibility-review-info/accessibility-review-info'; // This file will be generated at runtime
 
 const tableHeaders = [
 	{
@@ -29,6 +30,12 @@ const tableHeaders = [
 	{
 		label: 'Showcase: A11y (Screen-Reader)',
 		href: 'https://github.com/guidepup/guidepup'
+	},
+	{
+		label: 'Manually accessibility review'
+	},
+	{
+		label: 'Testing stable'
 	}
 ];
 
@@ -63,36 +70,57 @@ const TestTable = () => {
 							showcaseVisuals,
 							showcaseAxe,
 							showcaseAC,
-							showcaseGP
-						}) => (
-							<tr key={name}>
-								<td>{name}</td>
-								{[
-									singleComponentVisuals,
-									singleComponentAxe,
-									showcaseVisuals,
-									showcaseAxe,
-									showcaseAC,
-									showcaseGP
-								].map((status, index) => (
-									<td key={`${name}-${index}`}>
+							showcaseGP,
+							accessibilityReview
+						}) => {
+							const stable =
+								singleComponentVisuals &&
+								singleComponentAxe &&
+								showcaseVisuals &&
+								showcaseAxe &&
+								showcaseAC &&
+								showcaseGP &&
+								accessibilityReview?.status === 'DONE';
+							return (
+								<tr key={name}>
+									<td>{name}</td>
+									{[
+										singleComponentVisuals,
+										singleComponentAxe,
+										showcaseVisuals,
+										showcaseAxe,
+										showcaseAC,
+										showcaseGP
+									].map((status, index) => (
+										<td key={`${name}-${index}`}>
+											<DBInfotext
+												semantic={
+													status
+														? 'successful'
+														: 'critical'
+												}>
+												{status ? 'Done' : 'Missing'}
+											</DBInfotext>
+										</td>
+									))}
+									<td>
+										<AccessibilityReviewInfo
+											{...accessibilityReview}
+										/>
+									</td>
+									<td>
 										<DBInfotext
 											semantic={
-												status
+												stable
 													? 'successful'
 													: 'critical'
-											}
-											icon={
-												status
-													? 'check_circle'
-													: 'cross_circle'
 											}>
-											{status ? 'Done' : 'Missing'}
+											{stable ? 'Done 🎉' : 'Missing'}
 										</DBInfotext>
 									</td>
-								))}
-							</tr>
-						)
+								</tr>
+							);
+						}
 					)}
 				</tbody>
 			</table>

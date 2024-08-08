@@ -5,6 +5,12 @@ const generateTestTable = () => {
 	const docs = JSON.parse(
 		FS.readFileSync('./../../output/docs.json', 'utf8').toString()
 	);
+	const accessibilityReview = JSON.parse(
+		FS.readFileSync(
+			'./../shared/_accessibility-review.json',
+			'utf8'
+		).toString()
+	);
 	const data = [];
 	for (const key of Object.keys(docs)) {
 		const componentName = getComponentName(key);
@@ -26,6 +32,7 @@ const generateTestTable = () => {
 		const hasScreenReaderTest = FS.existsSync(
 			`./../../showcases/screen-reader/tests/${componentName}.spec.ts`
 		);
+
 		data.push({
 			name: componentName,
 			singleComponentVisuals: hasComponentTest,
@@ -33,7 +40,10 @@ const generateTestTable = () => {
 			showcaseVisuals: hasShowcaseTest,
 			showcaseAxe: hasShowcaseTest,
 			showcaseAC: hasShowcaseTest,
-			showcaseGP: hasScreenReaderTest
+			showcaseGP: hasScreenReaderTest,
+			accessibilityReview: accessibilityReview.find(
+				(ar) => ar.name === componentName
+			)
 		});
 	}
 
