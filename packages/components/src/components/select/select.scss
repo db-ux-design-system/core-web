@@ -38,7 +38,8 @@ $has-before-padding: calc(
 
 	// Most likely this wouldn't work on MacOS, but we're still progressively enhancing Windows by this
 	option {
-		background-color: colors.$db-adaptive-bg-basic-transparent-semi-default;
+		background-color: colors.$db-adaptive-bg-basic-level-1-default;
+		color: colors.$db-adaptive-on-bg-basic-emphasis-100-default;
 	}
 
 	&[data-variant="hidden"] {
