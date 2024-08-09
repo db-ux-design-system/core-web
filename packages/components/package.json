@@ -47,8 +47,8 @@
   },
   "devDependencies": {
     "@builder.io/eslint-plugin-mitosis": "^0.0.16",
-    "@builder.io/mitosis": "^0.3.21",
-    "@builder.io/mitosis-cli": "^0.3.21",
+    "@builder.io/mitosis": "^0.3.22",
+    "@builder.io/mitosis-cli": "^0.3.22",
     "@react-docgen/cli": "^2.0.3",
     "cpr": "3.0.1",
     "cssnano": "^7.0.4",
@@ -57,7 +57,7 @@
     "lit": "^3.2.0",
     "nodemon": "3.1.4",
     "sass": "1.77.4",
-    "tsx": "^4.16.5"
+    "tsx": "^4.17.0"
   },
   "publishConfig": {
     "registry": "https://registry.npmjs.org/",
