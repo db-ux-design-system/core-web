@@ -28,23 +28,25 @@ const translations: Record<string, string[]> = {
 	document: ['Dokument']
 };
 
+const standardPhrases = [
+	'You are currently',
+	'To enter',
+	'To exit',
+	'To click',
+	'To select',
+	'To interact',
+	'Press Control',
+  'To display a',
+  'To move between items'
+];
+
 const cleanSpeakInstructions = (phraseLog: string[]): string[] =>
 	phraseLog.map((phrase) =>
 		phrase
 			.split('. ')
 			.filter(
 				(sPhrase) =>
-					!(
-						sPhrase.includes('You are currently') ||
-						sPhrase.includes('To enter') ||
-						sPhrase.includes('To exit') ||
-						sPhrase.includes('To click') ||
-						sPhrase.includes('To select') ||
-						sPhrase.includes('To interact') ||
-						sPhrase.includes('Press Control') ||
-						sPhrase.includes('To display a') ||
-						sPhrase.includes('To move between items')
-					)
+					!standardPhrases.some((string) => sPhrase.includes(string))
 			)
 			.join('. ')
 			// We need to replace specific phrases, as they are being reported differently on localhost and within CI/CD
