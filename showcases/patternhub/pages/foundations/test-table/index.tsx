@@ -32,7 +32,7 @@ const tableHeaders = [
 		href: 'https://github.com/guidepup/guidepup'
 	},
 	{
-		label: 'Manually accessibility review'
+		label: 'Manual audit conducted by accessibility experts'
 	},
 	{
 		label: 'Testing stable'
