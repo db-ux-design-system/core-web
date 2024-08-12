@@ -109,14 +109,14 @@ $checked-active-transition-size: calc(
 				colors.$db-adaptive-bg-inverted-contrast-max-pressed
 			);
 
-			border-color: colors.$db-adaptive-bg-inverted-contrast-max-default;
+			border-color: colors.$db-adaptive-on-bg-basic-emphasis-100-default;
 
 			@include helpers.hover {
-				border-color: colors.$db-adaptive-bg-inverted-contrast-max-hovered;
+				border-color: colors.$db-adaptive-on-bg-basic-emphasis-100-hovered;
 			}
 
 			@include helpers.active {
-				border-color: colors.$db-adaptive-bg-inverted-contrast-max-pressed;
+				border-color: colors.$db-adaptive-on-bg-basic-emphasis-100-pressed;
 			}
 
 			&::before {
@@ -166,16 +166,16 @@ $checked-active-transition-size: calc(
 
 			background-color: colors.$db-adaptive-bg-inverted-contrast-low-default;
 			color: colors.$db-adaptive-on-bg-inverted-default;
-			border-color: colors.$db-adaptive-bg-inverted-contrast-low-default;
+			border-color: colors.$db-adaptive-on-bg-basic-emphasis-70-default;
 
 			@include helpers.hover {
 				background-color: colors.$db-adaptive-bg-inverted-contrast-low-hovered;
-				border-color: colors.$db-adaptive-bg-inverted-contrast-low-hovered;
+				border-color: colors.$db-adaptive-on-bg-basic-emphasis-70-hovered;
 			}
 
 			@include helpers.active {
 				background-color: colors.$db-adaptive-bg-inverted-contrast-low-pressed;
-				border-color: colors.$db-adaptive-bg-inverted-contrast-low-pressed;
+				border-color: colors.$db-adaptive-on-bg-basic-emphasis-70-pressed;
 
 				&::before {
 					block-size: $checked-active-transition-size;
