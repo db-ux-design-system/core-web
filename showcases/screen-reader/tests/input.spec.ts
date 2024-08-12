@@ -5,7 +5,8 @@ const test = getTest();
 test.describe('DBInput', () => {
 	testDefault({
 		test,
-		title: 'should have message and label (next())',
+		title: 'next()',
+		description: 'should have message and label (next())',
 		url: './#/03/input?page=variant%20helper%20message',
 		async testFn(voiceOver, nvda) {
 			if (nvda) {
@@ -24,7 +25,8 @@ test.describe('DBInput', () => {
 	// We don't test default "next" here because we will be locked inside the textarea
 	testDefault({
 		test,
-		title: 'should have message and label (tab)',
+		title: 'tab',
+		description: 'should have message and label (tab)',
 		url: './#/03/input?page=variant%20helper%20message',
 		async testFn(voiceOver, nvda) {
 			if (voiceOver) {

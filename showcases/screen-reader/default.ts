@@ -134,6 +134,7 @@ export const testDefault = (defaultTestType: DefaultTestType) => {
 			'&color=neutral-bg-basic-level-1&density=regular'
 	};
 
+	const trimTitleForShortSnapshotName = title.slice(0, 10);
 	if (isWin()) {
 		test?.(title, async ({ page, nvda }, { retry }) => {
 			await runTest({
