@@ -4,7 +4,7 @@ import defaultScreenReaderConfig from './playwright.screen-reader';
 const config: PlaywrightTestConfig = {
 	...defaultScreenReaderConfig,
 	snapshotPathTemplate:
-		'{snapshotDir}/{testFileDir}/macos/{projectName}/{testName}{ext}',
+		'{snapshotDir}/{testFileDir}/macos/{projectName}/{arg}{ext}',
 	projects: [
 		{
 			name: 'webkit',

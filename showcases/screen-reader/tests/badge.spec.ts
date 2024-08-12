@@ -5,7 +5,9 @@ const test = getTest();
 test.describe('DBBadge', () => {
 	testDefault({
 		test,
-		title: 'should have texts inline or as data-label attributes (next())',
+		title: 'default',
+		description:
+			'should have texts inline or as data-label attributes (next())',
 		url: './#/06/badge?page=placement',
 		async testFn(voiceOver, nvda) {
 			if (nvda) {
