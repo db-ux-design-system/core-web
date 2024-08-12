@@ -415,12 +415,10 @@ $input-valid-types: "color", "date", "datetime-local", "email", "file", "hidden"
 			--db-#{$variant}-bg-basic-transparent-pressed
 		);
 
-		border-color: colors.$db-adaptive-on-bg-basic-emphasis-100-default;
-
 		&:not(:checked),
 		&:is([type="radio"]) {
-			border-color: var(
-				--db-#{$variant}-bg-inverted-contrast-high-default
+			--db-check-element-border-color: var(
+				--db-#{$variant}-on-bg-basic-emphasis-70-default
 			);
 		}
 
@@ -436,7 +434,7 @@ $input-valid-types: "color", "date", "datetime-local", "email", "file", "hidden"
 
 	&:is(label),
 	label {
-		color: var(--db-#{$variant}-bg-inverted-contrast-high-default);
+		color: var(--db-#{$variant}-on-bg-basic-emphasis-80-default);
 	}
 }
 
@@ -475,7 +473,7 @@ $input-valid-types: "color", "date", "datetime-local", "email", "file", "hidden"
 		place-content: center center;
 		appearance: none;
 		aspect-ratio: 1;
-		border: #{$check-border-size} solid var(--db-check-element-border-color, currentColor);
+		border: #{$check-border-size} solid var(--db-check-element-border-color, #{colors.$db-adaptive-on-bg-basic-emphasis-100-default});
 		block-size: $font-size-height;
 
 		// TODO: probably extract this to an overwrite or external file

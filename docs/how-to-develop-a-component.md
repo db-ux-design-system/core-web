@@ -118,7 +118,7 @@ We have multiple tests you should update:
 
 To run all tests/update the screenshots you need `Docker`. More information here: `e2e/README.md`.
 
-## Manually Accessibility Review
+## Manual audit conducted by accessibility experts
 
 After creating a component and writing all test, we need some manually third party accessibility review to prove that the component is stable. This process is internal and will be handled by a team specialized in accessibility testing.
 During this process you should track the progress of this manual test inside `showcases/shared/_accessibility-review.json`.
