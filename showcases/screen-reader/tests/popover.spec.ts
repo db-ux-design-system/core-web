@@ -4,7 +4,8 @@ const test = getTest();
 test.describe('DBPopover', () => {
 	testDefault({
 		test,
-		title: 'should open the popover',
+		title: 'opened',
+		description: 'should open the popover',
 		url: './#/01/popover?page=density',
 		async testFn(voiceOver, nvda) {
 			if (nvda) {
