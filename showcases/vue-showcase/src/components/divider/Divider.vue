@@ -15,6 +15,7 @@ import { DBDivider, DBInfotext } from "../../../../../output/vue/src";
 			<DBDivider
 				:variant="exampleProps?.variant"
 				:emphasis="exampleProps?.emphasis"
+				:width="exampleProps?.width"
 			/>
 		</template>
 	</DefaultComponent>
