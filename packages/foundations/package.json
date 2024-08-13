@@ -43,13 +43,13 @@
     "@csstools/normalize.css": "12.1.1",
     "commander": "^12.0.0",
     "cpr": "3.0.1",
-    "cssnano": "^7.0.4",
+    "cssnano": "^7.0.5",
     "dotenv": "^16.4.5",
     "glob": "^11.0.0",
     "nodemon": "3.1.4",
     "replace-in-file": "^8.1.0",
     "sass": "1.77.4",
-    "tsx": "^4.16.2"
+    "tsx": "^4.17.0"
   },
   "publishConfig": {
     "registry": "https://registry.npmjs.org/",
