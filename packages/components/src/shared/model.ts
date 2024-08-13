@@ -74,6 +74,15 @@ export type SpacingProps = {
 	 */
 	spacing?: SpacingType;
 };
+export const MarginList = ['medium', 'small', 'large', 'none'] as const;
+export type MarginType = (typeof MarginList)[number];
+
+export type MarginProps = {
+	/**
+	 * The margin attribute changes the margin of the component.
+	 */
+	margin?: MarginType;
+};
 
 export const PlacementList = [
 	'left',
