@@ -1,0 +1,1 @@
+["(Default) With Logo No Logo","graphic, this is a fancy placeholder logo","Custom Logo"]

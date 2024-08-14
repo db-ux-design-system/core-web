@@ -87,9 +87,17 @@ that we're gaining out of the community. So please support us in any way possibl
 
 ## Migration
 
-Check our migration docs for breaking changes
+### From DB UI Core or DB UI Elements to DB UI Mono
 
-1. [Alpha ➡ Beta](https://github.com/db-ui/mono/tree/main/docs) (0.0.x➡0.x.x)
+We're providing a detailed migration for each component next to the documentation of each component:
+<https://db-ui.github.io/mono/review/main/components/action/button/migration>
+
+### In between DB UI Mono versions
+
+Check our migration docs for breaking changes:
+
+1. [Alpha ➡ Beta](https://github.com/db-ui/mono/tree/main/docs/migration/alpha-beta.md) (0.0.x➡0.x.x)
+2. [v0.2 ➡ v0.3](https://github.com/db-ui/mono/tree/main/docs/migration/v0.2.x-to-v0.3.x.md)
 
 ## How to start develop / contribute
 

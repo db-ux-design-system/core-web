@@ -36,6 +36,7 @@ const standardPhrases = [
 	'To select',
 	'To interact',
 	'Press Control',
+	'To begin interacting',
 	'To display a',
 	'To move between items'
 ];
