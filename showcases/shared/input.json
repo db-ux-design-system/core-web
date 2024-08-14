@@ -291,6 +291,13 @@
 					"label": "Label",
 					"dataList": true
 				}
+			},
+			{
+				"name": "File",
+				"props": {
+					"label": "Label",
+					"type": "file"
+				}
 			}
 		]
 	},
@@ -398,6 +405,14 @@
 					"label": "Label",
 					"variant": "floating",
 					"dataList": true
+				}
+			},
+			{
+				"name": "File",
+				"props": {
+					"label": "Label",
+					"type": "file",
+					"variant": "floating"
 				}
 			}
 		]
