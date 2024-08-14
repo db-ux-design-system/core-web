@@ -22,13 +22,15 @@
 		@include helpers.divider();
 
 		block-size: variables.$db-border-height-3xs;
-		inline-size: 100%;
+
+		&[data-width="full"] {
+			inline-size: 100%;
+		}
 	}
 
 	&[data-variant="vertical"] {
 		@include helpers.divider("left");
 
-		block-size: 100%;
 		inline-size: variables.$db-border-height-3xs;
 
 		&:is(:not([data-margin]), [data-margin="small"]) {
@@ -45,6 +47,10 @@
 
 		&[data-margin="none"] {
 			margin: 0;
+		}
+
+		&[data-width="full"] {
+			block-size: 100%;
 		}
 	}
 }
