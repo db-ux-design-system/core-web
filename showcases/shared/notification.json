@@ -155,6 +155,7 @@
 	},
 	{
 		"name": "Content - Variant:Docked",
+		"codeFileName": "ContentVariantDocked",
 		"examples": [
 			{
 				"name": "Text",
@@ -279,6 +280,7 @@
 	},
 	{
 		"name": "Content - Variant:Standalone",
+		"codeFileName": "ContentVariantStandalone",
 		"examples": [
 			{
 				"name": "Text",
@@ -411,6 +413,7 @@
 	},
 	{
 		"name": "Content - Variant:Overlay",
+		"codeFileName": "ContentVariantOverlay",
 		"examples": [
 			{
 				"name": "Text",

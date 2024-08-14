@@ -19,11 +19,20 @@
 						"children": [
 							{
 								"name": "navigation-item",
-								"content": "Sub-Sub-Navi-Item 1",
 								"slot": "sub-navigation",
 								"props": {
 									"active": true
-								}
+								},
+								"children": [
+									{
+										"name": "a",
+										"native": true,
+										"content": "Sub-Sub-Navi-Item 1",
+										"props": {
+											"href": "#"
+										}
+									}
+								]
 							}
 						]
 					}
@@ -31,7 +40,16 @@
 			},
 			{
 				"name": "navigation-item",
-				"content": "Navi-Item 2"
+				"children": [
+					{
+						"name": "a",
+						"native": true,
+						"content": "Navi-Item 2",
+						"props": {
+							"href": "#"
+						}
+					}
+				]
 			}
 		],
 		"examples": [

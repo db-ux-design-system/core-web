@@ -19,6 +19,7 @@ export type DefaultComponentExample = {
 
 export type DefaultComponentVariants = {
 	name: string;
+	codeFileName?: string;
 	children?: DefaultComponentExample[];
 	examples: DefaultComponentExample[];
 	color?: string;

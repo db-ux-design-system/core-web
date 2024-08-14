@@ -15,21 +15,23 @@ import {
 } from './data';
 import { translations } from './translations';
 
+const standardPhrases = [
+	'You are currently',
+	'To enter',
+	'To exit',
+	'To click',
+	'To select',
+	'To interact',
+	'Press Control'
+];
+
 const cleanSpeakInstructions = (phraseLog: string[]): string[] =>
 	phraseLog.map((phrase) =>
 		phrase
 			.split('. ')
 			.filter(
 				(sPhrase) =>
-					!(
-						sPhrase.includes('You are currently') ||
-						sPhrase.includes('To enter') ||
-						sPhrase.includes('To exit') ||
-						sPhrase.includes('To click') ||
-						sPhrase.includes('To select') ||
-						sPhrase.includes('To interact') ||
-						sPhrase.includes('Press Control')
-					)
+					!standardPhrases.some((string) => sPhrase.includes(string))
 			)
 			.join('. ')
 	);
@@ -115,9 +117,11 @@ export const testDefault = (defaultTestType: DefaultTestType) => {
 		...defaultTestType,
 		postTestFn: postTestFn ?? fallbackPostFn,
 		additionalParams:
-			additionalParams ?? '&color=neutral-bg-lvl-1&density=regular'
+			additionalParams ??
+			'&color=neutral-bg-basic-level-1&density=regular'
 	};
 
+	const trimTitleForShortSnapshotName = title.slice(0, 10);
 	if (isWin()) {
 		test?.(title, async ({ page, nvda }, { retry }) => {
 			await runTest({

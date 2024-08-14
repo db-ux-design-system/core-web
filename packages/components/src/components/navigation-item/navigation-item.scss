@@ -51,7 +51,7 @@
 	@extend %transparent-border;
 	@extend %db-overwrite-font-size-md;
 
-	background-color: colors.$db-current-color-bg-transparent-full-enabled;
+	background-color: colors.$db-adaptive-bg-basic-transparent-full-default;
 	cursor: pointer;
 	inline-size: 100%;
 	display: inline-flex;
@@ -62,15 +62,15 @@
 	align-items: center; // Centering the content vertically and horizontally
 
 	@include helpers.hover {
-		background-color: colors.$db-current-color-bg-transparent-hover;
+		background-color: colors.$db-adaptive-bg-basic-transparent-hovered;
 	}
 
 	@include helpers.active {
-		background-color: colors.$db-current-color-bg-transparent-pressed;
+		background-color: colors.$db-adaptive-bg-basic-transparent-pressed;
 	}
 
 	&:has(~ .db-sub-navigation:is(:hover, :focus)) {
-		background-color: colors.$db-current-color-bg-transparent-hover;
+		background-color: colors.$db-adaptive-bg-basic-transparent-hovered;
 	}
 }
 
@@ -161,7 +161,7 @@
 	overflow-y: auto;
 	// additional #{$db-spacing-fixed-3xs} for border
 	inset-block: calc(
-			#{component.$default-mobile-header-height} + #{variables.$db-spacing-fixed-3xs}
+			#{component.$min-mobile-header-height} + #{variables.$db-spacing-fixed-3xs}
 		)
 		calc(
 			#{variables.$db-sizing-md} + #{variables.$db-spacing-fixed-xs} * 2 +
@@ -175,7 +175,7 @@
 	flex-direction: column;
 	z-index: 70;
 	inset-inline-start: 0;
-	background-color: colors.$db-current-color-bg-lvl-1-enabled;
+	background-color: colors.$db-adaptive-bg-basic-level-1-default;
 	visibility: hidden;
 
 	@include screen-sizes.screen("md", "max") {
@@ -297,7 +297,7 @@
 
 	display: flex;
 	font-weight: normal;
-	background-color: colors.$db-current-color-bg-lvl-1-enabled;
+	background-color: colors.$db-adaptive-bg-basic-level-1-default;
 	padding-block-end: variables.$db-spacing-fixed-md;
 	margin-block-end: variables.$db-spacing-fixed-md;
 }

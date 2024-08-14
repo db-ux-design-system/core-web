@@ -95,17 +95,17 @@ table {
 
 table td,
 table th {
-	border: 1px solid colors.$db-current-color-border;
+	border: 1px solid colors.$db-adaptive-on-bg-basic-emphasis-60-default;
 	padding: variables.$db-spacing-fixed-md;
 	max-width: 33vw;
 }
 
 table tr:nth-child(even) {
-	@extend %db-neutral-bg-transparent-semi;
+	@extend %db-neutral-bg-basic-transparent-semi;
 }
 
 table th {
-	@extend %db-neutral-bg-transparent-semi;
+	@extend %db-neutral-bg-basic-transparent-semi;
 	padding-inline: variables.$db-spacing-fixed-md;
 }
 
@@ -118,7 +118,7 @@ div[class^="ch-"] {
 	div,
 	span {
 		@extend %db-overwrite-font-size-sm;
-		color: colors.$db-current-color-on-bg-enabled;
+		color: colors.$db-adaptive-on-bg-basic-emphasis-100-default;
 	}
 }
 
@@ -197,7 +197,7 @@ div[class^="ch-"] {
 		display: flex;
 		justify-content: center;
 		align-items: center;
-		border: 1px solid colors.$db-current-color-border;
+		border: 1px solid colors.$db-adaptive-on-bg-basic-emphasis-60-default;
 		padding: variables.$db-spacing-fixed-md;
 	}
 
@@ -254,7 +254,9 @@ div[class^="ch-"] {
 	}
 
 	%spacing {
-		@extend %db-successful-contrast-high;
+		background-color: colors.$db-successful-bg-inverted-contrast-high-default;
+		color: colors.$db-successful-on-bg-inverted-default;
+		border-color: colors.$db-successful-bg-inverted-contrast-high-default;
 		height: 100%;
 		display: flex;
 		justify-content: center;
@@ -274,7 +276,8 @@ div[class^="ch-"] {
 			border: 1px solid black;
 			> div {
 				display: flex;
-				border: 1px solid colors.$db-informational-4;
+				border: 1px solid
+					colors.$db-adaptive-on-bg-basic-emphasis-60-default;
 				position: relative;
 			}
 		}
@@ -331,7 +334,9 @@ div[class^="ch-"] {
 
 			.sizing {
 				@extend %spacing;
-				@extend %db-warning-contrast-high;
+				background-color: colors.$db-warning-bg-inverted-contrast-high-default;
+				color: colors.$db-warning-on-bg-inverted-default;
+				border-color: colors.$db-warning-bg-inverted-contrast-high-default;
 				position: unset;
 				block-size: variables.$db-sizing-md;
 				inline-size: variables.$db-sizing-md;
@@ -342,7 +347,7 @@ div[class^="ch-"] {
 
 .color-schemes-container {
 	padding: variables.$db-spacing-fixed-md;
-	border: 1px dashed colors.$db-current-color-on-bg-enabled;
+	border: 1px dashed colors.$db-adaptive-on-bg-basic-emphasis-100-default;
 	display: grid;
 	gap: variables.$db-spacing-fixed-md;
 	grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -394,7 +399,7 @@ h6 {
 }
 
 .db-code-docs {
-	min-block-size: variables.$db-sizing-3xl;
+	min-block-size: max(#{variables.$db-sizing-3xl}, 50vh);
 	align-items: center;
 	justify-content: center;
 	padding: variables.$db-spacing-fixed-xl;
@@ -431,7 +436,7 @@ h6 {
 
 		.backdrop {
 			border-radius: variables.$db-border-radius-sm;
-			background-color: colors.$db-current-color-on-bg-enabled;
+			background-color: colors.$db-adaptive-on-bg-basic-emphasis-100-default;
 			opacity: 0.64;
 			position: absolute;
 			inset: 0;
@@ -501,7 +506,7 @@ h6 {
 		min-inline-size: variables.$db-sizing-3xl;
 
 		small {
-			color: colors.$db-informational-contrast-high-enabled;
+			color: colors.$db-informational-bg-inverted-contrast-high-default;
 		}
 	}
 

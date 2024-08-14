@@ -3,16 +3,15 @@
 @use "@db-ui/foundations/build/scss/colors";
 @use "@db-ui/foundations/build/scss/helpers";
 
-$default-mobile-header-height: var(
-	--db-sizing-fixed-mobile-header,
-	#{helpers.px-to-rem(56)}
+$min-mobile-header-height: calc(
+	#{variables.$db-sizing-md} + 2 * #{variables.$db-spacing-fixed-xs}
 );
 
 $default-disabled: 0.4;
 
 %default-adaptive-border {
 	border: variables.$db-border-height-3xs solid
-		colors.$db-current-color-on-bg-enabled;
+		colors.$db-adaptive-on-bg-basic-emphasis-100-default;
 }
 
 %transparent-border {
@@ -21,7 +20,7 @@ $default-disabled: 0.4;
 
 %component-border {
 	border: variables.$db-border-height-3xs solid
-		colors.$db-current-color-border;
+		colors.$db-adaptive-on-bg-basic-emphasis-60-default;
 }
 
 %default-interactive-component {

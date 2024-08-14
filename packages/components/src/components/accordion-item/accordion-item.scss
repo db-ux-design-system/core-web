@@ -26,7 +26,7 @@ $db-accordion-item-border-radius: variables.$db-border-radius-sm;
 		@extend %dropdown-icon;
 		@extend %db-overwrite-font-size-md;
 
-		background-color: colors.$db-current-color-bg-transparent-full-enabled;
+		background-color: colors.$db-adaptive-bg-basic-transparent-full-default;
 		list-style: none;
 		display: flex;
 		justify-content: space-between;
@@ -35,19 +35,19 @@ $db-accordion-item-border-radius: variables.$db-border-radius-sm;
 		border-radius: $db-accordion-item-border-radius;
 
 		@include helpers.hover {
-			background-color: colors.$db-current-color-bg-transparent-hover;
+			background-color: colors.$db-adaptive-bg-basic-transparent-hovered;
 		}
 
 		@include helpers.active {
-			background-color: colors.$db-current-color-bg-transparent-pressed;
+			background-color: colors.$db-adaptive-bg-basic-transparent-pressed;
 		}
 
 		@include helpers.hover {
-			background-color: colors.$db-current-color-bg-transparent-hover;
+			background-color: colors.$db-adaptive-bg-basic-transparent-hovered;
 		}
 
 		@include helpers.active {
-			background-color: colors.$db-current-color-bg-transparent-pressed;
+			background-color: colors.$db-adaptive-bg-basic-transparent-pressed;
 		}
 
 		&::-webkit-details-marker {

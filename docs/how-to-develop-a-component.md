@@ -117,3 +117,25 @@ We have multiple tests you should update:
 2. Showcase Test: `showcases/e2e/my-awesome-component/showcase-my-awesome-component.spec.ts`. Test the styling in a specific framework here and also the functionality/events.
 
 To run all tests/update the screenshots you need `Docker`. More information here: `e2e/README.md`.
+
+## Manual audit conducted by accessibility experts
+
+After creating a component and writing all test, we need some manually third party accessibility review to prove that the component is stable. This process is internal and will be handled by a team specialized in accessibility testing.
+During this process you should track the progress of this manual test inside `showcases/shared/_accessibility-review.json`.
+Add a new entry like this:
+
+```json
+	{
+		"name": "button",
+		"status": "REVIEW",
+		"date": "2023-11-23"
+	},
+```
+
+You should change the `date` prop when the first manual test starts or when it gets any update.
+
+The `status` can be:
+
+-   `REVIEW`, if the manual accessibility review should happen
+-   `PROGRESS`, if there are any open issues after the test
+-   `DONE`, if the component passed the accessibility review

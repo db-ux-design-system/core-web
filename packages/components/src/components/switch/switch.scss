@@ -61,7 +61,7 @@ $checked-active-transition-size: calc(
 		display: flex;
 		align-items: center;
 		gap: $switch-fixed-padding;
-		background-color: colors.$db-current-color-bg-transparent-full-enabled;
+		background-color: colors.$db-adaptive-bg-basic-transparent-full-default;
 		border-radius: variables.$db-border-radius-full;
 
 		&::after {
@@ -77,8 +77,8 @@ $checked-active-transition-size: calc(
 			align-content: center;
 			aspect-ratio: 1;
 			block-size: $switch-inactive-thumb-size;
-			background-color: colors.$db-current-color-on-bg-enabled;
-			color: colors.$db-current-color-on-bg-enabled;
+			background-color: colors.$db-adaptive-bg-inverted-contrast-max-default;
+			color: colors.$db-adaptive-bg-inverted-contrast-max-default;
 			border-radius: variables.$db-border-radius-full;
 			transform: translateX(var(--thumb-offset-x));
 			margin-inline-end: calc(
@@ -103,26 +103,26 @@ $checked-active-transition-size: calc(
 			--thumb-offset-x: calc(100% + #{$switch-fixed-padding});
 
 			@include colors.set-current-colors(
-				colors.$db-current-color-on-bg-enabled,
-				colors.$db-current-color-bg-lvl-1-enabled,
-				colors.$db-current-color-on-bg-hover,
-				colors.$db-current-color-on-bg-pressed
+				colors.$db-adaptive-bg-inverted-contrast-max-default,
+				colors.$db-adaptive-on-bg-inverted-default,
+				colors.$db-adaptive-bg-inverted-contrast-max-hovered,
+				colors.$db-adaptive-bg-inverted-contrast-max-pressed
 			);
 
-			border-color: colors.$db-current-color-on-bg-enabled;
+			border-color: colors.$db-adaptive-on-bg-basic-emphasis-100-default;
 
 			@include helpers.hover {
-				border-color: colors.$db-current-color-on-bg-hover;
+				border-color: colors.$db-adaptive-on-bg-basic-emphasis-100-hovered;
 			}
 
 			@include helpers.active {
-				border-color: colors.$db-current-color-on-bg-pressed;
+				border-color: colors.$db-adaptive-on-bg-basic-emphasis-100-pressed;
 			}
 
 			&::before {
 				block-size: $switch-active-thumb-size;
-				background-color: colors.$db-current-color-bg-lvl-1-enabled;
-				color: colors.$db-current-color-bg-lvl-1-enabled;
+				background-color: colors.$db-adaptive-on-bg-inverted-default;
+				color: colors.$db-adaptive-on-bg-inverted-default;
 				margin: 0;
 			}
 		}
@@ -138,6 +138,11 @@ $checked-active-transition-size: calc(
 
 		&[data-aid-icon-after]:checked::after {
 			--db-icon-after: attr(data-aid-icon-after);
+		}
+
+		@media screen and (prefers-reduced-motion: no-preference) {
+			// Overwrite default transition for switch border
+			transition: none;
 		}
 	}
 
@@ -155,21 +160,22 @@ $checked-active-transition-size: calc(
 
 	&[data-emphasis="strong"] {
 		> input {
-			--db-check-element-border-color: #{colors.$db-current-color-bg-transparent-full-enabled};
+			--db-check-element-border-color: #{colors.$db-adaptive-bg-basic-transparent-full-default};
 
 			@extend %db-critical-variables;
-			@extend %db-critical-contrast-low;
 
-			border-color: colors.$db-current-color-contrast-low-enabled;
+			background-color: colors.$db-adaptive-bg-inverted-contrast-low-default;
+			color: colors.$db-adaptive-on-bg-inverted-default;
+			border-color: colors.$db-adaptive-on-bg-basic-emphasis-70-default;
 
 			@include helpers.hover {
-				background-color: colors.$db-current-color-contrast-low-hover;
-				border-color: colors.$db-current-color-contrast-low-hover;
+				background-color: colors.$db-adaptive-bg-inverted-contrast-low-hovered;
+				border-color: colors.$db-adaptive-on-bg-basic-emphasis-70-hovered;
 			}
 
 			@include helpers.active {
-				background-color: colors.$db-current-color-contrast-low-pressed;
-				border-color: colors.$db-current-color-contrast-low-pressed;
+				background-color: colors.$db-adaptive-bg-inverted-contrast-low-pressed;
+				border-color: colors.$db-adaptive-on-bg-basic-emphasis-70-pressed;
 
 				&::before {
 					block-size: $checked-active-transition-size;
@@ -182,17 +188,16 @@ $checked-active-transition-size: calc(
 
 			&:checked {
 				@extend %db-successful-variables;
-				@extend %db-successful-contrast-low;
 
 				&::before {
-					background-color: colors.$db-current-color-on-contrast-enabled;
-					color: colors.$db-current-color-on-contrast-enabled;
+					background-color: colors.$db-adaptive-on-bg-inverted-default;
+					color: colors.$db-adaptive-on-bg-inverted-default;
 				}
 			}
 
 			&::before {
-				background-color: colors.$db-current-color-on-contrast-enabled;
-				color: colors.$db-current-color-on-contrast-enabled;
+				background-color: colors.$db-adaptive-on-bg-inverted-default;
+				color: colors.$db-adaptive-on-bg-inverted-default;
 				block-size: $switch-active-thumb-size;
 				margin: 0;
 			}

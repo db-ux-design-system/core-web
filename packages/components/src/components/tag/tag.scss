@@ -73,6 +73,10 @@
 	&:has(db-button):has(dbbutton) .db-tab-remove-button {
 		display: none;
 	}
+
+	> [class^="db-"] {
+		block-size: 100%;
+	}
 }
 
 .db-tag {
@@ -106,21 +110,13 @@
 			border: 0;
 			border-radius: inherit;
 			cursor: pointer;
-			transform: translateX(
-				calc(
-					(
-							var(
-									--db-padding-inline-start,
-									#{variables.$db-spacing-fixed-2xs}
-								) + #{variables.$db-border-height-3xs}
-						) * -1
-				)
-			);
+			inset: 0;
+			aspect-ratio: unset;
 
 			&:checked {
 				&,
 				&:not(:disabled):is(:hover, :focus, :active) {
-					background-color: colors.$db-brand-bg-transparent-full-enabled;
+					background-color: colors.$db-brand-bg-basic-transparent-full-default;
 				}
 
 				&::before {
@@ -202,7 +198,7 @@
 		&:is(button),
 		button {
 			// overwrite to transparent
-			background-color: colors.$db-current-color-bg-transparent-full-enabled;
+			background-color: colors.$db-adaptive-bg-basic-transparent-full-default;
 			margin-inline-start: variables.$db-spacing-fixed-2xs;
 			border: 0;
 			aspect-ratio: 1 / 1;

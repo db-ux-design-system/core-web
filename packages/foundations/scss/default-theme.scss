@@ -111,7 +111,6 @@
 	--db-spacing-fixed-expressive-xl: 3rem;
 	--db-spacing-fixed-expressive-2xl: 5rem;
 	--db-spacing-fixed-expressive-3xl: 7.5rem;
-	--db-sizing-fixed-mobile-header: 3.5rem;
 	--db-sizing-regular-3xl: 15rem;
 	--db-sizing-regular-2xl: 10rem;
 	--db-sizing-regular-xl: 6rem;
@@ -848,7 +847,7 @@ html:not(:has(> head > meta[name="color-scheme"])) {
 }
 
 [data-color-scheme] {
-	@extend %db-neutral-bg-lvl-1;
+	@extend %db-neutral-bg-basic-level-1;
 }
 
 [data-color-scheme="light"] {
