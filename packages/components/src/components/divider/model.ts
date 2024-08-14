@@ -1,4 +1,9 @@
-import { EmphasisProps, GlobalProps, GlobalState } from '../../shared/model';
+import {
+	EmphasisProps,
+	GlobalProps,
+	GlobalState,
+	WidthProps
+} from '../../shared/model';
 
 export const DividerMarginList = ['none', '_'] as const;
 export type DividerMarginType = (typeof DividerMarginList)[number];
@@ -13,7 +18,8 @@ export type DBDividerDefaultProps = {
 
 export type DBDividerProps = DBDividerDefaultProps &
 	GlobalProps &
-	EmphasisProps;
+	EmphasisProps &
+	WidthProps;
 
 export type DBDividerDefaultState = {};
 
