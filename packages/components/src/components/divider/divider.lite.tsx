@@ -20,6 +20,7 @@ export default function DBDivider(props: DBDividerProps) {
 			data-margin={props.margin}
 			data-variant={props.variant}
 			data-emphasis={props.emphasis}
+			data-width={props.width}
 			class={cls('db-divider', props.className)}
 		/>
 	);

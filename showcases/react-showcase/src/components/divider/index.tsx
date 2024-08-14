@@ -5,12 +5,12 @@ import { type DBDividerProps } from '../../../../../output/react/src/components/
 import { getVariants } from '../data';
 import { type BaseComponentProps } from '../base-component-data';
 
-const getDivider = ({ variant, emphasis, children }: DBDividerProps) => (
+const getDivider = ({ variant, emphasis, children, width }: DBDividerProps) => (
 	<>
 		<DBInfotext size="small" semantic="informational">
 			{children}
 		</DBInfotext>
-		<DBDivider variant={variant} emphasis={emphasis} />
+		<DBDivider variant={variant} emphasis={emphasis} width={width} />
 	</>
 );
 
