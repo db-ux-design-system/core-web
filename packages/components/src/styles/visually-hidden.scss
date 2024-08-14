@@ -1,0 +1,6 @@
+@use "@db-ui/foundations/build/scss/helpers";
+
+.db-visually-hidden,
+[data-visually-hidden="true"] {
+	@extend %a11y-visually-hidden;
+}
