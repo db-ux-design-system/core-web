@@ -41,7 +41,8 @@ test.describe('DBInput', () => {
 	});
 	testDefault({
 		test,
-		title: 'should inform user for changes',
+		title: 'required',
+		description: 'should inform user for changes',
 		url: './#/03/input?page=requirement',
 		async testFn(voiceOver, nvda) {
 			if (voiceOver) {
