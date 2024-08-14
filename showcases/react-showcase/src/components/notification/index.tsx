@@ -27,7 +27,7 @@ const getNotification = ({
 			img ? (
 				<img
 					src={`${getBasePath()}/assets/images/placeholder.jpg`}
-					alt="Placeholder"
+					alt="this is a fancy placeholder"
 				/>
 			) : undefined
 		}

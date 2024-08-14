@@ -33,7 +33,7 @@ const log = (exampleName: string) => {
 				<template v-if="exampleProps?.img" v-slot:image>
 					<img
 						src="/assets/images/placeholder.jpg"
-						alt="Placeholder"
+						alt="this is a fancy placeholder"
 					/>
 				</template>
 				{{ exampleName }}
