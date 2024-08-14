@@ -28,7 +28,11 @@ export type DBPopoverProps = DBPopoverDefaultProps &
 	GapProps &
 	PopoverProps;
 
-export interface DBPopoverDefaultState {}
+export interface DBPopoverDefaultState {
+	isExpanded?: boolean;
+	// eslint-disable-next-line @typescript-eslint/no-explicit-any
+	handleLeave?: (event: any) => void;
+}
 
 export type DBPopoverState = DBPopoverDefaultState &
 	GlobalState &
