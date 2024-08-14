@@ -1,5 +1,5 @@
 import { NVDAKeyCodeCommands } from '@guidepup/guidepup';
-import { getTest, testDefault } from '../default';
+import { generateSnapshot, getTest, testDefault } from '../default';
 
 const test = getTest();
 test.describe('DBInput', () => {
@@ -61,6 +61,18 @@ test.describe('DBInput', () => {
 				await nvda?.press('Control+A');
 				await nvda?.press('Delete');
 				await nvda?.type('Test');
+			}
+		},
+		async postTestFn(voiceOver, nvda, retry) {
+			if (nvda) {
+				await generateSnapshot(nvda, retry);
+			} else if (voiceOver) {
+				/*
+				 * There is a timing issue for macOS for typing in input we clean the result
+				 */
+				await generateSnapshot(nvda, retry, (phraseLog) =>
+					phraseLog.map((log) => log.replace('t. ', ''))
+				);
 			}
 		}
 	});
