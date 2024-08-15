@@ -39,6 +39,24 @@ export default function DBPopover(props: DBPopoverProps) {
 			) {
 				state.isExpanded = false;
 			}
+		},
+		getTrigger: () => {
+			if (ref) {
+				const children: Element[] = Array.from(ref.children);
+				if (children.length >= 2) {
+					const firstChild = children[0];
+					if (firstChild.tagName.includes('-')) {
+						// this is a workaround for custom angular components
+						return firstChild.children?.length > 0
+							? firstChild.children[0]
+							: undefined;
+					} else {
+						return firstChild;
+					}
+				}
+			}
+
+			return undefined;
 		}
 	});
 
@@ -48,9 +66,9 @@ export default function DBPopover(props: DBPopoverProps) {
 
 	onUpdate(() => {
 		if (ref && state.initialized) {
-			const children: Element[] = Array.from(ref.children);
-			if (children.length >= 2) {
-				children[0].ariaHasPopup = 'true';
+			const child = state.getTrigger();
+			if (child) {
+				child.ariaHasPopup = 'true';
 			}
 			state.initialized = false;
 		}
@@ -58,9 +76,9 @@ export default function DBPopover(props: DBPopoverProps) {
 
 	onUpdate(() => {
 		if (ref) {
-			const children: Element[] = Array.from(ref.children);
-			if (children.length >= 2) {
-				children[0].ariaExpanded = state.isExpanded.toString();
+			const child = state.getTrigger();
+			if (child) {
+				child.ariaExpanded = state.isExpanded.toString();
 			}
 		}
 	}, [ref, state.isExpanded]);
