@@ -1,8 +1,17 @@
 %a11y-visually-hidden {
-	clip: rect(0, 0, 0, 0);
-	block-size: 1px;
-	overflow: hidden;
+	clip: rect(0, 0, 0, 0) !important;
+	overflow: hidden !important;
+	white-space: nowrap !important;
+	font-size: 0 !important;
+	all: initial;
+	inset-block-start: 0 !important;
+	block-size: 1px !important;
 	position: absolute !important;
-	white-space: nowrap;
-	inline-size: 1px;
+	inline-size: 1px !important;
+	border-width: 0 !important;
+	border-style: initial !important;
+	border-color: initial !important;
+	border-image: initial !important;
+	padding: 0 !important;
+	pointer-events: none !important;
 }

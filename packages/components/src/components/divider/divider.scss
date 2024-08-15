@@ -2,8 +2,20 @@
 @use "@db-ui/foundations/build/scss/helpers";
 
 .db-divider {
-	&:not([data-margin="none"]) {
+	&:is(:not([data-margin]), [data-margin="small"]) {
 		margin: variables.$db-spacing-fixed-sm 0;
+	}
+
+	&[data-margin="medium"] {
+		margin: variables.$db-spacing-fixed-md 0;
+	}
+
+	&[data-margin="large"] {
+		margin: variables.$db-spacing-fixed-lg 0;
+	}
+
+	&[data-margin="none"] {
+		margin: 0;
 	}
 
 	&:not([data-variant="vertical"]) {
@@ -21,8 +33,20 @@
 
 		inline-size: variables.$db-border-height-3xs;
 
-		&:not([data-margin="none"]) {
+		&:is(:not([data-margin]), [data-margin="small"]) {
 			margin: 0 variables.$db-spacing-fixed-sm;
+		}
+
+		&[data-margin="medium"] {
+			margin: 0 variables.$db-spacing-fixed-md;
+		}
+
+		&[data-margin="large"] {
+			margin: 0 variables.$db-spacing-fixed-lg;
+		}
+
+		&[data-margin="none"] {
+			margin: 0;
 		}
 
 		&[data-width="full"] {

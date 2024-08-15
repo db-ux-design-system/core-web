@@ -74,6 +74,15 @@ export type SpacingProps = {
 	 */
 	spacing?: SpacingType;
 };
+export const MarginList = ['medium', 'small', 'large', 'none'] as const;
+export type MarginType = (typeof MarginList)[number];
+
+export type MarginProps = {
+	/**
+	 * The margin attribute changes the margin of the component.
+	 */
+	margin?: MarginType;
+};
 
 export const PlacementList = [
 	'left',
@@ -355,6 +364,13 @@ export type FormState = {
 	_invalidMessageId?: string;
 	_descByIds?: string;
 	_value?: string;
+
+	/**
+	 * https://www.davidmacd.com/blog/test-aria-describedby-errormessage-aria-live.html
+	 * Currently VoiceOver isn't supporting changes from aria-describedby.
+	 * This is an internal Fallback
+	 */
+	_voiceOverFallback?: string;
 };
 
 export type InitializedState = {
