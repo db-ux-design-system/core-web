@@ -10,12 +10,18 @@ const density = 'regular';
 export type DefaultTestType = {
 	path: string;
 	fixedHeight?: number;
+};
+
+export type DefaultSnapshotTestType = {
+	preScreenShot?: (page: Page) => Promise<void>;
+} & DefaultTestType;
+
+export type DefaultA11yTestType = {
 	axeDisableRules?: string[];
 	aCheckerDisableRules?: string[];
 	skipA11y?: boolean;
-	preScreenShot?: (page: Page) => Promise<void>;
 	preA11y?: (page: Page) => Promise<void>;
-};
+} & DefaultTestType;
 
 export const waitForDBPage = async (page: Page) => {
 	const dbPage = page.locator('.db-page');
@@ -48,12 +54,8 @@ const isCheckerError = (object: any): object is ICheckerError =>
 export const getDefaultScreenshotTest = ({
 	path,
 	fixedHeight,
-	axeDisableRules,
-	skipA11y,
-	preScreenShot,
-	preA11y,
-	aCheckerDisableRules
-}: DefaultTestType) => {
+	preScreenShot
+}: DefaultSnapshotTestType) => {
 	test(`should match screenshot`, async ({ page }, testInfo) => {
 		const isWebkit =
 			testInfo.project.name === 'webkit' ||
@@ -93,7 +95,16 @@ export const getDefaultScreenshotTest = ({
 
 		await expect(page).toHaveScreenshot(config);
 	});
+};
 
+export const getA11yTest = ({
+	path,
+	fixedHeight,
+	axeDisableRules,
+	skipA11y,
+	preA11y,
+	aCheckerDisableRules
+}: DefaultA11yTestType) => {
 	for (const color of COLORS) {
 		test(`should not have any A11y issues for color ${color}`, async ({
 			page

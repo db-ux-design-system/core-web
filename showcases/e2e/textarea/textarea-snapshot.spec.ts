@@ -2,10 +2,8 @@ import { test } from '@playwright/test';
 // @ts-expect-error - required for playwright
 import { getDefaultScreenshotTest } from '../default.ts';
 
-test.describe('DBSelect', () => {
-	// TODO: Currently disable till we solved https://github.com/db-ui/mono/issues/2587
+test.describe('DBTextarea', () => {
 	getDefaultScreenshotTest({
-		path: '03/select',
-		axeDisableRules: ['color-contrast']
+		path: '03/textarea'
 	});
 });

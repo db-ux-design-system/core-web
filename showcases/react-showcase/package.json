@@ -9,7 +9,7 @@
     "build:02_vite": "vite build",
     "dev": "vite --open",
     "preview": "npx http-server ../../build-showcases",
-    "regenerate:screenshots": "cross-env showcase=react-showcase npx playwright test -c ../playwright.config.ts --update-snapshots",
+    "regenerate:screenshots": "cross-env showcase=react-showcase npx playwright test -c ../playwright.showcase-snapshots.ts --update-snapshots",
     "start": "vite",
     "test:e2e": "cross-env showcase=react-showcase npx playwright test --config=../playwright.config.ts",
     "test:screen-reader:macos": "cross-env showcase=react-showcase npx playwright test --config=../playwright.screen-reader.macos.ts",

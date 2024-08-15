@@ -1,5 +1,5 @@
 ---
-to: "<%= showcases ? `../../showcases/e2e/${name}/showcase-${name}.spec.ts` : null %>"
+to: "<%= showcases ? `../../showcases/e2e/${name}/${name}-snapshot.spec.ts` : null %>"
 ---
 import { test } from '@playwright/test';
 // @ts-expect-error - required for playwright
