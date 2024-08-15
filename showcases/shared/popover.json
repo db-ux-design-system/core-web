@@ -63,6 +63,13 @@
 				}
 			},
 			{
+				"name": "Large",
+				"props": {
+					"spacing": "large",
+					"id": "popover-055"
+				}
+			},
+			{
 				"name": "None",
 				"props": {
 					"spacing": "none",

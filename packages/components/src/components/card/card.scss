@@ -6,21 +6,10 @@
 .db-card {
 	@extend %default-card;
 
+	@include component.get-data-spacing();
+
 	display: flex;
 	flex-direction: column;
-
-	&[data-spacing="medium"] {
-		padding: variables.$db-spacing-fixed-md;
-	}
-
-	&[data-spacing="small"],
-	&:not([data-spacing]) {
-		padding: variables.$db-spacing-fixed-sm;
-	}
-
-	&[data-spacing="none"] {
-		padding: 0;
-	}
 
 	&[data-elevation-level="1"],
 	&:not([data-elevation-level]) {

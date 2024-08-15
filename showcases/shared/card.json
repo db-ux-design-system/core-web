@@ -49,15 +49,21 @@
 				}
 			},
 			{
-				"name": "No Spacing",
-				"props": {
-					"spacing": "none"
-				}
-			},
-			{
 				"name": "Medium",
 				"props": {
 					"spacing": "medium"
+				}
+			},
+			{
+				"name": "Large",
+				"props": {
+					"spacing": "large"
+				}
+			},
+			{
+				"name": "None",
+				"props": {
+					"spacing": "none"
 				}
 			}
 		]
