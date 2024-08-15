@@ -99,7 +99,7 @@ const VersionSwitcher = () => {
 	}, []);
 
 	const handleChange = (branch: string) => {
-		const lastPath = router.pathname;
+		const lastPath = router.asPath;
 		const isTag = branch.split('.').length === 3 && branch.startsWith('v');
 		window.location.replace(
 			sanitize(
