@@ -46,7 +46,10 @@
 		"name": "Spacing",
 		"examples": [
 			{
-				"name": "(Default) Medium"
+				"name": "(Default) Medium",
+				"props": {
+					"spacing": "medium"
+				}
 			},
 			{
 				"name": "Large",
@@ -58,6 +61,12 @@
 				"name": "Small",
 				"props": {
 					"spacing": "small"
+				}
+			},
+			{
+				"name": "None",
+				"props": {
+					"spacing": "none"
 				}
 			}
 		]

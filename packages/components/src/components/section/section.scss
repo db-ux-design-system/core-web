@@ -5,29 +5,14 @@
 .db-section {
 	padding-inline: variables.$db-spacing-fixed-md;
 
-	@include screen-sizes.screen("md") {
-		padding-inline: variables.$db-spacing-fixed-md;
-	}
-
 	&[data-width="full"] {
 		padding-inline: 0;
 	}
 
-	&[data-spacing="none"] {
-		padding-block: 0;
-	}
-
-	&[data-spacing="small"] {
-		padding-block: variables.$db-spacing-responsive-sm;
-	}
-
-	&[data-spacing="medium"] {
-		padding-block: variables.$db-spacing-responsive-md;
-	}
-
-	&[data-spacing="large"] {
-		padding-block: variables.$db-spacing-responsive-lg;
-	}
+	@include component.get-data-spacing(
+		"padding-block",
+		component.$responsive-spacings
+	);
 
 	> div {
 		margin: 0 auto;
