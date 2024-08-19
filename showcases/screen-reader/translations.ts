@@ -15,5 +15,6 @@ export const translations: Record<string, string[]> = {
 	'': ['. Nummernblock eingeschaltet'],
 	unknown: ['Unbekannt'],
 	dialog: ['Dialogfeld'],
-	document: ['Dokument']
+	document: ['Dokument'],
+	unavailable: ['nicht verfügbar']
 };
