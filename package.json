@@ -45,7 +45,7 @@
     "update:icon-fonts": "npm run update:icon-fonts --workspace=scripts"
   },
   "devDependencies": {
-    "@axe-core/playwright": "^4.9.1",
+    "@axe-core/playwright": "^4.10.0",
     "@commitlint/cli": "19.4.0",
     "@commitlint/config-conventional": "19.2.2",
     "@double-great/stylelint-a11y": "3.0.2",
