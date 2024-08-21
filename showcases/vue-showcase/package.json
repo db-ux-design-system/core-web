@@ -20,7 +20,7 @@
     "@vitejs/plugin-vue": "^5.1.2",
     "cross-env": "^7.0.3",
     "typescript": "^5.4.5",
-    "vite": "^5.4.1",
+    "vite": "^5.4.2",
     "vue-tsc": "^2.0.29"
   }
 }
