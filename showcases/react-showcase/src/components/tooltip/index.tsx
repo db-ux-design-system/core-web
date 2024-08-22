@@ -15,7 +15,7 @@ const getTooltip = ({
 	variant,
 	id
 }: DBTooltipProps & { content: string }) => (
-	<DBButton describedbyid={id} type="button">
+	<DBButton describedbyid={id}>
 		{children}
 		<DBTooltip
 			width={width}
