@@ -65,20 +65,18 @@ export class AppComponent {
 		<DBLink href="#">Help</DBLink>
 	</ng-container>
 	<ng-container call-to-action>
-		<DBButton icon="search" variant="text" [noText]="true" type="button">
+		<DBButton icon="search" variant="text" [noText]="true">
 			Search
 		</DBButton>
 	</ng-container>
 	<ng-container *dbActionBar>
-		<DBButton icon="account" variant="text" [noText]="true" type="button">
+		<DBButton icon="account" variant="text" [noText]="true">
 			Profile
 		</DBButton>
-		<DBButton icon="alert" variant="text" [noText]="true" type="button">
+		<DBButton icon="alert" variant="text" [noText]="true">
 			Notification
 		</DBButton>
-		<DBButton icon="help" variant="text" [noText]="true" type="button">
-			Help
-		</DBButton>
+		<DBButton icon="help" variant="text" [noText]="true"> Help </DBButton>
 	</ng-container>
 </db-header>
 ```
