@@ -40,11 +40,7 @@ const getBadge = ({
 
 		{placement && placement !== 'inline' && !example && (
 			<>
-				<DBButton
-					icon="account"
-					variant="outlined"
-					noText
-					type="button">
+				<DBButton icon="account" variant="outlined" noText>
 					<DBBadge
 						size="small"
 						emphasis="strong"
