@@ -15,7 +15,7 @@ $tab-border-radius: variables.$db-border-radius-sm;
 .db-tab-item {
 	position: relative;
 	display: inline-flex;
-	list-style-type: none;
+	list-style-type: "";
 	border-radius: $tab-border-radius;
 
 	&:has(input:disabled) {
