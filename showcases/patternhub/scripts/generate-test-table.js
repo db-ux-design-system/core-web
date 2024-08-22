@@ -26,8 +26,11 @@ const generateTestTable = () => {
 		const hasComponentTest = FS.existsSync(
 			`./../../packages/components/src/components/${componentName}/${componentName}.spec.tsx`
 		);
+		const hasShowcaseVisuals = FS.existsSync(
+			`./../../showcases/e2e/${componentName}/${componentName}-snapshot.spec.ts`
+		);
 		const hasShowcaseTest = FS.existsSync(
-			`./../../showcases/e2e/${componentName}/showcase-${componentName}.spec.ts`
+			`./../../showcases/e2e/${componentName}/${componentName}-a11y.spec.ts`
 		);
 		const hasScreenReaderTest = FS.existsSync(
 			`./../../showcases/screen-reader/tests/${componentName}.spec.ts`
@@ -37,7 +40,7 @@ const generateTestTable = () => {
 			name: componentName,
 			singleComponentVisuals: hasComponentTest,
 			singleComponentAxe: hasComponentTest,
-			showcaseVisuals: hasShowcaseTest,
+			showcaseVisuals: hasShowcaseVisuals,
 			showcaseAxe: hasShowcaseTest,
 			showcaseAC: hasShowcaseTest,
 			showcaseGP: hasScreenReaderTest,
