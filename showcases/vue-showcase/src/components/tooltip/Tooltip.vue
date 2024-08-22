@@ -9,7 +9,7 @@ import { DBButton, DBTooltip } from "../../../../../output/vue/vue3/src";
 		<template
 			#example="{ exampleIndex, variantIndex, exampleName, exampleProps }"
 		>
-			<DBButton :describedbyid="exampleProps.id" type="button">
+			<DBButton :describedbyid="exampleProps.id">
 				{{ exampleName }}
 				<DBTooltip
 					:width="exampleProps.width"
