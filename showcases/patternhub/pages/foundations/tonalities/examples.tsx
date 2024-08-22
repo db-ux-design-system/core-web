@@ -32,10 +32,7 @@ const Example = () => {
 							</p>
 							<DBInput label="Username" />
 							<DBInput label="Password" type="password" />
-							<DBButton
-								width="full"
-								variant="primary"
-								type="button">
+							<DBButton width="full" variant="primary">
 								Login
 							</DBButton>
 						</DBCard>
