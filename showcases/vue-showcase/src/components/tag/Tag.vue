@@ -31,11 +31,9 @@ const showAlert = (exampleName: string) => {
 				:removeButton="exampleProps.removeButton"
 				@remove="showAlert(exampleName)"
 			>
-				<DBButton
-					v-if="exampleProps.component === 'button'"
-					type="button"
-					>{{ exampleName }}</DBButton
-				>
+				<DBButton v-if="exampleProps.component === 'button'">{{
+					exampleName
+				}}</DBButton>
 				<DBLink v-if="exampleProps.component === 'link'" href="#">
 					{{ exampleName }}
 				</DBLink>
