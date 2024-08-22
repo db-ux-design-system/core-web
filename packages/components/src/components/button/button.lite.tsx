@@ -38,7 +38,7 @@ export default function DBButton(props: DBButtonProps) {
 			class={cls('db-button', props.className, {
 				'is-icon-text-replace': props.noText
 			})}
-			type={props.type || 'submit'}
+			type={props.type || 'button'}
 			title={props.title}
 			disabled={props.disabled}
 			aria-label={props.label}
