@@ -11,6 +11,6 @@ import { DBButton } from "@db-ui/v-components";
 </script>
 
 <template>
-	<DBButton variant="primary" type="button">Button</DBButton>
+	<DBButton variant="primary">Button</DBButton>
 </template>
 ```
