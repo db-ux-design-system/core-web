@@ -79,7 +79,7 @@ const Example = () => {
 											)}
 											{example === 'Sizing' && (
 												<div>
-													<DBButton type="button">
+													<DBButton>
 														height: sm
 													</DBButton>
 													<div className="sizing">
