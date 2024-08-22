@@ -119,7 +119,7 @@ const ComponentSwitch = ({
 
 	if (type === 'button') {
 		return (
-			<DBButton className={className} {...props} type="button">
+			<DBButton className={className} {...props}>
 				{resolvedContent}
 			</DBButton>
 		);
