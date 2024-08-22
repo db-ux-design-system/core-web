@@ -28,7 +28,7 @@ const toggleDrawer = (example?: string) => {
 			>
 				{{ exampleName }}
 			</DBDrawer>
-			<DBButton @click="toggleDrawer(exampleName)" type="button">
+			<DBButton @click="toggleDrawer(exampleName)">
 				Open: {{ exampleName }}
 			</DBButton>
 		</template>
