@@ -55,11 +55,7 @@ const DefaultPage = ({ children }: any) => {
 							slotMetaNavigation={<VersionSwitcher />}
 							slotCallToAction={
 								/* TODO: Use DBSearchBar in future */
-								<DBButton
-									icon="search"
-									variant="text"
-									noText
-									type="button">
+								<DBButton icon="search" variant="text" noText>
 									Search
 								</DBButton>
 							}
@@ -68,22 +64,16 @@ const DefaultPage = ({ children }: any) => {
 									<DBButton
 										icon="account"
 										variant="text"
-										noText
-										type="button">
+										noText>
 										Profile
 									</DBButton>
 									<DBButton
 										icon="alert"
 										variant="text"
-										noText
-										type="button">
+										noText>
 										Notification
 									</DBButton>
-									<DBButton
-										icon="help"
-										variant="text"
-										noText
-										type="button">
+									<DBButton icon="help" variant="text" noText>
 										Help
 									</DBButton>
 								</>
