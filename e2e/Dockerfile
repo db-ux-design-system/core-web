@@ -1,4 +1,5 @@
-FROM mcr.microsoft.com/playwright:v1.40.1 as playwright
+ARG version=0.0.0
+FROM mcr.microsoft.com/playwright:v$version as playwright
 
 COPY e2e /e2e
 WORKDIR /e2e

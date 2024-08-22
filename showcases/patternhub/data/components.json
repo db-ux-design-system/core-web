@@ -1,0 +1,176 @@
+[
+	{
+		"label": "Action",
+		"name": "action",
+		"path": "/components/action",
+		"subNavigation": [
+			{
+				"label": "DBButton",
+				"name": "button"
+			},
+			{
+				"label": "DBLink",
+				"name": "link"
+			}
+		]
+	},
+	{
+		"label": "Data-Display",
+		"path": "/components/data-display",
+		"name": "data-display",
+		"subNavigation": [
+			{
+				"label": "DBBrand",
+				"name": "brand"
+			},
+			{
+				"label": "DBTooltip",
+				"name": "tooltip"
+			},
+			{
+				"label": "DBInfotext",
+				"name": "infotext"
+			},
+			{
+				"label": "DBTag",
+				"name": "tag"
+			},
+			{
+				"label": "DBAccordion",
+				"name": "accordion",
+				"subNavigation": [
+					{
+						"label": "DBAccordionItem Properties",
+						"path": "/components/accordion-item/properties"
+					}
+				]
+			},
+			{
+				"label": "DBAccordionItem",
+				"name": "accordion-item",
+				"isHiddenInMenu": true
+			},
+			{
+				"label": "DBTabs",
+				"name": "tabs",
+				"subNavigation": [
+					{
+						"label": "DBTabItem Properties",
+						"path": "/components/tab-item/properties"
+					}
+				]
+			},
+			{
+				"label": "DBTabItem",
+				"name": "tab-item",
+				"isHiddenInMenu": true
+			}
+		]
+	},
+	{
+		"label": "Data-Input",
+		"path": "/components/data-input",
+		"name": "data-input",
+		"subNavigation": [
+			{
+				"label": "DBCheckbox",
+				"name": "checkbox"
+			},
+			{
+				"label": "DBInput",
+				"name": "input"
+			},
+			{
+				"label": "DBRadio",
+				"name": "radio"
+			},
+			{
+				"label": "DBSelect",
+				"name": "select"
+			},
+			{
+				"label": "DBSwitch",
+				"name": "switch"
+			},
+			{
+				"label": "DBTextarea",
+				"name": "textarea"
+			}
+		]
+	},
+	{
+		"label": "Feedback",
+		"path": "/components/feedback",
+		"name": "feedback",
+		"subNavigation": [
+			{
+				"label": "DBNotification",
+				"name": "notification"
+			},
+			{
+				"label": "DBBadge",
+				"name": "badge"
+			}
+		]
+	},
+	{
+		"label": "Layout",
+		"path": "/components/layout",
+		"name": "layout",
+		"subNavigation": [
+			{
+				"label": "DBCard",
+				"name": "card"
+			},
+			{
+				"label": "DBDivider",
+				"name": "divider"
+			},
+			{
+				"label": "DBDrawer",
+				"name": "drawer"
+			},
+			{
+				"label": "DBHeader",
+				"name": "header"
+			},
+			{
+				"label": "DBSection",
+				"name": "section"
+			}
+		]
+	},
+	{
+		"label": "Navigation",
+		"path": "/components/navigation",
+		"name": "navigation",
+		"subNavigation": [
+			{
+				"label": "DBNavigation",
+				"name": "navigation",
+				"subNavigation": [
+					{
+						"label": "DBNavigationItem Properties",
+						"path": "/components/navigation-item/properties"
+					}
+				]
+			},
+			{
+				"label": "DBNavigationItem",
+				"name": "navigation-item",
+				"isHiddenInMenu": true
+			}
+		]
+	},
+	{
+		"label": "Utilities",
+		"path": "/components/utilities",
+		"name": "utilities",
+		"subNavigation": [
+			{
+				"label": "DBPopover",
+				"name": "popover"
+			}
+		]
+	}
+]

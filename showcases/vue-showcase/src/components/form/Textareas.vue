@@ -1,0 +1,30 @@
+<script setup lang="ts">
+import FormWrapper from "./FormWrapper.vue";
+import { DBTextarea } from "../../../../../output/vue/src";
+import { ref } from "vue";
+
+const plain = ref("test1");
+const vModel = ref("test2");
+</script>
+
+<template>
+	<FormWrapper :plain="plain" :vmodel="vModel">
+		<DBTextarea
+			label="Plain"
+			placeholder="Placeholder"
+			message="Description"
+			icon="user"
+			name="textarevalue-name"
+			:value="plain"
+			@change="plain = $event.target.value"
+		/>
+		<DBTextarea
+			label="VModel"
+			placeholder="Placeholder"
+			message="Description"
+			icon="user"
+			name="textarea-name"
+			v-model:value="vModel"
+		/>
+	</FormWrapper>
+</template>

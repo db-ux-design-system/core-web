@@ -1,8 +1,10 @@
 import {
+	onInit,
 	onMount,
-	Show,
+	onUnMount,
 	Slot,
-	useMetadata, useRef,
+	useMetadata,
+	useRef,
 	useStore
 } from '@builder.io/mitosis';
 import { DBPageProps, DBPageState } from './model';
@@ -19,11 +21,22 @@ export default function DBPage(props: DBPageProps) {
 		fontsLoaded: false
 	});
 
+	onInit(() => {
+		if (
+			typeof window !== 'undefined' &&
+			document &&
+			(props.documentOverflow === 'hidden' ||
+				(props.variant === 'fixed' &&
+					props.documentOverflow !== 'auto'))
+		) {
+			// We need to set this to `html` element that the flex-box solution works
+			// See https://stackoverflow.com/a/43710216 - Approach 1 - flexbox
+			document.documentElement.classList.add('db-page-document');
+		}
+	});
+
 	onMount(() => {
 		state.fontsLoaded = !props.fadeIn;
-		if (props.stylePath) {
-			state.stylePath = props.stylePath;
-		}
 
 		if (document && props.fadeIn) {
 			document.fonts.ready.then(() => {
@@ -33,20 +46,27 @@ export default function DBPage(props: DBPageProps) {
 			state.fontsLoaded = true;
 		}
 	});
+
+	onUnMount(() => {
+		if (
+			typeof window !== 'undefined' &&
+			document.documentElement.classList.contains('db-page-document')
+		) {
+			// remove document styles set by this
+			document.documentElement.classList.remove('db-page-document');
+		}
+	});
+
 	// jscpd:ignore-end
 
 	return (
 		<div
 			ref={ref}
 			id={props.id}
-			class={cls('db-page', props.className, {
-				'fixed-header-footer': props.type === 'fixedHeaderFooter'
-			})}
+			class={cls('db-page', props.className)}
+			data-variant={props.variant}
 			data-fade-in={props.fadeIn}
 			data-fonts-loaded={state.fontsLoaded}>
-			<Show when={state.stylePath}>
-				<link rel="stylesheet" href={state.stylePath} />
-			</Show>
 			<Slot name="header" />
 			<main class="db-main">{props.children}</main>
 			<Slot name="footer" />

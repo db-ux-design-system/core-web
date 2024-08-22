@@ -2,10 +2,11 @@ import { useState } from 'react';
 import { DBButton, DBDrawer } from '../../../../../output/react/src';
 import defaultComponentVariants from '../../../../shared/drawer.json';
 import type { DBDrawerProps } from '../../../../../output/react/src/components/drawer/model';
-import DefaultComponent from '../index';
+import DefaultComponent from '../default-component';
 import { getVariants } from '../data';
+import { type BaseComponentProps } from '../base-component-data';
 
-type AdditionalDrawerProps = {
+type AdditionalDrawerProperties = {
 	openDrawer: string;
 	setOpenDrawer: (id?: string) => void;
 };
@@ -13,17 +14,15 @@ const getDrawer = ({
 	id,
 	width,
 	rounded,
-	withCloseButton,
 	spacing,
 	openDrawer,
 	setOpenDrawer,
 	direction,
 	children,
 	backdrop
-}: DBDrawerProps & AdditionalDrawerProps) => (
+}: DBDrawerProps & AdditionalDrawerProperties) => (
 	<div>
 		<DBDrawer
-			withCloseButton={withCloseButton}
 			rounded={rounded}
 			width={width}
 			spacing={spacing}
@@ -44,17 +43,20 @@ const getDrawer = ({
 	</div>
 );
 
-const DrawerComponent = () => {
+const DrawerComponent = (props: BaseComponentProps) => {
 	const [openDrawer, setOpenDrawer] = useState<string | undefined>(undefined);
 	return (
 		<DefaultComponent
 			title="DBDrawer"
-			variants={getVariants(defaultComponentVariants, (props: any) =>
-				getDrawer({
-					...props,
-					openDrawer,
-					setOpenDrawer
-				})
+			variants={getVariants(
+				defaultComponentVariants,
+				(properties: any) =>
+					getDrawer({
+						...properties,
+						openDrawer,
+						setOpenDrawer
+					}),
+				props.slotCode
 			)}></DefaultComponent>
 	);
 };

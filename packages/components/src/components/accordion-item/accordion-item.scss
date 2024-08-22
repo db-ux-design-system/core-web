@@ -5,43 +5,50 @@
 @use "../../styles/form-components";
 @use "../../styles/component";
 
-.db-accordion-item {
-	@extend %bg-transparent;
-	@include helpers.divider($position: "top");
+$db-accordion-item-border-radius: variables.$db-border-radius-sm;
 
+.db-accordion-item {
 	position: relative;
 	inline-size: 100%;
+	border-radius: $db-accordion-item-border-radius;
 
 	summary + div {
 		padding: variables.$db-spacing-fixed-md;
 		padding-block-end: variables.$db-spacing-fixed-lg;
 	}
 
-	&:last-of-type {
-		@include helpers.divider($position: "bottom", $slot: "after");
-
-		// Angular workaround
-		db-accordion-item:not(:last-of-type) & {
-			&::after {
-				content: none;
-			}
-		}
-	}
-
 	&[aria-disabled="true"] {
 		pointer-events: none;
-		opacity: variables.$db-opacity-sm;
+		opacity: component.$default-disabled;
 	}
 
 	summary {
 		@extend %dropdown-icon;
-		@include colors.bg-transparent-interactive(false);
+		@extend %db-overwrite-font-size-md;
 
+		background-color: colors.$db-adaptive-bg-basic-transparent-full-default;
 		list-style: none;
 		display: flex;
 		justify-content: space-between;
 		padding: variables.$db-spacing-fixed-md;
 		gap: variables.$db-spacing-fixed-md;
+		border-radius: $db-accordion-item-border-radius;
+
+		@include helpers.hover {
+			background-color: colors.$db-adaptive-bg-basic-transparent-hovered;
+		}
+
+		@include helpers.active {
+			background-color: colors.$db-adaptive-bg-basic-transparent-pressed;
+		}
+
+		@include helpers.hover {
+			background-color: colors.$db-adaptive-bg-basic-transparent-hovered;
+		}
+
+		@include helpers.active {
+			background-color: colors.$db-adaptive-bg-basic-transparent-pressed;
+		}
 
 		&::-webkit-details-marker {
 			display: none;
@@ -52,14 +59,16 @@
 		}
 
 		&:focus-visible {
-			border-radius: variables.$db-border-radius-md;
+			border-radius: variables.$db-border-radius-xs;
 		}
 	}
 
 	&[open] {
 		summary + div {
-			animation: accordion-open
-				variables.$db-transition-emotional-straight normal both;
+			@media screen and (prefers-reduced-motion: no-preference) {
+				animation: accordion-open #{variables.$db-transition-straight-emotional}
+					normal both;
+			}
 		}
 
 		summary::after {

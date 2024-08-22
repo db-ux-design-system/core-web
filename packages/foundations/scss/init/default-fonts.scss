@@ -1,0 +1,79 @@
+/* Use this file if you want the default fonts for paragraph and headlines in your project */
+@use "sass:string";
+@use "../variables";
+@use "../fonts";
+
+small,
+code {
+	@extend %db-overwrite-font-size-sm;
+}
+
+$headlines: (
+	"h1": "xl",
+	"h2": "lg",
+	"h3": "md",
+	"h4": "sm",
+	"h5": "xs",
+	"h6": "2xs"
+);
+
+:is(h1, h2, h3, h4, h5, h6) {
+	font-family: var(--db-font-family-head);
+	font-weight: 700;
+	text-wrap: balance;
+
+	&[data-variant="light"] {
+		font-weight: 300;
+	}
+
+	&[data-variant="regular"] {
+		font-weight: 400;
+	}
+}
+
+@each $headline, $size in $headlines {
+	#{string.unquote($headline)} {
+		/* stylelint-disable custom-property-pattern */
+		line-height: var(
+			--db-type-headline-line-height-#{string.unquote($size)}
+		);
+		font-size: var(--db-type-headline-font-size-#{string.unquote($size)});
+		margin-block: var(--db-spacing-fixed-#{string.unquote($size)});
+
+		&::before,
+		&::after {
+			--db-icon-font-size: var(
+				--db-base-headline-icon-font-size-#{string.unquote($size)}
+			);
+			--db-icon-font-weight: var(
+				--db-base-headline-icon-weight-#{string.unquote($size)}
+			);
+		}
+		/* stylelint-enable custom-property-pattern */
+	}
+}
+
+p {
+	margin-block: variables.$db-spacing-fixed-md;
+}
+
+[data-font="digital"] {
+	font-weight: 300;
+}
+
+[data-font="regular"] {
+	font-weight: 400;
+}
+
+[data-font="medium"] {
+	font-weight: 500;
+}
+
+[data-font="semibold"] {
+	font-weight: 600;
+}
+
+[data-font="bold"],
+strong {
+	font-weight: 700;
+}

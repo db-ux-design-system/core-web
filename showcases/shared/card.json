@@ -1,87 +1,40 @@
 [
 	{
-		"name": "Tonality",
+		"name": "Density",
 		"examples": [
 			{
-				"name": "functional",
-				"className": "db-ui-functional",
-				"props": {
-					"spacing": "small"
-				}
+				"name": "Functional",
+				"className": "db-density-functional"
 			},
 			{
-				"name": "regular (Default)",
-				"className": "db-ui-regular",
-				"props": {
-					"spacing": "small"
-				}
+				"name": "(Default) Regular",
+				"className": "db-density-regular"
 			},
 			{
-				"name": "expressive",
-				"className": "db-ui-expressive",
-				"props": {
-					"spacing": "small"
-				}
+				"name": "Expressive",
+				"className": "db-density-expressive"
 			}
 		]
 	},
 	{
-		"name": "ColorVariant",
+		"name": "Elevation Level",
 		"examples": [
 			{
-				"name": "(Default) adaptive",
+				"name": "(Default) Level 1 - Adaptive",
 				"props": {
-					"variant": "interactive",
-					"spacing": "small",
-					"colorVariant": "adaptive"
+					"elevationLevel": "1"
 				}
 			},
 			{
-				"name": "neutral",
+				"name": "Level 2 - Adaptive",
 				"props": {
-					"colorVariant": "neutral",
-					"variant": "interactive",
-					"spacing": "small"
+					"elevationLevel": "2"
 				}
 			},
 			{
-				"name": "brand",
+				"name": "Level 3 - Adaptive",
 				"props": {
-					"colorVariant": "brand",
-					"variant": "interactive",
-					"spacing": "small"
-				}
-			},
-			{
-				"name": "critical",
-				"props": {
-					"colorVariant": "critical",
-					"variant": "interactive",
-					"spacing": "small"
-				}
-			},
-			{
-				"name": "successful",
-				"props": {
-					"colorVariant": "successful",
-					"variant": "interactive",
-					"spacing": "small"
-				}
-			},
-			{
-				"name": "warning",
-				"props": {
-					"colorVariant": "warning",
-					"variant": "interactive",
-					"spacing": "small"
-				}
-			},
-			{
-				"name": "informational",
-				"props": {
-					"colorVariant": "informational",
-					"variant": "interactive",
-					"spacing": "small"
+					"elevationLevel": "3"
 				}
 			}
 		]
@@ -90,8 +43,10 @@
 		"name": "Spacing",
 		"examples": [
 			{
-				"name": "(Default) No Spacing",
-				"props": {}
+				"name": "(Default) Small",
+				"props": {
+					"spacing": "small"
+				}
 			},
 			{
 				"name": "Medium",
@@ -100,27 +55,55 @@
 				}
 			},
 			{
-				"name": "Small",
+				"name": "Large",
 				"props": {
-					"spacing": "small"
+					"spacing": "large"
+				}
+			},
+			{
+				"name": "None",
+				"props": {
+					"spacing": "none"
 				}
 			}
 		]
 	},
 	{
-		"name": "Variant",
+		"name": "Behaviour",
 		"examples": [
 			{
-				"name": "(Default) Non interactive",
-				"props": {
-					"spacing": "small"
-				}
+				"name": "(Default) Non interactive"
 			},
 			{
 				"name": "Interactive",
 				"props": {
-					"spacing": "small",
-					"variant": "interactive"
+					"behaviour": "interactive"
+				}
+			}
+		]
+	},
+	{
+		"name": "Example",
+		"examples": [
+			{
+				"name": "Level 1 - Interactive",
+				"props": {
+					"elevationLevel": "1",
+					"behaviour": "interactive"
+				}
+			},
+			{
+				"name": "Level 2 - Interactive",
+				"props": {
+					"elevationLevel": "2",
+					"behaviour": "interactive"
+				}
+			},
+			{
+				"name": "Level 3 - Interactive",
+				"props": {
+					"elevationLevel": "3",
+					"behaviour": "interactive"
 				}
 			}
 		]

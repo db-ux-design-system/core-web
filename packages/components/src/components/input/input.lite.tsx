@@ -1,24 +1,31 @@
 import {
 	For,
 	onMount,
+	onUpdate,
 	Show,
 	useMetadata,
 	useRef,
 	useStore
 } from '@builder.io/mitosis';
-import { cls, getMessageIcon, uuid } from '../../utils';
+import { cls, delay, hasVoiceOver, isArrayOfStrings, uuid } from '../../utils';
 import { DBInputProps, DBInputState } from './model';
 import {
-	DEFAULT_ID,
+	DEFAULT_DATALIST_ID_SUFFIX,
+	DEFAULT_INVALID_MESSAGE,
+	DEFAULT_INVALID_MESSAGE_ID_SUFFIX,
 	DEFAULT_LABEL,
-	DEFAULT_MESSAGE_ID_SUFFIX
+	DEFAULT_MESSAGE_ID_SUFFIX,
+	DEFAULT_VALID_MESSAGE,
+	DEFAULT_VALID_MESSAGE_ID_SUFFIX
 } from '../../shared/constants';
 import {
+	InputEvent,
 	ChangeEvent,
 	InteractionEvent,
-	KeyValueType
+	ValueLabelType
 } from '../../shared/model';
 import { DBInfotext } from '../infotext';
+import { handleFrameworkEvent } from '../../utils/form-components';
 
 useMetadata({
 	isAttachedToShadowDom: true
@@ -28,12 +35,26 @@ export default function DBInput(props: DBInputProps) {
 	const ref = useRef<HTMLInputElement>(null);
 	// jscpd:ignore-start
 	const state = useStore<DBInputState>({
-		_id: DEFAULT_ID,
-		_messageId: DEFAULT_ID + DEFAULT_MESSAGE_ID_SUFFIX,
-		_dataListId: DEFAULT_ID,
+		_id: 'input-' + uuid(),
+		_messageId: this._id + DEFAULT_MESSAGE_ID_SUFFIX,
+		_validMessageId: this._id + DEFAULT_VALID_MESSAGE_ID_SUFFIX,
+		_invalidMessageId: this._id + DEFAULT_INVALID_MESSAGE_ID_SUFFIX,
+		_dataListId: this._id + DEFAULT_DATALIST_ID_SUFFIX,
+		_descByIds: '',
+		_value: '',
+		_voiceOverFallback: '',
 		defaultValues: {
 			label: DEFAULT_LABEL,
 			placeholder: ' '
+		},
+		handleInput: (event: InputEvent<HTMLInputElement>) => {
+			if (props.onInput) {
+				props.onInput(event);
+			}
+
+			if (props.input) {
+				props.input(event);
+			}
 		},
 		handleChange: (event: ChangeEvent<HTMLInputElement>) => {
 			if (props.onChange) {
@@ -44,14 +65,37 @@ export default function DBInput(props: DBInputProps) {
 				props.change(event);
 			}
 
-			const target = event.target as HTMLInputElement;
+			handleFrameworkEvent(this, event);
 
-			// TODO: Replace this with the solution out of https://github.com/BuilderIO/mitosis/issues/833 after this has been "solved"
-			// VUE:this.$emit("update:value", target.value);
-
-			// Change event to work with reactive and template driven forms
-			// ANGULAR: this.propagateChange(target.value);
-			// ANGULAR: this.writeValue(target.value);
+			/* For a11y reasons we need to map the correct message with the input */
+			if (!ref?.validity.valid || props.customValidity === 'invalid') {
+				state._descByIds = state._invalidMessageId;
+				if (hasVoiceOver()) {
+					state._voiceOverFallback =
+						props.invalidMessage ??
+						ref?.validationMessage ??
+						DEFAULT_INVALID_MESSAGE;
+					delay(() => (state._voiceOverFallback = ''), 1000);
+				}
+			} else if (
+				props.customValidity === 'valid' ||
+				(ref?.validity.valid &&
+					(props.required ||
+						props.minLength ||
+						props.maxLength ||
+						props.pattern))
+			) {
+				state._descByIds = state._validMessageId;
+				if (hasVoiceOver()) {
+					state._voiceOverFallback =
+						props.validMessage ?? DEFAULT_VALID_MESSAGE;
+					delay(() => (state._voiceOverFallback = ''), 1000);
+				}
+			} else if (props.message) {
+				state._descByIds = state._messageId;
+			} else {
+				state._descByIds = '';
+			}
 		},
 		handleBlur: (event: InteractionEvent<HTMLInputElement>) => {
 			if (props.onBlur) {
@@ -70,34 +114,59 @@ export default function DBInput(props: DBInputProps) {
 			if (props.focus) {
 				props.focus(event);
 			}
+		},
+		getDataList: (
+			_list?: string[] | ValueLabelType[]
+		): ValueLabelType[] => {
+			return Array.from(
+				(isArrayOfStrings(_list)
+					? _list.map((val: string) => ({
+							value: val,
+							label: undefined
+						}))
+					: _list) || []
+			);
 		}
 	});
 
 	onMount(() => {
-		state._id = props.id || 'input-' + uuid();
-		state._messageId = state._id + DEFAULT_MESSAGE_ID_SUFFIX;
-		state._dataListId = props.dataListId || `datalist-${uuid()}`;
-
-		if (props.stylePath) {
-			state.stylePath = props.stylePath;
-		}
+		state._id = props.id ?? state._id;
 	});
-	// jscpd:ignore-end
+
+	onUpdate(() => {
+		if (state._id) {
+			const messageId = state._id + DEFAULT_MESSAGE_ID_SUFFIX;
+			const validMessageId = state._id + DEFAULT_VALID_MESSAGE_ID_SUFFIX;
+			const invalidMessageId =
+				state._id + DEFAULT_INVALID_MESSAGE_ID_SUFFIX;
+			state._messageId = messageId;
+			state._validMessageId = validMessageId;
+			state._invalidMessageId = invalidMessageId;
+			state._dataListId =
+				props.dataListId ?? state._id + DEFAULT_DATALIST_ID_SUFFIX;
+
+			if (props.message) {
+				state._descByIds = messageId;
+			}
+		}
+	}, [state._id]);
+
+	onUpdate(() => {
+		state._value = props.value;
+	}, [props.value]);
 
 	return (
 		<div
 			class={cls('db-input', props.className)}
 			data-variant={props.variant}
-			data-label-variant={props.labelVariant}
 			data-icon={props.icon}
 			data-icon-after={props.iconAfter}>
-			<Show when={state.stylePath}>
-				<link rel="stylesheet" href={state.stylePath} />
-			</Show>
 			<label htmlFor={state._id}>
 				{props.label ?? state.defaultValues.label}
 			</label>
 			<input
+				aria-invalid={props.customValidity === 'invalid'}
+				data-custom-validity={props.customValidity}
 				ref={ref}
 				id={state._id}
 				name={props.name}
@@ -108,8 +177,7 @@ export default function DBInput(props: DBInputProps) {
 				disabled={props.disabled}
 				required={props.required}
 				step={props.step}
-				value={props.value}
-				aria-invalid={props.invalid}
+				value={props.value ?? state._value}
 				maxLength={props.maxLength}
 				minLength={props.minLength}
 				max={props.max}
@@ -118,6 +186,9 @@ export default function DBInput(props: DBInputProps) {
 				form={props.form}
 				pattern={props.pattern}
 				autocomplete={props.autocomplete}
+				onInput={(event: ChangeEvent<HTMLInputElement>) =>
+					state.handleInput(event)
+				}
 				onChange={(event: ChangeEvent<HTMLInputElement>) =>
 					state.handleChange(event)
 				}
@@ -128,35 +199,58 @@ export default function DBInput(props: DBInputProps) {
 					state.handleFocus(event)
 				}
 				list={props.dataList && state._dataListId}
-				aria-describedby={props.message && state._messageId}
+				aria-describedby={state._descByIds}
 			/>
 			<Show when={props.dataList}>
 				<datalist id={state._dataListId}>
-					<For each={props.dataList}>
-						{(option: KeyValueType) => (
+					<For each={state.getDataList(props.dataList)}>
+						{(option: ValueLabelType) => (
 							<option
 								key={
-									state._dataListId + '-option-' + option.key
+									state._dataListId +
+									'-option-' +
+									option.value
 								}
-								value={option.key}>
-								{option.value}
+								value={option.value}>
+								{option.label}
 							</option>
 						)}
 					</For>
 				</datalist>
 			</Show>
-
 			{props.children}
-
 			<Show when={props.message}>
 				<DBInfotext
 					size="small"
-					variant={props.variant}
-					icon={getMessageIcon(props.variant, props.messageIcon)}
+					icon={props.messageIcon}
 					id={state._messageId}>
 					{props.message}
 				</DBInfotext>
 			</Show>
+
+			<DBInfotext
+				id={state._validMessageId}
+				size="small"
+				semantic="successful">
+				{props.validMessage ?? DEFAULT_VALID_MESSAGE}
+			</DBInfotext>
+
+			<DBInfotext
+				id={state._invalidMessageId}
+				size="small"
+				semantic="critical">
+				{props.invalidMessage ??
+					ref?.validationMessage ??
+					DEFAULT_INVALID_MESSAGE}
+			</DBInfotext>
+
+			{/* * https://www.davidmacd.com/blog/test-aria-describedby-errormessage-aria-live.html
+			 * Currently VoiceOver isn't supporting changes from aria-describedby.
+			 * This is an internal Fallback */}
+			<span data-visually-hidden="true" role="status">
+				{state._voiceOverFallback}
+			</span>
 		</div>
 	);
+	// jscpd:ignore-end
 }

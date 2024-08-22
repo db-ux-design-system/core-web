@@ -5,7 +5,7 @@
 [![Conventional Commits](https://img.shields.io/badge/Conventional%20Commits-1.0.0-yellow.svg)](https://conventionalcommits.org)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](https://makeapullrequest.com)
 
-A library containing all styles for components of [DB UX Design System (technical components)](https://github.com/db-ui/mono).
+A library containing all styles for components of [DB UX Design System v3](https://github.com/db-ui/mono).
 
 > **Note**
 > Furthermore we currently support these additional JavaScript frameworks, with more coming soon:
@@ -15,6 +15,8 @@ A library containing all styles for components of [DB UX Design System (technica
 -   [Vue components](https://www.npmjs.com/package/@db-ui/v-components)
 
 Please take a look at your desired framework to retrieve more information.
+
+For additional information besides the frameworks see our [Getting started](https://github.com/db-ui/mono/tree/main/packages/components/docs/getting-stated.md).
 
 ---
 
@@ -55,6 +57,32 @@ Or within your JavaScript files, with the related bundler as a prefix (in this c
 ```js
 // main.js
 import "@db-ui/components/build/styles/db-ui-42-rollup.css";
+```
+
+### Optimize dependencies
+
+If you only need some of the components or some features from [`@db-ui/foundations`](https://www.npmjs.com/package/@db-ui/foundations), you shouldn't include `db-ui-42`.
+In the case you want to include only some components, and you could do it like this:
+
+```css
+/* The theme contains all prop required for components like spacings, colors, ... */
+@import "@db-ui/foundations/build/css/default-theme.css";
+/* The font include uses default font families based on your bundling paths (relative, absolute, webpack, rollup) */
+@import "@db-ui/foundations/build/css/fonts/include-rollup.css";
+/* The required styles will normalize css and add focus and default font to body */
+@import "@db-ui/foundations/build/css/init/required.css";
+/* The default root adds a default color space (neutral) and a density (regular) */
+@import "@db-ui/foundations/build/css/init/default-root.css";
+
+/* Optional: Add animations / transitions for components */
+@import "@db-ui/components/build/styles/component-animations.css";
+
+/* Optional: Add data-icon/data-icon-after to global attributes to enable icons for components */
+@import "@db-ui/foundations/build/css/icons/include-rollup.css";
+
+/* Optional: Add components */
+@import "@db-ui/components/build/components/button/button.css";
+@import "@db-ui/components/build/components/input/input.css";
 ```
 
 ## Deutsche Bahn brand

@@ -4,18 +4,24 @@ import {
 	GlobalProps,
 	GlobalState,
 	IconProps,
+	SizeProps,
+	SizeType,
 	WidthProps
 } from '../../shared/model';
 
-// TODO: 👇 Find a way to make react-docgen work without duplicating the types below
-enum buttonVariants {
-	'outlined' = 'outlined',
-	'primary' = 'primary',
-	'solid' = 'solid',
-	'text' = 'text'
-}
-export const buttonVariantsList = Object.values(buttonVariants);
-export type ButtonVariantsType = 'outlined' | 'primary' | 'solid' | 'text';
+export const ButtonVariantList = [
+	'outlined',
+	'brand',
+	'filled',
+	'ghost'
+] as const;
+export type ButtonVariantType = (typeof ButtonVariantList)[number];
+
+export const ButtonTypeList = ['button', 'reset', 'submit'] as const;
+export type ButtonTypeType = (typeof ButtonTypeList)[number];
+
+export const ButtonStateList = ['loading'] as const;
+export type ButtonStateType = (typeof ButtonStateList)[number];
 
 export type DBButtonDefaultProps = {
 	/**
@@ -51,7 +57,7 @@ export type DBButtonDefaultProps = {
 	/**
 	 * The type attribute specifies the [type of button](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button#type).
 	 */
-	type?: 'button' | 'reset' | 'submit';
+	type?: ButtonTypeType;
 
 	/**
 	 * The value attribute specifies an initial [value for the button](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button#value).
@@ -61,24 +67,20 @@ export type DBButtonDefaultProps = {
 	/**
 	 * Show loading progress inside button.
 	 */
-	state?: 'loading';
-
-	/**
-	 * The size of the button
-	 */
-	size?: 'small';
+	state?: ButtonStateType;
 
 	/**
 	 * Variant of the button. Use only 1 primary button on a page as CTA otherwise use one of the adaptive buttons.
 	 */
-	variant?: ButtonVariantsType | string;
+	variant?: ButtonVariantType | string;
 };
 
 export type DBButtonProps = DBButtonDefaultProps &
 	GlobalProps &
 	ClickEventProps<HTMLButtonElement> &
 	IconProps &
-	WidthProps;
+	WidthProps &
+	SizeProps;
 
 export type DBButtonDefaultState = {};
 

@@ -1,5 +1,5 @@
 import {
-	DefaultVariantProps,
+	SemanticProps,
 	GlobalProps,
 	GlobalState,
 	IconProps,
@@ -10,7 +10,7 @@ export interface DBInfotextDefaultProps {}
 
 export type DBInfotextProps = DBInfotextDefaultProps &
 	GlobalProps &
-	DefaultVariantProps &
+	SemanticProps &
 	IconProps &
 	SizeProps;
 

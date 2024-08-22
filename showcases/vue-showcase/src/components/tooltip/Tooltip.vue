@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import DefaultComponent from "../DefaultComponent.vue";
 import defaultComponentVariants from "../../../../shared/tooltip.json";
-import { DBButton, DBTooltip } from "../../../../../output/vue/vue3/src";
+import { DBButton, DBTooltip } from "../../../../../output/vue/src";
 </script>
 
 <template>
@@ -9,18 +9,17 @@ import { DBButton, DBTooltip } from "../../../../../output/vue/vue3/src";
 		<template
 			#example="{ exampleIndex, variantIndex, exampleName, exampleProps }"
 		>
-			<DBButton :describedbyid="exampleProps.id">
+			<DBButton>
 				{{ exampleName }}
 				<DBTooltip
-					:width="exampleProps.width"
-					:emphasis="exampleProps.emphasis"
-					:placement="exampleProps.placement"
-					:animation="exampleProps.animation"
-					:delay="exampleProps.delay"
-					:variant="exampleProps.variant"
-					:id="exampleProps.id"
+					:width="exampleProps?.width"
+					:emphasis="exampleProps?.emphasis"
+					:placement="exampleProps?.placement"
+					:animation="exampleProps?.animation"
+					:delay="exampleProps?.delay"
+					:variant="exampleProps?.variant"
 				>
-					{{ exampleProps.content }}
+					{{ exampleProps?.content }}
 				</DBTooltip>
 			</DBButton>
 		</template>

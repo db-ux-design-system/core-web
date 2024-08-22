@@ -2,46 +2,80 @@
 @use "@db-ui/foundations/build/scss/screen-sizes";
 @use "@db-ui/foundations/build/scss/colors";
 
-%db-puls {
-	@include screen-sizes.screen("md") {
-		&::after {
-			border-inline-start: none;
-			border-block-end: variables.$db-border-height-lg solid
-				colors.$db-brand;
-			inset-block-end: calc(-1 * #{variables.$db-spacing-fixed-xs});
-			inline-size: 0;
-			block-size: auto;
-			inset-inline-start: 50%;
-			inset-block-start: auto;
-			transform: translate(-50%, 0);
-		}
-	}
-
+@mixin set-db-puls-horizontal() {
 	&::after {
-		content: "";
-		position: absolute;
-		border-radius: variables.$db-border-radius-md;
-		transition:
-			height 0.15s variables.$db-transition-emotional-timing,
-			width 0.15s variables.$db-transition-emotional-timing;
-		block-size: 0;
-		transform: translate(0, -50%);
-		inset-block-start: 50%;
-		inset-inline-start: calc(-1 * #{variables.$db-spacing-fixed-xs});
-		border-inline-start: variables.$db-border-height-lg solid
-			colors.$db-brand;
+		block-size: variables.$db-border-height-xs;
+		inline-size: 0;
+		transform: translate(-50%, 0);
+		inset-inline-start: 50%;
+		background-color: colors.$db-brand-on-bg-basic-emphasis-70-default;
+		inset-block: auto calc(-1 * #{variables.$db-spacing-fixed-xs});
 	}
 }
 
-%show-db-puls {
-	@include screen-sizes.screen("md") {
-		&::after {
-			block-size: auto;
-			inline-size: 100%;
+@mixin set-db-puls-vertical() {
+	&::after {
+		block-size: 0;
+		inline-size: variables.$db-border-height-xs;
+		transform: translate(0, -50%);
+		inset-block: 50% auto;
+		background-color: colors.$db-brand-on-bg-basic-emphasis-70-default;
+		inset-inline-start: calc(-1 * #{variables.$db-spacing-fixed-xs});
+	}
+}
+
+%db-puls {
+	&::after {
+		content: "";
+		position: absolute;
+		border-radius: variables.$db-border-radius-xs;
+
+		@media screen and (prefers-reduced-motion: no-preference) {
+			transition:
+				height variables.$db-transition-duration-fast
+					variables.$db-transition-timing-emotional,
+				width variables.$db-transition-duration-fast
+					variables.$db-transition-timing-emotional;
 		}
 	}
+}
 
+%db-puls-auto {
+	@extend %db-puls;
+
+	@include set-db-puls-vertical();
+
+	@include screen-sizes.screen("md") {
+		@include set-db-puls-horizontal();
+	}
+}
+
+@mixin show-db-puls-horizontal() {
+	&::after {
+		block-size: variables.$db-border-height-xs;
+		inline-size: 100%;
+
+		@media (forced-colors: active) {
+			border: calc(#{variables.$db-border-height-xs} - 1px) solid;
+		}
+	}
+}
+
+@mixin show-db-puls-vertical() {
 	&::after {
 		block-size: 100%;
+		inline-size: variables.$db-border-height-xs;
+
+		@media (forced-colors: active) {
+			border: calc(#{variables.$db-border-height-xs} - 1px) solid;
+		}
+	}
+}
+
+%show-db-puls-auto {
+	@include show-db-puls-vertical;
+
+	@include screen-sizes.screen("md") {
+		@include show-db-puls-horizontal;
 	}
 }

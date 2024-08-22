@@ -1,24 +1,24 @@
 [
 	{
-		"name": "Tonality",
+		"name": "Density",
 		"examples": [
 			{
 				"name": "Functional",
-				"className": "db-ui-functional",
+				"className": "db-density-functional",
 				"props": {
 					"label": "Label"
 				}
 			},
 			{
 				"name": "(Default) Regular",
-				"className": "db-ui-regular",
+				"className": "db-density-regular",
 				"props": {
 					"label": "Label"
 				}
 			},
 			{
 				"name": "Expressive",
-				"className": "db-ui-expressive",
+				"className": "db-density-expressive",
 				"props": {
 					"label": "Label"
 				}
@@ -38,7 +38,7 @@
 				"name": "Floating Label",
 				"props": {
 					"label": "Label",
-					"labelVariant": "floating",
+					"variant": "floating",
 					"value": "Floating Label"
 				}
 			},
@@ -46,7 +46,7 @@
 				"name": "Hidden Label",
 				"props": {
 					"label": "Label",
-					"labelVariant": "hidden"
+					"variant": "hidden"
 				}
 			}
 		]
@@ -70,50 +70,6 @@
 		]
 	},
 	{
-		"name": "Semantic",
-		"examples": [
-			{
-				"name": "(Default) Adaptive",
-				"props": {
-					"label": "Label",
-					"message": "Helper Message"
-				}
-			},
-			{
-				"name": "Critical",
-				"props": {
-					"label": "Label",
-					"variant": "critical",
-					"message": "Critical Message"
-				}
-			},
-			{
-				"name": "Informational",
-				"props": {
-					"label": "Label",
-					"variant": "informational",
-					"message": "Informational Message"
-				}
-			},
-			{
-				"name": "Successful",
-				"props": {
-					"label": "Label",
-					"variant": "successful",
-					"message": "Successful Message"
-				}
-			},
-			{
-				"name": "Warning",
-				"props": {
-					"label": "Label",
-					"variant": "warning",
-					"message": "Warning Message"
-				}
-			}
-		]
-	},
-	{
 		"name": "States Label Above",
 		"examples": [
 			{
@@ -127,22 +83,6 @@
 				"props": {
 					"label": "Label",
 					"value": "Filled"
-				}
-			},
-			{
-				"name": "Filled - Invalid",
-				"props": {
-					"label": "Label",
-					"value": "Filled - Invalid",
-					"invalid": true
-				}
-			},
-			{
-				"name": "Filled - Valid",
-				"props": {
-					"label": "Label",
-					"value": "Filled - Valid",
-					"invalid": false
 				}
 			},
 			{
@@ -169,7 +109,7 @@
 				"name": "(Default) Empty",
 				"props": {
 					"label": "Label",
-					"labelVariant": "floating"
+					"variant": "floating"
 				}
 			},
 			{
@@ -177,25 +117,7 @@
 				"props": {
 					"label": "Label",
 					"value": "Filled",
-					"labelVariant": "floating"
-				}
-			},
-			{
-				"name": "Filled - Invalid",
-				"props": {
-					"label": "Label",
-					"invalid": true,
-					"value": "Filled - Invalid",
-					"labelVariant": "floating"
-				}
-			},
-			{
-				"name": "Filled - Valid",
-				"props": {
-					"label": "Label",
-					"value": "Filled - Valid",
-					"invalid": false,
-					"labelVariant": "floating"
+					"variant": "floating"
 				}
 			},
 			{
@@ -203,7 +125,7 @@
 				"props": {
 					"label": "Label",
 					"disabled": true,
-					"labelVariant": "floating"
+					"variant": "floating"
 				}
 			},
 			{
@@ -212,7 +134,7 @@
 					"label": "Label",
 					"value": "Readonly - Filled",
 					"readOnly": true,
-					"labelVariant": "floating"
+					"variant": "floating"
 				}
 			}
 		]
@@ -272,14 +194,6 @@
 				"name": "Required",
 				"props": {
 					"label": "Label",
-					"required": true
-				}
-			},
-			{
-				"name": "Required - Filled",
-				"props": {
-					"label": "Label",
-					"value": "Required - Filled",
 					"required": true
 				}
 			}
@@ -370,6 +284,20 @@
 					"label": "Label",
 					"type": "week"
 				}
+			},
+			{
+				"name": "Datalist",
+				"props": {
+					"label": "Label",
+					"dataList": true
+				}
+			},
+			{
+				"name": "File",
+				"props": {
+					"label": "Label",
+					"type": "file"
+				}
 			}
 		]
 	},
@@ -380,7 +308,7 @@
 				"name": "(Default) Text",
 				"props": {
 					"label": "Label",
-					"labelVariant": "floating"
+					"variant": "floating"
 				}
 			},
 			{
@@ -388,7 +316,7 @@
 				"props": {
 					"label": "Label",
 					"type": "password",
-					"labelVariant": "floating"
+					"variant": "floating"
 				}
 			},
 			{
@@ -396,7 +324,7 @@
 				"props": {
 					"label": "Label",
 					"type": "search",
-					"labelVariant": "floating"
+					"variant": "floating"
 				}
 			},
 			{
@@ -404,7 +332,7 @@
 				"props": {
 					"label": "Label",
 					"type": "email",
-					"labelVariant": "floating"
+					"variant": "floating"
 				}
 			},
 			{
@@ -412,7 +340,7 @@
 				"props": {
 					"label": "Label",
 					"type": "number",
-					"labelVariant": "floating"
+					"variant": "floating"
 				}
 			},
 			{
@@ -420,7 +348,7 @@
 				"props": {
 					"label": "Label",
 					"type": "tel",
-					"labelVariant": "floating"
+					"variant": "floating"
 				}
 			},
 			{
@@ -428,7 +356,7 @@
 				"props": {
 					"label": "Label",
 					"type": "url",
-					"labelVariant": "floating"
+					"variant": "floating"
 				}
 			},
 			{
@@ -436,7 +364,7 @@
 				"props": {
 					"label": "Label",
 					"type": "date",
-					"labelVariant": "floating"
+					"variant": "floating"
 				}
 			},
 			{
@@ -444,7 +372,7 @@
 				"props": {
 					"label": "Label",
 					"type": "datetime-local",
-					"labelVariant": "floating"
+					"variant": "floating"
 				}
 			},
 			{
@@ -452,7 +380,7 @@
 				"props": {
 					"label": "Label",
 					"type": "month",
-					"labelVariant": "floating"
+					"variant": "floating"
 				}
 			},
 			{
@@ -460,7 +388,7 @@
 				"props": {
 					"label": "Label",
 					"type": "time",
-					"labelVariant": "floating"
+					"variant": "floating"
 				}
 			},
 			{
@@ -468,7 +396,23 @@
 				"props": {
 					"label": "Label",
 					"type": "week",
-					"labelVariant": "floating"
+					"variant": "floating"
+				}
+			},
+			{
+				"name": "Datalist",
+				"props": {
+					"label": "Label",
+					"variant": "floating",
+					"dataList": true
+				}
+			},
+			{
+				"name": "File",
+				"props": {
+					"label": "Label",
+					"type": "file",
+					"variant": "floating"
 				}
 			}
 		]

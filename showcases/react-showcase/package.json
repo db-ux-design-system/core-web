@@ -9,21 +9,24 @@
     "build:02_vite": "vite build",
     "dev": "vite --open",
     "preview": "npx http-server ../../build-showcases",
-    "regenerate:screenshots": "cross-env showcase=react-showcase npx playwright test -c ../playwright.config.ts --update-snapshots",
+    "regenerate:screenshots": "cross-env showcase=react-showcase npx playwright test -c ../playwright.showcase-snapshots.ts --update-snapshots",
     "start": "vite",
-    "test:e2e": "cross-env showcase=react-showcase npx playwright test --config=../playwright.config.ts"
+    "test:e2e": "cross-env showcase=react-showcase npx playwright test --config=../playwright.config.ts",
+    "test:screen-reader:macos": "cross-env showcase=react-showcase npx playwright test --config=../playwright.screen-reader.macos.ts",
+    "test:screen-reader:windows": "cross-env showcase=react-showcase npx playwright test --config=../playwright.screen-reader.windows.ts"
   },
   "dependencies": {
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "react-router-dom": "6.21.1"
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-router-dom": "6.26.1",
+    "sa11y": "3.2.2"
   },
   "devDependencies": {
-    "@types/react": "^18.2.47",
-    "@types/react-dom": "^18.2.18",
-    "@vitejs/plugin-react": "^4.2.1",
+    "@types/react": "^18.3.4",
+    "@types/react-dom": "^18.3.0",
+    "@vitejs/plugin-react": "^4.3.1",
     "cross-env": "^7.0.3",
-    "typescript": "^5.3.3",
-    "vite": "^5.0.10"
+    "typescript": "^5.4.5",
+    "vite": "^5.4.2"
   }
 }

@@ -4,24 +4,25 @@ For general installation and configuration take a look at the [ngx-components](h
 
 ### Load component
 
-```ts app.module.ts
-//app.module.ts
-import { DBPopoverModule } from '@db-ui/ngx-components';
+```ts app.component.ts
+// app.component.ts
+import { DBPopover } from '@db-ui/ngx-components';
 
-@NgModule({
-  ...
-  imports: [..., DBPopoverModule],
-  ...
+@Component({
+  // ...
+  standalone: true,
+  imports: [..., DBPopover],
+  // ...
 })
-
 ```
 
 ### Use component
 
 ```html app.component.html
 <!-- app.component.html -->
-<db-button describedbyid="popover-01">
-	Hover on me to open Popover
-	<db-popover id="popover-01">Popover</db-popover>
-</db-button>
+<db-popover>
+	<db-button trigger> Hover on me to open Popover </db-button>
+	Use any html code here like e.g. a <code>button</code>:
+	<button type="button">Test</button>
+</db-popover>
 ```

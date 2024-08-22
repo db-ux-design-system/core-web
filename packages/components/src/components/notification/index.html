@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<title>DBNotification</title>
+		<link rel="stylesheet" href="/styles/db-ui-42.css" />
+	</head>
+	<body style="padding: var(--db-spacing-fixed-md)">
+		<div class="db-notification" data-icon="user">
+			<strong class="db-notification-headline">Headline</strong>
+			<button
+				class="db-button is-icon-text-replace db-notification-close"
+				data-size="small"
+				data-variant="ghost"
+				data-icon="cross"
+			>
+				Close Button
+			</button>
+			<p class="db-notification-content">Custom Icon</p>
+		</div>
+		<div class="db-notification" data-semantic="informational">
+			<strong class="db-notification-headline">Headline</strong>
+			<button
+				class="db-button is-icon-text-replace db-notification-close"
+				data-size="small"
+				data-variant="ghost"
+				data-icon="cross"
+			>
+				Close Button
+			</button>
+			<p class="db-notification-content">informational</p>
+		</div>
+		<div
+			class="db-notification"
+			data-semantic="informational"
+			data-icon="user"
+		>
+			<strong class="db-notification-headline">Headline</strong>
+			<button
+				class="db-button is-icon-text-replace db-notification-close"
+				data-size="small"
+				data-variant="ghost"
+				data-icon="cross"
+			>
+				Close Button
+			</button>
+			<p class="db-notification-content">Overwrite Icon in Variant</p>
+		</div>
+	</body>
+</html>

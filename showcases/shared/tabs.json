@@ -1,0 +1,262 @@
+[
+	{
+		"name": "Tonality",
+		"children": [
+			{
+				"name": "tab-list",
+				"children": [
+					{
+						"name": "tab-item",
+						"content": "Tab 1"
+					},
+					{
+						"name": "tab-item",
+						"content": "Tab 2"
+					},
+					{
+						"name": "tab-item",
+						"content": "Tab 3"
+					}
+				]
+			},
+			{
+				"name": "tab-panel",
+				"content": "Tab Panel 1"
+			},
+			{
+				"name": "tab-panel",
+				"content": "Tab Panel 2"
+			},
+			{
+				"name": "tab-panel",
+				"content": "Tab Panel 3"
+			}
+		],
+		"examples": [
+			{
+				"name": "Functional",
+				"className": "db-density-functional"
+			},
+			{
+				"name": "(Default) Regular",
+				"className": "db-density-regular"
+			},
+			{
+				"name": "Expressive",
+				"className": "db-density-expressive"
+			}
+		]
+	},
+	{
+		"name": "Orientation",
+		"children": [
+			{
+				"name": "tab-list",
+				"children": [
+					{
+						"name": "tab-item",
+						"content": "Tab 1"
+					},
+					{
+						"name": "tab-item",
+						"content": "Tab 2"
+					},
+					{
+						"name": "tab-item",
+						"content": "Tab 3"
+					}
+				]
+			},
+			{
+				"name": "tab-panel",
+				"content": "Tab Panel 1"
+			},
+			{
+				"name": "tab-panel",
+				"content": "Tab Panel 2"
+			},
+			{
+				"name": "tab-panel",
+				"content": "Tab Panel 3"
+			}
+		],
+		"examples": [
+			{
+				"name": "horizontal",
+				"props": {
+					"orientation": "horizontal"
+				}
+			},
+			{
+				"name": "vertical",
+				"props": {
+					"orientation": "vertical"
+				}
+			}
+		]
+	},
+	{
+		"name": "Width",
+		"children": [
+			{
+				"name": "tab-list",
+				"children": [
+					{
+						"name": "tab-item",
+						"content": "Tab 1"
+					},
+					{
+						"name": "tab-item",
+						"content": "Tab 2"
+					},
+					{
+						"name": "tab-item",
+						"content": "Tab 3"
+					}
+				]
+			},
+			{
+				"name": "tab-panel",
+				"content": "Tab Panel 1"
+			},
+			{
+				"name": "tab-panel",
+				"content": "Tab Panel 2"
+			},
+			{
+				"name": "tab-panel",
+				"content": "Tab Panel 3"
+			}
+		],
+		"examples": [
+			{
+				"name": "auto",
+				"style": { "width": "100%" },
+				"props": {
+					"width": "auto"
+				}
+			},
+			{
+				"name": "full - alignment: start",
+				"style": { "width": "100%" },
+				"props": {
+					"width": "full"
+				}
+			},
+			{
+				"name": "full - alignment: center",
+				"style": { "width": "100%" },
+				"props": {
+					"width": "full",
+					"alignment": "center"
+				}
+			}
+		]
+	},
+	{
+		"name": "Overflow",
+		"children": [
+			{
+				"name": "tab-list",
+				"children": [
+					{
+						"name": "tab-item",
+						"content": "Tab 1"
+					},
+					{
+						"name": "tab-item",
+						"content": "Tab 2"
+					},
+					{
+						"name": "tab-item",
+						"content": "Tab 3"
+					}
+				]
+			},
+			{
+				"name": "tab-panel",
+				"content": "Tab Panel 1"
+			},
+			{
+				"name": "tab-panel",
+				"content": "Tab Panel 2"
+			},
+			{
+				"name": "tab-panel",
+				"content": "Tab Panel 3"
+			}
+		],
+		"examples": [
+			{
+				"name": "no overflow",
+				"style": { "width": "300px" },
+				"props": {
+					"width": "auto"
+				}
+			},
+			{
+				"name": "with overflow - behaviour: arrows",
+				"style": { "width": "300px" },
+				"props": {
+					"overflow": true,
+					"behaviour": "arrows"
+				}
+			},
+			{
+				"name": "with overflow - behaviour: scrollbar",
+				"style": { "width": "300px" },
+				"props": {
+					"overflow": true
+				}
+			}
+		]
+	},
+	{
+		"name": "Examples",
+		"children": [
+			{
+				"name": "tab-list",
+				"children": [
+					{
+						"name": "tab-item",
+						"content": "Tab 1"
+					},
+					{
+						"name": "tab-item",
+						"content": "Tab 2"
+					},
+					{
+						"name": "tab-item",
+						"content": "Tab 3"
+					}
+				]
+			},
+			{
+				"name": "tab-panel",
+				"content": "Tab Panel 1"
+			},
+			{
+				"name": "tab-panel",
+				"content": "Tab Panel 2"
+			},
+			{
+				"name": "tab-panel",
+				"content": "Tab Panel 3"
+			}
+		],
+		"examples": [
+			{
+				"name": "2 tab selected",
+				"props": {
+					"initialSelectedIndex": 1
+				}
+			},
+			{
+				"name": "nothing selected",
+				"props": {
+					"initialSelectedMode": "manually"
+				}
+			}
+		]
+	}
+]

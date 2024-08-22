@@ -1,24 +1,33 @@
 [
 	{
-		"name": "Tonality",
+		"name": "Density",
 		"examples": [
 			{
-				"name": "functional",
+				"name": "Functional",
 				"style": { "width": "200px" },
-				"className": "db-ui-functional",
-				"props": {}
+				"content": "",
+				"className": "db-density-functional",
+				"props": {
+					"width": "full"
+				}
 			},
 			{
-				"name": "regular (Default)",
+				"name": "(Default) Regular",
 				"style": { "width": "200px" },
-				"className": "db-ui-regular",
-				"props": {}
+				"content": "",
+				"className": "db-density-regular",
+				"props": {
+					"width": "full"
+				}
 			},
 			{
-				"name": "expressive",
+				"name": "Expressive",
 				"style": { "width": "200px" },
-				"className": "db-ui-expressive",
-				"props": {}
+				"content": "",
+				"className": "db-density-expressive",
+				"props": {
+					"width": "full"
+				}
 			}
 		]
 	},
@@ -26,15 +35,20 @@
 		"name": "Variant",
 		"examples": [
 			{
-				"name": "Adaptive - Horizontal (Default)",
+				"name": "(Default) Adaptive - Horizontal",
 				"style": { "width": "200px" },
-				"props": {}
+				"content": "",
+				"props": {
+					"width": "full"
+				}
 			},
 			{
 				"name": "Adaptive - Vertical",
 				"style": { "height": "100px" },
+				"content": "",
 				"props": {
-					"variant": "vertical"
+					"variant": "vertical",
+					"width": "full"
 				}
 			}
 		]
@@ -43,15 +57,20 @@
 		"name": "Emphasis",
 		"examples": [
 			{
-				"name": "Weak (Default)",
+				"name": "(Default) Weak",
 				"style": { "width": "200px" },
-				"props": {}
+				"content": "",
+				"props": {
+					"width": "full"
+				}
 			},
 			{
 				"name": "Strong",
 				"style": { "width": "200px" },
+				"content": "",
 				"props": {
-					"emphasis": "strong"
+					"emphasis": "strong",
+					"width": "full"
 				}
 			}
 		]

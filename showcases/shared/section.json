@@ -1,68 +1,72 @@
 [
 	{
-		"name": "Tonality",
+		"name": "Density",
 		"examples": [
 			{
-				"name": "functional",
-				"className": "db-ui-functional",
-				"props": {}
+				"name": "Functional",
+				"className": "db-density-functional"
 			},
 			{
-				"name": "regular (Default)",
-				"className": "db-ui-regular",
-				"props": {}
+				"name": "(Default) Regular",
+				"className": "db-density-regular"
 			},
 			{
-				"name": "expressive",
-				"className": "db-ui-expressive",
-				"props": {}
+				"name": "Expressive",
+				"className": "db-density-expressive"
 			}
 		]
 	},
 	{
-		"name": "Variant",
+		"name": "Width",
 		"examples": [
 			{
-				"name": "Full (Default)",
+				"name": "(Default) Full",
 				"style": {
 					"width": "100%",
 					"display": "block"
-				},
-				"props": {}
+				}
 			},
 			{
 				"name": "Medium",
 				"style": { "width": "100%", "display": "block" },
 				"props": {
-					"variant": "medium"
+					"width": "medium"
 				}
 			},
 			{
 				"name": "Large",
 				"style": { "width": "100%", "display": "block" },
 				"props": {
-					"variant": "large"
+					"width": "large"
 				}
 			}
 		]
 	},
 	{
-		"name": "Size",
+		"name": "Spacing",
 		"examples": [
 			{
-				"name": "Medium (Default)",
-				"props": {}
+				"name": "(Default) Medium",
+				"props": {
+					"spacing": "medium"
+				}
 			},
 			{
 				"name": "Large",
 				"props": {
-					"size": "large"
+					"spacing": "large"
 				}
 			},
 			{
 				"name": "Small",
 				"props": {
-					"size": "small"
+					"spacing": "small"
+				}
+			},
+			{
+				"name": "None",
+				"props": {
+					"spacing": "none"
 				}
 			}
 		]

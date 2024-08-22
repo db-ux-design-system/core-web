@@ -1,0 +1,40 @@
+{
+  "name": "angular-ssr-showcase",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "build": "ng build && cpr ./dist/angular-ssr-showcase/ ../../build-showcases/angular-ssr-showcase/ -d",
+    "build:debug": "ng build --optimization=false",
+    "dev": "npm run start -- --open",
+    "ng": "ng",
+    "serve:ssr:angular-ssr-showcase": "node dist/angular-ssr-showcase/server/server.mjs",
+    "start": "ng serve --serve-path angular-ssr-showcase --port 4401",
+    "watch": "ng build --watch --configuration development"
+  },
+  "dependencies": {
+    "@angular/animations": "17.3.12",
+    "@angular/common": "17.3.12",
+    "@angular/compiler": "17.3.12",
+    "@angular/core": "17.3.12",
+    "@angular/forms": "17.3.12",
+    "@angular/platform-browser": "17.3.12",
+    "@angular/platform-browser-dynamic": "17.3.12",
+    "@angular/platform-server": "17.3.12",
+    "@angular/router": "17.3.12",
+    "@angular/ssr": "17.3.8",
+    "express": "^4.18.2",
+    "rxjs": "~7.8.1",
+    "tslib": "^2.6.2",
+    "zone.js": "~0.14.10"
+  },
+  "devDependencies": {
+    "@angular-devkit/build-angular": "17.3.8",
+    "@angular/cli": "17.3.8",
+    "@angular/compiler-cli": "17.3.12",
+    "@types/express": "^4.17.21",
+    "@types/node": "^22.5.0",
+    "cpr": "3.0.1",
+    "ng-packagr": "17.3.0",
+    "typescript": "^5.4.5"
+  }
+}

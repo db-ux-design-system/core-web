@@ -5,42 +5,27 @@
 .db-section {
 	padding-inline: variables.$db-spacing-fixed-md;
 
-	@include screen-sizes.screen("md") {
-		padding-inline: variables.$db-spacing-fixed-md;
-	}
-
-	&[data-variant="full"] {
+	&[data-width="full"] {
 		padding-inline: 0;
 	}
 
-	&[data-size="none"] {
-		padding-block: 0;
-	}
+	@include component.get-data-spacing(
+		"padding-block",
+		component.$responsive-spacings
+	);
 
-	&[data-size="small"] {
-		padding-block: variables.$db-spacing-responsive-sm;
-	}
-
-	&[data-size="medium"] {
-		padding-block: variables.$db-spacing-responsive-md;
-	}
-
-	&[data-size="large"] {
-		padding-block: variables.$db-spacing-responsive-lg;
-	}
-
-	& > div {
+	> div {
 		margin: 0 auto;
 
-		&[data-variant="full"] {
+		&[data-width="full"] {
 			max-inline-size: none;
 		}
 
-		&[data-variant="medium"] {
+		&[data-width="medium"] {
 			max-inline-size: screen-sizes.$db-breakpoint-md;
 		}
 
-		&[data-variant="large"] {
+		&[data-width="large"] {
 			max-inline-size: screen-sizes.$db-breakpoint-lg;
 		}
 	}

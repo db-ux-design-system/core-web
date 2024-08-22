@@ -6,8 +6,8 @@ import getQueryParams from './utils/get-query-params.js';
 import getActionBar from './action-bar.js';
 import getNavigation from './navigation.js';
 
-const getClassName = (tonality, color) => {
-	return `db-ui-${tonality} db-bg-${color}`;
+const getClassName = (density, color) => {
+	return `db-density-${density} db-${color}`;
 };
 
 const insertParameter = (queryParameters, key, value) => {
@@ -24,38 +24,30 @@ const insertParameter = (queryParameters, key, value) => {
 };
 
 onload = () => {
-	const selectTonalities = Array.from(
-		document.querySelectorAll('#select-tonality')
+	const selectDensities = Array.from(
+		document.querySelectorAll('#select-density')
 	);
 	const selectColors = Array.from(document.querySelectorAll('#select-color'));
 	const content = document.querySelector('#content');
 	const header = document.querySelector('#db-header');
 	const queryParameters = getQueryParams();
 
-	const tonality = queryParameters.tonality ?? 'regular';
-	const color = queryParameters.color ?? 'neutral-0';
-	content.className = getClassName(tonality, color);
+	const density = queryParameters.density ?? 'regular';
+	const color = queryParameters.color ?? 'neutral-bg-basic-level-1';
+	content.className = getClassName(density, color);
 
-	if (selectTonalities.length > 0) {
-		for (const selectTonality of selectTonalities) {
-			selectTonality.value = tonality;
-			selectTonality.addEventListener('change', (event) => {
-				insertParameter(
-					queryParameters,
-					'tonality',
-					event.target.value
-				);
-			});
-		}
+	for (const selectDensity of selectDensities) {
+		selectDensity.value = density;
+		selectDensity.addEventListener('change', (event) => {
+			insertParameter(queryParameters, 'density', event.target.value);
+		});
 	}
 
-	if (selectColors.length > 0) {
-		for (const selectColor of selectColors) {
-			selectColor.value = color;
-			selectColor.addEventListener('change', (event) => {
-				insertParameter(queryParameters, 'color', event.target.value);
-			});
-		}
+	for (const selectColor of selectColors) {
+		selectColor.value = color;
+		selectColor.addEventListener('change', (event) => {
+			insertParameter(queryParameters, 'color', event.target.value);
+		});
 	}
 
 	if (header) {
@@ -68,7 +60,7 @@ onload = () => {
 const getMetaNavigation = (mobile) => {
 	return `
 			<div slot="meta-navigation${mobile ? '-mobile' : ''}">
-				<select id="select-tonality">
+				<select id="select-density">
 					<option>functional</option>
 					<option>regular</option>
 					<option>expressive</option>
@@ -101,12 +93,12 @@ const getMetaNavigation = (mobile) => {
 
 const getAppShell = (content) =>
 	`
-	<db-page type="fixedHeaderFooter">
+	<db-page data-variant="fixed">
 		<db-header id="db-header" slot="header">
 			<db-brand slot="brand" anchorChildren="true" insideHeader="true">Vanilla Showcase</db-brand>
 			${getNavigation(true)}
 			${getNavigation(false)}
-			<db-button slot="call-to-action" variant="ghost" icon="search">Search</db-button>
+			<db-button slot="call-to-action" variant="ghost" icon="magnifying_glass">Search</db-button>
 			${getActionBar(true)}
 			${getActionBar(false)}
 			${getMetaNavigation(true)}

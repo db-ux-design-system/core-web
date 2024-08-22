@@ -1,45 +1,50 @@
+import { useState } from 'react';
 import { DBSelect } from '../../../../../output/react/src';
-import DefaultComponent from '../index';
+import DefaultComponent from '../default-component';
 import defaultComponentVariants from '../../../../shared/select.json';
 import type { DBSelectProps } from '../../../../../output/react/src/components/select/model';
 import { getVariants } from '../data';
+import { type BaseComponentProps } from '../base-component-data';
 
 const getSelect = ({
 	children,
 	label,
-	variant,
 	options,
 	icon,
 	message,
 	disabled,
 	value,
 	required,
-	labelVariant,
-	invalid
-}: DBSelectProps) => (
-	<DBSelect
-		label={label}
-		placeholder={children}
-		variant={variant}
-		options={options}
-		disabled={disabled}
-		labelVariant={labelVariant}
-		icon={icon}
-		value={value}
-		message={message}
-		invalid={invalid}
-		required={required}>
-		{children}
-	</DBSelect>
-);
+	variant
+}: DBSelectProps) => {
+	const [mValue, setValue] = useState<string>(value);
+	return (
+		<DBSelect
+			label={label}
+			placeholder={children}
+			options={options}
+			disabled={disabled}
+			variant={variant}
+			icon={icon}
+			value={mValue}
+			onChange={(event) => {
+				setValue(event.target.value);
+			}}
+			message={message}
+			required={required}>
+			{children}
+		</DBSelect>
+	);
+};
 
-const SelectComponent = () => {
+const SelectComponent = (props: BaseComponentProps) => {
 	return (
 		<DefaultComponent
 			title="DBSelect"
 			variants={getVariants(
 				defaultComponentVariants,
-				getSelect
+				getSelect,
+				props.slotCode
 			)}></DefaultComponent>
 	);
 };

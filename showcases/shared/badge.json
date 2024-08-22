@@ -1,21 +1,18 @@
 [
 	{
-		"name": "Tonality",
+		"name": "Density",
 		"examples": [
 			{
-				"name": "functional",
-				"className": "db-ui-functional",
-				"props": {}
+				"name": "Functional",
+				"className": "db-density-functional"
 			},
 			{
-				"name": "regular (Default)",
-				"className": "db-ui-regular",
-				"props": {}
+				"name": "(Default) Regular",
+				"className": "db-density-regular"
 			},
 			{
-				"name": "expressive",
-				"className": "db-ui-expressive",
-				"props": {}
+				"name": "Expressive",
+				"className": "db-density-expressive"
 			}
 		]
 	},
@@ -23,8 +20,7 @@
 		"name": "Emphasis",
 		"examples": [
 			{
-				"name": "Weak (Default)",
-				"props": {}
+				"name": "(Default) Weak"
 			},
 			{
 				"name": "Strong",
@@ -35,40 +31,39 @@
 		]
 	},
 	{
-		"name": "Variant",
+		"name": "Semantic",
 		"examples": [
 			{
-				"name": "Adaptive (Default)",
-				"props": {}
+				"name": "(Default) Adaptive"
 			},
 			{
 				"name": "Neutral",
 				"props": {
-					"variant": "neutral"
+					"semantic": "neutral"
 				}
 			},
 			{
 				"name": "Critical",
 				"props": {
-					"variant": "critical"
+					"semantic": "critical"
 				}
 			},
 			{
 				"name": "Informational",
 				"props": {
-					"variant": "informational"
+					"semantic": "informational"
 				}
 			},
 			{
 				"name": "Successful",
 				"props": {
-					"variant": "successful"
+					"semantic": "successful"
 				}
 			},
 			{
 				"name": "Warning",
 				"props": {
-					"variant": "warning"
+					"semantic": "warning"
 				}
 			},
 			{
@@ -80,35 +75,35 @@
 			{
 				"name": "Neutral Strong",
 				"props": {
-					"variant": "neutral",
+					"semantic": "neutral",
 					"emphasis": "strong"
 				}
 			},
 			{
 				"name": "Critical Strong",
 				"props": {
-					"variant": "critical",
+					"semantic": "critical",
 					"emphasis": "strong"
 				}
 			},
 			{
 				"name": "Informational Strong",
 				"props": {
-					"variant": "informational",
+					"semantic": "informational",
 					"emphasis": "strong"
 				}
 			},
 			{
 				"name": "Successful Strong",
 				"props": {
-					"variant": "successful",
+					"semantic": "successful",
 					"emphasis": "strong"
 				}
 			},
 			{
 				"name": "Warning Strong",
 				"props": {
-					"variant": "warning",
+					"semantic": "warning",
 					"emphasis": "strong"
 				}
 			}
@@ -118,13 +113,12 @@
 		"name": "Size",
 		"examples": [
 			{
-				"name": "Medium (Default)",
-				"props": {}
+				"name": "(Default) Small"
 			},
 			{
-				"name": "Small",
+				"name": "Medium",
 				"props": {
-					"size": "small"
+					"size": "medium"
 				}
 			}
 		]
@@ -133,33 +127,40 @@
 		"name": "Content",
 		"examples": [
 			{
-				"name": "Dot (Default)",
+				"name": "(Default) Text"
+			},
+			{
+				"name": "(Default) Text - Medium",
+				"props": {
+					"size": "medium"
+				}
+			},
+			{
+				"name": "Dot - Small",
+				"content": "",
 				"props": {
 					"noContent": true
 				}
 			},
 			{
-				"name": "Dot - Small",
+				"name": "Dot - Medium",
+				"content": "",
 				"props": {
 					"noContent": true,
-					"size": "small"
-				}
-			},
-			{
-				"name": "Text",
-				"props": {}
-			},
-			{
-				"name": "Icon",
-				"props": {
-					"example": "icon"
+					"size": "medium"
 				}
 			},
 			{
 				"name": "Icon - Small",
 				"props": {
+					"example": "icon"
+				}
+			},
+			{
+				"name": "Icon - Medium",
+				"props": {
 					"example": "icon",
-					"size": "small"
+					"size": "medium"
 				}
 			}
 		]
@@ -168,43 +169,49 @@
 		"name": "Placement",
 		"examples": [
 			{
-				"name": "Inline (Default)",
+				"name": "(Default) Inline",
 				"props": {
 					"placement": "inline"
 				}
 			},
 			{
 				"name": "Corner - Top - Left",
+				"content": "",
 				"props": {
 					"placement": "corner-top-left"
 				}
 			},
 			{
 				"name": "Corner - Center - Left",
+				"content": "",
 				"props": {
 					"placement": "corner-center-left"
 				}
 			},
 			{
 				"name": "Corner - Bottom- Left",
+				"content": "",
 				"props": {
 					"placement": "corner-bottom-left"
 				}
 			},
 			{
 				"name": "Corner - Top - Right",
+				"content": "",
 				"props": {
 					"placement": "corner-top-right"
 				}
 			},
 			{
 				"name": "Corner - Center - Right",
+				"content": "",
 				"props": {
 					"placement": "corner-center-right"
 				}
 			},
 			{
 				"name": "Corner - Bottom- Right",
+				"content": "",
 				"props": {
 					"placement": "corner-bottom-right"
 				}

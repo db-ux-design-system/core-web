@@ -8,7 +8,7 @@
   },
   "license": "Apache-2.0",
   "bin": {
-    "generate-icon-fonts": "build/scripts/generate-icon-fonts/index.js"
+    "@db-ui/foundations": "build/index.js"
   },
   "main": "build.js",
   "files": [
@@ -17,32 +17,39 @@
   ],
   "scripts": {
     "build": "npm-run-all build:*",
-    "build:01_style-dictionary": "node style-dictionary.js",
+    "build:01_normalize": "npm run copy-normalize",
     "build:02_copy": "npm run copy:scss",
     "build:03_css": "sass --no-source-map --load-path=node_modules/ --load-path=../../node_modules/ build/scss/:build/css/ --future-deprecation=import",
-    "build:04_tailwind": "node scripts/tailwind-config-generator.mjs false true && cpr scripts/tailwind-config-generator.mjs build/tailwind/tailwind-config-generator.mjs -o",
+    "build:04_tailwind": "cpr tailwind build/tailwind -o",
     "build:05_postcss": "postcss build/css/**/*.css --replace",
+    "build:99_foundations_common": "esbuild scripts/cli.ts --bundle --outfile=build/index.js --platform=node",
     "clean": "rm -rf build",
     "copy-build": "npm-run-all copy-build:*",
     "copy-build:assets": "cpr assets ../../build-outputs/foundations/assets -o",
     "copy-build:package.json": "cpr package.json ../../build-outputs/foundations/package.json -o",
     "copy-build:readme": "cpr README.md ../../build-outputs/foundations/README.md -o",
-    "copy-build:web": "cpr build ../../build-outputs/foundations/build -o -f \"(compose|ios-swift)\"",
+    "copy-build:web": "cpr build ../../build-outputs/foundations/build -o",
+    "copy-normalize": "cpr ../../node_modules/@csstools/normalize.css/normalize.css scss/_normalize.scss -o",
     "copy:scss": "cpr scss build/scss -o",
-    "generate:icon-fonts": "npx @db-ui/gif --src ./assets/icons/functional --variants solid inverted --cleanIgnoreVariants default,all --prefix db_ic_ --fontName db-ux --withSizes true --debug true",
-    "start": "nodemon --watch tokens/ --watch scss --watch scripts -e json,scss,js -x \"npm run build:01_style-dictionary\"",
-    "zeplin:tokens": "node scripts/zeplin-styleguide.js"
-  },
-  "dependencies": {
-    "@csstools/normalize.css": "^12.1.1"
+    "dev": "vite --open",
+    "generate:icon-fonts": "npx @db-ui/gif --src ./assets/icons/functional --variants filled inverted --fontName db-ux --withSizes true --debug true",
+    "prepare": "npm run copy-normalize",
+    "regenerate:screenshots": "npx playwright test -c ./test/playwright.config.mjs --update-snapshots",
+    "start": "nodemon --config nodemon.json",
+    "test:e2e": "npx playwright test --config=./test/playwright.config.mjs",
+    "test:migration": "tsx scripts/cli.ts migration --src=./scss --dryRun=true"
   },
   "devDependencies": {
-    "@zeplin/sdk": "^1.18.0",
+    "@csstools/normalize.css": "12.1.1",
+    "commander": "^12.0.0",
     "cpr": "3.0.1",
-    "dotenv": "^16.3.1",
-    "nodemon": "3.0.2",
-    "sass": "^1.69.7",
-    "style-dictionary": "3.9.1"
+    "cssnano": "^7.0.5",
+    "dotenv": "^16.4.5",
+    "glob": "^11.0.0",
+    "nodemon": "3.1.4",
+    "replace-in-file": "^8.1.0",
+    "sass": "1.77.4",
+    "tsx": "^4.17.0"
   },
   "publishConfig": {
     "registry": "https://registry.npmjs.org/",

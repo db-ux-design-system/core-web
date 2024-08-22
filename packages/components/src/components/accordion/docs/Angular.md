@@ -4,16 +4,16 @@ For general installation and configuration look at the [ngx-components](https://
 
 ### Load component
 
-```ts app.module.ts
-//app.module.ts
-import { DBAccordionModule } from '@db-ui/ngx-components';
+```ts app.component.ts
+// app.component.ts
+import { DBAccordion, DBAccordionItem } from '@db-ui/ngx-components';
 
-@NgModule({
-  ...
-  imports: [..., DBAccordionModule],
-  ...
+@Component({
+  // ...
+  standalone: true,
+  imports: [..., DBAccordion, DBAccordionItem],
+  // ...
 })
-
 ```
 
 ### Use component
@@ -21,8 +21,17 @@ import { DBAccordionModule } from '@db-ui/ngx-components';
 ```html app.component.html
 <!-- app.component.html -->
 <db-accordion>
-	<db-accordion-item title="Item 1" content="Content 1"></db-accordion-item>
-	<db-accordion-item title="Item 2" content="Content 2"></db-accordion-item>
-	<db-accordion-item title="Item 3" content="Content 3"></db-accordion-item>
+	<db-accordion-item
+		headlinePlain="Item 1"
+		content="Content 1"
+	></db-accordion-item>
+	<db-accordion-item
+		headlinePlain="Item 2"
+		content="Content 2"
+	></db-accordion-item>
+	<db-accordion-item
+		headlinePlain="Item 3"
+		content="Content 3"
+	></db-accordion-item>
 </db-accordion>
 ```

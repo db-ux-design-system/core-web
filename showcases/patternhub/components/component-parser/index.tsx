@@ -1,8 +1,13 @@
 import { useEffect, useState } from 'react';
-import DBTooltip from '../src/components/tooltip/tooltip';
-import DBPopover from '../src/components/popover/popover';
 import {
-	DBAlert,
+	DBSwitch,
+	DBTabPanel,
+	DBTabs,
+	DBTabList,
+	DBTabItem,
+	DBTooltip,
+	DBPopover,
+	DBNotification,
 	DBBrand,
 	DBButton,
 	DBCard,
@@ -14,7 +19,7 @@ import {
 	DBInput,
 	DBLink,
 	DBBadge,
-	DBMainNavigation,
+	DBNavigation,
 	DBNavigationItem,
 	DBRadio,
 	DBSection,
@@ -23,7 +28,7 @@ import {
 	DBAccordion,
 	DBAccordionItem,
 	DBTextarea
-} from '../src';
+} from '../../../../output/react/src/index';
 import type { ComponentParserType, ComponentType } from './data';
 
 const validHosts = new Set(['marketingportal.extranet.deutschebahn.com']);
@@ -45,7 +50,7 @@ const ComponentSwitch = ({
 					props={innerComponent.props}
 					className={innerComponent.className}
 				/>
-		  ))
+			))
 		: content;
 
 	if (type === 'h1') {
@@ -101,11 +106,11 @@ const ComponentSwitch = ({
 		}
 	}
 
-	if (type === 'alert') {
+	if (type === 'notification') {
 		return (
-			<DBAlert className={className} {...props}>
+			<DBNotification className={className} {...props}>
 				{resolvedContent}
-			</DBAlert>
+			</DBNotification>
 		);
 	}
 
@@ -253,11 +258,11 @@ const ComponentSwitch = ({
 		);
 	}
 
-	if (type === 'main-navigation') {
+	if (type === 'navigation') {
 		return (
-			<DBMainNavigation className={className} {...props}>
+			<DBNavigation className={className} {...props}>
 				{resolvedContent}
-			</DBMainNavigation>
+			</DBNavigation>
 		);
 	}
 
@@ -282,6 +287,46 @@ const ComponentSwitch = ({
 			<DBTooltip className={className} {...props}>
 				{resolvedContent}
 			</DBTooltip>
+		);
+	}
+
+	if (type === 'tab-item') {
+		return (
+			<DBTabItem className={className} {...props}>
+				{resolvedContent}
+			</DBTabItem>
+		);
+	}
+
+	if (type === 'tab-list') {
+		return (
+			<DBTabList className={className} {...props}>
+				{resolvedContent}
+			</DBTabList>
+		);
+	}
+
+	if (type === 'tabs') {
+		return (
+			<DBTabs className={className} {...props}>
+				{resolvedContent}
+			</DBTabs>
+		);
+	}
+
+	if (type === 'tab-panel') {
+		return (
+			<DBTabPanel className={className} {...props}>
+				{resolvedContent}
+			</DBTabPanel>
+		);
+	}
+
+	if (type === 'switch') {
+		return (
+			<DBSwitch className={className} {...props}>
+				{resolvedContent}
+			</DBSwitch>
 		);
 	}
 
@@ -319,7 +364,7 @@ const ComponentParser = ({ componentsString }: ComponentParserType) => {
 		);
 	}
 
-	return <DBInfotext variant="critical">Wrong format</DBInfotext>;
+	return <DBInfotext semantic="critical">Wrong format</DBInfotext>;
 };
 
 export default ComponentParser;

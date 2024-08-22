@@ -1,0 +1,93 @@
+@use "@db-ui/foundations/build/scss/variables";
+@use "@db-ui/foundations/build/scss/colors";
+@use "@db-ui/foundations/build/scss/helpers";
+@use "@db-ui/foundations/build/scss/animation";
+@use "./form-components";
+
+$scrollbar-width: helpers.px-to-rem(8);
+
+%scrollbar {
+	&::-webkit-scrollbar {
+		@extend %default-transition;
+
+		z-index: 3;
+		inline-size: $scrollbar-width;
+		block-size: $scrollbar-width;
+		background-color: colors.$db-adaptive-bg-basic-level-1-default;
+		border-start-end-radius: variables.$db-border-radius-xs;
+	}
+
+	&:is(:hover, :focus) {
+		&::-webkit-scrollbar-track,
+		&::-webkit-scrollbar-button:single-button {
+			background-color: colors.$db-adaptive-bg-basic-transparent-hovered;
+		}
+	}
+
+	&:read-only {
+		&::-webkit-scrollbar-track,
+		&::-webkit-scrollbar-button:single-button {
+			background-color: colors.$db-adaptive-bg-basic-level-1-default !important;
+		}
+	}
+
+	&::-webkit-scrollbar-track {
+		background-color: colors.$db-adaptive-bg-basic-transparent-semi-default;
+	}
+
+	&::-webkit-scrollbar-thumb {
+		background-color: colors.$db-adaptive-bg-basic-transparent-pressed;
+	}
+
+	/* Buttons */
+	&::-webkit-scrollbar-button:single-button {
+		background-color: colors.$db-adaptive-bg-basic-transparent-semi-default;
+		background-size: $scrollbar-width;
+		background-repeat: no-repeat;
+		background-position: center;
+		block-size: form-components.$floating-label-size;
+
+		&:is(:hover, :focus) {
+			background-color: colors.$db-adaptive-bg-basic-transparent-hovered;
+		}
+
+		&:active {
+			background-color: colors.$db-adaptive-bg-basic-transparent-pressed;
+		}
+	}
+
+	/* Up */
+	&::-webkit-scrollbar-button:single-button:vertical:decrement {
+		background-image: var(--db-textarea-scrollbar-button-decrement);
+	}
+
+	/* Down */
+	&::-webkit-scrollbar-button:single-button:vertical:increment {
+		background-image: var(--db-textarea-scrollbar-button-increment);
+	}
+
+	&[data-variant="floating"] {
+		&::-webkit-resizer {
+			background-color: colors.$db-adaptive-bg-basic-transparent-semi-default;
+		}
+
+		&::-webkit-scrollbar-corner {
+			background-color: colors.$db-adaptive-bg-basic-level-1-default;
+		}
+	}
+
+	&::-webkit-resizer {
+		background-color: colors.$db-adaptive-bg-basic-transparent-full-default;
+		background-size: $scrollbar-width;
+		background-repeat: no-repeat;
+		background-position: center;
+		background-image: var(--db-textarea-resizer-image);
+		border-end-end-radius: variables.$db-border-radius-xs;
+	}
+
+	&::-webkit-scrollbar-corner {
+		@extend %default-transition;
+
+		border-end-end-radius: variables.$db-border-radius-xs;
+	}
+}

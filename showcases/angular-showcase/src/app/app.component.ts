@@ -1,13 +1,25 @@
-import { Component, type OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { ActivatedRoute, Router, RouterOutlet } from '@angular/router';
 import {
+	SecondaryActionDirective,
+	NavigationDirective,
+	MetaNavigationDirective,
+	NavigationContentDirective,
+	DBBrand,
+	DBButton,
+	DBHeader,
+	DBNavigation,
+	DBPage,
+	DBSelect,
 	COLOR,
-	COLORS,
-	TONALITIES,
-	TONALITY,
 	COLOR_CONST,
-	TONALITY_CONST
-} from '../../../../packages/components/src/shared/constants';
+	COLORS,
+	DENSITIES,
+	DENSITY,
+	DENSITY_CONST
+} from '../../../../output/angular/src';
+import { NavItemComponent } from './nav-item/nav-item.component';
 import {
 	getSortedNavigationItems,
 	NAVIGATION_ITEMS,
@@ -16,20 +28,36 @@ import {
 
 @Component({
 	selector: 'app-root',
+	standalone: true,
+	imports: [
+		FormsModule,
+		RouterOutlet,
+		NavItemComponent,
+		DBPage,
+		DBHeader,
+		DBBrand,
+		DBNavigation,
+		DBSelect,
+		DBButton,
+		SecondaryActionDirective,
+		NavigationDirective,
+		MetaNavigationDirective,
+		NavigationContentDirective
+	],
 	templateUrl: './app.component.html'
 })
 export class AppComponent implements OnInit {
 	drawerOpen = false;
 	navigationItems: NavItem[] = getSortedNavigationItems(NAVIGATION_ITEMS);
 
-	tonalities = TONALITIES;
+	densities = DENSITIES;
 	colors = COLORS;
 
-	tonality = TONALITY.REGULAR;
-	color = COLOR.BASE;
+	density = DENSITY.REGULAR;
+	color = COLOR.NEUTRAL_BG_LEVEL_1;
 
-	page: string;
-	fullscreen: boolean;
+	page?: string;
+	fullscreen = false;
 
 	constructor(
 		private readonly router: Router,
@@ -38,8 +66,8 @@ export class AppComponent implements OnInit {
 
 	ngOnInit(): void {
 		this.route.queryParams.subscribe((parameters) => {
-			if (parameters[TONALITY_CONST]) {
-				this.tonality = parameters[TONALITY_CONST];
+			if (parameters[DENSITY_CONST]) {
+				this.density = parameters[DENSITY_CONST];
 			}
 
 			if (parameters[COLOR_CONST]) {
@@ -57,13 +85,13 @@ export class AppComponent implements OnInit {
 	}
 
 	getChangeableClasses = () => {
-		return `db-ui-${this.tonality} db-bg-${this.color}`;
+		return `db-density-${this.density} db-${this.color}`;
 	};
 
 	onChange = async (value: any) => {
 		await this.router.navigate([], {
 			relativeTo: this.route,
-			queryParams: { tonality: this.tonality, color: this.color },
+			queryParams: { density: this.density, color: this.color },
 			queryParamsHandling: 'merge'
 		});
 	};

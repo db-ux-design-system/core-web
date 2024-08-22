@@ -7,21 +7,13 @@ import {
 	useRef,
 	useStore
 } from '@builder.io/mitosis';
-import {
-	DBAccordionState,
-	DBAccordionProps,
-	DBAccordionItemInterface
-} from './model';
+import { DBAccordionProps, DBAccordionState } from './model';
 import { cls } from '../../utils';
 import { DBAccordionItem } from '../accordion-item';
+import { DBAccordionItemDefaultProps } from '../accordion-item/model';
 
 useMetadata({
-	isAttachedToShadowDom: true,
-	component: {
-		// MS Power Apps
-		includeIcon: false,
-		properties: []
-	}
+	isAttachedToShadowDom: true
 });
 
 export default function DBAccordion(props: DBAccordionProps) {
@@ -31,7 +23,7 @@ export default function DBAccordion(props: DBAccordionProps) {
 		openItems: [],
 		clickedId: '',
 		initialized: false,
-		convertItems(items: any[] | string | undefined) {
+		convertItems(items: unknown[] | string | undefined) {
 			try {
 				if (typeof items === 'string') {
 					return JSON.parse(items);
@@ -66,9 +58,6 @@ export default function DBAccordion(props: DBAccordionProps) {
 	});
 
 	onMount(() => {
-		if (props.stylePath) {
-			state.stylePath = props.stylePath;
-		}
 		state.initialized = true;
 	});
 	// jscpd:ignore-end
@@ -129,17 +118,15 @@ export default function DBAccordion(props: DBAccordionProps) {
 		<div
 			ref={ref}
 			id={props.id}
-			class={cls('db-accordion', props.className)}>
-			<Show when={state.stylePath}>
-				<link rel="stylesheet" href={state.stylePath} />
-			</Show>
+			class={cls('db-accordion', props.className)}
+			data-variant={props.variant}>
 			<Show when={!props.items}>{props.children}</Show>
 			<Show when={props.items}>
 				<For each={state.convertItems(props.items)}>
-					{(item: DBAccordionItemInterface, index: number) => (
+					{(item: DBAccordionItemDefaultProps, index: number) => (
 						<DBAccordionItem
-							key={`accordion-item-${item.title}-${index}`}
-							title={item.title}
+							key={`accordion-item-${index}`}
+							headlinePlain={item.headlinePlain}
 							disabled={item.disabled}
 							content={item.content}
 						/>

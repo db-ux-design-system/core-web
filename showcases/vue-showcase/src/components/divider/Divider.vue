@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import DefaultComponent from "../DefaultComponent.vue";
 import defaultComponentVariants from "../../../../shared/divider.json";
-import { DBDivider, DBInfotext } from "../../../../../output/vue/vue3/src";
+import { DBDivider, DBInfotext } from "../../../../../output/vue/src";
 </script>
 
 <template>
@@ -9,12 +9,13 @@ import { DBDivider, DBInfotext } from "../../../../../output/vue/vue3/src";
 		<template
 			#example="{ exampleIndex, variantIndex, exampleName, exampleProps }"
 		>
-			<DBInfotext size="small" variant="informational">
+			<DBInfotext size="small" semantic="informational">
 				{{ exampleName }}</DBInfotext
 			>
 			<DBDivider
-				:variant="exampleProps.variant"
-				:emphasis="exampleProps.emphasis"
+				:variant="exampleProps?.variant"
+				:emphasis="exampleProps?.emphasis"
+				:width="exampleProps?.width"
 			/>
 		</template>
 	</DefaultComponent>

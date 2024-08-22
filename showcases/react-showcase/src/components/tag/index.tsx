@@ -1,18 +1,13 @@
 import { useState } from 'react';
-import {
-	DBButton,
-	DBCheckbox,
-	DBLink,
-	DBRadio,
-	DBTag
-} from '../../../../../output/react/src';
-import DefaultComponent from '../index';
+import { DBTag } from '../../../../../output/react/src';
+import DefaultComponent from '../default-component';
 import defaultComponentVariants from '../../../../shared/tag.json';
 import { type DBTagProps } from '../../../../../output/react/src/components/tag/model';
 import { getVariants } from '../data';
+import { type BaseComponentProps } from '../base-component-data';
 
 const getTag = ({
-	variant,
+	semantic,
 	disabled,
 	children,
 	icon,
@@ -22,15 +17,17 @@ const getTag = ({
 	emphasis,
 	removeButton,
 	checked,
-	component
+	component,
+	identifier
 }: DBTagProps & {
 	checked?: boolean;
 	component?: 'button' | 'link' | 'radio' | 'checkbox';
+	identifier?: string;
 }) => {
 	const [checkedState, setCheckedState] = useState<boolean>(checked ?? false);
 	return (
 		<DBTag
-			variant={variant}
+			semantic={semantic}
 			disabled={disabled}
 			icon={icon}
 			noText={noText}
@@ -42,21 +39,25 @@ const getTag = ({
 				// eslint-disable-next-line no-alert
 				alert(children.toString());
 			}}>
-			{component === 'button' && <DBButton>{children}</DBButton>}
-			{component === 'link' && <DBLink href="#">{children}</DBLink>}
+			{component === 'button' && <button>{children}</button>}
+			{component === 'link' && <a href="#">{children}</a>}
 			{component === 'checkbox' && (
-				<DBCheckbox
-					checked={checkedState}
-					onChange={(event) => {
-						setCheckedState(event.target.checked);
-					}}>
+				<label>
+					<input
+						type="checkbox"
+						checked={checkedState}
+						onChange={(event) => {
+							setCheckedState(event.target.checked);
+						}}
+					/>
 					{children}
-				</DBCheckbox>
+				</label>
 			)}
 			{component === 'radio' && (
-				<DBRadio checked={checked} name="radio">
+				<label>
+					<input type="radio" checked={checked} name={identifier} />
 					{children}
-				</DBRadio>
+				</label>
 			)}
 
 			{!component && !overflow && <>{children}</>}
@@ -65,13 +66,14 @@ const getTag = ({
 	);
 };
 
-const TagComponent = () => {
+const TagComponent = (props: BaseComponentProps) => {
 	return (
 		<DefaultComponent
 			title="DBTag"
 			variants={getVariants(
 				defaultComponentVariants,
-				getTag
+				getTag,
+				props.slotCode
 			)}></DefaultComponent>
 	);
 };

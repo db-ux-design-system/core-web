@@ -1,17 +1,11 @@
 <script setup lang="ts">
 import DefaultComponent from "../DefaultComponent.vue";
 import defaultComponentVariants from "../../../../shared/tag.json";
-import {
-	DBTag,
-	DBButton,
-	DBLink,
-	DBCheckbox,
-	DBRadio
-} from "../../../../../output/vue/vue3/src";
+import { DBTag } from "../../../../../output/vue/src";
 
-const showAlert = (exampleName: string) => {
+const showAlert = (exampleName?: string) => {
 	// eslint-disable-next-line no-alert
-	alert(exampleName);
+	alert(exampleName || "");
 };
 </script>
 
@@ -21,51 +15,53 @@ const showAlert = (exampleName: string) => {
 			#example="{ exampleIndex, variantIndex, exampleName, exampleProps }"
 		>
 			<DBTag
-				:variant="exampleProps.variant"
-				:disabled="exampleProps.disabled"
-				:icon="exampleProps.icon"
-				:noText="exampleProps.noText"
-				:behaviour="exampleProps.behaviour"
-				:emphasis="exampleProps.emphasis"
-				:overflow="exampleProps.overflow"
-				:removeButton="exampleProps.removeButton"
+				:semantic="exampleProps?.semantic"
+				:disabled="exampleProps?.disabled"
+				:icon="exampleProps?.icon"
+				:noText="exampleProps?.noText"
+				:behaviour="exampleProps?.behaviour"
+				:emphasis="exampleProps?.emphasis"
+				:overflow="exampleProps?.overflow"
+				:removeButton="exampleProps?.removeButton"
 				@remove="showAlert(exampleName)"
 			>
-				<DBButton v-if="exampleProps.component === 'button'">{{
-					exampleName
-				}}</DBButton>
-				<DBLink v-if="exampleProps.component === 'link'" href="#">
+				<button v-if="exampleProps?.component === 'button'">
 					{{ exampleName }}
-				</DBLink>
-				<DBCheckbox
-					v-if="exampleProps.component === 'checkbox'"
-					:checked="exampleProps.checked"
-					>{{ exampleName }}</DBCheckbox
-				>
-				<DBRadio
-					v-if="exampleProps.component === 'radio'"
-					name="radio"
-					:checked="exampleProps.checked"
-					>{{ exampleName }}</DBRadio
-				>
+				</button>
+				<a v-if="exampleProps?.component === 'link'" href="#">
+					{{ exampleName }}
+				</a>
+				<label v-if="exampleProps?.component === 'checkbox'">
+					<input type="checkbox" :checked="exampleProps?.checked" />
+					{{ exampleName }}
+				</label>
+
+				<label v-if="exampleProps?.component === 'radio'">
+					<input
+						type="radio"
+						:checked="exampleProps?.checked"
+						:name="exampleProps?.identifier"
+					/>
+					{{ exampleName }}
+				</label>
 				<template
 					v-if="
-						exampleProps.component !== 'button' &&
-						exampleProps.component !== 'link' &&
-						exampleProps.component !== 'checkbox' &&
-						exampleProps.component !== 'radio' &&
-						!exampleProps.overflow
+						exampleProps?.component !== 'button' &&
+						exampleProps?.component !== 'link' &&
+						exampleProps?.component !== 'checkbox' &&
+						exampleProps?.component !== 'radio' &&
+						!exampleProps?.overflow
 					"
 				>
 					{{ exampleName }}
 				</template>
 				<template
 					v-if="
-						exampleProps.component !== 'button' &&
-						exampleProps.component !== 'link' &&
-						exampleProps.component !== 'checkbox' &&
-						exampleProps.component !== 'radio' &&
-						exampleProps.overflow
+						exampleProps?.component !== 'button' &&
+						exampleProps?.component !== 'link' &&
+						exampleProps?.component !== 'checkbox' &&
+						exampleProps?.component !== 'radio' &&
+						exampleProps?.overflow
 					"
 				>
 					<span>{{ exampleName }}</span>

@@ -4,129 +4,90 @@ import {
 	DBHeader,
 	DBBrand,
 	DBSelect,
-	DBMainNavigation,
+	DBNavigation,
 	DBButton
-} from "../../../output/vue/vue3/src";
+} from "../../../output/vue/src";
 import {
-	COLOR,
 	COLORS,
-	TONALITIES,
-	TONALITY,
-	COLOR_CONST,
-	TONALITY_CONST
+	DENSITIES
 } from "../../../packages/components/src/shared/constants";
-import {
-	getSortedNavigationItems,
-	navigationItems
-} from "./utils/navigation-items";
-
-import { ref, watch, computed } from "vue";
-import { useRouter, useRoute } from "vue-router";
 import NavItemComponent from "./NavItemComponent.vue";
 
-const router = useRouter();
-const route = useRoute();
+import { useLayout } from "./composables/use-layout";
 
-const tonality = ref(TONALITY.REGULAR);
-const color = ref(COLOR.BASE);
-const page = ref();
-const fullscreen = ref();
-
-const drawerOpen = ref(false);
-
-const toggleDrawer = (open: boolean) => {
-	drawerOpen.value = open;
-};
-
-const classNames = computed(
-	() => `db-ui-${tonality.value} db-bg-${color.value}`
-);
-
-const onChange = (event: any) => {
-	router.push({
-		path: route.path,
-		query: {
-			...route.query,
-			[TONALITY_CONST]: tonality.value,
-			[COLOR_CONST]: color.value
-		}
-	});
-};
-
-watch(
-	() => route.query,
-	async (query: any) => {
-		if (query[COLOR_CONST] && query[COLOR_CONST] !== color.value) {
-			color.value = query[COLOR_CONST];
-		}
-		if (query[TONALITY_CONST] && query[TONALITY_CONST] !== tonality.value) {
-			tonality.value = query[TONALITY_CONST];
-		}
-		if (query.page) {
-			page.value = query.page;
-		}
-		if (query.fullscreen) {
-			page.value = query.fullscreen;
-		}
-	}
-);
-
-const sortedNavigation = getSortedNavigationItems(navigationItems);
+const {
+	page,
+	fullscreen,
+	density,
+	color,
+	drawerOpen,
+	classNames,
+	onChange,
+	toggleDrawer,
+	sortedNavigation
+} = useLayout();
 </script>
 
 <template>
 	<div v-if="page || fullscreen" :class="classNames">
 		<router-view></router-view>
 	</div>
-	<DBPage v-if="!page && !fullscreen" type="fixedHeaderFooter" :fadeIn="true">
+	<DBPage
+		v-if="!page && !fullscreen"
+		variant="fixed"
+		documentOverflow="auto"
+		:fadeIn="true"
+	>
 		<template v-slot:header>
 			<DBHeader :drawerOpen="drawerOpen" :onToggle="toggleDrawer">
 				<template v-slot:brand>
-					<DBBrand
-						title="Showcase"
-						src="db_logo.svg"
-						href="/vue-showcase/"
-					>
-						Showcase
-					</DBBrand>
+					<DBBrand>Showcase</DBBrand>
 				</template>
-				<DBMainNavigation>
+				<DBNavigation aria-label="main navigation">
 					<template v-for="item of sortedNavigation">
 						<NavItemComponent :navItem="item"></NavItemComponent>
 					</template>
-				</DBMainNavigation>
+				</DBNavigation>
 				<template v-slot:call-to-action>
-					<DBButton icon="search" variant="text" :no-text="true">
+					<DBButton
+						icon="magnifying_glass"
+						variant="ghost"
+						:no-text="true"
+					>
 						Search
 					</DBButton>
 				</template>
 				<template v-slot:action-bar>
-					<DBButton icon="account" variant="text" :no-text="true">
+					<DBButton icon="user" variant="ghost" :no-text="true">
 						Profile
 					</DBButton>
-					<DBButton icon="alert" variant="text" :no-text="true">
+					<DBButton icon="bell" variant="ghost" :no-text="true">
 						Notification
 					</DBButton>
-					<DBButton icon="help" variant="text" :no-text="true">
+					<DBButton
+						icon="question_mark_circle"
+						variant="ghost"
+						:no-text="true"
+					>
 						Help
 					</DBButton>
 				</template>
 				<template v-slot:meta-navigation>
 					<DBSelect
-						label="Tonality"
-						labelVariant="floating"
-						v-model:value="tonality"
-						@change="onChange($event)"
+						label="Density"
+						variant="floating"
+						:value="density"
+						@change="onChange($event, 'density')"
 					>
-						<option v-for="ton of TONALITIES" :value="ton">
+						<option v-for="ton of DENSITIES" :value="ton">
 							{{ ton }}
 						</option>
 					</DBSelect>
 					<DBSelect
 						label="Color"
-						labelVariant="floating"
-						v-model:value="color"
-						@change="onChange($event)"
+						variant="floating"
+						:value="color"
+						@change="onChange($event, 'color')"
 					>
 						<option v-for="col of COLORS" :value="col">
 							{{ col }}

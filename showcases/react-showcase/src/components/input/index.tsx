@@ -1,13 +1,29 @@
-import { useState } from 'react';
-import { DBInput } from '../../../../../output/react/src';
-import DefaultComponent from '../index';
+import {
+	DBInput,
+	type LabelVariantType,
+	type ValueLabelType
+} from '../../../../../output/react/src';
+import DefaultComponent from '../default-component';
 import defaultComponentVariants from '../../../../shared/input.json';
 import { type DBInputProps } from '../../../../../output/react/src/components/input/model';
 import { getVariants } from '../data';
+import { type BaseComponentProps } from '../base-component-data';
+
+const getDataList = (
+	variant?: LabelVariantType
+): string[] | ValueLabelType[] => {
+	if (variant === 'floating') {
+		return ['Test 1', 'Test 2'];
+	}
+
+	return [
+		{ value: 'test1', label: 'Test 1' },
+		{ value: 'test2', label: 'Test 2' }
+	];
+};
 
 const getInput = ({
 	label,
-	variant,
 	value,
 	type,
 	minLength,
@@ -17,41 +33,37 @@ const getInput = ({
 	icon,
 	children,
 	message,
-	labelVariant,
+	variant,
 	readOnly,
-	invalid
-}: DBInputProps) => {
-	const [dynamicValue, setDynamicValue] = useState<string>(value);
+	dataList
+}: DBInputProps & { dataList: boolean }) => {
 	return (
 		<DBInput
 			label={label}
 			message={message}
 			placeholder={children}
-			labelVariant={labelVariant}
 			variant={variant}
-			value={dynamicValue}
+			defaultValue={value}
 			type={type}
 			minLength={minLength}
 			required={required}
 			disabled={disabled}
 			readOnly={readOnly}
 			iconAfter={iconAfter}
-			invalid={invalid}
 			icon={icon}
-			onChange={(event) => {
-				setDynamicValue(event.target.value);
-			}}
+			dataList={dataList ? getDataList(variant) : undefined}
 		/>
 	);
 };
 
-const InputComponent = () => {
+const InputComponent = (props: BaseComponentProps) => {
 	return (
 		<DefaultComponent
 			title={'DBInput'}
 			variants={getVariants(
 				defaultComponentVariants,
-				getInput
+				getInput,
+				props.slotCode
 			)}></DefaultComponent>
 	);
 };

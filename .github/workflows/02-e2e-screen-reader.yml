@@ -1,0 +1,67 @@
+name: 🎭 Playwright Screen Reader
+
+on:
+  workflow_call:
+    inputs:
+      version:
+        required: true
+        type: string
+
+permissions:
+  actions: write
+  contents: write
+
+jobs:
+  playwright-screen-reader:
+    name: 🧪🎭 - screen-reader - ${{ matrix.os }} - react - ${{ matrix.shardIndex }}/${{ matrix.shardTotal }}
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [macos-13, windows-2022]
+        shardIndex: [1, 2]
+        shardTotal: [2]
+    steps:
+      - name: ⏬ Checkout repo
+        uses: actions/checkout@v4
+
+      - name: 🦮 Guidepup Setup
+        uses: guidepup/setup-action@0.16.0
+        with:
+          record: true
+
+      - name: 🔄 Init Cache
+        uses: ./.github/actions/npm-cache
+
+      - name: 🔄 Init Playwright Cache
+        uses: ./.github/actions/playwright-cache
+        with:
+          version: ${{ inputs.version }}
+
+      - name: ⏬ Download react-showcase
+        uses: actions/download-artifact@v4
+        with:
+          name: db-ui-react-showcase
+          path: build-showcases/react-showcase
+
+      - name: 👩‍🔬 Test showcase with Playwright 🎭
+        env:
+          showcase: react-showcase
+        run: |
+          npm run test:screen-reader:${{ env.OS }} --workspace=react-showcase -- --shard=${{ matrix.shardIndex }}/${{ matrix.shardTotal }}
+
+      - name: 🆙 Upload test results
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: react-screen-reader-${{ matrix.os }}-${{ matrix.shardIndex }}
+          path: ./showcases/react-showcase/test-results
+          retention-days: 30
+
+      - name: 🆙 Upload test results
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: react-recordings-${{ matrix.os }}-${{ matrix.shardIndex }}
+          path: ./showcases/react-showcase/recordings
+          retention-days: 30

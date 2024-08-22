@@ -1,5 +1,5 @@
 <app-default-component
-	title="Drawer"
+	title="DBDrawer"
 	[variants]="variants"
 	[exampleTemplate]="exampleTemplate"
 >
@@ -11,12 +11,11 @@
 		let-variantIndex="variantIndex"
 	>
 		<db-drawer
-			[backdrop]="exampleProps.backdrop"
-			[withCloseButton]="exampleProps.withCloseButton"
-			[rounded]="exampleProps.rounded"
-			[width]="exampleProps.width"
-			[spacing]="exampleProps.spacing"
-			[direction]="exampleProps.direction"
+			[backdrop]="exampleProps?.backdrop"
+			[rounded]="exampleProps?.rounded"
+			[width]="exampleProps?.width"
+			[spacing]="exampleProps?.spacing"
+			[direction]="exampleProps?.direction"
 			[open]="openDrawer === exampleName"
 			(onClose)="toggleDrawer(undefined)"
 		>

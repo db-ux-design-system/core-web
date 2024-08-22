@@ -4,16 +4,16 @@ For general installation and configuration take a look at the [ngx-components](h
 
 ### Load component
 
-```ts app.module.ts
-//app.module.ts
-import { DBCheckboxModule } from '@db-ui/ngx-components';
+```ts app.component.ts
+// app.component.ts
+import { DBCheckbox } from '@db-ui/ngx-components';
 
-@NgModule({
-  ...
-  imports: [..., DBCheckboxModule],
-  ...
+@Component({
+  // ...
+  standalone: true,
+  imports: [..., DBCheckbox],
+  // ...
 })
-
 ```
 
 ### Use component
@@ -21,7 +21,8 @@ import { DBCheckboxModule } from '@db-ui/ngx-components';
 ```html app.component.html
 <!-- app.component.html -->
 <ul>
-	<li *ngFor="let checkboxName of checkboxNames">
+	@for (checkboxName of checkboxNames; track checkboxName) {
+	<li>
 		<db-checkbox
 			(change)="checkbox = checkboxName"
 			[label]="'Checkbox ' + checkboxName"
@@ -29,6 +30,7 @@ import { DBCheckboxModule } from '@db-ui/ngx-components';
 			name="CheckboxGroup"
 		></db-checkbox>
 	</li>
+	}
 </ul>
 ```
 
@@ -51,11 +53,17 @@ export class AppComponent {
 Third party controls require a `ControlValueAccessor` to function with angular forms. Adding an `ngDefaultControl` attribute will allow them to use that directive.
 [Further information](https://stackoverflow.com/a/46465959)
 
-```ts app.module.ts
-// app.module.ts
-@NgModule({
-  …
-  imports: [ FormsModule, …]
+```ts app.component.ts
+//app.component.ts
+import { FormsModule } from '@angular/forms';
+
+@Component({
+	// ...
+	imports: [
+		// ...,
+		FormsModule
+    ],
+	// ...
 })
 ```
 
@@ -67,7 +75,7 @@ Third party controls require a `ControlValueAccessor` to function with angular f
 		name="checkbox"
 		label="Checkbox"
 	></db-checkbox>
-	<db-button type="button" variant="primary" (click)="showValues()"
+	<db-button type="button" variant="brand" (click)="showValues()"
 		>Get checkbox value</db-button
 	>
 </form>

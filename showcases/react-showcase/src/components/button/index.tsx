@@ -1,8 +1,10 @@
+import { FunctionComponent, ReactElement } from 'react';
 import { DBButton } from '../../../../../output/react/src';
-import DefaultComponent from '../index';
+import DefaultComponent from '../default-component';
 import defaultComponentVariants from '../../../../shared/button.json';
 import { type DBButtonProps } from '../../../../../output/react/src/components/button/model';
 import { getVariants } from '../data';
+import { type BaseComponentProps } from '../base-component-data';
 
 const getButton = ({
 	variant,
@@ -32,13 +34,14 @@ const getButton = ({
 	</DBButton>
 );
 
-const ButtonComponent = () => {
+const ButtonComponent = (props: BaseComponentProps) => {
 	return (
 		<DefaultComponent
 			title="DBButton"
 			variants={getVariants(
 				defaultComponentVariants,
-				getButton
+				getButton,
+				props.slotCode
 			)}></DefaultComponent>
 	);
 };

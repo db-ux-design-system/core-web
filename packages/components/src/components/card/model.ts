@@ -1,30 +1,29 @@
 import {
-	CardProps,
 	ClickEventProps,
 	ClickEventState,
 	GlobalProps,
 	GlobalState,
-	ImageProps,
 	SpacingProps
 } from '../../shared/model';
-import { COLOR } from '../../shared/constants';
+
+export const CardBehaviourList = ['default', 'interactive'] as const;
+export type CardBehaviourType = (typeof CardBehaviourList)[number];
+
+export const CardElevationLevelList = ['1', '2', '3'] as const;
+export type CardElevationLevelType = (typeof CardElevationLevelList)[number];
 
 export type DBCardDefaultProps = {
 	/**
-	 * Valid background [colors](https://marketingportal.extranet.deutschebahn.com/marketingportal/Design-Anwendungen/db-ux-design-system-v3/foundation/colors).
+	 * Makes the card interactive
 	 */
-	colorVariant?: COLOR | string;
-	/**
-	 * Makes the card interactive (clickable).
-	 */
-	variant?: 'default' | 'interactive';
+	behaviour?: CardBehaviourType;
+
+	elevationLevel?: CardElevationLevelType;
 };
 
 export type DBCardProps = DBCardDefaultProps &
 	GlobalProps &
 	ClickEventProps<HTMLElement> &
-	ImageProps &
-	CardProps &
 	SpacingProps;
 
 export type DBCardDefaultState = {};

@@ -1,19 +1,24 @@
-import type { Page } from '@playwright/test';
+import { expect, type Page } from '@playwright/test';
 
 export const setScrollViewport = (page: Page, fixedHeight?: number) => {
 	return async () => {
 		const header = await page.waitForSelector('.db-header');
 		const headerHeight: number = await header.evaluate((node) =>
-			Number(node?.scrollHeight ?? node?.clientHeight ?? 72)
+			Number(node?.scrollHeight ?? 72)
 		);
 		const main = await page.waitForSelector('.db-main');
 		const mainHeight: number = await main.evaluate((node) =>
-			Number(node?.scrollHeight ?? node?.clientHeight ?? 2500)
+			Number(node?.scrollHeight ?? 2500)
 		);
 
+		const width = page.viewportSize().width;
+		const height = fixedHeight ?? headerHeight + mainHeight;
+
 		await page.setViewportSize({
-			width: page.viewportSize().width,
-			height: fixedHeight ?? headerHeight + mainHeight
+			width,
+			height
 		});
+
+		await expect(page.viewportSize().height).toEqual(height);
 	};
 };

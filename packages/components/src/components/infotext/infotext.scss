@@ -1,31 +1,44 @@
 @use "sass:map";
-@use "@db-ui/foundations/build/scss/tonality";
+@use "@db-ui/foundations/build/scss/fonts";
 @use "@db-ui/foundations/build/scss/variables";
 @use "@db-ui/foundations/build/scss/colors";
 @use "@db-ui/foundations/build/scss/icons";
 
 .db-infotext {
 	--db-icon-margin-end: #{variables.$db-spacing-fixed-2xs};
+
 	@extend %db-overwrite-font-size-sm;
 
 	display: flex;
 
 	@include icons.has-no-icon() {
-		@include icons.to-solid-icon();
-		@include icons.set-icon("info");
+		@include icons.to-filled-icon();
+		@include icons.set-icon("information_circle");
 	}
 
 	&[data-size="small"] {
 		@extend %db-overwrite-font-size-xs;
 	}
 
-	@each $name, $colors in colors.$component-variants {
-		&[data-variant="#{$name}"] {
+	&[data-semantic="adaptive"],
+	&:not([data-semantic]) {
+		color: colors.$db-adaptive-bg-inverted-contrast-high-default;
+
+		&::before {
+			--db-icon-color: #{colors.$db-adaptive-on-bg-basic-emphasis-70-default};
+		}
+	}
+
+	@each $name, $colors in colors.$variant-colors {
+		&[data-semantic="#{$name}"] {
 			@include icons.variant-icons($name);
-			color: map.get($colors, "text");
+
+			color: var(--db-#{$name}-bg-inverted-contrast-high-default);
 
 			&::before {
-				--db-current-icon-color: #{map.get($colors, "element")};
+				--db-icon-color: var(
+					--db-#{$name}-on-bg-basic-emphasis-70-default
+				);
 			}
 		}
 	}

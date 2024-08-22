@@ -1,0 +1,31 @@
+<app-default-component
+	title="DBSwitch"
+	[variants]="variants"
+	[exampleTemplate]="exampleTemplate"
+>
+	<ng-template
+		#exampleTemplate
+		let-exampleProps="exampleProps"
+		let-exampleName="exampleName"
+		let-exampleIndex="exampleIndex"
+		let-variantIndex="variantIndex"
+	>
+		<db-switch
+			[visualAid]="exampleProps?.visualAid"
+			[checked]="exampleProps?.checked"
+			[disabled]="exampleProps?.disabled"
+			[variant]="exampleProps?.variant"
+			[size]="exampleProps?.size"
+			[emphasis]="exampleProps?.emphasis"
+			[icon]="exampleProps?.icon"
+			[iconAfter]="exampleProps?.iconAfter"
+		>
+			{{ exampleName }}
+		</db-switch>
+		@if (exampleProps?.variant === "hidden") {
+			<DBInfotext semantic="informational" icon="none">
+				{{ exampleName }}
+			</DBInfotext>
+		}
+	</ng-template>
+</app-default-component>

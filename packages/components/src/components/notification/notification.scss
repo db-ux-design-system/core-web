@@ -1,0 +1,214 @@
+@use "sass:map";
+@use "@db-ui/foundations/build/scss/density";
+@use "@db-ui/foundations/build/scss/variables";
+@use "@db-ui/foundations/build/scss/colors";
+@use "@db-ui/foundations/build/scss/icons";
+@use "@db-ui/foundations/build/scss/screen-sizes";
+@use "../../styles/component";
+@use "../../styles/link-components";
+@use "./notification-grid-default";
+@use "./notification-grid-overlay";
+@use "./notification-grid-non-overlay";
+
+%ugly-line-height-workarounds {
+	// resets line-height to smaller height based on timestamp
+	&:has(span) {
+		header,
+		p,
+		&::before,
+		.db-button {
+			margin-block-start: -2px;
+		}
+	}
+}
+
+.db-notification {
+	@extend %component-border;
+	@extend %grid-layout-default;
+	@extend %ugly-line-height-workarounds;
+
+	display: grid;
+	padding: variables.$db-spacing-fixed-md;
+	gap: variables.$db-spacing-fixed-xs variables.$db-spacing-fixed-md;
+	inline-size: inherit;
+	background-color: colors.$db-adaptive-bg-basic-level-2-default;
+
+	&::before {
+		--db-icon-color: #{colors.$db-adaptive-on-bg-basic-emphasis-70-default};
+	}
+
+	a {
+		@extend %db-default-link;
+
+		grid-area: link;
+		white-space: nowrap;
+
+		// Overwrite settings for db-link ALWAYS
+		&::before,
+		&::after {
+			content: none !important;
+			margin: 0 !important;
+		}
+
+		&[data-variant="brand"] {
+			@extend %db-link-default-color;
+		}
+
+		&[data-size="small"] {
+			@extend %db-overwrite-font-size-md;
+		}
+	}
+
+	// headline
+	header {
+		grid-area: head;
+		font-weight: 700;
+
+		&,
+		h1,
+		h2,
+		h3,
+		h4,
+		h5,
+		h6 {
+			font-family: var(--db-font-family-sans);
+			margin: 0;
+			line-height: var(--db-type-headline-line-height-2xs);
+			font-size: var(--db-type-headline-font-size-2xs);
+
+			&::before,
+			&::after {
+				--db-icon-font-size: var(--db-base-headline-icon-font-size-2xs);
+				--db-icon-font-weight: var(--db-base-headline-icon-weight-2xs);
+			}
+		}
+	}
+
+	// content
+	p {
+		@extend %db-overwrite-font-size-md;
+
+		grid-area: content;
+		margin: 0;
+	}
+
+	img {
+		min-block-size: variables.$db-sizing-md;
+		min-inline-size: variables.$db-sizing-md;
+		max-block-size: variables.$db-sizing-md;
+		max-inline-size: variables.$db-sizing-md;
+		border-radius: variables.$db-border-radius-xs;
+	}
+
+	// timestamp
+	span {
+		@extend %db-overwrite-font-size-sm;
+
+		grid-area: timestamp;
+		white-space: nowrap;
+	}
+
+	.db-button {
+		grid-area: close;
+	}
+
+	&:has(img) {
+		// we don't show a icon if we have an image
+		::before {
+			content: none !important;
+		}
+	}
+
+	&[data-icon]::before,
+	&::before,
+	img {
+		--db-icon-font-family: "db-ux-filled";
+		--db-icon-margin-end: 0;
+
+		grid-area: icon;
+	}
+
+	// has link inline or overlay
+	&:has(a) {
+		&[data-link-variant="inline"],
+		&[data-variant="overlay"] {
+			// 1. only content (min. requirement)
+			grid-template-areas: "content link";
+			grid-template-columns: 1fr min-content;
+
+			&:has(.db-button) {
+				grid-template-columns: 1fr min-content min-content;
+				grid-template-areas: "content link close";
+			}
+
+			// 2. headline
+			&:has(header) {
+				grid-template-columns: 1fr min-content;
+				grid-template-areas:
+					"head link"
+					"content content";
+
+				&:has(.db-button) {
+					grid-template-columns: 1fr min-content min-content;
+					grid-template-areas:
+						"head link close"
+						"content content content";
+				}
+			}
+
+			// 3. icon or img
+			&[data-icon],
+			&[data-semantic]:not([data-semantic="adaptive"]),
+			&:has(img) {
+				grid-template-areas: "icon content link";
+				grid-template-columns: min-content 1fr min-content;
+
+				&:has(.db-button) {
+					grid-template-columns: min-content 1fr min-content min-content;
+					grid-template-areas: "icon content link close";
+				}
+
+				&:has(header) {
+					grid-template-columns: min-content 1fr min-content;
+					grid-template-areas:
+						"icon head link"
+						"icon content content";
+
+					&:has(.db-button) {
+						grid-template-columns: min-content 1fr min-content min-content;
+						grid-template-areas:
+							"icon head link close"
+							"icon content content content";
+					}
+				}
+			}
+		}
+	}
+
+	&[data-variant="overlay"] {
+		@extend %grid-layout-variant-overlay;
+
+		box-shadow: variables.$db-elevation-md;
+	}
+
+	&:not([data-variant="overlay"]) {
+		@extend %grid-layout-variant-not-overlay;
+	}
+
+	&[data-variant="overlay"],
+	&[data-variant="standalone"] {
+		@extend %default-card;
+	}
+
+	@each $name in colors.$variant-colors {
+		&[data-semantic="#{$name}"] {
+			@extend %db-#{$name}-variables;
+
+			@include icons.variant-icons($name);
+
+			&::before {
+				@extend %icon;
+			}
+		}
+	}
+}

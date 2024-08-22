@@ -7,9 +7,15 @@
 
 A React library containing all styles & components of [DB UX Design System (technical components)](https://github.com/db-ui/mono).
 
+> **Note:** Find more information about specific components [here](https://db-ui.github.io/mono/review/main)
+
 ## Install
 
-`npm i @db-ui/react-components`
+```shell
+npm i @db-ui/react-components
+```
+
+> **Note:** This will install [`@db-ui/foundations`](https://www.npmjs.com/package/@db-ui/foundations) and [`@db-ui/components`](https://www.npmjs.com/package/@db-ui/components) as well which contains the `css`/`scss` files
 
 ## Styling Dependencies
 
@@ -38,40 +44,15 @@ import "@db-ui/components/build/styles/db-ui-42-rollup.css";
 
 </details>
 
+> **Note:** The `db-ui-42` file contains optional and all components styles. If you consider performance issues see [@db-ui/components](https://www.npmjs.com/package/@db-ui/components) for more information.
+
 ## Usage
 
 ```tsx
 import { DBButton } from '@db-ui/react-components';
 ...
-<DBButton icon="account" onClick={()=>{console.log("Test")}}>Test</DBButton>
+<DBButton icon="user" onClick={()=>{console.log("Test")}}>Test</DBButton>
 ...
-```
-
-## Custom Events
-
-We do not provide every event on every component. If you are missing an event please [add an issue](https://github.com/db-ui/mono/issues).
-
-As a workaround you can use the forwardRef:
-
-### Ref on component
-
-```tsx
-import { DBButton } from "@db-ui/react-components";
-import { useEffect, useRef } from "react";
-
-const MyComponent = () => {
-	const buttonRef = useRef<HTMLButtonElement>(null);
-
-	useEffect(() => {
-		if (buttonRef.current) {
-			buttonRef.current.onmouseenter = (ev) => {
-				console.log(ev);
-			};
-		}
-	}, [buttonRef]);
-
-	return <DBButton ref={buttonRef}>Test</DBButton>;
-};
 ```
 
 ## Deutsche Bahn brand

@@ -1,8 +1,10 @@
 import DefaultPage from '../../../components/default-page';
-import { DBInfotext } from '../../../components/src/components/infotext';
-import { DBCard } from '../../../components/src/components/card';
-import { DBIcon } from '../../../components/src/components/icon';
-import { DBButton } from '../../../components/src/components/button';
+import {
+	DBInfotext,
+	DBCard,
+	DBIcon,
+	DBButton
+} from '../../../../../output/react/src';
 
 const Example = () => {
 	return (
@@ -19,8 +21,8 @@ const Example = () => {
 						variable.
 					</li>
 					<li>
-						Don't use it like this in a real app. 💢For example
-						`width: var(--db-spacing-fixed-md)`💥
+						Don't use it like this in a real app. 💢For example{' '}
+						<code>width: var(--db-spacing-fixed-md)</code> 💥
 					</li>
 				</ul>
 			</blockquote>
@@ -31,23 +33,24 @@ const Example = () => {
 						<h2>{example}</h2>
 						<div className="example-container">
 							{['functional', 'regular', 'expressive'].map(
-								(tonality) => (
+								(density) => (
 									<DBCard
-										className={`example-item db-ui-${tonality}`}
+										className={`example-item db-density-${density}`}
 										spacing="small">
 										<DBInfotext
 											icon="none"
-											variant="informational">
-											{tonality}
+											semantic="informational">
+											{density.charAt(0).toUpperCase() +
+												density.slice(1)}
 										</DBInfotext>
 										<div
 											className={`example-${example
 												.toLowerCase()
-												.replace(/ /g, '-')}`}>
+												.replaceAll(' ', '-')}`}>
 											{example === 'Spacing fixed' && (
 												<div>
-													<DBIcon icon="account">
-														Account
+													<DBIcon icon="user">
+														User
 													</DBIcon>
 													<span>
 														gap:db-spacing-fixed-xl

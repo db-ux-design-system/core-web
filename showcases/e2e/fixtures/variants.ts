@@ -1,9 +1,5 @@
-// For testing all available color and tonality combinations, uncomment below
-// TODO: Separation of concerns 👇, maybe just make a workspace package which exports colors + tonalities?
-// export {
-// 	COLORS,
-// 	TONALITIES
-// } from '../../../packages/components/src/shared/constants.ts';
-
-export const COLORS = ['neutral'];
-export const TONALITIES = ['regular'];
+export const COLORS = [
+	'neutral-bg-basic-level-1',
+	'neutral-bg-basic-level-2',
+	'neutral-bg-basic-level-3'
+];

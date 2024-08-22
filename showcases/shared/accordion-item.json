@@ -1,59 +1,62 @@
 [
 	{
-		"name": "Tonality",
+		"name": "Density",
 		"examples": [
 			{
-				"name": "functional",
-				"className": "db-ui-functional",
+				"name": "Functional",
+				"className": "db-density-functional",
 				"props": {
-					"title": "functional"
+					"headlinePlain": "Functional"
 				}
 			},
 			{
-				"name": "regular (Default)",
-				"className": "db-ui-regular",
+				"name": "(Default) Regular",
+				"className": "db-density-regular",
 				"props": {
-					"title": "regular (Default)"
+					"headlinePlain": "(Default) Regular"
 				}
 			},
 			{
-				"name": "expressive",
-				"className": "db-ui-expressive",
+				"name": "Expressive",
+				"className": "db-density-expressive",
 				"props": {
-					"title": "expressive"
+					"headlinePlain": "Expressive"
 				}
 			}
 		]
 	},
 	{
-		"name": "States",
+		"name": "Interaction States",
 		"examples": [
 			{
-				"name": "Enabled (Default)",
+				"name": "Enabled (Default)/Hover/Pressed",
 				"props": {
-					"title": "Enabled (Default)"
+					"headlinePlain": "Enabled (Default)/Hover/Pressed"
 				}
 			},
 			{
 				"name": "Disabled",
 				"props": {
-					"title": "Disabled",
+					"headlinePlain": "Disabled",
 					"disabled": true
+				}
+			}
+		]
+	},
+	{
+		"name": "Content States",
+		"examples": [
+			{
+				"name": "(Default) Collapsed",
+				"props": {
+					"headlinePlain": "(Default) Collapsed"
 				}
 			},
 			{
 				"name": "Open",
 				"props": {
-					"title": "Open",
+					"headlinePlain": "Open",
 					"open": true
-				}
-			},
-			{
-				"name": "Open Disabled",
-				"props": {
-					"title": "Open Disabled",
-					"open": true,
-					"disabled": true
 				}
 			}
 		]

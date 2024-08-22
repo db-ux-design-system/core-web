@@ -11,10 +11,9 @@
 		let-variantIndex="variantIndex"
 	>
 		<db-accordion-item
-			[title]="exampleProps.title"
-			[disabled]="exampleProps.disabled"
-			[open]="isOpen(exampleIndex, variantIndex, exampleProps.open)"
-			(onToggle)="toggle(exampleIndex, variantIndex)"
+			[headlinePlain]="exampleProps?.headlinePlain"
+			[disabled]="exampleProps?.disabled"
+			[defaultOpen]="exampleProps?.open"
 		>
 			{{ exampleName }}
 		</db-accordion-item>

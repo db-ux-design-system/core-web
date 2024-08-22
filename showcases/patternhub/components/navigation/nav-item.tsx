@@ -7,12 +7,12 @@ const isRouteActive = (pathname: string, navItem: NavigationItem): boolean =>
 	navItem.path === '/'
 		? pathname === '/'
 		: pathname.includes(`${navItem.path}/`) ||
-		  pathname === navItem.path ||
-		  Boolean(
+			pathname === navItem.path ||
+			Boolean(
 				navItem.subNavigation?.find((subItem) => {
 					return pathname.includes(`${subItem.path}/`);
 				})
-		  );
+			);
 
 const NavItem = ({ navItem }: { navItem: NavigationItem }) => {
 	const router = useRouter();
@@ -23,16 +23,18 @@ const NavItem = ({ navItem }: { navItem: NavigationItem }) => {
 		<DBNavigationItem
 			active={isActive}
 			backButtonText={`Back to ${navItem.label}`}
-			slotSubNavigation={
+			subNavigation={
 				navItem.subNavigation && (
 					<>
-						{navItem?.subNavigation.map(
-							(subItem: NavigationItem) => (
+						{navItem?.subNavigation
+							.filter(
+								({ isHiddenInMenu }) => isHiddenInMenu !== true
+							)
+							.map((subItem: NavigationItem) => (
 								<NavItem
 									key={`router-path-${subItem.path}`}
 									navItem={subItem}></NavItem>
-							)
-						)}
+							))}
 					</>
 				)
 			}>

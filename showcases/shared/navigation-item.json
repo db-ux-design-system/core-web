@@ -1,52 +1,98 @@
 [
 	{
-		"name": "Tonality",
+		"name": "Density",
 		"examples": [
 			{
-				"name": "functional",
-				"className": "db-ui-functional",
-				"props": {
-					"areaPopup": true
-				}
+				"name": "Functional",
+				"className": "db-density-functional",
+				"children": [
+					{
+						"name": "a",
+						"native": true,
+						"props": {
+							"href": "#"
+						},
+						"content": "Functional"
+					}
+				]
 			},
 			{
-				"name": "regular (Default)",
-				"className": "db-ui-regular",
-				"props": {
-					"areaPopup": true
-				}
+				"name": "(Default) Regular",
+				"className": "db-density-regular",
+				"children": [
+					{
+						"name": "a",
+						"native": true,
+						"props": {
+							"href": "#"
+						},
+						"content": "(Default) Regular"
+					}
+				]
 			},
 			{
-				"name": "expressive",
-				"className": "db-ui-expressive",
-				"props": {
-					"areaPopup": true
-				}
+				"name": "Expressive",
+				"className": "db-density-expressive",
+				"children": [
+					{
+						"name": "a",
+						"native": true,
+						"props": {
+							"href": "#"
+						},
+						"content": "Expressive"
+					}
+				]
 			}
 		]
 	},
 	{
-		"name": "States",
+		"name": "Interaction-States",
 		"examples": [
 			{
-				"name": "Enabled (Default)",
-				"props": {
-					"areaPopup": true
-				}
+				"name": "Enabled (Default)/Hover/Pressed",
+				"children": [
+					{
+						"name": "a",
+						"native": true,
+						"props": {
+							"href": "#"
+						},
+						"content": "Enabled (Default)/Hover/Pressed"
+					}
+				]
 			},
 			{
 				"name": "Active",
 				"props": {
-					"active": true,
-					"areaPopup": true
-				}
+					"active": true
+				},
+				"children": [
+					{
+						"name": "a",
+						"native": true,
+						"props": {
+							"href": "#"
+						},
+						"content": "Active"
+					}
+				]
 			},
 			{
 				"name": "Disabled",
 				"props": {
-					"disabled": true,
-					"areaPopup": true
-				}
+					"disabled": true
+				},
+				"children": [
+					{
+						"name": "a",
+						"native": true,
+						"props": {
+							"href": "#"
+						},
+						"content": "Disabled"
+					}
+				]
 			}
 		]
 	},
@@ -54,30 +100,69 @@
 		"name": "Content",
 		"examples": [
 			{
-				"name": "Leading Icon - Text",
-				"props": {
-					"icon": "account",
-					"areaPopup": false
-				}
-			},
-			{
-				"name": "Leading Icon - Text - Trailing Icon",
-				"props": {
-					"icon": "account",
-					"areaPopup": true
-				}
-			},
-			{
-				"name": "Text - Trailing Icon",
-				"props": {
-					"areaPopup": true
-				}
-			},
-			{
-				"name": "Text",
+				"name": "(Default) Text",
 				"props": {
 					"areaPopup": false
-				}
+				},
+				"children": [
+					{
+						"name": "a",
+						"native": true,
+						"props": {
+							"href": "#"
+						},
+						"content": "(Default) Text"
+					}
+				]
+			},
+			{
+				"name": "Text - Icon (Leading)",
+				"props": {
+					"icon": "user"
+				},
+				"children": [
+					{
+						"name": "a",
+						"native": true,
+						"props": {
+							"href": "#"
+						},
+						"content": "Text - Icon (Leading)"
+					}
+				]
+			},
+			{
+				"name": "Text - Icons (Leading, Chevron)",
+				"props": {
+					"icon": "user",
+					"areaPopup": true
+				},
+				"children": [
+					{
+						"name": "a",
+						"native": true,
+						"props": {
+							"href": "#"
+						},
+						"content": "Text - Icons (Leading, Chevron)"
+					}
+				]
+			},
+			{
+				"name": "Text - Icon (Chevron)",
+				"props": {
+					"areaPopup": true
+				},
+				"children": [
+					{
+						"name": "a",
+						"native": true,
+						"props": {
+							"href": "#"
+						},
+						"content": "Text - Icon (Chevron)"
+					}
+				]
 			}
 		]
 	},
@@ -85,19 +170,35 @@
 		"name": "Width",
 		"examples": [
 			{
-				"name": "Auto (Default)",
+				"name": "(Default) Auto",
 				"style": { "width": "400px" },
-				"props": {
-					"areaPopup": true
-				}
+				"children": [
+					{
+						"name": "a",
+						"native": true,
+						"props": {
+							"href": "#"
+						},
+						"content": "(Default) Auto"
+					}
+				]
 			},
 			{
 				"name": "Full",
 				"style": { "width": "400px" },
 				"props": {
-					"width": "full",
-					"areaPopup": true
-				}
+					"width": "full"
+				},
+				"children": [
+					{
+						"name": "a",
+						"native": true,
+						"props": {
+							"href": "#"
+						},
+						"content": "Full"
+					}
+				]
 			}
 		]
 	}

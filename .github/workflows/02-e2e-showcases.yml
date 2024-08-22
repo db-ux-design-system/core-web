@@ -2,6 +2,13 @@ name: 🎭 Playwright E2E
 
 on:
   workflow_call:
+    inputs:
+      version:
+        required: true
+        type: string
+      showcase:
+        required: true
+        type: string
 
 permissions:
   actions: write
@@ -9,15 +16,15 @@ permissions:
 
 jobs:
   playwright-showcases:
-    name: 🧪🎭 - ${{ matrix.framework }}:${{ matrix.shard }}
+    name: 🧪🎭 - ${{ inputs.showcase }}:${{ matrix.shardIndex }}/${{ matrix.shardTotal }}
     runs-on: ubuntu-latest
     container:
-      image: mcr.microsoft.com/playwright:v1.40.1
+      image: mcr.microsoft.com/playwright:v${{ inputs.version }}
     strategy:
       fail-fast: false
       matrix:
-        framework: [angular, react, vue]
-        shard: [1/2, 2/2]
+        shardIndex: [1, 2, 3, 4, 5, 6]
+        shardTotal: [6]
     steps:
       - name: ⏬ Checkout repo
         uses: actions/checkout@v4
@@ -46,16 +53,17 @@ jobs:
           name: db-ui-components-build
           path: packages/components/build
 
-      - name: ⏬ Download showcases
+      - name: ⏬ Download ${{ inputs.showcase }}
         uses: actions/download-artifact@v4
         with:
-          name: db-ui-showcases
-          path: build-showcases
+          name: db-ui-${{ inputs.showcase }}
+          path: build-showcases/${{ inputs.showcase }}
 
       - name: 👩‍🔬 Test showcase with Playwright 🎭
         env:
           HOME: /root
-        run: npm run test:${{ matrix.framework }}-showcase -- -- --shard=${{ matrix.shard }}
+        run: |
+          npm run test:e2e --workspace=${{ inputs.showcase }} -- --shard=${{ matrix.shardIndex }}/${{ matrix.shardTotal }}
 
       - name: 🔣 Print GitHub Report
         if: failure()
@@ -67,6 +75,14 @@ jobs:
         if: failure()
         uses: actions/upload-artifact@v4
         with:
-          name: ${{ matrix.framework }}-showcase-playwright-results
-          path: ./showcases/${{ matrix.framework }}-showcase/test-results
+          name: ${{ inputs.showcase }}-playwright-results-${{ matrix.shardIndex }}
+          path: ./showcases/${{ inputs.showcase }}/test-results
+          retention-days: 30
+
+      - name: 🆙 Upload aChecker results
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ matrix.framework }}-showcase-achecker-results-${{ matrix.shardIndex }}
+          path: ./showcases/${{ matrix.framework }}-showcase/results
           retention-days: 30

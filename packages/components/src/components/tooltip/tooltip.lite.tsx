@@ -1,14 +1,14 @@
 import {
 	onMount,
-	Show,
+	onUpdate,
 	useMetadata,
 	useRef,
 	useStore
 } from '@builder.io/mitosis';
 import { DBTooltipProps, DBTooltipState } from './model';
-import { cls, uuid } from '../../utils';
-import { DEFAULT_ID } from '../../shared/constants';
+import { cls, handleDataOutside, uuid } from '../../utils';
 import { ClickEvent } from '../../shared/model';
+import { DEFAULT_ID } from '../../shared/constants';
 
 useMetadata({
 	isAttachedToShadowDom: true
@@ -19,23 +19,50 @@ export default function DBTooltip(props: DBTooltipProps) {
 	// jscpd:ignore-start
 	const state = useStore<DBTooltipState>({
 		_id: DEFAULT_ID,
+		initialized: false,
 		handleClick: (event: ClickEvent<HTMLElement>) => {
 			event.stopPropagation();
+		},
+		handleAutoPlacement: () => {
+			if (ref) handleDataOutside(ref);
 		}
 	});
 
 	onMount(() => {
 		state._id = props.id || 'tooltip-' + uuid();
-		if (props.stylePath) {
-			state.stylePath = props.stylePath;
-		}
+		state.initialized = true;
 	});
+
+	onUpdate(() => {
+		if (ref && state.initialized) {
+			let parent = ref.parentElement;
+
+			if (parent && parent.localName.includes('tooltip')) {
+				// Angular workaround
+				parent = parent.parentElement;
+			}
+
+			if (parent) {
+				['mouseenter', 'focus'].forEach((event) => {
+					parent.addEventListener(event, () =>
+						state.handleAutoPlacement()
+					);
+				});
+				parent.setAttribute('data-has-tooltip', 'true');
+				parent.setAttribute('aria-describedby', state._id);
+			}
+
+			state.initialized = false;
+		}
+	}, [ref, state.initialized]);
+
 	// jscpd:ignore-end
 
 	// TODO: Shall we check if only <span>, <p> or direct text was passed as children?
 	return (
 		<i
 			role="tooltip"
+			aria-hidden="true"
 			ref={ref}
 			className={cls('db-tooltip', props.className)}
 			id={state._id}
@@ -50,9 +77,6 @@ export default function DBTooltip(props: DBTooltipProps) {
 			onClick={(event: ClickEvent<HTMLElement>) =>
 				state.handleClick(event)
 			}>
-			<Show when={state.stylePath}>
-				<link rel="stylesheet" href={state.stylePath} />
-			</Show>
 			{props.children}
 		</i>
 	);

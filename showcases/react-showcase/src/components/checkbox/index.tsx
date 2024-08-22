@@ -1,42 +1,42 @@
 import { DBCheckbox } from '../../../../../output/react/src';
-import DefaultComponent from '../index';
+import DefaultComponent from '../default-component';
 import { getVariants } from '../data';
 import defaultComponentVariants from '../../../../shared/checkbox.json';
 import { type DBCheckboxProps } from '../../../../../output/react/src/components/checkbox/model';
+import { type BaseComponentProps } from '../base-component-data';
 
 const getCheckbox = ({
 	label,
 	size,
 	name,
 	checked,
-	invalid,
 	required,
 	children,
 	disabled,
 	indeterminate,
-	labelVariant
+	variant
 }: DBCheckboxProps) => (
 	<DBCheckbox
 		label={label}
 		size={size}
 		name={name}
 		defaultChecked={checked}
-		invalid={invalid}
 		required={required}
 		disabled={disabled}
-		labelVariant={labelVariant}
+		variant={variant}
 		indeterminate={indeterminate}>
 		{children}
 	</DBCheckbox>
 );
 
-const CheckboxComponent = () => {
+const CheckboxComponent = (props: BaseComponentProps) => {
 	return (
 		<DefaultComponent
 			title={'DBCheckbox'}
 			variants={getVariants(
 				defaultComponentVariants,
-				getCheckbox
+				getCheckbox,
+				props.slotCode
 			)}></DefaultComponent>
 	);
 };

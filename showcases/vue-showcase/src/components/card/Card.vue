@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import DefaultComponent from "../DefaultComponent.vue";
 import defaultComponentVariants from "../../../../shared/card.json";
-import { DBCard } from "../../../../../output/vue/vue3/src";
+import { DBCard } from "../../../../../output/vue/src";
 </script>
 
 <template>
@@ -10,14 +10,11 @@ import { DBCard } from "../../../../../output/vue/vue3/src";
 			#example="{ exampleIndex, variantIndex, exampleName, exampleProps }"
 		>
 			<DBCard
-				:colorVariant="exampleProps.colorVariant"
-				:variant="exampleProps.variant"
-				:spacing="exampleProps.spacing"
+				:behaviour="exampleProps?.behaviour"
+				:elevationLevel="exampleProps?.elevationLevel"
+				:spacing="exampleProps?.spacing"
 			>
 				<strong>{{ exampleName }}</strong>
-				<span v-if="exampleProps.colorVariant">{{
-					exampleProps.colorVariant
-				}}</span>
 			</DBCard>
 		</template>
 	</DefaultComponent>

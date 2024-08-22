@@ -1,67 +1,119 @@
 [
 	{
-		"name": "Tonality",
+		"name": "Density",
+		"children": [
+			{
+				"name": "accordion-item",
+				"content": "Content 1",
+				"props": {
+					"headline": "Item 1"
+				}
+			},
+			{
+				"name": "accordion-item",
+				"content": "Content 2",
+				"props": {
+					"headline": "Item 2"
+				}
+			},
+			{
+				"name": "accordion-item",
+				"content": "Content 3",
+				"props": {
+					"headline": "Item 3"
+				}
+			}
+		],
 		"examples": [
 			{
-				"name": "functional",
-				"className": "db-ui-functional",
-				"props": {},
-				"code": {
-					"html": "The accordion is a pure JS Component",
-					"angular": "<db-accordion>\n\t\t\t\t<db-accordion-item\n\t\t\t\t\ttitle=\"Item 1\"\n\t\t\t\t\tcontent=\"Content 1\"\n\t\t\t\t></db-accordion-item>\n\t\t\t\t<db-accordion-item\n\t\t\t\t\ttitle=\"Item 2\"\n\t\t\t\t\tcontent=\"Content 2\"\n\t\t\t\t></db-accordion-item>\n\t\t\t\t<db-accordion-item\n\t\t\t\t\ttitle=\"Item 3\"\n\t\t\t\t\tcontent=\"Content 3\"\n\t\t\t\t></db-accordion-item>\n\t\t\t</db-accordion>",
-					"react": "<DBAccordion>\n\t\t\t<DBAccordionItem title=\"Item 1\" content=\"Content 1\" />\n\t\t\t<DBAccordionItem title=\"Item 2\" content=\"Content 2\" />\n\t\t\t<DBAccordionItem title=\"Item 3\" content=\"Content 3\" />\n\t\t</DBAccordion>",
-					"vue": "<DBAccordion>\n\t\t\t\t<DBAccordionItem title=\"Item 1\" content=\"Content 1\" />\n\t\t\t\t<DBAccordionItem title=\"Item 2\" content=\"Content 2\" />\n\t\t\t\t<DBAccordionItem title=\"Item 3\" content=\"Content 3\" />\n\t\t\t</DBAccordion>"
+				"name": "Functional",
+				"className": "db-density-functional"
+			},
+			{
+				"name": "(Default) Regular",
+				"className": "db-density-regular"
+			},
+			{
+				"name": "Expressive",
+				"className": "db-density-expressive"
+			}
+		]
+	},
+	{
+		"name": "Variant",
+
+		"children": [
+			{
+				"name": "accordion-item",
+				"content": "Content 1",
+				"props": {
+					"headline": "Item 1"
 				}
 			},
 			{
-				"name": "regular (Default)",
-				"className": "db-ui-regular",
-				"props": {},
-				"code": {
-					"html": "The accordion is a pure JS Component",
-					"angular": "<db-accordion>\n\t\t\t\t<db-accordion-item\n\t\t\t\t\ttitle=\"Item 1\"\n\t\t\t\t\tcontent=\"Content 1\"\n\t\t\t\t></db-accordion-item>\n\t\t\t\t<db-accordion-item\n\t\t\t\t\ttitle=\"Item 2\"\n\t\t\t\t\tcontent=\"Content 2\"\n\t\t\t\t></db-accordion-item>\n\t\t\t\t<db-accordion-item\n\t\t\t\t\ttitle=\"Item 3\"\n\t\t\t\t\tcontent=\"Content 3\"\n\t\t\t\t></db-accordion-item>\n\t\t\t</db-accordion>",
-					"react": "<DBAccordion>\n\t\t\t<DBAccordionItem title=\"Item 1\" content=\"Content 1\" />\n\t\t\t<DBAccordionItem title=\"Item 2\" content=\"Content 2\" />\n\t\t\t<DBAccordionItem title=\"Item 3\" content=\"Content 3\" />\n\t\t</DBAccordion>",
-					"vue": "<DBAccordion>\n\t\t\t\t<DBAccordionItem title=\"Item 1\" content=\"Content 1\" />\n\t\t\t\t<DBAccordionItem title=\"Item 2\" content=\"Content 2\" />\n\t\t\t\t<DBAccordionItem title=\"Item 3\" content=\"Content 3\" />\n\t\t\t</DBAccordion>"
+				"name": "accordion-item",
+				"content": "Content 2",
+				"props": {
+					"headline": "Item 2"
 				}
 			},
 			{
-				"name": "expressive",
-				"className": "db-ui-expressive",
-				"props": {},
-				"code": {
-					"html": "The accordion is a pure JS Component",
-					"angular": "<db-accordion>\n\t\t\t\t<db-accordion-item\n\t\t\t\t\ttitle=\"Item 1\"\n\t\t\t\t\tcontent=\"Content 1\"\n\t\t\t\t></db-accordion-item>\n\t\t\t\t<db-accordion-item\n\t\t\t\t\ttitle=\"Item 2\"\n\t\t\t\t\tcontent=\"Content 2\"\n\t\t\t\t></db-accordion-item>\n\t\t\t\t<db-accordion-item\n\t\t\t\t\ttitle=\"Item 3\"\n\t\t\t\t\tcontent=\"Content 3\"\n\t\t\t\t></db-accordion-item>\n\t\t\t</db-accordion>",
-					"react": "<DBAccordion>\n\t\t\t<DBAccordionItem title=\"Item 1\" content=\"Content 1\" />\n\t\t\t<DBAccordionItem title=\"Item 2\" content=\"Content 2\" />\n\t\t\t<DBAccordionItem title=\"Item 3\" content=\"Content 3\" />\n\t\t</DBAccordion>",
-					"vue": "<DBAccordion>\n\t\t\t\t<DBAccordionItem title=\"Item 1\" content=\"Content 1\" />\n\t\t\t\t<DBAccordionItem title=\"Item 2\" content=\"Content 2\" />\n\t\t\t\t<DBAccordionItem title=\"Item 3\" content=\"Content 3\" />\n\t\t\t</DBAccordion>"
+				"name": "accordion-item",
+				"content": "Content 3",
+				"props": {
+					"headline": "Item 3"
+				}
+			}
+		],
+		"examples": [
+			{
+				"name": "background (default)"
+			},
+			{
+				"name": "card",
+				"props": {
+					"variant": "card"
 				}
 			}
 		]
 	},
 	{
 		"name": "Behaviour",
+
+		"children": [
+			{
+				"name": "accordion-item",
+				"content": "Content 1",
+				"props": {
+					"headline": "Item 1"
+				}
+			},
+			{
+				"name": "accordion-item",
+				"content": "Content 2",
+				"props": {
+					"headline": "Item 2"
+				}
+			},
+			{
+				"name": "accordion-item",
+				"content": "Content 3",
+				"props": {
+					"headline": "Item 3"
+				}
+			}
+		],
 		"examples": [
 			{
-				"name": "Multiple (Default)",
+				"name": "(Default) Multiple",
 				"props": {
 					"behaviour": "multiple"
-				},
-				"code": {
-					"html": "The accordion is a pure JS Component",
-					"angular": "<db-accordion>\n\t\t\t\t<db-accordion-item\n\t\t\t\t\ttitle=\"Item 1\"\n\t\t\t\t\tcontent=\"Content 1\"\n\t\t\t\t></db-accordion-item>\n\t\t\t\t<db-accordion-item\n\t\t\t\t\ttitle=\"Item 2\"\n\t\t\t\t\tcontent=\"Content 2\"\n\t\t\t\t></db-accordion-item>\n\t\t\t\t<db-accordion-item\n\t\t\t\t\ttitle=\"Item 3\"\n\t\t\t\t\tcontent=\"Content 3\"\n\t\t\t\t></db-accordion-item>\n\t\t\t</db-accordion>",
-					"react": "<DBAccordion>\n\t\t\t<DBAccordionItem title=\"Item 1\" content=\"Content 1\" />\n\t\t\t<DBAccordionItem title=\"Item 2\" content=\"Content 2\" />\n\t\t\t<DBAccordionItem title=\"Item 3\" content=\"Content 3\" />\n\t\t</DBAccordion>",
-					"vue": "<DBAccordion>\n\t\t\t\t<DBAccordionItem title=\"Item 1\" content=\"Content 1\" />\n\t\t\t\t<DBAccordionItem title=\"Item 2\" content=\"Content 2\" />\n\t\t\t\t<DBAccordionItem title=\"Item 3\" content=\"Content 3\" />\n\t\t\t</DBAccordion>"
 				}
 			},
 			{
 				"name": "Single",
 				"props": {
 					"behaviour": "single"
-				},
-				"code": {
-					"html": "The accordion is a pure JS Component",
-					"angular": "<db-accordion behaviour=\"single\">\n\t\t\t\t<db-accordion-item\n\t\t\t\t\ttitle=\"Item 1\"\n\t\t\t\t\tcontent=\"Content 1\"\n\t\t\t\t></db-accordion-item>\n\t\t\t\t<db-accordion-item\n\t\t\t\t\ttitle=\"Item 2\"\n\t\t\t\t\tcontent=\"Content 2\"\n\t\t\t\t></db-accordion-item>\n\t\t\t\t<db-accordion-item\n\t\t\t\t\ttitle=\"Item 3\"\n\t\t\t\t\tcontent=\"Content 3\"\n\t\t\t\t></db-accordion-item>\n\t\t\t</db-accordion>",
-					"react": "<DBAccordion behaviour=\"single\">\n\t\t\t<DBAccordionItem title=\"Item 1\" content=\"Content 1\" />\n\t\t\t<DBAccordionItem title=\"Item 2\" content=\"Content 2\" />\n\t\t\t<DBAccordionItem title=\"Item 3\" content=\"Content 3\" />\n\t\t</DBAccordion>",
-					"vue": "<DBAccordion behaviour=\"single\">\n\t\t\t\t<DBAccordionItem title=\"Item 1\" content=\"Content 1\" />\n\t\t\t\t<DBAccordionItem title=\"Item 2\" content=\"Content 2\" />\n\t\t\t\t<DBAccordionItem title=\"Item 3\" content=\"Content 3\" />\n\t\t\t</DBAccordion>"
 				}
 			}
 		]

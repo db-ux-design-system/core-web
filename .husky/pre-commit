@@ -1,9 +1,6 @@
-#!/usr/bin/env sh
-# shellcheck disable=SC1091
-# shellcheck source=./_/husky.sh
-. "$(dirname -- "$0")/_/husky.sh"
-
-npx validate-branch-name
-npm run scripts:check-commit-mail
-npx --no -- lint-staged --config ./.lintstagedrc.js
+validate-branch-name
+node scripts/check-commit-mail.js
+lint-staged --config .config/.lintstagedrc.js
+prettier $(git diff --cached --name-only --diff-filter=ACMR | sed 's| |\\ |g') --write --ignore-unknown
+git update-index --again
 npm run lint:jscpd

@@ -1,43 +1,56 @@
 @use "@db-ui/foundations/build/scss/variables";
 @use "@db-ui/foundations/build/scss/colors";
+@use "@db-ui/foundations/build/scss/helpers";
 @use "../../styles/component";
 
 .db-card {
-	@extend %color-variants;
 	@extend %default-card;
 
-	background-color: colors.$db-base-bg;
+	@include component.get-data-spacing();
 
 	display: flex;
 	flex-direction: column;
 
-	& > a {
-		text-decoration: none;
-	}
+	&[data-elevation-level="1"],
+	&:not([data-elevation-level]) {
+		background-color: colors.$db-adaptive-bg-basic-level-1-default;
 
-	&[data-spacing="medium"] {
-		padding: variables.$db-spacing-fixed-lg;
-	}
+		&[data-behaviour="interactive"] {
+			@include helpers.hover {
+				background-color: colors.$db-adaptive-bg-basic-level-1-hovered;
+			}
 
-	&[data-spacing="small"] {
-		padding: variables.$db-spacing-fixed-md;
-	}
-
-	&[data-variant="interactive"] {
-		// TODO use transition duration as variable
-		transition: box-shadow 0.15s variables.$db-transition-functional-timing;
-
-		&:hover:not([data-elevation="none"]) {
-			cursor: pointer;
-			box-shadow: variables.$db-elevation-lg;
-		}
-
-		&:active:not([data-elevation="none"]) {
-			box-shadow: variables.$db-elevation-sm;
+			@include helpers.active {
+				background-color: colors.$db-adaptive-bg-basic-level-1-pressed;
+			}
 		}
 	}
 
-	&[data-elevation="none"] {
-		box-shadow: none;
+	&[data-elevation-level="2"] {
+		background-color: colors.$db-adaptive-bg-basic-level-2-default;
+
+		&[data-behaviour="interactive"] {
+			@include helpers.hover {
+				background-color: colors.$db-adaptive-bg-basic-level-2-hovered;
+			}
+
+			@include helpers.active {
+				background-color: colors.$db-adaptive-bg-basic-level-2-pressed;
+			}
+		}
+	}
+
+	&[data-elevation-level="3"] {
+		background-color: colors.$db-adaptive-bg-basic-level-3-default;
+
+		&[data-behaviour="interactive"] {
+			@include helpers.hover {
+				background-color: colors.$db-adaptive-bg-basic-level-3-hovered;
+			}
+
+			@include helpers.active {
+				background-color: colors.$db-adaptive-bg-basic-level-3-pressed;
+			}
+		}
 	}
 }

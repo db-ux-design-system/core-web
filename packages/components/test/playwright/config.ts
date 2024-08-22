@@ -5,7 +5,7 @@ import { defineConfig, devices } from '@playwright/experimental-ct-react';
  */
 const config = defineConfig({
 	testDir: './src/components',
-	// Example: __snapshots__/alert/showcase/chromium/functional/neutral-0/DBAlert-should-match-screenshit.png
+	// Example: __snapshots__/notification/showcase/chromium/functional/neutral-0/DBNotification-should-match-screenshit.png
 	snapshotPathTemplate:
 		'{snapshotDir}/{testFileDir}/component/{projectName}/{testName}{ext}',
 	/* The base directory, relative to the config file, for snapshot files created with toMatchSnapshot and toHaveScreenshot. */
@@ -22,10 +22,14 @@ const config = defineConfig({
 	reporter: process.env.CI ? 'blob' : [['list'], ['html', { open: 'never' }]],
 	/* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
 	use: {
-		/* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
-		trace: 'on-first-retry',
 		/* Port to use for Playwright component endpoint. */
-		ctPort: 3100
+		ctPort: 3100,
+
+		/* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
+		trace: process.env.CI ? 'on-first-retry' : 'on',
+
+		/* Collect video when retrying the failed test. */
+		video: process.env.CI ? 'on-first-retry' : 'on'
 	},
 	/* Configure projects for major browsers */
 	projects: [
@@ -35,13 +39,12 @@ const config = defineConfig({
 				...devices['Desktop Chrome']
 			}
 		},
-		// TODO: Enable this again when Mozilla introduces :has selector
-		/*		{
+		{
 			name: 'firefox',
 			use: {
 				...devices['Desktop Firefox']
 			}
-		},*/
+		},
 		// TODO: There are issues with webkit and out icon-fonts we disable webkit for now
 		/*		{
 			name: 'webkit',

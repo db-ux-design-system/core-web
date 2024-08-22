@@ -1,0 +1,1 @@
+["(Default) Inline","Label","LABEL SHOULD BE SET Corner - Top - Left button","Corner - Top - Left","LABEL SHOULD BE SET Corner - Center - Left button"]

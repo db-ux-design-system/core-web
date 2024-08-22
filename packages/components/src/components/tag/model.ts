@@ -1,11 +1,15 @@
 import {
-	DefaultVariantProps,
+	SemanticProps,
 	EmphasisProps,
 	GlobalProps,
 	GlobalState,
 	IconProps,
-	OverflowProps
+	OverflowProps,
+	InitializedState
 } from '../../shared/model';
+
+export const TagBehaviourList = ['static', 'removable'] as const;
+export type TagBehaviourType = (typeof TagBehaviourList)[number];
 
 export interface DBTagDefaultProps {
 	/**
@@ -13,10 +17,10 @@ export interface DBTagDefaultProps {
 	 *	- static: default behaviour without remove button
 	 *  - removable: add a remove button at the end of the tag
 	 */
-	behaviour?: 'static' | 'removable';
+	behaviour?: TagBehaviourType;
 
 	/**
-	 * Disable tag.
+	 * Disable tag. (Deprecated)
 	 */
 	disabled?: boolean;
 	/**
@@ -44,7 +48,7 @@ export interface DBTagDefaultProps {
 export type DBTagProps = DBTagDefaultProps &
 	GlobalProps &
 	IconProps &
-	DefaultVariantProps &
+	SemanticProps &
 	OverflowProps &
 	EmphasisProps;
 
@@ -53,4 +57,4 @@ export interface DBTagDefaultState {
 	handleRemove?: () => void;
 }
 
-export type DBTagState = DBTagDefaultState & GlobalState;
+export type DBTagState = DBTagDefaultState & GlobalState & InitializedState;

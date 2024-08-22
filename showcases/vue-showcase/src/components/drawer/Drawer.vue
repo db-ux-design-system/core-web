@@ -2,7 +2,7 @@
 import { ref } from "vue";
 import DefaultComponent from "../DefaultComponent.vue";
 import defaultComponentVariants from "../../../../shared/drawer.json";
-import { DBDrawer, DBButton } from "../../../../../output/vue/vue3/src";
+import { DBDrawer, DBButton } from "../../../../../output/vue/src";
 
 const openDrawer = ref<string | undefined>(undefined);
 
@@ -12,17 +12,16 @@ const toggleDrawer = (example?: string) => {
 </script>
 
 <template>
-	<DefaultComponent title="Drawer" :variants="defaultComponentVariants">
+	<DefaultComponent title="DBDrawer" :variants="defaultComponentVariants">
 		<template
 			#example="{ exampleIndex, variantIndex, exampleName, exampleProps }"
 		>
 			<DBDrawer
-				:backdrop="exampleProps.backdrop"
-				:withCloseButton="exampleProps.withCloseButton"
-				:rounded="exampleProps.rounded"
-				:width="exampleProps.width"
-				:spacing="exampleProps.spacing"
-				:direction="exampleProps.direction"
+				:backdrop="exampleProps?.backdrop"
+				:rounded="exampleProps?.rounded"
+				:width="exampleProps?.width"
+				:spacing="exampleProps?.spacing"
+				:direction="exampleProps?.direction"
 				:open="openDrawer && openDrawer === exampleName"
 				@close="toggleDrawer(undefined)"
 			>

@@ -1,29 +1,29 @@
 /* eslint-disable-next-line unicorn/prefer-node-protocol */
 import { Buffer } from 'buffer';
 import { useEffect, useState } from 'react';
-import DBLink from '../../components/src/components/link/link';
+import { DBLink } from '../../../../output/react/src';
 import {
 	COLOR,
 	COLORS,
-	TONALITIES,
-	TONALITY
-} from '../../components/src/shared/constants';
+	DENSITIES,
+	DENSITY
+} from '../../../../packages/components/src/shared/constants';
 
 const Base64 = () => {
 	const [base64, setBase64] = useState<string>('');
 	const [url, setUrl] = useState<string>('');
 
-	const [tonality, setTonality] = useState<string>(TONALITY.REGULAR);
-	const [color, setColor] = useState<string>(COLOR.NEUTRAL);
+	const [density, setDensity] = useState<string>(DENSITY.REGULAR);
+	const [color, setColor] = useState<string>(COLOR.NEUTRAL_BG_LEVEL_1);
 
 	useEffect(() => {
 		setUrl(
 			new URL(
-				`iframe?color=${color}&tonality=${tonality}&components=${base64}`,
+				`iframe?color=${color}&density=${density}&components=${base64}`,
 				window.location.href
 			).toString()
 		);
-	}, [tonality, color, base64]);
+	}, [density, color, base64]);
 
 	return (
 		<div className="base-64-container">
@@ -36,12 +36,12 @@ const Base64 = () => {
 			<div>
 				{/* TODO: replace those by DBSelect as soon as this lands */}
 				<select
-					value={tonality}
+					value={density}
 					onChange={(event) => {
-						setTonality(event?.target?.value);
+						setDensity(event?.target?.value);
 					}}>
-					{TONALITIES.map((ton) => (
-						<option key={`tonality-option-${ton}`} value={ton}>
+					{DENSITIES.map((ton) => (
+						<option key={`density-option-${ton}`} value={ton}>
 							{ton}
 						</option>
 					))}
@@ -52,7 +52,7 @@ const Base64 = () => {
 						setColor(event?.target?.value);
 					}}>
 					{COLORS.map((col) => (
-						<option key={`tonality-option-${col}`} value={col}>
+						<option key={`density-option-${col}`} value={col}>
 							{col}
 						</option>
 					))}
@@ -61,7 +61,7 @@ const Base64 = () => {
 			<DBLink
 				href={url}
 				target="_blank"
-				variant="primary"
+				variant="brand"
 				content="external">
 				Open IFrame
 			</DBLink>

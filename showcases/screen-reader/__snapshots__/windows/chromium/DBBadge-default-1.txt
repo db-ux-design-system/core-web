@@ -1,0 +1,1 @@
+["(Default) Inline Label","button, LABEL SHOULD BE SET","button, Corner Top Left","Corner Top Left","button, LABEL SHOULD BE SET"]

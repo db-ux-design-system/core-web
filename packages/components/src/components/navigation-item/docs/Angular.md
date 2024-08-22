@@ -4,15 +4,14 @@ For general installation and configuration take a look at the [ngx-components](h
 
 ### Load component
 
-```ts app.module.ts
-//app.module.ts
-import { DBNavigationItemModule } from '@db-ui/ngx-components';
+```ts app.component.ts
+//app.component.ts
+import { DBNavigationItem, NavigationContentDirective } from '@db-ui/ngx-components';
 
-@NgModule({
-  ...
-  declarations: [...,NavigationContentDirective],
-  imports: [..., DBNavigationItemModule],
-  ...
+@Component({
+  // ...
+  imports: [..., DBNavigationItem, NavigationContentDirective],
+  // ...
 })
 
 ```
@@ -25,7 +24,7 @@ We try to set `areaPopup` (has/hasn't sub-navigation) inside the component, but 
 <!-- app.component.html -->
 
 <!-- Only link -->
-<db-navigation-item [areaPopup]="false">
+<db-navigation-item>
 	<ng-container *dbNavigationContent>
 		<a routerLink="mypath">NavigationItem</a>
 	</ng-container>
@@ -33,16 +32,16 @@ We try to set `areaPopup` (has/hasn't sub-navigation) inside the component, but 
 
 <!-- With Sub-Navigation -->
 
-<db-navigation-item [areaPopup]="true">
+<db-navigation-item>
 	<ng-container *dbNavigationContent>Navi-Item 1</ng-container>
 	<ng-container sub-navigation>
-		<db-navigation-item [areaPopup]="false">
+		<db-navigation-item>
 			<ng-container *dbNavigationContent>
 				<a routerLink="mypath">Sub-Navi-Item 1</a>
 			</ng-container>
 		</db-navigation-item>
 
-		<db-navigation-item [areaPopup]="false">
+		<db-navigation-item>
 			<ng-container *dbNavigationContent>
 				<a routerLink="mypath">Sub-Navi-Item 2</a>
 			</ng-container>

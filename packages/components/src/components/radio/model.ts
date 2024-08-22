@@ -1,19 +1,19 @@
 import {
+	ChangeEventProps,
+	ChangeEventState,
 	FocusEventProps,
 	FocusEventState,
-	ChangeEventState,
-	ChangeEventProps,
-	GlobalProps,
-	GlobalState,
+	FormCheckProps,
 	FormProps,
 	FormState,
-	FormCheckProps,
-	InitializedState
+	GlobalProps,
+	GlobalState,
+	InitializedState,
+	SizeProps
 } from '../../shared/model';
 
 export interface DBRadioDefaultProps {
 	describedbyid?: string;
-	size?: 'small';
 }
 
 export type DBRadioProps = DBRadioDefaultProps &
@@ -21,7 +21,8 @@ export type DBRadioProps = DBRadioDefaultProps &
 	ChangeEventProps<HTMLInputElement> &
 	FocusEventProps<HTMLInputElement> &
 	FormProps &
-	FormCheckProps;
+	FormCheckProps &
+	SizeProps;
 
 export type DBRadioDefaultState = {};
 

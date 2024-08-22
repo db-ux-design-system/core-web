@@ -1,8 +1,11 @@
+import SwitchComponent from '../components/switch';
+import TabsComponent from '../components/tabs';
+import TabItemComponent from '../components/tab-item';
 import TooltipComponent from '../components/tooltip';
 import PopoverComponent from '../components/popover';
 import AccordionItemComponent from '../components/accordion-item';
 import AccordionComponent from '../components/accordion';
-import MainNavigationComponent from '../components/main-navigation';
+import NavigationComponent from '../components/navigation';
 import BadgeComponent from '../components/badge';
 import NavigationItemComponent from '../components/navigation-item';
 import CheckboxComponent from '../components/checkbox';
@@ -10,16 +13,19 @@ import TagComponent from '../components/tag';
 import DrawerComponent from '../components/drawer';
 import SelectComponent from '../components/select';
 import RadioComponent from '../components/radio';
-import AlertComponent from '../components/alert';
+import NotificationComponent from '../components/notification';
 import ButtonComponent from '../components/button';
 import CardComponent from '../components/card';
 import DividerComponent from '../components/divider';
-import FormComponent from '../components/form';
 import InfotextComponent from '../components/infotext';
 import InputComponent from '../components/input';
 import LinkComponent from '../components/link';
 import SectionComponent from '../components/section';
 import TextareaComponent from '../components/textarea';
+import IconComponent from '../components/icon';
+import BrandComponent from '../components/brand';
+import HeaderComponent from '../components/header';
+import Home from '../components/home';
 
 export type NavigationItem = {
 	path: string;
@@ -39,7 +45,11 @@ export const NAVIGATION_ITEMS: NavigationItem[] = [
 		path: '06',
 		label: '06 Feedback',
 		subNavigation: getSortedNavigationItems([
-			{ path: 'alert', label: 'Alert', component: <AlertComponent /> },
+			{
+				path: 'notification',
+				label: 'Notification',
+				component: <NotificationComponent />
+			},
 			{ path: 'badge', label: 'Badge', component: <BadgeComponent /> }
 		])
 	},
@@ -54,21 +64,9 @@ export const NAVIGATION_ITEMS: NavigationItem[] = [
 				component: <NavigationItemComponent />
 			},
 			{
-				path: 'main-navigation',
-				label: 'MainNavigation',
-				component: <MainNavigationComponent />
-			},
-
-			{
-				path: 'test',
-				label: 'Test',
-				subNavigation: [
-					{
-						path: 'test2',
-						label: 'NavigationItem',
-						component: <NavigationItemComponent />
-					}
-				]
+				path: 'navigation',
+				label: 'Navigation',
+				component: <NavigationComponent />
 			}
 		])
 	},
@@ -78,9 +76,19 @@ export const NAVIGATION_ITEMS: NavigationItem[] = [
 		label: '04 Data-Display',
 		subNavigation: getSortedNavigationItems([
 			{
+				path: 'brand',
+				label: 'Brand',
+				component: <BrandComponent />
+			},
+			{
 				path: 'infotext',
 				label: 'Infotext',
 				component: <InfotextComponent />
+			},
+			{
+				path: 'icon',
+				label: 'Icon',
+				component: <IconComponent />
 			},
 			{
 				path: 'tooltip',
@@ -97,7 +105,13 @@ export const NAVIGATION_ITEMS: NavigationItem[] = [
 				path: 'accordion-item',
 				label: 'AccordionItem',
 				component: <AccordionItemComponent />
-			}
+			},
+			{
+				path: 'tab-item',
+				label: 'TabItem',
+				component: <TabItemComponent />
+			},
+			{ path: 'tabs', label: 'Tabs', component: <TabsComponent /> }
 		])
 	},
 	{
@@ -116,6 +130,7 @@ export const NAVIGATION_ITEMS: NavigationItem[] = [
 				label: 'Checkbox',
 				component: <CheckboxComponent />
 			},
+			{ path: 'switch', label: 'Switch', component: <SwitchComponent /> },
 			{ path: 'select', label: 'Select', component: <SelectComponent /> }
 		])
 	},
@@ -147,8 +162,13 @@ export const NAVIGATION_ITEMS: NavigationItem[] = [
 				path: 'popover',
 				label: 'Popover',
 				component: <PopoverComponent />
+			},
+			{
+				path: 'header',
+				label: 'Header',
+				component: <HeaderComponent />
 			}
 		])
 	},
-	{ path: '', label: 'Home', component: <FormComponent /> }
+	{ path: '', label: 'Home', component: <Home /> }
 ];

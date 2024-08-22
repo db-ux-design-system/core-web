@@ -14,12 +14,16 @@ export type DefaultComponentExample = {
 		react?: string;
 		vue?: string;
 	};
+	children?: DefaultComponentExample[];
 };
 
 export type DefaultComponentVariants = {
 	name: string;
+	codeFileName?: string;
+	children?: DefaultComponentExample[];
 	examples: DefaultComponentExample[];
-	slotCode?: any;
+	color?: string;
+	role?: string;
 };
 
 export type DefaultComponentProps = {

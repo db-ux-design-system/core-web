@@ -1,9 +1,19 @@
 @use "@db-ui/foundations/build/scss/variables";
 @use "@db-ui/foundations/build/scss/colors";
 @use "@db-ui/foundations/build/scss/screen-sizes";
-@use "@db-ui/foundations/build/scss/tonality";
+@use "@db-ui/foundations/build/scss/density";
 
 @forward "@db-ui/components/build/styles/db-ui-42-webpack";
+@forward "@db-ui/foundations/build/css/colors/classes/all";
+@forward "@db-ui/foundations/build/css/fonts/classes/all";
+
+body:not(:has(.db-page)) {
+	padding-block-end: variables.$db-spacing-fixed-lg;
+}
+
+.db-main {
+	scroll-behavior: smooth;
+}
 
 #__next {
 	height: inherit;
@@ -78,24 +88,24 @@ iframe {
 
 /* TODO: Use real table css in future */
 table {
-	@extend %db-ui-functional;
+	@extend %db-density-functional;
 	width: 100%;
 	border-collapse: collapse;
 }
 
 table td,
 table th {
-	border: 1px solid colors.$db-neutral-border-weak;
+	border: 1px solid colors.$db-adaptive-on-bg-basic-emphasis-60-default;
 	padding: variables.$db-spacing-fixed-md;
 	max-width: 33vw;
 }
 
 table tr:nth-child(even) {
-	@extend %db-bg-neutral-transparent-semi;
+	@extend %db-neutral-bg-basic-transparent-semi;
 }
 
 table th {
-	@extend %db-bg-neutral-transparent-semi;
+	@extend %db-neutral-bg-basic-transparent-semi;
 	padding-inline: variables.$db-spacing-fixed-md;
 }
 
@@ -108,7 +118,7 @@ div[class^="ch-"] {
 	div,
 	span {
 		@extend %db-overwrite-font-size-sm;
-		color: colors.$db-base-on-bg;
+		color: colors.$db-adaptive-on-bg-basic-emphasis-100-default;
 	}
 }
 
@@ -159,23 +169,55 @@ div[class^="ch-"] {
 }
 
 // colors overview
-
 .color-overview-container {
 	@extend %grid-container;
-	padding: variables.$db-spacing-fixed-md;
+	position: relative;
+	padding: variables.$db-spacing-fixed-md 0;
+
+	@include screen-sizes.screen() {
+		--columns: 2;
+	}
+
+	@include screen-sizes.screen("md") {
+		--columns: 3;
+	}
+
+	> span {
+		position: absolute;
+		block-size: 100%;
+		inline-size: 100%;
+	}
+
+	&[data-color-scheme="dark"] > span {
+		filter: invert(1) brightness(1.2);
+	}
 
 	> div {
+		position: relative;
 		display: flex;
 		justify-content: center;
 		align-items: center;
-		border: 1px solid black;
+		border: 1px solid colors.$db-adaptive-on-bg-basic-emphasis-60-default;
 		padding: variables.$db-spacing-fixed-md;
+	}
+
+	button {
+		position: absolute;
+		inset-inline-end: var(--db-spacing-fixed-md);
+		inset-block-start: 50%;
+		transform: translateY(-50%);
 	}
 }
 
-// tonality examples
+.color-overview-switches {
+	display: flex;
+	gap: variables.$db-spacing-fixed-lg;
+	margin-block-end: variables.$db-spacing-fixed-md;
+}
 
-.tonality-example-grid {
+// density examples
+
+.density-example-grid {
 	display: grid;
 	grid-template-columns: repeat(3, minmax(0, 1fr));
 	gap: variables.$db-spacing-fixed-md;
@@ -185,18 +227,18 @@ div[class^="ch-"] {
 	}
 }
 
-.tonality-example-page {
+.density-example-page {
 	display: flex;
 	flex-direction: column;
 	gap: variables.$db-spacing-fixed-md;
 
-	.tonality-example-page-regular {
+	.density-example-page-regular {
 		display: grid;
 		grid-template-columns: repeat(3, minmax(0, 1fr));
 		gap: variables.$db-spacing-fixed-md;
 	}
 
-	.tonality-example-page-functional {
+	.density-example-page-functional {
 		display: grid;
 		grid-template-columns: repeat(5, minmax(0, 1fr));
 		gap: variables.$db-spacing-fixed-md;
@@ -212,7 +254,9 @@ div[class^="ch-"] {
 	}
 
 	%spacing {
-		@extend %db-successful-component;
+		background-color: colors.$db-successful-bg-inverted-contrast-high-default;
+		color: colors.$db-successful-on-bg-inverted-default;
+		border-color: colors.$db-successful-bg-inverted-contrast-high-default;
 		height: 100%;
 		display: flex;
 		justify-content: center;
@@ -232,7 +276,8 @@ div[class^="ch-"] {
 			border: 1px solid black;
 			> div {
 				display: flex;
-				border: 1px solid colors.$db-informational-text;
+				border: 1px solid
+					colors.$db-adaptive-on-bg-basic-emphasis-60-default;
 				position: relative;
 			}
 		}
@@ -289,7 +334,9 @@ div[class^="ch-"] {
 
 			.sizing {
 				@extend %spacing;
-				@extend %db-warning-component;
+				background-color: colors.$db-warning-bg-inverted-contrast-high-default;
+				color: colors.$db-warning-on-bg-inverted-default;
+				border-color: colors.$db-warning-bg-inverted-contrast-high-default;
 				position: unset;
 				block-size: variables.$db-sizing-md;
 				inline-size: variables.$db-sizing-md;
@@ -300,7 +347,7 @@ div[class^="ch-"] {
 
 .color-schemes-container {
 	padding: variables.$db-spacing-fixed-md;
-	border: 1px dashed var(--db-current-color);
+	border: 1px dashed colors.$db-adaptive-on-bg-basic-emphasis-100-default;
 	display: grid;
 	gap: variables.$db-spacing-fixed-md;
 	grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -315,5 +362,217 @@ div[class^="ch-"] {
 
 	section {
 		padding: variables.$db-spacing-fixed-md;
+	}
+
+	.color-cards {
+		grid-column: span 2 / span 2;
+		display: grid;
+		gap: variables.$db-spacing-fixed-md;
+		grid-template-columns: repeat(5, minmax(0, 1fr));
+	}
+}
+
+h1 {
+	margin-block-start: variables.$db-spacing-fixed-sm;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	a:is(.header-link) {
+		display: inline-block;
+		margin-block: auto;
+		margin-inline-start: variables.$db-spacing-fixed-xs;
+		visibility: hidden;
+		text-decoration: none;
+		font-size: 0;
+	}
+
+	&:hover {
+		a:is(.header-link) {
+			visibility: visible;
+		}
+	}
+}
+
+.db-code-docs {
+	min-block-size: max(#{variables.$db-sizing-3xl}, 50vh);
+	align-items: center;
+	justify-content: center;
+	padding: variables.$db-spacing-fixed-xl;
+	margin-block-end: calc(
+		#{variables.$db-spacing-fixed-xl} + #{variables.$db-sizing-sm}
+	);
+	position: relative;
+
+	.code-details {
+		display: flex;
+
+		&[open] {
+			inset-inline-start: 0;
+			inset-block-start: 0;
+		}
+
+		.code-button {
+			position: absolute;
+			inset-block-end: calc(
+				-1 * (#{variables.$db-spacing-fixed-sm} + #{variables.$db-sizing-sm})
+			);
+			inset-inline-end: variables.$db-spacing-fixed-sm;
+			z-index: 1;
+			cursor: pointer;
+
+			&::-webkit-details-marker {
+				display: none;
+			}
+		}
+
+		.no-code {
+			margin: auto;
+		}
+
+		.backdrop {
+			border-radius: variables.$db-border-radius-sm;
+			background-color: colors.$db-adaptive-on-bg-basic-emphasis-100-default;
+			opacity: 0.64;
+			position: absolute;
+			inset: 0;
+		}
+
+		.code {
+			overflow: auto;
+			position: absolute;
+			z-index: 20;
+			inset: 0;
+			margin: variables.$db-spacing-fixed-md;
+			display: flex;
+			flex-direction: column;
+			gap: variables.$db-spacing-fixed-sm;
+
+			code {
+				display: block;
+				white-space: pre-wrap;
+			}
+
+			.tab-container {
+				position: relative;
+
+				.copy-button {
+					position: absolute;
+					z-index: 20;
+					inset-inline-end: variables.$db-spacing-fixed-sm;
+					inset-block-end: variables.$db-spacing-fixed-sm;
+
+					@include screen-sizes.screen("md") {
+						inset-block-end: auto;
+						inset-block-start: variables.$db-spacing-fixed-sm;
+					}
+				}
+			}
+		}
+	}
+}
+
+.validity-container {
+	display: grid;
+	grid-template-columns: repeat(2, minmax(0, 1fr));
+	gap: variables.$db-spacing-fixed-sm;
+
+	form {
+		display: flex;
+		flex-direction: column;
+		gap: variables.$db-spacing-fixed-sm;
+	}
+}
+
+.link-containers {
+	& > div {
+		display: grid;
+		grid-template-areas: "previous next";
+		gap: variables.$db-spacing-fixed-md;
+		justify-content: space-between;
+
+		a {
+			text-decoration: none;
+		}
+	}
+
+	.previous-link-container,
+	.next-link-container {
+		flex-direction: row;
+		min-inline-size: variables.$db-sizing-3xl;
+
+		small {
+			color: colors.$db-informational-bg-inverted-contrast-high-default;
+		}
+	}
+
+	.previous-link-container {
+		grid-area: previous;
+	}
+
+	.next-link-container {
+		grid-area: next;
+
+		span,
+		small {
+			margin-inline-start: auto;
+		}
+	}
+}
+
+.breadcrumb-container {
+	display: flex;
+	align-content: center;
+	align-items: center;
+	padding-block: variables.$db-spacing-fixed-sm;
+
+	a {
+		font-weight: normal;
+
+		&:first-of-type {
+			margin-inline-end: variables.$db-spacing-fixed-xs;
+		}
+
+		&:last-of-type {
+			font-weight: bold;
+		}
+	}
+}
+
+.card-navigation {
+	display: grid;
+	grid-template-columns: repeat(2, minmax(0, 1fr));
+	gap: variables.$db-spacing-fixed-md;
+
+	@include screen-sizes.screen("md") {
+		grid-template-columns: repeat(4, minmax(0, 1fr));
+	}
+
+	a {
+		text-decoration: none;
+	}
+
+	.db-card {
+		display: grid;
+		grid-template-areas: "index icon" "label icon";
+
+		small {
+			grid-area: index;
+		}
+
+		p {
+			grid-area: label;
+			margin: 0;
+		}
+
+		.db-icon {
+			grid-area: icon;
+			margin-block: auto;
+			margin-inline-start: auto;
+		}
 	}
 }

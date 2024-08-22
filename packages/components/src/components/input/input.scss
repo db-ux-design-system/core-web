@@ -1,11 +1,12 @@
 @use "@db-ui/foundations/build/scss/variables";
 @use "@db-ui/foundations/build/scss/icons";
-@use "@db-ui/foundations/build/scss/tonality";
+@use "@db-ui/foundations/build/scss/fonts";
 @use "@db-ui/foundations/build/scss/colors";
+@use "@db-ui/foundations/build/scss/helpers";
 @use "../../styles/component";
 @use "../../styles/form-components";
+@use "../../styles/button-components";
 
-// 1px for border
 $icon-padding: calc(
 	#{form-components.$font-size-height} + #{variables.$db-spacing-fixed-sm} + #{variables.$db-spacing-fixed-xs}
 );
@@ -25,13 +26,21 @@ $icon-padding: calc(
 		--db-form-component-padding-inline-end: #{$icon-padding};
 	}
 
+	&[data-variant="hidden"] {
+		--db-label-visible-height: 0;
+		--db-label-visible-spacing: 1;
+	}
+
 	&:has(input[type="search"]) {
-		@include icons.set-icon("search");
-		@include icons.set-icon("cancel", "after");
+		@include icons.set-icon("magnifying_glass");
+		@include icons.set-icon("cross_circle", "after");
 
 		&::after {
 			opacity: 0;
-			transition: opacity variables.$db-transition-duration-fast;
+
+			@media screen and (prefers-reduced-motion: no-preference) {
+				transition: opacity variables.$db-transition-duration-fast;
+			}
 		}
 
 		&:has(input:not(:placeholder-shown)):has(
@@ -52,7 +61,33 @@ $icon-padding: calc(
 	}
 
 	&:has(input[type="time"]) {
-		@include icons.set-icon("schedule", "after");
+		@include icons.set-icon("clock", "after");
+	}
+
+	&:has(input[type="file"]) {
+		input {
+			@extend %db-overwrite-font-size-sm;
+
+			padding-block-start: variables.$db-spacing-fixed-xs;
+		}
+
+		&[data-variant="floating"] {
+			input {
+				@extend %db-overwrite-font-size-xs;
+
+				padding-block-start: calc(
+					#{variables.$db-spacing-fixed-md} + #{variables.$db-spacing-fixed-3xs}
+				);
+
+				&::file-selector-button {
+					@extend %db-overwrite-font-size-xs;
+
+					block-size: variables.$db-sizing-xs;
+					padding: 0 variables.$db-spacing-fixed-xs;
+					margin-inline-end: variables.$db-spacing-fixed-xs;
+				}
+			}
+		}
 	}
 
 	input {
@@ -70,19 +105,35 @@ $icon-padding: calc(
 		&::-webkit-search-cancel-button {
 			appearance: none;
 			position: absolute;
-			// 1px for border
-			inset-inline-end: calc(#{variables.$db-spacing-fixed-sm} + 1px);
+			inset-inline-end: calc(
+				#{variables.$db-spacing-fixed-sm} + #{variables.$db-border-height-3xs}
+			);
+		}
+
+		&::file-selector-button {
+			@extend %default-interactive-component;
+			@extend %default-button;
+			@extend %db-overwrite-font-size-sm;
+
+			color: colors.$db-adaptive-on-bg-basic-emphasis-100-default;
+			block-size: variables.$db-sizing-sm;
+			padding: variables.$db-spacing-fixed-3xs
+				variables.$db-spacing-fixed-sm;
+			margin-inline-end: variables.$db-spacing-fixed-sm;
+
+			&:hover,
+			&:focus {
+				background-color: colors.$db-adaptive-bg-basic-transparent-hovered;
+			}
+
+			&:active {
+				background-color: colors.$db-adaptive-bg-basic-transparent-pressed;
+			}
 		}
 	}
 
 	&:has(datalist) {
 		@extend %dropdown-icon;
-
-		&:has(input:focus) {
-			&::after {
-				transform: form-components.$dropdown-icon-transform;
-			}
-		}
 
 		input {
 			&::-webkit-calendar-picker-indicator {

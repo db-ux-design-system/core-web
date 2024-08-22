@@ -3,9 +3,9 @@ import AxeBuilder from '@axe-core/playwright';
 
 import { DBInfotext } from './index';
 // @ts-ignore - vue can only find it with .ts as file ending
-import { DEFAULT_VIEWPORT, VARIANTS } from '../../shared/constants.ts';
+import { DEFAULT_VIEWPORT, SEMANTICS } from '../../shared/constants.ts';
 
-const comp = <DBInfotext>Test</DBInfotext>;
+const comp: any = <DBInfotext>Test</DBInfotext>;
 
 const testComponent = () => {
 	test('should contain text', async ({ mount }) => {
@@ -20,25 +20,19 @@ const testComponent = () => {
 };
 
 const testVariants = () => {
-	for (const variant of VARIANTS) {
-		test(`should match screenshot for variant ${variant}`, async ({
+	for (const semantic of SEMANTICS) {
+		test(`should match screenshot for semantic ${semantic}`, async ({
 			mount
 		}) => {
-			const component = await mount(
-				<DBInfotext variant={variant}>Test</DBInfotext>
+			const variantComp: any = (
+				<DBInfotext semantic={semantic}>Test</DBInfotext>
 			);
+			const component = await mount(variantComp);
 			await expect(component).toHaveScreenshot();
 		});
 	}
 };
-
-test.describe('DBInfotext', () => {
-	test.use({ viewport: DEFAULT_VIEWPORT });
-	testComponent();
-	testVariants();
-});
-
-test.describe('DBInfotext', () => {
+const testA11y = () => {
 	test('should not have A11y issues', async ({ page, mount }) => {
 		await mount(comp);
 		const accessibilityScanResults = await new AxeBuilder({ page })
@@ -47,4 +41,11 @@ test.describe('DBInfotext', () => {
 
 		expect(accessibilityScanResults.violations).toEqual([]);
 	});
+};
+
+test.describe('DBInfotext', () => {
+	test.use({ viewport: DEFAULT_VIEWPORT });
+	testComponent();
+	testVariants();
+	testA11y();
 });

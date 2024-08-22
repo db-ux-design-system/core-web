@@ -1,5 +1,5 @@
 <app-default-component
-	title="DBLink"
+	title="DBRadio"
 	[variants]="variants"
 	[exampleTemplate]="exampleTemplate"
 >
@@ -11,15 +11,14 @@
 		let-variantIndex="variantIndex"
 	>
 		<db-radio
-			[label]="exampleProps.label"
-			[size]="exampleProps.size"
-			[name]="exampleProps.name"
-			[value]="exampleProps.value"
-			[checked]="exampleProps.checked"
-			[invalid]="exampleProps.invalid"
-			[required]="exampleProps.required"
-			[disabled]="exampleProps.disabled"
-			[labelVariant]="exampleProps.labelVariant"
+			[label]="exampleProps?.label"
+			[size]="exampleProps?.size"
+			[name]="exampleProps?.name"
+			[value]="exampleProps?.value"
+			[checked]="exampleProps?.checked"
+			[required]="exampleProps?.required"
+			[disabled]="exampleProps?.disabled"
+			[variant]="exampleProps?.variant"
 		>
 			{{ exampleName }}
 		</db-radio>

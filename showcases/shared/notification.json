@@ -1,0 +1,531 @@
+[
+	{
+		"name": "Density",
+		"examples": [
+			{
+				"name": "functional",
+				"style": { "width": "300px" },
+				"className": "db-density-functional",
+				"props": {
+					"headline": "Headline",
+					"icon": "information_circle",
+					"behaviour": "closable"
+				}
+			},
+			{
+				"name": "regular (Default)",
+				"style": { "width": "300px" },
+				"className": "db-density-regular",
+				"props": {
+					"headline": "Headline",
+					"icon": "information_circle",
+					"behaviour": "closable"
+				}
+			},
+			{
+				"name": "expressive",
+				"style": { "width": "300px" },
+				"className": "db-density-expressive",
+				"props": {
+					"headline": "Headline",
+					"icon": "information_circle",
+					"behaviour": "closable"
+				}
+			}
+		]
+	},
+	{
+		"name": "Variant",
+		"examples": [
+			{
+				"name": "(Default) Docked",
+				"style": { "width": "300px" },
+				"props": {
+					"variant": "docked",
+					"headline": "Headline",
+					"icon": "information_circle",
+					"behaviour": "closable"
+				}
+			},
+			{
+				"name": "Standalone",
+				"style": { "width": "300px" },
+				"props": {
+					"variant": "standalone",
+					"headline": "Headline",
+					"icon": "information_circle",
+					"behaviour": "closable"
+				}
+			},
+			{
+				"name": "Overlay",
+				"style": { "width": "300px" },
+				"props": {
+					"variant": "overlay",
+					"headline": "Headline",
+					"icon": "information_circle",
+					"behaviour": "closable",
+					"timestamp": "10 min ago"
+				}
+			}
+		]
+	},
+	{
+		"name": "Semantic",
+		"examples": [
+			{
+				"name": "(Default) Adaptive",
+				"style": { "width": "300px" },
+				"props": {
+					"type": "alert",
+					"headline": "Headline",
+					"behaviour": "closable"
+				}
+			},
+			{
+				"name": "Neutral",
+				"style": { "width": "300px" },
+				"props": {
+					"type": "alert",
+					"semantic": "neutral",
+					"headline": "Headline",
+					"behaviour": "closable"
+				}
+			},
+			{
+				"name": "Critical",
+				"style": { "width": "300px" },
+				"props": {
+					"type": "alert",
+					"semantic": "critical",
+					"headline": "Headline",
+					"behaviour": "closable"
+				}
+			},
+			{
+				"name": "Informational",
+				"style": { "width": "300px" },
+				"props": {
+					"type": "alert",
+					"semantic": "informational",
+					"headline": "Headline",
+					"behaviour": "closable"
+				}
+			},
+			{
+				"name": "Successful",
+				"style": { "width": "300px" },
+				"props": {
+					"type": "alert",
+					"semantic": "successful",
+					"headline": "Headline",
+					"behaviour": "closable"
+				}
+			},
+			{
+				"name": "Warning",
+				"style": { "width": "300px" },
+				"props": {
+					"type": "alert",
+					"semantic": "warning",
+					"headline": "Headline",
+					"behaviour": "closable"
+				}
+			}
+		]
+	},
+	{
+		"name": "Behaviour",
+		"examples": [
+			{
+				"name": "(Default) Permanent",
+				"style": { "width": "300px" },
+				"props": {
+					"behaviour": "permanent"
+				}
+			},
+			{
+				"name": "Closeable",
+				"style": { "width": "300px" },
+				"props": {
+					"behaviour": "closable"
+				}
+			}
+		]
+	},
+	{
+		"name": "Content - Variant:Docked",
+		"codeFileName": "ContentVariantDocked",
+		"examples": [
+			{
+				"name": "Text",
+				"style": { "width": "300px" },
+				"props": {
+					"behaviour": "permanent"
+				}
+			},
+			{
+				"name": "Text & Icon",
+				"style": { "width": "300px" },
+				"props": {
+					"icon": "information_circle",
+					"behaviour": "permanent"
+				}
+			},
+			{
+				"name": "Text & Preview Image",
+				"style": { "width": "300px" },
+				"props": {
+					"img": true,
+					"behaviour": "permanent"
+				},
+				"children": [
+					{
+						"name": "img",
+						"native": true,
+						"slot": "image",
+						"content": "",
+						"props": {
+							"src": "/assets/images/placeholder.jpg",
+							"alt": ""
+						}
+					}
+				]
+			},
+			{
+				"name": "Text & Headline",
+				"style": { "width": "300px" },
+				"props": {
+					"headline": "Headline",
+					"behaviour": "permanent"
+				}
+			},
+			{
+				"name": "Text & Textlink Block",
+				"style": { "width": "300px" },
+				"props": {
+					"link": true,
+					"behaviour": "permanent"
+				},
+				"children": [
+					{
+						"name": "link",
+						"slot": "link",
+						"content": "Textlink",
+						"props": {
+							"href": "#"
+						}
+					}
+				]
+			},
+			{
+				"name": "Text & Textlink Inline",
+				"style": { "width": "300px" },
+				"props": {
+					"link": true,
+					"linkVariant": "inline",
+					"behaviour": "permanent"
+				},
+				"children": [
+					{
+						"name": "link",
+						"slot": "link",
+						"content": "Textlink",
+						"props": {
+							"href": "#"
+						}
+					}
+				]
+			},
+			{
+				"name": "Text & Headline & Textlink Inline & Cloaseable",
+				"style": { "width": "300px" },
+				"props": {
+					"headline": "Headline",
+					"link": true,
+					"linkVariant": "inline"
+				},
+				"children": [
+					{
+						"name": "link",
+						"slot": "link",
+						"content": "Textlink",
+						"props": {
+							"href": "#"
+						}
+					}
+				]
+			},
+			{
+				"name": "Text & Icon & Headline & Textlink Inline & Cloaseable",
+				"style": { "width": "300px" },
+				"props": {
+					"icon": "information_circle",
+					"headline": "Headline",
+					"link": true,
+					"linkVariant": "inline"
+				},
+				"children": [
+					{
+						"name": "link",
+						"slot": "link",
+						"content": "Textlink",
+						"props": {
+							"href": "#"
+						}
+					}
+				]
+			}
+		]
+	},
+	{
+		"name": "Content - Variant:Standalone",
+		"codeFileName": "ContentVariantStandalone",
+		"examples": [
+			{
+				"name": "Text",
+				"style": { "width": "300px" },
+				"props": {
+					"variant": "standalone",
+					"behaviour": "permanent"
+				}
+			},
+			{
+				"name": "Text & Icon",
+				"style": { "width": "300px" },
+				"props": {
+					"icon": "information_circle",
+					"variant": "standalone",
+					"behaviour": "permanent"
+				}
+			},
+			{
+				"name": "Text & Preview Image",
+				"style": { "width": "300px" },
+				"props": {
+					"img": true,
+					"variant": "standalone",
+					"behaviour": "permanent"
+				},
+				"children": [
+					{
+						"name": "img",
+						"native": true,
+						"slot": "image",
+						"content": "",
+						"props": {
+							"src": "/assets/images/placeholder.jpg",
+							"alt": ""
+						}
+					}
+				]
+			},
+			{
+				"name": "Text & Headline",
+				"style": { "width": "300px" },
+				"props": {
+					"headline": "Headline",
+					"variant": "standalone",
+					"behaviour": "permanent"
+				}
+			},
+			{
+				"name": "Text & Textlink Block",
+				"style": { "width": "300px" },
+				"props": {
+					"link": true,
+					"variant": "standalone",
+					"behaviour": "permanent"
+				},
+				"children": [
+					{
+						"name": "link",
+						"slot": "link",
+						"content": "Textlink",
+						"props": {
+							"href": "#"
+						}
+					}
+				]
+			},
+			{
+				"name": "Text & Textlink Inline",
+				"style": { "width": "300px" },
+				"props": {
+					"link": true,
+					"linkVariant": "inline",
+					"variant": "standalone",
+					"behaviour": "permanent"
+				},
+				"children": [
+					{
+						"name": "link",
+						"slot": "link",
+						"content": "Textlink",
+						"props": {
+							"href": "#"
+						}
+					}
+				]
+			},
+			{
+				"name": "Text & Headline & Textlink Inline & Cloaseable",
+				"style": { "width": "300px" },
+				"props": {
+					"headline": "Headline",
+					"link": true,
+					"linkVariant": "inline",
+					"variant": "standalone"
+				},
+				"children": [
+					{
+						"name": "link",
+						"slot": "link",
+						"content": "Textlink",
+						"props": {
+							"href": "#"
+						}
+					}
+				]
+			},
+			{
+				"name": "Text & Icon & Headline & Textlink Inline & Cloaseable",
+				"style": { "width": "300px" },
+				"props": {
+					"icon": "information_circle",
+					"headline": "Headline",
+					"link": true,
+					"linkVariant": "inline",
+					"variant": "standalone"
+				},
+				"children": [
+					{
+						"name": "link",
+						"slot": "link",
+						"content": "Textlink",
+						"props": {
+							"href": "#"
+						}
+					}
+				]
+			}
+		]
+	},
+	{
+		"name": "Content - Variant:Overlay",
+		"codeFileName": "ContentVariantOverlay",
+		"examples": [
+			{
+				"name": "Text",
+				"style": { "width": "300px" },
+				"props": {
+					"variant": "overlay",
+					"behaviour": "permanent"
+				}
+			},
+			{
+				"name": "Text & Icon",
+				"style": { "width": "300px" },
+				"props": {
+					"icon": "information_circle",
+					"variant": "overlay",
+					"behaviour": "permanent"
+				}
+			},
+			{
+				"name": "Text & Preview Image",
+				"style": { "width": "300px" },
+				"props": {
+					"img": true,
+					"variant": "overlay",
+					"behaviour": "permanent"
+				},
+				"children": [
+					{
+						"name": "img",
+						"native": true,
+						"slot": "image",
+						"content": "",
+						"props": {
+							"src": "/assets/images/placeholder.jpg",
+							"alt": ""
+						}
+					}
+				]
+			},
+			{
+				"name": "Text & Headline",
+				"style": { "width": "300px" },
+				"props": {
+					"headline": "Headline",
+					"variant": "overlay",
+					"behaviour": "permanent"
+				}
+			},
+			{
+				"name": "Text & Textlink Inline",
+				"style": { "width": "300px" },
+				"props": {
+					"link": true,
+					"variant": "overlay",
+					"behaviour": "permanent"
+				}
+			},
+			{
+				"name": "Text & Headline & Textlink Inline & Cloaseable",
+				"style": { "width": "300px" },
+				"props": {
+					"headline": "Headline",
+					"link": true,
+					"variant": "overlay"
+				}
+			},
+			{
+				"name": "Text & Icon & Headline & Textlink Inline & Cloaseable",
+				"style": { "width": "300px" },
+				"props": {
+					"icon": "information_circle",
+					"headline": "Headline",
+					"link": true,
+					"variant": "overlay"
+				}
+			},
+			{
+				"name": "Text & Timed",
+				"style": { "width": "300px" },
+				"props": {
+					"timestamp": "10 min ago",
+					"variant": "overlay",
+					"behaviour": "permanent"
+				}
+			},
+			{
+				"name": "Text & Timed & Cloaseable",
+				"style": { "width": "300px" },
+				"props": {
+					"timestamp": "10 min ago",
+					"variant": "overlay"
+				}
+			},
+			{
+				"name": "Text & Headline & Timed & Cloaseable",
+				"style": { "width": "300px" },
+				"props": {
+					"headline": "Headline",
+					"timestamp": "10 min ago",
+					"variant": "overlay"
+				}
+			},
+			{
+				"name": "Text & Icon & Headline & Timed & Cloaseable",
+				"style": { "width": "300px" },
+				"props": {
+					"icon": "information_circle",
+					"headline": "Headline",
+					"timestamp": "10 min ago",
+					"variant": "overlay"
+				}
+			}
+		]
+	}
+]

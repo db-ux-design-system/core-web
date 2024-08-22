@@ -1,16 +1,18 @@
 import {
+	ContainerWidthProps,
 	GlobalProps,
 	GlobalState,
 	InitializedState,
+	NavigationBehaviourState,
 	ToggleEventProps,
 	ToggleEventState
 } from '../../shared/model';
 
 export interface DBHeaderDefaultProps {
-	slotBrand?: any;
-	slotMetaNavigation?: any;
-	slotCallToAction?: any;
-	slotActionBar?: any;
+	brand?: unknown;
+	metaNavigation?: unknown;
+	primaryAction?: unknown;
+	secondaryAction?: unknown;
 	drawerOpen?: boolean;
 
 	/**
@@ -29,7 +31,8 @@ export interface DBHeaderDefaultProps {
 
 export type DBHeaderProps = DBHeaderDefaultProps &
 	GlobalProps &
-	ToggleEventProps;
+	ToggleEventProps &
+	ContainerWidthProps;
 
 export interface DBHeaderDefaultState {
 	forcedToMobile?: boolean;
@@ -38,4 +41,5 @@ export interface DBHeaderDefaultState {
 export type DBHeaderState = DBHeaderDefaultState &
 	GlobalState &
 	ToggleEventState<HTMLElement> &
-	InitializedState;
+	InitializedState &
+	NavigationBehaviourState;

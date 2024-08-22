@@ -1,6 +1,14 @@
-import {onMount, Show, useMetadata, useRef, useStore} from '@builder.io/mitosis';
-import { DBBadgeState, DBBadgeProps } from './model';
+import {
+	onMount,
+	onUpdate,
+	Show,
+	useMetadata,
+	useRef,
+	useStore
+} from '@builder.io/mitosis';
+import { DBBadgeProps, DBBadgeState } from './model';
 import { cls } from '../../utils';
+import { DEFAULT_LABEL } from '../../shared/constants';
 
 useMetadata({
 	isAttachedToShadowDom: true
@@ -8,28 +16,44 @@ useMetadata({
 
 export default function DBBadge(props: DBBadgeProps) {
 	const ref = useRef<HTMLSpanElement>(null);
-	// jscpd:ignore-start
-	const state = useStore<DBBadgeState>({});
+	const state = useStore<DBBadgeState>({
+		initialized: false
+	});
 
 	onMount(() => {
-		if (props.stylePath) {
-			state.stylePath = props.stylePath;
-		}
+		state.initialized = true;
 	});
-	// jscpd:ignore-end
+
+	onUpdate(() => {
+		if (ref && state.initialized) {
+			if (props.placement?.startsWith('corner')) {
+				let parent = ref.parentElement;
+
+				if (parent && parent.localName.includes('badge')) {
+					// Angular workaround
+					parent = parent.parentElement;
+				}
+
+				if (parent) {
+					parent.setAttribute('data-has-badge', 'true');
+				}
+			}
+		}
+	}, [ref, state.initialized]);
 
 	return (
 		<span
 			ref={ref}
 			id={props.id}
 			class={cls('db-badge', props.className)}
-			data-variant={props.variant}
+			data-semantic={props.semantic}
 			data-size={props.size}
 			data-emphasis={props.emphasis}
-			data-placement={props.placement}>
-			<Show when={state.stylePath}>
-				<link rel="stylesheet" href={state.stylePath} />
-			</Show>
+			data-placement={props.placement}
+			data-label={
+				props.placement?.startsWith('corner') &&
+				(props.label ?? DEFAULT_LABEL)
+			}>
 			{props.children}
 		</span>
 	);

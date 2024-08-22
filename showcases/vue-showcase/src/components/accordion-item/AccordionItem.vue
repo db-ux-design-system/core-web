@@ -1,23 +1,7 @@
 <script setup lang="ts">
 import DefaultComponent from "../DefaultComponent.vue";
 import defaultComponentVariants from "../../../../shared/accordion-item.json";
-import { DBAccordionItem } from "../../../../../output/vue/vue3/src";
-import { ref } from "vue";
-
-const openId = ref<string | undefined>(undefined);
-
-const getId = (exampleIndex: number, variantIndex: number) =>
-	`${variantIndex}${exampleIndex}`;
-const toggle = (exampleIndex: number, variantIndex: number) => {
-	if (openId.value === getId(exampleIndex, variantIndex)) {
-		openId.value = undefined;
-	} else {
-		openId.value = getId(exampleIndex, variantIndex);
-	}
-};
-
-const isOpen = (exampleIndex: number, variantIndex: number, open?: boolean) =>
-	openId.value === getId(exampleIndex, variantIndex) ? true : open;
+import { DBAccordionItem } from "../../../../../output/vue/src";
 </script>
 
 <template>
@@ -29,10 +13,9 @@ const isOpen = (exampleIndex: number, variantIndex: number, open?: boolean) =>
 			#example="{ exampleIndex, variantIndex, exampleName, exampleProps }"
 		>
 			<DBAccordionItem
-				:title="exampleProps.title"
-				:disabled="exampleProps.disabled"
-				:open="isOpen(exampleIndex, variantIndex, exampleProps.open)"
-				@onToggle="toggle(exampleIndex, variantIndex)"
+				:headlinePlain="exampleProps?.headlinePlain"
+				:disabled="exampleProps?.disabled"
+				:default-open="exampleProps?.open"
 			>
 				{{ exampleName }}
 			</DBAccordionItem>

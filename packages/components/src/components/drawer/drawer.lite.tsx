@@ -7,26 +7,20 @@ import {
 	useRef,
 	useStore
 } from '@builder.io/mitosis';
-import { DBDrawerState, DBDrawerProps } from './model';
+import { DBDrawerProps, DBDrawerState } from './model';
 import { DBButton } from '../button';
-import { DEFAULT_CLOSE_BUTTON, DEFAULT_ID } from '../../shared/constants';
-import { cls } from '../../utils';
-import { uuid } from '../../utils';
+import { DEFAULT_CLOSE_BUTTON } from '../../shared/constants';
+import { cls, delay } from '../../utils';
 
 useMetadata({
-	isAttachedToShadowDom: true,
-	component: {
-		// MS Power Apps
-		includeIcon: false,
-		properties: [{ name: 'open', type: 'TwoOptions' }]
-	}
+	isAttachedToShadowDom: true
 });
 
 export default function DBDrawer(props: DBDrawerProps) {
 	const ref = useRef<HTMLDialogElement>(null);
 	const dialogContainerRef = useRef<HTMLDivElement>(null);
 	const state = useStore<DBDrawerState>({
-		_id: DEFAULT_ID,
+		// eslint-disable-next-line @typescript-eslint/no-explicit-any
 		handleClose: (event: any) => {
 			if (event.key === 'Escape') {
 				event.preventDefault();
@@ -36,10 +30,11 @@ export default function DBDrawer(props: DBDrawerProps) {
 				event === 'close' ||
 				event.key === 'Escape' ||
 				(event.target.nodeName === 'DIALOG' &&
+					event.type === 'click' &&
 					props.backdrop !== 'none')
 			) {
 				if (props.onClose) {
-					props.onClose();
+					props.onClose(event);
 				}
 			}
 		},
@@ -59,7 +54,7 @@ export default function DBDrawer(props: DBDrawerProps) {
 					if (dialogContainerRef) {
 						dialogContainerRef.hidden = true;
 					}
-					setTimeout(() => {
+					delay(() => {
 						if (dialogContainerRef) {
 							dialogContainerRef.hidden = false;
 						}
@@ -71,10 +66,6 @@ export default function DBDrawer(props: DBDrawerProps) {
 	});
 
 	onMount(() => {
-		state._id = props.id || 'drawer-' + uuid();
-		if (props.stylePath) {
-			state.stylePath = props.stylePath;
-		}
 		state.handleDialogOpen();
 	});
 
@@ -84,7 +75,7 @@ export default function DBDrawer(props: DBDrawerProps) {
 
 	return (
 		<dialog
-			id={state._id}
+			id={props.id}
 			ref={ref}
 			class="db-drawer"
 			onClick={(event) => {
@@ -92,9 +83,6 @@ export default function DBDrawer(props: DBDrawerProps) {
 			}}
 			onKeyDown={(event) => state.handleClose(event)}
 			data-backdrop={props.backdrop}>
-			<Show when={state.stylePath}>
-				<link rel="stylesheet" href={state.stylePath} />
-			</Show>
 			<article
 				ref={dialogContainerRef}
 				class={cls('db-drawer-container', props.className)}
@@ -104,19 +92,17 @@ export default function DBDrawer(props: DBDrawerProps) {
 				data-rounded={props.rounded}>
 				<header class="db-drawer-header">
 					<div class="db-drawer-header-text">
-						<Slot name="drawer-header" />
+						<Slot name="drawerHeader" />
 					</div>
-					<Show when={props.withCloseButton}>
-						<DBButton
-							className="button-close-drawer"
-							id={props.closeButtonId}
-							icon="close"
-							variant="text"
-							noText
-							onClick={() => state.handleClose('close')}>
-							{props.closeButtonText ?? DEFAULT_CLOSE_BUTTON}
-						</DBButton>
-					</Show>
+					<DBButton
+						className="button-close-drawer"
+						id={props.closeButtonId}
+						icon="cross"
+						variant="ghost"
+						noText
+						onClick={() => state.handleClose('close')}>
+						{props.closeButtonText ?? DEFAULT_CLOSE_BUTTON}
+					</DBButton>
 				</header>
 				<div class="db-drawer-content">{props.children}</div>
 			</article>

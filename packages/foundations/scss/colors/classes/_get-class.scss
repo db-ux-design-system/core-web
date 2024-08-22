@@ -1,21 +1,38 @@
 @mixin init($variant) {
-	.db-bg-#{$variant} {
-		@extend %db-bg-#{$variant};
+	[data-color="#{$variant}-bg-basic-level-1"],
+	.db-#{$variant}-bg-basic-level-1 {
+		@extend %db-#{$variant}-bg-basic-level-1;
+	}
+	[data-color="#{$variant}-bg-basic-level-2"],
+	.db-#{$variant}-bg-basic-level-2 {
+		@extend %db-#{$variant}-bg-basic-level-2;
+	}
+	[data-color="#{$variant}-bg-basic-level-3"],
+	.db-#{$variant}-bg-basic-level-3 {
+		@extend %db-#{$variant}-bg-basic-level-3;
+	}
+}
 
-		&-strong {
-			@extend %db-bg-#{$variant}-strong;
-		}
+@mixin init-container-colors($variant) {
+	[data-container-color="#{$variant}"],
+	.db-container-color-#{$variant} {
+		@extend %db-#{$variant}-variables;
 
-		&-transparent-full {
-			@extend %db-bg-#{$variant}-transparent-full;
-		}
+		color: var(--db-adaptive-on-bg-basic-emphasis-100-default);
+		background-color: var(--db-adaptive-bg-basic-level-1-default);
+	}
+}
 
-		&-transparent-semi {
-			@extend %db-bg-#{$variant}-transparent-semi;
-		}
+@mixin init-on-background-colors($color) {
+	[data-on-bg-color="#{$color}"],
+	.db-on-bg-color-#{$color} {
+		color: var(--db-adaptive-on-bg-basic-#{$color}-default);
+	}
+}
 
-		&-interactive {
-			@extend %db-bg-#{$variant}-interactive;
-		}
+@mixin init-background-colors($background-color) {
+	[data-bg-color="#{$background-color}"],
+	.db-bg-color-#{$background-color} {
+		background-color: var(--db-adaptive-bg-#{$background-color}-default);
 	}
 }

@@ -1,43 +1,79 @@
 [
 	{
-		"name": "Tonality",
+		"name": "Density",
+		"role": "group",
 		"examples": [
 			{
-				"name": "functional",
-				"className": "db-ui-functional",
+				"name": "Functional",
+				"className": "db-density-functional",
 				"props": {
-					"name": "Tonality"
+					"name": "Density"
 				}
 			},
 			{
-				"name": "regular (Default)",
-				"className": "db-ui-regular",
+				"name": "(Default) Regular",
+				"className": "db-density-regular",
 				"props": {
-					"name": "Tonality"
+					"name": "Density"
 				}
 			},
 			{
-				"name": "expressive",
-				"className": "db-ui-expressive",
+				"name": "Expressive",
+				"className": "db-density-expressive",
 				"props": {
-					"name": "Tonality"
+					"name": "Density"
+				}
+			}
+		]
+	},
+	{
+		"name": "Interaction States",
+		"role": "group",
+		"examples": [
+			{
+				"name": "(Default) Enabled",
+				"props": {
+					"name": "Interaction States"
+				}
+			},
+			{
+				"name": "Disabled",
+				"props": {
+					"name": "Interaction States",
+					"disabled": true
 				}
 			}
 		]
 	},
 	{
 		"name": "States",
+		"role": "group",
 		"examples": [
 			{
-				"name": "Default",
+				"name": "(Default) Unchecked",
 				"props": {
 					"name": "States"
+				}
+			},
+			{
+				"name": "Unchecked - Invalid",
+				"props": {
+					"name": "States",
+					"required": true
 				}
 			},
 			{
 				"name": "Checked",
 				"props": {
 					"name": "States",
+					"checked": true
+				}
+			},
+			{
+				"name": "Checked - Valid",
+				"props": {
+					"name": "States",
+					"required": true,
 					"checked": true
 				}
 			},
@@ -49,16 +85,46 @@
 				}
 			},
 			{
-				"name": "Disabled",
+				"name": "Indeterminate - Invalid",
 				"props": {
 					"name": "States",
-					"disabled": true
+					"indeterminate": true,
+					"required": true
+				}
+			},
+			{
+				"name": "Indeterminate - Valid",
+				"props": {
+					"name": "States",
+					"indeterminate": true,
+					"required": true,
+					"checked": true
+				}
+			}
+		]
+	},
+	{
+		"name": "Size",
+		"role": "group",
+		"examples": [
+			{
+				"name": "(Default) Medium",
+				"props": {
+					"name": "Size"
+				}
+			},
+			{
+				"name": "Small",
+				"props": {
+					"name": "Size",
+					"size": "small"
 				}
 			}
 		]
 	},
 	{
 		"name": "Requirement",
+		"role": "group",
 		"examples": [
 			{
 				"name": "(Default) Optional",
@@ -74,35 +140,17 @@
 				}
 			},
 			{
-				"name": "Required - Checked",
+				"name": "Required - Indeterminate",
 				"props": {
 					"name": "Requirement",
-					"required": true,
-					"checked": true
+					"indeterminate": true
 				}
 			}
 		]
 	},
 	{
-		"name": "Size",
-		"examples": [
-			{
-				"name": "Default",
-				"props": {
-					"name": "Size"
-				}
-			},
-			{
-				"name": "Small",
-				"props": {
-					"name": "Size",
-					"size": "small"
-				}
-			}
-		]
-	},
-	{
-		"name": "Variant Label",
+		"name": "Content",
+		"role": "group",
 		"examples": [
 			{
 				"name": "(Default) Label",
@@ -111,10 +159,10 @@
 				}
 			},
 			{
-				"name": "Hidden Label",
+				"name": "No Label",
 				"props": {
 					"name": "Content",
-					"labelVariant": "hidden"
+					"variant": "hidden"
 				}
 			}
 		]

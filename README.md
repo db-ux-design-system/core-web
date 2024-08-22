@@ -3,7 +3,7 @@
 
 <img src="docs/images/header_image_0.guetzli.jpg" alt="" srcset="docs/images/header_image_0.guetzli.2x.jpg 2x, docs/images/header_image_0.guetzli.3x.jpg 3x"> <!-- width="830" height="276" //-->
 
-# DB UI Mono (Alpha) 🚂💖
+# DB UI Mono (Beta) 🚂💖
 
 ![Part of DB UX Design System Core](https://img.shields.io/badge/Part%20of-DB%20UX%20Design%20System%20Core-d7dce1.svg)
 ![Main pipeline](https://github.com/db-ui/mono/actions/workflows/default.yml/badge.svg)
@@ -21,12 +21,6 @@ designers, and content authors build, maintain, and scale best of class digital 
 	<figcaption><a href="https://bradfrost.com/blog/post/bdconf-stephen-hay-presents-responsive-design-workflow/" target="_blank" rel="noopener noreferrer">Stephen Hay</a>. <a href="https://vimeo.com/67476280" title="Brad Frosts at beyond tellerrand conference regarding Atomic Design" target="_blank" rel="noopener noreferrer">Cited in a talk by Brad Frost at beyond tellerrand conference.</a></figcaption>
 </figure>
 
-> **Warning**
-> We currently don't fully support Mozilla Firefox until it adds the following functionalities, that are expected to get integrated later this year:
->
-> -   [CSS: `:has`](https://caniuse.com/css-has)
-> -   [`popover`-attribute](https://caniuse.com/mdn-api_htmlinputelement_popovertargetaction)(not in use by us currently, but planned)
-
 ## Packages
 
 | Package                                                                     | Content                             | Version                                                                                                                                                                                                                                                                                  |
@@ -35,7 +29,7 @@ designers, and content authors build, maintain, and scale best of class digital 
 | [components](https://github.com/db-ui/mono/tree/main/packages/components)   | CSS/SCSS styles for components      | [![@db-ui/components on Npmjs](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fapi.github.com%2Frepos%2Fdb-ui%2Fmono%2Freleases%2Flatest&query=%24.tag_name&label=npm&color=ed1c24 "npm version")](https://npmjs.com/package/@db-ui/components "DB UI – on NPM")             |
 | [ngx-components](https://github.com/db-ui/mono/tree/main/output/angular)    | Native Angular components           | [![@db-ui/ngx-components on Npmjs](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fapi.github.com%2Frepos%2Fdb-ui%2Fmono%2Freleases%2Flatest&query=%24.tag_name&label=npm&color=ed1c24 "npm version")](https://npmjs.com/package/@db-ui/ngx-components "DB UI – on NPM")     |
 | [react-components](https://github.com/db-ui/mono/tree/main/output/react)    | Native React components             | [![@db-ui/react-components on Npmjs](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fapi.github.com%2Frepos%2Fdb-ui%2Fmono%2Freleases%2Flatest&query=%24.tag_name&label=npm&color=ed1c24 "npm version")](https://npmjs.com/package/@db-ui/react-components "DB UI – on NPM") |
-| [v-components](https://github.com/db-ui/mono/tree/main/output/vue/vue3)     | Native Vue components               | [![@db-ui/v-components on Npmjs](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fapi.github.com%2Frepos%2Fdb-ui%2Fmono%2Freleases%2Flatest&query=%24.tag_name&label=npm&color=ed1c24 "npm version")](https://npmjs.com/package/@db-ui/v-components "DB UI – on NPM")         |
+| [v-components](https://github.com/db-ui/mono/tree/main/output/vue)          | Native Vue 3 components             | [![@db-ui/v-components on Npmjs](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fapi.github.com%2Frepos%2Fdb-ui%2Fmono%2Freleases%2Flatest&query=%24.tag_name&label=npm&color=ed1c24 "npm version")](https://npmjs.com/package/@db-ui/v-components "DB UI – on NPM")         |
 
 ## How to use
 
@@ -46,90 +40,7 @@ For a detailed overview look at our [examples](https://github.com/db-ui/examples
 
 ## Components
 
-We both maintain a [public backlog](https://github.com/orgs/db-ui/projects/4/views/1), as well as an overview of all components you can use:
-
-<details>
-  <summary><strong>Table of Components</strong></summary>
-
-| Name                                                                                           | Category          | Status | Planned for beta |
-| ---------------------------------------------------------------------------------------------- | ----------------- | :----: | :--------------: |
-| [Accordion](https://db-ui.github.io/mono/review/main/components/accordion/overview)            | 04 - Data-Display | Alpha  |        ✅        |
-| [Alert](https://db-ui.github.io/mono/review/main/components/alert/overview)                    | 05 - Feedback     |  Beta  |        ✅        |
-| Avatar                                                                                         | 04 - Data-Display |   ❌   |        ❌        |
-| Backdrop                                                                                       | 06 - Utility      |   ❌   |        ✅        |
-| [Badge](https://db-ui.github.io/mono/review/main/components/badge/overview)                    | 05 - Feedback     | Alpha  |        ✅        |
-| Bottom-Navigation                                                                              | 02 - Action       |   ❌   |        ❌        |
-| Breadcrumbs                                                                                    | 02 - Action       |   ❌   |        ✅        |
-| [Brand](https://db-ui.github.io/mono/review/main/components/brand/overview)                    | 04 - Data-Display |  Beta  |        ✅        |
-| [Button](https://db-ui.github.io/mono/review/main/components/button/overview)                  | 02 - Action       | Alpha  |        ✅        |
-| Button-Group                                                                                   | 02 - Action       |   ❌   |        ❌        |
-| [Card](https://db-ui.github.io/mono/review/main/components/card/overview)                      | 01 - Layout       | Alpha  |        ✅        |
-| Carousel                                                                                       | 06 - Utility      |   ❌   |        ❌        |
-| [Checkbox](https://db-ui.github.io/mono/review/main/components/checkbox/overview)              | 03 - Data-Input   | Alpha  |        ✅        |
-| Combobox                                                                                       | 03 - Data-Input   |   ❌   |        ❌        |
-| Container                                                                                      | 01 - Layout       |   ❌   |        ❌        |
-| Date-Picker                                                                                    | 03 - Data-Input   |   ❌   |        ❌        |
-| [Divider](https://db-ui.github.io/mono/review/main/components/divider/overview)                | 01 - Layout       | Alpha  |        ✅        |
-| [Drawer](https://db-ui.github.io/mono/review/main/components/drawer/overview)                  | 01 - Layout       |  Beta  |        ✅        |
-| Dropdown                                                                                       | 06 - Utility      |   ❌   |        ✅        |
-| Floating-Button                                                                                | 02 - Action       |   ❌   |        ❌        |
-| Footer                                                                                         | 01 - Layout       |   ❌   |        ✅        |
-| Grid                                                                                           | 01 - Layout       |   ❌   |        ✅        |
-| Header                                                                                         | 01 - Layout       |  Beta  |        ✅        |
-| [Icons](https://db-ui.github.io/mono/review/main/components/icon/overview)                     | 04 - Data-Display |  Beta  |        ✅        |
-| Image                                                                                          | 04 - Data-Display |   ❌   |        ✅        |
-| Indicator                                                                                      | 04 - Data-Display |   ❌   |        ❌        |
-| [Infotext](https://db-ui.github.io/mono/review/main/components/infotext/overview)              | 04 - Data-Display | Alpha  |        ✅        |
-| [Input](https://db-ui.github.io/mono/review/main/components/input/overview)                    | 03 - Data-Input   | Alpha  |        ✅        |
-| [Link](https://db-ui.github.io/mono/review/main/components/link/overview)                      | 02 - Action       | Alpha  |        ✅        |
-| List-Item                                                                                      | 04 - Data-Display |   ❌   |        ✅        |
-| Menu                                                                                           | 02 - Action       |   ❌   |        ✅        |
-| Modal                                                                                          | 06 - Utility      |   ❌   |        ✅        |
-| [NavigationItem](https://db-ui.github.io/mono/review/main/components/navigation-item/overview) | 05 - Navigation   |  Beta  |        ✅        |
-| Notification                                                                                   | 05 - Feedback     |   ❌   |        ✅        |
-| Numbers-Field                                                                                  | 03 - Data-Input   |   ❌   |        ❌        |
-| Pagination                                                                                     | 02 - Action       |   ❌   |        ❌        |
-| Popover                                                                                        | 06 - Utility      |   ❌   |        ❌        |
-| Progress                                                                                       | 05 - Feedback     |   ❌   |        ❌        |
-| [Radio](https://db-ui.github.io/mono/review/main/components/radio/overview)                    | 03 - Data-Input   | Alpha  |        ✅        |
-| Rating                                                                                         | 03 - Data-Input   |   ❌   |        ❌        |
-| [Section](https://db-ui.github.io/mono/review/main/components/section/overview)                | 01 - Layout       |  Beta  |        ✅        |
-| [Select](https://db-ui.github.io/mono/review/main/components/select/overview)                  | 03 - Data-Input   |  Beta  |        ✅        |
-| Skeleton                                                                                       | 05 - Feedback     |   ❌   |        ❌        |
-| Slider                                                                                         | 03 - Data-Input   |   ❌   |        ❌        |
-| Spinner                                                                                        | 05 - Feedback     |   ❌   |        ❌        |
-| Stack/List                                                                                     | 06 - Utility      |   ❌   |        ✅        |
-| Stepper                                                                                        | 02 - Action       |   ❌   |        ❌        |
-| Switch                                                                                         | 02 - Action       |   ❌   |        ❌        |
-| Table                                                                                          | 04 - Data-Display |   ❌   |        ❌        |
-| Tabs                                                                                           | 04 - Data-Display | Alpha  |        ❌        |
-| [Tag](https://db-ui.github.io/mono/review/main/components/tag/overview)                        | 04 - Data-Display | Alpha  |        ✅        |
-| Text                                                                                           | 04 - Data-Display |   ❌   |        ✅        |
-| [Textarea](https://db-ui.github.io/mono/review/main/components/textarea/overview)              | 03 - Data-Input   | Alpha  |        ✅        |
-| Timeline                                                                                       | 04 - Data-Display |   ❌   |        ❌        |
-| Time-Picker                                                                                    | 03 - Data-Input   |   ❌   |        ❌        |
-| Toggle-Button                                                                                  | 02 - Action       |   ❌   |        ❌        |
-| Tooltip                                                                                        | 04 - Data-Display |   ❌   |        ❌        |
-| Tree                                                                                           | 04 - Data-Display |   ❌   |        ❌        |
-| Upload                                                                                         | 03 - Data-Input   |   ❌   |        ❌        |
-
-</details>
-
-‼ Some components are missing and some are not migrated to the new styling, be aware that non-completed components may change in the future. You can enable automated warnings with ESLint if you like.
-
-### Warnings with ESLint
-
-Install ESLint plugin: `npm i @db-ui/eslint-plugin`.
-
-Add the plugin and rule to your configuration:
-
-```js
-...
-"plugins": ["@db-ui"],
-"rules": {
-	"@db-ui/v2-component-used": "warn",
-...
-```
+We maintain a [status overview](https://github.com/orgs/db-ui/projects/4/views/3) for all components.
 
 ## Core principals
 
@@ -173,6 +84,20 @@ Mono, meaning apps only need to keep their DB UI Mono package updated to ensure 
 This is mainly a platform providing the space and technology for a common basis of curated components; their development
 is mainly driven by the community and adapted out of the work done in projects and through the huge amount of feedback
 that we're gaining out of the community. So please support us in any way possible, this is greatly appreciated!
+
+## Migration
+
+### From DB UI Core or DB UI Elements to DB UI Mono
+
+We're providing a detailed migration for each component next to the documentation of each component:
+<https://db-ui.github.io/mono/review/main/components/action/button/migration>
+
+### In between DB UI Mono versions
+
+Check our migration docs for breaking changes:
+
+1. [Alpha ➡ Beta](https://github.com/db-ui/mono/tree/main/docs/migration/alpha-beta.md) (0.0.x➡0.x.x)
+2. [v0.2 ➡ v0.3](https://github.com/db-ui/mono/tree/main/docs/migration/v0.2.x-to-v0.3.x.md)
 
 ## How to start develop / contribute
 

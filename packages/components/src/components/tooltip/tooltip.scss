@@ -1,7 +1,7 @@
 @use "@db-ui/foundations/build/scss/helpers/functions";
 @use "@db-ui/foundations/build/scss/variables";
 @use "@db-ui/foundations/build/scss/colors";
-@use "@db-ui/foundations/build/scss/tonality/font";
+@use "@db-ui/foundations/build/scss/fonts";
 @use "../../styles/popover-component";
 @use "../../styles/component";
 
@@ -9,23 +9,39 @@ $tooltip-arrow-shadow-size: variables.$db-sizing-2xs;
 
 .db-tooltip {
 	--default-card-elevation: #{variables.$db-elevation-sm};
-	--default-card-border-radius: #{variables.$db-border-radius-md};
+	--default-card-border-radius: #{variables.$db-border-radius-xs};
+
 	@extend %db-overwrite-font-size-sm;
 	@extend %default-popover;
 
+	background-color: colors.$db-adaptive-bg-basic-level-1-default;
+	color: colors.$db-adaptive-on-bg-basic-emphasis-100-default;
+
+	// i HTML tags browsers default styling reset
+	font-style: normal;
+
 	// surrounding tags styling reset
 	font-weight: initial;
-
 	padding: variables.$db-spacing-fixed-2xs variables.$db-spacing-fixed-xs;
+
+	&::after {
+		background-color: colors.$db-adaptive-bg-basic-level-1-default;
+	}
+
+	// Only for testing
+	&[data-e2e-hover="true"] {
+		@extend %show-popover;
+	}
 
 	// Arrow
 	&:not([data-variant="basic"]) {
 		&::after {
 			@extend %component-border;
+
 			content: "";
 			box-shadow: variables.$db-elevation-md;
 			position: absolute;
-			background-color: colors.$db-base-bg;
+			background-color: colors.$db-adaptive-bg-basic-level-1-default;
 			inline-size: $tooltip-arrow-shadow-size;
 			block-size: $tooltip-arrow-shadow-size;
 			clip-path: polygon(
@@ -41,8 +57,9 @@ $tooltip-arrow-shadow-size: variables.$db-sizing-2xs;
 		}
 	}
 
-	&:not([data-placement]),
-	&[data-placement^="bottom"] {
+	&:not([data-placement], [data-outside-vy]),
+	&[data-placement^="bottom"]:not([data-outside-vy]),
+	&[data-outside-vy="top"]:not([data-outside-vx]) {
 		&::after {
 			inset-inline-start: 50%;
 			inset-block-start: 0;
@@ -51,7 +68,8 @@ $tooltip-arrow-shadow-size: variables.$db-sizing-2xs;
 		}
 	}
 
-	&[data-placement^="top"] {
+	&[data-placement^="top"]:not([data-outside-vy]),
+	&[data-outside-vy="bottom"]:not([data-outside-vx]) {
 		&::after {
 			inset-inline-start: 50%;
 			inset-block-end: 0;
@@ -60,7 +78,8 @@ $tooltip-arrow-shadow-size: variables.$db-sizing-2xs;
 		}
 	}
 
-	&[data-placement^="right"] {
+	&[data-placement^="right"]:not([data-outside-vx]),
+	&[data-outside-vx="left"] {
 		&::after {
 			inset-block-start: 50%;
 			inset-inline-start: 0;
@@ -69,7 +88,8 @@ $tooltip-arrow-shadow-size: variables.$db-sizing-2xs;
 		}
 	}
 
-	&[data-placement^="left"] {
+	&[data-placement^="left"]:not([data-outside-vx]),
+	&[data-outside-vx="right"] {
 		&::after {
 			inset-block-start: 50%;
 			inset-inline-end: 0;
@@ -79,11 +99,37 @@ $tooltip-arrow-shadow-size: variables.$db-sizing-2xs;
 	}
 
 	&[data-emphasis="strong"] {
-		@extend %db-neutral-component;
+		background-color: colors.$db-adaptive-bg-inverted-contrast-high-default;
+		color: colors.$db-adaptive-on-bg-inverted-default;
+
+		&::before {
+			--db-icon-color: #{colors.$db-adaptive-on-bg-inverted-default};
+		}
 
 		&::after {
-			// TODO: Check whether this is the correct reference
-			background-color: colors.$db-neutral-text;
+			background-color: colors.$db-adaptive-bg-inverted-contrast-high-default;
 		}
 	}
+}
+
+// Global styles
+
+@mixin show-popover($state) {
+	[data-has-tooltip="true"] {
+		&:#{$state} {
+			.db-tooltip:first-of-type {
+				@extend %show-popover;
+			}
+		}
+	}
+}
+
+[data-has-tooltip="true"] {
+	position: relative;
+}
+
+$popover-states: "hover", "focus";
+
+@each $state in $popover-states {
+	@include show-popover($state);
 }

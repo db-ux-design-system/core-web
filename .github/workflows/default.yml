@@ -15,6 +15,10 @@ jobs:
     if: github.event.pull_request == null || github.event.pull_request.head.repo.owner.login == 'db-ui'
     uses: ./.github/workflows/00-scan-secrets.yml
 
+  get-playwright-version:
+    uses: ./.github/workflows/01-get-playwright-version.yml
+    needs: [init]
+
   lint:
     uses: ./.github/workflows/01-lint.yml
     needs: [init]
@@ -23,21 +27,139 @@ jobs:
     uses: ./.github/workflows/01-build-packages.yml
     needs: [init]
 
+  init-playwright:
+    uses: ./.github/workflows/01-init-playwright.yml
+    needs: [get-playwright-version]
+    with:
+      version: ${{ needs.get-playwright-version.outputs.version }}
+
   build-outputs:
     uses: ./.github/workflows/01-build-outputs.yml
     needs: [build-packages]
 
   test-components:
     uses: ./.github/workflows/02-e2e.yml
-    needs: [build-packages]
+    needs: [build-packages, get-playwright-version]
+    with:
+      version: ${{ needs.get-playwright-version.outputs.version }}
 
-  build-showcases:
+  test-foundations:
+    uses: ./.github/workflows/02-e2e-foundations.yml
+    needs: [build-packages, get-playwright-version]
+    with:
+      version: ${{ needs.get-playwright-version.outputs.version }}
+
+  build-showcase-angular:
     uses: ./.github/workflows/01-build-showcases.yml
     needs: [build-packages]
+    with:
+      showcase: angular-showcase
 
-  test-showcases:
+  build-showcase-angular-ssr:
+    uses: ./.github/workflows/01-build-showcases.yml
+    needs: [build-packages]
+    with:
+      showcase: angular-ssr-showcase
+
+  build-showcase-react:
+    uses: ./.github/workflows/01-build-showcases.yml
+    needs: [build-packages]
+    with:
+      showcase: react-showcase
+
+  build-showcase-next:
+    uses: ./.github/workflows/01-build-showcases.yml
+    needs: [build-packages]
+    with:
+      showcase: next-showcase
+
+  build-showcase-vue:
+    uses: ./.github/workflows/01-build-showcases.yml
+    needs: [build-packages]
+    with:
+      showcase: vue-showcase
+
+  build-showcase-nuxt:
+    uses: ./.github/workflows/01-build-showcases.yml
+    needs: [build-packages]
+    with:
+      showcase: nuxt-showcase
+
+  build-showcase-patternhub:
+    uses: ./.github/workflows/01-build-patternhub.yml
+    needs: [build-packages]
+
+  test-showcase-angular:
     uses: ./.github/workflows/02-e2e-showcases.yml
-    needs: [build-showcases]
+    needs: [build-showcase-angular, get-playwright-version]
+    with:
+      version: ${{ needs.get-playwright-version.outputs.version }}
+      showcase: angular-showcase
+
+  test-showcase-react:
+    uses: ./.github/workflows/02-e2e-showcases.yml
+    needs: [build-showcase-react, get-playwright-version]
+    with:
+      version: ${{ needs.get-playwright-version.outputs.version }}
+      showcase: react-showcase
+
+  test-showcase-vue:
+    uses: ./.github/workflows/02-e2e-showcases.yml
+    needs: [build-showcase-vue, get-playwright-version]
+    with:
+      version: ${{ needs.get-playwright-version.outputs.version }}
+      showcase: vue-showcase
+
+  test-showcase-patternhub:
+    uses: ./.github/workflows/02-e2e-showcases.yml
+    needs: [build-showcase-patternhub, get-playwright-version]
+    with:
+      version: ${{ needs.get-playwright-version.outputs.version }}
+      showcase: patternhub
+
+  regenerate-snapshots-components:
+    if: always() && needs.test-components.result == 'failure'
+    uses: ./.github/workflows/02-e2e-regenerate.yml
+    with:
+      version: ${{ needs.get-playwright-version.outputs.version }}
+      type: components
+    needs: [test-components, get-playwright-version]
+
+  regenerate-snapshots-foundations:
+    if: always() && needs.test-foundations.result == 'failure'
+    uses: ./.github/workflows/02-e2e-regenerate.yml
+    with:
+      version: ${{ needs.get-playwright-version.outputs.version }}
+      type: foundations
+    needs: [test-foundations, get-playwright-version]
+
+  regenerate-snapshots-patternhub:
+    if: always() && needs.test-showcase-patternhub.result == 'failure'
+    uses: ./.github/workflows/02-e2e-regenerate.yml
+    with:
+      version: ${{ needs.get-playwright-version.outputs.version }}
+      type: patternhub
+    needs: [test-showcase-patternhub, get-playwright-version]
+
+  test-screen-reader:
+    uses: ./.github/workflows/02-e2e-screen-reader.yml
+    needs: [build-showcase-react, init-playwright, get-playwright-version]
+    with:
+      version: ${{ needs.get-playwright-version.outputs.version }}
+
+  regenerate-snapshots:
+    if: always() && (needs.test-showcase-angular.result == 'failure' || needs.test-showcase-react.result == 'failure' || needs.test-showcase-vue.result == 'failure')
+    uses: ./.github/workflows/02-e2e-regenerate.yml
+    with:
+      version: ${{ needs.get-playwright-version.outputs.version }}
+      type: showcases
+    needs:
+      [
+        test-showcase-angular,
+        test-showcase-react,
+        test-showcase-vue,
+        get-playwright-version
+      ]
 
   checks-done:
     if: ${{ always() }}
@@ -45,18 +167,60 @@ jobs:
     steps:
       - name: 🎉 Checks done
         run: |
-          resultBuildShowcases="${{ needs.build-showcases.result }}"
+          resultBuildShowcaseAngular="${{ needs.build-showcase-angular.result }}"
+          resultBuildShowcaseAngularSSR="${{ needs.build-showcase-angular-ssr.result }}"
+          resultBuildShowcaseReact="${{ needs.build-showcase-react.result }}"
+          resultBuildShowcaseNext="${{ needs.build-showcase-next.result }}"
+          resultBuildShowcaseVue="${{ needs.build-showcase-vue.result }}"
+          resultBuildShowcaseNuxt="${{ needs.build-showcase-nuxt.result }}"
+          resultBuildShowcasePatternhub="${{ needs.build-showcase-patternhub.result }}"
           resultBuildOutputs="${{ needs.build-outputs.result }}"
           resultTestPackages="${{ needs.test-components.result }}"
-          resultTestShowcases="${{ needs.test-showcases.result }}"
-          if [[ $resultTestShowcases == "success" && $resultBuildShowcases == "success" && $resultBuildOutputs == "success" && $resultTestPackages == "success" ]]; then
+          resultTestFoundations="${{ needs.test-foundations.result }}"
+          resultTestShowcaseAngular="${{ needs.test-showcase-angular.result }}"
+          resultTestShowcaseReact="${{ needs.test-showcase-react.result }}"
+          resultTestShowcaseVue="${{ needs.test-showcase-vue.result }}"
+          resultTestShowcasePatternhub="${{ needs.test-showcase-patternhub.result }}"
+          resultTestScreenReaders="${{ needs.test-screen-reader.result }}"
+          if [[ $resultTestFoundations == "success" ]] && \
+             [[ $resultTestScreenReaders == "success" ]] && \
+             [[ $resultTestShowcaseAngular == "success" ]] && \
+             [[ $resultTestShowcaseReact == "success" ]] && \
+             [[ $resultTestShowcaseVue == "success" ]] && \
+             [[ $resultTestShowcasePatternhub == "success" ]] && \
+             [[ $resultTestPackages == "success" ]] && \
+             [[ $resultBuildOutputs == "success" ]] && \
+             [[ $resultBuildShowcaseAngular == "success" ]] && \
+             [[ $resultBuildShowcaseAngularSSR == "success" ]] && \
+             [[ $resultBuildShowcaseReact == "success" ]] && \
+             [[ $resultBuildShowcaseNext == "success" ]] && \
+             [[ $resultBuildShowcaseVue == "success" ]] && \
+             [[ $resultBuildShowcaseNuxt == "success" ]] && \
+             [[ $resultBuildShowcasePatternhub == "success" ]]; then
              echo "🎉 All tests were successful."
             exit 0
           else
              echo "Some tests were failing."
             exit 1
           fi
-    needs: [build-showcases, build-outputs, test-components, test-showcases]
+    needs:
+      [
+        build-showcase-angular,
+        build-showcase-angular-ssr,
+        build-showcase-react,
+        build-showcase-next,
+        build-showcase-vue,
+        build-showcase-nuxt,
+        build-showcase-patternhub,
+        build-outputs,
+        test-components,
+        test-showcase-angular,
+        test-showcase-react,
+        test-showcase-vue,
+        test-showcase-patternhub,
+        test-foundations,
+        test-screen-reader
+      ]
 
   deploy:
     uses: ./.github/workflows/03-deploy-gh-pages.yml

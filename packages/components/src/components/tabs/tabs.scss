@@ -1,0 +1,353 @@
+@use "@db-ui/foundations/build/scss/variables";
+@use "@db-ui/foundations/build/scss/colors";
+@use "../../styles/form-components";
+@use "../../styles/db-puls";
+
+$max-tabs: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+
+%angular-workaround {
+	db-tab-list,
+	dbtablist {
+		@each $index in $max-tabs {
+			&:has([id$="-tab-#{$index}"]:checked) {
+				~ dbtabpanel > [id$="-tab-panel-#{$index}"],
+				~ db-tab-panel > [id$="-tab-panel-#{$index}"] {
+					display: block;
+				}
+			}
+		}
+	}
+}
+
+%horizontal-pulse {
+	.db-tab-item {
+		@include db-puls.set-db-puls-horizontal;
+
+		&:has(input:checked) {
+			@include db-puls.show-db-puls-horizontal;
+
+			&::after {
+				inset-block-end: calc(
+					-1 * (#{variables.$db-spacing-fixed-2xs} + #{variables.$db-border-height-xs})
+				);
+			}
+		}
+	}
+}
+
+%vertical-pulse {
+	.db-tab-item {
+		@include db-puls.set-db-puls-vertical;
+
+		&::after {
+			inset-inline-start: 0;
+			z-index: -2;
+		}
+
+		&:has(input:checked) {
+			@include db-puls.show-db-puls-vertical;
+		}
+	}
+}
+
+%pulse-track {
+	background-color: colors.$db-adaptive-bg-basic-transparent-semi-default;
+	content: "";
+	border-radius: variables.$db-border-radius-xs;
+	position: absolute;
+}
+
+@mixin angular-button-workaround() {
+	> .db-button,
+	&:is(.db-button) {
+		@content;
+	}
+}
+
+.db-tabs {
+	$db-tabs-z-index-tab-list: 20;
+	$db-tabs-z-index-button-background: 21;
+	$db-tabs-z-index-button: 22;
+
+	@extend %angular-workaround;
+
+	display: flex;
+	inline-size: 100%;
+	position: relative;
+
+	.db-tab-panel {
+		padding: 0 variables.$db-spacing-fixed-xs;
+	}
+
+	.db-tab-list {
+		max-inline-size: 100%;
+		z-index: $db-tabs-z-index-tab-list;
+
+		@each $index in $max-tabs {
+			&:has([id$="-tab-#{$index}"]:checked)
+				~ [id$="-tab-panel-#{$index}"] {
+				display: block;
+			}
+		}
+	}
+
+	.db-tab-item {
+		@extend %db-puls;
+	}
+
+	/*
+	Variant Orientation HORIZONTAL
+ 	*/
+	&:not([data-orientation="vertical"]) {
+		flex-flow: column wrap;
+
+		.db-tab-panel {
+			inline-size: 100%;
+		}
+
+		.db-tab-list {
+			/* horizontal track for pulse */
+			&::before {
+				@extend %pulse-track;
+
+				block-size: variables.$db-border-height-xs;
+				inset-inline: variables.$db-spacing-fixed-xs;
+
+				/* top position equals sum of: margin xs + padding xs + line-height + padding xs + margin 2xs */
+				inset-block-start: calc(
+					3 * #{variables.$db-spacing-fixed-xs} + #{variables.$db-spacing-fixed-2xs} +
+						#{form-components.$font-size-height}
+				);
+			}
+
+			> ul {
+				@extend %horizontal-pulse;
+
+				overflow: auto hidden;
+				inline-size: 100%;
+
+				.db-tab-item {
+					margin-block: variables.$db-spacing-fixed-xs
+						calc(
+							2 * #{variables.$db-spacing-fixed-2xs} + #{variables.$db-border-height-xs}
+						);
+				}
+
+				db-tab-item,
+				dbtabitem {
+					&:first-of-type {
+						.db-tab-item {
+							margin-inline-start: variables.$db-spacing-fixed-xs;
+						}
+					}
+
+					&:last-of-type {
+						.db-tab-item {
+							margin-inline-end: variables.$db-spacing-fixed-xs;
+						}
+					}
+				}
+
+				&:not(:has(db-tab-item, dbtabitem)) {
+					.db-tab-item {
+						&:first-of-type {
+							margin-inline-start: variables.$db-spacing-fixed-xs;
+						}
+
+						&:last-of-type {
+							margin-inline-end: variables.$db-spacing-fixed-xs;
+						}
+					}
+				}
+			}
+		}
+	}
+
+	/*
+	Variant Orientation VERTICAL
+	 */
+	&[data-orientation="vertical"] {
+		flex-direction: row;
+
+		.db-tab-panel {
+			padding: variables.$db-spacing-fixed-xs 0;
+		}
+
+		.db-tab-list {
+			$width: var(
+				--db-tab-list-vertical-width,
+				#{variables.$db-sizing-3xl}
+			);
+
+			/*
+			min and nominal size must both be set to ensure
+			- min-inline-size: tab-list is not displayed narrower than defined
+			- max-inline-size: tab-list is not displayed wider than defined
+			 */
+			min-inline-size: $width;
+			max-inline-size: $width;
+
+			/* horizontal space to the tab panels */
+			padding-inline-end: variables.$db-spacing-fixed-xs;
+
+			/* ensures that tab-list (track) is only as high as all the tab-items together if open tab-panel is higher */
+			margin-block-end: auto;
+
+			.db-tab-item {
+				label {
+					position: relative;
+				}
+
+				&:has(input:focus-visible),
+				&:hover {
+					inline-size: fit-content;
+
+					label {
+						overflow: visible;
+					}
+				}
+			}
+
+			/* vertical track for pulse */
+			&::before {
+				@extend %pulse-track;
+
+				inline-size: variables.$db-border-height-xs;
+				inset-block: variables.$db-spacing-fixed-xs;
+				inset-inline-start: 0;
+			}
+
+			> ul {
+				@extend %vertical-pulse;
+
+				flex-direction: column;
+				block-size: 100%;
+
+				&:not(:has(db-tab-item, dbtabitem)) {
+					.db-tab-item {
+						&:first-of-type {
+							margin-block-start: variables.$db-spacing-fixed-xs;
+						}
+
+						&:last-of-type {
+							margin-block-end: variables.$db-spacing-fixed-xs;
+						}
+					}
+				}
+			}
+		}
+
+		.db-tab-item {
+			$padding-start: calc(
+				#{variables.$db-border-height-xs} + #{variables.$db-spacing-fixed-2xs}
+			);
+
+			padding-inline-start: $padding-start;
+
+			input {
+				padding-inline-start: $padding-start;
+			}
+		}
+
+		db-tab-item,
+		dbtabitem {
+			&:first-of-type {
+				.db-tab-item {
+					margin-block-start: variables.$db-spacing-fixed-xs;
+				}
+			}
+
+			&:last-of-type {
+				.db-tab-item {
+					margin-block-end: variables.$db-spacing-fixed-xs;
+				}
+			}
+		}
+	}
+
+	&[data-width="full"] {
+		.db-tab-list {
+			inline-size: 100%;
+		}
+
+		.db-tab-item,
+		.db-tab-item label {
+			inline-size: 100%;
+		}
+
+		&[data-alignment="center"] {
+			.db-tab-item label {
+				text-align: center;
+				justify-content: center;
+			}
+		}
+	}
+
+	&[data-scroll-behaviour="arrows"] {
+		.db-tab-list {
+			> ul {
+				&::-webkit-scrollbar {
+					display: none;
+				}
+			}
+		}
+
+		&:has(.tabs-scroll-left) {
+			&::before {
+				content: "";
+			}
+		}
+
+		&:has(.tabs-scroll-right) {
+			&::after {
+				content: "";
+			}
+		}
+
+		&:has(.db-button) {
+			&::before,
+			&::after {
+				position: absolute;
+				z-index: $db-tabs-z-index-button-background;
+				background-color: colors.$db-adaptive-bg-basic-level-1-default;
+				inline-size: variables.$db-sizing-md;
+				block-size: calc(
+					#{variables.$db-spacing-fixed-sm} + #{variables.$db-sizing-md}
+				);
+				flex: 0 0 auto;
+			}
+
+			&::before {
+				inset-inline-start: 0;
+			}
+
+			&::after {
+				inset-inline-end: 0;
+			}
+		}
+
+		/*
+		 * Scroll left / right buttons
+		 */
+		.tabs-scroll-left {
+			@include angular-button-workaround() {
+				inset-inline-start: 0;
+			}
+		}
+
+		.tabs-scroll-right {
+			@include angular-button-workaround() {
+				inset-inline-end: 0;
+			}
+		}
+
+		.tabs-scroll-left,
+		.tabs-scroll-right {
+			@include angular-button-workaround() {
+				position: absolute;
+				z-index: $db-tabs-z-index-button;
+				inset-block: variables.$db-spacing-fixed-xs;
+			}
+		}
+	}
+}

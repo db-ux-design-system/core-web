@@ -1,0 +1,225 @@
+/* Palette colors */
+
+/* Note: In general you don't need this file. Use this only if you really know what you do! */
+
+// brand
+$db-brand-0: var(--db-brand-0);
+$db-brand-1: var(--db-brand-1);
+$db-brand-2: var(--db-brand-2);
+$db-brand-3: var(--db-brand-3);
+$db-brand-4: var(--db-brand-4);
+$db-brand-5: var(--db-brand-5);
+$db-brand-6: var(--db-brand-6);
+$db-brand-7: var(--db-brand-7);
+$db-brand-8: var(--db-brand-8);
+$db-brand-9: var(--db-brand-9);
+$db-brand-10: var(--db-brand-10);
+$db-brand-11: var(--db-brand-11);
+$db-brand-12: var(--db-brand-12);
+$db-brand-13: var(--db-brand-13);
+$db-brand-14: var(--db-brand-14);
+$db-brand-origin: var(--db-brand-origin);
+$db-brand-origin-light-default: var(--db-brand-origin-light-default);
+$db-brand-origin-light-hovered: var(--db-brand-origin-light-hovered);
+$db-brand-origin-light-pressed: var(--db-brand-origin-light-pressed);
+$db-brand-on-origin-light-default: var(--db-brand-on-origin-light-default);
+$db-brand-on-origin-light-hovered: var(--db-brand-on-origin-light-hovered);
+$db-brand-on-origin-light-pressed: var(--db-brand-on-origin-light-pressed);
+$db-brand-origin-dark-default: var(--db-brand-origin-dark-default);
+$db-brand-origin-dark-hovered: var(--db-brand-origin-dark-hovered);
+$db-brand-origin-dark-pressed: var(--db-brand-origin-dark-pressed);
+$db-brand-on-origin-dark-default: var(--db-brand-on-origin-dark-default);
+$db-brand-on-origin-dark-hovered: var(--db-brand-on-origin-dark-hovered);
+$db-brand-on-origin-dark-pressed: var(--db-brand-on-origin-dark-pressed);
+
+// neutral
+$db-neutral-0: var(--db-neutral-0);
+$db-neutral-1: var(--db-neutral-1);
+$db-neutral-2: var(--db-neutral-2);
+$db-neutral-3: var(--db-neutral-3);
+$db-neutral-4: var(--db-neutral-4);
+$db-neutral-5: var(--db-neutral-5);
+$db-neutral-6: var(--db-neutral-6);
+$db-neutral-7: var(--db-neutral-7);
+$db-neutral-8: var(--db-neutral-8);
+$db-neutral-9: var(--db-neutral-9);
+$db-neutral-10: var(--db-neutral-10);
+$db-neutral-11: var(--db-neutral-11);
+$db-neutral-12: var(--db-neutral-12);
+$db-neutral-13: var(--db-neutral-13);
+$db-neutral-14: var(--db-neutral-14);
+$db-neutral-origin: var(--db-neutral-origin);
+$db-neutral-origin-light-default: var(--db-neutral-origin-light-default);
+$db-neutral-origin-light-hovered: var(--db-neutral-origin-light-hovered);
+$db-neutral-origin-light-pressed: var(--db-neutral-origin-light-pressed);
+$db-neutral-on-origin-light-default: var(--db-neutral-on-origin-light-default);
+$db-neutral-on-origin-light-hovered: var(--db-neutral-on-origin-light-hovered);
+$db-neutral-on-origin-light-pressed: var(--db-neutral-on-origin-light-pressed);
+$db-neutral-origin-dark-default: var(--db-neutral-origin-dark-default);
+$db-neutral-origin-dark-hovered: var(--db-neutral-origin-dark-hovered);
+$db-neutral-origin-dark-pressed: var(--db-neutral-origin-dark-pressed);
+$db-neutral-on-origin-dark-default: var(--db-neutral-on-origin-dark-default);
+$db-neutral-on-origin-dark-hovered: var(--db-neutral-on-origin-dark-hovered);
+$db-neutral-on-origin-dark-pressed: var(--db-neutral-on-origin-dark-pressed);
+
+// informational
+$db-informational-0: var(--db-informational-0);
+$db-informational-1: var(--db-informational-1);
+$db-informational-2: var(--db-informational-2);
+$db-informational-3: var(--db-informational-3);
+$db-informational-4: var(--db-informational-4);
+$db-informational-5: var(--db-informational-5);
+$db-informational-6: var(--db-informational-6);
+$db-informational-7: var(--db-informational-7);
+$db-informational-8: var(--db-informational-8);
+$db-informational-9: var(--db-informational-9);
+$db-informational-10: var(--db-informational-10);
+$db-informational-11: var(--db-informational-11);
+$db-informational-12: var(--db-informational-12);
+$db-informational-13: var(--db-informational-13);
+$db-informational-14: var(--db-informational-14);
+$db-informational-origin: var(--db-informational-origin);
+$db-informational-origin-light-default: var(
+	--db-informational-origin-light-default
+);
+$db-informational-origin-light-hovered: var(
+	--db-informational-origin-light-hovered
+);
+$db-informational-origin-light-pressed: var(
+	--db-informational-origin-light-pressed
+);
+$db-informational-on-origin-light-default: var(
+	--db-informational-on-origin-light-default
+);
+$db-informational-on-origin-light-hovered: var(
+	--db-informational-on-origin-light-hovered
+);
+$db-informational-on-origin-light-pressed: var(
+	--db-informational-on-origin-light-pressed
+);
+$db-informational-origin-dark-default: var(
+	--db-informational-origin-dark-default
+);
+$db-informational-origin-dark-hovered: var(
+	--db-informational-origin-dark-hovered
+);
+$db-informational-origin-dark-pressed: var(
+	--db-informational-origin-dark-pressed
+);
+$db-informational-on-origin-dark-default: var(
+	--db-informational-on-origin-dark-default
+);
+$db-informational-on-origin-dark-hovered: var(
+	--db-informational-on-origin-dark-hovered
+);
+$db-informational-on-origin-dark-pressed: var(
+	--db-informational-on-origin-dark-pressed
+);
+
+// warning
+$db-warning-0: var(--db-warning-0);
+$db-warning-1: var(--db-warning-1);
+$db-warning-2: var(--db-warning-2);
+$db-warning-3: var(--db-warning-3);
+$db-warning-4: var(--db-warning-4);
+$db-warning-5: var(--db-warning-5);
+$db-warning-6: var(--db-warning-6);
+$db-warning-7: var(--db-warning-7);
+$db-warning-8: var(--db-warning-8);
+$db-warning-9: var(--db-warning-9);
+$db-warning-10: var(--db-warning-10);
+$db-warning-11: var(--db-warning-11);
+$db-warning-12: var(--db-warning-12);
+$db-warning-13: var(--db-warning-13);
+$db-warning-14: var(--db-warning-14);
+$db-warning-origin: var(--db-warning-origin);
+$db-warning-origin-light-default: var(--db-warning-origin-light-default);
+$db-warning-origin-light-hovered: var(--db-warning-origin-light-hovered);
+$db-warning-origin-light-pressed: var(--db-warning-origin-light-pressed);
+$db-warning-on-origin-light-default: var(--db-warning-on-origin-light-default);
+$db-warning-on-origin-light-hovered: var(--db-warning-on-origin-light-hovered);
+$db-warning-on-origin-light-pressed: var(--db-warning-on-origin-light-pressed);
+$db-warning-origin-dark-default: var(--db-warning-origin-dark-default);
+$db-warning-origin-dark-hovered: var(--db-warning-origin-dark-hovered);
+$db-warning-origin-dark-pressed: var(--db-warning-origin-dark-pressed);
+$db-warning-on-origin-dark-default: var(--db-warning-on-origin-dark-default);
+$db-warning-on-origin-dark-hovered: var(--db-warning-on-origin-dark-hovered);
+$db-warning-on-origin-dark-pressed: var(--db-warning-on-origin-dark-pressed);
+
+// successful
+$db-successful-0: var(--db-successful-0);
+$db-successful-1: var(--db-successful-1);
+$db-successful-2: var(--db-successful-2);
+$db-successful-3: var(--db-successful-3);
+$db-successful-4: var(--db-successful-4);
+$db-successful-5: var(--db-successful-5);
+$db-successful-6: var(--db-successful-6);
+$db-successful-7: var(--db-successful-7);
+$db-successful-8: var(--db-successful-8);
+$db-successful-9: var(--db-successful-9);
+$db-successful-10: var(--db-successful-10);
+$db-successful-11: var(--db-successful-11);
+$db-successful-12: var(--db-successful-12);
+$db-successful-13: var(--db-successful-13);
+$db-successful-14: var(--db-successful-14);
+$db-successful-origin: var(--db-successful-origin);
+$db-successful-origin-light-default: var(--db-successful-origin-light-default);
+$db-successful-origin-light-hovered: var(--db-successful-origin-light-hovered);
+$db-successful-origin-light-pressed: var(--db-successful-origin-light-pressed);
+$db-successful-on-origin-light-default: var(
+	--db-successful-on-origin-light-default
+);
+$db-successful-on-origin-light-hovered: var(
+	--db-successful-on-origin-light-hovered
+);
+$db-successful-on-origin-light-pressed: var(
+	--db-successful-on-origin-light-pressed
+);
+$db-successful-origin-dark-default: var(--db-successful-origin-dark-default);
+$db-successful-origin-dark-hovered: var(--db-successful-origin-dark-hovered);
+$db-successful-origin-dark-pressed: var(--db-successful-origin-dark-pressed);
+$db-successful-on-origin-dark-default: var(
+	--db-successful-on-origin-dark-default
+);
+$db-successful-on-origin-dark-hovered: var(
+	--db-successful-on-origin-dark-hovered
+);
+$db-successful-on-origin-dark-pressed: var(
+	--db-successful-on-origin-dark-pressed
+);
+
+// critical
+$db-critical-0: var(--db-critical-0);
+$db-critical-1: var(--db-critical-1);
+$db-critical-2: var(--db-critical-2);
+$db-critical-3: var(--db-critical-3);
+$db-critical-4: var(--db-critical-4);
+$db-critical-5: var(--db-critical-5);
+$db-critical-6: var(--db-critical-6);
+$db-critical-7: var(--db-critical-7);
+$db-critical-8: var(--db-critical-8);
+$db-critical-9: var(--db-critical-9);
+$db-critical-10: var(--db-critical-10);
+$db-critical-11: var(--db-critical-11);
+$db-critical-12: var(--db-critical-12);
+$db-critical-13: var(--db-critical-13);
+$db-critical-14: var(--db-critical-14);
+$db-critical-origin: var(--db-critical-origin);
+$db-critical-origin-light-default: var(--db-critical-origin-light-default);
+$db-critical-origin-light-hovered: var(--db-critical-origin-light-hovered);
+$db-critical-origin-light-pressed: var(--db-critical-origin-light-pressed);
+$db-critical-on-origin-light-default: var(
+	--db-critical-on-origin-light-default
+);
+$db-critical-on-origin-light-hovered: var(
+	--db-critical-on-origin-light-hovered
+);
+$db-critical-on-origin-light-pressed: var(
+	--db-critical-on-origin-light-pressed
+);
+$db-critical-origin-dark-default: var(--db-critical-origin-dark-default);
+$db-critical-origin-dark-hovered: var(--db-critical-origin-dark-hovered);
+$db-critical-origin-dark-pressed: var(--db-critical-origin-dark-pressed);
+$db-critical-on-origin-dark-default: var(--db-critical-on-origin-dark-default);
+$db-critical-on-origin-dark-hovered: var(--db-critical-on-origin-dark-hovered);
+$db-critical-on-origin-dark-pressed: var(--db-critical-on-origin-dark-pressed);

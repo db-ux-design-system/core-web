@@ -12,7 +12,7 @@ You can use `.tsx` or `.mdx` files to write your documents (see the examples).
 
 As root file for a subfolder you should name it `index.[mdx|tsx]`.
 
-After you add a new subfolder or page you need to update the routes for the main-navigation under `/data/routes.ts`.
+After you add a new subfolder or page you need to update the routes for the navigation under `/data/routes.tsx`.
 
 ### Github-Version-Switcher
 

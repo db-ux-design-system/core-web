@@ -1,0 +1,86 @@
+@use "sass:string";
+@use "variables";
+@use "../screen-sizes";
+
+@function get-typography(
+	$density,
+	$device,
+	$size,
+	$type,
+	$attribute: "font-size"
+) {
+	@return var(
+		string.unquote(
+			"--db-typography-#{$density}-#{$device}-#{$type}-#{$size}-#{$attribute}"
+		)
+	);
+}
+
+@mixin get-font($density, $device, $size, $type: "body") {
+	--db-type-#{$type}-font-size-#{$size}: #{get-typography(
+			$density,
+			$device,
+			$size,
+			$type
+		)};
+	--db-type-#{$type}-line-height-#{$size}: #{get-typography(
+			$density,
+			$device,
+			$size,
+			$type,
+			"line-height"
+		)};
+}
+
+@mixin get-icons($density, $device, $size, $type: "body") {
+	--db-base-#{$type}-icon-weight-#{$size}: #{string.unquote(
+			"var(--db-base-icon-weight-#{$density}-#{$device}-#{$type}-#{$size})"
+		)};
+	--db-base-#{$type}-icon-font-size-#{$size}: #{string.unquote(
+			"var(--db-base-icon-font-size-#{$density}-#{$device}-#{$type}-#{$size})"
+		)};
+}
+
+@each $density in variables.$densities {
+	%db-typography-headline-#{$density} {
+		@each $size in variables.$sizings {
+			@include get-font($density, "mobile", $size, "headline");
+			@include get-icons($density, "mobile", $size, "headline");
+		}
+
+		@include screen-sizes.screen() {
+			@each $size in variables.$sizings {
+				@include get-font($density, "tablet", $size, "headline");
+				@include get-icons($density, "tablet", $size, "headline");
+			}
+		}
+
+		@include screen-sizes.screen("md") {
+			@each $size in variables.$sizings {
+				@include get-font($density, "desktop", $size, "headline");
+				@include get-icons($density, "desktop", $size, "headline");
+			}
+		}
+	}
+
+	%db-typography-body-#{$density} {
+		@each $size in variables.$sizings {
+			@include get-font($density, "mobile", $size);
+			@include get-icons($density, "mobile", $size);
+		}
+
+		@include screen-sizes.screen() {
+			@each $size in variables.$sizings {
+				@include get-font($density, "tablet", $size);
+				@include get-icons($density, "mobile", $size);
+			}
+		}
+
+		@include screen-sizes.screen("md") {
+			@each $size in variables.$sizings {
+				@include get-font($density, "desktop", $size);
+				@include get-icons($density, "mobile", $size);
+			}
+		}
+	}
+}

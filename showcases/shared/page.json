@@ -1,0 +1,19 @@
+[
+	{
+		"name": "Tonality",
+		"examples": [
+			{
+				"name": "Functional",
+				"className": "db-density-functional"
+			},
+			{
+				"name": "(Default) Regular",
+				"className": "db-density-regular"
+			},
+			{
+				"name": "Expressive",
+				"className": "db-density-expressive"
+			}
+		]
+	}
+]

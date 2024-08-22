@@ -1,0 +1,7 @@
+@use "../index";
+@use "get-class";
+
+$variant: "blue";
+
+@include get-class.init($variant);
+@include get-class.init-container-colors($variant);

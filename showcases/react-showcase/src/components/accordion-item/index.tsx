@@ -1,35 +1,36 @@
-import { useState } from 'react';
 import { DBAccordionItem } from '../../../../../output/react/src';
-import DefaultComponent from '../index';
+import DefaultComponent from '../default-component';
 import defaultComponentVariants from '../../../../shared/accordion-item.json';
 import type { DBAccordionItemProps } from '../../../../../output/react/src/components/accordion-item/model';
 import { getVariants } from '../data';
+import { type BaseComponentProps } from '../base-component-data';
 
 const getAccordionItem = ({
 	children,
 	disabled,
 	open,
-	title
-}: DBAccordionItemProps) => {
-	const [openAcc, setOpenAcc] = useState<boolean>(open ?? false);
+	headlinePlain
+}: DBAccordionItemProps & { open: boolean }) => {
 	return (
 		<DBAccordionItem
-			title={title}
+			headlinePlain={headlinePlain}
 			disabled={disabled}
-			open={openAcc}
-			onToggle={setOpenAcc}>
+			defaultOpen={open}>
 			{children}
 		</DBAccordionItem>
 	);
 };
 
-const AccordionItemComponent = () => {
+const AccordionItemComponent = (props: BaseComponentProps) => {
 	return (
 		<DefaultComponent
 			title="DBAccordionItem"
+			isSubComponent={props.isSubComponent}
+			componentName={props.componentName}
 			variants={getVariants(
 				defaultComponentVariants,
-				getAccordionItem
+				getAccordionItem,
+				props.slotCode
 			)}></DefaultComponent>
 	);
 };

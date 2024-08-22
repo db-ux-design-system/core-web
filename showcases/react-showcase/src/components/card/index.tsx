@@ -1,23 +1,32 @@
 import { DBCard } from '../../../../../output/react/src';
-import DefaultComponent from '../index';
+import DefaultComponent from '../default-component';
 import defaultComponentVariants from '../../../../shared/card.json';
 import { getVariants } from '../data';
 import type { DBCardProps } from '../../../../../output/react/src/components/card/model';
+import { type BaseComponentProps } from '../base-component-data';
 
-const getCard = ({ colorVariant, variant, children, spacing }: DBCardProps) => (
-	<DBCard colorVariant={colorVariant} variant={variant} spacing={spacing}>
+const getCard = ({
+	behaviour,
+	children,
+	spacing,
+	elevationLevel
+}: DBCardProps) => (
+	<DBCard
+		behaviour={behaviour}
+		spacing={spacing}
+		elevationLevel={elevationLevel}>
 		<strong>{children}</strong>
-		{colorVariant && <span>{colorVariant}</span>}
 	</DBCard>
 );
 
-const CardComponent = () => {
+const CardComponent = (props: BaseComponentProps) => {
 	return (
 		<DefaultComponent
 			title={'DBCard'}
 			variants={getVariants(
 				defaultComponentVariants,
-				getCard
+				getCard,
+				props.slotCode
 			)}></DefaultComponent>
 	);
 };

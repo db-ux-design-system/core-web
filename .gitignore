@@ -11,7 +11,6 @@ dependencyGraph.json
 source/_meta/_head.mustache
 source/_meta/_foot.mustache
 
-tailwind.config.js
 !e2e/.env
 .env
 **/*/.env
@@ -32,6 +31,8 @@ packages/components/src/**/*.css.map
 /output/**/playwright*
 /output/**/test-results
 
+/showcases/**/results
+
 /build-showcases/
 /build-outputs/
 !/build-outputs/package.json
@@ -42,7 +43,8 @@ packages/components/src/**/*.css.map
 /output/docs.json
 showcases/patternhub/public/iframe-resizer/*
 
-/showcases/**/test-results/
+**/test-results/
+**/recordings/
 
 /__snapshots__/**/*-win32.png
 /packages/foundations/assets/icons/functional/tmp/
@@ -50,3 +52,4 @@ showcases/patternhub/public/iframe-resizer/*
 /packages/foundations/assets/icons/functional/fonts/**/index.css
 /packages/foundations/assets/icons/functional/fonts/**/font-face.css
 /packages/foundations/assets/icons/functional/fonts/**/info.json
+/packages/foundations/scss/_normalize.scss

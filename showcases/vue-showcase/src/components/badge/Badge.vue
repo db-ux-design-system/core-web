@@ -6,7 +6,7 @@ import {
 	DBIcon,
 	DBButton,
 	DBInfotext
-} from "../../../../../output/vue/vue3/src";
+} from "../../../../../output/vue/src";
 </script>
 
 <template>
@@ -14,17 +14,17 @@ import {
 		<template
 			#example="{ exampleIndex, variantIndex, exampleName, exampleProps }"
 		>
-			<template v-if="!exampleProps.placement && !exampleProps.example">
+			<template v-if="!exampleProps?.placement && !exampleProps?.example">
 				<DBBadge
-					:variant="exampleProps.variant"
-					:emphasis="exampleProps.emphasis"
-					:size="exampleProps.size"
+					:semantic="exampleProps?.semantic"
+					:emphasis="exampleProps?.emphasis"
+					:size="exampleProps?.size"
 				>
-					{{ exampleProps.noContent ? "" : exampleName }}
+					{{ exampleProps?.noContent ? "" : exampleName }}
 				</DBBadge>
 				<DBInfotext
-					v-if="exampleProps.noContent"
-					variant="informational"
+					v-if="exampleProps?.noContent"
+					semantic="informational"
 					size="small"
 					icon="none"
 				>
@@ -34,64 +34,68 @@ import {
 
 			<template
 				v-if="
-					exampleProps.placement &&
-					exampleProps.placement !== 'inline' &&
-					!exampleProps.example
+					exampleProps?.placement &&
+					exampleProps?.placement !== 'inline' &&
+					!exampleProps?.example
 				"
 			>
-				<DBButton icon="account" variant="outlined" :noText="true">
+				<DBButton icon="user" variant="outlined" :noText="true">
 					<DBBadge
 						emphasis="strong"
-						variant="critical"
+						semantic="critical"
 						size="small"
-						:placement="exampleProps.placement"
+						:placement="exampleProps?.placement"
 					>
 					</DBBadge>
 					{{ exampleName }}
 				</DBButton>
-				<DBInfotext variant="informational" size="small" icon="none">
+				<DBInfotext semantic="informational" size="small" icon="none">
 					{{ exampleName }}
 				</DBInfotext>
 			</template>
 
-			<template v-if="exampleProps.placement === 'inline'">
+			<template v-if="exampleProps?.placement === 'inline'">
 				<div class="badge-inline-container">
-					<DBIcon icon="account"></DBIcon>
+					<DBIcon icon="user"></DBIcon>
 					<span>{{ exampleName }}</span>
-					<DBBadge size="small" emphasis="strong" variant="critical">
+					<DBBadge size="small" emphasis="strong" semantic="critical">
 						Label
 					</DBBadge>
 					<DBIcon icon="error"></DBIcon>
 				</div>
 			</template>
 
-			<template v-if="exampleProps.example === 'icon'">
+			<template v-if="exampleProps?.example === 'icon'">
 				<DBBadge
-					variant="critical"
+					semantic="critical"
 					emphasis="strong"
-					:size="exampleProps.size"
+					:size="exampleProps?.size"
 				>
-					<DBIcon icon="account">{{ exampleName }}</DBIcon>
+					<DBIcon icon="user">{{ exampleName }}</DBIcon>
 				</DBBadge>
-				<DBInfotext variant="informational" size="small" icon="none">
+				<DBInfotext semantic="informational" size="small" icon="none">
 					{{ exampleName }}
 				</DBInfotext>
 			</template>
 
-			<template v-if="exampleProps.example === 'number'">
-				<DBBadge variant="successful">9</DBBadge>
-				<DBBadge variant="informational">12</DBBadge>
-				<DBBadge variant="warning">123</DBBadge>
-				<DBBadge size="small" emphasis="strong" variant="successful">
+			<template v-if="exampleProps?.example === 'number'">
+				<DBBadge semantic="successful">9</DBBadge>
+				<DBBadge semantic="informational">12</DBBadge>
+				<DBBadge semantic="warning">123</DBBadge>
+				<DBBadge size="small" emphasis="strong" semantic="successful">
 					9
 				</DBBadge>
-				<DBBadge size="small" emphasis="strong" variant="informational">
+				<DBBadge
+					size="small"
+					emphasis="strong"
+					semantic="informational"
+				>
 					12
 				</DBBadge>
-				<DBBadge size="small" emphasis="strong" variant="warning">
+				<DBBadge size="small" emphasis="strong" semantic="warning">
 					123
 				</DBBadge>
-				<DBInfotext variant="informational" size="small" icon="none">
+				<DBInfotext semantic="informational" size="small" icon="none">
 					{{ exampleName }}
 				</DBInfotext>
 			</template>

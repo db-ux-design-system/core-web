@@ -30,6 +30,7 @@ if [[ $PRE_RELEASE == "true" || $RELEASE == "true" ]]; then
 		rm -rf ./public/version/"$NAME"
 	fi
 	mv ./out ./public/version/"$NAME"
+	echo "    Moved dir out to ./public/version/$NAME"
 else
 	if [[ ! -d ./public/review ]]; then
 		echo "    Make dir ./public/review"
@@ -40,4 +41,5 @@ else
 		rm -rf ./public/review/"$NAME"
 	fi
 	mv ./out ./public/review/"$NAME"
+	echo "    Moved dir out to ./public/review/$NAME"
 fi

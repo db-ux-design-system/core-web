@@ -11,19 +11,22 @@
 		let-variantIndex="variantIndex"
 	>
 		<db-input
-			[variant]="exampleProps.variant"
-			[label]="exampleProps.label"
-			[labelVariant]="exampleProps.labelVariant"
-			[message]="exampleProps.message"
+			[variant]="exampleProps?.variant"
+			[label]="exampleProps?.label"
+			[message]="exampleProps?.message"
 			[placeholder]="exampleName"
-			[minLength]="exampleProps.minLength"
-			[required]="exampleProps.required"
-			[type]="exampleProps.type"
-			[disabled]="exampleProps.disabled"
-			[value]="exampleProps.value"
-			[icon]="exampleProps.icon"
-			[invalid]="exampleProps.invalid"
-			[iconAfter]="exampleProps.iconAfter"
+			[minLength]="exampleProps?.minLength"
+			[required]="exampleProps?.required"
+			[type]="exampleProps?.type"
+			[disabled]="exampleProps?.disabled"
+			[value]="exampleProps?.value"
+			[icon]="exampleProps?.icon"
+			[iconAfter]="exampleProps?.iconAfter"
+			[dataList]="
+				exampleProps?.dataList
+					? getDataList(exampleProps?.variant)
+					: undefined
+			"
 		></db-input>
 	</ng-template>
 </app-default-component>

@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import { sanitize } from 'dompurify';
-import { DBSelect } from '../src';
+import { DBSelect } from '../../../../output/react/src';
 import { type BranchGroup, type GithubResponse } from './data';
 
 const fetchFromGitHubApi = async (url: string): Promise<GithubResponse[]> => {
@@ -93,13 +93,13 @@ const VersionSwitcher = () => {
 			setGroupByTagsBranches(tags, branches);
 		};
 
-		runAsync().catch((error) => {
+		runAsync().catch((error: unknown) => {
 			console.error(error);
 		});
 	}, []);
 
 	const handleChange = (branch: string) => {
-		const lastPath = router.pathname;
+		const lastPath = router.asPath;
 		const isTag = branch.split('.').length === 3 && branch.startsWith('v');
 		window.location.replace(
 			sanitize(
@@ -118,7 +118,7 @@ const VersionSwitcher = () => {
 		<DBSelect
 			className="version-switcher"
 			label="Version switcher"
-			labelVariant="floating"
+			variant="floating"
 			value={currentBranch}
 			onChange={(event) => {
 				handleChange(event.target.value);

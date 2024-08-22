@@ -10,12 +10,13 @@
 		let-exampleIndex="exampleIndex"
 		let-variantIndex="variantIndex"
 	>
-		<db-infotext size="small" variant="informational">
+		<db-infotext size="small" semantic="informational">
 			{{ exampleName }}</db-infotext
 		>
 		<db-divider
-			[variant]="exampleProps.variant"
-			[emphasis]="exampleProps.emphasis"
+			[variant]="exampleProps?.variant"
+			[emphasis]="exampleProps?.emphasis"
+			[width]="exampleProps?.width"
 		>
 		</db-divider>
 	</ng-template>

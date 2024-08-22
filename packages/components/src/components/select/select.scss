@@ -2,7 +2,7 @@
 @use "@db-ui/foundations/build/scss/variables";
 @use "@db-ui/foundations/build/scss/colors";
 @use "@db-ui/foundations/build/scss/icons";
-@use "@db-ui/foundations/build/scss/tonality";
+@use "@db-ui/foundations/build/scss/fonts";
 @use "../../styles/form-components";
 @use "../../styles/component";
 
@@ -11,12 +11,6 @@
 
 	&[data-icon] {
 		--db-form-has-before: 1;
-	}
-
-	&:has(select:focus-within) {
-		&::after {
-			transform: form-components.$dropdown-icon-transform;
-		}
 	}
 }
 
@@ -31,6 +25,7 @@ $has-before-padding: calc(
 	);
 	// shared from form-components
 	@extend %select-icon;
+
 	@include form-components.set-default-form-component(select);
 
 	min-inline-size: calc(
@@ -43,16 +38,18 @@ $has-before-padding: calc(
 
 	// Most likely this wouldn't work on MacOS, but we're still progressively enhancing Windows by this
 	option {
-		background-color: var(--db-current-bg-color);
+		background-color: colors.$db-adaptive-bg-basic-level-1-default;
+		color: colors.$db-adaptive-on-bg-basic-emphasis-100-default;
 	}
 
-	&[data-label-variant="hidden"] {
+	&[data-variant="hidden"] {
 		--db-label-visible-height: 0;
 		--db-label-visible-spacing: 1;
 	}
 
 	[id$="-placeholder"] {
 		@extend %db-overwrite-font-size-md;
+
 		position: absolute;
 		pointer-events: none;
 		// we use the top of the element, the size of the label+label-margin-bottom and the font-size of the select/2
@@ -62,11 +59,10 @@ $has-before-padding: calc(
 				(
 					#{form-components.$label-size-height-xs} + #{variables.$db-spacing-fixed-xs}
 				) * var(--db-label-visible-height, 1) + var(--db-base-font-size) /
-				2 - var(--db-ui-functional, 0) * 1px
+				2 - var(--db-density-functional, 0) * 1px
 		);
 		inset-inline: $has-before-padding;
 		margin-inline-start: variables.$db-spacing-fixed-sm;
-
 		overflow: hidden;
 		white-space: nowrap;
 		text-overflow: ellipsis;

@@ -1,5 +1,11 @@
-import {onMount, Show, useMetadata, useRef, useStore} from '@builder.io/mitosis';
-import { DBButton } from '../button';
+import {
+	onInit,
+	onUpdate,
+	Show,
+	useMetadata,
+	useRef,
+	useStore
+} from '@builder.io/mitosis';
 import { DBTagProps, DBTagState } from './model';
 import { cls } from '../../utils';
 
@@ -10,6 +16,7 @@ useMetadata({
 export default function DBTag(props: DBTagProps) {
 	const ref = useRef<HTMLDivElement>(null);
 	const state = useStore<DBTagState>({
+		initialized: false,
 		handleRemove: () => {
 			if (props.onRemove) {
 				props.onRemove();
@@ -25,11 +32,23 @@ export default function DBTag(props: DBTagProps) {
 		}
 	});
 
-	onMount(() => {
-		if (props.stylePath) {
-			state.stylePath = props.stylePath;
-		}
+	onInit(() => {
+		state.initialized = true;
 	});
+
+	onUpdate(() => {
+		if (state.initialized && ref && props.disabled !== undefined) {
+			const button: HTMLButtonElement = ref?.querySelector(
+				'button:not(.db-tab-remove-button)'
+			);
+			const input: HTMLInputElement = ref?.querySelector('input');
+			for (const element of [button, input]) {
+				if (element) {
+					element.disabled = props.disabled;
+				}
+			}
+		}
+	}, [state.initialized, props.disabled, ref]);
 
 	return (
 		<div
@@ -37,30 +56,27 @@ export default function DBTag(props: DBTagProps) {
 			id={props.id}
 			class={cls('db-tag', props.className)}
 			data-disabled={props.disabled}
-			data-variant={props.variant}
+			data-semantic={props.semantic}
 			data-emphasis={props.emphasis}
 			data-icon={props.icon}
 			data-no-text={props.noText}
 			data-overflow={props.overflow}>
-			<Show when={state.stylePath}>
-				<link rel="stylesheet" href={state.stylePath} />
-			</Show>
-
 			{props.children}
 
 			<Show when={props.text}>{props.text}</Show>
 
 			<Show when={props.behaviour === 'removable'}>
-				<DBButton
-					className="db-tab-remove-button"
+				{/* we aren't using DBButton here because of angular would wrap it in custom component */}
+				<button
+					className="db-button db-tab-remove-button"
 					onClick={() => state.handleRemove()}
-					icon="close"
-					size="small"
-					noText
-					variant="text"
+					data-icon="cross"
+					data-size="small"
+					data-no-text="true"
+					data-variant="ghost"
 					title={state.getRemoveButtonText()}>
 					{state.getRemoveButtonText()}
-				</DBButton>
+				</button>
 			</Show>
 		</div>
 	);

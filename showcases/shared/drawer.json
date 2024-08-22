@@ -1,21 +1,30 @@
 [
 	{
-		"name": "Tonality",
+		"name": "Density",
 		"examples": [
 			{
-				"name": "functional",
-				"className": "db-ui-functional",
-				"props": {}
+				"name": "Functional",
+				"className": "db-density-functional",
+				"props": {
+					"open": "open",
+					"onClose": "toggleDrawer(false)"
+				}
 			},
 			{
-				"name": "regular (Default)",
-				"className": "db-ui-regular",
-				"props": {}
+				"name": "(Default) Regular",
+				"className": "db-density-regular",
+				"props": {
+					"open": "open",
+					"onClose": "toggleDrawer(false)"
+				}
 			},
 			{
-				"name": "expressive",
-				"className": "db-ui-expressive",
-				"props": {}
+				"name": "Expressive",
+				"className": "db-density-expressive",
+				"props": {
+					"open": "open",
+					"onClose": "toggleDrawer(false)"
+				}
 			}
 		]
 	},
@@ -23,16 +32,18 @@
 		"name": "Size",
 		"examples": [
 			{
-				"name": "With padding (Default)",
+				"name": "(Default) Medium",
 				"props": {
-					"withCloseButton": true
+					"open": "open",
+					"onClose": "toggleDrawer(false)"
 				}
 			},
 			{
 				"name": "Full",
 				"props": {
-					"withCloseButton": true,
-					"width": "full"
+					"width": "full",
+					"open": "open",
+					"onClose": "toggleDrawer(false)"
 				}
 			}
 		]
@@ -41,16 +52,18 @@
 		"name": "Rounded",
 		"examples": [
 			{
-				"name": "No rounding (Default)",
+				"name": "(Default) No rounding",
 				"props": {
-					"withCloseButton": true
+					"open": "open",
+					"onClose": "toggleDrawer(false)"
 				}
 			},
 			{
 				"name": "Rounded",
 				"props": {
-					"withCloseButton": true,
-					"rounded": true
+					"rounded": true,
+					"open": "open",
+					"onClose": "toggleDrawer(false)"
 				}
 			}
 		]
@@ -59,30 +72,34 @@
 		"name": "Spacing",
 		"examples": [
 			{
-				"name": "Medium (Default)",
+				"name": "(Default) Medium",
 				"props": {
-					"withCloseButton": true
+					"open": "open",
+					"onClose": "toggleDrawer(false)"
 				}
 			},
 			{
 				"name": "Small",
 				"props": {
-					"withCloseButton": true,
-					"spacing": "small"
+					"spacing": "small",
+					"open": "open",
+					"onClose": "toggleDrawer(false)"
 				}
 			},
 			{
 				"name": "Large",
 				"props": {
-					"withCloseButton": true,
-					"spacing": "large"
+					"spacing": "large",
+					"open": "open",
+					"onClose": "toggleDrawer(false)"
 				}
 			},
 			{
-				"name": "No spacing",
+				"name": "None",
 				"props": {
-					"withCloseButton": true,
-					"spacing": "none"
+					"spacing": "none",
+					"open": "open",
+					"onClose": "toggleDrawer(false)"
 				}
 			}
 		]
@@ -91,23 +108,34 @@
 		"name": "Backdrop",
 		"examples": [
 			{
-				"name": "With Backdrop (Default)",
+				"name": "(Default) With Backdrop",
 				"props": {
-					"withCloseButton": true
+					"open": "open",
+					"onClose": "toggleDrawer(false)"
 				}
 			},
 			{
 				"name": "Backdrop-weak",
 				"props": {
-					"withCloseButton": true,
-					"backdrop": "weak"
+					"backdrop": "weak",
+					"open": "open",
+					"onClose": "toggleDrawer(false)"
+				}
+			},
+			{
+				"name": "Invisible",
+				"props": {
+					"backdrop": "invisible",
+					"open": "open",
+					"onClose": "toggleDrawer(false)"
 				}
 			},
 			{
 				"name": "No Backdrop",
 				"props": {
-					"withCloseButton": true,
-					"backdrop": "none"
+					"backdrop": "none",
+					"open": "open",
+					"onClose": "toggleDrawer(false)"
 				}
 			}
 		]
@@ -116,30 +144,34 @@
 		"name": "Directions",
 		"examples": [
 			{
-				"name": "Right (Default)",
+				"name": "(Default) Right",
 				"props": {
-					"withCloseButton": true
+					"open": "open",
+					"onClose": "toggleDrawer(false)"
 				}
 			},
 			{
 				"name": "Left",
 				"props": {
-					"withCloseButton": true,
-					"direction": "left"
+					"direction": "left",
+					"open": "open",
+					"onClose": "toggleDrawer(false)"
 				}
 			},
 			{
 				"name": "Up",
 				"props": {
-					"withCloseButton": true,
-					"direction": "up"
+					"direction": "up",
+					"open": "open",
+					"onClose": "toggleDrawer(false)"
 				}
 			},
 			{
 				"name": "Down",
 				"props": {
-					"withCloseButton": true,
-					"direction": "down"
+					"direction": "down",
+					"open": "open",
+					"onClose": "toggleDrawer(false)"
 				}
 			}
 		]

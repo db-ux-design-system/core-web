@@ -1,21 +1,18 @@
 [
 	{
-		"name": "Tonality",
+		"name": "Density",
 		"examples": [
 			{
-				"name": "functional",
-				"className": "db-ui-functional",
-				"props": {}
+				"name": "Functional",
+				"className": "db-density-functional"
 			},
 			{
-				"name": "regular (Default)",
-				"className": "db-ui-regular",
-				"props": {}
+				"name": "(Default) Regular",
+				"className": "db-density-regular"
 			},
 			{
-				"name": "expressive",
-				"className": "db-ui-expressive",
-				"props": {}
+				"name": "Expressive",
+				"className": "db-density-expressive"
 			}
 		]
 	},
@@ -23,8 +20,7 @@
 		"name": "Emphasis",
 		"examples": [
 			{
-				"name": "Weak (Default)",
-				"props": {}
+				"name": "(Default) Weak"
 			},
 			{
 				"name": "Strong",
@@ -35,40 +31,39 @@
 		]
 	},
 	{
-		"name": "Variant",
+		"name": "Semantic",
 		"examples": [
 			{
-				"name": "Adaptive (Default)",
-				"props": {}
+				"name": "(Default) Adaptive"
 			},
 			{
 				"name": "Neutral",
 				"props": {
-					"variant": "neutral"
+					"semantic": "neutral"
 				}
 			},
 			{
 				"name": "Critical",
 				"props": {
-					"variant": "critical"
+					"semantic": "critical"
 				}
 			},
 			{
 				"name": "Informational",
 				"props": {
-					"variant": "informational"
+					"semantic": "informational"
 				}
 			},
 			{
 				"name": "Successful",
 				"props": {
-					"variant": "successful"
+					"semantic": "successful"
 				}
 			},
 			{
 				"name": "Warning",
 				"props": {
-					"variant": "warning"
+					"semantic": "warning"
 				}
 			},
 			{
@@ -80,35 +75,35 @@
 			{
 				"name": "Neutral Strong",
 				"props": {
-					"variant": "neutral",
+					"semantic": "neutral",
 					"emphasis": "strong"
 				}
 			},
 			{
 				"name": "Critical Strong",
 				"props": {
-					"variant": "critical",
+					"semantic": "critical",
 					"emphasis": "strong"
 				}
 			},
 			{
 				"name": "Informational Strong",
 				"props": {
-					"variant": "informational",
+					"semantic": "informational",
 					"emphasis": "strong"
 				}
 			},
 			{
 				"name": "Successful Strong",
 				"props": {
-					"variant": "successful",
+					"semantic": "successful",
 					"emphasis": "strong"
 				}
 			},
 			{
 				"name": "Warning Strong",
 				"props": {
-					"variant": "warning",
+					"semantic": "warning",
 					"emphasis": "strong"
 				}
 			}
@@ -116,70 +111,121 @@
 	},
 	{
 		"name": "Behaviour",
+		"role": "group",
 		"examples": [
 			{
-				"name": "Static (Default)",
-				"props": {}
+				"name": "(Default) Static"
 			},
 			{
 				"name": "Interactive Button",
 				"props": {
 					"component": "button"
 				},
-				"code": {
-					"angular": "<db-tab><db-button>Interactive Button</db-button></db-tag>",
-					"html": "<div class=\"db-tab\"><button class=\"db-button\">Interactive Button</button></div>",
-					"react": "<DBTag><DBButton>Interactive Button</DBButton></DBTag>",
-					"vue": "<DBTag><DBButton>Interactive Button</DBButton></DBTag>"
-				}
+				"children": [
+					{
+						"name": "button",
+						"native": true,
+						"content": "Interactive Button"
+					}
+				]
 			},
 			{
 				"name": "Interactive Link",
 				"props": {
 					"component": "link"
 				},
-				"code": {
-					"angular": "<db-tab><db-link>Interactive Link</db-link></db-tag>",
-					"html": "<div class=\"db-tab\"><a class=\"db-link\">Interactive Link</a></div>",
-					"react": "<DBTag><DBLink>Interactive Link</DBLink></DBTag>",
-					"vue": "<DBTag><DBLink>Interactive Link</DBLink></DBTag>"
-				}
+				"children": [
+					{
+						"name": "a",
+						"native": true,
+						"content": "Interactive Link",
+						"props": {
+							"href": "#"
+						}
+					}
+				]
 			},
 			{
 				"name": "Interactive Checkbox",
 				"props": {
 					"component": "checkbox"
 				},
-				"code": {
-					"angular": "<db-tab><db-checkbox>Interactive Checkbox</db-checkbox></db-tag>",
-					"html": "<div class=\"db-tab\"><input type=\"checkbox\" class=\"db-checkbox\" id=\"checkbox-element\" /><label for=\"checkbox-element\">Interactive Checkbox</label></div>",
-					"react": "<DBTag><DBCheckbox>Interactive Checkbox</DBCheckbox></DBTag>",
-					"vue": "<DBTag><DBCheckbox>Interactive Checkbox</DBCheckbox></DBTag>"
-				}
+				"children": [
+					{
+						"name": "label",
+						"native": true,
+						"content": "Interactive Checkbox",
+						"props": {
+							"for": "checkbox01"
+						},
+						"children": [
+							{
+								"name": "input",
+								"native": true,
+								"props": {
+									"id": "checkbox01",
+									"type": "checkbox"
+								}
+							}
+						]
+					}
+				]
 			},
 			{
 				"name": "Interactive Radio 1",
 				"props": {
-					"component": "radio"
+					"component": "radio",
+					"identifier": "radio01"
 				},
-				"code": {
-					"angular": "<db-tab><db-radio>Interactive Radio 1</db-radio></db-tag>",
-					"html": "<div class=\"db-tab\"><input type=\"radio\" class=\"db-checkbox\" id=\"checkbox-element\" /><label for=\"checkbox-element\">Interactive Radio 1</label></div>",
-					"react": "<DBTag><DBRadio>Interactive Radio 1</DBRadio></DBTag>",
-					"vue": "<DBTag><DBRadio>Interactive Radio 1</DBRadio></DBTag>"
-				}
+				"children": [
+					{
+						"name": "label",
+						"native": true,
+						"content": "Interactive Radio 1",
+						"props": {
+							"for": "radio01"
+						},
+						"children": [
+							{
+								"name": "input",
+								"native": true,
+								"props": {
+									"name": "radio01",
+									"id": "radio01",
+									"type": "radio"
+								}
+							}
+						]
+					}
+				]
 			},
 			{
 				"name": "Interactive Radio 2",
 				"props": {
 					"component": "radio",
-					"code": {
-						"angular": "<db-tab><db-radio>Interactive Radio 2</db-radio></db-tag>",
-						"html": "<div class=\"db-tab\"><input type=\"radio\" class=\"db-checkbox\" id=\"checkbox-element\" /><label for=\"checkbox-element\">Interactive Radio 2</label></div>",
-						"react": "<DBTag><DBRadio>Interactive Radio 2</DBRadio></DBTag>",
-						"vue": "<DBTag><DBRadio>Interactive Radio 2</DBRadio></DBTag>"
+					"identifier": "radio01"
+				},
+				"children": [
+					{
+						"name": "label",
+						"native": true,
+						"content": "Interactive Radio 2",
+						"props": {
+							"for": "radio02"
+						},
+						"children": [
+							{
+								"name": "input",
+								"native": true,
+								"props": {
+									"name": "radio02",
+									"id": "radio02",
+									"type": "radio"
+								}
+							}
+						]
 					}
-				}
+				]
 			},
 			{
 				"name": "Removeable",
@@ -191,18 +237,33 @@
 	},
 	{
 		"name": "State",
+		"role": "group",
 		"examples": [
 			{
-				"name": "Unchecked (Default)",
+				"name": "(Default) Unchecked",
 				"props": {
 					"component": "checkbox"
 				},
-				"code": {
-					"angular": "<db-tab><db-checkbox>Interactive Checkbox</db-checkbox></db-tag>",
-					"html": "<div class=\"db-tab\"><input type=\"checkbox\" class=\"db-checkbox\" id=\"checkbox-element\" /><label for=\"checkbox-element\">Interactive Checkbox</label></div>",
-					"react": "<DBTag><DBCheckbox>Interactive Checkbox</DBCheckbox></DBTag>",
-					"vue": "<DBTag><DBCheckbox>Interactive Checkbox</DBCheckbox></DBTag>"
-				}
+				"children": [
+					{
+						"name": "label",
+						"native": true,
+						"content": "Interactive Checkbox",
+						"props": {
+							"for": "checkbox02"
+						},
+						"children": [
+							{
+								"name": "input",
+								"native": true,
+								"props": {
+									"for": "checkbox02",
+									"type": "checkbox"
+								}
+							}
+						]
+					}
+				]
 			},
 			{
 				"name": "Checked",
@@ -210,12 +271,27 @@
 					"component": "checkbox",
 					"checked": true
 				},
-				"code": {
-					"angular": "<db-tab><db-checkbox [checked]=\"true\">Interactive Checkbox</db-checkbox></db-tag>",
-					"html": "<div class=\"db-tab\"><input checked=\"true\" type=\"checkbox\" class=\"db-checkbox\" id=\"checkbox-element\" /><label for=\"checkbox-element\">Interactive Checkbox</label></div>",
-					"react": "<DBTag><DBCheckbox checked>Interactive Checkbox</DBCheckbox></DBTag>",
-					"vue": "<DBTag><DBCheckbox :checked=\"true\">Interactive Checkbox</DBCheckbox></DBTag>"
-				}
+				"children": [
+					{
+						"name": "label",
+						"native": true,
+						"content": "Interactive Checkbox",
+						"props": {
+							"for": "checkbox03"
+						},
+						"children": [
+							{
+								"name": "input",
+								"native": true,
+								"props": {
+									"checked": true,
+									"id": "checkbox03",
+									"type": "checkbox"
+								}
+							}
+						]
+					}
+				]
 			},
 			{
 				"name": "Disabled",
@@ -224,12 +300,28 @@
 					"checked": true,
 					"disabled": true
 				},
-				"code": {
-					"angular": "<db-tab><db-checkbox [checked]=\"true\" [disabled]=\"true\">Interactive Checkbox</db-checkbox></db-tag>",
-					"html": "<div class=\"db-tab\"><input checked=\"true\" disabled=\"true\" type=\"checkbox\" class=\"db-checkbox\" id=\"checkbox-element\" /><label for=\"checkbox-element\">Interactive Checkbox</label></div>",
-					"react": "<DBTag><DBCheckbox checked disabled>Interactive Checkbox</DBCheckbox></DBTag>",
-					"vue": "<DBTag><DBCheckbox :checked=\"true\" :disabled=\"true\">Interactive Checkbox</DBCheckbox></DBTag>"
-				}
+				"children": [
+					{
+						"name": "label",
+						"native": true,
+						"content": "Interactive Checkbox",
+						"props": {
+							"for": "checkbox04"
+						},
+						"children": [
+							{
+								"name": "input",
+								"native": true,
+								"props": {
+									"checked": true,
+									"disabled": true,
+									"id": "checkbox04",
+									"type": "checkbox"
+								}
+							}
+						]
+					}
+				]
 			}
 		]
 	},
@@ -237,20 +329,19 @@
 		"name": "Content",
 		"examples": [
 			{
-				"name": "Text (Default)",
-				"props": {}
+				"name": "(Default) Text"
 			},
 			{
 				"name": "Icon",
 				"props": {
-					"icon": "account",
+					"icon": "user",
 					"noText": true
 				}
 			},
 			{
 				"name": "Icon & Text",
 				"props": {
-					"icon": "account"
+					"icon": "user"
 				}
 			}
 		]
@@ -259,8 +350,7 @@
 		"name": "Overflow",
 		"examples": [
 			{
-				"name": "No Overflow (Default)",
-				"props": {}
+				"name": "(Default) No Overflow"
 			},
 			{
 				"name": "With Overflow (max-width)",
@@ -272,77 +362,127 @@
 	},
 	{
 		"name": "Example",
+		"role": "group",
 		"examples": [
 			{
 				"name": "Interactive Strong Button with Icon",
 				"props": {
 					"component": "button",
 					"emphasis": "strong",
-					"icon": "account",
+					"icon": "user",
 					"behaviour": "removable"
 				},
-				"code": {
-					"angular": "<db-tab><db-button>Interactive Button</db-button></db-tag>",
-					"html": "<div class=\"db-tab\"><button class=\"db-button\">Interactive Button</button></div>",
-					"react": "<DBTag><DBButton>Interactive Button</DBButton></DBTag>",
-					"vue": "<DBTag><DBButton>Interactive Button</DBButton></DBTag>"
-				}
+				"children": [
+					{
+						"name": "button",
+						"native": true,
+						"content": "Interactive Button"
+					}
+				]
 			},
 			{
 				"name": "Interactive Strong Link with Icon",
 				"props": {
 					"component": "link",
 					"emphasis": "strong",
-					"icon": "account"
+					"icon": "user"
 				},
-				"code": {
-					"angular": "<db-tab><db-link>Interactive Link</db-link></db-tag>",
-					"html": "<div class=\"db-tab\"><a class=\"db-link\">Interactive Link</a></div>",
-					"react": "<DBTag><DBLink>Interactive Link</DBLink></DBTag>",
-					"vue": "<DBTag><DBLink>Interactive Link</DBLink></DBTag>"
-				}
+				"children": [
+					{
+						"name": "a",
+						"native": true,
+						"content": "Interactive Link",
+						"props": {
+							"href": "#"
+						}
+					}
+				]
 			},
 			{
 				"name": "Interactive Strong Checkbox with Icon",
 				"props": {
 					"component": "checkbox",
 					"emphasis": "strong",
-					"icon": "account"
+					"icon": "user"
 				},
-				"code": {
-					"angular": "<db-tab><db-checkbox>Interactive Checkbox</db-checkbox></db-tag>",
-					"html": "<div class=\"db-tab\"><input type=\"checkbox\" class=\"db-checkbox\" id=\"checkbox-element\" /><label for=\"checkbox-element\">Interactive Checkbox</label></div>",
-					"react": "<DBTag><DBCheckbox>Interactive Checkbox</DBCheckbox></DBTag>",
-					"vue": "<DBTag><DBCheckbox>Interactive Checkbox</DBCheckbox></DBTag>"
-				}
+				"children": [
+					{
+						"name": "label",
+						"native": true,
+						"content": "Interactive Checkbox",
+						"props": {
+							"for": "checkbox05"
+						},
+						"children": [
+							{
+								"name": "input",
+								"native": true,
+								"id": "checkbox05",
+								"type": "checkbox"
+							}
+						]
+					}
+				]
 			},
 			{
 				"name": "Interactive Strong Radio 1 with Icon",
 				"props": {
 					"component": "radio",
 					"emphasis": "strong",
-					"icon": "account"
+					"icon": "user",
+					"identifier": "radio03"
 				},
-				"code": {
-					"angular": "<db-tab><db-radio>Interactive Radio 1</db-radio></db-tag>",
-					"html": "<div class=\"db-tab\"><input type=\"radio\" class=\"db-checkbox\" id=\"checkbox-element\" /><label for=\"checkbox-element\">Interactive Radio 1</label></div>",
-					"react": "<DBTag><DBRadio>Interactive Radio 1</DBRadio></DBTag>",
-					"vue": "<DBTag><DBRadio>Interactive Radio 1</DBRadio></DBTag>"
-				}
+				"children": [
+					{
+						"name": "label",
+						"native": true,
+						"content": "Interactive Radio 3",
+						"props": {
+							"for": "radio03"
+						},
+						"children": [
+							{
+								"name": "input",
+								"native": true,
+								"props": {
+									"name": "radio03",
+									"id": "radio03",
+									"type": "radio"
+								}
+							}
+						]
+					}
+				]
 			},
 			{
 				"name": "Interactive Strong Radio 2 with Icon",
 				"props": {
 					"component": "radio",
 					"emphasis": "strong",
-					"icon": "account",
-					"code": {
-						"angular": "<db-tab><db-radio>Interactive Radio 2</db-radio></db-tag>",
-						"html": "<div class=\"db-tab\"><input type=\"radio\" class=\"db-checkbox\" id=\"checkbox-element\" /><label for=\"checkbox-element\">Interactive Radio 2</label></div>",
-						"react": "<DBTag><DBRadio>Interactive Radio 2</DBRadio></DBTag>",
-						"vue": "<DBTag><DBRadio>Interactive Radio 2</DBRadio></DBTag>"
+					"icon": "user",
+					"identifier": "radio02"
+				},
+				"children": [
+					{
+						"name": "label",
+						"native": true,
+						"content": "Interactive Radio 4",
+						"props": {
+							"for": "radio04"
+						},
+						"children": [
+							{
+								"name": "input",
+								"native": true,
+								"props": {
+									"name": "radio04",
+									"id": "radio04",
+									"type": "radio"
+								}
+							}
+						]
 					}
-				}
+				]
 			}
 		]
 	}

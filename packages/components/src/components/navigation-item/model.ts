@@ -1,4 +1,5 @@
 import {
+	ClickEvent,
 	ClickEventProps,
 	ClickEventState,
 	GlobalProps,
@@ -8,18 +9,13 @@ import {
 	NavigationBackButtonProps,
 	WidthProps
 } from '../../shared/model';
+import { NavigationItemSafeTriangle } from '../../utils/navigation';
 
 export interface DBNavigationItemDefaultProps {
 	/**
 	 * Indicator for active navigation item (bold font).
 	 */
 	active?: boolean;
-
-	/**
-	 * If the attribute is set the item acts like a button with a sub-navigation
-	 */
-
-	areaPopup?: boolean;
 
 	/**
 	 * The disabled attribute can be set to [keep a user from clicking on the item](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button#disabled).
@@ -30,7 +26,7 @@ export interface DBNavigationItemDefaultProps {
 	 * React-specific property to pass in a slot for sub-navigation
 	 */
 
-	slotSubNavigation?: any;
+	subNavigation?: unknown;
 
 	/**
 	 * This is for mobile navigation only, if it is set the sub-navigation is a static overlay
@@ -45,8 +41,17 @@ export type DBNavigationItemProps = DBNavigationItemDefaultProps &
 	WidthProps &
 	NavigationBackButtonProps;
 
+export interface DBNavigationItemTriangleData {
+	itemRect: DOMRect;
+	parentElementWidth: number;
+	subNavigationHeight: number;
+	padding: number;
+	outsideVX: 'left' | 'right' | undefined;
+	outsideVY: 'top' | 'bottom' | undefined;
+}
+
 export interface DBNavigationItemDefaultState {
-	handleBackClick: (event: any) => void;
+	handleBackClick: (event: ClickEvent<HTMLButtonElement>) => void;
 	hasAreaPopup: boolean;
 	isSubNavigationExpanded: boolean;
 	subNavigationId: string;
@@ -55,6 +60,8 @@ export interface DBNavigationItemDefaultState {
 	 * Internal state property to show/hide sub-navigation button
 	 */
 	hasSubNavigation?: boolean;
+	updateSubNavigationState: () => void;
+	navigationItemSafeTriangle?: NavigationItemSafeTriangle;
 }
 
 export type DBNavigationItemState = DBNavigationItemDefaultState &

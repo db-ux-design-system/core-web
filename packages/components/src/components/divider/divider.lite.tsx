@@ -1,5 +1,5 @@
-import {onMount, Show, useMetadata, useRef, useStore} from '@builder.io/mitosis';
-import { DBDividerState, DBDividerProps } from './model';
+import { useMetadata, useRef, useStore } from '@builder.io/mitosis';
+import { DBDividerProps, DBDividerState } from './model';
 import { cls } from '../../utils';
 
 useMetadata({
@@ -11,11 +11,6 @@ export default function DBDivider(props: DBDividerProps) {
 	// jscpd:ignore-start
 	const state = useStore<DBDividerState>({});
 
-	onMount(() => {
-		if (props.stylePath) {
-			state.stylePath = props.stylePath;
-		}
-	});
 	// jscpd:ignore-end
 
 	return (
@@ -25,10 +20,8 @@ export default function DBDivider(props: DBDividerProps) {
 			data-margin={props.margin}
 			data-variant={props.variant}
 			data-emphasis={props.emphasis}
-			class={cls('db-divider', props.className)}>
-			<Show when={state.stylePath}>
-				<link rel="stylesheet" href={state.stylePath} />
-			</Show>
-		</div>
+			data-width={props.width}
+			class={cls('db-divider', props.className)}
+		/>
 	);
 }

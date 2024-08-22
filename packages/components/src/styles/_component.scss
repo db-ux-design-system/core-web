@@ -3,52 +3,69 @@
 @use "@db-ui/foundations/build/scss/colors";
 @use "@db-ui/foundations/build/scss/helpers";
 
-$default-mobile-header-height: var(
-	--db-sizing-fixed-mobile-header,
-	#{helpers.to-rem(56)}
+$min-mobile-header-height: calc(
+	#{variables.$db-sizing-md} + 2 * #{variables.$db-spacing-fixed-xs}
 );
 
+$default-disabled: 0.4;
+
 %default-adaptive-border {
-	border: variables.$db-border-height-sm solid colors.$db-base-on-bg;
+	border: variables.$db-border-height-3xs solid
+		colors.$db-adaptive-on-bg-basic-emphasis-100-default;
 }
 
 %transparent-border {
-	border: variables.$db-border-height-sm solid transparent;
+	border: variables.$db-border-height-3xs solid transparent;
 }
 
 %component-border {
-	border: variables.$db-border-height-sm solid colors.$db-base-border-weak;
+	border: variables.$db-border-height-3xs solid
+		colors.$db-adaptive-on-bg-basic-emphasis-60-default;
 }
 
 %default-interactive-component {
 	@extend %default-adaptive-border;
-	border-radius: variables.$db-border-radius-md;
+
+	border-radius: variables.$db-border-radius-xs;
 }
 
 %default-card {
+	@extend %component-border;
+
 	border-radius: var(
 		--default-card-border-radius,
-		#{variables.$db-border-radius-lg}
+		#{variables.$db-border-radius-sm}
 	);
-	box-shadow: variables.$db-elevation-md;
 }
 
-%adaptive-neutral-component {
-	@extend %db-bg-neutral-transparent-semi;
-}
+$responsive-spacings: (
+	"default": variables.$db-spacing-responsive-md,
+	"large": variables.$db-spacing-responsive-lg,
+	"medium": variables.$db-spacing-responsive-md,
+	"small": variables.$db-spacing-responsive-sm,
+	"none": 0
+);
 
-%adaptive-critical-component {
-	@extend %db-bg-critical-transparent-semi;
-}
+$default-spacings: (
+	"default": variables.$db-spacing-fixed-sm,
+	"large": variables.$db-spacing-fixed-lg,
+	"medium": variables.$db-spacing-fixed-md,
+	"small": variables.$db-spacing-fixed-sm,
+	"none": 0
+);
 
-%adaptive-warning-component {
-	@extend %db-bg-warning-transparent-semi;
-}
+@mixin get-data-spacing($type: padding, $spacings: $default-spacings) {
+	@each $name, $spacing in $spacings {
+		@if ($name == "default") {
+			&:not([data-spacing]) {
+				#{$type}: $spacing;
+			}
 
-%adaptive-informational-component {
-	@extend %db-bg-informational-transparent-semi;
-}
-
-%adaptive-successful-component {
-	@extend %db-bg-successful-transparent-semi;
+			/* stylelint-disable-next-line at-rule-empty-line-before */
+		} @else {
+			&[data-spacing="#{$name}"] {
+				#{$type}: $spacing;
+			}
+		}
+	}
 }
