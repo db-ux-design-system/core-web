@@ -11,9 +11,7 @@ const testButton = () => {
 			mount
 		}) => {
 			const component = await mount(
-				<DBButton variant={variant} type="button">
-					Test
-				</DBButton>
+				<DBButton variant={variant}>Test</DBButton>
 			);
 			await expect(component).toContainText('Test');
 		});
@@ -22,9 +20,7 @@ const testButton = () => {
 			mount
 		}) => {
 			const component = await mount(
-				<DBButton variant={variant} type="button">
-					Test
-				</DBButton>
+				<DBButton variant={variant}>Test</DBButton>
 			);
 			await expect(component).toHaveScreenshot();
 		});
@@ -33,11 +29,7 @@ const testButton = () => {
 			mount
 		}) => {
 			const component = await mount(
-				<DBButton
-					icon="account"
-					noText={true}
-					variant={variant}
-					type="button">
+				<DBButton icon="account" noText={true} variant={variant}>
 					Account
 				</DBButton>
 			);
@@ -53,7 +45,7 @@ test.describe('DBButton', () => {
 
 test.describe('DBButton', () => {
 	test('should not have A11y issues', async ({ page, mount }) => {
-		await mount(<DBButton type="button">Test</DBButton>);
+		await mount(<DBButton>Test</DBButton>);
 		const accessibilityScanResults = await new AxeBuilder({ page })
 			.include('.db-button')
 			.analyze();
@@ -66,7 +58,7 @@ test.describe('DBButton', () => {
 		mount
 	}) => {
 		await mount(
-			<DBButton icon="account" noText={true} type="button">
+			<DBButton icon="account" noText={true}>
 				lorem ipsum
 			</DBButton>
 		);
