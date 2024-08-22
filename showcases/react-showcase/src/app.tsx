@@ -40,35 +40,19 @@ const App = () => {
 					}
 					slotCallToAction={
 						/* TODO: Use DBSearchBar in future */
-						<DBButton
-							icon="search"
-							variant="text"
-							noText
-							type="button">
+						<DBButton icon="search" variant="text" noText>
 							Search
 						</DBButton>
 					}
 					slotActionBar={
 						<>
-							<DBButton
-								icon="account"
-								variant="text"
-								noText
-								type="button">
+							<DBButton icon="account" variant="text" noText>
 								Profile
 							</DBButton>
-							<DBButton
-								icon="alert"
-								variant="text"
-								noText
-								type="button">
+							<DBButton icon="alert" variant="text" noText>
 								Notification
 							</DBButton>
-							<DBButton
-								icon="help"
-								variant="text"
-								noText
-								type="button">
+							<DBButton icon="help" variant="text" noText>
 								Help
 							</DBButton>
 						</>
