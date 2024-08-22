@@ -8,11 +8,7 @@ For general installation and configuration take a look at the [react-components]
 // App.tsx
 import { DBButton } from "@db-ui/react-components";
 
-const App = () => (
-	<DBButton variant="primary" type="button">
-		Button
-	</DBButton>
-);
+const App = () => <DBButton variant="primary">Button</DBButton>;
 
 export default App;
 ```
