@@ -109,8 +109,7 @@ export default function DBHeader(props: DBHeaderProps) {
 							icon="menu"
 							noText
 							variant="text"
-							onClick={() => state.toggle()}
-							type="button">
+							onClick={() => state.toggle()}>
 							{props.burgerMenuLabel ??
 								state.defaultValues.burgerMenuLabel}
 						</DBButton>
