@@ -7,7 +7,7 @@ import { DEFAULT_VIEWPORT } from '../../shared/constants.ts';
 import { DBButton } from '../button';
 
 const comp = (
-	<DBButton describedbyid="tooltip-01" type="button">
+	<DBButton describedbyid="tooltip-01">
 		Button
 		<DBTooltip animation="disabled" id="tooltip-01">
 			Test
