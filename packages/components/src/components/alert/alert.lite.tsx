@@ -79,8 +79,7 @@ export default function DBAlert(props: DBAlertProps) {
 					noText
 					onClick={(event: ClickEvent<HTMLButtonElement>) =>
 						state.handleClick(event)
-					}
-					type="button">
+					}>
 					{props.closeButtonText ?? DEFAULT_CLOSE_BUTTON}
 				</DBButton>
 			</Show>
