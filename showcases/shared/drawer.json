@@ -95,7 +95,7 @@
 				}
 			},
 			{
-				"name": "No spacing",
+				"name": "None",
 				"props": {
 					"spacing": "none",
 					"open": "open",
