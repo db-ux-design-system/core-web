@@ -38,8 +38,7 @@ const getDrawer = ({
 		<DBButton
 			onClick={() => {
 				setOpenDrawer(id);
-			}}
-			type="button">
+			}}>
 			Open: {children}
 		</DBButton>
 	</div>
