@@ -43,7 +43,7 @@
     "esbuild": "0.23.1",
     "eslint": "8.57.0",
     "eslint-config-next": "14.2.6",
-    "iframe-resizer": "^5.2.4",
+    "iframe-resizer": "^5.2.6",
     "open-cli": "^8.0.0",
     "sass": "1.77.4",
     "typescript": "5.4.5"
