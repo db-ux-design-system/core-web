@@ -9,26 +9,26 @@
 		"examples": [
 			{
 				"name": "Functional",
-				"className": "db-density-functional",
 				"props": {
 					"content": "Tooltip",
-					"id": "tooltip-01"
+					"id": "tooltip-01",
+					"data-density": "functional"
 				}
 			},
 			{
 				"name": "(Default) Regular",
-				"className": "db-density-regular",
 				"props": {
 					"content": "Tooltip",
-					"id": "tooltip-02"
+					"id": "tooltip-02",
+					"data-density": "regular"
 				}
 			},
 			{
 				"name": "Expressive",
-				"className": "db-density-expressive",
 				"props": {
 					"content": "Tooltip",
-					"id": "tooltip-03"
+					"id": "tooltip-03",
+					"data-density": "expressive"
 				}
 			}
 		]

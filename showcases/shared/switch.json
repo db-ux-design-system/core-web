@@ -4,15 +4,21 @@
 		"examples": [
 			{
 				"name": "functional",
-				"className": "db-density-functional"
+				"props": {
+					"data-density": "functional"
+				}
 			},
 			{
 				"name": "regular (Default)",
-				"className": "db-density-regular"
+				"props": {
+					"data-density": "regular"
+				}
 			},
 			{
 				"name": "expressive",
-				"className": "db-density-expressive"
+				"props": {
+					"data-density": "expressive"
+				}
 			}
 		]
 	},

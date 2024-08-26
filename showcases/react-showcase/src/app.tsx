@@ -13,7 +13,7 @@ const App = () => {
 
 	if (pageName ?? fullscreen) {
 		return (
-			<div className={`db-density-${density} db-${color}`}>
+			<div data-density={density} className={`db-${color}`}>
 				<Outlet />
 			</div>
 		);
@@ -63,7 +63,7 @@ const App = () => {
 					<Navigation />
 				</DBHeader>
 			}>
-			<div className={`db-density-${density} db-${color}`}>
+			<div data-density={density} className={`db-${color}`}>
 				<Outlet />
 			</div>
 		</DBPage>

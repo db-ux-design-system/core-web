@@ -4,26 +4,26 @@
 		"examples": [
 			{
 				"name": "Functional",
-				"className": "db-density-functional",
 				"props": {
 					"open": "open",
-					"onClose": "toggleDrawer(false)"
+					"onClose": "toggleDrawer(false)",
+					"data-density": "functional"
 				}
 			},
 			{
 				"name": "(Default) Regular",
-				"className": "db-density-regular",
 				"props": {
 					"open": "open",
-					"onClose": "toggleDrawer(false)"
+					"onClose": "toggleDrawer(false)",
+					"data-density": "regular"
 				}
 			},
 			{
 				"name": "Expressive",
-				"className": "db-density-expressive",
 				"props": {
 					"open": "open",
-					"onClose": "toggleDrawer(false)"
+					"onClose": "toggleDrawer(false)",
+					"data-density": "expressive"
 				}
 			}
 		]

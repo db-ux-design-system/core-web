@@ -5,26 +5,26 @@
 		"examples": [
 			{
 				"name": "Functional",
-				"className": "db-density-functional",
 				"props": {
 					"name": "Density",
-					"value": "functional"
+					"value": "functional",
+					"data-density": "functional"
 				}
 			},
 			{
 				"name": "(Default) Regular",
-				"className": "db-density-regular",
 				"props": {
 					"name": "Density",
-					"value": "regular"
+					"value": "regular",
+					"data-density": "regular"
 				}
 			},
 			{
 				"name": "Expressive",
-				"className": "db-density-expressive",
 				"props": {
 					"name": "Density",
-					"value": "expressive"
+					"value": "expressive",
+					"data-density": "expressive"
 				}
 			}
 		]

@@ -6,27 +6,27 @@
 				"name": "Functional",
 				"style": { "width": "200px" },
 				"content": "",
-				"className": "db-density-functional",
 				"props": {
-					"width": "full"
+					"width": "full",
+					"data-density": "functional"
 				}
 			},
 			{
 				"name": "(Default) Regular",
 				"style": { "width": "200px" },
 				"content": "",
-				"className": "db-density-regular",
 				"props": {
-					"width": "full"
+					"width": "full",
+					"data-density": "regular"
 				}
 			},
 			{
 				"name": "Expressive",
 				"style": { "width": "200px" },
 				"content": "",
-				"className": "db-density-expressive",
 				"props": {
-					"width": "full"
+					"width": "full",
+					"data-density": "expressive"
 				}
 			}
 		]

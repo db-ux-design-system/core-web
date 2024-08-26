@@ -85,7 +85,9 @@
 		"examples": [
 			{
 				"name": "Functional",
-				"className": "db-density-functional",
+				"props": {
+					"data-density": "functional"
+				},
 				"style": {
 					"width": "100%",
 					"display": "block"
@@ -93,7 +95,9 @@
 			},
 			{
 				"name": "(Default) Regular",
-				"className": "db-density-regular",
+				"props": {
+					"data-density": "regular"
+				},
 				"style": {
 					"width": "100%",
 					"display": "block"
@@ -101,7 +105,9 @@
 			},
 			{
 				"name": "Expressive",
-				"className": "db-density-expressive",
+				"props": {
+					"data-density": "expressive"
+				},
 				"style": {
 					"width": "100%",
 					"display": "block"

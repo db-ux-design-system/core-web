@@ -4,23 +4,23 @@
 		"examples": [
 			{
 				"name": "Functional",
-				"className": "db-density-functional",
 				"props": {
-					"headlinePlain": "Functional"
+					"headlinePlain": "Functional",
+					"data-density": "functional"
 				}
 			},
 			{
 				"name": "(Default) Regular",
-				"className": "db-density-regular",
 				"props": {
-					"headlinePlain": "(Default) Regular"
+					"headlinePlain": "(Default) Regular",
+					"data-density": "regular"
 				}
 			},
 			{
 				"name": "Expressive",
-				"className": "db-density-expressive",
 				"props": {
-					"headlinePlain": "Expressive"
+					"headlinePlain": "Expressive",
+					"data-density": "expressive"
 				}
 			}
 		]

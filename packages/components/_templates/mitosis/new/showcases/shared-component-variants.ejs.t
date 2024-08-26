@@ -7,20 +7,20 @@ to: "<%= showcases ? `../../showcases/shared/${name}.json` : null %>"
 		"examples": [
 			{
 				"name": "Functional",
-				"className": "db-density-functional",
 				"props": {
+					"data-density": "functional"
 				}
 			},
 			{
 				"name": "(Default) Regular",
-				"className": "db-density-regular",
 				"props": {
+					"data-density": "regular"
 				}
 			},
 			{
 				"name": "Expressive",
-				"className": "db-density-expressive",
 				"props": {
+					"data-density": "expressive"
 				}
 			}
 		]

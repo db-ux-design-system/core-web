@@ -5,31 +5,31 @@
 			{
 				"name": "functional",
 				"style": { "width": "300px" },
-				"className": "db-density-functional",
 				"props": {
 					"headline": "Headline",
 					"icon": "information_circle",
-					"behaviour": "closable"
+					"behaviour": "closable",
+					"data-density": "functional"
 				}
 			},
 			{
 				"name": "regular (Default)",
 				"style": { "width": "300px" },
-				"className": "db-density-regular",
 				"props": {
 					"headline": "Headline",
 					"icon": "information_circle",
-					"behaviour": "closable"
+					"behaviour": "closable",
+					"data-density": "regular"
 				}
 			},
 			{
 				"name": "expressive",
 				"style": { "width": "300px" },
-				"className": "db-density-expressive",
 				"props": {
 					"headline": "Headline",
 					"icon": "information_circle",
-					"behaviour": "closable"
+					"behaviour": "closable",
+					"data-density": "expressive"
 				}
 			}
 		]

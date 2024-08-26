@@ -4,7 +4,6 @@
 		"examples": [
 			{
 				"name": "Functional",
-				"className": "db-density-functional",
 				"style": {
 					"width": "300px"
 				},
@@ -17,12 +16,12 @@
 							"value": "Option 2"
 						}
 					],
-					"label": "Label"
+					"label": "Label",
+					"data-density": "functional"
 				}
 			},
 			{
 				"name": "(Default) Regular",
-				"className": "db-density-regular",
 				"style": {
 					"width": "300px"
 				},
@@ -35,12 +34,12 @@
 							"value": "Option 2"
 						}
 					],
-					"label": "Label"
+					"label": "Label",
+					"data-density": "regular"
 				}
 			},
 			{
 				"name": "Expressive",
-				"className": "db-density-expressive",
 				"style": {
 					"width": "300px"
 				},
@@ -53,7 +52,8 @@
 							"value": "Option 2"
 						}
 					],
-					"label": "Label"
+					"label": "Label",
+					"data-density": "expressive"
 				}
 			}
 		]
