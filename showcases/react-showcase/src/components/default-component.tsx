@@ -32,7 +32,8 @@ const VariantList = ({
 					<div
 						key={`${example.name}-${exampleIndex}`}
 						style={example.style}
-						className={example.className}>
+						className={example.className}
+						data-density={example.density}>
 						{example.example}
 					</div>
 				))}

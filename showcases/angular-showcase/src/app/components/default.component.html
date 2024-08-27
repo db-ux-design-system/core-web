@@ -11,7 +11,11 @@
 				track example;
 				let exampleIndex = $index
 			) {
-				<div [style]="example.style" [class]="example.className">
+				<div
+					[style]="example.style"
+					[class]="example.className"
+					[attr.data-density]="example.density"
+				>
 					<ng-container
 						*ngTemplateOutlet="
 							exampleTemplate;
@@ -63,6 +67,7 @@
 							<div
 								[style]="example.style"
 								[class]="example.className"
+								[attr.data-density]="example.density"
 							>
 								<ng-container
 									*ngTemplateOutlet="

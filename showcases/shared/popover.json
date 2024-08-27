@@ -14,23 +14,23 @@
 		"examples": [
 			{
 				"name": "Functional",
+				"density": "functional",
 				"props": {
-					"id": "popover-01",
-					"data-density": "functional"
+					"id": "popover-01"
 				}
 			},
 			{
 				"name": "(Default) Regular",
+				"density": "regular",
 				"props": {
-					"id": "popover-02",
-					"data-density": "regular"
+					"id": "popover-02"
 				}
 			},
 			{
 				"name": "Expressive",
+				"density": "expressive",
 				"props": {
-					"id": "popover-03",
-					"data-density": "expressive"
+					"id": "popover-03"
 				}
 			}
 		]

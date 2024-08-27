@@ -4,26 +4,26 @@
 		"examples": [
 			{
 				"name": "Functional",
+				"density": "functional",
 				"props": {
 					"open": "open",
-					"onClose": "toggleDrawer(false)",
-					"data-density": "functional"
+					"onClose": "toggleDrawer(false)"
 				}
 			},
 			{
 				"name": "(Default) Regular",
+				"density": "regular",
 				"props": {
 					"open": "open",
-					"onClose": "toggleDrawer(false)",
-					"data-density": "regular"
+					"onClose": "toggleDrawer(false)"
 				}
 			},
 			{
 				"name": "Expressive",
+				"density": "expressive",
 				"props": {
 					"open": "open",
-					"onClose": "toggleDrawer(false)",
-					"data-density": "expressive"
+					"onClose": "toggleDrawer(false)"
 				}
 			}
 		]

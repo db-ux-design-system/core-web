@@ -85,9 +85,8 @@
 		"examples": [
 			{
 				"name": "Functional",
-				"props": {
-					"data-density": "functional"
-				},
+				"density": "functional",
+				"props": {},
 				"style": {
 					"width": "100%",
 					"display": "block"
@@ -95,9 +94,8 @@
 			},
 			{
 				"name": "(Default) Regular",
-				"props": {
-					"data-density": "regular"
-				},
+				"density": "regular",
+				"props": {},
 				"style": {
 					"width": "100%",
 					"display": "block"
@@ -105,9 +103,8 @@
 			},
 			{
 				"name": "Expressive",
-				"props": {
-					"data-density": "expressive"
-				},
+				"density": "expressive",
+				"props": {},
 				"style": {
 					"width": "100%",
 					"display": "block"

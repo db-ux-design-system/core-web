@@ -4,32 +4,32 @@
 		"examples": [
 			{
 				"name": "functional",
+				"density": "functional",
 				"style": { "width": "300px" },
 				"props": {
 					"headline": "Headline",
 					"icon": "information_circle",
-					"behaviour": "closable",
-					"data-density": "functional"
+					"behaviour": "closable"
 				}
 			},
 			{
 				"name": "regular (Default)",
+				"density": "regular",
 				"style": { "width": "300px" },
 				"props": {
 					"headline": "Headline",
 					"icon": "information_circle",
-					"behaviour": "closable",
-					"data-density": "regular"
+					"behaviour": "closable"
 				}
 			},
 			{
 				"name": "expressive",
+				"density": "expressive",
 				"style": { "width": "300px" },
 				"props": {
 					"headline": "Headline",
 					"icon": "information_circle",
-					"behaviour": "closable",
-					"data-density": "expressive"
+					"behaviour": "closable"
 				}
 			}
 		]

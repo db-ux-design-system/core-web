@@ -31,6 +31,7 @@ interface DefaultExample extends DefaultComponentExample {
 		vue?: string;
 	};
 	children?: DefaultExample[];
+	density?: string;
 }
 interface DefaultVariants extends DefaultComponentVariants {
 	name: string;
@@ -123,6 +124,7 @@ const getElevation = (): "1" | "2" | "3" =>
 				v-for="(example, exampleIndex) in variantRef.examples"
 				:style="example.style"
 				:class="example.className"
+				:data-density="example.density"
 			>
 				<slot
 					name="example"
@@ -157,6 +159,7 @@ const getElevation = (): "1" | "2" | "3" =>
 						v-for="(example, exampleIndex) in variant.examples"
 						:style="example.style"
 						:class="example.className"
+						:data-density="example.density"
 					>
 						<slot
 							name="example"

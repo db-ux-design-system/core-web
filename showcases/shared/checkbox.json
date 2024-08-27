@@ -5,23 +5,23 @@
 		"examples": [
 			{
 				"name": "Functional",
+				"density": "functional",
 				"props": {
-					"name": "Density",
-					"data-density": "functional"
+					"name": "Density"
 				}
 			},
 			{
 				"name": "(Default) Regular",
+				"density": "regular",
 				"props": {
-					"name": "Density",
-					"data-density": "regular"
+					"name": "Density"
 				}
 			},
 			{
 				"name": "Expressive",
+				"density": "expressive",
 				"props": {
-					"name": "Density",
-					"data-density": "expressive"
+					"name": "Density"
 				}
 			}
 		]

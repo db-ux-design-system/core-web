@@ -4,9 +4,8 @@
 		"examples": [
 			{
 				"name": "Functional",
-				"props": {
-					"data-density": "functional"
-				},
+				"density": "functional",
+				"props": {},
 				"children": [
 					{
 						"name": "a",
@@ -20,9 +19,8 @@
 			},
 			{
 				"name": "(Default) Regular",
-				"props": {
-					"data-density": "regular"
-				},
+				"density": "regular",
+				"props": {},
 				"children": [
 					{
 						"name": "a",
@@ -36,9 +34,8 @@
 			},
 			{
 				"name": "Expressive",
-				"props": {
-					"data-density": "expressive"
-				},
+				"density": "expressive",
+				"props": {},
 				"children": [
 					{
 						"name": "a",

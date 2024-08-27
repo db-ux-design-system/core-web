@@ -4,6 +4,7 @@
 		"examples": [
 			{
 				"name": "Functional",
+				"density": "functional",
 				"style": {
 					"width": "300px"
 				},
@@ -16,12 +17,12 @@
 							"value": "Option 2"
 						}
 					],
-					"label": "Label",
-					"data-density": "functional"
+					"label": "Label"
 				}
 			},
 			{
 				"name": "(Default) Regular",
+				"density": "regular",
 				"style": {
 					"width": "300px"
 				},
@@ -34,12 +35,12 @@
 							"value": "Option 2"
 						}
 					],
-					"label": "Label",
-					"data-density": "regular"
+					"label": "Label"
 				}
 			},
 			{
 				"name": "Expressive",
+				"density": "expressive",
 				"style": {
 					"width": "300px"
 				},
@@ -52,8 +53,7 @@
 							"value": "Option 2"
 						}
 					],
-					"label": "Label",
-					"data-density": "expressive"
+					"label": "Label"
 				}
 			}
 		]

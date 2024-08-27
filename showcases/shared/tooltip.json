@@ -9,26 +9,26 @@
 		"examples": [
 			{
 				"name": "Functional",
+				"density": "functional",
 				"props": {
 					"content": "Tooltip",
-					"id": "tooltip-01",
-					"data-density": "functional"
+					"id": "tooltip-01"
 				}
 			},
 			{
 				"name": "(Default) Regular",
+				"density": "regular",
 				"props": {
 					"content": "Tooltip",
-					"id": "tooltip-02",
-					"data-density": "regular"
+					"id": "tooltip-02"
 				}
 			},
 			{
 				"name": "Expressive",
+				"density": "expressive",
 				"props": {
 					"content": "Tooltip",
-					"id": "tooltip-03",
-					"data-density": "expressive"
+					"id": "tooltip-03"
 				}
 			}
 		]
