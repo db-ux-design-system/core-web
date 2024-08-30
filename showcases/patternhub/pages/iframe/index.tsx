@@ -16,7 +16,8 @@ const IframeComponent = () => {
 
 	return (
 		<div
-			className={`iframe-component-container db-density-${density} db-${color}`}>
+			data-density={density}
+			className={`iframe-component-container db-${color}`}>
 			<ComponentParser componentsString={components} />
 		</div>
 	);

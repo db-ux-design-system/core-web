@@ -32,7 +32,8 @@ const VariantList = ({
 					<div
 						key={`${example.name}-${exampleIndex}`}
 						style={example.style}
-						className={example.className}>
+						className={example.className}
+						data-density={example.density}>
 						{example.example}
 					</div>
 				))}
@@ -50,7 +51,7 @@ const VariantList = ({
 						data-variant="filled">
 						{open ? 'Hide code' : 'Show code'}
 					</summary>
-					<div className="db-density-functional">
+					<div data-density="functional">
 						<div className="backdrop" />
 						<DBCard className="code" spacing="small">
 							<SlotCode />
