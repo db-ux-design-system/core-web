@@ -1,0 +1,1 @@
+["check box, not checked, (Def) No Visual Aid plus unchecked","check box, not checked, Visual Aid plus unchecked","checked"]
