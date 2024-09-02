@@ -54,7 +54,7 @@
     "@playwright/test": "1.46.1",
     "@types/fs-extra": "^11.0.4",
     "accessibility-checker": "^3.1.74",
-    "adm-zip": "0.5.15",
+    "adm-zip": "0.5.16",
     "commander": "^12.1.0",
     "cpr": "3.0.1",
     "cross-env": "^7.0.3",
