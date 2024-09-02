@@ -67,7 +67,7 @@ export default (tmp?: boolean) => {
 				/* `this` can be undefined for ssr (nuxt) we need to add */
 				{
 					from: /this.\$refs.ref\?.validationMessage/g,
-					to: 'this?.$refs.ref?.validationMessage'
+					to: '(this as any)?.$refs.ref?.validationMessage'
 				}
 			];
 

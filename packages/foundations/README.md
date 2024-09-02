@@ -103,7 +103,10 @@ In HTML:
 
 ```html
 <!-- With classes-->
-<div class="db-density-functional db-successful-bg-lvl-1 my-container"></div>
+<div
+	data-density="functional"
+	class="db-successful-bg-lvl-1 my-container"
+></div>
 
 <!-- With data attributes-->
 <div
@@ -191,7 +194,10 @@ In HTML:
 
 ```html
 <!-- With classes-->
-<div class="db-density-functional db-successful-bg-lvl-1 my-container"></div>
+<div
+	data-density="functional"
+	class="db-successful-bg-lvl-1 my-container"
+></div>
 
 <!-- With data attributes-->
 <div

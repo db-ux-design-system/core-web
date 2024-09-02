@@ -4,7 +4,7 @@
 		"examples": [
 			{
 				"name": "Functional",
-				"className": "db-density-functional",
+				"density": "functional",
 				"style": {
 					"width": "300px"
 				},
@@ -22,7 +22,7 @@
 			},
 			{
 				"name": "(Default) Regular",
-				"className": "db-density-regular",
+				"density": "regular",
 				"style": {
 					"width": "300px"
 				},
@@ -40,7 +40,7 @@
 			},
 			{
 				"name": "Expressive",
-				"className": "db-density-expressive",
+				"density": "expressive",
 				"style": {
 					"width": "300px"
 				},

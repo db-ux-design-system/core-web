@@ -35,7 +35,8 @@ const Example = () => {
 							{['functional', 'regular', 'expressive'].map(
 								(density) => (
 									<DBCard
-										className={`example-item db-density-${density}`}
+										data-density={density}
+										className="example-item"
 										spacing="small">
 										<DBInfotext
 											icon="none"

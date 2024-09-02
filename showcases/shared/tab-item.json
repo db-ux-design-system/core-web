@@ -4,21 +4,24 @@
 		"examples": [
 			{
 				"name": "Functional",
-				"className": "db-density-functional tab-hide-article",
+				"density": "functional",
+				"className": "tab-hide-article",
 				"props": {
 					"label": "functional"
 				}
 			},
 			{
 				"name": "(Default) Regular",
-				"className": "db-density-regular tab-hide-article",
+				"density": "regular",
+				"className": "tab-hide-article",
 				"props": {
 					"label": "(Default) Regular"
 				}
 			},
 			{
 				"name": "Expressive",
-				"className": "db-density-expressive tab-hide-article",
+				"density": "expressive",
+				"className": "tab-hide-article",
 				"props": {
 					"label": "expressive"
 				}

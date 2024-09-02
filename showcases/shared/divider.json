@@ -6,7 +6,7 @@
 				"name": "Functional",
 				"style": { "width": "200px" },
 				"content": "",
-				"className": "db-density-functional",
+				"density": "functional",
 				"props": {
 					"width": "full"
 				}
@@ -15,7 +15,7 @@
 				"name": "(Default) Regular",
 				"style": { "width": "200px" },
 				"content": "",
-				"className": "db-density-regular",
+				"density": "regular",
 				"props": {
 					"width": "full"
 				}
@@ -24,7 +24,7 @@
 				"name": "Expressive",
 				"style": { "width": "200px" },
 				"content": "",
-				"className": "db-density-expressive",
+				"density": "expressive",
 				"props": {
 					"width": "full"
 				}

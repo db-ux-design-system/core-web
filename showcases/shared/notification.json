@@ -4,8 +4,8 @@
 		"examples": [
 			{
 				"name": "functional",
+				"density": "functional",
 				"style": { "width": "300px" },
-				"className": "db-density-functional",
 				"props": {
 					"headline": "Headline",
 					"icon": "information_circle",
@@ -14,8 +14,8 @@
 			},
 			{
 				"name": "regular (Default)",
+				"density": "regular",
 				"style": { "width": "300px" },
-				"className": "db-density-regular",
 				"props": {
 					"headline": "Headline",
 					"icon": "information_circle",
@@ -24,8 +24,8 @@
 			},
 			{
 				"name": "expressive",
+				"density": "expressive",
 				"style": { "width": "300px" },
-				"className": "db-density-expressive",
 				"props": {
 					"headline": "Headline",
 					"icon": "information_circle",
