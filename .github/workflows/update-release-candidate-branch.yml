@@ -1,0 +1,30 @@
+---
+name: Update Release candidate Branch
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  update-release-candidate-branch:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout main branch
+        uses: actions/checkout@v4
+        with:
+          ref: main
+
+      - name: Pull latest changes
+        run: git pull origin main
+
+      - name: Checkout release-candidate branch
+        run: git checkout release-candidate
+
+      - name: Merge main into release-candidate
+        run: git merge main
+
+      - name: Push changes
+        run: |
+          git push origin release-candidate
