@@ -2,48 +2,31 @@ import { NVDAKeyCodeCommands } from '@guidepup/guidepup';
 import { generateSnapshot, getTest, testDefault } from '../default';
 
 const test = getTest();
-test.describe('DBInput', () => {
+test.describe('DBTextarea', () => {
 	testDefault({
 		test,
-		title: 'next()',
+		title: 'next',
 		description: 'should have message and label (next())',
-		url: './#/03/input?page=variant%20helper%20message',
+		url: './#/03/textarea?page=variant+helper+message',
 		async testFn(voiceOver, nvda) {
 			if (nvda) {
 				// Nvda doesn't have a next if the element is an input
 				test.skip();
 			}
 
-			// We are on the label after loading
-			// Every element (input, label) will be read as single element
-			await voiceOver?.next();
-			await voiceOver?.next();
-			await voiceOver?.next();
-			await voiceOver?.next();
-		}
-	});
-	testDefault({
-		test,
-		title: 'tab',
-		description: 'should have message and label (tab)',
-		url: './#/03/input?page=variant%20helper%20message',
-		async testFn(voiceOver, nvda) {
-			if (voiceOver) {
-				// Voiceover isn't working with tab in pipeline
-				test.skip();
-			}
-
-			await nvda?.press('Tab');
-			await nvda?.clearSpokenPhraseLog();
-			await nvda?.press('Shift+Tab');
-			await nvda?.press('Tab');
+			await voiceOver?.clearSpokenPhraseLog();
+			await voiceOver?.previous(); // Focus "label 1"
+			await voiceOver?.next(); // Focus "textarea 1"
+			await voiceOver?.next(); // Focus "label 2"
+			await voiceOver?.next(); // Focus "textarea 2"
+			await voiceOver?.next(); // Focus "textarea 2 - helper message"
 		}
 	});
 	testDefault({
 		test,
 		title: 'required',
 		description: 'should inform user for changes',
-		url: './#/03/input?page=requirement',
+		url: './#/03/textarea?page=requirement',
 		async testFn(voiceOver, nvda) {
 			if (voiceOver) {
 				/* Goto desired input */
@@ -71,7 +54,9 @@ test.describe('DBInput', () => {
 				 * There is a timing issue for macOS for typing in input we clean the result
 				 */
 				await generateSnapshot(voiceOver, retry, (phraseLog) =>
-					phraseLog.map((log) => log.replace('t. ', ''))
+					phraseLog.map((log) =>
+						log.replace('Test. ', '').replace('t. ', '')
+					)
 				);
 			}
 		}
