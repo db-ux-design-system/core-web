@@ -1,1 +1,10 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none"><g clip-path="url(#a)"><path fill="#1A1C1F" fill-rule="evenodd" d="M9.6 2.4a.8.8 0 0 1 .8.8v2.4h2.4a.8.8 0 0 1 .8.8v3.2a.8.8 0 0 1-.8.8h-2.4v2.4a.8.8 0 0 1-.8.8H6.4a.8.8 0 0 1-.8-.8v-2.4H3.2a.8.8 0 0 1-.8-.8V6.4a.8.8 0 0 1 .8-.8h2.4V3.2a.8.8 0 0 1 .8-.8zM8.8 4H7.2v3.2H4v1.6h3.2V12h1.6V8.8H12V7.2H8.8z" clip-rule="evenodd"/></g><defs><clipPath id="a"><path fill="#fff" d="M0 0h16v16H0z"/></clipPath></defs></svg>
+<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g clip-path="url(#clip0_186_232)">
+<path fill-rule="evenodd" clip-rule="evenodd" d="M9.60002 2.39999C10.0419 2.39999 10.4 2.75817 10.4 3.19999V5.59999H12.8C13.2419 5.59999 13.6 5.95817 13.6 6.39999V9.59999C13.6 10.0418 13.2419 10.4 12.8 10.4H10.4V12.8C10.4 13.2418 10.0419 13.6 9.60002 13.6H6.40002C5.9582 13.6 5.60002 13.2418 5.60002 12.8V10.4H3.20002C2.7582 10.4 2.40002 10.0418 2.40002 9.59999V6.39999C2.40002 5.95817 2.7582 5.59999 3.20002 5.59999H5.60002V3.19999C5.60002 2.75817 5.9582 2.39999 6.40002 2.39999H9.60002ZM8.80002 3.99999H7.20002V7.19999H4.00002V8.79999H7.20002V12H8.80002V8.79999H12V7.19999H8.80002V3.99999Z" fill="#1A1C1F"/>
+</g>
+<defs>
+<clipPath id="clip0_186_232">
+<rect width="16" height="16" fill="white"/>
+</clipPath>
+</defs>
+</svg>

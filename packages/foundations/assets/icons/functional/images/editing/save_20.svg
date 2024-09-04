@@ -1,1 +1,10 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none"><g clip-path="url(#a)"><path fill="#1A1C1F" fill-rule="evenodd" d="M13.4 2a1 1 0 0 1 .608.206l3.7 3.687c.158.167.26.38.292.607V16c0 1.054-1 2-2 2H4c-1.054 0-2-1-2-2V4c0-1.054 1-2 2-2zM6 3.999 4 4v12l2-.001V12c0-.513.5-1 1-1h6c.513 0 1 .5 1 1v3.999L16 16V7.015l-3.016-3.016H12V6c0 .513-.5 1-1 1H7c-.513 0-1-.5-1-1zm6 9H8v3h4z" clip-rule="evenodd"/></g><defs><clipPath id="a"><path fill="#fff" d="M0 0h20v20H0z"/></clipPath></defs></svg>
+<svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g clip-path="url(#clip0_83_279)">
+<path fill-rule="evenodd" clip-rule="evenodd" d="M13.4 2C13.6198 1.99998 13.8335 2.07238 14.008 2.206L17.708 5.893C17.8664 6.05982 17.9685 6.27211 18 6.5V16C18 17.054 17 18 16 18H4C2.946 18 2 17 2 16V4C2 2.946 3 2 4 2H13.4ZM6 3.999L4 4V16L6 15.999V12C6 11.487 6.5 11 7 11H13C13.513 11 14 11.5 14 12V15.999L16 16V7.015L12.984 3.999H12V6C12 6.513 11.5 7 11 7H7C6.487 7 6 6.5 6 6V3.999ZM12 12.999H8V15.999H12V12.999Z" fill="#1A1C1F"/>
+</g>
+<defs>
+<clipPath id="clip0_83_279">
+<rect width="20" height="20" fill="white"/>
+</clipPath>
+</defs>
+</svg>

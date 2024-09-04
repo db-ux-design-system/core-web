@@ -1,1 +1,10 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none"><g clip-path="url(#a)"><path fill="#1A1C1F" fill-rule="evenodd" d="M14 2c.563 0 1 .438 1 1v6h2c.563 0 1 .438 1 1v7c0 .563-.438 1-1 1h-5c-.563 0-1-.438-1-1v-2H9v2c0 .563-.438 1-1 1H3c-.563 0-1-.438-1-1v-7c0-.563.438-1 1-1h2V3c0-.563.438-1 1-1zm-1 2H7v7H4v5h3v-2c0-.563.438-1 1-1h4c.563 0 1 .437 1 1v2h3v-5h-3zM9 9V7h2v2z" clip-rule="evenodd"/></g><defs><clipPath id="a"><path fill="#fff" d="M0 0h20v20H0z"/></clipPath></defs></svg>
+<svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g clip-path="url(#clip0_184_219)">
+<path fill-rule="evenodd" clip-rule="evenodd" d="M14 2C14.563 2 15 2.438 15 3V9H17C17.563 9 18 9.438 18 10V17C18 17.563 17.562 18 17 18H12C11.437 18 11 17.562 11 17V15H9V17C9 17.563 8.562 18 8 18H3C2.437 18 2 17.562 2 17V10C2 9.437 2.438 9 3 9H5V3C5 2.437 5.438 2 6 2H14ZM13 4H7V11H4V16H7V14C7 13.437 7.438 13 8 13H12C12.563 13 13 13.437 13 14V16H16V11H13V4ZM9 9V7H11V9H9Z" fill="#1A1C1F"/>
+</g>
+<defs>
+<clipPath id="clip0_184_219">
+<rect width="20" height="20" fill="white"/>
+</clipPath>
+</defs>
+</svg>
