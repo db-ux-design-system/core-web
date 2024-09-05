@@ -22,7 +22,7 @@ designers, and content authors build, maintain, and scale best of class digital 
 </figure>
 
 > [!WARNING]
-> We currently don't fully support Samsung Internet browser until it adds the following functionalities, that are expected to get integrated later this year (with Version 27):
+> We currently don't fully support Samsung Internet browser until it adds the following functionality with its new version 27, which is expected to get released later this year:
 >
 > -   [CSS: `light-dark()`](https://caniuse.com/mdn-css_types_color_light-dark)
 
