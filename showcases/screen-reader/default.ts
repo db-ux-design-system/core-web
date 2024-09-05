@@ -28,7 +28,8 @@ const standardPhrases = [
 	'To move between items',
 	'To close',
 	'To choose',
-	'To toggle'
+	'To toggle',
+	'To expand'
 ];
 
 const cleanSpeakInstructions = (phraseLog: string[]): string[] =>
