@@ -24,7 +24,7 @@ import {
 	InteractionEvent,
 	ValueLabelType
 } from '../../shared/model';
-import { DBInfotext } from '../infotext';
+import DBInfotext from '../infotext/infotext.lite';
 import { handleFrameworkEvent } from '../../utils/form-components';
 
 useMetadata({

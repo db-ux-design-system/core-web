@@ -7,7 +7,7 @@ import {
 	useStore
 } from '@builder.io/mitosis';
 import { DBTextareaProps, DBTextareaState } from './model';
-import { DBInfotext } from '../infotext';
+import DBInfotext from '../infotext/infotext.lite';
 import { cls, delay, hasVoiceOver, uuid } from '../../utils';
 import {
 	DEFAULT_INVALID_MESSAGE,
