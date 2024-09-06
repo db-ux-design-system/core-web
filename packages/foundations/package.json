@@ -41,7 +41,7 @@
   },
   "devDependencies": {
     "@csstools/normalize.css": "12.1.1",
-    "@db-ui/gif": "^0.0.3",
+    "@db-ui/gif": "^0.0.4",
     "commander": "^12.0.0",
     "cpr": "3.0.1",
     "cssnano": "^7.0.6",
