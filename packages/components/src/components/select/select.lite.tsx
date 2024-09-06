@@ -18,7 +18,7 @@ import {
 	DEFAULT_VALID_MESSAGE,
 	DEFAULT_VALID_MESSAGE_ID_SUFFIX
 } from '../../shared/constants';
-import { DBInfotext } from '../infotext';
+import DBInfotext from '../infotext/infotext.lite';
 import {
 	ChangeEvent,
 	ClickEvent,
