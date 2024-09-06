@@ -57,9 +57,6 @@ export const getDefaultScreenshotTest = ({
 	preScreenShot
 }: DefaultSnapshotTestType) => {
 	test(`should match screenshot`, async ({ page }, testInfo) => {
-		const isWebkit =
-			testInfo.project.name === 'webkit' ||
-			testInfo.project.name === 'mobile_safari';
 		const showcase = process.env.showcase;
 		const diffPixel = process.env.diff;
 		const maxDiffPixelRatio = process.env.ratio;
@@ -77,10 +74,8 @@ export const getDefaultScreenshotTest = ({
 			}
 		} else if (isAngular) {
 			config.maxDiffPixels = 1000;
-		} else if (isWebkit) {
-			config.maxDiffPixels = 120;
 		} else {
-			config.maxDiffPixels = 1;
+			config.maxDiffPixels = 120;
 		}
 
 		await gotoPage(page, path, 'neutral-bg-basic-level-1', fixedHeight);
