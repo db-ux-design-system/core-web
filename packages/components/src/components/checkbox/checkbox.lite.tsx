@@ -17,7 +17,7 @@ import {
 } from '../../shared/constants';
 import { ChangeEvent, InteractionEvent } from '../../shared/model';
 import { handleFrameworkEvent } from '../../utils/form-components';
-import { DBInfotext } from '../infotext';
+import DBInfotext from '../infotext/infotext.lite';
 
 useMetadata({
 	isAttachedToShadowDom: true

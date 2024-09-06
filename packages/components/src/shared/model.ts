@@ -55,14 +55,14 @@ export type IconProps = {
 	/**
 	 * Define an icon by its identifier (like e.g. _user_, compare to [Icons](https://db-ui.github.io/mono/review/main/foundations/icons/overview)) to get displayed in front of the elements content.
 	 */
-	icon?: IconTypes;
+	icon?: IconTypes | string;
 };
 
 export type IconAfterProps = {
 	/**
 	 * Define an icon by its identifier (like e.g. _user_, compare to [Icons](https://db-ui.github.io/mono/review/main/foundations/icons/overview)) to get displayed in front of the elements content.
 	 */
-	iconAfter?: IconTypes;
+	iconAfter?: IconTypes | string;
 };
 
 export const SpacingList = ['medium', 'small', 'large', 'none'] as const;

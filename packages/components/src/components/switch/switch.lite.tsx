@@ -1,10 +1,4 @@
-import {
-	onMount,
-	onUpdate,
-	useMetadata,
-	useRef,
-	useStore
-} from '@builder.io/mitosis';
+import { onMount, useMetadata, useRef, useStore } from '@builder.io/mitosis';
 import { DBSwitchProps, DBSwitchState } from './model';
 import { cls, uuid } from '../../utils';
 import { ChangeEvent, InteractionEvent } from '../../shared/model';

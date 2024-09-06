@@ -8,7 +8,7 @@ import {
 	useStore
 } from '@builder.io/mitosis';
 import { DBNavigationItemProps, DBNavigationItemState } from './model';
-import { DBButton } from '../button';
+import DBButton from '../button/button.lite';
 import { cls, uuid } from '../../utils';
 import { NavigationItemSafeTriangle } from '../../utils/navigation';
 import { DEFAULT_BACK } from '../../shared/constants';
