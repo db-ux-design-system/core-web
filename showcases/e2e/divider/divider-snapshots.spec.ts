@@ -3,5 +3,5 @@ import { test } from '@playwright/test';
 import { getDefaultScreenshotTest } from '../default.ts';
 
 test.describe('DBDivider', () => {
-	getDefaultScreenshotTest({ path: '01/divider' });
+	getDefaultScreenshotTest({ path: '01/divider', fixedHeight: 1500 });
 });
