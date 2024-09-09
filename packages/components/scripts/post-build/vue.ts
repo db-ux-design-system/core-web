@@ -4,29 +4,6 @@ import components, { Overwrite } from './components.js';
 
 import { runReplacements, transformToUpperComponentName } from '../utils';
 
-const updateNestedComponents = (input: string, rootComponentName: string) => {
-	let fileContent = input;
-
-	for (const nestedComponent of components.filter(
-		(nComp) => nComp.name !== rootComponentName
-	)) {
-		const nCompUpperCase = transformToUpperComponentName(
-			nestedComponent.name
-		);
-		while (fileContent.includes(`db${nestedComponent.name}`)) {
-			fileContent = fileContent.replace(
-				`db${nestedComponent.name}`,
-				`DB${nCompUpperCase}`
-			);
-		}
-	}
-
-	return fileContent
-		.split('\n')
-		.filter((line) => !line.includes('import type'))
-		.join('\n');
-};
-
 export default (tmp?: boolean) => {
 	const outputFolder = `${tmp ? 'output/tmp' : 'output'}`;
 	// Rewire imports in Playwright config
@@ -85,13 +62,6 @@ export default (tmp?: boolean) => {
 						`handleInput(event: InputEvent<${element}>) {\n` +
 						'this._value = (event.target as any).value;'
 				});
-			});
-
-			replaceInFileSync({
-				files: vueFile,
-				processor(input) {
-					return updateNestedComponents(input, componentName);
-				}
 			});
 
 			if (component?.config?.vue?.vModel) {

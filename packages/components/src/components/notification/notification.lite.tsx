@@ -1,6 +1,6 @@
 import { Show, Slot, useMetadata, useRef, useStore } from '@builder.io/mitosis';
 import { DBNotificationProps, DBNotificationState } from './model';
-import { DBButton } from '../button';
+import DBButton from '../button/button.lite';
 import { DEFAULT_CLOSE_BUTTON } from '../../shared/constants';
 import { cls } from '../../utils';
 import { ClickEvent } from '../../shared/model';
