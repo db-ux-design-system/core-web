@@ -4,21 +4,21 @@
 		"examples": [
 			{
 				"name": "Functional",
-				"className": "db-density-functional",
+				"density": "functional",
 				"props": {
 					"label": "Label"
 				}
 			},
 			{
 				"name": "(Default) Regular",
-				"className": "db-density-regular",
+				"density": "regular",
 				"props": {
 					"label": "Label"
 				}
 			},
 			{
 				"name": "Expressive",
-				"className": "db-density-expressive",
+				"density": "expressive",
 				"props": {
 					"label": "Label"
 				}
@@ -291,6 +291,13 @@
 					"label": "Label",
 					"dataList": true
 				}
+			},
+			{
+				"name": "File",
+				"props": {
+					"label": "Label",
+					"type": "file"
+				}
 			}
 		]
 	},
@@ -398,6 +405,14 @@
 					"label": "Label",
 					"variant": "floating",
 					"dataList": true
+				}
+			},
+			{
+				"name": "File",
+				"props": {
+					"label": "Label",
+					"type": "file",
+					"variant": "floating"
 				}
 			}
 		]

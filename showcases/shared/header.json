@@ -1,6 +1,6 @@
 [
 	{
-		"name": "Tonality",
+		"name": "Density",
 		"children": [
 			{
 				"name": "brand",
@@ -85,7 +85,8 @@
 		"examples": [
 			{
 				"name": "Functional",
-				"className": "db-density-functional",
+				"density": "functional",
+				"props": {},
 				"style": {
 					"width": "100%",
 					"display": "block"
@@ -93,7 +94,8 @@
 			},
 			{
 				"name": "(Default) Regular",
-				"className": "db-density-regular",
+				"density": "regular",
+				"props": {},
 				"style": {
 					"width": "100%",
 					"display": "block"
@@ -101,7 +103,8 @@
 			},
 			{
 				"name": "Expressive",
-				"className": "db-density-expressive",
+				"density": "expressive",
+				"props": {},
 				"style": {
 					"width": "100%",
 					"display": "block"

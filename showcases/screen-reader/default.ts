@@ -13,20 +13,24 @@ import {
 	type RunTestType,
 	type ScreenReaderTestType
 } from './data';
+import { translations } from './translations';
 
-const translations: Record<string, string[]> = {
-	button: ['Schalter'],
-	edit: ['Eingabefeld'],
-	'radio button': ['Auswahlschalter'],
-	blank: ['Leer'],
-	checked: ['aktiviert'],
-	' of ': [' von '],
-	clickable: ['anklickbar'],
-	'has auto complete': ['mit Auto Vervollständigung'],
-	unknown: ['Unbekannt'],
-	dialog: ['Dialogfeld'],
-	document: ['Dokument']
-};
+const standardPhrases = [
+	'You are currently',
+	'To enter',
+	'To exit',
+	'To click',
+	'To select',
+	'To interact',
+	'Press Control',
+	'To begin interacting',
+	'To display a',
+	'To move between items',
+	'To close',
+	'To choose',
+	'To toggle',
+	'To expand'
+];
 
 const cleanSpeakInstructions = (phraseLog: string[]): string[] =>
 	phraseLog.map((phrase) =>
@@ -34,17 +38,11 @@ const cleanSpeakInstructions = (phraseLog: string[]): string[] =>
 			.split('. ')
 			.filter(
 				(sPhrase) =>
-					!(
-						sPhrase.includes('You are currently') ||
-						sPhrase.includes('To enter') ||
-						sPhrase.includes('To exit') ||
-						sPhrase.includes('To click') ||
-						sPhrase.includes('To select') ||
-						sPhrase.includes('To interact') ||
-						sPhrase.includes('Press Control')
-					)
+					!standardPhrases.some((string) => sPhrase.includes(string))
 			)
 			.join('. ')
+			// We need to replace specific phrases, as they are being reported differently on localhost and within CI/CD
+			.replaceAll('pop-up', 'pop up')
 	);
 
 export const generateSnapshot = async (
@@ -128,9 +126,11 @@ export const testDefault = (defaultTestType: DefaultTestType) => {
 		...defaultTestType,
 		postTestFn: postTestFn ?? fallbackPostFn,
 		additionalParams:
-			additionalParams ?? '&color=neutral-bg-lvl-1&density=regular'
+			additionalParams ??
+			'&color=neutral-bg-basic-level-1&density=regular'
 	};
 
+	const trimTitleForShortSnapshotName = title.slice(0, 10);
 	if (isWin()) {
 		test?.(title, async ({ page, nvda }, { retry }) => {
 			await runTest({

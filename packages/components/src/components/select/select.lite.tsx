@@ -8,7 +8,7 @@ import {
 	useStore
 } from '@builder.io/mitosis';
 import { DBSelectOptionType, DBSelectProps, DBSelectState } from './model';
-import { cls, uuid } from '../../utils';
+import { cls, delay, hasVoiceOver, uuid } from '../../utils';
 import {
 	DEFAULT_INVALID_MESSAGE,
 	DEFAULT_INVALID_MESSAGE_ID_SUFFIX,
@@ -18,7 +18,7 @@ import {
 	DEFAULT_VALID_MESSAGE,
 	DEFAULT_VALID_MESSAGE_ID_SUFFIX
 } from '../../shared/constants';
-import { DBInfotext } from '../infotext';
+import DBInfotext from '../infotext/infotext.lite';
 import {
 	ChangeEvent,
 	ClickEvent,
@@ -47,6 +47,7 @@ export default function DBSelect(props: DBSelectProps) {
 		_descByIds: '',
 		_value: '',
 		initialized: false,
+		_voiceOverFallback: '',
 		handleClick: (event: ClickEvent<HTMLSelectElement>) => {
 			if (props.onClick) {
 				props.onClick(event);
@@ -75,11 +76,23 @@ export default function DBSelect(props: DBSelectProps) {
 			/* For a11y reasons we need to map the correct message with the select */
 			if (!ref?.validity.valid || props.customValidity === 'invalid') {
 				state._descByIds = state._invalidMessageId;
+				if (hasVoiceOver()) {
+					state._voiceOverFallback =
+						props.invalidMessage ??
+						ref?.validationMessage ??
+						DEFAULT_INVALID_MESSAGE;
+					delay(() => (state._voiceOverFallback = ''), 1000);
+				}
 			} else if (
 				props.customValidity === 'valid' ||
 				(ref?.validity.valid && props.required)
 			) {
 				state._descByIds = state._validMessageId;
+				if (hasVoiceOver()) {
+					state._voiceOverFallback =
+						props.validMessage ?? DEFAULT_VALID_MESSAGE;
+					delay(() => (state._voiceOverFallback = ''), 1000);
+				}
 			} else if (props.message) {
 				state._descByIds = state._messageId;
 			} else {
@@ -156,7 +169,7 @@ export default function DBSelect(props: DBSelectProps) {
 				name={props.name}
 				value={props.value ?? state._value}
 				autocomplete={props.autocomplete}
-				onInput={(event: ChangeEvent<HTMLInputElement>) =>
+				onInput={(event: ChangeEvent<HTMLSelectElement>) =>
 					state.handleInput(event)
 				}
 				onClick={(event: ClickEvent<HTMLSelectElement>) =>
@@ -243,6 +256,13 @@ export default function DBSelect(props: DBSelectProps) {
 					ref?.validationMessage ??
 					DEFAULT_INVALID_MESSAGE}
 			</DBInfotext>
+
+			{/* * https://www.davidmacd.com/blog/test-aria-describedby-errormessage-aria-live.html
+			 * Currently VoiceOver isn't supporting changes from aria-describedby.
+			 * This is an internal Fallback */}
+			<span data-visually-hidden="true" role="status">
+				{state._voiceOverFallback}
+			</span>
 		</div>
 	);
 	// jscpd:ignore-end

@@ -11,7 +11,7 @@ $default-disabled: 0.4;
 
 %default-adaptive-border {
 	border: variables.$db-border-height-3xs solid
-		colors.$db-current-color-on-bg-enabled;
+		colors.$db-adaptive-on-bg-basic-emphasis-100-default;
 }
 
 %transparent-border {
@@ -20,7 +20,7 @@ $default-disabled: 0.4;
 
 %component-border {
 	border: variables.$db-border-height-3xs solid
-		colors.$db-current-color-border;
+		colors.$db-adaptive-on-bg-basic-emphasis-60-default;
 }
 
 %default-interactive-component {
@@ -36,4 +36,36 @@ $default-disabled: 0.4;
 		--default-card-border-radius,
 		#{variables.$db-border-radius-sm}
 	);
+}
+
+$responsive-spacings: (
+	"default": variables.$db-spacing-responsive-md,
+	"large": variables.$db-spacing-responsive-lg,
+	"medium": variables.$db-spacing-responsive-md,
+	"small": variables.$db-spacing-responsive-sm,
+	"none": 0
+);
+
+$default-spacings: (
+	"default": variables.$db-spacing-fixed-sm,
+	"large": variables.$db-spacing-fixed-lg,
+	"medium": variables.$db-spacing-fixed-md,
+	"small": variables.$db-spacing-fixed-sm,
+	"none": 0
+);
+
+@mixin get-data-spacing($type: padding, $spacings: $default-spacings) {
+	@each $name, $spacing in $spacings {
+		@if ($name == "default") {
+			&:not([data-spacing]) {
+				#{$type}: $spacing;
+			}
+
+			/* stylelint-disable-next-line at-rule-empty-line-before */
+		} @else {
+			&[data-spacing="#{$name}"] {
+				#{$type}: $spacing;
+			}
+		}
+	}
 }

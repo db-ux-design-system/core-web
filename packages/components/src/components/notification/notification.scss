@@ -31,10 +31,10 @@
 	padding: variables.$db-spacing-fixed-md;
 	gap: variables.$db-spacing-fixed-xs variables.$db-spacing-fixed-md;
 	inline-size: inherit;
-	background-color: colors.$db-current-color-bg-lvl-2-enabled;
+	background-color: colors.$db-adaptive-bg-basic-level-2-default;
 
 	&::before {
-		--db-icon-color: #{colors.$db-current-color-contrast-low-enabled};
+		--db-icon-color: #{colors.$db-adaptive-on-bg-basic-emphasis-70-default};
 	}
 
 	a {

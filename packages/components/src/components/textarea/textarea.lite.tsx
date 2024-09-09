@@ -7,8 +7,8 @@ import {
 	useStore
 } from '@builder.io/mitosis';
 import { DBTextareaProps, DBTextareaState } from './model';
-import { DBInfotext } from '../infotext';
-import { cls, uuid } from '../../utils';
+import DBInfotext from '../infotext/infotext.lite';
+import { cls, delay, hasVoiceOver, uuid } from '../../utils';
 import {
 	DEFAULT_INVALID_MESSAGE,
 	DEFAULT_INVALID_MESSAGE_ID_SUFFIX,
@@ -40,6 +40,7 @@ export default function DBTextarea(props: DBTextareaProps) {
 			placeholder: ' ',
 			rows: '4'
 		},
+		_voiceOverFallback: '',
 		handleInput: (event: InputEvent<HTMLTextAreaElement>) => {
 			if (props.onInput) {
 				props.onInput(event);
@@ -63,12 +64,24 @@ export default function DBTextarea(props: DBTextareaProps) {
 			/* For a11y reasons we need to map the correct message with the textarea */
 			if (!ref?.validity.valid || props.customValidity === 'invalid') {
 				state._descByIds = state._invalidMessageId;
+				if (hasVoiceOver()) {
+					state._voiceOverFallback =
+						props.invalidMessage ??
+						ref?.validationMessage ??
+						DEFAULT_INVALID_MESSAGE;
+					delay(() => (state._voiceOverFallback = ''), 1000);
+				}
 			} else if (
 				props.customValidity === 'valid' ||
 				(ref?.validity.valid &&
 					(props.required || props.minLength || props.maxLength))
 			) {
 				state._descByIds = state._validMessageId;
+				if (hasVoiceOver()) {
+					state._voiceOverFallback =
+						props.validMessage ?? DEFAULT_VALID_MESSAGE;
+					delay(() => (state._voiceOverFallback = ''), 1000);
+				}
 			} else if (props.message) {
 				state._descByIds = state._messageId;
 			} else {
@@ -143,7 +156,7 @@ export default function DBTextarea(props: DBTextareaProps) {
 				wrap={props.wrap}
 				spellcheck={props.spellCheck}
 				autocomplete={props.autocomplete}
-				onInput={(event: ChangeEvent<HTMLInputElement>) =>
+				onInput={(event: ChangeEvent<HTMLTextAreaElement>) =>
 					state.handleInput(event)
 				}
 				onChange={(event: ChangeEvent<HTMLTextAreaElement>) =>
@@ -188,6 +201,13 @@ export default function DBTextarea(props: DBTextareaProps) {
 					ref?.validationMessage ??
 					DEFAULT_INVALID_MESSAGE}
 			</DBInfotext>
+
+			{/* * https://www.davidmacd.com/blog/test-aria-describedby-errormessage-aria-live.html
+			 * Currently VoiceOver isn't supporting changes from aria-describedby.
+			 * This is an internal Fallback */}
+			<span data-visually-hidden="true" role="status">
+				{state._voiceOverFallback}
+			</span>
 		</div>
 	);
 	// jscpd:ignore-end

@@ -7,7 +7,7 @@ import {
 	useStore
 } from '@builder.io/mitosis';
 import { DBCheckboxProps, DBCheckboxState } from './model';
-import { cls, uuid } from '../../utils';
+import { cls, delay, hasVoiceOver, uuid } from '../../utils';
 import {
 	DEFAULT_INVALID_MESSAGE,
 	DEFAULT_INVALID_MESSAGE_ID_SUFFIX,
@@ -17,7 +17,7 @@ import {
 } from '../../shared/constants';
 import { ChangeEvent, InteractionEvent } from '../../shared/model';
 import { handleFrameworkEvent } from '../../utils/form-components';
-import { DBInfotext } from '../infotext';
+import DBInfotext from '../infotext/infotext.lite';
 
 useMetadata({
 	isAttachedToShadowDom: true
@@ -33,6 +33,7 @@ export default function DBCheckbox(props: DBCheckboxProps) {
 		_validMessageId: this._id + DEFAULT_VALID_MESSAGE_ID_SUFFIX,
 		_invalidMessageId: this._id + DEFAULT_INVALID_MESSAGE_ID_SUFFIX,
 		_descByIds: '',
+		_voiceOverFallback: '',
 		handleChange: (event: ChangeEvent<HTMLInputElement>) => {
 			if (props.onChange) {
 				props.onChange(event);
@@ -46,11 +47,23 @@ export default function DBCheckbox(props: DBCheckboxProps) {
 			/* For a11y reasons we need to map the correct message with the checkbox */
 			if (!ref?.validity.valid || props.customValidity === 'invalid') {
 				state._descByIds = state._invalidMessageId;
+				if (hasVoiceOver()) {
+					state._voiceOverFallback =
+						props.invalidMessage ??
+						ref?.validationMessage ??
+						DEFAULT_INVALID_MESSAGE;
+					delay(() => (state._voiceOverFallback = ''), 1000);
+				}
 			} else if (
 				props.customValidity === 'valid' ||
 				(ref?.validity.valid && props.required)
 			) {
 				state._descByIds = state._validMessageId;
+				if (hasVoiceOver()) {
+					state._voiceOverFallback =
+						props.validMessage ?? DEFAULT_VALID_MESSAGE;
+					delay(() => (state._voiceOverFallback = ''), 1000);
+				}
 			} else if (props.message) {
 				state._descByIds = state._messageId;
 			} else {
@@ -179,6 +192,13 @@ export default function DBCheckbox(props: DBCheckboxProps) {
 					ref?.validationMessage ??
 					DEFAULT_INVALID_MESSAGE}
 			</DBInfotext>
+
+			{/* * https://www.davidmacd.com/blog/test-aria-describedby-errormessage-aria-live.html
+			 * Currently VoiceOver isn't supporting changes from aria-describedby.
+			 * This is an internal Fallback */}
+			<span data-visually-hidden="true" role="status">
+				{state._voiceOverFallback}
+			</span>
 		</div>
 	);
 }

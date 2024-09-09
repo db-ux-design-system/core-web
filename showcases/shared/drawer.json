@@ -4,7 +4,7 @@
 		"examples": [
 			{
 				"name": "Functional",
-				"className": "db-density-functional",
+				"density": "functional",
 				"props": {
 					"open": "open",
 					"onClose": "toggleDrawer(false)"
@@ -12,7 +12,7 @@
 			},
 			{
 				"name": "(Default) Regular",
-				"className": "db-density-regular",
+				"density": "regular",
 				"props": {
 					"open": "open",
 					"onClose": "toggleDrawer(false)"
@@ -20,7 +20,7 @@
 			},
 			{
 				"name": "Expressive",
-				"className": "db-density-expressive",
+				"density": "expressive",
 				"props": {
 					"open": "open",
 					"onClose": "toggleDrawer(false)"
@@ -95,7 +95,7 @@
 				}
 			},
 			{
-				"name": "No spacing",
+				"name": "None",
 				"props": {
 					"spacing": "none",
 					"open": "open",

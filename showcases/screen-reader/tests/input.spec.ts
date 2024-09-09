@@ -1,11 +1,12 @@
 import { NVDAKeyCodeCommands } from '@guidepup/guidepup';
-import { getTest, testDefault } from '../default';
+import { generateSnapshot, getTest, testDefault } from '../default';
 
 const test = getTest();
 test.describe('DBInput', () => {
 	testDefault({
 		test,
-		title: 'should have message and label (next)',
+		title: 'next()',
+		description: 'should have message and label (next())',
 		url: './#/03/input?page=variant%20helper%20message',
 		async testFn(voiceOver, nvda) {
 			if (nvda) {
@@ -21,10 +22,10 @@ test.describe('DBInput', () => {
 			await voiceOver?.next();
 		}
 	});
-	// We don't test default "next" here because we will be locked inside the textarea
 	testDefault({
 		test,
-		title: 'should have message and label (tab)',
+		title: 'tab',
+		description: 'should have message and label (tab)',
 		url: './#/03/input?page=variant%20helper%20message',
 		async testFn(voiceOver, nvda) {
 			if (voiceOver) {
@@ -36,6 +37,43 @@ test.describe('DBInput', () => {
 			await nvda?.clearSpokenPhraseLog();
 			await nvda?.press('Shift+Tab');
 			await nvda?.press('Tab');
+		}
+	});
+	testDefault({
+		test,
+		title: 'required',
+		description: 'should inform user for changes',
+		url: './#/03/input?page=requirement',
+		async testFn(voiceOver, nvda) {
+			if (voiceOver) {
+				/* Goto desired input */
+				await voiceOver?.next();
+				await voiceOver?.next();
+				await voiceOver?.clearSpokenPhraseLog();
+				await voiceOver?.next();
+				await voiceOver?.type('Test');
+				await voiceOver?.press('Command+A');
+				await voiceOver?.press('Delete');
+				await voiceOver?.type('Test');
+			} else {
+				await nvda?.press('Tab');
+				await nvda?.type('Test');
+				await nvda?.press('Control+A');
+				await nvda?.press('Delete');
+				await nvda?.type('Test');
+			}
+		},
+		async postTestFn(voiceOver, nvda, retry) {
+			if (nvda) {
+				await generateSnapshot(nvda, retry);
+			} else if (voiceOver) {
+				/*
+				 * There is a timing issue for macOS for typing in input we clean the result
+				 */
+				await generateSnapshot(voiceOver, retry, (phraseLog) =>
+					phraseLog.map((log) => log.replace('t. ', ''))
+				);
+			}
 		}
 	});
 });

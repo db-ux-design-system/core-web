@@ -1,6 +1,6 @@
 /* Styles for the showcases */
 .desktop-navigation ul {
-	list-style-type: none;
+	list-style-type: "";
 	display: flex;
 }
 
@@ -53,8 +53,7 @@ db-card:is(.variants-card) > .db-card {
 .variants-list .db-select:has([placeholder="(Default) Basic"]),
 .variants-list .db-input:has([placeholder="(Default) Basic"]),
 .variants-list .db-textarea:has([placeholder="(Default) Basic"]) {
-	margin-block-start: 0;
-	margin-block-end: auto;
+	margin-block: 0 auto;
 }
 
 .html-code-container {
@@ -117,7 +116,7 @@ db-card:is(.variants-card) > .db-card {
 	display: flex;
 	gap: var(--db-spacing-fixed-sm);
 	padding: var(--db-spacing-fixed-xs) var(--db-spacing-fixed-sm);
-	background-color: var(--db-base-bg-lvl-2);
+	background-color: var(--db-base-bg-basic-level-2);
 }
 
 .badge-inline-container .db-badge {

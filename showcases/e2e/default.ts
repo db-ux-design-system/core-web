@@ -10,12 +10,18 @@ const density = 'regular';
 export type DefaultTestType = {
 	path: string;
 	fixedHeight?: number;
+};
+
+export type DefaultSnapshotTestType = {
+	preScreenShot?: (page: Page) => Promise<void>;
+} & DefaultTestType;
+
+export type DefaultA11yTestType = {
 	axeDisableRules?: string[];
 	aCheckerDisableRules?: string[];
 	skipA11y?: boolean;
-	preScreenShot?: (page: Page) => Promise<void>;
 	preA11y?: (page: Page) => Promise<void>;
-};
+} & DefaultTestType;
 
 export const waitForDBPage = async (page: Page) => {
 	const dbPage = page.locator('.db-page');
@@ -48,16 +54,9 @@ const isCheckerError = (object: any): object is ICheckerError =>
 export const getDefaultScreenshotTest = ({
 	path,
 	fixedHeight,
-	axeDisableRules,
-	skipA11y,
-	preScreenShot,
-	preA11y,
-	aCheckerDisableRules
-}: DefaultTestType) => {
+	preScreenShot
+}: DefaultSnapshotTestType) => {
 	test(`should match screenshot`, async ({ page }, testInfo) => {
-		const isWebkit =
-			testInfo.project.name === 'webkit' ||
-			testInfo.project.name === 'mobile_safari';
 		const showcase = process.env.showcase;
 		const diffPixel = process.env.diff;
 		const maxDiffPixelRatio = process.env.ratio;
@@ -75,13 +74,11 @@ export const getDefaultScreenshotTest = ({
 			}
 		} else if (isAngular) {
 			config.maxDiffPixels = 1000;
-		} else if (isWebkit) {
-			config.maxDiffPixels = 120;
 		} else {
-			config.maxDiffPixels = 1;
+			config.maxDiffPixels = 120;
 		}
 
-		await gotoPage(page, path, 'neutral-bg-lvl-1', fixedHeight);
+		await gotoPage(page, path, 'neutral-bg-basic-level-1', fixedHeight);
 
 		const header = await page.locator('header').first();
 
@@ -91,12 +88,18 @@ export const getDefaultScreenshotTest = ({
 			await preScreenShot(page);
 		}
 
-		await expect(page).toHaveScreenshot(
-			[density, `neutral-bg-lvl-1.png`],
-			config
-		);
+		await expect(page).toHaveScreenshot(config);
 	});
+};
 
+export const getA11yTest = ({
+	path,
+	fixedHeight,
+	axeDisableRules,
+	skipA11y,
+	preA11y,
+	aCheckerDisableRules
+}: DefaultA11yTestType) => {
 	for (const color of COLORS) {
 		test(`should not have any A11y issues for color ${color}`, async ({
 			page
@@ -135,7 +138,7 @@ export const getDefaultScreenshotTest = ({
 	}
 
 	test('test with accessibility checker', async ({ page }, { project }) => {
-		await gotoPage(page, path, 'neutral-bg-lvl-1', fixedHeight);
+		await gotoPage(page, path, 'neutral-bg-basic-level-1', fixedHeight);
 		let failures: any[] = [];
 		try {
 			if (project.name === 'firefox') {

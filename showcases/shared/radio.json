@@ -5,7 +5,7 @@
 		"examples": [
 			{
 				"name": "Functional",
-				"className": "db-density-functional",
+				"density": "functional",
 				"props": {
 					"name": "Density",
 					"value": "functional"
@@ -13,7 +13,7 @@
 			},
 			{
 				"name": "(Default) Regular",
-				"className": "db-density-regular",
+				"density": "regular",
 				"props": {
 					"name": "Density",
 					"value": "regular"
@@ -21,7 +21,7 @@
 			},
 			{
 				"name": "Expressive",
-				"className": "db-density-expressive",
+				"density": "expressive",
 				"props": {
 					"name": "Density",
 					"value": "expressive"

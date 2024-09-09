@@ -5,7 +5,7 @@
 [![Conventional Commits](https://img.shields.io/badge/Conventional%20Commits-1.0.0-yellow.svg)](https://conventionalcommits.org)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](https://makeapullrequest.com)
 
-A library containing all tokens (colors, icons, variables, etc.) of [DB UX Design System (technical components)](https://github.com/db-ui/mono).
+A library containing all tokens (colors, spacings, font formatting, etc.) and assets (fonts, icons) of [DB UX Design System v3](https://github.com/db-ui/mono).
 
 We currently support:
 
@@ -103,7 +103,10 @@ In HTML:
 
 ```html
 <!-- With classes-->
-<div class="db-density-functional db-successful-bg-lvl-1 my-container"></div>
+<div
+	data-density="functional"
+	class="db-successful-bg-lvl-1 my-container"
+></div>
 
 <!-- With data attributes-->
 <div
@@ -191,7 +194,10 @@ In HTML:
 
 ```html
 <!-- With classes-->
-<div class="db-density-functional db-successful-bg-lvl-1 my-container"></div>
+<div
+	data-density="functional"
+	class="db-successful-bg-lvl-1 my-container"
+></div>
 
 <!-- With data attributes-->
 <div
@@ -296,6 +302,14 @@ If you want to optimize the size of the loaded styles, you might skip loading `@
 @import "@db-ui/foundations/build/css/init/required.css";
 /* The default root adds a default color space (neutral) and a density (regular) */
 @import "@db-ui/foundations/build/css/init/default-root.css";
+```
+
+## Migration
+
+We provide a cli tool to auto migrate your source code. Use this command in your repository:
+
+```shell
+npx @db-ui/foundations migration --src=./src
 ```
 
 ## Deutsche Bahn brand

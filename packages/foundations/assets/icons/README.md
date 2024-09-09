@@ -22,4 +22,4 @@ We process the following changes:
 
 ### Icon font generation
 
-We've documented those necessary steps within our [docs folder](../../packages/foundations/docs/Icons.md).
+We've documented those necessary steps within our [docs folder](../../docs/Icons.md).

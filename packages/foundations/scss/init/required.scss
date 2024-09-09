@@ -109,7 +109,7 @@ iframe {
 	list-style-type: "\2022"+ " ";
 
 	li::marker {
-		color: #{colors.$db-brand-origin-enabled};
+		color: #{colors.$db-brand-origin-default};
 	}
 }
 
@@ -119,7 +119,7 @@ nav,
 [role="navigation"] {
 	ol,
 	ul {
-		list-style: none;
+		list-style-type: "";
 		margin: 0;
 		padding: 0;
 	}

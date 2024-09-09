@@ -55,14 +55,14 @@ export type IconProps = {
 	/**
 	 * Define an icon by its identifier (like e.g. _user_, compare to [Icons](https://db-ui.github.io/mono/review/main/foundations/icons/overview)) to get displayed in front of the elements content.
 	 */
-	icon?: IconTypes;
+	icon?: IconTypes | string;
 };
 
 export type IconAfterProps = {
 	/**
 	 * Define an icon by its identifier (like e.g. _user_, compare to [Icons](https://db-ui.github.io/mono/review/main/foundations/icons/overview)) to get displayed in front of the elements content.
 	 */
-	iconAfter?: IconTypes;
+	iconAfter?: IconTypes | string;
 };
 
 export const SpacingList = ['medium', 'small', 'large', 'none'] as const;
@@ -73,6 +73,15 @@ export type SpacingProps = {
 	 * The spacing attribute changes the padding of the component.
 	 */
 	spacing?: SpacingType;
+};
+export const MarginList = ['medium', 'small', 'large', 'none'] as const;
+export type MarginType = (typeof MarginList)[number];
+
+export type MarginProps = {
+	/**
+	 * The margin attribute changes the margin of the component.
+	 */
+	margin?: MarginType;
 };
 
 export const PlacementList = [
@@ -355,6 +364,13 @@ export type FormState = {
 	_invalidMessageId?: string;
 	_descByIds?: string;
 	_value?: string;
+
+	/**
+	 * https://www.davidmacd.com/blog/test-aria-describedby-errormessage-aria-live.html
+	 * Currently VoiceOver isn't supporting changes from aria-describedby.
+	 * This is an internal Fallback
+	 */
+	_voiceOverFallback?: string;
 };
 
 export type InitializedState = {

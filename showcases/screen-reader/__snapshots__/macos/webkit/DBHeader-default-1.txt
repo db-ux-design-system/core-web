@@ -1,0 +1,1 @@
+["link Imprint","link Help","DBHeader","Functional navigation","list 2 items","link Functional 1 of 2","dimmed link Functional disabled 2 of 2. This item is dimmed.","end of list","end of Functional navigation","Search button","Profile button","Notification button","Help button"]

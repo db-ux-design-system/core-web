@@ -21,6 +21,11 @@ designers, and content authors build, maintain, and scale best of class digital 
 	<figcaption><a href="https://bradfrost.com/blog/post/bdconf-stephen-hay-presents-responsive-design-workflow/" target="_blank" rel="noopener noreferrer">Stephen Hay</a>. <a href="https://vimeo.com/67476280" title="Brad Frosts at beyond tellerrand conference regarding Atomic Design" target="_blank" rel="noopener noreferrer">Cited in a talk by Brad Frost at beyond tellerrand conference.</a></figcaption>
 </figure>
 
+> [!WARNING]
+> We currently don't fully support Samsung Internet browser until it adds the following functionality with its new version 27, which is expected to get released later this year:
+>
+> -   [CSS: `light-dark()`](https://caniuse.com/mdn-css_types_color_light-dark)
+
 ## Packages
 
 | Package                                                                     | Content                             | Version                                                                                                                                                                                                                                                                                  |
@@ -87,9 +92,17 @@ that we're gaining out of the community. So please support us in any way possibl
 
 ## Migration
 
-Check our migration docs for breaking changes
+### From DB UI Core or DB UI Elements to DB UI Mono
 
-1. [Alpha ➡ Beta](https://github.com/db-ui/mono/tree/main/docs) (0.0.x➡0.x.x)
+We're providing a detailed migration for each component next to the documentation of each component:
+<https://db-ui.github.io/mono/review/main/components/action/button/migration>
+
+### In between DB UI Mono versions
+
+Check our migration docs for breaking changes:
+
+1. [Alpha ➡ Beta](https://github.com/db-ui/mono/tree/main/docs/migration/alpha-beta.md) (0.0.x➡0.x.x)
+2. [v0.2 ➡ v0.3](https://github.com/db-ui/mono/tree/main/docs/migration/v0.2.x-to-v0.3.x.md)
 
 ## How to start develop / contribute
 

@@ -15,7 +15,7 @@ $tab-border-radius: variables.$db-border-radius-sm;
 .db-tab-item {
 	position: relative;
 	display: inline-flex;
-	list-style-type: none;
+	list-style-type: "";
 	border-radius: $tab-border-radius;
 
 	&:has(input:disabled) {
@@ -23,7 +23,7 @@ $tab-border-radius: variables.$db-border-radius-sm;
 	}
 
 	label {
-		background-color: colors.$db-current-color-bg-transparent-full-enabled;
+		background-color: colors.$db-adaptive-bg-basic-transparent-full-default;
 		padding: variables.$db-spacing-fixed-xs;
 		align-items: center;
 		display: inline-block;
@@ -35,7 +35,7 @@ $tab-border-radius: variables.$db-border-radius-sm;
 
 		@include helpers.hover {
 			&:has(:not(input:disabled)) {
-				background-color: colors.$db-current-color-bg-transparent-hover;
+				background-color: colors.$db-adaptive-bg-basic-transparent-hovered;
 			}
 
 			&:has(input:disabled) {
@@ -45,7 +45,7 @@ $tab-border-radius: variables.$db-border-radius-sm;
 
 		@include helpers.hover {
 			&:has(:not(input:disabled)) {
-				background-color: colors.$db-current-color-bg-transparent-hover;
+				background-color: colors.$db-adaptive-bg-basic-transparent-hovered;
 			}
 
 			&:has(input:disabled) {
@@ -104,7 +104,7 @@ $tab-border-radius: variables.$db-border-radius-sm;
 		inline-size: 100%;
 		margin-inline-end: initial;
 		inset: 0;
-		background-color: colors.$db-current-color-bg-transparent-full-enabled;
+		background-color: colors.$db-adaptive-bg-basic-transparent-full-default;
 		border-radius: $tab-border-radius;
 		z-index: -1;
 

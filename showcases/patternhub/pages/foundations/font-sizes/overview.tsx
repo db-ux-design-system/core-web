@@ -101,7 +101,7 @@ const ColorOverview = () => {
 				</DBSwitch>
 			</div>
 			<br />
-			<DBSection spacing="small" className="db-neutral-bg-lvl-2">
+			<DBSection spacing="small" className="db-neutral-bg-basic-level-2">
 				{['3xl', '2xl', 'xl', 'lg', 'md', 'sm', 'xs', '2xs', '3xs'].map(
 					(size) => (
 						<>
@@ -145,7 +145,7 @@ const ColorOverview = () => {
 				</DBSwitch>
 			</div>
 			<br />
-			<DBSection spacing="small" className="db-neutral-bg-lvl-2">
+			<DBSection spacing="small" className="db-neutral-bg-basic-level-2">
 				{(
 					[
 						{ Tag: 'h1', size: 'xl' },
@@ -195,7 +195,7 @@ const ColorOverview = () => {
 			</div>
 			<br />
 
-			<DBSection spacing="small" className="db-neutral-bg-lvl-2">
+			<DBSection spacing="small" className="db-neutral-bg-basic-level-2">
 				{['3xl', '2xl', 'xl', 'lg', 'md', 'sm', 'xs', '2xs', '3xs'].map(
 					(size) => (
 						<>
@@ -237,7 +237,7 @@ const ColorOverview = () => {
 				be selected with the same size (e.g. <code>md</code>).
 			</DBInfotext>
 			<br />
-			<DBSection spacing="small" className="db-neutral-bg-lvl-2">
+			<DBSection spacing="small" className="db-neutral-bg-basic-level-2">
 				<p>
 					<b>These custom properties must be used for overwrites:</b>
 				</p>
