@@ -14,19 +14,9 @@ export const migrate = (options?: OptionsType) => {
 			nodir: true
 		}).map((path) => path.replaceAll('\\', '/'));
 
-		for (const update of colorUpdateQ32024) {
-			const option = {
-				...update,
-				files: globPaths,
-				dry
-			};
-			const result: ReplaceResult[] = replaceInFileSync(option);
-			if (dry) {
-				console.log(result);
-			}
-		}
+		const replacements = [...colorUpdateQ32024, ...iconUpdateQ32024];
 
-		for (const update of iconUpdateQ32024) {
+		for (const update of replacements) {
 			const option = {
 				...update,
 				files: globPaths,
