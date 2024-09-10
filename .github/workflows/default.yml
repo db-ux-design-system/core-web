@@ -23,6 +23,10 @@ jobs:
     uses: ./.github/workflows/01-lint.yml
     needs: [init]
 
+  test:
+    uses: ./.github/workflows/01-test.yml
+    needs: [init]
+
   build-packages:
     uses: ./.github/workflows/01-build-packages.yml
     needs: [init]

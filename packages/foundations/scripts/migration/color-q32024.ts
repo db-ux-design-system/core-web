@@ -1,6 +1,6 @@
 import { type ReplaceInFileConfig } from 'replace-in-file';
 
-export const colorUpdateQ32024: ReplaceInFileConfig[] = [
+export const colorQ32024: ReplaceInFileConfig[] = [
 	// Basic backgrounds
 	{
 		files: '',

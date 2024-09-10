@@ -1,6 +1,6 @@
 import { type ReplaceInFileConfig } from 'replace-in-file';
 
-export const iconUpdateQ32024: ReplaceInFileConfig[] = [
+export const iconQ32024: ReplaceInFileConfig[] = [
 	// Renamed icons
 	{
 		files: '',
