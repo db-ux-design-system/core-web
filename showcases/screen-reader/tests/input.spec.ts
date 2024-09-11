@@ -71,7 +71,9 @@ test.describe('DBInput', () => {
 				 * There is a timing issue for macOS for typing in input we clean the result
 				 */
 				await generateSnapshot(voiceOver, retry, (phraseLog) =>
-					phraseLog.map((log) => log.replace('t. ', ''))
+					phraseLog.map((log) =>
+						log.replace('Test. ', '').replace('t. ', '')
+					)
 				);
 			}
 		}
