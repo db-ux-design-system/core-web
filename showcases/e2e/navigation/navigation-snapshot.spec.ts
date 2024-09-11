@@ -4,6 +4,7 @@ import { getDefaultScreenshotTest } from '../default.ts';
 
 test.describe('DBNavigation', () => {
 	getDefaultScreenshotTest({
-		path: '05/navigation'
+		path: '05/navigation',
+		fixedHeight: 1200
 	});
 });

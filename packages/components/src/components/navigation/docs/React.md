@@ -11,15 +11,15 @@ import { DBNavigation, DBNavigationItem } from "@db-ui/react-components";
 const App = () => (
 	<DBNavigation>
 		<DBNavigationItem
-			active
 			slotSubNavigation={
 				<>
 					<DBNavigationItem
-						active
 						subNavigation={
 							<>
-								<DBNavigationItem active>
-									<a href="#">Sub-Sub-Navi-Item 1</a>
+								<DBNavigationItem>
+									<a href="#" aria-current="page">
+										Sub-Sub-Navi-Item 1
+									</a>
 								</DBNavigationItem>
 								<DBNavigationItem>
 									<a href="#">Sub-Sub-Navi-Item 2</a>
@@ -48,3 +48,9 @@ const App = () => (
 
 export default App;
 ```
+
+### Active handling
+
+Usually, a `NavigationItem` is implicitly set to active by setting the attribute `aria-current="page"` to the anchor it contains.
+
+For other purposes, `NavigationItems` themselves can also be set to active with their prop `active`. However, this does not guarantee correct a11y.

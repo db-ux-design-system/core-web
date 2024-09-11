@@ -38,7 +38,7 @@
     "test:components": "playwright test -c playwright.config.ts"
   },
   "dependencies": {
-    "vue": "^3.5.3"
+    "vue": "^3.5.4"
   },
   "devDependencies": {
     "@playwright/experimental-ct-vue": "1.47.0",

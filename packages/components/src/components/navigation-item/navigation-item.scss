@@ -124,7 +124,9 @@
 	}
 
 	&:has([aria-current="page"]),
-	&[aria-current="page"] {
+	&:has([data-active="true"]),
+	&[aria-current="page"],
+	&[data-active="true"] {
 		> :is(a, button) {
 			font-weight: 700;
 		}
