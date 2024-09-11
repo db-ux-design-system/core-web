@@ -32,18 +32,29 @@ const standardPhrases = [
 	'To expand'
 ];
 
+const flakyExpressions: Record<string, string> = {
+	'pop-up': 'pop up',
+	'checked. checked': 'checked',
+	'selected. selected': 'selected'
+};
+
 const cleanSpeakInstructions = (phraseLog: string[]): string[] =>
-	phraseLog.map((phrase) =>
-		phrase
+	phraseLog.map((phrase) => {
+		let result = phrase
 			.split('. ')
 			.filter(
 				(sPhrase) =>
 					!standardPhrases.some((string) => sPhrase.includes(string))
 			)
-			.join('. ')
-			// We need to replace specific phrases, as they are being reported differently on localhost and within CI/CD
-			.replaceAll('pop-up', 'pop up')
-	);
+			.join('. ');
+
+		// We need to replace specific phrases, as they are being reported differently on localhost and within CI/CD
+		for (const [key, value] of Object.entries(flakyExpressions)) {
+			result = result.replaceAll(key, value);
+		}
+
+		return result;
+	});
 
 export const generateSnapshot = async (
 	screenReader?: VoiceOverPlaywright | NVDAPlaywright,
