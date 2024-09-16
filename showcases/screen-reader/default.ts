@@ -49,7 +49,7 @@ const cleanSpeakInstructions = (phraseLog: string[]): string[] =>
 			.map((part, index) => {
 				// There is an issue with macOS duplicating some parts, we remove the duplicates here
 				if (!isWin()) {
-					let lastFoundIndex = 0;
+					let lastFoundIndex = -1;
 					for (const pPart of phraseParts) {
 						const pPartIndex = phraseParts.indexOf(pPart);
 						// We only use parts with multiple words
@@ -58,7 +58,7 @@ const cleanSpeakInstructions = (phraseLog: string[]): string[] =>
 						}
 					}
 
-					if (lastFoundIndex !== index) {
+					if (lastFoundIndex > -1 && lastFoundIndex !== index) {
 						return '';
 					}
 				}
