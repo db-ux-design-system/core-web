@@ -57,11 +57,13 @@ const cleanSpeakInstructions = (phraseLog: string[]): string[] =>
 				}
 
 				if (lastFoundIndex !== index) {
-					return part.replace(phraseParts[lastFoundIndex], '');
+					return part.replace(`${phraseParts[lastFoundIndex]}`, '');
 				}
 
 				return part;
 			})
+			// Replace all double spaces
+			.map((part) => part.replaceAll('  ', ''))
 			.filter((part) => part.length > 0)
 			.join('. ');
 
