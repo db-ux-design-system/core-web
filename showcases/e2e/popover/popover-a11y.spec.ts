@@ -8,6 +8,6 @@ const selector = '.db-popover';
 test.describe('DBPopover', () => {
 	getA11yTest({
 		path: '01/popover',
-		preA11y: async (page) => hoverPre(page, selector)
+		preAxe: async (page) => hoverPre(page, selector)
 	});
 });

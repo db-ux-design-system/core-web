@@ -8,6 +8,6 @@ const selector = '.db-tooltip';
 test.describe('DBTooltip', () => {
 	getA11yTest({
 		path: '04/tooltip',
-		preA11y: async (page) => hoverPre(page, selector)
+		preAxe: async (page) => hoverPre(page, selector)
 	});
 });
