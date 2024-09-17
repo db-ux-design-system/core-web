@@ -52,7 +52,6 @@ const cleanSpeakInstructions = (phraseLog: string[]): string[] =>
 					let lastFoundIndex = -1;
 					for (const pPart of phraseParts) {
 						const pPartIndex = phraseParts.indexOf(pPart);
-						// We only use parts with multiple words
 						if (pPart !== part && part.includes(pPart)) {
 							lastFoundIndex = pPartIndex;
 						}
