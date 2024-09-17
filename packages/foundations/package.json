@@ -41,7 +41,7 @@
   },
   "devDependencies": {
     "@csstools/normalize.css": "12.1.1",
-    "@db-ui/gif": "^0.0.4",
+    "@db-ui/gif": "^0.0.6",
     "commander": "^12.0.0",
     "cpr": "3.0.1",
     "cssnano": "^7.0.6",
@@ -50,7 +50,7 @@
     "nodemon": "3.1.4",
     "replace-in-file": "^8.1.0",
     "sass": "1.77.4",
-    "tsx": "^4.19.0"
+    "tsx": "^4.19.1"
   },
   "publishConfig": {
     "registry": "https://registry.npmjs.org/",
