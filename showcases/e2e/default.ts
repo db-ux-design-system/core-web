@@ -37,7 +37,7 @@ export const waitForDBPage = async (page: Page) => {
 	await dbPage.evaluate((element) => {
 		element.style.transition = 'none';
 	});
-	await expect(dbPage).not.toHaveAttribute('data-fonts-loaded', 'false');
+	await expect(dbPage).toHaveAttribute('data-fonts-loaded', 'true');
 	await expect(dbPage).toHaveCSS('opacity', '1');
 	await expect(page.locator('html')).toHaveCSS('overflow', 'hidden');
 };
