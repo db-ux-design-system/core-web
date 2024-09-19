@@ -28,21 +28,52 @@ const standardPhrases = [
 	'To move between items',
 	'To close',
 	'To choose',
-	'To toggle'
+	'To toggle',
+	'To expand'
 ];
 
+const flakyExpressions: Record<string, string> = {
+	'pop-up': 'pop up',
+	'checked. checked': 'checked',
+	'selected. selected': 'selected'
+};
+
 const cleanSpeakInstructions = (phraseLog: string[]): string[] =>
-	phraseLog.map((phrase) =>
-		phrase
-			.split('. ')
+	phraseLog.map((phrase) => {
+		const phraseParts = phrase.split('. ');
+		let result = phraseParts
 			.filter(
 				(sPhrase) =>
 					!standardPhrases.some((string) => sPhrase.includes(string))
 			)
-			.join('. ')
-			// We need to replace specific phrases, as they are being reported differently on localhost and within CI/CD
-			.replaceAll('pop-up', 'pop up')
-	);
+			.map((part, index) => {
+				// There is an issue with macOS duplicating some parts, we remove the duplicates here
+				if (!isWin()) {
+					let lastFoundIndex = -1;
+					for (const pPart of phraseParts) {
+						const pPartIndex = phraseParts.indexOf(pPart);
+						if (pPart !== part && part.includes(pPart)) {
+							lastFoundIndex = pPartIndex;
+						}
+					}
+
+					if (lastFoundIndex > -1 && lastFoundIndex !== index) {
+						return '';
+					}
+				}
+
+				return part;
+			})
+			.filter((part) => part.length > 0)
+			.join('. ');
+
+		// We need to replace specific phrases, as they are being reported differently on localhost and within CI/CD
+		for (const [key, value] of Object.entries(flakyExpressions)) {
+			result = result.replaceAll(key, value);
+		}
+
+		return result;
+	});
 
 export const generateSnapshot = async (
 	screenReader?: VoiceOverPlaywright | NVDAPlaywright,
@@ -129,7 +160,6 @@ export const testDefault = (defaultTestType: DefaultTestType) => {
 			'&color=neutral-bg-basic-level-1&density=regular'
 	};
 
-	const trimTitleForShortSnapshotName = title.slice(0, 10);
 	if (isWin()) {
 		test?.(title, async ({ page, nvda }, { retry }) => {
 			await runTest({

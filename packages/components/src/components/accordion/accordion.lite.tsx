@@ -9,7 +9,7 @@ import {
 } from '@builder.io/mitosis';
 import { DBAccordionProps, DBAccordionState } from './model';
 import { cls } from '../../utils';
-import { DBAccordionItem } from '../accordion-item';
+import DBAccordionItem from '../accordion-item/accordion-item.lite';
 import { DBAccordionItemDefaultProps } from '../accordion-item/model';
 
 useMetadata({

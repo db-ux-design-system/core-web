@@ -13,7 +13,7 @@ import { NavigationItemSafeTriangle } from '../../utils/navigation';
 
 export interface DBNavigationItemDefaultProps {
 	/**
-	 * Indicator for active navigation item (bold font).
+	 * Alternative indicator for active navigation item (bold font). In contrast to the use of aria-current="page" on the contained anchor, this does not guarantee correct a11y.
 	 */
 	active?: boolean;
 

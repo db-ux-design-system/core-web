@@ -8,8 +8,8 @@ import {
 } from '@builder.io/mitosis';
 import { DBHeaderProps, DBHeaderState } from './model';
 import { addAttributeToChildren, cls, uuid } from '../../utils';
-import { DBButton } from '../button';
-import { DBDrawer } from '../drawer';
+import DBButton from '../button/button.lite';
+import DBDrawer from '../drawer/drawer.lite';
 import { DEFAULT_ID } from '../../shared/constants';
 import { isEventTargetNavigationItem } from '../../utils/navigation';
 

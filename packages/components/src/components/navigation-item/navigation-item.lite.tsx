@@ -8,7 +8,7 @@ import {
 	useStore
 } from '@builder.io/mitosis';
 import { DBNavigationItemProps, DBNavigationItemState } from './model';
-import { DBButton } from '../button';
+import DBButton from '../button/button.lite';
 import { cls, uuid } from '../../utils';
 import { NavigationItemSafeTriangle } from '../../utils/navigation';
 import { DEFAULT_BACK } from '../../shared/constants';
@@ -99,7 +99,7 @@ export default function DBNavigationItem(props: DBNavigationItemProps) {
 			class={cls('db-navigation-item', props.className)}
 			data-width={props.width}
 			data-icon={props.icon}
-			aria-current={props.active ? 'page' : undefined}
+			data-active={props.active}
 			aria-disabled={props.disabled}>
 			<Show when={!state.hasSubNavigation}>{props.children}</Show>
 
