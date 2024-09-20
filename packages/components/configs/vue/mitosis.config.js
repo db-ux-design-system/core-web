@@ -1,10 +1,10 @@
+const vue = require('./index');
+
 module.exports = {
 	files: 'src/**',
-	targets: ['react'],
+	targets: ['vue'],
 	dest: '../../output/tmp',
 	options: {
-		react: {
-			typescript: true
-		}
+		vue
 	}
 };
