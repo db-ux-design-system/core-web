@@ -45,6 +45,7 @@ export type DBAccordionProps = DBAccordionDefaultProps & GlobalProps;
 export interface DBAccordionDefaultState {
 	openItems: string[];
 	convertItems: (items?: unknown[] | string) => DBAccordionItemDefaultProps[];
+	uniqueID: string;
 }
 
 export type DBAccordionState = DBAccordionDefaultState &

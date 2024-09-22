@@ -8,7 +8,7 @@ import {
 	useStore
 } from '@builder.io/mitosis';
 import { DBAccordionProps, DBAccordionState } from './model';
-import { cls } from '../../utils';
+import { cls, uuid } from '../../utils';
 import DBAccordionItem from '../accordion-item/accordion-item.lite';
 import { DBAccordionItemDefaultProps } from '../accordion-item/model';
 
@@ -23,6 +23,7 @@ export default function DBAccordion(props: DBAccordionProps) {
 		openItems: [],
 		clickedId: '',
 		initialized: false,
+		uniqueID: props.behaviour === 'single' ? 'accordion-' + uuid() : '',
 		convertItems(items: unknown[] | string | undefined) {
 			try {
 				if (typeof items === 'string') {
@@ -129,6 +130,7 @@ export default function DBAccordion(props: DBAccordionProps) {
 							headlinePlain={item.headlinePlain}
 							disabled={item.disabled}
 							content={item.content}
+							name={state.uniqueID}
 						/>
 					)}
 				</For>
