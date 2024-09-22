@@ -23,7 +23,8 @@ export default function DBAccordion(props: DBAccordionProps) {
 		openItems: [],
 		clickedId: '',
 		initialized: false,
-		uniqueID: props.behaviour === 'single' ? 'accordion-' + uuid() : '',
+		uniqueID:
+			props.behaviour === 'single' ? 'accordion-' + uuid() : undefined,
 		convertItems(items: unknown[] | string | undefined) {
 			try {
 				if (typeof items === 'string') {
