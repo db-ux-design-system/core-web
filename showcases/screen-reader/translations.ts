@@ -4,6 +4,8 @@ export const translations: Record<string, string[]> = {
 	edit: ['Eingabefeld'],
 	'radio button': ['Auswahlschalter'],
 	blank: ['Leer'],
+	not: ['Nicht'],
+	'half checked': ['teilweise aktiviert'],
 	checked: ['aktiviert'],
 	' of ': [' von '],
 	clickable: ['anklickbar'],
@@ -17,6 +19,7 @@ export const translations: Record<string, string[]> = {
 	dialog: ['Dialogfeld'],
 	document: ['Dokument'],
 	unavailable: ['nicht verfügbar'],
+	'check box': ['Kontrollfeld'],
 	collapsed: ['reduziert'],
 	expanded: ['erweitert']
 };

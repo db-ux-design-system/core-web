@@ -1,19 +1,15 @@
+const angular = require('./angular');
+const react = require('./react');
+const vue = require('./vue');
+
 module.exports = {
 	files: 'src/**',
 	targets: ['angular', 'vue', 'webcomponent', 'react'],
 	dest: '../../output',
 	options: {
-		react: {
-			typescript: true
-		},
-		angular: {
-			typescript: true,
-			standalone: true,
-			visuallyIgnoreHostElement: false
-		},
-		vue: {
-			typescript: true
-		},
+		react,
+		angular,
+		vue,
 		webcomponent: {
 			experimental: {
 				attributeChangedCallback(test, json) {

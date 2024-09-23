@@ -265,9 +265,8 @@ $input-valid-types: "color", "date", "datetime-local", "email", "file", "hidden"
 		&:is(label),
 		label {
 			&::after {
-				content: "*";
-				// Hiding asterisk from screenreaders, https://www.w3.org/TR/css-content-3/#alt
-				content: "*" / "";
+				@include icons.icon-content("*");
+        
 				padding-inline-start: variables.$db-spacing-fixed-2xs;
 			}
 		}

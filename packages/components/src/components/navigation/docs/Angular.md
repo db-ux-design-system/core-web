@@ -22,16 +22,18 @@ import { DBNavigation } from '@db-ui/ngx-components';
 <!-- app.component.html -->
 
 <db-navigation>
-	<db-navigation-item [active]="true">
+	<db-navigation-item>
 		<ng-container sub-navigation>
-			<db-navigation-item [active]="true">
+			<db-navigation-item>
 				<ng-container *dbNavigationContent>
 					Sub-Navi-Item 1
 				</ng-container>
 				<ng-container sub-navigation>
-					<db-navigation-item [active]="true">
+					<db-navigation-item>
 						<ng-container *dbNavigationContent>
-							<a href="#">Sub-Sub-Navi-Item 1</a>
+							<a href="#" aria-current="page"
+								>Sub-Sub-Navi-Item 1</a
+							>
 						</ng-container>
 					</db-navigation-item>
 					<db-navigation-item>
@@ -64,16 +66,11 @@ import { DBNavigation } from '@db-ui/ngx-components';
 
 ### Angular Router and active state handling
 
-You can set the property `active` to a boolean value as in the example above.
-It will cause the navigation item to render in active style and implicitly
-set `aria-current="page"` to the list element.
-
-The component will also check for child element set to `aria-current="page"`.
-Such elements are also displayed in active state.
-This makes the component [integration with the Angular Router](https://angular.dev/best-practices/a11y#active-links-identification) way more elegant
-compared to the first variant.
+We recommend using the automatic [integration with the Angular Router](https://angular.dev/best-practices/a11y#active-links-identification). This is way more elegant than setting the aria attribute to the anchor yourself.
 
 The component first needs to import the `RouterLink` and `RouterLinkActive` directives.
+
+For other purposes, `NavigationItems` themselves can also be set to active with their prop `[active]="true"`. However, this does not guarantee correct a11y.
 
 ```ts app.component.ts
 // app.component.ts

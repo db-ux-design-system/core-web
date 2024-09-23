@@ -5,7 +5,7 @@ import { getA11yTest } from '../default.ts';
 test.describe('DBDrawer', () => {
 	getA11yTest({
 		path: '01/drawer',
-		async preA11y(page) {
+		async preAxe(page) {
 			await page.locator('main').getByRole('button').first().click();
 			await page.waitForTimeout(1000);
 		}
