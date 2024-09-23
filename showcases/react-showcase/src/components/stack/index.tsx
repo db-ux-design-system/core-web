@@ -31,11 +31,17 @@ const getStack = ({
 			variant={variant}
 			direction={direction}
 			justifyContent={justifyContent}>
-			<DBBadge>Content 1</DBBadge>
+			<DBBadge>
+				<button>Content 1</button>
+			</DBBadge>
 			{variant === 'divider' && <DBDivider />}
-			<DBBadge>Content 2</DBBadge>
+			<DBBadge>
+				<button>Content 2</button>
+			</DBBadge>
 			{variant === 'divider' && <DBDivider />}
-			<DBBadge>Content 3</DBBadge>
+			<DBBadge>
+				<button>Content 3</button>
+			</DBBadge>
 		</DBStack>
 	</DBStack>
 );

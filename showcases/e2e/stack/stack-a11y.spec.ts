@@ -3,5 +3,5 @@ import { test } from '@playwright/test';
 import { getA11yTest } from '../default.ts';
 
 test.describe('DBStack', () => {
-	getA11yTest({ path: 'stack' });
+	getA11yTest({ path: '01/stack' });
 });
