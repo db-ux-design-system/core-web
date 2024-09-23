@@ -1,6 +1,6 @@
 ---
 inject: true
 to: "<%= showcases ? `../../showcases/patternhub/components/component-parser/index.tsx` : null %>"
-after: from 'react'
+before: } from '../../../../output/react/src/index';
 ---
-import DB<%= h.changeCase.pascal(name) %> from '../src/components/<%= name %>/<%= name %>';
+,DB<%= h.changeCase.pascal(name) %>
