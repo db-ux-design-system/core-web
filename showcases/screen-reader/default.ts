@@ -35,7 +35,8 @@ const standardPhrases = [
 const flakyExpressions: Record<string, string> = {
 	'pop-up': 'pop up',
 	'checked. checked': 'checked',
-	'selected. selected': 'selected'
+	'selected. selected': 'selected',
+	'expanded. expanded': 'selected'
 };
 
 const cleanSpeakInstructions = (phraseLog: string[]): string[] =>
