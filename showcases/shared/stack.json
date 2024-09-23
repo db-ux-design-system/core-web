@@ -38,33 +38,58 @@
 	},
 	{
 		"name": "Variant",
-		"children": [
-			{
-				"name": "span",
-				"content": "Content 1",
-				"native": true
-			},
-			{
-				"name": "span",
-				"content": "Content 2",
-				"native": true
-			},
-			{
-				"name": "span",
-				"content": "Content 3",
-				"native": true
-			}
-		],
 		"examples": [
 			{
 				"name": "(Def) Simple",
-				"props": {}
+				"props": {},
+				"children": [
+					{
+						"name": "span",
+						"content": "Content 1",
+						"native": true
+					},
+					{
+						"name": "span",
+						"content": "Content 2",
+						"native": true
+					},
+					{
+						"name": "span",
+						"content": "Content 3",
+						"native": true
+					}
+				]
 			},
 			{
 				"name": "Divider",
 				"props": {
 					"variant": "divider"
-				}
+				},
+				"children": [
+					{
+						"name": "span",
+						"content": "Content 1",
+						"native": true
+					},
+					{
+						"name": "divider",
+						"content": ""
+					},
+					{
+						"name": "span",
+						"content": "Content 2",
+						"native": true
+					},
+					{
+						"name": "divider",
+						"content": ""
+					},
+					{
+						"name": "span",
+						"content": "Content 3",
+						"native": true
+					}
+				]
 			}
 		]
 	},

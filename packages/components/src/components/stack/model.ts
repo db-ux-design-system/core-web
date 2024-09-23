@@ -24,7 +24,7 @@ export type StackJustifyContentType = (typeof StackJustifyContentList)[number];
 
 export type DBStackDefaultProps = {
 	/**
-	 * Change variant of stack. To use variant="divider" add a <DBDivider> after each element
+	 * Change variant of stack. To use variant="divider" add a DBDivider after each element
 	 */
 	variant?: StackVariantType;
 	/**
