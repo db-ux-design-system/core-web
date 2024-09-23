@@ -73,7 +73,7 @@
     "prettier": "^3.3.3",
     "prettier-plugin-pkg": "0.18.1",
     "prettier-plugin-sh": "^0.14.0",
-    "replace-in-file": "^8.1.0",
+    "replace-in-file": "^8.2.0",
     "rimraf": "6.0.1",
     "stylelint": "16.9.0",
     "stylelint-config-sass-guidelines": "12.1.0",
