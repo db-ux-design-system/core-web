@@ -144,3 +144,8 @@ db-card:is(.variants-card) > .db-card {
 main .db-header {
 	block-size: 100%;
 }
+
+.stack-container {
+	border: var(--db-border-height-3xs) dashed
+		var(--db-adaptive-on-bg-basic-emphasis-60-default);
+}

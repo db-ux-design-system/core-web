@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import DBStack from '../src/components/stack/stack';
 import {
 	DBSwitch,
 	DBTabPanel,
@@ -327,6 +328,14 @@ const ComponentSwitch = ({
 			<DBSwitch className={className} {...props}>
 				{resolvedContent}
 			</DBSwitch>
+		);
+	}
+
+	if (type === 'stack') {
+		return (
+			<DBStack className={className} {...props}>
+				{resolvedContent}
+			</DBStack>
 		);
 	}
 

@@ -1,0 +1,493 @@
+[
+	{
+		"name": "Density",
+		"children": [
+			{
+				"name": "span",
+				"content": "Content 1",
+				"native": true
+			},
+			{
+				"name": "span",
+				"content": "Content 2",
+				"native": true
+			},
+			{
+				"name": "span",
+				"content": "Content 3",
+				"native": true
+			}
+		],
+		"examples": [
+			{
+				"name": "Functional",
+				"density": "functional",
+				"props": {}
+			},
+			{
+				"name": "(Default) Regular",
+				"density": "regular",
+				"props": {}
+			},
+			{
+				"name": "Expressive",
+				"density": "expressive",
+				"props": {}
+			}
+		]
+	},
+	{
+		"name": "Variant",
+		"children": [
+			{
+				"name": "span",
+				"content": "Content 1",
+				"native": true
+			},
+			{
+				"name": "span",
+				"content": "Content 2",
+				"native": true
+			},
+			{
+				"name": "span",
+				"content": "Content 3",
+				"native": true
+			}
+		],
+		"examples": [
+			{
+				"name": "(Def) Simple",
+				"props": {}
+			},
+			{
+				"name": "Divider",
+				"props": {
+					"variant": "divider"
+				}
+			}
+		]
+	},
+	{
+		"name": "Gap",
+		"children": [
+			{
+				"name": "span",
+				"content": "Content 1",
+				"native": true
+			},
+			{
+				"name": "span",
+				"content": "Content 2",
+				"native": true
+			},
+			{
+				"name": "span",
+				"content": "Content 3",
+				"native": true
+			}
+		],
+		"examples": [
+			{
+				"name": "none",
+				"props": {
+					"gap": "none"
+				}
+			},
+			{
+				"name": "3extra-small",
+				"props": {
+					"gap": "3extra-small"
+				}
+			},
+			{
+				"name": "2extra-small",
+				"props": {
+					"gap": "2extra-small"
+				}
+			},
+			{
+				"name": "extra-small",
+				"props": {
+					"gap": "extra-small"
+				}
+			},
+			{
+				"name": "(Def) small",
+				"props": {
+					"gap": "small"
+				}
+			},
+			{
+				"name": "medium",
+				"props": {
+					"gap": "medium"
+				}
+			},
+			{
+				"name": "large",
+				"props": {
+					"gap": "large"
+				}
+			},
+			{
+				"name": "extra-large",
+				"props": {
+					"gap": "extra-large"
+				}
+			},
+			{
+				"name": "2extra-large",
+				"props": {
+					"gap": "2extra-large"
+				}
+			},
+			{
+				"name": "3extra-large",
+				"props": {
+					"gap": "3extra-large"
+				}
+			}
+		]
+	},
+	{
+		"name": "Direction",
+		"children": [
+			{
+				"name": "span",
+				"content": "Content 1",
+				"native": true
+			},
+			{
+				"name": "span",
+				"content": "Content 2",
+				"native": true
+			},
+			{
+				"name": "span",
+				"content": "Content 3",
+				"native": true
+			}
+		],
+		"examples": [
+			{
+				"name": "(Def) Column",
+				"props": {}
+			},
+			{
+				"name": "Row",
+				"style": {
+					"height": "100px"
+				},
+				"props": {
+					"direction": "row"
+				}
+			}
+		]
+	},
+	{
+		"name": "Wrap",
+		"children": [
+			{
+				"name": "span",
+				"content": "Content 1",
+				"native": true
+			},
+			{
+				"name": "span",
+				"content": "Content 2",
+				"native": true
+			},
+			{
+				"name": "span",
+				"content": "Content 3",
+				"native": true
+			}
+		],
+		"examples": [
+			{
+				"name": "(Def) No Wrap: Column",
+				"style": {
+					"width": "160px",
+					"height": "88px"
+				},
+				"props": {}
+			},
+			{
+				"name": "No Wrap: Row",
+				"style": {
+					"width": "160px",
+					"height": "88px"
+				},
+				"props": {
+					"direction": "row"
+				}
+			},
+			{
+				"name": "Wrap: Column",
+				"style": {
+					"width": "160px",
+					"height": "88px"
+				},
+				"props": {
+					"wrap": true
+				}
+			},
+			{
+				"name": "Wrap: Row",
+				"style": {
+					"width": "160px",
+					"height": "88px"
+				},
+				"props": {
+					"direction": "row",
+					"wrap": true
+				}
+			}
+		]
+	},
+	{
+		"name": "Alignment Column",
+		"children": [
+			{
+				"name": "span",
+				"content": "Content 1",
+				"native": true
+			},
+			{
+				"name": "span",
+				"content": "Content 2",
+				"native": true
+			},
+			{
+				"name": "span",
+				"content": "Content 3",
+				"native": true
+			}
+		],
+		"examples": [
+			{
+				"name": "(Def) Start",
+				"style": {
+					"width": "200px"
+				},
+				"props": {
+					"alignment": "start"
+				}
+			},
+			{
+				"name": "Center",
+				"style": {
+					"width": "200px"
+				},
+				"props": {
+					"alignment": "center"
+				}
+			},
+			{
+				"name": "End",
+				"style": {
+					"width": "200px"
+				},
+				"props": {
+					"alignment": "end"
+				}
+			},
+			{
+				"name": "Stretch",
+				"style": {
+					"width": "200px"
+				},
+				"props": {
+					"alignment": "stretch"
+				}
+			}
+		]
+	},
+	{
+		"name": "Alignment Row",
+		"children": [
+			{
+				"name": "span",
+				"content": "Content 1",
+				"native": true
+			},
+			{
+				"name": "span",
+				"content": "Content 2",
+				"native": true
+			},
+			{
+				"name": "span",
+				"content": "Content 3",
+				"native": true
+			}
+		],
+		"examples": [
+			{
+				"name": "(Def) Start",
+				"style": {
+					"height": "100px"
+				},
+				"props": {
+					"alignment": "start",
+					"direction": "row"
+				}
+			},
+			{
+				"name": "Center",
+				"style": {
+					"height": "100px"
+				},
+				"props": {
+					"alignment": "center",
+					"direction": "row"
+				}
+			},
+			{
+				"name": "End",
+				"style": {
+					"height": "100px"
+				},
+				"props": {
+					"alignment": "end",
+					"direction": "row"
+				}
+			},
+			{
+				"name": "Stretch",
+				"style": {
+					"height": "100px"
+				},
+				"props": {
+					"alignment": "stretch",
+					"direction": "row"
+				}
+			}
+		]
+	},
+	{
+		"name": "Justify Content Column",
+		"children": [
+			{
+				"name": "span",
+				"content": "Content 1",
+				"native": true
+			},
+			{
+				"name": "span",
+				"content": "Content 2",
+				"native": true
+			},
+			{
+				"name": "span",
+				"content": "Content 3",
+				"native": true
+			}
+		],
+		"examples": [
+			{
+				"name": "(Def) Start",
+				"style": {
+					"width": "200px",
+					"height": "200px"
+				},
+				"props": {
+					"justifyContent": "start"
+				}
+			},
+			{
+				"name": "Center",
+				"style": {
+					"width": "200px",
+					"height": "200px"
+				},
+				"props": {
+					"justifyContent": "center"
+				}
+			},
+			{
+				"name": "End",
+				"style": {
+					"width": "200px",
+					"height": "200px"
+				},
+				"props": {
+					"justifyContent": "end"
+				}
+			},
+			{
+				"name": "Space-Between",
+				"style": {
+					"width": "200px",
+					"height": "200px"
+				},
+				"props": {
+					"justifyContent": "space-between"
+				}
+			}
+		]
+	},
+	{
+		"name": "Justify Content Row",
+		"children": [
+			{
+				"name": "span",
+				"content": "Content 1",
+				"native": true
+			},
+			{
+				"name": "span",
+				"content": "Content 2",
+				"native": true
+			},
+			{
+				"name": "span",
+				"content": "Content 3",
+				"native": true
+			}
+		],
+		"examples": [
+			{
+				"name": "(Def) Start",
+				"style": {
+					"width": "300px"
+				},
+				"props": {
+					"justifyContent": "start",
+					"direction": "row"
+				}
+			},
+			{
+				"name": "Center",
+				"style": {
+					"width": "300px"
+				},
+				"props": {
+					"justifyContent": "center",
+					"direction": "row"
+				}
+			},
+			{
+				"name": "End",
+				"style": {
+					"width": "300px"
+				},
+				"props": {
+					"justifyContent": "end",
+					"direction": "row"
+				}
+			},
+			{
+				"name": "Space-Between",
+				"style": {
+					"width": "300px"
+				},
+				"props": {
+					"justifyContent": "space-between",
+					"direction": "row"
+				}
+			}
+		]
+	}
+]
