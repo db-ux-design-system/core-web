@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
-import DBStack from '../src/components/stack/stack';
 import {
+	DBStack,
 	DBSwitch,
 	DBTabPanel,
 	DBTabs,
