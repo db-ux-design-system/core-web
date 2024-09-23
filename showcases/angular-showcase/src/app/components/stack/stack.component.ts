@@ -4,12 +4,12 @@ import defaultComponentVariants from '../../../../../shared/stack.json';
 import { DBStack } from '../../../../../../output/angular/src/components/stack';
 import { DBInfotext } from '../../../../../../output/angular/src/components/infotext';
 import { DBDivider } from '../../../../../../output/angular/src/components/divider';
-import { DBBadge } from '../../../../../../output/angular/src/components/badge';
+import { DBTag } from '../../../../../../output/angular/src/components/tag';
 
 @Component({
 	selector: 'app-stack',
 	templateUrl: './stack.component.html',
-	imports: [DefaultComponent, DBStack, DBInfotext, DBDivider, DBBadge],
+	imports: [DefaultComponent, DBStack, DBInfotext, DBDivider, DBTag],
 	standalone: true
 })
 export class StackComponent {

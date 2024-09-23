@@ -1,6 +1,6 @@
 import {
 	DBStack,
-	DBBadge,
+	DBTag,
 	DBInfotext,
 	DBDivider
 } from '../../../../../output/react/src';
@@ -31,17 +31,17 @@ const getStack = ({
 			variant={variant}
 			direction={direction}
 			justifyContent={justifyContent}>
-			<DBBadge>
+			<DBTag>
 				<button>Content 1</button>
-			</DBBadge>
+			</DBTag>
 			{variant === 'divider' && <DBDivider />}
-			<DBBadge>
+			<DBTag>
 				<button>Content 2</button>
-			</DBBadge>
+			</DBTag>
 			{variant === 'divider' && <DBDivider />}
-			<DBBadge>
+			<DBTag>
 				<button>Content 3</button>
-			</DBBadge>
+			</DBTag>
 		</DBStack>
 	</DBStack>
 );
