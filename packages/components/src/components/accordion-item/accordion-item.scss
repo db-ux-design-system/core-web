@@ -11,7 +11,6 @@ $db-accordion-item-border-radius: variables.$db-border-radius-sm;
 	position: relative;
 	inline-size: 100%;
 	border-radius: $db-accordion-item-border-radius;
-	list-style: none;
 
 	summary + div {
 		padding: variables.$db-spacing-fixed-md;
