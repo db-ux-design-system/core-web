@@ -185,15 +185,7 @@ export const getComponents = (): Component[] => [
 	},
 
 	{
-		name: 'tag',
-		overwrites: {
-			angular: [
-				{
-					from: /this.ref.nativeElement/g,
-					to: 'this.ref?.nativeElement'
-				}
-			]
-		}
+		name: 'tag'
 	},
 	{
 		name: 'checkbox',

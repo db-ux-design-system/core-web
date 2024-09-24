@@ -462,10 +462,6 @@ export type ActiveProps = {
 	active?: boolean;
 };
 
-export type ItemClickState = {
-	clickedId: string;
-	handleItemClick: (id: string) => void;
-};
 
 export type InputEvent<T> = Event;
 export type InputEventProps<T> = {

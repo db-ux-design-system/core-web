@@ -3,5 +3,6 @@ import { test } from '@playwright/test';
 import { getA11yTest } from '../default.ts';
 
 test.describe('DBAccordionItem', () => {
-	getA11yTest({ path: '04/accordion-item' });
+	// Showcase uses <li> outside of <ul> in this case
+	getA11yTest({ path: '04/accordion-item', axeDisableRules: ['listitem'] });
 });

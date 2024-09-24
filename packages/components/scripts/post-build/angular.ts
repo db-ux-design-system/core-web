@@ -249,6 +249,10 @@ export default (tmp?: boolean) => {
 				to:
 					'@ViewChild("ref") ref!: ElementRef | undefined;' +
 					getAttributePassing(component.name)
+			},
+			{
+				from: /this.ref.nativeElement/g,
+				to: 'this.ref?.nativeElement'
 			}
 		];
 
