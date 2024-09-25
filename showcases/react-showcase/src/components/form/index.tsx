@@ -16,7 +16,8 @@ import {
 	DBTabItem,
 	DBTag,
 	DBTextarea,
-	DBTooltip
+	DBTooltip,
+	DBLink
 } from '../../../../../output/react/src';
 import type {
 	ChangeEvent,
@@ -272,6 +273,28 @@ const FormComponent = () => {
 				</dl>
 
 				<DBDivider />
+
+				<p>
+					Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
+					diam nonumy eirmod tempor{' '}
+					<DBLink variant="inline" href="#">
+						invidunt
+					</DBLink>{' '}
+					ut labore et dolore magna aliquyam erat, sed diam voluptua.
+					At vero eos et accusam et justo duo dolores et ea rebum.
+					Stet clita kasd gubergren, no sea takimata sanctus est Lorem
+					ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur
+					sadipscing elitr, sed diam nonumy eirmod tempor{' '}
+					<DBLink variant="inline" href="#">
+						labore et dolore magna aliquyam erat, sed diam voluptua.
+						At vero eos et accusam et justo duo dolores et ea rebum.
+						Stet
+					</DBLink>{' '}
+					ut labore et dolore magna aliquyam erat, sed diam voluptua.
+					At vero eos et accusam et justo duo dolores et ea rebum.
+					Stet clita kasd gubergren, no sea takimata sanctus est Lorem
+					ipsum dolor sit amet.
+				</p>
 
 				<DBButton
 					onClick={() => {
