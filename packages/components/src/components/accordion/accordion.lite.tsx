@@ -24,6 +24,7 @@ export default function DBAccordion(props: DBAccordionProps) {
 		_id: DEFAULT_ID,
 		_name: '',
 		initialized: false,
+		_initOpenIndexDone: false,
 		convertItems(items: unknown[] | string | undefined) {
 			try {
 				if (typeof items === 'string') {
@@ -42,6 +43,7 @@ export default function DBAccordion(props: DBAccordionProps) {
 	onMount(() => {
 		state._id = props.id || 'accordion-' + uuid();
 		state.initialized = true;
+		state._initOpenIndexDone = true;
 	});
 	// jscpd:ignore-end
 
@@ -83,6 +85,29 @@ export default function DBAccordion(props: DBAccordionProps) {
 			}
 		}
 	}, [ref, state._name]);
+
+	onUpdate(() => {
+		if (ref && state._initOpenIndexDone) {
+			if (props.initOpenIndex?.length > 0) {
+				const childDetails = ref.getElementsByTagName('details');
+				if (childDetails) {
+					const initOpenIndex =
+						props.behaviour === 'single' &&
+						props.initOpenIndex.length > 1
+							? [props.initOpenIndex[0]] // use only one index for behaviour=single
+							: props.initOpenIndex;
+					Array.from<HTMLDetailsElement>(childDetails).forEach(
+						(details: HTMLDetailsElement, index: number) => {
+							if (initOpenIndex.includes(index)) {
+								details.open = true;
+							}
+						}
+					);
+				}
+			}
+			state._initOpenIndexDone = false;
+		}
+	}, [ref, state._initOpenIndexDone, props.initOpenIndex]);
 
 	return (
 		<ul
