@@ -88,7 +88,7 @@ export default function DBAccordion(props: DBAccordionProps) {
 
 	onUpdate(() => {
 		if (ref && state._initOpenIndexDone) {
-			if (props.initOpenIndex?.length > 0) {
+			if (props?.initOpenIndex && props.initOpenIndex?.length > 0) {
 				const childDetails = ref.getElementsByTagName('details');
 				if (childDetails) {
 					const initOpenIndex =
