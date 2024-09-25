@@ -22,17 +22,26 @@
 			{
 				"name": "Functional",
 				"density": "functional",
-				"props": {}
+				"props": {},
+				"style": {
+					"width": "200px"
+				}
 			},
 			{
 				"name": "(Default) Regular",
 				"density": "regular",
-				"props": {}
+				"props": {},
+				"style": {
+					"width": "200px"
+				}
 			},
 			{
 				"name": "Expressive",
 				"density": "expressive",
-				"props": {}
+				"props": {},
+				"style": {
+					"width": "200px"
+				}
 			}
 		]
 	},
@@ -42,6 +51,9 @@
 			{
 				"name": "(Def) Simple",
 				"props": {},
+				"style": {
+					"width": "200px"
+				},
 				"children": [
 					{
 						"name": "span",
@@ -64,6 +76,9 @@
 				"name": "Divider",
 				"props": {
 					"variant": "divider"
+				},
+				"style": {
+					"width": "200px"
 				},
 				"children": [
 					{
@@ -117,60 +132,90 @@
 				"name": "none",
 				"props": {
 					"gap": "none"
+				},
+				"style": {
+					"width": "200px"
 				}
 			},
 			{
 				"name": "3extra-small",
 				"props": {
 					"gap": "3extra-small"
+				},
+				"style": {
+					"width": "200px"
 				}
 			},
 			{
 				"name": "2extra-small",
 				"props": {
 					"gap": "2extra-small"
+				},
+				"style": {
+					"width": "200px"
 				}
 			},
 			{
 				"name": "extra-small",
 				"props": {
 					"gap": "extra-small"
+				},
+				"style": {
+					"width": "200px"
 				}
 			},
 			{
 				"name": "(Def) small",
 				"props": {
 					"gap": "small"
+				},
+				"style": {
+					"width": "200px"
 				}
 			},
 			{
 				"name": "medium",
 				"props": {
 					"gap": "medium"
+				},
+				"style": {
+					"width": "200px"
 				}
 			},
 			{
 				"name": "large",
 				"props": {
 					"gap": "large"
+				},
+				"style": {
+					"width": "200px"
 				}
 			},
 			{
 				"name": "extra-large",
 				"props": {
 					"gap": "extra-large"
+				},
+				"style": {
+					"width": "200px"
 				}
 			},
 			{
 				"name": "2extra-large",
 				"props": {
 					"gap": "2extra-large"
+				},
+				"style": {
+					"width": "200px"
 				}
 			},
 			{
 				"name": "3extra-large",
 				"props": {
 					"gap": "3extra-large"
+				},
+				"style": {
+					"width": "200px"
 				}
 			}
 		]
@@ -197,7 +242,10 @@
 		"examples": [
 			{
 				"name": "(Def) Column",
-				"props": {}
+				"props": {},
+				"style": {
+					"width": "200px"
+				}
 			},
 			{
 				"name": "Row",
@@ -252,7 +300,7 @@
 				"name": "Wrap: Column",
 				"style": {
 					"width": "160px",
-					"height": "88px"
+					"height": "120px"
 				},
 				"props": {
 					"wrap": true
@@ -261,8 +309,8 @@
 			{
 				"name": "Wrap: Row",
 				"style": {
-					"width": "160px",
-					"height": "88px"
+					"width": "180px",
+					"height": "100px"
 				},
 				"props": {
 					"direction": "row",
@@ -292,7 +340,16 @@
 		],
 		"examples": [
 			{
-				"name": "(Def) Start",
+				"name": "(Def) Stretch",
+				"style": {
+					"width": "200px"
+				},
+				"props": {
+					"alignment": "stretch"
+				}
+			},
+			{
+				"name": "Start",
 				"style": {
 					"width": "200px"
 				},
@@ -316,15 +373,6 @@
 				},
 				"props": {
 					"alignment": "end"
-				}
-			},
-			{
-				"name": "Stretch",
-				"style": {
-					"width": "200px"
-				},
-				"props": {
-					"alignment": "stretch"
 				}
 			}
 		]
@@ -350,7 +398,17 @@
 		],
 		"examples": [
 			{
-				"name": "(Def) Start",
+				"name": "(Def) Stretch",
+				"style": {
+					"height": "100px"
+				},
+				"props": {
+					"alignment": "stretch",
+					"direction": "row"
+				}
+			},
+			{
+				"name": "Start",
 				"style": {
 					"height": "100px"
 				},
@@ -376,16 +434,6 @@
 				},
 				"props": {
 					"alignment": "end",
-					"direction": "row"
-				}
-			},
-			{
-				"name": "Stretch",
-				"style": {
-					"height": "100px"
-				},
-				"props": {
-					"alignment": "stretch",
 					"direction": "row"
 				}
 			}

@@ -27,39 +27,9 @@ $stack-gaps: (
 	@return $result;
 }
 
-@mixin sub-nodes {
-	// Workaround for angular
-	> :is(#{arr-join(custom-elements.$custom-elements)}) > *,
-	> * {
-		@content;
-	}
-}
-
-%stretch-column {
-	align-items: stretch;
-
-	@include sub-nodes {
-		inline-size: 100%;
-	}
-}
-
-%stretch-row {
-	align-items: stretch;
-
-	@include sub-nodes {
-		block-size: 100%;
-	}
-}
-
 @mixin get-stack-alignments() {
 	&[data-alignment="stretch"] {
-		&[data-direction="row"] {
-			@extend %stretch-row;
-		}
-
-		&:is([data-direction="column"], :not([data-direction])) {
-			@extend %stretch-column;
-		}
+		align-items: stretch;
 	}
 
 	&[data-alignment="start"] {

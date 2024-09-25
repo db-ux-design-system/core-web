@@ -1,6 +1,5 @@
 import {
 	DBStack,
-	DBTag,
 	DBInfotext,
 	DBDivider
 } from '../../../../../output/react/src';
@@ -24,24 +23,28 @@ const getStack = ({
 			{children}
 		</DBInfotext>
 		<DBStack
-			className={(justifyContent ?? alignment) ? 'stack-container' : ''}
+			className={
+				(justifyContent ?? alignment)
+					? 'stack-container stack-show-alignment'
+					: 'stack-container'
+			}
 			gap={gap}
 			alignment={alignment}
 			wrap={wrap}
 			variant={variant}
 			direction={direction}
 			justifyContent={justifyContent}>
-			<DBTag>
-				<button>Content 1</button>
-			</DBTag>
+			<a href="#" className="dummy-component">
+				Content 1
+			</a>
 			{variant === 'divider' && <DBDivider />}
-			<DBTag>
-				<button>Content 2</button>
-			</DBTag>
+			<a href="#" className="dummy-component">
+				Content 2
+			</a>
 			{variant === 'divider' && <DBDivider />}
-			<DBTag>
-				<button>Content 3</button>
-			</DBTag>
+			<a href="#" className="dummy-component">
+				Content 3
+			</a>
 		</DBStack>
 	</DBStack>
 );

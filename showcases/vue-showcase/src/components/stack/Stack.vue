@@ -4,7 +4,6 @@ import defaultComponentVariants from "../../../../shared/stack.json";
 import {
 	DBStack,
 	DBInfotext,
-	DBTag,
 	DBDivider
 } from "../../../../../output/vue/src";
 </script>
@@ -21,8 +20,8 @@ import {
 				<DBStack
 					:className="
 						(exampleProps.justifyContent ?? exampleProps.alignment)
-							? 'stack-container'
-							: ''
+							? 'stack-container stack-show-alignment'
+							: 'stack-container'
 					"
 					:gap="exampleProps.gap"
 					:alignment="exampleProps.alignment"
@@ -31,15 +30,15 @@ import {
 					:direction="exampleProps.direction"
 					:justifyContent="exampleProps.justifyContent"
 				>
-					<DBTag><button>Content 1</button></DBTag>
+					<a href="#" className="dummy-component"> Content 1 </a>
 					<template v-if="exampleProps.variant === 'divider'"
 						><DBDivider />
 					</template>
-					<DBTag><button>Content 2</button></DBTag>
+					<a href="#" className="dummy-component"> Content 2 </a>
 					<template v-if="exampleProps.variant === 'divider'"
 						><DBDivider />
 					</template>
-					<DBTag><button>Content 3</button></DBTag>
+					<a href="#" className="dummy-component"> Content 3 </a>
 				</DBStack>
 			</DBStack>
 		</template>

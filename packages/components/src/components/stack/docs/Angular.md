@@ -26,23 +26,3 @@ import { DBStack } from '@db-ui/ngx-components';
 	<span>Test 3</span>
 </db-stack>
 ```
-
-### Issues with `data-alignment="stretch"`
-
-There might be an issue with data-alignment="stretch" caused by the custom-elements inside your DOM.
-If you have components like `<app-my-component>`, `<app-my-table>` you need to add this to your global `.css` or `.scss` file:
-
-```css
-.db-stack[data-alignment="stretch"] {
-	&[data-direction="row"] {
-		& > :is(app-my-component, app-my-table) > * {
-			block-size: 100%;
-		}
-	}
-	&:is([data-direction="column"], :not([data-direction])) {
-		& > :is(app-my-component, app-my-table) > * {
-			inline-size: 100%;
-		}
-	}
-}
-```

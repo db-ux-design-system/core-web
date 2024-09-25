@@ -116,7 +116,7 @@ db-card:is(.variants-card) > .db-card {
 	display: flex;
 	gap: var(--db-spacing-fixed-sm);
 	padding: var(--db-spacing-fixed-xs) var(--db-spacing-fixed-sm);
-	background-color: var(--db-base-bg-basic-level-2);
+	background-color: var(--db-adaptive-bg-basic-level-2-default);
 }
 
 .badge-inline-container .db-badge {
@@ -146,6 +146,27 @@ main .db-header {
 }
 
 .stack-container {
+	padding: var(--db-spacing-fixed-xs);
+}
+
+.stack-show-alignment {
 	border: var(--db-border-height-3xs) dashed
 		var(--db-adaptive-on-bg-basic-emphasis-60-default);
+}
+
+.dummy-component {
+	border-radius: var(--db-border-radius-md);
+	border: var(--db-border-height-3xs) solid
+		var(--db-adaptive-on-bg-basic-emphasis-60-default);
+	background-color: var(--db-adaptive-bg-basic-level-3-default);
+	color: var(--db-adaptive-on-bg-basic-emphasis-80-default);
+	display: flex;
+	padding: var(--db-spacing-fixed-3xs) var(--db-spacing-fixed-xs);
+	justify-content: center;
+	align-items: center;
+	font-size: var(--db-type-body-font-size-2xs);
+	font-weight: 700;
+	line-height: var(--db-type-body-line-height-2xs);
+	text-decoration: none;
+	text-wrap: nowrap;
 }
