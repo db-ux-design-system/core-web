@@ -17,11 +17,6 @@
 		@extend %db-link-height;
 	}
 
-	&[data-variant="inline"] {
-		white-space: inherit;
-		display: inline;
-	}
-
 	&:not([data-variant="inline"]) {
 		&[data-content="internal"] {
 			@include icons.set-icon("arrow_right", "after");
