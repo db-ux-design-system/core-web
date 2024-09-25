@@ -36,7 +36,7 @@ const flakyExpressions: Record<string, string> = {
 	'pop-up': 'pop up',
 	'checked. checked': 'checked',
 	'selected. selected': 'selected',
-	'expanded. expanded': 'selected'
+	'expanded. expanded': 'expanded'
 };
 
 const cleanSpeakInstructions = (phraseLog: string[]): string[] =>
