@@ -52,7 +52,7 @@
     "replace-in-file": "^8.2.0",
     "sass": "1.77.4",
     "tsx": "^4.19.1",
-    "vitest": "^2.0.5"
+    "vitest": "^2.1.1"
   },
   "publishConfig": {
     "registry": "https://registry.npmjs.org/",
