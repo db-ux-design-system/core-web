@@ -160,16 +160,6 @@
 				}
 			},
 			{
-				"name": "Long label",
-				"style": {
-					"width": "100px"
-				},
-				"props": {
-					"checked": true,
-					"name": "Long label"
-				}
-			},
-			{
 				"name": "No Label",
 				"props": {
 					"name": "Content",

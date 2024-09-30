@@ -12,7 +12,6 @@
 	@include form-components.set-default-check-element(check);
 
 	input {
-		position: relative;
 		border-radius: variables.$db-border-radius-2xs;
 
 		&::before {
