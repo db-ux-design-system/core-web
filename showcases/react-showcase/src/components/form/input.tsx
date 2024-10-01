@@ -12,7 +12,7 @@ const FormInputs = () => {
 				label="Controlled"
 				placeholder="Placeholder"
 				message="Description"
-				icon="user"
+				icon="person"
 				name="input-name"
 				value={controlled}
 				onChange={(event) => {
@@ -23,12 +23,19 @@ const FormInputs = () => {
 				label="Uncontrolled"
 				placeholder="Placeholder"
 				message="Description"
-				icon="user"
+				icon="person"
 				name="input-name"
 				defaultValue={uncontrolled}
 				onChange={(event) => {
 					setUncontrolled(event.target.value);
 				}}
+			/>
+			<DBInput
+				label="Test label"
+				variant="floating"
+				invalidMessage="Test message"
+				validMessage=""
+				required
 			/>
 		</FormWrapper>
 	);

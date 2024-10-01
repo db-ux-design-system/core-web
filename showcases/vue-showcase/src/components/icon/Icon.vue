@@ -12,7 +12,7 @@ import { DBIcon, DBInfotext } from "../../../../../output/vue/src";
 			<DBInfotext icon="none" size="small" semantic="informational">
 				{{ exampleName }}</DBInfotext
 			>
-			<DBIcon icon="user">
+			<DBIcon icon="person">
 				{{ exampleName }}
 			</DBIcon>
 		</template>

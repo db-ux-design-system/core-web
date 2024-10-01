@@ -13,7 +13,7 @@ const vModel = ref("test2");
 			label="Plain"
 			placeholder="Placeholder"
 			message="Description"
-			icon="user"
+			icon="person"
 			name="input-name"
 			:value="plain"
 			@change="plain = $event.target.value"
@@ -22,7 +22,7 @@ const vModel = ref("test2");
 			label="VModel"
 			placeholder="Placeholder"
 			message="Description"
-			icon="user"
+			icon="person"
 			name="input-name"
 			v-model:value="vModel"
 		/>

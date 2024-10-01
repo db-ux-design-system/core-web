@@ -42,7 +42,7 @@ const App = () => (
 		}
 		secondaryAction={
 			<>
-				<DBButton icon="user" variant="ghost" noText>
+				<DBButton icon="person" variant="ghost" noText>
 					Profile
 				</DBButton>
 				<DBButton icon="alert" variant="ghost" noText>
