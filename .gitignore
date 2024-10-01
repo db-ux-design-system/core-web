@@ -58,3 +58,4 @@ showcases/patternhub/public/iframe-resizer/*
 /packages/foundations/assets/icons/functional/fonts/**/*.svg
 /packages/foundations/assets/icons/functional/fonts/**/*.ttf
 /packages/foundations/assets/icons/functional/fonts/**/*.woff
+/packages/foundations/assets/icons/functional/fonts/**/*.json
