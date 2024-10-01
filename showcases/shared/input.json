@@ -161,22 +161,22 @@
 				"name": "Text - Leading Icon",
 				"props": {
 					"label": "Label",
-					"icon": "x_placeholder"
+					"icon": "db"
 				}
 			},
 			{
 				"name": "Text - Leading Icon - Trailing Icon",
 				"props": {
 					"label": "Label",
-					"icon": "x_placeholder",
-					"iconAfter": "x_placeholder"
+					"icon": "db",
+					"iconAfter": "db"
 				}
 			},
 			{
 				"name": "Text - Trailing Icon",
 				"props": {
 					"label": "Label",
-					"iconAfter": "x_placeholder"
+					"iconAfter": "db"
 				}
 			}
 		]
