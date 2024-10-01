@@ -12,7 +12,7 @@
 	@include form-components.set-default-check-element(check);
 
 	input {
-		position: relative;
+		display: flex;
 		border-radius: variables.$db-border-radius-2xs;
 
 		&::before {
@@ -21,6 +21,7 @@
 			position: absolute;
 			inset-inline: 0;
 			inset-block: 0;
+			align-self: center;
 		}
 
 		&:checked {
