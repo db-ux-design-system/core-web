@@ -72,7 +72,7 @@ export type DBInputProps = DBInputDefaultProps &
 
 export type DBInputDefaultState = {
 	_dataListId?: string;
-	getDataList?: (_list?: string[] | ValueLabelType[]) => ValueLabelType[];
+	getDataList: (_list?: string[] | ValueLabelType[]) => ValueLabelType[];
 };
 
 export type DBInputState = DBInputDefaultState &
