@@ -163,7 +163,10 @@ export const getComponents = (): Component[] => [
 				{ from: 'selected={option.selected}', to: '' },
 				{ from: 'selected={optgroupOption.selected}', to: '' }
 			],
-			stencil: [{ from: 'HTMLElement', to: 'HTMLSelectElement' }]
+			stencil: [
+				{ from: 'HTMLElement', to: 'HTMLSelectElement' },
+				{ from: 'value={', to: '/* @ts-ignore */\nvalue={' }
+			]
 		},
 		config: {
 			vue: {
@@ -181,22 +184,7 @@ export const getComponents = (): Component[] => [
 		name: 'drawer',
 		overwrites: {
 			webComponents: [{ from: '__prev.find', to: '!!__prev.find' }],
-			stencil: [
-				{
-					from: /if \(dialogContainerRef/g,
-					to: 'if (this.dialogContainerRef'
-				},
-				{
-					from: /dialogContainerRef\./g,
-					to: 'this.dialogContainerRef.'
-				},
-				{
-					from: 'ref!: HTMLElement;',
-					to:
-						'ref!: HTMLDialogElement;\n\t' +
-						'  private dialogContainerRef!: HTMLElement;'
-				}
-			]
+			stencil: [{ from: /onClose/g, to: 'close' }]
 		},
 		config: {
 			react: {

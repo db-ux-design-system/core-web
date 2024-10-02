@@ -47,8 +47,7 @@
 		overflow-y: scroll;
 
 		// we don't have icons in textarea so we can overwrite it here
-		padding-block: variables.$db-spacing-fixed-xs
-			variables.$db-spacing-fixed-xs;
+		padding-block: variables.$db-spacing-fixed-xs variables.$db-spacing-fixed-xs;
 	}
 
 	&[data-variant="floating"] {

@@ -1,7 +1,6 @@
 import {
 	onMount,
 	onUpdate,
-	Show,
 	useMetadata,
 	useRef,
 	useStore
@@ -10,9 +9,7 @@ import { DBBadgeProps, DBBadgeState } from './model';
 import { cls } from '../../utils';
 import { DEFAULT_LABEL } from '../../shared/constants';
 
-useMetadata({
-	isAttachedToShadowDom: true
-});
+useMetadata({});
 
 export default function DBBadge(props: DBBadgeProps) {
 	const ref = useRef<HTMLSpanElement>(null);

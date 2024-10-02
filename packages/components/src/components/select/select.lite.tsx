@@ -28,7 +28,6 @@ import {
 import { handleFrameworkEvent } from '../../utils/form-components';
 
 useMetadata({
-	isAttachedToShadowDom: true,
 	angular: {
 		nativeAttributes: ['value']
 	}

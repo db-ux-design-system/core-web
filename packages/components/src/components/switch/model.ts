@@ -1,18 +1,18 @@
 import {
 	ChangeEventProps,
 	ChangeEventState,
+	EmphasisProps,
 	FocusEventProps,
 	FocusEventState,
+	FormCheckProps,
 	FormProps,
 	FormState,
 	GlobalProps,
 	GlobalState,
-	FormCheckProps,
-	InitializedState,
-	EmphasisProps,
-	SizeProps,
+	IconAfterProps,
 	IconProps,
-	IconAfterProps
+	InitializedState,
+	SizeProps
 } from '../../shared/model';
 
 export type DBSwitchDefaultProps = {

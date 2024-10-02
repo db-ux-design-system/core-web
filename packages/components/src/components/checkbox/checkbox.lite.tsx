@@ -19,9 +19,7 @@ import { ChangeEvent, InteractionEvent } from '../../shared/model';
 import { handleFrameworkEvent } from '../../utils/form-components';
 import DBInfotext from '../infotext/infotext.lite';
 
-useMetadata({
-	isAttachedToShadowDom: true
-});
+useMetadata({});
 
 export default function DBCheckbox(props: DBCheckboxProps) {
 	const ref = useRef<HTMLInputElement>(null);

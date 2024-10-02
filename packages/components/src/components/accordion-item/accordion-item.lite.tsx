@@ -11,9 +11,7 @@ import { cls, uuid } from '../../utils';
 import { ClickEvent } from '../../shared/model';
 import { DEFAULT_ID } from '../../shared/constants';
 
-useMetadata({
-	isAttachedToShadowDom: true
-});
+useMetadata({});
 
 export default function DBAccordionItem(props: DBAccordionItemProps) {
 	const ref = useRef<HTMLDetailsElement>(null);

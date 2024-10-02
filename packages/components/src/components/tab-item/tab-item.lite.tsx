@@ -11,9 +11,7 @@ import { cls } from '../../utils';
 import { ChangeEvent } from '../../shared/model';
 import { handleFrameworkEvent } from '../../utils/form-components';
 
-useMetadata({
-	isAttachedToShadowDom: true
-});
+useMetadata({});
 
 export default function DBTabItem(props: DBTabItemProps) {
 	const ref = useRef<HTMLInputElement>(null);

@@ -36,8 +36,9 @@ import {
 				FormsModule,
 				RouterOutlet,
 				NavItemComponent,
+				DBPage,
 				DBHeader,
-				DBSelect,
+				DBNavigation,
 				SecondaryActionDirective,
 				NavigationDirective,
 				MetaNavigationDirective,
@@ -113,4 +114,5 @@ export class AppComponent implements OnInit {
 	toggleDrawer = (open: boolean) => {
 		this.drawerOpen = open;
 	};
+	protected readonly environment = environment;
 }

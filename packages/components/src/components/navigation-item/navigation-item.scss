@@ -164,12 +164,11 @@
 	overflow-y: auto;
 	// additional #{$db-spacing-fixed-3xs} for border
 	inset-block: calc(
-			#{component.$min-mobile-header-height} + #{variables.$db-spacing-fixed-3xs}
-		)
-		calc(
-			#{variables.$db-sizing-md} + #{variables.$db-spacing-fixed-xs} * 2 +
-				#{variables.$db-spacing-fixed-3xs}
-		);
+		#{component.$min-mobile-header-height} + #{variables.$db-spacing-fixed-3xs}
+	) calc(
+		#{variables.$db-sizing-md} + #{variables.$db-spacing-fixed-xs} * 2 +
+		#{variables.$db-spacing-fixed-3xs}
+	);
 }
 
 .db-sub-navigation {
@@ -264,8 +263,8 @@
 				background: transparent;
 				transform: translateX(-100%);
 				clip-path: var(
-					--db-navigation-item-clip-path,
-					polygon(10% 30px, 100% 0, 100% 100%)
+						--db-navigation-item-clip-path,
+						polygon(10% 30px, 100% 0, 100% 100%)
 				);
 			}
 

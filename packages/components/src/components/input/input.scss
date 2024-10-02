@@ -117,8 +117,7 @@ $icon-padding: calc(
 
 			color: colors.$db-adaptive-on-bg-basic-emphasis-100-default;
 			block-size: variables.$db-sizing-sm;
-			padding: variables.$db-spacing-fixed-3xs
-				variables.$db-spacing-fixed-sm;
+			padding: variables.$db-spacing-fixed-3xs variables.$db-spacing-fixed-sm;
 			margin-inline-end: variables.$db-spacing-fixed-sm;
 
 			&:hover,

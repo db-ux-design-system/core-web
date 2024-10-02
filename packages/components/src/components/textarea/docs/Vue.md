@@ -1,6 +1,7 @@
 ## Vue
 
-For general installation and configuration look at the [v-components](https://www.npmjs.com/package/@db-ui/v-components) package.
+For general installation and configuration look at the [v-components](https://www.npmjs.com/package/@db-ui/v-components)
+package.
 
 ### General
 

@@ -5,7 +5,6 @@ import {
 	GlobalState,
 	IconProps,
 	SizeProps,
-	SizeType,
 	WidthProps
 } from '../../shared/model';
 

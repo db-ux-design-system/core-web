@@ -4,7 +4,6 @@ import AxeBuilder from '@axe-core/playwright';
 import { DBDrawer } from './index';
 // @ts-ignore - vue can only find it with .ts as file ending
 import { TESTING_VIEWPORTS } from '../../shared/constants.ts';
-import { DBButton } from '../button';
 
 const comp: any = <DBDrawer open={true}>Test</DBDrawer>;
 

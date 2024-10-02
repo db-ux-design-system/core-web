@@ -30,16 +30,7 @@ import { environment } from '../../../environments/environment';
 	selector: 'app-form',
 	templateUrl: './form.component.html',
 	imports: environment.webComponents
-		? [
-				FormsModule,
-				ReactiveFormsModule,
-				DefaultComponent,
-				DBInput,
-				DBTextarea,
-				DBSelect,
-				DBRadio,
-				DBCheckbox
-			] // TODO: Remove DBInput, DBTextarea, DBSelect, DBRadio, DBCheckbox after stencil component works
+		? [FormsModule, ReactiveFormsModule, DefaultComponent]
 		: [
 				FormsModule,
 				ReactiveFormsModule,

@@ -2,9 +2,7 @@ import { useMetadata, useRef, useStore } from '@builder.io/mitosis';
 import { DBInfotextProps, DBInfotextState } from './model';
 import { cls } from '../../utils';
 
-useMetadata({
-	isAttachedToShadowDom: true
-});
+useMetadata({});
 
 export default function DBInfotext(props: DBInfotextProps) {
 	const ref = useRef<HTMLSpanElement>(null);

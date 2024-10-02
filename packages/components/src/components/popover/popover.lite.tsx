@@ -9,9 +9,7 @@ import {
 import { DBPopoverProps, DBPopoverState } from './model';
 import { cls, handleDataOutside } from '../../utils';
 
-useMetadata({
-	isAttachedToShadowDom: true
-});
+useMetadata({});
 
 export default function DBPopover(props: DBPopoverProps) {
 	const ref = useRef<HTMLDivElement>(null);

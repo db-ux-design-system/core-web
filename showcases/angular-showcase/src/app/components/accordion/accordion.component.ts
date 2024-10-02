@@ -12,7 +12,7 @@ import { environment } from '../../../environments/environment';
 	selector: 'app-accordion',
 	templateUrl: './accordion.component.html',
 	imports: environment.webComponents
-		? [DefaultComponent, DBAccordion, DBAccordionItem] // TODO: Remove DBAccordion, DBAccordionItem after stencil component works
+		? [DefaultComponent]
 		: [DefaultComponent, DBInfotext, DBAccordion, DBAccordionItem],
 	standalone: true,
 	schemas: [CUSTOM_ELEMENTS_SCHEMA]

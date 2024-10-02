@@ -8,7 +8,7 @@ import { environment } from '../../../../environments/environment';
 	selector: 'app-selects',
 	standalone: true,
 	imports: environment.webComponents
-		? [WrapperComponent, DBSelect, FormsModule, ReactiveFormsModule] // TODO: Remove DBSelect after stencil component works
+		? [WrapperComponent, FormsModule, ReactiveFormsModule]
 		: [WrapperComponent, DBSelect, FormsModule, ReactiveFormsModule],
 	templateUrl: './selects.component.html',
 	schemas: [CUSTOM_ELEMENTS_SCHEMA]

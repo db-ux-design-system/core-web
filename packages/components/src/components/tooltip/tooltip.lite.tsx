@@ -10,9 +10,7 @@ import { cls, handleDataOutside, uuid } from '../../utils';
 import { ClickEvent } from '../../shared/model';
 import { DEFAULT_ID } from '../../shared/constants';
 
-useMetadata({
-	isAttachedToShadowDom: true
-});
+useMetadata({});
 
 export default function DBTooltip(props: DBTooltipProps) {
 	const ref = useRef<HTMLDivElement>(null);

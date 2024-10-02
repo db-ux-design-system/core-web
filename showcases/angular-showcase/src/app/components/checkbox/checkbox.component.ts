@@ -8,7 +8,7 @@ import { environment } from '../../../environments/environment';
 	selector: 'app-checkbox',
 	templateUrl: './checkbox.component.html',
 	imports: environment.webComponents
-		? [DefaultComponent, DBCheckbox] // TODO: Remove DBCheckbox after stencil component works
+		? [DefaultComponent]
 		: [DefaultComponent, DBCheckbox],
 	standalone: true,
 	schemas: [CUSTOM_ELEMENTS_SCHEMA]

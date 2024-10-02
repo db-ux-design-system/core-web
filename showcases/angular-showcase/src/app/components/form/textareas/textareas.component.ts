@@ -15,7 +15,7 @@ import { DefaultComponent } from '../../default.component';
 	selector: 'app-textareas',
 	standalone: true,
 	imports: environment.webComponents
-		? [WrapperComponent, DBTextarea, FormsModule, ReactiveFormsModule] // TODO: Remove DBTextarea after stencil component works
+		? [WrapperComponent, FormsModule, ReactiveFormsModule]
 		: [WrapperComponent, DBTextarea, FormsModule, ReactiveFormsModule],
 	templateUrl: './textareas.component.html',
 	schemas: [CUSTOM_ELEMENTS_SCHEMA]

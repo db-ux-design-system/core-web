@@ -10,9 +10,7 @@ import {
 import { DBPageProps, DBPageState } from './model';
 import { cls } from '../../utils';
 
-useMetadata({
-	isAttachedToShadowDom: true
-});
+useMetadata({});
 
 export default function DBPage(props: DBPageProps) {
 	const ref = useRef<HTMLDivElement>(null);

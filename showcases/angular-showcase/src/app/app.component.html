@@ -7,43 +7,48 @@
 	<db-page variant="fixed" documentOverflow="auto" [fadeIn]="true">
 		<db-header
 			header
-			slot="header"
 			[drawerOpen]="drawerOpen"
 			(onToggle)="toggleDrawer($event)"
 		>
-			<db-brand brand slot="brand">Showcase</db-brand>
+			<db-brand brand>Showcase</db-brand>
 			<db-navigation *dbNavigation aria-label="main-navigation">
 				@for (item of navigationItems; track item.label) {
 					<app-nav-item [navItem]="item"> </app-nav-item>
 				}
 			</db-navigation>
-			<ng-container *dbMetaNavigation slot="metaNavigation">
-				<db-select
-					variant="floating"
-					label="Density"
-					[(ngModel)]="density"
-					(change)="onChange($event)"
-				>
-					@for (t of densities; track t) {
-						<option>
-							{{ t }}
-						</option>
-					}
-				</db-select>
-				<db-select
-					variant="floating"
-					label="Color"
-					[(ngModel)]="color"
-					(change)="onChange($event)"
-				>
-					@for (c of colors; track c) {
-						<option>
-							{{ c }}
-						</option>
-					}
-				</db-select>
+			<ng-container *dbMetaNavigation>
+				@if (environment.webComponents) {
+					<db-select variant="floating" label="Nothing">
+						<option>Nothing here for stencil</option>
+					</db-select>
+				} @else {
+					<db-select
+						variant="floating"
+						label="Density"
+						[(ngModel)]="density"
+						(change)="onChange($event)"
+					>
+						@for (t of densities; track t) {
+							<option>
+								{{ t }}
+							</option>
+						}
+					</db-select>
+					<db-select
+						variant="floating"
+						label="Color"
+						[(ngModel)]="color"
+						(change)="onChange($event)"
+					>
+						@for (c of colors; track c) {
+							<option>
+								{{ c }}
+							</option>
+						}
+					</db-select>
+				}
 			</ng-container>
-			<ng-container primary-action slot="primaryAction">
+			<ng-container primary-action>
 				<db-button
 					icon="magnifying_glass"
 					variant="ghost"
@@ -51,7 +56,7 @@
 					>Search</db-button
 				>
 			</ng-container>
-			<ng-container *dbSecondaryAction slot="secondaryAction">
+			<ng-container *dbSecondaryAction>
 				<db-button icon="person" variant="ghost" [noText]="true">
 					Profile
 				</db-button>

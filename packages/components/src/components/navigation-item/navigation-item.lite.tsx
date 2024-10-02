@@ -14,9 +14,7 @@ import { NavigationItemSafeTriangle } from '../../utils/navigation';
 import { DEFAULT_BACK } from '../../shared/constants';
 import { ClickEvent } from '../../shared/model';
 
-useMetadata({
-	isAttachedToShadowDom: true
-});
+useMetadata({});
 
 export default function DBNavigationItem(props: DBNavigationItemProps) {
 	const ref = useRef<HTMLLIElement>(null);

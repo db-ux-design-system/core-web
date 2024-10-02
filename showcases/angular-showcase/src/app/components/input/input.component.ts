@@ -12,7 +12,7 @@ import { environment } from '../../../environments/environment';
 	selector: 'app-input',
 	templateUrl: './input.component.html',
 	imports: environment.webComponents
-		? [DefaultComponent, DBInput] // TODO: Remove DBInput after stencil component works
+		? [DefaultComponent]
 		: [DefaultComponent, DBInput],
 	standalone: true,
 	schemas: [CUSTOM_ELEMENTS_SCHEMA]

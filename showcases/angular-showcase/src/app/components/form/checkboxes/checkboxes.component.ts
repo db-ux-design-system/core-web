@@ -8,7 +8,7 @@ import { environment } from '../../../../environments/environment';
 	selector: 'app-checkboxes',
 	standalone: true,
 	imports: environment.webComponents
-		? [WrapperComponent, DBCheckbox, FormsModule, ReactiveFormsModule] // TODO: Remove DBCheckbox after stencil component works
+		? [WrapperComponent, FormsModule, ReactiveFormsModule]
 		: [WrapperComponent, DBCheckbox, FormsModule, ReactiveFormsModule],
 	templateUrl: './checkboxes.component.html',
 	schemas: [CUSTOM_ELEMENTS_SCHEMA]

@@ -8,7 +8,7 @@ import { environment } from '../../../environments/environment';
 	selector: 'app-select',
 	templateUrl: './select.component.html',
 	imports: environment.webComponents
-		? [DefaultComponent, DBSelect] // TODO: Remove DBSelect after stencil component works
+		? [DefaultComponent]
 		: [DefaultComponent, DBSelect],
 	schemas: [CUSTOM_ELEMENTS_SCHEMA],
 	standalone: true

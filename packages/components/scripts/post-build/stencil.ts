@@ -5,7 +5,7 @@ import { writeFileSync, existsSync } from 'node:fs';
 
 const enableCustomElementsAttributePassing = (componentName: string) =>
 	'componentDidLoad() {\n' +
-	`\tenableCustomElementAttributePassing(ref, "db-${componentName}")`;
+	`\tenableCustomElementAttributePassing(this.ref, "db-${componentName}")`;
 
 const getSlotDocs = (foundSlots: string[]): string => {
 	return `
@@ -88,74 +88,12 @@ export default ${upperComponentName};`;
 	}
 };
 
-const runTempReplacement = (rootFile: string) => {
-	const replacements: Overwrite[] = [
-		'checkbox',
-		'input',
-		'switch',
-		'select',
-		'textarea',
-		'navigation-item',
-		'accordion',
-		'accordion-item',
-		'popover',
-		'header'
-	].map((component) => ({
-		from: `export * from './components/${component}';`,
-		to: ''
-	}));
-	for (const { from, to } of replacements) {
-		replaceInFileSync({
-			files: rootFile,
-			from,
-			to
-		});
-	}
-};
-
-const updateNestedComponents = (input: string, rootComponentName: string) => {
-	const filteredComponents: string[] = components
-		.filter((nComp) => nComp.name !== rootComponentName)
-		.map((comp) => comp.name);
-
-	return input
-		.split('\n')
-		.map((line) => {
-			const foundNestedImport = filteredComponents.find((component) =>
-				line.includes(`../${component}`)
-			);
-			if (foundNestedImport) {
-				return '';
-			}
-
-			const foundNestedComponent = filteredComponents.find(
-				(component) => {
-					const upperComponent = `DB${transformToUpperComponentName(component)}`;
-					return (
-						line.includes(`${upperComponent}>`) ||
-						line.includes(`<${upperComponent}`)
-					);
-				}
-			);
-			if (foundNestedComponent) {
-				return line.replace(
-					`DB${transformToUpperComponentName(foundNestedComponent)}`,
-					`db-${foundNestedComponent}`
-				);
-			}
-
-			return line;
-		})
-		.join('\n');
-};
-
 export default (tmp?: boolean) => {
 	const outputFolder = `${tmp ? 'output/tmp' : 'output'}`;
 	for (const component of components) {
 		const componentName = component.name;
 		const file = `../../${outputFolder}/stencil/src/components/${componentName}/${componentName}.tsx`;
 		const indexFile = `../../${outputFolder}/stencil/src/components/${componentName}/index.ts`;
-		const rootFile = `../../${outputFolder}/stencil/src/index.ts`;
 		const upperComponentName = `DB${transformToUpperComponentName(component.name)}`;
 
 		replaceInFileSync({
@@ -166,85 +104,17 @@ export default (tmp?: boolean) => {
 
 		let replacements: Overwrite[] = [
 			{
-				from: /props/g,
-				to: 'this'
-			},
-			{
-				from: /Slot/g,
-				to: 'slot'
-			},
-			{
-				from: /\{this.children}/g,
-				to: '<slot></slot>'
-			},
-			{
-				from: /this.children/g,
-				to: '<slot></slot>'
-			},
-			{
-				from: 'export default class',
-				to: 'export class'
-			},
-			{
-				from: '@Prop',
-				to: 'private ref!: HTMLElement;\n\t@Prop'
-			},
-			{
-				from: /ref\?\./g,
-				to: 'this.ref?.'
-			},
-			{
-				from: /ref\./g,
-				to: 'this.ref.'
-			},
-			{
-				from: /&& ref/g,
-				to: '&& this.ref'
-			},
-			{
-				from: /\(ref/g,
-				to: '(this.ref'
-			},
-			{
-				from: /\(!ref/g,
-				to: '(!this.ref'
-			},
-			{
-				from: /ref,/g,
-				to: 'this.ref,'
-			},
-			{
-				from: /this.this/g,
-				to: 'this'
-			},
-			{
-				from: /for=/g,
-				to: 'htmlFor='
-			},
-			{
-				from: /<>/g,
-				to: '<Fragment>'
-			},
-			{
-				from: /<\/>/g,
-				to: '</Fragment>'
-			},
-			{
 				from: '} from "../../utils"',
 				to: ', enableCustomElementAttributePassing } from "../../utils"'
+			},
+			{ from: /ref=\{\(el\)/g, to: 'ref={(el:any)' },
+			{ from: 'for={', to: 'htmlFor={' },
+			{
+				from: 'onInput={(event) => this.handleChange(event)}',
+				to: 'onChange={(event) => this.handleChange(event)}'
 			}
 		];
-
-		runTempReplacement(rootFile);
-
 		replaceIndexFile(indexFile, componentName, upperComponentName);
-		replaceInFileSync({
-			files: file,
-			processor(input) {
-				return updateNestedComponents(input, componentName);
-			}
-		});
-
 		runReplacements(replacements, component, 'stencil', file);
 	}
 };

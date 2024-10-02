@@ -1,17 +1,9 @@
-import {
-	onMount,
-	Show,
-	useMetadata,
-	useRef,
-	useStore
-} from '@builder.io/mitosis';
-import { DBSectionState, DBSectionProps } from './model';
+import { onMount, useMetadata, useRef, useStore } from '@builder.io/mitosis';
+import { DBSectionProps, DBSectionState } from './model';
 import { cls, uuid } from '../../utils';
 import { DEFAULT_ID } from '../../shared/constants';
 
-useMetadata({
-	isAttachedToShadowDom: true
-});
+useMetadata({});
 
 export default function DBSection(props: DBSectionProps) {
 	const ref = useRef<HTMLDivElement>(null);

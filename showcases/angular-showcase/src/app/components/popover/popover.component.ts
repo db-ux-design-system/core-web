@@ -12,7 +12,7 @@ import { environment } from '../../../environments/environment';
 	selector: 'app-popover',
 	templateUrl: './popover.component.html',
 	imports: environment.webComponents
-		? [DefaultComponent, DBPopover] // TODO: Remove DBPopover after stencil component works
+		? [DefaultComponent]
 		: [DefaultComponent, DBPopover, DBButton],
 	schemas: [CUSTOM_ELEMENTS_SCHEMA],
 	standalone: true

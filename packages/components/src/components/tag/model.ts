@@ -1,11 +1,11 @@
 import {
-	SemanticProps,
 	EmphasisProps,
 	GlobalProps,
 	GlobalState,
 	IconProps,
+	InitializedState,
 	OverflowProps,
-	InitializedState
+	SemanticProps
 } from '../../shared/model';
 
 export const TagBehaviourList = ['static', 'removable'] as const;

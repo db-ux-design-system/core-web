@@ -3,9 +3,7 @@ import type { DBCardProps, DBCardState } from './model';
 import { cls } from '../../utils';
 import { ClickEvent } from '../../shared/model';
 
-useMetadata({
-	isAttachedToShadowDom: true
-});
+useMetadata({});
 
 export default function DBCard(props: DBCardProps) {
 	const ref = useRef<HTMLDivElement>(null);

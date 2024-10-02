@@ -1,8 +1,8 @@
 import {
-	SemanticProps,
 	GlobalProps,
 	GlobalState,
 	IconProps,
+	SemanticProps,
 	SizeProps
 } from '../../shared/model';
 

@@ -22,9 +22,7 @@ import {
 import { ChangeEvent, InputEvent, InteractionEvent } from '../../shared/model';
 import { handleFrameworkEvent } from '../../utils/form-components';
 
-useMetadata({
-	isAttachedToShadowDom: true
-});
+useMetadata({});
 
 export default function DBTextarea(props: DBTextareaProps) {
 	const ref = useRef<HTMLTextAreaElement>(null);

@@ -3,9 +3,7 @@ import type { DBButtonProps, DBButtonState } from './model';
 import { cls } from '../../utils';
 import { ClickEvent } from '../../shared/model';
 
-useMetadata({
-	isAttachedToShadowDom: true
-});
+useMetadata({});
 
 /**
  * This is a test comment

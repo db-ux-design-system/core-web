@@ -8,7 +8,7 @@ import { environment } from '../../../environments/environment';
 	selector: 'app-textarea',
 	templateUrl: './textarea.component.html',
 	imports: environment.webComponents
-		? [DefaultComponent, DBTextarea] // TODO: Remove DBTextarea after stencil component works
+		? [DefaultComponent]
 		: [DefaultComponent, DBTextarea],
 	schemas: [CUSTOM_ELEMENTS_SCHEMA],
 	standalone: true

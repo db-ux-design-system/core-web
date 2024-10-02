@@ -85,7 +85,7 @@ $max-tabs: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
 		@each $index in $max-tabs {
 			&:has([id$="-tab-#{$index}"]:checked)
-				~ [id$="-tab-panel-#{$index}"] {
+			~ [id$="-tab-panel-#{$index}"] {
 				display: block;
 			}
 		}
@@ -116,7 +116,7 @@ $max-tabs: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 				/* top position equals sum of: margin xs + padding xs + line-height + padding xs + margin 2xs */
 				inset-block-start: calc(
 					3 * #{variables.$db-spacing-fixed-xs} + #{variables.$db-spacing-fixed-2xs} +
-						#{form-components.$font-size-height}
+					#{form-components.$font-size-height}
 				);
 			}
 
@@ -127,10 +127,9 @@ $max-tabs: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 				inline-size: 100%;
 
 				.db-tab-item {
-					margin-block: variables.$db-spacing-fixed-xs
-						calc(
-							2 * #{variables.$db-spacing-fixed-2xs} + #{variables.$db-border-height-xs}
-						);
+					margin-block: variables.$db-spacing-fixed-xs calc(
+						2 * #{variables.$db-spacing-fixed-2xs} + #{variables.$db-border-height-xs}
+					);
 				}
 
 				db-tab-item,
@@ -175,8 +174,8 @@ $max-tabs: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
 		.db-tab-list {
 			$width: var(
-				--db-tab-list-vertical-width,
-				#{variables.$db-sizing-3xl}
+					--db-tab-list-vertical-width,
+					#{variables.$db-sizing-3xl}
 			);
 
 			/*

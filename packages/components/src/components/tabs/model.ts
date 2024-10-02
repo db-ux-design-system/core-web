@@ -47,7 +47,7 @@ export type DBTabsDefaultProps = {
 	 * Provide simple tabs with label + text as content
 	 */
 	tabs?: DBSimpleTabProps[] | string;
-}
+};
 
 export type DBTabsProps = DBTabsDefaultProps &
 	GlobalProps &
@@ -55,7 +55,7 @@ export type DBTabsProps = DBTabsDefaultProps &
 	WidthProps &
 	AlignmentProps;
 
-export type DBTabsDefaultState= {
+export type DBTabsDefaultState = {
 	_name: string;
 	scrollContainer?: Element | null;
 	scroll: (left?: boolean) => void;
@@ -65,6 +65,6 @@ export type DBTabsDefaultState= {
 	convertTabs: (tabs?: unknown[] | string | undefined) => DBSimpleTabProps[];
 	initTabList: () => void;
 	initTabs: (init?: boolean) => void;
-}
+};
 
 export type DBTabsState = DBTabsDefaultState & GlobalState & InitializedState;

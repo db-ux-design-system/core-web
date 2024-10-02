@@ -1,6 +1,7 @@
 ## Angular
 
-For general installation and configuration look at the [ngx-components](https://www.npmjs.com/package/@db-ui/ngx-components) package.
+For general installation and configuration look at
+the [ngx-components](https://www.npmjs.com/package/@db-ui/ngx-components) package.
 
 ### Load component
 
@@ -66,11 +67,14 @@ import { DBNavigation } from '@db-ui/ngx-components';
 
 ### Angular Router and active state handling
 
-We recommend using the automatic [integration with the Angular Router](https://angular.dev/best-practices/a11y#active-links-identification). This is way more elegant than setting the aria attribute to the anchor yourself.
+We recommend using the
+automatic [integration with the Angular Router](https://angular.dev/best-practices/a11y#active-links-identification).
+This is way more elegant than setting the aria attribute to the anchor yourself.
 
 The component first needs to import the `RouterLink` and `RouterLinkActive` directives.
 
-For other purposes, `NavigationItems` themselves can also be set to active with their prop `[active]="true"`. However, this does not guarantee correct a11y.
+For other purposes, `NavigationItems` themselves can also be set to active with their prop `[active]="true"`. However,
+this does not guarantee correct a11y.
 
 ```ts app.component.ts
 // app.component.ts

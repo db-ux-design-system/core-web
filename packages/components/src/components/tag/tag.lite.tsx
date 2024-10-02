@@ -9,9 +9,7 @@ import {
 import { DBTagProps, DBTagState } from './model';
 import { cls } from '../../utils';
 
-useMetadata({
-	isAttachedToShadowDom: true
-});
+useMetadata({});
 
 export default function DBTag(props: DBTagProps) {
 	const ref = useRef<HTMLDivElement>(null);

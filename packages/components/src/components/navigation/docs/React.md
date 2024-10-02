@@ -1,6 +1,7 @@
 ## React
 
-For general installation and configuration look at the [react-components](https://www.npmjs.com/package/@db-ui/react-components) package.
+For general installation and configuration look at
+the [react-components](https://www.npmjs.com/package/@db-ui/react-components) package.
 
 ### Use component
 
@@ -51,6 +52,8 @@ export default App;
 
 ### Active handling
 
-Usually, a `NavigationItem` is implicitly set to active by setting the attribute `aria-current="page"` to the anchor it contains.
+Usually, a `NavigationItem` is implicitly set to active by setting the attribute `aria-current="page"` to the anchor it
+contains.
 
-For other purposes, `NavigationItems` themselves can also be set to active with their prop `active`. However, this does not guarantee correct a11y.
+For other purposes, `NavigationItems` themselves can also be set to active with their prop `active`. However, this does
+not guarantee correct a11y.

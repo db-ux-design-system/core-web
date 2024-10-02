@@ -8,7 +8,7 @@ import { environment } from '../../../../environments/environment';
 	selector: 'app-inputs',
 	standalone: true,
 	imports: environment.webComponents
-		? [WrapperComponent, DBInput, FormsModule, ReactiveFormsModule] // TODO: Remove DBInput after stencil component works
+		? [WrapperComponent, FormsModule, ReactiveFormsModule]
 		: [WrapperComponent, DBInput, FormsModule, ReactiveFormsModule],
 	templateUrl: './inputs.component.html',
 	schemas: [CUSTOM_ELEMENTS_SCHEMA]

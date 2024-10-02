@@ -19,16 +19,7 @@ import { environment } from '../../../environments/environment';
 	selector: 'app-header',
 	templateUrl: './header.component.html',
 	imports: environment.webComponents
-		? [
-				DefaultComponent,
-				DBHeader,
-				DBNavigation,
-				DBNavigationItem,
-				SecondaryActionDirective,
-				NavigationDirective,
-				MetaNavigationDirective,
-				NavigationContentDirective
-			] // TODO: Remove DBHeader,DBNavigation,DBNavigationItem,SecondaryActionDirective,NavigationDirective,MetaNavigationDirective,NavigationContentDirective after stencil component works
+		? [DefaultComponent]
 		: [
 				DefaultComponent,
 				DBBrand,

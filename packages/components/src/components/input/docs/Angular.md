@@ -38,7 +38,8 @@ Use component in template:
 Third party controls require a ControlValueAccessor to function with angular forms.
 Our input component implements this interface so you can use it like any other native element with reactive Forms:
 
-> Currently we do not support onTouch/touched and native validation via FormControl. If your interested in contributing, you're very welcome ;)
+> Currently we do not support onTouch/touched and native validation via FormControl. If your interested in contributing,
+> you're very welcome ;)
 
 ```ts app.component.ts
 //app.component.ts

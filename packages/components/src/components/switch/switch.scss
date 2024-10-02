@@ -86,15 +86,10 @@ $checked-active-transition-size: calc(
 			);
 
 			@media screen and (prefers-reduced-motion: no-preference) {
-				transition:
-					margin variables.$db-transition-duration-fast
-						variables.$db-transition-timing-emotional,
-					inline-size variables.$db-transition-duration-fast
-						variables.$db-transition-timing-emotional,
-					block-size variables.$db-transition-duration-fast
-						variables.$db-transition-timing-emotional,
-					transform variables.$db-transition-duration-fast
-						variables.$db-transition-timing-emotional;
+				transition: margin variables.$db-transition-duration-fast variables.$db-transition-timing-emotional,
+				inline-size variables.$db-transition-duration-fast variables.$db-transition-timing-emotional,
+				block-size variables.$db-transition-duration-fast variables.$db-transition-timing-emotional,
+				transform variables.$db-transition-duration-fast variables.$db-transition-timing-emotional;
 			}
 		}
 
@@ -103,10 +98,10 @@ $checked-active-transition-size: calc(
 			--thumb-offset-x: calc(100% + #{$switch-fixed-padding});
 
 			@include colors.set-current-colors(
-				colors.$db-adaptive-bg-inverted-contrast-max-default,
-				colors.$db-adaptive-on-bg-inverted-default,
-				colors.$db-adaptive-bg-inverted-contrast-max-hovered,
-				colors.$db-adaptive-bg-inverted-contrast-max-pressed
+					colors.$db-adaptive-bg-inverted-contrast-max-default,
+					colors.$db-adaptive-on-bg-inverted-default,
+					colors.$db-adaptive-bg-inverted-contrast-max-hovered,
+					colors.$db-adaptive-bg-inverted-contrast-max-pressed
 			);
 
 			border-color: colors.$db-adaptive-on-bg-basic-emphasis-100-default;
@@ -217,7 +212,7 @@ $checked-active-transition-size: calc(
 
 				&::after {
 					transform: translateX(
-						calc(-100% - #{$switch-fixed-padding})
+							calc(-100% - #{$switch-fixed-padding})
 					);
 					block-size: $switch-active-thumb-size;
 				}

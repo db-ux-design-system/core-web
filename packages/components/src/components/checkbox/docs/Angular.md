@@ -1,6 +1,7 @@
 ## Angular
 
-For general installation and configuration take a look at the [ngx-components](https://www.npmjs.com/package/@db-ui/ngx-components) package.
+For general installation and configuration take a look at
+the [ngx-components](https://www.npmjs.com/package/@db-ui/ngx-components) package.
 
 ### Load component
 
@@ -50,7 +51,8 @@ export class AppComponent {
 
 ## How to use with Template Driven Forms
 
-Third party controls require a `ControlValueAccessor` to function with angular forms. Adding an `ngDefaultControl` attribute will allow them to use that directive.
+Third party controls require a `ControlValueAccessor` to function with angular forms. Adding an `ngDefaultControl`
+attribute will allow them to use that directive.
 [Further information](https://stackoverflow.com/a/46465959)
 
 ```ts app.component.ts

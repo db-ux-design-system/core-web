@@ -45,12 +45,9 @@ $tooltip-arrow-shadow-size: variables.$db-sizing-2xs;
 			inline-size: $tooltip-arrow-shadow-size;
 			block-size: $tooltip-arrow-shadow-size;
 			clip-path: polygon(
-				calc(#{$tooltip-arrow-shadow-size} * -1)
-					calc(#{$tooltip-arrow-shadow-size} * -1),
-				calc(100% + #{$tooltip-arrow-shadow-size})
-					calc(#{$tooltip-arrow-shadow-size} * -1),
-				calc(100% + #{$tooltip-arrow-shadow-size})
-					calc(100% + #{$tooltip-arrow-shadow-size})
+					calc(#{$tooltip-arrow-shadow-size} * -1) calc(#{$tooltip-arrow-shadow-size} * -1),
+					calc(100% + #{$tooltip-arrow-shadow-size}) calc(#{$tooltip-arrow-shadow-size} * -1),
+					calc(100% + #{$tooltip-arrow-shadow-size}) calc(100% + #{$tooltip-arrow-shadow-size})
 			);
 			border-radius: 0 2px;
 			transform: skew(-8deg, -8deg);
