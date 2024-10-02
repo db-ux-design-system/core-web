@@ -53,8 +53,8 @@ export type DBTagProps = DBTagDefaultProps &
 	EmphasisProps;
 
 export type DBTagDefaultState = {
-	getRemoveButtonText?: () => string;
-	handleRemove?: () => void;
+	getRemoveButtonText: () => string;
+	handleRemove: () => void;
 };
 
 export type DBTagState = DBTagDefaultState & GlobalState & InitializedState;

@@ -53,6 +53,11 @@ showcases/patternhub/public/iframe-resizer/*
 /packages/foundations/assets/icons/functional/fonts/**/info.json
 /packages/foundations/scss/_normalize.scss
 
+/packages/foundations/assets/icons/functional/fonts/**/*.eot
+/packages/foundations/assets/icons/functional/fonts/**/*.svg
+/packages/foundations/assets/icons/functional/fonts/**/*.ttf
+/packages/foundations/assets/icons/functional/fonts/**/*.woff
+
 /output/stencil/.stencil
 /output/stencil/loader
 /output/stencil/www

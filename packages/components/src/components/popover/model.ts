@@ -30,9 +30,9 @@ export type DBPopoverProps = DBPopoverDefaultProps &
 
 export type DBPopoverDefaultState = {
 	isExpanded?: boolean;
-	getTrigger?: () => Element | undefined;
+	getTrigger: () => Element | null;
 	// eslint-disable-next-line @typescript-eslint/no-explicit-any
-	handleLeave?: (event: any) => void;
+	handleLeave: (event: any) => void;
 };
 
 export type DBPopoverState = DBPopoverDefaultState &

@@ -9,7 +9,7 @@ const defaultButton: any = (
 	<DBButton onClick={() => alert('test')}>Test</DBButton>
 );
 const defaultIconButton: any = (
-	<DBButton icon="user" noText={true}>
+	<DBButton icon="person" noText={true}>
 		User
 	</DBButton>
 );
@@ -18,7 +18,7 @@ const testButton = () => {
 	for (const variant of ['outlined', 'brand', 'filled', 'ghost']) {
 		const variantButton: any = <DBButton variant={variant}>Test</DBButton>;
 		const variantIconButton: any = (
-			<DBButton icon="user" noText={true} variant={variant}>
+			<DBButton icon="person" noText={true} variant={variant}>
 				User
 			</DBButton>
 		);

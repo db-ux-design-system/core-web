@@ -32,25 +32,27 @@
     "copy-normalize": "cpr ../../node_modules/@csstools/normalize.css/normalize.css scss/_normalize.scss -o",
     "copy:scss": "cpr scss build/scss -o",
     "dev": "vite --open",
-    "generate:icon-fonts": "gif --src ./assets/icons/functional --variants filled inverted --fontName db-ux --withSizes true --debug true",
+    "generate:icon-fonts": "gif --src ./assets/icons/functional --variants filled inverted --fontName db-ux --withSizes true --debug true --overwriteSources true",
     "prepare": "npm run copy-normalize",
     "regenerate:screenshots": "npx playwright test -c ./test/playwright.config.mjs --update-snapshots",
     "start": "nodemon --config nodemon.json",
+    "test": "vitest run --config scripts/vitest.config.ts",
     "test:e2e": "npx playwright test --config=./test/playwright.config.mjs",
     "test:migration": "tsx scripts/cli.ts migration --src=./scss --dryRun=true"
   },
   "devDependencies": {
     "@csstools/normalize.css": "12.1.1",
-    "@db-ui/gif": "^0.0.6",
+    "@db-ui/gif": "^0.0.8",
     "commander": "^12.0.0",
     "cpr": "3.0.1",
     "cssnano": "^7.0.6",
     "dotenv": "^16.4.5",
     "glob": "^11.0.0",
-    "nodemon": "3.1.6",
-    "replace-in-file": "^8.1.0",
+    "nodemon": "3.1.7",
+    "replace-in-file": "^8.2.0",
     "sass": "1.77.4",
-    "tsx": "^4.19.1"
+    "tsx": "^4.19.1",
+    "vitest": "^2.1.1"
   },
   "publishConfig": {
     "registry": "https://registry.npmjs.org/",

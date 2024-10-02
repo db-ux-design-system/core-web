@@ -54,7 +54,7 @@ defineCustomElements();
 
 ```html
 ...
-<db-button icon="user">Test</db-button>
+<db-button icon="person">Test</db-button>
 ...
 ```
 

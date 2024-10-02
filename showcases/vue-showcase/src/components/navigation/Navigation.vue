@@ -48,7 +48,7 @@ const getId = (name?: string): string =>
 							</DBNavigationItem>
 						</template>
 					</DBNavigationItem>
-					<DBNavigationItem icon="user">
+					<DBNavigationItem icon="person">
 						<a href="#">Navi-Item 2</a>
 					</DBNavigationItem>
 					<DBNavigationItem :disabled="true">

@@ -1,7 +1,7 @@
 ---
 to: src/components/<%= name %>/<%= name %>.lite.tsx
 ---
-import { Show, useMetadata, useStore } from "@builder.io/mitosis";
+import { Show, useMetadata, useStore, useRef } from "@builder.io/mitosis";
 import { DB<%= h.changeCase.pascal(name) %>State, DB<%= h.changeCase.pascal(name) %>Props } from "./model";
 import { cls } from "../../utils";
 <% if(formValue!=="no"){   -%>
