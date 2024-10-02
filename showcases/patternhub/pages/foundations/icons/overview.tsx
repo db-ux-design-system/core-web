@@ -16,7 +16,7 @@ const IconOverview = () => {
 	const [search, setSearch] = useState<string>('');
 	return (
 		<DefaultPage>
-			<h1>Color Overview</h1>
+			<h1>Icon overview</h1>
 			<p>
 				We don't provide all icons with family <code>filled</code>
 			</p>
