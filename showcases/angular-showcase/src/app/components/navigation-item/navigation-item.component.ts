@@ -11,7 +11,7 @@ import { environment } from '../../../environments/environment';
 	selector: 'app-navigation-item',
 	templateUrl: './navigation-item.component.html',
 	imports: environment.webComponents
-		? [DefaultComponent]
+		? [DefaultComponent, DBNavigationItem, NavigationContentDirective] // TODO: Remove DBNavigationItem,NavigationContentDirective after stencil component works
 		: [DefaultComponent, DBNavigationItem, NavigationContentDirective],
 	schemas: [CUSTOM_ELEMENTS_SCHEMA],
 	standalone: true

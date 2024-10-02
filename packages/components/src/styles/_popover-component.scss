@@ -47,6 +47,7 @@ $popover-gap-inset: calc(-1 * #{$popover-gap-size});
 		position: absolute;
 	}
 
+	&[data-gap],
 	&[data-gap="true"] {
 		--db-popover-gap: 1;
 		--db-popover-distance: #{variables.$db-spacing-fixed-md};
