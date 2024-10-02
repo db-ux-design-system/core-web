@@ -62,6 +62,7 @@ import {
 	templateUrl: './app.component.html'
 })
 export class AppComponent implements OnInit {
+	isWebComponents = environment.webComponents;
 	drawerOpen = false;
 	navigationItems: NavItem[] = getSortedNavigationItems(NAVIGATION_ITEMS);
 
@@ -114,5 +115,4 @@ export class AppComponent implements OnInit {
 	toggleDrawer = (open: boolean) => {
 		this.drawerOpen = open;
 	};
-	protected readonly environment = environment;
 }

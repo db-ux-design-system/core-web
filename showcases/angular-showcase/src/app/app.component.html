@@ -17,7 +17,7 @@
 				}
 			</db-navigation>
 			<ng-container *dbMetaNavigation>
-				@if (environment.webComponents) {
+				@if (isWebComponents) {
 					<db-select variant="floating" label="Nothing">
 						<option>Nothing here for stencil</option>
 					</db-select>
