@@ -14,10 +14,10 @@ import {
 	DEFAULT_INVALID_MESSAGE,
 	DEFAULT_INVALID_MESSAGE_ID_SUFFIX,
 	DEFAULT_LABEL,
-	DEFAULT_MESSAGE_ID_SUFFIX,
+	DEFAULT_MESSAGE_ID_SUFFIX, DEFAULT_PLACEHOLDER,
 	DEFAULT_VALID_MESSAGE,
 	DEFAULT_VALID_MESSAGE_ID_SUFFIX
-} from '../../shared/constants';
+} from "../../shared/constants";
 import {
 	InputEvent,
 	ChangeEvent,
@@ -31,6 +31,7 @@ useMetadata({
 	isAttachedToShadowDom: true
 });
 
+
 export default function DBInput(props: DBInputProps) {
 	const ref = useRef<HTMLInputElement>(null);
 	// jscpd:ignore-start
@@ -43,10 +44,6 @@ export default function DBInput(props: DBInputProps) {
 		_descByIds: '',
 		_value: '',
 		_voiceOverFallback: '',
-		defaultValues: {
-			label: DEFAULT_LABEL,
-			placeholder: ' '
-		},
 		handleInput: (event: InputEvent<HTMLInputElement>) => {
 			if (props.onInput) {
 				props.onInput(event);
@@ -162,7 +159,7 @@ export default function DBInput(props: DBInputProps) {
 			data-icon={props.icon}
 			data-icon-after={props.iconAfter}>
 			<label htmlFor={state._id}>
-				{props.label ?? state.defaultValues.label}
+				{props.label ?? DEFAULT_LABEL}
 			</label>
 			<input
 				aria-invalid={props.customValidity === 'invalid'}
@@ -171,9 +168,7 @@ export default function DBInput(props: DBInputProps) {
 				id={state._id}
 				name={props.name}
 				type={props.type || 'text'}
-				placeholder={
-					props.placeholder ?? state.defaultValues.placeholder
-				}
+				placeholder={props.placeholder ?? DEFAULT_PLACEHOLDER}
 				disabled={props.disabled}
 				required={props.required}
 				step={props.step}
