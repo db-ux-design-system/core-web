@@ -1,7 +1,6 @@
 ## React
 
-For general installation and configuration look at
-the [react-components](https://www.npmjs.com/package/@db-ui/react-components) package.
+For general installation and configuration look at the [react-components](https://www.npmjs.com/package/@db-ui/react-components) package.
 
 ### Use component
 
