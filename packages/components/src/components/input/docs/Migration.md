@@ -9,17 +9,17 @@
 ### class
 
 | Before      | Status | After      | Description |
-|-------------|:------:|------------|-------------|
+| ----------- | :----: | ---------- | ----------- |
 | `elm-input` |   🔁   | `db-input` |             |
 
 ### variants
 
 | Before            | Status | After           | Description                                                                                           |
-|-------------------|:------:|-----------------|-------------------------------------------------------------------------------------------------------|
-| `semitransparent` |   ❌    | ❌               | old variants are removed a semi-transparent look is the default, new variants are chaniging the color |
-| `white`           |   ❌    | ❌               |                                                                                                       |
-| `solid`           |   ❌    | ❌               |                                                                                                       |
-| `outline`         |   ❌    | ❌               |                                                                                                       |
+| ----------------- | :----: | --------------- | ----------------------------------------------------------------------------------------------------- |
+| `semitransparent` |   ❌   | ❌              | old variants are removed a semi-transparent look is the default, new variants are chaniging the color |
+| `white`           |   ❌   | ❌              |                                                                                                       |
+| `solid`           |   ❌   | ❌              |                                                                                                       |
+| `outline`         |   ❌   | ❌              |                                                                                                       |
 |                   |   🆕   | `adaptive`      |                                                                                                       |
 |                   |   🆕   | `neutral`       |                                                                                                       |
 |                   |   🆕   | `critical`      |                                                                                                       |

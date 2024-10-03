@@ -9,15 +9,15 @@
 ### class
 
 | Before          | Status | After               | Description                                                                                                                      |
-|-----------------|:------:|---------------------|----------------------------------------------------------------------------------------------------------------------------------|
+| --------------- | :----: | ------------------- | -------------------------------------------------------------------------------------------------------------------------------- |
 | `cmp-accordion` |   🔁   | `db-accordion-item` | The old accordion was just 1 item, we split it to combine multiple accordion-items into 1 accordion (which is another component) |
 
 ### props
 
 | Before     | Status | After      | Description                                                 |
-|------------|:------:|------------|-------------------------------------------------------------|
+| ---------- | :----: | ---------- | ----------------------------------------------------------- |
 | `summary`  |   🔁   | `headline` | The title/summary of the details element.                   |
-| `emphasis` |   ❌    | ❌          | There is no emphasis anymore.                               |
-| `size`     |   ❌    | ❌          | Controlled by the density.                                  |
+| `emphasis` |   ❌   | ❌         | There is no emphasis anymore.                               |
+| `size`     |   ❌   | ❌         | Controlled by the density.                                  |
 |            |   🆕   | `disabled` | Disable the component.                                      |
 |            |   🆕   | `content`  | Pass in a simple string as fallback to normal children/slot |

@@ -217,7 +217,7 @@ export default (tmp?: boolean) => {
 			{
 				from: '} from "../../utils"',
 				to: ', enableCustomElementAttributePassing } from "../../utils"'
-			},
+			}
 		];
 
 		if (component.config?.angular?.initValues) {

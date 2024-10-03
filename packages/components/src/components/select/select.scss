@@ -16,7 +16,7 @@
 
 $has-before-padding: calc(
 	var(--db-form-has-before) *
-	(#{form-components.$icon-size-sm} + #{variables.$db-spacing-fixed-sm})
+		(#{form-components.$icon-size-sm} + #{variables.$db-spacing-fixed-sm})
 );
 
 .db-select {
@@ -56,8 +56,10 @@ $has-before-padding: calc(
 		// for functional we have some rounding issues for rem, so we need 1px less
 		inset-block-start: calc(
 			0% +
-			(#{form-components.$label-size-height-xs} + #{variables.$db-spacing-fixed-xs}) * var(--db-label-visible-height, 1) + var(--db-base-font-size) /
-			2 - var(--db-density-functional, 0) * 1px
+				(
+					#{form-components.$label-size-height-xs} + #{variables.$db-spacing-fixed-xs}
+				) * var(--db-label-visible-height, 1) + var(--db-base-font-size) /
+				2 - var(--db-density-functional, 0) * 1px
 		);
 		inset-inline: $has-before-padding;
 		margin-inline-start: variables.$db-spacing-fixed-sm;
@@ -66,7 +68,7 @@ $has-before-padding: calc(
 		text-overflow: ellipsis;
 		inline-size: calc(
 			100% - var(--db-form-component-padding-inline-end) - #{$has-before-padding} -
-			#{variables.$db-spacing-fixed-sm}
+				#{variables.$db-spacing-fixed-sm}
 		);
 	}
 

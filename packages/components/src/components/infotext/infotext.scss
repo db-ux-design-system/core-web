@@ -37,7 +37,7 @@
 
 			&::before {
 				--db-icon-color: var(
-						--db-#{$name}-on-bg-basic-emphasis-70-default
+					--db-#{$name}-on-bg-basic-emphasis-70-default
 				);
 			}
 		}

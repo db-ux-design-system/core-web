@@ -11,7 +11,8 @@
 	flex-direction: column;
 	position: relative;
 	min-block-size: component.$min-mobile-header-height;
-	border-block-end: variables.$db-border-height-3xs solid colors.$db-adaptive-on-bg-basic-emphasis-60-default;
+	border-block-end: variables.$db-border-height-3xs solid
+		colors.$db-adaptive-on-bg-basic-emphasis-60-default;
 
 	@include screen-sizes.screen("md") {
 		--db-drawer-max-width: #{screen-sizes.$db-breakpoint-sm};

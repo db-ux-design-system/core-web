@@ -9,24 +9,24 @@
 ### class
 
 | Before     | Status | After     | Description |
-|------------|:------:|-----------|-------------|
+| ---------- | :----: | --------- | ----------- |
 | `cmp-card` |   🔁   | `db-card` |             |
 
 ### variant
 
 | Before    | Status |   After   | Description                                                                                                                    |
-|-----------|:------:|:---------:|--------------------------------------------------------------------------------------------------------------------------------|
+| --------- | :----: | :-------: | ------------------------------------------------------------------------------------------------------------------------------ |
 | `variant` |   🔁   | `variant` | There is no default `header`/`content` anymore. Now you can change the card with `variant="interactive"` to act like a button. |
-| `header`  |   ❌    |     ❌     | Add your own content via children/slot.                                                                                        |
-| `content` |   ❌    |     ❌     | Add your own content via children/slot.                                                                                        |
+| `header`  |   ❌   |    ❌     | Add your own content via children/slot.                                                                                        |
+| `content` |   ❌   |    ❌     | Add your own content via children/slot.                                                                                        |
 
 ### image
 
 | Before                   | Status | After       | Description |
-|--------------------------|:------:|-------------|-------------|
+| ------------------------ | :----: | ----------- | ----------- |
 | `alt`                    |   🔁   | `imgAlt`    |             |
 | `image`                  |   🔁   | `imgSrc`    |             |
 |                          |   🆕   | `imgWidth`  |             |
 |                          |   🆕   | `imgHeight` |             |
-| `illustration`           |   ❌    | ❌           |             |
-| `uiCoreIllustrationPath` |   ❌    | ❌           |             |
+| `illustration`           |   ❌   | ❌          |             |
+| `uiCoreIllustrationPath` |   ❌   | ❌          |             |

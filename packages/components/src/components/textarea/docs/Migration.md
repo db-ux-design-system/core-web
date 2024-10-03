@@ -9,17 +9,17 @@
 ### class
 
 | Before         | Status | After         | Description |
-|----------------|:------:|---------------|-------------|
+| -------------- | :----: | ------------- | ----------- |
 | `elm-textarea` |   🔁   | `db-textarea` |             |
 
 ### variants
 
 | Before            | Status | After           | Description |
-|-------------------|:------:|-----------------|-------------|
-| `semitransparent` |   ❌    |                 |             |
-| `white`           |   ❌    |                 |             |
-| `solid`           |   ❌    |                 |             |
-| `outline`         |   ❌    |                 |             |
+| ----------------- | :----: | --------------- | ----------- |
+| `semitransparent` |   ❌   |                 |             |
+| `white`           |   ❌   |                 |             |
+| `solid`           |   ❌   |                 |             |
+| `outline`         |   ❌   |                 |             |
 |                   |   🆕   | `adaptive`      |             |
 |                   |   🆕   | `critical`      |             |
 |                   |   🆕   | `informational` |             |
@@ -29,5 +29,5 @@
 ### other
 
 | Before        | Status | After     | Description |
-|---------------|:------:|-----------|-------------|
+| ------------- | :----: | --------- | ----------- |
 | `description` |   🔁   | `message` |             |

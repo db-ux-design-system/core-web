@@ -27,8 +27,8 @@
 %full-horizontal {
 	&:not([data-width="full"]) {
 		max-block-size: var(
-				--db-drawer-max-height,
-				calc(100% - #{variables.$db-spacing-fixed-xl})
+			--db-drawer-max-height,
+			calc(100% - #{variables.$db-spacing-fixed-xl})
 		);
 		max-inline-size: none;
 	}
@@ -81,8 +81,8 @@ $spacings: (
 	.db-drawer-header {
 		// We need this variable to overwrite it inside the header
 		padding-block-end: var(
-				--db-drawer-header-padding-block-end,
-				#{map.get($spacing, "block")}
+			--db-drawer-header-padding-block-end,
+			#{map.get($spacing, "block")}
 		);
 		padding-inline: map.get($spacing, "inline");
 	}
@@ -90,8 +90,8 @@ $spacings: (
 	.db-drawer-content {
 		// We need this variable to overwrite it inside the header
 		padding-inline: var(
-				--db-drawer-content-padding-inline,
-				#{map.get($spacing, "inline")}
+			--db-drawer-content-padding-inline,
+			#{map.get($spacing, "inline")}
 		);
 	}
 }
@@ -123,8 +123,8 @@ $spacings: (
 
 		&:not([data-width="full"]) {
 			max-inline-size: var(
-					--db-drawer-max-width,
-					calc(100% - #{variables.$db-spacing-fixed-xl})
+				--db-drawer-max-width,
+				calc(100% - #{variables.$db-spacing-fixed-xl})
 			);
 		}
 

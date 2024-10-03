@@ -9,7 +9,7 @@
 ### class
 
 | Before      | Status | After      | Description |
-|-------------|:------:|------------|-------------|
+| ----------- | :----: | ---------- | ----------- |
 | `cmp-brand` |   🔁   | `db-brand` |             |
 
 ### properties
@@ -19,11 +19,11 @@
 > If you want to use a link around `db-brand`, do it by yourself.
 
 | Before           | Status | After | Description                                                                                           |
-|------------------|:------:|:-----:|-------------------------------------------------------------------------------------------------------|
-| `siteNameLink`   |   ❌    |   ❌   | see Note                                                                                              |
-| `alt`            |   ❌    |   ❌   | see Note                                                                                              |
-| `anchorRef`      |   ❌    |   ❌   | see Note                                                                                              |
-| `anchorTitle`    |   ❌    |   ❌   | see Note                                                                                              |
-| `anchorRelation` |   ❌    |   ❌   | see Note                                                                                              |
-| `src`            |   ❌    |   ❌   | see Note                                                                                              |
-| `hideLogo`       |   🆕   |   ❌   | If you want a custom image, you can hide the default one and pass anything into the `children`/`slot` |
+| ---------------- | :----: | :---: | ----------------------------------------------------------------------------------------------------- |
+| `siteNameLink`   |   ❌   |  ❌   | see Note                                                                                              |
+| `alt`            |   ❌   |  ❌   | see Note                                                                                              |
+| `anchorRef`      |   ❌   |  ❌   | see Note                                                                                              |
+| `anchorTitle`    |   ❌   |  ❌   | see Note                                                                                              |
+| `anchorRelation` |   ❌   |  ❌   | see Note                                                                                              |
+| `src`            |   ❌   |  ❌   | see Note                                                                                              |
+| `hideLogo`       |   🆕   |  ❌   | If you want a custom image, you can hide the default one and pass anything into the `children`/`slot` |

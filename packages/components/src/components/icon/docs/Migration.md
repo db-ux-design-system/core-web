@@ -9,11 +9,11 @@
 ### class
 
 | Before | Status | After     | Description |
-|--------|:------:|-----------|-------------|
+| ------ | :----: | --------- | ----------- |
 |        |   🔁   | `db-icon` |             |
 
 ### variant
 
 | Before    | Status | After | Description                                                                                                             |
-|-----------|:------:|-------|-------------------------------------------------------------------------------------------------------------------------|
-| `variant` |   🔁   | ❌     | icon variants are controlled by `font-family:var(--db-icon-font-family)` and `font-weight: var(--db-icon-font-weight);` |
+| --------- | :----: | ----- | ----------------------------------------------------------------------------------------------------------------------- |
+| `variant` |   🔁   | ❌    | icon variants are controlled by `font-family:var(--db-icon-font-family)` and `font-weight: var(--db-icon-font-weight);` |

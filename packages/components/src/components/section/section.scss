@@ -10,8 +10,8 @@
 	}
 
 	@include component.get-data-spacing(
-			"padding-block",
-			component.$responsive-spacings
+		"padding-block",
+		component.$responsive-spacings
 	);
 
 	> div {

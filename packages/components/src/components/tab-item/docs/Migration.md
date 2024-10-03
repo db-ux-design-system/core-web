@@ -9,11 +9,11 @@
 ### class
 
 | Before       | Status | After         | Description |
-|--------------|:------:|---------------|-------------|
+| ------------ | :----: | ------------- | ----------- |
 | `cmp-db-tab` |   🔁   | `db-tab-item` |             |
 
 ### name
 
 | Before | Status | After | Description                                                                                         |
-|--------|:------:|:-----:|-----------------------------------------------------------------------------------------------------|
-| `name` |   ❌    |   ❌   | It should be used with `db-tabs` which will add a the `name` from `db-tabs` to all tabs all at one. |
+| ------ | :----: | :---: | --------------------------------------------------------------------------------------------------- |
+| `name` |   ❌   |  ❌   | It should be used with `db-tabs` which will add a the `name` from `db-tabs` to all tabs all at one. |

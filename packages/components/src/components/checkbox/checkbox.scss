@@ -28,10 +28,10 @@
 			// Check icon
 			@include icons.set-icon("check");
 			@include colors.set-current-colors(
-					colors.$db-adaptive-bg-inverted-contrast-max-default,
-					colors.$db-adaptive-on-bg-inverted-default,
-					colors.$db-adaptive-bg-inverted-contrast-max-hovered,
-					colors.$db-adaptive-bg-inverted-contrast-max-pressed
+				colors.$db-adaptive-bg-inverted-contrast-max-default,
+				colors.$db-adaptive-on-bg-inverted-default,
+				colors.$db-adaptive-bg-inverted-contrast-max-hovered,
+				colors.$db-adaptive-bg-inverted-contrast-max-pressed
 			);
 
 			// The icon within the checkbox has the same dimensions as the checkbox itself and that for there can't be any border

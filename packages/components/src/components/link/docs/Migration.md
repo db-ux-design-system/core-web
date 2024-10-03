@@ -9,13 +9,13 @@
 ### class
 
 | Before     | Status | After     | Description |
-|------------|:------:|-----------|-------------|
+| ---------- | :----: | --------- | ----------- |
 | `elm-link` |   🔁   | `db-link` |             |
 
 ### icons
 
 | Before        | Status | After | Description                                                            |
-|---------------|:------:|-------|------------------------------------------------------------------------|
-| `icon`        |   ❌    | ❌     | not valid anymore use `content` to show interal or external arrow icon |
-| `icononly`    |   ❌    | ❌     |                                                                        |
-| `iconVariant` |   ❌    | ❌     |                                                                        |
+| ------------- | :----: | ----- | ---------------------------------------------------------------------- |
+| `icon`        |   ❌   | ❌    | not valid anymore use `content` to show interal or external arrow icon |
+| `icononly`    |   ❌   | ❌    |                                                                        |
+| `iconVariant` |   ❌   | ❌    |                                                                        |

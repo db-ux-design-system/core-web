@@ -9,11 +9,11 @@
 ### class
 
 | Before       | Status | After       | Description |
-|--------------|:------:|-------------|-------------|
+| ------------ | :----: | ----------- | ----------- |
 | `rea-header` |   🔁   | `db-header` |             |
 
 ### mobile
 
 | Before   | Status | After         | Description                        |
-|----------|:------:|---------------|------------------------------------|
+| -------- | :----: | ------------- | ---------------------------------- |
 | `mobile` |   🔁   | `forceMobile` | forces the burger menu for desktop |

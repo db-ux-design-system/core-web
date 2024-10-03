@@ -23,21 +23,21 @@ You can use different types of tags by adding another component into it:
 ### class
 
 | Before    | Status | After    | Description |
-|-----------|:------:|----------|-------------|
+| --------- | :----: | -------- | ----------- |
 | `elm-tag` |   🔁   | `db-tag` |             |
 
 ### sizes
 
 | Before  | Status | After | Description                                                                                                                             |
-|---------|:------:|:-----:|-----------------------------------------------------------------------------------------------------------------------------------------|
-| `small` |   ❌    |   ❌   | We removed small tags because of density. But you can use `type` property with value `strong` to emphasize a tag for a differentiation. |
+| ------- | :----: | :---: | --------------------------------------------------------------------------------------------------------------------------------------- |
+| `small` |   ❌   |  ❌   | We removed small tags because of density. But you can use `type` property with value `strong` to emphasize a tag for a differentiation. |
 
 ### variants
 
 | Before        | Status | After           | Description                                      |
-|---------------|:------:|-----------------|--------------------------------------------------|
-| `poi-*`       |   ❌    | ❌               | We removed all point of interest colors for now. |
-| `track`       |   ❌    | ❌               | We removed track for now.                        |
+| ------------- | :----: | --------------- | ------------------------------------------------ |
+| `poi-*`       |   ❌   | ❌              | We removed all point of interest colors for now. |
+| `track`       |   ❌   | ❌              | We removed track for now.                        |
 | `error`       |   🔁   | `critical`      |                                                  |
 | `informative` |   🔁   | `informational` |                                                  |
 | `success`     |   🔁   | `successful`    |                                                  |
@@ -45,5 +45,5 @@ You can use different types of tags by adding another component into it:
 ### icons
 
 | Before      | Status | After | Description                                                    |
-|-------------|:------:|-------|----------------------------------------------------------------|
-| `iconAfter` |   ❌    | ❌     | not valid anymore, for tags only icons before text are allowed |
+| ----------- | :----: | ----- | -------------------------------------------------------------- |
+| `iconAfter` |   ❌   | ❌    | not valid anymore, for tags only icons before text are allowed |

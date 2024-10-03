@@ -9,12 +9,12 @@
 ### class
 
 | Before               | Status | After           | Description |
-|----------------------|:------:|-----------------|-------------|
+| -------------------- | :----: | --------------- | ----------- |
 | `cmp-mainnavigation` |   🔁   | `db-navigation` |             |
 
 ### children
 
 | Before     | Status | After | Description                                                                   |
-|------------|:------:|-------|-------------------------------------------------------------------------------|
-| `data`     |   ❌    | ❌     | pass data via `children` / `slot`, moved a lot of the features to `db-header` |
-| `siteName` |   ❌    | ❌     |                                                                               |
+| ---------- | :----: | ----- | ----------------------------------------------------------------------------- |
+| `data`     |   ❌   | ❌    | pass data via `children` / `slot`, moved a lot of the features to `db-header` |
+| `siteName` |   ❌   | ❌    |                                                                               |

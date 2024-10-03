@@ -20,10 +20,7 @@ module.exports = {
 			}
 		},
 		{
-			files: [
-				'./**/angular-**/**',
-				'./showcases/svelte-showcase/**'
-			],
+			files: ['./**/angular-**/**', './showcases/svelte-showcase/**'],
 			rules: {
 				'new-cap': 0, // fixes issue with @Component annotation
 				'import/no-unassigned-import': 0, // fixes issue with including zone.js or db-components
