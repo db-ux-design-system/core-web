@@ -14,10 +14,11 @@ import {
 	DEFAULT_INVALID_MESSAGE,
 	DEFAULT_INVALID_MESSAGE_ID_SUFFIX,
 	DEFAULT_LABEL,
-	DEFAULT_MESSAGE_ID_SUFFIX, DEFAULT_PLACEHOLDER,
+	DEFAULT_MESSAGE_ID_SUFFIX,
+	DEFAULT_PLACEHOLDER,
 	DEFAULT_VALID_MESSAGE,
 	DEFAULT_VALID_MESSAGE_ID_SUFFIX
-} from "../../shared/constants";
+} from '../../shared/constants';
 import {
 	InputEvent,
 	ChangeEvent,
@@ -30,7 +31,6 @@ import { handleFrameworkEvent } from '../../utils/form-components';
 useMetadata({
 	isAttachedToShadowDom: true
 });
-
 
 export default function DBInput(props: DBInputProps) {
 	const ref = useRef<HTMLInputElement>(null);
@@ -158,9 +158,7 @@ export default function DBInput(props: DBInputProps) {
 			data-variant={props.variant}
 			data-icon={props.icon}
 			data-icon-after={props.iconAfter}>
-			<label htmlFor={state._id}>
-				{props.label ?? DEFAULT_LABEL}
-			</label>
+			<label htmlFor={state._id}>{props.label ?? DEFAULT_LABEL}</label>
 			<input
 				aria-invalid={props.customValidity === 'invalid'}
 				data-custom-validity={props.customValidity}
