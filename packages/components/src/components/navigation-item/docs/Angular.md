@@ -1,7 +1,6 @@
 ## Angular
 
-For general installation and configuration take a look at
-the [ngx-components](https://www.npmjs.com/package/@db-ui/ngx-components) package.
+For general installation and configuration take a look at the [ngx-components](https://www.npmjs.com/package/@db-ui/ngx-components) package.
 
 ### Load component
 
@@ -19,8 +18,7 @@ import { DBNavigationItem, NavigationContentDirective } from '@db-ui/ngx-compone
 
 ### Use component
 
-We try to set `areaPopup` (has/hasn't sub-navigation) inside the component, but this doesn't work in all frameworks. If
-you encounter some problems you have the set `areaPopup` with `true/false` for sub-navigation or link
+We try to set `areaPopup` (has/hasn't sub-navigation) inside the component, but this doesn't work in all frameworks. If you encounter some problems you have the set `areaPopup` with `true/false` for sub-navigation or link
 
 ```html app.component.html
 <!-- app.component.html -->
