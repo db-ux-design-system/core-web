@@ -1,7 +1,6 @@
 ## Vue
 
-For general installation and configuration look at the [v-components](https://www.npmjs.com/package/@db-ui/v-components)
-package.
+For general installation and configuration look at the [v-components](https://www.npmjs.com/package/@db-ui/v-components) package.
 
 ### Use component
 
@@ -47,15 +46,12 @@ import { DBNavigation, DBNavigationItem } from "@db-ui/v-components";
 
 ### Vue Router and active state handling
 
-We recommend using the
-automatic [integration with the Vue Router](https://router.vuejs.org/api/interfaces/RouterLinkProps.html#ariaCurrentValue).
-This is way more elegant than setting the aria attribute to the anchor yourself.
+We recommend using the automatic [integration with the Vue Router](https://router.vuejs.org/api/interfaces/RouterLinkProps.html#ariaCurrentValue). This is way more elegant than setting the aria attribute to the anchor yourself.
 
 You can use Vue Routers `RouterLink` component to define your targets.
 The active style is automatically set once an item receives the `aria-current="page"` attribute.
 
-For other purposes, `NavigationItems` themselves can also be set to active with their prop `:active="true"`. However,
-this does not guarantee correct a11y.
+For other purposes, `NavigationItems` themselves can also be set to active with their prop `:active="true"`. However, this does not guarantee correct a11y.
 
 ```vue App.vue
 <!-- App.vue -->
