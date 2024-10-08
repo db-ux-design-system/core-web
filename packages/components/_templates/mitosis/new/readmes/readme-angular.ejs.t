@@ -9,11 +9,12 @@ For general installation and configuration take a look at the [ngx-components](h
 
 ```ts app.component.ts
 // app.component.ts
-import { DB<%= h.changeCase.pascal(name) %>Module } from '@db-ui/ngx-components';
+import { DB<%= h.changeCase.pascal(name) %> } from '@db-ui/ngx-components';
 
 @Component({
   // ...
-  imports: [..., DB<%= h.changeCase.pascal(name) %>Module],
+  imports: [..., DB<%= h.changeCase.pascal(name) %>],
+  standalone: true
   // ...
 })
 ```

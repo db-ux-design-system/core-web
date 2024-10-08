@@ -1,7 +1,7 @@
 ---
 to: src/components/<%= name %>/<%= name %>.spec.tsx
 ---
-import { test, expect } from '@playwright/experimental-ct-react';
+import { expect, test } from '@playwright/experimental-ct-react';
 import AxeBuilder from '@axe-core/playwright';
 
 import { DB<%= h.changeCase.pascal(name) %> } from "./index";

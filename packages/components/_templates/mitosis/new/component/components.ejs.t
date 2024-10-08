@@ -1,6 +1,6 @@
 ---
 inject: true
-to: scripts/post-build/components.js
+to: scripts/post-build/components.ts
 after: getComponents
 ---
   {

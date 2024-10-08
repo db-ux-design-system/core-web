@@ -15,6 +15,7 @@ import {
 	DEFAULT_INVALID_MESSAGE_ID_SUFFIX,
 	DEFAULT_LABEL,
 	DEFAULT_MESSAGE_ID_SUFFIX,
+	DEFAULT_PLACEHOLDER,
 	DEFAULT_VALID_MESSAGE,
 	DEFAULT_VALID_MESSAGE_ID_SUFFIX
 } from '../../shared/constants';
@@ -43,10 +44,6 @@ export default function DBInput(props: DBInputProps) {
 		_descByIds: '',
 		_value: '',
 		_voiceOverFallback: '',
-		defaultValues: {
-			label: DEFAULT_LABEL,
-			placeholder: ' '
-		},
 		handleInput: (event: InputEvent<HTMLInputElement>) => {
 			if (props.onInput) {
 				props.onInput(event);
@@ -161,9 +158,7 @@ export default function DBInput(props: DBInputProps) {
 			data-variant={props.variant}
 			data-icon={props.icon}
 			data-icon-after={props.iconAfter}>
-			<label htmlFor={state._id}>
-				{props.label ?? state.defaultValues.label}
-			</label>
+			<label htmlFor={state._id}>{props.label ?? DEFAULT_LABEL}</label>
 			<input
 				aria-invalid={props.customValidity === 'invalid'}
 				data-custom-validity={props.customValidity}
@@ -171,9 +166,7 @@ export default function DBInput(props: DBInputProps) {
 				id={state._id}
 				name={props.name}
 				type={props.type || 'text'}
-				placeholder={
-					props.placeholder ?? state.defaultValues.placeholder
-				}
+				placeholder={props.placeholder ?? DEFAULT_PLACEHOLDER}
 				disabled={props.disabled}
 				required={props.required}
 				step={props.step}

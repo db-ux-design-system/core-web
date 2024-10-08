@@ -83,13 +83,13 @@
 			{
 				"name": "Icon & Text",
 				"props": {
-					"icon": "user"
+					"icon": "person"
 				}
 			},
 			{
 				"name": "Icon",
 				"props": {
-					"icon": "user",
+					"icon": "person",
 					"noText": true
 				}
 			}

@@ -7,7 +7,7 @@ import { migrate } from './migration';
 
 const action = async (functionName: string, options: OptionsType) => {
 	if (functionName === 'migration') {
-		migrate(options);
+		migrate(options, true);
 	} else {
 		console.error(
 			`There is no function for this library named ${functionName}`
