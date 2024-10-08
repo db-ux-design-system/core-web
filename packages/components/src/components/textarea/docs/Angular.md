@@ -38,7 +38,7 @@ export class AppComponent {
 	label="Textarea Controlled"
 	placeholder="Placeholder"
 	message="Message"
-	icon="user"
+	icon="person"
 	[value]="textarea"
 	(change)="textarea = $event.target.value"
 ></db-textarea>

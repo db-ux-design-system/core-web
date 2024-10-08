@@ -28,18 +28,18 @@ export default function DBTabs(props: DBTabsProps) {
 		showScrollLeft: false,
 		showScrollRight: false,
 		scrollContainer: null,
-		convertTabs(tabs: unknown[] | string | undefined) {
+		convertTabs(tabs: unknown[] | string | undefined): DBSimpleTabProps[] {
 			try {
 				if (typeof tabs === 'string') {
 					return JSON.parse(tabs);
 				}
 
-				return tabs;
+				return tabs as DBSimpleTabProps[];
 			} catch (error) {
 				console.error(error);
 			}
 
-			return undefined;
+			return [];
 		},
 		evaluateScrollButtons(tList: Element) {
 			const needsScroll = tList.scrollWidth > tList.clientWidth;

@@ -98,12 +98,7 @@ export const getComponents = (): Component[] => [
 	},
 
 	{
-		name: 'accordion',
-		overwrites: {
-			angular: [
-				{ from: 'openItems = []', to: 'openItems: string[] = []' }
-			]
-		}
+		name: 'accordion'
 	},
 
 	{
@@ -145,6 +140,12 @@ export const getComponents = (): Component[] => [
 				{
 					from: 'navigationItemSafeTriangle: undefined',
 					to: 'navigationItemSafeTriangle: undefined as undefined | NavigationItemSafeTriangle'
+				}
+			],
+			react: [
+				{
+					from: 'onMouseMove={(event)',
+					to: 'onMouseMove={(event: MouseEvent)'
 				}
 			]
 		},

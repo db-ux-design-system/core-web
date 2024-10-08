@@ -113,7 +113,7 @@ $default-icon-font-size: var(--db-icon-font-size, #{$default-icon-size-rem});
 				--db-icon: "information_circle";
 				/* stylelint-disable-next-line at-rule-empty-line-before */
 			} @else if ($variant == "warning") {
-				--db-icon: "warning_triangle";
+				--db-icon: "exclamation_mark_triangle";
 				/* stylelint-disable-next-line at-rule-empty-line-before */
 			} @else if ($variant == "successful") {
 				--db-icon: "check_circle";

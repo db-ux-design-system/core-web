@@ -32,7 +32,6 @@ export type GlobalProps = {
 
 export type GlobalState = {
 	_id?: string;
-	defaultValues?: { [key: string]: string };
 };
 
 export const SemanticList = [
@@ -452,7 +451,7 @@ export type ToggleEventProps = {
 };
 
 export type ToggleEventState<T> = {
-	toggle?: (event?: ClickEvent<T>) => void;
+	toggle: (event?: ClickEvent<T>) => void;
 };
 
 export type CloseEventProps = {
@@ -463,7 +462,7 @@ export type CloseEventProps = {
 };
 
 export type CloseEventState = {
-	handleClose?: (event: any) => void;
+	handleClose: (event: any) => void;
 };
 
 export const AlignmentList = ['start', 'center'] as const;
