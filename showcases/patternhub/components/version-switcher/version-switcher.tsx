@@ -101,7 +101,7 @@ const VersionSwitcher = () => {
 	const handleChange = (branch: string) => {
 		const lastPath = router.asPath;
 		const isTag = branch.split('.').length === 3 && branch.startsWith('v');
-		(window.top || window).location.replace(
+		(window.top ?? window).location.replace(
 			sanitize(
 				`https://${owner}.github.io/${repo}${
 					isTag ? '/version' : '/review'
