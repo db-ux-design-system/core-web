@@ -1,7 +1,7 @@
 <!-- markdownlint-configure-file { "MD013": false, "MD041":false } -->
 <!-- markdownlint-disable MD033 MD010 -->
 
-<img src="docs/images/header_image_0.guetzli.jpg" alt="" srcset="docs/images/header_image_0.guetzli.2x.jpg 2x, docs/images/header_image_0.guetzli.3x.jpg 3x"> <!-- width="830" height="276" //-->
+![db-ux-components](https://github.com/db-ui/design/assets/167995907/30dd288e-ee62-4322-958e-553123509931)
 
 # DB UI Mono (Beta) 🚂💖
 
