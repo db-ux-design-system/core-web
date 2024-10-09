@@ -138,27 +138,27 @@
 				}
 			},
 			{
-				"name": "3extra-small",
+				"name": "3x-small",
 				"props": {
-					"gap": "3extra-small"
+					"gap": "3x-small"
 				},
 				"style": {
 					"width": "200px"
 				}
 			},
 			{
-				"name": "2extra-small",
+				"name": "2x-small",
 				"props": {
-					"gap": "2extra-small"
+					"gap": "2x-small"
 				},
 				"style": {
 					"width": "200px"
 				}
 			},
 			{
-				"name": "extra-small",
+				"name": "x-small",
 				"props": {
-					"gap": "extra-small"
+					"gap": "x-small"
 				},
 				"style": {
 					"width": "200px"
@@ -192,27 +192,27 @@
 				}
 			},
 			{
-				"name": "extra-large",
+				"name": "x-large",
 				"props": {
-					"gap": "extra-large"
+					"gap": "x-large"
 				},
 				"style": {
 					"width": "200px"
 				}
 			},
 			{
-				"name": "2extra-large",
+				"name": "2x-large",
 				"props": {
-					"gap": "2extra-large"
+					"gap": "2x-large"
 				},
 				"style": {
 					"width": "200px"
 				}
 			},
 			{
-				"name": "3extra-large",
+				"name": "3x-large",
 				"props": {
-					"gap": "3extra-large"
+					"gap": "3x-large"
 				},
 				"style": {
 					"width": "200px"

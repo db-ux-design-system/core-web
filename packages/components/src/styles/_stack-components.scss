@@ -4,15 +4,15 @@
 @use "custom-elements";
 
 $stack-gaps: (
-	"3extra-small": variables.$db-spacing-fixed-3xs,
-	"2extra-small": variables.$db-spacing-fixed-2xs,
-	"extra-small": variables.$db-spacing-fixed-xs,
+	"3x-small": variables.$db-spacing-fixed-3xs,
+	"2x-small": variables.$db-spacing-fixed-2xs,
+	"x-small": variables.$db-spacing-fixed-xs,
 	"small": variables.$db-spacing-fixed-sm,
 	"medium": variables.$db-spacing-fixed-md,
 	"large": variables.$db-spacing-fixed-lg,
-	"extra-large": variables.$db-spacing-fixed-xl,
-	"2extra-large": variables.$db-spacing-fixed-2xl,
-	"3extra-large": variables.$db-spacing-fixed-3xl,
+	"x-large": variables.$db-spacing-fixed-xl,
+	"2x-large": variables.$db-spacing-fixed-2xl,
+	"3x-large": variables.$db-spacing-fixed-3xl,
 	"none": 0
 );
 
@@ -21,7 +21,11 @@ $stack-gaps: (
 
 	@for $i from 1 through list.length($list) {
 		$e: list.nth($list, $i);
-		$result: if($i != list.length($list), $result#{$e}#{$glue}, $result#{$e});
+		$result: if(
+			$i != list.length($list),
+			$result#{$e}#{$glue},
+			$result#{$e}
+		);
 	}
 
 	@return $result;

@@ -118,15 +118,15 @@ export type GapProps = {
 
 export const GapSpacingList = [
 	'none',
-	'3extra-large',
-	'2extra-large',
-	'extra-large',
+	'3x-large',
+	'2x-large',
+	'x-large',
 	'large',
 	'medium',
 	'small',
-	'extra-small',
-	'2extra-small',
-	'3extra-small'
+	'x-small',
+	'2x-small',
+	'3x-small'
 ] as const;
 export type GapSpacingType = (typeof GapSpacingList)[number];
 export type GapSpacingProps = {
