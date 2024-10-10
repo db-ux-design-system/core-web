@@ -10,7 +10,7 @@ import { DBHeaderProps, DBHeaderState } from './model';
 import { addAttributeToChildren, cls, uuid } from '../../utils';
 import DBButton from '../button/button.lite';
 import DBDrawer from '../drawer/drawer.lite';
-import { DEFAULT_ID } from '../../shared/constants';
+import { DEFAULT_BURGER_MENU, DEFAULT_ID } from '../../shared/constants';
 import { isEventTargetNavigationItem } from '../../utils/navigation';
 
 useMetadata({
@@ -24,9 +24,6 @@ export default function DBHeader(props: DBHeaderProps) {
 		_id: DEFAULT_ID,
 		initialized: false,
 		forcedToMobile: false,
-		defaultValues: {
-			burgerMenuLabel: 'BurgerMenu'
-		},
 		toggle: () => {
 			if (props.onToggle) {
 				props.onToggle(!props.drawerOpen);
@@ -114,8 +111,7 @@ export default function DBHeader(props: DBHeaderProps) {
 							noText
 							variant="ghost"
 							onClick={() => state.toggle()}>
-							{props.burgerMenuLabel ??
-								state.defaultValues.burgerMenuLabel}
+							{props.burgerMenuLabel ?? DEFAULT_BURGER_MENU}
 						</DBButton>
 					</div>
 					<div class="db-header-secondary-action">
