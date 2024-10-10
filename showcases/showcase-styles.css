@@ -167,6 +167,8 @@ main .db-header {
 	font-size: var(--db-type-body-font-size-2xs);
 	font-weight: 700;
 	line-height: var(--db-type-body-line-height-2xs);
-	text-decoration: none;
+	a {
+		text-decoration: none;
+	}
 	text-wrap: nowrap;
 }
