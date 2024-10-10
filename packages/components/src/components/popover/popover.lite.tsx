@@ -40,7 +40,7 @@ export default function DBPopover(props: DBPopoverProps) {
 				state.isExpanded = false;
 			}
 		},
-		getTrigger: () => {
+		getTrigger: (): Element | null => {
 			if (ref) {
 				const children: Element[] = Array.from(ref.children);
 				if (children.length >= 2) {
@@ -49,14 +49,14 @@ export default function DBPopover(props: DBPopoverProps) {
 						// this is a workaround for custom angular components
 						return firstChild.children?.length > 0
 							? firstChild.children[0]
-							: undefined;
+							: null;
 					} else {
 						return firstChild;
 					}
 				}
 			}
 
-			return undefined;
+			return null;
 		}
 	});
 
@@ -78,7 +78,7 @@ export default function DBPopover(props: DBPopoverProps) {
 		if (ref) {
 			const child = state.getTrigger();
 			if (child) {
-				child.ariaExpanded = state.isExpanded.toString();
+				child.ariaExpanded = Boolean(state.isExpanded).toString();
 			}
 		}
 	}, [ref, state.isExpanded]);
