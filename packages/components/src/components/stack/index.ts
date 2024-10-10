@@ -1,1 +1,1 @@
-export { default as DBStack } from "./stack";
+export { default as DBStack } from './stack';

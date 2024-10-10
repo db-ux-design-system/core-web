@@ -24,7 +24,7 @@ const getStack = ({
 		</DBInfotext>
 		<DBStack
 			className={
-				justifyContent ?? alignment
+				(justifyContent ?? alignment)
 					? 'stack-container stack-show-alignment'
 					: 'stack-container'
 			}

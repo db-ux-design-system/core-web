@@ -15,7 +15,6 @@ import { DBStack } from "@db-ui/v-components";
 		<span>Test 1</span>
 		<span>Test 2</span>
 		<span>Test 3</span>
-	</DBStack
-	>
+	</DBStack>
 </template>
 ```
