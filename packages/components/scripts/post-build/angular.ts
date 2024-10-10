@@ -9,12 +9,6 @@ import { runReplacements, transformToUpperComponentName } from '../utils';
 const changeFile = (input: string) => {
 	return input
 		.split('\n')
-		.filter(
-			(line) =>
-				!line.includes('@db-ui') &&
-				!line.includes(`Props } from "../`) &&
-				!line.includes(`[key]=`)
-		)
 		.map((line) => {
 			if (line.includes('export default')) {
 				return line.replace('export default', 'export');
@@ -227,22 +221,6 @@ export default (tmp?: boolean) => {
 			{
 				from: 'ngOnChanges',
 				to: 'ngAfterContentChecked'
-			},
-			{
-				from: 'mouseOver',
-				to: 'mouseover'
-			},
-			{
-				from: 'mouseEnter',
-				to: 'mouseenter'
-			},
-			{
-				from: 'mouseLeave',
-				to: 'mouseleave'
-			},
-			{
-				from: 'mouseMove',
-				to: 'mousemove'
 			},
 			{
 				from: '@ViewChild("ref") ref!: ElementRef | undefined;',

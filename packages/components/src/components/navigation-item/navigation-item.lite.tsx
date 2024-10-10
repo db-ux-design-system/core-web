@@ -93,7 +93,7 @@ export default function DBNavigationItem(props: DBNavigationItemProps) {
 			onMouseLeave={() =>
 				state.navigationItemSafeTriangle?.disableFollow()
 			}
-			onMouseMove={(event) =>
+			onMouseMove={(event: MouseEvent) =>
 				state.navigationItemSafeTriangle?.followByMouseEvent(event)
 			}
 			class={cls('db-navigation-item', props.className)}
