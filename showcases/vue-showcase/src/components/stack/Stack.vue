@@ -26,7 +26,9 @@ import { DBStack, DBInfotext, DBDivider } from "../../../../../output/vue/src";
 					:direction="exampleProps.direction"
 					:justifyContent="exampleProps.justifyContent"
 				>
-					<span className="dummy-component"> Content 1 </span>
+					<span className="dummy-component">
+						<a href="#">Content 1</a>
+					</span>
 					<template v-if="exampleProps.variant === 'divider'"
 						><DBDivider />
 					</template>

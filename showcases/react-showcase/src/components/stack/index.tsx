@@ -34,7 +34,9 @@ const getStack = ({
 			variant={variant}
 			direction={direction}
 			justifyContent={justifyContent}>
-			<span className="dummy-component">Content 1</span>
+			<span className="dummy-component">
+				<a href="#">Content 1</a>
+			</span>
 			{variant === 'divider' && <DBDivider />}
 			<span className="dummy-component">Content 2</span>
 			{variant === 'divider' && <DBDivider />}
