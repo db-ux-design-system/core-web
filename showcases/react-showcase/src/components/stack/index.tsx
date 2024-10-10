@@ -24,7 +24,7 @@ const getStack = ({
 		</DBInfotext>
 		<DBStack
 			className={
-				(justifyContent ?? alignment)
+				justifyContent ?? alignment
 					? 'stack-container stack-show-alignment'
 					: 'stack-container'
 			}
@@ -34,17 +34,11 @@ const getStack = ({
 			variant={variant}
 			direction={direction}
 			justifyContent={justifyContent}>
-			<a href="#" className="dummy-component">
-				Content 1
-			</a>
+			<span className="dummy-component">Content 1</span>
 			{variant === 'divider' && <DBDivider />}
-			<a href="#" className="dummy-component">
-				Content 2
-			</a>
+			<span className="dummy-component">Content 2</span>
 			{variant === 'divider' && <DBDivider />}
-			<a href="#" className="dummy-component">
-				Content 3
-			</a>
+			<span className="dummy-component">Content 3</span>
 		</DBStack>
 	</DBStack>
 );

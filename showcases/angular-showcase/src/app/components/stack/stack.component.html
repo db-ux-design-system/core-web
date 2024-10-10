@@ -16,7 +16,7 @@
 			</db-infotext>
 			<db-stack
 				[className]="
-					(exampleProps.justifyContent ?? exampleProps.alignment)
+					exampleProps.justifyContent ?? exampleProps.alignment
 						? 'stack-container stack-show-alignment'
 						: 'stack-container'
 				"
@@ -27,17 +27,17 @@
 				[direction]="exampleProps.direction"
 				[justifyContent]="exampleProps.justifyContent"
 			>
-				<a href="#" class="dummy-component"> Content 1 </a>
+				<span class="dummy-component"> Content 1 </span>
 				@if (exampleProps.variant === "divider") {
 					<db-divider />
 				}
 
-				<a href="#" class="dummy-component"> Content 2 </a>
+				<span class="dummy-component"> Content 2 </span>
 				@if (exampleProps.variant === "divider") {
 					<db-divider />
 				}
 
-				<a href="#" class="dummy-component"> Content 3 </a>
+				<span class="dummy-component"> Content 3 </span>
 			</db-stack>
 		</db-stack>
 	</ng-template>

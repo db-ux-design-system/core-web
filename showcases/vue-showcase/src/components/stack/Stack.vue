@@ -30,15 +30,15 @@ import {
 					:direction="exampleProps.direction"
 					:justifyContent="exampleProps.justifyContent"
 				>
-					<a href="#" className="dummy-component"> Content 1 </a>
+					<span className="dummy-component"> Content 1 </span>
 					<template v-if="exampleProps.variant === 'divider'"
 						><DBDivider />
 					</template>
-					<a href="#" className="dummy-component"> Content 2 </a>
+					<span className="dummy-component"> Content 2 </span>
 					<template v-if="exampleProps.variant === 'divider'"
 						><DBDivider />
 					</template>
-					<a href="#" className="dummy-component"> Content 3 </a>
+					<span className="dummy-component"> Content 3 </span>
 				</DBStack>
 			</DBStack>
 		</template>
