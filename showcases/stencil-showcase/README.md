@@ -3,7 +3,6 @@
 ```json
 /tsconfig.json
 
-
 "compilerOptions": {
 …
     "paths": {
