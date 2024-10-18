@@ -5,11 +5,6 @@ import { ClickEvent } from '../../shared/model';
 
 useMetadata({});
 
-/**
- * This is a test comment
- * @param props
- * @constructor
- */
 export default function DBButton(props: DBButtonProps) {
 	const ref = useRef<HTMLButtonElement>(null);
 	// jscpd:ignore-start
