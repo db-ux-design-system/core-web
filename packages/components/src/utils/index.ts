@@ -214,6 +214,7 @@ export const enableCustomElementAttributePassing = (
 	const parent = element?.closest(customElementSelector);
 	if (element && parent) {
 		const attributes = parent.attributes;
+		// TODO: evaluate whether we could simplify this
 		for (let i = 0; i < attributes.length; i++) {
 			const attr = attributes.item(i);
 			if (
