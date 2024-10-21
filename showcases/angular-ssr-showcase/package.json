@@ -32,7 +32,7 @@
     "@angular/cli": "17.3.10",
     "@angular/compiler-cli": "17.3.12",
     "@types/express": "^5.0.0",
-    "@types/node": "^22.7.6",
+    "@types/node": "^22.7.7",
     "cpr": "3.0.1",
     "ng-packagr": "17.3.0",
     "typescript": "^5.4.5"
