@@ -30,7 +30,10 @@ if [[ $PRE_RELEASE == "true" || $RELEASE == "true" ]]; then
 		rm -rf ./public/version/"$NAME"
 	fi
 	if [[ $RELEASE == "true" ]]; then
-		rm -rf ./public/version/latest
+ 		if [[ -d ./public/version/latest ]]; then
+			echo "    Remove dir ./public/version/latest"
+			rm -rf ./public/version/latest
+		fi
 		mkdir ./public/version/latest
 		cp ./out ./public/version/latest
 		echo "    Copied dir out to ./public/version/latest"
