@@ -13,7 +13,7 @@ $dropdown-icon-transition: transform variables.$db-transition-straight-emotional
 $dropdown-icon-transform: rotate(-180deg);
 
 $font-size-height: calc(var(--db-base-font-size) * var(--db-base-line-height));
-$icon-size-sm: var(--db-base-body-icon-font-size-sm);
+$icon-size-md: var(--db-base-body-icon-font-size-md);
 $label-size-height-sm: calc(
 	var(--db-type-body-font-size-sm) * var(--db-type-body-line-height-sm)
 );

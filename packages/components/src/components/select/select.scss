@@ -16,7 +16,7 @@
 
 $has-before-padding: calc(
 	var(--db-form-has-before) *
-		(#{form-components.$icon-size-sm} + #{variables.$db-spacing-fixed-sm})
+		(#{form-components.$icon-size-md} + #{variables.$db-spacing-fixed-sm})
 );
 
 .db-select {
