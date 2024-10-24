@@ -38,7 +38,7 @@
     "@next/mdx": "^14.2.16",
     "@types/dompurify": "3.0.5",
     "@types/node": "22.7.8",
-    "@types/react": "18.3.11",
+    "@types/react": "18.3.12",
     "@types/react-dom": "18.3.1",
     "esbuild": "0.24.0",
     "eslint": "8.57.0",
