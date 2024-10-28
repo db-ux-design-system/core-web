@@ -103,6 +103,7 @@ Check our migration docs for breaking changes:
 
 1. [Alpha ➡ Beta](https://github.com/db-ui/mono/tree/main/docs/migration/alpha-beta.md) (0.0.x➡0.x.x)
 2. [v0.2 ➡ v0.3](https://github.com/db-ui/mono/tree/main/docs/migration/v0.2.x-to-v0.3.x.md)
+3. [v0.3 ➡ v0.4](https://github.com/db-ui/mono/tree/main/docs/migration/v0.3.x-to-v0.4.x.md)
 
 ## How to start develop / contribute
 
