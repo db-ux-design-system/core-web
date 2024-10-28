@@ -22,6 +22,12 @@ const getDrawer = ({
 	backdrop
 }: DBDrawerProps & AdditionalDrawerProperties) => (
 	<div>
+		<DBButton
+			onClick={() => {
+				setOpenDrawer(id);
+			}}>
+			Open: {children}
+		</DBButton>
 		<DBDrawer
 			rounded={rounded}
 			width={width}
@@ -34,12 +40,6 @@ const getDrawer = ({
 			}}>
 			{children}
 		</DBDrawer>
-		<DBButton
-			onClick={() => {
-				setOpenDrawer(id);
-			}}>
-			Open: {children}
-		</DBButton>
 	</div>
 );
 
