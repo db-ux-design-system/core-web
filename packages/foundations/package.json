@@ -22,7 +22,7 @@
     "build:03_css": "sass --no-source-map --load-path=node_modules/ --load-path=../../node_modules/ build/scss/:build/css/ --future-deprecation=import",
     "build:04_tailwind": "cpr tailwind build/tailwind -o",
     "build:05_postcss": "postcss build/css/**/*.css --replace",
-    "build:99_foundations_common": "esbuild scripts/cli.ts --bundle --outfile=build/index.js --platform=node",
+    "build:99_foundations_common": "node scripts/esbuild.mjs",
     "clean": "rm -rf build",
     "copy-build": "npm-run-all copy-build:*",
     "copy-build:assets": "cpr assets ../../build-outputs/foundations/assets -o",

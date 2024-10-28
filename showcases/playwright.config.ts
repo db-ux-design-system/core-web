@@ -40,6 +40,7 @@ const projects: Project[] = [
 ];
 
 // There is an issue with stencil not working with webkit mobile
+// Some screens differ for each snapshot
 if (!process.env.showcase?.startsWith('stencil')) {
 	projects.push({
 		name: 'mobile_safari',
