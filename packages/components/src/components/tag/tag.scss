@@ -93,7 +93,9 @@
 		align-items: center;
 
 		@media (forced-colors: active) {
-			border-style: dashed;
+			&:not(:has(input:checked)) {
+				border-style: dashed;
+			}
 		}
 
 		&:has(input:checked) {
@@ -101,10 +103,6 @@
 
 			&::before {
 				content: none;
-			}
-
-			@media (forced-colors: active) {
-				border-style: solid;
 			}
 		}
 
