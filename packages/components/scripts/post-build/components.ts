@@ -11,7 +11,6 @@ export type Component = {
 		stencil?: Overwrite[];
 		react?: Overwrite[];
 		vue?: Overwrite[];
-		webComponents?: Overwrite[];
 	};
 	config?: {
 		vue?: {
@@ -183,7 +182,6 @@ export const getComponents = (): Component[] => [
 	{
 		name: 'drawer',
 		overwrites: {
-			webComponents: [{ from: '__prev.find', to: '!!__prev.find' }],
 			stencil: [{ from: /onClose/g, to: 'close' }]
 		},
 		config: {
@@ -283,31 +281,7 @@ export const getComponents = (): Component[] => [
 					to: '() => toggle()'
 				}
 			],
-			angular: [{ from: '(close)', to: '(onClose)' }],
-			webComponents: [
-				{
-					from: '<slot></slot>',
-					to: '<slot name="navigation-mobile"></slot>'
-				},
-				{
-					from: 'name="meta-navigation"',
-					to: 'name="meta-navigation-mobile"'
-				},
-				{
-					from: 'name="action-bar"',
-					to: 'name="action-bar-mobile"'
-				},
-				{
-					from:
-						'        el.removeEventListener("close", this.onDbDrawerDbHeaderClose);\n' +
-						'        el.addEventListener("close", this.onDbDrawerDbHeaderClose);',
-					to: 'el.props.onClose = this.onDbDrawerDbHeaderClose;'
-				},
-				{
-					from: 'if(this.props.drawerOpen)         el.setAttribute("open", this.props.drawerOpen);',
-					to: '        el.setAttribute("open", Boolean(this.props.drawerOpen));'
-				}
-			]
+			angular: [{ from: '(close)', to: '(onClose)' }]
 		}
 	},
 	{
