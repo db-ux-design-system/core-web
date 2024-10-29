@@ -30,7 +30,7 @@
 	}
 
 	// Square icon only buttons
-	&:is([data-no-text], [data-no-text="true"]) {
+	&[data-no-text="true"] {
 		@include icons.is-icon-text-replace();
 
 		padding: 0;
@@ -46,7 +46,7 @@
 
 		block-size: variables.$db-sizing-sm;
 
-		&:not([data-no-text="true"], [data-no-text]) {
+		&:not([data-no-text="true"]) {
 			padding: variables.$db-spacing-fixed-3xs
 				variables.$db-spacing-fixed-sm;
 
@@ -56,7 +56,7 @@
 		}
 
 		// Square icon only buttons
-		&:is([data-no-text], [data-no-text="true"]) {
+		&[data-no-text="true"] {
 			inline-size: variables.$db-sizing-sm;
 		}
 	}

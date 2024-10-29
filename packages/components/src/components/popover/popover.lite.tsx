@@ -7,7 +7,7 @@ import {
 	useStore
 } from '@builder.io/mitosis';
 import { DBPopoverProps, DBPopoverState } from './model';
-import { cls, handleDataOutside } from '../../utils';
+import { cls, getBooleanAsString, handleDataOutside } from '../../utils';
 
 useMetadata({});
 
@@ -96,7 +96,7 @@ export default function DBPopover(props: DBPopoverProps) {
 			<article
 				class="db-popover-content"
 				data-spacing={props.spacing}
-				data-gap={props.gap}
+				data-gap={getBooleanAsString(props.gap)}
 				data-animation={props.animation}
 				data-open={props.open}
 				data-delay={props.delay}

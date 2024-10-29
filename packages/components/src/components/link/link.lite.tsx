@@ -1,6 +1,6 @@
 import { Show, useMetadata, useRef, useStore } from '@builder.io/mitosis';
 import { DBLinkProps, DBLinkState } from './model';
-import { cls } from '../../utils';
+import { cls, getBooleanAsString } from '../../utils';
 import { ClickEvent } from '../../shared/model';
 import { DEFAULT_ID } from '../../shared/constants';
 
@@ -32,7 +32,7 @@ export default function DBLink(props: DBLinkProps) {
 			rel={props.rel}
 			role={props.role}
 			hrefLang={props.hreflang}
-			aria-disabled={props.disabled}
+			aria-disabled={getBooleanAsString(props.disabled)}
 			tabIndex={props.disabled ? -1 : 0}
 			aria-selected={props.selected}
 			aria-label={props.label}

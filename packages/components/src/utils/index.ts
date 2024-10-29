@@ -228,6 +228,21 @@ export const enableCustomElementAttributePassing = (
 	}
 };
 
+/**
+ * Some frameworks like stencil would not add "true" as value for a prop
+ * if it is used in a framework like angular e.g.: [disabled]="myDisabledProp"
+ * @param originBool Some boolean to convert to string
+ */
+export const getBooleanAsString = (
+	originBool?: boolean
+): string | boolean | undefined => {
+	if (originBool) {
+		return String(originBool);
+	}
+
+	return originBool;
+};
+
 export default {
 	filterPassingProps,
 	cls,
@@ -240,5 +255,6 @@ export default {
 	isArrayOfStrings,
 	hasVoiceOver,
 	delay,
-	enableCustomElementAttributePassing
+	enableCustomElementAttributePassing,
+	getBooleanAsString
 };

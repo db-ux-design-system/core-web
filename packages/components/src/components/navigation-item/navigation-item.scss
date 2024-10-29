@@ -150,7 +150,6 @@
 		}
 	}
 
-	&[aria-disabled],
 	&[aria-disabled="true"] {
 		opacity: component.$default-disabled;
 		pointer-events: none;

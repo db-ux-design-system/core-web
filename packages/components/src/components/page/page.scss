@@ -24,7 +24,6 @@
 	}
 
 	&:not([data-fonts-loaded]),
-	&[data-fonts-loaded],
 	&[data-fonts-loaded="true"] {
 		opacity: 1;
 	}

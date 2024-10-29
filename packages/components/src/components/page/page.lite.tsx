@@ -8,7 +8,7 @@ import {
 	useStore
 } from '@builder.io/mitosis';
 import { DBPageProps, DBPageState } from './model';
-import { cls } from '../../utils';
+import { cls, getBooleanAsString } from '../../utils';
 
 useMetadata({});
 
@@ -64,7 +64,7 @@ export default function DBPage(props: DBPageProps) {
 			class={cls('db-page', props.className)}
 			data-variant={props.variant}
 			data-fade-in={props.fadeIn}
-			data-fonts-loaded={state.fontsLoaded}>
+			data-fonts-loaded={getBooleanAsString(state.fontsLoaded)}>
 			<Slot name="header" />
 			<main class="db-main">{props.children}</main>
 			<Slot name="footer" />
