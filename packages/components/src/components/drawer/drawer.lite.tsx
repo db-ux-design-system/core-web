@@ -95,7 +95,7 @@ export default function DBDrawer(props: DBDrawerProps) {
 						<Slot name="drawerHeader" />
 					</div>
 					<DBButton
-						className="button-close-drawer"
+						class="button-close-drawer"
 						id={props.closeButtonId}
 						icon="cross"
 						variant="ghost"

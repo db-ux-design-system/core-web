@@ -184,7 +184,7 @@ export default function DBTabs(props: DBTabsProps) {
 			data-width={props.width ?? 'auto'}>
 			<Show when={state.showScrollLeft}>
 				<DBButton
-					className="tabs-scroll-left"
+					class="tabs-scroll-left"
 					variant="ghost"
 					icon="chevron_left"
 					noText
@@ -219,7 +219,7 @@ export default function DBTabs(props: DBTabsProps) {
 			</Show>
 			<Show when={state.showScrollRight}>
 				<DBButton
-					className="tabs-scroll-right"
+					class="tabs-scroll-right"
 					variant="ghost"
 					icon="chevron_right"
 					noText

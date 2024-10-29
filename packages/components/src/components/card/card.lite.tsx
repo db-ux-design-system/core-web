@@ -24,7 +24,7 @@ export default function DBCard(props: DBCardProps) {
 		<div
 			ref={ref}
 			id={props.id}
-			className={cls('db-card', props.className)}
+			class={cls('db-card', props.className)}
 			data-behaviour={props.behaviour}
 			data-elevation-level={props.elevationLevel}
 			data-spacing={props.spacing}
