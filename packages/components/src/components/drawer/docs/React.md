@@ -17,6 +17,13 @@ const App = () => {
 	const [open, setOpen] = useState<boolean>(false);
 	return (
 		<div>
+			<DBButton
+				onClick={() => {
+					setOpen(true);
+				}}
+			>
+				Open Me
+			</DBButton>
 			<DBDrawer
 				open={open}
 				onClose={() => {
@@ -25,13 +32,6 @@ const App = () => {
 			>
 				My Drawer content
 			</DBDrawer>
-			<DBButton
-				onClick={() => {
-					setOpen(true);
-				}}
-			>
-				Open Me
-			</DBButton>
 		</div>
 	);
 };
