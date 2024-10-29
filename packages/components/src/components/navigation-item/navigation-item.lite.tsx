@@ -105,7 +105,7 @@ export default function DBNavigationItem(props: DBNavigationItemProps) {
 				<button
 					aria-haspopup={state.hasAreaPopup}
 					aria-expanded={state.isSubNavigationExpanded}
-					className="db-navigation-item-expand-button"
+					class="db-navigation-item-expand-button"
 					disabled={props.disabled}
 					onClick={(event: ClickEvent<HTMLButtonElement>) =>
 						state.handleClick(event)
@@ -114,7 +114,7 @@ export default function DBNavigationItem(props: DBNavigationItemProps) {
 				</button>
 
 				{/* TODO: Consider using popover here */}
-				<menu className="db-sub-navigation" id={state.subNavigationId}>
+				<menu class="db-sub-navigation" id={state.subNavigationId}>
 					<Show when={state.hasAreaPopup}>
 						<div class="db-mobile-navigation-back">
 							<DBButton

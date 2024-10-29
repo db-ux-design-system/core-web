@@ -48,7 +48,7 @@ export default function DBTabItem(props: DBTabItemProps) {
 	}, [ref, state.initialized]);
 
 	return (
-		<li className={cls('db-tab-item', props.className)} role="none">
+		<li class={cls('db-tab-item', props.className)} role="none">
 			<label
 				htmlFor={props.id}
 				data-icon={props.icon}

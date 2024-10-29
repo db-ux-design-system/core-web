@@ -15,6 +15,11 @@ export type GlobalProps = {
 	className?: string;
 
 	/**
+	 * Workaround for TypeScript using class for all components.
+	 */
+	class?: string;
+
+	/**
 	 * [`aria-describedby`](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-describedby) is used to link to the elements that describe the element with the set attribute.
 	 */
 	describedbyid?: string;
