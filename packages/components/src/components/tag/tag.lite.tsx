@@ -68,7 +68,7 @@ export default function DBTag(props: DBTagProps) {
 			<Show when={props.behaviour === 'removable'}>
 				{/* we aren't using DBButton here because of angular would wrap it in custom component */}
 				<button
-					className="db-button db-tab-remove-button"
+					class="db-button db-tab-remove-button"
 					onClick={() => state.handleRemove()}
 					data-icon="cross"
 					data-size="small"

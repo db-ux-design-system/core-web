@@ -68,7 +68,7 @@ export default function DBHeader(props: DBHeaderProps) {
 			data-width={props.width}
 			data-on-forcing-mobile={props.forceMobile && !state.forcedToMobile}>
 			<DBDrawer
-				className="db-header-drawer"
+				class="db-header-drawer"
 				rounded
 				spacing="small"
 				open={props.drawerOpen}

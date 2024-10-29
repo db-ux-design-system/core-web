@@ -66,20 +66,20 @@
 				"name": "Text - Icon (Leading)",
 				"props": {
 					"label": "Text - Icon (Leading)",
-					"icon": "x_placeholder"
+					"icon": "db"
 				}
 			},
 			{
 				"name": "Text - Icon (Trailing)",
 				"props": {
 					"label": "Text - Icon (Trailing)",
-					"iconAfter": "x_placeholder"
+					"iconAfter": "db"
 				}
 			},
 			{
 				"name": "Icon",
 				"props": {
-					"icon": "x_placeholder",
+					"icon": "db",
 					"noText": true
 				}
 			}

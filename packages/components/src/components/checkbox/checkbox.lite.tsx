@@ -136,7 +136,7 @@ export default function DBCheckbox(props: DBCheckboxProps) {
 
 	return (
 		<div
-			className={cls('db-checkbox', props.className)}
+			class={cls('db-checkbox', props.className)}
 			data-size={props.size}
 			data-variant={props.variant}>
 			<label htmlFor={state._id}>
