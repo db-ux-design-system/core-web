@@ -233,9 +233,7 @@ export const enableCustomElementAttributePassing = (
  * if it is used in a framework like angular e.g.: [disabled]="myDisabledProp"
  * @param originBool Some boolean to convert to string
  */
-export const getBooleanAsString = (
-	originBool?: boolean
-): string | boolean | undefined => {
+export const getBooleanAsString = (originBool?: boolean): any => {
 	if (originBool) {
 		return String(originBool);
 	}
