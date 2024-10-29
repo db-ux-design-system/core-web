@@ -31,7 +31,7 @@
   },
   "devDependencies": {
     "@custom-elements-manifest/analyzer": "^0.10.3",
-    "@custom-elements-manifest/to-markdown": "^0.1.0"
+    "@custom-elements-manifest/to-markdown": "^0.1.0",
     "@stencil/core": "4.21.0",
     "cem-plugin-expanded-types": "^1.3.2",
     "custom-element-jet-brains-integration": "^1.6.2",
