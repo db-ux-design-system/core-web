@@ -1,5 +1,5 @@
 import { expect, test, type Page } from '@playwright/test';
-import AxeBuilder from '@axe-core/playwright';
+import { AxeBuilder } from '@axe-core/playwright';
 import { hasWebComponentSyntax, isStencil, waitForDBPage } from '../default';
 
 const testFormComponents = async (

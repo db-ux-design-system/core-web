@@ -1,5 +1,5 @@
 import { expect, type Page, test } from '@playwright/test';
-import AxeBuilder from '@axe-core/playwright';
+import { AxeBuilder } from '@axe-core/playwright';
 import { close, getCompliance } from 'accessibility-checker';
 import { type ICheckerError } from 'accessibility-checker/lib/api/IChecker';
 import { type FullProject } from 'playwright/types/test';
