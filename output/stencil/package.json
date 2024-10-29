@@ -41,8 +41,5 @@
     "registry": "https://registry.npmjs.org/",
     "access": "public"
   },
-  "web-types": "./dist/web-types.json",
-  "dependencies": {
-    "@custom-elements-manifest/to-markdown": "^0.1.0"
-  }
+  "web-types": "./dist/web-types.json"
 }
