@@ -35,7 +35,7 @@ if [[ $PRE_RELEASE == "true" || $RELEASE == "true" ]]; then
 			rm -rf ./public/version/latest
 		fi
 		mkdir ./public/version/latest
-		cp ./out ./public/version/latest
+		cp -r ./out/* ./public/version/latest
 		echo "    Copied dir out to ./public/version/latest"
 	fi
 	mv ./out ./public/version/"$NAME"
