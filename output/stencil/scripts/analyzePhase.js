@@ -118,10 +118,6 @@ export const analyzePhase = ({ ts, node, context }) => {
 				const declarations =
 					localExport.value?.declarations ?? localExport.declarations;
 
-				if (name === 'DBDrawerDefaultProps') {
-					console.log('test');
-				}
-
 				if (declarations) {
 					declarations.forEach(({ initializer, type }) => {
 						if (initializer) {
