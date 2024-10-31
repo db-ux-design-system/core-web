@@ -19,6 +19,16 @@ const getStringArrayConst = (initializer) => {
 	return undefined;
 };
 
+const getArrayType = (ts, type) => {
+	let array;
+	if (type.elementType.typeName) {
+		array = type.elementType.typeName.escapedText;
+	} else {
+		array = getPrimitive(ts, type.elementType.kind);
+	}
+	return `${array}[]`;
+};
+
 /**
  * Get literals or type unions like: export const Test = "a" | "b";
  * @param ts {object} Typescript ast
@@ -33,6 +43,9 @@ const getUnions = (ts, types) => {
 			return innerType.typeName?.escapedText;
 		} else if (innerType.literal) {
 			return `'${innerType.literal?.text}'`;
+		} else if (innerType.elementType) {
+			// Arrays
+			return getArrayType(ts, innerType);
 		} else if (innerType.kind) {
 			return getPrimitive(ts, innerType.kind);
 		}
@@ -76,6 +89,8 @@ const getMembers = (ts, members) => ({
 			type = memberType?.typeName?.escapedText;
 		} else if (memberType.types) {
 			type = getUnions(ts, memberType.types);
+		} else if (memberType.elementType) {
+			type = getArrayType(ts, memberType);
 		} else {
 			type = getPrimitive(ts, memberType.kind);
 		}
@@ -89,7 +104,7 @@ const getMembers = (ts, members) => ({
 	type: 'props'
 });
 
-export const analyzePhase = ({ ts, node,  context }) => {
+export const analyzePhase = ({ ts, node, context }) => {
 	if (!context.data) {
 		context.data = {};
 	}
@@ -102,6 +117,10 @@ export const analyzePhase = ({ ts, node,  context }) => {
 				const name = localExport.escapedName;
 				const declarations =
 					localExport.value?.declarations ?? localExport.declarations;
+
+				if (name === 'DBDrawerDefaultProps') {
+					console.log('test');
+				}
 
 				if (declarations) {
 					declarations.forEach(({ initializer, type }) => {

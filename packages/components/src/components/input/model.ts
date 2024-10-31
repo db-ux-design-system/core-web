@@ -37,7 +37,13 @@ export const InputTypeList = [
 export type InputTypeType = (typeof InputTypeList)[number];
 
 export type DBInputDefaultProps = {
+	/**
+	 * Set a data list via attributes instead of child.
+	 */
 	dataList?: string[] | ValueLabelType[];
+	/**
+	 * Add a custom id to data list if your using `dataList` attribute.
+	 */
 	dataListId?: string;
 	/**
 	 * Maximum value
@@ -56,6 +62,9 @@ export type DBInputDefaultProps = {
 	 * 	Type of form control
 	 */
 	type?: InputTypeType | string;
+	/**
+	 * Sets step based in [this](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/step).
+	 */
 	step?: number | string;
 };
 

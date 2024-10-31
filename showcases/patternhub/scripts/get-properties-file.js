@@ -1,85 +1,92 @@
-import { getColorVariants, getUnionElements } from './utils.js';
+import { getComponentName, transformToUpperComponentName } from './utils.js';
 
-const getOptions = (tsType) => {
-	switch (tsType.name) {
-		case 'literal': {
-			return tsType.value;
-		}
-
-		case 'Array': {
-			return `const array:${tsType.raw} = [${tsType.elements
-				.map((element) => getOptions(element))
-				.join('\n')}]`;
-		}
-
-		case 'signature': {
-			return `${tsType.raw
-				.replaceAll('/**\n\t', '')
-				.replaceAll('*/\n\t', '')
-				.replaceAll('*', '//')
-				.replaceAll('{', '&#123;')
-				.replaceAll('}', '&#125;')
-				.replaceAll('\r\n\t\t', ' ')
-				.replaceAll('\t', '&ensp;')
-				.replaceAll(/\r\n|\r|\n/g, '<br/>')
-				.replaceAll('|', '&#124;')}`;
-		}
-
-		case 'union': {
-			const options = [];
-			getUnionElements(options, tsType.elements);
-			return options.join(' &#124; ');
-		}
-
-		case 'COLOR': {
-			return getColorVariants().join(' &#124; ');
-		}
-
-		default: {
-			return undefined;
-		}
+const getAllNames = (name) => {
+	const part = transformToUpperComponentName(name);
+	if (!part) {
+		return '';
 	}
+
+	const upperName = `${part[0].toLowerCase()}${part.slice(1)}`;
+
+	if (name === 'classname') {
+		return 'className';
+	}
+
+	if (name !== upperName) {
+		return `${name} / ${upperName}`;
+	}
+
+	return name;
 };
 
 /**
  *
- * @param componentValue {{description: string, methods: any[], displayName: string, props:any}}
+ * @param componentValue {{description: string,  name: string, attributes:any[], slots:any[], events:any[]}}
  * @returns {string}
  */
-const getPropertiesFile = ({ displayName, description, props }) => {
-	const propertyKeys = Object.keys(props);
-
+const getPropertiesFile = ({ name, attributes, events, slots }) => {
 	let propertyTable = '';
+	let slotsTable = '';
+	let eventsTable = '';
+	const allSlots = [...slots];
 
-	for (const propertyKey of propertyKeys) {
-		const property = props[propertyKey];
-		const options = getOptions(property.tsType);
-		propertyTable += `| ${propertyKey} `;
+	for (const { name, description, value } of attributes.filter(
+		({ value }) => !value?.type?.includes('function')
+	)) {
+		const isUnion = value.type.includes('|');
+
+		propertyTable += `| ${getAllNames(name)} `;
 		propertyTable += `| ${
-			property.description.replaceAll(/\r\n|\r|\n/g, '<br/>') ||
-			'No description'
+			description?.replaceAll(/\r\n|\r|\n/g, '<br/>') || 'No description'
 		} `;
-		propertyTable += `| ${property.tsType.type ?? property.tsType.name} `;
+		propertyTable += `| ${isUnion ? 'union' : value.type} `;
 
-		if (['icon', 'iconAfter', 'messageIcon'].includes(propertyKey)) {
+		if (['icon', 'icon-after', 'message-icon'].includes(name)) {
 			propertyTable += `| [IconTypes](https://db-ui.github.io/mono/review/main/foundations/icons/overview) |\n`;
 		} else {
 			propertyTable += `| ${
-				options
-					? `<pre><code className="code-pre-wrap">${options.replaceAll(
-							'<T>',
-							''
+				isUnion
+					? `<pre><code className="code-pre-wrap">${value.type.replaceAll(
+							'|',
+							'&#124;'
 						)}</code></pre>`
 					: ''
 			} |\n`;
 		}
 	}
 
+	for (const { name, description } of allSlots) {
+		slotsTable += `| ${getAllNames(name)} | ${description?.replaceAll(/\r\n|\r|\n/g, '<br/>')} |\n`;
+	}
+
+	for (const { name, type } of events) {
+		eventsTable += `| ${getAllNames(name)} | ${type} |\n`;
+	}
+
 	return `
 import DefaultPage from "../../../../components/default-page";
 
-# ${displayName}
-${description}
+# DB${transformToUpperComponentName(getComponentName(name))}
+${
+	allSlots.length > 0
+		? `## Slots
+
+| Name | Description |
+| ---- | ----------- |
+${slotsTable}
+`
+		: ''
+}
+${
+	events.length > 0
+		? `## Events
+
+| Name | Type |
+| ---- | ----------- |
+${eventsTable}
+`
+		: ''
+}
 ## Properties
 
 | Name | Description | Type | Options |
