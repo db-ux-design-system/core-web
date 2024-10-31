@@ -57,7 +57,7 @@ export default function DBAccordion(props: DBAccordionProps) {
 						state._name = props.name;
 					}
 				} else {
-					if (state._name !== state._id) {
+					if (state._name !== state._id && state._id) {
 						state._name = state._id;
 					}
 				}
