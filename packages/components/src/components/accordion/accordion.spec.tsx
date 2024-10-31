@@ -79,7 +79,8 @@ const testAction = () => {
 		await expect(component.getByTestId('button')).toBeHidden();
 		await expect(component.getByTestId('textarea')).toBeVisible();
 		await expect(
-			component.getByTestId('item3').getByRole('group')
+			component.getByTestId('item3')
+			// VUE: .getByRole('group')
 		).toBeDisabled();
 	});
 
