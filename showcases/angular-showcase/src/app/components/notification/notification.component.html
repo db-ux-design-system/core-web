@@ -21,11 +21,12 @@
 			(onClose)="showNotification(exampleName)"
 		>
 			@if (exampleProps?.link) {
-				<db-link link href="#">Textlink</db-link>
+				<db-link link slot="link" href="#">Textlink</db-link>
 			}
 			@if (exampleProps?.img) {
 				<img
 					image
+					slot="image"
 					src="./assets/images/placeholder.jpg"
 					alt="this is a fancy placeholder"
 				/>

@@ -39,7 +39,7 @@ import {
 					!exampleProps?.example
 				"
 			>
-				<DBButton icon="user" variant="outlined" :noText="true">
+				<DBButton icon="person" variant="outlined" :noText="true">
 					<DBBadge
 						emphasis="strong"
 						semantic="critical"
@@ -56,7 +56,7 @@ import {
 
 			<template v-if="exampleProps?.placement === 'inline'">
 				<div class="badge-inline-container">
-					<DBIcon icon="user"></DBIcon>
+					<DBIcon icon="person"></DBIcon>
 					<span>{{ exampleName }}</span>
 					<DBBadge size="small" emphasis="strong" semantic="critical">
 						Label
@@ -71,7 +71,7 @@ import {
 					emphasis="strong"
 					:size="exampleProps?.size"
 				>
-					<DBIcon icon="user">{{ exampleName }}</DBIcon>
+					<DBIcon icon="person">{{ exampleName }}</DBIcon>
 				</DBBadge>
 				<DBInfotext semantic="informational" size="small" icon="none">
 					{{ exampleName }}

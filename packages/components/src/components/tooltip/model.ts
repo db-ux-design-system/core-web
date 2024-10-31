@@ -12,9 +12,9 @@ import {
 export const TooltipVariantList = ['with arrow', 'basic'] as const;
 export type TooltipVariantType = (typeof TooltipVariantList)[number];
 
-export interface DBTooltipDefaultProps {
+export type DBTooltipDefaultProps = {
 	variant?: TooltipVariantType;
-}
+};
 
 export type DBTooltipProps = DBTooltipDefaultProps &
 	GlobalProps &
@@ -22,7 +22,7 @@ export type DBTooltipProps = DBTooltipDefaultProps &
 	PlacementProps &
 	PopoverProps;
 
-export interface DBTooltipDefaultState {}
+export type DBTooltipDefaultState = {};
 
 export type DBTooltipState = DBTooltipDefaultState &
 	GlobalState &

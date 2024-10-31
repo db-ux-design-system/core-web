@@ -1,7 +1,7 @@
 ---
 to: src/components/<%= name %>/<%= name %>.lite.tsx
 ---
-import { Show, useMetadata, useStore } from "@builder.io/mitosis";
+import { Show, useMetadata, useStore, useRef } from "@builder.io/mitosis";
 import { DB<%= h.changeCase.pascal(name) %>State, DB<%= h.changeCase.pascal(name) %>Props } from "./model";
 import { cls } from "../../utils";
 <% if(formValue!=="no"){   -%>
@@ -9,9 +9,7 @@ import {ChangeEvent, InteractionEvent} from "../../shared/model";
 import { handleFrameworkEvent } from "../../utils/form-components";
 <% } -%>
 
-useMetadata({
-  isAttachedToShadowDom: true
-});
+useMetadata({});
 
 export default function DB<%= h.changeCase.pascal(name) %>(props: DB<%= h.changeCase.pascal(name) %>Props) {
   // This is used as forwardRef

@@ -81,7 +81,7 @@ $tab-border-radius: variables.$db-border-radius-sm;
 			}
 		}
 
-		&[data-no-text="true"] {
+		&:is([data-no-text], [data-no-text="true"]) {
 			@include icons.is-icon-text-replace();
 
 			padding: 0;

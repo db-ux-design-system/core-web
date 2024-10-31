@@ -50,7 +50,7 @@ $check-border-size: min(#{variables.$db-border-height-2xs}, 2px);
 	.db-infotext {
 		margin-block-start: variables.$db-spacing-fixed-2xs;
 
-		&:is([data-semantic], :empty) {
+		&[data-semantic] {
 			display: none;
 		}
 	}
@@ -197,7 +197,7 @@ $check-border-size: min(#{variables.$db-border-height-2xs}, 2px);
 			--db-#{$variant}-on-bg-basic-emphasis-100-default
 		);
 		--db-adaptive-on-bg-basic-emphasis-60-default: var(
-			--db-#{$variant}-border
+			--db-#{$variant}-on-bg-basic-emphasis-60-default
 		);
 	}
 }
@@ -266,7 +266,7 @@ $input-valid-types: "color", "date", "datetime-local", "email", "file", "hidden"
 		label {
 			&::after {
 				@include icons.icon-content("*");
-        
+
 				padding-inline-start: variables.$db-spacing-fixed-2xs;
 			}
 		}
@@ -461,7 +461,7 @@ $input-valid-types: "color", "date", "datetime-local", "email", "file", "hidden"
 	&:is(label),
 	label {
 		display: flex;
-		align-items: center;
+		align-items: flex-start;
 		position: relative;
 		gap: variables.$db-spacing-fixed-xs;
 

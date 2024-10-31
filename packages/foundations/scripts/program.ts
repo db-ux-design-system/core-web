@@ -1,5 +1,5 @@
 import { program } from 'commander';
-import { type OptionsType, type ProgrammOptionsType } from './types';
+import type { OptionsType, ProgrammOptionsType } from './types';
 
 const startProgram = (
 	name: string,

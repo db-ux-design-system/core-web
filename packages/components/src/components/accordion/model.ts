@@ -7,7 +7,7 @@ export type AccordionVariantType = (typeof AccordionVariantList)[number];
 export const AccordionBehaviourList = ['multiple', 'single'] as const;
 export type AccordionBehaviourType = (typeof AccordionBehaviourList)[number];
 
-export interface DBAccordionDefaultProps {
+export type DBAccordionDefaultProps = {
 	/**
 	 * To allow multiple items open at the same time or only 1 item
 	 */
@@ -38,15 +38,15 @@ export interface DBAccordionDefaultProps {
 	 * "card": w/o dividing line, but items are shown in the card variant
 	 */
 	variant?: AccordionVariantType;
-}
+};
 
 export type DBAccordionProps = DBAccordionDefaultProps & GlobalProps;
 
-export interface DBAccordionDefaultState {
+export type DBAccordionDefaultState = {
 	_initOpenIndexDone: boolean;
 	_name: string;
 	convertItems: (items?: unknown[] | string) => DBAccordionItemDefaultProps[];
-}
+};
 
 export type DBAccordionState = DBAccordionDefaultState &
 	GlobalState &

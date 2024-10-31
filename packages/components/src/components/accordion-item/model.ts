@@ -5,7 +5,7 @@ import {
 	ToggleEventState
 } from '../../shared/model';
 
-export interface DBAccordionItemDefaultProps {
+export type DBAccordionItemDefaultProps = {
 	/**
 	 * Alternative for passing only a string instead of children
 	 */
@@ -26,15 +26,15 @@ export interface DBAccordionItemDefaultProps {
 	 * Title of the accordion-item as plain text
 	 */
 	headlinePlain?: string;
-}
+};
 
 export type DBAccordionItemProps = DBAccordionItemDefaultProps &
 	GlobalProps &
 	ToggleEventProps;
 
-export interface DBAccordionItemDefaultState {
+export type DBAccordionItemDefaultState = {
 	_open: boolean;
-}
+};
 
 export type DBAccordionItemState = DBAccordionItemDefaultState &
 	GlobalState &

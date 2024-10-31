@@ -7,15 +7,13 @@ import {
 	useRef,
 	useStore
 } from '@builder.io/mitosis';
+import { DBAccordionItemDefaultProps } from '../accordion-item/model';
 import { DBAccordionProps, DBAccordionState } from './model';
 import { cls, uuid } from '../../utils';
 import DBAccordionItem from '../accordion-item/accordion-item.lite';
-import { DBAccordionItemDefaultProps } from '../accordion-item/model';
 import { DEFAULT_ID } from '../../shared/constants';
 
-useMetadata({
-	isAttachedToShadowDom: true
-});
+useMetadata({});
 
 export default function DBAccordion(props: DBAccordionProps) {
 	const ref = useRef<HTMLUListElement>(null);
@@ -25,18 +23,20 @@ export default function DBAccordion(props: DBAccordionProps) {
 		_name: '',
 		initialized: false,
 		_initOpenIndexDone: false,
-		convertItems(items: unknown[] | string | undefined) {
+		convertItems(
+			items: unknown[] | string | undefined
+		): DBAccordionItemDefaultProps[] {
 			try {
 				if (typeof items === 'string') {
 					return JSON.parse(items);
 				}
 
-				return items;
+				return items as DBAccordionItemDefaultProps[];
 			} catch (error) {
 				console.error(error);
 			}
 
-			return undefined;
+			return [];
 		}
 	});
 

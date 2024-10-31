@@ -1,11 +1,15 @@
 import { globSync } from 'glob';
-import { replaceInFileSync, type ReplaceResult } from 'replace-in-file';
-import { type OptionsType } from '../types';
-import { colorUpdateQ32024 } from './color-update';
+import { ReplaceInFileConfig, replaceInFileSync } from 'replace-in-file';
+import type { ReplaceResult } from 'replace-in-file';
+import type { OptionsType } from '../types';
+import { migrationTypes } from '../data';
 
-export const migrate = (options?: OptionsType) => {
+export const migrate = (
+	options?: OptionsType,
+	cli?: boolean
+): ReplaceResult[] | undefined => {
 	if (options) {
-		const { src, dryRun } = options;
+		const { src, type, dryRun } = options;
 		const dry = Boolean(dryRun);
 		const paths = `${src}/**`;
 
@@ -13,7 +17,17 @@ export const migrate = (options?: OptionsType) => {
 			nodir: true
 		}).map((path) => path.replaceAll('\\', '/'));
 
-		for (const update of colorUpdateQ32024) {
+		const replacements: ReplaceInFileConfig[] = Object.entries(
+			migrationTypes
+		).reduce(
+			(previousReplacements, [currentKey, currentReplacements]) =>
+				type.includes(currentKey)
+					? [...previousReplacements, ...currentReplacements]
+					: previousReplacements,
+			[]
+		);
+
+		for (const update of replacements) {
 			const option = {
 				...update,
 				files: globPaths,
@@ -21,10 +35,15 @@ export const migrate = (options?: OptionsType) => {
 			};
 			const result: ReplaceResult[] = replaceInFileSync(option);
 			if (dry) {
-				console.log(result);
+				if (cli) {
+					console.log(result);
+				}
+				return result;
 			}
 		}
 	}
+
+	return undefined;
 };
 
 export default { migrate };

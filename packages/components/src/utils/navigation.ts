@@ -1,5 +1,13 @@
-import { DBNavigationItemTriangleData } from '../components/navigation-item/model';
 import { handleDataOutside } from './index';
+
+export type TriangleData = {
+	itemRect: DOMRect;
+	parentElementWidth: number;
+	subNavigationHeight: number;
+	padding: number;
+	outsideVX: 'left' | 'right' | undefined;
+	outsideVY: 'top' | 'bottom' | undefined;
+};
 
 export const isEventTargetNavigationItem = (event: unknown): boolean => {
 	const { target } = event as { target: HTMLElement };
@@ -13,7 +21,7 @@ export class NavigationItemSafeTriangle {
 	private readonly element: HTMLElement;
 	private readonly subNavigation: Element;
 	private readonly parentSubNavigation: Element | null;
-	private triangleData?: DBNavigationItemTriangleData;
+	private triangleData?: TriangleData;
 	private initialized: boolean = false;
 	private mouseX: number = 0;
 	private mouseY: number = 0;

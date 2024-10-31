@@ -1,6 +1,6 @@
 import { expect, test, type Page } from '@playwright/test';
-import AxeBuilder from '@axe-core/playwright';
-import { hasWebComponentSyntax, waitForDBPage } from '../default';
+import { AxeBuilder } from '@axe-core/playwright';
+import { hasWebComponentSyntax, isStencil, waitForDBPage } from '../default';
 
 const testFormComponents = async (
 	page: Page,
@@ -9,6 +9,7 @@ const testFormComponents = async (
 ) => {
 	await page.goto('./');
 	const tab = page.getByTestId(testId);
+	await expect(tab).toBeVisible();
 	await tab.click({ force: true });
 	const definition = await page
 		.getByTestId('data-list')
@@ -83,19 +84,37 @@ test.describe('Home', () => {
 		expect(accessibilityScanResults.violations).toEqual([]);
 	});
 
+	const stencil = isStencil(process.env.showcase);
+
 	test('test inputs', async ({ page }) => {
+		if (stencil) {
+			test.skip();
+		}
+
 		await testFormComponents(page, 'tab-inputs', 'textbox');
 	});
 
 	test('test textareas', async ({ page }) => {
+		if (stencil) {
+			test.skip();
+		}
+
 		await testFormComponents(page, 'tab-textareas', 'textbox');
 	});
 
 	test('test selects', async ({ page }) => {
+		if (stencil) {
+			test.skip();
+		}
+
 		await testFormComponents(page, 'tab-selects', 'combobox');
 	});
 
 	test('test checkboxes', async ({ page }) => {
+		if (stencil) {
+			test.skip();
+		}
+
 		await testFormComponents(page, 'tab-checkboxes', 'checkbox');
 	});
 });

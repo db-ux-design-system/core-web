@@ -9,7 +9,7 @@ import {
 	SpacingProps
 } from '../../shared/model';
 
-export interface DBPopoverDefaultProps {
+export type DBPopoverDefaultProps = {
 	/**
 	 * Use open to disable the default hover/focus behaviour to use it on click or other trigger.
 	 */
@@ -19,7 +19,7 @@ export interface DBPopoverDefaultProps {
 	 * The trigger to open the popover e.g. a button
 	 */
 	trigger?: unknown;
-}
+};
 
 export type DBPopoverProps = DBPopoverDefaultProps &
 	GlobalProps &
@@ -28,12 +28,12 @@ export type DBPopoverProps = DBPopoverDefaultProps &
 	GapProps &
 	PopoverProps;
 
-export interface DBPopoverDefaultState {
+export type DBPopoverDefaultState = {
 	isExpanded?: boolean;
-	getTrigger?: () => Element | undefined;
+	getTrigger: () => Element | null;
 	// eslint-disable-next-line @typescript-eslint/no-explicit-any
-	handleLeave?: (event: any) => void;
-}
+	handleLeave: (event: any) => void;
+};
 
 export type DBPopoverState = DBPopoverDefaultState &
 	GlobalState &
