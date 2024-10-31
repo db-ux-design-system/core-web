@@ -29,6 +29,7 @@ const App = () => {
 				onClose={() => {
 					setOpen(false);
 				}}
+				drawerHeader={<span>Optional drawer header</span>}
 			>
 				My Drawer content
 			</DBDrawer>
