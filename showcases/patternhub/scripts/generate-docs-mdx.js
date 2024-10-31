@@ -22,10 +22,10 @@ const generateDocsMdx = async () => {
 			'utf8'
 		).toString()
 	);
+	const elements = webTypes?.contributions?.html?.elements;
 	const components = JSON.parse(
 		FS.readFileSync('./data/components.json', 'utf8').toString()
 	);
-	const elements = webTypes?.contributions?.html?.elements;
 	if (elements) {
 		for (const element of elements) {
 			const componentName = getComponentName(element.name);
