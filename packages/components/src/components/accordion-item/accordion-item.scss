@@ -18,7 +18,7 @@ $db-accordion-item-border-radius: variables.$db-border-radius-sm;
 		padding-block-end: variables.$db-spacing-fixed-lg;
 	}
 
-	&[aria-disabled="true"] {
+	details[aria-disabled="true"] {
 		pointer-events: none;
 		opacity: component.$default-disabled;
 	}

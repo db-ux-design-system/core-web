@@ -41,11 +41,9 @@ export default function DBAccordionItem(props: DBAccordionItemProps) {
 	// jscpd:ignore-end
 
 	return (
-		<li
-			id={state._id}
-			class={cls('db-accordion-item', props.className)}
-			aria-disabled={props.disabled}>
+		<li id={state._id} class={cls('db-accordion-item', props.className)}>
 			<details
+				aria-disabled={props.disabled}
 				ref={ref}
 				open={state._open}>
 				<summary onClick={(event) => state.toggle(event)}>
