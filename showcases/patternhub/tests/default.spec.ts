@@ -25,7 +25,8 @@ for (const group of Components) {
 				`docs`,
 				`./components/${component.name}/docs/Angular`,
 				async (page) => {
-					expect(await page.locator('h2').first().isVisible());
+					const firstH2 = page.locator('h2').first();
+					await expect(firstH2).toBeVisible();
 				}
 			);
 		});
@@ -35,11 +36,10 @@ for (const group of Components) {
 				`overview`,
 				`./components/${component.name}/overview?page=density`,
 				async (page) => {
-					const functionalCount = await page
+					const functionalCount = page
 						.getByText('Functional')
-						.first()
-						.isVisible();
-					expect(functionalCount);
+						.first();
+					await expect(functionalCount).toBeVisible();
 				}
 			);
 		});
@@ -49,7 +49,8 @@ for (const group of Components) {
 				`properties`,
 				`./components/${component.name}/properties?fullscreen=true&noh1=true`,
 				async (page) => {
-					expect(await page.locator('h2').first().isVisible());
+					const firstH2 = page.locator('h2').first();
+					await expect(firstH2).toBeVisible();
 				}
 			);
 		});
