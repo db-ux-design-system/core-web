@@ -12,11 +12,17 @@ on:
         required: false
         default: "false"
         type: string
+    outputs:
+      version:
+        description: "Base path for patternhub"
+        value: ${{ jobs.build-patternhub.outputs.base-path }}
 
 jobs:
   build-patternhub:
     name: Build Patternhub
     runs-on: ubuntu-latest
+    outputs:
+      base-path: ${{ steps.base-path.outputs.result }}
     steps:
       - name: ⏬ Checkout repo
         uses: actions/checkout@v4

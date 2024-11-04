@@ -9,6 +9,9 @@ on:
       showcase:
         required: true
         type: string
+      base-path:
+        required: false
+        type: string
 
 permissions:
   actions: write
@@ -62,6 +65,7 @@ jobs:
       - name: 👩‍🔬 Test showcase with Playwright 🎭
         env:
           HOME: /root
+          NEXT_PUBLIC_BASE_PATH: ${{ inputs.base-path }}
         run: |
           npm run test:e2e --workspace=${{ inputs.showcase }} -- --shard=${{ matrix.shardIndex }}/${{ matrix.shardTotal }}
 
