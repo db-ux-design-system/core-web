@@ -63,7 +63,7 @@ export type DBInputDefaultProps = {
 	 */
 	type?: InputTypeType | string;
 	/**
-	 * Sets step based in [this](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/step).
+	 * Sets [step value](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/step).
 	 */
 	step?: number | string;
 };
