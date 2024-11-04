@@ -11,6 +11,9 @@ const getDefaultScreenshotTest = async (
 		await page.goto(`${path}`, {
 			waitUntil: 'domcontentloaded'
 		});
+		const dbPage = page.locator('.db-page');
+		await expect(dbPage).not.toHaveAttribute('data-fonts-loaded', 'false');
+		await expect(dbPage).toHaveCSS('opacity', '1');
 		await fn(page);
 		await expect(page).toHaveScreenshot([name, 'patternhub.png']);
 	});
