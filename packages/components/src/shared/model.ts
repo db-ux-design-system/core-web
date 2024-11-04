@@ -207,7 +207,7 @@ export const CustomValidityList = [
 export type CustomValidityType = (typeof CustomValidityList)[number];
 export type FormProps = {
 	/**
-	 * Marks an input element as invalid (red) / valid(green) / no-validation(grey). Overwrites the :user-valid selector.
+	 * Marks an input element as invalid (red) / valid (green) / no-validation (grey). Overwrites the :user-valid selector.
 	 */
 	customValidity?: CustomValidityType;
 	/**
