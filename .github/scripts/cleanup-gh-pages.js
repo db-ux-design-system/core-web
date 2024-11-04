@@ -13,6 +13,7 @@ const removeOldFromPath = (isTag, data) => {
 	) {
 		const dirsToDelete = FS.readdirSync(path)
 			.filter((file) => !data.find((branch) => branch.name === file))
+			// Let's not clean up specific folders
 			.filter((file) => !['main', 'latest'].includes(file));
 		if (dirsToDelete?.length > 0) {
 			console.log(
