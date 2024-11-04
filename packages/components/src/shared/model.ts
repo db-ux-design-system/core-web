@@ -417,7 +417,7 @@ export type LinkProps = {
 	 */
 	disabled?: boolean;
 	/**
-	 * The URL that the hyperlink points to. See [this](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a#href).
+	 * The [URL that the hyperlink points to](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a#href).
 	 */
 	href?: string;
 	/**
