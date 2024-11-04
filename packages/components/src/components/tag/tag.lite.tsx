@@ -7,11 +7,9 @@ import {
 	useStore
 } from '@builder.io/mitosis';
 import { DBTagProps, DBTagState } from './model';
-import { cls } from '../../utils';
+import { cls, getBooleanAsString } from '../../utils';
 
-useMetadata({
-	isAttachedToShadowDom: true
-});
+useMetadata({});
 
 export default function DBTag(props: DBTagProps) {
 	const ref = useRef<HTMLDivElement>(null);
@@ -55,12 +53,12 @@ export default function DBTag(props: DBTagProps) {
 			ref={ref}
 			id={props.id}
 			class={cls('db-tag', props.className)}
-			data-disabled={props.disabled}
+			data-disabled={getBooleanAsString(props.disabled)}
 			data-semantic={props.semantic}
 			data-emphasis={props.emphasis}
 			data-icon={props.icon}
-			data-no-text={props.noText}
-			data-overflow={props.overflow}>
+			data-no-text={getBooleanAsString(props.noText)}
+			data-overflow={getBooleanAsString(props.overflow)}>
 			{props.children}
 
 			<Show when={props.text}>{props.text}</Show>
@@ -68,7 +66,7 @@ export default function DBTag(props: DBTagProps) {
 			<Show when={props.behaviour === 'removable'}>
 				{/* we aren't using DBButton here because of angular would wrap it in custom component */}
 				<button
-					className="db-button db-tab-remove-button"
+					class="db-button db-tab-remove-button"
 					onClick={() => state.handleRemove()}
 					data-icon="cross"
 					data-size="small"

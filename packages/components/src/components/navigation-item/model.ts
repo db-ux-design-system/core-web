@@ -11,7 +11,7 @@ import {
 } from '../../shared/model';
 import { NavigationItemSafeTriangle } from '../../utils/navigation';
 
-export interface DBNavigationItemDefaultProps {
+export type DBNavigationItemDefaultProps = {
 	/**
 	 * Alternative indicator for active navigation item (bold font). In contrast to the use of aria-current="page" on the contained anchor, this does not guarantee correct a11y.
 	 */
@@ -32,7 +32,7 @@ export interface DBNavigationItemDefaultProps {
 	 * This is for mobile navigation only, if it is set the sub-navigation is a static overlay
 	 */
 	subNavigationExpanded?: boolean;
-}
+};
 
 export type DBNavigationItemProps = DBNavigationItemDefaultProps &
 	GlobalProps &
@@ -41,16 +41,7 @@ export type DBNavigationItemProps = DBNavigationItemDefaultProps &
 	WidthProps &
 	NavigationBackButtonProps;
 
-export interface DBNavigationItemTriangleData {
-	itemRect: DOMRect;
-	parentElementWidth: number;
-	subNavigationHeight: number;
-	padding: number;
-	outsideVX: 'left' | 'right' | undefined;
-	outsideVY: 'top' | 'bottom' | undefined;
-}
-
-export interface DBNavigationItemDefaultState {
+export type DBNavigationItemDefaultState = {
 	handleBackClick: (event: ClickEvent<HTMLButtonElement>) => void;
 	hasAreaPopup: boolean;
 	isSubNavigationExpanded: boolean;
@@ -62,7 +53,7 @@ export interface DBNavigationItemDefaultState {
 	hasSubNavigation?: boolean;
 	updateSubNavigationState: () => void;
 	navigationItemSafeTriangle?: NavigationItemSafeTriangle;
-}
+};
 
 export type DBNavigationItemState = DBNavigationItemDefaultState &
 	ClickEventState<HTMLButtonElement> &

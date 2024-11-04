@@ -45,7 +45,7 @@ const getPage = ({
 				}
 				secondaryAction={
 					<>
-						<DBButton icon="user" variant="ghost" noText>
+						<DBButton icon="person" variant="ghost" noText>
 							Profile
 						</DBButton>
 						<DBButton icon="bell" variant="ghost" noText>
@@ -60,7 +60,7 @@ const getPage = ({
 					</>
 				}>
 				<DBNavigation>
-					<DBNavigationItem icon="user">
+					<DBNavigationItem icon="person">
 						<a href="#">{children}</a>
 					</DBNavigationItem>
 					<DBNavigationItem disabled>

@@ -110,4 +110,14 @@
 			content: "";
 		}
 	}
+
+	// Workaround for current stencil implementation for header
+	&:has(> .db-button) {
+		margin: 0;
+		padding: 0;
+
+		&::before {
+			content: none;
+		}
+	}
 }

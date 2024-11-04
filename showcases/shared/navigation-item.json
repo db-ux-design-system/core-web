@@ -121,7 +121,7 @@
 			{
 				"name": "Text - Icon (Leading)",
 				"props": {
-					"icon": "user"
+					"icon": "person"
 				},
 				"children": [
 					{
@@ -137,7 +137,7 @@
 			{
 				"name": "Text - Icons (Leading, Chevron)",
 				"props": {
-					"icon": "user",
+					"icon": "person",
 					"areaPopup": true
 				},
 				"children": [

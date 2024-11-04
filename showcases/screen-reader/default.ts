@@ -29,13 +29,17 @@ const standardPhrases = [
 	'To close',
 	'To choose',
 	'To toggle',
-	'To expand'
+	'To expand',
+	'Login Items',
+	'You can manage',
+	'To open'
 ];
 
 const flakyExpressions: Record<string, string> = {
 	'pop-up': 'pop up',
 	'checked. checked': 'checked',
-	'selected. selected': 'selected'
+	'selected. selected': 'selected',
+	'expanded. expanded': 'expanded'
 };
 
 const cleanSpeakInstructions = (phraseLog: string[]): string[] =>

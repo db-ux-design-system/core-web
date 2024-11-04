@@ -1,7 +1,6 @@
 import {
 	onMount,
 	onUpdate,
-	Show,
 	Slot,
 	useMetadata,
 	useRef,
@@ -12,9 +11,7 @@ import DBButton from '../button/button.lite';
 import { DEFAULT_CLOSE_BUTTON } from '../../shared/constants';
 import { cls, delay } from '../../utils';
 
-useMetadata({
-	isAttachedToShadowDom: true
-});
+useMetadata({});
 
 export default function DBDrawer(props: DBDrawerProps) {
 	const ref = useRef<HTMLDialogElement>(null);
@@ -95,7 +92,7 @@ export default function DBDrawer(props: DBDrawerProps) {
 						<Slot name="drawerHeader" />
 					</div>
 					<DBButton
-						className="button-close-drawer"
+						class="button-close-drawer"
 						id={props.closeButtonId}
 						icon="cross"
 						variant="ghost"

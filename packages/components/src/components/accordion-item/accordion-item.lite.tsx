@@ -7,13 +7,11 @@ import {
 	useStore
 } from '@builder.io/mitosis';
 import { DBAccordionItemProps, DBAccordionItemState } from './model';
-import { cls, uuid } from '../../utils';
+import { cls, getBooleanAsString, uuid } from '../../utils';
 import { ClickEvent } from '../../shared/model';
 import { DEFAULT_ID } from '../../shared/constants';
 
-useMetadata({
-	isAttachedToShadowDom: true
-});
+useMetadata({});
 
 export default function DBAccordionItem(props: DBAccordionItemProps) {
 	const ref = useRef<HTMLDetailsElement>(null);
@@ -45,7 +43,7 @@ export default function DBAccordionItem(props: DBAccordionItemProps) {
 			ref={ref}
 			id={state._id}
 			class={cls('db-accordion-item', props.className)}
-			aria-disabled={props.disabled}
+			aria-disabled={getBooleanAsString(props.disabled)}
 			open={state._open}
 			name={props.name}>
 			<summary onClick={(event) => state.toggle(event)}>

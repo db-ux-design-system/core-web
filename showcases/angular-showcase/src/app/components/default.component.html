@@ -13,7 +13,7 @@
 			) {
 				<div
 					[style]="example.style"
-					[class]="example.className"
+					[class]="example.class"
 					[attr.data-density]="example.density"
 				>
 					<ng-container
@@ -48,6 +48,7 @@
 				>
 					<span>{{ variant.name }}</span>
 				</db-link>
+
 				<db-card
 					class="variants-card"
 					[elevationLevel]="getElevation()"
@@ -66,7 +67,7 @@
 						) {
 							<div
 								[style]="example.style"
-								[class]="example.className"
+								[class]="example.class"
 								[attr.data-density]="example.density"
 							>
 								<ng-container

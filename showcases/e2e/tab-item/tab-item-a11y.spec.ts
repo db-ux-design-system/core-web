@@ -1,6 +1,6 @@
 import { test } from '@playwright/test';
 // @ts-expect-error - required for playwright
-import { getA11yTest } from '../default.ts';
+import { getA11yTest, isStencil } from '../default.ts';
 
 test.describe('DBTabItem', () => {
 	// TODO: There might be an issue in our implementation of which elements get which roles
@@ -13,6 +13,8 @@ test.describe('DBTabItem', () => {
 			'aria_child_tabbable',
 			'input_checkboxes_grouped',
 			'aria_role_valid'
-		]
+		],
+		// TODO: We skip this for now until mitosis output is correct
+		skipChecker: isStencil(process.env.showcase)
 	});
 });

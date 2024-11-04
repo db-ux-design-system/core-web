@@ -8,7 +8,7 @@ import {
 	ToggleEventState
 } from '../../shared/model';
 
-export interface DBHeaderDefaultProps {
+export type DBHeaderDefaultProps = {
 	brand?: unknown;
 	metaNavigation?: unknown;
 	primaryAction?: unknown;
@@ -27,16 +27,16 @@ export interface DBHeaderDefaultProps {
 	 */
 
 	burgerMenuLabel?: string;
-}
+};
 
 export type DBHeaderProps = DBHeaderDefaultProps &
 	GlobalProps &
 	ToggleEventProps &
 	ContainerWidthProps;
 
-export interface DBHeaderDefaultState {
+export type DBHeaderDefaultState = {
 	forcedToMobile?: boolean;
-}
+};
 
 export type DBHeaderState = DBHeaderDefaultState &
 	GlobalState &

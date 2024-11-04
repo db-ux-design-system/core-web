@@ -7,14 +7,12 @@ import {
 	useRef,
 	useStore
 } from '@builder.io/mitosis';
+import { DBAccordionItemDefaultProps } from '../accordion-item/model';
 import { DBAccordionProps, DBAccordionState } from './model';
 import { cls } from '../../utils';
 import DBAccordionItem from '../accordion-item/accordion-item.lite';
-import { DBAccordionItemDefaultProps } from '../accordion-item/model';
 
-useMetadata({
-	isAttachedToShadowDom: true
-});
+useMetadata({});
 
 export default function DBAccordion(props: DBAccordionProps) {
 	const ref = useRef<HTMLDivElement>(null);
@@ -23,18 +21,20 @@ export default function DBAccordion(props: DBAccordionProps) {
 		openItems: [],
 		clickedId: '',
 		initialized: false,
-		convertItems(items: unknown[] | string | undefined) {
+		convertItems(
+			items: unknown[] | string | undefined
+		): DBAccordionItemDefaultProps[] {
 			try {
 				if (typeof items === 'string') {
 					return JSON.parse(items);
 				}
 
-				return items;
+				return items as DBAccordionItemDefaultProps[];
 			} catch (error) {
 				console.error(error);
 			}
 
-			return undefined;
+			return [];
 		},
 		handleItemClick: (id: string) => {
 			if (state.openItems.includes(id)) {
