@@ -26,7 +26,7 @@ export type DBHeaderDefaultProps = {
 	 */
 	primaryAction?: unknown;
 	/**
-	 * Slot to pass one or more element like DBButton (e.g. profile, language, etc.) as secondary action.
+	 * Slot to pass one or more elements like DBButton (e.g. profile, language, etc.) as secondary action.
 	 * Desktop: Shown seperated by divider at the end of the header
 	 * Mobile: Shown inside the drawer at the bottom.
 	 */
