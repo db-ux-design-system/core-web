@@ -2,7 +2,7 @@ import { GlobalProps, GlobalState, IconProps } from '../../shared/model';
 
 export type DBBrandDefaultProps = {
 	/**
-	 * Disabled the default logo svg to pass in a custom img
+	 * Disable the default logo svg to pass in a custom `img`
 	 */
 	hideLogo?: boolean;
 };
