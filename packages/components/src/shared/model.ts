@@ -429,7 +429,7 @@ export type LinkProps = {
 	 */
 	label?: string;
 	/**
-	 * Where to display the linked URL, as the name for a browsing context. See [this](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a#target).
+	 * Where to open the linked URL, as the name for a [browsing context](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a#target).
 	 */
 	target?: LinkTargetType;
 	/**
