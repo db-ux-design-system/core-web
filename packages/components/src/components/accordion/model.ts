@@ -12,7 +12,7 @@ export type AccordionVariantType = (typeof AccordionVariantList)[number];
 export const AccordionBehaviourList = ['multiple', 'single'] as const;
 export type AccordionBehaviourType = (typeof AccordionBehaviourList)[number];
 
-export interface DBAccordionDefaultProps {
+export type DBAccordionDefaultProps = {
 	/**
 	 * Defines the display of the accordion and the items:
 	 * "default": with a dividing line between the items
@@ -38,14 +38,14 @@ export interface DBAccordionDefaultProps {
 	 * Informs about the changes in the internal state, which item is open
 	 */
 	onChange?: (openAccordionItemIds: string[]) => void;
-}
+};
 
 export type DBAccordionProps = DBAccordionDefaultProps & GlobalProps;
 
-export interface DBAccordionDefaultState {
+export type DBAccordionDefaultState = {
 	openItems: string[];
 	convertItems: (items?: unknown[] | string) => DBAccordionItemDefaultProps[];
-}
+};
 
 export type DBAccordionState = DBAccordionDefaultState &
 	GlobalState &

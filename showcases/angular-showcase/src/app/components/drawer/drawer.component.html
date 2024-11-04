@@ -10,6 +10,9 @@
 		let-exampleIndex="exampleIndex"
 		let-variantIndex="variantIndex"
 	>
+		<db-button (click)="toggleDrawer(exampleName)">
+			Open: {{ exampleName }}
+		</db-button>
 		<db-drawer
 			[backdrop]="exampleProps?.backdrop"
 			[rounded]="exampleProps?.rounded"
@@ -19,11 +22,9 @@
 			[variant]="exampleProps?.variant"
 			[open]="openDrawer === exampleName"
 			(onClose)="toggleDrawer(undefined)"
+			(close)="toggleDrawer(undefined)"
 		>
 			{{ exampleName }}
 		</db-drawer>
-		<db-button (click)="toggleDrawer(exampleName)">
-			Open: {{ exampleName }}
-		</db-button>
 	</ng-template>
 </app-default-component>

@@ -51,6 +51,12 @@ jobs:
     with:
       version: ${{ needs.get-playwright-version.outputs.version }}
 
+  build-showcase-stencil:
+    uses: ./.github/workflows/01-build-showcases.yml
+    needs: [build-packages]
+    with:
+      showcase: stencil-showcase
+
   build-showcase-angular:
     uses: ./.github/workflows/01-build-showcases.yml
     needs: [build-packages]
@@ -94,6 +100,13 @@ jobs:
       release: ${{ needs.get-publish-version.outputs.release }}
       preRelease: ${{ needs.get-publish-version.outputs.preRelease }}
 
+  test-showcase-stencil:
+    uses: ./.github/workflows/02-e2e-showcases.yml
+    needs: [build-showcase-stencil, get-playwright-version]
+    with:
+      version: ${{ needs.get-playwright-version.outputs.version }}
+      showcase: stencil-showcase
+
   test-showcase-angular:
     uses: ./.github/workflows/02-e2e-showcases.yml
     needs: [build-showcase-angular, get-playwright-version]
@@ -134,6 +147,7 @@ jobs:
     steps:
       - name: 🎉 Checks done
         run: |
+          resultBuildShowcaseStencil="${{ needs.build-showcase-stencil.result }}"
           resultBuildShowcaseAngular="${{ needs.build-showcase-angular.result }}"
           resultBuildShowcaseAngularSSR="${{ needs.build-showcase-angular-ssr.result }}"
           resultBuildShowcaseReact="${{ needs.build-showcase-react.result }}"
@@ -144,6 +158,7 @@ jobs:
           resultBuildOutputs="${{ needs.build-outputs.result }}"
           resultTestPackages="${{ needs.test-components.result }}"
           resultTestFoundations="${{ needs.test-foundations.result }}"
+          resultTestShowcaseStencil="${{ needs.test-showcase-stencil.result }}"
           resultTestShowcaseAngular="${{ needs.test-showcase-angular.result }}"
           resultTestShowcaseReact="${{ needs.test-showcase-react.result }}"
           resultTestShowcaseVue="${{ needs.test-showcase-vue.result }}"
@@ -151,12 +166,14 @@ jobs:
           resultTestScreenReader="${{ needs.test-screen-reader.result }}"
           if [[ $resultTestFoundations == "success" ]] && \
              [[ $resultTestScreenReader == "success" ]] && \
+             [[ $resultTestShowcaseStencil == "success" ]] && \
              [[ $resultTestShowcaseAngular == "success" ]] && \
              [[ $resultTestShowcaseReact == "success" ]] && \
              [[ $resultTestShowcaseVue == "success" ]] && \
              [[ $resultTestShowcasePatternhub == "success" ]] && \
              [[ $resultTestPackages == "success" ]] && \
              [[ $resultBuildOutputs == "success" ]] && \
+             [[ $resultBuildShowcaseStencil == "success" ]] && \
              [[ $resultBuildShowcaseAngular == "success" ]] && \
              [[ $resultBuildShowcaseAngularSSR == "success" ]] && \
              [[ $resultBuildShowcaseReact == "success" ]] && \
@@ -172,6 +189,7 @@ jobs:
           fi
     needs:
       [
+        build-showcase-stencil,
         build-showcase-angular,
         build-showcase-angular-ssr,
         build-showcase-react,
@@ -181,6 +199,7 @@ jobs:
         build-showcase-patternhub,
         build-outputs,
         test-components,
+        test-showcase-stencil,
         test-showcase-angular,
         test-showcase-react,
         test-showcase-vue,

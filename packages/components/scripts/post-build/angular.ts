@@ -9,12 +9,6 @@ import { runReplacements, transformToUpperComponentName } from '../utils';
 const changeFile = (input: string) => {
 	return input
 		.split('\n')
-		.filter(
-			(line) =>
-				!line.includes('@db-ui') &&
-				!line.includes(`Props } from "../`) &&
-				!line.includes(`[key]=`)
-		)
 		.map((line) => {
 			if (line.includes('export default')) {
 				return line.replace('export default', 'export');
@@ -182,21 +176,7 @@ export class ${directive.name}Directive {}
 const getAttributePassing = (componentName: string) => `
 ngAfterViewInit(): void {
 \t\tconst element: HTMLElement | null = this.ref?.nativeElement;
-\t\tconst parent = element?.closest('db-${componentName}') ?? element?.closest('db${componentName.replace(/-/g, '')}');
-\t\tif (element && parent) {
-\t\t\tconst attributes = parent.attributes;
-\t\t\tfor (let i = 0; i < attributes.length; i++) {
-\t\t\t\tconst attr = attributes.item(i);
-\t\t\t\tif (
-\t\t\t\t\tattr &&
-\t\t\t\t\t(attr.name.startsWith('data-') ||
-\t\t\t\t\t\tattr.name.startsWith('aria-'))
-\t\t\t\t) {
-\t\t\t\t\telement.setAttribute(attr.name, attr.value);
-\t\t\t\t\tparent.removeAttribute(attr.name);
-\t\t\t\t}
-\t\t\t}
-\t\t}
+\t\tenableCustomElementAttributePassing(element,'db-${componentName}')
 \t}`;
 
 export default (tmp?: boolean) => {
@@ -229,26 +209,14 @@ export default (tmp?: boolean) => {
 				to: 'ngAfterContentChecked'
 			},
 			{
-				from: 'mouseOver',
-				to: 'mouseover'
-			},
-			{
-				from: 'mouseEnter',
-				to: 'mouseenter'
-			},
-			{
-				from: 'mouseLeave',
-				to: 'mouseleave'
-			},
-			{
-				from: 'mouseMove',
-				to: 'mousemove'
-			},
-			{
 				from: '@ViewChild("ref") ref!: ElementRef | undefined;',
 				to:
 					'@ViewChild("ref") ref!: ElementRef | undefined;' +
 					getAttributePassing(component.name)
+			},
+			{
+				from: '} from "../../utils"',
+				to: ', enableCustomElementAttributePassing } from "../../utils"'
 			}
 		];
 

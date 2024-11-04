@@ -15,6 +15,11 @@ export type GlobalProps = {
 	className?: string;
 
 	/**
+	 * Workaround for TypeScript using class for all components.
+	 */
+	class?: string;
+
+	/**
 	 * [`aria-describedby`](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-describedby) is used to link to the elements that describe the element with the set attribute.
 	 */
 	describedbyid?: string;
@@ -32,7 +37,6 @@ export type GlobalProps = {
 
 export type GlobalState = {
 	_id?: string;
-	defaultValues?: { [key: string]: string };
 };
 
 export const SemanticList = [
@@ -55,14 +59,14 @@ export type IconProps = {
 	/**
 	 * Define an icon by its identifier (like e.g. _user_, compare to [Icons](https://db-ui.github.io/mono/review/main/foundations/icons/overview)) to get displayed in front of the elements content.
 	 */
-	icon?: IconTypes | string;
+	icon?: IconTypes;
 };
 
 export type IconAfterProps = {
 	/**
 	 * Define an icon by its identifier (like e.g. _user_, compare to [Icons](https://db-ui.github.io/mono/review/main/foundations/icons/overview)) to get displayed in front of the elements content.
 	 */
-	iconAfter?: IconTypes | string;
+	iconAfter?: IconTypes;
 };
 
 export const SpacingList = ['medium', 'small', 'large', 'none'] as const;
@@ -432,7 +436,7 @@ export type ToggleEventProps = {
 };
 
 export type ToggleEventState<T> = {
-	toggle?: (event?: ClickEvent<T>) => void;
+	toggle: (event?: ClickEvent<T>) => void;
 };
 
 export type CloseEventProps = {
@@ -443,7 +447,7 @@ export type CloseEventProps = {
 };
 
 export type CloseEventState = {
-	handleClose?: (event: any) => void;
+	handleClose: (event: any) => void;
 };
 
 export const AlignmentList = ['start', 'center'] as const;

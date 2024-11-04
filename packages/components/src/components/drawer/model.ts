@@ -22,7 +22,7 @@ export type DrawerDirectionType = (typeof DrawerDirectionList)[number];
 export const DrawerVariantList = ['modal', 'inside'] as const;
 export type DrawerVariantType = (typeof DrawerVariantList)[number];
 
-export interface DBDrawerDefaultProps {
+export type DBDrawerDefaultProps = {
 	/**
 	 * The backdrop attribute changes the opacity of the backdrop.
 	 * The backdrop 'none' will use `dialog.show()` instead of `dialog.showModal()`
@@ -52,7 +52,7 @@ export interface DBDrawerDefaultProps {
 	 * Set the variant modal|inside. Defaults to modal.
 	 */
 	variant?: DrawerVariantType;
-}
+};
 
 export type DBDrawerProps = DBDrawerDefaultProps &
 	GlobalProps &
@@ -61,9 +61,9 @@ export type DBDrawerProps = DBDrawerDefaultProps &
 	WidthProps &
 	SpacingProps;
 
-export interface DBDrawerDefaultState {
+export type DBDrawerDefaultState = {
 	handleDialogOpen: () => void;
-}
+};
 
 export type DBDrawerState = DBDrawerDefaultState &
 	GlobalState &

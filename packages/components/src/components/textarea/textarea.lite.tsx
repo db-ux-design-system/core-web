@@ -14,15 +14,15 @@ import {
 	DEFAULT_INVALID_MESSAGE_ID_SUFFIX,
 	DEFAULT_LABEL,
 	DEFAULT_MESSAGE_ID_SUFFIX,
+	DEFAULT_PLACEHOLDER,
+	DEFAULT_ROWS,
 	DEFAULT_VALID_MESSAGE,
 	DEFAULT_VALID_MESSAGE_ID_SUFFIX
 } from '../../shared/constants';
 import { ChangeEvent, InputEvent, InteractionEvent } from '../../shared/model';
 import { handleFrameworkEvent } from '../../utils/form-components';
 
-useMetadata({
-	isAttachedToShadowDom: true
-});
+useMetadata({});
 
 export default function DBTextarea(props: DBTextareaProps) {
 	const ref = useRef<HTMLTextAreaElement>(null);
@@ -35,11 +35,6 @@ export default function DBTextarea(props: DBTextareaProps) {
 		// Workaround for Vue output: TS for Vue would think that it could be a function, and by this we clarify that it's a string
 		_descByIds: '',
 		_value: '',
-		defaultValues: {
-			label: DEFAULT_LABEL,
-			placeholder: ' ',
-			rows: '4'
-		},
 		_voiceOverFallback: '',
 		handleInput: (event: InputEvent<HTMLTextAreaElement>) => {
 			if (props.onInput) {
@@ -136,9 +131,7 @@ export default function DBTextarea(props: DBTextareaProps) {
 		<div
 			class={cls('db-textarea', props.className)}
 			data-variant={props.variant}>
-			<label htmlFor={state._id}>
-				{props.label ?? state.defaultValues.label}
-			</label>
+			<label htmlFor={state._id}>{props.label ?? DEFAULT_LABEL}</label>
 
 			<textarea
 				aria-invalid={props.customValidity === 'invalid'}
@@ -170,10 +163,8 @@ export default function DBTextarea(props: DBTextareaProps) {
 				}
 				value={props.value ?? state._value}
 				aria-describedby={state._descByIds}
-				placeholder={
-					props.placeholder ?? state.defaultValues.placeholder
-				}
-				rows={props.rows ?? state.defaultValues.rows}
+				placeholder={props.placeholder ?? DEFAULT_PLACEHOLDER}
+				rows={props.rows ?? DEFAULT_ROWS}
 				cols={props.cols}
 			/>
 

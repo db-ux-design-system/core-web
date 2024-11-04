@@ -16,7 +16,6 @@ const showAlert = (exampleName?: string) => {
 		>
 			<DBTag
 				:semantic="exampleProps?.semantic"
-				:disabled="exampleProps?.disabled"
 				:icon="exampleProps?.icon"
 				:noText="exampleProps?.noText"
 				:behaviour="exampleProps?.behaviour"
@@ -32,7 +31,11 @@ const showAlert = (exampleName?: string) => {
 					{{ exampleName }}
 				</a>
 				<label v-if="exampleProps?.component === 'checkbox'">
-					<input type="checkbox" :checked="exampleProps?.checked" />
+					<input
+						type="checkbox"
+						:disabled="exampleProps?.disabled"
+						:checked="exampleProps?.checked"
+					/>
 					{{ exampleName }}
 				</label>
 

@@ -11,9 +11,7 @@ import { cls } from '../../utils';
 import { ChangeEvent } from '../../shared/model';
 import { handleFrameworkEvent } from '../../utils/form-components';
 
-useMetadata({
-	isAttachedToShadowDom: true
-});
+useMetadata({});
 
 export default function DBTabItem(props: DBTabItemProps) {
 	const ref = useRef<HTMLInputElement>(null);
@@ -50,7 +48,7 @@ export default function DBTabItem(props: DBTabItemProps) {
 	}, [ref, state.initialized]);
 
 	return (
-		<li className={cls('db-tab-item', props.className)} role="none">
+		<li class={cls('db-tab-item', props.className)} role="none">
 			<label
 				htmlFor={props.id}
 				data-icon={props.icon}

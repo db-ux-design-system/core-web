@@ -1,13 +1,8 @@
-import { test, expect } from '@playwright/experimental-ct-react';
+import { expect, test } from '@playwright/experimental-ct-react';
 import AxeBuilder from '@axe-core/playwright';
 
 import { DBNotification } from './index';
-import {
-	DEFAULT_VIEWPORT,
-	TESTING_VIEWPORTS,
-	SEMANTICS
-	// @ts-ignore - vue can only find it with .ts as file ending
-} from '../../shared/constants.ts';
+import { DEFAULT_VIEWPORT, SEMANTICS } from '../../shared/constants.ts';
 
 const comp: any = <DBNotification>Test</DBNotification>;
 

@@ -16,7 +16,7 @@ A library containing all styles for components of [DB UX Design System v3](https
 
 Please take a look at your desired framework to retrieve more information.
 
-For additional information besides the frameworks see our [Getting started](https://github.com/db-ui/mono/tree/main/packages/components/docs/getting-stated.md).
+For additional information besides the frameworks see our [Getting started](https://github.com/db-ui/mono/tree/main/packages/components/docs/getting-started.md).
 
 ---
 
