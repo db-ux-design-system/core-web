@@ -9,6 +9,9 @@ on:
       type:
         required: true
         type: string
+      path:
+        required: false
+        type: string
 
 permissions:
   actions: write
@@ -67,6 +70,7 @@ jobs:
         env:
           HOME: /root
           TYPE: ${{ inputs.type }}
+          NEXT_PUBLIC_BASE_PATH: ${{ inputs.path }}
         run: |
           if [[ $TYPE == "components" ]]; then
             npm run regenerate:screenshots --workspace=@db-ui/react-components

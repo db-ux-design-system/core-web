@@ -136,7 +136,7 @@ jobs:
     needs: [build-showcase-patternhub, get-playwright-version]
     with:
       version: ${{ needs.get-playwright-version.outputs.version }}
-      base-path: ${{ needs.build-showcase-patternhub.outputs.base-path }}
+      path: ${{ needs.build-showcase-patternhub.outputs.path }}
       showcase: patternhub
 
   regenerate-snapshots-components:
@@ -160,6 +160,7 @@ jobs:
     uses: ./.github/workflows/02-e2e-regenerate.yml
     with:
       version: ${{ needs.get-playwright-version.outputs.version }}
+      path: ${{ needs.build-showcase-patternhub.outputs.path }}
       type: patternhub
     needs: [test-showcase-patternhub, get-playwright-version]
 
