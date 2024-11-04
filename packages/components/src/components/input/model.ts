@@ -38,7 +38,7 @@ export type InputTypeType = (typeof InputTypeList)[number];
 
 export type DBInputDefaultProps = {
 	/**
-	 * Set a data list via attributes instead of child.
+	 * Set a [data list](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/datalist) via attribute instead of children.
 	 */
 	dataList?: string[] | ValueLabelType[];
 	/**
