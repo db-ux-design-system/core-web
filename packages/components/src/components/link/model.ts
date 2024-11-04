@@ -17,7 +17,7 @@ export type LinkContentType = (typeof LinkContentList)[number];
 
 export type DBLinkDefaultProps = {
 	/**
-	 * Adds a different arrow to after the link to show external or internal link
+	 * Adds a different arrow after the link to indicate external or internal link
 	 */
 	content?: LinkContentType;
 	/**
