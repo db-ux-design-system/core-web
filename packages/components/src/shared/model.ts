@@ -421,7 +421,7 @@ export type LinkProps = {
 	 */
 	href?: string;
 	/**
-	 * Hints at the human language of the linked URL. See [this](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a#hreflang).
+	 * Hints for the human [language of the linked page or document](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a#hreflang).
 	 */
 	hreflang?: string;
 	/**
