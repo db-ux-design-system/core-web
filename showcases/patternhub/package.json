@@ -18,6 +18,7 @@
     "next:dev": "next dev",
     "open": "open-cli http://localhost:3000/mono/sub",
     "prebuild:app": "cpr ../../node_modules/iframe-resizer/js/ public/iframe-resizer -o",
+    "preview": "npx http-server ../../build-showcases/patternhub",
     "regenerate:screenshots": "npx playwright test --config=../playwright.patternhub-config.ts --update-snapshots",
     "start": "cross-env NEXT_PUBLIC_BASE_PATH=/mono/sub npm-run-all compile next:dev",
     "test:e2e": "npx playwright test --config=../playwright.patternhub-config.ts"

@@ -50,7 +50,7 @@ const getFilteredContextData = (data) => {
  * @return {{resolvedType, name, type}}
  */
 const resolveProp = (resolvedData, value) => {
-	let type = value.type ? value.type : value;
+	let type = value.type ?? value;
 	if (type !== type?.toLowerCase()) {
 		// This isn't a primitive like string, boolean, etc.
 		const foundData = resolvedData[type];
