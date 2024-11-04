@@ -16,7 +16,7 @@ const patternHubConfig: PlaywrightTestConfig = {
 		}
 	],
 	webServer: {
-		command: `cd patternhub && npm run preview`,
+		command: `npx http-server ../build-showcases${process.env.NEXT_PUBLIC_BASE_PATH ?? '/patternhub'}`,
 		port: 8080,
 		reuseExistingServer: !process.env.CI
 	},
