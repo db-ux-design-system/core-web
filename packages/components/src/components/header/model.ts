@@ -33,7 +33,7 @@ export type DBHeaderDefaultProps = {
 	secondaryAction?: unknown;
 
 	/**
-	 * Open/closes the drawer on for mobile header or if `forceMobile` is true;
+	 * Open/closes the drawer for mobile header or if `forceMobile` is true.
 	 */
 	drawerOpen?: boolean;
 
