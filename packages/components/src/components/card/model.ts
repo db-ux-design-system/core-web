@@ -19,7 +19,7 @@ export type DBCardDefaultProps = {
 	behaviour?: CardBehaviourType;
 
 	/**
-	 * Changes the elevation of the card which is equal to basic-background-level
+	 * Changes the elevation of the card which is equal to `basic-background-level`
 	 */
 	elevationLevel?: CardElevationLevelType;
 };
