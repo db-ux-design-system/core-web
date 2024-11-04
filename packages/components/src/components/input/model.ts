@@ -42,7 +42,7 @@ export type DBInputDefaultProps = {
 	 */
 	dataList?: string[] | ValueLabelType[];
 	/**
-	 * Add a custom id to data list if your using `dataList` attribute.
+	 * Add a custom id to [data list](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/datalist) if you're using `dataList` attribute.
 	 */
 	dataListId?: string;
 	/**
