@@ -11,9 +11,7 @@ import { cls, uuid } from '../../utils';
 import { ChangeEvent, InteractionEvent } from '../../shared/model';
 import { handleFrameworkEvent } from '../../utils/form-components';
 
-useMetadata({
-	isAttachedToShadowDom: true
-});
+useMetadata({});
 
 export default function DBRadio(props: DBRadioProps) {
 	const ref = useRef<HTMLInputElement>(null);

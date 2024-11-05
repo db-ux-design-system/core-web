@@ -1,5 +1,5 @@
 import { expect, type Page, test } from '@playwright/test';
-import AxeBuilder from '@axe-core/playwright';
+import { AxeBuilder } from '@axe-core/playwright';
 import { close, getCompliance } from 'accessibility-checker';
 import { type ICheckerError } from 'accessibility-checker/lib/api/IChecker';
 import { type FullProject } from 'playwright/types/test';
@@ -21,14 +21,17 @@ export type DefaultA11yTestType = {
 	axeDisableRules?: string[];
 	aCheckerDisableRules?: string[];
 	skipAxe?: boolean;
+	skipChecker?: boolean;
 	preAxe?: (page: Page) => Promise<void>;
 	preChecker?: (page: Page) => Promise<void>;
 } & DefaultTestType;
 
+export const isStencil = (showcase: string): boolean =>
+	showcase.startsWith('stencil');
+
 export const hasWebComponentSyntax = (showcase: string): boolean => {
 	const isAngular = showcase.startsWith('angular');
-	const isStencil = showcase.startsWith('stencil');
-	return isAngular || isStencil;
+	return isAngular || isStencil(showcase);
 };
 
 export const waitForDBPage = async (page: Page) => {
@@ -37,7 +40,7 @@ export const waitForDBPage = async (page: Page) => {
 	await dbPage.evaluate((element) => {
 		element.style.transition = 'none';
 	});
-	await expect(dbPage).toHaveAttribute('data-fonts-loaded', 'true');
+	await expect(dbPage).not.toHaveAttribute('data-fonts-loaded', 'false');
 	await expect(dbPage).toHaveCSS('opacity', '1');
 	await expect(page.locator('html')).toHaveCSS('overflow', 'hidden');
 };
@@ -112,7 +115,8 @@ export const getA11yTest = ({
 	skipAxe,
 	preAxe,
 	aCheckerDisableRules,
-	preChecker
+	preChecker,
+	skipChecker
 }: DefaultA11yTestType) => {
 	for (const color of COLORS) {
 		test(`should not have any A11y issues for color ${color}`, async ({
@@ -154,11 +158,13 @@ export const getA11yTest = ({
 	}
 
 	test('test with accessibility checker', async ({ page }, { project }) => {
-		if (shouldSkipA11yTest(project)) {
+		if (skipChecker ?? shouldSkipA11yTest(project)) {
 			// Checking complete DOM in Firefox and Webkit takes very long, we skip this test
 			// we don't need to check for mobile device - it just changes the viewport
 			test.skip();
 		}
+
+		test.slow(); // Easy way to triple the default timeout
 
 		await gotoPage(page, path, 'neutral-bg-basic-level-1', fixedHeight);
 

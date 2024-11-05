@@ -28,7 +28,7 @@ export const NotificationBehaviourList = ['closable', 'permanent'] as const;
 export type NotificationBehaviourType =
 	(typeof NotificationBehaviourList)[number];
 
-export interface DBNotificationDefaultProps {
+export type DBNotificationDefaultProps = {
 	/**
 	 * The arialive attribute will lead to that the screenreader interrupts immediately
 	 * and reads out the notification if set to "assertive", while it will wait for the
@@ -73,7 +73,7 @@ export interface DBNotificationDefaultProps {
 	 * The overlay notifications are used for absolute and floating notifications like snackbars etc.
 	 */
 	variant?: NotificationVariantType;
-}
+};
 
 export type DBNotificationProps = DBNotificationDefaultProps &
 	GlobalProps &
@@ -83,7 +83,7 @@ export type DBNotificationProps = DBNotificationDefaultProps &
 	InnerCloseButtonProps &
 	PopoverProps;
 
-export interface DBNotificationDefaultState {}
+export type DBNotificationDefaultState = {};
 
 export type DBNotificationState = DBNotificationDefaultState &
 	GlobalState &

@@ -1,4 +1,4 @@
-import { type ProgrammOptionsType } from './types';
+import type { ProgrammOptionsType } from './types';
 import { colorQ32024 } from './migration/color-q32024';
 import type { ReplaceInFileConfig } from 'replace-in-file';
 import { iconQ32024 } from './migration/icon-q32024';

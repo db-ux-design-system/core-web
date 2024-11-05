@@ -5,10 +5,9 @@
 
 
 "compilerOptions": {
-...
+…
     "paths": {
       "@angular/*": ["./node_modules/@angular/*"]
     }
 }
-``
 ```

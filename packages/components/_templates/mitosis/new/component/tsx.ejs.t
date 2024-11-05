@@ -9,9 +9,7 @@ import {ChangeEvent, InteractionEvent} from "../../shared/model";
 import { handleFrameworkEvent } from "../../utils/form-components";
 <% } -%>
 
-useMetadata({
-  isAttachedToShadowDom: true
-});
+useMetadata({});
 
 export default function DB<%= h.changeCase.pascal(name) %>(props: DB<%= h.changeCase.pascal(name) %>Props) {
   // This is used as forwardRef

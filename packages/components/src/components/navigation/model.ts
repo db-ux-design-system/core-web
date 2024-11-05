@@ -4,12 +4,12 @@ import {
 	GlobalState
 } from '../../shared/model';
 
-export interface DBNavigationDefaultProps {}
+export type DBNavigationDefaultProps = {};
 
 export type DBNavigationProps = DBNavigationDefaultProps &
 	GlobalProps &
 	AriaLabelledByProps;
 
-export interface DBNavigationDefaultState {}
+export type DBNavigationDefaultState = {};
 
 export type DBNavigationState = DBNavigationDefaultState & GlobalState;

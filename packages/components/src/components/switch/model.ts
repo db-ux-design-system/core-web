@@ -1,23 +1,23 @@
 import {
 	ChangeEventProps,
 	ChangeEventState,
+	EmphasisProps,
 	FocusEventProps,
 	FocusEventState,
+	FormCheckProps,
 	FormProps,
 	FormState,
 	GlobalProps,
 	GlobalState,
-	FormCheckProps,
-	InitializedState,
-	EmphasisProps,
-	SizeProps,
+	IconAfterProps,
 	IconProps,
-	IconAfterProps
+	InitializedState,
+	SizeProps
 } from '../../shared/model';
 
-export interface DBSwitchDefaultProps {
+export type DBSwitchDefaultProps = {
 	visualAid?: boolean;
-}
+};
 
 export type DBSwitchProps = DBSwitchDefaultProps &
 	GlobalProps &
@@ -30,9 +30,9 @@ export type DBSwitchProps = DBSwitchDefaultProps &
 	IconProps &
 	IconAfterProps;
 
-export interface DBSwitchDefaultState {
+export type DBSwitchDefaultState = {
 	_checked: boolean;
-}
+};
 
 export type DBSwitchState = DBSwitchDefaultState &
 	GlobalState &

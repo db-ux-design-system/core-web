@@ -79,3 +79,6 @@ updates:
         patterns:
           - "@inquirer/*"
           - "inquirer"
+      mdx-js:
+        patterns:
+          - "@mdx-js/*"

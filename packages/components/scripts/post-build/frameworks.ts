@@ -1,1 +1,1 @@
-export default ['angular', 'react', 'vue', 'webcomponent'];
+export default ['angular', 'react', 'vue', 'stencil'];
