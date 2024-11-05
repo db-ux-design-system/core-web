@@ -1,11 +1,56 @@
 import { devices, type PlaywrightTestConfig } from '@playwright/test';
+import { type Project } from 'playwright/types/test';
 import showcaseConfig from './playwright.showcase';
 
-/**
- * See https://playwright.dev/docs/test-configuration.
- */
+const projects: Project[] = [
+	{
+		name: 'chromium',
+		use: {
+			...devices['Desktop Chrome']
+		}
+	},
+	{
+		name: 'chromium-highContrast',
+		use: {
+			browserName: 'chromium',
+			colorScheme: 'dark',
+			contextOptions: { forcedColors: 'active' }
+		}
+	},
+	{
+		name: 'firefox',
+		use: {
+			...devices['Desktop Firefox']
+		}
+	},
+	{
+		name: 'webkit',
+		use: {
+			...devices['Desktop Safari']
+		}
+	},
+	/* Test against mobile viewports. */
+	{
+		name: 'mobile_chrome',
+		use: {
+			...devices['Pixel 5'],
+			isMobile: true
+		}
+	}
+];
 
-// TIMINGS (chromium, firefox): 15m/4.2m
+// There is an issue with stencil not working with webkit mobile
+// Some screens differ for each snapshot
+if (!process.env.showcase?.startsWith('stencil')) {
+	projects.push({
+		name: 'mobile_safari',
+		use: {
+			...devices['iPhone 12'],
+			isMobile: true,
+			deviceScaleFactor: 2
+		}
+	});
+}
 
 const config: PlaywrightTestConfig = {
 	testDir: './e2e',
@@ -25,50 +70,7 @@ const config: PlaywrightTestConfig = {
 	/* Reporter to use. See https://playwright.dev/docs/test-reporters */
 	reporter: process.env.CI ? 'blob' : [['list'], ['html', { open: 'never' }]],
 	/* Configure projects for major browsers */
-	projects: [
-		{
-			name: 'chromium',
-			use: {
-				...devices['Desktop Chrome']
-			}
-		},
-		{
-			name: 'chromium-highContrast',
-			use: {
-				browserName: 'chromium',
-				colorScheme: 'dark',
-				contextOptions: { forcedColors: 'active' }
-			}
-		},
-		{
-			name: 'firefox',
-			use: {
-				...devices['Desktop Firefox']
-			}
-		},
-		{
-			name: 'webkit',
-			use: {
-				...devices['Desktop Safari']
-			}
-		},
-		/* Test against mobile viewports. */
-		{
-			name: 'mobile_chrome',
-			use: {
-				...devices['Pixel 5'],
-				isMobile: true
-			}
-		},
-		{
-			name: 'mobile_safari',
-			use: {
-				...devices['iPhone 12'],
-				isMobile: true,
-				deviceScaleFactor: 2
-			}
-		}
-	],
+	projects,
 	...showcaseConfig
 };
 

@@ -42,4 +42,13 @@
 			}
 		}
 	}
+
+	// Workaround for current stencil implementation for form-components
+	&:has(> .db-infotext) {
+		margin: 0;
+
+		&::before {
+			content: none;
+		}
+	}
 }

@@ -13,9 +13,7 @@ import DBDrawer from '../drawer/drawer.lite';
 import { DEFAULT_BURGER_MENU, DEFAULT_ID } from '../../shared/constants';
 import { isEventTargetNavigationItem } from '../../utils/navigation';
 
-useMetadata({
-	isAttachedToShadowDom: true
-});
+useMetadata({});
 
 export default function DBHeader(props: DBHeaderProps) {
 	const ref = useRef<HTMLDivElement>(null);
@@ -68,7 +66,7 @@ export default function DBHeader(props: DBHeaderProps) {
 			data-width={props.width}
 			data-on-forcing-mobile={props.forceMobile && !state.forcedToMobile}>
 			<DBDrawer
-				className="db-header-drawer"
+				class="db-header-drawer"
 				rounded
 				spacing="small"
 				open={props.drawerOpen}

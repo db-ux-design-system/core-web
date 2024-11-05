@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-import { type OptionsType } from './types';
+import type { OptionsType } from './types';
 import startProgram from './program';
 import { options } from './data';
 import { migrate } from './migration';

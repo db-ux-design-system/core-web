@@ -86,7 +86,8 @@
 				"props": {
 					"options": [
 						{
-							"value": "Floating Label"
+							"value": "Floating Label",
+							"selected": true
 						},
 						{
 							"value": "Option 2"
@@ -265,7 +266,8 @@
 				"props": {
 					"options": [
 						{
-							"value": "Disabled"
+							"value": "Disabled",
+							"selected": true
 						},
 						{
 							"value": "Option 2"
@@ -314,7 +316,7 @@
 						}
 					],
 					"label": "Label",
-					"icon": "x_placeholder"
+					"icon": "db"
 				}
 			}
 		]

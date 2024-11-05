@@ -15,7 +15,7 @@ export const DEFAULT_BACK: string = 'Back';
 
 export const DEFAULT_BURGER_MENU: string = 'BurgerMenu';
 export const DEFAULT_ICON: string = 'db';
-export const DEFAULT_ROWS: string = '4';
+export const DEFAULT_ROWS: number = 4;
 
 export const DEFAULT_CLOSE_BUTTON: string = 'Close Button';
 export const DENSITY_CONST: string = 'density';

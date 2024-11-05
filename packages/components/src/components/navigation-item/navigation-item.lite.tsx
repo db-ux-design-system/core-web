@@ -9,14 +9,12 @@ import {
 } from '@builder.io/mitosis';
 import { DBNavigationItemProps, DBNavigationItemState } from './model';
 import DBButton from '../button/button.lite';
-import { cls, uuid } from '../../utils';
+import { cls, getBooleanAsString, uuid } from '../../utils';
 import { NavigationItemSafeTriangle } from '../../utils/navigation';
 import { DEFAULT_BACK } from '../../shared/constants';
 import { ClickEvent } from '../../shared/model';
 
-useMetadata({
-	isAttachedToShadowDom: true
-});
+useMetadata({});
 
 export default function DBNavigationItem(props: DBNavigationItemProps) {
 	const ref = useRef<HTMLLIElement>(null);
@@ -100,14 +98,14 @@ export default function DBNavigationItem(props: DBNavigationItemProps) {
 			data-width={props.width}
 			data-icon={props.icon}
 			data-active={props.active}
-			aria-disabled={props.disabled}>
+			aria-disabled={getBooleanAsString(props.disabled)}>
 			<Show when={!state.hasSubNavigation}>{props.children}</Show>
 
 			<Show when={state.hasSubNavigation}>
 				<button
 					aria-haspopup={state.hasAreaPopup}
 					aria-expanded={state.isSubNavigationExpanded}
-					className="db-navigation-item-expand-button"
+					class="db-navigation-item-expand-button"
 					disabled={props.disabled}
 					onClick={(event: ClickEvent<HTMLButtonElement>) =>
 						state.handleClick(event)
@@ -116,7 +114,7 @@ export default function DBNavigationItem(props: DBNavigationItemProps) {
 				</button>
 
 				{/* TODO: Consider using popover here */}
-				<menu className="db-sub-navigation" id={state.subNavigationId}>
+				<menu class="db-sub-navigation" id={state.subNavigationId}>
 					<Show when={state.hasAreaPopup}>
 						<div class="db-mobile-navigation-back">
 							<DBButton

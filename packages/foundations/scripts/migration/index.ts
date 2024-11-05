@@ -1,10 +1,7 @@
 import { globSync } from 'glob';
-import {
-	ReplaceInFileConfig,
-	replaceInFileSync,
-	type ReplaceResult
-} from 'replace-in-file';
-import { type OptionsType } from '../types';
+import { ReplaceInFileConfig, replaceInFileSync } from 'replace-in-file';
+import type { ReplaceResult } from 'replace-in-file';
+import type { OptionsType } from '../types';
 import { migrationTypes } from '../data';
 
 export const migrate = (
