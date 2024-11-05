@@ -1,11 +1,9 @@
-import { Show, useMetadata, useRef, useStore } from '@builder.io/mitosis';
+import { useMetadata, useRef, useStore } from '@builder.io/mitosis';
 import { cls } from '../../utils';
 import { DBBrandProps, DBBrandState } from './model';
 import { DEFAULT_ICON } from '../../shared/constants';
 
-useMetadata({
-	isAttachedToShadowDom: true
-});
+useMetadata({});
 
 export default function DBBrand(props: DBBrandProps) {
 	const ref = useRef<HTMLDivElement>(null);

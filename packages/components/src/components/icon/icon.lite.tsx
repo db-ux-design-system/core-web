@@ -2,9 +2,7 @@ import { useMetadata, useRef, useStore } from '@builder.io/mitosis';
 import type { DBIconProps, DBIconState } from './model';
 import { cls } from '../../utils';
 
-useMetadata({
-	isAttachedToShadowDom: true
-});
+useMetadata({});
 
 export default function DBIcon(props: DBIconProps) {
 	const ref = useRef<HTMLSpanElement>(null);

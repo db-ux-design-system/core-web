@@ -20,17 +20,15 @@ import {
 	DEFAULT_VALID_MESSAGE_ID_SUFFIX
 } from '../../shared/constants';
 import {
-	InputEvent,
 	ChangeEvent,
+	InputEvent,
 	InteractionEvent,
 	ValueLabelType
 } from '../../shared/model';
 import DBInfotext from '../infotext/infotext.lite';
 import { handleFrameworkEvent } from '../../utils/form-components';
 
-useMetadata({
-	isAttachedToShadowDom: true
-});
+useMetadata({});
 
 export default function DBInput(props: DBInputProps) {
 	const ref = useRef<HTMLInputElement>(null);

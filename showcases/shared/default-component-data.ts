@@ -16,6 +16,7 @@ export type DefaultComponentExample = {
 	};
 	children?: DefaultComponentExample[];
 	density?: string;
+	class?: string;
 };
 
 export type DefaultComponentVariants = {

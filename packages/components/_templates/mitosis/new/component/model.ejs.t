@@ -14,7 +14,7 @@ import {
 GlobalProps,
 GlobalState } from '../../shared/model';
 
-export interface DB<%= h.changeCase.pascal(name) %>DefaultProps {
+export type DB<%= h.changeCase.pascal(name) %>DefaultProps = {
 }
 
 export type DB<%= h.changeCase.pascal(name) %>Props =
@@ -29,7 +29,7 @@ export type DB<%= h.changeCase.pascal(name) %>Props =
 <% } -%>
 	;
 
-export interface DB<%= h.changeCase.pascal(name) %>DefaultState {}
+export type DB<%= h.changeCase.pascal(name) %>DefaultState = {}
 
 export type DB<%= h.changeCase.pascal(name) %>State =
 	DB<%= h.changeCase.pascal(name) %>DefaultState &

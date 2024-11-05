@@ -5,13 +5,13 @@ import {
 	SpacingProps
 } from '../../shared/model';
 
-export interface DBSectionDefaultProps {}
+export type DBSectionDefaultProps = {};
 
 export type DBSectionProps = DBSectionDefaultProps &
 	GlobalProps &
 	SpacingProps &
 	ContainerWidthProps;
 
-export interface DBSectionDefaultState {}
+export type DBSectionDefaultState = {};
 
 export type DBSectionState = DBSectionDefaultState & GlobalState;

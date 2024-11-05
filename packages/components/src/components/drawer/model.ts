@@ -19,7 +19,7 @@ export type DrawerBackdropType = (typeof DrawerBackdropList)[number];
 export const DrawerDirectionList = ['left', 'right', 'up', 'down'] as const;
 export type DrawerDirectionType = (typeof DrawerDirectionList)[number];
 
-export interface DBDrawerDefaultProps {
+export type DBDrawerDefaultProps = {
 	/**
 	 * The backdrop attribute changes the opacity of the backdrop.
 	 * The backdrop 'none' will use `dialog.show()` instead of `dialog.showModal()`
@@ -45,7 +45,7 @@ export interface DBDrawerDefaultProps {
 	 * The "end" depends on which direction you use.
 	 */
 	rounded?: boolean;
-}
+};
 
 export type DBDrawerProps = DBDrawerDefaultProps &
 	GlobalProps &
@@ -54,9 +54,9 @@ export type DBDrawerProps = DBDrawerDefaultProps &
 	WidthProps &
 	SpacingProps;
 
-export interface DBDrawerDefaultState {
+export type DBDrawerDefaultState = {
 	handleDialogOpen: () => void;
-}
+};
 
 export type DBDrawerState = DBDrawerDefaultState &
 	GlobalState &

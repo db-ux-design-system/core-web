@@ -8,9 +8,7 @@ import {
 import { DBTabPanelProps, DBTabPanelState } from './model';
 import { cls } from '../../utils';
 
-useMetadata({
-	isAttachedToShadowDom: true
-});
+useMetadata({});
 
 export default function DBTabPanel(props: DBTabPanelProps) {
 	// This is used as forwardRef

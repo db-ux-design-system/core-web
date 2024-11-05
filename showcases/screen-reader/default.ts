@@ -29,7 +29,10 @@ const standardPhrases = [
 	'To close',
 	'To choose',
 	'To toggle',
-	'To expand'
+	'To expand',
+	'Login Items',
+	'You can manage',
+	'To open'
 ];
 
 const flakyExpressions: Record<string, string> = {
