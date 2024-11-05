@@ -11,7 +11,6 @@ on:
         type: string
       path:
         required: false
-        default: ""
         type: string
 
 permissions:
@@ -63,16 +62,20 @@ jobs:
           name: db-ui-${{ inputs.showcase }}
           path: build-showcases/${{ inputs.showcase }}
 
+      - name: 🧴 Copy patternhub testing app
+        if: inputs.path
+        shell: bash
+        run: |
+          mkdir -p ./build-showcases${{ inputs.path }}
+          cp -RT ./build-showcases/${{ inputs.showcase }} ./build-showcases${{ inputs.path }}
+          ls ./build-showcases${{ inputs.path }}
+
       - name: 👩‍🔬 Test showcase with Playwright 🎭
         shell: bash
         env:
           HOME: /root
           NEXT_PUBLIC_BASE_PATH: ${{ inputs.path }}
         run: |
-          if [[ $NEXT_PUBLIC_BASE_PATH != "" ]];
-          then
-            cp -RT ./build-showcases/${{ inputs.showcase }} ./build-showcases${{ inputs.path }}
-          fi
           npm run test:e2e --workspace=${{ inputs.showcase }} -- --shard=${{ matrix.shardIndex }}/${{ matrix.shardTotal }}
 
       - name: 🔣 Print GitHub Report
