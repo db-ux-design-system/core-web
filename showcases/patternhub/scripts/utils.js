@@ -197,6 +197,18 @@ export const getCodeByFramework = (
 		return `<${tag}${className} ${attributes.join(' ')}${reactSlots}/>`;
 	}
 
+	// Workaround for tooltip
+	if (componentName === 'tooltip') {
+		return innerContent.replace(
+			'</',
+			`<${tag}${className} ${attributes
+				.filter((attr) => attr !== 'content')
+				.join(' ')}>${
+				attributes.find((attr) => attr === 'content') ?? ''
+			}</${tag}></`
+		);
+	}
+
 	return `<${tag}${className} ${attributes.join(' ')}${reactSlots}>
 ${otherSlots}${innerContent}
 </${tag}>`;
