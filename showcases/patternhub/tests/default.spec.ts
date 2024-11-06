@@ -33,7 +33,7 @@ for (const group of Components) {
 			await getDefaultScreenshotTest(
 				component.name,
 				`overview`,
-				`./components/${component.name}/overview?page=density`,
+				`./components/${component.name}/overview?fullscreen=true&page=density`,
 				async (page) => {
 					const functionalCount = page
 						.getByText('Functional')
