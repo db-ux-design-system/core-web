@@ -162,7 +162,12 @@ jobs:
       version: ${{ needs.get-playwright-version.outputs.version }}
       path: ${{ needs.build-showcase-patternhub.outputs.path }}
       type: patternhub
-    needs: [test-showcase-patternhub, get-playwright-version]
+    needs:
+      [
+        build-showcase-patternhub,
+        test-showcase-patternhub,
+        get-playwright-version
+      ]
 
   test-screen-reader:
     uses: ./.github/workflows/02-e2e-screen-reader.yml
