@@ -175,5 +175,26 @@
 				}
 			}
 		]
+	},
+	{
+		"name": "Example",
+		"examples": [
+			{
+				"name": "(Default) As modal",
+				"props": {
+					"variant": "modal",
+					"open": "open",
+					"onClose": "toggleDrawer(false)"
+				}
+			},
+			{
+				"name": "Inside",
+				"props": {
+					"variant": "inside",
+					"open": "open",
+					"onClose": "toggleDrawer(false)"
+				}
+			}
+		]
 	}
 ]
