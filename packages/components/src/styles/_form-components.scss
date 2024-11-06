@@ -478,10 +478,7 @@ $input-valid-types: "color", "date", "datetime-local", "email", "file", "hidden"
 		aspect-ratio: 1;
 		border: #{$check-border-size} solid var(--db-check-element-border-color, #{colors.$db-adaptive-on-bg-basic-emphasis-100-default});
 		block-size: $font-size-height;
-
-		// TODO: probably extract this to an overwrite or external file
-		// workarounds for power apps
-		inline-size: auto;
+		inline-size: $font-size-height;
 		padding: 0;
 
 		@include helpers.hover {

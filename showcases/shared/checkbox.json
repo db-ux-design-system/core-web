@@ -97,8 +97,7 @@
 				"props": {
 					"name": "States",
 					"indeterminate": true,
-					"required": true,
-					"checked": true
+					"required": true
 				}
 			}
 		]
