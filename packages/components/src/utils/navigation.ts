@@ -168,8 +168,8 @@ export class NavigationItemSafeTriangle {
 		const tipX = this.getTriangleTipX();
 		const tipY = this.getTriangleTipY();
 
-		const lb = `${tipX}px ${tipY + this.triangleData.padding}px`;
-		const lt = `${tipX}px ${tipY - this.triangleData.padding}px`;
+		const lb = `${tipX}px ${tipY}px`;
+		const lt = `${tipX}px ${tipY}px`;
 
 		return {
 			lb,
