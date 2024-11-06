@@ -93,6 +93,8 @@ $spacings: (
 			--db-drawer-content-padding-inline,
 			#{map.get($spacing, "inline")}
 		);
+		max-block-size: fit-content;
+		overflow: auto;
 	}
 }
 
