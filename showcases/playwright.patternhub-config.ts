@@ -16,7 +16,7 @@ const patternHubConfig: PlaywrightTestConfig = {
 		}
 	],
 	webServer: {
-		command: `npx http-server ../build-showcases${process.env.CI ? '' : '/patternhub'}`,
+		command: `npx http-server ../build-showcases${process.env.NEXT_PUBLIC_BASE_PATH ? '' : '/patternhub'}`,
 		port: 8080,
 		reuseExistingServer: !process.env.CI
 	},
@@ -24,7 +24,7 @@ const patternHubConfig: PlaywrightTestConfig = {
 		/* Maximum time each action such as `click()` can take. Defaults to 0 (no limit). */
 		actionTimeout: 0,
 		/* Base URL to use in actions like `await page.goto('/')`. */
-		baseURL: `http://localhost:8080${process.env.NEXT_PUBLIC_BASE_PATH ?? ''}`,
+		baseURL: `http://localhost:8080${process.env.NEXT_PUBLIC_BASE_PATH ?? ''}/`,
 
 		/* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
 		trace: process.env.CI ? 'on-first-retry' : 'on'
