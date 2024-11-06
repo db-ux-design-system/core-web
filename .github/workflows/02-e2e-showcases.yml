@@ -68,7 +68,6 @@ jobs:
         run: |
           mkdir -p ./build-showcases${{ inputs.path }}
           cp -RT ./build-showcases/${{ inputs.showcase }} ./build-showcases${{ inputs.path }}
-          ls ./build-showcases${{ inputs.path }}
 
       - name: 👩‍🔬 Test showcase with Playwright 🎭
         shell: bash
@@ -76,7 +75,6 @@ jobs:
           HOME: /root
           NEXT_PUBLIC_BASE_PATH: ${{ inputs.path }}
         run: |
-          ls
           npm run test:e2e --workspace=${{ inputs.showcase }} -- --shard=${{ matrix.shardIndex }}/${{ matrix.shardTotal }}
 
       - name: 🔣 Print GitHub Report
