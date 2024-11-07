@@ -33,18 +33,8 @@ for (const group of Components) {
 			await getDefaultScreenshotTest(
 				component.name,
 				`overview`,
-				`./components/${component.name}/overview`,
+				`./components/${component.name}/overview?fullscreen=true`,
 				async (page) => {
-					const dbPage = page.locator('.db-page');
-					// We wait till db-page fully loaded
-					await dbPage.evaluate((element) => {
-						element.style.transition = 'none';
-						element.style.opacity = '1';
-					});
-					await expect(dbPage).not.toHaveAttribute(
-						'data-fonts-loaded',
-						'false'
-					);
 					const firstH2 = page.locator('h1').first();
 					await expect(firstH2).toBeVisible();
 				}
