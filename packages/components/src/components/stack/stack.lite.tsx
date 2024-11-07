@@ -2,9 +2,7 @@ import { Show, useMetadata, useRef, useStore } from '@builder.io/mitosis';
 import { DBStackState, DBStackProps } from './model';
 import { cls } from '../../utils';
 
-useMetadata({
-	isAttachedToShadowDom: true
-});
+useMetadata({});
 
 export default function DBStack(props: DBStackProps) {
 	// This is used as forwardRef
