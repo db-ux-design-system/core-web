@@ -2,7 +2,7 @@ export const handleFrameworkEvent = (
 	component: any,
 	event: any,
 	modelValue: string = 'value'
-) => {
+): void => {
 	// TODO: Replace this with the solution out of https://github.com/BuilderIO/mitosis/issues/833 after this has been "solved"
 	// VUE:component.$emit(`update:${modelValue}`, event.target[modelValue]);
 	// Change event to work with reactive and template driven forms

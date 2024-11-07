@@ -6,24 +6,38 @@
 @use "../../styles/component";
 @use "../../styles/form-components";
 
+%center-icon {
+	&::before {
+		--db-icon-margin-end: 0;
+
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		block-size: calc(
+			#{form-components.$font-size-height} - 2 * #{variables.$db-border-height-3xs}
+		);
+		inline-size: calc(
+			#{form-components.$font-size-height} - 2 * #{variables.$db-border-height-3xs}
+		);
+	}
+}
+
 .db-checkbox {
 	@extend %helper-message;
 
 	@include form-components.set-default-check-element(check);
 
 	input {
+		display: flex;
 		border-radius: variables.$db-border-radius-2xs;
-
-		&::before {
-			--db-icon-margin-end: 0;
-
-			position: absolute;
-			inset-inline: 0;
-			inset-block: 0;
-		}
+		margin-block: auto;
+		align-items: center;
+		justify-content: center;
 
 		&:checked {
 			--db-check-element-border-color: #{colors.$db-adaptive-on-bg-basic-emphasis-70-default};
+
+			@extend %center-icon;
 
 			// Check icon
 			@include icons.set-icon("check");
@@ -39,6 +53,8 @@
 		}
 
 		&:indeterminate {
+			@extend %center-icon;
+
 			@include icons.set-icon("minus");
 		}
 
