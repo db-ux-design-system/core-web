@@ -266,8 +266,6 @@ $input-valid-types: "color", "date", "datetime-local", "email", "file", "hidden"
 		label {
 			&::after {
 				@include icons.icon-content("*");
-
-				padding-inline-start: variables.$db-spacing-fixed-2xs;
 			}
 		}
 	}
