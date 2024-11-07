@@ -19,7 +19,8 @@ const getDrawer = ({
 	setOpenDrawer,
 	direction,
 	children,
-	backdrop
+	backdrop,
+	variant
 }: DBDrawerProps & AdditionalDrawerProperties) => (
 	<div>
 		<DBButton
@@ -34,6 +35,7 @@ const getDrawer = ({
 			spacing={spacing}
 			backdrop={backdrop}
 			direction={direction}
+			variant={variant}
 			open={openDrawer === id}
 			onClose={() => {
 				setOpenDrawer(undefined);
