@@ -36,7 +36,7 @@ You can enable auto-complete of CSS classes (like e.g. `db-container-color-cyan`
     "**/*.scss",
     "**/*.sass",
     "**/*.less",
-	  "node_modules/@db-ui/foundations/ide/db.ide.css"
+	  "node_modules/@db-ui/foundations/build/ide/db.ide.css"
   ]
 }
 ````
