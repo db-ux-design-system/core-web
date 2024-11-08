@@ -6,7 +6,7 @@ const getPrimitive = (ts, kind) =>
  * @param initializer {object}
  */
 const getStringArrayConst = (initializer) => {
-	const texts = initializer.expression?.expression?.elements?.map(
+	const texts = initializer.expression?.elements?.map(
 		(elemNode) => `"${elemNode.text}"`
 	);
 	if (texts) {
