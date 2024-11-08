@@ -1,0 +1,1074 @@
+/* DON'T USE THIS FILE IN PRODUCTION. */
+
+/* THIS IS ONLY FOR YOUR IDES AUTO-COMPLETE. */
+head {
+/* DIMENSION */
+
+/* https://marketingportal.extranet.deutschebahn.com/marketingportal/Design-Anwendungen/db-ux-design-system/version-3/foundation/sizing */
+--db-sizing-3xs: "Use sizing's for fixed heights/widths e.g. the db-button has always a fixed height.";
+--db-sizing-2xs: "Use sizing's for fixed heights/widths e.g. the db-button has always a fixed height.";
+--db-sizing-xs: "Use sizing's for fixed heights/widths e.g. the db-button has always a fixed height.";
+--db-sizing-sm: "Use sizing's for fixed heights/widths e.g. the db-button has always a fixed height.";
+--db-sizing-md: "Use sizing's for fixed heights/widths e.g. the db-button has always a fixed height.";
+--db-sizing-lg: "Use sizing's for fixed heights/widths e.g. the db-button has always a fixed height.";
+--db-sizing-xl: "Use sizing's for fixed heights/widths e.g. the db-button has always a fixed height.";
+--db-sizing-2xl: "Use sizing's for fixed heights/widths e.g. the db-button has always a fixed height.";
+--db-sizing-3xl: "Use sizing's for fixed heights/widths e.g. the db-button has always a fixed height.";
+
+/* https://marketingportal.extranet.deutschebahn.com/marketingportal/Design-Anwendungen/db-ux-design-system/version-3/foundation/spacing */
+--db-spacing-fixed-3xs: "Use fixed spacings for all kind of distances (margin, padding, ...).";
+--db-spacing-fixed-2xs: "Use fixed spacings for all kind of distances (margin, padding, ...).";
+--db-spacing-fixed-xs: "Use fixed spacings for all kind of distances (margin, padding, ...).";
+--db-spacing-fixed-sm: "Use fixed spacings for all kind of distances (margin, padding, ...).";
+--db-spacing-fixed-md: "Use fixed spacings for all kind of distances (margin, padding, ...).";
+--db-spacing-fixed-lg: "Use fixed spacings for all kind of distances (margin, padding, ...).";
+--db-spacing-fixed-xl: "Use fixed spacings for all kind of distances (margin, padding, ...).";
+--db-spacing-fixed-2xl: "Use fixed spacings for all kind of distances (margin, padding, ...).";
+--db-spacing-fixed-3xl: "Use fixed spacings for all kind of distances (margin, padding, ...).";
+
+/* https://marketingportal.extranet.deutschebahn.com/marketingportal/Design-Anwendungen/db-ux-design-system/version-3/foundation/spacing */
+--db-spacing-responsive-3xs: "The primary use-case for responsive spacings are paddings/gaps in an application e.g. the <main> should have a responsive padding.";
+--db-spacing-responsive-2xs: "The primary use-case for responsive spacings are paddings/gaps in an application e.g. the <main> should have a responsive padding.";
+--db-spacing-responsive-xs: "The primary use-case for responsive spacings are paddings/gaps in an application e.g. the <main> should have a responsive padding.";
+--db-spacing-responsive-sm: "The primary use-case for responsive spacings are paddings/gaps in an application e.g. the <main> should have a responsive padding.";
+--db-spacing-responsive-md: "The primary use-case for responsive spacings are paddings/gaps in an application e.g. the <main> should have a responsive padding.";
+--db-spacing-responsive-lg: "The primary use-case for responsive spacings are paddings/gaps in an application e.g. the <main> should have a responsive padding.";
+--db-spacing-responsive-xl: "The primary use-case for responsive spacings are paddings/gaps in an application e.g. the <main> should have a responsive padding.";
+--db-spacing-responsive-2xl: "The primary use-case for responsive spacings are paddings/gaps in an application e.g. the <main> should have a responsive padding.";
+--db-spacing-responsive-3xl: "The primary use-case for responsive spacings are paddings/gaps in an application e.g. the <main> should have a responsive padding.";
+
+/* https://marketingportal.extranet.deutschebahn.com/marketingportal/Design-Anwendungen/db-ux-design-system/version-3/foundation/elevation */
+--db-elevation-sm: "Changes elevation of element.";
+--db-elevation-md: "Changes elevation of element.";
+--db-elevation-lg: "Changes elevation of element.";
+
+/* https://marketingportal.extranet.deutschebahn.com/marketingportal/Design-Anwendungen/db-ux-design-system/version-3/foundation/border-height */
+--db-border-height-3xs: "Changes border-height of element";
+--db-border-height-2xs: "Changes border-height of element";
+--db-border-height-xs: "Changes border-height of element";
+--db-border-height-sm: "Changes border-height of element";
+--db-border-height-md: "Changes border-height of element";
+--db-border-height-lg: "Changes border-height of element";
+--db-border-height-xl: "Changes border-height of element";
+--db-border-height-2xl: "Changes border-height of element";
+--db-border-height-3xl: "Changes border-height of element";
+
+/* https://marketingportal.extranet.deutschebahn.com/marketingportal/Design-Anwendungen/db-ux-design-system/version-3/foundation/border-radius */
+--db-border-radius-3xs: "Changes border-radius of element";
+--db-border-radius-2xs: "Changes border-radius of element";
+--db-border-radius-xs: "Changes border-radius of element";
+--db-border-radius-sm: "Changes border-radius of element";
+--db-border-radius-md: "Changes border-radius of element";
+--db-border-radius-lg: "Changes border-radius of element";
+--db-border-radius-xl: "Changes border-radius of element";
+--db-border-radius-2xl: "Changes border-radius of element";
+--db-border-radius-3xl: "Changes border-radius of element";
+
+/* COLORS */
+
+/* NOTE: Most of the time you just need adaptive. */
+
+/* https://marketingportal.extranet.deutschebahn.com/marketingportal/Design-Anwendungen/db-ux-design-system/version-3/foundation/colors */
+
+/* ADAPTIVE */
+--db-adaptive-bg-basic-level-1-default: "Change the background color level of the current element. Can be used on containers and components.";
+--db-adaptive-bg-basic-level-2-default: "Change the background color level of the current element. Can be used on containers and components.";
+--db-adaptive-bg-basic-level-3-default: "Change the background color level of the current element. Can be used on containers and components.";
+--db-adaptive-bg-basic-transparent-semi-default: "Change the background color level of the current element. Can be used on containers and components.";
+--db-adaptive-bg-basic-transparent-full-default: "Change the background color level of the current element. Can be used on containers and components.";
+--db-adaptive-on-bg-emphasis-100-default: "Change the foreground color with another emphasis of the current element.";
+--db-adaptive-on-bg-emphasis-90-default: "Change the foreground color with another emphasis of the current element.";
+--db-adaptive-on-bg-emphasis-80-default: "Change the foreground color with another emphasis of the current element.";
+--db-adaptive-on-bg-emphasis-70-default: "Change the foreground color with another emphasis of the current element.";
+--db-adaptive-on-bg-emphasis-60-default: "Change the foreground color with another emphasis of the current element.";
+--db-adaptive-on-bg-emphasis-50-default: "Change the foreground color with another emphasis of the current element.";
+--db-adaptive-bg-inverted-contrast-max-default: "Change the background color of the current element. Should be used on single components only.";
+--db-adaptive-bg-inverted-contrast-high-default: "Change the background color of the current element. Should be used on single components only.";
+--db-adaptive-bg-inverted-contrast-low-default: "Change the background color of the current element. Should be used on single components only.";
+--db-adaptive-on-bg-inverted-default: "Change the foreground color of the current element. Only used with inverted background colors.";
+--db-adaptive-origin-default: "Origin color can be used for background and foreground. Use this if you know what you are doing, it might not be accessible.";
+--db-adaptive-on-origin-default: "Change the foreground color of the current element. Only used with origin as background color.";
+--db-adaptive-bg-basic-level-1-hovered: "Change the background color level of the current element. Can be used on containers and components.";
+--db-adaptive-bg-basic-level-2-hovered: "Change the background color level of the current element. Can be used on containers and components.";
+--db-adaptive-bg-basic-level-3-hovered: "Change the background color level of the current element. Can be used on containers and components.";
+--db-adaptive-bg-basic-transparent-semi-hovered: "Change the background color level of the current element. Can be used on containers and components.";
+--db-adaptive-bg-basic-transparent-full-hovered: "Change the background color level of the current element. Can be used on containers and components.";
+--db-adaptive-on-bg-emphasis-100-hovered: "Change the foreground color with another emphasis of the current element.";
+--db-adaptive-on-bg-emphasis-90-hovered: "Change the foreground color with another emphasis of the current element.";
+--db-adaptive-on-bg-emphasis-80-hovered: "Change the foreground color with another emphasis of the current element.";
+--db-adaptive-on-bg-emphasis-70-hovered: "Change the foreground color with another emphasis of the current element.";
+--db-adaptive-on-bg-emphasis-60-hovered: "Change the foreground color with another emphasis of the current element.";
+--db-adaptive-on-bg-emphasis-50-hovered: "Change the foreground color with another emphasis of the current element.";
+--db-adaptive-bg-inverted-contrast-max-hovered: "Change the background color of the current element. Should be used on single components only.";
+--db-adaptive-bg-inverted-contrast-high-hovered: "Change the background color of the current element. Should be used on single components only.";
+--db-adaptive-bg-inverted-contrast-low-hovered: "Change the background color of the current element. Should be used on single components only.";
+--db-adaptive-on-bg-inverted-hovered: "Change the foreground color of the current element. Only used with inverted background colors.";
+--db-adaptive-origin-hovered: "Origin color can be used for background and foreground. Use this if you know what you are doing, it might not be accessible.";
+--db-adaptive-on-origin-hovered: "Change the foreground color of the current element. Only used with origin as background color.";
+--db-adaptive-bg-basic-level-1-pressed: "Change the background color level of the current element. Can be used on containers and components.";
+--db-adaptive-bg-basic-level-2-pressed: "Change the background color level of the current element. Can be used on containers and components.";
+--db-adaptive-bg-basic-level-3-pressed: "Change the background color level of the current element. Can be used on containers and components.";
+--db-adaptive-bg-basic-transparent-semi-pressed: "Change the background color level of the current element. Can be used on containers and components.";
+--db-adaptive-bg-basic-transparent-full-pressed: "Change the background color level of the current element. Can be used on containers and components.";
+--db-adaptive-on-bg-emphasis-100-pressed: "Change the foreground color with another emphasis of the current element.";
+--db-adaptive-on-bg-emphasis-90-pressed: "Change the foreground color with another emphasis of the current element.";
+--db-adaptive-on-bg-emphasis-80-pressed: "Change the foreground color with another emphasis of the current element.";
+--db-adaptive-on-bg-emphasis-70-pressed: "Change the foreground color with another emphasis of the current element.";
+--db-adaptive-on-bg-emphasis-60-pressed: "Change the foreground color with another emphasis of the current element.";
+--db-adaptive-on-bg-emphasis-50-pressed: "Change the foreground color with another emphasis of the current element.";
+--db-adaptive-bg-inverted-contrast-max-pressed: "Change the background color of the current element. Should be used on single components only.";
+--db-adaptive-bg-inverted-contrast-high-pressed: "Change the background color of the current element. Should be used on single components only.";
+--db-adaptive-bg-inverted-contrast-low-pressed: "Change the background color of the current element. Should be used on single components only.";
+--db-adaptive-on-bg-inverted-pressed: "Change the foreground color of the current element. Only used with inverted background colors.";
+--db-adaptive-origin-pressed: "Origin color can be used for background and foreground. Use this if you know what you are doing, it might not be accessible.";
+--db-adaptive-on-origin-pressed: "Change the foreground color of the current element. Only used with origin as background color.";
+
+
+/* NEUTRAL */
+--db-neutral-bg-basic-level-1-default: "Change the background color level of the current element. Can be used on containers and components.";
+--db-neutral-bg-basic-level-2-default: "Change the background color level of the current element. Can be used on containers and components.";
+--db-neutral-bg-basic-level-3-default: "Change the background color level of the current element. Can be used on containers and components.";
+--db-neutral-bg-basic-transparent-semi-default: "Change the background color level of the current element. Can be used on containers and components.";
+--db-neutral-bg-basic-transparent-full-default: "Change the background color level of the current element. Can be used on containers and components.";
+--db-neutral-on-bg-emphasis-100-default: "Change the foreground color with another emphasis of the current element.";
+--db-neutral-on-bg-emphasis-90-default: "Change the foreground color with another emphasis of the current element.";
+--db-neutral-on-bg-emphasis-80-default: "Change the foreground color with another emphasis of the current element.";
+--db-neutral-on-bg-emphasis-70-default: "Change the foreground color with another emphasis of the current element.";
+--db-neutral-on-bg-emphasis-60-default: "Change the foreground color with another emphasis of the current element.";
+--db-neutral-on-bg-emphasis-50-default: "Change the foreground color with another emphasis of the current element.";
+--db-neutral-bg-inverted-contrast-max-default: "Change the background color of the current element. Should be used on single components only.";
+--db-neutral-bg-inverted-contrast-high-default: "Change the background color of the current element. Should be used on single components only.";
+--db-neutral-bg-inverted-contrast-low-default: "Change the background color of the current element. Should be used on single components only.";
+--db-neutral-on-bg-inverted-default: "Change the foreground color of the current element. Only used with inverted background colors.";
+--db-neutral-origin-default: "Origin color can be used for background and foreground. Use this if you know what you are doing, it might not be accessible.";
+--db-neutral-on-origin-default: "Change the foreground color of the current element. Only used with origin as background color.";
+--db-neutral-bg-basic-level-1-hovered: "Change the background color level of the current element. Can be used on containers and components.";
+--db-neutral-bg-basic-level-2-hovered: "Change the background color level of the current element. Can be used on containers and components.";
+--db-neutral-bg-basic-level-3-hovered: "Change the background color level of the current element. Can be used on containers and components.";
+--db-neutral-bg-basic-transparent-semi-hovered: "Change the background color level of the current element. Can be used on containers and components.";
+--db-neutral-bg-basic-transparent-full-hovered: "Change the background color level of the current element. Can be used on containers and components.";
+--db-neutral-on-bg-emphasis-100-hovered: "Change the foreground color with another emphasis of the current element.";
+--db-neutral-on-bg-emphasis-90-hovered: "Change the foreground color with another emphasis of the current element.";
+--db-neutral-on-bg-emphasis-80-hovered: "Change the foreground color with another emphasis of the current element.";
+--db-neutral-on-bg-emphasis-70-hovered: "Change the foreground color with another emphasis of the current element.";
+--db-neutral-on-bg-emphasis-60-hovered: "Change the foreground color with another emphasis of the current element.";
+--db-neutral-on-bg-emphasis-50-hovered: "Change the foreground color with another emphasis of the current element.";
+--db-neutral-bg-inverted-contrast-max-hovered: "Change the background color of the current element. Should be used on single components only.";
+--db-neutral-bg-inverted-contrast-high-hovered: "Change the background color of the current element. Should be used on single components only.";
+--db-neutral-bg-inverted-contrast-low-hovered: "Change the background color of the current element. Should be used on single components only.";
+--db-neutral-on-bg-inverted-hovered: "Change the foreground color of the current element. Only used with inverted background colors.";
+--db-neutral-origin-hovered: "Origin color can be used for background and foreground. Use this if you know what you are doing, it might not be accessible.";
+--db-neutral-on-origin-hovered: "Change the foreground color of the current element. Only used with origin as background color.";
+--db-neutral-bg-basic-level-1-pressed: "Change the background color level of the current element. Can be used on containers and components.";
+--db-neutral-bg-basic-level-2-pressed: "Change the background color level of the current element. Can be used on containers and components.";
+--db-neutral-bg-basic-level-3-pressed: "Change the background color level of the current element. Can be used on containers and components.";
+--db-neutral-bg-basic-transparent-semi-pressed: "Change the background color level of the current element. Can be used on containers and components.";
+--db-neutral-bg-basic-transparent-full-pressed: "Change the background color level of the current element. Can be used on containers and components.";
+--db-neutral-on-bg-emphasis-100-pressed: "Change the foreground color with another emphasis of the current element.";
+--db-neutral-on-bg-emphasis-90-pressed: "Change the foreground color with another emphasis of the current element.";
+--db-neutral-on-bg-emphasis-80-pressed: "Change the foreground color with another emphasis of the current element.";
+--db-neutral-on-bg-emphasis-70-pressed: "Change the foreground color with another emphasis of the current element.";
+--db-neutral-on-bg-emphasis-60-pressed: "Change the foreground color with another emphasis of the current element.";
+--db-neutral-on-bg-emphasis-50-pressed: "Change the foreground color with another emphasis of the current element.";
+--db-neutral-bg-inverted-contrast-max-pressed: "Change the background color of the current element. Should be used on single components only.";
+--db-neutral-bg-inverted-contrast-high-pressed: "Change the background color of the current element. Should be used on single components only.";
+--db-neutral-bg-inverted-contrast-low-pressed: "Change the background color of the current element. Should be used on single components only.";
+--db-neutral-on-bg-inverted-pressed: "Change the foreground color of the current element. Only used with inverted background colors.";
+--db-neutral-origin-pressed: "Origin color can be used for background and foreground. Use this if you know what you are doing, it might not be accessible.";
+--db-neutral-on-origin-pressed: "Change the foreground color of the current element. Only used with origin as background color.";
+
+/* BRAND */
+--db-brand-bg-basic-level-1-default: "Change the background color level of the current element. Can be used on containers and components.";
+--db-brand-bg-basic-level-2-default: "Change the background color level of the current element. Can be used on containers and components.";
+--db-brand-bg-basic-level-3-default: "Change the background color level of the current element. Can be used on containers and components.";
+--db-brand-bg-basic-transparent-semi-default: "Change the background color level of the current element. Can be used on containers and components.";
+--db-brand-bg-basic-transparent-full-default: "Change the background color level of the current element. Can be used on containers and components.";
+--db-brand-on-bg-emphasis-100-default: "Change the foreground color with another emphasis of the current element.";
+--db-brand-on-bg-emphasis-90-default: "Change the foreground color with another emphasis of the current element.";
+--db-brand-on-bg-emphasis-80-default: "Change the foreground color with another emphasis of the current element.";
+--db-brand-on-bg-emphasis-70-default: "Change the foreground color with another emphasis of the current element.";
+--db-brand-on-bg-emphasis-60-default: "Change the foreground color with another emphasis of the current element.";
+--db-brand-on-bg-emphasis-50-default: "Change the foreground color with another emphasis of the current element.";
+--db-brand-bg-inverted-contrast-max-default: "Change the background color of the current element. Should be used on single components only.";
+--db-brand-bg-inverted-contrast-high-default: "Change the background color of the current element. Should be used on single components only.";
+--db-brand-bg-inverted-contrast-low-default: "Change the background color of the current element. Should be used on single components only.";
+--db-brand-on-bg-inverted-default: "Change the foreground color of the current element. Only used with inverted background colors.";
+--db-brand-origin-default: "Origin color can be used for background and foreground. Use this if you know what you are doing, it might not be accessible.";
+--db-brand-on-origin-default: "Change the foreground color of the current element. Only used with origin as background color.";
+--db-brand-bg-basic-level-1-hovered: "Change the background color level of the current element. Can be used on containers and components.";
+--db-brand-bg-basic-level-2-hovered: "Change the background color level of the current element. Can be used on containers and components.";
+--db-brand-bg-basic-level-3-hovered: "Change the background color level of the current element. Can be used on containers and components.";
+--db-brand-bg-basic-transparent-semi-hovered: "Change the background color level of the current element. Can be used on containers and components.";
+--db-brand-bg-basic-transparent-full-hovered: "Change the background color level of the current element. Can be used on containers and components.";
+--db-brand-on-bg-emphasis-100-hovered: "Change the foreground color with another emphasis of the current element.";
+--db-brand-on-bg-emphasis-90-hovered: "Change the foreground color with another emphasis of the current element.";
+--db-brand-on-bg-emphasis-80-hovered: "Change the foreground color with another emphasis of the current element.";
+--db-brand-on-bg-emphasis-70-hovered: "Change the foreground color with another emphasis of the current element.";
+--db-brand-on-bg-emphasis-60-hovered: "Change the foreground color with another emphasis of the current element.";
+--db-brand-on-bg-emphasis-50-hovered: "Change the foreground color with another emphasis of the current element.";
+--db-brand-bg-inverted-contrast-max-hovered: "Change the background color of the current element. Should be used on single components only.";
+--db-brand-bg-inverted-contrast-high-hovered: "Change the background color of the current element. Should be used on single components only.";
+--db-brand-bg-inverted-contrast-low-hovered: "Change the background color of the current element. Should be used on single components only.";
+--db-brand-on-bg-inverted-hovered: "Change the foreground color of the current element. Only used with inverted background colors.";
+--db-brand-origin-hovered: "Origin color can be used for background and foreground. Use this if you know what you are doing, it might not be accessible.";
+--db-brand-on-origin-hovered: "Change the foreground color of the current element. Only used with origin as background color.";
+--db-brand-bg-basic-level-1-pressed: "Change the background color level of the current element. Can be used on containers and components.";
+--db-brand-bg-basic-level-2-pressed: "Change the background color level of the current element. Can be used on containers and components.";
+--db-brand-bg-basic-level-3-pressed: "Change the background color level of the current element. Can be used on containers and components.";
+--db-brand-bg-basic-transparent-semi-pressed: "Change the background color level of the current element. Can be used on containers and components.";
+--db-brand-bg-basic-transparent-full-pressed: "Change the background color level of the current element. Can be used on containers and components.";
+--db-brand-on-bg-emphasis-100-pressed: "Change the foreground color with another emphasis of the current element.";
+--db-brand-on-bg-emphasis-90-pressed: "Change the foreground color with another emphasis of the current element.";
+--db-brand-on-bg-emphasis-80-pressed: "Change the foreground color with another emphasis of the current element.";
+--db-brand-on-bg-emphasis-70-pressed: "Change the foreground color with another emphasis of the current element.";
+--db-brand-on-bg-emphasis-60-pressed: "Change the foreground color with another emphasis of the current element.";
+--db-brand-on-bg-emphasis-50-pressed: "Change the foreground color with another emphasis of the current element.";
+--db-brand-bg-inverted-contrast-max-pressed: "Change the background color of the current element. Should be used on single components only.";
+--db-brand-bg-inverted-contrast-high-pressed: "Change the background color of the current element. Should be used on single components only.";
+--db-brand-bg-inverted-contrast-low-pressed: "Change the background color of the current element. Should be used on single components only.";
+--db-brand-on-bg-inverted-pressed: "Change the foreground color of the current element. Only used with inverted background colors.";
+--db-brand-origin-pressed: "Origin color can be used for background and foreground. Use this if you know what you are doing, it might not be accessible.";
+--db-brand-on-origin-pressed: "Change the foreground color of the current element. Only used with origin as background color.";
+
+/* INFORMATIONAL */
+--db-informational-bg-basic-level-1-default: "Change the background color level of the current element. Can be used on containers and components.";
+--db-informational-bg-basic-level-2-default: "Change the background color level of the current element. Can be used on containers and components.";
+--db-informational-bg-basic-level-3-default: "Change the background color level of the current element. Can be used on containers and components.";
+--db-informational-bg-basic-transparent-semi-default: "Change the background color level of the current element. Can be used on containers and components.";
+--db-informational-bg-basic-transparent-full-default: "Change the background color level of the current element. Can be used on containers and components.";
+--db-informational-on-bg-emphasis-100-default: "Change the foreground color with another emphasis of the current element.";
+--db-informational-on-bg-emphasis-90-default: "Change the foreground color with another emphasis of the current element.";
+--db-informational-on-bg-emphasis-80-default: "Change the foreground color with another emphasis of the current element.";
+--db-informational-on-bg-emphasis-70-default: "Change the foreground color with another emphasis of the current element.";
+--db-informational-on-bg-emphasis-60-default: "Change the foreground color with another emphasis of the current element.";
+--db-informational-on-bg-emphasis-50-default: "Change the foreground color with another emphasis of the current element.";
+--db-informational-bg-inverted-contrast-max-default: "Change the background color of the current element. Should be used on single components only.";
+--db-informational-bg-inverted-contrast-high-default: "Change the background color of the current element. Should be used on single components only.";
+--db-informational-bg-inverted-contrast-low-default: "Change the background color of the current element. Should be used on single components only.";
+--db-informational-on-bg-inverted-default: "Change the foreground color of the current element. Only used with inverted background colors.";
+--db-informational-origin-default: "Origin color can be used for background and foreground. Use this if you know what you are doing, it might not be accessible.";
+--db-informational-on-origin-default: "Change the foreground color of the current element. Only used with origin as background color.";
+--db-informational-bg-basic-level-1-hovered: "Change the background color level of the current element. Can be used on containers and components.";
+--db-informational-bg-basic-level-2-hovered: "Change the background color level of the current element. Can be used on containers and components.";
+--db-informational-bg-basic-level-3-hovered: "Change the background color level of the current element. Can be used on containers and components.";
+--db-informational-bg-basic-transparent-semi-hovered: "Change the background color level of the current element. Can be used on containers and components.";
+--db-informational-bg-basic-transparent-full-hovered: "Change the background color level of the current element. Can be used on containers and components.";
+--db-informational-on-bg-emphasis-100-hovered: "Change the foreground color with another emphasis of the current element.";
+--db-informational-on-bg-emphasis-90-hovered: "Change the foreground color with another emphasis of the current element.";
+--db-informational-on-bg-emphasis-80-hovered: "Change the foreground color with another emphasis of the current element.";
+--db-informational-on-bg-emphasis-70-hovered: "Change the foreground color with another emphasis of the current element.";
+--db-informational-on-bg-emphasis-60-hovered: "Change the foreground color with another emphasis of the current element.";
+--db-informational-on-bg-emphasis-50-hovered: "Change the foreground color with another emphasis of the current element.";
+--db-informational-bg-inverted-contrast-max-hovered: "Change the background color of the current element. Should be used on single components only.";
+--db-informational-bg-inverted-contrast-high-hovered: "Change the background color of the current element. Should be used on single components only.";
+--db-informational-bg-inverted-contrast-low-hovered: "Change the background color of the current element. Should be used on single components only.";
+--db-informational-on-bg-inverted-hovered: "Change the foreground color of the current element. Only used with inverted background colors.";
+--db-informational-origin-hovered: "Origin color can be used for background and foreground. Use this if you know what you are doing, it might not be accessible.";
+--db-informational-on-origin-hovered: "Change the foreground color of the current element. Only used with origin as background color.";
+--db-informational-bg-basic-level-1-pressed: "Change the background color level of the current element. Can be used on containers and components.";
+--db-informational-bg-basic-level-2-pressed: "Change the background color level of the current element. Can be used on containers and components.";
+--db-informational-bg-basic-level-3-pressed: "Change the background color level of the current element. Can be used on containers and components.";
+--db-informational-bg-basic-transparent-semi-pressed: "Change the background color level of the current element. Can be used on containers and components.";
+--db-informational-bg-basic-transparent-full-pressed: "Change the background color level of the current element. Can be used on containers and components.";
+--db-informational-on-bg-emphasis-100-pressed: "Change the foreground color with another emphasis of the current element.";
+--db-informational-on-bg-emphasis-90-pressed: "Change the foreground color with another emphasis of the current element.";
+--db-informational-on-bg-emphasis-80-pressed: "Change the foreground color with another emphasis of the current element.";
+--db-informational-on-bg-emphasis-70-pressed: "Change the foreground color with another emphasis of the current element.";
+--db-informational-on-bg-emphasis-60-pressed: "Change the foreground color with another emphasis of the current element.";
+--db-informational-on-bg-emphasis-50-pressed: "Change the foreground color with another emphasis of the current element.";
+--db-informational-bg-inverted-contrast-max-pressed: "Change the background color of the current element. Should be used on single components only.";
+--db-informational-bg-inverted-contrast-high-pressed: "Change the background color of the current element. Should be used on single components only.";
+--db-informational-bg-inverted-contrast-low-pressed: "Change the background color of the current element. Should be used on single components only.";
+--db-informational-on-bg-inverted-pressed: "Change the foreground color of the current element. Only used with inverted background colors.";
+--db-informational-origin-pressed: "Origin color can be used for background and foreground. Use this if you know what you are doing, it might not be accessible.";
+--db-informational-on-origin-pressed: "Change the foreground color of the current element. Only used with origin as background color.";
+
+/* WARNING */
+--db-warning-bg-basic-level-1-default: "Change the background color level of the current element. Can be used on containers and components.";
+--db-warning-bg-basic-level-2-default: "Change the background color level of the current element. Can be used on containers and components.";
+--db-warning-bg-basic-level-3-default: "Change the background color level of the current element. Can be used on containers and components.";
+--db-warning-bg-basic-transparent-semi-default: "Change the background color level of the current element. Can be used on containers and components.";
+--db-warning-bg-basic-transparent-full-default: "Change the background color level of the current element. Can be used on containers and components.";
+--db-warning-on-bg-emphasis-100-default: "Change the foreground color with another emphasis of the current element.";
+--db-warning-on-bg-emphasis-90-default: "Change the foreground color with another emphasis of the current element.";
+--db-warning-on-bg-emphasis-80-default: "Change the foreground color with another emphasis of the current element.";
+--db-warning-on-bg-emphasis-70-default: "Change the foreground color with another emphasis of the current element.";
+--db-warning-on-bg-emphasis-60-default: "Change the foreground color with another emphasis of the current element.";
+--db-warning-on-bg-emphasis-50-default: "Change the foreground color with another emphasis of the current element.";
+--db-warning-bg-inverted-contrast-max-default: "Change the background color of the current element. Should be used on single components only.";
+--db-warning-bg-inverted-contrast-high-default: "Change the background color of the current element. Should be used on single components only.";
+--db-warning-bg-inverted-contrast-low-default: "Change the background color of the current element. Should be used on single components only.";
+--db-warning-on-bg-inverted-default: "Change the foreground color of the current element. Only used with inverted background colors.";
+--db-warning-origin-default: "Origin color can be used for background and foreground. Use this if you know what you are doing, it might not be accessible.";
+--db-warning-on-origin-default: "Change the foreground color of the current element. Only used with origin as background color.";
+--db-warning-bg-basic-level-1-hovered: "Change the background color level of the current element. Can be used on containers and components.";
+--db-warning-bg-basic-level-2-hovered: "Change the background color level of the current element. Can be used on containers and components.";
+--db-warning-bg-basic-level-3-hovered: "Change the background color level of the current element. Can be used on containers and components.";
+--db-warning-bg-basic-transparent-semi-hovered: "Change the background color level of the current element. Can be used on containers and components.";
+--db-warning-bg-basic-transparent-full-hovered: "Change the background color level of the current element. Can be used on containers and components.";
+--db-warning-on-bg-emphasis-100-hovered: "Change the foreground color with another emphasis of the current element.";
+--db-warning-on-bg-emphasis-90-hovered: "Change the foreground color with another emphasis of the current element.";
+--db-warning-on-bg-emphasis-80-hovered: "Change the foreground color with another emphasis of the current element.";
+--db-warning-on-bg-emphasis-70-hovered: "Change the foreground color with another emphasis of the current element.";
+--db-warning-on-bg-emphasis-60-hovered: "Change the foreground color with another emphasis of the current element.";
+--db-warning-on-bg-emphasis-50-hovered: "Change the foreground color with another emphasis of the current element.";
+--db-warning-bg-inverted-contrast-max-hovered: "Change the background color of the current element. Should be used on single components only.";
+--db-warning-bg-inverted-contrast-high-hovered: "Change the background color of the current element. Should be used on single components only.";
+--db-warning-bg-inverted-contrast-low-hovered: "Change the background color of the current element. Should be used on single components only.";
+--db-warning-on-bg-inverted-hovered: "Change the foreground color of the current element. Only used with inverted background colors.";
+--db-warning-origin-hovered: "Origin color can be used for background and foreground. Use this if you know what you are doing, it might not be accessible.";
+--db-warning-on-origin-hovered: "Change the foreground color of the current element. Only used with origin as background color.";
+--db-warning-bg-basic-level-1-pressed: "Change the background color level of the current element. Can be used on containers and components.";
+--db-warning-bg-basic-level-2-pressed: "Change the background color level of the current element. Can be used on containers and components.";
+--db-warning-bg-basic-level-3-pressed: "Change the background color level of the current element. Can be used on containers and components.";
+--db-warning-bg-basic-transparent-semi-pressed: "Change the background color level of the current element. Can be used on containers and components.";
+--db-warning-bg-basic-transparent-full-pressed: "Change the background color level of the current element. Can be used on containers and components.";
+--db-warning-on-bg-emphasis-100-pressed: "Change the foreground color with another emphasis of the current element.";
+--db-warning-on-bg-emphasis-90-pressed: "Change the foreground color with another emphasis of the current element.";
+--db-warning-on-bg-emphasis-80-pressed: "Change the foreground color with another emphasis of the current element.";
+--db-warning-on-bg-emphasis-70-pressed: "Change the foreground color with another emphasis of the current element.";
+--db-warning-on-bg-emphasis-60-pressed: "Change the foreground color with another emphasis of the current element.";
+--db-warning-on-bg-emphasis-50-pressed: "Change the foreground color with another emphasis of the current element.";
+--db-warning-bg-inverted-contrast-max-pressed: "Change the background color of the current element. Should be used on single components only.";
+--db-warning-bg-inverted-contrast-high-pressed: "Change the background color of the current element. Should be used on single components only.";
+--db-warning-bg-inverted-contrast-low-pressed: "Change the background color of the current element. Should be used on single components only.";
+--db-warning-on-bg-inverted-pressed: "Change the foreground color of the current element. Only used with inverted background colors.";
+--db-warning-origin-pressed: "Origin color can be used for background and foreground. Use this if you know what you are doing, it might not be accessible.";
+--db-warning-on-origin-pressed: "Change the foreground color of the current element. Only used with origin as background color.";
+
+/* SUCCESSFUL */
+--db-successful-bg-basic-level-1-default: "Change the background color level of the current element. Can be used on containers and components.";
+--db-successful-bg-basic-level-2-default: "Change the background color level of the current element. Can be used on containers and components.";
+--db-successful-bg-basic-level-3-default: "Change the background color level of the current element. Can be used on containers and components.";
+--db-successful-bg-basic-transparent-semi-default: "Change the background color level of the current element. Can be used on containers and components.";
+--db-successful-bg-basic-transparent-full-default: "Change the background color level of the current element. Can be used on containers and components.";
+--db-successful-on-bg-emphasis-100-default: "Change the foreground color with another emphasis of the current element.";
+--db-successful-on-bg-emphasis-90-default: "Change the foreground color with another emphasis of the current element.";
+--db-successful-on-bg-emphasis-80-default: "Change the foreground color with another emphasis of the current element.";
+--db-successful-on-bg-emphasis-70-default: "Change the foreground color with another emphasis of the current element.";
+--db-successful-on-bg-emphasis-60-default: "Change the foreground color with another emphasis of the current element.";
+--db-successful-on-bg-emphasis-50-default: "Change the foreground color with another emphasis of the current element.";
+--db-successful-bg-inverted-contrast-max-default: "Change the background color of the current element. Should be used on single components only.";
+--db-successful-bg-inverted-contrast-high-default: "Change the background color of the current element. Should be used on single components only.";
+--db-successful-bg-inverted-contrast-low-default: "Change the background color of the current element. Should be used on single components only.";
+--db-successful-on-bg-inverted-default: "Change the foreground color of the current element. Only used with inverted background colors.";
+--db-successful-origin-default: "Origin color can be used for background and foreground. Use this if you know what you are doing, it might not be accessible.";
+--db-successful-on-origin-default: "Change the foreground color of the current element. Only used with origin as background color.";
+--db-successful-bg-basic-level-1-hovered: "Change the background color level of the current element. Can be used on containers and components.";
+--db-successful-bg-basic-level-2-hovered: "Change the background color level of the current element. Can be used on containers and components.";
+--db-successful-bg-basic-level-3-hovered: "Change the background color level of the current element. Can be used on containers and components.";
+--db-successful-bg-basic-transparent-semi-hovered: "Change the background color level of the current element. Can be used on containers and components.";
+--db-successful-bg-basic-transparent-full-hovered: "Change the background color level of the current element. Can be used on containers and components.";
+--db-successful-on-bg-emphasis-100-hovered: "Change the foreground color with another emphasis of the current element.";
+--db-successful-on-bg-emphasis-90-hovered: "Change the foreground color with another emphasis of the current element.";
+--db-successful-on-bg-emphasis-80-hovered: "Change the foreground color with another emphasis of the current element.";
+--db-successful-on-bg-emphasis-70-hovered: "Change the foreground color with another emphasis of the current element.";
+--db-successful-on-bg-emphasis-60-hovered: "Change the foreground color with another emphasis of the current element.";
+--db-successful-on-bg-emphasis-50-hovered: "Change the foreground color with another emphasis of the current element.";
+--db-successful-bg-inverted-contrast-max-hovered: "Change the background color of the current element. Should be used on single components only.";
+--db-successful-bg-inverted-contrast-high-hovered: "Change the background color of the current element. Should be used on single components only.";
+--db-successful-bg-inverted-contrast-low-hovered: "Change the background color of the current element. Should be used on single components only.";
+--db-successful-on-bg-inverted-hovered: "Change the foreground color of the current element. Only used with inverted background colors.";
+--db-successful-origin-hovered: "Origin color can be used for background and foreground. Use this if you know what you are doing, it might not be accessible.";
+--db-successful-on-origin-hovered: "Change the foreground color of the current element. Only used with origin as background color.";
+--db-successful-bg-basic-level-1-pressed: "Change the background color level of the current element. Can be used on containers and components.";
+--db-successful-bg-basic-level-2-pressed: "Change the background color level of the current element. Can be used on containers and components.";
+--db-successful-bg-basic-level-3-pressed: "Change the background color level of the current element. Can be used on containers and components.";
+--db-successful-bg-basic-transparent-semi-pressed: "Change the background color level of the current element. Can be used on containers and components.";
+--db-successful-bg-basic-transparent-full-pressed: "Change the background color level of the current element. Can be used on containers and components.";
+--db-successful-on-bg-emphasis-100-pressed: "Change the foreground color with another emphasis of the current element.";
+--db-successful-on-bg-emphasis-90-pressed: "Change the foreground color with another emphasis of the current element.";
+--db-successful-on-bg-emphasis-80-pressed: "Change the foreground color with another emphasis of the current element.";
+--db-successful-on-bg-emphasis-70-pressed: "Change the foreground color with another emphasis of the current element.";
+--db-successful-on-bg-emphasis-60-pressed: "Change the foreground color with another emphasis of the current element.";
+--db-successful-on-bg-emphasis-50-pressed: "Change the foreground color with another emphasis of the current element.";
+--db-successful-bg-inverted-contrast-max-pressed: "Change the background color of the current element. Should be used on single components only.";
+--db-successful-bg-inverted-contrast-high-pressed: "Change the background color of the current element. Should be used on single components only.";
+--db-successful-bg-inverted-contrast-low-pressed: "Change the background color of the current element. Should be used on single components only.";
+--db-successful-on-bg-inverted-pressed: "Change the foreground color of the current element. Only used with inverted background colors.";
+--db-successful-origin-pressed: "Origin color can be used for background and foreground. Use this if you know what you are doing, it might not be accessible.";
+--db-successful-on-origin-pressed: "Change the foreground color of the current element. Only used with origin as background color.";
+
+/* CRITICAL */
+--db-critical-bg-basic-level-1-default: "Change the background color level of the current element. Can be used on containers and components.";
+--db-critical-bg-basic-level-2-default: "Change the background color level of the current element. Can be used on containers and components.";
+--db-critical-bg-basic-level-3-default: "Change the background color level of the current element. Can be used on containers and components.";
+--db-critical-bg-basic-transparent-semi-default: "Change the background color level of the current element. Can be used on containers and components.";
+--db-critical-bg-basic-transparent-full-default: "Change the background color level of the current element. Can be used on containers and components.";
+--db-critical-on-bg-emphasis-100-default: "Change the foreground color with another emphasis of the current element.";
+--db-critical-on-bg-emphasis-90-default: "Change the foreground color with another emphasis of the current element.";
+--db-critical-on-bg-emphasis-80-default: "Change the foreground color with another emphasis of the current element.";
+--db-critical-on-bg-emphasis-70-default: "Change the foreground color with another emphasis of the current element.";
+--db-critical-on-bg-emphasis-60-default: "Change the foreground color with another emphasis of the current element.";
+--db-critical-on-bg-emphasis-50-default: "Change the foreground color with another emphasis of the current element.";
+--db-critical-bg-inverted-contrast-max-default: "Change the background color of the current element. Should be used on single components only.";
+--db-critical-bg-inverted-contrast-high-default: "Change the background color of the current element. Should be used on single components only.";
+--db-critical-bg-inverted-contrast-low-default: "Change the background color of the current element. Should be used on single components only.";
+--db-critical-on-bg-inverted-default: "Change the foreground color of the current element. Only used with inverted background colors.";
+--db-critical-origin-default: "Origin color can be used for background and foreground. Use this if you know what you are doing, it might not be accessible.";
+--db-critical-on-origin-default: "Change the foreground color of the current element. Only used with origin as background color.";
+--db-critical-bg-basic-level-1-hovered: "Change the background color level of the current element. Can be used on containers and components.";
+--db-critical-bg-basic-level-2-hovered: "Change the background color level of the current element. Can be used on containers and components.";
+--db-critical-bg-basic-level-3-hovered: "Change the background color level of the current element. Can be used on containers and components.";
+--db-critical-bg-basic-transparent-semi-hovered: "Change the background color level of the current element. Can be used on containers and components.";
+--db-critical-bg-basic-transparent-full-hovered: "Change the background color level of the current element. Can be used on containers and components.";
+--db-critical-on-bg-emphasis-100-hovered: "Change the foreground color with another emphasis of the current element.";
+--db-critical-on-bg-emphasis-90-hovered: "Change the foreground color with another emphasis of the current element.";
+--db-critical-on-bg-emphasis-80-hovered: "Change the foreground color with another emphasis of the current element.";
+--db-critical-on-bg-emphasis-70-hovered: "Change the foreground color with another emphasis of the current element.";
+--db-critical-on-bg-emphasis-60-hovered: "Change the foreground color with another emphasis of the current element.";
+--db-critical-on-bg-emphasis-50-hovered: "Change the foreground color with another emphasis of the current element.";
+--db-critical-bg-inverted-contrast-max-hovered: "Change the background color of the current element. Should be used on single components only.";
+--db-critical-bg-inverted-contrast-high-hovered: "Change the background color of the current element. Should be used on single components only.";
+--db-critical-bg-inverted-contrast-low-hovered: "Change the background color of the current element. Should be used on single components only.";
+--db-critical-on-bg-inverted-hovered: "Change the foreground color of the current element. Only used with inverted background colors.";
+--db-critical-origin-hovered: "Origin color can be used for background and foreground. Use this if you know what you are doing, it might not be accessible.";
+--db-critical-on-origin-hovered: "Change the foreground color of the current element. Only used with origin as background color.";
+--db-critical-bg-basic-level-1-pressed: "Change the background color level of the current element. Can be used on containers and components.";
+--db-critical-bg-basic-level-2-pressed: "Change the background color level of the current element. Can be used on containers and components.";
+--db-critical-bg-basic-level-3-pressed: "Change the background color level of the current element. Can be used on containers and components.";
+--db-critical-bg-basic-transparent-semi-pressed: "Change the background color level of the current element. Can be used on containers and components.";
+--db-critical-bg-basic-transparent-full-pressed: "Change the background color level of the current element. Can be used on containers and components.";
+--db-critical-on-bg-emphasis-100-pressed: "Change the foreground color with another emphasis of the current element.";
+--db-critical-on-bg-emphasis-90-pressed: "Change the foreground color with another emphasis of the current element.";
+--db-critical-on-bg-emphasis-80-pressed: "Change the foreground color with another emphasis of the current element.";
+--db-critical-on-bg-emphasis-70-pressed: "Change the foreground color with another emphasis of the current element.";
+--db-critical-on-bg-emphasis-60-pressed: "Change the foreground color with another emphasis of the current element.";
+--db-critical-on-bg-emphasis-50-pressed: "Change the foreground color with another emphasis of the current element.";
+--db-critical-bg-inverted-contrast-max-pressed: "Change the background color of the current element. Should be used on single components only.";
+--db-critical-bg-inverted-contrast-high-pressed: "Change the background color of the current element. Should be used on single components only.";
+--db-critical-bg-inverted-contrast-low-pressed: "Change the background color of the current element. Should be used on single components only.";
+--db-critical-on-bg-inverted-pressed: "Change the foreground color of the current element. Only used with inverted background colors.";
+--db-critical-origin-pressed: "Origin color can be used for background and foreground. Use this if you know what you are doing, it might not be accessible.";
+--db-critical-on-origin-pressed: "Change the foreground color of the current element. Only used with origin as background color.";
+
+/* YELLOW */
+--db-yellow-bg-basic-level-1-default: "Change the background color level of the current element. Can be used on containers and components.";
+--db-yellow-bg-basic-level-2-default: "Change the background color level of the current element. Can be used on containers and components.";
+--db-yellow-bg-basic-level-3-default: "Change the background color level of the current element. Can be used on containers and components.";
+--db-yellow-bg-basic-transparent-semi-default: "Change the background color level of the current element. Can be used on containers and components.";
+--db-yellow-bg-basic-transparent-full-default: "Change the background color level of the current element. Can be used on containers and components.";
+--db-yellow-on-bg-emphasis-100-default: "Change the foreground color with another emphasis of the current element.";
+--db-yellow-on-bg-emphasis-90-default: "Change the foreground color with another emphasis of the current element.";
+--db-yellow-on-bg-emphasis-80-default: "Change the foreground color with another emphasis of the current element.";
+--db-yellow-on-bg-emphasis-70-default: "Change the foreground color with another emphasis of the current element.";
+--db-yellow-on-bg-emphasis-60-default: "Change the foreground color with another emphasis of the current element.";
+--db-yellow-on-bg-emphasis-50-default: "Change the foreground color with another emphasis of the current element.";
+--db-yellow-bg-inverted-contrast-max-default: "Change the background color of the current element. Should be used on single components only.";
+--db-yellow-bg-inverted-contrast-high-default: "Change the background color of the current element. Should be used on single components only.";
+--db-yellow-bg-inverted-contrast-low-default: "Change the background color of the current element. Should be used on single components only.";
+--db-yellow-on-bg-inverted-default: "Change the foreground color of the current element. Only used with inverted background colors.";
+--db-yellow-origin-default: "Origin color can be used for background and foreground. Use this if you know what you are doing, it might not be accessible.";
+--db-yellow-on-origin-default: "Change the foreground color of the current element. Only used with origin as background color.";
+--db-yellow-bg-basic-level-1-hovered: "Change the background color level of the current element. Can be used on containers and components.";
+--db-yellow-bg-basic-level-2-hovered: "Change the background color level of the current element. Can be used on containers and components.";
+--db-yellow-bg-basic-level-3-hovered: "Change the background color level of the current element. Can be used on containers and components.";
+--db-yellow-bg-basic-transparent-semi-hovered: "Change the background color level of the current element. Can be used on containers and components.";
+--db-yellow-bg-basic-transparent-full-hovered: "Change the background color level of the current element. Can be used on containers and components.";
+--db-yellow-on-bg-emphasis-100-hovered: "Change the foreground color with another emphasis of the current element.";
+--db-yellow-on-bg-emphasis-90-hovered: "Change the foreground color with another emphasis of the current element.";
+--db-yellow-on-bg-emphasis-80-hovered: "Change the foreground color with another emphasis of the current element.";
+--db-yellow-on-bg-emphasis-70-hovered: "Change the foreground color with another emphasis of the current element.";
+--db-yellow-on-bg-emphasis-60-hovered: "Change the foreground color with another emphasis of the current element.";
+--db-yellow-on-bg-emphasis-50-hovered: "Change the foreground color with another emphasis of the current element.";
+--db-yellow-bg-inverted-contrast-max-hovered: "Change the background color of the current element. Should be used on single components only.";
+--db-yellow-bg-inverted-contrast-high-hovered: "Change the background color of the current element. Should be used on single components only.";
+--db-yellow-bg-inverted-contrast-low-hovered: "Change the background color of the current element. Should be used on single components only.";
+--db-yellow-on-bg-inverted-hovered: "Change the foreground color of the current element. Only used with inverted background colors.";
+--db-yellow-origin-hovered: "Origin color can be used for background and foreground. Use this if you know what you are doing, it might not be accessible.";
+--db-yellow-on-origin-hovered: "Change the foreground color of the current element. Only used with origin as background color.";
+--db-yellow-bg-basic-level-1-pressed: "Change the background color level of the current element. Can be used on containers and components.";
+--db-yellow-bg-basic-level-2-pressed: "Change the background color level of the current element. Can be used on containers and components.";
+--db-yellow-bg-basic-level-3-pressed: "Change the background color level of the current element. Can be used on containers and components.";
+--db-yellow-bg-basic-transparent-semi-pressed: "Change the background color level of the current element. Can be used on containers and components.";
+--db-yellow-bg-basic-transparent-full-pressed: "Change the background color level of the current element. Can be used on containers and components.";
+--db-yellow-on-bg-emphasis-100-pressed: "Change the foreground color with another emphasis of the current element.";
+--db-yellow-on-bg-emphasis-90-pressed: "Change the foreground color with another emphasis of the current element.";
+--db-yellow-on-bg-emphasis-80-pressed: "Change the foreground color with another emphasis of the current element.";
+--db-yellow-on-bg-emphasis-70-pressed: "Change the foreground color with another emphasis of the current element.";
+--db-yellow-on-bg-emphasis-60-pressed: "Change the foreground color with another emphasis of the current element.";
+--db-yellow-on-bg-emphasis-50-pressed: "Change the foreground color with another emphasis of the current element.";
+--db-yellow-bg-inverted-contrast-max-pressed: "Change the background color of the current element. Should be used on single components only.";
+--db-yellow-bg-inverted-contrast-high-pressed: "Change the background color of the current element. Should be used on single components only.";
+--db-yellow-bg-inverted-contrast-low-pressed: "Change the background color of the current element. Should be used on single components only.";
+--db-yellow-on-bg-inverted-pressed: "Change the foreground color of the current element. Only used with inverted background colors.";
+--db-yellow-origin-pressed: "Origin color can be used for background and foreground. Use this if you know what you are doing, it might not be accessible.";
+--db-yellow-on-origin-pressed: "Change the foreground color of the current element. Only used with origin as background color.";
+
+/* ORANGE */
+--db-orange-bg-basic-level-1-default: "Change the background color level of the current element. Can be used on containers and components.";
+--db-orange-bg-basic-level-2-default: "Change the background color level of the current element. Can be used on containers and components.";
+--db-orange-bg-basic-level-3-default: "Change the background color level of the current element. Can be used on containers and components.";
+--db-orange-bg-basic-transparent-semi-default: "Change the background color level of the current element. Can be used on containers and components.";
+--db-orange-bg-basic-transparent-full-default: "Change the background color level of the current element. Can be used on containers and components.";
+--db-orange-on-bg-emphasis-100-default: "Change the foreground color with another emphasis of the current element.";
+--db-orange-on-bg-emphasis-90-default: "Change the foreground color with another emphasis of the current element.";
+--db-orange-on-bg-emphasis-80-default: "Change the foreground color with another emphasis of the current element.";
+--db-orange-on-bg-emphasis-70-default: "Change the foreground color with another emphasis of the current element.";
+--db-orange-on-bg-emphasis-60-default: "Change the foreground color with another emphasis of the current element.";
+--db-orange-on-bg-emphasis-50-default: "Change the foreground color with another emphasis of the current element.";
+--db-orange-bg-inverted-contrast-max-default: "Change the background color of the current element. Should be used on single components only.";
+--db-orange-bg-inverted-contrast-high-default: "Change the background color of the current element. Should be used on single components only.";
+--db-orange-bg-inverted-contrast-low-default: "Change the background color of the current element. Should be used on single components only.";
+--db-orange-on-bg-inverted-default: "Change the foreground color of the current element. Only used with inverted background colors.";
+--db-orange-origin-default: "Origin color can be used for background and foreground. Use this if you know what you are doing, it might not be accessible.";
+--db-orange-on-origin-default: "Change the foreground color of the current element. Only used with origin as background color.";
+--db-orange-bg-basic-level-1-hovered: "Change the background color level of the current element. Can be used on containers and components.";
+--db-orange-bg-basic-level-2-hovered: "Change the background color level of the current element. Can be used on containers and components.";
+--db-orange-bg-basic-level-3-hovered: "Change the background color level of the current element. Can be used on containers and components.";
+--db-orange-bg-basic-transparent-semi-hovered: "Change the background color level of the current element. Can be used on containers and components.";
+--db-orange-bg-basic-transparent-full-hovered: "Change the background color level of the current element. Can be used on containers and components.";
+--db-orange-on-bg-emphasis-100-hovered: "Change the foreground color with another emphasis of the current element.";
+--db-orange-on-bg-emphasis-90-hovered: "Change the foreground color with another emphasis of the current element.";
+--db-orange-on-bg-emphasis-80-hovered: "Change the foreground color with another emphasis of the current element.";
+--db-orange-on-bg-emphasis-70-hovered: "Change the foreground color with another emphasis of the current element.";
+--db-orange-on-bg-emphasis-60-hovered: "Change the foreground color with another emphasis of the current element.";
+--db-orange-on-bg-emphasis-50-hovered: "Change the foreground color with another emphasis of the current element.";
+--db-orange-bg-inverted-contrast-max-hovered: "Change the background color of the current element. Should be used on single components only.";
+--db-orange-bg-inverted-contrast-high-hovered: "Change the background color of the current element. Should be used on single components only.";
+--db-orange-bg-inverted-contrast-low-hovered: "Change the background color of the current element. Should be used on single components only.";
+--db-orange-on-bg-inverted-hovered: "Change the foreground color of the current element. Only used with inverted background colors.";
+--db-orange-origin-hovered: "Origin color can be used for background and foreground. Use this if you know what you are doing, it might not be accessible.";
+--db-orange-on-origin-hovered: "Change the foreground color of the current element. Only used with origin as background color.";
+--db-orange-bg-basic-level-1-pressed: "Change the background color level of the current element. Can be used on containers and components.";
+--db-orange-bg-basic-level-2-pressed: "Change the background color level of the current element. Can be used on containers and components.";
+--db-orange-bg-basic-level-3-pressed: "Change the background color level of the current element. Can be used on containers and components.";
+--db-orange-bg-basic-transparent-semi-pressed: "Change the background color level of the current element. Can be used on containers and components.";
+--db-orange-bg-basic-transparent-full-pressed: "Change the background color level of the current element. Can be used on containers and components.";
+--db-orange-on-bg-emphasis-100-pressed: "Change the foreground color with another emphasis of the current element.";
+--db-orange-on-bg-emphasis-90-pressed: "Change the foreground color with another emphasis of the current element.";
+--db-orange-on-bg-emphasis-80-pressed: "Change the foreground color with another emphasis of the current element.";
+--db-orange-on-bg-emphasis-70-pressed: "Change the foreground color with another emphasis of the current element.";
+--db-orange-on-bg-emphasis-60-pressed: "Change the foreground color with another emphasis of the current element.";
+--db-orange-on-bg-emphasis-50-pressed: "Change the foreground color with another emphasis of the current element.";
+--db-orange-bg-inverted-contrast-max-pressed: "Change the background color of the current element. Should be used on single components only.";
+--db-orange-bg-inverted-contrast-high-pressed: "Change the background color of the current element. Should be used on single components only.";
+--db-orange-bg-inverted-contrast-low-pressed: "Change the background color of the current element. Should be used on single components only.";
+--db-orange-on-bg-inverted-pressed: "Change the foreground color of the current element. Only used with inverted background colors.";
+--db-orange-origin-pressed: "Origin color can be used for background and foreground. Use this if you know what you are doing, it might not be accessible.";
+--db-orange-on-origin-pressed: "Change the foreground color of the current element. Only used with origin as background color.";
+
+/* RED */
+--db-red-bg-basic-level-1-default: "Change the background color level of the current element. Can be used on containers and components.";
+--db-red-bg-basic-level-2-default: "Change the background color level of the current element. Can be used on containers and components.";
+--db-red-bg-basic-level-3-default: "Change the background color level of the current element. Can be used on containers and components.";
+--db-red-bg-basic-transparent-semi-default: "Change the background color level of the current element. Can be used on containers and components.";
+--db-red-bg-basic-transparent-full-default: "Change the background color level of the current element. Can be used on containers and components.";
+--db-red-on-bg-emphasis-100-default: "Change the foreground color with another emphasis of the current element.";
+--db-red-on-bg-emphasis-90-default: "Change the foreground color with another emphasis of the current element.";
+--db-red-on-bg-emphasis-80-default: "Change the foreground color with another emphasis of the current element.";
+--db-red-on-bg-emphasis-70-default: "Change the foreground color with another emphasis of the current element.";
+--db-red-on-bg-emphasis-60-default: "Change the foreground color with another emphasis of the current element.";
+--db-red-on-bg-emphasis-50-default: "Change the foreground color with another emphasis of the current element.";
+--db-red-bg-inverted-contrast-max-default: "Change the background color of the current element. Should be used on single components only.";
+--db-red-bg-inverted-contrast-high-default: "Change the background color of the current element. Should be used on single components only.";
+--db-red-bg-inverted-contrast-low-default: "Change the background color of the current element. Should be used on single components only.";
+--db-red-on-bg-inverted-default: "Change the foreground color of the current element. Only used with inverted background colors.";
+--db-red-origin-default: "Origin color can be used for background and foreground. Use this if you know what you are doing, it might not be accessible.";
+--db-red-on-origin-default: "Change the foreground color of the current element. Only used with origin as background color.";
+--db-red-bg-basic-level-1-hovered: "Change the background color level of the current element. Can be used on containers and components.";
+--db-red-bg-basic-level-2-hovered: "Change the background color level of the current element. Can be used on containers and components.";
+--db-red-bg-basic-level-3-hovered: "Change the background color level of the current element. Can be used on containers and components.";
+--db-red-bg-basic-transparent-semi-hovered: "Change the background color level of the current element. Can be used on containers and components.";
+--db-red-bg-basic-transparent-full-hovered: "Change the background color level of the current element. Can be used on containers and components.";
+--db-red-on-bg-emphasis-100-hovered: "Change the foreground color with another emphasis of the current element.";
+--db-red-on-bg-emphasis-90-hovered: "Change the foreground color with another emphasis of the current element.";
+--db-red-on-bg-emphasis-80-hovered: "Change the foreground color with another emphasis of the current element.";
+--db-red-on-bg-emphasis-70-hovered: "Change the foreground color with another emphasis of the current element.";
+--db-red-on-bg-emphasis-60-hovered: "Change the foreground color with another emphasis of the current element.";
+--db-red-on-bg-emphasis-50-hovered: "Change the foreground color with another emphasis of the current element.";
+--db-red-bg-inverted-contrast-max-hovered: "Change the background color of the current element. Should be used on single components only.";
+--db-red-bg-inverted-contrast-high-hovered: "Change the background color of the current element. Should be used on single components only.";
+--db-red-bg-inverted-contrast-low-hovered: "Change the background color of the current element. Should be used on single components only.";
+--db-red-on-bg-inverted-hovered: "Change the foreground color of the current element. Only used with inverted background colors.";
+--db-red-origin-hovered: "Origin color can be used for background and foreground. Use this if you know what you are doing, it might not be accessible.";
+--db-red-on-origin-hovered: "Change the foreground color of the current element. Only used with origin as background color.";
+--db-red-bg-basic-level-1-pressed: "Change the background color level of the current element. Can be used on containers and components.";
+--db-red-bg-basic-level-2-pressed: "Change the background color level of the current element. Can be used on containers and components.";
+--db-red-bg-basic-level-3-pressed: "Change the background color level of the current element. Can be used on containers and components.";
+--db-red-bg-basic-transparent-semi-pressed: "Change the background color level of the current element. Can be used on containers and components.";
+--db-red-bg-basic-transparent-full-pressed: "Change the background color level of the current element. Can be used on containers and components.";
+--db-red-on-bg-emphasis-100-pressed: "Change the foreground color with another emphasis of the current element.";
+--db-red-on-bg-emphasis-90-pressed: "Change the foreground color with another emphasis of the current element.";
+--db-red-on-bg-emphasis-80-pressed: "Change the foreground color with another emphasis of the current element.";
+--db-red-on-bg-emphasis-70-pressed: "Change the foreground color with another emphasis of the current element.";
+--db-red-on-bg-emphasis-60-pressed: "Change the foreground color with another emphasis of the current element.";
+--db-red-on-bg-emphasis-50-pressed: "Change the foreground color with another emphasis of the current element.";
+--db-red-bg-inverted-contrast-max-pressed: "Change the background color of the current element. Should be used on single components only.";
+--db-red-bg-inverted-contrast-high-pressed: "Change the background color of the current element. Should be used on single components only.";
+--db-red-bg-inverted-contrast-low-pressed: "Change the background color of the current element. Should be used on single components only.";
+--db-red-on-bg-inverted-pressed: "Change the foreground color of the current element. Only used with inverted background colors.";
+--db-red-origin-pressed: "Origin color can be used for background and foreground. Use this if you know what you are doing, it might not be accessible.";
+--db-red-on-origin-pressed: "Change the foreground color of the current element. Only used with origin as background color.";
+
+/* PINK */
+--db-pink-bg-basic-level-1-default: "Change the background color level of the current element. Can be used on containers and components.";
+--db-pink-bg-basic-level-2-default: "Change the background color level of the current element. Can be used on containers and components.";
+--db-pink-bg-basic-level-3-default: "Change the background color level of the current element. Can be used on containers and components.";
+--db-pink-bg-basic-transparent-semi-default: "Change the background color level of the current element. Can be used on containers and components.";
+--db-pink-bg-basic-transparent-full-default: "Change the background color level of the current element. Can be used on containers and components.";
+--db-pink-on-bg-emphasis-100-default: "Change the foreground color with another emphasis of the current element.";
+--db-pink-on-bg-emphasis-90-default: "Change the foreground color with another emphasis of the current element.";
+--db-pink-on-bg-emphasis-80-default: "Change the foreground color with another emphasis of the current element.";
+--db-pink-on-bg-emphasis-70-default: "Change the foreground color with another emphasis of the current element.";
+--db-pink-on-bg-emphasis-60-default: "Change the foreground color with another emphasis of the current element.";
+--db-pink-on-bg-emphasis-50-default: "Change the foreground color with another emphasis of the current element.";
+--db-pink-bg-inverted-contrast-max-default: "Change the background color of the current element. Should be used on single components only.";
+--db-pink-bg-inverted-contrast-high-default: "Change the background color of the current element. Should be used on single components only.";
+--db-pink-bg-inverted-contrast-low-default: "Change the background color of the current element. Should be used on single components only.";
+--db-pink-on-bg-inverted-default: "Change the foreground color of the current element. Only used with inverted background colors.";
+--db-pink-origin-default: "Origin color can be used for background and foreground. Use this if you know what you are doing, it might not be accessible.";
+--db-pink-on-origin-default: "Change the foreground color of the current element. Only used with origin as background color.";
+--db-pink-bg-basic-level-1-hovered: "Change the background color level of the current element. Can be used on containers and components.";
+--db-pink-bg-basic-level-2-hovered: "Change the background color level of the current element. Can be used on containers and components.";
+--db-pink-bg-basic-level-3-hovered: "Change the background color level of the current element. Can be used on containers and components.";
+--db-pink-bg-basic-transparent-semi-hovered: "Change the background color level of the current element. Can be used on containers and components.";
+--db-pink-bg-basic-transparent-full-hovered: "Change the background color level of the current element. Can be used on containers and components.";
+--db-pink-on-bg-emphasis-100-hovered: "Change the foreground color with another emphasis of the current element.";
+--db-pink-on-bg-emphasis-90-hovered: "Change the foreground color with another emphasis of the current element.";
+--db-pink-on-bg-emphasis-80-hovered: "Change the foreground color with another emphasis of the current element.";
+--db-pink-on-bg-emphasis-70-hovered: "Change the foreground color with another emphasis of the current element.";
+--db-pink-on-bg-emphasis-60-hovered: "Change the foreground color with another emphasis of the current element.";
+--db-pink-on-bg-emphasis-50-hovered: "Change the foreground color with another emphasis of the current element.";
+--db-pink-bg-inverted-contrast-max-hovered: "Change the background color of the current element. Should be used on single components only.";
+--db-pink-bg-inverted-contrast-high-hovered: "Change the background color of the current element. Should be used on single components only.";
+--db-pink-bg-inverted-contrast-low-hovered: "Change the background color of the current element. Should be used on single components only.";
+--db-pink-on-bg-inverted-hovered: "Change the foreground color of the current element. Only used with inverted background colors.";
+--db-pink-origin-hovered: "Origin color can be used for background and foreground. Use this if you know what you are doing, it might not be accessible.";
+--db-pink-on-origin-hovered: "Change the foreground color of the current element. Only used with origin as background color.";
+--db-pink-bg-basic-level-1-pressed: "Change the background color level of the current element. Can be used on containers and components.";
+--db-pink-bg-basic-level-2-pressed: "Change the background color level of the current element. Can be used on containers and components.";
+--db-pink-bg-basic-level-3-pressed: "Change the background color level of the current element. Can be used on containers and components.";
+--db-pink-bg-basic-transparent-semi-pressed: "Change the background color level of the current element. Can be used on containers and components.";
+--db-pink-bg-basic-transparent-full-pressed: "Change the background color level of the current element. Can be used on containers and components.";
+--db-pink-on-bg-emphasis-100-pressed: "Change the foreground color with another emphasis of the current element.";
+--db-pink-on-bg-emphasis-90-pressed: "Change the foreground color with another emphasis of the current element.";
+--db-pink-on-bg-emphasis-80-pressed: "Change the foreground color with another emphasis of the current element.";
+--db-pink-on-bg-emphasis-70-pressed: "Change the foreground color with another emphasis of the current element.";
+--db-pink-on-bg-emphasis-60-pressed: "Change the foreground color with another emphasis of the current element.";
+--db-pink-on-bg-emphasis-50-pressed: "Change the foreground color with another emphasis of the current element.";
+--db-pink-bg-inverted-contrast-max-pressed: "Change the background color of the current element. Should be used on single components only.";
+--db-pink-bg-inverted-contrast-high-pressed: "Change the background color of the current element. Should be used on single components only.";
+--db-pink-bg-inverted-contrast-low-pressed: "Change the background color of the current element. Should be used on single components only.";
+--db-pink-on-bg-inverted-pressed: "Change the foreground color of the current element. Only used with inverted background colors.";
+--db-pink-origin-pressed: "Origin color can be used for background and foreground. Use this if you know what you are doing, it might not be accessible.";
+--db-pink-on-origin-pressed: "Change the foreground color of the current element. Only used with origin as background color.";
+
+/* VIOLET */
+--db-violet-bg-basic-level-1-default: "Change the background color level of the current element. Can be used on containers and components.";
+--db-violet-bg-basic-level-2-default: "Change the background color level of the current element. Can be used on containers and components.";
+--db-violet-bg-basic-level-3-default: "Change the background color level of the current element. Can be used on containers and components.";
+--db-violet-bg-basic-transparent-semi-default: "Change the background color level of the current element. Can be used on containers and components.";
+--db-violet-bg-basic-transparent-full-default: "Change the background color level of the current element. Can be used on containers and components.";
+--db-violet-on-bg-emphasis-100-default: "Change the foreground color with another emphasis of the current element.";
+--db-violet-on-bg-emphasis-90-default: "Change the foreground color with another emphasis of the current element.";
+--db-violet-on-bg-emphasis-80-default: "Change the foreground color with another emphasis of the current element.";
+--db-violet-on-bg-emphasis-70-default: "Change the foreground color with another emphasis of the current element.";
+--db-violet-on-bg-emphasis-60-default: "Change the foreground color with another emphasis of the current element.";
+--db-violet-on-bg-emphasis-50-default: "Change the foreground color with another emphasis of the current element.";
+--db-violet-bg-inverted-contrast-max-default: "Change the background color of the current element. Should be used on single components only.";
+--db-violet-bg-inverted-contrast-high-default: "Change the background color of the current element. Should be used on single components only.";
+--db-violet-bg-inverted-contrast-low-default: "Change the background color of the current element. Should be used on single components only.";
+--db-violet-on-bg-inverted-default: "Change the foreground color of the current element. Only used with inverted background colors.";
+--db-violet-origin-default: "Origin color can be used for background and foreground. Use this if you know what you are doing, it might not be accessible.";
+--db-violet-on-origin-default: "Change the foreground color of the current element. Only used with origin as background color.";
+--db-violet-bg-basic-level-1-hovered: "Change the background color level of the current element. Can be used on containers and components.";
+--db-violet-bg-basic-level-2-hovered: "Change the background color level of the current element. Can be used on containers and components.";
+--db-violet-bg-basic-level-3-hovered: "Change the background color level of the current element. Can be used on containers and components.";
+--db-violet-bg-basic-transparent-semi-hovered: "Change the background color level of the current element. Can be used on containers and components.";
+--db-violet-bg-basic-transparent-full-hovered: "Change the background color level of the current element. Can be used on containers and components.";
+--db-violet-on-bg-emphasis-100-hovered: "Change the foreground color with another emphasis of the current element.";
+--db-violet-on-bg-emphasis-90-hovered: "Change the foreground color with another emphasis of the current element.";
+--db-violet-on-bg-emphasis-80-hovered: "Change the foreground color with another emphasis of the current element.";
+--db-violet-on-bg-emphasis-70-hovered: "Change the foreground color with another emphasis of the current element.";
+--db-violet-on-bg-emphasis-60-hovered: "Change the foreground color with another emphasis of the current element.";
+--db-violet-on-bg-emphasis-50-hovered: "Change the foreground color with another emphasis of the current element.";
+--db-violet-bg-inverted-contrast-max-hovered: "Change the background color of the current element. Should be used on single components only.";
+--db-violet-bg-inverted-contrast-high-hovered: "Change the background color of the current element. Should be used on single components only.";
+--db-violet-bg-inverted-contrast-low-hovered: "Change the background color of the current element. Should be used on single components only.";
+--db-violet-on-bg-inverted-hovered: "Change the foreground color of the current element. Only used with inverted background colors.";
+--db-violet-origin-hovered: "Origin color can be used for background and foreground. Use this if you know what you are doing, it might not be accessible.";
+--db-violet-on-origin-hovered: "Change the foreground color of the current element. Only used with origin as background color.";
+--db-violet-bg-basic-level-1-pressed: "Change the background color level of the current element. Can be used on containers and components.";
+--db-violet-bg-basic-level-2-pressed: "Change the background color level of the current element. Can be used on containers and components.";
+--db-violet-bg-basic-level-3-pressed: "Change the background color level of the current element. Can be used on containers and components.";
+--db-violet-bg-basic-transparent-semi-pressed: "Change the background color level of the current element. Can be used on containers and components.";
+--db-violet-bg-basic-transparent-full-pressed: "Change the background color level of the current element. Can be used on containers and components.";
+--db-violet-on-bg-emphasis-100-pressed: "Change the foreground color with another emphasis of the current element.";
+--db-violet-on-bg-emphasis-90-pressed: "Change the foreground color with another emphasis of the current element.";
+--db-violet-on-bg-emphasis-80-pressed: "Change the foreground color with another emphasis of the current element.";
+--db-violet-on-bg-emphasis-70-pressed: "Change the foreground color with another emphasis of the current element.";
+--db-violet-on-bg-emphasis-60-pressed: "Change the foreground color with another emphasis of the current element.";
+--db-violet-on-bg-emphasis-50-pressed: "Change the foreground color with another emphasis of the current element.";
+--db-violet-bg-inverted-contrast-max-pressed: "Change the background color of the current element. Should be used on single components only.";
+--db-violet-bg-inverted-contrast-high-pressed: "Change the background color of the current element. Should be used on single components only.";
+--db-violet-bg-inverted-contrast-low-pressed: "Change the background color of the current element. Should be used on single components only.";
+--db-violet-on-bg-inverted-pressed: "Change the foreground color of the current element. Only used with inverted background colors.";
+--db-violet-origin-pressed: "Origin color can be used for background and foreground. Use this if you know what you are doing, it might not be accessible.";
+--db-violet-on-origin-pressed: "Change the foreground color of the current element. Only used with origin as background color.";
+
+/* BLUE */
+--db-blue-bg-basic-level-1-default: "Change the background color level of the current element. Can be used on containers and components.";
+--db-blue-bg-basic-level-2-default: "Change the background color level of the current element. Can be used on containers and components.";
+--db-blue-bg-basic-level-3-default: "Change the background color level of the current element. Can be used on containers and components.";
+--db-blue-bg-basic-transparent-semi-default: "Change the background color level of the current element. Can be used on containers and components.";
+--db-blue-bg-basic-transparent-full-default: "Change the background color level of the current element. Can be used on containers and components.";
+--db-blue-on-bg-emphasis-100-default: "Change the foreground color with another emphasis of the current element.";
+--db-blue-on-bg-emphasis-90-default: "Change the foreground color with another emphasis of the current element.";
+--db-blue-on-bg-emphasis-80-default: "Change the foreground color with another emphasis of the current element.";
+--db-blue-on-bg-emphasis-70-default: "Change the foreground color with another emphasis of the current element.";
+--db-blue-on-bg-emphasis-60-default: "Change the foreground color with another emphasis of the current element.";
+--db-blue-on-bg-emphasis-50-default: "Change the foreground color with another emphasis of the current element.";
+--db-blue-bg-inverted-contrast-max-default: "Change the background color of the current element. Should be used on single components only.";
+--db-blue-bg-inverted-contrast-high-default: "Change the background color of the current element. Should be used on single components only.";
+--db-blue-bg-inverted-contrast-low-default: "Change the background color of the current element. Should be used on single components only.";
+--db-blue-on-bg-inverted-default: "Change the foreground color of the current element. Only used with inverted background colors.";
+--db-blue-origin-default: "Origin color can be used for background and foreground. Use this if you know what you are doing, it might not be accessible.";
+--db-blue-on-origin-default: "Change the foreground color of the current element. Only used with origin as background color.";
+--db-blue-bg-basic-level-1-hovered: "Change the background color level of the current element. Can be used on containers and components.";
+--db-blue-bg-basic-level-2-hovered: "Change the background color level of the current element. Can be used on containers and components.";
+--db-blue-bg-basic-level-3-hovered: "Change the background color level of the current element. Can be used on containers and components.";
+--db-blue-bg-basic-transparent-semi-hovered: "Change the background color level of the current element. Can be used on containers and components.";
+--db-blue-bg-basic-transparent-full-hovered: "Change the background color level of the current element. Can be used on containers and components.";
+--db-blue-on-bg-emphasis-100-hovered: "Change the foreground color with another emphasis of the current element.";
+--db-blue-on-bg-emphasis-90-hovered: "Change the foreground color with another emphasis of the current element.";
+--db-blue-on-bg-emphasis-80-hovered: "Change the foreground color with another emphasis of the current element.";
+--db-blue-on-bg-emphasis-70-hovered: "Change the foreground color with another emphasis of the current element.";
+--db-blue-on-bg-emphasis-60-hovered: "Change the foreground color with another emphasis of the current element.";
+--db-blue-on-bg-emphasis-50-hovered: "Change the foreground color with another emphasis of the current element.";
+--db-blue-bg-inverted-contrast-max-hovered: "Change the background color of the current element. Should be used on single components only.";
+--db-blue-bg-inverted-contrast-high-hovered: "Change the background color of the current element. Should be used on single components only.";
+--db-blue-bg-inverted-contrast-low-hovered: "Change the background color of the current element. Should be used on single components only.";
+--db-blue-on-bg-inverted-hovered: "Change the foreground color of the current element. Only used with inverted background colors.";
+--db-blue-origin-hovered: "Origin color can be used for background and foreground. Use this if you know what you are doing, it might not be accessible.";
+--db-blue-on-origin-hovered: "Change the foreground color of the current element. Only used with origin as background color.";
+--db-blue-bg-basic-level-1-pressed: "Change the background color level of the current element. Can be used on containers and components.";
+--db-blue-bg-basic-level-2-pressed: "Change the background color level of the current element. Can be used on containers and components.";
+--db-blue-bg-basic-level-3-pressed: "Change the background color level of the current element. Can be used on containers and components.";
+--db-blue-bg-basic-transparent-semi-pressed: "Change the background color level of the current element. Can be used on containers and components.";
+--db-blue-bg-basic-transparent-full-pressed: "Change the background color level of the current element. Can be used on containers and components.";
+--db-blue-on-bg-emphasis-100-pressed: "Change the foreground color with another emphasis of the current element.";
+--db-blue-on-bg-emphasis-90-pressed: "Change the foreground color with another emphasis of the current element.";
+--db-blue-on-bg-emphasis-80-pressed: "Change the foreground color with another emphasis of the current element.";
+--db-blue-on-bg-emphasis-70-pressed: "Change the foreground color with another emphasis of the current element.";
+--db-blue-on-bg-emphasis-60-pressed: "Change the foreground color with another emphasis of the current element.";
+--db-blue-on-bg-emphasis-50-pressed: "Change the foreground color with another emphasis of the current element.";
+--db-blue-bg-inverted-contrast-max-pressed: "Change the background color of the current element. Should be used on single components only.";
+--db-blue-bg-inverted-contrast-high-pressed: "Change the background color of the current element. Should be used on single components only.";
+--db-blue-bg-inverted-contrast-low-pressed: "Change the background color of the current element. Should be used on single components only.";
+--db-blue-on-bg-inverted-pressed: "Change the foreground color of the current element. Only used with inverted background colors.";
+--db-blue-origin-pressed: "Origin color can be used for background and foreground. Use this if you know what you are doing, it might not be accessible.";
+--db-blue-on-origin-pressed: "Change the foreground color of the current element. Only used with origin as background color.";
+
+/* CYAN */
+--db-cyan-bg-basic-level-1-default: "Change the background color level of the current element. Can be used on containers and components.";
+--db-cyan-bg-basic-level-2-default: "Change the background color level of the current element. Can be used on containers and components.";
+--db-cyan-bg-basic-level-3-default: "Change the background color level of the current element. Can be used on containers and components.";
+--db-cyan-bg-basic-transparent-semi-default: "Change the background color level of the current element. Can be used on containers and components.";
+--db-cyan-bg-basic-transparent-full-default: "Change the background color level of the current element. Can be used on containers and components.";
+--db-cyan-on-bg-emphasis-100-default: "Change the foreground color with another emphasis of the current element.";
+--db-cyan-on-bg-emphasis-90-default: "Change the foreground color with another emphasis of the current element.";
+--db-cyan-on-bg-emphasis-80-default: "Change the foreground color with another emphasis of the current element.";
+--db-cyan-on-bg-emphasis-70-default: "Change the foreground color with another emphasis of the current element.";
+--db-cyan-on-bg-emphasis-60-default: "Change the foreground color with another emphasis of the current element.";
+--db-cyan-on-bg-emphasis-50-default: "Change the foreground color with another emphasis of the current element.";
+--db-cyan-bg-inverted-contrast-max-default: "Change the background color of the current element. Should be used on single components only.";
+--db-cyan-bg-inverted-contrast-high-default: "Change the background color of the current element. Should be used on single components only.";
+--db-cyan-bg-inverted-contrast-low-default: "Change the background color of the current element. Should be used on single components only.";
+--db-cyan-on-bg-inverted-default: "Change the foreground color of the current element. Only used with inverted background colors.";
+--db-cyan-origin-default: "Origin color can be used for background and foreground. Use this if you know what you are doing, it might not be accessible.";
+--db-cyan-on-origin-default: "Change the foreground color of the current element. Only used with origin as background color.";
+--db-cyan-bg-basic-level-1-hovered: "Change the background color level of the current element. Can be used on containers and components.";
+--db-cyan-bg-basic-level-2-hovered: "Change the background color level of the current element. Can be used on containers and components.";
+--db-cyan-bg-basic-level-3-hovered: "Change the background color level of the current element. Can be used on containers and components.";
+--db-cyan-bg-basic-transparent-semi-hovered: "Change the background color level of the current element. Can be used on containers and components.";
+--db-cyan-bg-basic-transparent-full-hovered: "Change the background color level of the current element. Can be used on containers and components.";
+--db-cyan-on-bg-emphasis-100-hovered: "Change the foreground color with another emphasis of the current element.";
+--db-cyan-on-bg-emphasis-90-hovered: "Change the foreground color with another emphasis of the current element.";
+--db-cyan-on-bg-emphasis-80-hovered: "Change the foreground color with another emphasis of the current element.";
+--db-cyan-on-bg-emphasis-70-hovered: "Change the foreground color with another emphasis of the current element.";
+--db-cyan-on-bg-emphasis-60-hovered: "Change the foreground color with another emphasis of the current element.";
+--db-cyan-on-bg-emphasis-50-hovered: "Change the foreground color with another emphasis of the current element.";
+--db-cyan-bg-inverted-contrast-max-hovered: "Change the background color of the current element. Should be used on single components only.";
+--db-cyan-bg-inverted-contrast-high-hovered: "Change the background color of the current element. Should be used on single components only.";
+--db-cyan-bg-inverted-contrast-low-hovered: "Change the background color of the current element. Should be used on single components only.";
+--db-cyan-on-bg-inverted-hovered: "Change the foreground color of the current element. Only used with inverted background colors.";
+--db-cyan-origin-hovered: "Origin color can be used for background and foreground. Use this if you know what you are doing, it might not be accessible.";
+--db-cyan-on-origin-hovered: "Change the foreground color of the current element. Only used with origin as background color.";
+--db-cyan-bg-basic-level-1-pressed: "Change the background color level of the current element. Can be used on containers and components.";
+--db-cyan-bg-basic-level-2-pressed: "Change the background color level of the current element. Can be used on containers and components.";
+--db-cyan-bg-basic-level-3-pressed: "Change the background color level of the current element. Can be used on containers and components.";
+--db-cyan-bg-basic-transparent-semi-pressed: "Change the background color level of the current element. Can be used on containers and components.";
+--db-cyan-bg-basic-transparent-full-pressed: "Change the background color level of the current element. Can be used on containers and components.";
+--db-cyan-on-bg-emphasis-100-pressed: "Change the foreground color with another emphasis of the current element.";
+--db-cyan-on-bg-emphasis-90-pressed: "Change the foreground color with another emphasis of the current element.";
+--db-cyan-on-bg-emphasis-80-pressed: "Change the foreground color with another emphasis of the current element.";
+--db-cyan-on-bg-emphasis-70-pressed: "Change the foreground color with another emphasis of the current element.";
+--db-cyan-on-bg-emphasis-60-pressed: "Change the foreground color with another emphasis of the current element.";
+--db-cyan-on-bg-emphasis-50-pressed: "Change the foreground color with another emphasis of the current element.";
+--db-cyan-bg-inverted-contrast-max-pressed: "Change the background color of the current element. Should be used on single components only.";
+--db-cyan-bg-inverted-contrast-high-pressed: "Change the background color of the current element. Should be used on single components only.";
+--db-cyan-bg-inverted-contrast-low-pressed: "Change the background color of the current element. Should be used on single components only.";
+--db-cyan-on-bg-inverted-pressed: "Change the foreground color of the current element. Only used with inverted background colors.";
+--db-cyan-origin-pressed: "Origin color can be used for background and foreground. Use this if you know what you are doing, it might not be accessible.";
+--db-cyan-on-origin-pressed: "Change the foreground color of the current element. Only used with origin as background color.";
+
+/* TURQUOISE */
+--db-turquoise-bg-basic-level-1-default: "Change the background color level of the current element. Can be used on containers and components.";
+--db-turquoise-bg-basic-level-2-default: "Change the background color level of the current element. Can be used on containers and components.";
+--db-turquoise-bg-basic-level-3-default: "Change the background color level of the current element. Can be used on containers and components.";
+--db-turquoise-bg-basic-transparent-semi-default: "Change the background color level of the current element. Can be used on containers and components.";
+--db-turquoise-bg-basic-transparent-full-default: "Change the background color level of the current element. Can be used on containers and components.";
+--db-turquoise-on-bg-emphasis-100-default: "Change the foreground color with another emphasis of the current element.";
+--db-turquoise-on-bg-emphasis-90-default: "Change the foreground color with another emphasis of the current element.";
+--db-turquoise-on-bg-emphasis-80-default: "Change the foreground color with another emphasis of the current element.";
+--db-turquoise-on-bg-emphasis-70-default: "Change the foreground color with another emphasis of the current element.";
+--db-turquoise-on-bg-emphasis-60-default: "Change the foreground color with another emphasis of the current element.";
+--db-turquoise-on-bg-emphasis-50-default: "Change the foreground color with another emphasis of the current element.";
+--db-turquoise-bg-inverted-contrast-max-default: "Change the background color of the current element. Should be used on single components only.";
+--db-turquoise-bg-inverted-contrast-high-default: "Change the background color of the current element. Should be used on single components only.";
+--db-turquoise-bg-inverted-contrast-low-default: "Change the background color of the current element. Should be used on single components only.";
+--db-turquoise-on-bg-inverted-default: "Change the foreground color of the current element. Only used with inverted background colors.";
+--db-turquoise-origin-default: "Origin color can be used for background and foreground. Use this if you know what you are doing, it might not be accessible.";
+--db-turquoise-on-origin-default: "Change the foreground color of the current element. Only used with origin as background color.";
+--db-turquoise-bg-basic-level-1-hovered: "Change the background color level of the current element. Can be used on containers and components.";
+--db-turquoise-bg-basic-level-2-hovered: "Change the background color level of the current element. Can be used on containers and components.";
+--db-turquoise-bg-basic-level-3-hovered: "Change the background color level of the current element. Can be used on containers and components.";
+--db-turquoise-bg-basic-transparent-semi-hovered: "Change the background color level of the current element. Can be used on containers and components.";
+--db-turquoise-bg-basic-transparent-full-hovered: "Change the background color level of the current element. Can be used on containers and components.";
+--db-turquoise-on-bg-emphasis-100-hovered: "Change the foreground color with another emphasis of the current element.";
+--db-turquoise-on-bg-emphasis-90-hovered: "Change the foreground color with another emphasis of the current element.";
+--db-turquoise-on-bg-emphasis-80-hovered: "Change the foreground color with another emphasis of the current element.";
+--db-turquoise-on-bg-emphasis-70-hovered: "Change the foreground color with another emphasis of the current element.";
+--db-turquoise-on-bg-emphasis-60-hovered: "Change the foreground color with another emphasis of the current element.";
+--db-turquoise-on-bg-emphasis-50-hovered: "Change the foreground color with another emphasis of the current element.";
+--db-turquoise-bg-inverted-contrast-max-hovered: "Change the background color of the current element. Should be used on single components only.";
+--db-turquoise-bg-inverted-contrast-high-hovered: "Change the background color of the current element. Should be used on single components only.";
+--db-turquoise-bg-inverted-contrast-low-hovered: "Change the background color of the current element. Should be used on single components only.";
+--db-turquoise-on-bg-inverted-hovered: "Change the foreground color of the current element. Only used with inverted background colors.";
+--db-turquoise-origin-hovered: "Origin color can be used for background and foreground. Use this if you know what you are doing, it might not be accessible.";
+--db-turquoise-on-origin-hovered: "Change the foreground color of the current element. Only used with origin as background color.";
+--db-turquoise-bg-basic-level-1-pressed: "Change the background color level of the current element. Can be used on containers and components.";
+--db-turquoise-bg-basic-level-2-pressed: "Change the background color level of the current element. Can be used on containers and components.";
+--db-turquoise-bg-basic-level-3-pressed: "Change the background color level of the current element. Can be used on containers and components.";
+--db-turquoise-bg-basic-transparent-semi-pressed: "Change the background color level of the current element. Can be used on containers and components.";
+--db-turquoise-bg-basic-transparent-full-pressed: "Change the background color level of the current element. Can be used on containers and components.";
+--db-turquoise-on-bg-emphasis-100-pressed: "Change the foreground color with another emphasis of the current element.";
+--db-turquoise-on-bg-emphasis-90-pressed: "Change the foreground color with another emphasis of the current element.";
+--db-turquoise-on-bg-emphasis-80-pressed: "Change the foreground color with another emphasis of the current element.";
+--db-turquoise-on-bg-emphasis-70-pressed: "Change the foreground color with another emphasis of the current element.";
+--db-turquoise-on-bg-emphasis-60-pressed: "Change the foreground color with another emphasis of the current element.";
+--db-turquoise-on-bg-emphasis-50-pressed: "Change the foreground color with another emphasis of the current element.";
+--db-turquoise-bg-inverted-contrast-max-pressed: "Change the background color of the current element. Should be used on single components only.";
+--db-turquoise-bg-inverted-contrast-high-pressed: "Change the background color of the current element. Should be used on single components only.";
+--db-turquoise-bg-inverted-contrast-low-pressed: "Change the background color of the current element. Should be used on single components only.";
+--db-turquoise-on-bg-inverted-pressed: "Change the foreground color of the current element. Only used with inverted background colors.";
+--db-turquoise-origin-pressed: "Origin color can be used for background and foreground. Use this if you know what you are doing, it might not be accessible.";
+--db-turquoise-on-origin-pressed: "Change the foreground color of the current element. Only used with origin as background color.";
+
+/* GREEN */
+--db-green-bg-basic-level-1-default: "Change the background color level of the current element. Can be used on containers and components.";
+--db-green-bg-basic-level-2-default: "Change the background color level of the current element. Can be used on containers and components.";
+--db-green-bg-basic-level-3-default: "Change the background color level of the current element. Can be used on containers and components.";
+--db-green-bg-basic-transparent-semi-default: "Change the background color level of the current element. Can be used on containers and components.";
+--db-green-bg-basic-transparent-full-default: "Change the background color level of the current element. Can be used on containers and components.";
+--db-green-on-bg-emphasis-100-default: "Change the foreground color with another emphasis of the current element.";
+--db-green-on-bg-emphasis-90-default: "Change the foreground color with another emphasis of the current element.";
+--db-green-on-bg-emphasis-80-default: "Change the foreground color with another emphasis of the current element.";
+--db-green-on-bg-emphasis-70-default: "Change the foreground color with another emphasis of the current element.";
+--db-green-on-bg-emphasis-60-default: "Change the foreground color with another emphasis of the current element.";
+--db-green-on-bg-emphasis-50-default: "Change the foreground color with another emphasis of the current element.";
+--db-green-bg-inverted-contrast-max-default: "Change the background color of the current element. Should be used on single components only.";
+--db-green-bg-inverted-contrast-high-default: "Change the background color of the current element. Should be used on single components only.";
+--db-green-bg-inverted-contrast-low-default: "Change the background color of the current element. Should be used on single components only.";
+--db-green-on-bg-inverted-default: "Change the foreground color of the current element. Only used with inverted background colors.";
+--db-green-origin-default: "Origin color can be used for background and foreground. Use this if you know what you are doing, it might not be accessible.";
+--db-green-on-origin-default: "Change the foreground color of the current element. Only used with origin as background color.";
+--db-green-bg-basic-level-1-hovered: "Change the background color level of the current element. Can be used on containers and components.";
+--db-green-bg-basic-level-2-hovered: "Change the background color level of the current element. Can be used on containers and components.";
+--db-green-bg-basic-level-3-hovered: "Change the background color level of the current element. Can be used on containers and components.";
+--db-green-bg-basic-transparent-semi-hovered: "Change the background color level of the current element. Can be used on containers and components.";
+--db-green-bg-basic-transparent-full-hovered: "Change the background color level of the current element. Can be used on containers and components.";
+--db-green-on-bg-emphasis-100-hovered: "Change the foreground color with another emphasis of the current element.";
+--db-green-on-bg-emphasis-90-hovered: "Change the foreground color with another emphasis of the current element.";
+--db-green-on-bg-emphasis-80-hovered: "Change the foreground color with another emphasis of the current element.";
+--db-green-on-bg-emphasis-70-hovered: "Change the foreground color with another emphasis of the current element.";
+--db-green-on-bg-emphasis-60-hovered: "Change the foreground color with another emphasis of the current element.";
+--db-green-on-bg-emphasis-50-hovered: "Change the foreground color with another emphasis of the current element.";
+--db-green-bg-inverted-contrast-max-hovered: "Change the background color of the current element. Should be used on single components only.";
+--db-green-bg-inverted-contrast-high-hovered: "Change the background color of the current element. Should be used on single components only.";
+--db-green-bg-inverted-contrast-low-hovered: "Change the background color of the current element. Should be used on single components only.";
+--db-green-on-bg-inverted-hovered: "Change the foreground color of the current element. Only used with inverted background colors.";
+--db-green-origin-hovered: "Origin color can be used for background and foreground. Use this if you know what you are doing, it might not be accessible.";
+--db-green-on-origin-hovered: "Change the foreground color of the current element. Only used with origin as background color.";
+--db-green-bg-basic-level-1-pressed: "Change the background color level of the current element. Can be used on containers and components.";
+--db-green-bg-basic-level-2-pressed: "Change the background color level of the current element. Can be used on containers and components.";
+--db-green-bg-basic-level-3-pressed: "Change the background color level of the current element. Can be used on containers and components.";
+--db-green-bg-basic-transparent-semi-pressed: "Change the background color level of the current element. Can be used on containers and components.";
+--db-green-bg-basic-transparent-full-pressed: "Change the background color level of the current element. Can be used on containers and components.";
+--db-green-on-bg-emphasis-100-pressed: "Change the foreground color with another emphasis of the current element.";
+--db-green-on-bg-emphasis-90-pressed: "Change the foreground color with another emphasis of the current element.";
+--db-green-on-bg-emphasis-80-pressed: "Change the foreground color with another emphasis of the current element.";
+--db-green-on-bg-emphasis-70-pressed: "Change the foreground color with another emphasis of the current element.";
+--db-green-on-bg-emphasis-60-pressed: "Change the foreground color with another emphasis of the current element.";
+--db-green-on-bg-emphasis-50-pressed: "Change the foreground color with another emphasis of the current element.";
+--db-green-bg-inverted-contrast-max-pressed: "Change the background color of the current element. Should be used on single components only.";
+--db-green-bg-inverted-contrast-high-pressed: "Change the background color of the current element. Should be used on single components only.";
+--db-green-bg-inverted-contrast-low-pressed: "Change the background color of the current element. Should be used on single components only.";
+--db-green-on-bg-inverted-pressed: "Change the foreground color of the current element. Only used with inverted background colors.";
+--db-green-origin-pressed: "Origin color can be used for background and foreground. Use this if you know what you are doing, it might not be accessible.";
+--db-green-on-origin-pressed: "Change the foreground color of the current element. Only used with origin as background color.";
+
+}
+
+.db-density-expressive{
+/* Use this to change the density of the element. */
+}
+
+.db-density-regular{
+/* Use this to change the density of the element. */
+}
+
+.db-density-functional{
+/* Use this to change the density of the element. */
+}
+
+.db-focus-default{
+/* Use this to set default focus outline. */
+}
+
+.db-divider-top-before{
+/* Use this to add a divider as :before or :after element. */
+}
+
+.db-divider-bottom-before{
+/* Use this to add a divider as :before or :after element. */
+}
+
+.db-divider-left-before{
+/* Use this to add a divider as :before or :after element. */
+}
+
+.db-divider-right-before{
+/* Use this to add a divider as :before or :after element. */
+}
+
+.db-divider-top-after{
+/* Use this to add a divider as :before or :after element. */
+}
+
+.db-divider-bottom-after{
+/* Use this to add a divider as :before or :after element. */
+}
+
+.db-divider-left-after{
+/* Use this to add a divider as :before or :after element. */
+}
+
+.db-divider-right-after{
+/* Use this to add a divider as :before or :after element. */
+}
+
+.db-bg-color-basic-level-1{
+/* Change the background color level of the current element. */
+}
+
+.db-bg-color-basic-level-2{
+/* Change the background color level of the current element. */
+}
+
+.db-bg-color-basic-level-3{
+/* Change the background color level of the current element. */
+}
+
+.db-bg-color-basic-transparent-semi{
+/* Change the background color level of the current element. */
+}
+
+.db-bg-color-basic-transparent-full{
+/* Change the background color level of the current element. */
+}
+
+.db-on-bg-color-emphasis-100{
+/* Change the foreground color with another emphasis of the current element. */
+}
+
+.db-on-bg-color-emphasis-90{
+/* Change the foreground color with another emphasis of the current element. */
+}
+
+.db-on-bg-color-emphasis-80{
+/* Change the foreground color with another emphasis of the current element. */
+}
+
+.db-on-bg-color-emphasis-70{
+/* Change the foreground color with another emphasis of the current element. */
+}
+
+.db-on-bg-color-emphasis-60{
+/* Change the foreground color with another emphasis of the current element. */
+}
+
+.db-on-bg-color-emphasis-50{
+/* Change the foreground color with another emphasis of the current element. */
+}
+
+.db-container-color-neutral{
+/* These classes define the monochromatic adaptive color scheme for a container. Texts, icons and backgrounds in it then automatically adapt to the color set. */
+}
+
+.db-container-color-brand{
+/* These classes define the monochromatic adaptive color scheme for a container. Texts, icons and backgrounds in it then automatically adapt to the color set. */
+}
+
+.db-container-color-informational{
+/* These classes define the monochromatic adaptive color scheme for a container. Texts, icons and backgrounds in it then automatically adapt to the color set. */
+}
+
+.db-container-color-warning{
+/* These classes define the monochromatic adaptive color scheme for a container. Texts, icons and backgrounds in it then automatically adapt to the color set. */
+}
+
+.db-container-color-successful{
+/* These classes define the monochromatic adaptive color scheme for a container. Texts, icons and backgrounds in it then automatically adapt to the color set. */
+}
+
+.db-container-color-critical{
+/* These classes define the monochromatic adaptive color scheme for a container. Texts, icons and backgrounds in it then automatically adapt to the color set. */
+}
+
+.db-container-color-yellow{
+/* These classes define the monochromatic adaptive color scheme for a container. Texts, icons and backgrounds in it then automatically adapt to the color set. */
+}
+
+.db-container-color-orange{
+/* These classes define the monochromatic adaptive color scheme for a container. Texts, icons and backgrounds in it then automatically adapt to the color set. */
+}
+
+.db-container-color-red{
+/* These classes define the monochromatic adaptive color scheme for a container. Texts, icons and backgrounds in it then automatically adapt to the color set. */
+}
+
+.db-container-color-pink{
+/* These classes define the monochromatic adaptive color scheme for a container. Texts, icons and backgrounds in it then automatically adapt to the color set. */
+}
+
+.db-container-color-violet{
+/* These classes define the monochromatic adaptive color scheme for a container. Texts, icons and backgrounds in it then automatically adapt to the color set. */
+}
+
+.db-container-color-blue{
+/* These classes define the monochromatic adaptive color scheme for a container. Texts, icons and backgrounds in it then automatically adapt to the color set. */
+}
+
+.db-container-color-cyan{
+/* These classes define the monochromatic adaptive color scheme for a container. Texts, icons and backgrounds in it then automatically adapt to the color set. */
+}
+
+.db-container-color-turquoise{
+/* These classes define the monochromatic adaptive color scheme for a container. Texts, icons and backgrounds in it then automatically adapt to the color set. */
+}
+
+.db-container-color-green{
+/* These classes define the monochromatic adaptive color scheme for a container. Texts, icons and backgrounds in it then automatically adapt to the color set. */
+}

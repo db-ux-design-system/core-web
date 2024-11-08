@@ -226,7 +226,11 @@ export const ROUTES: NavigationItem[] = [
 					}
 				]
 			},
-			{ label: 'Testing Overview Table', path: '/foundations/test-table' }
+			{
+				label: 'Testing Overview Table',
+				path: '/foundations/test-table'
+			},
+			{ label: 'IDE Support', path: '/foundations/ide' }
 		]
 	},
 	{
