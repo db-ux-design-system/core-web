@@ -88,6 +88,10 @@ const VersionSwitcher = () => {
 					(branch) =>
 						branch !== 'gh-pages' && !branch.includes('dependabot')
 				);
+
+			// `latest` isn't a branch, but only existing within gh-pages
+			tags.push('latest');
+
 			setCurrentBranch(branches);
 			setCurrentBranch(tags);
 			setGroupByTagsBranches(tags, branches);
