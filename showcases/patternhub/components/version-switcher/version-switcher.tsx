@@ -90,11 +90,7 @@ const VersionSwitcher = () => {
 				);
 
 			// `latest` isn't a branch, but only existing within gh-pages
-			tags.push('latest');
-			/* eslint-disable-next-line no-console */
-			console.log('branches', branches);
-			/* eslint-disable-next-line no-console */
-			console.log('tags', tags);
+			tags.unshift('latest');
 
 			setCurrentBranch(branches);
 			setCurrentBranch(tags);
