@@ -13,6 +13,6 @@ test.describe('DBInput', () => {
 		axeDisableRules
 	});
 	runA11yCheckerTest({
-		path: '03/input',
+		path: '03/input'
 	});
 });
