@@ -229,7 +229,11 @@ export const ROUTES: NavigationItem[] = [
 					}
 				]
 			},
-			{ label: 'Testing Overview Table', path: '/foundations/test-table' }
+			{
+				label: 'Testing Overview Table',
+				path: '/foundations/test-table'
+			},
+			{ label: 'IDE Support', path: '/foundations/ide' }
 		]
 	},
 	{
@@ -304,7 +308,13 @@ const fillNavigationRecursive = (
 export const getAllNavigationItems = (isBreadcrumb?: boolean) => {
 	const tree: NavigationItem[] = [];
 	fillNavigationRecursive(ROUTES, tree, isBreadcrumb);
-	return tree;
+	return tree.sort((a, b) => {
+		if ((a.path?.length ?? 0) > (b.path?.length ?? 0)) {
+			return -1;
+		}
+
+		return 1;
+	});
 };
 
 export const getNavigationList = (path: string) => {

@@ -1,14 +1,21 @@
 const getPrimitive = (ts, kind) =>
 	ts.SyntaxKind[kind.toString()].replace('Keyword', '').toLowerCase();
 
+const getElementsRecursive = (node) => {
+	if (node.expression) {
+		return getElementsRecursive(node.expression);
+	}
+
+	return node.elements;
+};
+
 /**
  * Get string arrays like: export const LinkCurrentList = (['time', 'true', 'false', 'date', 'page', 'step', 'location'] as const)
  * @param initializer {object}
  */
 const getStringArrayConst = (initializer) => {
-	const texts = initializer.expression?.expression?.elements?.map(
-		(elemNode) => `"${elemNode.text}"`
-	);
+	const elements = getElementsRecursive(initializer);
+	const texts = elements?.map((elemNode) => `"${elemNode.text}"`);
 	if (texts) {
 		return {
 			values: texts,
@@ -17,6 +24,16 @@ const getStringArrayConst = (initializer) => {
 	}
 
 	return undefined;
+};
+
+const getArrayType = (ts, type) => {
+	let array;
+	if (type.elementType.typeName) {
+		array = type.elementType.typeName.escapedText;
+	} else {
+		array = getPrimitive(ts, type.elementType.kind);
+	}
+	return `${array}[]`;
 };
 
 /**
@@ -33,6 +50,9 @@ const getUnions = (ts, types) => {
 			return innerType.typeName?.escapedText;
 		} else if (innerType.literal) {
 			return `'${innerType.literal?.text}'`;
+		} else if (innerType.elementType) {
+			// Arrays
+			return getArrayType(ts, innerType);
 		} else if (innerType.kind) {
 			return getPrimitive(ts, innerType.kind);
 		}
@@ -76,6 +96,8 @@ const getMembers = (ts, members) => ({
 			type = memberType?.typeName?.escapedText;
 		} else if (memberType.types) {
 			type = getUnions(ts, memberType.types);
+		} else if (memberType.elementType) {
+			type = getArrayType(ts, memberType);
 		} else {
 			type = getPrimitive(ts, memberType.kind);
 		}
@@ -89,7 +111,7 @@ const getMembers = (ts, members) => ({
 	type: 'props'
 });
 
-export const analyzePhase = ({ ts, node,  context }) => {
+export const analyzePhase = ({ ts, node, context }) => {
 	if (!context.data) {
 		context.data = {};
 	}

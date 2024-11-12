@@ -88,6 +88,10 @@ const VersionSwitcher = () => {
 					(branch) =>
 						branch !== 'gh-pages' && !branch.includes('dependabot')
 				);
+
+			// `latest` isn't a branch, but only existing within gh-pages
+			tags.unshift('latest');
+
 			setCurrentBranch(branches);
 			setCurrentBranch(tags);
 			setGroupByTagsBranches(tags, branches);
@@ -100,7 +104,9 @@ const VersionSwitcher = () => {
 
 	const handleChange = (branch: string) => {
 		const lastPath = router.asPath;
-		const isTag = branch.split('.').length === 3 && branch.startsWith('v');
+		const isTag =
+			(branch.split('.').length === 3 && branch.startsWith('v')) ||
+			branch === 'latest';
 		window.location.replace(
 			sanitize(
 				`https://${owner}.github.io/${repo}${
