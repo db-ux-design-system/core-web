@@ -1,24 +1,6 @@
 /* eslint-disable import/no-anonymous-default-export */
 
 /**
- * @param options {string[]}
- * @param elements {{name:string, value?:string, elements?:any[]}[]}
- */
-export const getUnionElements = (options, elements) => {
-	if (elements) {
-		for (const element of elements) {
-			options.push(
-				element.name === 'literal'
-					? element.value
-					: element.elements
-						? getUnionElements(options, element.elements)
-						: element.name
-			);
-		}
-	}
-};
-
-/**
  * @param props {object}
  * @param framework {'angular'|'react'|'vue'}
  * @param noEvents {boolean}
@@ -236,10 +218,16 @@ export const getColorVariants = () => [
 	'informational-transparent-semi'
 ];
 
-export const getComponentName = (filePath) => {
-	let componentName = filePath.split('/').at(-1);
-	componentName = componentName.replace('.tsx', '').replaceAll(/\s/g, '');
-	return componentName;
+export const transformToUpperComponentName = (componentName) =>
+	componentName
+		? componentName
+				.split('-')
+				.map((part) => `${part[0].toUpperCase()}${part.slice(1)}`)
+				.join('')
+		: '';
+
+export const getComponentName = (elementName) => {
+	return elementName.replace('db-', '');
 };
 
 export const getComponentGroup = (components, componentName) => {
@@ -253,9 +241,9 @@ export const getComponentGroup = (components, componentName) => {
 };
 
 export default {
-	getUnionElements,
 	getCodeByFramework,
 	getColorVariants,
 	getComponentName,
-	getComponentGroup
+	getComponentGroup,
+	transformToUpperComponentName
 };

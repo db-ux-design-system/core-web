@@ -9,8 +9,7 @@ const getDefaultScreenshotTest = async (
 ) => {
 	test(`${type} should match screenshot`, async ({ page }) => {
 		await page.goto(`${path}`, {
-			waitUntil: 'domcontentloaded',
-			timeout: 20_000
+			waitUntil: 'domcontentloaded'
 		});
 		await fn(page);
 		await expect(page).toHaveScreenshot([name, 'patternhub.png']);
@@ -25,7 +24,8 @@ for (const group of Components) {
 				`docs`,
 				`./components/${component.name}/docs/Angular`,
 				async (page) => {
-					expect(await page.locator('h2').first().isVisible());
+					const firstH2 = page.locator('h2').first();
+					await expect(firstH2).toBeVisible();
 				}
 			);
 		});
@@ -33,13 +33,10 @@ for (const group of Components) {
 			await getDefaultScreenshotTest(
 				component.name,
 				`overview`,
-				`./components/${component.name}/overview?page=density`,
+				`./components/${component.name}/overview?fullscreen=true`,
 				async (page) => {
-					const functionalCount = await page
-						.getByText('Functional')
-						.first()
-						.isVisible();
-					expect(functionalCount);
+					const firstH2 = page.locator('h1').first();
+					await expect(firstH2).toBeVisible();
 				}
 			);
 		});
@@ -49,7 +46,8 @@ for (const group of Components) {
 				`properties`,
 				`./components/${component.name}/properties?fullscreen=true&noh1=true`,
 				async (page) => {
-					expect(await page.locator('h2').first().isVisible());
+					const firstH2 = page.locator('h2').first();
+					await expect(firstH2).toBeVisible();
 				}
 			);
 		});
