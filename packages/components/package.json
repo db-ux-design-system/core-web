@@ -17,8 +17,8 @@
   "scripts": {
     "build": "npm-run-all -p build-components build-assets -s build-style:*",
     "build-assets": "cpr src build -o -f \"(.ts|.tsx|.md|.html)$\"",
-    "build-components": "npm-run-all build:mitosis -p build-components:*",
-    "build-components:docs": "react-docgen ../../output/react/src/components/**/*.tsx -o ../../output/docs.json -i *.spec.tsx",
+    "build-components": "npm-run-all build:mitosis build-components:post build-components:docs",
+    "build-components:docs": "npm run build:cem -w @db-ui/web-components",
     "build-components:post": "tsx scripts/post-build/index.ts",
     "build-style:01_sass": "sass src:build --no-source-map --load-path=node_modules/ --load-path=../../node_modules/ --future-deprecation=import",
     "build-style:02_postcss": "postcss build/**/*.css --replace",
@@ -51,7 +51,6 @@
     "@builder.io/eslint-plugin-mitosis": "^0.0.16",
     "@builder.io/mitosis": "^0.5.18",
     "@builder.io/mitosis-cli": "^0.5.18",
-    "@react-docgen/cli": "^2.0.4",
     "cpr": "3.0.1",
     "cssnano": "^7.0.6",
     "eslint": "^8",
