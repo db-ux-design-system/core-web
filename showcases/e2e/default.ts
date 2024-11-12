@@ -3,7 +3,7 @@ import { AxeBuilder } from '@axe-core/playwright';
 import { close, getCompliance } from 'accessibility-checker';
 import { type ICheckerError } from 'accessibility-checker/lib/api/IChecker';
 import { type FullProject } from 'playwright/types/test';
-import { COLORS } from './fixtures/variants';
+import { COLORS, lvl1 } from './fixtures/variants';
 import { setScrollViewport } from './fixtures/viewport';
 
 const density = 'regular';
@@ -17,12 +17,17 @@ export type DefaultSnapshotTestType = {
 	preScreenShot?: (page: Page) => Promise<void>;
 } & DefaultTestType;
 
-export type DefaultA11yTestType = {
+export type AxeCoreTestType = {
 	axeDisableRules?: string[];
-	aCheckerDisableRules?: string[];
 	skipAxe?: boolean;
-	skipChecker?: boolean;
 	preAxe?: (page: Page) => Promise<void>;
+	color?: string;
+	density?: 'functional' | 'regular' | 'expressive';
+} & DefaultTestType;
+
+export type A11yCheckerTestType = {
+	aCheckerDisableRules?: string[];
+	skipChecker?: boolean;
 	preChecker?: (page: Page) => Promise<void>;
 } & DefaultTestType;
 
@@ -49,11 +54,15 @@ const gotoPage = async (
 	page: Page,
 	path: string,
 	color: string,
-	fixedHeight?: number
+	fixedHeight?: number,
+	otherDensity?: 'functional' | 'regular' | 'expressive'
 ) => {
-	await page.goto(`./#/${path}?density=${density}&color=${color}`, {
-		waitUntil: 'domcontentloaded'
-	});
+	await page.goto(
+		`./#/${path}?density=${otherDensity ?? density}&color=${color}`,
+		{
+			waitUntil: 'domcontentloaded'
+		}
+	);
 
 	await waitForDBPage(page);
 	await setScrollViewport(page, fixedHeight)();
@@ -67,7 +76,7 @@ export const getDefaultScreenshotTest = ({
 	fixedHeight,
 	preScreenShot
 }: DefaultSnapshotTestType) => {
-	test(`should match screenshot`, async ({ page }, testInfo) => {
+	test(`should match screenshot`, async ({ page }) => {
 		const showcase = process.env.showcase;
 		const diffPixel = process.env.diff;
 		const maxDiffPixelRatio = process.env.ratio;
@@ -89,7 +98,7 @@ export const getDefaultScreenshotTest = ({
 			config.maxDiffPixels = 120;
 		}
 
-		await gotoPage(page, path, 'neutral-bg-basic-level-1', fixedHeight);
+		await gotoPage(page, path, lvl1, fixedHeight);
 
 		const header = await page.locator('header').first();
 
@@ -108,55 +117,60 @@ const shouldSkipA11yTest = (project: FullProject): boolean =>
 	project.name === 'webkit' ||
 	project.name.startsWith('mobile');
 
-export const getA11yTest = ({
+export const runAxeCoreTest = ({
 	path,
 	fixedHeight,
 	axeDisableRules,
 	skipAxe,
 	preAxe,
+	color = lvl1,
+	density = 'regular'
+}: AxeCoreTestType) => {
+	test(`should not have any A11y issues for density ${density} and color ${color}`, async ({
+		page
+	}, { project }) => {
+		const isLevelOne = color.endsWith('-1');
+		// We don't need to check color contrast for every project (just for chrome)
+		if (skipAxe ?? (!isLevelOne && shouldSkipA11yTest(project))) {
+			test.skip();
+		}
+
+		await gotoPage(page, path, color, fixedHeight, density);
+
+		// This is a workaround for axe for browsers using forcedColors
+		// see https://github.com/dequelabs/axe-core-npm/issues/1067
+		await page.evaluate(($project) => {
+			if ($project.use.contextOptions?.forcedColors === 'active') {
+				const style = document.createElement('style');
+				document.head.append(style);
+				const textColor =
+					$project.use.colorScheme === 'dark' ? '#fff' : '#000';
+				style.textContent = `* {-webkit-text-stroke-color:${textColor}!important;-webkit-text-fill-color:${textColor}!important;}`;
+			}
+		}, project);
+
+		if (preAxe) {
+			await preAxe(page);
+		}
+
+		const accessibilityScanResults = await new AxeBuilder({
+			page
+		})
+			.include('main')
+			.disableRules(axeDisableRules ?? [])
+			.analyze();
+
+		expect(accessibilityScanResults.violations).toEqual([]);
+	});
+};
+
+export const runA11yCheckerTest = ({
+	path,
+	fixedHeight,
 	aCheckerDisableRules,
 	preChecker,
 	skipChecker
-}: DefaultA11yTestType) => {
-	for (const color of COLORS) {
-		test(`should not have any A11y issues for color ${color}`, async ({
-			page
-		}, { project }) => {
-			const isLevelOne = color.endsWith('-1');
-			// We don't need to check color contrast for every project (just for chrome)
-			if (skipAxe ?? (!isLevelOne && shouldSkipA11yTest(project))) {
-				test.skip();
-			}
-
-			await gotoPage(page, path, color, fixedHeight);
-
-			// This is a workaround for axe for browsers using forcedColors
-			// see https://github.com/dequelabs/axe-core-npm/issues/1067
-			await page.evaluate(($project) => {
-				if ($project.use.contextOptions?.forcedColors === 'active') {
-					const style = document.createElement('style');
-					document.head.append(style);
-					const textColor =
-						$project.use.colorScheme === 'dark' ? '#fff' : '#000';
-					style.textContent = `* {-webkit-text-stroke-color:${textColor}!important;-webkit-text-fill-color:${textColor}!important;}`;
-				}
-			}, project);
-
-			if (preAxe) {
-				await preAxe(page);
-			}
-
-			const accessibilityScanResults = await new AxeBuilder({
-				page
-			})
-				.include('main')
-				.disableRules(axeDisableRules ?? [])
-				.analyze();
-
-			expect(accessibilityScanResults.violations).toEqual([]);
-		});
-	}
-
+}: A11yCheckerTestType) => {
 	test('test with accessibility checker', async ({ page }, { project }) => {
 		if (skipChecker ?? shouldSkipA11yTest(project)) {
 			// Checking complete DOM in Firefox and Webkit takes very long, we skip this test
@@ -166,7 +180,7 @@ export const getA11yTest = ({
 
 		test.slow(); // Easy way to triple the default timeout
 
-		await gotoPage(page, path, 'neutral-bg-basic-level-1', fixedHeight);
+		await gotoPage(page, path, lvl1, fixedHeight);
 
 		if (preChecker) {
 			await preChecker(page);

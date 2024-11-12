@@ -1,11 +1,18 @@
 import { test } from '@playwright/test';
 // @ts-expect-error - required for playwright
-import { getA11yTest } from '../default.ts';
+import { runA11yCheckerTest, runAxeCoreTest } from '../default.ts';
+import { lvl3 } from '../fixtures/variants';
 
+const axeDisableRules = ['color-contrast']; // TODO: Currently disable till we solved https://github.com/db-ui/mono/issues/2587
 test.describe('DBInput', () => {
-	// TODO: Currently disable till we solved https://github.com/db-ui/mono/issues/2587
-	getA11yTest({
+	runAxeCoreTest({ path: '03/input', axeDisableRules });
+	runAxeCoreTest({ path: '03/input', color: lvl3, axeDisableRules });
+	runAxeCoreTest({
 		path: '03/input',
-		axeDisableRules: ['color-contrast']
+		density: 'functional',
+		axeDisableRules
+	});
+	runA11yCheckerTest({
+		path: '03/input'
 	});
 });
