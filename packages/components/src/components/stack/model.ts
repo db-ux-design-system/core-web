@@ -32,7 +32,7 @@ export type DBStackDefaultProps = {
 	 */
 	direction?: StackDirectionType;
 	/**
-	 * If the stack should wrap if parent is to small otherwise you get an overflow
+	 * If the stack should wrap if parent is too small otherwise you get an overflow
 	 */
 	wrap?: boolean;
 	/**

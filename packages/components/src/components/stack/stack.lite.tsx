@@ -1,6 +1,6 @@
 import { Show, useMetadata, useRef, useStore } from '@builder.io/mitosis';
 import { DBStackState, DBStackProps } from './model';
-import { cls } from '../../utils';
+import { cls, getBooleanAsString } from '../../utils';
 
 useMetadata({});
 
@@ -21,7 +21,7 @@ export default function DBStack(props: DBStackProps) {
 			data-direction={props.direction}
 			data-alignment={props.alignment}
 			data-justify-content={props.justifyContent}
-			data-wrap={props.wrap}>
+			data-wrap={getBooleanAsString(props.wrap)}>
 			{props.children}
 		</div>
 	);
