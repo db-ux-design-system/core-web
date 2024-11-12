@@ -12,9 +12,7 @@ test.describe('DBInput', () => {
 		density: 'functional',
 		axeDisableRules
 	});
-	// TODO: There is an issue with datetime-local - https://github.com/IBMa/equal-access/issues/1910
 	runA11yCheckerTest({
 		path: '03/input',
-		aCheckerDisableRules: ['label_ref_valid']
 	});
 });
