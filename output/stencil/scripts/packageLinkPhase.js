@@ -31,7 +31,13 @@ const getFilteredContextData = (data) => {
 			if (currentType !== 'literal') {
 				foundType = data[currentType];
 			}
-			const resolvedType = `${foundType.values.join(unionSeperator)}`;
+			let resolvedType;
+			try {
+				resolvedType = `${foundType.values.join(unionSeperator)}`;
+			} catch (e) {
+				console.error(key, obj);
+				throw e;
+			}
 
 			resolvedData[key] = {
 				...obj,

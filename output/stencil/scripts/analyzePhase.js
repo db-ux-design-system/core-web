@@ -1,14 +1,21 @@
 const getPrimitive = (ts, kind) =>
 	ts.SyntaxKind[kind.toString()].replace('Keyword', '').toLowerCase();
 
+const getElementsRecursive = (node) => {
+	if (node.expression) {
+		return getElementsRecursive(node.expression);
+	}
+
+	return node.elements;
+};
+
 /**
  * Get string arrays like: export const LinkCurrentList = (['time', 'true', 'false', 'date', 'page', 'step', 'location'] as const)
  * @param initializer {object}
  */
 const getStringArrayConst = (initializer) => {
-	const texts = initializer.expression?.elements?.map(
-		(elemNode) => `"${elemNode.text}"`
-	);
+	const elements = getElementsRecursive(initializer);
+	const texts = elements?.map((elemNode) => `"${elemNode.text}"`);
 	if (texts) {
 		return {
 			values: texts,
