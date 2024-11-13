@@ -267,7 +267,8 @@ $input-valid-types: "color", "date", "datetime-local", "email", "file", "hidden"
 			&::after {
 				@include icons.icon-content("*");
 
-				padding-inline-start: variables.$db-spacing-fixed-2xs;
+				// We're using 1px instead of a token here on purpose, as this is an edge case
+				padding-inline-start: 1px;
 			}
 		}
 	}
