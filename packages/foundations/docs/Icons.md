@@ -3,6 +3,7 @@
 -   We use icon fonts as **woff2** files for all our icons.
 -   We auto generate these files out of `.svg` files.
 -   A lot of our [components](../../components/readme) have an `icon` property you can pass in.
+-   Use the CSS Custom Property `--db-icon-color` to overwrite the icons color.
 
 ## How to include icons
 
