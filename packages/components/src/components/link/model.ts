@@ -16,9 +16,17 @@ export const LinkContentList = ['external', 'internal'] as const;
 export type LinkContentType = (typeof LinkContentList)[number];
 
 export type DBLinkDefaultProps = {
+	/**
+	 * Adds a different arrow after the link to indicate external or internal link
+	 */
 	content?: LinkContentType;
-	id?: string;
+	/**
+	 * Change the size of the link
+	 */
 	size?: LinkSizeType;
+	/**
+	 * Change the styling of the link. `inline` will remove the arrow. Defaults to adaptive.
+	 */
 	variant?: LinkVariantType;
 };
 

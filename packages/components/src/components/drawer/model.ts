@@ -35,7 +35,7 @@ export type DBDrawerDefaultProps = {
 	direction?: DrawerDirectionType;
 
 	/**
-	 * React specific to change the header of the drawer.
+	 * Slot for changing the header of the drawer.
 	 */
 	drawerHeader?: unknown;
 

@@ -2,8 +2,6 @@ import { generateVsCodeCustomElementData } from 'custom-element-vs-code-integrat
 import { getTsProgram } from 'cem-plugin-expanded-types';
 import { resolveTypesPlugin } from './scripts/resolveTypes.js';
 import { generateJetBrainsWebTypes } from 'custom-element-jet-brains-integration';
-import { writeFileSync } from 'node:fs';
-import { customElementsManifestToMarkdown } from '@custom-elements-manifest/to-markdown';
 
 const outdir = './dist';
 
@@ -44,19 +42,6 @@ export default {
 	},
 	plugins: [
 		resolveTypesPlugin(({ customElementsManifest }) => {
-			writeFileSync(
-				`${outdir}/custom-elements.md`,
-				customElementsManifestToMarkdown(customElementsManifest, {
-					private: 'hidden',
-					omitDeclarations: [
-						'mixins',
-						'variables',
-						'functions',
-						'exports'
-					],
-					omitSections: ['attributes', 'methods']
-				})
-			);
 			generateVsCodeCustomElementData(
 				customElementsManifest,
 				vsCodeOptions
