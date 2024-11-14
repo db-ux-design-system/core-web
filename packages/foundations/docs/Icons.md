@@ -20,6 +20,10 @@ You can add an icon before or after a tag, by adding an `data-` attribute to you
 | `before` |    `data-icon="icon-from-overview"`    |
 | `after`  | `data-icon-after="icon-from-overview"` |
 
+### Icons color
+
+You could use the CSS Custom Property `--db-icon-color` to overwrite the icons color, be it icon fonts or when using the SVG files directly. Or `--db-icon-pulse-color` for the illustrative icons pulse color.
+
 ## Custom Icons
 
 If you have custom icons and want to use them for foundations and/or in components, you need to generate a **woff2** file.
