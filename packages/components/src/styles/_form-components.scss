@@ -336,7 +336,6 @@ $input-valid-types: "color", "date", "datetime-local", "email", "file", "hidden"
 		@extend %db-overwrite-font-size-xs;
 
 		padding-block-end: variables.$db-spacing-fixed-xs;
-		pointer-events: none;
 		max-inline-size: 25ch;
 		text-overflow: ellipsis;
 		white-space: nowrap;
