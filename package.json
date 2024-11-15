@@ -54,7 +54,7 @@
     "@guidepup/playwright": "^0.14.1",
     "@playwright/test": "1.48.2",
     "@types/fs-extra": "^11.0.4",
-    "accessibility-checker": "^3.1.77",
+    "accessibility-checker": "^3.1.78",
     "adm-zip": "0.5.16",
     "commander": "^12.1.0",
     "cpr": "3.0.1",
