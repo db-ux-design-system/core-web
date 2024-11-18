@@ -22,5 +22,8 @@
     "typescript": "^5.4.5",
     "vite": "^5.4.11",
     "vue-tsc": "^2.1.10"
+  },
+  "overrides": {
+    "cross-spawn": "~7.0.5"
   }
 }
