@@ -1,5 +1,6 @@
 import type { RouteRecordRaw } from 'vue-router';
 import { markRaw } from 'vue';
+import Stack from '../components/stack/Stack.vue';
 import Switch from '../components/switch/Switch.vue';
 import Tabs from '../components/tabs/Tabs.vue';
 import TabItem from '../components/tab-item/TabItem.vue';
@@ -148,6 +149,7 @@ export const navigationItems: NavItem[] = [
 		path: '/01',
 		label: '01 Layout',
 		subNavigation: getSortedNavigationItems([
+			{ path: '/01/stack', label: 'Stack', component: Stack },
 			{ path: '/01/card', label: 'Card', component: markRaw(Card) },
 			{ path: '/01/drawer', label: 'Drawer', component: markRaw(Drawer) },
 			{
