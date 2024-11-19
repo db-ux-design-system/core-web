@@ -121,6 +121,26 @@ export type GapProps = {
 	gap?: boolean;
 };
 
+export const GapSpacingList = [
+	'none',
+	'3x-large',
+	'2x-large',
+	'x-large',
+	'large',
+	'medium',
+	'small',
+	'x-small',
+	'2x-small',
+	'3x-small'
+] as const;
+export type GapSpacingType = (typeof GapSpacingList)[number];
+export type GapSpacingProps = {
+	/**
+	 * Set the gap/spacing between elements
+	 */
+	gap?: GapSpacingType;
+};
+
 export type OverflowProps = {
 	/**
 	 * The overflow attribute sets a max-width and longer text will be dotted.
