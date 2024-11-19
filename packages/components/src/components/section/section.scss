@@ -2,31 +2,38 @@
 @use "@db-ui/foundations/build/scss/screen-sizes";
 @use "../../styles/component";
 
-.db-section {
-	padding-inline: variables.$db-spacing-fixed-md;
+$default-section-padding-inline: variables.$db-spacing-fixed-md;
 
+.db-section {
+	&:not([data-width]),
 	&[data-width="full"] {
-		padding-inline: 0;
+		padding-inline: $default-section-padding-inline;
+	}
+
+	&[data-width="medium"] {
+		padding-inline: max(
+			calc(
+				#{$default-section-padding-inline} + (
+						100vw - #{screen-sizes.$db-breakpoint-md}
+					) / 2
+			),
+			#{$default-section-padding-inline}
+		);
+	}
+
+	&[data-width="large"] {
+		padding-inline: max(
+			calc(
+				#{$default-section-padding-inline} + (
+						100vw - #{screen-sizes.$db-breakpoint-lg}
+					) / 2
+			),
+			#{$default-section-padding-inline}
+		);
 	}
 
 	@include component.get-data-spacing(
 		"padding-block",
 		component.$responsive-spacings
 	);
-
-	> div {
-		margin: 0 auto;
-
-		&[data-width="full"] {
-			max-inline-size: none;
-		}
-
-		&[data-width="medium"] {
-			max-inline-size: screen-sizes.$db-breakpoint-md;
-		}
-
-		&[data-width="large"] {
-			max-inline-size: screen-sizes.$db-breakpoint-lg;
-		}
-	}
 }
