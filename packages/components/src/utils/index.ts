@@ -224,6 +224,14 @@ export const enableCustomElementAttributePassing = (
 				element.setAttribute(attr.name, attr.value);
 				parent.removeAttribute(attr.name);
 			}
+			if (attr && attr.name === 'class') {
+				const currentClass = element.getAttribute('class');
+				element.setAttribute(
+					attr.name,
+					`${currentClass ? `${currentClass} ` : ''}${attr.value}`
+				);
+				parent.removeAttribute(attr.name);
+			}
 		}
 	}
 };
