@@ -25,6 +25,7 @@ const testA11y = () => {
 		const accessibilityScanResults = await new AxeBuilder({ page })
 			.include('.db-accordion-item')
 			// Showcase uses <li> outside of <ul> in this case
+			// TODO: Let's investigate whether we could prevent this deactivation later on
 			.disableRules(['listitem'])
 			.analyze();
 
