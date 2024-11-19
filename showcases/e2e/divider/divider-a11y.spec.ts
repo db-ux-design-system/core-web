@@ -1,7 +1,11 @@
 import { test } from '@playwright/test';
 // @ts-expect-error - required for playwright
-import { getA11yTest } from '../default.ts';
+import { runA11yCheckerTest, runAxeCoreTest } from '../default.ts';
+import { lvl3 } from '../fixtures/variants';
 
 test.describe('DBDivider', () => {
-	getA11yTest({ path: '01/divider' });
+	runAxeCoreTest({ path: '01/divider' });
+	runAxeCoreTest({ path: '01/divider', color: lvl3 });
+	runAxeCoreTest({ path: '01/divider', density: 'functional' });
+	runA11yCheckerTest({ path: '01/divider' });
 });

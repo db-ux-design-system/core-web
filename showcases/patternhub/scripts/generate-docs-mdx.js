@@ -32,7 +32,7 @@ const generateDocsMdx = async () => {
 			const componentGroup = getComponentGroup(components, componentName);
 			const displayName = componentGroup?.subNavigation?.find(
 				(component) => component.name === componentName
-			);
+			).label;
 
 			if (componentGroup) {
 				const componentOldPath = `${componentsPath}/${componentName}`;

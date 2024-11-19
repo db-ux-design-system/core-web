@@ -1,10 +1,16 @@
 import { expect, test } from '@playwright/test';
-// @ts-expect-error - required for playwright
-import { getA11yTest, hasWebComponentSyntax } from '../default.ts';
+import {
+	hasWebComponentSyntax,
+	runAxeCoreTest,
+	runA11yCheckerTest
+	// @ts-expect-error - required for playwright
+} from '../default.ts';
+import { lvl3 } from '../fixtures/variants';
 
+const skipAxe = hasWebComponentSyntax(process.env.showcase);
 test.describe('DBNavigation', () => {
-	getA11yTest({
-		path: '05/navigation',
-		skipAxe: hasWebComponentSyntax(process.env.showcase)
-	});
+	runAxeCoreTest({ path: '05/navigation', skipAxe });
+	runAxeCoreTest({ path: '05/navigation', color: lvl3, skipAxe });
+	runAxeCoreTest({ path: '05/navigation', density: 'functional', skipAxe });
+	runA11yCheckerTest({ path: '05/navigation' });
 });
