@@ -32,7 +32,8 @@ const OldRoutingFallback = () => {
 				}
 
 				// This is for the old implementation to work with iframes
-				const foundRoute = getAllNavigationItems().find((item) =>
+				const allNavigationItems = getAllNavigationItems();
+				const foundRoute = allNavigationItems.find((item) =>
 					item.path?.endsWith(component)
 				);
 

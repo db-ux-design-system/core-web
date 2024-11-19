@@ -4,7 +4,8 @@ import {
 	Show,
 	useMetadata,
 	useRef,
-	useStore
+	useStore,
+	useTarget
 } from '@builder.io/mitosis';
 import { DBRadioProps, DBRadioState } from './model';
 import { cls, uuid } from '../../utils';
@@ -18,7 +19,7 @@ export default function DBRadio(props: DBRadioProps) {
 	// jscpd:ignore-start
 	const state = useStore<DBRadioState>({
 		initialized: false,
-		_id: 'radio-' + uuid(),
+		_id: undefined,
 		handleChange: (event: ChangeEvent<HTMLInputElement>) => {
 			if (props.onChange) {
 				props.onChange(event);
@@ -28,7 +29,10 @@ export default function DBRadio(props: DBRadioProps) {
 				props.change(event);
 			}
 
-			handleFrameworkEvent(this, event, 'checked');
+			useTarget({
+				angular: () => handleFrameworkEvent(this, event, 'checked'),
+				vue: () => handleFrameworkEvent(this, event, 'checked')
+			});
 		},
 		handleBlur: (event: InteractionEvent<HTMLInputElement>) => {
 			if (props.onBlur) {
@@ -52,7 +56,7 @@ export default function DBRadio(props: DBRadioProps) {
 
 	onMount(() => {
 		state.initialized = true;
-		state._id = props.id ?? state._id;
+		state._id = props.id ?? `radio-${uuid()}`;
 	});
 	// jscpd:ignore-end
 

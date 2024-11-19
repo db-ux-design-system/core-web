@@ -1,7 +1,7 @@
 import { GlobalProps, GlobalState, InitializedState } from '../../shared/model';
 import { DBAccordionItemDefaultProps } from '../accordion-item/model';
 
-export const AccordionVariantList = ['card'] as const;
+export const AccordionVariantList = ['default', 'card'] as const;
 export type AccordionVariantType = (typeof AccordionVariantList)[number];
 
 export const AccordionBehaviourList = ['multiple', 'single'] as const;

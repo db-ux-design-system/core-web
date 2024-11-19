@@ -121,6 +121,26 @@ export type GapProps = {
 	gap?: boolean;
 };
 
+export const GapSpacingList = [
+	'none',
+	'3x-large',
+	'2x-large',
+	'x-large',
+	'large',
+	'medium',
+	'small',
+	'x-small',
+	'2x-small',
+	'3x-small'
+] as const;
+export type GapSpacingType = (typeof GapSpacingList)[number];
+export type GapSpacingProps = {
+	/**
+	 * Set the gap/spacing between elements
+	 */
+	gap?: GapSpacingType;
+};
+
 export type OverflowProps = {
 	/**
 	 * The overflow attribute sets a max-width and longer text will be dotted.
@@ -131,6 +151,9 @@ export type OverflowProps = {
 export const OrientationList = ['horizontal', 'vertical'] as const;
 export type OrientationType = (typeof OrientationList)[number];
 export type OrientationProps = {
+	/**
+	 * Change the orientation. Defaults to horizontal.
+	 */
 	orientation?: OrientationType;
 };
 
@@ -204,7 +227,7 @@ export const CustomValidityList = [
 export type CustomValidityType = (typeof CustomValidityList)[number];
 export type FormProps = {
 	/**
-	 * Marks an input element as invalid (red) | valid(green) | no-validation(grey). Overwrites the :user-valid selector.
+	 * Marks an input element as invalid (red) / valid (green) / no-validation (grey). Overwrites the :user-valid selector.
 	 */
 	customValidity?: CustomValidityType;
 	/**
@@ -251,7 +274,7 @@ export type FormTextProps = {
 	readOnly?: boolean;
 };
 
-export const CheckVariantList = ['hidden'] as const;
+export const CheckVariantList = ['default', 'hidden'] as const;
 export type CheckVariantType = (typeof CheckVariantList)[number];
 export type FormCheckProps = {
 	/**
@@ -405,16 +428,49 @@ export const LinkReferrerPolicyList = [
 ] as const;
 export type LinkReferrerPolicyType = (typeof LinkReferrerPolicyList)[number];
 export type LinkProps = {
+	/**
+	 * Sets aria attribute based on [`aria-current`](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-current).
+	 */
 	current?: boolean | LinkCurrentType;
+	/**
+	 * Disables the link.
+	 */
 	disabled?: boolean;
+	/**
+	 * The [URL that the hyperlink points to](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a#href).
+	 */
 	href?: string;
+	/**
+	 * Hints for the human [language of the linked page or document](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a#hreflang).
+	 */
 	hreflang?: string;
+	/**
+	 * Sets aria attribute based on [`aria-label`](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-label).
+	 */
 	label?: string;
+	/**
+	 * Where to open the linked URL, as the name for a [browsing context](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a#target).
+	 */
 	target?: LinkTargetType;
+	/**
+	 * The relationship of the linked URL as space-separated link types.
+	 */
 	rel?: string;
+	/**
+	 * Sets aria role based on [`aria-role`](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles).
+	 */
 	role?: string;
+	/**
+	 * How much of the referrer to send when following the link.
+	 */
 	referrerpolicy?: LinkReferrerPolicyType;
+	/**
+	 * Sets aria role based on [`aria-selected`](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-selected).
+	 */
 	selected?: boolean;
+	/**
+	 * Alternative for default slot/children.
+	 */
 	text?: string;
 };
 

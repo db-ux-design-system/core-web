@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
-import { sanitize } from 'dompurify';
+import DOMPurify from 'dompurify';
 import { DBSelect } from '../../../../output/react/src';
 import { type BranchGroup, type GithubResponse } from './data';
 
@@ -88,6 +88,10 @@ const VersionSwitcher = () => {
 					(branch) =>
 						branch !== 'gh-pages' && !branch.includes('dependabot')
 				);
+
+			// `latest` isn't a branch, but only existing within gh-pages
+			tags.unshift('latest');
+
 			setCurrentBranch(branches);
 			setCurrentBranch(tags);
 			setGroupByTagsBranches(tags, branches);
@@ -100,9 +104,11 @@ const VersionSwitcher = () => {
 
 	const handleChange = (branch: string) => {
 		const lastPath = router.asPath;
-		const isTag = branch.split('.').length === 3 && branch.startsWith('v');
+		const isTag =
+			(branch.split('.').length === 3 && branch.startsWith('v')) ||
+			branch === 'latest';
 		window.location.replace(
-			sanitize(
+			DOMPurify.sanitize(
 				`https://${owner}.github.io/${repo}${
 					isTag ? '/version' : '/review'
 				}/${branch}${lastPath}`

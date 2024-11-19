@@ -31,7 +31,13 @@ const getFilteredContextData = (data) => {
 			if (currentType !== 'literal') {
 				foundType = data[currentType];
 			}
-			const resolvedType = `${foundType.values.join(unionSeperator)}`;
+			let resolvedType;
+			try {
+				resolvedType = `${foundType.values.join(unionSeperator)}`;
+			} catch (e) {
+				console.error(key, obj);
+				throw e;
+			}
 
 			resolvedData[key] = {
 				...obj,
@@ -46,11 +52,11 @@ const getFilteredContextData = (data) => {
 /**
  * Resolves props by data
  * @param resolvedData {object}
- * @param value {object}
+ * @param value {object|string}
  * @return {{resolvedType, name, type}}
  */
 const resolveProp = (resolvedData, value) => {
-	const { type } = value;
+	let type = value.type ?? value;
 	if (type !== type?.toLowerCase()) {
 		// This isn't a primitive like string, boolean, etc.
 		const foundData = resolvedData[type];
@@ -80,14 +86,14 @@ const resolveAllProps = (resolvedData, resolvedProps) => {
 				const { name, type } = value;
 				if (type instanceof Object) {
 					// In this case we have a literal or union
+					const resolvedType = type.values
+						.map((val) => {
+							return resolveProp(resolvedData, val).resolvedType;
+						})
+						.join(unionSeperator);
 					return {
 						...value,
-						resolvedType: type.values
-							.map((val) => {
-								return resolveProp(resolvedData, '', val)
-									.resolvedType;
-							})
-							.join(unionSeperator)
+						resolvedType
 					};
 				} else {
 					return resolveProp(resolvedData, value);
@@ -223,7 +229,17 @@ export const packageLinkPhase = (
 					declaration.attributes
 				);
 
-				return { ...declaration, members, attributes };
+				const slots = declaration.slots.map((slot) => ({
+					name: slot.name,
+					description:
+						resolvedUnions[
+							`${declaration.name}Props`
+						]?.resolvedValues.find(
+							(value) => value.name === slot.name
+						)?.comment || slot.description
+				}));
+
+				return { ...declaration, members, attributes, slots };
 			});
 			const path = module.path.split('/').at(-1);
 

@@ -30,6 +30,9 @@ export type Component = {
 
 export const getComponents = (): Component[] => [
 	{
+		name: 'stack'
+	},
+	{
 		name: 'switch',
 		overwrites: {
 			stencil: [{ from: 'HTMLElement', to: 'HTMLInputElement' }]

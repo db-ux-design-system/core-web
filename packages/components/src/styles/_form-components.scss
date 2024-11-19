@@ -267,7 +267,8 @@ $input-valid-types: "color", "date", "datetime-local", "email", "file", "hidden"
 			&::after {
 				@include icons.icon-content("*");
 
-				padding-inline-start: variables.$db-spacing-fixed-2xs;
+				// We're using 1px instead of a token here on purpose, as this is an edge case
+				padding-inline-start: 1px;
 			}
 		}
 	}
@@ -335,8 +336,6 @@ $input-valid-types: "color", "date", "datetime-local", "email", "file", "hidden"
 		@extend %db-overwrite-font-size-xs;
 
 		padding-block-end: variables.$db-spacing-fixed-xs;
-		pointer-events: none;
-		cursor: text;
 		max-inline-size: 25ch;
 		text-overflow: ellipsis;
 		white-space: nowrap;
@@ -478,10 +477,7 @@ $input-valid-types: "color", "date", "datetime-local", "email", "file", "hidden"
 		aspect-ratio: 1;
 		border: #{$check-border-size} solid var(--db-check-element-border-color, #{colors.$db-adaptive-on-bg-basic-emphasis-100-default});
 		block-size: $font-size-height;
-
-		// TODO: probably extract this to an overwrite or external file
-		// workarounds for power apps
-		inline-size: auto;
+		inline-size: $font-size-height;
 		padding: 0;
 
 		@include helpers.hover {

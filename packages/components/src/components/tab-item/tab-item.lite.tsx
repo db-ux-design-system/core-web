@@ -4,7 +4,8 @@ import {
 	Show,
 	useMetadata,
 	useRef,
-	useStore
+	useStore,
+	useTarget
 } from '@builder.io/mitosis';
 import type { DBTabItemProps, DBTabItemState } from './model';
 import { cls } from '../../utils';
@@ -31,7 +32,10 @@ export default function DBTabItem(props: DBTabItemProps) {
 			// We have different ts types in different frameworks, so we need to use any here
 			state._selected = (event.target as any)?.['checked'];
 
-			handleFrameworkEvent(this, event, 'checked');
+			useTarget({
+				angular: () => handleFrameworkEvent(this, event, 'checked'),
+				vue: () => handleFrameworkEvent(this, event, 'checked')
+			});
 		}
 	});
 

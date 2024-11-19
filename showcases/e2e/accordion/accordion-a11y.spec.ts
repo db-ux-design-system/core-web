@@ -1,11 +1,17 @@
 import { test } from '@playwright/test';
 // @ts-expect-error - required for playwright
-import { getA11yTest, hasWebComponentSyntax } from '../default.ts';
+import { hasWebComponentSyntax, runA11yCheckerTest, runAxeCoreTest } from "../default.ts";
+import { lvl3 } from '../fixtures/variants';
+
+
+
+// https://stackoverflow.com/questions/78129019/can-you-have-an-li-in-a-autonomous-custom-element-with-the-parent-ul-not
+const skipAxe= hasWebComponentSyntax(process.env.showcase)
 
 test.describe('DBAccordion', () => {
-	getA11yTest({
-		path: '04/accordion',
-		// https://stackoverflow.com/questions/78129019/can-you-have-an-li-in-a-autonomous-custom-element-with-the-parent-ul-not
-		skipAxe: hasWebComponentSyntax(process.env.showcase)
-	});
+	runAxeCoreTest({ path: '04/accordion',skipAxe });
+	runAxeCoreTest({ path: '04/accordion', color: lvl3,skipAxe });
+	runAxeCoreTest({ path: '04/accordion', density: 'functional',skipAxe });
+	runA11yCheckerTest({
+		path: '04/accordion'});
 });
