@@ -167,8 +167,24 @@ main .db-header {
 	font-size: var(--db-type-body-font-size-2xs);
 	font-weight: 700;
 	line-height: var(--db-type-body-line-height-2xs);
+
 	a {
 		text-decoration: none;
 	}
+
 	text-wrap: nowrap;
+}
+
+.section-card-container {
+	display: grid;
+	gap: var(--db-spacing-fixed-sm);
+	grid-template-columns: repeat(1, minmax(0, 1fr));
+
+	@media screen and (width >= 768px) {
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+	}
+
+	.db-card {
+		inline-size: 100%;
+	}
 }
