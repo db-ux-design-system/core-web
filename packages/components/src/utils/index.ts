@@ -225,12 +225,19 @@ export const enableCustomElementAttributePassing = (
 				parent.removeAttribute(attr.name);
 			}
 			if (attr && attr.name === 'class') {
+				const isWebComponent = attr.value.includes('hydrated');
+				const value = attr.value.replace('hydrated', '').trim();
 				const currentClass = element.getAttribute('class');
 				element.setAttribute(
 					attr.name,
-					`${currentClass ? `${currentClass} ` : ''}${attr.value}`
+					`${currentClass ? `${currentClass} ` : ''}${value}`
 				);
-				parent.removeAttribute(attr.name);
+				if (isWebComponent) {
+					// Stencil is using this class for lazy loading component
+					parent.setAttribute('class', 'hydrated');
+				} else {
+					parent.removeAttribute(attr.name);
+				}
 			}
 		}
 	}
