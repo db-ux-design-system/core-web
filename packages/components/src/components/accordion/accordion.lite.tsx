@@ -75,9 +75,7 @@ export default function DBAccordion(props: DBAccordionProps) {
 					childDetails
 				)) {
 					if (state._name === '') {
-						if (details.hasAttribute('name')) {
-							details.removeAttribute('name');
-						}
+						details.removeAttribute('name');
 					} else {
 						details.name = state._name;
 					}
