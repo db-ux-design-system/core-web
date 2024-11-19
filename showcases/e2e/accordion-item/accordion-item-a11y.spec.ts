@@ -4,6 +4,7 @@ import { runA11yCheckerTest, runAxeCoreTest } from '../default.ts';
 import { lvl3 } from '../fixtures/variants';
 
 // Showcase uses <li> outside of <ul> in this case
+// TODO: Let's investigate whether we could prevent this deactivation later on
 const axeDisableRules = ['listitem'];
 
 test.describe('DBAccordionItem', () => {
