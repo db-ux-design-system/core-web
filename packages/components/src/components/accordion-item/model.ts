@@ -26,10 +26,6 @@ export type DBAccordionItemDefaultProps = {
 	 * Title of the accordion-item as plain text
 	 */
 	headlinePlain?: string;
-	/**
-	 * Set details name for exclusive accordions, see https://chromestatus.com/feature/6710427028815872
-	 */
-	name?: string;
 };
 
 export type DBAccordionItemProps = DBAccordionItemDefaultProps &
