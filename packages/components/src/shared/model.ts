@@ -522,7 +522,6 @@ export type ActiveProps = {
 	active?: boolean;
 };
 
-
 export type InputEvent<T> = Event;
 export type InputEventProps<T> = {
 	input?: (event: InputEvent<T>) => void;
