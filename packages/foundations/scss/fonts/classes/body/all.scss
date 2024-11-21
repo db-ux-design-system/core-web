@@ -1,13 +1,8 @@
-@use "../index";
+@use "../../index";
 
 @each $font-size in index.$font-sizes {
 	.db-font-size-#{$font-size},
 	[data-font-size="#{$font-size}"] {
 		@extend %db-overwrite-font-size-#{$font-size};
-	}
-
-	.db-headline-size-#{$font-size},
-	[data-headline-size="#{$font-size}"] {
-		@extend %db-overwrite-headline-size-#{$font-size};
 	}
 }
