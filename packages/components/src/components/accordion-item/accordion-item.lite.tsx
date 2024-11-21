@@ -39,24 +39,25 @@ export default function DBAccordionItem(props: DBAccordionItemProps) {
 	// jscpd:ignore-end
 
 	return (
-		<details
-			ref={ref}
-			id={state._id}
-			class={cls('db-accordion-item', props.className)}
-			aria-disabled={getBooleanAsString(props.disabled)}
-			open={state._open}
-			name={props.name}>
-			<summary onClick={(event) => state.toggle(event)}>
-				<Show when={props.headlinePlain}>{props.headlinePlain}</Show>
-				<Show when={!props.headlinePlain}>
-					<Slot name="headline" />
-				</Show>
-			</summary>
-			<div>
-				<Show when={props.content} else={props.children}>
-					{props.content}
-				</Show>
-			</div>
-		</details>
+		<li id={state._id} class={cls('db-accordion-item', props.className)}>
+			<details
+				aria-disabled={getBooleanAsString(props.disabled)}
+				ref={ref}
+				open={state._open}>
+				<summary onClick={(event) => state.toggle(event)}>
+					<Show when={props.headlinePlain}>
+						{props.headlinePlain}
+					</Show>
+					<Show when={!props.headlinePlain}>
+						<Slot name="headline" />
+					</Show>
+				</summary>
+				<div>
+					<Show when={props.content} else={props.children}>
+						{props.content}
+					</Show>
+				</div>
+			</details>
+		</li>
 	);
 }

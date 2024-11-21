@@ -30,6 +30,9 @@ export type Component = {
 
 export const getComponents = (): Component[] => [
 	{
+		name: 'stack'
+	},
+	{
 		name: 'switch',
 		overwrites: {
 			stencil: [{ from: 'HTMLElement', to: 'HTMLInputElement' }]
@@ -192,15 +195,7 @@ export const getComponents = (): Component[] => [
 	},
 
 	{
-		name: 'tag',
-		overwrites: {
-			angular: [
-				{
-					from: /this.ref.nativeElement/g,
-					to: 'this.ref?.nativeElement'
-				}
-			]
-		}
+		name: 'tag'
 	},
 	{
 		name: 'checkbox',
