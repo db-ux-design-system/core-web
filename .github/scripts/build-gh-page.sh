@@ -30,7 +30,7 @@ if [[ $PRE_RELEASE == "true" || $RELEASE == "true" ]]; then
 		rm -rf ./public/version/"$NAME"
 	fi
 	if [[ $RELEASE == "true" ]]; then
- 		if [[ -d ./public/version/latest ]]; then
+		if [[ -d ./public/version/latest ]]; then
 			echo "    Remove dir ./public/version/latest"
 			rm -rf ./public/version/latest
 		fi
