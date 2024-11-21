@@ -47,8 +47,8 @@
   },
   "devDependencies": {
     "@axe-core/playwright": "^4.10.1",
-    "@commitlint/cli": "19.5.0",
-    "@commitlint/config-conventional": "19.5.0",
+    "@commitlint/cli": "19.6.0",
+    "@commitlint/config-conventional": "19.6.0",
     "@double-great/stylelint-a11y": "3.0.2",
     "@guidepup/guidepup": "0.22.3",
     "@guidepup/playwright": "^0.14.1",
