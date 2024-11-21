@@ -1,8 +1,8 @@
 - main:
   - heading "DBSection" [level=1]
   - link "Density arrow_up_right\" / \""
-  - text: Functional (Default) Regular Expressive
+  - text: Functional Functional Functional Functional (Default) Regular (Default) Regular (Default) Regular (Default) Regular Expressive Expressive Expressive Expressive
   - link "Width arrow_up_right\" / \""
-  - text: (Default) Full Medium Large
+  - text: (Default) Full (Default) Full (Default) Full (Default) Full Medium Medium Medium Medium Large Large Large Large
   - link "Spacing arrow_up_right\" / \""
-  - text: (Default) Medium Large Small None
+  - text: (Default) Medium (Default) Medium (Default) Medium (Default) Medium Large Large Large Large Small Small Small Small None None None None

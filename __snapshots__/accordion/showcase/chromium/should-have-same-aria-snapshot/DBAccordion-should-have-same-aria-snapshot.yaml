@@ -2,32 +2,60 @@
   - heading "DBAccordion" [level=1]
   - link "Density arrow_up_right\" / \""
   - text: Functional
-  - group: Item 1 chevron_down" / "
-  - group: Item 2 chevron_down" / "
-  - group: Item 3 chevron_down" / "
+  - list:
+    - listitem:
+      - group: Item 1 chevron_down" / "
+    - listitem:
+      - group: Item 2 chevron_down" / "
+    - listitem:
+      - group: Item 3 chevron_down" / "
   - text: (Default) Regular
-  - group: Item 1 chevron_down" / "
-  - group: Item 2 chevron_down" / "
-  - group: Item 3 chevron_down" / "
+  - list:
+    - listitem:
+      - group: Item 1 chevron_down" / "
+    - listitem:
+      - group: Item 2 chevron_down" / "
+    - listitem:
+      - group: Item 3 chevron_down" / "
   - text: Expressive
-  - group: Item 1 chevron_down" / "
-  - group: Item 2 chevron_down" / "
-  - group: Item 3 chevron_down" / "
+  - list:
+    - listitem:
+      - group: Item 1 chevron_down" / "
+    - listitem:
+      - group: Item 2 chevron_down" / "
+    - listitem:
+      - group: Item 3 chevron_down" / "
   - link "Variant arrow_up_right\" / \""
   - text: background (default)
-  - group: Item 1 chevron_down" / "
-  - group: Item 2 chevron_down" / "
-  - group: Item 3 chevron_down" / "
+  - list:
+    - listitem:
+      - group: Item 1 chevron_down" / "
+    - listitem:
+      - group: Item 2 chevron_down" / "
+    - listitem:
+      - group: Item 3 chevron_down" / "
   - text: card
-  - group: Item 1 chevron_down" / "
-  - group: Item 2 chevron_down" / "
-  - group: Item 3 chevron_down" / "
+  - list:
+    - listitem:
+      - group: Item 1 chevron_down" / "
+    - listitem:
+      - group: Item 2 chevron_down" / "
+    - listitem:
+      - group: Item 3 chevron_down" / "
   - link "Behaviour arrow_up_right\" / \""
   - text: (Default) Multiple
-  - group: Item 1 chevron_down" / "
-  - group: Item 2 chevron_down" / "
-  - group: Item 3 chevron_down" / "
+  - list:
+    - listitem:
+      - group: Item 1 chevron_down" / "
+    - listitem:
+      - group: Item 2 chevron_down" / "
+    - listitem:
+      - group: Item 3 chevron_down" / "
   - text: Single
-  - group: Item 1 chevron_down" / "
-  - group: Item 2 chevron_down" / "
-  - group: Item 3 chevron_down" / "
+  - list:
+    - listitem:
+      - group: Item 1 chevron_down" / "
+    - listitem:
+      - group: Item 2 chevron_down" / "
+    - listitem:
+      - group: Item 3 chevron_down" / "

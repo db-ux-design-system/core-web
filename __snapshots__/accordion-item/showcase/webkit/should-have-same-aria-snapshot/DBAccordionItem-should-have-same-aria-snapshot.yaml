@@ -1,12 +1,19 @@
 - main:
   - heading "DBAccordionItem" [level=1]
   - link "Density arrow_up_right\" / \""
-  - group: Functional chevron_down" / "
-  - group: (Default) Regular chevron_down" / "
-  - group: Expressive chevron_down" / "
+  - listitem:
+    - group: Functional chevron_down" / "
+  - listitem:
+    - group: (Default) Regular chevron_down" / "
+  - listitem:
+    - group: Expressive chevron_down" / "
   - link "Interaction States arrow_up_right\" / \""
-  - group: Enabled (Default)/Hover/Pressed chevron_down" / "
-  - group [disabled]: Disabled chevron_down" / "
+  - listitem:
+    - group: Enabled (Default)/Hover/Pressed chevron_down" / "
+  - listitem:
+    - group [disabled]: Disabled chevron_down" / "
   - link "Content States arrow_up_right\" / \""
-  - group: (Default) Collapsed chevron_down" / "
-  - group: Open chevron_down" / " Open
+  - listitem:
+    - group: (Default) Collapsed chevron_down" / "
+  - listitem:
+    - group: Open chevron_down" / " Open
