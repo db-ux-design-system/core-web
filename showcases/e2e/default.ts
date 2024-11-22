@@ -223,6 +223,8 @@ export const runAriaSnapshotTest = ({
 			await preScreenShot(page);
 		}
 
+		await page.waitForTimeout(1000); // We wait a little bit until everything loaded
+
 		const snapshot = await page.locator('main').ariaSnapshot();
 		expect(snapshot).toMatchSnapshot(`${title}.yaml`);
 	});
