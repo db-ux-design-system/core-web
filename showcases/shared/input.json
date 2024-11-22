@@ -201,6 +201,7 @@
 	},
 	{
 		"name": "Example - Types",
+		"codeFileName": "ExampleTypes",
 		"examples": [
 			{
 				"name": "(Default) Text",
@@ -303,6 +304,7 @@
 	},
 	{
 		"name": "Example - Types - Floating Label",
+		"codeFileName": "ExampleTypesFloatingLabel",
 		"examples": [
 			{
 				"name": "(Default) Text",

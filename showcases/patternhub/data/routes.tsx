@@ -308,13 +308,7 @@ const fillNavigationRecursive = (
 export const getAllNavigationItems = (isBreadcrumb?: boolean) => {
 	const tree: NavigationItem[] = [];
 	fillNavigationRecursive(ROUTES, tree, isBreadcrumb);
-	return tree.sort((a, b) => {
-		if ((a.path?.length ?? 0) > (b.path?.length ?? 0)) {
-			return -1;
-		}
-
-		return 1;
-	});
+	return tree;
 };
 
 export const getNavigationList = (path: string) => {

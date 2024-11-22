@@ -8,6 +8,7 @@ import getMigrationFile from './get-migration-file.js';
 import { getComponentGroup, getComponentName } from './utils.js';
 
 const componentsPath = './pages/components';
+const webTypesPath = './../../output/stencil/dist/web-types.json';
 
 const getRedirectOldFiles = (
 	importPath
@@ -16,13 +17,14 @@ const Fallback = () => <OldRoutingFallback />;
 export default Fallback;`;
 
 const generateDocsMdx = async () => {
-	const webTypes = JSON.parse(
-		FS.readFileSync(
-			'./../../output/stencil/dist/web-types.json',
-			'utf8'
-		).toString()
-	);
-	const elements = webTypes?.contributions?.html?.elements;
+	let elements = [];
+	if (FS.existsSync(webTypesPath)) {
+		const webTypes = JSON.parse(
+			FS.readFileSync(webTypesPath, 'utf8').toString()
+		);
+		elements = webTypes?.contributions?.html?.elements;
+	}
+
 	const components = JSON.parse(
 		FS.readFileSync('./data/components.json', 'utf8').toString()
 	);
