@@ -56,7 +56,7 @@ const Example = () => {
 													<span>
 														gap:db-spacing-fixed-xl
 													</span>
-													<DBIcon icon="edit">
+													<DBIcon icon="pen">
 														Edit
 													</DBIcon>
 													<div className="gap1">
