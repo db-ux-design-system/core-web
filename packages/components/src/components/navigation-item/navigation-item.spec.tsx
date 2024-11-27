@@ -31,6 +31,11 @@ const testComponent = () => {
 	});
 };
 const testA11y = () => {
+	test('should have same aria-snapshot', async ({ mount }, testInfo) => {
+		const component = await mount(comp);
+		const snapshot = await component.ariaSnapshot();
+		expect(snapshot).toMatchSnapshot(`${testInfo.testId}.yaml`);
+	});
 	test('DBNavigationItem should not have any automatically detectable accessibility issues', async ({
 		page,
 		mount
