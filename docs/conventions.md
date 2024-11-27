@@ -29,4 +29,4 @@ Both the [`.editorconfig`](https://editorconfig.org/) and [`.gitattributes`](htt
 The [xo](adr/linting-xo.adoc) tool provides a general code linting mechanism.
 
 ### prettier
-The link:adr/code_style_formatter-prettier.adoc[prettier] tool provides a general code prettfying.
+The [prettier](adr/code_style_formatter-prettier.adoc) tool provides a general code prettfying.
