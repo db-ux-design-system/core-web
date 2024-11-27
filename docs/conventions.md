@@ -26,7 +26,7 @@ The general code conventions are guaranteed by the following tools.
 Both the [`.editorconfig`](https://editorconfig.org/) and [`.gitattributes`](https://dev.to/deadlybyte/please-add-gitattributes-to-your-git-repository-1jld) ensure a consistent code structure and conventions through their configurations.
 
 ### xo
-The [xo](adr/linting-xo.adoc) tool provides a general code linting mechanism.
+The [xo](https://github.com/db-ui/core/blob/main/docs/adr/linting-xo.adoc) tool provides a general code linting mechanism.
 
 ### prettier
-The [prettier](adr/code_style_formatter-prettier.adoc) tool provides a general code prettfying.
+The [prettier](https://github.com/db-ui/core/blob/main/docs/adr/code_style_formatter-prettier.adoc) tool provides a general code prettfying.
