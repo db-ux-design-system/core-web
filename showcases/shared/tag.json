@@ -260,7 +260,7 @@
 								"name": "input",
 								"native": true,
 								"props": {
-									"for": "checkbox02",
+									"id": "checkbox02",
 									"type": "checkbox"
 								}
 							}

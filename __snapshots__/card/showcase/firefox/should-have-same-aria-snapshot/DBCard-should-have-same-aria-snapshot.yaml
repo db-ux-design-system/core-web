@@ -1,0 +1,26 @@
+- main:
+  - heading "DBCard" [level=1]
+  - link "Density arrow_up_right\" / \""
+  - strong: Functional
+  - strong: (Default) Regular
+  - strong: Expressive
+  - link "Elevation Level arrow_up_right\" / \""
+  - strong: (Default) Level 1 - Adaptive
+  - strong: Level 2 - Adaptive
+  - strong: Level 3 - Adaptive
+  - link "Spacing arrow_up_right\" / \""
+  - strong: (Default) Small
+  - strong: Medium
+  - strong: Large
+  - strong: None
+  - link "Behaviour arrow_up_right\" / \""
+  - strong: (Default) Non interactive
+  - button "Interactive":
+    - strong: Interactive
+  - link "Example arrow_up_right\" / \""
+  - button "Level 1 - Interactive":
+    - strong: Level 1 - Interactive
+  - button "Level 2 - Interactive":
+    - strong: Level 2 - Interactive
+  - button "Level 3 - Interactive":
+    - strong: Level 3 - Interactive
