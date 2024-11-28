@@ -2,7 +2,7 @@
 
 We're using [husky git hooks](https://www.npmjs.com/husky) in combination with [commitlint](https://www.npmjs.com/package/@commitlint/cli) according to <https://commitlint.js.org/#/concepts-commit-conventions>:
 
-```
+```text
 type(scope?): subject
 body?
 footer?
@@ -13,6 +13,7 @@ footer?
 source: [commitlint documentation](https://commitlint.js.org/#/?id=test)
 
 If you'd like to test your commit message previous to using it, you could test it on the command line:
+
 ```terminal
 echo 'foo: bar' | commitlint
 ```
