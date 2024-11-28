@@ -1,0 +1,27 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8" data-next-head=""/><meta name="viewport" content="width=device-width" data-next-head=""/><title data-next-head="">DB UI Mono</title><link data-next-font="size-adjust" rel="preconnect" href="/" crossorigin="anonymous"/><link rel="preload" href="/mono/review/3528-syntax-error-in-tests-with-dbtabs/_next/static/css/3c071edbefa84fe9.css" as="style"/><link rel="stylesheet" href="/mono/review/3528-syntax-error-in-tests-with-dbtabs/_next/static/css/3c071edbefa84fe9.css" data-n-g=""/><noscript data-n-css=""></noscript><script defer="" nomodule="" src="/mono/review/3528-syntax-error-in-tests-with-dbtabs/_next/static/chunks/polyfills-42372ed130431b0a.js"></script><script src="/mono/review/3528-syntax-error-in-tests-with-dbtabs/_next/static/chunks/webpack-fdb66aa0a7146c39.js" defer=""></script><script src="/mono/review/3528-syntax-error-in-tests-with-dbtabs/_next/static/chunks/framework-0bec6825be25244a.js" defer=""></script><script src="/mono/review/3528-syntax-error-in-tests-with-dbtabs/_next/static/chunks/main-cbe2b693040f463a.js" defer=""></script><script src="/mono/review/3528-syntax-error-in-tests-with-dbtabs/_next/static/chunks/pages/_app-9ac9af318eafe867.js" defer=""></script><script src="/mono/review/3528-syntax-error-in-tests-with-dbtabs/_next/static/chunks/pages/components/data-input/radio/docs/React-d615367f1ec6ef4c.js" defer=""></script><script src="/mono/review/3528-syntax-error-in-tests-with-dbtabs/_next/static/DO47_hx_ecZxQ5wler1jR/_buildManifest.js" defer=""></script><script src="/mono/review/3528-syntax-error-in-tests-with-dbtabs/_next/static/DO47_hx_ecZxQ5wler1jR/_ssgManifest.js" defer=""></script></head><body><div id="__next"><h2 id="react">React<a class="header-link" href="/mono/review/3528-syntax-error-in-tests-with-dbtabs/components/data-input/radio/docs/React?current=react"><span aria-hidden="true" class="db-icon" data-icon="paper_clip"></span>react<!-- --> anchor link</a></h2>
+<p>For general installation and configuration take a look at the <a target="_blank" referrerPolicy="no-referrer" href="https://www.npmjs.com/package/@db-ui/react-components">react-components</a> package.</p>
+<h3 id="use-component">Use component<a class="header-link" href="/mono/review/3528-syntax-error-in-tests-with-dbtabs/components/data-input/radio/docs/React?current=use-component"><span aria-hidden="true" class="db-icon" data-icon="paper_clip"></span>use-component<!-- --> anchor link</a></h3>
+<pre><code class="language-tsx">// App.tsx
+import { useState } from &quot;react&quot;;
+import { DBRadio } from &quot;@db-ui/react-components&quot;;
+
+const App = () =&gt; (
+	&lt;ul&gt;
+		{[&quot;X&quot;, &quot;Y&quot;, &quot;Z&quot;].map((radioName) =&gt; (
+			&lt;li key={radioName}&gt;
+				&lt;DBRadio
+					name=&quot;radio-group&quot;
+					value={radioName}
+					onChange={() =&gt; {
+						setRadio(radioName);
+					}}
+				&gt;
+					Radio {radioName}
+				&lt;/DBRadio&gt;
+			&lt;/li&gt;
+		))}
+	&lt;/ul&gt;
+);
+
+export default App;
+</code></pre></div><script id="__NEXT_DATA__" type="application/json">{"props":{"pageProps":{}},"page":"/components/data-input/radio/docs/React","query":{},"buildId":"DO47_hx_ecZxQ5wler1jR","assetPrefix":"/mono/review/3528-syntax-error-in-tests-with-dbtabs","nextExport":true,"autoExport":true,"isFallback":false,"scriptLoader":[]}</script></body></html>
