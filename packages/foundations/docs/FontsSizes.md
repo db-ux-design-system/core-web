@@ -33,7 +33,7 @@ All sizes of both sets are automatically adjusted by the selected [density](./..
 
 For **CSS** and **Tailwind** you need to use the import `@import "@db-ui/foundations/build/css/fonts/classes/all.css";` in your root `.css` file.
 
-For **SCSS** you can use the `.css` file, or you can use a placeholder by importing `@use @db-ui/foundations/build/scss/fonts` in your `.scss` file, where you need to reference the specific font size.
+For **SCSS** you can use the `.css` file, or you can use a placeholder by importing `@use "@db-ui/foundations/build/scss/fonts"` in your `.scss` file, where you need to reference the specific font size.
 Then you can use e.g. `sm` font-size by extending our SCSS placeholders like this: `@extend %db-overwrite-font-size-sm`.
 
 > **_NOTE:_** Make sure that you import the file after all other **foundation** css files, otherwise you should overwrite a specific `font-size` with the global selector

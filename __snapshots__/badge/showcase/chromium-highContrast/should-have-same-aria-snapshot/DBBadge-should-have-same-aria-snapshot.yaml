@@ -1,0 +1,28 @@
+- main:
+  - heading "DBBadge" [level=1]
+  - link "Density arrow_up_right\" / \""
+  - text: Functional (Default) Regular Expressive
+  - link "Emphasis arrow_up_right\" / \""
+  - text: (Default) Weak Strong
+  - link "Semantic arrow_up_right\" / \""
+  - text: (Default) Adaptive Neutral Critical Informational Successful Warning Adaptive Strong Neutral Strong Critical Strong Informational Strong Successful Strong Warning Strong
+  - link "Size arrow_up_right\" / \""
+  - text: (Default) Small Medium
+  - link "Content arrow_up_right\" / \""
+  - text: (Default) Text (Default) Text - Medium Dot - Small Dot - Medium Icon - Small Icon - Medium
+  - link "Placement arrow_up_right\" / \""
+  - text: (Default) Inline Label
+  - button "person\" / \" LABEL SHOULD BE SET Corner - Top - Left"
+  - text: Corner - Top - Left
+  - button "person\" / \" LABEL SHOULD BE SET Corner - Center - Left"
+  - text: Corner - Center - Left
+  - button "person\" / \" LABEL SHOULD BE SET Corner - Bottom- Left"
+  - text: Corner - Bottom- Left
+  - button "person\" / \" LABEL SHOULD BE SET Corner - Top - Right"
+  - text: Corner - Top - Right
+  - button "person\" / \" LABEL SHOULD BE SET Corner - Center - Right"
+  - text: Corner - Center - Right
+  - button "person\" / \" LABEL SHOULD BE SET Corner - Bottom- Right"
+  - text: Corner - Bottom- Right
+  - link "Examples arrow_up_right\" / \""
+  - text: 9 12 123 9 12 123 Numbers

@@ -18,7 +18,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: [macos-13, windows-2022]
+        os: [macos-13] # TODO: Skip window-2022 until https://github.com/guidepup/guidepup/issues/93 is solved. [macos-13, windows-2022]
         shardIndex: [1, 2, 3, 4]
         shardTotal: [4]
     steps:

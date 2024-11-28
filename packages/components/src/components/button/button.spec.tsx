@@ -46,6 +46,11 @@ const testButton = () => {
 };
 
 const testA11y = () => {
+	test('should have same aria-snapshot', async ({ mount }, testInfo) => {
+		const component = await mount(defaultIconButton);
+		const snapshot = await component.ariaSnapshot();
+		expect(snapshot).toMatchSnapshot(`${testInfo.testId}.yaml`);
+	});
 	test('should not have A11y issues', async ({ page, mount }) => {
 		await mount(defaultButton);
 		const accessibilityScanResults = await new AxeBuilder({ page })

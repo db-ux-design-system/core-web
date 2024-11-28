@@ -489,15 +489,13 @@ h6 {
 }
 
 .link-containers {
-	& > div {
-		display: grid;
-		grid-template-areas: "previous next";
-		gap: variables.$db-spacing-fixed-md;
-		justify-content: space-between;
+	display: grid;
+	grid-template-areas: "previous next";
+	gap: variables.$db-spacing-fixed-md;
+	justify-content: space-between;
 
-		a {
-			text-decoration: none;
-		}
+	a {
+		text-decoration: none;
 	}
 
 	.previous-link-container,
