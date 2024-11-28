@@ -91,7 +91,7 @@ export default function DBTabs(props: DBTabsProps) {
 
 					if (input && label) {
 						if (!input.id) {
-							const tabId = `${state._name}-tab-${index}`;
+							const tabId = `tabs-${state._name}-tab-${index}`;
 							label.setAttribute('for', tabId);
 							input.setAttribute(
 								'aria-controls',
@@ -128,7 +128,7 @@ export default function DBTabs(props: DBTabsProps) {
 					panel.id = `${state._name}-tab-panel-${index}`;
 					panel.setAttribute(
 						'aria-labelledby',
-						`${state._name}-tab-${index}`
+						`tabs-${state._name}-tab-${index}`
 					);
 				}
 			}
