@@ -2,24 +2,20 @@
 
 We're using [husky git hooks](https://www.npmjs.com/husky) in combination with [commitlint](https://www.npmjs.com/package/@commitlint/cli) according to <https://commitlint.js.org/#/concepts-commit-conventions>:
 
-....
+```
 type(scope?): subject
 body?
 footer?
-....
+```
 
-[quote, commitlint documentation, Source: https://commitlint.js.org/#/?id=test]
+> Type must be one of [build, chore, ci, docs, feat, fix, perf, refactor, revert, style, test] [type-enum]
 
----
-
-Type must be one of [build, chore, ci, docs, feat, fix, perf, refactor, revert, style, test] [type-enum]
-
----
+source: [commitlint documentation](https://commitlint.js.org/#/?id=test)
 
 If you'd like to test your commit message previous to using it, you could test it on the command line:
-....
+```terminal
 echo 'foo: bar' | commitlint
-....
+```
 
 ## Code conventions
 
