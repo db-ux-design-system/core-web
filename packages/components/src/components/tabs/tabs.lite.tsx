@@ -119,7 +119,7 @@ export default function DBTabs(props: DBTabsProps) {
 
 				const tabPanels = Array.from<Element>(
 					ref.querySelectorAll(
-						':is(& > .db-tab-panel, & > db-tab-panel > .db-tab-panel)'
+						':is(:scope > .db-tab-panel, :scope > db-tab-panel > .db-tab-panel)'
 					)
 				);
 				for (const panel of tabPanels) {
