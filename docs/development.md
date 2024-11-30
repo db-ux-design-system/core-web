@@ -24,7 +24,7 @@ npm run build
 # unix
 docker run --rm --network host -v $(pwd):/work/ -w /work/ -it mcr.microsoft.com/playwright:v1.30.0-focal /bin/bash
 
-#windows - allow file sharing (windows pop up)
+# windows - allow file sharing (windows pop up)
 docker run --rm --network host -v ${PWD}:/work/ -w /work/ -it mcr.microsoft.com/playwright:v1.30.0-focal /bin/bash
 
 npm install
