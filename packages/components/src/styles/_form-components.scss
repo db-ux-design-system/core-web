@@ -68,7 +68,7 @@ $check-border-size: min(#{variables.$db-border-height-2xs}, 2px);
 		label {
 			@extend %db-overwrite-font-size-md;
 
-			opacity: component.$default-disabled;
+			opacity: component.$placeholder-disabled;
 			position: absolute;
 			z-index: 2;
 			inset-block-start: calc(
@@ -134,7 +134,7 @@ $check-border-size: min(#{variables.$db-border-height-2xs}, 2px);
 						transition: opacity #{variables.$db-transition-straight-emotional};
 					}
 
-					opacity: component.$default-disabled;
+					opacity: component.$placeholder-disabled;
 				}
 			}
 		}
@@ -316,7 +316,7 @@ $input-valid-types: "color", "date", "datetime-local", "email", "file", "hidden"
 			);
 
 		@include placeholder-content() {
-			opacity: component.$default-disabled;
+			opacity: component.$placeholder-disabled;
 		}
 
 		@include helpers.hover {

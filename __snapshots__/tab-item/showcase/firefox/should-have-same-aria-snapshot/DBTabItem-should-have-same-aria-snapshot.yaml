@@ -1,0 +1,49 @@
+- main:
+  - heading "DBTabItem" [level=1]
+  - link "Density arrow_up_right\" / \""
+  - tablist:
+    - tab "Functional": on
+    - text: Functional
+  - tablist:
+    - tab "(Default) Regular": on
+    - text: (Default) Regular
+  - tablist:
+    - tab "Expressive": on
+    - text: Expressive
+  - link "States arrow_up_right\" / \""
+  - tablist:
+    - tab "(Default) Enabled": on
+    - text: (Default) Enabled
+  - tablist:
+    - tab "active" [selected]: on
+    - text: active
+  - tablist:
+    - tab "disabled" [disabled]: on
+    - text: disabled
+  - link "Content arrow_up_right\" / \""
+  - tablist:
+    - tab "(Default) Text": on
+    - text: (Default) Text
+  - tablist:
+    - tab "Text - Icon (Leading)": on
+    - text: Text - Icon (Leading)
+  - tablist:
+    - tab "Text - Icon (Trailing)": on
+    - text: Text - Icon (Trailing)
+  - tablist:
+    - tab "Icon": on
+    - text: Icon
+  - link "Behaviour arrow_up_right\" / \""
+  - tablist:
+    - tab "(Default) Auto Width": on
+    - text: (Default) Auto Width
+  - tablist:
+    - tab "Width full": on
+    - text: Width full
+  - link "Content Alignment Full Width arrow_up_right\" / \""
+  - tablist:
+    - tab "Left": on
+    - text: Left
+  - tablist:
+    - tab "Centered": on
+    - text: Centered
