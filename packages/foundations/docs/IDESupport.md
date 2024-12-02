@@ -2,8 +2,8 @@
 
 We try to support those IDEs:
 
--   [JetBrain](https://www.jetbrains.com/) IDEs (like. IntelliJ IDEA, WebStorm, etc.)
--   [Visual Studio Code (VSCode)](https://code.visualstudio.com/)
+- [JetBrain](https://www.jetbrains.com/) IDEs (like. IntelliJ IDEA, WebStorm, etc.)
+- [Visual Studio Code (VSCode)](https://code.visualstudio.com/)
 
 Most use cases of the Design System might work in other IDEs as well.
 
