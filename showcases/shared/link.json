@@ -94,6 +94,14 @@
 					"href": "#",
 					"content": "external"
 				}
+			},
+			{
+				"name": "Show Icon",
+				"props": {
+					"href": "#",
+					"content": "external",
+					"showIcon": false
+				}
 			}
 		]
 	}

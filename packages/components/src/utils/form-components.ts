@@ -10,6 +10,12 @@ export const handleFrameworkEvent = (
 	// ANGULAR: component.writeValue(event.target[modelValue]);
 };
 
-export default {
-	handleFrameworkEvent
+export const messageVisible = (message?: string, showMessage?: boolean) => {
+	if (showMessage === undefined) {
+		return !!message;
+	} else {
+		return showMessage && message;
+	}
 };
+
+export default { messageVisible, handleFrameworkEvent };

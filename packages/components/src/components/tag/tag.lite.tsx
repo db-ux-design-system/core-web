@@ -7,7 +7,7 @@ import {
 	useStore
 } from '@builder.io/mitosis';
 import { DBTagProps, DBTagState } from './model';
-import { cls, getBooleanAsString } from '../../utils';
+import { cls, getBooleanAsString, getHideIcon } from '../../utils';
 
 useMetadata({});
 
@@ -57,6 +57,7 @@ export default function DBTag(props: DBTagProps) {
 			data-semantic={props.semantic}
 			data-emphasis={props.emphasis}
 			data-icon={props.icon}
+			data-hide-icon={getHideIcon(props.showIcon)}
 			data-no-text={getBooleanAsString(props.noText)}
 			data-overflow={getBooleanAsString(props.overflow)}>
 			{props.children}

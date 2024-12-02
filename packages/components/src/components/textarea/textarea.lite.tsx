@@ -22,7 +22,10 @@ import {
 	DEFAULT_VALID_MESSAGE_ID_SUFFIX
 } from '../../shared/constants';
 import { ChangeEvent, InputEvent, InteractionEvent } from '../../shared/model';
-import { handleFrameworkEvent } from '../../utils/form-components';
+import {
+	handleFrameworkEvent,
+	messageVisible
+} from '../../utils/form-components';
 
 useMetadata({});
 
@@ -174,7 +177,7 @@ export default function DBTextarea(props: DBTextareaProps) {
 				cols={props.cols}
 			/>
 
-			<Show when={props.message}>
+			<Show when={messageVisible(props.message, props.showMessage)}>
 				<DBInfotext
 					size="small"
 					icon={props.messageIcon}

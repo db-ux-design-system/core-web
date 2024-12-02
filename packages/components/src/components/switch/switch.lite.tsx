@@ -1,5 +1,6 @@
 import {
 	onMount,
+	Show,
 	useMetadata,
 	useRef,
 	useStore,
@@ -95,7 +96,9 @@ export default function DBSwitch(props: DBSwitchProps) {
 					state.handleFocus(event)
 				}
 			/>
-			{props.children}
+			<Show when={props.label} else={props.children}>
+				{props.label}
+			</Show>
 		</label>
 	);
 }
