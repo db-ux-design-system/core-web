@@ -35,3 +35,4 @@ export * from './shared/icon-types';
 export * from './shared/model';
 export * from './utils/index';
 export * from './utils/navigation';
+export * from './components/stack';

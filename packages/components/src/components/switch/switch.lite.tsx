@@ -1,4 +1,11 @@
-import { onMount, useMetadata, useRef, useStore } from '@builder.io/mitosis';
+import {
+	onMount,
+	Show,
+	useMetadata,
+	useRef,
+	useStore,
+	useTarget
+} from '@builder.io/mitosis';
 import { DBSwitchProps, DBSwitchState } from './model';
 import { cls, uuid } from '../../utils';
 import { ChangeEvent, InteractionEvent } from '../../shared/model';
@@ -11,7 +18,7 @@ export default function DBSwitch(props: DBSwitchProps) {
 	const ref = useRef<HTMLInputElement>(null);
 	// jscpd:ignore-start
 	const state = useStore<DBSwitchState>({
-		_id: 'switch-' + uuid(),
+		_id: undefined,
 		_checked: false,
 		initialized: false,
 		handleChange: (event: ChangeEvent<HTMLInputElement>) => {
@@ -26,7 +33,10 @@ export default function DBSwitch(props: DBSwitchProps) {
 			// We have different ts types in different frameworks, so we need to use any here
 			state._checked = (event.target as any)?.['checked'];
 
-			handleFrameworkEvent(this, event, 'checked');
+			useTarget({
+				angular: () => handleFrameworkEvent(this, event, 'checked'),
+				vue: () => handleFrameworkEvent(this, event, 'checked')
+			});
 		},
 		handleBlur: (event: InteractionEvent<HTMLInputElement>) => {
 			if (props.onBlur) {
@@ -49,7 +59,7 @@ export default function DBSwitch(props: DBSwitchProps) {
 	});
 
 	onMount(() => {
-		state._id = props.id || state._id;
+		state._id = props.id ?? `switch-${uuid()}`;
 	});
 	// jscpd:ignore-end
 
@@ -86,7 +96,9 @@ export default function DBSwitch(props: DBSwitchProps) {
 					state.handleFocus(event)
 				}
 			/>
-			{props.children}
+			<Show when={props.label} else={props.children}>
+				{props.label}
+			</Show>
 		</label>
 	);
 }

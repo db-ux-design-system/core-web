@@ -38,13 +38,13 @@
     "test:components": "playwright test -c playwright.config.ts"
   },
   "devDependencies": {
-    "@playwright/experimental-ct-vue": "1.48.2",
-    "@vitejs/plugin-vue": "^5.1.4",
+    "@playwright/experimental-ct-vue": "1.49.0",
+    "@vitejs/plugin-vue": "^5.2.0",
     "replace-in-file": "^8.2.0",
     "tsx": "^4.19.2",
     "typescript": "^5.4.5",
-    "vite": "^5.4.10",
-    "vue": "^3.5.12",
+    "vite": "^6.0.1",
+    "vue": "^3.5.13",
     "vue-tsc": "^2.1.10"
   },
   "publishConfig": {

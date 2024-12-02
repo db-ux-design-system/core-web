@@ -21,11 +21,6 @@ designers, and content authors build, maintain, and scale best of class digital 
 	<figcaption><a href="https://bradfrost.com/blog/post/bdconf-stephen-hay-presents-responsive-design-workflow/" target="_blank" rel="noopener noreferrer">Stephen Hay</a>. <a href="https://vimeo.com/67476280" title="Brad Frosts at beyond tellerrand conference regarding Atomic Design" target="_blank" rel="noopener noreferrer">Cited in a talk by Brad Frost at beyond tellerrand conference.</a></figcaption>
 </figure>
 
-> [!WARNING]
-> We currently don't fully support Samsung Internet browser until it adds the following functionality with its new version 27, which is expected to get released later this year:
->
-> -   [CSS: `light-dark()`](https://caniuse.com/mdn-css_types_color_light-dark)
-
 ## Packages
 
 | Package                                                                     | Content                             | Version                                                                                                                                                                                                                                                                                  |
@@ -35,7 +30,7 @@ designers, and content authors build, maintain, and scale best of class digital 
 | [ngx-components](https://github.com/db-ui/mono/tree/main/output/angular)    | Native Angular components           | [![@db-ui/ngx-components on Npmjs](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fapi.github.com%2Frepos%2Fdb-ui%2Fmono%2Freleases%2Flatest&query=%24.tag_name&label=npm&color=ed1c24 "npm version")](https://npmjs.com/package/@db-ui/ngx-components "DB UI – on NPM")     |
 | [react-components](https://github.com/db-ui/mono/tree/main/output/react)    | Native React components             | [![@db-ui/react-components on Npmjs](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fapi.github.com%2Frepos%2Fdb-ui%2Fmono%2Freleases%2Flatest&query=%24.tag_name&label=npm&color=ed1c24 "npm version")](https://npmjs.com/package/@db-ui/react-components "DB UI – on NPM") |
 | [v-components](https://github.com/db-ui/mono/tree/main/output/vue)          | Native Vue 3 components             | [![@db-ui/v-components on Npmjs](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fapi.github.com%2Frepos%2Fdb-ui%2Fmono%2Freleases%2Flatest&query=%24.tag_name&label=npm&color=ed1c24 "npm version")](https://npmjs.com/package/@db-ui/v-components "DB UI – on NPM")         |
-| [web-components](https://github.com/db-ui/mono/tree/main/output/vue)        | Web Components                      | [![@db-ui/web-components on Npmjs](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fapi.github.com%2Frepos%2Fdb-ui%2Fmono%2Freleases%2Flatest&query=%24.tag_name&label=npm&color=ed1c24 "npm version")](https://npmjs.com/package/@db-ui/web-components "DB UI – on NPM")     |
+| [web-components](https://github.com/db-ui/mono/tree/main/output/stencil)    | Web Components                      | [![@db-ui/web-components on Npmjs](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fapi.github.com%2Frepos%2Fdb-ui%2Fmono%2Freleases%2Flatest&query=%24.tag_name&label=npm&color=ed1c24 "npm version")](https://npmjs.com/package/@db-ui/web-components "DB UI – on NPM")     |
 
 ## How to use
 
@@ -155,44 +150,7 @@ and `source/favicon.ico` as well.
 
 ## Development
 
-### Tests
-
-TODO: Elaborate on testing setup
-
-#### Component Tests
-
-**Visual regression tests**
-
-Playwright is used to create and compare screenshots of each individual component.
-
-To update screenshots just run the following (you need Docker installed and available on your shell):
-
-```shell
-npm run regenerate:screenshots
-```
-
-If you want to generate the screenshots manually, do the following:
-
-```shell
-npm run build
-
-# unix
-docker run --rm --network host -v $(pwd):/work/ -w /work/ -it mcr.microsoft.com/playwright:v1.30.0-focal /bin/bash
-
-#windows - allow file sharing (windows pop up)
-docker run --rm --network host -v ${PWD}:/work/ -w /work/ -it mcr.microsoft.com/playwright:v1.30.0-focal /bin/bash
-
-npm install
-
-cd output/${frameworkFolder}
-
-npx playwright test --update-snapshots
-```
-
-You can also use `docker-compose` to test or regenerate screenshots.
-
--   testing: `docker-compose -f ./e2e/docker-compose.yml up`
--   update screenshots: `docker-compose -f ./e2e/docker-compose.regenerate.yml up`
+If you're working as a developer on the DB UX Design System, please have a look at the relevant [documentation](docs/development.md).
 
 ## Contributions
 

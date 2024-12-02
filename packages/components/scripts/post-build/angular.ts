@@ -217,6 +217,10 @@ export default (tmp?: boolean) => {
 			{
 				from: '} from "../../utils"',
 				to: ', enableCustomElementAttributePassing } from "../../utils"'
+			},
+			{
+				from: /this.ref.nativeElement/g,
+				to: 'this.ref?.nativeElement'
 			}
 		];
 

@@ -4,10 +4,11 @@ import {
 	Show,
 	useMetadata,
 	useRef,
-	useStore
+	useStore,
+	useTarget
 } from '@builder.io/mitosis';
 import type { DBTabItemProps, DBTabItemState } from './model';
-import { cls } from '../../utils';
+import { cls, getHideIcon, getBooleanAsString } from '../../utils';
 import { ChangeEvent } from '../../shared/model';
 import { handleFrameworkEvent } from '../../utils/form-components';
 
@@ -29,9 +30,21 @@ export default function DBTabItem(props: DBTabItemProps) {
 			}
 
 			// We have different ts types in different frameworks, so we need to use any here
-			state._selected = (event.target as any)?.['checked'];
 
-			handleFrameworkEvent(this, event, 'checked');
+			useTarget({
+				stencil: () => {
+					const selected = (event.target as any)?.['checked'];
+					state._selected = getBooleanAsString(selected);
+				},
+				default: () => {
+					state._selected = (event.target as any)?.['checked'];
+				}
+			});
+
+			useTarget({
+				angular: () => handleFrameworkEvent(this, event, 'checked'),
+				vue: () => handleFrameworkEvent(this, event, 'checked')
+			});
 		}
 	});
 
@@ -53,6 +66,8 @@ export default function DBTabItem(props: DBTabItemProps) {
 				htmlFor={props.id}
 				data-icon={props.icon}
 				data-icon-after={props.iconAfter}
+				data-hide-icon={getHideIcon(props.showIcon)}
+				data-hide-icon-after={getHideIcon(props.showIcon)}
 				data-no-text={props.noText}>
 				<input
 					disabled={props.disabled}

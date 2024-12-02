@@ -277,7 +277,7 @@ const FormComponent = () => {
 				<p>
 					Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
 					diam nonumy eirmod tempor{' '}
-					<DBLink variant="inline" href="#">
+					<DBLink showIcon={false} href="#">
 						invidunt
 					</DBLink>{' '}
 					ut labore et dolore magna aliquyam erat, sed diam voluptua.
@@ -285,7 +285,7 @@ const FormComponent = () => {
 					Stet clita kasd gubergren, no sea takimata sanctus est Lorem
 					ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur
 					sadipscing elitr, sed diam nonumy eirmod tempor{' '}
-					<DBLink variant="inline" href="#">
+					<DBLink showIcon={false} href="#">
 						labore et dolore magna aliquyam erat, sed diam voluptua.
 						At vero eos et accusam et justo duo dolores et ea rebum.
 						Stet
@@ -447,6 +447,21 @@ const FormComponent = () => {
 						Beschreibungstext
 					</DBTooltip>
 				</DBButton>
+
+				<div>
+					<DBTag>
+						<DBButton>Test</DBButton>
+					</DBTag>
+					<DBTag>
+						<DBLink>Test</DBLink>
+					</DBTag>
+					<DBTag>
+						<DBRadio>Test</DBRadio>
+					</DBTag>
+					<DBTag>
+						<DBCheckbox>Test</DBCheckbox>
+					</DBTag>
+				</div>
 			</div>
 		</div>
 	);

@@ -41,7 +41,10 @@ export default function DBDrawer(props: DBDrawerProps) {
 					if (dialogContainerRef) {
 						dialogContainerRef.hidden = false;
 					}
-					if (props.backdrop === 'none') {
+					if (
+						props.backdrop === 'none' ||
+						props.variant === 'inside'
+					) {
 						ref.show();
 					} else {
 						ref.showModal();
@@ -79,7 +82,8 @@ export default function DBDrawer(props: DBDrawerProps) {
 				state.handleClose(event);
 			}}
 			onKeyDown={(event) => state.handleClose(event)}
-			data-backdrop={props.backdrop}>
+			data-backdrop={props.backdrop}
+			data-variant={props.variant}>
 			<article
 				ref={dialogContainerRef}
 				class={cls('db-drawer-container', props.className)}

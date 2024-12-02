@@ -55,6 +55,8 @@ import * as sectionCode from '../components/code-docs/section';
 import * as navigationCode from '../components/code-docs/navigation';
 import * as navigationItemCode from '../components/code-docs/navigation-item';
 import * as popoverCode from '../components/code-docs/popover';
+import * as StackCode from '../components/code-docs/stack';
+import StackComponent from '../../react-showcase/src/components/stack';
 import Components from './components.json';
 
 export type NavigationItem = {
@@ -67,6 +69,7 @@ export type NavigationItem = {
 };
 
 const nameComponentMap = {
+	stack: <StackComponent slotCode={StackCode} />,
 	button: <ButtonComponent slotCode={buttonCode} />,
 	link: <LinkComponent slotCode={linkCode} />,
 	brand: <BrandComponent slotCode={brandCode} />,
@@ -226,7 +229,11 @@ export const ROUTES: NavigationItem[] = [
 					}
 				]
 			},
-			{ label: 'Testing Overview Table', path: '/foundations/test-table' }
+			{
+				label: 'Testing Overview Table',
+				path: '/foundations/test-table'
+			},
+			{ label: 'IDE Support', path: '/foundations/ide' }
 		]
 	},
 	{

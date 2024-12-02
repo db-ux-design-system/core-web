@@ -59,13 +59,19 @@ const changeFile = (
 					);
 			}
 
-			if (line.includes('<Slot name=')) {
-				foundSlots.push(
-					line
-						.replace('<Slot name="', '')
-						.replace('"></Slot>', '')
-						.trim()
+			if (line.includes('<slot name=')) {
+				const firstPart = line.substring(
+					line.indexOf('<slot name='),
+					line.length
 				);
+				const slotName = firstPart
+					.substring(0, firstPart.indexOf('</slot>') + 7)
+					.replace('<slot name="', '')
+					.replace('"></slot>', '')
+					.trim();
+				if (!foundSlots.includes(slotName)) {
+					foundSlots.push(slotName);
+				}
 			}
 
 			return line;
@@ -97,12 +103,12 @@ export default (tmp?: boolean) => {
 		const upperComponentName = `DB${transformToUpperComponentName(component.name)}`;
 
 		replaceInFileSync({
-			files: file,
+			files: [file],
 			processor: (input: string) =>
 				changeFile(componentName, upperComponentName, input)
 		});
 
-		let replacements: Overwrite[] = [
+		const replacements: Overwrite[] = [
 			{
 				from: '} from "../../utils"',
 				to: ', enableCustomElementAttributePassing } from "../../utils"'

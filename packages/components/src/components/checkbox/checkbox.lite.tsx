@@ -4,7 +4,8 @@ import {
 	Show,
 	useMetadata,
 	useRef,
-	useStore
+	useStore,
+	useTarget
 } from '@builder.io/mitosis';
 import { DBCheckboxProps, DBCheckboxState } from './model';
 import { cls, delay, hasVoiceOver, uuid } from '../../utils';
@@ -16,7 +17,10 @@ import {
 	DEFAULT_VALID_MESSAGE_ID_SUFFIX
 } from '../../shared/constants';
 import { ChangeEvent, InteractionEvent } from '../../shared/model';
-import { handleFrameworkEvent } from '../../utils/form-components';
+import {
+	handleFrameworkEvent,
+	messageVisible
+} from '../../utils/form-components';
 import DBInfotext from '../infotext/infotext.lite';
 
 useMetadata({});
@@ -26,10 +30,10 @@ export default function DBCheckbox(props: DBCheckboxProps) {
 	// jscpd:ignore-start
 	const state = useStore<DBCheckboxState>({
 		initialized: false,
-		_id: 'checkbox-' + uuid(),
-		_messageId: this._id + DEFAULT_MESSAGE_ID_SUFFIX,
-		_validMessageId: this._id + DEFAULT_VALID_MESSAGE_ID_SUFFIX,
-		_invalidMessageId: this._id + DEFAULT_INVALID_MESSAGE_ID_SUFFIX,
+		_id: undefined,
+		_messageId: undefined,
+		_validMessageId: undefined,
+		_invalidMessageId: undefined,
 		_descByIds: '',
 		_voiceOverFallback: '',
 		handleChange: (event: ChangeEvent<HTMLInputElement>) => {
@@ -40,7 +44,11 @@ export default function DBCheckbox(props: DBCheckboxProps) {
 			if (props.change) {
 				props.change(event);
 			}
-			handleFrameworkEvent(this, event, 'checked');
+
+			useTarget({
+				angular: () => handleFrameworkEvent(this, event, 'checked'),
+				vue: () => handleFrameworkEvent(this, event, 'checked')
+			});
 
 			/* For a11y reasons we need to map the correct message with the checkbox */
 			if (!ref?.validity.valid || props.customValidity === 'invalid') {
@@ -90,18 +98,20 @@ export default function DBCheckbox(props: DBCheckboxProps) {
 
 	onMount(() => {
 		state.initialized = true;
-		state._id = props.id || state._id;
+		const mId = props.id ?? `checkbox-${uuid()}`;
+		state._id = mId;
+		state._messageId = mId + DEFAULT_MESSAGE_ID_SUFFIX;
+		state._validMessageId = mId + DEFAULT_VALID_MESSAGE_ID_SUFFIX;
+		state._invalidMessageId = mId + DEFAULT_INVALID_MESSAGE_ID_SUFFIX;
 	});
 
 	onUpdate(() => {
 		if (state._id) {
 			const messageId = state._id + DEFAULT_MESSAGE_ID_SUFFIX;
-			const validMessageId = state._id + DEFAULT_VALID_MESSAGE_ID_SUFFIX;
-			const invalidMessageId =
-				state._id + DEFAULT_INVALID_MESSAGE_ID_SUFFIX;
 			state._messageId = messageId;
-			state._validMessageId = validMessageId;
-			state._invalidMessageId = invalidMessageId;
+			state._validMessageId = state._id + DEFAULT_VALID_MESSAGE_ID_SUFFIX;
+			state._invalidMessageId =
+				state._id + DEFAULT_INVALID_MESSAGE_ID_SUFFIX;
 
 			if (props.message) {
 				state._descByIds = messageId;
@@ -160,13 +170,12 @@ export default function DBCheckbox(props: DBCheckboxProps) {
 					}
 					aria-describedby={state._descByIds}
 				/>
-				<Show when={props.label}>
-					<span>{props.label}</span>
+				<Show when={props.label} else={props.children}>
+					{props.label}
 				</Show>
-				{props.children}
 			</label>
 
-			<Show when={props.message}>
+			<Show when={messageVisible(props.message, props.showMessage)}>
 				<DBInfotext
 					size="small"
 					icon={props.messageIcon}

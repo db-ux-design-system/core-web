@@ -22,9 +22,9 @@ export default function DBSection(props: DBSectionProps) {
 			ref={ref}
 			id={state._id}
 			class={cls('db-section', props.className)}
-			data-spacing={props.spacing || 'medium'}>
-			{/* TODO: We need to reevaluate whether we could get rid of this tag */}
-			<div data-width={props.width}>{props.children}</div>
+			data-spacing={props.spacing || 'medium'}
+			data-width={props.width}>
+			{props.children}
 		</section>
 	);
 }

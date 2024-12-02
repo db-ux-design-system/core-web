@@ -25,7 +25,8 @@ $label-size-height-2xs: calc(
 );
 
 $floating-label-size: calc(
-	#{variables.$db-spacing-fixed-3xs} + #{variables.$db-spacing-fixed-2xs} + #{$label-size-height-2xs}
+	#{variables.$db-spacing-fixed-3xs} + #{variables.$db-spacing-fixed-2xs} +
+		#{$label-size-height-2xs}
 );
 
 $input-types: "button", "checkbox", "color", "date", "datetime-local", "email",
@@ -68,7 +69,7 @@ $check-border-size: min(#{variables.$db-border-height-2xs}, 2px);
 		label {
 			@extend %db-overwrite-font-size-md;
 
-			opacity: component.$default-disabled;
+			opacity: component.$placeholder-disabled;
 			position: absolute;
 			z-index: 2;
 			inset-block-start: calc(
@@ -131,10 +132,11 @@ $check-border-size: min(#{variables.$db-border-height-2xs}, 2px);
 			#{$selector} {
 				@include placeholder-content() {
 					@media screen and (prefers-reduced-motion: no-preference) {
-						transition: opacity #{variables.$db-transition-straight-emotional};
+						transition: opacity
+							#{variables.$db-transition-straight-emotional};
 					}
 
-					opacity: component.$default-disabled;
+					opacity: component.$placeholder-disabled;
 				}
 			}
 		}
@@ -163,16 +165,16 @@ $check-border-size: min(#{variables.$db-border-height-2xs}, 2px);
 @mixin get-validity-color($selector, $key: "valid") {
 	$variant: "successful";
 
+	@if ($key != "valid") {
+		$variant: "critical";
+	}
+
 	@include get-validity-message($key);
 
 	#{$selector},
 	[id$="-placeholder"] {
 		color: var(--db-#{$variant}-on-bg-basic-emphasis-100-default);
 		caret-color: var(--db-#{$variant}-on-bg-basic-emphasis-100-default);
-	}
-
-	@if ($key != "valid") {
-		$variant: "critical";
 	}
 
 	@if ($selector != textarea) {
@@ -203,8 +205,8 @@ $check-border-size: min(#{variables.$db-border-height-2xs}, 2px);
 }
 
 // This doesn't contain text, search and password, because they don't have an auto-validation
-$input-valid-types: "color", "date", "datetime-local", "email", "file", "hidden",
-	"month", "number", "range", "tel", "time", "url", "week";
+$input-valid-types: "color", "date", "datetime-local", "email", "file",
+	"hidden", "month", "number", "range", "tel", "time", "url", "week";
 
 @function get-validations($selector, $key) {
 	$validations: ":required";
@@ -267,7 +269,8 @@ $input-valid-types: "color", "date", "datetime-local", "email", "file", "hidden"
 			&::after {
 				@include icons.icon-content("*");
 
-				padding-inline-start: variables.$db-spacing-fixed-2xs;
+				// We're using 1px instead of a token here on purpose, as this is an edge case
+				padding-inline-start: 1px;
 			}
 		}
 	}
@@ -315,7 +318,7 @@ $input-valid-types: "color", "date", "datetime-local", "email", "file", "hidden"
 			);
 
 		@include placeholder-content() {
-			opacity: component.$default-disabled;
+			opacity: component.$placeholder-disabled;
 		}
 
 		@include helpers.hover {
@@ -335,8 +338,6 @@ $input-valid-types: "color", "date", "datetime-local", "email", "file", "hidden"
 		@extend %db-overwrite-font-size-xs;
 
 		padding-block-end: variables.$db-spacing-fixed-xs;
-		pointer-events: none;
-		cursor: text;
 		max-inline-size: 25ch;
 		text-overflow: ellipsis;
 		white-space: nowrap;
@@ -370,10 +371,8 @@ $input-valid-types: "color", "date", "datetime-local", "email", "file", "hidden"
 		// 1px for border
 		inset-block-start: calc(
 			#{variables.$db-sizing-md} / 2 - #{variables.$db-spacing-fixed-xs} *
-				var(--db-label-visible-spacing, 0) + #{$label-size-height-xs} * var(
-					--db-label-visible-height,
-					1
-				) - 1px
+				var(--db-label-visible-spacing, 0) + #{$label-size-height-xs} *
+				var(--db-label-visible-height, 1) - 1px
 		);
 		color: colors.$db-adaptive-on-bg-basic-emphasis-100-default;
 	}
@@ -476,12 +475,13 @@ $input-valid-types: "color", "date", "datetime-local", "email", "file", "hidden"
 		place-content: center center;
 		appearance: none;
 		aspect-ratio: 1;
-		border: #{$check-border-size} solid var(--db-check-element-border-color, #{colors.$db-adaptive-on-bg-basic-emphasis-100-default});
+		border: #{$check-border-size} solid
+			var(
+				--db-check-element-border-color,
+				#{colors.$db-adaptive-on-bg-basic-emphasis-100-default}
+			);
 		block-size: $font-size-height;
-
-		// TODO: probably extract this to an overwrite or external file
-		// workarounds for power apps
-		inline-size: auto;
+		inline-size: $font-size-height;
 		padding: 0;
 
 		@include helpers.hover {

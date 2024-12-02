@@ -1,6 +1,7 @@
 import {
 	onMount,
 	onUpdate,
+	Show,
 	useMetadata,
 	useRef,
 	useStore
@@ -51,7 +52,9 @@ export default function DBBadge(props: DBBadgeProps) {
 				props.placement?.startsWith('corner') &&
 				(props.label ?? DEFAULT_LABEL)
 			}>
-			{props.children}
+			<Show when={props.text} else={props.children}>
+				{props.text}
+			</Show>
 		</span>
 	);
 }

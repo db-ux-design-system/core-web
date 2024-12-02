@@ -1,38 +1,45 @@
 import FS from 'node:fs';
-import { getCodeByFramework, getComponentName } from './utils.js';
+import {
+	getCodeByFramework,
+	getComponentName,
+	transformToUpperComponentName
+} from './utils.js';
 
 const sharedPath = '../shared';
+const webTypesPath = './../../output/stencil/dist/web-types.json';
 
 const generateExampleJSX = () => {
-	const docs = JSON.parse(
-		FS.readFileSync('./../../output/docs.json', 'utf8').toString()
-	);
+	let elements = [];
+	if (FS.existsSync(webTypesPath)) {
+		const webTypes = JSON.parse(
+			FS.readFileSync(webTypesPath, 'utf8').toString()
+		);
+		elements = webTypes?.contributions?.html?.elements;
+	}
+
 	const imports = [];
 	const examples = [];
-	for (const key of Object.keys(docs)) {
-		const componentName = getComponentName(key);
-		const componentValue = docs[key].at(0);
-		if (componentValue) {
-			imports.push(componentValue.displayName);
-			const path = `${sharedPath}/${componentName}.json`;
-			if (FS.existsSync(path)) {
-				const variants = JSON.parse(FS.readFileSync(path, 'utf8'));
+	for (const { name } of elements) {
+		const componentName = getComponentName(name);
+		imports.push(`DB${transformToUpperComponentName(componentName)}`);
+		const path = `${sharedPath}/${componentName}.json`;
+		if (FS.existsSync(path)) {
+			const variants = JSON.parse(FS.readFileSync(path, 'utf8'));
 
-				for (const variant of variants) {
-					for (const example of variant.examples) {
-						const code = getCodeByFramework(
-							componentName,
-							'react',
-							example,
-							true,
-							variant.children
-						);
-						examples.push(
-							`"${componentName}${variant.name}${
-								example.name
-							}":renderToString(${code.slice(0, code.length)})`
-						);
-					}
+			for (const variant of variants) {
+				for (const example of variant.examples) {
+					const code = getCodeByFramework(
+						componentName,
+						'react',
+						example,
+						true,
+						variant.children
+					);
+					examples.push(
+						`"${componentName}${variant.name}${
+							example.name
+						}":renderToString(${code.slice(0, code.length)})`
+					);
 				}
 			}
 		}

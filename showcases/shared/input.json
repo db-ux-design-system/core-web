@@ -201,6 +201,7 @@
 	},
 	{
 		"name": "Example - Types",
+		"codeFileName": "ExampleTypes",
 		"examples": [
 			{
 				"name": "(Default) Text",
@@ -287,6 +288,7 @@
 			},
 			{
 				"name": "Datalist",
+				"experimental": true,
 				"props": {
 					"label": "Label",
 					"dataList": true
@@ -294,6 +296,7 @@
 			},
 			{
 				"name": "File",
+				"experimental": true,
 				"props": {
 					"label": "Label",
 					"type": "file"
@@ -303,6 +306,7 @@
 	},
 	{
 		"name": "Example - Types - Floating Label",
+		"codeFileName": "ExampleTypesFloatingLabel",
 		"examples": [
 			{
 				"name": "(Default) Text",
@@ -401,6 +405,7 @@
 			},
 			{
 				"name": "Datalist",
+				"experimental": true,
 				"props": {
 					"label": "Label",
 					"variant": "floating",
@@ -409,6 +414,7 @@
 			},
 			{
 				"name": "File",
+				"experimental": true,
 				"props": {
 					"label": "Label",
 					"type": "file",

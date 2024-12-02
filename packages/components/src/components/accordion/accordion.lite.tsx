@@ -9,18 +9,20 @@ import {
 } from '@builder.io/mitosis';
 import { DBAccordionItemDefaultProps } from '../accordion-item/model';
 import { DBAccordionProps, DBAccordionState } from './model';
-import { cls } from '../../utils';
+import { cls, uuid } from '../../utils';
 import DBAccordionItem from '../accordion-item/accordion-item.lite';
+import { DEFAULT_ID } from '../../shared/constants';
 
 useMetadata({});
 
 export default function DBAccordion(props: DBAccordionProps) {
-	const ref = useRef<HTMLDivElement>(null);
+	const ref = useRef<HTMLUListElement>(null);
 	// jscpd:ignore-start
 	const state = useStore<DBAccordionState>({
-		openItems: [],
-		clickedId: '',
+		_id: DEFAULT_ID,
+		_name: '',
 		initialized: false,
+		_initOpenIndexDone: false,
 		convertItems(
 			items: unknown[] | string | undefined
 		): DBAccordionItemDefaultProps[] {
@@ -35,89 +37,80 @@ export default function DBAccordion(props: DBAccordionProps) {
 			}
 
 			return [];
-		},
-		handleItemClick: (id: string) => {
-			if (state.openItems.includes(id)) {
-				if (props.behaviour === 'single') {
-					state.openItems = [];
-				} else {
-					state.openItems = state.openItems.filter(
-						(oItem) => oItem !== id
-					);
-				}
-			} else if (props.behaviour === 'single') {
-				state.openItems = [id];
-			} else {
-				state.openItems = [...state.openItems, id];
-			}
-
-			if (props.onChange) {
-				props.onChange(state.openItems);
-			}
 		}
 	});
 
 	onMount(() => {
+		state._id = props.id || 'accordion-' + uuid();
 		state.initialized = true;
+		state._initOpenIndexDone = true;
 	});
 	// jscpd:ignore-end
 
 	onUpdate(() => {
-		if (ref && state.initialized) {
-			const childDetails = ref.getElementsByTagName('details');
-			if (childDetails) {
-				let initOpenItems: string[] = [];
-				Array.from<HTMLDetailsElement>(childDetails).forEach(
-					(details: HTMLDetailsElement, index: number) => {
-						const id = details.id;
-						if (
-							details.open ||
-							props.initOpenIndex?.includes(index)
-						) {
-							initOpenItems.push(id);
-						}
-						const summaries =
-							details.getElementsByTagName('summary');
-						if (summaries?.length > 0) {
-							summaries[0].addEventListener('click', () => {
-								state.clickedId = id;
-							});
-						}
+		// If we have a single behaviour we first check for
+		// props.name otherwise for state_id
+		if (state.initialized) {
+			if (props.behaviour === 'single') {
+				if (props.name) {
+					if (state._name !== props.name) {
+						state._name = props.name;
 					}
-				);
-				if (props.behaviour === 'single' && initOpenItems.length > 1) {
-					initOpenItems = [initOpenItems[0]];
+				} else {
+					if (state._name !== state._id && state._id) {
+						state._name = state._id;
+					}
 				}
-				state.openItems = initOpenItems;
-				state.initialized = false;
+			} else {
+				state._name = '';
 			}
 		}
-	}, [ref, state.initialized]);
-
-	onUpdate(() => {
-		if (state.clickedId?.length > 0) {
-			state.handleItemClick(state.clickedId);
-			state.clickedId = '';
-		}
-	}, [state.clickedId]);
+	}, [state.initialized, props.name, props.behaviour, state._id]);
 
 	onUpdate(() => {
 		if (ref) {
 			const childDetails = ref.getElementsByTagName('details');
 			if (childDetails) {
-				Array.from<HTMLDetailsElement>(childDetails).forEach(
-					(details: HTMLDetailsElement) => {
-						details.open = state.openItems.includes(details.id);
+				for (const details of Array.from<HTMLDetailsElement>(
+					childDetails
+				)) {
+					if (state._name === '') {
+						details.removeAttribute('name');
+					} else {
+						details.name = state._name;
 					}
-				);
+				}
 			}
 		}
-	}, [state.openItems]);
+	}, [ref, state._name]);
+
+	onUpdate(() => {
+		if (ref && state._initOpenIndexDone) {
+			if (props?.initOpenIndex && props.initOpenIndex?.length > 0) {
+				const childDetails = ref.getElementsByTagName('details');
+				if (childDetails) {
+					const initOpenIndex =
+						props.behaviour === 'single' &&
+						props.initOpenIndex.length > 1
+							? [props.initOpenIndex[0]] // use only one index for behaviour=single
+							: props.initOpenIndex;
+					Array.from<HTMLDetailsElement>(childDetails).forEach(
+						(details: HTMLDetailsElement, index: number) => {
+							if (initOpenIndex.includes(index)) {
+								details.open = true;
+							}
+						}
+					);
+				}
+			}
+			state._initOpenIndexDone = false;
+		}
+	}, [ref, state._initOpenIndexDone, props.initOpenIndex]);
 
 	return (
-		<div
+		<ul
 			ref={ref}
-			id={props.id}
+			id={state._id}
 			class={cls('db-accordion', props.className)}
 			data-variant={props.variant}>
 			<Show when={!props.items}>{props.children}</Show>
@@ -133,6 +126,6 @@ export default function DBAccordion(props: DBAccordionProps) {
 					)}
 				</For>
 			</Show>
-		</div>
+		</ul>
 	);
 }

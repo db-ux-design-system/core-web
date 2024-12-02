@@ -6,7 +6,9 @@ import {
 	IconProps,
 	InnerCloseButtonProps,
 	PopoverProps,
-	SemanticProps
+	SemanticProps,
+	ShowIconProps,
+	TextProps
 } from '../../shared/model';
 
 export const NotificationVariantList = [
@@ -81,7 +83,9 @@ export type DBNotificationProps = DBNotificationDefaultProps &
 	IconProps &
 	SemanticProps &
 	InnerCloseButtonProps &
-	PopoverProps;
+	PopoverProps &
+	ShowIconProps &
+	TextProps;
 
 export type DBNotificationDefaultState = {};
 

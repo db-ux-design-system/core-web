@@ -14,10 +14,8 @@ test.describe('DBSection', () => {
 				await nvda.press('Shift+Tab'); // Jump into the website -> Section 2
 				await nvda?.clearSpokenPhraseLog();
 				await nvda?.previous(); // Section 1
-				await nvda?.next(); // Section 2
 			} else if (voiceOver) {
 				await voiceOver?.previous(); // Section 1
-				await voiceOver?.next(); // Section 2
 			}
 		}
 	});

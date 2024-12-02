@@ -93,6 +93,8 @@ $spacings: (
 			--db-drawer-content-padding-inline,
 			#{map.get($spacing, "inline")}
 		);
+		max-block-size: fit-content;
+		overflow: auto;
 	}
 }
 
@@ -175,19 +177,23 @@ $spacings: (
 			@media screen and (prefers-reduced-motion: no-preference) {
 				&:not([data-direction]),
 				&[data-direction="right"] {
-					animation: show-right-to-left #{variables.$db-transition-straight-show};
+					animation: show-right-to-left
+						#{variables.$db-transition-straight-show};
 				}
 
 				&[data-direction="left"] {
-					animation: show-left-to-right #{variables.$db-transition-straight-show};
+					animation: show-left-to-right
+						#{variables.$db-transition-straight-show};
 				}
 
 				&[data-direction="up"] {
-					animation: show-bottom-to-top #{variables.$db-transition-straight-show};
+					animation: show-bottom-to-top
+						#{variables.$db-transition-straight-show};
 				}
 
 				&[data-direction="down"] {
-					animation: show-top-to-bottom #{variables.$db-transition-straight-show};
+					animation: show-top-to-bottom
+						#{variables.$db-transition-straight-show};
 				}
 			}
 
@@ -195,19 +201,23 @@ $spacings: (
 				@media screen and (prefers-reduced-motion: no-preference) {
 					&:not([data-direction]),
 					&[data-direction="right"] {
-						animation: hide-right-to-left #{variables.$db-transition-straight-hide};
+						animation: hide-right-to-left
+							#{variables.$db-transition-straight-hide};
 					}
 
 					&[data-direction="left"] {
-						animation: hide-left-to-right #{variables.$db-transition-straight-hide};
+						animation: hide-left-to-right
+							#{variables.$db-transition-straight-hide};
 					}
 
 					&[data-direction="up"] {
-						animation: hide-bottom-to-top #{variables.$db-transition-straight-hide};
+						animation: hide-bottom-to-top
+							#{variables.$db-transition-straight-hide};
 					}
 
 					&[data-direction="down"] {
-						animation: hide-top-to-bottom #{variables.$db-transition-straight-hide};
+						animation: hide-top-to-bottom
+							#{variables.$db-transition-straight-hide};
 					}
 				}
 			}

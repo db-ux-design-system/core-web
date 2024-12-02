@@ -26,7 +26,8 @@
 	&:not([data-no-text="true"]) {
 		--db-padding-inline-start: #{variables.$db-spacing-fixed-2xs};
 
-		padding-inline: var(--db-padding-inline-start) #{variables.$db-spacing-fixed-2xs};
+		padding-inline: var(--db-padding-inline-start)
+			#{variables.$db-spacing-fixed-2xs};
 
 		&:has(.db-tab-remove-button) {
 			padding-inline-end: 0;
@@ -74,7 +75,12 @@
 		display: none;
 	}
 
-	> [class^="db-"] {
+	> :is(
+			[class="db-checkbox"],
+			[class="db-radio"],
+			[class="db-link"],
+			[class="db-button"]
+		) {
 		block-size: 100%;
 	}
 }
@@ -125,8 +131,10 @@
 					background-color: colors.$db-brand-bg-basic-transparent-full-default;
 				}
 
-				&::before {
-					--db-icon: "";
+				&:not([data-hide-icon-before="true"]) {
+					&::before {
+						content: none;
+					}
 				}
 			}
 		}

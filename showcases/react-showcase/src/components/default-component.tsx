@@ -6,6 +6,10 @@ import type {
 	ReactDefaultComponentVariants
 } from '../../../shared/react-default-component-data';
 
+const redirectURLSearchParams = process?.env?.REDIRECT_URL_SEARCH_PARAMS
+	? process.env.REDIRECT_URL_SEARCH_PARAMS === 'true'
+	: true;
+
 const VariantList = ({
 	name,
 	examples,
@@ -20,6 +24,10 @@ const VariantList = ({
 
 	const [open, setOpen] = useState<boolean>();
 
+	const validExamples = examples.filter(
+		(example) => redirectURLSearchParams || !example.experimental
+	);
+
 	return (
 		<DBCard
 			className="variants-card db-code-docs"
@@ -28,7 +36,7 @@ const VariantList = ({
 				role={role}
 				aria-label={role ? name : undefined}
 				className="variants-list">
-				{examples.map((example, exampleIndex) => (
+				{validExamples.map((example, exampleIndex) => (
 					<div
 						key={`${example.name}-${exampleIndex}`}
 						style={example.style}
@@ -70,9 +78,6 @@ const DefaultComponent = ({
 	isSubComponent,
 	componentName
 }: ReactDefaultComponentProps) => {
-	const redirectURLSearchParams = process?.env?.REDIRECT_URL_SEARCH_PARAMS
-		? process.env.REDIRECT_URL_SEARCH_PARAMS === 'true'
-		: true;
 	const pageName = useQuery(redirectURLSearchParams)[4];
 	const color = useQuery(redirectURLSearchParams)[2];
 
@@ -129,22 +134,30 @@ const DefaultComponent = ({
 		<>
 			<div className="default-container">
 				<HeadlineTag>{title}</HeadlineTag>
-				{variants?.map((variant, index) => (
-					<div key={`${variant.name}-${index}`}>
-						<DBDivider></DBDivider>
-						<DBLink
-							className="link-headline"
-							content="external"
-							target="_blank"
-							onClick={(event) => {
-								openVariantInNewWindow(event, variant.name);
-							}}
-							href={getHref(variant.name)}>
-							{variant.name}
-						</DBLink>
-						<VariantList {...variant} color={color} />
-					</div>
-				))}
+				{variants
+					?.filter(
+						(variant) =>
+							redirectURLSearchParams ||
+							variant.examples.find(
+								(example) => !example.experimental
+							)
+					)
+					.map((variant, index) => (
+						<div key={`${variant.name}-${index}`}>
+							<DBDivider></DBDivider>
+							<DBLink
+								className="link-headline"
+								content="external"
+								target="_blank"
+								onClick={(event) => {
+									openVariantInNewWindow(event, variant.name);
+								}}
+								href={getHref(variant.name)}>
+								{variant.name}
+							</DBLink>
+							<VariantList {...variant} color={color} />
+						</div>
+					))}
 			</div>
 			{subComponent}
 		</>
