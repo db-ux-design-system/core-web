@@ -24,7 +24,7 @@
     "build:04_tailwind": "cpr tailwind build/tailwind -o",
     "build:05_postcss": "postcss build/css/**/*.css --replace",
     "build:06_ide": "cpr ide build/ide -o",
-    "build:99_foundations_common": "node scripts/esbuild.mjs",
+    "build:99_foundations_common": "node scripts/esbuild.js",
     "clean": "rm -rf build",
     "copy-build": "npm-run-all copy-build:*",
     "copy-build:assets": "cpr assets ../../build-outputs/foundations/assets -o",
