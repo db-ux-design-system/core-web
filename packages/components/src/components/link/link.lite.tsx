@@ -1,6 +1,6 @@
 import { Show, useMetadata, useRef, useStore } from '@builder.io/mitosis';
 import { DBLinkProps, DBLinkState } from './model';
-import { cls, getBooleanAsString } from '../../utils';
+import { cls, getBooleanAsString, getHideIcon } from '../../utils';
 import { ClickEvent } from '../../shared/model';
 import { DEFAULT_ID } from '../../shared/constants';
 
@@ -38,15 +38,15 @@ export default function DBLink(props: DBLinkProps) {
 			aria-label={props.label}
 			aria-current={props.current}
 			data-size={props.size}
+			data-hide-icon-after={getHideIcon(props.showIcon ?? true)}
 			data-variant={props.variant}
 			data-content={props.content || 'internal'}
 			onClick={(event: ClickEvent<HTMLAnchorElement>) =>
 				state.handleClick(event)
 			}>
-			<Show when={props.text}>
-				<span>{props.text}</span>
+			<Show when={props.text} else={props.children}>
+				{props.text}
 			</Show>
-			{props.children}
 		</a>
 	);
 }

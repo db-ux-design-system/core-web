@@ -13,7 +13,8 @@ import {
 	IconProps,
 	InitializedState,
 	InputEventProps,
-	InputEventState
+	InputEventState,
+	ShowIconProps
 } from '../../shared/model';
 
 export type DBSelectDefaultProps = {
@@ -68,7 +69,8 @@ export type DBSelectProps = DBSelectDefaultProps &
 	InputEventProps<HTMLSelectElement> &
 	FormProps &
 	IconProps &
-	FormMessageProps;
+	FormMessageProps &
+	ShowIconProps;
 
 export type DBSelectDefaultState = {
 	_placeholderId: string;

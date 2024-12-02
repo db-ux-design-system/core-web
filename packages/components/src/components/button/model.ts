@@ -4,7 +4,9 @@ import {
 	GlobalProps,
 	GlobalState,
 	IconProps,
+	ShowIconProps,
 	SizeProps,
+	TextProps,
 	WidthProps
 } from '../../shared/model';
 
@@ -79,7 +81,9 @@ export type DBButtonProps = DBButtonDefaultProps &
 	ClickEventProps<HTMLButtonElement> &
 	IconProps &
 	WidthProps &
-	SizeProps;
+	SizeProps &
+	ShowIconProps &
+	TextProps;
 
 export type DBButtonDefaultState = {};
 

@@ -13,6 +13,7 @@ import {
 	IconProps,
 	InputEventProps,
 	InputEventState,
+	ShowIconProps,
 	ValueLabelType
 } from '../../shared/model';
 
@@ -77,7 +78,8 @@ export type DBInputProps = DBInputDefaultProps &
 	FormProps &
 	IconProps &
 	IconAfterProps &
-	FormMessageProps;
+	FormMessageProps &
+	ShowIconProps;
 
 export type DBInputDefaultState = {
 	_dataListId?: string;

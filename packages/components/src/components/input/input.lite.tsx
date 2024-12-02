@@ -8,7 +8,14 @@ import {
 	useStore,
 	useTarget
 } from '@builder.io/mitosis';
-import { cls, delay, hasVoiceOver, isArrayOfStrings, uuid } from '../../utils';
+import {
+	cls,
+	delay,
+	getHideIcon,
+	hasVoiceOver,
+	isArrayOfStrings,
+	uuid
+} from '../../utils';
 import { DBInputProps, DBInputState } from './model';
 import {
 	DEFAULT_DATALIST_ID_SUFFIX,
@@ -27,7 +34,10 @@ import {
 	ValueLabelType
 } from '../../shared/model';
 import DBInfotext from '../infotext/infotext.lite';
-import { handleFrameworkEvent } from '../../utils/form-components';
+import {
+	handleFrameworkEvent,
+	messageVisible
+} from '../../utils/form-components';
 
 useMetadata({});
 
@@ -161,8 +171,10 @@ export default function DBInput(props: DBInputProps) {
 		<div
 			class={cls('db-input', props.className)}
 			data-variant={props.variant}
+			data-hide-icon={getHideIcon(props.showIcon)}
 			data-icon={props.icon}
-			data-icon-after={props.iconAfter}>
+			data-icon-after={props.iconAfter}
+			data-hide-icon-after={getHideIcon(props.showIcon)}>
 			<label htmlFor={state._id}>{props.label ?? DEFAULT_LABEL}</label>
 			<input
 				aria-invalid={props.customValidity === 'invalid'}
@@ -217,7 +229,7 @@ export default function DBInput(props: DBInputProps) {
 				</datalist>
 			</Show>
 			{props.children}
-			<Show when={props.message}>
+			<Show when={messageVisible(props.message, props.showMessage)}>
 				<DBInfotext
 					size="small"
 					icon={props.messageIcon}
