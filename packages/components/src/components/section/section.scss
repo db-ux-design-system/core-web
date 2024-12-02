@@ -13,9 +13,8 @@ $default-section-padding-inline: variables.$db-spacing-fixed-md;
 	&[data-width="medium"] {
 		padding-inline: max(
 			calc(
-				#{$default-section-padding-inline} + (
-						100vw - #{screen-sizes.$db-breakpoint-md}
-					) / 2
+				#{$default-section-padding-inline} +
+					(100vw - #{screen-sizes.$db-breakpoint-md}) / 2
 			),
 			#{$default-section-padding-inline}
 		);
@@ -24,9 +23,8 @@ $default-section-padding-inline: variables.$db-spacing-fixed-md;
 	&[data-width="large"] {
 		padding-inline: max(
 			calc(
-				#{$default-section-padding-inline} + (
-						100vw - #{screen-sizes.$db-breakpoint-lg}
-					) / 2
+				#{$default-section-padding-inline} +
+					(100vw - #{screen-sizes.$db-breakpoint-lg}) / 2
 			),
 			#{$default-section-padding-inline}
 		);

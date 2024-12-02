@@ -67,12 +67,12 @@
 
 						&:is(:hover, :focus-visible),
 						:has(
-								~ .db-sub-navigation:is(
-										:hover,
-										:focus-visible,
-										:focus-within
-									)
-							) {
+							~ .db-sub-navigation:is(
+									:hover,
+									:focus-visible,
+									:focus-within
+								)
+						) {
 							&::after {
 								transform: none;
 							}

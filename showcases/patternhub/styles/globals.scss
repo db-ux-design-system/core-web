@@ -423,7 +423,11 @@ h6 {
 		.code-button {
 			position: absolute;
 			inset-block-end: calc(
-				-1 * (#{variables.$db-spacing-fixed-sm} + #{variables.$db-sizing-sm})
+				-1 *
+					(
+						#{variables.$db-spacing-fixed-sm} +
+							#{variables.$db-sizing-sm}
+					)
 			);
 			inset-inline-end: variables.$db-spacing-fixed-sm;
 			z-index: 1;
