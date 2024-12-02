@@ -37,10 +37,10 @@
     "copy:scss": "cpr scss build/scss -o",
     "dev": "vite --open",
     "prepare": "npm-run-all copy-prepare:*",
-    "regenerate:screenshots": "npx playwright test -c ./test/playwright.config.mjs --update-snapshots",
+    "regenerate:screenshots": "npx playwright test -c ./test/playwright.config.js --update-snapshots",
     "start": "nodemon --config nodemon.json",
     "test": "vitest run --config scripts/vitest.config.ts",
-    "test:e2e": "npx playwright test --config=./test/playwright.config.mjs",
+    "test:e2e": "npx playwright test --config=./test/playwright.config.js",
     "test:migration": "tsx scripts/cli.ts migration --src=./scss --dryRun=true"
   },
   "devDependencies": {
