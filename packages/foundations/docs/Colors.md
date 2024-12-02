@@ -1,8 +1,8 @@
 # Colors
 
--   You use **Colors** to highlight an area with a specific color.
--   You can also use it to change the text color for components with the `*-transparent-semi` colors.
--   Most classes/placeholders will change `color` and `background-color` and will set properties, which will be passed down to adaptive components.
+- You use **Colors** to highlight an area with a specific color.
+- You can also use it to change the text color for components with the `*-transparent-semi` colors.
+- Most classes/placeholders will change `color` and `background-color` and will set properties, which will be passed down to adaptive components.
 
 ## How to use
 

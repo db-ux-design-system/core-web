@@ -8,7 +8,7 @@ import {
 	useTarget
 } from '@builder.io/mitosis';
 import type { DBTabItemProps, DBTabItemState } from './model';
-import { cls, getHideIcon } from '../../utils';
+import { cls, getHideIcon, getBooleanAsString } from '../../utils';
 import { ChangeEvent } from '../../shared/model';
 import { handleFrameworkEvent } from '../../utils/form-components';
 
@@ -30,7 +30,16 @@ export default function DBTabItem(props: DBTabItemProps) {
 			}
 
 			// We have different ts types in different frameworks, so we need to use any here
-			state._selected = (event.target as any)?.['checked'];
+
+			useTarget({
+				stencil: () => {
+					const selected = (event.target as any)?.['checked'];
+					state._selected = getBooleanAsString(selected);
+				},
+				default: () => {
+					state._selected = (event.target as any)?.['checked'];
+				}
+			});
 
 			useTarget({
 				angular: () => handleFrameworkEvent(this, event, 'checked'),

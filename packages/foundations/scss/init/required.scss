@@ -89,14 +89,14 @@ iframe {
 
 // Focus styles
 :is(
-		a,
-		button,
-		input,
-		textarea,
-		summary,
-		select,
-		[tabindex]:not([tabindex="-1"])
-	) {
+	a,
+	button,
+	input,
+	textarea,
+	summary,
+	select,
+	[tabindex]:not([tabindex="-1"])
+) {
 	&:focus-visible {
 		@extend %focus-placeholder;
 	}
