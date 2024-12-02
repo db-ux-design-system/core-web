@@ -20,7 +20,8 @@ $checked-active-transition-size: calc(
 %active-transition {
 	&::before {
 		inline-size: calc(
-			#{$switch-active-thumb-size} - #{$switch-fixed-padding} * 2 + #{variables.$db-spacing-fixed-2xs}
+			#{$switch-active-thumb-size} - #{$switch-fixed-padding} * 2 +
+				#{variables.$db-spacing-fixed-2xs}
 		);
 		margin: 0;
 	}

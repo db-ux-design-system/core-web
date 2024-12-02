@@ -62,14 +62,14 @@ becomes
 
 This is related to the following properties:
 
--   `slotHeader`
--   `slotBrand`
--   `slotMetaNavigation`
--   `slotCallToAction` (`primaryAction`)
--   `slotActionBar` (`secondaryAction`)
--   `slotHeadline`
--   `slotDrawerHeader`
--   `slotSubNavigation`
+- `slotHeader`
+- `slotBrand`
+- `slotMetaNavigation`
+- `slotCallToAction` (`primaryAction`)
+- `slotActionBar` (`secondaryAction`)
+- `slotHeadline`
+- `slotDrawerHeader`
+- `slotSubNavigation`
 
 ## Styling
 

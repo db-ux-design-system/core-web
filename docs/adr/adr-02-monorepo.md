@@ -13,19 +13,19 @@ For developers, it was a time-consuming task to link the projects, find and fix 
 
 ### General conditions
 
--   Development should be easier
--   Changes inside tokens should be tested directly in components
--   Issues inside components should be fixed in same deployment
--   Issues can be reported via 1 repository
+- Development should be easier
+- Changes inside tokens should be tested directly in components
+- Issues inside components should be fixed in same deployment
+- Issues can be reported via 1 repository
 
 ### Decision Criteria
 
--   For marketing, we just need one URL instead of three
--   Development is faster and easier
--   Team members have experience with monorepos
+- For marketing, we just need one URL instead of three
+- Development is faster and easier
+- Team members have experience with monorepos
 
 ## Consequences
 
--   Complex CI/CD
--   A lot of files, hard for new contributors
--   Time to migrate 3 repos into 1
+- Complex CI/CD
+- A lot of files, hard for new contributors
+- Time to migrate 3 repos into 1
