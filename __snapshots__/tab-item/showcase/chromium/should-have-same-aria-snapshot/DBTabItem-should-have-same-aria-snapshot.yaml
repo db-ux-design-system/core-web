@@ -25,15 +25,15 @@
     - tab "(Default) Text": on
     - text: (Default) Text
   - tablist:
-    - text: db" / "
-    - tab "db\" / \" Text - Icon (Leading)": on
+    - text: x_placeholder" / "
+    - tab "x_placeholder\" / \" Text - Icon (Leading)": on
     - text: Text - Icon (Leading)
   - tablist:
-    - tab "Text - Icon (Trailing) db\" / \"": on
-    - text: Text - Icon (Trailing) db" / "
+    - tab "Text - Icon (Trailing) x_placeholder\" / \"": on
+    - text: Text - Icon (Trailing) x_placeholder" / "
   - tablist:
-    - text: db" / "
-    - tab "db\" / \" Icon": on
+    - text: x_placeholder" / "
+    - tab "x_placeholder\" / \" Icon": on
     - text: Icon
   - link "Behaviour arrow_up_right\" / \""
   - tablist:
