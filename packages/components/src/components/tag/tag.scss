@@ -131,8 +131,10 @@
 					background-color: colors.$db-brand-bg-basic-transparent-full-default;
 				}
 
-				&::before {
-					--db-icon: "";
+				&:not([data-hide-icon-before="true"]) {
+					&::before {
+						content: none;
+					}
 				}
 			}
 		}

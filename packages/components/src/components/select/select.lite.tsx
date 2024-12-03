@@ -9,7 +9,7 @@ import {
 	useTarget
 } from '@builder.io/mitosis';
 import { DBSelectOptionType, DBSelectProps, DBSelectState } from './model';
-import { cls, delay, hasVoiceOver, uuid } from '../../utils';
+import { cls, delay, getHideIcon, hasVoiceOver, uuid } from '../../utils';
 import {
 	DEFAULT_INVALID_MESSAGE,
 	DEFAULT_INVALID_MESSAGE_ID_SUFFIX,
@@ -26,7 +26,10 @@ import {
 	InputEvent,
 	InteractionEvent
 } from '../../shared/model';
-import { handleFrameworkEvent } from '../../utils/form-components';
+import {
+	handleFrameworkEvent,
+	messageVisible
+} from '../../utils/form-components';
 
 useMetadata({
 	angular: {
@@ -163,7 +166,8 @@ export default function DBSelect(props: DBSelectProps) {
 		<div
 			class={cls('db-select', props.className)}
 			data-variant={props.variant}
-			data-icon={props.icon}>
+			data-icon={props.icon}
+			data-hide-icon={getHideIcon(props.showIcon)}>
 			<label htmlFor={state._id}>{props.label ?? DEFAULT_LABEL}</label>
 			<select
 				aria-invalid={props.customValidity === 'invalid'}
@@ -238,7 +242,7 @@ export default function DBSelect(props: DBSelectProps) {
 			<span id={state._placeholderId}>
 				{props.placeholder ?? props.label}
 			</span>
-			<Show when={props.message}>
+			<Show when={messageVisible(props.message, props.showMessage)}>
 				<DBInfotext
 					size="small"
 					icon={props.messageIcon}

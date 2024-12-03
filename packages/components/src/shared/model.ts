@@ -1,7 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
-import { IconTypes } from "@db-ux/core-icons";
-
+import { IconTypes } from '@db-ux/core-icons';
 
 export type GlobalProps = {
 	/**
@@ -61,6 +60,14 @@ export type IconProps = {
 	 * Define an icon by its identifier (like e.g. _user_, compare to [Icons](https://db-ui.github.io/mono/review/main/foundations/icons/overview)) to get displayed in front of the elements content.
 	 */
 	icon?: IconTypes;
+};
+
+export type ShowIconProps = {
+	/**
+	 * Enables or disables the visibility of the icon. The default value depends on the component.
+	 * For many components this property is optional to reflect Figma properties.
+	 */
+	showIcon?: boolean;
 };
 
 export type IconAfterProps = {
@@ -384,6 +391,11 @@ export type FormMessageProps = {
 	 * See https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/autocomplete
 	 */
 	autocomplete?: string | AutoCompleteType;
+
+	/**
+	 * Enables or disables the visibility of the message.
+	 */
+	showMessage?: boolean;
 };
 
 export type FormState = {
@@ -469,6 +481,9 @@ export type LinkProps = {
 	 * Sets aria role based on [`aria-selected`](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-selected).
 	 */
 	selected?: boolean;
+};
+
+export type TextProps = {
 	/**
 	 * Alternative for default slot/children.
 	 */

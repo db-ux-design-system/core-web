@@ -7,6 +7,8 @@ import {
 	IconProps,
 	InitializedState,
 	NavigationBackButtonProps,
+	ShowIconProps,
+	TextProps,
 	WidthProps
 } from '../../shared/model';
 import { NavigationItemSafeTriangle } from '../../utils/navigation';
@@ -39,7 +41,9 @@ export type DBNavigationItemProps = DBNavigationItemDefaultProps &
 	ClickEventProps<HTMLButtonElement> &
 	IconProps &
 	WidthProps &
-	NavigationBackButtonProps;
+	NavigationBackButtonProps &
+	ShowIconProps &
+	TextProps;
 
 export type DBNavigationItemDefaultState = {
 	handleBackClick: (event: ClickEvent<HTMLButtonElement>) => void;

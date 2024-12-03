@@ -17,7 +17,10 @@ import {
 	DEFAULT_VALID_MESSAGE_ID_SUFFIX
 } from '../../shared/constants';
 import { ChangeEvent, InteractionEvent } from '../../shared/model';
-import { handleFrameworkEvent } from '../../utils/form-components';
+import {
+	handleFrameworkEvent,
+	messageVisible
+} from '../../utils/form-components';
 import DBInfotext from '../infotext/infotext.lite';
 
 useMetadata({});
@@ -167,13 +170,12 @@ export default function DBCheckbox(props: DBCheckboxProps) {
 					}
 					aria-describedby={state._descByIds}
 				/>
-				<Show when={props.label}>
-					<span>{props.label}</span>
+				<Show when={props.label} else={props.children}>
+					{props.label}
 				</Show>
-				{props.children}
 			</label>
 
-			<Show when={props.message}>
+			<Show when={messageVisible(props.message, props.showMessage)}>
 				<DBInfotext
 					size="small"
 					icon={props.messageIcon}

@@ -165,16 +165,16 @@ $check-border-size: min(#{variables.$db-border-height-2xs}, 2px);
 @mixin get-validity-color($selector, $key: "valid") {
 	$variant: "successful";
 
+	@if ($key != "valid") {
+		$variant: "critical";
+	}
+
 	@include get-validity-message($key);
 
 	#{$selector},
 	[id$="-placeholder"] {
 		color: var(--db-#{$variant}-on-bg-basic-emphasis-100-default);
 		caret-color: var(--db-#{$variant}-on-bg-basic-emphasis-100-default);
-	}
-
-	@if ($key != "valid") {
-		$variant: "critical";
 	}
 
 	@if ($selector != textarea) {

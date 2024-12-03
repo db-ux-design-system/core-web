@@ -248,12 +248,22 @@ export const enableCustomElementAttributePassing = (
  * if it is used in a framework like angular e.g.: [disabled]="myDisabledProp"
  * @param originBool Some boolean to convert to string
  */
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const getBooleanAsString = (originBool?: boolean): any => {
 	if (originBool) {
 		return String(originBool);
 	}
 
 	return originBool;
+};
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export const getHideIcon = (showIcon?: boolean): any => {
+	if (showIcon === undefined) {
+		return undefined;
+	}
+
+	return getBooleanAsString(!showIcon);
 };
 
 export default {
@@ -269,5 +279,6 @@ export default {
 	hasVoiceOver,
 	delay,
 	enableCustomElementAttributePassing,
-	getBooleanAsString
+	getBooleanAsString,
+	getHideIcon
 };

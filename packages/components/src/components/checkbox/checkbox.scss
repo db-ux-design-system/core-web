@@ -67,7 +67,7 @@
 
 				border-width: form-components.$check-border-size;
 
-				&::before {
+				&:not([data-hide-icon-before="true"])::before {
 					align-content: center;
 					font-size: calc(
 						var(--db-icon-font-size) - 2 *
