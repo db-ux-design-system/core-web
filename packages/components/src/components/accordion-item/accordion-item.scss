@@ -11,15 +11,32 @@ $db-accordion-item-border-radius: variables.$db-border-radius-sm;
 	position: relative;
 	inline-size: 100%;
 	border-radius: $db-accordion-item-border-radius;
+	list-style-type: "";
+
+	> details {
+		&[open] {
+			summary + div {
+				@media screen and (prefers-reduced-motion: no-preference) {
+					animation: accordion-open
+						#{variables.$db-transition-straight-emotional} normal
+						both;
+				}
+			}
+
+			summary::after {
+				transform: form-components.$dropdown-icon-transform;
+			}
+		}
+
+		&[aria-disabled="true"] {
+			pointer-events: none;
+			opacity: component.$default-disabled;
+		}
+	}
 
 	summary + div {
 		padding: variables.$db-spacing-fixed-md;
 		padding-block-end: variables.$db-spacing-fixed-lg;
-	}
-
-	&[aria-disabled="true"] {
-		pointer-events: none;
-		opacity: component.$default-disabled;
 	}
 
 	summary {
@@ -52,19 +69,6 @@ $db-accordion-item-border-radius: variables.$db-border-radius-sm;
 
 		&:focus-visible {
 			border-radius: variables.$db-border-radius-xs;
-		}
-	}
-
-	&[open] {
-		summary + div {
-			@media screen and (prefers-reduced-motion: no-preference) {
-				animation: accordion-open #{variables.$db-transition-straight-emotional}
-					normal both;
-			}
-		}
-
-		summary::after {
-			transform: form-components.$dropdown-icon-transform;
 		}
 	}
 }

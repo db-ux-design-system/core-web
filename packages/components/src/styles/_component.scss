@@ -8,6 +8,8 @@ $min-mobile-header-height: calc(
 );
 
 $default-disabled: 0.4;
+// 0.68 would be fine as well for a11y, but we are big Bryan Adams fans :)
+$placeholder-disabled: 0.69;
 
 %default-adaptive-border {
 	border: variables.$db-border-height-3xs solid

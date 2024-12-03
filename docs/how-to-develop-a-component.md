@@ -8,14 +8,14 @@
 
 3. The generation process will generate files mainly in these directories:
 
--   `packages/components`
--   `showcases`
+- `packages/components`
+- `showcases`
 
 ## Start developing
 
--   Your main work for the component will be inside `packages/components/src/components/my-awesome-component`.
+- Your main work for the component will be inside `packages/components/src/components/my-awesome-component`.
 
--   To develop on your component you can start a development server by running `npm run dev`, this will give you some options to choose from. When you begin "scribbling" (html+scss) with a component you can select `plain-html`. For _advanced users_ you can skip this and develop directly for one framework (html+scss+ts), see [Test Frameworks with Showcases](#test-frameworks-with-showcases).
+- To develop on your component you can start a development server by running `npm run dev`, this will give you some options to choose from. When you begin "scribbling" (html+scss) with a component you can select `plain-html`. For _advanced users_ you can skip this and develop directly for one framework (html+scss+ts), see [Test Frameworks with Showcases](#test-frameworks-with-showcases).
 
 ### Styling with SCSS
 
@@ -136,6 +136,6 @@ You should change the `date` prop when the first manual test starts or when it g
 
 The `status` can be:
 
--   `REVIEW`, if the manual accessibility review should happen
--   `PROGRESS`, if there are any open issues after the test
--   `DONE`, if the component passed the accessibility review
+- `REVIEW`, if the manual accessibility review should happen
+- `PROGRESS`, if there are any open issues after the test
+- `DONE`, if the component passed the accessibility review

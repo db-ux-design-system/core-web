@@ -20,7 +20,7 @@
 	&[data-content="internal"] {
 		@include icons.set-icon("arrow_right", "after");
 
-		&::after {
+		&:not([data-hide-icon-after="true"])::after {
 			vertical-align: top;
 		}
 	}

@@ -2,7 +2,7 @@ import { Show, Slot, useMetadata, useRef, useStore } from '@builder.io/mitosis';
 import { DBNotificationProps, DBNotificationState } from './model';
 import DBButton from '../button/button.lite';
 import { DEFAULT_CLOSE_BUTTON } from '../../shared/constants';
-import { cls, getHideProp } from '../../utils';
+import { cls, getHideIcon } from '../../utils';
 import { ClickEvent } from '../../shared/model';
 
 useMetadata({});
@@ -28,7 +28,7 @@ export default function DBNotification(props: DBNotificationProps) {
 			data-semantic={props.semantic}
 			data-variant={props.variant}
 			data-icon={props.icon}
-			data-hide-icon={getHideProp(props.showIcon)}
+			data-hide-icon={getHideIcon(props.showIcon)}
 			data-link-variant={props.linkVariant}>
 			<Slot name="image" />
 			<Show when={props.headline}>
@@ -45,7 +45,7 @@ export default function DBNotification(props: DBNotificationProps) {
 
 			<Slot name="link" />
 
-			<Show when={props.closeable}>
+			<Show when={props.behaviour !== 'permanent'}>
 				<DBButton
 					id={props.closeButtonId}
 					icon="cross"

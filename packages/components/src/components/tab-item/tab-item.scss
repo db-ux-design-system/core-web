@@ -7,7 +7,8 @@
 @use "../../styles/form-components";
 
 $with-icon-padding: calc(
-	#{variables.$db-spacing-fixed-xs} + #{variables.$db-spacing-fixed-sm} + #{form-components.$font-size-height}
+	#{variables.$db-spacing-fixed-xs} + #{variables.$db-spacing-fixed-sm} +
+		#{form-components.$font-size-height}
 );
 
 $tab-border-radius: variables.$db-border-radius-sm;
@@ -89,7 +90,8 @@ $tab-border-radius: variables.$db-border-radius-sm;
 				#{$with-icon-padding} - #{variables.$db-spacing-fixed-2xs}
 			);
 			block-size: calc(
-				#{form-components.$font-size-height} + #{variables.$db-spacing-fixed-xs}
+				#{form-components.$font-size-height} +
+					#{variables.$db-spacing-fixed-xs}
 			);
 
 			&::before {
