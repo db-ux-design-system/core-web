@@ -43,8 +43,7 @@ export default function DBAccordionItem(props: DBAccordionItemProps) {
 			<details
 				aria-disabled={getBooleanAsString(props.disabled)}
 				ref={ref}
-				open={state._open}
-				name={props.name}>
+				open={state._open}>
 				<summary onClick={(event) => state.toggle(event)}>
 					<Show when={props.headlinePlain}>
 						{props.headlinePlain}

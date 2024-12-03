@@ -23,12 +23,11 @@ export type DBAccordionItemDefaultProps = {
 	 * Title of the accordion-item as plain text
 	 */
 	headlinePlain?: string;
-};
+} & TextProps;
 
 export type DBAccordionItemProps = DBAccordionItemDefaultProps &
 	GlobalProps &
-	ToggleEventProps &
-	TextProps;
+	ToggleEventProps;
 
 export type DBAccordionItemDefaultState = {
 	_open: boolean;

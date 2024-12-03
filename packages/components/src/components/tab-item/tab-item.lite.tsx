@@ -8,7 +8,7 @@ import {
 	useTarget
 } from '@builder.io/mitosis';
 import type { DBTabItemProps, DBTabItemState } from './model';
-import { cls, getHideProp } from '../../utils';
+import { cls, getBooleanAsString, getHideProp } from '../../utils';
 import { ChangeEvent } from '../../shared/model';
 import { handleFrameworkEvent } from '../../utils/form-components';
 
