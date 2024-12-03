@@ -47,7 +47,7 @@
     "commander": "^12.0.0",
     "cpr": "3.0.1",
     "cssnano": "^7.0.6",
-    "dotenv": "^16.4.5",
+    "dotenv": "^16.4.6",
     "glob": "^11.0.0",
     "nodemon": "3.1.7",
     "replace-in-file": "^8.2.0",
