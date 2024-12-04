@@ -36,7 +36,7 @@ const testAction = () => {
 	test(`should be closeable`, async ({ mount }) => {
 		let close = '';
 		const closeable: any = (
-			<DBNotification onClose={() => (close = 'test')} closable="true">
+			<DBNotification onClose={() => (close = 'test')} closable>
 				Test
 			</DBNotification>
 		);
