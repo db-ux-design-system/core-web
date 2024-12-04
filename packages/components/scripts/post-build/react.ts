@@ -29,7 +29,7 @@ const overwriteEvents = (tmp: boolean) => {
 	writeFileSync(modelFilePath, modelFileContent);
 };
 
-// All things from foundations should be set on the root component - custom "data-" attributes not
+// All things from foundations should get set on the root component - custom "data-" attributes shouldn't
 const rootProps = [
 	'data-icon-variant',
 	'data-icon-variant-before',
