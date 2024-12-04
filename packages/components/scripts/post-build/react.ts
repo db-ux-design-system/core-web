@@ -1,4 +1,4 @@
-import components from './components';
+import components, { Overwrite } from './components';
 
 import { readFileSync, writeFileSync } from 'node:fs';
 
@@ -29,6 +29,28 @@ const overwriteEvents = (tmp: boolean) => {
 	writeFileSync(modelFilePath, modelFileContent);
 };
 
+// All things from foundations should be set on the root component - custom "data-" attributes not
+const rootProps = [
+	'data-icon-variant',
+	'data-icon-variant-before',
+	'data-icon-variant-after',
+	'data-icon-weight',
+	'data-icon-weight-before',
+	'data-icon-weight-after',
+	'data-interactive',
+	'data-force-mobile',
+	'data-color',
+	'data-container-color',
+	'data-bg-color',
+	'data-on-bg-color',
+	'data-color-scheme',
+	'data-font-size',
+	'data-headline-size',
+	'data-divider',
+	'data-focus',
+	'data-font'
+];
+
 export default (tmp?: boolean) => {
 	try {
 		overwriteEvents(tmp);
@@ -49,11 +71,7 @@ export default (tmp?: boolean) => {
 				htmlElement = htmlElements[0];
 			}
 
-			let replacements = [
-				{
-					from: `handleFrameworkEvent(this`,
-					to: `// handleFrameworkEvent(this`
-				},
+			const replacements: Overwrite[] = [
 				{
 					from: ` } from "react"`,
 					to: `, forwardRef, HTMLAttributes } from "react"`
@@ -85,15 +103,23 @@ export default (tmp?: boolean) => {
 				},
 				{
 					from: '} from "../../utils"',
-					to: ', filterPassingProps } from "../../utils"'
+					to: ', filterPassingProps, getRootProps } from "../../utils"'
 				},
 				{
 					from: 'ref={ref}',
 					to:
 						'ref={ref}\n' +
-						`{...filterPassingProps(props,${JSON.stringify(
-							component?.config?.react?.propsPassingFilter ?? []
-						)})}`
+						`{...filterPassingProps(props,${JSON.stringify([
+							...rootProps,
+							...(component?.config?.react?.propsPassingFilter ??
+								[])
+						])})}`
+				},
+				{
+					from: 'className={',
+					to:
+						`{...getRootProps(props,${JSON.stringify(rootProps)})}` +
+						'\nclassName={'
 				},
 				/* We need to overwrite the internal state._value property just for react to have controlled components.
 				 * It works for Angular & Vue, so we overwrite it only for React.  */
