@@ -1,4 +1,4 @@
-import { test } from '@playwright/test';
+import { expect, test } from '@playwright/test';
 // @ts-expect-error - required for playwright
 import { getDefaultScreenshotTest, runAriaSnapshotTest } from '../default.ts';
 
@@ -8,5 +8,11 @@ test.describe('DBTabs', () => {
 	getDefaultScreenshotTest({
 		path
 	});
-	runAriaSnapshotTest({ path });
+	runAriaSnapshotTest({
+		path,
+		async preScreenShot(page) {
+			const scrollRight = page.locator('[data-icon=chevron_right]');
+			await expect(scrollRight).toBeVisible();
+		}
+	});
 });
