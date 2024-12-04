@@ -26,7 +26,10 @@ import {
 				{{ exampleName }}
 			</DBSwitch>
 			<DBInfotext
-				v-if="exampleProps?.variant === 'hidden'"
+				v-if="
+					exampleProps?.showLabel !== undefined &&
+					!exampleProps?.showLabel
+				"
 				semantic="informational"
 				icon="none"
 			>

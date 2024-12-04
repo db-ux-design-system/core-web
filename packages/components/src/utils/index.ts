@@ -259,7 +259,7 @@ export const getBooleanAsString = (originBool?: boolean): any => {
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const getHideProp = (show?: boolean): any => {
-	if (show === undefined) {
+	if (show === undefined || show === null) {
 		return undefined;
 	}
 
