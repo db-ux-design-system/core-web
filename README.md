@@ -147,8 +147,7 @@ For any usage outside of Deutsche Bahn websites and applications you must remove
 design assets as well as protected characteristics and trademarks. We're even also planning to provide a neutral theme
 that would make it much easier for you to use our product without the trademarks by Deutsche Bahn.
 
-This especially relates to the files in the directories `/source/fonts/`, `source/images` and `source/samples`
-and `source/favicon.ico` as well.
+This especially relates to the files in the directories `packages/foundations/assets/fonts`, `packages/foundations/assets/images` and `packages/foundations/assets/favicon.ico` as well.
 
 ## Development
 
