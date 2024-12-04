@@ -145,7 +145,7 @@ export const getComponents = (): Component[] => [
 			],
 			react: [
 				{
-					from: 'onMouseMove={(event: MouseEvent)',
+					from: 'onMouseMove={(event)',
 					to: 'onMouseMove={(event: any)'
 				}
 			]
