@@ -7,7 +7,7 @@ import {
 	useTarget
 } from '@builder.io/mitosis';
 import { DBSwitchProps, DBSwitchState } from './model';
-import { cls, getBooleanAsString, uuid } from '../../utils';
+import { cls, getBooleanAsString, getHideProp, uuid } from '../../utils';
 import { ChangeEvent, InteractionEvent } from '../../shared/model';
 import { handleFrameworkEvent } from '../../utils/form-components';
 
@@ -67,7 +67,7 @@ export default function DBSwitch(props: DBSwitchProps) {
 		<label
 			data-visual-aid={props.visualAid}
 			data-size={props.size}
-			data-show-label={getBooleanAsString(props.showLabel)}
+			data-hide-label={getHideProp(props.showLabel)}
 			data-emphasis={props.emphasis}
 			htmlFor={state._id}
 			class={cls('db-switch', props.className)}>

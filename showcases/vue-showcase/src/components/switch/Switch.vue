@@ -17,7 +17,7 @@ import {
 				:visualAid="exampleProps?.visualAid"
 				:checked="exampleProps?.checked"
 				:disabled="exampleProps?.disabled"
-				:show-label="exampleProps?.showLabel"
+				:showLabel="exampleProps?.showLabel"
 				:size="exampleProps?.size"
 				:emphasis="exampleProps?.emphasis"
 				:icon="exampleProps?.icon"
