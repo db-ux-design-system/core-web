@@ -85,16 +85,16 @@ export default function DBNavigationItem(props: DBNavigationItemProps) {
 
 	return (
 		<li
-			class={cls('db-navigation-item', props.className)}
 			ref={ref}
 			id={props.id}
 			onMouseOver={() => state.navigationItemSafeTriangle?.enableFollow()}
 			onMouseLeave={() =>
 				state.navigationItemSafeTriangle?.disableFollow()
 			}
-			onMouseMove={(event: any) =>
+			onMouseMove={(event: MouseEvent) =>
 				state.navigationItemSafeTriangle?.followByMouseEvent(event)
 			}
+			class={cls('db-navigation-item', props.className)}
 			data-width={props.width}
 			data-icon={props.icon}
 			data-hide-icon={getHideIcon(props.showIcon)}
