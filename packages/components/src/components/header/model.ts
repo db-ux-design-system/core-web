@@ -12,25 +12,25 @@ export type DBHeaderDefaultProps = {
 	/**
 	 * Slot to pass in the DBBrand component
 	 */
-	brand?: unknown;
+	brand?: any;
 	/**
 	 * Slot to pass in a meta navigation.
 	 * Desktop: Above the regular header
 	 * Mobile: Inside the drawer
 	 */
-	metaNavigation?: unknown;
+	metaNavigation?: any;
 	/**
 	 * Slot to pass one or more elements like DBButton (e.g. search) as primary action.
 	 * Desktop: Shown next to the main-navigation
 	 * Mobile: Shown next to the brand
 	 */
-	primaryAction?: unknown;
+	primaryAction?: any;
 	/**
 	 * Slot to pass one or more elements like DBButton (e.g. profile, language, etc.) as secondary action.
 	 * Desktop: Shown seperated by divider at the end of the header
 	 * Mobile: Shown inside the drawer at the bottom.
 	 */
-	secondaryAction?: unknown;
+	secondaryAction?: any;
 
 	/**
 	 * Open/closes the drawer for mobile header or if `forceMobile` is true.
