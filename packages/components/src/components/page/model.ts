@@ -20,11 +20,11 @@ export type DBPageDefaultProps = {
 	/**
 	 * The slot can be used for React to set a footer.
 	 */
-	footer?: unknown;
+	footer?: any;
 	/**
 	 * The slot can be used for React to set a header.
 	 */
-	header?: unknown;
+	header?: any;
 
 	/**
 	 * The variant=fixed uses flex-box to make header and footer static
