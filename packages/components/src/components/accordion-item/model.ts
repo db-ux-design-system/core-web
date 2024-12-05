@@ -21,7 +21,7 @@ export type DBAccordionItemDefaultProps = {
 	/**
 	 * Title of the accordion-item as slot
 	 */
-	headline?: unknown;
+	headline?: any;
 	/**
 	 * Title of the accordion-item as plain text
 	 */

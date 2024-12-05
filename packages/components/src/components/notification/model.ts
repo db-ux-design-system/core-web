@@ -56,12 +56,12 @@ export type DBNotificationDefaultProps = {
 	/**
 	 * The slotImage can be set instead of an icon.
 	 */
-	image?: unknown;
+	image?: any;
 
 	/**
 	 * The slotLink can be set for non overlay-notifications
 	 */
-	link?: unknown;
+	link?: any;
 
 	/**
 	 * The timestamp attribute can be set for overlay notifications
