@@ -33,19 +33,19 @@ export type ClassNameArg =
 export const cls = (...args: ClassNameArg[]) => {
 	let result = '';
 
-	args.forEach((arg, index) => {
+	for (const arg of args) {
 		if (arg) {
 			if (typeof arg === 'string') {
 				result += `${arg} `;
 			} else {
-				for (let key in arg) {
+				for (const key in arg) {
 					if (arg[key]) {
 						result += `${key} `;
 					}
 				}
 			}
 		}
-	});
+	}
 
 	return result.trim();
 };
