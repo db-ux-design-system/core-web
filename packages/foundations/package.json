@@ -6,7 +6,7 @@
     "type": "git",
     "url": "https://github.com/db-ui/mono.git"
   },
-  "license": "Apache-2.0",
+  "license": "DB Design License",
   "bin": {
     "@db-ui/foundations": "build/index.js"
   },
