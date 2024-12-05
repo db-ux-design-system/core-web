@@ -1,6 +1,3 @@
-import { SemanticType } from '../shared/model';
-import { AriaRole, CSSProperties } from 'react';
-
 export const uuid = () => {
 	if (typeof window !== 'undefined') {
 		if (window.crypto?.randomUUID) {
