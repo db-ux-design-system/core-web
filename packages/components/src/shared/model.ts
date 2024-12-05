@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
-import { IconTypes } from './icon-types';
+import { IconTypes } from '@db-ux/core-icons';
 
 export type GlobalProps = {
 	/**
