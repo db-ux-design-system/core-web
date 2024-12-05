@@ -1,6 +1,3 @@
-import { SemanticType } from '../shared/model';
-import { AriaRole, CSSProperties } from 'react';
-
 export const uuid = () => {
 	if (typeof window !== 'undefined') {
 		if (window.crypto?.randomUUID) {
@@ -33,19 +30,19 @@ export type ClassNameArg =
 export const cls = (...args: ClassNameArg[]) => {
 	let result = '';
 
-	args.forEach((arg, index) => {
+	for (const arg of args) {
 		if (arg) {
 			if (typeof arg === 'string') {
 				result += `${arg} `;
 			} else {
-				for (let key in arg) {
+				for (const key in arg) {
 					if (arg[key]) {
 						result += `${key} `;
 					}
 				}
 			}
 		}
-	});
+	}
 
 	return result.trim();
 };
@@ -120,8 +117,7 @@ export const visibleInVY = (el: Element) => {
 };
 
 export const isInView = (el: Element) => {
-	const { top, bottom, left, right, height, width } =
-		el.getBoundingClientRect();
+	const { top, bottom, left, right } = el.getBoundingClientRect();
 	const { innerHeight, innerWidth } = window;
 
 	let outTop = top < 0;
