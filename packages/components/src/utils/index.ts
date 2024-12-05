@@ -120,8 +120,7 @@ export const visibleInVY = (el: Element) => {
 };
 
 export const isInView = (el: Element) => {
-	const { top, bottom, left, right, height, width } =
-		el.getBoundingClientRect();
+	const { top, bottom, left, right } = el.getBoundingClientRect();
 	const { innerHeight, innerWidth } = window;
 
 	let outTop = top < 0;
