@@ -44,6 +44,12 @@ module.exports = {
 			}
 		},
 		{
+			files: ['./**/vite.config.ts'],
+			rules: {
+				'@typescript-eslint/no-unsafe-call': 0 // We don't need this tsc will handle it anyway
+			}
+		},
+		{
 			files: ['./showcases/e2e/**'],
 			rules: {
 				'@typescript-eslint/no-loop-func': 0 // this is fine for playwright testing

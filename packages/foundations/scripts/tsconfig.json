@@ -1,8 +1,14 @@
 {
+	"include": ["."],
 	"compilerOptions": {
-		"target": "es2021",
-		"module": "nodenext",
-		"strictNullChecks": true,
-		"lib": ["ESNext"]
+		"strict": true,
+		"allowSyntheticDefaultImports": true,
+		"composite": true,
+		"module": "ESNext",
+		"moduleResolution": "Node",
+		"resolveJsonModule": true,
+		"target": "ESNext",
+		"verbatimModuleSyntax": true,
+		"skipLibCheck": true
 	}
 }
