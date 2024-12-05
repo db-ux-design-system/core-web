@@ -31,8 +31,6 @@
     "dev:sass": "npm run dev:scss --workspace=@db-ui/components",
     "dev:stencil-components": "npm run dev:stencil --workspace=@db-ui/components",
     "dev:vue-components": "npm run dev:vue --workspace=@db-ui/components",
-    "generate:icon-fonts": "npm run generate:icon-fonts --workspace=@db-ui/foundations",
-    "generate:icon-types": "npm run generate:icon-types --workspace=@db-ui/components",
     "rm-builds:components-build": "rimraf ../packages/components/build",
     "rm-builds:dist": "rimraf -g showcases/**/dist",
     "rm-builds:foundations-build": "rimraf ../packages/foundations/build",

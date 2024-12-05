@@ -85,9 +85,9 @@ const reactHtmlAttributes = [
 ];
 
 export const filterPassingProps = (
-	props: any,
+	props: Record<string, unknown>,
 	propsPassingFilter: string[]
-): any =>
+): Record<string, unknown> =>
 	Object.keys(props)
 		.filter(
 			(key) =>
@@ -100,10 +100,20 @@ export const filterPassingProps = (
 					reactHtmlAttributes.includes(key)) &&
 				!propsPassingFilter.includes(key)
 		)
-		.reduce((obj: any, key: string) => {
-			obj[key] = props[key];
-			return obj;
+		.reduce((obj: Record<string, unknown>, key: string) => {
+			return { ...obj, [key]: props[key] };
 		}, {});
+
+export const getRootProps = (
+	props: Record<string, unknown>,
+	rooProps: string[]
+): Record<string, unknown> => {
+	return Object.keys(props)
+		.filter((key) => rooProps.includes(key))
+		.reduce((obj: Record<string, unknown>, key: string) => {
+			return { ...obj, [key]: props[key] };
+		}, {});
+};
 
 export const visibleInVX = (el: Element) => {
 	const { left, right } = el.getBoundingClientRect();
@@ -263,6 +273,7 @@ export const getHideIcon = (showIcon?: boolean): any => {
 };
 
 export default {
+	getRootProps,
 	filterPassingProps,
 	cls,
 	addAttributeToChildren,
