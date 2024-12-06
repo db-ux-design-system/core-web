@@ -10,7 +10,7 @@ const getSwitch = ({
 	checked,
 	visualAid,
 	disabled,
-	variant,
+	showLabel,
 	emphasis,
 	size,
 	icon,
@@ -21,14 +21,14 @@ const getSwitch = ({
 			visualAid={visualAid}
 			defaultChecked={checked}
 			disabled={disabled}
-			variant={variant}
+			showLabel={showLabel}
 			size={size}
 			emphasis={emphasis}
 			icon={icon}
 			iconAfter={iconAfter}>
 			{children}
 		</DBSwitch>
-		{variant === 'hidden' && (
+		{showLabel !== undefined && !showLabel && (
 			<DBInfotext semantic="informational" icon="none">
 				{children}
 			</DBInfotext>

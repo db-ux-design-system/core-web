@@ -14,7 +14,7 @@
 			[visualAid]="exampleProps?.visualAid"
 			[checked]="exampleProps?.checked"
 			[disabled]="exampleProps?.disabled"
-			[variant]="exampleProps?.variant"
+			[showLabel]="exampleProps?.showLabel"
 			[size]="exampleProps?.size"
 			[emphasis]="exampleProps?.emphasis"
 			[icon]="exampleProps?.icon"
@@ -22,7 +22,11 @@
 		>
 			{{ exampleName }}
 		</db-switch>
-		@if (exampleProps?.variant === "hidden") {
+		@if (
+			exampleProps?.showLabel !== undefined &&
+			exampleProps?.showLabel !== null &&
+			!exampleProps?.showLabel
+		) {
 			<db-infotext semantic="informational" icon="none">
 				{{ exampleName }}
 			</db-infotext>

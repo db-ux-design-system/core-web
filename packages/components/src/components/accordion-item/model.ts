@@ -1,15 +1,12 @@
 import {
 	GlobalProps,
 	GlobalState,
+	TextProps,
 	ToggleEventProps,
 	ToggleEventState
 } from '../../shared/model';
 
 export type DBAccordionItemDefaultProps = {
-	/**
-	 * Alternative for passing only a string instead of children
-	 */
-	content?: string;
 	/**
 	 * Initial state for the accordion item
 	 */
@@ -26,7 +23,7 @@ export type DBAccordionItemDefaultProps = {
 	 * Title of the accordion-item as plain text
 	 */
 	headlinePlain?: string;
-};
+} & TextProps;
 
 export type DBAccordionItemProps = DBAccordionItemDefaultProps &
 	GlobalProps &

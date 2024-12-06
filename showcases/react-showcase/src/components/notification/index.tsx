@@ -12,7 +12,7 @@ const getNotification = ({
 	headline,
 	variant,
 	children,
-	behaviour,
+	closeable,
 	link,
 	timestamp,
 	linkVariant,
@@ -32,7 +32,7 @@ const getNotification = ({
 			) : undefined
 		}
 		variant={variant}
-		behaviour={behaviour}
+		closeable={closeable}
 		linkVariant={linkVariant}
 		timestamp={timestamp}
 		onClose={() => {

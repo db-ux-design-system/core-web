@@ -41,7 +41,7 @@
     "start": "nodemon --config nodemon.json",
     "test": "vitest run --config scripts/vitest.config.ts",
     "test:e2e": "npx playwright test --config=./test/playwright.config.js",
-    "test:migration": "tsx scripts/cli.ts migration --src=./scss --dryRun=true"
+    "test:migration": "tsx scripts/cli.ts migration --type v005_v006 --src=./scss --dryRun=true"
   },
   "devDependencies": {
     "@csstools/normalize.css": "12.1.1",

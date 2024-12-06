@@ -1,6 +1,6 @@
 import { Show, useMetadata, useRef, useStore } from '@builder.io/mitosis';
 import type { DBButtonProps, DBButtonState } from './model';
-import { cls, getBooleanAsString, getHideIcon } from '../../utils';
+import { cls, getBooleanAsString, getHideProp } from '../../utils';
 import { ClickEvent } from '../../shared/model';
 
 useMetadata({});
@@ -27,7 +27,7 @@ export default function DBButton(props: DBButtonProps) {
 			disabled={props.disabled}
 			aria-label={props.label}
 			data-icon={props.icon}
-			data-hide-icon={getHideIcon(props.showIcon)}
+			data-hide-icon={getHideProp(props.showIcon)}
 			data-size={props.size}
 			data-state={props.state}
 			data-width={props.width}
