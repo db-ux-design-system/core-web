@@ -113,7 +113,7 @@
 						}
 					],
 					"label": "Label",
-					"variant": "hidden"
+					"showLabel": false
 				}
 			}
 		]

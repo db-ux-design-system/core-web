@@ -147,7 +147,7 @@ $checked-active-transition-size: calc(
 		}
 	}
 
-	&[data-variant="hidden"] {
+	&[data-hide-label="true"] {
 		gap: 0;
 	}
 

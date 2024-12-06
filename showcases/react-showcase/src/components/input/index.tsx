@@ -35,7 +35,8 @@ const getInput = ({
 	message,
 	variant,
 	readOnly,
-	dataList
+	dataList,
+	showLabel
 }: DBInputProps & { dataList: boolean }) => {
 	return (
 		<DBInput
@@ -43,6 +44,7 @@ const getInput = ({
 			message={message}
 			placeholder={children}
 			variant={variant}
+			showLabel={showLabel}
 			defaultValue={value}
 			type={type}
 			minLength={minLength}

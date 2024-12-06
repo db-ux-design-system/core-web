@@ -14,7 +14,8 @@ export const migrate = (
 		const paths = `${src}/**`;
 
 		const globPaths: string[] = globSync(paths, {
-			nodir: true
+			nodir: true,
+			ignore: ['node_modules']
 		}).map((path) => path.replaceAll('\\', '/'));
 
 		const replacements: ReplaceInFileConfig[] = Object.entries(

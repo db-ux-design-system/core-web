@@ -2,6 +2,7 @@ import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import defaultComponentVariants from '../../../../../shared/input.json';
 import { DefaultComponent } from '../default.component';
 import {
+	DBCheckbox,
 	DBInput,
 	LabelVariantType,
 	ValueLabelType
@@ -11,9 +12,12 @@ import { environment } from '../../../environments/environment';
 @Component({
 	selector: 'app-input',
 	templateUrl: './input.component.html',
-	imports: environment.webComponents
-		? [DefaultComponent]
-		: [DefaultComponent, DBInput],
+	imports: [
+		environment.webComponents
+			? [DefaultComponent]
+			: [DefaultComponent, DBInput],
+		DBCheckbox
+	],
 	standalone: true,
 	schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })

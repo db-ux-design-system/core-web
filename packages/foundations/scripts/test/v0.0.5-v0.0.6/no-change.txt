@@ -1,0 +1,8 @@
+<DBNotification
+				onClose={() => (close = 'test')}
+				closeable>
+				Test
+			</DBNotification>
+
+
+<DBInput showLabel={false}>

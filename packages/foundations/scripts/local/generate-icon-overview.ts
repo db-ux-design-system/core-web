@@ -2,7 +2,7 @@
  * This script can be used to update the icon overview for foundation testing.
  */
 
-import {  writeFileSync } from 'node:fs';
+import { writeFileSync } from 'node:fs';
 import { ALL_ICONS } from '@db-ux/core-icons';
 
 const generateIconOverview = () => {

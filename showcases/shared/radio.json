@@ -134,7 +134,7 @@
 				"name": "Hidden Label",
 				"props": {
 					"name": "Content",
-					"variant": "hidden"
+					"showLabel": false
 				}
 			}
 		]
