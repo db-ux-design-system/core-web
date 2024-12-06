@@ -45,7 +45,7 @@
   },
   "devDependencies": {
     "@csstools/normalize.css": "12.1.1",
-    "@db-ux/core-icons": "^0.0.1",
+    "@db-ux/core-icons": "^0.0.6",
     "commander": "^12.0.0",
     "cpr": "3.0.1",
     "cssnano": "^7.0.6",
@@ -55,7 +55,7 @@
     "replace-in-file": "^8.2.0",
     "sass": "1.77.4",
     "tsx": "^4.19.2",
-    "vite": "^6.0.2",
+    "vite": "^6.0.3",
     "vitest": "^2.1.8"
   },
   "publishConfig": {
