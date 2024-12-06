@@ -1,1 +1,0 @@
-(self.webpackChunk_N_E=self.webpackChunk_N_E||[]).push([[60985],{89836:function(n,o,_){(window.__NEXT_P=window.__NEXT_P||[]).push(["/components/tooltip/code/Animations",function(){return _(88712)}])}},function(n){n.O(0,[64996,88712,49774,92888,40179],function(){return n(n.s=89836)}),_N_E=n.O()}]);

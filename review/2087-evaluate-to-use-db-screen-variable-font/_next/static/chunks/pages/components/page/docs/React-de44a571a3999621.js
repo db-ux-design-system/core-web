@@ -1,1 +1,0 @@
-(self.webpackChunk_N_E=self.webpackChunk_N_E||[]).push([[62494],{92070:function(n,_,u){(window.__NEXT_P=window.__NEXT_P||[]).push(["/components/page/docs/React",function(){return u(60973)}])}},function(n){n.O(0,[64996,60973,49774,92888,40179],function(){return n(n.s=92070)}),_N_E=n.O()}]);
