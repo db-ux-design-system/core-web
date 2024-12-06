@@ -36,7 +36,7 @@
     "copy-prepare:woff2": "cpr ../../node_modules/@db-ux/core-icons/dist/fonts assets/icons/functional/fonts -o",
     "copy:scss": "cpr scss build/scss -o",
     "dev": "vite --open",
-    "prepare": "npm-run-all copy-prepare:*",
+    "postinstall": "npm-run-all copy-prepare:*",
     "regenerate:screenshots": "npx playwright test -c ./test/playwright.config.js --update-snapshots",
     "start": "nodemon --config nodemon.json",
     "test": "vitest run --config scripts/vitest.config.ts",
