@@ -15,7 +15,8 @@ const getSelect = ({
 	disabled,
 	value,
 	required,
-	variant
+	variant,
+	showLabel
 }: DBSelectProps) => {
 	const [mValue, setValue] = useState<string>(value);
 	return (
@@ -25,6 +26,7 @@ const getSelect = ({
 			options={options}
 			disabled={disabled}
 			variant={variant}
+			showLabel={showLabel}
 			icon={icon}
 			value={mValue}
 			onChange={(event) => {

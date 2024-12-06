@@ -53,8 +53,8 @@ export default function DBAccordionItem(props: DBAccordionItemProps) {
 					</Show>
 				</summary>
 				<div>
-					<Show when={props.content} else={props.children}>
-						{props.content}
+					<Show when={props.text} else={props.children}>
+						{props.text}
 					</Show>
 				</div>
 			</details>

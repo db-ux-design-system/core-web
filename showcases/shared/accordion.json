@@ -4,21 +4,21 @@
 		"children": [
 			{
 				"name": "accordion-item",
-				"content": "Content 1",
+				"text": "Content 1",
 				"props": {
 					"headline": "Item 1"
 				}
 			},
 			{
 				"name": "accordion-item",
-				"content": "Content 2",
+				"text": "Content 2",
 				"props": {
 					"headline": "Item 2"
 				}
 			},
 			{
 				"name": "accordion-item",
-				"content": "Content 3",
+				"text": "Content 3",
 				"props": {
 					"headline": "Item 3"
 				}
@@ -48,21 +48,21 @@
 		"children": [
 			{
 				"name": "accordion-item",
-				"content": "Content 1",
+				"text": "Content 1",
 				"props": {
 					"headline": "Item 1"
 				}
 			},
 			{
 				"name": "accordion-item",
-				"content": "Content 2",
+				"text": "Content 2",
 				"props": {
 					"headline": "Item 2"
 				}
 			},
 			{
 				"name": "accordion-item",
-				"content": "Content 3",
+				"text": "Content 3",
 				"props": {
 					"headline": "Item 3"
 				}
@@ -86,21 +86,21 @@
 		"children": [
 			{
 				"name": "accordion-item",
-				"content": "Content 1",
+				"text": "Content 1",
 				"props": {
 					"headline": "Item 1"
 				}
 			},
 			{
 				"name": "accordion-item",
-				"content": "Content 2",
+				"text": "Content 2",
 				"props": {
 					"headline": "Item 2"
 				}
 			},
 			{
 				"name": "accordion-item",
-				"content": "Content 3",
+				"text": "Content 3",
 				"props": {
 					"headline": "Item 3"
 				}

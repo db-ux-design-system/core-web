@@ -24,7 +24,7 @@ const log = (exampleName: string) => {
 				:link-variant="exampleProps?.linkVariant"
 				:timestamp="exampleProps?.timestamp"
 				:icon="exampleProps?.icon"
-				:behaviour="exampleProps?.behaviour"
+				:closeable="exampleProps?.closeable"
 				@onClose="log(exampleName)"
 			>
 				<template v-if="exampleProps?.link" v-slot:link>

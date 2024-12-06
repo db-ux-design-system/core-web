@@ -12,6 +12,7 @@ import { DBCheckbox } from "../../../../../output/vue/src";
 			<DBCheckbox
 				:label="exampleProps?.label"
 				:variant="exampleProps?.variant"
+				:show-label="exampleProps?.showLabel"
 				:options="exampleProps?.options"
 				:checked="exampleProps?.checked"
 				:disabled="exampleProps?.disabled"

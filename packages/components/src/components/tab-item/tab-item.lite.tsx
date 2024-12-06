@@ -8,7 +8,7 @@ import {
 	useTarget
 } from '@builder.io/mitosis';
 import type { DBTabItemProps, DBTabItemState } from './model';
-import { cls, getHideIcon, getBooleanAsString } from '../../utils';
+import { cls, getBooleanAsString, getHideProp } from '../../utils';
 import { ChangeEvent } from '../../shared/model';
 import { handleFrameworkEvent } from '../../utils/form-components';
 
@@ -66,8 +66,8 @@ export default function DBTabItem(props: DBTabItemProps) {
 				htmlFor={props.id}
 				data-icon={props.icon}
 				data-icon-after={props.iconAfter}
-				data-hide-icon={getHideIcon(props.showIcon)}
-				data-hide-icon-after={getHideIcon(props.showIcon)}
+				data-hide-icon={getHideProp(props.showIcon)}
+				data-hide-icon-after={getHideProp(props.showIcon)}
 				data-no-text={props.noText}>
 				<input
 					disabled={props.disabled}

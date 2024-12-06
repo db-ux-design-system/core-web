@@ -264,12 +264,12 @@ export const getBooleanAsString = (originBool?: boolean): any => {
 };
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-export const getHideIcon = (showIcon?: boolean): any => {
-	if (showIcon === undefined) {
+export const getHideProp = (show?: boolean): any => {
+	if (show === undefined || show === null) {
 		return undefined;
 	}
 
-	return getBooleanAsString(!showIcon);
+	return getBooleanAsString(!show);
 };
 
 export default {
@@ -287,5 +287,5 @@ export default {
 	delay,
 	enableCustomElementAttributePassing,
 	getBooleanAsString,
-	getHideIcon
+	getHideIcon: getHideProp
 };
