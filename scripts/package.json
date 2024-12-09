@@ -64,9 +64,9 @@
     "update:icon-fonts": "npm-run-all generate:icon-fonts generate:icon-types"
   },
   "devDependencies": {
-    "@inquirer/prompts": "7.1.0",
+    "@inquirer/prompts": "7.2.0",
     "glob": "^11.0.0",
-    "inquirer": "^12.1.0",
+    "inquirer": "^12.2.0",
     "replace-in-file": "^8.2.0"
   }
 }
