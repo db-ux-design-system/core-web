@@ -38,7 +38,7 @@ const generateExampleJSX = () => {
 					examples.push(
 						`"${componentName}${variant.name}${
 							example.name
-						}":renderToString(${[...code]})`
+						}":renderToString(${code.slice(0)})`
 					);
 				}
 			}
