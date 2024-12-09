@@ -107,7 +107,7 @@ const VersionSwitcher = () => {
 		const isTag =
 			(branch.split('.').length === 3 && branch.startsWith('v')) ||
 			branch === 'latest';
-		globalThis.location.replace(
+		window.location.replace(
 			DOMPurify.sanitize(
 				`https://${owner}.github.io/${repo}${
 					isTag ? '/version' : '/review'
