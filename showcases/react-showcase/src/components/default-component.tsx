@@ -82,12 +82,12 @@ const DefaultComponent = ({
 	const color = useQuery(redirectURLSearchParams)[2];
 
 	const getHref = (variantName: string): string => {
-		if (typeof window !== 'undefined') {
+		if (typeof globalThis !== 'undefined') {
 			const searchParams = new URLSearchParams(
-				window.location.href.split('?')[1]
+				globalThis.location.href.split('?')[1]
 			);
 			searchParams.set('page', variantName.toLowerCase());
-			return `${window.location.href.split('?')[0]}?${searchParams.toString()}`;
+			return `${globalThis.location.href.split('?')[0]}?${searchParams.toString()}`;
 		}
 
 		return '';
@@ -98,14 +98,14 @@ const DefaultComponent = ({
 		variantName: string
 	) => {
 		if (
-			typeof window === 'undefined' ||
-			!window.location.origin ||
-			!window.location.href
+			typeof globalThis === 'undefined' ||
+			!globalThis.location.origin ||
+			!globalThis.location.href
 		) {
 			return;
 		}
 
-		const currentUrl = window.location.href.split('?');
+		const currentUrl = globalThis.location.href.split('?');
 		const rawComponentUrl = currentUrl[0];
 		const searchParams = new URLSearchParams(currentUrl[1] ?? '');
 		searchParams.set('page', variantName.toLowerCase());
