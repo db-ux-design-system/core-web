@@ -6,5 +6,5 @@ await build({
 	outfile: './build/index.js',
 	platform: 'node',
 	format: 'esm',
-	external: ['chalk']
+	packages: 'external'
 });
