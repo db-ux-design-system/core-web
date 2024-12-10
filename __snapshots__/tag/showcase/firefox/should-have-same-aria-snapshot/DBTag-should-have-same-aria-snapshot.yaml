@@ -11,20 +11,20 @@
     - text: (Default) Static
     - button "Interactive Button"
     - link "Interactive Link"
-    - checkbox "Interactive Checkbox": on
+    - checkbox "Interactive Checkbox": "on"
     - text: Interactive Checkbox
-    - radio "Interactive Radio 1": on
+    - radio "Interactive Radio 1": "on"
     - text: Interactive Radio 1
-    - radio "Interactive Radio 2": on
+    - radio "Interactive Radio 2": "on"
     - text: Interactive Radio 2 Removeable
     - button "Remove tag"
   - link "State arrow_up_right\" / \""
   - group "State":
-    - checkbox "(Default) Unchecked": on
+    - checkbox "(Default) Unchecked": "on"
     - text: (Default) Unchecked
-    - checkbox "Checked" [checked]: on
+    - checkbox "Checked" [checked]: "on"
     - text: Checked
-    - checkbox "Disabled" [checked] [disabled]: on
+    - checkbox "Disabled" [checked] [disabled]: "on"
     - text: Disabled
   - link "Content arrow_up_right\" / \""
   - text: (Default) Text Icon Icon & Text
@@ -34,9 +34,9 @@
   - group "Example":
     - button "Interactive Strong Button with Icon"
     - link "Interactive Strong Link with Icon"
-    - checkbox "Interactive Strong Checkbox with Icon": on
+    - checkbox "Interactive Strong Checkbox with Icon": "on"
     - text: Interactive Strong Checkbox with Icon
-    - radio "Interactive Strong Radio 1 with Icon": on
+    - radio "Interactive Strong Radio 1 with Icon": "on"
     - text: Interactive Strong Radio 1 with Icon
-    - radio "Interactive Strong Radio 2 with Icon": on
+    - radio "Interactive Strong Radio 2 with Icon": "on"
     - text: Interactive Strong Radio 2 with Icon
