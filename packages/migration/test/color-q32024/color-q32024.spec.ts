@@ -1,11 +1,11 @@
 import { describe, expect, test } from 'vitest';
-import { migrate } from '../../migration';
-import { ReplaceResult } from 'replace-in-file';
+import { type ReplaceResult } from 'replace-in-file';
+import { migrate } from '../../src/migration';
 
 describe('color-q32024', () => {
 	test('check if changes are detected', async () => {
 		const result = migrate({
-			src: './scripts/test/color-q32024',
+			src: './test/color-q32024',
 			type: ['colorQ32024'],
 			dryRun: true
 		});
