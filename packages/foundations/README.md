@@ -306,7 +306,7 @@ If you want to optimize the size of the loaded styles, you might skip loading `@
 
 ## Migration
 
-We provide a [cli tool](https://github.com/db-ui/mono/blob/main/packages/migration/README.md) to auto migrate your source code.
+We provide a [CLI tool](https://github.com/db-ui/mono/blob/main/packages/migration/README.md) to auto migrate your source code.
 
 ## Deutsche Bahn brand
 
