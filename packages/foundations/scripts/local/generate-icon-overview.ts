@@ -30,9 +30,10 @@ const generateIconOverview = () => {
 
 	<body>
 		<div class="icons-overview-container">
-		${// eslint-disable-next-line @typescript-eslint/no-unsafe-call
+		${
+			// eslint-disable-next-line @typescript-eslint/no-unsafe-call
 			ALL_ICONS.map(
-			(icon) => `
+				(icon) => `
 <div data-spacing="small" class="db-card">
 <span
 aria-hidden="true"
@@ -46,7 +47,8 @@ data-semantic="informational"
 >${icon}</span
 >
 </div>`
-		).join('\n')}
+			).join('\n')
+		}
 </div>
 </body>
 </html>`;
