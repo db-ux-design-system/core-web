@@ -306,7 +306,7 @@ If you want to optimize the size of the loaded styles, you might skip loading `@
 
 ## Migration
 
-We provide a cli tool to auto migrate your source code. Use this command in your repository:
+We provide a CLI tool to auto migrate your source code. Use this command in your repository:
 
 ```shell
 npx @db-ui/foundations migration --src=./src
