@@ -1,6 +1,6 @@
 <DBNotification
 				onClose={() => (close = 'test')}
-				behaviour="closable">
+				behaviour="closeable">
 				Test
 			</DBNotification>
 
