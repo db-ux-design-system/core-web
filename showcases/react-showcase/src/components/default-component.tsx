@@ -84,10 +84,10 @@ const DefaultComponent = ({
 	const getHref = (variantName: string): string => {
 		if (typeof globalThis !== 'undefined') {
 			const searchParams = new URLSearchParams(
-				globalThis.location.href.split('?')[1]
+				globalThis?.location?.href.split('?')[1]
 			);
 			searchParams.set('page', variantName.toLowerCase());
-			return `${globalThis.location.href.split('?')[0]}?${searchParams.toString()}`;
+			return `${globalThis?.location?.href.split('?')[0]}?${searchParams.toString()}`;
 		}
 
 		return '';

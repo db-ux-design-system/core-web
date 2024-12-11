@@ -20,7 +20,7 @@ const Base64 = () => {
 		setUrl(
 			new URL(
 				`iframe?color=${color}&density=${density}&components=${base64}`,
-				globalThis.location.href
+				globalThis.location?.href
 			).toString()
 		);
 	}, [density, color, base64]);
