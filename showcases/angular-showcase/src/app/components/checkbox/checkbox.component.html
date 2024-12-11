@@ -25,7 +25,9 @@
 			>{{ exampleName }}</db-checkbox
 		>
 		@if (
-			exampleProps?.showLabel !== undefined && !exampleProps?.showLabel
+			exampleProps?.showLabel !== undefined &&
+			exampleProps?.showLabel !== null &&
+			!exampleProps?.showLabel
 		) {
 			<db-infotext
 				semantic="informational"
