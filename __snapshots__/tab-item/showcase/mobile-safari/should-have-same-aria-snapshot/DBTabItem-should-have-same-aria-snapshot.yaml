@@ -2,50 +2,50 @@
   - heading "DBTabItem" [level=1]
   - link "Density arrow_up_right\" / \""
   - tablist:
-    - tab "Functional": on
+    - tab "Functional": "on"
     - text: Functional
   - tablist:
-    - tab "(Default) Regular": on
+    - tab "(Default) Regular": "on"
     - text: (Default) Regular
   - tablist:
-    - tab "Expressive": on
+    - tab "Expressive": "on"
     - text: Expressive
   - link "States arrow_up_right\" / \""
   - tablist:
-    - tab "(Default) Enabled": on
+    - tab "(Default) Enabled": "on"
     - text: (Default) Enabled
   - tablist:
-    - tab "active" [selected]: on
+    - tab "active" [selected]: "on"
     - text: active
   - tablist:
-    - tab "disabled" [disabled]: on
+    - tab "disabled" [disabled]: "on"
     - text: disabled
   - link "Content arrow_up_right\" / \""
   - tablist:
-    - tab "(Default) Text": on
+    - tab "(Default) Text": "on"
     - text: (Default) Text
   - tablist:
     - text: db" / "
-    - tab "db\" / \" Text - Icon (Leading)": on
+    - tab "db\" / \" Text - Icon (Leading)": "on"
     - text: Text - Icon (Leading)
   - tablist:
-    - tab "Text - Icon (Trailing) db\" / \"": on
+    - tab "Text - Icon (Trailing) db\" / \"": "on"
     - text: Text - Icon (Trailing) db" / "
   - tablist:
     - text: db" / "
-    - tab "db\" / \" Icon": on
+    - tab "db\" / \" Icon": "on"
     - text: Icon
   - link "Behaviour arrow_up_right\" / \""
   - tablist:
-    - tab "(Default) Auto Width": on
+    - tab "(Default) Auto Width": "on"
     - text: (Default) Auto Width
   - tablist:
-    - tab "Width full": on
+    - tab "Width full": "on"
     - text: Width full
   - link "Content Alignment Full Width arrow_up_right\" / \""
   - tablist:
-    - tab "Left": on
+    - tab "Left": "on"
     - text: Left
   - tablist:
-    - tab "Centered": on
+    - tab "Centered": "on"
     - text: Centered

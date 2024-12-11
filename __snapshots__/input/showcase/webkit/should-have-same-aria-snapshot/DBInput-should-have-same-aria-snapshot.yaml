@@ -59,7 +59,7 @@
   - textbox "Label": (Default) Text
   - status
   - text: Number
-  - spinbutton "Number": 123456
+  - spinbutton "Number": "123456"
   - status
   - text: db" / " Label
   - textbox "Label"
