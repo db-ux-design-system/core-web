@@ -10,7 +10,7 @@
 We provide a cli tool to auto migrate your source code. Use this command in your repository:
 
 ```shell
-npx @db-ui/foundations migration --type XXX --src=./src
+npx @db-ui/migration -t=v005_v006 -s=./src
 ```
 
 ## Deutsche Bahn brand
