@@ -1,5 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unsafe-call */
-
 /*
  * This script can be used to update the icon overview for foundation testing.
  */
