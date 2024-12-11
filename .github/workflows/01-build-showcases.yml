@@ -11,7 +11,7 @@ on:
 jobs:
   build-showcases:
     name: Build Showcase ${{ inputs.showcase }}
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04 # Use Ubuntu 24.04 explicitly
     steps:
       - name: ⏬ Checkout repo
         uses: actions/checkout@v4
