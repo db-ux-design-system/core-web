@@ -9,6 +9,11 @@ export const v005_v006: ReplaceInFileConfig[] = [
 	},
 	{
 		files: '',
+		from: /behaviour="permanent"/g,
+		to: 'closeable="false"'
+	},
+	{
+		files: '',
 		from: /variant="hidden"/g,
 		to: 'showLabel="false"'
 	},
