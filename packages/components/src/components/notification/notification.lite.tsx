@@ -4,6 +4,7 @@ import DBButton from '../button/button.lite';
 import { DEFAULT_CLOSE_BUTTON } from '../../shared/constants';
 import { cls, getHideProp } from '../../utils';
 import { ClickEvent } from '../../shared/model';
+import { stringPropVisible } from '../../utils/form-components';
 
 useMetadata({});
 
@@ -31,7 +32,7 @@ export default function DBNotification(props: DBNotificationProps) {
 			data-hide-icon={getHideProp(props.showIcon)}
 			data-link-variant={props.linkVariant}>
 			<Slot name="image" />
-			<Show when={props.headline}>
+			<Show when={stringPropVisible(props.headline, props.showHeadline)}>
 				<header>{props.headline}</header>
 			</Show>
 			<p>

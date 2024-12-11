@@ -18,8 +18,22 @@
 			[required]="exampleProps?.required"
 			[indeterminate]="exampleProps?.indeterminate"
 			[showLabel]="exampleProps?.showLabel"
+			[validation]="exampleProps?.validation"
+			[invalidMessage]="exampleProps?.invalidMessage"
+			[validMessage]="exampleProps?.validMessage"
 			[size]="exampleProps?.size"
 			>{{ exampleName }}</db-checkbox
 		>
+		@if (
+			exampleProps?.showLabel !== undefined && !exampleProps?.showLabel
+		) {
+			<db-infotext
+				semantic="informational"
+				size="small"
+				[showIcon]="false"
+			>
+				{{ exampleName }}
+			</db-infotext>
+		}
 	</ng-template>
 </app-default-component>

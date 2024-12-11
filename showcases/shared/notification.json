@@ -135,17 +135,17 @@
 		]
 	},
 	{
-		"name": "Behaviour",
+		"name": "Closeable",
 		"examples": [
 			{
-				"name": "(Default) Permanent",
+				"name": "(Default) False",
 				"style": { "width": "300px" },
 				"props": {
-					"behaviour": "permanent"
+					"closeable": false
 				}
 			},
 			{
-				"name": "Closeable",
+				"name": "True",
 				"style": { "width": "300px" },
 				"props": {
 					"closeable": true
@@ -154,7 +154,89 @@
 		]
 	},
 	{
-		"name": "Content - Variant:Docked",
+		"name": "Visual",
+		"examples": [
+			{
+				"name": "(Default) Icon",
+				"style": { "width": "300px" },
+				"props": {
+					"icon": "information_circle"
+				}
+			},
+			{
+				"name": "Image",
+				"style": { "width": "300px" },
+				"props": {
+					"img": true
+				}
+			}
+		]
+	},
+	{
+		"name": "Show Icon",
+		"examples": [
+			{
+				"name": "(Default) True",
+				"style": { "width": "300px" },
+				"props": {
+					"icon": "information_circle",
+					"showIcon": true
+				}
+			},
+			{
+				"name": "False",
+				"style": { "width": "300px" },
+				"props": {
+					"icon": "information_circle",
+					"showIcon": false
+				}
+			}
+		]
+	},
+	{
+		"name": "Link Variant",
+		"examples": [
+			{
+				"name": "(Default) Block",
+				"style": { "width": "300px" },
+				"props": {
+					"link": true,
+					"linkVariant": "block"
+				}
+			},
+			{
+				"name": "Inline",
+				"style": { "width": "300px" },
+				"props": {
+					"link": true,
+					"linkVariant": "inline"
+				}
+			}
+		]
+	},
+	{
+		"name": "Show Headline",
+		"examples": [
+			{
+				"name": "(Default) True",
+				"style": { "width": "300px" },
+				"props": {
+					"headline": "Headline",
+					"showHeadline": true
+				}
+			},
+			{
+				"name": "False",
+				"style": { "width": "300px" },
+				"props": {
+					"headline": "Headline",
+					"showHeadline": false
+				}
+			}
+		]
+	},
+	{
+		"name": "Examples - Variant:Docked",
 		"codeFileName": "ContentVariantDocked",
 		"examples": [
 			{
@@ -279,7 +361,7 @@
 		]
 	},
 	{
-		"name": "Content - Variant:Standalone",
+		"name": "Examples - Variant:Standalone",
 		"codeFileName": "ContentVariantStandalone",
 		"examples": [
 			{
@@ -412,7 +494,7 @@
 		]
 	},
 	{
-		"name": "Content - Variant:Overlay",
+		"name": "Examples - Variant:Overlay",
 		"codeFileName": "ContentVariantOverlay",
 		"examples": [
 			{

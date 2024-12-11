@@ -44,16 +44,17 @@
 		]
 	},
 	{
-		"name": "Interaction-States",
+		"name": "Disabled",
 		"examples": [
 			{
-				"name": "Enabled (Default)/Hover/Pressed",
+				"name": "(Default) False",
 				"props": {
-					"href": "#"
+					"href": "#",
+					"disabled": false
 				}
 			},
 			{
-				"name": "Disabled",
+				"name": "True",
 				"props": {
 					"href": "#",
 					"disabled": true
@@ -94,12 +95,23 @@
 					"href": "#",
 					"content": "external"
 				}
-			},
+			}
+		]
+	},
+	{
+		"name": "Show Icon",
+		"examples": [
 			{
-				"name": "Show Icon",
+				"name": "(Default) True",
 				"props": {
 					"href": "#",
-					"content": "external",
+					"showIcon": true
+				}
+			},
+			{
+				"name": "False",
+				"props": {
+					"href": "#",
 					"showIcon": false
 				}
 			}

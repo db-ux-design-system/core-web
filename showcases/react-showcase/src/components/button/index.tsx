@@ -14,7 +14,8 @@ const getButton = ({
 	width,
 	disabled,
 	children,
-	type
+	type,
+	showIcon
 }: DBButtonProps) => (
 	<DBButton
 		variant={variant}
@@ -24,6 +25,7 @@ const getButton = ({
 		icon={icon}
 		disabled={disabled}
 		width={width}
+		showIcon={showIcon}
 		onClick={() => {
 			// eslint-disable-next-line no-alert
 			alert(children.toString());

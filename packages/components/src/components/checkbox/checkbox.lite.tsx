@@ -26,7 +26,7 @@ import {
 import { ChangeEvent, InteractionEvent } from '../../shared/model';
 import {
 	handleFrameworkEvent,
-	messageVisible
+	stringPropVisible
 } from '../../utils/form-components';
 import DBInfotext from '../infotext/infotext.lite';
 
@@ -182,7 +182,7 @@ export default function DBCheckbox(props: DBCheckboxProps) {
 				</Show>
 			</label>
 
-			<Show when={messageVisible(props.message, props.showMessage)}>
+			<Show when={stringPropVisible(props.message, props.showMessage)}>
 				<DBInfotext
 					size="small"
 					icon={props.messageIcon}

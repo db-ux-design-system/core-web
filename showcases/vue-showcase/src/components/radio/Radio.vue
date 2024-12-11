@@ -18,6 +18,7 @@ import { DBCheckbox, DBRadio } from "../../../../../output/vue/src";
 				:required="exampleProps?.required"
 				:show-label="exampleProps?.showLabel"
 				:disabled="exampleProps?.disabled"
+				:validation="exampleProps?.validation"
 			>
 				{{ exampleName }}
 			</DBRadio>

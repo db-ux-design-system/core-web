@@ -18,7 +18,11 @@ const getTextarea = ({
 	required,
 	children,
 	variant,
-	showLabel
+	showLabel,
+	showMessage,
+	validMessage,
+	validation,
+	invalidMessage
 }: DBTextareaProps) => {
 	const [dynamicValue, setDynamicValue] = useState<string>(value);
 	return (
@@ -37,6 +41,10 @@ const getTextarea = ({
 			placeholder={placeholder ?? children}
 			rows={rows}
 			value={dynamicValue}
+			showMessage={showMessage}
+			invalidMessage={invalidMessage}
+			validMessage={validMessage}
+			validation={validation}
 		/>
 	);
 };

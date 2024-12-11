@@ -37,7 +37,7 @@ import {
 import DBInfotext from '../infotext/infotext.lite';
 import {
 	handleFrameworkEvent,
-	messageVisible
+	stringPropVisible
 } from '../../utils/form-components';
 
 useMetadata({});
@@ -231,7 +231,7 @@ export default function DBInput(props: DBInputProps) {
 				</datalist>
 			</Show>
 			{props.children}
-			<Show when={messageVisible(props.message, props.showMessage)}>
+			<Show when={stringPropVisible(props.message, props.showMessage)}>
 				<DBInfotext
 					size="small"
 					icon={props.messageIcon}
