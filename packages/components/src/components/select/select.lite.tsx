@@ -40,7 +40,7 @@ import {
 
 useMetadata({
 	angular: {
-		nativeAttributes: ['value']
+		nativeAttributes: ['disabled', 'required', 'value']
 	}
 });
 

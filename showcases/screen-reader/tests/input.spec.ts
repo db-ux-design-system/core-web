@@ -7,7 +7,7 @@ test.describe('DBInput', () => {
 		test,
 		title: 'next()',
 		description: 'should have message and label (next())',
-		url: './#/03/input?page=variant%20helper%20message',
+		url: './#/03/input?page=show+message',
 		async testFn(voiceOver, nvda) {
 			if (nvda) {
 				// Nvda doesn't have a next if the element is an input
@@ -26,7 +26,7 @@ test.describe('DBInput', () => {
 		test,
 		title: 'tab',
 		description: 'should have message and label (tab)',
-		url: './#/03/input?page=variant%20helper%20message',
+		url: './#/03/input?page=show+message',
 		async testFn(voiceOver, nvda) {
 			if (voiceOver) {
 				// Voiceover isn't working with tab in pipeline

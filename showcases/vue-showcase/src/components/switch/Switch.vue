@@ -18,6 +18,7 @@ import {
 				:visualAid="exampleProps?.visualAid"
 				:checked="exampleProps?.checked"
 				:disabled="exampleProps?.disabled"
+				:required="exampleProps?.required"
 				:showLabel="exampleProps?.showLabel"
 				:size="exampleProps?.size"
 				:emphasis="exampleProps?.emphasis"

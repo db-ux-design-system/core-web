@@ -30,7 +30,11 @@ import {
 } from '../../utils/form-components';
 import DBInfotext from '../infotext/infotext.lite';
 
-useMetadata({});
+useMetadata({
+	angular: {
+		nativeAttributes: ['disabled', 'required', 'checked', 'indeterminate']
+	}
+});
 
 export default function DBCheckbox(props: DBCheckboxProps) {
 	const ref = useRef<HTMLInputElement>(null);

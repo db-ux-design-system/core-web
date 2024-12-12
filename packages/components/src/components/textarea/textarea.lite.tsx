@@ -27,7 +27,11 @@ import {
 	stringPropVisible
 } from '../../utils/form-components';
 
-useMetadata({});
+useMetadata({
+	angular: {
+		nativeAttributes: ['disabled', 'required']
+	}
+});
 
 export default function DBTextarea(props: DBTextareaProps) {
 	const ref = useRef<HTMLTextAreaElement>(null);

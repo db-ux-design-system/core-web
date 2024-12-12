@@ -40,7 +40,11 @@ import {
 	stringPropVisible
 } from '../../utils/form-components';
 
-useMetadata({});
+useMetadata({
+	angular: {
+		nativeAttributes: ['disabled', 'required']
+	}
+});
 
 export default function DBInput(props: DBInputProps) {
 	const ref = useRef<HTMLInputElement>(null);
