@@ -1,9 +1,6 @@
 module.exports = {
 	prettier: true,
-	ignores: [
-		'./showcases/nuxt-showcase/**',
-		'./packages/foundations/scripts/**'
-	],
+	ignores: ['./showcases/nuxt-showcase/**', './packages/migration/**'],
 	overrides: [
 		{
 			files: ['./showcases/angular-showcase/**'],

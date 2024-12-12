@@ -17,13 +17,13 @@ echo "goto build-outputs"
 cd build-outputs || exit 1
 
 # TODO: Add other build as well
-for PACKAGE in 'foundations' 'components' 'ngx-components' 'react-components' 'v-components' 'web-components'; do
+for PACKAGE in 'foundations' 'migration' 'components' 'ngx-components' 'react-components' 'v-components' 'web-components'; do
 	echo "Start $PACKAGE bundle:"
 
 	echo "🆚 Update Version"
 	npm version --no-git-tag-version "$VALID_SEMVER_VERSION" --workspace=@db-ui/"$PACKAGE"
 
-	if [[ $PACKAGE != 'foundations' ]]; then
+	if [[ $PACKAGE != 'foundations' && $PACKAGE != 'migration' ]]; then
 		echo "🕵️‍ Set foundations dependency"
 		npm pkg set dependencies.@db-ui/foundations="$VALID_SEMVER_VERSION" --workspace=@db-ui/"$PACKAGE"
 		if [[ $PACKAGE != 'components' ]]; then
@@ -58,7 +58,7 @@ for REGISTRY in 'GITHUB' 'NPM'; do
 	fi
 
 	# TODO: Add other build as well
-	for PACKAGE in 'foundations' 'components' 'ngx-components' 'react-components' 'v-components' 'web-components'; do
+	for PACKAGE in 'foundations' 'migration' 'components' 'ngx-components' 'react-components' 'v-components' 'web-components'; do
 		echo "⤴ Publish $PACKAGE with tag $TAG to $REGISTRY"
 		# https://docs.npmjs.com/generating-provenance-statements#example-github-actions-workflow
 		npm publish --tag "$TAG" db-ui-"$PACKAGE"-"$VALID_SEMVER_VERSION".tgz --provenance
