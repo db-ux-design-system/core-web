@@ -106,7 +106,7 @@ export default function DBSelect(props: DBSelectProps) {
 						props.validMessage ?? DEFAULT_VALID_MESSAGE;
 					delay(() => (state._voiceOverFallback = ''), 1000);
 				}
-			} else if (props.message) {
+			} else if (stringPropVisible(props.message, props.showMessage)) {
 				state._descByIds = state._messageId;
 			} else {
 				state._descByIds = state._placeholderId;
@@ -155,7 +155,7 @@ export default function DBSelect(props: DBSelectProps) {
 				state._id + DEFAULT_INVALID_MESSAGE_ID_SUFFIX;
 			state._placeholderId = placeholderId;
 
-			if (props.message) {
+			if (stringPropVisible(props.message, props.showMessage)) {
 				state._descByIds = messageId;
 			} else {
 				state._descByIds = placeholderId;

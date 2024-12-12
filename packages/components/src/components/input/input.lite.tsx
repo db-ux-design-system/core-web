@@ -105,7 +105,7 @@ export default function DBInput(props: DBInputProps) {
 						props.validMessage ?? DEFAULT_VALID_MESSAGE;
 					delay(() => (state._voiceOverFallback = ''), 1000);
 				}
-			} else if (props.message) {
+			} else if (stringPropVisible(props.message, props.showMessage)) {
 				state._descByIds = state._messageId;
 			} else {
 				state._descByIds = '';
@@ -162,7 +162,7 @@ export default function DBInput(props: DBInputProps) {
 			state._dataListId =
 				props.dataListId ?? state._id + DEFAULT_DATALIST_ID_SUFFIX;
 
-			if (props.message) {
+			if (stringPropVisible(props.message, props.showMessage)) {
 				state._descByIds = messageId;
 			}
 		}

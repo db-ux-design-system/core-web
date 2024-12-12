@@ -273,7 +273,8 @@
 				"props": {
 					"options": [
 						{
-							"value": "Valid"
+							"value": "Valid",
+							"selected": true
 						},
 						{
 							"value": "Option 2"
