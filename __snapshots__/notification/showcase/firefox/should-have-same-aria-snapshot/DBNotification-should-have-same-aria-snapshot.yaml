@@ -82,6 +82,12 @@
     - paragraph: (Default) True
   - article:
     - paragraph: "False"
+  - link "Show Timestamp arrow_up_right\" / \""
+  - article:
+    - paragraph: (Default) False
+  - article:
+    - paragraph: "True"
+    - text: 10 min ago
   - link "Examples - Variant:Docked arrow_up_right\" / \""
   - article:
     - paragraph: Text
