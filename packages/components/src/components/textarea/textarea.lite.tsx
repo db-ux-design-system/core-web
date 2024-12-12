@@ -9,23 +9,26 @@ import {
 } from '@builder.io/mitosis';
 import { DBTextareaProps, DBTextareaState } from './model';
 import DBInfotext from '../infotext/infotext.lite';
-import { cls, delay, getHideProp, hasVoiceOver, uuid } from '../../utils';
+import {
+	cls,
+	delay,
+	getHideProp,
+	stringPropVisible,
+	hasVoiceOver,
+	uuid
+} from '../../utils';
 import {
 	DEFAULT_INVALID_MESSAGE,
 	DEFAULT_INVALID_MESSAGE_ID_SUFFIX,
 	DEFAULT_LABEL,
 	DEFAULT_MESSAGE_ID_SUFFIX,
 	DEFAULT_PLACEHOLDER,
-	DEFAULT_PLACEHOLDER_ID_SUFFIX,
 	DEFAULT_ROWS,
 	DEFAULT_VALID_MESSAGE,
 	DEFAULT_VALID_MESSAGE_ID_SUFFIX
 } from '../../shared/constants';
 import { ChangeEvent, InputEvent, InteractionEvent } from '../../shared/model';
-import {
-	handleFrameworkEvent,
-	stringPropVisible
-} from '../../utils/form-components';
+import { handleFrameworkEvent } from '../../utils/form-components';
 
 useMetadata({
 	angular: {

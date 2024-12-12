@@ -272,6 +272,17 @@ export const getHideProp = (show?: boolean): any => {
 	return getBooleanAsString(!show);
 };
 
+export const stringPropVisible = (
+	givenString?: string,
+	showString?: boolean
+) => {
+	if (showString === undefined) {
+		return !!givenString;
+	} else {
+		return showString && givenString;
+	}
+};
+
 export default {
 	getRootProps,
 	filterPassingProps,
@@ -287,5 +298,6 @@ export default {
 	delay,
 	enableCustomElementAttributePassing,
 	getBooleanAsString,
-	getHideIcon: getHideProp
+	getHideProp,
+	stringPropVisible
 };

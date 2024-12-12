@@ -12,7 +12,7 @@ import { DBSelectOptionType, DBSelectProps, DBSelectState } from './model';
 import {
 	cls,
 	delay,
-	getBooleanAsString,
+	stringPropVisible,
 	getHideProp,
 	hasVoiceOver,
 	uuid
@@ -33,10 +33,7 @@ import {
 	InputEvent,
 	InteractionEvent
 } from '../../shared/model';
-import {
-	handleFrameworkEvent,
-	stringPropVisible
-} from '../../utils/form-components';
+import { handleFrameworkEvent } from '../../utils/form-components';
 
 useMetadata({
 	angular: {

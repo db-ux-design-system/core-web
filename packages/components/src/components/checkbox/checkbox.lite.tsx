@@ -11,7 +11,7 @@ import { DBCheckboxProps, DBCheckboxState } from './model';
 import {
 	cls,
 	delay,
-	getBooleanAsString,
+	stringPropVisible,
 	getHideProp,
 	hasVoiceOver,
 	uuid
@@ -24,10 +24,7 @@ import {
 	DEFAULT_VALID_MESSAGE_ID_SUFFIX
 } from '../../shared/constants';
 import { ChangeEvent, InteractionEvent } from '../../shared/model';
-import {
-	handleFrameworkEvent,
-	stringPropVisible
-} from '../../utils/form-components';
+import { handleFrameworkEvent } from '../../utils/form-components';
 import DBInfotext from '../infotext/infotext.lite';
 
 useMetadata({

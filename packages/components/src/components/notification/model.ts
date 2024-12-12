@@ -70,6 +70,11 @@ export type DBNotificationDefaultProps = {
 	timestamp?: string;
 
 	/**
+	 * Enables or disables the visibility of the timestamp.
+	 */
+	showTimestamp?: boolean;
+
+	/**
 	 * The variant attribute changes the styling of the notification.
 	 * The docked notifications are used e.g. between header and main content to show a global alert.
 	 * The standalone notifications are used  e.g. inside a form to show an alert for a specific field.

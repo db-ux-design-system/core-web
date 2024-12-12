@@ -43,7 +43,7 @@ test.describe('DBInput', () => {
 		test,
 		title: 'required',
 		description: 'should inform user for changes',
-		url: './#/03/input?page=requirement',
+		url: './#/03/input?page=required',
 		async testFn(voiceOver, nvda) {
 			if (voiceOver) {
 				/* Goto desired input */

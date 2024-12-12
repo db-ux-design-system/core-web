@@ -236,6 +236,29 @@
 		]
 	},
 	{
+		"name": "Show Timestamp",
+		"examples": [
+			{
+				"name": "(Default) False",
+				"style": { "width": "300px" },
+				"props": {
+					"variant": "overlay",
+					"showTimestamp": false,
+					"timestamp": "10 min ago"
+				}
+			},
+			{
+				"name": "True",
+				"style": { "width": "300px" },
+				"props": {
+					"variant": "overlay",
+					"showTimestamp": true,
+					"timestamp": "10 min ago"
+				}
+			}
+		]
+	},
+	{
 		"name": "Examples - Variant:Docked",
 		"codeFileName": "ContentVariantDocked",
 		"examples": [

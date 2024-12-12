@@ -11,7 +11,7 @@ import {
 import {
 	cls,
 	delay,
-	getBooleanAsString,
+	stringPropVisible,
 	getHideProp,
 	hasVoiceOver,
 	isArrayOfStrings,
@@ -35,10 +35,7 @@ import {
 	ValueLabelType
 } from '../../shared/model';
 import DBInfotext from '../infotext/infotext.lite';
-import {
-	handleFrameworkEvent,
-	stringPropVisible
-} from '../../utils/form-components';
+import { handleFrameworkEvent } from '../../utils/form-components';
 
 useMetadata({
 	angular: {

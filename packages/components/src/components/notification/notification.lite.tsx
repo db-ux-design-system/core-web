@@ -2,9 +2,8 @@ import { Show, Slot, useMetadata, useRef, useStore } from '@builder.io/mitosis';
 import { DBNotificationProps, DBNotificationState } from './model';
 import DBButton from '../button/button.lite';
 import { DEFAULT_CLOSE_BUTTON } from '../../shared/constants';
-import { cls, getHideProp } from '../../utils';
+import { cls, getHideProp, stringPropVisible } from '../../utils';
 import { ClickEvent } from '../../shared/model';
-import { stringPropVisible } from '../../utils/form-components';
 
 useMetadata({});
 
@@ -40,7 +39,8 @@ export default function DBNotification(props: DBNotificationProps) {
 					{props.text}
 				</Show>
 			</p>
-			<Show when={props.timestamp}>
+			<Show
+				when={stringPropVisible(props.timestamp, props.showTimestamp)}>
 				<span>{props.timestamp}</span>
 			</Show>
 
