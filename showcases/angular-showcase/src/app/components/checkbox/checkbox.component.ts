@@ -1,9 +1,5 @@
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-import {
-	DBBadge,
-	DBCheckbox,
-	DBInfotext
-} from '../../../../../../output/angular/src';
+import { DBCheckbox, DBInfotext } from '../../../../../../output/angular/src';
 import defaultComponentVariants from '../../../../../shared/checkbox.json';
 import { DefaultComponent } from '../default.component';
 import { environment } from '../../../environments/environment';
@@ -14,8 +10,7 @@ import { environment } from '../../../environments/environment';
 	imports: [
 		environment.webComponents
 			? [DefaultComponent]
-			: [DefaultComponent, DBCheckbox, DBInfotext],
-		DBBadge
+			: [DefaultComponent, DBCheckbox, DBInfotext]
 	],
 	standalone: true,
 	schemas: [CUSTOM_ELEMENTS_SCHEMA]

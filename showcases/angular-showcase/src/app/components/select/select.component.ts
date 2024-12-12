@@ -1,11 +1,7 @@
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import defaultComponentVariants from '../../../../../shared/select.json';
 import { DefaultComponent } from '../default.component';
-import {
-	DBCheckbox,
-	DBInput,
-	DBSelect
-} from '../../../../../../output/angular/src';
+import { DBSelect } from '../../../../../../output/angular/src';
 import { environment } from '../../../environments/environment';
 
 @Component({
@@ -14,9 +10,7 @@ import { environment } from '../../../environments/environment';
 	imports: [
 		environment.webComponents
 			? [DefaultComponent]
-			: [DefaultComponent, DBSelect],
-		DBCheckbox,
-		DBInput
+			: [DefaultComponent, DBSelect]
 	],
 	schemas: [CUSTOM_ELEMENTS_SCHEMA],
 	standalone: true

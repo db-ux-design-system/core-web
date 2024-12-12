@@ -14,9 +14,7 @@ import { environment } from '../../../environments/environment';
 	imports: [
 		environment.webComponents
 			? [DefaultComponent]
-			: [DefaultComponent, DBRadio],
-		DBCheckbox,
-		DBInfotext
+			: [DefaultComponent, DBRadio, DBInfotext]
 	],
 	schemas: [CUSTOM_ELEMENTS_SCHEMA],
 	standalone: true
