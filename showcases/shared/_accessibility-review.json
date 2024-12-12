@@ -12,7 +12,7 @@
 	{
 		"name": "link",
 		"status": "DONE",
-		"date": "2023-11-23"
+		"date": "2024-12-13"
 	},
 	{
 		"name": "input",
@@ -43,5 +43,20 @@
 		"name": "notification",
 		"status": "DONE",
 		"date": "2023-11-23"
+	},
+	{
+		"name": "textarea",
+		"status": "DONE",
+		"date": "2024-12-13"
+	},
+	{
+		"name": "badge",
+		"status": "DONE",
+		"date": "2024-12-13"
+	},
+	{
+		"name": "card",
+		"status": "DONE",
+		"date": "2024-12-13"
 	}
 ]
