@@ -11,7 +11,8 @@ import {
 import {
 	cls,
 	delay,
-	getHideIcon,
+	getBooleanAsString,
+	getHideProp,
 	hasVoiceOver,
 	isArrayOfStrings,
 	uuid
@@ -77,7 +78,7 @@ export default function DBInput(props: DBInputProps) {
 			});
 
 			/* For a11y reasons we need to map the correct message with the input */
-			if (!ref?.validity.valid || props.customValidity === 'invalid') {
+			if (!ref?.validity.valid || props.validation === 'invalid') {
 				state._descByIds = state._invalidMessageId;
 				if (hasVoiceOver()) {
 					state._voiceOverFallback =
@@ -87,7 +88,7 @@ export default function DBInput(props: DBInputProps) {
 					delay(() => (state._voiceOverFallback = ''), 1000);
 				}
 			} else if (
-				props.customValidity === 'valid' ||
+				props.validation === 'valid' ||
 				(ref?.validity.valid &&
 					(props.required ||
 						props.minLength ||
@@ -171,14 +172,15 @@ export default function DBInput(props: DBInputProps) {
 		<div
 			class={cls('db-input', props.className)}
 			data-variant={props.variant}
-			data-hide-icon={getHideIcon(props.showIcon)}
+			data-hide-label={getHideProp(props.showLabel)}
+			data-hide-icon={getHideProp(props.showIcon)}
 			data-icon={props.icon}
 			data-icon-after={props.iconAfter}
-			data-hide-icon-after={getHideIcon(props.showIcon)}>
+			data-hide-icon-after={getHideProp(props.showIcon)}>
 			<label htmlFor={state._id}>{props.label ?? DEFAULT_LABEL}</label>
 			<input
-				aria-invalid={props.customValidity === 'invalid'}
-				data-custom-validity={props.customValidity}
+				aria-invalid={props.validation === 'invalid'}
+				data-custom-validity={props.validation}
 				ref={ref}
 				id={state._id}
 				name={props.name}

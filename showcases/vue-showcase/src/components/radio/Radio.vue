@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import DefaultComponent from "../DefaultComponent.vue";
 import defaultComponentVariants from "../../../../shared/radio.json";
-import { DBRadio } from "../../../../../output/vue/src";
+import { DBCheckbox, DBRadio } from "../../../../../output/vue/src";
 </script>
 
 <template>
@@ -16,7 +16,7 @@ import { DBRadio } from "../../../../../output/vue/src";
 				:checked="exampleProps?.checked"
 				:value="exampleProps?.value"
 				:required="exampleProps?.required"
-				:variant="exampleProps?.variant"
+				:show-label="exampleProps?.showLabel"
 				:disabled="exampleProps?.disabled"
 			>
 				{{ exampleName }}

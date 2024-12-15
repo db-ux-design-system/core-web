@@ -29,8 +29,7 @@ $has-before-padding: calc(
 	@include form-components.set-default-form-component(select);
 
 	min-inline-size: calc(
-		4 * #{variables.$db-sizing-md} + var(--db-form-has-before) *
-			#{variables.$db-sizing-md}
+		4 * #{variables.$db-sizing-md} + var(--db-form-has-before) * #{variables.$db-sizing-md}
 	);
 
 	select {
@@ -43,7 +42,7 @@ $has-before-padding: calc(
 		color: colors.$db-adaptive-on-bg-basic-emphasis-100-default;
 	}
 
-	&[data-variant="hidden"] {
+	&[data-hide-label="true"] {
 		--db-label-visible-height: 0;
 		--db-label-visible-spacing: 1;
 	}
@@ -58,10 +57,8 @@ $has-before-padding: calc(
 		inset-block-start: calc(
 			0% +
 				(
-					#{form-components.$label-size-height-xs} +
-						#{variables.$db-spacing-fixed-xs}
-				) *
-				var(--db-label-visible-height, 1) + var(--db-base-font-size) /
+					#{form-components.$label-size-height-xs} + #{variables.$db-spacing-fixed-xs}
+				) * var(--db-label-visible-height, 1) + var(--db-base-font-size) /
 				2 - var(--db-density-functional, 0) * 1px
 		);
 		inset-inline: $has-before-padding;
@@ -70,8 +67,8 @@ $has-before-padding: calc(
 		white-space: nowrap;
 		text-overflow: ellipsis;
 		inline-size: calc(
-			100% - var(--db-form-component-padding-inline-end) -
-				#{$has-before-padding} - #{variables.$db-spacing-fixed-sm}
+			100% - var(--db-form-component-padding-inline-end) - #{$has-before-padding} -
+				#{variables.$db-spacing-fixed-sm}
 		);
 	}
 

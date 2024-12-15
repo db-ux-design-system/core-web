@@ -9,9 +9,9 @@ A library containing all tokens (colors, spacings, font formatting, etc.) and as
 
 We currently support:
 
-- [CSS](https://db-ui.github.io/mono/review/main/foundations/readme?current=css)
-- [SCSS](https://db-ui.github.io/mono/review/main/foundations/readme?current=scss)
-- [Tailwind](https://db-ui.github.io/mono/review/main/foundations/readme?current=tailwind)
+-   [CSS](https://db-ui.github.io/mono/review/main/foundations/readme?current=css)
+-   [SCSS](https://db-ui.github.io/mono/review/main/foundations/readme?current=scss)
+-   [Tailwind](https://db-ui.github.io/mono/review/main/foundations/readme?current=tailwind)
 
 ## Install
 
@@ -31,17 +31,17 @@ First of all you need to import a theme which contains all tokens (css-propertie
 
 Afterward, you may import helper classes / placeholders to easily consume the tokens from your theme. There are some categories:
 
-- **init**: Global styles which apply to all or a large group of selectors. Make sure to import `inits/required.css` to normalize tags like `body` etc. Furthermore, we provide some default styles.
-- **icons**: Icons classes to load **woff2** files and adds `[data-icon]` and `[data-icon-after]` to enable icons for all tags and components.
-- **helpers**: Use dividers or focus border
-- **fonts**: Overwrite default `font-size`, `line-height` and `icon-size`
-- **density**: Overwrite default density to scale adaptive components inside container using density
-- **colors**: Sets an adaptive color to a container, which passes all required css-properties to children
+-   **init**: Global styles which apply to all or a large group of selectors. Make sure to import `inits/required.css` to normalize tags like `body` etc. Furthermore, we provide some default styles.
+-   **icons**: Icons classes to load **woff2** files and adds `[data-icon]` and `[data-icon-after]` to enable icons for all tags and components.
+-   **helpers**: Use dividers or focus border
+-   **fonts**: Overwrite default `font-size`, `line-height` and `icon-size`
+-   **density**: Overwrite default density to scale adaptive components inside container using density
+-   **colors**: Sets an adaptive color to a container, which passes all required css-properties to children
 
 You can import the complete **init** styles with `db-ui-foundations[-absolute|-rollup|-webpack].css` which apply the default:
 
-- [Density](https://marketingportal.extranet.deutschebahn.com/marketingportal/Design-Anwendungen/db-ux-design-system/version-3/principles/adaptive#:~:text=und%20Textfarben%20sicherstellt.-,Sizing,-Adaptive%20Sizing%20ist): `regular`
-- [Adaptive Coloring](https://marketingportal.extranet.deutschebahn.com/marketingportal/Design-Anwendungen/db-ux-design-system/version-3/principles/adaptive#:~:text=Akzeptieren-,Coloring,-Adaptive%20Coloring%20bezieht): `neutral-bg-lvl-1`
+-   [Density](https://marketingportal.extranet.deutschebahn.com/marketingportal/Design-Anwendungen/db-ux-design-system/version-3/principles/adaptive#:~:text=und%20Textfarben%20sicherstellt.-,Sizing,-Adaptive%20Sizing%20ist): `regular`
+-   [Adaptive Coloring](https://marketingportal.extranet.deutschebahn.com/marketingportal/Design-Anwendungen/db-ux-design-system/version-3/principles/adaptive#:~:text=Akzeptieren-,Coloring,-Adaptive%20Coloring%20bezieht): `neutral-bg-lvl-1`
 
 ### CSS
 
@@ -306,11 +306,7 @@ If you want to optimize the size of the loaded styles, you might skip loading `@
 
 ## Migration
 
-We provide a cli tool to auto migrate your source code. Use this command in your repository:
-
-```shell
-npx @db-ui/foundations migration --src=./src
-```
+We provide a [CLI tool](https://github.com/db-ui/mono/blob/main/packages/migration/README.md) to auto migrate your source code.
 
 ## Deutsche Bahn brand
 

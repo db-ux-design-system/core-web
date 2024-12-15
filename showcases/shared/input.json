@@ -46,7 +46,7 @@
 				"name": "Hidden Label",
 				"props": {
 					"label": "Label",
-					"variant": "hidden"
+					"showLabel": false
 				}
 			}
 		]

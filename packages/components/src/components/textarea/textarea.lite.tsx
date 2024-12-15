@@ -9,7 +9,7 @@ import {
 } from '@builder.io/mitosis';
 import { DBTextareaProps, DBTextareaState } from './model';
 import DBInfotext from '../infotext/infotext.lite';
-import { cls, delay, hasVoiceOver, uuid } from '../../utils';
+import { cls, delay, getHideProp, hasVoiceOver, uuid } from '../../utils';
 import {
 	DEFAULT_INVALID_MESSAGE,
 	DEFAULT_INVALID_MESSAGE_ID_SUFFIX,
@@ -64,7 +64,7 @@ export default function DBTextarea(props: DBTextareaProps) {
 			});
 
 			/* For a11y reasons we need to map the correct message with the textarea */
-			if (!ref?.validity.valid || props.customValidity === 'invalid') {
+			if (!ref?.validity.valid || props.validation === 'invalid') {
 				state._descByIds = state._invalidMessageId;
 				if (hasVoiceOver()) {
 					state._voiceOverFallback =
@@ -74,7 +74,7 @@ export default function DBTextarea(props: DBTextareaProps) {
 					delay(() => (state._voiceOverFallback = ''), 1000);
 				}
 			} else if (
-				props.customValidity === 'valid' ||
+				props.validation === 'valid' ||
 				(ref?.validity.valid &&
 					(props.required || props.minLength || props.maxLength))
 			) {
@@ -139,12 +139,13 @@ export default function DBTextarea(props: DBTextareaProps) {
 	return (
 		<div
 			class={cls('db-textarea', props.className)}
-			data-variant={props.variant}>
+			data-variant={props.variant}
+			data-hide-label={getHideProp(props.showLabel)}>
 			<label htmlFor={state._id}>{props.label ?? DEFAULT_LABEL}</label>
 
 			<textarea
-				aria-invalid={props.customValidity === 'invalid'}
-				data-custom-validity={props.customValidity}
+				aria-invalid={props.validation === 'invalid'}
+				data-custom-validity={props.validation}
 				ref={ref}
 				id={state._id}
 				data-resize={props.resize}
