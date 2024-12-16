@@ -24,6 +24,11 @@ $placeholder-disabled: 0.68;
 		colors.$db-adaptive-on-bg-basic-emphasis-60-default;
 }
 
+%form-component-border {
+	border: variables.$db-border-height-3xs solid
+		colors.$db-adaptive-on-bg-basic-emphasis-70-default;
+}
+
 %default-interactive-component {
 	@extend %default-adaptive-border;
 
