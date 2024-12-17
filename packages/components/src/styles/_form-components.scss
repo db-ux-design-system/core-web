@@ -301,7 +301,7 @@ $input-valid-types: "color", "date", "datetime-local", "email", "file",
 	#{$selector} {
 		@extend %db-overwrite-font-size-md;
 		@extend %default-interactive-component;
-		@extend %component-border;
+		@extend %form-component-border;
 
 		background-color: colors.$db-adaptive-bg-basic-transparent-semi-default;
 		caret-color: colors.$db-adaptive-on-bg-basic-emphasis-100-default;
