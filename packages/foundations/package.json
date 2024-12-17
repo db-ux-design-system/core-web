@@ -24,7 +24,6 @@
     "build:04_tailwind": "cpr tailwind build/tailwind -o",
     "build:05_postcss": "postcss build/css/**/*.css --replace",
     "build:06_ide": "cpr ide build/ide -o",
-    "build:99_foundations_common": "node scripts/esbuild.js",
     "clean": "rm -rf build",
     "copy-build": "npm-run-all copy-build:*",
     "copy-build:assets": "cpr assets ../../build-outputs/foundations/assets -o",
@@ -41,24 +40,18 @@
     "prestart": "npm-run-all copy-prepare:*",
     "regenerate:screenshots": "npx playwright test -c ./test/playwright.config.js --update-snapshots",
     "start": "nodemon --config nodemon.json",
-    "test": "vitest run --config scripts/vitest.config.ts",
-    "test:e2e": "npx playwright test --config=./test/playwright.config.js",
-    "test:migration": "tsx scripts/cli.ts migration --type v005_v006 --src=./scss --dryRun=true"
+    "test:e2e": "npx playwright test --config=./test/playwright.config.js"
   },
   "devDependencies": {
     "@csstools/normalize.css": "12.1.1",
     "@db-ux/core-icons": "0.0.7",
-    "commander": "^12.0.0",
     "cpr": "3.0.1",
     "cssnano": "^7.0.6",
     "dotenv": "^16.4.7",
-    "glob": "^11.0.0",
-    "nodemon": "3.1.7",
-    "replace-in-file": "^8.2.0",
+    "nodemon": "3.1.9",
     "sass": "1.77.4",
     "tsx": "^4.19.2",
-    "vite": "^6.0.3",
-    "vitest": "^2.1.8"
+    "vite": "^6.0.3"
   },
   "publishConfig": {
     "registry": "https://registry.npmjs.org/",

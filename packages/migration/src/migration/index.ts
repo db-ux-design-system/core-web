@@ -1,6 +1,6 @@
 import { globSync } from 'glob';
-import { ReplaceInFileConfig, replaceInFileSync } from 'replace-in-file';
-import type { ReplaceResult } from 'replace-in-file';
+import type { ReplaceInFileConfig, ReplaceResult } from 'replace-in-file';
+import { replaceInFileSync } from 'replace-in-file';
 import type { OptionsType } from '../types';
 import { migrationTypes } from '../data';
 
@@ -21,7 +21,10 @@ export const migrate = (
 		const replacements: ReplaceInFileConfig[] = Object.entries(
 			migrationTypes
 		).reduce(
-			(previousReplacements, [currentKey, currentReplacements]) =>
+			(
+				previousReplacements: ReplaceInFileConfig[],
+				[currentKey, currentReplacements]
+			) =>
 				type.includes(currentKey)
 					? [...previousReplacements, ...currentReplacements]
 					: previousReplacements,

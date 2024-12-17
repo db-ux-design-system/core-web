@@ -4,8 +4,13 @@ export const v005_v006: ReplaceInFileConfig[] = [
 	// Components
 	{
 		files: '',
-		from: /behaviour="closable"/g,
-		to: 'closable="true"'
+		from: /behaviour="closeable"/g,
+		to: 'closeable="true"'
+	},
+	{
+		files: '',
+		from: /behaviour="permanent"/g,
+		to: 'closeable="false"'
 	},
 	{
 		files: '',

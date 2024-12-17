@@ -1,11 +1,11 @@
 import { describe, expect, test } from 'vitest';
-import { migrate } from '../../migration';
-import { ReplaceResult } from 'replace-in-file';
+import { type ReplaceResult } from 'replace-in-file';
+import { migrate } from '../../src/migration';
 
 describe('v005_v006', () => {
 	test('check if changes are detected', async () => {
 		const result = migrate({
-			src: './scripts/test/v0.0.5-v0.0.6',
+			src: './test/v0.0.5-v0.0.6',
 			type: ['v005_v006'],
 			dryRun: true
 		});

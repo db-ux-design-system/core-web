@@ -36,6 +36,12 @@ jobs:
           name: db-ui-components-build
           path: packages/components/build
 
+      - name: ⏫ Upload migration build
+        uses: actions/upload-artifact@v4
+        with:
+          name: db-ui-migration-build
+          path: packages/migration/build
+
       - name: 💀 Killing me softly
         uses: ./.github/actions/cancel-workflow
         if: failure()
