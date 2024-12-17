@@ -45,11 +45,6 @@ export type DBNotificationDefaultProps = {
 	headline?: string | any;
 
 	/**
-	 * The linkVariant will be used if slotLink is set.
-	 */
-	linkVariant?: NotificationLinkVariantType;
-
-	/**
 	 * The slotImage can be set instead of an icon.
 	 */
 	image?: any;
@@ -60,9 +55,24 @@ export type DBNotificationDefaultProps = {
 	link?: any;
 
 	/**
+	 * The linkVariant will be used if slotLink is set.
+	 */
+	linkVariant?: NotificationLinkVariantType;
+
+	/**
+	 * Enables or disables the visibility of the headline.
+	 */
+	showHeadline?: boolean;
+
+	/**
 	 * The timestamp attribute can be set for overlay notifications
 	 */
 	timestamp?: string;
+
+	/**
+	 * Enables or disables the visibility of the timestamp.
+	 */
+	showTimestamp?: boolean;
 
 	/**
 	 * The variant attribute changes the styling of the notification.

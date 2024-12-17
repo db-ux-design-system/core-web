@@ -16,7 +16,10 @@ const getNotification = ({
 	link,
 	timestamp,
 	linkVariant,
-	img
+	img,
+	showIcon,
+	showHeadline,
+	showTimestamp
 }: DBNotificationProps & { link: boolean; img: boolean }) => (
 	<DBNotification
 		semantic={semantic}
@@ -35,10 +38,13 @@ const getNotification = ({
 		closeable={closeable}
 		linkVariant={linkVariant}
 		timestamp={timestamp}
+		showTimestamp={showTimestamp}
 		onClose={() => {
 			// eslint-disable-next-line no-alert
 			alert(children.toString());
-		}}>
+		}}
+		showIcon={showIcon}
+		showHeadline={showHeadline}>
 		{children}
 	</DBNotification>
 );

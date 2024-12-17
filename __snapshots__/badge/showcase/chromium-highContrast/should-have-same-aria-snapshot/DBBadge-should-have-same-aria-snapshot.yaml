@@ -9,7 +9,7 @@
   - link "Size arrow_up_right\" / \""
   - text: (Default) Small Medium
   - link "Content arrow_up_right\" / \""
-  - text: (Default) Text (Default) Text - Medium Dot - Small Dot - Medium Icon - Small Icon - Medium
+  - text: (Default) Text Dot - Small Icon - Small
   - link "Placement arrow_up_right\" / \""
   - text: (Default) Inline Label
   - button "person\" / \" LABEL SHOULD BE SET Corner - Top - Left"
@@ -25,4 +25,4 @@
   - button "person\" / \" LABEL SHOULD BE SET Corner - Bottom- Right"
   - text: Corner - Bottom- Right
   - link "Examples arrow_up_right\" / \""
-  - text: 9 12 123 9 12 123 Numbers
+  - text: 9 12 123 9 12 123 Numbers (Default) Text - Medium Dot - Medium Icon - Medium
