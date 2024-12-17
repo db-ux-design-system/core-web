@@ -112,7 +112,7 @@
     - text: (Default) Text
   - text: (Default) Text
   - status
-  - text: chevron_down" / " db" / " Label
+  - text: chevron_down" / " x_placeholder" / " Label
   - combobox "Label":
     - option "Option 1"
     - option "Option 2"

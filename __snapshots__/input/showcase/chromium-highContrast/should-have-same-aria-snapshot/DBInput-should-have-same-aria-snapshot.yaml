@@ -61,16 +61,16 @@
   - text: Number
   - spinbutton "Number": "123456"
   - status
-  - text: db" / " Label
+  - text: x_placeholder" / " Label
   - textbox "Label"
   - status
-  - text: db" / " Label
+  - text: x_placeholder" / " Label
   - textbox "Label"
   - status
-  - text: db" / " Label
+  - text: x_placeholder" / " Label
   - textbox "Label"
   - status
-  - text: db" / "
+  - text: x_placeholder" / "
   - link "Requirement arrow_up_right\" / \""
   - text: Label
   - textbox "Label"
