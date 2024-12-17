@@ -19,7 +19,7 @@ export default function DBInfotext(props: DBInfotextProps) {
 			data-icon={props.icon}
 			data-semantic={props.semantic}
 			data-size={props.size}
-			data-hide-icon-after={getHideProp(props.showIcon ?? true)}>
+			data-hide-icon-before={getHideProp(props.showIcon ?? true)}>
 			<Show when={props.text} else={props.children}>
 				{props.text}
 			</Show>

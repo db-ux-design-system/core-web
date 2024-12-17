@@ -11,7 +11,7 @@ import { DBCheckboxProps, DBCheckboxState } from './model';
 import {
 	cls,
 	delay,
-	getBooleanAsString,
+	stringPropVisible,
 	getHideProp,
 	hasVoiceOver,
 	uuid
@@ -24,13 +24,14 @@ import {
 	DEFAULT_VALID_MESSAGE_ID_SUFFIX
 } from '../../shared/constants';
 import { ChangeEvent, InteractionEvent } from '../../shared/model';
-import {
-	handleFrameworkEvent,
-	messageVisible
-} from '../../utils/form-components';
+import { handleFrameworkEvent } from '../../utils/form-components';
 import DBInfotext from '../infotext/infotext.lite';
 
-useMetadata({});
+useMetadata({
+	angular: {
+		nativeAttributes: ['disabled', 'required', 'checked', 'indeterminate']
+	}
+});
 
 export default function DBCheckbox(props: DBCheckboxProps) {
 	const ref = useRef<HTMLInputElement>(null);
@@ -77,7 +78,7 @@ export default function DBCheckbox(props: DBCheckboxProps) {
 						props.validMessage ?? DEFAULT_VALID_MESSAGE;
 					delay(() => (state._voiceOverFallback = ''), 1000);
 				}
-			} else if (props.message) {
+			} else if (stringPropVisible(props.message, props.showMessage)) {
 				state._descByIds = state._messageId;
 			} else {
 				state._descByIds = '';
@@ -120,7 +121,7 @@ export default function DBCheckbox(props: DBCheckboxProps) {
 			state._invalidMessageId =
 				state._id + DEFAULT_INVALID_MESSAGE_ID_SUFFIX;
 
-			if (props.message) {
+			if (stringPropVisible(props.message, props.showMessage)) {
 				state._descByIds = messageId;
 			}
 		}
@@ -182,7 +183,7 @@ export default function DBCheckbox(props: DBCheckboxProps) {
 				</Show>
 			</label>
 
-			<Show when={messageVisible(props.message, props.showMessage)}>
+			<Show when={stringPropVisible(props.message, props.showMessage)}>
 				<DBInfotext
 					size="small"
 					icon={props.messageIcon}

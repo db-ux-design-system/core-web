@@ -1,7 +1,7 @@
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import defaultComponentVariants from '../../../../../shared/textarea.json';
 import { DefaultComponent } from '../default.component';
-import { DBCheckbox, DBTextarea } from '../../../../../../output/angular/src';
+import { DBTextarea } from '../../../../../../output/angular/src';
 import { environment } from '../../../environments/environment';
 
 @Component({
@@ -10,8 +10,7 @@ import { environment } from '../../../environments/environment';
 	imports: [
 		environment.webComponents
 			? [DefaultComponent]
-			: [DefaultComponent, DBTextarea],
-		DBCheckbox
+			: [DefaultComponent, DBTextarea]
 	],
 	schemas: [CUSTOM_ELEMENTS_SCHEMA],
 	standalone: true

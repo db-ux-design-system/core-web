@@ -14,7 +14,8 @@ const getSwitch = ({
 	emphasis,
 	size,
 	icon,
-	iconAfter
+	iconAfter,
+	required
 }: DBSwitchProps) => (
 	<>
 		<DBSwitch
@@ -25,7 +26,8 @@ const getSwitch = ({
 			size={size}
 			emphasis={emphasis}
 			icon={icon}
-			iconAfter={iconAfter}>
+			iconAfter={iconAfter}
+			required={required}>
 			{children}
 		</DBSwitch>
 		{showLabel !== undefined && !showLabel && (
