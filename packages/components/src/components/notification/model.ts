@@ -26,10 +26,6 @@ export const NotificationAriaLiveList = ['assertive', 'polite', 'off'] as const;
 export type NotificationAriaLiveType =
 	(typeof NotificationAriaLiveList)[number];
 
-export const NotificationBehaviourList = ['closable', 'permanent'] as const;
-export type NotificationBehaviourType =
-	(typeof NotificationBehaviourList)[number];
-
 export type DBNotificationDefaultProps = {
 	/**
 	 * The arialive attribute will lead to that the screenreader interrupts immediately
@@ -39,9 +35,9 @@ export type DBNotificationDefaultProps = {
 	ariaLive?: NotificationAriaLiveType;
 
 	/**
-	 * The behaviour attribute shows/hides the close button on the top right.
+	 * The closeable attribute shows/hides the close button on the top right.
 	 */
-	behaviour?: NotificationBehaviourType;
+	closeable?: boolean;
 
 	/**
 	 * The headline attribute changes the text of the bold headline.
@@ -49,24 +45,34 @@ export type DBNotificationDefaultProps = {
 	headline?: string | any;
 
 	/**
+	 * The slotImage can be set instead of an icon.
+	 */
+	image?: any;
+
+	/**
+	 * The slotLink can be set for non overlay-notifications
+	 */
+	link?: any;
+
+	/**
 	 * The linkVariant will be used if slotLink is set.
 	 */
 	linkVariant?: NotificationLinkVariantType;
 
 	/**
-	 * The slotImage can be set instead of an icon.
+	 * Enables or disables the visibility of the headline.
 	 */
-	image?: unknown;
-
-	/**
-	 * The slotLink can be set for non overlay-notifications
-	 */
-	link?: unknown;
+	showHeadline?: boolean;
 
 	/**
 	 * The timestamp attribute can be set for overlay notifications
 	 */
 	timestamp?: string;
+
+	/**
+	 * Enables or disables the visibility of the timestamp.
+	 */
+	showTimestamp?: boolean;
 
 	/**
 	 * The variant attribute changes the styling of the notification.

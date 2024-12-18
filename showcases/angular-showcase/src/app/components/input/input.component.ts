@@ -11,9 +11,11 @@ import { environment } from '../../../environments/environment';
 @Component({
 	selector: 'app-input',
 	templateUrl: './input.component.html',
-	imports: environment.webComponents
-		? [DefaultComponent]
-		: [DefaultComponent, DBInput],
+	imports: [
+		environment.webComponents
+			? [DefaultComponent]
+			: [DefaultComponent, DBInput]
+	],
 	standalone: true,
 	schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })

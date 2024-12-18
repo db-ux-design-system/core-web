@@ -43,7 +43,7 @@ $has-before-padding: calc(
 		color: colors.$db-adaptive-on-bg-basic-emphasis-100-default;
 	}
 
-	&[data-variant="hidden"] {
+	&[data-hide-label="true"] {
 		--db-label-visible-height: 0;
 		--db-label-visible-spacing: 1;
 	}

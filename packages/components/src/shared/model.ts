@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
-import { IconTypes } from './icon-types';
+import { IconTypes } from '@db-ux/core-icons';
 
 export type GlobalProps = {
 	/**
@@ -227,17 +227,13 @@ export type EmphasisProps = {
 	emphasis?: EmphasisType;
 };
 
-export const CustomValidityList = [
-	'invalid',
-	'valid',
-	'no-validation'
-] as const;
-export type CustomValidityType = (typeof CustomValidityList)[number];
+export const ValidationList = ['invalid', 'valid', 'no-validation'] as const;
+export type ValidationType = (typeof ValidationList)[number];
 export type FormProps = {
 	/**
 	 * Marks an input element as invalid (red) / valid (green) / no-validation (grey). Overwrites the :user-valid selector.
 	 */
-	customValidity?: CustomValidityType;
+	validation?: ValidationType;
 	/**
 	 * The disabled attribute can be set to keep a user from clicking on the form element.
 	 */
@@ -262,6 +258,10 @@ export type FormProps = {
 	 */
 	required?: boolean;
 	/**
+	 * Enables/disables the visibility of the label
+	 */
+	showLabel?: boolean;
+	/**
 	 * The value property is to receive results from the native form element.
 	 */
 	value?: any;
@@ -282,21 +282,14 @@ export type FormTextProps = {
 	readOnly?: boolean;
 };
 
-export const CheckVariantList = ['default', 'hidden'] as const;
-export type CheckVariantType = (typeof CheckVariantList)[number];
 export type FormCheckProps = {
 	/**
 	 * Define the radio or checkbox elements checked state
 	 */
 	checked?: boolean;
-
-	/**
-	 * Hide the label of a radio/checkbox.
-	 */
-	variant?: CheckVariantType;
 };
 
-export const LabelVariantList = ['above', 'floating', 'hidden'] as const;
+export const LabelVariantList = ['above', 'floating'] as const;
 export type LabelVariantType = (typeof LabelVariantList)[number];
 export const AutoCompleteList = [
 	'off',

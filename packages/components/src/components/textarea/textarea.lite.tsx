@@ -9,25 +9,32 @@ import {
 } from '@builder.io/mitosis';
 import { DBTextareaProps, DBTextareaState } from './model';
 import DBInfotext from '../infotext/infotext.lite';
-import { cls, delay, hasVoiceOver, uuid } from '../../utils';
+import {
+	cls,
+	delay,
+	getHideProp,
+	stringPropVisible,
+	hasVoiceOver,
+	uuid
+} from '../../utils';
 import {
 	DEFAULT_INVALID_MESSAGE,
 	DEFAULT_INVALID_MESSAGE_ID_SUFFIX,
 	DEFAULT_LABEL,
 	DEFAULT_MESSAGE_ID_SUFFIX,
 	DEFAULT_PLACEHOLDER,
-	DEFAULT_PLACEHOLDER_ID_SUFFIX,
 	DEFAULT_ROWS,
 	DEFAULT_VALID_MESSAGE,
 	DEFAULT_VALID_MESSAGE_ID_SUFFIX
 } from '../../shared/constants';
 import { ChangeEvent, InputEvent, InteractionEvent } from '../../shared/model';
-import {
-	handleFrameworkEvent,
-	messageVisible
-} from '../../utils/form-components';
+import { handleFrameworkEvent } from '../../utils/form-components';
 
-useMetadata({});
+useMetadata({
+	angular: {
+		nativeAttributes: ['disabled', 'required']
+	}
+});
 
 export default function DBTextarea(props: DBTextareaProps) {
 	const ref = useRef<HTMLTextAreaElement>(null);
@@ -64,7 +71,7 @@ export default function DBTextarea(props: DBTextareaProps) {
 			});
 
 			/* For a11y reasons we need to map the correct message with the textarea */
-			if (!ref?.validity.valid || props.customValidity === 'invalid') {
+			if (!ref?.validity.valid || props.validation === 'invalid') {
 				state._descByIds = state._invalidMessageId;
 				if (hasVoiceOver()) {
 					state._voiceOverFallback =
@@ -74,7 +81,7 @@ export default function DBTextarea(props: DBTextareaProps) {
 					delay(() => (state._voiceOverFallback = ''), 1000);
 				}
 			} else if (
-				props.customValidity === 'valid' ||
+				props.validation === 'valid' ||
 				(ref?.validity.valid &&
 					(props.required || props.minLength || props.maxLength))
 			) {
@@ -84,7 +91,7 @@ export default function DBTextarea(props: DBTextareaProps) {
 						props.validMessage ?? DEFAULT_VALID_MESSAGE;
 					delay(() => (state._voiceOverFallback = ''), 1000);
 				}
-			} else if (props.message) {
+			} else if (stringPropVisible(props.message, props.showMessage)) {
 				state._descByIds = state._messageId;
 			} else {
 				state._descByIds = '';
@@ -126,7 +133,7 @@ export default function DBTextarea(props: DBTextareaProps) {
 			state._invalidMessageId =
 				state._id + DEFAULT_INVALID_MESSAGE_ID_SUFFIX;
 
-			if (props.message) {
+			if (stringPropVisible(props.message, props.showMessage)) {
 				state._descByIds = messageId;
 			}
 		}
@@ -139,12 +146,13 @@ export default function DBTextarea(props: DBTextareaProps) {
 	return (
 		<div
 			class={cls('db-textarea', props.className)}
-			data-variant={props.variant}>
+			data-variant={props.variant}
+			data-hide-label={getHideProp(props.showLabel)}>
 			<label htmlFor={state._id}>{props.label ?? DEFAULT_LABEL}</label>
 
 			<textarea
-				aria-invalid={props.customValidity === 'invalid'}
-				data-custom-validity={props.customValidity}
+				aria-invalid={props.validation === 'invalid'}
+				data-custom-validity={props.validation}
 				ref={ref}
 				id={state._id}
 				data-resize={props.resize}
@@ -177,7 +185,7 @@ export default function DBTextarea(props: DBTextareaProps) {
 				cols={props.cols}
 			/>
 
-			<Show when={messageVisible(props.message, props.showMessage)}>
+			<Show when={stringPropVisible(props.message, props.showMessage)}>
 				<DBInfotext
 					size="small"
 					icon={props.messageIcon}

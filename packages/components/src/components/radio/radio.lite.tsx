@@ -8,11 +8,15 @@ import {
 	useTarget
 } from '@builder.io/mitosis';
 import { DBRadioProps, DBRadioState } from './model';
-import { cls, uuid } from '../../utils';
+import { cls, getHideProp, uuid } from '../../utils';
 import { ChangeEvent, InteractionEvent } from '../../shared/model';
 import { handleFrameworkEvent } from '../../utils/form-components';
 
-useMetadata({});
+useMetadata({
+	angular: {
+		nativeAttributes: ['disabled', 'required', 'checked', 'indeterminate']
+	}
+});
 
 export default function DBRadio(props: DBRadioProps) {
 	const ref = useRef<HTMLInputElement>(null);
@@ -76,12 +80,12 @@ export default function DBRadio(props: DBRadioProps) {
 	return (
 		<label
 			data-size={props.size}
-			data-variant={props.variant}
+			data-hide-label={getHideProp(props.showLabel)}
 			class={cls('db-radio', props.className)}
 			htmlFor={state._id}>
 			<input
-				aria-invalid={props.customValidity === 'invalid'}
-				data-custom-validity={props.customValidity}
+				aria-invalid={props.validation === 'invalid'}
+				data-custom-validity={props.validation}
 				ref={ref}
 				type="radio"
 				id={state._id}

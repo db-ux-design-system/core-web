@@ -9,7 +9,14 @@ import {
 	useTarget
 } from '@builder.io/mitosis';
 import { DBSelectOptionType, DBSelectProps, DBSelectState } from './model';
-import { cls, delay, getHideIcon, hasVoiceOver, uuid } from '../../utils';
+import {
+	cls,
+	delay,
+	stringPropVisible,
+	getHideProp,
+	hasVoiceOver,
+	uuid
+} from '../../utils';
 import {
 	DEFAULT_INVALID_MESSAGE,
 	DEFAULT_INVALID_MESSAGE_ID_SUFFIX,
@@ -26,14 +33,11 @@ import {
 	InputEvent,
 	InteractionEvent
 } from '../../shared/model';
-import {
-	handleFrameworkEvent,
-	messageVisible
-} from '../../utils/form-components';
+import { handleFrameworkEvent } from '../../utils/form-components';
 
 useMetadata({
 	angular: {
-		nativeAttributes: ['value']
+		nativeAttributes: ['disabled', 'required', 'value']
 	}
 });
 
@@ -80,7 +84,7 @@ export default function DBSelect(props: DBSelectProps) {
 			});
 
 			/* For a11y reasons we need to map the correct message with the select */
-			if (!ref?.validity.valid || props.customValidity === 'invalid') {
+			if (!ref?.validity.valid || props.validation === 'invalid') {
 				state._descByIds = state._invalidMessageId;
 				if (hasVoiceOver()) {
 					state._voiceOverFallback =
@@ -90,7 +94,7 @@ export default function DBSelect(props: DBSelectProps) {
 					delay(() => (state._voiceOverFallback = ''), 1000);
 				}
 			} else if (
-				props.customValidity === 'valid' ||
+				props.validation === 'valid' ||
 				(ref?.validity.valid && props.required)
 			) {
 				state._descByIds = state._validMessageId;
@@ -99,7 +103,7 @@ export default function DBSelect(props: DBSelectProps) {
 						props.validMessage ?? DEFAULT_VALID_MESSAGE;
 					delay(() => (state._voiceOverFallback = ''), 1000);
 				}
-			} else if (props.message) {
+			} else if (stringPropVisible(props.message, props.showMessage)) {
 				state._descByIds = state._messageId;
 			} else {
 				state._descByIds = state._placeholderId;
@@ -148,7 +152,7 @@ export default function DBSelect(props: DBSelectProps) {
 				state._id + DEFAULT_INVALID_MESSAGE_ID_SUFFIX;
 			state._placeholderId = placeholderId;
 
-			if (props.message) {
+			if (stringPropVisible(props.message, props.showMessage)) {
 				state._descByIds = messageId;
 			} else {
 				state._descByIds = placeholderId;
@@ -166,12 +170,13 @@ export default function DBSelect(props: DBSelectProps) {
 		<div
 			class={cls('db-select', props.className)}
 			data-variant={props.variant}
+			data-hide-label={getHideProp(props.showLabel)}
 			data-icon={props.icon}
-			data-hide-icon={getHideIcon(props.showIcon)}>
+			data-hide-icon={getHideProp(props.showIcon)}>
 			<label htmlFor={state._id}>{props.label ?? DEFAULT_LABEL}</label>
 			<select
-				aria-invalid={props.customValidity === 'invalid'}
-				data-custom-validity={props.customValidity}
+				aria-invalid={props.validation === 'invalid'}
+				data-custom-validity={props.validation}
 				ref={ref}
 				required={props.required}
 				disabled={props.disabled}
@@ -242,7 +247,7 @@ export default function DBSelect(props: DBSelectProps) {
 			<span id={state._placeholderId}>
 				{props.placeholder ?? props.label}
 			</span>
-			<Show when={messageVisible(props.message, props.showMessage)}>
+			<Show when={stringPropVisible(props.message, props.showMessage)}>
 				<DBInfotext
 					size="small"
 					icon={props.messageIcon}

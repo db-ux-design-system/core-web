@@ -1,7 +1,12 @@
 <script setup lang="ts">
 import DefaultComponent from "../DefaultComponent.vue";
 import defaultComponentVariants from "../../../../shared/switch.json";
-import { DBSwitch, DBInfotext } from "../../../../../output/vue/src";
+import {
+	DBSwitch,
+	DBInfotext,
+	DBCheckbox,
+	DBInput
+} from "../../../../../output/vue/src";
 </script>
 
 <template>
@@ -13,16 +18,21 @@ import { DBSwitch, DBInfotext } from "../../../../../output/vue/src";
 				:visualAid="exampleProps?.visualAid"
 				:checked="exampleProps?.checked"
 				:disabled="exampleProps?.disabled"
-				:variant="exampleProps?.variant"
+				:required="exampleProps?.required"
+				:showLabel="exampleProps?.showLabel"
 				:size="exampleProps?.size"
 				:emphasis="exampleProps?.emphasis"
 				:icon="exampleProps?.icon"
 				:iconAfter="exampleProps?.iconAfter"
+				:validation="exampleProps?.validation"
 			>
 				{{ exampleName }}
 			</DBSwitch>
 			<DBInfotext
-				v-if="exampleProps?.variant === 'hidden'"
+				v-if="
+					exampleProps?.showLabel !== undefined &&
+					!exampleProps?.showLabel
+				"
 				semantic="informational"
 				icon="none"
 			>

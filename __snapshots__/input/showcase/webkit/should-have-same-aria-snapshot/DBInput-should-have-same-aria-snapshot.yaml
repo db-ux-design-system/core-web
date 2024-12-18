@@ -10,74 +10,82 @@
   - text: Label
   - textbox "Label"
   - status
-  - link "Variant Label arrow_up_right\" / \""
+  - link "Variant arrow_up_right\" / \""
   - text: Label
   - textbox "Label"
   - status
   - text: Label
   - textbox "Label": Floating Label
   - status
-  - text: Label
-  - textbox "Label"
-  - status
-  - link "Variant Helper Message arrow_up_right\" / \""
+  - link "Show Label arrow_up_right\" / \""
   - text: Label
   - textbox "Label"
   - status
   - text: Label
   - textbox "Label"
-  - text: information_circle" / " Helper Message
   - status
-  - link "States Label Above arrow_up_right\" / \""
+  - link "Show Message arrow_up_right\" / \""
   - text: Label
   - textbox "Label"
   - status
   - text: Label
-  - textbox "Label": Filled
+  - textbox "Label"
+  - text: information_circle" / " Message
   - status
-  - text: Label
-  - textbox "Label" [disabled]
-  - status
-  - text: Label
-  - textbox "Label": Readonly - Filled
-  - status
-  - link "States Floating Label arrow_up_right\" / \""
+  - link "State arrow_up_right\" / \""
   - text: Label
   - textbox "Label"
   - status
   - text: Label
   - textbox "Label": Filled
   - status
+  - link "Disabled arrow_up_right\" / \""
+  - text: Label
+  - textbox "Label"
+  - status
   - text: Label
   - textbox "Label" [disabled]
   - status
+  - link "Readonly arrow_up_right\" / \""
   - text: Label
-  - textbox "Label": Readonly - Filled
+  - textbox "Label": (Default) False
   - status
-  - link "Content arrow_up_right\" / \""
   - text: Label
-  - textbox "Label": (Default) Text
+  - textbox "Label": "True"
   - status
-  - text: Number
-  - spinbutton "Number": 123456
-  - status
-  - text: db" / " Label
+  - link "Validation arrow_up_right\" / \""
+  - text: Label
   - textbox "Label"
   - status
-  - text: db" / " Label
+  - text: Label
   - textbox "Label"
+  - text: exclamation_mark_circle" / " Invalid Message
   - status
-  - text: db" / " Label
+  - text: Label
   - textbox "Label"
+  - text: check_circle" / " Valid message
   - status
-  - text: db" / "
-  - link "Requirement arrow_up_right\" / \""
+  - link "Required arrow_up_right\" / \""
   - text: Label
   - textbox "Label"
   - status
   - text: Label*" / "
   - textbox "Label*\" / \""
   - status
+  - link "Content arrow_up_right\" / \""
+  - text: Label
+  - textbox "Label": (Default) Text
+  - status
+  - text: x_placeholder" / " Label
+  - textbox "Label"
+  - status
+  - text: x_placeholder" / " Label
+  - textbox "Label"
+  - status
+  - text: x_placeholder" / " Label
+  - textbox "Label"
+  - status
+  - text: x_placeholder" / "
   - link "Example - Types arrow_up_right\" / \""
   - text: Label
   - textbox "Label"
@@ -90,9 +98,6 @@
   - status
   - text: cross_circle" / " Label
   - textbox "Label"
-  - status
-  - text: Label
-  - spinbutton "Label"
   - status
   - text: Label
   - textbox "Label"
@@ -115,11 +120,19 @@
   - text: clock" / " Label
   - textbox "Label"
   - status
-  - text: calendar" / " Label
-  - combobox "Label"
-  - status
-  - text: chevron_down" / " Label
+  - text: calendar" / "
+  - link "Example Floating Label arrow_up_right\" / \""
+  - text: Label
   - textbox "Label"
+  - status
+  - text: Label
+  - textbox "Label": Filled
+  - status
+  - text: Label
+  - textbox "Label" [disabled]
+  - status
+  - text: Label
+  - textbox "Label": Readonly - Filled
   - status
   - link "Example - Types - Floating Label arrow_up_right\" / \""
   - text: Label
