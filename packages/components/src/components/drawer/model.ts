@@ -37,7 +37,7 @@ export type DBDrawerDefaultProps = {
 	/**
 	 * Slot for changing the header of the drawer.
 	 */
-	drawerHeader?: unknown;
+	drawerHeader?: any;
 
 	/**
 	 * The open attribute opens or closes the drawer based on the state.

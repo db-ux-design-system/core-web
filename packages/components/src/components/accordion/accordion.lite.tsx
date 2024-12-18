@@ -121,7 +121,7 @@ export default function DBAccordion(props: DBAccordionProps) {
 							key={`accordion-item-${index}`}
 							headlinePlain={item.headlinePlain}
 							disabled={item.disabled}
-							content={item.content}
+							text={item.text}
 						/>
 					)}
 				</For>

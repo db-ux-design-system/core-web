@@ -15,6 +15,7 @@ import { DBLink } from "../../../../../output/vue/src";
 				:disabled="exampleProps?.disabled"
 				:size="exampleProps?.size"
 				:content="exampleProps?.content"
+				:showIcon="exampleProps?.showIcon"
 			>
 				{{ exampleName }}
 			</DBLink>

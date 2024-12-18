@@ -25,7 +25,8 @@ $label-size-height-2xs: calc(
 );
 
 $floating-label-size: calc(
-	#{variables.$db-spacing-fixed-3xs} + #{variables.$db-spacing-fixed-2xs} + #{$label-size-height-2xs}
+	#{variables.$db-spacing-fixed-3xs} + #{variables.$db-spacing-fixed-2xs} +
+		#{$label-size-height-2xs}
 );
 
 $input-types: "button", "checkbox", "color", "date", "datetime-local", "email",
@@ -78,6 +79,7 @@ $check-border-size: min(#{variables.$db-border-height-2xs}, 2px);
 				--db-form-component-padding-inline-start,
 				#{variables.$db-spacing-fixed-sm}
 			);
+			pointer-events: none;
 		}
 
 		// icons
@@ -131,7 +133,8 @@ $check-border-size: min(#{variables.$db-border-height-2xs}, 2px);
 			#{$selector} {
 				@include placeholder-content() {
 					@media screen and (prefers-reduced-motion: no-preference) {
-						transition: opacity #{variables.$db-transition-straight-emotional};
+						transition: opacity
+							#{variables.$db-transition-straight-emotional};
 					}
 
 					opacity: component.$placeholder-disabled;
@@ -163,16 +166,16 @@ $check-border-size: min(#{variables.$db-border-height-2xs}, 2px);
 @mixin get-validity-color($selector, $key: "valid") {
 	$variant: "successful";
 
+	@if ($key != "valid") {
+		$variant: "critical";
+	}
+
 	@include get-validity-message($key);
 
 	#{$selector},
 	[id$="-placeholder"] {
 		color: var(--db-#{$variant}-on-bg-basic-emphasis-100-default);
 		caret-color: var(--db-#{$variant}-on-bg-basic-emphasis-100-default);
-	}
-
-	@if ($key != "valid") {
-		$variant: "critical";
 	}
 
 	@if ($selector != textarea) {
@@ -203,8 +206,8 @@ $check-border-size: min(#{variables.$db-border-height-2xs}, 2px);
 }
 
 // This doesn't contain text, search and password, because they don't have an auto-validation
-$input-valid-types: "color", "date", "datetime-local", "email", "file", "hidden",
-	"month", "number", "range", "tel", "time", "url", "week";
+$input-valid-types: "color", "date", "datetime-local", "email", "file",
+	"hidden", "month", "number", "range", "tel", "time", "url", "week";
 
 @function get-validations($selector, $key) {
 	$validations: ":required";
@@ -299,7 +302,7 @@ $input-valid-types: "color", "date", "datetime-local", "email", "file", "hidden"
 	#{$selector} {
 		@extend %db-overwrite-font-size-md;
 		@extend %default-interactive-component;
-		@extend %component-border;
+		@extend %form-component-border;
 
 		background-color: colors.$db-adaptive-bg-basic-transparent-semi-default;
 		caret-color: colors.$db-adaptive-on-bg-basic-emphasis-100-default;
@@ -346,7 +349,7 @@ $input-valid-types: "color", "date", "datetime-local", "email", "file", "hidden"
 		}
 	}
 
-	&[data-variant="hidden"] {
+	&[data-hide-label="true"] {
 		label {
 			@extend %a11y-visually-hidden;
 
@@ -369,10 +372,8 @@ $input-valid-types: "color", "date", "datetime-local", "email", "file", "hidden"
 		// 1px for border
 		inset-block-start: calc(
 			#{variables.$db-sizing-md} / 2 - #{variables.$db-spacing-fixed-xs} *
-				var(--db-label-visible-spacing, 0) + #{$label-size-height-xs} * var(
-					--db-label-visible-height,
-					1
-				) - 1px
+				var(--db-label-visible-spacing, 0) + #{$label-size-height-xs} *
+				var(--db-label-visible-height, 1) - 1px
 		);
 		color: colors.$db-adaptive-on-bg-basic-emphasis-100-default;
 	}
@@ -475,7 +476,11 @@ $input-valid-types: "color", "date", "datetime-local", "email", "file", "hidden"
 		place-content: center center;
 		appearance: none;
 		aspect-ratio: 1;
-		border: #{$check-border-size} solid var(--db-check-element-border-color, #{colors.$db-adaptive-on-bg-basic-emphasis-100-default});
+		border: #{$check-border-size} solid
+			var(
+				--db-check-element-border-color,
+				#{colors.$db-adaptive-on-bg-basic-emphasis-100-default}
+			);
 		block-size: $font-size-height;
 		inline-size: $font-size-height;
 		padding: 0;
@@ -497,7 +502,7 @@ $input-valid-types: "color", "date", "datetime-local", "email", "file", "hidden"
 		}
 	}
 
-	&[data-variant="hidden"] {
+	&[data-hide-label="true"] {
 		font-size: 0;
 
 		input {

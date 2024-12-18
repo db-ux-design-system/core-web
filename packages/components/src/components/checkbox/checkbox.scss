@@ -14,10 +14,12 @@
 		align-items: center;
 		justify-content: center;
 		block-size: calc(
-			#{form-components.$font-size-height} - 2 * #{variables.$db-border-height-3xs}
+			#{form-components.$font-size-height} - 2 *
+				#{variables.$db-border-height-3xs}
 		);
 		inline-size: calc(
-			#{form-components.$font-size-height} - 2 * #{variables.$db-border-height-3xs}
+			#{form-components.$font-size-height} - 2 *
+				#{variables.$db-border-height-3xs}
 		);
 	}
 }
@@ -65,10 +67,11 @@
 
 				border-width: form-components.$check-border-size;
 
-				&::before {
+				&:not([data-hide-icon-before="true"])::before {
 					align-content: center;
 					font-size: calc(
-						var(--db-icon-font-size) - 2 * #{form-components.$check-border-size}
+						var(--db-icon-font-size) - 2 *
+							#{form-components.$check-border-size}
 					);
 					padding: #{form-components.$check-border-size};
 				}

@@ -24,9 +24,9 @@ const useUniversalSearchParameters = (): [
 			: useSearchParams();
 
 	const setSearchParameters = (params: Record<string, string>) => {
-		if (typeof window !== 'undefined') {
+		if (typeof globalThis !== 'undefined') {
 			const currentParams = new URLSearchParams(
-				window.location.href.split('?')[1]
+				globalThis.location.href.split('?')[1]
 			);
 			currentParams.sort();
 			const newParams = new URLSearchParams(params);

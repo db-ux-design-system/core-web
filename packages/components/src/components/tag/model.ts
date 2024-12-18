@@ -5,7 +5,8 @@ import {
 	IconProps,
 	InitializedState,
 	OverflowProps,
-	SemanticProps
+	SemanticProps,
+	ShowIconProps
 } from '../../shared/model';
 
 export const TagBehaviourList = ['static', 'removable'] as const;
@@ -50,7 +51,8 @@ export type DBTagProps = DBTagDefaultProps &
 	IconProps &
 	SemanticProps &
 	OverflowProps &
-	EmphasisProps;
+	EmphasisProps &
+	ShowIconProps;
 
 export type DBTagDefaultState = {
 	getRemoveButtonText: () => string;

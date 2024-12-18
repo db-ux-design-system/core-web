@@ -7,9 +7,11 @@ import { environment } from '../../../environments/environment';
 @Component({
 	selector: 'app-select',
 	templateUrl: './select.component.html',
-	imports: environment.webComponents
-		? [DefaultComponent]
-		: [DefaultComponent, DBSelect],
+	imports: [
+		environment.webComponents
+			? [DefaultComponent]
+			: [DefaultComponent, DBSelect]
+	],
 	schemas: [CUSTOM_ELEMENTS_SCHEMA],
 	standalone: true
 })

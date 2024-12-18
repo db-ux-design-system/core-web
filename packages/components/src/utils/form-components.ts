@@ -10,6 +10,4 @@ export const handleFrameworkEvent = (
 	// ANGULAR: component.writeValue(event.target[modelValue]);
 };
 
-export default {
-	handleFrameworkEvent
-};
+export default { handleFrameworkEvent };

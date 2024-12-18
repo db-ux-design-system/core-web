@@ -7,6 +7,8 @@ import {
 	IconProps,
 	InitializedState,
 	NavigationBackButtonProps,
+	ShowIconProps,
+	TextProps,
 	WidthProps
 } from '../../shared/model';
 import { NavigationItemSafeTriangle } from '../../utils/navigation';
@@ -26,7 +28,7 @@ export type DBNavigationItemDefaultProps = {
 	 * React-specific property to pass in a slot for sub-navigation
 	 */
 
-	subNavigation?: unknown;
+	subNavigation?: any;
 
 	/**
 	 * This is for mobile navigation only, if it is set the sub-navigation is a static overlay
@@ -39,7 +41,9 @@ export type DBNavigationItemProps = DBNavigationItemDefaultProps &
 	ClickEventProps<HTMLButtonElement> &
 	IconProps &
 	WidthProps &
-	NavigationBackButtonProps;
+	NavigationBackButtonProps &
+	ShowIconProps &
+	TextProps;
 
 export type DBNavigationItemDefaultState = {
 	handleBackClick: (event: ClickEvent<HTMLButtonElement>) => void;

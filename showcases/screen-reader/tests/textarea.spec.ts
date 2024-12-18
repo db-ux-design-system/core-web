@@ -7,7 +7,7 @@ test.describe('DBTextarea', () => {
 		test,
 		title: 'next',
 		description: 'should have message and label (next())',
-		url: './#/03/textarea?page=variant+helper+message',
+		url: './#/03/textarea?page=show+message',
 		async testFn(voiceOver, nvda) {
 			if (nvda) {
 				// Nvda doesn't have a next if the element is an input
@@ -26,7 +26,7 @@ test.describe('DBTextarea', () => {
 		test,
 		title: 'required',
 		description: 'should inform user for changes',
-		url: './#/03/textarea?page=requirement',
+		url: './#/03/textarea?page=required',
 		async testFn(voiceOver, nvda) {
 			if (voiceOver) {
 				/* Goto desired input */

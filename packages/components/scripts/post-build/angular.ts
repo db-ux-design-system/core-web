@@ -201,10 +201,6 @@ export default (tmp?: boolean) => {
 
 		const replacements: Overwrite[] = [
 			{
-				from: 'attr.disabled',
-				to: 'disabled'
-			},
-			{
 				from: 'ngOnChanges',
 				to: 'ngAfterContentChecked'
 			},
