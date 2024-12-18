@@ -6,16 +6,16 @@ You're a Web Developer and you want to use DB UI Components in your own applicat
 
 In case of the latter, you could directly head over to our JavaScript framework components description:
 
--   [Angular components](https://www.npmjs.com/package/@db-ui/ngx-components)
--   [React components](https://www.npmjs.com/package/@db-ui/react-components)
--   [Vue components](https://www.npmjs.com/package/@db-ui/v-components)
+- [Angular components](https://www.npmjs.com/package/@db-ui/ngx-components)
+- [React components](https://www.npmjs.com/package/@db-ui/react-components)
+- [Vue components](https://www.npmjs.com/package/@db-ui/v-components)
 
 ## Options
 
 There are multiple options how to use DB UI Components:
 
--   Manually copy the artifacts to your project
--   Use npm package
+- Manually copy the artifacts to your project
+- Use npm package
 
 ## How to use
 
@@ -40,8 +40,8 @@ This should add a new entry to your `package.json` file:
 }
 ```
 
--   You will find the relevant files at `node_modules/@db-ui/components`
--   Copy the `assets` folder from `node_modules/@db-ui/foundations/assets` and the `styles` folder from `node_modules/@db-ui/components/build/styles/` to your application directory or link them. Most of the build tools support automatic copying.
+- You will find the relevant files at `node_modules/@db-ui/components`
+- Copy the `assets` folder from `node_modules/@db-ui/foundations/assets` and the `styles` folder from `node_modules/@db-ui/components/build/styles/` to your application directory or link them. Most of the build tools support automatic copying.
 
 ### Download or CDN references
 

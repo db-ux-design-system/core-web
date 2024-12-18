@@ -13,12 +13,12 @@ import {
 	SizeProps
 } from '../../shared/model';
 
-export interface DBCheckboxDefaultProps {
+export type DBCheckboxDefaultProps = {
 	/**
 	 * Define an [indeterminate](https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement#indeterminate) state of a checkbox
 	 */
 	indeterminate?: boolean;
-}
+};
 
 export type DBCheckboxProps = DBCheckboxDefaultProps &
 	GlobalProps &

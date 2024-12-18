@@ -1,4 +1,8 @@
-import { Component, NO_ERRORS_SCHEMA } from '@angular/core';
+import {
+	Component,
+	CUSTOM_ELEMENTS_SCHEMA,
+	NO_ERRORS_SCHEMA
+} from '@angular/core';
 import {
 	FormControl,
 	FormGroup,
@@ -20,29 +24,32 @@ import {
 	DBTextarea
 } from '../../../../../../output/angular/src';
 import { DefaultComponent } from '../default.component';
+import { environment } from '../../../environments/environment';
 
 @Component({
 	selector: 'app-form',
 	templateUrl: './form.component.html',
-	imports: [
-		FormsModule,
-		ReactiveFormsModule,
-		DefaultComponent,
-		DBInput,
-		DBTextarea,
-		DBSelect,
-		DBRadio,
-		DBTag,
-		DBCheckbox,
-		DBDivider,
-		DBButton,
-		DBTabs,
-		DBTabList,
-		DBTabItem,
-		DBTabPanel
-	],
+	imports: environment.webComponents
+		? [FormsModule, ReactiveFormsModule, DefaultComponent]
+		: [
+				FormsModule,
+				ReactiveFormsModule,
+				DefaultComponent,
+				DBInput,
+				DBTextarea,
+				DBSelect,
+				DBRadio,
+				DBTag,
+				DBCheckbox,
+				DBDivider,
+				DBButton,
+				DBTabs,
+				DBTabList,
+				DBTabItem,
+				DBTabPanel
+			],
 	standalone: true,
-	schemas: [NO_ERRORS_SCHEMA]
+	schemas: [NO_ERRORS_SCHEMA, CUSTOM_ELEMENTS_SCHEMA]
 })
 export class FormComponent {
 	array = ['X', 'Y', 'Z'];

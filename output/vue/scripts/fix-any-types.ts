@@ -22,15 +22,18 @@ const replaceAnyTypes = (input: string, component: string) => {
 		const propLines = roLine.match(/(.*);/g);
 		if (propLines) {
 			propLines.forEach((propLine) => {
-				const prop = propLine
-					.replace('?: any;', '')
-					.replace(': any;', '')
-					.trim();
-				// @ts-ignore
-				fileContent = fileContent.replaceAll(
-					propLine,
-					propLine.replace('any', `${propModel}["${prop}"]`)
-				);
+				// Check if prop(contains ": any") or function
+				if (propLine.includes(': any;')) {
+					const prop = propLine
+						.replace('?: any;', '')
+						.replace(': any;', '')
+						.trim();
+					// @ts-ignore
+					fileContent = fileContent.replaceAll(
+						propLine,
+						propLine.replace('any', `${propModel}["${prop}"]`)
+					);
+				}
 			});
 		}
 	}

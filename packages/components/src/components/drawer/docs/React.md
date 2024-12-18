@@ -17,14 +17,6 @@ const App = () => {
 	const [open, setOpen] = useState<boolean>(false);
 	return (
 		<div>
-			<DBDrawer
-				open={open}
-				onClose={() => {
-					setOpen(false);
-				}}
-			>
-				My Drawer content
-			</DBDrawer>
 			<DBButton
 				onClick={() => {
 					setOpen(true);
@@ -32,6 +24,15 @@ const App = () => {
 			>
 				Open Me
 			</DBButton>
+			<DBDrawer
+				open={open}
+				onClose={() => {
+					setOpen(false);
+				}}
+				drawerHeader={<header>Optional drawer header</header>}
+			>
+				My Drawer content
+			</DBDrawer>
 		</div>
 	);
 };

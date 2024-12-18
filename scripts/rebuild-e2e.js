@@ -3,7 +3,7 @@ import { spawnSync } from 'node:child_process';
 
 /**
  * Simple script to run docker-compose with the correct playwright version
- * Need this script because npm under windows uses cmd which is unable to use variables in a cli like $version
+ * Need this script because npm under windows uses cmd which is unable to use variables in a CLI like $version
  */
 
 const rebuildE2e = () => {

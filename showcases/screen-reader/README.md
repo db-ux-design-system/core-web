@@ -27,10 +27,10 @@ npm run test:screen-reader:windows --workspace=react-showcase -- --ui
 
 ## Gotchas
 
--   Local: Don't switch in between your windows while testing, it will capture only your current screen
--   We should avoid auto-generate tests, because they take a lot of time.
--   NVDAs `next` command is equivalent of executing Down Arrow - Won't work with radio/select as you might expect
--   One simple test takes about 1 minute in CI ⬅ so you should only provide test important things
+- Local: Don't switch in between your windows while testing, it will capture only your current screen
+- We should avoid auto-generate tests, because they take a lot of time.
+- NVDAs `next` command is equivalent of executing Down Arrow - Won't work with radio/select as you might expect
+- One simple test takes about 1 minute in CI ⬅ so you should only provide test important things
 
 ## More information
 

@@ -13,6 +13,7 @@ import {
 	IconProps,
 	InputEventProps,
 	InputEventState,
+	ShowIconProps,
 	ValueLabelType
 } from '../../shared/model';
 
@@ -37,7 +38,13 @@ export const InputTypeList = [
 export type InputTypeType = (typeof InputTypeList)[number];
 
 export type DBInputDefaultProps = {
+	/**
+	 * Set a [data list](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/datalist) via attribute instead of children.
+	 */
 	dataList?: string[] | ValueLabelType[];
+	/**
+	 * Add a custom id to [data list](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/datalist) if you're using `dataList` attribute.
+	 */
 	dataListId?: string;
 	/**
 	 * Maximum value
@@ -56,6 +63,9 @@ export type DBInputDefaultProps = {
 	 * 	Type of form control
 	 */
 	type?: InputTypeType | string;
+	/**
+	 * Sets [step value](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/step).
+	 */
 	step?: number | string;
 };
 
@@ -68,11 +78,12 @@ export type DBInputProps = DBInputDefaultProps &
 	FormProps &
 	IconProps &
 	IconAfterProps &
-	FormMessageProps;
+	FormMessageProps &
+	ShowIconProps;
 
 export type DBInputDefaultState = {
 	_dataListId?: string;
-	getDataList?: (_list?: string[] | ValueLabelType[]) => ValueLabelType[];
+	getDataList: (_list?: string[] | ValueLabelType[]) => ValueLabelType[];
 };
 
 export type DBInputState = DBInputDefaultState &

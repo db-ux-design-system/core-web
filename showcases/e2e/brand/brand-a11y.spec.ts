@@ -1,7 +1,11 @@
 import { test } from '@playwright/test';
 // @ts-expect-error - required for playwright
-import { getA11yTest } from '../default.ts';
+import { runA11yCheckerTest, runAxeCoreTest } from '../default.ts';
+import { lvl3 } from '../fixtures/variants';
 
 test.describe('DBBrand', () => {
-	getA11yTest({ path: '04/brand' });
+	runAxeCoreTest({ path: '04/brand' });
+	runAxeCoreTest({ path: '04/brand', color: lvl3 });
+	runAxeCoreTest({ path: '04/brand', density: 'functional' });
+	runA11yCheckerTest({ path: '04/brand' });
 });

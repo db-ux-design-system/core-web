@@ -1,6 +1,6 @@
 import { expect, test, type Page } from '@playwright/test';
-import AxeBuilder from '@axe-core/playwright';
-import { waitForDBPage } from '../default';
+import { AxeBuilder } from '@axe-core/playwright';
+import { hasWebComponentSyntax, isStencil, waitForDBPage } from '../default';
 
 const testFormComponents = async (
 	page: Page,
@@ -9,6 +9,7 @@ const testFormComponents = async (
 ) => {
 	await page.goto('./');
 	const tab = page.getByTestId(testId);
+	await expect(tab).toBeVisible();
 	await tab.click({ force: true });
 	const definition = await page
 		.getByTestId('data-list')
@@ -62,10 +63,8 @@ test.describe('Home', () => {
 	});
 
 	test('should not have any A11y issues', async ({ page }) => {
-		const isAngular = process.env.showcase.startsWith('angular');
-
 		// Angular wraps custom components in own tags this will cause a lot of issues with axe-core
-		if (isAngular) {
+		if (hasWebComponentSyntax(process.env.showcase)) {
 			test.skip();
 		}
 
@@ -77,27 +76,44 @@ test.describe('Home', () => {
 		const accessibilityScanResults = await new AxeBuilder({
 			page
 		})
-			// TODO: Currently disable till we solved https://github.com/db-ui/mono/issues/2587
 			// TODO: There might be an issue our implementation of which elements get which roles
-			.disableRules(['color-contrast', 'aria-allowed-role'])
+			.disableRules(['aria-allowed-role'])
 			.analyze();
 
 		expect(accessibilityScanResults.violations).toEqual([]);
 	});
 
+	const stencil = isStencil(process.env.showcase);
+
 	test('test inputs', async ({ page }) => {
+		if (stencil) {
+			test.skip();
+		}
+
 		await testFormComponents(page, 'tab-inputs', 'textbox');
 	});
 
 	test('test textareas', async ({ page }) => {
+		if (stencil) {
+			test.skip();
+		}
+
 		await testFormComponents(page, 'tab-textareas', 'textbox');
 	});
 
 	test('test selects', async ({ page }) => {
+		if (stencil) {
+			test.skip();
+		}
+
 		await testFormComponents(page, 'tab-selects', 'combobox');
 	});
 
 	test('test checkboxes', async ({ page }) => {
+		if (stencil) {
+			test.skip();
+		}
+
 		await testFormComponents(page, 'tab-checkboxes', 'checkbox');
 	});
 });

@@ -1,12 +1,16 @@
-import { Component } from '@angular/core';
+import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import defaultComponentVariants from '../../../../../shared/tooltip.json';
 import { DefaultComponent } from '../default.component';
 import { DBButton, DBTooltip } from '../../../../../../output/angular/src';
+import { environment } from '../../../environments/environment';
 
 @Component({
 	selector: 'app-tooltip',
 	templateUrl: './tooltip.component.html',
-	imports: [DefaultComponent, DBTooltip, DBButton],
+	imports: environment.webComponents
+		? [DefaultComponent]
+		: [DefaultComponent, DBTooltip, DBButton],
+	schemas: [CUSTOM_ELEMENTS_SCHEMA],
 	standalone: true
 })
 export class TooltipComponent {

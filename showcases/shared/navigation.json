@@ -5,17 +5,11 @@
 			{
 				"name": "navigation-item",
 				"content": "Navi-Item 1",
-				"props": {
-					"active": true
-				},
 				"children": [
 					{
 						"name": "navigation-item",
 						"content": "Sub-Navi-Item 1",
 						"slot": "sub-navigation",
-						"props": {
-							"active": true
-						},
 						"children": [
 							{
 								"name": "navigation-item",

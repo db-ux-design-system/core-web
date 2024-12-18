@@ -15,8 +15,8 @@ echo "📦 Unpack Tar"
 tar -zxf gh-pages -C public --strip-components 1
 
 if [[ $RELEASE == "true" ]]; then
-	echo "🔃 Change redirect"
-	echo "<meta http-equiv=\"refresh\" content=\"0; URL=https://"$OWNER_NAME".github.io/"$REPO_NAME"/version/"$NAME"\" />" > public/index.html
+	echo "🔃 Create redirect"
+	echo "<meta http-equiv=\"refresh\" content=\"0; URL=https://"$OWNER_NAME".github.io/"$REPO_NAME"/version/latest\" />" > public/index.html
 fi
 
 echo "👣 Move out dir"
@@ -28,6 +28,15 @@ if [[ $PRE_RELEASE == "true" || $RELEASE == "true" ]]; then
 	if [[ -d ./public/version/"$NAME" ]]; then
 		echo "    Remove dir ./public/version/$NAME"
 		rm -rf ./public/version/"$NAME"
+	fi
+	if [[ $RELEASE == "true" ]]; then
+		if [[ -d ./public/version/latest ]]; then
+			echo "    Remove dir ./public/version/latest"
+			rm -rf ./public/version/latest
+		fi
+		mkdir ./public/version/latest
+		cp -RT ./out ./public/version/latest
+		echo "    Copied dir out to ./public/version/latest"
 	fi
 	mv ./out ./public/version/"$NAME"
 	echo "    Moved dir out to ./public/version/$NAME"

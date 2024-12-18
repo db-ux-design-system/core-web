@@ -20,19 +20,33 @@
 		]
 	},
 	{
-		"name": "States",
+		"name": "Checked",
 		"examples": [
 			{
-				"name": "(Def) Enabled"
-			},
-			{
-				"name": "Checked",
+				"name": "(Default) False",
 				"props": {
-					"checked": true
+					"checked": false
 				}
 			},
 			{
-				"name": "Disabled",
+				"name": "True",
+				"props": {
+					"checked": true
+				}
+			}
+		]
+	},
+	{
+		"name": "Disabled",
+		"examples": [
+			{
+				"name": "(Default) False",
+				"props": {
+					"disabled": false
+				}
+			},
+			{
+				"name": "True",
 				"props": {
 					"disabled": true
 				}
@@ -43,26 +57,26 @@
 		"name": "Emphasis",
 		"examples": [
 			{
-				"name": "(Def) Weak + unchecked",
+				"name": "(Default) Weak + Unchecked",
 				"props": {
 					"emphasis": "weak"
 				}
 			},
 			{
-				"name": "Strong + unchecked",
-				"props": {
-					"emphasis": "strong"
-				}
-			},
-			{
-				"name": "(Def) Weak + checked",
+				"name": "(Default) Weak + Checked",
 				"props": {
 					"emphasis": "weak",
 					"checked": true
 				}
 			},
 			{
-				"name": "Strong + checked",
+				"name": "Strong + Unchecked",
+				"props": {
+					"emphasis": "strong"
+				}
+			},
+			{
+				"name": "Strong + Checked",
 				"props": {
 					"emphasis": "strong",
 					"checked": true
@@ -74,26 +88,26 @@
 		"name": "Visual Aid",
 		"examples": [
 			{
-				"name": "(Def) No Visual Aid + unchecked",
+				"name": "(Default) False + Unchecked",
 				"props": {
 					"visualAid": false
 				}
 			},
 			{
-				"name": "Visual Aid + unchecked",
-				"props": {
-					"visualAid": true
-				}
-			},
-			{
-				"name": "(Def) No Visual Aid + checked",
+				"name": "(Default) False + Checked",
 				"props": {
 					"visualAid": false,
 					"checked": true
 				}
 			},
 			{
-				"name": "Visual Aid + checked",
+				"name": "True + Unchecked",
+				"props": {
+					"visualAid": true
+				}
+			},
+			{
+				"name": "True + Checked",
 				"props": {
 					"visualAid": true,
 					"checked": true
@@ -105,7 +119,7 @@
 		"name": "Size",
 		"examples": [
 			{
-				"name": "(Def) Medium"
+				"name": "(Default) Medium"
 			},
 			{
 				"name": "Small",
@@ -116,15 +130,35 @@
 		]
 	},
 	{
-		"name": "Content",
+		"name": "Show Label",
 		"examples": [
 			{
-				"name": "(Def) Label"
+				"name": "(Default) True",
+				"props": {
+					"showLabel": true
+				}
 			},
 			{
-				"name": "No Label",
+				"name": "False",
 				"props": {
-					"variant": "hidden"
+					"showLabel": false
+				}
+			}
+		]
+	},
+	{
+		"name": "Required",
+		"examples": [
+			{
+				"name": "(Default) False",
+				"props": {
+					"required": false
+				}
+			},
+			{
+				"name": "True",
+				"props": {
+					"required": true
 				}
 			}
 		]

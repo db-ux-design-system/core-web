@@ -19,13 +19,15 @@ export type DrawerBackdropType = (typeof DrawerBackdropList)[number];
 export const DrawerDirectionList = ['left', 'right', 'up', 'down'] as const;
 export type DrawerDirectionType = (typeof DrawerDirectionList)[number];
 
-export interface DBDrawerDefaultProps {
+export const DrawerVariantList = ['modal', 'inside'] as const;
+export type DrawerVariantType = (typeof DrawerVariantList)[number];
+
+export type DBDrawerDefaultProps = {
 	/**
 	 * The backdrop attribute changes the opacity of the backdrop.
 	 * The backdrop 'none' will use `dialog.show()` instead of `dialog.showModal()`
 	 */
 	backdrop?: DrawerBackdropType;
-
 	/**
 	 * The direction attribute changes the position & animation of the drawer.
 	 * E.g. "left" slides from left screen border to the right.
@@ -33,9 +35,10 @@ export interface DBDrawerDefaultProps {
 	direction?: DrawerDirectionType;
 
 	/**
-	 * React specific to change the header of the drawer.
+	 * Slot for changing the header of the drawer.
 	 */
-	drawerHeader?: unknown;
+	drawerHeader?: any;
+
 	/**
 	 * The open attribute opens or closes the drawer based on the state.
 	 */
@@ -45,7 +48,11 @@ export interface DBDrawerDefaultProps {
 	 * The "end" depends on which direction you use.
 	 */
 	rounded?: boolean;
-}
+	/**
+	 * Set the variant modal|inside. Defaults to modal.
+	 */
+	variant?: DrawerVariantType;
+};
 
 export type DBDrawerProps = DBDrawerDefaultProps &
 	GlobalProps &
@@ -54,9 +61,9 @@ export type DBDrawerProps = DBDrawerDefaultProps &
 	WidthProps &
 	SpacingProps;
 
-export interface DBDrawerDefaultState {
+export type DBDrawerDefaultState = {
 	handleDialogOpen: () => void;
-}
+};
 
 export type DBDrawerState = DBDrawerDefaultState &
 	GlobalState &

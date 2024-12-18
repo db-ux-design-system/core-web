@@ -10,7 +10,7 @@ For general installation and configuration look at the [components](https://www.
 <body>
 	<nav class="db-navigation">
 		<menu>
-			<li class="db-navigation-item" aria-current="page">
+			<li class="db-navigation-item">
 				<button
 					class="db-navigation-item-expand-button"
 					aria-haspopup="true"
@@ -18,7 +18,7 @@ For general installation and configuration look at the [components](https://www.
 					Navi-Item 1
 				</button>
 				<menu class="db-sub-navigation">
-					<li class="db-navigation-item" aria-current="page">
+					<li class="db-navigation-item">
 						<button
 							class="db-navigation-item-expand-button"
 							aria-haspopup="true"
@@ -26,8 +26,10 @@ For general installation and configuration look at the [components](https://www.
 							Sub-Navi-Item 1
 						</button>
 						<menu class="db-sub-navigation">
-							<li class="db-navigation-item" aria-current="page">
-								<a href="#">Sub-Sub-Navi-Item 1</a>
+							<li class="db-navigation-item">
+								<a href="#" aria-current="page"
+									>Sub-Sub-Navi-Item 1</a
+								>
 							</li>
 
 							<li class="db-navigation-item">
@@ -42,7 +44,7 @@ For general installation and configuration look at the [components](https://www.
 				</menu>
 			</li>
 
-			<li class="db-navigation-item" data-icon="user">
+			<li class="db-navigation-item" data-icon="person">
 				<a href="#">Navi-Item 2</a>
 			</li>
 

@@ -29,7 +29,6 @@ updates:
         update-types: ["version-update:semver-major"]
       - dependency-name: "react-dom"
         update-types: ["version-update:semver-major"]
-
       - dependency-name: "typescript"
         update-types: ["version-update:semver-major"]
       - dependency-name: "ng-packagr"
@@ -39,6 +38,9 @@ updates:
         update-types: ["version-update:semver-minor"]
       # There is an issue with sass:1.77.5 and additional colors in foundations we ignore updates for now
       - dependency-name: "sass"
+      # We currently need to ignore eslint@v9
+      - dependency-name: "eslint"
+        update-types: ["version-update:semver-major"]
     pull-request-branch-name:
       separator: "-"
     # https://github.com/dependabot/dependabot-core/issues/5226#issuecomment-1179434437
@@ -73,3 +75,13 @@ updates:
       builder.io:
         patterns:
           - "@builder.io/mitosis*"
+      inquirer:
+        patterns:
+          - "@inquirer/*"
+          - "inquirer"
+      mdx-js:
+        patterns:
+          - "@mdx-js/*"
+      guidepup:
+        patterns:
+          - "@guidepup/*"

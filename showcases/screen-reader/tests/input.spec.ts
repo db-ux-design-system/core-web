@@ -7,7 +7,7 @@ test.describe('DBInput', () => {
 		test,
 		title: 'next()',
 		description: 'should have message and label (next())',
-		url: './#/03/input?page=variant%20helper%20message',
+		url: './#/03/input?page=show+message',
 		async testFn(voiceOver, nvda) {
 			if (nvda) {
 				// Nvda doesn't have a next if the element is an input
@@ -26,7 +26,7 @@ test.describe('DBInput', () => {
 		test,
 		title: 'tab',
 		description: 'should have message and label (tab)',
-		url: './#/03/input?page=variant%20helper%20message',
+		url: './#/03/input?page=show+message',
 		async testFn(voiceOver, nvda) {
 			if (voiceOver) {
 				// Voiceover isn't working with tab in pipeline
@@ -43,7 +43,7 @@ test.describe('DBInput', () => {
 		test,
 		title: 'required',
 		description: 'should inform user for changes',
-		url: './#/03/input?page=requirement',
+		url: './#/03/input?page=required',
 		async testFn(voiceOver, nvda) {
 			if (voiceOver) {
 				/* Goto desired input */
@@ -71,7 +71,9 @@ test.describe('DBInput', () => {
 				 * There is a timing issue for macOS for typing in input we clean the result
 				 */
 				await generateSnapshot(voiceOver, retry, (phraseLog) =>
-					phraseLog.map((log) => log.replace('t. ', ''))
+					phraseLog.map((log) =>
+						log.replace('Test. ', '').replace('t. ', '')
+					)
 				);
 			}
 		}

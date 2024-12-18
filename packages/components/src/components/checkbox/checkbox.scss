@@ -6,24 +6,40 @@
 @use "../../styles/component";
 @use "../../styles/form-components";
 
+%center-icon {
+	&::before {
+		--db-icon-margin-end: 0;
+
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		block-size: calc(
+			#{form-components.$font-size-height} - 2 *
+				#{variables.$db-border-height-3xs}
+		);
+		inline-size: calc(
+			#{form-components.$font-size-height} - 2 *
+				#{variables.$db-border-height-3xs}
+		);
+	}
+}
+
 .db-checkbox {
 	@extend %helper-message;
 
 	@include form-components.set-default-check-element(check);
 
 	input {
+		display: flex;
 		border-radius: variables.$db-border-radius-2xs;
-
-		&::before {
-			--db-icon-margin-end: 0;
-
-			position: absolute;
-			inset-inline: 0;
-			inset-block: 0;
-		}
+		margin-block: auto;
+		align-items: center;
+		justify-content: center;
 
 		&:checked {
 			--db-check-element-border-color: #{colors.$db-adaptive-on-bg-basic-emphasis-70-default};
+
+			@extend %center-icon;
 
 			// Check icon
 			@include icons.set-icon("check");
@@ -39,6 +55,8 @@
 		}
 
 		&:indeterminate {
+			@extend %center-icon;
+
 			@include icons.set-icon("minus");
 		}
 
@@ -49,10 +67,11 @@
 
 				border-width: form-components.$check-border-size;
 
-				&::before {
+				&:not([data-hide-icon-before="true"])::before {
 					align-content: center;
 					font-size: calc(
-						var(--db-icon-font-size) - 2 * #{form-components.$check-border-size}
+						var(--db-icon-font-size) - 2 *
+							#{form-components.$check-border-size}
 					);
 					padding: #{form-components.$check-border-size};
 				}

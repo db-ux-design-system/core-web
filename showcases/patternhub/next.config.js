@@ -17,7 +17,8 @@ const config = {
 	transpilePackages: [
 		'../../output/react/src',
 		'../react-showcase/',
-		'@db-ui'
+		'@db-ui',
+		'@db-ux'
 	],
 	...withMDX({
 		pageExtensions: ['ts', 'tsx', 'js', 'jsx', 'md', 'mdx'],

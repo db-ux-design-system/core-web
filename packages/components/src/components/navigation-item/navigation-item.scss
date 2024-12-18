@@ -25,7 +25,8 @@
 		~ .db-sub-navigation {
 			@media screen and (prefers-reduced-motion: no-preference) {
 				transition: visibility 0ms linear 0ms;
-				animation: show-right-to-left #{variables.$db-transition-straight-show};
+				animation: show-right-to-left
+					#{variables.$db-transition-straight-show};
 			}
 
 			visibility: visible;
@@ -40,7 +41,8 @@
 		@media screen and (prefers-reduced-motion: no-preference) {
 			~ .db-sub-navigation {
 				transition: visibility 0ms linear 410ms; // hide animation is 0.4s
-				animation: hide-right-to-left #{variables.$db-transition-straight-hide};
+				animation: hide-right-to-left
+					#{variables.$db-transition-straight-hide};
 			}
 		}
 	}
@@ -124,7 +126,9 @@
 	}
 
 	&:has([aria-current="page"]),
-	&[aria-current="page"] {
+	&:has([data-active="true"]),
+	&[aria-current="page"],
+	&[data-active="true"] {
 		> :is(a, button) {
 			font-weight: 700;
 		}
@@ -161,7 +165,8 @@
 	overflow-y: auto;
 	// additional #{$db-spacing-fixed-3xs} for border
 	inset-block: calc(
-			#{component.$min-mobile-header-height} + #{variables.$db-spacing-fixed-3xs}
+			#{component.$min-mobile-header-height} +
+				#{variables.$db-spacing-fixed-3xs}
 		)
 		calc(
 			#{variables.$db-sizing-md} + #{variables.$db-spacing-fixed-xs} * 2 +
@@ -213,10 +218,12 @@
 			inline-size: 100%;
 			// #{$db-spacing-fixed--3xs} for shadows
 			block-size: calc(
-				#{variables.$db-spacing-fixed-3xs} + #{variables.$db-spacing-fixed-md}
+				#{variables.$db-spacing-fixed-3xs} +
+					#{variables.$db-spacing-fixed-md}
 			);
 			inset-block-start: calc(
-				-1 * #{variables.$db-spacing-fixed-md} - #{variables.$db-spacing-fixed-3xs}
+				-1 * #{variables.$db-spacing-fixed-md} -
+					#{variables.$db-spacing-fixed-3xs}
 			);
 		}
 

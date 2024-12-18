@@ -19,6 +19,7 @@ const log = (exampleName: string) => {
 				:size="exampleProps?.size"
 				:icon="exampleProps?.icon"
 				:noText="exampleProps?.noText"
+				:showIcon="exampleProps?.showIcon"
 				:disabled="exampleProps?.disabled"
 				:width="exampleProps?.width"
 				@click="log(exampleName)"

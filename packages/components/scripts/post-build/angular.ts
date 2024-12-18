@@ -9,13 +9,11 @@ import { runReplacements, transformToUpperComponentName } from '../utils';
 const changeFile = (input: string) => {
 	return input
 		.split('\n')
-		.filter(
-			(line) =>
-				!line.includes('@db-ui') &&
-				!line.includes(`Props } from "../`) &&
-				!line.includes(`[key]=`)
-		)
 		.map((line) => {
+			if (line.includes('export default')) {
+				return line.replace('export default', 'export');
+			}
+
 			if (line.includes(': ElementRef')) {
 				return line.replace(': ElementRef', ': ElementRef | undefined');
 			}
@@ -68,8 +66,8 @@ const setControlValueAccessorReplacements = (
 
 	// implementing interface and constructor
 	replacements.push({
-		from: `export default class ${upperComponentName} {`,
-		to: `export default class ${upperComponentName} implements ControlValueAccessor {
+		from: `export class ${upperComponentName} {`,
+		to: `export class ${upperComponentName} implements ControlValueAccessor {
 		constructor(private renderer: Renderer2) { }`
 	});
 
@@ -130,9 +128,9 @@ const setDirectiveReplacements = (
 		}
 
 		replacements.push({
-			from: `export default class ${upperComponentName} {\n`,
+			from: `export class ${upperComponentName} {\n`,
 			to:
-				`export default class ${upperComponentName} {\n` +
+				`export class ${upperComponentName} {\n` +
 				`\t@ContentChild(${directive.name}Directive, { read: TemplateRef }) db${directive.name}: any;\n`
 		});
 
@@ -178,21 +176,7 @@ export class ${directive.name}Directive {}
 const getAttributePassing = (componentName: string) => `
 ngAfterViewInit(): void {
 \t\tconst element: HTMLElement | null = this.ref?.nativeElement;
-\t\tconst parent = element?.closest('db-${componentName}') ?? element?.closest('db${componentName.replace(/-/g, '')}');
-\t\tif (element && parent) {
-\t\t\tconst attributes = parent.attributes;
-\t\t\tfor (let i = 0; i < attributes.length; i++) {
-\t\t\t\tconst attr = attributes.item(i);
-\t\t\t\tif (
-\t\t\t\t\tattr &&
-\t\t\t\t\t(attr.name.startsWith('data-') ||
-\t\t\t\t\t\tattr.name.startsWith('aria-'))
-\t\t\t\t) {
-\t\t\t\t\telement.setAttribute(attr.name, attr.value);
-\t\t\t\t\tparent.removeAttribute(attr.name);
-\t\t\t\t}
-\t\t\t}
-\t\t}
+\t\tenableCustomElementAttributePassing(element,'db-${componentName}')
 \t}`;
 
 export default (tmp?: boolean) => {
@@ -207,41 +191,32 @@ export default (tmp?: boolean) => {
 		const componentName = component.name;
 		const upperComponentName = `DB${transformToUpperComponentName(component.name)}`;
 		const file = `../../${outputFolder}/angular/src/components/${componentName}/${componentName}.ts`;
-		const options = {
-			files: file,
-			processor: (input: string) => changeFile(input)
-		};
+		const indexFile = `../../${outputFolder}/angular/src/components/${componentName}/index.ts`;
+
+		replaceInFileSync({
+			files: indexFile,
+			from: 'default as ',
+			to: ''
+		});
 
 		const replacements: Overwrite[] = [
 			{
-				from: 'attr.disabled',
-				to: 'disabled'
-			},
-			{
 				from: 'ngOnChanges',
 				to: 'ngAfterContentChecked'
-			},
-			{
-				from: 'mouseOver',
-				to: 'mouseover'
-			},
-			{
-				from: 'mouseEnter',
-				to: 'mouseenter'
-			},
-			{
-				from: 'mouseLeave',
-				to: 'mouseleave'
-			},
-			{
-				from: 'mouseMove',
-				to: 'mousemove'
 			},
 			{
 				from: '@ViewChild("ref") ref!: ElementRef | undefined;',
 				to:
 					'@ViewChild("ref") ref!: ElementRef | undefined;' +
 					getAttributePassing(component.name)
+			},
+			{
+				from: '} from "../../utils"',
+				to: ', enableCustomElementAttributePassing } from "../../utils"'
+			},
+			{
+				from: /this.ref.nativeElement/g,
+				to: 'this.ref?.nativeElement'
 			}
 		];
 
@@ -273,7 +248,10 @@ export default (tmp?: boolean) => {
 		}
 
 		try {
-			replaceInFileSync(options);
+			replaceInFileSync({
+				files: file,
+				processor: (input: string) => changeFile(input)
+			});
 			runReplacements(replacements, component, 'angular', file);
 		} catch (error) {
 			console.error('Error occurred:', error);
