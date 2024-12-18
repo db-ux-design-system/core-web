@@ -20,7 +20,7 @@ on:
 jobs:
   build-patternhub:
     name: Build Patternhub
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04 # Use Ubuntu 24.04 explicitly
     outputs:
       path: ${{ steps.build.outputs.path }}
     steps:
