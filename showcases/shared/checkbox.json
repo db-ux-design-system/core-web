@@ -27,77 +27,90 @@
 		]
 	},
 	{
-		"name": "Interaction States",
+		"name": "Disabled",
 		"role": "group",
 		"examples": [
 			{
-				"name": "(Default) Enabled",
+				"name": "(Default) False",
 				"props": {
-					"name": "Interaction States"
+					"name": "Disabled",
+					"disabled": false
 				}
 			},
 			{
-				"name": "Disabled",
+				"name": "True",
 				"props": {
-					"name": "Interaction States",
+					"name": "Disabled",
 					"disabled": true
 				}
 			}
 		]
 	},
 	{
-		"name": "States",
+		"name": "Checked",
 		"role": "group",
 		"examples": [
 			{
-				"name": "(Default) Unchecked",
+				"name": "(Default) False",
 				"props": {
-					"name": "States"
+					"name": "State",
+					"checked": false
 				}
 			},
 			{
-				"name": "Unchecked - Invalid",
+				"name": "True",
 				"props": {
-					"name": "States",
-					"required": true
-				}
-			},
-			{
-				"name": "Checked",
-				"props": {
-					"name": "States",
+					"name": "State",
 					"checked": true
 				}
-			},
+			}
+		]
+	},
+	{
+		"name": "Indeterminate",
+		"role": "group",
+		"examples": [
 			{
-				"name": "Checked - Valid",
+				"name": "(Default) False",
 				"props": {
-					"name": "States",
-					"required": true,
-					"checked": true
+					"name": "Indeterminate",
+					"indeterminate": false
 				}
 			},
 			{
-				"name": "Indeterminate",
+				"name": "True",
 				"props": {
-					"name": "States",
+					"name": "Indeterminate",
 					"indeterminate": true
 				}
-			},
+			}
+		]
+	},
+	{
+		"name": "Validation",
+		"role": "group",
+		"examples": [
 			{
-				"name": "Indeterminate - Invalid",
+				"name": "(Default) No validation",
 				"props": {
-					"name": "States",
-					"indeterminate": true,
-					"required": true
+					"name": "Validation",
+					"validation": "no-validation"
 				}
 			},
 			{
-				"name": "Indeterminate - Valid",
+				"name": "Invalid",
 				"props": {
-					"name": "States",
-					"indeterminate": true,
-					"required": true
+					"name": "Validation",
+					"validation": "invalid",
+					"invalidMessage": "Invalid Message"
+				}
+			},
+			{
+				"name": "Valid",
+				"props": {
+					"name": "Validation",
+					"validation": "valid",
+					"validMessage": "Valid message"
 				}
 			}
 		]
@@ -122,42 +135,49 @@
 		]
 	},
 	{
-		"name": "Requirement",
+		"name": "Required",
 		"role": "group",
 		"examples": [
 			{
-				"name": "(Default) Optional",
+				"name": "(Default) False",
 				"props": {
-					"name": "Requirement"
+					"name": "Requirement",
+					"required": false
 				}
 			},
 			{
-				"name": "Required",
+				"name": "True",
 				"props": {
 					"name": "Requirement",
-					"required": true
-				}
-			},
-			{
-				"name": "Required - Indeterminate",
-				"props": {
-					"name": "Requirement",
-					"indeterminate": true,
 					"required": true
 				}
 			}
 		]
 	},
 	{
-		"name": "Content",
+		"name": "Label",
 		"role": "group",
 		"examples": [
 			{
-				"name": "(Default) Label",
+				"name": "(Default) True",
 				"props": {
-					"name": "Content"
+					"name": "Label",
+					"showLabel": true
 				}
 			},
+			{
+				"name": "False",
+				"props": {
+					"name": "Label",
+					"showLabel": false
+				}
+			}
+		]
+	},
+	{
+		"name": "Example",
+		"role": "group",
+		"examples": [
 			{
 				"name": "Long label",
 				"style": {
@@ -165,14 +185,7 @@
 				},
 				"props": {
 					"checked": true,
-					"name": "Long label"
-				}
-			},
-			{
-				"name": "No Label",
-				"props": {
-					"name": "Content",
-					"showLabel": false
+					"name": "Example"
 				}
 			}
 		]

@@ -41,6 +41,10 @@ const getDataList = (
 				:value="exampleProps?.value"
 				:icon="exampleProps?.icon"
 				:iconAfter="exampleProps?.iconAfter"
+				:showMessage="exampleProps?.showMessage"
+				:invalidMessage="exampleProps?.invalidMessage"
+				:validMessage="exampleProps?.validMessage"
+				:validation="exampleProps?.validation"
 				:dataList="
 					exampleProps?.dataList
 						? getDataList(exampleProps?.variant)

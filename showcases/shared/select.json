@@ -59,7 +59,7 @@
 		]
 	},
 	{
-		"name": "Variant Label",
+		"name": "Variant",
 		"examples": [
 			{
 				"name": "(Default) Label Above",
@@ -97,9 +97,32 @@
 					"variant": "floating",
 					"value": "Floating Label"
 				}
+			}
+		]
+	},
+	{
+		"name": "Show Label",
+		"examples": [
+			{
+				"name": "(Default) True",
+				"style": {
+					"width": "300px"
+				},
+				"props": {
+					"options": [
+						{
+							"value": "Option 1"
+						},
+						{
+							"value": "Option 2"
+						}
+					],
+					"label": "Label",
+					"showLabel": true
+				}
 			},
 			{
-				"name": "Hidden Label",
+				"name": "False",
 				"style": {
 					"width": "300px"
 				},
@@ -119,27 +142,10 @@
 		]
 	},
 	{
-		"name": "Variant Helper Message",
+		"name": "Show Message",
 		"examples": [
 			{
-				"name": "(Default) Basic",
-				"style": {
-					"width": "300px"
-				},
-				"props": {
-					"options": [
-						{
-							"value": "Option 1"
-						},
-						{
-							"value": "Option 2"
-						}
-					],
-					"label": "Label"
-				}
-			},
-			{
-				"name": "Helper Message",
+				"name": "(Default) False",
 				"style": {
 					"width": "300px"
 				},
@@ -153,13 +159,33 @@
 						}
 					],
 					"label": "Label",
-					"message": "Helper Message"
+					"message": "Message",
+					"showMessage": false
+				}
+			},
+			{
+				"name": "True",
+				"style": {
+					"width": "300px"
+				},
+				"props": {
+					"options": [
+						{
+							"value": "Option 1"
+						},
+						{
+							"value": "Option 2"
+						}
+					],
+					"label": "Label",
+					"message": "Message",
+					"showMessage": true
 				}
 			}
 		]
 	},
 	{
-		"name": "States Label Above",
+		"name": "State",
 		"examples": [
 			{
 				"name": "(Default) Empty",
@@ -196,9 +222,95 @@
 					"label": "Label",
 					"value": "Filled"
 				}
+			}
+		]
+	},
+	{
+		"name": "Validation",
+		"examples": [
+			{
+				"name": "(Default) No validation",
+				"style": {
+					"width": "300px"
+				},
+				"props": {
+					"options": [
+						{
+							"value": "Option 1"
+						},
+						{
+							"value": "Option 2"
+						}
+					],
+					"label": "Label",
+					"validation": "no-validation"
+				}
 			},
 			{
-				"name": "Disabled",
+				"name": "Invalid",
+				"style": {
+					"width": "300px"
+				},
+				"props": {
+					"options": [
+						{
+							"value": "Option 1"
+						},
+						{
+							"value": "Option 2"
+						}
+					],
+					"label": "Label",
+					"validation": "invalid",
+					"invalidMessage": "Invalid Message"
+				}
+			},
+			{
+				"name": "Valid",
+				"style": {
+					"width": "300px"
+				},
+				"props": {
+					"options": [
+						{
+							"value": "Valid",
+							"selected": true
+						},
+						{
+							"value": "Option 2"
+						}
+					],
+					"label": "Label",
+					"validation": "valid",
+					"validMessage": "Valid message",
+					"value": "Valid"
+				}
+			}
+		]
+	},
+	{
+		"name": "Disabled",
+		"examples": [
+			{
+				"name": "(Default) False",
+				"style": {
+					"width": "300px"
+				},
+				"props": {
+					"options": [
+						{
+							"value": "Option 1"
+						},
+						{
+							"value": "Option 2"
+						}
+					],
+					"label": "Label",
+					"disabled": false
+				}
+			},
+			{
+				"name": "True",
 				"style": {
 					"width": "300px"
 				},
@@ -218,7 +330,88 @@
 		]
 	},
 	{
-		"name": "States Floating Label",
+		"name": "Content",
+		"examples": [
+			{
+				"name": "(Default) Text",
+				"style": {
+					"width": "300px"
+				},
+				"props": {
+					"options": [
+						{
+							"value": "Option 1"
+						},
+						{
+							"value": "Option 2"
+						}
+					],
+					"label": "Label"
+				}
+			},
+			{
+				"name": "Text - Leading Icon",
+				"style": {
+					"width": "300px"
+				},
+				"props": {
+					"options": [
+						{
+							"value": "Option 1"
+						},
+						{
+							"value": "Option 2"
+						}
+					],
+					"label": "Label",
+					"icon": "x_placeholder"
+				}
+			}
+		]
+	},
+	{
+		"name": "Required",
+		"examples": [
+			{
+				"name": "(Default) False",
+				"style": {
+					"width": "300px"
+				},
+				"props": {
+					"options": [
+						{
+							"value": "Option 1"
+						},
+						{
+							"value": "Option 2"
+						}
+					],
+					"label": "Label",
+					"required": false
+				}
+			},
+			{
+				"name": "True",
+				"style": {
+					"width": "300px"
+				},
+				"props": {
+					"options": [
+						{
+							"value": "Option 1"
+						},
+						{
+							"value": "Option 2"
+						}
+					],
+					"label": "Label",
+					"required": true
+				}
+			}
+		]
+	},
+	{
+		"name": "Examples Floating Label",
 		"examples": [
 			{
 				"name": "(Default) Empty",
@@ -277,86 +470,6 @@
 					"disabled": true,
 					"variant": "floating",
 					"value": "Disabled"
-				}
-			}
-		]
-	},
-	{
-		"name": "Content",
-		"examples": [
-			{
-				"name": "(Default) Text",
-				"style": {
-					"width": "300px"
-				},
-				"props": {
-					"options": [
-						{
-							"value": "Option 1"
-						},
-						{
-							"value": "Option 2"
-						}
-					],
-					"label": "Label"
-				}
-			},
-			{
-				"name": "Text - Leading Icon",
-				"style": {
-					"width": "300px"
-				},
-				"props": {
-					"options": [
-						{
-							"value": "Option 1"
-						},
-						{
-							"value": "Option 2"
-						}
-					],
-					"label": "Label",
-					"icon": "x_placeholder"
-				}
-			}
-		]
-	},
-	{
-		"name": "Requirement",
-		"examples": [
-			{
-				"name": "(Default) Optional",
-				"style": {
-					"width": "300px"
-				},
-				"props": {
-					"options": [
-						{
-							"value": "Option 1"
-						},
-						{
-							"value": "Option 2"
-						}
-					],
-					"label": "Label"
-				}
-			},
-			{
-				"name": "Required",
-				"style": {
-					"width": "300px"
-				},
-				"props": {
-					"options": [
-						{
-							"value": "Option 1"
-						},
-						{
-							"value": "Option 2"
-						}
-					],
-					"label": "Label",
-					"required": true
 				}
 			}
 		]

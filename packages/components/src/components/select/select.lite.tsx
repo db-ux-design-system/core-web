@@ -12,7 +12,7 @@ import { DBSelectOptionType, DBSelectProps, DBSelectState } from './model';
 import {
 	cls,
 	delay,
-	getBooleanAsString,
+	stringPropVisible,
 	getHideProp,
 	hasVoiceOver,
 	uuid
@@ -33,14 +33,11 @@ import {
 	InputEvent,
 	InteractionEvent
 } from '../../shared/model';
-import {
-	handleFrameworkEvent,
-	messageVisible
-} from '../../utils/form-components';
+import { handleFrameworkEvent } from '../../utils/form-components';
 
 useMetadata({
 	angular: {
-		nativeAttributes: ['value']
+		nativeAttributes: ['disabled', 'required', 'value']
 	}
 });
 
@@ -106,7 +103,7 @@ export default function DBSelect(props: DBSelectProps) {
 						props.validMessage ?? DEFAULT_VALID_MESSAGE;
 					delay(() => (state._voiceOverFallback = ''), 1000);
 				}
-			} else if (props.message) {
+			} else if (stringPropVisible(props.message, props.showMessage)) {
 				state._descByIds = state._messageId;
 			} else {
 				state._descByIds = state._placeholderId;
@@ -155,7 +152,7 @@ export default function DBSelect(props: DBSelectProps) {
 				state._id + DEFAULT_INVALID_MESSAGE_ID_SUFFIX;
 			state._placeholderId = placeholderId;
 
-			if (props.message) {
+			if (stringPropVisible(props.message, props.showMessage)) {
 				state._descByIds = messageId;
 			} else {
 				state._descByIds = placeholderId;
@@ -250,7 +247,7 @@ export default function DBSelect(props: DBSelectProps) {
 			<span id={state._placeholderId}>
 				{props.placeholder ?? props.label}
 			</span>
-			<Show when={messageVisible(props.message, props.showMessage)}>
+			<Show when={stringPropVisible(props.message, props.showMessage)}>
 				<DBInfotext
 					size="small"
 					icon={props.messageIcon}

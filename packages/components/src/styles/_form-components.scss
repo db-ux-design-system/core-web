@@ -79,6 +79,7 @@ $check-border-size: min(#{variables.$db-border-height-2xs}, 2px);
 				--db-form-component-padding-inline-start,
 				#{variables.$db-spacing-fixed-sm}
 			);
+			pointer-events: none;
 		}
 
 		// icons
