@@ -22,15 +22,15 @@ npm i @db-ui/ngx-components
 Import the styles in `scss` or `css`. Based on your technology the file names could be different.
 
 -   Default (db-ui-42): points to `../assets`
--   Webpack (db-ui-42-webpack): points to `~@db-ui/foundations/assets`
 -   Rollup (db-ui-42-rollup): points to `@db-ui/foundations/assets`
+-   Webpack (db-ui-42-webpack): points to `~@db-ui/foundations/assets`
 
 <details>
   <summary><strong>SCSS</strong></summary>
 
 ```scss styles.scss
 // styles.scss
-@forward "@db-ui/components/build/styles/db-ui-42-webpack";
+@forward "@db-ui/components/build/styles/db-ui-42-rollup";
 ```
 
 </details>
@@ -39,7 +39,7 @@ Import the styles in `scss` or `css`. Based on your technology the file names co
 
 ```css styles.css
 /* styles.css */
-@import "@db-ui/components/build/styles/db-ui-42-rollup";
+@import "@db-ui/components/build/styles/db-ui-42-rollup.css";
 ```
 
 </details>

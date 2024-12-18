@@ -20,19 +20,20 @@ export const additionalColors = [
 ];
 
 export const backgroundColors = [
-	'lvl-1',
-	'lvl-2',
-	'lvl-3',
-	'transparent-full',
-	'transparent-semi'
+	'basic-level-1',
+	'basic-level-2',
+	'basic-level-3',
+	'basic-transparent-full',
+	'basic-transparent-semi'
 ];
 
 export const onBackgroundColors = [
-	{ value: 'default' },
-	{ value: 'weak' },
-	{ value: 'contrast' },
-	{ value: 'contrast-weak', appendix: ' *' },
-	{ value: 'border', appendix: ' *' }
+	{ value: 'emphasis-100' },
+	{ value: 'emphasis-90' },
+	{ value: 'emphasis-80' },
+	{ value: 'emphasis-70', appendix: ' *' },
+	{ value: 'emphasis-60', appendix: ' *' },
+	{ value: 'emphasis-50', appendix: ' *' }
 ];
 
 export type ColorValue = string | { value: string; appendix?: string };

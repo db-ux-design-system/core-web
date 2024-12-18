@@ -20,6 +20,7 @@ $headlines: (
 :is(h1, h2, h3, h4, h5, h6) {
 	font-family: var(--db-font-family-head);
 	font-weight: 700;
+	text-wrap: balance;
 
 	&[data-variant="light"] {
 		font-weight: 300;

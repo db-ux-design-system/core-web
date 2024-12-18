@@ -59,3 +59,5 @@ components/code-docs/
 !components/06-feedback.mdx
 !.env
 /generated.js
+
+data/testing-table.ts

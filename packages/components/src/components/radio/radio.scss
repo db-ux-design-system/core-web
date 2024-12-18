@@ -17,22 +17,26 @@
 		&:checked {
 			// The radio element still has the default background for the dot on :hover when in checked state
 			&:not(:disabled):is(:hover, :focus) {
-				background-color: colors.$db-current-color-bg-transparent-full-enabled;
+				background-color: colors.$db-adaptive-bg-basic-transparent-full-default;
 			}
 
 			&:not([data-size="small"]) {
 				border-width: calc(
 					(
-							#{form-components.$font-size-height} - #{variables.$db-sizing-2xs}
-						) / 2
+							#{form-components.$font-size-height} -
+								#{variables.$db-sizing-2xs}
+						) /
+						2
 				);
 			}
 
 			&[data-size="small"] {
 				border-width: calc(
 					(
-							#{form-components.$font-size-height} - #{variables.$db-sizing-3xs}
-						) / 2
+							#{form-components.$font-size-height} -
+								#{variables.$db-sizing-3xs}
+						) /
+						2
 				);
 			}
 		}

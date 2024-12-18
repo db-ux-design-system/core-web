@@ -71,10 +71,10 @@ You can overwrite custom-icons for our components with CSS as well:
 
 If you update a **svg** inside `assets/icons/functional/images` you need to recreate the **woff2** file.
 
-For this you just need to run
+For this you just need to run the following command from root:
 
 ```shell
-npm run generate:icon-fonts
+npm run update:icon-fonts
 ```
 
-Your new icon should be inside `assets/icons/functional/fonts/info.json` and you should see it inside `assets/icons/functional/fonts/index.html` in the browser.
+Your new icon should be inside `assets/icons/functional/fonts/**/info.json` and you should see it inside `assets/icons/functional/fonts/**/index.html` in the browser.

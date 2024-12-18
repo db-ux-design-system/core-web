@@ -4,19 +4,18 @@
 		"examples": [
 			{
 				"name": "Functional",
-				"className": "db-density-functional"
+				"density": "functional",
+				"props": {}
 			},
 			{
 				"name": "(Default) Regular",
-				"className": "db-density-regular"
+				"density": "regular",
+				"props": {}
 			},
 			{
 				"name": "Expressive",
-				"className": "db-density-expressive"
-			},
-			{
-				"name": "functional",
-				"className": "db-density-functional"
+				"density": "expressive",
+				"props": {}
 			}
 		]
 	},
@@ -53,15 +52,21 @@
 				}
 			},
 			{
-				"name": "No Spacing",
-				"props": {
-					"spacing": "none"
-				}
-			},
-			{
 				"name": "Medium",
 				"props": {
 					"spacing": "medium"
+				}
+			},
+			{
+				"name": "Large",
+				"props": {
+					"spacing": "large"
+				}
+			},
+			{
+				"name": "None",
+				"props": {
+					"spacing": "none"
 				}
 			}
 		]

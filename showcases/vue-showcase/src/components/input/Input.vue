@@ -2,6 +2,7 @@
 import DefaultComponent from "../DefaultComponent.vue";
 import defaultComponentVariants from "../../../../shared/input.json";
 import {
+	DBCheckbox,
 	DBInput,
 	LabelVariantType,
 	ValueLabelType
@@ -28,6 +29,7 @@ const getDataList = (
 		>
 			<DBInput
 				:variant="exampleProps?.variant"
+				:show-label="exampleProps?.showLabel"
 				:label="exampleProps?.label"
 				:message="exampleProps?.message"
 				:placeholder="exampleName"
@@ -39,6 +41,10 @@ const getDataList = (
 				:value="exampleProps?.value"
 				:icon="exampleProps?.icon"
 				:iconAfter="exampleProps?.iconAfter"
+				:showMessage="exampleProps?.showMessage"
+				:invalidMessage="exampleProps?.invalidMessage"
+				:validMessage="exampleProps?.validMessage"
+				:validation="exampleProps?.validation"
 				:dataList="
 					exampleProps?.dataList
 						? getDataList(exampleProps?.variant)

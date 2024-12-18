@@ -58,27 +58,27 @@
 
 				@include get-scrolling-workaround();
 
-				background-color: colors.$db-current-color-bg-lvl-1-enabled;
+				background-color: colors.$db-adaptive-bg-basic-level-1-default;
 			}
 
 			&::after {
-				@extend %component-border;
+				@extend %form-component-border;
 
 				@include get-scrolling-workaround();
 
-				background-color: colors.$db-current-color-bg-transparent-semi-enabled;
+				background-color: colors.$db-adaptive-bg-basic-transparent-semi-default;
 				z-index: 1;
 				border-block-end: none;
 				border-inline-end: none;
 			}
 
 			&:has(textarea:read-only)::after {
-				background-color: colors.$db-current-color-bg-lvl-1-enabled !important;
+				background-color: colors.$db-adaptive-bg-basic-level-1-default !important;
 			}
 
 			&:has(textarea:not(:disabled):is(:hover, :focus)) {
 				&::after {
-					background-color: colors.$db-current-color-bg-transparent-hover;
+					background-color: colors.$db-adaptive-bg-basic-transparent-hovered;
 				}
 			}
 		}

@@ -1,3 +1,5 @@
+@use "custom-elements";
+
 @forward "@db-ui/foundations/build/scss/db-ui-foundations";
 @forward "component-animations";
 @forward "../components/button/button";
@@ -31,80 +33,15 @@
 @forward "../components/tabs/tabs";
 @forward "../components/tab-panel/tab-panel";
 @forward "../components/switch/switch";
+@forward "../components/stack/stack";
 
 // angular-workaround
-dbswitch,
-db-switch,
-dbtab-panel,
-db-tab-panel,
-dbtabs,
-db-tabs,
-dbtab-list,
-db-tab-list,
-dbtabitem,
-db-tab-item,
-dbtab-bar,
-db-tab-bar,
-dbtooltip,
-db-tooltip,
-dbpopover,
-db-popover,
-dbtextarea,
-db-textarea,
-dbnavigation,
-db-navigation,
-dbaccordion-item,
-db-accordion-item,
-dbaccordion,
-db-accordion,
-dbbadge,
-db-badge,
-dbnavigation-item,
-db-navigation-item,
-dbtag,
-db-tag,
-dbradio,
-db-radio,
-dbselect,
-db-select,
-dbnotification,
-db-notification,
-dbcodedocs,
-db-codedocs,
-dbbrand,
-db-brand,
-dbbutton,
-db-button,
-dbcard,
-db-card,
-dbcheckbox,
-db-checkbox,
-dbdivider,
-db-divider,
-dbdrawer,
-db-drawer,
-dbheader,
-db-header,
-dbicon,
-db-icon,
-dbinfotext,
-db-infotext,
-dbinput,
-db-input,
-dblink,
-db-link,
-dbpage,
-db-page,
-dbsection,
-db-section,
-dbtab,
-db-tab,
-dbtabbar,
-db-tabbar {
-	display: contents;
+@each $custom-element in custom-elements.$custom-elements {
+	#{$custom-element} {
+		display: contents;
+	}
 }
 
-db-notification,
-dbnotification {
+db-notification {
 	inline-size: inherit;
 }

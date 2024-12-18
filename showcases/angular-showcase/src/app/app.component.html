@@ -17,53 +17,59 @@
 				}
 			</db-navigation>
 			<ng-container *dbMetaNavigation>
-				<db-select
-					variant="floating"
-					label="Density"
-					[(ngModel)]="density"
-					(change)="onChange($event)"
-				>
-					@for (t of densities; track t) {
-						<option>
-							{{ t }}
-						</option>
-					}
-				</db-select>
-				<db-select
-					variant="floating"
-					label="Color"
-					[(ngModel)]="color"
-					(change)="onChange($event)"
-				>
-					@for (c of colors; track c) {
-						<option>
-							{{ c }}
-						</option>
-					}
-				</db-select>
+				@if (isWebComponents) {
+					<db-select variant="floating" label="Nothing">
+						<option>Nothing here for stencil</option>
+					</db-select>
+				} @else {
+					<db-select
+						variant="floating"
+						label="Density"
+						[(ngModel)]="density"
+						(change)="onChange($event)"
+					>
+						@for (t of densities; track t) {
+							<option>
+								{{ t }}
+							</option>
+						}
+					</db-select>
+					<db-select
+						variant="floating"
+						label="Color"
+						[(ngModel)]="color"
+						(change)="onChange($event)"
+					>
+						@for (c of colors; track c) {
+							<option>
+								{{ c }}
+							</option>
+						}
+					</db-select>
+				}
 			</ng-container>
 			<ng-container primary-action>
-				<DBButton
+				<db-button
 					icon="magnifying_glass"
 					variant="ghost"
 					[noText]="true"
-					>Search</DBButton
+					>Search</db-button
 				>
 			</ng-container>
 			<ng-container *dbSecondaryAction>
-				<DBButton icon="user" variant="ghost" [noText]="true">
+				<db-button icon="person" variant="ghost" [noText]="true">
 					Profile
-				</DBButton>
-				<DBButton icon="bell" variant="ghost" [noText]="true">
+				</db-button>
+				<db-button icon="bell" variant="ghost" [noText]="true">
 					Notification
-				</DBButton>
-				<DBButton
+				</db-button>
+				<db-button
 					icon="question_mark_circle"
 					variant="ghost"
 					[noText]="true"
 				>
 					Help
-				</DBButton>
+				</db-button>
 			</ng-container>
 		</db-header>
 		<div [class]="getChangeableClasses()">

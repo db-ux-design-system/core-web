@@ -6,61 +6,50 @@
 .db-card {
 	@extend %default-card;
 
+	@include component.get-data-spacing();
+
 	display: flex;
 	flex-direction: column;
 
-	&[data-spacing="medium"] {
-		padding: variables.$db-spacing-fixed-md;
-	}
-
-	&[data-spacing="small"],
-	&:not([data-spacing]) {
-		padding: variables.$db-spacing-fixed-sm;
-	}
-
-	&[data-spacing="none"] {
-		padding: 0;
-	}
-
 	&[data-elevation-level="1"],
 	&:not([data-elevation-level]) {
-		background-color: colors.$db-current-color-bg-lvl-1-enabled;
+		background-color: colors.$db-adaptive-bg-basic-level-1-default;
 
 		&[data-behaviour="interactive"] {
 			@include helpers.hover {
-				background-color: colors.$db-current-color-bg-lvl-1-hover;
+				background-color: colors.$db-adaptive-bg-basic-level-1-hovered;
 			}
 
 			@include helpers.active {
-				background-color: colors.$db-current-color-bg-lvl-1-pressed;
+				background-color: colors.$db-adaptive-bg-basic-level-1-pressed;
 			}
 		}
 	}
 
 	&[data-elevation-level="2"] {
-		background-color: colors.$db-current-color-bg-lvl-2-enabled;
+		background-color: colors.$db-adaptive-bg-basic-level-2-default;
 
 		&[data-behaviour="interactive"] {
 			@include helpers.hover {
-				background-color: colors.$db-current-color-bg-lvl-2-hover;
+				background-color: colors.$db-adaptive-bg-basic-level-2-hovered;
 			}
 
 			@include helpers.active {
-				background-color: colors.$db-current-color-bg-lvl-2-pressed;
+				background-color: colors.$db-adaptive-bg-basic-level-2-pressed;
 			}
 		}
 	}
 
 	&[data-elevation-level="3"] {
-		background-color: colors.$db-current-color-bg-lvl-3-enabled;
+		background-color: colors.$db-adaptive-bg-basic-level-3-default;
 
 		&[data-behaviour="interactive"] {
 			@include helpers.hover {
-				background-color: colors.$db-current-color-bg-lvl-3-hover;
+				background-color: colors.$db-adaptive-bg-basic-level-3-hovered;
 			}
 
 			@include helpers.active {
-				background-color: colors.$db-current-color-bg-lvl-3-pressed;
+				background-color: colors.$db-adaptive-bg-basic-level-3-pressed;
 			}
 		}
 	}

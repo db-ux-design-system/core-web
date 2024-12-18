@@ -11,11 +11,14 @@
 		let-variantIndex="variantIndex"
 	>
 		<db-section
-			className="db-informational-bg-lvl-2"
+			class="db-informational-bg-basic-level-2 section-card-container"
 			[spacing]="exampleProps?.spacing"
 			[width]="exampleProps?.width"
 		>
-			{{ exampleName }}
+			<db-card>{{ exampleName }}</db-card>
+			<db-card>{{ exampleName }}</db-card>
+			<db-card>{{ exampleName }}</db-card>
+			<db-card>{{ exampleName }}</db-card>
 		</db-section>
 	</ng-template>
 </app-default-component>

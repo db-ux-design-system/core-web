@@ -22,7 +22,7 @@
 			<ng-container *dbNavigation>
 				@if (!exampleProps?.example || exampleProps?.withNavigation) {
 					<db-navigation [attr.aria-label]="exampleName">
-						<db-navigation-item icon="user">
+						<db-navigation-item icon="person">
 							<a href="#" *dbNavigationContent
 								>{{ exampleName }}
 							</a>
@@ -43,29 +43,29 @@
 			</ng-container>
 			<ng-container primary-action>
 				@if (!exampleProps?.example) {
-					<DBButton
+					<db-button
 						icon="magnifying_glass"
 						variant="ghost"
 						[noText]="true"
-						>Search</DBButton
+						>Search</db-button
 					>
 				}
 			</ng-container>
 			<ng-container *dbSecondaryAction>
 				@if (!exampleProps?.example) {
-					<DBButton icon="user" variant="ghost" [noText]="true">
+					<db-button icon="person" variant="ghost" [noText]="true">
 						Profile
-					</DBButton>
-					<DBButton icon="bell" variant="ghost" [noText]="true">
+					</db-button>
+					<db-button icon="bell" variant="ghost" [noText]="true">
 						Notification
-					</DBButton>
-					<DBButton
+					</db-button>
+					<db-button
 						icon="question_mark_circle"
 						variant="ghost"
 						[noText]="true"
 					>
 						Help
-					</DBButton>
+					</db-button>
 				}
 			</ng-container>
 		</db-header>
