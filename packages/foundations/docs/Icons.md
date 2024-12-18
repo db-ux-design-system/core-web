@@ -28,4 +28,4 @@ You could use the CSS Custom Property `--db-icon-color` to overwrite the icons c
 
 If you have custom icons and want to use them for foundations and/or in components, you need to generate a **woff2** file.
 
-[More information](./custom-icons)
+[More information](https://github.com/db-ui/mono/blob/main/packages/foundations/docs/CustomIcons.md)
