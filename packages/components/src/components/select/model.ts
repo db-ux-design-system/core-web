@@ -13,10 +13,11 @@ import {
 	IconProps,
 	InitializedState,
 	InputEventProps,
-	InputEventState
+	InputEventState,
+	ShowIconProps
 } from '../../shared/model';
 
-export interface DBSelectDefaultProps {
+export type DBSelectDefaultProps = {
 	/**
 	 * The description attribute will add a paragraph below the select.
 	 */
@@ -26,7 +27,7 @@ export interface DBSelectDefaultProps {
 	 * If you don't/can't use children/slots you can pass in the options as an array.
 	 */
 	options?: DBSelectOptionType[];
-}
+};
 
 export type DBSelectOptionType = {
 	/**
@@ -68,12 +69,13 @@ export type DBSelectProps = DBSelectDefaultProps &
 	InputEventProps<HTMLSelectElement> &
 	FormProps &
 	IconProps &
-	FormMessageProps;
+	FormMessageProps &
+	ShowIconProps;
 
-export interface DBSelectDefaultState {
+export type DBSelectDefaultState = {
 	_placeholderId: string;
 	getOptionLabel: (option: DBSelectOptionType) => string;
-}
+};
 
 export type DBSelectState = DBSelectDefaultState &
 	GlobalState &

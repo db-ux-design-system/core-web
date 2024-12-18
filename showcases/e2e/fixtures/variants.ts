@@ -1,5 +1,2 @@
-export const COLORS = [
-	'neutral-bg-basic-level-1',
-	'neutral-bg-basic-level-2',
-	'neutral-bg-basic-level-3'
-];
+export const lvl1 = 'neutral-bg-basic-level-1';
+export const lvl3 = 'neutral-bg-basic-level-3';

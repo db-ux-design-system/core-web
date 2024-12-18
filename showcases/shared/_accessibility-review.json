@@ -1,18 +1,18 @@
 [
 	{
 		"name": "drawer",
-		"status": "REVIEW",
-		"date": "2023-11-23"
+		"status": "DONE",
+		"date": "2024-07-25"
 	},
 	{
 		"name": "button",
-		"status": "REVIEW",
-		"date": "2023-11-23"
+		"status": "DONE",
+		"date": "2024-04-22"
 	},
 	{
 		"name": "link",
 		"status": "DONE",
-		"date": "2023-11-23"
+		"date": "2024-12-12"
 	},
 	{
 		"name": "input",
@@ -21,13 +21,13 @@
 	},
 	{
 		"name": "radio",
-		"status": "REVIEW",
-		"date": "2023-11-23"
+		"status": "DONE",
+		"date": "2024-07-24"
 	},
 	{
 		"name": "checkbox",
-		"status": "REVIEW",
-		"date": "2023-11-23"
+		"status": "DONE",
+		"date": "2024-07-24"
 	},
 	{
 		"name": "select",
@@ -43,5 +43,20 @@
 		"name": "notification",
 		"status": "DONE",
 		"date": "2023-11-23"
+	},
+	{
+		"name": "badge",
+		"status": "DONE",
+		"date": "2024-12-12"
+	},
+	{
+		"name": "card",
+		"status": "DONE",
+		"date": "2024-12-12"
+	},
+	{
+		"name": "textarea",
+		"status": "DONE",
+		"date": "2024-12-12"
 	}
 ]

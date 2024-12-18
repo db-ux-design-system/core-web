@@ -44,7 +44,7 @@ For general installation and configuration look at the [components](https://www.
 				</menu>
 			</li>
 
-			<li class="db-navigation-item" data-icon="user">
+			<li class="db-navigation-item" data-icon="person">
 				<a href="#">Navi-Item 2</a>
 			</li>
 

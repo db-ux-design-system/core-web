@@ -1,7 +1,17 @@
 import { test } from '@playwright/test';
-// @ts-expect-error - required for playwright
-import { getDefaultScreenshotTest } from '../default.ts';
+import {
+	getDefaultScreenshotTest,
+	isStencil,
+	runAriaSnapshotTest
+	// @ts-expect-error - required for playwright
+} from '../default.ts';
 
+const path = '01/header';
 test.describe('DBHeader', () => {
-	getDefaultScreenshotTest({ path: '01/header' });
+	if (isStencil(process.env.showcase)) {
+		test.skip();
+	}
+
+	getDefaultScreenshotTest({ path });
+	runAriaSnapshotTest({ path });
 });

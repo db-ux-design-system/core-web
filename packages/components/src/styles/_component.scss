@@ -8,6 +8,7 @@ $min-mobile-header-height: calc(
 );
 
 $default-disabled: 0.4;
+$placeholder-disabled: 0.68;
 
 %default-adaptive-border {
 	border: variables.$db-border-height-3xs solid
@@ -21,6 +22,11 @@ $default-disabled: 0.4;
 %component-border {
 	border: variables.$db-border-height-3xs solid
 		colors.$db-adaptive-on-bg-basic-emphasis-60-default;
+}
+
+%form-component-border {
+	border: variables.$db-border-height-3xs solid
+		colors.$db-adaptive-on-bg-basic-emphasis-70-default;
 }
 
 %default-interactive-component {

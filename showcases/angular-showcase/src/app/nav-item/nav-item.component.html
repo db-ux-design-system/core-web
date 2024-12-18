@@ -1,7 +1,7 @@
 @if (navItem) {
 	<db-navigation-item [backButtonText]="getBackButtonText()">
 		@if (navItem.subNavigation) {
-			<ng-container sub-navigation>
+			<ng-container sub-navigation slot="subNavigation">
 				@for (item of navItem.subNavigation; track item.label) {
 					<app-nav-item [navItem]="item" />
 				}

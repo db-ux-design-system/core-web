@@ -14,9 +14,7 @@ import DBTabList from '../tab-list/tab-list.lite';
 import DBTabItem from '../tab-item/tab-item.lite';
 import DBTabPanel from '../tab-panel/tab-panel.lite';
 
-useMetadata({
-	isAttachedToShadowDom: true
-});
+useMetadata({});
 
 export default function DBTabs(props: DBTabsProps) {
 	const ref = useRef<HTMLDivElement>(null);
@@ -28,18 +26,18 @@ export default function DBTabs(props: DBTabsProps) {
 		showScrollLeft: false,
 		showScrollRight: false,
 		scrollContainer: null,
-		convertTabs(tabs: unknown[] | string | undefined) {
+		convertTabs(tabs: unknown[] | string | undefined): DBSimpleTabProps[] {
 			try {
 				if (typeof tabs === 'string') {
 					return JSON.parse(tabs);
 				}
 
-				return tabs;
+				return tabs as DBSimpleTabProps[];
 			} catch (error) {
 				console.error(error);
 			}
 
-			return undefined;
+			return [];
 		},
 		evaluateScrollButtons(tList: Element) {
 			const needsScroll = tList.scrollWidth > tList.clientWidth;
@@ -120,7 +118,9 @@ export default function DBTabs(props: DBTabsProps) {
 				}
 
 				const tabPanels = Array.from<Element>(
-					ref.querySelectorAll('& > .db-tab-panel')
+					ref.querySelectorAll(
+						':is(:scope > .db-tab-panel, :scope > db-tab-panel > .db-tab-panel)'
+					)
 				);
 				for (const panel of tabPanels) {
 					if (panel.id) continue;
@@ -184,7 +184,7 @@ export default function DBTabs(props: DBTabsProps) {
 			data-width={props.width ?? 'auto'}>
 			<Show when={state.showScrollLeft}>
 				<DBButton
-					className="tabs-scroll-left"
+					class="tabs-scroll-left"
 					variant="ghost"
 					icon="chevron_left"
 					noText
@@ -219,7 +219,7 @@ export default function DBTabs(props: DBTabsProps) {
 			</Show>
 			<Show when={state.showScrollRight}>
 				<DBButton
-					className="tabs-scroll-right"
+					class="tabs-scroll-right"
 					variant="ghost"
 					icon="chevron_right"
 					noText

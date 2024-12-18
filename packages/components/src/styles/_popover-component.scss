@@ -7,7 +7,6 @@ $popover-gap-size: var(--db-popover-distance);
 $popover-inset: calc(100% + #{$popover-gap-size} * var(--db-popover-gap, 0));
 $popover-gap-inset: calc(-1 * #{$popover-gap-size});
 
-// use this for popover but not for tooltip
 %popover-center {
 	&:not([data-placement]),
 	&[data-placement="bottom"]:not([data-outside-vy]),
@@ -135,12 +134,16 @@ $popover-gap-inset: calc(-1 * #{$popover-gap-size});
 @mixin get-popover-show() {
 	&[data-animation="disabled"] {
 		opacity: 1;
+		transform: translate(
+			var(--db-popover-center-x, 0),
+			var(--db-popover-center-y, 0)
+		);
 	}
 
 	@media screen and (prefers-reduced-motion: no-preference) {
 		&:not([data-animation="disabled"]) {
-			animation: popover-animation #{variables.$db-transition-straight-emotional}
-				normal both;
+			animation: popover-animation
+				#{variables.$db-transition-straight-emotional} normal both;
 
 			&[data-delay="slow"] {
 				animation-delay: variables.$db-transition-duration-fast;

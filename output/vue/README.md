@@ -22,8 +22,8 @@ npm i @db-ui/v-components
 Import the styles in scss or css. Based on your technology the file names could be different.
 
 -   Default (db-ui-42): points to `../assets`
--   Webpack (db-ui-42-webpack): points to `~@db-ui/foundations/assets`
 -   Rollup (db-ui-42-rollup): points to `@db-ui/foundations/assets`
+-   Webpack (db-ui-42-webpack): points to `~@db-ui/foundations/assets`
 
 <details>
   <summary><strong>SCSS</strong></summary>
@@ -59,7 +59,7 @@ import { DBButton } from "@db-ui/v-components";
 </script>
 
 <template>
-	<DBButton icon="user">Test</DBButton>
+	<DBButton icon="person">Test</DBButton>
 </template>
 ```
 

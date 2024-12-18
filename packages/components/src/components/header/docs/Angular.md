@@ -74,7 +74,7 @@ export class AppComponent {
 		</DBButton>
 	</ng-container>
 	<ng-container *dbSecondaryAction>
-		<DBButton icon="user" variant="ghost" [noText]="true">
+		<DBButton icon="person" variant="ghost" [noText]="true">
 			Profile
 		</DBButton>
 		<DBButton icon="alert" variant="ghost" [noText]="true">

@@ -16,20 +16,21 @@ const toggleDrawer = (example?: string) => {
 		<template
 			#example="{ exampleIndex, variantIndex, exampleName, exampleProps }"
 		>
+			<DBButton @click="toggleDrawer(exampleName)">
+				Open: {{ exampleName }}
+			</DBButton>
 			<DBDrawer
 				:backdrop="exampleProps?.backdrop"
 				:rounded="exampleProps?.rounded"
 				:width="exampleProps?.width"
 				:spacing="exampleProps?.spacing"
 				:direction="exampleProps?.direction"
+				:variant="exampleProps?.variant"
 				:open="openDrawer && openDrawer === exampleName"
 				@close="toggleDrawer(undefined)"
 			>
 				{{ exampleName }}
 			</DBDrawer>
-			<DBButton @click="toggleDrawer(exampleName)">
-				Open: {{ exampleName }}
-			</DBButton>
 		</template>
 	</DefaultComponent>
 </template>

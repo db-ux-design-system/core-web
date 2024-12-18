@@ -1,17 +1,18 @@
 import {
-	SemanticProps,
 	EmphasisProps,
 	GlobalProps,
 	GlobalState,
 	IconProps,
+	InitializedState,
 	OverflowProps,
-	InitializedState
+	SemanticProps,
+	ShowIconProps
 } from '../../shared/model';
 
 export const TagBehaviourList = ['static', 'removable'] as const;
 export type TagBehaviourType = (typeof TagBehaviourList)[number];
 
-export interface DBTagDefaultProps {
+export type DBTagDefaultProps = {
 	/**
 	 *	Defines the behaviour of the component:
 	 *	- static: default behaviour without remove button
@@ -20,7 +21,7 @@ export interface DBTagDefaultProps {
 	behaviour?: TagBehaviourType;
 
 	/**
-	 * Disable tag. (Deprecated)
+	 * @deprecated Disable tag
 	 */
 	disabled?: boolean;
 	/**
@@ -43,18 +44,19 @@ export interface DBTagDefaultProps {
 	 * If "interactive" is set to true, you can pass a value to the underlying checkbox or radio input.
 	 */
 	value?: string;
-}
+};
 
 export type DBTagProps = DBTagDefaultProps &
 	GlobalProps &
 	IconProps &
 	SemanticProps &
 	OverflowProps &
-	EmphasisProps;
+	EmphasisProps &
+	ShowIconProps;
 
-export interface DBTagDefaultState {
-	getRemoveButtonText?: () => string;
-	handleRemove?: () => void;
-}
+export type DBTagDefaultState = {
+	getRemoveButtonText: () => string;
+	handleRemove: () => void;
+};
 
 export type DBTagState = DBTagDefaultState & GlobalState & InitializedState;

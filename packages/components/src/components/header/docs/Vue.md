@@ -45,7 +45,7 @@ const toggleDrawer = (open: boolean) => {
 			</DBButton>
 		</template>
 		<template v-slot:secondary-action>
-			<DBButton icon="user" variant="ghost" :no-text="true">
+			<DBButton icon="person" variant="ghost" :no-text="true">
 				Profile
 			</DBButton>
 			<DBButton icon="alert" variant="ghost" :no-text="true">
