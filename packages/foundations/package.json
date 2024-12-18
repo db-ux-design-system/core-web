@@ -1,12 +1,13 @@
 {
   "name": "@db-ui/foundations",
   "version": "0.0.0",
+  "type": "module",
   "description": "Provides basic tokens and assets based on DB UX Design System Core.",
   "repository": {
     "type": "git",
     "url": "https://github.com/db-ui/mono.git"
   },
-  "license": "Apache-2.0",
+  "license": "DB Design License",
   "bin": {
     "@db-ui/foundations": "build/index.js"
   },
@@ -17,43 +18,40 @@
   ],
   "scripts": {
     "build": "npm-run-all build:*",
-    "build:01_normalize": "npm run copy-normalize",
+    "build:01_normalize": "npm-run-all copy-prepare:*",
     "build:02_copy": "npm run copy:scss",
     "build:03_css": "sass --no-source-map --load-path=node_modules/ --load-path=../../node_modules/ build/scss/:build/css/ --future-deprecation=import",
     "build:04_tailwind": "cpr tailwind build/tailwind -o",
     "build:05_postcss": "postcss build/css/**/*.css --replace",
     "build:06_ide": "cpr ide build/ide -o",
-    "build:99_foundations_common": "node scripts/esbuild.mjs",
     "clean": "rm -rf build",
     "copy-build": "npm-run-all copy-build:*",
     "copy-build:assets": "cpr assets ../../build-outputs/foundations/assets -o",
     "copy-build:package.json": "cpr package.json ../../build-outputs/foundations/package.json -o",
     "copy-build:readme": "cpr README.md ../../build-outputs/foundations/README.md -o",
     "copy-build:web": "cpr build ../../build-outputs/foundations/build -o",
-    "copy-normalize": "cpr ../../node_modules/@csstools/normalize.css/normalize.css scss/_normalize.scss -o",
+    "copy-prepare:icon-overview": "tsx scripts/local/generate-icon-overview.ts",
+    "copy-prepare:normalize": "cpr ../../node_modules/@csstools/normalize.css/normalize.css scss/_normalize.scss -o",
+    "copy-prepare:woff2": "cpr ../../node_modules/@db-ux/core-icons/dist/fonts assets/icons/functional/fonts -o",
     "copy:scss": "cpr scss build/scss -o",
     "dev": "vite --open",
-    "generate:icon-fonts": "gif --src ./assets/icons/functional --variants filled inverted --fontName db-ux --withSizes true --debug true --overwriteSources true",
-    "prepare": "npm run copy-normalize",
-    "regenerate:screenshots": "npx playwright test -c ./test/playwright.config.mjs --update-snapshots",
+    "prebuild": "npm-run-all copy-prepare:*",
+    "predev": "npm-run-all copy-prepare:*",
+    "prestart": "npm-run-all copy-prepare:*",
+    "regenerate:screenshots": "npx playwright test -c ./test/playwright.config.js --update-snapshots",
     "start": "nodemon --config nodemon.json",
-    "test": "vitest run --config scripts/vitest.config.ts",
-    "test:e2e": "npx playwright test --config=./test/playwright.config.mjs",
-    "test:migration": "tsx scripts/cli.ts migration --src=./scss --dryRun=true"
+    "test:e2e": "npx playwright test --config=./test/playwright.config.js"
   },
   "devDependencies": {
     "@csstools/normalize.css": "12.1.1",
-    "@db-ui/gif": "^0.0.9",
-    "commander": "^12.0.0",
+    "@db-ux/core-icons": "0.0.7",
     "cpr": "3.0.1",
     "cssnano": "^7.0.6",
-    "dotenv": "^16.4.5",
-    "glob": "^11.0.0",
-    "nodemon": "3.1.7",
-    "replace-in-file": "^8.2.0",
+    "dotenv": "^16.4.7",
+    "nodemon": "3.1.9",
     "sass": "1.77.4",
     "tsx": "^4.19.2",
-    "vitest": "^2.1.5"
+    "vite": "^6.0.3"
   },
   "publishConfig": {
     "registry": "https://registry.npmjs.org/",

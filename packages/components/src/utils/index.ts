@@ -1,6 +1,3 @@
-import { SemanticType } from '../shared/model';
-import { AriaRole, CSSProperties } from 'react';
-
 export const uuid = () => {
 	if (typeof window !== 'undefined') {
 		if (window.crypto?.randomUUID) {
@@ -33,19 +30,19 @@ export type ClassNameArg =
 export const cls = (...args: ClassNameArg[]) => {
 	let result = '';
 
-	args.forEach((arg, index) => {
+	for (const arg of args) {
 		if (arg) {
 			if (typeof arg === 'string') {
 				result += `${arg} `;
 			} else {
-				for (let key in arg) {
+				for (const key in arg) {
 					if (arg[key]) {
 						result += `${key} `;
 					}
 				}
 			}
 		}
-	});
+	}
 
 	return result.trim();
 };
@@ -88,9 +85,9 @@ const reactHtmlAttributes = [
 ];
 
 export const filterPassingProps = (
-	props: any,
+	props: Record<string, unknown>,
 	propsPassingFilter: string[]
-): any =>
+): Record<string, unknown> =>
 	Object.keys(props)
 		.filter(
 			(key) =>
@@ -103,10 +100,20 @@ export const filterPassingProps = (
 					reactHtmlAttributes.includes(key)) &&
 				!propsPassingFilter.includes(key)
 		)
-		.reduce((obj: any, key: string) => {
-			obj[key] = props[key];
-			return obj;
+		.reduce((obj: Record<string, unknown>, key: string) => {
+			return { ...obj, [key]: props[key] };
 		}, {});
+
+export const getRootProps = (
+	props: Record<string, unknown>,
+	rooProps: string[]
+): Record<string, unknown> => {
+	return Object.keys(props)
+		.filter((key) => rooProps.includes(key))
+		.reduce((obj: Record<string, unknown>, key: string) => {
+			return { ...obj, [key]: props[key] };
+		}, {});
+};
 
 export const visibleInVX = (el: Element) => {
 	const { left, right } = el.getBoundingClientRect();
@@ -120,8 +127,7 @@ export const visibleInVY = (el: Element) => {
 };
 
 export const isInView = (el: Element) => {
-	const { top, bottom, left, right, height, width } =
-		el.getBoundingClientRect();
+	const { top, bottom, left, right } = el.getBoundingClientRect();
 	const { innerHeight, innerWidth } = window;
 
 	let outTop = top < 0;
@@ -248,6 +254,7 @@ export const enableCustomElementAttributePassing = (
  * if it is used in a framework like angular e.g.: [disabled]="myDisabledProp"
  * @param originBool Some boolean to convert to string
  */
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const getBooleanAsString = (originBool?: boolean): any => {
 	if (originBool) {
 		return String(originBool);
@@ -256,7 +263,28 @@ export const getBooleanAsString = (originBool?: boolean): any => {
 	return originBool;
 };
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export const getHideProp = (show?: boolean): any => {
+	if (show === undefined || show === null) {
+		return undefined;
+	}
+
+	return getBooleanAsString(!show);
+};
+
+export const stringPropVisible = (
+	givenString?: string,
+	showString?: boolean
+) => {
+	if (showString === undefined) {
+		return !!givenString;
+	} else {
+		return showString && givenString;
+	}
+};
+
 export default {
+	getRootProps,
 	filterPassingProps,
 	cls,
 	addAttributeToChildren,
@@ -269,5 +297,7 @@ export default {
 	hasVoiceOver,
 	delay,
 	enableCustomElementAttributePassing,
-	getBooleanAsString
+	getBooleanAsString,
+	getHideProp,
+	stringPropVisible
 };

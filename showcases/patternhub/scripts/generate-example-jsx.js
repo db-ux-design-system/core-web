@@ -38,6 +38,7 @@ const generateExampleJSX = () => {
 					examples.push(
 						`"${componentName}${variant.name}${
 							example.name
+							// eslint-disable-next-line unicorn/no-length-as-slice-end
 						}":renderToString(${code.slice(0, code.length)})`
 					);
 				}

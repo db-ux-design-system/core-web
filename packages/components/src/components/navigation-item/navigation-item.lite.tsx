@@ -9,7 +9,7 @@ import {
 } from '@builder.io/mitosis';
 import { DBNavigationItemProps, DBNavigationItemState } from './model';
 import DBButton from '../button/button.lite';
-import { cls, getBooleanAsString, uuid } from '../../utils';
+import { cls, getBooleanAsString, getHideProp, uuid } from '../../utils';
 import { NavigationItemSafeTriangle } from '../../utils/navigation';
 import { DEFAULT_BACK } from '../../shared/constants';
 import { ClickEvent } from '../../shared/model';
@@ -97,9 +97,14 @@ export default function DBNavigationItem(props: DBNavigationItemProps) {
 			class={cls('db-navigation-item', props.className)}
 			data-width={props.width}
 			data-icon={props.icon}
+			data-hide-icon={getHideProp(props.showIcon)}
 			data-active={props.active}
 			aria-disabled={getBooleanAsString(props.disabled)}>
-			<Show when={!state.hasSubNavigation}>{props.children}</Show>
+			<Show when={!state.hasSubNavigation}>
+				<Show when={props.text} else={props.children}>
+					{props.text}
+				</Show>
+			</Show>
 
 			<Show when={state.hasSubNavigation}>
 				<button
@@ -110,7 +115,9 @@ export default function DBNavigationItem(props: DBNavigationItemProps) {
 					onClick={(event: ClickEvent<HTMLButtonElement>) =>
 						state.handleClick(event)
 					}>
-					{props.children}
+					<Show when={props.text} else={props.children}>
+						{props.text}
+					</Show>
 				</button>
 
 				{/* TODO: Consider using popover here */}

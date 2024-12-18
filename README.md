@@ -30,7 +30,7 @@ designers, and content authors build, maintain, and scale best of class digital 
 | [ngx-components](https://github.com/db-ui/mono/tree/main/output/angular)    | Native Angular components           | [![@db-ui/ngx-components on Npmjs](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fapi.github.com%2Frepos%2Fdb-ui%2Fmono%2Freleases%2Flatest&query=%24.tag_name&label=npm&color=ed1c24 "npm version")](https://npmjs.com/package/@db-ui/ngx-components "DB UI – on NPM")     |
 | [react-components](https://github.com/db-ui/mono/tree/main/output/react)    | Native React components             | [![@db-ui/react-components on Npmjs](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fapi.github.com%2Frepos%2Fdb-ui%2Fmono%2Freleases%2Flatest&query=%24.tag_name&label=npm&color=ed1c24 "npm version")](https://npmjs.com/package/@db-ui/react-components "DB UI – on NPM") |
 | [v-components](https://github.com/db-ui/mono/tree/main/output/vue)          | Native Vue 3 components             | [![@db-ui/v-components on Npmjs](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fapi.github.com%2Frepos%2Fdb-ui%2Fmono%2Freleases%2Flatest&query=%24.tag_name&label=npm&color=ed1c24 "npm version")](https://npmjs.com/package/@db-ui/v-components "DB UI – on NPM")         |
-| [web-components](https://github.com/db-ui/mono/tree/main/output/stencil)        | Web Components                      | [![@db-ui/web-components on Npmjs](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fapi.github.com%2Frepos%2Fdb-ui%2Fmono%2Freleases%2Flatest&query=%24.tag_name&label=npm&color=ed1c24 "npm version")](https://npmjs.com/package/@db-ui/web-components "DB UI – on NPM")     |
+| [web-components](https://github.com/db-ui/mono/tree/main/output/stencil)    | Web Components                      | [![@db-ui/web-components on Npmjs](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fapi.github.com%2Frepos%2Fdb-ui%2Fmono%2Freleases%2Flatest&query=%24.tag_name&label=npm&color=ed1c24 "npm version")](https://npmjs.com/package/@db-ui/web-components "DB UI – on NPM")     |
 
 ## How to use
 
@@ -100,6 +100,8 @@ Check our migration docs for breaking changes:
 1. [Alpha ➡ Beta](https://github.com/db-ui/mono/tree/main/docs/migration/alpha-beta.md) (0.0.x➡0.x.x)
 2. [v0.2 ➡ v0.3](https://github.com/db-ui/mono/tree/main/docs/migration/v0.2.x-to-v0.3.x.md)
 3. [v0.3 ➡ v0.4](https://github.com/db-ui/mono/tree/main/docs/migration/v0.3.x-to-v0.4.x.md)
+4. v0.4 ➡ v0.5: no migration needed, no breaking changes
+5. [v0.5 ➡ v0.6](https://github.com/db-ui/mono/tree/main/docs/migration/v0.5.x-to-v0.6.x.md)
 
 ## How to start develop / contribute
 
@@ -145,49 +147,11 @@ For any usage outside of Deutsche Bahn websites and applications you must remove
 design assets as well as protected characteristics and trademarks. We're even also planning to provide a neutral theme
 that would make it much easier for you to use our product without the trademarks by Deutsche Bahn.
 
-This especially relates to the files in the directories `/source/fonts/`, `source/images` and `source/samples`
-and `source/favicon.ico` as well.
+This especially relates to the files in the directories `packages/foundations/assets/fonts`, `packages/foundations/assets/images` and `packages/foundations/assets/favicon.ico` as well.
 
 ## Development
 
-### Tests
-
-TODO: Elaborate on testing setup
-
-#### Component Tests
-
-**Visual regression tests**
-
-Playwright is used to create and compare screenshots of each individual component.
-
-To update screenshots just run the following (you need Docker installed and available on your shell):
-
-```shell
-npm run regenerate:screenshots
-```
-
-If you want to generate the screenshots manually, do the following:
-
-```shell
-npm run build
-
-# unix
-docker run --rm --network host -v $(pwd):/work/ -w /work/ -it mcr.microsoft.com/playwright:v1.30.0-focal /bin/bash
-
-#windows - allow file sharing (windows pop up)
-docker run --rm --network host -v ${PWD}:/work/ -w /work/ -it mcr.microsoft.com/playwright:v1.30.0-focal /bin/bash
-
-npm install
-
-cd output/${frameworkFolder}
-
-npx playwright test --update-snapshots
-```
-
-You can also use `docker-compose` to test or regenerate screenshots.
-
--   testing: `docker-compose -f ./e2e/docker-compose.yml up`
--   update screenshots: `docker-compose -f ./e2e/docker-compose.regenerate.yml up`
+If you're working as a developer on the DB UX Design System, please have a look at the relevant [documentation](docs/development.md).
 
 ## Contributions
 

@@ -8,9 +8,9 @@ Unfortunately, the **DBLink** and **DBButton** components do not support router 
 
 The following standard routers have been successfully implemented in the corresponding frameworks (Angular, React, Vue). Other routers should work in the same way, but have not yet been tested.
 
--   [Angular router](https://angular.io/api/router)
--   [React router](https://reactrouter.com/en/main)
--   [Vue router](https://v3.router.vuejs.org/)
+- [Angular router](https://angular.io/api/router)
+- [React router](https://reactrouter.com/en/main)
+- [Vue router](https://v3.router.vuejs.org/)
 
 The routers are installed and used in accordance with the official docs:
 

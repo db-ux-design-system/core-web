@@ -15,9 +15,9 @@ const getAccordion = ({ behaviour, children, variant }: DBAccordionProps) => (
 			{children}
 		</DBInfotext>
 		<DBAccordion behaviour={behaviour} variant={variant}>
-			<DBAccordionItem headlinePlain="Item 1" content="Content 1" />
-			<DBAccordionItem headlinePlain="Item 2" content="Content 2" />
-			<DBAccordionItem headlinePlain="Item 3" content="Content 3" />
+			<DBAccordionItem headlinePlain="Item 1" text="Content 1" />
+			<DBAccordionItem headlinePlain="Item 2" text="Content 2" />
+			<DBAccordionItem headlinePlain="Item 3" text="Content 3" />
 		</DBAccordion>
 	</>
 );
