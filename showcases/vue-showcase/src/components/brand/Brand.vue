@@ -14,7 +14,7 @@ import imageUrl from "/assets/images/placeholder.jpg";
 				<img
 					v-if="exampleProps?.customLogo"
 					:src="imageUrl"
-					alt="logo"
+					alt="this is a fancy placeholder logo"
 				/>
 				{{ exampleName }}
 			</DBBrand>

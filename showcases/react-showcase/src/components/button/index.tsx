@@ -1,4 +1,3 @@
-import { FunctionComponent, ReactElement } from 'react';
 import { DBButton } from '../../../../../output/react/src';
 import DefaultComponent from '../default-component';
 import defaultComponentVariants from '../../../../shared/button.json';
@@ -14,7 +13,9 @@ const getButton = ({
 	icon,
 	width,
 	disabled,
-	children
+	children,
+	type,
+	showIcon
 }: DBButtonProps) => (
 	<DBButton
 		variant={variant}
@@ -24,10 +25,12 @@ const getButton = ({
 		icon={icon}
 		disabled={disabled}
 		width={width}
+		showIcon={showIcon}
 		onClick={() => {
 			// eslint-disable-next-line no-alert
 			alert(children.toString());
-		}}>
+		}}
+		type={type}>
 		{children}
 	</DBButton>
 );

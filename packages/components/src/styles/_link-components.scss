@@ -10,13 +10,13 @@
 }
 
 %db-link-default-color {
-	color: colors.$db-current-color-on-bg-enabled;
+	color: colors.$db-adaptive-on-bg-basic-emphasis-100-default;
 
 	@include helpers.hover {
 		color: color-mix(
 			in srgb,
 			transparent 25%,
-			#{colors.$db-current-color-on-bg-enabled}
+			#{colors.$db-adaptive-on-bg-basic-emphasis-100-default}
 		);
 	}
 
@@ -24,7 +24,7 @@
 		color: color-mix(
 			in srgb,
 			transparent 50%,
-			#{colors.$db-current-color-on-bg-enabled}
+			#{colors.$db-adaptive-on-bg-basic-emphasis-100-default}
 		);
 	}
 }
@@ -40,7 +40,15 @@
 	// TODO: We should evaluate whether we could move this declaration to the @font-face declarations even already
 	text-underline-position: from-font;
 	text-decoration-thickness: helpers.px-to-rem($pxValue: 1);
-	white-space: nowrap;
+	text-decoration-line: underline;
+
+	&:not([data-variant="inline"]) {
+		white-space: nowrap;
+	}
+
+	&[data-variant="inline"] {
+		display: inline;
+	}
 
 	&:focus-visible {
 		border-radius: variables.$db-border-radius-xs;

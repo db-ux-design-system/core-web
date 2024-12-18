@@ -12,15 +12,17 @@ import { DBNavigation, DBNavigationItem } from "@db-ui/v-components";
 
 <template>
 	<DBNavigation>
-		<DBNavigationItem :active="true">
+		<DBNavigationItem>
 			Navi-Item 1
 			<template v-slot:sub-navigation>
-				<DBNavigationItem :active="true">
+				<DBNavigationItem>
 					Sub-Navi-Item 1
 
 					<template v-slot:sub-navigation>
-						<DBNavigationItem :active="true">
-							<a href="#">Sub-Sub-Navi-Item 1</a>
+						<DBNavigationItem>
+							<a href="#" aria-current="page"
+								>Sub-Sub-Navi-Item 1</a
+							>
 						</DBNavigationItem>
 						<DBNavigationItem>
 							<a href="#">Sub-Sub-Navi-Item 2</a>
@@ -32,7 +34,7 @@ import { DBNavigation, DBNavigationItem } from "@db-ui/v-components";
 				</DBNavigationItem>
 			</template>
 		</DBNavigationItem>
-		<DBNavigationItem icon="user">
+		<DBNavigationItem icon="person">
 			<a href="#">Navi-Item 2</a>
 		</DBNavigationItem>
 		<DBNavigationItem :disabled="true">
@@ -44,17 +46,12 @@ import { DBNavigation, DBNavigationItem } from "@db-ui/v-components";
 
 ### Vue Router and active state handling
 
-You can set the property `active` to a boolean value as in the example above.
-It will cause the navigation item to render in active style and implicitly
-set `aria-current="page"` to the list element.
+We recommend using the automatic [integration with the Vue Router](https://router.vuejs.org/api/interfaces/RouterLinkProps.html#ariaCurrentValue). This is way more elegant than setting the aria attribute to the anchor yourself.
 
-The component will also check for child element set to `aria-current="page"`.
-Such elements are also displayed in active state.
-This makes the component [integration with the Vue Router](https://router.vuejs.org/api/interfaces/RouterLinkProps.html#ariaCurrentValue) way more elegant
-compared to the first variant.
-
-Now you can use Vue Routers `RouterLink` component to define your targets.
+You can use Vue Routers `RouterLink` component to define your targets.
 The active style is automatically set once an item receives the `aria-current="page"` attribute.
+
+For other purposes, `NavigationItems` themselves can also be set to active with their prop `:active="true"`. However, this does not guarantee correct a11y.
 
 ```vue App.vue
 <!-- App.vue -->

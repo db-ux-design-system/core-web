@@ -18,16 +18,15 @@ const NavItem = ({ navItem }: { navItem: NavigationItem }) => {
 			return;
 		}
 
-		setIsActive(
-			navItem.path === ''
-				? pathname === '/'
-				: pathname.includes(navItem.path)
-		);
+		const standardizedItemPath = navItem.path.startsWith('/')
+			? navItem.path
+			: `/${navItem.path}`;
+
+		setIsActive(standardizedItemPath === pathname);
 	}, [pathname]);
 
 	return (
 		<DBNavigationItem
-			active={isActive}
 			backButtonText={`Back to ${navItem.label}`}
 			subNavigation={
 				navItem.subNavigation && (
@@ -50,13 +49,15 @@ const NavItem = ({ navItem }: { navItem: NavigationItem }) => {
 					{process.env.NEXT_SHOWCASE_VARIANT === 'next' ? (
 						<NextLink
 							key={`router-path-${navItem.path}`}
-							href={navItem.path}>
+							href={navItem.path}
+							aria-current={isActive ? 'page' : undefined}>
 							{navItem.label}
 						</NextLink>
 					) : (
 						<Link
 							key={`router-path-${navItem.path}`}
-							to={navItem.path}>
+							to={navItem.path}
+							aria-current={isActive ? 'page' : undefined}>
 							{navItem.label}
 						</Link>
 					)}

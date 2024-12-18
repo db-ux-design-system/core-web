@@ -55,6 +55,8 @@ import * as sectionCode from '../components/code-docs/section';
 import * as navigationCode from '../components/code-docs/navigation';
 import * as navigationItemCode from '../components/code-docs/navigation-item';
 import * as popoverCode from '../components/code-docs/popover';
+import * as StackCode from '../components/code-docs/stack';
+import StackComponent from '../../react-showcase/src/components/stack';
 import Components from './components.json';
 
 export type NavigationItem = {
@@ -67,6 +69,7 @@ export type NavigationItem = {
 };
 
 const nameComponentMap = {
+	stack: <StackComponent slotCode={StackCode} />,
 	button: <ButtonComponent slotCode={buttonCode} />,
 	link: <LinkComponent slotCode={linkCode} />,
 	brand: <BrandComponent slotCode={brandCode} />,
@@ -167,7 +170,10 @@ export const ROUTES: NavigationItem[] = [
 				path: '/foundations/colors',
 				subNavigation: [
 					{ label: 'Readme', path: '/foundations/colors/readme' },
-					{ label: 'Overview', path: '/foundations/colors/overview' },
+					{
+						label: 'Color Classes',
+						path: '/foundations/colors/color-classes'
+					},
 					{
 						label: 'Color Schemes',
 						path: '/foundations/colors/color-schemes'
@@ -222,7 +228,12 @@ export const ROUTES: NavigationItem[] = [
 						path: '/foundations/variables/examples'
 					}
 				]
-			}
+			},
+			{
+				label: 'Testing Overview Table',
+				path: '/foundations/test-table'
+			},
+			{ label: 'IDE Support', path: '/foundations/ide' }
 		]
 	},
 	{

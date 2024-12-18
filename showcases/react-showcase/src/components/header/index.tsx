@@ -56,7 +56,7 @@ const getHeader = ({
 		secondaryAction={
 			!example && (
 				<>
-					<DBButton icon="user" variant="ghost" noText>
+					<DBButton icon="person" variant="ghost" noText>
 						Profile
 					</DBButton>
 					<DBButton icon="bell" variant="ghost" noText>
@@ -81,7 +81,7 @@ const getHeader = ({
 		onToggle={onToggle}>
 		{(!example || withNavigation) && (
 			<DBNavigation aria-label={children}>
-				<DBNavigationItem icon="user">
+				<DBNavigationItem icon="person">
 					<a href="#">{children}</a>
 				</DBNavigationItem>
 				<DBNavigationItem disabled>

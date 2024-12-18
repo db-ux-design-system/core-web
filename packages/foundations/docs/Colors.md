@@ -1,8 +1,16 @@
 # Colors
 
--   You use **Colors** to highlight an area with a specific color.
--   You can also use it to change the text color for components with the `*-transparent-semi` colors.
--   Most classes/placeholders will change `color` and `background-color` and will set properties, which will be passed down to adaptive components.
+- You use **Colors** to highlight an area with a specific color.
+- You can also use it to change the text color for components with the `*-transparent-semi` colors.
+- Most classes/placeholders will change `color` and `background-color` and will set properties, which will be passed down to adaptive components.
+
+## How to use
+
+1. First, you can use our **[color usage guide](./color-usage-guide)** to find out which method is best for coloring your layouts or components.
+2. The colors of layouts can be easily set using the predefined **[color classes](./color-classes)**.
+3. When developing your own components, `SCSS` variables or `CSS Custom Properties` should be used.
+
+**🚧 The overview of our color variables is still in the making. Please come back soon.**
 
 ## How to include colors
 
@@ -11,32 +19,10 @@ Or if you only want a single variant e.g. **informational** you can import `@imp
 
 In case that you're either using a bundler (recommended) or importing the CSS within your JavaScript files, please adapt this `@import` syntax accordingly.
 
-For **SCSS** you need to use the import `@use @db-ui/foundations/build/scss/color/placeholder` in your `.scss` file, where you need to reference the specific variable.
+For **SCSS** you need to use the import `@use "@db-ui/foundations/build/scss/color/placeholder"` in your `.scss` file, where you need to reference the specific variable.
 Then you can use e.g. **informational** color by extending our SCSS placeholders like this: `@extend %db-informational-bg-1`.
 
-### How to use
-
-We're providing an [overview for all possible colors](./overview).
-
-There are several variants: `brand`, `neutral`, `critical`, `informational`, `successful`, `warning`.
-
-**We use `XXX` here you should replace it with a variant from above.**
-
-|        Variant         | CSS                                  | SCSS                                  | Tailwind                             |
-| :--------------------: | ------------------------------------ | ------------------------------------- | ------------------------------------ |
-|       `XXX-bg-1`       | `class="db-XXX-bg-1"`                | `@extend %db-XXX-bg-1`                | `class="db-XXX-bg-1"`                |
-|       `XXX-bg-2`       | `class="db-XXX-bg-2"`                | `@extend %db-XXX-bg-2`                | `class="db-XXX-bg-2"`                |
-|       `XXX-bg-3`       | `class="db-XXX-bg-3"`                | `@extend %db-XXX-bg-3`                | `class="db-XXX-bg-3"`                |
-| `XXX-transparent-semi` | `class="db-XXX-bg-transparent-semi"` | `@extend %db-XXX-bg-transparent-semi` | `class="db-XXX-bg-transparent-semi"` |
-| `XXX-transparent-full` | `class="db-XXX-bg-transparent-full"` | `@extend %db-XXX-bg-transparent-full` | `class="db-XXX-bg-transparent-full"` |
-
-#### Additional Colors
-
-Besides of the variants above we deliver additional colors which aren't required for the Design System, but you can use them the same way. The additional variants are:
-`yellow`, `orange`, `red`, `pink`, `violet`, `blue`,
-`cyan`, `turquoise`, `green`
-
-### Dark- & Light-Mode
+## Dark- & Light-Mode
 
 We provide tokens for both dark- and light-mode. If you include the **db-ui-42** style you get a media query `@media (prefers-color-scheme: dark)` with the relevant tokens. You can [emulate](https://developer.chrome.com/docs/devtools/rendering/emulate-css/) the modes inside the devtools.
 
@@ -48,7 +34,7 @@ It's [recommended to set a `meta`-HTML-tag](https://web.dev/articles/color-schem
 
 We recommend using the default media query based on the user preference, but if you want to force a mode for your page or a container you can do it with adding the attributes `data-color-scheme="dark"` or `data-color-scheme="light"`:
 
-#### HTML
+### HTML
 
 ```html
 <div data-color-scheme="dark">...</div>

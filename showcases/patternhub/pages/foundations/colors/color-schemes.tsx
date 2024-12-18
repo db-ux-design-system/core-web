@@ -63,7 +63,9 @@ const ColorOverview = () => {
 				</DBButton>
 				<section className="color-cards">
 					{colors.map((color) => (
-						<div key={color} className={`db-${color}-bg-lvl-1`}>
+						<div
+							key={color}
+							className={`db-${color}-bg-basic-level-1`}>
 							<DBCard spacing="medium" elevationLevel="3">
 								<DBCard spacing="medium" elevationLevel="2">
 									<DBCard spacing="medium">{color}</DBCard>

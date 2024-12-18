@@ -9,6 +9,9 @@ on:
       showcase:
         required: true
         type: string
+      path:
+        required: false
+        type: string
 
 permissions:
   actions: write
@@ -59,10 +62,20 @@ jobs:
           name: db-ui-${{ inputs.showcase }}
           path: build-showcases/${{ inputs.showcase }}
 
+      - name: 🧴 Copy patternhub testing app
+        if: inputs.path
+        shell: bash
+        run: |
+          mkdir -p ./build-showcases${{ inputs.path }}
+          cp -RT ./build-showcases/${{ inputs.showcase }} ./build-showcases${{ inputs.path }}
+
       - name: 👩‍🔬 Test showcase with Playwright 🎭
+        shell: bash
         env:
           HOME: /root
+          NEXT_PUBLIC_BASE_PATH: ${{ inputs.path }}
         run: |
+          ls ./build-showcases${{ inputs.path }}
           npm run test:e2e --workspace=${{ inputs.showcase }} -- --shard=${{ matrix.shardIndex }}/${{ matrix.shardTotal }}
 
       - name: 🔣 Print GitHub Report
@@ -83,6 +96,6 @@ jobs:
         if: failure()
         uses: actions/upload-artifact@v4
         with:
-          name: ${{ matrix.framework }}-showcase-achecker-results-${{ matrix.shardIndex }}
-          path: ./showcases/${{ matrix.framework }}-showcase/results
+          name: ${{ inputs.showcase }}-showcase-achecker-results-${{ matrix.shardIndex }}
+          path: ./showcases/${{ inputs.showcase }}-showcase/results
           retention-days: 30

@@ -4,15 +4,18 @@
 		"examples": [
 			{
 				"name": "Functional",
-				"className": "db-density-functional"
+				"density": "functional",
+				"props": {}
 			},
 			{
 				"name": "(Default) Regular",
-				"className": "db-density-regular"
+				"density": "regular",
+				"props": {}
 			},
 			{
 				"name": "Expressive",
-				"className": "db-density-expressive"
+				"density": "expressive",
+				"props": {}
 			}
 		]
 	},
@@ -130,12 +133,6 @@
 				"name": "(Default) Text"
 			},
 			{
-				"name": "(Default) Text - Medium",
-				"props": {
-					"size": "medium"
-				}
-			},
-			{
 				"name": "Dot - Small",
 				"content": "",
 				"props": {
@@ -143,24 +140,9 @@
 				}
 			},
 			{
-				"name": "Dot - Medium",
-				"content": "",
-				"props": {
-					"noContent": true,
-					"size": "medium"
-				}
-			},
-			{
 				"name": "Icon - Small",
 				"props": {
 					"example": "icon"
-				}
-			},
-			{
-				"name": "Icon - Medium",
-				"props": {
-					"example": "icon",
-					"size": "medium"
 				}
 			}
 		]
@@ -225,6 +207,27 @@
 				"name": "Numbers",
 				"props": {
 					"example": "number"
+				}
+			},
+			{
+				"name": "(Default) Text - Medium",
+				"props": {
+					"size": "medium"
+				}
+			},
+			{
+				"name": "Dot - Medium",
+				"content": "",
+				"props": {
+					"noContent": true,
+					"size": "medium"
+				}
+			},
+			{
+				"name": "Icon - Medium",
+				"props": {
+					"example": "icon",
+					"size": "medium"
 				}
 			}
 		]

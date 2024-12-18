@@ -2,8 +2,14 @@
 @use "../colors";
 
 %focus-placeholder {
-	outline: #{variables.$db-border-height-2xs} solid #{colors.$db-informational-contrast-high-enabled};
+	outline: #{variables.$db-border-height-2xs} solid
+		var(
+			--db-focus-outline-color,
+			#{colors.$db-informational-on-bg-basic-emphasis-80-default}
+		);
 	outline-offset: variables.$db-border-height-xs;
+	box-shadow: 0 0 0 #{variables.$db-border-height-xs}
+		var(--db-focus-box-shadow-bg-color, transparent);
 
 	&:not([type="radio"], [role="switch"]) {
 		border-radius: variables.$db-border-radius-xs;

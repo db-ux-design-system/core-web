@@ -1,5 +1,6 @@
 export type DefaultComponentExample = {
 	name?: string;
+	experimental?: boolean;
 	example?: any;
 	style?: {
 		display?: string;
@@ -15,6 +16,8 @@ export type DefaultComponentExample = {
 		vue?: string;
 	};
 	children?: DefaultComponentExample[];
+	density?: string;
+	class?: string;
 };
 
 export type DefaultComponentVariants = {

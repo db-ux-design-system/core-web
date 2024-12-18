@@ -7,6 +7,10 @@ const answersFrameworkPairs = [
 		framework: 'plain-html'
 	},
 	{
+		answers: ['stencil'],
+		framework: 'stencil'
+	},
+	{
 		answers: ['vue', 'nuxt'],
 		framework: 'vue'
 	},
@@ -34,6 +38,9 @@ const currentAnswers = await checkbox({
 		},
 		{
 			value: 'angular-ssr'
+		},
+		{
+			value: 'stencil'
 		},
 		{
 			value: 'react'
@@ -75,6 +82,8 @@ const startDev = () => {
 	}
 
 	for (const currentAnswer of currentAnswers) {
+		if (currentAnswer === 'plain-html') continue;
+
 		startCommand += ` start-showcase:${currentAnswer}`;
 	}
 

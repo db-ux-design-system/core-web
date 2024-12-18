@@ -4,21 +4,21 @@
 		"examples": [
 			{
 				"name": "Functional",
-				"className": "db-density-functional",
+				"density": "functional",
 				"props": {
 					"href": "#"
 				}
 			},
 			{
 				"name": "(Default) Regular",
-				"className": "db-density-regular",
+				"density": "regular",
 				"props": {
 					"href": "#"
 				}
 			},
 			{
 				"name": "Expressive",
-				"className": "db-density-expressive",
+				"density": "expressive",
 				"props": {
 					"href": "#"
 				}
@@ -26,7 +26,7 @@
 		]
 	},
 	{
-		"name": "Semantic",
+		"name": "Variant",
 		"examples": [
 			{
 				"name": "(Default) Adaptive",
@@ -44,16 +44,17 @@
 		]
 	},
 	{
-		"name": "Interaction-States",
+		"name": "Disabled",
 		"examples": [
 			{
-				"name": "Enabled (Default)/Hover/Pressed",
+				"name": "(Default) False",
 				"props": {
-					"href": "#"
+					"href": "#",
+					"disabled": false
 				}
 			},
 			{
-				"name": "Disabled",
+				"name": "True",
 				"props": {
 					"href": "#",
 					"disabled": true
@@ -93,6 +94,25 @@
 				"props": {
 					"href": "#",
 					"content": "external"
+				}
+			}
+		]
+	},
+	{
+		"name": "Show Icon",
+		"examples": [
+			{
+				"name": "(Default) True",
+				"props": {
+					"href": "#",
+					"showIcon": true
+				}
+			},
+			{
+				"name": "False",
+				"props": {
+					"href": "#",
+					"showIcon": false
 				}
 			}
 		]

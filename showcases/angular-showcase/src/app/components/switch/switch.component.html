@@ -14,18 +14,24 @@
 			[visualAid]="exampleProps?.visualAid"
 			[checked]="exampleProps?.checked"
 			[disabled]="exampleProps?.disabled"
-			[variant]="exampleProps?.variant"
+			[required]="exampleProps?.required"
+			[showLabel]="exampleProps?.showLabel"
 			[size]="exampleProps?.size"
 			[emphasis]="exampleProps?.emphasis"
 			[icon]="exampleProps?.icon"
 			[iconAfter]="exampleProps?.iconAfter"
+			[validation]="exampleProps?.validation"
 		>
 			{{ exampleName }}
 		</db-switch>
-		@if (exampleProps?.variant === "hidden") {
-			<DBInfotext semantic="informational" icon="none">
+		@if (
+			exampleProps?.showLabel !== undefined &&
+			exampleProps?.showLabel !== null &&
+			!exampleProps?.showLabel
+		) {
+			<db-infotext semantic="informational" icon="none">
 				{{ exampleName }}
-			</DBInfotext>
+			</db-infotext>
 		}
 	</ng-template>
 </app-default-component>

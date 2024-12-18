@@ -12,7 +12,7 @@ const ValidationExample = () => {
 
 			<div className="validity-container">
 				<DBCard>
-					<h4>No customValidity</h4>
+					<h4>No custom validation</h4>
 					<DBInfotext semantic="informational">
 						<span>
 							default browser behaviour with auto changing colors
@@ -31,11 +31,11 @@ const ValidationExample = () => {
 				</DBCard>
 
 				<DBCard>
-					<h4>With customValidity (valid)</h4>
+					<h4>With custom validation (valid)</h4>
 					<DBInfotext semantic="informational">
 						<span>
-							fixed customValidity, no auto changing of colors and
-							bad UX
+							fixed validation, no auto changing of colors and bad
+							UX
 						</span>
 					</DBInfotext>
 					<form>
@@ -45,7 +45,7 @@ const ValidationExample = () => {
 							invalidMessage="This is required"
 							validMessage="Success"
 							required
-							customValidity="valid"
+							validation="valid"
 						/>
 						<DBButton>Send</DBButton>
 					</form>

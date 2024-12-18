@@ -15,7 +15,12 @@ const getSelect = ({
 	disabled,
 	value,
 	required,
-	variant
+	variant,
+	showLabel,
+	showMessage,
+	invalidMessage,
+	validMessage,
+	validation
 }: DBSelectProps) => {
 	const [mValue, setValue] = useState<string>(value);
 	return (
@@ -25,13 +30,18 @@ const getSelect = ({
 			options={options}
 			disabled={disabled}
 			variant={variant}
+			showLabel={showLabel}
 			icon={icon}
 			value={mValue}
 			onChange={(event) => {
 				setValue(event.target.value);
 			}}
 			message={message}
-			required={required}>
+			required={required}
+			showMessage={showMessage}
+			invalidMessage={invalidMessage}
+			validMessage={validMessage}
+			validation={validation}>
 			{children}
 		</DBSelect>
 	);

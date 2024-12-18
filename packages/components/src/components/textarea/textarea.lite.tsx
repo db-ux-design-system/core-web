@@ -4,16 +4,26 @@ import {
 	Show,
 	useMetadata,
 	useRef,
-	useStore
+	useStore,
+	useTarget
 } from '@builder.io/mitosis';
 import { DBTextareaProps, DBTextareaState } from './model';
-import { DBInfotext } from '../infotext';
-import { cls, uuid } from '../../utils';
+import DBInfotext from '../infotext/infotext.lite';
+import {
+	cls,
+	delay,
+	getHideProp,
+	stringPropVisible,
+	hasVoiceOver,
+	uuid
+} from '../../utils';
 import {
 	DEFAULT_INVALID_MESSAGE,
 	DEFAULT_INVALID_MESSAGE_ID_SUFFIX,
 	DEFAULT_LABEL,
 	DEFAULT_MESSAGE_ID_SUFFIX,
+	DEFAULT_PLACEHOLDER,
+	DEFAULT_ROWS,
 	DEFAULT_VALID_MESSAGE,
 	DEFAULT_VALID_MESSAGE_ID_SUFFIX
 } from '../../shared/constants';
@@ -21,25 +31,23 @@ import { ChangeEvent, InputEvent, InteractionEvent } from '../../shared/model';
 import { handleFrameworkEvent } from '../../utils/form-components';
 
 useMetadata({
-	isAttachedToShadowDom: true
+	angular: {
+		nativeAttributes: ['disabled', 'required']
+	}
 });
 
 export default function DBTextarea(props: DBTextareaProps) {
 	const ref = useRef<HTMLTextAreaElement>(null);
 	// jscpd:ignore-start
 	const state = useStore<DBTextareaState>({
-		_id: 'textarea-' + uuid(),
-		_messageId: this._id + DEFAULT_MESSAGE_ID_SUFFIX,
-		_validMessageId: this._id + DEFAULT_VALID_MESSAGE_ID_SUFFIX,
-		_invalidMessageId: this._id + DEFAULT_INVALID_MESSAGE_ID_SUFFIX,
+		_id: undefined,
+		_messageId: undefined,
+		_validMessageId: undefined,
+		_invalidMessageId: undefined,
 		// Workaround for Vue output: TS for Vue would think that it could be a function, and by this we clarify that it's a string
 		_descByIds: '',
 		_value: '',
-		defaultValues: {
-			label: DEFAULT_LABEL,
-			placeholder: ' ',
-			rows: '4'
-		},
+		_voiceOverFallback: '',
 		handleInput: (event: InputEvent<HTMLTextAreaElement>) => {
 			if (props.onInput) {
 				props.onInput(event);
@@ -57,19 +65,33 @@ export default function DBTextarea(props: DBTextareaProps) {
 			if (props.change) {
 				props.change(event);
 			}
-
-			handleFrameworkEvent(this, event);
+			useTarget({
+				angular: () => handleFrameworkEvent(this, event),
+				vue: () => handleFrameworkEvent(this, event)
+			});
 
 			/* For a11y reasons we need to map the correct message with the textarea */
-			if (!ref?.validity.valid || props.customValidity === 'invalid') {
+			if (!ref?.validity.valid || props.validation === 'invalid') {
 				state._descByIds = state._invalidMessageId;
+				if (hasVoiceOver()) {
+					state._voiceOverFallback =
+						props.invalidMessage ??
+						ref?.validationMessage ??
+						DEFAULT_INVALID_MESSAGE;
+					delay(() => (state._voiceOverFallback = ''), 1000);
+				}
 			} else if (
-				props.customValidity === 'valid' ||
+				props.validation === 'valid' ||
 				(ref?.validity.valid &&
 					(props.required || props.minLength || props.maxLength))
 			) {
 				state._descByIds = state._validMessageId;
-			} else if (props.message) {
+				if (hasVoiceOver()) {
+					state._voiceOverFallback =
+						props.validMessage ?? DEFAULT_VALID_MESSAGE;
+					delay(() => (state._voiceOverFallback = ''), 1000);
+				}
+			} else if (stringPropVisible(props.message, props.showMessage)) {
 				state._descByIds = state._messageId;
 			} else {
 				state._descByIds = '';
@@ -96,20 +118,22 @@ export default function DBTextarea(props: DBTextareaProps) {
 	});
 
 	onMount(() => {
-		state._id = props.id || state._id;
+		const mId = props.id ?? `textarea-${uuid()}`;
+		state._id = mId;
+		state._messageId = mId + DEFAULT_MESSAGE_ID_SUFFIX;
+		state._validMessageId = mId + DEFAULT_VALID_MESSAGE_ID_SUFFIX;
+		state._invalidMessageId = mId + DEFAULT_INVALID_MESSAGE_ID_SUFFIX;
 	});
 
 	onUpdate(() => {
 		if (state._id) {
 			const messageId = state._id + DEFAULT_MESSAGE_ID_SUFFIX;
-			const validMessageId = state._id + DEFAULT_VALID_MESSAGE_ID_SUFFIX;
-			const invalidMessageId =
-				state._id + DEFAULT_INVALID_MESSAGE_ID_SUFFIX;
 			state._messageId = messageId;
-			state._validMessageId = validMessageId;
-			state._invalidMessageId = invalidMessageId;
+			state._validMessageId = state._id + DEFAULT_VALID_MESSAGE_ID_SUFFIX;
+			state._invalidMessageId =
+				state._id + DEFAULT_INVALID_MESSAGE_ID_SUFFIX;
 
-			if (props.message) {
+			if (stringPropVisible(props.message, props.showMessage)) {
 				state._descByIds = messageId;
 			}
 		}
@@ -122,14 +146,13 @@ export default function DBTextarea(props: DBTextareaProps) {
 	return (
 		<div
 			class={cls('db-textarea', props.className)}
-			data-variant={props.variant}>
-			<label htmlFor={state._id}>
-				{props.label ?? state.defaultValues.label}
-			</label>
+			data-variant={props.variant}
+			data-hide-label={getHideProp(props.showLabel)}>
+			<label htmlFor={state._id}>{props.label ?? DEFAULT_LABEL}</label>
 
 			<textarea
-				aria-invalid={props.customValidity === 'invalid'}
-				data-custom-validity={props.customValidity}
+				aria-invalid={props.validation === 'invalid'}
+				data-custom-validity={props.validation}
 				ref={ref}
 				id={state._id}
 				data-resize={props.resize}
@@ -143,7 +166,7 @@ export default function DBTextarea(props: DBTextareaProps) {
 				wrap={props.wrap}
 				spellcheck={props.spellCheck}
 				autocomplete={props.autocomplete}
-				onInput={(event: ChangeEvent<HTMLInputElement>) =>
+				onInput={(event: ChangeEvent<HTMLTextAreaElement>) =>
 					state.handleInput(event)
 				}
 				onChange={(event: ChangeEvent<HTMLTextAreaElement>) =>
@@ -157,14 +180,12 @@ export default function DBTextarea(props: DBTextareaProps) {
 				}
 				value={props.value ?? state._value}
 				aria-describedby={state._descByIds}
-				placeholder={
-					props.placeholder ?? state.defaultValues.placeholder
-				}
-				rows={props.rows ?? state.defaultValues.rows}
+				placeholder={props.placeholder ?? DEFAULT_PLACEHOLDER}
+				rows={props.rows ?? DEFAULT_ROWS}
 				cols={props.cols}
 			/>
 
-			<Show when={props.message}>
+			<Show when={stringPropVisible(props.message, props.showMessage)}>
 				<DBInfotext
 					size="small"
 					icon={props.messageIcon}
@@ -188,6 +209,13 @@ export default function DBTextarea(props: DBTextareaProps) {
 					ref?.validationMessage ??
 					DEFAULT_INVALID_MESSAGE}
 			</DBInfotext>
+
+			{/* * https://www.davidmacd.com/blog/test-aria-describedby-errormessage-aria-live.html
+			 * Currently VoiceOver isn't supporting changes from aria-describedby.
+			 * This is an internal Fallback */}
+			<span data-visually-hidden="true" role="status">
+				{state._voiceOverFallback}
+			</span>
 		</div>
 	);
 	// jscpd:ignore-end

@@ -22,10 +22,10 @@
 
 	&[data-semantic="adaptive"],
 	&:not([data-semantic]) {
-		color: colors.$db-current-color-contrast-high-enabled;
+		color: colors.$db-adaptive-bg-inverted-contrast-high-default;
 
 		&::before {
-			--db-icon-color: #{colors.$db-current-color-contrast-low-enabled};
+			--db-icon-color: #{colors.$db-adaptive-on-bg-basic-emphasis-70-default};
 		}
 	}
 
@@ -33,11 +33,22 @@
 		&[data-semantic="#{$name}"] {
 			@include icons.variant-icons($name);
 
-			color: var(--db-#{$name}-contrast-high-enabled);
+			color: var(--db-#{$name}-bg-inverted-contrast-high-default);
 
 			&::before {
-				--db-icon-color: var(--db-#{$name}-contrast-low-enabled);
+				--db-icon-color: var(
+					--db-#{$name}-on-bg-basic-emphasis-70-default
+				);
 			}
+		}
+	}
+
+	// Workaround for current stencil implementation for form-components
+	&:has(> .db-infotext) {
+		margin: 0;
+
+		&::before {
+			content: none;
 		}
 	}
 }

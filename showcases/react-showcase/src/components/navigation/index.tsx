@@ -22,15 +22,15 @@ const getNavigation = ({ children }: DBNavigationProps) => {
 			</DBInfotext>
 			<DBNavigation labelledBy={labelID}>
 				<DBNavigationItem
-					active
 					subNavigation={
 						<>
 							<DBNavigationItem
-								active
 								subNavigation={
 									<>
-										<DBNavigationItem active>
-											<a href="#">Sub-Sub-Navi-Item 1</a>
+										<DBNavigationItem>
+											<a href="#" aria-current="page">
+												Sub-Sub-Navi-Item 1
+											</a>
 										</DBNavigationItem>
 										<DBNavigationItem>
 											<a href="#">Sub-Sub-Navi-Item 2</a>
@@ -46,7 +46,7 @@ const getNavigation = ({ children }: DBNavigationProps) => {
 					}>
 					Navi-Item 1
 				</DBNavigationItem>
-				<DBNavigationItem icon="user">
+				<DBNavigationItem icon="person">
 					<a href="#">Navi-Item 2</a>
 				</DBNavigationItem>
 				<DBNavigationItem disabled>

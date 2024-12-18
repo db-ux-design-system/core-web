@@ -8,14 +8,12 @@ import {
 } from '@builder.io/mitosis';
 import { DBHeaderProps, DBHeaderState } from './model';
 import { addAttributeToChildren, cls, uuid } from '../../utils';
-import { DBButton } from '../button';
-import { DBDrawer } from '../drawer';
-import { DEFAULT_ID } from '../../shared/constants';
+import DBButton from '../button/button.lite';
+import DBDrawer from '../drawer/drawer.lite';
+import { DEFAULT_BURGER_MENU, DEFAULT_ID } from '../../shared/constants';
 import { isEventTargetNavigationItem } from '../../utils/navigation';
 
-useMetadata({
-	isAttachedToShadowDom: true
-});
+useMetadata({});
 
 export default function DBHeader(props: DBHeaderProps) {
 	const ref = useRef<HTMLDivElement>(null);
@@ -24,9 +22,6 @@ export default function DBHeader(props: DBHeaderProps) {
 		_id: DEFAULT_ID,
 		initialized: false,
 		forcedToMobile: false,
-		defaultValues: {
-			burgerMenuLabel: 'BurgerMenu'
-		},
 		toggle: () => {
 			if (props.onToggle) {
 				props.onToggle(!props.drawerOpen);
@@ -71,7 +66,7 @@ export default function DBHeader(props: DBHeaderProps) {
 			data-width={props.width}
 			data-on-forcing-mobile={props.forceMobile && !state.forcedToMobile}>
 			<DBDrawer
-				className="db-header-drawer"
+				class="db-header-drawer"
 				rounded
 				spacing="small"
 				open={props.drawerOpen}
@@ -114,8 +109,7 @@ export default function DBHeader(props: DBHeaderProps) {
 							noText
 							variant="ghost"
 							onClick={() => state.toggle()}>
-							{props.burgerMenuLabel ??
-								state.defaultValues.burgerMenuLabel}
+							{props.burgerMenuLabel ?? DEFAULT_BURGER_MENU}
 						</DBButton>
 					</div>
 					<div class="db-header-secondary-action">

@@ -1,6 +1,6 @@
 [
 	{
-		"name": "Tonality",
+		"name": "Density",
 		"children": [
 			{
 				"name": "brand",
@@ -32,7 +32,7 @@
 				"angularDirective": true,
 				"content": "Profile",
 				"props": {
-					"icon": "user",
+					"icon": "person",
 					"variant": "ghost",
 					"noText": true
 				}
@@ -45,7 +45,7 @@
 					{
 						"name": "navigation-item",
 						"props": {
-							"icon": "user"
+							"icon": "person"
 						},
 						"children": [
 							{
@@ -63,7 +63,7 @@
 					{
 						"name": "navigation-item",
 						"props": {
-							"icon": "user",
+							"icon": "person",
 							"disabled": true
 						},
 						"children": [
@@ -85,7 +85,8 @@
 		"examples": [
 			{
 				"name": "Functional",
-				"className": "db-density-functional",
+				"density": "functional",
+				"props": {},
 				"style": {
 					"width": "100%",
 					"display": "block"
@@ -93,7 +94,8 @@
 			},
 			{
 				"name": "(Default) Regular",
-				"className": "db-density-regular",
+				"density": "regular",
+				"props": {},
 				"style": {
 					"width": "100%",
 					"display": "block"
@@ -101,7 +103,8 @@
 			},
 			{
 				"name": "Expressive",
-				"className": "db-density-expressive",
+				"density": "expressive",
+				"props": {},
 				"style": {
 					"width": "100%",
 					"display": "block"
@@ -142,7 +145,7 @@
 				"angularDirective": true,
 				"content": "Profile",
 				"props": {
-					"icon": "user",
+					"icon": "person",
 					"variant": "ghost",
 					"noText": true
 				}
@@ -155,7 +158,7 @@
 					{
 						"name": "navigation-item",
 						"props": {
-							"icon": "user"
+							"icon": "person"
 						},
 						"children": [
 							{
@@ -173,7 +176,7 @@
 					{
 						"name": "navigation-item",
 						"props": {
-							"icon": "user",
+							"icon": "person",
 							"disabled": true
 						},
 						"children": [
@@ -255,7 +258,7 @@
 				"angularDirective": true,
 				"content": "Profile",
 				"props": {
-					"icon": "user",
+					"icon": "person",
 					"variant": "ghost",
 					"noText": true
 				}
@@ -268,7 +271,7 @@
 					{
 						"name": "navigation-item",
 						"props": {
-							"icon": "user"
+							"icon": "person"
 						},
 						"children": [
 							{
@@ -286,7 +289,7 @@
 					{
 						"name": "navigation-item",
 						"props": {
-							"icon": "user",
+							"icon": "person",
 							"disabled": true
 						},
 						"children": [
@@ -358,7 +361,7 @@
 				"angularDirective": true,
 				"content": "Profile",
 				"props": {
-					"icon": "user",
+					"icon": "person",
 					"variant": "ghost",
 					"noText": true
 				}
@@ -371,7 +374,7 @@
 					{
 						"name": "navigation-item",
 						"props": {
-							"icon": "user"
+							"icon": "person"
 						},
 						"children": [
 							{
@@ -389,7 +392,7 @@
 					{
 						"name": "navigation-item",
 						"props": {
-							"icon": "user",
+							"icon": "person",
 							"disabled": true
 						},
 						"children": [
