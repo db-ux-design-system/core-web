@@ -7,7 +7,7 @@ export const PageDocumentOverflowList = ['hidden', 'auto'] as const;
 export type PageDocumentOverflowType =
 	(typeof PageDocumentOverflowList)[number];
 
-export interface DBPageDefaultProps {
+export type DBPageDefaultProps = {
 	/**
 	 * The documentOverflow sets the overflow:hidden/auto to the root document
 	 */
@@ -20,22 +20,22 @@ export interface DBPageDefaultProps {
 	/**
 	 * The slot can be used for React to set a footer.
 	 */
-	footer?: unknown;
+	footer?: any;
 	/**
 	 * The slot can be used for React to set a header.
 	 */
-	header?: unknown;
+	header?: any;
 
 	/**
 	 * The variant=fixed uses flex-box to make header and footer static
 	 */
 	variant?: PageVariantType;
-}
+};
 
 export type DBPageProps = DBPageDefaultProps & GlobalProps;
 
-export interface DBPageDefaultState {
+export type DBPageDefaultState = {
 	fontsLoaded?: boolean;
-}
+};
 
 export type DBPageState = DBPageDefaultState & GlobalState;

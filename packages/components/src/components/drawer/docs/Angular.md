@@ -25,10 +25,11 @@ import { DBDrawer } from '@db-ui/ngx-components';
 ```html app.component.html
 <!-- app.component.html -->
 
+<db-button (click)="toggleDrawer(true)"> Open me </db-button>
 <db-drawer [open]="openDrawer" (onClose)="toggleDrawer(false)">
+	<header drawer-header>Optional drawer header</header>
 	My Drawer content
 </db-drawer>
-<db-button (click)="toggleDrawer(true)"> Open me </db-button>
 ```
 
 ```ts app.component.ts

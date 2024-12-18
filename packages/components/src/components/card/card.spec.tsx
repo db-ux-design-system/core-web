@@ -1,4 +1,4 @@
-import { test, expect } from '@playwright/experimental-ct-react';
+import { expect, test } from '@playwright/experimental-ct-react';
 import AxeBuilder from '@axe-core/playwright';
 
 import { DBCard } from './index';
@@ -35,6 +35,11 @@ const testCardVariants = () => {
 	}
 };
 const testA11y = () => {
+	test('should have same aria-snapshot', async ({ mount }, testInfo) => {
+		const component = await mount(defaultComp);
+		const snapshot = await component.ariaSnapshot();
+		expect(snapshot).toMatchSnapshot(`${testInfo.testId}.yaml`);
+	});
 	test('should not have A11y issues', async ({ page, mount }) => {
 		await mount(defaultComp);
 		const accessibilityScanResults = await new AxeBuilder({ page })

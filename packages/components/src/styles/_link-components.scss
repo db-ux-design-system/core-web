@@ -40,7 +40,15 @@
 	// TODO: We should evaluate whether we could move this declaration to the @font-face declarations even already
 	text-underline-position: from-font;
 	text-decoration-thickness: helpers.px-to-rem($pxValue: 1);
-	white-space: nowrap;
+	text-decoration-line: underline;
+
+	&:not([data-variant="inline"]) {
+		white-space: nowrap;
+	}
+
+	&[data-variant="inline"] {
+		display: inline;
+	}
 
 	&:focus-visible {
 		border-radius: variables.$db-border-radius-xs;

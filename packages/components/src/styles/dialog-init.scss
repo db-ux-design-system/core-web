@@ -18,24 +18,38 @@ dialog {
 	z-index: 9996;
 	color: inherit;
 
+	&[data-variant],
 	&[data-backdrop] {
 		@extend %dialog-container;
 	}
 
+	&[data-variant="inside"] {
+		&:not([data-backdrop="none"]) {
+			&::before {
+				content: "";
+				position: fixed;
+				inset: 0;
+			}
+		}
+	}
+
 	&:not([data-backdrop="none"]) {
-		&::backdrop {
+		&::backdrop,
+		&::before {
 			background-color: $backdrop-color;
 			opacity: $backdrop-opacity-strong;
 		}
 
 		&[data-backdrop="invisible"] {
-			&::backdrop {
+			&::backdrop,
+			&::before {
 				opacity: 0;
 			}
 		}
 
 		&[data-backdrop="weak"] {
-			&::backdrop {
+			&::backdrop,
+			&::before {
 				opacity: $backdrop-opacity-weak;
 			}
 		}

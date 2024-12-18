@@ -22,9 +22,10 @@ const toggleDrawer = (open: boolean) => {
 </script>
 
 <template>
+	<DBButton @click="toggleDrawer(true)">Open me</DBButton>
 	<DBDrawer :open="openDrawer" @close="toggleDrawer(false)">
+		<header v-slot:drawer-header>Optional drawer header</header>
 		My Drawer content
 	</DBDrawer>
-	<DBButton @click="toggleDrawer(true)">Open me</DBButton>
 </template>
 ```

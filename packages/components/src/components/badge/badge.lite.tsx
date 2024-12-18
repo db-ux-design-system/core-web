@@ -10,9 +10,7 @@ import { DBBadgeProps, DBBadgeState } from './model';
 import { cls } from '../../utils';
 import { DEFAULT_LABEL } from '../../shared/constants';
 
-useMetadata({
-	isAttachedToShadowDom: true
-});
+useMetadata({});
 
 export default function DBBadge(props: DBBadgeProps) {
 	const ref = useRef<HTMLSpanElement>(null);
@@ -54,7 +52,9 @@ export default function DBBadge(props: DBBadgeProps) {
 				props.placement?.startsWith('corner') &&
 				(props.label ?? DEFAULT_LABEL)
 			}>
-			{props.children}
+			<Show when={props.text} else={props.children}>
+				{props.text}
+			</Show>
 		</span>
 	);
 }

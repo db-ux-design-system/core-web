@@ -3,9 +3,7 @@ import { DBTabListProps, DBTabListState } from './model';
 import { cls, uuid } from '../../utils';
 import { DEFAULT_ID } from '../../shared/constants';
 
-useMetadata({
-	isAttachedToShadowDom: true
-});
+useMetadata({});
 
 export default function DBTabList(props: DBTabListProps) {
 	// This is used as forwardRef

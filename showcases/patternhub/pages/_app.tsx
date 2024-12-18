@@ -67,12 +67,15 @@ const App = ({ Component, pageProps }: AppProps) => (
 				/>
 			)
 		}}>
-		<Script
-			src={
-				(process.env.NEXT_PUBLIC_BASE_PATH ?? '') +
-				'/iframe-resizer/iframeResizer.contentWindow.js'
-			}
-		/>
+		{process.env.NEXT_PUBLIC_BASE_PATH !== '/mono/sub/' && (
+			<Script
+				src={
+					(process.env.NEXT_PUBLIC_BASE_PATH ?? '') +
+					'/iframe-resizer/iframeResizer.contentWindow.js'
+				}
+				strategy="lazyOnload"
+			/>
+		)}
 		<Head>
 			<title>DB UI Mono</title>
 		</Head>

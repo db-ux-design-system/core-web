@@ -7,11 +7,9 @@ import {
 	useStore
 } from '@builder.io/mitosis';
 import { DBPopoverProps, DBPopoverState } from './model';
-import { cls, handleDataOutside } from '../../utils';
+import { cls, getBooleanAsString, handleDataOutside } from '../../utils';
 
-useMetadata({
-	isAttachedToShadowDom: true
-});
+useMetadata({});
 
 export default function DBPopover(props: DBPopoverProps) {
 	const ref = useRef<HTMLDivElement>(null);
@@ -40,7 +38,7 @@ export default function DBPopover(props: DBPopoverProps) {
 				state.isExpanded = false;
 			}
 		},
-		getTrigger: () => {
+		getTrigger: (): Element | null => {
 			if (ref) {
 				const children: Element[] = Array.from(ref.children);
 				if (children.length >= 2) {
@@ -49,14 +47,14 @@ export default function DBPopover(props: DBPopoverProps) {
 						// this is a workaround for custom angular components
 						return firstChild.children?.length > 0
 							? firstChild.children[0]
-							: undefined;
+							: null;
 					} else {
 						return firstChild;
 					}
 				}
 			}
 
-			return undefined;
+			return null;
 		}
 	});
 
@@ -78,7 +76,7 @@ export default function DBPopover(props: DBPopoverProps) {
 		if (ref) {
 			const child = state.getTrigger();
 			if (child) {
-				child.ariaExpanded = state.isExpanded.toString();
+				child.ariaExpanded = Boolean(state.isExpanded).toString();
 			}
 		}
 	}, [ref, state.isExpanded]);
@@ -98,7 +96,7 @@ export default function DBPopover(props: DBPopoverProps) {
 			<article
 				class="db-popover-content"
 				data-spacing={props.spacing}
-				data-gap={props.gap}
+				data-gap={getBooleanAsString(props.gap)}
 				data-animation={props.animation}
 				data-open={props.open}
 				data-delay={props.delay}
