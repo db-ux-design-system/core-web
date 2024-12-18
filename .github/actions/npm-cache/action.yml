@@ -13,7 +13,7 @@ inputs:
   nodeVersion:
     description: "Node version"
     required: false
-    default: "20"
+    default: "22"
 runs:
   using: "composite"
   steps:
