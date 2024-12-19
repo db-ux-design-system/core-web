@@ -18,7 +18,7 @@ on:
 jobs:
   publish:
     name: Get and save publish version
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04 # Use Ubuntu 24.04 explicitly
     outputs:
       release: ${{ steps.releaseCheck.outputs.release }}
       preRelease: ${{ steps.releaseCheck.outputs.preRelease }}
