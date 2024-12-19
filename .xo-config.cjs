@@ -1,9 +1,6 @@
 module.exports = {
 	prettier: true,
-	ignores: [
-		'./showcases/nuxt-showcase/**',
-		'./packages/foundations/scripts/**'
-	],
+	ignores: ['./showcases/nuxt-showcase/**', './packages/migration/**'],
 	overrides: [
 		{
 			files: ['./showcases/angular-showcase/**'],
@@ -20,11 +17,7 @@ module.exports = {
 			}
 		},
 		{
-			files: [
-				'./**/angular-**/**',
-				'./showcases/vanilla-showcase/**',
-				'./showcases/svelte-showcase/**'
-			],
+			files: ['./**/angular-**/**', './showcases/svelte-showcase/**'],
 			rules: {
 				'new-cap': 0, // fixes issue with @Component annotation
 				'import/no-unassigned-import': 0, // fixes issue with including zone.js or db-components
@@ -45,6 +38,12 @@ module.exports = {
 				'@typescript-eslint/no-unsafe-argument': 0, // valid for app
 				'@typescript-eslint/no-unsafe-return': 0, // valid for app
 				'import/no-extraneous-dependencies': 0 // foundation and component.css are inside this repo
+			}
+		},
+		{
+			files: ['./**/vite.config.ts'],
+			rules: {
+				'@typescript-eslint/no-unsafe-call': 0 // We don't need this tsc will handle it anyway
 			}
 		},
 		{

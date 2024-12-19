@@ -1,5 +1,6 @@
 import {
 	Component,
+	CUSTOM_ELEMENTS_SCHEMA,
 	Input,
 	NO_ERRORS_SCHEMA,
 	type OnInit,
@@ -20,13 +21,16 @@ import type {
 	DefaultComponentProps,
 	DefaultComponentVariants
 } from '../../../../shared/default-component-data';
+import { environment } from '../../environments/environment';
 
 @Component({
 	selector: 'app-default-component',
 	templateUrl: './default.component.html',
-	imports: [DBCard, DBDivider, DBLink, NgTemplateOutlet],
+	imports: environment.webComponents
+		? [NgTemplateOutlet]
+		: [DBCard, DBDivider, DBLink, NgTemplateOutlet],
 	standalone: true,
-	schemas: [NO_ERRORS_SCHEMA]
+	schemas: [NO_ERRORS_SCHEMA, CUSTOM_ELEMENTS_SCHEMA]
 })
 export class DefaultComponent implements OnInit {
 	@Input() title: DefaultComponentProps['title'] = '';
@@ -68,7 +72,7 @@ export class DefaultComponent implements OnInit {
 	}
 
 	getLink = (variantName: string) => {
-		let currentUrl = window.location.href;
+		let currentUrl = globalThis.location.href;
 		if (!currentUrl.includes('?')) {
 			currentUrl += '?';
 		}

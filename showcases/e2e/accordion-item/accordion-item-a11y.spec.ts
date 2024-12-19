@@ -1,7 +1,19 @@
 import { test } from '@playwright/test';
 // @ts-expect-error - required for playwright
-import { getA11yTest } from '../default.ts';
+import { runA11yCheckerTest, runAxeCoreTest } from '../default.ts';
+import { lvl3 } from '../fixtures/variants';
+
+// Showcase uses <li> outside of <ul> in this case
+// TODO: Let's investigate whether we could prevent this deactivation later on
+const axeDisableRules = ['listitem'];
 
 test.describe('DBAccordionItem', () => {
-	getA11yTest({ path: '04/accordion-item' });
+	runAxeCoreTest({ path: '04/accordion-item', axeDisableRules });
+	runAxeCoreTest({ path: '04/accordion-item', color: lvl3, axeDisableRules });
+	runAxeCoreTest({
+		path: '04/accordion-item',
+		density: 'functional',
+		axeDisableRules
+	});
+	runA11yCheckerTest({ path: '04/accordion-item' });
 });

@@ -1,19 +1,23 @@
 import {
-	SemanticProps,
 	GlobalProps,
 	GlobalState,
 	IconProps,
-	SizeProps
+	SemanticProps,
+	ShowIconProps,
+	SizeProps,
+	TextProps
 } from '../../shared/model';
 
-export interface DBInfotextDefaultProps {}
+export type DBInfotextDefaultProps = {};
 
 export type DBInfotextProps = DBInfotextDefaultProps &
 	GlobalProps &
 	SemanticProps &
 	IconProps &
-	SizeProps;
+	SizeProps &
+	ShowIconProps &
+	TextProps;
 
-export interface DBInfotextDefaultState {}
+export type DBInfotextDefaultState = {};
 
 export type DBInfotextState = DBInfotextDefaultState & GlobalState;

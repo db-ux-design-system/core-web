@@ -137,6 +137,10 @@
 			{
 				"label": "DBSection",
 				"name": "section"
+			},
+			{
+				"label": "DBStack",
+				"name": "stack"
 			}
 		]
 	},

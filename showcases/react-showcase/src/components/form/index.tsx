@@ -16,7 +16,8 @@ import {
 	DBTabItem,
 	DBTag,
 	DBTextarea,
-	DBTooltip
+	DBTooltip,
+	DBLink
 } from '../../../../../output/react/src';
 import type {
 	ChangeEvent,
@@ -73,7 +74,7 @@ const FormComponent = () => {
 							label="Textinput"
 							placeholder="Placeholder"
 							message="Description"
-							icon="user"
+							icon="person"
 							name="input-name"
 							value={input}
 							dataList={dataList}
@@ -273,6 +274,28 @@ const FormComponent = () => {
 
 				<DBDivider />
 
+				<p>
+					Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
+					diam nonumy eirmod tempor{' '}
+					<DBLink showIcon={false} href="#">
+						invidunt
+					</DBLink>{' '}
+					ut labore et dolore magna aliquyam erat, sed diam voluptua.
+					At vero eos et accusam et justo duo dolores et ea rebum.
+					Stet clita kasd gubergren, no sea takimata sanctus est Lorem
+					ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur
+					sadipscing elitr, sed diam nonumy eirmod tempor{' '}
+					<DBLink showIcon={false} href="#">
+						labore et dolore magna aliquyam erat, sed diam voluptua.
+						At vero eos et accusam et justo duo dolores et ea rebum.
+						Stet
+					</DBLink>{' '}
+					ut labore et dolore magna aliquyam erat, sed diam voluptua.
+					At vero eos et accusam et justo duo dolores et ea rebum.
+					Stet clita kasd gubergren, no sea takimata sanctus est Lorem
+					ipsum dolor sit amet.
+				</p>
+
 				<DBButton
 					onClick={() => {
 						setTabsTest(!tabsTest);
@@ -424,6 +447,21 @@ const FormComponent = () => {
 						Beschreibungstext
 					</DBTooltip>
 				</DBButton>
+
+				<div>
+					<DBTag>
+						<DBButton>Test</DBButton>
+					</DBTag>
+					<DBTag>
+						<DBLink>Test</DBLink>
+					</DBTag>
+					<DBTag>
+						<DBRadio>Test</DBRadio>
+					</DBTag>
+					<DBTag>
+						<DBCheckbox>Test</DBCheckbox>
+					</DBTag>
+				</div>
 			</div>
 		</div>
 	);

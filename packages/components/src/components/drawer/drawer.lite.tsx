@@ -1,7 +1,6 @@
 import {
 	onMount,
 	onUpdate,
-	Show,
 	Slot,
 	useMetadata,
 	useRef,
@@ -12,9 +11,7 @@ import DBButton from '../button/button.lite';
 import { DEFAULT_CLOSE_BUTTON } from '../../shared/constants';
 import { cls, delay } from '../../utils';
 
-useMetadata({
-	isAttachedToShadowDom: true
-});
+useMetadata({});
 
 export default function DBDrawer(props: DBDrawerProps) {
 	const ref = useRef<HTMLDialogElement>(null);
@@ -44,7 +41,10 @@ export default function DBDrawer(props: DBDrawerProps) {
 					if (dialogContainerRef) {
 						dialogContainerRef.hidden = false;
 					}
-					if (props.backdrop === 'none') {
+					if (
+						props.backdrop === 'none' ||
+						props.variant === 'inside'
+					) {
 						ref.show();
 					} else {
 						ref.showModal();
@@ -82,7 +82,8 @@ export default function DBDrawer(props: DBDrawerProps) {
 				state.handleClose(event);
 			}}
 			onKeyDown={(event) => state.handleClose(event)}
-			data-backdrop={props.backdrop}>
+			data-backdrop={props.backdrop}
+			data-variant={props.variant}>
 			<article
 				ref={dialogContainerRef}
 				class={cls('db-drawer-container', props.className)}
@@ -95,7 +96,7 @@ export default function DBDrawer(props: DBDrawerProps) {
 						<Slot name="drawerHeader" />
 					</div>
 					<DBButton
-						className="button-close-drawer"
+						class="button-close-drawer"
 						id={props.closeButtonId}
 						icon="cross"
 						variant="ghost"

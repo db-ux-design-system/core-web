@@ -28,7 +28,6 @@ const getTag = ({
 	return (
 		<DBTag
 			semantic={semantic}
-			disabled={disabled}
 			icon={icon}
 			noText={noText}
 			behaviour={behaviour}
@@ -46,6 +45,7 @@ const getTag = ({
 					<input
 						type="checkbox"
 						checked={checkedState}
+						disabled={disabled}
 						onChange={(event) => {
 							setCheckedState(event.target.checked);
 						}}

@@ -1,1 +1,1 @@
-["button, collapsed, Item 1","button, collapsed, Item 2","button, collapsed, Item 1","expanded","Content 1","button, collapsed, Item 2"]
+["list, with 3 items, button, collapsed, Item 1","button, collapsed, Item 2","button, collapsed, Item 1","expanded","Content 1","button, collapsed, Item 2"]

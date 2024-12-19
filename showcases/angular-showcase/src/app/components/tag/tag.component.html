@@ -10,7 +10,6 @@
 	>
 		<db-tag
 			[semantic]="exampleProps?.semantic"
-			[disabled]="exampleProps?.disabled"
 			[icon]="exampleProps?.icon"
 			[noText]="exampleProps?.noText"
 			[behaviour]="exampleProps?.behaviour"
@@ -29,7 +28,11 @@
 			}
 			@if (exampleProps?.component === "checkbox") {
 				<label>
-					<input type="checkbox" [checked]="exampleProps?.checked" />
+					<input
+						type="checkbox"
+						[checked]="exampleProps?.checked"
+						[disabled]="exampleProps?.disabled"
+					/>
 					{{ exampleName }}
 				</label>
 			}

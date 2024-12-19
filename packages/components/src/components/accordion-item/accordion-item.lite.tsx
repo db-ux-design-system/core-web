@@ -7,13 +7,11 @@ import {
 	useStore
 } from '@builder.io/mitosis';
 import { DBAccordionItemProps, DBAccordionItemState } from './model';
-import { cls, uuid } from '../../utils';
+import { cls, getBooleanAsString, uuid } from '../../utils';
 import { ClickEvent } from '../../shared/model';
 import { DEFAULT_ID } from '../../shared/constants';
 
-useMetadata({
-	isAttachedToShadowDom: true
-});
+useMetadata({});
 
 export default function DBAccordionItem(props: DBAccordionItemProps) {
 	const ref = useRef<HTMLDetailsElement>(null);
@@ -41,23 +39,25 @@ export default function DBAccordionItem(props: DBAccordionItemProps) {
 	// jscpd:ignore-end
 
 	return (
-		<details
-			ref={ref}
-			id={state._id}
-			class={cls('db-accordion-item', props.className)}
-			aria-disabled={props.disabled}
-			open={state._open}
-			name={props.name}>
-			<summary onClick={(event) => state.toggle(event)}>
-				<Show when={props.headlinePlain}>{props.headlinePlain}</Show>
-				<Show when={!props.headlinePlain}>
-					<Slot name="headline" />
-				</Show>
-			</summary>
-			<div>
-				<Show when={props.content}>{props.content}</Show>
-				<Show when={!props.content}>{props.children}</Show>
-			</div>
-		</details>
+		<li id={state._id} class={cls('db-accordion-item', props.className)}>
+			<details
+				aria-disabled={getBooleanAsString(props.disabled)}
+				ref={ref}
+				open={state._open}>
+				<summary onClick={(event) => state.toggle(event)}>
+					<Show when={props.headlinePlain}>
+						{props.headlinePlain}
+					</Show>
+					<Show when={!props.headlinePlain}>
+						<Slot name="headline" />
+					</Show>
+				</summary>
+				<div>
+					<Show when={props.text} else={props.children}>
+						{props.text}
+					</Show>
+				</div>
+			</details>
+		</li>
 	);
 }

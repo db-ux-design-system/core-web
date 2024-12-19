@@ -1,7 +1,6 @@
 ---
 inject: true
-to: src/styles/db-ui-components.scss
+to: src/styles/_custom-elements.scss
 after: angular-workaround
 ---
-db<%= name %>,
 db-<%= name %>,

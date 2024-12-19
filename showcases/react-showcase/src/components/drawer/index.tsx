@@ -19,27 +19,29 @@ const getDrawer = ({
 	setOpenDrawer,
 	direction,
 	children,
-	backdrop
+	backdrop,
+	variant
 }: DBDrawerProps & AdditionalDrawerProperties) => (
 	<div>
-		<DBDrawer
-			rounded={rounded}
-			width={width}
-			spacing={spacing}
-			backdrop={backdrop}
-			direction={direction}
-			open={openDrawer === id}
-			onClose={() => {
-				setOpenDrawer(undefined);
-			}}>
-			{children}
-		</DBDrawer>
 		<DBButton
 			onClick={() => {
 				setOpenDrawer(id);
 			}}>
 			Open: {children}
 		</DBButton>
+		<DBDrawer
+			rounded={rounded}
+			width={width}
+			spacing={spacing}
+			backdrop={backdrop}
+			direction={direction}
+			variant={variant}
+			open={openDrawer === id}
+			onClose={() => {
+				setOpenDrawer(undefined);
+			}}>
+			{children}
+		</DBDrawer>
 	</div>
 );
 

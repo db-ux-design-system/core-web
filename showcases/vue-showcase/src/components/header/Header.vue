@@ -37,7 +37,7 @@ import {
 					"
 				>
 					<DBNavigation :aria-label="exampleName">
-						<DBNavigationItem icon="user">
+						<DBNavigationItem icon="person">
 							<a href="#">{{ exampleName }}</a>
 						</DBNavigationItem>
 						<DBNavigationItem :disabled="true">
@@ -58,7 +58,7 @@ import {
 				</template>
 				<template v-slot:secondary-action>
 					<template v-if="!exampleProps?.example">
-						<DBButton icon="user" variant="ghost" :no-text="true">
+						<DBButton icon="person" variant="ghost" :no-text="true">
 							Profile
 						</DBButton>
 						<DBButton icon="bell" variant="ghost" :no-text="true">
