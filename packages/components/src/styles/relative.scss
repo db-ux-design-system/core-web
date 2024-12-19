@@ -1,0 +1,12 @@
+/* This is a predefined beginner friendly bundle with default asset-paths (../assets) */
+
+@forward "./index";
+// Bundle default theme
+@forward "@db-ui/foundations/build/css/default-theme";
+
+// Bundle optionals
+@forward "@db-ui/foundations/build/styles/icons/include";
+@forward "@db-ui/foundations/build/styles/helpers/classes/all";
+@forward "@db-ui/foundations/build/styles/density/classes/all";
+@forward "@db-ui/foundations/build/styles/fonts/classes/all";
+@forward "@db-ui/foundations/build/styles/colors/classes/all";

@@ -1,6 +1,6 @@
 @use "custom-elements";
 
-@forward "@db-ui/foundations/build/scss/db-ui-foundations";
+@forward "@db-ui/foundations/build/styles/index";
 @forward "component-animations";
 @forward "../components/button/button";
 @forward "../components/icon/icon";

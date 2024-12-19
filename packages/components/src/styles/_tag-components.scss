@@ -1,8 +1,8 @@
 @use "sass:map";
 @use "component";
-@use "@db-ui/foundations/build/scss/variables";
-@use "@db-ui/foundations/build/scss/colors";
-@use "@db-ui/foundations/build/scss/helpers";
+@use "@db-ui/foundations/build/styles/variables";
+@use "@db-ui/foundations/build/styles/colors";
+@use "@db-ui/foundations/build/styles/helpers";
 
 $interactive-selectors: "label, button:not(.db-tab-remove-button), a";
 

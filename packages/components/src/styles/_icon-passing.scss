@@ -1,5 +1,5 @@
-@use "@db-ui/foundations/build/scss/variables";
-@use "@db-ui/foundations/build/scss/icons";
+@use "@db-ui/foundations/build/styles/variables";
+@use "@db-ui/foundations/build/styles/icons";
 
 @mixin icon-passing($inline-start: variables.$db-spacing-fixed-sm) {
 	&[data-icon] {

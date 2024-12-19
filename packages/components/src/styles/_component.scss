@@ -1,7 +1,7 @@
-@use "@db-ui/foundations/build/scss/variables";
-@use "@db-ui/foundations/build/scss/screen-sizes";
-@use "@db-ui/foundations/build/scss/colors";
-@use "@db-ui/foundations/build/scss/helpers";
+@use "@db-ui/foundations/build/styles/variables";
+@use "@db-ui/foundations/build/styles/screen-sizes";
+@use "@db-ui/foundations/build/styles/colors";
+@use "@db-ui/foundations/build/styles/helpers";
 
 $min-mobile-header-height: calc(
 	#{variables.$db-sizing-md} + 2 * #{variables.$db-spacing-fixed-xs}

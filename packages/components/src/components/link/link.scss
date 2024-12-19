@@ -1,11 +1,11 @@
 @charset "utf-8";
 
-@use "@db-ui/foundations/build/scss/fonts";
-@use "@db-ui/foundations/build/scss/variables";
-@use "@db-ui/foundations/build/scss/animation";
-@use "@db-ui/foundations/build/scss/helpers";
-@use "@db-ui/foundations/build/scss/icons";
-@use "@db-ui/foundations/build/scss/colors";
+@use "@db-ui/foundations/build/styles/fonts";
+@use "@db-ui/foundations/build/styles/variables";
+@use "@db-ui/foundations/build/styles/animation";
+@use "@db-ui/foundations/build/styles/helpers";
+@use "@db-ui/foundations/build/styles/icons";
+@use "@db-ui/foundations/build/styles/colors";
 @use "../../styles/link-components";
 
 .db-link {

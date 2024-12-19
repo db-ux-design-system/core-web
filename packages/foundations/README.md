@@ -23,7 +23,7 @@ npm i @db-ui/foundations
 
 You use this library if you need some colors, spacings etc.
 
-> **tl;dr:** Use the default theme and the bundled styles by importing `default-theme.css` && `db-ui-foundations[-absolute|-rollup|-webpack].css`.
+> **tl;dr:** Use the default theme and the bundled styles by importing `default-theme.css` && `[relative|absolute|rollup|webpack].css`.
 
 ---
 
@@ -38,14 +38,14 @@ Afterward, you may import helper classes / placeholders to easily consume the to
 - **density**: Overwrite default density to scale adaptive components inside container using density
 - **colors**: Sets an adaptive color to a container, which passes all required css-properties to children
 
-You can import the complete **init** styles with `db-ui-foundations[-absolute|-rollup|-webpack].css` which apply the default:
+You can import the complete **init** styles with `[relative|absolute|rollup|webpack].css` which apply the default:
 
 - [Density](https://marketingportal.extranet.deutschebahn.com/marketingportal/Design-Anwendungen/db-ux-design-system/version-3/principles/adaptive#:~:text=und%20Textfarben%20sicherstellt.-,Sizing,-Adaptive%20Sizing%20ist): `regular`
 - [Adaptive Coloring](https://marketingportal.extranet.deutschebahn.com/marketingportal/Design-Anwendungen/db-ux-design-system/version-3/principles/adaptive#:~:text=Akzeptieren-,Coloring,-Adaptive%20Coloring%20bezieht): `neutral-bg-lvl-1`
 
 ### CSS
 
-Default assets path for `db-ui-foundations.css` is `../assets`. Make sure to copy all used resources like icons and fonts into your `public` folder before build. **Or** you use a modern bundler which handles bundling for you. In this case use `db-ui-foundations[-rollup|-webpack].css`.
+Default assets path for `relative.css` is `../assets`. Make sure to copy all used resources like icons and fonts into your `public` folder before build. **Or** you use a modern bundler which handles bundling for you. In this case use `[rollup|webpack].css`.
 
 #### Import
 
@@ -55,38 +55,38 @@ CSS:
 
 ```css
 /* index.css */
-@import "@db-ui/foundations/build/css/default-theme.css";
-@import "@db-ui/foundations/build/css/db-ui-foundations.css";
+@import "@db-ui/foundations/build/styles/default-theme.css";
+@import "@db-ui/foundations/build/styles/index.css";
 
 /* Optional: Use [data-icon] everywhere */
-@import "@db-ui/foundations/build/css/icons/include.css";
+@import "@db-ui/foundations/build/styles/icons/include.css";
 /* Optional: Use [data-divider] & [data-focus] everywhere */
-@import "@db-ui/foundations/build/css/helpers/classes/all.css";
+@import "@db-ui/foundations/build/styles/helpers/classes/all.css";
 /* Optional: Use [data-density] everywhere */
-@import "@db-ui/foundations/build/css/density/classes/all.css";
+@import "@db-ui/foundations/build/styles/density/classes/all.css";
 /* Optional: Use [data-font-size] everywhere */
-@import "@db-ui/foundations/build/css/fonts/classes/all.css";
+@import "@db-ui/foundations/build/styles/fonts/classes/all.css";
 /* Optional: Use [data-color] everywhere */
-@import "@db-ui/foundations/build/css/colors/classes/all.css";
+@import "@db-ui/foundations/build/styles/colors/classes/all.css";
 ```
 
 JS/TS:
 
 ```ts
 // main.[js|ts]
-import "@db-ui/foundations/build/css/default-theme.css";
-import "@db-ui/foundations/build/css/db-ui-foundations.css";
+import "@db-ui/foundations/build/styles/default-theme.css";
+import "@db-ui/foundations/build/styles/index.css";
 
 /* Optional: Use [data-icon] everywhere */
-import "@db-ui/foundations/build/css/icons/include.css";
+import "@db-ui/foundations/build/styles/icons/include.css";
 /* Optional: Use [data-divider] & [data-focus] everywhere */
-import "@db-ui/foundations/build/css/helpers/classes/all.css";
+import "@db-ui/foundations/build/styles/helpers/classes/all.css";
 /* Optional: Use [data-density] everywhere */
-import "@db-ui/foundations/build/css/density/classes/all.css";
+import "@db-ui/foundations/build/styles/density/classes/all.css";
 /* Optional: Use [data-font-size] everywhere */
-import "@db-ui/foundations/build/css/fonts/classes/all.css";
+import "@db-ui/foundations/build/styles/fonts/classes/all.css";
 /* Optional: Use [data-color] everywhere */
-import "@db-ui/foundations/build/css/colors/classes/all.css";
+import "@db-ui/foundations/build/styles/colors/classes/all.css";
 ```
 
 #### Use
@@ -120,7 +120,7 @@ In HTML:
 
 ### SCSS
 
-Default assets path for `db-ui-foundations.scss` is `../assets`. Make sure to copy all used resources like icons and fonts into your `public` folder before build. **Or** you use a modern bundler which handles bundling for you. In this case use `db-ui-foundations[-rollup|-webpack].scss`.
+Default assets path for `relative.scss` is `../assets`. Make sure to copy all used resources like icons and fonts into your `public` folder before build. **Or** you use a modern bundler which handles bundling for you. In this case use `[rollup|webpack].scss`.
 
 #### Import
 
@@ -130,19 +130,19 @@ SCSS:
 
 ```scss
 /* index.css */
-@forward "@db-ui/foundations/build/scss/default-theme";
-@forward "@db-ui/foundations/build/scss/db-ui-foundations";
+@forward "@db-ui/foundations/build/styles/default-theme";
+@forward "@db-ui/foundations/build/styles/index";
 
 /* Optional: Use [data-icon] everywhere */
-@forward "@db-ui/foundations/build/scss/icons/include";
+@forward "@db-ui/foundations/build/styles/icons/include";
 /* Optional: Use [data-divider] & [data-focus] everywhere */
-@forward "@db-ui/foundations/build/scss/helpers/classes/all";
+@forward "@db-ui/foundations/build/styles/helpers/classes/all";
 /* Optional: Use [data-density] everywhere */
-@forward "@db-ui/foundations/build/scss/density/classes/all";
+@forward "@db-ui/foundations/build/styles/density/classes/all";
 /* Optional: Use [data-font-size] everywhere */
-@forward "@db-ui/foundations/build/scss/fonts/classes/all";
+@forward "@db-ui/foundations/build/styles/fonts/classes/all";
 /* Optional: Use [data-color] everywhere */
-@forward "@db-ui/foundations/build/scss/colors/classes/all";
+@forward "@db-ui/foundations/build/styles/colors/classes/all";
 ```
 
 > **Note:** Besides of forwarding the classes you can use placeholders to include only some specific styles.
@@ -151,19 +151,19 @@ JS/TS:
 
 ```ts
 // main.[js|ts]
-import "@db-ui/foundations/build/scss/default-theme.scss";
-import "@db-ui/foundations/build/scss/db-ui-foundations.scss";
+import "@db-ui/foundations/build/styles/default-theme.scss";
+import "@db-ui/foundations/build/styles/index.scss";
 
 /* Optional: Use [data-icon] everywhere */
-import "@db-ui/foundations/build/scss/icons/include.scss";
+import "@db-ui/foundations/build/styles/icons/include.scss";
 /* Optional: Use [data-divider] & [data-focus] everywhere */
-import "@db-ui/foundations/build/scss/helpers/classes/all.scss";
+import "@db-ui/foundations/build/styles/helpers/classes/all.scss";
 /* Optional: Use [data-density] everywhere */
-import "@db-ui/foundations/build/scss/density/classes/all.scss";
+import "@db-ui/foundations/build/styles/density/classes/all.scss";
 /* Optional: Use [data-font-size] everywhere */
-import "@db-ui/foundations/build/scss/fonts/classes/all.scss";
+import "@db-ui/foundations/build/styles/fonts/classes/all.scss";
 /* Optional: Use [data-color] everywhere */
-import "@db-ui/foundations/build/scss/colors/classes/all.scss";
+import "@db-ui/foundations/build/styles/colors/classes/all.scss";
 ```
 
 #### Use
@@ -171,7 +171,7 @@ import "@db-ui/foundations/build/scss/colors/classes/all.scss";
 In SCSS:
 
 ```scss
-@use "@db-ui/foundations/build/scss/variables";
+@use "@db-ui/foundations/build/styles/variables";
 
 .my-container {
 	padding: variables.$db-spacing-fixed-md;
@@ -181,8 +181,8 @@ In SCSS:
 In SCSS with placeholder:
 
 ```scss
-@use "@db-ui/foundations/build/scss/fonts";
-@use "@db-ui/foundations/build/scss/colors";
+@use "@db-ui/foundations/build/styles/fonts";
+@use "@db-ui/foundations/build/styles/colors";
 
 .placeholder-container {
 	@extend %db-overwrite-font-size-sm;
@@ -291,17 +291,17 @@ In your `tailwind.css` add this to enable default headlines:
 
 ## Optimize dependencies
 
-If you want to optimize the size of the loaded styles, you might skip loading `@db-ui/foundations/build/css/db-ui-foundations.css`.But there are some required styles for this Design-System to work properly.
+If you want to optimize the size of the loaded styles, you might skip loading `@db-ui/foundations/build/styles/relative.css`.But there are some required styles for this Design-System to work properly.
 
 ```css
 /* The theme contains all prop required for components like spacings, colors, ... */
-@import "@db-ui/foundations/build/css/default-theme.css";
+@import "@db-ui/foundations/build/styles/default-theme.css";
 /* The font include uses default font families based on your bundling paths (relative, absolute, webpack, rollup) */
-@import "@db-ui/foundations/build/css/fonts/include.css";
+@import "@db-ui/foundations/build/styles/fonts/include.css";
 /* The required styles will normalize css and add focus and default font to body */
-@import "@db-ui/foundations/build/css/init/required.css";
+@import "@db-ui/foundations/build/styles/init/required.css";
 /* The default root adds a default color space (neutral) and a density (regular) */
-@import "@db-ui/foundations/build/css/init/default-root.css";
+@import "@db-ui/foundations/build/styles/init/default-root.css";
 ```
 
 ## Migration
