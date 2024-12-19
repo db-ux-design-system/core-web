@@ -47,13 +47,16 @@
 		]
 	},
 	{
-		"name": "State",
+		"name": "Disabled",
 		"examples": [
 			{
-				"name": "(Default) Enabled"
+				"name": "(Default) False",
+				"props": {
+					"disabled": false
+				}
 			},
 			{
-				"name": "Disabled",
+				"name": "True",
 				"props": {
 					"disabled": true
 				}
@@ -75,19 +78,35 @@
 		]
 	},
 	{
-		"name": "Content",
+		"name": "Show Icon",
 		"examples": [
 			{
-				"name": "(Default) Text"
+				"name": "(Default) False",
+				"props": {
+					"icon": "person",
+					"showIcon": false
+				}
 			},
 			{
-				"name": "Icon & Text",
+				"name": "True",
+				"props": {
+					"icon": "person",
+					"showIcon": true
+				}
+			}
+		]
+	},
+	{
+		"name": "No Text",
+		"examples": [
+			{
+				"name": "(Default) False",
 				"props": {
 					"icon": "person"
 				}
 			},
 			{
-				"name": "Icon",
+				"name": "True",
 				"props": {
 					"icon": "person",
 					"noText": true
@@ -96,13 +115,16 @@
 		]
 	},
 	{
-		"name": "Behaviour",
+		"name": "Width",
 		"examples": [
 			{
-				"name": "(Default) Auto Width"
+				"name": "(Default) Auto",
+				"props": {
+					"width": "auto"
+				}
 			},
 			{
-				"name": "Width full",
+				"name": "Width",
 				"style": { "width": "500px" },
 				"props": {
 					"width": "full"

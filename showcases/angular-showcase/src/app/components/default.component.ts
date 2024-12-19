@@ -72,7 +72,7 @@ export class DefaultComponent implements OnInit {
 	}
 
 	getLink = (variantName: string) => {
-		let currentUrl = window.location.href;
+		let currentUrl = globalThis.location.href;
 		if (!currentUrl.includes('?')) {
 			currentUrl += '?';
 		}

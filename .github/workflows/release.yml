@@ -132,6 +132,7 @@ jobs:
     uses: ./.github/workflows/02-e2e-showcases.yml
     needs: [build-showcase-patternhub, get-playwright-version]
     with:
+      path: ${{ needs.build-showcase-patternhub.outputs.path }}
       version: ${{ needs.get-playwright-version.outputs.version }}
       showcase: patternhub
 
@@ -143,7 +144,7 @@ jobs:
 
   checks-done:
     if: ${{ always() }}
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04 # Use Ubuntu 24.04 explicitly
     steps:
       - name: 🎉 Checks done
         run: |

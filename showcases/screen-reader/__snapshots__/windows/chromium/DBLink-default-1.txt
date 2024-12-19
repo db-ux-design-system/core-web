@@ -1,1 +1,1 @@
-["link, Enabled (Default) slash Hover slash Pressed","unavailable, link, Disabled"]
+["link, (Default) False","unavailable, link, True"]

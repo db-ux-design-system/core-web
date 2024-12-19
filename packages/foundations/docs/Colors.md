@@ -1,8 +1,8 @@
 # Colors
 
--   You use **Colors** to highlight an area with a specific color.
--   You can also use it to change the text color for components with the `*-transparent-semi` colors.
--   Most classes/placeholders will change `color` and `background-color` and will set properties, which will be passed down to adaptive components.
+- You use **Colors** to highlight an area with a specific color.
+- You can also use it to change the text color for components with the `*-transparent-semi` colors.
+- Most classes/placeholders will change `color` and `background-color` and will set properties, which will be passed down to adaptive components.
 
 ## How to use
 
@@ -19,7 +19,7 @@ Or if you only want a single variant e.g. **informational** you can import `@imp
 
 In case that you're either using a bundler (recommended) or importing the CSS within your JavaScript files, please adapt this `@import` syntax accordingly.
 
-For **SCSS** you need to use the import `@use @db-ui/foundations/build/scss/color/placeholder` in your `.scss` file, where you need to reference the specific variable.
+For **SCSS** you need to use the import `@use "@db-ui/foundations/build/scss/color/placeholder"` in your `.scss` file, where you need to reference the specific variable.
 Then you can use e.g. **informational** color by extending our SCSS placeholders like this: `@extend %db-informational-bg-1`.
 
 ## Dark- & Light-Mode

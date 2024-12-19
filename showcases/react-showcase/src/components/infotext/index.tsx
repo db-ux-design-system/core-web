@@ -5,8 +5,14 @@ import { type DBInfotextProps } from '../../../../../output/react/src/components
 import { getVariants } from '../data';
 import { type BaseComponentProps } from '../base-component-data';
 
-const getInfotext = ({ semantic, size, icon, children }: DBInfotextProps) => (
-	<DBInfotext semantic={semantic} size={size} icon={icon}>
+const getInfotext = ({
+	semantic,
+	size,
+	icon,
+	children,
+	showIcon
+}: DBInfotextProps) => (
+	<DBInfotext semantic={semantic} size={size} icon={icon} showIcon={showIcon}>
 		{children}
 	</DBInfotext>
 );

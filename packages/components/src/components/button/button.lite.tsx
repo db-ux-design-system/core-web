@@ -1,9 +1,13 @@
-import { useMetadata, useRef, useStore } from '@builder.io/mitosis';
+import { Show, useMetadata, useRef, useStore } from '@builder.io/mitosis';
 import type { DBButtonProps, DBButtonState } from './model';
-import { cls, getBooleanAsString } from '../../utils';
+import { cls, getBooleanAsString, getHideProp } from '../../utils';
 import { ClickEvent } from '../../shared/model';
 
-useMetadata({});
+useMetadata({
+	angular: {
+		nativeAttributes: ['disabled']
+	}
+});
 
 export default function DBButton(props: DBButtonProps) {
 	const ref = useRef<HTMLButtonElement>(null);
@@ -27,6 +31,7 @@ export default function DBButton(props: DBButtonProps) {
 			disabled={props.disabled}
 			aria-label={props.label}
 			data-icon={props.icon}
+			data-hide-icon={getHideProp(props.showIcon)}
 			data-size={props.size}
 			data-state={props.state}
 			data-width={props.width}
@@ -40,7 +45,9 @@ export default function DBButton(props: DBButtonProps) {
 			onClick={(event: ClickEvent<HTMLButtonElement>) =>
 				state.handleClick(event)
 			}>
-			{props.children}
+			<Show when={props.text} else={props.children}>
+				{props.text}
+			</Show>
 		</button>
 	);
 }

@@ -1,1 +1,1 @@
-["link Enabled (Default)/Hover/Pressed","dimmed link Disabled. This item is dimmed"]
+["link (Default) False","dimmed link True. This item is dimmed"]
