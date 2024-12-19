@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta name="viewport" content="width=device-width"/><title>DB UI Mono</title><meta name="next-head-count" content="3"/><link data-next-font="size-adjust" rel="preconnect" href="/" crossorigin="anonymous"/><link rel="preload" href="/mono/review/docs-color-usage-decision-tree/_next/static/css/2acfda052fa340f6.css" as="style"/><link rel="stylesheet" href="/mono/review/docs-color-usage-decision-tree/_next/static/css/2acfda052fa340f6.css" data-n-g=""/><noscript data-n-css=""></noscript><script defer="" nomodule="" src="/mono/review/docs-color-usage-decision-tree/_next/static/chunks/polyfills-78c92fac7aa8fdd8.js"></script><script src="/mono/review/docs-color-usage-decision-tree/_next/static/chunks/webpack-3161d793b14cdc90.js" defer=""></script><script src="/mono/review/docs-color-usage-decision-tree/_next/static/chunks/framework-fb999dd119b6be4b.js" defer=""></script><script src="/mono/review/docs-color-usage-decision-tree/_next/static/chunks/main-9cc413dfeee0d5ad.js" defer=""></script><script src="/mono/review/docs-color-usage-decision-tree/_next/static/chunks/pages/_app-63fef9cd8a19fb22.js" defer=""></script><script src="/mono/review/docs-color-usage-decision-tree/_next/static/chunks/pages/components/navigation/navigation/docs/Angular-bb455c8acc5c3e44.js" defer=""></script><script src="/mono/review/docs-color-usage-decision-tree/_next/static/iCy-18bj7HKcrWlsCzv1J/_buildManifest.js" defer=""></script><script src="/mono/review/docs-color-usage-decision-tree/_next/static/iCy-18bj7HKcrWlsCzv1J/_ssgManifest.js" defer=""></script></head><body><div id="__next"><h2 id="angular">Angular<a class="header-link" href="/mono/review/docs-color-usage-decision-tree/components/navigation/navigation/docs/Angular?current=angular"><span aria-hidden="true" class="db-icon" data-icon="paper_clip"></span>angular<!-- --> anchor link</a></h2>
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8" data-next-head=""/><meta name="viewport" content="width=device-width" data-next-head=""/><title data-next-head="">DB UI Mono</title><link data-next-font="size-adjust" rel="preconnect" href="/" crossorigin="anonymous"/><link rel="preload" href="/mono/review/docs-color-usage-decision-tree/_next/static/css/8ddde8ad7cb38231.css" as="style"/><link rel="stylesheet" href="/mono/review/docs-color-usage-decision-tree/_next/static/css/8ddde8ad7cb38231.css" data-n-g=""/><noscript data-n-css=""></noscript><script defer="" nomodule="" src="/mono/review/docs-color-usage-decision-tree/_next/static/chunks/polyfills-42372ed130431b0a.js"></script><script src="/mono/review/docs-color-usage-decision-tree/_next/static/chunks/webpack-5accb66153e92900.js" defer=""></script><script src="/mono/review/docs-color-usage-decision-tree/_next/static/chunks/framework-9a90c2172de869b8.js" defer=""></script><script src="/mono/review/docs-color-usage-decision-tree/_next/static/chunks/main-3a615be90b97fcdf.js" defer=""></script><script src="/mono/review/docs-color-usage-decision-tree/_next/static/chunks/pages/_app-4fecb8e50d87d226.js" defer=""></script><script src="/mono/review/docs-color-usage-decision-tree/_next/static/chunks/pages/components/navigation/navigation/docs/Angular-704ac231c0c77bea.js" defer=""></script><script src="/mono/review/docs-color-usage-decision-tree/_next/static/hg0Glzs3anmNUWhYRkWq_/_buildManifest.js" defer=""></script><script src="/mono/review/docs-color-usage-decision-tree/_next/static/hg0Glzs3anmNUWhYRkWq_/_ssgManifest.js" defer=""></script></head><body><div id="__next"><h2 id="angular">Angular<a class="header-link" href="/mono/review/docs-color-usage-decision-tree/components/navigation/navigation/docs/Angular?current=angular"><span aria-hidden="true" class="db-icon" data-icon="paper_clip"></span>angular<!-- --> anchor link</a></h2>
 <p>For general installation and configuration look at the <a target="_blank" referrerPolicy="no-referrer" href="https://www.npmjs.com/package/@db-ui/ngx-components">ngx-components</a> package.</p>
 <h3 id="load-component">Load component<a class="header-link" href="/mono/review/docs-color-usage-decision-tree/components/navigation/navigation/docs/Angular?current=load-component"><span aria-hidden="true" class="db-icon" data-icon="paper_clip"></span>load-component<!-- --> anchor link</a></h3>
 <pre><code class="language-ts">// app.component.ts
@@ -15,16 +15,18 @@ import { DBNavigation } from &#x27;@db-ui/ngx-components&#x27;;
 <pre><code class="language-html">&lt;!-- app.component.html --&gt;
 
 &lt;db-navigation&gt;
-	&lt;db-navigation-item [active]=&quot;true&quot;&gt;
+	&lt;db-navigation-item&gt;
 		&lt;ng-container sub-navigation&gt;
-			&lt;db-navigation-item [active]=&quot;true&quot;&gt;
+			&lt;db-navigation-item&gt;
 				&lt;ng-container *dbNavigationContent&gt;
 					Sub-Navi-Item 1
 				&lt;/ng-container&gt;
 				&lt;ng-container sub-navigation&gt;
-					&lt;db-navigation-item [active]=&quot;true&quot;&gt;
+					&lt;db-navigation-item&gt;
 						&lt;ng-container *dbNavigationContent&gt;
-							&lt;a href=&quot;#&quot;&gt;Sub-Sub-Navi-Item 1&lt;/a&gt;
+							&lt;a href=&quot;#&quot; aria-current=&quot;page&quot;
+								&gt;Sub-Sub-Navi-Item 1&lt;/a
+							&gt;
 						&lt;/ng-container&gt;
 					&lt;/db-navigation-item&gt;
 					&lt;db-navigation-item&gt;
@@ -42,7 +44,7 @@ import { DBNavigation } from &#x27;@db-ui/ngx-components&#x27;;
 		&lt;/ng-container&gt;
 		&lt;ng-container *dbNavigationContent&gt; Navi-Item 1 &lt;/ng-container&gt;
 	&lt;/db-navigation-item&gt;
-	&lt;db-navigation-item icon=&quot;user&quot;&gt;
+	&lt;db-navigation-item icon=&quot;person&quot;&gt;
 		&lt;ng-container *dbNavigationContent&gt;
 			&lt;a href=&quot;#&quot;&gt;Navi-Item 2&lt;/a&gt;
 		&lt;/ng-container&gt;
@@ -55,14 +57,9 @@ import { DBNavigation } from &#x27;@db-ui/ngx-components&#x27;;
 &lt;/db-navigation&gt;
 </code></pre>
 <h3 id="angular-router-and-active-state-handling">Angular Router and active state handling<a class="header-link" href="/mono/review/docs-color-usage-decision-tree/components/navigation/navigation/docs/Angular?current=angular-router-and-active-state-handling"><span aria-hidden="true" class="db-icon" data-icon="paper_clip"></span>angular-router-and-active-state-handling<!-- --> anchor link</a></h3>
-<p>You can set the property <code>active</code> to a boolean value as in the example above.
-It will cause the navigation item to render in active style and implicitly
-set <code>aria-current=&quot;page&quot;</code> to the list element.</p>
-<p>The component will also check for child element set to <code>aria-current=&quot;page&quot;</code>.
-Such elements are also displayed in active state.
-This makes the component <a target="_blank" referrerPolicy="no-referrer" href="https://angular.dev/best-practices/a11y#active-links-identification">integration with the Angular Router</a> way more elegant
-compared to the first variant.</p>
+<p>We recommend using the automatic <a target="_blank" referrerPolicy="no-referrer" href="https://angular.dev/best-practices/a11y#active-links-identification">integration with the Angular Router</a>. This is way more elegant than setting the aria attribute to the anchor yourself.</p>
 <p>The component first needs to import the <code>RouterLink</code> and <code>RouterLinkActive</code> directives.</p>
+<p>For other purposes, <code>NavigationItems</code> themselves can also be set to active with their prop <code>[active]=&quot;true&quot;</code>. However, this does not guarantee correct a11y.</p>
 <pre><code class="language-ts">// app.component.ts
 import { RouterLink, RouterLinkActive } from &#x27;@angular/router&#x27;;
 import { DBMainNavigation } from &#x27;@db-ui/ngx-components&#x27;;
@@ -113,4 +110,4 @@ The active style is automatically set once an item receives the <code>aria-curre
 		&lt;/ng-container&gt;
 	&lt;/db-navigation-item&gt;
 &lt;/db-navigation&gt;
-</code></pre></div><script id="__NEXT_DATA__" type="application/json">{"props":{"pageProps":{}},"page":"/components/navigation/navigation/docs/Angular","query":{},"buildId":"iCy-18bj7HKcrWlsCzv1J","assetPrefix":"/mono/review/docs-color-usage-decision-tree","nextExport":true,"autoExport":true,"isFallback":false,"scriptLoader":[]}</script></body></html>
+</code></pre></div><script id="__NEXT_DATA__" type="application/json">{"props":{"pageProps":{}},"page":"/components/navigation/navigation/docs/Angular","query":{},"buildId":"hg0Glzs3anmNUWhYRkWq_","assetPrefix":"/mono/review/docs-color-usage-decision-tree","nextExport":true,"autoExport":true,"isFallback":false,"scriptLoader":[]}</script></body></html>
