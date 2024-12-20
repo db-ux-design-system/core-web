@@ -30,7 +30,7 @@ If you just need the styling follow this:
 
 Import the styles in `scss` or `css`. Based on your technology the file names could be different.
 
-- relatve: asset path point to `../assets`
+- relative: asset path point to `../assets`
 - webpack: asset path point to `~@db-ui/foundations/assets`
 - rollup: asset path point to `@db-ui/foundations/assets`
 
