@@ -21,16 +21,16 @@ npm i @db-ui/v-components
 
 Import the styles in scss or css. Based on your technology the file names could be different.
 
--   Default (db-ui-42): points to `../assets`
--   Rollup (db-ui-42-rollup): points to `@db-ui/foundations/assets`
--   Webpack (db-ui-42-webpack): points to `~@db-ui/foundations/assets`
+-   Default (relative): points to `../assets`
+-   Rollup (rollup): points to `@db-ui/foundations/assets`
+-   Webpack (webpack): points to `~@db-ui/foundations/assets`
 
 <details>
   <summary><strong>SCSS</strong></summary>
 
 ```scss
 // style.scss
-@forward "@db-ui/components/build/styles/db-ui-42-rollup";
+@forward "@db-ui/components/build/styles/rollup";
 ```
 
 ```ts
@@ -44,12 +44,12 @@ import "./style.scss";
 
 ```ts
 // main.ts
-import "@db-ui/components/build/styles/db-ui-42-rollup.css";
+import "@db-ui/components/build/styles/rollup.css";
 ```
 
 </details>
 
-> **Note:** The `db-ui-42` file contains optional and all components styles. If you consider performance issues see [@db-ui/components](https://www.npmjs.com/package/@db-ui/components) for more information.
+> **Note:** The `relative` file contains optional and all components styles. If you consider performance issues see [@db-ui/components](https://www.npmjs.com/package/@db-ui/components) for more information.
 
 ## Usage
 

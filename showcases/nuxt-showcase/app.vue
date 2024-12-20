@@ -5,8 +5,7 @@
 </template>
 
 <script setup lang="ts">
-import "@db-ui/components/build/styles/db-ui-42-rollup.css";
-import "@db-ui/foundations/build/css/colors/classes/all.css";
+import "@db-ui/components/build/styles/rollup.css";
 import "../../showcase-styles.css";
 import { provide } from "vue";
 

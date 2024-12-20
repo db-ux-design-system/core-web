@@ -7,7 +7,7 @@
 @use "@db-ui/foundations/build/styles/helpers";
 @use "component";
 
-@forward "visually-hidden";
+@forward "../visually-hidden";
 
 $dropdown-icon-transition: transform variables.$db-transition-straight-emotional;
 $dropdown-icon-transform: rotate(-180deg);

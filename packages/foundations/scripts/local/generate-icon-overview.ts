@@ -18,7 +18,7 @@ const generateIconOverview = () => {
 		<title>Icon Overview</title>
 		<link
 			rel="stylesheet"
-			href="/build/css/db-ui-foundations-absolute.css"
+			href="/build/css/absolute.css"
 		/>
 		<link rel="stylesheet" href="/build/css/default-theme.css" />
 		<link rel="stylesheet" href="/build/css/internals.css" />

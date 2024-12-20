@@ -1,7 +1,3 @@
-@use "custom-elements";
-
-@forward "@db-ui/foundations/build/styles/index";
-@forward "component-animations";
 @forward "../components/button/button";
 @forward "../components/icon/icon";
 @forward "../components/tab-item/tab-item";
@@ -34,14 +30,3 @@
 @forward "../components/tab-panel/tab-panel";
 @forward "../components/switch/switch";
 @forward "../components/stack/stack";
-
-// angular-workaround
-@each $custom-element in custom-elements.$custom-elements {
-	#{$custom-element} {
-		display: contents;
-	}
-}
-
-db-notification {
-	inline-size: inherit;
-}

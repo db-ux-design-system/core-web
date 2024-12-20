@@ -1,6 +1,6 @@
 @use "@db-ui/foundations/build/styles/variables";
 @use "@db-ui/foundations/build/styles/screen-sizes";
-@use "../../styles/component";
+@use "../../styles/internal/component";
 
 $default-section-padding-inline: variables.$db-spacing-fixed-md;
 

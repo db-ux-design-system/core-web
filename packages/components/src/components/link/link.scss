@@ -6,7 +6,7 @@
 @use "@db-ui/foundations/build/styles/helpers";
 @use "@db-ui/foundations/build/styles/icons";
 @use "@db-ui/foundations/build/styles/colors";
-@use "../../styles/link-components";
+@use "../../styles/internal/link-components";
 
 .db-link {
 	@extend %db-default-link;

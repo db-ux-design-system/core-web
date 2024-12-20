@@ -3,7 +3,7 @@
 Load SCSS globally in a `index.scss` file and import it in your `main.ts`/`main.js` file in your app:
 
 ```scss
-@forward "@db-ui/components/build/styles/db-ui-42-rollup";
+@forward "@db-ui/components/build/styles/rollup";
 ```
 
 Use component:

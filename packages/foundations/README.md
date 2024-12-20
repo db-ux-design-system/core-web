@@ -23,7 +23,7 @@ npm i @db-ui/foundations
 
 You use this library if you need some colors, spacings etc.
 
-> **tl;dr:** Use the default theme and the bundled styles by importing `default-theme.css` && `[relative|absolute|rollup|webpack].css`.
+> **tl;dr:** Use the default theme and the bundled styles by importing [relative|absolute|rollup|webpack].css`.
 
 ---
 
@@ -55,11 +55,8 @@ CSS:
 
 ```css
 /* index.css */
-@import "@db-ui/foundations/build/styles/default-theme.css";
-@import "@db-ui/foundations/build/styles/index.css";
+@import "@db-ui/foundations/build/styles/relative.css";
 
-/* Optional: Use [data-icon] everywhere */
-@import "@db-ui/foundations/build/styles/icons/include.css";
 /* Optional: Use [data-divider] & [data-focus] everywhere */
 @import "@db-ui/foundations/build/styles/helpers/classes/all.css";
 /* Optional: Use [data-density] everywhere */
@@ -74,11 +71,9 @@ JS/TS:
 
 ```ts
 // main.[js|ts]
-import "@db-ui/foundations/build/styles/default-theme.css";
-import "@db-ui/foundations/build/styles/index.css";
+/* index.css */
+import "@db-ui/foundations/build/styles/relative.css";
 
-/* Optional: Use [data-icon] everywhere */
-import "@db-ui/foundations/build/styles/icons/include.css";
 /* Optional: Use [data-divider] & [data-focus] everywhere */
 import "@db-ui/foundations/build/styles/helpers/classes/all.css";
 /* Optional: Use [data-density] everywhere */
@@ -130,11 +125,8 @@ SCSS:
 
 ```scss
 /* index.css */
-@forward "@db-ui/foundations/build/styles/default-theme";
-@forward "@db-ui/foundations/build/styles/index";
+@forward "@db-ui/foundations/build/styles/relative";
 
-/* Optional: Use [data-icon] everywhere */
-@forward "@db-ui/foundations/build/styles/icons/include";
 /* Optional: Use [data-divider] & [data-focus] everywhere */
 @forward "@db-ui/foundations/build/styles/helpers/classes/all";
 /* Optional: Use [data-density] everywhere */
@@ -151,11 +143,8 @@ JS/TS:
 
 ```ts
 // main.[js|ts]
-import "@db-ui/foundations/build/styles/default-theme.scss";
-import "@db-ui/foundations/build/styles/index.scss";
+import "@db-ui/foundations/build/styles/relative.scss";
 
-/* Optional: Use [data-icon] everywhere */
-import "@db-ui/foundations/build/styles/icons/include.scss";
 /* Optional: Use [data-divider] & [data-focus] everywhere */
 import "@db-ui/foundations/build/styles/helpers/classes/all.scss";
 /* Optional: Use [data-density] everywhere */
@@ -291,17 +280,38 @@ In your `tailwind.css` add this to enable default headlines:
 
 ## Optimize dependencies
 
-If you want to optimize the size of the loaded styles, you might skip loading `@db-ui/foundations/build/styles/relative.css`.But there are some required styles for this Design-System to work properly.
+If you want to optimize the size of the loaded styles, you might skip loading `@db-ui/foundations/build/styles/[relative|absolute|rollup|webpack].css`. But there are some required styles for this Design-System to work properly.
+
+### Theme, Assets & Init
 
 ```css
-/* The theme contains all prop required for components like spacings, colors, ... */
+/* The theme contains all prop required for components like spacings, colors, etc. You can replace it with your own theme. */
 @import "@db-ui/foundations/build/styles/default-theme.css";
-/* The font include uses default font families based on your bundling paths (relative, absolute, webpack, rollup) */
-@import "@db-ui/foundations/build/styles/fonts/include.css";
+/* The font include uses default font families based on your bundling paths (relative, absolute, webpack, rollup). You can replace it with your own fonts. */
+@import "@db-ui/foundations/build/styles/fonts/relative.css";
+/* The icon include uses default icons based on your bundling paths (relative, absolute, webpack, rollup). You can replace it with your own icons. */
+@import "@db-ui/foundations/build/styles/icons/relative.css";
+/* The index file will add some additional styles to normalize html defaults and add some default settings like default density, etc. */
+@import "@db-ui/foundations/build/styles/index.css";
+```
+
+#### Optimize index
+
+You are able to optimize the initial settings as well:
+
+```css
 /* The required styles will normalize css and add focus and default font to body */
-@import "@db-ui/foundations/build/styles/init/required.css";
-/* The default root adds a default color space (neutral) and a density (regular) */
-@import "@db-ui/foundations/build/styles/init/default-root.css";
+@import "@db-ui/foundations/build/styles/defaults/default-required.css";
+/* The default setting for :root, adds a color space (neutral-bg-basic-level-1) and a density (regular). */
+@import "@db-ui/foundations/build/styles/defaults/default-root.css";
+/* Adds font-sizes & line-heights to headlines and paragraph tags. You probably need this, but you might strip some styles if you don't need the range of h1-h6. */
+@import "@db-ui/foundations/build/styles/defaults/default-fonts.css";
+/* Adds "[data-icon]" and other icon related styles. If you don't need icons in your application you could skip this. */
+@import "@db-ui/foundations/build/styles/defaults/default-icons.css";
+/* Adds "[data-elevation]" and other icon related styles. If you don't need elevation in your application you could skip this. */
+@import "@db-ui/foundations/build/styles/defaults/default-elevation.css";
+/* Adds defaults for `blockquote`, `code` and `pre`. If you don't need them in your application you could skip this. */
+@import "@db-ui/foundations/build/styles/defaults/default-code.css";
 ```
 
 ## Migration

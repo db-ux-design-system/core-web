@@ -3,9 +3,9 @@
 @use "@db-ui/foundations/build/styles/fonts";
 @use "@db-ui/foundations/build/styles/colors";
 @use "@db-ui/foundations/build/styles/icons";
-@use "../../styles/component";
-@use "../../styles/form-components";
-@use "../../styles/scrollbar";
+@use "../../styles/internal/component";
+@use "../../styles/internal/form-components";
+@use "../../styles/internal/scrollbar";
 
 %resize-textarea {
 	&[data-resize="none"] {

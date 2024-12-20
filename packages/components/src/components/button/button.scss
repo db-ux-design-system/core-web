@@ -5,8 +5,8 @@
 @use "@db-ui/foundations/build/styles/colors";
 @use "@db-ui/foundations/build/styles/icons";
 @use "@db-ui/foundations/build/styles/helpers";
-@use "../../styles/component";
-@use "../../styles/button-components";
+@use "../../styles/internal/component";
+@use "../../styles/internal/button-components";
 
 .db-button {
 	@extend %default-interactive-component;

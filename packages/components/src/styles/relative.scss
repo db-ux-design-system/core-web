@@ -1,11 +1,13 @@
 /* This is a predefined beginner friendly bundle with default asset-paths (../assets) */
 
+// Bundle all components
 @forward "./index";
-// Bundle default theme
-@forward "@db-ui/foundations/build/css/default-theme";
+
+// Bundle foundation defaults
+@forward "@db-ui/foundations/build/styles/relative";
 
 // Bundle optionals
-@forward "@db-ui/foundations/build/styles/icons/include";
+@forward "component-animations";
 @forward "@db-ui/foundations/build/styles/helpers/classes/all";
 @forward "@db-ui/foundations/build/styles/density/classes/all";
 @forward "@db-ui/foundations/build/styles/fonts/classes/all";

@@ -3,8 +3,8 @@
 @use "@db-ui/foundations/build/styles/fonts";
 @use "@db-ui/foundations/build/styles/colors";
 @use "@db-ui/foundations/build/styles/helpers";
-@use "../../styles/component";
-@use "../../styles/form-components";
+@use "../../styles/internal/component";
+@use "../../styles/internal/form-components";
 
 %center-icon {
 	&::before {

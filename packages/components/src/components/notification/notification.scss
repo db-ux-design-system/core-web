@@ -4,8 +4,8 @@
 @use "@db-ui/foundations/build/styles/colors";
 @use "@db-ui/foundations/build/styles/icons";
 @use "@db-ui/foundations/build/styles/screen-sizes";
-@use "../../styles/component";
-@use "../../styles/link-components";
+@use "../../styles/internal/component";
+@use "../../styles/internal/link-components";
 @use "./notification-grid-default";
 @use "./notification-grid-overlay";
 @use "./notification-grid-non-overlay";

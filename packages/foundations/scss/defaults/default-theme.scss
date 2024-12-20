@@ -1,6 +1,6 @@
-@use "./colors/default-color-scheme";
-@use "./colors/default-palette";
-@use "./colors/placeholder";
+@use "../colors/default-color-scheme";
+@use "../colors/default-palette";
+@use "../colors/placeholder";
 
 @include default-palette.get-color-palette;
 @include default-palette.get-additional-color-palette;

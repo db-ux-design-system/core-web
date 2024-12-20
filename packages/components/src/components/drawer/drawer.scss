@@ -3,8 +3,8 @@
 @use "@db-ui/foundations/build/styles/helpers";
 @use "@db-ui/foundations/build/styles/animation";
 @use "@db-ui/foundations/build/styles/colors";
-@use "../../styles/component";
-@use "./../../styles/dialog-init";
+@use "../../styles/internal/component";
+@use "../../styles/dialog-init";
 
 %direction-right {
 	inset-inline: auto 0;

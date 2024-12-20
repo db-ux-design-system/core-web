@@ -3,7 +3,7 @@
 @use "@db-ui/foundations/build/styles/fonts";
 @use "@db-ui/foundations/build/styles/helpers";
 @use "@db-ui/foundations/build/styles/icons";
-@use "../../styles/form-components";
+@use "../../styles/internal/form-components";
 
 $switch-fixed-padding: helpers.px-to-rem(2);
 

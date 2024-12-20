@@ -3,7 +3,7 @@
 @use "@db-ui/foundations/build/styles/helpers";
 @use "@db-ui/foundations/build/styles/density";
 @use "@db-ui/foundations/build/styles/colors";
-@use "../../styles/component";
+@use "../../styles/internal/component";
 
 .db-header {
 	background-color: colors.$db-adaptive-bg-basic-level-1-default;

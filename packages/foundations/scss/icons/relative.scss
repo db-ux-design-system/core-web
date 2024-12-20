@@ -1,7 +1,7 @@
-@use "icon-helpers";
+@use "index";
 @use "../default.assets-paths" as assets-paths;
 
-@each $variant in icon-helpers.$default-icon-variants {
+@each $variant in index.$default-icon-variants {
 	@font-face {
 		font-display: block;
 		font-family: "db-ux-#{$variant}";
@@ -46,63 +46,5 @@
 		&::after {
 			--db-icon-font-family: "db-ux-#{$variant}";
 		}
-	}
-}
-
-[data-icon],
-[data-icon-before],
-[data-icon-after] {
-	&:is(span) {
-		display: inline-flex;
-		vertical-align: baseline;
-	}
-}
-
-[data-icon],
-[data-icon-before] {
-	&::before {
-		@extend %icon !optional;
-
-		margin-inline-end: icon-helpers.$default-icon-margin-end;
-	}
-}
-
-[data-hide-icon="true"],
-[data-hide-icon-before="true"],
-[data-icon="none"],
-[data-icon-before="none"] {
-	&::before {
-		content: none;
-	}
-}
-
-[data-icon-after] {
-	&::after {
-		@extend %icon !optional;
-
-		@include icon-helpers.icon-content(
-			icon-helpers.$default-icon-content-after
-		);
-
-		margin-inline-start: icon-helpers.$default-icon-margin-start;
-	}
-}
-
-[data-hide-icon-after="true"],
-[data-icon-after="none"] {
-	&::after {
-		content: none;
-	}
-}
-
-// Providing a mechanism for text replacements
-.is-icon-text-replace {
-	&[data-icon],
-	&[data-icon-before] {
-		@include icon-helpers.is-icon-text-replace();
-	}
-
-	&[data-icon-after] {
-		@include icon-helpers.is-icon-text-replace("after");
 	}
 }

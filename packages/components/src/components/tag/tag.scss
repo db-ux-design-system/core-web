@@ -5,10 +5,10 @@
 @use "@db-ui/foundations/build/styles/icons";
 @use "@db-ui/foundations/build/styles/helpers";
 @use "@db-ui/foundations/build/styles/colors";
-@use "../../styles/button-components";
-@use "../../styles/tag-components";
-@use "../../styles/icon-passing";
-@use "../../styles/component";
+@use "../../styles/internal/button-components";
+@use "../../styles/internal/tag-components";
+@use "../../styles/internal/icon-passing";
+@use "../../styles/internal/component";
 
 %no-text {
 	&[data-no-text="true"] {

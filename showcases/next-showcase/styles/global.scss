@@ -1,6 +1,4 @@
-@forward "@db-ui/components/build/styles/db-ui-42-webpack";
-@forward "@db-ui/foundations/build/css/colors/classes/all";
-@forward "@db-ui/foundations/build/css/fonts/classes/all";
+@forward "@db-ui/components/build/styles/webpack";
 
 /* stylelint-disable-next-line selector-id-pattern, selector-max-id */
 #__next {
