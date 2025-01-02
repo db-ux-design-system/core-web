@@ -19,7 +19,7 @@ on:
 jobs:
   publish:
     name: Publish latest package versions to GitHub Packages
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04 # Use Ubuntu 24.04 explicitly
     permissions:
       id-token: write
       contents: write
