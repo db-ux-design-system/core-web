@@ -155,7 +155,7 @@
 		]
 	},
 	{
-		"name": "Label",
+		"name": "Show Label",
 		"role": "group",
 		"examples": [
 			{
