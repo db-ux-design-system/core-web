@@ -62,7 +62,7 @@
 			}
 
 			&::after {
-				@extend %component-border;
+				@extend %form-component-border;
 
 				@include get-scrolling-workaround();
 

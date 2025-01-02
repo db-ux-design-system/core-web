@@ -5,7 +5,7 @@ on:
 
 jobs:
   dependabot:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04 # Use Ubuntu 24.04 explicitly
     if: ${{ github.actor == 'dependabot[bot]' }}
     steps:
       - name: ⏬ Dependabot metadata

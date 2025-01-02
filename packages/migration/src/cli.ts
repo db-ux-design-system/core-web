@@ -5,14 +5,8 @@ import startProgram from './program';
 import { options } from './data';
 import { migrate } from './migration';
 
-const action = async (functionName: string, options: OptionsType) => {
-	if (functionName === 'migration') {
-		migrate(options, true);
-	} else {
-		console.error(
-			`There is no function for this library named ${functionName}`
-		);
-	}
+const action = async (_: unknown, options: OptionsType) => {
+	migrate(options, true);
 };
 
 startProgram(

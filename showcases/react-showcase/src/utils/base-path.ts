@@ -3,7 +3,7 @@ export const getBasePath = () => {
 		return process.env.BASE_PATH;
 	}
 
-	if (typeof window !== 'undefined') {
+	if (typeof globalThis !== 'undefined') {
 		// eslint-disable-next-line @typescript-eslint/dot-notation
 		return window['env']?.BASE_URL;
 	}

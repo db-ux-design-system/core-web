@@ -52,13 +52,43 @@
     - text: exclamation_mark_triangle" / " Headline
     - paragraph: Warning
     - button "Close Button"
-  - link "Behaviour arrow_up_right\" / \""
+  - link "Closeable arrow_up_right\" / \""
   - article:
-    - paragraph: (Default) Permanent
+    - paragraph: (Default) False
   - article:
-    - paragraph: Closeable
+    - paragraph: "True"
     - button "Close Button"
-  - link "Content - Variant:Docked arrow_up_right\" / \""
+  - link "Visual arrow_up_right\" / \""
+  - article:
+    - paragraph: (Default) Icon
+  - article:
+    - img "this is a fancy placeholder"
+    - paragraph: Image
+  - link "Show Icon arrow_up_right\" / \""
+  - article:
+    - paragraph: (Default) True
+  - article:
+    - paragraph: "False"
+  - link "Link Variant arrow_up_right\" / \""
+  - article:
+    - paragraph: (Default) Block
+    - link "Textlink"
+  - article:
+    - paragraph: Inline
+    - link "Textlink"
+  - link "Show Headline arrow_up_right\" / \""
+  - article:
+    - text: Headline
+    - paragraph: (Default) True
+  - article:
+    - paragraph: "False"
+  - link "Show Timestamp arrow_up_right\" / \""
+  - article:
+    - paragraph: (Default) False
+  - article:
+    - paragraph: "True"
+    - text: 10 min ago
+  - link "Examples - Variant:Docked arrow_up_right\" / \""
   - article:
     - paragraph: Text
   - article:
@@ -83,7 +113,7 @@
     - text: Headline
     - paragraph: Text & Icon & Headline & Textlink Inline & Cloaseable
     - link "Textlink"
-  - link "Content - Variant:Standalone arrow_up_right\" / \""
+  - link "Examples - Variant:Standalone arrow_up_right\" / \""
   - article:
     - paragraph: Text
   - article:
@@ -108,7 +138,7 @@
     - text: Headline
     - paragraph: Text & Icon & Headline & Textlink Inline & Cloaseable
     - link "Textlink"
-  - link "Content - Variant:Overlay arrow_up_right\" / \""
+  - link "Examples - Variant:Overlay arrow_up_right\" / \""
   - article:
     - paragraph: Text
   - article:

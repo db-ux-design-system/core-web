@@ -23,7 +23,7 @@ const testA11y = () => {
 		const component = await mount(comp);
 		const snapshot = await component.ariaSnapshot();
 		// Some wired issue with react and playwright ariaSnapshot in this case
-		const playwrightReactIssueFix = snapshot.replace(': on', '');
+		const playwrightReactIssueFix = snapshot.replace(': "on"', '');
 		expect(playwrightReactIssueFix).toMatchSnapshot(
 			`${testInfo.testId}.yaml`
 		);

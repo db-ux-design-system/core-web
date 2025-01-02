@@ -4,7 +4,8 @@ import defaultComponentVariants from "../../../../shared/switch.json";
 import {
 	DBSwitch,
 	DBInfotext,
-	DBCheckbox
+	DBCheckbox,
+	DBInput
 } from "../../../../../output/vue/src";
 </script>
 
@@ -17,11 +18,13 @@ import {
 				:visualAid="exampleProps?.visualAid"
 				:checked="exampleProps?.checked"
 				:disabled="exampleProps?.disabled"
+				:required="exampleProps?.required"
 				:showLabel="exampleProps?.showLabel"
 				:size="exampleProps?.size"
 				:emphasis="exampleProps?.emphasis"
 				:icon="exampleProps?.icon"
 				:iconAfter="exampleProps?.iconAfter"
+				:validation="exampleProps?.validation"
 			>
 				{{ exampleName }}
 			</DBSwitch>

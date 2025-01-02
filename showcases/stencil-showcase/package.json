@@ -23,7 +23,7 @@
     "@angular/platform-browser": "17.3.12",
     "@angular/platform-browser-dynamic": "17.3.12",
     "@angular/router": "17.3.12",
-    "@stencil/core": "4.22.3",
+    "@stencil/core": "4.23.0",
     "rxjs": "~7.8.1",
     "tslib": "^2.8.1",
     "zone.js": "~0.14.10"
@@ -33,7 +33,7 @@
     "@angular/cli": "17.3.11",
     "@angular/compiler-cli": "17.3.12",
     "ng-packagr": "17.3.0",
-    "npm-run-all": "4.1.5",
+    "npm-run-all2": "7.0.2",
     "typescript": "^5.4.5"
   },
   "overrides": {
