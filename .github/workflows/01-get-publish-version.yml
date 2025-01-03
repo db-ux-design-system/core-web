@@ -59,7 +59,7 @@ jobs:
           PRE_RELEASE: ${{ steps.releaseCheck.outputs.preRelease }}
           TAG: ${{ steps.extractTag.outputs.tag }}
         run: |
-          OUTPUT=$(./.github/scripts/package-version.sh)
+          OUTPUT=$(node .github/scripts/package-version.js)
           echo "version=$OUTPUT" >> $GITHUB_OUTPUT
 
       - name: 🌳 Log Valid Version
