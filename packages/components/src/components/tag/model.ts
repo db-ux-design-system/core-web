@@ -15,8 +15,8 @@ export type TagBehaviourType = (typeof TagBehaviourList)[number];
 export type DBTagDefaultProps = {
 	/**
 	 *	Defines the behaviour of the component:
-	 *	- static: default behaviour without remove button
-	 *  - removable: add a remove button at the end of the tag
+	 *	* static: default behaviour without remove button
+	 *  * removable: add a remove button at the end of the tag
 	 */
 	behaviour?: TagBehaviourType;
 
