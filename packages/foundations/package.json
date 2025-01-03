@@ -51,7 +51,7 @@
     "nodemon": "3.1.9",
     "sass": "1.77.4",
     "tsx": "^4.19.2",
-    "vite": "^6.0.6"
+    "vite": "^6.0.7"
   },
   "publishConfig": {
     "registry": "https://registry.npmjs.org/",
