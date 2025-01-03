@@ -31,9 +31,14 @@ jobs:
         uses: ./.github/actions/npm-cache
 
       - name: 💃🕺 Check if release or prerelease
+        uses: actions/github-script@v7
         id: releaseCheck
+        with:
+          script: |
+            const { default: getRelease } = await import('${{ github.workspace }}/.github/scripts/get-release.js');
+            return await getRelease();
         run: |
-          chmod +rx ./.github/scripts/get-release.sh
+          chmod +rx ./.github/scripts/
           OUTPUT=$(./.github/scripts/get-release.sh)
           if [[ $OUTPUT == "RELEASE" ]];
           then
