@@ -1,5 +1,3 @@
-import process from 'process';
-
 const GITHUB_REF = process.env.GITHUB_REF;
 const GITHUB_ACTOR = process.env.GITHUB_ACTOR;
 const GITHUB_COMMITISH = process.env.GITHUB_COMMITISH;
