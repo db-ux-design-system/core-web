@@ -14,7 +14,7 @@ export type DefaultTestType = {
 };
 
 export type DefaultSnapshotTestType = {
-	preScreenShot?: (page: Page) => Promise<void>;
+	preScreenShot?: (page: Page, project: FullProject) => Promise<void>;
 } & DefaultTestType;
 
 export type AxeCoreTestType = {
@@ -76,7 +76,7 @@ export const getDefaultScreenshotTest = ({
 	fixedHeight,
 	preScreenShot
 }: DefaultSnapshotTestType) => {
-	test(`should match screenshot`, async ({ page }) => {
+	test(`should match screenshot`, async ({ page }, { project }) => {
 		const showcase = process.env.showcase;
 		const diffPixel = process.env.diff;
 		const maxDiffPixelRatio = process.env.ratio;
@@ -105,7 +105,7 @@ export const getDefaultScreenshotTest = ({
 		config.mask = [header];
 
 		if (preScreenShot) {
-			await preScreenShot(page);
+			await preScreenShot(page, project);
 		}
 
 		await expect(page).toHaveScreenshot(config);
@@ -216,11 +216,14 @@ export const runAriaSnapshotTest = ({
 	fixedHeight,
 	preScreenShot
 }: DefaultSnapshotTestType) => {
-	test(`should have same aria-snapshot`, async ({ page }, { title }) => {
+	test(`should have same aria-snapshot`, async ({ page }, {
+		project,
+		title
+	}) => {
 		await gotoPage(page, path, lvl1, fixedHeight, density);
 
 		if (preScreenShot) {
-			await preScreenShot(page);
+			await preScreenShot(page, project);
 		}
 
 		await page.waitForTimeout(1000); // We wait a little bit until everything loaded
