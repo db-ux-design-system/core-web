@@ -590,14 +590,14 @@ export type NavigationBackButtonProps = {
 
 export type AriaLabelledByProps = {
 	/**
-	 * Pass aria-labelledby to inner element
+	 * Pass `aria-labelledby` to inner element
 	 */
 	labelledBy?: string;
 };
 
 export type AriaControlsProps = {
 	/**
-	 * Pass aria-controls to inner element
+	 * Pass `aria-controls` to inner element
 	 */
 	controls?: string;
 };
