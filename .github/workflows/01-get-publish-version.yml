@@ -38,7 +38,6 @@ jobs:
             const { default: getRelease } = await import('${{ github.workspace }}/.github/scripts/get-release.js');
             return await getRelease();
         run: |
-          chmod +rx ./.github/scripts/
           OUTPUT=$(./.github/scripts/get-release.sh)
           if [[ $OUTPUT == "RELEASE" ]];
           then
