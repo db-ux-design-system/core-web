@@ -5,11 +5,7 @@ const RELEASE = process.env.RELEASE === 'true';
 const PRE_RELEASE = process.env.PRE_RELEASE === 'true';
 const GITHUB_SHA = process.env.GITHUB_SHA;
 
-function getSemverVersion(tag) {
-	return findVersions(tag);
-}
-
-const SEMVER_VERSION = getSemverVersion(TAG);
+const SEMVER_VERSION = findVersions(TAG).toString();
 
 if (RELEASE) {
 	if (SEMVER_VERSION.includes('-')) {
