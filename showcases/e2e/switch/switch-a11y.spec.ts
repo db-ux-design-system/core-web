@@ -8,8 +8,6 @@ test.describe('DBSwitch', () => {
 	runAxeCoreTest({ path: '03/switch', color: lvl3 });
 	runAxeCoreTest({ path: '03/switch', density: 'functional' });
 	runA11yCheckerTest({
-		path: '03/switch',
-		// It's an issue in the tool: https://github.com/IBMa/equal-access/issues/842
-		aCheckerDisableRules: ['aria_attribute_valid']
+		path: '03/switch'
 	});
 });
