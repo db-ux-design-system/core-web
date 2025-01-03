@@ -12,7 +12,8 @@ test.describe('DBTabs', () => {
 		path,
 		async preScreenShot(page, project) {
 			if (
-				project.name === 'webkit' &&
+				(project.name === 'webkit' ||
+					project.name === 'mobile_safari') &&
 				process.env.showcase.startsWith('vue')
 			) {
 				// There is a bug in webkit where the scroll buttons are not visible 50% of the time
