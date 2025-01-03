@@ -27,6 +27,6 @@
     "@vitejs/plugin-react": "^4.3.4",
     "cross-env": "^7.0.3",
     "typescript": "^5.4.5",
-    "vite": "^6.0.6"
+    "vite": "^6.0.7"
   }
 }
