@@ -18,6 +18,7 @@ test.describe('DBTabs', () => {
 				// There is a bug in webkit where the scroll buttons are not visible 50% of the time
 				// Probably due to the scrollWidth or clientWidth not being calculated correctly
 				// Only in Vue
+				// TODO: Investigate further
 				test.skip();
 			}
 
