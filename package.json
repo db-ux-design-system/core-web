@@ -61,7 +61,6 @@
     "cross-env": "^7.0.3",
     "dotenv": "^16.4.7",
     "eslint-plugin-prettier": "^5.2.1",
-    "find-versions": "^6.0.0",
     "fs-extra": "^11.2.0",
     "glob": "^11.0.0",
     "http-server": "14.1.1",
