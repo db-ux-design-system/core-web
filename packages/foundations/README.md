@@ -5,7 +5,7 @@
 [![Conventional Commits](https://img.shields.io/badge/Conventional%20Commits-1.0.0-yellow.svg)](https://conventionalcommits.org)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](https://makeapullrequest.com)
 
-A library containing all tokens (colors, spacings, font formatting, etc.) and assets (fonts, icons) of [DB UX Design System v3](https://github.com/db-ui/mono).
+A library containing all tokens (colors, spacings, font formatting, etc.) and assets (icons) of [DB UX Design System v3](https://github.com/db-ui/mono).
 
 We currently support:
 
