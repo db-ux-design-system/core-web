@@ -6,7 +6,7 @@ const PRE_RELEASE = process.env.PRE_RELEASE === 'true';
 const GITHUB_SHA = process.env.GITHUB_SHA;
 
 function getSemverVersion(tag) {
-	return findVersions(tag, { loose: true })[0].toString().trim();
+	return findVersions(tag);
 }
 
 const SEMVER_VERSION = getSemverVersion(TAG);
