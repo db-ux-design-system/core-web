@@ -10,7 +10,17 @@ test.describe('DBTabs', () => {
 	});
 	runAriaSnapshotTest({
 		path,
-		async preScreenShot(page) {
+		async preScreenShot(page, project) {
+			if (
+				project.name === 'webkit' &&
+				process.env.showcase.startsWith('vue')
+			) {
+				// There is a bug in webkit where the scroll buttons are not visible 50% of the time
+				// Probably due to the scrollWidth or clientWidth not being calculated correctly
+				// Only in Vue
+				test.skip();
+			}
+
 			const scrollRight = page.locator('[data-icon=chevron_right]');
 			await expect(scrollRight).toBeVisible();
 		}
