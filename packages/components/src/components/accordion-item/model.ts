@@ -1,15 +1,12 @@
 import {
 	GlobalProps,
 	GlobalState,
+	TextProps,
 	ToggleEventProps,
 	ToggleEventState
 } from '../../shared/model';
 
 export type DBAccordionItemDefaultProps = {
-	/**
-	 * Alternative for passing only a string instead of children
-	 */
-	content?: string;
 	/**
 	 * Initial state for the accordion item
 	 */
@@ -21,16 +18,12 @@ export type DBAccordionItemDefaultProps = {
 	/**
 	 * Title of the accordion-item as slot
 	 */
-	headline?: unknown;
+	headline?: any;
 	/**
 	 * Title of the accordion-item as plain text
 	 */
 	headlinePlain?: string;
-	/**
-	 * Set details name for exclusive accordions, see https://chromestatus.com/feature/6710427028815872
-	 */
-	name?: string;
-};
+} & TextProps;
 
 export type DBAccordionItemProps = DBAccordionItemDefaultProps &
 	GlobalProps &

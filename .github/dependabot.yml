@@ -82,3 +82,6 @@ updates:
       mdx-js:
         patterns:
           - "@mdx-js/*"
+      guidepup:
+        patterns:
+          - "@guidepup/*"

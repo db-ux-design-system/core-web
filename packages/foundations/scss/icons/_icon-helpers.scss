@@ -60,22 +60,24 @@ $default-icon-font-size: var(--db-icon-font-size, #{$default-icon-size-rem});
 
 // Icon SCSS mixin
 @mixin set-icon($icon: "", $position: "before") {
-	&::#{$position} {
-		@if $icon != "" {
-			@extend %icon;
+	&:not([data-hide-icon-#{$position}="true"]) {
+		&::#{$position} {
+			@if $icon != "" {
+				@extend %icon;
 
-			@if $position == "before" {
-				--db-icon: "#{$icon}";
+				@if $position == "before" {
+					--db-icon: "#{$icon}";
 
-				margin-inline-end: $default-icon-margin-end;
-			}
+					margin-inline-end: $default-icon-margin-end;
+				}
 
-			@if $position == "after" {
-				--db-icon-after: "#{$icon}";
+				@if $position == "after" {
+					--db-icon-after: "#{$icon}";
 
-				@include icon-content($default-icon-content-after);
+					@include icon-content($default-icon-content-after);
 
-				margin-inline-start: $default-icon-margin-start;
+					margin-inline-start: $default-icon-margin-start;
+				}
 			}
 		}
 	}

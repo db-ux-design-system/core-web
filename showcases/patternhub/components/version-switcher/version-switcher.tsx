@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
-import { sanitize } from 'dompurify';
+import DOMPurify from 'dompurify';
 import { DBSelect } from '../../../../output/react/src';
 import { type BranchGroup, type GithubResponse } from './data';
 
@@ -107,8 +107,8 @@ const VersionSwitcher = () => {
 		const isTag =
 			(branch.split('.').length === 3 && branch.startsWith('v')) ||
 			branch === 'latest';
-		window.location.replace(
-			sanitize(
+		globalThis.location.replace(
+			DOMPurify.sanitize(
 				`https://${owner}.github.io/${repo}${
 					isTag ? '/version' : '/review'
 				}/${branch}${lastPath}`

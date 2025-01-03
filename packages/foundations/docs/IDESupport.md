@@ -2,16 +2,14 @@
 
 We try to support those IDEs:
 
--   [JetBrain](https://www.jetbrains.com/) IDEs (like. IntelliJ IDEA, WebStorm, etc.)
--   [Visual Studio Code (VSCode)](https://code.visualstudio.com/)
+- [JetBrain](https://www.jetbrains.com/) IDEs (like. IntelliJ IDEA, WebStorm, etc.)
+- [Visual Studio Code (VSCode)](https://code.visualstudio.com/)
 
 Most use cases of the Design System might work in other IDEs as well.
 
-
 ## Autocomplete for CSS classes and CSS Custom Properties (Variables)
 
-
-You can enable auto-complete of CSS classes (like e.g. `db-container-color-cyan`)  for `HTML` or `JSX` and CSS Custom Properties (like e.g. `var(--db-bg-basic-level-1-default)`) in `.css` or `.scss` files by including `@db-ui/foundations/build/ide`.
+You can enable auto-complete of CSS classes (like e.g. `db-container-color-cyan`) for `HTML` or `JSX` and CSS Custom Properties (like e.g. `var(--db-bg-basic-level-1-default)`) in `.css` or `.scss` files by including `@db-ui/foundations/build/ide`.
 
 > **Note:** The contents of this directory shouldn't be included/referenced inside your app. It's only serving as a file containing declarations for autocompletion inside your IDE. All values for classes and properties don't reflect the real values, and neither does the CSS selector. The correct values my differ based on multiple circumstances like light-/dark-mode or screen-size etc. Therefore, there isn't a 1:1 mapping.
 
@@ -29,17 +27,19 @@ You can enable auto-complete of CSS classes (like e.g. `db-container-color-cyan`
 1. Install [the CSS Variable Autocomplete extesion](https://marketplace.visualstudio.com/items?itemName=vunguyentuan.vscode-css-variables).
 2. If it doesn't exist, create a new file `.vscode/settings.json` in your project
 3. Add this to `settings.json`:
-````json settings.json
+
+```json settings.json
 {
-  "cssVariables.lookupFiles": [
-    "**/*.css",
-    "**/*.scss",
-    "**/*.sass",
-    "**/*.less",
-	  "node_modules/@db-ui/foundations/build/ide/db.ide.css"
-  ]
+	"cssVariables.lookupFiles": [
+		"**/*.css",
+		"**/*.scss",
+		"**/*.sass",
+		"**/*.less",
+		"node_modules/@db-ui/foundations/build/ide/db.ide.css"
+	]
 }
-````
+```
+
 4. Go to a `.css` file and write inside a selector `color: db-`. You should see the autocomplete for CSS Custom Properties. By pressing `ENTER` this will automatically add `var(--db-xxx)`.
 
 > **Note:** We couldn't find a good extension to work properly with the classes you could try out [the SCSS Everywhere extension](https://marketplace.visualstudio.com/items?itemName=gencer.html-slim-scss-css-class-completion). But we encountered some issues with this one.

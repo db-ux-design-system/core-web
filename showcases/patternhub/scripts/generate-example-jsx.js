@@ -6,15 +6,17 @@ import {
 } from './utils.js';
 
 const sharedPath = '../shared';
+const webTypesPath = './../../output/stencil/dist/web-types.json';
 
 const generateExampleJSX = () => {
-	const webTypes = JSON.parse(
-		FS.readFileSync(
-			'./../../output/stencil/dist/web-types.json',
-			'utf8'
-		).toString()
-	);
-	const elements = webTypes?.contributions?.html?.elements;
+	let elements = [];
+	if (FS.existsSync(webTypesPath)) {
+		const webTypes = JSON.parse(
+			FS.readFileSync(webTypesPath, 'utf8').toString()
+		);
+		elements = webTypes?.contributions?.html?.elements;
+	}
+
 	const imports = [];
 	const examples = [];
 	for (const { name } of elements) {
@@ -36,6 +38,7 @@ const generateExampleJSX = () => {
 					examples.push(
 						`"${componentName}${variant.name}${
 							example.name
+							// eslint-disable-next-line unicorn/no-length-as-slice-end
 						}":renderToString(${code.slice(0, code.length)})`
 					);
 				}
