@@ -52,6 +52,7 @@ data-semantic="informational"
 </div>
 </body>
 </html>`;
+		// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment,@typescript-eslint/no-unsafe-call
 		const output: string = await prettier.format(iconHtml, {
 			parser: 'html'
 		});
