@@ -20,7 +20,7 @@ const ColorUsageGuide = () => {
 			</p>
 			<DBSection>
 				<ArcherContainer
-					strokeColor="var(--db-current-color-border)"
+					strokeColor="var(--db-adaptive-on-bg-basic-emphasis-60-default)"
 					endMarker={true}
 					endShape={{ arrow: { arrowLength: 5, arrowThickness: 5 } }}>
 					<div className="decision-tree" data-density="functional">
