@@ -25,9 +25,9 @@
     "test:migration": "tsx src/cli.ts migration --type v005_v006 --src=./scss --dryRun=true"
   },
   "dependencies": {
-    "commander": "^12.0.0",
+    "commander": "^13.0.0",
     "glob": "^11.0.0",
-    "replace-in-file": "^8.2.0"
+    "replace-in-file": "^8.3.0"
   },
   "devDependencies": {
     "cpr": "3.0.1",
