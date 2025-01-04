@@ -20,7 +20,7 @@ permissions:
 jobs:
   playwright-showcases:
     name: 🧪🎭 - ${{ inputs.showcase }}:${{ matrix.shardIndex }}/${{ matrix.shardTotal }}
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04 # Use Ubuntu 24.04 explicitly
     container:
       image: mcr.microsoft.com/playwright:v${{ inputs.version }}
     strategy:
