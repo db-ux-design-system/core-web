@@ -8,7 +8,7 @@ const aCheckerDisableRules = isStencil(process.env.showcase)
 	: ['aria_attribute_valid']; // TODO: This is a false positive -> add an issue in https://github.com/IBMa/equal-access
 
 test.describe('DBLink', () => {
-	runAxeCoreTest({ path: '02/link'});
+	runAxeCoreTest({ path: '02/link' });
 	runAxeCoreTest({ path: '02/link', color: lvl3 });
 	runAxeCoreTest({ path: '02/link', density: 'functional' });
 	runA11yCheckerTest({ path: '02/link', aCheckerDisableRules });
