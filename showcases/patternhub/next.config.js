@@ -1,11 +1,12 @@
 import remarkGfm from 'remark-gfm';
 import generated from '@next/mdx';
 import rehypeSlug from 'rehype-slug';
+import remarkTransformLinks from './scripts/remark-transform-links.js';
 
 const withMDX = generated({
 	extension: /\.mdx?$/,
 	options: {
-		remarkPlugins: [remarkGfm],
+		remarkPlugins: [remarkGfm, remarkTransformLinks],
 		rehypePlugins: [rehypeSlug],
 		providerImportSource: '@mdx-js/react'
 	}
