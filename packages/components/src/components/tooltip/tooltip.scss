@@ -12,10 +12,11 @@ $tooltip-arrow-shadow-size: variables.$db-sizing-2xs;
 	--default-card-border-radius: #{variables.$db-border-radius-xs};
 
 	@extend %db-overwrite-font-size-sm;
+	@extend %popover-center;
 	@extend %default-popover;
 
-	background-color: colors.$db-current-color-bg-lvl-1-enabled;
-	color: colors.$db-current-color-on-bg-enabled;
+	background-color: colors.$db-adaptive-bg-basic-level-1-default;
+	color: colors.$db-adaptive-on-bg-basic-emphasis-100-default;
 
 	// i HTML tags browsers default styling reset
 	font-style: normal;
@@ -25,7 +26,7 @@ $tooltip-arrow-shadow-size: variables.$db-sizing-2xs;
 	padding: variables.$db-spacing-fixed-2xs variables.$db-spacing-fixed-xs;
 
 	&::after {
-		background-color: colors.$db-current-color-bg-lvl-1-enabled;
+		background-color: colors.$db-adaptive-bg-basic-level-1-default;
 	}
 
 	// Only for testing
@@ -41,7 +42,7 @@ $tooltip-arrow-shadow-size: variables.$db-sizing-2xs;
 			content: "";
 			box-shadow: variables.$db-elevation-md;
 			position: absolute;
-			background-color: colors.$db-current-color-bg-lvl-1-enabled;
+			background-color: colors.$db-adaptive-bg-basic-level-1-default;
 			inline-size: $tooltip-arrow-shadow-size;
 			block-size: $tooltip-arrow-shadow-size;
 			clip-path: polygon(
@@ -99,15 +100,15 @@ $tooltip-arrow-shadow-size: variables.$db-sizing-2xs;
 	}
 
 	&[data-emphasis="strong"] {
-		background-color: colors.$db-current-color-contrast-high-enabled;
-		color: colors.$db-current-color-on-contrast-enabled;
+		background-color: colors.$db-adaptive-bg-inverted-contrast-high-default;
+		color: colors.$db-adaptive-on-bg-inverted-default;
 
 		&::before {
-			--db-icon-color: #{colors.$db-current-color-on-contrast-enabled};
+			--db-icon-color: #{colors.$db-adaptive-on-bg-inverted-default};
 		}
 
 		&::after {
-			background-color: colors.$db-current-color-contrast-high-enabled;
+			background-color: colors.$db-adaptive-bg-inverted-contrast-high-default;
 		}
 	}
 }

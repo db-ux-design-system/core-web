@@ -2,9 +2,7 @@ import { useMetadata, useRef, useStore } from '@builder.io/mitosis';
 import { DBDividerProps, DBDividerState } from './model';
 import { cls } from '../../utils';
 
-useMetadata({
-	isAttachedToShadowDom: true
-});
+useMetadata({});
 
 export default function DBDivider(props: DBDividerProps) {
 	const ref = useRef<HTMLDivElement>(null);
@@ -20,6 +18,7 @@ export default function DBDivider(props: DBDividerProps) {
 			data-margin={props.margin}
 			data-variant={props.variant}
 			data-emphasis={props.emphasis}
+			data-width={props.width}
 			class={cls('db-divider', props.className)}
 		/>
 	);

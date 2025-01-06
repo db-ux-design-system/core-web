@@ -12,4 +12,4 @@ Moreover, you need to duplicate `.env.template` as `.env` and type your own emai
 
 ### Conventions
 
-Please be aware that we have some [code and git commit (message and branch naming) conventions](https://github.com/db-ui/mono/blob/main/docs/conventions.md), that we ensure with some linting tools.
+Please be aware that we have some [code and git commit (message and branch naming) conventions](docs/conventions.md), that we ensure with some linting tools.

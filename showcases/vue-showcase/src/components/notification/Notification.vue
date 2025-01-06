@@ -24,7 +24,10 @@ const log = (exampleName: string) => {
 				:link-variant="exampleProps?.linkVariant"
 				:timestamp="exampleProps?.timestamp"
 				:icon="exampleProps?.icon"
-				:behaviour="exampleProps?.behaviour"
+				:closeable="exampleProps?.closeable"
+				:showIcon="exampleProps?.showIcon"
+				:showHeadline="exampleProps?.showHeadline"
+				:showTimestamp="exampleProps?.showTimestamp"
 				@onClose="log(exampleName)"
 			>
 				<template v-if="exampleProps?.link" v-slot:link>
@@ -33,7 +36,7 @@ const log = (exampleName: string) => {
 				<template v-if="exampleProps?.img" v-slot:image>
 					<img
 						src="/assets/images/placeholder.jpg"
-						alt="Placeholder"
+						alt="this is a fancy placeholder"
 					/>
 				</template>
 				{{ exampleName }}

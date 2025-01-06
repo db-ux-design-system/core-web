@@ -2,7 +2,7 @@ import FS from 'node:fs';
 
 const componentPath = '../../packages/components/src/components';
 
-const docs = ['HTML', 'Angular', 'React', 'Vue'];
+const docs = ['Accessibility', 'HTML', 'Angular', 'React', 'Vue'];
 
 /**
  * @param componentName {string}

@@ -9,10 +9,11 @@ footer?
 ```
 
 [Type must be one of the following](https://commitlint.js.org/reference/rules.html#type-enum):
+
 - build
 - chore
 - ci
-– docs
+  – docs
 - feat
 - fix
 - perf
@@ -22,24 +23,28 @@ footer?
 - test
 
 If you'd like to test your commit message previous to using it, you could test it on the command line:
+
 ```shell
 echo 'foo: bar' | commitlint
-````
+```
 
 ## Code conventions
 
 The general code conventions are guaranteed by the following tools.
 
 ### Through configuration files: `.editorconfig` for IDEs and `.gitattributes` for git checkins
+
 Both the [`.editorconfig`](https://editorconfig.org/) and [`.gitattributes`](https://dev.to/deadlybyte/please-add-gitattributes-to-your-git-repository-1jld) ensure a consistent code structure and conventions through their configurations.
 
 ### prettier
-The [prettier](adr/code_style_formatter-prettier.adoc) tool provides a general code prettfying.
+
+The [prettier](https://github.com/db-ui/core/blob/main/docs/adr/code_style_formatter-prettier.adoc) tool provides a general code prettfying.
 
 ## Linting
 
 ### xo
-The [xo](adr/linting-xo.adoc) tool provides a general code linting mechanism.
+
+The [xo](https://github.com/db-ui/core/blob/main/docs/adr/linting-xo.adoc) tool provides a general code linting mechanism.
 
 ### yaml files via yamllint
 

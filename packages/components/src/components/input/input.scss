@@ -2,11 +2,14 @@
 @use "@db-ui/foundations/build/scss/icons";
 @use "@db-ui/foundations/build/scss/fonts";
 @use "@db-ui/foundations/build/scss/colors";
+@use "@db-ui/foundations/build/scss/helpers";
 @use "../../styles/component";
 @use "../../styles/form-components";
+@use "../../styles/button-components";
 
 $icon-padding: calc(
-	#{form-components.$font-size-height} + #{variables.$db-spacing-fixed-sm} + #{variables.$db-spacing-fixed-xs}
+	#{form-components.$font-size-height} + #{variables.$db-spacing-fixed-sm} +
+		#{variables.$db-spacing-fixed-xs}
 );
 
 .db-input {
@@ -24,7 +27,7 @@ $icon-padding: calc(
 		--db-form-component-padding-inline-end: #{$icon-padding};
 	}
 
-	&[data-variant="hidden"] {
+	&[data-hide-label="true"] {
 		--db-label-visible-height: 0;
 		--db-label-visible-spacing: 1;
 	}
@@ -62,6 +65,33 @@ $icon-padding: calc(
 		@include icons.set-icon("clock", "after");
 	}
 
+	&:has(input[type="file"]) {
+		input {
+			@extend %db-overwrite-font-size-sm;
+
+			padding-block-start: variables.$db-spacing-fixed-xs;
+		}
+
+		&[data-variant="floating"] {
+			input {
+				@extend %db-overwrite-font-size-xs;
+
+				padding-block-start: calc(
+					#{variables.$db-spacing-fixed-md} +
+						#{variables.$db-spacing-fixed-3xs}
+				);
+
+				&::file-selector-button {
+					@extend %db-overwrite-font-size-xs;
+
+					block-size: variables.$db-sizing-xs;
+					padding: 0 variables.$db-spacing-fixed-xs;
+					margin-inline-end: variables.$db-spacing-fixed-xs;
+				}
+			}
+		}
+	}
+
 	input {
 		position: relative;
 
@@ -78,8 +108,30 @@ $icon-padding: calc(
 			appearance: none;
 			position: absolute;
 			inset-inline-end: calc(
-				#{variables.$db-spacing-fixed-sm} + #{variables.$db-border-height-3xs}
+				#{variables.$db-spacing-fixed-sm} +
+					#{variables.$db-border-height-3xs}
 			);
+		}
+
+		&::file-selector-button {
+			@extend %default-interactive-component;
+			@extend %default-button;
+			@extend %db-overwrite-font-size-sm;
+
+			color: colors.$db-adaptive-on-bg-basic-emphasis-100-default;
+			block-size: variables.$db-sizing-sm;
+			padding: variables.$db-spacing-fixed-3xs
+				variables.$db-spacing-fixed-sm;
+			margin-inline-end: variables.$db-spacing-fixed-sm;
+
+			&:hover,
+			&:focus {
+				background-color: colors.$db-adaptive-bg-basic-transparent-hovered;
+			}
+
+			&:active {
+				background-color: colors.$db-adaptive-bg-basic-transparent-pressed;
+			}
 		}
 	}
 

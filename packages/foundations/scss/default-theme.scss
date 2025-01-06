@@ -2,6 +2,9 @@
 @use "./colors/default-palette";
 @use "./colors/placeholder";
 
+@include default-palette.get-color-palette;
+@include default-palette.get-additional-color-palette;
+
 :root {
 	--db-spacing-responsive-regular-desktop-3xl: 40rem;
 	--db-spacing-responsive-regular-desktop-2xl: 30rem;
@@ -111,7 +114,6 @@
 	--db-spacing-fixed-expressive-xl: 3rem;
 	--db-spacing-fixed-expressive-2xl: 5rem;
 	--db-spacing-fixed-expressive-3xl: 7.5rem;
-	--db-sizing-fixed-mobile-header: 3.5rem;
 	--db-sizing-regular-3xl: 15rem;
 	--db-sizing-regular-2xl: 10rem;
 	--db-sizing-regular-xl: 6rem;
@@ -827,12 +829,10 @@
 		both;
 	--db-transition-straight-emotional: 0.3s cubic-bezier(0.27, 0.05, 0.4, 0.95);
 	--db-transition-straight-functional: 0.3s cubic-bezier(0.15, 0, 0.45, 1);
-	--db-font-family-sans: "DB Screen Sans", helvetica, arial, sans-serif;
-	--db-font-family-head: "DB Screen Head", helvetica, arial, sans-serif;
+	--db-font-family-sans: "NotoSans", helvetica, arial, sans-serif;
+	--db-font-family-head: "NotoSans Head", helvetica, arial, sans-serif;
 
 	/* COLORS */
-	@include default-palette.get-color-palette;
-	@include default-palette.get-additional-color-palette;
 	@include default-color-scheme.get-color-scheme;
 	@include default-color-scheme.get-color-scheme-light;
 	@include default-color-scheme.get-additional-color-scheme;
@@ -848,7 +848,7 @@ html:not(:has(> head > meta[name="color-scheme"])) {
 }
 
 [data-color-scheme] {
-	@extend %db-neutral-bg-lvl-1;
+	@extend %db-neutral-bg-basic-level-1;
 }
 
 [data-color-scheme="light"] {

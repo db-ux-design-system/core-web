@@ -2,46 +2,36 @@
 @use "@db-ui/foundations/build/scss/screen-sizes";
 @use "../../styles/component";
 
+$default-section-padding-inline: variables.$db-spacing-fixed-md;
+
 .db-section {
-	padding-inline: variables.$db-spacing-fixed-md;
-
-	@include screen-sizes.screen("md") {
-		padding-inline: variables.$db-spacing-fixed-md;
-	}
-
+	&:not([data-width]),
 	&[data-width="full"] {
-		padding-inline: 0;
+		padding-inline: $default-section-padding-inline;
 	}
 
-	&[data-spacing="none"] {
-		padding-block: 0;
+	&[data-width="medium"] {
+		padding-inline: max(
+			calc(
+				#{$default-section-padding-inline} +
+					(100vw - #{screen-sizes.$db-breakpoint-md}) / 2
+			),
+			#{$default-section-padding-inline}
+		);
 	}
 
-	&[data-spacing="small"] {
-		padding-block: variables.$db-spacing-responsive-sm;
+	&[data-width="large"] {
+		padding-inline: max(
+			calc(
+				#{$default-section-padding-inline} +
+					(100vw - #{screen-sizes.$db-breakpoint-lg}) / 2
+			),
+			#{$default-section-padding-inline}
+		);
 	}
 
-	&[data-spacing="medium"] {
-		padding-block: variables.$db-spacing-responsive-md;
-	}
-
-	&[data-spacing="large"] {
-		padding-block: variables.$db-spacing-responsive-lg;
-	}
-
-	> div {
-		margin: 0 auto;
-
-		&[data-width="full"] {
-			max-inline-size: none;
-		}
-
-		&[data-width="medium"] {
-			max-inline-size: screen-sizes.$db-breakpoint-md;
-		}
-
-		&[data-width="large"] {
-			max-inline-size: screen-sizes.$db-breakpoint-lg;
-		}
-	}
+	@include component.get-data-spacing(
+		"padding-block",
+		component.$responsive-spacings
+	);
 }

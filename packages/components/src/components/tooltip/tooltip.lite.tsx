@@ -10,9 +10,7 @@ import { cls, handleDataOutside, uuid } from '../../utils';
 import { ClickEvent } from '../../shared/model';
 import { DEFAULT_ID } from '../../shared/constants';
 
-useMetadata({
-	isAttachedToShadowDom: true
-});
+useMetadata({});
 
 export default function DBTooltip(props: DBTooltipProps) {
 	const ref = useRef<HTMLDivElement>(null);
@@ -64,7 +62,7 @@ export default function DBTooltip(props: DBTooltipProps) {
 			role="tooltip"
 			aria-hidden="true"
 			ref={ref}
-			className={cls('db-tooltip', props.className)}
+			class={cls('db-tooltip', props.className)}
 			id={state._id}
 			data-emphasis={props.emphasis}
 			data-animation={props.animation}

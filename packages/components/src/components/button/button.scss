@@ -13,7 +13,7 @@
 	@extend %default-button;
 	@extend %db-overwrite-font-size-md;
 
-	color: colors.$db-current-color-on-bg-enabled;
+	color: colors.$db-adaptive-on-bg-basic-emphasis-100-default;
 	block-size: variables.$db-sizing-md;
 	inline-size: fit-content;
 	padding: variables.$db-spacing-fixed-xs variables.$db-spacing-fixed-md;
@@ -22,11 +22,11 @@
 	text-decoration: none;
 
 	@include helpers.hover {
-		background-color: colors.$db-current-color-bg-transparent-hover;
+		background-color: colors.$db-adaptive-bg-basic-transparent-hovered;
 	}
 
 	@include helpers.active {
-		background-color: colors.$db-current-color-bg-transparent-pressed;
+		background-color: colors.$db-adaptive-bg-basic-transparent-pressed;
 	}
 
 	// Square icon only buttons
@@ -66,17 +66,18 @@
 	}
 
 	&[data-variant="brand"] {
-		@extend %transparent-border;
-
-		background-color: colors.$db-brand-origin-enabled;
-		color: colors.$db-brand-on-enabled;
+		background-color: colors.$db-brand-origin-default;
+		color: colors.$db-brand-on-origin-default;
+		border-color: colors.$db-brand-on-bg-basic-emphasis-70-default;
 
 		@include helpers.hover {
-			background-color: colors.$db-brand-origin-hover;
+			background-color: colors.$db-brand-origin-hovered;
+			border-color: colors.$db-brand-on-bg-basic-emphasis-70-hovered;
 		}
 
 		@include helpers.active {
 			background-color: colors.$db-brand-origin-pressed;
+			border-color: colors.$db-brand-on-bg-basic-emphasis-70-pressed;
 		}
 	}
 
@@ -88,11 +89,11 @@
 	&[data-variant="outlined"],
 	&:not([data-variant]),
 	&[data-variant="ghost"] {
-		background-color: colors.$db-current-color-bg-transparent-full-enabled;
+		background-color: colors.$db-adaptive-bg-basic-transparent-full-default;
 	}
 
 	&[data-variant="filled"] {
-		background-color: colors.$db-current-color-bg-transparent-semi-enabled;
+		background-color: colors.$db-adaptive-bg-basic-transparent-semi-default;
 	}
 
 	&:disabled {
@@ -107,6 +108,16 @@
 
 		&::before {
 			content: "";
+		}
+	}
+
+	// Workaround for current stencil implementation for header
+	&:has(> .db-button) {
+		margin: 0;
+		padding: 0;
+
+		&::before {
+			content: none;
 		}
 	}
 }

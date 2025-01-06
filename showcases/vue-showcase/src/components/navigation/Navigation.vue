@@ -26,15 +26,17 @@ const getId = (name?: string): string =>
 					{{ exampleName }}
 				</DBInfotext>
 				<DBNavigation :labelledBy="getId(exampleName)">
-					<DBNavigationItem :active="true">
+					<DBNavigationItem>
 						Navi-Item 1
 						<template v-slot:sub-navigation>
 							<DBNavigationItem :active="true">
 								Sub-Navi-Item 1
 
 								<template v-slot:sub-navigation>
-									<DBNavigationItem :active="true">
-										<a href="#">Sub-Sub-Navi-Item 1</a>
+									<DBNavigationItem>
+										<a href="#" aria-current="page"
+											>Sub-Sub-Navi-Item 1</a
+										>
 									</DBNavigationItem>
 									<DBNavigationItem>
 										<a href="#">Sub-Sub-Navi-Item 2</a>
@@ -46,7 +48,7 @@ const getId = (name?: string): string =>
 							</DBNavigationItem>
 						</template>
 					</DBNavigationItem>
-					<DBNavigationItem icon="user">
+					<DBNavigationItem icon="person">
 						<a href="#">Navi-Item 2</a>
 					</DBNavigationItem>
 					<DBNavigationItem :disabled="true">

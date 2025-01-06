@@ -1,4 +1,9 @@
-import { GlobalProps, GlobalState, IconProps } from '../../shared/model';
+import {
+	GlobalProps,
+	GlobalState,
+	IconProps,
+	TextProps
+} from '../../shared/model';
 
 export const IconVariantList = ['default', 'inverted', 'filled'] as const;
 export type IconVariantType = (typeof IconVariantList)[number];
@@ -11,7 +16,10 @@ export type DBIconDefaultProps = {
 	weight?: IconWeightType;
 };
 
-export type DBIconProps = DBIconDefaultProps & GlobalProps & IconProps;
+export type DBIconProps = DBIconDefaultProps &
+	GlobalProps &
+	IconProps &
+	TextProps;
 
 export type DBIconDefaultState = {};
 

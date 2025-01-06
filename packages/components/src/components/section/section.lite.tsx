@@ -1,17 +1,9 @@
-import {
-	onMount,
-	Show,
-	useMetadata,
-	useRef,
-	useStore
-} from '@builder.io/mitosis';
-import { DBSectionState, DBSectionProps } from './model';
+import { onMount, useMetadata, useRef, useStore } from '@builder.io/mitosis';
+import { DBSectionProps, DBSectionState } from './model';
 import { cls, uuid } from '../../utils';
 import { DEFAULT_ID } from '../../shared/constants';
 
-useMetadata({
-	isAttachedToShadowDom: true
-});
+useMetadata({});
 
 export default function DBSection(props: DBSectionProps) {
 	const ref = useRef<HTMLDivElement>(null);
@@ -29,10 +21,10 @@ export default function DBSection(props: DBSectionProps) {
 		<section
 			ref={ref}
 			id={state._id}
-			className={cls('db-section', props.className)}
-			data-spacing={props.spacing || 'medium'}>
-			{/* TODO: We need to reevaluate whether we could get rid of this tag */}
-			<div data-width={props.width}>{props.children}</div>
+			class={cls('db-section', props.className)}
+			data-spacing={props.spacing || 'medium'}
+			data-width={props.width}>
+			{props.children}
 		</section>
 	);
 }

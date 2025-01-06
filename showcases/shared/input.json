@@ -4,21 +4,21 @@
 		"examples": [
 			{
 				"name": "Functional",
-				"className": "db-density-functional",
+				"density": "functional",
 				"props": {
 					"label": "Label"
 				}
 			},
 			{
 				"name": "(Default) Regular",
-				"className": "db-density-regular",
+				"density": "regular",
 				"props": {
 					"label": "Label"
 				}
 			},
 			{
 				"name": "Expressive",
-				"className": "db-density-expressive",
+				"density": "expressive",
 				"props": {
 					"label": "Label"
 				}
@@ -26,7 +26,7 @@
 		]
 	},
 	{
-		"name": "Variant Label",
+		"name": "Variant",
 		"examples": [
 			{
 				"name": "(Default) Label Above",
@@ -41,36 +41,51 @@
 					"variant": "floating",
 					"value": "Floating Label"
 				}
-			},
-			{
-				"name": "Hidden Label",
-				"props": {
-					"label": "Label",
-					"variant": "hidden"
-				}
 			}
 		]
 	},
 	{
-		"name": "Variant Helper Message",
+		"name": "Show Label",
 		"examples": [
 			{
-				"name": "(Default) Basic",
+				"name": "(Default) True",
 				"props": {
-					"label": "Label"
+					"label": "Label",
+					"showLabel": true
 				}
 			},
 			{
-				"name": "Helper Message",
+				"name": "False",
 				"props": {
 					"label": "Label",
-					"message": "Helper Message"
+					"showLabel": false
 				}
 			}
 		]
 	},
 	{
-		"name": "States Label Above",
+		"name": "Show Message",
+		"examples": [
+			{
+				"name": "(Default) False",
+				"props": {
+					"label": "Label",
+					"message": "Message",
+					"showMessage": false
+				}
+			},
+			{
+				"name": "True",
+				"props": {
+					"label": "Label",
+					"message": "Message",
+					"showMessage": true
+				}
+			}
+		]
+	},
+	{
+		"name": "State",
 		"examples": [
 			{
 				"name": "(Default) Empty",
@@ -84,57 +99,92 @@
 					"label": "Label",
 					"value": "Filled"
 				}
+			}
+		]
+	},
+	{
+		"name": "Disabled",
+		"examples": [
+			{
+				"name": "(Default) False",
+				"props": {
+					"label": "Label",
+					"disabled": false
+				}
 			},
 			{
-				"name": "Disabled",
+				"name": "True",
 				"props": {
 					"label": "Label",
 					"disabled": true
 				}
-			},
+			}
+		]
+	},
+	{
+		"name": "Readonly",
+		"examples": [
 			{
-				"name": "Readonly - Filled",
+				"name": "(Default) False",
 				"props": {
 					"label": "Label",
-					"value": "Readonly - Filled",
+					"value": "(Default) False",
+					"readOnly": false
+				}
+			},
+			{
+				"name": "True",
+				"props": {
+					"label": "Label",
+					"value": "True",
 					"readOnly": true
 				}
 			}
 		]
 	},
 	{
-		"name": "States Floating Label",
+		"name": "Validation",
 		"examples": [
 			{
-				"name": "(Default) Empty",
+				"name": "(Default) No validation",
 				"props": {
 					"label": "Label",
-					"variant": "floating"
+					"validation": "no-validation"
 				}
 			},
 			{
-				"name": "Filled",
+				"name": "Invalid",
 				"props": {
 					"label": "Label",
-					"value": "Filled",
-					"variant": "floating"
+					"validation": "invalid",
+					"invalidMessage": "Invalid Message"
 				}
 			},
 			{
-				"name": "Disabled",
+				"name": "Valid",
 				"props": {
 					"label": "Label",
-					"disabled": true,
-					"variant": "floating"
+					"validation": "valid",
+					"validMessage": "Valid message"
+				}
+			}
+		]
+	},
+	{
+		"name": "Required",
+		"examples": [
+			{
+				"name": "(Default) False",
+				"props": {
+					"label": "Label",
+					"required": false
 				}
 			},
 			{
-				"name": "Readonly - Filled",
+				"name": "True",
 				"props": {
 					"label": "Label",
-					"value": "Readonly - Filled",
-					"readOnly": true,
-					"variant": "floating"
+					"required": true
 				}
 			}
 		]
@@ -147,14 +197,6 @@
 				"props": {
 					"label": "Label",
 					"value": "(Default) Text"
-				}
-			},
-			{
-				"name": "Filled Number",
-				"props": {
-					"label": "Number",
-					"value": "123456",
-					"type": "number"
 				}
 			},
 			{
@@ -182,25 +224,8 @@
 		]
 	},
 	{
-		"name": "Requirement",
-		"examples": [
-			{
-				"name": "(Default) Optional",
-				"props": {
-					"label": "Label"
-				}
-			},
-			{
-				"name": "Required",
-				"props": {
-					"label": "Label",
-					"required": true
-				}
-			}
-		]
-	},
-	{
 		"name": "Example - Types",
+		"codeFileName": "ExampleTypes",
 		"examples": [
 			{
 				"name": "(Default) Text",
@@ -227,13 +252,6 @@
 				"props": {
 					"label": "Label",
 					"type": "email"
-				}
-			},
-			{
-				"name": "Number",
-				"props": {
-					"label": "Label",
-					"type": "number"
 				}
 			},
 			{
@@ -284,18 +302,49 @@
 					"label": "Label",
 					"type": "week"
 				}
-			},
+			}
+		]
+	},
+	{
+		"name": "Example Floating Label",
+		"examples": [
 			{
-				"name": "Datalist",
+				"name": "(Default) Empty",
 				"props": {
 					"label": "Label",
-					"dataList": true
+					"variant": "floating"
+				}
+			},
+			{
+				"name": "Filled",
+				"props": {
+					"label": "Label",
+					"value": "Filled",
+					"variant": "floating"
+				}
+			},
+			{
+				"name": "Disabled",
+				"props": {
+					"label": "Label",
+					"disabled": true,
+					"variant": "floating"
+				}
+			},
+			{
+				"name": "Readonly - Filled",
+				"props": {
+					"label": "Label",
+					"value": "Readonly - Filled",
+					"readOnly": true,
+					"variant": "floating"
 				}
 			}
 		]
 	},
 	{
 		"name": "Example - Types - Floating Label",
+		"codeFileName": "ExampleTypesFloatingLabel",
 		"examples": [
 			{
 				"name": "(Default) Text",
@@ -394,10 +443,20 @@
 			},
 			{
 				"name": "Datalist",
+				"experimental": true,
 				"props": {
 					"label": "Label",
 					"variant": "floating",
 					"dataList": true
+				}
+			},
+			{
+				"name": "File",
+				"experimental": true,
+				"props": {
+					"label": "Label",
+					"type": "file",
+					"variant": "floating"
 				}
 			}
 		]

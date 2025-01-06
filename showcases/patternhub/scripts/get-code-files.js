@@ -22,9 +22,7 @@ const getFileTypeByFramework = (framework) => {
 };
 
 const getCustomCodeCommentByFramework = (componentName, framework) => {
-	return `<DBLink content="external" target="_blank"
-href="https://db-ui.github.io/mono/review/main/components/${componentName}/how-to-use?current=${framework}">
-How to use this in ${framework}</DBLink>`;
+	return `<DBLink content="external" target="_blank" href="how-to-use?current=${framework}">How to use this in ${framework}</DBLink>`;
 };
 
 const getExamplesAsMDX = async (componentName, variant) => {

@@ -8,7 +8,7 @@
 		inline-size: 0;
 		transform: translate(-50%, 0);
 		inset-inline-start: 50%;
-		background-color: colors.$db-brand-origin-enabled;
+		background-color: colors.$db-brand-on-bg-basic-emphasis-70-default;
 		inset-block: auto calc(-1 * #{variables.$db-spacing-fixed-xs});
 	}
 }
@@ -19,7 +19,7 @@
 		inline-size: variables.$db-border-height-xs;
 		transform: translate(0, -50%);
 		inset-block: 50% auto;
-		background-color: colors.$db-brand-origin-enabled;
+		background-color: colors.$db-brand-on-bg-basic-emphasis-70-default;
 		inset-inline-start: calc(-1 * #{variables.$db-spacing-fixed-xs});
 	}
 }

@@ -15,19 +15,23 @@
 			[headline]="exampleProps?.headline"
 			[linkVariant]="exampleProps?.linkVariant"
 			[icon]="exampleProps?.icon"
-			[behaviour]="exampleProps?.behaviour"
+			[closeable]="exampleProps?.closeable"
 			[variant]="exampleProps?.variant"
+			[showIcon]="exampleProps?.showIcon"
+			[showHeadline]="exampleProps?.showHeadline"
 			[timestamp]="exampleProps?.timestamp"
+			[showTimestamp]="exampleProps?.showTimestamp"
 			(onClose)="showNotification(exampleName)"
 		>
 			@if (exampleProps?.link) {
-				<db-link link href="#">Textlink</db-link>
+				<db-link link slot="link" href="#">Textlink</db-link>
 			}
 			@if (exampleProps?.img) {
 				<img
 					image
+					slot="image"
 					src="./assets/images/placeholder.jpg"
-					alt="Placeholder"
+					alt="this is a fancy placeholder"
 				/>
 			}
 			{{ exampleName }}

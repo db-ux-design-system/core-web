@@ -19,14 +19,14 @@ jobs:
       fail-fast: false
       matrix:
         os: [macos-13, windows-2022]
-        shardIndex: [1, 2]
-        shardTotal: [2]
+        shardIndex: [1, 2, 3, 4]
+        shardTotal: [4]
     steps:
       - name: ⏬ Checkout repo
         uses: actions/checkout@v4
 
       - name: 🦮 Guidepup Setup
-        uses: guidepup/setup-action@0.15.3
+        uses: guidepup/setup-action@0.17.2
         with:
           record: true
 

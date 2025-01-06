@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { ALL_ICONS } from '@db-ux/core-icons';
 import DefaultPage from '../../../components/default-page';
 import {
 	DBCard,
@@ -7,7 +8,6 @@ import {
 	DBIcon,
 	DBInfotext
 } from '../../../../../output/react/src';
-import { ALL_ICONS } from '../../../../../packages/components/src/shared/all-icons';
 
 const IconOverview = () => {
 	const [weight, setWeight] = useState<string>('24');
@@ -16,7 +16,7 @@ const IconOverview = () => {
 	const [search, setSearch] = useState<string>('');
 	return (
 		<DefaultPage>
-			<h1>Color Overview</h1>
+			<h1>Icon overview</h1>
 			<p>
 				We don't provide all icons with family <code>filled</code>
 			</p>

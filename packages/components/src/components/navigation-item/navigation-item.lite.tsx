@@ -8,15 +8,13 @@ import {
 	useStore
 } from '@builder.io/mitosis';
 import { DBNavigationItemProps, DBNavigationItemState } from './model';
-import { DBButton } from '../button';
-import { cls, uuid } from '../../utils';
+import DBButton from '../button/button.lite';
+import { cls, getBooleanAsString, getHideProp, uuid } from '../../utils';
 import { NavigationItemSafeTriangle } from '../../utils/navigation';
 import { DEFAULT_BACK } from '../../shared/constants';
 import { ClickEvent } from '../../shared/model';
 
-useMetadata({
-	isAttachedToShadowDom: true
-});
+useMetadata({});
 
 export default function DBNavigationItem(props: DBNavigationItemProps) {
 	const ref = useRef<HTMLLIElement>(null);
@@ -93,30 +91,37 @@ export default function DBNavigationItem(props: DBNavigationItemProps) {
 			onMouseLeave={() =>
 				state.navigationItemSafeTriangle?.disableFollow()
 			}
-			onMouseMove={(event) =>
+			onMouseMove={(event: MouseEvent) =>
 				state.navigationItemSafeTriangle?.followByMouseEvent(event)
 			}
 			class={cls('db-navigation-item', props.className)}
 			data-width={props.width}
 			data-icon={props.icon}
-			aria-current={props.active ? 'page' : undefined}
-			aria-disabled={props.disabled}>
-			<Show when={!state.hasSubNavigation}>{props.children}</Show>
+			data-hide-icon={getHideProp(props.showIcon)}
+			data-active={props.active}
+			aria-disabled={getBooleanAsString(props.disabled)}>
+			<Show when={!state.hasSubNavigation}>
+				<Show when={props.text} else={props.children}>
+					{props.text}
+				</Show>
+			</Show>
 
 			<Show when={state.hasSubNavigation}>
 				<button
 					aria-haspopup={state.hasAreaPopup}
 					aria-expanded={state.isSubNavigationExpanded}
-					className="db-navigation-item-expand-button"
+					class="db-navigation-item-expand-button"
 					disabled={props.disabled}
 					onClick={(event: ClickEvent<HTMLButtonElement>) =>
 						state.handleClick(event)
 					}>
-					{props.children}
+					<Show when={props.text} else={props.children}>
+						{props.text}
+					</Show>
 				</button>
 
 				{/* TODO: Consider using popover here */}
-				<menu className="db-sub-navigation" id={state.subNavigationId}>
+				<menu class="db-sub-navigation" id={state.subNavigationId}>
 					<Show when={state.hasAreaPopup}>
 						<div class="db-mobile-navigation-back">
 							<DBButton

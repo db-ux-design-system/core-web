@@ -3,9 +3,7 @@ import { DBNavigationProps, DBNavigationState } from './model';
 import { cls, uuid } from '../../utils';
 import { DEFAULT_ID } from '../../shared/constants';
 
-useMetadata({
-	isAttachedToShadowDom: true
-});
+useMetadata({});
 
 export default function DBNavigation(props: DBNavigationProps) {
 	const ref = useRef<HTMLDivElement>(null);

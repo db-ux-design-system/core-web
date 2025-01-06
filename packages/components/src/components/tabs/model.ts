@@ -17,7 +17,7 @@ export type TabsInitialSelectedModeType =
 	(typeof TabsInitialSelectedModeList)[number];
 
 export type DBSimpleTabProps = DBTabItemProps & DBTabPanelProps;
-export interface DBTabsDefaultProps {
+export type DBTabsDefaultProps = {
 	/**
 	 * Change amount of distance if you click on an arrow, only available with behaviour="arrows"
 	 */
@@ -47,7 +47,7 @@ export interface DBTabsDefaultProps {
 	 * Provide simple tabs with label + text as content
 	 */
 	tabs?: DBSimpleTabProps[] | string;
-}
+};
 
 export type DBTabsProps = DBTabsDefaultProps &
 	GlobalProps &
@@ -55,9 +55,9 @@ export type DBTabsProps = DBTabsDefaultProps &
 	WidthProps &
 	AlignmentProps;
 
-export interface DBTabsDefaultState {
+export type DBTabsDefaultState = {
 	_name: string;
-	scrollContainer?: Element;
+	scrollContainer?: Element | null;
 	scroll: (left?: boolean) => void;
 	showScrollLeft?: boolean;
 	showScrollRight?: boolean;
@@ -65,6 +65,6 @@ export interface DBTabsDefaultState {
 	convertTabs: (tabs?: unknown[] | string | undefined) => DBSimpleTabProps[];
 	initTabList: () => void;
 	initTabs: (init?: boolean) => void;
-}
+};
 
 export type DBTabsState = DBTabsDefaultState & GlobalState & InitializedState;

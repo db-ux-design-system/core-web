@@ -25,7 +25,8 @@
 		~ .db-sub-navigation {
 			@media screen and (prefers-reduced-motion: no-preference) {
 				transition: visibility 0ms linear 0ms;
-				animation: show-right-to-left #{variables.$db-transition-straight-show};
+				animation: show-right-to-left
+					#{variables.$db-transition-straight-show};
 			}
 
 			visibility: visible;
@@ -40,7 +41,8 @@
 		@media screen and (prefers-reduced-motion: no-preference) {
 			~ .db-sub-navigation {
 				transition: visibility 0ms linear 410ms; // hide animation is 0.4s
-				animation: hide-right-to-left #{variables.$db-transition-straight-hide};
+				animation: hide-right-to-left
+					#{variables.$db-transition-straight-hide};
 			}
 		}
 	}
@@ -51,7 +53,7 @@
 	@extend %transparent-border;
 	@extend %db-overwrite-font-size-md;
 
-	background-color: colors.$db-current-color-bg-transparent-full-enabled;
+	background-color: colors.$db-adaptive-bg-basic-transparent-full-default;
 	cursor: pointer;
 	inline-size: 100%;
 	display: inline-flex;
@@ -62,15 +64,15 @@
 	align-items: center; // Centering the content vertically and horizontally
 
 	@include helpers.hover {
-		background-color: colors.$db-current-color-bg-transparent-hover;
+		background-color: colors.$db-adaptive-bg-basic-transparent-hovered;
 	}
 
 	@include helpers.active {
-		background-color: colors.$db-current-color-bg-transparent-pressed;
+		background-color: colors.$db-adaptive-bg-basic-transparent-pressed;
 	}
 
 	&:has(~ .db-sub-navigation:is(:hover, :focus)) {
-		background-color: colors.$db-current-color-bg-transparent-hover;
+		background-color: colors.$db-adaptive-bg-basic-transparent-hovered;
 	}
 }
 
@@ -124,7 +126,9 @@
 	}
 
 	&:has([aria-current="page"]),
-	&[aria-current="page"] {
+	&:has([data-active="true"]),
+	&[aria-current="page"],
+	&[data-active="true"] {
 		> :is(a, button) {
 			font-weight: 700;
 		}
@@ -161,7 +165,8 @@
 	overflow-y: auto;
 	// additional #{$db-spacing-fixed-3xs} for border
 	inset-block: calc(
-			#{component.$default-mobile-header-height} + #{variables.$db-spacing-fixed-3xs}
+			#{component.$min-mobile-header-height} +
+				#{variables.$db-spacing-fixed-3xs}
 		)
 		calc(
 			#{variables.$db-sizing-md} + #{variables.$db-spacing-fixed-xs} * 2 +
@@ -175,7 +180,7 @@
 	flex-direction: column;
 	z-index: 70;
 	inset-inline-start: 0;
-	background-color: colors.$db-current-color-bg-lvl-1-enabled;
+	background-color: colors.$db-adaptive-bg-basic-level-1-default;
 	visibility: hidden;
 
 	@include screen-sizes.screen("md", "max") {
@@ -213,10 +218,12 @@
 			inline-size: 100%;
 			// #{$db-spacing-fixed--3xs} for shadows
 			block-size: calc(
-				#{variables.$db-spacing-fixed-3xs} + #{variables.$db-spacing-fixed-md}
+				#{variables.$db-spacing-fixed-3xs} +
+					#{variables.$db-spacing-fixed-md}
 			);
 			inset-block-start: calc(
-				-1 * #{variables.$db-spacing-fixed-md} - #{variables.$db-spacing-fixed-3xs}
+				-1 * #{variables.$db-spacing-fixed-md} -
+					#{variables.$db-spacing-fixed-3xs}
 			);
 		}
 
@@ -297,7 +304,7 @@
 
 	display: flex;
 	font-weight: normal;
-	background-color: colors.$db-current-color-bg-lvl-1-enabled;
+	background-color: colors.$db-adaptive-bg-basic-level-1-default;
 	padding-block-end: variables.$db-spacing-fixed-md;
 	margin-block-end: variables.$db-spacing-fixed-md;
 }

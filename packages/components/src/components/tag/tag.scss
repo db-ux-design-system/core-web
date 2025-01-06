@@ -26,7 +26,8 @@
 	&:not([data-no-text="true"]) {
 		--db-padding-inline-start: #{variables.$db-spacing-fixed-2xs};
 
-		padding-inline: var(--db-padding-inline-start) #{variables.$db-spacing-fixed-2xs};
+		padding-inline: var(--db-padding-inline-start)
+			#{variables.$db-spacing-fixed-2xs};
 
 		&:has(.db-tab-remove-button) {
 			padding-inline-end: 0;
@@ -73,6 +74,15 @@
 	&:has(db-button):has(dbbutton) .db-tab-remove-button {
 		display: none;
 	}
+
+	> :is(
+			[class="db-checkbox"],
+			[class="db-radio"],
+			[class="db-link"],
+			[class="db-button"]
+		) {
+		block-size: 100%;
+	}
 }
 
 .db-tag {
@@ -87,6 +97,12 @@
 		margin-inline-start: 0;
 		display: flex;
 		align-items: center;
+
+		@media (forced-colors: active) {
+			&:not(:has(input:checked)) {
+				border-style: dashed;
+			}
+		}
 
 		&:has(input:checked) {
 			border-width: variables.$db-border-height-3xs;
@@ -106,25 +122,19 @@
 			border: 0;
 			border-radius: inherit;
 			cursor: pointer;
-			transform: translateX(
-				calc(
-					(
-							var(
-									--db-padding-inline-start,
-									#{variables.$db-spacing-fixed-2xs}
-								) + #{variables.$db-border-height-3xs}
-						) * -1
-				)
-			);
+			inset: 0;
+			aspect-ratio: unset;
 
 			&:checked {
 				&,
 				&:not(:disabled):is(:hover, :focus, :active) {
-					background-color: colors.$db-brand-bg-transparent-full-enabled;
+					background-color: colors.$db-brand-bg-basic-transparent-full-default;
 				}
 
-				&::before {
-					--db-icon: "";
+				&:not([data-hide-icon-before="true"]) {
+					&::before {
+						content: none;
+					}
 				}
 			}
 		}
@@ -202,7 +212,7 @@
 		&:is(button),
 		button {
 			// overwrite to transparent
-			background-color: colors.$db-current-color-bg-transparent-full-enabled;
+			background-color: colors.$db-adaptive-bg-basic-transparent-full-default;
 			margin-inline-start: variables.$db-spacing-fixed-2xs;
 			border: 0;
 			aspect-ratio: 1 / 1;

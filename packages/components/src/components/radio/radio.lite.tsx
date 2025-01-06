@@ -4,15 +4,18 @@ import {
 	Show,
 	useMetadata,
 	useRef,
-	useStore
+	useStore,
+	useTarget
 } from '@builder.io/mitosis';
 import { DBRadioProps, DBRadioState } from './model';
-import { cls, uuid } from '../../utils';
+import { cls, getHideProp, uuid } from '../../utils';
 import { ChangeEvent, InteractionEvent } from '../../shared/model';
 import { handleFrameworkEvent } from '../../utils/form-components';
 
 useMetadata({
-	isAttachedToShadowDom: true
+	angular: {
+		nativeAttributes: ['disabled', 'required', 'checked', 'indeterminate']
+	}
 });
 
 export default function DBRadio(props: DBRadioProps) {
@@ -20,7 +23,7 @@ export default function DBRadio(props: DBRadioProps) {
 	// jscpd:ignore-start
 	const state = useStore<DBRadioState>({
 		initialized: false,
-		_id: 'radio-' + uuid(),
+		_id: undefined,
 		handleChange: (event: ChangeEvent<HTMLInputElement>) => {
 			if (props.onChange) {
 				props.onChange(event);
@@ -30,7 +33,10 @@ export default function DBRadio(props: DBRadioProps) {
 				props.change(event);
 			}
 
-			handleFrameworkEvent(this, event, 'checked');
+			useTarget({
+				angular: () => handleFrameworkEvent(this, event, 'checked'),
+				vue: () => handleFrameworkEvent(this, event, 'checked')
+			});
 		},
 		handleBlur: (event: InteractionEvent<HTMLInputElement>) => {
 			if (props.onBlur) {
@@ -54,7 +60,7 @@ export default function DBRadio(props: DBRadioProps) {
 
 	onMount(() => {
 		state.initialized = true;
-		state._id = props.id ?? state._id;
+		state._id = props.id ?? `radio-${uuid()}`;
 	});
 	// jscpd:ignore-end
 
@@ -74,12 +80,12 @@ export default function DBRadio(props: DBRadioProps) {
 	return (
 		<label
 			data-size={props.size}
-			data-variant={props.variant}
+			data-hide-label={getHideProp(props.showLabel)}
 			class={cls('db-radio', props.className)}
 			htmlFor={state._id}>
 			<input
-				aria-invalid={props.customValidity === 'invalid'}
-				data-custom-validity={props.customValidity}
+				aria-invalid={props.validation === 'invalid'}
+				data-custom-validity={props.validation}
 				ref={ref}
 				type="radio"
 				id={state._id}
@@ -99,10 +105,9 @@ export default function DBRadio(props: DBRadioProps) {
 					state.handleFocus(event)
 				}
 			/>
-			<Show when={props.label}>
-				<span>{props.label}</span>
+			<Show when={props.label} else={props.children}>
+				{props.label}
 			</Show>
-			{props.children}
 		</label>
 	);
 }

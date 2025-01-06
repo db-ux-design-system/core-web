@@ -13,7 +13,7 @@ const App = () => {
 
 	if (pageName ?? fullscreen) {
 		return (
-			<div className={`db-density-${density} db-${color}`}>
+			<div data-density={density} className={`db-${color}`}>
 				<Outlet />
 			</div>
 		);
@@ -46,7 +46,7 @@ const App = () => {
 					}
 					secondaryAction={
 						<>
-							<DBButton icon="user" variant="ghost" noText>
+							<DBButton icon="person" variant="ghost" noText>
 								Profile
 							</DBButton>
 							<DBButton icon="bell" variant="ghost" noText>
@@ -63,7 +63,7 @@ const App = () => {
 					<Navigation />
 				</DBHeader>
 			}>
-			<div className={`db-density-${density} db-${color}`}>
+			<div data-density={density} className={`db-${color}`}>
 				<Outlet />
 			</div>
 		</DBPage>

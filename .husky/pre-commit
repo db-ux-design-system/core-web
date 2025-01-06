@@ -1,6 +1,6 @@
 validate-branch-name
 node scripts/check-commit-mail.js
-lint-staged --config ./.lintstagedrc.js
-prettier $(git diff --cached --name-only --diff-filter=ACMR | sed 's| |\\ |g') --write --ignore-unknown
+lint-staged --config .config/.lintstagedrc.js
+lint-staged --config .config/.lintstagedrc-prettier.js
 git update-index --again
 npm run lint:jscpd

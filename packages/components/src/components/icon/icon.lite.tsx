@@ -1,10 +1,8 @@
-import { useMetadata, useRef, useStore } from '@builder.io/mitosis';
+import { Show, useMetadata, useRef, useStore } from '@builder.io/mitosis';
 import type { DBIconProps, DBIconState } from './model';
 import { cls } from '../../utils';
 
-useMetadata({
-	isAttachedToShadowDom: true
-});
+useMetadata({});
 
 export default function DBIcon(props: DBIconProps) {
 	const ref = useRef<HTMLSpanElement>(null);
@@ -22,7 +20,9 @@ export default function DBIcon(props: DBIconProps) {
 			data-icon-weight={props.weight}
 			data-icon-variant={props.variant}
 			aria-hidden="true">
-			{props.children}
+			<Show when={props.text} else={props.children}>
+				{props.text}
+			</Show>
 		</span>
 	);
 }

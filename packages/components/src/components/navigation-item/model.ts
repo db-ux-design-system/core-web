@@ -7,13 +7,15 @@ import {
 	IconProps,
 	InitializedState,
 	NavigationBackButtonProps,
+	ShowIconProps,
+	TextProps,
 	WidthProps
 } from '../../shared/model';
 import { NavigationItemSafeTriangle } from '../../utils/navigation';
 
-export interface DBNavigationItemDefaultProps {
+export type DBNavigationItemDefaultProps = {
 	/**
-	 * Indicator for active navigation item (bold font).
+	 * Alternative indicator for active navigation item (bold font). In contrast to the use of aria-current="page" on the contained anchor, this does not guarantee correct a11y.
 	 */
 	active?: boolean;
 
@@ -26,31 +28,24 @@ export interface DBNavigationItemDefaultProps {
 	 * React-specific property to pass in a slot for sub-navigation
 	 */
 
-	subNavigation?: unknown;
+	subNavigation?: any;
 
 	/**
 	 * This is for mobile navigation only, if it is set the sub-navigation is a static overlay
 	 */
 	subNavigationExpanded?: boolean;
-}
+};
 
 export type DBNavigationItemProps = DBNavigationItemDefaultProps &
 	GlobalProps &
 	ClickEventProps<HTMLButtonElement> &
 	IconProps &
 	WidthProps &
-	NavigationBackButtonProps;
+	NavigationBackButtonProps &
+	ShowIconProps &
+	TextProps;
 
-export interface DBNavigationItemTriangleData {
-	itemRect: DOMRect;
-	parentElementWidth: number;
-	subNavigationHeight: number;
-	padding: number;
-	outsideVX: 'left' | 'right' | undefined;
-	outsideVY: 'top' | 'bottom' | undefined;
-}
-
-export interface DBNavigationItemDefaultState {
+export type DBNavigationItemDefaultState = {
 	handleBackClick: (event: ClickEvent<HTMLButtonElement>) => void;
 	hasAreaPopup: boolean;
 	isSubNavigationExpanded: boolean;
@@ -62,7 +57,7 @@ export interface DBNavigationItemDefaultState {
 	hasSubNavigation?: boolean;
 	updateSubNavigationState: () => void;
 	navigationItemSafeTriangle?: NavigationItemSafeTriangle;
-}
+};
 
 export type DBNavigationItemState = DBNavigationItemDefaultState &
 	ClickEventState<HTMLButtonElement> &

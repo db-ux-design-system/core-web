@@ -17,16 +17,25 @@ const replaceAnyTypes = (input: string, component: string) => {
 	const propModel = `DB${transformToUpperComponentName(component)}Props`;
 	let fileContent = input;
 
-	const propLines = fileContent.match(/readonly (.*);/g);
-	for (const propLine of propLines) {
-		const prop = propLine
-			.replace('readonly ', '')
-			.replace('?: any;', '')
-			.replace(': any;', '');
-		fileContent = fileContent.replace(
-			propLine,
-			propLine.replace('any', `${propModel}["${prop}"]`)
-		);
+	const readOnlyLines = fileContent.match(/Readonly<{[\s\S]*?}>/g);
+	for (const roLine of readOnlyLines) {
+		const propLines = roLine.match(/(.*);/g);
+		if (propLines) {
+			propLines.forEach((propLine) => {
+				// Check if prop(contains ": any") or function
+				if (propLine.includes(': any;')) {
+					const prop = propLine
+						.replace('?: any;', '')
+						.replace(': any;', '')
+						.trim();
+					// @ts-ignore
+					fileContent = fileContent.replaceAll(
+						propLine,
+						propLine.replace('any', `${propModel}["${prop}"]`)
+					);
+				}
+			});
+		}
 	}
 
 	return `import { ${propModel} } from "./model";\n\n${fileContent}`;

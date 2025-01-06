@@ -1,0 +1,124 @@
+- main:
+  - heading "DBHeader" [level=1]
+  - link "Density arrow_up_right\" / \""
+  - link "Imprint arrow_right\" / \""
+  - link "Help arrow_right\" / \""
+  - text: db" / " DBHeader
+  - navigation "Functional":
+    - list:
+      - listitem:
+        - text: person" / "
+        - link "Functional"
+      - listitem:
+        - link "Functional disabled"
+  - button "magnifying_glass\" / \" Search"
+  - button "person\" / \" Profile"
+  - button "bell\" / \" Notification"
+  - button "question_mark_circle\" / \" Help"
+  - link "Imprint arrow_right\" / \""
+  - link "Help arrow_right\" / \""
+  - text: db" / " DBHeader
+  - navigation "(Default) Regular":
+    - list:
+      - listitem:
+        - text: person" / "
+        - link "(Default) Regular"
+      - listitem:
+        - link "(Default) Regular disabled"
+  - button "magnifying_glass\" / \" Search"
+  - button "person\" / \" Profile"
+  - button "bell\" / \" Notification"
+  - button "question_mark_circle\" / \" Help"
+  - link "Imprint arrow_right\" / \""
+  - link "Help arrow_right\" / \""
+  - text: db" / " DBHeader
+  - navigation "Expressive":
+    - list:
+      - listitem:
+        - text: person" / "
+        - link "Expressive"
+      - listitem:
+        - link "Expressive disabled"
+  - button "magnifying_glass\" / \" Search"
+  - button "person\" / \" Profile"
+  - button "bell\" / \" Notification"
+  - button "question_mark_circle\" / \" Help"
+  - link "Width arrow_up_right\" / \""
+  - link "Imprint arrow_right\" / \""
+  - link "Help arrow_right\" / \""
+  - text: db" / " DBHeader
+  - navigation "Full":
+    - list:
+      - listitem:
+        - text: person" / "
+        - link "Full"
+      - listitem:
+        - link "Full disabled"
+  - button "magnifying_glass\" / \" Search"
+  - button "person\" / \" Profile"
+  - button "bell\" / \" Notification"
+  - button "question_mark_circle\" / \" Help"
+  - link "Imprint arrow_right\" / \""
+  - link "Help arrow_right\" / \""
+  - text: db" / " DBHeader
+  - navigation "Medium":
+    - list:
+      - listitem:
+        - text: person" / "
+        - link "Medium"
+      - listitem:
+        - link "Medium disabled"
+  - button "magnifying_glass\" / \" Search"
+  - button "person\" / \" Profile"
+  - button "bell\" / \" Notification"
+  - button "question_mark_circle\" / \" Help"
+  - link "Imprint arrow_right\" / \""
+  - link "Help arrow_right\" / \""
+  - text: db" / " DBHeader
+  - navigation "Large":
+    - list:
+      - listitem:
+        - text: person" / "
+        - link "Large"
+      - listitem:
+        - link "Large disabled"
+  - button "magnifying_glass\" / \" Search"
+  - button "person\" / \" Profile"
+  - button "bell\" / \" Notification"
+  - button "question_mark_circle\" / \" Help"
+  - link "Behaviour arrow_up_right\" / \""
+  - link "Imprint arrow_right\" / \""
+  - link "Help arrow_right\" / \""
+  - text: db" / " DBHeader
+  - navigation "Desktop (full width)":
+    - list:
+      - listitem:
+        - text: person" / "
+        - link "Desktop (full width)"
+      - listitem:
+        - link "Desktop (full width) disabled"
+  - button "magnifying_glass\" / \" Search"
+  - button "person\" / \" Profile"
+  - button "bell\" / \" Notification"
+  - button "question_mark_circle\" / \" Help"
+  - text: db" / " DBHeader
+  - button "magnifying_glass\" / \" Search"
+  - button "menu\" / \" BurgerMenu"
+  - link "Examples arrow_up_right\" / \""
+  - text: db" / " DBHeader
+  - navigation "With Application Name + Navigation":
+    - list:
+      - listitem:
+        - text: person" / "
+        - link "With Application Name + Navigation"
+      - listitem:
+        - link "With Application Name + Navigation disabled"
+  - text: db" / " DBHeader db" / "
+  - navigation "Without Application Name":
+    - list:
+      - listitem:
+        - text: person" / "
+        - link "Without Application Name"
+      - listitem:
+        - link "Without Application Name disabled"
+  - text: db" / "

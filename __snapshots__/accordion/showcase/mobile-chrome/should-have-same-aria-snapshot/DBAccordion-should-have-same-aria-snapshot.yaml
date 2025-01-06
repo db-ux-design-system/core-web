@@ -1,0 +1,61 @@
+- main:
+  - heading "DBAccordion" [level=1]
+  - link "Density arrow_up_right\" / \""
+  - text: Functional
+  - list:
+    - listitem:
+      - group: Item 1 chevron_down" / "
+    - listitem:
+      - group: Item 2 chevron_down" / "
+    - listitem:
+      - group: Item 3 chevron_down" / "
+  - text: (Default) Regular
+  - list:
+    - listitem:
+      - group: Item 1 chevron_down" / "
+    - listitem:
+      - group: Item 2 chevron_down" / "
+    - listitem:
+      - group: Item 3 chevron_down" / "
+  - text: Expressive
+  - list:
+    - listitem:
+      - group: Item 1 chevron_down" / "
+    - listitem:
+      - group: Item 2 chevron_down" / "
+    - listitem:
+      - group: Item 3 chevron_down" / "
+  - link "Variant arrow_up_right\" / \""
+  - text: background (default)
+  - list:
+    - listitem:
+      - group: Item 1 chevron_down" / "
+    - listitem:
+      - group: Item 2 chevron_down" / "
+    - listitem:
+      - group: Item 3 chevron_down" / "
+  - text: card
+  - list:
+    - listitem:
+      - group: Item 1 chevron_down" / "
+    - listitem:
+      - group: Item 2 chevron_down" / "
+    - listitem:
+      - group: Item 3 chevron_down" / "
+  - link "Behaviour arrow_up_right\" / \""
+  - text: (Default) Multiple
+  - list:
+    - listitem:
+      - group: Item 1 chevron_down" / "
+    - listitem:
+      - group: Item 2 chevron_down" / "
+    - listitem:
+      - group: Item 3 chevron_down" / "
+  - text: Single
+  - list:
+    - listitem:
+      - group: Item 1 chevron_down" / "
+    - listitem:
+      - group: Item 2 chevron_down" / "
+    - listitem:
+      - group: Item 3 chevron_down" / "

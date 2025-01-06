@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import defaultComponentVariants from '../../../../../shared/input.json';
 import { DefaultComponent } from '../default.component';
 import {
@@ -6,12 +6,18 @@ import {
 	LabelVariantType,
 	ValueLabelType
 } from '../../../../../../output/angular/src';
+import { environment } from '../../../environments/environment';
 
 @Component({
 	selector: 'app-input',
 	templateUrl: './input.component.html',
-	imports: [DefaultComponent, DBInput],
-	standalone: true
+	imports: [
+		environment.webComponents
+			? [DefaultComponent]
+			: [DefaultComponent, DBInput]
+	],
+	standalone: true,
+	schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class InputComponent {
 	variants = defaultComponentVariants;
