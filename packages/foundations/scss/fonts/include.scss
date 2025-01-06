@@ -1,76 +1,52 @@
 @use "../default.assets-paths" as assets-paths;
 
 @font-face {
-	font-family: "DB Screen Sans";
+	font-family: NotoSans;
 	font-style: normal;
 	font-weight: 300;
-	src: /* TODO: add those again as soon as the local files got fixed
-		local("DB Screen Sans Digital Regular"),
-		local("DB Screen Sans Digital"),
-		local("DB Sans Digital"),*/ url("#{assets-paths.$fonts-path}dbscreensans-digitalregular.woff2")
-		format("woff2");
+	src: url("#{assets-paths.$fonts-path}NotoSans-Thin.woff2") format("woff2");
 }
 
 @font-face {
-	font-family: "DB Screen Sans";
+	font-family: NotoSans;
 	font-style: normal;
 	font-weight: 400;
-	src: /* local("DB Screen Sans Regular"),
-		local("DB Screen Sans"),
-		local("DB Sans"),*/ url("#{assets-paths.$fonts-path}dbscreensans-regular.woff2")
+	src: url("#{assets-paths.$fonts-path}NotoSans-Regular.woff2")
 		format("woff2");
 }
 
 @font-face {
-	font-family: "DB Screen Sans";
+	font-family: NotoSans;
 	font-style: normal;
 	font-weight: 500;
-	src: /* local("DB Screen Sans Medium"),
-		local("DB Sans Medium"),*/ url("#{assets-paths.$fonts-path}dbscreensans-medium.woff2")
-		format("woff2");
+	src: url("#{assets-paths.$fonts-path}NotoSans-Medium.woff2") format("woff2");
 }
 
 @font-face {
-	font-family: "DB Screen Sans";
+	font-family: NotoSans;
 	font-style: normal;
 	font-weight: 600;
-	src: /* local("DB Screen Sans SemiBold"),
-		local("DB Sans SemiBold"),*/ url("#{assets-paths.$fonts-path}dbscreensans-semibold.woff2")
+	src: url("#{assets-paths.$fonts-path}NotoSans-SemiBold.woff2")
 		format("woff2");
 }
 
 @font-face {
-	font-family: "DB Screen Sans";
+	font-family: NotoSans;
 	font-style: normal;
 	font-weight: 700;
-	src: /* local("DB Screen Sans Bold"),
-		local("DB Sans Bold"),*/ url("#{assets-paths.$fonts-path}dbscreensans-bold.woff2")
-		format("woff2");
+	src: url("#{assets-paths.$fonts-path}NotoSans-Bold.woff2") format("woff2");
 }
 
 @font-face {
-	font-family: "DB Screen Head";
+	font-family: "NotoSans Head";
 	font-style: normal;
 	font-weight: 300;
-	src: /* local("DB Screen Head Light"),
-		local("DB Head Light"),*/ url("#{assets-paths.$fonts-path}dbscreenhead-light.woff2")
-		format("woff2");
+	src: url("#{assets-paths.$fonts-path}NotoSans-Light.woff2") format("woff2");
 }
 
 @font-face {
-	font-family: "DB Screen Head";
-	font-style: normal;
-	font-weight: 400;
-	src: /* local("DB Screen Head"),
-		local("DB Head"),*/ url("#{assets-paths.$fonts-path}dbscreenhead-regular.woff2")
-		format("woff2");
-}
-
-@font-face {
-	font-family: "DB Screen Head";
+	font-family: "NotoSans Head";
 	font-style: normal;
 	font-weight: 900;
-	src: /* local("DB Screen Head Black"),
-		local("DB Head Black"),*/ url("#{assets-paths.$fonts-path}dbscreenhead-black.woff2")
-		format("woff2");
+	src: url("#{assets-paths.$fonts-path}NotoSans-Black.woff2") format("woff2");
 }
