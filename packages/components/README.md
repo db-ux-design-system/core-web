@@ -34,7 +34,7 @@ Import the styles in `scss` or `css`. Based on your technology the file names co
 - webpack: asset path point to `~@db-ui/foundations/assets`
 - rollup: asset path point to `@db-ui/foundations/assets`
 
-They are bundling all dependencies from [foundations](https://www.npmjs.com/package/@db-ui/foundations) + all [components](https://github.com/db-ui/mono/blob/main/packages/components/src/styles/db-ui-components.scss) available.
+They are bundling all dependencies from [foundations](https://www.npmjs.com/package/@db-ui/foundations) and all [components](https://github.com/db-ui/mono/blob/main/packages/components/src/styles/db-ui-components.scss) available.
 
 **SCSS**
 
