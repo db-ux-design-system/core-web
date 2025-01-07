@@ -39,6 +39,10 @@ new PurgeCSS()
 				/-default$/,
 				/-hovered$/,
 				/-pressed$/
+			],
+			/* Some components require a safelist */
+			greedy: [
+				/db-tabs/ // TODO: Add more components if ne
 			]
 		}
 	})
