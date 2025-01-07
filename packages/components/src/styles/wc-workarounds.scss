@@ -1,6 +1,6 @@
 @use "internal/custom-elements";
 
-// wc-workaround
+// Web Components workaround
 @each $custom-element in custom-elements.$custom-elements {
 	#{$custom-element} {
 		display: contents;
