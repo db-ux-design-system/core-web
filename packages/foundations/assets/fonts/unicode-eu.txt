@@ -1,6 +1,8 @@
 # compare to https://symbl.cc/de/unicode-table/
 U+0000-024F # Latin (all)
 U+0020,U+0009,U+000A,U+000D # white space characters
+U+02B0-02FF # Spacing Modifier Letters
+U+0300-036F # Combining Diacritical Marks
 U+00C0-00FF # accented characters
 U+00E4,U+00F6,U+00FC,U+00DF # German characters
 U+00E9, U+00E8, U+00EA, U+00E0, U+00E7, U+0153 # French characters
