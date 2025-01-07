@@ -9,7 +9,7 @@ To generate optimal fonts we use [fonttools](https://github.com/fonttools/fontto
 Afterward, you can generate a font by running the following command:
 
 ```shell
-pyftsubset NotoSans-Regular.ttf --layout-features=* --flavor=woff2 --unicodes-file=unicode-eu.txt --output-file=NotoSans-EU-Regular.woff2
+pyftsubset NotoSans-Regular.ttf --layout-features=* --flavor=woff2 --unicodes-file=unicode-eu.txt --output-file=NotoSans-Regular-EU.woff2
 ```
 
 ## Local development
