@@ -30,9 +30,9 @@ If you just need the styling follow this:
 
 Import the styles in `scss` or `css`. Based on your technology the file names could be different.
 
-- relative: asset path point to `../assets`
-- webpack: asset path point to `~@db-ui/foundations/assets`
-- rollup: asset path point to `@db-ui/foundations/assets`
+- `relative`: asset path point to `../assets`
+- `webpack`: asset path point to `~@db-ui/foundations/assets`
+- `rollup`: asset path point to `@db-ui/foundations/assets`
 
 They are bundling all dependencies from [foundations](https://www.npmjs.com/package/@db-ui/foundations) and all [components](https://github.com/db-ui/mono/blob/main/packages/components/src/styles/db-ui-components.scss) available.
 
