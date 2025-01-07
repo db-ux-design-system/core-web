@@ -2,7 +2,7 @@
 
 To generate optimal fonts we use [fonttools](https://github.com/fonttools/fonttools). To use the tools you need python installed:
 
-1. Install [python](https://www.python.org/downloads/)
+1. Install [python](https://docs.python-guide.org/starting/installation/#installation) and [ensure that you can run Python from the command line](https://packaging.python.org/en/latest/tutorials/installing-packages/#ensure-you-can-run-python-from-the-command-line)
 2. Install fonttools: `pip3 install fonttools`
 3. Install brotli: `pip3 install brotli`
 
