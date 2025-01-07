@@ -20,4 +20,4 @@ You can use `packages/foundations/assets/fonts/generate-eu-fonts.ts` to generate
 node packages/foundations/assets/fonts/generate-eu-fonts.ts
 ```
 
-To check if everything works fine you can check all glyphs [here](https://opentype.js.org/glyph-inspector.html).
+To check if everything works fine you can check all glyphs with an [opentype.js.org glyph inspector tool](https://opentype.js.org/glyph-inspector.html).
