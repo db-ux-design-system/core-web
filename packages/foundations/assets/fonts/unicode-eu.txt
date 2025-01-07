@@ -1,11 +1,5 @@
 # compare to https://symbl.cc/de/unicode-table/
-U+0030-0039 #0-9
-U+0061-007A #a-z
-U+0041-005A #A-Z
-U+0020-002F, U+003A-003F # special characters
-U+0024,U+00A2,U+20AC,U+00A3,U+00A5 # currency symbols
-U+003C-003E,U+00B1,U+00D7,U+00F7 # operators
-U+0022,U+2018-201F,U+2013-2014,U+2026 # typographic characters
+U+0000-024F # Latin (all)
 U+0020,U+0009,U+000A,U+000D # white space characters
 U+00C0-00FF # accented characters
 U+00E4,U+00F6,U+00FC,U+00DF # German characters
