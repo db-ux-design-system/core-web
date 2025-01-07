@@ -49,7 +49,7 @@ import "@db-ui/components/build/styles/rollup.css";
 
 </details>
 
-> **Note:** The `relative` file contains optional and all components styles. If you consider performance issues see [@db-ui/components](https://www.npmjs.com/package/@db-ui/components) for more information.
+> **Note:** The `@db-ui/components/build/styles/relative` file contains optional and all components styles. If you consider performance issues see [@db-ui/components](https://www.npmjs.com/package/@db-ui/components) for more information.
 
 ## Usage
 
