@@ -280,7 +280,7 @@ In your `tailwind.css` add this to enable default headlines:
 
 ## Optimize dependencies
 
-If you want to optimize the size of the loaded styles, you might skip loading `@db-ui/foundations/build/styles/[relative|absolute|rollup|webpack].css`. But there are some required styles for this Design-System to work properly.
+If you want to optimize the size of the loaded styles, you might want to skip loading `@db-ui/foundations/build/styles/[relative|absolute|rollup|webpack].css`. But there are some required styles for this Design System to work properly.
 
 ### Theme, Assets & Init
 
