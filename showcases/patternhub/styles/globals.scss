@@ -20,10 +20,11 @@ body:not(:has(.db-page)) {
 }
 
 #__next {
-	height: inherit;
+	block-size: inherit;
 }
+
 #__next > div {
-	height: inherit;
+	block-size: inherit;
 }
 
 db-mainnavigation {
@@ -35,14 +36,14 @@ github-version-switcher {
 }
 
 iframe {
-	width: 100%;
-	height: calc(100% - 8px) !important;
+	inline-size: 100%;
+	block-size: calc(100% - 8px) !important;
 }
 
 .example-list {
 	dd {
 		margin-block-end: variables.$db-spacing-fixed-md;
-		max-width: 500px;
+		max-inline-size: 500px;
 	}
 }
 
@@ -81,7 +82,7 @@ iframe {
 }
 
 .is-properties {
-	height: 100%;
+	block-size: 100%;
 	overflow: auto;
 
 	h1,
@@ -93,7 +94,8 @@ iframe {
 /* TODO: Use real table css in future */
 table {
 	@extend %db-density-functional;
-	width: 100%;
+
+	inline-size: 100%;
 	border-collapse: collapse;
 }
 
@@ -101,7 +103,7 @@ table td,
 table th {
 	border: 1px solid colors.$db-adaptive-on-bg-basic-emphasis-60-default;
 	padding: variables.$db-spacing-fixed-md;
-	max-width: 33vw;
+	max-inline-size: 33vw;
 }
 
 table tr:nth-child(even) {
@@ -110,11 +112,12 @@ table tr:nth-child(even) {
 
 table th {
 	@extend %db-neutral-bg-basic-transparent-semi;
+
 	padding-inline: variables.$db-spacing-fixed-md;
 }
 
 .version-switcher {
-	max-width: variables.$db-sizing-3xl;
+	max-inline-size: variables.$db-sizing-3xl;
 }
 
 /* Workaround for current db-page from db-ui-elements */
@@ -122,6 +125,7 @@ div[class^="ch-"] {
 	div,
 	span {
 		@extend %db-overwrite-font-size-sm;
+
 		color: colors.$db-adaptive-on-bg-basic-emphasis-100-default;
 	}
 }
@@ -137,6 +141,7 @@ div[class^="ch-"] {
 
 %grid-container {
 	--columns: 1;
+
 	display: grid;
 	grid-template-columns: repeat(var(--columns), minmax(0, 1fr));
 	gap: variables.$db-spacing-fixed-md;
@@ -154,6 +159,7 @@ div[class^="ch-"] {
 
 .icons-overview-container {
 	@extend %grid-container;
+
 	--columns: 2;
 
 	@include screen-sizes.screen() {
@@ -175,6 +181,7 @@ div[class^="ch-"] {
 // colors overview
 .color-overview-container {
 	@extend %grid-container;
+
 	position: relative;
 	padding: variables.$db-spacing-fixed-md 0;
 
@@ -261,7 +268,7 @@ div[class^="ch-"] {
 		background-color: colors.$db-successful-bg-inverted-contrast-high-default;
 		color: colors.$db-successful-on-bg-inverted-default;
 		border-color: colors.$db-successful-bg-inverted-contrast-high-default;
-		height: 100%;
+		block-size: 100%;
 		display: flex;
 		justify-content: center;
 		position: absolute;
@@ -278,6 +285,7 @@ div[class^="ch-"] {
 		.example-spacing-fixed,
 		.example-spacing-responsive {
 			border: 1px solid black;
+
 			> div {
 				display: flex;
 				border: 1px solid
@@ -294,7 +302,8 @@ div[class^="ch-"] {
 			.gap1,
 			.gap2 {
 				@extend %spacing;
-				width: variables.$db-spacing-fixed-xl;
+
+				inline-size: variables.$db-spacing-fixed-xl;
 			}
 
 			$icon-width: calc(
@@ -302,11 +311,11 @@ div[class^="ch-"] {
 			);
 
 			.gap1 {
-				left: $icon-width;
+				inset-inline-start: $icon-width;
 			}
 
 			.gap2 {
-				right: $icon-width;
+				inset-inline-end: $icon-width;
 			}
 		}
 
@@ -318,15 +327,20 @@ div[class^="ch-"] {
 			.margin1,
 			.margin2 {
 				@extend %spacing;
-				width: variables.$db-spacing-responsive-sm;
+
+				inline-size: variables.$db-spacing-responsive-sm;
 			}
 
 			.margin1 {
-				left: calc(-1 * #{variables.$db-spacing-responsive-sm});
+				inset-inline-start: calc(
+					-1 * #{variables.$db-spacing-responsive-sm}
+				);
 			}
 
 			.margin2 {
-				right: calc(-1 * #{variables.$db-spacing-responsive-sm});
+				inset-inline-end: calc(
+					-1 * #{variables.$db-spacing-responsive-sm}
+				);
 			}
 		}
 
@@ -338,6 +352,7 @@ div[class^="ch-"] {
 
 			.sizing {
 				@extend %spacing;
+
 				background-color: colors.$db-warning-bg-inverted-contrast-high-default;
 				color: colors.$db-warning-on-bg-inverted-default;
 				border-color: colors.$db-warning-bg-inverted-contrast-high-default;
@@ -395,7 +410,8 @@ h6 {
 		font-size: 0;
 	}
 
-	&:hover {
+	&:hover,
+	&:focus {
 		a:is(.header-link) {
 			visibility: visible;
 		}
@@ -475,8 +491,7 @@ h6 {
 					inset-block-end: variables.$db-spacing-fixed-sm;
 
 					@include screen-sizes.screen("md") {
-						inset-block-end: auto;
-						inset-block-start: variables.$db-spacing-fixed-sm;
+						inset-block: variables.$db-spacing-fixed-sm auto;
 					}
 				}
 			}
