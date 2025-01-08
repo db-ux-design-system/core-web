@@ -9,7 +9,7 @@ When you use the full bundled `.css` file we provide, you could easily reduce th
 Install both with:
 
 ```shell
-npm i -D purgecss csso
+npm i purgecss csso --save-dev
 ```
 
 Next you should create a file, e.g. `purgecss.js` in your project root with the following content:
