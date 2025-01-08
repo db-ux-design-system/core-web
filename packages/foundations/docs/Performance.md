@@ -15,10 +15,10 @@ npm i purgecss csso --save-dev
 Next you should create a file, e.g. `purgecss.js` in your project root with the following content:
 
 ```javascript
+import { writeFileSync } from "node:fs";
+
 import { PurgeCSS } from "purgecss";
 import { minify } from "csso";
-
-import { writeFileSync } from "node:fs";
 
 const distFolder = "dist"; // TODO: Change me if you need another folder
 
