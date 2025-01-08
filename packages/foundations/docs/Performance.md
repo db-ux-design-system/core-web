@@ -42,7 +42,7 @@ new PurgeCSS()
 			],
 			/* Some components require a safelist */
 			greedy: [
-				/db-tabs/ // TODO: Add more components if ne
+				/db-tabs/ // TODO: Add more components if necessary
 			]
 		}
 	})
