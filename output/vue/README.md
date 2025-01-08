@@ -59,7 +59,7 @@ import { DBButton } from "@db-ui/v-components";
 </script>
 
 <template>
-	<DBButton icon="person">Test</DBButton>
+	<DBButton icon="x_placeholder">Test</DBButton>
 </template>
 ```
 

@@ -44,8 +44,7 @@
     "start": "nodemon --watch src --watch scripts --watch overrides -e js,tsx,ts,scss,json -x \"npm run build\""
   },
   "dependencies": {
-    "@db-ui/foundations": "*",
-    "@db-ux/core-icons": "0.0.7"
+    "@db-ui/foundations": "*"
   },
   "devDependencies": {
     "@builder.io/eslint-plugin-mitosis": "0.0.16",

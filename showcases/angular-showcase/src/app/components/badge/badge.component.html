@@ -29,7 +29,7 @@
 			exampleProps?.placement !== "inline" &&
 			!exampleProps?.example
 		) {
-			<db-button icon="person" variant="outlined" [noText]="true">
+			<db-button icon="x_placeholder" variant="outlined" [noText]="true">
 				<db-badge
 					emphasis="strong"
 					semantic="critical"
@@ -45,7 +45,7 @@
 
 		@if (exampleProps?.placement === "inline") {
 			<div class="badge-inline-container">
-				<db-icon icon="person"></db-icon>
+				<db-icon icon="x_placeholder"></db-icon>
 				<span>{{ exampleName }}</span>
 				<db-badge size="small" emphasis="strong" semantic="critical">
 					Label
@@ -60,7 +60,7 @@
 				emphasis="strong"
 				[size]="exampleProps?.size"
 			>
-				<db-icon icon="person">{{ exampleName }}</db-icon>
+				<db-icon icon="x_placeholder">{{ exampleName }}</db-icon>
 			</db-badge>
 			<db-infotext semantic="informational" size="small" icon="none">
 				{{ exampleName }}
