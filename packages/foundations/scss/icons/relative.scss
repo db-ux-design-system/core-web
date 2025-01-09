@@ -1,0 +1,50 @@
+@use "index";
+@use "../default.assets-paths" as assets-paths;
+
+@each $variant in index.$default-icon-variants {
+	@font-face {
+		font-display: block;
+		font-family: "db-ux-#{$variant}";
+		font-style: normal;
+		font-weight: normal;
+		src: url("#{assets-paths.$icons-path}functional/fonts/#{$variant}/db-ux.woff2")
+			format("woff2");
+	}
+
+	@each $size in (16, 20, 24, 32, 48, 64) {
+		@font-face {
+			font-display: block;
+			font-family: "db-ux-#{$variant}";
+			font-style: normal;
+			font-weight: $size;
+			src: url("#{assets-paths.$icons-path}functional/fonts/#{$variant}_#{$size}/db-ux.woff2")
+				format("woff2");
+		}
+
+		[data-icon-weight="#{$size}"],
+		[data-icon-weight-before="#{$size}"] {
+			&::before {
+				--db-icon-font-weight: #{$size};
+			}
+		}
+
+		[data-icon-weight-after="#{$size}"] {
+			&::after {
+				--db-icon-font-weight: #{$size};
+			}
+		}
+	}
+
+	[data-icon-variant="#{$variant}"],
+	[data-icon-variant-before="#{$variant}"] {
+		&::before {
+			--db-icon-font-family: "db-ux-#{$variant}";
+		}
+	}
+
+	[data-icon-variant-after="#{$variant}"] {
+		&::after {
+			--db-icon-font-family: "db-ux-#{$variant}";
+		}
+	}
+}

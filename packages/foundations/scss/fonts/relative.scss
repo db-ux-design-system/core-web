@@ -1,0 +1,57 @@
+@use "../default.assets-paths" as assets-paths;
+
+@font-face {
+	font-family: NotoSans;
+	font-style: normal;
+	font-weight: 300;
+	src: url("#{assets-paths.$fonts-path}NotoSans-Thin-EU.woff2")
+		format("woff2");
+}
+
+@font-face {
+	font-family: NotoSans;
+	font-style: normal;
+	font-weight: 400;
+	src: url("#{assets-paths.$fonts-path}NotoSans-Regular-EU.woff2")
+		format("woff2");
+}
+
+@font-face {
+	font-family: NotoSans;
+	font-style: normal;
+	font-weight: 500;
+	src: url("#{assets-paths.$fonts-path}NotoSans-Medium-EU.woff2")
+		format("woff2");
+}
+
+@font-face {
+	font-family: NotoSans;
+	font-style: normal;
+	font-weight: 600;
+	src: url("#{assets-paths.$fonts-path}NotoSans-SemiBold-EU.woff2")
+		format("woff2");
+}
+
+@font-face {
+	font-family: NotoSans;
+	font-style: normal;
+	font-weight: 700;
+	src: url("#{assets-paths.$fonts-path}NotoSans-Bold-EU.woff2")
+		format("woff2");
+}
+
+@font-face {
+	font-family: "NotoSans Head";
+	font-style: normal;
+	font-weight: 300;
+	src: url("#{assets-paths.$fonts-path}NotoSans-Light-EU.woff2")
+		format("woff2");
+}
+
+@font-face {
+	font-family: "NotoSans Head";
+	font-style: normal;
+	font-weight: 900;
+	src: url("#{assets-paths.$fonts-path}NotoSans-Black-EU.woff2")
+		format("woff2");
+}

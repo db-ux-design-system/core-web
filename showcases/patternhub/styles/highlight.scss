@@ -1,5 +1,5 @@
-@use "@db-ui/foundations/build/scss/variables";
-@use "@db-ui/foundations/build/scss/colors";
+@use "@db-ui/foundations/build/styles/variables";
+@use "@db-ui/foundations/build/styles/colors";
 
 pre:has(.hljs):not(:has(.language-shell)) {
 	@extend %db-neutral-bg-basic-transparent-full;
@@ -73,7 +73,7 @@ pre:has(.hljs):not(:has(.language-shell)) {
 }
 .hljs-subst {
 	/* prettylights-syntax-storage-modifier-import */
-	color: colors.$db-neutral-bg-basic-level-1-default;
+	color: colors.$db-warning-on-bg-basic-emphasis-90-default;
 }
 .hljs-section {
 	/* prettylights-syntax-markup-heading */
