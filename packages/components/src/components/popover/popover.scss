@@ -1,6 +1,6 @@
-@use "@db-ui/foundations/build/scss/variables";
-@use "../../styles/popover-component";
-@use "../../styles/component";
+@use "@db-ui/foundations/build/styles/variables";
+@use "../../styles/internal/popover-component";
+@use "../../styles/internal/component";
 
 .db-popover {
 	position: relative;

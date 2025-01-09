@@ -1,0 +1,12 @@
+@use "internal/custom-elements";
+
+// Web Components workaround
+@each $custom-element in custom-elements.$custom-elements {
+	#{$custom-element} {
+		display: contents;
+	}
+}
+
+db-notification {
+	inline-size: inherit;
+}

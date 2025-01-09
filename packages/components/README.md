@@ -30,17 +30,17 @@ If you just need the styling follow this:
 
 Import the styles in `scss` or `css`. Based on your technology the file names could be different.
 
-- Default (db-ui-42): asset path point to `../assets`
-- Webpack (db-ui-42-webpack): asset path point to `~@db-ui/foundations/assets`
-- Rollup (db-ui-42-rollup): asset path point to `@db-ui/foundations/assets`
+- `relative`: asset path point to `../assets`
+- `webpack`: asset path point to `~@db-ui/foundations/assets`
+- `rollup`: asset path point to `@db-ui/foundations/assets`
 
-`db-ui-42` bundles all dependencies from [foundations](https://www.npmjs.com/package/@db-ui/foundations) + all [components](https://github.com/db-ui/mono/blob/main/packages/components/src/styles/db-ui-components.scss) available.
+They are bundling all dependencies from [foundations](https://www.npmjs.com/package/@db-ui/foundations) and all [components](https://github.com/db-ui/mono/blob/main/packages/components/src/styles/db-ui-components.scss) available.
 
 **SCSS**
 
 ```scss
 // index.scss
-@forward "@db-ui/components/build/styles/db-ui-42-rollup";
+@forward "@db-ui/components/build/styles/rollup";
 ```
 
 **CSS**
@@ -49,36 +49,36 @@ Within HTML files directly:
 
 ```html
 <!-- index.html //-->
-<link rel="stylesheet" href="/styles/db-ui-42.css" />
+<link rel="stylesheet" href="/styles/rollup.css" />
 ```
 
 Or within your JavaScript files, with the related bundler as a prefix (in this case rollup and equivalents like Vite):
 
 ```js
 // main.js
-import "@db-ui/components/build/styles/db-ui-42-rollup.css";
+import "@db-ui/components/build/styles/rollup.css";
 ```
 
 ### Optimize dependencies
 
-If you only need some of the components or some features from [`@db-ui/foundations`](https://www.npmjs.com/package/@db-ui/foundations), you shouldn't include `db-ui-42`.
+If you only need some of the components or some features from [`@db-ui/foundations`](https://www.npmjs.com/package/@db-ui/foundations), you shouldn't include the bundled file.
 In the case you want to include only some components, and you could do it like this:
 
 ```css
 /* The theme contains all prop required for components like spacings, colors, ... */
-@import "@db-ui/foundations/build/css/default-theme.css";
+@import "@db-ui/foundations/build/styles/default-theme.css";
 /* The font include uses default font families based on your bundling paths (relative, absolute, webpack, rollup) */
-@import "@db-ui/foundations/build/css/fonts/include-rollup.css";
+@import "@db-ui/foundations/build/styles/fonts/include-rollup.css";
 /* The required styles will normalize css and add focus and default font to body */
-@import "@db-ui/foundations/build/css/init/required.css";
+@import "@db-ui/foundations/build/styles/init/required.css";
 /* The default root adds a default color space (neutral) and a density (regular) */
-@import "@db-ui/foundations/build/css/init/default-root.css";
+@import "@db-ui/foundations/build/styles/init/default-root.css";
 
 /* Optional: Add animations / transitions for components */
 @import "@db-ui/components/build/styles/component-animations.css";
 
 /* Optional: Add data-icon/data-icon-after to global attributes to enable icons for components */
-@import "@db-ui/foundations/build/css/icons/include-rollup.css";
+@import "@db-ui/foundations/build/styles/icons/include-rollup.css";
 
 /* Optional: Add components */
 @import "@db-ui/components/build/components/button/button.css";
