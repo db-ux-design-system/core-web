@@ -1,6 +1,6 @@
-@use "@db-ui/foundations/build/scss/helpers";
-@use "@db-ui/foundations/build/scss/variables";
-@use "../../styles/component";
+@use "@db-ui/foundations/build/styles/helpers";
+@use "@db-ui/foundations/build/styles/variables";
+@use "../../styles/internal/component";
 
 @mixin accordion-subsequent-item-selector() {
 	// angular workaround
