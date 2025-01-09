@@ -315,7 +315,9 @@ const FormComponent = () => {
 
 				<DBTabs orientation="vertical">
 					<DBTabList>
-						<DBTabItem icon="x_placeholder">Airplane Button</DBTabItem>
+						<DBTabItem icon="x_placeholder">
+							Airplane Button
+						</DBTabItem>
 						<DBTabItem iconAfter="cancel">Cancel Button</DBTabItem>
 						<DBTabItem iconAfter="cancel">
 							Long Button Label with a lot of text
@@ -323,7 +325,9 @@ const FormComponent = () => {
 						<DBTabItem icon="x_placeholder" iconAfter="cancel">
 							Another Button Label with a lot of text
 						</DBTabItem>
-						<DBTabItem icon="x_placeholder" noText={true}></DBTabItem>
+						<DBTabItem
+							icon="x_placeholder"
+							noText={true}></DBTabItem>
 					</DBTabList>
 					<DBTabPanel>
 						Lorem ipsum dolor sit amet, consetetur sadipscing elitr,

@@ -51,10 +51,7 @@ const getPage = ({
 						<DBButton icon="x_placeholder" variant="ghost" noText>
 							Notification
 						</DBButton>
-						<DBButton
-							icon="x_placeholder"
-							variant="ghost"
-							noText>
+						<DBButton icon="x_placeholder" variant="ghost" noText>
 							Help
 						</DBButton>
 					</>
