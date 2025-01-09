@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { HashRouter, Navigate, Route, Routes } from 'react-router-dom';
-import '@db-ui/components/build/styles/db-ui-42-rollup.css';
+import '@db-ui/components/build/styles/rollup.css';
 import 'sa11y/dist/css/sa11y.min.css';
 import Sa11yLangEn from 'sa11y/dist/js/lang/en.js';
 import { Sa11y, Lang } from 'sa11y/dist/js/sa11y.esm.js';
