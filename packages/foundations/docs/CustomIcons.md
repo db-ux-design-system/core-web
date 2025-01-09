@@ -2,7 +2,7 @@
 
 If you have custom icons and want to use them for [foundations](https://www.npmjs.com/package/@db-ui/foundations) and/or in [components](https://www.npmjs.com/package/@db-ui/components), you need to generate a **woff2** file.
 
-Check out the `icon-font-tools` [documentation](https://github.com/db-ui/icon-font-tools?tab=readme-ov-file#generate-icon-fonts) to generate a **woff2** file.
+Check out the `icon-font-tools` [documentation](https://github.com/db-ui/icon-font-tools/blob/feat-cosmiconfig/docs/GenerateIconFonts.md) to generate a **woff2** file.
 
 ## Foundation Developer
 
