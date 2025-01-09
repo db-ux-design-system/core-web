@@ -3,7 +3,7 @@
  */
 
 import { writeFileSync } from 'node:fs';
-import { ALL_ICONS } from '../public.js';
+import { ALL_ICONS } from '../public';
 
 const generateIconOverview = () => {
 	try {

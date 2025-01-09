@@ -3,7 +3,7 @@ module.exports = {
 	ignores: [
 		'./showcases/nuxt-showcase/**',
 		'./packages/migration/**',
-		'./packages/foundations/assets/**'
+		'./packages/foundations/**'
 	],
 	overrides: [
 		{
