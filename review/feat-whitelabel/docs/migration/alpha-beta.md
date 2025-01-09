@@ -74,6 +74,6 @@ This is related to the following properties:
 ## Styling
 
 We add some more information about our styling and try to generate classes and data-attributes to use in the project, based on user-preferences.
-Moreover, we add all optional styles to `relative` which may increase the size, but reduces the complexity for using the Design-System with all features.
+Moreover, we add all optional styles to `db-ui-42` which may increase the size, but reduces the complexity for using the Design-System with all features.
 
 If you encounter performance issues try to reduce your loaded styles with this [documentation](https://github.com/db-ui/mono/blob/main/packages/components/README.md#optimize-dependencies) or by using a tool like [purgecss](https://purgecss.com/).
