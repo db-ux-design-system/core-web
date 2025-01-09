@@ -6,7 +6,7 @@
 
 $default-icon-size: 24;
 $default-icon-size-rem: #{helpers.px-to-rem($default-icon-size)};
-$default-icon-variants: "default", "inverted", "filled";
+$default-icon-variants: "default", "filled";
 
 $default-icon-content: var(--db-icon, attr(data-icon));
 $default-icon-content-after: var(--db-icon-after, attr(data-icon-after));

@@ -46,7 +46,7 @@
   },
   "devDependencies": {
     "@csstools/normalize.css": "12.1.1",
-    "@db-ui/gif": "0.0.12",
+    "@db-ux/icon-font-tools": "0.1.0",
     "cpr": "3.0.1",
     "cssnano": "^7.0.6",
     "dotenv": "^16.4.7",
