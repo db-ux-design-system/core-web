@@ -122,11 +122,9 @@
 	&[data-icon]::before,
 	&::before,
 	img {
-		--db-icon-font-family: var(
-			--db-icon-filled-font-family,
-			"db-ux-filled"
-		);
 		--db-icon-margin-end: 0;
+
+		@include icons.to-filled-icon();
 
 		grid-area: icon;
 	}
