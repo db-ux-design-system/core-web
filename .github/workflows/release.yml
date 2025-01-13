@@ -8,6 +8,7 @@ on:
 jobs:
   init:
     uses: ./.github/workflows/00-init.yml
+    secrets: inherit
 
   get-playwright-version:
     uses: ./.github/workflows/01-get-playwright-version.yml
@@ -54,56 +55,48 @@ jobs:
   build-showcase-stencil:
     uses: ./.github/workflows/01-build-showcases.yml
     needs: [build-packages]
-    secrets: inherit
     with:
       showcase: stencil-showcase
 
   build-showcase-angular:
     uses: ./.github/workflows/01-build-showcases.yml
     needs: [build-packages]
-    secrets: inherit
     with:
       showcase: angular-showcase
 
   build-showcase-angular-ssr:
     uses: ./.github/workflows/01-build-showcases.yml
     needs: [build-packages]
-    secrets: inherit
     with:
       showcase: angular-ssr-showcase
 
   build-showcase-react:
     uses: ./.github/workflows/01-build-showcases.yml
     needs: [build-packages]
-    secrets: inherit
     with:
       showcase: react-showcase
 
   build-showcase-next:
     uses: ./.github/workflows/01-build-showcases.yml
     needs: [build-packages]
-    secrets: inherit
     with:
       showcase: next-showcase
 
   build-showcase-vue:
     uses: ./.github/workflows/01-build-showcases.yml
     needs: [build-packages]
-    secrets: inherit
     with:
       showcase: vue-showcase
 
   build-showcase-nuxt:
     uses: ./.github/workflows/01-build-showcases.yml
     needs: [build-packages]
-    secrets: inherit
     with:
       showcase: nuxt-showcase
 
   build-showcase-patternhub:
     uses: ./.github/workflows/01-build-patternhub.yml
     needs: [build-packages, get-publish-version]
-    secrets: inherit
     with:
       release: ${{ needs.get-publish-version.outputs.release }}
       preRelease: ${{ needs.get-publish-version.outputs.preRelease }}
