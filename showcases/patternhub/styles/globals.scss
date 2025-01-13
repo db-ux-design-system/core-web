@@ -4,6 +4,7 @@
 @use "@db-ui/foundations/build/styles/density";
 
 @forward "@db-ui/components/build/styles/webpack";
+@forward "@db-ux/db-theme/build/styles/webpack";
 
 :root:not(:has(.db-page)) {
 	color-scheme: light;

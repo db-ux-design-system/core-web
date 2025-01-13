@@ -10,7 +10,7 @@ const run = async () => {
 	await generateIconFonts({
 		fontName,
 		src: defaultBuildDir,
-		ignoreGlobs: ['**/tmp/**', '**/functional/**'],
+		ignoreGlobs: ['**/tmp/**'],
 		variants: ['filled'],
 		withSizes: true,
 		debug: false

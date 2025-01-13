@@ -1,2 +1,3 @@
 @import url("@db-ui/components/build/styles/rollup.css");
 @import url("../../showcase-styles.css");
+@import url("@db-ux/db-theme/build/styles/rollup.css");
