@@ -16,7 +16,7 @@ $db-accordion-item-border-radius: variables.$db-border-radius-sm;
 	> details {
 		&[open] {
 			summary + div {
-				@media screen and (prefers-reduced-motion: no-preference) {
+				@media screen and (p_refers-reduced-motion: no-p_reference) {
 					animation: accordion-open
 						#{variables.$db-transition-straight-emotional} normal
 						both;

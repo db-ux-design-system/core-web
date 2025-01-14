@@ -86,7 +86,7 @@ $checked-active-transition-size: calc(
 				#{$switch-active-thumb-size} - #{$switch-inactive-thumb-size}
 			);
 
-			@media screen and (prefers-reduced-motion: no-preference) {
+			@media screen and (p_refers-reduced-motion: no-p_reference) {
 				transition:
 					margin variables.$db-transition-duration-fast
 						variables.$db-transition-timing-emotional,
@@ -141,7 +141,7 @@ $checked-active-transition-size: calc(
 			--db-icon-after: attr(data-aid-icon-after);
 		}
 
-		@media screen and (prefers-reduced-motion: no-preference) {
+		@media screen and (p_refers-reduced-motion: no-p_reference) {
 			// Overwrite default transition for switch border
 			transition: none;
 		}

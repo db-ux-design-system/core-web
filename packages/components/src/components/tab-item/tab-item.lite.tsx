@@ -2,6 +2,7 @@ import {
 	onMount,
 	onUpdate,
 	Show,
+	useDefaultProps,
 	useMetadata,
 	useRef,
 	useStore,
@@ -17,9 +18,10 @@ useMetadata({
 		nativeAttributes: ['disabled']
 	}
 });
+useDefaultProps<DBTabItemProps>({});
 
 export default function DBTabItem(props: DBTabItemProps) {
-	const ref = useRef<HTMLInputElement>(null);
+	const _ref = useRef<HTMLInputElement | null>(null);
 	// jscpd:ignore-start
 	const state = useStore<DBTabItemState>({
 		initialized: false,
@@ -58,11 +60,11 @@ export default function DBTabItem(props: DBTabItemProps) {
 	// jscpd:ignore-end
 
 	onUpdate(() => {
-		if (props.active && state.initialized && ref) {
-			ref.click();
+		if (props.active && state.initialized && _ref) {
+			_ref.click();
 			state.initialized = false;
 		}
-	}, [ref, state.initialized]);
+	}, [_ref, state.initialized]);
 
 	return (
 		<li class={cls('db-tab-item', props.className)} role="none">
@@ -78,7 +80,7 @@ export default function DBTabItem(props: DBTabItemProps) {
 					aria-selected={state._selected}
 					aria-controls={props.controls}
 					checked={props.checked}
-					ref={ref}
+					ref={_ref}
 					type="radio"
 					role="tab"
 					id={props.id}

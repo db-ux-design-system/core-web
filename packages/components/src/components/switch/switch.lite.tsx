@@ -1,13 +1,14 @@
 import {
 	onMount,
 	Show,
+	useDefaultProps,
 	useMetadata,
 	useRef,
 	useStore,
 	useTarget
 } from '@builder.io/mitosis';
 import { DBSwitchProps, DBSwitchState } from './model';
-import { cls, getBooleanAsString, getHideProp, uuid } from '../../utils';
+import { cls, getHideProp, uuid } from '../../utils';
 import { ChangeEvent, InteractionEvent } from '../../shared/model';
 import { handleFrameworkEvent } from '../../utils/form-components';
 
@@ -16,10 +17,11 @@ useMetadata({
 		nativeAttributes: ['disabled', 'required', 'checked', 'indeterminate']
 	}
 });
+useDefaultProps<DBSwitchProps>({});
 
 export default function DBSwitch(props: DBSwitchProps) {
 	// This is used as forwardRef
-	const ref = useRef<HTMLInputElement>(null);
+	const _ref = useRef<HTMLInputElement | null>(null);
 	// jscpd:ignore-start
 	const state = useStore<DBSwitchState>({
 		_id: undefined,
@@ -80,7 +82,7 @@ export default function DBSwitch(props: DBSwitchProps) {
 				type="checkbox"
 				role="switch"
 				aria-checked={state._checked}
-				ref={ref}
+				ref={_ref}
 				checked={props.checked}
 				disabled={props.disabled}
 				aria-describedby={props.describedbyid}

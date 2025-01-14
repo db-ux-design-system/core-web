@@ -2,6 +2,7 @@ import {
 	onMount,
 	onUpdate,
 	Show,
+	useDefaultProps,
 	useMetadata,
 	useRef,
 	useStore,
@@ -11,9 +12,9 @@ import { DBCheckboxProps, DBCheckboxState } from './model';
 import {
 	cls,
 	delay,
-	stringPropVisible,
 	getHideProp,
 	hasVoiceOver,
+	stringPropVisible,
 	uuid
 } from '../../utils';
 import {
@@ -33,8 +34,10 @@ useMetadata({
 	}
 });
 
+useDefaultProps<DBCheckboxProps>({});
+
 export default function DBCheckbox(props: DBCheckboxProps) {
-	const ref = useRef<HTMLInputElement>(null);
+	const _ref = useRef<HTMLInputElement | null>(null);
 	// jscpd:ignore-start
 	const state = useStore<DBCheckboxState>({
 		initialized: false,
@@ -59,18 +62,18 @@ export default function DBCheckbox(props: DBCheckboxProps) {
 			});
 
 			/* For a11y reasons we need to map the correct message with the checkbox */
-			if (!ref?.validity.valid || props.validation === 'invalid') {
+			if (!_ref?.validity.valid || props.validation === 'invalid') {
 				state._descByIds = state._invalidMessageId;
 				if (hasVoiceOver()) {
 					state._voiceOverFallback =
 						props.invalidMessage ??
-						ref?.validationMessage ??
+						_ref?.validationMessage ??
 						DEFAULT_INVALID_MESSAGE;
 					delay(() => (state._voiceOverFallback = ''), 1000);
 				}
 			} else if (
 				props.validation === 'valid' ||
-				(ref?.validity.valid && props.required)
+				(_ref?.validity.valid && props.required)
 			) {
 				state._descByIds = state._validMessageId;
 				if (hasVoiceOver()) {
@@ -159,7 +162,7 @@ export default function DBCheckbox(props: DBCheckboxProps) {
 				<input
 					aria-invalid={props.validation === 'invalid'}
 					data-custom-validity={props.validation}
-					ref={ref}
+					ref={_ref}
 					type="checkbox"
 					id={state._id}
 					name={props.name}
@@ -204,7 +207,7 @@ export default function DBCheckbox(props: DBCheckboxProps) {
 				size="small"
 				semantic="critical">
 				{props.invalidMessage ??
-					ref?.validationMessage ??
+					_ref?.validationMessage ??
 					DEFAULT_INVALID_MESSAGE}
 			</DBInfotext>
 

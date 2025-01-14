@@ -2,7 +2,7 @@ import { replaceInFileSync } from 'replace-in-file';
 
 import components, { Overwrite } from './components.js';
 
-import { runReplacements, transformToUpperComponentName } from '../utils';
+import { runReplacements } from '../utils';
 
 export default (tmp?: boolean) => {
 	const outputFolder = `${tmp ? 'output/tmp' : 'output'}`;
@@ -38,40 +38,19 @@ export default (tmp?: boolean) => {
 
 			const replacements: Overwrite[] = [
 				{
-					from: /immediate: true,/g,
+					from: /immediate: true/g,
 					to: 'immediate: true,\nflush: "post"'
-				},
-				/* `this` can be undefined for ssr (nuxt) we need to add */
-				{
-					from: /this.\$refs.ref\?.validationMessage/g,
-					to: '(this as any)?.$refs.ref?.validationMessage'
 				}
 			];
 
-			/* This is a workaround for valid/invalid Messages.
-			 *  If a valid/invalid message appears it will use the old this._value,
-			 *  so we need to overwrite this._value with the current event.target.value.   */
-			[
-				'HTMLSelectElement',
-				'HTMLInputElement',
-				'HTMLTextAreaElement'
-			].forEach((element) => {
-				replacements.push({
-					from: `handleInput(event: InputEvent<${element}>) {`,
-					to:
-						`handleInput(event: InputEvent<${element}>) {\n` +
-						'this._value = (event.target as any).value;'
-				});
-			});
-
 			if (component?.config?.vue?.vModel) {
 				replacements.push({
-					from: 'props: [',
-					to: `emits: ${JSON.stringify(
+					from: 'const props =',
+					to: `const emit = defineEmits(${JSON.stringify(
 						component?.config?.vue?.vModel.map(
 							(bin) => `update:${bin.modelValue}`
 						)
-					)},\nprops: [`
+					)})\n\nconst props =`
 				});
 			}
 

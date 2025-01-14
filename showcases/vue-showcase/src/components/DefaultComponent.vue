@@ -112,7 +112,7 @@ const getElevation = (): "1" | "2" | "3" =>
 	<!-- TODO: Slots not working for nested components? -> Had to copy paste variant-cards...	-->
 	<DBCard
 		v-if="variantRef"
-		class="variants-card"
+		className="variants-card"
 		:elevation-level="getElevation()"
 	>
 		<div
@@ -141,7 +141,7 @@ const getElevation = (): "1" | "2" | "3" =>
 		<div v-for="(variant, variantIndex) in variants">
 			<DBDivider></DBDivider>
 			<DBLink
-				class="link-headline"
+				className="link-headline"
 				content="external"
 				target="_blank"
 				:href="getLink(variant.name)"
@@ -149,7 +149,7 @@ const getElevation = (): "1" | "2" | "3" =>
 			>
 				{{ variant.name }}
 			</DBLink>
-			<DBCard class="variants-card" :elevation-level="getElevation()">
+			<DBCard className="variants-card" :elevation-level="getElevation()">
 				<div
 					:role="variant.role"
 					:aria-label="variant.role ? variant?.name : undefined"

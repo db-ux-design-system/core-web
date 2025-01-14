@@ -39,7 +39,7 @@ $icon-padding: calc(
 		&::after {
 			opacity: 0;
 
-			@media screen and (prefers-reduced-motion: no-preference) {
+			@media screen and (p_refers-reduced-motion: no-p_reference) {
 				transition: opacity variables.$db-transition-duration-fast;
 			}
 		}

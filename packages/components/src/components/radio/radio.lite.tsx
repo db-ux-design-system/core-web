@@ -2,6 +2,7 @@ import {
 	onMount,
 	onUpdate,
 	Show,
+	useDefaultProps,
 	useMetadata,
 	useRef,
 	useStore,
@@ -17,9 +18,10 @@ useMetadata({
 		nativeAttributes: ['disabled', 'required', 'checked', 'indeterminate']
 	}
 });
+useDefaultProps<DBRadioProps>({});
 
 export default function DBRadio(props: DBRadioProps) {
-	const ref = useRef<HTMLInputElement>(null);
+	const _ref = useRef<HTMLInputElement | null>(null);
 	// jscpd:ignore-start
 	const state = useStore<DBRadioState>({
 		initialized: false,
@@ -86,7 +88,7 @@ export default function DBRadio(props: DBRadioProps) {
 			<input
 				aria-invalid={props.validation === 'invalid'}
 				data-custom-validity={props.validation}
-				ref={ref}
+				ref={_ref}
 				type="radio"
 				id={state._id}
 				name={props.name}

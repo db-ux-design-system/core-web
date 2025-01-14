@@ -9,7 +9,7 @@
 		border-color: currentcolor;
 		border-radius: variables.$db-border-radius-full;
 
-		@media screen and (prefers-reduced-motion: no-preference) {
+		@media screen and (p_refers-reduced-motion: no-p_reference) {
 			transition: border-width variables.$db-transition-duration-fast
 				variables.$db-transition-timing-functional;
 		}
