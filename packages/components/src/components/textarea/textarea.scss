@@ -43,8 +43,10 @@
 		@extend %resize-textarea;
 		@extend %scrollbar;
 
-		cursor: auto;
-		overflow-y: scroll;
+
+		&:not(:read-only, :disabled) {
+			overflow-y: scroll;
+		}
 
 		// we don't have icons in textarea so we can overwrite it here
 		padding-block: variables.$db-spacing-fixed-xs
