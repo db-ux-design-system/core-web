@@ -98,9 +98,9 @@ export default (tmp?: boolean) => {
 					to: ', filterPassingProps, getRootProps } from "../../utils"'
 				},
 				{
-					from: 'ref={ref}',
+					from: 'ref={_ref}',
 					to:
-						'ref={ref}\n' +
+						'ref={_ref}\n' +
 						`{...filterPassingProps(props,${JSON.stringify([
 							...rootProps,
 							...(component?.config?.react?.propsPassingFilter ??

@@ -175,7 +175,7 @@ export class ${directive.name}Directive {}
 
 const getAttributePassing = (componentName: string) => `
 ngAfterViewInit(): void {
-\t\tconst element: HTMLElement | null = this.ref?.nativeElement;
+\t\tconst element: HTMLElement | null = this._ref?.nativeElement;
 \t\tenableCustomElementAttributePassing(element,'db-${componentName}')
 \t}`;
 
@@ -205,9 +205,9 @@ export default (tmp?: boolean) => {
 				to: 'ngAfterContentChecked'
 			},
 			{
-				from: '@ViewChild("ref") ref!: ElementRef | undefined;',
+				from: '@ViewChild("_ref") _ref!: ElementRef | undefined;',
 				to:
-					'@ViewChild("ref") ref!: ElementRef | undefined;' +
+					'@ViewChild("_ref") _ref!: ElementRef | undefined;' +
 					getAttributePassing(component.name)
 			},
 			{
