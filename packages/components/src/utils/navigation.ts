@@ -20,7 +20,7 @@ export const isEventTargetNavigationItem = (event: unknown): boolean => {
 export class NavigationItemSafeTriangle {
 	private readonly element: HTMLElement | null;
 	private readonly subNavigation: Element | null;
-	private readonly parentSubNavigation: Element | null;
+	private readonly parentSubNavigation: Element | null = null;
 	private triangleData?: TriangleData;
 	private initialized: boolean = false;
 	private mouseX: number = 0;

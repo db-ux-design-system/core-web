@@ -79,8 +79,8 @@ const setControlValueAccessorReplacements = (
 		writeValue(value: any) {
 		  this.${valueAccessor} = value;
 
-		  if (this.ref?.nativeElement) {
-			 this.renderer.setProperty(this.ref?.nativeElement, '${valueAccessor}', value);
+		  if (this._ref?.nativeElement) {
+			 this.renderer.setProperty(this._ref?.nativeElement, '${valueAccessor}', value);
 		  }
 		}
 
@@ -213,10 +213,6 @@ export default (tmp?: boolean) => {
 			{
 				from: '} from "../../utils"',
 				to: ', enableCustomElementAttributePassing } from "../../utils"'
-			},
-			{
-				from: /this.ref.nativeElement/g,
-				to: 'this.ref?.nativeElement'
 			}
 		];
 
