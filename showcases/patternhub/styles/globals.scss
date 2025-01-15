@@ -18,10 +18,10 @@ body:not(:has(.db-page)) {
 }
 
 #__next {
-	height: inherit;
+	block-size: inherit;
 }
 #__next > div {
-	height: inherit;
+	block-size: inherit;
 }
 
 db-mainnavigation {
@@ -33,14 +33,14 @@ github-version-switcher {
 }
 
 iframe {
-	width: 100%;
-	height: calc(100% - 8px) !important;
+	inline-size: 100%;
+	block-size: calc(100% - 8px) !important;
 }
 
 .example-list {
 	dd {
 		margin-block-end: variables.$db-spacing-fixed-md;
-		max-width: 500px;
+		max-inline-size: 500px;
 	}
 }
 
@@ -79,7 +79,7 @@ iframe {
 }
 
 .is-properties {
-	height: 100%;
+	block-size: 100%;
 	overflow: auto;
 
 	h1,
@@ -91,7 +91,7 @@ iframe {
 /* TODO: Use real table css in future */
 table {
 	@extend %db-density-functional;
-	width: 100%;
+	inline-size: 100%;
 	border-collapse: collapse;
 }
 
@@ -99,7 +99,7 @@ table td,
 table th {
 	border: 1px solid colors.$db-adaptive-on-bg-basic-emphasis-60-default;
 	padding: variables.$db-spacing-fixed-md;
-	max-width: 33vw;
+	max-inline-size: 33vw;
 }
 
 table tr:nth-child(even) {
@@ -112,7 +112,7 @@ table th {
 }
 
 .version-switcher {
-	max-width: variables.$db-sizing-3xl;
+	max-inline-size: variables.$db-sizing-3xl;
 }
 
 /* Workaround for current db-page from db-ui-elements */
@@ -259,7 +259,7 @@ div[class^="ch-"] {
 		background-color: colors.$db-successful-bg-inverted-contrast-high-default;
 		color: colors.$db-successful-on-bg-inverted-default;
 		border-color: colors.$db-successful-bg-inverted-contrast-high-default;
-		height: 100%;
+		block-size: 100%;
 		display: flex;
 		justify-content: center;
 		position: absolute;
@@ -292,19 +292,19 @@ div[class^="ch-"] {
 			.gap1,
 			.gap2 {
 				@extend %spacing;
-				width: variables.$db-spacing-fixed-xl;
+				inline-size: variables.$db-spacing-fixed-xl;
 			}
 
-			$icon-width: calc(
+			$icon-inline-size: calc(
 				var(--db-base-line-height) * var(--db-base-font-size)
 			);
 
 			.gap1 {
-				left: $icon-width;
+				inset-inline-start: $icon-width;
 			}
 
 			.gap2 {
-				right: $icon-width;
+				inset-inline-end: $icon-width;
 			}
 		}
 
@@ -316,15 +316,19 @@ div[class^="ch-"] {
 			.margin1,
 			.margin2 {
 				@extend %spacing;
-				width: variables.$db-spacing-responsive-sm;
+				inline-size: variables.$db-spacing-responsive-sm;
 			}
 
 			.margin1 {
-				left: calc(-1 * #{variables.$db-spacing-responsive-sm});
+				inset-inline-start: calc(
+					-1 * #{variables.$db-spacing-responsive-sm}
+				);
 			}
 
 			.margin2 {
-				right: calc(-1 * #{variables.$db-spacing-responsive-sm});
+				inset-inline-end: calc(
+					-1 * #{variables.$db-spacing-responsive-sm}
+				);
 			}
 		}
 
@@ -393,7 +397,8 @@ h6 {
 		font-size: 0;
 	}
 
-	&:hover {
+	&:hover,
+	&:focus {
 		a:is(.header-link) {
 			visibility: visible;
 		}
