@@ -295,7 +295,7 @@ div[class^="ch-"] {
 				inline-size: variables.$db-spacing-fixed-xl;
 			}
 
-			$icon-inline-size: calc(
+			$icon-width: calc(
 				var(--db-base-line-height) * var(--db-base-font-size)
 			);
 
