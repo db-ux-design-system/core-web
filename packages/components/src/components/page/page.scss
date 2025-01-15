@@ -17,7 +17,13 @@
 .db-page {
 	opacity: 0;
 
-	@media screen and (p_refers-reduced-motion: no-p_reference) {
+	@media screen and (prefers-reduced-motion: no-preference) {
+		@media screen and (prefers-reduced-motion: reduce) {
+			&[data-fade-in="true"] {
+				transition: none;
+			}
+		}
+
 		&[data-fade-in="true"] {
 			transition: opacity variables.$db-transition-straight-emotional;
 		}
