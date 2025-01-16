@@ -63,6 +63,10 @@ export default (tmp?: boolean) => {
 						)
 					)})\n\nconst props =`
 				});
+				replacements.push({
+					from: 'handleFrameworkEventVue(() => {}',
+					to: 'handleFrameworkEventVue(emit'
+				});
 			}
 
 			runReplacements(replacements, component, 'vue', vueFile);

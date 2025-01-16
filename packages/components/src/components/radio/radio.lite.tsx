@@ -41,7 +41,7 @@ export default function DBRadio(props: DBRadioProps) {
 			useTarget({
 				angular: () =>
 					handleFrameworkEventAngular(this, event, 'checked'),
-				vue: () => handleFrameworkEventVue(this, event, 'checked')
+				vue: () => handleFrameworkEventVue(() => {}, event, 'checked')
 			});
 		},
 		handleBlur: (event: InteractionEvent<HTMLInputElement>) => {

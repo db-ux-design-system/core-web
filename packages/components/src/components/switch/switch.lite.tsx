@@ -45,7 +45,7 @@ export default function DBSwitch(props: DBSwitchProps) {
 			useTarget({
 				angular: () =>
 					handleFrameworkEventAngular(this, event, 'checked'),
-				vue: () => handleFrameworkEventVue(this, event, 'checked')
+				vue: () => handleFrameworkEventVue(() => {}, event, 'checked')
 			});
 		},
 		handleBlur: (event: InteractionEvent<HTMLInputElement>) => {

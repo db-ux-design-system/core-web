@@ -10,10 +10,10 @@ export const handleFrameworkEventAngular = (
 };
 
 export const handleFrameworkEventVue = (
-	component: any,
+	emit: (event: string, ...args: any[]) => void,
 	event: any,
 	modelValue: string = 'value'
 ): void => {
 	// TODO: Replace this with the solution out of https://github.com/BuilderIO/mitosis/issues/833 after this has been "solved"
-	component.emit(`update:${modelValue}`, event.target[modelValue]);
+	emit(`update:${modelValue}`, event.target[modelValue]);
 };

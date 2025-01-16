@@ -10,7 +10,7 @@ import { DBSection, DBCard } from "../../../../../output/vue/src";
 			#example="{ exampleIndex, variantIndex, exampleName, exampleProps }"
 		>
 			<DBSection
-				className="db-informational-bg-basic-level-2 section-card-container"
+				class="db-informational-bg-basic-level-2 section-card-container"
 				:spacing="exampleProps?.spacing"
 				:width="exampleProps?.width"
 			>

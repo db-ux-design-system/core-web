@@ -72,7 +72,7 @@ export default function DBTextarea(props: DBTextareaProps) {
 			}
 			useTarget({
 				angular: () => handleFrameworkEventAngular(this, event),
-				vue: () => handleFrameworkEventVue(this, event)
+				vue: () => handleFrameworkEventVue(() => {}, event)
 			});
 
 			/* For a11y reasons we need to map the correct message with the textarea */

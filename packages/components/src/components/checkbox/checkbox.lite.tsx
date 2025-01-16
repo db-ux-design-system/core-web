@@ -62,7 +62,7 @@ export default function DBCheckbox(props: DBCheckboxProps) {
 			useTarget({
 				angular: () =>
 					handleFrameworkEventAngular(this, event, 'checked'),
-				vue: () => handleFrameworkEventVue(this, event, 'checked')
+				vue: () => handleFrameworkEventVue(() => {}, event, 'checked')
 			});
 
 			/* For a11y reasons we need to map the correct message with the checkbox */
