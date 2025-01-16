@@ -34,6 +34,10 @@ export default (tmp?: boolean) => {
 				{
 					from: /immediate: true/g,
 					to: 'immediate: true,\nflush: "post"'
+				},
+				{
+					from: 'className',
+					to: 'props.class'
 				}
 			];
 
