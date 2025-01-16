@@ -5,7 +5,7 @@
 
 # DB UI Mono (Beta) 🚂💖
 
-![Part of DB UX Design System (Version 3)](https://img.shields.io/badge/Part%20of-DB%20UX%20Design%20System%20Core-d7dce1.svg)
+![Part of DB UX Design System (Version 3)](https://img.shields.io/badge/Part%20of-DB%20UX%20Design%20System%20v3-d7dce1.svg)
 ![Main pipeline](https://github.com/db-ui/mono/actions/workflows/default.yml/badge.svg)
 ![Apache 2.0 license badge](https://img.shields.io/badge/License-Apache_2.0-blue.svg)
 [![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
