@@ -10,7 +10,10 @@ import {
 import { DBSwitchProps, DBSwitchState } from './model';
 import { cls, getHideProp, uuid } from '../../utils';
 import { ChangeEvent, InteractionEvent } from '../../shared/model';
-import { handleFrameworkEvent } from '../../utils/form-components';
+import {
+	handleFrameworkEventAngular,
+	handleFrameworkEventVue
+} from '../../utils/form-components';
 
 useMetadata({
 	angular: {
@@ -40,8 +43,9 @@ export default function DBSwitch(props: DBSwitchProps) {
 			state._checked = (event.target as any)?.['checked'];
 
 			useTarget({
-				angular: () => handleFrameworkEvent(this, event, 'checked'),
-				vue: () => handleFrameworkEvent(this, event, 'checked')
+				angular: () =>
+					handleFrameworkEventAngular(this, event, 'checked'),
+				vue: () => handleFrameworkEventVue(this, event, 'checked')
 			});
 		},
 		handleBlur: (event: InteractionEvent<HTMLInputElement>) => {

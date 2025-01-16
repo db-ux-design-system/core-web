@@ -181,12 +181,6 @@ ngAfterViewInit(): void {
 
 export default (tmp?: boolean) => {
 	const outputFolder = `${tmp ? 'output/tmp' : 'output'}`;
-	// Activate vue specific event handling
-	replaceInFileSync({
-		files: `../../${outputFolder}/angular/src/utils/form-components.ts`,
-		from: /\/\/ ANGULAR:/g,
-		to: ''
-	});
 	for (const component of components) {
 		const componentName = component.name;
 		const upperComponentName = `DB${transformToUpperComponentName(component.name)}`;

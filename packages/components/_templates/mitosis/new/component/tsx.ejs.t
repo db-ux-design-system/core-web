@@ -6,7 +6,7 @@ import { DB<%= h.changeCase.pascal(name) %>State, DB<%= h.changeCase.pascal(name
 import { cls } from "../../utils";
 <% if(formValue!=="no"){   -%>
 import {ChangeEvent, InteractionEvent} from "../../shared/model";
-import { handleFrameworkEvent } from "../../utils/form-components";
+import { handleFrameworkEventAngular, handleFrameworkEventVue } from "../../utils/form-components";
 <% } -%>
 
 useMetadata({});
@@ -29,8 +29,8 @@ export default function DB<%= h.changeCase.pascal(name) %>(props: DB<%= h.change
 			}
 
 			useTarget({
-				angular: () => handleFrameworkEvent(this, event, <%= formValue %>),
-				vue: () => handleFrameworkEvent(this, event, <%= formValue %>)
+				angular: () => handleFrameworkEventAngular(this, event, <%= formValue %>),
+				vue: () => handleFrameworkEventVue(this, event, <%= formValue %>)
 			});
 		},
 		handleBlur: (event: InteractionEvent<HTMLInputElement>) => {

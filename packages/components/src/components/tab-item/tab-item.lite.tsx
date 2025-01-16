@@ -11,7 +11,10 @@ import {
 import type { DBTabItemProps, DBTabItemState } from './model';
 import { cls, getBooleanAsString, getHideProp } from '../../utils';
 import { ChangeEvent } from '../../shared/model';
-import { handleFrameworkEvent } from '../../utils/form-components';
+import {
+	handleFrameworkEventAngular,
+	handleFrameworkEventVue
+} from '../../utils/form-components';
 
 useMetadata({
 	angular: {
@@ -48,8 +51,9 @@ export default function DBTabItem(props: DBTabItemProps) {
 			});
 
 			useTarget({
-				angular: () => handleFrameworkEvent(this, event, 'checked'),
-				vue: () => handleFrameworkEvent(this, event, 'checked')
+				angular: () =>
+					handleFrameworkEventAngular(this, event, 'checked'),
+				vue: () => handleFrameworkEventVue(this, event, 'checked')
 			});
 		}
 	});

@@ -36,7 +36,10 @@ import {
 	ValueLabelType
 } from '../../shared/model';
 import DBInfotext from '../infotext/infotext.lite';
-import { handleFrameworkEvent } from '../../utils/form-components';
+import {
+	handleFrameworkEventVue,
+	handleFrameworkEventAngular
+} from '../../utils/form-components';
 
 useMetadata({
 	angular: {
@@ -77,8 +80,8 @@ export default function DBInput(props: DBInputProps) {
 			}
 
 			useTarget({
-				angular: () => handleFrameworkEvent(this, event),
-				vue: () => handleFrameworkEvent(this, event)
+				angular: () => handleFrameworkEventAngular(this, event),
+				vue: () => handleFrameworkEventVue(this, event)
 			});
 
 			/* For a11y reasons we need to map the correct message with the input */

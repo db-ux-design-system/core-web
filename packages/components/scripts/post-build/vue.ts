@@ -12,12 +12,6 @@ export default (tmp?: boolean) => {
 		from: /react/g,
 		to: `vue`
 	});
-	// Activate vue specific event handling
-	replaceInFileSync({
-		files: `../../${outputFolder}/vue/src/utils/form-components.ts`,
-		from: `// VUE:`,
-		to: ``
-	});
 	for (const component of components) {
 		const componentName = component.name;
 		const vueFile = `../../${outputFolder}/vue/src/components/${componentName}/${componentName}.vue`;
@@ -42,6 +36,19 @@ export default (tmp?: boolean) => {
 					to: 'immediate: true,\nflush: "post"'
 				}
 			];
+
+			/* This is a workaround for valid/invalid Messages.
+			 *  If a valid/invalid message appears it will use the old this._value,
+			 *  so we need to overwrite this._value with the current event.target.value.   */
+
+			if (['select', 'textarea', 'input'].includes(componentName)) {
+				replacements.push({
+					from: 'if (props.onInput) {',
+					to:
+						'this._value = (event.target as any).value;\n' +
+						'if (props.onInput) {'
+				});
+			}
 
 			if (component?.config?.vue?.vModel) {
 				replacements.push({
