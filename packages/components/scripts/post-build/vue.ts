@@ -49,7 +49,7 @@ export default (tmp?: boolean) => {
 				replacements.push({
 					from: 'if (props.onInput) {',
 					to:
-						'this._value = (event.target as any).value;\n' +
+						'_value.value = (event.target as any).value;\n' +
 						'if (props.onInput) {'
 				});
 			}
