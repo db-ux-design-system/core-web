@@ -14,6 +14,7 @@ concurrency:
 jobs:
   init:
     uses: ./.github/workflows/00-init.yml
+    secrets: inherit
 
   scan-secrets:
     if: github.event.pull_request == null || github.event.pull_request.head.repo.owner.login == 'db-ui'

@@ -8,6 +8,7 @@ on:
 jobs:
   init:
     uses: ./.github/workflows/00-init.yml
+    secrets: inherit
 
   get-playwright-version:
     uses: ./.github/workflows/01-get-playwright-version.yml

@@ -32,7 +32,7 @@ For general installation and configuration take a look at the [components](https
 								<menu>
 									<li
 										class="db-navigation-item"
-										data-icon="person"
+										data-icon="x_placeholder"
 									>
 										<a href="#">Regular (Default)</a>
 									</li>
@@ -66,7 +66,7 @@ For general installation and configuration take a look at the [components](https
 					<div class="db-header-secondary-action">
 						<button
 							class="db-button is-icon-text-replace"
-							data-icon="person"
+							data-icon="x_placeholder"
 							data-variant="text"
 						>
 							Profile</button
@@ -111,7 +111,7 @@ For general installation and configuration take a look at the [components](https
 				<div class="db-header-navigation">
 					<nav class="db-navigation">
 						<menu>
-							<li class="db-navigation-item" data-icon="person">
+							<li class="db-navigation-item" data-icon="x_placeholder">
 								<a href="#">Regular (Default)</a>
 							</li>
 							<li class="db-navigation-item" aria-disabled="true">
@@ -143,7 +143,7 @@ For general installation and configuration take a look at the [components](https
 				<div class="db-header-secondary-action">
 					<button
 						class="db-button is-icon-text-replace"
-						data-icon="person"
+						data-icon="x_placeholder"
 						data-variant="text"
 					>
 						Profile</button

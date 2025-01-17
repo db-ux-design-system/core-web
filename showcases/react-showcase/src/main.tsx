@@ -5,6 +5,7 @@ import '@db-ui/components/build/styles/rollup.css';
 import 'sa11y/dist/css/sa11y.min.css';
 import Sa11yLangEn from 'sa11y/dist/js/lang/en.js';
 import { Sa11y, Lang } from 'sa11y/dist/js/sa11y.esm.js';
+import '@db-ux/db-theme/build/styles/rollup.css';
 import '../../showcase-styles.css';
 import App from './app';
 import { NAVIGATION_ITEMS } from './utils/navigation-item';

@@ -58,14 +58,14 @@ const {
 					</DBButton>
 				</template>
 				<template v-slot:action-bar>
-					<DBButton icon="person" variant="ghost" :no-text="true">
+					<DBButton icon="x_placeholder" variant="ghost" :no-text="true">
 						Profile
 					</DBButton>
-					<DBButton icon="bell" variant="ghost" :no-text="true">
+					<DBButton icon="x_placeholder" variant="ghost" :no-text="true">
 						Notification
 					</DBButton>
 					<DBButton
-						icon="question_mark_circle"
+						icon="x_placeholder"
 						variant="ghost"
 						:no-text="true"
 					>

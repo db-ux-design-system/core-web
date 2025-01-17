@@ -51,7 +51,7 @@ import "@db-ui/components/build/styles/rollup.css";
 ```tsx
 import { DBButton } from '@db-ui/react-components';
 ...
-<DBButton icon="person" onClick={()=>{console.log("Test")}}>Test</DBButton>
+<DBButton icon="x_placeholder" onClick={()=>{console.log("Test")}}>Test</DBButton>
 ...
 ```
 

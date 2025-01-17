@@ -41,6 +41,7 @@
 		"packages/components/src/components/radio/radio.lite.tsx",
 		"packages/components/src/components/tag/tag.spec.tsx",
 		"packages/foundations/assets/icons/functional/fonts/**",
+		"packages/foundations/assets/icons/fonts/**",
 		"packages/foundations/src",
 		"showcases/**/results/**",
 		"showcases/angular-showcase/.angular/cache",

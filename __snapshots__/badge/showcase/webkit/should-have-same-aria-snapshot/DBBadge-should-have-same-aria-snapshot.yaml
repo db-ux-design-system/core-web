@@ -12,17 +12,17 @@
   - text: (Default) Text Dot - Small Icon - Small
   - link "Placement arrow_up_right\" / \""
   - text: (Default) Inline Label
-  - button "person\" / \" LABEL SHOULD BE SET Corner - Top - Left"
+  - button "x_placeholder\" / \" LABEL SHOULD BE SET Corner - Top - Left"
   - text: Corner - Top - Left
-  - button "person\" / \" LABEL SHOULD BE SET Corner - Center - Left"
+  - button "x_placeholder\" / \" LABEL SHOULD BE SET Corner - Center - Left"
   - text: Corner - Center - Left
-  - button "person\" / \" LABEL SHOULD BE SET Corner - Bottom- Left"
+  - button "x_placeholder\" / \" LABEL SHOULD BE SET Corner - Bottom- Left"
   - text: Corner - Bottom- Left
-  - button "person\" / \" LABEL SHOULD BE SET Corner - Top - Right"
+  - button "x_placeholder\" / \" LABEL SHOULD BE SET Corner - Top - Right"
   - text: Corner - Top - Right
-  - button "person\" / \" LABEL SHOULD BE SET Corner - Center - Right"
+  - button "x_placeholder\" / \" LABEL SHOULD BE SET Corner - Center - Right"
   - text: Corner - Center - Right
-  - button "person\" / \" LABEL SHOULD BE SET Corner - Bottom- Right"
+  - button "x_placeholder\" / \" LABEL SHOULD BE SET Corner - Bottom- Right"
   - text: Corner - Bottom- Right
   - link "Examples arrow_up_right\" / \""
   - text: 9 12 123 9 12 123 Numbers (Default) Text - Medium Dot - Medium Icon - Medium
