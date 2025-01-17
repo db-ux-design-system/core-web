@@ -58,10 +58,18 @@ import {
 				</template>
 				<template v-slot:secondary-action>
 					<template v-if="!exampleProps?.example">
-						<DBButton icon="x_placeholder" variant="ghost" :no-text="true">
+						<DBButton
+							icon="x_placeholder"
+							variant="ghost"
+							:no-text="true"
+						>
 							Profile
 						</DBButton>
-						<DBButton icon="x_placeholder" variant="ghost" :no-text="true">
+						<DBButton
+							icon="x_placeholder"
+							variant="ghost"
+							:no-text="true"
+						>
 							Notification
 						</DBButton>
 						<DBButton

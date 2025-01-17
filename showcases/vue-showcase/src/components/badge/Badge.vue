@@ -39,7 +39,11 @@ import {
 					!exampleProps?.example
 				"
 			>
-				<DBButton icon="x_placeholder" variant="outlined" :noText="true">
+				<DBButton
+					icon="x_placeholder"
+					variant="outlined"
+					:noText="true"
+				>
 					<DBBadge
 						emphasis="strong"
 						semantic="critical"
