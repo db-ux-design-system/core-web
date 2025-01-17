@@ -6,7 +6,7 @@
     "type": "git",
     "url": "https://github.com/db-ui/mono.git"
   },
-  "author": "General technical components out of DB UX Design System",
+  "author": "General technical components out of DB UX Design System (Version 3)",
   "license": "Apache-2.0",
   "main": "./dist/index.js",
   "module": "./dist/index.js",
