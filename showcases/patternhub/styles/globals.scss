@@ -4,6 +4,7 @@
 @use "@db-ui/foundations/build/styles/density";
 
 @forward "@db-ui/components/build/styles/webpack";
+@forward "@db-ux/db-theme/build/styles/webpack";
 
 :root:not(:has(.db-page)) {
 	color-scheme: light;
@@ -20,6 +21,7 @@ body:not(:has(.db-page)) {
 #__next {
 	block-size: inherit;
 }
+
 #__next > div {
 	block-size: inherit;
 }
@@ -91,6 +93,7 @@ iframe {
 /* TODO: Use real table css in future */
 table {
 	@extend %db-density-functional;
+
 	inline-size: 100%;
 	border-collapse: collapse;
 }
@@ -108,6 +111,7 @@ table tr:nth-child(even) {
 
 table th {
 	@extend %db-neutral-bg-basic-transparent-semi;
+
 	padding-inline: variables.$db-spacing-fixed-md;
 }
 
@@ -120,6 +124,7 @@ div[class^="ch-"] {
 	div,
 	span {
 		@extend %db-overwrite-font-size-sm;
+
 		color: colors.$db-adaptive-on-bg-basic-emphasis-100-default;
 	}
 }
@@ -135,6 +140,7 @@ div[class^="ch-"] {
 
 %grid-container {
 	--columns: 1;
+
 	display: grid;
 	grid-template-columns: repeat(var(--columns), minmax(0, 1fr));
 	gap: variables.$db-spacing-fixed-md;
@@ -152,6 +158,7 @@ div[class^="ch-"] {
 
 .icons-overview-container {
 	@extend %grid-container;
+
 	--columns: 2;
 
 	@include screen-sizes.screen() {
@@ -173,6 +180,7 @@ div[class^="ch-"] {
 // colors overview
 .color-overview-container {
 	@extend %grid-container;
+
 	position: relative;
 	padding: variables.$db-spacing-fixed-md 0;
 
@@ -276,6 +284,7 @@ div[class^="ch-"] {
 		.example-spacing-fixed,
 		.example-spacing-responsive {
 			border: 1px solid black;
+
 			> div {
 				display: flex;
 				border: 1px solid
@@ -292,6 +301,7 @@ div[class^="ch-"] {
 			.gap1,
 			.gap2 {
 				@extend %spacing;
+
 				inline-size: variables.$db-spacing-fixed-xl;
 			}
 
@@ -316,6 +326,7 @@ div[class^="ch-"] {
 			.margin1,
 			.margin2 {
 				@extend %spacing;
+
 				inline-size: variables.$db-spacing-responsive-sm;
 			}
 
@@ -340,6 +351,7 @@ div[class^="ch-"] {
 
 			.sizing {
 				@extend %spacing;
+
 				background-color: colors.$db-warning-bg-inverted-contrast-high-default;
 				color: colors.$db-warning-on-bg-inverted-default;
 				border-color: colors.$db-warning-bg-inverted-contrast-high-default;
@@ -478,8 +490,7 @@ h6 {
 					inset-block-end: variables.$db-spacing-fixed-sm;
 
 					@include screen-sizes.screen("md") {
-						inset-block-end: auto;
-						inset-block-start: variables.$db-spacing-fixed-sm;
+						inset-block: variables.$db-spacing-fixed-sm auto;
 					}
 				}
 			}
