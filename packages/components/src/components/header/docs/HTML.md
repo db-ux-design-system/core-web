@@ -111,7 +111,10 @@ For general installation and configuration take a look at the [components](https
 				<div class="db-header-navigation">
 					<nav class="db-navigation">
 						<menu>
-							<li class="db-navigation-item" data-icon="x_placeholder">
+							<li
+								class="db-navigation-item"
+								data-icon="x_placeholder"
+							>
 								<a href="#">Regular (Default)</a>
 							</li>
 							<li class="db-navigation-item" aria-disabled="true">
