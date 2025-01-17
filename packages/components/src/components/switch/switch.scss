@@ -1,9 +1,9 @@
-@use "@db-ui/foundations/build/scss/variables";
-@use "@db-ui/foundations/build/scss/colors";
-@use "@db-ui/foundations/build/scss/fonts";
-@use "@db-ui/foundations/build/scss/helpers";
-@use "@db-ui/foundations/build/scss/icons";
-@use "../../styles/form-components";
+@use "@db-ui/foundations/build/styles/variables";
+@use "@db-ui/foundations/build/styles/colors";
+@use "@db-ui/foundations/build/styles/fonts";
+@use "@db-ui/foundations/build/styles/helpers";
+@use "@db-ui/foundations/build/styles/icons";
+@use "../../styles/internal/form-components";
 
 $switch-fixed-padding: helpers.px-to-rem(2);
 
@@ -214,7 +214,9 @@ $checked-active-transition-size: calc(
 			}
 
 			&:checked {
-				@include icons.set-icon("check", "after");
+				&:not([data-aid-icon]) {
+					@include icons.set-icon("check", "after");
+				}
 
 				&::after {
 					transform: translateX(

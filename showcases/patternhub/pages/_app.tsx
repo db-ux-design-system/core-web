@@ -77,7 +77,7 @@ const App = ({ Component, pageProps }: AppProps) => (
 			/>
 		)}
 		<Head>
-			<title>DB UI Mono</title>
+			<title>DB UX</title>
 		</Head>
 		<Component {...pageProps} />
 	</MDXProvider>

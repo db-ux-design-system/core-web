@@ -6,7 +6,7 @@
     "type": "git",
     "url": "https://github.com/db-ui/mono.git"
   },
-  "author": "General technical components out of DB UX Design System",
+  "author": "General technical components out of DB UX Design System (Version 3)",
   "license": "Apache-2.0",
   "main": "./dist/index.js",
   "module": "./dist/index.js",
@@ -44,13 +44,12 @@
     "start": "nodemon --watch src --watch scripts --watch overrides -e js,tsx,ts,scss,json -x \"npm run build\""
   },
   "dependencies": {
-    "@db-ui/foundations": "*",
-    "@db-ux/core-icons": "0.0.7"
+    "@db-ui/foundations": "*"
   },
   "devDependencies": {
     "@builder.io/eslint-plugin-mitosis": "0.0.16",
-    "@builder.io/mitosis": "0.5.18",
-    "@builder.io/mitosis-cli": "0.5.18",
+    "@builder.io/mitosis": "0.5.27",
+    "@builder.io/mitosis-cli": "0.5.27",
     "cpr": "3.0.1",
     "cssnano": "^7.0.6",
     "eslint": "^8",

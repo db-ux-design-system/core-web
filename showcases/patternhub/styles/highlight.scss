@@ -1,5 +1,5 @@
-@use "@db-ui/foundations/build/scss/variables";
-@use "@db-ui/foundations/build/scss/colors";
+@use "@db-ui/foundations/build/styles/variables";
+@use "@db-ui/foundations/build/styles/colors";
 
 pre:has(.hljs):not(:has(.language-shell)) {
 	@extend %db-neutral-bg-basic-transparent-full;
@@ -27,6 +27,7 @@ pre:has(.hljs):not(:has(.language-shell)) {
 	/* prettylights-syntax-entity */
 	color: colors.$db-successful-on-bg-basic-emphasis-90-default;
 }
+
 .hljs-attribute,
 .hljs-literal,
 .hljs-number,
@@ -38,20 +39,24 @@ pre:has(.hljs):not(:has(.language-shell)) {
 	/* prettylights-syntax-constant */
 	color: colors.$db-successful-on-bg-basic-emphasis-90-default;
 }
+
 .hljs-regexp,
 .hljs-string,
 .hljs-meta .hljs-string {
 	/* prettylights-syntax-string */
 	color: colors.$db-successful-on-bg-basic-emphasis-90-default;
 }
+
 .hljs-built_in,
 .hljs-symbol {
 	/* prettylights-syntax-variable */
 	color: colors.$db-warning-on-bg-basic-emphasis-90-default;
 }
+
 .hljs-attr {
 	color: colors.$db-informational-on-bg-basic-emphasis-90-default;
 }
+
 .hljs-meta,
 .hljs-comment,
 .hljs-code,
@@ -71,39 +76,47 @@ pre:has(.hljs):not(:has(.language-shell)) {
 	/* prettylights-syntax-entity-tag */
 	color: colors.$db-successful-on-bg-basic-emphasis-90-default;
 }
+
 .hljs-subst {
 	/* prettylights-syntax-storage-modifier-import */
-	color: colors.$db-neutral-bg-basic-level-1-default;
+	color: colors.$db-warning-on-bg-basic-emphasis-90-default;
 }
+
 .hljs-section {
 	/* prettylights-syntax-markup-heading */
 	color: colors.$db-informational-on-bg-basic-emphasis-90-default;
 	font-weight: bold;
 }
+
 .hljs-bullet {
 	/* prettylights-syntax-markup-list */
 	color: colors.$db-warning-on-bg-basic-emphasis-90-default;
 }
+
 .hljs-emphasis {
 	/* prettylights-syntax-markup-italic */
 	color: colors.$db-adaptive-on-bg-basic-emphasis-100-default;
 	font-style: italic;
 }
+
 .hljs-strong {
 	/* prettylights-syntax-markup-bold */
 	color: colors.$db-adaptive-on-bg-basic-emphasis-100-default;
 	font-weight: bold;
 }
+
 .hljs-addition {
 	/* prettylights-syntax-markup-inserted */
 	color: colors.$db-successful-on-bg-basic-emphasis-90-default;
 	background-color: colors.$db-neutral-on-bg-basic-emphasis-90-default;
 }
+
 .hljs-deletion {
 	/* prettylights-syntax-markup-deleted */
 	color: colors.$db-critical-on-bg-basic-emphasis-90-default;
 	background-color: colors.$db-neutral-on-bg-basic-emphasis-90-default;
 }
+
 .hljs-char.escape_,
 .hljs-link,
 .hljs-params,

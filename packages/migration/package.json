@@ -26,13 +26,13 @@
   },
   "dependencies": {
     "commander": "^13.0.0",
-    "glob": "^11.0.0",
+    "glob": "^11.0.1",
     "replace-in-file": "^8.3.0"
   },
   "devDependencies": {
     "cpr": "3.0.1",
     "tsx": "^4.19.2",
-    "vitest": "^2.1.8"
+    "vitest": "^3.0.1"
   },
   "publishConfig": {
     "registry": "https://registry.npmjs.org/",
