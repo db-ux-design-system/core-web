@@ -2,7 +2,7 @@
   "name": "@db-ui/docs",
   "version": "0.0.0",
   "type": "module",
-  "description": "Docs folder for DB UX Design System Core.",
+  "description": "Docs folder for DB UX Design System (Version 3).",
   "repository": {
     "type": "git",
     "url": "https://github.com/db-ui/mono.git"
