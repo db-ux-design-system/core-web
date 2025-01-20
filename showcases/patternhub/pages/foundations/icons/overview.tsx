@@ -55,7 +55,7 @@ const IconOverview = () => {
 				className="icons-overview-container"
 				style={
 					{
-						'--db-icon-font-family': `db-ux-${family}`,
+						'--db-icon-font-family': `db-ux-core-${family}`,
 						'--db-icon-font-weight': weight,
 						'--db-icon-font-size': `${weight}px`
 					} as any
