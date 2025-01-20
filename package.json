@@ -61,7 +61,7 @@
     "cpr": "3.0.1",
     "cross-env": "^7.0.3",
     "dotenv": "^16.4.7",
-    "eslint-plugin-prettier": "^5.2.2",
+    "eslint-plugin-prettier": "^5.2.3",
     "fs-extra": "^11.3.0",
     "glob": "^11.0.1",
     "http-server": "14.1.1",
