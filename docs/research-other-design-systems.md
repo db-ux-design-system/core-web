@@ -1,3 +1,9 @@
+<!--
+SPDX-FileCopyrightText: 2025 DB Systel GmbH
+
+SPDX-License-Identifier: Apache-2.0
+-->
+
 # Other design systems
 
 We'd like to maintain a list of other design systems that might be interesting for research and inspiration. And even also add some meta information especially on technical aspects.

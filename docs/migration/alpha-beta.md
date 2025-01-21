@@ -1,3 +1,9 @@
+<!--
+SPDX-FileCopyrightText: 2025 DB Systel GmbH
+
+SPDX-License-Identifier: Apache-2.0
+-->
+
 # Migration Alpha (0.0.x) ➡ Beta (0.1.x)
 
 ## Foundations
