@@ -1,0 +1,7 @@
+version = 1
+
+# A simple glob of all files in resources/img/
+[[annotations]]
+path = ["*.json", "*.js", "*.yml"]
+SPDX-FileCopyrightText = "DB Systel GmbH"
+SPDX-License-Identifier = "CC0-1.0"
