@@ -1,3 +1,7 @@
+// SPDX-FileCopyrightText: 2025 DB Systel GmbH
+//
+// SPDX-License-Identifier: Apache-2.0
+
 import { readdirSync } from 'node:fs';
 import { replaceInFileSync } from 'replace-in-file';
 
