@@ -1,3 +1,7 @@
+// SPDX-FileCopyrightText: 2025 DB Systel GmbH
+//
+// SPDX-License-Identifier: Apache-2.0
+
 import { useRouter } from 'next/router';
 import dynamic from 'next/dynamic';
 import { Fragment, type PropsWithChildren, useEffect, useState } from 'react';

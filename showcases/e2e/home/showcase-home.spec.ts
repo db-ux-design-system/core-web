@@ -1,3 +1,7 @@
+// SPDX-FileCopyrightText: 2025 DB Systel GmbH
+//
+// SPDX-License-Identifier: Apache-2.0
+
 import { expect, test, type Page } from '@playwright/test';
 import { AxeBuilder } from '@axe-core/playwright';
 import { hasWebComponentSyntax, isStencil, waitForDBPage } from '../default';

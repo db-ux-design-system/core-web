@@ -1,3 +1,7 @@
+// SPDX-FileCopyrightText: 2025 DB Systel GmbH
+//
+// SPDX-License-Identifier: Apache-2.0
+
 import { type MouseEvent, type ReactNode, useEffect, useState } from 'react';
 import { DBButton, DBTooltip } from '../../../../output/react/src/index';
 

@@ -1,3 +1,9 @@
+/*
+ * SPDX-FileCopyrightText: 2025 DB Systel GmbH
+ *
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
 @import url("@db-ui/components/build/styles/rollup.css");
 @import url("../../showcase-styles.css");
 @import url("sa11y/dist/css/sa11y.min.css");

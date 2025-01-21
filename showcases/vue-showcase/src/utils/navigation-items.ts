@@ -1,3 +1,7 @@
+// SPDX-FileCopyrightText: 2025 DB Systel GmbH
+//
+// SPDX-License-Identifier: Apache-2.0
+
 import type { RouteRecordRaw } from 'vue-router';
 import { markRaw } from 'vue';
 import Stack from '../components/stack/Stack.vue';

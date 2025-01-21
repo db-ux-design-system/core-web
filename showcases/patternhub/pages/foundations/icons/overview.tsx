@@ -1,3 +1,7 @@
+// SPDX-FileCopyrightText: 2025 DB Systel GmbH
+//
+// SPDX-License-Identifier: Apache-2.0
+
 import { useState } from 'react';
 import { ALL_ICONS } from '@db-ux/core-icons/build';
 import DefaultPage from '../../../components/default-page';

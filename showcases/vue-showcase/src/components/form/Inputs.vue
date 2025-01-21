@@ -1,3 +1,9 @@
+<!--
+SPDX-FileCopyrightText: 2025 DB Systel GmbH
+
+SPDX-License-Identifier: Apache-2.0
+-->
+
 <script setup lang="ts">
 import FormWrapper from "./FormWrapper.vue";
 import { DBInput } from "../../../../../output/vue/src";

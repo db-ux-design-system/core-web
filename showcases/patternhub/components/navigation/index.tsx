@@ -1,3 +1,7 @@
+// SPDX-FileCopyrightText: 2025 DB Systel GmbH
+//
+// SPDX-License-Identifier: Apache-2.0
+
 import { DBNavigation } from '../../../../output/react/src';
 import { ROUTES, type NavigationItem } from '../../data/routes';
 import NavItem from './nav-item';

@@ -1,3 +1,7 @@
+// SPDX-FileCopyrightText: 2025 DB Systel GmbH
+//
+// SPDX-License-Identifier: Apache-2.0
+
 import { createApp } from 'vue';
 import { createRouter, createWebHashHistory } from 'vue-router';
 import '@db-ui/components/build/styles/rollup.css';

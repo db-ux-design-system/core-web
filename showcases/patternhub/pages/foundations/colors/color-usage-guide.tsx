@@ -1,3 +1,7 @@
+// SPDX-FileCopyrightText: 2025 DB Systel GmbH
+//
+// SPDX-License-Identifier: Apache-2.0
+
 import { ArcherContainer, ArcherElement } from 'react-archer';
 import Link from 'next/link';
 import DefaultPage from '../../../components/default-page';

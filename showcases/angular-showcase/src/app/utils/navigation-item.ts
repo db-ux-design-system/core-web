@@ -1,3 +1,7 @@
+// SPDX-FileCopyrightText: 2025 DB Systel GmbH
+//
+// SPDX-License-Identifier: Apache-2.0
+
 import { Routes } from '@angular/router';
 import { StackComponent } from '../components/stack/stack.component';
 import { SwitchComponent } from '../components/switch/switch.component';

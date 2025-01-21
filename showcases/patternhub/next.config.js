@@ -1,3 +1,7 @@
+// SPDX-FileCopyrightText: 2025 DB Systel GmbH
+//
+// SPDX-License-Identifier: Apache-2.0
+
 import remarkGfm from 'remark-gfm';
 import generated from '@next/mdx';
 import rehypeSlug from 'rehype-slug';

@@ -1,3 +1,7 @@
+// SPDX-FileCopyrightText: 2025 DB Systel GmbH
+//
+// SPDX-License-Identifier: Apache-2.0
+
 import { useState } from 'react';
 import { DBButton, DBDrawer } from '../../../../../output/react/src';
 import defaultComponentVariants from '../../../../shared/drawer.json';
