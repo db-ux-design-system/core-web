@@ -26,7 +26,7 @@ export const options: ProgrammOptionsType[] = [
 	},
 	{
 		name: 'dryRun',
-		short: 'dry',
+		short: 'd',
 		description: 'prints the output of the command'
 	}
 ];
