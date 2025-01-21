@@ -57,7 +57,7 @@
     "@types/fs-extra": "^11.0.4",
     "accessibility-checker": "^3.1.79",
     "adm-zip": "0.5.16",
-    "commander": "^13.0.0",
+    "commander": "^13.1.0",
     "cpr": "3.0.1",
     "cross-env": "^7.0.3",
     "dotenv": "^16.4.7",
