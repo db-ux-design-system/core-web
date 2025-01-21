@@ -1,6 +1,6 @@
 // SPDX-FileCopyrightText: 2025 DB Systel GmbH
 //
-// SPDX-License-Identifier: CC0-1.0
+// SPDX-License-Identifier: Apache-2.0
 
 import { defineConfig } from 'vite';
 import vue from '@vitejs/plugin-vue';

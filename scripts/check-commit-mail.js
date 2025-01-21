@@ -1,4 +1,9 @@
 #!/usr/bin/env node
+
+// SPDX-FileCopyrightText: 2025 DB Systel GmbH
+//
+// SPDX-License-Identifier: Apache-2.0
+
 import * as ChildProcess from 'node:child_process';
 import * as process from 'node:process';
 import * as dotenv from 'dotenv';
