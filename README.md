@@ -155,13 +155,13 @@ If you're working as a developer on the DB UX Design System, please have a look 
 
 ## Contributions
 
-Contributions are very welcome, please refer to the [contribution guide](https://github.com/db-ui/mono/blob/main/CONTRIBUTING.md).
+Contributions are very welcome, please refer to the [contribution guide](https://github.com/db-ui/mono/tree/main/CONTRIBUTING.md).
 
 ## Code of conduct
 
 We as members, contributors, and leaders pledge to make participation in our
 community a harassment-free experience for everyone – have a look at
-our [Contributor Covenant Code of Conduct](https://github.com/db-ui/mono/blob/main/CODE-OF-CONDUCT.md).
+our [Contributor Covenant Code of Conduct](https://github.com/db-ui/mono/tree/main/CODE-OF-CONDUCT.md).
 
 ## License
 

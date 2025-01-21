@@ -62,7 +62,7 @@ export class AppComponent {
 <db-header [drawerOpen]="drawerOpen" (onToggle)="toggleDrawer($event)">
 	<db-brand brand>My Awesome App</db-brand>
 	<db-navigation *dbNavigation>
-		<!-- https://github.com/db-ui/mono/blob/main/packages/components/src/components/navigation/docs/Angular.md -->
+		<!-- https://github.com/db-ui/mono/tree/main/packages/components/src/components/navigation/docs/Angular.md -->
 	</db-navigation>
 	<ng-container *dbMetaNavigation>
 		<DBLink href="#">Imprint</DBLink>

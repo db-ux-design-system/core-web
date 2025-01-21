@@ -34,7 +34,7 @@ Import the styles in `scss` or `css`. Based on your technology the file names co
 - `webpack`: asset path point to `~@db-ui/foundations/assets`
 - `rollup`: asset path point to `@db-ui/foundations/assets`
 
-They are bundling all dependencies from [foundations](https://www.npmjs.com/package/@db-ui/foundations) and all [components](https://github.com/db-ui/mono/blob/main/packages/components/src/styles/db-ui-components.scss) available.
+They are bundling all dependencies from [foundations](https://www.npmjs.com/package/@db-ui/foundations) and all [components](https://github.com/db-ui/mono/tree/main/packages/components/src/styles/db-ui-components.scss) available.
 
 **SCSS**
 
@@ -94,12 +94,12 @@ You must remove or replace any Deutsche Bahn brand and design assets as well as 
 
 ## Contributions
 
-Contributions are very welcome, please refer to the [contribution guide](https://github.com/db-ui/mono/blob/main/CONTRIBUTING.md).
+Contributions are very welcome, please refer to the [contribution guide](https://github.com/db-ui/mono/tree/main/CONTRIBUTING.md).
 
 ## Code of conduct
 
 We as members, contributors, and leaders pledge to make participation in our
-community a harassment-free experience for everyone – have a look at our [Contributor Covenant Code of Conduct](https://github.com/db-ui/mono/blob/main/CODE-OF-CONDUCT.md).
+community a harassment-free experience for everyone – have a look at our [Contributor Covenant Code of Conduct](https://github.com/db-ui/mono/tree/main/CODE-OF-CONDUCT.md).
 
 ## License
 
