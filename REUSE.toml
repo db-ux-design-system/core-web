@@ -2,6 +2,6 @@ version = 1
 
 # A simple glob of all files in resources/img/
 [[annotations]]
-path = ["**/package.json", "**/tsconfig.json"]
+path = ["**/package.json", "package-lock.json", "**/tsconfig.json"]
 SPDX-FileCopyrightText = "DB Systel GmbH"
 SPDX-License-Identifier = "Apache-2.0"
