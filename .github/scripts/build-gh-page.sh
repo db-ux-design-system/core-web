@@ -1,5 +1,9 @@
 #!/usr/bin/env bash
 
+# SPDX-FileCopyrightText: 2025 DB Systel GmbH
+#
+# SPDX-License-Identifier: Apache-2.0
+
 if [[ $NAME == "true" ]]; then
 	echo "Erro: Missing NAME variable"
 	exit 1

@@ -1,5 +1,9 @@
 #!/usr/bin/env bash
 
+# SPDX-FileCopyrightText: 2025 DB Systel GmbH
+#
+# SPDX-License-Identifier: Apache-2.0
+
 if [[ $GITHUB_REF == refs/tags/v* ]]; then
 	if [[ $GITHUB_ACTOR != 'dependabot[bot]' ]]; then
 		if [[ $GITHUB_COMMITISH == 'main' && $GITHUB_PRE_RELEASE == false ]]; then

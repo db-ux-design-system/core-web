@@ -1,5 +1,9 @@
 #!/usr/bin/env bash
 
+# SPDX-FileCopyrightText: 2025 DB Systel GmbH
+#
+# SPDX-License-Identifier: Apache-2.0
+
 if [[ -z $VALID_SEMVER_VERSION ]]; then
 	echo "Version is missing!"
 	exit 1

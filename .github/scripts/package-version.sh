@@ -1,5 +1,9 @@
 #!/usr/bin/env bash
 
+# SPDX-FileCopyrightText: 2025 DB Systel GmbH
+#
+# SPDX-License-Identifier: Apache-2.0
+
 SEMVER_VERSION=$(npx find-versions-cli "$TAG")
 if [[ $RELEASE == "true" ]]; then
 	if [[ $SEMVER_VERSION == *-* ]]; then
