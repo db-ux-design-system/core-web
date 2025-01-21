@@ -165,4 +165,19 @@ our [Contributor Covenant Code of Conduct](https://github.com/db-ui/mono/blob/ma
 
 ## License
 
-This project is licensed under [Apache-2.0](LICENSE), Copyright 2024 by DB Systel GmbH.
+The DB source code is licensed under the Apache License, Version 2.0, January 2004;
+you may not use this file except in compliance with the License. You may obtain a copy
+of the Apache License at https://apache.org/licenses/LICENSE-2.0. The DB source code
+does not include any DB specific design assets like fonts, icons, trademarks, brandings, etc.
+
+(LINK auf Apache-2.0)
+
+All Deutsche Bahn AG (hereinafter “DB”) specific design assets like fonts, icons,
+trademarks, brandings, etc. (hereinafter “DB Designs”) are licensed under the following
+license agreement (the “DB Designs License”):
+
+(Link auf DB Designs License)
+
+(Erklärung, dass ggf. andere Lizenzen und Urheber, siehe LICENSES)
+
+(REUSE compliance)
