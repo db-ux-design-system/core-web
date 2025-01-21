@@ -12,7 +12,11 @@ import { cls, getBooleanAsString, getHideProp } from '../../utils';
 import { ChangeEvent } from '../../shared/model';
 import { handleFrameworkEvent } from '../../utils/form-components';
 
-useMetadata({});
+useMetadata({
+	angular: {
+		nativeAttributes: ['disabled']
+	}
+});
 
 export default function DBTabItem(props: DBTabItemProps) {
 	const ref = useRef<HTMLInputElement>(null);

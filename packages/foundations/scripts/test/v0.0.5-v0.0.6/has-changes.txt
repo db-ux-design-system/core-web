@@ -1,8 +1,0 @@
-<DBNotification
-				onClose={() => (close = 'test')}
-				behaviour="closable">
-				Test
-			</DBNotification>
-
-
-<DBInput variant="hidden">

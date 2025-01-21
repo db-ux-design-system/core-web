@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import DefaultComponent from "../DefaultComponent.vue";
 import defaultComponentVariants from "../../../../shared/select.json";
-import { DBCheckbox, DBSelect } from "../../../../../output/vue/src";
+import { DBCheckbox, DBInput, DBSelect } from "../../../../../output/vue/src";
 </script>
 
 <template>
@@ -20,6 +20,10 @@ import { DBCheckbox, DBSelect } from "../../../../../output/vue/src";
 				:value="exampleProps?.value"
 				:message="exampleProps?.message"
 				:required="exampleProps?.required"
+				:showMessage="exampleProps?.showMessage"
+				:invalidMessage="exampleProps?.invalidMessage"
+				:validMessage="exampleProps?.validMessage"
+				:validation="exampleProps?.validation"
 			>
 				{{ exampleName }}
 			</DBSelect>

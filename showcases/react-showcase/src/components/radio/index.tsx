@@ -1,4 +1,4 @@
-import { DBRadio } from '../../../../../output/react/src';
+import { DBInfotext, DBRadio } from '../../../../../output/react/src';
 import DefaultComponent from '../default-component';
 import { getVariants } from '../data';
 import defaultComponentVariants from '../../../../shared/radio.json';
@@ -14,19 +14,28 @@ const getRadio = ({
 	children,
 	disabled,
 	value,
-	showLabel
+	showLabel,
+	validation
 }: DBRadioProps) => (
-	<DBRadio
-		label={label}
-		size={size}
-		name={name}
-		defaultChecked={checked}
-		required={required}
-		disabled={disabled}
-		showLabel={showLabel}
-		value={value}>
-		{children}
-	</DBRadio>
+	<>
+		<DBRadio
+			label={label}
+			size={size}
+			name={name}
+			defaultChecked={checked}
+			required={required}
+			disabled={disabled}
+			showLabel={showLabel}
+			value={value}
+			validation={validation}>
+			{children}
+		</DBRadio>
+		{showLabel !== undefined && !showLabel && (
+			<DBInfotext size="small" semantic="informational" showIcon={false}>
+				{children}
+			</DBInfotext>
+		)}
+	</>
 );
 
 const RadioComponent = (props: BaseComponentProps) => {

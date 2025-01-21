@@ -11,7 +11,11 @@ import { cls, getBooleanAsString, getHideProp, uuid } from '../../utils';
 import { ChangeEvent, InteractionEvent } from '../../shared/model';
 import { handleFrameworkEvent } from '../../utils/form-components';
 
-useMetadata({});
+useMetadata({
+	angular: {
+		nativeAttributes: ['disabled', 'required', 'checked', 'indeterminate']
+	}
+});
 
 export default function DBSwitch(props: DBSwitchProps) {
 	// This is used as forwardRef
@@ -65,7 +69,7 @@ export default function DBSwitch(props: DBSwitchProps) {
 
 	return (
 		<label
-			data-visual-aid={props.visualAid}
+			data-visual-aid={getBooleanAsString(props.visualAid)}
 			data-size={props.size}
 			data-hide-label={getHideProp(props.showLabel)}
 			data-emphasis={props.emphasis}

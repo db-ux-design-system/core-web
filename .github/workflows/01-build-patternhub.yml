@@ -20,7 +20,7 @@ on:
 jobs:
   build-patternhub:
     name: Build Patternhub
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04 # Use Ubuntu 24.04 explicitly
     outputs:
       path: ${{ steps.build.outputs.path }}
     steps:
@@ -86,6 +86,8 @@ jobs:
       - name: 🔨 Build Patternhub
         id: build
         env:
+          ASSET_INIT_VECTOR: ${{ secrets.ASSET_INIT_VECTOR }}
+          ASSET_PASSWORD: ${{ secrets.ASSET_PASSWORD }}
           NEXT_PUBLIC_BASE_PATH: ${{ steps.base-path.outputs.result }}
         run: |
           npx --no tsx scripts/md-resolve-svg.ts

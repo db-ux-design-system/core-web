@@ -3,7 +3,11 @@ import type { DBButtonProps, DBButtonState } from './model';
 import { cls, getBooleanAsString, getHideProp } from '../../utils';
 import { ClickEvent } from '../../shared/model';
 
-useMetadata({});
+useMetadata({
+	angular: {
+		nativeAttributes: ['disabled']
+	}
+});
 
 export default function DBButton(props: DBButtonProps) {
 	const ref = useRef<HTMLButtonElement>(null);

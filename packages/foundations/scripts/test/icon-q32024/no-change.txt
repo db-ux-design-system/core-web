@@ -1,2 +1,0 @@
-<DBButton icon="person">
-<a href="#" data-icon="arrows_vertical">

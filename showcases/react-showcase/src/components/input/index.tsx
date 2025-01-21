@@ -36,7 +36,11 @@ const getInput = ({
 	variant,
 	readOnly,
 	dataList,
-	showLabel
+	showLabel,
+	showMessage,
+	validMessage,
+	validation,
+	invalidMessage
 }: DBInputProps & { dataList: boolean }) => {
 	return (
 		<DBInput
@@ -53,6 +57,10 @@ const getInput = ({
 			readOnly={readOnly}
 			iconAfter={iconAfter}
 			icon={icon}
+			showMessage={showMessage}
+			invalidMessage={invalidMessage}
+			validMessage={validMessage}
+			validation={validation}
 			dataList={dataList ? getDataList(variant) : undefined}
 		/>
 	);
