@@ -1,3 +1,7 @@
+// SPDX-FileCopyrightText: 2025 DB Systel GmbH
+//
+// SPDX-License-Identifier: Apache-2.0
+
 import { onMount, useMetadata, useRef, useStore } from '@builder.io/mitosis';
 import { DBTabListProps, DBTabListState } from './model';
 import { cls, uuid } from '../../utils';

@@ -1,3 +1,7 @@
+// SPDX-FileCopyrightText: 2025 DB Systel GmbH
+//
+// SPDX-License-Identifier: Apache-2.0
+
 import { replaceInFileSync } from 'replace-in-file';
 import { Component, Overwrite } from '../post-build/components';
 

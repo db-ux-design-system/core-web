@@ -1,3 +1,7 @@
+// SPDX-FileCopyrightText: 2025 DB Systel GmbH
+//
+// SPDX-License-Identifier: Apache-2.0
+
 import { useMetadata, useRef, useStore } from '@builder.io/mitosis';
 import { DBDividerProps, DBDividerState } from './model';
 import { cls } from '../../utils';

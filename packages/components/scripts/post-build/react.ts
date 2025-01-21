@@ -1,3 +1,7 @@
+// SPDX-FileCopyrightText: 2025 DB Systel GmbH
+//
+// SPDX-License-Identifier: Apache-2.0
+
 import components, { Overwrite } from './components';
 
 import { readFileSync, writeFileSync } from 'node:fs';

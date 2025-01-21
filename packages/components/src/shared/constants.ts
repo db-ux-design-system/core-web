@@ -1,3 +1,7 @@
+// SPDX-FileCopyrightText: 2025 DB Systel GmbH
+//
+// SPDX-License-Identifier: Apache-2.0
+
 export const DEFAULT_ID: string = 'OVERWRITE_DEFAULT_ID';
 export const DEFAULT_LABEL: string = 'LABEL SHOULD BE SET';
 export const DEFAULT_PLACEHOLDER: string = ' ';

@@ -1,3 +1,9 @@
+<!--
+SPDX-FileCopyrightText: 2025 DB Systel GmbH
+
+SPDX-License-Identifier: Apache-2.0
+-->
+
 # DB Font Sizes
 
 The font sizes of foundations consist of [two different sets](./overview) (9 sizes each) for general texts (**Body Font Sizes**) and headlines (**Headline Font Sizes**).

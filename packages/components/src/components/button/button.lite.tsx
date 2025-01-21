@@ -1,3 +1,7 @@
+// SPDX-FileCopyrightText: 2025 DB Systel GmbH
+//
+// SPDX-License-Identifier: Apache-2.0
+
 import { Show, useMetadata, useRef, useStore } from '@builder.io/mitosis';
 import type { DBButtonProps, DBButtonState } from './model';
 import { cls, getBooleanAsString, getHideProp } from '../../utils';

@@ -1,3 +1,9 @@
+/*
+ * SPDX-FileCopyrightText: 2025 DB Systel GmbH
+ *
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
 // If you serve your assets and your css on root level you might need those paths.
 @use "default.assets-paths" as assets-paths with (
 	$icons-path: "/assets/icons/",

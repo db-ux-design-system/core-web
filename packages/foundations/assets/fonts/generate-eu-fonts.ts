@@ -1,3 +1,7 @@
+// SPDX-FileCopyrightText: 2025 DB Systel GmbH
+//
+// SPDX-License-Identifier: Apache-2.0
+
 import { exec } from 'node:child_process';
 import { promisify } from 'node:util';
 import { glob } from 'glob';

@@ -1,3 +1,7 @@
+// SPDX-FileCopyrightText: 2025 DB Systel GmbH
+//
+// SPDX-License-Identifier: Apache-2.0
+
 // The theme contains all prop required for components like spacings, colors, ...
 import '@db-ui/foundations/build/styles/default-theme.css';
 // The font include uses default font families based on your bundling paths (relative, absolute, webpack, rollup)

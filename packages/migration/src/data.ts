@@ -1,3 +1,7 @@
+// SPDX-FileCopyrightText: 2025 DB Systel GmbH
+//
+// SPDX-License-Identifier: Apache-2.0
+
 import type { ProgrammOptionsType } from './types';
 import { colorQ32024 } from './migration/color-q32024';
 import type { ReplaceInFileConfig } from 'replace-in-file';

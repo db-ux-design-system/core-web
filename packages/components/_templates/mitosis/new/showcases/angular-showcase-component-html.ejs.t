@@ -1,3 +1,7 @@
+# SPDX-FileCopyrightText: 2025 DB Systel GmbH
+#
+# SPDX-License-Identifier: Apache-2.0
+
 ---
 to: "<%= showcases ? `../../showcases/angular-showcase/src/app/components/${name}/${name}.component.html` : null %>"
 ---

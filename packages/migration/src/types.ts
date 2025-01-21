@@ -1,3 +1,7 @@
+// SPDX-FileCopyrightText: 2025 DB Systel GmbH
+//
+// SPDX-License-Identifier: Apache-2.0
+
 import { v005_v006 } from './migration/v0.0.5-v0.0.6';
 
 export type ProgrammOptionsType = {

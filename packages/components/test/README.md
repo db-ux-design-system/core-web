@@ -1,3 +1,9 @@
+<!--
+SPDX-FileCopyrightText: 2025 DB Systel GmbH
+
+SPDX-License-Identifier: Apache-2.0
+-->
+
 # How to test components
 
 1. Edit a test file inside `src/components/xxx/xxx.spec.tsx` (after the build from 2. you can edit it also in `output/react/src/components/xxx/xxx.spec.tsx` directly and copy it back to skip 2.)
