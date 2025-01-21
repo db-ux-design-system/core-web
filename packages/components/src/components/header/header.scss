@@ -18,6 +18,11 @@
 		--db-drawer-max-width: #{screen-sizes.$db-breakpoint-sm};
 	}
 
+	&[data-width="small"] {
+		margin-inline: auto;
+		max-inline-size: screen-sizes.$db-breakpoint-sm;
+	}
+
 	&[data-width="medium"] {
 		margin-inline: auto;
 		max-inline-size: screen-sizes.$db-breakpoint-md;

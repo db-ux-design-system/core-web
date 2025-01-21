@@ -6,7 +6,7 @@ import {
 	SpacingProps
 } from '../../shared/model';
 
-export const CardBehaviourList = ['default', 'interactive'] as const;
+export const CardBehaviourList = ['static', 'interactive'] as const;
 export type CardBehaviourType = (typeof CardBehaviourList)[number];
 
 export const CardElevationLevelList = ['1', '2', '3'] as const;

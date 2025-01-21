@@ -206,7 +206,7 @@
 		]
 	},
 	{
-		"name": "Animations",
+		"name": "Animation",
 		"children": [
 			{
 				"name": "button",
@@ -219,30 +219,53 @@
 		],
 		"examples": [
 			{
-				"name": "(Default) Animation no delay",
+				"name": "(Default) True",
 				"props": {
-					"id": "popover-13"
+					"id": "popover-13",
+					"animation": true
 				}
 			},
 			{
-				"name": "Delay slow",
+				"name": "False",
+				"props": {
+					"animation": false,
+					"id": "popover-16"
+				}
+			}
+		]
+	},
+	{
+		"name": "Delay",
+		"children": [
+			{
+				"name": "button",
+				"slot": "trigger"
+			},
+			{
+				"name": "button",
+				"content": "Inside Popover"
+			}
+		],
+		"examples": [
+			{
+				"name": "(Default) None",
+				"props": {
+					"id": "popover-133",
+					"delay": "none"
+				}
+			},
+			{
+				"name": "Slow",
 				"props": {
 					"delay": "slow",
 					"id": "popover-14"
 				}
 			},
 			{
-				"name": "Delay fast",
+				"name": "Fast",
 				"props": {
 					"delay": "fast",
 					"id": "popover-15"
-				}
-			},
-			{
-				"name": "No animation",
-				"props": {
-					"animation": "disabled",
-					"id": "popover-16"
 				}
 			}
 		]

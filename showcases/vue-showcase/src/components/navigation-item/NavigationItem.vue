@@ -20,6 +20,7 @@ const log = (exampleName?: string) => {
 			<ul>
 				<DBNavigationItem
 					:icon="exampleProps?.icon"
+					:showIcon="exampleProps?.showIcon"
 					:width="exampleProps?.width"
 					:disabled="exampleProps?.disabled"
 					:active="exampleProps?.active"

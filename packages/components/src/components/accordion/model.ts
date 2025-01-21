@@ -1,7 +1,7 @@
 import { GlobalProps, GlobalState, InitializedState } from '../../shared/model';
 import { DBAccordionItemDefaultProps } from '../accordion-item/model';
 
-export const AccordionVariantList = ['default', 'card'] as const;
+export const AccordionVariantList = ['divider', 'card'] as const;
 export type AccordionVariantType = (typeof AccordionVariantList)[number];
 
 export const AccordionBehaviourList = ['multiple', 'single'] as const;
@@ -34,7 +34,7 @@ export type DBAccordionDefaultProps = {
 
 	/**
 	 * Defines the display of the accordion and the items:
-	 * "default": with a dividing line between the items
+	 * "divider": with a dividing line between the items
 	 * "card": w/o dividing line, but items are shown in the card variant
 	 */
 	variant?: AccordionVariantType;

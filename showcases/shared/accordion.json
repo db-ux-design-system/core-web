@@ -70,10 +70,13 @@
 		],
 		"examples": [
 			{
-				"name": "background (default)"
+				"name": "(Default) Divider",
+				"props": {
+					"variant": "divider"
+				}
 			},
 			{
-				"name": "card",
+				"name": "Card",
 				"props": {
 					"variant": "card"
 				}

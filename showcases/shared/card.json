@@ -23,19 +23,19 @@
 		"name": "Elevation Level",
 		"examples": [
 			{
-				"name": "(Default) Level 1 - Adaptive",
+				"name": "(Default) Level 1",
 				"props": {
 					"elevationLevel": "1"
 				}
 			},
 			{
-				"name": "Level 2 - Adaptive",
+				"name": "Level 2",
 				"props": {
 					"elevationLevel": "2"
 				}
 			},
 			{
-				"name": "Level 3 - Adaptive",
+				"name": "Level 3",
 				"props": {
 					"elevationLevel": "3"
 				}
@@ -75,7 +75,10 @@
 		"name": "Behaviour",
 		"examples": [
 			{
-				"name": "(Default) Non interactive"
+				"name": "(Default) Static",
+				"props": {
+					"behaviour": "static"
+				}
 			},
 			{
 				"name": "Interactive",
