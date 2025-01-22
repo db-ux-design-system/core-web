@@ -132,6 +132,7 @@ $popover-gap-inset: calc(-1 * #{$popover-gap-size});
 }
 
 @mixin get-popover-show() {
+	&:not([data-animation]),
 	&[data-animation="false"] {
 		opacity: 1;
 		transform: translate(
