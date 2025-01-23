@@ -44,3 +44,6 @@ testem.log
 # System files
 .DS_Store
 Thumbs.db
+
+# Under no circumstances we should (git) ignore the necessary license files
+!*.license
