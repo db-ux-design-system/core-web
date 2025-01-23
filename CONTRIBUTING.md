@@ -1,3 +1,9 @@
+<!--
+SPDX-FileCopyrightText: 2025 DB Systel GmbH
+
+SPDX-License-Identifier: Apache-2.0
+-->
+
 # Contributing
 
 Thanks for your interest in our project. Contributions are welcome. Feel free to [open an issue](https://github.com/db-ui/mono/issues/new) with questions or reporting ideas and bugs, or [open pull requests](https://github.com/db-ui/mono/compare) to contribute code.

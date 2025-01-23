@@ -1,3 +1,9 @@
+<!--
+SPDX-FileCopyrightText: 2025 DB Systel GmbH
+
+SPDX-License-Identifier: Apache-2.0
+-->
+
 <!-- markdownlint-configure-file { "MD013": false, "MD041":false } -->
 <!-- markdownlint-disable MD033 MD010 -->
 
