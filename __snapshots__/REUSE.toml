@@ -2,6 +2,6 @@ version = 1
 
 # A simple glob of all files in resources/img/
 [[annotations]]
-path = ["**/*-snapshot.yaml", "**/*-screenshot.png"]
+path = ["**/*-snapshot.yaml", "**/*-screenshot.png", "**/component/chromium/*.png", "**/component/firefox/*.png", "**/component/mobile-chrome/*.png"]
 SPDX-FileCopyrightText = "DB Systel GmbH"
 SPDX-License-Identifier = "CC0-1.0"
