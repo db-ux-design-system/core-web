@@ -65,4 +65,4 @@ showcases/patternhub/public/iframe-resizer/*
 **/.angular
 
 # Under no circumstances we should (git) ignore the necessary license files
-!*.license
+!**/*.license
