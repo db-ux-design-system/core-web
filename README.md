@@ -167,7 +167,7 @@ our [Contributor Covenant Code of Conduct](https://github.com/db-ui/mono/blob/ma
 
 The DB source code is licensed under the Apache License, Version 2.0, January 2004;
 you may not use this file except in compliance with the License. You may obtain a copy
-of the Apache License at https://apache.org/licenses/LICENSE-2.0. The DB source code
+of the Apache License at <https://apache.org/licenses/LICENSE-2.0>. The DB source code
 does not include any DB specific design assets like fonts, icons, trademarks, brandings, etc.
 
 (LINK auf Apache-2.0)
