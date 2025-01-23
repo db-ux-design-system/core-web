@@ -16,6 +16,6 @@ export type ProgrammOptionsType = {
 
 export type OptionsType = {
 	src: string;
-	type: (string | 'colorQ32024' | 'iconQ32024' | 'v005_v006')[];
+	type: (string | 'colorQ32024' | 'iconQ32024' | 'v005_v006' | 'v006_v007')[];
 	dryRun?: string | boolean;
 };
