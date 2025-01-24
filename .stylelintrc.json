@@ -3,8 +3,27 @@
 		"stylelint-config-standard",
 		"stylelint-config-sass-guidelines"
 	],
-	"plugins": ["stylelint-use-logical", "@double-great/stylelint-a11y"],
+	"plugins": [
+		"stylelint-use-logical",
+		"@double-great/stylelint-a11y",
+		"@db-ui/stylelint"
+	],
+	"ignoreFiles": ["packages/stylelint/test/**"],
 	"rules": {
+		"db-ui/use-spacings": [
+			true,
+			{
+				"allowCalc": true,
+				"allow": {
+					"includes": [
+						"-calc",
+						"$default-icon-margin",
+						"form-components."
+					],
+					"startsWith": ["icons.$", "map.get"]
+				}
+			}
+		],
 		"a11y/media-prefers-reduced-motion": true,
 		"a11y/no-outline-none": true,
 		"a11y/selector-pseudo-class-focus": true,

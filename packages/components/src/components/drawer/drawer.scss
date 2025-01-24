@@ -80,6 +80,7 @@ $spacings: (
 
 	.db-drawer-header {
 		// We need this variable to overwrite it inside the header
+		/* stylelint-disable-next-line db-ui/use-spacings */
 		padding-block-end: var(
 			--db-drawer-header-padding-block-end,
 			#{map.get($spacing, "block")}
@@ -89,6 +90,7 @@ $spacings: (
 
 	.db-drawer-content {
 		// We need this variable to overwrite it inside the header
+		/* stylelint-disable-next-line db-ui/use-spacings */
 		padding-inline: var(
 			--db-drawer-content-padding-inline,
 			#{map.get($spacing, "inline")}

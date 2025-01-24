@@ -45,7 +45,7 @@ $scrollbar-width: helpers.px-to-rem(8);
 		background-size: $scrollbar-width;
 		background-repeat: no-repeat;
 		background-position: center;
-		block-size: form-components.$floating-label-size;
+		block-size: $floating-label-size-calc;
 
 		&:is(:hover, :focus) {
 			background-color: colors.$db-adaptive-bg-basic-transparent-hovered;

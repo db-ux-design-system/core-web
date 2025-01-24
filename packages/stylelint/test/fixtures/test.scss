@@ -1,0 +1,24 @@
+@use "sass:map";
+
+.wrong {
+	margin: 20px;
+}
+
+.right {
+	margin: calc(var(--db-spacing-fixed-xl) + var(--db-sizing-sm));
+}
+
+.no-variables {
+	margin: var(--test);
+	padding: $default-icon-margin-end;
+}
+
+.map {
+	padding-block: map.get($spacing, "block");
+}
+
+.allow-calc {
+	margin: calc(
+		var(--db-type-body-font-size-2xs) + #{variables.$db-spacing-fixed-3xs}
+	);
+}

@@ -17,7 +17,7 @@
 		p,
 		&::before,
 		.db-button {
-			margin-block-start: -2px;
+			margin-block-start: -2px; /* stylelint-disable-line db-ui/use-spacings */
 		}
 	}
 }

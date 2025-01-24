@@ -24,7 +24,7 @@ $label-size-height-2xs: calc(
 	var(--db-type-body-font-size-2xs) * var(--db-type-body-line-height-2xs)
 );
 
-$floating-label-size: calc(
+$floating-label-size-calc: calc(
 	#{variables.$db-spacing-fixed-3xs} + #{variables.$db-spacing-fixed-2xs} +
 		#{$label-size-height-2xs}
 );
@@ -107,7 +107,7 @@ $check-border-size: min(#{variables.$db-border-height-2xs}, 2px);
 			}
 
 			@if ($selector == textarea) {
-				padding-block-start: $floating-label-size;
+				padding-block-start: $floating-label-size-calc;
 				/* stylelint-disable-next-line at-rule-empty-line-before */
 			} @else {
 				// font-size label which is 2xs + smallest spacing
@@ -271,7 +271,7 @@ $input-valid-types: "color", "date", "datetime-local", "email", "file",
 				@include icons.icon-content("*");
 
 				// We're using 1px instead of a token here on purpose, as this is an edge case
-				padding-inline-start: 1px;
+				padding-inline-start: 1px; /* stylelint-disable-line db-ui/use-spacings */
 			}
 		}
 	}

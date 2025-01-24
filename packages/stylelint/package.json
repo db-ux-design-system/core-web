@@ -1,0 +1,43 @@
+{
+  "name": "@db-ui/stylelint",
+  "version": "0.0.0",
+  "type": "module",
+  "description": "Ensures DB UX styles are used correctly",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/db-ui/mono.git"
+  },
+  "license": "Apache-2.0",
+  "exports": {
+    ".": {
+      "types": "./build/src/index.d.ts",
+      "default": "./build/src/index.js"
+    }
+  },
+  "files": [
+    "build"
+  ],
+  "keywords": [
+    "stylelint",
+    "stylelint-plugin"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "test": "vitest run --config vitest.config.ts"
+  },
+  "peerDependencies": {
+    "stylelint": "16.13.2"
+  },
+  "devDependencies": {
+    "postcss-html": "^1.8.0",
+    "stylelint-config-standard": "^37.0.0",
+    "stylelint-config-standard-scss": "^14.0.0",
+    "stylelint-config-standard-vue": "^1.0.0",
+    "typescript": "^5.4.5",
+    "vitest": "^3.0.4"
+  },
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/",
+    "access": "public"
+  }
+}

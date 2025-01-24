@@ -30,7 +30,7 @@
 	position: absolute;
 	content: "";
 	inset-block-start: 0;
-	block-size: form-components.$floating-label-size;
+	block-size: $floating-label-size-calc;
 	margin-inline: 0;
 	inline-size: calc(100% - #{scrollbar.$scrollbar-width} - 1px);
 	inset-inline: 0;

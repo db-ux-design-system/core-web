@@ -6,7 +6,7 @@
 @use "../../styles/internal/db-puls";
 @use "../../styles/internal/form-components";
 
-$with-icon-padding: calc(
+$with-icon-padding-calc: calc(
 	#{variables.$db-spacing-fixed-xs} + #{variables.$db-spacing-fixed-sm} +
 		#{form-components.$font-size-height}
 );
@@ -59,7 +59,7 @@ $tab-border-radius: variables.$db-border-radius-sm;
 		}
 
 		&[data-icon] {
-			padding-inline-start: $with-icon-padding;
+			padding-inline-start: $with-icon-padding-calc;
 
 			&::before {
 				position: absolute;
@@ -72,7 +72,7 @@ $tab-border-radius: variables.$db-border-radius-sm;
 		}
 
 		&[data-icon-after] {
-			padding-inline-end: $with-icon-padding;
+			padding-inline-end: $with-icon-padding-calc;
 
 			&::after {
 				position: absolute;
@@ -87,7 +87,7 @@ $tab-border-radius: variables.$db-border-radius-sm;
 
 			padding: 0;
 			inline-size: calc(
-				#{$with-icon-padding} - #{variables.$db-spacing-fixed-2xs}
+				#{$with-icon-padding-calc} - #{variables.$db-spacing-fixed-2xs}
 			);
 			block-size: calc(
 				#{form-components.$font-size-height} +
