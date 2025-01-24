@@ -16,7 +16,7 @@
 			font-display: block;
 			font-family: "db-ux-#{$variant}";
 			font-style: normal;
-			font-weight: #{$size};
+			font-weight: $size; /* stylelint-disable-line at-rule-descriptor-value-no-unknown */
 			src: url("#{assets-paths.$icons-path}fonts/#{$variant}_#{$size}/db-ux.woff2")
 				format("woff2");
 		}
