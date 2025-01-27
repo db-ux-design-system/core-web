@@ -24,7 +24,7 @@ jobs:
       - name: 🪁 Get playwright version
         id: version
         run: |
-          OUTPUT=$(tsx scripts/github/get-playwright-version.ts)
+          OUTPUT=$(node scripts/github/get-playwright-version.js)
           echo "version=$OUTPUT" >> $GITHUB_OUTPUT
 
       - name: 💀 Killing me softly
