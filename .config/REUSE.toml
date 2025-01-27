@@ -4,4 +4,4 @@ version = 1
 [[annotations]]
 path = ["*.json", "*.js", "*.yml"]
 SPDX-FileCopyrightText = "DB Systel GmbH"
-SPDX-License-Identifier = "CC0-1.0"
+SPDX-License-Identifier = "Apache-2.0"
