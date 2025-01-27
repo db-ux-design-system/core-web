@@ -1,7 +1,7 @@
 import { describe, expect, test } from 'vitest';
 import { execSync } from 'child_process';
 
-const command = 'node github/get-playwright-version.js';
+const command = 'npx tsx github/get-playwright-version.ts';
 
 describe('get-playwright-version', () => {
 	test('default', async () => {
