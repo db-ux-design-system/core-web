@@ -31,6 +31,6 @@
     "@angular/cli": "17.3.11",
     "@angular/compiler-cli": "17.3.12",
     "ng-packagr": "17.3.0",
-    "typescript": "^5.4.5"
+    "typescript": "^5.7.3"
   }
 }
