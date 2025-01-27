@@ -177,14 +177,13 @@ you may not use this file except in compliance with the License. You may obtain 
 of the Apache License at <https://apache.org/licenses/LICENSE-2.0>. The DB source code
 does not include any DB specific design assets like fonts, icons, trademarks, brandings, etc.
 
-(LINK auf Apache-2.0)
+[Apache 2.0 license](LICENSES/Apache-2.0.txt)
 
 All Deutsche Bahn AG (hereinafter “DB”) specific design assets like fonts, icons,
 trademarks, brandings, etc. (hereinafter “DB Designs”) are licensed under the following
 license agreement (the “DB Designs License”):
 
-(Link auf DB Designs License)
+[DB Designs License](LICENSES/LicenseRef-DB-Designs-License.txt)
 
-(Erklärung, dass ggf. andere Lizenzen und Urheber, siehe LICENSES)
+Furthermore we're using a font and icon font that have been release by third party in a [CC0 1.0 license](LICENSES/CC0-1.0.txt) and we're providing our test snapshots by this very same [CC0 1.0 license](LICENSES/CC0-1.0.txt).
 
-(REUSE compliance)
