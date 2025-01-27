@@ -30,7 +30,7 @@
     "test": "vitest run --config vitest.config.ts"
   },
   "peerDependencies": {
-    "stylelint": "16.13.2"
+    "stylelint": "^14.0.0 || ^15.0.0 || ^16.0.0"
   },
   "devDependencies": {
     "postcss-html": "^1.8.0",
