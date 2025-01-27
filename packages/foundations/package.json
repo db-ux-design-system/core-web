@@ -35,6 +35,7 @@
     "copy-prepare:normalize": "cpr ../../node_modules/@csstools/normalize.css/normalize.css scss/_normalize.scss -o",
     "copy:scss": "cpr scss build/styles -o",
     "dev": "vite --open",
+    "generate:fonts": "tsx assets/fonts/generate-eu-fonts.ts",
     "generate:icons": "tsx scripts/local/generate-icon-font.ts",
     "prebuild": "npm-run-all copy-prepare:*",
     "predev": "npm-run-all copy-prepare:*",
