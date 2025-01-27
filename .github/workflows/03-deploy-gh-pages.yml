@@ -62,17 +62,14 @@ jobs:
           script: return context?.payload?.repository?.name
 
       - name: 🔨 Build page
-        uses: actions/github-script@v7
         env:
           RELEASE: ${{ inputs.release }}
           PRE_RELEASE: ${{ inputs.preRelease }}
           NAME: ${{ steps.extract.outputs.name }}
           REPO_NAME: ${{ steps.repo-name.outputs.result }}
           OWNER_NAME: ${{ github.repository_owner }}
-        with:
-          script: |
-            const { default: buildGitHubPage } = await import('${{ github.workspace }}/.github/scripts/build-gh-page.js');
-            return await buildGitHubPage();
+        run: |
+          tsx .github/scripts/build-gh-page.js
 
       - name: 🥅 Deploy to GH-Pages
         uses: peaceiris/actions-gh-pages@v4

@@ -38,8 +38,7 @@ jobs:
 
       - name: 📰 Publish to NPM Registries
         run: |
-          chmod +rx ./.github/scripts/publish-npm.sh
-          ./.github/scripts/publish-npm.sh
+          tsx .github/scripts/publish-npm.js
         env:
           RELEASE: ${{ inputs.release }}
           PRE_RELEASE: ${{ inputs.preRelease }}

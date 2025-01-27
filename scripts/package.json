@@ -63,6 +63,7 @@
     "start:foundations": "npm run start --workspace=@db-ui/foundations",
     "test": "npm-run-all -p test:*",
     "test:migration": "npm run test --workspace=@db-ui/migration",
+    "test:scripts": "vitest run --config vitest.config.ts",
     "update:icon-fonts": "npm-run-all generate:icon-fonts generate:icon-types"
   },
   "devDependencies": {
