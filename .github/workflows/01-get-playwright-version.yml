@@ -27,7 +27,7 @@ jobs:
         with:
           result-encoding: string
           script: |
-            const { default: getPlaywrightVersion } = await import('${{ github.workspace }}/.github/scripts/get-playwright-version.js');
+            const { default: getPlaywrightVersion } = await import('${{ github.workspace }}/scripts/github/get-playwright-version.js');
             return await getPlaywrightVersion();
 
       - name: 💀 Killing me softly
