@@ -35,7 +35,7 @@ Add this to your `.stylelintrc.json`:
 		"db-ui/use-spacings": [
 			true,
 			{
-				allowCalc: true, // allow calc() function - they are hard to lint
+				allowCalc: true, // allow all calc() functions - they are hard to lint
 				ignore: ["test.scss"], // ignore specific files
 				allow: {
 					// allow additional values e.g. for sass or exceptions/workarounds
