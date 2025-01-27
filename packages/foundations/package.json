@@ -46,7 +46,7 @@
   },
   "devDependencies": {
     "@csstools/normalize.css": "12.1.1",
-    "@db-ux/icon-font-tools": "0.1.0",
+    "@db-ux/icon-font-tools": "0.3.0",
     "cpr": "3.0.1",
     "cssnano": "^7.0.6",
     "dotenv": "^16.4.7",
@@ -55,7 +55,7 @@
     "prettier": "^3.4.2",
     "sass": "1.77.4",
     "tsx": "^4.19.2",
-    "vite": "^6.0.7"
+    "vite": "^6.0.11"
   },
   "publishConfig": {
     "registry": "https://registry.npmjs.org/",
