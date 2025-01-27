@@ -1,4 +1,4 @@
-import { Config } from "stylelint";
+import type { Config } from 'stylelint';
 
 export const defaultConfig: Config = {
 	extends: ['stylelint-config-standard'],
