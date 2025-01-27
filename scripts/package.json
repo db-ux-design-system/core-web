@@ -4,7 +4,7 @@
   "type": "module",
   "description": "contains scripts for monorepo",
   "scripts": {
-    "build": "npm-run-all build:foundations build:components build:migration",
+    "build": "npm-run-all build:foundations build:components build:migration build:stylelint",
     "build-outputs": "npm-run-all -p build-outputs:*",
     "build-outputs:components": "npm run copy-output -w=@db-ui/components",
     "build-outputs:foundations": "npm run copy-build -w=@db-ui/foundations",
