@@ -1,6 +1,6 @@
-@use "@db-ui/foundations/build/scss/variables";
-@use "@db-ui/foundations/build/scss/colors";
-@use "@db-ui/foundations/build/scss/fonts";
+@use "@db-ui/foundations/build/styles/variables";
+@use "@db-ui/foundations/build/styles/colors";
+@use "@db-ui/foundations/build/styles/fonts";
 
 .db-brand {
 	@extend %db-overwrite-font-size-md;

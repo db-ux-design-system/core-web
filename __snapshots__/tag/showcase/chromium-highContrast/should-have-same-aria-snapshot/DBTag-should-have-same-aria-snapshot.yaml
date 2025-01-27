@@ -27,19 +27,19 @@
     - checkbox "Disabled" [checked] [disabled]: "on"
     - text: Disabled
   - link "Content arrow_up_right\" / \""
-  - text: (Default) Text person" / " Icon person" / " Icon & Text
+  - text: (Default) Text x_placeholder" / " Icon x_placeholder" / " Icon & Text
   - link "Overflow arrow_up_right\" / \""
   - text: (Default) No Overflow With Overflow (max-width)
   - link "Example arrow_up_right\" / \""
   - group "Example":
-    - text: person" / "
+    - text: x_placeholder" / "
     - button "Interactive Strong Button with Icon"
-    - text: person" / "
+    - text: x_placeholder" / "
     - link "Interactive Strong Link with Icon"
-    - text: person" / "
+    - text: x_placeholder" / "
     - checkbox "Interactive Strong Checkbox with Icon": "on"
-    - text: Interactive Strong Checkbox with Icon person" / "
+    - text: Interactive Strong Checkbox with Icon x_placeholder" / "
     - radio "Interactive Strong Radio 1 with Icon": "on"
-    - text: Interactive Strong Radio 1 with Icon person" / "
+    - text: Interactive Strong Radio 1 with Icon x_placeholder" / "
     - radio "Interactive Strong Radio 2 with Icon": "on"
     - text: Interactive Strong Radio 2 with Icon

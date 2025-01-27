@@ -1,11 +1,11 @@
 @use "sass:map";
-@use "@db-ui/foundations/build/scss/variables";
-@use "@db-ui/foundations/build/scss/fonts";
-@use "@db-ui/foundations/build/scss/colors";
-@use "@db-ui/foundations/build/scss/icons";
-@use "../../styles/component";
-@use "../../styles/form-components";
-@use "../../styles/scrollbar";
+@use "@db-ui/foundations/build/styles/variables";
+@use "@db-ui/foundations/build/styles/fonts";
+@use "@db-ui/foundations/build/styles/colors";
+@use "@db-ui/foundations/build/styles/icons";
+@use "../../styles/internal/component";
+@use "../../styles/internal/form-components";
+@use "../../styles/internal/scrollbar";
 
 %resize-textarea {
 	&[data-resize="none"] {

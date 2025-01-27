@@ -54,13 +54,13 @@ The integration depends on your tech stack and varies from copying the files fro
 #### Via HTML stylesheet include
 
 ```html
-<link rel="stylesheet" href="<PATH>/db-ui-42.css" type="text/css" />
+<link rel="stylesheet" href="<PATH>/relative.css" type="text/css" />
 ```
 
 #### Via SCSS import
 
 ```scss
-@use "@db-ui/components/build/styles/db-ui-42";
+@use "@db-ui/components/build/styles/relative";
 ```
 
 ### SCSS: node_modules include path / load path

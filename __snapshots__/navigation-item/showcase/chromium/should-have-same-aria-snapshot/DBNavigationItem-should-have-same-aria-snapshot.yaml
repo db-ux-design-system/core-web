@@ -26,11 +26,11 @@
       - link "(Default) Text"
   - list:
     - listitem:
-      - text: person" / "
+      - text: x_placeholder" / "
       - link "Text - Icon (Leading)"
   - list:
     - listitem:
-      - text: person" / "
+      - text: x_placeholder" / "
       - button "Text - Icons (Leading, Chevron) chevron_right\" / \""
   - list:
     - listitem:

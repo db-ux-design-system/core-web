@@ -32,7 +32,7 @@
 				"angularDirective": true,
 				"content": "Profile",
 				"props": {
-					"icon": "person",
+					"icon": "x_placeholder",
 					"variant": "ghost",
 					"noText": true
 				}
@@ -45,7 +45,7 @@
 					{
 						"name": "navigation-item",
 						"props": {
-							"icon": "person"
+							"icon": "x_placeholder"
 						},
 						"children": [
 							{
@@ -63,7 +63,7 @@
 					{
 						"name": "navigation-item",
 						"props": {
-							"icon": "person",
+							"icon": "x_placeholder",
 							"disabled": true
 						},
 						"children": [
@@ -145,7 +145,7 @@
 				"angularDirective": true,
 				"content": "Profile",
 				"props": {
-					"icon": "person",
+					"icon": "x_placeholder",
 					"variant": "ghost",
 					"noText": true
 				}
@@ -158,7 +158,7 @@
 					{
 						"name": "navigation-item",
 						"props": {
-							"icon": "person"
+							"icon": "x_placeholder"
 						},
 						"children": [
 							{
@@ -176,7 +176,7 @@
 					{
 						"name": "navigation-item",
 						"props": {
-							"icon": "person",
+							"icon": "x_placeholder",
 							"disabled": true
 						},
 						"children": [
@@ -258,7 +258,7 @@
 				"angularDirective": true,
 				"content": "Profile",
 				"props": {
-					"icon": "person",
+					"icon": "x_placeholder",
 					"variant": "ghost",
 					"noText": true
 				}
@@ -271,7 +271,7 @@
 					{
 						"name": "navigation-item",
 						"props": {
-							"icon": "person"
+							"icon": "x_placeholder"
 						},
 						"children": [
 							{
@@ -289,7 +289,7 @@
 					{
 						"name": "navigation-item",
 						"props": {
-							"icon": "person",
+							"icon": "x_placeholder",
 							"disabled": true
 						},
 						"children": [
@@ -361,7 +361,7 @@
 				"angularDirective": true,
 				"content": "Profile",
 				"props": {
-					"icon": "person",
+					"icon": "x_placeholder",
 					"variant": "ghost",
 					"noText": true
 				}
@@ -374,7 +374,7 @@
 					{
 						"name": "navigation-item",
 						"props": {
-							"icon": "person"
+							"icon": "x_placeholder"
 						},
 						"children": [
 							{
@@ -392,7 +392,7 @@
 					{
 						"name": "navigation-item",
 						"props": {
-							"icon": "person",
+							"icon": "x_placeholder",
 							"disabled": true
 						},
 						"children": [

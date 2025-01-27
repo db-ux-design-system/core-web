@@ -83,14 +83,14 @@
 			{
 				"name": "(Default) False",
 				"props": {
-					"icon": "person",
+					"icon": "x_placeholder",
 					"showIcon": false
 				}
 			},
 			{
 				"name": "True",
 				"props": {
-					"icon": "person",
+					"icon": "x_placeholder",
 					"showIcon": true
 				}
 			}
@@ -102,13 +102,13 @@
 			{
 				"name": "(Default) False",
 				"props": {
-					"icon": "person"
+					"icon": "x_placeholder"
 				}
 			},
 			{
 				"name": "True",
 				"props": {
-					"icon": "person",
+					"icon": "x_placeholder",
 					"noText": true
 				}
 			}

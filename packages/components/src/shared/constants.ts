@@ -14,7 +14,7 @@ export const DEFAULT_INVALID_MESSAGE: string = 'TODO: Add an invalidMessage';
 export const DEFAULT_BACK: string = 'Back';
 
 export const DEFAULT_BURGER_MENU: string = 'BurgerMenu';
-export const DEFAULT_ICON: string = 'db';
+export const DEFAULT_ICON: string = 'brand';
 export const DEFAULT_ROWS: number = 4;
 
 export const DEFAULT_CLOSE_BUTTON: string = 'Close Button';
