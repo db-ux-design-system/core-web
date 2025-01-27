@@ -1,6 +1,6 @@
 import packageJson from '../../package.json' assert { type: 'json' };
 
-const getPlaywrightVersion = () => {
+export const getPlaywrightVersion = () => {
 	const version = packageJson.devDependencies['@playwright/test'];
 	if (!version) {
 		console.error('Playwright version is missing');
@@ -9,4 +9,5 @@ const getPlaywrightVersion = () => {
 
 	return version;
 };
-export default getPlaywrightVersion;
+
+console.log(getPlaywrightVersion());

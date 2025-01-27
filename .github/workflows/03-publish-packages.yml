@@ -38,7 +38,7 @@ jobs:
 
       - name: 📰 Publish to NPM Registries
         run: |
-          tsx scripts/github/publish-npm.js
+          node scripts/github/publish-npm.js
         env:
           RELEASE: ${{ inputs.release }}
           PRE_RELEASE: ${{ inputs.preRelease }}

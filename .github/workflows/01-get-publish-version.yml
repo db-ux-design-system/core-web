@@ -33,7 +33,7 @@ jobs:
       - name: 💃🕺 Check if release or prerelease
         id: releaseCheck
         run: |
-          OUTPUT=$(node scripts/github/get-release.js)
+          OUTPUT=$(tsx scripts/github/get-release.ts)
           if [[ $OUTPUT == "RELEASE" ]];
           then
             echo "release=true" >> $GITHUB_OUTPUT
