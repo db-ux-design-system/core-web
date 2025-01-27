@@ -1,4 +1,4 @@
-import packageJson from '../../package.json' assert { type: 'json' };
+import packageJson from './../../package.json' assert { type: 'json' };
 
 export const getPlaywrightVersion = () => {
 	const version = packageJson.devDependencies['@playwright/test'];
