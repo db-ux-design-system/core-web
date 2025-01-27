@@ -217,6 +217,11 @@ export default (tmp?: boolean) => {
 			{
 				from: /this.ref.nativeElement/g,
 				to: 'this.ref?.nativeElement'
+			},
+			{
+				// Workaround for strict typescript
+				from: 'this.ref?.validationMessage',
+				to: '(this.ref && this.ref["validationMessage"])'
 			}
 		];
 
