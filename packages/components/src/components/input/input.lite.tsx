@@ -198,8 +198,10 @@ export default function DBInput(props: DBInputProps) {
 				readOnly={props.readOnly}
 				form={props.form}
 				pattern={props.pattern}
-				autocomplete={props.autocomplete}
-				autofocus={props.autofocus}
+				// @ts-ignore
+				autoComplete={props.autocomplete}
+				// @ts-ignore
+				autoFocus={props.autofocus}
 				onInput={(event: ChangeEvent<HTMLInputElement>) =>
 					state.handleInput(event)
 				}
