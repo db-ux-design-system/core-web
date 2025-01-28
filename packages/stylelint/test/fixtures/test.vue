@@ -33,6 +33,7 @@
 		flex-direction: column;
 		margin-top: functions.to-rem(20px);
 		border: 1px solid red;
+		border-radius: functions.to-rem(4px);
 
 		&-title {
 			font-size: functions.to-rem(16px);

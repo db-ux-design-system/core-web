@@ -26,6 +26,7 @@
 	&:not([data-no-text="true"]) {
 		--db-padding-inline-start: #{variables.$db-spacing-fixed-2xs};
 
+		/* stylelint-disable-next-line db-ui/use-spacings */
 		padding-inline: var(--db-padding-inline-start)
 			#{variables.$db-spacing-fixed-2xs};
 

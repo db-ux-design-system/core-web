@@ -1,18 +1,22 @@
 import stylelint from 'stylelint';
 import { createRule } from '../shared/create-rule.js';
-import { type AllowedType, DefaultExact } from '../shared/index.js';
+import {
+	type AllowedType,
+	DefaultColorsExact,
+	DefaultExact
+} from '../shared/index.js';
 import { getDeclarationRuleFunction } from '../shared/index.js';
 
 const {
 	utils: { ruleMessages }
 } = stylelint;
 
-const ruleName = 'db-ui/use-spacings';
+const ruleName = 'db-ui/use-border-color';
 
 const messages = ruleMessages(ruleName, {
 	rejected: (prop: string, value: string) =>
 		`Unexpected value: ${value} within prop: ${prop}.
-		Please use 'db-spacing-[fixed|responsive]-xx' instead of px or rem.`
+		Please use 'db-xx-on-bg-emphasis-[100|70|60|50]' instead.`
 });
 
 const meta = {
@@ -20,22 +24,22 @@ const meta = {
 };
 
 const allowedDeclarations: AllowedType = {
-	includes: ['margin', 'padding'],
-	exact: ['gap']
+	includes: [{ include: 'border', and: ['color'] }],
+	exact: ['border']
 };
 const allowedValues: AllowedType = {
 	includes: [
-		'db-spacing-fixed',
-		'db-spacing-responsive',
-		'db-sizing',
-		'%',
-		'vw',
-		'vh'
+		{
+			include: 'on-bg-basic-emphasis',
+			or: ['100', '70', '60', '50']
+		},
+		{ include: 'on-bg-inverted' }
 	],
-	exact: DefaultExact
+	exact: [...DefaultExact, ...DefaultColorsExact],
+	type: 'some'
 };
 
-const useSpacings = createRule({
+const useBorderColor = createRule({
 	ruleName,
 	meta,
 	messages,
@@ -47,4 +51,4 @@ const useSpacings = createRule({
 	})
 });
 
-export default useSpacings;
+export default useBorderColor;

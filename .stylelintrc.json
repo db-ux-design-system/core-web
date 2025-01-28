@@ -8,7 +8,6 @@
 		"@double-great/stylelint-a11y",
 		"@db-ui/stylelint"
 	],
-	"ignoreFiles": ["packages/stylelint/test/**"],
 	"rules": {
 		"db-ui/use-spacings": [
 			true,
@@ -24,6 +23,9 @@
 				}
 			}
 		],
+		"db-ui/use-border-height": [true],
+		"db-ui/use-border-radius": [true],
+		"db-ui/use-border-color": [true],
 		"a11y/media-prefers-reduced-motion": true,
 		"a11y/no-outline-none": true,
 		"a11y/selector-pseudo-class-focus": true,

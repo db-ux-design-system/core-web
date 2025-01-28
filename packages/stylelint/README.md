@@ -27,12 +27,27 @@ Add this to your `.stylelintrc.json`:
 
 ## Rules
 
-### `db-ui/use-spacings`
+Enable rules inside your `.stylelintrc.json` with:
 
 ```json5
 {
 	rules: {
-		"db-ui/use-spacings": [
+		"db-ui/use-spacings": [true], // margins, paddings, gaps
+		"db-ui/use-border-height": [true], // border-width & border
+		"db-ui/use-border-radius": [true], // border-radius
+		"db-ui/use-border-color": [true] // border-color & border
+	}
+}
+```
+
+### Additional settings
+
+There are some additional settings for every rule which can be applied to the `.stylelintrc.json`:
+
+```json5
+{
+	rules: {
+		"db-ui/use-xxx": [
 			true,
 			{
 				allowCalc: true, // allow all calc() functions - they are hard to lint

@@ -7,12 +7,12 @@ const {
 	utils: { ruleMessages }
 } = stylelint;
 
-const ruleName = 'db-ui/use-spacings';
+const ruleName = 'db-ui/use-border-radius';
 
 const messages = ruleMessages(ruleName, {
 	rejected: (prop: string, value: string) =>
 		`Unexpected value: ${value} within prop: ${prop}.
-		Please use 'db-spacing-[fixed|responsive]-xx' instead of px or rem.`
+		Please use 'db-border-radius-xx' instead of px or rem.`
 });
 
 const meta = {
@@ -20,22 +20,14 @@ const meta = {
 };
 
 const allowedDeclarations: AllowedType = {
-	includes: ['margin', 'padding'],
-	exact: ['gap']
+	includes: [{ include: 'border', and: ['radius'] }]
 };
 const allowedValues: AllowedType = {
-	includes: [
-		'db-spacing-fixed',
-		'db-spacing-responsive',
-		'db-sizing',
-		'%',
-		'vw',
-		'vh'
-	],
+	includes: ['db-border-radius'],
 	exact: DefaultExact
 };
 
-const useSpacings = createRule({
+const useBorderRadius = createRule({
 	ruleName,
 	meta,
 	messages,
@@ -47,4 +39,4 @@ const useSpacings = createRule({
 	})
 });
 
-export default useSpacings;
+export default useBorderRadius;

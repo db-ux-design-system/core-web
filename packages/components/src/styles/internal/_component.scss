@@ -39,6 +39,7 @@ $placeholder-disabled: 0.69;
 %default-card {
 	@extend %component-border;
 
+	/* stylelint-disable-next-line db-ui/use-border-radius */
 	border-radius: var(
 		--default-card-border-radius,
 		#{variables.$db-border-radius-sm}

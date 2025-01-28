@@ -53,7 +53,7 @@ $tooltip-arrow-shadow-size: variables.$db-sizing-2xs;
 				calc(100% + #{$tooltip-arrow-shadow-size})
 					calc(100% + #{$tooltip-arrow-shadow-size})
 			);
-			border-radius: 0 2px;
+			border-radius: 0 2px; /* stylelint-disable-line db-ui/use-border-radius */
 			transform: skew(-8deg, -8deg);
 		}
 	}
