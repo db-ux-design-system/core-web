@@ -33,6 +33,11 @@ export type GlobalProps = {
 	 * React specific for render process.
 	 */
 	key?: string;
+
+	/**
+	 * Before using please check for the [accessibility concerns](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/autofocus#accessibility_concerns)
+	 */
+	autofocus?: boolean;
 };
 
 export type GlobalState = {
