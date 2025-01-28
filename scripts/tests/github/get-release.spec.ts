@@ -30,7 +30,7 @@ describe('build-gh-page', () => {
 			result = e.message;
 		}
 		expect(result.toString().trim()).toEqual(
-			'Command failed: npx tsx github/get-release.ts\n' +
+			'Command failed: npx --no tsx github/get-release.ts\n' +
 				"Your tag has to start with 'v'"
 		);
 	});
