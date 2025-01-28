@@ -34,7 +34,6 @@ const testA11y = () => {
 		const accessibilityScanResults = await new AxeBuilder({ page })
 			.include('.db-select')
 			.exclude('test-placeholder')
-			.disableRules('color-contrast')
 			.analyze();
 
 		expect(accessibilityScanResults.violations).toEqual([]);

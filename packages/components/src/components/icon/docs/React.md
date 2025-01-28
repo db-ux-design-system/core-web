@@ -8,7 +8,7 @@ For general installation and configuration take a look at the [react-components]
 // App.tsx
 import { DBIcon } from "@db-ui/react-components";
 
-const App = () => <DBIcon icon="person">Icon</DBIcon>;
+const App = () => <DBIcon icon="x_placeholder">Icon</DBIcon>;
 
 export default App;
 ```

@@ -1,0 +1,9 @@
+/* Use this file if you want the default color and density in your project */
+@forward "../colors";
+@forward "../density";
+
+// Setup default styles for
+:root {
+	@extend %db-neutral-bg-basic-level-1;
+	@extend %db-density-regular;
+}

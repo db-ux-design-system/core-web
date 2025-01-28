@@ -3,9 +3,10 @@
  */
 
 import { writeFileSync } from 'node:fs';
-import { ALL_ICONS } from '@db-ux/core-icons';
+import * as prettier from 'prettier';
+import { ALL_ICONS } from '../public';
 
-const generateIconOverview = () => {
+const generateIconOverview = async () => {
 	try {
 		const generatedDisclaimer = 'This file was generated';
 		const iconHtml = `<!--${generatedDisclaimer}-->
@@ -16,11 +17,10 @@ const generateIconOverview = () => {
 		<title>Icon Overview</title>
 		<link
 			rel="stylesheet"
-			href="/build/css/db-ui-foundations-absolute.css"
+			href="/build/styles/absolute.css"
 		/>
-		<link rel="stylesheet" href="/build/css/default-theme.css" />
-		<link rel="stylesheet" href="/build/css/internals.css" />
-		<link rel="stylesheet" href="/build/css/icons/include-absolute.css" />
+		<link rel="stylesheet" href="/build/styles/defaults/default-theme.css" />
+		<link rel="stylesheet" href="/build/styles/icons/absolute.css" />
 		<style>
 			.db-infotext {
 				display: none !important;
@@ -52,10 +52,14 @@ data-semantic="informational"
 </div>
 </body>
 </html>`;
-		writeFileSync('./src/icons.html', iconHtml);
+		// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment,@typescript-eslint/no-unsafe-call
+		const output: string = await prettier.format(iconHtml, {
+			parser: 'html'
+		});
+		writeFileSync('./src/icons.html', output);
 	} catch (error) {
 		console.error(error);
 	}
 };
 
-generateIconOverview();
+void generateIconOverview();

@@ -3,7 +3,7 @@
 Load SCSS globally within `styles.scss` in your app:
 
 ```scss
-@forward "@db-ui/components/build/styles/db-ui-42-rollup";
+@forward "@db-ui/components/build/styles/rollup";
 ```
 
 Load component within `app.component.ts`:

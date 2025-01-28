@@ -69,7 +69,7 @@ export default function DBSwitch(props: DBSwitchProps) {
 
 	return (
 		<label
-			data-visual-aid={props.visualAid}
+			data-visual-aid={getBooleanAsString(props.visualAid)}
 			data-size={props.size}
 			data-hide-label={getHideProp(props.showLabel)}
 			data-emphasis={props.emphasis}

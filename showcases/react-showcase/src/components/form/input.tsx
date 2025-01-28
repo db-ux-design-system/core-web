@@ -12,7 +12,7 @@ const FormInputs = () => {
 				label="Controlled"
 				placeholder="Placeholder"
 				message="Description"
-				icon="person"
+				icon="x_placeholder"
 				name="input-name"
 				value={controlled}
 				onChange={(event) => {
@@ -23,7 +23,7 @@ const FormInputs = () => {
 				label="Uncontrolled"
 				placeholder="Placeholder"
 				message="Description"
-				icon="person"
+				icon="x_placeholder"
 				name="input-name"
 				defaultValue={uncontrolled}
 				onChange={(event) => {
