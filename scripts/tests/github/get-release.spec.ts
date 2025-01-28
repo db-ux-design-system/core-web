@@ -26,9 +26,11 @@ describe('build-gh-page', () => {
 		let result: string;
 		try {
 			result = execSync(command).toString();
-		} catch (e) {
-			result = e.message;
+		} catch (error) {
+			// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+			result = error.message;
 		}
+
 		expect(result.toString().trim()).toEqual(
 			'Command failed: npx --no tsx github/get-release.ts\n' +
 				"Your tag has to start with 'v'"

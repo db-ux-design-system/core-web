@@ -12,6 +12,7 @@ const removeOldFromPath = (isTag, data) => {
 		data?.filter((branch) => branch.name).length > 0
 	) {
 		const dirsToDelete = FS.readdirSync(path)
+			// eslint-disable-next-line unicorn/prefer-array-some
 			.filter((file) => !data.find((branch) => branch.name === file))
 			// Let's not clean up specific folders
 			.filter((file) => !['main', 'latest'].includes(file));
@@ -21,20 +22,18 @@ const removeOldFromPath = (isTag, data) => {
 				`Start removing ${isTag ? 'tags' : 'branches'} from gh-pages`
 			);
 			console.log(TAG, dirsToDelete);
-			dirsToDelete.forEach((dir) => {
+			for (const dir of dirsToDelete) {
 				FS.rmSync(`${path}/${dir}`, {
 					recursive: true,
 					force: true
 				});
 				console.log(TAG, `deleted  ${isTag ? 'tag' : 'branch'} ${dir}`);
-			});
+			}
+
 			return true;
-		} else {
-			console.log(
-				TAG,
-				`All ${isTag ? 'tags' : 'branches'} are up to date`
-			);
 		}
+
+		console.log(TAG, `All ${isTag ? 'tags' : 'branches'} are up to date`);
 	}
 
 	return false;

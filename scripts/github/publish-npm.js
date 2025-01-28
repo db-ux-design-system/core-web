@@ -1,4 +1,5 @@
-import { execSync } from 'child_process';
+#!/usr/bin/env node
+import { execSync } from 'node:child_process';
 
 const VALID_SEMVER_VERSION = process.env.VALID_SEMVER_VERSION;
 const RELEASE = process.env.RELEASE === 'true';
@@ -82,10 +83,10 @@ for (const REGISTRY of registries) {
 		process.exit(1);
 	}
 
-	packages.forEach((PACKAGE) => {
+	for (const PACKAGE of packages) {
 		console.log(`⤴ Publish ${PACKAGE} with tag ${TAG} to ${REGISTRY}`);
 		execSync(
 			`npm publish --tag ${TAG} db-ui-${PACKAGE}-${VALID_SEMVER_VERSION}.tgz --provenance`
 		);
-	});
+	}
 }

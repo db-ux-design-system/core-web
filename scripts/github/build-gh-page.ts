@@ -1,14 +1,18 @@
+#!/usr/bin/env node
 import fs from 'node:fs';
 import path from 'node:path';
 import { extract } from 'tar';
 
+// eslint-disable-next-line @typescript-eslint/naming-convention
 const buildGHPage = async () => {
+	/* eslint-disable @typescript-eslint/naming-convention */
 	const NAME: string | undefined = process.env.NAME;
 	const OWNER_NAME: string | undefined = process.env.OWNER_NAME;
 	const REPO_NAME: string | undefined = process.env.REPO_NAME;
-	const OUT_DIR: string = process.env.OUT_DIR || 'out';
+	const OUT_DIR: string = process.env.OUT_DIR ?? 'out';
 	const RELEASE: boolean = process.env.RELEASE === 'true';
 	const PRE_RELEASE: boolean = process.env.PRE_RELEASE === 'true';
+	/* eslint-enable @typescript-eslint/naming-convention */
 
 	if (!NAME) {
 		console.error('Error: Missing NAME variable');
@@ -35,6 +39,7 @@ const buildGHPage = async () => {
 	console.log('📦 Unpack Tar');
 	await extract({
 		file: 'gh-pages.tar.gz',
+		// eslint-disable-next-line @typescript-eslint/naming-convention
 		C: 'public',
 		strip: 1
 	});
@@ -52,21 +57,25 @@ const buildGHPage = async () => {
 			console.log('Make dir ./public/version');
 			fs.mkdirSync(versionDir);
 		}
+
 		const nameDir = path.join(versionDir, NAME);
 		if (fs.existsSync(nameDir)) {
 			console.log(`Remove dir ./public/version/${NAME}`);
 			fs.rmdirSync(nameDir, { recursive: true });
 		}
+
 		if (RELEASE) {
 			const latestDir = path.join(versionDir, 'latest');
 			if (fs.existsSync(latestDir)) {
 				console.log('Remove dir ./public/version/latest');
 				fs.rmdirSync(latestDir, { recursive: true });
 			}
+
 			fs.mkdirSync(latestDir);
 			fs.cpSync(OUT_DIR, latestDir, { recursive: true });
 			console.log('Copied dir out to ./public/version/latest');
 		}
+
 		fs.cpSync(OUT_DIR, nameDir, { recursive: true });
 		console.log(`Moved dir out to ./public/version/${NAME}`);
 	} else {
@@ -75,11 +84,13 @@ const buildGHPage = async () => {
 			console.log('Make dir ./public/review');
 			fs.mkdirSync(reviewDir);
 		}
+
 		const nameDir = path.join(reviewDir, NAME);
 		if (fs.existsSync(nameDir)) {
 			console.log(`Remove dir ./public/review/${NAME}`);
 			fs.rmSync(nameDir, { recursive: true });
 		}
+
 		fs.cpSync(OUT_DIR, nameDir, { recursive: true });
 		console.log(`Moved dir out to ./public/review/${NAME}`);
 	}
