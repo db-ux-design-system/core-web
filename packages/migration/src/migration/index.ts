@@ -3,6 +3,7 @@ import type { ReplaceInFileConfig, ReplaceResult } from 'replace-in-file';
 import { replaceInFileSync } from 'replace-in-file';
 import type { OptionsType } from '../types';
 import { migrationTypes } from '../data';
+import { AdditionalInformation } from './additional-information';
 
 export const migrate = (
 	options?: OptionsType,
@@ -30,6 +31,13 @@ export const migrate = (
 					: previousReplacements,
 			[]
 		);
+
+		for (const t of type) {
+			const additionalInfo = AdditionalInformation[t];
+			if (additionalInfo) {
+				console.log(`Find more information here: ${additionalInfo}`);
+			}
+		}
 
 		for (const update of replacements) {
 			const option = {

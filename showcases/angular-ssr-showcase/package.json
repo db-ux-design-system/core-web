@@ -22,7 +22,7 @@
     "@angular/platform-server": "17.3.12",
     "@angular/router": "17.3.12",
     "@angular/ssr": "17.3.11",
-    "@db-ux/db-theme": "0.0.6",
+    "@db-ux/db-theme": "0.4.0",
     "express": "^4.21.2",
     "rxjs": "~7.8.1",
     "tslib": "^2.8.1",
@@ -33,7 +33,7 @@
     "@angular/cli": "17.3.11",
     "@angular/compiler-cli": "17.3.12",
     "@types/express": "^5.0.0",
-    "@types/node": "^22.10.7",
+    "@types/node": "^22.10.10",
     "cpr": "3.0.1",
     "ng-packagr": "17.3.0",
     "typescript": "^5.4.5"
