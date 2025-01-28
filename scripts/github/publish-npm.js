@@ -65,7 +65,7 @@ if (PRE_RELEASE) {
 }
 
 console.log(`📰 Publish Package to Registry with tag: ${TAG}`);
-const registries = ['GITHUB', 'NPM'];
+const registries = ['NPM']; // 'GITHUB', -> we don't push to GitHub packages at the moment
 
 for (const REGISTRY of registries) {
 	console.log(`🔒 Authenticate ${REGISTRY} NPM Registry`);
