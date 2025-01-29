@@ -15,8 +15,8 @@ const ruleName = 'db-ui/use-border-color';
 
 const messages = ruleMessages(ruleName, {
 	rejected: (prop: string, value: string) =>
-		`Unexpected value: ${value} within prop: ${prop}.
-		Please use 'db-xx-on-bg-emphasis-[100|70|60|50]' instead.`
+		`Unexpected value: ${value} within prop: ${prop}.\n` +
+		"Please use 'db-xx-on-bg-emphasis-[100|70|60|50]' instead."
 });
 
 const meta = {

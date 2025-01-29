@@ -11,8 +11,8 @@ const ruleName = 'db-ui/use-border-radius';
 
 const messages = ruleMessages(ruleName, {
 	rejected: (prop: string, value: string) =>
-		`Unexpected value: ${value} within prop: ${prop}.
-		Please use 'db-border-radius-xx' instead of px or rem.`
+		`Unexpected value: ${value} within prop: ${prop}.\n` +
+		"Please use 'db-border-radius-xx' instead of px or rem."
 });
 
 const meta = {
