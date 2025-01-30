@@ -1,4 +1,4 @@
-@use "@db-ui/foundations/build/scss/variables";
+@use "@db-ui/foundations/build/styles/variables";
 
 .decision-tree {
 	display: flex;
@@ -35,11 +35,10 @@
 	}
 
 	> .column-1-3 {
-		grid-column-start: 1;
-		grid-column-end: 3;
+		grid-column: 1 / 3;
 	}
 
 	> a > div {
-		height: 100%;
+		block-size: 100%;
 	}
 }

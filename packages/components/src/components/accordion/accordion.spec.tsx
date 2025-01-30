@@ -30,13 +30,16 @@ const openAccordion: any = (
 
 const actionAccordion: any = (
 	<DBAccordion behaviour="single">
-		<DBAccordionItem data-testid="item1" headline="Test">
+		<DBAccordionItem data-testid="item1" headlinePlain="Test">
 			<DBButton data-testid="button">Click me</DBButton>
 		</DBAccordionItem>
-		<DBAccordionItem data-testid="item2" headline="Test 2">
+		<DBAccordionItem data-testid="item2" headlinePlain="Test 2">
 			<DBTextarea data-testid="textarea" />
 		</DBAccordionItem>
-		<DBAccordionItem disabled={true} data-testid="item3" headline="Test 3">
+		<DBAccordionItem
+			disabled={true}
+			data-testid="item3"
+			headlinePlain="Test 3">
 			<DBButton data-testid="button2">Click me</DBButton>
 		</DBAccordionItem>
 	</DBAccordion>
@@ -75,7 +78,10 @@ const testAction = () => {
 		await component.getByTestId('item2').click();
 		await expect(component.getByTestId('button')).toBeHidden();
 		await expect(component.getByTestId('textarea')).toBeVisible();
-		await expect(component.getByTestId('item3')).toBeDisabled();
+		await expect(
+			component.getByTestId('item3')
+			// VUE: .getByRole('group')
+		).toBeDisabled();
 	});
 
 	test('click inside item works', async ({ mount }) => {
@@ -98,6 +104,11 @@ const testAction = () => {
 };
 
 const testA11y = () => {
+	test('should have same aria-snapshot', async ({ mount }, testInfo) => {
+		const component = await mount(comp);
+		const snapshot = await component.ariaSnapshot();
+		expect(snapshot).toMatchSnapshot(`${testInfo.testId}.yaml`);
+	});
 	test('should not have any A11y issues', async ({ page, mount }) => {
 		await mount(comp);
 		const accessibilityScanResults = await new AxeBuilder({ page })

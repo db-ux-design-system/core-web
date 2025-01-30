@@ -1,0 +1,44 @@
+- main:
+  - heading "DBNavigationItem" [level=1]
+  - link "Density arrow_up_right\" / \""
+  - list:
+    - listitem:
+      - link "Functional"
+  - list:
+    - listitem:
+      - link "(Default) Regular"
+  - list:
+    - listitem:
+      - link "Expressive"
+  - link "Interaction-States arrow_up_right\" / \""
+  - list:
+    - listitem:
+      - link "Enabled (Default)/Hover/Pressed"
+  - list:
+    - listitem:
+      - link "Active"
+  - list:
+    - listitem:
+      - link "Disabled"
+  - link "Content arrow_up_right\" / \""
+  - list:
+    - listitem:
+      - link "(Default) Text"
+  - list:
+    - listitem:
+      - text: x_placeholder" / "
+      - link "Text - Icon (Leading)"
+  - list:
+    - listitem:
+      - text: x_placeholder" / "
+      - button "Text - Icons (Leading, Chevron) chevron_right\" / \""
+  - list:
+    - listitem:
+      - button "Text - Icon (Chevron) chevron_right\" / \""
+  - link "Width arrow_up_right\" / \""
+  - list:
+    - listitem:
+      - link "(Default) Auto"
+  - list:
+    - listitem:
+      - link "Full"

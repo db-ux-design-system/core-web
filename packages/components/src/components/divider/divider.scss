@@ -1,5 +1,5 @@
-@use "@db-ui/foundations/build/scss/variables";
-@use "@db-ui/foundations/build/scss/helpers";
+@use "@db-ui/foundations/build/styles/variables";
+@use "@db-ui/foundations/build/styles/helpers";
 
 .db-divider {
 	&:is(:not([data-margin]), [data-margin="small"]) {

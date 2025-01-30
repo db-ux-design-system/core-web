@@ -8,7 +8,7 @@ on:
 jobs:
   clean:
     name: Clean
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04 # Use Ubuntu 24.04 explicitly
     steps:
       - name: ⏬ Checkout repo
         uses: actions/checkout@v4
@@ -28,7 +28,7 @@ jobs:
         with:
           result-encoding: json
           script: |
-            const { default: cleanUpPages } = await import('${{ github.workspace }}/.github/scripts/cleanup-gh-pages.js');
+            const { default: cleanUpPages } = await import('${{ github.workspace }}/scripts/github/cleanup-gh-pages.js');
             return await cleanUpPages({github, context});
 
       - name: 🥅 Deploy to GH-Pages

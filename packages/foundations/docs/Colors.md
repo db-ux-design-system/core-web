@@ -1,8 +1,8 @@
 # Colors
 
--   You use **Colors** to highlight an area with a specific color.
--   You can also use it to change the text color for components with the `*-transparent-semi` colors.
--   Most classes/placeholders will change `color` and `background-color` and will set properties, which will be passed down to adaptive components.
+- You use **Colors** to highlight an area with a specific color.
+- You can also use it to change the text color for components with the `*-transparent-semi` colors.
+- Most classes/placeholders will change `color` and `background-color` and will set properties, which will be passed down to adaptive components.
 
 ## How to use
 
@@ -14,17 +14,17 @@
 
 ## How to include colors
 
-For **CSS** and **Tailwind** you need to use the import `@import "@db-ui/foundations/build/css/color/classes/all.css";` in your root `.css` file.
-Or if you only want a single variant e.g. **informational** you can import `@import "@db-ui/foundations/build/css/color/classes/informational.css";`.
+For **CSS** and **Tailwind** you need to use the import `@import "@db-ui/foundations/build/styles/color/classes/all.css";` in your root `.css` file.
+Or if you only want a single variant e.g. **informational** you can import `@import "@db-ui/foundations/build/styles/color/classes/informational.css";`.
 
 In case that you're either using a bundler (recommended) or importing the CSS within your JavaScript files, please adapt this `@import` syntax accordingly.
 
-For **SCSS** you need to use the import `@use @db-ui/foundations/build/scss/color/placeholder` in your `.scss` file, where you need to reference the specific variable.
+For **SCSS** you need to use the import `@use "@db-ui/foundations/build/styles/color/placeholder"` in your `.scss` file, where you need to reference the specific variable.
 Then you can use e.g. **informational** color by extending our SCSS placeholders like this: `@extend %db-informational-bg-1`.
 
 ## Dark- & Light-Mode
 
-We provide tokens for both dark- and light-mode. If you include the **db-ui-42** style you get a media query `@media (prefers-color-scheme: dark)` with the relevant tokens. You can [emulate](https://developer.chrome.com/docs/devtools/rendering/emulate-css/) the modes inside the devtools.
+We provide tokens for both dark- and light-mode. If you include the **relative** style you get a media query `@media (prefers-color-scheme: dark)` with the relevant tokens. You can [emulate](https://developer.chrome.com/docs/devtools/rendering/emulate-css/) the modes inside the devtools.
 
 It's [recommended to set a `meta`-HTML-tag](https://web.dev/articles/color-scheme#the_color-scheme_meta_tag) to provide a signal to the browser on your accepted color schemes previous to loading the CSS:
 

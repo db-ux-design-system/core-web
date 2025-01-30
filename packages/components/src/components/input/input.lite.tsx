@@ -8,7 +8,15 @@ import {
 	useStore,
 	useTarget
 } from '@builder.io/mitosis';
-import { cls, delay, hasVoiceOver, isArrayOfStrings, uuid } from '../../utils';
+import {
+	cls,
+	delay,
+	stringPropVisible,
+	getHideProp,
+	hasVoiceOver,
+	isArrayOfStrings,
+	uuid
+} from '../../utils';
 import { DBInputProps, DBInputState } from './model';
 import {
 	DEFAULT_DATALIST_ID_SUFFIX,
@@ -29,7 +37,11 @@ import {
 import DBInfotext from '../infotext/infotext.lite';
 import { handleFrameworkEvent } from '../../utils/form-components';
 
-useMetadata({});
+useMetadata({
+	angular: {
+		nativeAttributes: ['disabled', 'required']
+	}
+});
 
 export default function DBInput(props: DBInputProps) {
 	const ref = useRef<HTMLInputElement>(null);
@@ -67,7 +79,7 @@ export default function DBInput(props: DBInputProps) {
 			});
 
 			/* For a11y reasons we need to map the correct message with the input */
-			if (!ref?.validity.valid || props.customValidity === 'invalid') {
+			if (!ref?.validity.valid || props.validation === 'invalid') {
 				state._descByIds = state._invalidMessageId;
 				if (hasVoiceOver()) {
 					state._voiceOverFallback =
@@ -77,7 +89,7 @@ export default function DBInput(props: DBInputProps) {
 					delay(() => (state._voiceOverFallback = ''), 1000);
 				}
 			} else if (
-				props.customValidity === 'valid' ||
+				props.validation === 'valid' ||
 				(ref?.validity.valid &&
 					(props.required ||
 						props.minLength ||
@@ -90,7 +102,7 @@ export default function DBInput(props: DBInputProps) {
 						props.validMessage ?? DEFAULT_VALID_MESSAGE;
 					delay(() => (state._voiceOverFallback = ''), 1000);
 				}
-			} else if (props.message) {
+			} else if (stringPropVisible(props.message, props.showMessage)) {
 				state._descByIds = state._messageId;
 			} else {
 				state._descByIds = '';
@@ -147,7 +159,7 @@ export default function DBInput(props: DBInputProps) {
 			state._dataListId =
 				props.dataListId ?? state._id + DEFAULT_DATALIST_ID_SUFFIX;
 
-			if (props.message) {
+			if (stringPropVisible(props.message, props.showMessage)) {
 				state._descByIds = messageId;
 			}
 		}
@@ -161,12 +173,15 @@ export default function DBInput(props: DBInputProps) {
 		<div
 			class={cls('db-input', props.className)}
 			data-variant={props.variant}
+			data-hide-label={getHideProp(props.showLabel)}
+			data-hide-icon={getHideProp(props.showIcon)}
 			data-icon={props.icon}
-			data-icon-after={props.iconAfter}>
+			data-icon-after={props.iconAfter}
+			data-hide-icon-after={getHideProp(props.showIcon)}>
 			<label htmlFor={state._id}>{props.label ?? DEFAULT_LABEL}</label>
 			<input
-				aria-invalid={props.customValidity === 'invalid'}
-				data-custom-validity={props.customValidity}
+				aria-invalid={props.validation === 'invalid'}
+				data-custom-validity={props.validation}
 				ref={ref}
 				id={state._id}
 				name={props.name}
@@ -183,7 +198,10 @@ export default function DBInput(props: DBInputProps) {
 				readOnly={props.readOnly}
 				form={props.form}
 				pattern={props.pattern}
-				autocomplete={props.autocomplete}
+				// @ts-ignore
+				autoComplete={props.autocomplete}
+				// @ts-ignore
+				autoFocus={props.autofocus}
 				onInput={(event: ChangeEvent<HTMLInputElement>) =>
 					state.handleInput(event)
 				}
@@ -217,7 +235,7 @@ export default function DBInput(props: DBInputProps) {
 				</datalist>
 			</Show>
 			{props.children}
-			<Show when={props.message}>
+			<Show when={stringPropVisible(props.message, props.showMessage)}>
 				<DBInfotext
 					size="small"
 					icon={props.messageIcon}

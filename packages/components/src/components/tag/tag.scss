@@ -1,14 +1,14 @@
 @use "sass:map";
-@use "@db-ui/foundations/build/scss/animation";
-@use "@db-ui/foundations/build/scss/variables";
-@use "@db-ui/foundations/build/scss/fonts";
-@use "@db-ui/foundations/build/scss/icons";
-@use "@db-ui/foundations/build/scss/helpers";
-@use "@db-ui/foundations/build/scss/colors";
-@use "../../styles/button-components";
-@use "../../styles/tag-components";
-@use "../../styles/icon-passing";
-@use "../../styles/component";
+@use "@db-ui/foundations/build/styles/animation";
+@use "@db-ui/foundations/build/styles/variables";
+@use "@db-ui/foundations/build/styles/fonts";
+@use "@db-ui/foundations/build/styles/icons";
+@use "@db-ui/foundations/build/styles/helpers";
+@use "@db-ui/foundations/build/styles/colors";
+@use "../../styles/internal/button-components";
+@use "../../styles/internal/tag-components";
+@use "../../styles/internal/icon-passing";
+@use "../../styles/internal/component";
 
 %no-text {
 	&[data-no-text="true"] {
@@ -26,7 +26,8 @@
 	&:not([data-no-text="true"]) {
 		--db-padding-inline-start: #{variables.$db-spacing-fixed-2xs};
 
-		padding-inline: var(--db-padding-inline-start) #{variables.$db-spacing-fixed-2xs};
+		padding-inline: var(--db-padding-inline-start)
+			#{variables.$db-spacing-fixed-2xs};
 
 		&:has(.db-tab-remove-button) {
 			padding-inline-end: 0;
@@ -74,7 +75,12 @@
 		display: none;
 	}
 
-	> :is([class="db-checkbox"], [class="db-radio"], [class="db-link"], [class="db-button"]) {
+	> :is(
+			[class="db-checkbox"],
+			[class="db-radio"],
+			[class="db-link"],
+			[class="db-button"]
+		) {
 		block-size: 100%;
 	}
 }
@@ -125,8 +131,10 @@
 					background-color: colors.$db-brand-bg-basic-transparent-full-default;
 				}
 
-				&::before {
-					--db-icon: "";
+				&:not([data-hide-icon-before="true"]) {
+					&::before {
+						content: none;
+					}
 				}
 			}
 		}

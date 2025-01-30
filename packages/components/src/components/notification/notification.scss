@@ -1,11 +1,11 @@
 @use "sass:map";
-@use "@db-ui/foundations/build/scss/density";
-@use "@db-ui/foundations/build/scss/variables";
-@use "@db-ui/foundations/build/scss/colors";
-@use "@db-ui/foundations/build/scss/icons";
-@use "@db-ui/foundations/build/scss/screen-sizes";
-@use "../../styles/component";
-@use "../../styles/link-components";
+@use "@db-ui/foundations/build/styles/density";
+@use "@db-ui/foundations/build/styles/variables";
+@use "@db-ui/foundations/build/styles/colors";
+@use "@db-ui/foundations/build/styles/icons";
+@use "@db-ui/foundations/build/styles/screen-sizes";
+@use "../../styles/internal/component";
+@use "../../styles/internal/link-components";
 @use "./notification-grid-default";
 @use "./notification-grid-overlay";
 @use "./notification-grid-non-overlay";
@@ -122,8 +122,9 @@
 	&[data-icon]::before,
 	&::before,
 	img {
-		--db-icon-font-family: "db-ux-filled";
 		--db-icon-margin-end: 0;
+
+		@include icons.to-filled-icon();
 
 		grid-area: icon;
 	}

@@ -18,7 +18,7 @@ export type DBPopoverDefaultProps = {
 	/**
 	 * The trigger to open the popover e.g. a button
 	 */
-	trigger?: unknown;
+	trigger?: any;
 };
 
 export type DBPopoverProps = DBPopoverDefaultProps &

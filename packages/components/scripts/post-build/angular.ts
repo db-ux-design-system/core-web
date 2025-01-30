@@ -201,10 +201,6 @@ export default (tmp?: boolean) => {
 
 		const replacements: Overwrite[] = [
 			{
-				from: 'attr.disabled',
-				to: 'disabled'
-			},
-			{
 				from: 'ngOnChanges',
 				to: 'ngAfterContentChecked'
 			},
@@ -217,6 +213,10 @@ export default (tmp?: boolean) => {
 			{
 				from: '} from "../../utils"',
 				to: ', enableCustomElementAttributePassing } from "../../utils"'
+			},
+			{
+				from: /this.ref.nativeElement/g,
+				to: 'this.ref?.nativeElement'
 			}
 		];
 

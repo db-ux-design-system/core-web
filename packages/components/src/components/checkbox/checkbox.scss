@@ -1,10 +1,10 @@
-@use "@db-ui/foundations/build/scss/variables";
-@use "@db-ui/foundations/build/scss/icons";
-@use "@db-ui/foundations/build/scss/fonts";
-@use "@db-ui/foundations/build/scss/colors";
-@use "@db-ui/foundations/build/scss/helpers";
-@use "../../styles/component";
-@use "../../styles/form-components";
+@use "@db-ui/foundations/build/styles/variables";
+@use "@db-ui/foundations/build/styles/icons";
+@use "@db-ui/foundations/build/styles/fonts";
+@use "@db-ui/foundations/build/styles/colors";
+@use "@db-ui/foundations/build/styles/helpers";
+@use "../../styles/internal/component";
+@use "../../styles/internal/form-components";
 
 %center-icon {
 	&::before {
@@ -14,10 +14,12 @@
 		align-items: center;
 		justify-content: center;
 		block-size: calc(
-			#{form-components.$font-size-height} - 2 * #{variables.$db-border-height-3xs}
+			#{form-components.$font-size-height} - 2 *
+				#{variables.$db-border-height-3xs}
 		);
 		inline-size: calc(
-			#{form-components.$font-size-height} - 2 * #{variables.$db-border-height-3xs}
+			#{form-components.$font-size-height} - 2 *
+				#{variables.$db-border-height-3xs}
 		);
 	}
 }
@@ -30,7 +32,6 @@
 	input {
 		display: flex;
 		border-radius: variables.$db-border-radius-2xs;
-		margin-block: auto;
 		align-items: center;
 		justify-content: center;
 
@@ -65,10 +66,11 @@
 
 				border-width: form-components.$check-border-size;
 
-				&::before {
+				&:not([data-hide-icon-before="true"])::before {
 					align-content: center;
 					font-size: calc(
-						var(--db-icon-font-size) - 2 * #{form-components.$check-border-size}
+						var(--db-icon-font-size) - 2 *
+							#{form-components.$check-border-size}
 					);
 					padding: #{form-components.$check-border-size};
 				}

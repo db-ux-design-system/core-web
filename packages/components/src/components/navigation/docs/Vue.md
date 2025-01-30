@@ -34,7 +34,7 @@ import { DBNavigation, DBNavigationItem } from "@db-ui/v-components";
 				</DBNavigationItem>
 			</template>
 		</DBNavigationItem>
-		<DBNavigationItem icon="person">
+		<DBNavigationItem icon="x_placeholder">
 			<a href="#">Navi-Item 2</a>
 		</DBNavigationItem>
 		<DBNavigationItem :disabled="true">

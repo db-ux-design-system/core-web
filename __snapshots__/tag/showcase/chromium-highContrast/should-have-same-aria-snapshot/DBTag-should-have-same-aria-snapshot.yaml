@@ -1,0 +1,45 @@
+- main:
+  - heading "DBTag" [level=1]
+  - link "Density arrow_up_right\" / \""
+  - text: Functional (Default) Regular Expressive
+  - link "Emphasis arrow_up_right\" / \""
+  - text: (Default) Weak Strong
+  - link "Semantic arrow_up_right\" / \""
+  - text: (Default) Adaptive Neutral Critical Informational Successful Warning Adaptive Strong Neutral Strong Critical Strong Informational Strong Successful Strong Warning Strong
+  - link "Behaviour arrow_up_right\" / \""
+  - group "Behaviour":
+    - text: (Default) Static
+    - button "Interactive Button"
+    - link "Interactive Link"
+    - checkbox "Interactive Checkbox": "on"
+    - text: Interactive Checkbox
+    - radio "Interactive Radio 1": "on"
+    - text: Interactive Radio 1
+    - radio "Interactive Radio 2": "on"
+    - text: Interactive Radio 2 Removeable
+    - button "cross\" / \" Remove tag"
+  - link "State arrow_up_right\" / \""
+  - group "State":
+    - checkbox "(Default) Unchecked": "on"
+    - text: (Default) Unchecked
+    - checkbox "Checked" [checked]: "on"
+    - text: Checked
+    - checkbox "Disabled" [checked] [disabled]: "on"
+    - text: Disabled
+  - link "Content arrow_up_right\" / \""
+  - text: (Default) Text x_placeholder" / " Icon x_placeholder" / " Icon & Text
+  - link "Overflow arrow_up_right\" / \""
+  - text: (Default) No Overflow With Overflow (max-width)
+  - link "Example arrow_up_right\" / \""
+  - group "Example":
+    - text: x_placeholder" / "
+    - button "Interactive Strong Button with Icon"
+    - text: x_placeholder" / "
+    - link "Interactive Strong Link with Icon"
+    - text: x_placeholder" / "
+    - checkbox "Interactive Strong Checkbox with Icon": "on"
+    - text: Interactive Strong Checkbox with Icon x_placeholder" / "
+    - radio "Interactive Strong Radio 1 with Icon": "on"
+    - text: Interactive Strong Radio 1 with Icon x_placeholder" / "
+    - radio "Interactive Strong Radio 2 with Icon": "on"
+    - text: Interactive Strong Radio 2 with Icon

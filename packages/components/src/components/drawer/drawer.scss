@@ -1,10 +1,10 @@
 @use "sass:map";
-@use "@db-ui/foundations/build/scss/variables";
-@use "@db-ui/foundations/build/scss/helpers";
-@use "@db-ui/foundations/build/scss/animation";
-@use "@db-ui/foundations/build/scss/colors";
-@use "../../styles/component";
-@use "./../../styles/dialog-init";
+@use "@db-ui/foundations/build/styles/variables";
+@use "@db-ui/foundations/build/styles/helpers";
+@use "@db-ui/foundations/build/styles/animation";
+@use "@db-ui/foundations/build/styles/colors";
+@use "../../styles/internal/component";
+@use "../../styles/dialog-init";
 
 %direction-right {
 	inset-inline: auto 0;
@@ -177,19 +177,23 @@ $spacings: (
 			@media screen and (prefers-reduced-motion: no-preference) {
 				&:not([data-direction]),
 				&[data-direction="right"] {
-					animation: show-right-to-left #{variables.$db-transition-straight-show};
+					animation: show-right-to-left
+						#{variables.$db-transition-straight-show};
 				}
 
 				&[data-direction="left"] {
-					animation: show-left-to-right #{variables.$db-transition-straight-show};
+					animation: show-left-to-right
+						#{variables.$db-transition-straight-show};
 				}
 
 				&[data-direction="up"] {
-					animation: show-bottom-to-top #{variables.$db-transition-straight-show};
+					animation: show-bottom-to-top
+						#{variables.$db-transition-straight-show};
 				}
 
 				&[data-direction="down"] {
-					animation: show-top-to-bottom #{variables.$db-transition-straight-show};
+					animation: show-top-to-bottom
+						#{variables.$db-transition-straight-show};
 				}
 			}
 
@@ -197,19 +201,23 @@ $spacings: (
 				@media screen and (prefers-reduced-motion: no-preference) {
 					&:not([data-direction]),
 					&[data-direction="right"] {
-						animation: hide-right-to-left #{variables.$db-transition-straight-hide};
+						animation: hide-right-to-left
+							#{variables.$db-transition-straight-hide};
 					}
 
 					&[data-direction="left"] {
-						animation: hide-left-to-right #{variables.$db-transition-straight-hide};
+						animation: hide-left-to-right
+							#{variables.$db-transition-straight-hide};
 					}
 
 					&[data-direction="up"] {
-						animation: hide-bottom-to-top #{variables.$db-transition-straight-hide};
+						animation: hide-bottom-to-top
+							#{variables.$db-transition-straight-hide};
 					}
 
 					&[data-direction="down"] {
-						animation: hide-top-to-bottom #{variables.$db-transition-straight-hide};
+						animation: hide-top-to-bottom
+							#{variables.$db-transition-straight-hide};
 					}
 				}
 			}

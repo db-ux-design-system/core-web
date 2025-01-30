@@ -1,14 +1,17 @@
 import FS from 'node:fs';
 import { getComponentName } from './utils.js';
 
+const webTypesPath = './../../output/stencil/dist/web-types.json';
+
 const generateTestTable = () => {
-	const webTypes = JSON.parse(
-		FS.readFileSync(
-			'./../../output/stencil/dist/web-types.json',
-			'utf8'
-		).toString()
-	);
-	const elements = webTypes?.contributions?.html?.elements;
+	let elements = [];
+	if (FS.existsSync(webTypesPath)) {
+		const webTypes = JSON.parse(
+			FS.readFileSync(webTypesPath, 'utf8').toString()
+		);
+		elements = webTypes?.contributions?.html?.elements;
+	}
+
 	const accessibilityReview = JSON.parse(
 		FS.readFileSync(
 			'./../shared/_accessibility-review.json',

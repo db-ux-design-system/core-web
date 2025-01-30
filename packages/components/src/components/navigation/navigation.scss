@@ -1,8 +1,8 @@
-@use "@db-ui/foundations/build/scss/variables";
-@use "@db-ui/foundations/build/scss/screen-sizes";
-@use "../../styles/component";
-@use "../../styles/form-components";
-@use "../../styles/db-puls";
+@use "@db-ui/foundations/build/styles/variables";
+@use "@db-ui/foundations/build/styles/screen-sizes";
+@use "../../styles/internal/component";
+@use "../../styles/internal/form-components";
+@use "../../styles/internal/db-puls";
 
 .db-navigation {
 	-webkit-tap-highlight-color: transparent; /* for removing the highlight */
@@ -67,12 +67,12 @@
 
 						&:is(:hover, :focus-visible),
 						:has(
-								~ .db-sub-navigation:is(
-										:hover,
-										:focus-visible,
-										:focus-within
-									)
-							) {
+							~ .db-sub-navigation:is(
+									:hover,
+									:focus-visible,
+									:focus-within
+								)
+						) {
 							&::after {
 								transform: none;
 							}

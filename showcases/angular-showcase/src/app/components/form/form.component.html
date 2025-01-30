@@ -7,7 +7,7 @@
 			label="Input with ngModel"
 			placeholder="Placeholder"
 			message="Description"
-			icon="person"
+			icon="x_placeholder"
 		>
 		</db-input>
 
@@ -16,7 +16,7 @@
 			label="Textarea Controlled"
 			placeholder="Placeholder"
 			message="Description"
-			icon="person"
+			icon="x_placeholder"
 			[value]="textarea"
 			(change)="textarea = $event.target.value"
 		></db-textarea>
@@ -26,7 +26,7 @@
 			label="Textarea with defaultValue"
 			placeholder="Placeholder"
 			message="Description"
-			icon="person"
+			icon="x_placeholder"
 			defaultValue="default value"
 			(change)="textareaDefaultValue = $event.target.value"
 		></db-textarea>
@@ -37,7 +37,7 @@
 			label="Textarea with ngModel"
 			placeholder="Placeholder"
 			message="Description"
-			icon="person"
+			icon="x_placeholder"
 			value="Textarea"
 		></db-textarea>
 
@@ -69,7 +69,7 @@
 					label="Textinput"
 					placeholder="Placeholder"
 					message="Description"
-					icon="person"
+					icon="x_placeholder"
 					formControlName="input"
 				>
 				</db-input>
@@ -81,7 +81,7 @@
 					placeholder="Placeholder"
 					message="Description"
 					[dataList]="dataList"
-					icon="person"
+					icon="x_placeholder"
 				>
 				</db-input>
 
@@ -117,7 +117,7 @@
 					label="Textarea"
 					placeholder="Placeholder"
 					message="Description"
-					icon="person"
+					icon="x_placeholder"
 					formControlName="textarea"
 				></db-textarea>
 
@@ -176,7 +176,7 @@
 					label="Select"
 					placeholder="Placeholder"
 					message="Description"
-					icon="person"
+					icon="x_placeholder"
 					formControlName="select"
 					(change)="handleChange4($event)"
 				>
@@ -256,18 +256,27 @@
 			<dd>{{ getTags() }}</dd>
 
 			<br />
+			<db-tag><db-checkbox>Checkbox</db-checkbox></db-tag>
+			<db-tag><db-radio>Checkbox</db-radio></db-tag>
+			<db-tag><db-button>Checkbox</db-button></db-tag>
+			<br />
 
 			<db-tabs orientation="vertical">
 				<db-tab-list>
-					<db-tab-item icon="airplane">Airplane Button</db-tab-item>
+					<db-tab-item icon="x_placeholder"
+						>Airplane Button</db-tab-item
+					>
 					<db-tab-item iconAfter="cancel">Cancel Button</db-tab-item>
 					<db-tab-item iconAfter="cancel">
 						Long Button Label with a lot of text
 					</db-tab-item>
-					<db-tab-item icon="airplane" iconAfter="cancel">
+					<db-tab-item icon="x_placeholder" iconAfter="cancel">
 						Another Button Label with a lot of text
 					</db-tab-item>
-					<db-tab-item icon="airplane" [noText]="true"></db-tab-item>
+					<db-tab-item
+						icon="x_placeholder"
+						[noText]="true"
+					></db-tab-item>
 				</db-tab-list>
 				<db-tab-panel>
 					It is a long established fact that a reader will be

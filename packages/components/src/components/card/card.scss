@@ -1,7 +1,7 @@
-@use "@db-ui/foundations/build/scss/variables";
-@use "@db-ui/foundations/build/scss/colors";
-@use "@db-ui/foundations/build/scss/helpers";
-@use "../../styles/component";
+@use "@db-ui/foundations/build/styles/variables";
+@use "@db-ui/foundations/build/styles/colors";
+@use "@db-ui/foundations/build/styles/helpers";
+@use "../../styles/internal/component";
 
 .db-card {
 	@extend %default-card;

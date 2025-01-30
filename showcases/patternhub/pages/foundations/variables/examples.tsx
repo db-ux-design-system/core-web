@@ -50,13 +50,13 @@ const Example = () => {
 												.replaceAll(' ', '-')}`}>
 											{example === 'Spacing fixed' && (
 												<div>
-													<DBIcon icon="person">
+													<DBIcon icon="x_placeholder">
 														User
 													</DBIcon>
 													<span>
 														gap:db-spacing-fixed-xl
 													</span>
-													<DBIcon icon="edit">
+													<DBIcon icon="pen">
 														Edit
 													</DBIcon>
 													<div className="gap1">

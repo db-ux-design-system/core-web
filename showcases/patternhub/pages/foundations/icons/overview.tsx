@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { ALL_ICONS } from '@db-ux/core-icons';
 import DefaultPage from '../../../components/default-page';
 import {
 	DBCard,
@@ -7,7 +8,6 @@ import {
 	DBIcon,
 	DBInfotext
 } from '../../../../../output/react/src';
-import { ALL_ICONS } from '../../../../../packages/components/src/shared/all-icons';
 
 const IconOverview = () => {
 	const [weight, setWeight] = useState<string>('24');
@@ -55,7 +55,7 @@ const IconOverview = () => {
 				className="icons-overview-container"
 				style={
 					{
-						'--db-icon-font-family': `db-ux-${family}`,
+						'--db-icon-font-family': `db-ux-core-${family}`,
 						'--db-icon-font-weight': weight,
 						'--db-icon-font-size': `${weight}px`
 					} as any

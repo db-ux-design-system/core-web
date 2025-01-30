@@ -1,6 +1,6 @@
-@use "@db-ui/foundations/build/scss/variables";
-@use "@db-ui/foundations/build/scss/colors";
-@use "../../styles/form-components";
+@use "@db-ui/foundations/build/styles/variables";
+@use "@db-ui/foundations/build/styles/colors";
+@use "../../styles/internal/form-components";
 
 .db-radio {
 	@include form-components.set-default-check-element(radio);
@@ -23,16 +23,20 @@
 			&:not([data-size="small"]) {
 				border-width: calc(
 					(
-							#{form-components.$font-size-height} - #{variables.$db-sizing-2xs}
-						) / 2
+							#{form-components.$font-size-height} -
+								#{variables.$db-sizing-2xs}
+						) /
+						2
 				);
 			}
 
 			&[data-size="small"] {
 				border-width: calc(
 					(
-							#{form-components.$font-size-height} - #{variables.$db-sizing-3xs}
-						) / 2
+							#{form-components.$font-size-height} -
+								#{variables.$db-sizing-3xs}
+						) /
+						2
 				);
 			}
 		}
