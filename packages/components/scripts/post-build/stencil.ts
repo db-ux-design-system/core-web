@@ -85,10 +85,6 @@ export default (tmp?: boolean) => {
 		});
 
 		const replacements: Overwrite[] = [
-			{
-				from: '} from "../../utils"',
-				to: ', enableCustomElementAttributePassing } from "../../utils"'
-			},
 			{ from: /ref=\{\(el\)/g, to: 'ref={(el:any)' },
 			{ from: 'for={', to: 'htmlFor={' },
 			{
