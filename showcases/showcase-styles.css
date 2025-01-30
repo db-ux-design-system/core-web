@@ -188,3 +188,9 @@ main .db-header {
 		inline-size: 100%;
 	}
 }
+
+.default-content-slot {
+	background-color: var(--db-successful-bg-basic-level-1-default);
+	color: var(--db-successful-on-bg-basic-emphasis-100-default);
+	padding-inline: var(--db-spacing-fixed-xs);
+}

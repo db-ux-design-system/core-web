@@ -13,11 +13,15 @@
 			[icon]="exampleProps?.icon"
 			[noText]="exampleProps?.noText"
 			[behaviour]="exampleProps?.behaviour"
+			[showCheckState]="exampleProps?.showCheckState"
 			[emphasis]="exampleProps?.emphasis"
 			[overflow]="exampleProps?.overflow"
 			[removeButton]="exampleProps?.removeButton"
 			(onRemove)="showAlert(exampleName)"
 		>
+			@if (exampleProps?.content) {
+				<div slot="content" class="default-content-slot">Swap Slot</div>
+			}
 			@if (exampleProps?.component === "button") {
 				<button>{{ exampleName }}</button>
 			}

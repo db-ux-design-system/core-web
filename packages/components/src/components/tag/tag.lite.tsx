@@ -2,6 +2,7 @@ import {
 	onInit,
 	onUpdate,
 	Show,
+	Slot,
 	useMetadata,
 	useRef,
 	useStore
@@ -57,9 +58,14 @@ export default function DBTag(props: DBTagProps) {
 			data-semantic={props.semantic}
 			data-emphasis={props.emphasis}
 			data-icon={props.icon}
+			data-show-check-state={getBooleanAsString(
+				props.showCheckState ?? true
+			)}
 			data-hide-icon={getHideProp(props.showIcon)}
 			data-no-text={getBooleanAsString(props.noText)}
 			data-overflow={getBooleanAsString(props.overflow)}>
+			<Slot name="content" />
+
 			{props.children}
 
 			<Show when={props.text}>{props.text}</Show>

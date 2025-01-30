@@ -7,12 +7,14 @@ export type IconTypes = string |
 "arrow_up_right"|
 "brand"|
 "calendar"|
+"check-circle"|
 "check"|
 "check_circle"|
 "chevron_down"|
 "chevron_left"|
 "chevron_right"|
 "chevron_up"|
+"circle"|
 "clock"|
 "cross"|
 "cross_circle"|

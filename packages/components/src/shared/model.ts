@@ -214,6 +214,13 @@ export type PopoverState = {
 	handleAutoPlacement: () => void;
 };
 
+export type ContentSlotProps = {
+	/**
+	 * Default slot which is used to pass in additional content.
+	 */
+	content?: any;
+};
+
 export const SizeList = ['small', 'medium'] as const;
 export type SizeType = (typeof SizeList)[number];
 export type SizeProps = {
@@ -230,6 +237,15 @@ export type EmphasisProps = {
 	 * The emphasis attribute divides in between a weak or strong importance.
 	 */
 	emphasis?: EmphasisType;
+};
+
+export const TagEmphasisList = [...EmphasisList, 'origin'] as const;
+export type TagEmphasisType = (typeof TagEmphasisList)[number];
+export type TagEmphasisProps = {
+	/**
+	 * The emphasis attribute divides in between a weak, strong or origin appearance.
+	 */
+	emphasis?: TagEmphasisType;
 };
 
 export const ValidationList = ['invalid', 'valid', 'no-validation'] as const;

@@ -20,10 +20,19 @@ const showAlert = (exampleName?: string) => {
 				:noText="exampleProps?.noText"
 				:behaviour="exampleProps?.behaviour"
 				:emphasis="exampleProps?.emphasis"
+				:showCheckState="exampleProps?.showCheckState"
 				:overflow="exampleProps?.overflow"
 				:removeButton="exampleProps?.removeButton"
 				@remove="showAlert(exampleName)"
 			>
+				<div
+					v-if="exampleProps?.content"
+					slot="content"
+					class="default-content-slot"
+				>
+					Swap Slot
+				</div>
+
 				<button v-if="exampleProps?.component === 'button'">
 					{{ exampleName }}
 				</button>
