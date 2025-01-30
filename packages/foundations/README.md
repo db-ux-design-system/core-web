@@ -209,7 +209,7 @@ Check the required imports for [CSS](https://db-ui.github.io/mono/review/main/fo
 
 #### Tailwind v3
 
-> **Note:** In Tailwind v4 you can use the config with `@config "tailwind.config.[js|ts]";` inside your `.css` file.
+> **Note:** In Tailwind v4 you can use the config with `@config "tailwind.config.[js|ts]";` inside your `.css` file as well.
 
 After this you can extend your tailwind config like this:
 
