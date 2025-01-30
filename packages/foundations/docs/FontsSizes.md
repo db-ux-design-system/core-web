@@ -63,9 +63,10 @@ All options (except the last one) set `font-size`, `line-height` and some **CSS 
 
 **Note: We use `XX` here. You should replace it with a size from above.**
 
-|         CSS class         | CSS data-attribute    | SCSS                                 | Tailwind                  |
-| :-----------------------: | --------------------- | ------------------------------------ | ------------------------- |
-| `class="db-font-size-XX"` | `data-font-size="XX"` | `@extend %db-overwrite-font-size-XX` | `class="db-font-size-XX"` |
+|           CSS class           | CSS data-attribute        | SCSS                                     | Tailwind                      |
+| :---------------------------: | ------------------------- | ---------------------------------------- | ----------------------------- |
+|   `class="db-font-size-XX"`   | `data-font-size="XX"`     | `@extend %db-overwrite-font-size-XX`     | `class="db-font-size-XX"`     |
+| `class="db-headline-size-XX"` | `data-headline-size="XX"` | `@extend %db-overwrite-headline-size-XX` | `class="db-headline-size-XX"` |
 
 #### Advanced use: CSS Custom Properties
 

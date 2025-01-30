@@ -1,6 +1,6 @@
-@use "../index";
+@use "../../index";
 
-$font-size: "lg";
+$font-size: "md";
 
 .db-font-size-#{$font-size},
 [data-font-size="#{$font-size}"] {
