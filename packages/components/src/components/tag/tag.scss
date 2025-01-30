@@ -92,7 +92,6 @@
 .db-tag {
 	@extend %db-tag;
 
-	&:not([data-show-check-state]),
 	&[data-show-check-state="true"] {
 		label {
 			--db-icon-margin-start: #{variables.$db-spacing-fixed-2xs};
