@@ -1,3 +1,7 @@
 module.exports = {
-	typescript: true
+	typescript: true,
+	attributePassing: {
+		enabled: true,
+		customRef: 'ref'
+	}
 };

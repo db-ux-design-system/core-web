@@ -173,12 +173,6 @@ export class ${directive.name}Directive {}
 	});
 };
 
-const getAttributePassing = (componentName: string) => `
-ngAfterViewInit(): void {
-\t\tconst element: HTMLElement | null = this.ref?.nativeElement;
-\t\tenableCustomElementAttributePassing(element,'db-${componentName}')
-\t}`;
-
 export default (tmp?: boolean) => {
 	const outputFolder = `${tmp ? 'output/tmp' : 'output'}`;
 	// Activate vue specific event handling
@@ -203,16 +197,6 @@ export default (tmp?: boolean) => {
 			{
 				from: 'ngOnChanges',
 				to: 'ngAfterContentChecked'
-			},
-			{
-				from: '@ViewChild("ref") ref!: ElementRef | undefined;',
-				to:
-					'@ViewChild("ref") ref!: ElementRef | undefined;' +
-					getAttributePassing(component.name)
-			},
-			{
-				from: '} from "../../utils"',
-				to: ', enableCustomElementAttributePassing } from "../../utils"'
 			},
 			{
 				from: /this.ref.nativeElement/g,
