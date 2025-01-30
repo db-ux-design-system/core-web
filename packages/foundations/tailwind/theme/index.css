@@ -1,3 +1,4 @@
+/* The prefix for variables are predefined by Tailwind, stylelint would throw an error */
 /* stylelint-disable */
 
 @import "./colors.css";
