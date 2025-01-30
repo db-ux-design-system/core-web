@@ -3,40 +3,55 @@
   - link "Density arrow_up_right\" / \""
   - text: Functional (Default) Regular Expressive
   - link "Emphasis arrow_up_right\" / \""
-  - text: (Default) Weak Strong
+  - text: (Default) Weak Origin Strong
   - link "Semantic arrow_up_right\" / \""
-  - text: (Default) Adaptive Neutral Critical Informational Successful Warning Adaptive Strong Neutral Strong Critical Strong Informational Strong Successful Strong Warning Strong
+  - text: (Default) Adaptive Critical Informational Neutral Successful Warning Adaptive Origin Critical Origin Informational Origin Neutral Origin Successful Origin Warning Origin Adaptive Strong Critical Strong Informational Strong Neutral Strong Successful Strong Warning Strong
   - link "Behaviour arrow_up_right\" / \""
   - group "Behaviour":
     - text: (Default) Static
     - button "Interactive Button"
     - link "Interactive Link"
-    - checkbox "Interactive Checkbox": "on"
-    - text: Interactive Checkbox
-    - radio "Interactive Radio 1": "on"
-    - text: Interactive Radio 1
-    - radio "Interactive Radio 2": "on"
-    - text: Interactive Radio 2 Removeable
+    - checkbox "Interactive Checkbox circle\" / \"": "on"
+    - text: Interactive Checkbox circle" / "
+    - radio "Interactive Radio 1 circle\" / \"": "on"
+    - text: Interactive Radio 1 circle" / "
+    - radio "Interactive Radio 2 circle\" / \"": "on"
+    - text: Interactive Radio 2 circle" / " Removeable
     - button "Remove tag"
   - link "State arrow_up_right\" / \""
   - group "State":
-    - checkbox "(Default) Unchecked": "on"
-    - text: (Default) Unchecked
-    - checkbox "Checked" [checked]: "on"
-    - text: Checked
-    - checkbox "Disabled" [checked] [disabled]: "on"
-    - text: Disabled
+    - checkbox "(Default) Unchecked circle\" / \"": "on"
+    - text: (Default) Unchecked circle" / "
+    - checkbox "Checked check_circle\" / \"" [checked]: "on"
+    - text: Checked check_circle" / "
+    - checkbox "Disabled check_circle\" / \"" [checked] [disabled]: "on"
+    - text: Disabled check_circle" / "
   - link "Content arrow_up_right\" / \""
-  - text: (Default) Text Icon Icon & Text
+  - text: (Default) Text Icon Icon & Text Swap Slot Content Slot
+  - link "Show Check State arrow_up_right\" / \""
+  - checkbox "(Default )True circle\" / \"": "on"
+  - text: (Default )True circle" / "
+  - checkbox "False": "on"
+  - text: "False"
   - link "Overflow arrow_up_right\" / \""
   - text: (Default) No Overflow With Overflow (max-width)
-  - link "Example arrow_up_right\" / \""
-  - group "Example":
+  - link "Example Strong arrow_up_right\" / \""
+  - group "Example Strong":
     - button "Interactive Strong Button with Icon"
     - link "Interactive Strong Link with Icon"
-    - checkbox "Interactive Strong Checkbox with Icon": "on"
-    - text: Interactive Strong Checkbox with Icon
-    - radio "Interactive Strong Radio 1 with Icon": "on"
-    - text: Interactive Strong Radio 1 with Icon
-    - radio "Interactive Strong Radio 2 with Icon": "on"
-    - text: Interactive Strong Radio 2 with Icon
+    - checkbox "Interactive Strong Checkbox with Icon circle\" / \"": "on"
+    - text: Interactive Strong Checkbox with Icon circle" / "
+    - radio "Interactive Strong Radio 1 with Icon circle\" / \"": "on"
+    - text: Interactive Strong Radio 1 with Icon circle" / "
+    - radio "Interactive Strong Radio 2 with Icon circle\" / \"": "on"
+    - text: Interactive Strong Radio 2 with Icon circle" / "
+  - link "Example Origin arrow_up_right\" / \""
+  - group "Example Origin":
+    - button "Interactive Origin Button with Icon"
+    - link "Interactive Origin Link with Icon"
+    - checkbox "Interactive Origin Checkbox with Icon circle\" / \"": "on"
+    - text: Interactive Origin Checkbox with Icon circle" / "
+    - radio "Interactive Origin Radio 1 with Icon circle\" / \"": "on"
+    - text: Interactive Origin Radio 1 with Icon circle" / "
+    - radio "Interactive Origin Radio 2 with Icon circle\" / \"": "on"
+    - text: Interactive Origin Radio 2 with Icon circle" / "
