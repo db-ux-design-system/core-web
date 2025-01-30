@@ -1,9 +1,9 @@
-@use "@db-ui/foundations/build/scss/variables";
-@use "@db-ui/foundations/build/scss/helpers";
-@use "@db-ui/foundations/build/scss/colors";
-@use "@db-ui/foundations/build/scss/animation";
-@use "../../styles/form-components";
-@use "../../styles/component";
+@use "@db-ui/foundations/build/styles/variables";
+@use "@db-ui/foundations/build/styles/helpers";
+@use "@db-ui/foundations/build/styles/colors";
+@use "@db-ui/foundations/build/styles/animation";
+@use "../../styles/internal/form-components";
+@use "../../styles/internal/component";
 
 $db-accordion-item-border-radius: variables.$db-border-radius-sm;
 
@@ -17,8 +17,9 @@ $db-accordion-item-border-radius: variables.$db-border-radius-sm;
 		&[open] {
 			summary + div {
 				@media screen and (prefers-reduced-motion: no-preference) {
-					animation: accordion-open #{variables.$db-transition-straight-emotional}
-						normal both;
+					animation: accordion-open
+						#{variables.$db-transition-straight-emotional} normal
+						both;
 				}
 			}
 

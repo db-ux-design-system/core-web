@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import ChildProcess from 'node:child_process';
 
 const runPrettierStage = () => {

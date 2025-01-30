@@ -119,7 +119,7 @@ export default function DBTabs(props: DBTabsProps) {
 
 				const tabPanels = Array.from<Element>(
 					ref.querySelectorAll(
-						':is(& > .db-tab-panel, & > db-tab-panel > .db-tab-panel)'
+						':is(:scope > .db-tab-panel, :scope > db-tab-panel > .db-tab-panel)'
 					)
 				);
 				for (const panel of tabPanels) {
@@ -138,7 +138,7 @@ export default function DBTabs(props: DBTabsProps) {
 	onMount(() => {
 		state._id = props.id || state._id;
 
-		state._name = props.name || uuid();
+		state._name = `tabs-${props.name || uuid()}`;
 
 		state.initialized = true;
 	});

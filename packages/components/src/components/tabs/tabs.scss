@@ -1,7 +1,7 @@
-@use "@db-ui/foundations/build/scss/variables";
-@use "@db-ui/foundations/build/scss/colors";
-@use "../../styles/form-components";
-@use "../../styles/db-puls";
+@use "@db-ui/foundations/build/styles/variables";
+@use "@db-ui/foundations/build/styles/colors";
+@use "../../styles/internal/form-components";
+@use "../../styles/internal/db-puls";
 
 $max-tabs: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
@@ -28,7 +28,11 @@ $max-tabs: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
 			&::after {
 				inset-block-end: calc(
-					-1 * (#{variables.$db-spacing-fixed-2xs} + #{variables.$db-border-height-xs})
+					-1 *
+						(
+							#{variables.$db-spacing-fixed-2xs} +
+								#{variables.$db-border-height-xs}
+						)
 				);
 			}
 		}
@@ -115,7 +119,8 @@ $max-tabs: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
 				/* top position equals sum of: margin xs + padding xs + line-height + padding xs + margin 2xs */
 				inset-block-start: calc(
-					3 * #{variables.$db-spacing-fixed-xs} + #{variables.$db-spacing-fixed-2xs} +
+					3 * #{variables.$db-spacing-fixed-xs} +
+						#{variables.$db-spacing-fixed-2xs} +
 						#{form-components.$font-size-height}
 				);
 			}
@@ -129,7 +134,8 @@ $max-tabs: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 				.db-tab-item {
 					margin-block: variables.$db-spacing-fixed-xs
 						calc(
-							2 * #{variables.$db-spacing-fixed-2xs} + #{variables.$db-border-height-xs}
+							2 * #{variables.$db-spacing-fixed-2xs} +
+								#{variables.$db-border-height-xs}
 						);
 				}
 
@@ -239,7 +245,8 @@ $max-tabs: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
 		.db-tab-item {
 			$padding-start: calc(
-				#{variables.$db-border-height-xs} + #{variables.$db-spacing-fixed-2xs}
+				#{variables.$db-border-height-xs} +
+					#{variables.$db-spacing-fixed-2xs}
 			);
 
 			padding-inline-start: $padding-start;
@@ -312,7 +319,8 @@ $max-tabs: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 				background-color: colors.$db-adaptive-bg-basic-level-1-default;
 				inline-size: variables.$db-sizing-md;
 				block-size: calc(
-					#{variables.$db-spacing-fixed-sm} + #{variables.$db-sizing-md}
+					#{variables.$db-spacing-fixed-sm} +
+						#{variables.$db-sizing-md}
 				);
 				flex: 0 0 auto;
 			}

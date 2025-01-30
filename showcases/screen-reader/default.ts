@@ -6,7 +6,7 @@ import {
 	type VoiceOverPlaywright,
 	voiceOverTest
 } from '@guidepup/playwright';
-import { macOSRecord, windowsRecord } from '@guidepup/guidepup';
+import { macOSRecord, windowsRecord } from '@guidepup/record';
 import { expect } from '@playwright/test';
 import {
 	type DefaultTestType,

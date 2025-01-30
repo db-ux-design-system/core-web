@@ -260,7 +260,7 @@
 								"name": "input",
 								"native": true,
 								"props": {
-									"for": "checkbox02",
+									"id": "checkbox02",
 									"type": "checkbox"
 								}
 							}
@@ -337,14 +337,14 @@
 			{
 				"name": "Icon",
 				"props": {
-					"icon": "person",
+					"icon": "x_placeholder",
 					"noText": true
 				}
 			},
 			{
 				"name": "Icon & Text",
 				"props": {
-					"icon": "person"
+					"icon": "x_placeholder"
 				}
 			}
 		]
@@ -372,7 +372,7 @@
 				"props": {
 					"component": "button",
 					"emphasis": "strong",
-					"icon": "person",
+					"icon": "x_placeholder",
 					"behaviour": "removable"
 				},
 				"children": [
@@ -388,7 +388,7 @@
 				"props": {
 					"component": "link",
 					"emphasis": "strong",
-					"icon": "person"
+					"icon": "x_placeholder"
 				},
 				"children": [
 					{
@@ -406,7 +406,7 @@
 				"props": {
 					"component": "checkbox",
 					"emphasis": "strong",
-					"icon": "person"
+					"icon": "x_placeholder"
 				},
 				"children": [
 					{
@@ -432,7 +432,7 @@
 				"props": {
 					"component": "radio",
 					"emphasis": "strong",
-					"icon": "person",
+					"icon": "x_placeholder",
 					"identifier": "radio03"
 				},
 				"children": [
@@ -462,7 +462,7 @@
 				"props": {
 					"component": "radio",
 					"emphasis": "strong",
-					"icon": "person",
+					"icon": "x_placeholder",
 					"identifier": "radio02"
 				},
 				"children": [

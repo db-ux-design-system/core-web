@@ -8,7 +8,14 @@ import {
 	useTarget
 } from '@builder.io/mitosis';
 import { DBCheckboxProps, DBCheckboxState } from './model';
-import { cls, delay, hasVoiceOver, uuid } from '../../utils';
+import {
+	cls,
+	delay,
+	stringPropVisible,
+	getHideProp,
+	hasVoiceOver,
+	uuid
+} from '../../utils';
 import {
 	DEFAULT_INVALID_MESSAGE,
 	DEFAULT_INVALID_MESSAGE_ID_SUFFIX,
@@ -20,7 +27,11 @@ import { ChangeEvent, InteractionEvent } from '../../shared/model';
 import { handleFrameworkEvent } from '../../utils/form-components';
 import DBInfotext from '../infotext/infotext.lite';
 
-useMetadata({});
+useMetadata({
+	angular: {
+		nativeAttributes: ['disabled', 'required', 'checked', 'indeterminate']
+	}
+});
 
 export default function DBCheckbox(props: DBCheckboxProps) {
 	const ref = useRef<HTMLInputElement>(null);
@@ -48,7 +59,7 @@ export default function DBCheckbox(props: DBCheckboxProps) {
 			});
 
 			/* For a11y reasons we need to map the correct message with the checkbox */
-			if (!ref?.validity.valid || props.customValidity === 'invalid') {
+			if (!ref?.validity.valid || props.validation === 'invalid') {
 				state._descByIds = state._invalidMessageId;
 				if (hasVoiceOver()) {
 					state._voiceOverFallback =
@@ -58,7 +69,7 @@ export default function DBCheckbox(props: DBCheckboxProps) {
 					delay(() => (state._voiceOverFallback = ''), 1000);
 				}
 			} else if (
-				props.customValidity === 'valid' ||
+				props.validation === 'valid' ||
 				(ref?.validity.valid && props.required)
 			) {
 				state._descByIds = state._validMessageId;
@@ -67,7 +78,7 @@ export default function DBCheckbox(props: DBCheckboxProps) {
 						props.validMessage ?? DEFAULT_VALID_MESSAGE;
 					delay(() => (state._voiceOverFallback = ''), 1000);
 				}
-			} else if (props.message) {
+			} else if (stringPropVisible(props.message, props.showMessage)) {
 				state._descByIds = state._messageId;
 			} else {
 				state._descByIds = '';
@@ -110,7 +121,7 @@ export default function DBCheckbox(props: DBCheckboxProps) {
 			state._invalidMessageId =
 				state._id + DEFAULT_INVALID_MESSAGE_ID_SUFFIX;
 
-			if (props.message) {
+			if (stringPropVisible(props.message, props.showMessage)) {
 				state._descByIds = messageId;
 			}
 		}
@@ -143,11 +154,11 @@ export default function DBCheckbox(props: DBCheckboxProps) {
 		<div
 			class={cls('db-checkbox', props.className)}
 			data-size={props.size}
-			data-variant={props.variant}>
+			data-hide-label={getHideProp(props.showLabel)}>
 			<label htmlFor={state._id}>
 				<input
-					aria-invalid={props.customValidity === 'invalid'}
-					data-custom-validity={props.customValidity}
+					aria-invalid={props.validation === 'invalid'}
+					data-custom-validity={props.validation}
 					ref={ref}
 					type="checkbox"
 					id={state._id}
@@ -167,13 +178,12 @@ export default function DBCheckbox(props: DBCheckboxProps) {
 					}
 					aria-describedby={state._descByIds}
 				/>
-				<Show when={props.label}>
-					<span>{props.label}</span>
+				<Show when={props.label} else={props.children}>
+					{props.label}
 				</Show>
-				{props.children}
 			</label>
 
-			<Show when={props.message}>
+			<Show when={stringPropVisible(props.message, props.showMessage)}>
 				<DBInfotext
 					size="small"
 					icon={props.messageIcon}

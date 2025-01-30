@@ -1,9 +1,12 @@
 import { test } from '@playwright/test';
 // @ts-expect-error - required for playwright
-import { getDefaultScreenshotTest } from '../default.ts';
+import { getDefaultScreenshotTest, runAriaSnapshotTest } from '../default.ts';
 
+const path = '03/textarea';
 test.describe('DBTextarea', () => {
 	getDefaultScreenshotTest({
-		path: '03/textarea'
+		path
 	});
+	// TODO: There is an issue with playwright ariaSnapshot not working properly for react
+	// runAriaSnapshotTest({ path });
 });
