@@ -1,8 +1,10 @@
-/* The prefix for variables are predefined by Tailwind, stylelint would throw an error */
-/* stylelint-disable */
+/* stylelint-disable custom-property-pattern, custom-property-empty-line-before */
 
+/* The prefix for variables are predefined by Tailwind, stylelint would throw an error */
+/* stylelint-disable-next-line import-notation */
 @import "./colors.css";
 
+/* stylelint-disable-next-line scss/at-rule-no-unknown */
 @theme {
 	--font-*: initial; /* Font family utilities like font-sans */
 	--font-sans: var(--db-font-family-sans);
@@ -56,8 +58,8 @@
 	--breakpoint-xl: 1920px;
 
 	--spacing-*: initial; /* Spacing and sizing utilities like px-fix-md, max-h-siz-xl, and many more */
-	--spacing-none: 0px;
-	--spacing-0: 0px;
+	--spacing-none: 0;
+	--spacing-0: 0;
 	--spacing-fix-3xs: var(--db-spacing-fixed-3xs);
 	--spacing-fix-2xs: var(--db-spacing-fixed-2xs);
 	--spacing-fix-xs: var(--db-spacing-fixed-xs);
@@ -87,8 +89,8 @@
 	--spacing-siz-3xl: var(--db-sizing-3xl);
 
 	--gap-*: initial; /* Gap */
-	--gap-none: 0px;
-	--gap-0: 0px;
+	--gap-none: 0;
+	--gap-0: 0;
 	--gap-3xs: var(--db-gap-fixed-3xs);
 	--gap-2xs: var(--db-gap-fixed-2xs);
 	--gap-xs: var(--db-gap-fixed-xs);
@@ -101,8 +103,8 @@
 
 	--border-*: initial; /* Border width */
 	--border: var(--db-border-height-3xs);
-	--border-none: 0px;
-	--border-0: 0px;
+	--border-none: 0;
+	--border-0: 0;
 	--border-3xs: var(--db-border-height-3xs);
 	--border-2xs: var(--db-border-height-2xs);
 	--border-xs: var(--db-border-height-xs);
@@ -115,8 +117,8 @@
 
 	--radius-*: initial; /* Border radius utilities like rounded-sm */
 	--radius: var(--db-border-radius-xs);
-	--radius-none: 0px;
-	--radius-0: 0px;
+	--radius-none: 0;
+	--radius-0: 0;
 	--radius-3xs: var(--db-border-radius-3xs);
 	--radius-2xs: var(--db-border-radius-2xs);
 	--radius-xs: var(--db-border-radius-xs);
@@ -140,26 +142,32 @@
 		p {
 			font-size: var(--text-body-md);
 		}
+
 		h1 {
 			font-size: var(--text-xl);
 			line-height: var(--text-xl--line-height);
 		}
+
 		h2 {
 			font-size: var(--text-lg);
 			line-height: var(--text-lg--line-height);
 		}
+
 		h3 {
 			font-size: var(--text-md);
 			line-height: var(--text-md--line-height);
 		}
+
 		h4 {
 			font-size: var(--text-sm);
 			line-height: var(--text-sm--line-height);
 		}
+
 		h5 {
 			font-size: var(--text-xs);
 			line-height: var(--text-xs--line-height);
 		}
+
 		h6 {
 			font-size: var(--text-2xs);
 			line-height: var(--text-2xs--line-height);
