@@ -69,8 +69,7 @@ jobs:
           REPO_NAME: ${{ steps.repo-name.outputs.result }}
           OWNER_NAME: ${{ github.repository_owner }}
         run: |
-          chmod +rx ./.github/scripts/build-gh-page.sh
-          ./.github/scripts/build-gh-page.sh
+          npx --no tsx scripts/github/build-gh-page.ts
 
       - name: 🥅 Deploy to GH-Pages
         uses: peaceiris/actions-gh-pages@v4
