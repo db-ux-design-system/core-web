@@ -512,12 +512,19 @@ h6 {
 
 .link-containers {
 	display: grid;
-	grid-template-areas: "previous next";
+	grid-template-areas:
+			"previous previous"
+			"next next";
 	gap: variables.$db-spacing-fixed-md;
 	justify-content: space-between;
 
-	a {
-		text-decoration: none;
+	@include screen-sizes.screen("md") {
+			grid-template-areas: "previous next";
+		}
+
+		a {
+			text-decoration: none;
+
 	}
 
 	.previous-link-container,
@@ -527,6 +534,7 @@ h6 {
 
 		small {
 			color: colors.$db-informational-bg-inverted-contrast-high-default;
+			overflow-wrap: anywhere;
 		}
 	}
 
@@ -546,6 +554,7 @@ h6 {
 
 .breadcrumb-container {
 	display: flex;
+	overflow-x: auto;
 	align-content: center;
 	align-items: center;
 	padding-block: variables.$db-spacing-fixed-sm;
