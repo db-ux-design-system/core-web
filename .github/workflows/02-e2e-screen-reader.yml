@@ -48,7 +48,7 @@ jobs:
         env:
           showcase: react-showcase
         run: |
-          npm run test:screen-reader:${{ env.OS }} --workspace=react-showcase -- --shard=${{ matrix.shardIndex }}/${{ matrix.shardTotal }}
+          npm run test:screen-reader:${{ matrix.os }} --workspace=react-showcase -- --shard=${{ matrix.shardIndex }}/${{ matrix.shardTotal }}
 
       - name: 🆙 Upload test results
         if: failure()
