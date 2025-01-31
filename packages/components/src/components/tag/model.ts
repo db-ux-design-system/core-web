@@ -19,7 +19,7 @@ export type DBTagDefaultProps = {
 	 *	- static: default behaviour without remove button
 	 *  - removable: add a remove button at the end of the tag
 	 */
-	behaviour?: TagBehaviourType;
+	behaviour?: TagBehaviourType | string;
 
 	/**
 	 * @deprecated Disable tag
