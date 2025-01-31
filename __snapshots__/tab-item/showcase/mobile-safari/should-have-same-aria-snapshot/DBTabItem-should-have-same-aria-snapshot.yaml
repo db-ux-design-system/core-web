@@ -35,7 +35,7 @@
     - text: x_placeholder" / "
     - tab "x_placeholder\" / \" Icon": "on"
     - text: Icon
-  - link "Behaviour arrow_up_right\" / \""
+  - link "Behavior arrow_up_right\" / \""
   - tablist:
     - tab "(Default) Auto Width": "on"
     - text: (Default) Auto Width
