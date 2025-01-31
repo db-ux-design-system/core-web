@@ -2,6 +2,12 @@ import { exec } from 'node:child_process';
 import { promisify } from 'node:util';
 import { glob } from 'glob';
 
+import { dirname } from 'path';
+import { fileURLToPath } from 'url';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename).replaceAll('\\', '/');
+
 const execAsync = promisify(exec);
 
 const generateFonts = async () => {
@@ -15,14 +21,14 @@ const generateFonts = async () => {
 	}
 
 	try {
-		const files = await glob('**/*.ttf');
+		const files = await glob(`${__dirname}/*.ttf`);
 		const commands = files.map((file) =>
 			[
 				'pyftsubset',
 				file,
 				'--layout-features=*',
 				'--flavor=woff2',
-				'--unicodes-file=unicode-eu.txt',
+				`--unicodes-file=${__dirname}/unicode-eu.txt`,
 				`--output-file=${file.replace('.ttf', '-EU.woff2')}`
 			].join(' ')
 		);

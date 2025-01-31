@@ -63,3 +63,6 @@ showcases/patternhub/public/iframe-resizer/*
 /output/stencil/loader
 /output/stencil/www
 **/.angular
+/scripts/public/
+/scripts/gh-pages.tar.gz
+!/scripts/tests/fixtures/out

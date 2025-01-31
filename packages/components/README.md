@@ -13,6 +13,7 @@ A library containing all styles for components of [DB UX Design System v3](https
 - [Angular components](https://www.npmjs.com/package/@db-ui/ngx-components)
 - [React components](https://www.npmjs.com/package/@db-ui/react-components)
 - [Vue components](https://www.npmjs.com/package/@db-ui/v-components)
+- [Web components](https://www.npmjs.com/package/@db-ui/web-components)
 
 Please take a look at your desired framework to retrieve more information.
 
