@@ -142,6 +142,7 @@
 	--color-adaptive-on-bg-inverted-pressed: var(
 		--db-adaptive-on-bg-inverted-pressed
 	);
+
 	/* On Origin */
 	--color-adaptive-on-origin-default: var(--db-adaptive-on-origin-default);
 	--color-adaptive-on-origin-hovered: var(--db-adaptive-on-origin-hovered);
