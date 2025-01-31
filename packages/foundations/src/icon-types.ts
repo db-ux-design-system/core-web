@@ -12,13 +12,16 @@ export type LooseAutocomplete = string & Record<never, never>;
 
 export type Assign<Target, Source> = Omit<Target, keyof Source> & Source;
 
-export interface OverwriteIconsInterface {}
+/**
+ * This interface is empty because it is meant to be extended by the consuming app or from a theme.
+ */
+export interface OverwriteIcons {}
 
 type InternalIcons = Assign<
 	{
 		types: BaseIconTypes | LooseAutocomplete;
 	},
-	OverwriteIconsInterface
+	OverwriteIcons
 >;
 
 export type IconTypes = InternalIcons['types'];
