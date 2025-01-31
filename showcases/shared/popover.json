@@ -191,13 +191,14 @@
 		],
 		"examples": [
 			{
-				"name": "(Default) No gap",
+				"name": "(Default) False",
 				"props": {
+					"gap": false,
 					"id": "popover-11"
 				}
 			},
 			{
-				"name": "With gap",
+				"name": "True",
 				"props": {
 					"gap": true,
 					"id": "popover-12"

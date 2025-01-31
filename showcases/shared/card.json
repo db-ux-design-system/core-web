@@ -23,19 +23,19 @@
 		"name": "Elevation Level",
 		"examples": [
 			{
-				"name": "(Default) Level 1",
+				"name": "(Default) 1",
 				"props": {
 					"elevationLevel": "1"
 				}
 			},
 			{
-				"name": "Level 2",
+				"name": "2",
 				"props": {
 					"elevationLevel": "2"
 				}
 			},
 			{
-				"name": "Level 3",
+				"name": "3",
 				"props": {
 					"elevationLevel": "3"
 				}
@@ -72,18 +72,18 @@
 		]
 	},
 	{
-		"name": "Behaviour",
+		"name": "Behavior",
 		"examples": [
 			{
 				"name": "(Default) Static",
 				"props": {
-					"behaviour": "static"
+					"behavior": "static"
 				}
 			},
 			{
 				"name": "Interactive",
 				"props": {
-					"behaviour": "interactive"
+					"behavior": "interactive"
 				}
 			}
 		]
@@ -95,21 +95,21 @@
 				"name": "Level 1 - Interactive",
 				"props": {
 					"elevationLevel": "1",
-					"behaviour": "interactive"
+					"behavior": "interactive"
 				}
 			},
 			{
 				"name": "Level 2 - Interactive",
 				"props": {
 					"elevationLevel": "2",
-					"behaviour": "interactive"
+					"behavior": "interactive"
 				}
 			},
 			{
 				"name": "Level 3 - Interactive",
 				"props": {
 					"elevationLevel": "3",
-					"behaviour": "interactive"
+					"behavior": "interactive"
 				}
 			}
 		]

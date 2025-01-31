@@ -13,7 +13,7 @@ const getTag = ({
 	icon,
 	overflow,
 	noText,
-	behaviour,
+	behavior,
 	emphasis,
 	removeButton,
 	checked,
@@ -30,7 +30,7 @@ const getTag = ({
 			semantic={semantic}
 			icon={icon}
 			noText={noText}
-			behaviour={behaviour}
+			behavior={behavior}
 			emphasis={emphasis}
 			overflow={overflow}
 			removeButton={removeButton}

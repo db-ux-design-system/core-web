@@ -9,8 +9,8 @@ import {
 import { DBTabItemProps } from '../tab-item/model';
 import { DBTabPanelProps } from '../tab-panel/model';
 
-export const TabsBehaviourList = ['scrollbar', 'arrows'] as const;
-export type TabsBehaviourType = (typeof TabsBehaviourList)[number];
+export const TabsBehaviorList = ['scrollbar', 'arrows'] as const;
+export type TabsBehaviorType = (typeof TabsBehaviorList)[number];
 
 export const TabsInitialSelectedModeList = ['auto', 'manually'] as const;
 export type TabsInitialSelectedModeType =
@@ -19,22 +19,22 @@ export type TabsInitialSelectedModeType =
 export type DBSimpleTabProps = DBTabItemProps & DBTabPanelProps;
 export type DBTabsDefaultProps = {
 	/**
-	 * Change amount of distance if you click on an arrow, only available with behaviour="arrows"
+	 * Change amount of distance if you click on an arrow, only available with behavior="arrows"
 	 */
 	arrowScrollDistance?: number;
 
 	/**
 	 * Show a scrollbar or buttons with arrows to navigate for horizontal tabs with overflow visible
 	 */
-	behaviour?: TabsBehaviourType;
+	behavior?: TabsBehaviorType;
 
 	/**
-	 * Default behaviour is auto selecting the first tab, change selected tab by index
+	 * Default behavior is auto selecting the first tab, change selected tab by index
 	 */
 	initialSelectedIndex?: number;
 
 	/**
-	 * Default behaviour is auto selecting the first tab, disable it with 'manually'
+	 * Default behavior is auto selecting the first tab, disable it with 'manually'
 	 */
 	initialSelectedMode?: TabsInitialSelectedModeType;
 

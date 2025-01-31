@@ -2,6 +2,7 @@
 @use "@db-ui/foundations/build/styles/colors";
 @use "@db-ui/foundations/build/styles/screen-sizes";
 @use "@db-ui/foundations/build/styles/density";
+@use "@db-ui/components/build/components/section/section";
 
 @forward "@db-ui/components/build/styles/webpack";
 @forward "@db-ux/db-theme/build/styles/webpack";
@@ -593,6 +594,36 @@ h6 {
 			grid-area: icon;
 			margin-block: auto;
 			margin-inline-start: auto;
+		}
+	}
+}
+
+.db-section {
+	/* section workaround:
+	We show the sections inside a card which is wrapped with a section.
+	This leads to issues because in general you should use the section on your root layout
+	*/
+
+	.db-section {
+		&[data-width="small"] {
+			padding-inline: calc(
+				#{section.$small-section-padding-inline} -
+					#{section.$large-section-padding-inline}
+			);
+		}
+
+		&[data-width="medium"] {
+			padding-inline: calc(
+				#{section.$medium-section-padding-inline} -
+					#{section.$large-section-padding-inline}
+			);
+		}
+
+		&[data-width="large"] {
+			padding-inline: calc(
+				#{variables.$db-spacing-fixed-sm} +
+					#{variables.$db-spacing-fixed-md}
+			);
 		}
 	}
 }

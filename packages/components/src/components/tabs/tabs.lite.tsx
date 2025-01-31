@@ -69,7 +69,7 @@ export default function DBTabs(props: DBTabsProps) {
 						props.orientation || 'horizontal'
 					);
 
-					if (props.behaviour === 'arrows') {
+					if (props.behavior === 'arrows') {
 						state.scrollContainer = container;
 						state.evaluateScrollButtons(container);
 						container.addEventListener('scroll', () => {
@@ -179,7 +179,7 @@ export default function DBTabs(props: DBTabsProps) {
 			id={state._id}
 			class={cls('db-tabs', props.className)}
 			data-orientation={props.orientation}
-			data-scroll-behaviour={props.behaviour}
+			data-scroll-behavior={props.behavior}
 			data-alignment={props.alignment ?? 'start'}
 			data-width={props.width ?? 'auto'}>
 			<Show when={state.showScrollLeft}>

@@ -6,8 +6,8 @@ import {
 	SpacingProps
 } from '../../shared/model';
 
-export const CardBehaviourList = ['static', 'interactive'] as const;
-export type CardBehaviourType = (typeof CardBehaviourList)[number];
+export const CardBehaviorList = ['static', 'interactive'] as const;
+export type CardBehaviorType = (typeof CardBehaviorList)[number];
 
 export const CardElevationLevelList = ['1', '2', '3'] as const;
 export type CardElevationLevelType = (typeof CardElevationLevelList)[number];
@@ -16,7 +16,7 @@ export type DBCardDefaultProps = {
 	/**
 	 * Makes the card interactive
 	 */
-	behaviour?: CardBehaviourType;
+	behavior?: CardBehaviorType;
 
 	/**
 	 * Changes the elevation of the card which is equal to `basic-background-level`

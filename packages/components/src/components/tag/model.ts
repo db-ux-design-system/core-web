@@ -9,16 +9,16 @@ import {
 	ShowIconProps
 } from '../../shared/model';
 
-export const TagBehaviourList = ['static', 'removable'] as const;
-export type TagBehaviourType = (typeof TagBehaviourList)[number];
+export const TagBehaviorList = ['static', 'removable'] as const;
+export type TagBehaviorType = (typeof TagBehaviorList)[number];
 
 export type DBTagDefaultProps = {
 	/**
-	 *	Defines the behaviour of the component:
-	 *	- static: default behaviour without remove button
+	 *	Defines the behavior of the component:
+	 *	- static: default behavior without remove button
 	 *  - removable: add a remove button at the end of the tag
 	 */
-	behaviour?: TagBehaviourType;
+	behavior?: TagBehaviorType;
 
 	/**
 	 * @deprecated Disable tag

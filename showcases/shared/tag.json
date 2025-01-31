@@ -113,7 +113,7 @@
 		]
 	},
 	{
-		"name": "Behaviour",
+		"name": "Behavior",
 		"role": "group",
 		"examples": [
 			{
@@ -233,7 +233,7 @@
 			{
 				"name": "Removeable",
 				"props": {
-					"behaviour": "removable"
+					"behavior": "removable"
 				}
 			}
 		]
@@ -373,7 +373,7 @@
 					"component": "button",
 					"emphasis": "strong",
 					"icon": "x_placeholder",
-					"behaviour": "removable"
+					"behavior": "removable"
 				},
 				"children": [
 					{

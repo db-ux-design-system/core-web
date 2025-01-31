@@ -46,7 +46,7 @@
 				"props": {
 					"content": "Tooltip",
 					"id": "tooltip-04",
-					"showArrow": false
+					"showArrow": true
 				}
 			},
 			{

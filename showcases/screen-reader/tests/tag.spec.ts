@@ -23,9 +23,9 @@ test.describe('DBTag', () => {
 	});
 	testDefault({
 		test,
-		title: 'behaviour',
+		title: 'behavior',
 		description: 'should announce inline-texts',
-		url: './#/04/tag?page=behaviour',
+		url: './#/04/tag?page=behavior',
 		async testFn(voiceOver, nvda) {
 			const screenReader = voiceOver ?? nvda;
 			await screenReader?.clearSpokenPhraseLog();

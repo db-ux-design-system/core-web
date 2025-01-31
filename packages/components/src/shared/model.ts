@@ -118,7 +118,7 @@ export type PlacementProps = {
 	placement?: PlacementType;
 };
 
-export type NavigationBehaviourState = {
+export type NavigationBehaviorState = {
 	handleNavigationItemClick: (event: unknown) => void;
 };
 
