@@ -11,17 +11,6 @@
   "license": "Apache-2.0",
   "main": "./dist/index.js",
   "module": "./dist/index.js",
-  "exports": {
-    "./build/components/*": {
-      "sass": "./build/components/*.scss",
-      "default": "./build/components/*.css"
-    },
-    "./build/styles/*": {
-      "sass": "./build/styles/*.scss",
-      "default": "./build/styles/*.css"
-    },
-    "./build/*": "./build/*"
-  },
   "types": "./dist/index.d.ts",
   "files": [
     "build"

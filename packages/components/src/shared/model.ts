@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
-import { IconTypes } from '@db-ui/foundations';
+import { IconTypes } from '@db-ui/foundations/build';
 
 export type GlobalProps = {
 	/**

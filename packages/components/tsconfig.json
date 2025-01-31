@@ -3,6 +3,6 @@
 		"jsx": "preserve",
 		"jsxImportSource": "@builder.io/mitosis",
 		"esModuleInterop": true,
-		"moduleResolution": "nodenext"
+		"moduleResolution": "node"
 	}
 }

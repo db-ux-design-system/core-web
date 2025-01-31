@@ -12,17 +12,6 @@
     "@db-ui/foundations": "build/index.js"
   },
   "main": "build.js",
-  "exports": {
-    "./build/styles/*": {
-      "sass": "./build/styles/*.scss",
-      "default": "./build/styles/*.css"
-    },
-    "./build/*": "./build/*",
-    ".": {
-      "types": "./build/index.d.ts",
-      "default": "./build/index.js"
-    }
-  },
   "files": [
     "assets",
     "build"

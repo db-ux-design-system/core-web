@@ -13,16 +13,15 @@
   "exports": {
     ".": {
       "import": {
-        "default": "./dist/db-ui.es.js",
-        "types": "./dist/index.d.ts"
+        "types": "./dist/index.d.ts",
+        "default": "./dist/db-ui.es.js"
       },
       "require": {
-        "default": "./dist/db-ui.umd.js",
-        "types": "./dist/index.d.ts"
+        "types": "./dist/index.d.ts",
+        "default": "./dist/db-ui.umd.js"
       }
     }
   },
-  "types": "./dist/index.d.ts",
   "files": [
     "dist/"
   ],

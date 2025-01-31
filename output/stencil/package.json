@@ -16,7 +16,6 @@
       "import": "./dist/loader/index.js"
     }
   },
-  "types": "./dist/index.d.ts",
   "files": [
     "dist/"
   ],

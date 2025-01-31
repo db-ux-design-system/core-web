@@ -2,11 +2,11 @@
 	"compilerOptions": {
 		"outDir": "build",
 		"declaration": true,
-		"module": "NodeNext",
+		"module": "ESNext",
 		"esModuleInterop": true,
 		"target": "ES6",
 		"lib": ["ESNext"],
-		"moduleResolution": "nodenext",
+		"moduleResolution": "node",
 		"skipLibCheck": true
 	},
 	"include": ["./src"],
