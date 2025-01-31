@@ -1,8 +1,9 @@
 /* The prefix for variables are predefined by Tailwind, stylelint would throw an error */
-/* stylelint-disable */
-
+/* stylelint-disable-next-line scss/at-rule-no-unknown */
 @theme {
+	/* stylelint-disable-next-line custom-property-pattern */
 	--color-*: initial; /* 	Color utilities like */
+
 	/* Basic-Level */
 	--color-adaptive-bg-basic-level-1-default: var(
 		--db-adaptive-bg-basic-level-1-default
