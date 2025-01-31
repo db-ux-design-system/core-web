@@ -45,6 +45,7 @@ jobs:
           path: build-showcases/react-showcase
 
       - name: 👩‍🔬 Test showcase with Playwright 🎭
+        shell: bash
         env:
           showcase: react-showcase
         run: |
