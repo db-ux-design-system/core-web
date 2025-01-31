@@ -12,6 +12,17 @@
     "@db-ui/foundations": "build/index.js"
   },
   "main": "build.js",
+  "exports": {
+    "./build/styles/*": {
+      "sass": "./build/styles/*.scss",
+      "default": "./build/styles/*.css"
+    },
+    "./build/*": "./build/*",
+    ".": {
+      "types": "./build/index.d.ts",
+      "default": "./build/index.js"
+    }
+  },
   "files": [
     "assets",
     "build"
@@ -24,7 +35,7 @@
     "build:04_tailwind": "cpr tailwind build/tailwind -o",
     "build:05_postcss": "postcss build/styles/**/*.css --replace",
     "build:06_ide": "cpr ide build/ide -o",
-    "build:06_ts": "cpr scripts/public build/ts -o",
+    "build:06_ts": "tsc",
     "clean": "rm -rf build",
     "copy-build": "npm-run-all copy-build:*",
     "copy-build:assets": "cpr assets ../../build-outputs/foundations/assets -o",
@@ -55,6 +66,7 @@
     "prettier": "^3.4.2",
     "sass": "1.77.4",
     "tsx": "^4.19.2",
+    "typescript": "^5.4.5",
     "vite": "^6.0.11"
   },
   "publishConfig": {

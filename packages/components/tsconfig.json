@@ -2,6 +2,7 @@
 	"compilerOptions": {
 		"jsx": "preserve",
 		"jsxImportSource": "@builder.io/mitosis",
-		"esModuleInterop": true
+		"esModuleInterop": true,
+		"moduleResolution": "nodenext"
 	}
 }
