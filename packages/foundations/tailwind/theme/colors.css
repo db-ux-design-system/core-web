@@ -45,6 +45,7 @@
 	--color-adaptive-bg-basic-transparent-pressed: var(
 		--db-adaptive-bg-basic-transparent-pressed
 	);
+
 	/* Inverted */
 	--color-adaptive-bg-inverted-contrast-max-default: var(
 		--db-adaptive-bg-inverted-contrast-max-default
