@@ -1,9 +1,8 @@
 import { exec } from 'node:child_process';
 import { promisify } from 'node:util';
+import { dirname } from 'node:path';
+import { fileURLToPath } from 'node:url';
 import { glob } from 'glob';
-
-import { dirname } from 'path';
-import { fileURLToPath } from 'url';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename).replaceAll('\\', '/');
@@ -14,7 +13,7 @@ const generateFonts = async () => {
 	console.log('Generating EU fonts...');
 	try {
 		await execAsync('pyftsubset --help');
-	} catch (e) {
+	} catch {
 		console.warn(
 			'You need to install pyftsubset. Check packages/foundations/assets/fonts/README.md for more information.'
 		);
