@@ -1,10 +1,10 @@
-const angular = require('./index');
+const stencil = require('./index.cjs');
 
 module.exports = {
 	files: 'src/**',
-	targets: ['angular'],
+	targets: ['stencil'],
 	dest: '../../output/tmp',
 	options: {
-		angular
+		stencil
 	}
 };
