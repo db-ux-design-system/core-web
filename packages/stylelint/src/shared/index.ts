@@ -52,16 +52,16 @@ export const isAllowed = (
 			!!allowedValues.includes?.find((include) => {
 				if (typeof include === 'string') {
 					return val.includes(include);
-				} else {
-					return (
-						val.includes(include.include) &&
-						(include.and
-							? include.and.every((a) => val.includes(a))
-							: include.or
-								? include.or.some((a) => val.includes(a))
-								: true)
-					);
 				}
+				return (
+					val.includes(include.include) &&
+					(include.and
+						? include.and.every((a) => val.includes(a))
+						: include.or
+							? include.or.some((a) => val.includes(a))
+							: true)
+				);
+			}
 			})
 	);
 
