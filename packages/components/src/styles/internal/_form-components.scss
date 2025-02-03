@@ -271,7 +271,8 @@ $input-valid-types: "color", "date", "datetime-local", "email", "file",
 				@include icons.icon-content("*");
 
 				// We're using 1px instead of a token here on purpose, as this is an edge case
-				padding-inline-start: 1px; /* stylelint-disable-line db-ui/use-spacings */
+				/* stylelint-disable-next-line db-ui/use-spacings */
+				padding-inline-start: 1px;
 			}
 		}
 	}
