@@ -14,7 +14,7 @@ npm install stylelint @db-ui/stylelint --save-dev
 
 ## Usage
 
-Add this to your `.stylelintrc.json`:
+Add this to your `.stylelintrc.json` configuration file:
 
 ```json
 {
