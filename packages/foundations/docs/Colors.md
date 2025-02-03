@@ -32,14 +32,14 @@ It's [recommended to set a `meta`-HTML-tag](https://web.dev/articles/color-schem
 <meta name="color-scheme" content="dark light" />
 ```
 
-We recommend using the default media query based on the user preference, but if you want to force a mode for your page or a container you can do it with adding the attributes `data-color-scheme="dark"` or `data-color-scheme="light"`:
+We recommend using the default media query based on the user preference, but if you want to force a mode for your page or a container you can do it with adding the attributes `data-mode="dark"` or `data-mode="light"`:
 
 ### HTML
 
 ```html
-<div data-color-scheme="dark">...</div>
+<div data-mode="dark">...</div>
 ```
 
 We're providing an example in our [color schemes documentation](./color-schemes).
 
-We need to set the **base** background to the element with `[data-color-scheme]` so if you want to change the background to another color, make sure to use a wrapping tag like `<div>` with the `[data-color-scheme]` to avoid issues.
+We need to set the **base** background to the element with `[data-mode]` so if you want to change the background to another color, make sure to use a wrapping tag like `<div>` with the `[data-mode]` to avoid issues.

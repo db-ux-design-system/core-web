@@ -198,7 +198,7 @@ div[class^="ch-"] {
 		inline-size: 100%;
 	}
 
-	&[data-color-scheme="dark"] > span {
+	&[data-mode="dark"] > span {
 		filter: invert(1) brightness(1.2);
 	}
 
