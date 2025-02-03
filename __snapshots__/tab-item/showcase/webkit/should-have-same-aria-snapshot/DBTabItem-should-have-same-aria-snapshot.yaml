@@ -2,50 +2,50 @@
   - heading "DBTabItem" [level=1]
   - link "Density arrow_up_right\" / \""
   - tablist:
-    - tab "Functional"
+    - tab "Functional": "on"
     - text: Functional
   - tablist:
-    - tab "(Default) Regular"
+    - tab "(Default) Regular": "on"
     - text: (Default) Regular
   - tablist:
-    - tab "Expressive"
+    - tab "Expressive": "on"
     - text: Expressive
   - link "States arrow_up_right\" / \""
   - tablist:
-    - tab "(Default) Enabled"
+    - tab "(Default) Enabled": "on"
     - text: (Default) Enabled
   - tablist:
-    - tab "active" [selected]
+    - tab "active" [selected]: "on"
     - text: active
   - tablist:
-    - tab "disabled" [disabled]
+    - tab "disabled" [disabled]: "on"
     - text: disabled
   - link "Content arrow_up_right\" / \""
   - tablist:
-    - tab "(Default) Text"
+    - tab "(Default) Text": "on"
     - text: (Default) Text
   - tablist:
     - text: x_placeholder" / "
-    - tab "x_placeholder\" / \" Text - Icon (Leading)"
+    - tab "x_placeholder\" / \" Text - Icon (Leading)": "on"
     - text: Text - Icon (Leading)
   - tablist:
-    - tab "Text - Icon (Trailing) x_placeholder\" / \""
+    - tab "Text - Icon (Trailing) x_placeholder\" / \"": "on"
     - text: Text - Icon (Trailing) x_placeholder" / "
   - tablist:
     - text: x_placeholder" / "
-    - tab "x_placeholder\" / \" Icon"
+    - tab "x_placeholder\" / \" Icon": "on"
     - text: Icon
   - link "Behaviour arrow_up_right\" / \""
   - tablist:
-    - tab "(Default) Auto Width"
+    - tab "(Default) Auto Width": "on"
     - text: (Default) Auto Width
   - tablist:
-    - tab "Width full"
+    - tab "Width full": "on"
     - text: Width full
   - link "Content Alignment Full Width arrow_up_right\" / \""
   - tablist:
-    - tab "Left"
+    - tab "Left": "on"
     - text: Left
   - tablist:
-    - tab "Centered"
+    - tab "Centered": "on"
     - text: Centered

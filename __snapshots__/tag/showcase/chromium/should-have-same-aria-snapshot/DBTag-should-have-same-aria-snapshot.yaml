@@ -8,33 +8,39 @@
   - text: (Default) Adaptive Critical Informational Neutral Successful Warning Adaptive Origin Critical Origin Informational Origin Neutral Origin Successful Origin Warning Origin Adaptive Strong Critical Strong Informational Strong Neutral Strong Successful Strong Warning Strong
   - link "Behaviour arrow_up_right\" / \""
   - group "Behaviour":
-    - text: (Default) Static
-    - button "Interactive Button"
-    - link "Interactive Link"
-    - checkbox "Interactive Checkbox circle\" / \"": "on"
-    - text: Interactive Checkbox circle" / "
-    - radio "Interactive Radio 1 circle\" / \"": "on"
-    - text: Interactive Radio 1 circle" / "
-    - radio "Interactive Radio 2 circle\" / \"": "on"
-    - text: Interactive Radio 2 circle" / " Removeable
+    - text: (Default) Static Removable
     - button "cross\" / \" Remove tag"
-  - link "State arrow_up_right\" / \""
-  - group "State":
-    - checkbox "(Default) Unchecked circle\" / \"": "on"
-    - text: (Default) Unchecked circle" / "
-    - checkbox "Checked check_circle\" / \"" [checked]: "on"
-    - text: Checked check_circle" / "
-    - checkbox "Disabled check_circle\" / \"" [checked] [disabled]: "on"
-    - text: Disabled check_circle" / "
-  - link "Content arrow_up_right\" / \""
-  - text: (Default) Text x_placeholder" / " Icon x_placeholder" / " Icon & Text x_placeholder" / " Swap Slot Content Slot
+    - button "Interactive (Button)"
+    - link "Interactive (Link)"
+    - checkbox "Interactive (Checkbox) circle\" / \"": "on"
+    - text: Interactive (Checkbox) circle" / "
+    - radio "Interactive (Radio) circle\" / \"": "on"
+    - text: Interactive (Radio) circle" / "
+  - link "Checked arrow_up_right\" / \""
+  - group "Checked":
+    - checkbox "(Default) False circle\" / \"": "on"
+    - text: (Default) False circle" / "
+    - checkbox "True check_circle\" / \"" [checked]: "on"
+    - text: True check_circle" / "
+  - link "Disabled arrow_up_right\" / \""
+  - group "Disabled":
+    - checkbox "(Default) False circle\" / \"": "on"
+    - text: (Default) False circle" / "
+    - checkbox "True circle\" / \"" [disabled]: "on"
+    - text: True circle" / "
+  - link "Show Icon arrow_up_right\" / \""
+  - text: (Default) False x_placeholder" / " True
+  - link "No Text arrow_up_right\" / \""
+  - text: x_placeholder" / " (Default) False x_placeholder" / " True
+  - link "Show Slot arrow_up_right\" / \""
+  - text: (Default) False x_placeholder" / " Swap Slot True
   - link "Show Check State arrow_up_right\" / \""
-  - checkbox "(Default )True circle\" / \"": "on"
-  - text: (Default )True circle" / "
+  - checkbox "(Default) True circle\" / \"": "on"
+  - text: (Default) True circle" / "
   - checkbox "False": "on"
   - text: "False"
   - link "Overflow arrow_up_right\" / \""
-  - text: (Default) No Overflow With Overflow (max-width)
+  - text: (Default) False True - lorem ipsum dolor
   - link "Example Strong arrow_up_right\" / \""
   - group "Example Strong":
     - text: x_placeholder" / "
