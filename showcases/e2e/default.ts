@@ -81,6 +81,13 @@ export const getDefaultScreenshotTest = ({
 		const diffPixel = process.env.diff;
 		const maxDiffPixelRatio = process.env.ratio;
 		const isAngular = showcase.startsWith('angular');
+		const stencil = isStencil(showcase);
+		const isWebkit = project.name === 'webkit';
+
+		if (stencil && isWebkit) {
+			// There is an issue with Webkit and Stencil for new playwright version
+			test.skip();
+		}
 
 		const config: any = {};
 
