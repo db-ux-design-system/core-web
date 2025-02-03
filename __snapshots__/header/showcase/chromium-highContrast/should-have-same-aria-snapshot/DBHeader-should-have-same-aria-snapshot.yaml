@@ -86,7 +86,7 @@
   - button "x_placeholder\" / \" Profile"
   - button "x_placeholder\" / \" Notification"
   - button "x_placeholder\" / \" Help"
-  - link "Behavior arrow_up_right\" / \""
+  - link "Behaviour arrow_up_right\" / \""
   - link "Imprint arrow_right\" / \""
   - link "Help arrow_right\" / \""
   - text: brand" / " DBHeader

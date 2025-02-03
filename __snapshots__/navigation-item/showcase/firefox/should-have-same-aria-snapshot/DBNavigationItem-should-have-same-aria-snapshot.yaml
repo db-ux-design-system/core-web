@@ -10,34 +10,29 @@
   - list:
     - listitem:
       - link "Expressive"
-  - link "Disabled arrow_up_right\" / \""
+  - link "Interaction-States arrow_up_right\" / \""
   - list:
     - listitem:
-      - link "(Default) False"
+      - link "Enabled (Default)/Hover/Pressed"
   - list:
     - listitem:
-      - link "True"
-  - link "Active arrow_up_right\" / \""
+      - link "Active"
   - list:
     - listitem:
-      - link "(Default) False"
+      - link "Disabled"
+  - link "Content arrow_up_right\" / \""
   - list:
     - listitem:
-      - link "True"
-  - link "Expanded arrow_up_right\" / \""
+      - link "(Default) Text"
   - list:
     - listitem:
-      - link "(Default) False"
+      - link "Text - Icon (Leading)"
   - list:
     - listitem:
-      - button "True chevron_right\" / \""
-  - link "Show Icon arrow_up_right\" / \""
+      - button "Text - Icons (Leading, Chevron) chevron_right\" / \""
   - list:
     - listitem:
-      - link "(Default) False"
-  - list:
-    - listitem:
-      - link "True"
+      - button "Text - Icon (Chevron) chevron_right\" / \""
   - link "Width arrow_up_right\" / \""
   - list:
     - listitem:

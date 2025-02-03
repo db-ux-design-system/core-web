@@ -26,7 +26,7 @@
     - listitem:
       - group: Item 3 chevron_down" / "
   - link "Variant arrow_up_right\" / \""
-  - text: (Default) Divider
+  - text: background (default)
   - list:
     - listitem:
       - group: Item 1 chevron_down" / "
@@ -34,7 +34,7 @@
       - group: Item 2 chevron_down" / "
     - listitem:
       - group: Item 3 chevron_down" / "
-  - text: Card
+  - text: card
   - list:
     - listitem:
       - group: Item 1 chevron_down" / "
@@ -42,7 +42,7 @@
       - group: Item 2 chevron_down" / "
     - listitem:
       - group: Item 3 chevron_down" / "
-  - link "Behavior arrow_up_right\" / \""
+  - link "Behaviour arrow_up_right\" / \""
   - text: (Default) Multiple
   - list:
     - listitem:
