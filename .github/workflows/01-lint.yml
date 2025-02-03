@@ -16,7 +16,7 @@ jobs:
 
       - name: ⚡ Run Lint
         run: |
-          npm run build -w=@db-ui/stylelint
+          npm run build --workspace=@db-ui/stylelint
           npm run lint
 
       - name: 💀 Killing me softly
