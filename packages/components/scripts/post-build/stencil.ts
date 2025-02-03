@@ -5,7 +5,7 @@ import { writeFileSync, existsSync } from 'node:fs';
 
 const enableCustomElementsAttributePassing = (componentName: string) =>
 	'componentDidLoad() {\n' +
-	`\tenableCustomElementAttributePassing(this.ref, "db-${componentName}")`;
+	`\tenableCustomElementAttributePassing(this._ref, "db-${componentName}")`;
 
 const getSlotDocs = (foundSlots: string[]): string => {
 	return `
