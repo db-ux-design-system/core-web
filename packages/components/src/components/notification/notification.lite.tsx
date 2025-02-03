@@ -1,4 +1,11 @@
-import { Show, Slot, useMetadata, useRef, useStore } from '@builder.io/mitosis';
+import {
+	Show,
+	Slot,
+	useDefaultProps,
+	useMetadata,
+	useRef,
+	useStore
+} from '@builder.io/mitosis';
 import { DBNotificationProps, DBNotificationState } from './model';
 import DBButton from '../button/button.lite';
 import { DEFAULT_CLOSE_BUTTON } from '../../shared/constants';
@@ -7,8 +14,10 @@ import { ClickEvent } from '../../shared/model';
 
 useMetadata({});
 
+useDefaultProps<DBNotificationProps>({});
+
 export default function DBNotification(props: DBNotificationProps) {
-	const ref = useRef<HTMLDivElement>(null);
+	const _ref = useRef<HTMLDivElement | null>(null);
 	// jscpd:ignore-start
 	const state = useStore<DBNotificationState>({
 		handleClose: (event: ClickEvent<HTMLButtonElement>) => {
@@ -21,7 +30,7 @@ export default function DBNotification(props: DBNotificationProps) {
 
 	return (
 		<article
-			ref={ref}
+			ref={_ref}
 			id={props.id}
 			class={cls('db-notification', props.className)}
 			aria-live={props.ariaLive}
