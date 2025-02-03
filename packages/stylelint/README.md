@@ -1,6 +1,6 @@
 # @db-ui/stylelint
 
-Validate the correct usage of DB UX in your CSS.
+Validate the correct usage of DB UX in your (S)CSS code.
 
 ## Installation
 
