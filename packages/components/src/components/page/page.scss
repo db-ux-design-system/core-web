@@ -18,12 +18,6 @@
 	opacity: 0;
 
 	@media screen and (prefers-reduced-motion: no-preference) {
-		@media screen and (prefers-reduced-motion: reduce) {
-			&[data-fade-in="true"] {
-				transition: none;
-			}
-		}
-
 		&[data-fade-in="true"] {
 			transition: opacity variables.$db-transition-straight-emotional;
 		}
