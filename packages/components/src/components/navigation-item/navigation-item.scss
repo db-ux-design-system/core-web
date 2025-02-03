@@ -169,7 +169,7 @@
 	padding: variables.$db-spacing-fixed-md;
 	inline-size: 100%;
 	position: fixed;
-	overflow-y: auto;
+	overflow: hidden auto;
 	// additional #{$db-spacing-fixed-3xs} for border
 	inset-block: calc(
 			#{component.$min-mobile-header-height} +

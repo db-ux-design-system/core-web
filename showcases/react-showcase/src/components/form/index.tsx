@@ -74,7 +74,7 @@ const FormComponent = () => {
 							label="Textinput"
 							placeholder="Placeholder"
 							message="Description"
-							icon="person"
+							icon="x_placeholder"
 							name="input-name"
 							value={input}
 							dataList={dataList}
@@ -315,15 +315,19 @@ const FormComponent = () => {
 
 				<DBTabs orientation="vertical">
 					<DBTabList>
-						<DBTabItem icon="airplane">Airplane Button</DBTabItem>
+						<DBTabItem icon="x_placeholder">
+							Airplane Button
+						</DBTabItem>
 						<DBTabItem iconAfter="cancel">Cancel Button</DBTabItem>
 						<DBTabItem iconAfter="cancel">
 							Long Button Label with a lot of text
 						</DBTabItem>
-						<DBTabItem icon="airplane" iconAfter="cancel">
+						<DBTabItem icon="x_placeholder" iconAfter="cancel">
 							Another Button Label with a lot of text
 						</DBTabItem>
-						<DBTabItem icon="airplane" noText={true}></DBTabItem>
+						<DBTabItem
+							icon="x_placeholder"
+							noText={true}></DBTabItem>
 					</DBTabList>
 					<DBTabPanel>
 						Lorem ipsum dolor sit amet, consetetur sadipscing elitr,

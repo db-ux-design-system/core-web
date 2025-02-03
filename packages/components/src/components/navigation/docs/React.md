@@ -37,7 +37,7 @@ const App = () => (
 		>
 			Navi-Item 1
 		</DBNavigationItem>
-		<DBNavigationItem icon="person">
+		<DBNavigationItem icon="x_placeholder">
 			<a href="#">Navi-Item 2</a>
 		</DBNavigationItem>
 		<DBNavigationItem disabled>

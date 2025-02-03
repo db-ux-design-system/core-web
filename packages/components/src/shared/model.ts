@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
-import { IconTypes } from '@db-ux/core-icons';
+import { IconTypes } from '@db-ui/foundations/build/ts';
 
 export type GlobalProps = {
 	/**
@@ -33,6 +33,11 @@ export type GlobalProps = {
 	 * React specific for render process.
 	 */
 	key?: string;
+
+	/**
+	 * Before using please check for the [accessibility concerns](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/autofocus#accessibility_concerns)
+	 */
+	autofocus?: boolean;
 };
 
 export type GlobalState = {

@@ -214,7 +214,9 @@ $checked-active-transition-size: calc(
 			}
 
 			&:checked {
-				@include icons.set-icon("check", "after");
+				&:not([data-aid-icon]) {
+					@include icons.set-icon("check", "after");
+				}
 
 				&::after {
 					transform: translateX(
