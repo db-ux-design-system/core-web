@@ -1,5 +1,5 @@
-import generateIconFonts from '@db-ux/icon-font-tools/dist/commands/generate-icon-fonts/utils';
 import { generateIconTypes } from './generate-icon-types.js';
+import { generateIconFonts } from '@db-ux/icon-font-tools';
 
 const defaultBuildDir = './assets/icons';
 
@@ -10,7 +10,6 @@ const run = async () => {
 	await generateIconFonts({
 		fontName,
 		src: defaultBuildDir,
-		ignoreGlobs: ['**/tmp/**'],
 		variants: ['filled'],
 		withSizes: true,
 		debug: false
@@ -18,7 +17,7 @@ const run = async () => {
 
 	generateIconTypes({
 		fontJsonPath: `${defaultBuildDir}/fonts/default/info.json`,
-		outDir: './scripts/public'
+		outDir: './src'
 	});
 };
 

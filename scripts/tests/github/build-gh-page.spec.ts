@@ -1,6 +1,6 @@
 import { execSync } from 'node:child_process';
+import { existsSync } from 'node:fs';
 import { describe, expect, test } from 'vitest';
-import { existsSync } from 'fs-extra';
 
 const command = 'npx --no tsx github/build-gh-page.ts';
 
