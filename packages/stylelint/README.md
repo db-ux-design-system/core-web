@@ -53,7 +53,7 @@ There are some additional settings for every rule which can be applied to the `.
 				allowCalc: true, // allow all calc() functions - they are hard to lint
 				ignore: ["test.scss"], // ignore specific files
 				allow: {
-					// allow additional values e.g. for sass or exceptions/workarounds
+					// allow additional values e.g. for SASS or exceptions/workarounds
 					startsWith: ["map.get"],
 					includes: ["--custom-gap"],
 					exact: ["$custom-padding"]
