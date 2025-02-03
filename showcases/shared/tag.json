@@ -76,6 +76,12 @@
 				}
 			},
 			{
+				"name": "Line Break",
+				"props": {
+					"lineBreak": true
+				}
+			},
+			{
 				"name": "Adaptive Origin",
 				"props": {
 					"emphasis": "origin"
@@ -114,6 +120,12 @@
 				"props": {
 					"semantic": "warning",
 					"emphasis": "origin"
+				}
+			},
+			{
+				"name": "Line Break",
+				"props": {
+					"lineBreak": true
 				}
 			},
 			{
@@ -167,7 +179,19 @@
 				"name": "(Default) Static"
 			},
 			{
-				"name": "Interactive Button",
+				"name": "Removable",
+				"props": {
+					"behaviour": "removable"
+				}
+			},
+			{
+				"name": "Line Break",
+				"props": {
+					"lineBreak": true
+				}
+			},
+			{
+				"name": "Interactive (Button)",
 				"props": {
 					"component": "button"
 				},
@@ -180,7 +204,7 @@
 				]
 			},
 			{
-				"name": "Interactive Link",
+				"name": "Interactive (Link)",
 				"props": {
 					"component": "link"
 				},
@@ -196,7 +220,13 @@
 				]
 			},
 			{
-				"name": "Interactive Checkbox",
+				"name": "Line Break",
+				"props": {
+					"lineBreak": true
+				}
+			},
+			{
+				"name": "Interactive (Checkbox)",
 				"props": {
 					"component": "checkbox"
 				},
@@ -222,7 +252,7 @@
 				]
 			},
 			{
-				"name": "Interactive Radio 1",
+				"name": "Interactive (Radio)",
 				"props": {
 					"component": "radio",
 					"identifier": "radio01"
@@ -248,49 +278,15 @@
 						]
 					}
 				]
-			},
-			{
-				"name": "Interactive Radio 2",
-				"props": {
-					"component": "radio",
-					"identifier": "radio01"
-				},
-				"children": [
-					{
-						"name": "label",
-						"native": true,
-						"content": "Interactive Radio 2",
-						"props": {
-							"for": "radio02"
-						},
-						"children": [
-							{
-								"name": "input",
-								"native": true,
-								"props": {
-									"name": "radio02",
-									"id": "radio02",
-									"type": "radio"
-								}
-							}
-						]
-					}
-				]
-			},
-			{
-				"name": "Removeable",
-				"props": {
-					"behaviour": "removable"
-				}
 			}
 		]
 	},
 	{
-		"name": "State",
+		"name": "Checked",
 		"role": "group",
 		"examples": [
 			{
-				"name": "(Default) Unchecked",
+				"name": "(Default) False",
 				"props": {
 					"component": "checkbox"
 				},
@@ -316,7 +312,7 @@
 				]
 			},
 			{
-				"name": "Checked",
+				"name": "True",
 				"props": {
 					"component": "checkbox",
 					"checked": true
@@ -342,12 +338,43 @@
 						]
 					}
 				]
+			}
+		]
+	},
+	{
+		"name": "Disabled",
+		"role": "group",
+		"examples": [
+			{
+				"name": "(Default) False",
+				"props": {
+					"component": "checkbox"
+				},
+				"children": [
+					{
+						"name": "label",
+						"native": true,
+						"content": "Interactive Checkbox",
+						"props": {
+							"for": "checkbox02"
+						},
+						"children": [
+							{
+								"name": "input",
+								"native": true,
+								"props": {
+									"id": "checkbox02",
+									"type": "checkbox"
+								}
+							}
+						]
+					}
+				]
 			},
 			{
-				"name": "Disabled",
+				"name": "True",
 				"props": {
 					"component": "checkbox",
-					"checked": true,
 					"disabled": true
 				},
 				"children": [
@@ -376,26 +403,50 @@
 		]
 	},
 	{
-		"name": "Content",
+		"name": "Show Icon",
 		"examples": [
 			{
-				"name": "(Default) Text"
-			},
-			{
-				"name": "Icon",
+				"name": "(Default) False",
 				"props": {
 					"icon": "x_placeholder",
-					"noText": true
+					"showIcon": false
 				}
 			},
 			{
-				"name": "Icon & Text",
+				"name": "True",
+				"props": {
+					"icon": "x_placeholder",
+					"showIcon": true
+				}
+			}
+		]
+	},
+	{
+		"name": "No Text",
+		"examples": [
+			{
+				"name": "(Default) False",
 				"props": {
 					"icon": "x_placeholder"
 				}
 			},
 			{
-				"name": "Content Slot",
+				"name": "True",
+				"props": {
+					"icon": "x_placeholder",
+					"noText": true
+				}
+			}
+		]
+	},
+	{
+		"name": "Show Slot",
+		"examples": [
+			{
+				"name": "(Default) False"
+			},
+			{
+				"name": "True",
 				"props": {
 					"icon": "x_placeholder",
 					"content": true
@@ -407,7 +458,7 @@
 		"name": "Show Check State",
 		"examples": [
 			{
-				"name": "(Default )True",
+				"name": "(Default) True",
 				"props": {
 					"component": "checkbox",
 					"showCheckState": true
@@ -462,10 +513,10 @@
 		"name": "Overflow",
 		"examples": [
 			{
-				"name": "(Default) No Overflow"
+				"name": "(Default) False"
 			},
 			{
-				"name": "With Overflow (max-width)",
+				"name": "True - lorem ipsum dolor",
 				"props": {
 					"overflow": true
 				}
