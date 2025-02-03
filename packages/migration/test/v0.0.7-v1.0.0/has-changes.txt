@@ -1,0 +1,3 @@
+class="db-container-color-neutral"
+[data-container-color]="neutral"
+[data-color-scheme]="dark"

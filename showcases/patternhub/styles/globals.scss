@@ -363,7 +363,7 @@ div[class^="ch-"] {
 	}
 }
 
-.color-schemes-container {
+.color-modes-container {
 	padding: variables.$db-spacing-fixed-md;
 	border: 1px dashed colors.$db-adaptive-on-bg-basic-emphasis-100-default;
 	display: grid;
@@ -513,18 +513,17 @@ h6 {
 .link-containers {
 	display: grid;
 	grid-template-areas:
-			"previous previous"
-			"next next";
+		"previous previous"
+		"next next";
 	gap: variables.$db-spacing-fixed-md;
 	justify-content: space-between;
 
 	@include screen-sizes.screen("md") {
-			grid-template-areas: "previous next";
-		}
+		grid-template-areas: "previous next";
+	}
 
-		a {
-			text-decoration: none;
-
+	a {
+		text-decoration: none;
 	}
 
 	.previous-link-container,
