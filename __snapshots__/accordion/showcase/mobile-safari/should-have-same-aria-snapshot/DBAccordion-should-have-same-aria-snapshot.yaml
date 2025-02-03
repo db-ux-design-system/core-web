@@ -42,7 +42,7 @@
       - group: Item 2 chevron_down" / "
     - listitem:
       - group: Item 3 chevron_down" / "
-  - link "Behaviour arrow_up_right\" / \""
+  - link "Behavior arrow_up_right\" / \""
   - text: (Default) Multiple
   - list:
     - listitem:

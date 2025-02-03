@@ -6,8 +6,8 @@
   - text: (Default) Weak Strong
   - link "Semantic arrow_up_right\" / \""
   - text: (Default) Adaptive Neutral Critical Informational Successful Warning Adaptive Strong Neutral Strong Critical Strong Informational Strong Successful Strong Warning Strong
-  - link "Behaviour arrow_up_right\" / \""
-  - group "Behaviour":
+  - link "Behavior arrow_up_right\" / \""
+  - group "Behavior":
     - text: (Default) Static
     - button "Interactive Button"
     - link "Interactive Link"

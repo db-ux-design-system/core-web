@@ -5,15 +5,15 @@
   - strong: (Default) Regular
   - strong: Expressive
   - link "Elevation Level arrow_up_right\" / \""
-  - strong: (Default) Level 1
-  - strong: Level 2
-  - strong: Level 3
+  - strong: (Default) 1
+  - strong: "2"
+  - strong: "3"
   - link "Spacing arrow_up_right\" / \""
   - strong: (Default) Small
   - strong: Medium
   - strong: Large
   - strong: None
-  - link "Behaviour arrow_up_right\" / \""
+  - link "Behavior arrow_up_right\" / \""
   - strong: (Default) Static
   - button "Interactive":
     - strong: Interactive
