@@ -13,12 +13,12 @@
   "exports": {
     ".": {
       "import": {
-        "default": "./dist/db-ui.es.js",
-        "types": "./dist/index.d.ts"
+        "types": "./dist/index.d.ts",
+        "default": "./dist/db-ui.es.js"
       },
       "require": {
-        "default": "./dist/db-ui.umd.js",
-        "types": "./dist/index.d.ts"
+        "types": "./dist/index.d.ts",
+        "default": "./dist/db-ui.umd.js"
       }
     }
   },
@@ -30,7 +30,6 @@
     "build": "npm-run-all build:*",
     "build:01_vite": "vite build",
     "build:02_types": "vue-tsc --declaration --emitDeclarationOnly",
-    "build:03_ts_workaround": "tsx scripts/fix-any-types.ts",
     "mv:dist": "cpr dist ../../build-outputs/vue/dist -o",
     "mv:package.json": "cpr package.json ../../build-outputs/vue/package.json -o",
     "mv:readme": "cpr README.md ../../build-outputs/vue/README.md -o",
@@ -38,7 +37,7 @@
     "test:components": "playwright test -c playwright.config.ts"
   },
   "devDependencies": {
-    "@playwright/experimental-ct-vue": "1.50.0",
+    "@playwright/experimental-ct-vue": "1.50.1",
     "@vitejs/plugin-vue": "^5.2.0",
     "replace-in-file": "^8.3.0",
     "tsx": "^4.19.2",
