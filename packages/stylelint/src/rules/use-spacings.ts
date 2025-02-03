@@ -1,7 +1,10 @@
 import stylelint from 'stylelint';
 import { createRule } from '../shared/create-rule.js';
-import { type AllowedType, DefaultExact } from '../shared/index.js';
-import { getDeclarationRuleFunction } from '../shared/index.js';
+import {
+	type AllowedType,
+	DefaultExact,
+	getDeclarationRuleFunction
+} from '../shared/index.js';
 
 const {
 	utils: { ruleMessages }

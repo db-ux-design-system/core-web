@@ -3,9 +3,9 @@ import { createRule } from '../shared/create-rule.js';
 import {
 	type AllowedType,
 	DefaultColorsExact,
-	DefaultExact
+	DefaultExact,
+	getDeclarationRuleFunction
 } from '../shared/index.js';
-import { getDeclarationRuleFunction } from '../shared/index.js';
 
 const {
 	utils: { ruleMessages }
