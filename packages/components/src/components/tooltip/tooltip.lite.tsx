@@ -34,7 +34,7 @@ export default function DBTooltip(props: DBTooltipProps) {
 	});
 
 	onUpdate(() => {
-		if (_ref && state.initialized) {
+		if (_ref && state.initialized && state._id) {
 			let parent = _ref.parentElement;
 
 			if (parent && parent.localName.includes('tooltip')) {
@@ -49,7 +49,7 @@ export default function DBTooltip(props: DBTooltipProps) {
 					);
 				});
 				parent.setAttribute('data-has-tooltip', 'true');
-				parent.setAttribute('aria-describedby', state._id || '');
+				parent.setAttribute('aria-describedby', state._id);
 			}
 
 			state.initialized = false;
