@@ -1,1 +1,1 @@
-["Functional","(Default) Regular","Expressive"]
+["Functional clickable","(Default) Regular clickable","Expressive clickable"]
