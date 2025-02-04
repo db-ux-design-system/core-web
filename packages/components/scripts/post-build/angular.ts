@@ -191,10 +191,6 @@ export default (tmp?: boolean) => {
 			{
 				from: 'ngOnChanges',
 				to: 'ngAfterContentChecked'
-			},
-			{
-				from: /this._ref.nativeElement/g,
-				to: 'this._ref?.nativeElement'
 			}
 		];
 

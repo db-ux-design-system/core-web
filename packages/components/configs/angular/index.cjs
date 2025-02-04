@@ -4,7 +4,7 @@ module.exports = {
 	visuallyIgnoreHostElement: false,
 	attributePassing: {
 		enabled: true,
-		customRef: 'ref'
+		customRef: '_ref'
 	},
 	importMapper: (component, theImport, importedValues, componentsUsed) => {
 		const { defaultImport } = importedValues;
