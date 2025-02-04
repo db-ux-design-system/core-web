@@ -3,6 +3,7 @@ import {
 	onMount,
 	onUpdate,
 	Show,
+	useDefaultProps,
 	useMetadata,
 	useRef,
 	useStore
@@ -15,8 +16,10 @@ import { DEFAULT_ID } from '../../shared/constants';
 
 useMetadata({});
 
+useDefaultProps<DBAccordionProps>({});
+
 export default function DBAccordion(props: DBAccordionProps) {
-	const ref = useRef<HTMLUListElement>(null);
+	const _ref = useRef<HTMLUListElement | null>(null);
 	// jscpd:ignore-start
 	const state = useStore<DBAccordionState>({
 		_id: DEFAULT_ID,
@@ -68,8 +71,8 @@ export default function DBAccordion(props: DBAccordionProps) {
 	}, [state.initialized, props.name, props.behaviour, state._id]);
 
 	onUpdate(() => {
-		if (ref) {
-			const childDetails = ref.getElementsByTagName('details');
+		if (_ref) {
+			const childDetails = _ref.getElementsByTagName('details');
 			if (childDetails) {
 				for (const details of Array.from<HTMLDetailsElement>(
 					childDetails
@@ -82,12 +85,12 @@ export default function DBAccordion(props: DBAccordionProps) {
 				}
 			}
 		}
-	}, [ref, state._name]);
+	}, [_ref, state._name]);
 
 	onUpdate(() => {
-		if (ref && state._initOpenIndexDone) {
+		if (_ref && state._initOpenIndexDone) {
 			if (props?.initOpenIndex && props.initOpenIndex?.length > 0) {
-				const childDetails = ref.getElementsByTagName('details');
+				const childDetails = _ref.getElementsByTagName('details');
 				if (childDetails) {
 					const initOpenIndex =
 						props.behaviour === 'single' &&
@@ -105,11 +108,11 @@ export default function DBAccordion(props: DBAccordionProps) {
 			}
 			state._initOpenIndexDone = false;
 		}
-	}, [ref, state._initOpenIndexDone, props.initOpenIndex]);
+	}, [_ref, state._initOpenIndexDone, props.initOpenIndex]);
 
 	return (
 		<ul
-			ref={ref}
+			ref={_ref}
 			id={state._id}
 			class={cls('db-accordion', props.className)}
 			data-variant={props.variant}>

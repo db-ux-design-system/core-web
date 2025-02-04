@@ -1,10 +1,10 @@
-const stencil = require('./index');
+const react = require('./index.cjs');
 
 module.exports = {
 	files: 'src/**',
-	targets: ['stencil'],
+	targets: ['react'],
 	dest: '../../output/tmp',
 	options: {
-		stencil
+		react
 	}
 };

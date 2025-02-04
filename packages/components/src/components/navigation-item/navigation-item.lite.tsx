@@ -3,6 +3,7 @@ import {
 	onUpdate,
 	Show,
 	Slot,
+	useDefaultProps,
 	useMetadata,
 	useRef,
 	useStore
@@ -16,8 +17,10 @@ import { ClickEvent } from '../../shared/model';
 
 useMetadata({});
 
+useDefaultProps<DBNavigationItemProps>({});
+
 export default function DBNavigationItem(props: DBNavigationItemProps) {
-	const ref = useRef<HTMLLIElement>(null);
+	const _ref = useRef<HTMLLIElement | null>(null);
 
 	// jscpd:ignore-start
 	const state = useStore<DBNavigationItemState>({
@@ -56,7 +59,7 @@ export default function DBNavigationItem(props: DBNavigationItemProps) {
 						if (!state.navigationItemSafeTriangle) {
 							state.navigationItemSafeTriangle =
 								new NavigationItemSafeTriangle(
-									ref,
+									_ref,
 									subNavigationSlot
 								);
 						}
@@ -85,7 +88,7 @@ export default function DBNavigationItem(props: DBNavigationItemProps) {
 
 	return (
 		<li
-			ref={ref}
+			ref={_ref}
 			id={props.id}
 			onMouseOver={() => state.navigationItemSafeTriangle?.enableFollow()}
 			onMouseLeave={() =>
