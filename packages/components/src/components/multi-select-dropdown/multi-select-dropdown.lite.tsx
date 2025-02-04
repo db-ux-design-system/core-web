@@ -1,28 +1,32 @@
-import { Show, Slot, useMetadata, useRef, useStore } from '@builder.io/mitosis';
 import {
-	DBMultiSelectDropdownState,
-	DBMultiSelectDropdownProps
+	Slot,
+	useDefaultProps,
+	useMetadata,
+	useRef,
+	useStore
+} from '@builder.io/mitosis';
+import {
+	DBMultiSelectDropdownProps,
+	DBMultiSelectDropdownState
 } from './model';
 import { cls } from '../../utils';
-import { DBInfotext } from '../infotext';
-import { DEFAULT_MESSAGE } from '../../shared/constants';
 
-useMetadata({
-	isAttachedToShadowDom: true
-});
+useMetadata({});
+
+useDefaultProps<DBMultiSelectDropdownProps>({});
 
 export default function DBMultiSelectDropdown(
 	props: DBMultiSelectDropdownProps
 ) {
 	// This is used as forwardRef
-	const ref = useRef<HTMLDivElement>(null);
+	const _ref = useRef<HTMLDivElement>(null);
 	// jscpd:ignore-start
 	const state = useStore<DBMultiSelectDropdownState>({});
 	// jscpd:ignore-end
 
 	return (
 		<article
-			ref={ref}
+			ref={_ref}
 			id={props.id}
 			class={cls('db-multi-select-dropdown db-card', props.className)}
 			data-spacing="none">

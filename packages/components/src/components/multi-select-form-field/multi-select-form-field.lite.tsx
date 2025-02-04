@@ -1,21 +1,25 @@
-import { Show, useMetadata, useRef, useStore } from '@builder.io/mitosis';
 import {
-	DBMultiSelectFormFieldState,
-	DBMultiSelectFormFieldProps
+	useDefaultProps,
+	useMetadata,
+	useRef,
+	useStore
+} from '@builder.io/mitosis';
+import {
+	DBMultiSelectFormFieldProps,
+	DBMultiSelectFormFieldState
 } from './model';
 import { cls } from '../../utils';
-import { ChangeEvent, ClickEvent, InteractionEvent } from '../../shared/model';
-import { handleFrameworkEvent } from '../../utils/form-components';
+import { ClickEvent } from '../../shared/model';
 
-useMetadata({
-	isAttachedToShadowDom: true
-});
+useMetadata({});
+
+useDefaultProps<DBMultiSelectFormFieldProps>({});
 
 export default function DBMultiSelectFormField(
 	props: DBMultiSelectFormFieldProps
 ) {
 	// This is used as forwardRef
-	const ref = useRef<HTMLDivElement>(null);
+	const _ref = useRef<HTMLDivElement>(null);
 	// jscpd:ignore-start
 	const state = useStore<DBMultiSelectFormFieldState>({});
 	// jscpd:ignore-end
@@ -27,7 +31,7 @@ export default function DBMultiSelectFormField(
 					props.onClick(event);
 				}
 			}}
-			ref={ref}
+			ref={_ref}
 			id={props.id}
 			class={cls('db-multi-select-form-field', props.className)}>
 			{props.children}

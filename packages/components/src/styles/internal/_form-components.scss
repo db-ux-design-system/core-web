@@ -334,7 +334,7 @@ $input-valid-types: "color", "date", "datetime-local", "email", "file",
 				#{variables.$db-spacing-fixed-sm}
 			);
 
-		@include placeholder-content() {
+		@include placeholder-content($selector) {
 			opacity: component.$placeholder-disabled;
 		}
 

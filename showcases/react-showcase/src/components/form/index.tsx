@@ -463,11 +463,16 @@ const FormComponent = () => {
 						label="Test"
 						options={[
 							{ label: 'O1', value: 'o1' },
-							{ label: 'O2', value: 'o2' }
+							{ label: 'O2', value: 'o2' },
+							{ label: 'O3', value: 'o3' },
+							{ label: 'O4', value: 'o4' },
+							{ label: 'O5', value: 'o5' },
+							{ label: 'O6', value: 'o6' }
 						]}
 						placeholder="Test"
 						selectAllLabel="Select all"
 						deSelectAllLabel="Deselect all"
+						enableSearch
 						searchLabel="Search"
 						noResultsText="No matching filter"
 						values={multiSelectValue}

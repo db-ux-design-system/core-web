@@ -1,21 +1,26 @@
-import { Show, useMetadata, useRef, useStore } from '@builder.io/mitosis';
-import { DBMultiSelectListState, DBMultiSelectListProps } from './model';
+import {
+	useDefaultProps,
+	useMetadata,
+	useRef,
+	useStore
+} from '@builder.io/mitosis';
+import { DBMultiSelectListProps, DBMultiSelectListState } from './model';
 import { cls } from '../../utils';
 
-useMetadata({
-	isAttachedToShadowDom: true
-});
+useMetadata({});
+
+useDefaultProps<DBMultiSelectListProps>({});
 
 export default function DBMultiSelectList(props: DBMultiSelectListProps) {
 	// This is used as forwardRef
-	const ref = useRef<HTMLUListElement>(null);
+	const _ref = useRef<HTMLUListElement>(null);
 	// jscpd:ignore-start
 	const state = useStore<DBMultiSelectListState>({});
 	// jscpd:ignore-end
 
 	return (
 		<ul
-			ref={ref}
+			ref={_ref}
 			id={props.id}
 			class={cls('db-multi-select-list', props.className)}>
 			{props.children}

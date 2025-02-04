@@ -1,6 +1,7 @@
 import {
 	onUpdate,
 	Show,
+	useDefaultProps,
 	useMetadata,
 	useRef,
 	useStore
@@ -13,13 +14,13 @@ import { DEFAULT_CLOSE_BUTTON, DEFAULT_LABEL } from '../../shared/constants';
 import { ChangeEvent } from '../../shared/model';
 import { DBButton } from '../button';
 
-useMetadata({
-	isAttachedToShadowDom: true
-});
+useMetadata({});
+
+useDefaultProps<DBMultiSelectHeaderProps>({});
 
 export default function DBMultiSelectHeader(props: DBMultiSelectHeaderProps) {
 	// This is used as forwardRef
-	const ref = useRef<HTMLElement>(null);
+	const _ref = useRef<HTMLElement>(null);
 	const selectAllRef = useRef<HTMLInputElement>(null);
 	// jscpd:ignore-start
 	const state = useStore<DBMultiSelectHeaderState>({
@@ -37,13 +38,13 @@ export default function DBMultiSelectHeader(props: DBMultiSelectHeaderProps) {
 
 	onUpdate(() => {
 		if (selectAllRef) {
-			selectAllRef.indeterminate = props.indeterminate;
+			selectAllRef.indeterminate = Boolean(props.indeterminate);
 		}
 	}, [props.indeterminate]);
 
 	return (
 		<header
-			ref={ref}
+			ref={_ref}
 			id={props.id}
 			data-variant={props.variant}
 			class={cls('db-multi-select-header', props.className)}>
@@ -58,7 +59,7 @@ export default function DBMultiSelectHeader(props: DBMultiSelectHeaderProps) {
 						value="select-all"
 						checked={props.checked}
 						onChange={(event: ChangeEvent<HTMLInputElement>) => {
-							props.onSelectAll(event);
+							props.onSelectAll?.(event);
 						}}
 					/>
 					{state.getSelectAllLabel()}
@@ -74,7 +75,7 @@ export default function DBMultiSelectHeader(props: DBMultiSelectHeaderProps) {
 					label={props.searchLabel ?? DEFAULT_LABEL}
 					placeholder={props.searchPlaceholder}
 					onChange={(event: ChangeEvent<HTMLInputElement>) => {
-						props.onSearch(event);
+						props.onSearch?.(event);
 					}}
 				/>
 			</Show>

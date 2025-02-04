@@ -1,7 +1,7 @@
-@use "@db-ui/foundations/build/scss/variables";
-@use "@db-ui/foundations/build/scss/colors";
-@use "@db-ui/foundations/build/scss/helpers";
-@use "@db-ui/foundations/build/scss/fonts";
+@use "@db-ui/foundations/build/styles/variables";
+@use "@db-ui/foundations/build/styles/colors";
+@use "@db-ui/foundations/build/styles/helpers";
+@use "@db-ui/foundations/build/styles/fonts";
 @use "../../styles/multi-select-components";
 
 .db-multi-select-list-item {
@@ -73,7 +73,7 @@
 
 			/* We set focus on complete list element, we remove it from checkbox with this trick */
 			&:focus-visible {
-				--db-border-height-2xs: 0;
+				outline: none;
 			}
 		}
 	}

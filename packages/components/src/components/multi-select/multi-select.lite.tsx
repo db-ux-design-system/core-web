@@ -4,6 +4,7 @@ import {
 	onMount,
 	onUpdate,
 	Show,
+	useDefaultProps,
 	useMetadata,
 	useRef,
 	useStore
@@ -13,7 +14,7 @@ import {
 	DBMultiSelectState,
 	MultiSelectOptionType
 } from './model';
-import { cls, delay, hasVoiceOver, uuid } from '../../utils';
+import { cls, delay, hasVoiceOver, stringPropVisible, uuid } from '../../utils';
 import {
 	DEFAULT_INVALID_MESSAGE,
 	DEFAULT_INVALID_MESSAGE_ID_SUFFIX,
@@ -38,28 +39,27 @@ import { DBInfotext } from '../infotext';
 import { DBMultiSelectFormField } from '../multi-select-form-field';
 import { DBTag } from '../tag';
 
-useMetadata({
-	isAttachedToShadowDom: true
-});
+useMetadata({});
+
+useDefaultProps<DBMultiSelectProps>({});
 
 export default function DBMultiSelect(props: DBMultiSelectProps) {
 	// This is used as forwardRef
-	const ref = useRef<HTMLDivElement>(null);
+	const _ref = useRef<HTMLDivElement>(null);
 	const detailsRef = useRef<HTMLDetailsElement>(null);
 	const selectRef = useRef<HTMLSelectElement>(null);
 	// jscpd:ignore-start
-	const state = useStore<DBMultiSelectState>({
-		_id: 'multi-select-' + uuid(),
-		_selectId: this._id + DEFAULT_SELECT_ID_SUFFIX,
-		_labelId: this._id + DEFAULT_LABEL_ID_SUFFIX,
-		_messageId: this._id + DEFAULT_MESSAGE_ID_SUFFIX,
-		_validMessageId: this._id + DEFAULT_VALID_MESSAGE_ID_SUFFIX,
-		_invalidMessageId: this._id + DEFAULT_INVALID_MESSAGE_ID_SUFFIX,
-		_placeholderId: this._id + DEFAULT_PLACEHOLDER_ID_SUFFIX,
+	const state: DBMultiSelectState = useStore<DBMultiSelectState>({
+		_id: undefined,
+		_messageId: undefined,
+		_validMessageId: undefined,
+		_invalidMessageId: undefined,
+		_selectId: undefined,
+		_labelId: undefined,
+		_placeholderId: undefined,
 		// Workaround for Vue output: TS for Vue would think that it could be a function, and by this we clarify that it's a string
 		_descByIds: '',
 		_selectedLabels: '',
-		initialized: false,
 		_voiceOverFallback: '',
 		_selectedOptions: [],
 		headerEnabled: false,
@@ -69,10 +69,10 @@ export default function DBMultiSelect(props: DBMultiSelectProps) {
 		_options: [],
 		_hasNoOptions: false,
 		getOptionLabel: (option: MultiSelectOptionType) => {
-			return option.label ?? option.value?.toString();
+			return option.label ?? option.value?.toString() ?? '';
 		},
-		getOptionChecked: (value: string) => {
-			if (state._values && state._values.includes) {
+		getOptionChecked: (value?: string) => {
+			if (value && state._values && state._values.includes) {
 				return state._values?.includes(value);
 			}
 
@@ -86,9 +86,10 @@ export default function DBMultiSelect(props: DBMultiSelectProps) {
 				} else {
 					const target = event.target as HTMLElement;
 					if (
-						!(
+						state._id &&
+						!Boolean(
 							detailsRef.contains(target) ||
-							target.id.includes(state._id)
+								target.id.includes(state._id)
 						)
 					) {
 						detailsRef.open = false;
@@ -100,15 +101,17 @@ export default function DBMultiSelect(props: DBMultiSelectProps) {
 				}
 			}
 		},
-		handleSelect: (value: string) => {
-			if (state._values?.includes(value)) {
-				state._values = state._values?.filter(
-					(v: string) => v !== value
-				);
-			} else {
-				state._values = [...state._values, value];
+		handleSelect: (value?: string) => {
+			if (value) {
+				if (state._values?.includes(value)) {
+					state._values = state._values?.filter(
+						(v: string) => v !== value
+					);
+				} else {
+					state._values = [...(state._values || []), value];
+				}
+				state._internalChangeTimestamp = new Date().getTime();
 			}
-			state._internalChangeTimestamp = new Date().getTime();
 		},
 		handleSelectAll: () => {
 			if (state._values?.length === state.amountOptions) {
@@ -117,7 +120,7 @@ export default function DBMultiSelect(props: DBMultiSelectProps) {
 				state._values = props.options
 					? props.options
 							.filter((option) => !option.isGroup)
-							.map((option) => option.value)
+							.map((option) => option.value ?? '')
 					: [];
 			}
 			state._internalChangeTimestamp = new Date().getTime();
@@ -141,6 +144,7 @@ export default function DBMultiSelect(props: DBMultiSelectProps) {
 		},
 		handleSearch: (event: ChangeEvent<HTMLInputElement>) => {
 			const filterText = (event.target as HTMLInputElement).value;
+
 			state._options =
 				!props.options || !filterText || filterText.length === 0
 					? props.options
@@ -159,41 +163,40 @@ export default function DBMultiSelect(props: DBMultiSelectProps) {
 	// jscpd:ignore-end
 
 	onMount(() => {
-		state._id = props.id || state._id;
-		state.initialized = true;
+		const mId = props.id ?? `multi-select-${uuid()}`;
+		state._id = mId;
+		state._messageId = mId + DEFAULT_MESSAGE_ID_SUFFIX;
+		state._validMessageId = mId + DEFAULT_VALID_MESSAGE_ID_SUFFIX;
+		state._invalidMessageId = mId + DEFAULT_INVALID_MESSAGE_ID_SUFFIX;
+		state._selectId = mId + DEFAULT_SELECT_ID_SUFFIX;
+		state._labelId = mId + DEFAULT_LABEL_ID_SUFFIX;
+		state._placeholderId = mId + DEFAULT_PLACEHOLDER_ID_SUFFIX;
 	});
 
 	onUpdate(() => {
-		if (state._id && state.initialized) {
-			const labelId = state._id + DEFAULT_LABEL_ID_SUFFIX;
-			const selectId = state._id + DEFAULT_SELECT_ID_SUFFIX;
+		if (state._id) {
 			const messageId = state._id + DEFAULT_MESSAGE_ID_SUFFIX;
-			const validMessageId = state._id + DEFAULT_VALID_MESSAGE_ID_SUFFIX;
-			const invalidMessageId =
+			state._labelId = state._id + DEFAULT_LABEL_ID_SUFFIX;
+			state._selectId = state._id + DEFAULT_SELECT_ID_SUFFIX;
+			state._validMessageId = state._id + DEFAULT_VALID_MESSAGE_ID_SUFFIX;
+			state._invalidMessageId =
 				state._id + DEFAULT_INVALID_MESSAGE_ID_SUFFIX;
-			const placeholderId = state._id + DEFAULT_PLACEHOLDER_ID_SUFFIX;
-			state._labelId = labelId;
-			state._selectId = selectId;
-			state._messageId = messageId;
-			state._validMessageId = validMessageId;
-			state._invalidMessageId = invalidMessageId;
-			state._placeholderId = placeholderId;
+			state._placeholderId = state._id + DEFAULT_PLACEHOLDER_ID_SUFFIX;
 
-			if (props.message) {
-				state._descByIds = `${labelId} ${messageId}`;
-			} else {
-				state._descByIds = `${labelId} ${placeholderId}`;
+			if (stringPropVisible(props.message, props.showMessage)) {
+				state._descByIds = messageId;
 			}
-
-			state.initialized = false;
 		}
-	}, [state._id, state.initialized]);
+	}, [state._id]);
 
 	onUpdate(() => {
 		if (detailsRef) {
 			const summaries = detailsRef.getElementsByTagName('summary');
 			if (summaries && summaries.length > 0) {
-				summaries[0].setAttribute('aria-describedby', state._descByIds);
+				summaries[0].setAttribute(
+					'aria-describedby',
+					state._descByIds ?? ''
+				);
 			}
 		}
 	}, [detailsRef, state._descByIds]);
@@ -227,12 +230,17 @@ export default function DBMultiSelect(props: DBMultiSelectProps) {
 			props.onSelect &&
 			(state._externalChangeTimestamp || state._internalChangeTimestamp)
 		) {
-			if (
-				(state._internalChangeTimestamp &&
-					!state._externalChangeTimestamp) ||
-				state._internalChangeTimestamp > state._externalChangeTimestamp
-			) {
-				props.onSelect(state._values);
+			const onlyInternalChange =
+				state._internalChangeTimestamp &&
+				!state._externalChangeTimestamp;
+
+			const bothChangeButInternalNew =
+				state._internalChangeTimestamp &&
+				state._externalChangeTimestamp &&
+				state._internalChangeTimestamp > state._externalChangeTimestamp;
+
+			if (onlyInternalChange || bothChangeButInternalNew) {
+				props.onSelect(state._values ?? []);
 			}
 		}
 	}, [
@@ -242,13 +250,15 @@ export default function DBMultiSelect(props: DBMultiSelectProps) {
 	]);
 
 	onUpdate(() => {
-		state._values = props.values ?? [];
-		state._externalChangeTimestamp = new Date().getTime();
+		if (props.values && Array.isArray(props.values)) {
+			state._values = props.values ?? [];
+			state._externalChangeTimestamp = new Date().getTime();
+		}
 	}, [props.values]);
 
 	onUpdate(() => {
 		/* For a11y reasons we need to map the correct message with the select */
-		if (!selectRef?.validity.valid || props.customValidity === 'invalid') {
+		if (!selectRef?.validity.valid || props.validation === 'invalid') {
 			state._validity = 'invalid';
 			state._descByIds = state._invalidMessageId;
 			if (hasVoiceOver()) {
@@ -259,7 +269,7 @@ export default function DBMultiSelect(props: DBMultiSelectProps) {
 				delay(() => (state._voiceOverFallback = ''), 1000);
 			}
 		} else if (
-			props.customValidity === 'valid' ||
+			props.validation === 'valid' ||
 			(selectRef?.validity.valid && props.required)
 		) {
 			state._validity = 'valid';
@@ -279,8 +289,8 @@ export default function DBMultiSelect(props: DBMultiSelectProps) {
 	}, [state._values]);
 
 	onUpdate(() => {
-		state._validity = props.customValidity;
-	}, [props.customValidity]);
+		state._validity = props.validation;
+	}, [props.validation]);
 
 	onUpdate(() => {
 		if (state._values?.length === 0) {
@@ -296,30 +306,39 @@ export default function DBMultiSelect(props: DBMultiSelectProps) {
 
 	onUpdate(() => {
 		state._options = props.options;
-		state.amountOptions = props.options.filter(
-			(option) => !option.isGroup
-		).length;
+		state.amountOptions =
+			props.options?.filter((option) => !option.isGroup).length ?? 0;
 	}, [props.options]);
 
 	onUpdate(() => {
-		if (state._options?.length > 0) {
-			state._selectedOptions = state._options.filter(
-				(option: MultiSelectOptionType) =>
-					!option.isGroup && state._values.includes(option.value)
+		if (Boolean(state._options?.length)) {
+			state._selectedOptions = state._options?.filter(
+				(option: MultiSelectOptionType) => {
+					if (!option.value || !state._values?.['includes']) {
+						// TODO: Why is there no includes here
+						return false;
+					}
+
+					return (
+						!option.isGroup && state._values?.includes(option.value)
+					);
+				}
 			);
 		}
 	}, [state._options, state._values]);
 
 	onUpdate(() => {
-		if (state._selectedOptions?.length > 0) {
+		if (Boolean(state._selectedOptions?.length)) {
 			if (props.selectedType !== 'tag') {
 				if (props.selectedType === 'amount') {
 					state._selectedLabels = props.getAmountText
-						? props.getAmountText(state._selectedOptions.length)
-						: `${state._selectedOptions.length} ${DEFAULT_SELECTED}`;
+						? props.getAmountText(
+								state._selectedOptions?.length ?? 0
+							)
+						: `${state._selectedOptions?.length} ${DEFAULT_SELECTED}`;
 				} else {
 					state._selectedLabels = state._selectedOptions
-						.map((option: MultiSelectOptionType) =>
+						?.map((option: MultiSelectOptionType) =>
 							state.getOptionLabel(option)
 						)
 						.join(', ');
@@ -335,7 +354,7 @@ export default function DBMultiSelect(props: DBMultiSelectProps) {
 	return (
 		<div
 			id={state._id}
-			ref={ref}
+			ref={_ref}
 			class={cls('db-multi-select', props.className)}
 			aria-invalid={state._validity === 'invalid'}
 			data-custom-validity={state._validity}
@@ -351,12 +370,18 @@ export default function DBMultiSelect(props: DBMultiSelectProps) {
 				ref={selectRef}
 				multiple
 				value={state._values}
-				readOnly
+				// @ts-ignore
+				readOnly={true}
 				required={props.required}
 				hidden>
 				<For each={state._options}>
 					{(option: MultiSelectOptionType) => (
-						<Fragment key={option.value.toString()}>
+						<Fragment
+							key={(
+								option.id ??
+								option.value ??
+								uuid()
+							).toString()}>
 							<option
 								disabled={option.disabled}
 								value={option.value}>
@@ -377,7 +402,7 @@ export default function DBMultiSelect(props: DBMultiSelectProps) {
 						<Show
 							when={
 								props.selectedType !== 'tag' &&
-								state._selectedLabels?.length > 0
+								Boolean(state._selectedLabels?.length)
 							}>
 							<span>{state._selectedLabels}</span>
 						</Show>
@@ -445,11 +470,19 @@ export default function DBMultiSelect(props: DBMultiSelectProps) {
 									: props.loadingText) ?? DEFAULT_MESSAGE}
 							</DBNotification>
 						}>
-						<Show when={!state.notificationEnabled}>
+						<Show
+							when={
+								!Boolean(state._hasNoOptions ?? props.isLoading)
+							}>
 							<DBMultiSelectList>
 								<For each={state._options}>
 									{(option: MultiSelectOptionType) => (
-										<Fragment key={option.value.toString()}>
+										<Fragment
+											key={(
+												option.id ??
+												option.value ??
+												uuid()
+											).toString()}>
 											<DBMultiSelectListItem
 												groupLabel={
 													option.isGroup

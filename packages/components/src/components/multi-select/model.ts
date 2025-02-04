@@ -1,16 +1,15 @@
 import {
 	ChangeEvent,
 	CloseEventState,
-	CustomValidityType,
 	FormMessageProps,
 	FormProps,
 	FormState,
 	GlobalProps,
 	GlobalState,
 	InitializedState,
-	InnerCloseButtonProps,
+	InnerCloseButtonProps, ValidationType,
 	WidthProps
-} from '../../shared/model';
+} from "../../shared/model";
 import { DBMultiSelectHeaderLabelProps } from '../multi-select-header/model';
 import { DBMultiSelectFormFieldDefaultProps } from '../multi-select-form-field/model';
 
@@ -134,23 +133,23 @@ export type DBMultiSelectProps = GlobalProps &
 	WidthProps;
 
 export interface DBMultiSelectDefaultState {
-	_validity?: CustomValidityType;
+	_validity?: ValidationType;
 	_values?: string[];
-	_options: MultiSelectOptionType[];
-	_selectedOptions: MultiSelectOptionType[];
+	_options?: MultiSelectOptionType[];
+	_selectedOptions?: MultiSelectOptionType[];
 	_hasNoOptions: boolean;
-	_selectId: string;
-	_labelId: string;
-	_placeholderId: string;
+	_selectId?: string;
+	_labelId?: string;
+	_placeholderId?: string;
 	_selectedLabels?: string;
 	_externalChangeTimestamp?: number;
 	_internalChangeTimestamp?: number;
 	getOptionLabel: (option: MultiSelectOptionType) => string;
-	getOptionChecked: (value: string) => boolean;
+	getOptionChecked: (value?: string) => boolean;
 	headerEnabled: boolean;
 	searchEnabled: boolean;
 	amountOptions: number;
-	handleSelect: (value: string) => void;
+	handleSelect: (value?: string) => void;
 	handleSelectAll: () => void;
 	handleToggleOpen: () => void;
 	handleSearch: (event: ChangeEvent<HTMLInputElement>) => void;
@@ -161,5 +160,4 @@ export interface DBMultiSelectDefaultState {
 export type DBMultiSelectState = DBMultiSelectDefaultState &
 	GlobalState &
 	FormState &
-	InitializedState &
 	CloseEventState;

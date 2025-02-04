@@ -1,41 +1,59 @@
-import { Show, useMetadata, useRef, useStore } from '@builder.io/mitosis';
+import {
+	Show,
+	useDefaultProps,
+	useMetadata,
+	useRef,
+	useStore,
+	useTarget
+} from '@builder.io/mitosis';
 import {
 	DBMultiSelectListItemProps,
 	DBMultiSelectListItemState
 } from './model';
 import { cls, uuid } from '../../utils';
 import { ChangeEvent } from '../../shared/model';
-import { handleFrameworkEvent } from '../../utils/form-components';
+import {
+	handleFrameworkEventAngular,
+	handleFrameworkEventVue
+} from '../../utils/form-components';
 
-useMetadata({
-	isAttachedToShadowDom: true
-});
+useMetadata({});
+
+useDefaultProps<DBMultiSelectListItemProps>({});
 
 export default function DBMultiSelectListItem(
 	props: DBMultiSelectListItemProps
 ) {
 	// This is used as forwardRef
-	const ref = useRef<HTMLLIElement>(null);
+	const _ref = useRef<HTMLLIElement>(null);
 	// jscpd:ignore-start
-	const state = useStore<DBMultiSelectListItemState>({
-		_id: 'multi-select-list-item' + uuid(),
+	const state: DBMultiSelectListItemState =
+		useStore<DBMultiSelectListItemState>({
+			_id: 'multi-select-list-item' + uuid(),
 
-		handleChange: (event: ChangeEvent<HTMLInputElement>) => {
-			if (props.onChange) {
-				props.onChange(event);
-			}
+			handleChange: (event: ChangeEvent<HTMLInputElement>) => {
+				if (props.onChange) {
+					props.onChange(event);
+				}
 
-			if (props.change) {
-				props.change(event);
+				if (props.change) {
+					props.change(event);
+				}
+
+				useTarget({
+					angular: () =>
+						// @ts-ignore
+						handleFrameworkEventAngular(this, event, 'checked'),
+					vue: () =>
+						handleFrameworkEventVue(() => {}, event, 'checked')
+				});
 			}
-			handleFrameworkEvent(this, event, 'checked');
-		}
-	});
+		});
 	// jscpd:ignore-end
 
 	return (
 		<li
-			ref={ref}
+			ref={_ref}
 			id={props.id}
 			class={cls('db-multi-select-list-item', props.className, {
 				'db-checkbox': !props.groupLabel
@@ -57,6 +75,7 @@ export default function DBMultiSelectListItem(
 						checked={props.checked}
 						disabled={props.disabled}
 						value={props.value}
+						data-disable-focus="true"
 						onChange={(event: ChangeEvent<HTMLInputElement>) =>
 							state.handleChange(event)
 						}

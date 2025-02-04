@@ -36,6 +36,7 @@ const getMultiSelect = ({
 			noResultsText="No matching filter"
 			values={mValue}
 			onSelect={(val) => {
+				console.log('React app onSelect', val);
 				setValue(val);
 			}}
 		/>
