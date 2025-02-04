@@ -1,1 +1,1 @@
-["(Default) Static","Removable","button, Remove tag","button, Interactive (Button)","","link, Interactive (Link)","link","out of grouping, Textarea:","Textarea Controlled","edit, multi line, default textarea","All, property page. Textarea Controlled, edit, multi line, default textarea"]
+["(Default) Static","Removable","button, Remove tag","","button, Interactive (Button)","link, Interactive (Link)","check box, not checked, Interactive (Checkbox)","checked","Interactive (Checkbox)",""]
