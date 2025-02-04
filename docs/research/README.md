@@ -3,7 +3,7 @@
 If you want to do a research for a new component run this in the `docs` folder:
 
 ```shell
-npm run generate:component-research -w=@db-ui/docs
+npm run generate:component-research --workspace=@db-ui/docs
 ```
 
 1. Add the name of your component and a new `.md` file will be created.
@@ -13,12 +13,12 @@ npm run generate:component-research -w=@db-ui/docs
 
 You can find more design systems here:
 
--   <https://component.gallery/>
--   <https://github.com/alexpate/awesome-design-systems>
+- <https://component.gallery/>
+- <https://github.com/alexpate/awesome-design-systems>
 
 Further inspirational links:
 
--   <https://handreichungen.bfit-bund.de/barrierefreie-uie/>
--   <https://open-ui.org/>
+- <https://handreichungen.bfit-bund.de/barrierefreie-uie/>
+- <https://open-ui.org/>
 
 5. Additionally it might be beneficial to even also already save your HTML explorations within the related components file, like e.g. for `buttons`: `packages/components/src/components/button/index.html`

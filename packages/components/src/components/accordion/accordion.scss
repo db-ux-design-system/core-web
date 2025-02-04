@@ -1,6 +1,6 @@
-@use "@db-ui/foundations/build/scss/helpers";
-@use "@db-ui/foundations/build/scss/variables";
-@use "../../styles/component";
+@use "@db-ui/foundations/build/styles/helpers";
+@use "@db-ui/foundations/build/styles/variables";
+@use "../../styles/internal/component";
 
 @mixin accordion-subsequent-item-selector() {
 	// angular workaround
@@ -15,6 +15,10 @@ The styling for the spacings between the items is defined in the accordion, wher
 The spacings are not part of the styling of the accordion items themselves.
  */
 .db-accordion {
+	padding: 0;
+	margin: 0;
+	list-style-type: "";
+
 	/*
 	default variant: prop variant is not set
 	*/

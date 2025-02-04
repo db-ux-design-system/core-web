@@ -2,7 +2,8 @@ module.exports = {
 	prettier: true,
 	ignores: [
 		'./showcases/nuxt-showcase/**',
-		'./packages/foundations/scripts/**'
+		'./packages/migration/**',
+		'./packages/foundations/**'
 	],
 	overrides: [
 		{
@@ -44,6 +45,12 @@ module.exports = {
 			}
 		},
 		{
+			files: ['./**/vite.config.ts'],
+			rules: {
+				'@typescript-eslint/no-unsafe-call': 0 // We don't need this tsc will handle it anyway
+			}
+		},
+		{
 			files: ['./showcases/e2e/**'],
 			rules: {
 				'@typescript-eslint/no-loop-func': 0 // this is fine for playwright testing
@@ -54,6 +61,18 @@ module.exports = {
 			rules: {
 				// Playwright tests are async we shall use loops there
 				'no-await-in-loop': 0
+			}
+		},
+		{
+			files: ['./scripts/**'],
+			rules: {
+				// We could set the correct path to package.json for the following folder, as we're only using the scripts package as an abtraction, but list those dependencies in roots package.json file
+				'import/no-extraneous-dependencies': [
+					'error',
+					{ packageDir: './' }
+				],
+				// Node.js environment
+				'no-console': 'off'
 			}
 		}
 	],

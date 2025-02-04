@@ -10,25 +10,27 @@ const getSwitch = ({
 	checked,
 	visualAid,
 	disabled,
-	variant,
+	showLabel,
 	emphasis,
 	size,
 	icon,
-	iconAfter
+	iconAfter,
+	required
 }: DBSwitchProps) => (
 	<>
 		<DBSwitch
 			visualAid={visualAid}
 			defaultChecked={checked}
 			disabled={disabled}
-			variant={variant}
+			showLabel={showLabel}
 			size={size}
 			emphasis={emphasis}
 			icon={icon}
-			iconAfter={iconAfter}>
+			iconAfter={iconAfter}
+			required={required}>
 			{children}
 		</DBSwitch>
-		{variant === 'hidden' && (
+		{showLabel !== undefined && !showLabel && (
 			<DBInfotext semantic="informational" icon="none">
 				{children}
 			</DBInfotext>

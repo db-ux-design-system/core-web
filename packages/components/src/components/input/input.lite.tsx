@@ -3,11 +3,21 @@ import {
 	onMount,
 	onUpdate,
 	Show,
+	useDefaultProps,
 	useMetadata,
 	useRef,
-	useStore
+	useStore,
+	useTarget
 } from '@builder.io/mitosis';
-import { cls, delay, hasVoiceOver, isArrayOfStrings, uuid } from '../../utils';
+import {
+	cls,
+	delay,
+	getHideProp,
+	hasVoiceOver,
+	isArrayOfStrings,
+	stringPropVisible,
+	uuid
+} from '../../utils';
 import { DBInputProps, DBInputState } from './model';
 import {
 	DEFAULT_DATALIST_ID_SUFFIX,
@@ -26,19 +36,28 @@ import {
 	ValueLabelType
 } from '../../shared/model';
 import DBInfotext from '../infotext/infotext.lite';
-import { handleFrameworkEvent } from '../../utils/form-components';
+import {
+	handleFrameworkEventVue,
+	handleFrameworkEventAngular
+} from '../../utils/form-components';
 
-useMetadata({});
+useMetadata({
+	angular: {
+		nativeAttributes: ['disabled', 'required']
+	}
+});
+
+useDefaultProps<DBInputProps>({});
 
 export default function DBInput(props: DBInputProps) {
-	const ref = useRef<HTMLInputElement>(null);
+	const _ref = useRef<HTMLInputElement | null>(null);
 	// jscpd:ignore-start
 	const state = useStore<DBInputState>({
-		_id: 'input-' + uuid(),
-		_messageId: this._id + DEFAULT_MESSAGE_ID_SUFFIX,
-		_validMessageId: this._id + DEFAULT_VALID_MESSAGE_ID_SUFFIX,
-		_invalidMessageId: this._id + DEFAULT_INVALID_MESSAGE_ID_SUFFIX,
-		_dataListId: this._id + DEFAULT_DATALIST_ID_SUFFIX,
+		_id: undefined,
+		_messageId: undefined,
+		_validMessageId: undefined,
+		_invalidMessageId: undefined,
+		_dataListId: undefined,
 		_descByIds: '',
 		_value: '',
 		_voiceOverFallback: '',
@@ -60,21 +79,24 @@ export default function DBInput(props: DBInputProps) {
 				props.change(event);
 			}
 
-			handleFrameworkEvent(this, event);
+			useTarget({
+				angular: () => handleFrameworkEventAngular(this, event),
+				vue: () => handleFrameworkEventVue(() => {}, event)
+			});
 
 			/* For a11y reasons we need to map the correct message with the input */
-			if (!ref?.validity.valid || props.customValidity === 'invalid') {
+			if (!_ref?.validity.valid || props.validation === 'invalid') {
 				state._descByIds = state._invalidMessageId;
 				if (hasVoiceOver()) {
 					state._voiceOverFallback =
 						props.invalidMessage ??
-						ref?.validationMessage ??
+						_ref?.validationMessage ??
 						DEFAULT_INVALID_MESSAGE;
 					delay(() => (state._voiceOverFallback = ''), 1000);
 				}
 			} else if (
-				props.customValidity === 'valid' ||
-				(ref?.validity.valid &&
+				props.validation === 'valid' ||
+				(_ref?.validity.valid &&
 					(props.required ||
 						props.minLength ||
 						props.maxLength ||
@@ -86,7 +108,7 @@ export default function DBInput(props: DBInputProps) {
 						props.validMessage ?? DEFAULT_VALID_MESSAGE;
 					delay(() => (state._voiceOverFallback = ''), 1000);
 				}
-			} else if (props.message) {
+			} else if (stringPropVisible(props.message, props.showMessage)) {
 				state._descByIds = state._messageId;
 			} else {
 				state._descByIds = '';
@@ -125,22 +147,25 @@ export default function DBInput(props: DBInputProps) {
 	});
 
 	onMount(() => {
-		state._id = props.id ?? state._id;
+		const mId = props.id ?? `input-${uuid()}`;
+		state._id = mId;
+		state._messageId = mId + DEFAULT_MESSAGE_ID_SUFFIX;
+		state._validMessageId = mId + DEFAULT_VALID_MESSAGE_ID_SUFFIX;
+		state._invalidMessageId = mId + DEFAULT_INVALID_MESSAGE_ID_SUFFIX;
+		state._dataListId = mId + DEFAULT_DATALIST_ID_SUFFIX;
 	});
 
 	onUpdate(() => {
 		if (state._id) {
 			const messageId = state._id + DEFAULT_MESSAGE_ID_SUFFIX;
-			const validMessageId = state._id + DEFAULT_VALID_MESSAGE_ID_SUFFIX;
-			const invalidMessageId =
-				state._id + DEFAULT_INVALID_MESSAGE_ID_SUFFIX;
 			state._messageId = messageId;
-			state._validMessageId = validMessageId;
-			state._invalidMessageId = invalidMessageId;
+			state._validMessageId = state._id + DEFAULT_VALID_MESSAGE_ID_SUFFIX;
+			state._invalidMessageId =
+				state._id + DEFAULT_INVALID_MESSAGE_ID_SUFFIX;
 			state._dataListId =
 				props.dataListId ?? state._id + DEFAULT_DATALIST_ID_SUFFIX;
 
-			if (props.message) {
+			if (stringPropVisible(props.message, props.showMessage)) {
 				state._descByIds = messageId;
 			}
 		}
@@ -154,13 +179,16 @@ export default function DBInput(props: DBInputProps) {
 		<div
 			class={cls('db-input', props.className)}
 			data-variant={props.variant}
+			data-hide-label={getHideProp(props.showLabel)}
+			data-hide-icon={getHideProp(props.showIcon)}
 			data-icon={props.icon}
-			data-icon-after={props.iconAfter}>
+			data-icon-after={props.iconAfter}
+			data-hide-icon-after={getHideProp(props.showIcon)}>
 			<label htmlFor={state._id}>{props.label ?? DEFAULT_LABEL}</label>
 			<input
-				aria-invalid={props.customValidity === 'invalid'}
-				data-custom-validity={props.customValidity}
-				ref={ref}
+				aria-invalid={props.validation === 'invalid'}
+				data-custom-validity={props.validation}
+				ref={_ref}
 				id={state._id}
 				name={props.name}
 				type={props.type || 'text'}
@@ -176,7 +204,10 @@ export default function DBInput(props: DBInputProps) {
 				readOnly={props.readOnly}
 				form={props.form}
 				pattern={props.pattern}
-				autocomplete={props.autocomplete}
+				// @ts-ignore
+				autoComplete={props.autocomplete}
+				// @ts-ignore
+				autoFocus={props.autofocus}
 				onInput={(event: ChangeEvent<HTMLInputElement>) =>
 					state.handleInput(event)
 				}
@@ -210,7 +241,7 @@ export default function DBInput(props: DBInputProps) {
 				</datalist>
 			</Show>
 			{props.children}
-			<Show when={props.message}>
+			<Show when={stringPropVisible(props.message, props.showMessage)}>
 				<DBInfotext
 					size="small"
 					icon={props.messageIcon}
@@ -231,7 +262,7 @@ export default function DBInput(props: DBInputProps) {
 				size="small"
 				semantic="critical">
 				{props.invalidMessage ??
-					ref?.validationMessage ??
+					_ref?.validationMessage ??
 					DEFAULT_INVALID_MESSAGE}
 			</DBInfotext>
 

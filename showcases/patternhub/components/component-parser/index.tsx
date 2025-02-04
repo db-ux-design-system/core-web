@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import DBMultiSelect from '../src/components/multi-select/multi-select';
 
 import {
+	DBStack,
 	DBSwitch,
 	DBTabPanel,
 	DBTabs,
@@ -329,6 +330,14 @@ const ComponentSwitch = ({
 			<DBSwitch className={className} {...props}>
 				{resolvedContent}
 			</DBSwitch>
+		);
+	}
+
+	if (type === 'stack') {
+		return (
+			<DBStack className={className} {...props}>
+				{resolvedContent}
+			</DBStack>
 		);
 	}
 

@@ -11,10 +11,10 @@ If you use `width !== full` you are able to overwrite the `max-width` with `--db
 ```vue App.vue
 <!-- App.vue -->
 <script setup lang="ts">
-import { ref } from "vue";
+import { _ref } from "vue";
 import { DBDrawer } from "@db-ui/v-components";
 
-const openDrawer = ref<boolean>(false);
+const openDrawer = _ref<boolean>(false);
 
 const toggleDrawer = (open: boolean) => {
 	openDrawer.value = open;
@@ -24,6 +24,7 @@ const toggleDrawer = (open: boolean) => {
 <template>
 	<DBButton @click="toggleDrawer(true)">Open me</DBButton>
 	<DBDrawer :open="openDrawer" @close="toggleDrawer(false)">
+		<header v-slot:drawer-header>Optional drawer header</header>
 		My Drawer content
 	</DBDrawer>
 </template>

@@ -8,7 +8,7 @@ test.describe('DBLink', () => {
 		title: 'default',
 		description:
 			'should not mention icon, should have link and dimmed link (next())',
-		url: './#/02/link?page=interaction-states',
+		url: './#/02/link?page=disabled',
 		async testFn(voiceOver, nvda) {
 			const screenReader = voiceOver ?? nvda;
 			await screenReader?.previous(); // Link "Enabled (Default)/Hover/Pressed"

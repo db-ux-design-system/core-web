@@ -40,7 +40,7 @@ updates:
       - dependency-name: "sass"
       # We currently need to ignore eslint@v9
       - dependency-name: "eslint"
-        update-types: ["version-update:semver-minor"]
+        update-types: ["version-update:semver-major"]
     pull-request-branch-name:
       separator: "-"
     # https://github.com/dependabot/dependabot-core/issues/5226#issuecomment-1179434437
@@ -82,3 +82,6 @@ updates:
       mdx-js:
         patterns:
           - "@mdx-js/*"
+      guidepup:
+        patterns:
+          - "@guidepup/*"

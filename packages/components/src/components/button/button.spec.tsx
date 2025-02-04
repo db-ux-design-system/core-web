@@ -9,7 +9,7 @@ const defaultButton: any = (
 	<DBButton onClick={() => alert('test')}>Test</DBButton>
 );
 const defaultIconButton: any = (
-	<DBButton icon="person" noText={true}>
+	<DBButton icon="x_placeholder" noText={true}>
 		User
 	</DBButton>
 );
@@ -18,7 +18,7 @@ const testButton = () => {
 	for (const variant of ['outlined', 'brand', 'filled', 'ghost']) {
 		const variantButton: any = <DBButton variant={variant}>Test</DBButton>;
 		const variantIconButton: any = (
-			<DBButton icon="person" noText={true} variant={variant}>
+			<DBButton icon="x_placeholder" noText={true} variant={variant}>
 				User
 			</DBButton>
 		);
@@ -46,6 +46,11 @@ const testButton = () => {
 };
 
 const testA11y = () => {
+	test('should have same aria-snapshot', async ({ mount }, testInfo) => {
+		const component = await mount(defaultIconButton);
+		const snapshot = await component.ariaSnapshot();
+		expect(snapshot).toMatchSnapshot(`${testInfo.testId}.yaml`);
+	});
 	test('should not have A11y issues', async ({ page, mount }) => {
 		await mount(defaultButton);
 		const accessibilityScanResults = await new AxeBuilder({ page })

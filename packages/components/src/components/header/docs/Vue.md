@@ -24,10 +24,10 @@ import { DBHeader, DBBrand } from "@db-ui/v-components";
 ```vue App.vue
 <!-- App.vue -->
 <script>
-import { ref } from "vue";
+import { _ref } from "vue";
 import { DBHeader, DBBrand, DBLink, DBButton } from "@db-ui/v-components";
 
-const drawerOpen = ref(false);
+const drawerOpen = _ref(false);
 
 const toggleDrawer = (open: boolean) => {
 	drawerOpen.value = open;
@@ -45,7 +45,7 @@ const toggleDrawer = (open: boolean) => {
 			</DBButton>
 		</template>
 		<template v-slot:secondary-action>
-			<DBButton icon="person" variant="ghost" :no-text="true">
+			<DBButton icon="x_placeholder" variant="ghost" :no-text="true">
 				Profile
 			</DBButton>
 			<DBButton icon="alert" variant="ghost" :no-text="true">

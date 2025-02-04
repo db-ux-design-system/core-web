@@ -1,4 +1,4 @@
-import components from './components';
+import components, { Overwrite } from './components';
 
 import { readFileSync, writeFileSync } from 'node:fs';
 import { replaceInFileSync } from 'replace-in-file';
@@ -29,6 +29,28 @@ const overwriteEvents = (tmp: boolean) => {
 	);
 	writeFileSync(modelFilePath, modelFileContent);
 };
+
+// All things from foundations should get set on the root component - custom "data-" attributes shouldn't
+const rootProps = [
+	'data-icon-variant',
+	'data-icon-variant-before',
+	'data-icon-variant-after',
+	'data-icon-weight',
+	'data-icon-weight-before',
+	'data-icon-weight-after',
+	'data-interactive',
+	'data-force-mobile',
+	'data-color',
+	'data-container-color',
+	'data-bg-color',
+	'data-on-bg-color',
+	'data-color-scheme',
+	'data-font-size',
+	'data-headline-size',
+	'data-divider',
+	'data-focus',
+	'data-font'
+];
 
 /**
  * We want to make sure that the items inside a map containing a key
@@ -80,11 +102,7 @@ export default (tmp?: boolean) => {
 				htmlElement = htmlElements[0];
 			}
 
-			let replacements = [
-				{
-					from: `handleFrameworkEvent(this`,
-					to: `// handleFrameworkEvent(this`
-				},
+			const replacements: Overwrite[] = [
 				{
 					from: ` } from "react"`,
 					to: `, forwardRef, HTMLAttributes } from "react"`
@@ -94,16 +112,8 @@ export default (tmp?: boolean) => {
 					to: `function DB${upperComponentName}Fn(props: Omit<HTMLAttributes<${htmlElement}>, keyof DB${upperComponentName}Props> & DB${upperComponentName}Props, component: any) {`
 				},
 				{
-					from: `export default DB${upperComponentName};`,
-					to: `const DB${upperComponentName} = forwardRef<${htmlElement}, Omit<HTMLAttributes<${htmlElement}>, keyof DB${upperComponentName}Props> & DB${upperComponentName}Props>(DB${upperComponentName}Fn);\nexport default DB${upperComponentName};`
-				},
-				{
-					from: 'if (ref.current)',
-					to: 'if (ref?.current)'
-				},
-				{
-					from: '[ref.current]',
-					to: '[ref]'
+					from: `DB${upperComponentName}.defaultProps`,
+					to: `const DB${upperComponentName} = forwardRef<${htmlElement}, Omit<HTMLAttributes<${htmlElement}>, keyof DB${upperComponentName}Props> & DB${upperComponentName}Props>(DB${upperComponentName}Fn);\nDB${upperComponentName}.defaultProps`
 				},
 				{
 					from: '>(null);',
@@ -116,15 +126,23 @@ export default (tmp?: boolean) => {
 				},
 				{
 					from: '} from "../../utils"',
-					to: ', filterPassingProps } from "../../utils"'
+					to: ', filterPassingProps, getRootProps } from "../../utils"'
 				},
 				{
-					from: 'ref={ref}',
+					from: 'ref={_ref}',
 					to:
-						'ref={ref}\n' +
-						`{...filterPassingProps(props,${JSON.stringify(
-							component?.config?.react?.propsPassingFilter ?? []
-						)})}`
+						'ref={_ref}\n' +
+						`{...filterPassingProps(props,${JSON.stringify([
+							...rootProps,
+							...(component?.config?.react?.propsPassingFilter ??
+								[])
+						])})}`
+				},
+				{
+					from: 'className={',
+					to:
+						`{...getRootProps(props,${JSON.stringify(rootProps)})}` +
+						'\nclassName={'
 				},
 				/* We need to overwrite the internal state._value property just for react to have controlled components.
 				 * It works for Angular & Vue, so we overwrite it only for React.  */

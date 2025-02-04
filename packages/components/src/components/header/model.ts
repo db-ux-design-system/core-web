@@ -9,10 +9,32 @@ import {
 } from '../../shared/model';
 
 export type DBHeaderDefaultProps = {
-	brand?: unknown;
-	metaNavigation?: unknown;
-	primaryAction?: unknown;
-	secondaryAction?: unknown;
+	/**
+	 * Slot to pass in the DBBrand component
+	 */
+	brand?: any;
+	/**
+	 * Slot to pass in a meta navigation.
+	 * Desktop: Above the regular header
+	 * Mobile: Inside the drawer
+	 */
+	metaNavigation?: any;
+	/**
+	 * Slot to pass one or more elements like DBButton (e.g. search) as primary action.
+	 * Desktop: Shown next to the main-navigation
+	 * Mobile: Shown next to the brand
+	 */
+	primaryAction?: any;
+	/**
+	 * Slot to pass one or more elements like DBButton (e.g. profile, language, etc.) as secondary action.
+	 * Desktop: Shown seperated by divider at the end of the header
+	 * Mobile: Shown inside the drawer at the bottom.
+	 */
+	secondaryAction?: any;
+
+	/**
+	 * Open/closes the drawer for mobile header or if `forceMobile` is true.
+	 */
 	drawerOpen?: boolean;
 
 	/**
@@ -25,7 +47,6 @@ export type DBHeaderDefaultProps = {
 	/**
 	 * This attribute sets the label for the burger menu button for mobile headers.
 	 */
-
 	burgerMenuLabel?: string;
 };
 

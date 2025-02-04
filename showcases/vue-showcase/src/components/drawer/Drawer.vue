@@ -25,6 +25,7 @@ const toggleDrawer = (example?: string) => {
 				:width="exampleProps?.width"
 				:spacing="exampleProps?.spacing"
 				:direction="exampleProps?.direction"
+				:variant="exampleProps?.variant"
 				:open="openDrawer && openDrawer === exampleName"
 				@close="toggleDrawer(undefined)"
 			>

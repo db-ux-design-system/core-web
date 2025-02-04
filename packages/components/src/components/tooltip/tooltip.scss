@@ -1,9 +1,9 @@
-@use "@db-ui/foundations/build/scss/helpers/functions";
-@use "@db-ui/foundations/build/scss/variables";
-@use "@db-ui/foundations/build/scss/colors";
-@use "@db-ui/foundations/build/scss/fonts";
-@use "../../styles/popover-component";
-@use "../../styles/component";
+@use "@db-ui/foundations/build/styles/helpers/functions";
+@use "@db-ui/foundations/build/styles/variables";
+@use "@db-ui/foundations/build/styles/colors";
+@use "@db-ui/foundations/build/styles/fonts";
+@use "../../styles/internal/popover-component";
+@use "../../styles/internal/component";
 
 $tooltip-arrow-shadow-size: variables.$db-sizing-2xs;
 
@@ -12,6 +12,7 @@ $tooltip-arrow-shadow-size: variables.$db-sizing-2xs;
 	--default-card-border-radius: #{variables.$db-border-radius-xs};
 
 	@extend %db-overwrite-font-size-sm;
+	@extend %popover-center;
 	@extend %default-popover;
 
 	background-color: colors.$db-adaptive-bg-basic-level-1-default;

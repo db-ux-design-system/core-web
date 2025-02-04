@@ -2,19 +2,29 @@ import {
 	onMount,
 	onUpdate,
 	Show,
+	useDefaultProps,
 	useMetadata,
 	useRef,
-	useStore
+	useStore,
+	useTarget
 } from '@builder.io/mitosis';
 import type { DBTabItemProps, DBTabItemState } from './model';
-import { cls } from '../../utils';
+import { cls, getBooleanAsString, getHideProp } from '../../utils';
 import { ChangeEvent } from '../../shared/model';
-import { handleFrameworkEvent } from '../../utils/form-components';
+import {
+	handleFrameworkEventAngular,
+	handleFrameworkEventVue
+} from '../../utils/form-components';
 
-useMetadata({});
+useMetadata({
+	angular: {
+		nativeAttributes: ['disabled']
+	}
+});
+useDefaultProps<DBTabItemProps>({});
 
 export default function DBTabItem(props: DBTabItemProps) {
-	const ref = useRef<HTMLInputElement>(null);
+	const _ref = useRef<HTMLInputElement | null>(null);
 	// jscpd:ignore-start
 	const state = useStore<DBTabItemState>({
 		initialized: false,
@@ -29,9 +39,22 @@ export default function DBTabItem(props: DBTabItemProps) {
 			}
 
 			// We have different ts types in different frameworks, so we need to use any here
-			state._selected = (event.target as any)?.['checked'];
 
-			handleFrameworkEvent(this, event, 'checked');
+			useTarget({
+				stencil: () => {
+					const selected = (event.target as any)?.['checked'];
+					state._selected = getBooleanAsString(selected);
+				},
+				default: () => {
+					state._selected = (event.target as any)?.['checked'];
+				}
+			});
+
+			useTarget({
+				angular: () =>
+					handleFrameworkEventAngular(this, event, 'checked'),
+				vue: () => handleFrameworkEventVue(() => {}, event, 'checked')
+			});
 		}
 	});
 
@@ -41,11 +64,11 @@ export default function DBTabItem(props: DBTabItemProps) {
 	// jscpd:ignore-end
 
 	onUpdate(() => {
-		if (props.active && state.initialized && ref) {
-			ref.click();
+		if (props.active && state.initialized && _ref) {
+			_ref.click();
 			state.initialized = false;
 		}
-	}, [ref, state.initialized]);
+	}, [_ref, state.initialized]);
 
 	return (
 		<li class={cls('db-tab-item', props.className)} role="none">
@@ -53,13 +76,15 @@ export default function DBTabItem(props: DBTabItemProps) {
 				htmlFor={props.id}
 				data-icon={props.icon}
 				data-icon-after={props.iconAfter}
+				data-hide-icon={getHideProp(props.showIcon)}
+				data-hide-icon-after={getHideProp(props.showIcon)}
 				data-no-text={props.noText}>
 				<input
 					disabled={props.disabled}
 					aria-selected={state._selected}
 					aria-controls={props.controls}
 					checked={props.checked}
-					ref={ref}
+					ref={_ref}
 					type="radio"
 					role="tab"
 					id={props.id}

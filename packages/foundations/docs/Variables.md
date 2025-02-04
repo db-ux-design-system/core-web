@@ -1,15 +1,15 @@
 # Variables
 
--   You use Variables to style your pages and custom components.
--   The Variables are primarily for paddings, margins and all kinds of sizes.
--   All variables are automatically predefined with the correct variable based on the [density](../densities/readme).
--   Based on the density and the selected theme, the "real" value behind the variable can change.
+- You use Variables to style your pages and custom components.
+- The Variables are primarily for paddings, margins and all kinds of sizes.
+- All variables are automatically predefined with the correct variable based on the [density](../densities/readme).
+- Based on the density and the selected theme, the "real" value behind the variable can change.
 
 ## How to include variables
 
 For **CSS** and **Tailwind** you don't have to include a specific file, just follow the documentation for [foundations](../../foundations/readme).
 
-For **SCSS** you need to `@use` the import `@use @db-ui/foundations/build/scss/variables` in your `.scss` file, where you want to reference the specific variable.
+For **SCSS** you need to use the import `@use "@db-ui/foundations/build/styles/variables"` in your `.scss` file, where you want to reference the specific variable.
 
 ## Simple overview for advanced
 
@@ -21,9 +21,9 @@ For **SCSS** you need to `@use` the import `@use @db-ui/foundations/build/scss/v
 
 ## Spacing fixed
 
--   We use **spacing fixed** to add margins, paddings, gaps, etc.
--   We don't use them for `width` or `height`.
--   Those are the main variables you use all the time to build your page or component.
+- We use **spacing fixed** to add margins, paddings, gaps, etc.
+- We don't use them for `width` or `height`.
+- Those are the main variables you use all the time to build your page or component.
 
 ### How to use
 
@@ -43,10 +43,10 @@ You can see a visual preview [spacings fixed examples page](./examples).
 
 ## Spacing responsive
 
--   We use **spacing responsive** to add spacings which should change based on the users' device.
--   We don't use them for `width` or `height`.
--   Best example would be the padding for your `main` region which should be larger on a desktop device than mobile.
--   We recommend using `DBSection` from our [components library](../../components/readme). The component handles the responsive Layout for your app, you don't have to struggle which spacing would be the correct one.
+- We use **spacing responsive** to add spacings which should change based on the users' device.
+- We don't use them for `width` or `height`.
+- Best example would be the padding for your `main` region which should be larger on a desktop device than mobile.
+- We recommend using `DBSection` from our [components library](../../components/readme). The component handles the responsive Layout for your app, you don't have to struggle which spacing would be the correct one.
 
 ### How to use
 
@@ -64,9 +64,9 @@ You can see a visual preview [spacings responsive examples page](./examples).
 
 ## Sizing
 
--   We use **sizing** to set a fixed height to components (Button, Input, ...).
--   We don't use them for `padding` or `margin` except for absolute elements inside a component with a fixed height.
--   You should use a sizing variable if you want to align a custom component with another component, which has a fixed height.
+- We use **sizing** to set a fixed height to components (Button, Input, ...).
+- We don't use them for `padding` or `margin` except for absolute elements inside a component with a fixed height.
+- You should use a sizing variable if you want to align a custom component with another component, which has a fixed height.
 
 ### How to use
 

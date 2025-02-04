@@ -30,6 +30,9 @@ export type Component = {
 
 export const getComponents = (): Component[] => [
 	{
+		name: 'stack'
+	},
+	{
 		name: 'multi-select',
 		config: {
 			vue: {
@@ -162,7 +165,7 @@ export const getComponents = (): Component[] => [
 			react: [
 				{
 					from: 'onMouseMove={(event)',
-					to: 'onMouseMove={(event: MouseEvent)'
+					to: 'onMouseMove={(event: any)'
 				}
 			]
 		},
@@ -211,15 +214,7 @@ export const getComponents = (): Component[] => [
 	},
 
 	{
-		name: 'tag',
-		overwrites: {
-			angular: [
-				{
-					from: /this.ref.nativeElement/g,
-					to: 'this.ref?.nativeElement'
-				}
-			]
-		}
+		name: 'tag'
 	},
 	{
 		name: 'checkbox',

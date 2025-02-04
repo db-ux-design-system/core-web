@@ -24,12 +24,16 @@ const testComponent = () => {
 	});
 };
 const testA11y = () => {
+	test('should have same aria-snapshot', async ({ mount }, testInfo) => {
+		const component = await mount(comp);
+		const snapshot = await component.ariaSnapshot();
+		expect(snapshot).toMatchSnapshot(`${testInfo.testId}.yaml`);
+	});
 	test('should not have A11y issues', async ({ page, mount }) => {
 		await mount(comp);
 		const accessibilityScanResults = await new AxeBuilder({ page })
 			.include('.db-select')
 			.exclude('test-placeholder')
-			.disableRules('color-contrast')
 			.analyze();
 
 		expect(accessibilityScanResults.violations).toEqual([]);

@@ -1,6 +1,7 @@
 import {
 	onMount,
 	onUpdate,
+	useDefaultProps,
 	useMetadata,
 	useRef,
 	useStore
@@ -11,9 +12,10 @@ import { ClickEvent } from '../../shared/model';
 import { DEFAULT_ID } from '../../shared/constants';
 
 useMetadata({});
+useDefaultProps<DBTooltipProps>({});
 
 export default function DBTooltip(props: DBTooltipProps) {
-	const ref = useRef<HTMLDivElement>(null);
+	const _ref = useRef<HTMLDivElement | null>(null);
 	// jscpd:ignore-start
 	const state = useStore<DBTooltipState>({
 		_id: DEFAULT_ID,
@@ -22,7 +24,7 @@ export default function DBTooltip(props: DBTooltipProps) {
 			event.stopPropagation();
 		},
 		handleAutoPlacement: () => {
-			if (ref) handleDataOutside(ref);
+			if (_ref) handleDataOutside(_ref);
 		}
 	});
 
@@ -32,8 +34,8 @@ export default function DBTooltip(props: DBTooltipProps) {
 	});
 
 	onUpdate(() => {
-		if (ref && state.initialized) {
-			let parent = ref.parentElement;
+		if (_ref && state.initialized && state._id) {
+			let parent = _ref.parentElement;
 
 			if (parent && parent.localName.includes('tooltip')) {
 				// Angular workaround
@@ -52,7 +54,7 @@ export default function DBTooltip(props: DBTooltipProps) {
 
 			state.initialized = false;
 		}
-	}, [ref, state.initialized]);
+	}, [_ref, state.initialized]);
 
 	// jscpd:ignore-end
 
@@ -61,7 +63,7 @@ export default function DBTooltip(props: DBTooltipProps) {
 		<i
 			role="tooltip"
 			aria-hidden="true"
-			ref={ref}
+			ref={_ref}
 			class={cls('db-tooltip', props.className)}
 			id={state._id}
 			data-emphasis={props.emphasis}

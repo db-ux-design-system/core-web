@@ -1,5 +1,5 @@
+import StackComponent from '../components/stack';
 import MultiSelectComponent from '../components/multi-select';
-
 import SwitchComponent from '../components/switch';
 import TabsComponent from '../components/tabs';
 import TabItemComponent from '../components/tab-item';
@@ -153,6 +153,7 @@ export const NAVIGATION_ITEMS: NavigationItem[] = [
 		path: '01',
 		label: '01 Layout',
 		subNavigation: getSortedNavigationItems([
+			{ path: 'stack', label: 'Stack', component: <StackComponent /> },
 			{ path: 'card', label: 'Card', component: <CardComponent /> },
 			{ path: 'drawer', label: 'Drawer', component: <DrawerComponent /> },
 			{

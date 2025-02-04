@@ -2,6 +2,7 @@ import {
 	onMount,
 	Show,
 	Slot,
+	useDefaultProps,
 	useMetadata,
 	useRef,
 	useStore
@@ -13,8 +14,10 @@ import { DEFAULT_ID } from '../../shared/constants';
 
 useMetadata({});
 
+useDefaultProps<DBAccordionItemProps>({});
+
 export default function DBAccordionItem(props: DBAccordionItemProps) {
-	const ref = useRef<HTMLDetailsElement>(null);
+	const _ref = useRef<HTMLDetailsElement | null>(null);
 	// jscpd:ignore-start
 	const state = useStore<DBAccordionItemState>({
 		_id: DEFAULT_ID,
@@ -39,23 +42,25 @@ export default function DBAccordionItem(props: DBAccordionItemProps) {
 	// jscpd:ignore-end
 
 	return (
-		<details
-			ref={ref}
-			id={state._id}
-			class={cls('db-accordion-item', props.className)}
-			aria-disabled={getBooleanAsString(props.disabled)}
-			open={state._open}
-			name={props.name}>
-			<summary onClick={(event) => state.toggle(event)}>
-				<Show when={props.headlinePlain}>{props.headlinePlain}</Show>
-				<Show when={!props.headlinePlain}>
-					<Slot name="headline" />
-				</Show>
-			</summary>
-			<div>
-				<Show when={props.content}>{props.content}</Show>
-				<Show when={!props.content}>{props.children}</Show>
-			</div>
-		</details>
+		<li id={state._id} class={cls('db-accordion-item', props.className)}>
+			<details
+				aria-disabled={getBooleanAsString(props.disabled)}
+				ref={_ref}
+				open={state._open}>
+				<summary onClick={(event) => state.toggle(event)}>
+					<Show when={props.headlinePlain}>
+						{props.headlinePlain}
+					</Show>
+					<Show when={!props.headlinePlain}>
+						<Slot name="headline" />
+					</Show>
+				</summary>
+				<div>
+					<Show when={props.text} else={props.children}>
+						{props.text}
+					</Show>
+				</div>
+			</details>
+		</li>
 	);
 }

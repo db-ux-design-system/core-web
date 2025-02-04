@@ -1,6 +1,7 @@
 import { MultiSelectComponent } from '../components/multi-select/multi-select.component';
 
 import { Routes } from '@angular/router';
+import { StackComponent } from '../components/stack/stack.component';
 import { SwitchComponent } from '../components/switch/switch.component';
 import { TabsComponent } from '../components/tabs/tabs.component';
 import { TabItemComponent } from '../components/tab-item/tab-item.component';
@@ -147,6 +148,7 @@ export const NAVIGATION_ITEMS: NavItem[] = [
 		path: '01',
 		label: '01 Layout',
 		subNavigation: getSortedNavigationItems([
+			{ path: '01/stack', label: 'Stack', component: StackComponent },
 			{ path: '01/card', label: 'Card', component: CardComponent },
 			{ path: '01/drawer', label: 'Drawer', component: DrawerComponent },
 			{

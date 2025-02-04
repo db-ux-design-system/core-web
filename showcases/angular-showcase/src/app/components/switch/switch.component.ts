@@ -8,9 +8,11 @@ import { environment } from '../../../environments/environment';
 @Component({
 	selector: 'app-switch',
 	templateUrl: './switch.component.html',
-	imports: environment.webComponents
-		? [DefaultComponent]
-		: [DefaultComponent, DBSwitch, DBInfotext],
+	imports: [
+		environment.webComponents
+			? [DefaultComponent]
+			: [DefaultComponent, DBSwitch, DBInfotext]
+	],
 	schemas: [CUSTOM_ELEMENTS_SCHEMA],
 	standalone: true
 })

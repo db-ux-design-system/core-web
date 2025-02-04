@@ -3,6 +3,7 @@ import {
 	onMount,
 	onUpdate,
 	Show,
+	useDefaultProps,
 	useMetadata,
 	useRef,
 	useStore
@@ -15,9 +16,10 @@ import DBTabItem from '../tab-item/tab-item.lite';
 import DBTabPanel from '../tab-panel/tab-panel.lite';
 
 useMetadata({});
+useDefaultProps<DBTabsProps>({});
 
 export default function DBTabs(props: DBTabsProps) {
-	const ref = useRef<HTMLDivElement>(null);
+	const _ref = useRef<HTMLDivElement | null>(null);
 	// jscpd:ignore-start
 	const state = useStore<DBTabsState>({
 		_id: 'tabs-' + uuid(),
@@ -59,30 +61,32 @@ export default function DBTabs(props: DBTabsProps) {
 			});
 		},
 		initTabList() {
-			if (ref) {
-				const tabList = ref.querySelector('.db-tab-list');
+			if (_ref) {
+				const tabList = _ref.querySelector('.db-tab-list');
 				if (tabList) {
-					const container = tabList.querySelector('[role="tablist"]');
+					const container: HTMLElement | null =
+						tabList.querySelector('[role="tablist"]');
+					if (container) {
+						container.setAttribute(
+							'aria-orientation',
+							props.orientation || 'horizontal'
+						);
 
-					container.setAttribute(
-						'aria-orientation',
-						props.orientation || 'horizontal'
-					);
-
-					if (props.behaviour === 'arrows') {
-						state.scrollContainer = container;
-						state.evaluateScrollButtons(container);
-						container.addEventListener('scroll', () => {
+						if (props.behaviour === 'arrows') {
+							state.scrollContainer = container;
 							state.evaluateScrollButtons(container);
-						});
+							container.addEventListener('scroll', () => {
+								state.evaluateScrollButtons(container);
+							});
+						}
 					}
 				}
 			}
 		},
 		initTabs(init?: boolean) {
-			if (ref) {
+			if (_ref) {
 				const tabItems = Array.from<Element>(
-					ref.getElementsByClassName('db-tab-item')
+					_ref.getElementsByClassName('db-tab-item')
 				);
 				for (const tabItem of tabItems) {
 					const index: number = tabItems.indexOf(tabItem);
@@ -118,8 +122,8 @@ export default function DBTabs(props: DBTabsProps) {
 				}
 
 				const tabPanels = Array.from<Element>(
-					ref.querySelectorAll(
-						':is(& > .db-tab-panel, & > db-tab-panel > .db-tab-panel)'
+					_ref.querySelectorAll(
+						':is(:scope > .db-tab-panel, :scope > db-tab-panel > .db-tab-panel)'
 					)
 				);
 				for (const panel of tabPanels) {
@@ -138,18 +142,18 @@ export default function DBTabs(props: DBTabsProps) {
 	onMount(() => {
 		state._id = props.id || state._id;
 
-		state._name = props.name || uuid();
+		state._name = `tabs-${props.name || uuid()}`;
 
 		state.initialized = true;
 	});
 	// jscpd:ignore-end
 
 	onUpdate(() => {
-		if (ref && state.initialized) {
+		if (_ref && state.initialized) {
 			state.initTabList();
 			state.initTabs(true);
 
-			const tabList = ref.querySelector('.db-tab-list');
+			const tabList = _ref.querySelector('.db-tab-list');
 			if (tabList) {
 				const observer = new MutationObserver((mutations) => {
 					mutations.forEach((mutation) => {
@@ -171,11 +175,11 @@ export default function DBTabs(props: DBTabsProps) {
 
 			state.initialized = false;
 		}
-	}, [ref, state.initialized]);
+	}, [_ref, state.initialized]);
 
 	return (
 		<div
-			ref={ref}
+			ref={_ref}
 			id={state._id}
 			class={cls('db-tabs', props.className)}
 			data-orientation={props.orientation}

@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
-import { IconTypes } from './icon-types';
+import { IconTypes } from '@db-ui/foundations';
 
 export type GlobalProps = {
 	/**
@@ -33,6 +33,11 @@ export type GlobalProps = {
 	 * React specific for render process.
 	 */
 	key?: string;
+
+	/**
+	 * Before using please check for the [accessibility concerns](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/autofocus#accessibility_concerns)
+	 */
+	autofocus?: boolean;
 };
 
 export type GlobalState = {
@@ -60,6 +65,14 @@ export type IconProps = {
 	 * Define an icon by its identifier (like e.g. _user_, compare to [Icons](https://db-ui.github.io/mono/review/main/foundations/icons/overview)) to get displayed in front of the elements content.
 	 */
 	icon?: IconTypes;
+};
+
+export type ShowIconProps = {
+	/**
+	 * Enables or disables the visibility of the icon. The default value depends on the component.
+	 * For many components this property is optional to reflect Figma properties.
+	 */
+	showIcon?: boolean;
 };
 
 export type IconAfterProps = {
@@ -121,6 +134,26 @@ export type GapProps = {
 	gap?: boolean;
 };
 
+export const GapSpacingList = [
+	'none',
+	'3x-large',
+	'2x-large',
+	'x-large',
+	'large',
+	'medium',
+	'small',
+	'x-small',
+	'2x-small',
+	'3x-small'
+] as const;
+export type GapSpacingType = (typeof GapSpacingList)[number];
+export type GapSpacingProps = {
+	/**
+	 * Set the gap/spacing between elements
+	 */
+	gap?: GapSpacingType;
+};
+
 export type OverflowProps = {
 	/**
 	 * The overflow attribute sets a max-width and longer text will be dotted.
@@ -131,6 +164,9 @@ export type OverflowProps = {
 export const OrientationList = ['horizontal', 'vertical'] as const;
 export type OrientationType = (typeof OrientationList)[number];
 export type OrientationProps = {
+	/**
+	 * Change the orientation. Defaults to horizontal.
+	 */
 	orientation?: OrientationType;
 };
 
@@ -196,12 +232,8 @@ export type EmphasisProps = {
 	emphasis?: EmphasisType;
 };
 
-export const CustomValidityList = [
-	'invalid',
-	'valid',
-	'no-validation'
-] as const;
-export type CustomValidityType = (typeof CustomValidityList)[number];
+export const ValidationList = ['invalid', 'valid', 'no-validation'] as const;
+export type ValidationType = (typeof ValidationList)[number];
 
 export type RequiredProps = {
 	/**
@@ -209,12 +241,11 @@ export type RequiredProps = {
 	 */
 	required?: boolean;
 };
-
 export type FormProps = {
 	/**
-	 * Marks an input element as invalid (red) | valid(green) | no-validation(grey). Overwrites the :user-valid selector.
+	 * Marks an input element as invalid (red) / valid (green) / no-validation (grey). Overwrites the :user-valid selector.
 	 */
-	customValidity?: CustomValidityType;
+	validation?: ValidationType;
 	/**
 	 * The disabled attribute can be set to keep a user from clicking on the form element.
 	 */
@@ -234,6 +265,10 @@ export type FormProps = {
 	 */
 	name?: string;
 
+	/**
+	 * Enables/disables the visibility of the label
+	 */
+	showLabel?: boolean;
 	/**
 	 * The value property is to receive results from the native form element.
 	 */
@@ -255,21 +290,14 @@ export type FormTextProps = {
 	readOnly?: boolean;
 };
 
-export const CheckVariantList = ['hidden'] as const;
-export type CheckVariantType = (typeof CheckVariantList)[number];
 export type FormCheckProps = {
 	/**
 	 * Define the radio or checkbox elements checked state
 	 */
 	checked?: boolean;
-
-	/**
-	 * Hide the label of a radio/checkbox.
-	 */
-	variant?: CheckVariantType;
 };
 
-export const LabelVariantList = ['above', 'floating', 'hidden'] as const;
+export const LabelVariantList = ['above', 'floating'] as const;
 export type LabelVariantType = (typeof LabelVariantList)[number];
 export const AutoCompleteList = [
 	'off',
@@ -364,6 +392,11 @@ export type FormMessageProps = {
 	 * See https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/autocomplete
 	 */
 	autocomplete?: string | AutoCompleteType;
+
+	/**
+	 * Enables or disables the visibility of the message.
+	 */
+	showMessage?: boolean;
 };
 
 export type FormState = {
@@ -409,16 +442,52 @@ export const LinkReferrerPolicyList = [
 ] as const;
 export type LinkReferrerPolicyType = (typeof LinkReferrerPolicyList)[number];
 export type LinkProps = {
+	/**
+	 * Sets aria attribute based on [`aria-current`](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-current).
+	 */
 	current?: boolean | LinkCurrentType;
+	/**
+	 * Disables the link.
+	 */
 	disabled?: boolean;
+	/**
+	 * The [URL that the hyperlink points to](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a#href).
+	 */
 	href?: string;
+	/**
+	 * Hints for the human [language of the linked page or document](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a#hreflang).
+	 */
 	hreflang?: string;
+	/**
+	 * Sets aria attribute based on [`aria-label`](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-label).
+	 */
 	label?: string;
+	/**
+	 * Where to open the linked URL, as the name for a [browsing context](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a#target).
+	 */
 	target?: LinkTargetType;
+	/**
+	 * The relationship of the linked URL as space-separated link types.
+	 */
 	rel?: string;
+	/**
+	 * Sets aria role based on [`aria-role`](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles).
+	 */
 	role?: string;
+	/**
+	 * How much of the referrer to send when following the link.
+	 */
 	referrerpolicy?: LinkReferrerPolicyType;
+	/**
+	 * Sets aria role based on [`aria-selected`](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-selected).
+	 */
 	selected?: boolean;
+};
+
+export type TextProps = {
+	/**
+	 * Alternative for default slot/children.
+	 */
 	text?: string;
 };
 
@@ -468,11 +537,6 @@ export type ActiveProps = {
 	 * If the tab is checked/active.
 	 */
 	active?: boolean;
-};
-
-export type ItemClickState = {
-	clickedId: string;
-	handleItemClick: (id: string) => void;
 };
 
 export type InputEvent<T> = Event;

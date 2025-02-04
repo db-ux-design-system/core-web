@@ -3,12 +3,21 @@ import {
 	onMount,
 	onUpdate,
 	Show,
+	useDefaultProps,
 	useMetadata,
 	useRef,
-	useStore
+	useStore,
+	useTarget
 } from '@builder.io/mitosis';
 import { DBSelectOptionType, DBSelectProps, DBSelectState } from './model';
-import { cls, delay, hasVoiceOver, uuid } from '../../utils';
+import {
+	cls,
+	delay,
+	getHideProp,
+	hasVoiceOver,
+	stringPropVisible,
+	uuid
+} from '../../utils';
 import {
 	DEFAULT_INVALID_MESSAGE,
 	DEFAULT_INVALID_MESSAGE_ID_SUFFIX,
@@ -25,23 +34,27 @@ import {
 	InputEvent,
 	InteractionEvent
 } from '../../shared/model';
-import { handleFrameworkEvent } from '../../utils/form-components';
+import {
+	handleFrameworkEventAngular,
+	handleFrameworkEventVue
+} from '../../utils/form-components';
 
 useMetadata({
 	angular: {
-		nativeAttributes: ['value']
+		nativeAttributes: ['disabled', 'required', 'value']
 	}
 });
+useDefaultProps<DBSelectProps>({});
 
 export default function DBSelect(props: DBSelectProps) {
-	const ref = useRef<HTMLSelectElement>(null);
+	const _ref = useRef<HTMLSelectElement | null>(null);
 	// jscpd:ignore-start
 	const state = useStore<DBSelectState>({
-		_id: 'select-' + uuid(),
-		_messageId: this._id + DEFAULT_MESSAGE_ID_SUFFIX,
-		_validMessageId: this._id + DEFAULT_VALID_MESSAGE_ID_SUFFIX,
-		_invalidMessageId: this._id + DEFAULT_INVALID_MESSAGE_ID_SUFFIX,
-		_placeholderId: this._id + DEFAULT_PLACEHOLDER_ID_SUFFIX,
+		_id: undefined,
+		_messageId: undefined,
+		_validMessageId: undefined,
+		_invalidMessageId: undefined,
+		_placeholderId: '',
 		// Workaround for Vue output: TS for Vue would think that it could be a function, and by this we clarify that it's a string
 		_descByIds: '',
 		_value: '',
@@ -70,21 +83,24 @@ export default function DBSelect(props: DBSelectProps) {
 				props.change(event);
 			}
 
-			handleFrameworkEvent(this, event);
+			useTarget({
+				angular: () => handleFrameworkEventAngular(this, event),
+				vue: () => handleFrameworkEventVue(() => {}, event)
+			});
 
 			/* For a11y reasons we need to map the correct message with the select */
-			if (!ref?.validity.valid || props.customValidity === 'invalid') {
+			if (!_ref?.validity.valid || props.validation === 'invalid') {
 				state._descByIds = state._invalidMessageId;
 				if (hasVoiceOver()) {
 					state._voiceOverFallback =
 						props.invalidMessage ??
-						ref?.validationMessage ??
+						_ref?.validationMessage ??
 						DEFAULT_INVALID_MESSAGE;
 					delay(() => (state._voiceOverFallback = ''), 1000);
 				}
 			} else if (
-				props.customValidity === 'valid' ||
-				(ref?.validity.valid && props.required)
+				props.validation === 'valid' ||
+				(_ref?.validity.valid && props.required)
 			) {
 				state._descByIds = state._validMessageId;
 				if (hasVoiceOver()) {
@@ -92,7 +108,7 @@ export default function DBSelect(props: DBSelectProps) {
 						props.validMessage ?? DEFAULT_VALID_MESSAGE;
 					delay(() => (state._voiceOverFallback = ''), 1000);
 				}
-			} else if (props.message) {
+			} else if (stringPropVisible(props.message, props.showMessage)) {
 				state._descByIds = state._messageId;
 			} else {
 				state._descByIds = state._placeholderId;
@@ -122,23 +138,26 @@ export default function DBSelect(props: DBSelectProps) {
 	});
 
 	onMount(() => {
-		state._id = props.id || state._id;
 		state.initialized = true;
+		const mId = props.id ?? `select-${uuid()}`;
+		state._id = mId;
+		state._messageId = mId + DEFAULT_MESSAGE_ID_SUFFIX;
+		state._validMessageId = mId + DEFAULT_VALID_MESSAGE_ID_SUFFIX;
+		state._invalidMessageId = mId + DEFAULT_INVALID_MESSAGE_ID_SUFFIX;
+		state._placeholderId = mId + DEFAULT_PLACEHOLDER_ID_SUFFIX;
 	});
 
 	onUpdate(() => {
 		if (state._id && state.initialized) {
 			const messageId = state._id + DEFAULT_MESSAGE_ID_SUFFIX;
-			const validMessageId = state._id + DEFAULT_VALID_MESSAGE_ID_SUFFIX;
-			const invalidMessageId =
-				state._id + DEFAULT_INVALID_MESSAGE_ID_SUFFIX;
 			const placeholderId = state._id + DEFAULT_PLACEHOLDER_ID_SUFFIX;
 			state._messageId = messageId;
-			state._validMessageId = validMessageId;
-			state._invalidMessageId = invalidMessageId;
+			state._validMessageId = state._id + DEFAULT_VALID_MESSAGE_ID_SUFFIX;
+			state._invalidMessageId =
+				state._id + DEFAULT_INVALID_MESSAGE_ID_SUFFIX;
 			state._placeholderId = placeholderId;
 
-			if (props.message) {
+			if (stringPropVisible(props.message, props.showMessage)) {
 				state._descByIds = messageId;
 			} else {
 				state._descByIds = placeholderId;
@@ -156,12 +175,14 @@ export default function DBSelect(props: DBSelectProps) {
 		<div
 			class={cls('db-select', props.className)}
 			data-variant={props.variant}
-			data-icon={props.icon}>
+			data-hide-label={getHideProp(props.showLabel)}
+			data-icon={props.icon}
+			data-hide-icon={getHideProp(props.showIcon)}>
 			<label htmlFor={state._id}>{props.label ?? DEFAULT_LABEL}</label>
 			<select
-				aria-invalid={props.customValidity === 'invalid'}
-				data-custom-validity={props.customValidity}
-				ref={ref}
+				aria-invalid={props.validation === 'invalid'}
+				data-custom-validity={props.validation}
+				ref={_ref}
 				required={props.required}
 				disabled={props.disabled}
 				id={state._id}
@@ -232,7 +253,7 @@ export default function DBSelect(props: DBSelectProps) {
 			<span id={state._placeholderId}>
 				{props.placeholder ?? props.label}
 			</span>
-			<Show when={props.message}>
+			<Show when={stringPropVisible(props.message, props.showMessage)}>
 				<DBInfotext
 					size="small"
 					icon={props.messageIcon}
@@ -253,7 +274,7 @@ export default function DBSelect(props: DBSelectProps) {
 				size="small"
 				semantic="critical">
 				{props.invalidMessage ??
-					ref?.validationMessage ??
+					_ref?.validationMessage ??
 					DEFAULT_INVALID_MESSAGE}
 			</DBInfotext>
 

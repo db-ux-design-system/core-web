@@ -29,21 +29,15 @@ export * from './components/tooltip';
 export * from './components/tab-list';
 export * from './components/tabs';
 export * from './components/tab-panel';
-export * from './shared/all-icons';
 export * from './shared/constants';
-export * from './shared/icon-types';
 export * from './shared/model';
 export * from './utils/index';
 export * from './utils/navigation';
+export * from './components/stack';
 export * from "./components/multi-select";
-
 export * from "./components/multi-select-form-field";
-
 export * from "./components/multi-select-dropdown";
-
 export * from "./components/multi-select-header";
-
 export * from "./components/multi-select-list";
-
 export * from "./components/multi-select-list-item";
 

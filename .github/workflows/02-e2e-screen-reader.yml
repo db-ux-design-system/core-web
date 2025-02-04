@@ -26,7 +26,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: 🦮 Guidepup Setup
-        uses: guidepup/setup-action@0.17.0
+        uses: guidepup/setup-action@0.17.2
         with:
           record: true
 
@@ -45,10 +45,11 @@ jobs:
           path: build-showcases/react-showcase
 
       - name: 👩‍🔬 Test showcase with Playwright 🎭
+        shell: bash
         env:
           showcase: react-showcase
         run: |
-          npm run test:screen-reader:${{ env.OS }} --workspace=react-showcase -- --shard=${{ matrix.shardIndex }}/${{ matrix.shardTotal }}
+          npm run test-sr:${{ env.OS }} --workspace=react-showcase -- --shard=${{ matrix.shardIndex }}/${{ matrix.shardTotal }}
 
       - name: 🆙 Upload test results
         if: failure()
