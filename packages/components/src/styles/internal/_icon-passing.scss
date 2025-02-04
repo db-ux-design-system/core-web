@@ -19,6 +19,7 @@
 					var(--db-base-font-size) * var(--db-base-line-height)
 			);
 
+			/* stylelint-disable-next-line db-ui/use-spacings */
 			padding-inline-start: var(--db-padding-inline-start);
 		}
 	}

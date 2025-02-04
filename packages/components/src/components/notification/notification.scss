@@ -17,6 +17,7 @@
 		p,
 		&::before,
 		.db-button {
+			/* stylelint-disable-next-line db-ui/use-spacings */
 			margin-block-start: -2px;
 		}
 	}

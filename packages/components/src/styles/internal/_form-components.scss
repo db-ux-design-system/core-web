@@ -24,7 +24,7 @@ $label-size-height-2xs: calc(
 	var(--db-type-body-font-size-2xs) * var(--db-type-body-line-height-2xs)
 );
 
-$floating-label-size: calc(
+$floating-label-size-calc: calc(
 	#{variables.$db-spacing-fixed-3xs} + #{variables.$db-spacing-fixed-2xs} +
 		#{$label-size-height-2xs}
 );
@@ -107,7 +107,7 @@ $check-border-size: min(#{variables.$db-border-height-2xs}, 2px);
 			}
 
 			@if ($selector == textarea) {
-				padding-block-start: $floating-label-size;
+				padding-block-start: $floating-label-size-calc;
 				/* stylelint-disable-next-line at-rule-empty-line-before */
 			} @else {
 				// font-size label which is 2xs + smallest spacing
@@ -271,6 +271,7 @@ $input-valid-types: "color", "date", "datetime-local", "email", "file",
 				@include icons.icon-content("*");
 
 				// We're using 1px instead of a token here on purpose, as this is an edge case
+				/* stylelint-disable-next-line db-ui/use-spacings */
 				padding-inline-start: 1px;
 			}
 		}
@@ -309,6 +310,8 @@ $input-valid-types: "color", "date", "datetime-local", "email", "file",
 		appearance: none;
 		max-inline-size: 100%;
 		inline-size: 100%;
+
+		/* stylelint-disable-next-line db-ui/use-spacings */
 		padding-inline: var(
 				--db-form-component-padding-inline-start,
 				#{variables.$db-spacing-fixed-sm}
@@ -476,6 +479,7 @@ $input-valid-types: "color", "date", "datetime-local", "email", "file",
 		place-content: center center;
 		appearance: none;
 		aspect-ratio: 1;
+		/* stylelint-disable-next-line db-ui/use-border-height */
 		border: #{$check-border-size} solid
 			var(
 				--db-check-element-border-color,
