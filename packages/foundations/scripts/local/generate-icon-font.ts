@@ -1,5 +1,5 @@
-import { generateIconFonts } from '@db-ux/icon-font-tools';
 import { generateIconTypes } from './generate-icon-types.js';
+import { generateIconFonts } from '@db-ux/icon-font-tools';
 
 const defaultBuildDir = './assets/icons';
 
