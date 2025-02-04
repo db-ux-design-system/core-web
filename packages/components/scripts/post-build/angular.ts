@@ -79,8 +79,8 @@ const setControlValueAccessorReplacements = (
 		writeValue(value: any) {
 		  this.${valueAccessor} = value;
 
-		  if (this.ref?.nativeElement) {
-			 this.renderer.setProperty(this.ref?.nativeElement, '${valueAccessor}', value);
+		  if (this._ref?.nativeElement) {
+			 this.renderer.setProperty(this._ref?.nativeElement, '${valueAccessor}', value);
 		  }
 		}
 
@@ -175,12 +175,6 @@ export class ${directive.name}Directive {}
 
 export default (tmp?: boolean) => {
 	const outputFolder = `${tmp ? 'output/tmp' : 'output'}`;
-	// Activate vue specific event handling
-	replaceInFileSync({
-		files: `../../${outputFolder}/angular/src/utils/form-components.ts`,
-		from: /\/\/ ANGULAR:/g,
-		to: ''
-	});
 	for (const component of components) {
 		const componentName = component.name;
 		const upperComponentName = `DB${transformToUpperComponentName(component.name)}`;
@@ -199,8 +193,8 @@ export default (tmp?: boolean) => {
 				to: 'ngAfterContentChecked'
 			},
 			{
-				from: /this.ref.nativeElement/g,
-				to: 'this.ref?.nativeElement'
+				from: /this._ref.nativeElement/g,
+				to: 'this._ref?.nativeElement'
 			}
 		];
 

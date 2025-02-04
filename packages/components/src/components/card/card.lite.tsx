@@ -1,12 +1,19 @@
-import { useMetadata, useRef, useStore } from '@builder.io/mitosis';
+import {
+	useDefaultProps,
+	useMetadata,
+	useRef,
+	useStore
+} from '@builder.io/mitosis';
 import type { DBCardProps, DBCardState } from './model';
 import { cls } from '../../utils';
 import { ClickEvent } from '../../shared/model';
 
 useMetadata({});
 
+useDefaultProps<DBCardProps>({});
+
 export default function DBCard(props: DBCardProps) {
-	const ref = useRef<HTMLDivElement>(null);
+	const _ref = useRef<HTMLDivElement | null>(null);
 	// jscpd:ignore-start
 	const state = useStore<DBCardState>({
 		handleClick: (event: ClickEvent<HTMLElement>) => {
@@ -20,7 +27,7 @@ export default function DBCard(props: DBCardProps) {
 
 	return (
 		<div
-			ref={ref}
+			ref={_ref}
 			id={props.id}
 			class={cls('db-card', props.className)}
 			data-behaviour={props.behaviour}

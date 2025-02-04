@@ -1,10 +1,10 @@
-const react = require('./index');
+const angular = require('./index.cjs');
 
 module.exports = {
 	files: 'src/**',
-	targets: ['react'],
+	targets: ['angular'],
 	dest: '../../output/tmp',
 	options: {
-		react
+		angular
 	}
 };

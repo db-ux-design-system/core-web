@@ -42,7 +42,7 @@
 		"packages/components/src/components/tag/tag.spec.tsx",
 		"packages/foundations/assets/icons/functional/fonts/**",
 		"packages/foundations/assets/icons/fonts/**",
-		"packages/foundations/src",
+		"packages/foundations/dev",
 		"showcases/**/results/**",
 		"showcases/angular-showcase/.angular/cache",
 		"showcases/angular-showcase/.angular/cache/**",

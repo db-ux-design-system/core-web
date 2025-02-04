@@ -2,17 +2,15 @@ import Frameworks from './frameworks';
 
 import { replaceInFileSync } from 'replace-in-file';
 import components from './components.js';
-import { copySync, pathExistsSync } from 'fs-extra';
+import { existsSync, cpSync } from 'node:fs';
 
 export default () => {
 	for (const { name } of components) {
 		for (const framework of Frameworks) {
 			// TODO: Add other frameworks after Playwright supports them in component tests
 			if (framework === 'react' || framework === 'vue') {
-				if (
-					pathExistsSync(`./src/components/${name}/${name}.spec.tsx`)
-				) {
-					copySync(
+				if (existsSync(`./src/components/${name}/${name}.spec.tsx`)) {
+					cpSync(
 						`./src/components/${name}/${name}.spec.tsx`,
 						`../../output/${framework}/src/components/${name}/${name}.spec.tsx`
 					);
@@ -29,15 +27,15 @@ export default () => {
 						});
 					}
 				}
-				copySync(
+				cpSync(
 					`./test/playwright/boilerplate`,
 					`../../output/${framework}/playwright`,
-					{ overwrite: true }
+					{ recursive: true }
 				);
-				copySync(
+				cpSync(
 					`./test/playwright/config.ts`,
 					`../../output/${framework}/playwright.config.ts`,
-					{ overwrite: true }
+					{ recursive: true }
 				);
 			}
 		}

@@ -4,7 +4,7 @@
 
 import { writeFileSync } from 'node:fs';
 import * as prettier from 'prettier';
-import { ALL_ICONS } from '../public';
+import { ALL_ICONS } from '../../src';
 
 const generateIconOverview = async () => {
 	try {
@@ -56,7 +56,7 @@ data-semantic="informational"
 		const output: string = await prettier.format(iconHtml, {
 			parser: 'html'
 		});
-		writeFileSync('./src/icons.html', output);
+		writeFileSync('./dev/icons.html', output);
 	} catch (error) {
 		console.error(error);
 	}
