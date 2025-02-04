@@ -5,6 +5,8 @@
 @use "@db-ui/foundations/build/styles/icons";
 @use "../../styles/internal/form-components";
 
+// We need some fixed padding here to avoid layout shifts
+/* stylelint-disable-next-line db-ui/use-spacings */
 $switch-fixed-padding: helpers.px-to-rem(2);
 
 $switch-inactive-thumb-size: calc(
@@ -61,6 +63,7 @@ $checked-active-transition-size: calc(
 		box-sizing: content-box;
 		display: flex;
 		align-items: center;
+		/* stylelint-disable-next-line db-ui/use-spacings */
 		gap: $switch-fixed-padding;
 		background-color: colors.$db-adaptive-bg-basic-transparent-full-default;
 		border-radius: variables.$db-border-radius-full;

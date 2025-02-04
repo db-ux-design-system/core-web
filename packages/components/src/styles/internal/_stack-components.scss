@@ -97,6 +97,7 @@ $stack-gaps: (
 
 	@each $name, $gap in $stack-gaps {
 		&[data-gap="#{$name}"] {
+			/* stylelint-disable-next-line db-ui/use-spacings */
 			gap: #{$gap};
 		}
 	}
