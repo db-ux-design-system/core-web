@@ -2,6 +2,7 @@ import {
 	onMount,
 	onUpdate,
 	Show,
+	useDefaultProps,
 	useMetadata,
 	useRef,
 	useStore,
@@ -11,9 +12,9 @@ import { DBCheckboxProps, DBCheckboxState } from './model';
 import {
 	cls,
 	delay,
-	stringPropVisible,
 	getHideProp,
 	hasVoiceOver,
+	stringPropVisible,
 	uuid
 } from '../../utils';
 import {
@@ -24,7 +25,10 @@ import {
 	DEFAULT_VALID_MESSAGE_ID_SUFFIX
 } from '../../shared/constants';
 import { ChangeEvent, InteractionEvent } from '../../shared/model';
-import { handleFrameworkEvent } from '../../utils/form-components';
+import {
+	handleFrameworkEventAngular,
+	handleFrameworkEventVue
+} from '../../utils/form-components';
 import DBInfotext from '../infotext/infotext.lite';
 
 useMetadata({
@@ -33,8 +37,10 @@ useMetadata({
 	}
 });
 
+useDefaultProps<DBCheckboxProps>({});
+
 export default function DBCheckbox(props: DBCheckboxProps) {
-	const ref = useRef<HTMLInputElement>(null);
+	const _ref = useRef<HTMLInputElement | null>(null);
 	// jscpd:ignore-start
 	const state = useStore<DBCheckboxState>({
 		initialized: false,
@@ -54,23 +60,24 @@ export default function DBCheckbox(props: DBCheckboxProps) {
 			}
 
 			useTarget({
-				angular: () => handleFrameworkEvent(this, event, 'checked'),
-				vue: () => handleFrameworkEvent(this, event, 'checked')
+				angular: () =>
+					handleFrameworkEventAngular(this, event, 'checked'),
+				vue: () => handleFrameworkEventVue(() => {}, event, 'checked')
 			});
 
 			/* For a11y reasons we need to map the correct message with the checkbox */
-			if (!ref?.validity.valid || props.validation === 'invalid') {
+			if (!_ref?.validity.valid || props.validation === 'invalid') {
 				state._descByIds = state._invalidMessageId;
 				if (hasVoiceOver()) {
 					state._voiceOverFallback =
 						props.invalidMessage ??
-						ref?.validationMessage ??
+						_ref?.validationMessage ??
 						DEFAULT_INVALID_MESSAGE;
 					delay(() => (state._voiceOverFallback = ''), 1000);
 				}
 			} else if (
 				props.validation === 'valid' ||
-				(ref?.validity.valid && props.required)
+				(_ref?.validity.valid && props.required)
 			) {
 				state._descByIds = state._validMessageId;
 				if (hasVoiceOver()) {
@@ -159,7 +166,7 @@ export default function DBCheckbox(props: DBCheckboxProps) {
 				<input
 					aria-invalid={props.validation === 'invalid'}
 					data-custom-validity={props.validation}
-					ref={ref}
+					ref={_ref}
 					type="checkbox"
 					id={state._id}
 					name={props.name}
@@ -204,7 +211,7 @@ export default function DBCheckbox(props: DBCheckboxProps) {
 				size="small"
 				semantic="critical">
 				{props.invalidMessage ??
-					ref?.validationMessage ??
+					_ref?.validationMessage ??
 					DEFAULT_INVALID_MESSAGE}
 			</DBInfotext>
 

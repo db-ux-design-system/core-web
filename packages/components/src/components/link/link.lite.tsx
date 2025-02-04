@@ -1,18 +1,22 @@
-import { Show, useMetadata, useRef, useStore } from '@builder.io/mitosis';
+import {
+	Show,
+	useDefaultProps,
+	useMetadata,
+	useRef,
+	useStore
+} from '@builder.io/mitosis';
 import { DBLinkProps, DBLinkState } from './model';
 import { cls, getBooleanAsString, getHideProp } from '../../utils';
 import { ClickEvent } from '../../shared/model';
-import { DEFAULT_ID } from '../../shared/constants';
 
-useMetadata({
-	isAttachedToShadowDom: false
-});
+useMetadata({});
+
+useDefaultProps<DBLinkProps>({});
 
 export default function DBLink(props: DBLinkProps) {
-	const ref = useRef<HTMLAnchorElement>(null);
+	const _ref = useRef<HTMLAnchorElement | null>(null);
 	// jscpd:ignore-start
 	const state = useStore<DBLinkState>({
-		_id: DEFAULT_ID,
 		handleClick: (event: ClickEvent<HTMLAnchorElement>) => {
 			if (props.onClick) {
 				props.onClick(event);
@@ -24,7 +28,7 @@ export default function DBLink(props: DBLinkProps) {
 
 	return (
 		<a
-			ref={ref}
+			ref={_ref}
 			id={props.id}
 			class={cls('db-link', props.className)}
 			href={props.href}

@@ -22,7 +22,7 @@ export const generateIconTypes = ({
 		const icons = Object.keys(allIcons);
 
 		const generatedDisclaimer = '/* This file was generated */\n';
-		const iconTypes = `${generatedDisclaimer}export type IconTypes = string |\n ${icons
+		const iconTypes = `${generatedDisclaimer}export type BaseIconTypes = ${icons
 			.map((icon) => `"${icon}"`)
 			.join('|\n')};`;
 		const allIconsFile = `${generatedDisclaimer}export const ALL_ICONS: string[] = ${JSON.stringify(
@@ -31,7 +31,7 @@ export const generateIconTypes = ({
 
 		const filesToWrite = [
 			{
-				name: 'icon-types',
+				name: 'base-icon-types',
 				content: iconTypes
 			},
 			{
