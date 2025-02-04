@@ -2,6 +2,7 @@ import {
 	onInit,
 	onUpdate,
 	Show,
+	useDefaultProps,
 	useMetadata,
 	useRef,
 	useStore
@@ -10,9 +11,10 @@ import { DBTagProps, DBTagState } from './model';
 import { cls, getBooleanAsString, getHideProp } from '../../utils';
 
 useMetadata({});
+useDefaultProps<DBTagProps>({});
 
 export default function DBTag(props: DBTagProps) {
-	const ref = useRef<HTMLDivElement>(null);
+	const _ref = useRef<HTMLDivElement | null>(null);
 	const state = useStore<DBTagState>({
 		initialized: false,
 		handleRemove: () => {
@@ -35,22 +37,22 @@ export default function DBTag(props: DBTagProps) {
 	});
 
 	onUpdate(() => {
-		if (state.initialized && ref && props.disabled !== undefined) {
-			const button: HTMLButtonElement = ref?.querySelector(
+		if (state.initialized && _ref && props.disabled !== undefined) {
+			const button: HTMLButtonElement | null = _ref?.querySelector(
 				'button:not(.db-tab-remove-button)'
 			);
-			const input: HTMLInputElement = ref?.querySelector('input');
+			const input: HTMLInputElement | null = _ref?.querySelector('input');
 			for (const element of [button, input]) {
 				if (element) {
 					element.disabled = props.disabled;
 				}
 			}
 		}
-	}, [state.initialized, props.disabled, ref]);
+	}, [state.initialized, props.disabled, _ref]);
 
 	return (
 		<div
-			ref={ref}
+			ref={_ref}
 			id={props.id}
 			class={cls('db-tag', props.className)}
 			data-disabled={getBooleanAsString(props.disabled)}

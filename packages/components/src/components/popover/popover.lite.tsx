@@ -2,6 +2,7 @@ import {
 	onMount,
 	onUpdate,
 	Slot,
+	useDefaultProps,
 	useMetadata,
 	useRef,
 	useStore
@@ -10,17 +11,18 @@ import { DBPopoverProps, DBPopoverState } from './model';
 import { cls, getBooleanAsString, handleDataOutside } from '../../utils';
 
 useMetadata({});
+useDefaultProps<DBPopoverProps>({});
 
 export default function DBPopover(props: DBPopoverProps) {
-	const ref = useRef<HTMLDivElement>(null);
+	const _ref = useRef<HTMLDivElement | null>(null);
 	// jscpd:ignore-start
 	const state = useStore<DBPopoverState>({
 		initialized: false,
 		isExpanded: false,
 		handleAutoPlacement: () => {
 			state.isExpanded = true;
-			if (!ref) return;
-			const article = ref.querySelector('article');
+			if (!_ref) return;
+			const article = _ref.querySelector('article');
 			if (!article) return;
 			handleDataOutside(article);
 		},
@@ -39,8 +41,8 @@ export default function DBPopover(props: DBPopoverProps) {
 			}
 		},
 		getTrigger: (): Element | null => {
-			if (ref) {
-				const children: Element[] = Array.from(ref.children);
+			if (_ref) {
+				const children: Element[] = Array.from(_ref.children);
 				if (children.length >= 2) {
 					const firstChild = children[0];
 					if (firstChild.tagName.includes('-')) {
@@ -63,29 +65,29 @@ export default function DBPopover(props: DBPopoverProps) {
 	});
 
 	onUpdate(() => {
-		if (ref && state.initialized) {
+		if (_ref && state.initialized) {
 			const child = state.getTrigger();
 			if (child) {
 				child.ariaHasPopup = 'true';
 			}
 			state.initialized = false;
 		}
-	}, [ref, state.initialized]);
+	}, [_ref, state.initialized]);
 
 	onUpdate(() => {
-		if (ref) {
+		if (_ref) {
 			const child = state.getTrigger();
 			if (child) {
 				child.ariaExpanded = Boolean(state.isExpanded).toString();
 			}
 		}
-	}, [ref, state.isExpanded]);
+	}, [_ref, state.isExpanded]);
 
 	// jscpd:ignore-end
 
 	return (
 		<div
-			ref={ref}
+			ref={_ref}
 			id={props.id}
 			class={cls('db-popover', props.className)}
 			onFocus={() => state.handleAutoPlacement()}

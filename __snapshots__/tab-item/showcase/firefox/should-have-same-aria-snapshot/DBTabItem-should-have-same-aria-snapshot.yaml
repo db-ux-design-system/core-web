@@ -2,48 +2,48 @@
   - heading "DBTabItem" [level=1]
   - link "Density arrow_up_right\" / \""
   - tablist:
-    - tab "Functional": "on"
+    - tab "Functional"
     - text: Functional
   - tablist:
-    - tab "(Default) Regular": "on"
+    - tab "(Default) Regular"
     - text: (Default) Regular
   - tablist:
-    - tab "Expressive": "on"
+    - tab "Expressive"
     - text: Expressive
   - link "States arrow_up_right\" / \""
   - tablist:
-    - tab "(Default) Enabled": "on"
+    - tab "(Default) Enabled"
     - text: (Default) Enabled
   - tablist:
-    - tab "active" [selected]: "on"
+    - tab "active" [selected]
     - text: active
   - tablist:
-    - tab "disabled" [disabled]: "on"
+    - tab "disabled" [disabled]
     - text: disabled
   - link "Content arrow_up_right\" / \""
   - tablist:
-    - tab "(Default) Text": "on"
+    - tab "(Default) Text"
     - text: (Default) Text
   - tablist:
-    - tab "Text - Icon (Leading)": "on"
+    - tab "Text - Icon (Leading)"
     - text: Text - Icon (Leading)
   - tablist:
-    - tab "Text - Icon (Trailing)": "on"
+    - tab "Text - Icon (Trailing)"
     - text: Text - Icon (Trailing)
   - tablist:
-    - tab "Icon": "on"
+    - tab "Icon"
     - text: Icon
   - link "Behavior arrow_up_right\" / \""
   - tablist:
-    - tab "(Default) Auto Width": "on"
+    - tab "(Default) Auto Width"
     - text: (Default) Auto Width
   - tablist:
-    - tab "Width full": "on"
+    - tab "Width full"
     - text: Width full
   - link "Content Alignment Full Width arrow_up_right\" / \""
   - tablist:
-    - tab "Left": "on"
+    - tab "Left"
     - text: Left
   - tablist:
-    - tab "Centered": "on"
+    - tab "Centered"
     - text: Centered

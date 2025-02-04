@@ -1,4 +1,4 @@
-const vue = require('./index');
+const vue = require('./index.cjs');
 
 module.exports = {
 	files: 'src/**',
