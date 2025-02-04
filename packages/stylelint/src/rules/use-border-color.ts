@@ -31,7 +31,7 @@ const allowedValues: AllowedType = {
 	includes: [
 		{
 			include: 'on-bg-basic-emphasis',
-			or: ['100', '70', '60', '50']
+			or: ['100', '90', '80', '70', '60', '50']
 		},
 		{ include: 'on-bg-inverted' }
 	],
