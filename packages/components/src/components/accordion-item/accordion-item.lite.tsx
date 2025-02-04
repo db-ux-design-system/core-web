@@ -2,6 +2,7 @@ import {
 	onMount,
 	Show,
 	Slot,
+	useDefaultProps,
 	useMetadata,
 	useRef,
 	useStore
@@ -13,8 +14,10 @@ import { DEFAULT_ID } from '../../shared/constants';
 
 useMetadata({});
 
+useDefaultProps<DBAccordionItemProps>({});
+
 export default function DBAccordionItem(props: DBAccordionItemProps) {
-	const ref = useRef<HTMLDetailsElement>(null);
+	const _ref = useRef<HTMLDetailsElement | null>(null);
 	// jscpd:ignore-start
 	const state = useStore<DBAccordionItemState>({
 		_id: DEFAULT_ID,
@@ -42,7 +45,7 @@ export default function DBAccordionItem(props: DBAccordionItemProps) {
 		<li id={state._id} class={cls('db-accordion-item', props.className)}>
 			<details
 				aria-disabled={getBooleanAsString(props.disabled)}
-				ref={ref}
+				ref={_ref}
 				open={state._open}>
 				<summary onClick={(event) => state.toggle(event)}>
 					<Show when={props.headlinePlain}>

@@ -11,16 +11,16 @@
     "preview": "npx http-server ../../build-showcases",
     "regenerate:screenshots": "cross-env showcase=react-showcase npx playwright test -c ../playwright.showcase-snapshots.ts --update-snapshots",
     "start": "vite",
-    "test:e2e": "cross-env showcase=react-showcase npx playwright test --config=../playwright.config.ts",
-    "test:screen-reader:macos": "cross-env showcase=react-showcase npx playwright test --config=../playwright.screen-reader.macos.ts",
-    "test:screen-reader:windows": "cross-env showcase=react-showcase npx playwright test --config=../playwright.screen-reader.windows.ts"
+    "test-sr:macos": "cross-env showcase=react-showcase npx playwright test --config=../playwright.screen-reader.macos.ts",
+    "test-sr:windows": "cross-env showcase=react-showcase npx playwright test --config=../playwright.screen-reader.windows.ts",
+    "test:e2e": "cross-env showcase=react-showcase npx playwright test --config=../playwright.config.ts"
   },
   "dependencies": {
-    "@db-ux/db-theme": "0.4.0",
+    "@db-ux/db-theme": "0.5.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
-    "react-router-dom": "7.1.3",
-    "sa11y": "4.0.2"
+    "react-router-dom": "7.1.5",
+    "sa11y": "4.0.3"
   },
   "devDependencies": {
     "@types/react": "^18.3.13",

@@ -199,9 +199,21 @@ In HTML:
 ### Tailwind
 
 Check the required imports for [CSS](https://db-ui.github.io/mono/review/main/foundations/readme?current=css) to enable all tokens and defaults.
+
+#### Tailwind v4
+
+```css
+@import "tailwindcss";
+@import "@db-ui/foundations/build/tailwind/theme/index.css";
+```
+
+#### Tailwind v3
+
+> **Note:** In Tailwind v4 you can use the config with `@config "tailwind.config.[js|ts]";` inside your `.css` file as well.
+
 After this you can extend your tailwind config like this:
 
-#### Javascript
+##### Javascript
 
 ```javascript
 //tailwind.config.js
@@ -223,7 +235,7 @@ export default {
 };
 ```
 
-#### Typescript
+##### Typescript
 
 ```typescript
 //tailwind.config.ts

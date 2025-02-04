@@ -8,8 +8,8 @@ For general installation and configuration take a look at the [v-components](htt
 <!-- App.vue -->
 <script setup lang="ts">
 import { DBRadio } from "@db-ui/v-components";
-import { ref } from "vue";
-const radio = ref("");
+import { _ref } from "vue";
+const radio = _ref("");
 
 const radioNames = ["X", "Y", "Z"];
 </script>
