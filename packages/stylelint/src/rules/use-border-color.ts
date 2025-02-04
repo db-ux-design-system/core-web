@@ -2,8 +2,8 @@ import stylelint from 'stylelint';
 import { createRule } from '../shared/create-rule.js';
 import {
 	type AllowedType,
-	DefaultColorsExact,
-	DefaultExact,
+	defaultColorsExact,
+	defaultExact,
 	getDeclarationRuleFunction
 } from '../shared/index.js';
 
@@ -14,8 +14,8 @@ const {
 const ruleName = 'db-ui/use-border-color';
 
 const messages = ruleMessages(ruleName, {
-	rejected: (prop: string, value: string) =>
-		`Unexpected value: ${value} within prop: ${prop}.\n` +
+	rejected: (property: string, value: string) =>
+		`Unexpected value: ${value} within prop: ${property}.\n` +
 		"Please use 'db-xx-on-bg-emphasis-[100|70|60|50]' instead."
 });
 
@@ -35,7 +35,7 @@ const allowedValues: AllowedType = {
 		},
 		{ include: 'on-bg-inverted' }
 	],
-	exact: [...DefaultExact, ...DefaultColorsExact],
+	exact: [...defaultExact, ...defaultColorsExact],
 	type: 'some'
 };
 

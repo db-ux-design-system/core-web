@@ -2,7 +2,7 @@ import stylelint from 'stylelint';
 import { createRule } from '../shared/create-rule.js';
 import {
 	type AllowedType,
-	DefaultExact,
+	defaultExact,
 	getDeclarationRuleFunction
 } from '../shared/index.js';
 
@@ -13,8 +13,8 @@ const {
 const ruleName = 'db-ui/use-border-height';
 
 const messages = ruleMessages(ruleName, {
-	rejected: (prop: string, value: string) =>
-		`Unexpected value: ${value} within prop: ${prop}.\n` +
+	rejected: (property: string, value: string) =>
+		`Unexpected value: ${value} within prop: ${property}.\n` +
 		"Please use 'db-border-height-xx' instead of px or rem."
 });
 
@@ -28,7 +28,7 @@ const allowedDeclarations: AllowedType = {
 };
 const allowedValues: AllowedType = {
 	includes: ['db-border-height'],
-	exact: DefaultExact,
+	exact: defaultExact,
 	type: 'some'
 };
 

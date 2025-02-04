@@ -1,4 +1,7 @@
-import stylelint, { Config } from 'stylelint';
+/* We only use this for tests, we allow no-console */
+/* eslint-disable no-console */
+
+import stylelint, { type Config } from 'stylelint';
 import { expect } from 'vitest';
 
 const { lint } = stylelint;
@@ -31,7 +34,7 @@ export const getDefaultTest = async (
 	const {
 		results: [{ warnings, parseErrors }]
 	} = await lint({
-		files: [`./test/fixtures/test.scss`, `./test/fixtures/ignore.css`],
+		files: ['./test/fixtures/test.scss', './test/fixtures/ignore.css'],
 		config: {
 			...config,
 			rules: { [ruleName]: [true, { ignore: ['ignore.css'] }] }
@@ -52,7 +55,7 @@ export const getScssAllowTest = async (
 	const {
 		results: [{ warnings, parseErrors }]
 	} = await lint({
-		files: [`./test/fixtures/test.scss`],
+		files: ['./test/fixtures/test.scss'],
 		config: {
 			...config,
 			rules: {
@@ -76,14 +79,12 @@ export const getScssAllowTest = async (
 	expect(parseErrors).toHaveLength(0);
 	expect(warnings).toHaveLength(length);
 };
-export const getVueTest = async (
-	config: Config,
-	length: number
-) => {
+
+export const getVueTest = async (config: Config, length: number) => {
 	const {
 		results: [{ warnings, parseErrors }]
 	} = await lint({
-		files: [`./test/fixtures/test.vue`],
+		files: ['./test/fixtures/test.vue'],
 		config
 	});
 
@@ -91,4 +92,4 @@ export const getVueTest = async (
 
 	expect(parseErrors).toHaveLength(0);
 	expect(warnings).toHaveLength(length);
-}
+};

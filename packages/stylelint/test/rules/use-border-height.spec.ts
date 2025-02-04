@@ -1,12 +1,12 @@
 import { describe, test } from 'vitest';
-import { Config } from 'stylelint';
+import { type Config } from 'stylelint';
 import {
 	defaultConfig,
 	getDefaultTest,
 	getScssAllowTest,
 	getVueTest
-} from '../defaults';
-import useBorderHeight from '../../src/rules/use-border-height';
+} from '../defaults.js';
+import useBorderHeight from '../../src/rules/use-border-height.js';
 
 const ruleName = 'db-ui/use-border-height';
 

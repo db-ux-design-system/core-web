@@ -1,12 +1,12 @@
 import { describe, test } from 'vitest';
-import { Config } from 'stylelint';
+import { type Config } from 'stylelint';
 import {
 	defaultConfig,
 	getDefaultTest,
 	getScssAllowTest,
 	getVueTest
-} from '../defaults';
-import useBorderColor from '../../src/rules/use-border-color';
+} from '../defaults.js';
+import useBorderColor from '../../src/rules/use-border-color.js';
 
 const ruleName = 'db-ui/use-border-color';
 

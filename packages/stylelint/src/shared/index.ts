@@ -1,12 +1,12 @@
 import stylelint, { type PostcssResult } from 'stylelint';
+import type { Declaration } from 'postcss';
 import type { RuleFunctionType } from './create-rule.js';
-import { Declaration } from 'postcss';
 
 const {
 	utils: { report }
 } = stylelint;
 
-export const DefaultExact: string[] = [
+export const defaultExact: string[] = [
 	'0px',
 	'0',
 	'auto',
@@ -15,10 +15,7 @@ export const DefaultExact: string[] = [
 	'unset'
 ];
 
-export const DefaultColorsExact: string[] = [
-	'transparent',
-	'currentcolor'
-];
+export const defaultColorsExact: string[] = ['transparent', 'currentcolor'];
 
 export type IncludesAllowType = {
 	include: string;
@@ -38,38 +35,47 @@ export type AllowedType = {
 	type?: 'every' | 'some';
 };
 
+const checkIncludes = (value: string, allowedValues: AllowedType): boolean => {
+	return Boolean(
+		allowedValues.includes?.find((include) => {
+			if (typeof include === 'string') {
+				return value.includes(include);
+			}
+
+			return (
+				value.includes(include.include) &&
+				(include.and
+					? include.and.every((a) => value.includes(a))
+					: include.or
+						? include.or.some((a) => value.includes(a))
+						: true)
+			);
+		})
+	);
+};
+
 export const isAllowed = (
 	value: string | string[],
 	allowedValues: AllowedType
 ): boolean => {
-	const splitValue =
-		value instanceof Array ? value : value.replace(/\s+/g, ' ').split(' ');
+	const splitValue = Array.isArray(value)
+		? value
+		: value.replaceAll(/\s+/g, ' ').split(' ');
 
 	const allowMap = splitValue.map(
 		(val) =>
-			allowedValues.exact?.includes(val) ||
-			!!allowedValues.startsWith?.find((sw) => val.startsWith(sw)) ||
-			!!allowedValues.includes?.find((include) => {
-				if (typeof include === 'string') {
-					return val.includes(include);
-				}
-				return (
-					val.includes(include.include) &&
-					(include.and
-						? include.and.every((a) => val.includes(a))
-						: include.or
-							? include.or.some((a) => val.includes(a))
-							: true)
-				);
-			}
-			})
+			Boolean(allowedValues.exact?.includes(val)) ||
+			Boolean(
+				allowedValues.startsWith?.find((sw) => val.startsWith(sw))
+			) ||
+			checkIncludes(val, allowedValues)
 	);
 
 	if (allowedValues.type === 'some') {
-		return allowMap.some((val) => val);
+		return allowMap.some(Boolean);
 	}
 
-	return allowMap.every((val) => val);
+	return allowMap.every(Boolean);
 };
 
 export type DefaultRuleOptions = {
@@ -105,7 +111,7 @@ export const isDefaultRuleOptionsHit = ({
 	)
 		return true;
 
-	return !!(options?.allow && isAllowed([value], options.allow));
+	return Boolean(options?.allow && isAllowed([value], options.allow));
 };
 
 export const getDeclarationRuleFunction = ({
@@ -117,7 +123,9 @@ export const getDeclarationRuleFunction = ({
 	allowedDeclarations: AllowedType;
 	allowedValues: AllowedType;
 	ruleName: string;
-	messages: any;
+	messages: {
+		rejected: (props: string, value: string) => string;
+	};
 }) => {
 	const ruleFunction: RuleFunctionType<DefaultRuleOptions> = (
 		root,
