@@ -34,6 +34,7 @@
 		--db-icon-margin-start: #{variables.$db-spacing-fixed-2xs};
 
 		&::after {
+			/* stylelint-disable-next-line db-ui/use-spacings */
 			margin-inline-start: var(--db-icon-margin-start);
 		}
 	}

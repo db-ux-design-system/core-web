@@ -33,6 +33,12 @@ jobs:
           name: db-ui-migration-build
           path: packages/migration/build
 
+      - name: ⏬ Download stylelint build
+        uses: actions/download-artifact@v4
+        with:
+          name: db-ui-stylelint-build
+          path: packages/stylelint/build
+
       - name: ⏬ Download output
         uses: actions/download-artifact@v4
         with:
