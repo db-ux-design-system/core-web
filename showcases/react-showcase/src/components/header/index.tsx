@@ -20,7 +20,6 @@ const getHeader = ({
 	className,
 	describedbyid,
 	id,
-	key,
 	onToggle,
 	width,
 	example,
@@ -74,7 +73,6 @@ const getHeader = ({
 		className={className}
 		describedbyid={describedbyid}
 		id={id}
-		key={key}
 		onToggle={onToggle}>
 		{(!example || withNavigation) && (
 			<DBNavigation aria-label={children}>
