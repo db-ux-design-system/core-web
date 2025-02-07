@@ -209,47 +209,6 @@ export const delay = (fn: () => void, ms: number) =>
 	new Promise(() => setTimeout(fn, ms));
 
 /**
- * Passes `aria-*` and `data-*` attributes to correct child. Used in angular and stencil
- * @param element the ref for the component
- * @param customElementSelector the custom element in our case `db-*`
- */
-export const enableCustomElementAttributePassing = (
-	element: HTMLElement | null,
-	customElementSelector: string
-) => {
-	const parent = element?.closest(customElementSelector);
-	if (element && parent) {
-		const attributes = parent.attributes;
-		// TODO: evaluate whether we could simplify this
-		for (let i = 0; i < attributes.length; i++) {
-			const attr = attributes.item(i);
-			if (
-				attr &&
-				(attr.name.startsWith('data-') || attr.name.startsWith('aria-'))
-			) {
-				element.setAttribute(attr.name, attr.value);
-				parent.removeAttribute(attr.name);
-			}
-			if (attr && attr.name === 'class') {
-				const isWebComponent = attr.value.includes('hydrated');
-				const value = attr.value.replace('hydrated', '').trim();
-				const currentClass = element.getAttribute('class');
-				element.setAttribute(
-					attr.name,
-					`${currentClass ? `${currentClass} ` : ''}${value}`
-				);
-				if (isWebComponent) {
-					// Stencil is using this class for lazy loading component
-					parent.setAttribute('class', 'hydrated');
-				} else {
-					parent.removeAttribute(attr.name);
-				}
-			}
-		}
-	}
-};
-
-/**
  * Some frameworks like stencil would not add "true" as value for a prop
  * if it is used in a framework like angular e.g.: [disabled]="myDisabledProp"
  * @param originBool Some boolean to convert to string
@@ -296,7 +255,6 @@ export default {
 	isArrayOfStrings,
 	hasVoiceOver,
 	delay,
-	enableCustomElementAttributePassing,
 	getBooleanAsString,
 	getHideProp,
 	stringPropVisible

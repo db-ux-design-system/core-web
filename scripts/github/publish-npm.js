@@ -28,6 +28,7 @@ process.chdir('build-outputs');
 const packages = [
 	'foundations',
 	'migration',
+	'stylelint',
 	'components',
 	'ngx-components',
 	'react-components',
@@ -43,7 +44,11 @@ for (const PACKAGE of packages) {
 		`npm version --no-git-tag-version ${VALID_SEMVER_VERSION} --workspace=@db-ui/${PACKAGE}`
 	);
 
-	if (PACKAGE !== 'foundations' && PACKAGE !== 'migration') {
+	if (
+		PACKAGE !== 'foundations' &&
+		PACKAGE !== 'migration' &&
+		PACKAGE !== 'stylelint'
+	) {
 		console.log('🕵️‍ Set foundations dependency');
 		execSync(
 			`npm pkg set dependencies.@db-ui/foundations=${VALID_SEMVER_VERSION} --workspace=@db-ui/${PACKAGE}`

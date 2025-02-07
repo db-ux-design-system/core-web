@@ -29,7 +29,7 @@ describe('build-gh-page', () => {
 		process.env.NAME = '1.2.3-pre';
 		process.env.RELEASE = 'false';
 		process.env.PRE_RELEASE = 'true';
-		const result = execSync(command);
+		execSync(command);
 		expect(existsSync('public/version/1.2.3-pre')).toBeTruthy();
 	});
 });
