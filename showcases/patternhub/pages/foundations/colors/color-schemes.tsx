@@ -56,7 +56,7 @@ const ColorSchemes = () => {
 				<p>
 					These classes define the{' '}
 					<strong>monochromatic adaptive color scheme</strong> for a
-					container. Texts, icons and backgrounds in it then
+					container. Texts, icons and backgrounds in it than
 					automatically adapt to the color set.
 				</p>
 				<p>
