@@ -1,0 +1,3 @@
+class="db-color-neutral"
+[data-color]="neutral"
+[data-mode]="dark"

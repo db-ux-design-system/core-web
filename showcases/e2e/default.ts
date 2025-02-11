@@ -179,7 +179,8 @@ export const runA11yCheckerTest = ({
 	skipChecker
 }: A11yCheckerTestType) => {
 	test('test with accessibility checker', async ({ page }, { project }) => {
-		if (skipChecker ?? shouldSkipA11yTest(project)) {
+		/* eslint-disable-next-line @typescript-eslint/prefer-nullish-coalescing */
+		if (skipChecker || shouldSkipA11yTest(project)) {
 			// Checking complete DOM in Firefox and Webkit takes very long, we skip this test
 			// we don't need to check for mobile device - it just changes the viewport
 			test.skip();
