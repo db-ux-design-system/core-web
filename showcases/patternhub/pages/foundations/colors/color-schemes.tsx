@@ -22,7 +22,7 @@ const ColorSchemes = () => {
 				</p>
 				<p>
 					<i>
-						These classes are <u>not</u> intended for individual
+						These classes are <strong>not</strong> intended for individual
 						styling of your own components. The corresponding CSS
 						Custom Properties should be used for this.
 					</i>
