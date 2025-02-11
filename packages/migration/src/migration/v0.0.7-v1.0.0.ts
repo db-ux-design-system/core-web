@@ -18,8 +18,18 @@ export const v007_v100: ReplaceInFileConfig[] = [
 	},
 	{
 		files: '',
-		from: /behaviour/g,
-		to: 'behavior'
+		from: /behaviour=/g,
+		to: 'behavior='
+	},
+	{
+		files: '',
+		from: /behaviour":/g,
+		to: 'behavior":'
+	},
+	{
+		files: '',
+		from: /behaviour:/g,
+		to: 'behavior:'
 	},
 	{
 		files: '',
