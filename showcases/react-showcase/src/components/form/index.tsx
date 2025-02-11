@@ -435,19 +435,13 @@ const FormComponent = () => {
 					semantic="neutral"
 					emphasis="strong">
 					KUZ
-					<DBTooltip
-						id="tooltip-01"
-						placement="right-end"
-						variant="with arrow">
+					<DBTooltip id="tooltip-01" placement="right-end">
 						Beschreibungstext
 					</DBTooltip>
 				</DBTag>
 				<DBButton describedbyid="tooltip-01">
 					KUZ
-					<DBTooltip
-						id="tooltip-01"
-						placement="right-end"
-						variant="with arrow">
+					<DBTooltip id="tooltip-01" placement="right-end">
 						Beschreibungstext
 					</DBTooltip>
 				</DBButton>

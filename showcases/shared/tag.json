@@ -172,7 +172,7 @@
 		]
 	},
 	{
-		"name": "Behaviour",
+		"name": "Behavior",
 		"role": "group",
 		"examples": [
 			{
@@ -278,6 +278,40 @@
 						]
 					}
 				]
+			},
+			{
+				"name": "Interactive Radio 2",
+				"props": {
+					"component": "radio",
+					"identifier": "radio01"
+				},
+				"children": [
+					{
+						"name": "label",
+						"native": true,
+						"content": "Interactive Radio 2",
+						"props": {
+							"for": "radio02"
+						},
+						"children": [
+							{
+								"name": "input",
+								"native": true,
+								"props": {
+									"name": "radio02",
+									"id": "radio02",
+									"type": "radio"
+								}
+							}
+						]
+					}
+				]
+			},
+			{
+				"name": "Removeable",
+				"props": {
+					"behavior": "removable"
+				}
 			}
 		]
 	},
@@ -533,7 +567,7 @@
 					"component": "button",
 					"emphasis": "strong",
 					"icon": "x_placeholder",
-					"behaviour": "removable"
+					"behavior": "removable"
 				},
 				"children": [
 					{

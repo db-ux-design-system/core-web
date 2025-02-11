@@ -85,7 +85,7 @@
 
 	display: inline-flex;
 	position: relative;
-	inline-size: 100%;
+	inline-size: auto;
 
 	@include screen-sizes.screen("md", "max") {
 		&:not([data-width="full"]) {

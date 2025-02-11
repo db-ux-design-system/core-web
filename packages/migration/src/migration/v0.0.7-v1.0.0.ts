@@ -15,5 +15,30 @@ export const v007_v100: ReplaceInFileConfig[] = [
 		files: '',
 		from: /data-color-scheme/g,
 		to: 'data-mode'
+	},
+	{
+		files: '',
+		from: /behaviour=/g,
+		to: 'behavior='
+	},
+	{
+		files: '',
+		from: /behaviour":/g,
+		to: 'behavior":'
+	},
+	{
+		files: '',
+		from: /behaviour:/g,
+		to: 'behavior:'
+	},
+	{
+		files: '',
+		from: /variant="with arrow"/g,
+		to: 'showArrow="true"'
+	},
+	{
+		files: '',
+		from: /variant="basic"/g,
+		to: 'showArrow="false"'
 	}
 ];

@@ -30,11 +30,11 @@ export default function DBCard(props: DBCardProps) {
 			ref={_ref}
 			id={props.id}
 			class={cls('db-card', props.className)}
-			data-behaviour={props.behaviour}
+			data-behavior={props.behavior}
 			data-elevation-level={props.elevationLevel}
 			data-spacing={props.spacing}
-			role={props.behaviour === 'interactive' ? 'button' : undefined}
-			tabIndex={props.behaviour === 'interactive' ? 0 : undefined}
+			role={props.behavior === 'interactive' ? 'button' : undefined}
+			tabIndex={props.behavior === 'interactive' ? 0 : undefined}
 			onClick={(event: ClickEvent<HTMLElement>) =>
 				state.handleClick(event)
 			}>

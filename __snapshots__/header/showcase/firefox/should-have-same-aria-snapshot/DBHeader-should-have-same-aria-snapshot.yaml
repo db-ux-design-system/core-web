@@ -80,7 +80,7 @@
   - button "Profile"
   - button "Notification"
   - button "Help"
-  - link "Behaviour arrow_up_right\" / \""
+  - link "Behavior arrow_up_right\" / \""
   - link "Imprint arrow_right\" / \""
   - link "Help arrow_right\" / \""
   - text: DBHeader

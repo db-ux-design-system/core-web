@@ -1,3 +1,6 @@
 class="db-color-neutral"
 [data-color]="neutral"
 [data-mode]="dark"
+behavior="divider"
+showArrow="true"
+showArrow="false"

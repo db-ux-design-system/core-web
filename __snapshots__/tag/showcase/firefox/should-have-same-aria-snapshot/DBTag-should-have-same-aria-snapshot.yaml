@@ -6,16 +6,18 @@
   - text: (Default) Weak Origin Strong
   - link "Semantic arrow_up_right\" / \""
   - text: (Default) Adaptive Critical Informational Neutral Successful Warning Adaptive Origin Critical Origin Informational Origin Neutral Origin Successful Origin Warning Origin Adaptive Strong Critical Strong Informational Strong Neutral Strong Successful Strong Warning Strong
-  - link "Behaviour arrow_up_right\" / \""
-  - group "Behaviour":
+  - link "Behavior arrow_up_right\" / \""
+  - group "Behavior":
     - text: (Default) Static Removable
-    - button "Remove tag"
     - button "Interactive (Button)"
     - link "Interactive (Link)"
     - checkbox "Interactive (Checkbox) circle\" / \""
     - text: Interactive (Checkbox) circle" / "
     - radio "Interactive (Radio) circle\" / \""
     - text: Interactive (Radio) circle" / "
+    - radio "Interactive Radio 2 circle\" / \""
+    - text: Interactive Radio 2 circle" / " Removeable
+    - button "Remove tag"
   - link "Checked arrow_up_right\" / \""
   - group "Checked":
     - checkbox "(Default) False circle\" / \""
