@@ -60,6 +60,18 @@
 		"origin": "clock"
 	},
 	{
+		"name": "check-circle.svg",
+		"type": "lucide",
+		"licence": "https://lucide.dev/license#lucide-license",
+		"origin": "circle-check"
+	},
+	{
+		"name": "circle.svg",
+		"type": "lucide",
+		"licence": "https://lucide.dev/license#lucide-license",
+		"origin": "circle"
+	},
+	{
 		"name": "calendar.svg",
 		"type": "lucide",
 		"licence": "https://lucide.dev/license#lucide-license",

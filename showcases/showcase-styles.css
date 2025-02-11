@@ -11,6 +11,11 @@
 	padding: var(--db-spacing-fixed-md);
 }
 
+/* Linebreak for variant cards */
+.line-break {
+	inline-size: 100vw;
+}
+
 .variants-card,
 .variants-card > .db-card {
 	min-block-size: var(--db-sizing-3xl);
@@ -187,4 +192,10 @@ main .db-header {
 	.db-card {
 		inline-size: 100%;
 	}
+}
+
+.default-content-slot {
+	background-color: var(--db-successful-bg-basic-level-1-default);
+	color: var(--db-successful-on-bg-basic-emphasis-100-default);
+	padding-inline: var(--db-spacing-fixed-xs);
 }
