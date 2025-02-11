@@ -14,7 +14,7 @@ const ColorSchemes = () => {
 			<div>
 				<h1>Color classes</h1>
 				<p>
-					These <strong>classes</strong> (or data-attributes) can be
+					These <strong>classes</strong> (or <code>data-</code>-attributes) can be
 					used to apply a{' '}
 					<strong>monochromatic adaptive color scheme</strong> or a{' '}
 					<strong>color modifier</strong> (background color,
