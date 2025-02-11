@@ -55,7 +55,7 @@ const ColorOverview = () => {
 							colorScheme2 === 'light' ? 'dark' : 'light'
 						);
 					}}>
-					Click me for {colorScheme2 === 'light' ? 'dark' : 'light'}
+					Interact with me for {colorScheme2 === 'light' ? 'dark' : 'light'}
 					-mode
 				</DBButton>
 				<section className="color-cards">
