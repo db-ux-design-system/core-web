@@ -42,7 +42,7 @@ const ColorOverview = () => {
 				</section>
 			</div>
 
-			<h2>Cards & Levels</h2>
+			<h2>Cards &amp; Levels</h2>
 			<div className="color-modes-container" data-mode={colorScheme2}>
 				<p>This container changes based on the state.</p>
 				<DBTag semantic="informational" emphasis="strong">
