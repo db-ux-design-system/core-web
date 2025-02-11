@@ -33,7 +33,7 @@ const ColorOverview = () => {
 
 				<section data-mode="light">
 					<h2>Permanent Light</h2>
-					<p>I'll be always light independent from parent</p>
+					<p>I'll be always light colored independent from parent</p>
 				</section>
 				<section data-mode="dark">
 					<h2>Permanent Dark</h2>
