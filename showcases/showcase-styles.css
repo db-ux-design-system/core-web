@@ -194,6 +194,11 @@ main .db-header {
 	}
 }
 
+.nav-item-list {
+	inline-size: 100%;
+	padding: 0;
+}
+
 .default-content-slot {
 	background-color: var(--db-successful-bg-basic-level-1-default);
 	color: var(--db-successful-on-bg-basic-emphasis-100-default);

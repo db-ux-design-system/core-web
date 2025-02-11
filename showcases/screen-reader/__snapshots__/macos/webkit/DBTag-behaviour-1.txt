@@ -1,1 +1,0 @@
-["(Default) Static clickable","Removable clickable","Remove tag button","","Interactive (Button) button","link Interactive (Link)","Interactive (Checkbox) unchecked checkbox","checked Interactive (Checkbox) checkbox","Interactive (Checkbox) clickable","Interactive (Radio) radio button, 1 of 1","selected Interactive (Radio) radio button, 1 of 1","Interactive (Radio) clickable"]

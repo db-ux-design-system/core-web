@@ -335,7 +335,7 @@ const ColorUsageGuide = () => {
 										className="db-color-blue"
 										role="button"
 										elevationLevel="3"
-										behaviour="interactive">
+										behavior="interactive">
 										<div className="card-inner">
 											<DBLink>
 												Use container color class
@@ -352,7 +352,7 @@ const ColorUsageGuide = () => {
 											className="db-color-violet"
 											role="button"
 											elevationLevel="3"
-											behaviour="interactive">
+											behavior="interactive">
 											<div className="card-inner">
 												<DBLink>
 													Use background color
@@ -368,7 +368,7 @@ const ColorUsageGuide = () => {
 											className="db-color-violet"
 											role="button"
 											elevationLevel="3"
-											behaviour="interactive">
+											behavior="interactive">
 											<div className="card-inner">
 												<DBLink>
 													Use on-background color

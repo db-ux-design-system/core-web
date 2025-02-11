@@ -118,7 +118,7 @@ export type PlacementProps = {
 	placement?: PlacementType;
 };
 
-export type NavigationBehaviourState = {
+export type NavigationBehaviorState = {
 	handleNavigationItemClick: (event: unknown) => void;
 };
 
@@ -174,7 +174,7 @@ export type WidthProps = {
 	width?: WidthType;
 };
 
-export const MaxWidthList = ['full', 'medium', 'large'] as const;
+export const MaxWidthList = ['full', 'medium', 'large', 'small'] as const;
 export type MaxWidthType = (typeof MaxWidthList)[number];
 
 export type ContainerWidthProps = {
@@ -186,8 +186,6 @@ export type ContainerWidthProps = {
 
 export const PopoverDelayList = ['none', 'slow', 'fast'] as const;
 export type PopoverDelayType = (typeof PopoverDelayList)[number];
-export const PopoverAnimationList = ['enabled', 'disabled'] as const;
-export type PopoverAnimationType = (typeof PopoverAnimationList)[number];
 export const PopoverWidthList = ['auto', 'fixed'] as const;
 export type PopoverWidthType = (typeof PopoverWidthList)[number];
 export type PopoverProps = {
@@ -198,7 +196,7 @@ export type PopoverProps = {
 	/**
 	 * Disable animation
 	 */
-	animation?: PopoverAnimationType;
+	animation?: boolean;
 	/**
 	 * Use fixed with for default max-width
 	 */

@@ -20,7 +20,7 @@ const showAlert = (exampleName?: string) => {
 				:semantic="exampleProps?.semantic"
 				:icon="exampleProps?.icon"
 				:noText="exampleProps?.noText"
-				:behaviour="exampleProps?.behaviour"
+				:behavior="exampleProps?.behavior"
 				:emphasis="exampleProps?.emphasis"
 				:showIcon="exampleProps?.showIcon"
 				:showCheckState="exampleProps?.showCheckState"

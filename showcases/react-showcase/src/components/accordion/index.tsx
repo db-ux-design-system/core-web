@@ -9,12 +9,12 @@ import type { DBAccordionProps } from '../../../../../output/react/src/component
 import { getVariants } from '../data';
 import { type BaseComponentProps } from '../base-component-data';
 
-const getAccordion = ({ behaviour, children, variant }: DBAccordionProps) => (
+const getAccordion = ({ behavior, children, variant }: DBAccordionProps) => (
 	<>
 		<DBInfotext size="small" semantic="informational" icon="none">
 			{children}
 		</DBInfotext>
-		<DBAccordion behaviour={behaviour} variant={variant}>
+		<DBAccordion behavior={behavior} variant={variant}>
 			<DBAccordionItem headlinePlain="Item 1" text="Content 1" />
 			<DBAccordionItem headlinePlain="Item 2" text="Content 2" />
 			<DBAccordionItem headlinePlain="Item 3" text="Content 3" />

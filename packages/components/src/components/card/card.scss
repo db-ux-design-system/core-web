@@ -15,7 +15,7 @@
 	&:not([data-elevation-level]) {
 		background-color: colors.$db-adaptive-bg-basic-level-1-default;
 
-		&[data-behaviour="interactive"] {
+		&[data-behavior="interactive"] {
 			@include helpers.hover {
 				background-color: colors.$db-adaptive-bg-basic-level-1-hovered;
 			}
@@ -29,7 +29,7 @@
 	&[data-elevation-level="2"] {
 		background-color: colors.$db-adaptive-bg-basic-level-2-default;
 
-		&[data-behaviour="interactive"] {
+		&[data-behavior="interactive"] {
 			@include helpers.hover {
 				background-color: colors.$db-adaptive-bg-basic-level-2-hovered;
 			}
@@ -43,7 +43,7 @@
 	&[data-elevation-level="3"] {
 		background-color: colors.$db-adaptive-bg-basic-level-3-default;
 
-		&[data-behaviour="interactive"] {
+		&[data-behavior="interactive"] {
 			@include helpers.hover {
 				background-color: colors.$db-adaptive-bg-basic-level-3-hovered;
 			}

@@ -51,10 +51,10 @@ export default function DBAccordion(props: DBAccordionProps) {
 	// jscpd:ignore-end
 
 	onUpdate(() => {
-		// If we have a single behaviour we first check for
+		// If we have a single behavior we first check for
 		// props.name otherwise for state_id
 		if (state.initialized) {
-			if (props.behaviour === 'single') {
+			if (props.behavior === 'single') {
 				if (props.name) {
 					if (state._name !== props.name) {
 						state._name = props.name;
@@ -68,7 +68,7 @@ export default function DBAccordion(props: DBAccordionProps) {
 				state._name = '';
 			}
 		}
-	}, [state.initialized, props.name, props.behaviour, state._id]);
+	}, [state.initialized, props.name, props.behavior, state._id]);
 
 	onUpdate(() => {
 		if (_ref) {
@@ -93,9 +93,9 @@ export default function DBAccordion(props: DBAccordionProps) {
 				const childDetails = _ref.getElementsByTagName('details');
 				if (childDetails) {
 					const initOpenIndex =
-						props.behaviour === 'single' &&
+						props.behavior === 'single' &&
 						props.initOpenIndex.length > 1
-							? [props.initOpenIndex[0]] // use only one index for behaviour=single
+							? [props.initOpenIndex[0]] // use only one index for behavior=single
 							: props.initOpenIndex;
 					Array.from<HTMLDetailsElement>(childDetails).forEach(
 						(details: HTMLDetailsElement, index: number) => {

@@ -1,3 +1,6 @@
 class="db-container-color-neutral"
 [data-container-color]="neutral"
 [data-color-scheme]="dark"
+behaviour="default"
+variant="with arrow"
+variant="basic"

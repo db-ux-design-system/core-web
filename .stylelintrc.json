@@ -17,7 +17,8 @@
 					"includes": [
 						"-calc",
 						"$default-icon-margin",
-						"form-components."
+						"form-components.",
+						"section-padding-inline"
 					],
 					"startsWith": ["icons.$", "map.get"]
 				}

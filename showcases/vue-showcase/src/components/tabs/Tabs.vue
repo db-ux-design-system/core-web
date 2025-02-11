@@ -23,7 +23,7 @@ import {
 					:orientation="exampleProps?.orientation"
 					:width="exampleProps?.width"
 					:alignment="exampleProps?.alignment"
-					:behaviour="exampleProps?.behaviour"
+					:behavior="exampleProps?.behavior"
 					:initialSelectedIndex="exampleProps?.initialSelectedIndex"
 					:initialSelectedMode="exampleProps?.initialSelectedMode"
 					:arrowScrollDistance="75"

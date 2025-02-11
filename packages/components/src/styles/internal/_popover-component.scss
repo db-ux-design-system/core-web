@@ -132,7 +132,8 @@ $popover-gap-inset: calc(-1 * #{$popover-gap-size});
 }
 
 @mixin get-popover-show() {
-	&[data-animation="disabled"] {
+	&:not([data-animation]),
+	&[data-animation="false"] {
 		opacity: 1;
 		transform: translate(
 			var(--db-popover-center-x, 0),
@@ -141,7 +142,7 @@ $popover-gap-inset: calc(-1 * #{$popover-gap-size});
 	}
 
 	@media screen and (prefers-reduced-motion: no-preference) {
-		&:not([data-animation="disabled"]) {
+		&[data-animation="true"] {
 			animation: popover-animation
 				#{variables.$db-transition-straight-emotional} normal both;
 
