@@ -14,17 +14,18 @@ const ColorSchemes = () => {
 			<div>
 				<h1>Color classes</h1>
 				<p>
-					These <strong>classes</strong> (or <code>data-</code>-attributes) can be
-					used to apply a{' '}
+					These <strong>classes</strong> (or <code>data-</code>
+					-attributes) can be used to apply a{' '}
 					<strong>monochromatic adaptive color scheme</strong> or a{' '}
 					<strong>color modifier</strong> (background color,
 					on-background color) to containers and elements.
 				</p>
 				<p>
 					<i>
-						These classes are <strong>not</strong> intended for individual
-						styling of your own components. The corresponding CSS
-						Custom Properties should be used for this.
+						These classes are <strong>not</strong> intended for
+						individual styling of your own components. The
+						corresponding CSS Custom Properties should be used for
+						this.
 					</i>
 				</p>
 				<strong>How to use:</strong>
