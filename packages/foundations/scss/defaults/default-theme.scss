@@ -851,6 +851,7 @@ html:not(:has(> head > meta[name="color-scheme"])) {
 	@extend %db-neutral-bg-basic-level-1;
 }
 
+/* TODO: Switch to attr() as soon as this one is fully supported */
 [data-mode="light"] {
 	color-scheme: light;
 }
