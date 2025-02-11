@@ -29,3 +29,51 @@ You could use the CSS Custom Property `--db-icon-color` to overwrite the icons c
 If you have custom icons and want to use them for foundations and/or in components, you need to generate a **woff2** file.
 
 [More information](./CustomIcons.md)
+
+## TypeScript Autocomplete
+
+To get TypeScript autocomplete you need to include a `*.d.ts` file, where you add some icons to the whitelabel base icons:
+
+```ts
+//
+import "@db-ui/foundations";
+import { BaseIconTypes } from "@db-ui/foundations";
+
+declare module "@db-ui/foundations" {
+	interface OverwriteIcons {
+		types: BaseIconTypes | "my-custom-icon1" | "my-custom-icon2";
+	}
+}
+```
+
+_**OR:**_ If you use another library which provides some overwrite you can do it like this:
+
+```ts
+//
+import "@db-ui/foundations";
+import "@db-ux/core-icons";
+import { IconTypes } from "@db-ux/core-icons";
+
+declare module "@db-ui/foundations" {
+	interface OverwriteIcons {
+		types: IconTypes;
+	}
+}
+```
+
+You can combine it as well like this:
+
+```ts
+//
+import "@db-ui/foundations";
+import "@db-ux/core-icons";
+import "@db-ux/pv-icons";
+import { IconTypes } from "@db-ux/core-icons";
+import { IconTypes as PvIconTypes } from "@db-ux/pv-icons";
+
+declare module "@db-ui/foundations" {
+	interface OverwriteIcons {
+		types: IconTypes | PvIconTypes | "my-custom-icon1" | "my-custom-icon2";
+	}
+}
+```
