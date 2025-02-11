@@ -330,7 +330,7 @@ const ColorUsageGuide = () => {
 						</div>
 						<div className="decision-tree-row grid-1-1-1">
 							<ArcherElement id="semantic-color-link">
-								<Link href="./color-classes#color-classes">
+								<Link href="./color-schemes#color-schemes">
 									<DBCard
 										className="db-color-blue"
 										role="button"
@@ -347,7 +347,7 @@ const ColorUsageGuide = () => {
 
 							<div className="decision-tree-row grid-1-1">
 								<ArcherElement id="background-color-link">
-									<Link href="./color-classes#background-color-modifier-classes">
+									<Link href="./color-schemes#background-color-modifier-classes">
 										<DBCard
 											className="db-color-violet"
 											role="button"
@@ -363,7 +363,7 @@ const ColorUsageGuide = () => {
 									</Link>
 								</ArcherElement>
 								<ArcherElement id="text-icon-color-link">
-									<Link href="./color-classes#on-background-color-modifier-classes">
+									<Link href="./color-schemes#on-background-color-modifier-classes">
 										<DBCard
 											className="db-color-violet"
 											role="button"

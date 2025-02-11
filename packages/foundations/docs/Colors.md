@@ -7,7 +7,7 @@
 ## How to use
 
 1. First, you can use our **[color usage guide](./color-usage-guide)** to find out which method is best for coloring your layouts or components.
-2. The colors of layouts can be easily set using the predefined **[color classes](./color-classes)**.
+2. The colors of layouts can be easily set using the predefined **[color schemes](./color-schemes)**.
 3. When developing your own components, `SCSS` variables or `CSS Custom Properties` should be used.
 
 **🚧 The overview of our color variables is still in the making. Please come back soon.**

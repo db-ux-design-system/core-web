@@ -27,7 +27,8 @@ const ColorOverview = () => {
 							colorScheme === 'light' ? 'dark' : 'light'
 						);
 					}}>
-					Interact with me for {colorScheme === 'light' ? 'dark' : 'light'}
+					Interact with me for{' '}
+					{colorScheme === 'light' ? 'dark' : 'light'}
 					-mode
 				</DBButton>
 
