@@ -18,13 +18,23 @@ const getTag = ({
 	removeButton,
 	checked,
 	component,
-	identifier
+	identifier,
+	content,
+	showCheckState,
+	lineBreak,
+	showIcon
 }: DBTagProps & {
 	checked?: boolean;
 	component?: 'button' | 'link' | 'radio' | 'checkbox';
 	identifier?: string;
+	lineBreak?: boolean;
 }) => {
 	const [checkedState, setCheckedState] = useState<boolean>(checked ?? false);
+
+	if (lineBreak) {
+		return <i className="line-break" />;
+	}
+
 	return (
 		<DBTag
 			semantic={semantic}
@@ -34,6 +44,13 @@ const getTag = ({
 			emphasis={emphasis}
 			overflow={overflow}
 			removeButton={removeButton}
+			showCheckState={showCheckState}
+			showIcon={showIcon}
+			content={
+				content ? (
+					<div className="default-content-slot">Swap Slot</div>
+				) : undefined
+			}
 			onRemove={() => {
 				// eslint-disable-next-line no-alert
 				alert(children.toString());

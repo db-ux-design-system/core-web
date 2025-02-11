@@ -3,9 +3,9 @@
   - link "Density arrow_up_right\" / \""
   - text: Functional (Default) Regular Expressive
   - link "Emphasis arrow_up_right\" / \""
-  - text: (Default) Weak Strong
+  - text: (Default) Weak Origin Strong
   - link "Semantic arrow_up_right\" / \""
-  - text: (Default) Adaptive Neutral Critical Informational Successful Warning Adaptive Strong Neutral Strong Critical Strong Informational Strong Successful Strong Warning Strong
+  - text: (Default) Adaptive Critical Informational Neutral Successful Warning Adaptive Origin Critical Origin Informational Origin Neutral Origin Successful Origin Warning Origin Adaptive Strong Critical Strong Informational Strong Neutral Strong Successful Strong Warning Strong
   - link "Size arrow_up_right\" / \""
   - text: (Default) Small Medium
   - link "Content arrow_up_right\" / \""

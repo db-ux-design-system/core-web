@@ -30,6 +30,11 @@ test.describe('DBTag', () => {
 			const screenReader = voiceOver ?? nvda;
 			await screenReader?.clearSpokenPhraseLog();
 			await (voiceOver ? screenReader?.next() : screenReader?.previous()); // Focus "default static"
+
+			await screenReader?.next(); // Focus "removable"
+			await screenReader?.next(); // Focus "remove button"
+			await screenReader?.act(); // Interact "remove button"
+
 			await screenReader?.next(); // Focus "button"
 			await screenReader?.next(); // Focus "link"
 			await screenReader?.next(); // Focus "checkbox"
@@ -43,15 +48,6 @@ test.describe('DBTag', () => {
 			if (voiceOver) {
 				await screenReader?.next(); // Focus "radio 1 inline-text"
 			}
-
-			await screenReader?.next(); // Focus "radio 2"
-			if (voiceOver) {
-				await screenReader?.next(); // Focus "radio 2 inline-text"
-			}
-
-			await screenReader?.next(); // Focus "removable"
-			await screenReader?.next(); // Focus "remove button"
-			await screenReader?.act(); // Interact "remove button"
 		}
 	});
 });
