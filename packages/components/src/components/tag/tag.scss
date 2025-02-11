@@ -99,6 +99,7 @@
 
 			@include icons.set-icon("circle", "after");
 
+			/* TODO: maybe we could get rid of an expensive :has selector by defining this icon on the input itself */
 			&:has(input:checked) {
 				@include icons.set-icon("check_circle", "after");
 			}
