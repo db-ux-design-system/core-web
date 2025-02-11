@@ -188,3 +188,8 @@ main .db-header {
 		inline-size: 100%;
 	}
 }
+
+.nav-item-list {
+	inline-size: 100%;
+	padding: 0;
+}

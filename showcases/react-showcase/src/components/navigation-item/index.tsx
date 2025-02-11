@@ -14,7 +14,7 @@ const getNavigationItem = ({
 	areaPopup,
 	showIcon
 }: DBNavigationItemProps & { areaPopup: boolean }) => (
-	<ul>
+	<ul className="nav-item-list">
 		<DBNavigationItem
 			icon={icon}
 			disabled={disabled}
