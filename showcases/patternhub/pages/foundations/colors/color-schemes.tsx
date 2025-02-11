@@ -101,7 +101,7 @@ const ColorSchemes = () => {
 				</h2>
 				<p>
 					These classes define the type of background color for a
-					container. The exact color tone then results from the
+					container. The exact color tone than results from the
 					current semantics (in root <strong>neutral</strong> by
 					default). This means that each of these background types
 					exists for each semantic color.
