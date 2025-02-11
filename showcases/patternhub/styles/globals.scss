@@ -199,7 +199,7 @@ div[class^="ch-"] {
 		inline-size: 100%;
 	}
 
-	&[data-color-scheme="dark"] > span {
+	&[data-mode="dark"] > span {
 		filter: invert(1) brightness(1.2);
 	}
 
@@ -364,7 +364,7 @@ div[class^="ch-"] {
 	}
 }
 
-.color-schemes-container {
+.color-modes-container {
 	padding: variables.$db-spacing-fixed-md;
 	border: 1px dashed colors.$db-adaptive-on-bg-basic-emphasis-100-default;
 	display: grid;
