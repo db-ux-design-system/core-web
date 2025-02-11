@@ -1,1 +1,1 @@
-["article","list 2 items","• Popover Custom Item 1 1 of 2","• Popover Custom Item 2 2 of 2","end of list","Functional menu pop up button","end of article","(Default) Regular menu pop up button"]
+["article","list 2 items","• Popover Custom Item 1 1 of 2","• Popover Custom Item 2 2 of 2","end of list","Functional menu pop up expanded button","end of article","(Default) Regular menu pop up expanded button"]
