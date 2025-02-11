@@ -12,7 +12,7 @@ const ColorOverview = () => {
 		<DefaultPage>
 			<h1>Color Schemes</h1>
 			<p>
-				You can use <code>data-mode="light/dark"</code> to force a
+				You can use <code>data-mode="light|dark"</code> to force a
 				container/component to keep the mode:
 			</p>
 			<div className="color-modes-container" data-mode={colorScheme}>
