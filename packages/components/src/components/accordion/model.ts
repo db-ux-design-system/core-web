@@ -34,8 +34,8 @@ export type DBAccordionDefaultProps = {
 
 	/**
 	 * Defines the display of the accordion and the items:
-	 * "default": with a dividing line between the items
-	 * "card": w/o dividing line, but items are shown in the card variant
+	 * - "default": with a dividing line between the items
+	 * - "card": w/o dividing line, but items are shown in the card variant
 	 */
 	variant?: AccordionVariantType;
 };
