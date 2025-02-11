@@ -13,7 +13,7 @@ const ColorOverview = () => {
 			<h1>Color Schemes</h1>
 			<p>
 				You can use <code>data-mode="light|dark"</code> to force a
-				container/component to keep the mode:
+				container/component to enforce the mode:
 			</p>
 			<div className="color-modes-container" data-mode={colorScheme}>
 				<p>This container changes based on the state.</p>
