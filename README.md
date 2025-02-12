@@ -3,7 +3,7 @@
 
 <picture><source srcset="https://db-ux.github.io/images/db-ux-design-system-v3-header.avif" type="image/avif"><source srcset="https://db-ux.github.io/images/db-ux-design-system-v3-header.webp" type="image/webp"><img src="https://db-ux.github.io/images/db-ux-design-system-v3-header.jpg" alt=""></picture>
 
-# DB UI Mono (Beta) 🚂💖
+# DB UX Design System v3 🚂💖
 
 ![Part of DB UX Design System (Version 3)](https://img.shields.io/badge/Part%20of-DB%20UX%20Design%20System%20v3-d7dce1.svg)
 ![Main pipeline](https://github.com/db-ux-design-system/core-web/actions/workflows/default.yml/badge.svg)
@@ -13,7 +13,7 @@
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)
 [![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-2.0-4baaaa.svg)](CODE-OF-CONDUCT.md)
 
-DB UI Mono provides robust HTML UI components, reusable visual styles, and powerful tooling to help developers,
+DB UX Design System Version 3 provides robust HTML UI components, reusable visual styles, and powerful tooling to help developers,
 designers, and content authors build, maintain, and scale best of class digital experiences.
 
 <figure>
