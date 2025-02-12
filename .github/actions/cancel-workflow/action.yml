@@ -12,7 +12,7 @@ runs:
         gh api \
           --method POST \
           -H "Accept: application/vnd.github+json" \
-          /repos/db-ui/mono/actions/runs/${{ github.run_id }}/cancel
+          /repos/db-ux-design-system/mono/actions/runs/${{ github.run_id }}/cancel
       shell: bash
       env:
         GH_TOKEN: ${{ inputs.token }}

@@ -33,7 +33,7 @@ jobs:
       - name: ⏬ Download outputs
         uses: actions/download-artifact@v4
         with:
-          name: db-ui-outputs
+          name: db-ux-outputs
           path: build-outputs
 
       - name: 📰 Publish to NPM Registries

@@ -1,4 +1,4 @@
-# @db-ui/migration
+# @db-ux/core-migration
 
 ![Apache 2.0 license badge](https://img.shields.io/badge/License-Apache_2.0-blue.svg)
 [![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
@@ -10,7 +10,7 @@
 We provide a cli tool to auto migrate your source code. Use this command in your repository:
 
 ```shell
-npx @db-ui/migration --type=v005_v006 --src=./src
+npx @db-ux/core-migration --type=v005_v006 --src=./src
 ```
 
 ## Deutsche Bahn brand
@@ -22,12 +22,12 @@ You must remove or replace any Deutsche Bahn brand and design assets as well as 
 
 ## Contributions
 
-Contributions are very welcome, please refer to the [contribution guide](https://github.com/db-ui/mono/blob/main/CONTRIBUTING.md).
+Contributions are very welcome, please refer to the [contribution guide](https://github.com/db-ux-design-system/core-web/blob/main/CONTRIBUTING.md).
 
 ## Code of conduct
 
 We as members, contributors, and leaders pledge to make participation in our
-community a harassment-free experience for everyone – have a look at our [Contributor Covenant Code of Conduct](https://github.com/db-ui/mono/blob/main/CODE-OF-CONDUCT.md).
+community a harassment-free experience for everyone – have a look at our [Contributor Covenant Code of Conduct](https://github.com/db-ux-design-system/core-web/blob/main/CODE-OF-CONDUCT.md).
 
 ## License
 

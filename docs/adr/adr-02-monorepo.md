@@ -2,7 +2,7 @@
 
 ## Decision and Rationale
 
-To reduce the amount of time spent deploying and linking dependant packages, we combined [base](https://github.com/db-ui/base), [core](https://github.com/db-ui/core) and [elements](https://github.com/db-ui/elements) into a single monorepo.
+To reduce the amount of time spent deploying and linking dependant packages, we combined [base](https://github.com/db-ux/base), [core](https://github.com/db-ux/core) and [elements](https://github.com/db-ux/elements) into a single monorepo.
 
 ## Problem description and context
 

@@ -1,7 +1,6 @@
 name: 🐞 Bug Report
 description: Create a report to help us improve
 labels: [bug]
-projects: ["db-ui/8"]
 body:
   - type: markdown
     attributes:

@@ -36,10 +36,10 @@ To get TypeScript autocomplete you need to include a `*.d.ts` file, where you ad
 
 ```ts
 //
-import "@db-ui/foundations";
-import { BaseIconTypes } from "@db-ui/foundations";
+import "@db-ux/core-foundations";
+import { BaseIconTypes } from "@db-ux/core-foundations";
 
-declare module "@db-ui/foundations" {
+declare module "@db-ux/core-foundations" {
 	interface OverwriteIcons {
 		types: BaseIconTypes | "my-custom-icon1" | "my-custom-icon2";
 	}
@@ -50,11 +50,11 @@ _**OR:**_ If you use another library which provides some overwrite you can do it
 
 ```ts
 //
-import "@db-ui/foundations";
+import "@db-ux/core-foundations";
 import "@db-ux/core-icons";
 import { IconTypes } from "@db-ux/core-icons";
 
-declare module "@db-ui/foundations" {
+declare module "@db-ux/core-foundations" {
 	interface OverwriteIcons {
 		types: IconTypes;
 	}
@@ -65,13 +65,13 @@ You can combine it as well like this:
 
 ```ts
 //
-import "@db-ui/foundations";
+import "@db-ux/core-foundations";
 import "@db-ux/core-icons";
 import "@db-ux/pv-icons";
 import { IconTypes } from "@db-ux/core-icons";
 import { IconTypes as PvIconTypes } from "@db-ux/pv-icons";
 
-declare module "@db-ui/foundations" {
+declare module "@db-ux/core-foundations" {
 	interface OverwriteIcons {
 		types: IconTypes | PvIconTypes | "my-custom-icon1" | "my-custom-icon2";
 	}

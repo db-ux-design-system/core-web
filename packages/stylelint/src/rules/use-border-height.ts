@@ -10,7 +10,7 @@ const {
 	utils: { ruleMessages }
 } = stylelint;
 
-const ruleName = 'db-ui/use-border-height';
+const ruleName = 'db-ux/use-border-height';
 
 const messages = ruleMessages(ruleName, {
 	rejected: (property: string, value: string) =>
@@ -19,7 +19,7 @@ const messages = ruleMessages(ruleName, {
 });
 
 const meta = {
-	url: 'https://github.com/db-ui/mono/blob/main/packages/stylelint/README.md'
+	url: 'https://github.com/db-ux-design-system/core-web/blob/main/packages/stylelint/README.md'
 };
 
 const allowedDeclarations: AllowedType = {

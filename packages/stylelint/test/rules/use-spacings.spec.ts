@@ -8,7 +8,7 @@ import {
 	getVueTest
 } from '../defaults.js';
 
-const ruleName = 'db-ui/use-spacings';
+const ruleName = 'db-ux/use-spacings';
 
 const config: Config = {
 	...defaultConfig,

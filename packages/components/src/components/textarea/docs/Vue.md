@@ -1,6 +1,6 @@
 ## Vue
 
-For general installation and configuration look at the [v-components](https://www.npmjs.com/package/@db-ui/v-components) package.
+For general installation and configuration look at the [v-core-components](https://www.npmjs.com/package/@db-ux/v-core-components) package.
 
 ### General
 
@@ -13,7 +13,7 @@ Use `v-model:value` or `:value` instead with a `_ref("My default value")`.
 <!-- App.vue -->
 <script setup lang="ts">
 import { _ref } from "vue";
-import { DBTextarea } from "@db-ui/v-components";
+import { DBTextarea } from "@db-ux/v-core-components";
 
 const textarea = _ref("default value");
 </script>

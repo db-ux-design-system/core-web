@@ -23,7 +23,7 @@
 
 ## Conclusion
 
-- we can use tab component of [db-ui/elements](https://github.com/db-ui/elements/blob/main/packages/db-ui-elements-stencil/src/components/db-tab/db-tab.tsx)
+- we can use tab component of [db-ux/elements](https://github.com/db-ux/elements/blob/main/packages/db-ux-elements-stencil/src/components/db-tab/db-tab.tsx)
 - replace `<section>` by `<article>`
 - we use [`role=tablist`](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles/tablist_role), [`role=tab`](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles/tab_role), [`role=tabpanel`](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles/tabpanel_role)
 - we use [`aria-controls`](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-controls), [`aria-selected`](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-selected), [`aria-labelledby`](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-labelledby)

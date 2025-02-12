@@ -1,11 +1,11 @@
 {
-  "name": "@db-ui/stylelint",
+  "name": "@db-ux/core-stylelint",
   "version": "0.0.0",
   "type": "module",
   "description": "Ensures DB UX styles are used correctly",
   "repository": {
     "type": "git",
-    "url": "https://github.com/db-ui/mono.git"
+    "url": "https://github.com/db-ux-design-system/core-web.git"
   },
   "license": "Apache-2.0",
   "exports": {

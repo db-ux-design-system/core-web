@@ -1,7 +1,7 @@
-@use "@db-ui/foundations/build/styles/helpers/functions";
-@use "@db-ui/foundations/build/styles/variables";
-@use "@db-ui/foundations/build/styles/colors";
-@use "@db-ui/foundations/build/styles/fonts";
+@use "@db-ux/core-foundations/build/styles/helpers/functions";
+@use "@db-ux/core-foundations/build/styles/variables";
+@use "@db-ux/core-foundations/build/styles/colors";
+@use "@db-ux/core-foundations/build/styles/fonts";
 @use "../../styles/internal/popover-component";
 @use "../../styles/internal/component";
 
@@ -53,7 +53,7 @@ $tooltip-arrow-shadow-size: variables.$db-sizing-2xs;
 				calc(100% + #{$tooltip-arrow-shadow-size})
 					calc(100% + #{$tooltip-arrow-shadow-size})
 			);
-			 /* stylelint-disable-next-line db-ui/use-border-radius */
+			 /* stylelint-disable-next-line db-ux/use-border-radius */
 			border-radius: 0 2px;
 			transform: skew(-8deg, -8deg);
 		}

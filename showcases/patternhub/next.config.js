@@ -18,7 +18,7 @@ const config = {
 	transpilePackages: [
 		'../../output/react/src',
 		'../react-showcase/',
-		'@db-ui',
+		'@db-ux',
 		'@db-ux'
 	],
 	...withMDX({
@@ -31,7 +31,7 @@ const config = {
 		REDIRECT_URL_SEARCH_PARAMS: 'false',
 		NEXT_PUBLIC_APP_NAME: 'DB UX',
 		NEXT_PUBLIC_GITHUB_VERSION_SWITCHER: true,
-		NEXT_PUBLIC_GITHUB_OWNER: 'db-ui',
+		NEXT_PUBLIC_GITHUB_OWNER: 'db-ux',
 		NEXT_PUBLIC_GITHUB_REPO: 'mono'
 	}
 };

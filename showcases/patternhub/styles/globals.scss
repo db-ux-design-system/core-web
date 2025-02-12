@@ -1,10 +1,10 @@
-@use "@db-ui/foundations/build/styles/variables";
-@use "@db-ui/foundations/build/styles/colors";
-@use "@db-ui/foundations/build/styles/screen-sizes";
-@use "@db-ui/foundations/build/styles/density";
-@use "@db-ui/components/build/components/section/section";
+@use "@db-ux/core-foundations/build/styles/variables";
+@use "@db-ux/core-foundations/build/styles/colors";
+@use "@db-ux/core-foundations/build/styles/screen-sizes";
+@use "@db-ux/core-foundations/build/styles/density";
+@use "@db-ux/core-components/build/components/section/section";
 
-@forward "@db-ui/components/build/styles/webpack";
+@forward "@db-ux/core-components/build/styles/webpack";
 @forward "@db-ux/db-theme/build/styles/webpack";
 
 :root:not(:has(.db-page)) {
@@ -120,7 +120,7 @@ table th {
 	max-inline-size: variables.$db-sizing-3xl;
 }
 
-/* Workaround for current db-page from db-ui-elements */
+/* Workaround for current db-page from db-ux-elements */
 div[class^="ch-"] {
 	div,
 	span {

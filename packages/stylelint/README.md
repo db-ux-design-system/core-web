@@ -1,11 +1,11 @@
-# @db-ui/stylelint
+# @db-ux/core-stylelint
 
 Validate the correct usage of DB UX in your (S)CSS code.
 
 ## Installation
 
 ```shell
-npm install stylelint @db-ui/stylelint --save-dev
+npm install stylelint @db-ux/core-stylelint --save-dev
 ```
 
 > **Note:** We recommend installing `stylelint-config-standard`, `stylelint-use-logical` & `@double-great/stylelint-a11y` as well.
@@ -20,7 +20,7 @@ Add this to your `.stylelintrc.json` configuration file:
 {
 	"plugins": [
 		...
-		"@db-ui/stylelint"
+		"@db-ux/core-stylelint"
 	]
 }
 ````
@@ -32,10 +32,10 @@ Enable rules inside your `.stylelintrc.json` with:
 ```json5
 {
 	rules: {
-		"db-ui/use-spacings": [true], // margins, paddings, gaps
-		"db-ui/use-border-height": [true], // border-width & border
-		"db-ui/use-border-radius": [true], // border-radius
-		"db-ui/use-border-color": [true] // border-color & border
+		"db-ux/use-spacings": [true], // margins, paddings, gaps
+		"db-ux/use-border-height": [true], // border-width & border
+		"db-ux/use-border-radius": [true], // border-radius
+		"db-ux/use-border-color": [true] // border-color & border
 	}
 }
 ```
@@ -47,7 +47,7 @@ There are some additional settings for every rule which can be applied to the `.
 ```json5
 {
 	rules: {
-		"db-ui/use-xxx": [
+		"db-ux/use-xxx": [
 			true,
 			{
 				allowCalc: true, // allow all calc() functions - they are hard to lint

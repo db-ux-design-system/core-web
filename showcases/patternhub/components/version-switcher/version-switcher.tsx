@@ -15,7 +15,7 @@ const fetchFromGitHubApi = async (url: string): Promise<GithubResponse[]> => {
 	return [];
 };
 
-const owner = 'db-ui';
+const owner = 'db-ux';
 const repo = 'mono';
 
 const VersionSwitcher = () => {

@@ -3,14 +3,14 @@
 Load SCSS globally within `styles.scss` in your app:
 
 ```scss
-@forward "@db-ui/components/build/styles/rollup";
+@forward "@db-ux/core-components/build/styles/rollup";
 ```
 
 Load component within `app.component.ts`:
 
 ```ts app.component.ts
 //app.component.ts
-import { DBInput } from '@db-ui/ngx-components';
+import { DBInput } from '@db-ux/ngx-core-components';
 
 @Component({
 	// ...

@@ -1,12 +1,12 @@
 <!-- markdownlint-configure-file { "MD013": false, "MD041":false } -->
 <!-- markdownlint-disable MD033 MD010 -->
 
-<picture><source srcset="https://db-ui.github.io/images/db-ux-design-system-v3-header.avif" type="image/avif"><source srcset="https://db-ui.github.io/images/db-ux-design-system-v3-header.webp" type="image/webp"><img src="https://db-ui.github.io/images/db-ux-design-system-v3-header.jpg" alt=""></picture>
+<picture><source srcset="https://db-ux.github.io/images/db-ux-design-system-v3-header.avif" type="image/avif"><source srcset="https://db-ux.github.io/images/db-ux-design-system-v3-header.webp" type="image/webp"><img src="https://db-ux.github.io/images/db-ux-design-system-v3-header.jpg" alt=""></picture>
 
 # DB UI Mono (Beta) 🚂💖
 
 ![Part of DB UX Design System (Version 3)](https://img.shields.io/badge/Part%20of-DB%20UX%20Design%20System%20v3-d7dce1.svg)
-![Main pipeline](https://github.com/db-ui/mono/actions/workflows/default.yml/badge.svg)
+![Main pipeline](https://github.com/db-ux-design-system/core-web/actions/workflows/default.yml/badge.svg)
 ![Apache 2.0 license badge](https://img.shields.io/badge/License-Apache_2.0-blue.svg)
 [![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
 [![XO code style](https://img.shields.io/badge/code_style-XO-5ed9c7.svg)](https://github.com/xojs/xo)
@@ -25,23 +25,23 @@ designers, and content authors build, maintain, and scale best of class digital 
 
 | Package                                                                     | Content                             | Version                                                                                                                                                                                                                                                                                  |
 | --------------------------------------------------------------------------- | ----------------------------------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| [foundations](https://github.com/db-ui/mono/tree/main/packages/foundations) | CSS/SCSS/Tailwind styles and assets | [![@db-ui/foundations on Npmjs](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fapi.github.com%2Frepos%2Fdb-ui%2Fmono%2Freleases%2Flatest&query=%24.tag_name&label=npm&color=ed1c24 "npm version")](https://npmjs.com/package/@db-ui/foundations "DB UI – on NPM")           |
-| [components](https://github.com/db-ui/mono/tree/main/packages/components)   | CSS/SCSS styles for components      | [![@db-ui/components on Npmjs](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fapi.github.com%2Frepos%2Fdb-ui%2Fmono%2Freleases%2Flatest&query=%24.tag_name&label=npm&color=ed1c24 "npm version")](https://npmjs.com/package/@db-ui/components "DB UI – on NPM")             |
-| [ngx-components](https://github.com/db-ui/mono/tree/main/output/angular)    | Native Angular components           | [![@db-ui/ngx-components on Npmjs](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fapi.github.com%2Frepos%2Fdb-ui%2Fmono%2Freleases%2Flatest&query=%24.tag_name&label=npm&color=ed1c24 "npm version")](https://npmjs.com/package/@db-ui/ngx-components "DB UI – on NPM")     |
-| [react-components](https://github.com/db-ui/mono/tree/main/output/react)    | Native React components             | [![@db-ui/react-components on Npmjs](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fapi.github.com%2Frepos%2Fdb-ui%2Fmono%2Freleases%2Flatest&query=%24.tag_name&label=npm&color=ed1c24 "npm version")](https://npmjs.com/package/@db-ui/react-components "DB UI – on NPM") |
-| [v-components](https://github.com/db-ui/mono/tree/main/output/vue)          | Native Vue 3 components             | [![@db-ui/v-components on Npmjs](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fapi.github.com%2Frepos%2Fdb-ui%2Fmono%2Freleases%2Flatest&query=%24.tag_name&label=npm&color=ed1c24 "npm version")](https://npmjs.com/package/@db-ui/v-components "DB UI – on NPM")         |
-| [web-components](https://github.com/db-ui/mono/tree/main/output/stencil)    | Web Components                      | [![@db-ui/web-components on Npmjs](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fapi.github.com%2Frepos%2Fdb-ui%2Fmono%2Freleases%2Flatest&query=%24.tag_name&label=npm&color=ed1c24 "npm version")](https://npmjs.com/package/@db-ui/web-components "DB UI – on NPM")     |
+| [foundations](https://github.com/db-ux-design-system/core-web/tree/main/packages/foundations) | CSS/SCSS/Tailwind styles and assets | [![@db-ux/core-foundations on Npmjs](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fapi.github.com%2Frepos%2Fdb-ui%2Fmono%2Freleases%2Flatest&query=%24.tag_name&label=npm&color=ed1c24 "npm version")](https://npmjs.com/package/@db-ux/core-foundations "DB UI – on NPM")           |
+| [components](https://github.com/db-ux-design-system/core-web/tree/main/packages/components)   | CSS/SCSS styles for components      | [![@db-ux/core-components on Npmjs](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fapi.github.com%2Frepos%2Fdb-ui%2Fmono%2Freleases%2Flatest&query=%24.tag_name&label=npm&color=ed1c24 "npm version")](https://npmjs.com/package/@db-ux/core-components "DB UI – on NPM")             |
+| [ngx-core-components](https://github.com/db-ux-design-system/core-web/tree/main/output/angular)    | Native Angular components           | [![@db-ux/ngx-core-components on Npmjs](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fapi.github.com%2Frepos%2Fdb-ui%2Fmono%2Freleases%2Flatest&query=%24.tag_name&label=npm&color=ed1c24 "npm version")](https://npmjs.com/package/@db-ux/ngx-core-components "DB UI – on NPM")     |
+| [react-core-components](https://github.com/db-ux-design-system/core-web/tree/main/output/react)    | Native React components             | [![@db-ux/react-core-components on Npmjs](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fapi.github.com%2Frepos%2Fdb-ui%2Fmono%2Freleases%2Flatest&query=%24.tag_name&label=npm&color=ed1c24 "npm version")](https://npmjs.com/package/@db-ux/react-core-components "DB UI – on NPM") |
+| [v-core-components](https://github.com/db-ux-design-system/core-web/tree/main/output/vue)          | Native Vue 3 components             | [![@db-ux/v-core-components on Npmjs](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fapi.github.com%2Frepos%2Fdb-ui%2Fmono%2Freleases%2Flatest&query=%24.tag_name&label=npm&color=ed1c24 "npm version")](https://npmjs.com/package/@db-ux/v-core-components "DB UI – on NPM")         |
+| [wc-core-components](https://github.com/db-ux-design-system/core-web/tree/main/output/stencil)    | Web Components                      | [![@db-ux/wc-core-components on Npmjs](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fapi.github.com%2Frepos%2Fdb-ui%2Fmono%2Freleases%2Flatest&query=%24.tag_name&label=npm&color=ed1c24 "npm version")](https://npmjs.com/package/@db-ux/wc-core-components "DB UI – on NPM")     |
 
 ## How to use
 
-Install your preferred package via npm or yarn e.g. `npm i @db-ui/react-components`.
+Install your preferred package via npm or yarn e.g. `npm i @db-ux/react-core-components`.
 
 Afterwards you need to add the specific CSS or SCSS files to provide the styles of DB UX Design System (Version 3).
-For a detailed overview look at our [examples](https://github.com/db-ui/examples).
+For a detailed overview look at our [examples](https://github.com/db-ux/examples).
 
 ## Components
 
-We maintain a [status overview](https://github.com/orgs/db-ui/projects/4/views/3) for all components.
+We maintain a [status overview](https://github.com/orgs/db-ux/projects/4/views/3) for all components.
 
 ## Core principals
 
@@ -91,17 +91,17 @@ that we're gaining out of the community. So please support us in any way possibl
 ### From DB UI Core or DB UI Elements to DB UI Mono
 
 We're providing a detailed migration for each component next to the documentation of each component:
-<https://db-ui.github.io/mono/review/main/components/action/button/migration>
+<https://db-ux-design-system.github.io/core-web/review/main/components/action/button/migration>
 
 ### In between DB UI Mono versions
 
 Check our migration docs for breaking changes:
 
-1. [Alpha ➡ Beta](https://github.com/db-ui/mono/tree/main/docs/migration/alpha-beta.md) (0.0.x➡0.x.x)
-2. [v0.2 ➡ v0.3](https://github.com/db-ui/mono/tree/main/docs/migration/v0.2.x-to-v0.3.x.md)
-3. [v0.3 ➡ v0.4](https://github.com/db-ui/mono/tree/main/docs/migration/v0.3.x-to-v0.4.x.md)
+1. [Alpha ➡ Beta](https://github.com/db-ux-design-system/core-web/tree/main/docs/migration/alpha-beta.md) (0.0.x➡0.x.x)
+2. [v0.2 ➡ v0.3](https://github.com/db-ux-design-system/core-web/tree/main/docs/migration/v0.2.x-to-v0.3.x.md)
+3. [v0.3 ➡ v0.4](https://github.com/db-ux-design-system/core-web/tree/main/docs/migration/v0.3.x-to-v0.4.x.md)
 4. v0.4 ➡ v0.5: no migration needed, no breaking changes
-5. [v0.5 ➡ v0.6](https://github.com/db-ui/mono/tree/main/docs/migration/v0.5.x-to-v0.6.x.md)
+5. [v0.5 ➡ v0.6](https://github.com/db-ux-design-system/core-web/tree/main/docs/migration/v0.5.x-to-v0.6.x.md)
 
 ## How to start develop / contribute
 
@@ -155,13 +155,13 @@ If you're working as a developer on the DB UX Design System, please have a look 
 
 ## Contributions
 
-Contributions are very welcome, please refer to the [contribution guide](https://github.com/db-ui/mono/blob/main/CONTRIBUTING.md).
+Contributions are very welcome, please refer to the [contribution guide](https://github.com/db-ux-design-system/core-web/blob/main/CONTRIBUTING.md).
 
 ## Code of conduct
 
 We as members, contributors, and leaders pledge to make participation in our
 community a harassment-free experience for everyone – have a look at
-our [Contributor Covenant Code of Conduct](https://github.com/db-ui/mono/blob/main/CODE-OF-CONDUCT.md).
+our [Contributor Covenant Code of Conduct](https://github.com/db-ux-design-system/core-web/blob/main/CODE-OF-CONDUCT.md).
 
 ## License
 

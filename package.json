@@ -1,15 +1,15 @@
 {
-  "name": "@db-ui/mono",
+  "name": "@db-ux/mono",
   "version": "0.0.0",
   "type": "module",
   "description": "",
   "repository": {
     "type": "git",
-    "url": "https://github.com/db-ui/mono"
+    "url": "https://github.com/db-ux-design-system/core-web"
   },
-  "homepage": "https://db-ui.github.io/mono/",
+  "homepage": "https://db-ux-design-system.github.io/core-web/",
   "bugs": {
-    "url": "https://github.com/db-ui/mono/issues"
+    "url": "https://github.com/db-ux-design-system/core-web/issues"
   },
   "author": "",
   "license": "Apache-2.0",
@@ -28,7 +28,7 @@
     "build-showcases": "npm run build-showcases --workspace=scripts",
     "clean": "git clean -dfx --exclude=.env",
     "dev": "npm run dev --workspace=scripts",
-    "generate:component": "npm run generate:component --workspace=@db-ui/components",
+    "generate:component": "npm run generate:component --workspace=@db-ux/core-components",
     "lint": "npm-run-all -p lint:*",
     "lint:jscpd": "jscpd . --exitCode 1 --config .config/.jscpd.json",
     "lint:markdownlint": "markdownlint -c .config/.markdown-lint.yml **/*.md",
@@ -40,7 +40,7 @@
     "rm:builds": "npm run rm:builds --workspace=scripts",
     "start": "npm run start --workspace=patternhub",
     "test": "npm run test --workspace=scripts",
-    "test:react-components": "playwright test -c output/react/playwright.config.ts --ui",
+    "test:react-core-components": "playwright test -c output/react/playwright.config.ts --ui",
     "test:vue-components": "playwright test -c output/vue/playwright.config.ts --ui",
     "update:dependency:playwright": "node scripts/github/update-playwright.js"
   },
