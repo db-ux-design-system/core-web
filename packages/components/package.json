@@ -1,11 +1,11 @@
 {
-  "name": "@db-ui/components",
+  "name": "@db-ux/core-components",
   "version": "0.0.0",
   "type": "module",
   "description": "",
   "repository": {
     "type": "git",
-    "url": "https://github.com/db-ui/mono.git"
+    "url": "https://github.com/db-ux-design-system/core-web.git"
   },
   "author": "General technical components out of DB UX Design System (Version 3)",
   "license": "Apache-2.0",
@@ -16,7 +16,7 @@
     "build": "npm-run-all -p build-components build-assets -s build-style:*",
     "build-assets": "cpr src build -o -f \"(.ts|.tsx|.md|.html)$\"",
     "build-components": "npm-run-all build:mitosis build-components:post build-components:docs",
-    "build-components:docs": "npm run build:cem -w @db-ui/web-components",
+    "build-components:docs": "npm run build:cem -w @db-ux/wc-core-components",
     "build-components:post": "tsx scripts/post-build/index.ts",
     "build-style:01_sass": "sass src:build --no-source-map --load-path=node_modules/ --load-path=../../node_modules/ --future-deprecation=import",
     "build-style:02_postcss": "postcss build/**/*.css --replace",
@@ -42,7 +42,7 @@
     "start": "nodemon --watch src --watch scripts --watch overrides -e js,tsx,ts,scss,json -x \"npm run build\""
   },
   "dependencies": {
-    "@db-ui/foundations": "*"
+    "@db-ux/core-foundations": "*"
   },
   "devDependencies": {
     "@builder.io/eslint-plugin-mitosis": "0.0.16",

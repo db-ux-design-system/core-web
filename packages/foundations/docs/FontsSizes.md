@@ -27,13 +27,13 @@ All sizes of both sets are automatically adjusted by the selected [density](./..
 ### Notes
 
 > - Some sizes may stay the same because of screen width or density.
-> - Elements such as `<p>` and all headings (`h1` - `h6`) as well as **DB UI components** have font sizes assigned by default so that they can be used without further customisation.
+> - Elements such as `<p>` and all headings (`h1` - `h6`) as well as **DB UX Design System Core components** have font sizes assigned by default so that they can be used without further customisation.
 
 ### How to include
 
-For **CSS** and **Tailwind** you need to use the import `@import "@db-ui/foundations/build/styles/fonts/classes/all.css";` in your root `.css` file.
+For **CSS** and **Tailwind** you need to use the import `@import "@db-ux/core-foundations/build/styles/fonts/classes/all.css";` in your root `.css` file.
 
-For **SCSS** you can use the `.css` file, or you can use a placeholder by importing `@use "@db-ui/foundations/build/styles/fonts"` in your `.scss` file, where you need to reference the specific font size.
+For **SCSS** you can use the `.css` file, or you can use a placeholder by importing `@use "@db-ux/core-foundations/build/styles/fonts"` in your `.scss` file, where you need to reference the specific font size.
 Then you can use e.g. `sm` font-size by extending our SCSS placeholders like this: `@extend %db-overwrite-font-size-sm`.
 
 > **_NOTE:_** Make sure that you import the file after all other **foundation** css files, otherwise you should overwrite a specific `font-size` with the global selector

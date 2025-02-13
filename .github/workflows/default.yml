@@ -17,7 +17,7 @@ jobs:
     secrets: inherit
 
   scan-secrets:
-    if: github.event.pull_request == null || github.event.pull_request.head.repo.owner.login == 'db-ui'
+    if: github.event.pull_request == null || github.event.pull_request.head.repo.owner.login == 'db-ux-design-system'
     uses: ./.github/workflows/00-scan-secrets.yml
 
   get-playwright-version:
@@ -259,7 +259,7 @@ jobs:
 
   deploy:
     uses: ./.github/workflows/03-deploy-gh-pages.yml
-    if: ${{ github.actor != 'dependabot[bot]' && (github.event.pull_request == null || github.event.pull_request.head.repo.owner.login == 'db-ui') }}
+    if: ${{ github.actor != 'dependabot[bot]' && (github.event.pull_request == null || github.event.pull_request.head.repo.owner.login == 'db-ux-design-system') }}
     needs: [checks-done]
     with:
       release: false

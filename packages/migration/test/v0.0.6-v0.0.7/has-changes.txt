@@ -1,5 +1,5 @@
-import "@db-ui/components/build/styles/db-ui-42-rollup.css";
+import "@db-ux/core-components/build/styles/db-ux-42-rollup.css";
 
-@use "@db-ui/foundations/build/scss/variables";
-@use "@db-ui/foundations/build/scss/colors";
-@use "@db-ui/foundations/build/scss/screen-sizes";
+@use "@db-ux/core-foundations/build/scss/variables";
+@use "@db-ux/core-foundations/build/scss/colors";
+@use "@db-ux/core-foundations/build/scss/screen-sizes";

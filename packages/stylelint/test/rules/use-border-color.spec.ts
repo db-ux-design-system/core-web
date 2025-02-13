@@ -8,7 +8,7 @@ import {
 } from '../defaults.js';
 import useBorderColor from '../../src/rules/use-border-color.js';
 
-const ruleName = 'db-ui/use-border-color';
+const ruleName = 'db-ux/use-border-color';
 
 const config: Config = {
 	...defaultConfig,

@@ -3,7 +3,7 @@ import {
 	DBTabList,
 	DBTabPanel,
 	DBTabs
-} from '@db-ui/react-components/src';
+} from '@db-ux/react-core-components/src';
 import FormInputs from '../form/input';
 import FormComponent from '../form';
 import FormTextareas from '../form/textarea';

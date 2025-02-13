@@ -4,7 +4,7 @@ import {
 	DBTabList,
 	DBTabPanel,
 	DBTabs
-} from '@db-ui/react-components/src';
+} from '@db-ux/react-core-components/src';
 import {
 	DBAccordion,
 	DBAccordionItem,

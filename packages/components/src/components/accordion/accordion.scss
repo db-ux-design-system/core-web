@@ -1,5 +1,5 @@
-@use "@db-ui/foundations/build/styles/helpers";
-@use "@db-ui/foundations/build/styles/variables";
+@use "@db-ux/core-foundations/build/styles/helpers";
+@use "@db-ux/core-foundations/build/styles/variables";
 @use "../../styles/internal/component";
 
 @mixin accordion-subsequent-item-selector() {

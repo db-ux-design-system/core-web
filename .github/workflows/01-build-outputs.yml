@@ -18,31 +18,31 @@ jobs:
       - name: ⏬ Download foundations build
         uses: actions/download-artifact@v4
         with:
-          name: db-ui-foundations-build
+          name: db-ux-foundations-build
           path: packages/foundations/build
 
       - name: ⏬ Download components build
         uses: actions/download-artifact@v4
         with:
-          name: db-ui-components-build
+          name: db-ux-components-build
           path: packages/components/build
 
       - name: ⏬ Download migration build
         uses: actions/download-artifact@v4
         with:
-          name: db-ui-migration-build
+          name: db-ux-migration-build
           path: packages/migration/build
 
       - name: ⏬ Download stylelint build
         uses: actions/download-artifact@v4
         with:
-          name: db-ui-stylelint-build
+          name: db-ux-stylelint-build
           path: packages/stylelint/build
 
       - name: ⏬ Download output
         uses: actions/download-artifact@v4
         with:
-          name: db-ui-output
+          name: db-ux-output
           path: output
 
       - name: 📥 Install output dependencies
@@ -56,7 +56,7 @@ jobs:
       - name: ⏫ Upload outputs
         uses: actions/upload-artifact@v4
         with:
-          name: db-ui-outputs
+          name: db-ux-outputs
           path: build-outputs
 
       - name: 💀 Killing me softly

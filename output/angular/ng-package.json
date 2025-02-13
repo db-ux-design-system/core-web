@@ -5,7 +5,7 @@
 		"entryFile": "src/index.ts"
 	},
 	"allowedNonPeerDependencies": [
-		"@db-ui/foundations",
-		"@db-ui/components"
+		"@db-ux/core-foundations",
+		"@db-ux/core-components"
 	]
 }
