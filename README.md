@@ -1,7 +1,7 @@
 <!-- markdownlint-configure-file { "MD013": false, "MD041":false } -->
 <!-- markdownlint-disable MD033 MD010 -->
 
-<picture><source srcset="https://db-ux.github.io/images/db-ux-design-system-v3-header.avif" type="image/avif"><source srcset="https://db-ux.github.io/images/db-ux-design-system-v3-header.webp" type="image/webp"><img src="https://db-ux.github.io/images/db-ux-design-system-v3-header.jpg" alt=""></picture>
+<picture><source srcset="https://db-ux-design-system.github.io/images/db-ux-design-system-v3-header.avif" type="image/avif"><source srcset="https://db-ux-design-system.github.io/images/db-ux-design-system-v3-header.webp" type="image/webp"><img src="https://db-ux-design-system.github.io/images/db-ux-design-system-v3-header.jpg" alt=""></picture>
 
 # DB UX Design System v3 🚂💖
 
