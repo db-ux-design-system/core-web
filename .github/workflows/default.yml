@@ -259,7 +259,7 @@ jobs:
 
   deploy:
     uses: ./.github/workflows/03-deploy-gh-pages.yml
-    if: ${{ github.actor != 'dependabot[bot]' && (github.event.pull_request == null || github.event.pull_request.head.repo.owner.login == 'db-ux') }}
+    if: ${{ github.actor != 'dependabot[bot]' && (github.event.pull_request == null || github.event.pull_request.head.repo.owner.login == 'db-ux-design-system') }}
     needs: [checks-done]
     with:
       release: false
