@@ -13,13 +13,13 @@
     "compile:03_components": "node scripts/esbuild-generate.mjs",
     "compile:04_run": "node generated.js",
     "compile:05_test-table": "node scripts/generate-test-table.js",
-    "dev": "cross-env NEXT_PUBLIC_BASE_PATH=/mono/sub NODE_OPTIONS='--inspect' npm-run-all compile:* -p open next:dev",
+    "dev": "cross-env NEXT_PUBLIC_BASE_PATH=/core-web/sub NODE_OPTIONS='--inspect' npm-run-all compile:* -p open next:dev",
     "lint": "next lint",
     "next:dev": "next dev",
-    "open": "open-cli http://localhost:3000/mono/sub",
+    "open": "open-cli http://localhost:3000/core-web/sub",
     "prebuild:app": "cpr ../../node_modules/iframe-resizer/js/ public/iframe-resizer -o",
     "regenerate:screenshots": "npx playwright test --config=../playwright.patternhub-config.ts --update-snapshots",
-    "start": "cross-env NEXT_PUBLIC_BASE_PATH=/mono/sub npm-run-all compile next:dev",
+    "start": "cross-env NEXT_PUBLIC_BASE_PATH=/core-web/sub npm-run-all compile next:dev",
     "test:e2e": "npx playwright test --config=../playwright.patternhub-config.ts"
   },
   "dependencies": {
