@@ -28,7 +28,7 @@ Both the [`.editorconfig`](https://editorconfig.org/) and [`.gitattributes`](htt
 
 ### xo
 
-The [xo](https://github.com/db-ux/core/blob/main/docs/adr/linting-xo.adoc) tool provides a general code linting mechanism.
+The [xo](https://github.com/db-ui/core/blob/main/docs/adr/linting-xo.adoc) tool provides a general code linting mechanism.
 
 ### prettier
 
