@@ -18,7 +18,6 @@ const config = {
 	transpilePackages: [
 		'../../output/react/src',
 		'../react-showcase/',
-		'@db-ux',
 		'@db-ux'
 	],
 	...withMDX({
