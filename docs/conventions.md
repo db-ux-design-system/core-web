@@ -32,4 +32,4 @@ The [xo](https://github.com/db-ux/core/blob/main/docs/adr/linting-xo.adoc) tool 
 
 ### prettier
 
-The [prettier](https://github.com/db-ux/core/blob/main/docs/adr/code_style_formatter-prettier.adoc) tool provides a general code prettfying.
+The [prettier](https://github.com/db-ui/core/blob/main/docs/adr/code_style_formatter-prettier.adoc) tool provides a general code prettfying.
