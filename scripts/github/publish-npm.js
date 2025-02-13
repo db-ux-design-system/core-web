@@ -4,7 +4,6 @@ import { execSync } from 'node:child_process';
 const VALID_SEMVER_VERSION = process.env.VALID_SEMVER_VERSION;
 const RELEASE = process.env.RELEASE === 'true';
 const PRE_RELEASE = process.env.PRE_RELEASE === 'true';
-const GPR_TOKEN = process.env.GPR_TOKEN;
 const NPM_TOKEN = process.env.NPM_TOKEN;
 
 if (!VALID_SEMVER_VERSION) {
