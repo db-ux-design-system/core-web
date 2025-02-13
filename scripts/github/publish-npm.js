@@ -44,15 +44,15 @@ for (const PACKAGE of packages) {
 	);
 
 	if (
-		PACKAGE !== 'foundations' &&
-		PACKAGE !== 'migration' &&
-		PACKAGE !== 'stylelint'
+		PACKAGE !== 'core-foundations' &&
+		PACKAGE !== 'core-migration' &&
+		PACKAGE !== 'core-stylelint'
 	) {
 		console.log('🕵️‍ Set foundations dependency');
 		execSync(
 			`npm pkg set dependencies.@db-ux/core-foundations=${VALID_SEMVER_VERSION} --workspace=@db-ux/${PACKAGE}`
 		);
-		if (PACKAGE !== 'components') {
+		if (PACKAGE !== 'core-components') {
 			execSync(
 				`npm pkg set dependencies.@db-ux/core-components=${VALID_SEMVER_VERSION} --workspace=@db-ux/${PACKAGE}`
 			);
