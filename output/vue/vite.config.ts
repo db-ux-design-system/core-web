@@ -6,7 +6,7 @@ export default defineConfig({
 	build: {
 		lib: {
 			entry: 'src/index.ts',
-			name: 'DB-UI',
+			name: 'DB-UX',
 			fileName: (format) => `db-ux.${format}.js`
 		},
 		rollupOptions: {

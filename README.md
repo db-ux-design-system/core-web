@@ -23,14 +23,14 @@ designers, and content authors build, maintain, and scale best of class digital 
 
 ## Packages
 
-| Package                                                                     | Content                             | Version                                                                                                                                                                                                                                                                                  |
-| --------------------------------------------------------------------------- | ----------------------------------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| [foundations](https://github.com/db-ux-design-system/core-web/tree/main/packages/foundations) | CSS/SCSS/Tailwind styles and assets | [![@db-ux/core-foundations on Npmjs](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fapi.github.com%2Frepos%2Fdb-ui%2Fmono%2Freleases%2Flatest&query=%24.tag_name&label=npm&color=ed1c24 "npm version")](https://npmjs.com/package/@db-ux/core-foundations "DB UI – on NPM")           |
-| [components](https://github.com/db-ux-design-system/core-web/tree/main/packages/components)   | CSS/SCSS styles for components      | [![@db-ux/core-components on Npmjs](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fapi.github.com%2Frepos%2Fdb-ui%2Fmono%2Freleases%2Flatest&query=%24.tag_name&label=npm&color=ed1c24 "npm version")](https://npmjs.com/package/@db-ux/core-components "DB UI – on NPM")             |
-| [ngx-core-components](https://github.com/db-ux-design-system/core-web/tree/main/output/angular)    | Native Angular components           | [![@db-ux/ngx-core-components on Npmjs](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fapi.github.com%2Frepos%2Fdb-ui%2Fmono%2Freleases%2Flatest&query=%24.tag_name&label=npm&color=ed1c24 "npm version")](https://npmjs.com/package/@db-ux/ngx-core-components "DB UI – on NPM")     |
-| [react-core-components](https://github.com/db-ux-design-system/core-web/tree/main/output/react)    | Native React components             | [![@db-ux/react-core-components on Npmjs](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fapi.github.com%2Frepos%2Fdb-ui%2Fmono%2Freleases%2Flatest&query=%24.tag_name&label=npm&color=ed1c24 "npm version")](https://npmjs.com/package/@db-ux/react-core-components "DB UI – on NPM") |
-| [v-core-components](https://github.com/db-ux-design-system/core-web/tree/main/output/vue)          | Native Vue 3 components             | [![@db-ux/v-core-components on Npmjs](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fapi.github.com%2Frepos%2Fdb-ui%2Fmono%2Freleases%2Flatest&query=%24.tag_name&label=npm&color=ed1c24 "npm version")](https://npmjs.com/package/@db-ux/v-core-components "DB UI – on NPM")         |
-| [wc-core-components](https://github.com/db-ux-design-system/core-web/tree/main/output/stencil)    | Web Components                      | [![@db-ux/wc-core-components on Npmjs](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fapi.github.com%2Frepos%2Fdb-ui%2Fmono%2Freleases%2Flatest&query=%24.tag_name&label=npm&color=ed1c24 "npm version")](https://npmjs.com/package/@db-ux/wc-core-components "DB UI – on NPM")     |
+| Package                                                                                         | Content                             | Version                                                                                                                                                                                                                                                                                                                            |
+| ----------------------------------------------------------------------------------------------- | ----------------------------------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| [foundations](https://github.com/db-ux-design-system/core-web/tree/main/packages/foundations)   | CSS/SCSS/Tailwind styles and assets | [![@db-ux/core-foundations on Npmjs](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fapi.github.com%2Frepos%2Fdb-ux-design-system%2Fcore-web%2Freleases%2Flatest&query=%24.tag_name&label=npm&color=ed1c24 "npm version")](https://npmjs.com/package/@db-ux/core-foundations "DB UX Design System – on NPM")           |
+| [components](https://github.com/db-ux-design-system/core-web/tree/main/packages/components)     | CSS/SCSS styles for components      | [![@db-ux/core-components on Npmjs](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fapi.github.com%2Frepos%2Fdb-ux-design-system%2Fcore-web%2Freleases%2Flatest&query=%24.tag_name&label=npm&color=ed1c24 "npm version")](https://npmjs.com/package/@db-ux/core-components "DB UX Design System – on NPM")             |
+| [ngx-core-components](https://github.com/db-ux-design-system/core-web/tree/main/output/angular) | Native Angular components           | [![@db-ux/ngx-core-components on Npmjs](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fapi.github.com%2Frepos%2Fdb-ux-design-system%2Fcore-web%2Freleases%2Flatest&query=%24.tag_name&label=npm&color=ed1c24 "npm version")](https://npmjs.com/package/@db-ux/ngx-core-components "DB UX Design System – on NPM")     |
+| [react-core-components](https://github.com/db-ux-design-system/core-web/tree/main/output/react) | Native React components             | [![@db-ux/react-core-components on Npmjs](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fapi.github.com%2Frepos%2Fdb-ux-design-system%2Fcore-web%2Freleases%2Flatest&query=%24.tag_name&label=npm&color=ed1c24 "npm version")](https://npmjs.com/package/@db-ux/react-core-components "DB UX Design System – on NPM") |
+| [v-core-components](https://github.com/db-ux-design-system/core-web/tree/main/output/vue)       | Native Vue 3 components             | [![@db-ux/v-core-components on Npmjs](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fapi.github.com%2Frepos%2Fdb-ux-design-system%2Fcore-web%2Freleases%2Flatest&query=%24.tag_name&label=npm&color=ed1c24 "npm version")](https://npmjs.com/package/@db-ux/v-core-components "DB UX Design System – on NPM")         |
+| [wc-core-components](https://github.com/db-ux-design-system/core-web/tree/main/output/stencil)  | Web Components                      | [![@db-ux/wc-core-components on Npmjs](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fapi.github.com%2Frepos%2Fdb-ux-design-system%2Fcore-web%2Freleases%2Flatest&query=%24.tag_name&label=npm&color=ed1c24 "npm version")](https://npmjs.com/package/@db-ux/wc-core-components "DB UX Design System – on NPM")       |
 
 ## How to use
 
@@ -50,7 +50,7 @@ We maintain a [status overview](https://github.com/orgs/db-ux/projects/4/views/3
 	Consistent & Compliant
 	</strong></summary>
 
-DB UI Mono is part of [DB UX Design System Core](https://marketingportal.extranet.deutschebahn.com/marketingportal/Design-Anwendungen/DB-UX-Design-System/Design-fuer-Apps-Web/UI-Komponenten),
+DB UX Design System Core Web is part of [DB UX Design System](https://marketingportal.extranet.deutschebahn.com/marketingportal/Design-Anwendungen/DB-UX-Design-System/Design-fuer-Apps-Web/UI-Komponenten),
 that are the guidelines for any Personenverkehr Customer and Deutsche Bahn Enterprise website and web applications.
 
 </details>
@@ -58,7 +58,7 @@ that are the guidelines for any Personenverkehr Customer and Deutsche Bahn Enter
 <details>
   <summary><strong>Accessible</strong></summary>
 
-DB UI Mono leverages semantic HTML, ARIA roles, states and properties to apply our styles wherever possible, thus
+DB UX Design System leverages semantic HTML, ARIA roles, states and properties to apply our styles wherever possible, thus
 enforcing correct, accessible markup. And we're quality checking this in partnership with
 the [Team Digital Accessibility](https://db.de/8pei5n).
 
@@ -66,15 +66,14 @@ the [Team Digital Accessibility](https://db.de/8pei5n).
 <details>
   <summary><strong>Declarative</strong></summary>
 
-DB UI Mono uses declarative selectors instead of visual helpers to ensure our HTML class names and structure are human
+DB UX Design System uses declarative selectors instead of visual helpers to ensure our HTML class names and structure are human
 read- and understandable, lean, performant and so much easier to update.
 
 </details>
 <details>
   <summary><strong>Evergreen</strong></summary>
 
-As [DB UX Design System](https://marketingportal.extranet.deutschebahn.com/marketingportal/Design-Anwendungen/DB-UX-Design-System/Design-fuer-Apps-Web/UI-Komponenten) evolves, so does DB UI
-Mono, meaning apps only need to keep their DB UI Mono package updated to ensure the latest look and feel.
+As [DB UX Design System](https://marketingportal.extranet.deutschebahn.com/marketingportal/Design-Anwendungen/DB-UX-Design-System/Design-fuer-Apps-Web/UI-Komponenten) evolves, so does DB UX Design System version 3, meaning apps only need to keep their DB UX Design System Core Web package updated to ensure the latest look and feel.
 
 </details>
 
@@ -88,12 +87,12 @@ that we're gaining out of the community. So please support us in any way possibl
 
 ## Migration
 
-### From DB UI Core or DB UI Elements to DB UI Mono
+### From DB UI Core or DB UI Elements to DB UX Design System Core
 
 We're providing a detailed migration for each component next to the documentation of each component:
 <https://db-ux-design-system.github.io/core-web/review/main/components/action/button/migration>
 
-### In between DB UI Mono versions
+### In between DB UX Design System Core versions
 
 Check our migration docs for breaking changes:
 
@@ -126,7 +125,7 @@ All versions in all `package.json` files are set to `0.0.0`, we change those dur
 <!-- markdownlint-disable MD033 -->
 
 This is only the first version of our framework and we really want your feedback - either within
-the <a href="https://db.de/krnm74" target="_blank" rel="noopener noreferrer">DB UI Channel by Web Dev Community in
+the <a href="https://db.de/krnm74" target="_blank" rel="noopener noreferrer">DB UX Design System Channel by Web Dev Community in
 Microsoft Teams (only available DB internally)</a>, or directly
 at [db-ux-designsystem@deutschebahn.com](mailto:db-ux-designsystem@deutschebahn.com). <!-- markdownlint-disable MD033 -->
 We're particularly keen to add as many examples to the behaviours as possible, to further clarify them.
@@ -136,7 +135,7 @@ We're particularly keen to add as many examples to the behaviours as possible, t
 As we'd like to perfectly support our users and customers on their digital journey, the usage of Deutsche Bahn brand and
 trademarks are bound to clear guidelines and restrictions even when being used with the code that we're providing with
 this product; Deutsche Bahn fully reserves all rights and ownership regarding the Deutsche Bahn brand, even though that
-we're providing the code of DB UI products free to use and release it under the Apache 2.0 license.
+we're providing the code of DB UX Design System products free to use and release it under the Apache 2.0 license.
 Please have a look at our brand portal at <https://marketingportal.extranet.deutschebahn.com/> for any further questions
 and whom to contact on any brand issues. As these assets and visual guidelines are retrieved from our Deutsche Bahn
 Marketingportal, you'll agree with

@@ -27,7 +27,7 @@ All sizes of both sets are automatically adjusted by the selected [density](./..
 ### Notes
 
 > - Some sizes may stay the same because of screen width or density.
-> - Elements such as `<p>` and all headings (`h1` - `h6`) as well as **DB UI components** have font sizes assigned by default so that they can be used without further customisation.
+> - Elements such as `<p>` and all headings (`h1` - `h6`) as well as **DB UX Design System Core components** have font sizes assigned by default so that they can be used without further customisation.
 
 ### How to include
 

@@ -2,17 +2,18 @@
 
 ## Purpose
 
-You're a Web Developer and you want to use DB UI Components in your own application, whether it's integrating HTML or using our provided Angular, Vue and React components.
+You're a Web Developer and you want to use DB UX Design System Core Components in your own application, whether it's integrating HTML or using our provided Angular, Vue and React components.
 
 In case of the latter, you could directly head over to our JavaScript framework components description:
 
 - [Angular components](https://www.npmjs.com/package/@db-ux/ngx-core-components)
 - [React components](https://www.npmjs.com/package/@db-ux/react-core-components)
 - [Vue components](https://www.npmjs.com/package/@db-ux/v-core-components)
+- [Web components](https://www.npmjs.com/package/@db-ux/wc-core-components)
 
 ## Options
 
-There are multiple options how to use DB UI Components:
+There are multiple options how to use DB UX Design System Core components:
 
 - Manually copy the artifacts to your project
 - Use npm package
@@ -25,7 +26,7 @@ Previous to that you would need to have `node.js` installed on your local machin
 
 ### Use _npmjs.com_ or _yarn_ (installing npm package, recommended)
 
-In case you'd like to use DB UI Components as a dependency in your (frontend) build process and you even also care about handling DB UI Components as a dependency (e.g. for updates etc.), you need to install it as a dependency to your project and then link it within your HTML (CSS file) or within your SCSS.
+In case you'd like to use DB UX Design System Core components as a dependency in your (frontend) build process and you even also care about handling DB UX Design System Core components as a dependency (e.g. for updates etc.), you need to install it as a dependency to your project and then link it within your HTML (CSS file) or within your SCSS.
 
 ```shell
 npm i --save @db-ux/core-components

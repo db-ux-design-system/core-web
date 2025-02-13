@@ -3,6 +3,6 @@
 > **Note**
 > For a general installation or migration process check out this [documentation](https://www.npmjs.com/package/@db-ux/core-components).
 
-## DB UI Core ➡ DB UI Components
+## DB UI Core ➡ DB UX Design System Core components
 
 New Component 🥳
