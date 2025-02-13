@@ -41,7 +41,7 @@ For a detailed overview look at our [examples](https://github.com/db-ux/examples
 
 ## Components
 
-We maintain a [status overview](https://github.com/orgs/db-ux/projects/4/views/3) for all components.
+We maintain a [status overview](https://github.com/orgs/db-ui/projects/4/views/3) for all components.
 
 ## Core principals
 
