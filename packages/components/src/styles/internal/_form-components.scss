@@ -29,9 +29,10 @@ $floating-label-size-calc: calc(
 		#{$label-size-height-2xs}
 );
 
-$input-types: "button", "checkbox", "color", "date", "datetime-local", "email",
-	"file", "hidden", "image", "month", "number", "password", "radio", "range",
-	"reset", "search", "submit", "tel", "text", "time", "url", "week";
+$input-types:
+	"button", "checkbox", "color", "date", "datetime-local", "email", "file",
+	"hidden", "image", "month", "number", "password", "radio", "range", "reset",
+	"search", "submit", "tel", "text", "time", "url", "week";
 
 $check-border-size: min(#{variables.$db-border-height-2xs}, 2px);
 
@@ -132,12 +133,12 @@ $check-border-size: min(#{variables.$db-border-height-2xs}, 2px);
 
 			#{$selector} {
 				@include placeholder-content() {
+					opacity: component.$placeholder-disabled;
+
 					@media screen and (prefers-reduced-motion: no-preference) {
 						transition: opacity
 							#{variables.$db-transition-straight-emotional};
 					}
-
-					opacity: component.$placeholder-disabled;
 				}
 			}
 		}
@@ -206,8 +207,9 @@ $check-border-size: min(#{variables.$db-border-height-2xs}, 2px);
 }
 
 // This doesn't contain text, search and password, because they don't have an auto-validation
-$input-valid-types: "color", "date", "datetime-local", "email", "file",
-	"hidden", "month", "number", "range", "tel", "time", "url", "week";
+$input-valid-types:
+	"color", "date", "datetime-local", "email", "file", "hidden", "month",
+	"number", "range", "tel", "time", "url", "week";
 
 @function get-validations($selector, $key) {
 	$validations: ":required";
@@ -284,13 +286,13 @@ $input-valid-types: "color", "date", "datetime-local", "email", "file",
 	@extend %db-overwrite-font-size-sm;
 	@extend %helper-message;
 
-	@include set-floating-label-overwrites($selector);
-	@include set-required-label($selector);
-
 	// we use absolute icons
 	position: relative;
 	display: flex;
 	flex-direction: column;
+
+	@include set-floating-label-overwrites($selector);
+	@include set-required-label($selector);
 
 	@include get-validity($selector) {
 		@include get-validity-color($selector, "valid");

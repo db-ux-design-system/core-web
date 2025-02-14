@@ -18,7 +18,7 @@
     "build-components": "npm-run-all build:mitosis build-components:post build-components:docs",
     "build-components:docs": "npm run build:cem -w @db-ux/wc-core-components",
     "build-components:post": "tsx scripts/post-build/index.ts",
-    "build-style:01_sass": "sass src:build --no-source-map --load-path=node_modules/ --load-path=../../node_modules/ --future-deprecation=import",
+    "build-style:01_sass": "sass src:build --no-source-map --load-path=node_modules/ --load-path=../../node_modules/",
     "build-style:02_postcss": "postcss build/**/*.css --replace",
     "build:mitosis": "mitosis build -c configs/mitosis.config.cjs",
     "compile:angular": "mitosis build -c configs/angular/mitosis.config.cjs && tsx scripts/exec/angular.ts && cpr ../../output/tmp/angular/src ../../output/angular/src -o",
@@ -52,7 +52,7 @@
     "cssnano": "^7.0.6",
     "hygen": "^6.2.11",
     "nodemon": "3.1.9",
-    "sass": "1.77.4",
+    "sass": "1.85.0",
     "tsx": "^4.19.2"
   },
   "publishConfig": {

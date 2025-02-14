@@ -22,10 +22,10 @@ The spacings are not part of the styling of the accordion items themselves.
 	&[data-variant="divider"],
 	&:not([data-variant]) {
 		@include accordion-subsequent-item-selector() {
-			@include helpers.divider($position: "top");
-
 			// One space each before and after the divider results in a double spacing
 			margin-block-start: calc(2 * #{variables.$db-spacing-fixed-sm});
+
+			@include helpers.divider($position: "top");
 
 			// Moves the divider to the vertical center of the double spacing
 			&::before {
