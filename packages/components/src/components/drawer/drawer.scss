@@ -76,7 +76,10 @@ $spacings: (
 );
 
 @mixin get-spacing($spacing) {
-	padding-block: map.get($spacing, "block");
+	/* stylelint-disable-next-line scss/selector-no-redundant-nesting-selector */
+	& {
+		padding-block: map.get($spacing, "block");
+	}
 
 	.db-drawer-header {
 		// We need this variable to overwrite it inside the header
@@ -149,9 +152,9 @@ $spacings: (
 		}
 
 		.db-drawer-header {
-			@include helpers.divider("bottom");
-
 			display: none;
+
+			@include helpers.divider("bottom");
 
 			.db-drawer-header-text {
 				margin-block: auto;

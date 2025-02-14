@@ -26,12 +26,12 @@ $has-before-padding: calc(
 	// shared from form-components
 	@extend %select-icon;
 
-	@include form-components.set-default-form-component(select);
-
 	min-inline-size: calc(
 		4 * #{variables.$db-sizing-md} + var(--db-form-has-before) *
 			#{variables.$db-sizing-md}
 	);
+
+	@include form-components.set-default-form-component(select);
 
 	select {
 		text-indent: $has-before-padding;
