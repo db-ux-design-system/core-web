@@ -49,6 +49,7 @@
     "@commitlint/cli": "19.7.1",
     "@commitlint/config-conventional": "19.7.1",
     "@db-ux/db-theme": "1.0.0",
+    "@db-ux/db-theme-fonts": "1.0.0",
     "@double-great/stylelint-a11y": "3.0.4",
     "@guidepup/guidepup": "0.24.0",
     "@guidepup/playwright": "^0.14.2",
