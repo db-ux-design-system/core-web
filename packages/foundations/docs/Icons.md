@@ -51,8 +51,8 @@ _**OR:**_ If you use another library which provides some overwrite you can do it
 ```ts
 //
 import "@db-ux/core-foundations";
-import "@db-ux/core-icons";
-import { IconTypes } from "@db-ux/core-icons";
+import "@db-ux/db-theme-icons";
+import { IconTypes } from "@db-ux/db-theme-icons";
 
 declare module "@db-ux/core-foundations" {
 	interface OverwriteIcons {
@@ -66,14 +66,12 @@ You can combine it as well like this:
 ```ts
 //
 import "@db-ux/core-foundations";
-import "@db-ux/core-icons";
-import "@db-ux/pv-icons";
-import { IconTypes } from "@db-ux/core-icons";
-import { IconTypes as PvIconTypes } from "@db-ux/pv-icons";
+import "@db-ux/db-theme-icons";
+import { IconTypes } from "@db-ux/db-theme-icons";
 
 declare module "@db-ux/core-foundations" {
 	interface OverwriteIcons {
-		types: IconTypes | PvIconTypes | "my-custom-icon1" | "my-custom-icon2";
+		types: IconTypes | "my-custom-icon1" | "my-custom-icon2";
 	}
 }
 ```

@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { ALL_ICONS } from '@db-ux/core-icons';
+import { ALL_ICONS } from '@db-ux/db-theme-icons';
 import DefaultPage from '../../../components/default-page';
 import {
 	DBCard,

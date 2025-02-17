@@ -48,7 +48,7 @@
     "@axe-core/playwright": "^4.10.1",
     "@commitlint/cli": "19.7.1",
     "@commitlint/config-conventional": "19.7.1",
-    "@db-ux/db-theme": "0.6.3",
+    "@db-ux/db-theme": "1.0.2",
     "@double-great/stylelint-a11y": "3.0.4",
     "@guidepup/guidepup": "0.24.0",
     "@guidepup/playwright": "^0.14.2",
