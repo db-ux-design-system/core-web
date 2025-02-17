@@ -200,7 +200,7 @@ $popover-gap-inset: calc(-1 * #{$popover-gap-size});
 	background-color: colors.$db-adaptive-bg-basic-level-1-default;
 	box-shadow: variables.$db-elevation-md;
 	display: none;
-	z-index: 1;
+	z-index: 1337;
 	white-space: nowrap;
 
 	&[data-width="fixed"] {
