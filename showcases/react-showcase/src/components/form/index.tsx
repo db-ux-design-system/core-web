@@ -393,8 +393,14 @@ const FormComponent = () => {
 				/>
 
 				<h2>Validations</h2>
-
+				<DBButton>
+					Test
+					<DBTooltip placement="bottom">
+						Open above floating label
+					</DBTooltip>
+				</DBButton>
 				<DBInput
+					variant="floating"
 					label="Input minlength validation"
 					placeholder="Placeholder"
 					invalidMessage="Min. 3"

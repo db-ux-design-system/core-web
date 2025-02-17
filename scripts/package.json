@@ -31,7 +31,7 @@
     "dev": "tsx dev.js",
     "dev:angular-components": "npm run dev:angular --workspace=@db-ux/core-components",
     "dev:plain-html-components": "npm run dev:html --workspace=@db-ux/core-components",
-    "dev:react-core-components": "npm run dev:react --workspace=@db-ux/core-components",
+    "dev:react-components": "npm run dev:react --workspace=@db-ux/core-components",
     "dev:sass": "npm run dev:scss --workspace=@db-ux/core-components",
     "dev:stencil-components": "npm run dev:stencil --workspace=@db-ux/core-components",
     "dev:vue-components": "npm run dev:vue --workspace=@db-ux/core-components",
