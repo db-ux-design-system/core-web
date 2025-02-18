@@ -88,7 +88,7 @@ export default function DBTabItem(props: DBTabItemProps) {
 					type="radio"
 					role="tab"
 					id={props.id}
-					onChange={(event: ChangeEvent<HTMLInputElement>) =>
+					onInput={(event: ChangeEvent<HTMLInputElement>) =>
 						state.handleChange(event)
 					}
 				/>
