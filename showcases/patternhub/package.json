@@ -23,7 +23,7 @@
     "test:e2e": "npx playwright test --config=../playwright.patternhub-config.ts"
   },
   "dependencies": {
-    "@db-ux/db-theme": "1.0.0",
+    "@db-ux/db-theme": "1.0.2",
     "dompurify": "3.2.4",
     "highlight.js": "^11.11.1",
     "next": "15.1.7",
