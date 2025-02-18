@@ -10,7 +10,6 @@ import {
 } from '@builder.io/mitosis';
 import type { DBTabItemProps, DBTabItemState } from './model';
 import { cls, getBooleanAsString, getHideProp } from '../../utils';
-import { ChangeEvent } from '../../shared/model';
 import {
 	handleFrameworkEventAngular,
 	handleFrameworkEventVue
@@ -29,7 +28,7 @@ export default function DBTabItem(props: DBTabItemProps) {
 	const state = useStore<DBTabItemState>({
 		initialized: false,
 		_selected: false,
-		handleChange: (event: ChangeEvent<HTMLInputElement>) => {
+		handleChange: (event: any) => {
 			if (props.onChange) {
 				props.onChange(event);
 			}
@@ -88,9 +87,7 @@ export default function DBTabItem(props: DBTabItemProps) {
 					type="radio"
 					role="tab"
 					id={props.id}
-					onInput={(event: ChangeEvent<HTMLInputElement>) =>
-						state.handleChange(event)
-					}
+					onInput={(event: any) => state.handleChange(event)}
 				/>
 
 				<Show when={props.label}>{props.label}</Show>
