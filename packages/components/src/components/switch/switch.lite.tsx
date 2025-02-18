@@ -93,7 +93,7 @@ export default function DBSwitch(props: DBSwitchProps) {
 				role="switch"
 				aria-checked={state._checked}
 				ref={_ref}
-				checked={props.checked || state._checked}
+				checked={props.checked}
 				value={props.value}
 				disabled={props.disabled}
 				aria-describedby={props.describedbyid}
