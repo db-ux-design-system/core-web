@@ -1,5 +1,6 @@
 import {
 	onMount,
+	onUpdate,
 	Show,
 	useDefaultProps,
 	useMetadata,
@@ -71,6 +72,11 @@ export default function DBSwitch(props: DBSwitchProps) {
 	onMount(() => {
 		state._id = props.id ?? `switch-${uuid()}`;
 	});
+
+	onUpdate(() => {
+		state._checked = !!props.checked;
+	}, [props.checked]);
+
 	// jscpd:ignore-end
 
 	return (
@@ -87,7 +93,8 @@ export default function DBSwitch(props: DBSwitchProps) {
 				role="switch"
 				aria-checked={state._checked}
 				ref={_ref}
-				checked={props.checked}
+				checked={props.checked || state._checked}
+				value={props.value}
 				disabled={props.disabled}
 				aria-describedby={props.describedbyid}
 				aria-invalid={props.validation === 'invalid'}
