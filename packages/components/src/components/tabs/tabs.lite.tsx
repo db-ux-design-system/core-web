@@ -191,6 +191,7 @@ export default function DBTabs(props: DBTabsProps) {
 					class="tabs-scroll-left"
 					variant="ghost"
 					icon="chevron_left"
+					type="button"
 					noText
 					onClick={() => state.scroll(true)}>
 					Scroll left
@@ -226,6 +227,7 @@ export default function DBTabs(props: DBTabsProps) {
 					class="tabs-scroll-right"
 					variant="ghost"
 					icon="chevron_right"
+					type="button"
 					noText
 					onClick={() => state.scroll()}>
 					Scroll right

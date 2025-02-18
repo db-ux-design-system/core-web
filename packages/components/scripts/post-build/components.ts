@@ -75,7 +75,12 @@ export const getComponents = (): Component[] => [
 	},
 
 	{
-		name: 'tab-list'
+		name: 'tab-list',
+		config: {
+			react: {
+				propsPassingFilter: ['onTabSelect', 'onIndexChange']
+			}
+		}
 	},
 
 	{

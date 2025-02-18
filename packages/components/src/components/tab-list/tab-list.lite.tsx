@@ -14,10 +14,21 @@ useDefaultProps<DBTabListProps>({});
 
 export default function DBTabList(props: DBTabListProps) {
 	// This is used as forwardRef
-	const _ref = useRef<HTMLDivElement | null>(null);
+	const _ref = useRef<HTMLFormElement | null>(null);
 	// jscpd:ignore-start
 	const state = useStore<DBTabListState>({
-		_id: DEFAULT_ID
+		_id: DEFAULT_ID,
+		handleChange: (event: any) => {
+			if (props.onIndexChange && event?.target?.['form']) {
+				props.onIndexChange(
+					Array.from(event?.target?.['form']).indexOf(event.target)
+				);
+			}
+
+			if (props.onTabSelect) {
+				props.onTabSelect(event?.target);
+			}
+		}
 	});
 
 	onMount(() => {
@@ -26,11 +37,12 @@ export default function DBTabList(props: DBTabListProps) {
 	// jscpd:ignore-end
 
 	return (
-		<div
+		<form
 			ref={_ref}
 			id={state._id}
-			class={cls('db-tab-list', props.className)}>
+			class={cls('db-tab-list', props.className)}
+			onInput={(event: any) => state.handleChange(event)}>
 			<ul role="tablist">{props.children}</ul>
-		</div>
+		</form>
 	);
 }
