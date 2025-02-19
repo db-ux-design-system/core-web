@@ -29,8 +29,10 @@ export default function DBSwitch(props: DBSwitchProps) {
 	// jscpd:ignore-start
 	const state = useStore<DBSwitchState>({
 		_id: undefined,
-		_checked: false,
-		initialized: false,
+		_checked: useTarget({
+			react: props['defaultChecked'],
+			default: false
+		}),
 		handleChange: (event: ChangeEvent<HTMLInputElement>) => {
 			if (props.onChange) {
 				props.onChange(event);
@@ -74,7 +76,9 @@ export default function DBSwitch(props: DBSwitchProps) {
 	});
 
 	onUpdate(() => {
-		state._checked = !!props.checked;
+		if (props.checked !== undefined && props.checked !== null) {
+			state._checked = !!props.checked;
+		}
 	}, [props.checked]);
 
 	// jscpd:ignore-end
@@ -91,7 +95,7 @@ export default function DBSwitch(props: DBSwitchProps) {
 				id={state._id}
 				type="checkbox"
 				role="switch"
-				aria-checked={state._checked}
+				aria-checked={getBooleanAsString(state._checked)}
 				ref={_ref}
 				checked={props.checked}
 				value={props.value}
