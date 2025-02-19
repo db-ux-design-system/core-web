@@ -30,7 +30,7 @@ export default function DBSwitch(props: DBSwitchProps) {
 	const state = useStore<DBSwitchState>({
 		_id: undefined,
 		_checked: useTarget({
-			react: props['defaultChecked'],
+			react: props['defaultChecked'] ?? false,
 			default: false
 		}),
 		handleChange: (event: ChangeEvent<HTMLInputElement>) => {
