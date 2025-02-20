@@ -10,14 +10,6 @@ import {
 } from '@builder.io/mitosis';
 import { DBCheckboxProps, DBCheckboxState } from './model';
 import {
-	cls,
-	delay,
-	getHideProp,
-	hasVoiceOver,
-	stringPropVisible,
-	uuid
-} from '../../utils';
-import {
 	DEFAULT_INVALID_MESSAGE,
 	DEFAULT_INVALID_MESSAGE_ID_SUFFIX,
 	DEFAULT_MESSAGE_ID_SUFFIX,
@@ -30,6 +22,14 @@ import {
 	handleFrameworkEventVue
 } from '../../utils/form-components';
 import DBInfotext from '../infotext/infotext.lite';
+import {
+	cls,
+	delay,
+	getHideProp,
+	hasVoiceOver,
+	stringPropVisible,
+	uuid
+} from '../../utils';
 
 useMetadata({
 	angular: {
@@ -135,26 +135,19 @@ export default function DBCheckbox(props: DBCheckboxProps) {
 	}, [state._id]);
 
 	onUpdate(() => {
-		if (state.initialized && document && state._id) {
-			const checkboxElement = document?.getElementById(
-				state._id
-			) as HTMLInputElement;
-			if (checkboxElement) {
-				// in angular this must be set via native element
-				if (props.checked != undefined) {
-					checkboxElement.checked = props.checked;
-				}
+		if (state.initialized && _ref) {
+			// in angular this must be set via native element
+			if (props.checked != undefined) {
+				_ref.checked = props.checked;
+			}
 
-				if (props.indeterminate !== undefined) {
-					// When indeterminate is set, the value of the checked prop only impacts the form submitted values.
-					// It has no accessibility or UX implications. (https://mui.com/material-ui/react-checkbox/)
-					checkboxElement.indeterminate = props.indeterminate;
-				}
-
-				state.initialized = false;
+			if (props.indeterminate !== undefined) {
+				// When indeterminate is set, the value of the checked prop only impacts the form submitted values.
+				// It has no accessibility or UX implications. (https://mui.com/material-ui/react-checkbox/)
+				_ref.indeterminate = props.indeterminate;
 			}
 		}
-	}, [state.initialized, props.indeterminate, props.checked]);
+	}, [state.initialized, _ref, props.indeterminate, props.checked]);
 	// jscpd:ignore-end
 
 	return (
