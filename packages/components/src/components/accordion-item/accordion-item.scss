@@ -1,16 +1,15 @@
-@use "@db-ui/foundations/build/styles/variables";
-@use "@db-ui/foundations/build/styles/helpers";
-@use "@db-ui/foundations/build/styles/colors";
-@use "@db-ui/foundations/build/styles/animation";
+@use "@db-ux/core-foundations/build/styles/variables";
+@use "@db-ux/core-foundations/build/styles/helpers";
+@use "@db-ux/core-foundations/build/styles/colors";
+@use "@db-ux/core-foundations/build/styles/animation";
 @use "../../styles/internal/form-components";
 @use "../../styles/internal/component";
 
-$db-accordion-item-border-radius: variables.$db-border-radius-sm;
 
 .db-accordion-item {
 	position: relative;
 	inline-size: 100%;
-	border-radius: $db-accordion-item-border-radius;
+	border-radius: variables.$db-border-radius-sm;
 	list-style-type: "";
 
 	> details {
@@ -49,7 +48,7 @@ $db-accordion-item-border-radius: variables.$db-border-radius-sm;
 		justify-content: space-between;
 		padding: variables.$db-spacing-fixed-md;
 		gap: variables.$db-spacing-fixed-md;
-		border-radius: $db-accordion-item-border-radius;
+		border-radius: variables.$db-border-radius-sm;
 
 		@include helpers.hover {
 			background-color: colors.$db-adaptive-bg-basic-level-1-hovered;

@@ -1,10 +1,10 @@
 {
-  "name": "@db-ui/react-components",
+  "name": "@db-ux/react-core-components",
   "version": "0.0.0",
-  "description": "React components for @db-ui/components",
+  "description": "React components for @db-ux/core-components",
   "repository": {
     "type": "git",
-    "url": "https://github.com/db-ui/mono.git"
+    "url": "https://github.com/db-ux-design-system/core-web.git"
   },
   "license": "Apache-2.0",
   "main": "./dist/index.js",

@@ -306,7 +306,20 @@ export const getComponents = (): Component[] => [
 		overwrites: {
 			global: [{ from: ', KeyValueType', to: '' }],
 			vue: [{ from: ', index', to: '' }],
-			stencil: [{ from: 'HTMLElement', to: 'HTMLInputElement' }]
+			stencil: [{ from: 'HTMLElement', to: 'HTMLInputElement' }],
+			angular: [
+				{
+					from: 'writeValue(value: any) {',
+					to:
+						'writeValue(value: any) {\n' +
+						'if (!value && (this.type === "date" ||\n' +
+						'			this.type === "time" ||\n' +
+						'			this.type === "week" ||\n' +
+						'			this.type === "month" ||\n' +
+						'			this.type === "datetime-local"\n' +
+						'			)) return;'
+				}
+			]
 		},
 		config: {
 			vue: {

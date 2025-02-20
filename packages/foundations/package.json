@@ -1,11 +1,11 @@
 {
-  "name": "@db-ui/foundations",
+  "name": "@db-ux/core-foundations",
   "version": "0.0.0",
   "type": "module",
   "description": "Provides basic tokens and assets based on DB UX Design System (Version 3).",
   "repository": {
     "type": "git",
-    "url": "https://github.com/db-ui/mono.git"
+    "url": "https://github.com/db-ux-design-system/core-web.git"
   },
   "license": "DB Design License",
   "main": "./build/index.js",
@@ -51,11 +51,11 @@
     "dotenv": "^16.4.7",
     "glob": "11.0.1",
     "nodemon": "3.1.9",
-    "prettier": "^3.4.2",
-    "sass": "1.77.4",
-    "tsx": "^4.19.2",
+    "prettier": "^3.5.1",
+    "sass": "1.85.0",
+    "tsx": "^4.19.3",
     "typescript": "^5.4.5",
-    "vite": "^6.0.11"
+    "vite": "^6.1.1"
   },
   "publishConfig": {
     "registry": "https://registry.npmjs.org/",

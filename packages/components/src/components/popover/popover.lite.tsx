@@ -99,7 +99,7 @@ export default function DBPopover(props: DBPopoverProps) {
 				class="db-popover-content"
 				data-spacing={props.spacing}
 				data-gap={getBooleanAsString(props.gap)}
-				data-animation={props.animation}
+				data-animation={getBooleanAsString(props.animation ?? true)}
 				data-open={props.open}
 				data-delay={props.delay}
 				data-width={props.width}

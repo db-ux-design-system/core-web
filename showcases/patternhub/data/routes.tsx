@@ -171,12 +171,12 @@ export const ROUTES: NavigationItem[] = [
 				subNavigation: [
 					{ label: 'Readme', path: '/foundations/colors/readme' },
 					{
-						label: 'Color Classes',
-						path: '/foundations/colors/color-classes'
-					},
-					{
 						label: 'Color Schemes',
 						path: '/foundations/colors/color-schemes'
+					},
+					{
+						label: 'Color Modes',
+						path: '/foundations/colors/color-modes'
 					},
 					{
 						label: 'Color Usage Guide',

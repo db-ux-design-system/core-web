@@ -77,10 +77,10 @@ const setControlValueAccessorReplacements = (
 		from: 'ngOnInit()',
 		to: `
 		writeValue(value: any) {
-		  this.${valueAccessor} = value;
+		  this.${valueAccessor} = ${valueAccessor === 'checked' ? '!!' : ''}value;
 
 		  if (this._ref?.nativeElement) {
-			 this.renderer.setProperty(this._ref?.nativeElement, '${valueAccessor}', value);
+			 this.renderer.setProperty(this._ref?.nativeElement, '${valueAccessor}', ${valueAccessor === 'checked' ? '!!' : ''}value);
 		  }
 		}
 
@@ -173,12 +173,6 @@ export class ${directive.name}Directive {}
 	});
 };
 
-const getAttributePassing = (componentName: string) => `
-ngAfterViewInit(): void {
-\t\tconst element: HTMLElement | null = this._ref?.nativeElement;
-\t\tenableCustomElementAttributePassing(element,'db-${componentName}')
-\t}`;
-
 export default (tmp?: boolean) => {
 	const outputFolder = `${tmp ? 'output/tmp' : 'output'}`;
 	for (const component of components) {
@@ -197,16 +191,6 @@ export default (tmp?: boolean) => {
 			{
 				from: 'ngOnChanges',
 				to: 'ngAfterContentChecked'
-			},
-			{
-				from: '@ViewChild("_ref") _ref!: ElementRef | undefined;',
-				to:
-					'@ViewChild("_ref") _ref!: ElementRef | undefined;' +
-					getAttributePassing(component.name)
-			},
-			{
-				from: '} from "../../utils"',
-				to: ', enableCustomElementAttributePassing } from "../../utils"'
 			}
 		];
 

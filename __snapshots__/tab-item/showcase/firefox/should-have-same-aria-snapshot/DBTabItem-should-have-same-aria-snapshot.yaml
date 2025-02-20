@@ -33,7 +33,7 @@
   - tablist:
     - tab "Icon"
     - text: Icon
-  - link "Behaviour arrow_up_right\" / \""
+  - link "Behavior arrow_up_right\" / \""
   - tablist:
     - tab "(Default) Auto Width"
     - text: (Default) Auto Width

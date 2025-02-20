@@ -70,10 +70,13 @@
 		],
 		"examples": [
 			{
-				"name": "background (default)"
+				"name": "(Default) Divider",
+				"props": {
+					"variant": "divider"
+				}
 			},
 			{
-				"name": "card",
+				"name": "Card",
 				"props": {
 					"variant": "card"
 				}
@@ -81,7 +84,7 @@
 		]
 	},
 	{
-		"name": "Behaviour",
+		"name": "Behavior",
 
 		"children": [
 			{
@@ -110,13 +113,13 @@
 			{
 				"name": "(Default) Multiple",
 				"props": {
-					"behaviour": "multiple"
+					"behavior": "multiple"
 				}
 			},
 			{
 				"name": "Single",
 				"props": {
-					"behaviour": "single"
+					"behavior": "single"
 				}
 			}
 		]

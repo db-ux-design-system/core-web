@@ -1,5 +1,5 @@
-@use "@db-ui/foundations/build/styles/variables";
-@use "@db-ui/foundations/build/styles/colors";
+@use "@db-ux/core-foundations/build/styles/variables";
+@use "@db-ux/core-foundations/build/styles/colors";
 
 pre:has(.hljs):not(:has(.language-shell)) {
 	@extend %db-neutral-bg-basic-transparent-full;
