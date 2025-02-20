@@ -1,5 +1,6 @@
 import {
 	onMount,
+	onUpdate,
 	Show,
 	useDefaultProps,
 	useMetadata,
@@ -28,8 +29,10 @@ export default function DBSwitch(props: DBSwitchProps) {
 	// jscpd:ignore-start
 	const state = useStore<DBSwitchState>({
 		_id: undefined,
-		_checked: false,
-		initialized: false,
+		_checked: useTarget({
+			react: props['defaultChecked'] ?? false,
+			default: false
+		}),
 		handleChange: (event: ChangeEvent<HTMLInputElement>) => {
 			if (props.onChange) {
 				props.onChange(event);
@@ -71,6 +74,13 @@ export default function DBSwitch(props: DBSwitchProps) {
 	onMount(() => {
 		state._id = props.id ?? `switch-${uuid()}`;
 	});
+
+	onUpdate(() => {
+		if (props.checked !== undefined && props.checked !== null) {
+			state._checked = !!props.checked;
+		}
+	}, [props.checked]);
+
 	// jscpd:ignore-end
 
 	return (
@@ -85,9 +95,10 @@ export default function DBSwitch(props: DBSwitchProps) {
 				id={state._id}
 				type="checkbox"
 				role="switch"
-				aria-checked={state._checked}
+				aria-checked={getBooleanAsString(state._checked)}
 				ref={_ref}
 				checked={props.checked}
+				value={props.value}
 				disabled={props.disabled}
 				aria-describedby={props.describedbyid}
 				aria-invalid={props.validation === 'invalid'}

@@ -22,7 +22,6 @@ export type DBTabsDefaultProps = {
 	 * Change amount of distance if you click on an arrow, only available with behavior="arrows"
 	 */
 	arrowScrollDistance?: number;
-
 	/**
 	 * Show a scrollbar or buttons with arrows to navigate for horizontal tabs with overflow visible
 	 */
@@ -42,6 +41,16 @@ export type DBTabsDefaultProps = {
 	 * The name of the tab bar, is required for grouping multiple tabs together. Will overwrite names from children.
 	 */
 	name?: string;
+
+	/**
+	 * Informs the user if the current tab index has changed.
+	 */
+	onIndexChange?: (index?: number) => void;
+
+	/**
+	 * Informs the user if another tab has been selected.
+	 */
+	onTabSelect?: (event?: Event) => void;
 
 	/**
 	 * Provide simple tabs with label + text as content
@@ -65,6 +74,7 @@ export type DBTabsDefaultState = {
 	convertTabs: (tabs?: unknown[] | string | undefined) => DBSimpleTabProps[];
 	initTabList: () => void;
 	initTabs: (init?: boolean) => void;
+	handleChange: (event: any) => void;
 };
 
 export type DBTabsState = DBTabsDefaultState & GlobalState & InitializedState;
