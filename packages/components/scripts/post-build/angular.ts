@@ -77,10 +77,10 @@ const setControlValueAccessorReplacements = (
 		from: 'ngOnInit()',
 		to: `
 		writeValue(value: any) {
-		  this.${valueAccessor} = value;
+		  this.${valueAccessor} = ${valueAccessor === 'checked' ? '!!' : ''}value;
 
 		  if (this._ref?.nativeElement) {
-			 this.renderer.setProperty(this._ref?.nativeElement, '${valueAccessor}', value);
+			 this.renderer.setProperty(this._ref?.nativeElement, '${valueAccessor}', ${valueAccessor === 'checked' ? '!!' : ''}value);
 		  }
 		}
 

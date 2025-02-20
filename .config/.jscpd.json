@@ -34,6 +34,7 @@
 		"**/test-results/**",
 		"**/tests/**",
 		"**/tsconfig.json",
+		"packages/components/scripts/post-build/components.ts",
 		"packages/components/src/components/**/*.spec.tsx",
 		"packages/components/src/components/**/index.html",
 		"packages/components/src/components/checkbox/checkbox.lite.tsx",
