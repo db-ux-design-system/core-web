@@ -75,6 +75,11 @@ export const getComponents = (): Component[] => [
 					to: 'scrollContainer: Element | null = null;'
 				}
 			]
+		},
+		config: {
+			react: {
+				propsPassingFilter: ['onTabSelect', 'onIndexChange']
+			}
 		}
 	},
 
