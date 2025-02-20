@@ -103,6 +103,11 @@ export const getComponents = (): Component[] => [
 			angular: [{ from: 'attr.open', to: 'open' }],
 			// TS issue
 			stencil: [{ from: 'name={this.name}', to: '' }]
+		},
+		config: {
+			react: {
+				propsPassingFilter: ['onToggle']
+			}
 		}
 	},
 
@@ -206,7 +211,12 @@ export const getComponents = (): Component[] => [
 	},
 
 	{
-		name: 'tag'
+		name: 'tag',
+		config: {
+			react: {
+				propsPassingFilter: ['onRemove']
+			}
+		}
 	},
 	{
 		name: 'checkbox',
@@ -241,7 +251,12 @@ export const getComponents = (): Component[] => [
 	},
 
 	{
-		name: 'notification'
+		name: 'notification',
+		config: {
+			react: {
+				propsPassingFilter: ['onClose']
+			}
+		}
 	},
 
 	{
@@ -279,6 +294,9 @@ export const getComponents = (): Component[] => [
 						name: 'Navigation'
 					}
 				]
+			},
+			react: {
+				propsPassingFilter: ['onToggle']
 			}
 		},
 		overwrites: {
