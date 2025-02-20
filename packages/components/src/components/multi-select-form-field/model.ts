@@ -3,8 +3,7 @@ import { ClickEventProps, GlobalProps, GlobalState } from '../../shared/model';
 export interface DBMultiSelectFormFieldDefaultProps {}
 
 export type DBMultiSelectFormFieldProps = DBMultiSelectFormFieldDefaultProps &
-	GlobalProps &
-	ClickEventProps<HTMLElement>;
+	GlobalProps ;
 
 export interface DBMultiSelectFormFieldDefaultState {}
 

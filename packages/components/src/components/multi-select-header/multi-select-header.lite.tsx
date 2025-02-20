@@ -48,13 +48,14 @@ export default function DBMultiSelectHeader(props: DBMultiSelectHeaderProps) {
 			id={props.id}
 			data-variant={props.variant}
 			class={cls('db-multi-select-header', props.className)}>
-			<div className="db-checkbox" data-variant="hidden">
+			<div class="db-checkbox">
 				<label htmlFor={state._id + '-select-all'}>
 					{/*We set a form name based on id for not sending checkboxes to a wrapping form */}
 					<input
 						ref={selectAllRef}
 						id={state._id + '-select-all'}
 						form={state._id}
+						class="db-multi-select-header-select-all"
 						type="checkbox"
 						value="select-all"
 						checked={props.checked}

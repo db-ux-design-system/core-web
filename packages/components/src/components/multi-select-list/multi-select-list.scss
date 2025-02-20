@@ -1,12 +1,9 @@
-@use "@db-ui/foundations/build/styles/variables";
+@use "@db-ux/core-foundations/build/styles/variables";
 @use "../../styles/multi-select-components";
 
 .db-multi-select-list {
-	padding: 0;
-	margin: 0;
-	list-style: none;
+	all: unset;
 	display: flex;
 	flex-direction: column;
 	gap: variables.$db-spacing-fixed-sm;
-	max-block-size: multi-select-components.$max-height;
 }

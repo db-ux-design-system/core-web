@@ -250,6 +250,13 @@ export type RequiredProps = {
 	 */
 	required?: boolean;
 };
+export type ShowLabelProps = {
+	/**
+	 * Enables/disables the visibility of the label
+	 */
+	showLabel?: boolean;
+};
+
 export type FormProps = {
 	/**
 	 * Marks an input element as invalid (red) / valid (green) / no-validation (grey). Overwrites the :user-valid selector.
@@ -275,14 +282,11 @@ export type FormProps = {
 	name?: string;
 
 	/**
-	 * Enables/disables the visibility of the label
-	 */
-	showLabel?: boolean;
-	/**
 	 * The value property is to receive results from the native form element.
 	 */
 	value?: any;
-} & RequiredProps;
+} & RequiredProps &
+	ShowLabelProps;
 
 export type FormTextProps = {
 	/**

@@ -1,17 +1,16 @@
-@use "@db-ui/foundations/build/styles/variables";
-@use "@db-ui/foundations/build/styles/colors";
-@use "@db-ui/foundations/build/styles/helpers";
+@use "@db-ux/core-foundations/build/styles/variables";
+@use "@db-ux/core-foundations/build/styles/colors";
+@use "@db-ux/core-foundations/build/styles/helpers";
 @use "../../styles/internal/form-components";
 @use "../../styles/multi-select-components";
 
 .db-multi-select-header {
-	@include helpers.divider("bottom");
-
 	display: flex;
 	background-color: colors.$db-adaptive-bg-basic-level-2-default;
 	padding-block: variables.$db-spacing-fixed-xs;
 	padding-inline: calc(
-			#{multi-select-components.$list-padding-inline} + #{multi-select-components.$list-item-padding-inline}
+			#{multi-select-components.$list-padding-inline} +
+				#{multi-select-components.$list-item-padding-inline}
 		)
 		variables.$db-spacing-fixed-2xs;
 	border-start-start-radius: variables.$db-border-radius-xs;
@@ -21,12 +20,22 @@
 	align-items: center;
 	text-wrap: nowrap;
 
+	@include helpers.divider("bottom");
+
 	.db-input {
 		display: none;
 	}
 
 	.db-button {
 		flex-shrink: 0;
+	}
+
+	&:not(:has(.db-input)) {
+		.db-checkbox {
+			.db-tooltip {
+				display: none;
+			}
+		}
 	}
 
 	&[data-variant="search"] {

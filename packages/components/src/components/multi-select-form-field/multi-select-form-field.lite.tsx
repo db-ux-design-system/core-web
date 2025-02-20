@@ -26,11 +26,6 @@ export default function DBMultiSelectFormField(
 
 	return (
 		<summary
-			onClick={(event: ClickEvent<HTMLElement>) => {
-				if (props.onClick) {
-					props.onClick(event);
-				}
-			}}
 			ref={_ref}
 			id={props.id}
 			class={cls('db-multi-select-form-field', props.className)}>

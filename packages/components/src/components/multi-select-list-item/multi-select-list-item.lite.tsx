@@ -69,6 +69,7 @@ export default function DBMultiSelectListItem(
 			<Show when={!props.groupLabel}>
 				<label htmlFor={state._id + props.value}>
 					<input
+						class="db-multi-select-list-item-checkbox"
 						id={state._id + props.value}
 						type="checkbox"
 						name={props.name}

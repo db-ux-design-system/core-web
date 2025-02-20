@@ -1,6 +1,6 @@
-@use "@db-ui/foundations/build/styles/variables";
-@use "@db-ui/foundations/build/styles/colors";
-@use "@db-ui/foundations/build/styles/helpers";
+@use "@db-ux/core-foundations/build/styles/variables";
+@use "@db-ux/core-foundations/build/styles/colors";
+@use "@db-ux/core-foundations/build/styles/helpers";
 @use "../../styles/internal/form-components";
 @use "../../styles/internal/component";
 @use "../../styles/multi-select-components";
@@ -33,7 +33,8 @@
 	[id$="-placeholder"] {
 		display: none;
 		margin-inline-end: calc(
-			#{form-components.$font-size-height} + #{variables.$db-spacing-fixed-sm}
+			#{form-components.$font-size-height} +
+				#{variables.$db-spacing-fixed-sm}
 		);
 	}
 
@@ -70,6 +71,11 @@
 		.db-notification {
 			display: grid;
 		}
+	}
+
+	&[data-hide-label="true"] {
+		--db-label-visible-height: 0;
+		--db-label-visible-spacing: 1;
 	}
 
 	&[data-selected-type="tag"] {

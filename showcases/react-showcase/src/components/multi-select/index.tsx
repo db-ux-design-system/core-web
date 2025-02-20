@@ -15,7 +15,8 @@ const getMultiSelect = ({
 	placeholder,
 	selectedType,
 	tagWrapping,
-	width
+	width,
+	showLabel
 }: DBMultiSelectProps) => {
 	const [mValue, setValue] = useState<string[] | undefined>(values);
 
@@ -27,6 +28,7 @@ const getMultiSelect = ({
 			message={message}
 			required={required}
 			placeholder={placeholder}
+			showLabel={showLabel}
 			selectAllLabel="Select all"
 			deSelectAllLabel="Deselect all"
 			searchLabel="Search"

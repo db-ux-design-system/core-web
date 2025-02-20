@@ -50,7 +50,7 @@
 		]
 	},
 	{
-		"name": "Variant Label",
+		"name": "Variant",
 		"examples": [
 			{
 				"name": "(Default) Label Above",
@@ -81,9 +81,14 @@
 					"variant": "floating",
 					"value": ["Floating Label"]
 				}
-			},
+			}
+		]
+	},
+	{
+		"name": "Show Label",
+		"examples": [
 			{
-				"name": "Hidden Label",
+				"name": "(Default) True",
 				"props": {
 					"options": [
 						{
@@ -94,7 +99,22 @@
 						}
 					],
 					"label": "Label",
-					"variant": "hidden"
+					"showLabel": true
+				}
+			},
+			{
+				"name": "False",
+				"props": {
+					"options": [
+						{
+							"value": "Option 1"
+						},
+						{
+							"value": "Option 2"
+						}
+					],
+					"label": "Label",
+					"showLabel": false
 				}
 			}
 		]

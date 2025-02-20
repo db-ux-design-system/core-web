@@ -1,12 +1,11 @@
-@use "@db-ui/foundations/build/styles/variables";
-@use "@db-ui/foundations/build/styles/colors";
-@use "@db-ui/foundations/build/styles/helpers";
-@use "@db-ui/foundations/build/styles/fonts";
+@use "@db-ux/core-foundations/build/styles/variables";
+@use "@db-ux/core-foundations/build/styles/colors";
+@use "@db-ux/core-foundations/build/styles/helpers";
+@use "@db-ux/core-foundations/build/styles/fonts";
 @use "../../styles/multi-select-components";
 
 .db-multi-select-list-item {
 	display: flex;
-	inline-size: 100%;
 	block-size: 100%;
 	position: relative;
 	padding: multi-select-components.$list-item-padding-block

@@ -14,7 +14,14 @@ import {
 	DBMultiSelectState,
 	MultiSelectOptionType
 } from './model';
-import { cls, delay, hasVoiceOver, stringPropVisible, uuid } from '../../utils';
+import {
+	cls,
+	delay,
+	getHideProp,
+	hasVoiceOver,
+	stringPropVisible,
+	uuid
+} from '../../utils';
 import {
 	DEFAULT_INVALID_MESSAGE,
 	DEFAULT_INVALID_MESSAGE_ID_SUFFIX,
@@ -42,6 +49,14 @@ import { DBTag } from '../tag';
 useMetadata({});
 
 useDefaultProps<DBMultiSelectProps>({});
+
+// TODO: Tags remove lose focus
+// TODO: CLose button lose focus
+// TODO: Remove all button missing
+// TODO: Check all paddings/margins again
+// TODO: Animation summary calc-size(auto,size)
+// TODO: Test composition instead of config
+// TODO: Test with screenreader
 
 export default function DBMultiSelect(props: DBMultiSelectProps) {
 	// This is used as forwardRef
@@ -78,25 +93,80 @@ export default function DBMultiSelect(props: DBMultiSelectProps) {
 
 			return false;
 		},
+		handleArrowDownUp: (event: KeyboardEvent) => {
+			if (detailsRef.open) {
+				if (document) {
+					const activeElement = document.activeElement;
+					if (activeElement) {
+						// 1. we check if we are currently focusing a checkbox in the multiselect dropdown
+						const isCheckbox = activeElement.classList.contains(
+							'db-multi-select-list-item-checkbox'
+						);
+
+						if (isCheckbox) {
+							const listElement = activeElement?.closest('li');
+							if (event.key === 'ArrowDown') {
+								if (listElement?.nextElementSibling) {
+									listElement?.nextElementSibling
+										.querySelector('input')
+										?.focus();
+								}
+							} else {
+								if (listElement?.previousElementSibling) {
+									listElement?.previousElementSibling
+										.querySelector('input')
+										?.focus();
+								}
+							}
+						} else {
+							// 2. Otherwise, we need to move to the first checkbox
+							state.handleFocusFirstDropdownCheckbox();
+						}
+					}
+				}
+			} else {
+				// Open dropdown with arrows see https://www.w3.org/WAI/ARIA/apg/patterns/combobox/#keyboardinteraction
+				state.handleToggleOpen();
+				detailsRef.open = true;
+				state.handleOpenByKeyboardFocus();
+			}
+			event.stopPropagation();
+			event.preventDefault();
+		},
+		handleKeyboardPress: (event: KeyboardEvent) => {
+			if (event.key === 'Escape' && detailsRef.open) {
+				state.handleClose('close');
+				detailsRef.querySelector('summary')?.focus();
+			} else if (event.key === 'ArrowDown' || event.key === 'ArrowUp') {
+				state.handleArrowDownUp(event);
+			} else if (
+				event.key === 'ArrowRight' ||
+				event.key === 'ArrowLeft'
+			) {
+				// TODO: Handle ArrowRight and ArrowLeft
+				if (detailsRef.open) {
+				} else {
+				}
+			}
+		},
 		// eslint-disable-next-line @typescript-eslint/no-explicit-any
 		handleClose: (event: 'close' | MouseEvent) => {
 			if (detailsRef) {
 				if (event === 'close') {
 					detailsRef.open = false;
+					state.handleRemoveDocumentEvents();
 				} else {
 					const target = event.target as HTMLElement;
+					const relatedTarget = event.relatedTarget as HTMLElement;
 					if (
-						state._id &&
 						!Boolean(
-							detailsRef.contains(target) ||
-								target.id.includes(state._id)
+							target === detailsRef ||
+								(relatedTarget &&
+									detailsRef.contains(relatedTarget))
 						)
 					) {
 						detailsRef.open = false;
-						document.removeEventListener(
-							'click',
-							state.handleClose
-						);
+						state.handleRemoveDocumentEvents();
 					}
 				}
 			}
@@ -125,20 +195,54 @@ export default function DBMultiSelect(props: DBMultiSelectProps) {
 			}
 			state._internalChangeTimestamp = new Date().getTime();
 		},
+		handleRemoveDocumentEvents: () => {
+			if (typeof document !== 'undefined') {
+				document.removeEventListener('click', state.handleClose);
+			}
+		},
 		handleToggleOpen: () => {
+			// Add "popover" close to details summary
 			if (
 				props.enableClickOutside === undefined ||
 				props.enableClickOutside
 			) {
-				if (typeof window !== 'undefined') {
+				if (typeof document !== 'undefined') {
 					if (detailsRef?.open) {
-						document.removeEventListener(
-							'click',
-							state.handleClose
-						);
+						state.handleRemoveDocumentEvents();
 					} else {
 						document.addEventListener('click', state.handleClose);
 					}
+				}
+			}
+		},
+		handleFocusFirstDropdownCheckbox: () => {
+			if (detailsRef) {
+				const checkbox = detailsRef.querySelector<HTMLInputElement>(
+					`input[type="checkbox"]:not([class="db-multi-select-header-select-all"])`
+				);
+				if (checkbox) {
+					delay(() => {
+						// Takes some time until element can be focused
+						checkbox.focus();
+					}, 100);
+				}
+			}
+		},
+		handleOpenByKeyboardFocus: () => {
+			if (detailsRef) {
+				// Focus search if possible
+				const search =
+					detailsRef.querySelector<HTMLInputElement>(
+						`input[type="search"]`
+					);
+				if (search) {
+					delay(() => {
+						// Takes some time until element can be focused
+						search.focus();
+					}, 100);
+				} else {
+					// Focus first checkbox otherwise
+					state.handleFocusFirstDropdownCheckbox();
 				}
 			}
 		},
@@ -191,15 +295,31 @@ export default function DBMultiSelect(props: DBMultiSelectProps) {
 
 	onUpdate(() => {
 		if (detailsRef) {
-			const summaries = detailsRef.getElementsByTagName('summary');
-			if (summaries && summaries.length > 0) {
-				summaries[0].setAttribute(
+			const summary = detailsRef.querySelector('summary');
+			if (summary) {
+				summary.setAttribute(
 					'aria-describedby',
 					state._descByIds ?? ''
 				);
 			}
 		}
 	}, [detailsRef, state._descByIds]);
+
+	onUpdate(() => {
+		if (detailsRef) {
+			const summary = detailsRef.querySelector('summary');
+			if (summary) {
+				summary.addEventListener('click', () =>
+					state.handleToggleOpen()
+				);
+				summary.addEventListener('keydown', (event: KeyboardEvent) => {
+					if (event.code === 'Space' && !detailsRef.open) {
+						state.handleOpenByKeyboardFocus();
+					}
+				});
+			}
+		}
+	}, [detailsRef]);
 
 	onUpdate(() => {
 		if (props.hasNoResults !== undefined) {
@@ -364,7 +484,8 @@ export default function DBMultiSelect(props: DBMultiSelectProps) {
 			data-selected-type={props.selectedType}
 			data-wrapping={props.tagWrapping}
 			data-header-enabled={state.headerEnabled}
-			data-notification-enabled={state._hasNoOptions ?? props.isLoading}>
+			data-notification-enabled={state._hasNoOptions ?? props.isLoading}
+			data-hide-label={getHideProp(props.showLabel)}>
 			<select
 				id={state._selectId}
 				ref={selectRef}
@@ -394,11 +515,13 @@ export default function DBMultiSelect(props: DBMultiSelectProps) {
 			<label htmlFor={state._selectId} id={state._labelId}>
 				{props.label ?? DEFAULT_LABEL}
 			</label>
-			<details ref={detailsRef}>
+			<details
+				ref={detailsRef}
+				onBlur={(event) => state.handleClose(event)}
+				onKeyDown={(event) => state.handleKeyboardPress(event)}>
 				{props.children}
 				<Show when={props.options}>
-					<DBMultiSelectFormField
-						onClick={() => state.handleToggleOpen()}>
+					<DBMultiSelectFormField>
 						<Show
 							when={
 								props.selectedType !== 'tag' &&
@@ -422,7 +545,7 @@ export default function DBMultiSelect(props: DBMultiSelectProps) {
 												state.handleSelect(option.value)
 											}
 											emphasis="strong"
-											behaviour="removable">
+											behavior="removable">
 											{state.getOptionLabel(option)}
 										</DBTag>
 									)}
@@ -459,7 +582,7 @@ export default function DBMultiSelect(props: DBMultiSelectProps) {
 						}
 						notification={
 							<DBNotification
-								behaviour="permanent"
+								closeable={false}
 								semantic={
 									state._hasNoOptions
 										? 'warning'
@@ -537,8 +660,7 @@ export default function DBMultiSelect(props: DBMultiSelectProps) {
 				size="small"
 				semantic="critical">
 				{props.invalidMessage ??
-					selectRef?.validationMessage ??
-					DEFAULT_INVALID_MESSAGE}
+					(selectRef?.validationMessage || DEFAULT_INVALID_MESSAGE)}
 			</DBInfotext>
 
 			{/* * https://www.davidmacd.com/blog/test-aria-describedby-errormessage-aria-live.html

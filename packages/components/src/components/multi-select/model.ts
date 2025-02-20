@@ -7,9 +7,11 @@ import {
 	GlobalProps,
 	GlobalState,
 	InitializedState,
-	InnerCloseButtonProps, ValidationType,
+	InnerCloseButtonProps,
+	ShowLabelProps,
+	ValidationType,
 	WidthProps
-} from "../../shared/model";
+} from '../../shared/model';
 import { DBMultiSelectHeaderLabelProps } from '../multi-select-header/model';
 import { DBMultiSelectFormFieldDefaultProps } from '../multi-select-form-field/model';
 
@@ -113,7 +115,7 @@ export interface DBMultiSelectDefaultProps {
 	selectedType?: SelectedTypeType;
 
 	/**
-	 * Optional: if you use selectedType=tag, you can change the behaviour of tags
+	 * Optional: if you use selectedType=tag, you can change the behavior of tags
 	 */
 	tagWrapping?: MultiSelectTagWrappingType;
 
@@ -130,7 +132,8 @@ export type DBMultiSelectProps = GlobalProps &
 	FormMessageProps &
 	DBMultiSelectDefaultProps &
 	DBMultiSelectFormFieldDefaultProps &
-	WidthProps;
+	WidthProps &
+	ShowLabelProps;
 
 export interface DBMultiSelectDefaultState {
 	_validity?: ValidationType;
@@ -152,6 +155,11 @@ export interface DBMultiSelectDefaultState {
 	handleSelect: (value?: string) => void;
 	handleSelectAll: () => void;
 	handleToggleOpen: () => void;
+	handleRemoveDocumentEvents: () => void;
+	handleOpenByKeyboardFocus: () => void;
+	handleFocusFirstDropdownCheckbox: () => void;
+	handleKeyboardPress: (event: KeyboardEvent) => void;
+	handleArrowDownUp: (event: KeyboardEvent) => void;
 	handleSearch: (event: ChangeEvent<HTMLInputElement>) => void;
 	selectAllChecked: boolean;
 	selectAllIndeterminate: boolean;

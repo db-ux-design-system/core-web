@@ -140,12 +140,12 @@ $check-border-size: min(#{variables.$db-border-height-2xs}, 2px);
 			}
 
 			@include placeholder-content($selector) {
-				opacity: component.$placeholder-disabled;@media screen and (prefers-reduced-motion: no-preference) {
-					transition: opacity
-							#{variables.$db-transition-straight-emotional};
-				}
-
 				opacity: component.$placeholder-disabled;
+
+				@media screen and (prefers-reduced-motion: no-preference) {
+					transition: opacity
+						#{variables.$db-transition-straight-emotional};
+				}
 			}
 		}
 	}
