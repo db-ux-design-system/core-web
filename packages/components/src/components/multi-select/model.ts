@@ -56,12 +56,12 @@ export interface DBMultiSelectDefaultProps {
 	/**
 	 * Label for the clear selection button
 	 */
-	clearSelectionButtonLabel?: string;
+	clearSelectionLabel?: string;
 
 	/**
 	 * Show clear selection button (default:true)
 	 */
-	showClearSelectionButton?: boolean;
+	showClearSelection?: boolean;
 
 	/**
 	 * Disable default click outside handling. Will force header with close button.
@@ -167,7 +167,7 @@ export interface DBMultiSelectDefaultState {
 	handleClearAll: () => void;
 	handleToggleOpen: () => void;
 	handleRemoveDocumentEvents: () => void;
-	handleOpenByKeyboardFocus: () => void;
+	handleOpenByKeyboardFocus: (onlySearch?: boolean) => void;
 	handleFocusFirstDropdownCheckbox: () => void;
 	handleKeyboardPress: (event: KeyboardEvent) => void;
 	handleArrowDownUp: (event: KeyboardEvent) => void;

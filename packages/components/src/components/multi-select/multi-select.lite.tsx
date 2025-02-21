@@ -52,8 +52,8 @@ import { DBTooltip } from '../tooltip';
 useMetadata({});
 
 useDefaultProps<DBMultiSelectProps>({
-	clearSelectionButtonLabel: 'Clear selection',
-	showClearSelectionButton: true
+	clearSelectionLabel: 'Clear selection',
+	showClearSelection: true
 });
 
 // TODO: Tags remove lose focus
@@ -251,7 +251,7 @@ export default function DBMultiSelect(props: DBMultiSelectProps) {
 				}
 			}
 		},
-		handleOpenByKeyboardFocus: () => {
+		handleOpenByKeyboardFocus: (onlySearch?: boolean) => {
 			if (detailsRef) {
 				// Focus search if possible
 				const search = getSearchInput(detailsRef);
@@ -260,7 +260,7 @@ export default function DBMultiSelect(props: DBMultiSelectProps) {
 						// Takes some time until element can be focused
 						search.focus();
 					}, 100);
-				} else {
+				} else if (!onlySearch) {
 					// Focus first checkbox otherwise
 					state.handleFocusFirstDropdownCheckbox();
 				}
@@ -332,9 +332,10 @@ export default function DBMultiSelect(props: DBMultiSelectProps) {
 		if (detailsRef) {
 			const summary = detailsRef.querySelector('summary');
 			if (summary) {
-				summary.addEventListener('click', () =>
-					state.handleToggleOpen()
-				);
+				summary.addEventListener('click', () => {
+					state.handleToggleOpen();
+					state.handleOpenByKeyboardFocus(true);
+				});
 				summary.addEventListener('keydown', (event: KeyboardEvent) => {
 					if (event.code === 'Space' && !detailsRef.open) {
 						state.handleOpenByKeyboardFocus();
@@ -577,7 +578,7 @@ export default function DBMultiSelect(props: DBMultiSelectProps) {
 						</Show>
 						<Show
 							when={
-								props.showClearSelectionButton &&
+								props.showClearSelection &&
 								state._values?.length
 							}>
 							<DBButton
@@ -586,9 +587,9 @@ export default function DBMultiSelect(props: DBMultiSelectProps) {
 								noText
 								size="small"
 								onClick={() => state.handleClearAll()}>
-								{props.clearSelectionButtonLabel}
+								{props.clearSelectionLabel}
 								<DBTooltip placement="top">
-									{props.clearSelectionButtonLabel}
+									{props.clearSelectionLabel}
 								</DBTooltip>
 							</DBButton>
 						</Show>
