@@ -136,6 +136,24 @@ export default function DBTabs(props: DBTabsProps) {
 					);
 				}
 			}
+		},
+		handleChange: (event: any) => {
+			if (props.onIndexChange && event.target) {
+				const list = event.target.closest('ul');
+				const listItem =
+					// db-tab-item for angular and stencil wrapping elements
+					event.target.closest('db-tab-item') ??
+					event.target.closest('li');
+				if (list !== null && listItem !== null) {
+					props.onIndexChange(
+						Array.from(list.childNodes).indexOf(listItem)
+					);
+				}
+			}
+
+			if (props.onTabSelect) {
+				props.onTabSelect(event);
+			}
 		}
 	});
 
@@ -185,12 +203,14 @@ export default function DBTabs(props: DBTabsProps) {
 			data-orientation={props.orientation}
 			data-scroll-behavior={props.behavior}
 			data-alignment={props.alignment ?? 'start'}
-			data-width={props.width ?? 'auto'}>
+			data-width={props.width ?? 'auto'}
+			onInput={(event: any) => state.handleChange(event)}>
 			<Show when={state.showScrollLeft}>
 				<DBButton
 					class="tabs-scroll-left"
 					variant="ghost"
 					icon="chevron_left"
+					type="button"
 					noText
 					onClick={() => state.scroll(true)}>
 					Scroll left
@@ -226,6 +246,7 @@ export default function DBTabs(props: DBTabsProps) {
 					class="tabs-scroll-right"
 					variant="ghost"
 					icon="chevron_right"
+					type="button"
 					noText
 					onClick={() => state.scroll()}>
 					Scroll right
