@@ -71,17 +71,10 @@ export default function DBRadio(props: DBRadioProps) {
 	// jscpd:ignore-end
 
 	onUpdate(() => {
-		if (props.checked && state.initialized && document && state._id) {
-			const radioElement = document?.getElementById(
-				state._id
-			) as HTMLInputElement;
-			if (radioElement) {
-				if (props.checked != undefined) {
-					radioElement.checked = true;
-				}
-			}
+		if (props.checked && state.initialized && _ref) {
+			_ref.checked = true;
 		}
-	}, [state.initialized, props.checked]);
+	}, [state.initialized, _ref, props.checked]);
 
 	return (
 		<label
