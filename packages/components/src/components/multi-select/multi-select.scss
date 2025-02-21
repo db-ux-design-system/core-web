@@ -56,7 +56,7 @@
 	&:has(.db-multi-select-header) {
 		&:is([data-header-enabled="true"], :not([data-header-enabled])) {
 			.db-multi-select-dropdown {
-				block-size: multi-select-components.$min-size;
+				max-block-size: multi-select-components.$max-height;
 			}
 		}
 	}
@@ -103,6 +103,10 @@
 					> div {
 						flex-wrap: wrap;
 					}
+				}
+
+				> button {
+					align-self: start;
 				}
 			}
 		}

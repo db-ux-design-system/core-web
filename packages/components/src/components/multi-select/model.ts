@@ -54,18 +54,24 @@ export type MultiSelectWidthType = (typeof MultiSelectWidthList)[number];
 
 export interface DBMultiSelectDefaultProps {
 	/**
-	 * Width of the component. Auto width based on parent elements width.
+	 * Label for the clear selection button
 	 */
-	width?: MultiSelectWidthType;
+	clearSelectionButtonLabel?: string;
+
+	/**
+	 * Show clear selection button (default:true)
+	 */
+	showClearSelectionButton?: boolean;
+
 	/**
 	 * Disable default click outside handling. Will force header with close button.
 	 */
 	enableClickOutside?: boolean;
-
 	/**
 	 * Forces header
 	 */
 	enableHeader?: boolean;
+
 	/**
 	 * Forces search in header.
 	 */
@@ -87,7 +93,6 @@ export interface DBMultiSelectDefaultProps {
 	 * Dropdown - hint if data has to be loaded
 	 */
 	loadingText?: string;
-
 	/**
 	 * Dropdown - hint if there are no options
 	 */
@@ -123,6 +128,11 @@ export interface DBMultiSelectDefaultProps {
 	 * Initial value for multi select
 	 */
 	values?: string[];
+
+	/**
+	 * Width of the component. Auto width based on parent elements width.
+	 */
+	width?: MultiSelectWidthType;
 }
 
 export type DBMultiSelectProps = GlobalProps &
@@ -154,6 +164,7 @@ export interface DBMultiSelectDefaultState {
 	amountOptions: number;
 	handleSelect: (value?: string) => void;
 	handleSelectAll: () => void;
+	handleClearAll: () => void;
 	handleToggleOpen: () => void;
 	handleRemoveDocumentEvents: () => void;
 	handleOpenByKeyboardFocus: () => void;

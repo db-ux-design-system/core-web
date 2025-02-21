@@ -18,6 +18,7 @@ import {
 	cls,
 	delay,
 	getHideProp,
+	getSearchInput,
 	hasVoiceOver,
 	stringPropVisible,
 	uuid
@@ -45,16 +46,18 @@ import { DBNotification } from '../notification';
 import { DBInfotext } from '../infotext';
 import { DBMultiSelectFormField } from '../multi-select-form-field';
 import { DBTag } from '../tag';
+import { DBButton } from '../button';
+import { DBTooltip } from '../tooltip';
 
 useMetadata({});
 
-useDefaultProps<DBMultiSelectProps>({});
+useDefaultProps<DBMultiSelectProps>({
+	clearSelectionButtonLabel: 'Clear selection',
+	showClearSelectionButton: true
+});
 
 // TODO: Tags remove lose focus
-// TODO: CLose button lose focus
-// TODO: Remove all button missing
 // TODO: Check all paddings/margins again
-// TODO: Animation summary calc-size(auto,size)
 // TODO: Test composition instead of config
 // TODO: Test with screenreader
 
@@ -116,22 +119,42 @@ export default function DBMultiSelect(props: DBMultiSelectProps) {
 									listElement?.previousElementSibling
 										.querySelector('input')
 										?.focus();
+								} else {
+									// We are on the top checkbox, we need to move to the search
+									// or to the summary if no search is available
+									const search = getSearchInput(detailsRef);
+									delay(() => {
+										(search ?? detailsRef).focus();
+									}, 100);
 								}
 							}
 						} else {
-							// 2. Otherwise, we need to move to the first checkbox
-							state.handleFocusFirstDropdownCheckbox();
+							// 2. If we are on the search, and press up we go back to summary and close
+							if (
+								activeElement.getAttribute('type') ===
+									'search' &&
+								event.key === 'ArrowUp'
+							) {
+								state.handleClose('close');
+								detailsRef.querySelector('summary')?.focus();
+							} else {
+								// 3. Otherwise, we need to move to the first checkbox
+								state.handleFocusFirstDropdownCheckbox();
+							}
 						}
 					}
 				}
-			} else {
+
+				event.stopPropagation();
+				event.preventDefault();
+			} else if (event.key === 'ArrowDown') {
 				// Open dropdown with arrows see https://www.w3.org/WAI/ARIA/apg/patterns/combobox/#keyboardinteraction
 				state.handleToggleOpen();
 				detailsRef.open = true;
 				state.handleOpenByKeyboardFocus();
+				event.stopPropagation();
+				event.preventDefault();
 			}
-			event.stopPropagation();
-			event.preventDefault();
 		},
 		handleKeyboardPress: (event: KeyboardEvent) => {
 			if (event.key === 'Escape' && detailsRef.open) {
@@ -159,10 +182,10 @@ export default function DBMultiSelect(props: DBMultiSelectProps) {
 					const target = event.target as HTMLElement;
 					const relatedTarget = event.relatedTarget as HTMLElement;
 					if (
-						!Boolean(
+						!(
 							target === detailsRef ||
-								(relatedTarget &&
-									detailsRef.contains(relatedTarget))
+							(relatedTarget &&
+								detailsRef.contains(relatedTarget))
 						)
 					) {
 						detailsRef.open = false;
@@ -231,10 +254,7 @@ export default function DBMultiSelect(props: DBMultiSelectProps) {
 		handleOpenByKeyboardFocus: () => {
 			if (detailsRef) {
 				// Focus search if possible
-				const search =
-					detailsRef.querySelector<HTMLInputElement>(
-						`input[type="search"]`
-					);
+				const search = getSearchInput(detailsRef);
 				if (search) {
 					delay(() => {
 						// Takes some time until element can be focused
@@ -260,6 +280,9 @@ export default function DBMultiSelect(props: DBMultiSelectProps) {
 									.toLowerCase()
 									.includes(filterText.toLowerCase())
 						);
+		},
+		handleClearAll: () => {
+			state._values = [];
 		},
 		selectAllChecked: false,
 		selectAllIndeterminate: false
@@ -431,7 +454,7 @@ export default function DBMultiSelect(props: DBMultiSelectProps) {
 	}, [props.options]);
 
 	onUpdate(() => {
-		if (Boolean(state._options?.length)) {
+		if (state._options?.length) {
 			state._selectedOptions = state._options?.filter(
 				(option: MultiSelectOptionType) => {
 					if (!option.value || !state._values?.['includes']) {
@@ -448,7 +471,7 @@ export default function DBMultiSelect(props: DBMultiSelectProps) {
 	}, [state._options, state._values]);
 
 	onUpdate(() => {
-		if (Boolean(state._selectedOptions?.length)) {
+		if (state._selectedOptions?.length) {
 			if (props.selectedType !== 'tag') {
 				if (props.selectedType === 'amount') {
 					state._selectedLabels = props.getAmountText
@@ -491,7 +514,7 @@ export default function DBMultiSelect(props: DBMultiSelectProps) {
 				ref={selectRef}
 				multiple
 				value={state._values}
-				// @ts-ignore
+				// @ts-expect-error - Satisfy React
 				readOnly={true}
 				required={props.required}
 				hidden>
@@ -529,7 +552,7 @@ export default function DBMultiSelect(props: DBMultiSelectProps) {
 							}>
 							<span>{state._selectedLabels}</span>
 						</Show>
-						<Show when={props.selectedType == 'tag'}>
+						<Show when={props.selectedType === 'tag'}>
 							<div>
 								<For each={state._selectedOptions}>
 									{(option: MultiSelectOptionType) => (
@@ -551,6 +574,23 @@ export default function DBMultiSelect(props: DBMultiSelectProps) {
 									)}
 								</For>
 							</div>
+						</Show>
+						<Show
+							when={
+								props.showClearSelectionButton &&
+								state._values?.length
+							}>
+							<DBButton
+								icon="cross"
+								variant="ghost"
+								noText
+								size="small"
+								onClick={() => state.handleClearAll()}>
+								{props.clearSelectionButtonLabel}
+								<DBTooltip placement="top">
+									{props.clearSelectionButtonLabel}
+								</DBTooltip>
+							</DBButton>
 						</Show>
 					</DBMultiSelectFormField>
 					<DBMultiSelectDropdown
@@ -593,10 +633,7 @@ export default function DBMultiSelect(props: DBMultiSelectProps) {
 									: props.loadingText) ?? DEFAULT_MESSAGE}
 							</DBNotification>
 						}>
-						<Show
-							when={
-								!Boolean(state._hasNoOptions ?? props.isLoading)
-							}>
+						<Show when={!(state._hasNoOptions ?? props.isLoading)}>
 							<DBMultiSelectList>
 								<For each={state._options}>
 									{(option: MultiSelectOptionType) => (

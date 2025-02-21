@@ -7,7 +7,7 @@ import {
 	useStore
 } from '@builder.io/mitosis';
 import { DBMultiSelectHeaderProps, DBMultiSelectHeaderState } from './model';
-import { cls, uuid } from '../../utils';
+import { cls, delay, uuid } from '../../utils';
 import { DBTooltip } from '../tooltip';
 import { DBInput } from '../input';
 import { DEFAULT_CLOSE_BUTTON, DEFAULT_LABEL } from '../../shared/constants';
@@ -86,6 +86,20 @@ export default function DBMultiSelectHeader(props: DBMultiSelectHeaderProps) {
 				variant="ghost"
 				type="button"
 				noText
+				onKeyDown={(event: KeyboardEvent) => {
+					if (event.code === 'Space' || event.key === 'Enter') {
+						if (event.target) {
+							const details = (
+								event.target as HTMLElement
+							).closest('details');
+							if (details) {
+								delay(() => {
+									details.querySelector('summary')?.focus();
+								}, 100);
+							}
+						}
+					}
+				}}
 				onClick={() => {
 					if (props.onClose) {
 						props.onClose();

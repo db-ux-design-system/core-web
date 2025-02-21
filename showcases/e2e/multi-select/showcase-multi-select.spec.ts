@@ -5,4 +5,3 @@ import { getDefaultScreenshotTest } from '../default.ts';
 test.describe('DBMultiSelect', () => {
 	getDefaultScreenshotTest({ path: 'multi-select' });
 });
-

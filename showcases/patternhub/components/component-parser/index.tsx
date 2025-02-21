@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
-import DBMultiSelect from '../src/components/multi-select/multi-select';
 
 import {
+	DBMultiSelect,
 	DBStack,
 	DBSwitch,
 	DBTabPanel,

@@ -1,5 +1,3 @@
-import { MultiSelectComponent } from '../components/multi-select/multi-select.component';
-
 import { Routes } from '@angular/router';
 import { StackComponent } from '../components/stack/stack.component';
 import { SwitchComponent } from '../components/switch/switch.component';
@@ -30,6 +28,7 @@ import { IconComponent } from '../components/icon/icon.component';
 import { BrandComponent } from '../components/brand/brand.component';
 import { HeaderComponent } from '../components/header/header.component';
 import { HomeComponent } from '../components/home/home.component';
+import { MultiSelectComponent } from '../components/multi-select/multi-select.component';
 
 export type NavItem = {
 	path: string;
@@ -44,7 +43,11 @@ export const getSortedNavigationItems = (navigationItems: NavItem[]): any[] =>
 	);
 
 export const NAVIGATION_ITEMS: NavItem[] = [
-{ path: 'multi-select', label: 'MultiSelect', component: MultiSelectComponent },
+	{
+		path: 'multi-select',
+		label: 'MultiSelect',
+		component: MultiSelectComponent
+	},
 
 	{
 		path: '06',
