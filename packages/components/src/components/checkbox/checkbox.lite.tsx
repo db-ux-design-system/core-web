@@ -135,19 +135,39 @@ export default function DBCheckbox(props: DBCheckboxProps) {
 	}, [state._id]);
 
 	onUpdate(() => {
+		if (_ref) {
+			useTarget({
+				angular: () => {
+					if (
+						state.initialized &&
+						props.indeterminate !== undefined
+					) {
+						// When indeterminate is set, the value of the checked prop only impacts the form submitted values.
+						// It has no accessibility or UX implications. (https://mui.com/material-ui/react-checkbox/)
+						_ref.indeterminate = props.indeterminate;
+					}
+				},
+				default: () => {
+					if (props.indeterminate !== undefined) {
+						// When indeterminate is set, the value of the checked prop only impacts the form submitted values.
+						// It has no accessibility or UX implications. (https://mui.com/material-ui/react-checkbox/)
+						_ref.indeterminate = props.indeterminate;
+					}
+				}
+			});
+		}
+	}, [state.initialized, _ref, props.indeterminate]);
+
+	onUpdate(() => {
 		if (state.initialized && _ref) {
 			// in angular this must be set via native element
 			if (props.checked != undefined) {
 				_ref.checked = props.checked;
 			}
 
-			if (props.indeterminate !== undefined) {
-				// When indeterminate is set, the value of the checked prop only impacts the form submitted values.
-				// It has no accessibility or UX implications. (https://mui.com/material-ui/react-checkbox/)
-				_ref.indeterminate = props.indeterminate;
-			}
+			state.initialized = false;
 		}
-	}, [state.initialized, _ref, props.indeterminate, props.checked]);
+	}, [state.initialized, _ref, props.checked]);
 	// jscpd:ignore-end
 
 	return (
