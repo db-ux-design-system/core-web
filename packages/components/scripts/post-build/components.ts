@@ -33,6 +33,26 @@ export const getComponents = (): Component[] => [
 		name: 'stack'
 	},
 	{
+		name: 'multi-select-list-item'
+	},
+	{
+		name: 'multi-select-list'
+	},
+	{
+		name: 'multi-select-form-field'
+	},
+	{
+		name: 'multi-select-dropdown'
+	},
+	{
+		name: 'multi-select-header',
+		config: {
+			react: {
+				propsPassingFilter: ['onSelectAll',"onSearch"]
+			}
+		}
+	},
+	{
 		name: 'multi-select',
 		config: {
 			vue: {

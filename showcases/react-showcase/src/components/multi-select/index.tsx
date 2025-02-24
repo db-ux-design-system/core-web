@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { DBMultiSelect } from '../../../../../output/react/src';
+import { DBMultiSelect, DBInfotext } from '../../../../../output/react/src';
 import DefaultComponent from '../default-component';
 import defaultComponentVariants from '../../../../shared/multi-select.json';
 import type { DBMultiSelectProps } from '../../../../../output/react/src/components/multi-select/model';
@@ -16,9 +16,27 @@ const getMultiSelect = ({
 	selectedType,
 	tagWrapping,
 	width,
-	showLabel
-}: DBMultiSelectProps) => {
+	showLabel,
+	placement,
+	lineBreak,
+	info
+}: DBMultiSelectProps & {
+	lineBreak?: boolean;
+	info?: boolean;
+}) => {
 	const [mValue, setValue] = useState<string[] | undefined>(values);
+
+	if (info) {
+		return (
+			<DBInfotext size="small" semantic="informational">
+				{children}
+			</DBInfotext>
+		);
+	}
+
+	if (lineBreak) {
+		return <i className="line-break" />;
+	}
 
 	return (
 		<DBMultiSelect
@@ -29,6 +47,7 @@ const getMultiSelect = ({
 			required={required}
 			placeholder={placeholder}
 			showLabel={showLabel}
+			placement={placement}
 			selectAllLabel="Select all"
 			deSelectAllLabel="Deselect all"
 			searchLabel="Search"

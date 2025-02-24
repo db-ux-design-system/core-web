@@ -2,6 +2,7 @@ import {
 	For,
 	Fragment,
 	onMount,
+	onUnMount,
 	onUpdate,
 	Show,
 	useDefaultProps,
@@ -19,6 +20,7 @@ import {
 	delay,
 	getHideProp,
 	getSearchInput,
+	handleDataOutside,
 	hasVoiceOver,
 	stringPropVisible,
 	uuid
@@ -56,9 +58,8 @@ useDefaultProps<DBMultiSelectProps>({
 	showClearSelection: true
 });
 
-// TODO: Check all paddings/margins again
-// TODO: Placement missing
-// TODO: Check width/min-width property again
+// TODO: There is some JS issue with crashes chrome ... maybe it's with react
+// TODO: Placement - mobile should be centered if space is missing
 // TODO: Test composition instead of config
 // TODO: Test with screenreader
 
@@ -76,6 +77,7 @@ export default function DBMultiSelect(props: DBMultiSelectProps) {
 		_selectId: undefined,
 		_labelId: undefined,
 		_placeholderId: undefined,
+		_validity: 'no-validation',
 		// Workaround for Vue output: TS for Vue would think that it could be a function, and by this we clarify that it's a string
 		_descByIds: '',
 		_selectedLabels: '',
@@ -87,6 +89,16 @@ export default function DBMultiSelect(props: DBMultiSelectProps) {
 		_values: [],
 		_options: [],
 		_hasNoOptions: false,
+		_internalChangeTimestamp: -1,
+		_externalChangeTimestamp: -1,
+		handleAutoPlacement: () => {
+			const dropdown = detailsRef?.querySelector('article');
+			if (dropdown) {
+				delay(() => {
+					handleDataOutside(dropdown);
+				}, 100);
+			}
+		},
 		getOptionLabel: (option: MultiSelectOptionType) => {
 			return option.label ?? option.value?.toString() ?? '';
 		},
@@ -97,8 +109,8 @@ export default function DBMultiSelect(props: DBMultiSelectProps) {
 
 			return false;
 		},
-		handleArrowDownUp: (event: KeyboardEvent) => {
-			if (detailsRef.open) {
+		handleArrowDownUp: (event: any) => {
+			if (detailsRef?.open) {
 				if (document) {
 					const activeElement = document.activeElement;
 					if (activeElement) {
@@ -133,7 +145,7 @@ export default function DBMultiSelect(props: DBMultiSelectProps) {
 										}, 100);
 									} else {
 										const checkboxList =
-											detailsRef.querySelectorAll<HTMLInputElement>(
+											detailsRef?.querySelectorAll<HTMLInputElement>(
 												`input[type="checkbox"]:not([class="db-multi-select-header-select-all"])`
 											);
 										if (checkboxList.length) {
@@ -166,14 +178,16 @@ export default function DBMultiSelect(props: DBMultiSelectProps) {
 			} else if (event.key === 'ArrowDown') {
 				// Open dropdown with arrows see https://www.w3.org/WAI/ARIA/apg/patterns/combobox/#keyboardinteraction
 				state.handleToggleOpen();
-				detailsRef.open = true;
+				if (detailsRef) {
+					detailsRef.open = true;
+				}
 				state.handleOpenByKeyboardFocus();
 				event.stopPropagation();
 				event.preventDefault();
 			}
 		},
-		handleArrowLeftRight: (event: KeyboardEvent) => {
-			if (detailsRef.open) {
+		handleArrowLeftRight: (event: any) => {
+			if (detailsRef?.open) {
 				if (document) {
 					const activeElement = document.activeElement;
 					if (activeElement) {
@@ -242,8 +256,8 @@ export default function DBMultiSelect(props: DBMultiSelectProps) {
 				}
 			}
 		},
-		handleKeyboardPress: (event: KeyboardEvent) => {
-			if (event.key === 'Escape' && detailsRef.open) {
+		handleKeyboardPress: (event: any) => {
+			if (event.key === 'Escape' && detailsRef?.open) {
 				state.handleClose('close');
 				state.handleSummaryFocus();
 			} else if (event.key === 'ArrowDown' || event.key === 'ArrowUp') {
@@ -256,7 +270,7 @@ export default function DBMultiSelect(props: DBMultiSelectProps) {
 			}
 		},
 		// eslint-disable-next-line @typescript-eslint/no-explicit-any
-		handleClose: (event: 'close' | MouseEvent) => {
+		handleClose: (event: any) => {
 			if (detailsRef) {
 				if (event === 'close') {
 					detailsRef.open = false;
@@ -320,6 +334,7 @@ export default function DBMultiSelect(props: DBMultiSelectProps) {
 					}
 				}
 			}
+			state.handleAutoPlacement();
 		},
 		handleFocusFirstDropdownCheckbox: () => {
 			if (detailsRef) {
@@ -387,6 +402,10 @@ export default function DBMultiSelect(props: DBMultiSelectProps) {
 		state._placeholderId = mId + DEFAULT_PLACEHOLDER_ID_SUFFIX;
 	});
 
+	onUnMount(() => {
+		state.handleRemoveDocumentEvents();
+	});
+
 	onUpdate(() => {
 		if (state._id) {
 			const messageId = state._id + DEFAULT_MESSAGE_ID_SUFFIX;
@@ -424,7 +443,7 @@ export default function DBMultiSelect(props: DBMultiSelectProps) {
 					state.handleOpenByKeyboardFocus(true);
 				});
 				summary.addEventListener('keydown', (event: KeyboardEvent) => {
-					if (event.code === 'Space' && !detailsRef.open) {
+					if (event.code === 'Space' && !detailsRef?.open) {
 						state.handleOpenByKeyboardFocus();
 					}
 				});
@@ -546,7 +565,6 @@ export default function DBMultiSelect(props: DBMultiSelectProps) {
 			state._selectedOptions = state._options?.filter(
 				(option: MultiSelectOptionType) => {
 					if (!option.value || !state._values?.['includes']) {
-						// TODO: Why is there no includes here
 						return false;
 					}
 
@@ -592,6 +610,7 @@ export default function DBMultiSelect(props: DBMultiSelectProps) {
 			data-width={props.width}
 			data-variant={props.variant}
 			data-required={props.required}
+			data-placement={props.placement}
 			data-selected-type={props.selectedType}
 			data-wrapping={props.tagWrapping}
 			data-header-enabled={state.headerEnabled}
@@ -602,9 +621,9 @@ export default function DBMultiSelect(props: DBMultiSelectProps) {
 				ref={selectRef}
 				multiple
 				value={state._values}
-				// @ts-expect-error - Satisfy React
-				readOnly={true}
 				required={props.required}
+				/* Satisfy React */
+				onChange={() => {}}
 				hidden>
 				<For each={state._options}>
 					{(option: MultiSelectOptionType) => (

@@ -7,25 +7,63 @@
 @use "../../styles/select-components";
 @use "../../styles/internal/scrollbar";
 
+%multi-select-placement-top {
+	inset-block-end: 100%;
+	margin-block-start: variables.$db-spacing-fixed-md;
+}
+
+%multi-select-placement-vertical {
+	&[data-placement$="end"] {
+		.db-multi-select-dropdown:not([data-outside-vx="right"]) {
+			inset-inline-end: 0;
+		}
+	}
+
+	.db-multi-select-dropdown[data-outside-vx="right"] {
+		inset-inline-end: 0;
+	}
+}
+
+%multi-select-placement {
+	&:not([data-placement]),
+	&[data-placement^="bottom"] {
+		@extend %multi-select-placement-vertical;
+		.db-multi-select-dropdown:not([data-outside-vy="bottom"]) {
+			inset-block-start: 100%;
+			margin-block-end: variables.$db-spacing-fixed-md;
+		}
+		.db-multi-select-dropdown[data-outside-vy="bottom"] {
+			@extend %multi-select-placement-top;
+		}
+	}
+
+	&[data-placement^="top"] {
+		@extend %multi-select-placement-vertical;
+		.db-multi-select-dropdown:not([data-outside-vy="top"]) {
+			@extend %multi-select-placement-top;
+		}
+	}
+}
+
 .db-multi-select {
 	--db-form-component-padding-inline-end: #{select-components.$select-icon-padding};
 
 	@extend %select-icon;
 	@extend %select-placeholder;
+	@extend %multi-select-placement;
 
 	position: relative;
-	min-inline-size: calc(#{multi-select-components.$min-size} / 2);
 
-	&,
-	.db-multi-select-dropdown,
-	.db-multi-select-form-field {
-		inline-size: 100%;
-		max-inline-size: 100%;
-	}
+	min-inline-size: variables.$db-sizing-xl;
 
-	&[data-width="fixed"] {
-		min-inline-size: multi-select-components.$min-size;
-		max-inline-size: multi-select-components.$min-size;
+	&:not([data-width]),
+	&[data-width="full"] {
+		&,
+		.db-multi-select-dropdown,
+		.db-multi-select-form-field {
+			inline-size: 100%;
+			max-inline-size: 100%;
+		}
 	}
 
 	@include form-components.set-default-form-component(summary);
@@ -53,13 +91,13 @@
 		display: none;
 	}
 
-	&:has(.db-multi-select-header) {
+	/*&:has(.db-multi-select-header) {
 		&:is([data-header-enabled="true"], :not([data-header-enabled])) {
 			.db-multi-select-dropdown {
 				max-block-size: multi-select-components.$max-height;
 			}
 		}
-	}
+	}*/
 
 	&[data-header-enabled="true"] {
 		.db-multi-select-header {

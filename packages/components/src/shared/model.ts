@@ -96,19 +96,29 @@ export type MarginProps = {
 	margin?: MarginType;
 };
 
-export const PlacementList = [
+export const PlacementHorizontalList = [
 	'left',
 	'right',
-	'top',
-	'bottom',
 	'left-start',
 	'left-end',
 	'right-start',
-	'right-end',
+	'right-end'
+] as const;
+export type PlacementHorizontalType = (typeof PlacementHorizontalList)[number];
+
+export const PlacementVerticalList = [
+	'top',
+	'bottom',
 	'top-start',
 	'top-end',
 	'bottom-start',
 	'bottom-end'
+] as const;
+export type PlacementVerticalType = (typeof PlacementVerticalList)[number];
+
+export const PlacementList = [
+	...PlacementHorizontalList,
+	...PlacementVerticalList
 ] as const;
 export type PlacementType = (typeof PlacementList)[number];
 export type PlacementProps = {

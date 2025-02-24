@@ -1,6 +1,8 @@
 @use "@db-ux/core-foundations/build/styles/variables";
 @use "@db-ux/core-foundations/build/styles/colors";
+@use "@db-ux/core-foundations/build/styles/screen-sizes";
 @use "../../styles/multi-select-components";
+@use "../../styles/internal/form-components";
 
 .db-multi-select-dropdown {
 	@extend %db-neutral-variables;
@@ -9,8 +11,27 @@
 	z-index: 2;
 	box-shadow: variables.$db-elevation-md;
 	inline-size: 100%;
-	min-inline-size: multi-select-components.$min-size;
-	margin-block-end: variables.$db-spacing-fixed-md;
+	min-inline-size: min(
+		calc(100vw - 2 * #{variables.$db-spacing-fixed-md}),
+		calc(
+			#{screen-sizes.$db-breakpoint-xs} - 2 *
+				#{variables.$db-spacing-fixed-sm}
+		)
+	);
+	max-inline-size: calc(100vw - 2 * #{variables.$db-spacing-fixed-sm});
+
+	/* (checkbox height + list-item padding) * 6 items + header */
+	max-block-size: calc(
+		6 *
+			(
+				(
+						#{form-components.$font-size-height} - 2 *
+							#{variables.$db-border-height-3xs}
+					) +
+					2 * #{variables.$db-spacing-fixed-sm}
+			) +
+			(#{variables.$db-spacing-fixed-sm} + #{variables.$db-sizing-md})
+	);
 
 	section {
 		padding: variables.$db-spacing-fixed-sm;

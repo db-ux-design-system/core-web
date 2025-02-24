@@ -4,6 +4,7 @@
 		"examples": [
 			{
 				"name": "Functional",
+				"style": { "width": "200px" },
 				"className": "db-density-functional",
 				"props": {
 					"options": [
@@ -19,6 +20,7 @@
 			},
 			{
 				"name": "(Default) Regular",
+				"style": { "width": "200px" },
 				"className": "db-density-regular",
 				"props": {
 					"options": [
@@ -34,6 +36,7 @@
 			},
 			{
 				"name": "Expressive",
+				"style": { "width": "200px" },
 				"className": "db-density-expressive",
 				"props": {
 					"options": [
@@ -54,6 +57,7 @@
 		"examples": [
 			{
 				"name": "(Default) Label Above",
+				"style": { "width": "200px" },
 				"props": {
 					"options": [
 						{
@@ -68,6 +72,7 @@
 			},
 			{
 				"name": "Floating Label",
+				"style": { "width": "200px" },
 				"props": {
 					"options": [
 						{
@@ -89,6 +94,7 @@
 		"examples": [
 			{
 				"name": "(Default) True",
+				"style": { "width": "200px" },
 				"props": {
 					"options": [
 						{
@@ -104,6 +110,7 @@
 			},
 			{
 				"name": "False",
+				"style": { "width": "200px" },
 				"props": {
 					"options": [
 						{
@@ -124,6 +131,7 @@
 		"examples": [
 			{
 				"name": "(Default) Basic",
+				"style": { "width": "200px" },
 				"props": {
 					"options": [
 						{
@@ -138,6 +146,7 @@
 			},
 			{
 				"name": "Helper Message",
+				"style": { "width": "200px" },
 				"props": {
 					"options": [
 						{
@@ -158,6 +167,7 @@
 		"examples": [
 			{
 				"name": "(Default) Optional",
+				"style": { "width": "200px" },
 				"props": {
 					"options": [
 						{
@@ -172,6 +182,7 @@
 			},
 			{
 				"name": "Required",
+				"style": { "width": "200px" },
 				"props": {
 					"options": [
 						{
@@ -188,10 +199,185 @@
 		]
 	},
 	{
+		"name": "Width",
+		"examples": [
+			{
+				"name": "(Default) Full",
+				"style": { "width": "400px" },
+				"props": {
+					"options": [
+						{
+							"value": "Option 1"
+						},
+						{
+							"value": "Option 2"
+						}
+					],
+					"label": "Full",
+					"width": "full"
+				}
+			},
+			{
+				"name": "Auto",
+				"style": { "width": "400px" },
+				"props": {
+					"options": [
+						{
+							"value": "Option 1"
+						},
+						{
+							"value": "Option 2"
+						}
+					],
+					"label": "Auto",
+					"width": "auto"
+				}
+			}
+		]
+	},
+	{
+		"name": "Placement",
+		"examples": [
+			{
+				"name": "Full Width",
+				"props": {
+					"info": true
+				}
+			},
+			{
+				"name": "Line Break",
+				"props": {
+					"lineBreak": true
+				}
+			},
+			{
+				"name": "(Default) Bottom",
+				"style": { "width": "200px" },
+				"props": {
+					"options": [
+						{
+							"value": "Option 1"
+						},
+						{
+							"value": "Option 2"
+						}
+					],
+					"label": "Bottom",
+					"width": "full",
+					"placement": "bottom"
+				}
+			},
+			{
+				"name": "Top",
+				"style": { "width": "200px" },
+				"props": {
+					"options": [
+						{
+							"value": "Option 1"
+						},
+						{
+							"value": "Option 2"
+						}
+					],
+					"label": "Top",
+					"width": "full",
+					"placement": "top"
+				}
+			},
+			{
+				"name": "Line Break",
+				"props": {
+					"lineBreak": true
+				}
+			},
+			{
+				"name": "Auto Width",
+				"props": {
+					"info": true
+				}
+			},
+			{
+				"name": "Line Break",
+				"props": {
+					"lineBreak": true
+				}
+			},
+			{
+				"name": "(Default) Bottom-Start",
+				"style": { "width": "200px" },
+				"props": {
+					"options": [
+						{
+							"value": "Option 1"
+						},
+						{
+							"value": "Option 2"
+						}
+					],
+					"label": "Bottom",
+					"width": "auto",
+					"placement": "bottom-start"
+				}
+			},
+			{
+				"name": "Bottom-End",
+				"style": { "width": "200px" },
+				"props": {
+					"options": [
+						{
+							"value": "Option 1"
+						},
+						{
+							"value": "Option 2"
+						}
+					],
+					"label": "Bottom",
+					"width": "auto",
+					"placement": "bottom-end"
+				}
+			},
+			{
+				"name": "Top-Start",
+				"style": { "width": "200px" },
+				"props": {
+					"options": [
+						{
+							"value": "Option 1"
+						},
+						{
+							"value": "Option 2"
+						}
+					],
+					"label": "Top",
+					"width": "auto",
+					"placement": "top-start"
+				}
+			},
+			{
+				"name": "Top-End",
+				"style": { "width": "200px" },
+				"props": {
+					"options": [
+						{
+							"value": "Option 1"
+						},
+						{
+							"value": "Option 2"
+						}
+					],
+					"label": "Top",
+					"width": "auto",
+					"placement": "top-end"
+				}
+			}
+		]
+	},
+	{
 		"name": "Selected type",
 		"examples": [
 			{
 				"name": "(Default) Text",
+				"style": { "width": "200px" },
 				"props": {
 					"options": [
 						{
@@ -212,6 +398,7 @@
 			},
 			{
 				"name": "Amount",
+				"style": { "width": "200px" },
 				"props": {
 					"options": [
 						{
@@ -233,6 +420,7 @@
 			},
 			{
 				"name": "Tag",
+				"style": { "width": "200px" },
 				"props": {
 					"options": [
 						{
@@ -259,6 +447,7 @@
 		"examples": [
 			{
 				"name": "Single less than 6",
+				"style": { "width": "200px" },
 				"props": {
 					"options": [
 						{
@@ -282,6 +471,7 @@
 			},
 			{
 				"name": "Option Groups",
+				"style": { "width": "200px" },
 				"props": {
 					"options": [
 						{
@@ -310,6 +500,7 @@
 			},
 			{
 				"name": "Single more than 6",
+				"style": { "width": "200px" },
 				"props": {
 					"options": [
 						{
@@ -339,6 +530,7 @@
 			},
 			{
 				"name": "Single more than 10",
+				"style": { "width": "200px" },
 				"props": {
 					"options": [
 						{
@@ -427,7 +619,7 @@
 				}
 			},
 			{
-				"name": "Tag grow + fixed",
+				"name": "Tag grow + auto",
 				"style": { "width": "400px" },
 				"props": {
 					"options": [
@@ -447,11 +639,11 @@
 					"label": "Label",
 					"selectedType": "tag",
 					"tagWrapping": "grow",
-					"width": "fixed"
+					"width": "auto"
 				}
 			},
 			{
-				"name": "Tag overflow + fixed",
+				"name": "Tag overflow + auto",
 				"style": { "width": "400px" },
 				"props": {
 					"options": [
@@ -471,7 +663,7 @@
 					"label": "Label",
 					"selectedType": "tag",
 					"tagWrapping": "overflow",
-					"width": "fixed"
+					"width": "auto"
 				}
 			}
 		]
