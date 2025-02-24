@@ -8,10 +8,10 @@
 	display: flex;
 	block-size: 100%;
 	position: relative;
-	padding: multi-select-components.$list-item-padding-block
-		multi-select-components.$list-item-padding-inline;
+	padding: variables.$db-spacing-fixed-sm;
 	background-color: colors.$db-adaptive-bg-basic-transparent-full-default;
 	border-radius: variables.$db-border-radius-xs;
+	box-sizing: border-box;
 
 	&:has(> label) {
 		@include helpers.hover {
@@ -37,8 +37,9 @@
 	}
 
 	span {
-		@extend %db-overwrite-font-size-sm;
+		@extend %db-overwrite-font-size-md;
 
+		font-weight: 700;
 		color: colors.$db-adaptive-on-bg-basic-emphasis-90-default;
 	}
 
@@ -53,12 +54,8 @@
 			&::after {
 				position: absolute;
 				content: "";
-				inset-block: calc(
-					-1 * #{multi-select-components.$list-item-padding-block}
-				);
-				inset-inline: calc(
-					-1 * #{multi-select-components.$list-item-padding-inline}
-				);
+				inset-block: calc(-1 * #{variables.$db-spacing-fixed-xs});
+				inset-inline: calc(-1 * #{variables.$db-spacing-fixed-xs});
 			}
 
 			// We revert interaction states for checkbox

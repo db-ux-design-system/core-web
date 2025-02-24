@@ -56,8 +56,9 @@ useDefaultProps<DBMultiSelectProps>({
 	showClearSelection: true
 });
 
-// TODO: Tags remove lose focus
 // TODO: Check all paddings/margins again
+// TODO: Placement missing
+// TODO: Check width/min-width property again
 // TODO: Test composition instead of config
 // TODO: Test with screenreader
 
@@ -113,6 +114,9 @@ export default function DBMultiSelect(props: DBMultiSelectProps) {
 									listElement?.nextElementSibling
 										.querySelector('input')
 										?.focus();
+								} else {
+									// We are on the last checkbox we move to the top checkbox
+									state.handleFocusFirstDropdownCheckbox();
 								}
 							} else {
 								if (listElement?.previousElementSibling) {
@@ -121,11 +125,23 @@ export default function DBMultiSelect(props: DBMultiSelectProps) {
 										?.focus();
 								} else {
 									// We are on the top checkbox, we need to move to the search
-									// or to the summary if no search is available
+									// or to the last checkbox
 									const search = getSearchInput(detailsRef);
-									delay(() => {
-										(search ?? detailsRef).focus();
-									}, 100);
+									if (search) {
+										delay(() => {
+											search.focus();
+										}, 100);
+									} else {
+										const checkboxList =
+											detailsRef.querySelectorAll<HTMLInputElement>(
+												`input[type="checkbox"]:not([class="db-multi-select-header-select-all"])`
+											);
+										if (checkboxList.length) {
+											Array.from(checkboxList)
+												?.at(-1)
+												?.focus();
+										}
+									}
 								}
 							}
 						} else {
@@ -136,7 +152,7 @@ export default function DBMultiSelect(props: DBMultiSelectProps) {
 								event.key === 'ArrowUp'
 							) {
 								state.handleClose('close');
-								detailsRef.querySelector('summary')?.focus();
+								state.handleSummaryFocus();
 							} else {
 								// 3. Otherwise, we need to move to the first checkbox
 								state.handleFocusFirstDropdownCheckbox();
@@ -156,20 +172,87 @@ export default function DBMultiSelect(props: DBMultiSelectProps) {
 				event.preventDefault();
 			}
 		},
+		handleArrowLeftRight: (event: KeyboardEvent) => {
+			if (detailsRef.open) {
+				if (document) {
+					const activeElement = document.activeElement;
+					if (activeElement) {
+						const headerElement = activeElement.closest(
+							'.db-multi-select-header'
+						);
+
+						if (headerElement) {
+							if (
+								activeElement.getAttribute('type') === 'search'
+							) {
+								// we are on a search input
+								if (event.key === 'ArrowRight') {
+									// focus close button
+									headerElement
+										.querySelector<HTMLButtonElement>(
+											'button'
+										)
+										?.focus();
+								} else if (event.key === 'ArrowLeft') {
+									// focus select all checkbox
+									headerElement
+										.querySelector<HTMLButtonElement>(
+											'input[type="checkbox"]'
+										)
+										?.focus();
+								}
+							} else if (activeElement.tagName === 'BUTTON') {
+								// we are on close button
+								if (event.key === 'ArrowRight') {
+									state.handleFocusFirstDropdownCheckbox();
+								} else if (event.key === 'ArrowLeft') {
+									// focus search
+									headerElement
+										.querySelector<HTMLButtonElement>(
+											'input[type="search"]'
+										)
+										?.focus();
+								}
+							} else if (
+								activeElement.getAttribute('type') ===
+								'checkbox'
+							) {
+								// we are on select all checkbox
+								if (event.key === 'ArrowRight') {
+									// focus search
+									headerElement
+										.querySelector<HTMLButtonElement>(
+											'input[type="search"]'
+										)
+										?.focus();
+								} else if (event.key === 'ArrowLeft') {
+									// back to summary and close
+									state.handleClose('close');
+									state.handleSummaryFocus();
+								}
+							}
+						} else {
+							// We are on a checkbox in the dropdown, move to the header close button
+							detailsRef
+								.querySelector('.db-multi-select-header')
+								?.querySelector<HTMLButtonElement>('button')
+								?.focus();
+						}
+					}
+				}
+			}
+		},
 		handleKeyboardPress: (event: KeyboardEvent) => {
 			if (event.key === 'Escape' && detailsRef.open) {
 				state.handleClose('close');
-				detailsRef.querySelector('summary')?.focus();
+				state.handleSummaryFocus();
 			} else if (event.key === 'ArrowDown' || event.key === 'ArrowUp') {
 				state.handleArrowDownUp(event);
 			} else if (
 				event.key === 'ArrowRight' ||
 				event.key === 'ArrowLeft'
 			) {
-				// TODO: Handle ArrowRight and ArrowLeft
-				if (detailsRef.open) {
-				} else {
-				}
+				state.handleArrowLeftRight(event);
 			}
 		},
 		// eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -283,6 +366,10 @@ export default function DBMultiSelect(props: DBMultiSelectProps) {
 		},
 		handleClearAll: () => {
 			state._values = [];
+			state.handleSummaryFocus();
+		},
+		handleSummaryFocus: () => {
+			detailsRef?.querySelector('summary')?.focus();
 		},
 		selectAllChecked: false,
 		selectAllIndeterminate: false
@@ -565,9 +652,12 @@ export default function DBMultiSelect(props: DBMultiSelectProps) {
 														)
 													: `${DEFAULT_REMOVE} ${state.getOptionLabel(option)}`
 											}
-											onRemove={() =>
-												state.handleSelect(option.value)
-											}
+											onRemove={() => {
+												state.handleSelect(
+													option.value
+												);
+												state.handleSummaryFocus();
+											}}
 											emphasis="strong"
 											behavior="removable">
 											{state.getOptionLabel(option)}

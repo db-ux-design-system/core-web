@@ -13,8 +13,7 @@
 	margin-block-end: variables.$db-spacing-fixed-md;
 
 	section {
-		padding-block: variables.$db-spacing-fixed-sm;
-		padding-inline: multi-select-components.$list-padding-inline;
+		padding: variables.$db-spacing-fixed-sm;
 		overflow-y: auto;
 	}
 }

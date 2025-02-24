@@ -162,6 +162,7 @@ export interface DBMultiSelectDefaultState {
 	headerEnabled: boolean;
 	searchEnabled: boolean;
 	amountOptions: number;
+	handleSummaryFocus: () => void;
 	handleSelect: (value?: string) => void;
 	handleSelectAll: () => void;
 	handleClearAll: () => void;
@@ -171,6 +172,7 @@ export interface DBMultiSelectDefaultState {
 	handleFocusFirstDropdownCheckbox: () => void;
 	handleKeyboardPress: (event: KeyboardEvent) => void;
 	handleArrowDownUp: (event: KeyboardEvent) => void;
+	handleArrowLeftRight: (event: KeyboardEvent) => void;
 	handleSearch: (event: ChangeEvent<HTMLInputElement>) => void;
 	selectAllChecked: boolean;
 	selectAllIndeterminate: boolean;

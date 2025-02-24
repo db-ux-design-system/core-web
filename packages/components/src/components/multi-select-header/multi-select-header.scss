@@ -8,11 +8,10 @@
 	display: flex;
 	background-color: colors.$db-adaptive-bg-basic-level-2-default;
 	padding-block: variables.$db-spacing-fixed-xs;
-	padding-inline: calc(
-			#{multi-select-components.$list-padding-inline} +
-				#{multi-select-components.$list-item-padding-inline}
-		)
-		variables.$db-spacing-fixed-2xs;
+	padding-inline-start: calc(
+		#{variables.$db-spacing-fixed-sm} + #{variables.$db-spacing-fixed-sm}
+	);
+	padding-inline-end: variables.$db-spacing-fixed-2xs;
 	border-start-start-radius: variables.$db-border-radius-xs;
 	border-start-end-radius: variables.$db-border-radius-xs;
 	justify-content: space-between;
@@ -39,7 +38,7 @@
 	}
 
 	&[data-variant="search"] {
-		padding-block: variables.$db-spacing-fixed-md;
+		padding-block: variables.$db-spacing-fixed-sm;
 
 		.db-checkbox {
 			label {
