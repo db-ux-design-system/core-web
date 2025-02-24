@@ -303,6 +303,13 @@ export type FormTextProps = {
 	readOnly?: boolean;
 };
 
+export type FormSizeProps = {
+	/**
+	 * Size of the control
+	 */
+	size?: number;
+};
+
 export type FormCheckProps = {
 	/**
 	 * Define the radio or checkbox elements checked state

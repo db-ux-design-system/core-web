@@ -204,6 +204,7 @@ export default function DBInput(props: DBInputProps) {
 				readOnly={props.readOnly}
 				form={props.form}
 				pattern={props.pattern}
+				size={props.size}
 				// @ts-ignore
 				autoComplete={props.autocomplete}
 				// @ts-ignore

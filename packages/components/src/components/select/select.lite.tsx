@@ -187,6 +187,7 @@ export default function DBSelect(props: DBSelectProps) {
 				disabled={props.disabled}
 				id={state._id}
 				name={props.name}
+				size={props.size}
 				value={props.value ?? state._value}
 				autocomplete={props.autocomplete}
 				multiple={props.multiple}

@@ -54,7 +54,8 @@ export const getComponents = (): Component[] => [
 	{
 		name: 'switch',
 		overwrites: {
-			stencil: [{ from: 'HTMLElement', to: 'HTMLInputElement' }]
+			stencil: [{ from: 'HTMLElement', to: 'HTMLInputElement' }],
+			react: [{ from: /HTMLAttributes/g, to: 'InputHTMLAttributes' }]
 		},
 		config: {
 			vue: {
@@ -71,6 +72,9 @@ export const getComponents = (): Component[] => [
 	},
 	{
 		name: 'tab-item',
+		overwrites: {
+			react: [{ from: /HTMLAttributes/g, to: 'InputHTMLAttributes' }]
+		},
 		config: {
 			vue: {
 				vModel: [{ modelValue: 'checked', binding: ':checked' }]
@@ -90,6 +94,11 @@ export const getComponents = (): Component[] => [
 					to: 'scrollContainer: Element | null = null;'
 				}
 			]
+		},
+		config: {
+			react: {
+				propsPassingFilter: ['onTabSelect', 'onIndexChange']
+			}
 		}
 	},
 
@@ -113,6 +122,11 @@ export const getComponents = (): Component[] => [
 			angular: [{ from: 'attr.open', to: 'open' }],
 			// TS issue
 			stencil: [{ from: 'name={this.name}', to: '' }]
+		},
+		config: {
+			react: {
+				propsPassingFilter: ['onToggle']
+			}
 		}
 	},
 
@@ -137,6 +151,7 @@ export const getComponents = (): Component[] => [
 					to: '{{value}}</textarea>'
 				}
 			],
+			react: [{ from: /HTMLAttributes/g, to: 'TextareaHTMLAttributes' }],
 			stencil: [{ from: 'HTMLElement', to: 'HTMLTextAreaElement' }]
 		}
 	},
@@ -182,7 +197,8 @@ export const getComponents = (): Component[] => [
 			react: [
 				// React not allowing selected for options
 				{ from: 'selected={option.selected}', to: '' },
-				{ from: 'selected={optgroupOption.selected}', to: '' }
+				{ from: 'selected={optgroupOption.selected}', to: '' },
+				{ from: /HTMLAttributes/g, to: 'SelectHTMLAttributes' }
 			],
 			stencil: [
 				{ from: 'HTMLElement', to: 'HTMLSelectElement' },
@@ -214,12 +230,18 @@ export const getComponents = (): Component[] => [
 	},
 
 	{
-		name: 'tag'
+		name: 'tag',
+		config: {
+			react: {
+				propsPassingFilter: ['onRemove']
+			}
+		}
 	},
 	{
 		name: 'checkbox',
 		overwrites: {
-			stencil: [{ from: 'HTMLElement', to: 'HTMLInputElement' }]
+			stencil: [{ from: 'HTMLElement', to: 'HTMLInputElement' }],
+			react: [{ from: /HTMLAttributes/g, to: 'InputHTMLAttributes' }]
 		},
 		config: {
 			vue: {
@@ -234,7 +256,8 @@ export const getComponents = (): Component[] => [
 	{
 		name: 'radio',
 		overwrites: {
-			stencil: [{ from: 'HTMLElement', to: 'HTMLInputElement' }]
+			stencil: [{ from: 'HTMLElement', to: 'HTMLInputElement' }],
+			react: [{ from: /HTMLAttributes/g, to: 'InputHTMLAttributes' }]
 		},
 		config: {
 			vue: {
@@ -247,7 +270,12 @@ export const getComponents = (): Component[] => [
 	},
 
 	{
-		name: 'notification'
+		name: 'notification',
+		config: {
+			react: {
+				propsPassingFilter: ['onClose']
+			}
+		}
 	},
 
 	{
@@ -255,7 +283,10 @@ export const getComponents = (): Component[] => [
 	},
 
 	{
-		name: 'link'
+		name: 'link',
+		overwrites: {
+			react: [{ from: /HTMLAttributes/g, to: 'AnchorHTMLAttributes' }]
+		}
 	},
 
 	{
@@ -282,6 +313,9 @@ export const getComponents = (): Component[] => [
 						name: 'Navigation'
 					}
 				]
+			},
+			react: {
+				propsPassingFilter: ['onToggle']
 			}
 		},
 		overwrites: {
@@ -307,6 +341,7 @@ export const getComponents = (): Component[] => [
 			global: [{ from: ', KeyValueType', to: '' }],
 			vue: [{ from: ', index', to: '' }],
 			stencil: [{ from: 'HTMLElement', to: 'HTMLInputElement' }],
+			react: [{ from: /HTMLAttributes/g, to: 'InputHTMLAttributes' }],
 			angular: [
 				{
 					from: 'writeValue(value: any) {',
@@ -337,7 +372,10 @@ export const getComponents = (): Component[] => [
 		name: 'card'
 	},
 	{
-		name: 'button'
+		name: 'button',
+		overwrites: {
+			react: [{ from: /HTMLAttributes/g, to: 'ButtonHTMLAttributes' }]
+		}
 	},
 	{
 		name: 'icon'
