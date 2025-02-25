@@ -27,7 +27,7 @@ If you just need the styling follow this:
 
 `npm i @db-ux/core-components`
 
-## Dependencies
+## Styling Dependencies
 
 Import the styles in `scss` or `css`. Based on your technology the file names could be different.
 
