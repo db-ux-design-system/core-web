@@ -207,8 +207,12 @@
 			inset-inline-start: 100%;
 		}
 
-		&:is(:hover, :focus-within) {
+		&:is(:hover, :focus-within):not([data-force-close="true"]) {
 			visibility: visible;
+		}
+
+		&[data-force-close="true"] {
+			pointer-events: none;
 		}
 
 		&::before {
