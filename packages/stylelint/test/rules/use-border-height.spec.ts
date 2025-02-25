@@ -8,7 +8,7 @@ import {
 } from '../defaults.js';
 import useBorderHeight from '../../src/rules/use-border-height.js';
 
-const ruleName = 'db-ui/use-border-height';
+const ruleName = 'db-ux/use-border-height';
 
 const config: Config = {
 	...defaultConfig,

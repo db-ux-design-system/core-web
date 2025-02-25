@@ -1,13 +1,13 @@
 ## Vue
 
-For general installation and configuration take a look at the [v-components](https://www.npmjs.com/package/@db-ui/v-components) package.
+For general installation and configuration take a look at the [v-core-components](https://www.npmjs.com/package/@db-ux/v-core-components) package.
 
 ### Use component
 
 ```vue App.vue
 <!-- App.vue -->
 <script setup lang="ts">
-import { DBCheckbox } from "@db-ui/v-components";
+import { DBCheckbox } from "@db-ux/v-core-components";
 import { _ref } from "vue";
 const checkbox = _ref("");
 </script>

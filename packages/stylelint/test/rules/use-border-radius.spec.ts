@@ -8,7 +8,7 @@ import {
 } from '../defaults.js';
 import useBorderRadius from '../../src/rules/use-border-radius.js';
 
-const ruleName = 'db-ui/use-border-radius';
+const ruleName = 'db-ux/use-border-radius';
 
 const config: Config = {
 	...defaultConfig,

@@ -33,19 +33,19 @@ jobs:
       - name: ⏬ Download foundations build
         uses: actions/download-artifact@v4
         with:
-          name: db-ui-foundations-build
+          name: db-ux-foundations-build
           path: packages/foundations/build
 
       - name: ⏬ Download output
         uses: actions/download-artifact@v4
         with:
-          name: db-ui-output
+          name: db-ux-output
           path: output
 
       - name: ⏬ Download components build
         uses: actions/download-artifact@v4
         with:
-          name: db-ui-components-build
+          name: db-ux-components-build
           path: packages/components/build
 
       - name: ↔ Extract branch name
@@ -97,7 +97,7 @@ jobs:
       - name: ⏫ Upload Patternhub
         uses: actions/upload-artifact@v4
         with:
-          name: db-ui-patternhub
+          name: db-ux-patternhub
           path: build-showcases/patternhub
 
       - name: 💀 Killing me softly

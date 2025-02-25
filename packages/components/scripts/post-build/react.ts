@@ -94,8 +94,10 @@ export default (tmp?: boolean) => {
 					to: ''
 				},
 				{
-					from: '} from "../../utils"',
-					to: ', filterPassingProps, getRootProps } from "../../utils"'
+					from: 'import * as React from "react";',
+					to:
+						'import * as React from "react";\n ' +
+						'import { filterPassingProps, getRootProps } from "../../utils/react";\n'
 				},
 				{
 					from: 'ref={_ref}',

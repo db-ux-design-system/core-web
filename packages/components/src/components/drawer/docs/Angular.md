@@ -1,6 +1,6 @@
 ## Angular
 
-For general installation and configuration take a look at the [ngx-components](https://www.npmjs.com/package/@db-ui/ngx-components) package.
+For general installation and configuration take a look at the [ngx-core-components](https://www.npmjs.com/package/@db-ux/ngx-core-components) package.
 
 ### General
 
@@ -10,7 +10,7 @@ If you use `width !== full` you are able to overwrite the `max-width` with `--db
 
 ```ts app.component.ts
 // app.component.ts
-import { DBDrawer } from '@db-ui/ngx-components';
+import { DBDrawer } from '@db-ux/ngx-core-components';
 
 @Component({
   // ...

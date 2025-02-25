@@ -1,10 +1,9 @@
-@use "@db-ui/foundations/build/styles/variables";
-@use "@db-ui/foundations/build/styles/helpers";
-@use "@db-ui/foundations/build/styles/colors";
-@use "@db-ui/foundations/build/styles/animation";
+@use "@db-ux/core-foundations/build/styles/variables";
+@use "@db-ux/core-foundations/build/styles/helpers";
+@use "@db-ux/core-foundations/build/styles/colors";
+@use "@db-ux/core-foundations/build/styles/animation";
 @use "../../styles/internal/form-components";
 @use "../../styles/internal/component";
-
 
 .db-accordion-item {
 	position: relative;
@@ -15,11 +14,9 @@
 	> details {
 		&[open] {
 			summary + div {
-				@media screen and (prefers-reduced-motion: no-preference) {
-					animation: accordion-open
-						#{variables.$db-transition-straight-emotional} normal
-						both;
-				}
+				block-size: auto;
+				/* stylelint-disable-next-line declaration-property-value-no-unknown */
+				block-size: calc-size(auto, size);
 			}
 
 			summary::after {
@@ -33,7 +30,20 @@
 		}
 	}
 
+	@media screen and (prefers-reduced-motion: reduce) {
+		summary + div {
+			block-size: 0;
+			overflow: hidden;
+			transition: none;
+			padding: variables.$db-spacing-fixed-md;
+			padding-block-end: variables.$db-spacing-fixed-lg;
+		}
+	}
+
 	summary + div {
+		block-size: 0;
+		overflow: hidden;
+		transition: block-size #{variables.$db-transition-straight-emotional};
 		padding: variables.$db-spacing-fixed-md;
 		padding-block-end: variables.$db-spacing-fixed-lg;
 	}

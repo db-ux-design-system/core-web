@@ -1,10 +1,10 @@
 {
-  "name": "@db-ui/web-components",
+  "name": "@db-ux/wc-core-components",
   "version": "0.0.0",
-  "description": "Stencil components for @db-ui/components",
+  "description": "Stencil components for @db-ux/core-components",
   "repository": {
     "type": "git",
-    "url": "https://github.com/db-ui/mono.git"
+    "url": "https://github.com/db-ux-design-system/core-web.git"
   },
   "type": "module",
   "license": "Apache-2.0",
@@ -22,15 +22,15 @@
   "scripts": {
     "build": "stencil build",
     "build:cem": "cem analyze",
-    "mv:dist": "cpr dist ../../build-outputs/web-components/dist -o",
-    "mv:package.json": "cpr package.json ../../build-outputs/web-components/package.json -o",
-    "mv:readme": "cpr README.md ../../build-outputs/web-components/README.md -o",
+    "mv:dist": "cpr dist ../../build-outputs/wc-core-components/dist -o",
+    "mv:package.json": "cpr package.json ../../build-outputs/wc-core-components/package.json -o",
+    "mv:readme": "cpr README.md ../../build-outputs/wc-core-components/README.md -o",
     "postbuild": "npm-run-all -p build:* -p mv:*",
     "start": "stencil build --watch"
   },
   "devDependencies": {
     "@custom-elements-manifest/analyzer": "^0.10.4",
-    "@stencil/core": "4.25.3",
+    "@stencil/core": "4.27.0",
     "cem-plugin-expanded-types": "^1.4.0",
     "custom-element-jet-brains-integration": "^1.7.0",
     "custom-element-vs-code-integration": "^1.5.0",

@@ -1,8 +1,8 @@
 @use "sass:map";
 @use "component";
-@use "@db-ui/foundations/build/styles/variables";
-@use "@db-ui/foundations/build/styles/colors";
-@use "@db-ui/foundations/build/styles/helpers";
+@use "@db-ux/core-foundations/build/styles/variables";
+@use "@db-ux/core-foundations/build/styles/colors";
+@use "@db-ux/core-foundations/build/styles/helpers";
 
 $interactive-selectors: "label, button:not(.db-tab-remove-button), a";
 
@@ -130,14 +130,14 @@ $interactive-selectors: "label, button:not(.db-tab-remove-button), a";
 	@include helpers.hover {
 		background-color: colors.$db-adaptive-bg-inverted-contrast-high-hovered;
 		// TODO: will be changed in the future tag refactoring
-		/* stylelint-disable-next-line db-ui/use-border-color */
+		/* stylelint-disable-next-line db-ux/use-border-color */
 		border-color: colors.$db-adaptive-bg-inverted-contrast-high-hovered;
 	}
 
 	@include helpers.active {
 		background-color: colors.$db-adaptive-bg-inverted-contrast-high-pressed;
 		// TODO: will be changed in the future tag refactoring
-		/* stylelint-disable-next-line db-ui/use-border-color */
+		/* stylelint-disable-next-line db-ux/use-border-color */
 		border-color: colors.$db-adaptive-bg-inverted-contrast-high-pressed;
 	}
 }

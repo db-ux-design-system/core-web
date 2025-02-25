@@ -7,6 +7,7 @@ import {
 	FocusEventState,
 	FormMessageProps,
 	FormProps,
+	FormSizeProps,
 	FormState,
 	GlobalProps,
 	GlobalState,
@@ -70,7 +71,8 @@ export type DBSelectProps = DBSelectDefaultProps &
 	FormProps &
 	IconProps &
 	FormMessageProps &
-	ShowIconProps;
+	ShowIconProps &
+	FormSizeProps;
 
 export type DBSelectDefaultState = {
 	_placeholderId: string;
