@@ -60,7 +60,8 @@ import { DBButton } from '@db-ux/react-core-components';
 As we'd like to perfectly support our users and customers on their digital journey, the usage of Deutsche Bahn brand and trademarks are bound of clear guidelines and restrictions even when being used with the code that we're provide with this product; Deutsche Bahn fully reserves all rights regarding the Deutsche Bahn brand, even though that we're providing the code of DB UX Design System products free to use and release it under the Apache 2.0 license.
 Please have a look at our brand portal at <https://marketingportal.extranet.deutschebahn.com/> for any further questions and whom to contact on any brand issues.
 
-You must remove or replace any Deutsche Bahn brand and design assets as well as protected characteristics and trademarks. We're even also planning to provide a neutral theme that would make it much easier for you to use our product without the trademarks by Deutsche Bahn.
+For any usage outside of Deutsche Bahn websites and applications you aren't allowed to use any Deutsche Bahn brand and
+design assets as well as protected characteristics and trademarks, that for not including the DB Theme.
 
 ## Contributions
 
