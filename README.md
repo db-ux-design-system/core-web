@@ -36,8 +36,8 @@ designers, and content authors build, maintain, and scale best of class digital 
 
 Install your preferred package via npm or yarn e.g. `npm i @db-ux/react-core-components`.
 
-Afterwards you need to add the specific CSS or SCSS files to provide the styles of DB UX Design System (Version 3).
-For a detailed overview look at our [examples](https://github.com/db-ux-design-system/examples).
+Afterwards you need to add the specific CSS or SCSS files to provide the styles of DB UX Design System (Version 3), as described in the "Styling Dependencies" of each packages `README`.
+We even also provide some [examples of integrations](https://github.com/db-ux-design-system/examples).
 
 ## Components
 
@@ -144,11 +144,8 @@ Marketingportal, you'll agree with
 the ["Allgemeine Nutzungsbedingungen für das DB-Marketingportal" (german)](https://marketingportal.extranet.deutschebahn.com/marketingportal/Nutzungsbedingungen-9702684#)
 in case of using them.
 
-For any usage outside of Deutsche Bahn websites and applications you must remove or replace any Deutsche Bahn brand and
-design assets as well as protected characteristics and trademarks. We're even also planning to provide a neutral theme
-that would make it much easier for you to use our product without the trademarks by Deutsche Bahn.
-
-This especially relates to the files in the directories `packages/foundations/assets/fonts`, `packages/foundations/assets/images` and `packages/foundations/assets/favicon.ico` as well.
+For any usage outside of Deutsche Bahn websites and applications you aren't allowed to use any Deutsche Bahn brand and
+design assets as well as protected characteristics and trademarks, that for not including the DB Theme.
 
 ## Development
 
