@@ -1,3 +1,9 @@
+/*
+ * SPDX-FileCopyrightText: 2025 DB Systel GmbH
+ *
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
 @mixin get-color-scheme {
 	--db-neutral-origin-default: light-dark(
 		var(--db-neutral-origin-light-default),

@@ -1,3 +1,7 @@
+// SPDX-FileCopyrightText: 2025 DB Systel GmbH
+//
+// SPDX-License-Identifier: Apache-2.0
+
 import { type ReactElement } from 'react';
 import ButtonComponent from '../../react-showcase/src/components/button';
 import LinkComponent from '../../react-showcase/src/components/link';

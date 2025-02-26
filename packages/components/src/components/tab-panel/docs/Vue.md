@@ -1,3 +1,9 @@
+<!--
+SPDX-FileCopyrightText: 2025 DB Systel GmbH
+
+SPDX-License-Identifier: Apache-2.0
+-->
+
 ## Vue
 
 For general installation and configuration take a look at the [v-core-components](https://www.npmjs.com/package/@db-ux/v-core-components) package.
@@ -7,7 +13,12 @@ For general installation and configuration take a look at the [v-core-components
 ```vue App.vue
 <!-- App.vue -->
 <script>
-import { DBTabPanel, DBTabs, DBTabList, DBTabItem } from "@db-ux/v-core-components";
+import {
+	DBTabPanel,
+	DBTabs,
+	DBTabList,
+	DBTabItem
+} from "@db-ux/v-core-components";
 </script>
 
 <template>

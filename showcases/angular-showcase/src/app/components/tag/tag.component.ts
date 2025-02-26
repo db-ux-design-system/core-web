@@ -1,3 +1,7 @@
+// SPDX-FileCopyrightText: 2025 DB Systel GmbH
+//
+// SPDX-License-Identifier: Apache-2.0
+
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import defaultComponentVariants from '../../../../../shared/tag.json';
 import { DefaultComponent } from '../default.component';
