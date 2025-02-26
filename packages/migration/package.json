@@ -1,15 +1,15 @@
 {
-  "name": "@db-ui/migration",
+  "name": "@db-ux/core-migration",
   "version": "0.0.0",
   "type": "module",
   "description": "Migration script for changing your code in between DB UX Design System v3 versions regarding BREAKING CHANGES.",
   "repository": {
     "type": "git",
-    "url": "https://github.com/db-ui/mono.git"
+    "url": "https://github.com/db-ux-design-system/core-web.git"
   },
   "license": "Apache-2.0",
   "bin": {
-    "@db-ui/migration": "build/index.js"
+    "@db-ux/core-migration": "build/index.js"
   },
   "main": "build.js",
   "files": [
@@ -31,8 +31,9 @@
   },
   "devDependencies": {
     "cpr": "3.0.1",
-    "tsx": "^4.19.2",
-    "vitest": "^3.0.3"
+    "esbuild": "0.25.0",
+    "tsx": "^4.19.3",
+    "vitest": "^3.0.7"
   },
   "publishConfig": {
     "registry": "https://registry.npmjs.org/",

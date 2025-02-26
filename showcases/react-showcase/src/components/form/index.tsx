@@ -8,7 +8,7 @@ import {
 	DBTabList,
 	DBTabPanel,
 	DBTabs
-} from '@db-ui/react-components/src';
+} from '@db-ux/react-core-components/src';
 import {
 	DBAccordion,
 	DBAccordionItem,
@@ -397,8 +397,14 @@ const FormComponent = () => {
 				/>
 
 				<h2>Validations</h2>
-
+				<DBButton>
+					Test
+					<DBTooltip placement="bottom">
+						Open above floating label
+					</DBTooltip>
+				</DBButton>
 				<DBInput
+					variant="floating"
 					label="Input minlength validation"
 					placeholder="Placeholder"
 					invalidMessage="Min. 3"
@@ -439,19 +445,13 @@ const FormComponent = () => {
 					semantic="neutral"
 					emphasis="strong">
 					KUZ
-					<DBTooltip
-						id="tooltip-01"
-						placement="right-end"
-						variant="with arrow">
+					<DBTooltip id="tooltip-01" placement="right-end">
 						Beschreibungstext
 					</DBTooltip>
 				</DBTag>
 				<DBButton describedbyid="tooltip-01">
 					KUZ
-					<DBTooltip
-						id="tooltip-01"
-						placement="right-end"
-						variant="with arrow">
+					<DBTooltip id="tooltip-01" placement="right-end">
 						Beschreibungstext
 					</DBTooltip>
 				</DBButton>

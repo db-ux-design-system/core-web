@@ -7,6 +7,7 @@ import {
 	onMount,
 	onUnMount,
 	Slot,
+	useDefaultProps,
 	useMetadata,
 	useRef,
 	useStore
@@ -15,9 +16,10 @@ import { DBPageProps, DBPageState } from './model';
 import { cls, getBooleanAsString } from '../../utils';
 
 useMetadata({});
+useDefaultProps<DBPageProps>({});
 
 export default function DBPage(props: DBPageProps) {
-	const ref = useRef<HTMLDivElement>(null);
+	const _ref = useRef<HTMLDivElement | null>(null);
 	// jscpd:ignore-start
 	const state = useStore<DBPageState>({
 		fontsLoaded: false
@@ -63,7 +65,7 @@ export default function DBPage(props: DBPageProps) {
 
 	return (
 		<div
-			ref={ref}
+			ref={_ref}
 			id={props.id}
 			class={cls('db-page', props.className)}
 			data-variant={props.variant}

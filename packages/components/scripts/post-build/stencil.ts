@@ -7,10 +7,6 @@ import { runReplacements, transformToUpperComponentName } from '../utils';
 import { replaceInFileSync } from 'replace-in-file';
 import { writeFileSync, existsSync } from 'node:fs';
 
-const enableCustomElementsAttributePassing = (componentName: string) =>
-	'componentDidLoad() {\n' +
-	`\tenableCustomElementAttributePassing(this.ref, "db-${componentName}")`;
-
 const getSlotDocs = (foundSlots: string[]): string => {
 	return `
 /**
@@ -20,29 +16,10 @@ ${foundSlots.map((slot) => ` * @slot ${slot} - TODO: Add description for slot${t
  `;
 };
 
-const changeFile = (
-	componentName: string,
-	upperComponentName: string,
-	input: string
-) => {
-	let resolvedInput = input;
-	if (resolvedInput.includes('componentDidLoad')) {
-		resolvedInput = resolvedInput.replace(
-			'componentDidLoad() {',
-			enableCustomElementsAttributePassing(componentName)
-		);
-	} else {
-		resolvedInput = resolvedInput.replace(
-			'render() {',
-			enableCustomElementsAttributePassing(componentName) +
-				'}\n' +
-				'render() {'
-		);
-	}
-
+const changeFile = (upperComponentName: string, input: string) => {
 	const foundSlots = [];
 
-	return resolvedInput
+	return input
 		.split('\n')
 		.map((line) => {
 			if (line.includes('@Prop()')) {
@@ -108,15 +85,10 @@ export default (tmp?: boolean) => {
 
 		replaceInFileSync({
 			files: [file],
-			processor: (input: string) =>
-				changeFile(componentName, upperComponentName, input)
+			processor: (input: string) => changeFile(upperComponentName, input)
 		});
 
 		const replacements: Overwrite[] = [
-			{
-				from: '} from "../../utils"',
-				to: ', enableCustomElementAttributePassing } from "../../utils"'
-			},
 			{ from: /ref=\{\(el\)/g, to: 'ref={(el:any)' },
 			{ from: 'for={', to: 'htmlFor={' },
 			{

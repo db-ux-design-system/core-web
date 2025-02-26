@@ -23,9 +23,10 @@ const log = (exampleName?: string) => {
 		<template
 			#example="{ exampleIndex, variantIndex, exampleName, exampleProps }"
 		>
-			<ul>
+			<ul class="nav-item-list">
 				<DBNavigationItem
 					:icon="exampleProps?.icon"
+					:showIcon="exampleProps?.showIcon"
 					:width="exampleProps?.width"
 					:disabled="exampleProps?.disabled"
 					:active="exampleProps?.active"

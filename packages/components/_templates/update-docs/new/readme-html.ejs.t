@@ -8,7 +8,7 @@ to: src/components/<%= name %>/docs/HTML.md
 ---
 ## HTML
 
-For general installation and configuration take a look at the [components](https://www.npmjs.com/package/@db-ui/components) package.
+For general installation and configuration take a look at the [components](https://www.npmjs.com/package/@db-ux/core-components) package.
 
 ### Use component
 

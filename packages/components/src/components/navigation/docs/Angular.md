@@ -6,13 +6,13 @@ SPDX-License-Identifier: Apache-2.0
 
 ## Angular
 
-For general installation and configuration look at the [ngx-components](https://www.npmjs.com/package/@db-ui/ngx-components) package.
+For general installation and configuration look at the [ngx-core-components](https://www.npmjs.com/package/@db-ux/ngx-core-components) package.
 
 ### Load component
 
 ```ts app.component.ts
 // app.component.ts
-import { DBNavigation } from '@db-ui/ngx-components';
+import { DBNavigation } from '@db-ux/ngx-core-components';
 
 @Component({
   // ...
@@ -81,7 +81,7 @@ For other purposes, `NavigationItems` themselves can also be set to active with 
 ```ts app.component.ts
 // app.component.ts
 import { RouterLink, RouterLinkActive } from '@angular/router';
-import { DBMainNavigation } from '@db-ui/ngx-components';
+import { DBMainNavigation } from '@db-ux/ngx-core-components';
 
 @Component({
   // ...

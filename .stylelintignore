@@ -14,5 +14,7 @@ showcases/patternhub/**
 showcases/**/public/**
 packages/foundations/scripts/generate-icon-fonts/styles/**
 packages/foundations/scss/_normalize.scss
+packages/stylelint/test/**
+
 # We needed to add this due to this necessary file and the glob within lint-staged
 .stylelintrc.json.license

@@ -23,7 +23,7 @@ import {
 				{{ exampleName }}
 			</DBInfotext>
 			<DBAccordion
-				:behaviour="exampleProps?.behaviour"
+				:behavior="exampleProps?.behavior"
 				:variant="exampleProps?.variant"
 			>
 				<DBAccordionItem headlinePlain="Item 1" text="Content 1" />

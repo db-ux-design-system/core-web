@@ -4,9 +4,9 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-@use "@db-ui/foundations/build/styles/variables";
-@use "@db-ui/foundations/build/styles/colors";
-@use "@db-ui/foundations/build/styles/animation";
+@use "@db-ux/core-foundations/build/styles/variables";
+@use "@db-ux/core-foundations/build/styles/colors";
+@use "@db-ux/core-foundations/build/styles/animation";
 @use "component";
 
 $popover-gap-size: var(--db-popover-distance);
@@ -138,7 +138,8 @@ $popover-gap-inset: calc(-1 * #{$popover-gap-size});
 }
 
 @mixin get-popover-show() {
-	&[data-animation="disabled"] {
+	&:not([data-animation]),
+	&[data-animation="false"] {
 		opacity: 1;
 		transform: translate(
 			var(--db-popover-center-x, 0),
@@ -147,7 +148,7 @@ $popover-gap-inset: calc(-1 * #{$popover-gap-size});
 	}
 
 	@media screen and (prefers-reduced-motion: no-preference) {
-		&:not([data-animation="disabled"]) {
+		&[data-animation="true"] {
 			animation: popover-animation
 				#{variables.$db-transition-straight-emotional} normal both;
 
@@ -205,7 +206,7 @@ $popover-gap-inset: calc(-1 * #{$popover-gap-size});
 	background-color: colors.$db-adaptive-bg-basic-level-1-default;
 	box-shadow: variables.$db-elevation-md;
 	display: none;
-	z-index: 1;
+	z-index: 1337;
 	white-space: nowrap;
 
 	&[data-width="fixed"] {

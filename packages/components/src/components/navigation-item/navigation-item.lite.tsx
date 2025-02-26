@@ -7,21 +7,27 @@ import {
 	onUpdate,
 	Show,
 	Slot,
+	useDefaultProps,
 	useMetadata,
 	useRef,
 	useStore
 } from '@builder.io/mitosis';
 import { DBNavigationItemProps, DBNavigationItemState } from './model';
 import DBButton from '../button/button.lite';
-import { cls, getBooleanAsString, getHideProp, uuid } from '../../utils';
-import { NavigationItemSafeTriangle } from '../../utils/navigation';
+import { cls, delay, getBooleanAsString, getHideProp, uuid } from '../../utils';
+import {
+	isEventTargetNavigationItem,
+	NavigationItemSafeTriangle
+} from '../../utils/navigation';
 import { DEFAULT_BACK } from '../../shared/constants';
 import { ClickEvent } from '../../shared/model';
 
 useMetadata({});
 
+useDefaultProps<DBNavigationItemProps>({});
+
 export default function DBNavigationItem(props: DBNavigationItemProps) {
-	const ref = useRef<HTMLLIElement>(null);
+	const _ref = useRef<HTMLLIElement | null>(null);
 
 	// jscpd:ignore-start
 	const state = useStore<DBNavigationItemState>({
@@ -29,9 +35,17 @@ export default function DBNavigationItem(props: DBNavigationItemProps) {
 		hasAreaPopup: false,
 		hasSubNavigation: true,
 		isSubNavigationExpanded: false,
+		autoClose: false,
 		subNavigationId: 'sub-navigation-' + uuid(),
 		navigationItemSafeTriangle: undefined,
-
+		handleNavigationItemClick: (event: unknown) => {
+			if (isEventTargetNavigationItem(event)) {
+				state.autoClose = true;
+				delay(() => {
+					state.autoClose = false;
+				}, 300);
+			}
+		},
 		handleClick: (event: ClickEvent<HTMLButtonElement>) => {
 			if (props.onClick) {
 				props.onClick(event);
@@ -41,12 +55,10 @@ export default function DBNavigationItem(props: DBNavigationItemProps) {
 				state.isSubNavigationExpanded = true;
 			}
 		},
-
 		handleBackClick: (event: ClickEvent<HTMLButtonElement>) => {
 			event.stopPropagation();
 			state.isSubNavigationExpanded = false;
 		},
-
 		updateSubNavigationState: () => {
 			if (state.initialized && document && state.subNavigationId) {
 				const subNavigationSlot = document?.getElementById(
@@ -60,7 +72,7 @@ export default function DBNavigationItem(props: DBNavigationItemProps) {
 						if (!state.navigationItemSafeTriangle) {
 							state.navigationItemSafeTriangle =
 								new NavigationItemSafeTriangle(
-									ref,
+									_ref,
 									subNavigationSlot
 								);
 						}
@@ -89,7 +101,7 @@ export default function DBNavigationItem(props: DBNavigationItemProps) {
 
 	return (
 		<li
-			ref={ref}
+			ref={_ref}
 			id={props.id}
 			onMouseOver={() => state.navigationItemSafeTriangle?.enableFollow()}
 			onMouseLeave={() =>
@@ -125,7 +137,11 @@ export default function DBNavigationItem(props: DBNavigationItemProps) {
 				</button>
 
 				{/* TODO: Consider using popover here */}
-				<menu class="db-sub-navigation" id={state.subNavigationId}>
+				<menu
+					class="db-sub-navigation"
+					data-auto-close={state.autoClose}
+					id={state.subNavigationId}
+					onClick={(event) => state.handleNavigationItemClick(event)}>
 					<Show when={state.hasAreaPopup}>
 						<div class="db-mobile-navigation-back">
 							<DBButton

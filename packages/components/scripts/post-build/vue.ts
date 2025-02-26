@@ -6,7 +6,7 @@ import { replaceInFileSync } from 'replace-in-file';
 
 import components, { Overwrite } from './components.js';
 
-import { runReplacements, transformToUpperComponentName } from '../utils';
+import { runReplacements } from '../utils';
 
 export default (tmp?: boolean) => {
 	const outputFolder = `${tmp ? 'output/tmp' : 'output'}`;
@@ -15,12 +15,6 @@ export default (tmp?: boolean) => {
 		files: `../../${outputFolder}/vue/playwright.config.ts`,
 		from: /react/g,
 		to: `vue`
-	});
-	// Activate vue specific event handling
-	replaceInFileSync({
-		files: `../../${outputFolder}/vue/src/utils/form-components.ts`,
-		from: `// VUE:`,
-		to: ``
 	});
 	for (const component of components) {
 		const componentName = component.name;
@@ -42,40 +36,40 @@ export default (tmp?: boolean) => {
 
 			const replacements: Overwrite[] = [
 				{
-					from: /immediate: true,/g,
+					from: /immediate: true/g,
 					to: 'immediate: true,\nflush: "post"'
 				},
-				/* `this` can be undefined for ssr (nuxt) we need to add */
 				{
-					from: /this.\$refs.ref\?.validationMessage/g,
-					to: '(this as any)?.$refs.ref?.validationMessage'
+					from: 'className',
+					to: 'props.class'
 				}
 			];
 
 			/* This is a workaround for valid/invalid Messages.
 			 *  If a valid/invalid message appears it will use the old this._value,
 			 *  so we need to overwrite this._value with the current event.target.value.   */
-			[
-				'HTMLSelectElement',
-				'HTMLInputElement',
-				'HTMLTextAreaElement'
-			].forEach((element) => {
+
+			if (['select', 'textarea', 'input'].includes(componentName)) {
 				replacements.push({
-					from: `handleInput(event: InputEvent<${element}>) {`,
+					from: 'if (props.onInput) {',
 					to:
-						`handleInput(event: InputEvent<${element}>) {\n` +
-						'this._value = (event.target as any).value;'
+						'_value.value = (event.target as any).value;\n' +
+						'if (props.onInput) {'
 				});
-			});
+			}
 
 			if (component?.config?.vue?.vModel) {
 				replacements.push({
-					from: 'props: [',
-					to: `emits: ${JSON.stringify(
+					from: 'const props =',
+					to: `const emit = defineEmits(${JSON.stringify(
 						component?.config?.vue?.vModel.map(
 							(bin) => `update:${bin.modelValue}`
 						)
-					)},\nprops: [`
+					)})\n\nconst props =`
+				});
+				replacements.push({
+					from: 'handleFrameworkEventVue(() => {}',
+					to: 'handleFrameworkEventVue(emit'
 				});
 			}
 

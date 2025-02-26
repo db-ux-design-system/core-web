@@ -10,12 +10,12 @@
 @forward "./index";
 
 // Bundle foundation defaults
-@forward "@db-ui/foundations/build/styles/relative";
+@forward "@db-ux/core-foundations/build/styles/relative";
 
 // Bundle optionals
 @forward "component-animations";
 @forward "wc-workarounds";
-@forward "@db-ui/foundations/build/styles/helpers/classes/all";
-@forward "@db-ui/foundations/build/styles/density/classes/all";
-@forward "@db-ui/foundations/build/styles/fonts/classes/all";
-@forward "@db-ui/foundations/build/styles/colors/classes/all";
+@forward "@db-ux/core-foundations/build/styles/helpers/classes/all";
+@forward "@db-ux/core-foundations/build/styles/density/classes/all";
+@forward "@db-ux/core-foundations/build/styles/fonts/classes/all";
+@forward "@db-ux/core-foundations/build/styles/colors/classes/all";

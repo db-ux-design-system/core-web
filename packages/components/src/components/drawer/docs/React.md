@@ -6,7 +6,7 @@ SPDX-License-Identifier: Apache-2.0
 
 ## React
 
-For general installation and configuration take a look at the [react-components](https://www.npmjs.com/package/@db-ui/react-components) package.
+For general installation and configuration take a look at the [react-core-components](https://www.npmjs.com/package/@db-ux/react-core-components) package.
 
 ### General
 
@@ -17,7 +17,7 @@ If you use `width !== full` you are able to overwrite the `max-width` with `--db
 ```tsx App.tsx
 // App.tsx
 import { useState } from "react";
-import { DBButton, DBDrawer } from "@db-ui/react-components";
+import { DBButton, DBDrawer } from "@db-ux/react-core-components";
 
 const App = () => {
 	const [open, setOpen] = useState<boolean>(false);

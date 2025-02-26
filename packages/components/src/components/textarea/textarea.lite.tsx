@@ -6,6 +6,7 @@ import {
 	onMount,
 	onUpdate,
 	Show,
+	useDefaultProps,
 	useMetadata,
 	useRef,
 	useStore,
@@ -17,8 +18,8 @@ import {
 	cls,
 	delay,
 	getHideProp,
-	stringPropVisible,
 	hasVoiceOver,
+	stringPropVisible,
 	uuid
 } from '../../utils';
 import {
@@ -32,16 +33,20 @@ import {
 	DEFAULT_VALID_MESSAGE_ID_SUFFIX
 } from '../../shared/constants';
 import { ChangeEvent, InputEvent, InteractionEvent } from '../../shared/model';
-import { handleFrameworkEvent } from '../../utils/form-components';
+import {
+	handleFrameworkEventAngular,
+	handleFrameworkEventVue
+} from '../../utils/form-components';
 
 useMetadata({
 	angular: {
 		nativeAttributes: ['disabled', 'required']
 	}
 });
+useDefaultProps<DBTextareaProps>({});
 
 export default function DBTextarea(props: DBTextareaProps) {
-	const ref = useRef<HTMLTextAreaElement>(null);
+	const _ref = useRef<HTMLTextAreaElement | null>(null);
 	// jscpd:ignore-start
 	const state = useStore<DBTextareaState>({
 		_id: undefined,
@@ -70,23 +75,23 @@ export default function DBTextarea(props: DBTextareaProps) {
 				props.change(event);
 			}
 			useTarget({
-				angular: () => handleFrameworkEvent(this, event),
-				vue: () => handleFrameworkEvent(this, event)
+				angular: () => handleFrameworkEventAngular(this, event),
+				vue: () => handleFrameworkEventVue(() => {}, event)
 			});
 
 			/* For a11y reasons we need to map the correct message with the textarea */
-			if (!ref?.validity.valid || props.validation === 'invalid') {
+			if (!_ref?.validity.valid || props.validation === 'invalid') {
 				state._descByIds = state._invalidMessageId;
 				if (hasVoiceOver()) {
 					state._voiceOverFallback =
 						props.invalidMessage ??
-						ref?.validationMessage ??
+						_ref?.validationMessage ??
 						DEFAULT_INVALID_MESSAGE;
 					delay(() => (state._voiceOverFallback = ''), 1000);
 				}
 			} else if (
 				props.validation === 'valid' ||
-				(ref?.validity.valid &&
+				(_ref?.validity.valid &&
 					(props.required || props.minLength || props.maxLength))
 			) {
 				state._descByIds = state._validMessageId;
@@ -157,7 +162,7 @@ export default function DBTextarea(props: DBTextareaProps) {
 			<textarea
 				aria-invalid={props.validation === 'invalid'}
 				data-custom-validity={props.validation}
-				ref={ref}
+				ref={_ref}
 				id={state._id}
 				data-resize={props.resize}
 				disabled={props.disabled}
@@ -210,7 +215,7 @@ export default function DBTextarea(props: DBTextareaProps) {
 				size="small"
 				semantic="critical">
 				{props.invalidMessage ??
-					ref?.validationMessage ??
+					_ref?.validationMessage ??
 					DEFAULT_INVALID_MESSAGE}
 			</DBInfotext>
 

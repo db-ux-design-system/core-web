@@ -68,6 +68,10 @@ showcases/patternhub/public/iframe-resizer/*
 /output/stencil/www
 **/.angular
 
+/scripts/public/
+/scripts/gh-pages.tar.gz
+!/scripts/tests/fixtures/out
+
 # Under no circumstances we should (git) ignore the necessary license files
 !**/*.license
 # … but this one file should actually be ignored

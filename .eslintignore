@@ -15,3 +15,4 @@
 build-outputs/
 build-showcases/
 /output/**
+.eslintrc.js

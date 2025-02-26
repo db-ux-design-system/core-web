@@ -7,6 +7,7 @@ import {
 	onMount,
 	onUpdate,
 	Show,
+	useDefaultProps,
 	useMetadata,
 	useRef,
 	useStore
@@ -19,9 +20,10 @@ import DBTabItem from '../tab-item/tab-item.lite';
 import DBTabPanel from '../tab-panel/tab-panel.lite';
 
 useMetadata({});
+useDefaultProps<DBTabsProps>({});
 
 export default function DBTabs(props: DBTabsProps) {
-	const ref = useRef<HTMLDivElement>(null);
+	const _ref = useRef<HTMLDivElement | null>(null);
 	// jscpd:ignore-start
 	const state = useStore<DBTabsState>({
 		_id: 'tabs-' + uuid(),
@@ -63,30 +65,32 @@ export default function DBTabs(props: DBTabsProps) {
 			});
 		},
 		initTabList() {
-			if (ref) {
-				const tabList = ref.querySelector('.db-tab-list');
+			if (_ref) {
+				const tabList = _ref.querySelector('.db-tab-list');
 				if (tabList) {
-					const container = tabList.querySelector('[role="tablist"]');
+					const container: HTMLElement | null =
+						tabList.querySelector('[role="tablist"]');
+					if (container) {
+						container.setAttribute(
+							'aria-orientation',
+							props.orientation || 'horizontal'
+						);
 
-					container.setAttribute(
-						'aria-orientation',
-						props.orientation || 'horizontal'
-					);
-
-					if (props.behaviour === 'arrows') {
-						state.scrollContainer = container;
-						state.evaluateScrollButtons(container);
-						container.addEventListener('scroll', () => {
+						if (props.behavior === 'arrows') {
+							state.scrollContainer = container;
 							state.evaluateScrollButtons(container);
-						});
+							container.addEventListener('scroll', () => {
+								state.evaluateScrollButtons(container);
+							});
+						}
 					}
 				}
 			}
 		},
 		initTabs(init?: boolean) {
-			if (ref) {
+			if (_ref) {
 				const tabItems = Array.from<Element>(
-					ref.getElementsByClassName('db-tab-item')
+					_ref.getElementsByClassName('db-tab-item')
 				);
 				for (const tabItem of tabItems) {
 					const index: number = tabItems.indexOf(tabItem);
@@ -122,7 +126,7 @@ export default function DBTabs(props: DBTabsProps) {
 				}
 
 				const tabPanels = Array.from<Element>(
-					ref.querySelectorAll(
+					_ref.querySelectorAll(
 						':is(:scope > .db-tab-panel, :scope > db-tab-panel > .db-tab-panel)'
 					)
 				);
@@ -135,6 +139,24 @@ export default function DBTabs(props: DBTabsProps) {
 						`${state._name}-tab-${index}`
 					);
 				}
+			}
+		},
+		handleChange: (event: any) => {
+			if (props.onIndexChange && event.target) {
+				const list = event.target.closest('ul');
+				const listItem =
+					// db-tab-item for angular and stencil wrapping elements
+					event.target.closest('db-tab-item') ??
+					event.target.closest('li');
+				if (list !== null && listItem !== null) {
+					props.onIndexChange(
+						Array.from(list.childNodes).indexOf(listItem)
+					);
+				}
+			}
+
+			if (props.onTabSelect) {
+				props.onTabSelect(event);
 			}
 		}
 	});
@@ -149,11 +171,11 @@ export default function DBTabs(props: DBTabsProps) {
 	// jscpd:ignore-end
 
 	onUpdate(() => {
-		if (ref && state.initialized) {
+		if (_ref && state.initialized) {
 			state.initTabList();
 			state.initTabs(true);
 
-			const tabList = ref.querySelector('.db-tab-list');
+			const tabList = _ref.querySelector('.db-tab-list');
 			if (tabList) {
 				const observer = new MutationObserver((mutations) => {
 					mutations.forEach((mutation) => {
@@ -175,22 +197,24 @@ export default function DBTabs(props: DBTabsProps) {
 
 			state.initialized = false;
 		}
-	}, [ref, state.initialized]);
+	}, [_ref, state.initialized]);
 
 	return (
 		<div
-			ref={ref}
+			ref={_ref}
 			id={state._id}
 			class={cls('db-tabs', props.className)}
 			data-orientation={props.orientation}
-			data-scroll-behaviour={props.behaviour}
+			data-scroll-behavior={props.behavior}
 			data-alignment={props.alignment ?? 'start'}
-			data-width={props.width ?? 'auto'}>
+			data-width={props.width ?? 'auto'}
+			onInput={(event: any) => state.handleChange(event)}>
 			<Show when={state.showScrollLeft}>
 				<DBButton
 					class="tabs-scroll-left"
 					variant="ghost"
 					icon="chevron_left"
+					type="button"
 					noText
 					onClick={() => state.scroll(true)}>
 					Scroll left
@@ -226,6 +250,7 @@ export default function DBTabs(props: DBTabsProps) {
 					class="tabs-scroll-right"
 					variant="ghost"
 					icon="chevron_right"
+					type="button"
 					noText
 					onClick={() => state.scroll()}>
 					Scroll right

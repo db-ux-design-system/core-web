@@ -2,15 +2,23 @@
 //
 // SPDX-License-Identifier: Apache-2.0
 
-import { onMount, useMetadata, useRef, useStore } from '@builder.io/mitosis';
+import {
+	onMount,
+	useDefaultProps,
+	useMetadata,
+	useRef,
+	useStore
+} from '@builder.io/mitosis';
 import { DBNavigationProps, DBNavigationState } from './model';
 import { cls, uuid } from '../../utils';
 import { DEFAULT_ID } from '../../shared/constants';
 
 useMetadata({});
 
+useDefaultProps<DBNavigationProps>({});
+
 export default function DBNavigation(props: DBNavigationProps) {
-	const ref = useRef<HTMLDivElement>(null);
+	const _ref = useRef<HTMLDivElement | null>(null);
 	// jscpd:ignore-start
 	const state = useStore<DBNavigationState>({
 		_id: DEFAULT_ID
@@ -24,7 +32,7 @@ export default function DBNavigation(props: DBNavigationProps) {
 
 	return (
 		<nav
-			ref={ref}
+			ref={_ref}
 			id={state._id}
 			aria-labelledby={props.labelledBy}
 			class={cls('db-navigation', props.className)}>

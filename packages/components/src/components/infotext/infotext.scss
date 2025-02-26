@@ -5,10 +5,10 @@
  */
 
 @use "sass:map";
-@use "@db-ui/foundations/build/styles/fonts";
-@use "@db-ui/foundations/build/styles/variables";
-@use "@db-ui/foundations/build/styles/colors";
-@use "@db-ui/foundations/build/styles/icons";
+@use "@db-ux/core-foundations/build/styles/fonts";
+@use "@db-ux/core-foundations/build/styles/variables";
+@use "@db-ux/core-foundations/build/styles/colors";
+@use "@db-ux/core-foundations/build/styles/icons";
 
 .db-infotext {
 	--db-icon-margin-end: #{variables.$db-spacing-fixed-2xs};

@@ -19,7 +19,7 @@ const intellijOptions = {
 	excludeCss: true,
 	referenceTemplate: (name, tag) => ({
 		name: 'Documentation',
-		url: `https://db-ui.github.io/mono/review/main/components/${tag.replace('db-', '')}/properties`
+		url: `https://db-ux-design-system.github.io/core-web/review/main/components/${tag.replace('db-', '')}/properties`
 	})
 };
 

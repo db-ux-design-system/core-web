@@ -24,4 +24,4 @@ This directory provides `docker-compose.yml` to test or regenerate screenshots.
 
 ## FAQ
 
-If you're running into errors on testing or screenshot generation e.g. regarding missing dependencies (`db-ui-mono-e2e-playwright-1 | sh: 1: cross-env: not found`), you're probably based on an old version of the image. That for you would need to rebuild the image by adding the '--build' parameter, like e.g. `docker-compose -f ./e2e/docker-compose.regenerate.yml up --build`
+If you're running into errors on testing or screenshot generation e.g. regarding missing dependencies (`db-ux-core-web-e2e-playwright-1 | sh: 1: cross-env: not found`), you're probably based on an old version of the image. That for you would need to rebuild the image by adding the '--build' parameter, like e.g. `docker-compose -f ./e2e/docker-compose.regenerate.yml up --build`

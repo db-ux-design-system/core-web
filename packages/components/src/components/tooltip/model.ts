@@ -13,11 +13,8 @@ import {
 	PopoverState
 } from '../../shared/model';
 
-export const TooltipVariantList = ['with arrow', 'basic'] as const;
-export type TooltipVariantType = (typeof TooltipVariantList)[number];
-
 export type DBTooltipDefaultProps = {
-	variant?: TooltipVariantType;
+	showArrow?: boolean;
 };
 
 export type DBTooltipProps = DBTooltipDefaultProps &

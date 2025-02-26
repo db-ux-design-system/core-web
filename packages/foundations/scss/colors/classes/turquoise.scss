@@ -10,4 +10,3 @@
 $variant: "turquoise";
 
 @include get-class.init($variant);
-@include get-class.init-container-colors($variant);

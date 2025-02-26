@@ -5,8 +5,8 @@
  */
 
 @use "sass:list";
-@use "@db-ui/foundations/build/styles/variables";
-@use "@db-ui/foundations/build/styles/helpers";
+@use "@db-ux/core-foundations/build/styles/variables";
+@use "@db-ux/core-foundations/build/styles/helpers";
 @use "custom-elements";
 
 $stack-gaps: (
@@ -103,6 +103,7 @@ $stack-gaps: (
 
 	@each $name, $gap in $stack-gaps {
 		&[data-gap="#{$name}"] {
+			/* stylelint-disable-next-line db-ux/use-spacings */
 			gap: #{$gap};
 		}
 	}

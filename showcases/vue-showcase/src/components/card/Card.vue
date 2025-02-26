@@ -16,7 +16,7 @@ import { DBCard } from "../../../../../output/vue/src";
 			#example="{ exampleIndex, variantIndex, exampleName, exampleProps }"
 		>
 			<DBCard
-				:behaviour="exampleProps?.behaviour"
+				:behavior="exampleProps?.behavior"
 				:elevationLevel="exampleProps?.elevationLevel"
 				:spacing="exampleProps?.spacing"
 			>

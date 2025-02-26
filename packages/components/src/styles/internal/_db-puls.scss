@@ -4,9 +4,9 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-@use "@db-ui/foundations/build/styles/variables";
-@use "@db-ui/foundations/build/styles/screen-sizes";
-@use "@db-ui/foundations/build/styles/colors";
+@use "@db-ux/core-foundations/build/styles/variables";
+@use "@db-ux/core-foundations/build/styles/screen-sizes";
+@use "@db-ux/core-foundations/build/styles/colors";
 
 @mixin set-db-puls-horizontal() {
 	&::after {
@@ -62,7 +62,8 @@
 		inline-size: 100%;
 
 		@media (forced-colors: active) {
-			border: calc(#{variables.$db-border-height-xs} - 1px) solid;
+			border: calc(#{variables.$db-border-height-xs} - 1px) solid
+				colors.$db-adaptive-on-bg-basic-emphasis-100-default;
 		}
 	}
 }
@@ -73,7 +74,8 @@
 		inline-size: variables.$db-border-height-xs;
 
 		@media (forced-colors: active) {
-			border: calc(#{variables.$db-border-height-xs} - 1px) solid;
+			border: calc(#{variables.$db-border-height-xs} - 1px) solid
+				colors.$db-adaptive-on-bg-basic-emphasis-100-default;
 		}
 	}
 }

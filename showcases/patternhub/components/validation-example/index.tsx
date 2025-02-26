@@ -19,7 +19,7 @@ const ValidationExample = () => {
 					<h4>No custom validation</h4>
 					<DBInfotext semantic="informational">
 						<span>
-							default browser behaviour with auto changing colors
+							default browser behavior with auto changing colors
 						</span>
 					</DBInfotext>
 					<form>

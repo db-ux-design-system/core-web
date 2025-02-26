@@ -53,6 +53,7 @@ const generateTestTable = () => {
 			singleComponentAxe: hasComponentTest,
 			showcaseVisuals: hasShowcaseVisuals,
 			showcaseAxe: hasShowcaseTest,
+			showcaseAria: hasShowcaseTest,
 			showcaseAC: hasShowcaseTest,
 			showcaseGP: hasScreenReaderTest,
 			accessibilityReview: accessibilityReview.find(

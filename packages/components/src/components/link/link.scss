@@ -6,12 +6,12 @@
 
 @charset "utf-8";
 
-@use "@db-ui/foundations/build/styles/fonts";
-@use "@db-ui/foundations/build/styles/variables";
-@use "@db-ui/foundations/build/styles/animation";
-@use "@db-ui/foundations/build/styles/helpers";
-@use "@db-ui/foundations/build/styles/icons";
-@use "@db-ui/foundations/build/styles/colors";
+@use "@db-ux/core-foundations/build/styles/fonts";
+@use "@db-ux/core-foundations/build/styles/variables";
+@use "@db-ux/core-foundations/build/styles/animation";
+@use "@db-ux/core-foundations/build/styles/helpers";
+@use "@db-ux/core-foundations/build/styles/icons";
+@use "@db-ux/core-foundations/build/styles/colors";
 @use "../../styles/internal/link-components";
 
 .db-link {
@@ -40,6 +40,7 @@
 		--db-icon-margin-start: #{variables.$db-spacing-fixed-2xs};
 
 		&::after {
+			/* stylelint-disable-next-line db-ux/use-spacings */
 			margin-inline-start: var(--db-icon-margin-start);
 		}
 	}

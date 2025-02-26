@@ -4,10 +4,10 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-@use "@db-ui/foundations/build/styles/variables";
-@use "@db-ui/foundations/build/styles/colors";
-@use "@db-ui/foundations/build/styles/helpers";
-@use "@db-ui/foundations/build/styles/animation";
+@use "@db-ux/core-foundations/build/styles/variables";
+@use "@db-ux/core-foundations/build/styles/colors";
+@use "@db-ux/core-foundations/build/styles/helpers";
+@use "@db-ux/core-foundations/build/styles/animation";
 @use "./form-components";
 
 $scrollbar-width: helpers.px-to-rem(8);
@@ -51,7 +51,7 @@ $scrollbar-width: helpers.px-to-rem(8);
 		background-size: $scrollbar-width;
 		background-repeat: no-repeat;
 		background-position: center;
-		block-size: form-components.$floating-label-size;
+		block-size: form-components.$floating-label-size-calc;
 
 		&:is(:hover, :focus) {
 			background-color: colors.$db-adaptive-bg-basic-transparent-hovered;

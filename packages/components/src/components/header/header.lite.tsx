@@ -6,6 +6,7 @@ import {
 	onMount,
 	onUpdate,
 	Slot,
+	useDefaultProps,
 	useMetadata,
 	useRef,
 	useStore
@@ -19,8 +20,10 @@ import { isEventTargetNavigationItem } from '../../utils/navigation';
 
 useMetadata({});
 
+useDefaultProps<DBHeaderProps>({});
+
 export default function DBHeader(props: DBHeaderProps) {
-	const ref = useRef<HTMLDivElement>(null);
+	const _ref = useRef<HTMLDivElement | null>(null);
 	// jscpd:ignore-start
 	const state = useStore<DBHeaderState>({
 		_id: DEFAULT_ID,
@@ -64,7 +67,7 @@ export default function DBHeader(props: DBHeaderProps) {
 
 	return (
 		<header
-			ref={ref}
+			ref={_ref}
 			class={cls('db-header', props.className)}
 			id={state._id}
 			data-width={props.width}

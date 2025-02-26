@@ -24,13 +24,13 @@ const testDefaultCard = () => {
 };
 
 const testCardVariants = () => {
-	for (const behaviour of ['default', 'interactive']) {
-		test(`should match screenshot for behaviour ${behaviour}`, async ({
+	for (const behavior of ['default', 'interactive']) {
+		test(`should match screenshot for behavior ${behavior}`, async ({
 			mount
 		}) => {
 			const variantComp: any = (
 				<div>
-					<DBCard behaviour={behaviour}>Test</DBCard>
+					<DBCard behavior={behavior}>Test</DBCard>
 				</div>
 			);
 			const component = await mount(variantComp);

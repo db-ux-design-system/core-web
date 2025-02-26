@@ -2,22 +2,28 @@
 //
 // SPDX-License-Identifier: Apache-2.0
 
-import { Show, useMetadata, useRef, useStore } from '@builder.io/mitosis';
-import { DBStackState, DBStackProps } from './model';
+import {
+	useDefaultProps,
+	useMetadata,
+	useRef,
+	useStore
+} from '@builder.io/mitosis';
+import { DBStackProps, DBStackState } from './model';
 import { cls, getBooleanAsString } from '../../utils';
 
 useMetadata({});
+useDefaultProps<DBStackProps>({});
 
 export default function DBStack(props: DBStackProps) {
 	// This is used as forwardRef
-	const ref = useRef<HTMLDivElement>(null);
+	const _ref = useRef<HTMLDivElement | null>(null);
 	// jscpd:ignore-start
 	const state = useStore<DBStackState>({});
 	// jscpd:ignore-end
 
 	return (
 		<div
-			ref={ref}
+			ref={_ref}
 			id={props.id}
 			class={cls('db-stack', props.className)}
 			data-gap={props.gap}

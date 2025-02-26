@@ -21,7 +21,7 @@ const getTabs = ({
 	width,
 	alignment,
 	overflow,
-	behaviour,
+	behavior,
 	initialSelectedMode,
 	initialSelectedIndex
 }: DBTabsProps & { overflow: boolean }) => (
@@ -33,7 +33,7 @@ const getTabs = ({
 			orientation={orientation}
 			width={width}
 			alignment={alignment}
-			behaviour={behaviour}
+			behavior={behavior}
 			initialSelectedIndex={initialSelectedIndex}
 			initialSelectedMode={initialSelectedMode}
 			arrowScrollDistance={75}>

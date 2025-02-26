@@ -6,6 +6,7 @@ import {
 	onMount,
 	onUpdate,
 	Slot,
+	useDefaultProps,
 	useMetadata,
 	useRef,
 	useStore
@@ -17,9 +18,11 @@ import { cls, delay } from '../../utils';
 
 useMetadata({});
 
+useDefaultProps<DBDrawerProps>({});
+
 export default function DBDrawer(props: DBDrawerProps) {
-	const ref = useRef<HTMLDialogElement>(null);
-	const dialogContainerRef = useRef<HTMLDivElement>(null);
+	const _ref = useRef<HTMLDialogElement | null>(null);
+	const dialogContainerRef = useRef<HTMLDivElement | null>(null);
 	const state = useStore<DBDrawerState>({
 		// eslint-disable-next-line @typescript-eslint/no-explicit-any
 		handleClose: (event: any) => {
@@ -40,8 +43,8 @@ export default function DBDrawer(props: DBDrawerProps) {
 			}
 		},
 		handleDialogOpen: () => {
-			if (ref) {
-				if (props.open && !ref.open) {
+			if (_ref) {
+				if (props.open && !_ref.open) {
 					if (dialogContainerRef) {
 						dialogContainerRef.hidden = false;
 					}
@@ -49,12 +52,12 @@ export default function DBDrawer(props: DBDrawerProps) {
 						props.backdrop === 'none' ||
 						props.variant === 'inside'
 					) {
-						ref.show();
+						_ref.show();
 					} else {
-						ref.showModal();
+						_ref.showModal();
 					}
 				}
-				if (!props.open && ref.open) {
+				if (!props.open && _ref.open) {
 					if (dialogContainerRef) {
 						dialogContainerRef.hidden = true;
 					}
@@ -62,7 +65,7 @@ export default function DBDrawer(props: DBDrawerProps) {
 						if (dialogContainerRef) {
 							dialogContainerRef.hidden = false;
 						}
-						ref?.close();
+						_ref?.close();
 					}, 401);
 				}
 			}
@@ -80,7 +83,7 @@ export default function DBDrawer(props: DBDrawerProps) {
 	return (
 		<dialog
 			id={props.id}
-			ref={ref}
+			ref={_ref}
 			class="db-drawer"
 			onClick={(event) => {
 				state.handleClose(event);

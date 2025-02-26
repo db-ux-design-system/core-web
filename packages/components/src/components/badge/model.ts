@@ -3,12 +3,12 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import {
-	EmphasisProps,
 	GlobalProps,
 	GlobalState,
 	InitializedState,
 	SemanticProps,
 	SizeProps,
+	TagEmphasisProps,
 	TextProps
 } from '../../shared/model';
 
@@ -39,7 +39,7 @@ export type DBBadgeProps = DBBadgeDefaultProps &
 	GlobalProps &
 	SemanticProps &
 	SizeProps &
-	EmphasisProps &
+	TagEmphasisProps &
 	TextProps;
 
 export type DBBadgeDefaultState = {};

@@ -11,6 +11,7 @@ import {
 	IconProps,
 	InitializedState,
 	NavigationBackButtonProps,
+	NavigationBehaviorState,
 	ShowIconProps,
 	TextProps,
 	WidthProps
@@ -61,9 +62,11 @@ export type DBNavigationItemDefaultState = {
 	hasSubNavigation?: boolean;
 	updateSubNavigationState: () => void;
 	navigationItemSafeTriangle?: NavigationItemSafeTriangle;
+	autoClose?: boolean;
 };
 
 export type DBNavigationItemState = DBNavigationItemDefaultState &
 	ClickEventState<HTMLButtonElement> &
 	GlobalState &
-	InitializedState;
+	InitializedState &
+	NavigationBehaviorState;

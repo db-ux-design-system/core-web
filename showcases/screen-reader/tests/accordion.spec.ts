@@ -31,7 +31,7 @@ test.describe('DBAccordion', () => {
 		test,
 		title: 'default',
 		description: 'should open first item (next)',
-		url: './#/04/accordion?page=behaviour',
+		url: './#/04/accordion?page=behavior',
 		async testFn(voiceOver, nvda) {
 			const screenReader = voiceOver ?? nvda;
 			await screenReader?.clearSpokenPhraseLog();

@@ -6,6 +6,7 @@ import {
 	onMount,
 	onUpdate,
 	Show,
+	useDefaultProps,
 	useMetadata,
 	useRef,
 	useStore
@@ -16,8 +17,10 @@ import { DEFAULT_LABEL } from '../../shared/constants';
 
 useMetadata({});
 
+useDefaultProps<DBBadgeProps>({});
+
 export default function DBBadge(props: DBBadgeProps) {
-	const ref = useRef<HTMLSpanElement>(null);
+	const _ref = useRef<HTMLSpanElement | null>(null);
 	const state = useStore<DBBadgeState>({
 		initialized: false
 	});
@@ -27,9 +30,9 @@ export default function DBBadge(props: DBBadgeProps) {
 	});
 
 	onUpdate(() => {
-		if (ref && state.initialized) {
+		if (_ref && state.initialized) {
 			if (props.placement?.startsWith('corner')) {
-				let parent = ref.parentElement;
+				let parent = _ref.parentElement;
 
 				if (parent && parent.localName.includes('badge')) {
 					// Angular workaround
@@ -41,11 +44,11 @@ export default function DBBadge(props: DBBadgeProps) {
 				}
 			}
 		}
-	}, [ref, state.initialized]);
+	}, [_ref, state.initialized]);
 
 	return (
 		<span
-			ref={ref}
+			ref={_ref}
 			id={props.id}
 			class={cls('db-badge', props.className)}
 			data-semantic={props.semantic}

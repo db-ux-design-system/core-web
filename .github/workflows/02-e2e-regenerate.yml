@@ -40,33 +40,33 @@ jobs:
       - name: ⏬ Download foundations build
         uses: actions/download-artifact@v4
         with:
-          name: db-ui-foundations-build
+          name: db-ux-foundations-build
           path: packages/foundations/build
 
       - name: ⏬ Download output
         uses: actions/download-artifact@v4
         with:
-          name: db-ui-output
+          name: db-ux-output
           path: output
 
       - name: ⏬ Download components styles build
         uses: actions/download-artifact@v4
         with:
-          name: db-ui-components-build
+          name: db-ux-components-build
           path: packages/components/build
 
       - name: ⏬ Download showcases
         if: inputs.type == 'showcases'
         uses: actions/download-artifact@v4
         with:
-          name: db-ui-react-showcase
+          name: db-ux-react-showcase
           path: build-showcases/react-showcase
 
       - name: ⏬ Download patternhub
         if: inputs.type == 'patternhub'
         uses: actions/download-artifact@v4
         with:
-          name: db-ui-patternhub
+          name: db-ux-patternhub
           path: build-showcases/patternhub
 
       - name: 👩‍🔬 Generate snapshots 🎭
@@ -77,9 +77,9 @@ jobs:
           NEXT_PUBLIC_BASE_PATH: ${{ inputs.path }}
         run: |
           if [[ $TYPE == "components" ]]; then
-            npm run regenerate:screenshots --workspace=@db-ui/react-components
+            npm run regenerate:screenshots --workspace=@db-ux/react-core-components
           elif [[ $TYPE == "foundations" ]]; then
-            npm run regenerate:screenshots --workspace=@db-ui/foundations
+            npm run regenerate:screenshots --workspace=@db-ux/core-foundations
           elif [[ $TYPE == "patternhub" ]]; then
             mkdir -p ./build-showcases${{ inputs.path }}
             cp -RT ./build-showcases/${{ inputs.type }} ./build-showcases${{ inputs.path }}

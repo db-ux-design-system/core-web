@@ -10,13 +10,13 @@ import type { DBCardProps } from '../../../../../output/react/src/components/car
 import { type BaseComponentProps } from '../base-component-data';
 
 const getCard = ({
-	behaviour,
+	behavior,
 	children,
 	spacing,
 	elevationLevel
 }: DBCardProps) => (
 	<DBCard
-		behaviour={behaviour}
+		behavior={behavior}
 		spacing={spacing}
 		elevationLevel={elevationLevel}>
 		<strong>{children}</strong>

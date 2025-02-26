@@ -6,6 +6,6 @@
 
 // If this library is used as an npm dependency, and the source files should be included rather than css, this corrects the paths.
 @use "default.assets-paths" as assets-paths with (
-	$icons-path: "@db-ui/foundations/assets/icons/",
-	$fonts-path: "@db-ui/foundations/assets/fonts/"
+	$icons-path: "@db-ux/core-foundations/assets/icons/",
+	$fonts-path: "@db-ux/core-foundations/assets/fonts/"
 );

@@ -4,10 +4,10 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-@use "@db-ui/foundations/build/styles/variables";
-@use "@db-ui/foundations/build/styles/screen-sizes";
-@use "@db-ui/foundations/build/styles/colors";
-@use "@db-ui/foundations/build/styles/helpers";
+@use "@db-ux/core-foundations/build/styles/variables";
+@use "@db-ux/core-foundations/build/styles/screen-sizes";
+@use "@db-ux/core-foundations/build/styles/colors";
+@use "@db-ux/core-foundations/build/styles/helpers";
 
 $min-mobile-header-height: calc(
 	#{variables.$db-sizing-md} + 2 * #{variables.$db-spacing-fixed-xs}
@@ -45,6 +45,7 @@ $placeholder-disabled: 0.69;
 %default-card {
 	@extend %component-border;
 
+	/* stylelint-disable-next-line db-ux/use-border-radius */
 	border-radius: var(
 		--default-card-border-radius,
 		#{variables.$db-border-radius-sm}

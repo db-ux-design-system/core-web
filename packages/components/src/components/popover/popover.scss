@@ -4,12 +4,14 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-@use "@db-ui/foundations/build/styles/variables";
+@use "@db-ux/core-foundations/build/styles/variables";
 @use "../../styles/internal/popover-component";
 @use "../../styles/internal/component";
 
 .db-popover {
 	position: relative;
+	display: flex;
+	inline-size: fit-content;
 
 	&:is([data-e2e-hover="true"], :hover, :focus-within) {
 		> article:not([data-open="false"]) {

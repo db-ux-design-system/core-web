@@ -85,16 +85,8 @@ export default (tmp?: boolean) => {
 					to: `function DB${upperComponentName}Fn(props: Omit<HTMLAttributes<${htmlElement}>, keyof DB${upperComponentName}Props> & DB${upperComponentName}Props, component: any) {`
 				},
 				{
-					from: `export default DB${upperComponentName};`,
-					to: `const DB${upperComponentName} = forwardRef<${htmlElement}, Omit<HTMLAttributes<${htmlElement}>, keyof DB${upperComponentName}Props> & DB${upperComponentName}Props>(DB${upperComponentName}Fn);\nexport default DB${upperComponentName};`
-				},
-				{
-					from: 'if (ref.current)',
-					to: 'if (ref?.current)'
-				},
-				{
-					from: '[ref.current]',
-					to: '[ref]'
+					from: `DB${upperComponentName}.defaultProps`,
+					to: `const DB${upperComponentName} = forwardRef<${htmlElement}, Omit<HTMLAttributes<${htmlElement}>, keyof DB${upperComponentName}Props> & DB${upperComponentName}Props>(DB${upperComponentName}Fn);\nDB${upperComponentName}.defaultProps`
 				},
 				{
 					from: '>(null);',
@@ -106,13 +98,15 @@ export default (tmp?: boolean) => {
 					to: ''
 				},
 				{
-					from: '} from "../../utils"',
-					to: ', filterPassingProps, getRootProps } from "../../utils"'
+					from: 'import * as React from "react";',
+					to:
+						'import * as React from "react";\n ' +
+						'import { filterPassingProps, getRootProps } from "../../utils/react";\n'
 				},
 				{
-					from: 'ref={ref}',
+					from: 'ref={_ref}',
 					to:
-						'ref={ref}\n' +
+						'ref={_ref}\n' +
 						`{...filterPassingProps(props,${JSON.stringify([
 							...rootProps,
 							...(component?.config?.react?.propsPassingFilter ??

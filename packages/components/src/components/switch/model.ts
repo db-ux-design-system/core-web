@@ -15,7 +15,6 @@ import {
 	GlobalState,
 	IconAfterProps,
 	IconProps,
-	InitializedState,
 	SizeProps
 } from '../../shared/model';
 
@@ -45,5 +44,4 @@ export type DBSwitchState = DBSwitchDefaultState &
 	GlobalState &
 	ChangeEventState<HTMLInputElement> &
 	FocusEventState<HTMLInputElement> &
-	FormState &
-	InitializedState;
+	FormState;

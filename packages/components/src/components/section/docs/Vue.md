@@ -6,14 +6,14 @@ SPDX-License-Identifier: Apache-2.0
 
 ## Vue
 
-For general installation and configuration take a look at the [v-components](https://www.npmjs.com/package/@db-ui/v-components) package.
+For general installation and configuration take a look at the [v-core-components](https://www.npmjs.com/package/@db-ux/v-core-components) package.
 
 ### Use component
 
 ```vue App.vue
 <!-- App.vue -->
 <script>
-import { DBSection } from "@db-ui/v-components";
+import { DBSection } from "@db-ux/v-core-components";
 </script>
 
 <template>

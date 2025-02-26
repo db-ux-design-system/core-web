@@ -6,7 +6,7 @@ SPDX-License-Identifier: Apache-2.0
 
 ## HTML
 
-For general installation and configuration take a look at the [components](https://www.npmjs.com/package/@db-ui/components) package.
+For general installation and configuration take a look at the [components](https://www.npmjs.com/package/@db-ux/core-components) package.
 
 ### Use component
 

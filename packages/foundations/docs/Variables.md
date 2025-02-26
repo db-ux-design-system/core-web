@@ -15,7 +15,7 @@ SPDX-License-Identifier: Apache-2.0
 
 For **CSS** and **Tailwind** you don't have to include a specific file, just follow the documentation for [foundations](../../foundations/readme).
 
-For **SCSS** you need to use the import `@use "@db-ui/foundations/build/styles/variables"` in your `.scss` file, where you want to reference the specific variable.
+For **SCSS** you need to use the import `@use "@db-ux/core-foundations/build/styles/variables"` in your `.scss` file, where you want to reference the specific variable.
 
 ## Simple overview for advanced
 

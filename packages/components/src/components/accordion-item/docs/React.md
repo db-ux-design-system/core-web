@@ -6,7 +6,7 @@ SPDX-License-Identifier: Apache-2.0
 
 ## React
 
-For general installation and configuration look at the [react-components](https://www.npmjs.com/package/@db-ui/react-components) package.
+For general installation and configuration look at the [react-core-components](https://www.npmjs.com/package/@db-ux/react-core-components) package.
 
 ### Use component
 
@@ -14,7 +14,7 @@ For general installation and configuration look at the [react-components](https:
 
 ```tsx App.tsx
 // App.tsx
-import { DBAccordionItem } from "@db-ui/react-components";
+import { DBAccordionItem } from "@db-ux/react-core-components";
 
 const App = () => <DBAccordionItem headline="Title">Content</DBAccordionItem>;
 export default App;
@@ -24,7 +24,7 @@ export default App;
 
 ```tsx App.tsx
 // App.tsx
-import { DBAccordionItem } from "@db-ui/react-components";
+import { DBAccordionItem } from "@db-ux/react-core-components";
 
 const App = () => <DBAccordionItem headline="Title" content="Content" />;
 export default App;

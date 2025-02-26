@@ -28,6 +28,10 @@ const tableHeaders = [
 		href: 'https://github.com/dequelabs/axe-core'
 	},
 	{
+		label: 'Showcase: A11y (Aria snapshots)',
+		href: 'https://playwright.dev/docs/aria-snapshots#aria-snapshots'
+	},
+	{
 		label: 'Showcase: A11y (Accessibility-Checker)',
 		href: 'https://github.com/IBMa/equal-access'
 	},
@@ -73,6 +77,7 @@ const TestTable = () => {
 							singleComponentAxe,
 							showcaseVisuals,
 							showcaseAxe,
+							showcaseAria,
 							showcaseAC,
 							showcaseGP,
 							accessibilityReview
@@ -82,6 +87,7 @@ const TestTable = () => {
 								singleComponentAxe &&
 								showcaseVisuals &&
 								showcaseAxe &&
+								showcaseAria &&
 								showcaseAC &&
 								showcaseGP &&
 								accessibilityReview?.status === 'DONE';
@@ -93,6 +99,7 @@ const TestTable = () => {
 										singleComponentAxe,
 										showcaseVisuals,
 										showcaseAxe,
+										showcaseAria,
 										showcaseAC,
 										showcaseGP
 									].map((status, index) => (

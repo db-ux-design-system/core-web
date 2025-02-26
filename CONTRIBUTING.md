@@ -6,7 +6,7 @@ SPDX-License-Identifier: Apache-2.0
 
 # Contributing
 
-Thanks for your interest in our project. Contributions are welcome. Feel free to [open an issue](https://github.com/db-ui/mono/issues/new) with questions or reporting ideas and bugs, or [open pull requests](https://github.com/db-ui/mono/compare) to contribute code.
+Thanks for your interest in our project. Contributions are welcome. Feel free to [open an issue](https://github.com/db-ux-design-system/core-web/issues/new) with questions or reporting ideas and bugs, or [open pull requests](https://github.com/db-ux-design-system/core-web/compare) to contribute code.
 
 We are committed to fostering a welcoming, respectful, and harassment-free environment. Be kind!
 

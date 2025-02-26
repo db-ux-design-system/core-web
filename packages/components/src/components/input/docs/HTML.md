@@ -9,7 +9,7 @@ SPDX-License-Identifier: Apache-2.0
 Load SCSS globally somewhere in your app:
 
 ```scss
-@forward "@db-ui/components/build/styles/relative";
+@forward "@db-ux/core-components/build/styles/relative";
 ```
 
 Use it:

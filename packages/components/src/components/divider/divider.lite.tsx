@@ -2,14 +2,21 @@
 //
 // SPDX-License-Identifier: Apache-2.0
 
-import { useMetadata, useRef, useStore } from '@builder.io/mitosis';
+import {
+	useDefaultProps,
+	useMetadata,
+	useRef,
+	useStore
+} from '@builder.io/mitosis';
 import { DBDividerProps, DBDividerState } from './model';
 import { cls } from '../../utils';
 
 useMetadata({});
 
+useDefaultProps<DBDividerProps>({});
+
 export default function DBDivider(props: DBDividerProps) {
-	const ref = useRef<HTMLDivElement>(null);
+	const _ref = useRef<HTMLDivElement | null>(null);
 	// jscpd:ignore-start
 	const state = useStore<DBDividerState>({});
 
@@ -17,7 +24,7 @@ export default function DBDivider(props: DBDividerProps) {
 
 	return (
 		<div
-			ref={ref}
+			ref={_ref}
 			id={props.id}
 			data-margin={props.margin}
 			data-variant={props.variant}

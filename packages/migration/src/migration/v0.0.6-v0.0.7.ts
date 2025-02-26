@@ -7,22 +7,22 @@ import type { ReplaceInFileConfig } from 'replace-in-file';
 export const v006_v007: ReplaceInFileConfig[] = [
 	{
 		files: '',
-		from: /db-ui-42-/g,
+		from: /db-ux-42-/g,
 		to: ''
 	},
 	{
 		files: '',
-		from: /db-ui-42/g,
+		from: /db-ux-42/g,
 		to: 'relative'
 	},
 	{
 		files: '',
-		from: /db-ui-foundations-/g,
+		from: /db-ux-foundations-/g,
 		to: ''
 	},
 	{
 		files: '',
-		from: /db-ui-foundations/g,
+		from: /db-ux-foundations/g,
 		to: 'relative'
 	},
 	{

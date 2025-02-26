@@ -15,9 +15,10 @@ const getNavigationItem = ({
 	disabled,
 	active,
 	width,
-	areaPopup
+	areaPopup,
+	showIcon
 }: DBNavigationItemProps & { areaPopup: boolean }) => (
-	<ul>
+	<ul className="nav-item-list">
 		<DBNavigationItem
 			icon={icon}
 			disabled={disabled}
@@ -27,6 +28,7 @@ const getNavigationItem = ({
 				// eslint-disable-next-line no-alert
 				alert(children.toString());
 			}}
+			showIcon={showIcon}
 			subNavigation={
 				areaPopup && (
 					<ul>

@@ -2,7 +2,7 @@
 //
 // SPDX-License-Identifier: Apache-2.0
 
-import { DBInput } from '@db-ui/react-components/src';
+import { DBInput } from '@db-ux/react-core-components/src';
 import { useState } from 'react';
 import FormWrapper from './form-wrapper';
 

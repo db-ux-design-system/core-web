@@ -5,23 +5,8 @@
  */
 
 @mixin init($variant) {
-	[data-color="#{$variant}-bg-basic-level-1"],
-	.db-#{$variant}-bg-basic-level-1 {
-		@extend %db-#{$variant}-bg-basic-level-1;
-	}
-	[data-color="#{$variant}-bg-basic-level-2"],
-	.db-#{$variant}-bg-basic-level-2 {
-		@extend %db-#{$variant}-bg-basic-level-2;
-	}
-	[data-color="#{$variant}-bg-basic-level-3"],
-	.db-#{$variant}-bg-basic-level-3 {
-		@extend %db-#{$variant}-bg-basic-level-3;
-	}
-}
-
-@mixin init-container-colors($variant) {
-	[data-container-color="#{$variant}"],
-	.db-container-color-#{$variant} {
+	[data-color="#{$variant}"],
+	.db-color-#{$variant} {
 		@extend %db-#{$variant}-variables;
 
 		color: var(--db-adaptive-on-bg-basic-emphasis-100-default);

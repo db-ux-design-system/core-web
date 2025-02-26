@@ -23,8 +23,7 @@ const getPage = ({
 	children,
 	className,
 	describedbyid,
-	id,
-	key
+	id
 }: DBPageProps) => (
 	<DBPage
 		variant={variant}
@@ -32,7 +31,6 @@ const getPage = ({
 		className={className}
 		describedbyid={describedbyid}
 		id={id}
-		key={key}
 		header={
 			<DBHeader
 				brand={<DBBrand title="DBHeader">DBHeader</DBBrand>}

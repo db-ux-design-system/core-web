@@ -29,6 +29,8 @@ const tags = ref<string[]>([]);
 
 const array = ["X", "Y", "Z"];
 
+const isActive = ref(true);
+
 const dataList = [{ key: "test", value: "Test" }, { key: "test2" }];
 
 const changeTags = (tag: string) => {
@@ -184,6 +186,11 @@ const reset = () => {
 				</fieldset>
 			</form>
 		</div>
+		<DBButton
+			:class="isActive ? 'blubber' : 'dada'"
+			@click="isActive = !isActive"
+			>Test</DBButton
+		>
 		<div>
 			<h1>Output</h1>
 			<dl>

@@ -4,9 +4,9 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-@use "@db-ui/foundations/build/styles/variables";
-@use "@db-ui/foundations/build/styles/colors";
-@use "@db-ui/foundations/build/styles/helpers";
+@use "@db-ux/core-foundations/build/styles/variables";
+@use "@db-ux/core-foundations/build/styles/colors";
+@use "@db-ux/core-foundations/build/styles/helpers";
 @use "../../styles/internal/component";
 
 .db-card {
@@ -21,7 +21,7 @@
 	&:not([data-elevation-level]) {
 		background-color: colors.$db-adaptive-bg-basic-level-1-default;
 
-		&[data-behaviour="interactive"] {
+		&[data-behavior="interactive"] {
 			@include helpers.hover {
 				background-color: colors.$db-adaptive-bg-basic-level-1-hovered;
 			}
@@ -35,7 +35,7 @@
 	&[data-elevation-level="2"] {
 		background-color: colors.$db-adaptive-bg-basic-level-2-default;
 
-		&[data-behaviour="interactive"] {
+		&[data-behavior="interactive"] {
 			@include helpers.hover {
 				background-color: colors.$db-adaptive-bg-basic-level-2-hovered;
 			}
@@ -49,7 +49,7 @@
 	&[data-elevation-level="3"] {
 		background-color: colors.$db-adaptive-bg-basic-level-3-default;
 
-		&[data-behaviour="interactive"] {
+		&[data-behavior="interactive"] {
 			@include helpers.hover {
 				background-color: colors.$db-adaptive-bg-basic-level-3-hovered;
 			}

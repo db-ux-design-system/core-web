@@ -175,12 +175,12 @@ export const ROUTES: NavigationItem[] = [
 				subNavigation: [
 					{ label: 'Readme', path: '/foundations/colors/readme' },
 					{
-						label: 'Color Classes',
-						path: '/foundations/colors/color-classes'
-					},
-					{
 						label: 'Color Schemes',
 						path: '/foundations/colors/color-schemes'
+					},
+					{
+						label: 'Color Modes',
+						path: '/foundations/colors/color-modes'
 					},
 					{
 						label: 'Color Usage Guide',
@@ -330,7 +330,9 @@ export const getNavigationList = (path: string) => {
 
 export const getBreadcrumb = (path: string) => {
 	const tree: NavigationItem[] = getAllNavigationItems(true);
-	return tree.filter((navItem) => path.includes(navItem.path ?? ''));
+	return tree
+		.filter((navItem) => path.includes(navItem.path ?? ''))
+		.sort((a, b) => (a.path?.length ?? 0) - (b.path?.length ?? 0));
 };
 
 export const getAllComponentGroupNames = (): string[] => {

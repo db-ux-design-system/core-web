@@ -2,7 +2,13 @@
 //
 // SPDX-License-Identifier: Apache-2.0
 
-import { Show, useMetadata, useRef, useStore } from '@builder.io/mitosis';
+import {
+	Show,
+	useDefaultProps,
+	useMetadata,
+	useRef,
+	useStore
+} from '@builder.io/mitosis';
 import type { DBButtonProps, DBButtonState } from './model';
 import { cls, getBooleanAsString, getHideProp } from '../../utils';
 import { ClickEvent } from '../../shared/model';
@@ -13,8 +19,10 @@ useMetadata({
 	}
 });
 
+useDefaultProps<DBButtonProps>({});
+
 export default function DBButton(props: DBButtonProps) {
-	const ref = useRef<HTMLButtonElement>(null);
+	const _ref = useRef<HTMLButtonElement | null>(null);
 	// jscpd:ignore-start
 	const state = useStore<DBButtonState>({
 		handleClick: (event: ClickEvent<HTMLButtonElement>) => {
@@ -28,7 +36,7 @@ export default function DBButton(props: DBButtonProps) {
 
 	return (
 		<button
-			ref={ref}
+			ref={_ref}
 			id={props.id}
 			class={cls('db-button', props.className)}
 			type={props.type || 'button'}

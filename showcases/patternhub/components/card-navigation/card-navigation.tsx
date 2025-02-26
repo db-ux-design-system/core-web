@@ -24,9 +24,7 @@ const CardNavigation = () => {
 							<Link
 								key={`navigation-card-${navItem.path}`}
 								href={navItem.path ?? '/'}>
-								<DBCard
-									behaviour="interactive"
-									spacing="medium">
+								<DBCard behavior="interactive" spacing="medium">
 									<small>{index + 1}.</small>
 									<p>{navItem.label}</p>
 									<DBIcon icon="arrow_right">Next</DBIcon>

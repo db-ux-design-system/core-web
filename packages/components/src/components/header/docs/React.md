@@ -6,7 +6,7 @@ SPDX-License-Identifier: Apache-2.0
 
 ## React
 
-For general installation and configuration take a look at the [react-components](https://www.npmjs.com/package/@db-ui/react-components) package.
+For general installation and configuration take a look at the [react-core-components](https://www.npmjs.com/package/@db-ux/react-core-components) package.
 
 ### Use component
 
@@ -14,7 +14,7 @@ For general installation and configuration take a look at the [react-components]
 
 ```tsx App.tsx
 // App.tsx
-import { DBHeader, DBBrand } from "@db-ui/react-components";
+import { DBHeader, DBBrand } from "@db-ux/react-core-components";
 
 const App = () => <DBHeader brand={<DBBrand>Header</DBBrand>} />;
 
@@ -26,7 +26,7 @@ export default App;
 ```tsx App.tsx
 // App.tsx
 import { useState } from "react";
-import { DBHeader, DBBrand, DBLink } from "@db-ui/react-components";
+import { DBHeader, DBBrand, DBLink } from "@db-ux/react-core-components";
 
 const [drawerOpen, setDrawerOpen] = useState<boolean>(false);
 
@@ -62,7 +62,7 @@ const App = () => (
 	>
 		<DBNavigation>
 			//
-			https://github.com/db-ui/mono/blob/main/packages/components/src/components/navigation/docs/React.md
+			https://github.com/db-ux-design-system/core-web/blob/main/packages/components/src/components/navigation/docs/React.md
 		</DBNavigation>
 	</DBHeader>
 );

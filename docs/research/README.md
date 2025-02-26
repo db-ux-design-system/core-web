@@ -9,7 +9,7 @@ SPDX-License-Identifier: Apache-2.0
 If you want to do a research for a new component run this in the `docs` folder:
 
 ```shell
-npm run generate:component-research -w=@db-ui/docs
+npm run generate:component-research --workspace=@db-ux/docs
 ```
 
 1. Add the name of your component and a new `.md` file will be created.

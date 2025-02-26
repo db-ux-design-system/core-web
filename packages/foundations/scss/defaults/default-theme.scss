@@ -814,12 +814,15 @@
 	--db-border-radius-2xl: 1.75rem;
 	--db-border-radius-3xl: 2rem;
 	--db-border-radius-full: 500rem;
-	--db-elevation-sm: 0 0 1px -1px rgb(0 0 0 / 20%),
-		0 0 4px 1px rgb(0 0 0 / 12%), 0 0 2px 0 rgb(0 0 0 / 14%);
-	--db-elevation-md: 0 0 2px -1px rgb(0 0 0 / 20%),
-		0 0 8px 1px rgb(0 0 0 / 12%), 0 0 4px 0 rgb(0 0 0 / 14%);
-	--db-elevation-lg: 0 0 4px -3px rgb(0 0 0 / 20%),
-		0 0 16px 3px rgb(0 0 0 / 12%), 0 0 8px 1px rgb(0 0 0 / 14%);
+	--db-elevation-sm:
+		0 0 1px -1px rgb(0 0 0 / 20%), 0 0 4px 1px rgb(0 0 0 / 12%),
+		0 0 2px 0 rgb(0 0 0 / 14%);
+	--db-elevation-md:
+		0 0 2px -1px rgb(0 0 0 / 20%), 0 0 8px 1px rgb(0 0 0 / 12%),
+		0 0 4px 0 rgb(0 0 0 / 14%);
+	--db-elevation-lg:
+		0 0 4px -3px rgb(0 0 0 / 20%), 0 0 16px 3px rgb(0 0 0 / 12%),
+		0 0 8px 1px rgb(0 0 0 / 14%);
 	--db-transition-duration-extra-slow: 0.5s;
 	--db-transition-duration-slow: 0.4s;
 	--db-transition-duration-medium: 0.3s;
@@ -853,14 +856,15 @@ html:not(:has(> head > meta[name="color-scheme"])) {
 	color-scheme: light dark;
 }
 
-[data-color-scheme] {
+[data-mode] {
 	@extend %db-neutral-bg-basic-level-1;
 }
 
-[data-color-scheme="light"] {
+/* TODO: Switch to attr() as soon as this one is fully supported */
+[data-mode="light"] {
 	color-scheme: light;
 }
 
-[data-color-scheme="dark"] {
+[data-mode="dark"] {
 	color-scheme: dark;
 }

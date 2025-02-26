@@ -5,10 +5,10 @@
  */
 
 @use "sass:map";
-@use "@db-ui/foundations/build/styles/variables";
-@use "@db-ui/foundations/build/styles/colors";
-@use "@db-ui/foundations/build/styles/icons";
-@use "@db-ui/foundations/build/styles/fonts";
+@use "@db-ux/core-foundations/build/styles/variables";
+@use "@db-ux/core-foundations/build/styles/colors";
+@use "@db-ux/core-foundations/build/styles/icons";
+@use "@db-ux/core-foundations/build/styles/fonts";
 @use "../../styles/internal/form-components";
 @use "../../styles/internal/component";
 
@@ -32,12 +32,12 @@ $has-before-padding: calc(
 	// shared from form-components
 	@extend %select-icon;
 
-	@include form-components.set-default-form-component(select);
-
 	min-inline-size: calc(
 		4 * #{variables.$db-sizing-md} + var(--db-form-has-before) *
 			#{variables.$db-sizing-md}
 	);
+
+	@include form-components.set-default-form-component(select);
 
 	select {
 		text-indent: $has-before-padding;

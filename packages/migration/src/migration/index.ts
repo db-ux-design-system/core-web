@@ -20,8 +20,10 @@ export const migrate = (
 
 		const globPaths: string[] = globSync(paths, {
 			nodir: true,
-			ignore: ['node_modules']
-		}).map((path) => path.replaceAll('\\', '/'));
+			ignore: ['node_modules', '**/*.zip']
+		})
+			.map((path) => path.replaceAll('\\', '/'))
+			.filter((path) => path.includes('.'));
 
 		const replacements: ReplaceInFileConfig[] = Object.entries(
 			migrationTypes
@@ -52,7 +54,7 @@ export const migrate = (
 			const result: ReplaceResult[] = replaceInFileSync(option);
 			if (dry) {
 				if (cli) {
-					console.log(result);
+					console.log(result.filter((res) => res.hasChanged));
 				}
 				return result;
 			}

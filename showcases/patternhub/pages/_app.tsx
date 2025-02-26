@@ -71,7 +71,7 @@ const App = ({ Component, pageProps }: AppProps) => (
 				/>
 			)
 		}}>
-		{process.env.NEXT_PUBLIC_BASE_PATH !== '/mono/sub/' && (
+		{process.env.NEXT_PUBLIC_BASE_PATH !== '/core-web/sub/' && (
 			<Script
 				src={
 					(process.env.NEXT_PUBLIC_BASE_PATH ?? '') +

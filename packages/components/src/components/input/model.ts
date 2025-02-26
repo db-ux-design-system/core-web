@@ -9,6 +9,7 @@ import {
 	FocusEventState,
 	FormMessageProps,
 	FormProps,
+	FormSizeProps,
 	FormState,
 	FormTextProps,
 	GlobalProps,
@@ -83,7 +84,8 @@ export type DBInputProps = DBInputDefaultProps &
 	IconProps &
 	IconAfterProps &
 	FormMessageProps &
-	ShowIconProps;
+	ShowIconProps &
+	FormSizeProps;
 
 export type DBInputDefaultState = {
 	_dataListId?: string;

@@ -4,7 +4,7 @@
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
-import { IconTypes } from '@db-ui/foundations/build/ts';
+import { IconTypes } from '@db-ux/core-foundations';
 
 export type GlobalProps = {
 	/**
@@ -21,7 +21,7 @@ export type GlobalProps = {
 	/**
 	 * Workaround for TypeScript using class for all components.
 	 */
-	class?: string;
+	class?: string | any;
 
 	/**
 	 * [`aria-describedby`](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-describedby) is used to link to the elements that describe the element with the set attribute.
@@ -34,9 +34,9 @@ export type GlobalProps = {
 	id?: string;
 
 	/**
-	 * React specific for render process.
+	 * Before using please check for the [accessibility concerns](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/autofocus#accessibility_concerns)
 	 */
-	key?: string;
+	autofocus?: boolean;
 };
 
 export type GlobalState = {
@@ -61,7 +61,7 @@ export type SemanticProps = {
 
 export type IconProps = {
 	/**
-	 * Define an icon by its identifier (like e.g. _user_, compare to [Icons](https://db-ui.github.io/mono/review/main/foundations/icons/overview)) to get displayed in front of the elements content.
+	 * Define an icon by its identifier (like e.g. _user_, compare to [Icons](https://db-ux-design-system.github.io/core-web/review/main/foundations/icons/overview)) to get displayed in front of the elements content.
 	 */
 	icon?: IconTypes;
 };
@@ -76,7 +76,7 @@ export type ShowIconProps = {
 
 export type IconAfterProps = {
 	/**
-	 * Define an icon by its identifier (like e.g. _user_, compare to [Icons](https://db-ui.github.io/mono/review/main/foundations/icons/overview)) to get displayed in front of the elements content.
+	 * Define an icon by its identifier (like e.g. _user_, compare to [Icons](https://db-ux-design-system.github.io/core-web/review/main/foundations/icons/overview)) to get displayed in front of the elements content.
 	 */
 	iconAfter?: IconTypes;
 };
@@ -122,7 +122,7 @@ export type PlacementProps = {
 	placement?: PlacementType;
 };
 
-export type NavigationBehaviourState = {
+export type NavigationBehaviorState = {
 	handleNavigationItemClick: (event: unknown) => void;
 };
 
@@ -178,7 +178,7 @@ export type WidthProps = {
 	width?: WidthType;
 };
 
-export const MaxWidthList = ['full', 'medium', 'large'] as const;
+export const MaxWidthList = ['full', 'medium', 'large', 'small'] as const;
 export type MaxWidthType = (typeof MaxWidthList)[number];
 
 export type ContainerWidthProps = {
@@ -190,8 +190,6 @@ export type ContainerWidthProps = {
 
 export const PopoverDelayList = ['none', 'slow', 'fast'] as const;
 export type PopoverDelayType = (typeof PopoverDelayList)[number];
-export const PopoverAnimationList = ['enabled', 'disabled'] as const;
-export type PopoverAnimationType = (typeof PopoverAnimationList)[number];
 export const PopoverWidthList = ['auto', 'fixed'] as const;
 export type PopoverWidthType = (typeof PopoverWidthList)[number];
 export type PopoverProps = {
@@ -202,7 +200,7 @@ export type PopoverProps = {
 	/**
 	 * Disable animation
 	 */
-	animation?: PopoverAnimationType;
+	animation?: boolean;
 	/**
 	 * Use fixed with for default max-width
 	 */
@@ -211,6 +209,13 @@ export type PopoverProps = {
 
 export type PopoverState = {
 	handleAutoPlacement: () => void;
+};
+
+export type ContentSlotProps = {
+	/**
+	 * Default slot which is used to pass in additional content.
+	 */
+	content?: any;
 };
 
 export const SizeList = ['small', 'medium'] as const;
@@ -229,6 +234,15 @@ export type EmphasisProps = {
 	 * The emphasis attribute divides in between a weak or strong importance.
 	 */
 	emphasis?: EmphasisType;
+};
+
+export const TagEmphasisList = [...EmphasisList, 'origin'] as const;
+export type TagEmphasisType = (typeof TagEmphasisList)[number];
+export type TagEmphasisProps = {
+	/**
+	 * The emphasis attribute divides in between a weak, strong or origin appearance.
+	 */
+	emphasis?: TagEmphasisType;
 };
 
 export const ValidationList = ['invalid', 'valid', 'no-validation'] as const;
@@ -284,6 +298,13 @@ export type FormTextProps = {
 	 * The disabled attribute can be set to keep a user from edit on the form element
 	 */
 	readOnly?: boolean;
+};
+
+export type FormSizeProps = {
+	/**
+	 * Size of the control
+	 */
+	size?: number;
 };
 
 export type FormCheckProps = {

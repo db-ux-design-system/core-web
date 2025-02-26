@@ -4,36 +4,50 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-@use "@db-ui/foundations/build/styles/variables";
-@use "@db-ui/foundations/build/styles/screen-sizes";
+@use "@db-ux/core-foundations/build/styles/variables";
+@use "@db-ux/core-foundations/build/styles/screen-sizes";
 @use "../../styles/internal/component";
 
-$default-section-padding-inline: variables.$db-spacing-fixed-md;
+$small-section-padding-inline: max(
+	calc(
+		#{variables.$db-spacing-fixed-md} +
+			(100vw - #{screen-sizes.$db-breakpoint-sm}) / 2
+	),
+	#{variables.$db-spacing-fixed-md}
+);
+
+$medium-section-padding-inline: max(
+	calc(
+		#{variables.$db-spacing-fixed-md} +
+			(100vw - #{screen-sizes.$db-breakpoint-md}) / 2
+	),
+	#{variables.$db-spacing-fixed-md}
+);
+
+$large-section-padding-inline: max(
+	calc(
+		#{variables.$db-spacing-fixed-md} +
+			(100vw - #{screen-sizes.$db-breakpoint-lg}) / 2
+	),
+	#{variables.$db-spacing-fixed-md}
+);
 
 .db-section {
 	&:not([data-width]),
 	&[data-width="full"] {
-		padding-inline: $default-section-padding-inline;
+		padding-inline: variables.$db-spacing-fixed-md;
+	}
+
+	&[data-width="small"] {
+		padding-inline: $small-section-padding-inline;
 	}
 
 	&[data-width="medium"] {
-		padding-inline: max(
-			calc(
-				#{$default-section-padding-inline} +
-					(100vw - #{screen-sizes.$db-breakpoint-md}) / 2
-			),
-			#{$default-section-padding-inline}
-		);
+		padding-inline: $medium-section-padding-inline;
 	}
 
 	&[data-width="large"] {
-		padding-inline: max(
-			calc(
-				#{$default-section-padding-inline} +
-					(100vw - #{screen-sizes.$db-breakpoint-lg}) / 2
-			),
-			#{$default-section-padding-inline}
-		);
+		padding-inline: $large-section-padding-inline;
 	}
 
 	@include component.get-data-spacing(
