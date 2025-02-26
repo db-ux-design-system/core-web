@@ -1,3 +1,9 @@
+/*
+ * SPDX-FileCopyrightText: 2025 DB Systel GmbH
+ *
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
 /* The prefix for variables are predefined by Tailwind, stylelint would throw an error */
 /* stylelint-disable-next-line scss/at-rule-no-unknown */
 @theme {

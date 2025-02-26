@@ -1,3 +1,7 @@
+// SPDX-FileCopyrightText: 2025 DB Systel GmbH
+//
+// SPDX-License-Identifier: Apache-2.0
+
 /* We only use this for tests, we allow no-console */
 /* eslint-disable no-console */
 

@@ -1,3 +1,9 @@
+<!--
+SPDX-FileCopyrightText: 2025 DB Systel GmbH
+
+SPDX-License-Identifier: Apache-2.0
+-->
+
 # @db-ux/core-stylelint
 
 Validate the correct usage of DB UX in your (S)CSS code.
