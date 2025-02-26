@@ -33,7 +33,15 @@ export const getComponents = (): Component[] => [
 		name: 'stack'
 	},
 	{
-		name: 'multi-select-list-item'
+		name: 'multi-select-list-item',
+		config: {
+			vue: {
+				vModel: [{ modelValue: 'checked', binding: ':checked' }]
+			},
+			angular: {
+				controlValueAccessor: 'checked'
+			}
+		}
 	},
 	{
 		name: 'multi-select-list'
@@ -48,7 +56,7 @@ export const getComponents = (): Component[] => [
 		name: 'multi-select-header',
 		config: {
 			react: {
-				propsPassingFilter: ['onSelectAll',"onSearch"]
+				propsPassingFilter: ['onSelectAll', 'onSearch']
 			}
 		}
 	},
@@ -56,16 +64,17 @@ export const getComponents = (): Component[] => [
 		name: 'multi-select',
 		config: {
 			vue: {
-				vModel: [{ modelValue: 'value', binding: ':value' }]
+				vModel: [{ modelValue: 'values', binding: ':values' }]
 			},
 			angular: {
-				controlValueAccessor: 'value'
+				controlValueAccessor: 'values'
 			},
 			react: {
 				containsFragmentMap: true
 			}
 		},
 		overwrites: {
+			angular: [{ from: 'selectRef?.nativeElement', to: 'selectRef' }],
 			react: [
 				{ from: 'key={uuid()}', to: 'key={getOptionLabel(option)}' }
 			]

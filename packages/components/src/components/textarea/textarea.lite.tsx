@@ -71,6 +71,7 @@ export default function DBTextarea(props: DBTextareaProps) {
 				props.change(event);
 			}
 			useTarget({
+
 				angular: () => handleFrameworkEventAngular(this, event),
 				vue: () => handleFrameworkEventVue(() => {}, event)
 			});

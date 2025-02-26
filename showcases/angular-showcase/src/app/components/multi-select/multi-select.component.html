@@ -10,9 +10,32 @@
 		let-exampleIndex="exampleIndex"
 		let-variantIndex="variantIndex"
 	>
-		<db-multi-select>{{exampleName}}</db-multi-select>
+		@if (exampleProps?.info) {
+			<db-infotext size="small" semantic="informational">
+				{{ exampleName }}
+			</db-infotext>
+		} @else if (exampleProps?.lineBreak) {
+			<i class="line-break"></i>
+		} @else {
+			<db-multi-select
+				[label]="exampleName"
+				[options]="exampleProps?.options"
+				[variant]="exampleProps?.variant"
+				[message]="exampleProps?.message"
+				[required]="exampleProps?.required"
+				[placeholder]="exampleProps?.placeholder"
+				[showLabel]="exampleProps?.showLabel"
+				[placement]="exampleProps?.placement"
+				selectAllLabel="Select all"
+				deSelectAllLabel="Deselect all"
+				searchLabel="Search"
+				[selectedType]="exampleProps?.selectedType"
+				[tagWrapping]="exampleProps?.tagWrapping"
+				[width]="exampleProps?.width"
+				noResultsText="No matching filter"
+				[values]="exampleProps?.mValue"
+				(onSelect)="console.log($event)"
+			></db-multi-select>
+		}
 	</ng-template>
 </app-default-component>
-
-
-

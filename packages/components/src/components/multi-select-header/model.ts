@@ -63,6 +63,10 @@ export type DBMultiSelectHeaderProps = DBMultiSelectHeaderDefaultProps &
 
 export interface DBMultiSelectHeaderDefaultState {
 	getSelectAllLabel: () => string;
+	handleSelectAll: (event: ChangeEvent<HTMLInputElement>) => void;
+	handleSearch: (event: ChangeEvent<HTMLInputElement>) => void;
+	handleClose: () => void;
+	handleCloseKeydown: (event: KeyboardEvent) => void;
 }
 
 export type DBMultiSelectHeaderState = DBMultiSelectHeaderDefaultState &

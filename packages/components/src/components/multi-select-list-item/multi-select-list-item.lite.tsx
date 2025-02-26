@@ -1,4 +1,5 @@
 import {
+	onMount,
 	Show,
 	useDefaultProps,
 	useMetadata,
@@ -16,8 +17,17 @@ import {
 	handleFrameworkEventAngular,
 	handleFrameworkEventVue
 } from '../../utils/form-components';
+import {
+	DEFAULT_INVALID_MESSAGE_ID_SUFFIX,
+	DEFAULT_MESSAGE_ID_SUFFIX,
+	DEFAULT_VALID_MESSAGE_ID_SUFFIX
+} from '../../shared/constants';
 
-useMetadata({});
+useMetadata({
+	angular: {
+		nativeAttributes: ['disabled', 'checked', 'value', 'name']
+	}
+});
 
 useDefaultProps<DBMultiSelectListItemProps>({});
 
@@ -29,8 +39,7 @@ export default function DBMultiSelectListItem(
 	// jscpd:ignore-start
 	const state: DBMultiSelectListItemState =
 		useStore<DBMultiSelectListItemState>({
-			_id: 'multi-select-list-item' + uuid(),
-
+			_id: undefined,
 			handleChange: (event: ChangeEvent<HTMLInputElement>) => {
 				if (props.onChange) {
 					props.onChange(event);
@@ -42,19 +51,23 @@ export default function DBMultiSelectListItem(
 
 				useTarget({
 					angular: () =>
-						// @ts-ignore
 						handleFrameworkEventAngular(this, event, 'checked'),
 					vue: () =>
 						handleFrameworkEventVue(() => {}, event, 'checked')
 				});
 			}
 		});
+
 	// jscpd:ignore-end
+
+	onMount(() => {
+		state._id = props.id ?? 'multi-select-list-item-${uuid()}';
+	});
 
 	return (
 		<li
 			ref={_ref}
-			id={props.id}
+			id={state._id}
 			class={cls('db-multi-select-list-item', props.className, {
 				'db-checkbox': !props.groupLabel
 			})}>

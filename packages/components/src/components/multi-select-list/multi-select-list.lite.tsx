@@ -19,11 +19,11 @@ export default function DBMultiSelectList(props: DBMultiSelectListProps) {
 	// jscpd:ignore-end
 
 	return (
-		<ul
+		<section
 			ref={_ref}
 			id={props.id}
-			class={cls('db-multi-select-list', props.className)}>
-			{props.children}
-		</ul>
+			className={cls('db-multi-select-list', props.className)}>
+			<ul>{props.children}</ul>
+		</section>
 	);
 }

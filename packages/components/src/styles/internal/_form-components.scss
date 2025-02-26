@@ -32,6 +32,11 @@ $floating-label-size-calc: calc(
 		#{$label-size-height-2xs}
 );
 
+// font-size label which is 2xs + smallest spacing
+$floating-label-padding-block-start: calc(
+	var(--db-type-body-font-size-2xs) + #{variables.$db-spacing-fixed-3xs}
+);
+
 $input-types:
 	"button", "checkbox", "color", "date", "datetime-local", "email", "file",
 	"hidden", "image", "month", "number", "password", "radio", "range", "reset",
@@ -117,12 +122,8 @@ $check-border-size: min(#{variables.$db-border-height-2xs}, 2px);
 			@if ($selector == textarea) {
 				padding-block-start: $floating-label-size-calc;
 				/* stylelint-disable-next-line at-rule-empty-line-before */
-			} @else {
-				// font-size label which is 2xs + smallest spacing
-				padding-block-start: calc(
-					var(--db-type-body-font-size-2xs) +
-						#{variables.$db-spacing-fixed-3xs}
-				);
+			} @else if($selector != summary) {
+				padding-block-start: $floating-label-padding-block-start;
 			}
 		}
 

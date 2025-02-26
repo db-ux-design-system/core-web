@@ -91,13 +91,9 @@
 		display: none;
 	}
 
-	/*&:has(.db-multi-select-header) {
-		&:is([data-header-enabled="true"], :not([data-header-enabled])) {
-			.db-multi-select-dropdown {
-				max-block-size: multi-select-components.$max-height;
-			}
-		}
-	}*/
+	.db-tooltip {
+		@extend %db-neutral-variables;
+	}
 
 	&[data-header-enabled="true"] {
 		.db-multi-select-header {
@@ -150,8 +146,20 @@
 		}
 	}
 
-	&[data-variant="hidden"] {
+	&[data-hide-label="true"] {
 		--db-label-visible-height: 0;
 		--db-label-visible-spacing: 1;
+	}
+
+	&[data-variant="floating"] {
+		> label {
+			padding-inline-end: variables.$db-sizing-sm; // size of clear all button
+		}
+
+		.db-multi-select-form-field {
+			> span {
+				padding-block-start: form-components.$floating-label-padding-block-start;
+			}
+		}
 	}
 }

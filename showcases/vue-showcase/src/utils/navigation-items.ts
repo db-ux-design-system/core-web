@@ -40,8 +40,6 @@ export type NavItem = {
 };
 
 export const getSortedNavigationItems = (navigationItems: NavItem[]): any[] =>
-{ path: '/multi-select', label: 'MultiSelect', component: MultiSelect },
-
 	navigationItems.sort((a: NavItem, b: NavItem) =>
 		a.path.localeCompare(b.path)
 	);
@@ -125,6 +123,11 @@ export const navigationItems: NavItem[] = [
 		path: '/03',
 		label: '03 Data-Input',
 		subNavigation: getSortedNavigationItems([
+			{
+				path: '/multi-select',
+				label: 'MultiSelect',
+				component: markRaw(MultiSelect)
+			},
 			{ path: '/03/input', label: 'Input', component: markRaw(Input) },
 			{
 				path: '/03/textarea',

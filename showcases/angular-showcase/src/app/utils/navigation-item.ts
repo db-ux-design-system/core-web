@@ -44,12 +44,6 @@ export const getSortedNavigationItems = (navigationItems: NavItem[]): any[] =>
 
 export const NAVIGATION_ITEMS: NavItem[] = [
 	{
-		path: 'multi-select',
-		label: 'MultiSelect',
-		component: MultiSelectComponent
-	},
-
-	{
 		path: '06',
 		label: '06 Feedback',
 		subNavigation: getSortedNavigationItems([
@@ -123,6 +117,11 @@ export const NAVIGATION_ITEMS: NavItem[] = [
 		path: '03',
 		label: '03 Data-Input',
 		subNavigation: getSortedNavigationItems([
+			{
+				path: '03/multi-select',
+				label: 'MultiSelect',
+				component: MultiSelectComponent
+			},
 			{ path: '03/input', label: 'Input', component: InputComponent },
 			{
 				path: '03/textarea',

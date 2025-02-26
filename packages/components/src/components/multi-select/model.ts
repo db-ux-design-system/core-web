@@ -72,9 +72,15 @@ export interface DBMultiSelectDefaultProps {
 
 	/**
 	 * Optional: if select-type="amount" change the shown text
+	 */
+	amountText?: string;
+
+	/**
+	 * Optional: if select-type="amount" when amount changes
 	 * @param amount The amount of selected checkboxes
 	 */
-	getAmountText?: (amount: number) => string;
+	onAmountChange?: (amount: number) => void;
+
 	/**
 	 * Dropdown - enable no options notification
 	 */
@@ -108,9 +114,9 @@ export interface DBMultiSelectDefaultProps {
 	placement?: PlacementVerticalType;
 
 	/**
-	 * Optional: if you use selectedType=tag and options, you need to set the removeTagsText for screen reader users
+	 * Optional: if you use selectedType=tag and options, you need to set the removeTagsTexts for screen reader users
 	 */
-	removeTagsText?: (option: MultiSelectOptionType) => string;
+	removeTagsTexts?: string[];
 
 	/**
 	 * Change the selected type for values shown in multi select
@@ -118,7 +124,7 @@ export interface DBMultiSelectDefaultProps {
 	selectedType?: SelectedTypeType;
 
 	/**
-	 * Show clear selection button (default:true)
+	 * Show clear selection button (default:true). Hide it if you have very small inputs e.g. in tables.
 	 */
 	showClearSelection?: boolean;
 
@@ -157,9 +163,12 @@ export interface DBMultiSelectDefaultState {
 	_internalChangeTimestamp?: number;
 	getOptionLabel: (option: MultiSelectOptionType) => string;
 	getOptionChecked: (value?: string) => boolean;
+	getOptionKey: (option: MultiSelectOptionType) => string;
+	getTagRemoveLabel: (index: number) => string;
 	headerEnabled: boolean;
 	searchEnabled: boolean;
 	amountOptions: number;
+	handleTagRemove: (option: MultiSelectOptionType) => void;
 	handleSummaryFocus: () => void;
 	handleSelect: (value?: string) => void;
 	handleSelectAll: () => void;

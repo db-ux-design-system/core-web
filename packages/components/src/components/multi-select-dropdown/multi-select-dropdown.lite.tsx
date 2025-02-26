@@ -30,9 +30,7 @@ export default function DBMultiSelectDropdown(
 			id={props.id}
 			class={cls('db-multi-select-dropdown db-card', props.className)}
 			data-spacing="none">
-			<Slot name="header" />
-			<Slot name="notification"></Slot>
-			<section>{props.children}</section>
+			{props.children}
 		</article>
 	);
 }

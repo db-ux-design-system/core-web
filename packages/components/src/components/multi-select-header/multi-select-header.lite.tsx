@@ -32,6 +32,35 @@ export default function DBMultiSelectHeader(props: DBMultiSelectHeaderProps) {
 			} else {
 				return props.deSelectAllLabel ?? DEFAULT_LABEL;
 			}
+		},
+		handleSearch: (event: ChangeEvent<HTMLInputElement>) => {
+			if (props.onSearch) {
+				props.onSearch(event);
+			}
+		},
+		handleClose: () => {
+			if (props.onClose) {
+				props.onClose();
+			}
+		},
+		handleSelectAll: (event: ChangeEvent<HTMLInputElement>) => {
+			if (props.onSelectAll) {
+				props.onSelectAll(event);
+			}
+		},
+		handleCloseKeydown: (event: KeyboardEvent) => {
+			if (event.code === 'Space' || event.key === 'Enter') {
+				if (event.target) {
+					const details = (event.target as HTMLElement).closest(
+						'details'
+					);
+					if (details) {
+						delay(() => {
+							details.querySelector('summary')?.focus();
+						}, 100);
+					}
+				}
+			}
 		}
 	});
 	// jscpd:ignore-end
@@ -59,9 +88,9 @@ export default function DBMultiSelectHeader(props: DBMultiSelectHeaderProps) {
 						type="checkbox"
 						value="select-all"
 						checked={props.checked}
-						onChange={(event: ChangeEvent<HTMLInputElement>) => {
-							props.onSelectAll?.(event);
-						}}
+						onInput={(event: ChangeEvent<HTMLInputElement>) =>
+							state.handleSelectAll(event)
+						}
 					/>
 					{state.getSelectAllLabel()}
 					<DBTooltip placement="left">
@@ -75,9 +104,9 @@ export default function DBMultiSelectHeader(props: DBMultiSelectHeaderProps) {
 					variant="floating"
 					label={props.searchLabel ?? DEFAULT_LABEL}
 					placeholder={props.searchPlaceholder}
-					onChange={(event: ChangeEvent<HTMLInputElement>) => {
-						props.onSearch?.(event);
-					}}
+					onInput={(event: ChangeEvent<HTMLInputElement>) =>
+						state.handleSearch(event)
+					}
 				/>
 			</Show>
 			<DBButton
@@ -86,25 +115,10 @@ export default function DBMultiSelectHeader(props: DBMultiSelectHeaderProps) {
 				variant="ghost"
 				type="button"
 				noText
-				onKeyDown={(event: KeyboardEvent) => {
-					if (event.code === 'Space' || event.key === 'Enter') {
-						if (event.target) {
-							const details = (
-								event.target as HTMLElement
-							).closest('details');
-							if (details) {
-								delay(() => {
-									details.querySelector('summary')?.focus();
-								}, 100);
-							}
-						}
-					}
-				}}
-				onClick={() => {
-					if (props.onClose) {
-						props.onClose();
-					}
-				}}>
+				onKeyDown={(event: KeyboardEvent) =>
+					state.handleCloseKeydown(event)
+				}
+				onClick={() => state.handleClose()}>
 				{props.closeButtonText ?? DEFAULT_CLOSE_BUTTON}
 				<DBTooltip placement="right">
 					{props.closeButtonText ?? DEFAULT_CLOSE_BUTTON}

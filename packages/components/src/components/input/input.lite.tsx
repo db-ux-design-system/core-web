@@ -80,6 +80,7 @@ export default function DBInput(props: DBInputProps) {
 			}
 
 			useTarget({
+
 				angular: () => handleFrameworkEventAngular(this, event),
 				vue: () => handleFrameworkEventVue(() => {}, event)
 			});

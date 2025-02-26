@@ -32,9 +32,4 @@
 			) +
 			(#{variables.$db-spacing-fixed-sm} + #{variables.$db-sizing-md})
 	);
-
-	section {
-		padding: variables.$db-spacing-fixed-sm;
-		overflow-y: auto;
-	}
 }

@@ -84,6 +84,7 @@ export default function DBSelect(props: DBSelectProps) {
 			}
 
 			useTarget({
+
 				angular: () => handleFrameworkEventAngular(this, event),
 				vue: () => handleFrameworkEventVue(() => {}, event)
 			});

@@ -2,7 +2,12 @@
 @use "../../styles/multi-select-components";
 
 .db-multi-select-list {
-	all: unset;
-	display: flex;
-	flex-direction: column;
+	padding: variables.$db-spacing-fixed-sm;
+	overflow-y: auto;
+
+	& > ul {
+		all: unset;
+		display: flex;
+		flex-direction: column;
+	}
 }

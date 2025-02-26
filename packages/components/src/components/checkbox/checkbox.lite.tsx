@@ -61,6 +61,7 @@ export default function DBCheckbox(props: DBCheckboxProps) {
 
 			useTarget({
 				angular: () =>
+
 					handleFrameworkEventAngular(this, event, 'checked'),
 				vue: () => handleFrameworkEventVue(() => {}, event, 'checked')
 			});

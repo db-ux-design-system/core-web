@@ -8,7 +8,8 @@ import {
 	useDefaultProps,
 	useMetadata,
 	useRef,
-	useStore
+	useStore,
+	useTarget
 } from '@builder.io/mitosis';
 import {
 	DBMultiSelectProps,
@@ -46,12 +47,19 @@ import { DBMultiSelectDropdown } from '../multi-select-dropdown';
 import { DBMultiSelectHeader } from '../multi-select-header';
 import { DBNotification } from '../notification';
 import { DBInfotext } from '../infotext';
-import { DBMultiSelectFormField } from '../multi-select-form-field';
 import { DBTag } from '../tag';
 import { DBButton } from '../button';
 import { DBTooltip } from '../tooltip';
+import {
+	handleFrameworkEventAngular,
+	handleFrameworkEventVue
+} from '../../utils/form-components';
 
-useMetadata({});
+useMetadata({
+	angular: {
+		nativeAttributes: ['disabled']
+	}
+});
 
 useDefaultProps<DBMultiSelectProps>({
 	clearSelectionLabel: 'Clear selection',
@@ -65,9 +73,9 @@ useDefaultProps<DBMultiSelectProps>({
 
 export default function DBMultiSelect(props: DBMultiSelectProps) {
 	// This is used as forwardRef
-	const _ref = useRef<HTMLDivElement>(null);
-	const detailsRef = useRef<HTMLDetailsElement>(null);
-	const selectRef = useRef<HTMLSelectElement>(null);
+	const _ref = useRef<HTMLDivElement | null>(null);
+	const detailsRef = useRef<HTMLDetailsElement | null>(null);
+	const selectRef = useRef<HTMLSelectElement | null>(null);
 	// jscpd:ignore-start
 	const state: DBMultiSelectState = useStore<DBMultiSelectState>({
 		_id: undefined,
@@ -91,14 +99,6 @@ export default function DBMultiSelect(props: DBMultiSelectProps) {
 		_hasNoOptions: false,
 		_internalChangeTimestamp: -1,
 		_externalChangeTimestamp: -1,
-		handleAutoPlacement: () => {
-			const dropdown = detailsRef?.querySelector('article');
-			if (dropdown) {
-				delay(() => {
-					handleDataOutside(dropdown);
-				}, 100);
-			}
-		},
 		getOptionLabel: (option: MultiSelectOptionType) => {
 			return option.label ?? option.value?.toString() ?? '';
 		},
@@ -108,6 +108,28 @@ export default function DBMultiSelect(props: DBMultiSelectProps) {
 			}
 
 			return false;
+		},
+		getOptionKey: (option: MultiSelectOptionType) => {
+			return (option.id ?? option.value ?? uuid()).toString();
+		},
+		getTagRemoveLabel: (index: number) => {
+			return props.removeTagsTexts && props.removeTagsTexts.length > index
+				? props.removeTagsTexts.at(index)!
+				: `${DEFAULT_REMOVE} ${state._selectedOptions ? state.getOptionLabel(state._selectedOptions[index]) : ''}`;
+		},
+		handleTagRemove: (option: MultiSelectOptionType) => {
+			state.handleSelect(option.value);
+			state.handleSummaryFocus();
+		},
+		handleAutoPlacement: () => {
+			if (detailsRef) {
+				const dropdown = detailsRef.querySelector('article');
+				if (dropdown) {
+					delay(() => {
+						handleDataOutside(dropdown);
+					}, 100);
+				}
+			}
 		},
 		handleArrowDownUp: (event: any) => {
 			if (detailsRef?.open) {
@@ -144,14 +166,14 @@ export default function DBMultiSelect(props: DBMultiSelectProps) {
 											search.focus();
 										}, 100);
 									} else {
-										const checkboxList =
-											detailsRef?.querySelectorAll<HTMLInputElement>(
-												`input[type="checkbox"]:not([class="db-multi-select-header-select-all"])`
+										const checkboxList: HTMLInputElement[] =
+											Array.from(
+												detailsRef?.querySelectorAll(
+													`input[type="checkbox"]:not([class="db-multi-select-header-select-all"])`
+												)
 											);
 										if (checkboxList.length) {
-											Array.from(checkboxList)
-												?.at(-1)
-												?.focus();
+											checkboxList.at(-1)?.focus();
 										}
 									}
 								}
@@ -187,7 +209,7 @@ export default function DBMultiSelect(props: DBMultiSelectProps) {
 			}
 		},
 		handleArrowLeftRight: (event: any) => {
-			if (detailsRef?.open) {
+			if (detailsRef && detailsRef?.open) {
 				if (document) {
 					const activeElement = document.activeElement;
 					if (activeElement) {
@@ -249,7 +271,7 @@ export default function DBMultiSelect(props: DBMultiSelectProps) {
 							// We are on a checkbox in the dropdown, move to the header close button
 							detailsRef
 								.querySelector('.db-multi-select-header')
-								?.querySelector<HTMLButtonElement>('button')
+								?.querySelector('button')
 								?.focus();
 						}
 					}
@@ -257,7 +279,7 @@ export default function DBMultiSelect(props: DBMultiSelectProps) {
 			}
 		},
 		handleKeyboardPress: (event: any) => {
-			if (event.key === 'Escape' && detailsRef?.open) {
+			if (event.key === 'Escape' && detailsRef && detailsRef?.open) {
 				state.handleClose('close');
 				state.handleSummaryFocus();
 			} else if (event.key === 'ArrowDown' || event.key === 'ArrowUp') {
@@ -281,6 +303,7 @@ export default function DBMultiSelect(props: DBMultiSelectProps) {
 					if (
 						!(
 							target === detailsRef ||
+							target.closest('details') === detailsRef ||
 							(relatedTarget &&
 								detailsRef.contains(relatedTarget))
 						)
@@ -338,7 +361,7 @@ export default function DBMultiSelect(props: DBMultiSelectProps) {
 		},
 		handleFocusFirstDropdownCheckbox: () => {
 			if (detailsRef) {
-				const checkbox = detailsRef.querySelector<HTMLInputElement>(
+				const checkbox = detailsRef.querySelector(
 					`input[type="checkbox"]:not([class="db-multi-select-header-select-all"])`
 				);
 				if (checkbox) {
@@ -491,6 +514,16 @@ export default function DBMultiSelect(props: DBMultiSelectProps) {
 
 			if (onlyInternalChange || bothChangeButInternalNew) {
 				props.onSelect(state._values ?? []);
+
+				const fakeEvent = {
+					target: { values: state._values }
+				};
+				useTarget({
+					angular: () =>
+						handleFrameworkEventAngular(this, fakeEvent, 'values'),
+					vue: () =>
+						handleFrameworkEventVue(() => {}, fakeEvent, 'values')
+				});
 			}
 		}
 	}, [
@@ -580,10 +613,8 @@ export default function DBMultiSelect(props: DBMultiSelectProps) {
 		if (state._selectedOptions?.length) {
 			if (props.selectedType !== 'tag') {
 				if (props.selectedType === 'amount') {
-					state._selectedLabels = props.getAmountText
-						? props.getAmountText(
-								state._selectedOptions?.length ?? 0
-							)
+					state._selectedLabels = props.amountText
+						? props.amountText
 						: `${state._selectedOptions?.length} ${DEFAULT_SELECTED}`;
 				} else {
 					state._selectedLabels = state._selectedOptions
@@ -598,7 +629,13 @@ export default function DBMultiSelect(props: DBMultiSelectProps) {
 		} else {
 			state._selectedLabels = '';
 		}
-	}, [state._selectedOptions, props.selectedType, props.getAmountText]);
+	}, [state._selectedOptions, props.selectedType, props.amountText]);
+
+	onUpdate(() => {
+		if (props.onAmountChange) {
+			props.onAmountChange(state._selectedOptions?.length ?? 0);
+		}
+	}, [state._selectedOptions]);
 
 	return (
 		<div
@@ -614,11 +651,12 @@ export default function DBMultiSelect(props: DBMultiSelectProps) {
 			data-selected-type={props.selectedType}
 			data-wrapping={props.tagWrapping}
 			data-header-enabled={state.headerEnabled}
-			data-notification-enabled={state._hasNoOptions ?? props.isLoading}
+			data-notification-enabled={state._hasNoOptions || props.isLoading}
 			data-hide-label={getHideProp(props.showLabel)}>
 			<select
 				id={state._selectId}
 				ref={selectRef}
+				disabled={props.disabled}
 				multiple
 				value={state._values}
 				required={props.required}
@@ -627,12 +665,7 @@ export default function DBMultiSelect(props: DBMultiSelectProps) {
 				hidden>
 				<For each={state._options}>
 					{(option: MultiSelectOptionType) => (
-						<Fragment
-							key={(
-								option.id ??
-								option.value ??
-								uuid()
-							).toString()}>
+						<Fragment key={state.getOptionKey?.(option)}>
 							<option
 								disabled={option.disabled}
 								value={option.value}>
@@ -647,35 +680,33 @@ export default function DBMultiSelect(props: DBMultiSelectProps) {
 			</label>
 			<details
 				ref={detailsRef}
+				aria-disabled={props.disabled}
 				onBlur={(event) => state.handleClose(event)}
 				onKeyDown={(event) => state.handleKeyboardPress(event)}>
 				{props.children}
 				<Show when={props.options}>
-					<DBMultiSelectFormField>
+					{/* We use this because we cannot wrap summary for angular... */}
+					<summary class="db-multi-select-form-field">
 						<Show
 							when={
 								props.selectedType !== 'tag' &&
-								Boolean(state._selectedLabels?.length)
+								state._selectedLabels?.length
 							}>
 							<span>{state._selectedLabels}</span>
 						</Show>
 						<Show when={props.selectedType === 'tag'}>
 							<div>
 								<For each={state._selectedOptions}>
-									{(option: MultiSelectOptionType) => (
+									{(
+										option: MultiSelectOptionType,
+										index: number
+									) => (
 										<DBTag
-											removeButton={
-												props.removeTagsText
-													? props.removeTagsText(
-															option
-														)
-													: `${DEFAULT_REMOVE} ${state.getOptionLabel(option)}`
-											}
+											removeButton={state.getTagRemoveLabel(
+												index
+											)}
 											onRemove={() => {
-												state.handleSelect(
-													option.value
-												);
-												state.handleSummaryFocus();
+												state.handleTagRemove(option);
 											}}
 											emphasis="strong"
 											behavior="removable">
@@ -702,57 +733,47 @@ export default function DBMultiSelect(props: DBMultiSelectProps) {
 								</DBTooltip>
 							</DBButton>
 						</Show>
-					</DBMultiSelectFormField>
-					<DBMultiSelectDropdown
-						header={
-							<DBMultiSelectHeader
-								variant={
-									state.searchEnabled ? 'search' : 'default'
-								}
-								closeButtonId={props.closeButtonId}
-								closeButtonText={props.closeButtonText}
-								deSelectAllLabel={props.deSelectAllLabel}
-								searchLabel={props.searchLabel}
-								searchPlaceholder={props.searchPlaceholder}
-								selectAllLabel={props.selectAllLabel}
-								checked={state.selectAllChecked}
-								indeterminate={state.selectAllIndeterminate}
-								onSelectAll={() => {
-									state.handleSelectAll();
-								}}
-								onSearch={(
-									event: ChangeEvent<HTMLInputElement>
-								) => {
-									state.handleSearch(event);
-								}}
-								onClose={() => {
-									state.handleClose('close');
-								}}
-							/>
-						}
-						notification={
-							<DBNotification
-								closeable={false}
-								semantic={
-									state._hasNoOptions
-										? 'warning'
-										: 'informational'
-								}>
-								{(state._hasNoOptions
-									? props.noResultsText
-									: props.loadingText) ?? DEFAULT_MESSAGE}
-							</DBNotification>
-						}>
+					</summary>
+					<DBMultiSelectDropdown>
+						<DBMultiSelectHeader
+							variant={state.searchEnabled ? 'search' : 'default'}
+							closeButtonId={props.closeButtonId}
+							closeButtonText={props.closeButtonText}
+							deSelectAllLabel={props.deSelectAllLabel}
+							searchLabel={props.searchLabel}
+							searchPlaceholder={props.searchPlaceholder}
+							selectAllLabel={props.selectAllLabel}
+							checked={state.selectAllChecked}
+							indeterminate={state.selectAllIndeterminate}
+							onSelectAll={() => {
+								state.handleSelectAll();
+							}}
+							onSearch={(
+								event: ChangeEvent<HTMLInputElement>
+							) => {
+								state.handleSearch(event);
+							}}
+							onClose={() => {
+								state.handleClose('close');
+							}}
+						/>
+						<DBNotification
+							closeable={false}
+							semantic={
+								state._hasNoOptions
+									? 'warning'
+									: 'informational'
+							}>
+							{(state._hasNoOptions
+								? props.noResultsText
+								: props.loadingText) ?? DEFAULT_MESSAGE}
+						</DBNotification>
 						<Show when={!(state._hasNoOptions ?? props.isLoading)}>
 							<DBMultiSelectList>
 								<For each={state._options}>
 									{(option: MultiSelectOptionType) => (
 										<Fragment
-											key={(
-												option.id ??
-												option.value ??
-												uuid()
-											).toString()}>
+											key={state.getOptionKey?.(option)}>
 											<DBMultiSelectListItem
 												groupLabel={
 													option.isGroup
