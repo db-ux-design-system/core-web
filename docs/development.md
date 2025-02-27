@@ -1,5 +1,19 @@
 ## Development
 
+### Start developing
+
+```shell
+npm install
+npm run build
+npm run start
+```
+
+Please mind the [conventions for git commits](/docs/conventions.adoc#user-content-git-commits-conventions).
+
+### Versions
+
+All versions in all `package.json` files are set to `0.0.0`, we change those during release process in CI/CD.
+
 ### Tests
 
 TODO: Elaborate on testing setup
