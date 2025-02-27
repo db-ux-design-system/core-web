@@ -172,7 +172,7 @@ const DefaultPage = ({
 										href={
 											previousNavigationItem.path ?? '/'
 										}>
-										<DBCard behaviour="interactive">
+										<DBCard behavior="interactive">
 											<small>Previous</small>
 											<span data-icon="arrow_left">
 												{previousNavigationItem.label}
@@ -184,7 +184,7 @@ const DefaultPage = ({
 									<Link
 										className="next-link-container"
 										href={nextNavigationItem.path ?? '/'}>
-										<DBCard behaviour="interactive">
+										<DBCard behavior="interactive">
 											<small>Next</small>
 											<span data-icon-after="arrow_right">
 												{nextNavigationItem.label}

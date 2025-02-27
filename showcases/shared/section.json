@@ -30,6 +30,13 @@
 				}
 			},
 			{
+				"name": "Small",
+				"style": { "width": "100%", "display": "block" },
+				"props": {
+					"width": "small"
+				}
+			},
+			{
 				"name": "Medium",
 				"style": { "width": "100%", "display": "block" },
 				"props": {

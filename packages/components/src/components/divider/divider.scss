@@ -1,5 +1,5 @@
-@use "@db-ui/foundations/build/scss/variables";
-@use "@db-ui/foundations/build/scss/helpers";
+@use "@db-ux/core-foundations/build/styles/variables";
+@use "@db-ux/core-foundations/build/styles/helpers";
 
 .db-divider {
 	&:is(:not([data-margin]), [data-margin="small"]) {
@@ -19,9 +19,9 @@
 	}
 
 	&:not([data-variant="vertical"]) {
-		@include helpers.divider();
-
 		block-size: variables.$db-border-height-3xs;
+
+		@include helpers.divider();
 
 		&[data-width="full"] {
 			inline-size: 100%;
@@ -29,9 +29,9 @@
 	}
 
 	&[data-variant="vertical"] {
-		@include helpers.divider("left");
-
 		inline-size: variables.$db-border-height-3xs;
+
+		@include helpers.divider("left");
 
 		&:is(:not([data-margin]), [data-margin="small"]) {
 			margin: 0 variables.$db-spacing-fixed-sm;

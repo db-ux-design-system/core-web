@@ -1,29 +1,29 @@
-# @db-ui/foundations
+# @db-ux/core-foundations
 
 ![Apache 2.0 license badge](https://img.shields.io/badge/License-Apache_2.0-blue.svg)
 [![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
 [![Conventional Commits](https://img.shields.io/badge/Conventional%20Commits-1.0.0-yellow.svg)](https://conventionalcommits.org)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](https://makeapullrequest.com)
 
-A library containing all tokens (colors, spacings, font formatting, etc.) and assets (icons) of [DB UX Design System v3](https://github.com/db-ui/mono).
+A library containing all tokens (colors, spacings, font formatting, etc.) and assets (icons) of [DB UX Design System v3](https://github.com/db-ux-design-system/core-web).
 
 We currently support:
 
-- [CSS](https://db-ui.github.io/mono/review/main/foundations/readme?current=css)
-- [SCSS](https://db-ui.github.io/mono/review/main/foundations/readme?current=scss)
-- [Tailwind](https://db-ui.github.io/mono/review/main/foundations/readme?current=tailwind)
+- [CSS](https://db-ux-design-system.github.io/core-web/review/main/foundations/readme?current=css)
+- [SCSS](https://db-ux-design-system.github.io/core-web/review/main/foundations/readme?current=scss)
+- [Tailwind](https://db-ux-design-system.github.io/core-web/review/main/foundations/readme?current=tailwind)
 
 ## Install
 
 ```shell
-npm i @db-ui/foundations
+npm i @db-ux/core-foundations
 ```
 
 ## Usage
 
 You use this library if you need some colors, spacings etc.
 
-> **tl;dr:** Use the default theme and the bundled styles by importing `default-theme.css` && `db-ui-foundations[-absolute|-rollup|-webpack].css`.
+> **tl;dr:** Use the default theme and the bundled styles by importing [relative|absolute|rollup|webpack].css`.
 
 ---
 
@@ -38,14 +38,14 @@ Afterward, you may import helper classes / placeholders to easily consume the to
 - **density**: Overwrite default density to scale adaptive components inside container using density
 - **colors**: Sets an adaptive color to a container, which passes all required css-properties to children
 
-You can import the complete **init** styles with `db-ui-foundations[-absolute|-rollup|-webpack].css` which apply the default:
+You can import the complete **init** styles with `[relative|absolute|rollup|webpack].css` which apply the default:
 
 - [Density](https://marketingportal.extranet.deutschebahn.com/marketingportal/Design-Anwendungen/db-ux-design-system/version-3/principles/adaptive#:~:text=und%20Textfarben%20sicherstellt.-,Sizing,-Adaptive%20Sizing%20ist): `regular`
 - [Adaptive Coloring](https://marketingportal.extranet.deutschebahn.com/marketingportal/Design-Anwendungen/db-ux-design-system/version-3/principles/adaptive#:~:text=Akzeptieren-,Coloring,-Adaptive%20Coloring%20bezieht): `neutral-bg-lvl-1`
 
 ### CSS
 
-Default assets path for `db-ui-foundations.css` is `../assets`. Make sure to copy all used resources like icons and fonts into your `public` folder before build. **Or** you use a modern bundler which handles bundling for you. In this case use `db-ui-foundations[-rollup|-webpack].css`.
+Default assets path for `relative.css` is `../assets`. Make sure to copy all used resources like icons and fonts into your `public` folder before build. **Or** you use a modern bundler which handles bundling for you. In this case use `[rollup|webpack].css`.
 
 #### Import
 
@@ -55,38 +55,33 @@ CSS:
 
 ```css
 /* index.css */
-@import "@db-ui/foundations/build/css/default-theme.css";
-@import "@db-ui/foundations/build/css/db-ui-foundations.css";
+@import "@db-ux/core-foundations/build/styles/relative.css";
 
-/* Optional: Use [data-icon] everywhere */
-@import "@db-ui/foundations/build/css/icons/include.css";
 /* Optional: Use [data-divider] & [data-focus] everywhere */
-@import "@db-ui/foundations/build/css/helpers/classes/all.css";
+@import "@db-ux/core-foundations/build/styles/helpers/classes/all.css";
 /* Optional: Use [data-density] everywhere */
-@import "@db-ui/foundations/build/css/density/classes/all.css";
+@import "@db-ux/core-foundations/build/styles/density/classes/all.css";
 /* Optional: Use [data-font-size] everywhere */
-@import "@db-ui/foundations/build/css/fonts/classes/all.css";
+@import "@db-ux/core-foundations/build/styles/fonts/classes/all.css";
 /* Optional: Use [data-color] everywhere */
-@import "@db-ui/foundations/build/css/colors/classes/all.css";
+@import "@db-ux/core-foundations/build/styles/colors/classes/all.css";
 ```
 
 JS/TS:
 
 ```ts
 // main.[js|ts]
-import "@db-ui/foundations/build/css/default-theme.css";
-import "@db-ui/foundations/build/css/db-ui-foundations.css";
+/* index.css */
+import "@db-ux/core-foundations/build/styles/relative.css";
 
-/* Optional: Use [data-icon] everywhere */
-import "@db-ui/foundations/build/css/icons/include.css";
 /* Optional: Use [data-divider] & [data-focus] everywhere */
-import "@db-ui/foundations/build/css/helpers/classes/all.css";
+import "@db-ux/core-foundations/build/styles/helpers/classes/all.css";
 /* Optional: Use [data-density] everywhere */
-import "@db-ui/foundations/build/css/density/classes/all.css";
+import "@db-ux/core-foundations/build/styles/density/classes/all.css";
 /* Optional: Use [data-font-size] everywhere */
-import "@db-ui/foundations/build/css/fonts/classes/all.css";
+import "@db-ux/core-foundations/build/styles/fonts/classes/all.css";
 /* Optional: Use [data-color] everywhere */
-import "@db-ui/foundations/build/css/colors/classes/all.css";
+import "@db-ux/core-foundations/build/styles/colors/classes/all.css";
 ```
 
 #### Use
@@ -120,7 +115,7 @@ In HTML:
 
 ### SCSS
 
-Default assets path for `db-ui-foundations.scss` is `../assets`. Make sure to copy all used resources like icons and fonts into your `public` folder before build. **Or** you use a modern bundler which handles bundling for you. In this case use `db-ui-foundations[-rollup|-webpack].scss`.
+Default assets path for `relative.scss` is `../assets`. Make sure to copy all used resources like icons and fonts into your `public` folder before build. **Or** you use a modern bundler which handles bundling for you. In this case use `[rollup|webpack].scss`.
 
 #### Import
 
@@ -130,19 +125,16 @@ SCSS:
 
 ```scss
 /* index.css */
-@forward "@db-ui/foundations/build/scss/default-theme";
-@forward "@db-ui/foundations/build/scss/db-ui-foundations";
+@forward "@db-ux/core-foundations/build/styles/relative";
 
-/* Optional: Use [data-icon] everywhere */
-@forward "@db-ui/foundations/build/scss/icons/include";
 /* Optional: Use [data-divider] & [data-focus] everywhere */
-@forward "@db-ui/foundations/build/scss/helpers/classes/all";
+@forward "@db-ux/core-foundations/build/styles/helpers/classes/all";
 /* Optional: Use [data-density] everywhere */
-@forward "@db-ui/foundations/build/scss/density/classes/all";
+@forward "@db-ux/core-foundations/build/styles/density/classes/all";
 /* Optional: Use [data-font-size] everywhere */
-@forward "@db-ui/foundations/build/scss/fonts/classes/all";
+@forward "@db-ux/core-foundations/build/styles/fonts/classes/all";
 /* Optional: Use [data-color] everywhere */
-@forward "@db-ui/foundations/build/scss/colors/classes/all";
+@forward "@db-ux/core-foundations/build/styles/colors/classes/all";
 ```
 
 > **Note:** Besides of forwarding the classes you can use placeholders to include only some specific styles.
@@ -151,19 +143,16 @@ JS/TS:
 
 ```ts
 // main.[js|ts]
-import "@db-ui/foundations/build/scss/default-theme.scss";
-import "@db-ui/foundations/build/scss/db-ui-foundations.scss";
+import "@db-ux/core-foundations/build/styles/relative.scss";
 
-/* Optional: Use [data-icon] everywhere */
-import "@db-ui/foundations/build/scss/icons/include.scss";
 /* Optional: Use [data-divider] & [data-focus] everywhere */
-import "@db-ui/foundations/build/scss/helpers/classes/all.scss";
+import "@db-ux/core-foundations/build/styles/helpers/classes/all.scss";
 /* Optional: Use [data-density] everywhere */
-import "@db-ui/foundations/build/scss/density/classes/all.scss";
+import "@db-ux/core-foundations/build/styles/density/classes/all.scss";
 /* Optional: Use [data-font-size] everywhere */
-import "@db-ui/foundations/build/scss/fonts/classes/all.scss";
+import "@db-ux/core-foundations/build/styles/fonts/classes/all.scss";
 /* Optional: Use [data-color] everywhere */
-import "@db-ui/foundations/build/scss/colors/classes/all.scss";
+import "@db-ux/core-foundations/build/styles/colors/classes/all.scss";
 ```
 
 #### Use
@@ -171,7 +160,7 @@ import "@db-ui/foundations/build/scss/colors/classes/all.scss";
 In SCSS:
 
 ```scss
-@use "@db-ui/foundations/build/scss/variables";
+@use "@db-ux/core-foundations/build/styles/variables";
 
 .my-container {
 	padding: variables.$db-spacing-fixed-md;
@@ -181,8 +170,8 @@ In SCSS:
 In SCSS with placeholder:
 
 ```scss
-@use "@db-ui/foundations/build/scss/fonts";
-@use "@db-ui/foundations/build/scss/colors";
+@use "@db-ux/core-foundations/build/styles/fonts";
+@use "@db-ux/core-foundations/build/styles/colors";
 
 .placeholder-container {
 	@extend %db-overwrite-font-size-sm;
@@ -209,15 +198,27 @@ In HTML:
 
 ### Tailwind
 
-Check the required imports for [CSS](https://db-ui.github.io/mono/review/main/foundations/readme?current=css) to enable all tokens and defaults.
+Check the required imports for [CSS](https://db-ux-design-system.github.io/core-web/review/main/foundations/readme?current=css) to enable all tokens and defaults.
+
+#### Tailwind v4
+
+```css
+@import "tailwindcss";
+@import "@db-ux/core-foundations/build/tailwind/theme/index.css";
+```
+
+#### Tailwind v3
+
+> **Note:** In Tailwind v4 you can use the config with `@config "tailwind.config.[js|ts]";` inside your `.css` file as well.
+
 After this you can extend your tailwind config like this:
 
-#### Javascript
+##### Javascript
 
 ```javascript
 //tailwind.config.js
 /** @type {import('tailwindcss').Config} */
-import tokens from "@db-ui/foundations/build/tailwind/tailwind-tokens.json";
+import tokens from "@db-ux/core-foundations/build/tailwind/tailwind-tokens.json";
 
 export default {
 	content: ["./index.html", "./src/**/*.{js,jsx,ts,tsx}"],
@@ -234,13 +235,13 @@ export default {
 };
 ```
 
-#### Typescript
+##### Typescript
 
 ```typescript
 //tailwind.config.ts
 import type { Config } from "tailwindcss";
 import { CustomThemeConfig } from "tailwindcss/types/config";
-import tokens from "@db-ui/foundations/build/tailwind/tailwind-tokens.json";
+import tokens from "@db-ux/core-foundations/build/tailwind/tailwind-tokens.json";
 const customThemeConfig: CustomThemeConfig = tokens as any;
 
 export default {
@@ -291,38 +292,60 @@ In your `tailwind.css` add this to enable default headlines:
 
 ## Optimize dependencies
 
-If you want to optimize the size of the loaded styles, you might skip loading `@db-ui/foundations/build/css/db-ui-foundations.css`.But there are some required styles for this Design-System to work properly.
+If you want to optimize the size of the loaded styles, you might want to skip loading `@db-ux/core-foundations/build/styles/[relative|absolute|rollup|webpack].css`. But there are some required styles for this Design System to work properly.
+
+### Theme, Assets & Init
 
 ```css
-/* The theme contains all prop required for components like spacings, colors, ... */
-@import "@db-ui/foundations/build/css/default-theme.css";
-/* The font include uses default font families based on your bundling paths (relative, absolute, webpack, rollup) */
-@import "@db-ui/foundations/build/css/fonts/include.css";
+/* The theme contains all prop required for components like spacings, colors, etc. You can replace it with your own theme. */
+@import "@db-ux/core-foundations/build/styles/default-theme.css";
+/* The font include uses default font families based on your bundling paths (relative, absolute, webpack, rollup). You can replace it with your own fonts. */
+@import "@db-ux/core-foundations/build/styles/fonts/relative.css";
+/* The icon include uses default icons based on your bundling paths (relative, absolute, webpack, rollup). You can replace it with your own icons. */
+@import "@db-ux/core-foundations/build/styles/icons/relative.css";
+/* The index file will add some additional styles to normalize html defaults and add some default settings like default density, etc. */
+@import "@db-ux/core-foundations/build/styles/index.css";
+```
+
+#### Optimize index
+
+You are able to optimize the initial settings as well:
+
+```css
 /* The required styles will normalize css and add focus and default font to body */
-@import "@db-ui/foundations/build/css/init/required.css";
-/* The default root adds a default color space (neutral) and a density (regular) */
-@import "@db-ui/foundations/build/css/init/default-root.css";
+@import "@db-ux/core-foundations/build/styles/defaults/default-required.css";
+/* The default setting for :root, adds a color space (neutral-bg-basic-level-1) and a density (regular). */
+@import "@db-ux/core-foundations/build/styles/defaults/default-root.css";
+/* Adds font-sizes & line-heights to headlines and paragraph tags. You probably need this, but you might strip some styles if you don't need the range of h1-h6. */
+@import "@db-ux/core-foundations/build/styles/defaults/default-fonts.css";
+/* Adds "[data-icon]" and other icon related styles. If you don't need icons in your application you could skip this. */
+@import "@db-ux/core-foundations/build/styles/defaults/default-icons.css";
+/* Adds "[data-elevation]" and other icon related styles. If you don't need elevation in your application you could skip this. */
+@import "@db-ux/core-foundations/build/styles/defaults/default-elevation.css";
+/* Adds defaults for `blockquote`, `code` and `pre`. If you don't need them in your application you could skip this. */
+@import "@db-ux/core-foundations/build/styles/defaults/default-code.css";
 ```
 
 ## Migration
 
-We provide a [CLI tool](https://github.com/db-ui/mono/blob/main/packages/migration/README.md) to auto migrate your source code.
+We provide a [CLI tool](https://github.com/db-ux-design-system/core-web/blob/main/packages/migration/README.md) to auto migrate your source code.
 
 ## Deutsche Bahn brand
 
-As we'd like to perfectly support our users and customers on their digital journey, the usage of Deutsche Bahn brand and trademarks are bound of clear guidelines and restrictions even when being used with the code that we're provide with this product; Deutsche Bahn fully reserves all rights regarding the Deutsche Bahn brand, even though that we're providing the code of DB UI products free to use and release it under the Apache 2.0 license.
+As we'd like to perfectly support our users and customers on their digital journey, the usage of Deutsche Bahn brand and trademarks are bound of clear guidelines and restrictions even when being used with the code that we're provide with this product; Deutsche Bahn fully reserves all rights regarding the Deutsche Bahn brand, even though that we're providing the code of DB UX Design System products free to use and release it under the Apache 2.0 license.
 Please have a look at our brand portal at <https://marketingportal.extranet.deutschebahn.com/> for any further questions and whom to contact on any brand issues.
 
-You must remove or replace any Deutsche Bahn brand and design assets as well as protected characteristics and trademarks. We're even also planning to provide a neutral theme that would make it much easier for you to use our product without the trademarks by Deutsche Bahn.
+For any usage outside of Deutsche Bahn websites and applications you aren't allowed to use any Deutsche Bahn brand and
+design assets as well as protected characteristics and trademarks, that for not including the DB Theme.
 
 ## Contributions
 
-Contributions are very welcome, please refer to the [contribution guide](https://github.com/db-ui/mono/blob/main/CONTRIBUTING.md).
+Contributions are very welcome, please refer to the [contribution guide](https://github.com/db-ux-design-system/core-web/blob/main/CONTRIBUTING.md).
 
 ## Code of conduct
 
 We as members, contributors, and leaders pledge to make participation in our
-community a harassment-free experience for everyone – have a look at our [Contributor Covenant Code of Conduct](https://github.com/db-ui/mono/blob/main/CODE-OF-CONDUCT.md).
+community a harassment-free experience for everyone – have a look at our [Contributor Covenant Code of Conduct](https://github.com/db-ux-design-system/core-web/blob/main/CODE-OF-CONDUCT.md).
 
 ## License
 

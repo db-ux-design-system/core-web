@@ -1,6 +1,6 @@
 ## Angular
 
-For general installation and configuration take a look at the [ngx-components](https://www.npmjs.com/package/@db-ui/ngx-components) package.
+For general installation and configuration take a look at the [ngx-core-components](https://www.npmjs.com/package/@db-ux/ngx-core-components) package.
 
 ### Load component
 
@@ -11,7 +11,7 @@ import {
 	NavigationDirective,
 	ActionBarDirective,
 	MetaNavigationDirective
-} from '@db-ui/ngx-components';
+} from '@db-ux/ngx-core-components';
 
 @Component({
   // ...
@@ -62,7 +62,7 @@ export class AppComponent {
 <db-header [drawerOpen]="drawerOpen" (onToggle)="toggleDrawer($event)">
 	<db-brand brand>My Awesome App</db-brand>
 	<db-navigation *dbNavigation>
-		<!-- https://github.com/db-ui/mono/blob/main/packages/components/src/components/navigation/docs/Angular.md -->
+		<!-- https://github.com/db-ux-design-system/core-web/blob/main/packages/components/src/components/navigation/docs/Angular.md -->
 	</db-navigation>
 	<ng-container *dbMetaNavigation>
 		<DBLink href="#">Imprint</DBLink>
@@ -74,7 +74,7 @@ export class AppComponent {
 		</DBButton>
 	</ng-container>
 	<ng-container *dbSecondaryAction>
-		<DBButton icon="person" variant="ghost" [noText]="true">
+		<DBButton icon="x_placeholder" variant="ghost" [noText]="true">
 			Profile
 		</DBButton>
 		<DBButton icon="alert" variant="ghost" [noText]="true">

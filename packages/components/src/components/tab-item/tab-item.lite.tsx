@@ -2,6 +2,7 @@ import {
 	onMount,
 	onUpdate,
 	Show,
+	useDefaultProps,
 	useMetadata,
 	useRef,
 	useStore,
@@ -9,22 +10,25 @@ import {
 } from '@builder.io/mitosis';
 import type { DBTabItemProps, DBTabItemState } from './model';
 import { cls, getBooleanAsString, getHideProp } from '../../utils';
-import { ChangeEvent } from '../../shared/model';
-import { handleFrameworkEvent } from '../../utils/form-components';
+import {
+	handleFrameworkEventAngular,
+	handleFrameworkEventVue
+} from '../../utils/form-components';
 
 useMetadata({
 	angular: {
 		nativeAttributes: ['disabled']
 	}
 });
+useDefaultProps<DBTabItemProps>({});
 
 export default function DBTabItem(props: DBTabItemProps) {
-	const ref = useRef<HTMLInputElement>(null);
+	const _ref = useRef<HTMLInputElement | null>(null);
 	// jscpd:ignore-start
 	const state = useStore<DBTabItemState>({
 		initialized: false,
 		_selected: false,
-		handleChange: (event: ChangeEvent<HTMLInputElement>) => {
+		handleChange: (event: any) => {
 			if (props.onChange) {
 				props.onChange(event);
 			}
@@ -46,8 +50,9 @@ export default function DBTabItem(props: DBTabItemProps) {
 			});
 
 			useTarget({
-				angular: () => handleFrameworkEvent(this, event, 'checked'),
-				vue: () => handleFrameworkEvent(this, event, 'checked')
+				angular: () =>
+					handleFrameworkEventAngular(this, event, 'checked'),
+				vue: () => handleFrameworkEventVue(() => {}, event, 'checked')
 			});
 		}
 	});
@@ -58,11 +63,11 @@ export default function DBTabItem(props: DBTabItemProps) {
 	// jscpd:ignore-end
 
 	onUpdate(() => {
-		if (props.active && state.initialized && ref) {
-			ref.click();
+		if (props.active && state.initialized && _ref) {
+			_ref.click();
 			state.initialized = false;
 		}
-	}, [ref, state.initialized]);
+	}, [_ref, state.initialized]);
 
 	return (
 		<li class={cls('db-tab-item', props.className)} role="none">
@@ -78,13 +83,11 @@ export default function DBTabItem(props: DBTabItemProps) {
 					aria-selected={state._selected}
 					aria-controls={props.controls}
 					checked={props.checked}
-					ref={ref}
+					ref={_ref}
 					type="radio"
 					role="tab"
 					id={props.id}
-					onChange={(event: ChangeEvent<HTMLInputElement>) =>
-						state.handleChange(event)
-					}
+					onInput={(event: any) => state.handleChange(event)}
 				/>
 
 				<Show when={props.label}>{props.label}</Show>

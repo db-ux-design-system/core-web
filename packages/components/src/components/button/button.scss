@@ -1,12 +1,12 @@
 @charset "utf-8";
 
-@use "@db-ui/foundations/build/scss/fonts";
-@use "@db-ui/foundations/build/scss/variables";
-@use "@db-ui/foundations/build/scss/colors";
-@use "@db-ui/foundations/build/scss/icons";
-@use "@db-ui/foundations/build/scss/helpers";
-@use "../../styles/component";
-@use "../../styles/button-components";
+@use "@db-ux/core-foundations/build/styles/fonts";
+@use "@db-ux/core-foundations/build/styles/variables";
+@use "@db-ux/core-foundations/build/styles/colors";
+@use "@db-ux/core-foundations/build/styles/icons";
+@use "@db-ux/core-foundations/build/styles/helpers";
+@use "../../styles/internal/component";
+@use "../../styles/internal/button-components";
 
 .db-button {
 	@extend %default-interactive-component;

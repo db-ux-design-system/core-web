@@ -1,17 +1,16 @@
 {
-  "name": "@db-ui/foundations",
+  "name": "@db-ux/core-foundations",
   "version": "0.0.0",
   "type": "module",
-  "description": "Provides basic tokens and assets based on DB UX Design System Core.",
+  "description": "Provides basic tokens and assets based on DB UX Design System (Version 3).",
   "repository": {
     "type": "git",
-    "url": "https://github.com/db-ui/mono.git"
+    "url": "https://github.com/db-ux-design-system/core-web.git"
   },
   "license": "DB Design License",
-  "bin": {
-    "@db-ui/foundations": "build/index.js"
-  },
-  "main": "build.js",
+  "main": "./build/index.js",
+  "module": "./build/index.js",
+  "types": "./build/index.d.ts",
   "files": [
     "assets",
     "build"
@@ -20,10 +19,11 @@
     "build": "npm-run-all build:*",
     "build:01_normalize": "npm-run-all copy-prepare:*",
     "build:02_copy": "npm run copy:scss",
-    "build:03_css": "sass --no-source-map --load-path=node_modules/ --load-path=../../node_modules/ build/scss/:build/css/ --future-deprecation=import",
+    "build:03_css": "sass --no-source-map --load-path=node_modules/ --load-path=../../node_modules/ build/styles",
     "build:04_tailwind": "cpr tailwind build/tailwind -o",
-    "build:05_postcss": "postcss build/css/**/*.css --replace",
+    "build:05_postcss": "postcss build/styles/**/*.css --replace",
     "build:06_ide": "cpr ide build/ide -o",
+    "build:06_ts": "tsc",
     "clean": "rm -rf build",
     "copy-build": "npm-run-all copy-build:*",
     "copy-build:assets": "cpr assets ../../build-outputs/foundations/assets -o",
@@ -32,9 +32,10 @@
     "copy-build:web": "cpr build ../../build-outputs/foundations/build -o",
     "copy-prepare:icon-overview": "tsx scripts/local/generate-icon-overview.ts",
     "copy-prepare:normalize": "cpr ../../node_modules/@csstools/normalize.css/normalize.css scss/_normalize.scss -o",
-    "copy-prepare:woff2": "cpr ../../node_modules/@db-ux/core-icons/dist/fonts assets/icons/functional/fonts -o",
-    "copy:scss": "cpr scss build/scss -o",
+    "copy:scss": "cpr scss build/styles -o",
     "dev": "vite --open",
+    "generate:fonts": "tsx assets/fonts/generate-eu-fonts.ts",
+    "generate:icons": "tsx scripts/local/generate-icon-font.ts",
     "prebuild": "npm-run-all copy-prepare:*",
     "predev": "npm-run-all copy-prepare:*",
     "prestart": "npm-run-all copy-prepare:*",
@@ -44,14 +45,17 @@
   },
   "devDependencies": {
     "@csstools/normalize.css": "12.1.1",
-    "@db-ux/core-icons": "0.0.7",
+    "@db-ux/icon-font-tools": "0.3.2",
     "cpr": "3.0.1",
     "cssnano": "^7.0.6",
     "dotenv": "^16.4.7",
+    "glob": "11.0.1",
     "nodemon": "3.1.9",
-    "sass": "1.77.4",
-    "tsx": "^4.19.2",
-    "vite": "^6.0.7"
+    "prettier": "^3.5.2",
+    "sass": "1.85.0",
+    "tsx": "^4.19.3",
+    "typescript": "^5.4.5",
+    "vite": "^6.2.0"
   },
   "publishConfig": {
     "registry": "https://registry.npmjs.org/",

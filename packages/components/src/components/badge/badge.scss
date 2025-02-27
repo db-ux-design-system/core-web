@@ -1,9 +1,9 @@
 @use "sass:map";
-@use "@db-ui/foundations/build/scss/variables";
-@use "@db-ui/foundations/build/scss/fonts";
-@use "../../styles/button-components";
-@use "../../styles/tag-components";
-@use "../../styles/component";
+@use "@db-ux/core-foundations/build/styles/variables";
+@use "@db-ux/core-foundations/build/styles/fonts";
+@use "../../styles/internal/button-components";
+@use "../../styles/internal/tag-components";
+@use "../../styles/internal/component";
 
 %absolute-badge {
 	position: absolute;
