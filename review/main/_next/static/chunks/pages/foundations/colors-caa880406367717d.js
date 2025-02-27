@@ -1,0 +1,1 @@
+(self.webpackChunk_N_E=self.webpackChunk_N_E||[]).push([[4401],{4347:(_,s,n)=>{"use strict";n.r(s),n.d(s,{default:()=>o});var u=n(6029),e=n(52180);let o=()=>(0,u.jsx)(e.A,{})},5996:(_,s,n)=>{(window.__NEXT_P=window.__NEXT_P||[]).push(["/foundations/colors",function(){return n(4347)}])}},_=>{var s=s=>_(_.s=s);_.O(0,[5714,310,708,4351,2180,636,6593,8792],()=>s(5996)),_N_E=_.O()}]);
