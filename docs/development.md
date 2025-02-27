@@ -8,7 +8,7 @@ npm run build
 npm run start
 ```
 
-Please mind the [conventions for git commits](/docs/conventions.adoc#user-content-git-commits-conventions).
+Please mind the [conventions for git commits](/docs/conventions.md#user-content-git-commits-conventions).
 
 ### Versions
 
