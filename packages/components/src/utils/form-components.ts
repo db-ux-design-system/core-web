@@ -1,13 +1,19 @@
-export const handleFrameworkEvent = (
+/* eslint-disable @typescript-eslint/no-explicit-any */
+export const handleFrameworkEventAngular = (
 	component: any,
 	event: any,
 	modelValue: string = 'value'
 ): void => {
-	// TODO: Replace this with the solution out of https://github.com/BuilderIO/mitosis/issues/833 after this has been "solved"
-	// VUE:component.$emit(`update:${modelValue}`, event.target[modelValue]);
 	// Change event to work with reactive and template driven forms
-	// ANGULAR: component.propagateChange(event.target[modelValue]);
-	// ANGULAR: component.writeValue(event.target[modelValue]);
+	component.propagateChange(event.target[modelValue]);
+	component.writeValue(event.target[modelValue]);
 };
 
-export default { handleFrameworkEvent };
+export const handleFrameworkEventVue = (
+	emit: (event: string, ...args: any[]) => void,
+	event: any,
+	modelValue: string = 'value'
+): void => {
+	// TODO: Replace this with the solution out of https://github.com/BuilderIO/mitosis/issues/833 after this has been "solved"
+	emit(`update:${modelValue}`, event.target[modelValue]);
+};

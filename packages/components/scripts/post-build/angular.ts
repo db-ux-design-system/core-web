@@ -77,10 +77,10 @@ const setControlValueAccessorReplacements = (
 		from: 'ngOnInit()',
 		to: `
 		writeValue(value: any) {
-		  this.${valueAccessor} = value;
+		  this.${valueAccessor} = ${valueAccessor === 'checked' ? '!!' : ''}value;
 
-		  if (this.ref?.nativeElement) {
-			 this.renderer.setProperty(this.ref?.nativeElement, '${valueAccessor}', value);
+		  if (this._ref?.nativeElement) {
+			 this.renderer.setProperty(this._ref?.nativeElement, '${valueAccessor}', ${valueAccessor === 'checked' ? '!!' : ''}value);
 		  }
 		}
 
@@ -173,20 +173,8 @@ export class ${directive.name}Directive {}
 	});
 };
 
-const getAttributePassing = (componentName: string) => `
-ngAfterViewInit(): void {
-\t\tconst element: HTMLElement | null = this.ref?.nativeElement;
-\t\tenableCustomElementAttributePassing(element,'db-${componentName}')
-\t}`;
-
 export default (tmp?: boolean) => {
 	const outputFolder = `${tmp ? 'output/tmp' : 'output'}`;
-	// Activate vue specific event handling
-	replaceInFileSync({
-		files: `../../${outputFolder}/angular/src/utils/form-components.ts`,
-		from: /\/\/ ANGULAR:/g,
-		to: ''
-	});
 	for (const component of components) {
 		const componentName = component.name;
 		const upperComponentName = `DB${transformToUpperComponentName(component.name)}`;
@@ -203,20 +191,6 @@ export default (tmp?: boolean) => {
 			{
 				from: 'ngOnChanges',
 				to: 'ngAfterContentChecked'
-			},
-			{
-				from: '@ViewChild("ref") ref!: ElementRef | undefined;',
-				to:
-					'@ViewChild("ref") ref!: ElementRef | undefined;' +
-					getAttributePassing(component.name)
-			},
-			{
-				from: '} from "../../utils"',
-				to: ', enableCustomElementAttributePassing } from "../../utils"'
-			},
-			{
-				from: /this.ref.nativeElement/g,
-				to: 'this.ref?.nativeElement'
 			}
 		];
 

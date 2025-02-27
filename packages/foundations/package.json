@@ -1,17 +1,16 @@
 {
-  "name": "@db-ui/foundations",
+  "name": "@db-ux/core-foundations",
   "version": "0.0.0",
   "type": "module",
   "description": "Provides basic tokens and assets based on DB UX Design System (Version 3).",
   "repository": {
     "type": "git",
-    "url": "https://github.com/db-ui/mono.git"
+    "url": "https://github.com/db-ux-design-system/core-web.git"
   },
   "license": "DB Design License",
-  "bin": {
-    "@db-ui/foundations": "build/index.js"
-  },
-  "main": "build.js",
+  "main": "./build/index.js",
+  "module": "./build/index.js",
+  "types": "./build/index.d.ts",
   "files": [
     "assets",
     "build"
@@ -24,7 +23,7 @@
     "build:04_tailwind": "cpr tailwind build/tailwind -o",
     "build:05_postcss": "postcss build/styles/**/*.css --replace",
     "build:06_ide": "cpr ide build/ide -o",
-    "build:06_ts": "cpr scripts/public build/ts -o",
+    "build:06_ts": "tsc",
     "clean": "rm -rf build",
     "copy-build": "npm-run-all copy-build:*",
     "copy-build:assets": "cpr assets ../../build-outputs/foundations/assets -o",
@@ -52,10 +51,11 @@
     "dotenv": "^16.4.7",
     "glob": "11.0.1",
     "nodemon": "3.1.9",
-    "prettier": "^3.4.2",
-    "sass": "1.77.4",
-    "tsx": "^4.19.2",
-    "vite": "^6.0.11"
+    "prettier": "^3.5.2",
+    "sass": "1.85.0",
+    "tsx": "^4.19.3",
+    "typescript": "^5.4.5",
+    "vite": "^6.2.0"
   },
   "publishConfig": {
     "registry": "https://registry.npmjs.org/",

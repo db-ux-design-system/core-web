@@ -1,6 +1,6 @@
 ## HTML
 
-For general installation and configuration take a look at the [components](https://www.npmjs.com/package/@db-ui/components) package.
+For general installation and configuration take a look at the [components](https://www.npmjs.com/package/@db-ux/core-components) package.
 
 ### Use component
 
@@ -100,7 +100,7 @@ For general installation and configuration take a look at the [components](https
 					<a href="/"
 						><img
 							class="db-logo"
-							src="https://db-ui.github.io/images/db_logo.svg"
+							src="https://db-ux-design-system.github.io/images/db_logo.svg"
 							alt=""
 							height="24"
 							width="34" /></a

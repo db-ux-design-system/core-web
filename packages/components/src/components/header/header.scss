@@ -1,8 +1,8 @@
-@use "@db-ui/foundations/build/styles/variables";
-@use "@db-ui/foundations/build/styles/screen-sizes";
-@use "@db-ui/foundations/build/styles/helpers";
-@use "@db-ui/foundations/build/styles/density";
-@use "@db-ui/foundations/build/styles/colors";
+@use "@db-ux/core-foundations/build/styles/variables";
+@use "@db-ux/core-foundations/build/styles/screen-sizes";
+@use "@db-ux/core-foundations/build/styles/helpers";
+@use "@db-ux/core-foundations/build/styles/density";
+@use "@db-ux/core-foundations/build/styles/colors";
 @use "../../styles/internal/component";
 
 .db-header {
@@ -16,6 +16,11 @@
 
 	@include screen-sizes.screen("md") {
 		--db-drawer-max-width: #{screen-sizes.$db-breakpoint-sm};
+	}
+
+	&[data-width="small"] {
+		margin-inline: auto;
+		max-inline-size: screen-sizes.$db-breakpoint-sm;
 	}
 
 	&[data-width="medium"] {
@@ -64,14 +69,14 @@
 .db-header-meta-navigation {
 	@extend %db-density-functional;
 
-	@include helpers.divider("top");
-
 	display: flex;
 	flex-direction: column;
 	gap: variables.$db-spacing-fixed-sm;
 	justify-content: flex-end;
 	background-color: colors.$db-adaptive-bg-basic-level-2-default;
 	padding: variables.$db-spacing-fixed-md;
+
+	@include helpers.divider("top");
 
 	@include screen-sizes.screen("md") {
 		padding: variables.$db-spacing-fixed-xs variables.$db-spacing-fixed-lg;
@@ -157,12 +162,12 @@
 }
 
 .db-header-secondary-action {
-	@include helpers.divider("top");
-
 	flex: 0 1 auto;
 	flex-grow: 0;
 	flex-shrink: 0;
 	padding-block-start: variables.$db-spacing-fixed-xs;
+
+	@include helpers.divider("top");
 
 	@include screen-sizes.screen("md") {
 		&::before {

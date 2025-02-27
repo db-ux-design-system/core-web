@@ -27,7 +27,7 @@ jobs:
       - name: ⏬ Download patternhub
         uses: actions/download-artifact@v4
         with:
-          name: db-ui-patternhub
+          name: db-ux-patternhub
           path: build-showcases/patternhub
 
       - name: 🦵🦿 I like to move it move it

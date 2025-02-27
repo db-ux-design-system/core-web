@@ -1,8 +1,8 @@
 @use "sass:map";
-@use "@db-ui/foundations/build/styles/variables";
-@use "@db-ui/foundations/build/styles/helpers";
-@use "@db-ui/foundations/build/styles/animation";
-@use "@db-ui/foundations/build/styles/colors";
+@use "@db-ux/core-foundations/build/styles/variables";
+@use "@db-ux/core-foundations/build/styles/helpers";
+@use "@db-ux/core-foundations/build/styles/animation";
+@use "@db-ux/core-foundations/build/styles/colors";
 @use "../../styles/internal/component";
 @use "../../styles/dialog-init";
 
@@ -76,10 +76,14 @@ $spacings: (
 );
 
 @mixin get-spacing($spacing) {
-	padding-block: map.get($spacing, "block");
+	/* stylelint-disable-next-line scss/selector-no-redundant-nesting-selector */
+	& {
+		padding-block: map.get($spacing, "block");
+	}
 
 	.db-drawer-header {
 		// We need this variable to overwrite it inside the header
+		/* stylelint-disable-next-line db-ux/use-spacings */
 		padding-block-end: var(
 			--db-drawer-header-padding-block-end,
 			#{map.get($spacing, "block")}
@@ -89,6 +93,7 @@ $spacings: (
 
 	.db-drawer-content {
 		// We need this variable to overwrite it inside the header
+		/* stylelint-disable-next-line db-ux/use-spacings */
 		padding-inline: var(
 			--db-drawer-content-padding-inline,
 			#{map.get($spacing, "inline")}
@@ -147,9 +152,9 @@ $spacings: (
 		}
 
 		.db-drawer-header {
-			@include helpers.divider("bottom");
-
 			display: none;
+
+			@include helpers.divider("bottom");
 
 			.db-drawer-header-text {
 				margin-block: auto;

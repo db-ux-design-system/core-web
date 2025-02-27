@@ -3,6 +3,7 @@ import {
 	onMount,
 	onUpdate,
 	Show,
+	useDefaultProps,
 	useMetadata,
 	useRef,
 	useStore,
@@ -11,10 +12,10 @@ import {
 import {
 	cls,
 	delay,
-	stringPropVisible,
 	getHideProp,
 	hasVoiceOver,
 	isArrayOfStrings,
+	stringPropVisible,
 	uuid
 } from '../../utils';
 import { DBInputProps, DBInputState } from './model';
@@ -35,7 +36,10 @@ import {
 	ValueLabelType
 } from '../../shared/model';
 import DBInfotext from '../infotext/infotext.lite';
-import { handleFrameworkEvent } from '../../utils/form-components';
+import {
+	handleFrameworkEventVue,
+	handleFrameworkEventAngular
+} from '../../utils/form-components';
 
 useMetadata({
 	angular: {
@@ -43,8 +47,10 @@ useMetadata({
 	}
 });
 
+useDefaultProps<DBInputProps>({});
+
 export default function DBInput(props: DBInputProps) {
-	const ref = useRef<HTMLInputElement>(null);
+	const _ref = useRef<HTMLInputElement | null>(null);
 	// jscpd:ignore-start
 	const state = useStore<DBInputState>({
 		_id: undefined,
@@ -74,23 +80,23 @@ export default function DBInput(props: DBInputProps) {
 			}
 
 			useTarget({
-				angular: () => handleFrameworkEvent(this, event),
-				vue: () => handleFrameworkEvent(this, event)
+				angular: () => handleFrameworkEventAngular(this, event),
+				vue: () => handleFrameworkEventVue(() => {}, event)
 			});
 
 			/* For a11y reasons we need to map the correct message with the input */
-			if (!ref?.validity.valid || props.validation === 'invalid') {
+			if (!_ref?.validity.valid || props.validation === 'invalid') {
 				state._descByIds = state._invalidMessageId;
 				if (hasVoiceOver()) {
 					state._voiceOverFallback =
 						props.invalidMessage ??
-						ref?.validationMessage ??
+						_ref?.validationMessage ??
 						DEFAULT_INVALID_MESSAGE;
 					delay(() => (state._voiceOverFallback = ''), 1000);
 				}
 			} else if (
 				props.validation === 'valid' ||
-				(ref?.validity.valid &&
+				(_ref?.validity.valid &&
 					(props.required ||
 						props.minLength ||
 						props.maxLength ||
@@ -182,7 +188,7 @@ export default function DBInput(props: DBInputProps) {
 			<input
 				aria-invalid={props.validation === 'invalid'}
 				data-custom-validity={props.validation}
-				ref={ref}
+				ref={_ref}
 				id={state._id}
 				name={props.name}
 				type={props.type || 'text'}
@@ -198,6 +204,7 @@ export default function DBInput(props: DBInputProps) {
 				readOnly={props.readOnly}
 				form={props.form}
 				pattern={props.pattern}
+				size={props.size}
 				// @ts-ignore
 				autoComplete={props.autocomplete}
 				// @ts-ignore
@@ -256,7 +263,7 @@ export default function DBInput(props: DBInputProps) {
 				size="small"
 				semantic="critical">
 				{props.invalidMessage ??
-					ref?.validationMessage ??
+					_ref?.validationMessage ??
 					DEFAULT_INVALID_MESSAGE}
 			</DBInfotext>
 

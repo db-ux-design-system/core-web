@@ -11,7 +11,7 @@ import {
 
 export type DBPopoverDefaultProps = {
 	/**
-	 * Use open to disable the default hover/focus behaviour to use it on click or other trigger.
+	 * Use open to disable the default hover/focus behavior to use it on click or other trigger.
 	 */
 	open?: boolean;
 

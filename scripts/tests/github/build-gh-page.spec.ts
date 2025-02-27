@@ -1,13 +1,13 @@
 import { execSync } from 'node:child_process';
+import { existsSync } from 'node:fs';
 import { describe, expect, test } from 'vitest';
-import { existsSync } from 'fs-extra';
 
 const command = 'npx --no tsx github/build-gh-page.ts';
 
 describe('build-gh-page', () => {
 	process.env.NAME = 'test-branch';
 	process.env.OUT_DIR = 'tests/fixtures';
-	process.env.OWNER_NAME = 'db-ui';
+	process.env.OWNER_NAME = 'db-ui'; // TODO: Change to db-ux if we have another simple repo
 	process.env.REPO_NAME = 'live-demo'; // Use different repo because of size
 	process.env.RELEASE = 'false';
 	process.env.PRE_RELEASE = 'false';
@@ -29,7 +29,7 @@ describe('build-gh-page', () => {
 		process.env.NAME = '1.2.3-pre';
 		process.env.RELEASE = 'false';
 		process.env.PRE_RELEASE = 'true';
-		const result = execSync(command);
+		execSync(command);
 		expect(existsSync('public/version/1.2.3-pre')).toBeTruthy();
 	});
 });
