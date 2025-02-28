@@ -1,3 +1,7 @@
+# SPDX-FileCopyrightText: 2025 DB Systel GmbH
+
+# SPDX-License-Identifier: Apache-2.0
+
 assets/fonts/**/sources
 build/
 build-outputs/
@@ -11,3 +15,6 @@ showcases/**/public/**
 packages/foundations/scripts/generate-icon-fonts/styles/**
 packages/foundations/scss/_normalize.scss
 packages/stylelint/test/**
+
+# We needed to add this due to this necessary file and the glob within lint-staged
+.stylelintrc.json.license

@@ -1,3 +1,7 @@
+# SPDX-FileCopyrightText: 2025 DB Systel GmbH
+#
+# SPDX-License-Identifier: Apache-2.0
+
 ARG version=0.0.0
 FROM mcr.microsoft.com/playwright:v$version as playwright
 
