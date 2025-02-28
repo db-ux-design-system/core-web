@@ -12,8 +12,6 @@ describe('icon-q32024', () => {
 
 		expect(result).not.undefined;
 
-		expect(
-			(result as ReplaceResult[]).filter((res) => res.hasChanged)
-		).toHaveLength(1);
+		expect(result!.filter((res) => res.hasChanged)).toHaveLength(1);
 	});
 });
