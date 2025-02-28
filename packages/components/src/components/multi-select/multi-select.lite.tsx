@@ -788,6 +788,11 @@ export default function DBMultiSelect(props: DBMultiSelectProps) {
 								</>
 							}>
 							<DBInfotext
+								icon={
+									state._hasNoOptions
+										? undefined
+										: 'circular_arrows'
+								}
 								semantic={
 									state._hasNoOptions
 										? 'warning'
