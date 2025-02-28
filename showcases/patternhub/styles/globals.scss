@@ -306,9 +306,7 @@ div[class^="ch-"] {
 				inline-size: variables.$db-spacing-fixed-xl;
 			}
 
-			$icon-width: calc(
-				var(--db-base-line-height) * var(--db-base-font-size)
-			);
+			$icon-width: var(--db-icon-font-size);
 
 			.gap1 {
 				inset-inline-start: $icon-width;
