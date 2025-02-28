@@ -69,22 +69,21 @@ export default function DBMultiSelectListItem(
 			ref={_ref}
 			id={state._id}
 			class={cls('db-multi-select-list-item', props.className, {
-				'db-checkbox': !props.groupLabel
-			})}>
+				'db-checkbox': props.type === 'checkbox' && !props.groupLabel,
+				'db-radio': props.type !== 'checkbox' && !props.groupLabel
+			})}
+			data-icon-after={
+				props.type !== 'checkbox' && props.checked ? 'check' : undefined
+			}>
 			<Show when={props.groupLabel}>
-				<span
-					data-group-label-position={
-						props.groupLabel && props.groupLabelPosition
-					}>
-					{props.groupLabel}
-				</span>
+				<span>{props.groupLabel}</span>
 			</Show>
 			<Show when={!props.groupLabel}>
 				<label htmlFor={state._id + props.value}>
 					<input
 						class="db-multi-select-list-item-checkbox"
 						id={state._id + props.value}
-						type="checkbox"
+						type={props.type}
 						name={props.name}
 						checked={props.checked}
 						disabled={props.disabled}

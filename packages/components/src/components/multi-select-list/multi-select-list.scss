@@ -1,9 +1,21 @@
 @use "@db-ux/core-foundations/build/styles/variables";
-@use "../../styles/multi-select-components";
+@use "../../styles/internal/form-components";
 
 .db-multi-select-list {
 	padding: variables.$db-spacing-fixed-sm;
 	overflow-y: auto;
+	/* (checkbox height + list-item padding) * 6 items + list padding */
+	max-block-size: calc(
+		6 *
+			(
+				(
+						#{form-components.$font-size-height} - 2 *
+							#{variables.$db-border-height-3xs}
+					) +
+					2 * #{variables.$db-spacing-fixed-sm}
+			) +
+			(#{variables.$db-spacing-fixed-sm} * 2)
+	);
 
 	& > ul {
 		all: unset;

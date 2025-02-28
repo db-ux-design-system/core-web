@@ -7,16 +7,13 @@ import {
 	GlobalState
 } from '../../shared/model';
 
-export const MultiSelectListItemGroupLabelPositionList = [
-	'bottom',
-	'center'
-] as const;
-export type MultiSelectListItemGroupLabelPositionType =
-	(typeof MultiSelectListItemGroupLabelPositionList)[number];
+export const MultiSelectListItemTypeList = ['checkbox', 'radio'] as const;
+export type MultiSelectListItemTypeType =
+	(typeof MultiSelectListItemTypeList)[number];
 
 export interface DBMultiSelectListItemDefaultProps {
 	groupLabel?: string;
-	groupLabelPosition?: MultiSelectListItemGroupLabelPositionType;
+	type?: MultiSelectListItemTypeType;
 }
 
 export type DBMultiSelectListItemProps = DBMultiSelectListItemDefaultProps &

@@ -3,7 +3,6 @@
 @use "@db-ux/core-foundations/build/styles/helpers";
 @use "../../styles/internal/form-components";
 @use "../../styles/internal/component";
-@use "../../styles/multi-select-components";
 @use "../../styles/select-components";
 @use "../../styles/internal/scrollbar";
 
@@ -83,28 +82,8 @@
 		}
 	}
 
-	.db-multi-select-header {
-		display: none;
-	}
-
-	.db-notification {
-		display: none;
-	}
-
 	.db-tooltip {
 		@extend %db-neutral-variables;
-	}
-
-	&[data-header-enabled="true"] {
-		.db-multi-select-header {
-			display: flex;
-		}
-	}
-
-	&[data-notification-enabled="true"] {
-		.db-notification {
-			display: grid;
-		}
 	}
 
 	&[data-hide-label="true"] {

@@ -2,7 +2,6 @@
 @use "@db-ux/core-foundations/build/styles/colors";
 @use "@db-ux/core-foundations/build/styles/helpers";
 @use "@db-ux/core-foundations/build/styles/fonts";
-@use "../../styles/multi-select-components";
 
 .db-multi-select-list-item {
 	display: flex;
@@ -12,6 +11,10 @@
 	background-color: colors.$db-adaptive-bg-basic-transparent-full-default;
 	border-radius: variables.$db-border-radius-xs;
 	box-sizing: border-box;
+
+	&:has(input[type="radio"]:checked) {
+		--db-overwrite-cursor: default;
+	}
 
 	&:has(> label) {
 		@include helpers.hover {
@@ -27,13 +30,9 @@
 		@extend %focus-placeholder;
 	}
 
-	&:has(
-			span:is(
-					[data-group-label-poistion="bottom"],
-					:not([data-group-label-poistion])
-				)
-		) {
-		padding-block-end: 0;
+	&:has(span) {
+		padding-block: variables.$db-spacing-fixed-md
+			variables.$db-spacing-fixed-xs;
 	}
 
 	span {
@@ -50,12 +49,20 @@
 			font-weight: 700;
 		}
 
+		&:has(input[type="radio"]) {
+			gap: 0;
+		}
+
 		> input {
 			&::after {
 				position: absolute;
 				content: "";
 				inset-block: calc(-1 * #{variables.$db-spacing-fixed-xs});
 				inset-inline: calc(-1 * #{variables.$db-spacing-fixed-xs});
+			}
+
+			&[type="radio"] {
+				all: unset;
 			}
 
 			// We revert interaction states for checkbox
@@ -69,7 +76,7 @@
 
 			/* We set focus on complete list element, we remove it from checkbox with this trick */
 			&:focus-visible {
-				outline: none;
+				outline: none !important;
 			}
 		}
 	}

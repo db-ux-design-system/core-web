@@ -1,7 +1,7 @@
 @use "@db-ux/core-foundations/build/styles/variables";
 @use "@db-ux/core-foundations/build/styles/colors";
 @use "@db-ux/core-foundations/build/styles/screen-sizes";
-@use "../../styles/multi-select-components";
+@use "@db-ux/core-foundations/build/styles/helpers";
 @use "../../styles/internal/form-components";
 
 .db-multi-select-dropdown {
@@ -20,16 +20,21 @@
 	);
 	max-inline-size: calc(100vw - 2 * #{variables.$db-spacing-fixed-sm});
 
-	/* (checkbox height + list-item padding) * 6 items + header */
-	max-block-size: calc(
-		6 *
-			(
-				(
-						#{form-components.$font-size-height} - 2 *
-							#{variables.$db-border-height-3xs}
-					) +
-					2 * #{variables.$db-spacing-fixed-sm}
-			) +
-			(#{variables.$db-spacing-fixed-sm} + #{variables.$db-sizing-md})
-	);
+	> div {
+		@include helpers.divider("bottom", "after");
+
+		&:has(.db-checkbox) {
+			padding: variables.$db-spacing-fixed-xs
+				variables.$db-spacing-fixed-sm;
+		}
+
+		&:has(.db-input) {
+			padding: variables.$db-spacing-fixed-md
+				calc(#{variables.$db-spacing-fixed-sm} * 2);
+		}
+	}
+
+	> .db-infotext {
+		padding: variables.$db-spacing-fixed-sm;
+	}
 }

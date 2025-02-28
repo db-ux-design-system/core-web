@@ -6,14 +6,12 @@ import {
 	FormState,
 	GlobalProps,
 	GlobalState,
-	InnerCloseButtonProps,
 	PlacementVerticalType,
 	PopoverState,
 	ShowLabelProps,
 	ValidationType,
 	WidthProps
 } from '../../shared/model';
-import { DBMultiSelectHeaderLabelProps } from '../multi-select-header/model';
 import { DBMultiSelectFormFieldDefaultProps } from '../multi-select-form-field/model';
 
 export type MultiSelectOptionType = {
@@ -52,62 +50,49 @@ export type MultiSelectTagWrappingType =
 
 export interface DBMultiSelectDefaultProps {
 	/**
-	 * Label for the clear selection button
-	 */
-	clearSelectionLabel?: string;
-
-	/**
-	 * Disable default click outside handling. Will force header with close button.
-	 */
-	enableClickOutside?: boolean;
-
-	/**
-	 * Forces header
-	 */
-	enableHeader?: boolean;
-	/**
-	 * Forces search in header.
-	 */
-	enableSearch?: boolean;
-
-	/**
 	 * Optional: if select-type="amount" change the shown text
 	 */
 	amountText?: string;
 
 	/**
-	 * Optional: if select-type="amount" when amount changes
-	 * @param amount The amount of selected checkboxes
+	 * Label for the clear selection button
 	 */
-	onAmountChange?: (amount: number) => void;
+	clearSelectionLabel?: string;
 
 	/**
-	 * Dropdown - enable no options notification
+	 * Deselect all checkbox label
 	 */
-	hasNoResults?: boolean;
-	/**
-	 * Dropdown - enable loading notification and spinner
-	 */
-	isLoading?: boolean;
+	deSelectAllLabel?: string;
+
 	/**
 	 * Dropdown - hint if data has to be loaded
 	 */
 	loadingText?: string;
+
+	/**
+	 * Enables MultiSelect
+	 */
+
+	multiple?: boolean;
+
 	/**
 	 * Dropdown - hint if there are no options
 	 */
 	noResultsText?: string;
 	/**
+	 * Optional: if select-type="amount" when amount changes
+	 * @param amount The amount of selected checkboxes
+	 */
+	onAmountChange?: (amount: number) => void;
+	/**
 	 * Triggers after some checkbox was clicked in dropdown
 	 * @param values the changed values
 	 */
 	onSelect?: (values: string[]) => void;
-
 	/**
 	 * You should pass in the options as an array.
 	 */
 	options?: MultiSelectOptionType[];
-
 	/**
 	 * The `placement` attributes values change the position to absolute and adds a transform based on the placement.
 	 */
@@ -119,6 +104,21 @@ export interface DBMultiSelectDefaultProps {
 	removeTagsTexts?: string[];
 
 	/**
+	 * Search label
+	 */
+	searchLabel?: string;
+
+	/**
+	 * Search placeholder
+	 */
+	searchPlaceholder?: string;
+
+	/**
+	 * Select all checkbox label
+	 */
+	selectAllLabel?: string;
+
+	/**
 	 * Change the selected type for values shown in multi select
 	 */
 	selectedType?: SelectedTypeType;
@@ -127,6 +127,26 @@ export interface DBMultiSelectDefaultProps {
 	 * Show clear selection button (default:true). Hide it if you have very small inputs e.g. in tables.
 	 */
 	showClearSelection?: boolean;
+
+	/**
+	 * Dropdown - enable loading infotext and spinner
+	 */
+	showLoading?: boolean;
+
+	/**
+	 * Dropdown - enable no options infotext
+	 */
+	showNoResults?: boolean;
+
+	/**
+	 * Forces search in header.
+	 */
+	showSearch?: boolean;
+
+	/**
+	 * Forces header
+	 */
+	showSelectAll?: boolean;
 
 	/**
 	 * Optional: if you use selectedType=tag, you can change the behavior of tags
@@ -140,8 +160,6 @@ export interface DBMultiSelectDefaultProps {
 }
 
 export type DBMultiSelectProps = GlobalProps &
-	InnerCloseButtonProps &
-	DBMultiSelectHeaderLabelProps &
 	Omit<FormProps, 'value'> &
 	FormMessageProps &
 	DBMultiSelectDefaultProps &
@@ -161,11 +179,12 @@ export interface DBMultiSelectDefaultState {
 	_selectedLabels?: string;
 	_externalChangeTimestamp?: number;
 	_internalChangeTimestamp?: number;
+	_name?: string;
 	getOptionLabel: (option: MultiSelectOptionType) => string;
 	getOptionChecked: (value?: string) => boolean;
 	getOptionKey: (option: MultiSelectOptionType) => string;
 	getTagRemoveLabel: (index: number) => string;
-	headerEnabled: boolean;
+	selectAllEnabled: boolean;
 	searchEnabled: boolean;
 	amountOptions: number;
 	handleTagRemove: (option: MultiSelectOptionType) => void;
@@ -176,11 +195,11 @@ export interface DBMultiSelectDefaultState {
 	handleToggleOpen: () => void;
 	handleRemoveDocumentEvents: () => void;
 	handleOpenByKeyboardFocus: (onlySearch?: boolean) => void;
-	handleFocusFirstDropdownCheckbox: () => void;
+	handleFocusFirstDropdownCheckbox: (activeElement?: Element) => void;
 	handleKeyboardPress: (event: any) => void;
 	handleArrowDownUp: (event: any) => void;
-	handleArrowLeftRight: (event: any) => void;
 	handleSearch: (event: ChangeEvent<HTMLInputElement>) => void;
+	getSelectAllLabel: () => string;
 	selectAllChecked: boolean;
 	selectAllIndeterminate: boolean;
 }

@@ -177,7 +177,8 @@
 							"value": "Option 2"
 						}
 					],
-					"label": "Label"
+					"label": "Label",
+					"multiple": true
 				}
 			},
 			{
@@ -193,7 +194,8 @@
 						}
 					],
 					"label": "Label",
-					"required": true
+					"required": true,
+					"multiple": true
 				}
 			}
 		]
@@ -393,7 +395,8 @@
 							"value": "Option 4"
 						}
 					],
-					"label": "Label"
+					"label": "Label",
+					"multiple": true
 				}
 			},
 			{
@@ -415,7 +418,8 @@
 						}
 					],
 					"label": "Label",
-					"selectedType": "amount"
+					"selectedType": "amount",
+					"multiple": true
 				}
 			},
 			{
@@ -437,13 +441,14 @@
 						}
 					],
 					"label": "Label",
-					"selectedType": "tag"
+					"selectedType": "tag",
+					"multiple": true
 				}
 			}
 		]
 	},
 	{
-		"name": "Examples",
+		"name": "Examples Single",
 		"examples": [
 			{
 				"name": "Single less than 6",
@@ -570,6 +575,137 @@
 		]
 	},
 	{
+		"name": "Examples Multiple",
+		"examples": [
+			{
+				"name": "Single less than 6",
+				"style": { "width": "200px" },
+				"props": {
+					"options": [
+						{
+							"value": "Option 1"
+						},
+						{
+							"value": "Option 2"
+						},
+						{
+							"value": "Option 3"
+						},
+						{
+							"value": "Option 4"
+						},
+						{
+							"value": "Option 5"
+						}
+					],
+					"placeholder": "Placeholder",
+					"multiple": true
+				}
+			},
+			{
+				"name": "Option Groups",
+				"style": { "width": "200px" },
+				"props": {
+					"options": [
+						{
+							"label": "Option group 1",
+							"isGroup": true
+						},
+						{
+							"value": "G1:Option 1"
+						},
+						{
+							"value": "G1:Option 2"
+						},
+						{
+							"label": "Option group 2",
+							"isGroup": true
+						},
+						{
+							"value": "G2:Option 1"
+						},
+						{
+							"value": "G2:Option 2"
+						}
+					],
+					"placeholder": "Placeholder",
+					"multiple": true
+				}
+			},
+			{
+				"name": "Single more than 6",
+				"style": { "width": "200px" },
+				"props": {
+					"options": [
+						{
+							"value": "Option 1"
+						},
+						{
+							"value": "Option 2"
+						},
+						{
+							"value": "Option 3"
+						},
+						{
+							"value": "Option 4"
+						},
+						{
+							"value": "Option 5"
+						},
+						{
+							"value": "Option 6"
+						},
+						{
+							"value": "Option 7"
+						}
+					],
+					"placeholder": "Placeholder",
+					"multiple": true
+				}
+			},
+			{
+				"name": "Single more than 10",
+				"style": { "width": "200px" },
+				"props": {
+					"options": [
+						{
+							"value": "Option 1"
+						},
+						{
+							"value": "Option 2"
+						},
+						{
+							"value": "Option 3"
+						},
+						{
+							"value": "Option 4"
+						},
+						{
+							"value": "Option 5"
+						},
+						{
+							"value": "Option 6"
+						},
+						{
+							"value": "Option 7"
+						},
+						{
+							"value": "Option 8"
+						},
+						{
+							"value": "Option 9"
+						},
+						{
+							"value": "Option 10"
+						}
+					],
+					"placeholder": "Placeholder",
+					"multiple": true
+				}
+			}
+		]
+	},
+	{
 		"name": "Example tags",
 		"examples": [
 			{
@@ -592,7 +728,8 @@
 					],
 					"label": "Label",
 					"selectedType": "tag",
-					"tagWrapping": "grow"
+					"tagWrapping": "grow",
+					"multiple": true
 				}
 			},
 			{
@@ -615,7 +752,8 @@
 					],
 					"label": "Label",
 					"selectedType": "tag",
-					"tagWrapping": "overflow"
+					"tagWrapping": "overflow",
+					"multiple": true
 				}
 			},
 			{
@@ -639,7 +777,8 @@
 					"label": "Label",
 					"selectedType": "tag",
 					"tagWrapping": "grow",
-					"width": "auto"
+					"width": "auto",
+					"multiple": true
 				}
 			},
 			{
@@ -663,7 +802,103 @@
 					"label": "Label",
 					"selectedType": "tag",
 					"tagWrapping": "overflow",
-					"width": "auto"
+					"width": "auto",
+					"multiple": true
+				}
+			}
+		]
+	},
+	{
+		"name": "Example Shows",
+		"examples": [
+			{
+				"name": "Show No Result",
+				"style": { "width": "200px" },
+				"props": {
+					"options": [
+						{
+							"value": "Option 1"
+						},
+						{
+							"value": "Option 2"
+						}
+					],
+					"label": "Label",
+					"showNoResults": true,
+					"showSearch": true,
+					"noResultsText": "Nothing found",
+					"multiple": true
+				}
+			},
+			{
+				"name": "Show Loading and Show Search",
+				"style": { "width": "200px" },
+				"props": {
+					"options": [
+						{
+							"value": "Option 1"
+						},
+						{
+							"value": "Option 2"
+						}
+					],
+					"label": "Label",
+					"showLoading": true,
+					"showSearch": true,
+					"loadingText": "Loading",
+					"multiple": true
+				}
+			},
+			{
+				"name": "Show Loading",
+				"style": { "width": "200px" },
+				"props": {
+					"options": [
+						{
+							"value": "Option 1"
+						},
+						{
+							"value": "Option 2"
+						}
+					],
+					"label": "Label",
+					"showLoading": true,
+					"loadingText": "Loading",
+					"multiple": true
+				}
+			},
+			{
+				"name": "Show SelectAll",
+				"style": { "width": "200px" },
+				"props": {
+					"options": [
+						{
+							"value": "Option 1"
+						},
+						{
+							"value": "Option 2"
+						}
+					],
+					"label": "Label",
+					"showSelectAll": true,
+					"multiple": true
+				}
+			},
+			{
+				"name": "Hide ClearAll",
+				"style": { "width": "200px" },
+				"props": {
+					"options": [
+						{
+							"value": "Option 1"
+						},
+						{
+							"value": "Option 2"
+						}
+					],
+					"label": "Label",
+					"showClearSelection": false,
+					"multiple": true
 				}
 			}
 		]

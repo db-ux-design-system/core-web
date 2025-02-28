@@ -1,7 +1,6 @@
 @use "@db-ux/core-foundations/build/styles/variables";
 @use "@db-ux/core-foundations/build/styles/helpers";
 @use "../../styles/internal/form-components";
-@use "../../styles/multi-select-components";
 
 .db-multi-select-form-field {
 	--db-form-component-padding-inline-end: calc(

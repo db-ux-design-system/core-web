@@ -53,14 +53,6 @@ export const getComponents = (): Component[] => [
 		name: 'multi-select-dropdown'
 	},
 	{
-		name: 'multi-select-header',
-		config: {
-			react: {
-				propsPassingFilter: ['onSelectAll', 'onSearch']
-			}
-		}
-	},
-	{
 		name: 'multi-select',
 		config: {
 			vue: {

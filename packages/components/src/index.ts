@@ -37,7 +37,6 @@ export * from './components/stack';
 export * from "./components/multi-select";
 export * from "./components/multi-select-form-field";
 export * from "./components/multi-select-dropdown";
-export * from "./components/multi-select-header";
 export * from "./components/multi-select-list";
 export * from "./components/multi-select-list-item";
 

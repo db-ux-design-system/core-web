@@ -44,8 +44,6 @@ import { ChangeEvent } from '../../shared/model';
 import { DBMultiSelectList } from '../multi-select-list';
 import { DBMultiSelectListItem } from '../multi-select-list-item';
 import { DBMultiSelectDropdown } from '../multi-select-dropdown';
-import { DBMultiSelectHeader } from '../multi-select-header';
-import { DBNotification } from '../notification';
 import { DBInfotext } from '../infotext';
 import { DBTag } from '../tag';
 import { DBButton } from '../button';
@@ -54,6 +52,7 @@ import {
 	handleFrameworkEventAngular,
 	handleFrameworkEventVue
 } from '../../utils/form-components';
+import { DBInput } from '../input';
 
 useMetadata({
 	angular: {
@@ -76,8 +75,10 @@ export default function DBMultiSelect(props: DBMultiSelectProps) {
 	const _ref = useRef<HTMLDivElement | null>(null);
 	const detailsRef = useRef<HTMLDetailsElement | null>(null);
 	const selectRef = useRef<HTMLSelectElement | null>(null);
+	const selectAllRef = useRef<HTMLInputElement>(null);
 	// jscpd:ignore-start
 	const state: DBMultiSelectState = useStore<DBMultiSelectState>({
+		_name: undefined,
 		_id: undefined,
 		_messageId: undefined,
 		_validMessageId: undefined,
@@ -91,7 +92,7 @@ export default function DBMultiSelect(props: DBMultiSelectProps) {
 		_selectedLabels: '',
 		_voiceOverFallback: '',
 		_selectedOptions: [],
-		headerEnabled: false,
+		selectAllEnabled: false,
 		searchEnabled: false,
 		amountOptions: 0,
 		_values: [],
@@ -99,6 +100,14 @@ export default function DBMultiSelect(props: DBMultiSelectProps) {
 		_hasNoOptions: false,
 		_internalChangeTimestamp: -1,
 		_externalChangeTimestamp: -1,
+		getSelectAllLabel: () => {
+			if (!selectAllRef) return props.selectAllLabel ?? DEFAULT_LABEL;
+			if (selectAllRef.indeterminate || !state.selectAllChecked) {
+				return props.selectAllLabel ?? DEFAULT_LABEL;
+			} else {
+				return props.deSelectAllLabel ?? DEFAULT_LABEL;
+			}
+		},
 		getOptionLabel: (option: MultiSelectOptionType) => {
 			return option.label ?? option.value?.toString() ?? '';
 		},
@@ -137,9 +146,9 @@ export default function DBMultiSelect(props: DBMultiSelectProps) {
 					const activeElement = document.activeElement;
 					if (activeElement) {
 						// 1. we check if we are currently focusing a checkbox in the multiselect dropdown
-						const isCheckbox = activeElement.classList.contains(
-							'db-multi-select-list-item-checkbox'
-						);
+						const isCheckbox =
+							activeElement.getAttribute('type') === 'checkbox' ||
+							activeElement.getAttribute('type') === 'radio';
 
 						if (isCheckbox) {
 							const listElement = activeElement?.closest('li');
@@ -150,13 +159,24 @@ export default function DBMultiSelect(props: DBMultiSelectProps) {
 										?.focus();
 								} else {
 									// We are on the last checkbox we move to the top checkbox
-									state.handleFocusFirstDropdownCheckbox();
+									state.handleFocusFirstDropdownCheckbox(
+										activeElement
+									);
 								}
 							} else {
 								if (listElement?.previousElementSibling) {
 									listElement?.previousElementSibling
 										.querySelector('input')
 										?.focus();
+								} else if (
+									detailsRef.querySelector(
+										`input[type="checkbox"]`
+									) !== activeElement
+								) {
+									// We are on the top list checkbox but there is a select all checkbox as well
+									state.handleFocusFirstDropdownCheckbox(
+										activeElement
+									);
 								} else {
 									// We are on the top checkbox, we need to move to the search
 									// or to the last checkbox
@@ -169,7 +189,7 @@ export default function DBMultiSelect(props: DBMultiSelectProps) {
 										const checkboxList: HTMLInputElement[] =
 											Array.from(
 												detailsRef?.querySelectorAll(
-													`input[type="checkbox"]:not([class="db-multi-select-header-select-all"])`
+													`input[type="checkbox"],input[type="radio"]`
 												)
 											);
 										if (checkboxList.length) {
@@ -189,7 +209,9 @@ export default function DBMultiSelect(props: DBMultiSelectProps) {
 								state.handleSummaryFocus();
 							} else {
 								// 3. Otherwise, we need to move to the first checkbox
-								state.handleFocusFirstDropdownCheckbox();
+								state.handleFocusFirstDropdownCheckbox(
+									activeElement
+								);
 							}
 						}
 					}
@@ -208,87 +230,12 @@ export default function DBMultiSelect(props: DBMultiSelectProps) {
 				event.preventDefault();
 			}
 		},
-		handleArrowLeftRight: (event: any) => {
-			if (detailsRef && detailsRef?.open) {
-				if (document) {
-					const activeElement = document.activeElement;
-					if (activeElement) {
-						const headerElement = activeElement.closest(
-							'.db-multi-select-header'
-						);
-
-						if (headerElement) {
-							if (
-								activeElement.getAttribute('type') === 'search'
-							) {
-								// we are on a search input
-								if (event.key === 'ArrowRight') {
-									// focus close button
-									headerElement
-										.querySelector<HTMLButtonElement>(
-											'button'
-										)
-										?.focus();
-								} else if (event.key === 'ArrowLeft') {
-									// focus select all checkbox
-									headerElement
-										.querySelector<HTMLButtonElement>(
-											'input[type="checkbox"]'
-										)
-										?.focus();
-								}
-							} else if (activeElement.tagName === 'BUTTON') {
-								// we are on close button
-								if (event.key === 'ArrowRight') {
-									state.handleFocusFirstDropdownCheckbox();
-								} else if (event.key === 'ArrowLeft') {
-									// focus search
-									headerElement
-										.querySelector<HTMLButtonElement>(
-											'input[type="search"]'
-										)
-										?.focus();
-								}
-							} else if (
-								activeElement.getAttribute('type') ===
-								'checkbox'
-							) {
-								// we are on select all checkbox
-								if (event.key === 'ArrowRight') {
-									// focus search
-									headerElement
-										.querySelector<HTMLButtonElement>(
-											'input[type="search"]'
-										)
-										?.focus();
-								} else if (event.key === 'ArrowLeft') {
-									// back to summary and close
-									state.handleClose('close');
-									state.handleSummaryFocus();
-								}
-							}
-						} else {
-							// We are on a checkbox in the dropdown, move to the header close button
-							detailsRef
-								.querySelector('.db-multi-select-header')
-								?.querySelector('button')
-								?.focus();
-						}
-					}
-				}
-			}
-		},
 		handleKeyboardPress: (event: any) => {
 			if (event.key === 'Escape' && detailsRef && detailsRef?.open) {
 				state.handleClose('close');
 				state.handleSummaryFocus();
 			} else if (event.key === 'ArrowDown' || event.key === 'ArrowUp') {
 				state.handleArrowDownUp(event);
-			} else if (
-				event.key === 'ArrowRight' ||
-				event.key === 'ArrowLeft'
-			) {
-				state.handleArrowLeftRight(event);
 			}
 		},
 		// eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -316,12 +263,17 @@ export default function DBMultiSelect(props: DBMultiSelectProps) {
 		},
 		handleSelect: (value?: string) => {
 			if (value) {
-				if (state._values?.includes(value)) {
-					state._values = state._values?.filter(
-						(v: string) => v !== value
-					);
+				if (props.multiple) {
+					if (state._values?.includes(value)) {
+						state._values = state._values?.filter(
+							(v: string) => v !== value
+						);
+					} else {
+						state._values = [...(state._values || []), value];
+					}
 				} else {
-					state._values = [...(state._values || []), value];
+					state._values = [value];
+					state.handleClose('close');
 				}
 				state._internalChangeTimestamp = new Date().getTime();
 			}
@@ -345,30 +297,35 @@ export default function DBMultiSelect(props: DBMultiSelectProps) {
 		},
 		handleToggleOpen: () => {
 			// Add "popover" close to details summary
-			if (
-				props.enableClickOutside === undefined ||
-				props.enableClickOutside
-			) {
-				if (typeof document !== 'undefined') {
-					if (detailsRef?.open) {
-						state.handleRemoveDocumentEvents();
-					} else {
-						document.addEventListener('click', state.handleClose);
-					}
+			if (typeof document !== 'undefined') {
+				if (detailsRef?.open) {
+					state.handleRemoveDocumentEvents();
+				} else {
+					document.addEventListener('click', state.handleClose);
 				}
 			}
 			state.handleAutoPlacement();
 		},
-		handleFocusFirstDropdownCheckbox: () => {
+		handleFocusFirstDropdownCheckbox: (activeElement?: Element) => {
 			if (detailsRef) {
-				const checkbox = detailsRef.querySelector(
-					`input[type="checkbox"]:not([class="db-multi-select-header-select-all"])`
+				const checkboxes = Array.from(
+					detailsRef.querySelectorAll(
+						`input[type="checkbox"],input[type="radio"]`
+					)
 				);
-				if (checkbox) {
-					delay(() => {
-						// Takes some time until element can be focused
-						checkbox.focus();
-					}, 100);
+				if (checkboxes.length) {
+					const first = checkboxes.at(0);
+					const checkbox =
+						first === activeElement && checkboxes.length > 1
+							? checkboxes.at(1)
+							: first;
+
+					if (checkbox) {
+						delay(() => {
+							// Takes some time until element can be focused
+							(checkbox as HTMLInputElement).focus();
+						}, 100);
+					}
 				}
 			}
 		},
@@ -430,6 +387,10 @@ export default function DBMultiSelect(props: DBMultiSelectProps) {
 	});
 
 	onUpdate(() => {
+		state._name = props.name ?? state._id;
+	}, [props.name, state._id]);
+
+	onUpdate(() => {
 		if (state._id) {
 			const messageId = state._id + DEFAULT_MESSAGE_ID_SUFFIX;
 			state._labelId = state._id + DEFAULT_LABEL_ID_SUFFIX;
@@ -475,28 +436,22 @@ export default function DBMultiSelect(props: DBMultiSelectProps) {
 	}, [detailsRef]);
 
 	onUpdate(() => {
-		if (props.hasNoResults !== undefined) {
-			state._hasNoOptions = props.hasNoResults;
+		if (props.showNoResults !== undefined) {
+			state._hasNoOptions = props.showNoResults;
 		} else if (state._options) {
 			state._hasNoOptions = state._options.length === 0;
 		}
-	}, [props.hasNoResults, state._options]);
+	}, [props.showNoResults, state._options]);
 
 	onUpdate(() => {
-		// Enable header if
-		// 1. User set it
-		// 2. User disables click outside
-		// 3. more than 5 options
-		state.headerEnabled =
-			props.enableHeader ||
-			(props.enableClickOutside !== undefined &&
-				!props.enableClickOutside) ||
-			state.amountOptions > 5;
-	}, [props.enableClickOutside, props.enableHeader, state.amountOptions]);
+		state.selectAllEnabled = Boolean(
+			props.multiple && (props.showSelectAll || state.amountOptions > 5)
+		);
+	}, [props.showSelectAll, state.amountOptions, props.multiple]);
 
 	onUpdate(() => {
-		state.searchEnabled = props.enableSearch || state.amountOptions > 9;
-	}, [props.enableSearch, state.amountOptions]);
+		state.searchEnabled = props.showSearch || state.amountOptions > 9;
+	}, [props.showSearch, state.amountOptions]);
 
 	onUpdate(() => {
 		if (
@@ -637,6 +592,12 @@ export default function DBMultiSelect(props: DBMultiSelectProps) {
 		}
 	}, [state._selectedOptions]);
 
+	onUpdate(() => {
+		if (selectAllRef) {
+			selectAllRef.indeterminate = Boolean(state.selectAllIndeterminate);
+		}
+	}, [state.selectAllIndeterminate, selectAllRef]);
+
 	return (
 		<div
 			id={state._id}
@@ -648,16 +609,14 @@ export default function DBMultiSelect(props: DBMultiSelectProps) {
 			data-variant={props.variant}
 			data-required={props.required}
 			data-placement={props.placement}
-			data-selected-type={props.selectedType}
+			data-selected-type={props.multiple ? props.selectedType : 'text'}
 			data-wrapping={props.tagWrapping}
-			data-header-enabled={state.headerEnabled}
-			data-notification-enabled={state._hasNoOptions || props.isLoading}
 			data-hide-label={getHideProp(props.showLabel)}>
 			<select
 				id={state._selectId}
 				ref={selectRef}
 				disabled={props.disabled}
-				multiple
+				multiple={props.multiple}
 				value={state._values}
 				required={props.required}
 				/* Satisfy React */
@@ -735,70 +694,109 @@ export default function DBMultiSelect(props: DBMultiSelectProps) {
 						</Show>
 					</summary>
 					<DBMultiSelectDropdown>
-						<DBMultiSelectHeader
-							variant={state.searchEnabled ? 'search' : 'default'}
-							closeButtonId={props.closeButtonId}
-							closeButtonText={props.closeButtonText}
-							deSelectAllLabel={props.deSelectAllLabel}
-							searchLabel={props.searchLabel}
-							searchPlaceholder={props.searchPlaceholder}
-							selectAllLabel={props.selectAllLabel}
-							checked={state.selectAllChecked}
-							indeterminate={state.selectAllIndeterminate}
-							onSelectAll={() => {
-								state.handleSelectAll();
-							}}
-							onSearch={(
-								event: ChangeEvent<HTMLInputElement>
-							) => {
-								state.handleSearch(event);
-							}}
-							onClose={() => {
-								state.handleClose('close');
-							}}
-						/>
-						<DBNotification
-							closeable={false}
-							semantic={
-								state._hasNoOptions
-									? 'warning'
-									: 'informational'
+						<Show when={state.searchEnabled}>
+							<div>
+								<DBInput
+									type="search"
+									variant="floating"
+									label={props.searchLabel ?? DEFAULT_LABEL}
+									placeholder={props.searchPlaceholder}
+									onInput={(
+										event: ChangeEvent<HTMLInputElement>
+									) => state.handleSearch(event)}
+								/>
+							</div>
+						</Show>
+
+						<Show
+							when={state._hasNoOptions || props.showLoading}
+							else={
+								<>
+									<Show when={state.selectAllEnabled}>
+										<div>
+											<div className="db-checkbox db-multi-select-list-item">
+												<label
+													htmlFor={
+														state._id +
+														'-select-all'
+													}>
+													{/*We set a form name based on id for not sending checkboxes to a wrapping form */}
+													<input
+														ref={selectAllRef}
+														id={
+															state._id +
+															'-select-all'
+														}
+														form={state._id}
+														type="checkbox"
+														value="select-all"
+														checked={
+															state.selectAllChecked
+														}
+														onChange={() =>
+															state.handleSelectAll()
+														}
+													/>
+													{state.getSelectAllLabel()}
+												</label>
+											</div>
+										</div>
+									</Show>
+									<DBMultiSelectList>
+										<For each={state._options}>
+											{(
+												option: MultiSelectOptionType
+											) => (
+												<Fragment
+													key={state.getOptionKey?.(
+														option
+													)}>
+													<DBMultiSelectListItem
+														type={
+															props.multiple
+																? 'checkbox'
+																: 'radio'
+														}
+														groupLabel={
+															option.isGroup
+																? state.getOptionLabel(
+																		option
+																	)
+																: undefined
+														}
+														name={state._name}
+														checked={state.getOptionChecked(
+															option.value
+														)}
+														disabled={
+															option.disabled
+														}
+														value={option.value}
+														onChange={() => {
+															state.handleSelect(
+																option.value
+															);
+														}}>
+														{state.getOptionLabel(
+															option
+														)}
+													</DBMultiSelectListItem>
+												</Fragment>
+											)}
+										</For>
+									</DBMultiSelectList>
+								</>
 							}>
-							{(state._hasNoOptions
-								? props.noResultsText
-								: props.loadingText) ?? DEFAULT_MESSAGE}
-						</DBNotification>
-						<Show when={!(state._hasNoOptions ?? props.isLoading)}>
-							<DBMultiSelectList>
-								<For each={state._options}>
-									{(option: MultiSelectOptionType) => (
-										<Fragment
-											key={state.getOptionKey?.(option)}>
-											<DBMultiSelectListItem
-												groupLabel={
-													option.isGroup
-														? state.getOptionLabel(
-																option
-															)
-														: undefined
-												}
-												name={props.name}
-												checked={state.getOptionChecked(
-													option.value
-												)}
-												disabled={option.disabled}
-												value={option.value}
-												onChange={() => {
-													state.handleSelect(
-														option.value
-													);
-												}}>
-												{state.getOptionLabel(option)}
-											</DBMultiSelectListItem>
-										</Fragment>
-									)}
-								</For>
-							</DBMultiSelectList>
+							<DBInfotext
+								semantic={
+									state._hasNoOptions
+										? 'warning'
+										: 'informational'
+								}>
+								{(state._hasNoOptions
+									? props.noResultsText
+									: props.loadingText) ?? DEFAULT_MESSAGE}
+							</DBInfotext>
 						</Show>
 					</DBMultiSelectDropdown>
 				</Show>

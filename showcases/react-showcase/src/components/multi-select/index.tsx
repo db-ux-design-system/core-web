@@ -19,7 +19,15 @@ const getMultiSelect = ({
 	showLabel,
 	placement,
 	lineBreak,
-	info
+	info,
+	showLoading,
+	showNoResults,
+	showSelectAll,
+	showClearSelection,
+	showSearch,
+	noResultsText,
+	loadingText,
+	multiple
 }: DBMultiSelectProps & {
 	lineBreak?: boolean;
 	info?: boolean;
@@ -40,6 +48,12 @@ const getMultiSelect = ({
 
 	return (
 		<DBMultiSelect
+			showClearSelection={showClearSelection}
+			showSelectAll={showSelectAll}
+			showSearch={showSearch}
+			showLoading={showLoading}
+			showNoResults={showNoResults}
+			multiple={multiple}
 			label={children}
 			options={options}
 			variant={variant}
@@ -54,7 +68,8 @@ const getMultiSelect = ({
 			selectedType={selectedType}
 			tagWrapping={tagWrapping}
 			width={width}
-			noResultsText="No matching filter"
+			loadingText={loadingText}
+			noResultsText={noResultsText ?? 'No matching filter'}
 			values={mValue}
 			onSelect={(val) => {
 				console.log('React app onSelect', val);
