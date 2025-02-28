@@ -242,10 +242,10 @@ export const getComponents = (): Component[] => [
 		},
 		config: {
 			vue: {
-				vModel: [{ modelValue: 'checked', binding: ':checked' }]
+				vModel: [{ modelValue: 'value', binding: ':value' }]
 			},
 			angular: {
-				controlValueAccessor: 'checked'
+				controlValueAccessor: 'value'
 			}
 		}
 	},
