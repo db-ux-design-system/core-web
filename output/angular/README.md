@@ -53,6 +53,10 @@ The current default development config in `angular.json` doesn't use output hash
 As a solution add `
 "outputHashing": "media"` to `configurations/development` in`angular.json`.
 
+### DB Theme
+
+In case that you're building a website or application for Deutsche Bahn, you'll additionally have to install the DB Theme via the [`@db-ux/db-theme`](https://www.npmjs.com/package/@db-ux/db-theme) node package (even also available as an inner source node package, as described within that packages README).
+
 ## Usage
 
 ```ts app.component.ts
