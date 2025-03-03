@@ -1,5 +1,6 @@
 import {
 	ChangeEvent,
+	ClickEvent,
 	CloseEventState,
 	FormMessageProps,
 	FormProps,
@@ -177,9 +178,12 @@ export interface DBMultiSelectDefaultState {
 	_labelId?: string;
 	_placeholderId?: string;
 	_selectedLabels?: string;
+	_selectedLabelsId?: string;
+	_infoTextId?: string;
 	_externalChangeTimestamp?: number;
 	_internalChangeTimestamp?: number;
 	_name?: string;
+	getNativeSelectValue: () => string | string[] | undefined;
 	getOptionLabel: (option: MultiSelectOptionType) => string;
 	getOptionChecked: (value?: string) => boolean;
 	getOptionKey: (option: MultiSelectOptionType) => string;
@@ -187,7 +191,11 @@ export interface DBMultiSelectDefaultState {
 	selectAllEnabled: boolean;
 	searchEnabled: boolean;
 	amountOptions: number;
-	handleTagRemove: (option: MultiSelectOptionType) => void;
+	setDescById: (descId?: string) => void;
+	handleTagRemove: (
+		option: MultiSelectOptionType,
+		event?: ClickEvent<HTMLButtonElement>
+	) => void;
 	handleSummaryFocus: () => void;
 	handleSelect: (value?: string) => void;
 	handleSelectAll: () => void;

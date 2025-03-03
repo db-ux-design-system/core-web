@@ -37,10 +37,11 @@ import {
 	DEFAULT_REMOVE,
 	DEFAULT_SELECT_ID_SUFFIX,
 	DEFAULT_SELECTED,
+	DEFAULT_SELECTED_LABELS_ID_SUFFIX,
 	DEFAULT_VALID_MESSAGE,
 	DEFAULT_VALID_MESSAGE_ID_SUFFIX
 } from '../../shared/constants';
-import { ChangeEvent } from '../../shared/model';
+import { ChangeEvent, ClickEvent } from '../../shared/model';
 import { DBMultiSelectList } from '../multi-select-list';
 import { DBMultiSelectListItem } from '../multi-select-list-item';
 import { DBMultiSelectDropdown } from '../multi-select-dropdown';
@@ -86,10 +87,12 @@ export default function DBMultiSelect(props: DBMultiSelectProps) {
 		_selectId: undefined,
 		_labelId: undefined,
 		_placeholderId: undefined,
+		_infoTextId: undefined,
 		_validity: 'no-validation',
 		// Workaround for Vue output: TS for Vue would think that it could be a function, and by this we clarify that it's a string
 		_descByIds: '',
 		_selectedLabels: '',
+		_selectedLabelsId: undefined,
 		_voiceOverFallback: '',
 		_selectedOptions: [],
 		selectAllEnabled: false,
@@ -100,6 +103,29 @@ export default function DBMultiSelect(props: DBMultiSelectProps) {
 		_hasNoOptions: false,
 		_internalChangeTimestamp: -1,
 		_externalChangeTimestamp: -1,
+		getNativeSelectValue: () => {
+			if (state._values) {
+				if (props.multiple) {
+					return state._values;
+				} else {
+					return state._values.at(0);
+				}
+			}
+
+			return undefined;
+		},
+		setDescById: (descId?: string) => {
+			const descByIds: string[] = [];
+			if (descId) {
+				descByIds.push(descId);
+			}
+
+			if (state._selectedLabelsId) {
+				descByIds.push(state._selectedLabelsId);
+			}
+
+			state._descByIds = descByIds.join(' ');
+		},
 		getSelectAllLabel: () => {
 			if (!selectAllRef) return props.selectAllLabel ?? DEFAULT_LABEL;
 			if (selectAllRef.indeterminate || !state.selectAllChecked) {
@@ -126,7 +152,11 @@ export default function DBMultiSelect(props: DBMultiSelectProps) {
 				? props.removeTagsTexts.at(index)!
 				: `${DEFAULT_REMOVE} ${state._selectedOptions ? state.getOptionLabel(state._selectedOptions[index]) : ''}`;
 		},
-		handleTagRemove: (option: MultiSelectOptionType) => {
+		handleTagRemove: (
+			event: ClickEvent<HTMLButtonElement>,
+			option: MultiSelectOptionType
+		) => {
+			event.stopPropagation();
 			state.handleSelect(option.value);
 			state.handleSummaryFocus();
 		},
@@ -244,6 +274,7 @@ export default function DBMultiSelect(props: DBMultiSelectProps) {
 				if (event === 'close') {
 					detailsRef.open = false;
 					state.handleRemoveDocumentEvents();
+					state.handleSummaryFocus();
 				} else {
 					const target = event.target as HTMLElement;
 					const relatedTarget = event.relatedTarget as HTMLElement;
@@ -257,6 +288,7 @@ export default function DBMultiSelect(props: DBMultiSelectProps) {
 					) {
 						detailsRef.open = false;
 						state.handleRemoveDocumentEvents();
+						state.handleSummaryFocus();
 					}
 				}
 			}
@@ -380,6 +412,8 @@ export default function DBMultiSelect(props: DBMultiSelectProps) {
 		state._selectId = mId + DEFAULT_SELECT_ID_SUFFIX;
 		state._labelId = mId + DEFAULT_LABEL_ID_SUFFIX;
 		state._placeholderId = mId + DEFAULT_PLACEHOLDER_ID_SUFFIX;
+		state._selectedLabelsId = mId + '-selected-labels';
+		state._infoTextId = mId + '-info';
 	});
 
 	onUnMount(() => {
@@ -401,7 +435,9 @@ export default function DBMultiSelect(props: DBMultiSelectProps) {
 			state._placeholderId = state._id + DEFAULT_PLACEHOLDER_ID_SUFFIX;
 
 			if (stringPropVisible(props.message, props.showMessage)) {
-				state._descByIds = messageId;
+				state.setDescById(messageId);
+			} else {
+				state.setDescById();
 			}
 		}
 	}, [state._id]);
@@ -498,7 +534,7 @@ export default function DBMultiSelect(props: DBMultiSelectProps) {
 		/* For a11y reasons we need to map the correct message with the select */
 		if (!selectRef?.validity.valid || props.validation === 'invalid') {
 			state._validity = 'invalid';
-			state._descByIds = state._invalidMessageId;
+			state.setDescById(state._invalidMessageId);
 			if (hasVoiceOver()) {
 				state._voiceOverFallback =
 					props.invalidMessage ??
@@ -511,7 +547,7 @@ export default function DBMultiSelect(props: DBMultiSelectProps) {
 			(selectRef?.validity.valid && props.required)
 		) {
 			state._validity = 'valid';
-			state._descByIds = state._validMessageId;
+			state.setDescById(state._validMessageId);
 			if (hasVoiceOver()) {
 				state._voiceOverFallback =
 					props.validMessage ?? DEFAULT_VALID_MESSAGE;
@@ -519,10 +555,10 @@ export default function DBMultiSelect(props: DBMultiSelectProps) {
 			}
 		} else if (props.message) {
 			state._validity = 'no-validation';
-			state._descByIds = state._messageId;
+			state.setDescById(state._messageId);
 		} else {
 			state._validity = 'no-validation';
-			state._descByIds = state._placeholderId;
+			state.setDescById(state._placeholderId);
 		}
 	}, [state._values]);
 
@@ -566,20 +602,16 @@ export default function DBMultiSelect(props: DBMultiSelectProps) {
 
 	onUpdate(() => {
 		if (state._selectedOptions?.length) {
-			if (props.selectedType !== 'tag') {
-				if (props.selectedType === 'amount') {
-					state._selectedLabels = props.amountText
-						? props.amountText
-						: `${state._selectedOptions?.length} ${DEFAULT_SELECTED}`;
-				} else {
-					state._selectedLabels = state._selectedOptions
-						?.map((option: MultiSelectOptionType) =>
-							state.getOptionLabel(option)
-						)
-						.join(', ');
-				}
+			if (props.selectedType === 'amount') {
+				state._selectedLabels = props.amountText
+					? props.amountText
+					: `${state._selectedOptions?.length} ${DEFAULT_SELECTED}`;
 			} else {
-				state._selectedLabels = '';
+				state._selectedLabels = state._selectedOptions
+					?.map((option: MultiSelectOptionType) =>
+						state.getOptionLabel(option)
+					)
+					.join(', ');
 			}
 		} else {
 			state._selectedLabels = '';
@@ -617,7 +649,7 @@ export default function DBMultiSelect(props: DBMultiSelectProps) {
 				ref={selectRef}
 				disabled={props.disabled}
 				multiple={props.multiple}
-				value={state._values}
+				value={state.getNativeSelectValue()}
 				required={props.required}
 				/* Satisfy React */
 				onChange={() => {}}
@@ -645,13 +677,17 @@ export default function DBMultiSelect(props: DBMultiSelectProps) {
 				{props.children}
 				<Show when={props.options}>
 					{/* We use this because we cannot wrap summary for angular... */}
-					<summary class="db-multi-select-form-field">
-						<Show
-							when={
-								props.selectedType !== 'tag' &&
-								state._selectedLabels?.length
-							}>
-							<span>{state._selectedLabels}</span>
+					<summary
+						class="db-multi-select-form-field"
+						aria-labelledby={state._labelId}>
+						<Show when={state._selectedLabels?.length}>
+							<span
+								data-visually-hidden={
+									props.selectedType === 'tag'
+								}
+								id={state._selectedLabelsId}>
+								{state._selectedLabels}
+							</span>
 						</Show>
 						<Show when={props.selectedType === 'tag'}>
 							<div>
@@ -661,11 +697,20 @@ export default function DBMultiSelect(props: DBMultiSelectProps) {
 										index: number
 									) => (
 										<DBTag
+											key={
+												'tag-' +
+												state.getOptionKey(option)
+											}
 											removeButton={state.getTagRemoveLabel(
 												index
 											)}
-											onRemove={() => {
-												state.handleTagRemove(option);
+											onRemove={(
+												event: ClickEvent<HTMLButtonElement>
+											) => {
+												state.handleTagRemove(
+													option,
+													event
+												);
 											}}
 											emphasis="strong"
 											behavior="removable">
@@ -674,23 +719,6 @@ export default function DBMultiSelect(props: DBMultiSelectProps) {
 									)}
 								</For>
 							</div>
-						</Show>
-						<Show
-							when={
-								props.showClearSelection &&
-								state._values?.length
-							}>
-							<DBButton
-								icon="cross"
-								variant="ghost"
-								noText
-								size="small"
-								onClick={() => state.handleClearAll()}>
-								{props.clearSelectionLabel}
-								<DBTooltip placement="top">
-									{props.clearSelectionLabel}
-								</DBTooltip>
-							</DBButton>
 						</Show>
 					</summary>
 					<DBMultiSelectDropdown>
@@ -701,6 +729,11 @@ export default function DBMultiSelect(props: DBMultiSelectProps) {
 									variant="floating"
 									label={props.searchLabel ?? DEFAULT_LABEL}
 									placeholder={props.searchPlaceholder}
+									ariaDescribedBy={
+										state._hasNoOptions || props.showLoading
+											? state._infoTextId
+											: undefined
+									}
 									onInput={(
 										event: ChangeEvent<HTMLInputElement>
 									) => state.handleSearch(event)}
@@ -788,6 +821,7 @@ export default function DBMultiSelect(props: DBMultiSelectProps) {
 								</>
 							}>
 							<DBInfotext
+								id={state._infoTextId}
 								icon={
 									state._hasNoOptions
 										? undefined
@@ -807,7 +841,21 @@ export default function DBMultiSelect(props: DBMultiSelectProps) {
 				</Show>
 			</details>
 
-			<span id={state._placeholderId}>
+			<Show when={props.showClearSelection && state._values?.length}>
+				<DBButton
+					icon="cross"
+					variant="ghost"
+					noText
+					size="small"
+					onClick={() => state.handleClearAll()}>
+					{props.clearSelectionLabel}
+					<DBTooltip placement="top">
+						{props.clearSelectionLabel}
+					</DBTooltip>
+				</DBButton>
+			</Show>
+
+			<span aria-hidden id={state._placeholderId}>
 				{props.placeholder ?? props.label}
 			</span>
 			<Show when={props.message}>

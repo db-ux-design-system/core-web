@@ -3,12 +3,6 @@
 @use "../../styles/internal/form-components";
 
 .db-multi-select-form-field {
-	--db-form-component-padding-inline-end: calc(
-		#{form-components.$font-size-height} +
-			#{variables.$db-spacing-fixed-md} +
-			#{variables.$db-spacing-fixed-xs} / 2
-	);
-
 	&:is(summary) {
 		list-style: none;
 		display: flex;
@@ -25,15 +19,6 @@
 		> div {
 			display: flex;
 			gap: variables.$db-spacing-fixed-sm;
-		}
-
-		> button {
-			@include helpers.divider("right", "after");
-
-			&::after {
-				position: absolute;
-				inset-inline-end: calc(-1 * #{variables.$db-spacing-fixed-xs});
-			}
 		}
 	}
 }

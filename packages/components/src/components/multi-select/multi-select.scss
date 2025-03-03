@@ -45,7 +45,10 @@
 }
 
 .db-multi-select {
-	--db-form-component-padding-inline-end: #{select-components.$select-icon-padding};
+	--db-form-component-padding-inline-end: calc(
+		#{select-components.$select-icon-padding} + #{variables.$db-sizing-sm} +
+			#{variables.$db-spacing-fixed-xs}
+	);
 
 	@extend %select-icon;
 	@extend %select-placeholder;
@@ -79,6 +82,29 @@
 	&:has(.db-multi-select-form-field > :empty) {
 		[id$="-placeholder"] {
 			display: block;
+		}
+	}
+
+	> .db-button[data-icon="cross"][data-variant="ghost"] {
+		--db-tooltip-parent-position: absolute;
+
+		/* default block-start for icon minus (button-size - icon-size)/2 */
+		inset-block-start: calc(
+			#{form-components.$icon-inline-block-start} -
+				(
+					#{variables.$db-sizing-sm} -
+						#{form-components.$icon-size-sm}
+				) /
+				2
+		);
+		/* padding form field + gap + icon size */
+		inset-inline-end: select-components.$select-icon-padding;
+
+		@include helpers.divider("right", "after");
+
+		&::after {
+			position: absolute;
+			inset-inline-end: calc(-1 * #{variables.$db-spacing-fixed-xs});
 		}
 	}
 
@@ -125,6 +151,7 @@
 		}
 	}
 
+	&[data-variant="floating"],
 	&[data-hide-label="true"] {
 		--db-label-visible-height: 0;
 		--db-label-visible-spacing: 1;

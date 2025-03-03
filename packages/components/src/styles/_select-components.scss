@@ -16,7 +16,7 @@ $has-before-padding: calc(
 );
 
 $select-icon-padding: calc(
-	#{form-components.$font-size-height} + #{variables.$db-spacing-fixed-sm} + #{variables.$db-spacing-fixed-xs}
+	#{form-components.$font-size-height} + #{variables.$db-spacing-fixed-sm} + #{variables.$db-spacing-fixed-sm}
 );
 
 %select-placeholder {

@@ -61,7 +61,7 @@ export default function DBMultiSelectListItem(
 	// jscpd:ignore-end
 
 	onMount(() => {
-		state._id = props.id ?? 'multi-select-list-item-${uuid()}';
+		state._id = props.id ?? `multi-select-list-item-${uuid()}`;
 	});
 
 	return (
@@ -78,7 +78,7 @@ export default function DBMultiSelectListItem(
 			<Show when={props.groupLabel}>
 				<span>{props.groupLabel}</span>
 			</Show>
-			<Show when={!props.groupLabel}>
+			<Show when={!props.groupLabel && state._id}>
 				<label htmlFor={state._id + props.value}>
 					<input
 						class="db-multi-select-list-item-checkbox"

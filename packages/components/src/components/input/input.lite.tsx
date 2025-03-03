@@ -80,7 +80,6 @@ export default function DBInput(props: DBInputProps) {
 			}
 
 			useTarget({
-
 				angular: () => handleFrameworkEventAngular(this, event),
 				vue: () => handleFrameworkEventVue(() => {}, event)
 			});
@@ -223,7 +222,7 @@ export default function DBInput(props: DBInputProps) {
 					state.handleFocus(event)
 				}
 				list={props.dataList && state._dataListId}
-				aria-describedby={state._descByIds}
+				aria-describedby={props.ariaDescribedBy ?? state._descByIds}
 			/>
 			<Show when={props.dataList}>
 				<datalist id={state._dataListId}>

@@ -11,6 +11,7 @@ import {
 import { DBTagProps, DBTagState } from './model';
 import { cls, getBooleanAsString, getHideProp } from '../../utils';
 import { DEFAULT_REMOVE } from '../../shared/constants';
+import { ClickEvent } from '../../shared/model';
 
 useMetadata({});
 useDefaultProps<DBTagProps>({});
@@ -19,9 +20,9 @@ export default function DBTag(props: DBTagProps) {
 	const _ref = useRef<HTMLDivElement | null>(null);
 	const state = useStore<DBTagState>({
 		initialized: false,
-		handleRemove: () => {
+		handleRemove: (event?: ClickEvent<HTMLButtonElement>) => {
 			if (props.onRemove) {
-				props.onRemove();
+				props.onRemove(event);
 			}
 		},
 		getRemoveButtonText: () => {
@@ -77,7 +78,7 @@ export default function DBTag(props: DBTagProps) {
 				{/* we aren't using DBButton here because of angular would wrap it in custom component */}
 				<button
 					class="db-button db-tab-remove-button"
-					onClick={() => state.handleRemove()}
+					onClick={(event) => state.handleRemove(event)}
 					data-icon="cross"
 					data-size="small"
 					data-no-text="true"

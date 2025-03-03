@@ -1,4 +1,5 @@
 import {
+	ClickEvent,
 	ContentSlotProps,
 	GlobalProps,
 	GlobalState,
@@ -63,7 +64,7 @@ export type DBTagProps = DBTagDefaultProps &
 
 export type DBTagDefaultState = {
 	getRemoveButtonText: () => string;
-	handleRemove: () => void;
+	handleRemove: (event?: ClickEvent<HTMLButtonElement>) => void;
 };
 
 export type DBTagState = DBTagDefaultState & GlobalState & InitializedState;
