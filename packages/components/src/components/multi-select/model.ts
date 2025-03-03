@@ -14,6 +14,7 @@ import {
 	WidthProps
 } from '../../shared/model';
 import { DBMultiSelectFormFieldDefaultProps } from '../multi-select-form-field/model';
+import { ay } from "vitest/dist/chunks/reporters.QZ837uWx";
 
 export type MultiSelectOptionType = {
 	/**
@@ -194,7 +195,7 @@ export interface DBMultiSelectDefaultState {
 	setDescById: (descId?: string) => void;
 	handleTagRemove: (
 		option: MultiSelectOptionType,
-		event?: ClickEvent<HTMLButtonElement>
+		event?: any
 	) => void;
 	handleSummaryFocus: () => void;
 	handleSelect: (value?: string) => void;

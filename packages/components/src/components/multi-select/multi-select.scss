@@ -80,11 +80,14 @@
 
 	&:has(.db-multi-select-form-field:empty),
 	&:has(.db-multi-select-form-field > :empty) {
+		--db-form-component-padding-inline-end: #{select-components.$select-icon-padding};
 		[id$="-placeholder"] {
 			display: block;
 		}
 	}
 
+	/* custom elements workaround */
+	> db-button > .db-button[data-icon="cross"][data-variant="ghost"],
 	> .db-button[data-icon="cross"][data-variant="ghost"] {
 		--db-tooltip-parent-position: absolute;
 
@@ -158,9 +161,6 @@
 	}
 
 	&[data-variant="floating"] {
-		> label {
-			padding-inline-end: variables.$db-sizing-sm; // size of clear all button
-		}
 
 		.db-multi-select-form-field {
 			> span {

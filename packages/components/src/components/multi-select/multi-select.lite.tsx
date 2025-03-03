@@ -152,8 +152,8 @@ export default function DBMultiSelect(props: DBMultiSelectProps) {
 				: `${DEFAULT_REMOVE} ${state._selectedOptions ? state.getOptionLabel(state._selectedOptions[index]) : ''}`;
 		},
 		handleTagRemove: (
-			event: ClickEvent<HTMLButtonElement>,
-			option: MultiSelectOptionType
+			option: MultiSelectOptionType,
+			event: any
 		) => {
 			event.stopPropagation();
 			state.handleSelect(option.value);
