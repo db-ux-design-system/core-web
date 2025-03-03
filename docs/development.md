@@ -2,13 +2,15 @@
 
 ### Start developing
 
+You'll need to insert the environmental variables as described within the package [`@db-ux/db-theme`](https://www.npmjs.com/package/@db-ux/db-theme) first of all.
+
+Afterwards run the following commands:
+
 ```shell
 npm install
 npm run build
 npm run start
 ```
-
-Afterwards you'll need to insert the environmental variables as described within the package [`@db-ux/db-theme`](https://www.npmjs.com/package/@db-ux/db-theme).
 
 Please mind the [conventions for git commits](/docs/conventions.md#user-content-git-commits-conventions).
 
