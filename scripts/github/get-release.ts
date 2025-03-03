@@ -1,4 +1,13 @@
 #!/usr/bin/env node
+
+// SPDX-FileCopyrightText: 2025 DB Systel GmbH
+//
+// SPDX-License-Identifier: Apache-2.0
+
+// SPDX-FileCopyrightText: 2025 DB Systel GmbH
+//
+// SPDX-License-Identifier: Apache-2.0
+
 const getRelease = () => {
 	/* eslint-disable @typescript-eslint/naming-convention */
 	const GITHUB_REF = process.env.GITHUB_REF;

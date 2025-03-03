@@ -1,3 +1,9 @@
+<!--
+SPDX-FileCopyrightText: 2025 DB Systel GmbH
+
+SPDX-License-Identifier: Apache-2.0
+-->
+
 <!-- markdownlint-configure-file { "MD013": false, "MD041":false } -->
 <!-- markdownlint-disable MD033 MD010 -->
 
@@ -12,6 +18,7 @@
 [![XO code style](https://img.shields.io/badge/code_style-XO-5ed9c7.svg)](https://github.com/xojs/xo)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)
 [![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-2.0-4baaaa.svg)](CODE-OF-CONDUCT.md)
+[![REUSE Compliance Check](https://github.com/db-ui/mono/actions/workflows/99-reuse-compliance-check.yml/badge.svg)](https://github.com/db-ui/mono/actions/workflows/99-reuse-compliance-check.yml) Creates copyright & license annotations with [REUSE](https://git.fsfe.org/reuse/tool)
 
 DB UX Design System Version 3 provides robust HTML UI components, reusable visual styles, and powerful tooling to help developers,
 designers, and content authors build, maintain, and scale best of class digital experiences.
@@ -149,4 +156,17 @@ our [Contributor Covenant Code of Conduct](https://github.com/db-ux-design-syste
 
 ## License
 
-This project is licensed under [Apache-2.0](LICENSE), Copyright 2024 by DB Systel GmbH.
+The DB source code is licensed under the Apache License, Version 2.0, January 2004;
+you may not use this file except in compliance with the License. You may obtain a copy
+of the Apache License at <https://apache.org/licenses/LICENSE-2.0>. The DB source code
+does not include any DB specific design assets like fonts, icons, trademarks, brandings, etc.
+
+[Apache 2.0 license](LICENSES/Apache-2.0.txt)
+
+All Deutsche Bahn AG (hereinafter “DB”) specific design assets like fonts, icons,
+trademarks, brandings, etc. (hereinafter “DB Designs”) are licensed under the following
+license agreement (the “DB Designs License”):
+
+[DB Designs License](LICENSES/LicenseRef-DB-Designs-License.txt)
+
+Furthermore we're using a font and icon font that have been release by third party in a [CC0 1.0 license](LICENSES/CC0-1.0.txt) and we're providing our test snapshots by this very same [CC0 1.0 license](LICENSES/CC0-1.0.txt).

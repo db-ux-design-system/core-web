@@ -1,3 +1,9 @@
+<!--
+SPDX-FileCopyrightText: 2025 DB Systel GmbH
+
+SPDX-License-Identifier: Apache-2.0
+-->
+
 ## Vue
 
 Load SCSS globally in a `index.scss` file and import it in your `main.ts`/`main.js` file in your app:
