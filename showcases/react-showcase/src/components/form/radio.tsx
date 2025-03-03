@@ -1,4 +1,4 @@
-import { DBRadio } from '@db-ux/react-core-components';
+import { DBRadio } from '@db-ux/react-core-components/src';
 import { useState } from 'react';
 import FormWrapper from './form-wrapper';
 
