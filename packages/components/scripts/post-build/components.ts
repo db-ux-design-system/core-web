@@ -18,6 +18,7 @@ export type Component = {
 		};
 		angular?: {
 			controlValueAccessor?: string;
+			controlValueAccessorRequired?: boolean;
 			directives?: { name: string; ngContentName?: string }[];
 			initValues?: { key: string; value: any }[];
 		};
@@ -245,7 +246,8 @@ export const getComponents = (): Component[] => [
 				vModel: [{ modelValue: 'value', binding: ':value' }]
 			},
 			angular: {
-				controlValueAccessor: 'value'
+				controlValueAccessor: 'value',
+				controlValueAccessorRequired: true
 			}
 		}
 	},

@@ -12,7 +12,7 @@ const vModel = ref("");
 		<DBRadio
 			name="radio-0"
 			value="radio-0"
-			@change="plain = $event.target.checked"
+			@change="plain = $event.target.value"
 		>
 			Plain
 		</DBRadio>
