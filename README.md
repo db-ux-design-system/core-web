@@ -106,17 +106,7 @@ Check our migration docs for breaking changes:
 
 ## How to start develop / contribute
 
-```shell
-npm install
-npm run build
-npm run start
-```
-
-Please mind the [conventions for git commits](/docs/conventions.adoc#user-content-git-commits-conventions).
-
-### Versions
-
-All versions in all `package.json` files are set to `0.0.0`, we change those during release process in CI/CD.
+If you're working as a developer on the DB UX Design System or would like to contribute, please have a look at the relevant [development documentation](docs/development.md).
 
 <!-- markdownlint-disable MD026 -->
 
@@ -146,10 +136,6 @@ in case of using them.
 
 For any usage outside of Deutsche Bahn websites and applications you aren't allowed to use any Deutsche Bahn brand and
 design assets as well as protected characteristics and trademarks, that for not including the DB Theme.
-
-## Development
-
-If you're working as a developer on the DB UX Design System, please have a look at the relevant [documentation](docs/development.md).
 
 ## Contributions
 
