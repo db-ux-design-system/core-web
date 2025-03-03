@@ -58,5 +58,10 @@
 		"name": "textarea",
 		"status": "DONE",
 		"date": "2024-12-12"
+	},
+	{
+		"name": "tag",
+		"status": "DONE",
+		"date": "2025-02-28"
 	}
 ]
