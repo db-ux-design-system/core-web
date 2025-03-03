@@ -27,6 +27,7 @@
     "build-outputs": "npm run build-outputs --workspace=scripts",
     "build-showcases": "npm run build-showcases --workspace=scripts",
     "clean": "git clean -dfx --exclude=.env",
+    "commit:updated-snapshots": "git diff --name-only --diff-filter=M | xargs git add && git commit -m 'test: updated snapshots'",
     "dev": "npm run dev --workspace=scripts",
     "generate:component": "npm run generate:component --workspace=@db-ux/core-components",
     "lint": "npm-run-all -p lint:*",
