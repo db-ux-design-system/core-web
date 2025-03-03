@@ -271,7 +271,7 @@ export type FormProps = {
 	/**
 	 * Overwrites auto handling for aria-describedby.
 	 */
-	ariaDescribedBy: string;
+	ariaDescribedBy?: string;
 	/**
 	 * The disabled attribute can be set to keep a user from clicking on the form element.
 	 */
