@@ -4,6 +4,8 @@ name: On-Pull-Request opened
 on:
   pull_request:
     types: [opened]
+  merge_group:
+    branches: ["main"]
 
 permissions:
   pull-requests: write
