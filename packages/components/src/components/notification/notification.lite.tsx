@@ -14,7 +14,9 @@ import { ClickEvent } from '../../shared/model';
 
 useMetadata({});
 
-useDefaultProps<DBNotificationProps>({});
+useDefaultProps<DBNotificationProps>({
+	closeButtonText: DEFAULT_CLOSE_BUTTON
+});
 
 export default function DBNotification(props: DBNotificationProps) {
 	const _ref = useRef<HTMLDivElement | null>(null);
@@ -65,7 +67,7 @@ export default function DBNotification(props: DBNotificationProps) {
 					onClick={(event: ClickEvent<HTMLButtonElement>) =>
 						state.handleClose(event)
 					}>
-					{props.closeButtonText ?? DEFAULT_CLOSE_BUTTON}
+					{props.closeButtonText}
 				</DBButton>
 			</Show>
 		</article>

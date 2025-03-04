@@ -16,7 +16,9 @@ import { isEventTargetNavigationItem } from '../../utils/navigation';
 
 useMetadata({});
 
-useDefaultProps<DBHeaderProps>({});
+useDefaultProps<DBHeaderProps>({
+	burgerMenuLabel: DEFAULT_BURGER_MENU
+});
 
 export default function DBHeader(props: DBHeaderProps) {
 	const _ref = useRef<HTMLDivElement | null>(null);
@@ -112,7 +114,7 @@ export default function DBHeader(props: DBHeaderProps) {
 							noText
 							variant="ghost"
 							onClick={() => state.toggle()}>
-							{props.burgerMenuLabel ?? DEFAULT_BURGER_MENU}
+							{props.burgerMenuLabel}
 						</DBButton>
 					</div>
 					<div class="db-header-secondary-action">

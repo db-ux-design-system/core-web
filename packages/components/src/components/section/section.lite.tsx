@@ -10,7 +10,9 @@ import { cls, uuid } from '../../utils';
 import { DEFAULT_ID } from '../../shared/constants';
 
 useMetadata({});
-useDefaultProps<DBSectionProps>({});
+useDefaultProps<DBSectionProps>({
+	spacing: 'medium'
+});
 
 export default function DBSection(props: DBSectionProps) {
 	const _ref = useRef<HTMLDivElement | null>(null);
@@ -29,7 +31,7 @@ export default function DBSection(props: DBSectionProps) {
 			ref={_ref}
 			id={state._id}
 			class={cls('db-section', props.className)}
-			data-spacing={props.spacing || 'medium'}
+			data-spacing={props.spacing}
 			data-width={props.width}>
 			{props.children}
 		</section>

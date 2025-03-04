@@ -20,7 +20,9 @@ import { ClickEvent } from '../../shared/model';
 
 useMetadata({});
 
-useDefaultProps<DBNavigationItemProps>({});
+useDefaultProps<DBNavigationItemProps>({
+	backButtonText: DEFAULT_BACK
+});
 
 export default function DBNavigationItem(props: DBNavigationItemProps) {
 	const _ref = useRef<HTMLLIElement | null>(null);
@@ -147,7 +149,7 @@ export default function DBNavigationItem(props: DBNavigationItemProps) {
 								onClick={(
 									event: ClickEvent<HTMLButtonElement>
 								) => state.handleBackClick(event)}>
-								{props.backButtonText ?? DEFAULT_BACK}
+								{props.backButtonText}
 							</DBButton>
 						</div>
 					</Show>

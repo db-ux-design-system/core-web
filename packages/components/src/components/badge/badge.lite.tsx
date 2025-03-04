@@ -13,7 +13,9 @@ import { DEFAULT_LABEL } from '../../shared/constants';
 
 useMetadata({});
 
-useDefaultProps<DBBadgeProps>({});
+useDefaultProps<DBBadgeProps>({
+	label: DEFAULT_LABEL
+});
 
 export default function DBBadge(props: DBBadgeProps) {
 	const _ref = useRef<HTMLSpanElement | null>(null);
@@ -51,10 +53,7 @@ export default function DBBadge(props: DBBadgeProps) {
 			data-size={props.size}
 			data-emphasis={props.emphasis}
 			data-placement={props.placement}
-			data-label={
-				props.placement?.startsWith('corner') &&
-				(props.label ?? DEFAULT_LABEL)
-			}>
+			data-label={props.placement?.startsWith('corner') && props.label}>
 			<Show when={props.text} else={props.children}>
 				{props.text}
 			</Show>

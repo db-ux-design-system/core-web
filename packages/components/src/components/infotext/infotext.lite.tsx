@@ -10,7 +10,9 @@ import { cls, getHideProp } from '../../utils';
 
 useMetadata({});
 
-useDefaultProps<DBInfotextProps>({});
+useDefaultProps<DBInfotextProps>({
+	showIcon: true
+});
 
 export default function DBInfotext(props: DBInfotextProps) {
 	const _ref = useRef<HTMLSpanElement | null>(null);
@@ -27,7 +29,7 @@ export default function DBInfotext(props: DBInfotextProps) {
 			data-icon={props.icon}
 			data-semantic={props.semantic}
 			data-size={props.size}
-			data-hide-icon-before={getHideProp(props.showIcon ?? true)}>
+			data-hide-icon-before={getHideProp(props.showIcon)}>
 			<Show when={props.text} else={props.children}>
 				{props.text}
 			</Show>

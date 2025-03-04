@@ -11,7 +11,9 @@ import { ClickEvent } from '../../shared/model';
 
 useMetadata({});
 
-useDefaultProps<DBLinkProps>({});
+useDefaultProps<DBLinkProps>({
+	showIcon: true
+});
 
 export default function DBLink(props: DBLinkProps) {
 	const _ref = useRef<HTMLAnchorElement | null>(null);
@@ -42,7 +44,7 @@ export default function DBLink(props: DBLinkProps) {
 			aria-label={props.label}
 			aria-current={props.current}
 			data-size={props.size}
-			data-hide-icon-after={getHideProp(props.showIcon ?? true)}
+			data-hide-icon-after={getHideProp(props.showIcon)}
 			data-variant={props.variant}
 			data-content={props.content || 'internal'}
 			onClick={(event: ClickEvent<HTMLAnchorElement>) =>

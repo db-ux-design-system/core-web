@@ -12,7 +12,10 @@ import { ClickEvent } from '../../shared/model';
 import { DEFAULT_ID } from '../../shared/constants';
 
 useMetadata({});
-useDefaultProps<DBTooltipProps>({});
+useDefaultProps<DBTooltipProps>({
+	animation: true,
+	showArrow: true
+});
 
 export default function DBTooltip(props: DBTooltipProps) {
 	const _ref = useRef<HTMLDivElement | null>(null);
@@ -67,10 +70,10 @@ export default function DBTooltip(props: DBTooltipProps) {
 			class={cls('db-tooltip', props.className)}
 			id={state._id}
 			data-emphasis={props.emphasis}
-			data-animation={getBooleanAsString(props.animation ?? true)}
+			data-animation={getBooleanAsString(props.animation)}
 			data-delay={props.delay}
 			data-width={props.width}
-			data-show-arrow={getBooleanAsString(props.showArrow ?? true)}
+			data-show-arrow={getBooleanAsString(props.showArrow)}
 			data-placement={props.placement}
 			// TODO: clarify this attribute and we need to set it statically
 			data-gap="true"

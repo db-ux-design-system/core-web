@@ -11,7 +11,7 @@ import { DEFAULT_ICON } from '../../shared/constants';
 
 useMetadata({});
 
-useDefaultProps<DBBrandProps>({});
+useDefaultProps<DBBrandProps>({ icon: DEFAULT_ICON });
 
 export default function DBBrand(props: DBBrandProps) {
 	const _ref = useRef<HTMLDivElement | null>(null);
@@ -22,7 +22,7 @@ export default function DBBrand(props: DBBrandProps) {
 	return (
 		<div
 			ref={_ref}
-			data-icon={props.hideLogo ? 'none' : (props.icon ?? DEFAULT_ICON)}
+			data-icon={props.hideLogo ? 'none' : props.icon}
 			data-hide-icon={getHideProp(props.showIcon)}
 			id={props.id}
 			class={cls('db-brand', props.className)}>

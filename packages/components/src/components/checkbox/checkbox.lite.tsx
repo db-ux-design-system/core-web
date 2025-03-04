@@ -37,7 +37,9 @@ useMetadata({
 	}
 });
 
-useDefaultProps<DBCheckboxProps>({});
+useDefaultProps<DBCheckboxProps>({
+	validMessage: DEFAULT_VALID_MESSAGE
+});
 
 export default function DBCheckbox(props: DBCheckboxProps) {
 	const _ref = useRef<HTMLInputElement | null>(null);
@@ -216,7 +218,7 @@ export default function DBCheckbox(props: DBCheckboxProps) {
 				id={state._validMessageId}
 				size="small"
 				semantic="successful">
-				{props.validMessage ?? DEFAULT_VALID_MESSAGE}
+				{props.validMessage}
 			</DBInfotext>
 
 			<DBInfotext

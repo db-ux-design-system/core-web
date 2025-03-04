@@ -14,7 +14,7 @@ import { cls, delay } from '../../utils';
 
 useMetadata({});
 
-useDefaultProps<DBDrawerProps>({});
+useDefaultProps<DBDrawerProps>({ closeButtonText: DEFAULT_CLOSE_BUTTON });
 
 export default function DBDrawer(props: DBDrawerProps) {
 	const _ref = useRef<HTMLDialogElement | null>(null);
@@ -105,7 +105,7 @@ export default function DBDrawer(props: DBDrawerProps) {
 						variant="ghost"
 						noText
 						onClick={() => state.handleClose('close')}>
-						{props.closeButtonText ?? DEFAULT_CLOSE_BUTTON}
+						{props.closeButtonText}
 					</DBButton>
 				</header>
 				<div class="db-drawer-content">{props.children}</div>
