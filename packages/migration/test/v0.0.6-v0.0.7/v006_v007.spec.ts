@@ -12,8 +12,6 @@ describe('v006_v007', () => {
 
 		expect(result).not.undefined;
 
-		expect(
-			(result as ReplaceResult[]).filter((res) => res.hasChanged)
-		).toHaveLength(1);
+		expect(result!.filter((res) => res.hasChanged)).toHaveLength(1);
 	});
 });
