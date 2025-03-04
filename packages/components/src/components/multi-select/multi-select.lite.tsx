@@ -151,10 +151,7 @@ export default function DBMultiSelect(props: DBMultiSelectProps) {
 				? props.removeTagsTexts.at(index)!
 				: `${DEFAULT_REMOVE} ${state._selectedOptions ? state.getOptionLabel(state._selectedOptions[index]) : ''}`;
 		},
-		handleTagRemove: (
-			option: MultiSelectOptionType,
-			event: any
-		) => {
+		handleTagRemove: (option: MultiSelectOptionType, event: any) => {
 			event.stopPropagation();
 			state.handleSelect(option.value);
 			state.handleSummaryFocus();
@@ -720,7 +717,7 @@ export default function DBMultiSelect(props: DBMultiSelectProps) {
 							</div>
 						</Show>
 					</summary>
-					<DBMultiSelectDropdown>
+					<DBMultiSelectDropdown width={props.dropdownWidth}>
 						<Show when={state.searchEnabled}>
 							<div>
 								<DBInput

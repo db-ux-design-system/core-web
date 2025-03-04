@@ -14,7 +14,8 @@ import {
 	WidthProps
 } from '../../shared/model';
 import { DBMultiSelectFormFieldDefaultProps } from '../multi-select-form-field/model';
-import { ay } from "vitest/dist/chunks/reporters.QZ837uWx";
+import { ay } from 'vitest/dist/chunks/reporters.QZ837uWx';
+import { MultiSelectDropdownWidthType } from '../multi-select-dropdown/model';
 
 export type MultiSelectOptionType = {
 	/**
@@ -65,6 +66,13 @@ export interface DBMultiSelectDefaultProps {
 	 * Deselect all checkbox label
 	 */
 	deSelectAllLabel?: string;
+
+	/**
+	 * Changes the behavior of the dropdown with.
+	 * Default: fixed 328px
+	 * Auto: Based on the size of the form-field
+	 */
+	dropdownWidth?: MultiSelectDropdownWidthType | 'string';
 
 	/**
 	 * Dropdown - hint if data has to be loaded
@@ -193,10 +201,7 @@ export interface DBMultiSelectDefaultState {
 	searchEnabled: boolean;
 	amountOptions: number;
 	setDescById: (descId?: string) => void;
-	handleTagRemove: (
-		option: MultiSelectOptionType,
-		event?: any
-	) => void;
+	handleTagRemove: (option: MultiSelectOptionType, event?: any) => void;
 	handleSummaryFocus: () => void;
 	handleSelect: (value?: string) => void;
 	handleSelectAll: () => void;

@@ -73,7 +73,7 @@ export default function DBMultiSelectListItem(
 				'db-radio': props.type !== 'checkbox' && !props.groupLabel
 			})}
 			data-icon-after={
-				props.type !== 'checkbox' && props.checked ? 'check' : undefined
+				props.type !== 'checkbox' && props.checked ? 'check' : "x_placeholder"
 			}>
 			<Show when={props.groupLabel}>
 				<span>{props.groupLabel}</span>

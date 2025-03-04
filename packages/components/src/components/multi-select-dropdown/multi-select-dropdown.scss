@@ -11,15 +11,23 @@
 	position: absolute;
 	z-index: 2;
 	box-shadow: variables.$db-elevation-md;
-	inline-size: 100%;
-	min-inline-size: min(
-		calc(100vw - 2 * #{variables.$db-spacing-fixed-md}),
-		calc(
-			#{screen-sizes.$db-breakpoint-xs} - 2 *
-				#{variables.$db-spacing-fixed-sm}
-		)
-	);
+	min-inline-size: variables.$db-sizing-xl;
 	max-inline-size: calc(100vw - 2 * #{variables.$db-spacing-fixed-sm});
+	max-block-size: calc(100vh - 2 * #{variables.$db-spacing-fixed-sm});
+
+	&:not([data-width]),
+	&[data-width="fixed"] {
+		/* TODO: Use a global variable */
+		inline-size: 328px;
+	}
+
+	@include screen-sizes.screen("sm", "max") {
+		position: fixed;
+		z-index: 9999;
+		inset: 0;
+		block-size: fit-content;
+		margin: auto;
+	}
 
 	> div {
 		@include helpers.divider("bottom", "after");
@@ -41,7 +49,8 @@
 		&[data-icon="circular_arrows"] {
 			&::before {
 				@media screen and (prefers-reduced-motion: no-preference) {
-					animation: rotate 1.5s linear 0s infinite normal none running;
+					animation: rotate 1.5s linear 0s infinite normal none
+						running;
 				}
 			}
 		}

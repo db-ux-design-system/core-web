@@ -27,7 +27,8 @@ const getMultiSelect = ({
 	showSearch,
 	noResultsText,
 	loadingText,
-	multiple
+	multiple,
+	dropdownWidth
 }: DBMultiSelectProps & {
 	lineBreak?: boolean;
 	info?: boolean;
@@ -48,6 +49,7 @@ const getMultiSelect = ({
 
 	return (
 		<DBMultiSelect
+			dropdownWidth={dropdownWidth}
 			showClearSelection={showClearSelection}
 			showSelectAll={showSelectAll}
 			showSearch={showSearch}

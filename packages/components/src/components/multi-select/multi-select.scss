@@ -1,25 +1,31 @@
 @use "@db-ux/core-foundations/build/styles/variables";
 @use "@db-ux/core-foundations/build/styles/colors";
 @use "@db-ux/core-foundations/build/styles/helpers";
+@use "@db-ux/core-foundations/build/styles/screen-sizes";
 @use "../../styles/internal/form-components";
 @use "../../styles/internal/component";
 @use "../../styles/select-components";
 @use "../../styles/internal/scrollbar";
+@use "../../styles/dialog-init";
 
 %multi-select-placement-top {
-	inset-block-end: 100%;
-	margin-block-start: variables.$db-spacing-fixed-md;
+	@include screen-sizes.screen("sm") {
+		inset-block-end: 100%;
+		margin-block-start: variables.$db-spacing-fixed-md;
+	}
 }
 
 %multi-select-placement-vertical {
-	&[data-placement$="end"] {
-		.db-multi-select-dropdown:not([data-outside-vx="right"]) {
+	@include screen-sizes.screen("sm") {
+		&[data-placement$="end"] {
+			.db-multi-select-dropdown:not([data-outside-vx="right"]) {
+				inset-inline-end: 0;
+			}
+		}
+
+		.db-multi-select-dropdown[data-outside-vx="right"] {
 			inset-inline-end: 0;
 		}
-	}
-
-	.db-multi-select-dropdown[data-outside-vx="right"] {
-		inset-inline-end: 0;
 	}
 }
 
@@ -28,8 +34,10 @@
 	&[data-placement^="bottom"] {
 		@extend %multi-select-placement-vertical;
 		.db-multi-select-dropdown:not([data-outside-vy="bottom"]) {
-			inset-block-start: 100%;
-			margin-block-end: variables.$db-spacing-fixed-md;
+			@include screen-sizes.screen("sm") {
+				inset-block-start: 100%;
+				margin-block-end: variables.$db-spacing-fixed-md;
+			}
 		}
 		.db-multi-select-dropdown[data-outside-vy="bottom"] {
 			@extend %multi-select-placement-top;
@@ -55,16 +63,19 @@
 	@extend %multi-select-placement;
 
 	position: relative;
-
 	min-inline-size: variables.$db-sizing-xl;
 
 	&:not([data-width]),
 	&[data-width="full"] {
 		&,
-		.db-multi-select-dropdown,
 		.db-multi-select-form-field {
 			inline-size: 100%;
-			max-inline-size: 100%;
+		}
+
+		.db-multi-select-dropdown {
+			&[data-width="auto"] {
+				inline-size: 100%;
+			}
 		}
 	}
 
@@ -154,6 +165,20 @@
 		}
 	}
 
+	> details[open] {
+		> summary{
+		@include screen-sizes.screen("sm", "max") {
+			&::before {
+				position: fixed;
+				z-index: 9998;
+				inset: 0;
+				content: "";
+				background-color: dialog-init.$backdrop-color;
+				opacity: dialog-init.$backdrop-opacity-weak;
+			}
+		}}
+	}
+
 	&[data-variant="floating"],
 	&[data-hide-label="true"] {
 		--db-label-visible-height: 0;
@@ -161,7 +186,6 @@
 	}
 
 	&[data-variant="floating"] {
-
 		.db-multi-select-form-field {
 			> span {
 				padding-block-start: form-components.$floating-label-padding-block-start;

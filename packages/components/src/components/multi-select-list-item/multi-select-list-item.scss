@@ -2,6 +2,8 @@
 @use "@db-ux/core-foundations/build/styles/colors";
 @use "@db-ux/core-foundations/build/styles/helpers";
 @use "@db-ux/core-foundations/build/styles/fonts";
+@use "@db-ux/core-foundations/build/styles/screen-sizes";
+@use "../../styles/internal/form-components";
 
 .db-multi-select-list-item {
 	display: flex;
@@ -11,6 +13,20 @@
 	background-color: colors.$db-adaptive-bg-basic-transparent-full-default;
 	border-radius: variables.$db-border-radius-xs;
 	box-sizing: border-box;
+
+	@include screen-sizes.screen("sm", "max") {
+		&:not(:has(input[type="radio"]:checked)) {
+			--db-icon-after: "circle";
+		}
+
+		&:has(input[type="radio"]:checked) {
+			--db-icon-after: "check_circle";
+		}
+	}
+
+	&:has(:not(input:checked)) {
+		--db-icon-after: "none";
+	}
 
 	&:has(input[type="radio"]:checked) {
 		--db-overwrite-cursor: default;
@@ -23,12 +39,14 @@
 				var(--db-multi-select-list-item-group-padding, 0)
 		);
 
-		@include helpers.hover {
-			background-color: colors.$db-adaptive-bg-basic-transparent-hovered;
-		}
+		&:not(:has(input[type="radio"]:checked)) {
+			@include helpers.hover {
+				background-color: colors.$db-adaptive-bg-basic-transparent-hovered;
+			}
 
-		@include helpers.active {
-			background-color: colors.$db-adaptive-bg-basic-transparent-pressed;
+			@include helpers.active {
+				background-color: colors.$db-adaptive-bg-basic-transparent-pressed;
+			}
 		}
 	}
 

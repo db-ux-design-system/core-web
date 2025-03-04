@@ -13,7 +13,9 @@ import { cls } from '../../utils';
 
 useMetadata({});
 
-useDefaultProps<DBMultiSelectDropdownProps>({});
+useDefaultProps<DBMultiSelectDropdownProps>({
+	width: 'fixed'
+});
 
 export default function DBMultiSelectDropdown(
 	props: DBMultiSelectDropdownProps
@@ -29,7 +31,8 @@ export default function DBMultiSelectDropdown(
 			ref={_ref}
 			id={props.id}
 			class={cls('db-multi-select-dropdown db-card', props.className)}
-			data-spacing="none">
+			data-spacing="none"
+			data-width={props.width}>
 			{props.children}
 		</article>
 	);

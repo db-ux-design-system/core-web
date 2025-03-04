@@ -238,6 +238,45 @@
 		]
 	},
 	{
+		"name": "Dropdown Width",
+		"examples": [
+			{
+				"name": "(Default) Full",
+				"style": { "width": "400px" },
+				"props": {
+					"options": [
+						{
+							"value": "Option 1"
+						},
+						{
+							"value": "Option 2"
+						}
+					],
+					"label": "Full",
+					"width": "full",
+					"dropdownWidth": "auto"
+				}
+			},
+			{
+				"name": "Auto",
+				"style": { "width": "400px" },
+				"props": {
+					"options": [
+						{
+							"value": "1"
+						},
+						{
+							"value": "2"
+						}
+					],
+					"label": "Auto",
+					"width": "auto",
+					"dropdownWidth": "auto"
+				}
+			}
+		]
+	},
+	{
 		"name": "Placement",
 		"examples": [
 			{
