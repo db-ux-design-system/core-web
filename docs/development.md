@@ -2,6 +2,10 @@
 
 ### Start developing
 
+You'll need to insert the environmental variables as described within the package [`@db-ux/db-theme`](https://www.npmjs.com/package/@db-ux/db-theme) first of all.
+
+Afterwards run the following commands:
+
 ```shell
 npm install
 npm run build

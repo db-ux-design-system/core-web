@@ -45,7 +45,7 @@
     "@db-ux/core-foundations": "*"
   },
   "devDependencies": {
-    "@builder.io/eslint-plugin-mitosis": "0.0.16",
+    "@builder.io/eslint-plugin-mitosis": "0.0.17",
     "@builder.io/mitosis": "0.6.6",
     "@builder.io/mitosis-cli": "0.6.6",
     "cpr": "3.0.1",
