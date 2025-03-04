@@ -89,7 +89,7 @@ that we're gaining out of the community. So please support us in any way possibl
 
 ### From DB UI Core or DB UI Elements to DB UX Design System Core
 
-We're providing a detailed migration for each component next to the documentation of each component:
+We're providing a detailed migration for each component next to the documentation of each component, like e.g.
 <https://db-ux-design-system.github.io/core-web/review/main/components/action/button/migration>
 
 ### In between DB UX Design System Core versions
