@@ -81,6 +81,7 @@ $interactive-selectors: "label, button:not(.db-tab-remove-button), a";
 @mixin get-tag-colors($htmlTag: "tag") {
 	@if ($htmlTag == "badge") {
 		@extend %set-adaptive-weak-badge;
+		// stylelint-disable-next-line at-rule-empty-line-before
 	} @else {
 		@extend %set-adaptive-weak-tag;
 	}
