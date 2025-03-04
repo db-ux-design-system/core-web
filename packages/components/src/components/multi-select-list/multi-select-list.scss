@@ -21,5 +21,9 @@
 		all: unset;
 		display: flex;
 		flex-direction: column;
+
+		&:has(span) {
+			--db-multi-select-list-item-group-padding: 1;
+		}
 	}
 }

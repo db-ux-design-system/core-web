@@ -17,6 +17,12 @@
 	}
 
 	&:has(> label) {
+		padding-inline-start: calc(
+			#{variables.$db-spacing-fixed-sm} +
+				#{variables.$db-spacing-fixed-sm} *
+				var(--db-multi-select-list-item-group-padding, 0)
+		);
+
 		@include helpers.hover {
 			background-color: colors.$db-adaptive-bg-basic-transparent-hovered;
 		}
@@ -30,16 +36,13 @@
 		@extend %focus-placeholder;
 	}
 
-	&:has(span) {
-		padding-block: variables.$db-spacing-fixed-md
-			variables.$db-spacing-fixed-xs;
-	}
-
 	span {
 		@extend %db-overwrite-font-size-md;
+		color: colors.$db-adaptive-on-bg-basic-emphasis-80-default;
+	}
 
-		font-weight: 700;
-		color: colors.$db-adaptive-on-bg-basic-emphasis-90-default;
+	&:has(> span) {
+		@include helpers.divider("bottom");
 	}
 
 	> label {
