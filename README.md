@@ -41,7 +41,7 @@ We even also provide some [examples of integrations](https://github.com/db-ux-de
 
 ## Components
 
-We maintain a [status overview](https://github.com/orgs/db-ui/projects/4/views/3) for all components.
+We maintain a [status overview](https://github.com/orgs/db-ux-design-system/projects/4/views/1) for all components.
 
 ## Core principals
 
