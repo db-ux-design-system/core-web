@@ -84,7 +84,7 @@ export type SpacingProps = {
 	/**
 	 * The spacing attribute changes the padding of the component.
 	 */
-	spacing?: SpacingType;
+	spacing?: SpacingType | string;
 };
 export const MarginList = ['medium', 'small', 'large', 'none'] as const;
 export type MarginType = (typeof MarginList)[number];
@@ -171,7 +171,7 @@ export type WidthProps = {
 	/**
 	 * Width of the component. Auto width based on children size, full width based on parent elements width.
 	 */
-	width?: WidthType;
+	width?: WidthType | string;
 };
 
 export const MaxWidthList = ['full', 'medium', 'large', 'small'] as const;
@@ -542,7 +542,7 @@ export type AlignmentProps = {
 	/**
 	 * Define the content alignment in full width
 	 */
-	alignment?: AlignmentType;
+	alignment?: AlignmentType | string;
 };
 
 export type ActiveProps = {
