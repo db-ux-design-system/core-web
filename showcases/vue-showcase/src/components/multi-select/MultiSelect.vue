@@ -24,6 +24,19 @@ import { DBMultiSelect, DBInfotext } from "../../../../../output/vue/src";
 
 			<DBMultiSelect
 				v-if="!exampleProps?.lineBreak && !exampleProps?.info"
+				:icon="exampleProps?.icon"
+				:showIcon="exampleProps?.showIcon"
+				:dropdownWidth="exampleProps?.dropdownWidth"
+				:showClearSelection="exampleProps?.showClearSelection"
+				:showSelectAll="exampleProps?.showSelectAll"
+				:showSearch="exampleProps?.showSearch"
+				:showLoading="exampleProps?.showLoading"
+				:showNoResults="exampleProps?.showNoResults"
+				:multiple="exampleProps?.multiple"
+				:loadingText="exampleProps?.loadingText"
+				:noResultsText="
+					exampleProps?.noResultsText ?? 'No matching filter'
+				"
 				:label="exampleName"
 				:options="exampleProps?.options"
 				:variant="exampleProps?.variant"
@@ -37,7 +50,6 @@ import { DBMultiSelect, DBInfotext } from "../../../../../output/vue/src";
 				searchLabel="Search"
 				:selectedType="exampleProps?.selectedType"
 				:width="exampleProps?.width"
-				noResultsText="No matching filter"
 				:values="exampleProps?.mValue"
 				:on-select="(event) => console.log(event)"
 			/>

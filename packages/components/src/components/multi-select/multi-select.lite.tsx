@@ -528,6 +528,7 @@ export default function DBMultiSelect(props: DBMultiSelectProps) {
 	}, [props.values]);
 
 	onUpdate(() => {
+		// TODO: Check for Vue
 		/* For a11y reasons we need to map the correct message with the select */
 		if (!selectRef?.validity.valid || props.validation === 'invalid') {
 			state._validity = 'invalid';
