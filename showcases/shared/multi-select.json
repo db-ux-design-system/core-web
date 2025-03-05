@@ -162,6 +162,50 @@
 			}
 		]
 	},
+
+	{
+		"name": "Show Icon",
+		"examples": [
+			{
+				"name": "(Default) False",
+				"style": {
+					"width": "200px"
+				},
+				"props": {
+					"options": [
+						{
+							"value": "Option 1"
+						},
+						{
+							"value": "Option 2"
+						}
+					],
+					"label": "Label",
+					"icon": "x_placeholder",
+					"showIcon": false
+				}
+			},
+			{
+				"name": "True",
+				"style": {
+					"width": "200px"
+				},
+				"props": {
+					"options": [
+						{
+							"value": "Option 1"
+						},
+						{
+							"value": "Option 2"
+						}
+					],
+					"label": "Label",
+					"icon": "x_placeholder",
+					"showIcon": true
+				}
+			}
+		]
+	},
 	{
 		"name": "Requirement",
 		"examples": [

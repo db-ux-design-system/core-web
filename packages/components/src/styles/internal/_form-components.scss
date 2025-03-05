@@ -38,13 +38,8 @@ $floating-label-padding-block-start: calc(
 );
 
 $icon-inline-block-start: calc(
-	#{variables.$db-sizing-md} / 2 - #{variables.$db-spacing-fixed-xs} *
-		var(--db-label-visible-spacing, 0) + #{$label-size-height-xs} *
-		var(--db-label-visible-height, 1) - #{variables.$db-border-height-3xs}
-);
-
-$floating-icon-inline-block-start: calc(
-	#{variables.$db-sizing-md} / 2 - #{$font-size-height} / 2
+	(#{variables.$db-spacing-fixed-xs} + #{$label-size-height-xs}) *
+		var(--db-label-visible-above, 1) + #{variables.$db-sizing-md} / 2
 );
 
 $input-types:
@@ -103,12 +98,6 @@ $check-border-size: min(#{variables.$db-border-height-2xs}, 2px);
 					#{variables.$db-spacing-fixed-sm}
 				);
 			pointer-events: none;
-		}
-
-		// icons
-		&::after,
-		&::before {
-			inset-block-start: $floating-icon-inline-block-start;
 		}
 
 		[id$="-placeholder"] {
@@ -314,6 +303,11 @@ $input-valid-types:
 		flex-direction: column;
 	}
 
+	&[data-variant="floating"],
+	&[data-hide-label="true"] {
+		--db-label-visible-above: 0;
+	}
+
 	@include set-floating-label-overwrites($selector);
 	@include set-required-label($selector);
 
@@ -403,6 +397,7 @@ $input-valid-types:
 		pointer-events: none;
 		inset-block-start: $icon-inline-block-start;
 		color: colors.$db-adaptive-on-bg-basic-emphasis-100-default;
+		transform: translateY(-50%);
 	}
 
 	&::before {

@@ -9,11 +9,11 @@ import {
 	GlobalState,
 	IconProps,
 	PlacementVerticalType,
-	PopoverState,
+	PopoverState, ShowIconProps,
 	ShowLabelProps,
 	ValidationType,
 	WidthProps
-} from '../../shared/model';
+} from "../../shared/model";
 import { DBMultiSelectFormFieldDefaultProps } from '../multi-select-form-field/model';
 import { ay } from 'vitest/dist/chunks/reporters.QZ837uWx';
 import { MultiSelectDropdownWidthType } from '../multi-select-dropdown/model';
@@ -174,6 +174,8 @@ export type DBMultiSelectProps = GlobalProps &
 	DBMultiSelectDefaultProps &
 	DBMultiSelectFormFieldDefaultProps &
 	WidthProps &
+	IconProps &
+	ShowIconProps &
 	ShowLabelProps;
 
 export interface DBMultiSelectDefaultState {

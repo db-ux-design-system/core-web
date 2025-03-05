@@ -639,7 +639,9 @@ export default function DBMultiSelect(props: DBMultiSelectProps) {
 			data-required={props.required}
 			data-placement={props.placement}
 			data-selected-type={props.multiple ? props.selectedType : 'text'}
-			data-hide-label={getHideProp(props.showLabel)}>
+			data-hide-label={getHideProp(props.showLabel)}
+			data-icon={props.icon}
+			data-hide-icon={getHideProp(props.showIcon)}>
 			<select
 				id={state._selectId}
 				ref={selectRef}

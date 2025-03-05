@@ -5,7 +5,7 @@
 %select-icon {
 	@extend %dropdown-icon;
 
-	&[data-icon] {
+	&[data-icon]:not([data-hide-icon="true"]) {
 		--db-form-has-before: 1;
 	}
 }
@@ -16,7 +16,8 @@ $has-before-padding: calc(
 );
 
 $select-icon-padding: calc(
-	#{form-components.$font-size-height} + #{variables.$db-spacing-fixed-sm} + #{variables.$db-spacing-fixed-sm}
+	#{form-components.$font-size-height} + #{variables.$db-spacing-fixed-sm} +
+		#{variables.$db-spacing-fixed-xs}
 );
 
 %select-placeholder {
@@ -30,8 +31,10 @@ $select-icon-padding: calc(
 		inset-block-start: calc(
 			0% +
 				(
-					#{form-components.$label-size-height-xs} + #{variables.$db-spacing-fixed-xs}
-				) * var(--db-label-visible-height, 1) + var(--db-base-font-size) /
+					#{form-components.$label-size-height-xs} +
+						#{variables.$db-spacing-fixed-xs}
+				) *
+				var(--db-label-visible-above, 1) + var(--db-base-font-size) /
 				2 - var(--db-density-functional, 0) * 1px
 		);
 		inset-inline: $has-before-padding;
@@ -40,8 +43,8 @@ $select-icon-padding: calc(
 		white-space: nowrap;
 		text-overflow: ellipsis;
 		inline-size: calc(
-			100% - var(--db-form-component-padding-inline-end) - #{$has-before-padding} -
-				#{variables.$db-spacing-fixed-sm}
+			100% - var(--db-form-component-padding-inline-end) -
+				#{$has-before-padding} - #{variables.$db-spacing-fixed-sm}
 		);
 	}
 }

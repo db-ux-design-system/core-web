@@ -14,7 +14,6 @@ const getMultiSelect = ({
 	options,
 	placeholder,
 	selectedType,
-	tagWrapping,
 	width,
 	showLabel,
 	placement,
@@ -28,7 +27,9 @@ const getMultiSelect = ({
 	noResultsText,
 	loadingText,
 	multiple,
-	dropdownWidth
+	dropdownWidth,
+	icon,
+	showIcon
 }: DBMultiSelectProps & {
 	lineBreak?: boolean;
 	info?: boolean;
@@ -49,6 +50,8 @@ const getMultiSelect = ({
 
 	return (
 		<DBMultiSelect
+			icon={icon}
+			showIcon={showIcon}
 			dropdownWidth={dropdownWidth}
 			showClearSelection={showClearSelection}
 			showSelectAll={showSelectAll}
