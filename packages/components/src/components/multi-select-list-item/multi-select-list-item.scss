@@ -2,6 +2,7 @@
 @use "@db-ux/core-foundations/build/styles/colors";
 @use "@db-ux/core-foundations/build/styles/helpers";
 @use "@db-ux/core-foundations/build/styles/fonts";
+@use "@db-ux/core-foundations/build/styles/icons";
 @use "@db-ux/core-foundations/build/styles/screen-sizes";
 @use "../../styles/internal/form-components";
 
@@ -14,6 +15,15 @@
 	border-radius: variables.$db-border-radius-xs;
 	box-sizing: border-box;
 
+	&:has(input[type="radio"]:checked) {
+		--db-overwrite-cursor: default;
+		--db-icon-after: "check";
+	}
+
+	&:not(:has(input[type="radio"]:checked)) {
+		--db-icon-after: "none";
+	}
+
 	@include screen-sizes.screen("sm", "max") {
 		&:not(:has(input[type="radio"]:checked)) {
 			--db-icon-after: "circle";
@@ -22,14 +32,6 @@
 		&:has(input[type="radio"]:checked) {
 			--db-icon-after: "check_circle";
 		}
-	}
-
-	&:has(:not(input:checked)) {
-		--db-icon-after: "none";
-	}
-
-	&:has(input[type="radio"]:checked) {
-		--db-overwrite-cursor: default;
 	}
 
 	&:has(> label) {
