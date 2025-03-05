@@ -44,10 +44,7 @@ useMetadata({
 		nativeAttributes: ['disabled', 'required', 'value']
 	}
 });
-useDefaultProps<DBSelectProps>({
-	label: DEFAULT_LABEL,
-	validMessage: DEFAULT_VALID_MESSAGE
-});
+useDefaultProps<DBSelectProps>({});
 
 export default function DBSelect(props: DBSelectProps) {
 	const _ref = useRef<HTMLSelectElement | null>(null);
@@ -181,7 +178,7 @@ export default function DBSelect(props: DBSelectProps) {
 			data-hide-label={getHideProp(props.showLabel)}
 			data-icon={props.icon}
 			data-hide-icon={getHideProp(props.showIcon)}>
-			<label htmlFor={state._id}>{props.label}</label>
+			<label htmlFor={state._id}>{props.label ?? DEFAULT_LABEL}</label>
 			<select
 				aria-invalid={props.validation === 'invalid'}
 				data-custom-validity={props.validation}
@@ -269,7 +266,7 @@ export default function DBSelect(props: DBSelectProps) {
 				id={state._validMessageId}
 				size="small"
 				semantic="successful">
-				{props.validMessage}
+				{props.validMessage ?? DEFAULT_VALID_MESSAGE}
 			</DBInfotext>
 
 			<DBInfotext

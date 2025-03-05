@@ -12,9 +12,7 @@ import { DBTagProps, DBTagState } from './model';
 import { cls, getBooleanAsString, getHideProp } from '../../utils';
 
 useMetadata({});
-useDefaultProps<DBTagProps>({
-	showCheckState: true
-});
+useDefaultProps<DBTagProps>({});
 
 export default function DBTag(props: DBTagProps) {
 	const _ref = useRef<HTMLDivElement | null>(null);
@@ -62,7 +60,9 @@ export default function DBTag(props: DBTagProps) {
 			data-semantic={props.semantic}
 			data-emphasis={props.emphasis}
 			data-icon={props.icon}
-			data-show-check-state={getBooleanAsString(props.showCheckState)}
+			data-show-check-state={getBooleanAsString(
+				props.showCheckState ?? true
+			)}
 			data-hide-icon={getHideProp(props.showIcon)}
 			data-no-text={getBooleanAsString(props.noText)}
 			data-overflow={getBooleanAsString(props.overflow)}>

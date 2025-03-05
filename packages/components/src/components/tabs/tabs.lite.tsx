@@ -16,10 +16,7 @@ import DBTabItem from '../tab-item/tab-item.lite';
 import DBTabPanel from '../tab-panel/tab-panel.lite';
 
 useMetadata({});
-useDefaultProps<DBTabsProps>({
-	alignment: 'start',
-	width: 'auto'
-});
+useDefaultProps<DBTabsProps>({});
 
 export default function DBTabs(props: DBTabsProps) {
 	const _ref = useRef<HTMLDivElement | null>(null);
@@ -205,8 +202,8 @@ export default function DBTabs(props: DBTabsProps) {
 			class={cls('db-tabs', props.className)}
 			data-orientation={props.orientation}
 			data-scroll-behavior={props.behavior}
-			data-alignment={props.alignment}
-			data-width={props.width}
+			data-alignment={props.alignment ?? 'start'}
+			data-width={props.width ?? 'auto'}
 			onInput={(event: any) => state.handleChange(event)}>
 			<Show when={state.showScrollLeft}>
 				<DBButton

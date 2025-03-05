@@ -47,10 +47,7 @@ useMetadata({
 	}
 });
 
-useDefaultProps<DBInputProps>({
-	validMessage: DEFAULT_VALID_MESSAGE,
-	label: DEFAULT_LABEL
-});
+useDefaultProps<DBInputProps>({});
 
 export default function DBInput(props: DBInputProps) {
 	const _ref = useRef<HTMLInputElement | null>(null);
@@ -187,7 +184,7 @@ export default function DBInput(props: DBInputProps) {
 			data-icon={props.icon}
 			data-icon-after={props.iconAfter}
 			data-hide-icon-after={getHideProp(props.showIcon)}>
-			<label htmlFor={state._id}>{props.label}</label>
+			<label htmlFor={state._id}>{props.label ?? DEFAULT_LABEL}</label>
 			<input
 				aria-invalid={props.validation === 'invalid'}
 				data-custom-validity={props.validation}
@@ -258,7 +255,7 @@ export default function DBInput(props: DBInputProps) {
 				id={state._validMessageId}
 				size="small"
 				semantic="successful">
-				{props.validMessage}
+				{props.validMessage ?? DEFAULT_VALID_MESSAGE}
 			</DBInfotext>
 
 			<DBInfotext

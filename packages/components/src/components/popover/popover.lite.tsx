@@ -11,9 +11,7 @@ import { DBPopoverProps, DBPopoverState } from './model';
 import { cls, getBooleanAsString, handleDataOutside } from '../../utils';
 
 useMetadata({});
-useDefaultProps<DBPopoverProps>({
-	animation: true
-});
+useDefaultProps<DBPopoverProps>({});
 
 export default function DBPopover(props: DBPopoverProps) {
 	const _ref = useRef<HTMLDivElement | null>(null);
@@ -101,7 +99,7 @@ export default function DBPopover(props: DBPopoverProps) {
 				class="db-popover-content"
 				data-spacing={props.spacing}
 				data-gap={getBooleanAsString(props.gap)}
-				data-animation={getBooleanAsString(props.animation)}
+				data-animation={getBooleanAsString(props.animation ?? true)}
 				data-open={props.open}
 				data-delay={props.delay}
 				data-width={props.width}

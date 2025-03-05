@@ -39,12 +39,7 @@ useMetadata({
 		nativeAttributes: ['disabled', 'required']
 	}
 });
-useDefaultProps<DBTextareaProps>({
-	label: DEFAULT_LABEL,
-	validMessage: DEFAULT_VALID_MESSAGE,
-	placeholder: DEFAULT_PLACEHOLDER,
-	rows: DEFAULT_ROWS
-});
+useDefaultProps<DBTextareaProps>({});
 
 export default function DBTextarea(props: DBTextareaProps) {
 	const _ref = useRef<HTMLTextAreaElement | null>(null);
@@ -190,8 +185,8 @@ export default function DBTextarea(props: DBTextareaProps) {
 				}
 				value={props.value ?? state._value}
 				aria-describedby={state._descByIds}
-				placeholder={props.placeholder}
-				rows={props.rows}
+				placeholder={props.placeholder ?? DEFAULT_PLACEHOLDER}
+				rows={props.rows ?? DEFAULT_ROWS}
 				cols={props.cols}
 			/>
 
@@ -208,7 +203,7 @@ export default function DBTextarea(props: DBTextareaProps) {
 				id={state._validMessageId}
 				size="small"
 				semantic="successful">
-				{props.validMessage}
+				{props.validMessage ?? DEFAULT_VALID_MESSAGE}
 			</DBInfotext>
 
 			<DBInfotext
