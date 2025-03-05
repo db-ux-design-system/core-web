@@ -68,7 +68,6 @@ const getMultiSelect = ({
 			deSelectAllLabel="Deselect all"
 			searchLabel="Search"
 			selectedType={selectedType}
-			tagWrapping={tagWrapping}
 			width={width}
 			loadingText={loadingText}
 			noResultsText={noResultsText ?? 'No matching filter'}

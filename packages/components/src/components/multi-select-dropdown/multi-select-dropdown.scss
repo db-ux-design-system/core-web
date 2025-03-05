@@ -17,34 +17,59 @@
 
 	&:not([data-width]),
 	&[data-width="fixed"] {
-		/* TODO: Use a global variable */
-		inline-size: 328px;
+		inline-size: var(
+			--db-multi-select-dropdown-fixed-inline-size,
+			#{variables.$db-sizing-3xl}
+		);
+	}
+
+	&[data-width="full"] {
+		inline-size: 100%;
 	}
 
 	@include screen-sizes.screen("sm", "max") {
 		position: fixed;
 		z-index: 9999;
-		inset: 0;
+		inset-block: 0;
+		inset-inline: 50%;
+		transform: translateX(-50%);
 		block-size: fit-content;
 		margin: auto;
 	}
 
-	> div {
-		@include helpers.divider("bottom", "after");
+	.db-input {
+		min-inline-size: variables.$db-sizing-2xl;
+	}
 
+	> div {
 		&:has(.db-checkbox) {
 			padding: variables.$db-spacing-fixed-xs
 				variables.$db-spacing-fixed-sm;
+			@include helpers.divider("bottom", "after");
 		}
 
+		&:has(.db-button),
 		&:has(.db-input) {
 			padding: variables.$db-spacing-fixed-md
 				calc(#{variables.$db-spacing-fixed-sm} * 2);
 		}
+
+		&:has(.db-input) {
+			@include helpers.divider("bottom", "after");
+		}
+
+		&:has(.db-button) {
+			@include helpers.divider("top", "after");
+
+			@include screen-sizes.screen("sm") {
+				display: none;
+			}
+		}
 	}
 
 	> .db-infotext {
-		padding: variables.$db-spacing-fixed-sm;
+		padding: variables.$db-spacing-fixed-lg variables.$db-spacing-fixed-md;
+		margin: auto;
 
 		&[data-icon="circular_arrows"] {
 			&::before {

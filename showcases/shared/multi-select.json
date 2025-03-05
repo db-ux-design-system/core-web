@@ -241,7 +241,19 @@
 		"name": "Dropdown Width",
 		"examples": [
 			{
-				"name": "(Default) Full",
+				"name": "Full Width",
+				"props": {
+					"info": true
+				}
+			},
+			{
+				"name": "Line Break",
+				"props": {
+					"lineBreak": true
+				}
+			},
+			{
+				"name": "(Default) Fixed",
 				"style": { "width": "400px" },
 				"props": {
 					"options": [
@@ -252,9 +264,78 @@
 							"value": "Option 2"
 						}
 					],
-					"label": "Full",
+					"label": "Fixed",
+					"width": "full",
+					"dropdownWidth": "fixed"
+				}
+			},
+			{
+				"name": "Auto",
+				"style": { "width": "400px" },
+				"props": {
+					"options": [
+						{
+							"value": "1"
+						},
+						{
+							"value": "2"
+						}
+					],
+					"label": "Auto",
 					"width": "full",
 					"dropdownWidth": "auto"
+				}
+			},
+			{
+				"name": "Full",
+				"style": { "width": "400px" },
+				"props": {
+					"options": [
+						{
+							"value": "1"
+						},
+						{
+							"value": "2"
+						}
+					],
+					"label": "Full",
+					"width": "full",
+					"dropdownWidth": "full"
+				}
+			},
+			{
+				"name": "Line Break",
+				"props": {
+					"lineBreak": true
+				}
+			},
+			{
+				"name": "Auto Width",
+				"props": {
+					"info": true
+				}
+			},
+			{
+				"name": "Line Break",
+				"props": {
+					"lineBreak": true
+				}
+			},
+			{
+				"name": "(Default) Fixed",
+				"style": { "width": "400px" },
+				"props": {
+					"options": [
+						{
+							"value": "Option 1"
+						},
+						{
+							"value": "Option 2"
+						}
+					],
+					"label": "Fixed",
+					"width": "auto",
+					"dropdownWidth": "fixed"
 				}
 			},
 			{
@@ -272,6 +353,23 @@
 					"label": "Auto",
 					"width": "auto",
 					"dropdownWidth": "auto"
+				}
+			},
+			{
+				"name": "Full",
+				"style": { "width": "400px" },
+				"props": {
+					"options": [
+						{
+							"value": "1"
+						},
+						{
+							"value": "2"
+						}
+					],
+					"label": "Full",
+					"width": "auto",
+					"dropdownWidth": "full"
 				}
 			}
 		]
@@ -490,7 +588,24 @@
 		"name": "Examples Single",
 		"examples": [
 			{
-				"name": "Single less than 6",
+				"name": "Icons",
+				"style": { "width": "200px" },
+				"props": {
+					"options": [
+						{
+							"value": "Option 1",
+							"icon": "x_placeholder"
+						},
+						{
+							"value": "Option 2",
+							"icon": "x_placeholder"
+						}
+					],
+					"placeholder": "Placeholder"
+				}
+			},
+			{
+				"name": "Less than 6",
 				"style": { "width": "200px" },
 				"props": {
 					"options": [
@@ -514,7 +629,7 @@
 				}
 			},
 			{
-				"name": "Option Groups",
+				"name": "Option Group Title",
 				"style": { "width": "200px" },
 				"props": {
 					"options": [
@@ -543,7 +658,30 @@
 				}
 			},
 			{
-				"name": "Single more than 6",
+				"name": "Option Groups",
+				"style": { "width": "200px" },
+				"props": {
+					"options": [
+						{
+							"value": "G1:Option 1"
+						},
+						{
+							"value": "G1:Option 2",
+							"divider": true
+						},
+						{
+							"value": "G2:Option 1"
+						},
+						{
+							"value": "G2:Option 2",
+							"divider": true
+						}
+					],
+					"placeholder": "Placeholder"
+				}
+			},
+			{
+				"name": "More than 6",
 				"style": { "width": "200px" },
 				"props": {
 					"options": [
@@ -573,7 +711,7 @@
 				}
 			},
 			{
-				"name": "Single more than 10",
+				"name": "More than 10",
 				"style": { "width": "200px" },
 				"props": {
 					"options": [
@@ -617,7 +755,7 @@
 		"name": "Examples Multiple",
 		"examples": [
 			{
-				"name": "Single less than 6",
+				"name": "Less than 6",
 				"style": { "width": "200px" },
 				"props": {
 					"options": [
@@ -642,7 +780,7 @@
 				}
 			},
 			{
-				"name": "Option Groups",
+				"name": "Option Group Title",
 				"style": { "width": "200px" },
 				"props": {
 					"options": [
@@ -672,7 +810,31 @@
 				}
 			},
 			{
-				"name": "Single more than 6",
+				"name": "Option Groups",
+				"style": { "width": "200px" },
+				"props": {
+					"options": [
+						{
+							"value": "G1:Option 1"
+						},
+						{
+							"value": "G1:Option 2",
+							"divider": true
+						},
+						{
+							"value": "G2:Option 1"
+						},
+						{
+							"value": "G2:Option 2",
+							"divider": true
+						}
+					],
+					"placeholder": "Placeholder",
+					"multiple": true
+				}
+			},
+			{
+				"name": "More than 6",
 				"style": { "width": "200px" },
 				"props": {
 					"options": [
@@ -703,7 +865,7 @@
 				}
 			},
 			{
-				"name": "Single more than 10",
+				"name": "More than 10",
 				"style": { "width": "200px" },
 				"props": {
 					"options": [
@@ -772,30 +934,6 @@
 				}
 			},
 			{
-				"name": "Tag overflow",
-				"style": { "width": "400px" },
-				"props": {
-					"options": [
-						{
-							"value": "Option 1"
-						},
-						{
-							"value": "Option 2"
-						},
-						{
-							"value": "Option 3"
-						},
-						{
-							"value": "Option 4"
-						}
-					],
-					"label": "Label",
-					"selectedType": "tag",
-					"tagWrapping": "overflow",
-					"multiple": true
-				}
-			},
-			{
 				"name": "Tag grow + auto",
 				"style": { "width": "400px" },
 				"props": {
@@ -816,31 +954,6 @@
 					"label": "Label",
 					"selectedType": "tag",
 					"tagWrapping": "grow",
-					"width": "auto",
-					"multiple": true
-				}
-			},
-			{
-				"name": "Tag overflow + auto",
-				"style": { "width": "400px" },
-				"props": {
-					"options": [
-						{
-							"value": "Option 1"
-						},
-						{
-							"value": "Option 2"
-						},
-						{
-							"value": "Option 3"
-						},
-						{
-							"value": "Option 4"
-						}
-					],
-					"label": "Label",
-					"selectedType": "tag",
-					"tagWrapping": "overflow",
 					"width": "auto",
 					"multiple": true
 				}

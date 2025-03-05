@@ -27,6 +27,7 @@ import {
 	uuid
 } from '../../utils';
 import {
+	DEFAULT_CLOSE_BUTTON,
 	DEFAULT_INVALID_MESSAGE,
 	DEFAULT_INVALID_MESSAGE_ID_SUFFIX,
 	DEFAULT_LABEL,
@@ -638,7 +639,6 @@ export default function DBMultiSelect(props: DBMultiSelectProps) {
 			data-required={props.required}
 			data-placement={props.placement}
 			data-selected-type={props.multiple ? props.selectedType : 'text'}
-			data-wrapping={props.tagWrapping}
 			data-hide-label={getHideProp(props.showLabel)}>
 			<select
 				id={state._selectId}
@@ -786,6 +786,8 @@ export default function DBMultiSelect(props: DBMultiSelectProps) {
 																? 'checkbox'
 																: 'radio'
 														}
+														divider={option.divider}
+														icon={option.icon}
 														groupLabel={
 															option.isGroup
 																? state.getOptionLabel(
@@ -833,6 +835,20 @@ export default function DBMultiSelect(props: DBMultiSelectProps) {
 									: props.loadingText) ?? DEFAULT_MESSAGE}
 							</DBInfotext>
 						</Show>
+
+						<div>
+							<DBButton
+								variant="ghost"
+								width="full"
+								icon="cross"
+								size="small"
+								onClick={() => {
+									state.handleClose('close');
+								}}>
+								{props.mobileCloseButtonText ??
+									DEFAULT_CLOSE_BUTTON}
+							</DBButton>
+						</div>
 					</DBMultiSelectDropdown>
 				</Show>
 			</details>

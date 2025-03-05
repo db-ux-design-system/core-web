@@ -7,6 +7,7 @@ import {
 	FormState,
 	GlobalProps,
 	GlobalState,
+	IconProps,
 	PlacementVerticalType,
 	PopoverState,
 	ShowLabelProps,
@@ -16,17 +17,23 @@ import {
 import { DBMultiSelectFormFieldDefaultProps } from '../multi-select-form-field/model';
 import { ay } from 'vitest/dist/chunks/reporters.QZ837uWx';
 import { MultiSelectDropdownWidthType } from '../multi-select-dropdown/model';
+import { DBMultiSelectListItemExtraProps } from '../multi-select-list-item/model';
 
 export type MultiSelectOptionType = {
+	/**
+	 * Disables this option
+	 */
+	disabled?: boolean;
+
 	/**
 	 * Identifier for option
 	 */
 	id?: string;
 
 	/**
-	 * Disables this option
+	 * If the item is a group (only text)
 	 */
-	disabled?: boolean;
+	isGroup?: boolean;
 
 	/**
 	 * If the value is different from the label you want to show to the user.
@@ -37,19 +44,11 @@ export type MultiSelectOptionType = {
 	 * The value for the option
 	 */
 	value?: string;
-
-	/**
-	 * If the item is a group (only text)
-	 */
-	isGroup?: boolean;
-};
+} & DBMultiSelectListItemExtraProps;
 
 export const SelectedTypeList = ['amount', 'text', 'tag'] as const;
 export type SelectedTypeType = (typeof SelectedTypeList)[number];
 
-export const MultiSelectTagWrappingList = ['overflow', 'grow'] as const;
-export type MultiSelectTagWrappingType =
-	(typeof MultiSelectTagWrappingList)[number];
 
 export interface DBMultiSelectDefaultProps {
 	/**
@@ -78,6 +77,11 @@ export interface DBMultiSelectDefaultProps {
 	 * Dropdown - hint if data has to be loaded
 	 */
 	loadingText?: string;
+
+	/**
+	 * Change the button text for mobile close
+	 */
+	mobileCloseButtonText?: string;
 
 	/**
 	 * Enables MultiSelect
@@ -157,11 +161,6 @@ export interface DBMultiSelectDefaultProps {
 	 * Forces header
 	 */
 	showSelectAll?: boolean;
-
-	/**
-	 * Optional: if you use selectedType=tag, you can change the behavior of tags
-	 */
-	tagWrapping?: MultiSelectTagWrappingType;
 
 	/**
 	 * Initial value for multi select

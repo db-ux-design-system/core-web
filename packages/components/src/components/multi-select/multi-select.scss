@@ -71,12 +71,6 @@
 		.db-multi-select-form-field {
 			inline-size: 100%;
 		}
-
-		.db-multi-select-dropdown {
-			&[data-width="auto"] {
-				inline-size: 100%;
-			}
-		}
 	}
 
 	@include form-components.set-default-form-component(summary);
@@ -132,51 +126,35 @@
 	}
 
 	&[data-selected-type="tag"] {
-		&[data-wrapping="overflow"] {
-			.db-multi-select-form-field {
+		.db-multi-select-form-field {
+			&:has(:not(div:empty)) {
+				padding-block: variables.$db-spacing-fixed-xs;
+				block-size: auto;
+
 				> div {
-					@extend %scrollbar;
-
-					overflow: auto hidden;
-
-					.db-tag {
-						flex-shrink: 0;
-						flex-grow: 0;
-					}
+					flex-wrap: wrap;
 				}
 			}
-		}
 
-		&:not([data-wrapping="overflow"]) {
-			.db-multi-select-form-field {
-				&:has(:not(div:empty)) {
-					padding-block: variables.$db-spacing-fixed-xs;
-					block-size: auto;
-
-					> div {
-						flex-wrap: wrap;
-					}
-				}
-
-				> button {
-					align-self: start;
-				}
+			> button {
+				align-self: start;
 			}
 		}
 	}
 
 	> details[open] {
-		> summary{
-		@include screen-sizes.screen("sm", "max") {
-			&::before {
-				position: fixed;
-				z-index: 9998;
-				inset: 0;
-				content: "";
-				background-color: dialog-init.$backdrop-color;
-				opacity: dialog-init.$backdrop-opacity-weak;
+		> summary {
+			@include screen-sizes.screen("sm", "max") {
+				&::before {
+					position: fixed;
+					z-index: 9998;
+					inset: 0;
+					content: "";
+					background-color: dialog-init.$backdrop-color;
+					opacity: dialog-init.$backdrop-opacity-weak;
+				}
 			}
-		}}
+		}
 	}
 
 	&[data-variant="floating"],

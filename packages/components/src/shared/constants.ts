@@ -22,7 +22,7 @@ export const DEFAULT_BURGER_MENU: string = 'BurgerMenu';
 export const DEFAULT_ICON: string = 'brand';
 export const DEFAULT_ROWS: number = 4;
 
-export const DEFAULT_CLOSE_BUTTON: string = 'Close Button';
+export const DEFAULT_CLOSE_BUTTON: string = 'Close';
 export const DENSITY_CONST: string = 'density';
 export const COLOR_CONST: string = 'color';
 

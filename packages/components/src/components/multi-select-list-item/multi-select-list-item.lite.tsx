@@ -55,6 +55,13 @@ export default function DBMultiSelectListItem(
 					vue: () =>
 						handleFrameworkEventVue(() => {}, event, 'checked')
 				});
+			},
+			getIconAfter: () => {
+				if (props.groupLabel || props.type === 'checkbox') {
+					return;
+				}
+
+				return props.checked ? 'check' : 'x_placeholder';
 			}
 		});
 
@@ -72,14 +79,19 @@ export default function DBMultiSelectListItem(
 				'db-checkbox': props.type === 'checkbox' && !props.groupLabel,
 				'db-radio': props.type !== 'checkbox' && !props.groupLabel
 			})}
-			data-icon-after={
-				props.type !== 'checkbox' && props.checked ? 'check' : "x_placeholder"
-			}>
+			data-divider={!!props.groupLabel || props.divider}>
 			<Show when={props.groupLabel}>
 				<span>{props.groupLabel}</span>
 			</Show>
 			<Show when={!props.groupLabel && state._id}>
-				<label htmlFor={state._id + props.value}>
+				<label
+					htmlFor={state._id + props.value}
+					data-icon={
+						props.type !== 'checkbox' && props.icon
+							? props.icon
+							: undefined
+					}
+					data-icon-after={state.getIconAfter()}>
 					<input
 						class="db-multi-select-list-item-checkbox"
 						id={state._id + props.value}

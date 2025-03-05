@@ -36,7 +36,6 @@ import { DBMultiSelect, DBInfotext } from "../../../../../output/vue/src";
 				deSelectAllLabel="Deselect all"
 				searchLabel="Search"
 				:selectedType="exampleProps?.selectedType"
-				:tagWrapping="exampleProps?.tagWrapping"
 				:width="exampleProps?.width"
 				noResultsText="No matching filter"
 				:values="exampleProps?.mValue"

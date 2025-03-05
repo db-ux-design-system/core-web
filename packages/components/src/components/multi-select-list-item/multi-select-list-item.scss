@@ -15,32 +15,7 @@
 	border-radius: variables.$db-border-radius-xs;
 	box-sizing: border-box;
 
-	&:has(input[type="radio"]:checked) {
-		--db-overwrite-cursor: default;
-		--db-icon-after: "check";
-	}
-
-	&:not(:has(input[type="radio"]:checked)) {
-		--db-icon-after: "none";
-	}
-
-	@include screen-sizes.screen("sm", "max") {
-		&:not(:has(input[type="radio"]:checked)) {
-			--db-icon-after: "circle";
-		}
-
-		&:has(input[type="radio"]:checked) {
-			--db-icon-after: "check_circle";
-		}
-	}
-
 	&:has(> label) {
-		padding-inline-start: calc(
-			#{variables.$db-spacing-fixed-sm} +
-				#{variables.$db-spacing-fixed-sm} *
-				var(--db-multi-select-list-item-group-padding, 0)
-		);
-
 		&:not(:has(input[type="radio"]:checked)) {
 			@include helpers.hover {
 				background-color: colors.$db-adaptive-bg-basic-transparent-hovered;
@@ -61,11 +36,14 @@
 		color: colors.$db-adaptive-on-bg-basic-emphasis-80-default;
 	}
 
-	&:has(> span) {
+
+
+	&[data-divider="true"]:not(:last-of-type) {
 		@include helpers.divider("bottom");
 	}
 
 	> label {
+		--db-icon-margin-start: auto;
 		inline-size: 100%;
 
 		&:has(input:checked) {
@@ -73,7 +51,13 @@
 		}
 
 		&:has(input[type="radio"]) {
+			--db-icon-after: "none";
 			gap: 0;
+		}
+
+		&:has(input[type="radio"]:checked) {
+			--db-overwrite-cursor: default;
+			--db-icon-after: "check";
 		}
 
 		> input {
