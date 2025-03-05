@@ -15,6 +15,15 @@ $interactive-selectors: "label, button:not(.db-tab-remove-button), a";
 	);
 }
 
+%set-adaptive-weak-badge {
+	border-color: colors.$db-adaptive-on-bg-basic-emphasis-70-default;
+
+	@include colors.set-current-colors(
+		colors.$db-adaptive-bg-basic-level-3-default,
+		colors.$db-adaptive-on-bg-basic-emphasis-80-default
+	);
+}
+
 %set-adaptive-strong-tag {
 	border-color: colors.$db-adaptive-on-bg-basic-emphasis-80-default;
 
@@ -69,8 +78,13 @@ $interactive-selectors: "label, button:not(.db-tab-remove-button), a";
 	}
 }
 
-@mixin get-tag-colors() {
-	@extend %set-adaptive-weak-tag;
+@mixin get-tag-colors($htmlTag: "tag") {
+	@if ($htmlTag == "badge") {
+		@extend %set-adaptive-weak-badge;
+		// stylelint-disable-next-line at-rule-empty-line-before
+	} @else {
+		@extend %set-adaptive-weak-tag;
+	}
 
 	&[data-emphasis="strong"] {
 		@extend %set-adaptive-strong-tag;
