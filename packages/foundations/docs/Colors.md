@@ -32,7 +32,7 @@ It's [recommended to set a `meta`-HTML-tag](https://web.dev/articles/color-schem
 <meta name="color-scheme" content="dark light" />
 ```
 
-We recommend using the default media query based on the user preference, but if you want to force a mode for your page, you could set the `color-scheme` `meta`-HTML-tag to either `dark` or `light`.
+We recommend using the default media query based on the user preference, but if you want to force a mode for your page, you could set the `color-scheme` `meta`-HTML-tag to either [`only light`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/meta/name#only_light), [`dark` or `light`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/meta/name#light).
 
 If you want to set it on a specific container as e.g. shown on the documentation page "Color schemes" you can do that by adding the HTML-attributes `data-mode="dark"` or `data-mode="light"`:
 
