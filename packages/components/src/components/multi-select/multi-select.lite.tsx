@@ -104,15 +104,11 @@ export default function DBMultiSelect(props: DBMultiSelectProps) {
 		_internalChangeTimestamp: -1,
 		_externalChangeTimestamp: -1,
 		getNativeSelectValue: () => {
-			if (state._values) {
-				if (props.multiple) {
-					return state._values;
-				} else {
-					return state._values.at(0);
-				}
+			if (state._values?.length) {
+				return state._values.at(0) ?? '';
 			}
 
-			return undefined;
+			return '';
 		},
 		setDescById: (descId?: string) => {
 			const descByIds: string[] = [];
@@ -528,7 +524,9 @@ export default function DBMultiSelect(props: DBMultiSelectProps) {
 	}, [props.values]);
 
 	onUpdate(() => {
-		// TODO: Check for Vue
+		if (selectRef) {
+			selectRef.value = state.getNativeSelectValue();
+		}
 		/* For a11y reasons we need to map the correct message with the select */
 		if (!selectRef?.validity.valid || props.validation === 'invalid') {
 			state._validity = 'invalid';
@@ -648,7 +646,6 @@ export default function DBMultiSelect(props: DBMultiSelectProps) {
 				ref={selectRef}
 				disabled={props.disabled}
 				multiple={props.multiple}
-				value={state.getNativeSelectValue()}
 				required={props.required}
 				/* Satisfy React */
 				onChange={() => {}}

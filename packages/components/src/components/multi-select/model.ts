@@ -9,11 +9,12 @@ import {
 	GlobalState,
 	IconProps,
 	PlacementVerticalType,
-	PopoverState, ShowIconProps,
+	PopoverState,
+	ShowIconProps,
 	ShowLabelProps,
 	ValidationType,
 	WidthProps
-} from "../../shared/model";
+} from '../../shared/model';
 import { DBMultiSelectFormFieldDefaultProps } from '../multi-select-form-field/model';
 import { ay } from 'vitest/dist/chunks/reporters.QZ837uWx';
 import { MultiSelectDropdownWidthType } from '../multi-select-dropdown/model';
@@ -48,7 +49,6 @@ export type MultiSelectOptionType = {
 
 export const SelectedTypeList = ['amount', 'text', 'tag'] as const;
 export type SelectedTypeType = (typeof SelectedTypeList)[number];
-
 
 export interface DBMultiSelectDefaultProps {
 	/**
@@ -193,7 +193,7 @@ export interface DBMultiSelectDefaultState {
 	_externalChangeTimestamp?: number;
 	_internalChangeTimestamp?: number;
 	_name?: string;
-	getNativeSelectValue: () => string | string[] | undefined;
+	getNativeSelectValue: () => string;
 	getOptionLabel: (option: MultiSelectOptionType) => string;
 	getOptionChecked: (value?: string) => boolean;
 	getOptionKey: (option: MultiSelectOptionType) => string;
