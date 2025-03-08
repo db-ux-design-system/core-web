@@ -5,7 +5,7 @@
   "description": "Vue components for @db-ux/core-components",
   "repository": {
     "type": "git",
-    "url": "https://github.com/db-ux-design-system/core-web.git"
+    "url": "git+https://github.com/db-ux-design-system/core-web.git"
   },
   "license": "Apache-2.0",
   "main": "./dist/db-ux.umd.js",
