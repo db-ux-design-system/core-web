@@ -18,7 +18,7 @@ SPDX-License-Identifier: Apache-2.0
 [![XO code style](https://img.shields.io/badge/code_style-XO-5ed9c7.svg)](https://github.com/xojs/xo)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)
 [![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-2.0-4baaaa.svg)](CODE-OF-CONDUCT.md)
-[![REUSE Compliance Check](https://github.com/db-ui/mono/actions/workflows/99-reuse-compliance-check.yml/badge.svg)](https://github.com/db-ui/mono/actions/workflows/99-reuse-compliance-check.yml) Creates copyright & license annotations with [REUSE](https://git.fsfe.org/reuse/tool)
+[![REUSE Compliance Check](https://github.com/db-ux-design-system/core-web/actions/workflows/99-reuse-compliance-check.yml/badge.svg)](https://github.com/db-ux-design-system/core-web/actions/workflows/99-reuse-compliance-check.yml) Creates copyright & license annotations with [REUSE](https://git.fsfe.org/reuse/tool)
 
 DB UX Design System Version 3 provides robust HTML UI components, reusable visual styles, and powerful tooling to help developers,
 designers, and content authors build, maintain, and scale best of class digital experiences.
