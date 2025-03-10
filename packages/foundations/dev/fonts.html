@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<title>(Web) Fonts</title>
+		<link rel="stylesheet" href="/build/styles/absolute.css" />
+		<link
+			rel="stylesheet"
+			href="/build/styles/defaults/default-theme.css"
+		/>
+		<link rel="stylesheet" href="/build/styles/fonts/absolute.css" />
+		<style>
+			body {
+				font-family: "OpenSans";
+				font-weight: 400;
+			}
+
+			h2 {
+				font-family: "OpenSans Head";
+				font-weight: 300;
+
+				& + h2 {
+					font-weight: 900;
+				}
+			}
+
+			small {
+				font-family: "OpenSans";
+				font-weight: 300;
+			}
+
+			p strong {
+				font-weight: 700;
+			}
+		</style>
+	</head>
+
+	<body style="padding: var(--db-spacing-fixed-md)">
+		<h1>(Web) Fonts examples</h1>
+		<h2>OpenSans Head Light</h2>
+		<h2>OpenSans Head Black</h2>
+		<p>OpenSans Sans Regular</p>
+		<p>OpenSans Sans <strong>Bold</strong></p>
+		<small>OpenSans Sans Digital Regular</small>
+	</body>
+</html>

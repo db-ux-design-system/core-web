@@ -1,6 +1,6 @@
 ## Vue
 
-For general installation and configuration take a look at the [v-components](https://www.npmjs.com/package/@db-ui/v-components) package.
+For general installation and configuration take a look at the [v-core-components](https://www.npmjs.com/package/@db-ux/v-core-components) package.
 
 ### Use component
 
@@ -9,7 +9,7 @@ For general installation and configuration take a look at the [v-components](htt
 ```vue App.vue
 <!-- App.vue -->
 <script>
-import { DBHeader, DBBrand } from "@db-ui/v-components";
+import { DBHeader, DBBrand } from "@db-ux/v-core-components";
 </script>
 
 <template>
@@ -24,10 +24,10 @@ import { DBHeader, DBBrand } from "@db-ui/v-components";
 ```vue App.vue
 <!-- App.vue -->
 <script>
-import { ref } from "vue";
-import { DBHeader, DBBrand, DBLink, DBButton } from "@db-ui/v-components";
+import { _ref } from "vue";
+import { DBHeader, DBBrand, DBLink, DBButton } from "@db-ux/v-core-components";
 
-const drawerOpen = ref(false);
+const drawerOpen = _ref(false);
 
 const toggleDrawer = (open: boolean) => {
 	drawerOpen.value = open;
@@ -45,7 +45,7 @@ const toggleDrawer = (open: boolean) => {
 			</DBButton>
 		</template>
 		<template v-slot:secondary-action>
-			<DBButton icon="person" variant="ghost" :no-text="true">
+			<DBButton icon="x_placeholder" variant="ghost" :no-text="true">
 				Profile
 			</DBButton>
 			<DBButton icon="alert" variant="ghost" :no-text="true">
@@ -62,7 +62,7 @@ const toggleDrawer = (open: boolean) => {
 
 		<DBNavigation>
 			//
-			https://github.com/db-ui/mono/blob/main/packages/components/src/components/navigation/docs/Vue.md
+			https://github.com/db-ux-design-system/core-web/blob/main/packages/components/src/components/navigation/docs/Vue.md
 		</DBNavigation>
 	</DBHeader>
 </template>

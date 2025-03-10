@@ -1,10 +1,10 @@
-@use "@db-ui/foundations/build/styles/variables";
-@use "@db-ui/foundations/build/styles/colors";
-@use "@db-ui/foundations/build/styles/fonts";
-@use "@db-ui/foundations/build/styles/screen-sizes";
-@use "@db-ui/foundations/build/styles/helpers";
-@use "@db-ui/foundations/build/styles/animation";
-@use "@db-ui/foundations/build/styles/icons";
+@use "@db-ux/core-foundations/build/styles/variables";
+@use "@db-ux/core-foundations/build/styles/colors";
+@use "@db-ux/core-foundations/build/styles/fonts";
+@use "@db-ux/core-foundations/build/styles/screen-sizes";
+@use "@db-ux/core-foundations/build/styles/helpers";
+@use "@db-ux/core-foundations/build/styles/animation";
+@use "@db-ux/core-foundations/build/styles/icons";
 @use "../../styles/internal/icon-passing";
 @use "../../styles/internal/component";
 
@@ -23,13 +23,13 @@
 	// show/hide sub-navigation by click
 	&[aria-expanded="true"] {
 		~ .db-sub-navigation {
+			visibility: visible;
+
 			@media screen and (prefers-reduced-motion: no-preference) {
 				transition: visibility 0ms linear 0ms;
 				animation: show-right-to-left
 					#{variables.$db-transition-straight-show};
 			}
-
-			visibility: visible;
 
 			.db-sub-navigation {
 				inset-block: 0;
@@ -85,7 +85,7 @@
 
 	display: inline-flex;
 	position: relative;
-	inline-size: 100%;
+	inline-size: auto;
 
 	@include screen-sizes.screen("md", "max") {
 		&:not([data-width="full"]) {
@@ -118,10 +118,10 @@
 			@extend %sub-navi-handler-desktop;
 			@extend %navigation-item;
 
+			font-weight: inherit;
+
 			// default icon for navigation
 			@include icons.set-icon("chevron_right", "after");
-
-			font-weight: inherit;
 		}
 	}
 
@@ -162,7 +162,7 @@
 	padding: variables.$db-spacing-fixed-md;
 	inline-size: 100%;
 	position: fixed;
-	overflow-y: auto;
+	overflow: hidden auto;
 	// additional #{$db-spacing-fixed-3xs} for border
 	inset-block: calc(
 			#{component.$min-mobile-header-height} +
@@ -207,8 +207,12 @@
 			inset-inline-start: 100%;
 		}
 
-		&:is(:hover, :focus-within) {
+		&:is(:hover, :focus-within):not([data-force-close="true"]) {
 			visibility: visible;
+		}
+
+		&[data-force-close="true"] {
+			pointer-events: none;
 		}
 
 		&::before {
@@ -300,11 +304,11 @@
 }
 
 .db-mobile-navigation-back {
-	@include helpers.divider("bottom");
-
 	display: flex;
 	font-weight: normal;
 	background-color: colors.$db-adaptive-bg-basic-level-1-default;
 	padding-block-end: variables.$db-spacing-fixed-md;
 	margin-block-end: variables.$db-spacing-fixed-md;
+
+	@include helpers.divider("bottom");
 }

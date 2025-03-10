@@ -1,10 +1,10 @@
 @use "sass:map";
 @use "sass:string";
-@use "@db-ui/foundations/build/styles/icons";
-@use "@db-ui/foundations/build/styles/fonts";
-@use "@db-ui/foundations/build/styles/variables";
-@use "@db-ui/foundations/build/styles/colors";
-@use "@db-ui/foundations/build/styles/helpers";
+@use "@db-ux/core-foundations/build/styles/icons";
+@use "@db-ux/core-foundations/build/styles/fonts";
+@use "@db-ux/core-foundations/build/styles/variables";
+@use "@db-ux/core-foundations/build/styles/colors";
+@use "@db-ux/core-foundations/build/styles/helpers";
 @use "component";
 
 @forward "../visually-hidden";
@@ -12,26 +12,20 @@
 $dropdown-icon-transition: transform variables.$db-transition-straight-emotional;
 $dropdown-icon-transform: rotate(-180deg);
 
-$font-size-height: calc(var(--db-base-font-size) * var(--db-base-line-height));
+$font-size-height: var(--db-icon-font-size);
 $icon-size-sm: var(--db-base-body-icon-font-size-sm);
-$label-size-height-sm: calc(
-	var(--db-type-body-font-size-sm) * var(--db-type-body-line-height-sm)
-);
-$label-size-height-xs: calc(
-	var(--db-type-body-font-size-xs) * var(--db-type-body-line-height-xs)
-);
-$label-size-height-2xs: calc(
-	var(--db-type-body-font-size-2xs) * var(--db-type-body-line-height-2xs)
-);
+$label-size-height-xs: var(--db-base-body-icon-font-size-xs);
+$label-size-height-2xs: var(--db-base-body-icon-font-size-2xs);
 
-$floating-label-size: calc(
+$floating-label-size-calc: calc(
 	#{variables.$db-spacing-fixed-3xs} + #{variables.$db-spacing-fixed-2xs} +
 		#{$label-size-height-2xs}
 );
 
-$input-types: "button", "checkbox", "color", "date", "datetime-local", "email",
-	"file", "hidden", "image", "month", "number", "password", "radio", "range",
-	"reset", "search", "submit", "tel", "text", "time", "url", "week";
+$input-types:
+	"button", "checkbox", "color", "date", "datetime-local", "email", "file",
+	"hidden", "image", "month", "number", "password", "radio", "range", "reset",
+	"search", "submit", "tel", "text", "time", "url", "week";
 
 $check-border-size: min(#{variables.$db-border-height-2xs}, 2px);
 
@@ -107,7 +101,7 @@ $check-border-size: min(#{variables.$db-border-height-2xs}, 2px);
 			}
 
 			@if ($selector == textarea) {
-				padding-block-start: $floating-label-size;
+				padding-block-start: $floating-label-size-calc;
 				/* stylelint-disable-next-line at-rule-empty-line-before */
 			} @else {
 				// font-size label which is 2xs + smallest spacing
@@ -132,12 +126,12 @@ $check-border-size: min(#{variables.$db-border-height-2xs}, 2px);
 
 			#{$selector} {
 				@include placeholder-content() {
+					opacity: component.$placeholder-disabled;
+
 					@media screen and (prefers-reduced-motion: no-preference) {
 						transition: opacity
 							#{variables.$db-transition-straight-emotional};
 					}
-
-					opacity: component.$placeholder-disabled;
 				}
 			}
 		}
@@ -206,8 +200,9 @@ $check-border-size: min(#{variables.$db-border-height-2xs}, 2px);
 }
 
 // This doesn't contain text, search and password, because they don't have an auto-validation
-$input-valid-types: "color", "date", "datetime-local", "email", "file",
-	"hidden", "month", "number", "range", "tel", "time", "url", "week";
+$input-valid-types:
+	"color", "date", "datetime-local", "email", "file", "hidden", "month",
+	"number", "range", "tel", "time", "url", "week";
 
 @function get-validations($selector, $key) {
 	$validations: ":required";
@@ -271,6 +266,7 @@ $input-valid-types: "color", "date", "datetime-local", "email", "file",
 				@include icons.icon-content("*");
 
 				// We're using 1px instead of a token here on purpose, as this is an edge case
+				/* stylelint-disable-next-line db-ux/use-spacings */
 				padding-inline-start: 1px;
 			}
 		}
@@ -283,13 +279,13 @@ $input-valid-types: "color", "date", "datetime-local", "email", "file",
 	@extend %db-overwrite-font-size-sm;
 	@extend %helper-message;
 
-	@include set-floating-label-overwrites($selector);
-	@include set-required-label($selector);
-
 	// we use absolute icons
 	position: relative;
 	display: flex;
 	flex-direction: column;
+
+	@include set-floating-label-overwrites($selector);
+	@include set-required-label($selector);
 
 	@include get-validity($selector) {
 		@include get-validity-color($selector, "valid");
@@ -309,6 +305,8 @@ $input-valid-types: "color", "date", "datetime-local", "email", "file",
 		appearance: none;
 		max-inline-size: 100%;
 		inline-size: 100%;
+
+		/* stylelint-disable-next-line db-ux/use-spacings */
 		padding-inline: var(
 				--db-form-component-padding-inline-start,
 				#{variables.$db-spacing-fixed-sm}
@@ -476,6 +474,7 @@ $input-valid-types: "color", "date", "datetime-local", "email", "file",
 		place-content: center center;
 		appearance: none;
 		aspect-ratio: 1;
+		/* stylelint-disable-next-line db-ux/use-border-height */
 		border: #{$check-border-size} solid
 			var(
 				--db-check-element-border-color,

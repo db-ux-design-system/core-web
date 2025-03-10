@@ -1,5 +1,23 @@
 ## Development
 
+### Start developing
+
+You'll need to insert the environmental variables as described within the package [`@db-ux/db-theme`](https://www.npmjs.com/package/@db-ux/db-theme) first of all.
+
+Afterwards run the following commands:
+
+```shell
+npm install
+npm run build
+npm run start
+```
+
+Please mind the [conventions for git commits](/docs/conventions.md#user-content-git-commits-conventions).
+
+### Versions
+
+All versions in all `package.json` files are set to `0.0.0`, we change those during release process in CI/CD.
+
 ### Tests
 
 TODO: Elaborate on testing setup

@@ -1,9 +1,9 @@
 @use "sass:map";
-@use "@db-ui/foundations/build/styles/density";
-@use "@db-ui/foundations/build/styles/variables";
-@use "@db-ui/foundations/build/styles/colors";
-@use "@db-ui/foundations/build/styles/icons";
-@use "@db-ui/foundations/build/styles/screen-sizes";
+@use "@db-ux/core-foundations/build/styles/density";
+@use "@db-ux/core-foundations/build/styles/variables";
+@use "@db-ux/core-foundations/build/styles/colors";
+@use "@db-ux/core-foundations/build/styles/icons";
+@use "@db-ux/core-foundations/build/styles/screen-sizes";
 @use "../../styles/internal/component";
 @use "../../styles/internal/link-components";
 @use "./notification-grid-default";
@@ -17,6 +17,7 @@
 		p,
 		&::before,
 		.db-button {
+			/* stylelint-disable-next-line db-ux/use-spacings */
 			margin-block-start: -2px;
 		}
 	}
@@ -73,13 +74,13 @@
 		h6 {
 			font-family: var(--db-font-family-sans);
 			margin: 0;
-			line-height: var(--db-type-headline-line-height-2xs);
-			font-size: var(--db-type-headline-font-size-2xs);
+			line-height: var(--db-type-body-line-height-md);
+			font-size: var(--db-type-body-font-size-md);
 
 			&::before,
 			&::after {
-				--db-icon-font-size: var(--db-base-headline-icon-font-size-2xs);
-				--db-icon-font-weight: var(--db-base-headline-icon-weight-2xs);
+				--db-icon-font-size: var(--db-base-body-icon-font-size-md);
+				--db-icon-font-weight: var(--db-base-body-icon-weight-md);
 			}
 		}
 	}
@@ -122,8 +123,9 @@
 	&[data-icon]::before,
 	&::before,
 	img {
-		--db-icon-font-family: "db-ux-filled";
 		--db-icon-margin-end: 0;
+
+		@include icons.to-filled-icon();
 
 		grid-area: icon;
 	}

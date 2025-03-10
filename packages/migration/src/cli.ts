@@ -10,7 +10,7 @@ const action = async (_: unknown, options: OptionsType) => {
 };
 
 startProgram(
-	'@db-ui/foundations - migration',
+	'@db-ux/core-foundations - migration',
 	'CLI for DB UX Design System foundations',
 	options,
 	action

@@ -30,7 +30,7 @@ jobs:
       - name: ⏬ Download foundations build
         uses: actions/download-artifact@v4
         with:
-          name: db-ui-foundations-build
+          name: db-ux-foundations-build
           path: packages/foundations/build
 
       - name: 👩‍🔬 Test with Playwright 🎭

@@ -1,6 +1,6 @@
 @use "sass:map";
-@use "@db-ui/foundations/build/styles/variables";
-@use "@db-ui/foundations/build/styles/fonts";
+@use "@db-ux/core-foundations/build/styles/variables";
+@use "@db-ux/core-foundations/build/styles/fonts";
 @use "../../styles/internal/button-components";
 @use "../../styles/internal/tag-components";
 @use "../../styles/internal/component";
@@ -47,7 +47,7 @@
 	@extend %db-overwrite-font-size-2xs;
 	@extend %default-button;
 
-	@include tag-components.get-tag-colors();
+	@include tag-components.get-tag-colors("badge");
 
 	border-radius: variables.$db-border-radius-full;
 	padding-inline: variables.$db-spacing-fixed-2xs;

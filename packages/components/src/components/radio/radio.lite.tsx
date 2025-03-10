@@ -2,6 +2,7 @@ import {
 	onMount,
 	onUpdate,
 	Show,
+	useDefaultProps,
 	useMetadata,
 	useRef,
 	useStore,
@@ -10,16 +11,20 @@ import {
 import { DBRadioProps, DBRadioState } from './model';
 import { cls, getHideProp, uuid } from '../../utils';
 import { ChangeEvent, InteractionEvent } from '../../shared/model';
-import { handleFrameworkEvent } from '../../utils/form-components';
+import {
+	handleFrameworkEventAngular,
+	handleFrameworkEventVue
+} from '../../utils/form-components';
 
 useMetadata({
 	angular: {
 		nativeAttributes: ['disabled', 'required', 'checked', 'indeterminate']
 	}
 });
+useDefaultProps<DBRadioProps>({});
 
 export default function DBRadio(props: DBRadioProps) {
-	const ref = useRef<HTMLInputElement>(null);
+	const _ref = useRef<HTMLInputElement | null>(null);
 	// jscpd:ignore-start
 	const state = useStore<DBRadioState>({
 		initialized: false,
@@ -34,8 +39,8 @@ export default function DBRadio(props: DBRadioProps) {
 			}
 
 			useTarget({
-				angular: () => handleFrameworkEvent(this, event, 'checked'),
-				vue: () => handleFrameworkEvent(this, event, 'checked')
+				angular: () => handleFrameworkEventAngular(this, event),
+				vue: () => handleFrameworkEventVue(() => {}, event)
 			});
 		},
 		handleBlur: (event: InteractionEvent<HTMLInputElement>) => {
@@ -65,17 +70,10 @@ export default function DBRadio(props: DBRadioProps) {
 	// jscpd:ignore-end
 
 	onUpdate(() => {
-		if (props.checked && state.initialized && document && state._id) {
-			const radioElement = document?.getElementById(
-				state._id
-			) as HTMLInputElement;
-			if (radioElement) {
-				if (props.checked != undefined) {
-					radioElement.checked = true;
-				}
-			}
+		if (props.checked && state.initialized && _ref) {
+			_ref.checked = true;
 		}
-	}, [state.initialized, props.checked]);
+	}, [state.initialized, _ref, props.checked]);
 
 	return (
 		<label
@@ -86,7 +84,7 @@ export default function DBRadio(props: DBRadioProps) {
 			<input
 				aria-invalid={props.validation === 'invalid'}
 				data-custom-validity={props.validation}
-				ref={ref}
+				ref={_ref}
 				type="radio"
 				id={state._id}
 				name={props.name}

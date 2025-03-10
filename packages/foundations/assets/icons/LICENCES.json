@@ -1,0 +1,153 @@
+[
+	{
+		"name": "arrow_down.svg",
+		"type": "lucide",
+		"licence": "https://lucide.dev/license#lucide-license",
+		"origin": "arrow-down"
+	},
+	{
+		"name": "arrow_left.svg",
+		"type": "lucide",
+		"licence": "https://lucide.dev/license#lucide-license",
+		"origin": "arrow-left"
+	},
+	{
+		"name": "arrow_right.svg",
+		"type": "lucide",
+		"licence": "https://lucide.dev/license#lucide-license",
+		"origin": "arrow-right"
+	},
+	{
+		"name": "arrow_up.svg",
+		"type": "lucide",
+		"licence": "https://lucide.dev/license#lucide-license",
+		"origin": "arrow-up"
+	},
+	{
+		"name": "arrow_up_right.svg",
+		"type": "lucide",
+		"licence": "https://lucide.dev/license#lucide-license",
+		"origin": "arrow-up-right"
+	},
+	{
+		"name": "chevron_down.svg",
+		"type": "lucide",
+		"licence": "https://lucide.dev/license#lucide-license",
+		"origin": "chevron-down"
+	},
+	{
+		"name": "chevron_left.svg",
+		"type": "lucide",
+		"licence": "https://lucide.dev/license#lucide-license",
+		"origin": "chevron-left"
+	},
+	{
+		"name": "chevron_right.svg",
+		"type": "lucide",
+		"licence": "https://lucide.dev/license#lucide-license",
+		"origin": "chevron-right"
+	},
+	{
+		"name": "chevron_up.svg",
+		"type": "lucide",
+		"licence": "https://lucide.dev/license#lucide-license",
+		"origin": "chevron-up"
+	},
+	{
+		"name": "clock.svg",
+		"type": "lucide",
+		"licence": "https://lucide.dev/license#lucide-license",
+		"origin": "clock"
+	},
+	{
+		"name": "check-circle.svg",
+		"type": "lucide",
+		"licence": "https://lucide.dev/license#lucide-license",
+		"origin": "circle-check"
+	},
+	{
+		"name": "circle.svg",
+		"type": "lucide",
+		"licence": "https://lucide.dev/license#lucide-license",
+		"origin": "circle"
+	},
+	{
+		"name": "calendar.svg",
+		"type": "lucide",
+		"licence": "https://lucide.dev/license#lucide-license",
+		"origin": "calendar"
+	},
+	{
+		"name": "plus.svg",
+		"type": "lucide",
+		"licence": "https://lucide.dev/license#lucide-license",
+		"origin": "plus"
+	},
+	{
+		"name": "minus.svg",
+		"type": "lucide",
+		"licence": "https://lucide.dev/license#lucide-license",
+		"origin": "minus"
+	},
+	{
+		"name": "cross.svg",
+		"type": "lucide",
+		"licence": "https://lucide.dev/license#lucide-license",
+		"origin": "x"
+	},
+	{
+		"name": "check.svg",
+		"type": "lucide",
+		"licence": "https://lucide.dev/license#lucide-license",
+		"origin": "check"
+	},
+	{
+		"name": "menu.svg",
+		"type": "lucide",
+		"licence": "https://lucide.dev/license#lucide-license",
+		"origin": "menu"
+	},
+	{
+		"name": "magnifying_glass.svg",
+		"type": "lucide",
+		"licence": "https://lucide.dev/license#lucide-license",
+		"origin": "search"
+	},
+	{
+		"name": "circle_check.svg",
+		"type": "lucide",
+		"licence": "https://lucide.dev/license#lucide-license",
+		"origin": "circle-check"
+	},
+	{
+		"name": "circle_x.svg",
+		"type": "lucide",
+		"licence": "https://lucide.dev/license#lucide-license",
+		"origin": "circle-x"
+	},
+	{
+		"name": "exclamation_mark_circle.svg",
+		"type": "lucide",
+		"licence": "https://lucide.dev/license#lucide-license",
+		"origin": "circle-alert"
+	},
+	{
+		"name": "exclamation_mark_triangle.svg",
+		"type": "lucide",
+		"licence": "https://lucide.dev/license#lucide-license",
+		"origin": "triangle-alert"
+	},
+	{
+		"name": "information_circle.svg",
+		"type": "lucide",
+		"licence": "https://lucide.dev/license#lucide-license",
+		"origin": "info"
+	},
+	{ "name": "brand.svg", "type": "custom", "licence": "DB_LICENSE" },
+	{ "name": "x_placeholder.svg", "type": "custom", "licence": "DB_LICENSE" },
+	{
+		"name": "resize_handle_corner.svg",
+		"type": "custom",
+		"licence": "DB_LICENSE"
+	}
+]

@@ -57,7 +57,7 @@ const ColorUsageGuide = () => {
 								id="dst-layout"
 								relations={[
 									{
-										targetId: 'semantic-container-color',
+										targetId: 'semantic-color',
 										sourceAnchor: 'bottom',
 										targetAnchor: 'top'
 									},
@@ -101,17 +101,16 @@ const ColorUsageGuide = () => {
 						</div>
 						<div className="decision-tree-row grid-1-1-1">
 							<ArcherElement
-								id="semantic-container-color"
+								id="semantic-color"
 								relations={[
 									{
-										targetId:
-											'semantic-container-color-explanation',
+										targetId: 'semantic-color-explanation',
 										sourceAnchor: 'bottom',
 										targetAnchor: 'top'
 									}
 								]}>
 								<DBCard
-									className="db-container-color-blue"
+									className="db-color-blue"
 									elevationLevel="3">
 									<div className="card-inner">
 										<p>
@@ -131,7 +130,7 @@ const ColorUsageGuide = () => {
 									}
 								]}>
 								<DBCard
-									className="db-container-color-violet"
+									className="db-color-violet"
 									elevationLevel="3">
 									<div className="card-inner">
 										<p>Backgrounds or texts and icons</p>
@@ -149,7 +148,7 @@ const ColorUsageGuide = () => {
 									}
 								]}>
 								<DBCard
-									className="db-container-color-yellow"
+									className="db-color-yellow"
 									elevationLevel="3">
 									<div className="card-inner">
 										<p>Parts of custom components</p>
@@ -159,16 +158,15 @@ const ColorUsageGuide = () => {
 						</div>
 						<div className="decision-tree-row grid-1-1-1">
 							<ArcherElement
-								id="semantic-container-color-explanation"
+								id="semantic-color-explanation"
 								relations={[
 									{
-										targetId:
-											'semantic-container-color-link',
+										targetId: 'semantic-color-link',
 										sourceAnchor: 'bottom',
 										targetAnchor: 'top'
 									}
 								]}>
-								<DBCard className="db-container-color-blue">
+								<DBCard className="db-color-blue">
 									<div className="card-inner">
 										<span className="db-font-size-sm">
 											This will change the whole semantic
@@ -194,7 +192,7 @@ const ColorUsageGuide = () => {
 										targetAnchor: 'top'
 									}
 								]}>
-								<DBCard className="db-container-color-violet">
+								<DBCard className="db-color-violet">
 									<div className="card-inner db-font-size-sm">
 										<p>
 											Change <strong>background</strong>{' '}
@@ -225,7 +223,7 @@ const ColorUsageGuide = () => {
 										targetAnchor: 'top'
 									}
 								]}>
-								<DBCard className="db-container-color-yellow">
+								<DBCard className="db-color-yellow">
 									<div className="card-inner db-font-size-sm">
 										<p>
 											Parts of custom components (texts,
@@ -249,7 +247,7 @@ const ColorUsageGuide = () => {
 											targetAnchor: 'top'
 										}
 									]}>
-									<DBCard className="db-container-color-violet">
+									<DBCard className="db-color-violet">
 										<div className="card-inner db-font-size-sm">
 											<p>
 												<strong>
@@ -272,7 +270,7 @@ const ColorUsageGuide = () => {
 											targetAnchor: 'top'
 										}
 									]}>
-									<DBCard className="db-container-color-violet">
+									<DBCard className="db-color-violet">
 										<div className="card-inner">
 											<p className="db-font-size-sm">
 												<strong>
@@ -294,7 +292,7 @@ const ColorUsageGuide = () => {
 											targetAnchor: 'top'
 										}
 									]}>
-									<DBCard className="db-container-color-yellow">
+									<DBCard className="db-color-yellow">
 										<div className="card-inner db-font-size-sm">
 											<p>
 												<strong>
@@ -317,7 +315,7 @@ const ColorUsageGuide = () => {
 											targetAnchor: 'top'
 										}
 									]}>
-									<DBCard className="db-container-color-yellow">
+									<DBCard className="db-color-yellow">
 										<div className="card-inner db-font-size-sm">
 											<p>
 												<strong>
@@ -331,13 +329,13 @@ const ColorUsageGuide = () => {
 							</div>
 						</div>
 						<div className="decision-tree-row grid-1-1-1">
-							<ArcherElement id="semantic-container-color-link">
-								<Link href="./color-classes#container-color-classes">
+							<ArcherElement id="semantic-color-link">
+								<Link href="./color-schemes#color-schemes">
 									<DBCard
-										className="db-container-color-blue"
+										className="db-color-blue"
 										role="button"
 										elevationLevel="3"
-										behaviour="interactive">
+										behavior="interactive">
 										<div className="card-inner">
 											<DBLink>
 												Use container color class
@@ -349,12 +347,12 @@ const ColorUsageGuide = () => {
 
 							<div className="decision-tree-row grid-1-1">
 								<ArcherElement id="background-color-link">
-									<Link href="./color-classes#background-color-modifier-classes">
+									<Link href="./color-schemes#background-color-modifier-classes">
 										<DBCard
-											className="db-container-color-violet"
+											className="db-color-violet"
 											role="button"
 											elevationLevel="3"
-											behaviour="interactive">
+											behavior="interactive">
 											<div className="card-inner">
 												<DBLink>
 													Use background color
@@ -365,12 +363,12 @@ const ColorUsageGuide = () => {
 									</Link>
 								</ArcherElement>
 								<ArcherElement id="text-icon-color-link">
-									<Link href="./color-classes#on-background-color-modifier-classes">
+									<Link href="./color-schemes#on-background-color-modifier-classes">
 										<DBCard
-											className="db-container-color-violet"
+											className="db-color-violet"
 											role="button"
 											elevationLevel="3"
-											behaviour="interactive">
+											behavior="interactive">
 											<div className="card-inner">
 												<DBLink>
 													Use on-background color
@@ -385,7 +383,7 @@ const ColorUsageGuide = () => {
 							<div className="decision-tree-row grid-1-1">
 								<ArcherElement id="adaptive-color-link">
 									<DBCard
-										className="db-container-color-yellow"
+										className="db-color-yellow"
 										role="button"
 										elevationLevel="3">
 										<div className="card-inner">
@@ -396,7 +394,7 @@ const ColorUsageGuide = () => {
 								</ArcherElement>
 								<ArcherElement id="explicit-color-link">
 									<DBCard
-										className="db-container-color-yellow"
+										className="db-color-yellow"
 										role="button"
 										elevationLevel="3">
 										<div className="card-inner">

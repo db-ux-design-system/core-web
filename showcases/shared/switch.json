@@ -170,16 +170,16 @@
 				"name": "Custom Icons",
 				"props": {
 					"visualAid": true,
-					"icon": "night",
-					"iconAfter": "day"
+					"icon": "cross_circle",
+					"iconAfter": "clock"
 				}
 			},
 			{
 				"name": "Custom Icons+ Emphasis",
 				"props": {
 					"visualAid": true,
-					"icon": "lock_closed",
-					"iconAfter": "lock_open",
+					"icon": "cross_circle",
+					"iconAfter": "clock",
 					"emphasis": "strong"
 				}
 			}

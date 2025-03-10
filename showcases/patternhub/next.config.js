@@ -18,7 +18,6 @@ const config = {
 	transpilePackages: [
 		'../../output/react/src',
 		'../react-showcase/',
-		'@db-ui',
 		'@db-ux'
 	],
 	...withMDX({
@@ -28,7 +27,11 @@ const config = {
 	env: {
 		BASE_PATH: process.env.NEXT_PUBLIC_BASE_PATH || '',
 		NEXT_SHOWCASE_VARIANT: 'next',
-		REDIRECT_URL_SEARCH_PARAMS: 'false'
+		REDIRECT_URL_SEARCH_PARAMS: 'false',
+		NEXT_PUBLIC_APP_NAME: 'DB UX',
+		NEXT_PUBLIC_GITHUB_VERSION_SWITCHER: true,
+		NEXT_PUBLIC_GITHUB_OWNER: 'db-ux-design-system',
+		NEXT_PUBLIC_GITHUB_REPO: 'core-web'
 	}
 };
 

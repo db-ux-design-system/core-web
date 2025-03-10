@@ -3,6 +3,7 @@ import {
 	onMount,
 	onUpdate,
 	Show,
+	useDefaultProps,
 	useMetadata,
 	useRef,
 	useStore,
@@ -12,9 +13,9 @@ import { DBSelectOptionType, DBSelectProps, DBSelectState } from './model';
 import {
 	cls,
 	delay,
-	stringPropVisible,
 	getHideProp,
 	hasVoiceOver,
+	stringPropVisible,
 	uuid
 } from '../../utils';
 import {
@@ -33,16 +34,20 @@ import {
 	InputEvent,
 	InteractionEvent
 } from '../../shared/model';
-import { handleFrameworkEvent } from '../../utils/form-components';
+import {
+	handleFrameworkEventAngular,
+	handleFrameworkEventVue
+} from '../../utils/form-components';
 
 useMetadata({
 	angular: {
 		nativeAttributes: ['disabled', 'required', 'value']
 	}
 });
+useDefaultProps<DBSelectProps>({});
 
 export default function DBSelect(props: DBSelectProps) {
-	const ref = useRef<HTMLSelectElement>(null);
+	const _ref = useRef<HTMLSelectElement | null>(null);
 	// jscpd:ignore-start
 	const state = useStore<DBSelectState>({
 		_id: undefined,
@@ -79,23 +84,23 @@ export default function DBSelect(props: DBSelectProps) {
 			}
 
 			useTarget({
-				angular: () => handleFrameworkEvent(this, event),
-				vue: () => handleFrameworkEvent(this, event)
+				angular: () => handleFrameworkEventAngular(this, event),
+				vue: () => handleFrameworkEventVue(() => {}, event)
 			});
 
 			/* For a11y reasons we need to map the correct message with the select */
-			if (!ref?.validity.valid || props.validation === 'invalid') {
+			if (!_ref?.validity.valid || props.validation === 'invalid') {
 				state._descByIds = state._invalidMessageId;
 				if (hasVoiceOver()) {
 					state._voiceOverFallback =
 						props.invalidMessage ??
-						ref?.validationMessage ??
+						_ref?.validationMessage ??
 						DEFAULT_INVALID_MESSAGE;
 					delay(() => (state._voiceOverFallback = ''), 1000);
 				}
 			} else if (
 				props.validation === 'valid' ||
-				(ref?.validity.valid && props.required)
+				(_ref?.validity.valid && props.required)
 			) {
 				state._descByIds = state._validMessageId;
 				if (hasVoiceOver()) {
@@ -177,11 +182,12 @@ export default function DBSelect(props: DBSelectProps) {
 			<select
 				aria-invalid={props.validation === 'invalid'}
 				data-custom-validity={props.validation}
-				ref={ref}
+				ref={_ref}
 				required={props.required}
 				disabled={props.disabled}
 				id={state._id}
 				name={props.name}
+				size={props.size}
 				value={props.value ?? state._value}
 				autocomplete={props.autocomplete}
 				onInput={(event: ChangeEvent<HTMLSelectElement>) =>
@@ -268,7 +274,7 @@ export default function DBSelect(props: DBSelectProps) {
 				size="small"
 				semantic="critical">
 				{props.invalidMessage ??
-					ref?.validationMessage ??
+					_ref?.validationMessage ??
 					DEFAULT_INVALID_MESSAGE}
 			</DBInfotext>
 
