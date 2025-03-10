@@ -99,17 +99,6 @@
 	> db-button > .db-button[data-icon="cross"][data-variant="ghost"],
 	> .db-button[data-icon="cross"][data-variant="ghost"] {
 		--db-tooltip-parent-position: absolute;
-
-		/* default block-start for icon minus (button-size - icon-size)/2 */
-		/*inset-block-start: calc(
-			#{form-components.$icon-inline-block-start} -
-				(
-					#{variables.$db-sizing-sm} -
-						#{form-components.$icon-size-sm}
-				) /
-				2
-		);*/
-
 		inset-block-start: form-components.$icon-inline-block-start;
 		transform: translateY(-50%);
 
@@ -153,12 +142,18 @@
 
 	> details[open] {
 		> summary {
+			&::before {
+				position: fixed;
+				z-index: 1;
+				inset: 0;
+				content: "";
+				cursor: default;
+			}
+
 			@include screen-sizes.screen("sm", "max") {
 				&::before {
 					position: fixed;
 					z-index: 9998;
-					inset: 0;
-					content: "";
 					background-color: dialog-init.$backdrop-color;
 					opacity: dialog-init.$backdrop-opacity-weak;
 				}

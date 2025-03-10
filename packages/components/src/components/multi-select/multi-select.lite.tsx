@@ -19,6 +19,7 @@ import {
 import {
 	cls,
 	delay,
+	getBooleanAsString,
 	getHideProp,
 	getSearchInput,
 	handleDataOutside,
@@ -42,18 +43,18 @@ import {
 	DEFAULT_VALID_MESSAGE_ID_SUFFIX
 } from '../../shared/constants';
 import { ChangeEvent, ClickEvent } from '../../shared/model';
-import { DBMultiSelectList } from '../multi-select-list';
-import { DBMultiSelectListItem } from '../multi-select-list-item';
-import { DBMultiSelectDropdown } from '../multi-select-dropdown';
-import { DBInfotext } from '../infotext';
-import { DBTag } from '../tag';
-import { DBButton } from '../button';
-import { DBTooltip } from '../tooltip';
+import DBMultiSelectList from '../multi-select-list/multi-select-list.lite';
+import DBMultiSelectListItem from '../multi-select-list-item/multi-select-list-item.lite';
+import DBMultiSelectDropdown from '../multi-select-dropdown/multi-select-dropdown.lite';
+import DBInfotext from '../infotext/infotext.lite';
+import DBTag from '../tag/tag.lite';
+import DBButton from '../button/button.lite';
+import DBTooltip from '../tooltip/tooltip.lite';
 import {
 	handleFrameworkEventAngular,
 	handleFrameworkEventVue
 } from '../../utils/form-components';
-import { DBInput } from '../input';
+import DBInput from '../input/input.lite';
 
 useMetadata({
 	angular: {
@@ -66,8 +67,6 @@ useDefaultProps<DBMultiSelectProps>({
 	showClearSelection: true
 });
 
-// TODO: There is some JS issue with crashes chrome ... maybe it's with react
-// TODO: Placement - mobile should be centered if space is missing
 // TODO: Test composition instead of config
 // TODO: Test with screenreader
 
@@ -244,7 +243,7 @@ export default function DBMultiSelect(props: DBMultiSelectProps) {
 				event.preventDefault();
 			} else if (event.key === 'ArrowDown') {
 				// Open dropdown with arrows see https://www.w3.org/WAI/ARIA/apg/patterns/combobox/#keyboardinteraction
-				state.handleToggleOpen();
+				state.handleAutoPlacement();
 				if (detailsRef) {
 					detailsRef.open = true;
 				}
@@ -266,22 +265,11 @@ export default function DBMultiSelect(props: DBMultiSelectProps) {
 			if (detailsRef) {
 				if (event === 'close') {
 					detailsRef.open = false;
-					state.handleRemoveDocumentEvents();
 					state.handleSummaryFocus();
-				} else {
-					const target = event.target as HTMLElement;
+				} else if (detailsRef.open && event?.relatedTarget) {
 					const relatedTarget = event.relatedTarget as HTMLElement;
-					if (
-						!(
-							target === detailsRef ||
-							target.closest('details') === detailsRef ||
-							(relatedTarget &&
-								detailsRef.contains(relatedTarget))
-						)
-					) {
+					if (!detailsRef.contains(relatedTarget)) {
 						detailsRef.open = false;
-						state.handleRemoveDocumentEvents();
-						state.handleSummaryFocus();
 					}
 				}
 			}
@@ -314,22 +302,6 @@ export default function DBMultiSelect(props: DBMultiSelectProps) {
 					: [];
 			}
 			state._internalChangeTimestamp = new Date().getTime();
-		},
-		handleRemoveDocumentEvents: () => {
-			if (typeof document !== 'undefined') {
-				document.removeEventListener('click', state.handleClose);
-			}
-		},
-		handleToggleOpen: () => {
-			// Add "popover" close to details summary
-			if (typeof document !== 'undefined') {
-				if (detailsRef?.open) {
-					state.handleRemoveDocumentEvents();
-				} else {
-					document.addEventListener('click', state.handleClose);
-				}
-			}
-			state.handleAutoPlacement();
 		},
 		handleFocusFirstDropdownCheckbox: (activeElement?: Element) => {
 			if (detailsRef) {
@@ -409,10 +381,6 @@ export default function DBMultiSelect(props: DBMultiSelectProps) {
 		state._infoTextId = mId + '-info';
 	});
 
-	onUnMount(() => {
-		state.handleRemoveDocumentEvents();
-	});
-
 	onUpdate(() => {
 		state._name = props.name ?? state._id;
 	}, [props.name, state._id]);
@@ -452,7 +420,7 @@ export default function DBMultiSelect(props: DBMultiSelectProps) {
 			const summary = detailsRef.querySelector('summary');
 			if (summary) {
 				summary.addEventListener('click', () => {
-					state.handleToggleOpen();
+					state.handleAutoPlacement();
 					state.handleOpenByKeyboardFocus(true);
 				});
 				summary.addEventListener('keydown', (event: KeyboardEvent) => {
@@ -461,6 +429,9 @@ export default function DBMultiSelect(props: DBMultiSelectProps) {
 					}
 				});
 			}
+			detailsRef.addEventListener('focusout', (event) =>
+				state.handleClose(event)
+			);
 		}
 	}, [detailsRef]);
 
@@ -652,13 +623,15 @@ export default function DBMultiSelect(props: DBMultiSelectProps) {
 				hidden>
 				<For each={state._options}>
 					{(option: MultiSelectOptionType) => (
-						<Fragment key={state.getOptionKey?.(option)}>
-							<option
-								disabled={option.disabled}
-								value={option.value}>
-								{state.getOptionLabel(option)}
-							</option>
-						</Fragment>
+						<option
+							key={useTarget({
+								react: state.getOptionKey?.(option),
+								default: undefined
+							})}
+							disabled={option.disabled}
+							value={option.value}>
+							{state.getOptionLabel(option)}
+						</option>
 					)}
 				</For>
 			</select>
@@ -668,7 +641,6 @@ export default function DBMultiSelect(props: DBMultiSelectProps) {
 			<details
 				ref={detailsRef}
 				aria-disabled={props.disabled}
-				onBlur={(event) => state.handleClose(event)}
 				onKeyDown={(event) => state.handleKeyboardPress(event)}>
 				{props.children}
 				<Show when={props.options}>
@@ -678,9 +650,9 @@ export default function DBMultiSelect(props: DBMultiSelectProps) {
 						aria-labelledby={state._labelId}>
 						<Show when={state._selectedLabels?.length}>
 							<span
-								data-visually-hidden={
+								data-visually-hidden={getBooleanAsString(
 									props.selectedType === 'tag'
-								}
+								)}
 								id={state._selectedLabelsId}>
 								{state._selectedLabels}
 							</span>
@@ -693,10 +665,12 @@ export default function DBMultiSelect(props: DBMultiSelectProps) {
 										index: number
 									) => (
 										<DBTag
-											key={
-												'tag-' +
-												state.getOptionKey(option)
-											}
+											key={useTarget({
+												react:
+													'tag-' +
+													state.getOptionKey(option),
+												default: undefined
+											})}
 											removeButton={state.getTagRemoveLabel(
 												index
 											)}
@@ -776,43 +750,43 @@ export default function DBMultiSelect(props: DBMultiSelectProps) {
 											{(
 												option: MultiSelectOptionType
 											) => (
-												<Fragment
-													key={state.getOptionKey?.(
-														option
-													)}>
-													<DBMultiSelectListItem
-														type={
-															props.multiple
-																? 'checkbox'
-																: 'radio'
-														}
-														divider={option.divider}
-														icon={option.icon}
-														groupLabel={
-															option.isGroup
-																? state.getOptionLabel(
-																		option
-																	)
-																: undefined
-														}
-														name={state._name}
-														checked={state.getOptionChecked(
+												<DBMultiSelectListItem
+													key={useTarget({
+														react: state.getOptionKey?.(
+															option
+														),
+														default: undefined
+													})}
+													type={
+														props.multiple
+															? 'checkbox'
+															: 'radio'
+													}
+													divider={option.divider}
+													icon={option.icon}
+													groupLabel={
+														option.isGroup
+															? state.getOptionLabel(
+																	option
+																)
+															: undefined
+													}
+													name={state._name}
+													checked={state.getOptionChecked(
+														option.value
+													)}
+													disabled={option.disabled}
+													value={option.value}
+													onChange={() => {
+														state.handleSelect(
 															option.value
-														)}
-														disabled={
-															option.disabled
-														}
-														value={option.value}
-														onChange={() => {
-															state.handleSelect(
-																option.value
-															);
-														}}>
-														{state.getOptionLabel(
+														);
+													}}>
+													{!option.isGroup &&
+														state.getOptionLabel(
 															option
 														)}
-													</DBMultiSelectListItem>
-												</Fragment>
+												</DBMultiSelectListItem>
 											)}
 										</For>
 									</DBMultiSelectList>

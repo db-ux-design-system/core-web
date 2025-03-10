@@ -6,6 +6,13 @@
 @use "@db-ux/core-foundations/build/styles/screen-sizes";
 @use "../../styles/internal/form-components";
 
+// web-component workaround
+db-multi-select-list-item:not(:last-of-type) {
+	.db-multi-select-list-item[data-divider="true"] {
+		@include helpers.divider("bottom");
+	}
+}
+
 .db-multi-select-list-item {
 	display: flex;
 	block-size: 100%;
@@ -35,8 +42,6 @@
 		@extend %db-overwrite-font-size-md;
 		color: colors.$db-adaptive-on-bg-basic-emphasis-80-default;
 	}
-
-
 
 	&[data-divider="true"]:not(:last-of-type) {
 		@include helpers.divider("bottom");

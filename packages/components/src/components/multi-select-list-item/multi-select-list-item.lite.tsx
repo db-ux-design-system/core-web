@@ -11,7 +11,7 @@ import {
 	DBMultiSelectListItemProps,
 	DBMultiSelectListItemState
 } from './model';
-import { cls, uuid } from '../../utils';
+import { cls, getBooleanAsString, uuid } from '../../utils';
 import { ChangeEvent } from '../../shared/model';
 import {
 	handleFrameworkEventAngular,
@@ -79,7 +79,9 @@ export default function DBMultiSelectListItem(
 				'db-checkbox': props.type === 'checkbox' && !props.groupLabel,
 				'db-radio': props.type !== 'checkbox' && !props.groupLabel
 			})}
-			data-divider={!!props.groupLabel || props.divider}>
+			data-divider={getBooleanAsString(
+				!!props.groupLabel || props.divider
+			)}>
 			<Show when={props.groupLabel}>
 				<span>{props.groupLabel}</span>
 			</Show>

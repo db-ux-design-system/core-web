@@ -11,7 +11,7 @@ export interface DBMultiSelectDropdownDefaultProps {
 	 * Full: Based on the size of the form-field
 	 * Auto: Based on the size of the largest list item
 	 */
-	width?: MultiSelectDropdownWidthType | 'string';
+	width?: MultiSelectDropdownWidthType | string;
 }
 
 export type DBMultiSelectDropdownProps = DBMultiSelectDropdownDefaultProps &

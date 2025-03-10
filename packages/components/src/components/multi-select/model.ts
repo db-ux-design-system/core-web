@@ -207,8 +207,6 @@ export interface DBMultiSelectDefaultState {
 	handleSelect: (value?: string) => void;
 	handleSelectAll: () => void;
 	handleClearAll: () => void;
-	handleToggleOpen: () => void;
-	handleRemoveDocumentEvents: () => void;
 	handleOpenByKeyboardFocus: (onlySearch?: boolean) => void;
 	handleFocusFirstDropdownCheckbox: (activeElement?: Element) => void;
 	handleKeyboardPress: (event: any) => void;

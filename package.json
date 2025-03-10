@@ -5,7 +5,7 @@
   "description": "",
   "repository": {
     "type": "git",
-    "url": "https://github.com/db-ux-design-system/core-web"
+    "url": "git+https://github.com/db-ux-design-system/core-web.git"
   },
   "homepage": "https://db-ux-design-system.github.io/core-web/",
   "bugs": {
@@ -27,6 +27,7 @@
     "build-outputs": "npm run build-outputs --workspace=scripts",
     "build-showcases": "npm run build-showcases --workspace=scripts",
     "clean": "git clean -dfx --exclude=.env",
+    "commit:updated-snapshots": "git diff --name-only --diff-filter=M | xargs git add && git commit -m 'test: updated snapshots'",
     "dev": "npm run dev --workspace=scripts",
     "generate:component": "npm run generate:component --workspace=@db-ux/core-components",
     "lint": "npm-run-all -p lint:*",
@@ -46,8 +47,8 @@
   },
   "devDependencies": {
     "@axe-core/playwright": "^4.10.1",
-    "@commitlint/cli": "19.7.1",
-    "@commitlint/config-conventional": "19.7.1",
+    "@commitlint/cli": "19.8.0",
+    "@commitlint/config-conventional": "19.8.0",
     "@db-ux/db-theme": "1.0.2",
     "@double-great/stylelint-a11y": "3.0.4",
     "@guidepup/guidepup": "0.24.0",
@@ -86,7 +87,7 @@
     "tsx": "^4.19.3",
     "typescript": "^5.4.5",
     "validate-branch-name": "^1.3.2",
-    "vitest": "^3.0.7",
+    "vitest": "^3.0.8",
     "xo": "^0.60.0"
   },
   "overrides": {

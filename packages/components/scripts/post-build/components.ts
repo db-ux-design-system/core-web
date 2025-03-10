@@ -18,6 +18,7 @@ export type Component = {
 		};
 		angular?: {
 			controlValueAccessor?: string;
+			controlValueAccessorRequired?: boolean;
 			directives?: { name: string; ngContentName?: string }[];
 			initValues?: { key: string; value: any }[];
 		};
@@ -252,6 +253,9 @@ export const getComponents = (): Component[] => [
 
 	{
 		name: 'tag',
+		overwrites: {
+			stencil: [{ from: /onRemove/g, to: 'remove' }]
+		},
 		config: {
 			react: {
 				propsPassingFilter: ['onRemove']
@@ -282,10 +286,11 @@ export const getComponents = (): Component[] => [
 		},
 		config: {
 			vue: {
-				vModel: [{ modelValue: 'checked', binding: ':checked' }]
+				vModel: [{ modelValue: 'value', binding: ':value' }]
 			},
 			angular: {
-				controlValueAccessor: 'checked'
+				controlValueAccessor: 'value',
+				controlValueAccessorRequired: true
 			}
 		}
 	},

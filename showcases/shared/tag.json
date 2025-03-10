@@ -181,7 +181,7 @@
 			{
 				"name": "Removable",
 				"props": {
-					"behaviour": "removable"
+					"behavior": "removable"
 				}
 			},
 			{
@@ -306,12 +306,6 @@
 						]
 					}
 				]
-			},
-			{
-				"name": "Removeable",
-				"props": {
-					"behavior": "removable"
-				}
 			}
 		]
 	},
