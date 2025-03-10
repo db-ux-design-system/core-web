@@ -144,7 +144,7 @@
 		> summary {
 			&::before {
 				position: fixed;
-				z-index: 1;
+				z-index: 31;
 				inset: 0;
 				content: "";
 				cursor: default;
@@ -164,6 +164,7 @@
 	&[data-variant="floating"] {
 		.db-multi-select-form-field {
 			> span {
+				/* stylelint-disable-next-line db-ux/use-spacings */
 				padding-block-start: form-components.$floating-label-padding-block-start;
 			}
 		}

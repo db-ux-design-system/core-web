@@ -73,6 +73,10 @@ const FormComponent = () => {
 		<div className="form-container">
 			<div>
 				<form>
+					<DBMultiSelect
+						options={[{ value: 'Option 1' }, { value: 'Option 2' }]}
+						label="Test"
+						placeholder="Placeholder"></DBMultiSelect>
 					<fieldset>
 						<p>Input:</p>
 						<DBInput

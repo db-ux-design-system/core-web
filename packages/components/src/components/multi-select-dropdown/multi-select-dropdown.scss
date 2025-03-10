@@ -9,7 +9,7 @@
 	@extend %db-neutral-variables;
 
 	position: absolute;
-	z-index: 2;
+	z-index: 32;
 	box-shadow: variables.$db-elevation-md;
 	min-inline-size: variables.$db-sizing-xl;
 	max-inline-size: calc(100vw - 2 * #{variables.$db-spacing-fixed-sm});
