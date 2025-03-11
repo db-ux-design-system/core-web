@@ -19,7 +19,7 @@ export default function DBMultiSelectFormField(
 	props: DBMultiSelectFormFieldProps
 ) {
 	// This is used as forwardRef
-	const _ref = useRef<HTMLDivElement>(null);
+	const _ref = useRef<HTMLDivElement | null>(null);
 	// jscpd:ignore-start
 	const state = useStore<DBMultiSelectFormFieldState>({});
 	// jscpd:ignore-end

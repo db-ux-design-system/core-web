@@ -213,7 +213,7 @@ export type DBMultiSelectDefaultState = {
 	handleFocusFirstDropdownCheckbox: (activeElement?: Element) => void;
 	handleKeyboardPress: (event: any) => void;
 	handleArrowDownUp: (event: any) => void;
-	handleSearch: (event: ChangeEvent<HTMLInputElement>) => void;
+	handleSearch: (event: any) => void;
 	getSelectAllLabel: () => string;
 	selectAllChecked: boolean;
 	selectAllIndeterminate: boolean;

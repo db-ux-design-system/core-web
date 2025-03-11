@@ -476,7 +476,6 @@ const FormComponent = () => {
 						placeholder="Test"
 						selectAllLabel="Select all"
 						deSelectAllLabel="Deselect all"
-						enableSearch
 						searchLabel="Search"
 						noResultsText="No matching filter"
 						values={multiSelectValue}

@@ -75,7 +75,7 @@ export default function DBMultiSelect(props: DBMultiSelectProps) {
 	const _ref = useRef<HTMLDivElement | null>(null);
 	const detailsRef = useRef<HTMLDetailsElement | null>(null);
 	const selectRef = useRef<HTMLSelectElement | null>(null);
-	const selectAllRef = useRef<HTMLInputElement>(null);
+	const selectAllRef = useRef<HTMLInputElement | null>(null);
 	// jscpd:ignore-start
 	const state: DBMultiSelectState = useStore<DBMultiSelectState>({
 		_name: undefined,
@@ -341,7 +341,7 @@ export default function DBMultiSelect(props: DBMultiSelectProps) {
 				}
 			}
 		},
-		handleSearch: (event: ChangeEvent<HTMLInputElement>) => {
+		handleSearch: (event: any) => {
 			const filterText = (event.target as HTMLInputElement).value;
 
 			state._options =

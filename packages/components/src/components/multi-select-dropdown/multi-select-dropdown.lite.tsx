@@ -21,7 +21,7 @@ export default function DBMultiSelectDropdown(
 	props: DBMultiSelectDropdownProps
 ) {
 	// This is used as forwardRef
-	const _ref = useRef<HTMLDivElement>(null);
+	const _ref = useRef<HTMLDivElement | null>(null);
 	// jscpd:ignore-start
 	const state = useStore<DBMultiSelectDropdownState>({});
 	// jscpd:ignore-end

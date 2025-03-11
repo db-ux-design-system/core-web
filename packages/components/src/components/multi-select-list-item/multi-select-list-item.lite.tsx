@@ -30,7 +30,7 @@ export default function DBMultiSelectListItem(
 	props: DBMultiSelectListItemProps
 ) {
 	// This is used as forwardRef
-	const _ref = useRef<HTMLLIElement>(null);
+	const _ref = useRef<HTMLLIElement | null>(null);
 	// jscpd:ignore-start
 	const state: DBMultiSelectListItemState =
 		useStore<DBMultiSelectListItemState>({

@@ -13,7 +13,7 @@ useDefaultProps<DBMultiSelectListProps>({});
 
 export default function DBMultiSelectList(props: DBMultiSelectListProps) {
 	// This is used as forwardRef
-	const _ref = useRef<HTMLUListElement>(null);
+	const _ref = useRef<HTMLUListElement | null>(null);
 	// jscpd:ignore-start
 	const state = useStore<DBMultiSelectListState>({});
 	// jscpd:ignore-end
