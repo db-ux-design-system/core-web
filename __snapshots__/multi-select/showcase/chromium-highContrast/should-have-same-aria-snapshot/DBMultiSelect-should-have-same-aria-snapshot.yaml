@@ -1,0 +1,175 @@
+- main:
+  - heading "DBMultiSelect" [level=1]
+  - link "Density arrow_up_right\" / \""
+  - text: Functional
+  - group
+  - status
+  - text: chevron_down" / " (Default) Regular
+  - group
+  - status
+  - text: chevron_down" / " Expressive
+  - group
+  - status
+  - text: chevron_down" / "
+  - link "Variant arrow_up_right\" / \""
+  - text: (Default) Label Above
+  - group
+  - status
+  - text: chevron_down" / " Floating Label
+  - group
+  - status
+  - text: chevron_down" / "
+  - link "Show Label arrow_up_right\" / \""
+  - text: (Default) True
+  - group
+  - status
+  - text: chevron_down" / " False
+  - group
+  - status
+  - text: chevron_down" / "
+  - link "Helper Message arrow_up_right\" / \""
+  - text: (Default) Basic
+  - group
+  - status
+  - text: chevron_down" / " Helper Message
+  - group
+  - text: information_circle" / " Helper Message
+  - status
+  - text: chevron_down" / "
+  - link "Show Icon arrow_up_right\" / \""
+  - text: (Default) False
+  - group
+  - status
+  - text: chevron_down" / " x_placeholder" / " True
+  - group
+  - status
+  - text: chevron_down" / "
+  - link "Requirement arrow_up_right\" / \""
+  - text: (Default) Optional
+  - group
+  - status
+  - text: chevron_down" / " Required*" / "
+  - group
+  - status
+  - text: chevron_down" / "
+  - link "Width arrow_up_right\" / \""
+  - text: (Default) Full
+  - group
+  - status
+  - text: chevron_down" / " Auto
+  - group
+  - status
+  - text: chevron_down" / "
+  - link "Dropdown Width arrow_up_right\" / \""
+  - text: information_circle" / " Full Width (Default) Fixed
+  - group
+  - status
+  - text: chevron_down" / " Auto
+  - group
+  - status
+  - text: chevron_down" / " Full
+  - group
+  - status
+  - text: chevron_down" / " information_circle" / " Auto Width (Default) Fixed
+  - group
+  - status
+  - text: chevron_down" / " Auto
+  - group
+  - status
+  - text: chevron_down" / " Full
+  - group
+  - status
+  - text: chevron_down" / "
+  - link "Placement arrow_up_right\" / \""
+  - text: information_circle" / " Full Width (Default) Bottom
+  - group
+  - status
+  - text: chevron_down" / " Top
+  - group
+  - status
+  - text: chevron_down" / " information_circle" / " Auto Width (Default) Bottom-Start
+  - group
+  - status
+  - text: chevron_down" / " Bottom-End
+  - group
+  - status
+  - text: chevron_down" / " Top-Start
+  - group
+  - status
+  - text: chevron_down" / " Top-End
+  - group
+  - status
+  - text: chevron_down" / "
+  - link "Selected type arrow_up_right\" / \""
+  - text: (Default) Text
+  - group
+  - status
+  - text: chevron_down" / " Amount
+  - group
+  - status
+  - text: chevron_down" / " Tag
+  - group
+  - status
+  - text: chevron_down" / "
+  - link "Examples Single arrow_up_right\" / \""
+  - text: Icons
+  - group
+  - status
+  - text: chevron_down" / " Less than 6
+  - group
+  - status
+  - text: chevron_down" / " Option Group Title
+  - group
+  - status
+  - text: chevron_down" / " Option Groups
+  - group
+  - status
+  - text: chevron_down" / " More than 6
+  - group
+  - status
+  - text: chevron_down" / " More than 10
+  - group
+  - status
+  - text: chevron_down" / "
+  - link "Examples Multiple arrow_up_right\" / \""
+  - text: Less than 6
+  - group
+  - status
+  - text: chevron_down" / " Option Group Title
+  - group
+  - status
+  - text: chevron_down" / " Option Groups
+  - group
+  - status
+  - text: chevron_down" / " More than 6
+  - group
+  - status
+  - text: chevron_down" / " More than 10
+  - group
+  - status
+  - text: chevron_down" / "
+  - link "Example tags arrow_up_right\" / \""
+  - text: Tag grow
+  - group
+  - status
+  - text: chevron_down" / " Tag grow + auto
+  - group
+  - status
+  - text: chevron_down" / "
+  - link "Example Shows arrow_up_right\" / \""
+  - text: Show No Result
+  - group
+  - status
+  - text: chevron_down" / " Show Loading and Show Search
+  - group
+  - status
+  - text: chevron_down" / " Show Loading
+  - group
+  - status
+  - text: chevron_down" / " Show SelectAll
+  - group
+  - status
+  - text: chevron_down" / " Hide ClearAll
+  - group
+  - status
+  - text: chevron_down" / "
