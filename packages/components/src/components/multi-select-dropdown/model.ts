@@ -4,7 +4,7 @@ export const MultiSelectDropdownWidthList = ['fixed', 'auto', 'full'] as const;
 export type MultiSelectDropdownWidthType =
 	(typeof MultiSelectDropdownWidthList)[number];
 
-export interface DBMultiSelectDropdownDefaultProps {
+export type DBMultiSelectDropdownDefaultProps = {
 	/**
 	 * Changes the behavior of the dropdown with.
 	 * Default: fixed 328px
@@ -12,12 +12,12 @@ export interface DBMultiSelectDropdownDefaultProps {
 	 * Auto: Based on the size of the largest list item
 	 */
 	width?: MultiSelectDropdownWidthType | string;
-}
+};
 
 export type DBMultiSelectDropdownProps = DBMultiSelectDropdownDefaultProps &
 	GlobalProps;
 
-export interface DBMultiSelectDropdownDefaultState {}
+export type DBMultiSelectDropdownDefaultState = {};
 
 export type DBMultiSelectDropdownState = DBMultiSelectDropdownDefaultState &
 	GlobalState;

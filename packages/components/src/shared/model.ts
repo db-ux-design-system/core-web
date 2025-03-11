@@ -267,19 +267,18 @@ export type ShowLabelProps = {
 	showLabel?: boolean;
 };
 
-export type FormProps = {
+export type ValueProps = {
 	/**
-	 * Overwrites auto handling for aria-describedby.
+	 * The value property is to receive results from the native form element.
 	 */
-	ariaDescribedBy?: string;
+	value?: any;
+};
+
+export type BaseFormProps = {
 	/**
 	 * The disabled attribute can be set to keep a user from clicking on the form element.
 	 */
 	disabled?: boolean;
-	/**
-	 * 	Associates the control with a form element
-	 */
-	form?: string;
 	/**
 	 * The label attribute specifies the caption of the form element.
 	 */
@@ -289,18 +288,29 @@ export type FormProps = {
 	 * The name attribute gives the name of the form control, as used in form submission and in the form element's elements object.
 	 */
 	name?: string;
+};
+
+export type CustomFormProps = {
+	/**
+	 * Overwrites auto handling for aria-describedby.
+	 */
+	ariaDescribedBy?: string;
+	/**
+	 * 	Associates the control with a form element
+	 */
+	form?: string;
 
 	/**
 	 * Marks an input element as invalid (red) / valid (green) / no-validation (grey). Overwrites the :user-valid selector.
 	 */
 	validation?: ValidationType;
+};
 
-	/**
-	 * The value property is to receive results from the native form element.
-	 */
-	value?: any;
-} & RequiredProps &
-	ShowLabelProps;
+export type FormProps = CustomFormProps &
+	BaseFormProps &
+	RequiredProps &
+	ShowLabelProps &
+	ValueProps;
 
 export type FormTextProps = {
 	/**

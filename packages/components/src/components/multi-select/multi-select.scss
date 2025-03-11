@@ -33,12 +33,14 @@
 	&:not([data-placement]),
 	&[data-placement^="bottom"] {
 		@extend %multi-select-placement-vertical;
+
 		.db-multi-select-dropdown:not([data-outside-vy="bottom"]) {
 			@include screen-sizes.screen("sm") {
 				inset-block-start: 100%;
 				margin-block-end: variables.$db-spacing-fixed-md;
 			}
 		}
+
 		.db-multi-select-dropdown[data-outside-vy="bottom"] {
 			@extend %multi-select-placement-top;
 		}
@@ -46,6 +48,7 @@
 
 	&[data-placement^="top"] {
 		@extend %multi-select-placement-vertical;
+
 		.db-multi-select-dropdown:not([data-outside-vy="top"]) {
 			@extend %multi-select-placement-top;
 		}
@@ -90,6 +93,7 @@
 	&:has(.db-multi-select-form-field:empty),
 	&:has(.db-multi-select-form-field > :empty) {
 		--db-form-component-padding-inline-end: #{select-components.$select-icon-padding};
+
 		[id$="-placeholder"] {
 			display: block;
 		}
@@ -99,6 +103,7 @@
 	> db-button > .db-button[data-icon="cross"][data-variant="ghost"],
 	> .db-button[data-icon="cross"][data-variant="ghost"] {
 		--db-tooltip-parent-position: absolute;
+
 		inset-block-start: form-components.$icon-inline-block-start;
 		transform: translateY(-50%);
 

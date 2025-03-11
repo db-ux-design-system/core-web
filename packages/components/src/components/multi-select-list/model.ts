@@ -1,18 +1,11 @@
-import {
-GlobalProps,
-GlobalState } from '../../shared/model';
+import { GlobalProps, GlobalState } from '../../shared/model';
 
-export interface DBMultiSelectListDefaultProps {
-}
+export type DBMultiSelectListDefaultProps = {};
 
-export type DBMultiSelectListProps =
-	DBMultiSelectListDefaultProps  &
-	GlobalProps
-	;
+export type DBMultiSelectListProps = DBMultiSelectListDefaultProps &
+	GlobalProps;
 
-export interface DBMultiSelectListDefaultState {}
+export type DBMultiSelectListDefaultState = {};
 
-export type DBMultiSelectListState =
-	DBMultiSelectListDefaultState &
-	GlobalState
-	;
+export type DBMultiSelectListState = DBMultiSelectListDefaultState &
+	GlobalState;

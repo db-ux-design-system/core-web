@@ -4,6 +4,7 @@ import DefaultComponent from '../default-component';
 import defaultComponentVariants from '../../../../shared/multi-select.json';
 import type { DBMultiSelectProps } from '../../../../../output/react/src/components/multi-select/model';
 import { getVariants } from '../data';
+import type { BaseComponentProps } from '../base-component-data';
 
 const getMultiSelect = ({
 	children,
@@ -76,20 +77,20 @@ const getMultiSelect = ({
 			noResultsText={noResultsText ?? 'No matching filter'}
 			values={mValue}
 			onSelect={(val) => {
-				console.log('React app onSelect', val);
 				setValue(val);
 			}}
 		/>
 	);
 };
 
-const MultiSelectComponent = () => {
+const MultiSelectComponent = (props: BaseComponentProps) => {
 	return (
 		<DefaultComponent
 			title="DBMultiSelect"
 			variants={getVariants(
 				defaultComponentVariants,
-				getMultiSelect
+				getMultiSelect,
+				props.slotCode
 			)}></DefaultComponent>
 	);
 };

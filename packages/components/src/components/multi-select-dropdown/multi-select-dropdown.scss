@@ -45,6 +45,7 @@
 		&:has(.db-checkbox) {
 			padding: variables.$db-spacing-fixed-xs
 				variables.$db-spacing-fixed-sm;
+
 			@include helpers.divider("bottom", "after");
 		}
 

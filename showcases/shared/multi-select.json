@@ -679,7 +679,7 @@
 					"options": [
 						{
 							"label": "Option group 1",
-							"isGroup": true
+							"isGroupTitle": true
 						},
 						{
 							"value": "G1:Option 1"
@@ -689,7 +689,7 @@
 						},
 						{
 							"label": "Option group 2",
-							"isGroup": true
+							"isGroupTitle": true
 						},
 						{
 							"value": "G2:Option 1"
@@ -830,7 +830,7 @@
 					"options": [
 						{
 							"label": "Option group 1",
-							"isGroup": true
+							"isGroupTitle": true
 						},
 						{
 							"value": "G1:Option 1"
@@ -840,7 +840,7 @@
 						},
 						{
 							"label": "Option group 2",
-							"isGroup": true
+							"isGroupTitle": true
 						},
 						{
 							"value": "G2:Option 1"

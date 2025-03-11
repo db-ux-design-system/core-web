@@ -4,6 +4,7 @@
 .db-multi-select-list {
 	padding: variables.$db-spacing-fixed-sm;
 	overflow-y: auto;
+
 	/* (checkbox height + list-item padding) * 6 items + list padding */
 	max-block-size: calc(
 		6 *
@@ -17,7 +18,7 @@
 			(#{variables.$db-spacing-fixed-sm} * 2)
 	);
 
-	& > ul {
+	> ul {
 		all: unset;
 		display: flex;
 		flex-direction: column;

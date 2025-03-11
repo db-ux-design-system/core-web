@@ -1,22 +1,22 @@
 import {
+	BaseFormProps,
 	ChangeEvent,
-	ClickEvent,
 	CloseEventState,
+	CustomFormProps,
 	FormMessageProps,
-	FormProps,
 	FormState,
 	GlobalProps,
 	GlobalState,
 	IconProps,
 	PlacementVerticalType,
 	PopoverState,
+	RequiredProps,
 	ShowIconProps,
 	ShowLabelProps,
 	ValidationType,
 	WidthProps
 } from '../../shared/model';
 import { DBMultiSelectFormFieldDefaultProps } from '../multi-select-form-field/model';
-import { ay } from 'vitest/dist/chunks/reporters.QZ837uWx';
 import { MultiSelectDropdownWidthType } from '../multi-select-dropdown/model';
 import { DBMultiSelectListItemExtraProps } from '../multi-select-list-item/model';
 
@@ -32,9 +32,9 @@ export type MultiSelectOptionType = {
 	id?: string;
 
 	/**
-	 * If the item is a group (only text)
+	 * If the item is a group title (only text)
 	 */
-	isGroup?: boolean;
+	isGroupTitle?: boolean;
 
 	/**
 	 * If the value is different from the label you want to show to the user.
@@ -50,7 +50,7 @@ export type MultiSelectOptionType = {
 export const SelectedTypeList = ['amount', 'text', 'tag'] as const;
 export type SelectedTypeType = (typeof SelectedTypeList)[number];
 
-export interface DBMultiSelectDefaultProps {
+export type DBMultiSelectDefaultProps = {
 	/**
 	 * Optional: if select-type="amount" change the shown text
 	 */
@@ -158,7 +158,7 @@ export interface DBMultiSelectDefaultProps {
 	showSearch?: boolean;
 
 	/**
-	 * Forces header
+	 * Forces select all checkbox (only for multiple).
 	 */
 	showSelectAll?: boolean;
 
@@ -166,10 +166,12 @@ export interface DBMultiSelectDefaultProps {
 	 * Initial value for multi select
 	 */
 	values?: string[];
-}
+};
 
 export type DBMultiSelectProps = GlobalProps &
-	Omit<FormProps, 'value'> &
+	CustomFormProps &
+	BaseFormProps &
+	RequiredProps &
 	FormMessageProps &
 	DBMultiSelectDefaultProps &
 	DBMultiSelectFormFieldDefaultProps &
@@ -178,7 +180,7 @@ export type DBMultiSelectProps = GlobalProps &
 	ShowIconProps &
 	ShowLabelProps;
 
-export interface DBMultiSelectDefaultState {
+export type DBMultiSelectDefaultState = {
 	_validity?: ValidationType;
 	_values?: string[];
 	_options?: MultiSelectOptionType[];
@@ -215,7 +217,7 @@ export interface DBMultiSelectDefaultState {
 	getSelectAllLabel: () => string;
 	selectAllChecked: boolean;
 	selectAllIndeterminate: boolean;
-}
+};
 
 export type DBMultiSelectState = DBMultiSelectDefaultState &
 	GlobalState &

@@ -1,7 +1,6 @@
-import MultiSelect from '../components/multi-select/MultiSelect.vue';
-
 import type { RouteRecordRaw } from 'vue-router';
 import { markRaw } from 'vue';
+import MultiSelect from '../components/multi-select/MultiSelect.vue';
 import Stack from '../components/stack/Stack.vue';
 import Switch from '../components/switch/Switch.vue';
 import Tabs from '../components/tabs/Tabs.vue';

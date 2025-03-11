@@ -9,11 +9,12 @@ For general installation and configuration take a look at the [react-components]
 import { DBMultiSelect } from "@db-ui/react-components";
 
 const App = () => (
-	<DBMultiSelect>
-		MultiSelect
-	</DBMultiSelect>
+	<DBMultiSelect
+		label="Label"
+		placeholder="Placeholder"
+		options={[{ value: "Option 1" }, { value: "Option 2" }]}
+	/>
 );
 
 export default App;
 ```
-

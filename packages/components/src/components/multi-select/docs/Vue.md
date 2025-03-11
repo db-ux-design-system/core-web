@@ -11,8 +11,10 @@ import { DBMultiSelect } from "@db-ui/v-components";
 </script>
 
 <template>
-	<DBMultiSelect>MultiSelect</DBMultiSelect>
+	<DBMultiSelect
+		label="Label"
+		placeholder="Placeholder"
+		:options="[{ value: 'Option 1' }, { value: 'Option 2' }]"
+	/>
 </template>
 ```
-
-

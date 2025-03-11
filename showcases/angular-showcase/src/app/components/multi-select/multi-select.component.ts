@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-
 import { DefaultComponent } from '../default.component';
 import defaultComponentVariants from '../../../../../shared/multi-select.json';
 import { environment } from '../../../environments/environment';

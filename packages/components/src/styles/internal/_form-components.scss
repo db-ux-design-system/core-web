@@ -110,6 +110,7 @@ $check-border-size: min(#{variables.$db-border-height-2xs}, 2px);
 				padding-block-start: $floating-label-size-calc;
 				/* stylelint-disable-next-line at-rule-empty-line-before */
 			} @else if($selector != summary) {
+				/* stylelint-disable-next-line db-ux/use-spacings */
 				padding-block-start: $floating-label-padding-block-start;
 			}
 		}

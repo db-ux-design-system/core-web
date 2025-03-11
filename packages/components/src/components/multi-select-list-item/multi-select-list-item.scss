@@ -40,6 +40,7 @@ db-multi-select-list-item:not(:last-of-type) {
 
 	span {
 		@extend %db-overwrite-font-size-md;
+
 		color: colors.$db-adaptive-on-bg-basic-emphasis-80-default;
 	}
 
@@ -49,6 +50,7 @@ db-multi-select-list-item:not(:last-of-type) {
 
 	> label {
 		--db-icon-margin-start: auto;
+
 		inline-size: 100%;
 
 		&:has(input:checked) {
@@ -57,6 +59,7 @@ db-multi-select-list-item:not(:last-of-type) {
 
 		&:has(input[type="radio"]) {
 			--db-icon-after: "none";
+
 			gap: 0;
 		}
 
@@ -87,6 +90,7 @@ db-multi-select-list-item:not(:last-of-type) {
 			}
 
 			/* We set focus on complete list element, we remove it from checkbox with this trick */
+			/* stylelint-disable-next-line a11y/no-outline-none */
 			&:focus-visible {
 				outline: none !important;
 			}

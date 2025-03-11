@@ -17,11 +17,6 @@ import {
 	handleFrameworkEventAngular,
 	handleFrameworkEventVue
 } from '../../utils/form-components';
-import {
-	DEFAULT_INVALID_MESSAGE_ID_SUFFIX,
-	DEFAULT_MESSAGE_ID_SUFFIX,
-	DEFAULT_VALID_MESSAGE_ID_SUFFIX
-} from '../../shared/constants';
 
 useMetadata({
 	angular: {

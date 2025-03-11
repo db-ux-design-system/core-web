@@ -297,7 +297,7 @@ export default function DBMultiSelect(props: DBMultiSelectProps) {
 			} else {
 				state._values = props.options
 					? props.options
-							.filter((option) => !option.isGroup)
+							.filter((option) => !option.isGroupTitle)
 							.map((option) => option.value ?? '')
 					: [];
 			}
@@ -349,7 +349,7 @@ export default function DBMultiSelect(props: DBMultiSelectProps) {
 					? props.options
 					: props.options.filter(
 							(option) =>
-								!option.isGroup &&
+								!option.isGroupTitle &&
 								state
 									.getOptionLabel(option)
 									.toLowerCase()
@@ -548,7 +548,7 @@ export default function DBMultiSelect(props: DBMultiSelectProps) {
 	onUpdate(() => {
 		state._options = props.options;
 		state.amountOptions =
-			props.options?.filter((option) => !option.isGroup).length ?? 0;
+			props.options?.filter((option) => !option.isGroupTitle).length ?? 0;
 	}, [props.options]);
 
 	onUpdate(() => {
@@ -560,7 +560,8 @@ export default function DBMultiSelect(props: DBMultiSelectProps) {
 					}
 
 					return (
-						!option.isGroup && state._values?.includes(option.value)
+						!option.isGroupTitle &&
+						state._values?.includes(option.value)
 					);
 				}
 			);
@@ -765,7 +766,7 @@ export default function DBMultiSelect(props: DBMultiSelectProps) {
 													divider={option.divider}
 													icon={option.icon}
 													groupLabel={
-														option.isGroup
+														option.isGroupTitle
 															? state.getOptionLabel(
 																	option
 																)
@@ -782,7 +783,7 @@ export default function DBMultiSelect(props: DBMultiSelectProps) {
 															option.value
 														);
 													}}>
-													{!option.isGroup &&
+													{!option.isGroupTitle &&
 														state.getOptionLabel(
 															option
 														)}

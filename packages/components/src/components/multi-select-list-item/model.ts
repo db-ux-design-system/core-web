@@ -1,11 +1,13 @@
 import {
+	BaseFormProps,
 	ChangeEventProps,
 	ChangeEventState,
 	FormCheckProps,
 	FormProps,
 	GlobalProps,
 	GlobalState,
-	IconProps
+	IconProps,
+	ValueProps
 } from '../../shared/model';
 
 export const MultiSelectListItemTypeList = ['checkbox', 'radio'] as const;
@@ -19,21 +21,22 @@ export type DBMultiSelectListItemExtraProps = {
 	divider?: boolean;
 } & IconProps;
 
-export interface DBMultiSelectListItemDefaultProps {
+export type DBMultiSelectListItemDefaultProps = {
 	groupLabel?: string;
 	type?: MultiSelectListItemTypeType;
-}
+};
 
 export type DBMultiSelectListItemProps = DBMultiSelectListItemDefaultProps &
 	GlobalProps &
-	Omit<FormProps, 'customValidity' | 'form' | 'required'> &
-	Omit<FormCheckProps, 'variant'> &
+	BaseFormProps &
+	ValueProps &
+	FormCheckProps &
 	ChangeEventProps<HTMLInputElement> &
 	DBMultiSelectListItemExtraProps;
 
-export interface DBMultiSelectListItemDefaultState {
+export type DBMultiSelectListItemDefaultState = {
 	getIconAfter: () => string | undefined;
-}
+};
 
 export type DBMultiSelectListItemState = DBMultiSelectListItemDefaultState &
 	ChangeEventState<HTMLInputElement> &
