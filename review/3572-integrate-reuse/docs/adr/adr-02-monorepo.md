@@ -8,7 +8,7 @@ SPDX-License-Identifier: Apache-2.0
 
 ## Decision and Rationale
 
-To reduce the amount of time spent deploying and linking dependant packages, we combined [base](https://github.com/db-ui/base), [core](https://github.com/db-ui/core) and [elements](https://github.com/db-ui/elements) into a single monorepo.
+To reduce the amount of time spent deploying and linking dependant packages, we combined [base](https://github.com/db-ui/base), [core](https://github.com/db-ui/core) and [elements](https://github.com/db-ui/elements) into a single monorepo, and evolved afterwards regarding new technologies (compare to ADR 01).
 
 ## Problem description and context
 
