@@ -66,6 +66,10 @@ Or within your JavaScript files, with the related bundler as a prefix (in this c
 import "@db-ux/core-components/build/styles/rollup.css";
 ```
 
+### DB Theme
+
+In case that you're building a website or application for Deutsche Bahn, you'll additionally have to install the DB Theme via the [`@db-ux/db-theme`](https://www.npmjs.com/package/@db-ux/db-theme) node package (even also available as an inner source node package, as described within that packages README).
+
 ### Optimize dependencies
 
 If you only need some of the components or some features from [`@db-ux/core-foundations`](https://www.npmjs.com/package/@db-ux/core-foundations), you shouldn't include the bundled file.
@@ -94,7 +98,7 @@ In the case you want to include only some components, and you could do it like t
 
 ## Deutsche Bahn brand
 
-As we'd like to perfectly support our users and customers on their digital journey, the usage of Deutsche Bahn brand and trademarks are bound of clear guidelines and restrictions even when being used with the code that we're provide with this product; Deutsche Bahn fully reserves all rights regarding the Deutsche Bahn brand, even though that we're providing the code of DB UX Design System products free to use and release it under the Apache 2.0 license.
+As we'd like to perfectly support our users and customers on their digital journey, the usage of Deutsche Bahn brand and trademarks are bound of clear guidelines and restrictions even if being used with the code that we're providing with this product; Deutsche Bahn fully reserves all rights regarding the Deutsche Bahn brand, even though that we're providing the code of DB UX Design System products free to use and release it under the Apache 2.0 license.
 Please have a look at our brand portal at <https://marketingportal.extranet.deutschebahn.com/> for any further questions and whom to contact on any brand issues.
 
 For any usage outside of Deutsche Bahn websites and applications you aren't allowed to use any Deutsche Bahn brand and

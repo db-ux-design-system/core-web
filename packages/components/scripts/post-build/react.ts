@@ -85,8 +85,12 @@ export default (tmp?: boolean) => {
 					to: `function DB${upperComponentName}Fn(props: Omit<HTMLAttributes<${htmlElement}>, keyof DB${upperComponentName}Props> & DB${upperComponentName}Props, component: any) {`
 				},
 				{
-					from: `DB${upperComponentName}.defaultProps`,
-					to: `const DB${upperComponentName} = forwardRef<${htmlElement}, Omit<HTMLAttributes<${htmlElement}>, keyof DB${upperComponentName}Props> & DB${upperComponentName}Props>(DB${upperComponentName}Fn);\nDB${upperComponentName}.defaultProps`
+					from: `export default DB${upperComponentName};`,
+					to: `const DB${upperComponentName} = forwardRef<
+${htmlElement}, Omit<HTMLAttributes<${htmlElement}>,
+keyof DB${upperComponentName}Props> & DB${upperComponentName}Props
+>(DB${upperComponentName}Fn);
+export default DB${upperComponentName};`
 				},
 				{
 					from: '>(null);',

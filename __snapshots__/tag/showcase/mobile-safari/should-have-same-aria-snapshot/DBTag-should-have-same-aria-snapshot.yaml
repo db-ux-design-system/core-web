@@ -9,6 +9,7 @@
   - link "Behavior arrow_up_right\" / \""
   - group "Behavior":
     - text: (Default) Static Removable
+    - button "cross\" / \" Remove tag"
     - button "Interactive (Button)"
     - link "Interactive (Link)"
     - checkbox "Interactive (Checkbox) circle\" / \""
@@ -16,8 +17,7 @@
     - radio "Interactive (Radio) circle\" / \""
     - text: Interactive (Radio) circle" / "
     - radio "Interactive Radio 2 circle\" / \""
-    - text: Interactive Radio 2 circle" / " Removeable
-    - button "cross\" / \" Remove tag"
+    - text: Interactive Radio 2 circle" / "
   - link "Checked arrow_up_right\" / \""
   - group "Checked":
     - checkbox "(Default) False circle\" / \""

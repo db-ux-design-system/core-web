@@ -45,7 +45,8 @@ const changeFile = (input: string) => {
 const setControlValueAccessorReplacements = (
 	replacements: Overwrite[],
 	upperComponentName: string,
-	valueAccessor: 'checked' | 'value' | string
+	valueAccessor: 'checked' | 'value' | string,
+	valueAccessorRequired: boolean
 ) => {
 	// for native angular support (e.g. reactive forms) we have to implement
 	// the ControlValueAccessor interface with all impacts :/
@@ -81,11 +82,13 @@ const setControlValueAccessorReplacements = (
 		from: 'ngOnInit()',
 		to: `
 		writeValue(value: any) {
+			${valueAccessorRequired ? 'if(value){' : ''}
 		  this.${valueAccessor} = ${valueAccessor === 'checked' ? '!!' : ''}value;
 
 		  if (this._ref?.nativeElement) {
 			 this.renderer.setProperty(this._ref?.nativeElement, '${valueAccessor}', ${valueAccessor === 'checked' ? '!!' : ''}value);
 		  }
+			${valueAccessorRequired ? '}' : ''}
 		}
 
 		propagateChange(_: any) {}
@@ -211,7 +214,8 @@ export default (tmp?: boolean) => {
 			setControlValueAccessorReplacements(
 				replacements,
 				upperComponentName,
-				component.config.angular.controlValueAccessor // value / checked / ...
+				component.config.angular.controlValueAccessor, // value / checked / ...
+				component.config.angular.controlValueAccessorRequired // Radio needs a value
 			);
 		}
 

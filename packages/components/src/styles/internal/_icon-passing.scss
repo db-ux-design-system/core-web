@@ -22,7 +22,7 @@
 		label {
 			--db-padding-inline-start: calc(
 				#{$inline-start} + #{icons.$default-icon-margin-end} +
-					var(--db-base-font-size) * var(--db-base-line-height)
+					var(--db-icon-font-size)
 			);
 
 			/* stylelint-disable-next-line db-ux/use-spacings */

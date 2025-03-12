@@ -9,7 +9,7 @@ updates:
     directory: "/"
     schedule:
       interval: "daily"
-      time: "02:00"
+      time: "23:00"
       timezone: "Europe/Berlin"
     pull-request-branch-name:
       separator: "-"
@@ -20,7 +20,7 @@ updates:
     open-pull-requests-limit: 10
     schedule:
       interval: "daily"
-      time: "02:00"
+      time: "23:00"
       timezone: "Europe/Berlin"
     ignore:
       # angular: we update the major version manually

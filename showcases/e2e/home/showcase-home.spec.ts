@@ -9,7 +9,7 @@ import { hasWebComponentSyntax, isStencil, waitForDBPage } from '../default';
 const testFormComponents = async (
 	page: Page,
 	testId: string,
-	role: 'textbox' | 'combobox' | 'checkbox'
+	role: 'textbox' | 'combobox' | 'checkbox' | 'radio'
 ) => {
 	await page.goto('./');
 	const tab = page.getByTestId(testId);
@@ -37,6 +37,7 @@ const testFormComponents = async (
 				break;
 			}
 
+			case 'radio':
 			case 'checkbox': {
 				await component.click({ force: true });
 
@@ -119,5 +120,13 @@ test.describe('Home', () => {
 		}
 
 		await testFormComponents(page, 'tab-checkboxes', 'checkbox');
+	});
+
+	test('test radios', async ({ page }) => {
+		if (stencil) {
+			test.skip();
+		}
+
+		await testFormComponents(page, 'tab-radios', 'radio');
 	});
 });
