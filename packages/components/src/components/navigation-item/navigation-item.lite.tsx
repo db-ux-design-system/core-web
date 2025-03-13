@@ -86,7 +86,9 @@ export default function DBNavigationItem(props: DBNavigationItemProps) {
 
 	onUpdate(() => {
 		if (props.subNavigationExpanded !== undefined) {
-			state.isSubNavigationExpanded = !!props.subNavigationExpanded;
+			state.isSubNavigationExpanded = Boolean(
+				props.subNavigationExpanded
+			);
 		}
 	}, [props.subNavigationExpanded]);
 
@@ -123,7 +125,7 @@ export default function DBNavigationItem(props: DBNavigationItemProps) {
 					aria-haspopup={state.hasAreaPopup}
 					aria-expanded={state.isSubNavigationExpanded}
 					class="db-navigation-item-expand-button"
-					disabled={props.disabled}
+					disabled={getBooleanAsString(props.disabled)}
 					onClick={(event: ClickEvent<HTMLButtonElement>) =>
 						state.handleClick(event)
 					}>

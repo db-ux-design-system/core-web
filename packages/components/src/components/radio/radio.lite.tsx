@@ -9,7 +9,7 @@ import {
 	useTarget
 } from '@builder.io/mitosis';
 import { DBRadioProps, DBRadioState } from './model';
-import { cls, getHideProp, uuid } from '../../utils';
+import { cls, getBooleanAsString, getHideProp, uuid } from '../../utils';
 import { ChangeEvent, InteractionEvent } from '../../shared/model';
 import {
 	handleFrameworkEventAngular,
@@ -88,11 +88,11 @@ export default function DBRadio(props: DBRadioProps) {
 				type="radio"
 				id={state._id}
 				name={props.name}
-				checked={props.checked}
-				disabled={props.disabled}
+				checked={getBooleanAsString(props.checked)}
+				disabled={getBooleanAsString(props.disabled)}
 				aria-describedby={props.describedbyid}
 				value={props.value}
-				required={props.required}
+				required={getBooleanAsString(props.required)}
 				onChange={(event: ChangeEvent<HTMLInputElement>) =>
 					state.handleChange(event)
 				}

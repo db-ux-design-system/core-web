@@ -36,7 +36,7 @@ export default function DBButton(props: DBButtonProps) {
 			id={props.id}
 			class={cls('db-button', props.className)}
 			type={props.type || 'button'}
-			disabled={props.disabled}
+			disabled={getBooleanAsString(props.disabled)}
 			aria-label={props.label}
 			data-icon={props.icon}
 			data-hide-icon={getHideProp(props.showIcon)}

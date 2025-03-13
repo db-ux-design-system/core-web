@@ -13,6 +13,7 @@ import { DBSelectOptionType, DBSelectProps, DBSelectState } from './model';
 import {
 	cls,
 	delay,
+	getBooleanAsString,
 	getHideProp,
 	hasVoiceOver,
 	stringPropVisible,
@@ -183,8 +184,8 @@ export default function DBSelect(props: DBSelectProps) {
 				aria-invalid={props.validation === 'invalid'}
 				data-custom-validity={props.validation}
 				ref={_ref}
-				required={props.required}
-				disabled={props.disabled}
+				required={getBooleanAsString(props.required)}
+				disabled={getBooleanAsString(props.disabled)}
 				id={state._id}
 				name={props.name}
 				size={props.size}

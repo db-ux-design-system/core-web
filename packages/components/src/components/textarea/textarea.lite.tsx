@@ -13,6 +13,7 @@ import DBInfotext from '../infotext/infotext.lite';
 import {
 	cls,
 	delay,
+	getBooleanAsString,
 	getHideProp,
 	hasVoiceOver,
 	stringPropVisible,
@@ -161,9 +162,9 @@ export default function DBTextarea(props: DBTextareaProps) {
 				ref={_ref}
 				id={state._id}
 				data-resize={props.resize}
-				disabled={props.disabled}
-				required={props.required}
-				readOnly={props.readOnly}
+				disabled={getBooleanAsString(props.disabled)}
+				required={getBooleanAsString(props.required)}
+				readOnly={getBooleanAsString(props.readOnly)}
 				form={props.form}
 				maxLength={props.maxLength}
 				minLength={props.minLength}

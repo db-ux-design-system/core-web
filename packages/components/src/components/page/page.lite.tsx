@@ -65,7 +65,7 @@ export default function DBPage(props: DBPageProps) {
 			id={props.id}
 			class={cls('db-page', props.className)}
 			data-variant={props.variant}
-			data-fade-in={props.fadeIn}
+			data-fade-in={getBooleanAsString(props.fadeIn)}
 			data-fonts-loaded={getBooleanAsString(state.fontsLoaded)}>
 			<Slot name="header" />
 			<main class="db-main">{props.children}</main>

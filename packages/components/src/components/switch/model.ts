@@ -18,7 +18,7 @@ export type DBSwitchDefaultProps = {
 	/**
 	 * Add additional icons to indicate active/inactive state.
 	 */
-	visualAid?: boolean;
+	visualAid?: boolean | string;
 };
 
 export type DBSwitchProps = DBSwitchDefaultProps &

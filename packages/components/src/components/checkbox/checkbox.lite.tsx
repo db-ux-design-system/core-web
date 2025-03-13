@@ -25,6 +25,7 @@ import DBInfotext from '../infotext/infotext.lite';
 import {
 	cls,
 	delay,
+	getBooleanAsString,
 	getHideProp,
 	hasVoiceOver,
 	stringPropVisible,
@@ -144,14 +145,14 @@ export default function DBCheckbox(props: DBCheckboxProps) {
 					) {
 						// When indeterminate is set, the value of the checked prop only impacts the form submitted values.
 						// It has no accessibility or UX implications. (https://mui.com/material-ui/react-checkbox/)
-						_ref.indeterminate = props.indeterminate;
+						_ref.indeterminate = Boolean(props.indeterminate);
 					}
 				},
 				default: () => {
 					if (props.indeterminate !== undefined) {
 						// When indeterminate is set, the value of the checked prop only impacts the form submitted values.
 						// It has no accessibility or UX implications. (https://mui.com/material-ui/react-checkbox/)
-						_ref.indeterminate = props.indeterminate;
+						_ref.indeterminate = Boolean(props.indeterminate);
 					}
 				}
 			});
@@ -162,7 +163,7 @@ export default function DBCheckbox(props: DBCheckboxProps) {
 		if (state.initialized && _ref) {
 			// in angular this must be set via native element
 			if (props.checked != undefined) {
-				_ref.checked = props.checked;
+				_ref.checked = Boolean(props.checked);
 			}
 
 			state.initialized = false;
@@ -183,10 +184,10 @@ export default function DBCheckbox(props: DBCheckboxProps) {
 					type="checkbox"
 					id={state._id}
 					name={props.name}
-					checked={props.checked}
-					disabled={props.disabled}
+					checked={getBooleanAsString(props.checked)}
+					disabled={getBooleanAsString(props.disabled)}
 					value={props.value}
-					required={props.required}
+					required={getBooleanAsString(props.required)}
 					onChange={(event: ChangeEvent<HTMLInputElement>) =>
 						state.handleChange(event)
 					}
