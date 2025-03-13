@@ -291,9 +291,21 @@ export type FormTextProps = {
 	 */
 	minLength?: number | string;
 	/**
+	 * Maximum length (number of characters) of value
+	 */
+	maxlength?: number | string;
+	/**
+	 * Minimum length (number of characters) of value
+	 */
+	minlength?: number | string;
+	/**
 	 * The disabled attribute can be set to keep a user from edit on the form element
 	 */
 	readOnly?: boolean | string;
+	/**
+	 * The disabled attribute can be set to keep a user from edit on the form element
+	 */
+	readonly?: boolean | string;
 };
 
 export type FormSizeProps = {

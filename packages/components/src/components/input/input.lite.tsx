@@ -14,6 +14,7 @@ import {
 	delay,
 	getBooleanAsString,
 	getHideProp,
+	getNumber,
 	hasVoiceOver,
 	isArrayOfStrings,
 	stringPropVisible,
@@ -196,13 +197,16 @@ export default function DBInput(props: DBInputProps) {
 				placeholder={props.placeholder ?? DEFAULT_PLACEHOLDER}
 				disabled={getBooleanAsString(props.disabled)}
 				required={getBooleanAsString(props.required)}
-				step={props.step}
+				step={getNumber(props.step)}
 				value={props.value ?? state._value}
-				maxLength={props.maxLength}
-				minLength={props.minLength}
-				max={props.max}
-				min={props.min}
-				readOnly={getBooleanAsString(props.readOnly)}
+				maxLength={getNumber(props.maxLength, props.maxlength)}
+				minLength={getNumber(props.minLength, props.minlength)}
+				max={getNumber(props.max)}
+				min={getNumber(props.min)}
+				readOnly={
+					getBooleanAsString(props.readOnly) ||
+					getBooleanAsString(props.readonly)
+				}
 				form={props.form}
 				pattern={props.pattern}
 				size={props.size}

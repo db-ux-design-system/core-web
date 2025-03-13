@@ -159,6 +159,13 @@ export const getBooleanAsString = (originBool?: boolean | string): any => {
 export const getBoolean = (originBool?: boolean | string) =>
 	Boolean(originBool);
 
+export const getNumber = (
+	originNumber?: number | string,
+	alternativeNumber?: number | string
+): number => {
+	return Number(originNumber ?? alternativeNumber);
+};
+
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const getHideProp = (show?: boolean | string): any => {
 	if (show === undefined || show === null) {

@@ -15,6 +15,7 @@ import {
 	delay,
 	getBooleanAsString,
 	getHideProp,
+	getNumber,
 	hasVoiceOver,
 	stringPropVisible,
 	uuid
@@ -164,10 +165,13 @@ export default function DBTextarea(props: DBTextareaProps) {
 				data-resize={props.resize}
 				disabled={getBooleanAsString(props.disabled)}
 				required={getBooleanAsString(props.required)}
-				readOnly={getBooleanAsString(props.readOnly)}
+				readOnly={
+					getBooleanAsString(props.readOnly) ||
+					getBooleanAsString(props.readonly)
+				}
 				form={props.form}
-				maxLength={props.maxLength}
-				minLength={props.minLength}
+				maxLength={getNumber(props.maxLength, props.maxlength)}
+				minLength={getNumber(props.minLength, props.minlength)}
 				name={props.name}
 				wrap={props.wrap}
 				spellcheck={props.spellCheck}
@@ -187,8 +191,8 @@ export default function DBTextarea(props: DBTextareaProps) {
 				value={props.value ?? state._value}
 				aria-describedby={state._descByIds}
 				placeholder={props.placeholder ?? DEFAULT_PLACEHOLDER}
-				rows={props.rows ?? DEFAULT_ROWS}
-				cols={props.cols}
+				rows={getNumber(props.rows, DEFAULT_ROWS)}
+				cols={getNumber(props.cols)}
 			/>
 
 			<Show when={stringPropVisible(props.message, props.showMessage)}>
