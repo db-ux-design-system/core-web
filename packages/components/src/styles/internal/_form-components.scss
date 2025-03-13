@@ -449,6 +449,7 @@ $input-valid-types:
 			&:has(.db-infotext[data-semantic="successful"]) {
 				@include get-validity-color-check("valid");
 			}
+			/* stylelint-disable-next-line at-rule-empty-line-before */
 		} @else {
 			@include get-validity-color-check("valid");
 		}
