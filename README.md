@@ -1,7 +1,7 @@
 <!-- markdownlint-configure-file { "MD013": false, "MD041":false } -->
 <!-- markdownlint-disable MD033 MD010 -->
 
-<picture><source srcset="https://db-ux-design-system.github.io/images/db-ux-design-system-v3-header.avif" type="image/avif"><source srcset="https://db-ux-design-system.github.io/images/db-ux-design-system-v3-header.webp" type="image/webp"><img src="https://db-ux-design-system.github.io/images/db-ux-design-system-v3-header.jpg" alt=""></picture>
+<picture><source srcset="https://design-system.deutschebahn.com/images/db-ux-design-system-v3-header.avif" type="image/avif"><source srcset="https://design-system.deutschebahn.com/images/db-ux-design-system-v3-header.webp" type="image/webp"><img src="https://design-system.deutschebahn.com/images/db-ux-design-system-v3-header.jpg" alt=""></picture>
 
 # DB UX Design System v3 🚂💖
 
@@ -94,7 +94,7 @@ that we're gaining out of the community. So please support us in any way possibl
 ### From DB UI Core or DB UI Elements to DB UX Design System Core
 
 We're providing a detailed migration for each component next to the documentation of each component, like e.g.
-<https://db-ux-design-system.github.io/core-web/review/main/components/action/button/migration>
+<https://design-system.deutschebahn.com/core-web/review/main/components/action/button/migration>
 
 ### In between DB UX Design System Core versions
 

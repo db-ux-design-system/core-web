@@ -18,7 +18,7 @@ The routers are installed and used in accordance with the official docs:
 
 To create a DB Brand styled router link, place the corresponding router link component in the default slot of **DBNavigationItem**.
 
-[How to use DBNavigationItem](https://db-ux-design-system.github.io/core-web/review/main/components/navigation-item/overview)
+[How to use DBNavigationItem](https://design-system.deutschebahn.com/core-web/review/main/components/navigation-item/overview)
 
 **Angular**
 
