@@ -508,7 +508,6 @@ export default function DBMultiSelect(props: DBMultiSelectProps) {
 				};
 				useTarget({
 					angular: () =>
-						// @ts-expect-error Will be used in angular
 						handleFrameworkEventAngular(this, fakeEvent, 'values'),
 					vue: () =>
 						handleFrameworkEventVue(() => {}, fakeEvent, 'values')
