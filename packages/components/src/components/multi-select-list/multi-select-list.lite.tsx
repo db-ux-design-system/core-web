@@ -19,11 +19,13 @@ export default function DBMultiSelectList(props: DBMultiSelectListProps) {
 	// jscpd:ignore-end
 
 	return (
-		<section
+		<div
+			role={props.multiple ? 'group' : 'radiogroup'}
+			aria-label={props.label}
 			ref={_ref}
 			id={props.id}
 			className={cls('db-multi-select-list', props.className)}>
 			<ul>{props.children}</ul>
-		</section>
+		</div>
 	);
 }

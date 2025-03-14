@@ -166,6 +166,16 @@ export type DBMultiSelectDefaultProps = {
 	 * Initial value for multi select
 	 */
 	values?: string[];
+
+	/**
+	 * Programmatically open the dropdown. May differ if you don't use onDropdownToggle.
+	 */
+	open?: boolean;
+
+	/**
+	 * Informs the user when dropdown was toggled.
+	 */
+	onDropdownToggle?: (event: any) => void;
 };
 
 export type DBMultiSelectProps = GlobalProps &
@@ -188,6 +198,7 @@ export type DBMultiSelectDefaultState = {
 	_hasNoOptions: boolean;
 	_selectId?: string;
 	_labelId?: string;
+	_summaryId?: string;
 	_placeholderId?: string;
 	_selectedLabels?: string;
 	_selectedLabelsId?: string;
@@ -209,6 +220,8 @@ export type DBMultiSelectDefaultState = {
 	handleSelect: (value?: string) => void;
 	handleSelectAll: () => void;
 	handleClearAll: () => void;
+	handleDropdownToggle: (event: any) => void;
+	handleDocumentClose: (event: any) => void;
 	handleOpenByKeyboardFocus: (onlySearch?: boolean) => void;
 	handleFocusFirstDropdownCheckbox: (activeElement?: Element) => void;
 	handleKeyboardPress: (event: any) => void;

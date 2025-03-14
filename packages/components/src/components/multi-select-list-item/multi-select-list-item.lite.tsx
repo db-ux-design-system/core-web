@@ -77,12 +77,10 @@ export default function DBMultiSelectListItem(
 			data-divider={getBooleanAsString(
 				!!props.groupLabel || props.divider
 			)}>
-			<Show when={props.groupLabel}>
-				<span>{props.groupLabel}</span>
-			</Show>
-			<Show when={!props.groupLabel && state._id}>
+			<Show
+				when={!props.groupLabel}
+				else={<span>{props.groupLabel}</span>}>
 				<label
-					htmlFor={state._id + props.value}
 					data-icon={
 						props.type !== 'checkbox' && props.icon
 							? props.icon
@@ -91,7 +89,6 @@ export default function DBMultiSelectListItem(
 					data-icon-after={state.getIconAfter()}>
 					<input
 						class="db-multi-select-list-item-checkbox"
-						id={state._id + props.value}
 						type={props.type}
 						name={props.name}
 						checked={props.checked}

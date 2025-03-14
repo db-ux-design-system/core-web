@@ -1,6 +1,9 @@
 import { GlobalProps, GlobalState } from '../../shared/model';
 
-export type DBMultiSelectListDefaultProps = {};
+export type DBMultiSelectListDefaultProps = {
+	label?: string;
+	multiple?: boolean;
+};
 
 export type DBMultiSelectListProps = DBMultiSelectListDefaultProps &
 	GlobalProps;

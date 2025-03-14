@@ -1,6 +1,6 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import {
 	For,
-	Fragment,
 	onMount,
 	onUnMount,
 	onUpdate,
@@ -85,6 +85,7 @@ export default function DBMultiSelect(props: DBMultiSelectProps) {
 		_invalidMessageId: undefined,
 		_selectId: undefined,
 		_labelId: undefined,
+		_summaryId: undefined,
 		_placeholderId: undefined,
 		_infoTextId: undefined,
 		_validity: 'no-validation',
@@ -102,6 +103,11 @@ export default function DBMultiSelect(props: DBMultiSelectProps) {
 		_hasNoOptions: false,
 		_internalChangeTimestamp: -1,
 		_externalChangeTimestamp: -1,
+		handleDropdownToggle: (event: any) => {
+			if (props.onDropdownToggle) {
+				props.onDropdownToggle(event);
+			}
+		},
 		getNativeSelectValue: () => {
 			if (state._values?.length) {
 				return state._values.at(0) ?? '';
@@ -115,7 +121,7 @@ export default function DBMultiSelect(props: DBMultiSelectProps) {
 				descByIds.push(descId);
 			}
 
-			if (state._selectedLabelsId) {
+			if (state._selectedLabelsId && state._selectedLabels?.length) {
 				descByIds.push(state._selectedLabelsId);
 			}
 
@@ -174,7 +180,10 @@ export default function DBMultiSelect(props: DBMultiSelectProps) {
 
 						if (isCheckbox) {
 							const listElement = activeElement?.closest('li');
-							if (event.key === 'ArrowDown') {
+							if (
+								event.key === 'ArrowDown' ||
+								event.key === 'ArrowRight'
+							) {
 								if (listElement?.nextElementSibling) {
 									listElement?.nextElementSibling
 										.querySelector('input')
@@ -225,7 +234,8 @@ export default function DBMultiSelect(props: DBMultiSelectProps) {
 							if (
 								activeElement.getAttribute('type') ===
 									'search' &&
-								event.key === 'ArrowUp'
+								(event.key === 'ArrowUp' ||
+									event.key === 'ArrowLeft')
 							) {
 								state.handleClose('close');
 								state.handleSummaryFocus();
@@ -241,7 +251,10 @@ export default function DBMultiSelect(props: DBMultiSelectProps) {
 
 				event.stopPropagation();
 				event.preventDefault();
-			} else if (event.key === 'ArrowDown') {
+			} else if (
+				event.key === 'ArrowDown' ||
+				event.key === 'ArrowRight'
+			) {
 				// Open dropdown with arrows see https://www.w3.org/WAI/ARIA/apg/patterns/combobox/#keyboardinteraction
 				state.handleAutoPlacement();
 				if (detailsRef) {
@@ -256,11 +269,15 @@ export default function DBMultiSelect(props: DBMultiSelectProps) {
 			if (event.key === 'Escape' && detailsRef && detailsRef?.open) {
 				state.handleClose('close');
 				state.handleSummaryFocus();
-			} else if (event.key === 'ArrowDown' || event.key === 'ArrowUp') {
+			} else if (
+				event.key === 'ArrowDown' ||
+				event.key === 'ArrowUp' ||
+				event.key === 'ArrowLeft' ||
+				event.key === 'ArrowRight'
+			) {
 				state.handleArrowDownUp(event);
 			}
 		},
-		// eslint-disable-next-line @typescript-eslint/no-explicit-any
 		handleClose: (event: any) => {
 			if (detailsRef) {
 				if (event === 'close') {
@@ -272,6 +289,11 @@ export default function DBMultiSelect(props: DBMultiSelectProps) {
 						detailsRef.open = false;
 					}
 				}
+			}
+		},
+		handleDocumentClose: (event: any) => {
+			if (detailsRef?.open && !detailsRef.contains(event.target)) {
+				detailsRef.open = false;
 			}
 		},
 		handleSelect: (value?: string) => {
@@ -376,9 +398,20 @@ export default function DBMultiSelect(props: DBMultiSelectProps) {
 		state._invalidMessageId = mId + DEFAULT_INVALID_MESSAGE_ID_SUFFIX;
 		state._selectId = mId + DEFAULT_SELECT_ID_SUFFIX;
 		state._labelId = mId + DEFAULT_LABEL_ID_SUFFIX;
+		state._summaryId = mId + '-summary';
 		state._placeholderId = mId + DEFAULT_PLACEHOLDER_ID_SUFFIX;
 		state._selectedLabelsId = mId + '-selected-labels';
 		state._infoTextId = mId + '-info';
+
+		if (document) {
+			document.addEventListener('click', state.handleDocumentClose);
+		}
+	});
+
+	onUnMount(() => {
+		if (document) {
+			document.removeEventListener('click', state.handleDocumentClose);
+		}
 	});
 
 	onUpdate(() => {
@@ -409,7 +442,7 @@ export default function DBMultiSelect(props: DBMultiSelectProps) {
 			if (summary) {
 				summary.setAttribute(
 					'aria-describedby',
-					state._descByIds ?? ''
+					state._descByIds || ''
 				);
 			}
 		}
@@ -475,6 +508,7 @@ export default function DBMultiSelect(props: DBMultiSelectProps) {
 				};
 				useTarget({
 					angular: () =>
+						// @ts-expect-error Will be used in angular
 						handleFrameworkEventAngular(this, fakeEvent, 'values'),
 					vue: () =>
 						handleFrameworkEventVue(() => {}, fakeEvent, 'values')
@@ -613,40 +647,46 @@ export default function DBMultiSelect(props: DBMultiSelectProps) {
 			data-hide-label={getHideProp(props.showLabel)}
 			data-icon={props.icon}
 			data-hide-icon={getHideProp(props.showIcon)}>
-			<select
-				id={state._selectId}
-				ref={selectRef}
-				disabled={props.disabled}
-				multiple={props.multiple}
-				required={props.required}
-				/* Satisfy React */
-				onChange={() => {}}
-				hidden>
-				<For each={state._options}>
-					{(option: MultiSelectOptionType) => (
-						<option
-							key={useTarget({
-								react: state.getOptionKey?.(option),
-								default: undefined
-							})}
-							disabled={option.disabled}
-							value={option.value}>
-							{state.getOptionLabel(option)}
-						</option>
-					)}
-				</For>
-			</select>
-			<label htmlFor={state._selectId} id={state._labelId}>
+			<label id={state._labelId}>
 				{props.label ?? DEFAULT_LABEL}
+				<select
+					hidden
+					role="none"
+					id={state._selectId}
+					tabIndex={-1}
+					ref={selectRef}
+					form={props.form}
+					disabled={props.disabled}
+					multiple={props.multiple}
+					required={props.required}
+					/* Satisfy React */
+					onChange={() => {}}>
+					<For each={state._options}>
+						{(option: MultiSelectOptionType) => (
+							<option
+								key={useTarget({
+									react: state.getOptionKey?.(option),
+									default: undefined
+								})}
+								disabled={option.disabled}
+								value={option.value}>
+								{state.getOptionLabel(option)}
+							</option>
+						)}
+					</For>
+				</select>
 			</label>
 			<details
 				ref={detailsRef}
+				open={props.open}
 				aria-disabled={props.disabled}
+				onToggle={(event: any) => state.handleDropdownToggle(event)}
 				onKeyDown={(event) => state.handleKeyboardPress(event)}>
 				{props.children}
 				<Show when={props.options}>
 					{/* We use this because we cannot wrap summary for angular... */}
 					<summary
+						id={state._summaryId}
 						class="db-multi-select-form-field"
 						aria-labelledby={state._labelId}>
 						<Show when={state._selectedLabels?.length}>
@@ -697,9 +737,12 @@ export default function DBMultiSelect(props: DBMultiSelectProps) {
 							<div>
 								<DBInput
 									type="search"
-									variant="floating"
+									showLabel={false}
 									label={props.searchLabel ?? DEFAULT_LABEL}
-									placeholder={props.searchPlaceholder}
+									placeholder={
+										props.searchPlaceholder ??
+										props.searchLabel
+									}
 									ariaDescribedBy={
 										state._hasNoOptions || props.showLoading
 											? state._infoTextId
@@ -719,18 +762,10 @@ export default function DBMultiSelect(props: DBMultiSelectProps) {
 									<Show when={state.selectAllEnabled}>
 										<div>
 											<div className="db-checkbox db-multi-select-list-item">
-												<label
-													htmlFor={
-														state._id +
-														'-select-all'
-													}>
-													{/*We set a form name based on id for not sending checkboxes to a wrapping form */}
+												<label>
+													{/* We set a form name based on id for not sending checkboxes to a wrapping form */}
 													<input
 														ref={selectAllRef}
-														id={
-															state._id +
-															'-select-all'
-														}
 														form={state._id}
 														type="checkbox"
 														value="select-all"
@@ -746,7 +781,9 @@ export default function DBMultiSelect(props: DBMultiSelectProps) {
 											</div>
 										</div>
 									</Show>
-									<DBMultiSelectList>
+									<DBMultiSelectList
+										multiple={props.multiple}
+										label={props.label ?? DEFAULT_LABEL}>
 										<For each={state._options}>
 											{(
 												option: MultiSelectOptionType
@@ -828,7 +865,10 @@ export default function DBMultiSelect(props: DBMultiSelectProps) {
 				</Show>
 			</details>
 
-			<Show when={props.showClearSelection && state._values?.length}>
+			<Show
+				when={
+					(props.showClearSelection ?? true) && state._values?.length
+				}>
 				<DBButton
 					icon="cross"
 					variant="ghost"
