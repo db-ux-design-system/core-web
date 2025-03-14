@@ -42,7 +42,7 @@ const getPropertiesFile = ({ name, attributes, events, slots }) => {
 		propertyTable += `| ${isUnion ? 'union' : value.type} `;
 
 		if (['icon', 'icon-after', 'message-icon'].includes(name)) {
-			propertyTable += `| [IconTypes](https://db-ux-design-system.github.io/core-web/review/main/foundations/icons/overview) |\n`;
+			propertyTable += `| [IconTypes](https://design-system.deutschebahn.com/core-web/review/main/foundations/icons/overview) |\n`;
 		} else {
 			propertyTable += `| ${
 				isUnion
