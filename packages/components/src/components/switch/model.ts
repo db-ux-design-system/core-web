@@ -33,7 +33,7 @@ export type DBSwitchProps = DBSwitchDefaultProps &
 	IconAfterProps;
 
 export type DBSwitchDefaultState = {
-	_checked: boolean;
+	_checked?: boolean;
 };
 
 export type DBSwitchState = DBSwitchDefaultState &

@@ -1,7 +1,7 @@
 import {
 	DBInfotext,
 	DBRadio,
-	getBooleanAsString
+	getBoolean
 } from '../../../../../output/react/src';
 import DefaultComponent from '../default-component';
 import { getVariants } from '../data';
@@ -26,7 +26,7 @@ const getRadio = ({
 			label={label}
 			size={size}
 			name={name}
-			defaultChecked={getBooleanAsString(checked)}
+			defaultChecked={getBoolean(checked)}
 			required={required}
 			disabled={disabled}
 			showLabel={showLabel}

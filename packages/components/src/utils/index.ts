@@ -147,7 +147,7 @@ export const delay = (fn: () => void, ms: number) =>
  */
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const getBooleanAsString = (originBool?: boolean | string): any => {
-	if (originBool === undefined || originBool === null) return originBool;
+	if (originBool === undefined || originBool === null) return;
 
 	if (typeof originBool === 'string') {
 		return String(Boolean(originBool));
@@ -156,8 +156,13 @@ export const getBooleanAsString = (originBool?: boolean | string): any => {
 	return String(originBool);
 };
 
-export const getBoolean = (originBool?: boolean | string) =>
-	Boolean(originBool);
+export const getBoolean = (
+	originBool?: boolean | string
+): boolean | undefined => {
+	if (originBool === undefined || originBool === null) return;
+
+	return Boolean(originBool);
+};
 
 export const getNumber = (
 	originNumber?: number | string,

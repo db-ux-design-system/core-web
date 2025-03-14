@@ -1,7 +1,7 @@
 import {
 	DBSwitch,
 	DBInfotext,
-	getBooleanAsString
+	getBoolean
 } from '../../../../../output/react/src';
 import DefaultComponent from '../default-component';
 import defaultComponentVariants from '../../../../shared/switch.json';
@@ -24,7 +24,7 @@ const getSwitch = ({
 	<>
 		<DBSwitch
 			visualAid={visualAid}
-			defaultChecked={getBooleanAsString(checked)}
+			defaultChecked={getBoolean(checked)}
 			disabled={disabled}
 			showLabel={showLabel}
 			size={size}

@@ -83,7 +83,7 @@ export default function DBSwitch(props: DBSwitchProps) {
 
 	onUpdate(() => {
 		if (props.checked !== undefined && props.checked !== null) {
-			state._checked = !!props.checked;
+			state._checked = getBoolean(props.checked);
 		}
 	}, [props.checked]);
 

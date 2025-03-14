@@ -1,7 +1,7 @@
 import {
 	DBCheckbox,
 	DBInfotext,
-	getBooleanAsString
+	getBoolean
 } from '../../../../../output/react/src';
 import DefaultComponent from '../default-component';
 import { getVariants } from '../data';
@@ -29,7 +29,7 @@ const getCheckbox = ({
 			label={label}
 			size={size}
 			name={name}
-			defaultChecked={getBooleanAsString(checked)}
+			defaultChecked={getBoolean(checked)}
 			invalidMessage={invalidMessage}
 			validMessage={validMessage}
 			required={required}
