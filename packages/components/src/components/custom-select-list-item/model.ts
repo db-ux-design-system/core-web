@@ -48,6 +48,7 @@ export type DBCustomSelectListItemProps = DBCustomSelectListItemDefaultProps &
 
 export type DBCustomSelectListItemDefaultState = {
 	getIconAfter: () => string | undefined;
+	hasDivider?: boolean;
 };
 
 export type DBCustomSelectListItemState = DBCustomSelectListItemDefaultState &

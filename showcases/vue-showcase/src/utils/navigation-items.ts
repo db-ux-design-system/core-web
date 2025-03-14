@@ -123,7 +123,7 @@ export const navigationItems: NavItem[] = [
 		label: '03 Data-Input',
 		subNavigation: getSortedNavigationItems([
 			{
-				path: '/custom-select',
+				path: '/03/custom-select',
 				label: 'CustomSelect',
 				component: markRaw(CustomSelect)
 			},
