@@ -7,7 +7,7 @@
 
 A React library containing all styles & components of [DB UX Design System (technical components)](https://github.com/db-ux-design-system/core-web).
 
-> **Note:** Find more information about specific components [here](https://db-ux-design-system.github.io/core-web/review/main)
+> **Note:** Find more information about specific components [here](https://design-system.deutschebahn.com/core-web/review/main)
 
 ## Install
 
