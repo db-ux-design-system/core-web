@@ -1,5 +1,6 @@
 import {
 	onMount,
+	onUpdate,
 	Show,
 	useDefaultProps,
 	useMetadata,
@@ -11,7 +12,7 @@ import {
 	DBMultiSelectListItemProps,
 	DBMultiSelectListItemState
 } from './model';
-import { cls, getBooleanAsString, uuid } from '../../utils';
+import { cls, getBooleanAsString, getHideProp, uuid } from '../../utils';
 import { ChangeEvent } from '../../shared/model';
 import {
 	handleFrameworkEventAngular,
@@ -52,7 +53,7 @@ export default function DBMultiSelectListItem(
 				});
 			},
 			getIconAfter: () => {
-				if (props.groupLabel || props.type === 'checkbox') {
+				if (props.isGroupTitle || props.type === 'checkbox') {
 					return;
 				}
 
@@ -71,21 +72,22 @@ export default function DBMultiSelectListItem(
 			ref={_ref}
 			id={state._id}
 			class={cls('db-multi-select-list-item', props.className, {
-				'db-checkbox': props.type === 'checkbox' && !props.groupLabel,
-				'db-radio': props.type !== 'checkbox' && !props.groupLabel
+				'db-checkbox': props.type === 'checkbox' && !props.isGroupTitle,
+				'db-radio': props.type !== 'checkbox' && !props.isGroupTitle
 			})}
 			data-divider={getBooleanAsString(
-				!!props.groupLabel || props.divider
+				Boolean(props.isGroupTitle || props.showDivider)
 			)}>
 			<Show
-				when={!props.groupLabel}
-				else={<span>{props.groupLabel}</span>}>
+				when={!props.isGroupTitle}
+				else={<span>{props.groupTitle}</span>}>
 				<label
 					data-icon={
 						props.type !== 'checkbox' && props.icon
 							? props.icon
 							: undefined
 					}
+					data-hide-icon={getHideProp(props.showIcon)}
 					data-icon-after={state.getIconAfter()}>
 					<input
 						class="db-multi-select-list-item-checkbox"

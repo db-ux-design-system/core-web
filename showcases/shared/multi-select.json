@@ -711,14 +711,14 @@
 						},
 						{
 							"value": "G1:Option 2",
-							"divider": true
+							"showDivider": true
 						},
 						{
 							"value": "G2:Option 1"
 						},
 						{
 							"value": "G2:Option 2",
-							"divider": true
+							"showDivider": true
 						}
 					],
 					"placeholder": "Placeholder"
@@ -863,14 +863,14 @@
 						},
 						{
 							"value": "G1:Option 2",
-							"divider": true
+							"showDivider": true
 						},
 						{
 							"value": "G2:Option 1"
 						},
 						{
 							"value": "G2:Option 2",
-							"divider": true
+							"showDivider": true
 						}
 					],
 					"placeholder": "Placeholder",

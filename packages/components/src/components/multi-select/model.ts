@@ -32,11 +32,6 @@ export type MultiSelectOptionType = {
 	id?: string;
 
 	/**
-	 * If the item is a group title (only text)
-	 */
-	isGroupTitle?: boolean;
-
-	/**
 	 * If the value is different from the label you want to show to the user.
 	 */
 	label?: string;

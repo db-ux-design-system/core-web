@@ -799,15 +799,16 @@ export default function DBMultiSelect(props: DBMultiSelectProps) {
 															? 'checkbox'
 															: 'radio'
 													}
-													divider={option.divider}
-													icon={option.icon}
-													groupLabel={
-														option.isGroupTitle
-															? state.getOptionLabel(
-																	option
-																)
-															: undefined
+													showDivider={
+														option.showDivider
 													}
+													icon={option.icon}
+													isGroupTitle={
+														option.isGroupTitle
+													}
+													groupTitle={state.getOptionLabel(
+														option
+													)}
 													name={state._name}
 													checked={state.getOptionChecked(
 														option.value
