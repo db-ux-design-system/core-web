@@ -27,6 +27,11 @@ export type DBPageDefaultProps = {
 	header?: any;
 
 	/**
+	 * Adds `class` to `<main>` element
+	 */
+	mainClass?: string;
+
+	/**
 	 * The variant=fixed uses flex-box to make header and footer static
 	 */
 	variant?: PageVariantType;
