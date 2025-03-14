@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import {
 	DBDivider,
-	DBMultiSelect,
+	DBCustomSelect,
 	DBTabList,
 	DBTabPanel,
 	DBTabs
@@ -73,10 +73,10 @@ const FormComponent = () => {
 		<div className="form-container">
 			<div>
 				<form>
-					<DBMultiSelect
+					<DBCustomSelect
 						options={[{ value: 'Option 1' }, { value: 'Option 2' }]}
 						label="Test"
-						placeholder="Placeholder"></DBMultiSelect>
+						placeholder="Placeholder"></DBCustomSelect>
 					<fieldset>
 						<p>Input:</p>
 						<DBInput
@@ -462,7 +462,7 @@ const FormComponent = () => {
 				</DBButton>
 
 				<form>
-					<DBMultiSelect
+					<DBCustomSelect
 						name="input-multi"
 						label="Test"
 						options={[

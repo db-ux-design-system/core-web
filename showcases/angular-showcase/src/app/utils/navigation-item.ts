@@ -28,7 +28,7 @@ import { IconComponent } from '../components/icon/icon.component';
 import { BrandComponent } from '../components/brand/brand.component';
 import { HeaderComponent } from '../components/header/header.component';
 import { HomeComponent } from '../components/home/home.component';
-import { MultiSelectComponent } from '../components/multi-select/multi-select.component';
+import { CustomSelectComponent } from '../components/custom-select/custom-select.component';
 
 export type NavItem = {
 	path: string;
@@ -118,9 +118,9 @@ export const NAVIGATION_ITEMS: NavItem[] = [
 		label: '03 Data-Input',
 		subNavigation: getSortedNavigationItems([
 			{
-				path: '03/multi-select',
-				label: 'MultiSelect',
-				component: MultiSelectComponent
+				path: '03/custom-select',
+				label: 'CustomSelect',
+				component: CustomSelectComponent
 			},
 			{ path: '03/input', label: 'Input', component: InputComponent },
 			{

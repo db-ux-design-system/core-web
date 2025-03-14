@@ -34,7 +34,7 @@ export const getComponents = (): Component[] => [
 		name: 'stack'
 	},
 	{
-		name: 'multi-select-list-item',
+		name: 'custom-select-list-item',
 		config: {
 			vue: {
 				vModel: [{ modelValue: 'checked', binding: ':checked' }]
@@ -45,16 +45,16 @@ export const getComponents = (): Component[] => [
 		}
 	},
 	{
-		name: 'multi-select-list'
+		name: 'custom-select-list'
 	},
 	{
-		name: 'multi-select-form-field'
+		name: 'custom-select-form-field'
 	},
 	{
-		name: 'multi-select-dropdown'
+		name: 'custom-select-dropdown'
 	},
 	{
-		name: 'multi-select',
+		name: 'custom-select',
 		config: {
 			vue: {
 				vModel: [{ modelValue: 'values', binding: ':values' }]

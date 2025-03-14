@@ -34,9 +34,8 @@ export * from './shared/model';
 export * from './utils/index';
 export * from './utils/navigation';
 export * from './components/stack';
-export * from "./components/multi-select";
-export * from "./components/multi-select-form-field";
-export * from "./components/multi-select-dropdown";
-export * from "./components/multi-select-list";
-export * from "./components/multi-select-list-item";
-
+export * from './components/custom-select';
+export * from './components/custom-select-form-field';
+export * from './components/custom-select-dropdown';
+export * from './components/custom-select-list';
+export * from './components/custom-select-list-item';

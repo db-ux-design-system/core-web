@@ -20,7 +20,7 @@ import {
 
 export type DBSelectDefaultProps = {
 	/**
-	 * Enable multiple select -> use DBMultiSelect/db-multi-select for a better look
+	 * Enable multiple select -> use DBCustomSelect/db-custom-select for a better look
 	 */
 	multiple?: boolean;
 

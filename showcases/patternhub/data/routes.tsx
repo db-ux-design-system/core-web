@@ -56,9 +56,9 @@ import * as navigationCode from '../components/code-docs/navigation';
 import * as navigationItemCode from '../components/code-docs/navigation-item';
 import * as popoverCode from '../components/code-docs/popover';
 import * as StackCode from '../components/code-docs/stack';
-import * as MultiSelectCode from '../components/code-docs/multi-select';
+import * as CustomSelectCode from '../components/code-docs/custom-select';
 import StackComponent from '../../react-showcase/src/components/stack';
-import MutliSelectComponent from '../../react-showcase/src/components/multi-select';
+import MutliSelectComponent from '../../react-showcase/src/components/custom-select';
 import Components from './components.json';
 
 export type NavigationItem = {
@@ -71,7 +71,7 @@ export type NavigationItem = {
 };
 
 const nameComponentMap = {
-	'multi-select': <MutliSelectComponent slotCode={MultiSelectCode} />,
+	'custom-select': <MutliSelectComponent slotCode={CustomSelectCode} />,
 	stack: <StackComponent slotCode={StackCode} />,
 	button: <ButtonComponent slotCode={buttonCode} />,
 	link: <LinkComponent slotCode={linkCode} />,

@@ -1,5 +1,5 @@
 import StackComponent from '../components/stack';
-import MultiSelectComponent from '../components/multi-select';
+import CustomSelectComponent from '../components/custom-select';
 import SwitchComponent from '../components/switch';
 import TabsComponent from '../components/tabs';
 import TabItemComponent from '../components/tab-item';
@@ -121,9 +121,9 @@ export const NAVIGATION_ITEMS: NavigationItem[] = [
 		label: '03 Data-Input',
 		subNavigation: getSortedNavigationItems([
 			{
-				path: 'multi-select',
-				label: 'MultiSelect',
-				component: <MultiSelectComponent />
+				path: 'custom-select',
+				label: 'CustomSelect',
+				component: <CustomSelectComponent />
 			},
 			{ path: 'input', label: 'Input', component: <InputComponent /> },
 			{

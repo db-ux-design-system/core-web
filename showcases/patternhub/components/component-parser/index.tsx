@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import {
-	DBMultiSelect,
+	DBCustomSelect,
 	DBStack,
 	DBSwitch,
 	DBTabPanel,
@@ -340,11 +340,11 @@ const ComponentSwitch = ({
 		);
 	}
 
-	if (type === 'multi-select') {
+	if (type === 'custom-select') {
 		return (
-			<DBMultiSelect className={className} {...props}>
+			<DBCustomSelect className={className} {...props}>
 				{resolvedContent}
-			</DBMultiSelect>
+			</DBCustomSelect>
 		);
 	}
 

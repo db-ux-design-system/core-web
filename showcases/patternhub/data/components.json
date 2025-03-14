@@ -81,8 +81,8 @@
 				"name": "input"
 			},
 			{
-				"label": "DBMultiSelect",
-				"name": "multi-select"
+				"label": "DBCustomSelect",
+				"name": "custom-select"
 			},
 			{
 				"label": "DBRadio",
