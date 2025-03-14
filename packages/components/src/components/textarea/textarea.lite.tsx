@@ -13,6 +13,7 @@ import DBInfotext from '../infotext/infotext.lite';
 import {
 	cls,
 	delay,
+	getBoolean,
 	getBooleanAsString,
 	getHideProp,
 	getNumber,
@@ -163,11 +164,10 @@ export default function DBTextarea(props: DBTextareaProps) {
 				ref={_ref}
 				id={state._id}
 				data-resize={props.resize}
-				disabled={getBooleanAsString(props.disabled)}
-				required={getBooleanAsString(props.required)}
+				disabled={getBoolean(props.disabled)}
+				required={getBoolean(props.required)}
 				readOnly={
-					getBooleanAsString(props.readOnly) ||
-					getBooleanAsString(props.readonly)
+					getBoolean(props.readOnly) || getBoolean(props.readonly)
 				}
 				form={props.form}
 				maxLength={getNumber(props.maxLength, props.maxlength)}

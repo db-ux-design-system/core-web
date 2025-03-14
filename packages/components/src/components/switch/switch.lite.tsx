@@ -9,7 +9,13 @@ import {
 	useTarget
 } from '@builder.io/mitosis';
 import { DBSwitchProps, DBSwitchState } from './model';
-import { cls, getBooleanAsString, getHideProp, uuid } from '../../utils';
+import {
+	cls,
+	getBoolean,
+	getBooleanAsString,
+	getHideProp,
+	uuid
+} from '../../utils';
 import { ChangeEvent, InteractionEvent } from '../../shared/model';
 import {
 	handleFrameworkEventAngular,
@@ -97,14 +103,14 @@ export default function DBSwitch(props: DBSwitchProps) {
 				role="switch"
 				aria-checked={getBooleanAsString(state._checked)}
 				ref={_ref}
-				checked={getBooleanAsString(props.checked)}
+				checked={getBoolean(props.checked)}
 				value={props.value}
-				disabled={getBooleanAsString(props.disabled)}
+				disabled={getBoolean(props.disabled)}
 				aria-describedby={props.describedbyid}
 				aria-invalid={props.validation === 'invalid'}
 				data-custom-validity={props.validation}
 				name={props.name}
-				required={getBooleanAsString(props.required)}
+				required={getBoolean(props.required)}
 				data-aid-icon={props.icon}
 				data-aid-icon-after={props.iconAfter}
 				onChange={(event: ChangeEvent<HTMLInputElement>) =>

@@ -10,7 +10,14 @@ import {
 } from '@builder.io/mitosis';
 import { DBNavigationItemProps, DBNavigationItemState } from './model';
 import DBButton from '../button/button.lite';
-import { cls, delay, getBooleanAsString, getHideProp, uuid } from '../../utils';
+import {
+	cls,
+	delay,
+	getBoolean,
+	getBooleanAsString,
+	getHideProp,
+	uuid
+} from '../../utils';
 import {
 	isEventTargetNavigationItem,
 	NavigationItemSafeTriangle
@@ -125,7 +132,7 @@ export default function DBNavigationItem(props: DBNavigationItemProps) {
 					aria-haspopup={state.hasAreaPopup}
 					aria-expanded={state.isSubNavigationExpanded}
 					class="db-navigation-item-expand-button"
-					disabled={getBooleanAsString(props.disabled)}
+					disabled={getBoolean(props.disabled)}
 					onClick={(event: ClickEvent<HTMLButtonElement>) =>
 						state.handleClick(event)
 					}>

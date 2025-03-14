@@ -11,6 +11,7 @@ import { DBHeaderProps, DBHeaderState } from './model';
 import {
 	addAttributeToChildren,
 	cls,
+	getBoolean,
 	getBooleanAsString,
 	uuid
 } from '../../utils';
@@ -77,7 +78,7 @@ export default function DBHeader(props: DBHeaderProps) {
 				class="db-header-drawer"
 				rounded
 				spacing="small"
-				open={getBooleanAsString(props.drawerOpen)}
+				open={getBoolean(props.drawerOpen)}
 				onClose={() => state.toggle()}>
 				<div class="db-header-drawer-navigation">
 					<div

@@ -25,6 +25,7 @@ import DBInfotext from '../infotext/infotext.lite';
 import {
 	cls,
 	delay,
+	getBoolean,
 	getBooleanAsString,
 	getHideProp,
 	hasVoiceOver,
@@ -184,10 +185,10 @@ export default function DBCheckbox(props: DBCheckboxProps) {
 					type="checkbox"
 					id={state._id}
 					name={props.name}
-					checked={getBooleanAsString(props.checked)}
-					disabled={getBooleanAsString(props.disabled)}
+					checked={getBoolean(props.checked)}
+					disabled={getBoolean(props.disabled)}
 					value={props.value}
-					required={getBooleanAsString(props.required)}
+					required={getBoolean(props.required)}
 					onChange={(event: ChangeEvent<HTMLInputElement>) =>
 						state.handleChange(event)
 					}

@@ -179,7 +179,7 @@ export const getHideProp = (show?: boolean | string): any => {
 		return undefined;
 	}
 
-	return !getBooleanAsString(show);
+	return getBooleanAsString(!Boolean(show));
 };
 
 export const stringPropVisible = (
