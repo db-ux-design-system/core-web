@@ -1,3 +1,9 @@
+/*
+ * SPDX-FileCopyrightText: 2025 DB Systel GmbH
+ *
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
 @use "@db-ux/core-foundations/build/styles/variables";
 @use "@db-ux/core-foundations/build/styles/colors";
 @use "@db-ux/core-foundations/build/styles/icons";
@@ -10,7 +16,6 @@ $with-icon-padding-calc: calc(
 	#{variables.$db-spacing-fixed-xs} + #{variables.$db-spacing-fixed-sm} +
 		#{form-components.$font-size-height}
 );
-
 
 .db-tab-item {
 	position: relative;

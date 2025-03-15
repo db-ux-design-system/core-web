@@ -1,3 +1,9 @@
+<!--
+SPDX-FileCopyrightText: 2025 DB Systel GmbH
+
+SPDX-License-Identifier: Apache-2.0
+-->
+
 # AngularSsrShowcase
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.3.6.

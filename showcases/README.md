@@ -1,3 +1,9 @@
+<!--
+SPDX-FileCopyrightText: 2025 DB Systel GmbH
+
+SPDX-License-Identifier: Apache-2.0
+-->
+
 # Showcases
 
 Those packages are part of the monorepo workspaces and should be used to preview components in different frameworks.
