@@ -86,6 +86,16 @@
   - textbox "Label"
   - status
   - text: x_placeholder" / "
+  - link "Example - Length arrow_up_right\" / \""
+  - text: Label
+  - textbox "Label"
+  - status
+  - text: Label
+  - textbox "Label"
+  - status
+  - text: Label
+  - textbox "Label"
+  - status
   - link "Example - Types arrow_up_right\" / \""
   - text: Label
   - textbox "Label"
@@ -146,9 +156,6 @@
   - status
   - text: cross_circle" / " Label
   - textbox "Label"
-  - status
-  - text: Label
-  - spinbutton "Label"
   - status
   - text: Label
   - textbox "Label"

@@ -8,6 +8,7 @@ import {
 	FormSizeProps,
 	FormState,
 	FormTextProps,
+	FromValidState,
 	GlobalProps,
 	GlobalState,
 	IconAfterProps,
@@ -93,4 +94,5 @@ export type DBInputState = DBInputDefaultState &
 	InputEventState<HTMLInputElement> &
 	ChangeEventState<HTMLInputElement> &
 	FocusEventState<HTMLInputElement> &
-	FormState;
+	FormState &
+	FromValidState;

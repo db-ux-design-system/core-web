@@ -412,6 +412,12 @@ export type FormMessageProps = {
 	showMessage?: boolean;
 };
 
+export type FromValidState = {
+	hasValidState: () => boolean;
+	handleValidation: () => void;
+	_invalidMessage: string;
+};
+
 export type FormState = {
 	_messageId?: string;
 	_validMessageId?: string;
