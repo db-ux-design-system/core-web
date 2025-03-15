@@ -8,7 +8,7 @@
 @mixin divider($position: "top", $slot: "before") {
 	--db-divider-bg-color: #{colors.$db-adaptive-on-bg-basic-emphasis-60-default};
 
-	position: relative;
+	position: var(--db-tooltip-parent-position, relative);
 
 	&[data-emphasis="strong"] {
 		--db-divider-bg-color: #{colors.$db-adaptive-on-bg-basic-emphasis-70-default};

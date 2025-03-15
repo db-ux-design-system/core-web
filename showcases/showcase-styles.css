@@ -23,7 +23,6 @@
 	justify-content: center;
 	padding: var(--db-spacing-fixed-xl);
 	padding-block-end: calc(var(--db-spacing-fixed-xl) + var(--db-sizing-sm));
-	position: relative;
 }
 
 db-card:is(.variants-card) > .db-card {

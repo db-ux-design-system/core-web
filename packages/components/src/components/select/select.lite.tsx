@@ -84,6 +84,7 @@ export default function DBSelect(props: DBSelectProps) {
 			}
 
 			useTarget({
+
 				angular: () => handleFrameworkEventAngular(this, event),
 				vue: () => handleFrameworkEventVue(() => {}, event)
 			});
@@ -133,7 +134,7 @@ export default function DBSelect(props: DBSelectProps) {
 			}
 		},
 		getOptionLabel: (option: DBSelectOptionType) => {
-			return option.label ?? option.value.toString();
+			return option.label ?? option.value?.toString();
 		}
 	});
 
@@ -190,6 +191,7 @@ export default function DBSelect(props: DBSelectProps) {
 				size={props.size}
 				value={props.value ?? state._value}
 				autocomplete={props.autocomplete}
+				multiple={props.multiple}
 				onInput={(event: ChangeEvent<HTMLSelectElement>) =>
 					state.handleInput(event)
 				}
@@ -274,8 +276,7 @@ export default function DBSelect(props: DBSelectProps) {
 				size="small"
 				semantic="critical">
 				{props.invalidMessage ??
-					_ref?.validationMessage ??
-					DEFAULT_INVALID_MESSAGE}
+					(_ref?.validationMessage || DEFAULT_INVALID_MESSAGE)}
 			</DBInfotext>
 
 			{/* * https://www.davidmacd.com/blog/test-aria-describedby-errormessage-aria-live.html

@@ -9,7 +9,7 @@
   - link "Behavior arrow_up_right\" / \""
   - group "Behavior":
     - text: (Default) Static Removable
-    - button "cross\" / \" Remove tag"
+    - button "cross\" / \" Remove"
     - button "Interactive (Button)"
     - link "Interactive (Link)"
     - checkbox "Interactive (Checkbox) circle\" / \""

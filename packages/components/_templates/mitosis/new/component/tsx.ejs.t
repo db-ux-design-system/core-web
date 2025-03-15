@@ -1,7 +1,7 @@
 ---
 to: src/components/<%= name %>/<%= name %>.lite.tsx
 ---
-import { Show, useMetadata, useStore, useRef, useDefaultProps } from "@builder.io/mitosis";
+import { Show, useMetadata, useRef, useStore, useRef, useDefaultProps } from "@builder.io/mitosis";
 import { DB<%= h.changeCase.pascal(name) %>State, DB<%= h.changeCase.pascal(name) %>Props } from "./model";
 import { cls } from "../../utils";
 <% if(formValue!=="no"){   -%>
@@ -29,7 +29,7 @@ export default function DB<%= h.changeCase.pascal(name) %>(props: DB<%= h.change
 			}
 
 			useTarget({
-				angular: () => handleFrameworkEventAngular(this, event, <%= formValue %>),
+				angular: () => handleFrameworkEventAngular(this, event, "<%= formValue %>"),
 				vue: () => handleFrameworkEventVue(this, event, <%= formValue %>)
 			});
 		},
