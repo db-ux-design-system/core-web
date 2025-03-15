@@ -14,7 +14,7 @@ For general installation and configuration take a look at the [components](https
 		data-custom-validity="no-validation"
 		data-selected-type="text"
 	>
-		<select hidden="">
+		<select hidden>
 			<option value="Option 1">Option 1</option>
 			<option value="Option 2">Option 2</option>
 		</select>
