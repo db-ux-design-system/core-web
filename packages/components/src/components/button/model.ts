@@ -38,12 +38,12 @@ export type DBButtonDefaultProps = {
 	/**
 	 * The disabled attribute can be set to [keep a user from clicking on the button](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button#disabled).
 	 */
-	disabled?: boolean;
+	disabled?: boolean | string;
 
 	/**
 	 * Define the text next to the icon specified via the icon Property to get hidden.
 	 */
-	noText?: boolean; // We had to rename this to noText because wc-core-components uses a regex and always finds "icon" instead of "onlyIcon"
+	noText?: boolean | string; // We had to rename this to noText because wc-core-components uses a regex and always finds "icon" instead of "onlyIcon"
 
 	/**
 	 * The label represents the [aria-label attributes](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-label) value of the button

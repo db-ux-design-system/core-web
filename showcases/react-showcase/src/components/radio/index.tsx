@@ -1,4 +1,8 @@
-import { DBInfotext, DBRadio } from '../../../../../output/react/src';
+import {
+	DBInfotext,
+	DBRadio,
+	getBoolean
+} from '../../../../../output/react/src';
 import DefaultComponent from '../default-component';
 import { getVariants } from '../data';
 import defaultComponentVariants from '../../../../shared/radio.json';
@@ -22,7 +26,7 @@ const getRadio = ({
 			label={label}
 			size={size}
 			name={name}
-			defaultChecked={checked}
+			defaultChecked={getBoolean(checked)}
 			required={required}
 			disabled={disabled}
 			showLabel={showLabel}
