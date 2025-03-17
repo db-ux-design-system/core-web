@@ -640,7 +640,7 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 			data-custom-validity={state._validity}
 			data-width={props.width}
 			data-variant={props.variant}
-			data-required={props.required}
+			data-required={getBooleanAsString(props.required)}
 			data-placement={props.placement}
 			data-selected-type={props.multiple ? props.selectedType : 'text'}
 			data-hide-label={getHideProp(props.showLabel)}
