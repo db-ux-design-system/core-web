@@ -1,0 +1,759 @@
+- main:
+  - heading "DBCustomSelect" [level=1]
+  - link "Density arrow_up_right\" / \""
+  - text: Functional
+  - group:
+    - article:
+      - radiogroup "Functional":
+        - list:
+          - listitem:
+            - radio "Option 1 none\" / \""
+            - text: Option 1 none" / "
+          - listitem:
+            - radio "Option 2 none\" / \""
+            - text: Option 2 none" / "
+  - status
+  - text: chevron_down" / " (Default) Regular
+  - group:
+    - article:
+      - radiogroup "(Default) Regular":
+        - list:
+          - listitem:
+            - radio "Option 1 none\" / \""
+            - text: Option 1 none" / "
+          - listitem:
+            - radio "Option 2 none\" / \""
+            - text: Option 2 none" / "
+  - status
+  - text: chevron_down" / " Expressive
+  - group:
+    - article:
+      - radiogroup "Expressive":
+        - list:
+          - listitem:
+            - radio "Option 1 none\" / \""
+            - text: Option 1 none" / "
+          - listitem:
+            - radio "Option 2 none\" / \""
+            - text: Option 2 none" / "
+  - status
+  - text: chevron_down" / "
+  - link "Variant arrow_up_right\" / \""
+  - text: (Default) Label Above
+  - group:
+    - article:
+      - radiogroup "(Default) Label Above":
+        - list:
+          - listitem:
+            - radio "Option 1 none\" / \""
+            - text: Option 1 none" / "
+          - listitem:
+            - radio "Option 2 none\" / \""
+            - text: Option 2 none" / "
+  - status
+  - text: chevron_down" / " Floating Label
+  - group:
+    - article:
+      - radiogroup "Floating Label":
+        - list:
+          - listitem:
+            - radio "Floating Label none\" / \""
+            - text: Floating Label none" / "
+          - listitem:
+            - radio "Option 2 none\" / \""
+            - text: Option 2 none" / "
+  - status
+  - text: chevron_down" / "
+  - link "Show Label arrow_up_right\" / \""
+  - text: (Default) True
+  - group:
+    - article:
+      - radiogroup "(Default) True":
+        - list:
+          - listitem:
+            - radio "Option 1 none\" / \""
+            - text: Option 1 none" / "
+          - listitem:
+            - radio "Option 2 none\" / \""
+            - text: Option 2 none" / "
+  - status
+  - text: chevron_down" / " False
+  - group:
+    - article:
+      - radiogroup "False":
+        - list:
+          - listitem:
+            - radio "Option 1 none\" / \""
+            - text: Option 1 none" / "
+          - listitem:
+            - radio "Option 2 none\" / \""
+            - text: Option 2 none" / "
+  - status
+  - text: chevron_down" / "
+  - link "Helper Message arrow_up_right\" / \""
+  - text: (Default) Basic
+  - group:
+    - article:
+      - radiogroup "(Default) Basic":
+        - list:
+          - listitem:
+            - radio "Option 1 none\" / \""
+            - text: Option 1 none" / "
+          - listitem:
+            - radio "Option 2 none\" / \""
+            - text: Option 2 none" / "
+  - status
+  - text: chevron_down" / " Helper Message
+  - group:
+    - article:
+      - radiogroup "Helper Message":
+        - list:
+          - listitem:
+            - radio "Option 1 none\" / \""
+            - text: Option 1 none" / "
+          - listitem:
+            - radio "Option 2 none\" / \""
+            - text: Option 2 none" / "
+  - text: information_circle" / " Helper Message
+  - status
+  - text: chevron_down" / "
+  - link "Show Icon arrow_up_right\" / \""
+  - text: (Default) False
+  - group:
+    - article:
+      - radiogroup "(Default) False":
+        - list:
+          - listitem:
+            - radio "Option 1 none\" / \""
+            - text: Option 1 none" / "
+          - listitem:
+            - radio "Option 2 none\" / \""
+            - text: Option 2 none" / "
+  - status
+  - text: chevron_down" / " True
+  - group:
+    - article:
+      - radiogroup "True":
+        - list:
+          - listitem:
+            - radio "Option 1 none\" / \""
+            - text: Option 1 none" / "
+          - listitem:
+            - radio "Option 2 none\" / \""
+            - text: Option 2 none" / "
+  - status
+  - text: chevron_down" / "
+  - link "Requirement arrow_up_right\" / \""
+  - text: (Default) Optional
+  - group:
+    - article:
+      - group "(Default) Optional":
+        - list:
+          - listitem:
+            - checkbox "Option 1"
+            - text: Option 1
+          - listitem:
+            - checkbox "Option 2"
+            - text: Option 2
+  - status
+  - text: chevron_down" / " Required*" / "
+  - group:
+    - article:
+      - group "Required":
+        - list:
+          - listitem:
+            - checkbox "Option 1"
+            - text: Option 1
+          - listitem:
+            - checkbox "Option 2"
+            - text: Option 2
+  - status
+  - text: chevron_down" / "
+  - link "Width arrow_up_right\" / \""
+  - text: (Default) Full
+  - group:
+    - article:
+      - radiogroup "(Default) Full":
+        - list:
+          - listitem:
+            - radio "Option 1 none\" / \""
+            - text: Option 1 none" / "
+          - listitem:
+            - radio "Option 2 none\" / \""
+            - text: Option 2 none" / "
+  - status
+  - text: chevron_down" / " Auto
+  - group:
+    - article:
+      - radiogroup "Auto":
+        - list:
+          - listitem:
+            - radio "Option 1 none\" / \""
+            - text: Option 1 none" / "
+          - listitem:
+            - radio "Option 2 none\" / \""
+            - text: Option 2 none" / "
+  - status
+  - text: chevron_down" / "
+  - link "Dropdown Width arrow_up_right\" / \""
+  - text: information_circle" / " Full Width (Default) Fixed
+  - group:
+    - article:
+      - radiogroup "(Default) Fixed":
+        - list:
+          - listitem:
+            - radio "Option 1 none\" / \""
+            - text: Option 1 none" / "
+          - listitem:
+            - radio "Option 2 none\" / \""
+            - text: Option 2 none" / "
+  - status
+  - text: chevron_down" / " Auto
+  - group:
+    - article:
+      - radiogroup "Auto":
+        - list:
+          - listitem:
+            - radio "1 none\" / \""
+            - text: 1 none" / "
+          - listitem:
+            - radio "2 none\" / \""
+            - text: 2 none" / "
+  - status
+  - text: chevron_down" / " Full
+  - group:
+    - article:
+      - radiogroup "Full":
+        - list:
+          - listitem:
+            - radio "1 none\" / \""
+            - text: 1 none" / "
+          - listitem:
+            - radio "2 none\" / \""
+            - text: 2 none" / "
+  - status
+  - text: chevron_down" / " information_circle" / " Auto Width (Default) Fixed
+  - group:
+    - article:
+      - radiogroup "(Default) Fixed":
+        - list:
+          - listitem:
+            - radio "Option 1 none\" / \""
+            - text: Option 1 none" / "
+          - listitem:
+            - radio "Option 2 none\" / \""
+            - text: Option 2 none" / "
+  - status
+  - text: chevron_down" / " Auto
+  - group:
+    - article:
+      - radiogroup "Auto":
+        - list:
+          - listitem:
+            - radio "1 none\" / \""
+            - text: 1 none" / "
+          - listitem:
+            - radio "2 none\" / \""
+            - text: 2 none" / "
+  - status
+  - text: chevron_down" / " Full
+  - group:
+    - article:
+      - radiogroup "Full":
+        - list:
+          - listitem:
+            - radio "1 none\" / \""
+            - text: 1 none" / "
+          - listitem:
+            - radio "2 none\" / \""
+            - text: 2 none" / "
+  - status
+  - text: chevron_down" / "
+  - link "Placement arrow_up_right\" / \""
+  - text: information_circle" / " Full Width (Default) Bottom
+  - group:
+    - article:
+      - radiogroup "(Default) Bottom":
+        - list:
+          - listitem:
+            - radio "Option 1 none\" / \""
+            - text: Option 1 none" / "
+          - listitem:
+            - radio "Option 2 none\" / \""
+            - text: Option 2 none" / "
+  - status
+  - text: chevron_down" / " Top
+  - group:
+    - article:
+      - radiogroup "Top":
+        - list:
+          - listitem:
+            - radio "Option 1 none\" / \""
+            - text: Option 1 none" / "
+          - listitem:
+            - radio "Option 2 none\" / \""
+            - text: Option 2 none" / "
+  - status
+  - text: chevron_down" / " information_circle" / " Auto Width (Default) Bottom-Start
+  - group:
+    - article:
+      - radiogroup "(Default) Bottom-Start":
+        - list:
+          - listitem:
+            - radio "Option 1 none\" / \""
+            - text: Option 1 none" / "
+          - listitem:
+            - radio "Option 2 none\" / \""
+            - text: Option 2 none" / "
+  - status
+  - text: chevron_down" / " Bottom-End
+  - group:
+    - article:
+      - radiogroup "Bottom-End":
+        - list:
+          - listitem:
+            - radio "Option 1 none\" / \""
+            - text: Option 1 none" / "
+          - listitem:
+            - radio "Option 2 none\" / \""
+            - text: Option 2 none" / "
+  - status
+  - text: chevron_down" / " Top-Start
+  - group:
+    - article:
+      - radiogroup "Top-Start":
+        - list:
+          - listitem:
+            - radio "Option 1 none\" / \""
+            - text: Option 1 none" / "
+          - listitem:
+            - radio "Option 2 none\" / \""
+            - text: Option 2 none" / "
+  - status
+  - text: chevron_down" / " Top-End
+  - group:
+    - article:
+      - radiogroup "Top-End":
+        - list:
+          - listitem:
+            - radio "Option 1 none\" / \""
+            - text: Option 1 none" / "
+          - listitem:
+            - radio "Option 2 none\" / \""
+            - text: Option 2 none" / "
+  - status
+  - text: chevron_down" / "
+  - link "Selected type arrow_up_right\" / \""
+  - text: (Default) Text
+  - group:
+    - article:
+      - group "(Default) Text":
+        - list:
+          - listitem:
+            - checkbox "Option 1"
+            - text: Option 1
+          - listitem:
+            - checkbox "Option 2"
+            - text: Option 2
+          - listitem:
+            - checkbox "Option 3"
+            - text: Option 3
+          - listitem:
+            - checkbox "Option 4"
+            - text: Option 4
+  - status
+  - text: chevron_down" / " Amount
+  - group:
+    - article:
+      - group "Amount":
+        - list:
+          - listitem:
+            - checkbox "Option 1"
+            - text: Option 1
+          - listitem:
+            - checkbox "Option 2"
+            - text: Option 2
+          - listitem:
+            - checkbox "Option 3"
+            - text: Option 3
+          - listitem:
+            - checkbox "Option 4"
+            - text: Option 4
+  - status
+  - text: chevron_down" / " Tag
+  - group:
+    - article:
+      - group "Tag":
+        - list:
+          - listitem:
+            - checkbox "Option 1"
+            - text: Option 1
+          - listitem:
+            - checkbox "Option 2"
+            - text: Option 2
+          - listitem:
+            - checkbox "Option 3"
+            - text: Option 3
+          - listitem:
+            - checkbox "Option 4"
+            - text: Option 4
+  - status
+  - text: chevron_down" / "
+  - link "Examples Single arrow_up_right\" / \""
+  - text: Icons
+  - group:
+    - article:
+      - radiogroup "Icons":
+        - list:
+          - listitem:
+            - radio "Option 1 none\" / \""
+            - text: Option 1 none" / "
+          - listitem:
+            - radio "Option 2 none\" / \""
+            - text: Option 2 none" / "
+  - status
+  - text: chevron_down" / " Less than 6
+  - group:
+    - article:
+      - radiogroup "Less than 6":
+        - list:
+          - listitem:
+            - radio "Option 1 none\" / \""
+            - text: Option 1 none" / "
+          - listitem:
+            - radio "Option 2 none\" / \""
+            - text: Option 2 none" / "
+          - listitem:
+            - radio "Option 3 none\" / \""
+            - text: Option 3 none" / "
+          - listitem:
+            - radio "Option 4 none\" / \""
+            - text: Option 4 none" / "
+          - listitem:
+            - radio "Option 5 none\" / \""
+            - text: Option 5 none" / "
+  - status
+  - text: chevron_down" / " Option Group Title
+  - group:
+    - article:
+      - radiogroup "Option Group Title":
+        - list:
+          - listitem: Option group 1
+          - listitem:
+            - radio "G1:Option 1 none\" / \""
+            - text: G1:Option 1 none" / "
+          - listitem:
+            - radio "G1:Option 2 none\" / \""
+            - text: G1:Option 2 none" / "
+          - listitem: Option group 2
+          - listitem:
+            - radio "G2:Option 1 none\" / \""
+            - text: G2:Option 1 none" / "
+          - listitem:
+            - radio "G2:Option 2 none\" / \""
+            - text: G2:Option 2 none" / "
+  - status
+  - text: chevron_down" / " Option Groups
+  - group:
+    - article:
+      - radiogroup "Option Groups":
+        - list:
+          - listitem:
+            - radio "G1:Option 1 none\" / \""
+            - text: G1:Option 1 none" / "
+          - listitem:
+            - radio "G1:Option 2 none\" / \""
+            - text: G1:Option 2 none" / "
+          - listitem:
+            - radio "G2:Option 1 none\" / \""
+            - text: G2:Option 1 none" / "
+          - listitem:
+            - radio "G2:Option 2 none\" / \""
+            - text: G2:Option 2 none" / "
+  - status
+  - text: chevron_down" / " More than 6
+  - group:
+    - article:
+      - radiogroup "More than 6":
+        - list:
+          - listitem:
+            - radio "Option 1 none\" / \""
+            - text: Option 1 none" / "
+          - listitem:
+            - radio "Option 2 none\" / \""
+            - text: Option 2 none" / "
+          - listitem:
+            - radio "Option 3 none\" / \""
+            - text: Option 3 none" / "
+          - listitem:
+            - radio "Option 4 none\" / \""
+            - text: Option 4 none" / "
+          - listitem:
+            - radio "Option 5 none\" / \""
+            - text: Option 5 none" / "
+          - listitem:
+            - radio "Option 6 none\" / \""
+            - text: Option 6 none" / "
+          - listitem:
+            - radio "Option 7 none\" / \""
+            - text: Option 7 none" / "
+  - status
+  - text: chevron_down" / " More than 10
+  - group:
+    - article:
+      - text: magnifying_glass" / " Search
+      - searchbox "Search"
+      - status
+      - text: cross" / "
+      - radiogroup "More than 10":
+        - list:
+          - listitem:
+            - radio "Option 1 none\" / \""
+            - text: Option 1 none" / "
+          - listitem:
+            - radio "Option 2 none\" / \""
+            - text: Option 2 none" / "
+          - listitem:
+            - radio "Option 3 none\" / \""
+            - text: Option 3 none" / "
+          - listitem:
+            - radio "Option 4 none\" / \""
+            - text: Option 4 none" / "
+          - listitem:
+            - radio "Option 5 none\" / \""
+            - text: Option 5 none" / "
+          - listitem:
+            - radio "Option 6 none\" / \""
+            - text: Option 6 none" / "
+          - listitem:
+            - radio "Option 7 none\" / \""
+            - text: Option 7 none" / "
+          - listitem:
+            - radio "Option 8 none\" / \""
+            - text: Option 8 none" / "
+          - listitem:
+            - radio "Option 9 none\" / \""
+            - text: Option 9 none" / "
+          - listitem:
+            - radio "Option 10 none\" / \""
+            - text: Option 10 none" / "
+  - status
+  - text: chevron_down" / "
+  - link "Examples Multiple arrow_up_right\" / \""
+  - text: Less than 6
+  - group:
+    - article:
+      - group "Less than 6":
+        - list:
+          - listitem:
+            - checkbox "Option 1"
+            - text: Option 1
+          - listitem:
+            - checkbox "Option 2"
+            - text: Option 2
+          - listitem:
+            - checkbox "Option 3"
+            - text: Option 3
+          - listitem:
+            - checkbox "Option 4"
+            - text: Option 4
+          - listitem:
+            - checkbox "Option 5"
+            - text: Option 5
+  - status
+  - text: chevron_down" / " Option Group Title
+  - group:
+    - article:
+      - group "Option Group Title":
+        - list:
+          - listitem: Option group 1
+          - listitem:
+            - checkbox "G1:Option 1"
+            - text: G1:Option 1
+          - listitem:
+            - checkbox "G1:Option 2"
+            - text: G1:Option 2
+          - listitem: Option group 2
+          - listitem:
+            - checkbox "G2:Option 1"
+            - text: G2:Option 1
+          - listitem:
+            - checkbox "G2:Option 2"
+            - text: G2:Option 2
+  - status
+  - text: chevron_down" / " Option Groups
+  - group:
+    - article:
+      - group "Option Groups":
+        - list:
+          - listitem:
+            - checkbox "G1:Option 1"
+            - text: G1:Option 1
+          - listitem:
+            - checkbox "G1:Option 2"
+            - text: G1:Option 2
+          - listitem:
+            - checkbox "G2:Option 1"
+            - text: G2:Option 1
+          - listitem:
+            - checkbox "G2:Option 2"
+            - text: G2:Option 2
+  - status
+  - text: chevron_down" / " More than 6
+  - group:
+    - article:
+      - checkbox "Select all"
+      - text: Select all
+      - group "More than 6":
+        - list:
+          - listitem:
+            - checkbox "Option 1"
+            - text: Option 1
+          - listitem:
+            - checkbox "Option 2"
+            - text: Option 2
+          - listitem:
+            - checkbox "Option 3"
+            - text: Option 3
+          - listitem:
+            - checkbox "Option 4"
+            - text: Option 4
+          - listitem:
+            - checkbox "Option 5"
+            - text: Option 5
+          - listitem:
+            - checkbox "Option 6"
+            - text: Option 6
+          - listitem:
+            - checkbox "Option 7"
+            - text: Option 7
+  - status
+  - text: chevron_down" / " More than 10
+  - group:
+    - article:
+      - text: magnifying_glass" / " Search
+      - searchbox "Search"
+      - status
+      - text: cross" / "
+      - checkbox "Select all"
+      - text: Select all
+      - group "More than 10":
+        - list:
+          - listitem:
+            - checkbox "Option 1"
+            - text: Option 1
+          - listitem:
+            - checkbox "Option 2"
+            - text: Option 2
+          - listitem:
+            - checkbox "Option 3"
+            - text: Option 3
+          - listitem:
+            - checkbox "Option 4"
+            - text: Option 4
+          - listitem:
+            - checkbox "Option 5"
+            - text: Option 5
+          - listitem:
+            - checkbox "Option 6"
+            - text: Option 6
+          - listitem:
+            - checkbox "Option 7"
+            - text: Option 7
+          - listitem:
+            - checkbox "Option 8"
+            - text: Option 8
+          - listitem:
+            - checkbox "Option 9"
+            - text: Option 9
+          - listitem:
+            - checkbox "Option 10"
+            - text: Option 10
+  - status
+  - text: chevron_down" / "
+  - link "Example tags arrow_up_right\" / \""
+  - text: Tag grow
+  - group:
+    - article:
+      - group "Tag grow":
+        - list:
+          - listitem:
+            - checkbox "Option 1"
+            - text: Option 1
+          - listitem:
+            - checkbox "Option 2"
+            - text: Option 2
+          - listitem:
+            - checkbox "Option 3"
+            - text: Option 3
+          - listitem:
+            - checkbox "Option 4"
+            - text: Option 4
+  - status
+  - text: chevron_down" / " Tag grow + auto
+  - group:
+    - article:
+      - group "Tag grow + auto":
+        - list:
+          - listitem:
+            - checkbox "Option 1"
+            - text: Option 1
+          - listitem:
+            - checkbox "Option 2"
+            - text: Option 2
+          - listitem:
+            - checkbox "Option 3"
+            - text: Option 3
+          - listitem:
+            - checkbox "Option 4"
+            - text: Option 4
+  - status
+  - text: chevron_down" / "
+  - link "Example Shows arrow_up_right\" / \""
+  - text: Show No Result
+  - group:
+    - article:
+      - text: magnifying_glass" / " Search
+      - searchbox "Search"
+      - status
+      - text: cross" / " exclamation_mark_triangle" / " Nothing found
+  - status
+  - text: chevron_down" / " Show Loading and Show Search
+  - group:
+    - article:
+      - text: magnifying_glass" / " Search
+      - searchbox "Search"
+      - status
+      - text: cross" / " Loading
+  - status
+  - text: chevron_down" / " Show Loading
+  - group:
+    - article: Loading
+  - status
+  - text: chevron_down" / " Show SelectAll
+  - group:
+    - article:
+      - checkbox "Select all"
+      - text: Select all
+      - group "Show SelectAll":
+        - list:
+          - listitem:
+            - checkbox "Option 1"
+            - text: Option 1
+          - listitem:
+            - checkbox "Option 2"
+            - text: Option 2
+  - status
+  - text: chevron_down" / " Hide ClearAll
+  - group:
+    - article:
+      - group "Hide ClearAll":
+        - list:
+          - listitem:
+            - checkbox "Option 1"
+            - text: Option 1
+          - listitem:
+            - checkbox "Option 2"
+            - text: Option 2
+  - status
+  - text: chevron_down" / "
