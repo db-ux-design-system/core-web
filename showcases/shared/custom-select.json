@@ -5,7 +5,7 @@
 			{
 				"name": "Functional",
 				"style": { "width": "200px" },
-				"className": "db-density-functional",
+				"density": "functional",
 				"props": {
 					"options": [
 						{
@@ -21,7 +21,7 @@
 			{
 				"name": "(Default) Regular",
 				"style": { "width": "200px" },
-				"className": "db-density-regular",
+				"density": "regular",
 				"props": {
 					"options": [
 						{
@@ -37,7 +37,7 @@
 			{
 				"name": "Expressive",
 				"style": { "width": "200px" },
-				"className": "db-density-expressive",
+				"density": "expressive",
 				"props": {
 					"options": [
 						{

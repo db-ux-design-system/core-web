@@ -882,7 +882,9 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 				</DBButton>
 			</Show>
 
-			<span aria-hidden id={state._placeholderId}>
+			<span
+				aria-hidden={getBooleanAsString(true)}
+				id={state._placeholderId}>
 				{props.placeholder ?? props.label}
 			</span>
 			<Show when={props.message}>
