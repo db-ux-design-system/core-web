@@ -103,14 +103,14 @@ export default function DBSwitch(props: DBSwitchProps) {
 				role="switch"
 				aria-checked={getBooleanAsString(state._checked)}
 				ref={_ref}
-				checked={getBoolean(props.checked)}
+				checked={getBoolean(props.checked, 'checked')}
 				value={props.value}
-				disabled={getBoolean(props.disabled)}
+				disabled={getBoolean(props.disabled, 'disabled')}
 				aria-describedby={props.describedbyid}
 				aria-invalid={props.validation === 'invalid'}
 				data-custom-validity={props.validation}
 				name={props.name}
-				required={getBoolean(props.required)}
+				required={getBoolean(props.required, 'required')}
 				data-aid-icon={props.icon}
 				data-aid-icon-after={props.iconAfter}
 				onChange={(event: ChangeEvent<HTMLInputElement>) =>

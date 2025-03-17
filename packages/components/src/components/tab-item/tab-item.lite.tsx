@@ -79,10 +79,10 @@ export default function DBTabItem(props: DBTabItemProps) {
 				data-hide-icon-after={getHideProp(props.showIcon)}
 				data-no-text={getBooleanAsString(props.noText)}>
 				<input
-					disabled={getBoolean(props.disabled)}
+					disabled={getBoolean(props.disabled, 'disabled')}
 					aria-selected={state._selected}
 					aria-controls={props.controls}
-					checked={getBoolean(props.checked)}
+					checked={getBoolean(props.checked, 'checked')}
 					ref={_ref}
 					type="radio"
 					role="tab"

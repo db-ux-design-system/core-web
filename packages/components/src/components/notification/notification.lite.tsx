@@ -55,7 +55,7 @@ export default function DBNotification(props: DBNotificationProps) {
 
 			<Slot name="link" />
 
-			<Show when={getBoolean(props.closeable)}>
+			<Show when={getBoolean(props.closeable, 'closeable')}>
 				<DBButton
 					id={props.closeButtonId}
 					icon="cross"

@@ -132,7 +132,7 @@ export default function DBNavigationItem(props: DBNavigationItemProps) {
 					aria-haspopup={state.hasAreaPopup}
 					aria-expanded={state.isSubNavigationExpanded}
 					class="db-navigation-item-expand-button"
-					disabled={getBoolean(props.disabled)}
+					disabled={getBoolean(props.disabled, 'disabled')}
 					onClick={(event: ClickEvent<HTMLButtonElement>) =>
 						state.handleClick(event)
 					}>

@@ -196,8 +196,8 @@ export default function DBInput(props: DBInputProps) {
 				name={props.name}
 				type={props.type || 'text'}
 				placeholder={props.placeholder ?? DEFAULT_PLACEHOLDER}
-				disabled={getBoolean(props.disabled)}
-				required={getBoolean(props.required)}
+				disabled={getBoolean(props.disabled, 'disabled')}
+				required={getBoolean(props.required, 'required')}
 				step={getNumber(props.step)}
 				value={props.value ?? state._value}
 				maxLength={getNumber(props.maxLength, props.maxlength)}
@@ -205,7 +205,8 @@ export default function DBInput(props: DBInputProps) {
 				max={getNumber(props.max)}
 				min={getNumber(props.min)}
 				readOnly={
-					getBoolean(props.readOnly) || getBoolean(props.readonly)
+					getBoolean(props.readOnly, 'readOnly') ||
+					getBoolean(props.readonly, 'readonly')
 				}
 				form={props.form}
 				pattern={props.pattern}
@@ -213,7 +214,7 @@ export default function DBInput(props: DBInputProps) {
 				// @ts-ignore
 				autoComplete={props.autocomplete}
 				// @ts-ignore
-				autoFocus={getBoolean(props.autofocus)}
+				autoFocus={getBoolean(props.autofocus, 'autofocus')}
 				onInput={(event: ChangeEvent<HTMLInputElement>) =>
 					state.handleInput(event)
 				}

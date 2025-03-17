@@ -185,8 +185,8 @@ export default function DBSelect(props: DBSelectProps) {
 				aria-invalid={props.validation === 'invalid'}
 				data-custom-validity={props.validation}
 				ref={_ref}
-				required={getBoolean(props.required)}
-				disabled={getBoolean(props.disabled)}
+				required={getBoolean(props.required, 'required')}
+				disabled={getBoolean(props.disabled, 'disabled')}
 				id={state._id}
 				name={props.name}
 				size={props.size}

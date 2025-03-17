@@ -157,9 +157,14 @@ export const getBooleanAsString = (originBool?: boolean | string): any => {
 };
 
 export const getBoolean = (
-	originBool?: boolean | string
+	originBool?: boolean | string,
+	propertyName?: string
 ): boolean | undefined => {
 	if (originBool === undefined || originBool === null) return;
+
+	if (typeof originBool === 'string' && propertyName) {
+		return Boolean(propertyName === originBool || originBool);
+	}
 
 	return Boolean(originBool);
 };

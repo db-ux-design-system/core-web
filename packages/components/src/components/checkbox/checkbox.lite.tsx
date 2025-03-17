@@ -185,10 +185,10 @@ export default function DBCheckbox(props: DBCheckboxProps) {
 					type="checkbox"
 					id={state._id}
 					name={props.name}
-					checked={getBoolean(props.checked)}
-					disabled={getBoolean(props.disabled)}
+					checked={getBoolean(props.checked, 'checked')}
+					disabled={getBoolean(props.disabled, 'disabled')}
 					value={props.value}
-					required={getBoolean(props.required)}
+					required={getBoolean(props.required, 'required')}
 					onChange={(event: ChangeEvent<HTMLInputElement>) =>
 						state.handleChange(event)
 					}

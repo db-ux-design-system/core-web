@@ -94,11 +94,11 @@ export default function DBRadio(props: DBRadioProps) {
 				type="radio"
 				id={state._id}
 				name={props.name}
-				checked={getBoolean(props.checked)}
-				disabled={getBoolean(props.disabled)}
+				checked={getBoolean(props.checked, 'checked')}
+				disabled={getBoolean(props.disabled, 'disabled')}
 				aria-describedby={props.describedbyid}
 				value={props.value}
-				required={getBoolean(props.required)}
+				required={getBoolean(props.required, 'required')}
 				onChange={(event: ChangeEvent<HTMLInputElement>) =>
 					state.handleChange(event)
 				}
