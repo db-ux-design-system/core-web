@@ -4,7 +4,9 @@
 		"examples": [
 			{
 				"name": "Functional",
-				"style": { "width": "200px" },
+				"style": {
+					"width": "200px"
+				},
 				"density": "functional",
 				"props": {
 					"options": [
@@ -15,12 +17,16 @@
 							"value": "Option 2"
 						}
 					],
+					"label": "Label",
 					"placeholder": "Placeholder"
-				}
+				},
+				"children": []
 			},
 			{
 				"name": "(Default) Regular",
-				"style": { "width": "200px" },
+				"style": {
+					"width": "200px"
+				},
 				"density": "regular",
 				"props": {
 					"options": [
@@ -31,12 +37,16 @@
 							"value": "Option 2"
 						}
 					],
+					"label": "Label",
 					"placeholder": "Placeholder"
-				}
+				},
+				"children": []
 			},
 			{
 				"name": "Expressive",
-				"style": { "width": "200px" },
+				"style": {
+					"width": "200px"
+				},
 				"density": "expressive",
 				"props": {
 					"options": [
@@ -47,8 +57,10 @@
 							"value": "Option 2"
 						}
 					],
+					"label": "Label",
 					"placeholder": "Placeholder"
-				}
+				},
+				"children": []
 			}
 		]
 	},
@@ -57,7 +69,9 @@
 		"examples": [
 			{
 				"name": "(Default) Label Above",
-				"style": { "width": "200px" },
+				"style": {
+					"width": "200px"
+				},
 				"props": {
 					"options": [
 						{
@@ -68,11 +82,14 @@
 						}
 					],
 					"label": "Label"
-				}
+				},
+				"children": []
 			},
 			{
 				"name": "Floating Label",
-				"style": { "width": "200px" },
+				"style": {
+					"width": "200px"
+				},
 				"props": {
 					"options": [
 						{
@@ -85,7 +102,8 @@
 					"label": "Label",
 					"variant": "floating",
 					"value": ["Floating Label"]
-				}
+				},
+				"children": []
 			}
 		]
 	},
@@ -94,7 +112,9 @@
 		"examples": [
 			{
 				"name": "(Default) True",
-				"style": { "width": "200px" },
+				"style": {
+					"width": "200px"
+				},
 				"props": {
 					"options": [
 						{
@@ -106,11 +126,14 @@
 					],
 					"label": "Label",
 					"showLabel": true
-				}
+				},
+				"children": []
 			},
 			{
 				"name": "False",
-				"style": { "width": "200px" },
+				"style": {
+					"width": "200px"
+				},
 				"props": {
 					"options": [
 						{
@@ -122,7 +145,8 @@
 					],
 					"label": "Label",
 					"showLabel": false
-				}
+				},
+				"children": []
 			}
 		]
 	},
@@ -131,7 +155,9 @@
 		"examples": [
 			{
 				"name": "(Default) Basic",
-				"style": { "width": "200px" },
+				"style": {
+					"width": "200px"
+				},
 				"props": {
 					"options": [
 						{
@@ -142,11 +168,14 @@
 						}
 					],
 					"label": "Label"
-				}
+				},
+				"children": []
 			},
 			{
 				"name": "Helper Message",
-				"style": { "width": "200px" },
+				"style": {
+					"width": "200px"
+				},
 				"props": {
 					"options": [
 						{
@@ -158,11 +187,11 @@
 					],
 					"label": "Label",
 					"message": "Helper Message"
-				}
+				},
+				"children": []
 			}
 		]
 	},
-
 	{
 		"name": "Show Icon",
 		"examples": [
@@ -183,7 +212,8 @@
 					"label": "Label",
 					"icon": "x_placeholder",
 					"showIcon": false
-				}
+				},
+				"children": []
 			},
 			{
 				"name": "True",
@@ -202,7 +232,8 @@
 					"label": "Label",
 					"icon": "x_placeholder",
 					"showIcon": true
-				}
+				},
+				"children": []
 			}
 		]
 	},
@@ -211,7 +242,9 @@
 		"examples": [
 			{
 				"name": "(Default) Optional",
-				"style": { "width": "200px" },
+				"style": {
+					"width": "200px"
+				},
 				"props": {
 					"options": [
 						{
@@ -223,11 +256,14 @@
 					],
 					"label": "Label",
 					"multiple": true
-				}
+				},
+				"children": []
 			},
 			{
 				"name": "Required",
-				"style": { "width": "200px" },
+				"style": {
+					"width": "200px"
+				},
 				"props": {
 					"options": [
 						{
@@ -240,7 +276,8 @@
 					"label": "Label",
 					"required": true,
 					"multiple": true
-				}
+				},
+				"children": []
 			}
 		]
 	},
@@ -249,7 +286,9 @@
 		"examples": [
 			{
 				"name": "(Default) Full",
-				"style": { "width": "400px" },
+				"style": {
+					"width": "400px"
+				},
 				"props": {
 					"options": [
 						{
@@ -261,11 +300,14 @@
 					],
 					"label": "Full",
 					"width": "full"
-				}
+				},
+				"children": []
 			},
 			{
 				"name": "Auto",
-				"style": { "width": "400px" },
+				"style": {
+					"width": "400px"
+				},
 				"props": {
 					"options": [
 						{
@@ -277,7 +319,8 @@
 					],
 					"label": "Auto",
 					"width": "auto"
-				}
+				},
+				"children": []
 			}
 		]
 	},
@@ -288,17 +331,21 @@
 				"name": "Full Width",
 				"props": {
 					"info": true
-				}
+				},
+				"children": []
 			},
 			{
 				"name": "Line Break",
 				"props": {
 					"lineBreak": true
-				}
+				},
+				"children": []
 			},
 			{
 				"name": "(Default) Fixed",
-				"style": { "width": "400px" },
+				"style": {
+					"width": "400px"
+				},
 				"props": {
 					"options": [
 						{
@@ -311,11 +358,14 @@
 					"label": "Fixed",
 					"width": "full",
 					"dropdownWidth": "fixed"
-				}
+				},
+				"children": []
 			},
 			{
 				"name": "Auto",
-				"style": { "width": "400px" },
+				"style": {
+					"width": "400px"
+				},
 				"props": {
 					"options": [
 						{
@@ -328,11 +378,14 @@
 					"label": "Auto",
 					"width": "full",
 					"dropdownWidth": "auto"
-				}
+				},
+				"children": []
 			},
 			{
 				"name": "Full",
-				"style": { "width": "400px" },
+				"style": {
+					"width": "400px"
+				},
 				"props": {
 					"options": [
 						{
@@ -345,29 +398,35 @@
 					"label": "Full",
 					"width": "full",
 					"dropdownWidth": "full"
-				}
+				},
+				"children": []
 			},
 			{
 				"name": "Line Break",
 				"props": {
 					"lineBreak": true
-				}
+				},
+				"children": []
 			},
 			{
 				"name": "Auto Width",
 				"props": {
 					"info": true
-				}
+				},
+				"children": []
 			},
 			{
 				"name": "Line Break",
 				"props": {
 					"lineBreak": true
-				}
+				},
+				"children": []
 			},
 			{
 				"name": "(Default) Fixed",
-				"style": { "width": "400px" },
+				"style": {
+					"width": "400px"
+				},
 				"props": {
 					"options": [
 						{
@@ -380,11 +439,14 @@
 					"label": "Fixed",
 					"width": "auto",
 					"dropdownWidth": "fixed"
-				}
+				},
+				"children": []
 			},
 			{
 				"name": "Auto",
-				"style": { "width": "400px" },
+				"style": {
+					"width": "400px"
+				},
 				"props": {
 					"options": [
 						{
@@ -397,11 +459,14 @@
 					"label": "Auto",
 					"width": "auto",
 					"dropdownWidth": "auto"
-				}
+				},
+				"children": []
 			},
 			{
 				"name": "Full",
-				"style": { "width": "400px" },
+				"style": {
+					"width": "400px"
+				},
 				"props": {
 					"options": [
 						{
@@ -414,7 +479,8 @@
 					"label": "Full",
 					"width": "auto",
 					"dropdownWidth": "full"
-				}
+				},
+				"children": []
 			}
 		]
 	},
@@ -425,17 +491,21 @@
 				"name": "Full Width",
 				"props": {
 					"info": true
-				}
+				},
+				"children": []
 			},
 			{
 				"name": "Line Break",
 				"props": {
 					"lineBreak": true
-				}
+				},
+				"children": []
 			},
 			{
 				"name": "(Default) Bottom",
-				"style": { "width": "200px" },
+				"style": {
+					"width": "200px"
+				},
 				"props": {
 					"options": [
 						{
@@ -448,11 +518,14 @@
 					"label": "Bottom",
 					"width": "full",
 					"placement": "bottom"
-				}
+				},
+				"children": []
 			},
 			{
 				"name": "Top",
-				"style": { "width": "200px" },
+				"style": {
+					"width": "200px"
+				},
 				"props": {
 					"options": [
 						{
@@ -465,29 +538,35 @@
 					"label": "Top",
 					"width": "full",
 					"placement": "top"
-				}
+				},
+				"children": []
 			},
 			{
 				"name": "Line Break",
 				"props": {
 					"lineBreak": true
-				}
+				},
+				"children": []
 			},
 			{
 				"name": "Auto Width",
 				"props": {
 					"info": true
-				}
+				},
+				"children": []
 			},
 			{
 				"name": "Line Break",
 				"props": {
 					"lineBreak": true
-				}
+				},
+				"children": []
 			},
 			{
 				"name": "(Default) Bottom-Start",
-				"style": { "width": "200px" },
+				"style": {
+					"width": "200px"
+				},
 				"props": {
 					"options": [
 						{
@@ -500,11 +579,14 @@
 					"label": "Bottom",
 					"width": "auto",
 					"placement": "bottom-start"
-				}
+				},
+				"children": []
 			},
 			{
 				"name": "Bottom-End",
-				"style": { "width": "200px" },
+				"style": {
+					"width": "200px"
+				},
 				"props": {
 					"options": [
 						{
@@ -517,11 +599,14 @@
 					"label": "Bottom",
 					"width": "auto",
 					"placement": "bottom-end"
-				}
+				},
+				"children": []
 			},
 			{
 				"name": "Top-Start",
-				"style": { "width": "200px" },
+				"style": {
+					"width": "200px"
+				},
 				"props": {
 					"options": [
 						{
@@ -534,11 +619,14 @@
 					"label": "Top",
 					"width": "auto",
 					"placement": "top-start"
-				}
+				},
+				"children": []
 			},
 			{
 				"name": "Top-End",
-				"style": { "width": "200px" },
+				"style": {
+					"width": "200px"
+				},
 				"props": {
 					"options": [
 						{
@@ -551,7 +639,8 @@
 					"label": "Top",
 					"width": "auto",
 					"placement": "top-end"
-				}
+				},
+				"children": []
 			}
 		]
 	},
@@ -560,7 +649,9 @@
 		"examples": [
 			{
 				"name": "(Default) Text",
-				"style": { "width": "200px" },
+				"style": {
+					"width": "200px"
+				},
 				"props": {
 					"options": [
 						{
@@ -578,11 +669,14 @@
 					],
 					"label": "Label",
 					"multiple": true
-				}
+				},
+				"children": []
 			},
 			{
 				"name": "Amount",
-				"style": { "width": "200px" },
+				"style": {
+					"width": "200px"
+				},
 				"props": {
 					"options": [
 						{
@@ -601,11 +695,14 @@
 					"label": "Label",
 					"selectedType": "amount",
 					"multiple": true
-				}
+				},
+				"children": []
 			},
 			{
 				"name": "Tag",
-				"style": { "width": "200px" },
+				"style": {
+					"width": "200px"
+				},
 				"props": {
 					"options": [
 						{
@@ -624,7 +721,8 @@
 					"label": "Label",
 					"selectedType": "tag",
 					"multiple": true
-				}
+				},
+				"children": []
 			}
 		]
 	},
@@ -633,7 +731,9 @@
 		"examples": [
 			{
 				"name": "Icons",
-				"style": { "width": "200px" },
+				"style": {
+					"width": "200px"
+				},
 				"props": {
 					"options": [
 						{
@@ -646,11 +746,14 @@
 						}
 					],
 					"placeholder": "Placeholder"
-				}
+				},
+				"children": []
 			},
 			{
 				"name": "Less than 6",
-				"style": { "width": "200px" },
+				"style": {
+					"width": "200px"
+				},
 				"props": {
 					"options": [
 						{
@@ -670,11 +773,14 @@
 						}
 					],
 					"placeholder": "Placeholder"
-				}
+				},
+				"children": []
 			},
 			{
 				"name": "Option Group Title",
-				"style": { "width": "200px" },
+				"style": {
+					"width": "200px"
+				},
 				"props": {
 					"options": [
 						{
@@ -699,11 +805,14 @@
 						}
 					],
 					"placeholder": "Placeholder"
-				}
+				},
+				"children": []
 			},
 			{
 				"name": "Option Groups",
-				"style": { "width": "200px" },
+				"style": {
+					"width": "200px"
+				},
 				"props": {
 					"options": [
 						{
@@ -722,11 +831,14 @@
 						}
 					],
 					"placeholder": "Placeholder"
-				}
+				},
+				"children": []
 			},
 			{
 				"name": "More than 6",
-				"style": { "width": "200px" },
+				"style": {
+					"width": "200px"
+				},
 				"props": {
 					"options": [
 						{
@@ -752,11 +864,14 @@
 						}
 					],
 					"placeholder": "Placeholder"
-				}
+				},
+				"children": []
 			},
 			{
 				"name": "More than 10",
-				"style": { "width": "200px" },
+				"style": {
+					"width": "200px"
+				},
 				"props": {
 					"options": [
 						{
@@ -791,7 +906,8 @@
 						}
 					],
 					"placeholder": "Placeholder"
-				}
+				},
+				"children": []
 			}
 		]
 	},
@@ -800,7 +916,9 @@
 		"examples": [
 			{
 				"name": "Less than 6",
-				"style": { "width": "200px" },
+				"style": {
+					"width": "200px"
+				},
 				"props": {
 					"options": [
 						{
@@ -821,11 +939,14 @@
 					],
 					"placeholder": "Placeholder",
 					"multiple": true
-				}
+				},
+				"children": []
 			},
 			{
 				"name": "Option Group Title",
-				"style": { "width": "200px" },
+				"style": {
+					"width": "200px"
+				},
 				"props": {
 					"options": [
 						{
@@ -851,11 +972,14 @@
 					],
 					"placeholder": "Placeholder",
 					"multiple": true
-				}
+				},
+				"children": []
 			},
 			{
 				"name": "Option Groups",
-				"style": { "width": "200px" },
+				"style": {
+					"width": "200px"
+				},
 				"props": {
 					"options": [
 						{
@@ -875,11 +999,14 @@
 					],
 					"placeholder": "Placeholder",
 					"multiple": true
-				}
+				},
+				"children": []
 			},
 			{
 				"name": "More than 6",
-				"style": { "width": "200px" },
+				"style": {
+					"width": "200px"
+				},
 				"props": {
 					"options": [
 						{
@@ -906,11 +1033,14 @@
 					],
 					"placeholder": "Placeholder",
 					"multiple": true
-				}
+				},
+				"children": []
 			},
 			{
 				"name": "More than 10",
-				"style": { "width": "200px" },
+				"style": {
+					"width": "200px"
+				},
 				"props": {
 					"options": [
 						{
@@ -946,7 +1076,8 @@
 					],
 					"placeholder": "Placeholder",
 					"multiple": true
-				}
+				},
+				"children": []
 			}
 		]
 	},
@@ -955,7 +1086,9 @@
 		"examples": [
 			{
 				"name": "Tag grow",
-				"style": { "width": "400px" },
+				"style": {
+					"width": "400px"
+				},
 				"props": {
 					"options": [
 						{
@@ -975,11 +1108,14 @@
 					"selectedType": "tag",
 					"tagWrapping": "grow",
 					"multiple": true
-				}
+				},
+				"children": []
 			},
 			{
 				"name": "Tag grow + auto",
-				"style": { "width": "400px" },
+				"style": {
+					"width": "400px"
+				},
 				"props": {
 					"options": [
 						{
@@ -1000,7 +1136,8 @@
 					"tagWrapping": "grow",
 					"width": "auto",
 					"multiple": true
-				}
+				},
+				"children": []
 			}
 		]
 	},
@@ -1009,7 +1146,9 @@
 		"examples": [
 			{
 				"name": "Show No Result",
-				"style": { "width": "200px" },
+				"style": {
+					"width": "200px"
+				},
 				"props": {
 					"options": [
 						{
@@ -1024,11 +1163,14 @@
 					"showSearch": true,
 					"noResultsText": "Nothing found",
 					"multiple": true
-				}
+				},
+				"children": []
 			},
 			{
 				"name": "Show Loading and Show Search",
-				"style": { "width": "200px" },
+				"style": {
+					"width": "200px"
+				},
 				"props": {
 					"options": [
 						{
@@ -1043,11 +1185,14 @@
 					"showSearch": true,
 					"loadingText": "Loading",
 					"multiple": true
-				}
+				},
+				"children": []
 			},
 			{
 				"name": "Show Loading",
-				"style": { "width": "200px" },
+				"style": {
+					"width": "200px"
+				},
 				"props": {
 					"options": [
 						{
@@ -1061,11 +1206,14 @@
 					"showLoading": true,
 					"loadingText": "Loading",
 					"multiple": true
-				}
+				},
+				"children": []
 			},
 			{
 				"name": "Show SelectAll",
-				"style": { "width": "200px" },
+				"style": {
+					"width": "200px"
+				},
 				"props": {
 					"options": [
 						{
@@ -1078,11 +1226,14 @@
 					"label": "Label",
 					"showSelectAll": true,
 					"multiple": true
-				}
+				},
+				"children": []
 			},
 			{
 				"name": "Hide ClearAll",
-				"style": { "width": "200px" },
+				"style": {
+					"width": "200px"
+				},
 				"props": {
 					"options": [
 						{
@@ -1095,7 +1246,8 @@
 					"label": "Label",
 					"showClearSelection": false,
 					"multiple": true
-				}
+				},
+				"children": []
 			}
 		]
 	}
