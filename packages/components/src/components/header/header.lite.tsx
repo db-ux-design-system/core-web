@@ -33,7 +33,7 @@ export default function DBHeader(props: DBHeaderProps) {
 		forcedToMobile: false,
 		toggle: () => {
 			if (props.onToggle) {
-				props.onToggle(!Boolean(props.drawerOpen));
+				props.onToggle(!getBoolean(props.drawerOpen, 'drawerOpen'));
 			}
 		},
 		handleNavigationItemClick: (event: unknown) => {

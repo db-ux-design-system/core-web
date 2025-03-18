@@ -93,8 +93,9 @@ export default function DBNavigationItem(props: DBNavigationItemProps) {
 
 	onUpdate(() => {
 		if (props.subNavigationExpanded !== undefined) {
-			state.isSubNavigationExpanded = Boolean(
-				props.subNavigationExpanded
+			state.isSubNavigationExpanded = !!getBoolean(
+				props.subNavigationExpanded,
+				'subNavigationExpanded'
 			);
 		}
 	}, [props.subNavigationExpanded]);
