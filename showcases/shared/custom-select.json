@@ -65,6 +65,49 @@
 		]
 	},
 	{
+		"name": "Multiple",
+		"examples": [
+			{
+				"name": "(Default) False",
+				"style": {
+					"width": "200px"
+				},
+				"props": {
+					"options": [
+						{
+							"value": "Option 1"
+						},
+						{
+							"value": "Option 2"
+						}
+					],
+					"label": "Label",
+					"multiple": false
+				},
+				"children": []
+			},
+			{
+				"name": "True",
+				"style": {
+					"width": "200px"
+				},
+				"props": {
+					"options": [
+						{
+							"value": "Option 1"
+						},
+						{
+							"value": "Option 2"
+						}
+					],
+					"label": "Label",
+					"multiple": true
+				},
+				"children": []
+			}
+		]
+	},
+	{
 		"name": "Variant",
 		"examples": [
 			{

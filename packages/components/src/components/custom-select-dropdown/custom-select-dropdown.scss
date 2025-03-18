@@ -41,8 +41,8 @@
 		min-inline-size: variables.$db-sizing-2xl;
 	}
 
-	> db-custom-select-list > div,
-	> div {
+	> db-custom-select-list > div:not([class~="db-custom-select-list"]),
+	> div:not([class~="db-custom-select-list"]) {
 		&:has(.db-checkbox) {
 			padding: variables.$db-spacing-fixed-xs
 				variables.$db-spacing-fixed-sm;

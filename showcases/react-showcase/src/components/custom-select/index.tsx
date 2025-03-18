@@ -69,7 +69,6 @@ const getCustomSelect = ({
 			showLabel={showLabel}
 			placement={placement}
 			selectAllLabel="Select all"
-			deSelectAllLabel="Deselect all"
 			searchLabel="Search"
 			selectedType={selectedType}
 			width={width}

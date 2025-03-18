@@ -119,7 +119,8 @@ $check-border-size: min(#{variables.$db-border-height-2xs}, 2px);
 				#{$selector}:focus-within,
 				#{$selector}:is(input, textarea):not(:placeholder-shown),
 				> select option:checked:not([hidden]),
-				input[type="checkbox"]:checked
+				input[type="checkbox"]:checked,
+				input[type="radio"]:checked
 			) {
 			> label {
 				@extend %db-overwrite-font-size-2xs;

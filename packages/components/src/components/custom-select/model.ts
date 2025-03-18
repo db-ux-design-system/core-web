@@ -54,19 +54,14 @@ export type DBCustomSelectDefaultProps = {
 	/**
 	 * Label for the clear selection button
 	 */
-	clearSelectionLabel?: string;
-
-	/**
-	 * Deselect all checkbox label
-	 */
-	deSelectAllLabel?: string;
+	clearSelectionText?: string;
 
 	/**
 	 * Changes the behavior of the dropdown with.
 	 * Default: fixed 328px
 	 * Auto: Based on the size of the form-field
 	 */
-	dropdownWidth?: CustomSelectDropdownWidthType | 'string';
+	dropdownWidth?: CustomSelectDropdownWidthType | string;
 
 	/**
 	 * Dropdown - hint if data has to be loaded

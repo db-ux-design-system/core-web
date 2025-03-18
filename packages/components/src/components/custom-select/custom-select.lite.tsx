@@ -63,7 +63,7 @@ useMetadata({
 });
 
 useDefaultProps<DBCustomSelectProps>({
-	clearSelectionLabel: 'Clear selection',
+	clearSelectionText: 'Clear selection',
 	showClearSelection: true
 });
 
@@ -128,12 +128,7 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 			state._descByIds = descByIds.join(' ');
 		},
 		getSelectAllLabel: () => {
-			if (!selectAllRef) return props.selectAllLabel ?? DEFAULT_LABEL;
-			if (selectAllRef.indeterminate || !state.selectAllChecked) {
-				return props.selectAllLabel ?? DEFAULT_LABEL;
-			} else {
-				return props.deSelectAllLabel ?? DEFAULT_LABEL;
-			}
+			return props.selectAllLabel ?? DEFAULT_LABEL;
 		},
 		getOptionLabel: (option: CustomSelectOptionType) => {
 			return option.label ?? option.value?.toString() ?? '';
@@ -639,7 +634,13 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 			aria-invalid={state._validity === 'invalid'}
 			data-custom-validity={state._validity}
 			data-width={props.width}
-			data-variant={props.variant}
+			data-variant={
+				props.variant === 'floating' &&
+				props.selectedType === 'tag' &&
+				props.multiple
+					? 'above'
+					: props.variant
+			}
 			data-required={getBooleanAsString(props.required)}
 			data-placement={props.placement}
 			data-selected-type={props.multiple ? props.selectedType : 'text'}
@@ -875,9 +876,9 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 					noText
 					size="small"
 					onClick={() => state.handleClearAll()}>
-					{props.clearSelectionLabel}
+					{props.clearSelectionText}
 					<DBTooltip placement="top">
-						{props.clearSelectionLabel}
+						{props.clearSelectionText}
 					</DBTooltip>
 				</DBButton>
 			</Show>

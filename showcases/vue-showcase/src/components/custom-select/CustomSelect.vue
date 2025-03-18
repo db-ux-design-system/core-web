@@ -46,7 +46,6 @@ import { DBCustomSelect, DBInfotext } from "../../../../../output/vue/src";
 				:showLabel="exampleProps?.showLabel"
 				:placement="exampleProps?.placement"
 				selectAllLabel="Select all"
-				deSelectAllLabel="Deselect all"
 				searchLabel="Search"
 				:selectedType="exampleProps?.selectedType"
 				:width="exampleProps?.width"

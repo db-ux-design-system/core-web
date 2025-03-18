@@ -8,7 +8,7 @@
 
 	/* (checkbox height + list-item padding) * 6 items + list padding */
 	max-block-size: calc(
-		6 *
+		5.5 *
 			(
 				(
 						#{form-components.$font-size-height} - 2 *
