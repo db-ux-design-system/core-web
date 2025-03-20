@@ -6,7 +6,8 @@ import {
 	useDefaultProps,
 	useMetadata,
 	useRef,
-	useStore
+	useStore,
+	useTarget
 } from '@builder.io/mitosis';
 import { DBTagProps, DBTagState } from './model';
 import { cls, getBooleanAsString, getHideProp } from '../../utils';
@@ -19,9 +20,23 @@ export default function DBTag(props: DBTagProps) {
 	const state = useStore<DBTagState>({
 		initialized: false,
 		handleRemove: () => {
-			if (props.onRemove) {
-				props.onRemove();
-			}
+			useTarget({
+				angular: () => {
+					if (props.remove) {
+						props.remove();
+					}
+				},
+				vue: () => {
+					if (props.remove) {
+						props.remove();
+					}
+				},
+				default: () => {
+					if (props.onRemove) {
+						props.onRemove();
+					}
+				}
+			});
 		},
 		getRemoveButtonText: () => {
 			if (props.removeButton) {

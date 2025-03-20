@@ -522,7 +522,7 @@ export type ToggleEventProps = {
 };
 
 export type ToggleEventState<T> = {
-	toggle: (event?: ClickEvent<T>) => void;
+	handleToggle: (event?: ClickEvent<T>) => void;
 };
 
 export type CloseEventProps = {
@@ -530,6 +530,10 @@ export type CloseEventProps = {
 	 * Function to handle button click (close).
 	 */
 	onClose?: (event?: any) => void;
+	/**
+	 * Function to handle button click (close).
+	 */
+	close?: (event?: any) => void;
 };
 
 export type CloseEventState = {

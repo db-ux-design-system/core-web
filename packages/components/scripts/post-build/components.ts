@@ -201,9 +201,6 @@ export const getComponents = (): Component[] => [
 	},
 	{
 		name: 'drawer',
-		overwrites: {
-			stencil: [{ from: /onClose/g, to: 'close' }]
-		},
 		config: {
 			react: {
 				propsPassingFilter: ['onClose']
@@ -300,19 +297,6 @@ export const getComponents = (): Component[] => [
 			react: {
 				propsPassingFilter: ['onToggle']
 			}
-		},
-		overwrites: {
-			global: [
-				{
-					from: '(event) => toggle()',
-					to: '() => toggle()'
-				},
-				{
-					from: '(event) => toggle()',
-					to: '() => toggle()'
-				}
-			],
-			angular: [{ from: '(close)', to: '(onClose)' }]
 		}
 	},
 	{
