@@ -66,22 +66,42 @@ export default function DBSelect(props: DBSelectProps) {
 			}
 		},
 		handleInput: (event: InputEvent<HTMLSelectElement>) => {
-			if (props.onInput) {
-				props.onInput(event);
-			}
-
-			if (props.input) {
-				props.input(event);
-			}
+			useTarget({
+				angular: () => {
+					if (props.input) {
+						props.input(event);
+					}
+				},
+				vue: () => {
+					if (props.input) {
+						props.input(event);
+					}
+				},
+				default: () => {
+					if (props.onInput) {
+						props.onInput(event);
+					}
+				}
+			});
 		},
 		handleChange: (event: ChangeEvent<HTMLSelectElement>) => {
-			if (props.onChange) {
-				props.onChange(event);
-			}
-
-			if (props.change) {
-				props.change(event);
-			}
+			useTarget({
+				angular: () => {
+					if (props.change) {
+						props.change(event);
+					}
+				},
+				vue: () => {
+					if (props.change) {
+						props.change(event);
+					}
+				},
+				default: () => {
+					if (props.onChange) {
+						props.onChange(event);
+					}
+				}
+			});
 
 			useTarget({
 				angular: () => handleFrameworkEventAngular(this, event),
@@ -115,22 +135,42 @@ export default function DBSelect(props: DBSelectProps) {
 			}
 		},
 		handleBlur: (event: InteractionEvent<HTMLSelectElement>) => {
-			if (props.onBlur) {
-				props.onBlur(event);
-			}
-
-			if (props.blur) {
-				props.blur(event);
-			}
+			useTarget({
+				angular: () => {
+					if (props.blur) {
+						props.blur(event);
+					}
+				},
+				vue: () => {
+					if (props.blur) {
+						props.blur(event);
+					}
+				},
+				default: () => {
+					if (props.onBlur) {
+						props.onBlur(event);
+					}
+				}
+			});
 		},
 		handleFocus: (event: InteractionEvent<HTMLSelectElement>) => {
-			if (props.onFocus) {
-				props.onFocus(event);
-			}
-
-			if (props.focus) {
-				props.focus(event);
-			}
+			useTarget({
+				angular: () => {
+					if (props.focus) {
+						props.focus(event);
+					}
+				},
+				vue: () => {
+					if (props.focus) {
+						props.focus(event);
+					}
+				},
+				default: () => {
+					if (props.onFocus) {
+						props.onFocus(event);
+					}
+				}
+			});
 		},
 		getOptionLabel: (option: DBSelectOptionType) => {
 			return option.label ?? option.value.toString();

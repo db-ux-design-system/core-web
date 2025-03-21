@@ -25,14 +25,14 @@ export default function DBHeader(props: DBHeaderProps) {
 		_id: DEFAULT_ID,
 		initialized: false,
 		forcedToMobile: false,
-		toggle: () => {
+		handleToggle: () => {
 			if (props.onToggle) {
 				props.onToggle(!props.drawerOpen);
 			}
 		},
 		handleNavigationItemClick: (event: unknown) => {
 			if (isEventTargetNavigationItem(event)) {
-				state.toggle();
+				state.handleToggle();
 			}
 		}
 	});
@@ -73,7 +73,7 @@ export default function DBHeader(props: DBHeaderProps) {
 				rounded
 				spacing="small"
 				open={props.drawerOpen}
-				onClose={() => state.toggle()}>
+				onClose={() => state.handleToggle()}>
 				<div class="db-header-drawer-navigation">
 					<div
 						class="db-header-navigation"
@@ -111,7 +111,7 @@ export default function DBHeader(props: DBHeaderProps) {
 							icon="menu"
 							noText
 							variant="ghost"
-							onClick={() => state.toggle()}>
+							onClick={() => state.handleToggle()}>
 							{props.burgerMenuLabel ?? DEFAULT_BURGER_MENU}
 						</DBButton>
 					</div>

@@ -51,13 +51,23 @@ export default function DBCheckbox(props: DBCheckboxProps) {
 		_descByIds: '',
 		_voiceOverFallback: '',
 		handleChange: (event: ChangeEvent<HTMLInputElement>) => {
-			if (props.onChange) {
-				props.onChange(event);
-			}
-
-			if (props.change) {
-				props.change(event);
-			}
+			useTarget({
+				angular: () => {
+					if (props.change) {
+						props.change(event);
+					}
+				},
+				vue: () => {
+					if (props.change) {
+						props.change(event);
+					}
+				},
+				default: () => {
+					if (props.onChange) {
+						props.onChange(event);
+					}
+				}
+			});
 
 			useTarget({
 				angular: () =>
@@ -92,22 +102,42 @@ export default function DBCheckbox(props: DBCheckboxProps) {
 			}
 		},
 		handleBlur: (event: InteractionEvent<HTMLInputElement>) => {
-			if (props.onBlur) {
-				props.onBlur(event);
-			}
-
-			if (props.blur) {
-				props.blur(event);
-			}
+			useTarget({
+				angular: () => {
+					if (props.blur) {
+						props.blur(event);
+					}
+				},
+				vue: () => {
+					if (props.blur) {
+						props.blur(event);
+					}
+				},
+				default: () => {
+					if (props.onBlur) {
+						props.onBlur(event);
+					}
+				}
+			});
 		},
 		handleFocus: (event: InteractionEvent<HTMLInputElement>) => {
-			if (props.onFocus) {
-				props.onFocus(event);
-			}
-
-			if (props.focus) {
-				props.focus(event);
-			}
+			useTarget({
+				angular: () => {
+					if (props.focus) {
+						props.focus(event);
+					}
+				},
+				vue: () => {
+					if (props.focus) {
+						props.focus(event);
+					}
+				},
+				default: () => {
+					if (props.onFocus) {
+						props.onFocus(event);
+					}
+				}
+			});
 		}
 	});
 

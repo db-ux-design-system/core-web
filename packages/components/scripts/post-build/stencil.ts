@@ -90,7 +90,10 @@ export default (tmp?: boolean) => {
 			{
 				from: 'onInput={(event) => this.handleChange(event)}',
 				to: 'onChange={(event) => this.handleChange(event)}'
-			}
+			},
+			{ from: /ReturnType<Required/g, to: 'Parameters' },
+			{ from: />\[/g, to: '[' },
+			{ from: /]>/g, to: ']>[number]' }
 		];
 		replaceIndexFile(indexFile, componentName, upperComponentName);
 		runReplacements(replacements, component, 'stencil', file);
