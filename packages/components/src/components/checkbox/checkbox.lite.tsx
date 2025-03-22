@@ -61,6 +61,7 @@ export default function DBCheckbox(props: DBCheckboxProps) {
 
 			useTarget({
 				angular: () =>
+
 					handleFrameworkEventAngular(this, event, 'checked'),
 				vue: () => handleFrameworkEventVue(() => {}, event, 'checked')
 			});
@@ -224,8 +225,7 @@ export default function DBCheckbox(props: DBCheckboxProps) {
 				size="small"
 				semantic="critical">
 				{props.invalidMessage ??
-					_ref?.validationMessage ??
-					DEFAULT_INVALID_MESSAGE}
+					(_ref?.validationMessage || DEFAULT_INVALID_MESSAGE)}
 			</DBInfotext>
 
 			{/* * https://www.davidmacd.com/blog/test-aria-describedby-errormessage-aria-live.html

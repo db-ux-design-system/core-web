@@ -41,8 +41,7 @@ import {
 				DBNavigation,
 				SecondaryActionDirective,
 				NavigationDirective,
-				MetaNavigationDirective,
-				NavigationContentDirective
+				MetaNavigationDirective
 			]
 		: [
 				FormsModule,
@@ -56,8 +55,7 @@ import {
 				DBButton,
 				SecondaryActionDirective,
 				NavigationDirective,
-				MetaNavigationDirective,
-				NavigationContentDirective
+				MetaNavigationDirective
 			],
 	templateUrl: './app.component.html'
 })

@@ -96,6 +96,12 @@
 		"origin": "x"
 	},
 	{
+		"name": "circular_arrows.svg",
+		"type": "lucide",
+		"licence": "https://lucide.dev/license#lucide-license",
+		"origin": "refresh-cw"
+	},
+	{
 		"name": "check.svg",
 		"type": "lucide",
 		"licence": "https://lucide.dev/license#lucide-license",
