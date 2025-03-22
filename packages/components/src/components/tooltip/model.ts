@@ -10,7 +10,7 @@ import {
 } from '../../shared/model';
 
 export type DBTooltipDefaultProps = {
-	showArrow?: boolean;
+	showArrow?: boolean | string;
 };
 
 export type DBTooltipProps = DBTooltipDefaultProps &
