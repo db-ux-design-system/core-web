@@ -1,3 +1,7 @@
+// SPDX-FileCopyrightText: 2025 DB Systel GmbH
+//
+// SPDX-License-Identifier: Apache-2.0
+
 import { describe, expect, test } from 'vitest';
 import { type ReplaceResult } from 'replace-in-file';
 import { migrate } from '../../src/migration';

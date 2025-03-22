@@ -1,3 +1,9 @@
+<!--
+SPDX-FileCopyrightText: 2025 DB Systel GmbH
+
+SPDX-License-Identifier: Apache-2.0
+-->
+
 # Generate fonts
 
 To generate optimal fonts we use [fonttools](https://github.com/fonttools/fonttools). To use the tools you need python installed:
