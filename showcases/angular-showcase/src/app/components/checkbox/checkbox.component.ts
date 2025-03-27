@@ -12,7 +12,6 @@ import { environment } from '../../../environments/environment';
 			? [DefaultComponent]
 			: [DefaultComponent, DBCheckbox, DBInfotext]
 	],
-	standalone: true,
 	schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class CheckboxComponent {

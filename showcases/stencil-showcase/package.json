@@ -15,25 +15,25 @@
     "watch": "ng build --watch --configuration development"
   },
   "dependencies": {
-    "@angular/animations": "17.3.12",
-    "@angular/common": "17.3.12",
-    "@angular/compiler": "17.3.12",
-    "@angular/core": "17.3.12",
-    "@angular/forms": "17.3.12",
-    "@angular/platform-browser": "17.3.12",
-    "@angular/platform-browser-dynamic": "17.3.12",
-    "@angular/router": "17.3.12",
+    "@angular/animations": "19.2.4",
+    "@angular/common": "19.2.4",
+    "@angular/compiler": "19.2.4",
+    "@angular/core": "19.2.4",
+    "@angular/forms": "19.2.4",
+    "@angular/platform-browser": "19.2.4",
+    "@angular/platform-browser-dynamic": "19.2.4",
+    "@angular/router": "19.2.4",
     "@db-ux/db-theme": "1.0.2",
     "@stencil/core": "4.28.2",
     "rxjs": "~7.8.2",
     "tslib": "^2.8.1",
-    "zone.js": "~0.14.10"
+    "zone.js": "~0.15.0"
   },
   "devDependencies": {
-    "@angular-devkit/build-angular": "17.3.14",
-    "@angular/cli": "17.3.14",
-    "@angular/compiler-cli": "17.3.12",
-    "ng-packagr": "17.3.0",
+    "@angular/build": "^19.2.5",
+    "@angular/cli": "19.2.5",
+    "@angular/compiler-cli": "19.2.4",
+    "ng-packagr": "19.2.0",
     "npm-run-all2": "7.0.2",
     "typescript": "^5.4.5"
   },

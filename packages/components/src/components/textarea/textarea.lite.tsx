@@ -49,6 +49,7 @@ export default function DBTextarea(props: DBTextareaProps) {
 		_messageId: undefined,
 		_validMessageId: undefined,
 		_invalidMessageId: undefined,
+		_invalidMessage: undefined,
 		// Workaround for Vue output: TS for Vue would think that it could be a function, and by this we clarify that it's a string
 		_descByIds: '',
 		_value: '',
@@ -131,6 +132,13 @@ export default function DBTextarea(props: DBTextareaProps) {
 	});
 
 	onUpdate(() => {
+		state._invalidMessage =
+			props.invalidMessage ??
+			_ref?.validationMessage ??
+			DEFAULT_INVALID_MESSAGE;
+	}, [_ref, props.invalidMessage]);
+
+	onUpdate(() => {
 		if (state._id) {
 			const messageId = state._id + DEFAULT_MESSAGE_ID_SUFFIX;
 			state._messageId = messageId;
@@ -210,9 +218,7 @@ export default function DBTextarea(props: DBTextareaProps) {
 				id={state._invalidMessageId}
 				size="small"
 				semantic="critical">
-				{props.invalidMessage ??
-					_ref?.validationMessage ??
-					DEFAULT_INVALID_MESSAGE}
+				{state._invalidMessage}
 			</DBInfotext>
 
 			{/* * https://www.davidmacd.com/blog/test-aria-describedby-errormessage-aria-live.html

@@ -54,6 +54,7 @@ export default function DBSelect(props: DBSelectProps) {
 		_messageId: undefined,
 		_validMessageId: undefined,
 		_invalidMessageId: undefined,
+		_invalidMessage: undefined,
 		_placeholderId: '',
 		// Workaround for Vue output: TS for Vue would think that it could be a function, and by this we clarify that it's a string
 		_descByIds: '',
@@ -146,6 +147,13 @@ export default function DBSelect(props: DBSelectProps) {
 		state._invalidMessageId = mId + DEFAULT_INVALID_MESSAGE_ID_SUFFIX;
 		state._placeholderId = mId + DEFAULT_PLACEHOLDER_ID_SUFFIX;
 	});
+
+	onUpdate(() => {
+		state._invalidMessage =
+			props.invalidMessage ??
+			_ref?.validationMessage ??
+			DEFAULT_INVALID_MESSAGE;
+	}, [_ref, props.invalidMessage]);
 
 	onUpdate(() => {
 		if (state._id && state.initialized) {
@@ -273,9 +281,7 @@ export default function DBSelect(props: DBSelectProps) {
 				id={state._invalidMessageId}
 				size="small"
 				semantic="critical">
-				{props.invalidMessage ??
-					_ref?.validationMessage ??
-					DEFAULT_INVALID_MESSAGE}
+				{state._invalidMessage}
 			</DBInfotext>
 
 			{/* * https://www.davidmacd.com/blog/test-aria-describedby-errormessage-aria-live.html
