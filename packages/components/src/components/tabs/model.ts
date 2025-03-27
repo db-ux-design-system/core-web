@@ -71,7 +71,7 @@ export type DBTabsDefaultState = {
 	showScrollLeft?: boolean;
 	showScrollRight?: boolean;
 	evaluateScrollButtons: (tabList: Element) => void;
-	convertTabs: (tabs?: unknown[] | string | undefined) => DBSimpleTabProps[];
+	convertTabs: () => DBSimpleTabProps[];
 	initTabList: () => void;
 	initTabs: (init?: boolean) => void;
 	handleChange: (event: any) => void;

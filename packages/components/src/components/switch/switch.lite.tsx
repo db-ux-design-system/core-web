@@ -35,11 +35,6 @@ export default function DBSwitch(props: DBSwitchProps) {
 		}),
 		handleChange: (event: ChangeEvent<HTMLInputElement>) => {
 			useTarget({
-				angular: () => {
-					if (props.change) {
-						props.change(event);
-					}
-				},
 				vue: () => {
 					if (props.change) {
 						props.change(event);
@@ -63,11 +58,6 @@ export default function DBSwitch(props: DBSwitchProps) {
 		},
 		handleBlur: (event: InteractionEvent<HTMLInputElement>) => {
 			useTarget({
-				angular: () => {
-					if (props.blur) {
-						props.blur(event);
-					}
-				},
 				vue: () => {
 					if (props.blur) {
 						props.blur(event);
@@ -82,11 +72,6 @@ export default function DBSwitch(props: DBSwitchProps) {
 		},
 		handleFocus: (event: InteractionEvent<HTMLInputElement>) => {
 			useTarget({
-				angular: () => {
-					if (props.focus) {
-						props.focus(event);
-					}
-				},
 				vue: () => {
 					if (props.focus) {
 						props.focus(event);

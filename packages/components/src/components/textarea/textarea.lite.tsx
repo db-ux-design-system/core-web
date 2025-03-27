@@ -53,13 +53,8 @@ export default function DBTextarea(props: DBTextareaProps) {
 		_descByIds: '',
 		_value: '',
 		_voiceOverFallback: '',
-		handleInput: (event: InputEvent<HTMLTextAreaElement>) => {
+		handleInput: (event: InputEvent<HTMLTextAreaElement> | any) => {
 			useTarget({
-				angular: () => {
-					if (props.input) {
-						props.input(event);
-					}
-				},
 				vue: () => {
 					if (props.input) {
 						props.input(event);
@@ -72,13 +67,8 @@ export default function DBTextarea(props: DBTextareaProps) {
 				}
 			});
 		},
-		handleChange: (event: ChangeEvent<HTMLTextAreaElement>) => {
+		handleChange: (event: ChangeEvent<HTMLTextAreaElement> | any) => {
 			useTarget({
-				angular: () => {
-					if (props.change) {
-						props.change(event);
-					}
-				},
 				vue: () => {
 					if (props.change) {
 						props.change(event);
@@ -122,13 +112,8 @@ export default function DBTextarea(props: DBTextareaProps) {
 				state._descByIds = '';
 			}
 		},
-		handleBlur: (event: InteractionEvent<HTMLTextAreaElement>) => {
+		handleBlur: (event: InteractionEvent<HTMLTextAreaElement> | any) => {
 			useTarget({
-				angular: () => {
-					if (props.blur) {
-						props.blur(event);
-					}
-				},
 				vue: () => {
 					if (props.blur) {
 						props.blur(event);
@@ -141,13 +126,8 @@ export default function DBTextarea(props: DBTextareaProps) {
 				}
 			});
 		},
-		handleFocus: (event: InteractionEvent<HTMLTextAreaElement>) => {
+		handleFocus: (event: InteractionEvent<HTMLTextAreaElement> | any) => {
 			useTarget({
-				angular: () => {
-					if (props.focus) {
-						props.focus(event);
-					}
-				},
 				vue: () => {
 					if (props.focus) {
 						props.focus(event);

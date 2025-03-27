@@ -29,6 +29,6 @@ import { RadiosComponent } from '../form/radios/radios.component';
 			: [DBTabs, DBTabItem, DBTabList, DBTabPanel])
 	],
 	standalone: true,
-	schemas: [CUSTOM_ELEMENTS_SCHEMA]
+	schemas: environment.webComponents ? [CUSTOM_ELEMENTS_SCHEMA] : []
 })
 export class HomeComponent {}

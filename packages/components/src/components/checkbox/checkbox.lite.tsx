@@ -50,13 +50,8 @@ export default function DBCheckbox(props: DBCheckboxProps) {
 		_invalidMessageId: undefined,
 		_descByIds: '',
 		_voiceOverFallback: '',
-		handleChange: (event: ChangeEvent<HTMLInputElement>) => {
+		handleChange: (event: ChangeEvent<HTMLInputElement> | any) => {
 			useTarget({
-				angular: () => {
-					if (props.change) {
-						props.change(event);
-					}
-				},
 				vue: () => {
 					if (props.change) {
 						props.change(event);
@@ -101,13 +96,8 @@ export default function DBCheckbox(props: DBCheckboxProps) {
 				state._descByIds = '';
 			}
 		},
-		handleBlur: (event: InteractionEvent<HTMLInputElement>) => {
+		handleBlur: (event: InteractionEvent<HTMLInputElement> | any) => {
 			useTarget({
-				angular: () => {
-					if (props.blur) {
-						props.blur(event);
-					}
-				},
 				vue: () => {
 					if (props.blur) {
 						props.blur(event);
@@ -120,13 +110,8 @@ export default function DBCheckbox(props: DBCheckboxProps) {
 				}
 			});
 		},
-		handleFocus: (event: InteractionEvent<HTMLInputElement>) => {
+		handleFocus: (event: InteractionEvent<HTMLInputElement> | any) => {
 			useTarget({
-				angular: () => {
-					if (props.focus) {
-						props.focus(event);
-					}
-				},
 				vue: () => {
 					if (props.focus) {
 						props.focus(event);

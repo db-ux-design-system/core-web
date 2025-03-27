@@ -61,13 +61,8 @@ export default function DBInput(props: DBInputProps) {
 		_descByIds: '',
 		_value: '',
 		_voiceOverFallback: '',
-		handleInput: (event: InputEvent<HTMLInputElement>) => {
+		handleInput: (event: InputEvent<HTMLInputElement> | any) => {
 			useTarget({
-				angular: () => {
-					if (props.input) {
-						props.input(event);
-					}
-				},
 				vue: () => {
 					if (props.input) {
 						props.input(event);
@@ -80,13 +75,8 @@ export default function DBInput(props: DBInputProps) {
 				}
 			});
 		},
-		handleChange: (event: ChangeEvent<HTMLInputElement>) => {
+		handleChange: (event: ChangeEvent<HTMLInputElement> | any) => {
 			useTarget({
-				angular: () => {
-					if (props.change) {
-						props.change(event);
-					}
-				},
 				vue: () => {
 					if (props.change) {
 						props.change(event);
@@ -134,13 +124,8 @@ export default function DBInput(props: DBInputProps) {
 				state._descByIds = '';
 			}
 		},
-		handleBlur: (event: InteractionEvent<HTMLInputElement>) => {
+		handleBlur: (event: InteractionEvent<HTMLInputElement> | any) => {
 			useTarget({
-				angular: () => {
-					if (props.blur) {
-						props.blur(event);
-					}
-				},
 				vue: () => {
 					if (props.blur) {
 						props.blur(event);
@@ -153,13 +138,8 @@ export default function DBInput(props: DBInputProps) {
 				}
 			});
 		},
-		handleFocus: (event: InteractionEvent<HTMLInputElement>) => {
+		handleFocus: (event: InteractionEvent<HTMLInputElement> | any) => {
 			useTarget({
-				angular: () => {
-					if (props.focus) {
-						props.focus(event);
-					}
-				},
 				vue: () => {
 					if (props.focus) {
 						props.focus(event);
@@ -172,12 +152,11 @@ export default function DBInput(props: DBInputProps) {
 				}
 			});
 		},
-		getDataList: (
-			_list?: string[] | ValueLabelType[]
-		): ValueLabelType[] => {
+		getDataList: (): ValueLabelType[] => {
+			const _list = props.dataList;
 			return Array.from(
 				(isArrayOfStrings(_list)
-					? _list.map((val: string) => ({
+					? _list?.map((val: string) => ({
 							value: val,
 							label: undefined
 						}))
@@ -266,7 +245,7 @@ export default function DBInput(props: DBInputProps) {
 			/>
 			<Show when={props.dataList}>
 				<datalist id={state._dataListId}>
-					<For each={state.getDataList(props.dataList)}>
+					<For each={state.getDataList()}>
 						{(option: ValueLabelType) => (
 							<option
 								key={

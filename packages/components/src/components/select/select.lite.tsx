@@ -60,18 +60,13 @@ export default function DBSelect(props: DBSelectProps) {
 		_value: '',
 		initialized: false,
 		_voiceOverFallback: '',
-		handleClick: (event: ClickEvent<HTMLSelectElement>) => {
+		handleClick: (event: ClickEvent<HTMLSelectElement> | any) => {
 			if (props.onClick) {
 				props.onClick(event);
 			}
 		},
-		handleInput: (event: InputEvent<HTMLSelectElement>) => {
+		handleInput: (event: InputEvent<HTMLSelectElement> | any) => {
 			useTarget({
-				angular: () => {
-					if (props.input) {
-						props.input(event);
-					}
-				},
 				vue: () => {
 					if (props.input) {
 						props.input(event);
@@ -84,13 +79,8 @@ export default function DBSelect(props: DBSelectProps) {
 				}
 			});
 		},
-		handleChange: (event: ChangeEvent<HTMLSelectElement>) => {
+		handleChange: (event: ChangeEvent<HTMLSelectElement> | any) => {
 			useTarget({
-				angular: () => {
-					if (props.change) {
-						props.change(event);
-					}
-				},
 				vue: () => {
 					if (props.change) {
 						props.change(event);
@@ -134,13 +124,8 @@ export default function DBSelect(props: DBSelectProps) {
 				state._descByIds = state._placeholderId;
 			}
 		},
-		handleBlur: (event: InteractionEvent<HTMLSelectElement>) => {
+		handleBlur: (event: InteractionEvent<HTMLSelectElement> | any) => {
 			useTarget({
-				angular: () => {
-					if (props.blur) {
-						props.blur(event);
-					}
-				},
 				vue: () => {
 					if (props.blur) {
 						props.blur(event);
@@ -153,13 +138,8 @@ export default function DBSelect(props: DBSelectProps) {
 				}
 			});
 		},
-		handleFocus: (event: InteractionEvent<HTMLSelectElement>) => {
+		handleFocus: (event: InteractionEvent<HTMLSelectElement> | any) => {
 			useTarget({
-				angular: () => {
-					if (props.focus) {
-						props.focus(event);
-					}
-				},
 				vue: () => {
 					if (props.focus) {
 						props.focus(event);

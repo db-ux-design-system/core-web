@@ -20,7 +20,6 @@ export type Component = {
 			controlValueAccessor?: string;
 			controlValueAccessorRequired?: boolean;
 			directives?: { name: string; ngContentName?: string }[];
-			initValues?: { key: string; value: any }[];
 		};
 		react?: {
 			propsPassingFilter?: string[];
@@ -69,14 +68,6 @@ export const getComponents = (): Component[] => [
 
 	{
 		name: 'tabs',
-		overwrites: {
-			angular: [
-				{
-					from: 'scrollContainer = null;',
-					to: 'scrollContainer: Element | null = null;'
-				}
-			]
-		},
 		config: {
 			react: {
 				propsPassingFilter: ['onTabSelect', 'onIndexChange']
@@ -93,15 +84,12 @@ export const getComponents = (): Component[] => [
 	},
 
 	{
-		name: 'popover',
-		overwrites: { angular: [{ from: 'mouseEnter', to: 'mouseenter' }] }
+		name: 'popover'
 	},
 
 	{
 		name: 'accordion-item',
 		overwrites: {
-			// this is an issue from mitosis always adding `attr`
-			angular: [{ from: 'attr.open', to: 'open' }],
 			// TS issue
 			stencil: [{ from: 'name={this.name}', to: '' }]
 		},
@@ -128,9 +116,10 @@ export const getComponents = (): Component[] => [
 		},
 		overwrites: {
 			angular: [
+				// Default for angular to pass default value
 				{
 					from: '</textarea>',
-					to: '{{value}}</textarea>'
+					to: '{{value()}}</textarea>'
 				}
 			],
 			react: [{ from: /HTMLAttributes/g, to: 'TextareaHTMLAttributes' }],
@@ -147,12 +136,6 @@ export const getComponents = (): Component[] => [
 	{
 		name: 'navigation-item',
 		overwrites: {
-			angular: [
-				{
-					from: 'navigationItemSafeTriangle = undefined;',
-					to: 'navigationItemSafeTriangle: undefined | NavigationItemSafeTriangle = undefined;'
-				}
-			],
 			vue: [
 				{
 					from: 'navigationItemSafeTriangle: undefined',
@@ -314,11 +297,11 @@ export const getComponents = (): Component[] => [
 					from: 'writeValue(value: any) {',
 					to:
 						'writeValue(value: any) {\n' +
-						'if (!value && (this.type === "date" ||\n' +
-						'			this.type === "time" ||\n' +
-						'			this.type === "week" ||\n' +
-						'			this.type === "month" ||\n' +
-						'			this.type === "datetime-local"\n' +
+						'if (!value && (this.type() === "date" ||\n' +
+						'			this.type() === "time" ||\n' +
+						'			this.type() === "week" ||\n' +
+						'			this.type() === "month" ||\n' +
+						'			this.type() === "datetime-local"\n' +
 						'			)) return;'
 				}
 			]

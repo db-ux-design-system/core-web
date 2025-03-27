@@ -30,7 +30,7 @@ export type DBAccordionItemProps = DBAccordionItemDefaultProps &
 	ToggleEventProps;
 
 export type DBAccordionItemDefaultState = {
-	_open: boolean;
+	_open?: boolean;
 };
 
 export type DBAccordionItemState = DBAccordionItemDefaultState &

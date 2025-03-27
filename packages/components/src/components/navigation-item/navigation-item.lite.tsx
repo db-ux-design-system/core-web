@@ -42,7 +42,7 @@ export default function DBNavigationItem(props: DBNavigationItemProps) {
 				}, 300);
 			}
 		},
-		handleClick: (event: ClickEvent<HTMLButtonElement>) => {
+		handleClick: (event: ClickEvent<HTMLButtonElement> | any) => {
 			if (props.onClick) {
 				props.onClick(event);
 			}
@@ -51,7 +51,7 @@ export default function DBNavigationItem(props: DBNavigationItemProps) {
 				state.isSubNavigationExpanded = true;
 			}
 		},
-		handleBackClick: (event: ClickEvent<HTMLButtonElement>) => {
+		handleBackClick: (event: ClickEvent<HTMLButtonElement> | any) => {
 			event.stopPropagation();
 			state.isSubNavigationExpanded = false;
 		},

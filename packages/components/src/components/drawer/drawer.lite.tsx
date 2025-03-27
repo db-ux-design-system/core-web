@@ -35,11 +35,6 @@ export default function DBDrawer(props: DBDrawerProps) {
 					props.backdrop !== 'none')
 			) {
 				useTarget({
-					angular: () => {
-						if (props.close) {
-							props.close(event);
-						}
-					},
 					vue: () => {
 						if (props.close) {
 							props.close(event);
@@ -96,9 +91,7 @@ export default function DBDrawer(props: DBDrawerProps) {
 			id={props.id}
 			ref={_ref}
 			class="db-drawer"
-			onClick={(event) => {
-				state.handleClose(event);
-			}}
+			onClick={(event) => state.handleClose(event)}
 			onKeyDown={(event) => state.handleClose(event)}
 			data-backdrop={props.backdrop}
 			data-variant={props.variant}>

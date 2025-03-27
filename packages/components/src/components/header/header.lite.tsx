@@ -45,7 +45,7 @@ export default function DBHeader(props: DBHeaderProps) {
 	onUpdate(() => {
 		if (state.initialized && document && state._id && props.forceMobile) {
 			const headerElement = document.getElementById(
-				state._id
+				state._id ?? ''
 			) as HTMLElement;
 			if (headerElement) {
 				// Adds this attribute to the header to enable all styling which would have

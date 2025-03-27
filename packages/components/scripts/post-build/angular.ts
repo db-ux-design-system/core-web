@@ -6,35 +6,6 @@ import components, { Overwrite } from './components.js';
 
 import { runReplacements, transformToUpperComponentName } from '../utils';
 
-const changeFile = (input: string) => {
-	return input
-		.split('\n')
-		.map((line) => {
-			if (line.includes('export default')) {
-				return line.replace('export default', 'export');
-			}
-
-			if (line.includes(': ElementRef')) {
-				return line.replace(': ElementRef', ': ElementRef | undefined');
-			}
-
-			// We need to remove "nativeElement" in template part, because it only exists in ts
-			if (
-				line.includes('ref.nativeElement') &&
-				(line.includes('{{') || line.includes('}}'))
-			) {
-				return line.replace('.nativeElement', '');
-			}
-
-			if (line.includes('.nativeElement') && !line.includes('=')) {
-				return line.replace('.nativeElement', '?.nativeElement');
-			}
-
-			return line;
-		})
-		.join('\n');
-};
-
 /**
  * This replacement inserts everything used for form elements to work with reactive forms and ngModel in angular
  */
@@ -50,7 +21,7 @@ const setControlValueAccessorReplacements = (
 	replacements.push({
 		from: '} from "@angular/core";',
 		to:
-			`Renderer2 } from "@angular/core";\n` +
+			`Renderer2, model } from "@angular/core";\n` +
 			`import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';\n`
 	});
 
@@ -67,9 +38,21 @@ const setControlValueAccessorReplacements = (
 
 	// implementing interface and constructor
 	replacements.push({
-		from: `export class ${upperComponentName} {`,
-		to: `export class ${upperComponentName} implements ControlValueAccessor {
-		constructor(private renderer: Renderer2) { }`
+		from: `implements AfterViewInit`,
+		to: `implements AfterViewInit, ControlValueAccessor`
+	});
+	replacements.push({
+		from: `constructor(`,
+		to: `constructor(private renderer: Renderer2,`
+	});
+	// We need ``model`` to be able to read/write to a signal
+	replacements.push({
+		from: `${valueAccessor} = input`,
+		to: `${valueAccessor} = model`
+	});
+	replacements.push({
+		from: `disabled = input`,
+		to: `disabled = model`
 	});
 
 	// insert custom interface functions before ngOnInit
@@ -79,10 +62,10 @@ const setControlValueAccessorReplacements = (
 		to: `
 		writeValue(value: any) {
 			${valueAccessorRequired ? 'if(value){' : ''}
-		  this.${valueAccessor} = ${valueAccessor === 'checked' ? '!!' : ''}value;
+		  this.${valueAccessor}.set(${valueAccessor === 'checked' ? '!!' : ''}value);
 
-		  if (this._ref?.nativeElement) {
-			 this.renderer.setProperty(this._ref?.nativeElement, '${valueAccessor}', ${valueAccessor === 'checked' ? '!!' : ''}value);
+		  if (this._ref()?.nativeElement) {
+			 this.renderer.setProperty(this._ref()?.nativeElement, '${valueAccessor}', ${valueAccessor === 'checked' ? '!!' : ''}value);
 		  }
 			${valueAccessorRequired ? '}' : ''}
 		}
@@ -94,11 +77,10 @@ const setControlValueAccessorReplacements = (
 		}
 
 		registerOnTouched(onTouched: any) {
-		 //this.onTouched = onTouched;
 		}
 
 		setDisabledState(disabled: boolean) {
-		  this.disabled = disabled;
+		  this.disabled.set(disabled);
 		}
 
 		ngOnInit()`
@@ -131,9 +113,9 @@ const setDirectiveReplacements = (
 		}
 
 		replacements.push({
-			from: `export class ${upperComponentName} {\n`,
+			from: `export class ${upperComponentName} implements AfterViewInit {\n`,
 			to:
-				`export class ${upperComponentName} {\n` +
+				`export class ${upperComponentName} implements AfterViewInit {\n` +
 				`\t@ContentChild(${directive.name}Directive, { read: TemplateRef }) db${directive.name}: any;\n`
 		});
 
@@ -190,21 +172,7 @@ export default (tmp?: boolean) => {
 			to: ''
 		});
 
-		const replacements: Overwrite[] = [
-			{
-				from: 'ngOnChanges',
-				to: 'ngAfterContentChecked'
-			}
-		];
-
-		if (component.config?.angular?.initValues) {
-			component.config?.angular?.initValues.forEach((init) => {
-				replacements.push({
-					from: `["${init.key}"];`,
-					to: `["${init.key}"] = ${init.value === '' ? '""' : init.value};`
-				});
-			});
-		}
+		const replacements: Overwrite[] = [];
 
 		if (component.config?.angular?.controlValueAccessor) {
 			setControlValueAccessorReplacements(
@@ -226,10 +194,6 @@ export default (tmp?: boolean) => {
 		}
 
 		try {
-			replaceInFileSync({
-				files: file,
-				processor: (input: string) => changeFile(input)
-			});
 			runReplacements(replacements, component, 'angular', file);
 		} catch (error) {
 			console.error('Error occurred:', error);

@@ -30,11 +30,6 @@ export default function DBTabItem(props: DBTabItemProps) {
 		_selected: false,
 		handleChange: (event: any) => {
 			useTarget({
-				angular: () => {
-					if (props.change) {
-						props.change(event);
-					}
-				},
 				vue: () => {
 					if (props.change) {
 						props.change(event);

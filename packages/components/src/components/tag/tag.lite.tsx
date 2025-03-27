@@ -21,11 +21,6 @@ export default function DBTag(props: DBTagProps) {
 		initialized: false,
 		handleRemove: () => {
 			useTarget({
-				angular: () => {
-					if (props.remove) {
-						props.remove();
-					}
-				},
 				vue: () => {
 					if (props.remove) {
 						props.remove();
@@ -60,7 +55,7 @@ export default function DBTag(props: DBTagProps) {
 			const input: HTMLInputElement | null = _ref?.querySelector('input');
 			for (const element of [button, input]) {
 				if (element) {
-					element.disabled = props.disabled;
+					element.disabled = props.disabled ?? false;
 				}
 			}
 		}
