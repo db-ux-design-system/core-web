@@ -27,13 +27,18 @@ const getStringArrayConst = (initializer) => {
 };
 
 const getArrayType = (ts, type) => {
-	let array;
-	if (type.elementType.typeName) {
-		array = type.elementType.typeName.escapedText;
-	} else {
-		array = getPrimitive(ts, type.elementType.kind);
+	try {
+		let array;
+		if (type.elementType.typeName) {
+			array = type.elementType.typeName.escapedText;
+		} else {
+			array = getPrimitive(ts, type.elementType.kind);
+		}
+		return `${array}[]`;
+	}catch (error) {
+		console.error(error)
+		return  "ERROR";
 	}
-	return `${array}[]`;
 };
 
 /**
@@ -44,21 +49,26 @@ const getArrayType = (ts, type) => {
 const getUnions = (ts, types) => {
 	// For literals or type unions
 	let typeUnions = false;
-	const values = types.map((innerType) => {
+	let values = [];
+	for (const innerType of types) {
 		if (innerType.typeName) {
 			typeUnions = true;
-			return innerType.typeName?.escapedText;
+			values.push(innerType.typeName?.escapedText)
 		} else if (innerType.literal) {
-			return `'${innerType.literal?.text}'`;
+			values.push(`'${innerType.literal?.text}'`);
 		} else if (innerType.elementType) {
 			// Arrays
-			return getArrayType(ts, innerType);
+			values.push(getArrayType(ts, innerType));
+		} else if (innerType.members) {
+			const members = getMembers(ts, innerType.members);
+			values = values.concat(members.values);
 		} else if (innerType.kind) {
-			return getPrimitive(ts, innerType.kind);
+			values.push(getPrimitive(ts, innerType.kind));
+		}else{
+			values.push('ERROR');
 		}
+	}
 
-		return 'ERROR';
-	});
 	return {
 		values,
 		type: typeUnions ? 'union' : 'literal'
@@ -86,30 +96,46 @@ const getTypeOfList = (type) => {
  * @param ts {object} Typescript ast
  * @param members {object[]}
  */
-const getMembers = (ts, members) => ({
-	values: members.map((member) => {
-		const memberType = member.type;
-		const comment = member.jsDoc?.map((doc) => doc.comment).join('\n');
-		let type;
+const getMembers = (ts, members) => {
+	try {
+		return ({
+			values: members.map((member) => {
+				const memberType = member.type;
+				const comment = member.jsDoc?.map((doc) => doc.comment).join('\n');
+				let type;
 
-		if (memberType.typeName) {
-			type = memberType?.typeName?.escapedText;
-		} else if (memberType.types) {
-			type = getUnions(ts, memberType.types);
-		} else if (memberType.elementType) {
-			type = getArrayType(ts, memberType);
-		} else {
-			type = getPrimitive(ts, memberType.kind);
-		}
+				if (memberType.typeName) {
+					type = memberType?.typeName?.escapedText;
+				} else if (memberType.types) {
+					type = getUnions(ts, memberType.types);
+				} else if (memberType.elementType) {
+					type = getArrayType(ts, memberType);
+				} else {
+					type = getPrimitive(ts, memberType.kind);
+				}
 
+				let name = member.name?.escapedText;
+				if (!name) {
+					const keys = Array.from(member.locals.keys());
+					name = keys.join(",")
+				}
+
+				return {
+					name,
+					type,
+					comment
+				};
+			}),
+			type: 'props'
+		})
+	}catch (error) {
+		console.error(error);
 		return {
-			name: member.name.escapedText,
-			type,
-			comment
-		};
-	}),
-	type: 'props'
-});
+			values: ['ERROR'],
+			type: 'props'
+		}
+	}
+};
 
 export const analyzePhase = ({ ts, node, context }) => {
 	if (!context.data) {
