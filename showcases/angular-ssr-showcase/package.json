@@ -33,7 +33,7 @@
     "@angular/cli": "19.2.5",
     "@angular/compiler-cli": "19.2.4",
     "@types/express": "^5.0.1",
-    "@types/node": "^22.13.13",
+    "@types/node": "^22.13.14",
     "cpr": "3.0.1",
     "ng-packagr": "19.2.0",
     "typescript": "^5.4.5"
