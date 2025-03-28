@@ -1,4 +1,8 @@
-import { DBCheckbox, DBInfotext } from '../../../../../output/react/src';
+import {
+	DBCheckbox,
+	DBInfotext,
+	getBoolean
+} from '../../../../../output/react/src';
 import DefaultComponent from '../default-component';
 import { getVariants } from '../data';
 import defaultComponentVariants from '../../../../shared/checkbox.json';
@@ -25,7 +29,7 @@ const getCheckbox = ({
 			label={label}
 			size={size}
 			name={name}
-			defaultChecked={checked}
+			defaultChecked={getBoolean(checked)}
 			invalidMessage={invalidMessage}
 			validMessage={validMessage}
 			required={required}

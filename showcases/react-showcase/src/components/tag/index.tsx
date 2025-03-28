@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { DBTag } from '../../../../../output/react/src';
+import { DBTag, getBoolean } from '../../../../../output/react/src';
 import DefaultComponent from '../default-component';
 import defaultComponentVariants from '../../../../shared/tag.json';
 import { type DBTagProps } from '../../../../../output/react/src/components/tag/model';
@@ -62,7 +62,7 @@ const getTag = ({
 					<input
 						type="checkbox"
 						checked={checkedState}
-						disabled={disabled}
+						disabled={getBoolean(disabled)}
 						onChange={(event) => {
 							setCheckedState(event.target.checked);
 						}}
