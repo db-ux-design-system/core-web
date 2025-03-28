@@ -1,3 +1,7 @@
+// SPDX-FileCopyrightText: 2025 DB Systel GmbH
+//
+// SPDX-License-Identifier: Apache-2.0
+
 import { bootstrapApplication } from '@angular/platform-browser';
 import { provideRouter, withHashLocation } from '@angular/router';
 import { isDevMode } from '@angular/core';

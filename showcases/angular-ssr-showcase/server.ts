@@ -1,3 +1,7 @@
+// SPDX-FileCopyrightText: 2025 DB Systel GmbH
+//
+// SPDX-License-Identifier: Apache-2.0
+
 import { fileURLToPath } from 'node:url';
 import { dirname, join, resolve } from 'node:path';
 import { APP_BASE_HREF } from '@angular/common';

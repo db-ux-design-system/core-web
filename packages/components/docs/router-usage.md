@@ -1,3 +1,9 @@
+<!--
+SPDX-FileCopyrightText: 2025 DB Systel GmbH
+
+SPDX-License-Identifier: Apache-2.0
+-->
+
 # Router usage
 
 > **Note:** At the moment, router links can only be used within the **DBNavigationItem** component!

@@ -1,3 +1,7 @@
+// SPDX-FileCopyrightText: 2025 DB Systel GmbH
+//
+// SPDX-License-Identifier: Apache-2.0
+
 import { devices, type PlaywrightTestConfig } from '@playwright/test';
 import { type Project } from 'playwright/types/test';
 import showcaseConfig from './playwright.showcase';

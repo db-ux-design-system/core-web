@@ -1,3 +1,9 @@
+<!--
+SPDX-FileCopyrightText: 2025 DB Systel GmbH
+
+SPDX-License-Identifier: Apache-2.0
+-->
+
 # How to research
 
 If you want to do a research for a new component run this in the `docs` folder:

@@ -1,3 +1,7 @@
+// SPDX-FileCopyrightText: 2025 DB Systel GmbH
+//
+// SPDX-License-Identifier: Apache-2.0
+
 import { useState } from 'react';
 import type { AppProps } from 'next/app';
 import { DBBrand, DBButton, DBHeader, DBPage } from '../../../output/react/src';

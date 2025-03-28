@@ -1,3 +1,7 @@
+// SPDX-FileCopyrightText: 2025 DB Systel GmbH
+//
+// SPDX-License-Identifier: Apache-2.0
+
 import stylelint, { type PostcssResult } from 'stylelint';
 import type { Declaration } from 'postcss';
 import type { RuleFunctionType } from './create-rule.js';

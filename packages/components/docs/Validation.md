@@ -1,3 +1,9 @@
+<!--
+SPDX-FileCopyrightText: 2025 DB Systel GmbH
+
+SPDX-License-Identifier: Apache-2.0
+-->
+
 # Validation
 
 - The form components `checkbox`, `radio`, `input`, `textarea` & `select` have some sort of "auto-validation"
