@@ -16,8 +16,7 @@ import { environment } from '../../../environments/environment';
 			? [DefaultComponent]
 			: [DefaultComponent, DBRadio, DBInfotext]
 	],
-	schemas: [CUSTOM_ELEMENTS_SCHEMA],
-	standalone: true
+	schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class RadioComponent {
 	variants = defaultComponentVariants;

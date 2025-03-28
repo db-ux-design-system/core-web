@@ -16,8 +16,7 @@ import { environment } from '../../environments/environment';
 		DBNavigationItem,
 		NavigationContentDirective
 	],
-	schemas: [CUSTOM_ELEMENTS_SCHEMA],
-	standalone: true
+	schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class NavItemComponent {
 	@Input({ required: true }) navItem!: NavItem;

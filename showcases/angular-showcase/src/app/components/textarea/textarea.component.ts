@@ -12,8 +12,7 @@ import { environment } from '../../../environments/environment';
 			? [DefaultComponent]
 			: [DefaultComponent, DBTextarea]
 	],
-	schemas: [CUSTOM_ELEMENTS_SCHEMA],
-	standalone: true
+	schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class TextareaComponent {
 	variants = defaultComponentVariants;

@@ -16,7 +16,6 @@ import { environment } from '../../../environments/environment';
 			? [DefaultComponent]
 			: [DefaultComponent, DBInput]
 	],
-	standalone: true,
 	schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class InputComponent {

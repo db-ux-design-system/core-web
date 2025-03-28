@@ -48,6 +48,7 @@ export default function DBCheckbox(props: DBCheckboxProps) {
 		_messageId: undefined,
 		_validMessageId: undefined,
 		_invalidMessageId: undefined,
+		_invalidMessage: undefined,
 		_descByIds: '',
 		_voiceOverFallback: '',
 		handleChange: (event: ChangeEvent<HTMLInputElement>) => {
@@ -119,6 +120,13 @@ export default function DBCheckbox(props: DBCheckboxProps) {
 		state._validMessageId = mId + DEFAULT_VALID_MESSAGE_ID_SUFFIX;
 		state._invalidMessageId = mId + DEFAULT_INVALID_MESSAGE_ID_SUFFIX;
 	});
+
+	onUpdate(() => {
+		state._invalidMessage =
+			props.invalidMessage ??
+			_ref?.validationMessage ??
+			DEFAULT_INVALID_MESSAGE;
+	}, [_ref, props.invalidMessage]);
 
 	onUpdate(() => {
 		if (state._id) {
@@ -223,9 +231,7 @@ export default function DBCheckbox(props: DBCheckboxProps) {
 				id={state._invalidMessageId}
 				size="small"
 				semantic="critical">
-				{props.invalidMessage ??
-					_ref?.validationMessage ??
-					DEFAULT_INVALID_MESSAGE}
+				{state._invalidMessage}
 			</DBInfotext>
 
 			{/* * https://www.davidmacd.com/blog/test-aria-describedby-errormessage-aria-live.html
