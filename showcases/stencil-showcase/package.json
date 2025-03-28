@@ -12,6 +12,7 @@
     "preview": "npx http-server ../../build-showcases",
     "start": "ng serve --port 4202 --serve-path stencil-showcase",
     "test:e2e": "cross-env showcase=stencil-showcase npx playwright test --config=../playwright.config.ts",
+    "test:ui": "npm run test:e2e -- --ui",
     "watch": "ng build --watch --configuration development"
   },
   "dependencies": {
