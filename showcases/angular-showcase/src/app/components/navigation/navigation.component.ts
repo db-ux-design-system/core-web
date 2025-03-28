@@ -26,7 +26,7 @@ import { environment } from '../../../environments/environment';
 				NavigationContentDirective,
 				DBInfotext
 			],
-	schemas: [CUSTOM_ELEMENTS_SCHEMA],
+	schemas: environment.webComponents ? [CUSTOM_ELEMENTS_SCHEMA] : [],
 	standalone: true
 })
 export class NavigationComponent {

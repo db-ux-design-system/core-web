@@ -16,7 +16,7 @@ import { environment } from '../../../environments/environment';
 		? [DefaultComponent]
 		: [DefaultComponent, DBBadge, DBInfotext, DBButton, DBIcon],
 	standalone: true,
-	schemas: [CUSTOM_ELEMENTS_SCHEMA]
+	schemas: environment.webComponents ? [CUSTOM_ELEMENTS_SCHEMA] : []
 })
 export class BadgeComponent {
 	variants = defaultComponentVariants;

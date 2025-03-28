@@ -26,15 +26,13 @@ export default function DBAccordion(props: DBAccordionProps) {
 		_name: '',
 		initialized: false,
 		_initOpenIndexDone: false,
-		convertItems(
-			items: unknown[] | string | undefined
-		): DBAccordionItemDefaultProps[] {
+		convertItems(): DBAccordionItemDefaultProps[] {
 			try {
-				if (typeof items === 'string') {
-					return JSON.parse(items);
+				if (typeof props.items === 'string') {
+					return JSON.parse(props.items as string);
 				}
 
-				return items as DBAccordionItemDefaultProps[];
+				return props.items as DBAccordionItemDefaultProps[];
 			} catch (error) {
 				console.error(error);
 			}
@@ -80,7 +78,7 @@ export default function DBAccordion(props: DBAccordionProps) {
 					if (state._name === '') {
 						details.removeAttribute('name');
 					} else {
-						details.name = state._name;
+						details.name = state._name ?? '';
 					}
 				}
 			}
@@ -89,17 +87,17 @@ export default function DBAccordion(props: DBAccordionProps) {
 
 	onUpdate(() => {
 		if (_ref && state._initOpenIndexDone) {
-			if (props?.initOpenIndex && props.initOpenIndex?.length > 0) {
+			if (props?.initOpenIndex && props.initOpenIndex!.length > 0) {
 				const childDetails = _ref.getElementsByTagName('details');
 				if (childDetails) {
 					const initOpenIndex =
 						props.behavior === 'single' &&
-						props.initOpenIndex.length > 1
-							? [props.initOpenIndex[0]] // use only one index for behavior=single
+						props.initOpenIndex!.length > 1
+							? [props.initOpenIndex![0]] // use only one index for behavior=single
 							: props.initOpenIndex;
 					Array.from<HTMLDetailsElement>(childDetails).forEach(
 						(details: HTMLDetailsElement, index: number) => {
-							if (initOpenIndex.includes(index)) {
+							if (initOpenIndex?.includes(index)) {
 								details.open = true;
 							}
 						}
@@ -118,7 +116,7 @@ export default function DBAccordion(props: DBAccordionProps) {
 			data-variant={props.variant}>
 			<Show when={!props.items}>{props.children}</Show>
 			<Show when={props.items}>
-				<For each={state.convertItems(props.items)}>
+				<For each={state.convertItems()}>
 					{(item: DBAccordionItemDefaultProps, index: number) => (
 						<DBAccordionItem
 							key={`accordion-item-${index}`}

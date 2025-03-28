@@ -34,13 +34,18 @@ export default function DBSwitch(props: DBSwitchProps) {
 			default: false
 		}),
 		handleChange: (event: ChangeEvent<HTMLInputElement>) => {
-			if (props.onChange) {
-				props.onChange(event);
-			}
-
-			if (props.change) {
-				props.change(event);
-			}
+			useTarget({
+				vue: () => {
+					if (props.change) {
+						props.change(event);
+					}
+				},
+				default: () => {
+					if (props.onChange) {
+						props.onChange(event);
+					}
+				}
+			});
 
 			// We have different ts types in different frameworks, so we need to use any here
 			state._checked = (event.target as any)?.['checked'];
@@ -52,22 +57,32 @@ export default function DBSwitch(props: DBSwitchProps) {
 			});
 		},
 		handleBlur: (event: InteractionEvent<HTMLInputElement>) => {
-			if (props.onBlur) {
-				props.onBlur(event);
-			}
-
-			if (props.blur) {
-				props.blur(event);
-			}
+			useTarget({
+				vue: () => {
+					if (props.blur) {
+						props.blur(event);
+					}
+				},
+				default: () => {
+					if (props.onBlur) {
+						props.onBlur(event);
+					}
+				}
+			});
 		},
 		handleFocus: (event: InteractionEvent<HTMLInputElement>) => {
-			if (props.onFocus) {
-				props.onFocus(event);
-			}
-
-			if (props.focus) {
-				props.focus(event);
-			}
+			useTarget({
+				vue: () => {
+					if (props.focus) {
+						props.focus(event);
+					}
+				},
+				default: () => {
+					if (props.onFocus) {
+						props.onFocus(event);
+					}
+				}
+			});
 		}
 	});
 

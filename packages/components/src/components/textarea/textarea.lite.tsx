@@ -53,23 +53,33 @@ export default function DBTextarea(props: DBTextareaProps) {
 		_descByIds: '',
 		_value: '',
 		_voiceOverFallback: '',
-		handleInput: (event: InputEvent<HTMLTextAreaElement>) => {
-			if (props.onInput) {
-				props.onInput(event);
-			}
-
-			if (props.input) {
-				props.input(event);
-			}
+		handleInput: (event: InputEvent<HTMLTextAreaElement> | any) => {
+			useTarget({
+				vue: () => {
+					if (props.input) {
+						props.input(event);
+					}
+				},
+				default: () => {
+					if (props.onInput) {
+						props.onInput(event);
+					}
+				}
+			});
 		},
-		handleChange: (event: ChangeEvent<HTMLTextAreaElement>) => {
-			if (props.onChange) {
-				props.onChange(event);
-			}
-
-			if (props.change) {
-				props.change(event);
-			}
+		handleChange: (event: ChangeEvent<HTMLTextAreaElement> | any) => {
+			useTarget({
+				vue: () => {
+					if (props.change) {
+						props.change(event);
+					}
+				},
+				default: () => {
+					if (props.onChange) {
+						props.onChange(event);
+					}
+				}
+			});
 			useTarget({
 				angular: () => handleFrameworkEventAngular(this, event),
 				vue: () => handleFrameworkEventVue(() => {}, event)
@@ -102,23 +112,33 @@ export default function DBTextarea(props: DBTextareaProps) {
 				state._descByIds = '';
 			}
 		},
-		handleBlur: (event: InteractionEvent<HTMLTextAreaElement>) => {
-			if (props.onBlur) {
-				props.onBlur(event);
-			}
-
-			if (props.blur) {
-				props.blur(event);
-			}
+		handleBlur: (event: InteractionEvent<HTMLTextAreaElement> | any) => {
+			useTarget({
+				vue: () => {
+					if (props.blur) {
+						props.blur(event);
+					}
+				},
+				default: () => {
+					if (props.onBlur) {
+						props.onBlur(event);
+					}
+				}
+			});
 		},
-		handleFocus: (event: InteractionEvent<HTMLTextAreaElement>) => {
-			if (props.onFocus) {
-				props.onFocus(event);
-			}
-
-			if (props.focus) {
-				props.focus(event);
-			}
+		handleFocus: (event: InteractionEvent<HTMLTextAreaElement> | any) => {
+			useTarget({
+				vue: () => {
+					if (props.focus) {
+						props.focus(event);
+					}
+				},
+				default: () => {
+					if (props.onFocus) {
+						props.onFocus(event);
+					}
+				}
+			});
 		}
 	});
 

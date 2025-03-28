@@ -17,7 +17,7 @@ import { environment } from '../../../environments/environment';
 			: [DefaultComponent, DBInput]
 	],
 	standalone: true,
-	schemas: [CUSTOM_ELEMENTS_SCHEMA]
+	schemas: environment.webComponents ? [CUSTOM_ELEMENTS_SCHEMA] : []
 })
 export class InputComponent {
 	variants = defaultComponentVariants;
