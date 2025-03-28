@@ -11,10 +11,14 @@ import { environment } from '../../../../environments/environment';
 		? [WrapperComponent, FormsModule, ReactiveFormsModule]
 		: [WrapperComponent, DBCheckbox, FormsModule, ReactiveFormsModule],
 	templateUrl: './checkboxes.component.html',
-	schemas: [CUSTOM_ELEMENTS_SCHEMA]
+	schemas: environment.webComponents ? [CUSTOM_ELEMENTS_SCHEMA] : []
 })
 export class CheckboxesComponent {
 	plain = true;
 	ngModel = true;
 	formControl: FormControl = new FormControl(true);
+
+	public handlePlainChange(event: any) {
+		this.plain = event.target.checked;
+	}
 }

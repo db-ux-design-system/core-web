@@ -7,7 +7,7 @@
 		<legend>Different form approaches</legend>
 		<db-checkbox
 			[checked]="plain"
-			(change)="plain = $event.target.checked"
+			(change)="handlePlainChange($event)"
 			name="checkbox"
 			label="Plain"
 		></db-checkbox>
