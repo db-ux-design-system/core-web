@@ -27,7 +27,7 @@ $scrollbar-width: helpers.px-to-rem(8);
 	&:read-only {
 		&::-webkit-scrollbar-track,
 		&::-webkit-scrollbar-button:single-button {
-			background-color: colors.$db-adaptive-bg-basic-level-1-default !important;
+			background-color: colors.$db-adaptive-bg-basic-level-1-default;
 		}
 	}
 
@@ -58,6 +58,7 @@ $scrollbar-width: helpers.px-to-rem(8);
 
 	/* Up */
 	&::-webkit-scrollbar-button:single-button:vertical:decrement {
+		border-start-end-radius: variables.$db-border-radius-xs;
 		background-image: var(--db-textarea-scrollbar-button-decrement);
 	}
 
