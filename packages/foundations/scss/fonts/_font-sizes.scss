@@ -5,8 +5,7 @@
 }
 
 @mixin set-font-size($size) {
-	line-height: var(--db-type-body-line-height-#{$size});
-	font-size: var(--db-type-body-font-size-#{$size});
+	font: var(--db-type-body-#{$size});
 }
 
 @mixin set-headline-variables($size) {
@@ -16,8 +15,7 @@
 }
 
 @mixin set-headline-size($size) {
-	line-height: var(--db-type-headline-line-height-#{$size});
-	font-size: var(--db-type-headline-font-size-#{$size});
+	font: var(--db-type-headline-#{$size});
 }
 
 $font-sizes: "3xl", "2xl", "xl", "lg", "md", "sm", "xs", "2xs", "3xs";

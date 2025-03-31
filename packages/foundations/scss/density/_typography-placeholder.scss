@@ -2,33 +2,20 @@
 @use "variables";
 @use "../screen-sizes";
 
-@function get-typography(
-	$density,
-	$device,
-	$size,
-	$type,
-	$attribute: "font-size"
-) {
+@function get-typography($density, $device, $size, $type) {
 	@return var(
 		string.unquote(
-			"--db-typography-#{$density}-#{$device}-#{$type}-#{$size}-#{$attribute}"
+			"--db-typography-#{$density}-#{$device}-#{$type}-#{$size}"
 		)
 	);
 }
 
 @mixin get-font($density, $device, $size, $type: "body") {
-	--db-type-#{$type}-font-size-#{$size}: #{get-typography(
+	--db-type-#{$type}-#{$size}: #{get-typography(
 			$density,
 			$device,
 			$size,
 			$type
-		)};
-	--db-type-#{$type}-line-height-#{$size}: #{get-typography(
-			$density,
-			$device,
-			$size,
-			$type,
-			"line-height"
 		)};
 }
 

@@ -180,6 +180,22 @@
 		--db-adaptive-on-origin-pressed: var(
 			--db-#{$variant}-on-origin-pressed
 		);
+
+		// vibrant
+		--db-adaptive-vibrant-default: var(--db-#{$variant}-vibrant-default);
+		--db-adaptive-vibrant-hovered: var(--db-#{$variant}-vibrant-hovered);
+		--db-adaptive-vibrant-pressed: var(--db-#{$variant}-vibrant-pressed);
+
+		// on-vibrant
+		--db-adaptive-on-vibrant-default: var(
+			--db-#{$variant}-on-vibrant-default
+		);
+		--db-adaptive-on-vibrant-hovered: var(
+			--db-#{$variant}-on-vibrant-hovered
+		);
+		--db-adaptive-on-vibrant-pressed: var(
+			--db-#{$variant}-on-vibrant-pressed
+		);
 	}
 
 	@each $bg in variables.$background-colors {

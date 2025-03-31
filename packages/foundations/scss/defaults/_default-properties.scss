@@ -1,0 +1,6482 @@
+@property --db-base-icon-weight-regular-desktop-headline-3xl {
+	syntax: "<*>";
+	initial-value: 96;
+	inherits: true;
+}
+
+@property --db-base-icon-weight-regular-desktop-headline-2xl {
+	syntax: "<*>";
+	initial-value: 80;
+	inherits: true;
+}
+
+@property --db-base-icon-weight-regular-desktop-headline-xl {
+	syntax: "<*>";
+	initial-value: 64;
+	inherits: true;
+}
+
+@property --db-base-icon-weight-regular-desktop-headline-lg {
+	syntax: "<*>";
+	initial-value: 48;
+	inherits: true;
+}
+
+@property --db-base-icon-weight-regular-desktop-headline-md {
+	syntax: "<*>";
+	initial-value: 40;
+	inherits: true;
+}
+
+@property --db-base-icon-weight-regular-desktop-headline-sm {
+	syntax: "<*>";
+	initial-value: 32;
+	inherits: true;
+}
+
+@property --db-base-icon-weight-regular-desktop-headline-2xs {
+	syntax: "<*>";
+	initial-value: 24;
+	inherits: true;
+}
+
+@property --db-base-icon-weight-regular-desktop-headline-3xs {
+	syntax: "<*>";
+	initial-value: 20;
+	inherits: true;
+}
+
+@property --db-base-icon-weight-regular-desktop-headline-xs {
+	syntax: "<*>";
+	initial-value: 28;
+	inherits: true;
+}
+
+@property --db-base-icon-weight-regular-desktop-body-lg {
+	syntax: "<*>";
+	initial-value: 28;
+	inherits: true;
+}
+
+@property --db-base-icon-weight-regular-desktop-body-xl {
+	syntax: "<*>";
+	initial-value: 32;
+	inherits: true;
+}
+
+@property --db-base-icon-weight-regular-desktop-body-2xl {
+	syntax: "<*>";
+	initial-value: 40;
+	inherits: true;
+}
+
+@property --db-base-icon-weight-regular-desktop-body-3xl {
+	syntax: "<*>";
+	initial-value: 48;
+	inherits: true;
+}
+
+@property --db-base-icon-weight-regular-desktop-body-md {
+	syntax: "<*>";
+	initial-value: 24;
+	inherits: true;
+}
+
+@property --db-base-icon-weight-regular-desktop-body-sm {
+	syntax: "<*>";
+	initial-value: 20;
+	inherits: true;
+}
+
+@property --db-base-icon-weight-regular-desktop-body-2xs {
+	syntax: "<*>";
+	initial-value: 14;
+	inherits: true;
+}
+
+@property --db-base-icon-weight-regular-desktop-body-3xs {
+	syntax: "<*>";
+	initial-value: 14;
+	inherits: true;
+}
+
+@property --db-base-icon-weight-regular-desktop-body-xs {
+	syntax: "<*>";
+	initial-value: 16;
+	inherits: true;
+}
+
+@property --db-base-icon-weight-regular-mobile-body-lg {
+	syntax: "<*>";
+	initial-value: 28;
+	inherits: true;
+}
+
+@property --db-base-icon-weight-regular-mobile-body-md {
+	syntax: "<*>";
+	initial-value: 24;
+	inherits: true;
+}
+
+@property --db-base-icon-weight-regular-mobile-body-sm {
+	syntax: "<*>";
+	initial-value: 20;
+	inherits: true;
+}
+
+@property --db-base-icon-weight-regular-mobile-body-xl {
+	syntax: "<*>";
+	initial-value: 28;
+	inherits: true;
+}
+
+@property --db-base-icon-weight-regular-mobile-body-xs {
+	syntax: "<*>";
+	initial-value: 16;
+	inherits: true;
+}
+
+@property --db-base-icon-weight-regular-mobile-body-2xl {
+	syntax: "<*>";
+	initial-value: 28;
+	inherits: true;
+}
+
+@property --db-base-icon-weight-regular-mobile-body-3xl {
+	syntax: "<*>";
+	initial-value: 28;
+	inherits: true;
+}
+
+@property --db-base-icon-weight-regular-mobile-body-2xs {
+	syntax: "<*>";
+	initial-value: 14;
+	inherits: true;
+}
+
+@property --db-base-icon-weight-regular-mobile-body-3xs {
+	syntax: "<*>";
+	initial-value: 14;
+	inherits: true;
+}
+
+@property --db-base-icon-weight-regular-mobile-headline-lg {
+	syntax: "<*>";
+	initial-value: 32;
+	inherits: true;
+}
+
+@property --db-base-icon-weight-regular-mobile-headline-md {
+	syntax: "<*>";
+	initial-value: 28;
+	inherits: true;
+}
+
+@property --db-base-icon-weight-regular-mobile-headline-sm {
+	syntax: "<*>";
+	initial-value: 24;
+	inherits: true;
+}
+
+@property --db-base-icon-weight-regular-mobile-headline-xl {
+	syntax: "<*>";
+	initial-value: 40;
+	inherits: true;
+}
+
+@property --db-base-icon-weight-regular-mobile-headline-xs {
+	syntax: "<*>";
+	initial-value: 20;
+	inherits: true;
+}
+
+@property --db-base-icon-weight-regular-mobile-headline-2xl {
+	syntax: "<*>";
+	initial-value: 40;
+	inherits: true;
+}
+
+@property --db-base-icon-weight-regular-mobile-headline-2xs {
+	syntax: "<*>";
+	initial-value: 16;
+	inherits: true;
+}
+
+@property --db-base-icon-weight-regular-mobile-headline-3xl {
+	syntax: "<*>";
+	initial-value: 40;
+	inherits: true;
+}
+
+@property --db-base-icon-weight-regular-mobile-headline-3xs {
+	syntax: "<*>";
+	initial-value: 16;
+	inherits: true;
+}
+
+@property --db-base-icon-weight-regular-tablet-body-lg {
+	syntax: "<*>";
+	initial-value: 28;
+	inherits: true;
+}
+
+@property --db-base-icon-weight-regular-tablet-body-md {
+	syntax: "<*>";
+	initial-value: 24;
+	inherits: true;
+}
+
+@property --db-base-icon-weight-regular-tablet-body-sm {
+	syntax: "<*>";
+	initial-value: 20;
+	inherits: true;
+}
+
+@property --db-base-icon-weight-regular-tablet-body-xl {
+	syntax: "<*>";
+	initial-value: 32;
+	inherits: true;
+}
+
+@property --db-base-icon-weight-regular-tablet-body-xs {
+	syntax: "<*>";
+	initial-value: 16;
+	inherits: true;
+}
+
+@property --db-base-icon-weight-regular-tablet-body-2xl {
+	syntax: "<*>";
+	initial-value: 40;
+	inherits: true;
+}
+
+@property --db-base-icon-weight-regular-tablet-body-3xl {
+	syntax: "<*>";
+	initial-value: 48;
+	inherits: true;
+}
+
+@property --db-base-icon-weight-regular-tablet-body-2xs {
+	syntax: "<*>";
+	initial-value: 14;
+	inherits: true;
+}
+
+@property --db-base-icon-weight-regular-tablet-body-3xs {
+	syntax: "<*>";
+	initial-value: 14;
+	inherits: true;
+}
+
+@property --db-base-icon-weight-regular-tablet-headline-lg {
+	syntax: "<*>";
+	initial-value: 40;
+	inherits: true;
+}
+
+@property --db-base-icon-weight-regular-tablet-headline-md {
+	syntax: "<*>";
+	initial-value: 32;
+	inherits: true;
+}
+
+@property --db-base-icon-weight-regular-tablet-headline-sm {
+	syntax: "<*>";
+	initial-value: 28;
+	inherits: true;
+}
+
+@property --db-base-icon-weight-regular-tablet-headline-xl {
+	syntax: "<*>";
+	initial-value: 48;
+	inherits: true;
+}
+
+@property --db-base-icon-weight-regular-tablet-headline-xs {
+	syntax: "<*>";
+	initial-value: 24;
+	inherits: true;
+}
+
+@property --db-base-icon-weight-regular-tablet-headline-2xl {
+	syntax: "<*>";
+	initial-value: 64;
+	inherits: true;
+}
+
+@property --db-base-icon-weight-regular-tablet-headline-2xs {
+	syntax: "<*>";
+	initial-value: 20;
+	inherits: true;
+}
+
+@property --db-base-icon-weight-regular-tablet-headline-3xl {
+	syntax: "<*>";
+	initial-value: 64;
+	inherits: true;
+}
+
+@property --db-base-icon-weight-regular-tablet-headline-3xs {
+	syntax: "<*>";
+	initial-value: 20;
+	inherits: true;
+}
+
+@property --db-base-icon-weight-expressive-desktop-body-lg {
+	syntax: "<*>";
+	initial-value: 32;
+	inherits: true;
+}
+
+@property --db-base-icon-weight-expressive-desktop-body-md {
+	syntax: "<*>";
+	initial-value: 28;
+	inherits: true;
+}
+
+@property --db-base-icon-weight-expressive-desktop-body-sm {
+	syntax: "<*>";
+	initial-value: 24;
+	inherits: true;
+}
+
+@property --db-base-icon-weight-expressive-desktop-body-xl {
+	syntax: "<*>";
+	initial-value: 40;
+	inherits: true;
+}
+
+@property --db-base-icon-weight-expressive-desktop-body-xs {
+	syntax: "<*>";
+	initial-value: 20;
+	inherits: true;
+}
+
+@property --db-base-icon-weight-expressive-desktop-body-2xl {
+	syntax: "<*>";
+	initial-value: 48;
+	inherits: true;
+}
+
+@property --db-base-icon-weight-expressive-desktop-body-3xl {
+	syntax: "<*>";
+	initial-value: 64;
+	inherits: true;
+}
+
+@property --db-base-icon-weight-expressive-desktop-body-2xs {
+	syntax: "<*>";
+	initial-value: 16;
+	inherits: true;
+}
+
+@property --db-base-icon-weight-expressive-desktop-body-3xs {
+	syntax: "<*>";
+	initial-value: 14;
+	inherits: true;
+}
+
+@property --db-base-icon-weight-expressive-desktop-headline-lg {
+	syntax: "<*>";
+	initial-value: 64;
+	inherits: true;
+}
+
+@property --db-base-icon-weight-expressive-desktop-headline-md {
+	syntax: "<*>";
+	initial-value: 48;
+	inherits: true;
+}
+
+@property --db-base-icon-weight-expressive-desktop-headline-sm {
+	syntax: "<*>";
+	initial-value: 40;
+	inherits: true;
+}
+
+@property --db-base-icon-weight-expressive-desktop-headline-xl {
+	syntax: "<*>";
+	initial-value: 80;
+	inherits: true;
+}
+
+@property --db-base-icon-weight-expressive-desktop-headline-xs {
+	syntax: "<*>";
+	initial-value: 32;
+	inherits: true;
+}
+
+@property --db-base-icon-weight-expressive-desktop-headline-2xl {
+	syntax: "<*>";
+	initial-value: 96;
+	inherits: true;
+}
+
+@property --db-base-icon-weight-expressive-desktop-headline-2xs {
+	syntax: "<*>";
+	initial-value: 28;
+	inherits: true;
+}
+
+@property --db-base-icon-weight-expressive-desktop-headline-3xl {
+	syntax: "<*>";
+	initial-value: 120;
+	inherits: true;
+}
+
+@property --db-base-icon-weight-expressive-desktop-headline-3xs {
+	syntax: "<*>";
+	initial-value: 24;
+	inherits: true;
+}
+
+@property --db-base-icon-weight-expressive-tablet-body-lg {
+	syntax: "<*>";
+	initial-value: 32;
+	inherits: true;
+}
+
+@property --db-base-icon-weight-expressive-tablet-body-md {
+	syntax: "<*>";
+	initial-value: 28;
+	inherits: true;
+}
+
+@property --db-base-icon-weight-expressive-tablet-body-sm {
+	syntax: "<*>";
+	initial-value: 24;
+	inherits: true;
+}
+
+@property --db-base-icon-weight-expressive-tablet-body-xl {
+	syntax: "<*>";
+	initial-value: 40;
+	inherits: true;
+}
+
+@property --db-base-icon-weight-expressive-tablet-body-xs {
+	syntax: "<*>";
+	initial-value: 20;
+	inherits: true;
+}
+
+@property --db-base-icon-weight-expressive-tablet-body-2xl {
+	syntax: "<*>";
+	initial-value: 48;
+	inherits: true;
+}
+
+@property --db-base-icon-weight-expressive-tablet-body-3xl {
+	syntax: "<*>";
+	initial-value: 64;
+	inherits: true;
+}
+
+@property --db-base-icon-weight-expressive-tablet-body-2xs {
+	syntax: "<*>";
+	initial-value: 16;
+	inherits: true;
+}
+
+@property --db-base-icon-weight-expressive-tablet-body-3xs {
+	syntax: "<*>";
+	initial-value: 14;
+	inherits: true;
+}
+
+@property --db-base-icon-weight-expressive-tablet-headline-lg {
+	syntax: "<*>";
+	initial-value: 48;
+	inherits: true;
+}
+
+@property --db-base-icon-weight-expressive-tablet-headline-md {
+	syntax: "<*>";
+	initial-value: 40;
+	inherits: true;
+}
+
+@property --db-base-icon-weight-expressive-tablet-headline-sm {
+	syntax: "<*>";
+	initial-value: 32;
+	inherits: true;
+}
+
+@property --db-base-icon-weight-expressive-tablet-headline-xl {
+	syntax: "<*>";
+	initial-value: 64;
+	inherits: true;
+}
+
+@property --db-base-icon-weight-expressive-tablet-headline-xs {
+	syntax: "<*>";
+	initial-value: 28;
+	inherits: true;
+}
+
+@property --db-base-icon-weight-expressive-tablet-headline-2xl {
+	syntax: "<*>";
+	initial-value: 80;
+	inherits: true;
+}
+
+@property --db-base-icon-weight-expressive-tablet-headline-2xs {
+	syntax: "<*>";
+	initial-value: 24;
+	inherits: true;
+}
+
+@property --db-base-icon-weight-expressive-tablet-headline-3xl {
+	syntax: "<*>";
+	initial-value: 96;
+	inherits: true;
+}
+
+@property --db-base-icon-weight-expressive-tablet-headline-3xs {
+	syntax: "<*>";
+	initial-value: 24;
+	inherits: true;
+}
+
+@property --db-base-icon-weight-expressive-mobile-body-lg {
+	syntax: "<*>";
+	initial-value: 32;
+	inherits: true;
+}
+
+@property --db-base-icon-weight-expressive-mobile-body-md {
+	syntax: "<*>";
+	initial-value: 28;
+	inherits: true;
+}
+
+@property --db-base-icon-weight-expressive-mobile-body-sm {
+	syntax: "<*>";
+	initial-value: 24;
+	inherits: true;
+}
+
+@property --db-base-icon-weight-expressive-mobile-body-xl {
+	syntax: "<*>";
+	initial-value: 32;
+	inherits: true;
+}
+
+@property --db-base-icon-weight-expressive-mobile-body-xs {
+	syntax: "<*>";
+	initial-value: 20;
+	inherits: true;
+}
+
+@property --db-base-icon-weight-expressive-mobile-body-2xl {
+	syntax: "<*>";
+	initial-value: 32;
+	inherits: true;
+}
+
+@property --db-base-icon-weight-expressive-mobile-body-3xl {
+	syntax: "<*>";
+	initial-value: 32;
+	inherits: true;
+}
+
+@property --db-base-icon-weight-expressive-mobile-body-2xs {
+	syntax: "<*>";
+	initial-value: 16;
+	inherits: true;
+}
+
+@property --db-base-icon-weight-expressive-mobile-body-3xs {
+	syntax: "<*>";
+	initial-value: 14;
+	inherits: true;
+}
+
+@property --db-base-icon-weight-expressive-mobile-headline-lg {
+	syntax: "<*>";
+	initial-value: 40;
+	inherits: true;
+}
+
+@property --db-base-icon-weight-expressive-mobile-headline-md {
+	syntax: "<*>";
+	initial-value: 32;
+	inherits: true;
+}
+
+@property --db-base-icon-weight-expressive-mobile-headline-sm {
+	syntax: "<*>";
+	initial-value: 28;
+	inherits: true;
+}
+
+@property --db-base-icon-weight-expressive-mobile-headline-xl {
+	syntax: "<*>";
+	initial-value: 48;
+	inherits: true;
+}
+
+@property --db-base-icon-weight-expressive-mobile-headline-xs {
+	syntax: "<*>";
+	initial-value: 24;
+	inherits: true;
+}
+
+@property --db-base-icon-weight-expressive-mobile-headline-2xl {
+	syntax: "<*>";
+	initial-value: 48;
+	inherits: true;
+}
+
+@property --db-base-icon-weight-expressive-mobile-headline-2xs {
+	syntax: "<*>";
+	initial-value: 20;
+	inherits: true;
+}
+
+@property --db-base-icon-weight-expressive-mobile-headline-3xl {
+	syntax: "<*>";
+	initial-value: 48;
+	inherits: true;
+}
+
+@property --db-base-icon-weight-expressive-mobile-headline-3xs {
+	syntax: "<*>";
+	initial-value: 20;
+	inherits: true;
+}
+
+@property --db-base-icon-weight-functional-desktop-body-lg {
+	syntax: "<*>";
+	initial-value: 24;
+	inherits: true;
+}
+
+@property --db-base-icon-weight-functional-desktop-body-md {
+	syntax: "<*>";
+	initial-value: 20;
+	inherits: true;
+}
+
+@property --db-base-icon-weight-functional-desktop-body-sm {
+	syntax: "<*>";
+	initial-value: 16;
+	inherits: true;
+}
+
+@property --db-base-icon-weight-functional-desktop-body-xl {
+	syntax: "<*>";
+	initial-value: 28;
+	inherits: true;
+}
+
+@property --db-base-icon-weight-functional-desktop-body-xs {
+	syntax: "<*>";
+	initial-value: 14;
+	inherits: true;
+}
+
+@property --db-base-icon-weight-functional-desktop-body-2xl {
+	syntax: "<*>";
+	initial-value: 32;
+	inherits: true;
+}
+
+@property --db-base-icon-weight-functional-desktop-body-3xl {
+	syntax: "<*>";
+	initial-value: 40;
+	inherits: true;
+}
+
+@property --db-base-icon-weight-functional-desktop-body-2xs {
+	syntax: "<*>";
+	initial-value: 14;
+	inherits: true;
+}
+
+@property --db-base-icon-weight-functional-desktop-body-3xs {
+	syntax: "<*>";
+	initial-value: 14;
+	inherits: true;
+}
+
+@property --db-base-icon-weight-functional-desktop-headline-lg {
+	syntax: "<*>";
+	initial-value: 32;
+	inherits: true;
+}
+
+@property --db-base-icon-weight-functional-desktop-headline-md {
+	syntax: "<*>";
+	initial-value: 28;
+	inherits: true;
+}
+
+@property --db-base-icon-weight-functional-desktop-headline-sm {
+	syntax: "<*>";
+	initial-value: 24;
+	inherits: true;
+}
+
+@property --db-base-icon-weight-functional-desktop-headline-xl {
+	syntax: "<*>";
+	initial-value: 40;
+	inherits: true;
+}
+
+@property --db-base-icon-weight-functional-desktop-headline-xs {
+	syntax: "<*>";
+	initial-value: 20;
+	inherits: true;
+}
+
+@property --db-base-icon-weight-functional-desktop-headline-2xl {
+	syntax: "<*>";
+	initial-value: 48;
+	inherits: true;
+}
+
+@property --db-base-icon-weight-functional-desktop-headline-2xs {
+	syntax: "<*>";
+	initial-value: 16;
+	inherits: true;
+}
+
+@property --db-base-icon-weight-functional-desktop-headline-3xl {
+	syntax: "<*>";
+	initial-value: 48;
+	inherits: true;
+}
+
+@property --db-base-icon-weight-functional-desktop-headline-3xs {
+	syntax: "<*>";
+	initial-value: 16;
+	inherits: true;
+}
+
+@property --db-base-icon-weight-functional-tablet-body-lg {
+	syntax: "<*>";
+	initial-value: 24;
+	inherits: true;
+}
+
+@property --db-base-icon-weight-functional-tablet-body-md {
+	syntax: "<*>";
+	initial-value: 20;
+	inherits: true;
+}
+
+@property --db-base-icon-weight-functional-tablet-body-sm {
+	syntax: "<*>";
+	initial-value: 16;
+	inherits: true;
+}
+
+@property --db-base-icon-weight-functional-tablet-body-xl {
+	syntax: "<*>";
+	initial-value: 28;
+	inherits: true;
+}
+
+@property --db-base-icon-weight-functional-tablet-body-xs {
+	syntax: "<*>";
+	initial-value: 14;
+	inherits: true;
+}
+
+@property --db-base-icon-weight-functional-tablet-body-2xl {
+	syntax: "<*>";
+	initial-value: 32;
+	inherits: true;
+}
+
+@property --db-base-icon-weight-functional-tablet-body-3xl {
+	syntax: "<*>";
+	initial-value: 40;
+	inherits: true;
+}
+
+@property --db-base-icon-weight-functional-tablet-body-2xs {
+	syntax: "<*>";
+	initial-value: 14;
+	inherits: true;
+}
+
+@property --db-base-icon-weight-functional-tablet-body-3xs {
+	syntax: "<*>";
+	initial-value: 14;
+	inherits: true;
+}
+
+@property --db-base-icon-weight-functional-tablet-headline-lg {
+	syntax: "<*>";
+	initial-value: 32;
+	inherits: true;
+}
+
+@property --db-base-icon-weight-functional-tablet-headline-md {
+	syntax: "<*>";
+	initial-value: 28;
+	inherits: true;
+}
+
+@property --db-base-icon-weight-functional-tablet-headline-sm {
+	syntax: "<*>";
+	initial-value: 24;
+	inherits: true;
+}
+
+@property --db-base-icon-weight-functional-tablet-headline-xl {
+	syntax: "<*>";
+	initial-value: 40;
+	inherits: true;
+}
+
+@property --db-base-icon-weight-functional-tablet-headline-xs {
+	syntax: "<*>";
+	initial-value: 20;
+	inherits: true;
+}
+
+@property --db-base-icon-weight-functional-tablet-headline-2xl {
+	syntax: "<*>";
+	initial-value: 48;
+	inherits: true;
+}
+
+@property --db-base-icon-weight-functional-tablet-headline-2xs {
+	syntax: "<*>";
+	initial-value: 16;
+	inherits: true;
+}
+
+@property --db-base-icon-weight-functional-tablet-headline-3xl {
+	syntax: "<*>";
+	initial-value: 48;
+	inherits: true;
+}
+
+@property --db-base-icon-weight-functional-tablet-headline-3xs {
+	syntax: "<*>";
+	initial-value: 16;
+	inherits: true;
+}
+
+@property --db-base-icon-weight-functional-mobile-body-lg {
+	syntax: "<*>";
+	initial-value: 24;
+	inherits: true;
+}
+
+@property --db-base-icon-weight-functional-mobile-body-md {
+	syntax: "<*>";
+	initial-value: 20;
+	inherits: true;
+}
+
+@property --db-base-icon-weight-functional-mobile-body-sm {
+	syntax: "<*>";
+	initial-value: 16;
+	inherits: true;
+}
+
+@property --db-base-icon-weight-functional-mobile-body-xl {
+	syntax: "<*>";
+	initial-value: 24;
+	inherits: true;
+}
+
+@property --db-base-icon-weight-functional-mobile-body-xs {
+	syntax: "<*>";
+	initial-value: 14;
+	inherits: true;
+}
+
+@property --db-base-icon-weight-functional-mobile-body-2xl {
+	syntax: "<*>";
+	initial-value: 24;
+	inherits: true;
+}
+
+@property --db-base-icon-weight-functional-mobile-body-3xl {
+	syntax: "<*>";
+	initial-value: 24;
+	inherits: true;
+}
+
+@property --db-base-icon-weight-functional-mobile-body-2xs {
+	syntax: "<*>";
+	initial-value: 14;
+	inherits: true;
+}
+
+@property --db-base-icon-weight-functional-mobile-body-3xs {
+	syntax: "<*>";
+	initial-value: 14;
+	inherits: true;
+}
+
+@property --db-base-icon-weight-functional-mobile-headline-lg {
+	syntax: "<*>";
+	initial-value: 28;
+	inherits: true;
+}
+
+@property --db-base-icon-weight-functional-mobile-headline-md {
+	syntax: "<*>";
+	initial-value: 24;
+	inherits: true;
+}
+
+@property --db-base-icon-weight-functional-mobile-headline-sm {
+	syntax: "<*>";
+	initial-value: 20;
+	inherits: true;
+}
+
+@property --db-base-icon-weight-functional-mobile-headline-xl {
+	syntax: "<*>";
+	initial-value: 32;
+	inherits: true;
+}
+
+@property --db-base-icon-weight-functional-mobile-headline-xs {
+	syntax: "<*>";
+	initial-value: 16;
+	inherits: true;
+}
+
+@property --db-base-icon-weight-functional-mobile-headline-2xl {
+	syntax: "<*>";
+	initial-value: 32;
+	inherits: true;
+}
+
+@property --db-base-icon-weight-functional-mobile-headline-2xs {
+	syntax: "<*>";
+	initial-value: 16;
+	inherits: true;
+}
+
+@property --db-base-icon-weight-functional-mobile-headline-3xl {
+	syntax: "<*>";
+	initial-value: 32;
+	inherits: true;
+}
+
+@property --db-base-icon-weight-functional-mobile-headline-3xs {
+	syntax: "<*>";
+	initial-value: 16;
+	inherits: true;
+}
+
+@property --db-base-icon-font-size-regular-desktop-headline-3xl {
+	syntax: "<*>";
+	initial-value: 6rem;
+	inherits: true;
+}
+
+@property --db-base-icon-font-size-regular-desktop-headline-2xl {
+	syntax: "<*>";
+	initial-value: 5rem;
+	inherits: true;
+}
+
+@property --db-base-icon-font-size-regular-desktop-headline-xl {
+	syntax: "<*>";
+	initial-value: 4rem;
+	inherits: true;
+}
+
+@property --db-base-icon-font-size-regular-desktop-headline-lg {
+	syntax: "<*>";
+	initial-value: 3rem;
+	inherits: true;
+}
+
+@property --db-base-icon-font-size-regular-desktop-headline-md {
+	syntax: "<*>";
+	initial-value: 2.5rem;
+	inherits: true;
+}
+
+@property --db-base-icon-font-size-regular-desktop-headline-sm {
+	syntax: "<*>";
+	initial-value: 2rem;
+	inherits: true;
+}
+
+@property --db-base-icon-font-size-regular-desktop-headline-2xs {
+	syntax: "<*>";
+	initial-value: 1.5rem;
+	inherits: true;
+}
+
+@property --db-base-icon-font-size-regular-desktop-headline-3xs {
+	syntax: "<*>";
+	initial-value: 1.25rem;
+	inherits: true;
+}
+
+@property --db-base-icon-font-size-regular-desktop-headline-xs {
+	syntax: "<*>";
+	initial-value: 1.75rem;
+	inherits: true;
+}
+
+@property --db-base-icon-font-size-regular-desktop-body-lg {
+	syntax: "<*>";
+	initial-value: 1.75rem;
+	inherits: true;
+}
+
+@property --db-base-icon-font-size-regular-desktop-body-xl {
+	syntax: "<*>";
+	initial-value: 2rem;
+	inherits: true;
+}
+
+@property --db-base-icon-font-size-regular-desktop-body-2xl {
+	syntax: "<*>";
+	initial-value: 2.5rem;
+	inherits: true;
+}
+
+@property --db-base-icon-font-size-regular-desktop-body-3xl {
+	syntax: "<*>";
+	initial-value: 3rem;
+	inherits: true;
+}
+
+@property --db-base-icon-font-size-regular-desktop-body-md {
+	syntax: "<*>";
+	initial-value: 1.5rem;
+	inherits: true;
+}
+
+@property --db-base-icon-font-size-regular-desktop-body-sm {
+	syntax: "<*>";
+	initial-value: 1.25rem;
+	inherits: true;
+}
+
+@property --db-base-icon-font-size-regular-desktop-body-2xs {
+	syntax: "<*>";
+	initial-value: 0.875rem;
+	inherits: true;
+}
+
+@property --db-base-icon-font-size-regular-desktop-body-3xs {
+	syntax: "<*>";
+	initial-value: 0.875rem;
+	inherits: true;
+}
+
+@property --db-base-icon-font-size-regular-desktop-body-xs {
+	syntax: "<*>";
+	initial-value: 1rem;
+	inherits: true;
+}
+
+@property --db-base-icon-font-size-regular-mobile-body-lg {
+	syntax: "<*>";
+	initial-value: 1.75rem;
+	inherits: true;
+}
+
+@property --db-base-icon-font-size-regular-mobile-body-md {
+	syntax: "<*>";
+	initial-value: 1.5rem;
+	inherits: true;
+}
+
+@property --db-base-icon-font-size-regular-mobile-body-sm {
+	syntax: "<*>";
+	initial-value: 1.25rem;
+	inherits: true;
+}
+
+@property --db-base-icon-font-size-regular-mobile-body-xl {
+	syntax: "<*>";
+	initial-value: 1.75rem;
+	inherits: true;
+}
+
+@property --db-base-icon-font-size-regular-mobile-body-xs {
+	syntax: "<*>";
+	initial-value: 1rem;
+	inherits: true;
+}
+
+@property --db-base-icon-font-size-regular-mobile-body-2xl {
+	syntax: "<*>";
+	initial-value: 1.75rem;
+	inherits: true;
+}
+
+@property --db-base-icon-font-size-regular-mobile-body-3xl {
+	syntax: "<*>";
+	initial-value: 1.75rem;
+	inherits: true;
+}
+
+@property --db-base-icon-font-size-regular-mobile-body-2xs {
+	syntax: "<*>";
+	initial-value: 0.875rem;
+	inherits: true;
+}
+
+@property --db-base-icon-font-size-regular-mobile-body-3xs {
+	syntax: "<*>";
+	initial-value: 0.875rem;
+	inherits: true;
+}
+
+@property --db-base-icon-font-size-regular-mobile-headline-lg {
+	syntax: "<*>";
+	initial-value: 2rem;
+	inherits: true;
+}
+
+@property --db-base-icon-font-size-regular-mobile-headline-md {
+	syntax: "<*>";
+	initial-value: 1.75rem;
+	inherits: true;
+}
+
+@property --db-base-icon-font-size-regular-mobile-headline-sm {
+	syntax: "<*>";
+	initial-value: 1.5rem;
+	inherits: true;
+}
+
+@property --db-base-icon-font-size-regular-mobile-headline-xl {
+	syntax: "<*>";
+	initial-value: 2.5rem;
+	inherits: true;
+}
+
+@property --db-base-icon-font-size-regular-mobile-headline-xs {
+	syntax: "<*>";
+	initial-value: 1.25rem;
+	inherits: true;
+}
+
+@property --db-base-icon-font-size-regular-mobile-headline-2xl {
+	syntax: "<*>";
+	initial-value: 2.5rem;
+	inherits: true;
+}
+
+@property --db-base-icon-font-size-regular-mobile-headline-2xs {
+	syntax: "<*>";
+	initial-value: 1rem;
+	inherits: true;
+}
+
+@property --db-base-icon-font-size-regular-mobile-headline-3xl {
+	syntax: "<*>";
+	initial-value: 2.5rem;
+	inherits: true;
+}
+
+@property --db-base-icon-font-size-regular-mobile-headline-3xs {
+	syntax: "<*>";
+	initial-value: 1rem;
+	inherits: true;
+}
+
+@property --db-base-icon-font-size-regular-tablet-body-lg {
+	syntax: "<*>";
+	initial-value: 1.75rem;
+	inherits: true;
+}
+
+@property --db-base-icon-font-size-regular-tablet-body-md {
+	syntax: "<*>";
+	initial-value: 1.5rem;
+	inherits: true;
+}
+
+@property --db-base-icon-font-size-regular-tablet-body-sm {
+	syntax: "<*>";
+	initial-value: 1.25rem;
+	inherits: true;
+}
+
+@property --db-base-icon-font-size-regular-tablet-body-xl {
+	syntax: "<*>";
+	initial-value: 2rem;
+	inherits: true;
+}
+
+@property --db-base-icon-font-size-regular-tablet-body-xs {
+	syntax: "<*>";
+	initial-value: 1rem;
+	inherits: true;
+}
+
+@property --db-base-icon-font-size-regular-tablet-body-2xl {
+	syntax: "<*>";
+	initial-value: 2.5rem;
+	inherits: true;
+}
+
+@property --db-base-icon-font-size-regular-tablet-body-3xl {
+	syntax: "<*>";
+	initial-value: 3rem;
+	inherits: true;
+}
+
+@property --db-base-icon-font-size-regular-tablet-body-2xs {
+	syntax: "<*>";
+	initial-value: 0.875rem;
+	inherits: true;
+}
+
+@property --db-base-icon-font-size-regular-tablet-body-3xs {
+	syntax: "<*>";
+	initial-value: 0.875rem;
+	inherits: true;
+}
+
+@property --db-base-icon-font-size-regular-tablet-headline-lg {
+	syntax: "<*>";
+	initial-value: 2.5rem;
+	inherits: true;
+}
+
+@property --db-base-icon-font-size-regular-tablet-headline-md {
+	syntax: "<*>";
+	initial-value: 2rem;
+	inherits: true;
+}
+
+@property --db-base-icon-font-size-regular-tablet-headline-sm {
+	syntax: "<*>";
+	initial-value: 1.75rem;
+	inherits: true;
+}
+
+@property --db-base-icon-font-size-regular-tablet-headline-xl {
+	syntax: "<*>";
+	initial-value: 3rem;
+	inherits: true;
+}
+
+@property --db-base-icon-font-size-regular-tablet-headline-xs {
+	syntax: "<*>";
+	initial-value: 1.5rem;
+	inherits: true;
+}
+
+@property --db-base-icon-font-size-regular-tablet-headline-2xl {
+	syntax: "<*>";
+	initial-value: 4rem;
+	inherits: true;
+}
+
+@property --db-base-icon-font-size-regular-tablet-headline-2xs {
+	syntax: "<*>";
+	initial-value: 1.25rem;
+	inherits: true;
+}
+
+@property --db-base-icon-font-size-regular-tablet-headline-3xl {
+	syntax: "<*>";
+	initial-value: 4rem;
+	inherits: true;
+}
+
+@property --db-base-icon-font-size-regular-tablet-headline-3xs {
+	syntax: "<*>";
+	initial-value: 1.25rem;
+	inherits: true;
+}
+
+@property --db-base-icon-font-size-expressive-desktop-body-lg {
+	syntax: "<*>";
+	initial-value: 2rem;
+	inherits: true;
+}
+
+@property --db-base-icon-font-size-expressive-desktop-body-md {
+	syntax: "<*>";
+	initial-value: 1.75rem;
+	inherits: true;
+}
+
+@property --db-base-icon-font-size-expressive-desktop-body-sm {
+	syntax: "<*>";
+	initial-value: 1.5rem;
+	inherits: true;
+}
+
+@property --db-base-icon-font-size-expressive-desktop-body-xl {
+	syntax: "<*>";
+	initial-value: 2.5rem;
+	inherits: true;
+}
+
+@property --db-base-icon-font-size-expressive-desktop-body-xs {
+	syntax: "<*>";
+	initial-value: 1.25rem;
+	inherits: true;
+}
+
+@property --db-base-icon-font-size-expressive-desktop-body-2xl {
+	syntax: "<*>";
+	initial-value: 3rem;
+	inherits: true;
+}
+
+@property --db-base-icon-font-size-expressive-desktop-body-3xl {
+	syntax: "<*>";
+	initial-value: 4rem;
+	inherits: true;
+}
+
+@property --db-base-icon-font-size-expressive-desktop-body-2xs {
+	syntax: "<*>";
+	initial-value: 1rem;
+	inherits: true;
+}
+
+@property --db-base-icon-font-size-expressive-desktop-body-3xs {
+	syntax: "<*>";
+	initial-value: 0.875rem;
+	inherits: true;
+}
+
+@property --db-base-icon-font-size-expressive-desktop-headline-lg {
+	syntax: "<*>";
+	initial-value: 4rem;
+	inherits: true;
+}
+
+@property --db-base-icon-font-size-expressive-desktop-headline-md {
+	syntax: "<*>";
+	initial-value: 3rem;
+	inherits: true;
+}
+
+@property --db-base-icon-font-size-expressive-desktop-headline-sm {
+	syntax: "<*>";
+	initial-value: 2.5rem;
+	inherits: true;
+}
+
+@property --db-base-icon-font-size-expressive-desktop-headline-xl {
+	syntax: "<*>";
+	initial-value: 5rem;
+	inherits: true;
+}
+
+@property --db-base-icon-font-size-expressive-desktop-headline-xs {
+	syntax: "<*>";
+	initial-value: 2rem;
+	inherits: true;
+}
+
+@property --db-base-icon-font-size-expressive-desktop-headline-2xl {
+	syntax: "<*>";
+	initial-value: 6rem;
+	inherits: true;
+}
+
+@property --db-base-icon-font-size-expressive-desktop-headline-2xs {
+	syntax: "<*>";
+	initial-value: 1.75rem;
+	inherits: true;
+}
+
+@property --db-base-icon-font-size-expressive-desktop-headline-3xl {
+	syntax: "<*>";
+	initial-value: 7.5rem;
+	inherits: true;
+}
+
+@property --db-base-icon-font-size-expressive-desktop-headline-3xs {
+	syntax: "<*>";
+	initial-value: 1.5rem;
+	inherits: true;
+}
+
+@property --db-base-icon-font-size-expressive-tablet-body-lg {
+	syntax: "<*>";
+	initial-value: 2rem;
+	inherits: true;
+}
+
+@property --db-base-icon-font-size-expressive-tablet-body-md {
+	syntax: "<*>";
+	initial-value: 1.75rem;
+	inherits: true;
+}
+
+@property --db-base-icon-font-size-expressive-tablet-body-sm {
+	syntax: "<*>";
+	initial-value: 1.5rem;
+	inherits: true;
+}
+
+@property --db-base-icon-font-size-expressive-tablet-body-xl {
+	syntax: "<*>";
+	initial-value: 2.5rem;
+	inherits: true;
+}
+
+@property --db-base-icon-font-size-expressive-tablet-body-xs {
+	syntax: "<*>";
+	initial-value: 1.25rem;
+	inherits: true;
+}
+
+@property --db-base-icon-font-size-expressive-tablet-body-2xl {
+	syntax: "<*>";
+	initial-value: 3rem;
+	inherits: true;
+}
+
+@property --db-base-icon-font-size-expressive-tablet-body-3xl {
+	syntax: "<*>";
+	initial-value: 4rem;
+	inherits: true;
+}
+
+@property --db-base-icon-font-size-expressive-tablet-body-2xs {
+	syntax: "<*>";
+	initial-value: 1rem;
+	inherits: true;
+}
+
+@property --db-base-icon-font-size-expressive-tablet-body-3xs {
+	syntax: "<*>";
+	initial-value: 0.875rem;
+	inherits: true;
+}
+
+@property --db-base-icon-font-size-expressive-tablet-headline-lg {
+	syntax: "<*>";
+	initial-value: 3rem;
+	inherits: true;
+}
+
+@property --db-base-icon-font-size-expressive-tablet-headline-md {
+	syntax: "<*>";
+	initial-value: 2.5rem;
+	inherits: true;
+}
+
+@property --db-base-icon-font-size-expressive-tablet-headline-sm {
+	syntax: "<*>";
+	initial-value: 2rem;
+	inherits: true;
+}
+
+@property --db-base-icon-font-size-expressive-tablet-headline-xl {
+	syntax: "<*>";
+	initial-value: 4rem;
+	inherits: true;
+}
+
+@property --db-base-icon-font-size-expressive-tablet-headline-xs {
+	syntax: "<*>";
+	initial-value: 1.75rem;
+	inherits: true;
+}
+
+@property --db-base-icon-font-size-expressive-tablet-headline-2xl {
+	syntax: "<*>";
+	initial-value: 5rem;
+	inherits: true;
+}
+
+@property --db-base-icon-font-size-expressive-tablet-headline-2xs {
+	syntax: "<*>";
+	initial-value: 1.5rem;
+	inherits: true;
+}
+
+@property --db-base-icon-font-size-expressive-tablet-headline-3xl {
+	syntax: "<*>";
+	initial-value: 6rem;
+	inherits: true;
+}
+
+@property --db-base-icon-font-size-expressive-tablet-headline-3xs {
+	syntax: "<*>";
+	initial-value: 1.5rem;
+	inherits: true;
+}
+
+@property --db-base-icon-font-size-expressive-mobile-body-lg {
+	syntax: "<*>";
+	initial-value: 2rem;
+	inherits: true;
+}
+
+@property --db-base-icon-font-size-expressive-mobile-body-md {
+	syntax: "<*>";
+	initial-value: 1.75rem;
+	inherits: true;
+}
+
+@property --db-base-icon-font-size-expressive-mobile-body-sm {
+	syntax: "<*>";
+	initial-value: 1.5rem;
+	inherits: true;
+}
+
+@property --db-base-icon-font-size-expressive-mobile-body-xl {
+	syntax: "<*>";
+	initial-value: 2rem;
+	inherits: true;
+}
+
+@property --db-base-icon-font-size-expressive-mobile-body-xs {
+	syntax: "<*>";
+	initial-value: 1.25rem;
+	inherits: true;
+}
+
+@property --db-base-icon-font-size-expressive-mobile-body-2xl {
+	syntax: "<*>";
+	initial-value: 2rem;
+	inherits: true;
+}
+
+@property --db-base-icon-font-size-expressive-mobile-body-3xl {
+	syntax: "<*>";
+	initial-value: 2rem;
+	inherits: true;
+}
+
+@property --db-base-icon-font-size-expressive-mobile-body-2xs {
+	syntax: "<*>";
+	initial-value: 1rem;
+	inherits: true;
+}
+
+@property --db-base-icon-font-size-expressive-mobile-body-3xs {
+	syntax: "<*>";
+	initial-value: 0.875rem;
+	inherits: true;
+}
+
+@property --db-base-icon-font-size-expressive-mobile-headline-lg {
+	syntax: "<*>";
+	initial-value: 2.5rem;
+	inherits: true;
+}
+
+@property --db-base-icon-font-size-expressive-mobile-headline-md {
+	syntax: "<*>";
+	initial-value: 2rem;
+	inherits: true;
+}
+
+@property --db-base-icon-font-size-expressive-mobile-headline-sm {
+	syntax: "<*>";
+	initial-value: 1.75rem;
+	inherits: true;
+}
+
+@property --db-base-icon-font-size-expressive-mobile-headline-xl {
+	syntax: "<*>";
+	initial-value: 3rem;
+	inherits: true;
+}
+
+@property --db-base-icon-font-size-expressive-mobile-headline-xs {
+	syntax: "<*>";
+	initial-value: 1.5rem;
+	inherits: true;
+}
+
+@property --db-base-icon-font-size-expressive-mobile-headline-2xl {
+	syntax: "<*>";
+	initial-value: 3rem;
+	inherits: true;
+}
+
+@property --db-base-icon-font-size-expressive-mobile-headline-2xs {
+	syntax: "<*>";
+	initial-value: 1.25rem;
+	inherits: true;
+}
+
+@property --db-base-icon-font-size-expressive-mobile-headline-3xl {
+	syntax: "<*>";
+	initial-value: 3rem;
+	inherits: true;
+}
+
+@property --db-base-icon-font-size-expressive-mobile-headline-3xs {
+	syntax: "<*>";
+	initial-value: 1.25rem;
+	inherits: true;
+}
+
+@property --db-base-icon-font-size-functional-desktop-body-lg {
+	syntax: "<*>";
+	initial-value: 1.5rem;
+	inherits: true;
+}
+
+@property --db-base-icon-font-size-functional-desktop-body-md {
+	syntax: "<*>";
+	initial-value: 1.25rem;
+	inherits: true;
+}
+
+@property --db-base-icon-font-size-functional-desktop-body-sm {
+	syntax: "<*>";
+	initial-value: 1rem;
+	inherits: true;
+}
+
+@property --db-base-icon-font-size-functional-desktop-body-xl {
+	syntax: "<*>";
+	initial-value: 1.75rem;
+	inherits: true;
+}
+
+@property --db-base-icon-font-size-functional-desktop-body-xs {
+	syntax: "<*>";
+	initial-value: 0.875rem;
+	inherits: true;
+}
+
+@property --db-base-icon-font-size-functional-desktop-body-2xl {
+	syntax: "<*>";
+	initial-value: 2rem;
+	inherits: true;
+}
+
+@property --db-base-icon-font-size-functional-desktop-body-3xl {
+	syntax: "<*>";
+	initial-value: 2.5rem;
+	inherits: true;
+}
+
+@property --db-base-icon-font-size-functional-desktop-body-2xs {
+	syntax: "<*>";
+	initial-value: 0.875rem;
+	inherits: true;
+}
+
+@property --db-base-icon-font-size-functional-desktop-body-3xs {
+	syntax: "<*>";
+	initial-value: 0.875rem;
+	inherits: true;
+}
+
+@property --db-base-icon-font-size-functional-desktop-headline-lg {
+	syntax: "<*>";
+	initial-value: 2rem;
+	inherits: true;
+}
+
+@property --db-base-icon-font-size-functional-desktop-headline-md {
+	syntax: "<*>";
+	initial-value: 1.75rem;
+	inherits: true;
+}
+
+@property --db-base-icon-font-size-functional-desktop-headline-sm {
+	syntax: "<*>";
+	initial-value: 1.5rem;
+	inherits: true;
+}
+
+@property --db-base-icon-font-size-functional-desktop-headline-xl {
+	syntax: "<*>";
+	initial-value: 2.5rem;
+	inherits: true;
+}
+
+@property --db-base-icon-font-size-functional-desktop-headline-xs {
+	syntax: "<*>";
+	initial-value: 1.25rem;
+	inherits: true;
+}
+
+@property --db-base-icon-font-size-functional-desktop-headline-2xl {
+	syntax: "<*>";
+	initial-value: 3rem;
+	inherits: true;
+}
+
+@property --db-base-icon-font-size-functional-desktop-headline-2xs {
+	syntax: "<*>";
+	initial-value: 1rem;
+	inherits: true;
+}
+
+@property --db-base-icon-font-size-functional-desktop-headline-3xl {
+	syntax: "<*>";
+	initial-value: 3rem;
+	inherits: true;
+}
+
+@property --db-base-icon-font-size-functional-desktop-headline-3xs {
+	syntax: "<*>";
+	initial-value: 1rem;
+	inherits: true;
+}
+
+@property --db-base-icon-font-size-functional-tablet-body-lg {
+	syntax: "<*>";
+	initial-value: 1.5rem;
+	inherits: true;
+}
+
+@property --db-base-icon-font-size-functional-tablet-body-md {
+	syntax: "<*>";
+	initial-value: 1.25rem;
+	inherits: true;
+}
+
+@property --db-base-icon-font-size-functional-tablet-body-sm {
+	syntax: "<*>";
+	initial-value: 1rem;
+	inherits: true;
+}
+
+@property --db-base-icon-font-size-functional-tablet-body-xl {
+	syntax: "<*>";
+	initial-value: 1.75rem;
+	inherits: true;
+}
+
+@property --db-base-icon-font-size-functional-tablet-body-xs {
+	syntax: "<*>";
+	initial-value: 0.875rem;
+	inherits: true;
+}
+
+@property --db-base-icon-font-size-functional-tablet-body-2xl {
+	syntax: "<*>";
+	initial-value: 2rem;
+	inherits: true;
+}
+
+@property --db-base-icon-font-size-functional-tablet-body-3xl {
+	syntax: "<*>";
+	initial-value: 2.5rem;
+	inherits: true;
+}
+
+@property --db-base-icon-font-size-functional-tablet-body-2xs {
+	syntax: "<*>";
+	initial-value: 0.875rem;
+	inherits: true;
+}
+
+@property --db-base-icon-font-size-functional-tablet-body-3xs {
+	syntax: "<*>";
+	initial-value: 0.875rem;
+	inherits: true;
+}
+
+@property --db-base-icon-font-size-functional-tablet-headline-lg {
+	syntax: "<*>";
+	initial-value: 2rem;
+	inherits: true;
+}
+
+@property --db-base-icon-font-size-functional-tablet-headline-md {
+	syntax: "<*>";
+	initial-value: 1.75rem;
+	inherits: true;
+}
+
+@property --db-base-icon-font-size-functional-tablet-headline-sm {
+	syntax: "<*>";
+	initial-value: 1.5rem;
+	inherits: true;
+}
+
+@property --db-base-icon-font-size-functional-tablet-headline-xl {
+	syntax: "<*>";
+	initial-value: 2.5rem;
+	inherits: true;
+}
+
+@property --db-base-icon-font-size-functional-tablet-headline-xs {
+	syntax: "<*>";
+	initial-value: 1.25rem;
+	inherits: true;
+}
+
+@property --db-base-icon-font-size-functional-tablet-headline-2xl {
+	syntax: "<*>";
+	initial-value: 3rem;
+	inherits: true;
+}
+
+@property --db-base-icon-font-size-functional-tablet-headline-2xs {
+	syntax: "<*>";
+	initial-value: 1rem;
+	inherits: true;
+}
+
+@property --db-base-icon-font-size-functional-tablet-headline-3xl {
+	syntax: "<*>";
+	initial-value: 3rem;
+	inherits: true;
+}
+
+@property --db-base-icon-font-size-functional-tablet-headline-3xs {
+	syntax: "<*>";
+	initial-value: 1rem;
+	inherits: true;
+}
+
+@property --db-base-icon-font-size-functional-mobile-body-lg {
+	syntax: "<*>";
+	initial-value: 1.5rem;
+	inherits: true;
+}
+
+@property --db-base-icon-font-size-functional-mobile-body-md {
+	syntax: "<*>";
+	initial-value: 1.25rem;
+	inherits: true;
+}
+
+@property --db-base-icon-font-size-functional-mobile-body-sm {
+	syntax: "<*>";
+	initial-value: 1rem;
+	inherits: true;
+}
+
+@property --db-base-icon-font-size-functional-mobile-body-xl {
+	syntax: "<*>";
+	initial-value: 1.5rem;
+	inherits: true;
+}
+
+@property --db-base-icon-font-size-functional-mobile-body-xs {
+	syntax: "<*>";
+	initial-value: 0.875rem;
+	inherits: true;
+}
+
+@property --db-base-icon-font-size-functional-mobile-body-2xl {
+	syntax: "<*>";
+	initial-value: 1.5rem;
+	inherits: true;
+}
+
+@property --db-base-icon-font-size-functional-mobile-body-3xl {
+	syntax: "<*>";
+	initial-value: 1.5rem;
+	inherits: true;
+}
+
+@property --db-base-icon-font-size-functional-mobile-body-2xs {
+	syntax: "<*>";
+	initial-value: 0.875rem;
+	inherits: true;
+}
+
+@property --db-base-icon-font-size-functional-mobile-body-3xs {
+	syntax: "<*>";
+	initial-value: 0.875rem;
+	inherits: true;
+}
+
+@property --db-base-icon-font-size-functional-mobile-headline-lg {
+	syntax: "<*>";
+	initial-value: 1.75rem;
+	inherits: true;
+}
+
+@property --db-base-icon-font-size-functional-mobile-headline-md {
+	syntax: "<*>";
+	initial-value: 1.5rem;
+	inherits: true;
+}
+
+@property --db-base-icon-font-size-functional-mobile-headline-sm {
+	syntax: "<*>";
+	initial-value: 1.25rem;
+	inherits: true;
+}
+
+@property --db-base-icon-font-size-functional-mobile-headline-xl {
+	syntax: "<*>";
+	initial-value: 2rem;
+	inherits: true;
+}
+
+@property --db-base-icon-font-size-functional-mobile-headline-xs {
+	syntax: "<*>";
+	initial-value: 1rem;
+	inherits: true;
+}
+
+@property --db-base-icon-font-size-functional-mobile-headline-2xl {
+	syntax: "<*>";
+	initial-value: 2rem;
+	inherits: true;
+}
+
+@property --db-base-icon-font-size-functional-mobile-headline-2xs {
+	syntax: "<*>";
+	initial-value: 1rem;
+	inherits: true;
+}
+
+@property --db-base-icon-font-size-functional-mobile-headline-3xl {
+	syntax: "<*>";
+	initial-value: 2rem;
+	inherits: true;
+}
+
+@property --db-base-icon-font-size-functional-mobile-headline-3xs {
+	syntax: "<*>";
+	initial-value: 1rem;
+	inherits: true;
+}
+
+@property --db-border-height-3xs {
+	syntax: "<length>";
+	initial-value: 0.0625rem;
+	inherits: true;
+}
+
+@property --db-border-height-2xs {
+	syntax: "<length>";
+	initial-value: 0.125rem;
+	inherits: true;
+}
+
+@property --db-border-height-xs {
+	syntax: "<length>";
+	initial-value: 0.25rem;
+	inherits: true;
+}
+
+@property --db-border-height-sm {
+	syntax: "<length>";
+	initial-value: 0.375rem;
+	inherits: true;
+}
+
+@property --db-border-height-md {
+	syntax: "<length>";
+	initial-value: 0.5rem;
+	inherits: true;
+}
+
+@property --db-border-height-lg {
+	syntax: "<length>";
+	initial-value: 0.625rem;
+	inherits: true;
+}
+
+@property --db-border-height-xl {
+	syntax: "<length>";
+	initial-value: 0.75rem;
+	inherits: true;
+}
+
+@property --db-border-height-2xl {
+	syntax: "<length>";
+	initial-value: 0.875rem;
+	inherits: true;
+}
+
+@property --db-border-height-3xl {
+	syntax: "<length>";
+	initial-value: 1rem;
+	inherits: true;
+}
+
+@property --db-border-radius-3xs {
+	syntax: "<length>";
+	initial-value: 0.0625rem;
+	inherits: true;
+}
+
+@property --db-border-radius-2xs {
+	syntax: "<length>";
+	initial-value: 0.125rem;
+	inherits: true;
+}
+
+@property --db-border-radius-xs {
+	syntax: "<length>";
+	initial-value: 0.25rem;
+	inherits: true;
+}
+
+@property --db-border-radius-sm {
+	syntax: "<length>";
+	initial-value: 0.5rem;
+	inherits: true;
+}
+
+@property --db-border-radius-md {
+	syntax: "<length>";
+	initial-value: 0.75rem;
+	inherits: true;
+}
+
+@property --db-border-radius-lg {
+	syntax: "<length>";
+	initial-value: 1rem;
+	inherits: true;
+}
+
+@property --db-border-radius-xl {
+	syntax: "<length>";
+	initial-value: 1.5rem;
+	inherits: true;
+}
+
+@property --db-border-radius-2xl {
+	syntax: "<length>";
+	initial-value: 1.75rem;
+	inherits: true;
+}
+
+@property --db-border-radius-3xl {
+	syntax: "<length>";
+	initial-value: 2rem;
+	inherits: true;
+}
+
+@property --db-border-radius-full {
+	syntax: "<length>";
+	initial-value: 500rem;
+	inherits: true;
+}
+
+@property --db-elevation-sm {
+	syntax: "<*>";
+	initial-value:
+		0 0 1 -1 #0003,
+		0 0 4 1 #0000001f,
+		0 0 2 #00000024;
+	inherits: true;
+}
+
+@property --db-elevation-md {
+	syntax: "<*>";
+	initial-value:
+		0 0 2 -1 #0003,
+		0 0 8 1 #0000001f,
+		0 0 4 #00000024;
+	inherits: true;
+}
+
+@property --db-elevation-lg {
+	syntax: "<*>";
+	initial-value:
+		0 0 4 -3 #0003,
+		0 0 16 3 #0000001f,
+		0 0 8 1 #00000024;
+	inherits: true;
+}
+
+@property --db-font-family-sans {
+	syntax: "<*>";
+	initial-value: "DB Screen Sans", helvetica, arial, sans-serif;
+	inherits: true;
+}
+
+@property --db-font-family-head {
+	syntax: "<*>";
+	initial-value: "DB Screen Head", helvetica, arial, sans-serif;
+	inherits: true;
+}
+
+@property --db-sizing-fixed-mobile-header {
+	syntax: "<length>";
+	initial-value: 3.5rem;
+	inherits: true;
+}
+
+@property --db-sizing-regular-3xl {
+	syntax: "<length>";
+	initial-value: 15rem;
+	inherits: true;
+}
+
+@property --db-sizing-regular-2xl {
+	syntax: "<length>";
+	initial-value: 10rem;
+	inherits: true;
+}
+
+@property --db-sizing-regular-xl {
+	syntax: "<length>";
+	initial-value: 6rem;
+	inherits: true;
+}
+
+@property --db-sizing-regular-lg {
+	syntax: "<length>";
+	initial-value: 4rem;
+	inherits: true;
+}
+
+@property --db-sizing-regular-md {
+	syntax: "<length>";
+	initial-value: 2.5rem;
+	inherits: true;
+}
+
+@property --db-sizing-regular-sm {
+	syntax: "<length>";
+	initial-value: 1.5rem;
+	inherits: true;
+}
+
+@property --db-sizing-regular-xs {
+	syntax: "<length>";
+	initial-value: 1rem;
+	inherits: true;
+}
+
+@property --db-sizing-regular-2xs {
+	syntax: "<length>";
+	initial-value: 0.75rem;
+	inherits: true;
+}
+
+@property --db-sizing-regular-3xs {
+	syntax: "<length>";
+	initial-value: 0.5rem;
+	inherits: true;
+}
+
+@property --db-sizing-functional-3xs {
+	syntax: "<length>";
+	initial-value: 0.375rem;
+	inherits: true;
+}
+
+@property --db-sizing-functional-2xs {
+	syntax: "<length>";
+	initial-value: 0.625rem;
+	inherits: true;
+}
+
+@property --db-sizing-functional-xs {
+	syntax: "<length>";
+	initial-value: 0.875rem;
+	inherits: true;
+}
+
+@property --db-sizing-functional-sm {
+	syntax: "<length>";
+	initial-value: 1.25rem;
+	inherits: true;
+}
+
+@property --db-sizing-functional-md {
+	syntax: "<length>";
+	initial-value: 2rem;
+	inherits: true;
+}
+
+@property --db-sizing-functional-lg {
+	syntax: "<length>";
+	initial-value: 3rem;
+	inherits: true;
+}
+
+@property --db-sizing-functional-xl {
+	syntax: "<length>";
+	initial-value: 5rem;
+	inherits: true;
+}
+
+@property --db-sizing-functional-2xl {
+	syntax: "<length>";
+	initial-value: 7.5rem;
+	inherits: true;
+}
+
+@property --db-sizing-functional-3xl {
+	syntax: "<length>";
+	initial-value: 10rem;
+	inherits: true;
+}
+
+@property --db-sizing-expressive-3xs {
+	syntax: "<length>";
+	initial-value: 0.625rem;
+	inherits: true;
+}
+
+@property --db-sizing-expressive-2xs {
+	syntax: "<length>";
+	initial-value: 0.875rem;
+	inherits: true;
+}
+
+@property --db-sizing-expressive-xs {
+	syntax: "<length>";
+	initial-value: 1.25rem;
+	inherits: true;
+}
+
+@property --db-sizing-expressive-sm {
+	syntax: "<length>";
+	initial-value: 1.75rem;
+	inherits: true;
+}
+
+@property --db-sizing-expressive-md {
+	syntax: "<length>";
+	initial-value: 3rem;
+	inherits: true;
+}
+
+@property --db-sizing-expressive-lg {
+	syntax: "<length>";
+	initial-value: 5rem;
+	inherits: true;
+}
+
+@property --db-sizing-expressive-xl {
+	syntax: "<length>";
+	initial-value: 7.5rem;
+	inherits: true;
+}
+
+@property --db-sizing-expressive-2xl {
+	syntax: "<length>";
+	initial-value: 15rem;
+	inherits: true;
+}
+
+@property --db-sizing-expressive-3xl {
+	syntax: "<length>";
+	initial-value: 30rem;
+	inherits: true;
+}
+
+@property --db-spacing-responsive-regular-desktop-3xl {
+	syntax: "<length>";
+	initial-value: 40rem;
+	inherits: true;
+}
+
+@property --db-spacing-responsive-regular-desktop-2xl {
+	syntax: "<length>";
+	initial-value: 30rem;
+	inherits: true;
+}
+
+@property --db-spacing-responsive-regular-desktop-xl {
+	syntax: "<length>";
+	initial-value: 15rem;
+	inherits: true;
+}
+
+@property --db-spacing-responsive-regular-desktop-lg {
+	syntax: "<length>";
+	initial-value: 7.5rem;
+	inherits: true;
+}
+
+@property --db-spacing-responsive-regular-desktop-md {
+	syntax: "<length>";
+	initial-value: 5rem;
+	inherits: true;
+}
+
+@property --db-spacing-responsive-regular-desktop-sm {
+	syntax: "<length>";
+	initial-value: 3rem;
+	inherits: true;
+}
+
+@property --db-spacing-responsive-regular-desktop-xs {
+	syntax: "<length>";
+	initial-value: 2rem;
+	inherits: true;
+}
+
+@property --db-spacing-responsive-regular-desktop-2xs {
+	syntax: "<length>";
+	initial-value: 1.5rem;
+	inherits: true;
+}
+
+@property --db-spacing-responsive-regular-desktop-3xs {
+	syntax: "<length>";
+	initial-value: 1.25rem;
+	inherits: true;
+}
+
+@property --db-spacing-responsive-regular-tablet-3xs {
+	syntax: "<length>";
+	initial-value: 1rem;
+	inherits: true;
+}
+
+@property --db-spacing-responsive-regular-tablet-2xs {
+	syntax: "<length>";
+	initial-value: 1.25rem;
+	inherits: true;
+}
+
+@property --db-spacing-responsive-regular-tablet-xs {
+	syntax: "<length>";
+	initial-value: 1.75rem;
+	inherits: true;
+}
+
+@property --db-spacing-responsive-regular-tablet-sm {
+	syntax: "<length>";
+	initial-value: 2.5rem;
+	inherits: true;
+}
+
+@property --db-spacing-responsive-regular-tablet-md {
+	syntax: "<length>";
+	initial-value: 4rem;
+	inherits: true;
+}
+
+@property --db-spacing-responsive-regular-tablet-lg {
+	syntax: "<length>";
+	initial-value: 6rem;
+	inherits: true;
+}
+
+@property --db-spacing-responsive-regular-tablet-xl {
+	syntax: "<length>";
+	initial-value: 10rem;
+	inherits: true;
+}
+
+@property --db-spacing-responsive-regular-tablet-2xl {
+	syntax: "<length>";
+	initial-value: 15rem;
+	inherits: true;
+}
+
+@property --db-spacing-responsive-regular-tablet-3xl {
+	syntax: "<length>";
+	initial-value: 30rem;
+	inherits: true;
+}
+
+@property --db-spacing-responsive-regular-mobile-3xs {
+	syntax: "<length>";
+	initial-value: 1rem;
+	inherits: true;
+}
+
+@property --db-spacing-responsive-regular-mobile-2xs {
+	syntax: "<length>";
+	initial-value: 1.25rem;
+	inherits: true;
+}
+
+@property --db-spacing-responsive-regular-mobile-xs {
+	syntax: "<length>";
+	initial-value: 1.5rem;
+	inherits: true;
+}
+
+@property --db-spacing-responsive-regular-mobile-sm {
+	syntax: "<length>";
+	initial-value: 2rem;
+	inherits: true;
+}
+
+@property --db-spacing-responsive-regular-mobile-md {
+	syntax: "<length>";
+	initial-value: 3rem;
+	inherits: true;
+}
+
+@property --db-spacing-responsive-regular-mobile-lg {
+	syntax: "<length>";
+	initial-value: 5rem;
+	inherits: true;
+}
+
+@property --db-spacing-responsive-regular-mobile-xl {
+	syntax: "<length>";
+	initial-value: 7.5rem;
+	inherits: true;
+}
+
+@property --db-spacing-responsive-regular-mobile-2xl {
+	syntax: "<length>";
+	initial-value: 10rem;
+	inherits: true;
+}
+
+@property --db-spacing-responsive-regular-mobile-3xl {
+	syntax: "<length>";
+	initial-value: 15rem;
+	inherits: true;
+}
+
+@property --db-spacing-responsive-functional-desktop-3xs {
+	syntax: "<length>";
+	initial-value: 1rem;
+	inherits: true;
+}
+
+@property --db-spacing-responsive-functional-desktop-2xs {
+	syntax: "<length>";
+	initial-value: 1.25rem;
+	inherits: true;
+}
+
+@property --db-spacing-responsive-functional-desktop-xs {
+	syntax: "<length>";
+	initial-value: 1.75rem;
+	inherits: true;
+}
+
+@property --db-spacing-responsive-functional-desktop-sm {
+	syntax: "<length>";
+	initial-value: 2.5rem;
+	inherits: true;
+}
+
+@property --db-spacing-responsive-functional-desktop-md {
+	syntax: "<length>";
+	initial-value: 4rem;
+	inherits: true;
+}
+
+@property --db-spacing-responsive-functional-desktop-lg {
+	syntax: "<length>";
+	initial-value: 6rem;
+	inherits: true;
+}
+
+@property --db-spacing-responsive-functional-desktop-xl {
+	syntax: "<length>";
+	initial-value: 10rem;
+	inherits: true;
+}
+
+@property --db-spacing-responsive-functional-desktop-2xl {
+	syntax: "<length>";
+	initial-value: 15rem;
+	inherits: true;
+}
+
+@property --db-spacing-responsive-functional-desktop-3xl {
+	syntax: "<length>";
+	initial-value: 30rem;
+	inherits: true;
+}
+
+@property --db-spacing-responsive-functional-tablet-3xs {
+	syntax: "<length>";
+	initial-value: 1rem;
+	inherits: true;
+}
+
+@property --db-spacing-responsive-functional-tablet-2xs {
+	syntax: "<length>";
+	initial-value: 1.25rem;
+	inherits: true;
+}
+
+@property --db-spacing-responsive-functional-tablet-xs {
+	syntax: "<length>";
+	initial-value: 1.5rem;
+	inherits: true;
+}
+
+@property --db-spacing-responsive-functional-tablet-sm {
+	syntax: "<length>";
+	initial-value: 2rem;
+	inherits: true;
+}
+
+@property --db-spacing-responsive-functional-tablet-md {
+	syntax: "<length>";
+	initial-value: 3rem;
+	inherits: true;
+}
+
+@property --db-spacing-responsive-functional-tablet-lg {
+	syntax: "<length>";
+	initial-value: 5rem;
+	inherits: true;
+}
+
+@property --db-spacing-responsive-functional-tablet-xl {
+	syntax: "<length>";
+	initial-value: 7.5rem;
+	inherits: true;
+}
+
+@property --db-spacing-responsive-functional-tablet-2xl {
+	syntax: "<length>";
+	initial-value: 10rem;
+	inherits: true;
+}
+
+@property --db-spacing-responsive-functional-tablet-3xl {
+	syntax: "<length>";
+	initial-value: 15rem;
+	inherits: true;
+}
+
+@property --db-spacing-responsive-functional-mobile-3xs {
+	syntax: "<length>";
+	initial-value: 1rem;
+	inherits: true;
+}
+
+@property --db-spacing-responsive-functional-mobile-2xs {
+	syntax: "<length>";
+	initial-value: 1.25rem;
+	inherits: true;
+}
+
+@property --db-spacing-responsive-functional-mobile-xs {
+	syntax: "<length>";
+	initial-value: 1.25rem;
+	inherits: true;
+}
+
+@property --db-spacing-responsive-functional-mobile-sm {
+	syntax: "<length>";
+	initial-value: 1.75rem;
+	inherits: true;
+}
+
+@property --db-spacing-responsive-functional-mobile-md {
+	syntax: "<length>";
+	initial-value: 2.5rem;
+	inherits: true;
+}
+
+@property --db-spacing-responsive-functional-mobile-lg {
+	syntax: "<length>";
+	initial-value: 4rem;
+	inherits: true;
+}
+
+@property --db-spacing-responsive-functional-mobile-xl {
+	syntax: "<length>";
+	initial-value: 6rem;
+	inherits: true;
+}
+
+@property --db-spacing-responsive-functional-mobile-2xl {
+	syntax: "<length>";
+	initial-value: 7.5rem;
+	inherits: true;
+}
+
+@property --db-spacing-responsive-functional-mobile-3xl {
+	syntax: "<length>";
+	initial-value: 10rem;
+	inherits: true;
+}
+
+@property --db-spacing-responsive-expressive-desktop-3xs {
+	syntax: "<length>";
+	initial-value: 1.75rem;
+	inherits: true;
+}
+
+@property --db-spacing-responsive-expressive-desktop-2xs {
+	syntax: "<length>";
+	initial-value: 2rem;
+	inherits: true;
+}
+
+@property --db-spacing-responsive-expressive-desktop-xs {
+	syntax: "<length>";
+	initial-value: 3rem;
+	inherits: true;
+}
+
+@property --db-spacing-responsive-expressive-desktop-sm {
+	syntax: "<length>";
+	initial-value: 5rem;
+	inherits: true;
+}
+
+@property --db-spacing-responsive-expressive-desktop-md {
+	syntax: "<length>";
+	initial-value: 7.5rem;
+	inherits: true;
+}
+
+@property --db-spacing-responsive-expressive-desktop-lg {
+	syntax: "<length>";
+	initial-value: 15rem;
+	inherits: true;
+}
+
+@property --db-spacing-responsive-expressive-desktop-xl {
+	syntax: "<length>";
+	initial-value: 30rem;
+	inherits: true;
+}
+
+@property --db-spacing-responsive-expressive-desktop-2xl {
+	syntax: "<length>";
+	initial-value: 40rem;
+	inherits: true;
+}
+
+@property --db-spacing-responsive-expressive-desktop-3xl {
+	syntax: "<length>";
+	initial-value: 50rem;
+	inherits: true;
+}
+
+@property --db-spacing-responsive-expressive-tablet-3xs {
+	syntax: "<length>";
+	initial-value: 1.5rem;
+	inherits: true;
+}
+
+@property --db-spacing-responsive-expressive-tablet-2xs {
+	syntax: "<length>";
+	initial-value: 1.75rem;
+	inherits: true;
+}
+
+@property --db-spacing-responsive-expressive-tablet-xs {
+	syntax: "<length>";
+	initial-value: 2.5rem;
+	inherits: true;
+}
+
+@property --db-spacing-responsive-expressive-tablet-sm {
+	syntax: "<length>";
+	initial-value: 4rem;
+	inherits: true;
+}
+
+@property --db-spacing-responsive-expressive-tablet-md {
+	syntax: "<length>";
+	initial-value: 6rem;
+	inherits: true;
+}
+
+@property --db-spacing-responsive-expressive-tablet-lg {
+	syntax: "<length>";
+	initial-value: 10rem;
+	inherits: true;
+}
+
+@property --db-spacing-responsive-expressive-tablet-xl {
+	syntax: "<length>";
+	initial-value: 15rem;
+	inherits: true;
+}
+
+@property --db-spacing-responsive-expressive-tablet-2xl {
+	syntax: "<length>";
+	initial-value: 30rem;
+	inherits: true;
+}
+
+@property --db-spacing-responsive-expressive-tablet-3xl {
+	syntax: "<length>";
+	initial-value: 40rem;
+	inherits: true;
+}
+
+@property --db-spacing-responsive-expressive-mobile-3xs {
+	syntax: "<length>";
+	initial-value: 1.25rem;
+	inherits: true;
+}
+
+@property --db-spacing-responsive-expressive-mobile-2xs {
+	syntax: "<length>";
+	initial-value: 1.5rem;
+	inherits: true;
+}
+
+@property --db-spacing-responsive-expressive-mobile-xs {
+	syntax: "<length>";
+	initial-value: 2rem;
+	inherits: true;
+}
+
+@property --db-spacing-responsive-expressive-mobile-sm {
+	syntax: "<length>";
+	initial-value: 3rem;
+	inherits: true;
+}
+
+@property --db-spacing-responsive-expressive-mobile-md {
+	syntax: "<length>";
+	initial-value: 5rem;
+	inherits: true;
+}
+
+@property --db-spacing-responsive-expressive-mobile-lg {
+	syntax: "<length>";
+	initial-value: 7.5rem;
+	inherits: true;
+}
+
+@property --db-spacing-responsive-expressive-mobile-xl {
+	syntax: "<length>";
+	initial-value: 10rem;
+	inherits: true;
+}
+
+@property --db-spacing-responsive-expressive-mobile-2xl {
+	syntax: "<length>";
+	initial-value: 15rem;
+	inherits: true;
+}
+
+@property --db-spacing-responsive-expressive-mobile-3xl {
+	syntax: "<length>";
+	initial-value: 30rem;
+	inherits: true;
+}
+
+@property --db-spacing-fixed-regular-3xs {
+	syntax: "<length>";
+	initial-value: 0.125rem;
+	inherits: true;
+}
+
+@property --db-spacing-fixed-regular-2xs {
+	syntax: "<length>";
+	initial-value: 0.25rem;
+	inherits: true;
+}
+
+@property --db-spacing-fixed-regular-xs {
+	syntax: "<length>";
+	initial-value: 0.5rem;
+	inherits: true;
+}
+
+@property --db-spacing-fixed-regular-sm {
+	syntax: "<length>";
+	initial-value: 0.75rem;
+	inherits: true;
+}
+
+@property --db-spacing-fixed-regular-md {
+	syntax: "<length>";
+	initial-value: 1rem;
+	inherits: true;
+}
+
+@property --db-spacing-fixed-regular-lg {
+	syntax: "<length>";
+	initial-value: 1.5rem;
+	inherits: true;
+}
+
+@property --db-spacing-fixed-regular-xl {
+	syntax: "<length>";
+	initial-value: 2rem;
+	inherits: true;
+}
+
+@property --db-spacing-fixed-regular-2xl {
+	syntax: "<length>";
+	initial-value: 3rem;
+	inherits: true;
+}
+
+@property --db-spacing-fixed-regular-3xl {
+	syntax: "<length>";
+	initial-value: 5rem;
+	inherits: true;
+}
+
+@property --db-spacing-fixed-functional-3xs {
+	syntax: "<length>";
+	initial-value: 0.125rem;
+	inherits: true;
+}
+
+@property --db-spacing-fixed-functional-2xs {
+	syntax: "<length>";
+	initial-value: 0.25rem;
+	inherits: true;
+}
+
+@property --db-spacing-fixed-functional-xs {
+	syntax: "<length>";
+	initial-value: 0.375rem;
+	inherits: true;
+}
+
+@property --db-spacing-fixed-functional-sm {
+	syntax: "<length>";
+	initial-value: 0.5rem;
+	inherits: true;
+}
+
+@property --db-spacing-fixed-functional-md {
+	syntax: "<length>";
+	initial-value: 0.75rem;
+	inherits: true;
+}
+
+@property --db-spacing-fixed-functional-lg {
+	syntax: "<length>";
+	initial-value: 1rem;
+	inherits: true;
+}
+
+@property --db-spacing-fixed-functional-xl {
+	syntax: "<length>";
+	initial-value: 1.5rem;
+	inherits: true;
+}
+
+@property --db-spacing-fixed-functional-2xl {
+	syntax: "<length>";
+	initial-value: 2rem;
+	inherits: true;
+}
+
+@property --db-spacing-fixed-functional-3xl {
+	syntax: "<length>";
+	initial-value: 3rem;
+	inherits: true;
+}
+
+@property --db-spacing-fixed-expressive-3xs {
+	syntax: "<length>";
+	initial-value: 0.25rem;
+	inherits: true;
+}
+
+@property --db-spacing-fixed-expressive-2xs {
+	syntax: "<length>";
+	initial-value: 0.5rem;
+	inherits: true;
+}
+
+@property --db-spacing-fixed-expressive-xs {
+	syntax: "<length>";
+	initial-value: 0.75rem;
+	inherits: true;
+}
+
+@property --db-spacing-fixed-expressive-sm {
+	syntax: "<length>";
+	initial-value: 1rem;
+	inherits: true;
+}
+
+@property --db-spacing-fixed-expressive-md {
+	syntax: "<length>";
+	initial-value: 1.5rem;
+	inherits: true;
+}
+
+@property --db-spacing-fixed-expressive-lg {
+	syntax: "<length>";
+	initial-value: 2rem;
+	inherits: true;
+}
+
+@property --db-spacing-fixed-expressive-xl {
+	syntax: "<length>";
+	initial-value: 3rem;
+	inherits: true;
+}
+
+@property --db-spacing-fixed-expressive-2xl {
+	syntax: "<length>";
+	initial-value: 5rem;
+	inherits: true;
+}
+
+@property --db-spacing-fixed-expressive-3xl {
+	syntax: "<length>";
+	initial-value: 7.5rem;
+	inherits: true;
+}
+
+@property --db-transition-duration-x-slow {
+	syntax: "<*>";
+	initial-value: 0.5s;
+	inherits: true;
+}
+
+@property --db-transition-duration-slow {
+	syntax: "<*>";
+	initial-value: 0.4s;
+	inherits: true;
+}
+
+@property --db-transition-duration-medium {
+	syntax: "<*>";
+	initial-value: 0.3s;
+	inherits: true;
+}
+
+@property --db-transition-duration-fast {
+	syntax: "<*>";
+	initial-value: 0.15s;
+	inherits: true;
+}
+
+@property --db-transition-duration-x-fast {
+	syntax: "<*>";
+	initial-value: 0.075s;
+	inherits: true;
+}
+
+@property --db-transition-timing-show {
+	syntax: "<*>";
+	initial-value: cubic-bezier(0.49, 0.1, 0.16, 1) normal both;
+	inherits: true;
+}
+
+@property --db-transition-timing-hide {
+	syntax: "<*>";
+	initial-value: cubic-bezier(0.49, 0.1, 0.16, 1) normal both;
+	inherits: true;
+}
+
+@property --db-transition-timing-emotional {
+	syntax: "<*>";
+	initial-value: cubic-bezier(0.27, 0.05, 0.4, 0.95);
+	inherits: true;
+}
+
+@property --db-transition-timing-functional {
+	syntax: "<*>";
+	initial-value: cubic-bezier(0.15, 0, 0.45, 1);
+	inherits: true;
+}
+
+@property --db-transition-straight-show {
+	syntax: "<*>";
+	initial-value: 0.5s cubic-bezier(0.49, 0.1, 0.16, 1) normal both;
+	inherits: true;
+}
+
+@property --db-transition-straight-hide {
+	syntax: "<*>";
+	initial-value: 0.4s cubic-bezier(0.49, 0.1, 0.16, 1) normal both;
+	inherits: true;
+}
+
+@property --db-transition-straight-emotional {
+	syntax: "<*>";
+	initial-value: 0.3s cubic-bezier(0.27, 0.05, 0.4, 0.95);
+	inherits: true;
+}
+
+@property --db-transition-straight-functional {
+	syntax: "<*>";
+	initial-value: 0.3s cubic-bezier(0.15, 0, 0.45, 1);
+	inherits: true;
+}
+
+@property --db-typography-regular-desktop-headline-3xl {
+	syntax: "<*>";
+	initial-value: 5rem/1.2 var(--db-font-family-head);
+	inherits: true;
+}
+
+@property --db-typography-regular-desktop-headline-2xl {
+	syntax: "<*>";
+	initial-value: 4rem/1.25 var(--db-font-family-head);
+	inherits: true;
+}
+
+@property --db-typography-regular-desktop-headline-xl {
+	syntax: "<*>";
+	initial-value: 3rem/1.3333333333333333 var(--db-font-family-head);
+	inherits: true;
+}
+
+@property --db-typography-regular-desktop-headline-lg {
+	syntax: "<*>";
+	initial-value: 2.5rem/1.2 var(--db-font-family-head);
+	inherits: true;
+}
+
+@property --db-typography-regular-desktop-headline-md {
+	syntax: "<*>";
+	initial-value: 2rem/1.25 var(--db-font-family-head);
+	inherits: true;
+}
+
+@property --db-typography-regular-desktop-headline-sm {
+	syntax: "<*>";
+	initial-value: 1.75rem/1.1428571428571428 var(--db-font-family-head);
+	inherits: true;
+}
+
+@property --db-typography-regular-desktop-headline-2xs {
+	syntax: "<*>";
+	initial-value: 1.25rem/1.2 var(--db-font-family-head);
+	inherits: true;
+}
+
+@property --db-typography-regular-desktop-headline-3xs {
+	syntax: "<*>";
+	initial-value: 1rem/1.25 var(--db-font-family-head);
+	inherits: true;
+}
+
+@property --db-typography-regular-desktop-headline-xs {
+	syntax: "<*>";
+	initial-value: 1.5rem/1.1666666666666667 var(--db-font-family-head);
+	inherits: true;
+}
+
+@property --db-typography-regular-desktop-body-lg {
+	syntax: "<*>";
+	initial-value: 1.25rem/1.4 var(--db-font-family-sans);
+	inherits: true;
+}
+
+@property --db-typography-regular-desktop-body-xl {
+	syntax: "<*>";
+	initial-value: 1.5rem/1.3333333333333333 var(--db-font-family-sans);
+	inherits: true;
+}
+
+@property --db-typography-regular-desktop-body-2xl {
+	syntax: "<*>";
+	initial-value: 1.75rem/1.4285714285714286 var(--db-font-family-sans);
+	inherits: true;
+}
+
+@property --db-typography-regular-desktop-body-3xl {
+	syntax: "<*>";
+	initial-value: 2rem/1.5 var(--db-font-family-sans);
+	inherits: true;
+}
+
+@property --db-typography-regular-desktop-body-md {
+	syntax: "<*>";
+	initial-value: 1rem/1.5 var(--db-font-family-sans);
+	inherits: true;
+}
+
+@property --db-typography-regular-desktop-body-sm {
+	syntax: "<*>";
+	initial-value: 0.875rem/1.4285714285714286 var(--db-font-family-sans);
+	inherits: true;
+}
+
+@property --db-typography-regular-desktop-body-2xs {
+	syntax: "<*>";
+	initial-value: 0.625rem/1.4 var(--db-font-family-sans);
+	inherits: true;
+}
+
+@property --db-typography-regular-desktop-body-3xs {
+	syntax: "<*>";
+	initial-value: 0.625rem/1.4 var(--db-font-family-sans);
+	inherits: true;
+}
+
+@property --db-typography-regular-desktop-body-xs {
+	syntax: "<*>";
+	initial-value: 0.75rem/1.3333333333333333 var(--db-font-family-sans);
+	inherits: true;
+}
+
+@property --db-typography-regular-mobile-body-lg {
+	syntax: "<*>";
+	initial-value: 1.25rem/1.4 var(--db-font-family-sans);
+	inherits: true;
+}
+
+@property --db-typography-regular-mobile-body-md {
+	syntax: "<*>";
+	initial-value: 1rem/1.5 var(--db-font-family-sans);
+	inherits: true;
+}
+
+@property --db-typography-regular-mobile-body-sm {
+	syntax: "<*>";
+	initial-value: 0.875rem/1.4285714285714286 var(--db-font-family-sans);
+	inherits: true;
+}
+
+@property --db-typography-regular-mobile-body-xl {
+	syntax: "<*>";
+	initial-value: 1.25rem/1.4 var(--db-font-family-sans);
+	inherits: true;
+}
+
+@property --db-typography-regular-mobile-body-xs {
+	syntax: "<*>";
+	initial-value: 0.75rem/1.3333333333333333 var(--db-font-family-sans);
+	inherits: true;
+}
+
+@property --db-typography-regular-mobile-body-2xl {
+	syntax: "<*>";
+	initial-value: 1.25rem/1.4 var(--db-font-family-sans);
+	inherits: true;
+}
+
+@property --db-typography-regular-mobile-body-3xl {
+	syntax: "<*>";
+	initial-value: 1.25rem/1.4 var(--db-font-family-sans);
+	inherits: true;
+}
+
+@property --db-typography-regular-mobile-body-2xs {
+	syntax: "<*>";
+	initial-value: 0.625rem/1.4 var(--db-font-family-sans);
+	inherits: true;
+}
+
+@property --db-typography-regular-mobile-body-3xs {
+	syntax: "<*>";
+	initial-value: 0.625rem/1.4 var(--db-font-family-sans);
+	inherits: true;
+}
+
+@property --db-typography-regular-mobile-headline-lg {
+	syntax: "<*>";
+	initial-value: 1.75rem/1.1428571428571428 var(--db-font-family-head);
+	inherits: true;
+}
+
+@property --db-typography-regular-mobile-headline-md {
+	syntax: "<*>";
+	initial-value: 1.5rem/1.1666666666666667 var(--db-font-family-head);
+	inherits: true;
+}
+
+@property --db-typography-regular-mobile-headline-sm {
+	syntax: "<*>";
+	initial-value: 1.25rem/1.2 var(--db-font-family-head);
+	inherits: true;
+}
+
+@property --db-typography-regular-mobile-headline-xl {
+	syntax: "<*>";
+	initial-value: 2rem/1.25 var(--db-font-family-head);
+	inherits: true;
+}
+
+@property --db-typography-regular-mobile-headline-xs {
+	syntax: "<*>";
+	initial-value: 1rem/1.25 var(--db-font-family-head);
+	inherits: true;
+}
+
+@property --db-typography-regular-mobile-headline-2xl {
+	syntax: "<*>";
+	initial-value: 2rem/1.25 var(--db-font-family-head);
+	inherits: true;
+}
+
+@property --db-typography-regular-mobile-headline-2xs {
+	syntax: "<*>";
+	initial-value: 0.875rem/1.1428571428571428 var(--db-font-family-head);
+	inherits: true;
+}
+
+@property --db-typography-regular-mobile-headline-3xl {
+	syntax: "<*>";
+	initial-value: 2rem/1.25 var(--db-font-family-head);
+	inherits: true;
+}
+
+@property --db-typography-regular-mobile-headline-3xs {
+	syntax: "<*>";
+	initial-value: 0.875rem/1.1428571428571428 var(--db-font-family-head);
+	inherits: true;
+}
+
+@property --db-typography-regular-tablet-body-lg {
+	syntax: "<*>";
+	initial-value: 1.25rem/1.4 var(--db-font-family-sans);
+	inherits: true;
+}
+
+@property --db-typography-regular-tablet-body-md {
+	syntax: "<*>";
+	initial-value: 1rem/1.5 var(--db-font-family-sans);
+	inherits: true;
+}
+
+@property --db-typography-regular-tablet-body-sm {
+	syntax: "<*>";
+	initial-value: 0.875rem/1.4285714285714286 var(--db-font-family-sans);
+	inherits: true;
+}
+
+@property --db-typography-regular-tablet-body-xl {
+	syntax: "<*>";
+	initial-value: 1.5rem/1.3333333333333333 var(--db-font-family-sans);
+	inherits: true;
+}
+
+@property --db-typography-regular-tablet-body-xs {
+	syntax: "<*>";
+	initial-value: 0.75rem/1.3333333333333333 var(--db-font-family-sans);
+	inherits: true;
+}
+
+@property --db-typography-regular-tablet-body-2xl {
+	syntax: "<*>";
+	initial-value: 1.75rem/1.4285714285714286 var(--db-font-family-sans);
+	inherits: true;
+}
+
+@property --db-typography-regular-tablet-body-3xl {
+	syntax: "<*>";
+	initial-value: 2rem/1.5 var(--db-font-family-sans);
+	inherits: true;
+}
+
+@property --db-typography-regular-tablet-body-2xs {
+	syntax: "<*>";
+	initial-value: 0.625rem/1.4 var(--db-font-family-sans);
+	inherits: true;
+}
+
+@property --db-typography-regular-tablet-body-3xs {
+	syntax: "<*>";
+	initial-value: 0.625rem/1.4 var(--db-font-family-sans);
+	inherits: true;
+}
+
+@property --db-typography-regular-tablet-headline-lg {
+	syntax: "<*>";
+	initial-value: 2rem/1.25 var(--db-font-family-head);
+	inherits: true;
+}
+
+@property --db-typography-regular-tablet-headline-md {
+	syntax: "<*>";
+	initial-value: 1.75rem/1.1428571428571428 var(--db-font-family-head);
+	inherits: true;
+}
+
+@property --db-typography-regular-tablet-headline-sm {
+	syntax: "<*>";
+	initial-value: 1.5rem/1.1666666666666667 var(--db-font-family-head);
+	inherits: true;
+}
+
+@property --db-typography-regular-tablet-headline-xl {
+	syntax: "<*>";
+	initial-value: 2.5rem/1.2 var(--db-font-family-head);
+	inherits: true;
+}
+
+@property --db-typography-regular-tablet-headline-xs {
+	syntax: "<*>";
+	initial-value: 1.25rem/1.2 var(--db-font-family-head);
+	inherits: true;
+}
+
+@property --db-typography-regular-tablet-headline-2xl {
+	syntax: "<*>";
+	initial-value: 3rem/1.3333333333333333 var(--db-font-family-head);
+	inherits: true;
+}
+
+@property --db-typography-regular-tablet-headline-2xs {
+	syntax: "<*>";
+	initial-value: 1rem/1.25 var(--db-font-family-head);
+	inherits: true;
+}
+
+@property --db-typography-regular-tablet-headline-3xl {
+	syntax: "<*>";
+	initial-value: 3rem/1.3333333333333333 var(--db-font-family-head);
+	inherits: true;
+}
+
+@property --db-typography-regular-tablet-headline-3xs {
+	syntax: "<*>";
+	initial-value: 1rem/1.25 var(--db-font-family-head);
+	inherits: true;
+}
+
+@property --db-typography-expressive-desktop-body-lg {
+	syntax: "<*>";
+	initial-value: 1.5rem/1.3333333333333333 var(--db-font-family-sans);
+	inherits: true;
+}
+
+@property --db-typography-expressive-desktop-body-md {
+	syntax: "<*>";
+	initial-value: 1.25rem/1.4 var(--db-font-family-sans);
+	inherits: true;
+}
+
+@property --db-typography-expressive-desktop-body-sm {
+	syntax: "<*>";
+	initial-value: 1rem/1.5 var(--db-font-family-sans);
+	inherits: true;
+}
+
+@property --db-typography-expressive-desktop-body-xl {
+	syntax: "<*>";
+	initial-value: 1.75rem/1.4285714285714286 var(--db-font-family-sans);
+	inherits: true;
+}
+
+@property --db-typography-expressive-desktop-body-xs {
+	syntax: "<*>";
+	initial-value: 0.875rem/1.4285714285714286 var(--db-font-family-sans);
+	inherits: true;
+}
+
+@property --db-typography-expressive-desktop-body-2xl {
+	syntax: "<*>";
+	initial-value: 2rem/1.5 var(--db-font-family-sans);
+	inherits: true;
+}
+
+@property --db-typography-expressive-desktop-body-3xl {
+	syntax: "<*>";
+	initial-value: 2.5rem/1.6 var(--db-font-family-sans);
+	inherits: true;
+}
+
+@property --db-typography-expressive-desktop-body-2xs {
+	syntax: "<*>";
+	initial-value: 0.75rem/1.3333333333333333 var(--db-font-family-sans);
+	inherits: true;
+}
+
+@property --db-typography-expressive-desktop-body-3xs {
+	syntax: "<*>";
+	initial-value: 0.625rem/1.4 var(--db-font-family-sans);
+	inherits: true;
+}
+
+@property --db-typography-expressive-desktop-headline-lg {
+	syntax: "<*>";
+	initial-value: 3rem/1.3333333333333333 var(--db-font-family-head);
+	inherits: true;
+}
+
+@property --db-typography-expressive-desktop-headline-md {
+	syntax: "<*>";
+	initial-value: 2.5rem/1.2 var(--db-font-family-head);
+	inherits: true;
+}
+
+@property --db-typography-expressive-desktop-headline-sm {
+	syntax: "<*>";
+	initial-value: 2rem/1.25 var(--db-font-family-head);
+	inherits: true;
+}
+
+@property --db-typography-expressive-desktop-headline-xl {
+	syntax: "<*>";
+	initial-value: 4rem/1.25 var(--db-font-family-head);
+	inherits: true;
+}
+
+@property --db-typography-expressive-desktop-headline-xs {
+	syntax: "<*>";
+	initial-value: 1.75rem/1.1428571428571428 var(--db-font-family-head);
+	inherits: true;
+}
+
+@property --db-typography-expressive-desktop-headline-2xl {
+	syntax: "<*>";
+	initial-value: 5rem/1.2 var(--db-font-family-head);
+	inherits: true;
+}
+
+@property --db-typography-expressive-desktop-headline-2xs {
+	syntax: "<*>";
+	initial-value: 1.5rem/1.1666666666666667 var(--db-font-family-head);
+	inherits: true;
+}
+
+@property --db-typography-expressive-desktop-headline-3xl {
+	syntax: "<*>";
+	initial-value: 6rem/1.25 var(--db-font-family-head);
+	inherits: true;
+}
+
+@property --db-typography-expressive-desktop-headline-3xs {
+	syntax: "<*>";
+	initial-value: 1.25rem/1.2 var(--db-font-family-head);
+	inherits: true;
+}
+
+@property --db-typography-expressive-tablet-body-lg {
+	syntax: "<*>";
+	initial-value: 1.5rem/1.3333333333333333 var(--db-font-family-sans);
+	inherits: true;
+}
+
+@property --db-typography-expressive-tablet-body-md {
+	syntax: "<*>";
+	initial-value: 1.25rem/1.4 var(--db-font-family-sans);
+	inherits: true;
+}
+
+@property --db-typography-expressive-tablet-body-sm {
+	syntax: "<*>";
+	initial-value: 1rem/1.5 var(--db-font-family-sans);
+	inherits: true;
+}
+
+@property --db-typography-expressive-tablet-body-xl {
+	syntax: "<*>";
+	initial-value: 1.75rem/1.4285714285714286 var(--db-font-family-sans);
+	inherits: true;
+}
+
+@property --db-typography-expressive-tablet-body-xs {
+	syntax: "<*>";
+	initial-value: 0.875rem/1.4285714285714286 var(--db-font-family-sans);
+	inherits: true;
+}
+
+@property --db-typography-expressive-tablet-body-2xl {
+	syntax: "<*>";
+	initial-value: 2rem/1.5 var(--db-font-family-sans);
+	inherits: true;
+}
+
+@property --db-typography-expressive-tablet-body-3xl {
+	syntax: "<*>";
+	initial-value: 2.5rem/1.6 var(--db-font-family-sans);
+	inherits: true;
+}
+
+@property --db-typography-expressive-tablet-body-2xs {
+	syntax: "<*>";
+	initial-value: 0.75rem/1.3333333333333333 var(--db-font-family-sans);
+	inherits: true;
+}
+
+@property --db-typography-expressive-tablet-body-3xs {
+	syntax: "<*>";
+	initial-value: 0.625rem/1.4 var(--db-font-family-sans);
+	inherits: true;
+}
+
+@property --db-typography-expressive-tablet-headline-lg {
+	syntax: "<*>";
+	initial-value: 2.5rem/1.2 var(--db-font-family-head);
+	inherits: true;
+}
+
+@property --db-typography-expressive-tablet-headline-md {
+	syntax: "<*>";
+	initial-value: 2rem/1.25 var(--db-font-family-head);
+	inherits: true;
+}
+
+@property --db-typography-expressive-tablet-headline-sm {
+	syntax: "<*>";
+	initial-value: 1.75rem/1.1428571428571428 var(--db-font-family-head);
+	inherits: true;
+}
+
+@property --db-typography-expressive-tablet-headline-xl {
+	syntax: "<*>";
+	initial-value: 3rem/1.3333333333333333 var(--db-font-family-head);
+	inherits: true;
+}
+
+@property --db-typography-expressive-tablet-headline-xs {
+	syntax: "<*>";
+	initial-value: 1.5rem/1.1666666666666667 var(--db-font-family-head);
+	inherits: true;
+}
+
+@property --db-typography-expressive-tablet-headline-2xl {
+	syntax: "<*>";
+	initial-value: 4rem/1.25 var(--db-font-family-head);
+	inherits: true;
+}
+
+@property --db-typography-expressive-tablet-headline-2xs {
+	syntax: "<*>";
+	initial-value: 1.25rem/1.2 var(--db-font-family-head);
+	inherits: true;
+}
+
+@property --db-typography-expressive-tablet-headline-3xl {
+	syntax: "<*>";
+	initial-value: 5rem/1.2 var(--db-font-family-head);
+	inherits: true;
+}
+
+@property --db-typography-expressive-tablet-headline-3xs {
+	syntax: "<*>";
+	initial-value: 1.25rem/1.2 var(--db-font-family-head);
+	inherits: true;
+}
+
+@property --db-typography-expressive-mobile-body-lg {
+	syntax: "<*>";
+	initial-value: 1.5rem/1.3333333333333333 var(--db-font-family-sans);
+	inherits: true;
+}
+
+@property --db-typography-expressive-mobile-body-md {
+	syntax: "<*>";
+	initial-value: 1.25rem/1.4 var(--db-font-family-sans);
+	inherits: true;
+}
+
+@property --db-typography-expressive-mobile-body-sm {
+	syntax: "<*>";
+	initial-value: 1rem/1.5 var(--db-font-family-sans);
+	inherits: true;
+}
+
+@property --db-typography-expressive-mobile-body-xl {
+	syntax: "<*>";
+	initial-value: 1.5rem/1.3333333333333333 var(--db-font-family-sans);
+	inherits: true;
+}
+
+@property --db-typography-expressive-mobile-body-xs {
+	syntax: "<*>";
+	initial-value: 0.875rem/1.4285714285714286 var(--db-font-family-sans);
+	inherits: true;
+}
+
+@property --db-typography-expressive-mobile-body-2xl {
+	syntax: "<*>";
+	initial-value: 1.5rem/1.3333333333333333 var(--db-font-family-sans);
+	inherits: true;
+}
+
+@property --db-typography-expressive-mobile-body-3xl {
+	syntax: "<*>";
+	initial-value: 1.5rem/1.3333333333333333 var(--db-font-family-sans);
+	inherits: true;
+}
+
+@property --db-typography-expressive-mobile-body-2xs {
+	syntax: "<*>";
+	initial-value: 0.75rem/1.3333333333333333 var(--db-font-family-sans);
+	inherits: true;
+}
+
+@property --db-typography-expressive-mobile-body-3xs {
+	syntax: "<*>";
+	initial-value: 0.625rem/1.4 var(--db-font-family-sans);
+	inherits: true;
+}
+
+@property --db-typography-expressive-mobile-headline-lg {
+	syntax: "<*>";
+	initial-value: 2rem/1.25 var(--db-font-family-head);
+	inherits: true;
+}
+
+@property --db-typography-expressive-mobile-headline-md {
+	syntax: "<*>";
+	initial-value: 1.75rem/1.1428571428571428 var(--db-font-family-head);
+	inherits: true;
+}
+
+@property --db-typography-expressive-mobile-headline-sm {
+	syntax: "<*>";
+	initial-value: 1.5rem/1.1666666666666667 var(--db-font-family-head);
+	inherits: true;
+}
+
+@property --db-typography-expressive-mobile-headline-xl {
+	syntax: "<*>";
+	initial-value: 2.5rem/1.2 var(--db-font-family-head);
+	inherits: true;
+}
+
+@property --db-typography-expressive-mobile-headline-xs {
+	syntax: "<*>";
+	initial-value: 1.25rem/1.2 var(--db-font-family-head);
+	inherits: true;
+}
+
+@property --db-typography-expressive-mobile-headline-2xl {
+	syntax: "<*>";
+	initial-value: 2.5rem/1.2 var(--db-font-family-head);
+	inherits: true;
+}
+
+@property --db-typography-expressive-mobile-headline-2xs {
+	syntax: "<*>";
+	initial-value: 1rem/1.25 var(--db-font-family-head);
+	inherits: true;
+}
+
+@property --db-typography-expressive-mobile-headline-3xl {
+	syntax: "<*>";
+	initial-value: 2.5rem/1.2 var(--db-font-family-head);
+	inherits: true;
+}
+
+@property --db-typography-expressive-mobile-headline-3xs {
+	syntax: "<*>";
+	initial-value: 1rem/1.25 var(--db-font-family-head);
+	inherits: true;
+}
+
+@property --db-typography-functional-desktop-body-lg {
+	syntax: "<*>";
+	initial-value: 1rem/1.5 var(--db-font-family-sans);
+	inherits: true;
+}
+
+@property --db-typography-functional-desktop-body-md {
+	syntax: "<*>";
+	initial-value: 0.875rem/1.4285714285714286 var(--db-font-family-sans);
+	inherits: true;
+}
+
+@property --db-typography-functional-desktop-body-sm {
+	syntax: "<*>";
+	initial-value: 0.75rem/1.3333333333333333 var(--db-font-family-sans);
+	inherits: true;
+}
+
+@property --db-typography-functional-desktop-body-xl {
+	syntax: "<*>";
+	initial-value: 1.25rem/1.4 var(--db-font-family-sans);
+	inherits: true;
+}
+
+@property --db-typography-functional-desktop-body-xs {
+	syntax: "<*>";
+	initial-value: 0.625rem/1.4 var(--db-font-family-sans);
+	inherits: true;
+}
+
+@property --db-typography-functional-desktop-body-2xl {
+	syntax: "<*>";
+	initial-value: 1.5rem/1.3333333333333333 var(--db-font-family-sans);
+	inherits: true;
+}
+
+@property --db-typography-functional-desktop-body-3xl {
+	syntax: "<*>";
+	initial-value: 1.75rem/1.4285714285714286 var(--db-font-family-sans);
+	inherits: true;
+}
+
+@property --db-typography-functional-desktop-body-2xs {
+	syntax: "<*>";
+	initial-value: 0.625rem/1.4 var(--db-font-family-sans);
+	inherits: true;
+}
+
+@property --db-typography-functional-desktop-body-3xs {
+	syntax: "<*>";
+	initial-value: 0.625rem/1.4 var(--db-font-family-sans);
+	inherits: true;
+}
+
+@property --db-typography-functional-desktop-headline-lg {
+	syntax: "<*>";
+	initial-value: 1.75rem/1.1428571428571428 var(--db-font-family-head);
+	inherits: true;
+}
+
+@property --db-typography-functional-desktop-headline-md {
+	syntax: "<*>";
+	initial-value: 1.5rem/1.1666666666666667 var(--db-font-family-head);
+	inherits: true;
+}
+
+@property --db-typography-functional-desktop-headline-sm {
+	syntax: "<*>";
+	initial-value: 1.25rem/1.2 var(--db-font-family-head);
+	inherits: true;
+}
+
+@property --db-typography-functional-desktop-headline-xl {
+	syntax: "<*>";
+	initial-value: 2rem/1.25 var(--db-font-family-head);
+	inherits: true;
+}
+
+@property --db-typography-functional-desktop-headline-xs {
+	syntax: "<*>";
+	initial-value: 1rem/1.25 var(--db-font-family-head);
+	inherits: true;
+}
+
+@property --db-typography-functional-desktop-headline-2xl {
+	syntax: "<*>";
+	initial-value: 2.5rem/1.2 var(--db-font-family-head);
+	inherits: true;
+}
+
+@property --db-typography-functional-desktop-headline-2xs {
+	syntax: "<*>";
+	initial-value: 0.875rem/1.1428571428571428 var(--db-font-family-head);
+	inherits: true;
+}
+
+@property --db-typography-functional-desktop-headline-3xl {
+	syntax: "<*>";
+	initial-value: 2.5rem/1.2 var(--db-font-family-head);
+	inherits: true;
+}
+
+@property --db-typography-functional-desktop-headline-3xs {
+	syntax: "<*>";
+	initial-value: 0.875rem/1.1428571428571428 var(--db-font-family-head);
+	inherits: true;
+}
+
+@property --db-typography-functional-tablet-body-lg {
+	syntax: "<*>";
+	initial-value: 1rem/1.5 var(--db-font-family-sans);
+	inherits: true;
+}
+
+@property --db-typography-functional-tablet-body-md {
+	syntax: "<*>";
+	initial-value: 0.875rem/1.4285714285714286 var(--db-font-family-sans);
+	inherits: true;
+}
+
+@property --db-typography-functional-tablet-body-sm {
+	syntax: "<*>";
+	initial-value: 0.75rem/1.3333333333333333 var(--db-font-family-sans);
+	inherits: true;
+}
+
+@property --db-typography-functional-tablet-body-xl {
+	syntax: "<*>";
+	initial-value: 1.25rem/1.4 var(--db-font-family-sans);
+	inherits: true;
+}
+
+@property --db-typography-functional-tablet-body-xs {
+	syntax: "<*>";
+	initial-value: 0.625rem/1.4 var(--db-font-family-sans);
+	inherits: true;
+}
+
+@property --db-typography-functional-tablet-body-2xl {
+	syntax: "<*>";
+	initial-value: 1.5rem/1.3333333333333333 var(--db-font-family-sans);
+	inherits: true;
+}
+
+@property --db-typography-functional-tablet-body-3xl {
+	syntax: "<*>";
+	initial-value: 1.75rem/1.4285714285714286 var(--db-font-family-sans);
+	inherits: true;
+}
+
+@property --db-typography-functional-tablet-body-2xs {
+	syntax: "<*>";
+	initial-value: 0.625rem/1.4 var(--db-font-family-sans);
+	inherits: true;
+}
+
+@property --db-typography-functional-tablet-body-3xs {
+	syntax: "<*>";
+	initial-value: 0.625rem/1.4 var(--db-font-family-sans);
+	inherits: true;
+}
+
+@property --db-typography-functional-tablet-headline-lg {
+	syntax: "<*>";
+	initial-value: 1.75rem/1.1428571428571428 var(--db-font-family-head);
+	inherits: true;
+}
+
+@property --db-typography-functional-tablet-headline-md {
+	syntax: "<*>";
+	initial-value: 1.5rem/1.1666666666666667 var(--db-font-family-head);
+	inherits: true;
+}
+
+@property --db-typography-functional-tablet-headline-sm {
+	syntax: "<*>";
+	initial-value: 1.25rem/1.2 var(--db-font-family-head);
+	inherits: true;
+}
+
+@property --db-typography-functional-tablet-headline-xl {
+	syntax: "<*>";
+	initial-value: 2rem/1.25 var(--db-font-family-head);
+	inherits: true;
+}
+
+@property --db-typography-functional-tablet-headline-xs {
+	syntax: "<*>";
+	initial-value: 1rem/1.25 var(--db-font-family-head);
+	inherits: true;
+}
+
+@property --db-typography-functional-tablet-headline-2xl {
+	syntax: "<*>";
+	initial-value: 2.5rem/1.2 var(--db-font-family-head);
+	inherits: true;
+}
+
+@property --db-typography-functional-tablet-headline-2xs {
+	syntax: "<*>";
+	initial-value: 0.875rem/1.1428571428571428 var(--db-font-family-head);
+	inherits: true;
+}
+
+@property --db-typography-functional-tablet-headline-3xl {
+	syntax: "<*>";
+	initial-value: 2.5rem/1.2 var(--db-font-family-head);
+	inherits: true;
+}
+
+@property --db-typography-functional-tablet-headline-3xs {
+	syntax: "<*>";
+	initial-value: 0.875rem/1.1428571428571428 var(--db-font-family-head);
+	inherits: true;
+}
+
+@property --db-typography-functional-mobile-body-lg {
+	syntax: "<*>";
+	initial-value: 1rem/1.5 var(--db-font-family-sans);
+	inherits: true;
+}
+
+@property --db-typography-functional-mobile-body-md {
+	syntax: "<*>";
+	initial-value: 0.875rem/1.4285714285714286 var(--db-font-family-sans);
+	inherits: true;
+}
+
+@property --db-typography-functional-mobile-body-sm {
+	syntax: "<*>";
+	initial-value: 0.75rem/1.3333333333333333 var(--db-font-family-sans);
+	inherits: true;
+}
+
+@property --db-typography-functional-mobile-body-xl {
+	syntax: "<*>";
+	initial-value: 1rem/1.5 var(--db-font-family-sans);
+	inherits: true;
+}
+
+@property --db-typography-functional-mobile-body-xs {
+	syntax: "<*>";
+	initial-value: 0.625rem/1.4 var(--db-font-family-sans);
+	inherits: true;
+}
+
+@property --db-typography-functional-mobile-body-2xl {
+	syntax: "<*>";
+	initial-value: 1rem/1.5 var(--db-font-family-sans);
+	inherits: true;
+}
+
+@property --db-typography-functional-mobile-body-3xl {
+	syntax: "<*>";
+	initial-value: 1rem/1.5 var(--db-font-family-sans);
+	inherits: true;
+}
+
+@property --db-typography-functional-mobile-body-2xs {
+	syntax: "<*>";
+	initial-value: 0.625rem/1.4 var(--db-font-family-sans);
+	inherits: true;
+}
+
+@property --db-typography-functional-mobile-body-3xs {
+	syntax: "<*>";
+	initial-value: 0.625rem/1.4 var(--db-font-family-sans);
+	inherits: true;
+}
+
+@property --db-typography-functional-mobile-headline-lg {
+	syntax: "<*>";
+	initial-value: 1.5rem/1.1666666666666667 var(--db-font-family-head);
+	inherits: true;
+}
+
+@property --db-typography-functional-mobile-headline-md {
+	syntax: "<*>";
+	initial-value: 1.25rem/1.2 var(--db-font-family-head);
+	inherits: true;
+}
+
+@property --db-typography-functional-mobile-headline-sm {
+	syntax: "<*>";
+	initial-value: 1rem/1.25 var(--db-font-family-head);
+	inherits: true;
+}
+
+@property --db-typography-functional-mobile-headline-xl {
+	syntax: "<*>";
+	initial-value: 1.75rem/1.1428571428571428 var(--db-font-family-head);
+	inherits: true;
+}
+
+@property --db-typography-functional-mobile-headline-xs {
+	syntax: "<*>";
+	initial-value: 0.875rem/1.1428571428571428 var(--db-font-family-head);
+	inherits: true;
+}
+
+@property --db-typography-functional-mobile-headline-2xl {
+	syntax: "<*>";
+	initial-value: 1.75rem/1.1428571428571428 var(--db-font-family-head);
+	inherits: true;
+}
+
+@property --db-typography-functional-mobile-headline-2xs {
+	syntax: "<*>";
+	initial-value: 0.875rem/1.1428571428571428 var(--db-font-family-head);
+	inherits: true;
+}
+
+@property --db-typography-functional-mobile-headline-3xl {
+	syntax: "<*>";
+	initial-value: 1.75rem/1.1428571428571428 var(--db-font-family-head);
+	inherits: true;
+}
+
+@property --db-typography-functional-mobile-headline-3xs {
+	syntax: "<*>";
+	initial-value: 0.875rem/1.1428571428571428 var(--db-font-family-head);
+	inherits: true;
+}
+
+@property --db-neutral-0 {
+	syntax: "<color>";
+	initial-value: #0d0e11;
+	inherits: true;
+}
+
+@property --db-neutral-1 {
+	syntax: "<color>";
+	initial-value: #16181b;
+	inherits: true;
+}
+
+@property --db-neutral-2 {
+	syntax: "<color>";
+	initial-value: #222428;
+	inherits: true;
+}
+
+@property --db-neutral-3 {
+	syntax: "<color>";
+	initial-value: #2e3036;
+	inherits: true;
+}
+
+@property --db-neutral-4 {
+	syntax: "<color>";
+	initial-value: #3b3e44;
+	inherits: true;
+}
+
+@property --db-neutral-5 {
+	syntax: "<color>";
+	initial-value: #484b53;
+	inherits: true;
+}
+
+@property --db-neutral-6 {
+	syntax: "<color>";
+	initial-value: #5a5e68;
+	inherits: true;
+}
+
+@property --db-neutral-7 {
+	syntax: "<color>";
+	initial-value: #727782;
+	inherits: true;
+}
+
+@property --db-neutral-8 {
+	syntax: "<color>";
+	initial-value: #8a919e;
+	inherits: true;
+}
+
+@property --db-neutral-9 {
+	syntax: "<color>";
+	initial-value: #a6abb6;
+	inherits: true;
+}
+
+@property --db-neutral-10 {
+	syntax: "<color>";
+	initial-value: #c3c7ce;
+	inherits: true;
+}
+
+@property --db-neutral-11 {
+	syntax: "<color>";
+	initial-value: #e1e2e6;
+	inherits: true;
+}
+
+@property --db-neutral-12 {
+	syntax: "<color>";
+	initial-value: #edeef0;
+	inherits: true;
+}
+
+@property --db-neutral-13 {
+	syntax: "<color>";
+	initial-value: #f3f3f5;
+	inherits: true;
+}
+
+@property --db-neutral-14 {
+	syntax: "<color>";
+	initial-value: #fff;
+	inherits: true;
+}
+
+@property --db-neutral-origin-base {
+	syntax: "<color>";
+	initial-value: #646973;
+	inherits: true;
+}
+
+@property --db-neutral-origin-light-default {
+	syntax: "<color>";
+	initial-value: #646973;
+	inherits: true;
+}
+
+@property --db-neutral-origin-light-hovered {
+	syntax: "<color>";
+	initial-value: #4d5159;
+	inherits: true;
+}
+
+@property --db-neutral-origin-light-pressed {
+	syntax: "<color>";
+	initial-value: #373a40;
+	inherits: true;
+}
+
+@property --db-neutral-origin-dark-default {
+	syntax: "<color>";
+	initial-value: #646973;
+	inherits: true;
+}
+
+@property --db-neutral-origin-dark-hovered {
+	syntax: "<color>";
+	initial-value: #7c828e;
+	inherits: true;
+}
+
+@property --db-neutral-origin-dark-pressed {
+	syntax: "<color>";
+	initial-value: #969ca9;
+	inherits: true;
+}
+
+@property --db-neutral-on-origin-light-default {
+	syntax: "<color>";
+	initial-value: #f9f9fa;
+	inherits: true;
+}
+
+@property --db-neutral-on-origin-light-hovered {
+	syntax: "<color>";
+	initial-value: #dcdce2;
+	inherits: true;
+}
+
+@property --db-neutral-on-origin-light-pressed {
+	syntax: "<color>";
+	initial-value: #c0c0cb;
+	inherits: true;
+}
+
+@property --db-neutral-on-origin-dark-default {
+	syntax: "<color>";
+	initial-value: #f9f9fa;
+	inherits: true;
+}
+
+@property --db-neutral-on-origin-dark-hovered {
+	syntax: "<color>";
+	initial-value: #dcdce2;
+	inherits: true;
+}
+
+@property --db-neutral-on-origin-dark-pressed {
+	syntax: "<color>";
+	initial-value: #c0c0cb;
+	inherits: true;
+}
+
+@property --db-brand-0 {
+	syntax: "<color>";
+	initial-value: #09082f;
+	inherits: true;
+}
+
+@property --db-brand-1 {
+	syntax: "<color>";
+	initial-value: #110f44;
+	inherits: true;
+}
+
+@property --db-brand-2 {
+	syntax: "<color>";
+	initial-value: #1b195e;
+	inherits: true;
+}
+
+@property --db-brand-3 {
+	syntax: "<color>";
+	initial-value: #25237a;
+	inherits: true;
+}
+
+@property --db-brand-4 {
+	syntax: "<color>";
+	initial-value: #302d97;
+	inherits: true;
+}
+
+@property --db-brand-5 {
+	syntax: "<color>";
+	initial-value: #3b38b5;
+	inherits: true;
+}
+
+@property --db-brand-6 {
+	syntax: "<color>";
+	initial-value: #514ec7;
+	inherits: true;
+}
+
+@property --db-brand-7 {
+	syntax: "<color>";
+	initial-value: #6d6bd4;
+	inherits: true;
+}
+
+@property --db-brand-8 {
+	syntax: "<color>";
+	initial-value: #8988de;
+	inherits: true;
+}
+
+@property --db-brand-9 {
+	syntax: "<color>";
+	initial-value: #a6a5e7;
+	inherits: true;
+}
+
+@property --db-brand-10 {
+	syntax: "<color>";
+	initial-value: #c3c3ef;
+	inherits: true;
+}
+
+@property --db-brand-11 {
+	syntax: "<color>";
+	initial-value: #e1e1f7;
+	inherits: true;
+}
+
+@property --db-brand-12 {
+	syntax: "<color>";
+	initial-value: #ededfa;
+	inherits: true;
+}
+
+@property --db-brand-13 {
+	syntax: "<color>";
+	initial-value: #f3f3fc;
+	inherits: true;
+}
+
+@property --db-brand-14 {
+	syntax: "<color>";
+	initial-value: #f9f9fd;
+	inherits: true;
+}
+
+@property --db-brand-origin-base {
+	syntax: "<color>";
+	initial-value: #514ec7;
+	inherits: true;
+}
+
+@property --db-brand-origin-light-default {
+	syntax: "<color>";
+	initial-value: #514ec7;
+	inherits: true;
+}
+
+@property --db-brand-origin-light-hovered {
+	syntax: "<color>";
+	initial-value: #3834ac;
+	inherits: true;
+}
+
+@property --db-brand-origin-light-pressed {
+	syntax: "<color>";
+	initial-value: #25237b;
+	inherits: true;
+}
+
+@property --db-brand-origin-dark-default {
+	syntax: "<color>";
+	initial-value: #514ec7;
+	inherits: true;
+}
+
+@property --db-brand-origin-dark-hovered {
+	syntax: "<color>";
+	initial-value: #3834ac;
+	inherits: true;
+}
+
+@property --db-brand-origin-dark-pressed {
+	syntax: "<color>";
+	initial-value: #25237b;
+	inherits: true;
+}
+
+@property --db-brand-on-origin-light-default {
+	syntax: "<color>";
+	initial-value: #cbffe7;
+	inherits: true;
+}
+
+@property --db-brand-on-origin-light-hovered {
+	syntax: "<color>";
+	initial-value: #00f4b3;
+	inherits: true;
+}
+
+@property --db-brand-on-origin-light-pressed {
+	syntax: "<color>";
+	initial-value: #00d59c;
+	inherits: true;
+}
+
+@property --db-brand-on-origin-dark-default {
+	syntax: "<color>";
+	initial-value: #cbffe7;
+	inherits: true;
+}
+
+@property --db-brand-on-origin-dark-hovered {
+	syntax: "<color>";
+	initial-value: #00f4b3;
+	inherits: true;
+}
+
+@property --db-brand-on-origin-dark-pressed {
+	syntax: "<color>";
+	initial-value: #00d59c;
+	inherits: true;
+}
+
+@property --db-informational-0 {
+	syntax: "<color>";
+	initial-value: #011018;
+	inherits: true;
+}
+
+@property --db-informational-1 {
+	syntax: "<color>";
+	initial-value: #031a25;
+	inherits: true;
+}
+
+@property --db-informational-2 {
+	syntax: "<color>";
+	initial-value: #062736;
+	inherits: true;
+}
+
+@property --db-informational-3 {
+	syntax: "<color>";
+	initial-value: #0a3447;
+	inherits: true;
+}
+
+@property --db-informational-4 {
+	syntax: "<color>";
+	initial-value: #0f4259;
+	inherits: true;
+}
+
+@property --db-informational-5 {
+	syntax: "<color>";
+	initial-value: #14516c;
+	inherits: true;
+}
+
+@property --db-informational-6 {
+	syntax: "<color>";
+	initial-value: #1b6586;
+	inherits: true;
+}
+
+@property --db-informational-7 {
+	syntax: "<color>";
+	initial-value: #257fa8;
+	inherits: true;
+}
+
+@property --db-informational-8 {
+	syntax: "<color>";
+	initial-value: #2e9acb;
+	inherits: true;
+}
+
+@property --db-informational-9 {
+	syntax: "<color>";
+	initial-value: #38b6ef;
+	inherits: true;
+}
+
+@property --db-informational-10 {
+	syntax: "<color>";
+	initial-value: #89cffa;
+	inherits: true;
+}
+
+@property --db-informational-11 {
+	syntax: "<color>";
+	initial-value: #cae6fd;
+	inherits: true;
+}
+
+@property --db-informational-12 {
+	syntax: "<color>";
+	initial-value: #e0f0fe;
+	inherits: true;
+}
+
+@property --db-informational-13 {
+	syntax: "<color>";
+	initial-value: #ebf5fe;
+	inherits: true;
+}
+
+@property --db-informational-14 {
+	syntax: "<color>";
+	initial-value: #f5faff;
+	inherits: true;
+}
+
+@property --db-informational-origin-base {
+	syntax: "<color>";
+	initial-value: #309fd1;
+	inherits: true;
+}
+
+@property --db-informational-origin-light-default {
+	syntax: "<color>";
+	initial-value: #309fd1;
+	inherits: true;
+}
+
+@property --db-informational-origin-light-hovered {
+	syntax: "<color>";
+	initial-value: #2684ae;
+	inherits: true;
+}
+
+@property --db-informational-origin-light-pressed {
+	syntax: "<color>";
+	initial-value: #1d698c;
+	inherits: true;
+}
+
+@property --db-informational-origin-dark-default {
+	syntax: "<color>";
+	initial-value: #309fd1;
+	inherits: true;
+}
+
+@property --db-informational-origin-dark-hovered {
+	syntax: "<color>";
+	initial-value: #3abbf5;
+	inherits: true;
+}
+
+@property --db-informational-origin-dark-pressed {
+	syntax: "<color>";
+	initial-value: #96d2fb;
+	inherits: true;
+}
+
+@property --db-informational-on-origin-light-default {
+	syntax: "<color>";
+	initial-value: #01080f;
+	inherits: true;
+}
+
+@property --db-informational-on-origin-light-hovered {
+	syntax: "<color>";
+	initial-value: #072231;
+	inherits: true;
+}
+
+@property --db-informational-on-origin-light-pressed {
+	syntax: "<color>";
+	initial-value: #0f384f;
+	inherits: true;
+}
+
+@property --db-informational-on-origin-dark-default {
+	syntax: "<color>";
+	initial-value: #01080f;
+	inherits: true;
+}
+
+@property --db-informational-on-origin-dark-hovered {
+	syntax: "<color>";
+	initial-value: #072231;
+	inherits: true;
+}
+
+@property --db-informational-on-origin-dark-pressed {
+	syntax: "<color>";
+	initial-value: #0f384f;
+	inherits: true;
+}
+
+@property --db-warning-0 {
+	syntax: "<color>";
+	initial-value: #190b00;
+	inherits: true;
+}
+
+@property --db-warning-1 {
+	syntax: "<color>";
+	initial-value: #271300;
+	inherits: true;
+}
+
+@property --db-warning-2 {
+	syntax: "<color>";
+	initial-value: #381d00;
+	inherits: true;
+}
+
+@property --db-warning-3 {
+	syntax: "<color>";
+	initial-value: #4a2800;
+	inherits: true;
+}
+
+@property --db-warning-4 {
+	syntax: "<color>";
+	initial-value: #5c3400;
+	inherits: true;
+}
+
+@property --db-warning-5 {
+	syntax: "<color>";
+	initial-value: #6f4000;
+	inherits: true;
+}
+
+@property --db-warning-6 {
+	syntax: "<color>";
+	initial-value: #8a5100;
+	inherits: true;
+}
+
+@property --db-warning-7 {
+	syntax: "<color>";
+	initial-value: #ad6600;
+	inherits: true;
+}
+
+@property --db-warning-8 {
+	syntax: "<color>";
+	initial-value: #d17d00;
+	inherits: true;
+}
+
+@property --db-warning-9 {
+	syntax: "<color>";
+	initial-value: #f69400;
+	inherits: true;
+}
+
+@property --db-warning-10 {
+	syntax: "<color>";
+	initial-value: #ffb782;
+	inherits: true;
+}
+
+@property --db-warning-11 {
+	syntax: "<color>";
+	initial-value: #ffdbc8;
+	inherits: true;
+}
+
+@property --db-warning-12 {
+	syntax: "<color>";
+	initial-value: #ffeadf;
+	inherits: true;
+}
+
+@property --db-warning-13 {
+	syntax: "<color>";
+	initial-value: #fff1ea;
+	inherits: true;
+}
+
+@property --db-warning-14 {
+	syntax: "<color>";
+	initial-value: #fff8f5;
+	inherits: true;
+}
+
+@property --db-warning-origin-base {
+	syntax: "<color>";
+	initial-value: #f39200;
+	inherits: true;
+}
+
+@property --db-warning-origin-light-default {
+	syntax: "<color>";
+	initial-value: #f39200;
+	inherits: true;
+}
+
+@property --db-warning-origin-light-hovered {
+	syntax: "<color>";
+	initial-value: #ce7b00;
+	inherits: true;
+}
+
+@property --db-warning-origin-light-pressed {
+	syntax: "<color>";
+	initial-value: #aa6500;
+	inherits: true;
+}
+
+@property --db-warning-origin-dark-default {
+	syntax: "<color>";
+	initial-value: #f39200;
+	inherits: true;
+}
+
+@property --db-warning-origin-dark-hovered {
+	syntax: "<color>";
+	initial-value: #ffb47b;
+	inherits: true;
+}
+
+@property --db-warning-origin-dark-pressed {
+	syntax: "<color>";
+	initial-value: #ffd9c3;
+	inherits: true;
+}
+
+@property --db-warning-on-origin-light-default {
+	syntax: "<color>";
+	initial-value: #100500;
+	inherits: true;
+}
+
+@property --db-warning-on-origin-light-hovered {
+	syntax: "<color>";
+	initial-value: #331900;
+	inherits: true;
+}
+
+@property --db-warning-on-origin-light-pressed {
+	syntax: "<color>";
+	initial-value: #512b00;
+	inherits: true;
+}
+
+@property --db-warning-on-origin-dark-default {
+	syntax: "<color>";
+	initial-value: #100500;
+	inherits: true;
+}
+
+@property --db-warning-on-origin-dark-hovered {
+	syntax: "<color>";
+	initial-value: #331900;
+	inherits: true;
+}
+
+@property --db-warning-on-origin-dark-pressed {
+	syntax: "<color>";
+	initial-value: #512b00;
+	inherits: true;
+}
+
+@property --db-successful-0 {
+	syntax: "<color>";
+	initial-value: #061100;
+	inherits: true;
+}
+
+@property --db-successful-1 {
+	syntax: "<color>";
+	initial-value: #0c1b01;
+	inherits: true;
+}
+
+@property --db-successful-2 {
+	syntax: "<color>";
+	initial-value: #142901;
+	inherits: true;
+}
+
+@property --db-successful-3 {
+	syntax: "<color>";
+	initial-value: #1d3702;
+	inherits: true;
+}
+
+@property --db-successful-4 {
+	syntax: "<color>";
+	initial-value: #264604;
+	inherits: true;
+}
+
+@property --db-successful-5 {
+	syntax: "<color>";
+	initial-value: #305506;
+	inherits: true;
+}
+
+@property --db-successful-6 {
+	syntax: "<color>";
+	initial-value: #3d6a09;
+	inherits: true;
+}
+
+@property --db-successful-7 {
+	syntax: "<color>";
+	initial-value: #4e850f;
+	inherits: true;
+}
+
+@property --db-successful-8 {
+	syntax: "<color>";
+	initial-value: #60a114;
+	inherits: true;
+}
+
+@property --db-successful-9 {
+	syntax: "<color>";
+	initial-value: #72bf1a;
+	inherits: true;
+}
+
+@property --db-successful-10 {
+	syntax: "<color>";
+	initial-value: #85dd20;
+	inherits: true;
+}
+
+@property --db-successful-11 {
+	syntax: "<color>";
+	initial-value: #99fc26;
+	inherits: true;
+}
+
+@property --db-successful-12 {
+	syntax: "<color>";
+	initial-value: #c3ff9d;
+	inherits: true;
+}
+
+@property --db-successful-13 {
+	syntax: "<color>";
+	initial-value: #d9ffc4;
+	inherits: true;
+}
+
+@property --db-successful-14 {
+	syntax: "<color>";
+	initial-value: #edffe4;
+	inherits: true;
+}
+
+@property --db-successful-origin-base {
+	syntax: "<color>";
+	initial-value: #63a615;
+	inherits: true;
+}
+
+@property --db-successful-origin-light-default {
+	syntax: "<color>";
+	initial-value: #63a615;
+	inherits: true;
+}
+
+@property --db-successful-origin-light-hovered {
+	syntax: "<color>";
+	initial-value: #51890f;
+	inherits: true;
+}
+
+@property --db-successful-origin-light-pressed {
+	syntax: "<color>";
+	initial-value: #406e0a;
+	inherits: true;
+}
+
+@property --db-successful-origin-dark-default {
+	syntax: "<color>";
+	initial-value: #63a615;
+	inherits: true;
+}
+
+@property --db-successful-origin-dark-hovered {
+	syntax: "<color>";
+	initial-value: #75c31b;
+	inherits: true;
+}
+
+@property --db-successful-origin-dark-pressed {
+	syntax: "<color>";
+	initial-value: #88e221;
+	inherits: true;
+}
+
+@property --db-successful-on-origin-light-default {
+	syntax: "<color>";
+	initial-value: #030900;
+	inherits: true;
+}
+
+@property --db-successful-on-origin-light-hovered {
+	syntax: "<color>";
+	initial-value: #122400;
+	inherits: true;
+}
+
+@property --db-successful-on-origin-light-pressed {
+	syntax: "<color>";
+	initial-value: #213c00;
+	inherits: true;
+}
+
+@property --db-successful-on-origin-dark-default {
+	syntax: "<color>";
+	initial-value: #030900;
+	inherits: true;
+}
+
+@property --db-successful-on-origin-dark-hovered {
+	syntax: "<color>";
+	initial-value: #122400;
+	inherits: true;
+}
+
+@property --db-successful-on-origin-dark-pressed {
+	syntax: "<color>";
+	initial-value: #213c00;
+	inherits: true;
+}
+
+@property --db-critical-0 {
+	syntax: "<color>";
+	initial-value: #280001;
+	inherits: true;
+}
+
+@property --db-critical-1 {
+	syntax: "<color>";
+	initial-value: #390001;
+	inherits: true;
+}
+
+@property --db-critical-2 {
+	syntax: "<color>";
+	initial-value: #500003;
+	inherits: true;
+}
+
+@property --db-critical-3 {
+	syntax: "<color>";
+	initial-value: #690004;
+	inherits: true;
+}
+
+@property --db-critical-4 {
+	syntax: "<color>";
+	initial-value: #820007;
+	inherits: true;
+}
+
+@property --db-critical-5 {
+	syntax: "<color>";
+	initial-value: #9c000a;
+	inherits: true;
+}
+
+@property --db-critical-6 {
+	syntax: "<color>";
+	initial-value: #c00010;
+	inherits: true;
+}
+
+@property --db-critical-7 {
+	syntax: "<color>";
+	initial-value: #ef0016;
+	inherits: true;
+}
+
+@property --db-critical-8 {
+	syntax: "<color>";
+	initial-value: #ff5357;
+	inherits: true;
+}
+
+@property --db-critical-9 {
+	syntax: "<color>";
+	initial-value: #ff888a;
+	inherits: true;
+}
+
+@property --db-critical-10 {
+	syntax: "<color>";
+	initial-value: #ffb3b4;
+	inherits: true;
+}
+
+@property --db-critical-11 {
+	syntax: "<color>";
+	initial-value: #ffdada;
+	inherits: true;
+}
+
+@property --db-critical-12 {
+	syntax: "<color>";
+	initial-value: #ffe9e9;
+	inherits: true;
+}
+
+@property --db-critical-13 {
+	syntax: "<color>";
+	initial-value: #fff0f0;
+	inherits: true;
+}
+
+@property --db-critical-14 {
+	syntax: "<color>";
+	initial-value: #fff8f8;
+	inherits: true;
+}
+
+@property --db-critical-origin-base {
+	syntax: "<color>";
+	initial-value: #ec0016;
+	inherits: true;
+}
+
+@property --db-critical-origin-light-default {
+	syntax: "<color>";
+	initial-value: #ec0016;
+	inherits: true;
+}
+
+@property --db-critical-origin-light-hovered {
+	syntax: "<color>";
+	initial-value: #bd000f;
+	inherits: true;
+}
+
+@property --db-critical-origin-light-pressed {
+	syntax: "<color>";
+	initial-value: #900009;
+	inherits: true;
+}
+
+@property --db-critical-origin-dark-default {
+	syntax: "<color>";
+	initial-value: #ec0016;
+	inherits: true;
+}
+
+@property --db-critical-origin-dark-hovered {
+	syntax: "<color>";
+	initial-value: #ff4f53;
+	inherits: true;
+}
+
+@property --db-critical-origin-dark-pressed {
+	syntax: "<color>";
+	initial-value: #ff8587;
+	inherits: true;
+}
+
+@property --db-critical-on-origin-light-default {
+	syntax: "<color>";
+	initial-value: #fff;
+	inherits: true;
+}
+
+@property --db-critical-on-origin-light-hovered {
+	syntax: "<color>";
+	initial-value: #ffdada;
+	inherits: true;
+}
+
+@property --db-critical-on-origin-light-pressed {
+	syntax: "<color>";
+	initial-value: #ffb3b4;
+	inherits: true;
+}
+
+@property --db-critical-on-origin-dark-default {
+	syntax: "<color>";
+	initial-value: #fff;
+	inherits: true;
+}
+
+@property --db-critical-on-origin-dark-hovered {
+	syntax: "<color>";
+	initial-value: #ffdada;
+	inherits: true;
+}
+
+@property --db-critical-on-origin-dark-pressed {
+	syntax: "<color>";
+	initial-value: #ffb3b4;
+	inherits: true;
+}
+
+@property --db-yellow-0 {
+	syntax: "<color>";
+	initial-value: #130e00;
+	inherits: true;
+}
+
+@property --db-yellow-1 {
+	syntax: "<color>";
+	initial-value: #1d1700;
+	inherits: true;
+}
+
+@property --db-yellow-2 {
+	syntax: "<color>";
+	initial-value: #2b2300;
+	inherits: true;
+}
+
+@property --db-yellow-3 {
+	syntax: "<color>";
+	initial-value: #3a3000;
+	inherits: true;
+}
+
+@property --db-yellow-4 {
+	syntax: "<color>";
+	initial-value: #493d00;
+	inherits: true;
+}
+
+@property --db-yellow-5 {
+	syntax: "<color>";
+	initial-value: #594a00;
+	inherits: true;
+}
+
+@property --db-yellow-6 {
+	syntax: "<color>";
+	initial-value: #6f5d00;
+	inherits: true;
+}
+
+@property --db-yellow-7 {
+	syntax: "<color>";
+	initial-value: #8c7600;
+	inherits: true;
+}
+
+@property --db-yellow-8 {
+	syntax: "<color>";
+	initial-value: #aa8f00;
+	inherits: true;
+}
+
+@property --db-yellow-9 {
+	syntax: "<color>";
+	initial-value: #c8a900;
+	inherits: true;
+}
+
+@property --db-yellow-10 {
+	syntax: "<color>";
+	initial-value: #e8c400;
+	inherits: true;
+}
+
+@property --db-yellow-11 {
+	syntax: "<color>";
+	initial-value: #ffe17c;
+	inherits: true;
+}
+
+@property --db-yellow-12 {
+	syntax: "<color>";
+	initial-value: #ffedbc;
+	inherits: true;
+}
+
+@property --db-yellow-13 {
+	syntax: "<color>";
+	initial-value: #fff3d5;
+	inherits: true;
+}
+
+@property --db-yellow-14 {
+	syntax: "<color>";
+	initial-value: #fff9eb;
+	inherits: true;
+}
+
+@property --db-yellow-origin-base {
+	syntax: "<color>";
+	initial-value: #ffd800;
+	inherits: true;
+}
+
+@property --db-yellow-origin-light-default {
+	syntax: "<color>";
+	initial-value: #ffd800;
+	inherits: true;
+}
+
+@property --db-yellow-origin-light-hovered {
+	syntax: "<color>";
+	initial-value: #dfbc00;
+	inherits: true;
+}
+
+@property --db-yellow-origin-light-pressed {
+	syntax: "<color>";
+	initial-value: #bfa200;
+	inherits: true;
+}
+
+@property --db-yellow-origin-dark-default {
+	syntax: "<color>";
+	initial-value: #ffd800;
+	inherits: true;
+}
+
+@property --db-yellow-origin-dark-hovered {
+	syntax: "<color>";
+	initial-value: #dfbc00;
+	inherits: true;
+}
+
+@property --db-yellow-origin-dark-pressed {
+	syntax: "<color>";
+	initial-value: #bfa200;
+	inherits: true;
+}
+
+@property --db-yellow-on-origin-light-default {
+	syntax: "<color>";
+	initial-value: #0a0700;
+	inherits: true;
+}
+
+@property --db-yellow-on-origin-light-hovered {
+	syntax: "<color>";
+	initial-value: #261f00;
+	inherits: true;
+}
+
+@property --db-yellow-on-origin-light-pressed {
+	syntax: "<color>";
+	initial-value: #3f3400;
+	inherits: true;
+}
+
+@property --db-yellow-on-origin-dark-default {
+	syntax: "<color>";
+	initial-value: #0a0700;
+	inherits: true;
+}
+
+@property --db-yellow-on-origin-dark-hovered {
+	syntax: "<color>";
+	initial-value: #261f00;
+	inherits: true;
+}
+
+@property --db-yellow-on-origin-dark-pressed {
+	syntax: "<color>";
+	initial-value: #3f3400;
+	inherits: true;
+}
+
+@property --db-orange-0 {
+	syntax: "<color>";
+	initial-value: #190b00;
+	inherits: true;
+}
+
+@property --db-orange-1 {
+	syntax: "<color>";
+	initial-value: #271300;
+	inherits: true;
+}
+
+@property --db-orange-2 {
+	syntax: "<color>";
+	initial-value: #381d00;
+	inherits: true;
+}
+
+@property --db-orange-3 {
+	syntax: "<color>";
+	initial-value: #4a2800;
+	inherits: true;
+}
+
+@property --db-orange-4 {
+	syntax: "<color>";
+	initial-value: #5c3400;
+	inherits: true;
+}
+
+@property --db-orange-5 {
+	syntax: "<color>";
+	initial-value: #6f4000;
+	inherits: true;
+}
+
+@property --db-orange-6 {
+	syntax: "<color>";
+	initial-value: #8a5100;
+	inherits: true;
+}
+
+@property --db-orange-7 {
+	syntax: "<color>";
+	initial-value: #ad6600;
+	inherits: true;
+}
+
+@property --db-orange-8 {
+	syntax: "<color>";
+	initial-value: #d17d00;
+	inherits: true;
+}
+
+@property --db-orange-9 {
+	syntax: "<color>";
+	initial-value: #f69400;
+	inherits: true;
+}
+
+@property --db-orange-10 {
+	syntax: "<color>";
+	initial-value: #ffb782;
+	inherits: true;
+}
+
+@property --db-orange-11 {
+	syntax: "<color>";
+	initial-value: #ffdbc8;
+	inherits: true;
+}
+
+@property --db-orange-12 {
+	syntax: "<color>";
+	initial-value: #ffeadf;
+	inherits: true;
+}
+
+@property --db-orange-13 {
+	syntax: "<color>";
+	initial-value: #fff1ea;
+	inherits: true;
+}
+
+@property --db-orange-14 {
+	syntax: "<color>";
+	initial-value: #fff8f5;
+	inherits: true;
+}
+
+@property --db-orange-origin-base {
+	syntax: "<color>";
+	initial-value: #f39200;
+	inherits: true;
+}
+
+@property --db-orange-origin-light-default {
+	syntax: "<color>";
+	initial-value: #f39200;
+	inherits: true;
+}
+
+@property --db-orange-origin-light-hovered {
+	syntax: "<color>";
+	initial-value: #ce7b00;
+	inherits: true;
+}
+
+@property --db-orange-origin-light-pressed {
+	syntax: "<color>";
+	initial-value: #aa6500;
+	inherits: true;
+}
+
+@property --db-orange-origin-dark-default {
+	syntax: "<color>";
+	initial-value: #f39200;
+	inherits: true;
+}
+
+@property --db-orange-origin-dark-hovered {
+	syntax: "<color>";
+	initial-value: #ffb47b;
+	inherits: true;
+}
+
+@property --db-orange-origin-dark-pressed {
+	syntax: "<color>";
+	initial-value: #ffd9c3;
+	inherits: true;
+}
+
+@property --db-orange-on-origin-light-default {
+	syntax: "<color>";
+	initial-value: #100500;
+	inherits: true;
+}
+
+@property --db-orange-on-origin-light-hovered {
+	syntax: "<color>";
+	initial-value: #331900;
+	inherits: true;
+}
+
+@property --db-orange-on-origin-light-pressed {
+	syntax: "<color>";
+	initial-value: #512b00;
+	inherits: true;
+}
+
+@property --db-orange-on-origin-dark-default {
+	syntax: "<color>";
+	initial-value: #100500;
+	inherits: true;
+}
+
+@property --db-orange-on-origin-dark-hovered {
+	syntax: "<color>";
+	initial-value: #331900;
+	inherits: true;
+}
+
+@property --db-orange-on-origin-dark-pressed {
+	syntax: "<color>";
+	initial-value: #512b00;
+	inherits: true;
+}
+
+@property --db-red-0 {
+	syntax: "<color>";
+	initial-value: #280001;
+	inherits: true;
+}
+
+@property --db-red-1 {
+	syntax: "<color>";
+	initial-value: #390001;
+	inherits: true;
+}
+
+@property --db-red-2 {
+	syntax: "<color>";
+	initial-value: #500003;
+	inherits: true;
+}
+
+@property --db-red-3 {
+	syntax: "<color>";
+	initial-value: #690004;
+	inherits: true;
+}
+
+@property --db-red-4 {
+	syntax: "<color>";
+	initial-value: #820007;
+	inherits: true;
+}
+
+@property --db-red-5 {
+	syntax: "<color>";
+	initial-value: #9c000a;
+	inherits: true;
+}
+
+@property --db-red-6 {
+	syntax: "<color>";
+	initial-value: #c00010;
+	inherits: true;
+}
+
+@property --db-red-7 {
+	syntax: "<color>";
+	initial-value: #ef0016;
+	inherits: true;
+}
+
+@property --db-red-8 {
+	syntax: "<color>";
+	initial-value: #ff5357;
+	inherits: true;
+}
+
+@property --db-red-9 {
+	syntax: "<color>";
+	initial-value: #ff888a;
+	inherits: true;
+}
+
+@property --db-red-10 {
+	syntax: "<color>";
+	initial-value: #ffb3b4;
+	inherits: true;
+}
+
+@property --db-red-11 {
+	syntax: "<color>";
+	initial-value: #ffdada;
+	inherits: true;
+}
+
+@property --db-red-12 {
+	syntax: "<color>";
+	initial-value: #ffe9e9;
+	inherits: true;
+}
+
+@property --db-red-13 {
+	syntax: "<color>";
+	initial-value: #fff0f0;
+	inherits: true;
+}
+
+@property --db-red-14 {
+	syntax: "<color>";
+	initial-value: #fff8f8;
+	inherits: true;
+}
+
+@property --db-red-origin-base {
+	syntax: "<color>";
+	initial-value: #ec0016;
+	inherits: true;
+}
+
+@property --db-red-origin-light-default {
+	syntax: "<color>";
+	initial-value: #ec0016;
+	inherits: true;
+}
+
+@property --db-red-origin-light-hovered {
+	syntax: "<color>";
+	initial-value: #bd000f;
+	inherits: true;
+}
+
+@property --db-red-origin-light-pressed {
+	syntax: "<color>";
+	initial-value: #900009;
+	inherits: true;
+}
+
+@property --db-red-origin-dark-default {
+	syntax: "<color>";
+	initial-value: #ec0016;
+	inherits: true;
+}
+
+@property --db-red-origin-dark-hovered {
+	syntax: "<color>";
+	initial-value: #ff4f53;
+	inherits: true;
+}
+
+@property --db-red-origin-dark-pressed {
+	syntax: "<color>";
+	initial-value: #ff8587;
+	inherits: true;
+}
+
+@property --db-red-on-origin-light-default {
+	syntax: "<color>";
+	initial-value: #fff;
+	inherits: true;
+}
+
+@property --db-red-on-origin-light-hovered {
+	syntax: "<color>";
+	initial-value: #ffdada;
+	inherits: true;
+}
+
+@property --db-red-on-origin-light-pressed {
+	syntax: "<color>";
+	initial-value: #ffb3b4;
+	inherits: true;
+}
+
+@property --db-red-on-origin-dark-default {
+	syntax: "<color>";
+	initial-value: #fff;
+	inherits: true;
+}
+
+@property --db-red-on-origin-dark-hovered {
+	syntax: "<color>";
+	initial-value: #ffdada;
+	inherits: true;
+}
+
+@property --db-red-on-origin-dark-pressed {
+	syntax: "<color>";
+	initial-value: #ffb3b4;
+	inherits: true;
+}
+
+@property --db-pink-0 {
+	syntax: "<color>";
+	initial-value: #220310;
+	inherits: true;
+}
+
+@property --db-pink-1 {
+	syntax: "<color>";
+	initial-value: #32061b;
+	inherits: true;
+}
+
+@property --db-pink-2 {
+	syntax: "<color>";
+	initial-value: #460c28;
+	inherits: true;
+}
+
+@property --db-pink-3 {
+	syntax: "<color>";
+	initial-value: #5c1335;
+	inherits: true;
+}
+
+@property --db-pink-4 {
+	syntax: "<color>";
+	initial-value: #731a44;
+	inherits: true;
+}
+
+@property --db-pink-5 {
+	syntax: "<color>";
+	initial-value: #8a2153;
+	inherits: true;
+}
+
+@property --db-pink-6 {
+	syntax: "<color>";
+	initial-value: #aa2b67;
+	inherits: true;
+}
+
+@property --db-pink-7 {
+	syntax: "<color>";
+	initial-value: #d43882;
+	inherits: true;
+}
+
+@property --db-pink-8 {
+	syntax: "<color>";
+	initial-value: #ed5c9b;
+	inherits: true;
+}
+
+@property --db-pink-9 {
+	syntax: "<color>";
+	initial-value: #f18cb2;
+	inherits: true;
+}
+
+@property --db-pink-10 {
+	syntax: "<color>";
+	initial-value: #f5b5cb;
+	inherits: true;
+}
+
+@property --db-pink-11 {
+	syntax: "<color>";
+	initial-value: #fadbe4;
+	inherits: true;
+}
+
+@property --db-pink-12 {
+	syntax: "<color>";
+	initial-value: #fce9ef;
+	inherits: true;
+}
+
+@property --db-pink-13 {
+	syntax: "<color>";
+	initial-value: #fdf1f4;
+	inherits: true;
+}
+
+@property --db-pink-14 {
+	syntax: "<color>";
+	initial-value: #fef8fa;
+	inherits: true;
+}
+
+@property --db-pink-origin-base {
+	syntax: "<color>";
+	initial-value: #e93e8f;
+	inherits: true;
+}
+
+@property --db-pink-origin-light-default {
+	syntax: "<color>";
+	initial-value: #e93e8f;
+	inherits: true;
+}
+
+@property --db-pink-origin-light-hovered {
+	syntax: "<color>";
+	initial-value: #be3174;
+	inherits: true;
+}
+
+@property --db-pink-origin-light-pressed {
+	syntax: "<color>";
+	initial-value: #95245a;
+	inherits: true;
+}
+
+@property --db-pink-origin-dark-default {
+	syntax: "<color>";
+	initial-value: #e93e8f;
+	inherits: true;
+}
+
+@property --db-pink-origin-dark-hovered {
+	syntax: "<color>";
+	initial-value: #ef75a6;
+	inherits: true;
+}
+
+@property --db-pink-origin-dark-pressed {
+	syntax: "<color>";
+	initial-value: #f3a0be;
+	inherits: true;
+}
+
+@property --db-pink-on-origin-light-default {
+	syntax: "<color>";
+	initial-value: #260413;
+	inherits: true;
+}
+
+@property --db-pink-on-origin-light-hovered {
+	syntax: "<color>";
+	initial-value: #490e29;
+	inherits: true;
+}
+
+@property --db-pink-on-origin-light-pressed {
+	syntax: "<color>";
+	initial-value: #6e1941;
+	inherits: true;
+}
+
+@property --db-pink-on-origin-dark-default {
+	syntax: "<color>";
+	initial-value: #260413;
+	inherits: true;
+}
+
+@property --db-pink-on-origin-dark-hovered {
+	syntax: "<color>";
+	initial-value: #490e29;
+	inherits: true;
+}
+
+@property --db-pink-on-origin-dark-pressed {
+	syntax: "<color>";
+	initial-value: #6e1941;
+	inherits: true;
+}
+
+@property --db-violet-0 {
+	syntax: "<color>";
+	initial-value: #17081c;
+	inherits: true;
+}
+
+@property --db-violet-1 {
+	syntax: "<color>";
+	initial-value: #23102a;
+	inherits: true;
+}
+
+@property --db-violet-2 {
+	syntax: "<color>";
+	initial-value: #33193c;
+	inherits: true;
+}
+
+@property --db-violet-3 {
+	syntax: "<color>";
+	initial-value: #432350;
+	inherits: true;
+}
+
+@property --db-violet-4 {
+	syntax: "<color>";
+	initial-value: #542e63;
+	inherits: true;
+}
+
+@property --db-violet-5 {
+	syntax: "<color>";
+	initial-value: #663978;
+	inherits: true;
+}
+
+@property --db-violet-6 {
+	syntax: "<color>";
+	initial-value: #7f4895;
+	inherits: true;
+}
+
+@property --db-violet-7 {
+	syntax: "<color>";
+	initial-value: #9f5bba;
+	inherits: true;
+}
+
+@property --db-violet-8 {
+	syntax: "<color>";
+	initial-value: #b47ace;
+	inherits: true;
+}
+
+@property --db-violet-9 {
+	syntax: "<color>";
+	initial-value: #c69cda;
+	inherits: true;
+}
+
+@property --db-violet-10 {
+	syntax: "<color>";
+	initial-value: #d8bde6;
+	inherits: true;
+}
+
+@property --db-violet-11 {
+	syntax: "<color>";
+	initial-value: #ebdef2;
+	inherits: true;
+}
+
+@property --db-violet-12 {
+	syntax: "<color>";
+	initial-value: #f3ebf7;
+	inherits: true;
+}
+
+@property --db-violet-13 {
+	syntax: "<color>";
+	initial-value: #f7f2fa;
+	inherits: true;
+}
+
+@property --db-violet-14 {
+	syntax: "<color>";
+	initial-value: #fbf8fc;
+	inherits: true;
+}
+
+@property --db-violet-origin-base {
+	syntax: "<color>";
+	initial-value: #814997;
+	inherits: true;
+}
+
+@property --db-violet-origin-light-default {
+	syntax: "<color>";
+	initial-value: #814997;
+	inherits: true;
+}
+
+@property --db-violet-origin-light-hovered {
+	syntax: "<color>";
+	initial-value: #623673;
+	inherits: true;
+}
+
+@property --db-violet-origin-light-pressed {
+	syntax: "<color>";
+	initial-value: #452452;
+	inherits: true;
+}
+
+@property --db-violet-origin-dark-default {
+	syntax: "<color>";
+	initial-value: #814997;
+	inherits: true;
+}
+
+@property --db-violet-origin-dark-hovered {
+	syntax: "<color>";
+	initial-value: #a15dbc;
+	inherits: true;
+}
+
+@property --db-violet-origin-dark-pressed {
+	syntax: "<color>";
+	initial-value: #b67cce;
+	inherits: true;
+}
+
+@property --db-violet-on-origin-light-default {
+	syntax: "<color>";
+	initial-value: #fbf8fc;
+	inherits: true;
+}
+
+@property --db-violet-on-origin-light-hovered {
+	syntax: "<color>";
+	initial-value: #e9d7ee;
+	inherits: true;
+}
+
+@property --db-violet-on-origin-light-pressed {
+	syntax: "<color>";
+	initial-value: #d7b5e1;
+	inherits: true;
+}
+
+@property --db-violet-on-origin-dark-default {
+	syntax: "<color>";
+	initial-value: #fbf8fc;
+	inherits: true;
+}
+
+@property --db-violet-on-origin-dark-hovered {
+	syntax: "<color>";
+	initial-value: #e9d7ee;
+	inherits: true;
+}
+
+@property --db-violet-on-origin-dark-pressed {
+	syntax: "<color>";
+	initial-value: #d7b5e1;
+	inherits: true;
+}
+
+@property --db-blue-0 {
+	syntax: "<color>";
+	initial-value: #010d29;
+	inherits: true;
+}
+
+@property --db-blue-1 {
+	syntax: "<color>";
+	initial-value: #02153c;
+	inherits: true;
+}
+
+@property --db-blue-2 {
+	syntax: "<color>";
+	initial-value: #042153;
+	inherits: true;
+}
+
+@property --db-blue-3 {
+	syntax: "<color>";
+	initial-value: #072d6c;
+	inherits: true;
+}
+
+@property --db-blue-4 {
+	syntax: "<color>";
+	initial-value: #0a3986;
+	inherits: true;
+}
+
+@property --db-blue-5 {
+	syntax: "<color>";
+	initial-value: #0f46a1;
+	inherits: true;
+}
+
+@property --db-blue-6 {
+	syntax: "<color>";
+	initial-value: #1558c6;
+	inherits: true;
+}
+
+@property --db-blue-7 {
+	syntax: "<color>";
+	initial-value: #1d6ff7;
+	inherits: true;
+}
+
+@property --db-blue-8 {
+	syntax: "<color>";
+	initial-value: #638bfa;
+	inherits: true;
+}
+
+@property --db-blue-9 {
+	syntax: "<color>";
+	initial-value: #90a8fc;
+	inherits: true;
+}
+
+@property --db-blue-10 {
+	syntax: "<color>";
+	initial-value: #b7c4fd;
+	inherits: true;
+}
+
+@property --db-blue-11 {
+	syntax: "<color>";
+	initial-value: #dbe1fe;
+	inherits: true;
+}
+
+@property --db-blue-12 {
+	syntax: "<color>";
+	initial-value: #eaedfe;
+	inherits: true;
+}
+
+@property --db-blue-13 {
+	syntax: "<color>";
+	initial-value: #f1f3ff;
+	inherits: true;
+}
+
+@property --db-blue-14 {
+	syntax: "<color>";
+	initial-value: #f8f9ff;
+	inherits: true;
+}
+
+@property --db-blue-origin-base {
+	syntax: "<color>";
+	initial-value: #1455c0;
+	inherits: true;
+}
+
+@property --db-blue-origin-light-default {
+	syntax: "<color>";
+	initial-value: #1455c0;
+	inherits: true;
+}
+
+@property --db-blue-origin-light-hovered {
+	syntax: "<color>";
+	initial-value: #0c3f92;
+	inherits: true;
+}
+
+@property --db-blue-origin-light-pressed {
+	syntax: "<color>";
+	initial-value: #062a67;
+	inherits: true;
+}
+
+@property --db-blue-origin-dark-default {
+	syntax: "<color>";
+	initial-value: #1455c0;
+	inherits: true;
+}
+
+@property --db-blue-origin-dark-hovered {
+	syntax: "<color>";
+	initial-value: #1c6cf0;
+	inherits: true;
+}
+
+@property --db-blue-origin-dark-pressed {
+	syntax: "<color>";
+	initial-value: #5c87fa;
+	inherits: true;
+}
+
+@property --db-blue-on-origin-light-default {
+	syntax: "<color>";
+	initial-value: #f8f9ff;
+	inherits: true;
+}
+
+@property --db-blue-on-origin-light-hovered {
+	syntax: "<color>";
+	initial-value: #d5dbff;
+	inherits: true;
+}
+
+@property --db-blue-on-origin-light-pressed {
+	syntax: "<color>";
+	initial-value: #b0beff;
+	inherits: true;
+}
+
+@property --db-blue-on-origin-dark-default {
+	syntax: "<color>";
+	initial-value: #f8f9ff;
+	inherits: true;
+}
+
+@property --db-blue-on-origin-dark-hovered {
+	syntax: "<color>";
+	initial-value: #d5dbff;
+	inherits: true;
+}
+
+@property --db-blue-on-origin-dark-pressed {
+	syntax: "<color>";
+	initial-value: #b0beff;
+	inherits: true;
+}
+
+@property --db-cyan-0 {
+	syntax: "<color>";
+	initial-value: #011018;
+	inherits: true;
+}
+
+@property --db-cyan-1 {
+	syntax: "<color>";
+	initial-value: #031a25;
+	inherits: true;
+}
+
+@property --db-cyan-2 {
+	syntax: "<color>";
+	initial-value: #062736;
+	inherits: true;
+}
+
+@property --db-cyan-3 {
+	syntax: "<color>";
+	initial-value: #0a3447;
+	inherits: true;
+}
+
+@property --db-cyan-4 {
+	syntax: "<color>";
+	initial-value: #0f4259;
+	inherits: true;
+}
+
+@property --db-cyan-5 {
+	syntax: "<color>";
+	initial-value: #14516c;
+	inherits: true;
+}
+
+@property --db-cyan-6 {
+	syntax: "<color>";
+	initial-value: #1b6586;
+	inherits: true;
+}
+
+@property --db-cyan-7 {
+	syntax: "<color>";
+	initial-value: #257fa8;
+	inherits: true;
+}
+
+@property --db-cyan-8 {
+	syntax: "<color>";
+	initial-value: #2e9acb;
+	inherits: true;
+}
+
+@property --db-cyan-9 {
+	syntax: "<color>";
+	initial-value: #38b6ef;
+	inherits: true;
+}
+
+@property --db-cyan-10 {
+	syntax: "<color>";
+	initial-value: #89cffa;
+	inherits: true;
+}
+
+@property --db-cyan-11 {
+	syntax: "<color>";
+	initial-value: #cae6fd;
+	inherits: true;
+}
+
+@property --db-cyan-12 {
+	syntax: "<color>";
+	initial-value: #e0f0fe;
+	inherits: true;
+}
+
+@property --db-cyan-13 {
+	syntax: "<color>";
+	initial-value: #ebf5fe;
+	inherits: true;
+}
+
+@property --db-cyan-14 {
+	syntax: "<color>";
+	initial-value: #f5faff;
+	inherits: true;
+}
+
+@property --db-cyan-origin-base {
+	syntax: "<color>";
+	initial-value: #309fd1;
+	inherits: true;
+}
+
+@property --db-cyan-origin-light-default {
+	syntax: "<color>";
+	initial-value: #309fd1;
+	inherits: true;
+}
+
+@property --db-cyan-origin-light-hovered {
+	syntax: "<color>";
+	initial-value: #2684ae;
+	inherits: true;
+}
+
+@property --db-cyan-origin-light-pressed {
+	syntax: "<color>";
+	initial-value: #1d698c;
+	inherits: true;
+}
+
+@property --db-cyan-origin-dark-default {
+	syntax: "<color>";
+	initial-value: #309fd1;
+	inherits: true;
+}
+
+@property --db-cyan-origin-dark-hovered {
+	syntax: "<color>";
+	initial-value: #3abbf5;
+	inherits: true;
+}
+
+@property --db-cyan-origin-dark-pressed {
+	syntax: "<color>";
+	initial-value: #96d2fb;
+	inherits: true;
+}
+
+@property --db-cyan-on-origin-light-default {
+	syntax: "<color>";
+	initial-value: #01080f;
+	inherits: true;
+}
+
+@property --db-cyan-on-origin-light-hovered {
+	syntax: "<color>";
+	initial-value: #072231;
+	inherits: true;
+}
+
+@property --db-cyan-on-origin-light-pressed {
+	syntax: "<color>";
+	initial-value: #0f384f;
+	inherits: true;
+}
+
+@property --db-cyan-on-origin-dark-default {
+	syntax: "<color>";
+	initial-value: #01080f;
+	inherits: true;
+}
+
+@property --db-cyan-on-origin-dark-hovered {
+	syntax: "<color>";
+	initial-value: #072231;
+	inherits: true;
+}
+
+@property --db-cyan-on-origin-dark-pressed {
+	syntax: "<color>";
+	initial-value: #0f384f;
+	inherits: true;
+}
+
+@property --db-turquoise-0 {
+	syntax: "<color>";
+	initial-value: #001110;
+	inherits: true;
+}
+
+@property --db-turquoise-1 {
+	syntax: "<color>";
+	initial-value: #001c1a;
+	inherits: true;
+}
+
+@property --db-turquoise-2 {
+	syntax: "<color>";
+	initial-value: #002927;
+	inherits: true;
+}
+
+@property --db-turquoise-3 {
+	syntax: "<color>";
+	initial-value: #003734;
+	inherits: true;
+}
+
+@property --db-turquoise-4 {
+	syntax: "<color>";
+	initial-value: #004642;
+	inherits: true;
+}
+
+@property --db-turquoise-5 {
+	syntax: "<color>";
+	initial-value: #005551;
+	inherits: true;
+}
+
+@property --db-turquoise-6 {
+	syntax: "<color>";
+	initial-value: #006a65;
+	inherits: true;
+}
+
+@property --db-turquoise-7 {
+	syntax: "<color>";
+	initial-value: #00857f;
+	inherits: true;
+}
+
+@property --db-turquoise-8 {
+	syntax: "<color>";
+	initial-value: #00a29b;
+	inherits: true;
+}
+
+@property --db-turquoise-9 {
+	syntax: "<color>";
+	initial-value: #00bfb7;
+	inherits: true;
+}
+
+@property --db-turquoise-10 {
+	syntax: "<color>";
+	initial-value: #00ddd4;
+	inherits: true;
+}
+
+@property --db-turquoise-11 {
+	syntax: "<color>";
+	initial-value: #00fcf2;
+	inherits: true;
+}
+
+@property --db-turquoise-12 {
+	syntax: "<color>";
+	initial-value: #9bfff8;
+	inherits: true;
+}
+
+@property --db-turquoise-13 {
+	syntax: "<color>";
+	initial-value: #c3fffa;
+	inherits: true;
+}
+
+@property --db-turquoise-14 {
+	syntax: "<color>";
+	initial-value: #e3fffd;
+	inherits: true;
+}
+
+@property --db-turquoise-origin-base {
+	syntax: "<color>";
+	initial-value: #00a099;
+	inherits: true;
+}
+
+@property --db-turquoise-origin-light-default {
+	syntax: "<color>";
+	initial-value: #00a099;
+	inherits: true;
+}
+
+@property --db-turquoise-origin-light-hovered {
+	syntax: "<color>";
+	initial-value: #00847e;
+	inherits: true;
+}
+
+@property --db-turquoise-origin-light-pressed {
+	syntax: "<color>";
+	initial-value: #006864;
+	inherits: true;
+}
+
+@property --db-turquoise-origin-dark-default {
+	syntax: "<color>";
+	initial-value: #00a099;
+	inherits: true;
+}
+
+@property --db-turquoise-origin-dark-hovered {
+	syntax: "<color>";
+	initial-value: #00bdb5;
+	inherits: true;
+}
+
+@property --db-turquoise-origin-dark-pressed {
+	syntax: "<color>";
+	initial-value: #00dcd2;
+	inherits: true;
+}
+
+@property --db-turquoise-on-origin-light-default {
+	syntax: "<color>";
+	initial-value: #000908;
+	inherits: true;
+}
+
+@property --db-turquoise-on-origin-light-hovered {
+	syntax: "<color>";
+	initial-value: #002422;
+	inherits: true;
+}
+
+@property --db-turquoise-on-origin-light-pressed {
+	syntax: "<color>";
+	initial-value: #003c38;
+	inherits: true;
+}
+
+@property --db-turquoise-on-origin-dark-default {
+	syntax: "<color>";
+	initial-value: #000908;
+	inherits: true;
+}
+
+@property --db-turquoise-on-origin-dark-hovered {
+	syntax: "<color>";
+	initial-value: #002422;
+	inherits: true;
+}
+
+@property --db-turquoise-on-origin-dark-pressed {
+	syntax: "<color>";
+	initial-value: #003c38;
+	inherits: true;
+}
+
+@property --db-green-0 {
+	syntax: "<color>";
+	initial-value: #061100;
+	inherits: true;
+}
+
+@property --db-green-1 {
+	syntax: "<color>";
+	initial-value: #0c1b01;
+	inherits: true;
+}
+
+@property --db-green-2 {
+	syntax: "<color>";
+	initial-value: #142901;
+	inherits: true;
+}
+
+@property --db-green-3 {
+	syntax: "<color>";
+	initial-value: #1d3702;
+	inherits: true;
+}
+
+@property --db-green-4 {
+	syntax: "<color>";
+	initial-value: #264604;
+	inherits: true;
+}
+
+@property --db-green-5 {
+	syntax: "<color>";
+	initial-value: #305506;
+	inherits: true;
+}
+
+@property --db-green-6 {
+	syntax: "<color>";
+	initial-value: #3d6a09;
+	inherits: true;
+}
+
+@property --db-green-7 {
+	syntax: "<color>";
+	initial-value: #4e850f;
+	inherits: true;
+}
+
+@property --db-green-8 {
+	syntax: "<color>";
+	initial-value: #60a114;
+	inherits: true;
+}
+
+@property --db-green-9 {
+	syntax: "<color>";
+	initial-value: #72bf1a;
+	inherits: true;
+}
+
+@property --db-green-10 {
+	syntax: "<color>";
+	initial-value: #85dd20;
+	inherits: true;
+}
+
+@property --db-green-11 {
+	syntax: "<color>";
+	initial-value: #99fc26;
+	inherits: true;
+}
+
+@property --db-green-12 {
+	syntax: "<color>";
+	initial-value: #c3ff9d;
+	inherits: true;
+}
+
+@property --db-green-13 {
+	syntax: "<color>";
+	initial-value: #d9ffc4;
+	inherits: true;
+}
+
+@property --db-green-14 {
+	syntax: "<color>";
+	initial-value: #edffe4;
+	inherits: true;
+}
+
+@property --db-green-origin-base {
+	syntax: "<color>";
+	initial-value: #63a615;
+	inherits: true;
+}
+
+@property --db-green-origin-light-default {
+	syntax: "<color>";
+	initial-value: #63a615;
+	inherits: true;
+}
+
+@property --db-green-origin-light-hovered {
+	syntax: "<color>";
+	initial-value: #51890f;
+	inherits: true;
+}
+
+@property --db-green-origin-light-pressed {
+	syntax: "<color>";
+	initial-value: #406e0a;
+	inherits: true;
+}
+
+@property --db-green-origin-dark-default {
+	syntax: "<color>";
+	initial-value: #63a615;
+	inherits: true;
+}
+
+@property --db-green-origin-dark-hovered {
+	syntax: "<color>";
+	initial-value: #75c31b;
+	inherits: true;
+}
+
+@property --db-green-origin-dark-pressed {
+	syntax: "<color>";
+	initial-value: #88e221;
+	inherits: true;
+}
+
+@property --db-green-on-origin-light-default {
+	syntax: "<color>";
+	initial-value: #030900;
+	inherits: true;
+}
+
+@property --db-green-on-origin-light-hovered {
+	syntax: "<color>";
+	initial-value: #122400;
+	inherits: true;
+}
+
+@property --db-green-on-origin-light-pressed {
+	syntax: "<color>";
+	initial-value: #213c00;
+	inherits: true;
+}
+
+@property --db-green-on-origin-dark-default {
+	syntax: "<color>";
+	initial-value: #030900;
+	inherits: true;
+}
+
+@property --db-green-on-origin-dark-hovered {
+	syntax: "<color>";
+	initial-value: #122400;
+	inherits: true;
+}
+
+@property --db-green-on-origin-dark-pressed {
+	syntax: "<color>";
+	initial-value: #213c00;
+	inherits: true;
+}
