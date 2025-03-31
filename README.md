@@ -106,7 +106,7 @@ Check our migration docs for breaking changes:
 
 > We've updated to the stable version of DB UX Design System (v3) version >= 1.x, and now the colors that were supposed to be red, are colored in blue (`514ec7`).
 
-Please have a look at the migration guide from version 0.6.0, you need to install and reference the DB Theme, if you're building a website or web application for Deutsche Bahn: <https://github.com/db-ux-design-system/core-web/blob/main/docs/migration/v0.6.x-to-v0.7.x.md#removed-brand-assets>
+Please have a look at the [migration guide from version 0.6.x to version 0.7.x](https://github.com/db-ux-design-system/core-web/blob/main/docs/migration/v0.6.x-to-v0.7.x.md#removed-brand-assets), you need to install and reference the DB Theme, if you're building a website or web application for Deutsche Bahn.
 
 ## Things to keep in mind
 
