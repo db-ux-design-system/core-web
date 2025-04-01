@@ -1,6 +1,5 @@
 export default {
-	'*.md': ['markdownlint -c .config/.markdown-lint.yml', 'prettier --write'],
-	'*.json': 'prettier --write',
+	'*.md': 'markdownlint -c .config/.markdown-lint.yml',
 	// In case that we're changing the stylelints configuration files content, we would need to validate it
 	'.stylelintrc.*': 'stylelint --validate --allow-empty-input',
 	'stylelint.config.*': 'stylelint --validate --allow-empty-input',
