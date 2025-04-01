@@ -2,7 +2,7 @@
   "name": "@db-ux/core-web",
   "version": "0.0.0",
   "type": "module",
-  "description": "",
+  "description": "DB UX Design System",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/db-ux-design-system/core-web.git"
@@ -11,7 +11,7 @@
   "bugs": {
     "url": "https://github.com/db-ux-design-system/core-web/issues"
   },
-  "author": "",
+  "author": "Deutsche Bahn AG",
   "license": "Apache-2.0",
   "private": true,
   "workspaces": [
