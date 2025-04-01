@@ -81,14 +81,6 @@ As [DB UX Design System](https://marketingportal.extranet.deutschebahn.com/marke
 
 </details>
 
-## Things to keep in mind
-
-### Developed for and driven by the community
-
-This is mainly a platform providing the space and technology for a common basis of curated components; their development
-is mainly driven by the community and adapted out of the work done in projects and through the huge amount of feedback
-that we're gaining out of the community. So please support us in any way possible, this is greatly appreciated!
-
 ## Migration
 
 ### From DB UI Core or DB UI Elements to DB UX Design System Core
@@ -107,6 +99,22 @@ Check our migration docs for breaking changes:
 5. [v0.5 ➡ v0.6](https://github.com/db-ux-design-system/core-web/tree/main/docs/migration/v0.5.x-to-v0.6.x.md)
 6. [v0.6 ➡ v0.7](https://github.com/db-ux-design-system/core-web/tree/main/docs/migration/v0.6.x-to-v0.7.x.md)
 7. [v0.7 ➡ v1.0](https://github.com/db-ux-design-system/core-web/blob/main/docs/migration/v0.7.x-to-v1.0.0.md)
+
+## FAQ
+
+### Unexpected "new" colors
+
+> We've updated to the stable version of DB UX Design System (v3) version >= 1.x, and now the colors that were supposed to be red, are colored in blue (`514ec7`).
+
+Please have a look at the [migration guide from version 0.6.x to version 0.7.x](https://github.com/db-ux-design-system/core-web/blob/main/docs/migration/v0.6.x-to-v0.7.x.md#removed-brand-assets), you need to install and reference the DB Theme, if you're building a website or web application for Deutsche Bahn.
+
+## Things to keep in mind
+
+### Developed for and driven by the community
+
+This is mainly a platform providing the space and technology for a common basis of curated components; their development
+is mainly driven by the community and adapted out of the work done in projects and through the huge amount of feedback
+that we're gaining out of the community. So please support us in any way possible, this is greatly appreciated!
 
 ## How to start developing / contributing
 
@@ -153,4 +161,4 @@ our [Contributor Covenant Code of Conduct](https://github.com/db-ux-design-syste
 
 ## License
 
-This project is licensed under the [Apache-2.0](LICENSE) license. © 2025 DB Systel GmbH.
+This project is licensed under the [Apache-2.0](LICENSE) license. © 2024 DB Systel GmbH.
