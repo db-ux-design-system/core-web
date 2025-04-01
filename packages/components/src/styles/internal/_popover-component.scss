@@ -152,7 +152,7 @@ $popover-gap-inset: calc(-1 * #{$popover-gap-size});
 
 			&[data-delay="fast"] {
 				animation-delay: calc(
-					#{variables.$db-transition-duration-extra-slow} / 2
+					#{variables.$db-transition-duration-medium}
 				);
 			}
 		}
