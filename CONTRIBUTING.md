@@ -1,6 +1,6 @@
 # Contributing
 
-**Thank you for your interest in our project.** Contributions are always welcome. **Feel free to open an issue if you have any questions, ideas, or bugs to report, or submit pull requests to contribute code.**
+**Thank you for your interest in our project.** Contributions are always welcome. **Feel free to [open an issue](https://github.com/db-ux-design-system/core-web/issues/new) if you have any questions, ideas, or bugs to report, or submit pull requests to contribute code.**
 
 We are committed to fostering a welcoming, respectful, and harassment-free environment, **so please be kind! 💖**
 
