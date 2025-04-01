@@ -4,7 +4,7 @@
 
 1. Run `npm run generate:component` in a terminal.
 
-2. You should type in the name of your new component like `my-awesome-component` and answer everything with "yes".
+2. Enter the name of your new component (e.g. my-awesome-component) and answer all prompts with "yes".
 
 3. The generation process will generate files mainly in these directories:
 
@@ -15,11 +15,11 @@
 
 - Your main work for the component will be inside `packages/components/src/components/my-awesome-component`.
 
-- To develop on your component you can start a development server by running `npm run dev`, this will give you some options to choose from. When you begin "scribbling" (html+scss) with a component you can select `plain-html`. For _advanced users_ you can skip this and develop directly for one framework (html+scss+ts), see [Test Frameworks with Showcases](#test-frameworks-with-showcases).
+- To start developing your component, run `npm run dev`, which will present you with several options to choose from. When you begin "scribbling" (html+scss) with a component you can select `plain-html`. _Advanced users_ can skip this step and develop directly for a specific framework (HTML, SCSS, and TypeScript); see [Test Frameworks with Showcases](#test-frameworks-with-showcases).
 
 ### Styling with SCSS
 
-Starting with `packages/components/src/components/my-awesome-component/my-awesome-component.scss` there are something you should know:
+Starting with `packages/components/src/components/my-awesome-component/my-awesome-component.scss`, there are a few important points to note:
 
 1. The most important dependency are the `variables` included via `@use "@db-ux/core-foundations/build/styles/variables";`. They enable you to use e.g. `$db-spacing-fixed-md` for paddings, margins etc.
 2. A lot of times you have to force another `font-size` / `line-height`, you can do it with `@use "@db-ux/core-foundations/build/styles/density/font;` and the corresponding placeholder extend: `@extend %db-overwrite-font-size-sm;`.
@@ -29,7 +29,7 @@ Starting with `packages/components/src/components/my-awesome-component/my-awesom
 
 ### Component structure with HTML
 
-Besides of the `scss` you need to change the HTML code for your component. If you start with `plain-html` you can test your component inside `packages/components/src/components/my-awesome-component/index.html`; for _advanced_ users you can change the `jsx` directly inside `packages/components/src/components/my-awesome-component/my-awesome-component.lite.tsx`.
+In addition to the `SCSS`, you need to modify the HTML code for your component. If you start with `plain-html`, you can test your component using `packages/components/src/components/my-awesome-component/index.html`; _Advanced_ users can directly modify the `JSX` in `packages/components/src/components/my-awesome-component/my-awesome-component.lite.tsx`.
 
 There are some things you have to know:
 
@@ -39,7 +39,7 @@ There are some things you have to know:
 
 ### Define the API in `model.ts`
 
-If you're happy with the styling and your HTML code the next thing would be to define all possible properties for the component. Update the `packages/components/src/components/my-awesome-component/model.ts` to include properties and/or states for your component. A lot of properties are already predefined; they are located in `packages/components/src/shared/model.ts` to include them import that file like this:
+If you're happy with the styling and your HTML code, the next step is to define all possible properties for the component. Update the `packages/components/src/components/my-awesome-component/model.ts` to include properties and/or states for your component. Many properties are already predefined in `packages/components/src/shared/model.ts`. To include them, import the file as follows:
 
 ```ts
 import { WidthProps } from '../../shared/model';
@@ -53,7 +53,7 @@ export type DBMyAwesomeComponentProps =
 
 ### Code the 'real' Component
 
-We use [Mitosis](https://github.com/BuilderIO/Mitosis/tree/main/docs) to develop our components for all kinds of frameworks. The component will be placed in `packages/components/src/components/my-awesome-component/my-awesome-component.lite.tsx`. You can add your HTML code here inside the `return`. Afterwards you should map all `data-*` attributes with the corresponding properties from `model.ts`. Check out the existing components to get a feeling how to develop a new component.
+We use [Mitosis](https://github.com/BuilderIO/Mitosis/tree/main/docs) to develop our components for all kinds of frameworks. The component will be placed in `packages/components/src/components/my-awesome-component/my-awesome-component.lite.tsx`. You can add your HTML code here inside the `return`. Afterwards, map all `data-*` attributes to the corresponding properties defined in `model.ts`. Check out the existing components to get an idea of how to develop a new component.
 
 ### Good to know
 
@@ -62,28 +62,28 @@ We use [Mitosis](https://github.com/BuilderIO/Mitosis/tree/main/docs) to develop
    Why do we do this? We have multiple frameworks and all behave differently. With multiple ways of data-binding we try to provide a JS framework native experience as closely as we can.
 3. Try to parameterize a lot: For example if your component includes an icon button you should give it a text for accessibility. You should provide a default text, so it can't be empty, but you should also let the user change it with a property e.g. `iconButtonText`.
 4. To enable some native functionalities for Vue and Angular (`v-model` and `[(ng-model)]`) you might need to add some extra code to your component. At the generation process you might select `formValue` anyhow, but otherwise take a look at the `input` to see what you need to add to make this work.
-5. Angular is pain... There are some issues with Angular and how this framework works:
+5. Angular can be challenging; here are some issues to be aware of:
 
-    1. Angular generates custom HTML tags as wrappers, which might influence your `css` selectors. For example if we have a button inside our component and we try to change the styling with `.db-button: {xxx:abc;}` it would not add the styling to the button. As a workaround you should write `.db-button, .db-button > button: {xxx:abc;}` to cover Angular as well:
+   1. Angular generates custom HTML tags as wrappers, which may affect your `CSS` selectors. For example if we have a button inside our component and we try to change the styling with `.db-button: {xxx:abc;}` it would not add the styling to the button. As a workaround you should write `.db-button, .db-button > button: {xxx:abc;}` to cover Angular as well:
 
-    ```html
-    <db-my-awesome-component>
-    	<div>
-    		My Awesome Component
-    		<db-button>
-    			<!-- Styling would be here -->
-    			<button>Icon Button</button>
-    			<!-- not here -->
-    		</db-button>
-    	</div>
-    </db-my-awesome-component>
-    ```
+   ```html
+   <db-my-awesome-component>
+   	<div>
+   		My Awesome Component
+   		<db-button>
+   			<!-- Styling would be here -->
+   			<button>Icon Button</button>
+   			<!-- not here -->
+   		</db-button>
+   	</div>
+   </db-my-awesome-component>
+   ```
 
-    2. You cannot use multiple slots with the same name. In other frameworks you can use the `<Slot name="bla">` multiple times like this `<div class="my-awesome-component"><Slot name="bla"><Slot name="bla"></div>` but in Angular only the last one would be shown in the DOM. As a workaround you have to create a `Directive`. We automate this via the `packages/components/scripts/post-build/components.js` as an example look at the `header` to see how it works.
+   2. You cannot use multiple slots with the same name. In other frameworks you can use the `<Slot name="bla">` multiple times like this `<div class="my-awesome-component"><Slot name="bla"><Slot name="bla"></div>` but in Angular only the last one would be shown in the DOM. As a workaround you have to create a `Directive`. We automate this via the `packages/components/scripts/post-build/components.js` as an example look at the `header` to see how it works.
 
 ## Test Frameworks with Showcases
 
-Our goal is to support at least the three major frameworks (Angular, React, Vue) being used at Deutsche Bahn so you should test your component in every framework. To have the same testing possibilities we generate `showcases/shared/my-awesome-component.json`. This file is used by every framework to pass in the same properties. You should add the same blocks you see in the designs to this file.
+Our goal is to support at least the three major frameworks (Angular, React, Vue) used at Deutsche Bahn, so you should test your component in every framework. To have the same testing possibilities we generate `showcases/shared/my-awesome-component.json`. This file is used by every framework to pass in the same properties. You should add the same blocks you see in the designs to this file.
 
 Afterwards you need to enable those properties inside all frameworks.
 

@@ -2,7 +2,7 @@
 
 ### Start developing
 
-You'll need to insert the environmental variables as described within the package [`@db-ux/db-theme`](https://www.npmjs.com/package/@db-ux/db-theme) first of all.
+You'll need to insert the environment variables as described within the package [`@db-ux/db-theme`](https://www.npmjs.com/package/@db-ux/db-theme) initially.
 
 Afterwards run the following commands:
 
@@ -16,7 +16,7 @@ Please mind the [conventions for git commits](/docs/conventions.md#user-content-
 
 ### Versions
 
-All versions in all `package.json` files are set to `0.0.0`, we change those during release process in CI/CD.
+All versions in the `package.json` files are set to `0.0.0`. These are updated during the CI/CD release process.
 
 ### Tests
 
@@ -28,7 +28,7 @@ TODO: Elaborate on testing setup
 
 Playwright is used to create and compare screenshots of each individual component.
 
-To update screenshots just run the following (you need Docker installed and available on your shell):
+To update screenshots, simply run the following command (ensure Docker is installed and available in your shell):
 
 ```shell
 npm run regenerate:screenshots
@@ -47,7 +47,7 @@ docker run --rm --network host -v ${PWD}:/work/ -w /work/ -it mcr.microsoft.com/
 
 npm install
 
-cd output/${frameworkFolder}
+cd output/${frameworkFolder}  (replace ${frameworkFolder} with the appropriate folder name)
 
 npx playwright test --update-snapshots
 ```
