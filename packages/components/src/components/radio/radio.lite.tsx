@@ -39,7 +39,9 @@ export default function DBRadio(props: DBRadioProps) {
 			}
 
 			useTarget({
-				angular: () => handleFrameworkEventAngular(this, event),
+				angular: () =>
+
+					handleFrameworkEventAngular(this, event),
 				vue: () => handleFrameworkEventVue(() => {}, event)
 			});
 		},

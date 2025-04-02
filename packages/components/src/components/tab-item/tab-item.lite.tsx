@@ -51,6 +51,7 @@ export default function DBTabItem(props: DBTabItemProps) {
 
 			useTarget({
 				angular: () =>
+
 					handleFrameworkEventAngular(this, event, 'checked'),
 				vue: () => handleFrameworkEventVue(() => {}, event, 'checked')
 			});

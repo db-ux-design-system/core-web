@@ -174,7 +174,11 @@ export const stringPropVisible = (
 	}
 };
 
+export const getSearchInput = (element: HTMLElement): HTMLInputElement | null =>
+	element.querySelector<HTMLInputElement>(`input[type="search"]`);
+
 export default {
+	getSearchInput,
 	cls,
 	addAttributeToChildren,
 	uuid,

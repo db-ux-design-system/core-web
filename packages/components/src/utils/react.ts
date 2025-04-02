@@ -46,7 +46,7 @@ const reactHtmlAttributes = [
 ];
 
 export const filterPassingProps = (
-	props: Record<string, unknown>,
+	props: any,
 	propsPassingFilter: string[]
 ): Record<string, unknown> =>
 	Object.keys(props)
@@ -66,7 +66,7 @@ export const filterPassingProps = (
 		}, {});
 
 export const getRootProps = (
-	props: Record<string, unknown>,
+	props: any,
 	rooProps: string[]
 ): Record<string, unknown> => {
 	return Object.keys(props)

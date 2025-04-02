@@ -28,12 +28,7 @@ const changeFile = (upperComponentName: string, input: string) => {
 					option = '{attribute: "classname"}';
 				}
 
-				return line
-					.replace('@Prop()', `@Prop(${option})`)
-					.replace(
-						'any',
-						`${upperComponentName}Props["${line.replace(`@Prop() `, '').replace(': any;', '').trim()}"]`
-					);
+				return line.replace('@Prop()', `@Prop(${option})`);
 			}
 
 			if (line.includes('<slot name=')) {
@@ -85,8 +80,7 @@ export default (tmp?: boolean) => {
 		});
 
 		const replacements: Overwrite[] = [
-			{ from: /ref=\{\(el\)/g, to: 'ref={(el:any)' },
-			{ from: 'for={', to: 'htmlFor={' },
+			{ from: /for={/g, to: 'htmlFor={' },
 			{
 				from: 'onInput={(event) => this.handleChange(event)}',
 				to: 'onChange={(event) => this.handleChange(event)}'
