@@ -61,23 +61,33 @@ export default function DBInput(props: DBInputProps) {
 		_descByIds: '',
 		_value: '',
 		_voiceOverFallback: '',
-		handleInput: (event: InputEvent<HTMLInputElement>) => {
-			if (props.onInput) {
-				props.onInput(event);
-			}
-
-			if (props.input) {
-				props.input(event);
-			}
+		handleInput: (event: InputEvent<HTMLInputElement> | any) => {
+			useTarget({
+				vue: () => {
+					if (props.input) {
+						props.input(event);
+					}
+				},
+				default: () => {
+					if (props.onInput) {
+						props.onInput(event);
+					}
+				}
+			});
 		},
-		handleChange: (event: ChangeEvent<HTMLInputElement>) => {
-			if (props.onChange) {
-				props.onChange(event);
-			}
-
-			if (props.change) {
-				props.change(event);
-			}
+		handleChange: (event: ChangeEvent<HTMLInputElement> | any) => {
+			useTarget({
+				vue: () => {
+					if (props.change) {
+						props.change(event);
+					}
+				},
+				default: () => {
+					if (props.onChange) {
+						props.onChange(event);
+					}
+				}
+			});
 
 			useTarget({
 				angular: () => handleFrameworkEventAngular(this, event),
@@ -114,30 +124,39 @@ export default function DBInput(props: DBInputProps) {
 				state._descByIds = '';
 			}
 		},
-		handleBlur: (event: InteractionEvent<HTMLInputElement>) => {
-			if (props.onBlur) {
-				props.onBlur(event);
-			}
-
-			if (props.blur) {
-				props.blur(event);
-			}
+		handleBlur: (event: InteractionEvent<HTMLInputElement> | any) => {
+			useTarget({
+				vue: () => {
+					if (props.blur) {
+						props.blur(event);
+					}
+				},
+				default: () => {
+					if (props.onBlur) {
+						props.onBlur(event);
+					}
+				}
+			});
 		},
-		handleFocus: (event: InteractionEvent<HTMLInputElement>) => {
-			if (props.onFocus) {
-				props.onFocus(event);
-			}
-
-			if (props.focus) {
-				props.focus(event);
-			}
+		handleFocus: (event: InteractionEvent<HTMLInputElement> | any) => {
+			useTarget({
+				vue: () => {
+					if (props.focus) {
+						props.focus(event);
+					}
+				},
+				default: () => {
+					if (props.onFocus) {
+						props.onFocus(event);
+					}
+				}
+			});
 		},
-		getDataList: (
-			_list?: string[] | ValueLabelType[]
-		): ValueLabelType[] => {
+		getDataList: (): ValueLabelType[] => {
+			const _list = props.dataList;
 			return Array.from(
 				(isArrayOfStrings(_list)
-					? _list.map((val: string) => ({
+					? _list?.map((val: string) => ({
 							value: val,
 							label: undefined
 						}))
@@ -226,7 +245,7 @@ export default function DBInput(props: DBInputProps) {
 			/>
 			<Show when={props.dataList}>
 				<datalist id={state._dataListId}>
-					<For each={state.getDataList(props.dataList)}>
+					<For each={state.getDataList()}>
 						{(option: ValueLabelType) => (
 							<option
 								key={

@@ -6,7 +6,7 @@
 	<fieldset>
 		<legend>Different form approaches</legend>
 		<db-radio
-			(change)="plain = $event.target.value"
+			(change)="handlePlainChange($event)"
 			value="radio-0"
 			name="radio-0"
 			label="Plain"
