@@ -44,6 +44,7 @@
 	&[data-size="small"] {
 		@extend %db-overwrite-font-size-sm;
 
+		font-weight: 700;
 		block-size: variables.$db-sizing-sm;
 
 		&:not([data-no-text="true"]) {

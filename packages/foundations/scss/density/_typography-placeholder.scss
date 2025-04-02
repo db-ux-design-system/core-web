@@ -59,14 +59,14 @@
 		@include screen-sizes.screen() {
 			@each $size in variables.$sizings {
 				@include get-font($density, "tablet", $size);
-				@include get-icons($density, "mobile", $size);
+				@include get-icons($density, "tablet", $size);
 			}
 		}
 
 		@include screen-sizes.screen("md") {
 			@each $size in variables.$sizings {
 				@include get-font($density, "desktop", $size);
-				@include get-icons($density, "mobile", $size);
+				@include get-icons($density, "desktop", $size);
 			}
 		}
 	}
