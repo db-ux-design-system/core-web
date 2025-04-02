@@ -146,46 +146,59 @@ export const delay = (fn: () => void, ms: number) =>
  * @param originBool Some boolean to convert to string
  */
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-export const getBooleanAsString = (originBool?: boolean): any => {
-	if (originBool) {
-		return String(originBool);
+export const getBooleanAsString = (originBool?: boolean | string): any => {
+	if (originBool === undefined || originBool === null) return;
+
+	if (typeof originBool === 'string') {
+		return String(Boolean(originBool));
 	}
 
-	return originBool;
+	return String(originBool);
+};
+
+export const getBoolean = (
+	originBool?: boolean | string,
+	propertyName?: string
+): boolean | undefined => {
+	if (originBool === undefined || originBool === null) return;
+
+	if (typeof originBool === 'string' && propertyName) {
+		return Boolean(propertyName === originBool || originBool);
+	}
+
+	return Boolean(originBool);
+};
+
+export const getNumber = (
+	originNumber?: number | string,
+	alternativeNumber?: number | string
+): number | undefined => {
+	if (
+		(originNumber === undefined || originNumber === null) &&
+		(alternativeNumber === undefined || alternativeNumber === null)
+	) {
+		return;
+	}
+
+	return Number(originNumber ?? alternativeNumber);
 };
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-export const getHideProp = (show?: boolean): any => {
+export const getHideProp = (show?: boolean | string): any => {
 	if (show === undefined || show === null) {
 		return undefined;
 	}
 
-	return getBooleanAsString(!show);
+	return getBooleanAsString(!Boolean(show));
 };
 
 export const stringPropVisible = (
 	givenString?: string,
-	showString?: boolean
+	showString?: boolean | string
 ) => {
 	if (showString === undefined) {
 		return !!givenString;
 	} else {
-		return showString && givenString;
+		return Boolean(showString) && Boolean(givenString);
 	}
-};
-
-export default {
-	cls,
-	addAttributeToChildren,
-	uuid,
-	visibleInVX,
-	visibleInVY,
-	isInView,
-	handleDataOutside,
-	isArrayOfStrings,
-	hasVoiceOver,
-	delay,
-	getBooleanAsString,
-	getHideProp,
-	stringPropVisible
 };
