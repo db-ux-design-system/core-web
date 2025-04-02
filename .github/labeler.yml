@@ -23,3 +23,8 @@
 📺showcases:
   - changed-files:
       - any-glob-to-any-file: "showcases/**"
+
+# Add 'configuration' label to any file changes for configuration files
+🛠️configuration:
+  - changed-files:
+      - any-glob-to-any-file: ".config/**"
