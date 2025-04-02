@@ -1,3 +1,7 @@
+// SPDX-FileCopyrightText: 2025 DB Systel GmbH
+//
+// SPDX-License-Identifier: Apache-2.0
+
 import { describe, test } from 'vitest';
 import { type Config } from 'stylelint';
 import useSpacings from '../../src/rules/use-spacings.js';

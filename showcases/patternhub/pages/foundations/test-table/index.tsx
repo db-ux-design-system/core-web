@@ -1,3 +1,7 @@
+// SPDX-FileCopyrightText: 2025 DB Systel GmbH
+//
+// SPDX-License-Identifier: Apache-2.0
+
 import DefaultPage from '../../../components/default-page';
 import { DBInfotext } from '../../../../../output/react/src';
 import { testTableData } from '../../../data/testing-table'; // This file will be generated at runtime by /showcases/patternhub/scripts/generate-test-table.js

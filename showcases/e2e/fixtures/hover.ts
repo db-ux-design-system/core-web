@@ -1,3 +1,7 @@
+// SPDX-FileCopyrightText: 2025 DB Systel GmbH
+//
+// SPDX-License-Identifier: Apache-2.0
+
 /* eslint-disable no-await-in-loop,unicorn/prefer-dom-node-dataset */
 import { type Page } from '@playwright/test';
 

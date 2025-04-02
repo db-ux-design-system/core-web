@@ -1,3 +1,7 @@
+// SPDX-FileCopyrightText: 2025 DB Systel GmbH
+//
+// SPDX-License-Identifier: Apache-2.0
+
 import { DBInfotext, DBRadio } from '../../../../../output/react/src';
 import DefaultComponent from '../default-component';
 import { getVariants } from '../data';

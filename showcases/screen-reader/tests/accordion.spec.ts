@@ -1,3 +1,7 @@
+// SPDX-FileCopyrightText: 2025 DB Systel GmbH
+//
+// SPDX-License-Identifier: Apache-2.0
+
 import type { NVDAPlaywright, VoiceOverPlaywright } from '@guidepup/playwright';
 import { generateSnapshot, getTest, testDefault } from '../default';
 

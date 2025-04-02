@@ -1,4 +1,13 @@
 #!/usr/bin/env node
+
+// SPDX-FileCopyrightText: 2025 DB Systel GmbH
+//
+// SPDX-License-Identifier: Apache-2.0
+
+// SPDX-FileCopyrightText: 2025 DB Systel GmbH
+//
+// SPDX-License-Identifier: Apache-2.0
+
 import findVersions from 'find-versions';
 
 export const packageVersion = () => {

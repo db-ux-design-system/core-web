@@ -1,3 +1,7 @@
+// SPDX-FileCopyrightText: 2025 DB Systel GmbH
+//
+// SPDX-License-Identifier: Apache-2.0
+
 export const getBasePath = () => {
 	if (process?.env?.BASE_PATH) {
 		return process.env.BASE_PATH;
