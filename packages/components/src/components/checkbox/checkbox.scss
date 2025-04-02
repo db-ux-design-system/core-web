@@ -15,11 +15,11 @@
 		justify-content: center;
 		block-size: calc(
 			#{form-components.$font-size-height} - 2 *
-				#{variables.$db-border-height-3xs}
+				#{variables.$db-border-width-3xs}
 		);
 		inline-size: calc(
 			#{form-components.$font-size-height} - 2 *
-				#{variables.$db-border-height-3xs}
+				#{variables.$db-border-width-3xs}
 		);
 	}
 }

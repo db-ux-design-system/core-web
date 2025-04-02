@@ -10,12 +10,12 @@ const {
 	utils: { ruleMessages }
 } = stylelint;
 
-const ruleName = 'db-ux/use-border-height';
+const ruleName = 'db-ux/use-border-width';
 
 const messages = ruleMessages(ruleName, {
 	rejected: (property: string, value: string) =>
 		`Unexpected value: ${value} within prop: ${property}.\n` +
-		"Please use 'db-border-height-xx' instead of px or rem."
+		"Please use 'db-border-width-xx' instead of px or rem."
 });
 
 const meta = {
@@ -27,12 +27,12 @@ const allowedDeclarations: AllowedType = {
 	exact: ['border']
 };
 const allowedValues: AllowedType = {
-	includes: ['db-border-height'],
+	includes: ['db-border-width'],
 	exact: defaultExact,
 	type: 'some'
 };
 
-const useBorderHeight = createRule({
+const useBorderWidth = createRule({
 	ruleName,
 	meta,
 	messages,
@@ -44,4 +44,4 @@ const useBorderHeight = createRule({
 	})
 });
 
-export default useBorderHeight;
+export default useBorderWidth;
