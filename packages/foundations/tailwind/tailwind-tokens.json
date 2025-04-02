@@ -193,17 +193,17 @@
 		"full": "var(--db-border-radius-full)"
 	},
 	"borderWidth": {
-		"DEFAULT": "var(--db-border-height-3xs)",
+		"DEFAULT": "var(--db-border-width-3xs)",
 		"none": "0px",
-		"3xs": "var(--db-border-height-3xs)",
-		"2xs": "var(--db-border-height-2xs)",
-		"xs": "var(--db-border-height-xs)",
-		"sm": "var(--db-border-height-sm)",
-		"md": "var(--db-border-height-md)",
-		"lg": "var(--db-border-height-lg)",
-		"xl": "var(--db-border-height-xl)",
-		"2xl": "var(--db-border-height-2xl)",
-		"3xl": "var(--db-border-height-3xl)"
+		"3xs": "var(--db-border-width-3xs)",
+		"2xs": "var(--db-border-width-2xs)",
+		"xs": "var(--db-border-width-xs)",
+		"sm": "var(--db-border-width-sm)",
+		"md": "var(--db-border-width-md)",
+		"lg": "var(--db-border-width-lg)",
+		"xl": "var(--db-border-width-xl)",
+		"2xl": "var(--db-border-width-2xl)",
+		"3xl": "var(--db-border-width-3xl)"
 	},
 	"screens": {
 		"xs": "360px",
