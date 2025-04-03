@@ -208,7 +208,7 @@ export default function DBSelect(props: DBSelectProps) {
 				aria-describedby={state._descByIds}>
 				{/* Empty option for floating label */}
 				<option hidden></option>
-				<Show when={props.options}>
+				<Show when={props.options} else={props.children}>
 					<For each={props.options}>
 						{(option: DBSelectOptionType) => (
 							<>
@@ -248,7 +248,6 @@ export default function DBSelect(props: DBSelectProps) {
 						)}
 					</For>
 				</Show>
-				{props.children}
 			</select>
 			<span id={state._placeholderId}>
 				{props.placeholder ?? props.label}
