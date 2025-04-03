@@ -6,13 +6,13 @@ import {
 	getScssAllowTest,
 	getVueTest
 } from '../defaults.js';
-import useBorderHeight from '../../src/rules/use-border-height.js';
+import useBorderWidth from '../../src/rules/use-border-width.js';
 
-const ruleName = 'db-ux/use-border-height';
+const ruleName = 'db-ux/use-border-width';
 
 const config: Config = {
 	...defaultConfig,
-	plugins: [useBorderHeight],
+	plugins: [useBorderWidth],
 	rules: {
 		[ruleName]: true
 	}

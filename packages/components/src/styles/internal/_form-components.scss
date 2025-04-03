@@ -27,7 +27,7 @@ $input-types:
 	"hidden", "image", "month", "number", "password", "radio", "range", "reset",
 	"search", "submit", "tel", "text", "time", "url", "week";
 
-$check-border-size: min(#{variables.$db-border-height-2xs}, 2px);
+$check-border-size: min(#{variables.$db-border-width-2xs}, 2px);
 
 %dropdown-icon {
 	@include icons.set-icon("chevron_down", "after");
@@ -473,7 +473,7 @@ $input-valid-types:
 		place-content: center center;
 		appearance: none;
 		aspect-ratio: 1;
-		/* stylelint-disable-next-line db-ux/use-border-height */
+		/* stylelint-disable-next-line db-ux/use-border-width */
 		border: #{$check-border-size} solid
 			var(
 				--db-check-element-border-color,
