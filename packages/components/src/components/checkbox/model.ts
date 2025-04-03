@@ -7,6 +7,7 @@ import {
 	FormMessageProps,
 	FormProps,
 	FormState,
+	FromValidState,
 	GlobalProps,
 	GlobalState,
 	InitializedState,
@@ -36,4 +37,5 @@ export type DBCheckboxState = DBCheckboxDefaultState &
 	ChangeEventState<HTMLInputElement> &
 	FocusEventState<HTMLInputElement> &
 	FormState &
-	InitializedState;
+	InitializedState &
+	FromValidState;
