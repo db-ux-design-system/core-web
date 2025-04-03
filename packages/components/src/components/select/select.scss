@@ -20,7 +20,45 @@
 
 	@include form-components.set-default-form-component(select);
 
+	// enable customized styling
+	@supports (appearance: base-select) {
+		select,
+		/* stylelint-disable-next-line selector-pseudo-element-no-unknown */
+		::picker(select) {
+			/* stylelint-disable-next-line declaration-property-value-no-unknown */
+			appearance: base-select;
+		}
+
+		/* stylelint-disable-next-line selector-pseudo-element-no-unknown */
+		&::picker-icon {
+			display: none;
+		}
+
+		/* stylelint-disable-next-line selector-pseudo-element-no-unknown */
+		::picker(select) {
+			@extend %default-card;
+		}
+
+		option {
+			justify-content: space-between;
+			// change order of the included text and pseudo-element within this flexbox item, to make sure the icon is always on the right
+			flex-direction: row-reverse;
+
+			&:checked {
+				font-weight: 700;
+			}
+
+			/* stylelint-disable-next-line selector-pseudo-element-no-unknown */
+			&::checkmark {
+				@extend %icon;
+
+				@include icons.icon-content("check");
+			}
+		}
+	}
+
 	select {
+		align-items: center;
 		text-indent: select-components.$has-before-padding;
 	}
 
@@ -29,7 +67,6 @@
 		background-color: colors.$db-adaptive-bg-basic-level-1-default;
 		color: colors.$db-adaptive-on-bg-basic-emphasis-100-default;
 	}
-
 
 	&:has(> select option:checked:not([hidden])) {
 		[id$="-placeholder"] {
