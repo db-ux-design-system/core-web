@@ -72,6 +72,10 @@
 	position: relative;
 	min-inline-size: variables.$db-sizing-xl;
 
+	&[data-icon]:not([data-hide-icon="true"]) {
+		min-inline-size: variables.$db-sizing-2xl;
+	}
+
 	&:not([data-width]),
 	&[data-width="full"] {
 		&,
