@@ -1,35 +1,19 @@
-@use "../colors/default-color-icons";
 @use "../colors/placeholder";
 
 @forward "default-properties";
-@forward "../colors/default-color-properties";
 
-:root {
-	--db-font-family-sans: "OpenSans", helvetica, arial, sans-serif;
-	--db-font-family-head: "OpenSans Head", helvetica, arial, sans-serif;
-
-	/* COLORS */
-	@include default-color-icons.get-color-icons-light;
-
-	@media (prefers-color-scheme: dark) {
-		@include default-color-icons.get-color-icons-dark;
-	}
+@property --db-font-family-sans {
+	syntax: "*";
+	initial-value: "OpenSans", helvetica, arial, sans-serif;
+	inherits: true;
 }
 
-// We'll set the color scheme (https://developer.mozilla.org/en-US/docs/Web/CSS/color-scheme) to light and dark if it's not already set as a meta tag in the head, which would be the recommended way.
-html:not(:has(> head > meta[name="color-scheme"])) {
-	color-scheme: light dark;
+@property --db-font-family-head {
+	syntax: "*";
+	initial-value: "OpenSans Head", helvetica, arial, sans-serif;
+	inherits: true;
 }
 
 [data-mode] {
 	@extend %db-neutral-bg-basic-level-1;
-}
-
-/* TODO: Switch to attr() as soon as this one is fully supported */
-[data-mode="light"] {
-	color-scheme: light;
-}
-
-[data-mode="dark"] {
-	color-scheme: dark;
 }
