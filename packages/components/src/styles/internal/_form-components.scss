@@ -509,3 +509,9 @@ $input-valid-types:
 		}
 	}
 }
+
+@mixin placeholder-style {
+	font-family: var(--db-font-family-sans);
+	font-style: italic;
+	opacity: 0.75;
+}

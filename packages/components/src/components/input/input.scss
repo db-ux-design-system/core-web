@@ -95,6 +95,11 @@ $icon-padding: calc(
 	input {
 		position: relative;
 
+		// show placeholder in italic style with reduced opacity
+		&:placeholder-shown {
+			@include form-components.placeholder-style;
+		}
+
 		&::-webkit-calendar-picker-indicator,
 		&::-webkit-search-cancel-button {
 			background-image: none;

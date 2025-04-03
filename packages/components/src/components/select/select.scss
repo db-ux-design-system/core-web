@@ -74,6 +74,9 @@ $has-before-padding: calc(
 			100% - var(--db-form-component-padding-inline-end) -
 				#{$has-before-padding} - #{variables.$db-spacing-fixed-sm}
 		);
+
+		// show placeholder in italic style with reduced opacity
+		@include form-components.placeholder-style;
 	}
 
 	&:has(> select option:checked:not([hidden])) {
