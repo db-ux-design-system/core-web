@@ -12,7 +12,10 @@ import {
 import {
 	cls,
 	delay,
+	getBoolean,
+	getBooleanAsString,
 	getHideProp,
+	getNumber,
 	hasVoiceOver,
 	isArrayOfStrings,
 	stringPropVisible,
@@ -207,22 +210,25 @@ export default function DBInput(props: DBInputProps) {
 				name={props.name}
 				type={props.type || 'text'}
 				placeholder={props.placeholder ?? DEFAULT_PLACEHOLDER}
-				disabled={props.disabled}
-				required={props.required}
-				step={props.step}
+				disabled={getBoolean(props.disabled, 'disabled')}
+				required={getBoolean(props.required, 'required')}
+				step={getNumber(props.step)}
 				value={props.value ?? state._value}
-				maxLength={props.maxLength}
-				minLength={props.minLength}
-				max={props.max}
-				min={props.min}
-				readOnly={props.readOnly}
+				maxLength={getNumber(props.maxLength, props.maxlength)}
+				minLength={getNumber(props.minLength, props.minlength)}
+				max={getNumber(props.max)}
+				min={getNumber(props.min)}
+				readOnly={
+					getBoolean(props.readOnly, 'readOnly') ||
+					getBoolean(props.readonly, 'readonly')
+				}
 				form={props.form}
 				pattern={props.pattern}
 				size={props.size}
 				// @ts-ignore
 				autoComplete={props.autocomplete}
 				// @ts-ignore
-				autoFocus={props.autofocus}
+				autoFocus={getBoolean(props.autofocus, 'autofocus')}
 				onInput={(event: ChangeEvent<HTMLInputElement>) =>
 					state.handleInput(event)
 				}

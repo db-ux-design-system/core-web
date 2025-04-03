@@ -18,7 +18,7 @@ export type DBCheckboxDefaultProps = {
 	/**
 	 * Define an [indeterminate](https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement#indeterminate) state of a checkbox
 	 */
-	indeterminate?: boolean;
+	indeterminate?: boolean | string;
 };
 
 export type DBCheckboxProps = DBCheckboxDefaultProps &

@@ -13,7 +13,10 @@ import DBInfotext from '../infotext/infotext.lite';
 import {
 	cls,
 	delay,
+	getBoolean,
+	getBooleanAsString,
 	getHideProp,
+	getNumber,
 	hasVoiceOver,
 	stringPropVisible,
 	uuid
@@ -174,12 +177,15 @@ export default function DBTextarea(props: DBTextareaProps) {
 				ref={_ref}
 				id={state._id}
 				data-resize={props.resize}
-				disabled={props.disabled}
-				required={props.required}
-				readOnly={props.readOnly}
+				disabled={getBoolean(props.disabled, 'disabled')}
+				required={getBoolean(props.required, 'required')}
+				readOnly={
+					getBoolean(props.readOnly, 'readOnly') ||
+					getBoolean(props.readonly, 'readonly')
+				}
 				form={props.form}
-				maxLength={props.maxLength}
-				minLength={props.minLength}
+				maxLength={getNumber(props.maxLength, props.maxlength)}
+				minLength={getNumber(props.minLength, props.minlength)}
 				name={props.name}
 				wrap={props.wrap}
 				spellcheck={props.spellCheck}
@@ -199,8 +205,8 @@ export default function DBTextarea(props: DBTextareaProps) {
 				value={props.value ?? state._value}
 				aria-describedby={state._descByIds}
 				placeholder={props.placeholder ?? DEFAULT_PLACEHOLDER}
-				rows={props.rows ?? DEFAULT_ROWS}
-				cols={props.cols}
+				rows={getNumber(props.rows, DEFAULT_ROWS)}
+				cols={getNumber(props.cols)}
 			/>
 
 			<Show when={stringPropVisible(props.message, props.showMessage)}>
