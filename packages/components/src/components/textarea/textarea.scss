@@ -39,11 +39,16 @@
 .db-textarea {
 	@include form-components.set-default-form-component(textarea);
 
+	min-inline-size: variables.$db-sizing-lg;
+
 	textarea {
 		@extend %resize-textarea;
 		@extend %scrollbar;
 
 		overflow-y: scroll;
+
+		// assign min-inline-size also to textarea itself to ensure min-inline-size even when resizing the textarea
+		min-inline-size: variables.$db-sizing-lg;
 
 		// we don't have icons in textarea so we can overwrite it here
 		padding-block: variables.$db-spacing-fixed-xs

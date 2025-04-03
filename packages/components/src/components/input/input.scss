@@ -15,6 +15,28 @@ $icon-padding: calc(
 .db-input {
 	@include form-components.set-default-form-component(input);
 
+	// base inline size for inputs without icons
+	min-inline-size: variables.$db-sizing-lg;
+
+	// increased inline size for elements with icons or specific input types that have icons
+	&[data-icon]:not([data-hide-icon="true"]),
+	&[data-icon-after]:not([data-hide-icon="true"]),
+	&:has(
+			input[type="search"],
+			input[type="date"],
+			input[type="month"],
+			input[type="week"],
+			input[type="datetime-local"],
+			input[type="time"]
+		) {
+		min-inline-size: variables.$db-sizing-xl;
+	}
+
+	// even larger size when both - leading and trailing icons - are present
+	&[data-icon][data-icon-after] {
+		min-inline-size: variables.$db-sizing-2xl;
+	}
+
 	// padding-inline-end according to current amount of icons
 	&[data-icon],
 	&:has(input[type="search"]) {
