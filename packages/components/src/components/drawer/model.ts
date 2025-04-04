@@ -42,12 +42,12 @@ export type DBDrawerDefaultProps = {
 	/**
 	 * The open attribute opens or closes the drawer based on the state.
 	 */
-	open?: boolean;
+	open?: boolean | string;
 	/**
 	 * The rounded attribute changes the border radius of the corners on the "end" of the drawer.
 	 * The "end" depends on which direction you use.
 	 */
-	rounded?: boolean;
+	rounded?: boolean | string;
 	/**
 	 * Set the variant modal|inside. Defaults to modal.
 	 */
