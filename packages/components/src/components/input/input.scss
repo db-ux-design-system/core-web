@@ -16,8 +16,7 @@ $icon-padding: calc(
 	@include form-components.set-default-form-component(input);
 
 	// increased inline size for elements with icons or specific input types that have icons
-	&[data-icon]:not([data-hide-icon="true"]),
-	&[data-icon-after]:not([data-hide-icon="true"]),
+	&:is([data-icon], [data-icon-after]):not([data-hide-icon="true"]),
 	&:has(
 			input[type="search"],
 			input[type="date"],
