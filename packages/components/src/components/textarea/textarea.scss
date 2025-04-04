@@ -39,8 +39,6 @@
 .db-textarea {
 	@include form-components.set-default-form-component(textarea);
 
-	min-inline-size: variables.$db-sizing-lg;
-
 	textarea {
 		@extend %resize-textarea;
 		@extend %scrollbar;
