@@ -63,7 +63,6 @@
 	// headline
 	header {
 		grid-area: head;
-		font-weight: 700;
 
 		&,
 		h1,
@@ -72,10 +71,9 @@
 		h4,
 		h5,
 		h6 {
-			font-family: var(--db-font-family-sans);
 			margin: 0;
-			line-height: var(--db-type-body-line-height-md);
-			font-size: var(--db-type-body-font-size-md);
+			font: var(--db-type-body-md);
+			font-weight: 700;
 
 			&::before,
 			&::after {
