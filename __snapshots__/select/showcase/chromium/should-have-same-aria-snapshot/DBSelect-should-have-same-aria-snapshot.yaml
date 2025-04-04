@@ -3,6 +3,7 @@
   - link "Density arrow_up_right\" / \""
   - text: Label
   - combobox "Label":
+    - option [selected]
     - option "Option 1"
     - option "Option 2"
     - text: Functional
@@ -10,6 +11,7 @@
   - status
   - text: chevron_down" / " Label
   - combobox "Label":
+    - option [selected]
     - option "Option 1"
     - option "Option 2"
     - text: (Default) Regular
@@ -17,6 +19,7 @@
   - status
   - text: chevron_down" / " Label
   - combobox "Label":
+    - option [selected]
     - option "Option 1"
     - option "Option 2"
     - text: Expressive
@@ -26,6 +29,7 @@
   - link "Variant arrow_up_right\" / \""
   - text: Label
   - combobox "Label":
+    - option [selected]
     - option "Option 1"
     - option "Option 2"
     - text: (Default) Label Above
@@ -33,6 +37,7 @@
   - status
   - text: chevron_down" / " Label
   - combobox "Label":
+    - option
     - option "Floating Label" [selected]
     - option "Option 2"
     - text: Floating Label
@@ -41,6 +46,7 @@
   - link "Show Label arrow_up_right\" / \""
   - text: Label
   - combobox "Label":
+    - option [selected]
     - option "Option 1"
     - option "Option 2"
     - text: (Default) True
@@ -48,6 +54,7 @@
   - status
   - text: chevron_down" / " Label
   - combobox "Label":
+    - option [selected]
     - option "Option 1"
     - option "Option 2"
     - text: "False"
@@ -57,6 +64,7 @@
   - link "Show Message arrow_up_right\" / \""
   - text: Label
   - combobox "Label":
+    - option [selected]
     - option "Option 1"
     - option "Option 2"
     - text: (Default) False
@@ -64,6 +72,7 @@
   - status
   - text: chevron_down" / " Label
   - combobox "Label":
+    - option [selected]
     - option "Option 1"
     - option "Option 2"
     - text: "True"
@@ -73,6 +82,7 @@
   - link "State arrow_up_right\" / \""
   - text: Label
   - combobox "Label":
+    - option [selected]
     - option "Option 1"
     - option "Option 2"
     - text: (Default) Empty
@@ -80,6 +90,7 @@
   - status
   - text: chevron_down" / " Label
   - combobox "Label":
+    - option
     - option "Filled" [selected]
     - option "Option 2"
     - text: Filled
@@ -88,6 +99,7 @@
   - link "Validation arrow_up_right\" / \""
   - text: Label
   - combobox "Label":
+    - option [selected]
     - option "Option 1"
     - option "Option 2"
     - text: (Default) No validation
@@ -95,6 +107,7 @@
   - status
   - text: chevron_down" / " Label
   - combobox "Label":
+    - option [selected]
     - option "Option 1"
     - option "Option 2"
     - text: Invalid
@@ -102,6 +115,7 @@
   - status
   - text: chevron_down" / " Label
   - combobox "Label":
+    - option
     - option "Valid" [selected]
     - option "Option 2"
     - text: Valid
@@ -111,6 +125,7 @@
   - link "Disabled arrow_up_right\" / \""
   - text: Label
   - combobox "Label":
+    - option [selected]
     - option "Option 1"
     - option "Option 2"
     - text: (Default) False
@@ -118,6 +133,7 @@
   - status
   - text: chevron_down" / " Label
   - combobox "Label" [disabled]:
+    - option [selected]
     - option "Option 1"
     - option "Option 2"
     - text: "True"
@@ -127,6 +143,7 @@
   - link "Content arrow_up_right\" / \""
   - text: Label
   - combobox "Label":
+    - option [selected]
     - option "Option 1"
     - option "Option 2"
     - text: (Default) Text
@@ -134,6 +151,7 @@
   - status
   - text: chevron_down" / " x_placeholder" / " Label
   - combobox "Label":
+    - option [selected]
     - option "Option 1"
     - option "Option 2"
     - text: Text - Leading Icon
@@ -143,6 +161,7 @@
   - link "Required arrow_up_right\" / \""
   - text: Label
   - combobox "Label":
+    - option [selected]
     - option "Option 1"
     - option "Option 2"
     - text: (Default) False
@@ -150,6 +169,7 @@
   - status
   - text: chevron_down" / " Label*" / "
   - combobox "Label*\" / \"":
+    - option [selected]
     - option "Option 1"
     - option "Option 2"
     - text: "True"
@@ -159,6 +179,7 @@
   - link "Examples Floating Label arrow_up_right\" / \""
   - text: Label
   - combobox "Label":
+    - option [selected]
     - option "Option 1"
     - option "Option 2"
     - text: (Default) Empty
@@ -166,12 +187,14 @@
   - status
   - text: chevron_down" / " Label
   - combobox "Label":
+    - option
     - option "Filled" [selected]
     - option "Option 2"
     - text: Filled
   - status
   - text: chevron_down" / " Label
   - combobox "Label" [disabled]:
+    - option
     - option "Disabled" [selected]
     - option "Option 2"
     - text: Disabled
