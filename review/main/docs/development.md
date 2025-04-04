@@ -24,7 +24,13 @@ TODO: Elaborate on testing setup
 
 #### Component Tests
 
-**Visual regression tests**
+##### Visual regression tests
+
+###### Pipeline generated images
+
+On every fail of the visual regression tests in the Default pipeline, we're regenerating the snapshots as a `snapshot-*`-artifact. Please download these ones from the "Summary" page and commit the updated screenshots with `npm run commit:updated-snapshots` command from project root.
+
+###### Manual update
 
 Playwright is used to create and compare screenshots of each individual component.
 
