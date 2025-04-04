@@ -25,12 +25,12 @@ $icon-padding: calc(
 			input[type="datetime-local"],
 			input[type="time"]
 		) {
-		min-inline-size: variables.$db-sizing-xl;
+		--db-form-component-min-inline-size: #{variables.$db-sizing-xl};
 	}
 
 	// even larger size when both - leading and trailing icons - are present
 	&[data-icon][data-icon-after] {
-		min-inline-size: form-components.$db-min-inline-size;
+		--db-form-component-min-inline-size: #{variables.$db-sizing-2xl};
 	}
 
 	// padding-inline-end according to current amount of icons

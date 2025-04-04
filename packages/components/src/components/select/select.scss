@@ -32,7 +32,7 @@ $has-before-padding: calc(
 
 	// increased inline size for elements with icons
 	&[data-icon]:not([data-hide-icon="true"]) {
-		min-inline-size: form-components.$db-min-inline-size;
+		--db-form-component-min-inline-size: #{variables.$db-sizing-2xl};
 	}
 
 	select {
