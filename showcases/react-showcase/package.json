@@ -16,7 +16,7 @@
     "test:e2e": "cross-env showcase=react-showcase npx playwright test --config=../playwright.config.ts"
   },
   "dependencies": {
-    "@db-ux/db-theme": "1.0.2",
+    "@db-ux/db-theme": "1.0.2-2.0.0-release-xje7uyuo",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-router-dom": "7.4.1",

@@ -12,7 +12,7 @@
     "start": "next start"
   },
   "dependencies": {
-    "@db-ux/db-theme": "1.0.2",
+    "@db-ux/db-theme": "1.0.2-2.0.0-release-xje7uyuo",
     "next": "latest",
     "react": "18.3.1",
     "react-dom": "18.3.1"

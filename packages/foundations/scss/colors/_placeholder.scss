@@ -111,20 +111,8 @@
 			--db-adaptive-on-bg-basic-emphasis-60-default: var(
 				--db-#{$variant}-on-bg-basic-emphasis-60-default
 			);
-			--db-adaptive-on-bg-basic-emphasis-60-hovered: var(
-				--db-#{$variant}-on-bg-basic-emphasis-60-hovered
-			);
-			--db-adaptive-on-bg-basic-emphasis-60-pressed: var(
-				--db-#{$variant}-on-bg-basic-emphasis-60-pressed
-			);
 			--db-adaptive-on-bg-basic-emphasis-50-default: var(
 				--db-#{$variant}-on-bg-basic-emphasis-50-default
-			);
-			--db-adaptive-on-bg-basic-emphasis-50-hovered: var(
-				--db-#{$variant}-on-bg-basic-emphasis-50-hovered
-			);
-			--db-adaptive-on-bg-basic-emphasis-50-pressed: var(
-				--db-#{$variant}-on-bg-basic-emphasis-50-pressed
 			);
 
 			// inverted
@@ -175,12 +163,6 @@
 			// on-origin
 			--db-adaptive-on-origin-default: var(
 				--db-#{$variant}-on-origin-default
-			);
-			--db-adaptive-on-origin-hovered: var(
-				--db-#{$variant}-on-origin-hovered
-			);
-			--db-adaptive-on-origin-pressed: var(
-				--db-#{$variant}-on-origin-pressed
 			);
 
 			// vibrant

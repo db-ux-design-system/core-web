@@ -1942,55 +1942,55 @@
 	inherits: true;
 }
 
-@property --db-border-height-3xs {
+@property --db-border-width-3xs {
 	syntax: "*";
 	initial-value: 0.0625rem;
 	inherits: true;
 }
 
-@property --db-border-height-2xs {
+@property --db-border-width-2xs {
 	syntax: "*";
 	initial-value: 0.125rem;
 	inherits: true;
 }
 
-@property --db-border-height-xs {
+@property --db-border-width-xs {
 	syntax: "*";
 	initial-value: 0.25rem;
 	inherits: true;
 }
 
-@property --db-border-height-sm {
+@property --db-border-width-sm {
 	syntax: "*";
 	initial-value: 0.375rem;
 	inherits: true;
 }
 
-@property --db-border-height-md {
+@property --db-border-width-md {
 	syntax: "*";
 	initial-value: 0.5rem;
 	inherits: true;
 }
 
-@property --db-border-height-lg {
+@property --db-border-width-lg {
 	syntax: "*";
 	initial-value: 0.625rem;
 	inherits: true;
 }
 
-@property --db-border-height-xl {
+@property --db-border-width-xl {
 	syntax: "*";
 	initial-value: 0.75rem;
 	inherits: true;
 }
 
-@property --db-border-height-2xl {
+@property --db-border-width-2xl {
 	syntax: "*";
 	initial-value: 0.875rem;
 	inherits: true;
 }
 
-@property --db-border-height-3xl {
+@property --db-border-width-3xl {
 	syntax: "*";
 	initial-value: 1rem;
 	inherits: true;
@@ -2911,7 +2911,7 @@
 	inherits: true;
 }
 
-@property --db-transition-duration-x-slow {
+@property --db-transition-duration-extra-slow {
 	syntax: "*";
 	initial-value: 0.5s;
 	inherits: true;
@@ -2935,7 +2935,7 @@
 	inherits: true;
 }
 
-@property --db-transition-duration-x-fast {
+@property --db-transition-duration-extra-fast {
 	syntax: "*";
 	initial-value: 0.075s;
 	inherits: true;
@@ -4747,33 +4747,9 @@
 	inherits: true;
 }
 
-@property --db-neutral-on-origin-light-hovered {
-	syntax: "<color>";
-	initial-value: #dcdce2;
-	inherits: true;
-}
-
-@property --db-neutral-on-origin-light-pressed {
-	syntax: "<color>";
-	initial-value: #c0c0cb;
-	inherits: true;
-}
-
 @property --db-neutral-on-origin-dark-default {
 	syntax: "<color>";
 	initial-value: #f9f9fa;
-	inherits: true;
-}
-
-@property --db-neutral-on-origin-dark-hovered {
-	syntax: "<color>";
-	initial-value: #dcdce2;
-	inherits: true;
-}
-
-@property --db-neutral-on-origin-dark-pressed {
-	syntax: "<color>";
-	initial-value: #c0c0cb;
 	inherits: true;
 }
 
@@ -4915,33 +4891,9 @@
 	inherits: true;
 }
 
-@property --db-brand-on-origin-light-hovered {
-	syntax: "<color>";
-	initial-value: #00f4b3;
-	inherits: true;
-}
-
-@property --db-brand-on-origin-light-pressed {
-	syntax: "<color>";
-	initial-value: #00d59c;
-	inherits: true;
-}
-
 @property --db-brand-on-origin-dark-default {
 	syntax: "<color>";
 	initial-value: #cbffe7;
-	inherits: true;
-}
-
-@property --db-brand-on-origin-dark-hovered {
-	syntax: "<color>";
-	initial-value: #00f4b3;
-	inherits: true;
-}
-
-@property --db-brand-on-origin-dark-pressed {
-	syntax: "<color>";
-	initial-value: #00d59c;
 	inherits: true;
 }
 
@@ -5083,33 +5035,9 @@
 	inherits: true;
 }
 
-@property --db-informational-on-origin-light-hovered {
-	syntax: "<color>";
-	initial-value: #072231;
-	inherits: true;
-}
-
-@property --db-informational-on-origin-light-pressed {
-	syntax: "<color>";
-	initial-value: #0f384f;
-	inherits: true;
-}
-
 @property --db-informational-on-origin-dark-default {
 	syntax: "<color>";
 	initial-value: #01080f;
-	inherits: true;
-}
-
-@property --db-informational-on-origin-dark-hovered {
-	syntax: "<color>";
-	initial-value: #072231;
-	inherits: true;
-}
-
-@property --db-informational-on-origin-dark-pressed {
-	syntax: "<color>";
-	initial-value: #0f384f;
 	inherits: true;
 }
 
@@ -5251,33 +5179,9 @@
 	inherits: true;
 }
 
-@property --db-warning-on-origin-light-hovered {
-	syntax: "<color>";
-	initial-value: #331900;
-	inherits: true;
-}
-
-@property --db-warning-on-origin-light-pressed {
-	syntax: "<color>";
-	initial-value: #512b00;
-	inherits: true;
-}
-
 @property --db-warning-on-origin-dark-default {
 	syntax: "<color>";
 	initial-value: #100500;
-	inherits: true;
-}
-
-@property --db-warning-on-origin-dark-hovered {
-	syntax: "<color>";
-	initial-value: #331900;
-	inherits: true;
-}
-
-@property --db-warning-on-origin-dark-pressed {
-	syntax: "<color>";
-	initial-value: #512b00;
 	inherits: true;
 }
 
@@ -5419,33 +5323,9 @@
 	inherits: true;
 }
 
-@property --db-successful-on-origin-light-hovered {
-	syntax: "<color>";
-	initial-value: #122400;
-	inherits: true;
-}
-
-@property --db-successful-on-origin-light-pressed {
-	syntax: "<color>";
-	initial-value: #213c00;
-	inherits: true;
-}
-
 @property --db-successful-on-origin-dark-default {
 	syntax: "<color>";
 	initial-value: #030900;
-	inherits: true;
-}
-
-@property --db-successful-on-origin-dark-hovered {
-	syntax: "<color>";
-	initial-value: #122400;
-	inherits: true;
-}
-
-@property --db-successful-on-origin-dark-pressed {
-	syntax: "<color>";
-	initial-value: #213c00;
 	inherits: true;
 }
 
@@ -5587,33 +5467,9 @@
 	inherits: true;
 }
 
-@property --db-critical-on-origin-light-hovered {
-	syntax: "<color>";
-	initial-value: #ffdada;
-	inherits: true;
-}
-
-@property --db-critical-on-origin-light-pressed {
-	syntax: "<color>";
-	initial-value: #ffb3b4;
-	inherits: true;
-}
-
 @property --db-critical-on-origin-dark-default {
 	syntax: "<color>";
 	initial-value: #fff;
-	inherits: true;
-}
-
-@property --db-critical-on-origin-dark-hovered {
-	syntax: "<color>";
-	initial-value: #ffdada;
-	inherits: true;
-}
-
-@property --db-critical-on-origin-dark-pressed {
-	syntax: "<color>";
-	initial-value: #ffb3b4;
 	inherits: true;
 }
 
@@ -5755,33 +5611,9 @@
 	inherits: true;
 }
 
-@property --db-yellow-on-origin-light-hovered {
-	syntax: "<color>";
-	initial-value: #261f00;
-	inherits: true;
-}
-
-@property --db-yellow-on-origin-light-pressed {
-	syntax: "<color>";
-	initial-value: #3f3400;
-	inherits: true;
-}
-
 @property --db-yellow-on-origin-dark-default {
 	syntax: "<color>";
 	initial-value: #0a0700;
-	inherits: true;
-}
-
-@property --db-yellow-on-origin-dark-hovered {
-	syntax: "<color>";
-	initial-value: #261f00;
-	inherits: true;
-}
-
-@property --db-yellow-on-origin-dark-pressed {
-	syntax: "<color>";
-	initial-value: #3f3400;
 	inherits: true;
 }
 
@@ -5923,33 +5755,9 @@
 	inherits: true;
 }
 
-@property --db-orange-on-origin-light-hovered {
-	syntax: "<color>";
-	initial-value: #331900;
-	inherits: true;
-}
-
-@property --db-orange-on-origin-light-pressed {
-	syntax: "<color>";
-	initial-value: #512b00;
-	inherits: true;
-}
-
 @property --db-orange-on-origin-dark-default {
 	syntax: "<color>";
 	initial-value: #100500;
-	inherits: true;
-}
-
-@property --db-orange-on-origin-dark-hovered {
-	syntax: "<color>";
-	initial-value: #331900;
-	inherits: true;
-}
-
-@property --db-orange-on-origin-dark-pressed {
-	syntax: "<color>";
-	initial-value: #512b00;
 	inherits: true;
 }
 
@@ -6091,33 +5899,9 @@
 	inherits: true;
 }
 
-@property --db-red-on-origin-light-hovered {
-	syntax: "<color>";
-	initial-value: #ffdada;
-	inherits: true;
-}
-
-@property --db-red-on-origin-light-pressed {
-	syntax: "<color>";
-	initial-value: #ffb3b4;
-	inherits: true;
-}
-
 @property --db-red-on-origin-dark-default {
 	syntax: "<color>";
 	initial-value: #fff;
-	inherits: true;
-}
-
-@property --db-red-on-origin-dark-hovered {
-	syntax: "<color>";
-	initial-value: #ffdada;
-	inherits: true;
-}
-
-@property --db-red-on-origin-dark-pressed {
-	syntax: "<color>";
-	initial-value: #ffb3b4;
 	inherits: true;
 }
 
@@ -6259,33 +6043,9 @@
 	inherits: true;
 }
 
-@property --db-pink-on-origin-light-hovered {
-	syntax: "<color>";
-	initial-value: #490e29;
-	inherits: true;
-}
-
-@property --db-pink-on-origin-light-pressed {
-	syntax: "<color>";
-	initial-value: #6e1941;
-	inherits: true;
-}
-
 @property --db-pink-on-origin-dark-default {
 	syntax: "<color>";
 	initial-value: #260413;
-	inherits: true;
-}
-
-@property --db-pink-on-origin-dark-hovered {
-	syntax: "<color>";
-	initial-value: #490e29;
-	inherits: true;
-}
-
-@property --db-pink-on-origin-dark-pressed {
-	syntax: "<color>";
-	initial-value: #6e1941;
 	inherits: true;
 }
 
@@ -6427,33 +6187,9 @@
 	inherits: true;
 }
 
-@property --db-violet-on-origin-light-hovered {
-	syntax: "<color>";
-	initial-value: #e9d7ee;
-	inherits: true;
-}
-
-@property --db-violet-on-origin-light-pressed {
-	syntax: "<color>";
-	initial-value: #d7b5e1;
-	inherits: true;
-}
-
 @property --db-violet-on-origin-dark-default {
 	syntax: "<color>";
 	initial-value: #fbf8fc;
-	inherits: true;
-}
-
-@property --db-violet-on-origin-dark-hovered {
-	syntax: "<color>";
-	initial-value: #e9d7ee;
-	inherits: true;
-}
-
-@property --db-violet-on-origin-dark-pressed {
-	syntax: "<color>";
-	initial-value: #d7b5e1;
 	inherits: true;
 }
 
@@ -6595,33 +6331,9 @@
 	inherits: true;
 }
 
-@property --db-blue-on-origin-light-hovered {
-	syntax: "<color>";
-	initial-value: #d5dbff;
-	inherits: true;
-}
-
-@property --db-blue-on-origin-light-pressed {
-	syntax: "<color>";
-	initial-value: #b0beff;
-	inherits: true;
-}
-
 @property --db-blue-on-origin-dark-default {
 	syntax: "<color>";
 	initial-value: #f8f9ff;
-	inherits: true;
-}
-
-@property --db-blue-on-origin-dark-hovered {
-	syntax: "<color>";
-	initial-value: #d5dbff;
-	inherits: true;
-}
-
-@property --db-blue-on-origin-dark-pressed {
-	syntax: "<color>";
-	initial-value: #b0beff;
 	inherits: true;
 }
 
@@ -6763,33 +6475,9 @@
 	inherits: true;
 }
 
-@property --db-cyan-on-origin-light-hovered {
-	syntax: "<color>";
-	initial-value: #072231;
-	inherits: true;
-}
-
-@property --db-cyan-on-origin-light-pressed {
-	syntax: "<color>";
-	initial-value: #0f384f;
-	inherits: true;
-}
-
 @property --db-cyan-on-origin-dark-default {
 	syntax: "<color>";
 	initial-value: #01080f;
-	inherits: true;
-}
-
-@property --db-cyan-on-origin-dark-hovered {
-	syntax: "<color>";
-	initial-value: #072231;
-	inherits: true;
-}
-
-@property --db-cyan-on-origin-dark-pressed {
-	syntax: "<color>";
-	initial-value: #0f384f;
 	inherits: true;
 }
 
@@ -6931,33 +6619,9 @@
 	inherits: true;
 }
 
-@property --db-turquoise-on-origin-light-hovered {
-	syntax: "<color>";
-	initial-value: #002422;
-	inherits: true;
-}
-
-@property --db-turquoise-on-origin-light-pressed {
-	syntax: "<color>";
-	initial-value: #003c38;
-	inherits: true;
-}
-
 @property --db-turquoise-on-origin-dark-default {
 	syntax: "<color>";
 	initial-value: #000908;
-	inherits: true;
-}
-
-@property --db-turquoise-on-origin-dark-hovered {
-	syntax: "<color>";
-	initial-value: #002422;
-	inherits: true;
-}
-
-@property --db-turquoise-on-origin-dark-pressed {
-	syntax: "<color>";
-	initial-value: #003c38;
 	inherits: true;
 }
 
@@ -7099,32 +6763,8 @@
 	inherits: true;
 }
 
-@property --db-green-on-origin-light-hovered {
-	syntax: "<color>";
-	initial-value: #122400;
-	inherits: true;
-}
-
-@property --db-green-on-origin-light-pressed {
-	syntax: "<color>";
-	initial-value: #213c00;
-	inherits: true;
-}
-
 @property --db-green-on-origin-dark-default {
 	syntax: "<color>";
 	initial-value: #030900;
-	inherits: true;
-}
-
-@property --db-green-on-origin-dark-hovered {
-	syntax: "<color>";
-	initial-value: #122400;
-	inherits: true;
-}
-
-@property --db-green-on-origin-dark-pressed {
-	syntax: "<color>";
-	initial-value: #213c00;
 	inherits: true;
 }

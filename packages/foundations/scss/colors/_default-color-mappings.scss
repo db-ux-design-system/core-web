@@ -16,109 +16,85 @@
 			var(--db-neutral-on-origin-light-default),
 			var(--db-neutral-on-origin-dark-default)
 		);
-		--db-neutral-on-origin-hovered: light-dark(
-			var(--db-neutral-on-origin-light-hovered),
-			var(--db-neutral-on-origin-dark-hovered)
-		);
-		--db-neutral-on-origin-pressed: light-dark(
-			var(--db-neutral-on-origin-light-pressed),
-			var(--db-neutral-on-origin-dark-pressed)
-		);
 		--db-neutral-on-bg-basic-emphasis-50-default: light-dark(
 			var(--db-neutral-9),
 			var(--db-neutral-5)
 		);
-		--db-neutral-on-bg-basic-emphasis-50-hovered: light-dark(
-			var(--db-neutral-7),
-			var(--db-neutral-3)
-		);
-		--db-neutral-on-bg-basic-emphasis-50-pressed: light-dark(
-			var(--db-neutral-6),
-			var(--db-neutral-2)
-		);
 		--db-neutral-on-bg-basic-emphasis-60-default: light-dark(
 			var(--db-neutral-10),
 			var(--db-neutral-6)
-		);
-		--db-neutral-on-bg-basic-emphasis-60-hovered: light-dark(
-			var(--db-neutral-8),
-			var(--db-neutral-4)
-		);
-		--db-neutral-on-bg-basic-emphasis-60-pressed: light-dark(
-			var(--db-neutral-7),
-			var(--db-neutral-3)
 		);
 		--db-neutral-on-bg-basic-emphasis-70-default: light-dark(
 			var(--db-neutral-7),
 			var(--db-neutral-8)
 		);
 		--db-neutral-on-bg-basic-emphasis-70-hovered: light-dark(
-			var(--db-neutral-6),
-			var(--db-neutral-7)
+			var(--db-neutral-3),
+			var(--db-neutral-12)
 		);
 		--db-neutral-on-bg-basic-emphasis-70-pressed: light-dark(
 			var(--db-neutral-5),
-			var(--db-neutral-6)
+			var(--db-neutral-10)
 		);
 		--db-neutral-on-bg-basic-emphasis-80-default: light-dark(
 			var(--db-neutral-6),
 			var(--db-neutral-9)
 		);
 		--db-neutral-on-bg-basic-emphasis-80-hovered: light-dark(
-			var(--db-neutral-5),
-			var(--db-neutral-8)
+			var(--db-neutral-1),
+			var(--db-neutral-13)
 		);
 		--db-neutral-on-bg-basic-emphasis-80-pressed: light-dark(
-			var(--db-neutral-4),
-			var(--db-neutral-7)
+			var(--db-neutral-3),
+			var(--db-neutral-11)
 		);
 		--db-neutral-on-bg-basic-emphasis-90-default: light-dark(
-			var(--db-neutral-5),
+			var(--db-neutral-4),
 			var(--db-neutral-10)
 		);
 		--db-neutral-on-bg-basic-emphasis-90-hovered: light-dark(
-			var(--db-neutral-6),
-			var(--db-neutral-9)
+			var(--db-neutral-0),
+			var(--db-neutral-14)
 		);
 		--db-neutral-on-bg-basic-emphasis-90-pressed: light-dark(
-			var(--db-neutral-7),
-			var(--db-neutral-8)
+			var(--db-neutral-3),
+			var(--db-neutral-12)
 		);
 		--db-neutral-on-bg-basic-emphasis-100-default: light-dark(
 			var(--db-neutral-1),
 			var(--db-neutral-12)
 		);
 		--db-neutral-on-bg-basic-emphasis-100-hovered: light-dark(
-			var(--db-neutral-3),
-			var(--db-neutral-10)
+			var(--db-neutral-6),
+			var(--db-neutral-9)
 		);
 		--db-neutral-on-bg-basic-emphasis-100-pressed: light-dark(
-			var(--db-neutral-5),
-			var(--db-neutral-9)
+			var(--db-neutral-4),
+			var(--db-neutral-11)
 		);
 		--db-neutral-on-bg-inverted-default: light-dark(
 			var(--db-neutral-14),
 			var(--db-neutral-3)
 		);
 		--db-neutral-on-bg-inverted-hovered: light-dark(
-			var(--db-neutral-12),
-			var(--db-neutral-1)
-		);
-		--db-neutral-on-bg-inverted-pressed: light-dark(
 			var(--db-neutral-11),
 			var(--db-neutral-0)
+		);
+		--db-neutral-on-bg-inverted-pressed: light-dark(
+			var(--db-neutral-13),
+			var(--db-neutral-2)
 		);
 		--db-neutral-on-bg-vibrant-default: light-dark(
 			var(--db-neutral-1),
 			var(--db-neutral-1)
 		);
 		--db-neutral-on-bg-vibrant-hovered: light-dark(
-			var(--db-neutral-3),
-			var(--db-neutral-3)
-		);
-		--db-neutral-on-bg-vibrant-pressed: light-dark(
 			var(--db-neutral-4),
 			var(--db-neutral-4)
+		);
+		--db-neutral-on-bg-vibrant-pressed: light-dark(
+			var(--db-neutral-2),
+			var(--db-neutral-2)
 		);
 		--db-neutral-bg-basic-level-1-default: light-dark(
 			var(--db-neutral-14),
@@ -236,109 +212,85 @@
 			var(--db-brand-on-origin-light-default),
 			var(--db-brand-on-origin-dark-default)
 		);
-		--db-brand-on-origin-hovered: light-dark(
-			var(--db-brand-on-origin-light-hovered),
-			var(--db-brand-on-origin-dark-hovered)
-		);
-		--db-brand-on-origin-pressed: light-dark(
-			var(--db-brand-on-origin-light-pressed),
-			var(--db-brand-on-origin-dark-pressed)
-		);
 		--db-brand-on-bg-basic-emphasis-50-default: light-dark(
 			var(--db-brand-9),
 			var(--db-brand-5)
 		);
-		--db-brand-on-bg-basic-emphasis-50-hovered: light-dark(
-			var(--db-brand-7),
-			var(--db-brand-3)
-		);
-		--db-brand-on-bg-basic-emphasis-50-pressed: light-dark(
-			var(--db-brand-6),
-			var(--db-brand-2)
-		);
 		--db-brand-on-bg-basic-emphasis-60-default: light-dark(
 			var(--db-brand-10),
 			var(--db-brand-6)
-		);
-		--db-brand-on-bg-basic-emphasis-60-hovered: light-dark(
-			var(--db-brand-8),
-			var(--db-brand-4)
-		);
-		--db-brand-on-bg-basic-emphasis-60-pressed: light-dark(
-			var(--db-brand-7),
-			var(--db-brand-3)
 		);
 		--db-brand-on-bg-basic-emphasis-70-default: light-dark(
 			var(--db-brand-7),
 			var(--db-brand-8)
 		);
 		--db-brand-on-bg-basic-emphasis-70-hovered: light-dark(
-			var(--db-brand-6),
-			var(--db-brand-7)
+			var(--db-brand-3),
+			var(--db-brand-12)
 		);
 		--db-brand-on-bg-basic-emphasis-70-pressed: light-dark(
 			var(--db-brand-5),
-			var(--db-brand-6)
+			var(--db-brand-10)
 		);
 		--db-brand-on-bg-basic-emphasis-80-default: light-dark(
 			var(--db-brand-6),
 			var(--db-brand-9)
 		);
 		--db-brand-on-bg-basic-emphasis-80-hovered: light-dark(
-			var(--db-brand-5),
-			var(--db-brand-8)
+			var(--db-brand-1),
+			var(--db-brand-13)
 		);
 		--db-brand-on-bg-basic-emphasis-80-pressed: light-dark(
-			var(--db-brand-4),
-			var(--db-brand-7)
+			var(--db-brand-3),
+			var(--db-brand-11)
 		);
 		--db-brand-on-bg-basic-emphasis-90-default: light-dark(
-			var(--db-brand-5),
+			var(--db-brand-4),
 			var(--db-brand-10)
 		);
 		--db-brand-on-bg-basic-emphasis-90-hovered: light-dark(
-			var(--db-brand-6),
-			var(--db-brand-9)
+			var(--db-brand-0),
+			var(--db-brand-14)
 		);
 		--db-brand-on-bg-basic-emphasis-90-pressed: light-dark(
-			var(--db-brand-7),
-			var(--db-brand-8)
+			var(--db-brand-3),
+			var(--db-brand-12)
 		);
 		--db-brand-on-bg-basic-emphasis-100-default: light-dark(
 			var(--db-brand-1),
 			var(--db-brand-12)
 		);
 		--db-brand-on-bg-basic-emphasis-100-hovered: light-dark(
-			var(--db-brand-3),
-			var(--db-brand-10)
+			var(--db-brand-6),
+			var(--db-brand-9)
 		);
 		--db-brand-on-bg-basic-emphasis-100-pressed: light-dark(
-			var(--db-brand-5),
-			var(--db-brand-9)
+			var(--db-brand-4),
+			var(--db-brand-11)
 		);
 		--db-brand-on-bg-inverted-default: light-dark(
 			var(--db-brand-14),
 			var(--db-brand-3)
 		);
 		--db-brand-on-bg-inverted-hovered: light-dark(
-			var(--db-brand-12),
-			var(--db-brand-1)
-		);
-		--db-brand-on-bg-inverted-pressed: light-dark(
 			var(--db-brand-11),
 			var(--db-brand-0)
+		);
+		--db-brand-on-bg-inverted-pressed: light-dark(
+			var(--db-brand-13),
+			var(--db-brand-2)
 		);
 		--db-brand-on-bg-vibrant-default: light-dark(
 			var(--db-brand-1),
 			var(--db-brand-1)
 		);
 		--db-brand-on-bg-vibrant-hovered: light-dark(
-			var(--db-brand-3),
-			var(--db-brand-3)
-		);
-		--db-brand-on-bg-vibrant-pressed: light-dark(
 			var(--db-brand-4),
 			var(--db-brand-4)
+		);
+		--db-brand-on-bg-vibrant-pressed: light-dark(
+			var(--db-brand-2),
+			var(--db-brand-2)
 		);
 		--db-brand-bg-basic-level-1-default: light-dark(
 			var(--db-brand-14),
@@ -456,109 +408,85 @@
 			var(--db-informational-on-origin-light-default),
 			var(--db-informational-on-origin-dark-default)
 		);
-		--db-informational-on-origin-hovered: light-dark(
-			var(--db-informational-on-origin-light-hovered),
-			var(--db-informational-on-origin-dark-hovered)
-		);
-		--db-informational-on-origin-pressed: light-dark(
-			var(--db-informational-on-origin-light-pressed),
-			var(--db-informational-on-origin-dark-pressed)
-		);
 		--db-informational-on-bg-basic-emphasis-50-default: light-dark(
 			var(--db-informational-9),
 			var(--db-informational-5)
 		);
-		--db-informational-on-bg-basic-emphasis-50-hovered: light-dark(
-			var(--db-informational-7),
-			var(--db-informational-3)
-		);
-		--db-informational-on-bg-basic-emphasis-50-pressed: light-dark(
-			var(--db-informational-6),
-			var(--db-informational-2)
-		);
 		--db-informational-on-bg-basic-emphasis-60-default: light-dark(
 			var(--db-informational-10),
 			var(--db-informational-6)
-		);
-		--db-informational-on-bg-basic-emphasis-60-hovered: light-dark(
-			var(--db-informational-8),
-			var(--db-informational-4)
-		);
-		--db-informational-on-bg-basic-emphasis-60-pressed: light-dark(
-			var(--db-informational-7),
-			var(--db-informational-3)
 		);
 		--db-informational-on-bg-basic-emphasis-70-default: light-dark(
 			var(--db-informational-7),
 			var(--db-informational-8)
 		);
 		--db-informational-on-bg-basic-emphasis-70-hovered: light-dark(
-			var(--db-informational-6),
-			var(--db-informational-7)
+			var(--db-informational-3),
+			var(--db-informational-12)
 		);
 		--db-informational-on-bg-basic-emphasis-70-pressed: light-dark(
 			var(--db-informational-5),
-			var(--db-informational-6)
+			var(--db-informational-10)
 		);
 		--db-informational-on-bg-basic-emphasis-80-default: light-dark(
 			var(--db-informational-6),
 			var(--db-informational-9)
 		);
 		--db-informational-on-bg-basic-emphasis-80-hovered: light-dark(
-			var(--db-informational-5),
-			var(--db-informational-8)
+			var(--db-informational-1),
+			var(--db-informational-13)
 		);
 		--db-informational-on-bg-basic-emphasis-80-pressed: light-dark(
-			var(--db-informational-4),
-			var(--db-informational-7)
+			var(--db-informational-3),
+			var(--db-informational-11)
 		);
 		--db-informational-on-bg-basic-emphasis-90-default: light-dark(
-			var(--db-informational-5),
+			var(--db-informational-4),
 			var(--db-informational-10)
 		);
 		--db-informational-on-bg-basic-emphasis-90-hovered: light-dark(
-			var(--db-informational-6),
-			var(--db-informational-9)
+			var(--db-informational-0),
+			var(--db-informational-14)
 		);
 		--db-informational-on-bg-basic-emphasis-90-pressed: light-dark(
-			var(--db-informational-7),
-			var(--db-informational-8)
+			var(--db-informational-3),
+			var(--db-informational-12)
 		);
 		--db-informational-on-bg-basic-emphasis-100-default: light-dark(
 			var(--db-informational-1),
 			var(--db-informational-12)
 		);
 		--db-informational-on-bg-basic-emphasis-100-hovered: light-dark(
-			var(--db-informational-3),
-			var(--db-informational-10)
+			var(--db-informational-6),
+			var(--db-informational-9)
 		);
 		--db-informational-on-bg-basic-emphasis-100-pressed: light-dark(
-			var(--db-informational-5),
-			var(--db-informational-9)
+			var(--db-informational-4),
+			var(--db-informational-11)
 		);
 		--db-informational-on-bg-inverted-default: light-dark(
 			var(--db-informational-14),
 			var(--db-informational-3)
 		);
 		--db-informational-on-bg-inverted-hovered: light-dark(
-			var(--db-informational-12),
-			var(--db-informational-1)
-		);
-		--db-informational-on-bg-inverted-pressed: light-dark(
 			var(--db-informational-11),
 			var(--db-informational-0)
+		);
+		--db-informational-on-bg-inverted-pressed: light-dark(
+			var(--db-informational-13),
+			var(--db-informational-2)
 		);
 		--db-informational-on-bg-vibrant-default: light-dark(
 			var(--db-informational-1),
 			var(--db-informational-1)
 		);
 		--db-informational-on-bg-vibrant-hovered: light-dark(
-			var(--db-informational-3),
-			var(--db-informational-3)
-		);
-		--db-informational-on-bg-vibrant-pressed: light-dark(
 			var(--db-informational-4),
 			var(--db-informational-4)
+		);
+		--db-informational-on-bg-vibrant-pressed: light-dark(
+			var(--db-informational-2),
+			var(--db-informational-2)
 		);
 		--db-informational-bg-basic-level-1-default: light-dark(
 			var(--db-informational-14),
@@ -676,109 +604,85 @@
 			var(--db-warning-on-origin-light-default),
 			var(--db-warning-on-origin-dark-default)
 		);
-		--db-warning-on-origin-hovered: light-dark(
-			var(--db-warning-on-origin-light-hovered),
-			var(--db-warning-on-origin-dark-hovered)
-		);
-		--db-warning-on-origin-pressed: light-dark(
-			var(--db-warning-on-origin-light-pressed),
-			var(--db-warning-on-origin-dark-pressed)
-		);
 		--db-warning-on-bg-basic-emphasis-50-default: light-dark(
 			var(--db-warning-9),
 			var(--db-warning-5)
 		);
-		--db-warning-on-bg-basic-emphasis-50-hovered: light-dark(
-			var(--db-warning-7),
-			var(--db-warning-3)
-		);
-		--db-warning-on-bg-basic-emphasis-50-pressed: light-dark(
-			var(--db-warning-6),
-			var(--db-warning-2)
-		);
 		--db-warning-on-bg-basic-emphasis-60-default: light-dark(
 			var(--db-warning-10),
 			var(--db-warning-6)
-		);
-		--db-warning-on-bg-basic-emphasis-60-hovered: light-dark(
-			var(--db-warning-8),
-			var(--db-warning-4)
-		);
-		--db-warning-on-bg-basic-emphasis-60-pressed: light-dark(
-			var(--db-warning-7),
-			var(--db-warning-3)
 		);
 		--db-warning-on-bg-basic-emphasis-70-default: light-dark(
 			var(--db-warning-7),
 			var(--db-warning-8)
 		);
 		--db-warning-on-bg-basic-emphasis-70-hovered: light-dark(
-			var(--db-warning-6),
-			var(--db-warning-7)
+			var(--db-warning-3),
+			var(--db-warning-12)
 		);
 		--db-warning-on-bg-basic-emphasis-70-pressed: light-dark(
 			var(--db-warning-5),
-			var(--db-warning-6)
+			var(--db-warning-10)
 		);
 		--db-warning-on-bg-basic-emphasis-80-default: light-dark(
 			var(--db-warning-6),
 			var(--db-warning-9)
 		);
 		--db-warning-on-bg-basic-emphasis-80-hovered: light-dark(
-			var(--db-warning-5),
-			var(--db-warning-8)
+			var(--db-warning-1),
+			var(--db-warning-13)
 		);
 		--db-warning-on-bg-basic-emphasis-80-pressed: light-dark(
-			var(--db-warning-4),
-			var(--db-warning-7)
+			var(--db-warning-3),
+			var(--db-warning-11)
 		);
 		--db-warning-on-bg-basic-emphasis-90-default: light-dark(
-			var(--db-warning-5),
+			var(--db-warning-4),
 			var(--db-warning-10)
 		);
 		--db-warning-on-bg-basic-emphasis-90-hovered: light-dark(
-			var(--db-warning-6),
-			var(--db-warning-9)
+			var(--db-warning-0),
+			var(--db-warning-14)
 		);
 		--db-warning-on-bg-basic-emphasis-90-pressed: light-dark(
-			var(--db-warning-7),
-			var(--db-warning-8)
+			var(--db-warning-3),
+			var(--db-warning-12)
 		);
 		--db-warning-on-bg-basic-emphasis-100-default: light-dark(
 			var(--db-warning-1),
 			var(--db-warning-12)
 		);
 		--db-warning-on-bg-basic-emphasis-100-hovered: light-dark(
-			var(--db-warning-3),
-			var(--db-warning-10)
+			var(--db-warning-6),
+			var(--db-warning-9)
 		);
 		--db-warning-on-bg-basic-emphasis-100-pressed: light-dark(
-			var(--db-warning-5),
-			var(--db-warning-9)
+			var(--db-warning-4),
+			var(--db-warning-11)
 		);
 		--db-warning-on-bg-inverted-default: light-dark(
 			var(--db-warning-14),
 			var(--db-warning-3)
 		);
 		--db-warning-on-bg-inverted-hovered: light-dark(
-			var(--db-warning-12),
-			var(--db-warning-1)
-		);
-		--db-warning-on-bg-inverted-pressed: light-dark(
 			var(--db-warning-11),
 			var(--db-warning-0)
+		);
+		--db-warning-on-bg-inverted-pressed: light-dark(
+			var(--db-warning-13),
+			var(--db-warning-2)
 		);
 		--db-warning-on-bg-vibrant-default: light-dark(
 			var(--db-warning-1),
 			var(--db-warning-1)
 		);
 		--db-warning-on-bg-vibrant-hovered: light-dark(
-			var(--db-warning-3),
-			var(--db-warning-3)
-		);
-		--db-warning-on-bg-vibrant-pressed: light-dark(
 			var(--db-warning-4),
 			var(--db-warning-4)
+		);
+		--db-warning-on-bg-vibrant-pressed: light-dark(
+			var(--db-warning-2),
+			var(--db-warning-2)
 		);
 		--db-warning-bg-basic-level-1-default: light-dark(
 			var(--db-warning-14),
@@ -896,109 +800,85 @@
 			var(--db-successful-on-origin-light-default),
 			var(--db-successful-on-origin-dark-default)
 		);
-		--db-successful-on-origin-hovered: light-dark(
-			var(--db-successful-on-origin-light-hovered),
-			var(--db-successful-on-origin-dark-hovered)
-		);
-		--db-successful-on-origin-pressed: light-dark(
-			var(--db-successful-on-origin-light-pressed),
-			var(--db-successful-on-origin-dark-pressed)
-		);
 		--db-successful-on-bg-basic-emphasis-50-default: light-dark(
 			var(--db-successful-9),
 			var(--db-successful-5)
 		);
-		--db-successful-on-bg-basic-emphasis-50-hovered: light-dark(
-			var(--db-successful-7),
-			var(--db-successful-3)
-		);
-		--db-successful-on-bg-basic-emphasis-50-pressed: light-dark(
-			var(--db-successful-6),
-			var(--db-successful-2)
-		);
 		--db-successful-on-bg-basic-emphasis-60-default: light-dark(
 			var(--db-successful-10),
 			var(--db-successful-6)
-		);
-		--db-successful-on-bg-basic-emphasis-60-hovered: light-dark(
-			var(--db-successful-8),
-			var(--db-successful-4)
-		);
-		--db-successful-on-bg-basic-emphasis-60-pressed: light-dark(
-			var(--db-successful-7),
-			var(--db-successful-3)
 		);
 		--db-successful-on-bg-basic-emphasis-70-default: light-dark(
 			var(--db-successful-7),
 			var(--db-successful-8)
 		);
 		--db-successful-on-bg-basic-emphasis-70-hovered: light-dark(
-			var(--db-successful-6),
-			var(--db-successful-7)
+			var(--db-successful-3),
+			var(--db-successful-12)
 		);
 		--db-successful-on-bg-basic-emphasis-70-pressed: light-dark(
 			var(--db-successful-5),
-			var(--db-successful-6)
+			var(--db-successful-10)
 		);
 		--db-successful-on-bg-basic-emphasis-80-default: light-dark(
 			var(--db-successful-6),
 			var(--db-successful-9)
 		);
 		--db-successful-on-bg-basic-emphasis-80-hovered: light-dark(
-			var(--db-successful-5),
-			var(--db-successful-8)
+			var(--db-successful-1),
+			var(--db-successful-13)
 		);
 		--db-successful-on-bg-basic-emphasis-80-pressed: light-dark(
-			var(--db-successful-4),
-			var(--db-successful-7)
+			var(--db-successful-3),
+			var(--db-successful-11)
 		);
 		--db-successful-on-bg-basic-emphasis-90-default: light-dark(
-			var(--db-successful-5),
+			var(--db-successful-4),
 			var(--db-successful-10)
 		);
 		--db-successful-on-bg-basic-emphasis-90-hovered: light-dark(
-			var(--db-successful-6),
-			var(--db-successful-9)
+			var(--db-successful-0),
+			var(--db-successful-14)
 		);
 		--db-successful-on-bg-basic-emphasis-90-pressed: light-dark(
-			var(--db-successful-7),
-			var(--db-successful-8)
+			var(--db-successful-3),
+			var(--db-successful-12)
 		);
 		--db-successful-on-bg-basic-emphasis-100-default: light-dark(
 			var(--db-successful-1),
 			var(--db-successful-12)
 		);
 		--db-successful-on-bg-basic-emphasis-100-hovered: light-dark(
-			var(--db-successful-3),
-			var(--db-successful-10)
+			var(--db-successful-6),
+			var(--db-successful-9)
 		);
 		--db-successful-on-bg-basic-emphasis-100-pressed: light-dark(
-			var(--db-successful-5),
-			var(--db-successful-9)
+			var(--db-successful-4),
+			var(--db-successful-11)
 		);
 		--db-successful-on-bg-inverted-default: light-dark(
 			var(--db-successful-14),
 			var(--db-successful-3)
 		);
 		--db-successful-on-bg-inverted-hovered: light-dark(
-			var(--db-successful-12),
-			var(--db-successful-1)
-		);
-		--db-successful-on-bg-inverted-pressed: light-dark(
 			var(--db-successful-11),
 			var(--db-successful-0)
+		);
+		--db-successful-on-bg-inverted-pressed: light-dark(
+			var(--db-successful-13),
+			var(--db-successful-2)
 		);
 		--db-successful-on-bg-vibrant-default: light-dark(
 			var(--db-successful-1),
 			var(--db-successful-1)
 		);
 		--db-successful-on-bg-vibrant-hovered: light-dark(
-			var(--db-successful-3),
-			var(--db-successful-3)
-		);
-		--db-successful-on-bg-vibrant-pressed: light-dark(
 			var(--db-successful-4),
 			var(--db-successful-4)
+		);
+		--db-successful-on-bg-vibrant-pressed: light-dark(
+			var(--db-successful-2),
+			var(--db-successful-2)
 		);
 		--db-successful-bg-basic-level-1-default: light-dark(
 			var(--db-successful-14),
@@ -1116,109 +996,85 @@
 			var(--db-critical-on-origin-light-default),
 			var(--db-critical-on-origin-dark-default)
 		);
-		--db-critical-on-origin-hovered: light-dark(
-			var(--db-critical-on-origin-light-hovered),
-			var(--db-critical-on-origin-dark-hovered)
-		);
-		--db-critical-on-origin-pressed: light-dark(
-			var(--db-critical-on-origin-light-pressed),
-			var(--db-critical-on-origin-dark-pressed)
-		);
 		--db-critical-on-bg-basic-emphasis-50-default: light-dark(
 			var(--db-critical-9),
 			var(--db-critical-5)
 		);
-		--db-critical-on-bg-basic-emphasis-50-hovered: light-dark(
-			var(--db-critical-7),
-			var(--db-critical-3)
-		);
-		--db-critical-on-bg-basic-emphasis-50-pressed: light-dark(
-			var(--db-critical-6),
-			var(--db-critical-2)
-		);
 		--db-critical-on-bg-basic-emphasis-60-default: light-dark(
 			var(--db-critical-10),
 			var(--db-critical-6)
-		);
-		--db-critical-on-bg-basic-emphasis-60-hovered: light-dark(
-			var(--db-critical-8),
-			var(--db-critical-4)
-		);
-		--db-critical-on-bg-basic-emphasis-60-pressed: light-dark(
-			var(--db-critical-7),
-			var(--db-critical-3)
 		);
 		--db-critical-on-bg-basic-emphasis-70-default: light-dark(
 			var(--db-critical-7),
 			var(--db-critical-8)
 		);
 		--db-critical-on-bg-basic-emphasis-70-hovered: light-dark(
-			var(--db-critical-6),
-			var(--db-critical-7)
+			var(--db-critical-3),
+			var(--db-critical-12)
 		);
 		--db-critical-on-bg-basic-emphasis-70-pressed: light-dark(
 			var(--db-critical-5),
-			var(--db-critical-6)
+			var(--db-critical-10)
 		);
 		--db-critical-on-bg-basic-emphasis-80-default: light-dark(
 			var(--db-critical-6),
 			var(--db-critical-9)
 		);
 		--db-critical-on-bg-basic-emphasis-80-hovered: light-dark(
-			var(--db-critical-5),
-			var(--db-critical-8)
+			var(--db-critical-1),
+			var(--db-critical-13)
 		);
 		--db-critical-on-bg-basic-emphasis-80-pressed: light-dark(
-			var(--db-critical-4),
-			var(--db-critical-7)
+			var(--db-critical-3),
+			var(--db-critical-11)
 		);
 		--db-critical-on-bg-basic-emphasis-90-default: light-dark(
-			var(--db-critical-5),
+			var(--db-critical-4),
 			var(--db-critical-10)
 		);
 		--db-critical-on-bg-basic-emphasis-90-hovered: light-dark(
-			var(--db-critical-6),
-			var(--db-critical-9)
+			var(--db-critical-0),
+			var(--db-critical-14)
 		);
 		--db-critical-on-bg-basic-emphasis-90-pressed: light-dark(
-			var(--db-critical-7),
-			var(--db-critical-8)
+			var(--db-critical-3),
+			var(--db-critical-12)
 		);
 		--db-critical-on-bg-basic-emphasis-100-default: light-dark(
 			var(--db-critical-1),
 			var(--db-critical-12)
 		);
 		--db-critical-on-bg-basic-emphasis-100-hovered: light-dark(
-			var(--db-critical-3),
-			var(--db-critical-10)
+			var(--db-critical-6),
+			var(--db-critical-9)
 		);
 		--db-critical-on-bg-basic-emphasis-100-pressed: light-dark(
-			var(--db-critical-5),
-			var(--db-critical-9)
+			var(--db-critical-4),
+			var(--db-critical-11)
 		);
 		--db-critical-on-bg-inverted-default: light-dark(
 			var(--db-critical-14),
 			var(--db-critical-3)
 		);
 		--db-critical-on-bg-inverted-hovered: light-dark(
-			var(--db-critical-12),
-			var(--db-critical-1)
-		);
-		--db-critical-on-bg-inverted-pressed: light-dark(
 			var(--db-critical-11),
 			var(--db-critical-0)
+		);
+		--db-critical-on-bg-inverted-pressed: light-dark(
+			var(--db-critical-13),
+			var(--db-critical-2)
 		);
 		--db-critical-on-bg-vibrant-default: light-dark(
 			var(--db-critical-1),
 			var(--db-critical-1)
 		);
 		--db-critical-on-bg-vibrant-hovered: light-dark(
-			var(--db-critical-3),
-			var(--db-critical-3)
-		);
-		--db-critical-on-bg-vibrant-pressed: light-dark(
 			var(--db-critical-4),
 			var(--db-critical-4)
+		);
+		--db-critical-on-bg-vibrant-pressed: light-dark(
+			var(--db-critical-2),
+			var(--db-critical-2)
 		);
 		--db-critical-bg-basic-level-1-default: light-dark(
 			var(--db-critical-14),
@@ -1336,109 +1192,85 @@
 			var(--db-yellow-on-origin-light-default),
 			var(--db-yellow-on-origin-dark-default)
 		);
-		--db-yellow-on-origin-hovered: light-dark(
-			var(--db-yellow-on-origin-light-hovered),
-			var(--db-yellow-on-origin-dark-hovered)
-		);
-		--db-yellow-on-origin-pressed: light-dark(
-			var(--db-yellow-on-origin-light-pressed),
-			var(--db-yellow-on-origin-dark-pressed)
-		);
 		--db-yellow-on-bg-basic-emphasis-50-default: light-dark(
 			var(--db-yellow-9),
 			var(--db-yellow-5)
 		);
-		--db-yellow-on-bg-basic-emphasis-50-hovered: light-dark(
-			var(--db-yellow-7),
-			var(--db-yellow-3)
-		);
-		--db-yellow-on-bg-basic-emphasis-50-pressed: light-dark(
-			var(--db-yellow-6),
-			var(--db-yellow-2)
-		);
 		--db-yellow-on-bg-basic-emphasis-60-default: light-dark(
 			var(--db-yellow-10),
 			var(--db-yellow-6)
-		);
-		--db-yellow-on-bg-basic-emphasis-60-hovered: light-dark(
-			var(--db-yellow-8),
-			var(--db-yellow-4)
-		);
-		--db-yellow-on-bg-basic-emphasis-60-pressed: light-dark(
-			var(--db-yellow-7),
-			var(--db-yellow-3)
 		);
 		--db-yellow-on-bg-basic-emphasis-70-default: light-dark(
 			var(--db-yellow-7),
 			var(--db-yellow-8)
 		);
 		--db-yellow-on-bg-basic-emphasis-70-hovered: light-dark(
-			var(--db-yellow-6),
-			var(--db-yellow-7)
+			var(--db-yellow-3),
+			var(--db-yellow-12)
 		);
 		--db-yellow-on-bg-basic-emphasis-70-pressed: light-dark(
 			var(--db-yellow-5),
-			var(--db-yellow-6)
+			var(--db-yellow-10)
 		);
 		--db-yellow-on-bg-basic-emphasis-80-default: light-dark(
 			var(--db-yellow-6),
 			var(--db-yellow-9)
 		);
 		--db-yellow-on-bg-basic-emphasis-80-hovered: light-dark(
-			var(--db-yellow-5),
-			var(--db-yellow-8)
+			var(--db-yellow-1),
+			var(--db-yellow-13)
 		);
 		--db-yellow-on-bg-basic-emphasis-80-pressed: light-dark(
-			var(--db-yellow-4),
-			var(--db-yellow-7)
+			var(--db-yellow-3),
+			var(--db-yellow-11)
 		);
 		--db-yellow-on-bg-basic-emphasis-90-default: light-dark(
-			var(--db-yellow-5),
+			var(--db-yellow-4),
 			var(--db-yellow-10)
 		);
 		--db-yellow-on-bg-basic-emphasis-90-hovered: light-dark(
-			var(--db-yellow-6),
-			var(--db-yellow-9)
+			var(--db-yellow-0),
+			var(--db-yellow-14)
 		);
 		--db-yellow-on-bg-basic-emphasis-90-pressed: light-dark(
-			var(--db-yellow-7),
-			var(--db-yellow-8)
+			var(--db-yellow-3),
+			var(--db-yellow-12)
 		);
 		--db-yellow-on-bg-basic-emphasis-100-default: light-dark(
 			var(--db-yellow-1),
 			var(--db-yellow-12)
 		);
 		--db-yellow-on-bg-basic-emphasis-100-hovered: light-dark(
-			var(--db-yellow-3),
-			var(--db-yellow-10)
+			var(--db-yellow-6),
+			var(--db-yellow-9)
 		);
 		--db-yellow-on-bg-basic-emphasis-100-pressed: light-dark(
-			var(--db-yellow-5),
-			var(--db-yellow-9)
+			var(--db-yellow-4),
+			var(--db-yellow-11)
 		);
 		--db-yellow-on-bg-inverted-default: light-dark(
 			var(--db-yellow-14),
 			var(--db-yellow-3)
 		);
 		--db-yellow-on-bg-inverted-hovered: light-dark(
-			var(--db-yellow-12),
-			var(--db-yellow-1)
-		);
-		--db-yellow-on-bg-inverted-pressed: light-dark(
 			var(--db-yellow-11),
 			var(--db-yellow-0)
+		);
+		--db-yellow-on-bg-inverted-pressed: light-dark(
+			var(--db-yellow-13),
+			var(--db-yellow-2)
 		);
 		--db-yellow-on-bg-vibrant-default: light-dark(
 			var(--db-yellow-1),
 			var(--db-yellow-1)
 		);
 		--db-yellow-on-bg-vibrant-hovered: light-dark(
-			var(--db-yellow-3),
-			var(--db-yellow-3)
-		);
-		--db-yellow-on-bg-vibrant-pressed: light-dark(
 			var(--db-yellow-4),
 			var(--db-yellow-4)
+		);
+		--db-yellow-on-bg-vibrant-pressed: light-dark(
+			var(--db-yellow-2),
+			var(--db-yellow-2)
 		);
 		--db-yellow-bg-basic-level-1-default: light-dark(
 			var(--db-yellow-14),
@@ -1556,109 +1388,85 @@
 			var(--db-orange-on-origin-light-default),
 			var(--db-orange-on-origin-dark-default)
 		);
-		--db-orange-on-origin-hovered: light-dark(
-			var(--db-orange-on-origin-light-hovered),
-			var(--db-orange-on-origin-dark-hovered)
-		);
-		--db-orange-on-origin-pressed: light-dark(
-			var(--db-orange-on-origin-light-pressed),
-			var(--db-orange-on-origin-dark-pressed)
-		);
 		--db-orange-on-bg-basic-emphasis-50-default: light-dark(
 			var(--db-orange-9),
 			var(--db-orange-5)
 		);
-		--db-orange-on-bg-basic-emphasis-50-hovered: light-dark(
-			var(--db-orange-7),
-			var(--db-orange-3)
-		);
-		--db-orange-on-bg-basic-emphasis-50-pressed: light-dark(
-			var(--db-orange-6),
-			var(--db-orange-2)
-		);
 		--db-orange-on-bg-basic-emphasis-60-default: light-dark(
 			var(--db-orange-10),
 			var(--db-orange-6)
-		);
-		--db-orange-on-bg-basic-emphasis-60-hovered: light-dark(
-			var(--db-orange-8),
-			var(--db-orange-4)
-		);
-		--db-orange-on-bg-basic-emphasis-60-pressed: light-dark(
-			var(--db-orange-7),
-			var(--db-orange-3)
 		);
 		--db-orange-on-bg-basic-emphasis-70-default: light-dark(
 			var(--db-orange-7),
 			var(--db-orange-8)
 		);
 		--db-orange-on-bg-basic-emphasis-70-hovered: light-dark(
-			var(--db-orange-6),
-			var(--db-orange-7)
+			var(--db-orange-3),
+			var(--db-orange-12)
 		);
 		--db-orange-on-bg-basic-emphasis-70-pressed: light-dark(
 			var(--db-orange-5),
-			var(--db-orange-6)
+			var(--db-orange-10)
 		);
 		--db-orange-on-bg-basic-emphasis-80-default: light-dark(
 			var(--db-orange-6),
 			var(--db-orange-9)
 		);
 		--db-orange-on-bg-basic-emphasis-80-hovered: light-dark(
-			var(--db-orange-5),
-			var(--db-orange-8)
+			var(--db-orange-1),
+			var(--db-orange-13)
 		);
 		--db-orange-on-bg-basic-emphasis-80-pressed: light-dark(
-			var(--db-orange-4),
-			var(--db-orange-7)
+			var(--db-orange-3),
+			var(--db-orange-11)
 		);
 		--db-orange-on-bg-basic-emphasis-90-default: light-dark(
-			var(--db-orange-5),
+			var(--db-orange-4),
 			var(--db-orange-10)
 		);
 		--db-orange-on-bg-basic-emphasis-90-hovered: light-dark(
-			var(--db-orange-6),
-			var(--db-orange-9)
+			var(--db-orange-0),
+			var(--db-orange-14)
 		);
 		--db-orange-on-bg-basic-emphasis-90-pressed: light-dark(
-			var(--db-orange-7),
-			var(--db-orange-8)
+			var(--db-orange-3),
+			var(--db-orange-12)
 		);
 		--db-orange-on-bg-basic-emphasis-100-default: light-dark(
 			var(--db-orange-1),
 			var(--db-orange-12)
 		);
 		--db-orange-on-bg-basic-emphasis-100-hovered: light-dark(
-			var(--db-orange-3),
-			var(--db-orange-10)
+			var(--db-orange-6),
+			var(--db-orange-9)
 		);
 		--db-orange-on-bg-basic-emphasis-100-pressed: light-dark(
-			var(--db-orange-5),
-			var(--db-orange-9)
+			var(--db-orange-4),
+			var(--db-orange-11)
 		);
 		--db-orange-on-bg-inverted-default: light-dark(
 			var(--db-orange-14),
 			var(--db-orange-3)
 		);
 		--db-orange-on-bg-inverted-hovered: light-dark(
-			var(--db-orange-12),
-			var(--db-orange-1)
-		);
-		--db-orange-on-bg-inverted-pressed: light-dark(
 			var(--db-orange-11),
 			var(--db-orange-0)
+		);
+		--db-orange-on-bg-inverted-pressed: light-dark(
+			var(--db-orange-13),
+			var(--db-orange-2)
 		);
 		--db-orange-on-bg-vibrant-default: light-dark(
 			var(--db-orange-1),
 			var(--db-orange-1)
 		);
 		--db-orange-on-bg-vibrant-hovered: light-dark(
-			var(--db-orange-3),
-			var(--db-orange-3)
-		);
-		--db-orange-on-bg-vibrant-pressed: light-dark(
 			var(--db-orange-4),
 			var(--db-orange-4)
+		);
+		--db-orange-on-bg-vibrant-pressed: light-dark(
+			var(--db-orange-2),
+			var(--db-orange-2)
 		);
 		--db-orange-bg-basic-level-1-default: light-dark(
 			var(--db-orange-14),
@@ -1776,109 +1584,85 @@
 			var(--db-red-on-origin-light-default),
 			var(--db-red-on-origin-dark-default)
 		);
-		--db-red-on-origin-hovered: light-dark(
-			var(--db-red-on-origin-light-hovered),
-			var(--db-red-on-origin-dark-hovered)
-		);
-		--db-red-on-origin-pressed: light-dark(
-			var(--db-red-on-origin-light-pressed),
-			var(--db-red-on-origin-dark-pressed)
-		);
 		--db-red-on-bg-basic-emphasis-50-default: light-dark(
 			var(--db-red-9),
 			var(--db-red-5)
 		);
-		--db-red-on-bg-basic-emphasis-50-hovered: light-dark(
-			var(--db-red-7),
-			var(--db-red-3)
-		);
-		--db-red-on-bg-basic-emphasis-50-pressed: light-dark(
-			var(--db-red-6),
-			var(--db-red-2)
-		);
 		--db-red-on-bg-basic-emphasis-60-default: light-dark(
 			var(--db-red-10),
 			var(--db-red-6)
-		);
-		--db-red-on-bg-basic-emphasis-60-hovered: light-dark(
-			var(--db-red-8),
-			var(--db-red-4)
-		);
-		--db-red-on-bg-basic-emphasis-60-pressed: light-dark(
-			var(--db-red-7),
-			var(--db-red-3)
 		);
 		--db-red-on-bg-basic-emphasis-70-default: light-dark(
 			var(--db-red-7),
 			var(--db-red-8)
 		);
 		--db-red-on-bg-basic-emphasis-70-hovered: light-dark(
-			var(--db-red-6),
-			var(--db-red-7)
+			var(--db-red-3),
+			var(--db-red-12)
 		);
 		--db-red-on-bg-basic-emphasis-70-pressed: light-dark(
 			var(--db-red-5),
-			var(--db-red-6)
+			var(--db-red-10)
 		);
 		--db-red-on-bg-basic-emphasis-80-default: light-dark(
 			var(--db-red-6),
 			var(--db-red-9)
 		);
 		--db-red-on-bg-basic-emphasis-80-hovered: light-dark(
-			var(--db-red-5),
-			var(--db-red-8)
+			var(--db-red-1),
+			var(--db-red-13)
 		);
 		--db-red-on-bg-basic-emphasis-80-pressed: light-dark(
-			var(--db-red-4),
-			var(--db-red-7)
+			var(--db-red-3),
+			var(--db-red-11)
 		);
 		--db-red-on-bg-basic-emphasis-90-default: light-dark(
-			var(--db-red-5),
+			var(--db-red-4),
 			var(--db-red-10)
 		);
 		--db-red-on-bg-basic-emphasis-90-hovered: light-dark(
-			var(--db-red-6),
-			var(--db-red-9)
+			var(--db-red-0),
+			var(--db-red-14)
 		);
 		--db-red-on-bg-basic-emphasis-90-pressed: light-dark(
-			var(--db-red-7),
-			var(--db-red-8)
+			var(--db-red-3),
+			var(--db-red-12)
 		);
 		--db-red-on-bg-basic-emphasis-100-default: light-dark(
 			var(--db-red-1),
 			var(--db-red-12)
 		);
 		--db-red-on-bg-basic-emphasis-100-hovered: light-dark(
-			var(--db-red-3),
-			var(--db-red-10)
+			var(--db-red-6),
+			var(--db-red-9)
 		);
 		--db-red-on-bg-basic-emphasis-100-pressed: light-dark(
-			var(--db-red-5),
-			var(--db-red-9)
+			var(--db-red-4),
+			var(--db-red-11)
 		);
 		--db-red-on-bg-inverted-default: light-dark(
 			var(--db-red-14),
 			var(--db-red-3)
 		);
 		--db-red-on-bg-inverted-hovered: light-dark(
-			var(--db-red-12),
-			var(--db-red-1)
-		);
-		--db-red-on-bg-inverted-pressed: light-dark(
 			var(--db-red-11),
 			var(--db-red-0)
+		);
+		--db-red-on-bg-inverted-pressed: light-dark(
+			var(--db-red-13),
+			var(--db-red-2)
 		);
 		--db-red-on-bg-vibrant-default: light-dark(
 			var(--db-red-1),
 			var(--db-red-1)
 		);
 		--db-red-on-bg-vibrant-hovered: light-dark(
-			var(--db-red-3),
-			var(--db-red-3)
-		);
-		--db-red-on-bg-vibrant-pressed: light-dark(
 			var(--db-red-4),
 			var(--db-red-4)
+		);
+		--db-red-on-bg-vibrant-pressed: light-dark(
+			var(--db-red-2),
+			var(--db-red-2)
 		);
 		--db-red-bg-basic-level-1-default: light-dark(
 			var(--db-red-14),
@@ -1996,109 +1780,85 @@
 			var(--db-pink-on-origin-light-default),
 			var(--db-pink-on-origin-dark-default)
 		);
-		--db-pink-on-origin-hovered: light-dark(
-			var(--db-pink-on-origin-light-hovered),
-			var(--db-pink-on-origin-dark-hovered)
-		);
-		--db-pink-on-origin-pressed: light-dark(
-			var(--db-pink-on-origin-light-pressed),
-			var(--db-pink-on-origin-dark-pressed)
-		);
 		--db-pink-on-bg-basic-emphasis-50-default: light-dark(
 			var(--db-pink-9),
 			var(--db-pink-5)
 		);
-		--db-pink-on-bg-basic-emphasis-50-hovered: light-dark(
-			var(--db-pink-7),
-			var(--db-pink-3)
-		);
-		--db-pink-on-bg-basic-emphasis-50-pressed: light-dark(
-			var(--db-pink-6),
-			var(--db-pink-2)
-		);
 		--db-pink-on-bg-basic-emphasis-60-default: light-dark(
 			var(--db-pink-10),
 			var(--db-pink-6)
-		);
-		--db-pink-on-bg-basic-emphasis-60-hovered: light-dark(
-			var(--db-pink-8),
-			var(--db-pink-4)
-		);
-		--db-pink-on-bg-basic-emphasis-60-pressed: light-dark(
-			var(--db-pink-7),
-			var(--db-pink-3)
 		);
 		--db-pink-on-bg-basic-emphasis-70-default: light-dark(
 			var(--db-pink-7),
 			var(--db-pink-8)
 		);
 		--db-pink-on-bg-basic-emphasis-70-hovered: light-dark(
-			var(--db-pink-6),
-			var(--db-pink-7)
+			var(--db-pink-3),
+			var(--db-pink-12)
 		);
 		--db-pink-on-bg-basic-emphasis-70-pressed: light-dark(
 			var(--db-pink-5),
-			var(--db-pink-6)
+			var(--db-pink-10)
 		);
 		--db-pink-on-bg-basic-emphasis-80-default: light-dark(
 			var(--db-pink-6),
 			var(--db-pink-9)
 		);
 		--db-pink-on-bg-basic-emphasis-80-hovered: light-dark(
-			var(--db-pink-5),
-			var(--db-pink-8)
+			var(--db-pink-1),
+			var(--db-pink-13)
 		);
 		--db-pink-on-bg-basic-emphasis-80-pressed: light-dark(
-			var(--db-pink-4),
-			var(--db-pink-7)
+			var(--db-pink-3),
+			var(--db-pink-11)
 		);
 		--db-pink-on-bg-basic-emphasis-90-default: light-dark(
-			var(--db-pink-5),
+			var(--db-pink-4),
 			var(--db-pink-10)
 		);
 		--db-pink-on-bg-basic-emphasis-90-hovered: light-dark(
-			var(--db-pink-6),
-			var(--db-pink-9)
+			var(--db-pink-0),
+			var(--db-pink-14)
 		);
 		--db-pink-on-bg-basic-emphasis-90-pressed: light-dark(
-			var(--db-pink-7),
-			var(--db-pink-8)
+			var(--db-pink-3),
+			var(--db-pink-12)
 		);
 		--db-pink-on-bg-basic-emphasis-100-default: light-dark(
 			var(--db-pink-1),
 			var(--db-pink-12)
 		);
 		--db-pink-on-bg-basic-emphasis-100-hovered: light-dark(
-			var(--db-pink-3),
-			var(--db-pink-10)
+			var(--db-pink-6),
+			var(--db-pink-9)
 		);
 		--db-pink-on-bg-basic-emphasis-100-pressed: light-dark(
-			var(--db-pink-5),
-			var(--db-pink-9)
+			var(--db-pink-4),
+			var(--db-pink-11)
 		);
 		--db-pink-on-bg-inverted-default: light-dark(
 			var(--db-pink-14),
 			var(--db-pink-3)
 		);
 		--db-pink-on-bg-inverted-hovered: light-dark(
-			var(--db-pink-12),
-			var(--db-pink-1)
-		);
-		--db-pink-on-bg-inverted-pressed: light-dark(
 			var(--db-pink-11),
 			var(--db-pink-0)
+		);
+		--db-pink-on-bg-inverted-pressed: light-dark(
+			var(--db-pink-13),
+			var(--db-pink-2)
 		);
 		--db-pink-on-bg-vibrant-default: light-dark(
 			var(--db-pink-1),
 			var(--db-pink-1)
 		);
 		--db-pink-on-bg-vibrant-hovered: light-dark(
-			var(--db-pink-3),
-			var(--db-pink-3)
-		);
-		--db-pink-on-bg-vibrant-pressed: light-dark(
 			var(--db-pink-4),
 			var(--db-pink-4)
+		);
+		--db-pink-on-bg-vibrant-pressed: light-dark(
+			var(--db-pink-2),
+			var(--db-pink-2)
 		);
 		--db-pink-bg-basic-level-1-default: light-dark(
 			var(--db-pink-14),
@@ -2216,109 +1976,85 @@
 			var(--db-violet-on-origin-light-default),
 			var(--db-violet-on-origin-dark-default)
 		);
-		--db-violet-on-origin-hovered: light-dark(
-			var(--db-violet-on-origin-light-hovered),
-			var(--db-violet-on-origin-dark-hovered)
-		);
-		--db-violet-on-origin-pressed: light-dark(
-			var(--db-violet-on-origin-light-pressed),
-			var(--db-violet-on-origin-dark-pressed)
-		);
 		--db-violet-on-bg-basic-emphasis-50-default: light-dark(
 			var(--db-violet-9),
 			var(--db-violet-5)
 		);
-		--db-violet-on-bg-basic-emphasis-50-hovered: light-dark(
-			var(--db-violet-7),
-			var(--db-violet-3)
-		);
-		--db-violet-on-bg-basic-emphasis-50-pressed: light-dark(
-			var(--db-violet-6),
-			var(--db-violet-2)
-		);
 		--db-violet-on-bg-basic-emphasis-60-default: light-dark(
 			var(--db-violet-10),
 			var(--db-violet-6)
-		);
-		--db-violet-on-bg-basic-emphasis-60-hovered: light-dark(
-			var(--db-violet-8),
-			var(--db-violet-4)
-		);
-		--db-violet-on-bg-basic-emphasis-60-pressed: light-dark(
-			var(--db-violet-7),
-			var(--db-violet-3)
 		);
 		--db-violet-on-bg-basic-emphasis-70-default: light-dark(
 			var(--db-violet-7),
 			var(--db-violet-8)
 		);
 		--db-violet-on-bg-basic-emphasis-70-hovered: light-dark(
-			var(--db-violet-6),
-			var(--db-violet-7)
+			var(--db-violet-3),
+			var(--db-violet-12)
 		);
 		--db-violet-on-bg-basic-emphasis-70-pressed: light-dark(
 			var(--db-violet-5),
-			var(--db-violet-6)
+			var(--db-violet-10)
 		);
 		--db-violet-on-bg-basic-emphasis-80-default: light-dark(
 			var(--db-violet-6),
 			var(--db-violet-9)
 		);
 		--db-violet-on-bg-basic-emphasis-80-hovered: light-dark(
-			var(--db-violet-5),
-			var(--db-violet-8)
+			var(--db-violet-1),
+			var(--db-violet-13)
 		);
 		--db-violet-on-bg-basic-emphasis-80-pressed: light-dark(
-			var(--db-violet-4),
-			var(--db-violet-7)
+			var(--db-violet-3),
+			var(--db-violet-11)
 		);
 		--db-violet-on-bg-basic-emphasis-90-default: light-dark(
-			var(--db-violet-5),
+			var(--db-violet-4),
 			var(--db-violet-10)
 		);
 		--db-violet-on-bg-basic-emphasis-90-hovered: light-dark(
-			var(--db-violet-6),
-			var(--db-violet-9)
+			var(--db-violet-0),
+			var(--db-violet-14)
 		);
 		--db-violet-on-bg-basic-emphasis-90-pressed: light-dark(
-			var(--db-violet-7),
-			var(--db-violet-8)
+			var(--db-violet-3),
+			var(--db-violet-12)
 		);
 		--db-violet-on-bg-basic-emphasis-100-default: light-dark(
 			var(--db-violet-1),
 			var(--db-violet-12)
 		);
 		--db-violet-on-bg-basic-emphasis-100-hovered: light-dark(
-			var(--db-violet-3),
-			var(--db-violet-10)
+			var(--db-violet-6),
+			var(--db-violet-9)
 		);
 		--db-violet-on-bg-basic-emphasis-100-pressed: light-dark(
-			var(--db-violet-5),
-			var(--db-violet-9)
+			var(--db-violet-4),
+			var(--db-violet-11)
 		);
 		--db-violet-on-bg-inverted-default: light-dark(
 			var(--db-violet-14),
 			var(--db-violet-3)
 		);
 		--db-violet-on-bg-inverted-hovered: light-dark(
-			var(--db-violet-12),
-			var(--db-violet-1)
-		);
-		--db-violet-on-bg-inverted-pressed: light-dark(
 			var(--db-violet-11),
 			var(--db-violet-0)
+		);
+		--db-violet-on-bg-inverted-pressed: light-dark(
+			var(--db-violet-13),
+			var(--db-violet-2)
 		);
 		--db-violet-on-bg-vibrant-default: light-dark(
 			var(--db-violet-1),
 			var(--db-violet-1)
 		);
 		--db-violet-on-bg-vibrant-hovered: light-dark(
-			var(--db-violet-3),
-			var(--db-violet-3)
-		);
-		--db-violet-on-bg-vibrant-pressed: light-dark(
 			var(--db-violet-4),
 			var(--db-violet-4)
+		);
+		--db-violet-on-bg-vibrant-pressed: light-dark(
+			var(--db-violet-2),
+			var(--db-violet-2)
 		);
 		--db-violet-bg-basic-level-1-default: light-dark(
 			var(--db-violet-14),
@@ -2436,109 +2172,85 @@
 			var(--db-blue-on-origin-light-default),
 			var(--db-blue-on-origin-dark-default)
 		);
-		--db-blue-on-origin-hovered: light-dark(
-			var(--db-blue-on-origin-light-hovered),
-			var(--db-blue-on-origin-dark-hovered)
-		);
-		--db-blue-on-origin-pressed: light-dark(
-			var(--db-blue-on-origin-light-pressed),
-			var(--db-blue-on-origin-dark-pressed)
-		);
 		--db-blue-on-bg-basic-emphasis-50-default: light-dark(
 			var(--db-blue-9),
 			var(--db-blue-5)
 		);
-		--db-blue-on-bg-basic-emphasis-50-hovered: light-dark(
-			var(--db-blue-7),
-			var(--db-blue-3)
-		);
-		--db-blue-on-bg-basic-emphasis-50-pressed: light-dark(
-			var(--db-blue-6),
-			var(--db-blue-2)
-		);
 		--db-blue-on-bg-basic-emphasis-60-default: light-dark(
 			var(--db-blue-10),
 			var(--db-blue-6)
-		);
-		--db-blue-on-bg-basic-emphasis-60-hovered: light-dark(
-			var(--db-blue-8),
-			var(--db-blue-4)
-		);
-		--db-blue-on-bg-basic-emphasis-60-pressed: light-dark(
-			var(--db-blue-7),
-			var(--db-blue-3)
 		);
 		--db-blue-on-bg-basic-emphasis-70-default: light-dark(
 			var(--db-blue-7),
 			var(--db-blue-8)
 		);
 		--db-blue-on-bg-basic-emphasis-70-hovered: light-dark(
-			var(--db-blue-6),
-			var(--db-blue-7)
+			var(--db-blue-3),
+			var(--db-blue-12)
 		);
 		--db-blue-on-bg-basic-emphasis-70-pressed: light-dark(
 			var(--db-blue-5),
-			var(--db-blue-6)
+			var(--db-blue-10)
 		);
 		--db-blue-on-bg-basic-emphasis-80-default: light-dark(
 			var(--db-blue-6),
 			var(--db-blue-9)
 		);
 		--db-blue-on-bg-basic-emphasis-80-hovered: light-dark(
-			var(--db-blue-5),
-			var(--db-blue-8)
+			var(--db-blue-1),
+			var(--db-blue-13)
 		);
 		--db-blue-on-bg-basic-emphasis-80-pressed: light-dark(
-			var(--db-blue-4),
-			var(--db-blue-7)
+			var(--db-blue-3),
+			var(--db-blue-11)
 		);
 		--db-blue-on-bg-basic-emphasis-90-default: light-dark(
-			var(--db-blue-5),
+			var(--db-blue-4),
 			var(--db-blue-10)
 		);
 		--db-blue-on-bg-basic-emphasis-90-hovered: light-dark(
-			var(--db-blue-6),
-			var(--db-blue-9)
+			var(--db-blue-0),
+			var(--db-blue-14)
 		);
 		--db-blue-on-bg-basic-emphasis-90-pressed: light-dark(
-			var(--db-blue-7),
-			var(--db-blue-8)
+			var(--db-blue-3),
+			var(--db-blue-12)
 		);
 		--db-blue-on-bg-basic-emphasis-100-default: light-dark(
 			var(--db-blue-1),
 			var(--db-blue-12)
 		);
 		--db-blue-on-bg-basic-emphasis-100-hovered: light-dark(
-			var(--db-blue-3),
-			var(--db-blue-10)
+			var(--db-blue-6),
+			var(--db-blue-9)
 		);
 		--db-blue-on-bg-basic-emphasis-100-pressed: light-dark(
-			var(--db-blue-5),
-			var(--db-blue-9)
+			var(--db-blue-4),
+			var(--db-blue-11)
 		);
 		--db-blue-on-bg-inverted-default: light-dark(
 			var(--db-blue-14),
 			var(--db-blue-3)
 		);
 		--db-blue-on-bg-inverted-hovered: light-dark(
-			var(--db-blue-12),
-			var(--db-blue-1)
-		);
-		--db-blue-on-bg-inverted-pressed: light-dark(
 			var(--db-blue-11),
 			var(--db-blue-0)
+		);
+		--db-blue-on-bg-inverted-pressed: light-dark(
+			var(--db-blue-13),
+			var(--db-blue-2)
 		);
 		--db-blue-on-bg-vibrant-default: light-dark(
 			var(--db-blue-1),
 			var(--db-blue-1)
 		);
 		--db-blue-on-bg-vibrant-hovered: light-dark(
-			var(--db-blue-3),
-			var(--db-blue-3)
-		);
-		--db-blue-on-bg-vibrant-pressed: light-dark(
 			var(--db-blue-4),
 			var(--db-blue-4)
+		);
+		--db-blue-on-bg-vibrant-pressed: light-dark(
+			var(--db-blue-2),
+			var(--db-blue-2)
 		);
 		--db-blue-bg-basic-level-1-default: light-dark(
 			var(--db-blue-14),
@@ -2656,109 +2368,85 @@
 			var(--db-cyan-on-origin-light-default),
 			var(--db-cyan-on-origin-dark-default)
 		);
-		--db-cyan-on-origin-hovered: light-dark(
-			var(--db-cyan-on-origin-light-hovered),
-			var(--db-cyan-on-origin-dark-hovered)
-		);
-		--db-cyan-on-origin-pressed: light-dark(
-			var(--db-cyan-on-origin-light-pressed),
-			var(--db-cyan-on-origin-dark-pressed)
-		);
 		--db-cyan-on-bg-basic-emphasis-50-default: light-dark(
 			var(--db-cyan-9),
 			var(--db-cyan-5)
 		);
-		--db-cyan-on-bg-basic-emphasis-50-hovered: light-dark(
-			var(--db-cyan-7),
-			var(--db-cyan-3)
-		);
-		--db-cyan-on-bg-basic-emphasis-50-pressed: light-dark(
-			var(--db-cyan-6),
-			var(--db-cyan-2)
-		);
 		--db-cyan-on-bg-basic-emphasis-60-default: light-dark(
 			var(--db-cyan-10),
 			var(--db-cyan-6)
-		);
-		--db-cyan-on-bg-basic-emphasis-60-hovered: light-dark(
-			var(--db-cyan-8),
-			var(--db-cyan-4)
-		);
-		--db-cyan-on-bg-basic-emphasis-60-pressed: light-dark(
-			var(--db-cyan-7),
-			var(--db-cyan-3)
 		);
 		--db-cyan-on-bg-basic-emphasis-70-default: light-dark(
 			var(--db-cyan-7),
 			var(--db-cyan-8)
 		);
 		--db-cyan-on-bg-basic-emphasis-70-hovered: light-dark(
-			var(--db-cyan-6),
-			var(--db-cyan-7)
+			var(--db-cyan-3),
+			var(--db-cyan-12)
 		);
 		--db-cyan-on-bg-basic-emphasis-70-pressed: light-dark(
 			var(--db-cyan-5),
-			var(--db-cyan-6)
+			var(--db-cyan-10)
 		);
 		--db-cyan-on-bg-basic-emphasis-80-default: light-dark(
 			var(--db-cyan-6),
 			var(--db-cyan-9)
 		);
 		--db-cyan-on-bg-basic-emphasis-80-hovered: light-dark(
-			var(--db-cyan-5),
-			var(--db-cyan-8)
+			var(--db-cyan-1),
+			var(--db-cyan-13)
 		);
 		--db-cyan-on-bg-basic-emphasis-80-pressed: light-dark(
-			var(--db-cyan-4),
-			var(--db-cyan-7)
+			var(--db-cyan-3),
+			var(--db-cyan-11)
 		);
 		--db-cyan-on-bg-basic-emphasis-90-default: light-dark(
-			var(--db-cyan-5),
+			var(--db-cyan-4),
 			var(--db-cyan-10)
 		);
 		--db-cyan-on-bg-basic-emphasis-90-hovered: light-dark(
-			var(--db-cyan-6),
-			var(--db-cyan-9)
+			var(--db-cyan-0),
+			var(--db-cyan-14)
 		);
 		--db-cyan-on-bg-basic-emphasis-90-pressed: light-dark(
-			var(--db-cyan-7),
-			var(--db-cyan-8)
+			var(--db-cyan-3),
+			var(--db-cyan-12)
 		);
 		--db-cyan-on-bg-basic-emphasis-100-default: light-dark(
 			var(--db-cyan-1),
 			var(--db-cyan-12)
 		);
 		--db-cyan-on-bg-basic-emphasis-100-hovered: light-dark(
-			var(--db-cyan-3),
-			var(--db-cyan-10)
+			var(--db-cyan-6),
+			var(--db-cyan-9)
 		);
 		--db-cyan-on-bg-basic-emphasis-100-pressed: light-dark(
-			var(--db-cyan-5),
-			var(--db-cyan-9)
+			var(--db-cyan-4),
+			var(--db-cyan-11)
 		);
 		--db-cyan-on-bg-inverted-default: light-dark(
 			var(--db-cyan-14),
 			var(--db-cyan-3)
 		);
 		--db-cyan-on-bg-inverted-hovered: light-dark(
-			var(--db-cyan-12),
-			var(--db-cyan-1)
-		);
-		--db-cyan-on-bg-inverted-pressed: light-dark(
 			var(--db-cyan-11),
 			var(--db-cyan-0)
+		);
+		--db-cyan-on-bg-inverted-pressed: light-dark(
+			var(--db-cyan-13),
+			var(--db-cyan-2)
 		);
 		--db-cyan-on-bg-vibrant-default: light-dark(
 			var(--db-cyan-1),
 			var(--db-cyan-1)
 		);
 		--db-cyan-on-bg-vibrant-hovered: light-dark(
-			var(--db-cyan-3),
-			var(--db-cyan-3)
-		);
-		--db-cyan-on-bg-vibrant-pressed: light-dark(
 			var(--db-cyan-4),
 			var(--db-cyan-4)
+		);
+		--db-cyan-on-bg-vibrant-pressed: light-dark(
+			var(--db-cyan-2),
+			var(--db-cyan-2)
 		);
 		--db-cyan-bg-basic-level-1-default: light-dark(
 			var(--db-cyan-14),
@@ -2876,109 +2564,85 @@
 			var(--db-turquoise-on-origin-light-default),
 			var(--db-turquoise-on-origin-dark-default)
 		);
-		--db-turquoise-on-origin-hovered: light-dark(
-			var(--db-turquoise-on-origin-light-hovered),
-			var(--db-turquoise-on-origin-dark-hovered)
-		);
-		--db-turquoise-on-origin-pressed: light-dark(
-			var(--db-turquoise-on-origin-light-pressed),
-			var(--db-turquoise-on-origin-dark-pressed)
-		);
 		--db-turquoise-on-bg-basic-emphasis-50-default: light-dark(
 			var(--db-turquoise-9),
 			var(--db-turquoise-5)
 		);
-		--db-turquoise-on-bg-basic-emphasis-50-hovered: light-dark(
-			var(--db-turquoise-7),
-			var(--db-turquoise-3)
-		);
-		--db-turquoise-on-bg-basic-emphasis-50-pressed: light-dark(
-			var(--db-turquoise-6),
-			var(--db-turquoise-2)
-		);
 		--db-turquoise-on-bg-basic-emphasis-60-default: light-dark(
 			var(--db-turquoise-10),
 			var(--db-turquoise-6)
-		);
-		--db-turquoise-on-bg-basic-emphasis-60-hovered: light-dark(
-			var(--db-turquoise-8),
-			var(--db-turquoise-4)
-		);
-		--db-turquoise-on-bg-basic-emphasis-60-pressed: light-dark(
-			var(--db-turquoise-7),
-			var(--db-turquoise-3)
 		);
 		--db-turquoise-on-bg-basic-emphasis-70-default: light-dark(
 			var(--db-turquoise-7),
 			var(--db-turquoise-8)
 		);
 		--db-turquoise-on-bg-basic-emphasis-70-hovered: light-dark(
-			var(--db-turquoise-6),
-			var(--db-turquoise-7)
+			var(--db-turquoise-3),
+			var(--db-turquoise-12)
 		);
 		--db-turquoise-on-bg-basic-emphasis-70-pressed: light-dark(
 			var(--db-turquoise-5),
-			var(--db-turquoise-6)
+			var(--db-turquoise-10)
 		);
 		--db-turquoise-on-bg-basic-emphasis-80-default: light-dark(
 			var(--db-turquoise-6),
 			var(--db-turquoise-9)
 		);
 		--db-turquoise-on-bg-basic-emphasis-80-hovered: light-dark(
-			var(--db-turquoise-5),
-			var(--db-turquoise-8)
+			var(--db-turquoise-1),
+			var(--db-turquoise-13)
 		);
 		--db-turquoise-on-bg-basic-emphasis-80-pressed: light-dark(
-			var(--db-turquoise-4),
-			var(--db-turquoise-7)
+			var(--db-turquoise-3),
+			var(--db-turquoise-11)
 		);
 		--db-turquoise-on-bg-basic-emphasis-90-default: light-dark(
-			var(--db-turquoise-5),
+			var(--db-turquoise-4),
 			var(--db-turquoise-10)
 		);
 		--db-turquoise-on-bg-basic-emphasis-90-hovered: light-dark(
-			var(--db-turquoise-6),
-			var(--db-turquoise-9)
+			var(--db-turquoise-0),
+			var(--db-turquoise-14)
 		);
 		--db-turquoise-on-bg-basic-emphasis-90-pressed: light-dark(
-			var(--db-turquoise-7),
-			var(--db-turquoise-8)
+			var(--db-turquoise-3),
+			var(--db-turquoise-12)
 		);
 		--db-turquoise-on-bg-basic-emphasis-100-default: light-dark(
 			var(--db-turquoise-1),
 			var(--db-turquoise-12)
 		);
 		--db-turquoise-on-bg-basic-emphasis-100-hovered: light-dark(
-			var(--db-turquoise-3),
-			var(--db-turquoise-10)
+			var(--db-turquoise-6),
+			var(--db-turquoise-9)
 		);
 		--db-turquoise-on-bg-basic-emphasis-100-pressed: light-dark(
-			var(--db-turquoise-5),
-			var(--db-turquoise-9)
+			var(--db-turquoise-4),
+			var(--db-turquoise-11)
 		);
 		--db-turquoise-on-bg-inverted-default: light-dark(
 			var(--db-turquoise-14),
 			var(--db-turquoise-3)
 		);
 		--db-turquoise-on-bg-inverted-hovered: light-dark(
-			var(--db-turquoise-12),
-			var(--db-turquoise-1)
-		);
-		--db-turquoise-on-bg-inverted-pressed: light-dark(
 			var(--db-turquoise-11),
 			var(--db-turquoise-0)
+		);
+		--db-turquoise-on-bg-inverted-pressed: light-dark(
+			var(--db-turquoise-13),
+			var(--db-turquoise-2)
 		);
 		--db-turquoise-on-bg-vibrant-default: light-dark(
 			var(--db-turquoise-1),
 			var(--db-turquoise-1)
 		);
 		--db-turquoise-on-bg-vibrant-hovered: light-dark(
-			var(--db-turquoise-3),
-			var(--db-turquoise-3)
-		);
-		--db-turquoise-on-bg-vibrant-pressed: light-dark(
 			var(--db-turquoise-4),
 			var(--db-turquoise-4)
+		);
+		--db-turquoise-on-bg-vibrant-pressed: light-dark(
+			var(--db-turquoise-2),
+			var(--db-turquoise-2)
 		);
 		--db-turquoise-bg-basic-level-1-default: light-dark(
 			var(--db-turquoise-14),
@@ -3096,109 +2760,85 @@
 			var(--db-green-on-origin-light-default),
 			var(--db-green-on-origin-dark-default)
 		);
-		--db-green-on-origin-hovered: light-dark(
-			var(--db-green-on-origin-light-hovered),
-			var(--db-green-on-origin-dark-hovered)
-		);
-		--db-green-on-origin-pressed: light-dark(
-			var(--db-green-on-origin-light-pressed),
-			var(--db-green-on-origin-dark-pressed)
-		);
 		--db-green-on-bg-basic-emphasis-50-default: light-dark(
 			var(--db-green-9),
 			var(--db-green-5)
 		);
-		--db-green-on-bg-basic-emphasis-50-hovered: light-dark(
-			var(--db-green-7),
-			var(--db-green-3)
-		);
-		--db-green-on-bg-basic-emphasis-50-pressed: light-dark(
-			var(--db-green-6),
-			var(--db-green-2)
-		);
 		--db-green-on-bg-basic-emphasis-60-default: light-dark(
 			var(--db-green-10),
 			var(--db-green-6)
-		);
-		--db-green-on-bg-basic-emphasis-60-hovered: light-dark(
-			var(--db-green-8),
-			var(--db-green-4)
-		);
-		--db-green-on-bg-basic-emphasis-60-pressed: light-dark(
-			var(--db-green-7),
-			var(--db-green-3)
 		);
 		--db-green-on-bg-basic-emphasis-70-default: light-dark(
 			var(--db-green-7),
 			var(--db-green-8)
 		);
 		--db-green-on-bg-basic-emphasis-70-hovered: light-dark(
-			var(--db-green-6),
-			var(--db-green-7)
+			var(--db-green-3),
+			var(--db-green-12)
 		);
 		--db-green-on-bg-basic-emphasis-70-pressed: light-dark(
 			var(--db-green-5),
-			var(--db-green-6)
+			var(--db-green-10)
 		);
 		--db-green-on-bg-basic-emphasis-80-default: light-dark(
 			var(--db-green-6),
 			var(--db-green-9)
 		);
 		--db-green-on-bg-basic-emphasis-80-hovered: light-dark(
-			var(--db-green-5),
-			var(--db-green-8)
+			var(--db-green-1),
+			var(--db-green-13)
 		);
 		--db-green-on-bg-basic-emphasis-80-pressed: light-dark(
-			var(--db-green-4),
-			var(--db-green-7)
+			var(--db-green-3),
+			var(--db-green-11)
 		);
 		--db-green-on-bg-basic-emphasis-90-default: light-dark(
-			var(--db-green-5),
+			var(--db-green-4),
 			var(--db-green-10)
 		);
 		--db-green-on-bg-basic-emphasis-90-hovered: light-dark(
-			var(--db-green-6),
-			var(--db-green-9)
+			var(--db-green-0),
+			var(--db-green-14)
 		);
 		--db-green-on-bg-basic-emphasis-90-pressed: light-dark(
-			var(--db-green-7),
-			var(--db-green-8)
+			var(--db-green-3),
+			var(--db-green-12)
 		);
 		--db-green-on-bg-basic-emphasis-100-default: light-dark(
 			var(--db-green-1),
 			var(--db-green-12)
 		);
 		--db-green-on-bg-basic-emphasis-100-hovered: light-dark(
-			var(--db-green-3),
-			var(--db-green-10)
+			var(--db-green-6),
+			var(--db-green-9)
 		);
 		--db-green-on-bg-basic-emphasis-100-pressed: light-dark(
-			var(--db-green-5),
-			var(--db-green-9)
+			var(--db-green-4),
+			var(--db-green-11)
 		);
 		--db-green-on-bg-inverted-default: light-dark(
 			var(--db-green-14),
 			var(--db-green-3)
 		);
 		--db-green-on-bg-inverted-hovered: light-dark(
-			var(--db-green-12),
-			var(--db-green-1)
-		);
-		--db-green-on-bg-inverted-pressed: light-dark(
 			var(--db-green-11),
 			var(--db-green-0)
+		);
+		--db-green-on-bg-inverted-pressed: light-dark(
+			var(--db-green-13),
+			var(--db-green-2)
 		);
 		--db-green-on-bg-vibrant-default: light-dark(
 			var(--db-green-1),
 			var(--db-green-1)
 		);
 		--db-green-on-bg-vibrant-hovered: light-dark(
-			var(--db-green-3),
-			var(--db-green-3)
-		);
-		--db-green-on-bg-vibrant-pressed: light-dark(
 			var(--db-green-4),
 			var(--db-green-4)
+		);
+		--db-green-on-bg-vibrant-pressed: light-dark(
+			var(--db-green-2),
+			var(--db-green-2)
 		);
 		--db-green-bg-basic-level-1-default: light-dark(
 			var(--db-green-14),
