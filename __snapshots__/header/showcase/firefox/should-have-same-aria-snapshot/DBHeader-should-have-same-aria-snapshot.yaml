@@ -1,8 +1,8 @@
 - main:
   - heading "DBHeader" [level=1]
-  - link "Density arrow_up_right\" / \""
-  - link "Imprint arrow_right\" / \""
-  - link "Help arrow_right\" / \""
+  - link "Densityarrow_up_right\" / \""
+  - link "Imprintarrow_right\" / \""
+  - link "Helparrow_right\" / \""
   - text: DBHeader
   - navigation "Functional":
     - list:
@@ -14,8 +14,8 @@
   - button "Profile"
   - button "Notification"
   - button "Help"
-  - link "Imprint arrow_right\" / \""
-  - link "Help arrow_right\" / \""
+  - link "Imprintarrow_right\" / \""
+  - link "Helparrow_right\" / \""
   - text: DBHeader
   - navigation "(Default) Regular":
     - list:
@@ -27,8 +27,8 @@
   - button "Profile"
   - button "Notification"
   - button "Help"
-  - link "Imprint arrow_right\" / \""
-  - link "Help arrow_right\" / \""
+  - link "Imprintarrow_right\" / \""
+  - link "Helparrow_right\" / \""
   - text: DBHeader
   - navigation "Expressive":
     - list:
@@ -40,9 +40,9 @@
   - button "Profile"
   - button "Notification"
   - button "Help"
-  - link "Width arrow_up_right\" / \""
-  - link "Imprint arrow_right\" / \""
-  - link "Help arrow_right\" / \""
+  - link "Widtharrow_up_right\" / \""
+  - link "Imprintarrow_right\" / \""
+  - link "Helparrow_right\" / \""
   - text: DBHeader
   - navigation "Full":
     - list:
@@ -54,8 +54,8 @@
   - button "Profile"
   - button "Notification"
   - button "Help"
-  - link "Imprint arrow_right\" / \""
-  - link "Help arrow_right\" / \""
+  - link "Imprintarrow_right\" / \""
+  - link "Helparrow_right\" / \""
   - text: DBHeader
   - navigation "Medium":
     - list:
@@ -67,8 +67,8 @@
   - button "Profile"
   - button "Notification"
   - button "Help"
-  - link "Imprint arrow_right\" / \""
-  - link "Help arrow_right\" / \""
+  - link "Imprintarrow_right\" / \""
+  - link "Helparrow_right\" / \""
   - text: DBHeader
   - navigation "Large":
     - list:
@@ -80,9 +80,9 @@
   - button "Profile"
   - button "Notification"
   - button "Help"
-  - link "Behavior arrow_up_right\" / \""
-  - link "Imprint arrow_right\" / \""
-  - link "Help arrow_right\" / \""
+  - link "Behaviorarrow_up_right\" / \""
+  - link "Imprintarrow_right\" / \""
+  - link "Helparrow_right\" / \""
   - text: DBHeader
   - navigation "Desktop (full width)":
     - list:
@@ -97,7 +97,7 @@
   - text: DBHeader
   - button "Search"
   - button "BurgerMenu"
-  - link "Examples arrow_up_right\" / \""
+  - link "Examplesarrow_up_right\" / \""
   - text: DBHeader
   - navigation "With Application Name + Navigation":
     - list:

@@ -1,6 +1,6 @@
 - main:
   - heading "DBNotification" [level=1]
-  - link "Density arrow_up_right\" / \""
+  - link "Densityarrow_up_right\" / \""
   - article:
     - text: Headline
     - paragraph: functional
@@ -13,7 +13,7 @@
     - text: Headline
     - paragraph: expressive
     - button "Close"
-  - link "Variant arrow_up_right\" / \""
+  - link "Variantarrow_up_right\" / \""
   - article:
     - text: Headline
     - paragraph: (Default) Docked
@@ -27,68 +27,68 @@
     - paragraph: Overlay
     - text: 10 min ago
     - button "Close"
-  - link "Semantic arrow_up_right\" / \""
+  - link "Semanticarrow_up_right\" / \""
   - article:
     - text: Headline
     - paragraph: (Default) Adaptive
     - button "Close"
   - article:
-    - text: information_circle" / " Headline
+    - text: Headline
     - paragraph: Neutral
     - button "Close"
   - article:
-    - text: exclamation_mark_circle" / " Headline
+    - text: Headline
     - paragraph: Critical
     - button "Close"
   - article:
-    - text: information_circle" / " Headline
+    - text: Headline
     - paragraph: Informational
     - button "Close"
   - article:
-    - text: check_circle" / " Headline
+    - text: Headline
     - paragraph: Successful
     - button "Close"
   - article:
-    - text: exclamation_mark_triangle" / " Headline
+    - text: Headline
     - paragraph: Warning
     - button "Close"
-  - link "Closeable arrow_up_right\" / \""
+  - link "Closeablearrow_up_right\" / \""
   - article:
     - paragraph: (Default) False
   - article:
     - paragraph: "True"
     - button "Close"
-  - link "Visual arrow_up_right\" / \""
+  - link "Visualarrow_up_right\" / \""
   - article:
     - paragraph: (Default) Icon
   - article:
     - img "this is a fancy placeholder"
     - paragraph: Image
-  - link "Show Icon arrow_up_right\" / \""
+  - link "Show Iconarrow_up_right\" / \""
   - article:
     - paragraph: (Default) True
   - article:
     - paragraph: "False"
-  - link "Link Variant arrow_up_right\" / \""
+  - link "Link Variantarrow_up_right\" / \""
   - article:
     - paragraph: (Default) Block
     - link "Textlink"
   - article:
     - paragraph: Inline
     - link "Textlink"
-  - link "Show Headline arrow_up_right\" / \""
+  - link "Show Headlinearrow_up_right\" / \""
   - article:
     - text: Headline
     - paragraph: (Default) True
   - article:
     - paragraph: "False"
-  - link "Show Timestamp arrow_up_right\" / \""
+  - link "Show Timestamparrow_up_right\" / \""
   - article:
     - paragraph: (Default) False
   - article:
     - paragraph: "True"
     - text: 10 min ago
-  - link "Examples - Variant:Docked arrow_up_right\" / \""
+  - link "Examples - Variant:Dockedarrow_up_right\" / \""
   - article:
     - paragraph: Text
   - article:
@@ -113,7 +113,7 @@
     - text: Headline
     - paragraph: Text & Icon & Headline & Textlink Inline & Cloaseable
     - link "Textlink"
-  - link "Examples - Variant:Standalone arrow_up_right\" / \""
+  - link "Examples - Variant:Standalonearrow_up_right\" / \""
   - article:
     - paragraph: Text
   - article:
@@ -138,7 +138,7 @@
     - text: Headline
     - paragraph: Text & Icon & Headline & Textlink Inline & Cloaseable
     - link "Textlink"
-  - link "Examples - Variant:Overlay arrow_up_right\" / \""
+  - link "Examples - Variant:Overlayarrow_up_right\" / \""
   - article:
     - paragraph: Text
   - article:

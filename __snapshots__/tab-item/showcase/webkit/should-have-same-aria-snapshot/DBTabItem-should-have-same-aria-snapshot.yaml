@@ -1,6 +1,6 @@
 - main:
   - heading "DBTabItem" [level=1]
-  - link "Density arrow_up_right\" / \""
+  - link "Densityarrow_up_right\" / \""
   - tablist:
     - tab "Functional"
     - text: Functional
@@ -10,7 +10,7 @@
   - tablist:
     - tab "Expressive"
     - text: Expressive
-  - link "States arrow_up_right\" / \""
+  - link "Statesarrow_up_right\" / \""
   - tablist:
     - tab "(Default) Enabled"
     - text: (Default) Enabled
@@ -20,29 +20,27 @@
   - tablist:
     - tab "disabled" [disabled]
     - text: disabled
-  - link "Content arrow_up_right\" / \""
+  - link "Contentarrow_up_right\" / \""
   - tablist:
     - tab "(Default) Text"
     - text: (Default) Text
   - tablist:
-    - text: x_placeholder" / "
-    - tab "x_placeholder\" / \" Text - Icon (Leading)"
+    - tab "Text - Icon (Leading)"
     - text: Text - Icon (Leading)
   - tablist:
     - tab "Text - Icon (Trailing) x_placeholder\" / \""
     - text: Text - Icon (Trailing) x_placeholder" / "
   - tablist:
-    - text: x_placeholder" / "
-    - tab "x_placeholder\" / \" Icon"
+    - tab "Icon"
     - text: Icon
-  - link "Behavior arrow_up_right\" / \""
+  - link "Behaviorarrow_up_right\" / \""
   - tablist:
     - tab "(Default) Auto Width"
     - text: (Default) Auto Width
   - tablist:
     - tab "Width full"
     - text: Width full
-  - link "Content Alignment Full Width arrow_up_right\" / \""
+  - link "Content Alignment Full Widtharrow_up_right\" / \""
   - tablist:
     - tab "Left"
     - text: Left

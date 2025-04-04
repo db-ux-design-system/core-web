@@ -38,6 +38,32 @@
             - text: Option 2 none" / "
   - status
   - text: chevron_down" / "
+  - link "Multiple arrow_up_right\" / \""
+  - text: (Default) False
+  - group:
+    - article:
+      - radiogroup "(Default) False":
+        - list:
+          - listitem:
+            - radio "Option 1 none\" / \""
+            - text: Option 1 none" / "
+          - listitem:
+            - radio "Option 2 none\" / \""
+            - text: Option 2 none" / "
+  - status
+  - text: chevron_down" / " True
+  - group:
+    - article:
+      - group "True":
+        - list:
+          - listitem:
+            - checkbox "Option 1"
+            - text: Option 1
+          - listitem:
+            - checkbox "Option 2"
+            - text: Option 2
+  - status
+  - text: chevron_down" / "
   - link "Variant arrow_up_right\" / \""
   - text: (Default) Label Above
   - group:

@@ -1,6 +1,6 @@
 - main:
   - heading "DBNavigationItem" [level=1]
-  - link "Density arrow_up_right\" / \""
+  - link "Densityarrow_up_right\" / \""
   - list:
     - listitem:
       - link "Functional"
@@ -10,36 +10,35 @@
   - list:
     - listitem:
       - link "Expressive"
-  - link "Disabled arrow_up_right\" / \""
+  - link "Disabledarrow_up_right\" / \""
   - list:
     - listitem:
       - link "(Default) False"
   - list:
     - listitem:
       - link "True"
-  - link "Active arrow_up_right\" / \""
+  - link "Activearrow_up_right\" / \""
   - list:
     - listitem:
       - link "(Default) False"
   - list:
     - listitem:
       - link "True"
-  - link "Expanded arrow_up_right\" / \""
+  - link "Expandedarrow_up_right\" / \""
   - list:
     - listitem:
       - link "(Default) False"
   - list:
     - listitem:
       - button "True chevron_right\" / \""
-  - link "Show Icon arrow_up_right\" / \""
+  - link "Show Iconarrow_up_right\" / \""
   - list:
     - listitem:
       - link "(Default) False"
   - list:
     - listitem:
-      - text: x_placeholder" / "
       - link "True"
-  - link "Width arrow_up_right\" / \""
+  - link "Widtharrow_up_right\" / \""
   - list:
     - listitem:
       - link "(Default) Auto"
