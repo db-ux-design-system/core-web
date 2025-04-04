@@ -1,7 +1,10 @@
 /* We use this for IntelliJ IDEs to fetch xo config */
 export default {
 	eslintConfig: {
-		parser: 'babel-eslint',
+		parser: '@babel/eslint-parser',
+		parserOptions: {
+			requireConfigFile: false
+		},
 		env: {
 			node: true,
 			es6: true

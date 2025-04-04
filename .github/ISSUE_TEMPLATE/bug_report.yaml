@@ -6,12 +6,12 @@ body:
   - type: markdown
     attributes:
       value: |
-        Thanks for taking the time to fill out this bug report! Feedback by the community has a very high value for us, to improve our work and to have every other user benefit from it as well. 🙂
+        Thank you for taking the time to fill out this bug report! Feedback from the community is highly valuable to us, as it helps improve our work and benefits all users. 🙂
 
   - type: checkboxes
     id: component
     attributes:
-      label: Which generators are impacted?
+      label: Which generators are affected?
       description: Select all the ones that apply, to the best of your knowledge.
       options:
         - label: All
@@ -50,7 +50,7 @@ body:
       required: false
     attributes:
       label: Browser version
-      description: Does this bug affect specific browser?
+      description: Does this bug affect a specific browser?
       options:
         - Chrome
         - Safari
