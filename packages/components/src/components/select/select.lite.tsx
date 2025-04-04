@@ -225,7 +225,7 @@ export default function DBSelect(props: DBSelectProps) {
 				aria-describedby={state._descByIds}>
 				{/* Empty option for floating label */}
 				<Show when={props.variant === 'floating' || props.placeholder}>
-					<option class="placeholder"></option>
+					<option class="placeholder" value=""></option>
 				</Show>
 				<Show when={props.options}>
 					<For each={props.options}>
