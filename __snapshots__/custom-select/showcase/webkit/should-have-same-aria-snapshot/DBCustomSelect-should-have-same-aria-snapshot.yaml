@@ -1,6 +1,6 @@
 - main:
   - heading "DBCustomSelect" [level=1]
-  - link "Density arrow_up_right\" / \""
+  - link "Densityarrow_up_right\" / \""
   - text: Functional
   - group:
     - article:
@@ -38,7 +38,33 @@
             - text: Option 2 none" / "
   - status
   - text: chevron_down" / "
-  - link "Variant arrow_up_right\" / \""
+  - link "Multiplearrow_up_right\" / \""
+  - text: (Default) False
+  - group:
+    - article:
+      - radiogroup "(Default) False":
+        - list:
+          - listitem:
+            - radio "Option 1 none\" / \""
+            - text: Option 1 none" / "
+          - listitem:
+            - radio "Option 2 none\" / \""
+            - text: Option 2 none" / "
+  - status
+  - text: chevron_down" / " True
+  - group:
+    - article:
+      - group "True":
+        - list:
+          - listitem:
+            - checkbox "Option 1"
+            - text: Option 1
+          - listitem:
+            - checkbox "Option 2"
+            - text: Option 2
+  - status
+  - text: chevron_down" / "
+  - link "Variantarrow_up_right\" / \""
   - text: (Default) Label Above
   - group:
     - article:
@@ -64,7 +90,7 @@
             - text: Option 2 none" / "
   - status
   - text: chevron_down" / "
-  - link "Show Label arrow_up_right\" / \""
+  - link "Show Labelarrow_up_right\" / \""
   - text: (Default) True
   - group:
     - article:
@@ -90,7 +116,7 @@
             - text: Option 2 none" / "
   - status
   - text: chevron_down" / "
-  - link "Helper Message arrow_up_right\" / \""
+  - link "Helper Messagearrow_up_right\" / \""
   - text: (Default) Basic
   - group:
     - article:
@@ -114,10 +140,10 @@
           - listitem:
             - radio "Option 2 none\" / \""
             - text: Option 2 none" / "
-  - text: information_circle" / " Helper Message
+  - text: Helper Message
   - status
   - text: chevron_down" / "
-  - link "Show Icon arrow_up_right\" / \""
+  - link "Show Iconarrow_up_right\" / \""
   - text: (Default) False
   - group:
     - article:
@@ -130,7 +156,7 @@
             - radio "Option 2 none\" / \""
             - text: Option 2 none" / "
   - status
-  - text: chevron_down" / " x_placeholder" / " True
+  - text: chevron_down" / " True
   - group:
     - article:
       - radiogroup "True":
@@ -143,7 +169,7 @@
             - text: Option 2 none" / "
   - status
   - text: chevron_down" / "
-  - link "Requirement arrow_up_right\" / \""
+  - link "Requirementarrow_up_right\" / \""
   - text: (Default) Optional
   - group:
     - article:
@@ -169,7 +195,7 @@
             - text: Option 2
   - status
   - text: chevron_down" / "
-  - link "Width arrow_up_right\" / \""
+  - link "Widtharrow_up_right\" / \""
   - text: (Default) Full
   - group:
     - article:
@@ -195,8 +221,8 @@
             - text: Option 2 none" / "
   - status
   - text: chevron_down" / "
-  - link "Dropdown Width arrow_up_right\" / \""
-  - text: information_circle" / " Full Width (Default) Fixed
+  - link "Dropdown Widtharrow_up_right\" / \""
+  - text: Full Width (Default) Fixed
   - group:
     - article:
       - radiogroup "(Default) Fixed":
@@ -232,7 +258,7 @@
             - radio "2 none\" / \""
             - text: 2 none" / "
   - status
-  - text: chevron_down" / " information_circle" / " Auto Width (Default) Fixed
+  - text: chevron_down" / " Auto Width (Default) Fixed
   - group:
     - article:
       - radiogroup "(Default) Fixed":
@@ -269,8 +295,8 @@
             - text: 2 none" / "
   - status
   - text: chevron_down" / "
-  - link "Placement arrow_up_right\" / \""
-  - text: information_circle" / " Full Width (Default) Bottom
+  - link "Placementarrow_up_right\" / \""
+  - text: Full Width (Default) Bottom
   - group:
     - article:
       - radiogroup "(Default) Bottom":
@@ -294,7 +320,7 @@
             - radio "Option 2 none\" / \""
             - text: Option 2 none" / "
   - status
-  - text: chevron_down" / " information_circle" / " Auto Width (Default) Bottom-Start
+  - text: chevron_down" / " Auto Width (Default) Bottom-Start
   - group:
     - article:
       - radiogroup "(Default) Bottom-Start":
@@ -343,7 +369,7 @@
             - text: Option 2 none" / "
   - status
   - text: chevron_down" / "
-  - link "Selected type arrow_up_right\" / \""
+  - link "Selected typearrow_up_right\" / \""
   - text: (Default) Text
   - group:
     - article:
@@ -399,19 +425,17 @@
             - text: Option 4
   - status
   - text: chevron_down" / "
-  - link "Examples Single arrow_up_right\" / \""
+  - link "Examples Singlearrow_up_right\" / \""
   - text: Icons
   - group:
     - article:
       - radiogroup "Icons":
         - list:
           - listitem:
-            - text: x_placeholder" / "
-            - radio "x_placeholder\" / \" Option 1 none\" / \""
+            - radio "Option 1 none\" / \""
             - text: Option 1 none" / "
           - listitem:
-            - text: x_placeholder" / "
-            - radio "x_placeholder\" / \" Option 2 none\" / \""
+            - radio "Option 2 none\" / \""
             - text: Option 2 none" / "
   - status
   - text: chevron_down" / " Less than 6
@@ -503,7 +527,7 @@
   - text: chevron_down" / " More than 10
   - group:
     - article:
-      - text: magnifying_glass" / " Search
+      - text: Search
       - searchbox "Search"
       - status
       - text: cross" / "
@@ -541,7 +565,7 @@
             - text: Option 10 none" / "
   - status
   - text: chevron_down" / "
-  - link "Examples Multiple arrow_up_right\" / \""
+  - link "Examples Multiplearrow_up_right\" / \""
   - text: Less than 6
   - group:
     - article:
@@ -633,7 +657,7 @@
   - text: chevron_down" / " More than 10
   - group:
     - article:
-      - text: magnifying_glass" / " Search
+      - text: Search
       - searchbox "Search"
       - status
       - text: cross" / "
@@ -673,7 +697,7 @@
             - text: Option 10
   - status
   - text: chevron_down" / "
-  - link "Example tags arrow_up_right\" / \""
+  - link "Example tagsarrow_up_right\" / \""
   - text: Tag grow
   - group:
     - article:
@@ -711,26 +735,26 @@
             - text: Option 4
   - status
   - text: chevron_down" / "
-  - link "Example Shows arrow_up_right\" / \""
+  - link "Example Showsarrow_up_right\" / \""
   - text: Show No Result
   - group:
     - article:
-      - text: magnifying_glass" / " Search
+      - text: Search
       - searchbox "Search"
       - status
-      - text: cross" / " exclamation_mark_triangle" / " Nothing found
+      - text: cross" / " Nothing found
   - status
   - text: chevron_down" / " Show Loading and Show Search
   - group:
     - article:
-      - text: magnifying_glass" / " Search
+      - text: Search
       - searchbox "Search"
       - status
-      - text: cross" / " circular_arrows" / " Loading
+      - text: cross" / " Loading
   - status
   - text: chevron_down" / " Show Loading
   - group:
-    - article: circular_arrows" / " Loading
+    - article: Loading
   - status
   - text: chevron_down" / " Show SelectAll
   - group:

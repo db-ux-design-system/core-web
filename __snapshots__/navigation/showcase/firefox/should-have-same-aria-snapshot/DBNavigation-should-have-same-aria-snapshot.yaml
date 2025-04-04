@@ -1,6 +1,6 @@
 - main:
   - heading "DBNavigation" [level=1]
-  - link "Density arrow_up_right\" / \""
+  - link "Densityarrow_up_right\" / \""
   - text: Functional
   - navigation "Functional":
     - list:

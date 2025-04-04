@@ -1,38 +1,36 @@
 - main:
   - heading "DBHeader" [level=1]
-  - link "Density arrow_up_right\" / \""
-  - text: brand" / " DBHeader
-  - button "magnifying_glass\" / \" Search"
-  - button "menu\" / \" BurgerMenu"
-  - text: brand" / " DBHeader
-  - button "magnifying_glass\" / \" Search"
-  - button "menu\" / \" BurgerMenu"
-  - text: brand" / " DBHeader
-  - button "magnifying_glass\" / \" Search"
-  - button "menu\" / \" BurgerMenu"
-  - link "Width arrow_up_right\" / \""
-  - text: brand" / " DBHeader
-  - button "magnifying_glass\" / \" Search"
-  - button "menu\" / \" BurgerMenu"
-  - text: brand" / " DBHeader
-  - button "magnifying_glass\" / \" Search"
-  - button "menu\" / \" BurgerMenu"
-  - text: brand" / " DBHeader
-  - button "magnifying_glass\" / \" Search"
-  - button "menu\" / \" BurgerMenu"
-  - link "Behavior arrow_up_right\" / \""
-  - text: brand" / " DBHeader
-  - button "magnifying_glass\" / \" Search"
-  - button "menu\" / \" BurgerMenu"
-  - text: brand" / " DBHeader
-  - button "magnifying_glass\" / \" Search"
-  - button "menu\" / \" BurgerMenu"
-  - link "Examples arrow_up_right\" / \""
-  - text: brand" / " DBHeader
-  - button "menu\" / \" BurgerMenu"
-  - text: brand" / " DBHeader
-  - button "menu\" / \" BurgerMenu"
-  - text: brand" / "
-  - button "menu\" / \" BurgerMenu"
-  - text: brand" / "
-  - button "menu\" / \" BurgerMenu"
+  - link "Densityarrow_up_right\" / \""
+  - text: DBHeader
+  - button "Search"
+  - button "BurgerMenu"
+  - text: DBHeader
+  - button "Search"
+  - button "BurgerMenu"
+  - text: DBHeader
+  - button "Search"
+  - button "BurgerMenu"
+  - link "Widtharrow_up_right\" / \""
+  - text: DBHeader
+  - button "Search"
+  - button "BurgerMenu"
+  - text: DBHeader
+  - button "Search"
+  - button "BurgerMenu"
+  - text: DBHeader
+  - button "Search"
+  - button "BurgerMenu"
+  - link "Behaviorarrow_up_right\" / \""
+  - text: DBHeader
+  - button "Search"
+  - button "BurgerMenu"
+  - text: DBHeader
+  - button "Search"
+  - button "BurgerMenu"
+  - link "Examplesarrow_up_right\" / \""
+  - text: DBHeader
+  - button "BurgerMenu"
+  - text: DBHeader
+  - button "BurgerMenu"
+  - button "BurgerMenu"
+  - button "BurgerMenu"
