@@ -109,7 +109,7 @@ $icon-padding: calc(
 			position: absolute;
 			inset-inline-end: calc(
 				#{variables.$db-spacing-fixed-sm} +
-					#{variables.$db-border-height-3xs}
+					#{variables.$db-border-width-3xs}
 			);
 		}
 
