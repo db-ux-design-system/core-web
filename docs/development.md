@@ -28,7 +28,7 @@ TODO: Elaborate on testing setup
 
 ###### Pipeline generated images
 
-On every fail of the visual regression tests in the Default pipeline, we're regenerating the snapshots as a `snapshot-*`-artifact. Please download this one from the "Summary" page and commit the updated screenshots with `npm run commit:updated-snapshots` command from project root.
+On every fail of the visual regression tests in the Default pipeline, we're regenerating the snapshots as a `snapshot-*`-artifact. Please download these ones from the "Summary" page and commit the updated screenshots with `npm run commit:updated-snapshots` command from project root.
 
 ###### Manual update
 
