@@ -224,6 +224,33 @@
 		]
 	},
 	{
+		"name": "Example - Length",
+		"examples": [
+			{
+				"name": "MinLength",
+				"props": {
+					"label": "Label",
+					"minLength": 3
+				}
+			},
+			{
+				"name": "MaxLength",
+				"props": {
+					"label": "Label",
+					"maxLength": 5
+				}
+			},
+			{
+				"name": "MinMaxLength",
+				"props": {
+					"label": "Label",
+					"minLength": 3,
+					"maxLength": 5
+				}
+			}
+		]
+	},
+	{
 		"name": "Example - Types",
 		"codeFileName": "ExampleTypes",
 		"examples": [
@@ -374,14 +401,6 @@
 				"props": {
 					"label": "Label",
 					"type": "email",
-					"variant": "floating"
-				}
-			},
-			{
-				"name": "Number",
-				"props": {
-					"label": "Label",
-					"type": "number",
 					"variant": "floating"
 				}
 			},

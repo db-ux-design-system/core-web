@@ -36,7 +36,7 @@ $checked-active-transition-size: calc(
 }
 
 .db-switch {
-	@include form-components.set-default-check-element(check);
+	@include form-components.set-default-check-element(switch);
 
 	user-select: none;
 

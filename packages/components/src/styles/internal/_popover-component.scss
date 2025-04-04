@@ -147,12 +147,12 @@ $popover-gap-inset: calc(-1 * #{$popover-gap-size});
 				#{variables.$db-transition-straight-emotional} normal both;
 
 			&[data-delay="slow"] {
-				animation-delay: variables.$db-transition-duration-fast;
+				animation-delay: variables.$db-transition-duration-extra-slow;
 			}
 
 			&[data-delay="fast"] {
 				animation-delay: calc(
-					#{variables.$db-transition-duration-fast} / 2
+					#{variables.$db-transition-duration-medium}
 				);
 			}
 		}
