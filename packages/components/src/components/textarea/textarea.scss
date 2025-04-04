@@ -45,11 +45,6 @@
 
 		overflow-y: scroll;
 
-		// show placeholder in italic style with reduced opacity
-		&:placeholder-shown {
-			@include form-components.placeholder-style;
-		}
-
 		// we don't have icons in textarea so we can overwrite it here
 		padding-block: variables.$db-spacing-fixed-xs
 			variables.$db-spacing-fixed-xs;
