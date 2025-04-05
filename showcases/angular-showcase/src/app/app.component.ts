@@ -30,7 +30,7 @@ import {
 @Component({
 	selector: 'app-root',
 	standalone: true,
-	schemas: [CUSTOM_ELEMENTS_SCHEMA],
+	schemas: environment.webComponents ? [CUSTOM_ELEMENTS_SCHEMA] : [],
 	imports: environment.webComponents
 		? [
 				FormsModule,

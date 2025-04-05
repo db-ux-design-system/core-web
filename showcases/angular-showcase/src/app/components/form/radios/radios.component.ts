@@ -17,10 +17,13 @@ import { environment } from '../../../../environments/environment';
 			: [WrapperComponent, DBRadio, FormsModule, ReactiveFormsModule]
 	],
 	templateUrl: './radios.component.html',
-	schemas: [CUSTOM_ELEMENTS_SCHEMA]
+	schemas: environment.webComponents ? [CUSTOM_ELEMENTS_SCHEMA] : []
 })
 export class RadiosComponent {
 	plain = '';
 	ngModel = '';
 	formControl: FormControl = new FormControl('');
+	public handlePlainChange(event: any) {
+		this.plain = event.target.value;
+	}
 }

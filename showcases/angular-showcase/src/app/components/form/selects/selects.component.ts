@@ -11,10 +11,13 @@ import { environment } from '../../../../environments/environment';
 		? [WrapperComponent, FormsModule, ReactiveFormsModule]
 		: [WrapperComponent, DBSelect, FormsModule, ReactiveFormsModule],
 	templateUrl: './selects.component.html',
-	schemas: [CUSTOM_ELEMENTS_SCHEMA]
+	schemas: environment.webComponents ? [CUSTOM_ELEMENTS_SCHEMA] : []
 })
 export class SelectsComponent {
 	plain = 'combobox-2';
 	ngModel = 'combobox-2';
 	formControl: FormControl = new FormControl('combobox-2');
+	public handlePlainChange(event: any) {
+		this.plain = event.target.value;
+	}
 }

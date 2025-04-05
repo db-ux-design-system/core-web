@@ -10,7 +10,7 @@ import { environment } from '../../../environments/environment';
 	imports: environment.webComponents
 		? [DefaultComponent]
 		: [DefaultComponent, DBTooltip, DBButton],
-	schemas: [CUSTOM_ELEMENTS_SCHEMA],
+	schemas: environment.webComponents ? [CUSTOM_ELEMENTS_SCHEMA] : [],
 	standalone: true
 })
 export class TooltipComponent {

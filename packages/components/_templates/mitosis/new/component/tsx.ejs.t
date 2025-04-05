@@ -57,7 +57,7 @@ export default function DB<%= h.changeCase.pascal(name) %>(props: DB<%= h.change
 
   return (
     <div
-    	ref={ref}
+    	ref={_ref}
     	id={props.id}
     	class={cls('db-<%= name %>', props.className)}
 <% if(formValue!=="no"){   -%>

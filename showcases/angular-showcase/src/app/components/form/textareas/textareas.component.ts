@@ -18,10 +18,13 @@ import { DefaultComponent } from '../../default.component';
 		? [WrapperComponent, FormsModule, ReactiveFormsModule]
 		: [WrapperComponent, DBTextarea, FormsModule, ReactiveFormsModule],
 	templateUrl: './textareas.component.html',
-	schemas: [CUSTOM_ELEMENTS_SCHEMA]
+	schemas: environment.webComponents ? [CUSTOM_ELEMENTS_SCHEMA] : []
 })
 export class TextareasComponent {
 	plain = 'test1';
 	ngModel = 'test2';
 	formControl: FormControl = new FormControl('test3');
+	public handlePlainChange(event: any) {
+		this.plain = event.target.value;
+	}
 }
