@@ -22,6 +22,7 @@
     "scripts",
     "e2e"
   ],
+  "packageManager": "npm@10.9.2",
   "scripts": {
     "build": "npm run build --workspace=scripts",
     "build-outputs": "npm run build-outputs --workspace=scripts",
