@@ -76,7 +76,7 @@ $has-before-padding: calc(
 		);
 	}
 
-	&:has(> select option:checked:not([hidden])) {
+	&:has(> select option:checked:not(.placeholder)) {
 		[id$="-placeholder"] {
 			display: none;
 		}
