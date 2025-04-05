@@ -32,7 +32,10 @@ module.exports = {
 			files: ['./showcases/**'],
 			rules: {
 				// In TS we don't need extension
-				'import/extensions': 0,
+				'import/extensions': [
+					2,
+					{ ts: 'never' },
+				],
 				'n/file-extension-in-import': 0,
 				'@typescript-eslint/no-unsafe-assignment': 0, // We don't need this tsc will handle it anyway
 				'@typescript-eslint/no-unsafe-call': 0, // We don't need this tsc will handle it anyway
