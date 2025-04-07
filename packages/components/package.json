@@ -39,7 +39,7 @@
     "generate:component": "hygen mitosis new",
     "generate:docs": "hygen update-docs new",
     "prepack": "npm run copy-assets",
-    "start": "nodemon --watch src --watch scripts --watch overrides -e js,tsx,ts,scss,json -x \"npm run build\""
+    "start": "nodemon --watch src --watch scripts --watch scripts -e js,tsx,ts,scss,json -x \"npm run build\""
   },
   "dependencies": {
     "@db-ux/core-foundations": "*"

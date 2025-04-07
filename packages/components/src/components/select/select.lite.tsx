@@ -56,13 +56,13 @@ export default function DBSelect(props: DBSelectProps) {
 		_messageId: undefined,
 		_validMessageId: undefined,
 		_invalidMessageId: undefined,
+		_invalidMessage: undefined,
 		_placeholderId: '',
 		// Workaround for Vue output: TS for Vue would think that it could be a function, and by this we clarify that it's a string
 		_descByIds: '',
 		_value: '',
 		initialized: false,
 		_voiceOverFallback: '',
-		_invalidMessage: '',
 		hasValidState: () => {
 			return !!(props.validMessage ?? props.validation === 'valid');
 		},
@@ -183,6 +183,13 @@ export default function DBSelect(props: DBSelectProps) {
 		state._placeholderId = mId + DEFAULT_PLACEHOLDER_ID_SUFFIX;
 		state._invalidMessage = props.invalidMessage || DEFAULT_INVALID_MESSAGE;
 	});
+
+	onUpdate(() => {
+		state._invalidMessage =
+			props.invalidMessage ||
+			_ref?.validationMessage ||
+			DEFAULT_INVALID_MESSAGE;
+	}, [_ref, props.invalidMessage]);
 
 	onUpdate(() => {
 		if (state._id && state.initialized) {
