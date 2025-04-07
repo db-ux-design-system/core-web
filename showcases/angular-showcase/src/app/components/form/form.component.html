@@ -18,7 +18,7 @@
 			message="Description"
 			icon="x_placeholder"
 			[value]="textarea"
-			(change)="textarea = $event.target.value"
+			(change)="changeTextarea('textarea', $event)"
 		></db-textarea>
 
 		<db-textarea
@@ -28,7 +28,7 @@
 			message="Description"
 			icon="x_placeholder"
 			defaultValue="default value"
-			(change)="textareaDefaultValue = $event.target.value"
+			(change)="changeTextarea('textareaDefaultValue', $event)"
 		></db-textarea>
 
 		<db-textarea
