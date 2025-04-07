@@ -23,18 +23,16 @@ import {
 	DBTag,
 	DBTextarea
 } from '../../../../../../output/angular/src';
-import { DefaultComponent } from '../default.component';
 import { environment } from '../../../environments/environment';
 
 @Component({
 	selector: 'app-form',
 	templateUrl: './form.component.html',
 	imports: environment.webComponents
-		? [FormsModule, ReactiveFormsModule, DefaultComponent]
+		? [FormsModule, ReactiveFormsModule]
 		: [
 				FormsModule,
 				ReactiveFormsModule,
-				DefaultComponent,
 				DBInput,
 				DBTextarea,
 				DBSelect,
