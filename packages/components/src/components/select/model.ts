@@ -9,6 +9,7 @@ import {
 	FormProps,
 	FormSizeProps,
 	FormState,
+	FromValidState,
 	GlobalProps,
 	GlobalState,
 	IconProps,
@@ -86,4 +87,5 @@ export type DBSelectState = DBSelectDefaultState &
 	FocusEventState<HTMLSelectElement> &
 	InputEventState<HTMLSelectElement> &
 	FormState &
-	InitializedState;
+	InitializedState &
+	FromValidState;

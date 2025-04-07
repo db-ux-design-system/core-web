@@ -25,6 +25,8 @@ import DBInfotext from '../infotext/infotext.lite';
 import {
 	cls,
 	delay,
+	getBoolean,
+	getBooleanAsString,
 	getHideProp,
 	hasVoiceOver,
 	stringPropVisible,
@@ -51,6 +53,39 @@ export default function DBCheckbox(props: DBCheckboxProps) {
 		_invalidMessage: undefined,
 		_descByIds: '',
 		_voiceOverFallback: '',
+		_invalidMessage: '',
+		hasValidState: () => {
+			return !!(props.validMessage ?? props.validation === 'valid');
+		},
+		handleValidation: () => {
+			/* For a11y reasons we need to map the correct message with the checkbox */
+			if (!_ref?.validity.valid || props.validation === 'invalid') {
+				state._descByIds = state._invalidMessageId;
+				state._invalidMessage =
+					props.invalidMessage ||
+					_ref?.validationMessage ||
+					DEFAULT_INVALID_MESSAGE;
+				if (hasVoiceOver()) {
+					state._voiceOverFallback = state._invalidMessage;
+					delay(() => (state._voiceOverFallback = ''), 1000);
+				}
+			} else if (
+				state.hasValidState() &&
+				_ref?.validity.valid &&
+				props.required
+			) {
+				state._descByIds = state._validMessageId;
+				if (hasVoiceOver()) {
+					state._voiceOverFallback =
+						props.validMessage ?? DEFAULT_VALID_MESSAGE;
+					delay(() => (state._voiceOverFallback = ''), 1000);
+				}
+			} else if (stringPropVisible(props.message, props.showMessage)) {
+				state._descByIds = state._messageId;
+			} else {
+				state._descByIds = '';
+			}
+		},
 		handleChange: (event: ChangeEvent<HTMLInputElement>) => {
 			if (props.onChange) {
 				props.onChange(event);
@@ -65,32 +100,7 @@ export default function DBCheckbox(props: DBCheckboxProps) {
 					handleFrameworkEventAngular(this, event, 'checked'),
 				vue: () => handleFrameworkEventVue(() => {}, event, 'checked')
 			});
-
-			/* For a11y reasons we need to map the correct message with the checkbox */
-			if (!_ref?.validity.valid || props.validation === 'invalid') {
-				state._descByIds = state._invalidMessageId;
-				if (hasVoiceOver()) {
-					state._voiceOverFallback =
-						props.invalidMessage ??
-						_ref?.validationMessage ??
-						DEFAULT_INVALID_MESSAGE;
-					delay(() => (state._voiceOverFallback = ''), 1000);
-				}
-			} else if (
-				props.validation === 'valid' ||
-				(_ref?.validity.valid && props.required)
-			) {
-				state._descByIds = state._validMessageId;
-				if (hasVoiceOver()) {
-					state._voiceOverFallback =
-						props.validMessage ?? DEFAULT_VALID_MESSAGE;
-					delay(() => (state._voiceOverFallback = ''), 1000);
-				}
-			} else if (stringPropVisible(props.message, props.showMessage)) {
-				state._descByIds = state._messageId;
-			} else {
-				state._descByIds = '';
-			}
+			state.handleValidation();
 		},
 		handleBlur: (event: InteractionEvent<HTMLInputElement>) => {
 			if (props.onBlur) {
@@ -119,6 +129,7 @@ export default function DBCheckbox(props: DBCheckboxProps) {
 		state._messageId = mId + DEFAULT_MESSAGE_ID_SUFFIX;
 		state._validMessageId = mId + DEFAULT_VALID_MESSAGE_ID_SUFFIX;
 		state._invalidMessageId = mId + DEFAULT_INVALID_MESSAGE_ID_SUFFIX;
+		state._invalidMessage = props.invalidMessage || DEFAULT_INVALID_MESSAGE;
 	});
 
 	onUpdate(() => {
@@ -152,14 +163,14 @@ export default function DBCheckbox(props: DBCheckboxProps) {
 					) {
 						// When indeterminate is set, the value of the checked prop only impacts the form submitted values.
 						// It has no accessibility or UX implications. (https://mui.com/material-ui/react-checkbox/)
-						_ref.indeterminate = props.indeterminate;
+						_ref.indeterminate = !!getBoolean(props.indeterminate);
 					}
 				},
 				default: () => {
 					if (props.indeterminate !== undefined) {
 						// When indeterminate is set, the value of the checked prop only impacts the form submitted values.
 						// It has no accessibility or UX implications. (https://mui.com/material-ui/react-checkbox/)
-						_ref.indeterminate = props.indeterminate;
+						_ref.indeterminate = !!getBoolean(props.indeterminate);
 					}
 				}
 			});
@@ -170,7 +181,7 @@ export default function DBCheckbox(props: DBCheckboxProps) {
 		if (state.initialized && _ref) {
 			// in angular this must be set via native element
 			if (props.checked != undefined) {
-				_ref.checked = props.checked;
+				_ref.checked = !!getBoolean(props.checked);
 			}
 
 			state.initialized = false;
@@ -191,10 +202,10 @@ export default function DBCheckbox(props: DBCheckboxProps) {
 					type="checkbox"
 					id={state._id}
 					name={props.name}
-					checked={props.checked}
-					disabled={props.disabled}
+					checked={getBoolean(props.checked, 'checked')}
+					disabled={getBoolean(props.disabled, 'disabled')}
 					value={props.value}
-					required={props.required}
+					required={getBoolean(props.required, 'required')}
 					onChange={(event: ChangeEvent<HTMLInputElement>) =>
 						state.handleChange(event)
 					}
@@ -219,13 +230,14 @@ export default function DBCheckbox(props: DBCheckboxProps) {
 					{props.message}
 				</DBInfotext>
 			</Show>
-
-			<DBInfotext
-				id={state._validMessageId}
-				size="small"
-				semantic="successful">
-				{props.validMessage ?? DEFAULT_VALID_MESSAGE}
-			</DBInfotext>
+			<Show when={state.hasValidState()}>
+				<DBInfotext
+					id={state._validMessageId}
+					size="small"
+					semantic="successful">
+					{props.validMessage || DEFAULT_VALID_MESSAGE}
+				</DBInfotext>
+			</Show>
 
 			<DBInfotext
 				id={state._invalidMessageId}
