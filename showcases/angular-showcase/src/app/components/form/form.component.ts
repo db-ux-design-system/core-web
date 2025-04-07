@@ -93,6 +93,10 @@ export class FormComponent {
 			: [...this.tags, tag];
 	};
 
+	changeTextarea(key: string, event: any) {
+		this[key] = event.target.value;
+	}
+
 	resetValues(): void {
 		this.model.input = 'reset';
 		this.model.textarea = 'resetted as well';
