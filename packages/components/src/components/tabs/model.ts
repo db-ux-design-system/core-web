@@ -21,7 +21,7 @@ export type DBTabsDefaultProps = {
 	/**
 	 * Change amount of distance if you click on an arrow, only available with behavior="arrows"
 	 */
-	arrowScrollDistance?: number;
+	arrowScrollDistance?: number | string;
 	/**
 	 * Show a scrollbar or buttons with arrows to navigate for horizontal tabs with overflow visible
 	 */
@@ -30,7 +30,7 @@ export type DBTabsDefaultProps = {
 	/**
 	 * Default behavior is auto selecting the first tab, change selected tab by index
 	 */
-	initialSelectedIndex?: number;
+	initialSelectedIndex?: number | string;
 
 	/**
 	 * Default behavior is auto selecting the first tab, disable it with 'manually'

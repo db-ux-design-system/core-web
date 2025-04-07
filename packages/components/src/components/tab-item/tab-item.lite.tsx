@@ -9,7 +9,7 @@ import {
 	useTarget
 } from '@builder.io/mitosis';
 import type { DBTabItemProps, DBTabItemState } from './model';
-import { cls, getBooleanAsString, getHideProp } from '../../utils';
+import { cls, getBoolean, getBooleanAsString, getHideProp } from '../../utils';
 import {
 	handleFrameworkEventAngular,
 	handleFrameworkEventVue
@@ -82,12 +82,12 @@ export default function DBTabItem(props: DBTabItemProps) {
 				data-icon-after={props.iconAfter}
 				data-hide-icon={getHideProp(props.showIcon)}
 				data-hide-icon-after={getHideProp(props.showIcon)}
-				data-no-text={props.noText}>
+				data-no-text={getBooleanAsString(props.noText)}>
 				<input
-					disabled={props.disabled}
+					disabled={getBoolean(props.disabled, 'disabled')}
 					aria-selected={state._selected}
 					aria-controls={props.controls}
-					checked={props.checked}
+					checked={getBoolean(props.checked, 'checked')}
 					ref={_ref}
 					type="radio"
 					role="tab"

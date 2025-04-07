@@ -11,7 +11,7 @@ import {
 import { DBDrawerProps, DBDrawerState } from './model';
 import DBButton from '../button/button.lite';
 import { DEFAULT_CLOSE_BUTTON } from '../../shared/constants';
-import { cls, delay } from '../../utils';
+import { cls, delay, getBooleanAsString } from '../../utils';
 
 useMetadata({});
 
@@ -50,7 +50,8 @@ export default function DBDrawer(props: DBDrawerProps) {
 		},
 		handleDialogOpen: () => {
 			if (_ref) {
-				if (props.open && !_ref.open) {
+				const open = Boolean(props.open);
+				if (open && !_ref.open) {
 					if (dialogContainerRef) {
 						dialogContainerRef.hidden = false;
 					}
@@ -63,7 +64,7 @@ export default function DBDrawer(props: DBDrawerProps) {
 						_ref.showModal();
 					}
 				}
-				if (!props.open && _ref.open) {
+				if (!open && _ref.open) {
 					if (dialogContainerRef) {
 						dialogContainerRef.hidden = true;
 					}
@@ -101,7 +102,7 @@ export default function DBDrawer(props: DBDrawerProps) {
 				data-spacing={props.spacing}
 				data-width={props.width}
 				data-direction={props.direction}
-				data-rounded={props.rounded}>
+				data-rounded={getBooleanAsString(props.rounded)}>
 				<header class="db-drawer-header">
 					<div class="db-drawer-header-text">
 						<Slot name="drawerHeader" />

@@ -102,18 +102,18 @@
 	--gap-3xl: var(--db-gap-fixed-3xl);
 
 	--border-*: initial; /* Border width */
-	--border: var(--db-border-height-3xs);
+	--border: var(--db-border-width-3xs);
 	--border-none: 0;
 	--border-0: 0;
-	--border-3xs: var(--db-border-height-3xs);
-	--border-2xs: var(--db-border-height-2xs);
-	--border-xs: var(--db-border-height-xs);
-	--border-sm: var(--db-border-height-sm);
-	--border-md: var(--db-border-height-md);
-	--border-lg: var(--db-border-height-lg);
-	--border-xl: var(--db-border-height-xl);
-	--border-2xl: var(--db-border-height-2xl);
-	--border-3xl: var(--db-border-height-3xl);
+	--border-3xs: var(--db-border-width-3xs);
+	--border-2xs: var(--db-border-width-2xs);
+	--border-xs: var(--db-border-width-xs);
+	--border-sm: var(--db-border-width-sm);
+	--border-md: var(--db-border-width-md);
+	--border-lg: var(--db-border-width-lg);
+	--border-xl: var(--db-border-width-xl);
+	--border-2xl: var(--db-border-width-2xl);
+	--border-3xl: var(--db-border-width-3xl);
 
 	--radius-*: initial; /* Border radius utilities like rounded-sm */
 	--radius: var(--db-border-radius-xs);

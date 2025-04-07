@@ -24,11 +24,11 @@ export type DBTagDefaultProps = {
 	/**
 	 * @deprecated Disable tag
 	 */
-	disabled?: boolean;
+	disabled?: boolean | string;
 	/**
 	 * Define the text next to the icon specified via the icon Property to get hidden.
 	 */
-	noText?: boolean;
+	noText?: boolean | string;
 	/**
 	 * If "removeButton" attribute is set this function will be called when user clicks cancel button inside the tag.
 	 */
@@ -44,7 +44,7 @@ export type DBTagDefaultProps = {
 	/**
 	 * Enable/Disable icon for checkbox/radio inside tag.
 	 */
-	showCheckState?: boolean;
+	showCheckState?: boolean | string;
 	/**
 	 * Alternative for children to set content as property.
 	 */
