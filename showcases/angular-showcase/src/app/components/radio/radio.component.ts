@@ -10,14 +10,14 @@ import { environment } from '../../../environments/environment';
 
 @Component({
 	selector: 'app-radio',
+	standalone: true,
 	templateUrl: './radio.component.html',
 	imports: [
 		environment.webComponents
 			? [DefaultComponent]
 			: [DefaultComponent, DBRadio, DBInfotext]
 	],
-	schemas: [CUSTOM_ELEMENTS_SCHEMA],
-	standalone: true
+	schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class RadioComponent {
 	variants = defaultComponentVariants;

@@ -60,11 +60,11 @@ export default function DBInput(props: DBInputProps) {
 		_messageId: undefined,
 		_validMessageId: undefined,
 		_invalidMessageId: undefined,
+		_invalidMessage: undefined,
 		_dataListId: undefined,
 		_descByIds: '',
 		_value: '',
 		_voiceOverFallback: '',
-		_invalidMessage: '',
 		hasValidState: () => {
 			return !!(props.validMessage ?? props.validation === 'valid');
 		},
@@ -171,6 +171,13 @@ export default function DBInput(props: DBInputProps) {
 		state._dataListId = mId + DEFAULT_DATALIST_ID_SUFFIX;
 		state._invalidMessage = props.invalidMessage || DEFAULT_INVALID_MESSAGE;
 	});
+
+	onUpdate(() => {
+		state._invalidMessage =
+			props.invalidMessage ||
+			_ref?.validationMessage ||
+			DEFAULT_INVALID_MESSAGE;
+	}, [_ref, props.invalidMessage]);
 
 	onUpdate(() => {
 		if (state._id) {
