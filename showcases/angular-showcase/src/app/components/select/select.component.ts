@@ -7,13 +7,13 @@ import { environment } from '../../../environments/environment';
 @Component({
 	selector: 'app-select',
 	templateUrl: './select.component.html',
+	standalone: true,
 	imports: [
 		environment.webComponents
 			? [DefaultComponent]
 			: [DefaultComponent, DBSelect]
 	],
-	schemas: environment.webComponents ? [CUSTOM_ELEMENTS_SCHEMA] : [],
-	standalone: true
+	schemas: environment.webComponents ? [CUSTOM_ELEMENTS_SCHEMA] : []
 })
 export class SelectComponent {
 	variants = defaultComponentVariants;

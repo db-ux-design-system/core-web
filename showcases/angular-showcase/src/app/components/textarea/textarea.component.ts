@@ -7,13 +7,13 @@ import { environment } from '../../../environments/environment';
 @Component({
 	selector: 'app-textarea',
 	templateUrl: './textarea.component.html',
+	standalone: true,
 	imports: [
 		environment.webComponents
 			? [DefaultComponent]
 			: [DefaultComponent, DBTextarea]
 	],
-	schemas: environment.webComponents ? [CUSTOM_ELEMENTS_SCHEMA] : [],
-	standalone: true
+	schemas: environment.webComponents ? [CUSTOM_ELEMENTS_SCHEMA] : []
 })
 export class TextareaComponent {
 	variants = defaultComponentVariants;
