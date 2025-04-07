@@ -1,1 +1,1 @@
-["Label True required edit text","t","Test selected","TODO: Add an invalidMessage","t"]
+["Label True required edit text","t","Test selected","Fill out this field","t"]
