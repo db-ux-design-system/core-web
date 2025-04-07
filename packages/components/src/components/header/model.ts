@@ -35,14 +35,14 @@ export type DBHeaderDefaultProps = {
 	/**
 	 * Open/closes the drawer for mobile header or if `forceMobile` is true.
 	 */
-	drawerOpen?: boolean;
+	drawerOpen?: boolean | string;
 
 	/**
 	 * Forces the header to use mobile layout for desktop as well.
 	 * You should only use this setting if you really can't provide a smaller navigation.
 	 * Overwrite size of the drawer with '--db-drawer-max-width: xxx'
 	 */
-	forceMobile?: boolean;
+	forceMobile?: boolean | string;
 
 	/**
 	 * This attribute sets the label for the burger menu button for mobile headers.

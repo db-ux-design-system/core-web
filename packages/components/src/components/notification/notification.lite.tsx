@@ -9,7 +9,7 @@ import {
 import { DBNotificationProps, DBNotificationState } from './model';
 import DBButton from '../button/button.lite';
 import { DEFAULT_CLOSE_BUTTON } from '../../shared/constants';
-import { cls, getHideProp, stringPropVisible } from '../../utils';
+import { cls, getBoolean, getHideProp, stringPropVisible } from '../../utils';
 import { ClickEvent } from '../../shared/model';
 
 useMetadata({});
@@ -55,7 +55,7 @@ export default function DBNotification(props: DBNotificationProps) {
 
 			<Slot name="link" />
 
-			<Show when={props.closeable}>
+			<Show when={getBoolean(props.closeable, 'closeable')}>
 				<DBButton
 					id={props.closeButtonId}
 					icon="cross"
