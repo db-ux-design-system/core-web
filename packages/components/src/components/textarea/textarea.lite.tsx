@@ -57,7 +57,6 @@ export default function DBTextarea(props: DBTextareaProps) {
 		_descByIds: '',
 		_value: '',
 		_voiceOverFallback: '',
-		_invalidMessage: '',
 		hasValidState: () => {
 			return !!(props.validMessage ?? props.validation === 'valid');
 		},

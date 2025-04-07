@@ -53,7 +53,6 @@ export default function DBCheckbox(props: DBCheckboxProps) {
 		_invalidMessage: undefined,
 		_descByIds: '',
 		_voiceOverFallback: '',
-		_invalidMessage: '',
 		hasValidState: () => {
 			return !!(props.validMessage ?? props.validation === 'valid');
 		},

@@ -63,7 +63,6 @@ export default function DBSelect(props: DBSelectProps) {
 		_value: '',
 		initialized: false,
 		_voiceOverFallback: '',
-		_invalidMessage: '',
 		hasValidState: () => {
 			return !!(props.validMessage ?? props.validation === 'valid');
 		},

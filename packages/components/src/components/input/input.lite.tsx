@@ -65,7 +65,6 @@ export default function DBInput(props: DBInputProps) {
 		_descByIds: '',
 		_value: '',
 		_voiceOverFallback: '',
-		_invalidMessage: '',
 		hasValidState: () => {
 			return !!(props.validMessage ?? props.validation === 'valid');
 		},
