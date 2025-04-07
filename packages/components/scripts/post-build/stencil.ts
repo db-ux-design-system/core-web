@@ -84,17 +84,7 @@ export default (tmp?: boolean) => {
 			processor: (input: string) => changeFile(upperComponentName, input)
 		});
 
-		const replacements: Overwrite[] = [
-			{ from: /ref=\{\(el\)/g, to: 'ref={(el:any)' },
-			{ from: 'for={', to: 'htmlFor={' },
-			{
-				from: 'onInput={(event) => this.handleChange(event)}',
-				to: 'onChange={(event) => this.handleChange(event)}'
-			},
-			{ from: /ReturnType<Required/g, to: 'Parameters' },
-			{ from: />\[/g, to: '[' },
-			{ from: /]>/g, to: ']>[number]' }
-		];
+		const replacements: Overwrite[] = [{ from: 'for={', to: 'htmlFor={' }];
 		replaceIndexFile(indexFile, componentName, upperComponentName);
 		runReplacements(replacements, component, 'stencil', file);
 	}
