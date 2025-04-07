@@ -6,7 +6,8 @@ import {
 	useDefaultProps,
 	useMetadata,
 	useRef,
-	useStore
+	useStore,
+	useTarget
 } from '@builder.io/mitosis';
 import { DBAccordionItemProps, DBAccordionItemState } from './model';
 import { cls, getBooleanAsString, uuid } from '../../utils';
@@ -28,11 +29,11 @@ export default function DBAccordionItem(props: DBAccordionItemProps) {
 		handleNameAttribute: () => {
 			if (_ref) {
 				const setAttribute = _ref.setAttribute;
-				_ref.setAttribute = function (name: string, value: string) {
-					if (name === 'name') {
+				_ref.setAttribute = (attribute: string, value: string) => {
+					if (attribute === 'name') {
 						state._name = value;
 					} else {
-						return setAttribute.call(_ref, name, value);
+						return setAttribute.call(_ref, attribute, value);
 					}
 				};
 			}
@@ -59,7 +60,7 @@ export default function DBAccordionItem(props: DBAccordionItemProps) {
 
 	onUpdate(() => {
 		if (_ref && state.initialized) {
-			state.handleNameAttribute();
+			useTarget({ react: () => state.handleNameAttribute() });
 		}
 	}, [_ref, state.initialized]);
 

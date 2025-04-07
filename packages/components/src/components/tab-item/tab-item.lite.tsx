@@ -32,11 +32,11 @@ export default function DBTabItem(props: DBTabItemProps) {
 		handleNameAttribute: () => {
 			if (_ref) {
 				const setAttribute = _ref.setAttribute;
-				_ref.setAttribute = function (name: string, value: string) {
-					if (name === 'name') {
+				_ref.setAttribute = (attribute: string, value: string) => {
+					if (attribute === 'name') {
 						state._name = value;
 					} else {
-						return setAttribute.call(_ref, name, value);
+						return setAttribute.call(_ref, attribute, value);
 					}
 				};
 			}
@@ -79,9 +79,9 @@ export default function DBTabItem(props: DBTabItemProps) {
 		if (state.initialized && _ref) {
 			if (props.active) {
 				_ref.click();
-
-				state.handleNameAttribute();
 			}
+
+			useTarget({ react: () => state.handleNameAttribute() });
 			state.initialized = false;
 		}
 	}, [_ref, state.initialized]);
