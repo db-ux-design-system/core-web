@@ -13,6 +13,7 @@ import { environment } from '../../../environments/environment';
 			? [DefaultComponent]
 			: [DefaultComponent, DBSwitch, DBInfotext]
 	],
+	standalone: true,
 	schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class SwitchComponent {

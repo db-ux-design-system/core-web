@@ -10,6 +10,7 @@ import { environment } from '../../../environments/environment';
 
 @Component({
 	selector: 'app-radio',
+	standalone: true,
 	templateUrl: './radio.component.html',
 	imports: [
 		environment.webComponents

@@ -7,6 +7,7 @@ import { environment } from '../../../environments/environment';
 @Component({
 	selector: 'app-select',
 	templateUrl: './select.component.html',
+	standalone: true,
 	imports: [
 		environment.webComponents
 			? [DefaultComponent]

@@ -17,6 +17,7 @@ import { RadiosComponent } from '../form/radios/radios.component';
 @Component({
 	selector: 'app-home',
 	templateUrl: './home.component.html',
+	standalone: true,
 	imports: [
 		InputsComponent,
 		FormComponent,
