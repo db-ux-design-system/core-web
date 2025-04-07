@@ -103,12 +103,14 @@
     "tsx": "^4.19.3",
     "typescript": "^5.4.5",
     "validate-branch-name": "^1.3.2",
+    "vite": "^6.2.5",
     "vitest": "^3.1.1",
     "xo": "^0.60.0",
     "zone.js": "~0.15.0"
   },
   "overrides": {
-    "cross-spawn": "~7.0.5"
+    "cross-spawn": "~7.0.5",
+    "vite": "$vite"
   },
   "validate-branch-name": {
     "pattern": "((dbux-3)|(dependabot-)|^((test|feat|fix|chore|docs|refactor|style|ci|perf|[0-9]+)\\-[a-zA-Z0-9\\-]+)$)",
