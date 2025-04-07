@@ -311,10 +311,7 @@ $input-valid-types:
 		appearance: none;
 		max-inline-size: 100%;
 		inline-size: 100%;
-		min-inline-size: var(
-			--db-form-component-min-inline-size,
-			#{variables.$db-sizing-lg}
-		);
+		min-inline-size: $db-min-inline-size;
 
 		/* stylelint-disable-next-line db-ux/use-spacings */
 		padding-inline: var(
