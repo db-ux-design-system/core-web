@@ -73,6 +73,11 @@ html {
 	font-size: inherit;
 	line-height: inherit;
 	font-family: inherit;
+
+	/* Use this to get similar fonts in all browser */
+	-webkit-font-smoothing: antialiased;
+	font-synthesis: none;
+	text-rendering: optimizeLegibility;
 }
 
 *,
