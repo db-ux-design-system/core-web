@@ -20,6 +20,16 @@ module.exports = {
 				 */
 				'@typescript-eslint/no-unused-vars': 'off'
 			}
+		},
+		{
+			files: ['**/configs/**/*.cjs'],
+			rules: {
+				/**
+				 * Mitosis requires CommonJS modules
+				 */
+				'@typescript-eslint/no-require-imports': 'off',
+				'no-undef': 'off'
+			}
 		}
 	],
 	env: {
