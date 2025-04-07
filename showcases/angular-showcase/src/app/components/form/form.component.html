@@ -128,7 +128,7 @@
 							<db-tag
 								[semantic]="i === 0 ? undefined : 'successful'"
 								[emphasis]="i === 2 ? 'strong' : 'weak'"
-								><db-checkbox (onChange)="changeTags(tag)">{{
+								><db-checkbox (change)="changeTags(tag)">{{
 									getTagName(tag)
 								}}</db-checkbox></db-tag
 							>
@@ -168,7 +168,7 @@
 				<db-checkbox
 					name="checkbox4"
 					label="Checkbox with defaultValue"
-					[defaultChecked]="true"
+					[checked]="true"
 				></db-checkbox>
 				<p>Select:</p>
 				<db-select
