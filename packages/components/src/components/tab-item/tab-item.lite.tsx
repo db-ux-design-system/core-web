@@ -36,7 +36,7 @@ export default function DBTabItem(props: DBTabItemProps) {
 					if (attribute === 'name') {
 						state._name = value;
 					} else {
-						return setAttribute.call(_ref, attribute, value);
+						setAttribute.call(_ref, attribute, value);
 					}
 				};
 			}
