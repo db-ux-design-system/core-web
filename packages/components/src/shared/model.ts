@@ -427,7 +427,7 @@ export type FormMessageProps = {
 export type FromValidState = {
 	hasValidState: () => boolean;
 	handleValidation: () => void;
-	_invalidMessage: string;
+	_invalidMessage?: string;
 };
 
 export type FormState = {

@@ -174,8 +174,8 @@ export default function DBInput(props: DBInputProps) {
 
 	onUpdate(() => {
 		state._invalidMessage =
-			props.invalidMessage ??
-			_ref?.validationMessage ??
+			props.invalidMessage ||
+			_ref?.validationMessage ||
 			DEFAULT_INVALID_MESSAGE;
 	}, [_ref, props.invalidMessage]);
 
