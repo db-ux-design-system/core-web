@@ -26,8 +26,21 @@ export default function DBTabItem(props: DBTabItemProps) {
 	const _ref = useRef<HTMLInputElement | null>(null);
 	// jscpd:ignore-start
 	const state = useStore<DBTabItemState>({
-		initialized: false,
 		_selected: false,
+		_name: undefined,
+		initialized: false,
+		handleNameAttribute: () => {
+			if (_ref) {
+				const setAttribute = _ref.setAttribute;
+				_ref.setAttribute = function (name: string, value: string) {
+					if (name === 'name') {
+						state._name = value;
+					} else {
+						return setAttribute.call(_ref, name, value);
+					}
+				};
+			}
+		},
 		handleChange: (event: any) => {
 			if (props.onChange) {
 				props.onChange(event);
@@ -63,8 +76,12 @@ export default function DBTabItem(props: DBTabItemProps) {
 	// jscpd:ignore-end
 
 	onUpdate(() => {
-		if (props.active && state.initialized && _ref) {
-			_ref.click();
+		if (state.initialized && _ref) {
+			if (props.active) {
+				_ref.click();
+
+				state.handleNameAttribute();
+			}
 			state.initialized = false;
 		}
 	}, [_ref, state.initialized]);
@@ -86,6 +103,7 @@ export default function DBTabItem(props: DBTabItemProps) {
 					ref={_ref}
 					type="radio"
 					role="tab"
+					name={props.name ?? state._name}
 					id={props.id}
 					onInput={(event: any) => state.handleChange(event)}
 				/>

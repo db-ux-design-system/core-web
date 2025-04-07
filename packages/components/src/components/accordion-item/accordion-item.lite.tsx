@@ -1,5 +1,6 @@
 import {
 	onMount,
+	onUpdate,
 	Show,
 	Slot,
 	useDefaultProps,
@@ -22,6 +23,20 @@ export default function DBAccordionItem(props: DBAccordionItemProps) {
 	const state = useStore<DBAccordionItemState>({
 		_id: DEFAULT_ID,
 		_open: false,
+		_name: undefined,
+		initialized: false,
+		handleNameAttribute: () => {
+			if (_ref) {
+				const setAttribute = _ref.setAttribute;
+				_ref.setAttribute = function (name: string, value: string) {
+					if (name === 'name') {
+						state._name = value;
+					} else {
+						return setAttribute.call(_ref, name, value);
+					}
+				};
+			}
+		},
 		toggle: (event: ClickEvent<HTMLElement>) => {
 			// We need this for react https://github.com/facebook/react/issues/15486#issuecomment-488028431
 			event?.preventDefault();
@@ -38,7 +53,16 @@ export default function DBAccordionItem(props: DBAccordionItemProps) {
 		if (props.defaultOpen) {
 			state._open = props.defaultOpen;
 		}
+
+		state.initialized = true;
 	});
+
+	onUpdate(() => {
+		if (_ref && state.initialized) {
+			state.handleNameAttribute();
+		}
+	}, [_ref, state.initialized]);
+
 	// jscpd:ignore-end
 
 	return (
@@ -46,6 +70,8 @@ export default function DBAccordionItem(props: DBAccordionItemProps) {
 			<details
 				aria-disabled={getBooleanAsString(props.disabled)}
 				ref={_ref}
+				/* @ts-ignore */
+				name={props.name ?? state._name}
 				open={state._open}>
 				<summary onClick={(event) => state.toggle(event)}>
 					<Show when={props.headlinePlain}>
