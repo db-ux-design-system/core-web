@@ -12,7 +12,7 @@
 			icon="x_placeholder"
 			name="input-name"
 			[value]="plain"
-			(change)="plain = $event.target.value"
+			(change)="handlePlainChange($event)"
 		/>
 		<db-input
 			label="ngModel"

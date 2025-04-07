@@ -1,5 +1,5 @@
 /* We use this for IntelliJ IDEs to fetch xo config */
-export default {
+const config = {
 	eslintConfig: {
 		parser: 'babel-eslint',
 		env: {
@@ -9,3 +9,5 @@ export default {
 		extends: ['./node_modules/xo/config/plugins.js']
 	}
 };
+
+export default config;
