@@ -187,7 +187,7 @@ export const getComponents = (): Component[] => [
 	{
 		name: 'drawer',
 		overwrites: {
-			angular: [{ from: 'HTMLElement', to: 'HTMLDialogElement' }]
+			angular: [{ from: '<HTMLElement>', to: '<HTMLDialogElement>' }]
 		},
 		config: {
 			react: {
