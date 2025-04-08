@@ -427,7 +427,7 @@ export type FormMessageProps = {
 export type FromValidState = {
 	hasValidState: () => boolean;
 	handleValidation: () => void;
-	_invalidMessage: string;
+	_invalidMessage?: string;
 };
 
 export type FormState = {
@@ -436,7 +436,7 @@ export type FormState = {
 	_invalidMessageId?: string;
 	_descByIds?: string;
 	_value?: string;
-
+	_invalidMessage?: string;
 	/**
 	 * https://www.davidmacd.com/blog/test-aria-describedby-errormessage-aria-live.html
 	 * Currently VoiceOver isn't supporting changes from aria-describedby.

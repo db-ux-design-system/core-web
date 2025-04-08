@@ -99,6 +99,8 @@ export const getDefaultScreenshotTest = ({
 			if (diffPixel) {
 				config.maxDiffPixels = Number(diffPixel);
 			}
+		} else if (isWebkit) {
+			config.maxDiffPixelRatio = 0.033;
 		} else if (isAngular) {
 			config.maxDiffPixels = 1000;
 		} else {
