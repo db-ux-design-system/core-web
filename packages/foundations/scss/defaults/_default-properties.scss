@@ -4611,7 +4611,7 @@
 
 @property --db-neutral-0 {
 	syntax: "<color>";
-	initial-value: #0d0e11;
+	initial-value: #0d0e10;
 	inherits: true;
 }
 
@@ -4629,7 +4629,7 @@
 
 @property --db-neutral-3 {
 	syntax: "<color>";
-	initial-value: #2e3036;
+	initial-value: #2e3035;
 	inherits: true;
 }
 
@@ -4641,13 +4641,13 @@
 
 @property --db-neutral-5 {
 	syntax: "<color>";
-	initial-value: #484b53;
+	initial-value: #484b52;
 	inherits: true;
 }
 
 @property --db-neutral-6 {
 	syntax: "<color>";
-	initial-value: #5a5e68;
+	initial-value: #5a5e67;
 	inherits: true;
 }
 
@@ -4659,19 +4659,19 @@
 
 @property --db-neutral-8 {
 	syntax: "<color>";
-	initial-value: #8a919e;
+	initial-value: #8b919d;
 	inherits: true;
 }
 
 @property --db-neutral-9 {
 	syntax: "<color>";
-	initial-value: #a6abb6;
+	initial-value: #a6abb5;
 	inherits: true;
 }
 
 @property --db-neutral-10 {
 	syntax: "<color>";
-	initial-value: #c3c7ce;
+	initial-value: #c3c7cd;
 	inherits: true;
 }
 
@@ -4701,43 +4701,43 @@
 
 @property --db-neutral-origin-base {
 	syntax: "<color>";
-	initial-value: #646973;
+	initial-value: #232529;
 	inherits: true;
 }
 
 @property --db-neutral-origin-light-default {
 	syntax: "<color>";
-	initial-value: #646973;
+	initial-value: #232529;
 	inherits: true;
 }
 
 @property --db-neutral-origin-light-hovered {
 	syntax: "<color>";
-	initial-value: #4d5159;
+	initial-value: #595e66;
 	inherits: true;
 }
 
 @property --db-neutral-origin-light-pressed {
 	syntax: "<color>";
-	initial-value: #373a40;
+	initial-value: #383b40;
 	inherits: true;
 }
 
 @property --db-neutral-origin-dark-default {
 	syntax: "<color>";
-	initial-value: #646973;
+	initial-value: #232529;
 	inherits: true;
 }
 
 @property --db-neutral-origin-dark-hovered {
 	syntax: "<color>";
-	initial-value: #7c828e;
+	initial-value: #595e66;
 	inherits: true;
 }
 
 @property --db-neutral-origin-dark-pressed {
 	syntax: "<color>";
-	initial-value: #969ca9;
+	initial-value: #383b40;
 	inherits: true;
 }
 
@@ -4857,13 +4857,13 @@
 
 @property --db-brand-origin-light-hovered {
 	syntax: "<color>";
-	initial-value: #3834ac;
+	initial-value: #1d1b64;
 	inherits: true;
 }
 
 @property --db-brand-origin-light-pressed {
 	syntax: "<color>";
-	initial-value: #25237b;
+	initial-value: #3834ac;
 	inherits: true;
 }
 
@@ -4875,13 +4875,13 @@
 
 @property --db-brand-origin-dark-hovered {
 	syntax: "<color>";
-	initial-value: #3834ac;
+	initial-value: #1d1b64;
 	inherits: true;
 }
 
 @property --db-brand-origin-dark-pressed {
 	syntax: "<color>";
-	initial-value: #25237b;
+	initial-value: #3834ac;
 	inherits: true;
 }
 
@@ -4899,151 +4899,151 @@
 
 @property --db-informational-0 {
 	syntax: "<color>";
-	initial-value: #011018;
+	initial-value: #00101c;
 	inherits: true;
 }
 
 @property --db-informational-1 {
 	syntax: "<color>";
-	initial-value: #031a25;
+	initial-value: #00192a;
 	inherits: true;
 }
 
 @property --db-informational-2 {
 	syntax: "<color>";
-	initial-value: #062736;
+	initial-value: #00263d;
 	inherits: true;
 }
 
 @property --db-informational-3 {
 	syntax: "<color>";
-	initial-value: #0a3447;
+	initial-value: #003450;
 	inherits: true;
 }
 
 @property --db-informational-4 {
 	syntax: "<color>";
-	initial-value: #0f4259;
+	initial-value: #004164;
 	inherits: true;
 }
 
 @property --db-informational-5 {
 	syntax: "<color>";
-	initial-value: #14516c;
+	initial-value: #005078;
 	inherits: true;
 }
 
 @property --db-informational-6 {
 	syntax: "<color>";
-	initial-value: #1b6586;
+	initial-value: #006495;
 	inherits: true;
 }
 
 @property --db-informational-7 {
 	syntax: "<color>";
-	initial-value: #257fa8;
+	initial-value: #007eba;
 	inherits: true;
 }
 
 @property --db-informational-8 {
 	syntax: "<color>";
-	initial-value: #2e9acb;
+	initial-value: #0099e1;
 	inherits: true;
 }
 
 @property --db-informational-9 {
 	syntax: "<color>";
-	initial-value: #38b6ef;
+	initial-value: #41b3ff;
 	inherits: true;
 }
 
 @property --db-informational-10 {
 	syntax: "<color>";
-	initial-value: #89cffa;
+	initial-value: #96cbff;
 	inherits: true;
 }
 
 @property --db-informational-11 {
 	syntax: "<color>";
-	initial-value: #cae6fd;
+	initial-value: #cfe5ff;
 	inherits: true;
 }
 
 @property --db-informational-12 {
 	syntax: "<color>";
-	initial-value: #e0f0fe;
+	initial-value: #e3efff;
 	inherits: true;
 }
 
 @property --db-informational-13 {
 	syntax: "<color>";
-	initial-value: #ebf5fe;
+	initial-value: #ecf4ff;
 	inherits: true;
 }
 
 @property --db-informational-14 {
 	syntax: "<color>";
-	initial-value: #f5faff;
+	initial-value: #f6faff;
 	inherits: true;
 }
 
 @property --db-informational-origin-base {
 	syntax: "<color>";
-	initial-value: #309fd1;
+	initial-value: #00aeff;
 	inherits: true;
 }
 
 @property --db-informational-origin-light-default {
 	syntax: "<color>";
-	initial-value: #309fd1;
+	initial-value: #00aeff;
 	inherits: true;
 }
 
 @property --db-informational-origin-light-hovered {
 	syntax: "<color>";
-	initial-value: #2684ae;
+	initial-value: #c2dfff;
 	inherits: true;
 }
 
 @property --db-informational-origin-light-pressed {
 	syntax: "<color>";
-	initial-value: #1d698c;
+	initial-value: #87c6ff;
 	inherits: true;
 }
 
 @property --db-informational-origin-dark-default {
 	syntax: "<color>";
-	initial-value: #309fd1;
+	initial-value: #00aeff;
 	inherits: true;
 }
 
 @property --db-informational-origin-dark-hovered {
 	syntax: "<color>";
-	initial-value: #3abbf5;
+	initial-value: #c2dfff;
 	inherits: true;
 }
 
 @property --db-informational-origin-dark-pressed {
 	syntax: "<color>";
-	initial-value: #96d2fb;
+	initial-value: #87c6ff;
 	inherits: true;
 }
 
 @property --db-informational-on-origin-light-default {
 	syntax: "<color>";
-	initial-value: #01080f;
+	initial-value: #000812;
 	inherits: true;
 }
 
 @property --db-informational-on-origin-dark-default {
 	syntax: "<color>";
-	initial-value: #01080f;
+	initial-value: #000812;
 	inherits: true;
 }
 
 @property --db-warning-0 {
 	syntax: "<color>";
-	initial-value: #190b00;
+	initial-value: #1a0b00;
 	inherits: true;
 }
 
@@ -5073,7 +5073,7 @@
 
 @property --db-warning-5 {
 	syntax: "<color>";
-	initial-value: #6f4000;
+	initial-value: #704000;
 	inherits: true;
 }
 
@@ -5103,7 +5103,7 @@
 
 @property --db-warning-10 {
 	syntax: "<color>";
-	initial-value: #ffb782;
+	initial-value: #ffb783;
 	inherits: true;
 }
 
@@ -5133,43 +5133,43 @@
 
 @property --db-warning-origin-base {
 	syntax: "<color>";
-	initial-value: #f39200;
+	initial-value: #f90;
 	inherits: true;
 }
 
 @property --db-warning-origin-light-default {
 	syntax: "<color>";
-	initial-value: #f39200;
+	initial-value: #f90;
 	inherits: true;
 }
 
 @property --db-warning-origin-light-hovered {
 	syntax: "<color>";
-	initial-value: #ce7b00;
+	initial-value: #ffe4d5;
 	inherits: true;
 }
 
 @property --db-warning-origin-light-pressed {
 	syntax: "<color>";
-	initial-value: #aa6500;
+	initial-value: #ffbf95;
 	inherits: true;
 }
 
 @property --db-warning-origin-dark-default {
 	syntax: "<color>";
-	initial-value: #f39200;
+	initial-value: #f90;
 	inherits: true;
 }
 
 @property --db-warning-origin-dark-hovered {
 	syntax: "<color>";
-	initial-value: #ffb47b;
+	initial-value: #ffe4d5;
 	inherits: true;
 }
 
 @property --db-warning-origin-dark-pressed {
 	syntax: "<color>";
-	initial-value: #ffd9c3;
+	initial-value: #ffbf95;
 	inherits: true;
 }
 
@@ -5187,157 +5187,157 @@
 
 @property --db-successful-0 {
 	syntax: "<color>";
-	initial-value: #061100;
+	initial-value: #051100;
 	inherits: true;
 }
 
 @property --db-successful-1 {
 	syntax: "<color>";
-	initial-value: #0c1b01;
+	initial-value: #091c00;
 	inherits: true;
 }
 
 @property --db-successful-2 {
 	syntax: "<color>";
-	initial-value: #142901;
+	initial-value: #112900;
 	inherits: true;
 }
 
 @property --db-successful-3 {
 	syntax: "<color>";
-	initial-value: #1d3702;
+	initial-value: #193800;
 	inherits: true;
 }
 
 @property --db-successful-4 {
 	syntax: "<color>";
-	initial-value: #264604;
+	initial-value: #214600;
 	inherits: true;
 }
 
 @property --db-successful-5 {
 	syntax: "<color>";
-	initial-value: #305506;
+	initial-value: #2a5600;
 	inherits: true;
 }
 
 @property --db-successful-6 {
 	syntax: "<color>";
-	initial-value: #3d6a09;
+	initial-value: #366b00;
 	inherits: true;
 }
 
 @property --db-successful-7 {
 	syntax: "<color>";
-	initial-value: #4e850f;
+	initial-value: #458600;
 	inherits: true;
 }
 
 @property --db-successful-8 {
 	syntax: "<color>";
-	initial-value: #60a114;
+	initial-value: #55a300;
 	inherits: true;
 }
 
 @property --db-successful-9 {
 	syntax: "<color>";
-	initial-value: #72bf1a;
+	initial-value: #65c101;
 	inherits: true;
 }
 
 @property --db-successful-10 {
 	syntax: "<color>";
-	initial-value: #85dd20;
+	initial-value: #76df01;
 	inherits: true;
 }
 
 @property --db-successful-11 {
 	syntax: "<color>";
-	initial-value: #99fc26;
+	initial-value: #88fe01;
 	inherits: true;
 }
 
 @property --db-successful-12 {
 	syntax: "<color>";
-	initial-value: #c3ff9d;
+	initial-value: #bfffa3;
 	inherits: true;
 }
 
 @property --db-successful-13 {
 	syntax: "<color>";
-	initial-value: #d9ffc4;
+	initial-value: #d7ffc7;
 	inherits: true;
 }
 
 @property --db-successful-14 {
 	syntax: "<color>";
-	initial-value: #edffe4;
+	initial-value: #ecffe5;
 	inherits: true;
 }
 
 @property --db-successful-origin-base {
 	syntax: "<color>";
-	initial-value: #63a615;
+	initial-value: #85f901;
 	inherits: true;
 }
 
 @property --db-successful-origin-light-default {
 	syntax: "<color>";
-	initial-value: #63a615;
+	initial-value: #85f901;
 	inherits: true;
 }
 
 @property --db-successful-origin-light-hovered {
 	syntax: "<color>";
-	initial-value: #51890f;
+	initial-value: #63bc01;
 	inherits: true;
 }
 
 @property --db-successful-origin-light-pressed {
 	syntax: "<color>";
-	initial-value: #406e0a;
+	initial-value: #74da01;
 	inherits: true;
 }
 
 @property --db-successful-origin-dark-default {
 	syntax: "<color>";
-	initial-value: #63a615;
+	initial-value: #85f901;
 	inherits: true;
 }
 
 @property --db-successful-origin-dark-hovered {
 	syntax: "<color>";
-	initial-value: #75c31b;
+	initial-value: #63bc01;
 	inherits: true;
 }
 
 @property --db-successful-origin-dark-pressed {
 	syntax: "<color>";
-	initial-value: #88e221;
+	initial-value: #74da01;
 	inherits: true;
 }
 
 @property --db-successful-on-origin-light-default {
 	syntax: "<color>";
-	initial-value: #030900;
+	initial-value: #020a00;
 	inherits: true;
 }
 
 @property --db-successful-on-origin-dark-default {
 	syntax: "<color>";
-	initial-value: #030900;
+	initial-value: #020a00;
 	inherits: true;
 }
 
 @property --db-critical-0 {
 	syntax: "<color>";
-	initial-value: #280001;
+	initial-value: #270001;
 	inherits: true;
 }
 
 @property --db-critical-1 {
 	syntax: "<color>";
-	initial-value: #390001;
+	initial-value: #390002;
 	inherits: true;
 }
 
@@ -5349,31 +5349,31 @@
 
 @property --db-critical-3 {
 	syntax: "<color>";
-	initial-value: #690004;
+	initial-value: #690005;
 	inherits: true;
 }
 
 @property --db-critical-4 {
 	syntax: "<color>";
-	initial-value: #820007;
+	initial-value: #820008;
 	inherits: true;
 }
 
 @property --db-critical-5 {
 	syntax: "<color>";
-	initial-value: #9c000a;
+	initial-value: #9c000c;
 	inherits: true;
 }
 
 @property --db-critical-6 {
 	syntax: "<color>";
-	initial-value: #c00010;
+	initial-value: #c00111;
 	inherits: true;
 }
 
 @property --db-critical-7 {
 	syntax: "<color>";
-	initial-value: #ef0016;
+	initial-value: #ef0119;
 	inherits: true;
 }
 
@@ -5421,61 +5421,61 @@
 
 @property --db-critical-origin-base {
 	syntax: "<color>";
-	initial-value: #ec0016;
+	initial-value: #fe011b;
 	inherits: true;
 }
 
 @property --db-critical-origin-light-default {
 	syntax: "<color>";
-	initial-value: #ec0016;
+	initial-value: #fe011b;
 	inherits: true;
 }
 
 @property --db-critical-origin-light-hovered {
 	syntax: "<color>";
-	initial-value: #bd000f;
+	initial-value: #ff9698;
 	inherits: true;
 }
 
 @property --db-critical-origin-light-pressed {
 	syntax: "<color>";
-	initial-value: #900009;
+	initial-value: #ff6669;
 	inherits: true;
 }
 
 @property --db-critical-origin-dark-default {
 	syntax: "<color>";
-	initial-value: #ec0016;
+	initial-value: #fe011b;
 	inherits: true;
 }
 
 @property --db-critical-origin-dark-hovered {
 	syntax: "<color>";
-	initial-value: #ff4f53;
+	initial-value: #ff9698;
 	inherits: true;
 }
 
 @property --db-critical-origin-dark-pressed {
 	syntax: "<color>";
-	initial-value: #ff8587;
+	initial-value: #ff6669;
 	inherits: true;
 }
 
 @property --db-critical-on-origin-light-default {
 	syntax: "<color>";
-	initial-value: #fff;
+	initial-value: #1a0000;
 	inherits: true;
 }
 
 @property --db-critical-on-origin-dark-default {
 	syntax: "<color>";
-	initial-value: #fff;
+	initial-value: #1a0000;
 	inherits: true;
 }
 
 @property --db-yellow-0 {
 	syntax: "<color>";
-	initial-value: #130e00;
+	initial-value: #120e00;
 	inherits: true;
 }
 
@@ -5517,13 +5517,13 @@
 
 @property --db-yellow-7 {
 	syntax: "<color>";
-	initial-value: #8c7600;
+	initial-value: #8b7600;
 	inherits: true;
 }
 
 @property --db-yellow-8 {
 	syntax: "<color>";
-	initial-value: #aa8f00;
+	initial-value: #a98f00;
 	inherits: true;
 }
 
@@ -5535,73 +5535,73 @@
 
 @property --db-yellow-10 {
 	syntax: "<color>";
-	initial-value: #e8c400;
+	initial-value: #e7c400;
 	inherits: true;
 }
 
 @property --db-yellow-11 {
 	syntax: "<color>";
-	initial-value: #ffe17c;
+	initial-value: #ffe177;
 	inherits: true;
 }
 
 @property --db-yellow-12 {
 	syntax: "<color>";
-	initial-value: #ffedbc;
+	initial-value: #ffedbb;
 	inherits: true;
 }
 
 @property --db-yellow-13 {
 	syntax: "<color>";
-	initial-value: #fff3d5;
+	initial-value: #fff3d4;
 	inherits: true;
 }
 
 @property --db-yellow-14 {
 	syntax: "<color>";
-	initial-value: #fff9eb;
+	initial-value: #fff9ea;
 	inherits: true;
 }
 
 @property --db-yellow-origin-base {
 	syntax: "<color>";
-	initial-value: #ffd800;
+	initial-value: #ffd900;
 	inherits: true;
 }
 
 @property --db-yellow-origin-light-default {
 	syntax: "<color>";
-	initial-value: #ffd800;
+	initial-value: #ffd900;
 	inherits: true;
 }
 
 @property --db-yellow-origin-light-hovered {
 	syntax: "<color>";
-	initial-value: #dfbc00;
+	initial-value: #c0a300;
 	inherits: true;
 }
 
 @property --db-yellow-origin-light-pressed {
 	syntax: "<color>";
-	initial-value: #bfa200;
+	initial-value: #dfbd00;
 	inherits: true;
 }
 
 @property --db-yellow-origin-dark-default {
 	syntax: "<color>";
-	initial-value: #ffd800;
+	initial-value: #ffd900;
 	inherits: true;
 }
 
 @property --db-yellow-origin-dark-hovered {
 	syntax: "<color>";
-	initial-value: #dfbc00;
+	initial-value: #c0a300;
 	inherits: true;
 }
 
 @property --db-yellow-origin-dark-pressed {
 	syntax: "<color>";
-	initial-value: #bfa200;
+	initial-value: #dfbd00;
 	inherits: true;
 }
 
@@ -5619,7 +5619,7 @@
 
 @property --db-orange-0 {
 	syntax: "<color>";
-	initial-value: #190b00;
+	initial-value: #1a0b00;
 	inherits: true;
 }
 
@@ -5649,7 +5649,7 @@
 
 @property --db-orange-5 {
 	syntax: "<color>";
-	initial-value: #6f4000;
+	initial-value: #704000;
 	inherits: true;
 }
 
@@ -5679,7 +5679,7 @@
 
 @property --db-orange-10 {
 	syntax: "<color>";
-	initial-value: #ffb782;
+	initial-value: #ffb783;
 	inherits: true;
 }
 
@@ -5709,43 +5709,43 @@
 
 @property --db-orange-origin-base {
 	syntax: "<color>";
-	initial-value: #f39200;
+	initial-value: #f90;
 	inherits: true;
 }
 
 @property --db-orange-origin-light-default {
 	syntax: "<color>";
-	initial-value: #f39200;
+	initial-value: #f90;
 	inherits: true;
 }
 
 @property --db-orange-origin-light-hovered {
 	syntax: "<color>";
-	initial-value: #ce7b00;
+	initial-value: #ffe4d5;
 	inherits: true;
 }
 
 @property --db-orange-origin-light-pressed {
 	syntax: "<color>";
-	initial-value: #aa6500;
+	initial-value: #ffbf95;
 	inherits: true;
 }
 
 @property --db-orange-origin-dark-default {
 	syntax: "<color>";
-	initial-value: #f39200;
+	initial-value: #f90;
 	inherits: true;
 }
 
 @property --db-orange-origin-dark-hovered {
 	syntax: "<color>";
-	initial-value: #ffb47b;
+	initial-value: #ffe4d5;
 	inherits: true;
 }
 
 @property --db-orange-origin-dark-pressed {
 	syntax: "<color>";
-	initial-value: #ffd9c3;
+	initial-value: #ffbf95;
 	inherits: true;
 }
 
@@ -5793,7 +5793,7 @@
 
 @property --db-red-5 {
 	syntax: "<color>";
-	initial-value: #9c000a;
+	initial-value: #9c000b;
 	inherits: true;
 }
 
@@ -5805,7 +5805,7 @@
 
 @property --db-red-7 {
 	syntax: "<color>";
-	initial-value: #ef0016;
+	initial-value: #ef0017;
 	inherits: true;
 }
 
@@ -5853,421 +5853,421 @@
 
 @property --db-red-origin-base {
 	syntax: "<color>";
-	initial-value: #ec0016;
+	initial-value: #ff0019;
 	inherits: true;
 }
 
 @property --db-red-origin-light-default {
 	syntax: "<color>";
-	initial-value: #ec0016;
+	initial-value: #ff0019;
 	inherits: true;
 }
 
 @property --db-red-origin-light-hovered {
 	syntax: "<color>";
-	initial-value: #bd000f;
+	initial-value: #ff9798;
 	inherits: true;
 }
 
 @property --db-red-origin-light-pressed {
 	syntax: "<color>";
-	initial-value: #900009;
+	initial-value: #ff676a;
 	inherits: true;
 }
 
 @property --db-red-origin-dark-default {
 	syntax: "<color>";
-	initial-value: #ec0016;
+	initial-value: #ff0019;
 	inherits: true;
 }
 
 @property --db-red-origin-dark-hovered {
 	syntax: "<color>";
-	initial-value: #ff4f53;
+	initial-value: #ff9798;
 	inherits: true;
 }
 
 @property --db-red-origin-dark-pressed {
 	syntax: "<color>";
-	initial-value: #ff8587;
+	initial-value: #ff676a;
 	inherits: true;
 }
 
 @property --db-red-on-origin-light-default {
 	syntax: "<color>";
-	initial-value: #fff;
+	initial-value: #1a0000;
 	inherits: true;
 }
 
 @property --db-red-on-origin-dark-default {
 	syntax: "<color>";
-	initial-value: #fff;
+	initial-value: #1a0000;
 	inherits: true;
 }
 
 @property --db-pink-0 {
 	syntax: "<color>";
-	initial-value: #220310;
+	initial-value: #26000c;
 	inherits: true;
 }
 
 @property --db-pink-1 {
 	syntax: "<color>";
-	initial-value: #32061b;
+	initial-value: #380014;
 	inherits: true;
 }
 
 @property --db-pink-2 {
 	syntax: "<color>";
-	initial-value: #460c28;
+	initial-value: #4e0020;
 	inherits: true;
 }
 
 @property --db-pink-3 {
 	syntax: "<color>";
-	initial-value: #5c1335;
+	initial-value: #66002b;
 	inherits: true;
 }
 
 @property --db-pink-4 {
 	syntax: "<color>";
-	initial-value: #731a44;
+	initial-value: #7e0037;
 	inherits: true;
 }
 
 @property --db-pink-5 {
 	syntax: "<color>";
-	initial-value: #8a2153;
+	initial-value: #980044;
 	inherits: true;
 }
 
 @property --db-pink-6 {
 	syntax: "<color>";
-	initial-value: #aa2b67;
+	initial-value: #b05;
 	inherits: true;
 }
 
 @property --db-pink-7 {
 	syntax: "<color>";
-	initial-value: #d43882;
+	initial-value: #e9006c;
 	inherits: true;
 }
 
 @property --db-pink-8 {
 	syntax: "<color>";
-	initial-value: #ed5c9b;
+	initial-value: #ff4c87;
 	inherits: true;
 }
 
 @property --db-pink-9 {
 	syntax: "<color>";
-	initial-value: #f18cb2;
+	initial-value: #ff85a5;
 	inherits: true;
 }
 
 @property --db-pink-10 {
 	syntax: "<color>";
-	initial-value: #f5b5cb;
+	initial-value: #ffb1c3;
 	inherits: true;
 }
 
 @property --db-pink-11 {
 	syntax: "<color>";
-	initial-value: #fadbe4;
+	initial-value: #ffd9e1;
 	inherits: true;
 }
 
 @property --db-pink-12 {
 	syntax: "<color>";
-	initial-value: #fce9ef;
+	initial-value: #ffe8ed;
 	inherits: true;
 }
 
 @property --db-pink-13 {
 	syntax: "<color>";
-	initial-value: #fdf1f4;
+	initial-value: #fff0f3;
 	inherits: true;
 }
 
 @property --db-pink-14 {
 	syntax: "<color>";
-	initial-value: #fef8fa;
+	initial-value: #fff7f9;
 	inherits: true;
 }
 
 @property --db-pink-origin-base {
 	syntax: "<color>";
-	initial-value: #e93e8f;
+	initial-value: #f07;
 	inherits: true;
 }
 
 @property --db-pink-origin-light-default {
 	syntax: "<color>";
-	initial-value: #e93e8f;
+	initial-value: #f07;
 	inherits: true;
 }
 
 @property --db-pink-origin-light-hovered {
 	syntax: "<color>";
-	initial-value: #be3174;
+	initial-value: #ff9ab3;
 	inherits: true;
 }
 
 @property --db-pink-origin-light-pressed {
 	syntax: "<color>";
-	initial-value: #95245a;
+	initial-value: #ff6995;
 	inherits: true;
 }
 
 @property --db-pink-origin-dark-default {
 	syntax: "<color>";
-	initial-value: #e93e8f;
+	initial-value: #f07;
 	inherits: true;
 }
 
 @property --db-pink-origin-dark-hovered {
 	syntax: "<color>";
-	initial-value: #ef75a6;
+	initial-value: #ff9ab3;
 	inherits: true;
 }
 
 @property --db-pink-origin-dark-pressed {
 	syntax: "<color>";
-	initial-value: #f3a0be;
+	initial-value: #ff6995;
 	inherits: true;
 }
 
 @property --db-pink-on-origin-light-default {
 	syntax: "<color>";
-	initial-value: #260413;
+	initial-value: #190006;
 	inherits: true;
 }
 
 @property --db-pink-on-origin-dark-default {
 	syntax: "<color>";
-	initial-value: #260413;
+	initial-value: #190006;
 	inherits: true;
 }
 
 @property --db-violet-0 {
 	syntax: "<color>";
-	initial-value: #17081c;
+	initial-value: #1d002c;
 	inherits: true;
 }
 
 @property --db-violet-1 {
 	syntax: "<color>";
-	initial-value: #23102a;
+	initial-value: #2b0040;
 	inherits: true;
 }
 
 @property --db-violet-2 {
 	syntax: "<color>";
-	initial-value: #33193c;
+	initial-value: #3e0059;
 	inherits: true;
 }
 
 @property --db-violet-3 {
 	syntax: "<color>";
-	initial-value: #432350;
+	initial-value: #510173;
 	inherits: true;
 }
 
 @property --db-violet-4 {
 	syntax: "<color>";
-	initial-value: #542e63;
+	initial-value: #65018e;
 	inherits: true;
 }
 
 @property --db-violet-5 {
 	syntax: "<color>";
-	initial-value: #663978;
+	initial-value: #7a01ab;
 	inherits: true;
 }
 
 @property --db-violet-6 {
 	syntax: "<color>";
-	initial-value: #7f4895;
+	initial-value: #9702d2;
 	inherits: true;
 }
 
 @property --db-violet-7 {
 	syntax: "<color>";
-	initial-value: #9f5bba;
+	initial-value: #b91eff;
 	inherits: true;
 }
 
 @property --db-violet-8 {
 	syntax: "<color>";
-	initial-value: #b47ace;
+	initial-value: #c365ff;
 	inherits: true;
 }
 
 @property --db-violet-9 {
 	syntax: "<color>";
-	initial-value: #c69cda;
+	initial-value: #cf91ff;
 	inherits: true;
 }
 
 @property --db-violet-10 {
 	syntax: "<color>";
-	initial-value: #d8bde6;
+	initial-value: #ddb7ff;
 	inherits: true;
 }
 
 @property --db-violet-11 {
 	syntax: "<color>";
-	initial-value: #ebdef2;
+	initial-value: #eddcff;
 	inherits: true;
 }
 
 @property --db-violet-12 {
 	syntax: "<color>";
-	initial-value: #f3ebf7;
+	initial-value: #f4eaff;
 	inherits: true;
 }
 
 @property --db-violet-13 {
 	syntax: "<color>";
-	initial-value: #f7f2fa;
+	initial-value: #f8f1ff;
 	inherits: true;
 }
 
 @property --db-violet-14 {
 	syntax: "<color>";
-	initial-value: #fbf8fc;
+	initial-value: #fbf8ff;
 	inherits: true;
 }
 
 @property --db-violet-origin-base {
 	syntax: "<color>";
-	initial-value: #814997;
+	initial-value: #b603fc;
 	inherits: true;
 }
 
 @property --db-violet-origin-light-default {
 	syntax: "<color>";
-	initial-value: #814997;
+	initial-value: #b603fc;
 	inherits: true;
 }
 
 @property --db-violet-origin-light-hovered {
 	syntax: "<color>";
-	initial-value: #623673;
+	initial-value: #5c0182;
 	inherits: true;
 }
 
 @property --db-violet-origin-light-pressed {
 	syntax: "<color>";
-	initial-value: #452452;
+	initial-value: #9102c9;
 	inherits: true;
 }
 
 @property --db-violet-origin-dark-default {
 	syntax: "<color>";
-	initial-value: #814997;
+	initial-value: #b603fc;
 	inherits: true;
 }
 
 @property --db-violet-origin-dark-hovered {
 	syntax: "<color>";
-	initial-value: #a15dbc;
+	initial-value: #5c0182;
 	inherits: true;
 }
 
 @property --db-violet-origin-dark-pressed {
 	syntax: "<color>";
-	initial-value: #b67cce;
+	initial-value: #9102c9;
 	inherits: true;
 }
 
 @property --db-violet-on-origin-light-default {
 	syntax: "<color>";
-	initial-value: #fbf8fc;
+	initial-value: #fbf8ff;
 	inherits: true;
 }
 
 @property --db-violet-on-origin-dark-default {
 	syntax: "<color>";
-	initial-value: #fbf8fc;
+	initial-value: #fbf8ff;
 	inherits: true;
 }
 
 @property --db-blue-0 {
 	syntax: "<color>";
-	initial-value: #010d29;
+	initial-value: #000b2e;
 	inherits: true;
 }
 
 @property --db-blue-1 {
 	syntax: "<color>";
-	initial-value: #02153c;
+	initial-value: #001442;
 	inherits: true;
 }
 
 @property --db-blue-2 {
 	syntax: "<color>";
-	initial-value: #042153;
+	initial-value: #001f5b;
 	inherits: true;
 }
 
 @property --db-blue-3 {
 	syntax: "<color>";
-	initial-value: #072d6c;
+	initial-value: #012a76;
 	inherits: true;
 }
 
 @property --db-blue-4 {
 	syntax: "<color>";
-	initial-value: #0a3986;
+	initial-value: #013692;
 	inherits: true;
 }
 
 @property --db-blue-5 {
 	syntax: "<color>";
-	initial-value: #0f46a1;
+	initial-value: #0243af;
 	inherits: true;
 }
 
 @property --db-blue-6 {
 	syntax: "<color>";
-	initial-value: #1558c6;
+	initial-value: #0354d7;
 	inherits: true;
 }
 
 @property --db-blue-7 {
 	syntax: "<color>";
-	initial-value: #1d6ff7;
+	initial-value: #2c6cfe;
 	inherits: true;
 }
 
 @property --db-blue-8 {
 	syntax: "<color>";
-	initial-value: #638bfa;
+	initial-value: #6989ff;
 	inherits: true;
 }
 
 @property --db-blue-9 {
 	syntax: "<color>";
-	initial-value: #90a8fc;
+	initial-value: #93a6ff;
 	inherits: true;
 }
 
 @property --db-blue-10 {
 	syntax: "<color>";
-	initial-value: #b7c4fd;
+	initial-value: #b9c3ff;
 	inherits: true;
 }
 
 @property --db-blue-11 {
 	syntax: "<color>";
-	initial-value: #dbe1fe;
+	initial-value: #dce1ff;
 	inherits: true;
 }
 
 @property --db-blue-12 {
 	syntax: "<color>";
-	initial-value: #eaedfe;
+	initial-value: #eaedff;
 	inherits: true;
 }
 
@@ -6285,43 +6285,43 @@
 
 @property --db-blue-origin-base {
 	syntax: "<color>";
-	initial-value: #1455c0;
+	initial-value: #0463fb;
 	inherits: true;
 }
 
 @property --db-blue-origin-light-default {
 	syntax: "<color>";
-	initial-value: #1455c0;
+	initial-value: #0463fb;
 	inherits: true;
 }
 
 @property --db-blue-origin-light-hovered {
 	syntax: "<color>";
-	initial-value: #0c3f92;
+	initial-value: #012e7f;
 	inherits: true;
 }
 
 @property --db-blue-origin-light-pressed {
 	syntax: "<color>";
-	initial-value: #062a67;
+	initial-value: #024dc7;
 	inherits: true;
 }
 
 @property --db-blue-origin-dark-default {
 	syntax: "<color>";
-	initial-value: #1455c0;
+	initial-value: #0463fb;
 	inherits: true;
 }
 
 @property --db-blue-origin-dark-hovered {
 	syntax: "<color>";
-	initial-value: #1c6cf0;
+	initial-value: #012e7f;
 	inherits: true;
 }
 
 @property --db-blue-origin-dark-pressed {
 	syntax: "<color>";
-	initial-value: #5c87fa;
+	initial-value: #024dc7;
 	inherits: true;
 }
 
@@ -6339,145 +6339,145 @@
 
 @property --db-cyan-0 {
 	syntax: "<color>";
-	initial-value: #011018;
+	initial-value: #00101c;
 	inherits: true;
 }
 
 @property --db-cyan-1 {
 	syntax: "<color>";
-	initial-value: #031a25;
+	initial-value: #001a2a;
 	inherits: true;
 }
 
 @property --db-cyan-2 {
 	syntax: "<color>";
-	initial-value: #062736;
+	initial-value: #00263c;
 	inherits: true;
 }
 
 @property --db-cyan-3 {
 	syntax: "<color>";
-	initial-value: #0a3447;
+	initial-value: #00344f;
 	inherits: true;
 }
 
 @property --db-cyan-4 {
 	syntax: "<color>";
-	initial-value: #0f4259;
+	initial-value: #014263;
 	inherits: true;
 }
 
 @property --db-cyan-5 {
 	syntax: "<color>";
-	initial-value: #14516c;
+	initial-value: #015078;
 	inherits: true;
 }
 
 @property --db-cyan-6 {
 	syntax: "<color>";
-	initial-value: #1b6586;
+	initial-value: #016494;
 	inherits: true;
 }
 
 @property --db-cyan-7 {
 	syntax: "<color>";
-	initial-value: #257fa8;
+	initial-value: #027eb9;
 	inherits: true;
 }
 
 @property --db-cyan-8 {
 	syntax: "<color>";
-	initial-value: #2e9acb;
+	initial-value: #0399df;
 	inherits: true;
 }
 
 @property --db-cyan-9 {
 	syntax: "<color>";
-	initial-value: #38b6ef;
+	initial-value: #3db4ff;
 	inherits: true;
 }
 
 @property --db-cyan-10 {
 	syntax: "<color>";
-	initial-value: #89cffa;
+	initial-value: #95ccff;
 	inherits: true;
 }
 
 @property --db-cyan-11 {
 	syntax: "<color>";
-	initial-value: #cae6fd;
+	initial-value: #cee5ff;
 	inherits: true;
 }
 
 @property --db-cyan-12 {
 	syntax: "<color>";
-	initial-value: #e0f0fe;
+	initial-value: #e2efff;
 	inherits: true;
 }
 
 @property --db-cyan-13 {
 	syntax: "<color>";
-	initial-value: #ebf5fe;
+	initial-value: #ecf4ff;
 	inherits: true;
 }
 
 @property --db-cyan-14 {
 	syntax: "<color>";
-	initial-value: #f5faff;
+	initial-value: #f6faff;
 	inherits: true;
 }
 
 @property --db-cyan-origin-base {
 	syntax: "<color>";
-	initial-value: #309fd1;
+	initial-value: #04a9f6;
 	inherits: true;
 }
 
 @property --db-cyan-origin-light-default {
 	syntax: "<color>";
-	initial-value: #309fd1;
+	initial-value: #04a9f6;
 	inherits: true;
 }
 
 @property --db-cyan-origin-light-hovered {
 	syntax: "<color>";
-	initial-value: #2684ae;
+	initial-value: #b8daff;
 	inherits: true;
 }
 
 @property --db-cyan-origin-light-pressed {
 	syntax: "<color>";
-	initial-value: #1d698c;
+	initial-value: #78c1ff;
 	inherits: true;
 }
 
 @property --db-cyan-origin-dark-default {
 	syntax: "<color>";
-	initial-value: #309fd1;
+	initial-value: #04a9f6;
 	inherits: true;
 }
 
 @property --db-cyan-origin-dark-hovered {
 	syntax: "<color>";
-	initial-value: #3abbf5;
+	initial-value: #b8daff;
 	inherits: true;
 }
 
 @property --db-cyan-origin-dark-pressed {
 	syntax: "<color>";
-	initial-value: #96d2fb;
+	initial-value: #78c1ff;
 	inherits: true;
 }
 
 @property --db-cyan-on-origin-light-default {
 	syntax: "<color>";
-	initial-value: #01080f;
+	initial-value: #000811;
 	inherits: true;
 }
 
 @property --db-cyan-on-origin-dark-default {
 	syntax: "<color>";
-	initial-value: #01080f;
+	initial-value: #000811;
 	inherits: true;
 }
 
@@ -6495,7 +6495,7 @@
 
 @property --db-turquoise-2 {
 	syntax: "<color>";
-	initial-value: #002927;
+	initial-value: #002926;
 	inherits: true;
 }
 
@@ -6513,103 +6513,103 @@
 
 @property --db-turquoise-5 {
 	syntax: "<color>";
-	initial-value: #005551;
+	initial-value: #005550;
 	inherits: true;
 }
 
 @property --db-turquoise-6 {
 	syntax: "<color>";
-	initial-value: #006a65;
+	initial-value: #006a64;
 	inherits: true;
 }
 
 @property --db-turquoise-7 {
 	syntax: "<color>";
-	initial-value: #00857f;
+	initial-value: #00857e;
 	inherits: true;
 }
 
 @property --db-turquoise-8 {
 	syntax: "<color>";
-	initial-value: #00a29b;
+	initial-value: #00a299;
 	inherits: true;
 }
 
 @property --db-turquoise-9 {
 	syntax: "<color>";
-	initial-value: #00bfb7;
+	initial-value: #00bfb5;
 	inherits: true;
 }
 
 @property --db-turquoise-10 {
 	syntax: "<color>";
-	initial-value: #00ddd4;
+	initial-value: #00ded2;
 	inherits: true;
 }
 
 @property --db-turquoise-11 {
 	syntax: "<color>";
-	initial-value: #00fcf2;
+	initial-value: #00fdf0;
 	inherits: true;
 }
 
 @property --db-turquoise-12 {
 	syntax: "<color>";
-	initial-value: #9bfff8;
+	initial-value: #9cfff6;
 	inherits: true;
 }
 
 @property --db-turquoise-13 {
 	syntax: "<color>";
-	initial-value: #c3fffa;
+	initial-value: #c3fff9;
 	inherits: true;
 }
 
 @property --db-turquoise-14 {
 	syntax: "<color>";
-	initial-value: #e3fffd;
+	initial-value: #e3fffc;
 	inherits: true;
 }
 
 @property --db-turquoise-origin-base {
 	syntax: "<color>";
-	initial-value: #00a099;
+	initial-value: #00faed;
 	inherits: true;
 }
 
 @property --db-turquoise-origin-light-default {
 	syntax: "<color>";
-	initial-value: #00a099;
+	initial-value: #00faed;
 	inherits: true;
 }
 
 @property --db-turquoise-origin-light-hovered {
 	syntax: "<color>";
-	initial-value: #00847e;
+	initial-value: #00bdb3;
 	inherits: true;
 }
 
 @property --db-turquoise-origin-light-pressed {
 	syntax: "<color>";
-	initial-value: #006864;
+	initial-value: #00dbd0;
 	inherits: true;
 }
 
 @property --db-turquoise-origin-dark-default {
 	syntax: "<color>";
-	initial-value: #00a099;
+	initial-value: #00faed;
 	inherits: true;
 }
 
 @property --db-turquoise-origin-dark-hovered {
 	syntax: "<color>";
-	initial-value: #00bdb5;
+	initial-value: #00bdb3;
 	inherits: true;
 }
 
 @property --db-turquoise-origin-dark-pressed {
 	syntax: "<color>";
-	initial-value: #00dcd2;
+	initial-value: #00dbd0;
 	inherits: true;
 }
 
@@ -6627,144 +6627,144 @@
 
 @property --db-green-0 {
 	syntax: "<color>";
-	initial-value: #061100;
+	initial-value: #051100;
 	inherits: true;
 }
 
 @property --db-green-1 {
 	syntax: "<color>";
-	initial-value: #0c1b01;
+	initial-value: #091c00;
 	inherits: true;
 }
 
 @property --db-green-2 {
 	syntax: "<color>";
-	initial-value: #142901;
+	initial-value: #112900;
 	inherits: true;
 }
 
 @property --db-green-3 {
 	syntax: "<color>";
-	initial-value: #1d3702;
+	initial-value: #193800;
 	inherits: true;
 }
 
 @property --db-green-4 {
 	syntax: "<color>";
-	initial-value: #264604;
+	initial-value: #214600;
 	inherits: true;
 }
 
 @property --db-green-5 {
 	syntax: "<color>";
-	initial-value: #305506;
+	initial-value: #2a5600;
 	inherits: true;
 }
 
 @property --db-green-6 {
 	syntax: "<color>";
-	initial-value: #3d6a09;
+	initial-value: #366b00;
 	inherits: true;
 }
 
 @property --db-green-7 {
 	syntax: "<color>";
-	initial-value: #4e850f;
+	initial-value: #458600;
 	inherits: true;
 }
 
 @property --db-green-8 {
 	syntax: "<color>";
-	initial-value: #60a114;
+	initial-value: #55a300;
 	inherits: true;
 }
 
 @property --db-green-9 {
 	syntax: "<color>";
-	initial-value: #72bf1a;
+	initial-value: #66c100;
 	inherits: true;
 }
 
 @property --db-green-10 {
 	syntax: "<color>";
-	initial-value: #85dd20;
+	initial-value: #77df00;
 	inherits: true;
 }
 
 @property --db-green-11 {
 	syntax: "<color>";
-	initial-value: #99fc26;
+	initial-value: #88fe00;
 	inherits: true;
 }
 
 @property --db-green-12 {
 	syntax: "<color>";
-	initial-value: #c3ff9d;
+	initial-value: #bfffa3;
 	inherits: true;
 }
 
 @property --db-green-13 {
 	syntax: "<color>";
-	initial-value: #d9ffc4;
+	initial-value: #d7ffc7;
 	inherits: true;
 }
 
 @property --db-green-14 {
 	syntax: "<color>";
-	initial-value: #edffe4;
+	initial-value: #ecffe5;
 	inherits: true;
 }
 
 @property --db-green-origin-base {
 	syntax: "<color>";
-	initial-value: #63a615;
+	initial-value: #83f500;
 	inherits: true;
 }
 
 @property --db-green-origin-light-default {
 	syntax: "<color>";
-	initial-value: #63a615;
+	initial-value: #83f500;
 	inherits: true;
 }
 
 @property --db-green-origin-light-hovered {
 	syntax: "<color>";
-	initial-value: #51890f;
+	initial-value: #61b800;
 	inherits: true;
 }
 
 @property --db-green-origin-light-pressed {
 	syntax: "<color>";
-	initial-value: #406e0a;
+	initial-value: #72d600;
 	inherits: true;
 }
 
 @property --db-green-origin-dark-default {
 	syntax: "<color>";
-	initial-value: #63a615;
+	initial-value: #83f500;
 	inherits: true;
 }
 
 @property --db-green-origin-dark-hovered {
 	syntax: "<color>";
-	initial-value: #75c31b;
+	initial-value: #61b800;
 	inherits: true;
 }
 
 @property --db-green-origin-dark-pressed {
 	syntax: "<color>";
-	initial-value: #88e221;
+	initial-value: #72d600;
 	inherits: true;
 }
 
 @property --db-green-on-origin-light-default {
 	syntax: "<color>";
-	initial-value: #030900;
+	initial-value: #020900;
 	inherits: true;
 }
 
 @property --db-green-on-origin-dark-default {
 	syntax: "<color>";
-	initial-value: #030900;
+	initial-value: #020900;
 	inherits: true;
 }

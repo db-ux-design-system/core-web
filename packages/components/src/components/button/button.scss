@@ -73,12 +73,12 @@
 
 		@include helpers.hover {
 			background-color: colors.$db-brand-origin-hovered;
-			border-color: colors.$db-brand-on-bg-basic-emphasis-70-hovered;
+			border-color: colors.$db-brand-on-bg-basic-emphasis-70-default;
 		}
 
 		@include helpers.active {
 			background-color: colors.$db-brand-origin-pressed;
-			border-color: colors.$db-brand-on-bg-basic-emphasis-70-pressed;
+			border-color: colors.$db-brand-on-bg-basic-emphasis-70-default;
 		}
 	}
 
