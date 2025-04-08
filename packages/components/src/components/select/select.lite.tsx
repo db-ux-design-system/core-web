@@ -56,13 +56,13 @@ export default function DBSelect(props: DBSelectProps) {
 		_messageId: undefined,
 		_validMessageId: undefined,
 		_invalidMessageId: undefined,
+		_invalidMessage: undefined,
 		_placeholderId: '',
 		// Workaround for Vue output: TS for Vue would think that it could be a function, and by this we clarify that it's a string
 		_descByIds: '',
 		_value: '',
 		initialized: false,
 		_voiceOverFallback: '',
-		_invalidMessage: '',
 		hasValidState: () => {
 			return !!(props.validMessage ?? props.validation === 'valid');
 		},
@@ -165,6 +165,13 @@ export default function DBSelect(props: DBSelectProps) {
 	});
 
 	onUpdate(() => {
+		state._invalidMessage =
+			props.invalidMessage ||
+			_ref?.validationMessage ||
+			DEFAULT_INVALID_MESSAGE;
+	}, [_ref, props.invalidMessage]);
+
+	onUpdate(() => {
 		if (state._id && state.initialized) {
 			const messageId = state._id + DEFAULT_MESSAGE_ID_SUFFIX;
 			const placeholderId = state._id + DEFAULT_PLACEHOLDER_ID_SUFFIX;
@@ -225,7 +232,7 @@ export default function DBSelect(props: DBSelectProps) {
 				aria-describedby={state._descByIds}>
 				{/* Empty option for floating label */}
 				<option hidden></option>
-				<Show when={props.options}>
+				<Show when={props.options} else={props.children}>
 					<For each={props.options}>
 						{(option: DBSelectOptionType) => (
 							<>
@@ -265,7 +272,6 @@ export default function DBSelect(props: DBSelectProps) {
 						)}
 					</For>
 				</Show>
-				{props.children}
 			</select>
 			<span id={state._placeholderId}>
 				{props.placeholder ?? props.label}

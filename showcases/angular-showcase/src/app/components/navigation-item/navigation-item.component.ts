@@ -13,7 +13,7 @@ import { environment } from '../../../environments/environment';
 	imports: environment.webComponents
 		? [DefaultComponent, DBNavigationItem, NavigationContentDirective] // TODO: Remove DBNavigationItem,NavigationContentDirective after stencil component works
 		: [DefaultComponent, DBNavigationItem, NavigationContentDirective],
-	schemas: [CUSTOM_ELEMENTS_SCHEMA],
+	schemas: environment.webComponents ? [CUSTOM_ELEMENTS_SCHEMA] : [],
 	standalone: true
 })
 export class NavigationItemComponent {
