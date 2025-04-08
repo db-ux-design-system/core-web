@@ -11,7 +11,7 @@ import { environment } from '../../../environments/environment';
 		? [DefaultComponent]
 		: [DefaultComponent, DBDrawer, DBButton],
 	standalone: true,
-	schemas: [CUSTOM_ELEMENTS_SCHEMA]
+	schemas: environment.webComponents ? [CUSTOM_ELEMENTS_SCHEMA] : []
 })
 export class DrawerComponent {
 	variants = defaultComponentVariants;

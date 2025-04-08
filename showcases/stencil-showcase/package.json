@@ -17,7 +17,7 @@
   },
   "dependencies": {
     "@db-ux/db-theme": "1.0.2",
-    "@stencil/core": "4.29.0"
+    "@stencil/core": "4.29.2"
   },
   "devDependencies": {
     "npm-run-all2": "7.0.2",
