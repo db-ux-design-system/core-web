@@ -16,9 +16,7 @@ import { DEFAULT_ID } from '../../shared/constants';
 
 useMetadata({});
 
-useDefaultProps<DBAccordionProps>({
-	initOpenIndex: []
-});
+useDefaultProps<DBAccordionProps>({});
 
 export default function DBAccordion(props: DBAccordionProps) {
 	const _ref = useRef<HTMLUListElement | null>(null);

@@ -102,7 +102,12 @@ export const getComponents = (): Component[] => [
 	},
 
 	{
-		name: 'accordion'
+		name: 'accordion',
+		overwrites: {
+			angular: [
+				{ from: 'this.initOpenIndex &&', to: 'this.initOpenIndex() &&' }
+			]
+		}
 	},
 
 	{
