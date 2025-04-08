@@ -91,7 +91,7 @@
     "postcss-cli": "^11.0.1",
     "prettier": "^3.5.3",
     "prettier-plugin-pkg": "0.19.0",
-    "prettier-plugin-sh": "^0.16.0",
+    "prettier-plugin-sh": "^0.17.0",
     "replace-in-file": "^8.3.0",
     "rimraf": "6.0.1",
     "rxjs": "~7.8.2",
