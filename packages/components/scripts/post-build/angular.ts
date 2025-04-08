@@ -176,7 +176,13 @@ export default (tmp?: boolean) => {
 			to: ''
 		});
 
-		const replacements: Overwrite[] = [];
+		const replacements: Overwrite[] = [
+			// TODO: We don't need this after Angular drops support for v17 in may 2025
+			{
+				from: /allowSignalWrites: true,/g,
+				to: ''
+			}
+		];
 
 		if (
 			readFileSync(file)
