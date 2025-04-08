@@ -138,16 +138,15 @@ export default function DBTabs(props: DBTabsProps) {
 			}
 		},
 		handleChange: (event: any) => {
-			if (props.onIndexChange) {
-				const list = event.target?.closest('ul');
-				const listItem =
-					// db-tab-item for angular and stencil wrapping elements
-					event.target.closest('db-tab-item') ??
-					event.target.closest('li');
-				if (list !== null && listItem !== null) {
-					props.onIndexChange(
-						Array.from(list.childNodes).indexOf(listItem)
-					);
+			const list = event.target?.closest('ul');
+			const listItem =
+				// db-tab-item for angular and stencil wrapping elements
+				event.target.closest('db-tab-item') ??
+				event.target.closest('li');
+			if (list !== null && listItem !== null) {
+				const indices = Array.from(list.childNodes).indexOf(listItem);
+				if (props.onIndexChange) {
+					props.onIndexChange(indices);
 				}
 			}
 

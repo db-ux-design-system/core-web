@@ -8,13 +8,7 @@ import {
 	useStore
 } from '@builder.io/mitosis';
 import { DBHeaderProps, DBHeaderState } from './model';
-import {
-	addAttributeToChildren,
-	cls,
-	getBoolean,
-	getBooleanAsString,
-	uuid
-} from '../../utils';
+import { addAttributeToChildren, cls, getBoolean, uuid } from '../../utils';
 import DBButton from '../button/button.lite';
 import DBDrawer from '../drawer/drawer.lite';
 import { DEFAULT_BURGER_MENU, DEFAULT_ID } from '../../shared/constants';
@@ -32,8 +26,10 @@ export default function DBHeader(props: DBHeaderProps) {
 		initialized: false,
 		forcedToMobile: false,
 		handleToggle: () => {
+			const open = !getBoolean(props.drawerOpen, 'drawerOpen');
+
 			if (props.onToggle) {
-				props.onToggle(!getBoolean(props.drawerOpen, 'drawerOpen'));
+				props.onToggle(open);
 			}
 		},
 		handleNavigationItemClick: (event: unknown) => {

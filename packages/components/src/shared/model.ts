@@ -536,6 +536,7 @@ export type ClickEventState<T> = {
 };
 
 export type ToggleEventProps = {
+	toggle?: (open: boolean | any) => void;
 	onToggle?: (open: boolean | any) => void;
 };
 

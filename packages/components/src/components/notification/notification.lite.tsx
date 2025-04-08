@@ -4,8 +4,7 @@ import {
 	useDefaultProps,
 	useMetadata,
 	useRef,
-	useStore,
-	useTarget
+	useStore
 } from '@builder.io/mitosis';
 import { DBNotificationProps, DBNotificationState } from './model';
 import DBButton from '../button/button.lite';
@@ -22,18 +21,9 @@ export default function DBNotification(props: DBNotificationProps) {
 	// jscpd:ignore-start
 	const state = useStore<DBNotificationState>({
 		handleClose: (event: ClickEvent<HTMLButtonElement> | any) => {
-			useTarget({
-				vue: () => {
-					if (props.close) {
-						props.close(event);
-					}
-				},
-				default: () => {
-					if (props.onClose) {
-						props.onClose(event);
-					}
-				}
-			});
+			if (props.onClose) {
+				props.onClose(event);
+			}
 		}
 	});
 	// jscpd:ignore-end

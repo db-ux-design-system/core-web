@@ -29,18 +29,9 @@ export default function DBTabItem(props: DBTabItemProps) {
 		initialized: false,
 		_selected: false,
 		handleChange: (event: any) => {
-			useTarget({
-				vue: () => {
-					if (props.change) {
-						props.change(event);
-					}
-				},
-				default: () => {
-					if (props.onChange) {
-						props.onChange(event);
-					}
-				}
-			});
+			if (props.onChange) {
+				props.onChange(event);
+			}
 
 			// We have different ts types in different frameworks, so we need to use any here
 

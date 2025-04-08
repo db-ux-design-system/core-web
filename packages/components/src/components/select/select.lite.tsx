@@ -14,7 +14,6 @@ import {
 	cls,
 	delay,
 	getBoolean,
-	getBooleanAsString,
 	getHideProp,
 	hasVoiceOver,
 	stringPropVisible,
@@ -106,6 +105,9 @@ export default function DBSelect(props: DBSelectProps) {
 					if (props.input) {
 						props.input(event);
 					}
+					if (props.onInput) {
+						props.onInput(event);
+					}
 				},
 				default: () => {
 					if (props.onInput) {
@@ -121,18 +123,9 @@ export default function DBSelect(props: DBSelectProps) {
 			state.handleValidation();
 		},
 		handleChange: (event: ChangeEvent<HTMLSelectElement> | any) => {
-			useTarget({
-				vue: () => {
-					if (props.change) {
-						props.change(event);
-					}
-				},
-				default: () => {
-					if (props.onChange) {
-						props.onChange(event);
-					}
-				}
-			});
+			if (props.onChange) {
+				props.onChange(event);
+			}
 
 			useTarget({
 				angular: () => handleFrameworkEventAngular(this, event),
@@ -141,32 +134,14 @@ export default function DBSelect(props: DBSelectProps) {
 			state.handleValidation();
 		},
 		handleBlur: (event: InteractionEvent<HTMLSelectElement> | any) => {
-			useTarget({
-				vue: () => {
-					if (props.blur) {
-						props.blur(event);
-					}
-				},
-				default: () => {
-					if (props.onBlur) {
-						props.onBlur(event);
-					}
-				}
-			});
+			if (props.onBlur) {
+				props.onBlur(event);
+			}
 		},
 		handleFocus: (event: InteractionEvent<HTMLSelectElement> | any) => {
-			useTarget({
-				vue: () => {
-					if (props.focus) {
-						props.focus(event);
-					}
-				},
-				default: () => {
-					if (props.onFocus) {
-						props.onFocus(event);
-					}
-				}
-			});
+			if (props.onFocus) {
+				props.onFocus(event);
+			}
 		},
 		getOptionLabel: (option: DBSelectOptionType) => {
 			return option.label ?? option.value.toString();

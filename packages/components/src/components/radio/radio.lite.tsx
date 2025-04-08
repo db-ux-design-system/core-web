@@ -9,13 +9,7 @@ import {
 	useTarget
 } from '@builder.io/mitosis';
 import { DBRadioProps, DBRadioState } from './model';
-import {
-	cls,
-	getBoolean,
-	getBooleanAsString,
-	getHideProp,
-	uuid
-} from '../../utils';
+import { cls, getBoolean, getHideProp, uuid } from '../../utils';
 import { ChangeEvent, InteractionEvent } from '../../shared/model';
 import {
 	handleFrameworkEventAngular,
@@ -36,18 +30,9 @@ export default function DBRadio(props: DBRadioProps) {
 		initialized: false,
 		_id: undefined,
 		handleChange: (event: ChangeEvent<HTMLInputElement> | any) => {
-			useTarget({
-				vue: () => {
-					if (props.change) {
-						props.change(event);
-					}
-				},
-				default: () => {
-					if (props.onChange) {
-						props.onChange(event);
-					}
-				}
-			});
+			if (props.onChange) {
+				props.onChange(event);
+			}
 
 			useTarget({
 				angular: () => handleFrameworkEventAngular(this, event),
@@ -55,32 +40,14 @@ export default function DBRadio(props: DBRadioProps) {
 			});
 		},
 		handleBlur: (event: InteractionEvent<HTMLInputElement> | any) => {
-			useTarget({
-				vue: () => {
-					if (props.blur) {
-						props.blur(event);
-					}
-				},
-				default: () => {
-					if (props.onBlur) {
-						props.onBlur(event);
-					}
-				}
-			});
+			if (props.onBlur) {
+				props.onBlur(event);
+			}
 		},
 		handleFocus: (event: InteractionEvent<HTMLInputElement> | any) => {
-			useTarget({
-				vue: () => {
-					if (props.focus) {
-						props.focus(event);
-					}
-				},
-				default: () => {
-					if (props.onFocus) {
-						props.onFocus(event);
-					}
-				}
-			});
+			if (props.onFocus) {
+				props.onFocus(event);
+			}
 		}
 	});
 

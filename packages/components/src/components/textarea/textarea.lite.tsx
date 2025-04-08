@@ -14,7 +14,6 @@ import {
 	cls,
 	delay,
 	getBoolean,
-	getBooleanAsString,
 	getHideProp,
 	getNumber,
 	hasVoiceOver,
@@ -95,6 +94,9 @@ export default function DBTextarea(props: DBTextareaProps) {
 					if (props.input) {
 						props.input(event);
 					}
+					if (props.onInput) {
+						props.onInput(event);
+					}
 				},
 				default: () => {
 					if (props.onInput) {
@@ -109,18 +111,9 @@ export default function DBTextarea(props: DBTextareaProps) {
 			state.handleValidation();
 		},
 		handleChange: (event: ChangeEvent<HTMLTextAreaElement>) => {
-			useTarget({
-				vue: () => {
-					if (props.change) {
-						props.change(event);
-					}
-				},
-				default: () => {
-					if (props.onChange) {
-						props.onChange(event);
-					}
-				}
-			});
+			if (props.onChange) {
+				props.onChange(event);
+			}
 			useTarget({
 				angular: () => handleFrameworkEventAngular(this, event),
 				vue: () => handleFrameworkEventVue(() => {}, event)
@@ -128,32 +121,14 @@ export default function DBTextarea(props: DBTextareaProps) {
 			state.handleValidation();
 		},
 		handleBlur: (event: InteractionEvent<HTMLTextAreaElement> | any) => {
-			useTarget({
-				vue: () => {
-					if (props.blur) {
-						props.blur(event);
-					}
-				},
-				default: () => {
-					if (props.onBlur) {
-						props.onBlur(event);
-					}
-				}
-			});
+			if (props.onBlur) {
+				props.onBlur(event);
+			}
 		},
 		handleFocus: (event: InteractionEvent<HTMLTextAreaElement> | any) => {
-			useTarget({
-				vue: () => {
-					if (props.focus) {
-						props.focus(event);
-					}
-				},
-				default: () => {
-					if (props.onFocus) {
-						props.onFocus(event);
-					}
-				}
-			});
+			if (props.onFocus) {
+				props.onFocus(event);
+			}
 		}
 	});
 

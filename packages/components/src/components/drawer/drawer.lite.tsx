@@ -5,8 +5,7 @@ import {
 	useDefaultProps,
 	useMetadata,
 	useRef,
-	useStore,
-	useTarget
+	useStore
 } from '@builder.io/mitosis';
 import { DBDrawerProps, DBDrawerState } from './model';
 import DBButton from '../button/button.lite';
@@ -34,18 +33,9 @@ export default function DBDrawer(props: DBDrawerProps) {
 					event.type === 'click' &&
 					props.backdrop !== 'none')
 			) {
-				useTarget({
-					vue: () => {
-						if (props.close) {
-							props.close(event);
-						}
-					},
-					default: () => {
-						if (props.onClose) {
-							props.onClose(event);
-						}
-					}
-				});
+				if (props.onClose) {
+					props.onClose(event);
+				}
 			}
 		},
 		handleDialogOpen: () => {

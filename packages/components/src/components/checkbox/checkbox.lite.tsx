@@ -26,7 +26,6 @@ import {
 	cls,
 	delay,
 	getBoolean,
-	getBooleanAsString,
 	getHideProp,
 	hasVoiceOver,
 	stringPropVisible,
@@ -86,18 +85,9 @@ export default function DBCheckbox(props: DBCheckboxProps) {
 			}
 		},
 		handleChange: (event: ChangeEvent<HTMLInputElement>) => {
-			useTarget({
-				vue: () => {
-					if (props.change) {
-						props.change(event);
-					}
-				},
-				default: () => {
-					if (props.onChange) {
-						props.onChange(event);
-					}
-				}
-			});
+			if (props.onChange) {
+				props.onChange(event);
+			}
 
 			useTarget({
 				angular: () =>
@@ -107,32 +97,14 @@ export default function DBCheckbox(props: DBCheckboxProps) {
 			state.handleValidation();
 		},
 		handleBlur: (event: InteractionEvent<HTMLInputElement> | any) => {
-			useTarget({
-				vue: () => {
-					if (props.blur) {
-						props.blur(event);
-					}
-				},
-				default: () => {
-					if (props.onBlur) {
-						props.onBlur(event);
-					}
-				}
-			});
+			if (props.onBlur) {
+				props.onBlur(event);
+			}
 		},
 		handleFocus: (event: InteractionEvent<HTMLInputElement> | any) => {
-			useTarget({
-				vue: () => {
-					if (props.focus) {
-						props.focus(event);
-					}
-				},
-				default: () => {
-					if (props.onFocus) {
-						props.onFocus(event);
-					}
-				}
-			});
+			if (props.onFocus) {
+				props.onFocus(event);
+			}
 		}
 	});
 
