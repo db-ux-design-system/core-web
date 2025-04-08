@@ -41,7 +41,8 @@ const getSelect = ({
 			showMessage={showMessage}
 			invalidMessage={invalidMessage}
 			validMessage={validMessage}
-			validation={validation}/>
+			validation={validation}
+		/>
 	);
 };
 
