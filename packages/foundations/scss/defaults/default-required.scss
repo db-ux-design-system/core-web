@@ -12,7 +12,7 @@
 
 @include screen-sizes.get-breakpoint-properties();
 
-/* stylelint-disable-next-line at-rule-prelude-no-invalid */
+/* stylelint-disable-next-line at-rule-prelude-no-invalid,layer-name-pattern */
 @layer #{helpers.$layer-variables} {
 	:root {
 		@extend %db-font-size-md;
