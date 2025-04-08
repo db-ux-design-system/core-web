@@ -225,17 +225,13 @@ $input-valid-types:
 }
 
 @mixin get-validity($selector, $key: "valid") {
-	@if ($key == "valid") {
-		$boolean: "false";
-	}
-
 	$user: "";
 
-	@if ($selector == check) {
+	@if ($selector == check or $selector == switch) {
 		$user: "user-";
 	}
 
-	@if ($selector == check or $selector == radio) {
+	@if ($selector == check or $selector == radio or $selector == switch) {
 		$selector: input;
 
 		&:has(
@@ -288,7 +284,9 @@ $input-valid-types:
 	@include set-required-label($selector);
 
 	@include get-validity($selector) {
-		@include get-validity-color($selector, "valid");
+		&:has(.db-infotext[data-semantic="successful"]) {
+			@include get-validity-color($selector, "valid");
+		}
 	}
 
 	@include get-validity($selector, "invalid") {
@@ -405,7 +403,7 @@ $input-valid-types:
 
 	@include get-validity-message($key);
 
-	input {
+	input:not([role="switch"]) {
 		--db-adaptive-bg-basic-transparent-semi: var(
 			--db-#{$variant}-bg-basic-transparent-semi-default
 		);
@@ -433,9 +431,11 @@ $input-valid-types:
 		}
 	}
 
-	&:is(label),
-	label {
-		color: var(--db-#{$variant}-on-bg-basic-emphasis-80-default);
+	&:has(input:not([role="switch"])) {
+		&:is(label),
+		label {
+			color: var(--db-#{$variant}-on-bg-basic-emphasis-80-default);
+		}
 	}
 }
 
@@ -445,7 +445,14 @@ $input-valid-types:
 	@include set-required-label(input);
 
 	@include get-validity($selector) {
-		@include get-validity-color-check("valid");
+		@if ($selector == check) {
+			&:has(.db-infotext[data-semantic="successful"]) {
+				@include get-validity-color-check("valid");
+			}
+			/* stylelint-disable-next-line at-rule-empty-line-before */
+		} @else {
+			@include get-validity-color-check("valid");
+		}
 	}
 
 	@include get-validity($selector, "invalid") {
