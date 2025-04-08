@@ -1,6 +1,6 @@
 import { replaceInFileSync } from 'replace-in-file';
 
-import { writeFileSync } from 'node:fs';
+import { readFileSync, writeFileSync } from 'node:fs';
 
 import components, { Overwrite } from './components.js';
 
@@ -65,7 +65,9 @@ const setControlValueAccessorReplacements = (
 		  this.${valueAccessor}.set(${valueAccessor === 'checked' ? '!!' : ''}value);
 
 		  if (this._ref()?.nativeElement) {
-			 this.renderer.setProperty(this._ref()?.nativeElement, '${valueAccessor}', ${valueAccessor === 'checked' ? '!!' : ''}value);
+			 this.renderer.setProperty(this._ref()?.nativeElement, '${valueAccessor}', ${
+					valueAccessor === 'checked' ? '!!' : ''
+				}value);
 		  }
 			${valueAccessorRequired ? '}' : ''}
 		}
@@ -162,7 +164,9 @@ export default (tmp?: boolean) => {
 	const outputFolder = `${tmp ? 'output/tmp' : 'output'}`;
 	for (const component of components) {
 		const componentName = component.name;
-		const upperComponentName = `DB${transformToUpperComponentName(component.name)}`;
+		const upperComponentName = `DB${transformToUpperComponentName(
+			component.name
+		)}`;
 		const file = `../../${outputFolder}/angular/src/components/${componentName}/${componentName}.ts`;
 		const indexFile = `../../${outputFolder}/angular/src/components/${componentName}/index.ts`;
 
@@ -173,6 +177,22 @@ export default (tmp?: boolean) => {
 		});
 
 		const replacements: Overwrite[] = [];
+
+		if (
+			readFileSync(file)
+				.toString()
+				.includes('this.initialized.set(true);')
+		) {
+			// TODO: Solve this in mitosis by splitting onInit and onMount into ngOnInit and ngAfterViewInit
+			replacements.push({
+				from: 'this.initialized.set(true);',
+				to: ''
+			});
+			replacements.push({
+				from: 'ngAfterViewInit() {',
+				to: 'ngAfterViewInit() {\nthis.initialized.set(true);\n'
+			});
+		}
 
 		if (component.config?.angular?.controlValueAccessor) {
 			setControlValueAccessorReplacements(
