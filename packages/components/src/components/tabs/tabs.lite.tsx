@@ -28,13 +28,13 @@ export default function DBTabs(props: DBTabsProps) {
 		showScrollLeft: false,
 		showScrollRight: false,
 		scrollContainer: null,
-		convertTabs(tabs: unknown[] | string | undefined): DBSimpleTabProps[] {
+		convertTabs(): DBSimpleTabProps[] {
 			try {
-				if (typeof tabs === 'string') {
-					return JSON.parse(tabs);
+				if (typeof props.tabs === 'string') {
+					return JSON.parse(props.tabs as string);
 				}
 
-				return tabs as DBSimpleTabProps[];
+				return props.tabs as DBSimpleTabProps[];
 			} catch (error) {
 				console.error(error);
 			}
@@ -138,16 +138,15 @@ export default function DBTabs(props: DBTabsProps) {
 			}
 		},
 		handleChange: (event: any) => {
-			if (props.onIndexChange && event.target) {
-				const list = event.target.closest('ul');
-				const listItem =
-					// db-tab-item for angular and stencil wrapping elements
-					event.target.closest('db-tab-item') ??
-					event.target.closest('li');
-				if (list !== null && listItem !== null) {
-					props.onIndexChange(
-						Array.from(list.childNodes).indexOf(listItem)
-					);
+			const list = event.target?.closest('ul');
+			const listItem =
+				// db-tab-item for angular and stencil wrapping elements
+				event.target.closest('db-tab-item') ??
+				event.target.closest('li');
+			if (list !== null && listItem !== null) {
+				const indices = Array.from(list.childNodes).indexOf(listItem);
+				if (props.onIndexChange) {
+					props.onIndexChange(indices);
 				}
 			}
 
@@ -218,7 +217,7 @@ export default function DBTabs(props: DBTabsProps) {
 			</Show>
 			<Show when={props.tabs}>
 				<DBTabList>
-					<For each={state.convertTabs(props.tabs)}>
+					<For each={state.convertTabs()}>
 						{(tab: DBSimpleTabProps, index: number) => (
 							<DBTabItem
 								key={props.name + 'tab-item' + index}
@@ -231,7 +230,7 @@ export default function DBTabs(props: DBTabsProps) {
 						)}
 					</For>
 				</DBTabList>
-				<For each={state.convertTabs(props.tabs)}>
+				<For each={state.convertTabs()}>
 					{(tab: DBSimpleTabProps, index: number) => (
 						<DBTabPanel
 							key={props.name + 'tab-panel' + index}

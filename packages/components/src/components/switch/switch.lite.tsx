@@ -44,10 +44,6 @@ export default function DBSwitch(props: DBSwitchProps) {
 				props.onChange(event);
 			}
 
-			if (props.change) {
-				props.change(event);
-			}
-
 			// We have different ts types in different frameworks, so we need to use any here
 			state._checked = (event.target as any)?.['checked'];
 
@@ -61,18 +57,10 @@ export default function DBSwitch(props: DBSwitchProps) {
 			if (props.onBlur) {
 				props.onBlur(event);
 			}
-
-			if (props.blur) {
-				props.blur(event);
-			}
 		},
 		handleFocus: (event: InteractionEvent<HTMLInputElement>) => {
 			if (props.onFocus) {
 				props.onFocus(event);
-			}
-
-			if (props.focus) {
-				props.focus(event);
 			}
 		}
 	});

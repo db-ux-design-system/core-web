@@ -89,10 +89,6 @@ export default function DBCheckbox(props: DBCheckboxProps) {
 				props.onChange(event);
 			}
 
-			if (props.change) {
-				props.change(event);
-			}
-
 			useTarget({
 				angular: () =>
 					handleFrameworkEventAngular(state, event, 'checked'),
@@ -100,22 +96,14 @@ export default function DBCheckbox(props: DBCheckboxProps) {
 			});
 			state.handleValidation();
 		},
-		handleBlur: (event: InteractionEvent<HTMLInputElement>) => {
+		handleBlur: (event: InteractionEvent<HTMLInputElement> | any) => {
 			if (props.onBlur) {
 				props.onBlur(event);
 			}
-
-			if (props.blur) {
-				props.blur(event);
-			}
 		},
-		handleFocus: (event: InteractionEvent<HTMLInputElement>) => {
+		handleFocus: (event: InteractionEvent<HTMLInputElement> | any) => {
 			if (props.onFocus) {
 				props.onFocus(event);
-			}
-
-			if (props.focus) {
-				props.focus(event);
 			}
 		}
 	});

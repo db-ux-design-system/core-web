@@ -75,7 +75,7 @@ export const getComponents = (): Component[] => [
 	{
 		name: 'switch',
 		overwrites: {
-			angular: [{ from: 'HTMLElement', to: 'HTMLInputElement' }],
+			angular: [{ from: '<HTMLElement>', to: '<HTMLInputElement>' }],
 			stencil: [{ from: 'HTMLElement', to: 'HTMLInputElement' }],
 			react: [{ from: /HTMLAttributes/g, to: 'InputHTMLAttributes' }]
 		},
@@ -109,14 +109,6 @@ export const getComponents = (): Component[] => [
 
 	{
 		name: 'tabs',
-		overwrites: {
-			angular: [
-				{
-					from: 'scrollContainer = null;',
-					to: 'scrollContainer: Element | null = null;'
-				}
-			]
-		},
 		config: {
 			react: {
 				propsPassingFilter: ['onTabSelect', 'onIndexChange']
@@ -133,15 +125,12 @@ export const getComponents = (): Component[] => [
 	},
 
 	{
-		name: 'popover',
-		overwrites: { angular: [{ from: 'mouseEnter', to: 'mouseenter' }] }
+		name: 'popover'
 	},
 
 	{
 		name: 'accordion-item',
 		overwrites: {
-			// this is an issue from mitosis always adding `attr`
-			angular: [{ from: 'attr.open', to: 'open' }],
 			// TS issue
 			stencil: [{ from: 'name={this.name}', to: '' }]
 		},
@@ -153,7 +142,12 @@ export const getComponents = (): Component[] => [
 	},
 
 	{
-		name: 'accordion'
+		name: 'accordion',
+		overwrites: {
+			angular: [
+				{ from: 'this.initOpenIndex &&', to: 'this.initOpenIndex() &&' }
+			]
+		}
 	},
 
 	{
@@ -168,10 +162,10 @@ export const getComponents = (): Component[] => [
 		},
 		overwrites: {
 			angular: [
-				{ from: 'HTMLElement', to: 'HTMLTextAreaElement' },
+				{ from: '<HTMLElement>', to: '<HTMLTextAreaElement>' },
 				{
 					from: '</textarea>',
-					to: '{{value}}</textarea>'
+					to: '{{value()}}</textarea>'
 				}
 			],
 			react: [{ from: /HTMLAttributes/g, to: 'TextareaHTMLAttributes' }],
@@ -188,12 +182,6 @@ export const getComponents = (): Component[] => [
 	{
 		name: 'navigation-item',
 		overwrites: {
-			angular: [
-				{
-					from: 'navigationItemSafeTriangle = undefined;',
-					to: 'navigationItemSafeTriangle: undefined | NavigationItemSafeTriangle = undefined;'
-				}
-			],
 			vue: [
 				{
 					from: 'navigationItemSafeTriangle: undefined',
@@ -217,7 +205,7 @@ export const getComponents = (): Component[] => [
 	{
 		name: 'select',
 		overwrites: {
-			angular: [{ from: 'HTMLElement', to: 'HTMLSelectElement' }],
+			angular: [{ from: '<HTMLElement>', to: '<HTMLSelectElement>' }],
 			react: [
 				// React not allowing selected for options
 				{ from: 'selected={option.selected}', to: '' },
@@ -244,8 +232,7 @@ export const getComponents = (): Component[] => [
 	{
 		name: 'drawer',
 		overwrites: {
-			angular: [{ from: 'HTMLElement', to: 'HTMLDialogElement' }],
-			stencil: [{ from: /onClose/g, to: 'close' }]
+			angular: [{ from: '<HTMLElement>', to: '<HTMLDialogElement>' }]
 		},
 		config: {
 			react: {
@@ -268,7 +255,7 @@ export const getComponents = (): Component[] => [
 	{
 		name: 'checkbox',
 		overwrites: {
-			angular: [{ from: 'HTMLElement', to: 'HTMLInputElement' }],
+			angular: [{ from: '<HTMLElement>', to: '<HTMLInputElement>' }],
 			stencil: [{ from: 'HTMLElement', to: 'HTMLInputElement' }],
 			react: [{ from: /HTMLAttributes/g, to: 'InputHTMLAttributes' }]
 		},
@@ -285,7 +272,7 @@ export const getComponents = (): Component[] => [
 	{
 		name: 'radio',
 		overwrites: {
-			angular: [{ from: 'HTMLElement', to: 'HTMLInputElement' }],
+			angular: [{ from: '<HTMLElement>', to: '<HTMLInputElement>' }],
 			stencil: [{ from: 'HTMLElement', to: 'HTMLInputElement' }],
 			react: [{ from: /HTMLAttributes/g, to: 'InputHTMLAttributes' }]
 		},
@@ -348,19 +335,6 @@ export const getComponents = (): Component[] => [
 			react: {
 				propsPassingFilter: ['onToggle']
 			}
-		},
-		overwrites: {
-			global: [
-				{
-					from: '(event) => toggle()',
-					to: '() => toggle()'
-				},
-				{
-					from: '(event) => toggle()',
-					to: '() => toggle()'
-				}
-			],
-			angular: [{ from: '(close)', to: '(onClose)' }]
 		}
 	},
 	{
@@ -374,16 +348,16 @@ export const getComponents = (): Component[] => [
 			stencil: [{ from: 'HTMLElement', to: 'HTMLInputElement' }],
 			react: [{ from: /HTMLAttributes/g, to: 'InputHTMLAttributes' }],
 			angular: [
-				{ from: 'HTMLElement', to: 'HTMLInputElement' },
+				{ from: '<HTMLElement>', to: '<HTMLInputElement>' },
 				{
 					from: 'writeValue(value: any) {',
 					to:
 						'writeValue(value: any) {\n' +
-						'if (!value && (this.type === "date" ||\n' +
-						'			this.type === "time" ||\n' +
-						'			this.type === "week" ||\n' +
-						'			this.type === "month" ||\n' +
-						'			this.type === "datetime-local"\n' +
+						'if (!value && (this.type() === "date" ||\n' +
+						'			this.type() === "time" ||\n' +
+						'			this.type() === "week" ||\n' +
+						'			this.type() === "month" ||\n' +
+						'			this.type() === "datetime-local"\n' +
 						'			)) return;'
 				}
 			]

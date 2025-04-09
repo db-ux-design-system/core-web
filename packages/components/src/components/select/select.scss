@@ -9,16 +9,17 @@
 
 .db-select {
 	--db-form-component-padding-inline-end: #{select-components.$select-icon-padding};
+	--db-form-component-min-inline-size: ${variables.$db-sizing-xl};
 	// shared from form-components
 	@extend %select-icon;
 	@extend %select-placeholder;
 
-	min-inline-size: calc(
-		4 * #{variables.$db-sizing-md} + var(--db-form-has-before) *
-			#{variables.$db-sizing-md}
-	);
-
 	@include form-components.set-default-form-component(select);
+
+	// increased inline size for elements with icons
+	&[data-icon]:not([data-hide-icon="true"]) {
+		--db-form-component-min-inline-size: #{variables.$db-sizing-2xl};
+	}
 
 	select {
 		text-indent: select-components.$has-before-padding;

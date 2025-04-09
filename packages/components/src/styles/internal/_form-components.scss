@@ -39,6 +39,11 @@ $input-types:
 
 $check-border-size: min(#{variables.$db-border-width-2xs}, 2px);
 
+$db-min-inline-size: var(
+	--db-form-component-min-inline-size,
+	#{variables.$db-sizing-lg}
+);
+
 %dropdown-icon {
 	@include icons.set-icon("chevron_down", "after");
 
@@ -300,6 +305,9 @@ $input-valid-types:
 		--db-label-visible-above: 0;
 	}
 
+	// base inline size for inputs without icons
+	min-inline-size: $db-min-inline-size;
+
 	@include set-floating-label-overwrites($selector);
 	@include set-required-label($selector);
 
@@ -329,6 +337,7 @@ $input-valid-types:
 		appearance: none;
 		max-inline-size: 100%;
 		inline-size: 100%;
+		min-inline-size: $db-min-inline-size;
 
 		/* stylelint-disable-next-line db-ux/use-spacings */
 		padding-inline: var(

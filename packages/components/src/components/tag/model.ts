@@ -35,6 +35,10 @@ export type DBTagDefaultProps = {
 	 */
 	onRemove?: (event?: any) => void;
 	/**
+	 * If "removeButton" attribute is set this function will be called when user clicks cancel button inside the tag.
+	 */
+	remove?: () => void;
+	/**
 	 * The removeButton attribute shows the cancel button.
 	 */
 	removeButton?: string;

@@ -94,19 +94,27 @@ export default function DBSelect(props: DBSelectProps) {
 				state._descByIds = state._placeholderId;
 			}
 		},
-		handleClick: (event: ClickEvent<HTMLSelectElement>) => {
+		handleClick: (event: ClickEvent<HTMLSelectElement> | any) => {
 			if (props.onClick) {
 				props.onClick(event);
 			}
 		},
-		handleInput: (event: InputEvent<HTMLSelectElement>) => {
-			if (props.onInput) {
-				props.onInput(event);
-			}
-
-			if (props.input) {
-				props.input(event);
-			}
+		handleInput: (event: InputEvent<HTMLSelectElement> | any) => {
+			useTarget({
+				vue: () => {
+					if (props.input) {
+						props.input(event);
+					}
+					if (props.onInput) {
+						props.onInput(event);
+					}
+				},
+				default: () => {
+					if (props.onInput) {
+						props.onInput(event);
+					}
+				}
+			});
 
 			useTarget({
 				angular: () => handleFrameworkEventAngular(state, event),
@@ -114,37 +122,25 @@ export default function DBSelect(props: DBSelectProps) {
 			});
 			state.handleValidation();
 		},
-		handleChange: (event: ChangeEvent<HTMLSelectElement>) => {
+		handleChange: (event: ChangeEvent<HTMLSelectElement> | any) => {
 			if (props.onChange) {
 				props.onChange(event);
 			}
 
-			if (props.change) {
-				props.change(event);
-			}
-
 			useTarget({
 				angular: () => handleFrameworkEventAngular(state, event),
 				vue: () => handleFrameworkEventVue(() => {}, event)
 			});
 			state.handleValidation();
 		},
-		handleBlur: (event: InteractionEvent<HTMLSelectElement>) => {
+		handleBlur: (event: InteractionEvent<HTMLSelectElement> | any) => {
 			if (props.onBlur) {
 				props.onBlur(event);
 			}
-
-			if (props.blur) {
-				props.blur(event);
-			}
 		},
-		handleFocus: (event: InteractionEvent<HTMLSelectElement>) => {
+		handleFocus: (event: InteractionEvent<HTMLSelectElement> | any) => {
 			if (props.onFocus) {
 				props.onFocus(event);
-			}
-
-			if (props.focus) {
-				props.focus(event);
 			}
 		},
 		getOptionLabel: (option: DBSelectOptionType) => {
