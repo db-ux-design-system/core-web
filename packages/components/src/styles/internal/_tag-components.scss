@@ -109,17 +109,6 @@ $interactive-selectors: "label, button:not(.db-tab-remove-button), a";
 					var(--db-#{$name}-on-bg-inverted-default)
 				);
 			}
-
-			&[data-emphasis="origin"] {
-				border-color: var(
-					--db-#{$name}-on-bg-basic-emphasis-70-default
-				);
-
-				@include colors.set-current-colors(
-					var(--db-#{$name}-origin-default),
-					var(--db-#{$name}-on-origin-default)
-				);
-			}
 		}
 	}
 }
