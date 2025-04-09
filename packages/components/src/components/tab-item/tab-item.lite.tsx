@@ -23,7 +23,7 @@ useMetadata({
 useDefaultProps<DBTabItemProps>({});
 
 export default function DBTabItem(props: DBTabItemProps) {
-	const _ref = useRef<HTMLInputElement | null>(null);
+	const _ref = useRef<HTMLInputElement | undefined>(undefined);
 	// jscpd:ignore-start
 	const state = useStore<DBTabItemState>({
 		initialized: false,
@@ -51,7 +51,7 @@ export default function DBTabItem(props: DBTabItemProps) {
 
 			useTarget({
 				angular: () =>
-					handleFrameworkEventAngular(this, event, 'checked'),
+					handleFrameworkEventAngular(state, event, 'checked'),
 				vue: () => handleFrameworkEventVue(() => {}, event, 'checked')
 			});
 		}

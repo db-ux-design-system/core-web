@@ -13,7 +13,7 @@ useMetadata({});
 useDefaultProps<DBInfotextProps>({});
 
 export default function DBInfotext(props: DBInfotextProps) {
-	const _ref = useRef<HTMLSpanElement | null>(null);
+	const _ref = useRef<HTMLSpanElement | undefined>(undefined);
 	// jscpd:ignore-start
 	const state = useStore<DBInfotextState>({});
 	// jscpd:ignore-end

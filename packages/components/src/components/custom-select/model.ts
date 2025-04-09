@@ -5,6 +5,7 @@ import {
 	CustomFormProps,
 	FormMessageProps,
 	FormState,
+	FromValidState,
 	GlobalProps,
 	GlobalState,
 	IconProps,
@@ -77,7 +78,7 @@ export type DBCustomSelectDefaultProps = {
 	 * Enables CustomSelect
 	 */
 
-	multiple?: boolean;
+	multiple?: boolean | string;
 
 	/**
 	 * Dropdown - hint if there are no options
@@ -225,5 +226,6 @@ export type DBCustomSelectDefaultState = {
 export type DBCustomSelectState = DBCustomSelectDefaultState &
 	GlobalState &
 	FormState &
+	FromValidState &
 	CloseEventState &
 	PopoverState;

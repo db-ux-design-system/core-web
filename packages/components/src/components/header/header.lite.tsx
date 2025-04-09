@@ -25,7 +25,7 @@ useMetadata({});
 useDefaultProps<DBHeaderProps>({});
 
 export default function DBHeader(props: DBHeaderProps) {
-	const _ref = useRef<HTMLDivElement | null>(null);
+	const _ref = useRef<HTMLDivElement | undefined>(undefined);
 	// jscpd:ignore-start
 	const state = useStore<DBHeaderState>({
 		_id: DEFAULT_ID,

@@ -18,7 +18,7 @@ useMetadata({
 useDefaultProps<DBButtonProps>({});
 
 export default function DBButton(props: DBButtonProps) {
-	const _ref = useRef<HTMLButtonElement | null>(null);
+	const _ref = useRef<HTMLButtonElement | undefined>(undefined);
 	// jscpd:ignore-start
 	const state = useStore<DBButtonState>({
 		handleClick: (event: ClickEvent<HTMLButtonElement>) => {

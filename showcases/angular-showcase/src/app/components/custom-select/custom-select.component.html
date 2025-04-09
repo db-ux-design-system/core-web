@@ -18,6 +18,8 @@
 			<i class="line-break"></i>
 		} @else {
 			<db-custom-select
+				[disabled]="exampleProps?.disabled"
+				[showMessage]="exampleProps?.showMessage"
 				[icon]="exampleProps?.icon"
 				[showIcon]="exampleProps?.showIcon"
 				[dropdownWidth]="exampleProps?.dropdownWidth"

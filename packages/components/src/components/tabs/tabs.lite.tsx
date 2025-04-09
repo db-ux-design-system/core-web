@@ -19,7 +19,7 @@ useMetadata({});
 useDefaultProps<DBTabsProps>({});
 
 export default function DBTabs(props: DBTabsProps) {
-	const _ref = useRef<HTMLDivElement | null>(null);
+	const _ref = useRef<HTMLDivElement | undefined>(undefined);
 	// jscpd:ignore-start
 	const state = useStore<DBTabsState>({
 		_id: 'tabs-' + uuid(),

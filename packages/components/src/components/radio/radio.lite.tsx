@@ -9,13 +9,7 @@ import {
 	useTarget
 } from '@builder.io/mitosis';
 import { DBRadioProps, DBRadioState } from './model';
-import {
-	cls,
-	getBoolean,
-	getBooleanAsString,
-	getHideProp,
-	uuid
-} from '../../utils';
+import { cls, getBoolean, getHideProp, uuid } from '../../utils';
 import { ChangeEvent, InteractionEvent } from '../../shared/model';
 import {
 	handleFrameworkEventAngular,
@@ -30,7 +24,7 @@ useMetadata({
 useDefaultProps<DBRadioProps>({});
 
 export default function DBRadio(props: DBRadioProps) {
-	const _ref = useRef<HTMLInputElement | null>(null);
+	const _ref = useRef<HTMLInputElement | undefined>(undefined);
 	// jscpd:ignore-start
 	const state = useStore<DBRadioState>({
 		initialized: false,
@@ -45,7 +39,7 @@ export default function DBRadio(props: DBRadioProps) {
 			}
 
 			useTarget({
-				angular: () => handleFrameworkEventAngular(this, event),
+				angular: () => handleFrameworkEventAngular(state, event),
 				vue: () => handleFrameworkEventVue(() => {}, event)
 			});
 		},

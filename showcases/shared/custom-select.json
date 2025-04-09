@@ -194,28 +194,10 @@
 		]
 	},
 	{
-		"name": "Helper Message",
+		"name": "Show Message",
 		"examples": [
 			{
-				"name": "(Default) Basic",
-				"style": {
-					"width": "200px"
-				},
-				"props": {
-					"options": [
-						{
-							"value": "Option 1"
-						},
-						{
-							"value": "Option 2"
-						}
-					],
-					"label": "Label"
-				},
-				"children": []
-			},
-			{
-				"name": "Helper Message",
+				"name": "(Default) False",
 				"style": {
 					"width": "200px"
 				},
@@ -229,7 +211,28 @@
 						}
 					],
 					"label": "Label",
-					"message": "Helper Message"
+					"message": "Helper Message",
+					"showMessage": false
+				},
+				"children": []
+			},
+			{
+				"name": "True",
+				"style": {
+					"width": "200px"
+				},
+				"props": {
+					"options": [
+						{
+							"value": "Option 1"
+						},
+						{
+							"value": "Option 2"
+						}
+					],
+					"label": "Label",
+					"message": "Helper Message",
+					"showMessage": true
 				},
 				"children": []
 			}
@@ -281,10 +284,10 @@
 		]
 	},
 	{
-		"name": "Requirement",
+		"name": "Required",
 		"examples": [
 			{
-				"name": "(Default) Optional",
+				"name": "(Default) False",
 				"style": {
 					"width": "200px"
 				},
@@ -298,12 +301,13 @@
 						}
 					],
 					"label": "Label",
-					"multiple": true
+					"multiple": true,
+					"required": false
 				},
 				"children": []
 			},
 			{
-				"name": "Required",
+				"name": "True",
 				"style": {
 					"width": "200px"
 				},
@@ -318,6 +322,51 @@
 					],
 					"label": "Label",
 					"required": true,
+					"multiple": true
+				},
+				"children": []
+			}
+		]
+	},
+	{
+		"name": "Disabled",
+		"examples": [
+			{
+				"name": "(Default) False",
+				"style": {
+					"width": "200px"
+				},
+				"props": {
+					"options": [
+						{
+							"value": "Option 1"
+						},
+						{
+							"value": "Option 2"
+						}
+					],
+					"label": "Label",
+					"multiple": true,
+					"disabled": false
+				},
+				"children": []
+			},
+			{
+				"name": "True",
+				"style": {
+					"width": "200px"
+				},
+				"props": {
+					"options": [
+						{
+							"value": "Option 1"
+						},
+						{
+							"value": "Option 2"
+						}
+					],
+					"label": "Label",
+					"disabled": true,
 					"multiple": true
 				},
 				"children": []
@@ -770,6 +819,235 @@
 		]
 	},
 	{
+		"name": "Show No Result",
+		"examples": [
+			{
+				"name": "(Default) False",
+				"style": {
+					"width": "200px"
+				},
+				"props": {
+					"options": [
+						{
+							"value": "Option 1"
+						},
+						{
+							"value": "Option 2"
+						}
+					],
+					"label": "Label",
+					"showNoResults": false,
+					"noResultsText": "Nothing found",
+					"multiple": true
+				},
+				"children": []
+			},
+			{
+				"name": "True",
+				"style": {
+					"width": "200px"
+				},
+				"props": {
+					"options": [
+						{
+							"value": "Option 1"
+						},
+						{
+							"value": "Option 2"
+						}
+					],
+					"label": "Label",
+					"showNoResults": true,
+					"noResultsText": "Nothing found",
+					"multiple": true
+				},
+				"children": []
+			}
+		]
+	},
+	{
+		"name": "Show Loading",
+		"examples": [
+			{
+				"name": "(Default) False",
+				"style": {
+					"width": "200px"
+				},
+				"props": {
+					"options": [
+						{
+							"value": "Option 1"
+						},
+						{
+							"value": "Option 2"
+						}
+					],
+					"label": "Label",
+					"showLoading": false,
+					"loadingText": "Loading",
+					"multiple": true
+				},
+				"children": []
+			},
+			{
+				"name": "True",
+				"style": {
+					"width": "200px"
+				},
+				"props": {
+					"options": [
+						{
+							"value": "Option 1"
+						},
+						{
+							"value": "Option 2"
+						}
+					],
+					"label": "Label",
+					"showLoading": true,
+					"loadingText": "Loading",
+					"multiple": true
+				},
+				"children": []
+			}
+		]
+	},
+	{
+		"name": "Show Search",
+		"examples": [
+			{
+				"name": "(Default) False",
+				"style": {
+					"width": "200px"
+				},
+				"props": {
+					"options": [
+						{
+							"value": "Option 1"
+						},
+						{
+							"value": "Option 2"
+						}
+					],
+					"label": "Label",
+					"showSearch": false,
+					"multiple": true
+				},
+				"children": []
+			},
+			{
+				"name": "True",
+				"style": {
+					"width": "200px"
+				},
+				"props": {
+					"options": [
+						{
+							"value": "Option 1"
+						},
+						{
+							"value": "Option 2"
+						}
+					],
+					"label": "Label",
+					"showSearch": true,
+					"multiple": true
+				},
+				"children": []
+			}
+		]
+	},
+	{
+		"name": "Show Select All",
+		"examples": [
+			{
+				"name": "(Default) False",
+				"style": {
+					"width": "200px"
+				},
+				"props": {
+					"options": [
+						{
+							"value": "Option 1"
+						},
+						{
+							"value": "Option 2"
+						}
+					],
+					"label": "Label",
+					"showSelectAll": false,
+					"multiple": true
+				},
+				"children": []
+			},
+			{
+				"name": "True",
+				"style": {
+					"width": "200px"
+				},
+				"props": {
+					"options": [
+						{
+							"value": "Option 1"
+						},
+						{
+							"value": "Option 2"
+						}
+					],
+					"label": "Label",
+					"showSelectAll": true,
+					"multiple": true
+				},
+				"children": []
+			}
+		]
+	},
+	{
+		"name": "Show Clear Selection",
+		"examples": [
+			{
+				"name": "(Default) True",
+				"style": {
+					"width": "200px"
+				},
+				"props": {
+					"options": [
+						{
+							"value": "Option 1"
+						},
+						{
+							"value": "Option 2"
+						}
+					],
+					"label": "Label",
+					"showClearSelection": true,
+					"multiple": true
+				},
+				"children": []
+			},
+			{
+				"name": "False",
+				"style": {
+					"width": "200px"
+				},
+				"props": {
+					"options": [
+						{
+							"value": "Option 1"
+						},
+						{
+							"value": "Option 2"
+						}
+					],
+					"label": "Label",
+					"showClearSelection": false,
+					"multiple": true
+				},
+				"children": []
+			}
+		]
+	},
+	{
 		"name": "Examples Single",
 		"examples": [
 			{
@@ -1178,116 +1456,6 @@
 					"selectedType": "tag",
 					"tagWrapping": "grow",
 					"width": "auto",
-					"multiple": true
-				},
-				"children": []
-			}
-		]
-	},
-	{
-		"name": "Example Shows",
-		"examples": [
-			{
-				"name": "Show No Result",
-				"style": {
-					"width": "200px"
-				},
-				"props": {
-					"options": [
-						{
-							"value": "Option 1"
-						},
-						{
-							"value": "Option 2"
-						}
-					],
-					"label": "Label",
-					"showNoResults": true,
-					"showSearch": true,
-					"noResultsText": "Nothing found",
-					"multiple": true
-				},
-				"children": []
-			},
-			{
-				"name": "Show Loading and Show Search",
-				"style": {
-					"width": "200px"
-				},
-				"props": {
-					"options": [
-						{
-							"value": "Option 1"
-						},
-						{
-							"value": "Option 2"
-						}
-					],
-					"label": "Label",
-					"showLoading": true,
-					"showSearch": true,
-					"loadingText": "Loading",
-					"multiple": true
-				},
-				"children": []
-			},
-			{
-				"name": "Show Loading",
-				"style": {
-					"width": "200px"
-				},
-				"props": {
-					"options": [
-						{
-							"value": "Option 1"
-						},
-						{
-							"value": "Option 2"
-						}
-					],
-					"label": "Label",
-					"showLoading": true,
-					"loadingText": "Loading",
-					"multiple": true
-				},
-				"children": []
-			},
-			{
-				"name": "Show SelectAll",
-				"style": {
-					"width": "200px"
-				},
-				"props": {
-					"options": [
-						{
-							"value": "Option 1"
-						},
-						{
-							"value": "Option 2"
-						}
-					],
-					"label": "Label",
-					"showSelectAll": true,
-					"multiple": true
-				},
-				"children": []
-			},
-			{
-				"name": "Hide ClearAll",
-				"style": {
-					"width": "200px"
-				},
-				"props": {
-					"options": [
-						{
-							"value": "Option 1"
-						},
-						{
-							"value": "Option 2"
-						}
-					],
-					"label": "Label",
-					"showClearSelection": false,
 					"multiple": true
 				},
 				"children": []

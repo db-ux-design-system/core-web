@@ -14,7 +14,6 @@ import {
 	cls,
 	delay,
 	getBoolean,
-	getBooleanAsString,
 	getHideProp,
 	hasVoiceOver,
 	stringPropVisible,
@@ -49,7 +48,7 @@ useMetadata({
 useDefaultProps<DBSelectProps>({});
 
 export default function DBSelect(props: DBSelectProps) {
-	const _ref = useRef<HTMLSelectElement | null>(null);
+	const _ref = useRef<HTMLSelectElement | undefined>(undefined);
 	// jscpd:ignore-start
 	const state = useStore<DBSelectState>({
 		_id: undefined,
@@ -110,7 +109,7 @@ export default function DBSelect(props: DBSelectProps) {
 			}
 
 			useTarget({
-				angular: () => handleFrameworkEventAngular(this, event),
+				angular: () => handleFrameworkEventAngular(state, event),
 				vue: () => handleFrameworkEventVue(() => {}, event)
 			});
 			state.handleValidation();
@@ -125,7 +124,7 @@ export default function DBSelect(props: DBSelectProps) {
 			}
 
 			useTarget({
-				angular: () => handleFrameworkEventAngular(this, event),
+				angular: () => handleFrameworkEventAngular(state, event),
 				vue: () => handleFrameworkEventVue(() => {}, event)
 			});
 			state.handleValidation();

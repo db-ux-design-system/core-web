@@ -30,7 +30,9 @@ const getCustomSelect = ({
 	multiple,
 	dropdownWidth,
 	icon,
-	showIcon
+	showIcon,
+	showMessage,
+	disabled
 }: DBCustomSelectProps & {
 	lineBreak?: boolean;
 	info?: boolean;
@@ -51,7 +53,9 @@ const getCustomSelect = ({
 
 	return (
 		<DBCustomSelect
+			disabled={disabled}
 			icon={icon}
+			showMessage={showMessage}
 			showIcon={showIcon}
 			dropdownWidth={dropdownWidth}
 			showClearSelection={showClearSelection}

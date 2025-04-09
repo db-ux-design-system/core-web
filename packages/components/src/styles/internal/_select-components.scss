@@ -1,6 +1,6 @@
 @use "@db-ux/core-foundations/build/styles/fonts";
 @use "@db-ux/core-foundations/build/styles/variables";
-@use "./internal/form-components";
+@use "./form-components";
 
 %select-icon {
 	@extend %dropdown-icon;
@@ -34,7 +34,8 @@ $select-icon-padding: calc(
 					#{form-components.$label-size-height-xs} +
 						#{variables.$db-spacing-fixed-xs}
 				) *
-				var(--db-label-visible-above, 1) + var(--db-type-body-font-size-md) /
+				var(--db-label-visible-above, 1) +
+				var(--db-type-body-font-size-md) /
 				2 - var(--db-density-functional, 0) * 1px
 		);
 		inset-inline: $has-before-padding;

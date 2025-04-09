@@ -19,6 +19,7 @@ import {
 import {
 	cls,
 	delay,
+	getBoolean,
 	getBooleanAsString,
 	getHideProp,
 	getSearchInput,
@@ -72,10 +73,10 @@ useDefaultProps<DBCustomSelectProps>({
 
 export default function DBCustomSelect(props: DBCustomSelectProps) {
 	// This is used as forwardRef
-	const _ref = useRef<HTMLDivElement | null>(null);
-	const detailsRef = useRef<HTMLDetailsElement | null>(null);
-	const selectRef = useRef<HTMLSelectElement | null>(null);
-	const selectAllRef = useRef<HTMLInputElement | null>(null);
+	const _ref = useRef<HTMLDivElement | undefined>(undefined);
+	const detailsRef = useRef<HTMLDetailsElement | undefined>(undefined);
+	const selectRef = useRef<HTMLSelectElement | undefined>(undefined);
+	const selectAllRef = useRef<HTMLInputElement | undefined>(undefined);
 	// jscpd:ignore-start
 	const state: DBCustomSelectState = useStore<DBCustomSelectState>({
 		_name: undefined,
@@ -83,6 +84,7 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 		_messageId: undefined,
 		_validMessageId: undefined,
 		_invalidMessageId: undefined,
+		_invalidMessage: undefined,
 		_selectId: undefined,
 		_labelId: undefined,
 		_summaryId: undefined,
@@ -103,6 +105,41 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 		_hasNoOptions: false,
 		_internalChangeTimestamp: -1,
 		_externalChangeTimestamp: -1,
+		hasValidState: () => {
+			return !!(props.validMessage ?? props.validation === 'valid');
+		},
+		handleValidation: () => {
+			if (selectRef) {
+				selectRef.value = state.getNativeSelectValue();
+			}
+			/* For a11y reasons we need to map the correct message with the select */
+			if (!selectRef?.validity.valid || props.validation === 'invalid') {
+				state._descByIds = state._invalidMessageId;
+				state._invalidMessage =
+					props.invalidMessage ||
+					selectRef?.validationMessage ||
+					DEFAULT_INVALID_MESSAGE;
+				if (hasVoiceOver()) {
+					state._voiceOverFallback = state._invalidMessage;
+					delay(() => (state._voiceOverFallback = ''), 1000);
+				}
+			} else if (
+				state.hasValidState() &&
+				selectRef?.validity.valid &&
+				props.required
+			) {
+				state._descByIds = state._validMessageId;
+				if (hasVoiceOver()) {
+					state._voiceOverFallback =
+						props.validMessage ?? DEFAULT_VALID_MESSAGE;
+					delay(() => (state._voiceOverFallback = ''), 1000);
+				}
+			} else if (stringPropVisible(props.message, props.showMessage)) {
+				state._descByIds = state._messageId;
+			} else {
+				state._descByIds = state._placeholderId;
+			}
+		},
 		handleDropdownToggle: (event: any) => {
 			if (props.onDropdownToggle) {
 				props.onDropdownToggle(event);
@@ -397,6 +434,7 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 		state._placeholderId = mId + DEFAULT_PLACEHOLDER_ID_SUFFIX;
 		state._selectedLabelsId = mId + '-selected-labels';
 		state._infoTextId = mId + '-info';
+		state._invalidMessage = props.invalidMessage || DEFAULT_INVALID_MESSAGE;
 
 		if (document) {
 			document.addEventListener('click', state.handleDocumentClose);
@@ -503,7 +541,7 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 				};
 				useTarget({
 					angular: () =>
-						handleFrameworkEventAngular(this, fakeEvent, 'values'),
+						handleFrameworkEventAngular(state, fakeEvent, 'values'),
 					vue: () =>
 						handleFrameworkEventVue(() => {}, fakeEvent, 'values')
 				});
@@ -523,38 +561,7 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 	}, [props.values]);
 
 	onUpdate(() => {
-		if (selectRef) {
-			selectRef.value = state.getNativeSelectValue();
-		}
-		/* For a11y reasons we need to map the correct message with the select */
-		if (!selectRef?.validity.valid || props.validation === 'invalid') {
-			state._validity = 'invalid';
-			state.setDescById(state._invalidMessageId);
-			if (hasVoiceOver()) {
-				state._voiceOverFallback =
-					props.invalidMessage ??
-					selectRef?.validationMessage ??
-					DEFAULT_INVALID_MESSAGE;
-				delay(() => (state._voiceOverFallback = ''), 1000);
-			}
-		} else if (
-			props.validation === 'valid' ||
-			(selectRef?.validity.valid && props.required)
-		) {
-			state._validity = 'valid';
-			state.setDescById(state._validMessageId);
-			if (hasVoiceOver()) {
-				state._voiceOverFallback =
-					props.validMessage ?? DEFAULT_VALID_MESSAGE;
-				delay(() => (state._voiceOverFallback = ''), 1000);
-			}
-		} else if (props.message) {
-			state._validity = 'no-validation';
-			state.setDescById(state._messageId);
-		} else {
-			state._validity = 'no-validation';
-			state.setDescById(state._placeholderId);
-		}
+		state.handleValidation();
 	}, [state._values]);
 
 	onUpdate(() => {
@@ -626,6 +633,13 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 		}
 	}, [state.selectAllIndeterminate, selectAllRef]);
 
+	onUpdate(() => {
+		state._invalidMessage =
+			props.invalidMessage ||
+			selectRef?.validationMessage ||
+			DEFAULT_INVALID_MESSAGE;
+	}, [selectRef, props.invalidMessage]);
+
 	return (
 		<div
 			id={state._id}
@@ -656,9 +670,9 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 					tabIndex={-1}
 					ref={selectRef}
 					form={props.form}
-					disabled={props.disabled}
-					multiple={props.multiple}
-					required={props.required}
+					multiple={getBoolean(props.multiple, 'multiple')}
+					disabled={getBoolean(props.disabled, 'disabled')}
+					required={getBoolean(props.required, 'required')}
 					/* Satisfy React */
 					onChange={() => {}}>
 					<For each={state._options}>
@@ -679,7 +693,7 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 			<details
 				ref={detailsRef}
 				open={props.open}
-				aria-disabled={props.disabled}
+				/* @ts-expect-error details as an event named onToggle */
 				onToggle={(event: any) => state.handleDropdownToggle(event)}
 				onKeyDown={(event) => state.handleKeyboardPress(event)}>
 				{props.children}
@@ -688,6 +702,7 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 					<summary
 						id={state._summaryId}
 						class="db-custom-select-form-field"
+						aria-disabled={getBooleanAsString(props.disabled)}
 						aria-labelledby={state._labelId}>
 						<Show when={state._selectedLabels?.length}>
 							<span
@@ -782,7 +797,10 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 										</div>
 									</Show>
 									<DBCustomSelectList
-										multiple={props.multiple}
+										multiple={getBoolean(
+											props.multiple,
+											'multiple'
+										)}
 										label={props.label ?? DEFAULT_LABEL}>
 										<For each={state._options}>
 											{(
@@ -888,7 +906,7 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 				id={state._placeholderId}>
 				{props.placeholder ?? props.label}
 			</span>
-			<Show when={props.message}>
+			<Show when={stringPropVisible(props.message, props.showMessage)}>
 				<DBInfotext
 					size="small"
 					icon={props.messageIcon}
@@ -897,19 +915,27 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 				</DBInfotext>
 			</Show>
 
+			<Show when={state.hasValidState()}>
+				<DBInfotext
+					id={state._validMessageId}
+					size="small"
+					semantic="successful">
+					{props.validMessage || DEFAULT_VALID_MESSAGE}
+				</DBInfotext>
+			</Show>
+
 			<DBInfotext
-				id={state._validMessageId}
+				id={state._invalidMessageId}
 				size="small"
-				semantic="successful">
-				{props.validMessage ?? DEFAULT_VALID_MESSAGE}
+				semantic="critical">
+				{state._invalidMessage}
 			</DBInfotext>
 
 			<DBInfotext
 				id={state._invalidMessageId}
 				size="small"
 				semantic="critical">
-				{props.invalidMessage ??
-					(selectRef?.validationMessage || DEFAULT_INVALID_MESSAGE)}
+				{state._invalidMessage}
 			</DBInfotext>
 
 			{/* * https://www.davidmacd.com/blog/test-aria-describedby-errormessage-aria-live.html

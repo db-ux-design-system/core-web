@@ -88,6 +88,7 @@ $check-border-size: min(#{variables.$db-border-width-2xs}, 2px);
 					#{variables.$db-spacing-fixed-sm}
 				);
 			pointer-events: none;
+			font-style: italic;
 		}
 
 		[id$="-placeholder"] {
@@ -127,6 +128,7 @@ $check-border-size: min(#{variables.$db-border-width-2xs}, 2px);
 
 				inset-block-start: variables.$db-spacing-fixed-2xs;
 				opacity: 1;
+				font-style: normal;
 			}
 
 			@include placeholder-content($selector) {
@@ -374,7 +376,11 @@ $input-valid-types:
 	}
 
 	// disabled
-	&:has(#{$selector}:disabled, #{$selector}[data-disabled="true"]) {
+	&:has(
+			#{$selector}:disabled,
+			#{$selector}[data-disabled="true"],
+			#{$selector}[aria-disabled="true"]
+		) {
 		// Decided against cursor: not-allowed, compare to e.g. https://phabricator.wikimedia.org/T121960
 		opacity: component.$default-disabled;
 		pointer-events: none;

@@ -13,7 +13,7 @@ ${foundSlots.map((slot) => ` * @slot ${slot} - TODO: Add description for slot${t
 };
 
 const changeFile = (upperComponentName: string, input: string) => {
-	const foundSlots = [];
+	const foundSlots: string[] = [];
 
 	return input
 		.split('\n')

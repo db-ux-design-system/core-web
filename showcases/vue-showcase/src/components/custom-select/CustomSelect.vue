@@ -24,7 +24,9 @@ import { DBCustomSelect, DBInfotext } from "../../../../../output/vue/src";
 
 			<DBCustomSelect
 				v-if="!exampleProps?.lineBreak && !exampleProps?.info"
+				:disabled="exampleProps?.disabled"
 				:icon="exampleProps?.icon"
+				:showMessage="exampleProps?.showMessage"
 				:showIcon="exampleProps?.showIcon"
 				:dropdownWidth="exampleProps?.dropdownWidth"
 				:showClearSelection="exampleProps?.showClearSelection"

@@ -16,7 +16,7 @@ useMetadata({});
 useDefaultProps<DBBadgeProps>({});
 
 export default function DBBadge(props: DBBadgeProps) {
-	const _ref = useRef<HTMLSpanElement | null>(null);
+	const _ref = useRef<HTMLSpanElement | undefined>(undefined);
 	const state = useStore<DBBadgeState>({
 		initialized: false
 	});

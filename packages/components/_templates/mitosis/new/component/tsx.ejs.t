@@ -15,7 +15,7 @@ useDefaultProps< DB<%= h.changeCase.pascal(name) %>Props>({});
 
 export default function DB<%= h.changeCase.pascal(name) %>(props: DB<%= h.changeCase.pascal(name) %>Props) {
   // This is used as forwardRef
-  const _ref = useRef<HTMLDivElement | null>(null);
+  const _ref = useRef<HTMLDivElement | undefined>(undefined);
   // jscpd:ignore-start
   const state = useStore<DB<%= h.changeCase.pascal(name) %>State>({
       <% if(formValue!=="no"){   -%>
@@ -29,8 +29,8 @@ export default function DB<%= h.changeCase.pascal(name) %>(props: DB<%= h.change
 			}
 
 			useTarget({
-				angular: () => handleFrameworkEventAngular(this, event, "<%= formValue %>"),
-				vue: () => handleFrameworkEventVue(this, event, <%= formValue %>)
+				angular: () => handleFrameworkEventAngular(state, event, "<%= formValue %>"),
+				vue: () => handleFrameworkEventVue(() => {}, event, <%= formValue %>)
 			});
 		},
 		handleBlur: (event: InteractionEvent<HTMLInputElement>) => {

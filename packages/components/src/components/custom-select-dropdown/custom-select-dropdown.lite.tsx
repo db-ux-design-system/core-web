@@ -1,14 +1,5 @@
-import {
-	Slot,
-	useDefaultProps,
-	useMetadata,
-	useRef,
-	useStore
-} from '@builder.io/mitosis';
-import {
-	DBCustomSelectDropdownProps,
-	DBCustomSelectDropdownState
-} from './model';
+import { useDefaultProps, useMetadata, useRef } from '@builder.io/mitosis';
+import { DBCustomSelectDropdownProps } from './model';
 import { cls } from '../../utils';
 
 useMetadata({});
@@ -21,10 +12,7 @@ export default function DBCustomSelectDropdown(
 	props: DBCustomSelectDropdownProps
 ) {
 	// This is used as forwardRef
-	const _ref = useRef<HTMLDivElement | null>(null);
-	// jscpd:ignore-start
-	const state = useStore<DBCustomSelectDropdownState>({});
-	// jscpd:ignore-end
+	const _ref = useRef<HTMLDivElement | undefined>(undefined);
 
 	return (
 		<article

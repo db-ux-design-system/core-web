@@ -15,7 +15,7 @@ useMetadata({});
 useDefaultProps<DBTooltipProps>({});
 
 export default function DBTooltip(props: DBTooltipProps) {
-	const _ref = useRef<HTMLDivElement | null>(null);
+	const _ref = useRef<HTMLDivElement | undefined>(undefined);
 	// jscpd:ignore-start
 	const state = useStore<DBTooltipState>({
 		_id: DEFAULT_ID,

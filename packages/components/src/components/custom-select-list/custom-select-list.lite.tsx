@@ -1,10 +1,5 @@
-import {
-	useDefaultProps,
-	useMetadata,
-	useRef,
-	useStore
-} from '@builder.io/mitosis';
-import { DBCustomSelectListProps, DBCustomSelectListState } from './model';
+import { useDefaultProps, useMetadata, useRef } from '@builder.io/mitosis';
+import { DBCustomSelectListProps } from './model';
 import { cls } from '../../utils';
 
 useMetadata({});
@@ -13,10 +8,7 @@ useDefaultProps<DBCustomSelectListProps>({});
 
 export default function DBCustomSelectList(props: DBCustomSelectListProps) {
 	// This is used as forwardRef
-	const _ref = useRef<HTMLUListElement | null>(null);
-	// jscpd:ignore-start
-	const state = useStore<DBCustomSelectListState>({});
-	// jscpd:ignore-end
+	const _ref = useRef<HTMLDivElement | undefined>(undefined);
 
 	return (
 		<div

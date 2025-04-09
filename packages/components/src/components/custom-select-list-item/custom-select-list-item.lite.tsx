@@ -12,7 +12,13 @@ import {
 	DBCustomSelectListItemProps,
 	DBCustomSelectListItemState
 } from './model';
-import { cls, getBooleanAsString, getHideProp, uuid } from '../../utils';
+import {
+	cls,
+	getBoolean,
+	getBooleanAsString,
+	getHideProp,
+	uuid
+} from '../../utils';
 import { ChangeEvent } from '../../shared/model';
 import {
 	handleFrameworkEventAngular,
@@ -31,7 +37,7 @@ export default function DBCustomSelectListItem(
 	props: DBCustomSelectListItemProps
 ) {
 	// This is used as forwardRef
-	const _ref = useRef<HTMLLIElement | null>(null);
+	const _ref = useRef<HTMLLIElement | undefined>(undefined);
 	// jscpd:ignore-start
 	const state: DBCustomSelectListItemState =
 		useStore<DBCustomSelectListItemState>({
@@ -48,7 +54,7 @@ export default function DBCustomSelectListItem(
 
 				useTarget({
 					angular: () =>
-						handleFrameworkEventAngular(this, event, 'checked'),
+						handleFrameworkEventAngular(state, event, 'checked'),
 					vue: () =>
 						handleFrameworkEventVue(() => {}, event, 'checked')
 				});
@@ -58,7 +64,9 @@ export default function DBCustomSelectListItem(
 					return;
 				}
 
-				return props.checked ? 'check' : 'x_placeholder';
+				return getBoolean(props.checked, 'checked')
+					? 'check'
+					: 'x_placeholder';
 			}
 		});
 
@@ -96,8 +104,8 @@ export default function DBCustomSelectListItem(
 						class="db-custom-select-list-item-checkbox"
 						type={props.type}
 						name={props.name}
-						checked={props.checked}
-						disabled={props.disabled}
+						checked={getBoolean(props.checked, 'checked')}
+						disabled={getBoolean(props.disabled, 'disabled')}
 						value={props.value}
 						data-disable-focus="true"
 						onChange={(event: ChangeEvent<HTMLInputElement>) =>

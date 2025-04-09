@@ -20,7 +20,6 @@ export type Component = {
 			controlValueAccessor?: string;
 			controlValueAccessorRequired?: boolean;
 			directives?: { name: string; ngContentName?: string }[];
-			initValues?: { key: string; value: any }[];
 		};
 		react?: {
 			propsPassingFilter?: string[];
