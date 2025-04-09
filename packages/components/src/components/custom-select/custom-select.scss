@@ -123,7 +123,7 @@
 			position: absolute;
 			inset-inline-end: calc(
 				-1 * #{variables.$db-spacing-fixed-xs} -
-					#{variables.$db-border-height-3xs}
+					#{variables.$db-border-width-3xs}
 			);
 		}
 	}
