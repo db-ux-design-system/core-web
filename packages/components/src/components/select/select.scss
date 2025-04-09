@@ -23,15 +23,17 @@ $has-before-padding: calc(
 	--db-form-component-padding-inline-end: calc(
 		#{form-components.$font-size-height} + #{variables.$db-spacing-fixed-sm}
 	);
+	--db-form-component-min-inline-size: ${variables.$db-sizing-xl};
+
 	// shared from form-components
 	@extend %select-icon;
 
-	min-inline-size: calc(
-		4 * #{variables.$db-sizing-md} + var(--db-form-has-before) *
-			#{variables.$db-sizing-md}
-	);
-
 	@include form-components.set-default-form-component(select);
+
+	// increased inline size for elements with icons
+	&[data-icon]:not([data-hide-icon="true"]) {
+		--db-form-component-min-inline-size: #{variables.$db-sizing-2xl};
+	}
 
 	select {
 		text-indent: $has-before-padding;
