@@ -90,10 +90,6 @@ $interactive-selectors: "label, button:not(.db-tab-remove-button), a";
 		@extend %set-adaptive-strong-tag;
 	}
 
-	&[data-emphasis="origin"] {
-		@extend %set-adaptive-origin-tag;
-	}
-
 	@each $name in colors.$variant-colors {
 		&[data-semantic="#{$name}"] {
 			border-color: var(--db-#{$name}-on-bg-basic-emphasis-60-default);
@@ -218,27 +214,6 @@ $interactive-selectors: "label, button:not(.db-tab-remove-button), a";
 
 		label:has(input[type="radio"]:checked) {
 			@extend %set-adaptive-strong-tag;
-		}
-
-		&:has(input):not(:has(input:checked)) {
-			@extend %set-interactive-weak;
-		}
-	}
-
-	&[data-emphasis="origin"] {
-		@extend %set-interactive-origin;
-
-		// buttons and links
-		@include get-interactive-selectors() {
-			@extend %set-interactive-origin;
-		}
-
-		label:has(input[type="checkbox"]:checked) {
-			@extend %set-interactive-origin;
-		}
-
-		label:has(input[type="radio"]:checked) {
-			@extend %set-adaptive-origin-tag;
 		}
 
 		&:has(input):not(:has(input:checked)) {

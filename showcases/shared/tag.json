@@ -26,12 +26,6 @@
 				"name": "(Default) Weak"
 			},
 			{
-				"name": "Origin",
-				"props": {
-					"emphasis": "origin"
-				}
-			},
-			{
 				"name": "Strong",
 				"props": {
 					"emphasis": "strong"

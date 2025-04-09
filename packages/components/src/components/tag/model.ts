@@ -7,7 +7,7 @@ import {
 	OverflowProps,
 	SemanticProps,
 	ShowIconProps,
-	TagEmphasisProps
+	EmphasisProps
 } from '../../shared/model';
 
 export const TagBehaviorList = ['static', 'removable'] as const;
@@ -57,7 +57,7 @@ export type DBTagProps = DBTagDefaultProps &
 	IconProps &
 	SemanticProps &
 	OverflowProps &
-	TagEmphasisProps &
+	EmphasisProps &
 	ShowIconProps &
 	ContentSlotProps;
 
