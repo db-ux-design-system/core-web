@@ -56,7 +56,6 @@ export type DBNavigationItemDefaultState = {
 	 * Internal state property to show/hide sub-navigation button
 	 */
 	hasSubNavigation?: boolean;
-	updateSubNavigationState: () => void;
 	navigationItemSafeTriangle?: NavigationItemSafeTriangle;
 	autoClose?: boolean;
 };
