@@ -23,7 +23,7 @@ $has-before-padding: calc(
 	--db-form-component-padding-inline-end: calc(
 		#{form-components.$font-size-height} + #{variables.$db-spacing-fixed-sm}
 	);
-	--db-form-component-min-inline-size: variables.$db-sizing-xl;
+	--db-form-component-min-inline-size: ${variables.$db-sizing-xl};
 
 	// shared from form-components
 	@extend %select-icon;
