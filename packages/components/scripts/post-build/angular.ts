@@ -45,7 +45,7 @@ const setControlValueAccessorReplacements = (
 		from: `constructor(`,
 		to: `constructor(private renderer: Renderer2,`
 	});
-	// We need ``model`` to be able to read/write to a signal
+	// We need `model` to be able to read/write to a signal
 	replacements.push({
 		from: `${valueAccessor} = input`,
 		to: `${valueAccessor} = model`
