@@ -9,7 +9,7 @@
 
 .db-select {
 	--db-form-component-padding-inline-end: #{select-components.$select-icon-padding};
-	--db-form-component-min-inline-size: ${variables.$db-sizing-xl};
+	--db-form-component-min-inline-size: #{variables.$db-sizing-xl};
 	// shared from form-components
 	@extend %select-icon;
 	@extend %select-placeholder;

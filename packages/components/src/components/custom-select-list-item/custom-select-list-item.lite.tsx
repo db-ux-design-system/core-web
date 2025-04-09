@@ -48,10 +48,6 @@ export default function DBCustomSelectListItem(
 					props.onChange(event);
 				}
 
-				if (props.change) {
-					props.change(event);
-				}
-
 				useTarget({
 					angular: () =>
 						handleFrameworkEventAngular(state, event, 'checked'),
@@ -112,8 +108,9 @@ export default function DBCustomSelectListItem(
 							state.handleChange(event)
 						}
 					/>
-					<Show when={props.label}>{props.label}</Show>
-					<Show when={!props.label}>{props.children}</Show>
+					<Show when={props.label} else={props.children}>
+						{props.label}
+					</Show>
 				</label>
 			</Show>
 		</li>

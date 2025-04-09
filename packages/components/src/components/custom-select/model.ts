@@ -46,6 +46,39 @@ export type CustomSelectOptionType = {
 export const SelectedTypeList = ['amount', 'text', 'tag'] as const;
 export type SelectedTypeType = (typeof SelectedTypeList)[number];
 
+export type DBCustomSelectEvents = {
+	/**
+	 * Optional: if select-type="amount" when amount changes
+	 * @param amount The amount of selected checkboxes
+	 */
+	onAmountChange?: (amount: number) => void;
+
+	/**
+	 * Optional: if select-type="amount" when amount changes
+	 * @param amount The amount of selected checkboxes
+	 */
+	amountChange?: (amount: number) => void;
+	/**
+	 * Triggers after some checkbox was clicked in dropdown
+	 * @param values the changed values
+	 */
+	onSelect?: (values: string[]) => void;
+	/**
+	 * Triggers after some checkbox was clicked in dropdown
+	 * @param values the changed values
+	 */
+	select?: (values: string[]) => void;
+
+	/**
+	 * Informs the user when dropdown was toggled.
+	 */
+	onDropdownToggle?: (event: any) => void;
+	/**
+	 * Informs the user when dropdown was toggled.
+	 */
+	dropdownToggle?: (event: any) => void;
+};
+
 export type DBCustomSelectDefaultProps = {
 	/**
 	 * Optional: if select-type="amount" change the shown text
@@ -84,16 +117,6 @@ export type DBCustomSelectDefaultProps = {
 	 * Dropdown - hint if there are no options
 	 */
 	noResultsText?: string;
-	/**
-	 * Optional: if select-type="amount" when amount changes
-	 * @param amount The amount of selected checkboxes
-	 */
-	onAmountChange?: (amount: number) => void;
-	/**
-	 * Triggers after some checkbox was clicked in dropdown
-	 * @param values the changed values
-	 */
-	onSelect?: (values: string[]) => void;
 	/**
 	 * You should pass in the options as an array.
 	 */
@@ -162,11 +185,6 @@ export type DBCustomSelectDefaultProps = {
 	 * Programmatically open the dropdown. May differ if you don't use onDropdownToggle.
 	 */
 	open?: boolean;
-
-	/**
-	 * Informs the user when dropdown was toggled.
-	 */
-	onDropdownToggle?: (event: any) => void;
 };
 
 export type DBCustomSelectProps = GlobalProps &
@@ -175,6 +193,7 @@ export type DBCustomSelectProps = GlobalProps &
 	RequiredProps &
 	FormMessageProps &
 	DBCustomSelectDefaultProps &
+	DBCustomSelectEvents &
 	DBCustomSelectFormFieldDefaultProps &
 	WidthProps &
 	IconProps &
@@ -194,8 +213,8 @@ export type DBCustomSelectDefaultState = {
 	_selectedLabels?: string;
 	_selectedLabelsId?: string;
 	_infoTextId?: string;
-	_externalChangeTimestamp?: number;
-	_internalChangeTimestamp?: number;
+	_externalChangeTimestamp: number;
+	_internalChangeTimestamp: number;
 	_name?: string;
 	getNativeSelectValue: () => string;
 	getOptionLabel: (option: CustomSelectOptionType) => string;

@@ -11,10 +11,12 @@
 				"props": {
 					"options": [
 						{
-							"value": "Option 1"
+							"value": "Option 1",
+							"id": "miouzc0ec"
 						},
 						{
-							"value": "Option 2"
+							"value": "Option 2",
+							"id": "10dqnhil5"
 						}
 					],
 					"label": "Label",
@@ -31,10 +33,12 @@
 				"props": {
 					"options": [
 						{
-							"value": "Option 1"
+							"value": "Option 1",
+							"id": "ok5olto18"
 						},
 						{
-							"value": "Option 2"
+							"value": "Option 2",
+							"id": "mzepnlbp4"
 						}
 					],
 					"label": "Label",
@@ -51,10 +55,12 @@
 				"props": {
 					"options": [
 						{
-							"value": "Option 1"
+							"value": "Option 1",
+							"id": "ixtyk8z9j"
 						},
 						{
-							"value": "Option 2"
+							"value": "Option 2",
+							"id": "k8kvx3fm8"
 						}
 					],
 					"label": "Label",
@@ -75,10 +81,12 @@
 				"props": {
 					"options": [
 						{
-							"value": "Option 1"
+							"value": "Option 1",
+							"id": "ykzqfs8oa"
 						},
 						{
-							"value": "Option 2"
+							"value": "Option 2",
+							"id": "kcndx1xog"
 						}
 					],
 					"label": "Label",
@@ -94,10 +102,12 @@
 				"props": {
 					"options": [
 						{
-							"value": "Option 1"
+							"value": "Option 1",
+							"id": "34540enzm"
 						},
 						{
-							"value": "Option 2"
+							"value": "Option 2",
+							"id": "3a4ml34c8"
 						}
 					],
 					"label": "Label",
@@ -118,10 +128,12 @@
 				"props": {
 					"options": [
 						{
-							"value": "Option 1"
+							"value": "Option 1",
+							"id": "4lj8zr5b1"
 						},
 						{
-							"value": "Option 2"
+							"value": "Option 2",
+							"id": "uurfm7y2y"
 						}
 					],
 					"label": "Label"
@@ -136,10 +148,12 @@
 				"props": {
 					"options": [
 						{
-							"value": "Floating Label"
+							"value": "Floating Label",
+							"id": "otbjunoyx"
 						},
 						{
-							"value": "Option 2"
+							"value": "Option 2",
+							"id": "ju53v02yg"
 						}
 					],
 					"label": "Label",
@@ -161,10 +175,12 @@
 				"props": {
 					"options": [
 						{
-							"value": "Option 1"
+							"value": "Option 1",
+							"id": "09a47p13k"
 						},
 						{
-							"value": "Option 2"
+							"value": "Option 2",
+							"id": "ya0ahf4od"
 						}
 					],
 					"label": "Label",
@@ -180,10 +196,12 @@
 				"props": {
 					"options": [
 						{
-							"value": "Option 1"
+							"value": "Option 1",
+							"id": "h8apm2qse"
 						},
 						{
-							"value": "Option 2"
+							"value": "Option 2",
+							"id": "vop8vkb8q"
 						}
 					],
 					"label": "Label",
@@ -204,10 +222,12 @@
 				"props": {
 					"options": [
 						{
-							"value": "Option 1"
+							"value": "Option 1",
+							"id": "m88qjifb3"
 						},
 						{
-							"value": "Option 2"
+							"value": "Option 2",
+							"id": "4et40d885"
 						}
 					],
 					"label": "Label",
@@ -224,10 +244,12 @@
 				"props": {
 					"options": [
 						{
-							"value": "Option 1"
+							"value": "Option 1",
+							"id": "tm65in30k"
 						},
 						{
-							"value": "Option 2"
+							"value": "Option 2",
+							"id": "hujnrn5vk"
 						}
 					],
 					"label": "Label",
@@ -249,10 +271,12 @@
 				"props": {
 					"options": [
 						{
-							"value": "Option 1"
+							"value": "Option 1",
+							"id": "637sjglg5"
 						},
 						{
-							"value": "Option 2"
+							"value": "Option 2",
+							"id": "s529jnpj0"
 						}
 					],
 					"label": "Label",
@@ -269,10 +293,12 @@
 				"props": {
 					"options": [
 						{
-							"value": "Option 1"
+							"value": "Option 1",
+							"id": "0b998bbgw"
 						},
 						{
-							"value": "Option 2"
+							"value": "Option 2",
+							"id": "a37n10lfh"
 						}
 					],
 					"label": "Label",
@@ -294,10 +320,12 @@
 				"props": {
 					"options": [
 						{
-							"value": "Option 1"
+							"value": "Option 1",
+							"id": "drpx8im88"
 						},
 						{
-							"value": "Option 2"
+							"value": "Option 2",
+							"id": "211e6zox5"
 						}
 					],
 					"label": "Label",
@@ -314,10 +342,12 @@
 				"props": {
 					"options": [
 						{
-							"value": "Option 1"
+							"value": "Option 1",
+							"id": "2v0zw8afc"
 						},
 						{
-							"value": "Option 2"
+							"value": "Option 2",
+							"id": "308308w5z"
 						}
 					],
 					"label": "Label",
@@ -339,10 +369,12 @@
 				"props": {
 					"options": [
 						{
-							"value": "Option 1"
+							"value": "Option 1",
+							"id": "dlysh2quv"
 						},
 						{
-							"value": "Option 2"
+							"value": "Option 2",
+							"id": "ygm3c9msn"
 						}
 					],
 					"label": "Label",
@@ -359,10 +391,12 @@
 				"props": {
 					"options": [
 						{
-							"value": "Option 1"
+							"value": "Option 1",
+							"id": "z445a00hf"
 						},
 						{
-							"value": "Option 2"
+							"value": "Option 2",
+							"id": "wji97jfsg"
 						}
 					],
 					"label": "Label",
@@ -384,10 +418,12 @@
 				"props": {
 					"options": [
 						{
-							"value": "Option 1"
+							"value": "Option 1",
+							"id": "z0ispy7ls"
 						},
 						{
-							"value": "Option 2"
+							"value": "Option 2",
+							"id": "ngl1p4pxn"
 						}
 					],
 					"label": "Full",
@@ -403,10 +439,12 @@
 				"props": {
 					"options": [
 						{
-							"value": "Option 1"
+							"value": "Option 1",
+							"id": "klxyvobwn"
 						},
 						{
-							"value": "Option 2"
+							"value": "Option 2",
+							"id": "7oag2a4fj"
 						}
 					],
 					"label": "Auto",
@@ -441,10 +479,12 @@
 				"props": {
 					"options": [
 						{
-							"value": "Option 1"
+							"value": "Option 1",
+							"id": "99pgkheyw"
 						},
 						{
-							"value": "Option 2"
+							"value": "Option 2",
+							"id": "qc908rx6z"
 						}
 					],
 					"label": "Fixed",
@@ -461,10 +501,12 @@
 				"props": {
 					"options": [
 						{
-							"value": "1"
+							"value": "1",
+							"id": "2smv303zl"
 						},
 						{
-							"value": "2"
+							"value": "2",
+							"id": "dstvsee1m"
 						}
 					],
 					"label": "Auto",
@@ -481,10 +523,12 @@
 				"props": {
 					"options": [
 						{
-							"value": "1"
+							"value": "1",
+							"id": "8fb4evl87"
 						},
 						{
-							"value": "2"
+							"value": "2",
+							"id": "0iiu59zbg"
 						}
 					],
 					"label": "Full",
@@ -522,10 +566,12 @@
 				"props": {
 					"options": [
 						{
-							"value": "Option 1"
+							"value": "Option 1",
+							"id": "gniy079gw"
 						},
 						{
-							"value": "Option 2"
+							"value": "Option 2",
+							"id": "kr0v4jgxl"
 						}
 					],
 					"label": "Fixed",
@@ -542,10 +588,12 @@
 				"props": {
 					"options": [
 						{
-							"value": "1"
+							"value": "1",
+							"id": "mmc6lfzsy"
 						},
 						{
-							"value": "2"
+							"value": "2",
+							"id": "wr6elxyf4"
 						}
 					],
 					"label": "Auto",
@@ -562,10 +610,12 @@
 				"props": {
 					"options": [
 						{
-							"value": "1"
+							"value": "1",
+							"id": "q0iyxp9kq"
 						},
 						{
-							"value": "2"
+							"value": "2",
+							"id": "mzo80txs4"
 						}
 					],
 					"label": "Full",
@@ -601,10 +651,12 @@
 				"props": {
 					"options": [
 						{
-							"value": "Option 1"
+							"value": "Option 1",
+							"id": "aryeycu23"
 						},
 						{
-							"value": "Option 2"
+							"value": "Option 2",
+							"id": "qrf3x6gdq"
 						}
 					],
 					"label": "Bottom",
@@ -621,10 +673,12 @@
 				"props": {
 					"options": [
 						{
-							"value": "Option 1"
+							"value": "Option 1",
+							"id": "mmfg4zco7"
 						},
 						{
-							"value": "Option 2"
+							"value": "Option 2",
+							"id": "52zkxb05u"
 						}
 					],
 					"label": "Top",
@@ -662,10 +716,12 @@
 				"props": {
 					"options": [
 						{
-							"value": "Option 1"
+							"value": "Option 1",
+							"id": "fhczoz28b"
 						},
 						{
-							"value": "Option 2"
+							"value": "Option 2",
+							"id": "k8zcxfb4x"
 						}
 					],
 					"label": "Bottom",
@@ -682,10 +738,12 @@
 				"props": {
 					"options": [
 						{
-							"value": "Option 1"
+							"value": "Option 1",
+							"id": "ukchupevr"
 						},
 						{
-							"value": "Option 2"
+							"value": "Option 2",
+							"id": "ts0jwdqxj"
 						}
 					],
 					"label": "Bottom",
@@ -702,10 +760,12 @@
 				"props": {
 					"options": [
 						{
-							"value": "Option 1"
+							"value": "Option 1",
+							"id": "zhuaneo1w"
 						},
 						{
-							"value": "Option 2"
+							"value": "Option 2",
+							"id": "5mwz7pmcr"
 						}
 					],
 					"label": "Top",
@@ -722,10 +782,12 @@
 				"props": {
 					"options": [
 						{
-							"value": "Option 1"
+							"value": "Option 1",
+							"id": "6uq8tv3e8"
 						},
 						{
-							"value": "Option 2"
+							"value": "Option 2",
+							"id": "iz30t1pce"
 						}
 					],
 					"label": "Top",
@@ -747,16 +809,20 @@
 				"props": {
 					"options": [
 						{
-							"value": "Option 1"
+							"value": "Option 1",
+							"id": "d9n3d2z13"
 						},
 						{
-							"value": "Option 2"
+							"value": "Option 2",
+							"id": "vq1c6xw05"
 						},
 						{
-							"value": "Option 3"
+							"value": "Option 3",
+							"id": "73eppj8rp"
 						},
 						{
-							"value": "Option 4"
+							"value": "Option 4",
+							"id": "yy82mda4v"
 						}
 					],
 					"label": "Label",
@@ -772,16 +838,20 @@
 				"props": {
 					"options": [
 						{
-							"value": "Option 1"
+							"value": "Option 1",
+							"id": "la3wbcr7z"
 						},
 						{
-							"value": "Option 2"
+							"value": "Option 2",
+							"id": "wz2u3a4q1"
 						},
 						{
-							"value": "Option 3"
+							"value": "Option 3",
+							"id": "fcd4tiqlr"
 						},
 						{
-							"value": "Option 4"
+							"value": "Option 4",
+							"id": "riz9ea0ox"
 						}
 					],
 					"label": "Label",
@@ -798,16 +868,20 @@
 				"props": {
 					"options": [
 						{
-							"value": "Option 1"
+							"value": "Option 1",
+							"id": "q23x2uflo"
 						},
 						{
-							"value": "Option 2"
+							"value": "Option 2",
+							"id": "au07iy2il"
 						},
 						{
-							"value": "Option 3"
+							"value": "Option 3",
+							"id": "ig0l3rruj"
 						},
 						{
-							"value": "Option 4"
+							"value": "Option 4",
+							"id": "4m2gbzu2q"
 						}
 					],
 					"label": "Label",
@@ -829,10 +903,12 @@
 				"props": {
 					"options": [
 						{
-							"value": "Option 1"
+							"value": "Option 1",
+							"id": "wc5wcgjam"
 						},
 						{
-							"value": "Option 2"
+							"value": "Option 2",
+							"id": "lx4cydggt"
 						}
 					],
 					"label": "Label",
@@ -850,10 +926,12 @@
 				"props": {
 					"options": [
 						{
-							"value": "Option 1"
+							"value": "Option 1",
+							"id": "waa0gfjab"
 						},
 						{
-							"value": "Option 2"
+							"value": "Option 2",
+							"id": "v48umf0qp"
 						}
 					],
 					"label": "Label",
@@ -876,10 +954,12 @@
 				"props": {
 					"options": [
 						{
-							"value": "Option 1"
+							"value": "Option 1",
+							"id": "glkscvbn5"
 						},
 						{
-							"value": "Option 2"
+							"value": "Option 2",
+							"id": "13cmgddkr"
 						}
 					],
 					"label": "Label",
@@ -897,10 +977,12 @@
 				"props": {
 					"options": [
 						{
-							"value": "Option 1"
+							"value": "Option 1",
+							"id": "e6wvfkv27"
 						},
 						{
-							"value": "Option 2"
+							"value": "Option 2",
+							"id": "afg1mqolj"
 						}
 					],
 					"label": "Label",
@@ -923,10 +1005,12 @@
 				"props": {
 					"options": [
 						{
-							"value": "Option 1"
+							"value": "Option 1",
+							"id": "09nure8co"
 						},
 						{
-							"value": "Option 2"
+							"value": "Option 2",
+							"id": "74n91hp14"
 						}
 					],
 					"label": "Label",
@@ -943,10 +1027,12 @@
 				"props": {
 					"options": [
 						{
-							"value": "Option 1"
+							"value": "Option 1",
+							"id": "ktmbve0k2"
 						},
 						{
-							"value": "Option 2"
+							"value": "Option 2",
+							"id": "uf9wakkc1"
 						}
 					],
 					"label": "Label",
@@ -968,10 +1054,12 @@
 				"props": {
 					"options": [
 						{
-							"value": "Option 1"
+							"value": "Option 1",
+							"id": "p6l2dpiea"
 						},
 						{
-							"value": "Option 2"
+							"value": "Option 2",
+							"id": "jh7pczno4"
 						}
 					],
 					"label": "Label",
@@ -988,10 +1076,12 @@
 				"props": {
 					"options": [
 						{
-							"value": "Option 1"
+							"value": "Option 1",
+							"id": "zcim85pqg"
 						},
 						{
-							"value": "Option 2"
+							"value": "Option 2",
+							"id": "kg6gvbwru"
 						}
 					],
 					"label": "Label",
@@ -1013,10 +1103,12 @@
 				"props": {
 					"options": [
 						{
-							"value": "Option 1"
+							"value": "Option 1",
+							"id": "9zfvu9noy"
 						},
 						{
-							"value": "Option 2"
+							"value": "Option 2",
+							"id": "cox90a0q8"
 						}
 					],
 					"label": "Label",
@@ -1033,10 +1125,12 @@
 				"props": {
 					"options": [
 						{
-							"value": "Option 1"
+							"value": "Option 1",
+							"id": "ln9ms4fjy"
 						},
 						{
-							"value": "Option 2"
+							"value": "Option 2",
+							"id": "dta90rteq"
 						}
 					],
 					"label": "Label",
@@ -1059,11 +1153,13 @@
 					"options": [
 						{
 							"value": "Option 1",
-							"icon": "x_placeholder"
+							"icon": "x_placeholder",
+							"id": "fvdhawk3a"
 						},
 						{
 							"value": "Option 2",
-							"icon": "x_placeholder"
+							"icon": "x_placeholder",
+							"id": "i0pey2syc"
 						}
 					],
 					"placeholder": "Placeholder"
@@ -1078,19 +1174,24 @@
 				"props": {
 					"options": [
 						{
-							"value": "Option 1"
+							"value": "Option 1",
+							"id": "6zthubswi"
 						},
 						{
-							"value": "Option 2"
+							"value": "Option 2",
+							"id": "fh93iyp7w"
 						},
 						{
-							"value": "Option 3"
+							"value": "Option 3",
+							"id": "1cbtid79q"
 						},
 						{
-							"value": "Option 4"
+							"value": "Option 4",
+							"id": "5w9s57s9k"
 						},
 						{
-							"value": "Option 5"
+							"value": "Option 5",
+							"id": "ixclh8p8n"
 						}
 					],
 					"placeholder": "Placeholder"
@@ -1106,23 +1207,29 @@
 					"options": [
 						{
 							"label": "Option group 1",
-							"isGroupTitle": true
+							"isGroupTitle": true,
+							"id": "f48zp673q"
 						},
 						{
-							"value": "G1:Option 1"
+							"value": "G1:Option 1",
+							"id": "8291mu3qc"
 						},
 						{
-							"value": "G1:Option 2"
+							"value": "G1:Option 2",
+							"id": "4duvelxc8"
 						},
 						{
 							"label": "Option group 2",
-							"isGroupTitle": true
+							"isGroupTitle": true,
+							"id": "g4ti9lrc7"
 						},
 						{
-							"value": "G2:Option 1"
+							"value": "G2:Option 1",
+							"id": "gqhv3u61k"
 						},
 						{
-							"value": "G2:Option 2"
+							"value": "G2:Option 2",
+							"id": "8yx3v6yii"
 						}
 					],
 					"placeholder": "Placeholder"
@@ -1137,18 +1244,22 @@
 				"props": {
 					"options": [
 						{
-							"value": "G1:Option 1"
+							"value": "G1:Option 1",
+							"id": "q4h9435ye"
 						},
 						{
 							"value": "G1:Option 2",
-							"showDivider": true
+							"showDivider": true,
+							"id": "7tzwcbeln"
 						},
 						{
-							"value": "G2:Option 1"
+							"value": "G2:Option 1",
+							"id": "zjmir6142"
 						},
 						{
 							"value": "G2:Option 2",
-							"showDivider": true
+							"showDivider": true,
+							"id": "hwqps1347"
 						}
 					],
 					"placeholder": "Placeholder"
@@ -1163,25 +1274,32 @@
 				"props": {
 					"options": [
 						{
-							"value": "Option 1"
+							"value": "Option 1",
+							"id": "ghsxrti0t"
 						},
 						{
-							"value": "Option 2"
+							"value": "Option 2",
+							"id": "5hj8rz3h6"
 						},
 						{
-							"value": "Option 3"
+							"value": "Option 3",
+							"id": "kvyjps1ai"
 						},
 						{
-							"value": "Option 4"
+							"value": "Option 4",
+							"id": "31ncem9lt"
 						},
 						{
-							"value": "Option 5"
+							"value": "Option 5",
+							"id": "0fwgqufql"
 						},
 						{
-							"value": "Option 6"
+							"value": "Option 6",
+							"id": "okz955pi7"
 						},
 						{
-							"value": "Option 7"
+							"value": "Option 7",
+							"id": "ihbjcr0lo"
 						}
 					],
 					"placeholder": "Placeholder"
@@ -1196,34 +1314,44 @@
 				"props": {
 					"options": [
 						{
-							"value": "Option 1"
+							"value": "Option 1",
+							"id": "o9docf7sw"
 						},
 						{
-							"value": "Option 2"
+							"value": "Option 2",
+							"id": "ttwfqxw26"
 						},
 						{
-							"value": "Option 3"
+							"value": "Option 3",
+							"id": "0c5sgzfag"
 						},
 						{
-							"value": "Option 4"
+							"value": "Option 4",
+							"id": "c8knaskj6"
 						},
 						{
-							"value": "Option 5"
+							"value": "Option 5",
+							"id": "2z5uhqdmr"
 						},
 						{
-							"value": "Option 6"
+							"value": "Option 6",
+							"id": "y2tlf2fnf"
 						},
 						{
-							"value": "Option 7"
+							"value": "Option 7",
+							"id": "q9hdifmw7"
 						},
 						{
-							"value": "Option 8"
+							"value": "Option 8",
+							"id": "vqz28zphb"
 						},
 						{
-							"value": "Option 9"
+							"value": "Option 9",
+							"id": "j2amckmwh"
 						},
 						{
-							"value": "Option 10"
+							"value": "Option 10",
+							"id": "zdi31d2lu"
 						}
 					],
 					"placeholder": "Placeholder"
@@ -1243,19 +1371,24 @@
 				"props": {
 					"options": [
 						{
-							"value": "Option 1"
+							"value": "Option 1",
+							"id": "20twpdi3j"
 						},
 						{
-							"value": "Option 2"
+							"value": "Option 2",
+							"id": "0uwpufkvw"
 						},
 						{
-							"value": "Option 3"
+							"value": "Option 3",
+							"id": "xmvmr8dws"
 						},
 						{
-							"value": "Option 4"
+							"value": "Option 4",
+							"id": "yv5v4q9ew"
 						},
 						{
-							"value": "Option 5"
+							"value": "Option 5",
+							"id": "6bjfubtz4"
 						}
 					],
 					"placeholder": "Placeholder",
@@ -1272,23 +1405,29 @@
 					"options": [
 						{
 							"label": "Option group 1",
-							"isGroupTitle": true
+							"isGroupTitle": true,
+							"id": "qcvwaejkk"
 						},
 						{
-							"value": "G1:Option 1"
+							"value": "G1:Option 1",
+							"id": "jgnlzpm6q"
 						},
 						{
-							"value": "G1:Option 2"
+							"value": "G1:Option 2",
+							"id": "n75b2qd9t"
 						},
 						{
 							"label": "Option group 2",
-							"isGroupTitle": true
+							"isGroupTitle": true,
+							"id": "bcx8u0ke9"
 						},
 						{
-							"value": "G2:Option 1"
+							"value": "G2:Option 1",
+							"id": "zgmc2tyn4"
 						},
 						{
-							"value": "G2:Option 2"
+							"value": "G2:Option 2",
+							"id": "sw7l6jpoj"
 						}
 					],
 					"placeholder": "Placeholder",
@@ -1304,18 +1443,22 @@
 				"props": {
 					"options": [
 						{
-							"value": "G1:Option 1"
+							"value": "G1:Option 1",
+							"id": "y5iukyovr"
 						},
 						{
 							"value": "G1:Option 2",
-							"showDivider": true
+							"showDivider": true,
+							"id": "0ton8ii8v"
 						},
 						{
-							"value": "G2:Option 1"
+							"value": "G2:Option 1",
+							"id": "9c4cgirv2"
 						},
 						{
 							"value": "G2:Option 2",
-							"showDivider": true
+							"showDivider": true,
+							"id": "740m4a61n"
 						}
 					],
 					"placeholder": "Placeholder",
@@ -1331,25 +1474,32 @@
 				"props": {
 					"options": [
 						{
-							"value": "Option 1"
+							"value": "Option 1",
+							"id": "3zjiay7k4"
 						},
 						{
-							"value": "Option 2"
+							"value": "Option 2",
+							"id": "s52x89xrz"
 						},
 						{
-							"value": "Option 3"
+							"value": "Option 3",
+							"id": "2u5nocjfo"
 						},
 						{
-							"value": "Option 4"
+							"value": "Option 4",
+							"id": "0ibok60su"
 						},
 						{
-							"value": "Option 5"
+							"value": "Option 5",
+							"id": "kdd8w27oh"
 						},
 						{
-							"value": "Option 6"
+							"value": "Option 6",
+							"id": "1qn5w4113"
 						},
 						{
-							"value": "Option 7"
+							"value": "Option 7",
+							"id": "eopg7tn9q"
 						}
 					],
 					"placeholder": "Placeholder",
@@ -1365,34 +1515,44 @@
 				"props": {
 					"options": [
 						{
-							"value": "Option 1"
+							"value": "Option 1",
+							"id": "wg5f7ycm8"
 						},
 						{
-							"value": "Option 2"
+							"value": "Option 2",
+							"id": "3viv9gxlp"
 						},
 						{
-							"value": "Option 3"
+							"value": "Option 3",
+							"id": "4wtnn5nwh"
 						},
 						{
-							"value": "Option 4"
+							"value": "Option 4",
+							"id": "r4amvgigg"
 						},
 						{
-							"value": "Option 5"
+							"value": "Option 5",
+							"id": "pcmqabmuy"
 						},
 						{
-							"value": "Option 6"
+							"value": "Option 6",
+							"id": "u8nify3n9"
 						},
 						{
-							"value": "Option 7"
+							"value": "Option 7",
+							"id": "rcmpselej"
 						},
 						{
-							"value": "Option 8"
+							"value": "Option 8",
+							"id": "ln43k984l"
 						},
 						{
-							"value": "Option 9"
+							"value": "Option 9",
+							"id": "j8squjd5i"
 						},
 						{
-							"value": "Option 10"
+							"value": "Option 10",
+							"id": "b84ie8otk"
 						}
 					],
 					"placeholder": "Placeholder",
@@ -1413,16 +1573,20 @@
 				"props": {
 					"options": [
 						{
-							"value": "Option 1"
+							"value": "Option 1",
+							"id": "53xbfd1o6"
 						},
 						{
-							"value": "Option 2"
+							"value": "Option 2",
+							"id": "fq8ypeiz2"
 						},
 						{
-							"value": "Option 3"
+							"value": "Option 3",
+							"id": "jtd3wevz2"
 						},
 						{
-							"value": "Option 4"
+							"value": "Option 4",
+							"id": "srr1toi8f"
 						}
 					],
 					"label": "Label",
@@ -1440,16 +1604,20 @@
 				"props": {
 					"options": [
 						{
-							"value": "Option 1"
+							"value": "Option 1",
+							"id": "jn3s5kl9t"
 						},
 						{
-							"value": "Option 2"
+							"value": "Option 2",
+							"id": "iesayujhy"
 						},
 						{
-							"value": "Option 3"
+							"value": "Option 3",
+							"id": "55kavoeem"
 						},
 						{
-							"value": "Option 4"
+							"value": "Option 4",
+							"id": "xi4qhrdg8"
 						}
 					],
 					"label": "Label",

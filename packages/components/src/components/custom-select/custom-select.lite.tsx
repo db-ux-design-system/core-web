@@ -147,7 +147,7 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 		},
 		getNativeSelectValue: () => {
 			if (state._values?.length) {
-				return state._values.at(0) ?? '';
+				return state._values!.at(0) ?? '';
 			}
 
 			return '';
@@ -159,7 +159,7 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 			}
 
 			if (state._selectedLabelsId && state._selectedLabels?.length) {
-				descByIds.push(state._selectedLabelsId);
+				descByIds.push(state._selectedLabelsId!);
 			}
 
 			state._descByIds = descByIds.join(' ');
@@ -171,8 +171,8 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 			return option.label ?? option.value?.toString() ?? '';
 		},
 		getOptionChecked: (value?: string) => {
-			if (value && state._values && state._values.includes) {
-				return state._values?.includes(value);
+			if (value && state._values?.includes) {
+				return state._values?.includes(value!);
 			}
 
 			return false;
@@ -181,9 +181,16 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 			return (option.id ?? option.value ?? uuid()).toString();
 		},
 		getTagRemoveLabel: (index: number) => {
-			return props.removeTagsTexts && props.removeTagsTexts.length > index
-				? props.removeTagsTexts.at(index)!
-				: `${DEFAULT_REMOVE} ${state._selectedOptions ? state.getOptionLabel(state._selectedOptions[index]) : ''}`;
+			return props.removeTagsTexts &&
+				props.removeTagsTexts!.length > index
+				? props.removeTagsTexts!.at(index)!
+				: `${DEFAULT_REMOVE} ${
+						state._selectedOptions
+							? state.getOptionLabel(
+									state._selectedOptions![index]
+								)
+							: ''
+					}`;
 		},
 		handleTagRemove: (option: CustomSelectOptionType, event: any) => {
 			event.stopPropagation();
@@ -350,8 +357,8 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 				state._values = [];
 			} else {
 				state._values = props.options
-					? props.options
-							.filter((option) => !option.isGroupTitle)
+					? props
+							.options!.filter((option) => !option.isGroupTitle)
 							.map((option) => option.value ?? '')
 					: [];
 			}
@@ -401,7 +408,7 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 			state._options =
 				!props.options || !filterText || filterText.length === 0
 					? props.options
-					: props.options.filter(
+					: props.options!.filter(
 							(option) =>
 								!option.isGroupTitle &&
 								state
@@ -503,9 +510,9 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 
 	onUpdate(() => {
 		if (props.showNoResults !== undefined) {
-			state._hasNoOptions = props.showNoResults;
+			state._hasNoOptions = props.showNoResults!;
 		} else if (state._options) {
-			state._hasNoOptions = state._options.length === 0;
+			state._hasNoOptions = state._options!.length === 0;
 		}
 	}, [props.showNoResults, state._options]);
 
@@ -520,17 +527,15 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 	}, [props.showSearch, state.amountOptions]);
 
 	onUpdate(() => {
-		if (
-			props.onSelect &&
-			(state._externalChangeTimestamp || state._internalChangeTimestamp)
-		) {
-			const onlyInternalChange =
-				state._internalChangeTimestamp &&
-				!state._externalChangeTimestamp;
+		if (props.onSelect) {
+			const externalChange = Boolean(state._externalChangeTimestamp);
+			const internalChange = Boolean(state._internalChangeTimestamp);
+
+			const onlyInternalChange = internalChange && !externalChange;
 
 			const bothChangeButInternalNew =
-				state._internalChangeTimestamp &&
-				state._externalChangeTimestamp &&
+				internalChange &&
+				externalChange &&
 				state._internalChangeTimestamp > state._externalChangeTimestamp;
 
 			if (onlyInternalChange || bothChangeButInternalNew) {
@@ -640,6 +645,10 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 			DEFAULT_INVALID_MESSAGE;
 	}, [selectRef, props.invalidMessage]);
 
+	function satisfyReact() {
+		// This is an empty function to satisfy React
+	}
+
 	return (
 		<div
 			id={state._id}
@@ -673,21 +682,25 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 					multiple={getBoolean(props.multiple, 'multiple')}
 					disabled={getBoolean(props.disabled, 'disabled')}
 					required={getBoolean(props.required, 'required')}
-					/* Satisfy React */
-					onChange={() => {}}>
-					<For each={state._options}>
-						{(option: CustomSelectOptionType) => (
-							<option
-								key={useTarget({
-									react: state.getOptionKey?.(option),
-									default: undefined
-								})}
-								disabled={option.disabled}
-								value={option.value}>
-								{state.getOptionLabel(option)}
-							</option>
-						)}
-					</For>
+					onChange={() => satisfyReact()}>
+					<Show when={state._options?.length}>
+						<For each={state._options}>
+							{(option: CustomSelectOptionType) => (
+								<option
+									key={useTarget({
+										vue: undefined,
+										stencil: undefined,
+										default:
+											'native-select-option-' +
+											state.getOptionKey(option)
+									})}
+									disabled={option.disabled}
+									value={option.value}>
+									{state.getOptionLabel(option)}
+								</option>
+							)}
+						</For>
+					</Show>
 				</select>
 			</label>
 			<details
@@ -722,22 +735,23 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 									) => (
 										<DBTag
 											key={useTarget({
-												react:
+												vue: undefined,
+												stencil: undefined,
+												default:
 													'tag-' +
-													state.getOptionKey(option),
-												default: undefined
+													state.getOptionKey(option)
 											})}
 											removeButton={state.getTagRemoveLabel(
 												index
 											)}
 											onRemove={(
 												event: ClickEvent<HTMLButtonElement>
-											) => {
+											) =>
 												state.handleTagRemove(
 													option,
 													event
-												);
-											}}
+												)
+											}
 											emphasis="strong"
 											behavior="removable">
 											{state.getOptionLabel(option)}
@@ -808,10 +822,13 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 											) => (
 												<DBCustomSelectListItem
 													key={useTarget({
-														react: state.getOptionKey?.(
-															option
-														),
-														default: undefined
+														vue: undefined,
+														stencil: undefined,
+														default:
+															'custom-select-list-item-' +
+															state.getOptionKey(
+																option
+															)
 													})}
 													type={
 														props.multiple
@@ -834,11 +851,11 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 													)}
 													disabled={option.disabled}
 													value={option.value}
-													onChange={() => {
+													onChange={() =>
 														state.handleSelect(
 															option.value
-														);
-													}}>
+														)
+													}>
 													{!option.isGroupTitle &&
 														state.getOptionLabel(
 															option
@@ -873,9 +890,7 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 								width="full"
 								icon="cross"
 								size="small"
-								onClick={() => {
-									state.handleClose('close');
-								}}>
+								onClick={() => state.handleClose('close')}>
 								{props.mobileCloseButtonText ??
 									DEFAULT_CLOSE_BUTTON}
 							</DBButton>

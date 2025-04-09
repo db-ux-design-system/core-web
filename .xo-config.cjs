@@ -7,18 +7,13 @@ module.exports = {
 	],
 	overrides: [
 		{
-			files: ['./packages/components/**'],
-			rules: {
-				'@typescript-eslint/no-explicit-any': 0
-			}
-		},
-		{
 			files: ['./showcases/angular-showcase/**'],
 			rules: {
 				'import/no-extraneous-dependencies': 0,
 				'@typescript-eslint/consistent-type-imports': 0
 			}
 		},
+
 		{
 			files: ['./**/angular-**/**'],
 			rules: {

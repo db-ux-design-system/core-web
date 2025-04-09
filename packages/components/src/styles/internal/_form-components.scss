@@ -291,6 +291,9 @@ $input-valid-types:
 	@extend %db-overwrite-font-size-sm;
 	@extend %helper-message;
 
+	// base inline size for inputs without icons
+	min-inline-size: $db-min-inline-size;
+
 	/* stylelint-disable-next-line scss/selector-no-redundant-nesting-selector */
 	& {
 		--db-form-has-before: 0;
@@ -304,9 +307,6 @@ $input-valid-types:
 	&[data-hide-label="true"] {
 		--db-label-visible-above: 0;
 	}
-
-	// base inline size for inputs without icons
-	min-inline-size: $db-min-inline-size;
 
 	@include set-floating-label-overwrites($selector);
 	@include set-required-label($selector);

@@ -66,7 +66,17 @@ export const getComponents = (): Component[] => [
 			}
 		},
 		overwrites: {
-			angular: [{ from: 'selectRef?.nativeElement', to: 'selectRef' }],
+			angular: [
+				{
+					from: /this.handleDocumentClose\(\)/g,
+					to: 'this.handleDocumentClose'
+				},
+				// TODO: Move this to mitosis
+				{ from: /AfterViewInit,/g, to: 'AfterViewInit, OnDestroy,' },
+				{ from: 'trackByOption0', to: 'trackByOption0(i,option)' },
+				{ from: 'trackByOption1', to: 'trackByOption1(index,option)' },
+				{ from: 'trackByOption2', to: 'trackByOption2(i,option)' }
+			],
 			react: [
 				{ from: 'key={uuid()}', to: 'key={getOptionLabel(option)}' }
 			]
