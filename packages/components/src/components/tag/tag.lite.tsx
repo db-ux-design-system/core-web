@@ -47,7 +47,7 @@ export default function DBTag(props: DBTagProps) {
 			const input: HTMLInputElement | null = _ref?.querySelector('input');
 			for (const element of [button, input]) {
 				if (element) {
-					element.disabled = props.disabled;
+					element.disabled = Boolean(props.disabled);
 				}
 			}
 		}

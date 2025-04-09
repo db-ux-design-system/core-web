@@ -32,7 +32,7 @@ export type GlobalProps = {
 	/**
 	 * Before using please check for the [accessibility concerns](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/autofocus#accessibility_concerns)
 	 */
-	autofocus?: boolean;
+	autofocus?: boolean | string;
 };
 
 export type GlobalState = {
@@ -67,7 +67,7 @@ export type ShowIconProps = {
 	 * Enables or disables the visibility of the icon. The default value depends on the component.
 	 * For many components this property is optional to reflect Figma properties.
 	 */
-	showIcon?: boolean;
+	showIcon?: boolean | string;
 };
 
 export type IconAfterProps = {
@@ -136,7 +136,7 @@ export type GapProps = {
 	/**
 	 * If the absolute element should have a gap between the parent element.
 	 */
-	gap?: boolean;
+	gap?: boolean | string;
 };
 
 export const GapSpacingList = [
@@ -163,7 +163,7 @@ export type OverflowProps = {
 	/**
 	 * The overflow attribute sets a max-width and longer text will be dotted.
 	 */
-	overflow?: boolean;
+	overflow?: boolean | string;
 };
 
 export const OrientationList = ['horizontal', 'vertical'] as const;
@@ -206,7 +206,7 @@ export type PopoverProps = {
 	/**
 	 * Disable animation
 	 */
-	animation?: boolean;
+	animation?: boolean | string;
 	/**
 	 * Use fixed with for default max-width
 	 */
@@ -258,13 +258,13 @@ export type RequiredProps = {
 	/**
 	 * When the required attribute specified, the user will be required to fill the form element before submitting the form.
 	 */
-	required?: boolean;
+	required?: boolean | string;
 };
 export type ShowLabelProps = {
 	/**
 	 * Enables/disables the visibility of the label
 	 */
-	showLabel?: boolean;
+	showLabel?: boolean | string;
 };
 
 export type ValueProps = {
@@ -278,7 +278,7 @@ export type BaseFormProps = {
 	/**
 	 * The disabled attribute can be set to keep a user from clicking on the form element.
 	 */
-	disabled?: boolean;
+	disabled?: boolean | string;
 	/**
 	 * The label attribute specifies the caption of the form element.
 	 */
@@ -316,15 +316,27 @@ export type FormTextProps = {
 	/**
 	 * Maximum length (number of characters) of value
 	 */
-	maxLength?: number;
+	maxLength?: number | string;
 	/**
 	 * Minimum length (number of characters) of value
 	 */
-	minLength?: number;
+	minLength?: number | string;
+	/**
+	 * Maximum length (number of characters) of value
+	 */
+	maxlength?: number | string;
+	/**
+	 * Minimum length (number of characters) of value
+	 */
+	minlength?: number | string;
 	/**
 	 * The disabled attribute can be set to keep a user from edit on the form element
 	 */
-	readOnly?: boolean;
+	readOnly?: boolean | string;
+	/**
+	 * The disabled attribute can be set to keep a user from edit on the form element
+	 */
+	readonly?: boolean | string;
 };
 
 export type FormSizeProps = {
@@ -338,7 +350,7 @@ export type FormCheckProps = {
 	/**
 	 * Define the radio or checkbox elements checked state
 	 */
-	checked?: boolean;
+	checked?: boolean | string;
 };
 
 export const LabelVariantList = ['above', 'floating'] as const;
@@ -440,7 +452,13 @@ export type FormMessageProps = {
 	/**
 	 * Enables or disables the visibility of the message.
 	 */
-	showMessage?: boolean;
+	showMessage?: boolean | string;
+};
+
+export type FromValidState = {
+	hasValidState: () => boolean;
+	handleValidation: () => void;
+	_invalidMessage?: string;
 };
 
 export type FormState = {
@@ -449,7 +467,7 @@ export type FormState = {
 	_invalidMessageId?: string;
 	_descByIds?: string;
 	_value?: string;
-
+	_invalidMessage?: string;
 	/**
 	 * https://www.davidmacd.com/blog/test-aria-describedby-errormessage-aria-live.html
 	 * Currently VoiceOver isn't supporting changes from aria-describedby.
@@ -493,7 +511,7 @@ export type LinkProps = {
 	/**
 	 * Disables the link.
 	 */
-	disabled?: boolean;
+	disabled?: boolean | string;
 	/**
 	 * The [URL that the hyperlink points to](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a#href).
 	 */
@@ -525,7 +543,7 @@ export type LinkProps = {
 	/**
 	 * Sets aria role based on [`aria-selected`](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-selected).
 	 */
-	selected?: boolean;
+	selected?: boolean | string;
 };
 
 export type TextProps = {
@@ -580,7 +598,7 @@ export type ActiveProps = {
 	/**
 	 * If the tab is checked/active.
 	 */
-	active?: boolean;
+	active?: boolean | string;
 };
 
 export type InputEvent<T> = Event;

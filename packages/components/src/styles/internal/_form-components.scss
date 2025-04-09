@@ -37,7 +37,7 @@ $input-types:
 	"hidden", "image", "month", "number", "password", "radio", "range", "reset",
 	"search", "submit", "tel", "text", "time", "url", "week";
 
-$check-border-size: min(#{variables.$db-border-height-2xs}, 2px);
+$check-border-size: min(#{variables.$db-border-width-2xs}, 2px);
 
 %dropdown-icon {
 	@include icons.set-icon("chevron_down", "after");
@@ -131,6 +131,8 @@ $check-border-size: min(#{variables.$db-border-height-2xs}, 2px);
 
 			@include placeholder-content($selector) {
 				opacity: component.$placeholder-disabled;
+				font-family: var(--db-font-family-sans);
+				font-style: italic;
 
 				@media screen and (prefers-reduced-motion: no-preference) {
 					transition: opacity
@@ -228,17 +230,13 @@ $input-valid-types:
 }
 
 @mixin get-validity($selector, $key: "valid") {
-	@if ($key == "valid") {
-		$boolean: "false";
-	}
-
 	$user: "";
 
-	@if ($selector == check) {
+	@if ($selector == check or $selector == switch) {
 		$user: "user-";
 	}
 
-	@if ($selector == check or $selector == radio) {
+	@if ($selector == check or $selector == radio or $selector == switch) {
 		$selector: input;
 
 		&:has(
@@ -304,7 +302,9 @@ $input-valid-types:
 	@include set-required-label($selector);
 
 	@include get-validity($selector) {
-		@include get-validity-color($selector, "valid");
+		&:has(.db-infotext[data-semantic="successful"]) {
+			@include get-validity-color($selector, "valid");
+		}
 	}
 
 	@include get-validity($selector, "invalid") {
@@ -313,6 +313,8 @@ $input-valid-types:
 
 	@include placeholder-content($selector) {
 		opacity: component.$placeholder-disabled;
+		font-family: var(--db-font-family-sans);
+		font-style: italic;
 	}
 
 	#{$selector} {
@@ -417,7 +419,7 @@ $input-valid-types:
 
 	@include get-validity-message($key);
 
-	input {
+	input:not([role="switch"]) {
 		--db-adaptive-bg-basic-transparent-semi: var(
 			--db-#{$variant}-bg-basic-transparent-semi-default
 		);
@@ -445,9 +447,11 @@ $input-valid-types:
 		}
 	}
 
-	&:is(label),
-	> label {
-		color: var(--db-#{$variant}-on-bg-basic-emphasis-80-default);
+	&:has(input:not([role="switch"])) {
+		&:is(label),
+		> label {
+			color: var(--db-#{$variant}-on-bg-basic-emphasis-80-default);
+		}
 	}
 }
 
@@ -457,7 +461,14 @@ $input-valid-types:
 	@include set-required-label(input);
 
 	@include get-validity($selector) {
-		@include get-validity-color-check("valid");
+		@if ($selector == check) {
+			&:has(.db-infotext[data-semantic="successful"]) {
+				@include get-validity-color-check("valid");
+			}
+			/* stylelint-disable-next-line at-rule-empty-line-before */
+		} @else {
+			@include get-validity-color-check("valid");
+		}
 	}
 
 	@include get-validity($selector, "invalid") {
@@ -486,7 +497,7 @@ $input-valid-types:
 		place-content: center center;
 		appearance: none;
 		aspect-ratio: 1;
-		/* stylelint-disable-next-line db-ux/use-border-height */
+		/* stylelint-disable-next-line db-ux/use-border-width */
 		border: #{$check-border-size} solid
 			var(
 				--db-check-element-border-color,

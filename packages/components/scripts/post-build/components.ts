@@ -76,6 +76,7 @@ export const getComponents = (): Component[] => [
 	{
 		name: 'switch',
 		overwrites: {
+			angular: [{ from: 'HTMLElement', to: 'HTMLInputElement' }],
 			stencil: [{ from: 'HTMLElement', to: 'HTMLInputElement' }],
 			react: [{ from: /HTMLAttributes/g, to: 'InputHTMLAttributes' }]
 		},
@@ -168,6 +169,7 @@ export const getComponents = (): Component[] => [
 		},
 		overwrites: {
 			angular: [
+				{ from: 'HTMLElement', to: 'HTMLTextAreaElement' },
 				{
 					from: '</textarea>',
 					to: '{{value}}</textarea>'
@@ -216,6 +218,7 @@ export const getComponents = (): Component[] => [
 	{
 		name: 'select',
 		overwrites: {
+			angular: [{ from: 'HTMLElement', to: 'HTMLSelectElement' }],
 			react: [
 				// React not allowing selected for options
 				{ from: 'selected={option.selected}', to: '' },
@@ -242,6 +245,7 @@ export const getComponents = (): Component[] => [
 	{
 		name: 'drawer',
 		overwrites: {
+			angular: [{ from: 'HTMLElement', to: 'HTMLDialogElement' }],
 			stencil: [{ from: /onClose/g, to: 'close' }]
 		},
 		config: {
@@ -265,6 +269,7 @@ export const getComponents = (): Component[] => [
 	{
 		name: 'checkbox',
 		overwrites: {
+			angular: [{ from: 'HTMLElement', to: 'HTMLInputElement' }],
 			stencil: [{ from: 'HTMLElement', to: 'HTMLInputElement' }],
 			react: [{ from: /HTMLAttributes/g, to: 'InputHTMLAttributes' }]
 		},
@@ -281,6 +286,7 @@ export const getComponents = (): Component[] => [
 	{
 		name: 'radio',
 		overwrites: {
+			angular: [{ from: 'HTMLElement', to: 'HTMLInputElement' }],
 			stencil: [{ from: 'HTMLElement', to: 'HTMLInputElement' }],
 			react: [{ from: /HTMLAttributes/g, to: 'InputHTMLAttributes' }]
 		},
@@ -369,6 +375,7 @@ export const getComponents = (): Component[] => [
 			stencil: [{ from: 'HTMLElement', to: 'HTMLInputElement' }],
 			react: [{ from: /HTMLAttributes/g, to: 'InputHTMLAttributes' }],
 			angular: [
+				{ from: 'HTMLElement', to: 'HTMLInputElement' },
 				{
 					from: 'writeValue(value: any) {',
 					to:

@@ -3,13 +3,13 @@
 
 %focus-placeholder {
 	&:not([data-disable-focus="true"]) {
-		outline: #{variables.$db-border-height-2xs} solid
+		outline: #{variables.$db-border-width-2xs} solid
 			var(
 				--db-focus-outline-color,
 				#{colors.$db-informational-on-bg-basic-emphasis-80-default}
 			);
-		outline-offset: variables.$db-border-height-xs;
-		box-shadow: 0 0 0 #{variables.$db-border-height-xs}
+		outline-offset: variables.$db-border-width-xs;
+		box-shadow: 0 0 0 #{variables.$db-border-width-xs}
 			var(--db-focus-box-shadow-bg-color, transparent);
 
 		&:not([type="radio"], [role="switch"]) {

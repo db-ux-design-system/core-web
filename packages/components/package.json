@@ -30,16 +30,16 @@
     "copy:outputs": "cpr build ../../build-outputs/components/build -o",
     "copy:package.json": "cpr package.json ../../build-outputs/components/package.json -o",
     "copy:readme": "cpr README.md ../../build-outputs/components/README.md -o",
-    "dev:angular": "nodemon --watch src --watch overrides -e tsx,ts -x \"npm run compile:angular\"",
+    "dev:angular": "nodemon --watch src --watch scripts -e tsx,ts -x \"npm run compile:angular\"",
     "dev:html": "npm run copy-assets && npm run build-assets && npm run build-style:01_sass && vite --open",
-    "dev:react": "nodemon --watch src --watch overrides -e tsx,ts -x \"npm run compile:react\"",
+    "dev:react": "nodemon --watch src --watch scripts -e tsx,ts -x \"npm run compile:react\"",
     "dev:scss": "npm run build-style:01_sass -- --watch",
-    "dev:stencil": "nodemon --watch src --watch overrides -e tsx,ts -x \"npm run compile:stencil\"",
-    "dev:vue": "nodemon --watch src --watch overrides -e tsx,ts -x \"npm run compile:vue\"",
+    "dev:stencil": "nodemon --watch src --watch scripts -e tsx,ts -x \"npm run compile:stencil\"",
+    "dev:vue": "nodemon --watch src --watch scripts -e tsx,ts -x \"npm run compile:vue\"",
     "generate:component": "hygen mitosis new",
     "generate:docs": "hygen update-docs new",
     "prepack": "npm run copy-assets",
-    "start": "nodemon --watch src --watch scripts --watch overrides -e js,tsx,ts,scss,json -x \"npm run build\""
+    "start": "nodemon --watch src --watch scripts --watch scripts -e js,tsx,ts,scss,json -x \"npm run build\""
   },
   "dependencies": {
     "@db-ux/core-foundations": "*"
