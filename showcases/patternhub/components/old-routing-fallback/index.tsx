@@ -41,13 +41,15 @@ const OldRoutingFallback = () => {
 						return 1;
 					}
 				);
-				const foundRoute = allNavigationItems.find((item) =>
-					item.path?.endsWith(component)
-				);
+				const foundRoutes = allNavigationItems
+					.filter((item) => item.path?.endsWith(component))
+					.sort(
+						(a, b) => (a.path?.length ?? 0) - (b.path?.length ?? 0)
+					);
 
-				if (foundRoute?.path) {
+				if (foundRoutes.length > 0) {
 					router.push(
-						`${foundRoute.path}/${path.join('/')}${pathParams}`
+						`${foundRoutes[0].path}/${path.join('/')}${pathParams}`
 					);
 				} else {
 					router.push('/');
