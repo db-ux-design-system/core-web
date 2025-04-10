@@ -117,7 +117,7 @@ $db-min-inline-size: var(
 				/* stylelint-disable-next-line at-rule-empty-line-before */
 			} @else if($selector != summary) {
 				/* stylelint-disable-next-line db-ux/use-spacings */
-				padding-block-start: $floating-label-padding-block-start;
+				padding-block-start: var(--db-base-body-icon-font-size-2xs);
 			}
 		}
 

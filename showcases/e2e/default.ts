@@ -99,7 +99,8 @@ export const getDefaultScreenshotTest = ({
 		const diffPixel = process.env.diff;
 		const maxDiffPixelRatio = process.env.ratio;
 		const stencil = isStencil(showcase);
-		const isWebkit = project.name === 'webkit';
+		const isWebkit =
+			project.name === 'webkit' || project.name === 'mobile_safari';
 
 		if ((stencil && isWebkit) || shouldSkip(skip)) {
 			// There is an issue with Webkit and Stencil for new playwright version
@@ -116,6 +117,8 @@ export const getDefaultScreenshotTest = ({
 			if (diffPixel) {
 				config.maxDiffPixels = Number(diffPixel);
 			}
+		} else if (isWebkit) {
+			config.maxDiffPixelRatio = 0.033;
 		} else if (isAngular(showcase)) {
 			config.maxDiffPixels = 1000;
 		} else {

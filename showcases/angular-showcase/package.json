@@ -13,7 +13,6 @@
     "watch": "ng build --watch --configuration development"
   },
   "dependencies": {
-    "@db-ux/db-theme": "1.0.2",
     "sa11y": "4.1.5"
   },
   "devDependencies": {
