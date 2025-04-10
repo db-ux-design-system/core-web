@@ -25,11 +25,11 @@ $interactive-selectors: "label, button:not(.db-tab-remove-button), a";
 }
 
 %set-adaptive-strong-tag {
-	border-color: colors.$db-adaptive-on-bg-basic-emphasis-80-default;
+	border-color: colors.$db-adaptive-on-bg-basic-emphasis-70-default;
 
 	@include colors.set-current-colors(
-		colors.$db-adaptive-bg-inverted-contrast-high-default,
-		colors.$db-adaptive-on-bg-inverted-default
+		colors.$db-adaptive-vibrant-default,
+		colors.$db-adaptive-on-vibrant-default
 	);
 }
 
