@@ -25,6 +25,11 @@
 		text-indent: select-components.$has-before-padding;
 	}
 
+	&[data-hide-label="true"] {
+		--db-label-visible-height: 0;
+		--db-label-visible-spacing: 1;
+	}
+
 	// Most likely this wouldn't work on MacOS, but we're still progressively enhancing Windows by this
 	option {
 		background-color: colors.$db-adaptive-bg-basic-level-1-default;

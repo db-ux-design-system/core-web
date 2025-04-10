@@ -84,6 +84,11 @@
 		}
 	}
 
+	&[data-hide-label="true"] {
+		--db-label-visible-height: 0;
+		--db-label-visible-spacing: 1;
+	}
+
 	@include form-components.set-default-form-component(summary);
 
 	[id$="-placeholder"] {

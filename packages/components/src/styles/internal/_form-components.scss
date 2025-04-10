@@ -115,7 +115,7 @@ $db-min-inline-size: var(
 			@if ($selector == textarea) {
 				padding-block-start: $floating-label-size-calc;
 				/* stylelint-disable-next-line at-rule-empty-line-before */
-			} @else if($selector != summary) {
+			} @else {
 				/* stylelint-disable-next-line db-ux/use-spacings */
 				padding-block-start: var(--db-base-body-icon-font-size-2xs);
 			}
@@ -140,6 +140,11 @@ $db-min-inline-size: var(
 				opacity: component.$placeholder-disabled;
 				font-family: var(--db-font-family-sans);
 				font-style: italic;
+
+				@if ($selector == select or $selector == summary) {
+					/* stylelint-disable-next-line db-ux/use-spacings */
+					padding-block-start: var(--db-base-body-icon-font-size-2xs);
+				}
 
 				@media screen and (prefers-reduced-motion: no-preference) {
 					transition: opacity
