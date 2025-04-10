@@ -13,7 +13,7 @@
     "watch": "ng build --watch --configuration development"
   },
   "dependencies": {
-    "sa11y": "4.1.5"
+    "sa11y": "4.1.6"
   },
   "devDependencies": {
     "typescript": "^5.4.5"
