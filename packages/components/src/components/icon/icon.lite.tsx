@@ -13,7 +13,7 @@ useMetadata({});
 useDefaultProps<DBIconProps>({});
 
 export default function DBIcon(props: DBIconProps) {
-	const _ref = useRef<HTMLSpanElement | undefined>(undefined);
+	const _ref = useRef<HTMLSpanElement | any>(null);
 	// jscpd:ignore-start
 	const state = useStore<DBIconState>({});
 

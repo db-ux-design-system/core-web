@@ -17,7 +17,7 @@ useMetadata({});
 useDefaultProps<DBTagProps>({});
 
 export default function DBTag(props: DBTagProps) {
-	const _ref = useRef<HTMLDivElement | undefined>(undefined);
+	const _ref = useRef<HTMLDivElement | any>(null);
 	const state = useStore<DBTagState>({
 		initialized: false,
 		handleRemove: (event?: ClickEvent<HTMLButtonElement>) => {

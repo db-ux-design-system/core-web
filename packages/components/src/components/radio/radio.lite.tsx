@@ -24,7 +24,7 @@ useMetadata({
 useDefaultProps<DBRadioProps>({});
 
 export default function DBRadio(props: DBRadioProps) {
-	const _ref = useRef<HTMLInputElement | undefined>(undefined);
+	const _ref = useRef<HTMLInputElement | any>(null);
 	// jscpd:ignore-start
 	const state = useStore<DBRadioState>({
 		initialized: false,

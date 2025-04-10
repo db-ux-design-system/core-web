@@ -8,7 +8,7 @@ useDefaultProps<DBCustomSelectListProps>({});
 
 export default function DBCustomSelectList(props: DBCustomSelectListProps) {
 	// This is used as forwardRef
-	const _ref = useRef<HTMLDivElement | undefined>(undefined);
+	const _ref = useRef<HTMLDivElement | any>(null);
 
 	return (
 		<div

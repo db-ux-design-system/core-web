@@ -52,7 +52,7 @@ useMetadata({
 useDefaultProps<DBInputProps>({});
 
 export default function DBInput(props: DBInputProps) {
-	const _ref = useRef<HTMLInputElement | undefined>(undefined);
+	const _ref = useRef<HTMLInputElement | any>(null);
 	// jscpd:ignore-start
 	const state = useStore<DBInputState>({
 		_id: undefined,

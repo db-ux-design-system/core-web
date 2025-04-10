@@ -10,7 +10,7 @@ export default function DBCustomSelectFormField(
 	props: DBCustomSelectFormFieldProps
 ) {
 	// This is used as forwardRef
-	const _ref = useRef<HTMLDivElement | undefined>(undefined);
+	const _ref = useRef<HTMLDivElement | any>(null);
 
 	return (
 		<summary

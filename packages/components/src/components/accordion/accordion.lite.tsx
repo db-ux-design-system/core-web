@@ -19,7 +19,7 @@ useMetadata({});
 useDefaultProps<DBAccordionProps>({});
 
 export default function DBAccordion(props: DBAccordionProps) {
-	const _ref = useRef<HTMLUListElement | undefined>(undefined);
+	const _ref = useRef<HTMLUListElement | any>(null);
 	// jscpd:ignore-start
 	const state = useStore<DBAccordionState>({
 		_id: DEFAULT_ID,

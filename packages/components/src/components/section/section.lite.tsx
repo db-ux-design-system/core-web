@@ -13,7 +13,7 @@ useMetadata({});
 useDefaultProps<DBSectionProps>({});
 
 export default function DBSection(props: DBSectionProps) {
-	const _ref = useRef<HTMLDivElement | undefined>(undefined);
+	const _ref = useRef<HTMLDivElement | any>(null);
 	// jscpd:ignore-start
 	const state = useStore<DBSectionState>({
 		_id: DEFAULT_ID

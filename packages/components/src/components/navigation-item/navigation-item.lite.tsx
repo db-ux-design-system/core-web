@@ -30,7 +30,7 @@ useMetadata({});
 useDefaultProps<DBNavigationItemProps>({});
 
 export default function DBNavigationItem(props: DBNavigationItemProps) {
-	const _ref = useRef<HTMLLIElement | undefined>(undefined);
+	const _ref = useRef<HTMLLIElement | any>(null);
 
 	// jscpd:ignore-start
 	const state = useStore<DBNavigationItemState>({

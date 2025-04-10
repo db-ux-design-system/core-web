@@ -37,7 +37,7 @@ export default function DBCustomSelectListItem(
 	props: DBCustomSelectListItemProps
 ) {
 	// This is used as forwardRef
-	const _ref = useRef<HTMLLIElement | undefined>(undefined);
+	const _ref = useRef<HTMLLIElement | any>(null);
 	// jscpd:ignore-start
 	const state: DBCustomSelectListItemState =
 		useStore<DBCustomSelectListItemState>({

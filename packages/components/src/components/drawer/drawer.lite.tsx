@@ -17,8 +17,8 @@ useMetadata({});
 useDefaultProps<DBDrawerProps>({});
 
 export default function DBDrawer(props: DBDrawerProps) {
-	const _ref = useRef<HTMLDialogElement | undefined>(undefined);
-	const dialogContainerRef = useRef<HTMLDivElement | undefined>(undefined);
+	const _ref = useRef<HTMLDialogElement | any>(null);
+	const dialogContainerRef = useRef<HTMLDivElement | any>(null);
 	const state = useStore<DBDrawerState>({
 		// eslint-disable-next-line @typescript-eslint/no-explicit-any
 		handleClose: (event: any) => {

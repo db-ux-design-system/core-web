@@ -31,7 +31,7 @@ useDefaultProps<DBSwitchProps>({});
 
 export default function DBSwitch(props: DBSwitchProps) {
 	// This is used as forwardRef
-	const _ref = useRef<HTMLInputElement | undefined>(undefined);
+	const _ref = useRef<HTMLInputElement | any>(null);
 	// jscpd:ignore-start
 	const state = useStore<DBSwitchState>({
 		_id: undefined,

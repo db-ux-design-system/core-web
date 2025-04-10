@@ -73,10 +73,10 @@ useDefaultProps<DBCustomSelectProps>({
 
 export default function DBCustomSelect(props: DBCustomSelectProps) {
 	// This is used as forwardRef
-	const _ref = useRef<HTMLDivElement | undefined>(undefined);
-	const detailsRef = useRef<HTMLDetailsElement | undefined>(undefined);
-	const selectRef = useRef<HTMLSelectElement | undefined>(undefined);
-	const selectAllRef = useRef<HTMLInputElement | undefined>(undefined);
+	const _ref = useRef<HTMLDivElement | null>(null);
+	const detailsRef = useRef<HTMLDetailsElement | any>(null);
+	const selectRef = useRef<HTMLSelectElement | any>(null);
+	const selectAllRef = useRef<HTMLInputElement | any>(null);
 	// jscpd:ignore-start
 	const state: DBCustomSelectState = useStore<DBCustomSelectState>({
 		_name: undefined,

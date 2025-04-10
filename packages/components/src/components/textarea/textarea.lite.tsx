@@ -44,7 +44,7 @@ useMetadata({
 useDefaultProps<DBTextareaProps>({});
 
 export default function DBTextarea(props: DBTextareaProps) {
-	const _ref = useRef<HTMLTextAreaElement | undefined>(null);
+	const _ref = useRef<HTMLTextAreaElement | any>(null);
 	// jscpd:ignore-start
 	const state = useStore<DBTextareaState>({
 		_id: undefined,

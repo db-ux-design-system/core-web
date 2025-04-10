@@ -14,7 +14,7 @@ useMetadata({});
 useDefaultProps<DBBrandProps>({});
 
 export default function DBBrand(props: DBBrandProps) {
-	const _ref = useRef<HTMLDivElement | undefined>(undefined);
+	const _ref = useRef<HTMLDivElement | any>(null);
 	// jscpd:ignore-start
 	const state = useStore<DBBrandState>({});
 	// jscpd:ignore-end

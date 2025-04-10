@@ -48,7 +48,7 @@ useMetadata({
 useDefaultProps<DBSelectProps>({});
 
 export default function DBSelect(props: DBSelectProps) {
-	const _ref = useRef<HTMLSelectElement | undefined>(undefined);
+	const _ref = useRef<HTMLSelectElement | any>(null);
 	// jscpd:ignore-start
 	const state = useStore<DBSelectState>({
 		_id: undefined,

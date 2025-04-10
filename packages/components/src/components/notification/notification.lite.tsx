@@ -17,7 +17,7 @@ useMetadata({});
 useDefaultProps<DBNotificationProps>({});
 
 export default function DBNotification(props: DBNotificationProps) {
-	const _ref = useRef<HTMLDivElement | undefined>(undefined);
+	const _ref = useRef<HTMLDivElement | any>(null);
 	// jscpd:ignore-start
 	const state = useStore<DBNotificationState>({
 		handleClose: (event: ClickEvent<HTMLButtonElement> | any) => {

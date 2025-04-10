@@ -41,7 +41,7 @@ useMetadata({
 useDefaultProps<DBCheckboxProps>({});
 
 export default function DBCheckbox(props: DBCheckboxProps) {
-	const _ref = useRef<HTMLInputElement | undefined>(undefined);
+	const _ref = useRef<HTMLInputElement | any>(null);
 	// jscpd:ignore-start
 	const state = useStore<DBCheckboxState>({
 		initialized: false,

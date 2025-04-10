@@ -12,7 +12,7 @@ useMetadata({});
 useDefaultProps<DBDividerProps>({});
 
 export default function DBDivider(props: DBDividerProps) {
-	const _ref = useRef<HTMLDivElement | undefined>(undefined);
+	const _ref = useRef<HTMLDivElement | any>(null);
 	// jscpd:ignore-start
 	const state = useStore<DBDividerState>({});
 
