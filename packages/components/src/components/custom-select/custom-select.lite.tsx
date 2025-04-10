@@ -56,6 +56,7 @@ import {
 	handleFrameworkEventVue
 } from '../../utils/form-components';
 import DBInput from '../input/input.lite';
+import { DocumentClickListener } from '../../utils/document-click-listener';
 
 useMetadata({
 	angular: {
@@ -105,6 +106,7 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 		_hasNoOptions: false,
 		_internalChangeTimestamp: -1,
 		_externalChangeTimestamp: -1,
+		_documentClickListenerCallbackId: undefined,
 		hasValidState: () => {
 			return !!(props.validMessage ?? props.validation === 'valid');
 		},
@@ -123,6 +125,7 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 					state._voiceOverFallback = state._invalidMessage;
 					delay(() => (state._voiceOverFallback = ''), 1000);
 				}
+				state._validity = props.validation ?? 'invalid';
 			} else if (
 				state.hasValidState() &&
 				selectRef?.validity.valid &&
@@ -134,10 +137,13 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 						props.validMessage ?? DEFAULT_VALID_MESSAGE;
 					delay(() => (state._voiceOverFallback = ''), 1000);
 				}
+				state._validity = props.validation ?? 'valid';
 			} else if (stringPropVisible(props.message, props.showMessage)) {
 				state._descByIds = state._messageId;
+				state._validity = props.validation ?? 'no-validation';
 			} else {
 				state._descByIds = state._placeholderId;
+				state._validity = props.validation ?? 'no-validation';
 			}
 		},
 		handleDropdownToggle: (event: any) => {
@@ -336,7 +342,12 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 			}
 		},
 		handleSelect: (value?: string) => {
-			if (value) {
+			// Angular and Stencil triggers handleSelect
+			// twice which will select and deselect a multiple value
+			const skip: boolean =
+				new Date().getTime() - state._internalChangeTimestamp < 200;
+
+			if (!skip && value) {
 				if (props.multiple) {
 					if (state._values?.includes(value)) {
 						state._values = state._values?.filter(
@@ -442,15 +453,37 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 		state._selectedLabelsId = mId + '-selected-labels';
 		state._infoTextId = mId + '-info';
 		state._invalidMessage = props.invalidMessage || DEFAULT_INVALID_MESSAGE;
-
-		if (document) {
-			document.addEventListener('click', state.handleDocumentClose);
-		}
 	});
 
+	onUpdate(() => {
+		if (detailsRef) {
+			const summary = detailsRef.querySelector('summary');
+			if (summary) {
+				summary.addEventListener('click', () => {
+					state.handleAutoPlacement();
+					state.handleOpenByKeyboardFocus(true);
+				});
+				summary.addEventListener('keydown', (event: KeyboardEvent) => {
+					if (event.code === 'Space' && !detailsRef?.open) {
+						state.handleOpenByKeyboardFocus();
+					}
+				});
+			}
+			detailsRef.addEventListener('focusout', (event) =>
+				state.handleClose(event)
+			);
+			state._documentClickListenerCallbackId =
+				new DocumentClickListener().addCallback((event) =>
+					state.handleDocumentClose(event)
+				);
+		}
+	}, [detailsRef]);
+
 	onUnMount(() => {
-		if (document) {
-			document.removeEventListener('click', state.handleDocumentClose);
+		if (state._documentClickListenerCallbackId) {
+			new DocumentClickListener().removeCallback(
+				state._documentClickListenerCallbackId!
+			);
 		}
 	});
 
@@ -487,26 +520,6 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 			}
 		}
 	}, [detailsRef, state._descByIds]);
-
-	onUpdate(() => {
-		if (detailsRef) {
-			const summary = detailsRef.querySelector('summary');
-			if (summary) {
-				summary.addEventListener('click', () => {
-					state.handleAutoPlacement();
-					state.handleOpenByKeyboardFocus(true);
-				});
-				summary.addEventListener('keydown', (event: KeyboardEvent) => {
-					if (event.code === 'Space' && !detailsRef?.open) {
-						state.handleOpenByKeyboardFocus();
-					}
-				});
-			}
-			detailsRef.addEventListener('focusout', (event) =>
-				state.handleClose(event)
-			);
-		}
-	}, [detailsRef]);
 
 	onUpdate(() => {
 		if (props.showNoResults !== undefined) {
@@ -673,8 +686,8 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 			<label id={state._labelId}>
 				{props.label ?? DEFAULT_LABEL}
 				<select
-					hidden
 					role="none"
+					hidden
 					id={state._selectId}
 					tabIndex={-1}
 					ref={selectRef}
@@ -938,13 +951,6 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 					{props.validMessage || DEFAULT_VALID_MESSAGE}
 				</DBInfotext>
 			</Show>
-
-			<DBInfotext
-				id={state._invalidMessageId}
-				size="small"
-				semantic="critical">
-				{state._invalidMessage}
-			</DBInfotext>
 
 			<DBInfotext
 				id={state._invalidMessageId}

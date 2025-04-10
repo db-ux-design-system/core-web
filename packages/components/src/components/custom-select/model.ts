@@ -20,6 +20,8 @@ import {
 import { DBCustomSelectFormFieldDefaultProps } from '../custom-select-form-field/model';
 import { CustomSelectDropdownWidthType } from '../custom-select-dropdown/model';
 import { DBCustomSelectListItemExtraProps } from '../custom-select-list-item/model';
+import { DetachedRouteHandle } from '@angular/router';
+import { DocumentClickListener } from '../../utils/document-click-listener';
 
 export type CustomSelectOptionType = {
 	/**
@@ -216,6 +218,7 @@ export type DBCustomSelectDefaultState = {
 	_externalChangeTimestamp: number;
 	_internalChangeTimestamp: number;
 	_name?: string;
+	_documentClickListenerCallbackId?: string;
 	getNativeSelectValue: () => string;
 	getOptionLabel: (option: CustomSelectOptionType) => string;
 	getOptionChecked: (value?: string) => boolean;

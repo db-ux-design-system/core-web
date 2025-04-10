@@ -64,16 +64,16 @@
 		#{select-components.$has-before-padding} +
 			#{variables.$db-spacing-fixed-xs}
 	);
+	--db-form-component-min-inline-size: #{variables.$db-sizing-xl};
 
 	@extend %select-icon;
 	@extend %select-placeholder;
 	@extend %custom-select-placement;
 
 	position: relative;
-	min-inline-size: variables.$db-sizing-xl;
 
 	&[data-icon]:not([data-hide-icon="true"]) {
-		min-inline-size: variables.$db-sizing-2xl;
+		--db-form-component-min-inline-size: #{variables.$db-sizing-2xl};
 	}
 
 	&:not([data-width]),

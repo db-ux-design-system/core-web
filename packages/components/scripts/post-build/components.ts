@@ -68,8 +68,8 @@ export const getComponents = (): Component[] => [
 		overwrites: {
 			angular: [
 				{
-					from: /this.handleDocumentClose\(\)/g,
-					to: 'this.handleDocumentClose'
+					from: 'attr.checked',
+					to: 'checked'
 				},
 				// TODO: Move this to mitosis
 				{ from: /AfterViewInit,/g, to: 'AfterViewInit, OnDestroy,' },
