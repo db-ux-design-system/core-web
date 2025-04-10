@@ -72,7 +72,6 @@ export const getComponents = (): Component[] => [
 					to: 'checked'
 				},
 				// TODO: Move this to mitosis
-				{ from: /AfterViewInit,/g, to: 'AfterViewInit, OnDestroy,' },
 				{ from: 'trackByOption0', to: 'trackByOption0(i,option)' },
 				{ from: 'trackByOption1', to: 'trackByOption1(index,option)' },
 				{ from: 'trackByOption2', to: 'trackByOption2(i,option)' }

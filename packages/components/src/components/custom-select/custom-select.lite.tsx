@@ -2,7 +2,6 @@
 import {
 	For,
 	onMount,
-	onUnMount,
 	onUpdate,
 	Show,
 	useDefaultProps,
@@ -149,6 +148,18 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 		handleDropdownToggle: (event: any) => {
 			if (props.onDropdownToggle) {
 				props.onDropdownToggle(event);
+			}
+			if (event.target.open) {
+				state._documentClickListenerCallbackId =
+					new DocumentClickListener().addCallback((event) =>
+						state.handleDocumentClose(event)
+					);
+			} else {
+				if (state._documentClickListenerCallbackId) {
+					new DocumentClickListener().removeCallback(
+						state._documentClickListenerCallbackId!
+					);
+				}
 			}
 		},
 		getNativeSelectValue: () => {
@@ -337,7 +348,16 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 			}
 		},
 		handleDocumentClose: (event: any) => {
-			if (detailsRef?.open && !detailsRef.contains(event.target)) {
+			// stencil is sending a custom event which wraps the pointer event into details
+			const target = useTarget({
+				stencil:
+					typeof event.detail === 'number'
+						? event.target
+						: event.detail.target,
+				default: event.target
+			});
+
+			if (detailsRef?.open && !detailsRef.contains(target)) {
 				detailsRef.open = false;
 			}
 		},
@@ -472,20 +492,8 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 			detailsRef.addEventListener('focusout', (event) =>
 				state.handleClose(event)
 			);
-			state._documentClickListenerCallbackId =
-				new DocumentClickListener().addCallback((event) =>
-					state.handleDocumentClose(event)
-				);
 		}
 	}, [detailsRef]);
-
-	onUnMount(() => {
-		if (state._documentClickListenerCallbackId) {
-			new DocumentClickListener().removeCallback(
-				state._documentClickListenerCallbackId!
-			);
-		}
-	});
 
 	onUpdate(() => {
 		state._name = props.name ?? state._id;
