@@ -59,8 +59,8 @@ const getPropertiesFile = ({ name, attributes, events, slots }) => {
 		slotsTable += `| ${getAllNames(name)} | ${description?.replaceAll(/\r\n|\r|\n/g, '<br/>')} |\n`;
 	}
 
-	for (const { name, type } of events) {
-		eventsTable += `| ${getAllNames(name)} | ${type} |\n`;
+	for (const { name } of events) {
+		eventsTable += `| ${getAllNames(name)} | --- |\n`;
 	}
 
 	return `

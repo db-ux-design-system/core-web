@@ -532,15 +532,16 @@ export type ClickEventProps<T> = {
 };
 
 export type ClickEventState<T> = {
-	handleClick: (event: ClickEvent<T>) => void;
+	handleClick: (event: ClickEvent<T> | any) => void;
 };
 
 export type ToggleEventProps = {
-	onToggle?: (open: boolean) => void;
+	toggle?: (open: boolean | any) => void;
+	onToggle?: (open: boolean | any) => void;
 };
 
 export type ToggleEventState<T> = {
-	toggle: (event?: ClickEvent<T>) => void;
+	handleToggle: (event?: ClickEvent<T> | any) => void;
 };
 
 export type CloseEventProps = {
@@ -548,6 +549,10 @@ export type CloseEventProps = {
 	 * Function to handle button click (close).
 	 */
 	onClose?: (event?: any) => void;
+	/**
+	 * Function to handle button click (close).
+	 */
+	close?: (event?: any) => void;
 };
 
 export type CloseEventState = {
@@ -577,7 +582,7 @@ export type InputEventProps<T> = {
 };
 
 export type InputEventState<T> = {
-	handleInput: (event: InputEvent<T>) => void;
+	handleInput: (event: InputEvent<T> | any) => void;
 };
 
 export type ChangeEvent<T> = Event;
@@ -587,7 +592,7 @@ export type ChangeEventProps<T> = {
 };
 
 export type ChangeEventState<T> = {
-	handleChange: (event: ChangeEvent<T>) => void;
+	handleChange: (event: ChangeEvent<T> | any) => void;
 };
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -601,8 +606,8 @@ export type FocusEventProps<T> = {
 };
 
 export type FocusEventState<T> = {
-	handleBlur: (event: InteractionEvent<T>) => void;
-	handleFocus: (event: InteractionEvent<T>) => void;
+	handleBlur: (event: InteractionEvent<T> | any) => void;
+	handleFocus: (event: InteractionEvent<T> | any) => void;
 };
 
 export type InnerCloseButtonProps = {
