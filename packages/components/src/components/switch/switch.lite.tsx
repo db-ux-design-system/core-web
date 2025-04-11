@@ -31,12 +31,12 @@ useDefaultProps<DBSwitchProps>({});
 
 export default function DBSwitch(props: DBSwitchProps) {
 	// This is used as forwardRef
-	const _ref = useRef<HTMLInputElement | null>(null);
+	const _ref = useRef<HTMLInputElement | any>(null);
 	// jscpd:ignore-start
 	const state = useStore<DBSwitchState>({
 		_id: undefined,
 		_checked: useTarget({
-			react: props['defaultChecked'] ?? false,
+			react: (props as any)['defaultChecked'] ?? false,
 			default: false
 		}),
 		handleChange: (event: ChangeEvent<HTMLInputElement>) => {
@@ -49,7 +49,7 @@ export default function DBSwitch(props: DBSwitchProps) {
 
 			useTarget({
 				angular: () =>
-					handleFrameworkEventAngular(this, event, 'checked'),
+					handleFrameworkEventAngular(state, event, 'checked'),
 				vue: () => handleFrameworkEventVue(() => {}, event, 'checked')
 			});
 		},

@@ -4,60 +4,60 @@
   - article:
     - text: information_circle" / " Headline
     - paragraph: functional
-    - button "cross\" / \" Close Button"
+    - button "cross\" / \" Close"
   - article:
     - text: information_circle" / " Headline
     - paragraph: regular (Default)
-    - button "cross\" / \" Close Button"
+    - button "cross\" / \" Close"
   - article:
     - text: information_circle" / " Headline
     - paragraph: expressive
-    - button "cross\" / \" Close Button"
+    - button "cross\" / \" Close"
   - link "Variant arrow_up_right\" / \""
   - article:
     - text: information_circle" / " Headline
     - paragraph: (Default) Docked
-    - button "cross\" / \" Close Button"
+    - button "cross\" / \" Close"
   - article:
     - text: information_circle" / " Headline
     - paragraph: Standalone
-    - button "cross\" / \" Close Button"
+    - button "cross\" / \" Close"
   - article:
     - text: information_circle" / " Headline
     - paragraph: Overlay
     - text: 10 min ago
-    - button "cross\" / \" Close Button"
+    - button "cross\" / \" Close"
   - link "Semantic arrow_up_right\" / \""
   - article:
     - text: Headline
     - paragraph: (Default) Adaptive
-    - button "cross\" / \" Close Button"
+    - button "cross\" / \" Close"
   - article:
     - text: information_circle" / " Headline
     - paragraph: Neutral
-    - button "cross\" / \" Close Button"
+    - button "cross\" / \" Close"
   - article:
     - text: exclamation_mark_circle" / " Headline
     - paragraph: Critical
-    - button "cross\" / \" Close Button"
+    - button "cross\" / \" Close"
   - article:
     - text: information_circle" / " Headline
     - paragraph: Informational
-    - button "cross\" / \" Close Button"
+    - button "cross\" / \" Close"
   - article:
     - text: check_circle" / " Headline
     - paragraph: Successful
-    - button "cross\" / \" Close Button"
+    - button "cross\" / \" Close"
   - article:
     - text: exclamation_mark_triangle" / " Headline
     - paragraph: Warning
-    - button "cross\" / \" Close Button"
+    - button "cross\" / \" Close"
   - link "Closeable arrow_up_right\" / \""
   - article:
     - paragraph: (Default) False
   - article:
     - paragraph: "True"
-    - button "cross\" / \" Close Button"
+    - button "cross\" / \" Close"
   - link "Visual arrow_up_right\" / \""
   - article:
     - text: information_circle" / "

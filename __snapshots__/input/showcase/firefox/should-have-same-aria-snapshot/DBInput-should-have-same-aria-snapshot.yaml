@@ -105,7 +105,7 @@
   - text: magnifying_glass" / " Label
   - searchbox "Label"
   - status
-  - text: cross_circle" / " Label
+  - text: cross" / " Label
   - textbox "Label"
   - status
   - text: Label
@@ -153,7 +153,7 @@
   - text: magnifying_glass" / " Label
   - searchbox "Label"
   - status
-  - text: cross_circle" / " Label
+  - text: cross" / " Label
   - textbox "Label"
   - status
   - text: Label

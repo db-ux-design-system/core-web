@@ -14,7 +14,7 @@ useMetadata({});
 useDefaultProps<DBNavigationProps>({});
 
 export default function DBNavigation(props: DBNavigationProps) {
-	const _ref = useRef<HTMLDivElement | null>(null);
+	const _ref = useRef<HTMLDivElement | any>(null);
 	// jscpd:ignore-start
 	const state = useStore<DBNavigationState>({
 		_id: DEFAULT_ID

@@ -9,8 +9,8 @@
   },
   "license": "DB Design License",
   "main": "./build/index.js",
-  "module": "./build/index.js",
   "types": "./build/index.d.ts",
+  "module": "./build/index.js",
   "files": [
     "assets",
     "build"

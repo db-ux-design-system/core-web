@@ -14,7 +14,7 @@ useDefaultProps<DBTabListProps>({});
 
 export default function DBTabList(props: DBTabListProps) {
 	// This is used as forwardRef
-	const _ref = useRef<HTMLDivElement | null>(null);
+	const _ref = useRef<HTMLDivElement | any>(null);
 	// jscpd:ignore-start
 	const state = useStore<DBTabListState>({
 		_id: DEFAULT_ID

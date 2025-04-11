@@ -41,7 +41,7 @@ useMetadata({
 useDefaultProps<DBCheckboxProps>({});
 
 export default function DBCheckbox(props: DBCheckboxProps) {
-	const _ref = useRef<HTMLInputElement | null>(null);
+	const _ref = useRef<HTMLInputElement | any>(null);
 	// jscpd:ignore-start
 	const state = useStore<DBCheckboxState>({
 		initialized: false,
@@ -91,7 +91,7 @@ export default function DBCheckbox(props: DBCheckboxProps) {
 
 			useTarget({
 				angular: () =>
-					handleFrameworkEventAngular(this, event, 'checked'),
+					handleFrameworkEventAngular(state, event, 'checked'),
 				vue: () => handleFrameworkEventVue(() => {}, event, 'checked')
 			});
 			state.handleValidation();

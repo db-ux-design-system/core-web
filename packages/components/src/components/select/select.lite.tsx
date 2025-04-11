@@ -48,7 +48,7 @@ useMetadata({
 useDefaultProps<DBSelectProps>({});
 
 export default function DBSelect(props: DBSelectProps) {
-	const _ref = useRef<HTMLSelectElement | null>(null);
+	const _ref = useRef<HTMLSelectElement | any>(null);
 	// jscpd:ignore-start
 	const state = useStore<DBSelectState>({
 		_id: undefined,
@@ -117,7 +117,7 @@ export default function DBSelect(props: DBSelectProps) {
 			});
 
 			useTarget({
-				angular: () => handleFrameworkEventAngular(this, event),
+				angular: () => handleFrameworkEventAngular(state, event),
 				vue: () => handleFrameworkEventVue(() => {}, event)
 			});
 			state.handleValidation();
@@ -128,7 +128,7 @@ export default function DBSelect(props: DBSelectProps) {
 			}
 
 			useTarget({
-				angular: () => handleFrameworkEventAngular(this, event),
+				angular: () => handleFrameworkEventAngular(state, event),
 				vue: () => handleFrameworkEventVue(() => {}, event)
 			});
 			state.handleValidation();
@@ -144,7 +144,7 @@ export default function DBSelect(props: DBSelectProps) {
 			}
 		},
 		getOptionLabel: (option: DBSelectOptionType) => {
-			return option.label ?? option.value.toString();
+			return option.label ?? option.value?.toString();
 		}
 	});
 
@@ -209,6 +209,7 @@ export default function DBSelect(props: DBSelectProps) {
 				size={props.size}
 				value={props.value ?? state._value}
 				autocomplete={props.autocomplete}
+				multiple={props.multiple}
 				onInput={(event: ChangeEvent<HTMLSelectElement>) =>
 					state.handleInput(event)
 				}

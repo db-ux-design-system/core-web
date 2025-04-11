@@ -13,7 +13,6 @@ import {
 	cls,
 	delay,
 	getBoolean,
-	getBooleanAsString,
 	getHideProp,
 	getNumber,
 	hasVoiceOver,
@@ -40,8 +39,8 @@ import {
 } from '../../shared/model';
 import DBInfotext from '../infotext/infotext.lite';
 import {
-	handleFrameworkEventVue,
-	handleFrameworkEventAngular
+	handleFrameworkEventAngular,
+	handleFrameworkEventVue
 } from '../../utils/form-components';
 
 useMetadata({
@@ -53,7 +52,7 @@ useMetadata({
 useDefaultProps<DBInputProps>({});
 
 export default function DBInput(props: DBInputProps) {
-	const _ref = useRef<HTMLInputElement | null>(null);
+	const _ref = useRef<HTMLInputElement | any>(null);
 	// jscpd:ignore-start
 	const state = useStore<DBInputState>({
 		_id: undefined,
@@ -118,7 +117,7 @@ export default function DBInput(props: DBInputProps) {
 			});
 
 			useTarget({
-				angular: () => handleFrameworkEventAngular(this, event),
+				angular: () => handleFrameworkEventAngular(state, event),
 				vue: () => handleFrameworkEventVue(() => {}, event)
 			});
 			state.handleValidation();
@@ -129,7 +128,7 @@ export default function DBInput(props: DBInputProps) {
 			}
 
 			useTarget({
-				angular: () => handleFrameworkEventAngular(this, event),
+				angular: () => handleFrameworkEventAngular(state, event),
 				vue: () => handleFrameworkEventVue(() => {}, event)
 			});
 			state.handleValidation();
@@ -227,9 +226,8 @@ export default function DBInput(props: DBInputProps) {
 				form={props.form}
 				pattern={props.pattern}
 				size={props.size}
-				// @ts-ignore
+				// @ts-expect-error inout has a property autoComplete
 				autoComplete={props.autocomplete}
-				// @ts-ignore
 				autoFocus={getBoolean(props.autofocus, 'autofocus')}
 				onInput={(event: ChangeEvent<HTMLInputElement>) =>
 					state.handleInput(event)
@@ -244,7 +242,7 @@ export default function DBInput(props: DBInputProps) {
 					state.handleFocus(event)
 				}
 				list={props.dataList && state._dataListId}
-				aria-describedby={state._descByIds}
+				aria-describedby={props.ariaDescribedBy ?? state._descByIds}
 			/>
 			<Show when={props.dataList}>
 				<datalist id={state._dataListId}>

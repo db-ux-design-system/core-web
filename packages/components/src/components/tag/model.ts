@@ -1,4 +1,5 @@
 import {
+	ClickEvent,
 	ContentSlotProps,
 	GlobalProps,
 	GlobalState,
@@ -32,11 +33,11 @@ export type DBTagDefaultProps = {
 	/**
 	 * If "removeButton" attribute is set this function will be called when user clicks cancel button inside the tag.
 	 */
-	onRemove?: () => void;
+	onRemove?: (event?: any) => void;
 	/**
 	 * If "removeButton" attribute is set this function will be called when user clicks cancel button inside the tag.
 	 */
-	remove?: () => void;
+	remove?: (event?: any) => void;
 	/**
 	 * The removeButton attribute shows the cancel button.
 	 */
@@ -67,7 +68,7 @@ export type DBTagProps = DBTagDefaultProps &
 
 export type DBTagDefaultState = {
 	getRemoveButtonText: () => string;
-	handleRemove: () => void;
+	handleRemove: (event?: ClickEvent<HTMLButtonElement>) => void;
 };
 
 export type DBTagState = DBTagDefaultState & GlobalState & InitializedState;

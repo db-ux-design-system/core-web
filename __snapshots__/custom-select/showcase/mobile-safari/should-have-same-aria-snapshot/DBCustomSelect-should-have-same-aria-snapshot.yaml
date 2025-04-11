@@ -1,0 +1,944 @@
+- main:
+  - heading "DBCustomSelect" [level=1]
+  - link "Density arrow_up_right\" / \""
+  - text: Functional
+  - group:
+    - article:
+      - radiogroup "e47b7b72-5b4e-4405-a7f4-f6ae47d2c5e6":
+        - list:
+          - listitem:
+            - radio "Option 1 none\" / \""
+            - text: Option 1 none" / "
+          - listitem:
+            - radio "Option 2 none\" / \""
+            - text: Option 2 none" / "
+      - button "cross\" / \" Close"
+  - status
+  - text: chevron_down" / " (Default) Regular
+  - group:
+    - article:
+      - radiogroup "2eba24a3-0695-4efb-8e73-e675d5c79f45":
+        - list:
+          - listitem:
+            - radio "Option 1 none\" / \""
+            - text: Option 1 none" / "
+          - listitem:
+            - radio "Option 2 none\" / \""
+            - text: Option 2 none" / "
+      - button "cross\" / \" Close"
+  - status
+  - text: chevron_down" / " Expressive
+  - group:
+    - article:
+      - radiogroup "b960485f-4b32-4f5d-a33b-e83956520242":
+        - list:
+          - listitem:
+            - radio "Option 1 none\" / \""
+            - text: Option 1 none" / "
+          - listitem:
+            - radio "Option 2 none\" / \""
+            - text: Option 2 none" / "
+      - button "cross\" / \" Close"
+  - status
+  - text: chevron_down" / "
+  - link "Multiple arrow_up_right\" / \""
+  - text: (Default) False
+  - group:
+    - article:
+      - radiogroup "9f3a977d-db7d-4cc6-b07d-6d7b6b3c4914":
+        - list:
+          - listitem:
+            - radio "Option 1 none\" / \""
+            - text: Option 1 none" / "
+          - listitem:
+            - radio "Option 2 none\" / \""
+            - text: Option 2 none" / "
+      - button "cross\" / \" Close"
+  - status
+  - text: chevron_down" / " True
+  - group:
+    - article:
+      - group "65fb51a3-5926-4543-aa17-0bb09b16e262":
+        - list:
+          - listitem:
+            - checkbox "Option 1"
+            - text: Option 1
+          - listitem:
+            - checkbox "Option 2"
+            - text: Option 2
+      - button "cross\" / \" Close"
+  - status
+  - text: chevron_down" / "
+  - link "Variant arrow_up_right\" / \""
+  - text: (Default) Label Above
+  - group:
+    - article:
+      - radiogroup "80b2aa82-8151-472a-84f2-5754629a1e9d":
+        - list:
+          - listitem:
+            - radio "Option 1 none\" / \""
+            - text: Option 1 none" / "
+          - listitem:
+            - radio "Option 2 none\" / \""
+            - text: Option 2 none" / "
+      - button "cross\" / \" Close"
+  - status
+  - text: chevron_down" / " Floating Label
+  - group:
+    - article:
+      - radiogroup "32f67dfd-7934-4652-acd3-fda454df5195":
+        - list:
+          - listitem:
+            - radio "Floating Label none\" / \""
+            - text: Floating Label none" / "
+          - listitem:
+            - radio "Option 2 none\" / \""
+            - text: Option 2 none" / "
+      - button "cross\" / \" Close"
+  - status
+  - text: chevron_down" / "
+  - link "Show Label arrow_up_right\" / \""
+  - text: (Default) True
+  - group:
+    - article:
+      - radiogroup "9e3dc783-34e0-43e8-8513-9e4528ca04c0":
+        - list:
+          - listitem:
+            - radio "Option 1 none\" / \""
+            - text: Option 1 none" / "
+          - listitem:
+            - radio "Option 2 none\" / \""
+            - text: Option 2 none" / "
+      - button "cross\" / \" Close"
+  - status
+  - text: chevron_down" / " False
+  - group:
+    - article:
+      - radiogroup "f0411c15-5d9c-41c2-a585-89205945512f":
+        - list:
+          - listitem:
+            - radio "Option 1 none\" / \""
+            - text: Option 1 none" / "
+          - listitem:
+            - radio "Option 2 none\" / \""
+            - text: Option 2 none" / "
+      - button "cross\" / \" Close"
+  - status
+  - text: chevron_down" / "
+  - link "Show Message arrow_up_right\" / \""
+  - text: (Default) False
+  - group:
+    - article:
+      - radiogroup "64aa356a-f984-413d-81d0-b53c1704e2f7":
+        - list:
+          - listitem:
+            - radio "Option 1 none\" / \""
+            - text: Option 1 none" / "
+          - listitem:
+            - radio "Option 2 none\" / \""
+            - text: Option 2 none" / "
+      - button "cross\" / \" Close"
+  - status
+  - text: chevron_down" / " True
+  - group:
+    - article:
+      - radiogroup "5fefe95d-149f-43cb-b9e3-6ff1ecc85c15":
+        - list:
+          - listitem:
+            - radio "Option 1 none\" / \""
+            - text: Option 1 none" / "
+          - listitem:
+            - radio "Option 2 none\" / \""
+            - text: Option 2 none" / "
+      - button "cross\" / \" Close"
+  - text: information_circle" / " Helper Message
+  - status
+  - text: chevron_down" / "
+  - link "Show Icon arrow_up_right\" / \""
+  - text: (Default) False
+  - group:
+    - article:
+      - radiogroup "43a16c98-2e36-43ad-8f00-3c4e39547547":
+        - list:
+          - listitem:
+            - radio "Option 1 none\" / \""
+            - text: Option 1 none" / "
+          - listitem:
+            - radio "Option 2 none\" / \""
+            - text: Option 2 none" / "
+      - button "cross\" / \" Close"
+  - status
+  - text: chevron_down" / " x_placeholder" / " True
+  - group:
+    - article:
+      - radiogroup "a45a2998-9d7c-41ab-ab0d-f8a3b540e5fb":
+        - list:
+          - listitem:
+            - radio "Option 1 none\" / \""
+            - text: Option 1 none" / "
+          - listitem:
+            - radio "Option 2 none\" / \""
+            - text: Option 2 none" / "
+      - button "cross\" / \" Close"
+  - status
+  - text: chevron_down" / "
+  - link "Required arrow_up_right\" / \""
+  - text: (Default) False
+  - group:
+    - article:
+      - group "95d134bb-b6c5-47a1-940d-b9f5ee8fe99e":
+        - list:
+          - listitem:
+            - checkbox "Option 1"
+            - text: Option 1
+          - listitem:
+            - checkbox "Option 2"
+            - text: Option 2
+      - button "cross\" / \" Close"
+  - status
+  - text: chevron_down" / " True*" / "
+  - group:
+    - article:
+      - group "52db6ab3-4f1f-4789-9ee2-2852864b4210":
+        - list:
+          - listitem:
+            - checkbox "Option 1"
+            - text: Option 1
+          - listitem:
+            - checkbox "Option 2"
+            - text: Option 2
+      - button "cross\" / \" Close"
+  - status
+  - text: chevron_down" / "
+  - link "Disabled arrow_up_right\" / \""
+  - text: (Default) False
+  - group:
+    - article:
+      - group "ff756bf6-7350-42b2-b4cd-28e03a7e2332":
+        - list:
+          - listitem:
+            - checkbox "Option 1"
+            - text: Option 1
+          - listitem:
+            - checkbox "Option 2"
+            - text: Option 2
+      - button "cross\" / \" Close"
+  - status
+  - text: chevron_down" / " True
+  - group:
+    - article:
+      - group "81e86968-3bd8-4432-9e72-4b83f65da8a4":
+        - list:
+          - listitem:
+            - checkbox "Option 1"
+            - text: Option 1
+          - listitem:
+            - checkbox "Option 2"
+            - text: Option 2
+      - button "cross\" / \" Close"
+  - status
+  - text: chevron_down" / "
+  - link "Form Field Width arrow_up_right\" / \""
+  - text: (Default) Full
+  - group:
+    - article:
+      - radiogroup "40148ac0-f853-491c-9e85-f0a3ed79ecf1":
+        - list:
+          - listitem:
+            - radio "Option 1 none\" / \""
+            - text: Option 1 none" / "
+          - listitem:
+            - radio "Option 2 none\" / \""
+            - text: Option 2 none" / "
+      - button "cross\" / \" Close"
+  - status
+  - text: chevron_down" / " Auto
+  - group:
+    - article:
+      - radiogroup "9cc45366-8233-4d5f-8f45-48f047d19172":
+        - list:
+          - listitem:
+            - radio "Option 1 none\" / \""
+            - text: Option 1 none" / "
+          - listitem:
+            - radio "Option 2 none\" / \""
+            - text: Option 2 none" / "
+      - button "cross\" / \" Close"
+  - status
+  - text: chevron_down" / "
+  - link "Dropdown Width arrow_up_right\" / \""
+  - text: "information_circle\" / \" Form Field Width: Full (Default) Fixed"
+  - group:
+    - article:
+      - radiogroup "2d4f07a7-ea5a-4b54-aa67-fd60c857396d":
+        - list:
+          - listitem:
+            - radio "Option 1 none\" / \""
+            - text: Option 1 none" / "
+          - listitem:
+            - radio "Option 2 none\" / \""
+            - text: Option 2 none" / "
+      - button "cross\" / \" Close"
+  - status
+  - text: chevron_down" / " Auto
+  - group:
+    - article:
+      - radiogroup "5e709371-8368-4711-8f59-7fb9c08bdf42":
+        - list:
+          - listitem:
+            - radio "1 none\" / \""
+            - text: 1 none" / "
+          - listitem:
+            - radio "2 none\" / \""
+            - text: 2 none" / "
+      - button "cross\" / \" Close"
+  - status
+  - text: chevron_down" / " Full
+  - group:
+    - article:
+      - radiogroup "7510fbac-9757-4ee4-90af-92d3ee4edf12":
+        - list:
+          - listitem:
+            - radio "1 none\" / \""
+            - text: 1 none" / "
+          - listitem:
+            - radio "2 none\" / \""
+            - text: 2 none" / "
+      - button "cross\" / \" Close"
+  - status
+  - text: "chevron_down\" / \" information_circle\" / \" Form Field Width: Auto (Default) Fixed"
+  - group:
+    - article:
+      - radiogroup "0bd5bec9-f2f2-4092-8944-4bd02c00dcb0":
+        - list:
+          - listitem:
+            - radio "Option 1 none\" / \""
+            - text: Option 1 none" / "
+          - listitem:
+            - radio "Option 2 none\" / \""
+            - text: Option 2 none" / "
+      - button "cross\" / \" Close"
+  - status
+  - text: chevron_down" / " Auto
+  - group:
+    - article:
+      - radiogroup "dbf30939-85e0-4d67-af08-d634d1c0988b":
+        - list:
+          - listitem:
+            - radio "1 none\" / \""
+            - text: 1 none" / "
+          - listitem:
+            - radio "2 none\" / \""
+            - text: 2 none" / "
+      - button "cross\" / \" Close"
+  - status
+  - text: chevron_down" / " Full
+  - group:
+    - article:
+      - radiogroup "35075327-4bd6-4e23-85cc-e167e56f9ab3":
+        - list:
+          - listitem:
+            - radio "1 none\" / \""
+            - text: 1 none" / "
+          - listitem:
+            - radio "2 none\" / \""
+            - text: 2 none" / "
+      - button "cross\" / \" Close"
+  - status
+  - text: chevron_down" / "
+  - link "Placement arrow_up_right\" / \""
+  - text: "information_circle\" / \" Form Field Width: Full (Default) Bottom"
+  - group:
+    - article:
+      - radiogroup "c966d247-78b2-40cf-9a5c-7a7df0b58ea1":
+        - list:
+          - listitem:
+            - radio "Option 1 none\" / \""
+            - text: Option 1 none" / "
+          - listitem:
+            - radio "Option 2 none\" / \""
+            - text: Option 2 none" / "
+      - button "cross\" / \" Close"
+  - status
+  - text: chevron_down" / " Top
+  - group:
+    - article:
+      - radiogroup "9ece7c0c-ebce-45d8-9a6f-67b4a0adc6bd":
+        - list:
+          - listitem:
+            - radio "Option 1 none\" / \""
+            - text: Option 1 none" / "
+          - listitem:
+            - radio "Option 2 none\" / \""
+            - text: Option 2 none" / "
+      - button "cross\" / \" Close"
+  - status
+  - text: "chevron_down\" / \" information_circle\" / \" Form Field Width: Auto (Default) Bottom-Start"
+  - group:
+    - article:
+      - radiogroup "c2f31f88-9c57-4fa4-bdf2-9c9f1892c38b":
+        - list:
+          - listitem:
+            - radio "Option 1 none\" / \""
+            - text: Option 1 none" / "
+          - listitem:
+            - radio "Option 2 none\" / \""
+            - text: Option 2 none" / "
+      - button "cross\" / \" Close"
+  - status
+  - text: chevron_down" / " Bottom-End
+  - group:
+    - article:
+      - radiogroup "783c0661-006f-4664-8b3f-ea0fe15d0199":
+        - list:
+          - listitem:
+            - radio "Option 1 none\" / \""
+            - text: Option 1 none" / "
+          - listitem:
+            - radio "Option 2 none\" / \""
+            - text: Option 2 none" / "
+      - button "cross\" / \" Close"
+  - status
+  - text: chevron_down" / " Top-Start
+  - group:
+    - article:
+      - radiogroup "6fc2ad79-f9c1-43d9-959c-fc753bb80e9a":
+        - list:
+          - listitem:
+            - radio "Option 1 none\" / \""
+            - text: Option 1 none" / "
+          - listitem:
+            - radio "Option 2 none\" / \""
+            - text: Option 2 none" / "
+      - button "cross\" / \" Close"
+  - status
+  - text: chevron_down" / " Top-End
+  - group:
+    - article:
+      - radiogroup "7dc1bf7a-97f3-404a-a8c7-fd94a8fc73dc":
+        - list:
+          - listitem:
+            - radio "Option 1 none\" / \""
+            - text: Option 1 none" / "
+          - listitem:
+            - radio "Option 2 none\" / \""
+            - text: Option 2 none" / "
+      - button "cross\" / \" Close"
+  - status
+  - text: chevron_down" / "
+  - link "Selected type arrow_up_right\" / \""
+  - text: (Default) Text
+  - group:
+    - article:
+      - group "b2ceeb84-028d-49a6-918f-fb9dd5cad4d6":
+        - list:
+          - listitem:
+            - checkbox "Option 1"
+            - text: Option 1
+          - listitem:
+            - checkbox "Option 2"
+            - text: Option 2
+          - listitem:
+            - checkbox "Option 3"
+            - text: Option 3
+          - listitem:
+            - checkbox "Option 4"
+            - text: Option 4
+      - button "cross\" / \" Close"
+  - status
+  - text: chevron_down" / " Amount
+  - group:
+    - article:
+      - group "f3b005ad-a232-4a6c-9295-a384d519b00f":
+        - list:
+          - listitem:
+            - checkbox "Option 1"
+            - text: Option 1
+          - listitem:
+            - checkbox "Option 2"
+            - text: Option 2
+          - listitem:
+            - checkbox "Option 3"
+            - text: Option 3
+          - listitem:
+            - checkbox "Option 4"
+            - text: Option 4
+      - button "cross\" / \" Close"
+  - status
+  - text: chevron_down" / " Tag
+  - group:
+    - article:
+      - group "4bdce2ca-0eb4-488a-a161-a1ad0bed101b":
+        - list:
+          - listitem:
+            - checkbox "Option 1"
+            - text: Option 1
+          - listitem:
+            - checkbox "Option 2"
+            - text: Option 2
+          - listitem:
+            - checkbox "Option 3"
+            - text: Option 3
+          - listitem:
+            - checkbox "Option 4"
+            - text: Option 4
+      - button "cross\" / \" Close"
+  - status
+  - text: chevron_down" / "
+  - link "Show No Result arrow_up_right\" / \""
+  - text: (Default) False
+  - group:
+    - article:
+      - group "fb0199aa-24ab-4abd-b5f0-740d307c7314":
+        - list:
+          - listitem:
+            - checkbox "Option 1"
+            - text: Option 1
+          - listitem:
+            - checkbox "Option 2"
+            - text: Option 2
+      - button "cross\" / \" Close"
+  - status
+  - text: chevron_down" / " True
+  - group:
+    - article:
+      - text: exclamation_mark_triangle" / " Nothing found
+      - button "cross\" / \" Close"
+  - status
+  - text: chevron_down" / "
+  - link "Show Loading arrow_up_right\" / \""
+  - text: (Default) False
+  - group:
+    - article:
+      - group "102217ba-85a2-442b-bfbf-ea596e60dfb5":
+        - list:
+          - listitem:
+            - checkbox "Option 1"
+            - text: Option 1
+          - listitem:
+            - checkbox "Option 2"
+            - text: Option 2
+      - button "cross\" / \" Close"
+  - status
+  - text: chevron_down" / " True
+  - group:
+    - article:
+      - text: circular_arrows" / " Loading
+      - button "cross\" / \" Close"
+  - status
+  - text: chevron_down" / "
+  - link "Show Search arrow_up_right\" / \""
+  - text: (Default) False
+  - group:
+    - article:
+      - group "a4bfed4f-5587-45ff-bd17-c66c6a16375b":
+        - list:
+          - listitem:
+            - checkbox "Option 1"
+            - text: Option 1
+          - listitem:
+            - checkbox "Option 2"
+            - text: Option 2
+      - button "cross\" / \" Close"
+  - status
+  - text: chevron_down" / " True
+  - group:
+    - article:
+      - text: magnifying_glass" / " Search
+      - searchbox "Search"
+      - status
+      - text: cross" / "
+      - group "6ffe2775-38c0-4a32-afdf-d6e5bf227c56":
+        - list:
+          - listitem:
+            - checkbox "Option 1"
+            - text: Option 1
+          - listitem:
+            - checkbox "Option 2"
+            - text: Option 2
+      - button "cross\" / \" Close"
+  - status
+  - text: chevron_down" / "
+  - link "Show Select All arrow_up_right\" / \""
+  - text: (Default) False
+  - group:
+    - article:
+      - group "e95cdd7f-6444-4548-80bf-da7c52f3eec4":
+        - list:
+          - listitem:
+            - checkbox "Option 1"
+            - text: Option 1
+          - listitem:
+            - checkbox "Option 2"
+            - text: Option 2
+      - button "cross\" / \" Close"
+  - status
+  - text: chevron_down" / " True
+  - group:
+    - article:
+      - checkbox "Select all"
+      - text: Select all
+      - group "d1ed58e3-7fe1-4bd7-9738-8a35c162d656":
+        - list:
+          - listitem:
+            - checkbox "Option 1"
+            - text: Option 1
+          - listitem:
+            - checkbox "Option 2"
+            - text: Option 2
+      - button "cross\" / \" Close"
+  - status
+  - text: chevron_down" / "
+  - link "Show Clear Selection arrow_up_right\" / \""
+  - text: (Default) True
+  - group:
+    - article:
+      - group "838cd39c-b6e0-42d2-9780-c0e2c152d273":
+        - list:
+          - listitem:
+            - checkbox "Option 1"
+            - text: Option 1
+          - listitem:
+            - checkbox "Option 2"
+            - text: Option 2
+      - button "cross\" / \" Close"
+  - status
+  - text: chevron_down" / " False
+  - group:
+    - article:
+      - group "96c21f96-1447-4807-b652-51d371515544":
+        - list:
+          - listitem:
+            - checkbox "Option 1"
+            - text: Option 1
+          - listitem:
+            - checkbox "Option 2"
+            - text: Option 2
+      - button "cross\" / \" Close"
+  - status
+  - text: chevron_down" / "
+  - link "Examples Single arrow_up_right\" / \""
+  - text: Icons
+  - group:
+    - article:
+      - radiogroup "45252e2b-1bbe-4925-bf6a-86658592bebe":
+        - list:
+          - listitem:
+            - text: x_placeholder" / "
+            - radio "x_placeholder\" / \" Option 1 none\" / \""
+            - text: Option 1 none" / "
+          - listitem:
+            - text: x_placeholder" / "
+            - radio "x_placeholder\" / \" Option 2 none\" / \""
+            - text: Option 2 none" / "
+      - button "cross\" / \" Close"
+  - status
+  - text: chevron_down" / " Less than 6
+  - group:
+    - article:
+      - radiogroup "3d9cd4b9-5d2d-42da-8e33-9eb388a60336":
+        - list:
+          - listitem:
+            - radio "Option 1 none\" / \""
+            - text: Option 1 none" / "
+          - listitem:
+            - radio "Option 2 none\" / \""
+            - text: Option 2 none" / "
+          - listitem:
+            - radio "Option 3 none\" / \""
+            - text: Option 3 none" / "
+          - listitem:
+            - radio "Option 4 none\" / \""
+            - text: Option 4 none" / "
+          - listitem:
+            - radio "Option 5 none\" / \""
+            - text: Option 5 none" / "
+      - button "cross\" / \" Close"
+  - status
+  - text: chevron_down" / " Option Group Title
+  - group:
+    - article:
+      - radiogroup "03e65e20-11be-4367-a727-e2a774a9a216":
+        - list:
+          - listitem: Option group 1
+          - listitem:
+            - radio "G1:Option 1 none\" / \""
+            - text: G1:Option 1 none" / "
+          - listitem:
+            - radio "G1:Option 2 none\" / \""
+            - text: G1:Option 2 none" / "
+          - listitem: Option group 2
+          - listitem:
+            - radio "G2:Option 1 none\" / \""
+            - text: G2:Option 1 none" / "
+          - listitem:
+            - radio "G2:Option 2 none\" / \""
+            - text: G2:Option 2 none" / "
+      - button "cross\" / \" Close"
+  - status
+  - text: chevron_down" / " Option Groups
+  - group:
+    - article:
+      - radiogroup "45fcad87-e283-4df9-9b17-290a9da1d448":
+        - list:
+          - listitem:
+            - radio "G1:Option 1 none\" / \""
+            - text: G1:Option 1 none" / "
+          - listitem:
+            - radio "G1:Option 2 none\" / \""
+            - text: G1:Option 2 none" / "
+          - listitem:
+            - radio "G2:Option 1 none\" / \""
+            - text: G2:Option 1 none" / "
+          - listitem:
+            - radio "G2:Option 2 none\" / \""
+            - text: G2:Option 2 none" / "
+      - button "cross\" / \" Close"
+  - status
+  - text: chevron_down" / " More than 6
+  - group:
+    - article:
+      - radiogroup "44489438-1705-45a7-97cb-91b5d73b6bed":
+        - list:
+          - listitem:
+            - radio "Option 1 none\" / \""
+            - text: Option 1 none" / "
+          - listitem:
+            - radio "Option 2 none\" / \""
+            - text: Option 2 none" / "
+          - listitem:
+            - radio "Option 3 none\" / \""
+            - text: Option 3 none" / "
+          - listitem:
+            - radio "Option 4 none\" / \""
+            - text: Option 4 none" / "
+          - listitem:
+            - radio "Option 5 none\" / \""
+            - text: Option 5 none" / "
+          - listitem:
+            - radio "Option 6 none\" / \""
+            - text: Option 6 none" / "
+          - listitem:
+            - radio "Option 7 none\" / \""
+            - text: Option 7 none" / "
+      - button "cross\" / \" Close"
+  - status
+  - text: chevron_down" / " More than 10
+  - group:
+    - article:
+      - text: magnifying_glass" / " Search
+      - searchbox "Search"
+      - status
+      - text: cross" / "
+      - radiogroup "7bd84845-3976-449a-88f1-e0d930602a50":
+        - list:
+          - listitem:
+            - radio "Option 1 none\" / \""
+            - text: Option 1 none" / "
+          - listitem:
+            - radio "Option 2 none\" / \""
+            - text: Option 2 none" / "
+          - listitem:
+            - radio "Option 3 none\" / \""
+            - text: Option 3 none" / "
+          - listitem:
+            - radio "Option 4 none\" / \""
+            - text: Option 4 none" / "
+          - listitem:
+            - radio "Option 5 none\" / \""
+            - text: Option 5 none" / "
+          - listitem:
+            - radio "Option 6 none\" / \""
+            - text: Option 6 none" / "
+          - listitem:
+            - radio "Option 7 none\" / \""
+            - text: Option 7 none" / "
+          - listitem:
+            - radio "Option 8 none\" / \""
+            - text: Option 8 none" / "
+          - listitem:
+            - radio "Option 9 none\" / \""
+            - text: Option 9 none" / "
+          - listitem:
+            - radio "Option 10 none\" / \""
+            - text: Option 10 none" / "
+      - button "cross\" / \" Close"
+  - status
+  - text: chevron_down" / "
+  - link "Examples Multiple arrow_up_right\" / \""
+  - text: Less than 6
+  - group:
+    - article:
+      - group "f99ce8f9-0639-4b45-83a5-d3e239686c2d":
+        - list:
+          - listitem:
+            - checkbox "Option 1"
+            - text: Option 1
+          - listitem:
+            - checkbox "Option 2"
+            - text: Option 2
+          - listitem:
+            - checkbox "Option 3"
+            - text: Option 3
+          - listitem:
+            - checkbox "Option 4"
+            - text: Option 4
+          - listitem:
+            - checkbox "Option 5"
+            - text: Option 5
+      - button "cross\" / \" Close"
+  - status
+  - text: chevron_down" / " Option Group Title
+  - group:
+    - article:
+      - group "0fdacd7f-e151-493f-9efe-de57d876d8e2":
+        - list:
+          - listitem: Option group 1
+          - listitem:
+            - checkbox "G1:Option 1"
+            - text: G1:Option 1
+          - listitem:
+            - checkbox "G1:Option 2"
+            - text: G1:Option 2
+          - listitem: Option group 2
+          - listitem:
+            - checkbox "G2:Option 1"
+            - text: G2:Option 1
+          - listitem:
+            - checkbox "G2:Option 2"
+            - text: G2:Option 2
+      - button "cross\" / \" Close"
+  - status
+  - text: chevron_down" / " Option Groups
+  - group:
+    - article:
+      - group "e246975e-a675-433f-bd33-e042afcde748":
+        - list:
+          - listitem:
+            - checkbox "G1:Option 1"
+            - text: G1:Option 1
+          - listitem:
+            - checkbox "G1:Option 2"
+            - text: G1:Option 2
+          - listitem:
+            - checkbox "G2:Option 1"
+            - text: G2:Option 1
+          - listitem:
+            - checkbox "G2:Option 2"
+            - text: G2:Option 2
+      - button "cross\" / \" Close"
+  - status
+  - text: chevron_down" / " More than 6
+  - group:
+    - article:
+      - checkbox "Select all"
+      - text: Select all
+      - group "2e76bf9a-16fe-47a7-a362-d7b6f0f77498":
+        - list:
+          - listitem:
+            - checkbox "Option 1"
+            - text: Option 1
+          - listitem:
+            - checkbox "Option 2"
+            - text: Option 2
+          - listitem:
+            - checkbox "Option 3"
+            - text: Option 3
+          - listitem:
+            - checkbox "Option 4"
+            - text: Option 4
+          - listitem:
+            - checkbox "Option 5"
+            - text: Option 5
+          - listitem:
+            - checkbox "Option 6"
+            - text: Option 6
+          - listitem:
+            - checkbox "Option 7"
+            - text: Option 7
+      - button "cross\" / \" Close"
+  - status
+  - text: chevron_down" / " More than 10
+  - group:
+    - article:
+      - text: magnifying_glass" / " Search
+      - searchbox "Search"
+      - status
+      - text: cross" / "
+      - checkbox "Select all"
+      - text: Select all
+      - group "89d9d16e-3887-4d70-85c9-8b82b5e43f51":
+        - list:
+          - listitem:
+            - checkbox "Option 1"
+            - text: Option 1
+          - listitem:
+            - checkbox "Option 2"
+            - text: Option 2
+          - listitem:
+            - checkbox "Option 3"
+            - text: Option 3
+          - listitem:
+            - checkbox "Option 4"
+            - text: Option 4
+          - listitem:
+            - checkbox "Option 5"
+            - text: Option 5
+          - listitem:
+            - checkbox "Option 6"
+            - text: Option 6
+          - listitem:
+            - checkbox "Option 7"
+            - text: Option 7
+          - listitem:
+            - checkbox "Option 8"
+            - text: Option 8
+          - listitem:
+            - checkbox "Option 9"
+            - text: Option 9
+          - listitem:
+            - checkbox "Option 10"
+            - text: Option 10
+      - button "cross\" / \" Close"
+  - status
+  - text: chevron_down" / "
+  - link "Example tags arrow_up_right\" / \""
+  - text: Tag grow
+  - group:
+    - article:
+      - group "0a61a756-1aaa-4586-869e-df624d61f6cb":
+        - list:
+          - listitem:
+            - checkbox "Option 1"
+            - text: Option 1
+          - listitem:
+            - checkbox "Option 2"
+            - text: Option 2
+          - listitem:
+            - checkbox "Option 3"
+            - text: Option 3
+          - listitem:
+            - checkbox "Option 4"
+            - text: Option 4
+      - button "cross\" / \" Close"
+  - status
+  - text: chevron_down" / " Tag grow + auto
+  - group:
+    - article:
+      - group "0f60f167-f097-4734-8e23-f2ac1c858019":
+        - list:
+          - listitem:
+            - checkbox "Option 1"
+            - text: Option 1
+          - listitem:
+            - checkbox "Option 2"
+            - text: Option 2
+          - listitem:
+            - checkbox "Option 3"
+            - text: Option 3
+          - listitem:
+            - checkbox "Option 4"
+            - text: Option 4
+      - button "cross\" / \" Close"
+  - status
+  - text: chevron_down" / "

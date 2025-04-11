@@ -13,7 +13,7 @@ const setControlValueAccessorReplacements = (
 	replacements: Overwrite[],
 	upperComponentName: string,
 	valueAccessor: 'checked' | 'value' | string,
-	valueAccessorRequired: boolean
+	valueAccessorRequired?: boolean
 ) => {
 	// for native angular support (e.g. reactive forms) we have to implement
 	// the ControlValueAccessor interface with all impacts :/
@@ -209,7 +209,10 @@ export default (tmp?: boolean) => {
 			);
 		}
 
-		if (component.config?.angular?.directives?.length > 0) {
+		if (
+			component.config?.angular?.directives &&
+			component.config.angular.directives.length > 0
+		) {
 			setDirectiveReplacements(
 				replacements,
 				outputFolder,

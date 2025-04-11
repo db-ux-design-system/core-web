@@ -113,7 +113,12 @@ const resolveAllUnions = (resolvedData, resolvedProps, resolvedUnions) => {
 	for (const [key, obj] of Object.entries(resolvedUnions)) {
 		let resolvedValues = [];
 		const unresolvedUnions = [];
-		obj.values.forEach((type) => {
+		for (const type of obj.values) {
+			if (type.type){
+				resolvedValues.push(type);
+				continue;
+			}
+
 			const foundProp = resolvedProps[type];
 			if (foundProp) {
 				resolvedValues = resolvedValues.concat(foundProp.values);
@@ -121,11 +126,11 @@ const resolveAllUnions = (resolvedData, resolvedProps, resolvedUnions) => {
 				const foundData = resolvedData[type];
 				if (foundData) {
 					resolvedValues.push({ ...foundData, name: type });
-				} else {
+				} else if (type !== "Omit"){
 					unresolvedUnions.push(type);
 				}
 			}
-		});
+		}
 
 		resolvedUnions[key] = {
 			...obj,

@@ -18,7 +18,7 @@ useMetadata({
 useDefaultProps<DBButtonProps>({});
 
 export default function DBButton(props: DBButtonProps) {
-	const _ref = useRef<HTMLButtonElement | null>(null);
+	const _ref = useRef<HTMLButtonElement | any>(null);
 	// jscpd:ignore-start
 	const state = useStore<DBButtonState>({
 		handleClick: (event: ClickEvent<HTMLButtonElement>) => {
@@ -46,6 +46,7 @@ export default function DBButton(props: DBButtonProps) {
 			data-variant={props.variant}
 			data-no-text={getBooleanAsString(props.noText)}
 			name={props.name}
+			form={props.form}
 			value={props.value}
 			aria-describedby={props.describedbyid}
 			aria-expanded={props.ariaexpanded}
