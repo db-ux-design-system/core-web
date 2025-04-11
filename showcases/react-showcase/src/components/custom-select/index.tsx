@@ -36,7 +36,8 @@ const getCustomSelect = ({
 	icon,
 	showIcon,
 	showMessage,
-	disabled
+	disabled,
+	id
 }: DBCustomSelectProps & {
 	lineBreak?: boolean;
 	info?: boolean;
@@ -69,7 +70,7 @@ const getCustomSelect = ({
 			showNoResults={showNoResults}
 			multiple={multiple}
 			label={children}
-			ariaListLabel={uuid()}
+			ariaListLabel={`${id}-${children}`}
 			options={options}
 			variant={variant}
 			message={message}
