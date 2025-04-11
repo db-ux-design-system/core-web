@@ -33,7 +33,8 @@
     "mv:package.json": "cpr package.json ../../build-outputs/vue/package.json -o",
     "mv:readme": "cpr README.md ../../build-outputs/vue/README.md -o",
     "postbuild": "npm-run-all -p mv:*",
-    "test:components": "playwright test -c playwright.config.ts"
+    "test:components": "playwright test -c playwright.config.ts",
+    "test:components:ui": "playwright test -c playwright.config.ts --ui"
   },
   "devDependencies": {
     "@playwright/experimental-ct-vue": "1.50.1",

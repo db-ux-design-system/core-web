@@ -408,7 +408,7 @@
 		]
 	},
 	{
-		"name": "Width",
+		"name": "Form Field Width",
 		"examples": [
 			{
 				"name": "(Default) Full",
@@ -427,7 +427,7 @@
 						}
 					],
 					"label": "Full",
-					"width": "full"
+					"formFieldWidth": "full"
 				},
 				"children": []
 			},
@@ -448,7 +448,7 @@
 						}
 					],
 					"label": "Auto",
-					"width": "auto"
+					"formFieldWidth": "auto"
 				},
 				"children": []
 			}
@@ -458,7 +458,7 @@
 		"name": "Dropdown Width",
 		"examples": [
 			{
-				"name": "Full Width",
+				"name": "Form Field Width: Full",
 				"props": {
 					"info": true
 				},
@@ -488,7 +488,7 @@
 						}
 					],
 					"label": "Fixed",
-					"width": "full",
+					"formFieldWidth": "full",
 					"dropdownWidth": "fixed"
 				},
 				"children": []
@@ -510,7 +510,7 @@
 						}
 					],
 					"label": "Auto",
-					"width": "full",
+					"formFieldWidth": "full",
 					"dropdownWidth": "auto"
 				},
 				"children": []
@@ -532,7 +532,7 @@
 						}
 					],
 					"label": "Full",
-					"width": "full",
+					"formFieldWidth": "full",
 					"dropdownWidth": "full"
 				},
 				"children": []
@@ -545,7 +545,7 @@
 				"children": []
 			},
 			{
-				"name": "Auto Width",
+				"name": "Form Field Width: Auto",
 				"props": {
 					"info": true
 				},
@@ -575,7 +575,7 @@
 						}
 					],
 					"label": "Fixed",
-					"width": "auto",
+					"formFieldWidth": "auto",
 					"dropdownWidth": "fixed"
 				},
 				"children": []
@@ -597,7 +597,7 @@
 						}
 					],
 					"label": "Auto",
-					"width": "auto",
+					"formFieldWidth": "auto",
 					"dropdownWidth": "auto"
 				},
 				"children": []
@@ -619,7 +619,7 @@
 						}
 					],
 					"label": "Full",
-					"width": "auto",
+					"formFieldWidth": "auto",
 					"dropdownWidth": "full"
 				},
 				"children": []
@@ -630,7 +630,7 @@
 		"name": "Placement",
 		"examples": [
 			{
-				"name": "Full Width",
+				"name": "Form Field Width: Full",
 				"props": {
 					"info": true
 				},
@@ -660,7 +660,7 @@
 						}
 					],
 					"label": "Bottom",
-					"width": "full",
+					"formFieldWidth": "full",
 					"placement": "bottom"
 				},
 				"children": []
@@ -682,7 +682,7 @@
 						}
 					],
 					"label": "Top",
-					"width": "full",
+					"formFieldWidth": "full",
 					"placement": "top"
 				},
 				"children": []
@@ -695,7 +695,7 @@
 				"children": []
 			},
 			{
-				"name": "Auto Width",
+				"name": "Form Field Width: Auto",
 				"props": {
 					"info": true
 				},
@@ -725,7 +725,7 @@
 						}
 					],
 					"label": "Bottom",
-					"width": "auto",
+					"formFieldWidth": "auto",
 					"placement": "bottom-start"
 				},
 				"children": []
@@ -747,7 +747,7 @@
 						}
 					],
 					"label": "Bottom",
-					"width": "auto",
+					"formFieldWidth": "auto",
 					"placement": "bottom-end"
 				},
 				"children": []
@@ -769,7 +769,7 @@
 						}
 					],
 					"label": "Top",
-					"width": "auto",
+					"formFieldWidth": "auto",
 					"placement": "top-start"
 				},
 				"children": []
@@ -791,7 +791,7 @@
 						}
 					],
 					"label": "Top",
-					"width": "auto",
+					"formFieldWidth": "auto",
 					"placement": "top-end"
 				},
 				"children": []
@@ -1623,7 +1623,7 @@
 					"label": "Label",
 					"selectedType": "tag",
 					"tagWrapping": "grow",
-					"width": "auto",
+					"formFieldWidth": "auto",
 					"multiple": true
 				},
 				"children": []

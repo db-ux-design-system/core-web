@@ -1,5 +1,9 @@
 import { useState } from 'react';
-import { DBCustomSelect, DBInfotext } from '../../../../../output/react/src';
+import {
+	DBCustomSelect,
+	DBInfotext,
+	uuid
+} from '../../../../../output/react/src';
 import DefaultComponent from '../default-component';
 import defaultComponentVariants from '../../../../shared/custom-select.json';
 import type { DBCustomSelectProps } from '../../../../../output/react/src/components/custom-select/model';
@@ -15,7 +19,7 @@ const getCustomSelect = ({
 	options,
 	placeholder,
 	selectedType,
-	width,
+	formFieldWidth,
 	showLabel,
 	placement,
 	lineBreak,
@@ -65,6 +69,7 @@ const getCustomSelect = ({
 			showNoResults={showNoResults}
 			multiple={multiple}
 			label={children}
+			ariaListLabel={uuid()}
 			options={options}
 			variant={variant}
 			message={message}
@@ -75,7 +80,7 @@ const getCustomSelect = ({
 			selectAllLabel="Select all"
 			searchLabel="Search"
 			selectedType={selectedType}
-			width={width}
+			formFieldWidth={formFieldWidth}
 			loadingText={loadingText}
 			noResultsText={noResultsText ?? 'No matching filter'}
 			values={mValue}

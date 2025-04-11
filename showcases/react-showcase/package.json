@@ -13,7 +13,8 @@
     "start": "vite",
     "test-sr:macos": "cross-env showcase=react-showcase npx playwright test --config=../playwright.screen-reader.macos.ts",
     "test-sr:windows": "cross-env showcase=react-showcase npx playwright test --config=../playwright.screen-reader.windows.ts",
-    "test:e2e": "cross-env showcase=react-showcase npx playwright test --config=../playwright.config.ts"
+    "test:e2e": "cross-env showcase=react-showcase npx playwright test --config=../playwright.config.ts",
+    "test:ui": "cross-env showcase=react-showcase npx playwright test --config=../playwright.config.ts --ui"
   },
   "dependencies": {
     "react": "^18.3.1",

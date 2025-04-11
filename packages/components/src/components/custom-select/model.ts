@@ -1,6 +1,5 @@
 import {
 	BaseFormProps,
-	ChangeEvent,
 	CloseEventState,
 	CustomFormProps,
 	FormMessageProps,
@@ -15,13 +14,11 @@ import {
 	ShowIconProps,
 	ShowLabelProps,
 	ValidationType,
-	WidthProps
+	WidthType
 } from '../../shared/model';
 import { DBCustomSelectFormFieldDefaultProps } from '../custom-select-form-field/model';
 import { CustomSelectDropdownWidthType } from '../custom-select-dropdown/model';
 import { DBCustomSelectListItemExtraProps } from '../custom-select-list-item/model';
-import { DetachedRouteHandle } from '@angular/router';
-import { DocumentClickListener } from '../../utils/document-click-listener';
 
 export type CustomSelectOptionType = {
 	/**
@@ -83,6 +80,10 @@ export type DBCustomSelectEvents = {
 
 export type DBCustomSelectDefaultProps = {
 	/**
+	 * Overwrite the default aria-label (props.label) for the custom-select-list
+	 */
+	ariaListLabel?: string;
+	/**
 	 * Optional: if select-type="amount" change the shown text
 	 */
 	amountText?: string;
@@ -100,6 +101,11 @@ export type DBCustomSelectDefaultProps = {
 	dropdownWidth?: CustomSelectDropdownWidthType | string;
 
 	/**
+	 * Width of the component. Auto width based on children size, full width based on parent elements width.
+	 */
+	formFieldWidth?: WidthType | string;
+
+	/**
 	 * Dropdown - hint if data has to be loaded
 	 */
 	loadingText?: string;
@@ -114,15 +120,20 @@ export type DBCustomSelectDefaultProps = {
 	 */
 
 	multiple?: boolean | string;
-
 	/**
 	 * Dropdown - hint if there are no options
 	 */
 	noResultsText?: string;
 	/**
+	 * Programmatically open the dropdown. May differ if you don't use onDropdownToggle.
+	 */
+	open?: boolean;
+
+	/**
 	 * You should pass in the options as an array.
 	 */
 	options?: CustomSelectOptionType[];
+
 	/**
 	 * The `placement` attributes values change the position to absolute and adds a transform based on the placement.
 	 */
@@ -182,11 +193,6 @@ export type DBCustomSelectDefaultProps = {
 	 * Initial value for multi select
 	 */
 	values?: string[];
-
-	/**
-	 * Programmatically open the dropdown. May differ if you don't use onDropdownToggle.
-	 */
-	open?: boolean;
 };
 
 export type DBCustomSelectProps = GlobalProps &
@@ -197,7 +203,6 @@ export type DBCustomSelectProps = GlobalProps &
 	DBCustomSelectDefaultProps &
 	DBCustomSelectEvents &
 	DBCustomSelectFormFieldDefaultProps &
-	WidthProps &
 	IconProps &
 	ShowIconProps &
 	ShowLabelProps;

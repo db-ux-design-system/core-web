@@ -50,7 +50,7 @@ import { DBCustomSelect, DBInfotext } from "../../../../../output/vue/src";
 				selectAllLabel="Select all"
 				searchLabel="Search"
 				:selectedType="exampleProps?.selectedType"
-				:width="exampleProps?.width"
+				:formFieldWidth="exampleProps?.formFieldWidth"
 				:values="exampleProps?.mValue"
 				:on-select="(event) => console.log(event)"
 			/>

@@ -73,7 +73,7 @@ useDefaultProps<DBCustomSelectProps>({
 
 export default function DBCustomSelect(props: DBCustomSelectProps) {
 	// This is used as forwardRef
-	const _ref = useRef<HTMLDivElement | null>(null);
+	const _ref = useRef<HTMLDivElement | any>(null);
 	const detailsRef = useRef<HTMLDetailsElement | any>(null);
 	const selectRef = useRef<HTMLSelectElement | any>(null);
 	const selectAllRef = useRef<HTMLInputElement | any>(null);
@@ -489,7 +489,7 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 					}
 				});
 			}
-			detailsRef.addEventListener('focusout', (event) =>
+			detailsRef.addEventListener('focusout', (event: any) =>
 				state.handleClose(event)
 			);
 		}
@@ -677,7 +677,7 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 			class={cls('db-custom-select', props.className)}
 			aria-invalid={state._validity === 'invalid'}
 			data-custom-validity={state._validity}
-			data-width={props.width}
+			data-width={props.formFieldWidth}
 			data-variant={
 				props.variant === 'floating' &&
 				props.selectedType === 'tag' &&
@@ -836,7 +836,11 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 											props.multiple,
 											'multiple'
 										)}
-										label={props.label ?? DEFAULT_LABEL}>
+										label={
+											props.ariaListLabel ??
+											props.label ??
+											DEFAULT_LABEL
+										}>
 										<For each={state._options}>
 											{(
 												option: CustomSelectOptionType
